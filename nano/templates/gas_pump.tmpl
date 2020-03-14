@@ -1,0 +1,49 @@
+<!-- 
+Title: Gas Pump UI
+Written by Frenjo, 03/11/2019.
+ -->
+<h3>Status</h3>
+<div class="item">
+	<div class="itemLabel">
+		Power Status:
+	</div>
+	<div class="itemContent">
+		{{if on}}
+			[<span class='good'>On</span>]
+		{{else}}
+			[<span class='average'>Off</span>]
+		{{/if}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Current Pressure:
+	</div>
+	<div class="itemContent">
+		{{:target_pressure}}kPa
+	</div>
+</div>
+
+<h3>Settings</h3>
+<div class="item">
+	<div class="itemLabel">
+		Power Switch:
+	</div>
+	<div class="itemContent">
+		{{if on}}
+			{{:~link('Off', 'close', {'power' : 'off'})}}
+		{{else}}
+			{{:~link('On', 'power', {'power' : 'on'})}}
+		{{/if}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Desirable Output Pressure:
+	</div>
+	<div class="itemContent">
+		{{:~link('Change', null, {'pressure' : 'set_press'}, null)}}
+	</div>
+</div>

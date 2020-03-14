@@ -1,0 +1,92 @@
+<!-- 
+Title: Zero-Point Laser Control Computer UI
+Written by Frenjo, 05/11/2019.
+ -->
+<h3>Status</h3>
+<div class="item">
+	<div class="itemLabel">
+		Laser Status:
+	</div>
+	<div class="itemContent">
+		{{if laser_status}}
+			[<span class='good'>Online</span>]
+		{{else}}
+			[<span class='average'>Offline</span>]
+		{{/if}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Laser Energy:
+	</div>
+	<div class="itemContent">
+		{{:laser_energy}}MeV
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Laser Frequency:
+	</div>
+	<div class="itemContent">
+		{{:laser_frequency}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Lasers Connected:
+	</div>
+	<div class="itemContent">
+		{{:laser_number}}
+	</div>
+</div>
+
+<h3>Settings</h3>
+<div class="item">
+	<div class="itemLabel">
+		Power Switch:
+	</div>
+	<div class="itemContent">
+		{{if laser_status}}
+			{{:~link('Off', 'close', {'power' : 'offline'})}}
+		{{else}}
+			{{:~link('On', 'power', {'power' : 'online'})}}
+		{{/if}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Energy Tuner:
+	</div>
+	<div class="itemContent">
+		{{:~displayBar(laser_energy, '0.0001', '0.01')}}<br>
+		{{:~link('-', null, {'input' : '-0.005'}, (laser_energy > '0.006') ? null : 'disabled')}}
+		{{:~link('-', null, {'input' : '-0.001'}, (laser_energy > '0.001') ? null : 'disabled')}}
+		{{:~link('-', null, {'input' : '-0.0005'}, (laser_energy > '0.0006') ? null : 'disabled')}}
+		{{:~link('-', null, {'input' : '-0.0001'}, (laser_energy > '0.0001') ? null : 'disabled')}}
+		{{:~link('+', null, {'input' : '0.0001'}, (laser_energy < '0.01') ? null : 'disabled')}}
+		{{:~link('+', null, {'input' : '0.0005'}, (laser_energy < '0.0096') ? null : 'disabled')}}
+		{{:~link('+', null, {'input' : '0.001'}, (laser_energy < '0.009') ? null : 'disabled')}}
+		{{:~link('+', null, {'input' : '0.005'}, (laser_energy < '0.006') ? null : 'disabled')}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Frequency Tuner:
+	</div>
+	<div class="itemContent">
+		{{:~displayBar(laser_frequency, '1', '20000')}}<br>
+		{{:~link('-', null, {'freq' : '-1000'}, (laser_frequency > '1000') ? null : 'disabled')}}
+		{{:~link('-', null, {'freq' : '-100'}, (laser_frequency > '100') ? null : 'disabled')}}
+		{{:~link('-', null, {'freq' : '-10'}, (laser_frequency > '10') ? null : 'disabled')}}
+		{{:~link('-', null, {'freq' : '-1'}, (laser_frequency > '1') ? null : 'disabled')}}
+		{{:~link('+', null, {'freq' : '1'}, (laser_frequency < '20000') ? null : 'disabled')}}
+		{{:~link('+', null, {'freq' : '10'}, (laser_frequency < '19991') ? null : 'disabled')}}
+		{{:~link('+', null, {'freq' : '100'}, (laser_frequency < '19901') ? null : 'disabled')}}
+		{{:~link('+', null, {'freq' : '1000'}, (laser_frequency < '19001') ? null : 'disabled')}}
+	</div>
+</div>

@@ -1,0 +1,45 @@
+<!-- 
+Title: Keycard Authentication Device UI
+Written by Frenjo, 07/11/2019.
+ -->
+{{if screen == 1}}
+	<div class="notice">
+		This device is used to trigger some high security events.<br>
+		<small>It requires the simultaneous swipe of two high-level identification cards at two separate devices.</small><br>
+	</div>
+{{/if}}
+
+{{if screen == 1}}
+	<div class="item">
+		<div class="itemContent">
+			{{:~link('Red Alert', 'alert', {'triggerevent' : 'Red Alert'}, null, 'redBackground')}}
+			<br>
+			{{:~link('Emergency Response Team', 'signal-diag', {'triggerevent' : 'Emergency Response Team'}, null, 'redBackground')}}
+			<br>
+			{{:~link('Grant Emergency Maintenance Access', null, {'triggerevent' : 'Grant Emergency Maintenance Access'}, null, 'yellowBackground')}}
+			<br>
+			{{:~link('Revoke Emergency Maintenance Access', null, {'triggerevent' : 'Revoke Emergency Maintenance Access'}, null, 'yellowBackground')}}
+		</div>
+	</div>
+{{/if}}
+
+{{if screen == 2}}
+	<div class="notice">
+		Please swipe your identification card to authorize the following event:<br>
+	</div>
+{{/if}}
+
+{{if screen == 2}}
+	<div class="item">
+		<div class="itemContent">
+			{{if event == "Red Alert" || event == "Emergency Response Team"}}
+				<h3 style="color:Red">{{:event}}</h3>
+				<br>
+			{{else}}
+				<h3 style="color:Yellow">{{:event}}</h3>
+				<br>
+			{{/if}}
+			{{:~link('Reset', 'close', {'reset' : 'reset'})}}
+		</div>
+	</div>
+{{/if}}

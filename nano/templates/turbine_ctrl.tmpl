@@ -1,0 +1,93 @@
+<!-- 
+Title: Turbine Control Computer UI
+Written by Frenjo, 04/11/2019.
+ -->
+<h3>Status</h3>
+<div class="item">
+	<div class="itemLabel">
+		Turbine Status:
+	</div>
+	<div class="itemContent">
+		{{if status}}
+			[<span class='good'>On</span>]
+		{{else}}
+			[<span class='average'>Off</span>]
+		{{/if}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Turbine Speed:
+	</div>
+	<div class="itemContent">
+		{{:speed}}rpm
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Power Generated:
+	</div>
+	<div class="itemContent">
+		{{:power}}W
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Internal Gas Temperature:
+	</div>
+	<div class="itemContent">
+		{{:temp}}K
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Vent Doors:
+	</div>
+	<div class="itemContent">
+		{{if doors}}
+			[<span class='good'>Opened</span>]
+		{{else}}
+			[<span class='average'>Closed</span>]
+		{{/if}}
+	</div>
+</div>
+
+<h3>Settings</h3>
+<div class="item">
+	<div class="itemLabel">
+		Turbine Control:
+	</div>
+	<div class="itemContent">
+		{{if status}}
+			{{:~link('Off', 'close', {'action' : 'stop'})}}
+		{{else}}
+			{{:~link('On', 'power', {'action' : 'strt'})}}
+		{{/if}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Vent Control:
+	</div>
+	<div class="itemContent">
+		{{if doors}}
+			{{:~link('Close', null, {'action' : 'doors_close'})}}
+		{{else}}
+			{{:~link('Open', null, {'action' : 'doors_open'})}}
+		{{/if}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Camera:
+	</div>
+	<div class="itemContent">
+		{{:~link('View', null, {'action' : 'view'})}}
+	</div>
+</div>

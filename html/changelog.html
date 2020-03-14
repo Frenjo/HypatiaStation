@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Hypatia Station Changelog</title>
+  <link rel="stylesheet" type="text/css" href="changelog.css">
+  <script type='text/javascript'>
+  
+	function changeText(tagID, newText, linkTagID){
+		var tag = document.getElementById(tagID);
+		tag.innerHTML = newText;
+		var linkTag = document.getElementById(linkTagID);
+		linkTag.removeAttribute("href");
+		linkTag.removeAttribute("onclick");
+	}
+
+  </script>  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+<!-- 
+Header Section 
+-->
+<table align='center' width='650'><tr><td>
+<table align='center' class="top">
+	<tr>
+		<td valign='top'>
+			<div align='center'><font size='3'><b>Space Station 13</b></font></div>
+			<p><div align='center'><font size='3'><a href="http://wiki.hypatiastation.net">Wiki</a> | <a href="https://github.com/HypatiaStation/HypatiaStation">Source code</a></font></div></p>
+			<font size='2'>Code licensed under <a href="http://www.gnu.org/licenses/gpl.html">GPLv3</a>. Content licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.<br><br>
+			</td>
+	</tr>
+</table>
+<br><b>Hypatia Station Credit List</b>
+<table align='center' class="top">
+	<tr>
+		<td valign='top'>
+			<font size='2'><b>Hypatia Code: TwistedAkai, Numbers, KBernges, Askarn, Techy, Marajin</b></font>
+			<font size='2'><b>Hypatia Sprites: Religue, Gerrymouse, If you should be here remind Marajin</b></font>
+			<font size='2'><b>Code:</b> Abi79, Aryn, Cael_Aislinn,Ccomp5950 ,Chinsky, cib, CompactNinja, DopeGhoti, Erthilo, Hawk_v3, Head, Ispil, Lexusjjss, Melonstorm, Miniature, Mloc, NerdyBoy1104, SkyMarshal, Snapshot, Spectre, Strumpetplaya, Sunfall, Tastyfish, Uristqwerty<br></font>
+			<font size='2'><b>Sprites:</b> Apple_Master, Arcalane, Chinsky, CompactNinja, Deus Dactyl, Erthilo, Flashkirby, Miniature, Searif, Xenone, faux<br></font>
+			<font size='2'><b>Sounds:</b> Aryn<br></font>
+			<font size='2'><b>Thanks To:</b> Baystation12, /tg/ station, Goonstation, Animus Station, Daedalus, and original Spacestation 13 devs. Skibiliano for the IRC bot.</font>
+		</td>
+	</tr>
+</table>
+
+<!-- 
+Changelog Section 
+-->
+
+<!-- NOTE TO UPDATERS!! Please only list things which are important to players. 
+Stuff which is in development and not yet visible to players or just code related 
+(ie. code improvements for expandability, etc.) should not be listed here. They 
+should be listed in the changelog upon commit though. Thanks. -->
+
+<!-- You can simply add changelogs using AddToChangelog.exe -->
+
+<!-- DO NOT REMOVE, MOVE, OR COPY THIS COMMENT! THIS MUST BE THE LAST NON-EMPTY LINE BEFORE THE LOGS #ADDTOCHANGELOGMARKER# -->
+
+<div class='commit sansserif'>
+	<h2 class='date'>20th April 2014</h2>
+	<h3 class='author'>Marajin updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rcsadd'>The Security Arrivals post has been deleted and turned into a 'Construction Area' until something fits in there.</li>
+		<li class='rcsadd'>A Space Cleaner spray has been added to Security! You can found it in the medical area.</li>
+		<li class='rcsadd'>The Starboard Emergency storage has been turned into a Security post!</li>
+		<li class='rcsadd'>The Chapel doors have been moved to the front of it, leading to the main Hallway.</li>
+		<li class='rcsadd'>Science has got a new Break Room!</li>
+		<li class='rcsadd'>The Engineering Emergency Storage walls have been changed into windows, to make it more visible to Engineers.</li>
+		<li class='tweak'>The engine's pipes have been moved a bit, to avoid overlapping.</li>
+		<li class='rcsadd'>A new scrubbers emptying system has been added in Engineering.</li>
+		<li class='rcsadd'>CE's office now has some privacy shutters.</li>
+		<li class='rcsadd'>A new engine telescreen now fills the space that was left after deleting the button from the office.</li>
+		<li class='bugfix'>Two cameras were missing on the Engine.</li>
+		<li class='tweak'>Removed the changeling fat reduction sting. Why is this even a thing?</li>
+		<li class='bugfix'>Improve master controller restart and prevent multiple master controllers existing</li>
+		<li class='tweak'>Reorganize the grouping of supply crates</li>
+		<li class='tweak'>Tweaked atmospherics s'more</li>
+		<li class='bugfix'>Grammar and typo fixes aplenty</li>
+		<li class='bugfix'>Die nasty dupe bug in the autolathe! Die! Mwahahah</li>
+		<li class='rcsadd'>Attacking a seed bed is now treated as an attempt to weed/harvest the plants</li>
+		<li class='tweak'>Broken hands now stop you messing with more things, cause your hand is broken dope!</li>
+		<li class='tweak'>Grilles take less damage from a kicking</li>
+		<li class='rcsadd'>pAIs/Recorders/etc. should now hear stuff in a room when hidden in closets/crates.</li>
+		<li class='experiment'>Energy bolts don't 'weaken' but they do hurt.. a lot.. like seriously, OW.</li>
+		<li class='rcsadd'>Fix NanoUI verb added to view variables drop down options</li>
+		<li class='tweak'>Tofu added to food crate</li>
+		<li class='tweak'>Flask added to party crate</li>
+		<li class='tweak'>Apple, Harebell, Lemon, Orange, grass added to seed crate.</li>
+		<li class='tweak'>Rice, Eggplant, Lime and Grape added to exotic seed crate</li>
+		<li class='rscadd'>50 Wooden Planks crate added</li>
+		<li class='tweak'>Bunch of stuff added to costume crate</li>
+		<li class='tweak'>Blue & Purple suits added to Formal wear crate</li>
+		<li class='rscadd'>Improvements to logging format</li>
+		<li class='bugfix'>Various typos.</li>
+		<li class='tweak'>APC charge rate buffed</li>
+		<li class='tweak'>Power draw processing tweaked</li>
+		<li class='rscadd'>Now you can fill things other than buckets in hydroponics</li>
+		<li class='rscadd'>Hackable Smart fridge</li>
+		<li class='rscadd'>Secure smart fridge added</li>
+		<li class='rscadd'>Handcuffs can fall off if limbs are broken/severed</li>
+		<li class='rscadd'>Medical Oath book added</li>
+		<li class='rscadd'>New researchable/buildable laser scalpels</li>
+		<li class='rscadd'>Drop grenades if they explode in your hand.</li>
+		<li class='rscadd'>Tramadol pill bottle definition</li>
+		<li class='experiment'>New ZAS version</li>
+		<li class='rscadd'>Reboot ZAS button</li>
+		<li class='rscadd'>Added 3D Glasses</li>
+		<li class='tweak'>Virus spread from breathing nerfed</li>
+		<li class='rscadd'>Virus spread from sneezing added</li>
+		<li class='tweak'>Stop the SSD snores! Again!</li>
+		<li class='rscadd'>Fixed no message for pocket emptying attempt.</li>
+		<li class='rscadd'>Monkies Optimized.</li>
+		<li class='rscadd'>Narsie Optimized.</li>
+		<li class='tweak'>Acid, etc. now takes a few seconds to cause a reaction to drinking. (Delay for ingestion)</li>
+		<li class='bugfix'>Carbon dirties up the floor</li>
+		<li class='tweak'>Miners can bump rocks as well as walls now.</li>
+		<li class='rscadd'>Viruses can mutate</li>
+		<li class='tweak'>Removed some useless sprites</li>
+		<li class='bugfix'>Fixed some missing sprites</li>
+		<li class='experiment'>Tajaran's can mess with their skin tone now. No derpy looking Tajaran furs allowed!</li>
+		<li class='rscadd'>Obsedai species code is extended</li>
+		<li class='bugfix'>Arkovans don't magically get rejuv'd into organic organs and limbs</li>
+		<li class='bugfix'>Arkovans don't spam you with notifications that they have robotic limbs. They're machines, it'd be odd if they didn't.</li>
+		<li class='rcsadd'>The Alden-Saraspova counters are now available in the excavation closets</li>
+		<li class='tweak'>New shiny console sprites -- Chi Garnett</li>
+		<li class='bugfix'>Telescopic Baton in-hand sprites -- Kbernges</li>
+		<li class='tweak'>Plasma no longer used up in Dexalin/Clonexadone reactions -- Kbernges</li>
+		<li class='bugfix'>Items in Detective's closet with bad sprites -- Kbernges</li>
+		<li class='tweak'>Telescience no longer teleports ghosts -- Kbernges</li>
+		<li class='experiment'>New clients will have randomised appearance if they don't specifically set a character up -- Kbernges</li>
+		<li class='bugfix'>Fix the permission flags for +HOST/ALL/EVERYTHING not functioning -- Kbernges</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>21 March 2014</h2>
+	<h3 class='author'>Marajin updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>The Space Iron Chef committee has repealled their recent regulations on originality with food, now allowing for creative foods. You can now make 100% modular sandwiches, burgers, soups, spaghetti, and pizza using any food item in the game. Check your Cook Book for more information. -- Iamgoofball</li>
+		<li class='bugfix'>Fixes for Airlock/Windoors permissions error</li>
+		<li class='bugfix'>Fixes to PDA UI</li>
+		<li class='bugfix'>Fix Recipe Book</li>
+		<li class='bugfix'>Fix rules button</li>
+		<li class='tweak'>You may all hate me, I just broke your telescopic baton having weaken on purpose</li>
+		<li class='tweak'>Rename Faggot -> Meatball (Grow up people)</li>
+		<li class='tweak'>Optimizations to Ore processing</li>
+		<li class='rscadd'>Flippable Coins</li>
+		<li class='bugfix'>Fix runtime errors with the AntagHUD</li>
+		<li class='bugfix'>Fix issue with MediHUD</li>
+		<li class='tweak'>HUD Optimizations</li>
+		<li class='bugfix'>Fixes to Cans</li>
+		<li class='tweak'>Removed a couple of superfluous DMIs</li>	
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>16 March 2014</h2>
+	<h3 class='author'>Marajin updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>DNA backend rewrite (DNA2)</li>
+		<li class='tweak'>Code cleanup/optimization</li>
+		<li class='rscadd'>Toggle AntagHUD/MedicalHUD for Observers</li>
+		<li class='rscadd'>Analyze air for Observers</li>
+		<li class='rscadd'>Arkovan Machine Race</li>
+		<li class='rscadd'>Obsedai</li>
+		<li class='bugfix'>Unathi references all switched up to Soghun apart from some legacy sprite state names</li>
+		<li class='tweak'>Adminwho -> Staffwho (fixed)</li>
+		<li class='rscadd'>Map update</li>
+		<li class='rscadd'>Engine room rework</li>
+		<li class='rscadd'>The SM engine manual has a new sprite (No more Particle accelerator sprite)</li>
+		<li class='rscadd'>New Computer Sprites</li>
+		<li class='rscadd'>Chi voice for transfer shuttle</li>
+		<li class='tweak'>New sprite for attack drones (Fuck you icarus!)</li>
+		<li class='rscadd'>New UI for PDA/Canisters/Airlocks/Medbay machines</li>
+		<li class='rscadd'>New recolourable player UI (Onscreen HUD icons)</li>
+	</ul>
+</div>

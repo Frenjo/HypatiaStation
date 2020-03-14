@@ -1,0 +1,93 @@
+<!-- 
+Title: Gas Mixer UI
+Written by Frenjo, 03/11/2019.
+ -->
+<h3>Status</h3>
+<div class="item">
+	<div class="itemLabel">
+		Power Status:
+	</div>
+	<div class="itemContent">
+		{{if on}}
+			[<span class='good'>On</span>]
+		{{else}}
+			[<span class='average'>Off</span>]
+		{{/if}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Node 1 Concentration:
+	</div>
+	<div class="itemContent">
+		{{:node1_concentration*100}}%
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Node 2 Concentration:
+	</div>
+	<div class="itemContent">
+		{{:node2_concentration*100}}%
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Current Pressure:
+	</div>
+	<div class="itemContent">
+		{{:target_pressure}}kPa
+	</div>
+</div>
+
+<h3>Settings</h3>
+<div class="item">
+	<div class="itemLabel">
+		Power Switch:
+	</div>
+	<div class="itemContent">
+		{{if on}}
+			{{:~link('Off', 'close', {'power' : 'off'})}}
+		{{else}}
+			{{:~link('On', 'power', {'power' : 'on'})}}
+		{{/if}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Node 1 Concentration:
+	</div>
+	<div class="itemContent">
+		{{:~displayBar(node1_concentration, '0.1', '0.9')}}
+		{{:~link('-', null, {'node1_c' : '-0.1'}, (node1_concentration > '0.11') ? null : 'disabled')}}
+		{{:~link('-', null, {'node1_c' : '-0.01'}, (node1_concentration > '0.02') ? null : 'disabled')}}
+		{{:~link('+', null, {'node1_c' : '0.01'}, (node1_concentration < '0.98') ? null : 'disabled')}}
+		{{:~link('+', null, {'node1_c' : '0.1'}, (node1_concentration < '0.89') ? null : 'disabled')}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Node 2 Concentration:
+	</div>
+	<div class="itemContent">
+		{{:~displayBar(node2_concentration, '0.1', '0.9')}}
+		{{:~link('-', null, {'node2_c' : '-0.1'}, (node2_concentration > '0.11') ? null : 'disabled')}}
+		{{:~link('-', null, {'node2_c' : '-0.01'}, (node2_concentration > '0.02') ? null : 'disabled')}}
+		{{:~link('+', null, {'node2_c' : '0.01'}, (node2_concentration < '0.98') ? null : 'disabled')}}
+		{{:~link('+', null, {'node2_c' : '0.1'}, (node2_concentration < '0.89') ? null : 'disabled')}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Desirable Output Pressure:
+	</div>
+	<div class="itemContent">
+		{{:~link('Change', null, {'pressure' : 'set_press'}, null)}}
+	</div>
+</div>

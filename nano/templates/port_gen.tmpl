@@ -1,0 +1,83 @@
+<!-- 
+Title: PACMAN Generator UI
+Written by Frenjo, 04/11/2019.
+ -->
+<h3>Status</h3>
+<div class="item">
+	<div class="itemLabel">
+		Power Status:
+	</div>
+	<div class="itemContent">
+		{{if active}}
+			[<span class='good'>On</span>]
+		{{else}}
+			[<span class='average'>Off</span>]
+		{{/if}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Power Generation:
+	</div>
+	<div class="itemContent">
+		{{:~displayBar(power_gen*power_output, '0', power_gen*4)}}{{:power_gen*power_output}} W
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Heat Level:
+	</div>
+	<div class="itemContent">
+		{{:~displayBar(heat_level, '0', '300', heat_level > 99 && heat_level < 199 ? 'average' : heat_level > 199 ? 'bad' : 'good')}}{{:heat_level}}%
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Fuel Status:
+	</div>
+	<div class="itemContent">
+		Fuel Type: {{:fuel_type}}
+		<br>Sheets Remaining: {{:sheets}}
+		<br>{{:~displayBar(sheets, '0', max_sheets, sheets < (max_sheets/2)+1 && sheets > (max_sheets/4)+1 ? 'average' : sheets < (max_sheets/4)+1 ? 'bad' : 'good')}}
+		<br>Sheet Percent Remaining: {{:fuel_percent}}%
+		{{:~displayBar(fuel_percent, '0', '100', fuel_percent < 51 && fuel_percent > 26 ? 'average' : fuel_percent < 26 ? 'bad' : 'good')}}
+	</div>
+</div>
+
+<h3>Settings</h3>
+<div class="item">
+	<div class="itemLabel">
+		Power Switch:
+	</div>
+	<div class="itemContent">
+		{{if active}}
+			{{:~link('Off', 'close', {'action' : 'disable'})}}
+		{{else}}
+			{{:~link('On', 'power', {'action' : 'enable'})}}
+		{{/if}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Generation Switch:
+	</div>
+	<div class="itemContent">
+		{{:power_output}} / 4
+		<br>{{:~displayBar(power_output, '0', '4')}}
+		{{:~link('-', null, {'action' : 'lower_power'}, (power_output > '0') ? null : 'disabled')}}
+		{{:~link('+', null, {'action' : 'higher_power'}, (power_output < '4') ? null : 'disabled')}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Fuel Control:
+	</div>
+	<div class="itemContent">
+		{{:~link('Eject Fuel', null, {'action' : 'eject'})}}
+	</div>
+</div>
