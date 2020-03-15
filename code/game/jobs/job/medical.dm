@@ -49,7 +49,7 @@
 	selection_color = "#ffeef0"
 	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
 	minimal_access = list(access_medical, access_morgue, access_surgery, access_virology)
-	alt_titles = list("Surgeon","Emergency Physician","Nurse","Virologist")
+	alt_titles = list("Surgeon","Emergency Physician","Nurse")
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
@@ -155,7 +155,7 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
 		return 1
 
-/*/datum/job/virologist
+/datum/job/virologist
 	title = "Virologist"
 	flag = VIROLOGIST
 	department_flag = MEDSCI
@@ -186,7 +186,7 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), slot_r_hand)
 		else
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
-		return 1*/
+		return 1
 
 /datum/job/psychiatrist
 	title = "Psychiatrist"
