@@ -46,7 +46,7 @@
 					//if(O.footstep >= 2)
 						//O.footstep = 0
 						//playsound(src, "clownstep", 50, 1) // this will get annoying very fast.
-					playsound(src, "clownstep", 50, 1)
+					playsound(src, "clownstep", 20, 1)
 					//else
 						//O.footstep++
 				else

@@ -110,13 +110,13 @@
 	name = "Clown Suit Storage Unit"
 	SUIT_TYPE = /obj/item/clothing/suit/space/clown
 	HELMET_TYPE = /obj/item/clothing/head/helmet/space/clown
-	MASK_TYPE = /obj/item/clothing/mask/breath
+	MASK_TYPE = /obj/item/clothing/mask/gas/clown_hat
 
 /obj/machinery/suit_storage_unit/mime_unit
 	name = "Mime Suit Storage Unit"
 	SUIT_TYPE = /obj/item/clothing/suit/space/mime
 	HELMET_TYPE = /obj/item/clothing/head/helmet/space/mime
-	MASK_TYPE = /obj/item/clothing/mask/breath
+	MASK_TYPE = /obj/item/clothing/mask/gas/mime
 
 /obj/machinery/suit_storage_unit/mailman_unit
 	name = "Mailman Suit Storage Unit"
