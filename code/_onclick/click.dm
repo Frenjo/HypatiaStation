@@ -97,9 +97,9 @@
 
 		// faster access to objects already on you
 		if(A in contents)
-			next_move = world.time + 6 // on your person
+			next_move = world.time + 2 // on your person
 		else
-			next_move = world.time + 8 // in a box/bag or in your square
+			next_move = world.time + 4 // in a box/bag or in your square
 
 		// No adjacency needed
 		if(W)
@@ -118,7 +118,7 @@
 
 	// Allows you to click on a box's contents, if that box is on the ground, but no deeper than that
 	if(isturf(A) || isturf(A.loc) || (A.loc && isturf(A.loc.loc)))
-		next_move = world.time + 10
+		next_move = world.time + 6
 
 		if(A.Adjacent(src)) // see adjacent.dm
 			if(W)
