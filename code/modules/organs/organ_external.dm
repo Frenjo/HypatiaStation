@@ -618,7 +618,7 @@ This function completely restores a damaged organ to perfect condition.
 		W.bandaged = 1
 	return rval
 
-/datum/organ/external/proc/clamp()
+/datum/organ/external/proc/clampold()
 	var/rval = 0
 	src.status &= ~ORGAN_BLEEDING
 	for(var/datum/wound/W in wounds)

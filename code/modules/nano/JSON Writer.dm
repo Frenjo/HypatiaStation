@@ -36,7 +36,7 @@ json_writer
 			var/static/list/json_escape = list("\\", "\"", "'", "\n")
 			for(var/targ in json_escape)
 				var/start = 1
-				while(start <= lentext(txt))
+				while(start <= length(txt))
 					var/i = findtext(txt, targ, start)
 					if(!i)
 						break
@@ -49,7 +49,7 @@ json_writer
 					else
 						txt = copytext(txt, 1, i) + "\\" + copytext(txt, i)
 						start = i + 2 // 2 characters added
-					
+
 			return {""[txt]""}
 
 		is_associative(list/L)

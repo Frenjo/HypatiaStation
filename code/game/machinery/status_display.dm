@@ -119,7 +119,7 @@
 				if(supply_shuttle.has_arrive_time())
 					line2 = get_supply_shuttle_timer()
 
-					if(lentext(line2) > CHARS_PER_LINE)
+					if(length(line2) > CHARS_PER_LINE)
 						line2 = "Error"
 
 				// More of my edits. -Frenjo
