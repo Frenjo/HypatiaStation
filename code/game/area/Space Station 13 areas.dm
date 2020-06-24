@@ -972,7 +972,7 @@ var/list/ghostteleportlocs = list()
 
 	engineering
 		name = "Engineering"
-		icon_state = "engine_smes"
+		icon_state = "engine"
 
 	break_room
 		name = "\improper Engineering Foyer"
@@ -980,8 +980,7 @@ var/list/ghostteleportlocs = list()
 
 	emerg_storage
 		name = "\improper Emergency Materials Storage"
-		icon_state = "engine"
-
+		icon_state = "engine_storage"
 
 	chiefs_office
 		name = "\improper Chief Engineer's office"
@@ -989,25 +988,29 @@ var/list/ghostteleportlocs = list()
 
 	engineering_eva
 		name = "\improper Engineering EVA Storage"
-		icon_state = "engine_control"
+		icon_state = "engine_storage"
 
 	// Added separate engine rooms for the three engines I mapped...
 	// Just using instances of /area/engine makes the APCs break. -Frenjo
 	supermatter_engine
 		name = "\improper Supermatter Engine Room"
-		icon_state = "engine"
+		icon_state = "engine_sm"
+
+		supermatter_monitoring
+			name = "\improper Supermatter Monitoring Room"
+			icon_state = "engine_control"
 
 	singularity_engine
 		name = "\improper Singularity Engine Room"
-		icon_state = "engine"
+		icon_state = "engine_sing"
 
 		singularity_space
 			name = "\improper Singularity Engine Space"
-			icon_state = "engine"
+			icon_state = "engine_sing"
 
 	thermoelectric_engine
 		name = "\improper Thermoelectric Engine Room"
-		icon_state = "engine"
+		icon_state = "engine_therm"
 
 //Solars
 
