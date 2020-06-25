@@ -22,6 +22,21 @@ var/global/datum/shuttle_controller/shuttle_controller
 
 	var/datum/shuttle/ferry/shuttle
 
+	// Arrivals shuttle
+	shuttle = new/datum/shuttle/ferry/escape_pod()
+	shuttle.location = 0
+	shuttle.warmup_time = 0
+	shuttle.area_station = locate(/area/shuttle/arrival/station)
+	shuttle.area_offsite = locate(/area/shuttle/arrival/centcom)
+	shuttle.area_transition = locate(/area/shuttle/arrival/transit)
+	shuttle.docking_controller_tag = "arrival_shuttle"
+	shuttle.dock_target_station = "arrivalshuttle_dock"
+	shuttle.dock_target_offsite = "arrivalshuttle_centcomdock"
+	shuttle.transit_direction = WEST
+	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-15, 45) // Since it ends up docking ass-backwards, this gives it a bit of "manoeuvring time".
+	shuttles["Arrival"] = shuttle
+	process_shuttles += shuttle
+
 	// Escape shuttle and pods
 	shuttle = new/datum/shuttle/ferry/emergency()
 	shuttle.location = 1
@@ -105,6 +120,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 		shuttles["Escape Pod 2"],
 		shuttles["Escape Pod 3"],
 		shuttles["Escape Pod 5"],
+		shuttles["Arrival"], // This is really hacky but okay.
 	)
 
 	// Supply shuttle
