@@ -21,18 +21,23 @@
 
 /datum/event/electrical_storm/start()
 	for(var/mob/living/carbon/human/H in living_mob_list)
+		if(!H)
+			continue
+
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
 		if(T.z != 1)
 			continue
 		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew_quarters))
-			H.client.screen.Remove(global_hud.electricalstorm)
+			if(H.client)
+				H.client.screen.Remove(global_hud.electricalstorm)
 			continue
 
 		if(istype(H,/mob/living/carbon/human))
-			H.client.screen.Remove(global_hud.electricalstorm)
-			H.client.screen += global_hud.electricalstorm
+			if(H.client)
+				H.client.screen.Remove(global_hud.electricalstorm)
+				H.client.screen += global_hud.electricalstorm
 
 /datum/event/electrical_storm/tick()
 	/*var/list/epicentreList = list()
@@ -68,27 +73,37 @@
 						//var/datum/effect/effect/system/smoke_spread/smoke = new
 						//smoke.set_up(2, 0, apc.loc, null)
 						//smoke.start()
+						apc.overload_lighting()
 						apc.set_broken()
 			else
 				apc.overload_lighting()
 			sleep(4)
 
 	for(var/mob/living/carbon/human/H in living_mob_list)
+		if(!H)
+			continue
+
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
 		if(T.z != 1)
 			continue
 		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew_quarters))
-			H.client.screen.Remove(global_hud.electricalstorm)
+			if(H.client)
+				H.client.screen.Remove(global_hud.electricalstorm)
 			continue
 
 		if(istype(H,/mob/living/carbon/human))
-			H.client.screen.Remove(global_hud.electricalstorm)
-			H.client.screen += global_hud.electricalstorm
+			if(H.client)
+				H.client.screen.Remove(global_hud.electricalstorm)
+				H.client.screen += global_hud.electricalstorm
 
 /datum/event/electrical_storm/end()
 	command_alert("The station has passed the electrical storm.", "Electrical Storm Alert")
 
 	for(var/mob/living/carbon/human/H in living_mob_list)
-		H.client.screen.Remove(global_hud.electricalstorm)
+		if(!H)
+			continue
+
+		if(H.client)
+			H.client.screen.Remove(global_hud.electricalstorm)

@@ -55,7 +55,5 @@
 	for(var/mob/living/carbon/human/H in living_mob_list)
 		H.client.screen.Remove(global_hud.radstorm)
 
-	// Need to figure out how to add this into the loop itself.
-	// Doing it this way freezes the entire MC for (duration). -Frenjo
-	sleep(150)
+	spawn(150)
 	revoke_maint_all_access()
