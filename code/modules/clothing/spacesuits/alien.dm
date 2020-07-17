@@ -215,6 +215,15 @@
 		set src in view()
 		..()
 
+// Plasmapeople gear.
+
+/obj/item/clothing/head/helmet/space/plasmapeople
+	name = "envirohelmet"
+	desc = "A space-capable helmet designed to prevent a Plasmaperson from combusting in a human-breathable atmosphere."
+	icon_state = "rig0-plasmaman"
+	item_state = "plasmaman"
+	species_restricted = list("Plasmaperson")
+
 //Species-specific Syndicate rigs.
 
 /obj/item/clothing/head/helmet/space/rig/syndi/tajara

@@ -59,7 +59,7 @@
 				t_his = "her"
 				t_him = "her"
 
-	msg += "<EM>[src.name]</EM>!\n"
+	msg += "</EM>[src.name]</EM>, a </EM>[src.species]</EM>!\n" // Edited this a bit to show species alongside their name.
 
 	//uniform
 	if(w_uniform && !skipjumpsuit)

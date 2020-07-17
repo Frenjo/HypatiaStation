@@ -274,3 +274,26 @@
 
 	blood_color = "#BD3AC2"
 	flesh_color = "#4A4845"
+
+/datum/species/plasmapeople
+	name = "Plasmaperson"
+	icobase = 'icons/mob/human_races/r_plasmapeople.dmi'
+	deform = 'icons/mob/human_races/r_plasmapeople.dmi'
+	language = "Plasmaperson"
+
+	burn_mod = 1.5
+
+	breath_type = "plasma"
+
+	flags = IS_WHITELISTED | NO_SCAN | NO_BLOOD | NO_PAIN
+
+/datum/species/plasmapeople/handle_post_spawn(var/mob/living/carbon/human/H)
+	if(!H)
+		return 0
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/plasmapeople(H), slot_w_uniform)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/plasmapeople(H), slot_gloves)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/plasmapeople(H), slot_head)
+
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
+	H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma/wearable(H), slot_belt)

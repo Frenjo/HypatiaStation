@@ -47,6 +47,11 @@
 	set_species("Obsedai")
 	..()
 
+/mob/living/carbon/human/plasmaperson/New()
+	species = new /datum/species/plasmapeople(src)
+	set_species("Plasmapeople")
+	..()
+
 /mob/living/carbon/human/New()
 
 	if(!species)

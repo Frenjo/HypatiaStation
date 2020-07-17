@@ -378,3 +378,14 @@
 	item_state = "sundress"
 	item_color = "sundress"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+// Plasmapeople clothing.
+
+/obj/item/clothing/under/plasmapeople
+	name = "envirosuit"
+	desc = "A suit designed to prevent a Plasmaperson from combusting in a human-breathable atmosphere."
+	icon_state = "plasmaman"
+	item_state = "plasmaman"
+	item_color = "plasmaman"
+	flags_inv = HIDESHOES
+	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS

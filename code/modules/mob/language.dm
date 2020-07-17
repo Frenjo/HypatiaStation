@@ -60,6 +60,14 @@
 	key = "q"
 	flags = RESTRICTED
 
+/datum/language/plasmaperson
+	name = "Plasmaperson"
+	desc = "A rattling, clunky 'language' spoken natively by Plasmapeople."
+	speech_verb = "rattles"
+	colour = "vox"
+	key = "p"
+	flags = RESTRICTED
+
 /datum/language/human
 	name = "Sol Common"
 	desc = "A bastardized hybrid of informal English and elements of Mandarin Chinese; the common language of the Sol system."

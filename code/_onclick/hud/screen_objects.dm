@@ -301,7 +301,6 @@
 									switch(breathes)
 																		//These tanks we're sure of their contents
 										if("nitrogen") 							//So we're a bit more picky about them.
-
 											if(t.air_contents.nitrogen && !t.air_contents.oxygen)
 												contents.Add(t.air_contents.nitrogen)
 											else
@@ -320,6 +319,12 @@
 											else
 												contents.Add(0)
 
+										// Plasmapeople breath this.
+										if("plasma")
+											if(t.air_contents.toxins && !t.air_contents.oxygen)
+												contents.Add(t.air_contents.toxins)
+											else
+												contents.Add(0)
 
 								else
 									//no tank so we set contents to 0

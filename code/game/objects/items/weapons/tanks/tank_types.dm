@@ -4,6 +4,7 @@
  *		Anesthetic
  *		Air
  *		Plasma
+ *		Wearable Plasma
  *		Emergency Oxygen
  */
 
@@ -121,6 +122,26 @@
 		user.before_take_item(src)
 		src.loc = F
 	return
+
+/*
+ * Wearable Plasma
+ */
+/obj/item/weapon/tank/plasma/wearable
+	name = "wearable plasma tank"
+	desc = "A wearable tank containing dangerous plasma, unless you're a Plasmaperson that is. Warning: extremely flammable."
+	icon_state = "oxygen_fr"
+	slot_flags = SLOT_BELT
+	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
+
+/obj/item/weapon/tank/plasma/wearable/New()
+	..()
+	return
+
+/obj/item/weapon/tank/plasma/wearable/examine()
+	..()
+	if(air_contents.toxins < 0.2 && loc == src)
+		usr << text("\red <B>The meter on the [src.name] indicates you are almost out of plasma!</B>")
+		usr << sound('sound/effects/alert.ogg')
 
 /*
  * Emergency Oxygen

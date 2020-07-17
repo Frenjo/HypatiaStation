@@ -436,6 +436,7 @@
 		var/SA_sleep_min = 5
 		var/oxygen_used = 0
 		var/nitrogen_used = 0
+		var/toxins_used = 0
 		var/breath_pressure = (breath.total_moles()*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
 		var/vox_oxygen_max = 1 // For vox.
 
@@ -449,7 +450,7 @@
 		// Nitrogen, for Vox.
 		var/Nitrogen_pp = (breath.nitrogen/breath.total_moles())*breath_pressure
 
-		if(O2_pp < safe_oxygen_min && species.name != "Vox") 	// Too little oxygen
+		if(O2_pp < safe_oxygen_min && species.name != "Vox" && species.name != "Plasmaperson") 	// Too little oxygen
 			if(prob(20))
 				spawn(0) emote("gasp")
 			if(O2_pp > 0)
@@ -481,6 +482,20 @@
 				failed_last_breath = 1
 			oxygen_alert = max(oxygen_alert, 1)
 
+		else if(Toxins_pp < safe_oxygen_min && species.name == "Plasmaperson")  // Plasmapeople breathe, you guessed it, plasma.
+
+			if(prob(20))
+				spawn(0) emote("gasp")
+			if(Toxins_pp > 0)
+				var/ratio = safe_oxygen_min/Toxins_pp
+				adjustOxyLoss(min(5*ratio, HUMAN_MAX_OXYLOSS))
+				failed_last_breath = 1
+				toxins_used = breath.toxins*ratio/6
+			else
+				adjustOxyLoss(HUMAN_MAX_OXYLOSS)
+				failed_last_breath = 1
+			oxygen_alert = max(oxygen_alert, 1)
+
 		else								// We're in safe limits
 			failed_last_breath = 0
 			adjustOxyLoss(-5)
@@ -489,6 +504,7 @@
 
 		breath.oxygen -= oxygen_used
 		breath.nitrogen -= nitrogen_used
+		breath.toxins -= toxins_used
 		breath.carbon_dioxide += oxygen_used
 
 		//CO2 does not affect failed_last_breath. So if there was enough oxygen in the air but too much co2, this will hurt you, but only once per 4 ticks, instead of once per tick.
@@ -506,13 +522,13 @@
 		else
 			co2overloadtime = 0
 
-		if(Toxins_pp > safe_toxins_max) // Too much toxins
+		if(Toxins_pp > safe_toxins_max && species.name != "Plasmaperson") // Too much toxins
 			var/ratio = (breath.toxins/safe_toxins_max) * 10
 			//adjustToxLoss(Clamp(ratio, MIN_PLASMA_DAMAGE, MAX_PLASMA_DAMAGE))	//Limit amount of damage toxin exposure can do per second
 			if(reagents)
 				reagents.add_reagent("plasma", Clamp(ratio, MIN_PLASMA_DAMAGE, MAX_PLASMA_DAMAGE))
 			toxins_alert = max(toxins_alert, 1)
-		else if(O2_pp > vox_oxygen_max && species.name == "Vox") //Oxygen is toxic to vox.
+		else if(O2_pp > vox_oxygen_max && (species.name == "Vox" || species.name == "Plasmaperson")) //Oxygen is toxic to vox. // And plasmapeople.
 			var/ratio = (breath.oxygen/vox_oxygen_max) * 1000
 			adjustToxLoss(Clamp(ratio, MIN_PLASMA_DAMAGE, MAX_PLASMA_DAMAGE))
 			toxins_alert = max(toxins_alert, 1)

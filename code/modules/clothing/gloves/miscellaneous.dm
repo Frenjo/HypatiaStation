@@ -60,3 +60,16 @@
 	item_state = "ggloves"
 	permeability_coefficient = 0.9
 	siemens_coefficient = 0.9
+
+// Plasmapeople clothing.
+
+/obj/item/clothing/gloves/plasmapeople
+	name = "envirosuit gloves"
+	desc = "A pair of gloves designed to prevent a Plasmaperson from combusting in a human-breathable atmosphere."
+	icon_state = "plasmaman"
+	item_state = "plasmaman"
+
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
