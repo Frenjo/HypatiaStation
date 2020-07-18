@@ -1007,6 +1007,9 @@ var/list/ghostteleportlocs = list()
 		singularity_space
 			name = "\improper Singularity Engine Space"
 			icon_state = "engine_sing"
+			requires_power = 0
+			luminosity = 1
+			lighting_use_dynamic = 0
 
 	thermoelectric_engine
 		name = "\improper Thermoelectric Engine Room"
