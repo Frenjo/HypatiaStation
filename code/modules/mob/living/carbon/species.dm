@@ -296,4 +296,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/plasmapeople(H), slot_head)
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
-	H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma/wearable(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), slot_belt)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/plasmapeople(H), slot_r_hand)

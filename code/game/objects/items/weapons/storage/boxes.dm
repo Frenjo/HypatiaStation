@@ -26,7 +26,7 @@
 	item_state = "syringe_kit"
 	foldable = /obj/item/stack/sheet/cardboard	//BubbleWrap
 
-/obj/item/weapon/storage/box/survival/
+/obj/item/weapon/storage/box/survival
 	name = "survival kit"
 	desc = "A standard issue survival kit for use in emergencies."
 	New()
@@ -38,7 +38,7 @@
 		new /obj/item/weapon/storage/pill_bottle/stokaline(src) // Stokaline pills as an emergency ration. -Frenjo
 		return
 
-/obj/item/weapon/storage/box/engineer/
+/obj/item/weapon/storage/box/engineer
 	name = "engineering survival kit"
 	desc = "An engineering issue survival kit for use in emergencies."
 	New()
@@ -48,6 +48,17 @@
 		new /obj/item/clothing/mask/breath( src )
 		new /obj/item/weapon/tank/emergency_oxygen/engi( src )
 		new /obj/item/weapon/storage/pill_bottle/stokaline(src) // Stokaline pills as an emergency ration. -Frenjo
+		return
+
+/obj/item/weapon/storage/box/plasmapeople
+	name = "plasmapeople survival kit"
+	desc = "A plasmaperson-issue survival kit for use in emergencies."
+	New()
+		..()
+		contents = list()
+		sleep(1)
+		new /obj/item/clothing/mask/breath(src)
+		new /obj/item/weapon/tank/emergency_plasma(src)
 		return
 
 

@@ -124,24 +124,57 @@
 	return
 
 /*
- * Wearable Plasma
+ * Plasma2
  */
-/obj/item/weapon/tank/plasma/wearable
+/obj/item/weapon/tank/plasma2
 	name = "wearable plasma tank"
 	desc = "A wearable tank containing dangerous plasma, unless you're a Plasmaperson that is. Warning: extremely flammable."
-	icon_state = "oxygen_fr"
+	icon_state = "plasma2"
 	slot_flags = SLOT_BELT
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 
-/obj/item/weapon/tank/plasma/wearable/New()
+/obj/item/weapon/tank/plasma2/New()
 	..()
+	src.air_contents.toxins = (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C)
+	src.air_contents.update_values()
 	return
 
-/obj/item/weapon/tank/plasma/wearable/examine()
+/obj/item/weapon/tank/plasma2/examine()
 	..()
 	if(air_contents.toxins < 0.2 && loc == src)
 		usr << text("\red <B>The meter on the [src.name] indicates you are almost out of plasma!</B>")
 		usr << sound('sound/effects/alert.ogg')
+
+/obj/item/weapon/tank/plasma2/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	return
+
+/*
+ * Emergency Plasma
+ */
+/obj/item/weapon/tank/emergency_plasma
+	name = "emergency wearable plasma tank"
+	desc = "Used for emergencies. Contains very little plasma, so try to conserve it until you actually need it. Warning: extremely flammable."
+	icon_state = "emergency_plasma"
+	slot_flags = SLOT_BELT
+	w_class = 2.0
+	force = 4.0
+	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
+	volume = 2
+
+/obj/item/weapon/tank/emergency_plasma/New()
+	..()
+	src.air_contents.toxins = (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
+	src.air_contents.update_values()
+	return
+
+/obj/item/weapon/tank/emergency_plasma/examine()
+	..()
+	if(air_contents.toxins < 0.2 && loc == src)
+		usr << text("\red <B>The meter on the [src.name] indicates you are almost out of plasma!</B>")
+		usr << sound('sound/effects/alert.ogg')
+
+/obj/item/weapon/tank/emergency_plasma/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	return
 
 /*
  * Emergency Oxygen
