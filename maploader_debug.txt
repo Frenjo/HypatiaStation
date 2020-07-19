@@ -1,0 +1,12 @@
+Starting Map Load @ (0, 0, 7), 100 tiles per second.
+	Building turf array.
+Starting Map Load @ (0, 0, 7), 100 tiles per second.
+	Building turf array.
+Starting Map Load @ (0, 0, 7), 100 tiles per second.
+	Building turf array.
+Starting Map Load @ (0, 0, 9), 100 tiles per second.
+	Building turf array.
+Starting Map Load @ (0, 0, 9), 100 tiles per second.
+	Building turf array.
+Starting Map Load @ (0, 0, 9), 100 tiles per second.
+	Building turf array.

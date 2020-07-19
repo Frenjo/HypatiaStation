@@ -1456,4 +1456,6 @@
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
 #include "maps\backup\tgstation2-editedbig.dmm"
+#include "maps\RandomZLevels\listeningpost.dmm"
+#include "maps\RandomZLevels\spacebattle.dmm"
 // END_INCLUDE
