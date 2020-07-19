@@ -357,6 +357,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 
 
 /turf/simulated/mineral/clown
+	icon_state = "rock_Clown"
 	var/mineral_name = "Clown"
 
 	New()
