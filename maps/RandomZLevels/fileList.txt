@@ -6,3 +6,4 @@
 #maps/RandomZLevels/awaymission.dmm
 maps/RandomZLevels/listeningpost.dmm
 maps/RandomZLevels/spacebattle.dmm
+maps/RandomZLevels/stationCollision.dmm
