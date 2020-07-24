@@ -6,6 +6,8 @@
 #define ORE_PROC_URANIUM 32
 #define ORE_PROC_IRON 64
 #define ORE_PROC_CLOWN 128
+#define ORE_PROC_ADAMANTINE 256
+#define ORE_PROC_MYTHRIL 512
 
 /**********************Mineral processing unit console**************************/
 
@@ -119,6 +121,26 @@
 		else
 			machine.selected &= ~ORE_PROC_CLOWN
 
+		// Adamantine
+		if(machine.ore_adamantine)
+			if (machine.selected & ORE_PROC_ADAMANTINE)
+				dat += text("<A href='?src=\ref[src];sel_adamantine=no'><font color='green'>Smelting</font></A> ")
+			else
+				dat += text("<A href='?src=\ref[src];sel_adamantine=yes'><font color='red'>Not smelting</font></A> ")
+			dat += text("Adamantine: [machine.ore_clown]<br>")
+		else
+			machine.selected &= ~ORE_PROC_ADAMANTINE
+
+		// Mythril
+		if(machine.ore_mythril)
+			if (machine.selected & ORE_PROC_MYTHRIL)
+				dat += text("<A href='?src=\ref[src];sel_mythril=no'><font color='green'>Smelting</font></A> ")
+			else
+				dat += text("<A href='?src=\ref[src];sel_mythril=yes'><font color='red'>Not smelting</font></A> ")
+			dat += text("Mythril: [machine.ore_clown]<br>")
+		else
+			machine.selected &= ~ORE_PROC_MYTHRIL
+
 		//On or off
 		dat += text("Machine is currently ")
 		if (machine.on==1)
@@ -179,6 +201,17 @@
 		else
 			machine.selected &= ~ORE_PROC_CLOWN
 
+	if(href_list["sel_adamantine"])
+		if (href_list["sel_adamantine"] == "yes")
+			machine.selected |= ORE_PROC_ADAMANTINE
+		else
+			machine.selected &= ~ORE_PROC_ADAMANTINE
+	if(href_list["sel_mythril"])
+		if (href_list["sel_mythril"] == "yes")
+			machine.selected |= ORE_PROC_MYTHRIL
+		else
+			machine.selected &= ~ORE_PROC_MYTHRIL
+
 	if(href_list["set_on"])
 		if (href_list["set_on"] == "on")
 			machine.on = 1
@@ -209,6 +242,7 @@
 	var/ore_iron = 0;
 	var/ore_clown = 0;
 	var/ore_adamantine = 0;
+	var/ore_mythril = 0;
 	var/selected = 0
 /*
 	var/selected_gold = 0
@@ -353,6 +387,24 @@
 					continue
 
 
+				// Added these as their own naturally spawning ores also, so you can either find them, make them, or both.
+				if (selected == ORE_PROC_ADAMANTINE)
+					if (ore_adamantine > 0)
+						ore_adamantine--;
+						new /obj/item/stack/sheet/mineral/adamantine(output.loc)
+					else
+						on = 0
+					continue
+
+				if (selected == ORE_PROC_MYTHRIL)
+					if (ore_mythril > 0)
+						ore_mythril--;
+						new /obj/item/stack/sheet/mineral/mythril(output.loc)
+					else
+						on = 0
+					continue
+
+
 
 				//if a non valid combination is selected
 
@@ -386,6 +438,13 @@
 					if (ore_clown <= 0)
 						b = 0
 
+				if (selected & ORE_PROC_ADAMANTINE)
+					if (ore_adamantine <= 0)
+						b = 0
+				if (selected & ORE_PROC_MYTHRIL)
+					if (ore_mythril <= 0)
+						b = 0
+
 				if (b) //if they are, deduct one from each, produce slag and shut the machine off
 					if (selected & ORE_PROC_GOLD)
 						ore_gold--
@@ -401,6 +460,12 @@
 						ore_iron--
 					if (selected & ORE_PROC_CLOWN)
 						ore_clown--
+
+					if (selected & ORE_PROC_ADAMANTINE)
+						ore_adamantine--
+					if (selected & ORE_PROC_MYTHRIL)
+						ore_mythril--
+
 					new /obj/item/weapon/ore/slag(output.loc)
 					on = 0
 				else
@@ -453,6 +518,18 @@
 					O.loc = null
 					//del(O)
 					continue
+
+				if (istype(O,/obj/item/weapon/ore/adamantine))
+					ore_adamantine++
+					O.loc = null
+					//del(O)
+					continue
+				if (istype(O,/obj/item/weapon/ore/mythril))
+					ore_mythril++
+					O.loc = null
+					//del(O)
+					continue
+
 				O.loc = src.output.loc
 			else
 				break

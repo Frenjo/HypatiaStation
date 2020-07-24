@@ -54,6 +54,16 @@
 	icon_state = "Clown ore"
 	origin_tech = "materials=4"
 
+/obj/item/weapon/ore/adamantine
+	name = "Adamantine ore"
+	icon_state = "Adamantine ore"
+	origin_tech = "materials=4"
+
+/obj/item/weapon/ore/mythril
+	name = "Mythril ore"
+	icon_state = "Mythril ore"
+	origin_tech = "materials=4"
+
 /obj/item/weapon/ore/slag
 	name = "Slag"
 	desc = "Completely useless"
