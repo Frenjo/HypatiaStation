@@ -8,6 +8,7 @@
 	req_one_access = list(access_atmospherics, access_engine_equip)
 	opacity = 0
 	density = 0
+	layer = 3.5 // Sets layer to higher than most other things for mapping reasons.
 
 	var/blocked = 0
 	var/nextstate = null
@@ -17,6 +18,7 @@
 
 /obj/machinery/door/firedoor/New()
 	. = ..()
+	layer = 2.7 // Sets layer back to default for actual gameplay.
 	for(var/obj/machinery/door/firedoor/F in loc)
 		if(F != src)
 			spawn(1)

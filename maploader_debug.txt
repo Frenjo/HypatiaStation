@@ -58,3 +58,8 @@ Starting Map Load @ (0, 0, 10), 100 tiles per second.
 	Building turf array.
 Starting Map Load @ (0, 0, 10), 100 tiles per second.
 	Building turf array.
+Starting Map Load @ (0, 0, 10), 100 tiles per second.
+	Building turf array.
+	Failure /obj/effect/alien/weeds/node @ (28, 37, 10)  fields:
+	Failure /obj/item/clothing/mask/facehugger @ (34, 36, 10)  fields:
+	Failure /obj/effect/landmark/sc_bible_spawner @ (48, 21, 10)  fields:
