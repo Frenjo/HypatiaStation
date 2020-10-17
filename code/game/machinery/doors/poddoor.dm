@@ -6,6 +6,7 @@
 	var/id = 1.0
 	dir = 1
 	explosion_resistance = 25
+	layer = 3.0 // Sets layer to higher than most other things for mapping reasons, 3.0 is below windows (3.2) but above grilles (2.9).
 
 /obj/machinery/door/poddoor/New()
 	. = ..()
