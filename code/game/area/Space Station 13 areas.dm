@@ -1197,7 +1197,7 @@ var/list/ghostteleportlocs = list()
 	icon_state = "security"
 
 /area/security/lobby
-	name = "\improper Security lobby"
+	name = "\improper Security Lobby"
 	icon_state = "security"
 
 /area/security/brig
