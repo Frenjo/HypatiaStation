@@ -57,14 +57,14 @@
 // Added this because I'm curious. -Frenjo
 /obj/machinery/portable_atmospherics/canister/oxygen_agent_b
 	name = "Canister \[Oxygen Agent B\]"
-	icon_state = "orangebs2"
-	canister_color = "orangebs2"
+	icon_state = "orangebs"
+	canister_color = "orangebs"
 	can_label = 0
 // Added this because of updated atmos stuff. -Frenjo
 /obj/machinery/portable_atmospherics/canister/oxygen_toxins
 	name = "Canister \[O2/TOX\]"
-	icon_state = "orangebs"
-	canister_color = "orangebs"
+	icon_state = "orangebs2"
+	canister_color = "orangebs2"
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/proc/check_change()
