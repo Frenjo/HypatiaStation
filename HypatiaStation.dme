@@ -1459,6 +1459,7 @@
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
 #include "maps\RandomZLevels\stationCollision.dm"
+#include "maps\RandomZLevels\blackmarketpackers.dmm"
 #include "maps\RandomZLevels\listeningpost.dmm"
 #include "maps\RandomZLevels\spacebattle.dmm"
 #include "maps\RandomZLevels\stationCollision.dmm"
