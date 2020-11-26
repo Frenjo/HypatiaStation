@@ -356,6 +356,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 					R.amount = rand(5,25)
 
 
+// Re-added these because some away missions require them.
 /turf/simulated/mineral/clown
 	icon_state = "rock_Clown"
 	var/mineral_name = "Clown"
@@ -369,6 +370,21 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 			UpdateMineral()
 
 		. = ..()
+
+/turf/simulated/mineral/diamond
+	icon_state = "rock_Diamond"
+	var/mineral_name = "Diamond"
+
+	New()
+		if(!name_to_mineral)
+			SetupMinerals()
+
+		if(mineral_name in name_to_mineral)
+			mineral = name_to_mineral[mineral_name]
+			UpdateMineral()
+
+		. = ..()
+// End of away mission specific additions.
 
 /turf/simulated/mineral/random
 	name = "Mineral deposit"
