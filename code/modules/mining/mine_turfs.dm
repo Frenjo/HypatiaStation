@@ -384,6 +384,34 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 			UpdateMineral()
 
 		. = ..()
+
+/turf/simulated/mineral/silver
+	icon_state = "rock_Silver"
+	var/mineral_name = "Silver"
+
+	New()
+		if(!name_to_mineral)
+			SetupMinerals()
+
+		if(mineral_name in name_to_mineral)
+			mineral = name_to_mineral[mineral_name]
+			UpdateMineral()
+
+		. = ..()
+
+/turf/simulated/mineral/gold
+	icon_state = "rock_Gold"
+	var/mineral_name = "Gold"
+
+	New()
+		if(!name_to_mineral)
+			SetupMinerals()
+
+		if(mineral_name in name_to_mineral)
+			mineral = name_to_mineral[mineral_name]
+			UpdateMineral()
+
+		. = ..()
 // End of away mission specific additions.
 
 /turf/simulated/mineral/random
