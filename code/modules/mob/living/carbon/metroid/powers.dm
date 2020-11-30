@@ -1,7 +1,7 @@
 /mob/living/carbon/metroid/verb/Feed()
 	set category = "metroid"
 	set desc = "This will let you feed on any valid creature in the surrounding area. This should also be used to halt the feeding process."
-	if(Victim)
+	if(victim)
 		Feedstop()
 		return
 
@@ -22,9 +22,8 @@
 			if(!istype(M, /mob/living/carbon/metroid))
 				if(stat != 2)
 					if(health > -70)
-
 						for(var/mob/living/carbon/metroid/met in view())
-							if(met.Victim == M && met != src)
+							if(met.victim == M && met != src)
 								src << "<i>The [met.name] is already feeding on this subject...</i>"
 								return
 						src << "\blue <i>I have latched onto the subject and begun feeding...</i>"
@@ -43,7 +42,7 @@
 
 
 /mob/living/carbon/metroid/proc/Feedon(var/mob/living/carbon/M)
-	Victim = M
+	victim = M
 	src.loc = M.loc
 	canmove = 0
 	anchored = 1
@@ -54,7 +53,7 @@
 	else
 		icon_state = "baby metroid eat"
 
-	while(Victim && M.health > -70 && stat != 2)
+	while(victim && M.health > -70 && stat != 2)
 		// M.canmove = 0
 		canmove = 0
 
@@ -71,10 +70,10 @@
 				"A sharp, deep pain bathes every inch of your body!")]"
 
 			if(istype(M, /mob/living/carbon))
-				Victim.adjustCloneLoss(rand(1,10))
-				Victim.adjustToxLoss(rand(1,2))
-				if(Victim.health <= 0)
-					Victim.adjustToxLoss(rand(2,4))
+				victim.adjustCloneLoss(rand(1,10))
+				victim.adjustToxLoss(rand(1,2))
+				if(victim.health <= 0)
+					victim.adjustToxLoss(rand(2,4))
 
 				// Heal yourself
 				adjustToxLoss(-10)
@@ -83,9 +82,9 @@
 				adjustFireLoss(-10)
 				adjustCloneLoss(-10)
 
-				if(Victim)
+				if(victim)
 					for(var/mob/living/carbon/metroid/metroid in view(1,M))
-						if(metroid.Victim == M && metroid != src)
+						if(metroid.victim == M && metroid != src)
 							metroid.Feedstop()
 
 				nutrition += rand(10,25)
@@ -103,7 +102,7 @@
 					if(nutrition > 1000)
 						nutrition = 1000
 
-				Victim.updatehealth()
+				victim.updatehealth()
 				updatehealth()
 
 			else
@@ -134,11 +133,11 @@
 	if(M.health <= -70)
 		M.canmove = 0
 		if(!client)
-			if(Victim && !rabid && !attacked)
-				if(Victim.LAssailant && Victim.LAssailant != Victim)
+			if(victim && !rabid && !attacked)
+				if(victim.LAssailant && victim.LAssailant != victim)
 					if(prob(50))
-						if(!(Victim.LAssailant in Friends))
-							Friends.Add(Victim.LAssailant) // no idea why i was using the |= operator
+						if(!(victim.LAssailant in Friends))
+							Friends.Add(victim.LAssailant) // no idea why i was using the |= operator
 
 		if(M.client && istype(src, /mob/living/carbon/human))
 			if(prob(85))
@@ -150,16 +149,16 @@
 
 		if(client) src << "<i>I have stopped feeding...</i>"
 
-	Victim = null
+	victim = null
 
 /mob/living/carbon/metroid/proc/Feedstop()
-	if(Victim)
-		if(Victim.client) Victim << "[src] has let go of your head!"
-		Victim = null
+	if(victim)
+		if(victim.client) victim << "[src] has let go of your head!"
+		victim = null
 
 /mob/living/carbon/metroid/proc/UpdateFeed(var/mob/M)
-	if(Victim)
-		if(Victim == M)
+	if(victim)
+		if(victim == M)
 			loc = M.loc // simple "attach to head" effect!
 
 
@@ -228,5 +227,5 @@
 	set name = "Crawl through Vent"
 	set desc = "Enter an air vent and crawl through the pipe system."
 	set category = "metroid"
-	if(Victim)	return
+	if(victim)	return
 	handle_ventcrawl()

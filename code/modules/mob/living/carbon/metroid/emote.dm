@@ -12,7 +12,20 @@
 
 	switch(act)
 		if ("me")
-			return custom_emote(m_type, desc)
+			if(silent)
+				return
+			if (src.client)
+				if (client.prefs.muted & MUTE_IC)
+					src << "\red You cannot send IC messages (muted)."
+					return
+				if (src.client.handle_spam_prevention(message,MUTE_IC))
+					return
+			if (stat)
+				return
+			if(!(message))
+				return
+			return custom_emote(m_type, message)
+
 		if ("custom")
 			return custom_emote(m_type, desc)
 		if("moan")

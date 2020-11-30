@@ -68,8 +68,8 @@
 					if(150 to 900) hungry = 1
 					if(0 to 149) starving = 1
 			AIproc = 1
-			while(AIproc && stat != 2 && (attacked > 0 || starving || hungry || rabid || Victim))
-				if(Victim) // can't eat AND have this little process at the same time
+			while(AIproc && stat != 2 && (attacked > 0 || starving || hungry || rabid || victim))
+				if(victim) // can't eat AND have this little process at the same time
 					break
 
 				if(!Target || client)
@@ -83,7 +83,7 @@
 
 				if(Target)
 					for(var/mob/living/carbon/metroid/M in view(1,Target))
-						if(M.Victim == Target)
+						if(M.victim == Target)
 							Target = null
 							AIproc = 0
 							break
@@ -99,7 +99,7 @@
 									sleep(15)
 									Atkcool = 0
 
-								if(get_obstacle_ok(Target))
+								if(Target.Adjacent(src))
 									Target.attack_slime(src)
 							return
 						if(!Target.lying && prob(80))
@@ -111,7 +111,7 @@
 										sleep(25)
 										Atkcool = 0
 
-									if(get_obstacle_ok(Target))
+									if(Target.Adjacent(src))
 										Target.attack_slime(src)
 
 
@@ -119,16 +119,16 @@
 									step_to(src, Target)
 
 							else
-								if(!Atkcool && get_obstacle_ok(Target))
+								if(!Atkcool && Target.Adjacent(src))
 									Feedon(Target)
 
 						else
-							if(!Atkcool && get_obstacle_ok(Target))
+							if(!Atkcool && Target.Adjacent(src))
 								Feedon(Target)
 
 					else
 						if(Target in view(7, src))
-							if(get_obstacle_ok(Target))
+							if(Target.Adjacent(src))
 								step_to(src, Target)
 
 						else
@@ -326,7 +326,7 @@
 					if(nutrition >= 800)
 						if(prob(40)) amount_grown++
 
-			if(amount_grown >= 10 && !Victim && !Target)
+			if(amount_grown >= 10 && !victim && !Target)
 				if(istype(src, /mob/living/carbon/metroid/adult))
 					if(!client)
 						var/number = pick(2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,4)
@@ -362,7 +362,7 @@
 
 		handle_targets()
 			if(Tempstun)
-				if(!Victim) // not while they're eating!
+				if(!victim) // not while they're eating!
 					canmove = 0
 			else
 				canmove = 1
@@ -392,7 +392,7 @@
 					if(attacked <= 0)
 						Target = null
 
-				if(Victim) return // if it's eating someone already, continue eating!
+				if(victim) return // if it's eating someone already, continue eating!
 
 
 				if(prob(5))
@@ -466,7 +466,7 @@
 
 									var/notarget = 0
 									for(var/mob/living/carbon/metroid/M in view(1,L))
-										if(M.Victim == L)
+										if(M.victim == L)
 											notarget = 1
 									if(notarget)
 										continue

@@ -28,7 +28,7 @@
 						 // if adult: if 10: reproduces
 
 
-	var/mob/living/Victim = null // the person the metroid is currently feeding on
+	var/mob/living/victim = null // the person the metroid is currently feeding on
 	var/mob/living/Target = null // AI variable - tells the metroid to hunt this down
 
 	var/attacked = 0 // determines if it's been attacked recently. Can be any number, is a cooloff-ish variable
@@ -338,7 +338,7 @@
 		M << "You cannot attack people before the game has started."
 		return
 
-	if(Victim) return // can't attack while eating!
+	if(victim) return // can't attack while eating!
 
 	if (health > -100)
 
@@ -417,8 +417,8 @@
 
 	..()
 
-	if(Victim)
-		if(Victim == M)
+	if(victim)
+		if(victim == M)
 			if(prob(60))
 				for(var/mob/O in viewers(src, null))
 					if ((O.client && !( O.blinded )))
@@ -440,7 +440,7 @@
 					if(src)
 						SStun = 0
 
-				Victim = null
+				victim = null
 				anchored = 0
 				step_away(src,M)
 
@@ -450,13 +450,13 @@
 			if(prob(30))
 				for(var/mob/O in viewers(src, null))
 					if ((O.client && !( O.blinded )))
-						O.show_message("\red [M] attempts to wrestle \the [name] off of [Victim]!", 1)
+						O.show_message("\red [M] attempts to wrestle \the [name] off of [victim]!", 1)
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
 			else
 				for(var/mob/O in viewers(src, null))
 					if ((O.client && !( O.blinded )))
-						O.show_message("\red [M] manages to wrestle \the [name] off of [Victim]!", 1)
+						O.show_message("\red [M] manages to wrestle \the [name] off of [victim]!", 1)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 				if(prob(80) && !client)
@@ -472,7 +472,7 @@
 					if(src)
 						SStun = 0
 
-				Victim = null
+				victim = null
 				anchored = 0
 				step_away(src,M)
 
@@ -525,8 +525,8 @@
 			if (prob(90))
 				if (HULK in M.mutations)
 					damage += 5
-					if(Victim)
-						Victim = null
+					if(victim)
+						victim = null
 						anchored = 0
 						if(prob(80) && !client)
 							Discipline++
@@ -617,8 +617,8 @@
 					if ((O.client && !( O.blinded )))
 						O.show_message(text("\red <B>[] has tackled [name]!</B>", M), 1)
 
-				if(Victim)
-					Victim = null
+				if(victim)
+					victim = null
 					anchored = 0
 					if(prob(80) && !client)
 						Discipline++
@@ -675,14 +675,14 @@ mob/living/carbon/metroid/var/temperature_resistance = T0C+75
 			health = 150
 		stat = CONSCIOUS
 	else
-		// slimes can't suffocate unless they suicide. They are also not harmed by fire
+		// metroids can't suffocate unless they suicide. They are also not harmed by fire
 		if(istype(src, /mob/living/carbon/metroid/adult))
 			health = 200 - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
 		else
 			health = 150 - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
 
 
-/mob/living/carbon/metroid/proc/get_obstacle_ok(atom/A)
+/*/mob/living/carbon/metroid/proc/get_obstacle_ok(atom/A)
 	var/direct = get_dir(src, A)
 	//var/obj/item/weapon/dummy/D = new /obj/item/weapon/dummy( src.loc )
 	var/obj/D = new(src)
@@ -762,4 +762,4 @@ mob/living/carbon/metroid/var/temperature_resistance = T0C+75
 
 		return 0
 
-	return 1
+	return 1*/
