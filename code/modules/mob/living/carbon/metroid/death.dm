@@ -1,22 +1,19 @@
-/mob/living/carbon/slime/death(gibbed)
+/mob/living/carbon/metroid/death(gibbed)
 	if(stat == DEAD)	return
 	stat = DEAD
-	icon_state = "[colour] baby slime dead"
+	icon_state = "baby metroid dead"
 
 	if(!gibbed)
-		if(istype(src, /mob/living/carbon/slime/adult))
+		if(istype(src, /mob/living/carbon/metroid/adult))
 			ghostize()
-			var/mob/living/carbon/slime/M1 = new primarytype(loc)
-			M1.rabid = 1
-			var/mob/living/carbon/slime/M2 = new primarytype(loc)
-			M2.rabid = 1
+			explosion(loc, -1,-1,3,12)
 			if(src)	del(src)
 		else
 			for(var/mob/O in viewers(src, null))
 				O.show_message("<b>The [name]</b> seizes up and falls limp...", 1) //ded -- Urist
 
 	update_canmove()
-	if(blind)	blind.invisibility = 101 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
+	if(blind)	blind.invisibility = 101 //blind.layer = 0
 
 	ticker.mode.check_win()
 
