@@ -85,6 +85,8 @@
 
 	//Alert level description
 	var/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
+	var/alert_desc_yellow_upto = "There is a security alert in progress. Security staff may have weapons visible, however privacy laws remain fully enforced."
+	var/alert_desc_yellow_downto = "The immediate threat has passed. Security staff may continue to have their weapons visible, however they may no longer conduct random searches."
 	var/alert_desc_blue_upto = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
 	var/alert_desc_blue_downto = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
 	var/alert_desc_red_upto = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
@@ -397,6 +399,12 @@
 
 				if("alert_delta")
 					config.alert_desc_delta = value
+
+				if("alert_yellow_upto")
+					config.alert_desc_yellow_upto = value
+
+				if("alert_yellow_downto")
+					config.alert_desc_yellow_downto = value
 
 				if("forbid_singulo_possession")
 					forbid_singulo_possession = 1

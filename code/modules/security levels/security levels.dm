@@ -1,8 +1,9 @@
 /var/security_level = 0
 //0 = code green
-//1 = code blue
-//2 = code red
-//3 = code delta
+//1 = code yellow
+//2 = code blue
+//3 = code red
+//4 = code delta
 
 //config.alert_desc_blue_downto
 
@@ -40,6 +41,36 @@
 				for(var/turf/simulated/floor/bluegrid/BG in world)
 					if(BG.z == 1 || BG.z == 5)
 						BG.icon_state = "bcircuit"
+				for(var/area/A in world)
+					if(istype(A, /area/hallway))
+						A.destructreset()
+
+			if(SEC_LEVEL_YELLOW)
+				if(security_level < SEC_LEVEL_YELLOW)
+					world << "<font size=4 color='red'>Attention! Security level elevated to yellow</font>"
+					world << "<font color='red'>[config.alert_desc_yellow_upto]</font>"
+					world << sound('sound/vox/dadeda.wav', volume=34) // Play a sound whenever the level changes upwards. -Frenjo
+				else
+					world << "<font size=4 color='red'>Attention! Security level lowered to yellow</font>"
+					world << "<font color='red'>[config.alert_desc_yellow_downto]</font>"
+					world << sound('sound/vox/doop.wav', volume=37) // Play a sound whenever the level changes downwards. -Frenjo
+				security_level = SEC_LEVEL_YELLOW
+
+				// Stole this code from below, made the blue alert sprite to go with it too! -Frenjo
+				var/obj/machinery/computer/communications/CC = locate(/obj/machinery/computer/communications, world)
+				if(CC)
+					CC.post_status("alert", "yellowalert")
+
+				for(var/obj/machinery/firealarm/FA in machines)
+					if(FA.z == 1 || FA.z == 5)
+						FA.overlays = list()
+						FA.overlays += image('icons/obj/monitors.dmi', "overlay_yellow")
+
+				// Hopefully this works. -Frenjo
+				for(var/turf/simulated/floor/bluegrid/BG in world)
+					if(BG.z == 1 || BG.z == 5)
+						BG.icon_state = "bcircuit"
+
 				for(var/area/A in world)
 					if(istype(A, /area/hallway))
 						A.destructreset()
@@ -135,6 +166,8 @@
 	switch(security_level)
 		if(SEC_LEVEL_GREEN)
 			return "green"
+		if(SEC_LEVEL_YELLOW)
+			return "yellow"
 		if(SEC_LEVEL_BLUE)
 			return "blue"
 		if(SEC_LEVEL_RED)
@@ -146,6 +179,8 @@
 	switch(num)
 		if(SEC_LEVEL_GREEN)
 			return "green"
+		if(SEC_LEVEL_YELLOW)
+			return "yellow"
 		if(SEC_LEVEL_BLUE)
 			return "blue"
 		if(SEC_LEVEL_RED)
@@ -157,6 +192,8 @@
 	switch( lowertext(seclevel) )
 		if("green")
 			return SEC_LEVEL_GREEN
+		if("yellow")
+			return SEC_LEVEL_YELLOW
 		if("blue")
 			return SEC_LEVEL_BLUE
 		if("red")

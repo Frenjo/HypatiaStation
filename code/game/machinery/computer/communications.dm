@@ -80,6 +80,7 @@
 					var/old_level = security_level
 					if(!tmp_alertlevel) tmp_alertlevel = SEC_LEVEL_GREEN
 					if(tmp_alertlevel < SEC_LEVEL_GREEN) tmp_alertlevel = SEC_LEVEL_GREEN
+					if(tmp_alertlevel == SEC_LEVEL_YELLOW) tmp_alertlevel = SEC_LEVEL_YELLOW
 					if(tmp_alertlevel > SEC_LEVEL_BLUE) tmp_alertlevel = SEC_LEVEL_BLUE //Cannot engage delta with this
 					set_security_level(tmp_alertlevel)
 					if(security_level != old_level)
@@ -89,6 +90,8 @@
 						switch(security_level)
 							if(SEC_LEVEL_GREEN)
 								feedback_inc("alert_comms_green",1)
+							if(SEC_LEVEL_YELLOW)
+								feedback_inc("alert_comms_yellow",1)
 							if(SEC_LEVEL_BLUE)
 								feedback_inc("alert_comms_blue",1)
 					tmp_alertlevel = 0
@@ -373,6 +376,7 @@
 			dat += "<ul><li> Line 1: <A HREF='?src=\ref[src];operation=setmsg1'>[ stat_msg1 ? stat_msg1 : "(none)"]</A>"
 			dat += "<li> Line 2: <A HREF='?src=\ref[src];operation=setmsg2'>[ stat_msg2 ? stat_msg2 : "(none)"]</A></ul><br>"
 			dat += "\[ Alert: <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=default'>None</A> |"
+			dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=yellowalert'>Yellow Alert</A> |" // Add option to manually set yellow alert status. -Frenjo
 			dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=bluealert'>Blue Alert</A> |" // Add option to manually set blue alert status. -Frenjo
 			dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=redalert'>Red Alert</A> |"
 			dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=evacalert'>Evacuation Alert</A> |" // Add option to manually set evacuation alert status. -Frenjo
@@ -385,6 +389,7 @@
 				dat += "<font color='red'><b>The self-destruct mechanism is active. Find a way to deactivate the mechanism to lower the alert level or evacuate.</b></font>"
 			else
 				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_BLUE]'>Blue</A><BR>"
+				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_YELLOW]'>Yellow</A><BR>"
 				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_GREEN]'>Green</A>"
 		if(STATE_CONFIRM_LEVEL)
 			dat += "Current alert level: [get_security_level()]<BR>"
@@ -440,6 +445,7 @@
 			dat += "<ul><li> Line 1: <A HREF='?src=\ref[src];operation=setmsg1'>[ stat_msg1 ? stat_msg1 : "(none)"]</A>"
 			dat += "<li> Line 2: <A HREF='?src=\ref[src];operation=setmsg2'>[ stat_msg2 ? stat_msg2 : "(none)"]</A></ul><br>"
 			dat += "\[ Alert: <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=default'>None</A> |"
+			dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=yellowalert'>Yellow Alert</A> |" // Add option to manually set yellow alert status. -Frenjo
 			dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=bluealert'>Blue Alert</A> |" // Add option to manually set blue alert status. -Frenjo
 			dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=redalert'>Red Alert</A> |"
 			dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=evacalert'>Evacuation Alert</A> |" // Add option to manually set evacuation alert status. -Frenjo

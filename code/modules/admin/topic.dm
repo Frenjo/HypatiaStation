@@ -2329,11 +2329,13 @@
 				//I do nothing
 			if("change_sec")
 				//var/level = alert(usr, "What would you like to change the security level to?", "Security Level", "Code Green", "Code Blue", "Code Red", "Code Delta", "Cancel"))
-				var/level = input("Please select security level:","Security Level") as null|anything in list("Code Green", "Code Blue", "Code Red", "Code Delta", "Cancel")
+				var/level = input("Please select security level:","Security Level") as null|anything in list("Code Green", "Code Yellow", "Code Blue", "Code Red", "Code Delta", "Cancel")
 				//Stupid BYOND...  Alert can only take 6 args.
 				switch(level)
 					if("Code Green")
 						set_security_level(SEC_LEVEL_GREEN)
+					if("Code Yellow")
+						set_security_level(SEC_LEVEL_YELLOW)
 					if("Code Blue")
 						set_security_level(SEC_LEVEL_BLUE)
 					if("Code Red")
