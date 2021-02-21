@@ -416,7 +416,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 
 /turf/simulated/mineral/random
 	name = "Mineral deposit"
-	var/mineralSpawnChanceList = list("Uranium" = 7, "Iron" = 40, "Diamond" = 3, "Gold" = 7, "Silver" = 7, "Plasma" = 25, "Clown" = 3, "Adamantine" = 2, "Mythril" = 1)//Currently, Adamantine won't spawn as it has no uses. -Durandan
+	var/mineralSpawnChanceList = list("Uranium" = 7, "Iron" = 40, "Diamond" = 3, "Gold" = 7, "Silver" = 7, "Plasma" = 25, "Clown" = 2, "Adamantine" = 1, "Mythril" = 1)//Currently, Adamantine won't spawn as it has no uses. -Durandan
 	// Now adamantine spawns, along with mythril.
 	var/mineralChance = 9 //means 10% chance of this plot changing to a mineral deposit
 
@@ -436,7 +436,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 
 /turf/simulated/mineral/random/high_chance
 	mineralChance = 24
-	mineralSpawnChanceList = list("Uranium" = 12, "Iron" = 30, "Diamond" = 4, "Gold" = 12, "Silver" = 12, "Plasma" = 25, "Clown" = 4, "Adamantine" = 3, "Mythril" = 2)
+	mineralSpawnChanceList = list("Uranium" = 12, "Iron" = 30, "Diamond" = 4, "Gold" = 12, "Silver" = 12, "Plasma" = 25, "Clown" = 3, "Adamantine" = 2, "Mythril" = 2)
 
 
 /**********************Asteroid**************************/
