@@ -250,3 +250,7 @@ var/custom_event_msg = null
 //A connection is established on world creation. Ideally, the connection dies when the server restarts (After feedback logging.).
 var/DBConnection/dbcon = new()	//Feedback database (New database)
 var/DBConnection/dbcon_old = new()	//Tgstation database (Old database) - See the files in the SQL folder for information what goes where.
+
+// processScheduler stuff
+var/global/const/TICKS_IN_DAY = 864000
+var/global/const/TICKS_IN_SECOND = 10

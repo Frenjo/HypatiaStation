@@ -154,9 +154,11 @@ var/global/datum/controller/gameticker/ticker
 		send2adminirc("Round has started with no admins online.")
 
 	//supply_shuttle.process() 		//Start the supply shuttle regenerating points -- TLE
-	supply_controller.process() // Edited this to reflect 'shuttles' port. -Frenjo
-	master_controller.process()		//Start master_controller.process()
-	lighting_controller.process()	//Start processing DynamicAreaLighting updates
+	//supply_controller.process() // Edited this to reflect 'shuttles' port. -Frenjo
+	//master_controller.process()		//Start master_controller.process()
+	//lighting_controller.process()	//Start processing DynamicAreaLighting updates
+
+	processScheduler.start()
 
 	for(var/obj/multiz/ladder/L in world) L.connect() //Lazy hackfix for ladders. TODO: move this to an actual controller. ~ Z
 
@@ -310,7 +312,7 @@ var/global/datum/controller/gameticker/ticker
 
 		mode.process()
 
-		emergency_shuttle.process()
+		//emergency_shuttle.process()
 
 		//var/mode_finished = mode.check_finished() || (emergency_shuttle.location == 2 && emergency_shuttle.alert == 1)
 		var/mode_finished = mode.check_finished() || (emergency_shuttle.returned() && emergency_shuttle.evac) // Updated this to reflect 'shuttles' port. -Frenjo

@@ -41,15 +41,18 @@
 
 	sleep_offline = 1
 
+	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
 	spawn(1)
+		processScheduler.deferSetupFor(/datum/controller/process/ticker)
+		processScheduler.setup()
 		master_controller.setup()
 
 	spawn(3000)		//so we aren't adding to the round-start lag
 		if(config.ToRban)
 			ToRban_autoupdate()
-		if(config.kick_inactive)
-			KickInactiveClients()
+		//if(config.kick_inactive)
+		//	KickInactiveClients()
 
 #undef RECOMMENDED_VERSION
 
@@ -114,6 +117,9 @@
 	/*spawn(0)
 		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
 		*/
+
+	processScheduler.stop()
+
 	for(var/client/C in clients)
 		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[config.server]")
@@ -135,7 +141,7 @@
 						log_access("AFK: [key_name(C)]")
 						C << "\red You have been inactive for more than 10 minutes and have been disconnected."
 						del(C)
-#undef INACTIVITY_KICK
+//#undef INACTIVITY_KICK
 
 
 /hook/startup/proc/loadMode()

@@ -56,8 +56,8 @@ datum/controller/game_controller/New()
 	//if(!emergency_shuttle)			emergency_shuttle = new /datum/shuttle_controller/emergency_shuttle()
 
 	 // Updated to reflect 'shuttles' port. -Frenjo
-	if(!emergency_shuttle)			emergency_shuttle = new /datum/emergency_shuttle_controller()
-	if(!shuttle_controller)			shuttle_controller = new /datum/shuttle_controller()
+	//if(!emergency_shuttle)			emergency_shuttle = new /datum/emergency_shuttle_controller()
+	//if(!shuttle_controller)			shuttle_controller = new /datum/shuttle_controller()
 
 datum/controller/game_controller/proc/setup()
 	world.tick_lag = config.Ticklag
@@ -65,12 +65,12 @@ datum/controller/game_controller/proc/setup()
 	spawn(20)
 		createRandomZlevel()
 
-	if(!air_master)
-		air_master = new /datum/controller/air_system()
-		air_master.Setup()
+	//if(!air_master)
+	//	air_master = new /datum/controller/air_system()
+	//	air_master.Setup()
 
-	if(!ticker)
-		ticker = new /datum/controller/gameticker()
+	//if(!ticker)
+	//	ticker = new /datum/controller/gameticker()
 
 	setup_objects()
 	setupgenetics()
@@ -83,11 +83,11 @@ datum/controller/game_controller/proc/setup()
 	for(var/i=0, i<max_secret_rooms, i++)
 		make_mining_asteroid_secret()
 
-	spawn(0)
-		if(ticker)
-			ticker.pregame()
+	//spawn(0)
+	//	if(ticker)
+	//		ticker.pregame()
 
-	lighting_controller.Initialize()
+	//lighting_controller.Initialize()
 
 
 datum/controller/game_controller/proc/setup_objects()
@@ -122,9 +122,9 @@ datum/controller/game_controller/proc/process()
 		while(1)	//far more efficient than recursively calling ourself
 			if(!Failsafe)	new /datum/controller/failsafe()
 
-			var/currenttime = world.timeofday
-			last_tick_duration = (currenttime - last_tick_timeofday) / 10
-			last_tick_timeofday = currenttime
+			//var/currenttime = world.timeofday
+			//last_tick_duration = (currenttime - last_tick_timeofday) / 10
+			//last_tick_timeofday = currenttime
 
 			if(processing)
 				var/timer
