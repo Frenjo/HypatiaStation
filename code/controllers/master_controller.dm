@@ -12,10 +12,10 @@ var/global/air_processing_killed = 0
 var/global/pipe_processing_killed = 0
 
 datum/controller/game_controller
-	var/processing = 0
-	var/breather_ticks = 2		//a somewhat crude attempt to iron over the 'bumps' caused by high-cpu use by letting the MC have a breather for this many ticks after every loop
+	//var/processing = 0
+	//var/breather_ticks = 2		//a somewhat crude attempt to iron over the 'bumps' caused by high-cpu use by letting the MC have a breather for this many ticks after every loop
 	//var/minimum_ticks = 20	//The minimum length of time between MC ticks
-	var/minimum_ticks = 3
+	//var/minimum_ticks = 3
 	// Edited this to reflect changes in BYOND and the fact hardware is better than 2014.
 	// For context, time of commenting is 04/11/2019. -Frenjo
 
@@ -28,11 +28,11 @@ datum/controller/game_controller
 	//var/networks_cost	= 0
 	//var/powernets_cost	= 0
 	//var/nano_cost		= 0
-	var/events_cost		= 0
+	//var/events_cost		= 0
 	//var/ticker_cost		= 0
-	var/total_cost		= 0
+	//var/total_cost		= 0
 
-	var/last_thing_processed
+	//var/last_thing_processed
 	//var/mob/list/expensive_mobs = list()
 	var/rebuild_active_areas = 0
 
@@ -114,7 +114,7 @@ datum/controller/game_controller/proc/setup_objects()
 	world << "\red \b Initializations complete."
 	sleep(-1)
 
-
+/*
 datum/controller/game_controller/proc/process()
 	processing = 1
 	spawn(0)
@@ -131,7 +131,7 @@ datum/controller/game_controller/proc/process()
 				var/start_time = world.timeofday
 				controller_iteration++
 
-				/*vote.process()
+				vote.process()
 				transfer_controller.process()
 				shuttle_controller.process() // Updated to reflect 'shuttles' port. -Frenjo
 				process_newscaster()
@@ -213,18 +213,17 @@ datum/controller/game_controller/proc/process()
 				nano_cost = (world.timeofday - timer) / 10
 
 				sleep(breather_ticks)
-				*/
+
 				//EVENTS
 				timer = world.timeofday
 				process_events()
 				events_cost = (world.timeofday - timer) / 10
-				/*
+
 				//TICKER
 				timer = world.timeofday
 				last_thing_processed = ticker.type
 				ticker.process()
 				ticker_cost = (world.timeofday - timer) / 10
-				*/
 
 				//TIMING
 				//total_cost = air_cost + sun_cost + mobs_cost + diseases_cost + machines_cost + objects_cost + networks_cost + powernets_cost + nano_cost + events_cost + ticker_cost
@@ -237,7 +236,6 @@ datum/controller/game_controller/proc/process()
 			else
 				sleep(10)
 
-/*
 datum/controller/game_controller/proc/process_mobs()
 	var/i = 1
 	expensive_mobs.Cut()
@@ -347,7 +345,6 @@ datum/controller/game_controller/proc/process_nano()
 			i++
 			continue
 		nanomanager.processing_uis.Cut(i,i+1)
-*/
 
 datum/controller/game_controller/proc/process_events()
 	last_thing_processed = /datum/event
@@ -361,7 +358,6 @@ datum/controller/game_controller/proc/process_events()
 		events.Cut(i,i+1)
 	checkEvent()
 
-/*
 datum/controller/game_controller/proc/Recover()		//Mostly a placeholder for now.
 	var/msg = "## DEBUG: [time2text(world.timeofday)] MC restarted. Reports:\n"
 	for(var/varname in master_controller.vars)

@@ -152,6 +152,9 @@
 	src.throwing = 0
 	if(isobj(src)) src.throw_impact(get_turf(src),speed)
 
+/atom/movable/Del()
+	. = ..()
+	loc = null
 
 //Overlays
 /atom/movable/overlay

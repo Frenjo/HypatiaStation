@@ -30,7 +30,8 @@ var/list/beam_master = list()
 			step_towards(src, current) //Move~
 
 			if(kill_count < 1)
-				src = null
+				//src = null
+				del(src)
 			kill_count--
 
 			if(!bumped && !isturf(original))

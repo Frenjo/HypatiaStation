@@ -175,7 +175,8 @@
 /obj/structure/mineral_door/uranium
 	mineralType = "uranium"
 	hardness = 3
-	luminosity = 2
+	//luminosity = 2
+	light_range = 2
 
 /obj/structure/mineral_door/sandstone
 	mineralType = "sandstone"

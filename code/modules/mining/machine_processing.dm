@@ -229,7 +229,8 @@
 	icon_state = "furnace"
 	density = 1
 	anchored = 1.0
-	luminosity = 3					//Big fire with window, yeah it puts out a little light.
+	//luminosity = 3					//Big fire with window, yeah it puts out a little light.
+	light_range = 3
 	var/obj/machinery/mineral/input = null
 	var/obj/machinery/mineral/output = null
 	var/obj/machinery/mineral/CONSOLE = null

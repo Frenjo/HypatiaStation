@@ -33,7 +33,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.dock_target_station = "arrivalshuttle_dock"
 	shuttle.dock_target_offsite = "arrivalshuttle_centcomdock"
 	shuttle.transit_direction = WEST
-	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-15, 45) // Since it ends up docking ass-backwards, this gives it a bit of "manoeuvring time".
+	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-15, 30) // Since it ends up docking ass-backwards, this gives it a bit of "manoeuvring time".
 	shuttles["Arrival"] = shuttle
 	process_shuttles += shuttle
 

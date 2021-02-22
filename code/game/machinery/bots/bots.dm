@@ -3,7 +3,8 @@
 /obj/machinery/bot
 	icon = 'icons/obj/aibots.dmi'
 	layer = MOB_LAYER
-	luminosity = 3
+	//luminosity = 3
+	light_range = 3
 	use_power = 0
 	var/obj/item/weapon/card/id/botcard			// the ID card that the bot "holds"
 	var/on = 1
@@ -20,7 +21,7 @@
 	if(stat)	return 0
 	on = 1
 	//SetLuminosity(initial(luminosity))
-	set_light(initial(luminosity))
+	set_light(initial(light_range))
 	return 1
 
 /obj/machinery/bot/proc/turn_off()

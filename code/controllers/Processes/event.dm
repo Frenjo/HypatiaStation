@@ -3,4 +3,12 @@
 	schedule_interval = 20 // every 2 seconds
 
 /datum/controller/process/event/doWork()
-	event_manager.process()
+	var/i = 1
+	while(i<=events.len)
+		var/datum/event/Event = events[i]
+		if(Event)
+			Event.process()
+			i++
+			continue
+		events.Cut(i,i+1)
+	checkEvent()

@@ -448,7 +448,8 @@ var/list/forbidden_varedit_object_types = list(
 			O.vars[variable] = var_new
 
 		if("num")
-			if(variable=="luminosity")
+			//if(variable=="luminosity")
+			if(variable=="light_range")
 				var/var_new = input("Enter new number:","Num",O.vars[variable]) as null|num
 				if(var_new == null) return
 				//O.SetLuminosity(var_new)

@@ -4,7 +4,7 @@
 
 	var/turf/source_turf
 	var/light_power
-	var/light_range
+	var/light_range = 0
 	var/light_color // string, decomposed by parse_light_color()
 
 	var/lum_r
@@ -69,7 +69,8 @@
 	lighting_update_lights += src
 
 /datum/light_source/proc/check()
-	if(!source_atom)
+	//if(!source_atom)
+	if(!source_atom || !light_range || !light_power)
 		destroy()
 		return 1
 
