@@ -45,9 +45,6 @@
 
 	return heard
 
-
-
-
 //Magic constants obtained by using linear regression on right-angled triangles of sides 0<x<1, 0<y<1
 //They should approximate pythagoras theorem well enough for our needs.
 #define k1 0.934

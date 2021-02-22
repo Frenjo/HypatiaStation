@@ -21,6 +21,7 @@
 	var/sortBy = "name"
 	var/order = 1 // -1 = Descending - 1 = Ascending
 
+	light_color = "#00b000"
 
 /obj/machinery/computer/skills/attackby(obj/item/O as obj, user as mob)
 	if(istype(O, /obj/item/weapon/card/id) && !scan)
@@ -302,7 +303,7 @@ What a mess.*/
 					temp += "<a href='?src=\ref[src];choice=Clear Screen'>No</a>"
 //RECORD CREATE
 			if ("New Record (General)")
-				
+
 				if(PDA_Manifest.len)
 					PDA_Manifest.Cut()
 				var/datum/data/record/G = new /datum/data/record()

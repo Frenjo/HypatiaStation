@@ -14,6 +14,8 @@
 	var/obj/item/weapon/disk/data/diskette = null //Mostly so the geneticist can steal everything.
 	var/loading = 0 // Nice loading text
 
+	light_color = "#315ab4"
+
 /obj/machinery/computer/cloning/New()
 	..()
 	spawn(5)

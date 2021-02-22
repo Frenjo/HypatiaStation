@@ -19,7 +19,8 @@
 			icon_state = "shutter0"
 			sleep(15)
 			density = 0
-			SetOpacity(0)
+			//SetOpacity(0)
+			set_opacity(0)
 			operating = 0
 			return
 	return
@@ -35,7 +36,8 @@
 	icon_state = "shutter0"
 	sleep(10)
 	density = 0
-	SetOpacity(0)
+	//SetOpacity(0)
+	set_opacity(0)
 	update_nearby_tiles()
 
 	if(operating == 1) //emag again
@@ -53,7 +55,8 @@
 	icon_state = "shutter1"
 	density = 1
 	if(visible)
-		SetOpacity(1)
+		//SetOpacity(1)
+		set_opacity(1)
 	update_nearby_tiles()
 
 	sleep(10)

@@ -216,14 +216,16 @@
 
 	do_animate("opening")
 	icon_state = "door0"
-	src.SetOpacity(0)
+	//src.SetOpacity(0)
+	src.set_opacity(0)
 	//sleep(10)
 	sleep(7) // Makes doors open slightly quicker. -Frenjo
 	src.layer = 2.7
 	src.density = 0
 	explosion_resistance = 0
 	update_icon()
-	SetOpacity(0)
+	//SetOpacity(0)
+	set_opacity(0)
 	update_nearby_tiles()
 
 	if(operating)	operating = 0
@@ -251,7 +253,8 @@
 	sleep(7) // Makes doors close slightly quicker. -Frenjo
 	update_icon()
 	if(visible && !glass)
-		SetOpacity(1)	//caaaaarn!
+		//SetOpacity(1)	//caaaaarn!
+		set_opacity(1)
 	operating = 0
 	update_nearby_tiles()
 

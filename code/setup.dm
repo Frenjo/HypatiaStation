@@ -791,3 +791,6 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define FORCE_LAUNCH	2
 #define WAIT_ARRIVE		3
 #define WAIT_FINISH		4
+
+// new lighting
+#define CLAMP01(x) max(0, min(1, x))

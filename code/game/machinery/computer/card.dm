@@ -12,6 +12,7 @@
 	var/mode = 0.0
 	var/printing = null
 
+	light_color = "#0099ff"
 
 /obj/machinery/computer/card/attackby(O as obj, user as mob)//TODO:SANITY
 	if(istype(O, /obj/item/weapon/card/id))

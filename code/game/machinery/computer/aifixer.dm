@@ -6,6 +6,8 @@
 	var/mob/living/silicon/ai/occupant = null
 	var/active = 0
 
+	light_color = "#a97faa"
+
 /obj/machinery/computer/aifixer/New()
 	src.overlays += image('icons/obj/computer.dmi', "ai-fixer-empty")
 

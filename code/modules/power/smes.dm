@@ -240,7 +240,8 @@
 		return 0 // Do not update ui
 
 	for(var/area/A in active_areas)
-		A.master.powerupdate = 3
+		//A.master.powerupdate = 3
+		A.powerupdate = 3
 
 
 	if( href_list["cmode"] )

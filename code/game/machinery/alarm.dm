@@ -134,8 +134,8 @@
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
-	if (alarm_area.master)
-		alarm_area = alarm_area.master
+	//if (alarm_area.master)
+		//alarm_area = alarm_area.master
 	area_uid = alarm_area.uid
 	if (name == "alarm")
 		name = "[alarm_area.name] Air Alarm"
@@ -263,11 +263,15 @@
 
 
 /obj/machinery/alarm/proc/elect_master()
-	for (var/area/A in alarm_area.related)
-		for (var/obj/machinery/alarm/AA in A)
-			if (!(AA.stat & (NOPOWER|BROKEN)))
-				alarm_area.master_air_alarm = AA
-				return 1
+	//for (var/area/A in alarm_area.related)
+	//	for (var/obj/machinery/alarm/AA in A)
+	//		if (!(AA.stat & (NOPOWER|BROKEN)))
+	//			alarm_area.master_air_alarm = AA
+	//			return 1
+	for (var/obj/machinery/alarm/AA in alarm_area)
+		if (!(AA.stat & (NOPOWER|BROKEN)))
+			alarm_area.master_air_alarm = AA
+			return 1
 	return 0
 
 /obj/machinery/alarm/proc/get_danger_level(var/current_value, var/list/danger_levels)
@@ -404,7 +408,8 @@
 	if (alarm_area.atmosalert(new_danger_level))
 		post_alert(new_danger_level)
 
-	for (var/area/A in alarm_area.related)
+	//for (var/area/A in alarm_area.related)
+	for(var/area/A in alarm_area)
 		for (var/obj/machinery/alarm/AA in A)
 			if ( !(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted && AA.danger_level != new_danger_level)
 				AA.update_icon()
@@ -438,18 +443,25 @@
 
 /obj/machinery/alarm/proc/refresh_danger_level()
 	var/level = 0
-	for (var/area/A in alarm_area.related)
-		for (var/obj/machinery/alarm/AA in A)
-			if ( !(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
-				if (AA.danger_level > level)
-					level = AA.danger_level
+	//for (var/area/A in alarm_area.related)
+	//	for (var/obj/machinery/alarm/AA in A)
+	//		if ( !(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
+	//			if (AA.danger_level > level)
+	//				level = AA.danger_level
+	for (var/obj/machinery/alarm/AA in alarm_area)
+		if ( !(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
+			if (AA.danger_level > level)
+				level = AA.danger_level
 	apply_danger_level(level)
 
 /obj/machinery/alarm/proc/air_doors_close(manual)
 	var/area/A = get_area(src)
-	if(!A.master.air_doors_activated)
-		A.master.air_doors_activated = 1
-		for(var/obj/machinery/door/E in A.master.all_doors)
+	//if(!A.master.air_doors_activated)
+	//	A.master.air_doors_activated = 1
+	//	for(var/obj/machinery/door/E in A.master.all_doors)
+	if(!A.air_doors_activated)
+		A.air_doors_activated = 1
+		for(var/obj/machinery/door/firedoor/E in A.all_doors)
 			if(istype(E,/obj/machinery/door/firedoor))
 				if(!E:blocked)
 					if(E.operating)
@@ -483,9 +495,12 @@
 
 /obj/machinery/alarm/proc/air_doors_open(manual)
 	var/area/A = get_area(loc)
-	if(A.master.air_doors_activated)
-		A.master.air_doors_activated = 0
-		for(var/obj/machinery/door/E in A.master.all_doors)
+	//if(A.master.air_doors_activated)
+	//	A.master.air_doors_activated = 0
+	//	for(var/obj/machinery/door/E in A.master.all_doors)
+	if(A.air_doors_activated)
+		A.air_doors_activated = 0
+		for(var/obj/machinery/door/firedoor/E in A.all_doors)
 			if(istype(E, /obj/machinery/door/firedoor))
 				if(!E:blocked)
 					if(E.operating)
@@ -1604,8 +1619,8 @@ Code shamelessly copied from apc_frame
 	user.machine = src
 	var/area/A = get_area(src)
 	ASSERT(isarea(A))
-	if(A.master)
-		A = A.master
+	//if(A.master)
+		//A = A.master
 	var/d1
 	var/d2
 	if (istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon/ai))
@@ -1644,8 +1659,8 @@ Code shamelessly copied from apc_frame
 		return
 	var/area/A = get_area(src)
 	ASSERT(isarea(A))
-	if(A.master)
-		A = A.master
+	//if(A.master)
+		//A = A.master
 	A.partyreset()
 	return
 
@@ -1654,8 +1669,8 @@ Code shamelessly copied from apc_frame
 		return
 	var/area/A = get_area(src)
 	ASSERT(isarea(A))
-	if(A.master)
-		A = A.master
+	//if(A.master)
+		//A = A.master
 	A.partyalert()
 	return
 

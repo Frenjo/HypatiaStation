@@ -19,21 +19,21 @@ datum/controller/game_controller
 	// Edited this to reflect changes in BYOND and the fact hardware is better than 2014.
 	// For context, time of commenting is 04/11/2019. -Frenjo
 
-	var/air_cost 		= 0
-	var/sun_cost		= 0
-	var/mobs_cost		= 0
-	var/diseases_cost	= 0
-	var/machines_cost	= 0
-	var/objects_cost	= 0
-	var/networks_cost	= 0
-	var/powernets_cost	= 0
-	var/nano_cost		= 0
+	//var/air_cost 		= 0
+	//var/sun_cost		= 0
+	//var/mobs_cost		= 0
+	//var/diseases_cost	= 0
+	//var/machines_cost	= 0
+	//var/objects_cost	= 0
+	//var/networks_cost	= 0
+	//var/powernets_cost	= 0
+	//var/nano_cost		= 0
 	var/events_cost		= 0
-	var/ticker_cost		= 0
+	//var/ticker_cost		= 0
 	var/total_cost		= 0
 
 	var/last_thing_processed
-	var/mob/list/expensive_mobs = list()
+	//var/mob/list/expensive_mobs = list()
 	var/rebuild_active_areas = 0
 
 datum/controller/game_controller/New()
@@ -41,7 +41,7 @@ datum/controller/game_controller/New()
 	if(master_controller != src)
 		log_debug("Rebuilding Master Controller")
 		if(istype(master_controller))
-			Recover()
+			//Recover()
 			del(master_controller)
 		master_controller = src
 
@@ -120,18 +120,18 @@ datum/controller/game_controller/proc/process()
 	spawn(0)
 		set background = 1
 		while(1)	//far more efficient than recursively calling ourself
-			if(!Failsafe)	new /datum/controller/failsafe()
+			//if(!Failsafe)	new /datum/controller/failsafe()
 
-			//var/currenttime = world.timeofday
-			//last_tick_duration = (currenttime - last_tick_timeofday) / 10
-			//last_tick_timeofday = currenttime
+			var/currenttime = world.timeofday
+			last_tick_duration = (currenttime - last_tick_timeofday) / 10
+			last_tick_timeofday = currenttime
 
 			if(processing)
 				var/timer
 				var/start_time = world.timeofday
 				controller_iteration++
 
-				vote.process()
+				/*vote.process()
 				transfer_controller.process()
 				shuttle_controller.process() // Updated to reflect 'shuttles' port. -Frenjo
 				process_newscaster()
@@ -213,20 +213,22 @@ datum/controller/game_controller/proc/process()
 				nano_cost = (world.timeofday - timer) / 10
 
 				sleep(breather_ticks)
-
+				*/
 				//EVENTS
 				timer = world.timeofday
 				process_events()
 				events_cost = (world.timeofday - timer) / 10
-
+				/*
 				//TICKER
 				timer = world.timeofday
 				last_thing_processed = ticker.type
 				ticker.process()
 				ticker_cost = (world.timeofday - timer) / 10
+				*/
 
 				//TIMING
-				total_cost = air_cost + sun_cost + mobs_cost + diseases_cost + machines_cost + objects_cost + networks_cost + powernets_cost + nano_cost + events_cost + ticker_cost
+				//total_cost = air_cost + sun_cost + mobs_cost + diseases_cost + machines_cost + objects_cost + networks_cost + powernets_cost + nano_cost + events_cost + ticker_cost
+				total_cost = events_cost
 
 				var/end_time = world.timeofday
 				if(end_time < start_time)
@@ -235,6 +237,7 @@ datum/controller/game_controller/proc/process()
 			else
 				sleep(10)
 
+/*
 datum/controller/game_controller/proc/process_mobs()
 	var/i = 1
 	expensive_mobs.Cut()
@@ -344,6 +347,7 @@ datum/controller/game_controller/proc/process_nano()
 			i++
 			continue
 		nanomanager.processing_uis.Cut(i,i+1)
+*/
 
 datum/controller/game_controller/proc/process_events()
 	last_thing_processed = /datum/event
@@ -357,6 +361,7 @@ datum/controller/game_controller/proc/process_events()
 		events.Cut(i,i+1)
 	checkEvent()
 
+/*
 datum/controller/game_controller/proc/Recover()		//Mostly a placeholder for now.
 	var/msg = "## DEBUG: [time2text(world.timeofday)] MC restarted. Reports:\n"
 	for(var/varname in master_controller.vars)
@@ -370,4 +375,4 @@ datum/controller/game_controller/proc/Recover()		//Mostly a placeholder for now.
 				else
 					msg += "\t [varname] = [varval]\n"
 	world.log << msg
-
+*/

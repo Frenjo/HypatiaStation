@@ -11,6 +11,7 @@
 	var/receive_frequency = 1437
 	var/datum/radio_frequency/radio_connection
 
+	light_color = "#e6ffff"
 
 /obj/machinery/computer/atmos_alert/initialize()
 	..()

@@ -191,7 +191,8 @@
 	icon_state = "weednode"
 	name = "purple sac"
 	desc = "Weird purple octopus-like thing."
-	luminosity = NODERANGE
+	//luminosity = NODERANGE
+	light_range = NODERANGE
 	var/node_range = NODERANGE
 
 /obj/effect/alien/weeds/node/New()

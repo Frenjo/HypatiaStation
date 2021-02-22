@@ -43,8 +43,7 @@
 	var/continous_rounds = 1			// Gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
 	var/allow_Metadata = 0				// Metadata is supported.
 	var/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
-	//var/Ticklag = 0.9
-	var/Ticklag = 0.3 // Changed this here because doing it in the config doesn't seem to work? -Frenjo
+	var/Ticklag = 0.9
 	var/Tickcomp = 0
 	var/socket_talk	= 0					// use socket_talk to communicate with other processes
 	var/list/resource_urls = null
@@ -86,7 +85,7 @@
 	//Alert level description
 	var/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
 	var/alert_desc_yellow_upto = "There is a security alert in progress. Security staff may have weapons visible, however privacy laws remain fully enforced."
-	var/alert_desc_yellow_downto = "The immediate threat has passed. Security staff may continue to have their weapons visible, however they may no longer conduct random searches."
+	var/alert_desc_yellow_downto = "The possible threat has passed. Security staff may continue to have their weapons visible, however they may no longer conduct random searches."
 	var/alert_desc_blue_upto = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
 	var/alert_desc_blue_downto = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
 	var/alert_desc_red_upto = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
@@ -144,6 +143,8 @@
 	var/admin_irc = ""
 	var/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
 	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
+
+	var/starlight = 0
 
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
@@ -495,6 +496,9 @@
 
 				if("req_cult_ghostwriter")
 					config.cult_ghostwriter_req_cultists = value
+
+				if("starlight")
+					config.starlight = value
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

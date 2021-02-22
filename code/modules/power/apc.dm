@@ -1406,11 +1406,15 @@
 	if( cell && cell.charge>=20)
 		cell.use(20);
 		spawn(0)
-			for(var/area/A in area.related)
-				for(var/obj/machinery/light/L in A)
-					L.on = 1
-					L.broken()
-					sleep(1)
+			//for(var/area/A in area.related)
+			//	for(var/obj/machinery/light/L in A)
+			//		L.on = 1
+			//		L.broken()
+			//		sleep(1)
+			for(var/obj/machinery/light/L in area)
+				L.on = 1
+				L.broken()
+				sleep(1)
 
 /obj/machinery/power/apc/Del()
 	if(malfai && operating)

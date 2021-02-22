@@ -21,6 +21,7 @@ var/prison_shuttle_timeleft = 0
 	var/allowedtocall = 0
 	var/prison_break = 0
 
+	light_color = "#00ffff"
 
 	attackby(I as obj, user as mob)
 		return src.attack_hand(user)

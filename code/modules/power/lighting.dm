@@ -241,6 +241,10 @@
 	..()
 
 	spawn(2)
+		var/area/A = get_area(src)
+		if(A && !A.requires_power)
+			on = 1
+
 		switch(fitting)
 			if("tube")
 				brightness = 8
@@ -295,13 +299,16 @@
 					status = LIGHT_BURNED
 					icon_state = "[base_state]-burned"
 					on = 0
-					SetLuminosity(0)
+					//SetLuminosity(0)
+					set_light(0)
 			else
 				use_power = 2
-				SetLuminosity(brightness)
+				//SetLuminosity(brightness)
+				set_light(brightness)
 	else
 		use_power = 1
-		SetLuminosity(0)
+		//SetLuminosity(0)
+		set_light(0)
 
 	active_power_usage = (luminosity * 10)
 	if(on != on_gs)
@@ -431,7 +438,8 @@
 // true if area has power and lightswitch is on
 /obj/machinery/light/proc/has_power()
 	var/area/A = src.loc.loc
-	return A.master.lightswitch && A.master.power_light
+	//return A.master.lightswitch && A.master.power_light
+	return A.lightswitch && A.power_light
 
 /obj/machinery/light/proc/flicker(var/amount = rand(10, 20))
 	if(flickering) return
@@ -613,7 +621,7 @@
 /obj/machinery/light/power_change()
 	spawn(10)
 		var/area/A = src.loc.loc
-		A = A.master
+		//A = A.master
 		seton(A.lightswitch && A.power_light)
 
 // called when on fire

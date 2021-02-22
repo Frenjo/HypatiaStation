@@ -14,6 +14,8 @@
 	var/delay = 10
 	req_access = list(access_rd) //Only the R&D can change server settings.
 
+	light_color = "#a97faa"
+
 /obj/machinery/r_n_d/server/New()
 	..()
 	component_parts = list()

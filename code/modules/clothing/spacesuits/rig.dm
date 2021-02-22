@@ -22,8 +22,10 @@
 		icon_state = "rig[on]-[item_color]"
 //		item_state = "rig[on]-[color]"
 
-		if(on)	user.SetLuminosity(user.luminosity + brightness_on)
-		else	user.SetLuminosity(user.luminosity - brightness_on)
+		//if(on)	user.SetLuminosity(user.luminosity + brightness_on)
+		//else	user.SetLuminosity(user.luminosity - brightness_on)
+		if(on)	user.set_light(user.luminosity + brightness_on)
+		else	user.set_light(user.luminosity - brightness_on)
 
 		if(istype(user,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
@@ -31,15 +33,19 @@
 
 	pickup(mob/user)
 		if(on)
-			user.SetLuminosity(user.luminosity + brightness_on)
+			//user.SetLuminosity(user.luminosity + brightness_on)
+			user.set_light(user.luminosity + brightness_on)
 //			user.UpdateLuminosity()
-			SetLuminosity(0)
+			//SetLuminosity(0)
+			set_light(0)
 
 	dropped(mob/user)
 		if(on)
-			user.SetLuminosity(user.luminosity - brightness_on)
+			//user.SetLuminosity(user.luminosity - brightness_on)
+			user.set_light(user.luminosity - brightness_on)
 //			user.UpdateLuminosity()
-			SetLuminosity(brightness_on)
+			//SetLuminosity(brightness_on)
+			set_light(brightness_on)
 
 /obj/item/clothing/suit/space/rig
 	name = "engineering hardsuit"

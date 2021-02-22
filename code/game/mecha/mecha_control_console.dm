@@ -8,6 +8,8 @@
 	var/screen = 0
 	var/stored_data
 
+	light_color = "#a97faa"
+
 	attack_ai(var/mob/user as mob)
 		return src.attack_hand(user)
 

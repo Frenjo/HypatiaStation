@@ -7,9 +7,24 @@
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
 //	heat_capacity = 700000 No.
 
+	dynamic_lighting = 0
+
 /turf/space/New()
 	if(!istype(src, /turf/space/transit))
 		icon_state = "[((x + y) ^ ~(x * y) + z) % 25]"
+	update_starlight()
+
+/turf/space/proc/update_starlight()
+	if(!config)
+		return
+
+	if(!config.starlight)
+		return
+
+	if(locate(/turf/simulated) in orange(src,1))
+		set_light(config.starlight)
+	else
+		set_light(0)
 
 /turf/space/attack_paw(mob/user as mob)
 	return src.attack_hand(user)

@@ -8,6 +8,7 @@
 	circuit = "/obj/item/weapon/circuitboard/crew"
 	var/list/tracked = list(  )
 
+	light_color = "#315ab4"
 
 /obj/machinery/computer/crew/New()
 	tracked = list()

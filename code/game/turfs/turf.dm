@@ -22,6 +22,8 @@
 	var/icon_old = null
 	var/pathweight = 1
 
+	var/dynamic_lighting = 1
+
 /turf/New()
 	..()
 	for(var/atom/movable/AM as mob|obj in src)
@@ -214,7 +216,11 @@
 					return W
 ///// Z-Level Stuff
 
-	var/old_lumcount = lighting_lumcount - initial(lighting_lumcount)
+	//var/old_lumcount = lighting_lumcount - initial(lighting_lumcount)
+
+	var/old_opacity = opacity
+	var/old_dynamic_lighting = dynamic_lighting
+	var/list/old_affecting_lights = affecting_lights
 
 	//world << "Replacing [src.type] with [N]"
 
@@ -238,10 +244,10 @@
 		var/turf/simulated/W = new N( locate(src.x, src.y, src.z) )
 		//W.Assimilate_Air()
 
-		W.lighting_lumcount += old_lumcount
-		if(old_lumcount != W.lighting_lumcount)
-			W.lighting_changed = 1
-			lighting_controller.changed_turfs += W
+		//W.lighting_lumcount += old_lumcount
+		//if(old_lumcount != W.lighting_lumcount)
+		//	W.lighting_changed = 1
+		//	lighting_controller.changed_turfs += W
 
 		if (istype(W,/turf/simulated/floor))
 			W.RemoveLattice()
@@ -249,8 +255,12 @@
 		if(air_master)
 			air_master.mark_for_update(src)
 
+		for(var/turf/space/S in range(W,1))
+			S.update_starlight()
+
 		W.levelupdate()
-		return W
+		//return W
+		. = W
 
 	else
 		//if(zone)
@@ -259,16 +269,29 @@
 		//		zone.SetStatus(ZONE_ACTIVE)
 
 		var/turf/W = new N( locate(src.x, src.y, src.z) )
-		W.lighting_lumcount += old_lumcount
-		if(old_lumcount != W.lighting_lumcount)
-			W.lighting_changed = 1
-			lighting_controller.changed_turfs += W
+		//W.lighting_lumcount += old_lumcount
+		//if(old_lumcount != W.lighting_lumcount)
+		//	W.lighting_changed = 1
+		//	lighting_controller.changed_turfs += W
 
 		if(air_master)
 			air_master.mark_for_update(src)
 
+		for(var/turf/space/S in range(W,1))
+			S.update_starlight()
+
 		W.levelupdate()
-		return W
+		//return W
+		. = W
+
+	affecting_lights = old_affecting_lights
+	if((old_opacity != opacity) || (dynamic_lighting != old_dynamic_lighting))
+		reconsider_lights()
+	if(dynamic_lighting != old_dynamic_lighting)
+		if(dynamic_lighting)
+			lighting_build_overlays()
+		else
+			lighting_clear_overlays()
 
 
 //Commented out by SkyMarshal 5/10/13 - If you are patching up space, it should be vacuum.

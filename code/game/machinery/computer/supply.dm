@@ -12,6 +12,8 @@
 	layer = 4
 	explosion_resistance = 5
 
+	light_color = "#b88b2e"
+
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)
 	if(istype(A) && A.checkpass(PASSGLASS))
 		return prob(60)

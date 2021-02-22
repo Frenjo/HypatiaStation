@@ -9,6 +9,8 @@
 	var/mob/living/carbon/human/victim = null
 	var/obj/machinery/optable/table = null
 
+	light_color = "#315ab4"
+
 /obj/machinery/computer/operating/New()
 	..()
 	for(dir in list(NORTH,EAST,SOUTH,WEST))

@@ -6,6 +6,7 @@
 	circuit = "/obj/item/weapon/circuitboard/stationalert"
 	var/alarms = list("Fire"=list(), "Atmosphere"=list(), "Power"=list())
 
+	light_color = "#e6ffff"
 
 	attack_ai(mob/user)
 		add_fingerprint(user)

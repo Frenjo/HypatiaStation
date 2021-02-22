@@ -916,10 +916,15 @@
 			var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
 			if(isturf(loc)) //else, there's considered to be no light
 				var/turf/T = loc
-				var/area/A = T.loc
-				if(A)
-					if(A.lighting_use_dynamic)	light_amount = min(10,T.lighting_lumcount) - 5 //hardcapped so it's not abused by having a ton of flashlights
-					else						light_amount =  5
+				//var/area/A = T.loc
+				//if(A)
+				//	if(A.lighting_use_dynamic)	light_amount = min(10,T.lighting_lumcount) - 5 //hardcapped so it's not abused by having a ton of flashlights
+				//	else						light_amount =  5
+				var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
+				if(L)
+					light_amount = min(10,L.lum_r + L.lum_g + L.lum_b) - 5 //hardcapped so it's not abused by having a ton of flashlights
+				else
+					light_amount =  5
 			nutrition += light_amount
 			traumatic_shock -= light_amount
 
@@ -936,10 +941,15 @@
 			var/light_amount = 0
 			if(isturf(loc))
 				var/turf/T = loc
-				var/area/A = T.loc
-				if(A)
-					if(A.lighting_use_dynamic)	light_amount = T.lighting_lumcount
-					else						light_amount =  10
+				//var/area/A = T.loc
+				//if(A)
+					//if(A.lighting_use_dynamic)	light_amount = T.lighting_lumcount
+					//else						light_amount =  10
+				var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
+				if(L)
+					light_amount = L.lum_r + L.lum_g + L.lum_b //hardcapped so it's not abused by having a ton of flashlights
+				else
+					light_amount =  10
 			if(light_amount > 2) //if there's enough light, start dying
 				take_overall_damage(1,1)
 			else if (light_amount < 2) //heal in the dark
@@ -1430,10 +1440,10 @@
 				vomit()
 
 		//0.1% chance of playing a scary sound to someone who's in complete darkness
-		if(isturf(loc) && rand(1,1000) == 1)
-			var/turf/currentTurf = loc
-			if(!currentTurf.lighting_lumcount)
-				playsound_local(src,pick(scarySounds),50, 1, -1)
+		//if(isturf(loc) && rand(1,1000) == 1)
+			//var/turf/currentTurf = loc
+			//if(!currentTurf.lighting_lumcount)
+			//	playsound_local(src,pick(scarySounds),50, 1, -1)
 
 	proc/handle_virus_updates()
 		if(status_flags & GODMODE)	return 0	//godmode
