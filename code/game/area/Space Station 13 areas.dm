@@ -96,7 +96,7 @@ var/list/ghostteleportlocs = list()
 
 /area/space
 	name = "Space"
-	icon_state = "dark"
+	icon_state = "dark128"
 	requires_power = 1
 	always_unpowered = 1
 	power_light = 0
@@ -117,6 +117,7 @@ var/list/ghostteleportlocs = list()
 /area/admin
 	name = "\improper Admin room"
 	icon_state = "start"
+	lighting_use_dynamic = 0
 
 //These are shuttle areas, they must contain two areas in a subgroup if you want to move a shuttle from one
 //place to another. Look at escape shuttle for example.
@@ -354,6 +355,7 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Centcom"
 	icon_state = "centcom"
 	requires_power = 0
+	lighting_use_dynamic = 0
 
 /area/centcom/control
 	name = "\improper Centcom Control"
@@ -395,10 +397,12 @@ var/list/ghostteleportlocs = list()
 /area/syndicate_mothership/control
 	name = "\improper Syndicate Control Room"
 	icon_state = "syndie-control"
+	lighting_use_dynamic = 0
 
 /area/syndicate_mothership/elite_squad
 	name = "\improper Syndicate Elite Squad"
 	icon_state = "syndie-elite"
+	lighting_use_dynamic = 0
 
 //EXTRA
 /area/asteroid					// -- TLE
@@ -424,6 +428,7 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Thunderdome"
 	icon_state = "thunder"
 	requires_power = 0
+	lighting_use_dynamic = 0
 
 /area/tdome/tdome1
 	name = "\improper Thunderdome (Team 1)"
@@ -492,6 +497,7 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Wizard's Den"
 	icon_state = "yellow"
 	requires_power = 0
+	lighting_use_dynamic = 0
 
 /area/vox_station/transit
 	name = "\improper Hyperspace"
@@ -593,6 +599,7 @@ var/list/ghostteleportlocs = list()
 /area/prison/solitary
 	name = "Solitary Confinement"
 	icon_state = "brig"
+	lighting_use_dynamic = 0
 
 /area/prison/cell_block/A
 	name = "Prison Cell Block A"
