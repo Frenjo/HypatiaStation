@@ -8,6 +8,7 @@
 //	heat_capacity = 700000 No.
 
 	dynamic_lighting = 0
+	luminosity = 1
 
 /turf/space/New()
 	if(!istype(src, /turf/space/transit))
@@ -17,7 +18,6 @@
 /turf/space/proc/update_starlight()
 	if(!config)
 		return
-
 	if(!config.starlight)
 		return
 

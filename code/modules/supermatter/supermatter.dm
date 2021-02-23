@@ -20,7 +20,8 @@
 	icon_state = "darkmatter"
 	density = 1
 	anchored = 1
-	luminosity = 4
+	//luminosity = 4
+	light_range = 4
 
 	var/gasefficency = 0.25
 
@@ -31,11 +32,15 @@
 	//var/safe_alert = "Crystaline hyperstructure returning to safe operating levels."
 	var/safe_alert = "Crystalline hyperstructure returning to safe operating levels." // Fix a spelling mistake. -Frenjo
 	var/warning_point = 100
-	var/warning_alert = "Danger! Crystal hyperstructure instability!"
+	var/warning_alert = "Warning! Crystal hyperstructure instability!"
 	var/emergency_point = 700
 	//var/emergency_alert = "CRYSTAL DELAMINATION IMMINENT."
-	var/emergency_alert = "CRYSTAL DELAMINATION IMMINENT!"// Make this a bit more desperate sounding. -Frenjo
+	var/emergency_alert = "DANGER! CRYSTAL DELAMINATION IMMINENT!"// Make this a bit more desperate sounding. -Frenjo
 	var/explosion_point = 1000
+
+	light_color = "#8A8A00"
+	var/warning_color = "#B8B800"
+	var/emergency_color = "#D9D900"
 
 	var/emergency_issued = 0
 
@@ -85,6 +90,10 @@
 		del src
 		return
 
+/obj/machinery/power/supermatter/proc/shift_light(var/lum, var/clr)
+	if(lum != light_range || clr != light_color)
+		set_light(lum, l_color = clr)
+
 /obj/machinery/power/supermatter/process()
 
 	var/turf/L = loc
@@ -99,11 +108,12 @@
 		return
 
 	if(damage > warning_point) // while the core is still damaged and it's still worth noting its status
+		shift_light(5, warning_color)
 		if((world.timeofday - lastwarning) / 10 >= WARNING_DELAY)
 			var/stability = num2text(round((damage / explosion_point) * 100))
 
 			if(damage > emergency_point)
-
+				shift_light(7, emergency_color)
 				radio.autosay(addtext(emergency_alert, " Instability: ",stability,"%"), "Supermatter Monitor")
 				world << sound('sound/effects/siren_shortened.ogg', volume=100) // Play a sound if shit's fucked, yo. -Frenjo
 				lastwarning = world.timeofday
@@ -113,6 +123,7 @@
 				lastwarning = world.timeofday - 150
 
 			else                                                 // Phew, we're safe
+				shift_light(4, initial(light_color))
 				radio.autosay(safe_alert, "Supermatter Monitor")
 				lastwarning = world.timeofday
 

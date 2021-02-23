@@ -13,7 +13,8 @@ var/global/list/uneatable = list(
 	anchored = 1
 	density = 1
 	layer = 6
-	luminosity = 6
+	//luminosity = 6
+	light_range = 6
 	unacidable = 1 //Don't comment this out.
 	use_power = 0
 	var/current_size = 1
@@ -495,6 +496,9 @@ var/global/list/uneatable = list(
 	grav_pull = 10 //How many tiles out do we pull?
 	consume_range = 3 //How many tiles out do we eat
 	var/last_boom = 0
+
+	light_range = 1
+	light_color = "#3e0000"
 
 /obj/machinery/singularity/narsie/large
 	name = "Nar-Sie"

@@ -1246,7 +1246,8 @@ datum
 				for(var/mob/O in viewers(get_turf_loc(holder.my_atom), null))
 					O.show_message(text("\red The slime begins to emit a soft light."), 1)
 				var/obj/item/slime_extract/yellow/Y = holder
-				Y.luminosity = 6
+				//Y.luminosity = 6
+				Y.light_range = 6
 //Purple
 
 		slimepsteroid

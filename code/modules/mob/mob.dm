@@ -716,7 +716,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 				stat(null, "Diseases([active_diseases.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
 
 				process = processScheduler.getProcess("lighting")
-				stat(null, "LIG\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
+				stat(null, "Lighting\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
 
 				process = processScheduler.getProcess("machinery")
 				stat(null, "Machinery([machines.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")

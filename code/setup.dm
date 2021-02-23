@@ -793,4 +793,7 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define WAIT_FINISH		4
 
 // new lighting
-#define CLAMP01(x) max(0, min(1, x))
+//#define CLAMP01(x) max(0, min(1, x))
+#define CLAMP02(x, y, z) 	(x <= y ? y : (x >= z ? z : x))
+
+#define CLAMP01(x) 		(Clamp(x, 0, 1))

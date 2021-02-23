@@ -498,7 +498,7 @@
 					config.cult_ghostwriter_req_cultists = value
 
 				if("starlight")
-					config.starlight = value
+					config.starlight = text2num(value)
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

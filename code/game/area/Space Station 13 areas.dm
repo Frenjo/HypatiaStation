@@ -20,13 +20,15 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/poweralm = 1
 	var/party = null
 	level = null
-	name = "Space"
+	//name = "Space"
+	name = "Unknown"
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "unknown"
 	layer = 10
 	mouse_opacity = 0
 	//invisibility = INVISIBILITY_LIGHTING
-	luminosity = 1
+	//luminosity = 1
+	luminosity = 0
 	var/lightswitch = 1
 
 	var/eject = null
@@ -91,6 +93,15 @@ var/list/ghostteleportlocs = list()
 	return 1
 
 /*-----------------------------------------------------------------------------*/
+
+/area/space
+	name = "Space"
+	icon_state = "dark"
+	requires_power = 1
+	always_unpowered = 1
+	power_light = 0
+	power_equip = 0
+	power_environ = 0
 
 /area/engine/
 
@@ -967,7 +978,7 @@ var/list/ghostteleportlocs = list()
 			icon_state = "engine_sing"
 			requires_power = 0
 			luminosity = 1
-			lighting_use_dynamic = 0
+			//lighting_use_dynamic = 0
 
 	thermoelectric_engine
 		name = "\improper Thermoelectric Engine Room"
@@ -978,7 +989,7 @@ var/list/ghostteleportlocs = list()
 	requires_power = 1
 	//luminosity = 1
 	always_unpowered = 1
-	lighting_use_dynamic = 0
+	//lighting_use_dynamic = 0
 
 	auxport
 		name = "\improper Fore Port Solar Array"

@@ -16,13 +16,13 @@
 	active_areas += src
 	all_areas += src
 
-	if(type == /area)	// override defaults for space. TODO: make space areas of type /area/space rather than /area
-		requires_power = 1
-		always_unpowered = 1
-		lighting_use_dynamic = 1
-		power_light = 0
-		power_equip = 0
-		power_environ = 0
+	//if(type == /area)	// override defaults for space. TODO: make space areas of type /area/space rather than /area
+	//	requires_power = 1
+	//	always_unpowered = 1
+	//	lighting_use_dynamic = 1
+	//	power_light = 0
+	//	power_equip = 0
+	//	power_environ = 0
 //		lighting_state = 4
 		//has_gravity = 0    // Space has gravity.  Because.. because.
 
@@ -230,7 +230,8 @@
 
 // Rewrote this in an attempt to add new overlay states, mostly to make use of unused sprites. -Frenjo
 /area/proc/updateicon()
-	if ((fire || eject || party || destruct) && ((!requires_power)?(!requires_power):power_environ))//If it doesn't require power, can still activate this proc.
+	//if ((fire || eject || party || destruct) && ((!requires_power)?(!requires_power):power_environ))//If it doesn't require power, can still activate this proc.
+	if ((fire || eject || party || destruct) && ((!requires_power)?(!requires_power):power_environ) && !istype(src, /area/space))
 		if(fire && !eject && !party && !destruct)
 			icon_state = "blue"
 		else if(atmosalm && !fire && !eject && !party && !destruct)
@@ -360,7 +361,8 @@
 			sound = pick('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg','sound/music/traitor.ogg')
 		else if(istype(src, /area/medical/morgue))
 			sound = pick('sound/ambience/ambimo1.ogg','sound/ambience/ambimo2.ogg','sound/music/main.ogg')
-		else if(type == /area)
+		//else if(type == /area)
+		else if(type == /area/space)
 			sound = pick('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg','sound/music/main.ogg','sound/music/traitor.ogg')
 		else if(istype(src, /area/engine))
 			sound = pick('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')

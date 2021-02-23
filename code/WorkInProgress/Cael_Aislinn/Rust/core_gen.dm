@@ -263,7 +263,8 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 	owned_field.ChangeFieldStrength(field_strength)
 	owned_field.ChangeFieldFrequency(field_frequency)
 	icon_state = "core1"
-	luminosity = 1
+	//luminosity = 1
+	light_range = 1
 	use_power = 2
 	return 1
 
@@ -272,7 +273,8 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 	if(owned_field)
 		icon_state = "core0"
 		del(owned_field)
-		luminosity = 0
+		//luminosity = 0
+		light_range = 0
 		use_power = 1
 
 /obj/machinery/power/rust_core/proc/AddParticles(var/name, var/quantity = 1)

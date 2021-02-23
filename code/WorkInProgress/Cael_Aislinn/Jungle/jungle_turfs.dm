@@ -7,7 +7,8 @@
 	icon = 'code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi'
 	icon_state = "grass1"
 	var/icon_spawn_state = "grass1"
-	luminosity = 3
+	//luminosity = 3
+	light_range = 3
 
 	New()
 		icon_state = icon_spawn_state
