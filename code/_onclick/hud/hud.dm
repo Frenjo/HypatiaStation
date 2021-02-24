@@ -19,8 +19,22 @@ var/datum/global_hud/global_hud = new()
 	var/obj/screen/radstorm // Overlay for radiation effects from rad storms. -Frenjo
 	var/obj/screen/ionstorm // Overlay for ionic effects from ion storms. -Frenjo
 	var/obj/screen/electricalstorm // Overlay for electrical effects from electrical storms. -Frenjo
+	var/list/parallax_stars
+	var/list/parallax_bluespace_stars
 
 /datum/global_hud/New()
+	// Space parallax stuff
+	var/star_count = 3500
+	var/bluespace_star_count = 1000
+
+	parallax_stars = list()
+	for(var/i = 0; i < star_count; i++)
+		parallax_stars += new /obj/screen/space_star()
+
+	parallax_bluespace_stars = list()
+	for(var/i = 0; i < bluespace_star_count; i++)
+		parallax_bluespace_stars += new /obj/screen/space_star/bluespace()
+
 	//420erryday psychedellic colours screen overlay for when you are high
 	druggy = new /obj/screen()
 	druggy.screen_loc = "WEST,SOUTH to EAST,NORTH"
@@ -217,6 +231,25 @@ datum/hud/New(mob/owner)
 			if(H.r_store)	H.r_store.screen_loc = null
 
 
+/datum/hud/proc/create_parallax()
+	// SPESS BACKGROUND
+	mymob.parallax_master = new /obj/screen/parallax_master()
+	mymob.space_parallax = new /obj/screen/space_parallax()
+	mymob.space_parallax.overlays += global_hud.parallax_stars
+
+	mymob.client.screen += mymob.parallax_master
+	mymob.client.screen += mymob.space_parallax
+
+/datum/hud/proc/toggle_parallax_space()
+	var/space_mode = mymob.space_parallax.icon_state == "space" ? 1 : 0
+	mymob.space_parallax.icon_state = "[space_mode ? "bluespace" : "space"]"
+	mymob.space_parallax.overlays.Cut()
+
+	if(space_mode)
+		mymob.space_parallax.overlays += global_hud.parallax_bluespace_stars
+	else
+		mymob.space_parallax.overlays += global_hud.parallax_stars
+
 /datum/hud/proc/instantiate()
 	if(!ismob(mymob)) return 0
 	if(!mymob.client) return 0
@@ -240,6 +273,8 @@ datum/hud/New(mob/owner)
 		robot_hud()
 	else if(isobserver(mymob))
 		ghost_hud()
+
+	create_parallax()
 
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)

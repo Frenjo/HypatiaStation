@@ -1,6 +1,7 @@
 /datum/controller/process/machinery/setup()
 	name = "machinery"
-	schedule_interval = 20 // every 2 seconds
+	//schedule_interval = 20 // every 2 seconds
+	schedule_interval = 50 // every 5 seconds
 
 /datum/controller/process/machinery/doWork()
 	//#ifdef PROFILE_MACHINES
