@@ -8,6 +8,7 @@
 //Some on_mob_life() procs check for alien races.
 #define IS_DIONA 1
 #define IS_VOX 2
+#define IS_PLASMAPERSON 3
 
 //The reaction procs must ALWAYS set del(src), this detaches the proc from the object (the reagent)
 //so that it can continue working when the reagent is deleted while the proc is still active.
@@ -428,7 +429,8 @@ datum
 
 			on_mob_life(var/mob/living/M as mob, var/alien)
 				if(M.stat == 2) return
-				if(alien && alien == IS_VOX)
+				//if(alien && (alien == IS_VOX)
+				if(alien && (alien == IS_VOX || alien == IS_PLASMAPERSON))
 					M.adjustToxLoss(REAGENTS_METABOLISM)
 					holder.remove_reagent(src.id, REAGENTS_METABOLISM) //By default it slowly disappears.
 					return
@@ -979,16 +981,25 @@ datum
 				..()
 				return
 
-		toxin/plasma
+		//toxin/plasma
+		plasma
 			name = "Plasma"
 			id = "plasma"
 			description = "Plasma in its liquid form."
 			reagent_state = LIQUID
 			color = "#E71B00" // rgb: 231, 27, 0
-			toxpwr = 3
+			//toxpwr = 3
+			custom_metabolism = 0.1
 
-			on_mob_life(var/mob/living/M as mob)
+			//on_mob_life(var/mob/living/M as mob)
+			on_mob_life(var/mob/living/M as mob, var/alien)
 				if(!M) M = holder.my_atom
+				if(alien && alien == IS_PLASMAPERSON)
+					M.adjustBruteLoss(-5)
+					M.adjustFireLoss(-5)
+				if(!alien || alien != IS_PLASMAPERSON)
+					M.adjustToxLoss(3*REM)
+
 				if(holder.has_reagent("inaprovaline"))
 					holder.remove_reagent("inaprovaline", 2*REM)
 				..()

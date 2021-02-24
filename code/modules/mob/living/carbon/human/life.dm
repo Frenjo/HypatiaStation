@@ -903,6 +903,8 @@
 				alien = 1
 			else if(species && species.name == "Vox")
 				alien = 2
+			else if(species && species.name == "Plasmaperson")
+				alien = 3
 			reagents.metabolize(src,alien)
 
 		var/total_plasmaloss = 0
