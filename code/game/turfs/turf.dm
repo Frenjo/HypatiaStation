@@ -23,7 +23,7 @@
 	var/pathweight = 1
 
 	var/dynamic_lighting = 1
-	luminosity = 0
+	//luminosity = 0
 
 /turf/New()
 	..()
@@ -32,8 +32,12 @@
 			src.Entered(AM)
 			return
 	//return
-	var/area/A = loc
-	if(!dynamic_lighting || !A.lighting_use_dynamic)
+	//var/area/A = loc
+	//if(!dynamic_lighting || !A.lighting_use_dynamic)
+	//	luminosity = 1
+	if(dynamic_lighting)
+		luminosity = 0
+	else
 		luminosity = 1
 
 /turf/ex_act(severity)

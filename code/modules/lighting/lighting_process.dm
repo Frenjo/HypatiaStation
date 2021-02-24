@@ -38,12 +38,23 @@
 	lighting_update_lights = list()
 
 	for(var/datum/light_source/L in lighting_update_lights_old)
-		if(L.needs_update)
-			if(L.destroyed || L.check() || L.force_update)
-				L.remove_lum()
-				if(!L.destroyed) L.apply_lum()
-				L.force_update = 0
-			L.needs_update = 0
+		//if(L.needs_update)
+		//	if(L.destroyed || L.check() || L.force_update)
+		//		L.remove_lum()
+		//		if(!L.destroyed) L.apply_lum()
+		//		L.force_update = 0
+		//	L.needs_update = 0
+		if(L.destroyed || L.check() || L.force_update)
+			L.remove_lum()
+			if(!L.destroyed)
+				L.apply_lum()
+
+		else if(L.vis_update)	//We smartly update only tiles that became (in) visible to use.
+			L.smart_vis_update()
+
+		L.vis_update = 0
+		L.force_update = 0
+		L.needs_update = 0
 
 		scheck()
 
@@ -52,8 +63,10 @@
 	lighting_update_overlays = list()
 
 	for(var/atom/movable/lighting_overlay/O in lighting_update_overlays_old)
-		if(O.needs_update)
-			O.update_overlay()
-			O.needs_update = 0
+		//if(O.needs_update)
+		//	O.update_overlay()
+		//	O.needs_update = 0
+		O.update_overlay()
+		O.needs_update = 0
 
 		scheck()

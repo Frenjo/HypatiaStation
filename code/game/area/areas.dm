@@ -36,6 +36,11 @@
 		//luminosity = 1
 		//lighting_use_dynamic = 0
 
+	if(lighting_use_dynamic)
+		luminosity = 0
+	else
+		luminosity = 1
+
 	..()
 
 //	spawn(15)
