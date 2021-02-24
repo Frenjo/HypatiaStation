@@ -93,19 +93,35 @@ var/list/ghostteleportlocs = list()
 	return 1
 
 /*-----------------------------------------------------------------------------*/
-
+// Space
 /area/space
 	name = "Space"
 	icon_state = "dark128"
 	requires_power = 1
 	always_unpowered = 1
+	lighting_use_dynamic = 0
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
 
-/area/engine/
+/area/space/poweralert()
+	return
 
-/area/turret_protected/
+/area/space/atmosalert()
+	return
+
+/area/space/firealert()
+	return
+
+/area/space/readyalert()
+	return
+
+/area/space/partyalert()
+	return
+
+/area/space/destructalert()
+	return
+// End space.
 
 /area/arrival
 	requires_power = 0
@@ -940,6 +956,8 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Holodeck - Space"
 
 //Engineering
+/area/engine/
+
 /area/engine
 	engine_smes
 		name = "\improper Engineering SMES"
@@ -1589,6 +1607,8 @@ var/list/ghostteleportlocs = list()
 /area/ai_monitored/storage/emergency
 	name = "Emergency Storage"
 	icon_state = "storage"
+
+/area/turret_protected/
 
 /area/turret_protected/ai_upload
 	name = "\improper AI Upload Chamber"

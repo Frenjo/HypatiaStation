@@ -110,8 +110,8 @@
 	return 0
 
 /area/proc/firealert()
-	if(name == "Space") //no fire alarms in space
-		return
+	//if(name == "Space") //no fire alarms in space
+	//	return
 	if( !fire )
 		fire = 1
 		//master.fire = 1		//used for firedoor checks
@@ -161,8 +161,8 @@
 			a.cancelAlarm("Fire", src, src)
 
 /area/proc/readyalert()
-	if(name == "Space")
-		return
+	//if(name == "Space")
+	//	return
 	if(!eject)
 		eject = 1
 		updateicon()
@@ -175,8 +175,8 @@
 	return
 
 /area/proc/partyalert()
-	if(name == "Space") //no parties in space!!!
-		return
+	//if(name == "Space") //no parties in space!!!
+	//	return
 	if (!( party ))
 		party = 1
 		updateicon()
@@ -199,8 +199,8 @@
 
 // Added these to make use of unused sprites. -Frenjo
 /area/proc/destructalert()
-	if(name == "Space")
-		return
+	//if(name == "Space")
+	//	return
 	if(!destruct)
 		destruct = 1
 		updateicon()
