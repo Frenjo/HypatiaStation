@@ -1,5 +1,6 @@
 /atom/movable
 	layer = 3
+	glide_size = 4
 	var/last_move = null
 	var/anchored = 0
 	// var/elevation = 2    - not used anywhere

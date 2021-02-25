@@ -149,40 +149,7 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction
 // Because I would never figure this out myself.
 // (Yes this is the big comment I was talking about up there.) -Frenjo
 
-// Radiation constants.
-#define STEFAN_BOLTZMANN_CONSTANT    5.6704e-8 // W/(m^2*K^4).
-#define COSMIC_RADIATION_TEMPERATURE 3.15      // K.
-#define AVERAGE_SOLAR_RADIATION      200       // W/m^2. Kind of arbitrary. Really this should depend on the sun position much like solars.
-//#define RADIATOR_OPTIMUM_PRESSURE    3771      // kPa at 20 C. This should be higher as gases aren't great conductors until they are dense. Used the critical pressure for air.
-#define RADIATOR_OPTIMUM_PRESSURE    1885.5 // Lower this because old atmos system sucks. -Frenjo
-#define GAS_CRITICAL_TEMPERATURE     132.65    // K. The critical point temperature for air.
-
 #define RADIATOR_EXPOSED_SURFACE_AREA_RATIO 0.04 // (3 cm + 100 cm * sin(3deg))/(2*(3+100 cm)). Unitless ratio.
-
-/*
-//Adds or removes thermal energy. Returns the actual thermal energy change, as in the case of removing energy we can't go below TCMB.
-/datum/gas_mixture/proc/add_thermal_energy(var/thermal_energy)
-
-	if (total_moles == 0)
-		return 0
-
-	var/heat_capacity = heat_capacity()
-	if (thermal_energy < 0)
-		if (temperature < TCMB)
-			return 0
-		var/thermal_energy_limit = -(temperature - TCMB)*heat_capacity	//ensure temperature does not go below TCMB
-		thermal_energy = max( thermal_energy, thermal_energy_limit )	//thermal_energy and thermal_energy_limit are negative here.
-	temperature += thermal_energy/heat_capacity
-	return thermal_energy
-
-/datum/gas_mixture/proc/get_thermal_energy_change(var/new_temperature)
-	//Purpose: Determining how much thermal energy is required
-	//Called by: Anyone. Machines that want to adjust the temperature of a gas mix.
-	//Inputs: None
-	//Outputs: The amount of energy required to get to the new temperature in J. A negative value means that energy needs to be removed.
-
-	return heat_capacity()*(new_temperature - temperature)
-*/
 
 //surface must be the surface area in m^2
 /datum/pipeline/proc/radiate_heat_to_space(surface, thermal_conductivity)
