@@ -717,8 +717,9 @@ Auto Patrol: []"},
 	Sa.created_name = src.name
 	new /obj/item/device/assembly/prox_sensor(Tsec)
 
-	var/obj/item/weapon/melee/baton/B = new /obj/item/weapon/melee/baton(Tsec)
-	B.charges = 0
+	//var/obj/item/weapon/melee/baton/B = new /obj/item/weapon/melee/baton(Tsec)
+	//B.charges = 0
+	new /obj/item/weapon/melee/baton(Tsec)
 
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(Tsec)

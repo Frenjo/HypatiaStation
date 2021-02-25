@@ -5,8 +5,9 @@
 	density = 1
 	anchored = 1.0
 	use_power = 1
-	idle_power_usage = 5
-	active_power_usage = 1000
+	idle_power_usage = 5 //internal circuitry
+	//active_power_usage = 1000
+	active_power_usage = 75000	//75 kW charging station
 	var/mob/occupant = null
 
 
@@ -61,12 +62,14 @@
 						R.module.respawn_consumable(R)
 					if(!R.cell)
 						return
-					else if(R.cell.charge >= R.cell.maxcharge)
+					/*else if(R.cell.charge >= R.cell.maxcharge)
 						R.cell.charge = R.cell.maxcharge
 						return
 					else
 						R.cell.charge = min(R.cell.charge + 200, R.cell.maxcharge)
 						return
+					*/
+					R.cell.give(active_power_usage*CELLRATE)
 
 		go_out()
 			if(!( src.occupant ))
@@ -80,6 +83,7 @@
 			src.occupant = null
 			build_icon()
 			src.use_power = 1
+			use_power(0)	//update area power usage
 			return
 
 
@@ -120,4 +124,5 @@
 			src.add_fingerprint(usr)
 			build_icon()
 			src.use_power = 2
+			use_power(0)	//update area power usage
 			return

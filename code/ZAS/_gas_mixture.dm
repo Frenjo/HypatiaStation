@@ -141,6 +141,28 @@ What are the archived variables for?
 
 	return max(MINIMUM_HEAT_CAPACITY,heat_capacity_archived)
 
+//Adds or removes thermal energy. Returns the actual thermal energy change, as in the case of removing energy we can't go below TCMB.
+/datum/gas_mixture/proc/add_thermal_energy(var/thermal_energy)
+	if (total_moles == 0)
+		return 0
+
+	var/heat_capacity = heat_capacity()
+	if (thermal_energy < 0)
+		if (temperature < TCMB)
+			return 0
+		var/thermal_energy_limit = -(temperature - TCMB)*heat_capacity	//ensure temperature does not go below TCMB
+		thermal_energy = max( thermal_energy, thermal_energy_limit )	//thermal_energy and thermal_energy_limit are negative here.
+	temperature += thermal_energy/heat_capacity
+	return thermal_energy
+
+/datum/gas_mixture/proc/get_thermal_energy_change(var/new_temperature)
+	//Purpose: Determining how much thermal energy is required
+	//Called by: Anyone. Machines that want to adjust the temperature of a gas mix.
+	//Inputs: None
+	//Outputs: The amount of energy required to get to the new temperature in J. A negative value means that energy needs to be removed.
+
+	return heat_capacity()*(new_temperature - temperature)
+
 /datum/gas_mixture/proc/total_moles()
 	return total_moles
 	/*var/moles = oxygen + carbon_dioxide + nitrogen + toxins

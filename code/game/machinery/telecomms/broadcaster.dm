@@ -20,7 +20,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	use_power = 1
 	idle_power_usage = 25
 	machinetype = 5
-	heatgen = 0
+	//heatgen = 0
+	operating_temperature = null
 	delay = 7
 	circuitboard = "/obj/item/weapon/circuitboard/telecomms/broadcaster"
 
@@ -117,7 +118,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	use_power = 0
 	idle_power_usage = 0
 	machinetype = 6
-	heatgen = 0
+	//heatgen = 0
+	operating_temperature = null
 	var/intercept = 0 // if nonzero, broadcasts all messages to syndicate channel
 
 /obj/machinery/telecomms/allinone/receive_signal(datum/signal/signal)
@@ -288,7 +290,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		if(istype(R, /mob/new_player)) // we don't want new players to hear messages. rare but generates runtimes.
 			continue
-			
+
 		// Ghosts hearing all radio chat don't want to hear syndicate intercepts, they're duplicates
 		if(data == 3 && istype(R, /mob/dead/observer) && R.client && (R.client.prefs.toggles & CHAT_GHOSTRADIO))
 			continue

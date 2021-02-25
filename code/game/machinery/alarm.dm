@@ -184,7 +184,7 @@
 		var/datum/gas_mixture/gas
 		gas = location.remove_air(0.25*environment.total_moles)
 		if(gas)
-			var/heat_capacity = gas.heat_capacity()
+			/*var/heat_capacity = gas.heat_capacity()
 			var/energy_used = min( abs( heat_capacity*(gas.temperature - target_temperature) ), MAX_ENERGY_CHANGE)
 
 			//Use power.  Assuming that each power unit represents 1000 watts....
@@ -195,6 +195,25 @@
 				gas.temperature -= energy_used/heat_capacity
 			else
 				gas.temperature += energy_used/heat_capacity
+			*/
+			if (gas.temperature <= target_temperature)	//gas heating
+				var/energy_used = min( gas.get_thermal_energy_change(target_temperature) , MAX_ENERGY_CHANGE)
+
+				gas.add_thermal_energy(energy_used)
+				use_power(energy_used, ENVIRON)
+			else	//gas cooling
+				var/heat_transfer = min(abs(gas.get_thermal_energy_change(target_temperature)), MAX_ENERGY_CHANGE)
+
+				//Assume the heat is being pumped into the hull which is fixed at 20 C
+				//none of this is really proper thermodynamics but whatever
+
+				var/cop = gas.temperature/T20C	//coefficient of performance -> power used = heat_transfer/cop
+
+				heat_transfer = min(heat_transfer, cop * MAX_ENERGY_CHANGE)	//this ensures that we don't use more than MAX_ENERGY_CHANGE amount of power - the machine can only do so much cooling
+
+				heat_transfer = -gas.add_thermal_energy(-heat_transfer)	//get the actual heat transfer
+
+				use_power(heat_transfer / cop, ENVIRON)
 
 			environment.merge(gas)
 

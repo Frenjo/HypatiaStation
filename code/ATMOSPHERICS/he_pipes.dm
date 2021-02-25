@@ -159,6 +159,7 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction
 
 #define RADIATOR_EXPOSED_SURFACE_AREA_RATIO 0.04 // (3 cm + 100 cm * sin(3deg))/(2*(3+100 cm)). Unitless ratio.
 
+/*
 //Adds or removes thermal energy. Returns the actual thermal energy change, as in the case of removing energy we can't go below TCMB.
 /datum/gas_mixture/proc/add_thermal_energy(var/thermal_energy)
 
@@ -173,6 +174,15 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction
 		thermal_energy = max( thermal_energy, thermal_energy_limit )	//thermal_energy and thermal_energy_limit are negative here.
 	temperature += thermal_energy/heat_capacity
 	return thermal_energy
+
+/datum/gas_mixture/proc/get_thermal_energy_change(var/new_temperature)
+	//Purpose: Determining how much thermal energy is required
+	//Called by: Anyone. Machines that want to adjust the temperature of a gas mix.
+	//Inputs: None
+	//Outputs: The amount of energy required to get to the new temperature in J. A negative value means that energy needs to be removed.
+
+	return heat_capacity()*(new_temperature - temperature)
+*/
 
 //surface must be the surface area in m^2
 /datum/pipeline/proc/radiate_heat_to_space(surface, thermal_conductivity)
