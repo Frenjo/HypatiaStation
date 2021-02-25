@@ -900,11 +900,22 @@
 		if(reagents && !(species.flags & IS_SYNTHETIC)) //Synths don't process reagents.
 			var/alien = 0 //Not the best way to handle it, but neater than checking this for every single reagent proc.
 			if(species && species.name == "Diona")
-				alien = 1
+				//alien = 1
+				alien = IS_DIONA
 			else if(species && species.name == "Vox")
-				alien = 2
+				//alien = 2
+				alien = IS_VOX
+			else if(species && species.name == "Skrell")
+				alien = IS_SKRELL
+			else if(species && species.name == "Soghun")
+				alien = IS_SOGHUN
+			else if(species && species.name == "Tajaran")
+				alien = IS_TAJARAN
+			else if(species && species.name == "Obsedai") // Obsedai are classed as IS_SYNTHETIC but that might change so might as well.
+				alien = IS_OBSEDAI
 			else if(species && species.name == "Plasmaperson")
-				alien = 3
+				//alien = 3
+				alien = IS_PLASMAPERSON
 			reagents.metabolize(src,alien)
 
 		var/total_plasmaloss = 0

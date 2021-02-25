@@ -32,6 +32,7 @@
 #define FILE_DIR "dev stuff/mailman/closets"
 #define FILE_DIR "dev stuff/mailman/spacesuit"
 #define FILE_DIR "dev stuff/mining stuff"
+#define FILE_DIR "dev stuff/parallax"
 #define FILE_DIR "dev stuff/pipes"
 #define FILE_DIR "dev stuff/pressure tanks"
 #define FILE_DIR "dev stuff/shuttlewalls"

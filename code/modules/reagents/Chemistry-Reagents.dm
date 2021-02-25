@@ -5,10 +5,12 @@
 #define REAGENTS_OVERDOSE 30
 #define REM REAGENTS_EFFECT_MULTIPLIER
 
+/*
 //Some on_mob_life() procs check for alien races.
 #define IS_DIONA 1
 #define IS_VOX 2
 #define IS_PLASMAPERSON 3
+*/
 
 //The reaction procs must ALWAYS set del(src), this detaches the proc from the object (the reagent)
 //so that it can continue working when the reagent is deleted while the proc is still active.
