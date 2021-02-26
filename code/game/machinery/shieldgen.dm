@@ -265,8 +265,8 @@
 			user << "\blue You open the panel and expose the wiring."
 			is_open = 1
 
-	else if(istype(W, /obj/item/weapon/cable_coil) && malfunction && is_open)
-		var/obj/item/weapon/cable_coil/coil = W
+	else if(istype(W, /obj/item/stack/cable_coil) && malfunction && is_open)
+		var/obj/item/stack/cable_coil/coil = W
 		user << "\blue You begin to replace the wires."
 		//if(do_after(user, min(60, round( ((maxhealth/health)*10)+(malfunction*10) ))) //Take longer to repair heavier damage
 		if(do_after(user, 30))
@@ -362,7 +362,7 @@
 		power = 1	// IVE GOT THE POWER!
 		if(PN) //runtime errors fixer. They were caused by PN.newload trying to access missing network in case of working on stored power.
 			storedpower += shieldload
-			PN.newload += shieldload //uses powernet power.
+			PN.draw_power(shieldload) //uses powernet power.
 //		message_admins("[PN.load]", 1)
 //		use_power(250) //uses APC power
 

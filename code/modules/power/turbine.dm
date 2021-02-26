@@ -27,7 +27,6 @@
 	density = 1
 	//var/obj/machinery/compressor/compressor
 	var/obj/machinery/power/turbine/compressor/compressor
-	directwired = 1
 	var/turf/simulated/outturf
 	var/lastgen
 

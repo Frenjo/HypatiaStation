@@ -12,23 +12,22 @@ var/global/list/machines = list()
 var/global/list/processing_objects = list()
 var/global/list/active_diseases = list()
 var/global/list/events = list()
-		//items that ask to be called every cycle
+//items that ask to be called every cycle
 
 var/global/defer_powernet_rebuild = 0		// true if net rebuild will be called manually after an event
 
 var/global/list/global_map = null
-	//list/global_map = list(list(1,5),list(4,3))//an array of map Z levels.
-	//Resulting sector map looks like
-	//|_1_|_4_|
-	//|_5_|_3_|
-	//
-	//1 - SS13
-	//4 - Derelict
-	//3 - AI satellite
-	//5 - empty space
+//list/global_map = list(list(1,5),list(4,3))//an array of map Z levels.
+//Resulting sector map looks like
+//|_1_|_4_|
+//|_5_|_3_|
+//
+//1 - SS13
+//4 - Derelict
+//3 - AI satellite
+//5 - empty space
 
-
-	//////////////
+//////////////
 var/list/paper_tag_whitelist = list("center","p","div","span","h1","h2","h3","h4","h5","h6","hr","pre",	\
 	"big","small","font","i","u","b","s","sub","sup","tt","br","hr","ol","ul","li","caption","col",	\
 	"table","td","th","tr")
@@ -68,12 +67,12 @@ var/SHOCKIMMUNITYBLOCK = 0
 var/SMALLSIZEBLOCK = 0
 
 var/skipupdate = 0
-	///////////////
+///////////////
 var/eventchance = 10 //% per 5 mins
 var/event = 0
 var/hadevent = 0
 var/blobevent = 0
-	///////////////
+///////////////
 
 var/diary = null
 var/diaryofmeanpeople = null
@@ -173,9 +172,9 @@ var/forceblob = 0
 // nanomanager, the manager for Nano UIs
 var/datum/nanomanager/nanomanager = new()
 
-	//airlockWireColorToIndex takes a number representing the wire color, e.g. the orange wire is always 1, the dark red wire is always 2, etc. It returns the index for whatever that wire does.
-	//airlockIndexToWireColor does the opposite thing - it takes the index for what the wire does, for example AIRLOCK_WIRE_IDSCAN is 1, AIRLOCK_WIRE_POWER1 is 2, etc. It returns the wire color number.
-	//airlockWireColorToFlag takes the wire color number and returns the flag for it (1, 2, 4, 8, 16, etc)
+//airlockWireColorToIndex takes a number representing the wire color, e.g. the orange wire is always 1, the dark red wire is always 2, etc. It returns the index for whatever that wire does.
+//airlockIndexToWireColor does the opposite thing - it takes the index for what the wire does, for example AIRLOCK_WIRE_IDSCAN is 1, AIRLOCK_WIRE_POWER1 is 2, etc. It returns the wire color number.
+//airlockWireColorToFlag takes the wire color number and returns the flag for it (1, 2, 4, 8, 16, etc)
 var/list/airlockWireColorToFlag = RandomAirlockWires()
 var/list/airlockIndexToFlag
 var/list/airlockIndexToWireColor
@@ -199,7 +198,7 @@ var/list/AAlarmWireColorToIndex
 #define AIR_DAMAGE_MODIFIER 2.025 //More means less damage from hot air scalding lungs, less = more damage. (default 2.025)
 #define INFINITY 1.#INF
 
-	//Don't set this very much higher then 1024 unless you like inviting people in to dos your server with message spam
+//Don't set this very much higher then 1024 unless you like inviting people in to dos your server with message spam
 #define MAX_MESSAGE_LEN 1024
 #define MAX_PAPER_MESSAGE_LEN 3072
 #define MAX_BOOK_MESSAGE_LEN 9216
@@ -208,10 +207,10 @@ var/list/AAlarmWireColorToIndex
 #define shuttle_time_in_station 1800 // 3 minutes in the station
 #define shuttle_time_to_arrive 6000 // 10 minutes to arrive
 
-	//away missions
+//away missions
 var/list/awaydestinations = list()	//a list of landmarks that the warpgate can take you to
 
-	// MySQL configuration
+// MySQL configuration
 
 var/sqladdress = "localhost"
 var/sqlport = "3306"
@@ -219,7 +218,7 @@ var/sqldb = "tgstation"
 var/sqllogin = "root"
 var/sqlpass = ""
 
-	// Feedback gathering sql connection
+// Feedback gathering sql connection
 
 var/sqlfdbkdb = "test"
 var/sqlfdbklogin = "root"
@@ -229,9 +228,9 @@ var/sqllogging = 0 // Should we log deaths, population stats, etc?
 
 
 
-	// Forum MySQL configuration (for use with forum account/key authentication)
-	// These are all default values that will load should the forumdbconfig.txt
-	// file fail to read for whatever reason.
+// Forum MySQL configuration (for use with forum account/key authentication)
+// These are all default values that will load should the forumdbconfig.txt
+// file fail to read for whatever reason.
 
 var/forumsqladdress = "localhost"
 var/forumsqlport = "3306"
@@ -241,8 +240,8 @@ var/forumsqlpass = ""
 var/forum_activated_group = "2"
 var/forum_authenticated_group = "10"
 
-	// For FTP requests. (i.e. downloading runtime logs.)
-	// However it'd be ok to use for accessing attack logs and such too, which are even laggier.
+// For FTP requests. (i.e. downloading runtime logs.)
+// However it'd be ok to use for accessing attack logs and such too, which are even laggier.
 var/fileaccess_timer = 0
 var/custom_event_msg = null
 
@@ -254,3 +253,24 @@ var/DBConnection/dbcon_old = new()	//Tgstation database (Old database) - See the
 // processScheduler stuff
 var/global/const/TICKS_IN_DAY = 864000
 var/global/const/TICKS_IN_SECOND = 10
+
+// TODO: Replace
+/proc/RandomAPCWires()
+	//to make this not randomize the wires, just set index to 1 and increment it in the flag for loop (after doing everything else).
+	var/list/apcwires = list(0, 0, 0, 0)
+	APCIndexToFlag = list(0, 0, 0, 0)
+	APCIndexToWireColor = list(0, 0, 0, 0)
+	APCWireColorToIndex = list(0, 0, 0, 0)
+	var/flagIndex = 1
+	for (var/flag=1, flag<16, flag+=flag)
+		var/valid = 0
+		while (!valid)
+			var/colorIndex = rand(1, 4)
+			if (apcwires[colorIndex]==0)
+				valid = 1
+				apcwires[colorIndex] = flag
+				APCIndexToFlag[flagIndex] = flag
+				APCIndexToWireColor[flagIndex] = colorIndex
+				APCWireColorToIndex[colorIndex] = flagIndex
+		flagIndex+=1
+	return apcwires

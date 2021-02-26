@@ -126,7 +126,7 @@
 		var/datum/robot_component/cell_component = components["power cell"]
 		cell_component.wrapped = cell
 		cell_component.installed = 1
-	
+
 	hud_list[HEALTH_HUD]      = image('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[STATUS_HUD]      = image('icons/mob/hud.dmi', src, "hudhealth100")
 	hud_list[ID_HUD]          = image('icons/mob/hud.dmi', src, "hudblank")
@@ -135,9 +135,9 @@
 	hud_list[IMPCHEM_HUD]     = image('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[IMPTRACK_HUD]    = image('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
-	
 
-	
+
+
 
 	playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
 
@@ -597,11 +597,11 @@
 			user << "Need more welding fuel!"
 			return
 
-	else if(istype(W, /obj/item/weapon/cable_coil) && wiresexposed)
+	else if(istype(W, /obj/item/stack/cable_coil) && wiresexposed)
 		if (!getFireLoss())
 			user << "Nothing to fix here!"
 			return
-		var/obj/item/weapon/cable_coil/coil = W
+		var/obj/item/stack/cable_coil/coil = W
 		adjustFireLoss(-30)
 		updatehealth()
 		coil.use(1)

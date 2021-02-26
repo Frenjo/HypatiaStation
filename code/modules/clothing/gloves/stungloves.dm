@@ -3,9 +3,9 @@
 		user << "<span class='notice'>That won't work.</span>"	//i'm not putting my lips on that!
 		..()
 		return
-	if(istype(W, /obj/item/weapon/cable_coil))
+	if(istype(W, /obj/item/stack/cable_coil))
 		if(!("stunglove" in species_restricted))
-			var/obj/item/weapon/cable_coil/C = W
+			var/obj/item/stack/cable_coil/C = W
 			if(!wired)
 				if(C.amount >= 2)
 					C.use(2)

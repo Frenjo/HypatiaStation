@@ -14,7 +14,7 @@
 	var/output = 50000
 	// Make this accessible from UI. -Frenjo
 	var/load = 0
-	var/chargeload = 0
+	//var/chargeload = 0
 
 	var/lastout = 0
 	var/loaddemand = 0
@@ -31,10 +31,16 @@
 	var/last_output = 0
 	var/last_charge = 0
 	var/last_online = 0
+	var/open_hatch = 0
+	var/building_terminal = 0 //Suggestions about how to avoid clickspam building several terminals accepted!
+
 
 /obj/machinery/power/smes/New()
 	..()
 	spawn(5)
+		if(!powernet)
+			connect_to_network()
+
 		dir_loop:
 			for(var/d in cardinal)
 				var/turf/T = get_step(src, d)
@@ -46,6 +52,8 @@
 			stat |= BROKEN
 			return
 		terminal.master = src
+		if(!terminal.powernet)
+			terminal.connect_to_network()
 		updateicon()
 	return
 
@@ -75,7 +83,6 @@
 
 
 /obj/machinery/power/smes/process()
-
 	if(stat & BROKEN)	return
 
 	//store machine state to see if we need to update the icon overlays
@@ -90,7 +97,7 @@
 			charging = 0
 
 		if(charging)
-			if(excess >/*=*/ 0)		// if there's power available, try to charge
+			if(excess >= 0)		// if there's power available, try to charge
 				// Make this accessible from the UI. -Frenjo
 				/*var*/load = min((capacity-charge)/SMESRATE, chargelevel)		// charge at set rate, limited to spare capacity
 
@@ -98,24 +105,28 @@
 
 				add_load(load)		// add the load to the terminal side network
 
-				chargeload = min(excess, chargelevel) // Some data for the UI. -Frenjo
+				//chargeload = min(excess, chargelevel) // Some data for the UI. -Frenjo
 			else					// if not enough capcity
 				charging = 0		// stop charging
 				//chargecount  = 0
-				chargeload = 0 // Some more data for the UI. -Frenjo
+				//chargeload = 0 // Some more data for the UI. -Frenjo
 		else
-			chargeload = 0 // Yet more data for the UI. -Frenjo
-			if(chargemode)
-				//if(chargecount > rand(3,6))
-				//	charging = 1
-				//	chargecount = 0
+			if (chargemode && excess > 0 && excess >= chargelevel)
+				charging = 1
+				//chargeload = min(excess, chargelevel)
+				/*
+				if(chargecount > rand(3,6))
+					charging = 1
+					chargecount = 0
 
 				// Trying to unfuck ye olde SMES code. -Frenjo
-				//if(excess > chargelevel)
-				//	chargecount++
-				//else
-				//	chargecount = 0
+				if(excess > chargelevel)
+					chargecount++
+				else
+					chargecount = 0
+				*/
 
+				/*
 				// Activate regardless of whether the excess is above or below the input level.
 				// As long as there's excess, suck up as much as we can. -Frenjo
 				if(excess)
@@ -124,12 +135,14 @@
 				else
 					charging = 0
 					chargeload = 0 // The last bit of data for the UI. -Frenjo
+				*/
 			else
 				charging = 0
+				//chargeload = 0
 				//chargecount = 0
 
 	if(online)		// if outputting
-		lastout = min( charge/SMESRATE, output)		//limit output to that stored
+		lastout = min(charge/SMESRATE, output)		//limit output to that stored
 
 		charge -= lastout*SMESRATE		// reduce the storage (may be recovered in /restore() if excessive)
 
@@ -146,8 +159,6 @@
 
 // called after all power processes are finished
 // restores charge level to smes if there was excess this ptick
-
-
 /obj/machinery/power/smes/proc/restore()
 	if(stat & BROKEN)
 		return
@@ -157,13 +168,10 @@
 		return
 
 	var/excess = powernet.netexcess		// this was how much wasn't used on the network last ptick, minus any removed by other SMESes
-
 	excess = min(lastout, excess)				// clamp it to how much was actually output by this SMES last ptick
-
 	excess = min((capacity-charge)/SMESRATE, excess)	// for safety, also limit recharge by space capacity of SMES (shouldn't happen)
 
 	// now recharge this amount
-
 	var/clev = chargedisplay()
 
 	charge += excess * SMESRATE
@@ -175,24 +183,99 @@
 		updateicon()
 	return
 
+//Will return 1 on failure
+/obj/machinery/power/smes/proc/make_terminal(const/mob/user)
+	if (user.loc == loc)
+		user << "<span class='warning'>You must not be on the same tile as the [src].</span>"
+		return 1
+
+	//Direction the terminal will face to
+	var/tempDir = get_dir(user, src)
+	switch(tempDir)
+		if (NORTHEAST, SOUTHEAST)
+			tempDir = EAST
+		if (NORTHWEST, SOUTHWEST)
+			tempDir = WEST
+	var/turf/tempLoc = get_step(src, reverse_direction(tempDir))
+	if (istype(tempLoc, /turf/space))
+		user << "<span class='warning'>You can't build a terminal on space.</span>"
+		return 1
+	else if (istype(tempLoc))
+		if(tempLoc.intact)
+			user << "<span class='warning'>You must remove the floor plating first.</span>"
+			return 1
+	user << "<span class='notice'>You start adding cable to the SMES.</span>"
+	if(do_after(user, 50))
+		terminal = new /obj/machinery/power/terminal(tempLoc)
+		terminal.dir = tempDir
+		terminal.master = src
+		return 0
+	return 1
 
 /obj/machinery/power/smes/add_load(var/amount)
 	if(terminal && terminal.powernet)
-		terminal.powernet.newload += amount
+		terminal.powernet.draw_power(amount)
 
 
 /obj/machinery/power/smes/attack_ai(mob/user)
 	add_fingerprint(user)
 	ui_interact(user)
 
-
 /obj/machinery/power/smes/attack_hand(mob/user)
 	add_fingerprint(user)
 	ui_interact(user)
 
+/obj/machinery/power/smes/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+	if(istype(W, /obj/item/weapon/screwdriver))
+		if(!open_hatch)
+			open_hatch = 1
+			user << "<span class='notice'>You open the maintenance hatch of [src].</span>"
+		else
+			open_hatch = 0
+			user << "<span class='notice'>You close the maintenance hatch of [src].</span>"
+	if (open_hatch)
+		if(istype(W, /obj/item/stack/cable_coil) && !terminal && !building_terminal)
+			building_terminal = 1
+			var/obj/item/stack/cable_coil/CC = W
+			if (CC.amount < 10)
+				user << "<span class='warning'>You need more cables.</span>"
+				building_terminal = 0
+				return
+			if (make_terminal(user))
+				building_terminal = 0
+				return
+			building_terminal = 0
+			CC.use(10)
+			user.visible_message(\
+					"<span class='notice'>[user.name] has added cables to the [src].</span>",\
+					"<span class='notice'>You added cables to the [src].</span>")
+			terminal.connect_to_network()
+			stat = 0
+
+		else if(istype(W, /obj/item/weapon/wirecutters) && terminal && !building_terminal)
+			building_terminal = 1
+			var/turf/tempTDir = terminal.loc
+			if (istype(tempTDir))
+				if(tempTDir.intact)
+					user << "<span class='warning'>You must remove the floor plating first.</span>"
+				else
+					user << "<span class='notice'>You begin to cut the cables...</span>"
+					playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
+					if(do_after(user, 50))
+						if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
+							var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+							s.set_up(5, 1, src)
+							s.start()
+							building_terminal = 0
+							return
+						new /obj/item/stack/cable_coil(loc,10)
+						user.visible_message(\
+							"<span class='notice'>[user.name] cut the cables and dismantled the power terminal.</span>",\
+							"<span class='notice'>You cut the cables and dismantle the power terminal.</span>")
+						del(terminal)
+			building_terminal = 0
 
 /obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
-
 	if(stat & BROKEN)
 		return
 
@@ -204,7 +287,7 @@
 	data["chargeMode"] = chargemode
 	data["chargeLevel"] = chargelevel
 	data["chargeMax"] = SMESMAXCHARGELEVEL
-	data["chargeLoad"] = round(chargeload) // Send this to UI. -Frenjo
+	//data["chargeLoad"] = round(chargeload) // Send this to UI. -Frenjo
 	data["outputOnline"] = online
 	data["outputLevel"] = output
 	data["outputMax"] = SMESMAXOUTPUT
@@ -223,26 +306,22 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update(1)
 
-
 /obj/machinery/power/smes/Topic(href, href_list)
 	..()
 
 	if (usr.stat || usr.restrained() )
 		return
+
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		if(!istype(usr, /mob/living/silicon/ai))
 			usr << "\red You don't have the dexterity to do this!"
 			return
 
-//world << "[href] ; [href_list[href]]"
-
 	if (!istype(src.loc, /turf) && !istype(usr, /mob/living/silicon/))
 		return 0 // Do not update ui
 
 	for(var/area/A in active_areas)
-		//A.master.powerupdate = 3
 		A.powerupdate = 3
-
 
 	if( href_list["cmode"] )
 		chargemode = !chargemode
@@ -258,7 +337,7 @@
 			if("min")
 				chargelevel = 0
 			if("max")
-				chargelevel = SMESMAXCHARGELEVEL		//30000
+				chargelevel = SMESMAXCHARGELEVEL
 			if("set")
 				chargelevel = input(usr, "Enter new input level (0-[SMESMAXCHARGELEVEL])", "SMES Input Power Control", chargelevel) as num
 		chargelevel = max(0, min(SMESMAXCHARGELEVEL, chargelevel))	// clamp to range
@@ -268,7 +347,7 @@
 			if("min")
 				output = 0
 			if("max")
-				output = SMESMAXOUTPUT		//30000
+				output = SMESMAXOUTPUT
 			if("set")
 				output = input(usr, "Enter new output level (0-[SMESMAXOUTPUT])", "SMES Output Power Control", output) as num
 		output = max(0, min(SMESMAXOUTPUT, output))	// clamp to range
@@ -276,7 +355,6 @@
 	investigate_log("input/output; [chargelevel>output?"<font color='green'>":"<font color='red'>"][chargelevel]/[output]</font> | Output-mode: [online?"<font color='green'>on</font>":"<font color='red'>off</font>"] | Input-mode: [chargemode?"<font color='green'>auto</font>":"<font color='red'>off</font>"] by [usr.key]","singulo")
 
 	return 1
-
 
 /obj/machinery/power/smes/proc/ion_act()
 	if(src.z == 1)
@@ -289,7 +367,7 @@
 			smoke.set_up(3, 0, src.loc)
 			smoke.attach(src)
 			smoke.start()
-			explosion(src.loc, -1, 0, 1, 3, 0)
+			explosion(src.loc, -1, 0, 1, 3, 1, 0)
 			del(src)
 			return
 		if(prob(15)) //Power drain
@@ -308,7 +386,6 @@
 			smoke.attach(src)
 			smoke.start()
 
-
 /obj/machinery/power/smes/emp_act(severity)
 	online = 0
 	charging = 0
@@ -322,8 +399,6 @@
 		online = initial(online)
 	..()
 
-
-
 /obj/machinery/power/smes/magical
 	name = "magical power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit. Magically produces power."
@@ -331,14 +406,5 @@
 		capacity = INFINITY
 		charge = INFINITY
 		..()
-
-
-
-/proc/rate_control(var/S, var/V, var/C, var/Min=1, var/Max=5, var/Limit=null)
-	var/href = "<A href='?src=\ref[S];rate control=1;[V]"
-	var/rate = "[href]=-[Max]'>-</A>[href]=-[Min]'>-</A> [(C?C : 0)] [href]=[Min]'>+</A>[href]=[Max]'>+</A>"
-	if(Limit) return "[href]=-[Limit]'>-</A>"+rate+"[href]=[Limit]'>+</A>"
-	return rate
-
 
 #undef SMESRATE

@@ -14,7 +14,7 @@
 							"/obj/item/weapon/stock_parts/subspace/crystal" = 1,
 							"/obj/item/weapon/stock_parts/subspace/amplifier" = 1,
 							"/obj/item/weapon/stock_parts/console_screen" = 1,
-							"/obj/item/weapon/cable_coil" = 5)
+							"/obj/item/stack/cable_coil" = 5)
 
 datum/design/shield_gen_ex
 	name = "Circuit Design (Experimental hull shield generator)"
@@ -29,7 +29,7 @@ datum/design/shield_gen_ex
 // Shield Generator
 
 /obj/item/weapon/circuitboard/shield_gen
-	name = "Circuit board (Experimental shield generator)"
+	name = "Circuit board (Experimental bubble shield generator)"
 	board_type = "machine"
 	build_path = "/obj/machinery/shield_gen/external"
 	origin_tech = "bluespace=4;plasmatech=3"
@@ -40,10 +40,10 @@ datum/design/shield_gen_ex
 							"/obj/item/weapon/stock_parts/subspace/crystal" = 1,
 							"/obj/item/weapon/stock_parts/subspace/amplifier" = 1,
 							"/obj/item/weapon/stock_parts/console_screen" = 1,
-							"/obj/item/weapon/cable_coil" = 5)
+							"/obj/item/stack/cable_coil" = 5)
 
 datum/design/shield_gen
-	name = "Circuit Design (Experimental shield generator)"
+	name = "Circuit Design (Experimental bubble shield generator)"
 	desc = "Allows for the construction of circuit boards used to build an experimental shield generator."
 	id = "shield_gen"
 	req_tech = list("bluespace" = 4, "plasmatech" = 3)
@@ -66,7 +66,7 @@ datum/design/shield_gen
 							"/obj/item/weapon/stock_parts/subspace/treatment" = 1,
 							"/obj/item/weapon/stock_parts/subspace/analyzer" = 1,
 							"/obj/item/weapon/stock_parts/console_screen" = 1,
-							"/obj/item/weapon/cable_coil" = 5)
+							"/obj/item/stack/cable_coil" = 5)
 
 datum/design/shield_cap
 	name = "Circuit Design (Experimental shield capacitor)"

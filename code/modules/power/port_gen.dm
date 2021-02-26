@@ -48,7 +48,6 @@ display round(lastgen) and plasmatank amount
 	icon_state = "portgen0"
 	density = 1
 	anchored = 0
-	directwired = 0
 	use_power = 0
 
 	var/active = 0
@@ -114,8 +113,8 @@ display round(lastgen) and plasmatank amount
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	component_parts += new /obj/item/weapon/cable_coil(src)
-	component_parts += new /obj/item/weapon/cable_coil(src)
+	component_parts += new /obj/item/stack/cable_coil(src)
+	component_parts += new /obj/item/stack/cable_coil(src)
 	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
 	component_parts += new board_path(src)
 	var/obj/sheet = new sheet_path(null)

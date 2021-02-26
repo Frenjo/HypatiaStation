@@ -1180,7 +1180,7 @@ proc/get_mob_with_client_list()
 
 //Quick type checks for some tools
 var/global/list/common_tools = list(
-/obj/item/weapon/cable_coil,
+/obj/item/stack/cable_coil,
 /obj/item/weapon/wrench,
 /obj/item/weapon/weldingtool,
 /obj/item/weapon/screwdriver,
@@ -1204,7 +1204,7 @@ var/global/list/common_tools = list(
 	return 0
 
 /proc/iscoil(O)
-	if(istype(O, /obj/item/weapon/cable_coil))
+	if(istype(O, /obj/item/stack/cable_coil))
 		return 1
 	return 0
 
@@ -1229,7 +1229,7 @@ var/global/list/common_tools = list(
 	return 0
 
 /proc/iswire(O)
-	if(istype(O, /obj/item/weapon/cable_coil))
+	if(istype(O, /obj/item/stack/cable_coil))
 		return 1
 	return 0
 
@@ -1408,3 +1408,6 @@ var/mob/dview/dview_mob = new
 	simulated = 0
 
 	see_in_dark = 1e6
+
+/mob/dview/New()
+	// do nothing. we don't want to be in any mob lists; we're a dummy not a mob.

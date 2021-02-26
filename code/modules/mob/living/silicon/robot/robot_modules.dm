@@ -119,7 +119,7 @@
 		G.amount = 50
 		src.modules += G
 
-		var/obj/item/weapon/cable_coil/W = new /obj/item/weapon/cable_coil(src)
+		var/obj/item/stack/cable_coil/W = new /obj/item/stack/cable_coil(src)
 		W.amount = 50
 		src.modules += W
 
@@ -129,7 +129,7 @@
 	var/list/stacks = list (
 		/obj/item/stack/sheet/metal,
 		/obj/item/stack/sheet/rglass,
-		/obj/item/weapon/cable_coil,
+		/obj/item/stack/cable_coil,
 	)
 	for(var/T in stacks)
 		var/O = locate(T) in src.modules
