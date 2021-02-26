@@ -402,10 +402,10 @@
 				<li>Secure the mainboard with a screwdriver.</li>
 				<li>Install the peripherals control module (Not included. Use supplied datadisk to create one).</li>
 				<li>Secure the peripherals control module with a screwdriver</li>
-				<li>Install the internal armor plating (Not included due to Nanotrasen regulations. Can be made using 5 metal sheets.)</li>
+				<li>Install the internal armor plating (Not included due to NanoTrasen regulations. Can be made using 5 metal sheets.)</li>
 				<li>Secure the internal armor plating with a wrench</li>
 				<li>Weld the internal armor plating to the chassis</li>
-				<li>Install the external reinforced armor plating (Not included due to Nanotrasen regulations. Can be made using 5 reinforced metal sheets.)</li>
+				<li>Install the external reinforced armor plating (Not included due to NanoTrasen regulations. Can be made using 5 reinforced metal sheets.)</li>
 				<li>Secure the external reinforced armor plating with a wrench</li>
 				<li>Weld the external reinforced armor plating to the chassis</li>
 				<li></li>
@@ -415,7 +415,7 @@
 				<li>Internal armor is plasteel for additional strength.</li>
 				<li>External armor must be installed in 2 parts, totaling 10 sheets.</li>
 				<li>Completed mech is more resiliant against fire, and is a bit more durable overall</li>
-				<li>Nanotrasen is determined to the safety of its <s>investments</s> employees.</li>
+				<li>NanoTrasen is determined to the safety of its <s>investments</s> employees.</li>
 				</ol>
 				</body>
 				</html>
@@ -531,7 +531,7 @@
 				This useful piece of equipment will suck power out of the power systems to charge a cyborg's power cell back up to full charge.
 
 				<h3>Robotics Control Console</h3>
-				This useful piece of equipment can be used to immobolize or destroy a cyborg. A word of warning: Cyborgs are expensive pieces of equipment, do not destroy them without good reason, or Nanotrasen may see to it that it never happens again.
+				This useful piece of equipment can be used to immobolize or destroy a cyborg. A word of warning: Cyborgs are expensive pieces of equipment, do not destroy them without good reason, or NanoTrasen may see to it that it never happens again.
 
 
 				<h2><a name="Modules">Cyborg Modules</h2>
@@ -678,7 +678,7 @@
           <li>Expose the cyborg's internal wiring</li>
           <li>Check to make sure the LawSync and AI Sync lights are lit</li>
           <li>If they are not lit, pulse the LawSync wire using a multitool to enable the cyborg's Law Sync</li>
-          <li>Proceed to a cyborg upload console. Nanotrasen usually places these in the same location as AI uplaod consoles.</li>
+          <li>Proceed to a cyborg upload console. NanoTrasen usually places these in the same location as AI upload consoles.</li>
           <li>Use a "Reset" upload moduleto reset the cyborg's laws</li>
           <li>Proceed to a Robotics Control console</li>
           <li>Remove the lockdown on the cyborg</li>
@@ -686,7 +686,7 @@
 
         <h3>As a last resort</h3>
         If all else fails in a case of cyborg-related emergency. There may be only one option. Using a Robotics Control console, you may have to remotely detonate the cyborg.
-        <h3>WARNING:</h3> Do not detonate a borg without an explicit reason for doing so. Cyborgs are expensive pieces of Nanotrasen equipment, and you may be punished for detonating them without reason.
+        <h3>WARNING:</h3> Do not detonate a borg without an explicit reason for doing so. Cyborgs are expensive pieces of NanoTrasen equipment, and you may be punished for detonating them without reason.
 
         </body>
 		</html>
@@ -695,9 +695,9 @@
 
 /obj/item/weapon/book/manual/security_space_law
 	name = "Space Law"
-	desc = "A set of Nanotrasen guidelines for keeping law and order on their space stations."
+	desc = "A set of NanoTrasen guidelines for keeping law and order on their space stations."
 	icon_state = "bookSpaceLaw"
-	author = "Nanotrasen"
+	author = "NanoTrasen"
 	title = "Space Law"
 
 	dat = {"
@@ -718,7 +718,7 @@
 	name = "NT Medical Diagnostics Manual"
 	desc = "First, do no harm. A detailed medical practitioner's guide."
 	icon_state = "bookMedical"
-	author = "Nanotrasen Medicine Department"
+	author = "NanoTrasen Medicine Department"
 	title = "NT Medical Diagnostics Manual"
 
 	dat = {"
@@ -728,7 +728,7 @@
 
 		<body>
 		<b>The Oath</b><br>
-		<i>The Medical Oath sworn by recognised medical practitioners in the employ of Nanotrasen</i><br>
+		<i>The Medical Oath sworn by recognised medical practitioners in the employ of NanoTrasen</i><br>
 <br>
 		Now, as a new doctor, I solemnly promise that I will to the best of my ability serve humanity-caring for the sick, promoting good health, and alleviating pain and suffering.<br>
 <br>
@@ -892,7 +892,7 @@
 /obj/item/weapon/book/manual/detective
 	name = "The Film Noir: Proper Procedures for Investigations"
 	icon_state ="bookDetective"
-	author = "Nanotrasen"
+	author = "NanoTrasen"
 	title = "The Film Noir: Proper Procedures for Investigations"
 
 	dat = {"<html>
@@ -940,7 +940,7 @@
 	dat = {"<html>
 			Nuclear Explosives 101:<br>
 			Hello and thank you for choosing the Syndicate for your nuclear information needs.<br>
-			Today's crash course will deal with the operation of a Fusion Class Nanotrasen made Nuclear Device.<br>
+			Today's crash course will deal with the operation of a Fusion Class NanoTrasen made Nuclear Device.<br>
 			First and foremost, DO NOT TOUCH ANYTHING UNTIL THE BOMB IS IN PLACE.<br>
 			Pressing any button on the compacted bomb will cause it to extend and bolt itself into place.<br>
 			If this is done to unbolt it one must completely log in which at this time may not be possible.<br>
@@ -952,7 +952,7 @@
 			<li>Press the E button to log onto the device.</li>
 			You now have activated the device. To deactivate the buttons at anytime for example when you've already prepped the bomb for detonation	remove the auth disk OR press the R on the keypad.<br>
 			Now the bomb CAN ONLY be detonated using the timer. Manual detonation is not an option.<br>
-			Note: Nanotrasen is a pain in the neck.<br>
+			Note: NanoTrasen is a pain in the neck.<br>
 			Toggle off the SAFETY.<br>
 			Note: You wouldn't believe how many Syndicate Operatives with doctorates have forgotten this step.<br>
 			So use the - - and + + to set a det time between 5 seconds and 10 minutes.<br>
@@ -963,7 +963,7 @@
 			Toggle off the anchor, move it, and re-anchor.<br><br>
 			Good luck. Remember the order:<br>
 			<b>Disk, Code, Safety, Timer, Disk, RUN!</b><br>
-			Intelligence Analysts believe that normal Nanotrasen procedure is for the Captain to secure the nuclear authorisation disk.<br>
+			Intelligence Analysts believe that normal NanoTrasen procedure is for the Captain to secure the nuclear authorisation disk.<br>
 			Good luck!
 			</html>"}
 

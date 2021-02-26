@@ -539,7 +539,7 @@ datum/mind
 					if(src in ticker.mode.traitors)
 						ticker.mode.traitors -= src
 						special_role = null
-						current << "\red <FONT size = 3><B>The nanobots in the loyalty implant remove all thoughts about being a traitor to Nanotrasen.  Have a nice day!</B></FONT>"
+						current << "\red <FONT size = 3><B>The nanobots in the loyalty implant remove all thoughts about being a traitor to NanoTrasen.  Have a nice day!</B></FONT>"
 						log_admin("[key_name_admin(usr)] has de-traitor'ed [current].")
 
 		else if (href_list["revolution"])

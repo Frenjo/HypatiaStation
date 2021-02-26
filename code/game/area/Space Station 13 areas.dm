@@ -1794,7 +1794,7 @@ var/list/ghostteleportlocs = list()
 	requires_power = 0
 
 /area/awaymission/spacebattle/cruiser
-	name = "\improper Nanotrasen Cruiser"
+	name = "\improper NanoTrasen Cruiser"
 
 /area/awaymission/spacebattle/syndicate1
 	name = "\improper Syndicate Assault Ship 1"

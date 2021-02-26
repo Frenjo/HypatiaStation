@@ -13,7 +13,7 @@
 
 		paycuts_suspicion
 			round_time = 60*10
-			message = {"Reports have leaked that Nanotrasen Inc. is planning to put paycuts into
+			message = {"Reports have leaked that NanoTrasen Inc. is planning to put paycuts into
 						effect on many of its Research Stations in Tau Ceti. Apparently these research
 						stations haven't been able to yield the expected revenue, and thus adjustments
 						have to be made."}
@@ -34,7 +34,7 @@
 			 			on live humans, including virology research, genetic manipulation, and \"feeding them
 			 			to the slimes to see what happens\". Allegedly, these test subjects were neither
 			 			humanified monkeys nor volunteers, but rather unqualified staff that were forced into
-			 			the experiments, and reported to have died in a \"work accident\" by Nanotrasen Inc."}
+			 			the experiments, and reported to have died in a \"work accident\" by NanoTrasen Inc."}
 			author = "Unauthorized"
 
 	bluespace_research

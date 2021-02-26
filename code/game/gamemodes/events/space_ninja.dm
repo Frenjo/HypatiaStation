@@ -391,7 +391,7 @@ Making this random or semi-random will probably not work without it also being i
 As such, it's hard-coded for now. No reason for it not to be, really.
 */
 /proc/generate_ninja_directive(side)
-	var/directive = "[side=="face"?"Nanotrasen":"The Syndicate"] is your employer. "//Let them know which side they're on.
+	var/directive = "[side=="face"?"NanoTrasen":"The Syndicate"] is your employer. "//Let them know which side they're on.
 	switch(rand(1,19))
 		if(1)
 			directive += "The Spider Clan must not be linked to this operation. Remain hidden and covert when possible."
@@ -410,7 +410,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 		if(8)
 			directive += "Let no one question the mercy of the Spider Clan. Ensure the safety of all non-essential personnel you encounter."
 		if(9)
-			directive += "A free agent has proposed a lucrative business deal. Implicate Nanotrasen involvement in the operation."
+			directive += "A free agent has proposed a lucrative business deal. Implicate NanoTrasen involvement in the operation."
 		if(10)
 			directive += "Our reputation is on the line. Harm as few civilians and innocents as possible."
 		if(11)
