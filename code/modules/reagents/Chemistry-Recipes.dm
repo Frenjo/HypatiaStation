@@ -1470,7 +1470,6 @@ datum
 
 ////////////////////////////////////////// COCKTAILS //////////////////////////////////////
 
-
 		goldschlager
 			name = "Goldschlager"
 			id = "goldschlager"
@@ -1859,7 +1858,6 @@ datum
 			result_amount = 3
 
 
-
 ////DRINKS THAT REQUIRED IMPROVED SPRITES BELOW:: -Agouri/////
 
 		sbiten
@@ -2065,3 +2063,10 @@ datum
 			result = "suidream"
 			required_reagents = list("space_up" = 2, "bluecuracao" = 1, "melonliquor" = 1)
 			result_amount = 4
+
+		tricordrazine_surprise
+			name = "Tricordrazine Surprise"
+			id = "tricordrazine_surprise"
+			result = "tricordrazine_surprise"
+			required_reagents = list("tricordrazine" = 1, "cognac" = 1, "orangejuice" = 1)
+			result_amount = 3

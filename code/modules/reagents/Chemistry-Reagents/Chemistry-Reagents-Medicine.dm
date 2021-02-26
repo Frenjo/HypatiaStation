@@ -471,6 +471,24 @@ datum
 				..()
 				return
 
+		ethylredoxrazine	// FUCK YOU, ALCOHOL
+			name = "Ethylredoxrazine"
+			id = "ethylredoxrazine"
+			description = "A powerful oxidizer that reacts with ethanol."
+			reagent_state = SOLID
+			color = "#605048" // rgb: 96, 80, 72
+			overdose = REAGENTS_OVERDOSE
+
+			on_mob_life(var/mob/living/M as mob)
+				if(!M) M = holder.my_atom
+				M.dizziness = 0
+				M.drowsyness = 0
+				M.stuttering = 0
+				M.confused = 0
+				M.reagents.remove_all_type(/datum/reagent/ethanol, 1*REM, 0, 1)
+				..()
+				return
+
 		// Cryocell chemicals.
 		cryoxadone
 			name = "Cryoxadone"
