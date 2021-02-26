@@ -19,6 +19,7 @@
 		..()
 		return
 
+
 /datum/chemical_reaction/methylphenidate
 	name = "Methylphenidate"
 	id = "methylphenidate"
@@ -47,13 +48,13 @@
 		..()
 		return
 
+
 /datum/chemical_reaction/citalopram
 	name = "Citalopram"
 	id = "citalopram"
 	result = "citalopram"
 	required_reagents = list("mindbreaker" = 1, "carbon" = 1)
 	result_amount = 3
-
 
 /datum/reagent/antidepressant/paroxetine
 	name = "Paroxetine"
@@ -79,6 +80,7 @@
 					M.hallucination += 200
 		..()
 		return
+
 
 /datum/chemical_reaction/paroxetine
 	name = "Paroxetine"
