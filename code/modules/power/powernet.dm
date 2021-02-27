@@ -28,7 +28,7 @@
 	return max(avail - load, 0)
 
 /datum/powernet/proc/draw_power(var/amount)
-	var/draw = between(0, amount, newavail - load)
+	var/draw = between(0, amount, avail - load)
 	load += draw
 	return draw
 
