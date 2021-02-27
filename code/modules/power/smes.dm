@@ -12,9 +12,6 @@
 	anchored = 1
 	use_power = 0
 	var/output = 50000
-	// Make this accessible from UI. -Frenjo
-	var/load = 0
-	//var/chargeload = 0
 
 	var/lastout = 0
 	var/loaddemand = 0
@@ -22,7 +19,6 @@
 	var/charge = 1e6
 	var/charging = 0
 	var/chargemode = 0
-	//var/chargecount = 0 // Shouldn't need this anymore? -Frenjo
 	var/chargelevel = 50000
 	var/online = 1
 	var/name_tag = null
@@ -33,7 +29,6 @@
 	var/last_online = 0
 	var/open_hatch = 0
 	var/building_terminal = 0 //Suggestions about how to avoid clickspam building several terminals accepted!
-
 
 /obj/machinery/power/smes/New()
 	..()
@@ -57,7 +52,6 @@
 		updateicon()
 	return
 
-
 /obj/machinery/power/smes/proc/updateicon()
 	overlays.Cut()
 	if(stat & BROKEN)	return
@@ -75,12 +69,10 @@
 		overlays += image('icons/obj/power.dmi', "smes-og[clevel]")
 	return
 
-
 /obj/machinery/power/smes/proc/chargedisplay()
 	return round(5.5*charge/(capacity ? capacity : 5e6))
 
 #define SMESRATE 0.05			// rate of internal charge to external power
-
 
 /obj/machinery/power/smes/process()
 	if(stat & BROKEN)	return
@@ -94,7 +86,7 @@
 		if(chargemode)
 			var/target_load = min((capacity-charge)/SMESRATE, chargelevel)		// charge at set rate, limited to spare capacity
 			var/actual_load = draw_power(target_load)		// add the load to the terminal side network
-			charge += load * SMESRATE	// increase the charge
+			charge += actual_load * SMESRATE	// increase the charge
 
 			if (actual_load >= target_load) // did the powernet have enough power available for us?
 				charging = 1
@@ -139,7 +131,7 @@
 
 	loaddemand = lastout-excess
 
-	if(clev != chargedisplay() )
+	if(clev != chargedisplay())
 		updateicon()
 	return
 
@@ -247,7 +239,6 @@
 	data["chargeMode"] = chargemode
 	data["chargeLevel"] = chargelevel
 	data["chargeMax"] = SMESMAXCHARGELEVEL
-	//data["chargeLoad"] = round(chargeload) // Send this to UI. -Frenjo
 	data["outputOnline"] = online
 	data["outputLevel"] = output
 	data["outputMax"] = SMESMAXOUTPUT
@@ -269,7 +260,7 @@
 /obj/machinery/power/smes/Topic(href, href_list)
 	..()
 
-	if (usr.stat || usr.restrained() )
+	if (usr.stat || usr.restrained())
 		return
 
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
@@ -283,17 +274,17 @@
 	for(var/area/A in active_areas)
 		A.powerupdate = 3
 
-	if( href_list["cmode"] )
+	if(href_list["cmode"])
 		chargemode = !chargemode
 		if(!chargemode)
 			charging = 0
 		updateicon()
 
-	else if( href_list["online"] )
+	else if(href_list["online"])
 		online = !online
 		updateicon()
-	else if( href_list["input"] )
-		switch( href_list["input"] )
+	else if(href_list["input"])
+		switch(href_list["input"])
 			if("min")
 				chargelevel = 0
 			if("max")
@@ -302,8 +293,8 @@
 				chargelevel = input(usr, "Enter new input level (0-[SMESMAXCHARGELEVEL])", "SMES Input Power Control", chargelevel) as num
 		chargelevel = max(0, min(SMESMAXCHARGELEVEL, chargelevel))	// clamp to range
 
-	else if( href_list["output"] )
-		switch( href_list["output"] )
+	else if(href_list["output"])
+		switch(href_list["output"])
 			if("min")
 				output = 0
 			if("max")

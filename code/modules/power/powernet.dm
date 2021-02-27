@@ -28,7 +28,7 @@
 	return max(avail - load, 0)
 
 /datum/powernet/proc/draw_power(var/amount)
-	var/draw = between(0, amount, avail - load)
+	var/draw = between(0, amount, newavail - load)
 	load += draw
 	return draw
 
@@ -89,7 +89,7 @@
 
 	if(nodes && nodes.len) // Added to fix a bad list bug -- TLE
 		for(var/obj/machinery/power/terminal/term in nodes)
-			if( istype( term.master, /obj/machinery/power/apc ) )
+			if(istype(term.master, /obj/machinery/power/apc))
 				numapc++
 
 	netexcess = avail - load
