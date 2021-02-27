@@ -94,14 +94,15 @@
 /obj/machinery/power/emitter/process()
 	if(stat & (BROKEN))
 		return
+
 	if(src.state != 2 || (!powernet && active_power_usage))
 		src.active = 0
 		update_icon()
 		return
-	if(((src.last_shot + src.fire_delay) <= world.time) && (src.active == 1))
 
-		if(!active_power_usage || avail(active_power_usage))
-			add_load(active_power_usage)
+	if(((src.last_shot + src.fire_delay) <= world.time) && (src.active == 1))
+		var/actual_load = draw_power(active_power_usage)
+		if(actual_load >= active_power_usage) //does the laser have enough power to shoot?
 			if(!powered)
 				powered = 1
 				update_icon()
@@ -120,6 +121,7 @@
 		else
 			src.fire_delay = rand(20,100)
 			src.shot_number = 0
+
 		var/obj/item/projectile/beam/emitter/A = new /obj/item/projectile/beam/emitter( src.loc )
 		playsound(src.loc, 'sound/weapons/emitter.ogg', 25, 1)
 		if(prob(35))

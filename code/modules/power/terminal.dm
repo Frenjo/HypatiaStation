@@ -13,7 +13,6 @@
 	anchored = 1
 	layer = 2.6 // a bit above wires
 
-
 /obj/machinery/power/terminal/New()
 	..()
 	var/turf/T = src.loc

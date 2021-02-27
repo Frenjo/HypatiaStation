@@ -1,7 +1,5 @@
 // Areas.dm
 
-
-
 // ===
 /area
 	var/global/global_uid = 0
@@ -10,31 +8,14 @@
 /area/New()
 	icon_state = ""
 	layer = 10
-	//master = src //moved outside the spawn(1) to avoid runtimes in lighting.dm when it references loc.loc.master ~Carn
 	uid = ++global_uid
-	//related = list(src)
 	active_areas += src
 	all_areas += src
 
-	//if(type == /area)	// override defaults for space. TODO: make space areas of type /area/space rather than /area
-	//	requires_power = 1
-	//	always_unpowered = 1
-	//	lighting_use_dynamic = 1
-	//	power_light = 0
-	//	power_equip = 0
-	//	power_environ = 0
-//		lighting_state = 4
-		//has_gravity = 0    // Space has gravity.  Because.. because.
-
-	//if(requires_power)
-		//luminosity = 0
-//	else
 	if(!requires_power)
 		power_light = 0			//rastaf0
 		power_equip = 0			//rastaf0
 		power_environ = 0		//rastaf0
-		//luminosity = 1
-		//lighting_use_dynamic = 0
 
 	if(lighting_use_dynamic)
 		luminosity = 0
@@ -43,23 +24,13 @@
 
 	..()
 
-//	spawn(15)
 	power_change()		// all machines set to current power level, also updates lighting icon
-	//InitializeLighting()
-
 
 /area/proc/poweralert(var/state, var/obj/source as obj)
 	if (state != poweralm)
 		poweralm = state
 		if(istype(source))	//Only report power alarms on the z-level where the source is located.
 			var/list/cameras = list()
-			//for (var/area/RA in related)
-			//	for (var/obj/machinery/camera/C in RA)
-			//		cameras += C
-			//		if(state == 1)
-			//			C.network.Remove("Power Alarms")
-			//		else
-			//			C.network.Add("Power Alarms")
 			for (var/obj/machinery/camera/C in src)
 				cameras += C
 				if(state == 1)
@@ -81,18 +52,9 @@
 	return
 
 /area/proc/atmosalert(danger_level)
-//	if(type==/area) //No atmos alarms in space
-//		return 0 //redudant
 	if(danger_level != atmosalm)
-		//updateicon()
-		//mouse_opacity = 0
 		if (danger_level==2)
 			var/list/cameras = list()
-			//for(var/area/RA in related)
-				//updateicon()
-			//	for(var/obj/machinery/camera/C in RA)
-			//		cameras += C
-			//		C.network.Add("Atmosphere Alarms")
 			for(var/obj/machinery/camera/C in src)
 				cameras += C
 				C.network.Add("Atmosphere Alarms")
@@ -101,9 +63,6 @@
 			for(var/obj/machinery/computer/station_alert/a in machines)
 				a.triggerAlarm("Atmosphere", src, cameras, src)
 		else if (atmosalm == 2)
-			//for(var/area/RA in related)
-			//	for(var/obj/machinery/camera/C in RA)
-			//		C.network.Remove("Atmosphere Alarms")
 			for(var/obj/machinery/camera/C in src)
 				C.network.Remove("Atmosphere Alarms")
 			for(var/mob/living/silicon/aiPlayer in player_list)
@@ -115,11 +74,8 @@
 	return 0
 
 /area/proc/firealert()
-	//if(name == "Space") //no fire alarms in space
-	//	return
-	if( !fire )
+	if(!fire)
 		fire = 1
-		//master.fire = 1		//used for firedoor checks
 		updateicon()
 		mouse_opacity = 0
 		for(var/obj/machinery/door/firedoor/D in all_doors)
@@ -130,10 +86,6 @@
 					spawn()
 						D.close()
 		var/list/cameras = list()
-		//for(var/area/RA in related)
-		//	for (var/obj/machinery/camera/C in RA)
-		//		cameras.Add(C)
-		//		C.network.Add("Fire Alarms")
 		for (var/obj/machinery/camera/C in src)
 			cameras.Add(C)
 			C.network.Add("Fire Alarms")
@@ -145,7 +97,6 @@
 /area/proc/firereset()
 	if (fire)
 		fire = 0
-		//master.fire = 0		//used for firedoor checks
 		mouse_opacity = 0
 		updateicon()
 		for(var/obj/machinery/door/firedoor/D in all_doors)
@@ -155,9 +106,6 @@
 				else if(D.density)
 					spawn(0)
 					D.open()
-		//for(var/area/RA in related)
-		//	for (var/obj/machinery/camera/C in RA)
-		//		C.network.Remove("Fire Alarms")
 		for (var/obj/machinery/camera/C in src)
 			C.network.Remove("Fire Alarms")
 		for (var/mob/living/silicon/ai/aiPlayer in player_list)
@@ -166,8 +114,6 @@
 			a.cancelAlarm("Fire", src, src)
 
 /area/proc/readyalert()
-	//if(name == "Space")
-	//	return
 	if(!eject)
 		eject = 1
 		updateicon()
@@ -180,8 +126,6 @@
 	return
 
 /area/proc/partyalert()
-	//if(name == "Space") //no parties in space!!!
-	//	return
 	if (!( party ))
 		party = 1
 		updateicon()
@@ -204,8 +148,6 @@
 
 // Added these to make use of unused sprites. -Frenjo
 /area/proc/destructalert()
-	//if(name == "Space")
-	//	return
 	if(!destruct)
 		destruct = 1
 		updateicon()
@@ -217,26 +159,8 @@
 		updateicon()
 	return
 
-/*/area/proc/updateicon()
-	if ((fire || eject || party) && ((!requires_power)?(!requires_power):power_environ))//If it doesn't require power, can still activate this proc.
-		if(fire && !eject && !party)
-			icon_state = "blue"
-		/*else if(atmosalm && !fire && !eject && !party)
-			icon_state = "bluenew"*/
-		else if(!fire && eject && !party)
-			icon_state = "red"
-		else if(party && !fire && !eject)
-			icon_state = "party"
-		else
-			icon_state = "blue-red"
-	else
-	//	new lighting behaviour with obj lights
-		icon_state = null*/
-
-// Rewrote this in an attempt to add new overlay states, mostly to make use of unused sprites. -Frenjo
 /area/proc/updateicon()
-	//if ((fire || eject || party || destruct) && ((!requires_power)?(!requires_power):power_environ))//If it doesn't require power, can still activate this proc.
-	if ((fire || eject || party || destruct) && ((!requires_power)?(!requires_power):power_environ) && !istype(src, /area/space))
+	if((fire || eject || party || destruct) && ((!requires_power)?(!requires_power):power_environ) && !istype(src, /area/space))
 		if(fire && !eject && !party && !destruct)
 			icon_state = "blue"
 		else if(atmosalm && !fire && !eject && !party && !destruct)
@@ -253,44 +177,26 @@
 	//	new lighting behaviour with obj lights
 		icon_state = null
 
-/*
-#define EQUIP 1
-#define LIGHT 2
-#define ENVIRON 3
-*/
-
 /area/proc/powered(var/chan)		// return true if the area has power to given channel
-
-	//if(!master.requires_power)
 	if(!requires_power)
 		return 1
-	//if(master.always_unpowered)
 	if(always_unpowered)
 		return 0
+
 	switch(chan)
 		if(EQUIP)
-			//return master.power_equip
 			return power_equip
 		if(LIGHT)
-			//return master.power_light
 			return power_light
 		if(ENVIRON)
-			//return master.power_environ
 			return power_environ
 
 	return 0
 
 // called when power status changes
-
 /area/proc/power_change()
-	//master.powerupdate = 2
-	//for(var/area/RA in related)
-		//for(var/obj/machinery/M in RA)	// for each machine in the area
-		//	M.power_change()				// reverify power status (to update icons etc.)
-		//if (fire || eject || party)
-		//	RA.updateicon()
 	for(var/obj/machinery/M in src)	// for each machine in the area
-		M.power_change()				// reverify power status (to update icons etc.)
+		M.power_change()			// reverify power status (to update icons etc.)
 	if (fire || eject || party || destruct)
 		updateicon()
 
@@ -298,42 +204,28 @@
 	var/used = 0
 	switch(chan)
 		if(LIGHT)
-			//used += master.used_light
 			used += used_light
 		if(EQUIP)
-			//used += master.used_equip
 			used += used_equip
 		if(ENVIRON)
-			//used += master.used_environ
 			used += used_environ
 		if(TOTAL)
-			//used += master.used_light + master.used_equip + master.used_environ
 			used += used_light + used_equip + used_environ
-
 	return used
 
 /area/proc/clear_usage()
-
-	//master.used_equip = 0
-	//master.used_light = 0
-	//master.used_environ = 0
 	used_equip = 0
 	used_light = 0
 	used_environ = 0
 
 /area/proc/use_power(var/amount, var/chan)
-
 	switch(chan)
 		if(EQUIP)
-			//master.used_equip += amount
 			used_equip += amount
 		if(LIGHT)
-			//master.used_light += amount
 			used_light += amount
 		if(ENVIRON)
-			//master.used_environ += amount
 			used_environ += amount
-
 
 /area/Entered(A)
 	var/musVolume = 25
@@ -389,15 +281,7 @@
 					L.client.played = 0
 
 /area/proc/gravitychange(var/gravitystate = 0, var/area/A)
-
 	A.has_gravity = gravitystate
-
-	//for(var/area/SubA in A.related)
-		//SubA.has_gravity = gravitystate
-
-		//if(gravitystate)
-		//	for(var/mob/living/carbon/human/M in SubA)
-		//		thunk(M)
 	if(gravitystate)
 		for(var/mob/living/carbon/human/M in A)
 			thunk(M)
@@ -419,4 +303,3 @@
 		mob:AdjustWeakened(2)
 
 	mob << "Gravity!"
-

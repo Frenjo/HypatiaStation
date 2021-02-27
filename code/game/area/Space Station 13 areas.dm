@@ -20,14 +20,11 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/poweralm = 1
 	var/party = null
 	level = null
-	//name = "Space"
 	name = "Unknown"
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "unknown"
 	layer = 10
 	mouse_opacity = 0
-	//invisibility = INVISIBILITY_LIGHTING
-	//luminosity = 1
 	luminosity = 0
 	var/lightswitch = 1
 
@@ -49,12 +46,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/used_environ = 0
 
 	var/has_gravity = 1
-	var/list/apc = list()
+	var/obj/machinery/power/apc/apc = null
 	var/no_air = null
-	//var/area/master				// master area used for power calcluations
-								// (original area before splitting due to sd_DAL)
-	//var/list/related			// the other areas of the same type as this
-//	var/list/lights				// list of all lights on this area
+
 	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
 	var/air_doors_activated = 0
 
@@ -963,6 +957,15 @@ var/list/ghostteleportlocs = list()
 		name = "\improper Engineering SMES"
 		icon_state = "engine_smes"
 		requires_power = 0//This area only covers the batteries and they deal with their own power
+
+		supermatter_smes
+			name = "\improper Supermatter Engine SMES"
+
+		thermoelectric_smes
+			name = "\improper Thermoelectric Engine SMES"
+
+		singularity_smes
+			name = "\improper Singularity Engine SMES"
 
 	engineering
 		name = "Engineering"

@@ -4,7 +4,6 @@ var/global/list/object_profiling = list()
 
 /datum/controller/process/obj/setup()
 	name = "obj"
-	//schedule_interval = 20 // every 2 seconds
 	schedule_interval = 40 // every 4 seconds
 	updateQueueInstance = new
 

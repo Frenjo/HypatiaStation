@@ -18,6 +18,7 @@
 
 /obj/machinery/power/Del()
 	disconnect_from_network()
+	disconnect_terminal()
 	..()
 
 ///////////////////////////////
@@ -29,9 +30,10 @@
 	if(powernet)
 		powernet.newavail += amount
 
-/obj/machinery/power/proc/add_load(var/amount)
+/obj/machinery/power/proc/draw_power(var/amount)
 	if(powernet)
-		powernet.draw_power(amount)
+		return powernet.draw_power(amount)
+	return 0
 
 /obj/machinery/power/proc/surplus()
 	if(powernet)
@@ -48,14 +50,15 @@
 /obj/machinery/power/proc/disconnect_terminal() // machines without a terminal will just return, no harm no fowl.
 	return
 
-
 // returns true if the area has power on given channel (or doesn't require power).
 /obj/machinery/proc/powered(var/chan = -1) // defaults to power_channel
 	if(!src.loc)
 		return 0
 
-	if(!use_power)
-		return 1
+	//Don't do this. It allows machines that set use_power to 0 when off (many machines) to
+	//be turned on again and used after a power failure because they never gain the NOPOWER flag.
+	//if(!use_power)
+	//	return 1
 
 	var/area/A = src.loc.loc		// make sure it's in an area
 	if(!A || !isarea(A))
@@ -128,7 +131,6 @@
 //returns all the cables WITHOUT a powernet in neighbors turfs,
 //pointing towards the turf the machine is located at
 /obj/machinery/power/proc/get_connections()
-
 	. = list()
 
 	var/cdir
@@ -147,7 +149,6 @@
 //returns all the cables in neighbors turfs,
 //pointing towards the turf the machine is located at
 /obj/machinery/power/proc/get_marked_connections()
-
 	. = list()
 
 	var/cdir
@@ -244,7 +245,7 @@ proc/power_list(var/turf/T, var/source, var/d, var/unmarked=0, var/cable_only = 
 		P = worklist[index] //get the next power object found
 		index++
 
-		if( istype(P,/obj/structure/cable))
+		if(istype(P,/obj/structure/cable))
 			var/obj/structure/cable/C = P
 			if(C.powernet != PN) //add it to the powernet, if it isn't already there
 				PN.add_cable(C)
@@ -316,23 +317,25 @@ proc/power_list(var/turf/T, var/source, var/d, var/unmarked=0, var/cable_only = 
 	else if(istype(power_source,/obj/machinery/power/apc))
 		var/obj/machinery/power/apc/apc = power_source
 		cell = apc.cell
-		if (apc.terminal)
+		if(apc.terminal)
 			PN = apc.terminal.powernet
-	else if (!power_source)
+	else if(!power_source)
 		return 0
 	else
 		log_admin("ERROR: /proc/electrocute_mob([M], [power_source], [source]): wrong power_source")
 		return 0
-	if (!cell && !PN)
+	if(!cell && !PN)
 		return 0
+
 	var/PN_damage = 0
 	var/cell_damage = 0
-	if (PN)
+	if(PN)
 		PN_damage = PN.get_electrocute_damage()
-	if (cell)
+	if(cell)
 		cell_damage = cell.get_electrocute_damage()
+
 	var/shock_damage = 0
-	if (PN_damage>=cell_damage)
+	if(PN_damage>=cell_damage)
 		power_source = PN
 		shock_damage = PN_damage
 	else
@@ -341,12 +344,12 @@ proc/power_list(var/turf/T, var/source, var/d, var/unmarked=0, var/cable_only = 
 	var/drained_hp = M.electrocute_act(shock_damage, source, siemens_coeff) //zzzzzzap!
 	var/drained_energy = drained_hp*20
 
-	if (source_area)
-		source_area.use_power(drained_energy/CELLRATE)
-	else if (istype(power_source,/datum/powernet))
-		var/drained_power = drained_energy/CELLRATE //convert from "joules" to "watts"
-		PN.draw_power(drained_power)
-	else if (istype(power_source, /obj/item/weapon/cell))
-		cell.use(drained_energy)
+	if(source_area)
+		source_area.use_power(drained_energy)
+	else if(istype(power_source,/datum/powernet))
+		//var/drained_power = drained_energy/CELLRATE //convert from "joules" to "watts" << apparently this is wrong!
+		PN.draw_power(drained_energy)
+	else if(istype(power_source, /obj/item/weapon/cell))
+		cell.use(drained_energy*CELLRATE)
 	return drained_energy
 

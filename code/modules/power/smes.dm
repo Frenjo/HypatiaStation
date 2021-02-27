@@ -91,55 +91,15 @@
 	var/last_onln = online
 
 	if(terminal)
-		var/excess = terminal.surplus()
+		if(chargemode)
+			var/target_load = min((capacity-charge)/SMESRATE, chargelevel)		// charge at set rate, limited to spare capacity
+			var/actual_load = draw_power(target_load)		// add the load to the terminal side network
+			charge += load * SMESRATE	// increase the charge
 
-		if(charge == capacity)
-			charging = 0
-
-		if(charging)
-			if(excess >= 0)		// if there's power available, try to charge
-				// Make this accessible from the UI. -Frenjo
-				/*var*/load = min((capacity-charge)/SMESRATE, chargelevel)		// charge at set rate, limited to spare capacity
-
-				charge += load * SMESRATE	// increase the charge
-
-				add_load(load)		// add the load to the terminal side network
-
-				//chargeload = min(excess, chargelevel) // Some data for the UI. -Frenjo
-			else					// if not enough capcity
-				charging = 0		// stop charging
-				//chargecount  = 0
-				//chargeload = 0 // Some more data for the UI. -Frenjo
-		else
-			if (chargemode && excess > 0 && excess >= chargelevel)
+			if (actual_load >= target_load) // did the powernet have enough power available for us?
 				charging = 1
-				//chargeload = min(excess, chargelevel)
-				/*
-				if(chargecount > rand(3,6))
-					charging = 1
-					chargecount = 0
-
-				// Trying to unfuck ye olde SMES code. -Frenjo
-				if(excess > chargelevel)
-					chargecount++
-				else
-					chargecount = 0
-				*/
-
-				/*
-				// Activate regardless of whether the excess is above or below the input level.
-				// As long as there's excess, suck up as much as we can. -Frenjo
-				if(excess)
-					charging = 1
-					chargeload = min(excess, chargelevel) // EVEN more data for the UI. -Frenjo
-				else
-					charging = 0
-					chargeload = 0 // The last bit of data for the UI. -Frenjo
-				*/
 			else
 				charging = 0
-				//chargeload = 0
-				//chargecount = 0
 
 	if(online)		// if outputting
 		lastout = min(charge/SMESRATE, output)		//limit output to that stored
@@ -185,7 +145,7 @@
 
 //Will return 1 on failure
 /obj/machinery/power/smes/proc/make_terminal(const/mob/user)
-	if (user.loc == loc)
+	if(user.loc == loc)
 		user << "<span class='warning'>You must not be on the same tile as the [src].</span>"
 		return 1
 
@@ -212,10 +172,10 @@
 		return 0
 	return 1
 
-/obj/machinery/power/smes/add_load(var/amount)
+/obj/machinery/power/smes/draw_power(var/amount)
 	if(terminal && terminal.powernet)
-		terminal.powernet.draw_power(amount)
-
+		return terminal.powernet.draw_power(amount)
+	return 0
 
 /obj/machinery/power/smes/attack_ai(mob/user)
 	add_fingerprint(user)
@@ -406,5 +366,3 @@
 		capacity = INFINITY
 		charge = INFINITY
 		..()
-
-#undef SMESRATE

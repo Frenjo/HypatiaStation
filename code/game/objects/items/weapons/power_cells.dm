@@ -45,6 +45,15 @@
 	..()
 	charge = 0
 
+/obj/item/weapon/cell/apc
+	name = "APC power cell"
+	origin_tech = "powerstorage=1"
+	maxcharge = 5000
+	g_amt = 50
+
+/obj/item/weapon/cell/apc/empty/New()
+	..()
+
 /obj/item/weapon/cell/high
 	name = "high-capacity power cell"
 	origin_tech = "powerstorage=2"

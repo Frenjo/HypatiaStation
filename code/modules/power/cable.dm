@@ -481,6 +481,7 @@ obj/structure/cable/proc/avail()
 	icon = 'icons/obj/power.dmi'
 	icon_state = "coil"
 	amount = MAXCOIL
+	max_amount = MAXCOIL
 	item_color = COLOR_RED
 	desc = "A coil of power cable."
 	throwforce = 10

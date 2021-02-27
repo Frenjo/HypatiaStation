@@ -1,13 +1,8 @@
 /datum/controller/process/machinery/setup()
 	name = "machinery"
-	//schedule_interval = 20 // every 2 seconds
 	schedule_interval = 50 // every 5 seconds
 
 /datum/controller/process/machinery/doWork()
-	//#ifdef PROFILE_MACHINES
-	//machine_profiling.len = 0
-	//#endif
-
 	for(var/obj/machinery/M in machines)
 		if(M && !M.gcDestroyed)
 			#ifdef PROFILE_MACHINES
