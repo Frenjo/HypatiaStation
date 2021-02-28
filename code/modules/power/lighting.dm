@@ -455,9 +455,8 @@
 // returns whether this light has power
 // true if area has power and lightswitch is on
 /obj/machinery/light/proc/has_power()
-	var/area/A = src.loc.loc
-	//return A.master.lightswitch && A.master.power_light
-	return A.lightswitch && A.power_light
+	var/area/A = get_area(src)
+	return A && A.lightswitch && (!A.requires_power || A.power_light)
 
 /obj/machinery/light/proc/flicker(var/amount = rand(10, 20))
 	if(flickering) return
@@ -635,12 +634,9 @@
 
 #define LIGHTING_POWER_FACTOR 20		//20W per unit luminosity
 
-
-/obj/machinery/light/process()//TODO: remove/add this from machines to save on processing as needed ~Carn PRIORITY
+/obj/machinery/light/process()
 	if(on)
-		//use_power(luminosity * LIGHTING_POWER_FACTOR, LIGHT)
 		use_power(light_range * LIGHTING_POWER_FACTOR, LIGHT)
-
 
 // called when area power state changes
 /obj/machinery/light/power_change()
@@ -650,13 +646,11 @@
 		seton(A.lightswitch && A.power_light)
 
 // called when on fire
-
 /obj/machinery/light/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(prob(max(0, exposed_temperature - 673)))   //0% at <400C, 100% at >500C
 		broken()
 
 // explode the light
-
 /obj/machinery/light/proc/explode()
 	var/turf/T = get_turf(src.loc)
 	spawn(0)
@@ -669,7 +663,6 @@
 // the light item
 // can be tube or bulb subtypes
 // will fit into empty /obj/machinery/light of the corresponding type
-
 /obj/item/weapon/light
 	icon = 'icons/obj/lighting.dmi'
 	flags = FPRINT | TABLEPASS

@@ -88,12 +88,14 @@
 	var/update_overlay = -1
 	var/global/status_overlays = 0
 	var/updating_icon = 0
+
 	var/standard_max_charge
 	var/global/list/status_overlays_lock
 	var/global/list/status_overlays_charging
 	var/global/list/status_overlays_equipment
 	var/global/list/status_overlays_lighting
 	var/global/list/status_overlays_environ
+	var/is_critical = 0
 
 /obj/machinery/power/apc/updateDialog()
 	if (stat & (BROKEN|MAINT))
@@ -298,7 +300,7 @@
 
 	if(update & 3)
 		if(update_state & UPSTATE_BLUESCREEN)
-			set_light(l_range = 2, l_power = 0.5, l_color = "#0000FF")
+			set_light(l_range = 2, l_power = 1, l_color = "#0000FF")
 		else if(!(stat & (BROKEN|MAINT)) && update_state & UPSTATE_ALLGOOD)
 			var/color
 			switch(charging)
@@ -308,7 +310,7 @@
 					color = "#A8B0F8"
 				if(2)
 					color = "#82FF4C"
-			set_light(l_range = 2, l_power = 0.5, l_color = color)
+			set_light(l_range = 2, l_power = 1, l_color = color)
 		else
 			set_light(0)
 
@@ -738,9 +740,8 @@
 		"powerCellStatus" = cell ? cell.percent() : null,
 		"chargeMode" = chargemode,
 		"chargingStatus" = charging,
-		"totalLoad" = lastused_equip + lastused_light + lastused_environ,
+		"totalLoad" = round(lastused_total),
 		"coverLocked" = coverlocked,
-		"siliconUser" = istype(user, /mob/living/silicon),
 		"malfStatus" = get_malf_status(user),
 
 		"powerChannels" = list(
@@ -1062,9 +1063,7 @@
 	lastused_equip = area.usage(EQUIP)
 	lastused_environ = area.usage(ENVIRON)
 	lastused_total = lastused_light + lastused_equip + lastused_environ
-
-	if(area.powerupdate)
-		area.clear_usage()
+	area.clear_usage()
 
 	//store states to update icon if any change
 	var/last_lt = lighting
@@ -1072,48 +1071,37 @@
 	var/last_en = environ
 	var/last_ch = charging
 
-	var/power_excess = 0
+	var/excess = surplus()
 
-	var/perapc = 0
-	if(terminal && terminal.powernet)
-		perapc = terminal.powernet.perapc
+	if(!src.avail())
+		main_status = 0
+	else if(excess < 0)
+		main_status = 1
+	else
+		main_status = 2
 
 	if(cell && !shorted)
-		var/cell_maxcharge = cell.maxcharge
+		// draw power from cell as before to power the area
+		var/cellused = min(cell.charge, CELLRATE * lastused_total)	// clamp deduction to a max, amount left in cell
+		cell.use(cellused)
 
-		// Calculate how much power the APC will try to get from the grid.
-		var/target_draw = lastused_total
-		if(src.attempt_charging())
-			target_draw += min((cell_maxcharge - cell.charge), (cell_maxcharge*CHARGELEVEL))/CELLRATE
-		target_draw = min(target_draw, perapc) //limit power draw by perapc
-
-		// try to draw power from the grid
-		var/power_drawn = 0
-		if(src.avail())
-			power_drawn = draw_power(target_draw) //get some power from the powernet
-
-		//figure out how much power is left over after meeting demand
-		power_excess = power_drawn - lastused_total
-		if(power_excess < 0) //couldn't get enough power from the grid, we will need to take from the power cell.
-			charging = 0
-			var/required_power = -power_excess
-			if(cell.charge >= required_power*CELLRATE)	// can we draw enough from cell to cover what's left over?
-				cell.use(required_power*CELLRATE)
-			else if(autoflag != 0)	// not enough power available to run the last tick!
+		if(excess > lastused_total)		// if power excess recharge the cell
+										// by the same amount just used
+			var/draw = draw_power(cellused/CELLRATE) // draw the power needed to charge this cell
+			cell.give(draw * CELLRATE)
+		else		// no excess, and not enough per-apc
+			if((cell.charge/CELLRATE + excess) >= lastused_total)		// can we draw enough from cell+grid to cover last usage?
+				var/draw = draw_power(excess)
+				cell.charge = min(cell.maxcharge, cell.charge + CELLRATE * draw)	//recharge with what we can
+				charging = 0
+			else	// not enough power available to run the last tick!
+				charging = 0
 				chargecount = 0
 				// This turns everything off in the case that there is still a charge left on the battery, just not enough to run the room.
 				equipment = autoset(equipment, 0)
 				lighting = autoset(lighting, 0)
 				environ = autoset(environ, 0)
 				autoflag = 0
-
-		//Set external power status
-		if(!power_drawn)
-			main_status = 0
-		else if(power_excess < 0)
-			main_status = 1
-		else
-			main_status = 2
 
 		// Set channels depending on how much charge we have left
 
@@ -1159,21 +1147,25 @@
 
 		// now trickle-charge the cell
 		if(src.attempt_charging())
-			if (power_excess > 0) // check to make sure we have enough to charge
-				cell.give(power_excess*CELLRATE) // actually recharge the cell
+			if(excess > 0)		// check to make sure we have enough to charge
+				// Max charge is capped to % per second constant
+				var/ch = min(excess*CELLRATE, cell.maxcharge*CHARGELEVEL)
+
+				ch = draw_power(ch/CELLRATE) // Removes the power we're taking from the grid
+				cell.give(ch*CELLRATE) // actually recharge the cell
 			else
 				charging = 0		// stop charging
 				chargecount = 0
 
 		// show cell as fully charged if so
-		if(cell.charge >= cell_maxcharge)
+		if(cell.charge >= cell.maxcharge)
+			cell.charge = cell.maxcharge
 			charging = 2
 
 		//if we have excess power for long enough, think about re-enable charging.
 		if(chargemode)
 			if(!charging)
-				//last_surplus() overestimates the amount of power available for charging, but it's equivalent to what APCs were doing before.
-				if(src.last_surplus()*CELLRATE >= cell_maxcharge*CHARGELEVEL)
+				if(excess > cell.maxcharge*CHARGELEVEL)
 					chargecount++
 				else
 					chargecount = 0
@@ -1203,7 +1195,6 @@
 
 	else if (last_ch != charging)
 		queue_icon_update()
-	src.updateDialog()
 
 // val 0=off, 1=off(auto) 2=on 3=on(auto)
 // on 0=off, 1=on, 2=autooff
@@ -1283,18 +1274,12 @@
 	update()
 
 // overload all the lights in this APC area
-
 /obj/machinery/power/apc/proc/overload_lighting()
 	if(/* !get_connection() || */ !operating || shorted)
 		return
 	if( cell && cell.charge>=20)
 		cell.use(20);
 		spawn(0)
-			//for(var/area/A in area.related)
-			//	for(var/obj/machinery/light/L in A)
-			//		L.on = 1
-			//		L.broken()
-			//		sleep(1)
 			for(var/obj/machinery/light/L in area)
 				L.on = 1
 				L.broken()

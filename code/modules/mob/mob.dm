@@ -719,7 +719,9 @@ note dizziness decrements automatically in the mob's Life() proc.
 				stat(null, "Lighting\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
 
 				process = processScheduler.getProcess("machinery")
+				stat(null, "PipeNet([pipe_networks.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
 				stat(null, "Machinery([machines.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
+				stat(null, "PowerNet([powernets.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
 
 				process = processScheduler.getProcess("mob")
 				stat(null, "Mob([mob_list.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
@@ -730,11 +732,11 @@ note dizziness decrements automatically in the mob's Life() proc.
 				process = processScheduler.getProcess("obj")
 				stat(null, "Objects([processing_objects.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
 
-				process = processScheduler.getProcess("pipenet")
-				stat(null, "PipeNet([pipe_networks.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
+				//process = processScheduler.getProcess("pipenet")
+				//stat(null, "PipeNet([pipe_networks.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
 
-				process = processScheduler.getProcess("powernet")
-				stat(null, "PowerNet([powernets.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
+				//process = processScheduler.getProcess("powernet")
+				//stat(null, "PowerNet([powernets.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
 
 				process = processScheduler.getProcess("sun")
 				stat(null, "Sun\t - #[process.getTicks()]\t - [process.getLastRunTime()]")

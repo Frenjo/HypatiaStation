@@ -33,7 +33,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/destruct = null // Added this to make use of unused sprites. -Frenjo
 
 	var/debug = 0
-	var/powerupdate = 10		//We give everything 10 ticks to settle out it's power usage.
 	var/requires_power = 1
 	var/always_unpowered = 0	//this gets overriden to 1 for space in area/New()
 

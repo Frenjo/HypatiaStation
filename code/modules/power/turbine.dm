@@ -57,7 +57,6 @@
 		if(!turbine)
 			stat |= BROKEN
 
-
 #define COMPFRICTION 5e5
 #define COMPSTARTERLOAD 2800
 
@@ -71,6 +70,7 @@
 	if(!turbine)
 		stat |= BROKEN
 		return
+
 	rpm = 0.9* rpm + 0.1 * rpmtarget
 	var/datum/gas_mixture/environment = inturf.return_air()
 	var/transfer_moles = environment.total_moles()/10
@@ -80,7 +80,6 @@
 
 	rpm = max(0, rpm - (rpm*rpm)/COMPFRICTION)
 
-
 	if(starter && !(stat & NOPOWER))
 		use_power(2800)
 		if(rpm<1000)
@@ -88,8 +87,6 @@
 	else
 		if(rpm<1000)
 			rpmtarget = 0
-
-
 
 	if(rpm>50000)
 		overlays += image('icons/obj/pipes.dmi', "comp-o4", FLY_LAYER)
@@ -108,11 +105,9 @@
 	outturf = get_step(src, dir)
 
 	spawn(5)
-
 		compressor = locate() in get_step(src, get_dir(outturf, src))
 		if(!compressor)
 			stat |= BROKEN
-
 
 #define TURBPRES 9000000
 #define TURBGENQ 20000
@@ -154,7 +149,7 @@
 ///obj/machinery/power/turbine/interact(mob/user)
 /obj/machinery/power/turbine/turbine/interact(mob/user)
 
-	if ( (get_dist(src, user) > 1 ) || (stat & (NOPOWER|BROKEN)) && (!istype(user, /mob/living/silicon/ai)) )
+	if ((get_dist(src, user) > 1) || (stat & (NOPOWER|BROKEN)) && (!istype(user, /mob/living/silicon/ai)) )
 		user.machine = null
 		user << browse(null, "window=turbine")
 		return
@@ -211,14 +206,8 @@
 
 	return
 
-
-
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
 /obj/machinery/computer/turbine_computer/New()
 	..()
@@ -288,8 +277,6 @@
 	onclose(user, "computer")*/
 	ui_interact(user)
 	return
-
-
 
 /obj/machinery/computer/turbine_computer/Topic(href, href_list)
 	if(..())

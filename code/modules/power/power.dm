@@ -76,9 +76,8 @@
 		chan = power_channel
 	A.use_power(amount, chan)
 
-/obj/machinery/proc/power_change()		// called whenever the power settings of the containing area change
-										// by default, check equipment channel & set flag
-										// can override if needed
+// called whenever the power settings of the containing area change
+/obj/machinery/proc/power_change()	// by default, check equipment channel & set flag, can override if needed
 	if(powered(power_channel))
 		stat &= ~NOPOWER
 	else

@@ -18,10 +18,12 @@
 	<div class="itemContent">
 		{{:~link('Auto', 'refresh', {'cmode' : 1}, chargeMode ? 'selected' : null)}}{{:~link('Off', 'close', {'cmode' : 1}, chargeMode ? null : 'selected')}}
 		&nbsp;
-		{{if charging}}
+		{{if charging == 2}}
 			[<span class='good'>Charging</span>]
+		{{else charging == 1}}
+			[<span class='average'>Partially Charging</span>]
 		{{else}}
-			[<span class='average'>Not Charging</span>]
+			[<span class='bad'>Not Charging</span>]
 		{{/if}}
 	</div>
 </div>
@@ -36,7 +38,7 @@
 			{{:~link('MIN', null, {'input' : 'min'}, (chargeLevel > 0) ? null : 'disabled')}}
 			{{:~link('SET', null, {'input' : 'set'}, null)}}			
 			{{:~link('MAX', null, {'input' : 'max'}, (chargeLevel < chargeMax) ? null : 'disabled')}}
-			<div style="float: left; width: 80px; text-align: center;">&nbsp;{{:chargeLevel}} W&nbsp;</div>
+			<div style="float: left; width: 100px; text-align: center;">&nbsp;{{:chargeLevel}} W&nbsp;</div>
 		</div>
 	</div>
 </div>
@@ -49,10 +51,10 @@
 	<div class="itemContent">
 		{{:~link('Online', 'power', {'online' : 1}, outputOnline ? 'selected' : null)}}{{:~link('Offline', 'close', {'online' : 1}, outputOnline ? null : 'selected')}}
 		&nbsp;
-		{{if outputLoad > 0}}
+		{{if outputting}}
 			[<span class='good'>Outputting</span>]
 		{{else}}
-			[<span class='average'>Not Outputting</span>]
+			[<span class='bad'>Not Outputting</span>]
 		{{/if}}
 	</div>
 </div>
@@ -67,7 +69,7 @@
 			{{:~link('MIN', null, {'output' : 'min'}, (outputLevel > 0) ? null : 'disabled')}}
 			{{:~link('SET', null, {'output' : 'set'}, null)}}			
 			{{:~link('MAX', null, {'output' : 'max'}, (outputLevel < outputMax) ? null : 'disabled')}}
-			<div style="float: left; width: 80px; text-align: center;">&nbsp;{{:outputLevel}} W&nbsp;</div>			
+			<div style="float: left; width: 100px; text-align: center;">&nbsp;{{:outputLevel}} W&nbsp;</div>			
 		</div>
 	</div>
 </div>

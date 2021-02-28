@@ -172,9 +172,9 @@ Class Procs:
 		return 1
 	if(usr.restrained() || usr.lying || usr.stat)
 		return 1
-	if ( ! (istype(usr, /mob/living/carbon/human) || \
+	if (!(istype(usr, /mob/living/carbon/human) || \
 			istype(usr, /mob/living/silicon) || \
-			istype(usr, /mob/living/carbon/monkey) && ticker && ticker.mode.name == "monkey") )
+			istype(usr, /mob/living/carbon/monkey) && ticker && ticker.mode.name == "monkey"))
 		usr << "\red You don't have the dexterity to do this!"
 		return 1
 
@@ -191,10 +191,6 @@ Class Procs:
 			return 1
 
 	src.add_fingerprint(usr)
-
-	var/area/A = get_area(src)
-	//A.master.powerupdate = 1
-	A.powerupdate = 1
 
 	return 0
 
@@ -215,9 +211,9 @@ Class Procs:
 		return 1
 	if(user.lying || user.stat)
 		return 1
-	if ( ! (istype(usr, /mob/living/carbon/human) || \
+	if (!(istype(usr, /mob/living/carbon/human) || \
 			istype(usr, /mob/living/silicon) || \
-			istype(usr, /mob/living/carbon/monkey) && ticker && ticker.mode.name == "monkey") )
+			istype(usr, /mob/living/carbon/monkey) && ticker && ticker.mode.name == "monkey"))
 		usr << "\red You don't have the dexterity to do this!"
 		return 1
 /*
@@ -236,14 +232,9 @@ Class Procs:
 
 	src.add_fingerprint(user)
 
-	var/area/A = get_area(src)
-	//A.master.powerupdate = 1
-	A.powerupdate = 1
-
 	return 0
 
 /obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.
-	return
 	return 0
 
 /obj/machinery/proc/assign_uid()

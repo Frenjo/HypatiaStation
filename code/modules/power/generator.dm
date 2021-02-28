@@ -119,7 +119,12 @@
 	if(istype(W, /obj/item/weapon/wrench))
 		anchored = !anchored
 		user << "\blue You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."
+
 		use_power = anchored
+		if(anchored) // Powernet connection stuff.
+			connect_to_network()
+		else
+			disconnect_from_network()
 		reconnect()
 	else
 		..()

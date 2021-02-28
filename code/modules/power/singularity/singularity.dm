@@ -80,11 +80,9 @@ var/global/list/uneatable = list(
 	consume(A)
 	return
 
-
 /obj/machinery/singularity/Bumped(atom/A)
 	consume(A)
 	return
-
 
 /obj/machinery/singularity/process()
 	eat()
