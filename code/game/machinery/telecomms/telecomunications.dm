@@ -240,7 +240,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 			//if(env.temperature < (heat_amt+T0C))
 			if(env.temperature < new_temperature)
 
-				var/transfer_moles = 0.25 * env.total_moles()
+				var/transfer_moles = 0.25 * env.total_moles
 
 				var/datum/gas_mixture/removed = env.remove(transfer_moles)
 

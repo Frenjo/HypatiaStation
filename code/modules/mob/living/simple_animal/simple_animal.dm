@@ -144,45 +144,39 @@
 	var/atom/A = src.loc
 	if(isturf(A))
 		var/turf/T = A
-		var/areatemp = T.temperature
-		if( abs(areatemp - bodytemperature) > 40 )
-			var/diff = areatemp - bodytemperature
-			diff = diff / 5
-			//world << "changed from [bodytemperature] by [diff] to [bodytemperature + diff]"
-			bodytemperature += diff
 
-		if(istype(T,/turf/simulated))
-			var/turf/simulated/ST = T
-			if(ST.air)
-				var/tox = ST.air.toxins
-				var/oxy = ST.air.oxygen
-				var/n2  = ST.air.nitrogen
-				var/co2 = ST.air.carbon_dioxide
+		var/datum/gas_mixture/Environment = T.return_air()
 
-				if(min_oxy)
-					if(oxy < min_oxy)
-						atmos_suitable = 0
-				if(max_oxy)
-					if(oxy > max_oxy)
-						atmos_suitable = 0
-				if(min_tox)
-					if(tox < min_tox)
-						atmos_suitable = 0
-				if(max_tox)
-					if(tox > max_tox)
-						atmos_suitable = 0
-				if(min_n2)
-					if(n2 < min_n2)
-						atmos_suitable = 0
-				if(max_n2)
-					if(n2 > max_n2)
-						atmos_suitable = 0
-				if(min_co2)
-					if(co2 < min_co2)
-						atmos_suitable = 0
-				if(max_co2)
-					if(co2 > max_co2)
-						atmos_suitable = 0
+		if(Environment)
+			if(abs(Environment.temperature - bodytemperature) > 40)
+				var/diff = Environment.temperature - bodytemperature
+				diff = diff / 5
+				bodytemperature += diff
+
+			if(min_oxy)
+				if(Environment.gas["oxygen"] < min_oxy)
+					atmos_suitable = 0
+			if(max_oxy)
+				if(Environment.gas["oxygen"] > max_oxy)
+					atmos_suitable = 0
+			if(min_tox)
+				if(Environment.gas["plasma"] < min_tox)
+					atmos_suitable = 0
+			if(max_tox)
+				if(Environment.gas["plasma"] > max_tox)
+					atmos_suitable = 0
+			if(min_n2)
+				if(Environment.gas["nitrogen"] < min_n2)
+					atmos_suitable = 0
+			if(max_n2)
+				if(Environment.gas["nitrogen"] > max_n2)
+					atmos_suitable = 0
+			if(min_co2)
+				if(Environment.gas["carbon_dioxide"] < min_co2)
+					atmos_suitable = 0
+			if(max_co2)
+				if(Environment.gas["carbon_dioxide"] > max_co2)
+					atmos_suitable = 0
 
 	//Atmos effect
 	if(bodytemperature < minbodytemp)

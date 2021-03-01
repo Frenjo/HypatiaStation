@@ -301,31 +301,30 @@
 									switch(breathes)
 																		//These tanks we're sure of their contents
 										if("nitrogen") 							//So we're a bit more picky about them.
-											if(t.air_contents.nitrogen && !t.air_contents.oxygen)
-												contents.Add(t.air_contents.nitrogen)
+											if(t.air_contents.gas["nitrogen"] && !t.air_contents.gas["oxygen"])
+												contents.Add(t.air_contents.gas["nitrogen"])
 											else
 												contents.Add(0)
 
 										if ("oxygen")
-											if(t.air_contents.oxygen && !t.air_contents.toxins)
-												contents.Add(t.air_contents.oxygen)
+											if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["plasma"])
+												contents.Add(t.air_contents.gas["oxygen"])
 											else
 												contents.Add(0)
 
 										// No races breath this, but never know about downstream servers.
 										if ("carbon dioxide")
-											if(t.air_contents.carbon_dioxide && !t.air_contents.toxins)
-												contents.Add(t.air_contents.carbon_dioxide)
+											if(t.air_contents.gas["carbon_dioxide"] && !t.air_contents.gas["plasma"])
+												contents.Add(t.air_contents.gas["carbon_dioxide"])
 											else
 												contents.Add(0)
 
 										// Plasmapeople breath this.
 										if("plasma")
-											if(t.air_contents.toxins && !t.air_contents.oxygen)
-												contents.Add(t.air_contents.toxins)
+											if(t.air_contents.gas["plasma"] && !t.air_contents.gas["oxygen"])
+												contents.Add(t.air_contents.gas["plasma"])
 											else
 												contents.Add(0)
-
 								else
 									//no tank so we set contents to 0
 									contents.Add(0)

@@ -25,7 +25,9 @@
 	var/punch_damage = 0		 // Extra empty hand attack damage.
 	var/mutantrace               // Safeguard due to old code.
 
-	var/breath_type = "oxygen"   // Non-oxygen gas breathed, if any.
+	var/breath_type = "oxygen"   // Non-oxygen gas inhaled, if any.
+	var/exhale_type = "carbon_dioxide" // Non-carbon dioxide gas exhaled, if any.
+	var/poison_type = "plasma" // Main toxic gas, usually plasma.
 
 	var/cold_level_1 = 260  // Cold damage level 1 below this point.
 	var/cold_level_2 = 200  // Cold damage level 2 below this point.
@@ -164,7 +166,6 @@
 	flesh_color = "#808D11"
 
 /datum/species/vox/handle_post_spawn(var/mob/living/carbon/human/H)
-
 	var/datum/organ/external/affected = H.get_organ("head")
 
 	//To avoid duplicates.
@@ -211,7 +212,6 @@
 	flesh_color = "#907E4A"
 
 /datum/species/diona/handle_post_spawn(var/mob/living/carbon/human/H)
-
 	H.gender = NEUTER
 
 /datum/species/diona/handle_death(var/mob/living/carbon/human/H)
@@ -293,6 +293,7 @@
 	burn_mod = 1.5
 
 	breath_type = "plasma"
+	poison_type = "oxygen"
 
 	flags = IS_WHITELISTED | NO_SCAN | NO_BLOOD | NO_PAIN
 

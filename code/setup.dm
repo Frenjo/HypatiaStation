@@ -140,6 +140,11 @@
 #define T20C 293.15					// 20degC
 #define TCMB 2.7					// -270.3degC
 
+//XGM gas flags
+#define XGM_GAS_FUEL 1
+#define XGM_GAS_OXIDIZER 2
+#define XGM_GAS_CONTAMINANT 4
+
 //Used to be used by FEA
 //var/turf/space/Space_Tile = locate(/turf/space) // A space tile to reference when atmos wants to remove excess heat.
 
@@ -810,3 +815,6 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 	dview_mob.see_invisible = invis_flags; \
 	for(type in view(range, dview_mob))
 #define END_FOR_DVIEW dview_mob.loc = null
+
+// XGM stuff
+#define QUANTIZE(variable)		(round(variable,0.0001))

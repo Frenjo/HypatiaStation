@@ -362,32 +362,25 @@ update_flag
 	return 1
 
 /obj/machinery/portable_atmospherics/canister/toxins/New()
-
 	..()
 
-	src.air_contents.toxins = (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
-	air_contents.update_values()
+	src.air_contents.adjust_gas("plasma", (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature))
 
 	src.update_icon()
 	return 1
 
 /obj/machinery/portable_atmospherics/canister/oxygen/New()
-
 	..()
 
-	src.air_contents.oxygen = (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
-	air_contents.update_values()
+	src.air_contents.adjust_gas("oxygen", (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature))
+
 	src.update_icon()
 	return 1
 
 /obj/machinery/portable_atmospherics/canister/sleeping_agent/New()
-
 	..()
 
-	var/datum/gas/sleeping_agent/trace_gas = new
-	air_contents.trace_gases += trace_gas
-	trace_gas.moles = (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
-	air_contents.update_values()
+	air_contents.adjust_gas("sleeping_agent", (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature))
 
 	src.update_icon()
 	return 1
@@ -395,8 +388,9 @@ update_flag
 //Dirty way to fill room with gas. However it is a bit easier to do than creating some floor/engine/n2o -rastaf0
 /obj/machinery/portable_atmospherics/canister/sleeping_agent/roomfiller/New()
 	..()
-	var/datum/gas/sleeping_agent/trace_gas = air_contents.trace_gases[1]
-	trace_gas.moles = 9*4000
+
+	air_contents.gas["sleeping_agent"] = 9*4000
+
 	spawn(10)
 		var/turf/simulated/location = src.loc
 		if (istype(src.loc))
@@ -407,61 +401,46 @@ update_flag
 	return 1
 
 /obj/machinery/portable_atmospherics/canister/nitrogen/New()
-
 	..()
 
-	src.air_contents.nitrogen = (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
-	air_contents.update_values()
+	src.air_contents.adjust_gas("nitrogen", (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature))
 
 	src.update_icon()
 	return 1
 
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide/New()
-
 	..()
-	src.air_contents.carbon_dioxide = (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
-	air_contents.update_values()
+
+	src.air_contents.adjust_gas("carbon_dioxide", (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature))
 
 	src.update_icon()
 	return 1
 
 
 /obj/machinery/portable_atmospherics/canister/air/New()
-
 	..()
-	src.air_contents.oxygen = (O2STANDARD*src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
-	src.air_contents.nitrogen = (N2STANDARD*src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
-	air_contents.update_values()
+
+	src.air_contents.adjust_multi("oxygen", (O2STANDARD*src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature), "nitrogen", (N2STANDARD*src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature))
 
 	src.update_icon()
 	return 1
 
 // Added this because I'm curious. -Frenjo
 /obj/machinery/portable_atmospherics/canister/oxygen_agent_b/New()
-
 	..()
 
-	/*var/datum/gas/oxygen_agent_b/trace_gas = new
-	air_contents.trace_gases += trace_gas
-	trace_gas.moles = (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
-	air_contents.update_values()*/
-
-	// Implementing this to what I THINK it should've been, which is a 50/50 plasma/oxygen mix, premade. -Frenjo
-	src.air_contents.oxygen = ((src.maximum_pressure*filled)/0.5)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
-	src.air_contents.toxins = ((src.maximum_pressure*filled)/0.5)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
-	air_contents.update_values()
+	air_contents.adjust_gas("oxygen_agent_b", (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature))
 
 	src.update_icon()
 	return 1
 
 // Added this because of updated atmos stuff. -Frenjo
 /obj/machinery/portable_atmospherics/canister/oxygen_toxins/New()
-
 	..()
+
 	// This has a 75/25 plasma/oxygen mixture, used in the atmospheric tank. -Frenjo
-	src.air_contents.oxygen = ((src.maximum_pressure*filled)/0.25)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
-	src.air_contents.toxins = ((src.maximum_pressure*filled)/0.75)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
-	air_contents.update_values()
+	src.air_contents.adjust_gas("oxygen", (src.maximum_pressure*filled/0.25)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature))
+	src.air_contents.adjust_gas("plasma", (src.maximum_pressure*filled/0.75)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature))
 
 	src.update_icon()
 	return 1

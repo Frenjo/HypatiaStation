@@ -87,7 +87,6 @@
 	var/screen = AALARM_SCREEN_MAIN
 	var/area_uid
 	var/area/alarm_area
-	var/danger_level = 0
 	var/buildstage = 2 //2 is built, 1 is building, 0 is frame.
 
 	var/target_temperature = T0C+20
@@ -97,6 +96,13 @@
 
 	var/list/TLV = list()
 
+	var/danger_level = 0
+	var/pressure_dangerlevel = 0
+	var/oxygen_dangerlevel = 0
+	var/co2_dangerlevel = 0
+	var/plasma_dangerlevel = 0
+	var/temperature_dangerlevel = 0
+	var/other_dangerlevel = 0
 
 /obj/machinery/alarm/server/New()
 	..()
@@ -182,30 +188,32 @@
 		var/datum/gas_mixture/gas
 		gas = location.remove_air(0.25*environment.total_moles)
 		if(gas)
-			if (gas.temperature <= target_temperature)	//gas heating
-				var/energy_used = min( gas.get_thermal_energy_change(target_temperature) , MAX_ENERGY_CHANGE)
+			var/heat_capacity = gas.heat_capacity()
+			if(heat_capacity)
+				if (gas.temperature <= target_temperature)	//gas heating
+					var/energy_used = min(gas.get_thermal_energy_change(target_temperature) , MAX_ENERGY_CHANGE)
 
-				gas.add_thermal_energy(energy_used)
-				use_power(energy_used, ENVIRON)
-			else	//gas cooling
-				var/heat_transfer = min(abs(gas.get_thermal_energy_change(target_temperature)), MAX_ENERGY_CHANGE)
+					gas.add_thermal_energy(energy_used)
+					use_power(energy_used, ENVIRON)
+				else	//gas cooling
+					var/heat_transfer = min(abs(gas.get_thermal_energy_change(target_temperature)), MAX_ENERGY_CHANGE)
 
-				//Assume the heat is being pumped into the hull which is fixed at 20 C
-				//none of this is really proper thermodynamics but whatever
-				var/cop = gas.temperature/T20C	//coefficient of performance -> power used = heat_transfer/cop
+					//Assume the heat is being pumped into the hull which is fixed at 20 C
+					//none of this is really proper thermodynamics but whatever
+					var/cop = gas.temperature/T20C	//coefficient of performance -> power used = heat_transfer/cop
 
-				heat_transfer = min(heat_transfer, cop * MAX_ENERGY_CHANGE)	//this ensures that we don't use more than MAX_ENERGY_CHANGE amount of power - the machine can only do so much cooling
+					heat_transfer = min(heat_transfer, cop * MAX_ENERGY_CHANGE)	//this ensures that we don't use more than MAX_ENERGY_CHANGE amount of power - the machine can only do so much cooling
 
-				heat_transfer = -gas.add_thermal_energy(-heat_transfer)	//get the actual heat transfer
+					heat_transfer = -gas.add_thermal_energy(-heat_transfer)	//get the actual heat transfer
 
-				use_power(heat_transfer / cop, ENVIRON)
+					use_power(heat_transfer / cop, ENVIRON)
 
-			environment.merge(gas)
+				environment.merge(gas)
 
-			if(abs(environment.temperature - target_temperature) <= 0.5)
-				regulating_temperature = 0
-				visible_message("\The [src] clicks quietly as it stops [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
-				"You hear a click as a faint electronic humming stops.")
+				if(abs(environment.temperature - target_temperature) <= 0.5)
+					regulating_temperature = 0
+					visible_message("\The [src] clicks quietly as it stops [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
+					"You hear a click as a faint electronic humming stops.")
 
 	var/old_level = danger_level
 	danger_level = overall_danger_level()
@@ -242,23 +250,23 @@
 
 	var/partial_pressure = R_IDEAL_GAS_EQUATION*environment.temperature/environment.volume
 	var/environment_pressure = environment.return_pressure()
-	var/other_moles = 0.0
-	for(var/datum/gas/G in environment.trace_gases)
-		other_moles+=G.moles
+	//var/other_moles = 0.0
+	//for(var/datum/gas/G in environment.trace_gases)
+	//	other_moles+=G.moles
 
 	var/pressure_dangerlevel = get_danger_level(environment_pressure, TLV["pressure"])
-	var/oxygen_dangerlevel = get_danger_level(environment.oxygen*partial_pressure, TLV["oxygen"])
-	var/co2_dangerlevel = get_danger_level(environment.carbon_dioxide*partial_pressure, TLV["carbon dioxide"])
-	var/plasma_dangerlevel = get_danger_level(environment.toxins*partial_pressure, TLV["plasma"])
+	var/oxygen_dangerlevel = get_danger_level(environment.gas["oxygen"]*partial_pressure, TLV["oxygen"])
+	var/co2_dangerlevel = get_danger_level(environment.gas["carbon_dioxide"]*partial_pressure, TLV["carbon dioxide"])
+	var/plasma_dangerlevel = get_danger_level(environment.gas["plasma"]*partial_pressure, TLV["plasma"])
 	var/temperature_dangerlevel = get_danger_level(environment.temperature, TLV["temperature"])
-	var/other_dangerlevel = get_danger_level(other_moles*partial_pressure, TLV["other"])
+	//var/other_dangerlevel = get_danger_level(other_moles*partial_pressure, TLV["other"])
 
 	return max(
 		pressure_dangerlevel,
 		oxygen_dangerlevel,
 		co2_dangerlevel,
 		plasma_dangerlevel,
-		other_dangerlevel,
+		//other_dangerlevel,
 		temperature_dangerlevel
 		)
 
@@ -702,7 +710,7 @@
 /obj/machinery/alarm/proc/return_status()
 	var/turf/location = get_turf(src)
 	var/datum/gas_mixture/environment = location.return_air()
-	var/total = environment.oxygen + environment.carbon_dioxide + environment.toxins + environment.nitrogen
+	var/total = environment.total_moles
 	var/output = "<b>Air Status:</b><br>"
 
 	if(total == 0)
@@ -724,22 +732,22 @@
 	var/pressure_dangerlevel = get_danger_level(environment_pressure, current_settings)
 
 	current_settings = TLV["oxygen"]
-	var/oxygen_dangerlevel = get_danger_level(environment.oxygen*partial_pressure, current_settings)
-	var/oxygen_percent = round(environment.oxygen / total * 100, 2)
+	var/oxygen_dangerlevel = get_danger_level(environment.gas["oxygen"]*partial_pressure, current_settings)
+	var/oxygen_percent = round(environment.gas["oxygen"] / total * 100, 2)
 
 	current_settings = TLV["carbon dioxide"]
-	var/co2_dangerlevel = get_danger_level(environment.carbon_dioxide*partial_pressure, current_settings)
-	var/co2_percent = round(environment.carbon_dioxide / total * 100, 2)
+	var/co2_dangerlevel = get_danger_level(environment.gas["carbon_dioxide"]*partial_pressure, current_settings)
+	var/co2_percent = round(environment.gas["carbon_dioxide"] / total * 100, 2)
 
 	current_settings = TLV["plasma"]
-	var/plasma_dangerlevel = get_danger_level(environment.toxins*partial_pressure, current_settings)
-	var/plasma_percent = round(environment.toxins / total * 100, 2)
+	var/plasma_dangerlevel = get_danger_level(environment.gas["plasma"]*partial_pressure, current_settings)
+	var/plasma_percent = round(environment.gas["plasma"] / total * 100, 2)
 
-	current_settings = TLV["other"]
-	var/other_moles = 0.0
-	for(var/datum/gas/G in environment.trace_gases)
-		other_moles+=G.moles
-	var/other_dangerlevel = get_danger_level(other_moles*partial_pressure, current_settings)
+	//current_settings = TLV["other"]
+	//var/other_moles = 0.0
+	//for(var/datum/gas/G in environment.trace_gases)
+	//	other_moles+=G.moles
+	//var/other_dangerlevel = get_danger_level(other_moles*partial_pressure, current_settings)
 
 	current_settings = TLV["temperature"]
 	var/temperature_dangerlevel = get_danger_level(environment.temperature, current_settings)
@@ -750,10 +758,10 @@ Oxygen: <span class='dl[oxygen_dangerlevel]'>[oxygen_percent]</span>%<br>
 Carbon dioxide: <span class='dl[co2_dangerlevel]'>[co2_percent]</span>%<br>
 Toxins: <span class='dl[plasma_dangerlevel]'>[plasma_percent]</span>%<br>
 "}
-	if (other_dangerlevel==2)
-		output += "Notice: <span class='dl2'>High Concentration of Unknown Particles Detected</span><br>"
-	else if (other_dangerlevel==1)
-		output += "Notice: <span class='dl1'>Low Concentration of Unknown Particles Detected</span><br>"
+	//if (other_dangerlevel==2)
+	//	output += "Notice: <span class='dl2'>High Concentration of Unknown Particles Detected</span><br>"
+	//else if (other_dangerlevel==1)
+	//	output += "Notice: <span class='dl1'>Low Concentration of Unknown Particles Detected</span><br>"
 
 	output += "Temperature: <span class='dl[temperature_dangerlevel]'>[environment.temperature]</span>K ([round(environment.temperature - T0C, 0.1)]C)<br>"
 

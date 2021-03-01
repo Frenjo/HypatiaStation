@@ -98,7 +98,7 @@
 						breath_moles = (ONE_ATMOSPHERE*BREATH_VOLUME/R_IDEAL_GAS_EQUATION*environment.temperature)
 					else*/
 						// Not enough air around, take a percentage of what's there to model this properly
-					breath_moles = environment.total_moles()*BREATH_PERCENTAGE
+					breath_moles = environment.total_moles*BREATH_PERCENTAGE
 
 					breath = loc.remove_air(breath_moles)
 
@@ -147,24 +147,24 @@
 			return 0
 
 		var/toxins_used = 0
-		var/breath_pressure = (breath.total_moles()*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
+		var/breath_pressure = (breath.total_moles * R_IDEAL_GAS_EQUATION * breath.temperature) / BREATH_VOLUME
 
 		//Partial pressure of the toxins in our breath
-		var/Toxins_pp = (breath.toxins/breath.total_moles())*breath_pressure
+		var/Toxins_pp = (breath.gas["plasma"] / breath.total_moles) * breath_pressure
 
 		if(Toxins_pp) // Detect toxins in air
 
-			adjustToxLoss(breath.toxins*250)
+			adjustToxLoss(breath.gas["plasma"] * 250)
 			toxins_alert = max(toxins_alert, 1)
 
-			toxins_used = breath.toxins
+			toxins_used = breath.gas["plasma"]
 
 		else
 			toxins_alert = 0
 
 		//Breathe in toxins and out oxygen
-		breath.toxins -= toxins_used
-		breath.oxygen += toxins_used
+		breath.adjust_gas("plasma", -toxins_used)
+		breath.adjust_gas("oxygen", toxins_used)
 
 		if(breath.temperature > (T0C+66) && !(COLD_RESISTANCE in mutations)) // Hot air hurts :(
 			if(prob(20))

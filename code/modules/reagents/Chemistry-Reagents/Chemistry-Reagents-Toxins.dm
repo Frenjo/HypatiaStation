@@ -83,21 +83,12 @@
 			egg.Hatch()*/
 	if((!O) || (!volume))	return 0
 	var/turf/the_turf = get_turf(O)
-	var/datum/gas_mixture/napalm = new
-	var/datum/gas/volatile_fuel/fuel = new
-	fuel.moles = 5
-	napalm.trace_gases += fuel
-	the_turf.assume_air(napalm)
+	the_turf.assume_gas("volatile_fuel", volume, T20C)
 
 /datum/reagent/plasma/reaction_turf(var/turf/T, var/volume)
 	del(src)
-	var/datum/gas_mixture/napalm = new
-	var/datum/gas/volatile_fuel/fuel = new
-	fuel.moles = 5
-	napalm.trace_gases += fuel
-	T.assume_air(napalm)
+	T.assume_gas("volatile_fuel", volume, T20C)
 	return
-
 
 /datum/reagent/toxin/lexorin
 	name = "Lexorin"

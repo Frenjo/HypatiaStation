@@ -18,7 +18,6 @@
 	name = "Pylon"
 	desc = "A floating crystal that hums with an unearthly energy"
 	icon_state = "pylon"
-	//luminosity = 5
 	light_range = 5
 
 
@@ -26,7 +25,7 @@
 	name = "Desk"
 	desc = "A desk covered in arcane manuscripts and tomes in unknown languages. Looking at the text makes your skin crawl"
 	icon_state = "tomealtar"
-//	luminosity = 5
+	light_range = 5
 
 //sprites for this no longer exist	-Pete
 //(they were stolen from another game anyway)
@@ -52,7 +51,7 @@
 		return
 	return
 
-/obj/effect/gateway/HasEntered(AM as mob|obj)
+/obj/effect/gateway/Crossed(AM as mob|obj)
 	spawn(0)
 		return
 	return
