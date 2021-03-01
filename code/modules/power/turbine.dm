@@ -1,5 +1,4 @@
-// Moved these around a bit to put them under /power/turbine/. -Frenjo
-///obj/machinery/power/compressor
+// Moved these around a bit to put them under /power/turbine. -Frenjo
 /obj/machinery/power/turbine/compressor
 	name = "compressor"
 	desc = "The compressor stage of a gas turbine generator."
@@ -7,7 +6,6 @@
 	icon_state = "compressor"
 	anchored = 1
 	density = 1
-	//var/obj/machinery/power/turbine/turbine
 	var/obj/machinery/power/turbine/turbine/turbine
 	var/datum/gas_mixture/gas_contained
 	var/turf/simulated/inturf
@@ -17,7 +15,6 @@
 	var/capacity = 1e6
 	var/comp_id = 0
 
-///obj/machinery/power/turbine
 /obj/machinery/power/turbine/turbine
 	name = "gas turbine generator"
 	desc = "A gas turbine used for backup power generation."
@@ -25,10 +22,9 @@
 	icon_state = "turbine"
 	anchored = 1
 	density = 1
-	//var/obj/machinery/compressor/compressor
 	var/obj/machinery/power/turbine/compressor/compressor
 	var/turf/simulated/outturf
-	var/lastgen
+	var/lastgen = 0
 
 /obj/machinery/computer/turbine_computer
 	name = "Gas turbine control computer"
@@ -37,15 +33,12 @@
 	icon_state = "airtunnel0e"
 	anchored = 1
 	density = 1
-	//var/obj/machinery/compressor/compressor
 	var/obj/machinery/power/turbine/compressor/compressor
 	var/list/obj/machinery/door/poddoor/doors
 	var/id = 0
 	var/door_status = 0
 
 // the inlet stage of the gas turbine electricity generator
-
-///obj/machinery/compressor/New()
 /obj/machinery/power/turbine/compressor/New()
 	..()
 
@@ -60,7 +53,6 @@
 #define COMPFRICTION 5e5
 #define COMPSTARTERLOAD 2800
 
-///obj/machinery/compressor/process()
 /obj/machinery/power/turbine/compressor/process()
 	if(!starter)
 		return
@@ -74,7 +66,6 @@
 	rpm = 0.9* rpm + 0.1 * rpmtarget
 	var/datum/gas_mixture/environment = inturf.return_air()
 	var/transfer_moles = environment.total_moles()/10
-	//var/transfer_moles = rpm/10000*capacity
 	var/datum/gas_mixture/removed = inturf.remove_air(transfer_moles)
 	gas_contained.merge(removed)
 
@@ -98,7 +89,6 @@
 		overlays += image('icons/obj/pipes.dmi', "comp-o1", FLY_LAYER)
 	 //TODO: DEFERRED
 
-///obj/machinery/power/turbine/New()
 /obj/machinery/power/turbine/turbine/New()
 	..()
 
@@ -113,7 +103,6 @@
 #define TURBGENQ 20000
 #define TURBGENG 0.8
 
-///obj/machinery/power/turbine/process()
 /obj/machinery/power/turbine/turbine/process()
 	if(!compressor.starter)
 		return
@@ -123,7 +112,10 @@
 	if(!compressor)
 		stat |= BROKEN
 		return
-	lastgen = ((compressor.rpm / TURBGENQ)**TURBGENG) *TURBGENQ
+
+	lastgen = ((compressor.rpm / TURBGENQ)**TURBGENG) * TURBGENQ
+	if(!lastgen)
+		lastgen = 0
 
 	add_avail(lastgen)
 	var/newrpm = ((compressor.gas_contained.temperature) * compressor.gas_contained.total_moles())/4
@@ -146,10 +138,8 @@
 			src.interact(M)
 	AutoUpdateAI(src)
 
-///obj/machinery/power/turbine/interact(mob/user)
 /obj/machinery/power/turbine/turbine/interact(mob/user)
-
-	if ((get_dist(src, user) > 1) || (stat & (NOPOWER|BROKEN)) && (!istype(user, /mob/living/silicon/ai)) )
+	if((get_dist(src, user) > 1) || (stat & (NOPOWER|BROKEN)) && (!istype(user, /mob/living/silicon/ai)) )
 		user.machine = null
 		user << browse(null, "window=turbine")
 		return
@@ -172,19 +162,18 @@
 
 	return
 
-///obj/machinery/power/turbine/Topic(href, href_list)
 /obj/machinery/power/turbine/turbine/Topic(href, href_list)
 	..()
 	if(stat & BROKEN)
 		return
-	if (usr.stat || usr.restrained() )
+	if (usr.stat || usr.restrained())
 		return
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		if(!istype(usr, /mob/living/silicon/ai))
 			usr << "\red You don't have the dexterity to do this!"
 			return
 
-	if (( usr.machine==src && ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
+	if ((usr.machine==src && ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
 
 
 		if( href_list["close"] )
@@ -256,25 +245,6 @@
 
 /obj/machinery/computer/turbine_computer/attack_hand(var/mob/user as mob)
 	user.machine = src
-	// Commented this out due to NanoUI port. -Frenjo
-	/*var/dat
-	if(src.compressor)
-		dat += {"<BR><B>Gas turbine remote control system</B><HR>
-		\nTurbine status: [ src.compressor.starter ? "<A href='?src=\ref[src];str=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='?src=\ref[src];str=1'>On</A>"]
-		\n<BR>
-		\nTurbine speed: [src.compressor.rpm]rpm<BR>
-		\nPower currently being generated: [src.compressor.turbine.lastgen]W<BR>
-		\nInternal gas temperature: [src.compressor.gas_contained.temperature]K<BR>
-		\nVent doors: [ src.door_status ? "<A href='?src=\ref[src];doors=1'>Closed</A> <B>Open</B>" : "<B>Closed</B> <A href='?src=\ref[src];doors=1'>Open</A>"]
-		\n</PRE><HR><A href='?src=\ref[src];view=1'>View</A>
-		\n</PRE><HR><A href='?src=\ref[src];close=1'>Close</A>
-		\n<BR>
-		\n"}
-	else
-		dat += "\red<B>No compatible attached compressor found."
-
-	user << browse(dat, "window=computer;size=400x500")
-	onclose(user, "computer")*/
 	ui_interact(user)
 	return
 
@@ -283,26 +253,6 @@
 		return
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
 		usr.machine = src
-
-
-		/*if( href_list["view"] )
-			usr.client.eye = src.compressor
-		else if( href_list["str"] )
-			src.compressor.starter = !src.compressor.starter
-		else if (href_list["doors"])
-			for(var/obj/machinery/door/poddoor/D in src.doors)
-				if (door_status == 0)
-					spawn( 0 )
-						D.open()
-						door_status = 1
-				else
-					spawn( 0 )
-						D.close()
-						door_status = 0
-		else if( href_list["close"] )
-			usr << browse(null, "window=computer")
-			usr.machine = null
-			return*/
 
 		// Edited this to reflect NanoUI port. -Frenjo
 		switch(href_list["action"])
@@ -324,26 +274,23 @@
 					door_status = 0
 
 		src.add_fingerprint(usr)
-	src.updateDialog() // Added this because it seems broken. -Frenjo
-	src.updateUsrDialog()
+	src.updateDialog()
 	return
 
 /obj/machinery/computer/turbine_computer/process()
 	src.updateDialog()
-	src.updateUsrDialog() // Added this because it seems broken. -Frenjo
 	return
 
 // Porting this to NanoUI, it looks way better honestly. -Frenjo
 /obj/machinery/computer/turbine_computer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
-
 	if(stat & BROKEN)
 		return
 
 	var/data[0]
 	data["status"] = src.compressor.starter
-	data["speed"] = src.compressor.rpm
-	data["power"] = src.compressor.turbine.lastgen
-	data["temp"] = src.compressor.gas_contained.temperature
+	data["speed"] = round(src.compressor.rpm)
+	data["power"] = round(src.compressor.turbine.lastgen)
+	data["temp"] = round(src.compressor.gas_contained.temperature)
 	data["doors"] = src.door_status
 
 	// Ported most of this by studying SMES code. -Frenjo

@@ -3,7 +3,7 @@
 
 /datum/controller/process/nanoui/setup()
 	name = "nanoui"
-	schedule_interval = 20 // every 2 seconds
+	schedule_interval = 5 // every 0.5 seconds
 	updateQueueInstance = new
 
 /datum/controller/process/nanoui/doWork()

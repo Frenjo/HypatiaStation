@@ -1,41 +1,15 @@
 <!-- 
 Title: Volumetric Gas Pump UI
 Written by Frenjo, 03/11/2019.
+Rewritten by Frenjo, 01/03/2021.
  -->
-<h3>Status</h3>
+<h3>Status/Settings</h3>
 <div class="item">
 	<div class="itemLabel">
 		Power Status:
 	</div>
 	<div class="itemContent">
-		{{if on}}
-			[<span class='good'>On</span>]
-		{{else}}
-			[<span class='average'>Off</span>]
-		{{/if}}
-	</div>
-</div>
-
-<div class="item">
-	<div class="itemLabel">
-		Current Output Flow:
-	</div>
-	<div class="itemContent">
-		{{:transfer_rate}}l/s
-	</div>
-</div>
-
-<h3>Settings</h3>
-<div class="item">
-	<div class="itemLabel">
-		Power Switch:
-	</div>
-	<div class="itemContent">
-		{{if on}}
-			{{:~link('Off', 'close', {'power' : 'off'})}}
-		{{else}}
-			{{:~link('On', 'power', {'power' : 'on'})}}
-		{{/if}}
+		{{:~link('On', 'power', {'power' : 'on'}, on ? 'selected' : null)}}{{:~link('Off', 'close', {'power' : 'off'}, on ? null : 'selected')}}
 	</div>
 </div>
 
@@ -44,6 +18,12 @@ Written by Frenjo, 03/11/2019.
 		Desirable Output Flow:
 	</div>
 	<div class="itemContent">
-		{{:~link('Change', null, {'pressure' : 'set_transfer_rate'}, null)}}
+		{{:~displayBar(target_transfer_rate, 0, max_transfer_rate)}}
+		<div style="clear: both; padding-top: 4px;">
+			{{:~link('MIN', null, {'set_press' : 'min'}, (target_transfer_rate > 0) ? null : 'disabled')}}
+			{{:~link('SET', null, {'set_press' : 'set'}, null)}}			
+			{{:~link('MAX', null, {'set_press' : 'max'}, (target_transfer_rate < max_transfer_rate) ? null : 'disabled')}}
+			<div style="float: left; width: 80px; text-align: center;">&nbsp;{{:target_transfer_rate}} kPa&nbsp;</div>
+		</div>
 	</div>
 </div>

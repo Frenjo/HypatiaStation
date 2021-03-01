@@ -71,6 +71,7 @@
 	var/lastused_equip = 0
 	var/lastused_environ = 0
 	var/lastused_total = 0
+	var/lastused_charging = 0
 	var/main_status = 0
 	var/wiresexposed = 0
 	powernet = 0		// set so that APCs aren't found as powernet nodes //Hackish, Horrible, was like this before I changed it :(
@@ -741,6 +742,7 @@
 		"chargeMode" = chargemode,
 		"chargingStatus" = charging,
 		"totalLoad" = round(lastused_total),
+		"totalCharging" = round(lastused_charging),
 		"coverLocked" = coverlocked,
 		"malfStatus" = get_malf_status(user),
 
@@ -1146,6 +1148,7 @@
 				autoflag = 0
 
 		// now trickle-charge the cell
+		lastused_charging = 0 // Clear the variable for new use.
 		if(src.attempt_charging())
 			if(excess > 0)		// check to make sure we have enough to charge
 				// Max charge is capped to % per second constant
@@ -1153,6 +1156,9 @@
 
 				ch = draw_power(ch/CELLRATE) // Removes the power we're taking from the grid
 				cell.give(ch*CELLRATE) // actually recharge the cell
+
+				lastused_charging = ch
+				lastused_total += ch // Sensors need this to stop reporting APC charging as "Other" load
 			else
 				charging = 0		// stop charging
 				chargecount = 0
@@ -1198,7 +1204,6 @@
 
 // val 0=off, 1=off(auto) 2=on 3=on(auto)
 // on 0=off, 1=on, 2=autooff
-
 /obj/machinery/power/apc/proc/autoset(var/val, var/on)
 	if(on==0)
 		if(val==2)			// if on, return off

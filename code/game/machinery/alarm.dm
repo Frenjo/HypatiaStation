@@ -134,8 +134,6 @@
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
-	//if (alarm_area.master)
-		//alarm_area = alarm_area.master
 	area_uid = alarm_area.uid
 	if (name == "alarm")
 		name = "[alarm_area.name] Air Alarm"
@@ -184,18 +182,6 @@
 		var/datum/gas_mixture/gas
 		gas = location.remove_air(0.25*environment.total_moles)
 		if(gas)
-			/*var/heat_capacity = gas.heat_capacity()
-			var/energy_used = min( abs( heat_capacity*(gas.temperature - target_temperature) ), MAX_ENERGY_CHANGE)
-
-			//Use power.  Assuming that each power unit represents 1000 watts....
-			use_power(energy_used/1000, ENVIRON)
-
-			//We need to cool ourselves.
-			if(environment.temperature > target_temperature)
-				gas.temperature -= energy_used/heat_capacity
-			else
-				gas.temperature += energy_used/heat_capacity
-			*/
 			if (gas.temperature <= target_temperature)	//gas heating
 				var/energy_used = min( gas.get_thermal_energy_change(target_temperature) , MAX_ENERGY_CHANGE)
 
@@ -206,7 +192,6 @@
 
 				//Assume the heat is being pumped into the hull which is fixed at 20 C
 				//none of this is really proper thermodynamics but whatever
-
 				var/cop = gas.temperature/T20C	//coefficient of performance -> power used = heat_transfer/cop
 
 				heat_transfer = min(heat_transfer, cop * MAX_ENERGY_CHANGE)	//this ensures that we don't use more than MAX_ENERGY_CHANGE amount of power - the machine can only do so much cooling
@@ -282,11 +267,6 @@
 
 
 /obj/machinery/alarm/proc/elect_master()
-	//for (var/area/A in alarm_area.related)
-	//	for (var/obj/machinery/alarm/AA in A)
-	//		if (!(AA.stat & (NOPOWER|BROKEN)))
-	//			alarm_area.master_air_alarm = AA
-	//			return 1
 	for (var/obj/machinery/alarm/AA in alarm_area)
 		if (!(AA.stat & (NOPOWER|BROKEN)))
 			alarm_area.master_air_alarm = AA
@@ -427,7 +407,6 @@
 	if (alarm_area.atmosalert(new_danger_level))
 		post_alert(new_danger_level)
 
-	//for (var/area/A in alarm_area.related)
 	for(var/area/A in alarm_area)
 		for (var/obj/machinery/alarm/AA in A)
 			if ( !(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted && AA.danger_level != new_danger_level)
@@ -462,11 +441,6 @@
 
 /obj/machinery/alarm/proc/refresh_danger_level()
 	var/level = 0
-	//for (var/area/A in alarm_area.related)
-	//	for (var/obj/machinery/alarm/AA in A)
-	//		if ( !(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
-	//			if (AA.danger_level > level)
-	//				level = AA.danger_level
 	for (var/obj/machinery/alarm/AA in alarm_area)
 		if ( !(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
 			if (AA.danger_level > level)
@@ -475,9 +449,6 @@
 
 /obj/machinery/alarm/proc/air_doors_close(manual)
 	var/area/A = get_area(src)
-	//if(!A.master.air_doors_activated)
-	//	A.master.air_doors_activated = 1
-	//	for(var/obj/machinery/door/E in A.master.all_doors)
 	if(!A.air_doors_activated)
 		A.air_doors_activated = 1
 		for(var/obj/machinery/door/firedoor/E in A.all_doors)
@@ -514,9 +485,6 @@
 
 /obj/machinery/alarm/proc/air_doors_open(manual)
 	var/area/A = get_area(loc)
-	//if(A.master.air_doors_activated)
-	//	A.master.air_doors_activated = 0
-	//	for(var/obj/machinery/door/E in A.master.all_doors)
 	if(A.air_doors_activated)
 		A.air_doors_activated = 0
 		for(var/obj/machinery/door/firedoor/E in A.all_doors)

@@ -1,27 +1,15 @@
 <!-- 
 Title: Turbine Control Computer UI
 Written by Frenjo, 04/11/2019.
+Rewritten by Frenjo, 01/03/2021.
  -->
-<h3>Status</h3>
-<div class="item">
-	<div class="itemLabel">
-		Turbine Status:
-	</div>
-	<div class="itemContent">
-		{{if status}}
-			[<span class='good'>On</span>]
-		{{else}}
-			[<span class='average'>Off</span>]
-		{{/if}}
-	</div>
-</div>
-
+<h3>Status/Settings</h3>
 <div class="item">
 	<div class="itemLabel">
 		Turbine Speed:
 	</div>
 	<div class="itemContent">
-		{{:speed}}rpm
+		{{:speed}}RPM
 	</div>
 </div>
 
@@ -45,27 +33,14 @@ Written by Frenjo, 04/11/2019.
 
 <div class="item">
 	<div class="itemLabel">
-		Vent Doors:
-	</div>
-	<div class="itemContent">
-		{{if doors}}
-			[<span class='good'>Opened</span>]
-		{{else}}
-			[<span class='average'>Closed</span>]
-		{{/if}}
-	</div>
-</div>
-
-<h3>Settings</h3>
-<div class="item">
-	<div class="itemLabel">
 		Turbine Control:
 	</div>
 	<div class="itemContent">
-		{{if status}}
-			{{:~link('Off', 'close', {'action' : 'stop'})}}
+		{{:~link('On', 'power', {'action' : 'strt'}, status ? 'selected' : null)}}{{:~link('Offline', 'close', {'action' : 'stop'}, status ? null : 'selected')}}
+		{{if power > 0}}
+			[<span class='good'>Generating</span>]
 		{{else}}
-			{{:~link('On', 'power', {'action' : 'strt'})}}
+			[<span class='bad'>Not Generating</span>]
 		{{/if}}
 	</div>
 </div>
@@ -75,11 +50,7 @@ Written by Frenjo, 04/11/2019.
 		Vent Control:
 	</div>
 	<div class="itemContent">
-		{{if doors}}
-			{{:~link('Close', null, {'action' : 'doors_close'})}}
-		{{else}}
-			{{:~link('Open', null, {'action' : 'doors_open'})}}
-		{{/if}}
+		{{:~link('Open', null, {'action' : 'doors_open'}, doors ? 'selected' : null)}}{{:~link('Close', null, {'action' : 'doors_close'}, doors ? null : 'selected')}}
 	</div>
 </div>
 

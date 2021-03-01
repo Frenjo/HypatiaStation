@@ -2,20 +2,7 @@
 Title: Zero-Point Laser Control Computer UI
 Written by Frenjo, 05/11/2019.
  -->
-<h3>Status</h3>
-<div class="item">
-	<div class="itemLabel">
-		Laser Status:
-	</div>
-	<div class="itemContent">
-		{{if laser_status}}
-			[<span class='good'>Online</span>]
-		{{else}}
-			[<span class='average'>Offline</span>]
-		{{/if}}
-	</div>
-</div>
-
+<h3>Status/Settings</h3>
 <div class="item">
 	<div class="itemLabel">
 		Laser Energy:
@@ -43,17 +30,12 @@ Written by Frenjo, 05/11/2019.
 	</div>
 </div>
 
-<h3>Settings</h3>
 <div class="item">
 	<div class="itemLabel">
 		Power Switch:
 	</div>
 	<div class="itemContent">
-		{{if laser_status}}
-			{{:~link('Off', 'close', {'power' : 'offline'})}}
-		{{else}}
-			{{:~link('On', 'power', {'power' : 'online'})}}
-		{{/if}}
+		{{:~link('On', 'power', {'power' : 'online'}, laser_status ? 'selected' : null)}}{{:~link('Off', 'close', {'power' : 'offline'}, laser_status ? null : 'selected')}}
 	</div>
 </div>
 

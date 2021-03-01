@@ -135,7 +135,11 @@
 			Total Load:
 		</div>
 		<div class="itemContent" style="width: 70px; text-align: right">
-			{{:totalLoad}} W
+			{{if totalCharging}}
+				{{:totalLoad}}W (+ {{:totalCharging}}W Charging)
+			{{else}}
+				{{:totalLoad}}W
+			{{/if}}
 		</div>
 	</div>
 

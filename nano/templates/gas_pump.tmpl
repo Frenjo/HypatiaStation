@@ -1,41 +1,15 @@
 <!-- 
 Title: Gas Pump UI
 Written by Frenjo, 03/11/2019.
+Rewritten by Frenjo, 01/03/2021.
  -->
-<h3>Status</h3>
+<h3>Status/Settings</h3>
 <div class="item">
 	<div class="itemLabel">
 		Power Status:
 	</div>
 	<div class="itemContent">
-		{{if on}}
-			[<span class='good'>On</span>]
-		{{else}}
-			[<span class='average'>Off</span>]
-		{{/if}}
-	</div>
-</div>
-
-<div class="item">
-	<div class="itemLabel">
-		Current Pressure:
-	</div>
-	<div class="itemContent">
-		{{:target_pressure}}kPa
-	</div>
-</div>
-
-<h3>Settings</h3>
-<div class="item">
-	<div class="itemLabel">
-		Power Switch:
-	</div>
-	<div class="itemContent">
-		{{if on}}
-			{{:~link('Off', 'close', {'power' : 'off'})}}
-		{{else}}
-			{{:~link('On', 'power', {'power' : 'on'})}}
-		{{/if}}
+		{{:~link('On', 'power', {'power' : 'on'}, on ? 'selected' : null)}}{{:~link('Off', 'close', {'power' : 'off'}, on ? null : 'selected')}}
 	</div>
 </div>
 
@@ -44,6 +18,12 @@ Written by Frenjo, 03/11/2019.
 		Desirable Output Pressure:
 	</div>
 	<div class="itemContent">
-		{{:~link('Change', null, {'pressure' : 'set_press'}, null)}}
+		{{:~displayBar(target_pressure, 0, max_pressure)}}
+		<div style="clear: both; padding-top: 4px;">
+			{{:~link('MIN', null, {'set_press' : 'min'}, (target_pressure > 0) ? null : 'disabled')}}
+			{{:~link('SET', null, {'set_press' : 'set'}, null)}}			
+			{{:~link('MAX', null, {'set_press' : 'max'}, (target_pressure < max_pressure) ? null : 'disabled')}}
+			<div style="float: left; width: 80px; text-align: center;">&nbsp;{{:target_pressure}} kPa&nbsp;</div>
+		</div>
 	</div>
 </div>

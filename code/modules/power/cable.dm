@@ -570,20 +570,20 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 	else if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
-		if(C.amount == MAXCOIL)
+		if(C.amount >= MAXCOIL)
 			user << "<span class='notice'>The coil is too long, you cannot add any more cable to it.</span>"
 			return
 
 		if((C.amount + src.amount <= MAXCOIL))
 			user << "<span class='notice'>You join the cable coils together.</span>"
-			C.give(src.amount) // give it cable
+			C.add(src.amount) // give it cable
 			src.use(src.amount) // make sure this one cleans up right
 			return
 
 		else
 			var/amt = MAXCOIL - C.amount
 			user << "You transfer [amt] length\s of cable from one coil to the other."
-			C.give(amt)
+			C.add(amt)
 			src.use(amt)
 			return
 
@@ -606,12 +606,10 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	return
 
 //add cables to the stack
-/obj/item/stack/cable_coil/proc/give(var/extra)
-	if(amount + extra > MAXCOIL)
-		amount = MAXCOIL
-	else
-		amount += extra
+/obj/item/stack/cable_coil/add(var/extra)
+	. = ..()
 	update_icon()
+	return
 
 ///////////////////////////////////////////////
 // Cable laying procedures
