@@ -59,7 +59,6 @@ By design, d1 is the smallest direction and d2 is the highest
 	..()
 
 	// ensure d1 & d2 reflect the icon_state for entering and exiting cable
-
 	var/dash = findtext(icon_state, "-")
 
 	d1 = text2num( copytext( icon_state, 1, dash ) )
@@ -93,7 +92,6 @@ obj/structure/cable/Del()					// called when a cable is deleted
 	else
 		icon_state = "[d1]-[d2]"
 
-
 // returns the powernet this cable belongs to
 /obj/structure/cable/proc/get_powernet()			//TODO: remove this as it is obsolete
 	return powernet
@@ -102,19 +100,17 @@ obj/structure/cable/Del()					// called when a cable is deleted
 /obj/structure/cable/attack_tk(mob/user)
 	return
 
-// Items usable on a cable :
-//   - Wirecutters : cut it duh !
-//   - Cable coil : merge cables
-//   - Multitool : get the power currently passing through the cable
+// Items usable on a cable:
+//   - Wirecutters: cut it duh!
+//   - Cable coil: merge cables
+//   - Multitool: get the power currently passing through the cable
 //
 /obj/structure/cable/attackby(obj/item/W, mob/user)
-
 	var/turf/T = src.loc
 	if(T.intact)
 		return
 
 	if(istype(W, /obj/item/weapon/wirecutters))
-
 ///// Z-Level Stuff
 		if(src.d1 == 12 || src.d2 == 12)
 			user << "<span class='warning'>You must cut this cable from above.</span>"
@@ -213,14 +209,13 @@ obj/structure/cable/proc/cableColor(var/colorC)
 ////////////////////////////////////////////////
 
 //handles merging diagonally matching cables
-//for info : direction^3 is flipping horizontally, direction^12 is flipping vertically
+//for info: direction^3 is flipping horizontally, direction^12 is flipping vertically
 /obj/structure/cable/proc/mergeDiagonalsNetworks(var/direction)
 
 	//search for and merge diagonally matching cables from the first direction component (north/south)
 	var/turf/T  = get_step(src, direction&3)//go north/south
 
 	for(var/obj/structure/cable/C in T)
-
 		if(!C)
 			continue
 
@@ -241,7 +236,6 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	T  = get_step(src, direction&12)//go east/west
 
 	for(var/obj/structure/cable/C in T)
-
 		if(!C)
 			continue
 
@@ -259,7 +253,6 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 // merge with the powernets of power objects in the given direction
 /obj/structure/cable/proc/mergeConnectedNetworks(var/direction)
-
 	var/fdir = (!direction)? 0 : turn(direction, 180) //flip the direction, to match with the source position on its turf
 
 	if(!(d1 == direction || d2 == direction)) //if the cable is not pointed in this direction, do nothing
@@ -556,20 +549,20 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		usr << "\blue You cannot do that."
 	..()
 
-// Items usable on a cable coil :
-//   - Wirecutters : cut them duh !
-//   - Cable coil : merge cables
+// Items usable on a cable coil:
+//   - Wirecutters: cut them duh!
+//   - Cable coil: merge cables
 /obj/item/stack/cable_coil/attackby(obj/item/weapon/W, mob/user)
-	..()
-	if( istype(W, /obj/item/weapon/wirecutters) && src.amount > 1)
+	if(istype(W, /obj/item/weapon/wirecutters) && src.amount > 1)
 		src.amount--
 		new/obj/item/stack/cable_coil(user.loc, 1,item_color)
-		user << "You cut a piece off the cable coil."
+		user << "<span class='notice'>You cut a piece off the cable coil.</span>"
 		src.update_icon()
 		return
 
 	else if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
+
 		if(C.amount >= MAXCOIL)
 			user << "<span class='notice'>The coil is too long, you cannot add any more cable to it.</span>"
 			return
@@ -578,28 +571,28 @@ obj/structure/cable/proc/cableColor(var/colorC)
 			user << "<span class='notice'>You join the cable coils together.</span>"
 			C.add(src.amount) // give it cable
 			src.use(src.amount) // make sure this one cleans up right
-			return
-
 		else
 			var/amt = MAXCOIL - C.amount
-			user << "You transfer [amt] length\s of cable from one coil to the other."
+			user << "<span class='notice'>You transfer [amt] length\s of cable from one coil to the other.</span>"
 			C.add(amt)
 			src.use(amt)
-			return
+
+		return
+	..()
+
+/obj/item/stack/cable_coil/attack_hand(mob/user as mob)
+	if(user.get_inactive_hand() == src)
+		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, color)
+		F.copy_evidences(src)
+		user.put_in_hands(F)
+		src.add_fingerprint(user)
+		F.add_fingerprint(user)
+		use(1)
+	else
+		..()
+	return
 
 //remove cables from the stack
-/* This is probably reduntant
-/obj/item/weapon/cable_coil/proc/use(var/used)
-	if(src.amount < used)
-		return 0
-	else if (src.amount == used)
-		del(src)
-	else
-		amount -= used
-		updateicon()
-		return 1
-*/
-
 /obj/item/stack/cable_coil/use(var/used)
 	. = ..()
 	update_icon()
@@ -617,7 +610,6 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 // called when cable_coil is clicked on a turf/simulated/floor
 /obj/item/stack/cable_coil/proc/turf_place(turf/simulated/floor/F, mob/user)
-
 	if(!isturf(user.loc))
 		return
 

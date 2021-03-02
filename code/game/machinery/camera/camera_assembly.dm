@@ -58,8 +58,9 @@
 			// State 2
 			if(iscoil(W))
 				var/obj/item/stack/cable_coil/C = W
-				if(C.use(2))
+				if(C.amount >= 2)
 					user << "You add wires to the assembly."
+					C.use(2)
 					state = 3
 				return
 

@@ -33,7 +33,6 @@ var/global/list/rad_collectors = list()
 			P.air_contents.adjust_gas("plasma", -0.001*drainratio)
 	return
 
-
 /obj/machinery/power/rad_collector/attack_hand(mob/user as mob)
 	if(anchored)
 		if(!src.locked)
@@ -45,8 +44,7 @@ var/global/list/rad_collectors = list()
 		else
 			user << "\red The controls are locked!"
 			return
-..()
-
+	..()
 
 /obj/machinery/power/rad_collector/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/device/analyzer))
@@ -95,13 +93,11 @@ var/global/list/rad_collectors = list()
 		..()
 		return 1
 
-
 /obj/machinery/power/rad_collector/ex_act(severity)
 	switch(severity)
 		if(2, 3)
 			eject()
 	return ..()
-
 
 /obj/machinery/power/rad_collector/proc/eject()
 	locked = 0
@@ -125,7 +121,6 @@ var/global/list/rad_collectors = list()
 		return
 	return
 
-
 /obj/machinery/power/rad_collector/proc/update_icons()
 	overlays.Cut()
 	if(P)
@@ -134,7 +129,6 @@ var/global/list/rad_collectors = list()
 		return
 	if(active)
 		overlays += image('icons/obj/singularity.dmi', "on")
-
 
 /obj/machinery/power/rad_collector/proc/toggle_power()
 	active = !active
@@ -146,4 +140,3 @@ var/global/list/rad_collectors = list()
 		flick("ca_deactive", src)
 	update_icons()
 	return
-

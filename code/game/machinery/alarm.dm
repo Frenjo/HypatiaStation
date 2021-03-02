@@ -1152,9 +1152,7 @@ table tr:first-child th:first-child { border: none;}
 					return
 
 				user << "You wire \the [src]!"
-				coil.amount -= 5
-				if(!coil.amount)
-					del(coil)
+				coil.use(5)
 
 				buildstage = 2
 				update_icon()
@@ -1346,9 +1344,7 @@ FIRE ALARM
 						user << "You need more cable for this!"
 						return
 
-					coil.amount -= 5
-					if(!coil.amount)
-						del(coil)
+					coil.use(5)
 
 					buildstage = 2
 					user << "You wire \the [src]!"

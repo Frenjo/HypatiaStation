@@ -41,8 +41,7 @@
 						user << "\blue You start to add cables to the frame."
 						if(do_after(user, 20))
 							if(C)
-								C.amount -= 5
-								if(!C.amount) del(C)
+								C.use(5)
 								user << "\blue You add cables to the frame."
 								state = 2
 								icon_state = "box_1"
@@ -85,7 +84,7 @@
 						user << "\blue You remove the cables."
 						state = 1
 						icon_state = "box_0"
-						var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( src.loc )
+						var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil(src.loc)
 						A.amount = 5
 
 			if(3)

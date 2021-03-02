@@ -22,7 +22,6 @@
 	connected_parts = list()
 	..()
 
-
 /obj/machinery/particle_accelerator/control_box/attack_hand(mob/user as mob)
 	if(construction_state >= 3)
 		interact(user)
@@ -111,7 +110,6 @@
 	src.update_icon()
 	return
 
-
 /obj/machinery/particle_accelerator/control_box/power_change()
 	..()
 	if(stat & NOPOWER)
@@ -120,7 +118,6 @@
 	else if(!stat && construction_state == 3)
 		use_power = 1
 	return
-
 
 /obj/machinery/particle_accelerator/control_box/process()
 	if(src.active)
@@ -134,7 +131,6 @@
 			if(PE)
 				PE.emit_particle(src.strength)
 	return
-
 
 /obj/machinery/particle_accelerator/control_box/proc/part_scan()
 	for(var/obj/structure/particle_accelerator/fuel_chamber/F in orange(1,src))
@@ -172,7 +168,6 @@
 		assembled = 0
 		return 0
 
-
 /obj/machinery/particle_accelerator/control_box/proc/check_part(var/turf/T, var/type)
 	if(!(T)||!(type))
 		return 0
@@ -183,7 +178,6 @@
 				src.connected_parts.Add(PA)
 				return 1
 	return 0
-
 
 /obj/machinery/particle_accelerator/control_box/proc/toggle_power()
 	src.active = !src.active
@@ -200,7 +194,6 @@
 			part.powered = 0
 			part.update_icon()
 	return 1
-
 
 /obj/machinery/particle_accelerator/control_box/interact(mob/user)
 	if((get_dist(src, user) > 1) || (stat & (BROKEN|NOPOWER)))
