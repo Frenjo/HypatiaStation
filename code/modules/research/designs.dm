@@ -1728,6 +1728,16 @@ datum/design/bluespace_crystal
 	reliability_base = 100
 	build_path = "/obj/item/bluespace_crystal/artificial"
 
+/datum/design/miningsatchel_holding
+	name = "Mining Satchel of Holding"
+	desc = "A mining satchel that can hold an infinite amount of ores."
+	id = "minerbag_holding"
+	req_tech = list("bluespace" = 3, "materials" = 4)
+	build_type = PROTOLATHE
+	materials = list("$gold" = 500, "$diamond" = 500, "$uranium" = 500) //quite cheap, for more convenience
+	reliability_base = 100
+	build_path = "/obj/item/weapon/storage/bag/ore/holding"
+
 /////////////////////////////////////////
 /////////////////HUDs////////////////////
 /////////////////////////////////////////
