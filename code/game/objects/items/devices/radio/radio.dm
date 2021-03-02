@@ -15,7 +15,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	var/traitor_frequency = 0 //tune to frequency to unlock traitor supplies
 	var/canhear_range = 3 // the range which mobs can hear this radio from
 	var/obj/item/device/radio/patch_link = null
-	var/wires = WIRE_SIGNAL | WIRE_RECEIVE | WIRE_TRANSMIT
+	var/datum/wires/radio/wires = null
 	var/b_stat = 0
 	var/broadcasting = 0
 	var/listening = 1
@@ -32,12 +32,9 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	w_class = 2
 	g_amt = 25
 	m_amt = 75
-	var/const/WIRE_SIGNAL = 1 //sends a signal, like to set off a bomb or electrocute someone
-	var/const/WIRE_RECEIVE = 2
-	var/const/WIRE_TRANSMIT = 4
+
 	var/const/TRANSMISSION_DELAY = 5 // only 2/second/radio
 	var/const/FREQ_LISTENING = 1
-		//FREQ_BROADCASTING = 2
 
 /obj/item/device/radio
 	var/datum/radio_frequency/radio_connection
@@ -50,12 +47,14 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 /obj/item/device/radio/New()
 	..()
+
+	wires = new(src)
+
 	if(radio_controller)
 		initialize()
 
 
 /obj/item/device/radio/initialize()
-
 	if(freerange)
 		if(frequency < 1200 || frequency > 1600)
 			frequency = sanitize_frequency(frequency, maxf)
@@ -68,7 +67,6 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 	for (var/ch_name in channels)
 		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
-
 
 /obj/item/device/radio/attack_self(mob/user as mob)
 	user.set_machine(src)
@@ -104,15 +102,9 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	return
 
 /obj/item/device/radio/proc/text_wires()
-	if (!b_stat)
-		return ""
-	return {"
-			<hr>
-			Green Wire: <A href='byond://?src=\ref[src];wires=4'>[(wires & 4) ? "Cut" : "Mend"] Wire</A><BR>
-			Red Wire:   <A href='byond://?src=\ref[src];wires=2'>[(wires & 2) ? "Cut" : "Mend"] Wire</A><BR>
-			Blue Wire:  <A href='byond://?src=\ref[src];wires=1'>[(wires & 1) ? "Cut" : "Mend"] Wire</A><BR>
-			"}
-
+	if (b_stat)
+		return wires.GetInteractWindow()
+	return
 
 /obj/item/device/radio/proc/text_sec_channel(var/chan_name, var/chan_stat)
 	var/list = !!(chan_stat&FREQ_LISTENING)!=0
@@ -126,7 +118,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	if (usr.stat || !on)
 		return
 
-	if (!(issilicon(usr) || (usr.contents.Find(src) || ( in_range(src, usr) && istype(loc, /turf) ))))
+	if (!(issilicon(usr) || (usr.contents.Find(src) || ( in_range(src, usr) && istype(loc, /turf)))))
 		usr << browse(null, "window=radio")
 		return
 	usr.set_machine(src)
@@ -175,21 +167,14 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 				channels[chan_name] &= ~FREQ_LISTENING
 			else
 				channels[chan_name] |= FREQ_LISTENING
-	else if (href_list["wires"])
-		var/t1 = text2num(href_list["wires"])
-		if (!( istype(usr.get_active_hand(), /obj/item/weapon/wirecutters) ))
-			return
-		if (wires & t1)
-			wires &= ~t1
-		else
-			wires |= t1
-	if (!( master ))
-		if (istype(loc, /mob))
+
+	if(!(master))
+		if(istype(loc, /mob))
 			interact(loc)
 		else
 			updateDialog()
 	else
-		if (istype(master.loc, /mob))
+		if(istype(master.loc, /mob))
 			interact(master.loc)
 		else
 			updateDialog()
@@ -225,7 +210,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 	//  Uncommenting this. To the above comment:
 	// 	The permacell radios aren't suppose to be able to transmit, this isn't a bug and this "fix" is just making radio wires useless. -Giacom
-	if(!(src.wires & WIRE_TRANSMIT)) // The device has to have all its wires and shit intact
+	if(wires.IsIndexCut(WIRE_TRANSMIT)) // The device has to have all its wires and shit intact
 		return
 
 
@@ -303,7 +288,6 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		else
 			jobname = "Unknown"
 
-
 		// --- Modifications to the mob's identity ---
 
 		// The mob is disguising their identity:
@@ -311,8 +295,6 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			displayname = M.GetVoice()
 			jobname = "Unknown"
 			voicemask = 1
-
-
 
 	  /* ###### Radio headsets can only broadcast through subspace ###### */
 
@@ -459,7 +441,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		else
 			eqjobname = "Unknown"
 
-		if (!(wires & WIRE_TRANSMIT))
+		if(wires.IsIndexCut(WIRE_TRANSMIT)) // The device has to have all its wires and shit intact
 			return
 
 		var/list/receive = list()
@@ -619,10 +601,11 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	// what the range is in which mobs will hear the radio
 	// returns: -1 if can't receive, range otherwise
 
-	if (!(wires & WIRE_RECEIVE))
+	if(wires.IsIndexCut(WIRE_RECEIVE))
 		return -1
 	if(!listening)
 		return -1
+
 	if(!(0 in level))
 		var/turf/position = get_turf(src)
 		if(!position || !(position.z in level))
@@ -755,10 +738,10 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 				continue
 			src.channels += ch_name
 			src.channels[ch_name] += keyslot.channels[ch_name]
-			
+
 		if(keyslot.syndie)
 			src.syndie = 1
-	
+
 
 	for (var/ch_name in src.channels)
 		if(!radio_controller)
