@@ -3,11 +3,12 @@
 */
 
 //Some on_mob_life() procs check for alien races.
-#define IS_DIONA 1
-#define IS_VOX 2
+#define IS_HUMAN 0
+#define IS_SOGHUN 1
+#define IS_TAJARAN 2
 #define IS_SKRELL 3
-#define IS_SOGHUN 4
-#define IS_TAJARAN 5
+#define IS_VOX 4
+#define IS_DIONA 5
 #define IS_OBSEDAI 6
 #define IS_PLASMAPERSON 7
 
@@ -36,6 +37,10 @@
 	var/heat_level_1 = 360  // Heat damage level 1 above this point.
 	var/heat_level_2 = 400  // Heat damage level 2 above this point.
 	var/heat_level_3 = 1000 // Heat damage level 2 above this point.
+
+	var/body_temperature = 310.15	//non-IS_SYNTHETIC species will try to stabilize at this temperature. (also affects temperature processing)
+	var/synth_temp_gain = 0			//IS_SYNTHETIC species will gain this much temperature every second
+	var/reagent_tag                 //Used for metabolizing reagents.
 
 	var/darksight = 2
 	var/hazard_high_pressure = HAZARD_HIGH_PRESSURE   // Dangerously high pressure.
@@ -251,6 +256,8 @@
 	heat_level_2 = 3000
 	heat_level_3 = 4000
 
+	synth_temp_gain = 10 //this should cause IPCs to stabilize at ~80 C in a 20 C environment.
+
 	flags = IS_WHITELISTED | NO_BREATHE | NO_SCAN | NO_BLOOD | NO_PAIN | IS_SYNTHETIC
 
 	blood_color = "#1F181F"
@@ -293,7 +300,7 @@
 	breath_type = "plasma"
 	poison_type = "oxygen"
 
-	flags = IS_WHITELISTED | NO_SCAN | NO_BLOOD | NO_PAIN
+	flags = IS_WHITELISTED | NO_SCAN | NO_BLOOD | NO_PAIN | IS_PLASMA_IMMUNE
 
 /datum/species/plasmapeople/handle_post_spawn(var/mob/living/carbon/human/H)
 	if(!H)

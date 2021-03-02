@@ -27,11 +27,13 @@
 	icon_state = "redws2"
 	canister_color = "redws2"
 	can_label = 0
+
 /obj/machinery/portable_atmospherics/canister/nitrogen
 	name = "Canister: \[N2\]"
 	icon_state = "red"
 	canister_color = "red"
 	can_label = 0
+
 /obj/machinery/portable_atmospherics/canister/oxygen
 	name = "Canister: \[O2\]"
 	//icon_state = "blue"
@@ -39,27 +41,32 @@
 	icon_state = "bluews"
 	canister_color = "bluews"
 	can_label = 0
+
 /obj/machinery/portable_atmospherics/canister/toxins
 	name = "Canister \[Toxin (Bio)\]"
 	icon_state = "orange"
 	canister_color = "orange"
 	can_label = 0
+
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide
 	name = "Canister \[CO2\]"
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
+
 /obj/machinery/portable_atmospherics/canister/air
 	name = "Canister \[Air\]"
 	icon_state = "grey"
 	canister_color = "grey"
 	can_label = 0
+
 // Added this because I'm curious. -Frenjo
 /obj/machinery/portable_atmospherics/canister/oxygen_agent_b
 	name = "Canister \[Oxygen Agent B\]"
 	icon_state = "orangebs"
 	canister_color = "orangebs"
 	can_label = 0
+
 // Added this because of updated atmos stuff. -Frenjo
 /obj/machinery/portable_atmospherics/canister/oxygen_toxins
 	name = "Canister \[O2/TOX\]"
@@ -247,8 +254,6 @@ update_flag
 
 	nanomanager.update_uis(src) // Update all NanoUIs attached to src
 
-
-
 /obj/machinery/portable_atmospherics/canister/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
@@ -291,7 +296,6 @@ update_flag
 		ui.set_auto_update(1)
 
 /obj/machinery/portable_atmospherics/canister/Topic(href, href_list)
-
 	//Do not use "if(..()) return" here, canisters will stop working in unpowered areas like space or on the derelict.
 	if (!istype(src.loc, /turf))
 		return 0
@@ -343,14 +347,14 @@ update_flag
 				"\[Cyan 1Stripe\]" = "cyanws", \
 				"\[Red 1Stripe\]" = "redws", \
 				"\[O2/TOX\]" = "orangebs", \
-				"\[Oxygen Agent B\]" = "orangebs2", \
+				"\[O2-Agent-B\]" = "orangebs2", \
 				"\[Green\]" = "green", \
 				"\[Light Purple\]" = "lightpurple", \
 				"\[Medium Purple\]" = "medpurple", \
 				"\[Dark Purple\]" = "darkpurple", \
 				"\[Rainbow\]" = "rainbow", \
 			)
-			var/label = input("Choose canister label", "Gas canister") as null|anything in colors
+			var/label = input("Choose canister label", "Gas Canister") as null|anything in colors
 			if (label)
 				src.canister_color = colors[label]
 				src.icon_state = colors[label]

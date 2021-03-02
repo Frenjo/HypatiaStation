@@ -23,7 +23,6 @@
 #define MOLES_O2STANDARD MOLES_CELLSTANDARD*O2STANDARD	// O2 standard value (21%)
 #define MOLES_N2STANDARD MOLES_CELLSTANDARD*N2STANDARD	// N2 standard value (79%)
 
-#define MOLES_PLASMA_VISIBLE	0.7 //Moles in a standard cell after which plasma is visible
 #define MIN_PLASMA_DAMAGE 1
 #define MAX_PLASMA_DAMAGE 10
 
@@ -759,6 +758,7 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define REQUIRE_LIGHT 4096
 
 #define IS_SYNTHETIC 8192
+#define IS_PLASMA_IMMUNE 16384
 
 //Language flags.
 #define WHITELISTED 1  // Language is available if the speaker is whitelisted.

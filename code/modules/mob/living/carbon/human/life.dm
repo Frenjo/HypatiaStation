@@ -565,7 +565,7 @@
 			adjustOxyLoss(-5)
 
 		// Hot air hurts :(
-		if( (breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in mutations))
+		if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in mutations))
 
 			if(status_flags & GODMODE)
 				return 1
@@ -616,6 +616,11 @@
 	proc/handle_environment(datum/gas_mixture/environment)
 		if(!environment)
 			return
+
+		//Moved pressure calculations here for use in skip-processing check.
+		var/pressure = environment.return_pressure()
+		var/adjusted_pressure = calculate_affecting_pressure(pressure) //Returns how much pressure actually affects the mob.
+
 		if(!istype(get_turf(src), /turf/space)) //space is not meant to change your body temperature.
 			var/loc_temp = T0C
 			if(istype(loc, /obj/mecha))
@@ -627,12 +632,12 @@
 			else
 				loc_temp = environment.temperature
 
-			if(abs(loc_temp - 293.15) < 20 && abs(bodytemperature - 310.14) < 0.5 && environment.gas["plasma"] < MOLES_PLASMA_VISIBLE)
+			if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
 				return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
 			//Body temperature is adjusted in two steps. Firstly your body tries to stabilize itself a bit.
 			if(stat != 2)
-				stabilize_temperature_from_calories()
+				stabilize_body_temperature()
 
 			//After then, it reacts to the surrounding atmosphere based on your thermal protection
 			if(loc_temp < BODYTEMP_COLD_DAMAGE_LIMIT)			//Place is colder than we are
@@ -647,18 +652,18 @@
 					bodytemperature += amt
 
 		// +/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
-		if(bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT)
+		if(bodytemperature > species.heat_level_1)
 			//Body temperature is too hot.
 			fire_alert = max(fire_alert, 1)
 			if(status_flags & GODMODE)	return 1	//godmode
 			switch(bodytemperature)
-				if(360 to 400)
+				if(species.heat_level_1 to species.heat_level_2)
 					apply_damage(HEAT_DAMAGE_LEVEL_1, BURN, used_weapon = "High Body Temperature")
 					fire_alert = max(fire_alert, 2)
-				if(400 to 1000)
+				if(species.heat_level_2 to species.heat_level_3)
 					apply_damage(HEAT_DAMAGE_LEVEL_2, BURN, used_weapon = "High Body Temperature")
 					fire_alert = max(fire_alert, 2)
-				if(1000 to INFINITY)
+				if(species.heat_level_3 to INFINITY)
 					apply_damage(HEAT_DAMAGE_LEVEL_3, BURN, used_weapon = "High Body Temperature")
 					fire_alert = max(fire_alert, 2)
 
@@ -667,21 +672,18 @@
 			if(status_flags & GODMODE)	return 1	//godmode
 			if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 				switch(bodytemperature)
-					if(200 to 260)
+					if(species.cold_level_2 to species.cold_level_1)
 						apply_damage(COLD_DAMAGE_LEVEL_1, BURN, used_weapon = "Low Body Temperature")
 						fire_alert = max(fire_alert, 1)
-					if(120 to 200)
+					if(species.cold_level_3 to species.cold_level_2)
 						apply_damage(COLD_DAMAGE_LEVEL_2, BURN, used_weapon = "Low Body Temperature")
 						fire_alert = max(fire_alert, 1)
-					if(-INFINITY to 120)
+					if(-INFINITY to species.cold_level_3)
 						apply_damage(COLD_DAMAGE_LEVEL_3, BURN, used_weapon = "Low Body Temperature")
 						fire_alert = max(fire_alert, 1)
 
 		// Account for massive pressure differences.  Done by Polymorph
 		// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
-
-		var/pressure = environment.return_pressure()
-		var/adjusted_pressure = calculate_affecting_pressure(pressure) //Returns how much pressure actually affects the mob.
 		if(status_flags & GODMODE)	return 1	//godmode
 
 		if(adjusted_pressure >= species.hazard_high_pressure)
@@ -702,14 +704,16 @@
 			if(species && species.flags & IS_SYNTHETIC)
 				bodytemperature += 1 * TEMPERATURE_DAMAGE_COEFFICIENT
 
-			if( !(COLD_RESISTANCE in mutations))
-				adjustBruteLoss( LOW_PRESSURE_DAMAGE )
+			if(!(COLD_RESISTANCE in mutations))
+				adjustBruteLoss(LOW_PRESSURE_DAMAGE)
 				pressure_alert = -2
 			else
 				pressure_alert = -1
 
-		if(environment.gas["plasma"] > MOLES_PLASMA_VISIBLE)
-			pl_effects()
+		for(var/g in environment.gas)
+			if(gas_data.flags[g] & XGM_GAS_CONTAMINANT && environment.gas[g] > gas_data.overlay_limit[g] + 1)
+				pl_effects()
+				break
 		return
 
 	/*
@@ -731,22 +735,27 @@
 		return temp_change
 	*/
 
-	proc/stabilize_temperature_from_calories()
+	proc/stabilize_body_temperature()
+		if(species.flags & IS_SYNTHETIC)
+			bodytemperature += species.synth_temp_gain		//just keep putting out heat.
+			return
+
 		var/body_temperature_difference = 310.15 - bodytemperature
-		if (abs(body_temperature_difference) < 0.5)
+		if(abs(body_temperature_difference) < 0.5)
 			return //fuck this precision
+
 		switch(bodytemperature)
-			if(-INFINITY to 260.15) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
+			if(-INFINITY to species.cold_level_1) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
 				if(nutrition >= 2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
 					nutrition -= 2
 				var/recovery_amt = max((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), BODYTEMP_AUTORECOVERY_MINIMUM)
 //				log_debug("Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
 				bodytemperature += recovery_amt
-			if(260.15 to 360.15)
+			if(species.cold_level_1 to species.heat_level_1)
 				var/recovery_amt = body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR
 //				log_debug("Norm. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
 				bodytemperature += recovery_amt
-			if(360.15 to INFINITY) //360.15 is 310.15 + 50, the temperature where you start to feel effects.
+			if(species.heat_level_1 to INFINITY) //360.15 is 310.15 + 50, the temperature where you start to feel effects.
 				//We totally need a sweat system cause it totally makes sense...~
 				var/recovery_amt = min((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), -BODYTEMP_AUTORECOVERY_MINIMUM)	//We're dealing with negative numbers
 //				log_debug("Hot. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
@@ -928,34 +937,19 @@
 	*/
 
 	proc/handle_chemicals_in_body()
-
 		if(reagents && !(species.flags & IS_SYNTHETIC)) //Synths don't process reagents.
 			var/alien = 0 //Not the best way to handle it, but neater than checking this for every single reagent proc.
-			if(species && species.name == "Diona")
-				//alien = 1
-				alien = IS_DIONA
-			else if(species && species.name == "Vox")
-				//alien = 2
-				alien = IS_VOX
-			else if(species && species.name == "Skrell")
-				alien = IS_SKRELL
-			else if(species && species.name == "Soghun")
-				alien = IS_SOGHUN
-			else if(species && species.name == "Tajaran")
-				alien = IS_TAJARAN
-			else if(species && species.name == "Obsedai") // Obsedai are classed as IS_SYNTHETIC but that might change so might as well.
-				alien = IS_OBSEDAI
-			else if(species && species.name == "Plasmaperson")
-				//alien = 3
-				alien = IS_PLASMAPERSON
-			reagents.metabolize(src,alien)
+			if(species && species.reagent_tag)
+				alien = species.reagent_tag
+				reagents.metabolize(src, alien)
 
-		var/total_plasmaloss = 0
-		for(var/obj/item/I in src)
-			if(I.contaminated)
-				total_plasmaloss += vsc.plc.CONTAMINATION_LOSS
-		if(status_flags & GODMODE)	return 0	//godmode
-		adjustToxLoss(total_plasmaloss)
+		if(!(species.flags & IS_PLASMA_IMMUNE))
+			var/total_plasmaloss = 0
+			for(var/obj/item/I in src)
+				if(I.contaminated)
+					total_plasmaloss += vsc.plc.CONTAMINATION_LOSS
+			if(status_flags & GODMODE)	return 0	//godmode
+			adjustToxLoss(total_plasmaloss)
 
 		if(species.flags & REQUIRE_LIGHT)
 			var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
