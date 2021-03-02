@@ -371,23 +371,26 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 			if(iscoil(O))
 				var/obj/item/stack/cable_coil/C = O
 				if(C.amount >= 5)
-					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+					playsound(src.loc, 'sound/items/Deconstruct.ogg', 75, 1)
 					user.visible_message("[user.name] adds wires to the [src.name].", \
 						"You add some wires.")
 					C.use(5)
 					temp_state++
 		if(2)
 			if(iswirecutter(O))//TODO:Shock user if its on?
+				playsound(src.loc, 'sound/items/Deconstruct.ogg', 75, 1)
 				user.visible_message("[user.name] removes some wires from the [src.name].", \
 					"You remove some wires.")
 				temp_state--
 
 			if(isscrewdriver(O))
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 75, 1)
 				user.visible_message("[user.name] closes the [src.name]'s access panel.", \
 					"You close the access panel.")
 				temp_state++
 		if(3)
 			if(isscrewdriver(O))
+				playsound(src.loc, 'sound/items/Screwdriver.ogg', 75, 1)
 				user.visible_message("[user.name] opens the [src.name]'s access panel.", \
 					"You open the access panel.")
 				temp_state--

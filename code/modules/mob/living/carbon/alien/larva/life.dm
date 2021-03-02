@@ -154,7 +154,7 @@
 
 		if(Toxins_pp) // Detect toxins in air
 
-			adjustToxLoss(breath.gas["plasma"] * 250)
+			//adjustToxLoss(breath.gas["plasma"] * 250)
 			toxins_alert = max(toxins_alert, 1)
 
 			toxins_used = breath.gas["plasma"]

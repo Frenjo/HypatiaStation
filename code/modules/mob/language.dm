@@ -44,8 +44,7 @@
 	flags = RESTRICTED
 
 /datum/language/obsedai
-	//name = "Tummese"
-	name = "Obsedaian" // Changes the Obsedai default language from "Tummese" to "Obsedaian". -Frenjo
+	name = "Obsedaian"
 	desc = "The common tongue of the Obsedai. It sounds like deep rumbling and resonant notes to everyone else."
 	speech_verb = "rumbles"
 	colour = "rough"
@@ -66,6 +65,14 @@
 	speech_verb = "rattles"
 	colour = "vox"
 	key = "p"
+	flags = RESTRICTED
+
+/datum/language/machine
+	name = "Binary Audio Language"
+	desc = "Series of beeps, boops, blips and blops representing encoded binary data, frequently used for efficient machine-machine communication."
+	speech_verb = "emits"
+	colour = "vox"
+	key = "a"
 	flags = RESTRICTED
 
 /datum/language/human

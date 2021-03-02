@@ -23,9 +23,7 @@
 	*/
 
 /obj/item/weapon/camera_assembly/attackby(obj/item/W as obj, mob/living/user as mob)
-
 	switch(state)
-
 		if(0)
 			// State 0
 			if(iswrench(W) && isturf(src.loc))
@@ -59,19 +57,18 @@
 			if(iscoil(W))
 				var/obj/item/stack/cable_coil/C = W
 				if(C.amount >= 2)
+					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 					user << "You add wires to the assembly."
 					C.use(2)
 					state = 3
 				return
 
 			else if(iswelder(W))
-
 				if(weld(W, user))
 					user << "You unweld the assembly from it's place."
 					state = 1
 					anchored = 1
 				return
-
 
 		if(3)
 			// State 3
@@ -154,7 +151,6 @@
 		..()
 
 /obj/item/weapon/camera_assembly/proc/weld(var/obj/item/weapon/weldingtool/WT, var/mob/user)
-
 	if(busy)
 		return 0
 	if(!WT.isOn())

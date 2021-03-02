@@ -83,8 +83,7 @@ var/list/department_radio_keys = list(
 
 // Now we can start processing languages to sound cool!
 /mob/living/proc/handleLanguage(msg, speaking)
-	//if (speaking == "Tummese") // Handle the Obsedai Language
-	if (speaking == "Obsedaian") // Changes the Obsedai default language from "Tummese" to "Obsedaian". -Frenjo
+	if (speaking == "Obsedaian") // Handle the Obsedai Language
 		var/list/split_phrase = text2list(msg," ") //Split it up into words.
 		for(var/i = length(split_phrase), i <= 0, i--)
 			var/word = split_phrase[i] //Now we can do an operation per word

@@ -215,7 +215,6 @@
 	H.gender = NEUTER
 
 /datum/species/diona/handle_death(var/mob/living/carbon/human/H)
-
 	var/mob/living/carbon/monkey/diona/S = new(get_turf(H))
 
 	if(H.mind)
@@ -234,7 +233,7 @@
 	name = "Machine"
 	icobase = 'icons/mob/human_races/r_machine.dmi'
 	deform = 'icons/mob/human_races/r_machine.dmi'
-	language = "Tradeband"
+	language = "Binary Audio Language"
 	punch_damage = 2
 
 	eyes = "blank_eyes"
@@ -261,7 +260,6 @@
 	name = "Obsedai"
 	icobase = 'icons/mob/human_races/r_obsedai.dmi'
 	deform = 'icons/mob/human_races/r_obsedai.dmi'
-	//language = "Tummese" // Changes the Obsedai default language from "Tummese" to "Obsedaian". -Frenjo
 	language = "Obsedaian"
 	punch_damage = 40
 

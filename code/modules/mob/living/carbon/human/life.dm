@@ -127,7 +127,6 @@
 	for(var/obj/item/weapon/grab/G in src)
 		G.process()
 
-
 /mob/living/carbon/human/calculate_affecting_pressure(var/pressure)
 	..()
 	var/pressure_difference = abs( pressure - ONE_ATMOSPHERE )
@@ -472,8 +471,8 @@
 			if(inhale_pp > 0)
 				var/ratio = inhale_pp/safe_pressure_min
 
-				 // Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!)
-				 // The hell? By definition ratio > 1, and HUMAN_MAX_OXYLOSS = 1... why do we even have this?
+				// Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!)
+				// The hell? By definition ratio > 1, and HUMAN_MAX_OXYLOSS = 1... why do we even have this?
 				adjustOxyLoss(min(5*ratio, HUMAN_MAX_OXYLOSS))
 				failed_inhale = 1
 				inhaled_gas_used = inhaling*ratio/6

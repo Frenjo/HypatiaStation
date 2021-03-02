@@ -301,7 +301,7 @@
 
 	if(update & 3)
 		if(update_state & UPSTATE_BLUESCREEN)
-			set_light(l_range = 2, l_power = 1, l_color = "#0000FF")
+			set_light(l_range = 2, l_power = 0.75, l_color = "#0000FF")
 		else if(!(stat & (BROKEN|MAINT)) && update_state & UPSTATE_ALLGOOD)
 			var/color
 			switch(charging)
@@ -311,7 +311,7 @@
 					color = "#A8B0F8"
 				if(2)
 					color = "#82FF4C"
-			set_light(l_range = 2, l_power = 1, l_color = color)
+			set_light(l_range = 2, l_power = 0.75, l_color = color)
 		else
 			set_light(0)
 

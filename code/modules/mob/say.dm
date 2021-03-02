@@ -65,7 +65,7 @@
 		else if(M.client && M.stat == DEAD && (M.client.prefs.toggles & CHAT_DEAD)) // Show the message to regular ghosts with deadchat toggled on.
 			M.show_message(rendered, 2) //Takes into account blindness and such.
 	return
-	
+
 /mob/proc/say_understands_language(var/mob/other,var/datum/language/speaking = null)
 	if (speaking) //Language check.
 		var/understood
@@ -79,7 +79,6 @@
 			return 0
 
 /mob/proc/say_understands(var/mob/other,var/datum/language/speaking = null)
-
 	if(!other)
 		return 1
 	//Universal speak makes everything understandable, for obvious reasons.

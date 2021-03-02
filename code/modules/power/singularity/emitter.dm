@@ -33,7 +33,7 @@
 	src.dir = turn(src.dir, 90)
 	return 1
 
-/obj/machinery/power/emitter/initialize()
+/obj/machinery/power/emitter/New()
 	..()
 	if(state == 2 && anchored)
 		connect_to_network()
@@ -146,7 +146,6 @@
 
 
 /obj/machinery/power/emitter/attackby(obj/item/W, mob/user)
-
 	if(istype(W, /obj/item/weapon/wrench))
 		if(active)
 			user << "Turn off the [src] first."
