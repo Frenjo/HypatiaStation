@@ -69,7 +69,7 @@
 
 /datum/language/machine
 	name = "Binary Audio Language"
-	desc = "Series of beeps, boops, blips and blops representing encoded binary data, frequently used for efficient machine-machine communication."
+	desc = "Series of beeps, boops, blips and blops representing encoded binary data, frequently used for efficient Machine-Machine communication."
 	speech_verb = "emits"
 	colour = "vox"
 	key = "a"
