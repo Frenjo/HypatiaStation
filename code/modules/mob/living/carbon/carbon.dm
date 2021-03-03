@@ -49,7 +49,9 @@
 	. = ..()
 
 /mob/living/carbon/attack_hand(mob/M as mob)
-	if(!istype(M, /mob/living/carbon)) return
+	if(!istype(M, /mob/living/carbon))
+		return
+
 	if (hasorgans(M))
 		var/datum/organ/external/temp = M:organs_by_name["r_hand"]
 		if (M.hand)
@@ -59,22 +61,18 @@
 			return
 
 	for(var/datum/disease/D in viruses)
-
 		if(D.spread_by_touch())
-
 			M.contract_disease(D, 0, 1, CONTACT_HANDS)
 
 	for(var/datum/disease/D in M.viruses)
-
 		if(D.spread_by_touch())
-
 			contract_disease(D, 0, 1, CONTACT_HANDS)
 
 	return
 
-
 /mob/living/carbon/attack_paw(mob/M as mob)
-	if(!istype(M, /mob/living/carbon)) return
+	if(!istype(M, /mob/living/carbon))
+		return
 
 	for(var/datum/disease/D in viruses)
 
@@ -131,7 +129,6 @@
 	return
 
 /mob/living/carbon/proc/activate_hand(var/selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
-
 	if(istext(selhand))
 		selhand = lowertext(selhand)
 
@@ -398,7 +395,6 @@
 
 //Brain slug proc for voluntary removal of control.
 /mob/living/carbon/proc/release_control()
-
 	set category = "Alien"
 	set name = "Release Control"
 	set desc = "Release control of your host's body."
@@ -469,3 +465,89 @@
 	else
 		src << "You do not have enough chemicals stored to reproduce."
 		return
+
+/mob/living/carbon/ui_toggle_internals()
+	if(iscarbon(usr))
+		var/mob/living/carbon/C = usr
+		if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
+			if(C.internal)
+				C.internal = null
+				C << "<span class='notice'>No longer running on internals.</span>"
+				if(C.internals)
+					C.internals.icon_state = "internal0"
+			else
+				if(!istype(C.wear_mask, /obj/item/clothing/mask))
+					C << "<span class='notice'>You are not wearing a mask.</span>"
+					return 1
+				else
+					var/list/nicename = null
+					var/list/tankcheck = null
+					var/breathes = "oxygen"    //default, we'll check later
+					var/list/contents = list()
+
+					if(ishuman(C))
+						var/mob/living/carbon/human/H = C
+						breathes = H.species.breath_type
+						nicename = list ("suit", "back", "belt", "right hand", "left hand", "left pocket", "right pocket")
+						tankcheck = list (H.s_store, C.back, H.belt, C.r_hand, C.l_hand, H.l_store, H.r_store)
+					else
+						nicename = list("Right Hand", "Left Hand", "Back")
+						tankcheck = list(C.r_hand, C.l_hand, C.back)
+
+					for(var/i=1, i<tankcheck.len+1, ++i)
+						if(istype(tankcheck[i], /obj/item/weapon/tank))
+							var/obj/item/weapon/tank/t = tankcheck[i]
+							if (!isnull(t.manipulated_by) && t.manipulated_by != C.real_name && findtext(t.desc,breathes))
+								contents.Add(t.air_contents.total_moles)	//Someone messed with the tank and put unknown gasses
+								continue					//in it, so we're going to believe the tank is what it says it is
+							switch(breathes)
+								//These tanks we're sure of their contents
+								if("nitrogen") 							//So we're a bit more picky about them.
+									if(t.air_contents.gas["nitrogen"] && !t.air_contents.gas["oxygen"])
+										contents.Add(t.air_contents.gas["nitrogen"])
+									else
+										contents.Add(0)
+
+								if("oxygen")
+									if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["plasma"])
+										contents.Add(t.air_contents.gas["oxygen"])
+									else
+										contents.Add(0)
+
+								// No races breath this, but never know about downstream servers.
+								if("carbon dioxide")
+									if(t.air_contents.gas["carbon_dioxide"] && !t.air_contents.gas["plasma"])
+										contents.Add(t.air_contents.gas["carbon_dioxide"])
+									else
+										contents.Add(0)
+
+								// Plasmapeople breath this.
+								if("plasma")
+									if(t.air_contents.gas["plasma"] && !t.air_contents.gas["oxygen"])
+										contents.Add(t.air_contents.gas["plasma"])
+									else
+										contents.Add(0)
+						else
+							//no tank so we set contents to 0
+							contents.Add(0)
+
+					//Alright now we know the contents of the tanks so we have to pick the best one.
+					var/best = 0
+					var/bestcontents = 0
+					for(var/i=1, i <  contents.len + 1 , ++i)
+						if(!contents[i])
+							continue
+						if(contents[i] > bestcontents)
+							best = i
+							bestcontents = contents[i]
+
+					//We've determined the best container now we set it as our internals
+					if(best)
+						C << "<span class='notice'>You are now running on internals from [tankcheck[best]] on your [nicename[best]].</span>"
+						C.internal = tankcheck[best]
+
+					if(C.internal)
+						if(C.internals)
+							C.internals.icon_state = "internal1"
+					else
+						C << "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ",breathes)] tank.</span>"

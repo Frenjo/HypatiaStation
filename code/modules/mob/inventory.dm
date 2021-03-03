@@ -77,13 +77,10 @@
 		W.dropped()
 		return 0
 
-
-
 /mob/proc/drop_item_v()		//this is dumb.
 	if(stat == CONSCIOUS && isturf(loc))
 		return drop_item()
 	return 0
-
 
 /mob/proc/drop_from_inventory(var/obj/item/W)
 	if(W)
@@ -101,7 +98,6 @@
 		update_icons()
 		return 1
 	return 0
-
 
 //Drops the item in our left hand
 /mob/proc/drop_l_hand(var/atom/Target)
@@ -146,14 +142,6 @@
 	if(hand)	return drop_l_hand(Target)
 	else		return drop_r_hand(Target)
 
-
-
-
-
-
-
-
-
 //TODO: phase out this proc
 /mob/proc/before_take_item(var/obj/item/W)	//TODO: what is this?
 	W.loc = null
@@ -161,7 +149,6 @@
 	u_equip(W)
 	update_icons()
 	return
-
 
 /mob/proc/u_equip(W as obj)
 	if (W == r_hand)
@@ -178,7 +165,6 @@
 		update_inv_wear_mask(0)
 	return
 
-
 //Attemps to remove an object on a mob.  Will not move it to another area or such, just removes from the mob.
 /mob/proc/remove_from_mob(var/obj/O)
 	src.u_equip(O)
@@ -187,7 +173,6 @@
 	O.layer = initial(O.layer)
 	O.screen_loc = null
 	return 1
-
 
 //Outdated but still in use apparently. This should at least be a human proc.
 /mob/proc/get_equipped_items()
@@ -317,3 +302,5 @@
 			del(W)
 	return equipped
 
+/mob/proc/ui_toggle_internals()
+	return 0
