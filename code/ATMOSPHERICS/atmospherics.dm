@@ -17,8 +17,6 @@ obj/machinery/atmospherics
 	power_channel = ENVIRON
 	var/nodealert = 0
 
-
-
 obj/machinery/atmospherics/var/initialize_directions = 0
 obj/machinery/atmospherics/var/pipe_color
 
