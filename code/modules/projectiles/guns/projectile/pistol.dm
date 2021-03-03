@@ -9,8 +9,6 @@
 	origin_tech = "combat=2;materials=2;syndicate=8"
 	ammo_type = "/obj/item/ammo_casing/c45"
 
-
-
 /obj/item/weapon/gun/projectile/deagle
 	name = "desert eagle"
 	desc = "A robust handgun that uses .50 AE ammo"
@@ -20,35 +18,32 @@
 	caliber = ".50"
 	ammo_type ="/obj/item/ammo_casing/a50"
 	load_method = 2
-	New()
-		..()
-		empty_mag = new /obj/item/ammo_magazine/a50/empty(src)
+
+/obj/item/weapon/gun/projectile/deagle/New()
+	..()
+	empty_mag = new /obj/item/ammo_magazine/a50/empty(src)
+	update_icon()
+	return
+
+
+/obj/item/weapon/gun/projectile/deagle/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+	..()
+	if(!loaded.len && empty_mag)
+		empty_mag.loc = get_turf(src.loc)
+		empty_mag = null
+		playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
 		update_icon()
-		return
-
-
-	afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
-		..()
-		if(!loaded.len && empty_mag)
-			empty_mag.loc = get_turf(src.loc)
-			empty_mag = null
-			playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
-			update_icon()
-		return
+	return
 
 /obj/item/weapon/gun/projectile/deagle/gold
 	desc = "A gold plated gun folded over a million times by superior martian gunsmiths. Uses .50 AE ammo."
 	icon_state = "deagleg"
 	item_state = "deagleg"
 
-
-
 /obj/item/weapon/gun/projectile/deagle/camo
 	desc = "A Deagle brand Deagle for operators operating operationally. Uses .50 AE ammo."
 	icon_state = "deaglecamo"
 	item_state = "deagleg"
-
-
 
 /obj/item/weapon/gun/projectile/gyropistol
 	name = "gyrojet pistol"
@@ -60,29 +55,29 @@
 	origin_tech = "combat=3"
 	ammo_type = "/obj/item/ammo_casing/a75"
 	load_method = 2
-	New()
-		..()
-		empty_mag = new /obj/item/ammo_magazine/a75/empty(src)
-		update_icon()
-		return
 
-
-	afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
-		..()
-		if(!loaded.len && empty_mag)
-			empty_mag.loc = get_turf(src.loc)
-			empty_mag = null
-			playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
-			update_icon()
-		return
-
+/obj/item/weapon/gun/projectile/gyropistol/New()
+	..()
+	empty_mag = new /obj/item/ammo_magazine/a75/empty(src)
 	update_icon()
-		..()
-		if(empty_mag)
-			icon_state = "gyropistolloaded"
-		else
-			icon_state = "gyropistol"
-		return
+	return
+
+/obj/item/weapon/gun/projectile/gyropistol/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+	..()
+	if(!loaded.len && empty_mag)
+		empty_mag.loc = get_turf(src.loc)
+		empty_mag = null
+		playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
+		update_icon()
+	return
+
+/obj/item/weapon/gun/projectile/gyropistol/update_icon()
+	..()
+	if(empty_mag)
+		icon_state = "gyropistolloaded"
+	else
+		icon_state = "gyropistol"
+	return
 
 /obj/item/weapon/gun/projectile/pistol
 	name = "\improper Stechtkin pistol"
@@ -121,7 +116,6 @@
 			update_icon()
 			return
 	..()
-
 
 /obj/item/weapon/gun/projectile/pistol/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/silencer))

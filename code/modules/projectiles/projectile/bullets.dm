@@ -7,10 +7,10 @@
 	flag = "bullet"
 	embed = 1
 
-	on_hit(var/atom/target, var/blocked = 0)
-		if (..(target, blocked))
-			var/mob/living/L = target
-			shake_camera(L, 3, 2)
+/obj/item/projectile/bullet/on_hit(var/atom/target, var/blocked = 0)
+	if (..(target, blocked))
+		var/mob/living/L = target
+		shake_camera(L, 3, 2)
 
 /obj/item/projectile/bullet/weakbullet // "rubber" bullets
 	damage = 10
@@ -37,17 +37,14 @@
 	damage = 20
 	damage_type = OXY
 
-
 /obj/item/projectile/bullet/cyanideround
 	name = "poison bullet"
 	damage = 40
 	damage_type = TOX
 
-
 /obj/item/projectile/bullet/burstbullet//I think this one needs something for the on hit
 	name = "exploding bullet"
 	damage = 20
-
 
 /obj/item/projectile/bullet/stunshot
 	name = "stunshot"

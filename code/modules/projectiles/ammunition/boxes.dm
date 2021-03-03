@@ -13,7 +13,6 @@
 	max_ammo = 6
 	multiple_sprites = 1
 
-
 /obj/item/ammo_magazine/c45m
 	name = "magazine (.45)"
 	icon_state = "45"
@@ -41,15 +40,12 @@
 	max_ammo = 7
 	multiple_sprites = 1
 
-
-
 /obj/item/ammo_magazine/a666
 	name = "ammo box (.666)"
 	icon_state = "666"
 	ammo_type = "/obj/item/ammo_casing/a666"
 	max_ammo = 4
 	multiple_sprites = 1
-
 
 /obj/item/ammo_magazine/mc9mm
 	name = "magazine (9mm)"
@@ -69,16 +65,12 @@
 	ammo_type = "/obj/item/ammo_casing/c9mm"
 	max_ammo = 30
 
-
-
 /obj/item/ammo_magazine/c45
 	name = "Ammunition Box (.45)"
 	icon_state = "9mm"
 	origin_tech = "combat=2"
 	ammo_type = "/obj/item/ammo_casing/c45"
 	max_ammo = 30
-
-
 
 /obj/item/ammo_magazine/a12mm
 	name = "magazine (12mm)"
@@ -87,7 +79,6 @@
 	ammo_type = "/obj/item/ammo_casing/a12mm"
 	max_ammo = 20
 	multiple_sprites = 1
-
 
 /obj/item/ammo_magazine/a12mm/empty
 	name = "magazine (12mm)"

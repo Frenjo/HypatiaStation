@@ -25,17 +25,18 @@
 	update_icon()
 	return
 
-
 /obj/item/weapon/gun/projectile/load_into_chamber()
 	if(in_chamber)
 		return 1 //{R}
 
 	if(!loaded.len)
 		return 0
+
 	var/obj/item/ammo_casing/AC = loaded[1] //load next casing.
 	loaded -= AC //Remove casing from loaded list.
 	if(isnull(AC) || !istype(AC))
 		return 0
+
 	AC.loc = get_turf(src) //Eject casing onto ground.
 	if(AC.BB)
 		AC.desc += " This one is spent."	//descriptions are magic - only when there's a projectile in the casing
@@ -44,9 +45,7 @@
 		return 1
 	return 0
 
-
 /obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
-
 	var/num_loaded = 0
 	if(istype(A, /obj/item/ammo_magazine))
 		if((load_method == MAGAZINE) && loaded.len)	return
@@ -101,8 +100,6 @@
 	else
 		user << "\red Nothing loaded in \the [src]!"
 
-
-
 /obj/item/weapon/gun/projectile/examine()
 	..()
 	usr << "Has [getAmmo()] round\s remaining."
@@ -118,4 +115,3 @@
 		if(istype(AC))
 			bullets += 1
 	return bullets
-

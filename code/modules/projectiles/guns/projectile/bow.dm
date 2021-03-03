@@ -1,5 +1,4 @@
 /obj/item/weapon/arrow
-
 	name = "bolt"
 	desc = "It's got a tip for you - get the point?"
 	icon = 'icons/obj/weapons.dmi'
@@ -14,7 +13,6 @@
 	return
 
 /obj/item/weapon/arrow/quill
-
 	name = "vox quill"
 	desc = "A wickedly barbed quill from some bizarre animal."
 	icon = 'icons/obj/weapons.dmi'
@@ -23,7 +21,6 @@
 	throwforce = 5
 
 /obj/item/weapon/arrow/rod
-
 	name = "metal rod"
 	desc = "Don't cry for me, Orithena."
 	icon_state = "metal-rod"
@@ -36,7 +33,6 @@
 		src.Del()
 
 /obj/item/weapon/crossbow
-
 	name = "powered crossbow"
 	desc = "A 2557AD twist on an old classic. Pick up that can."
 	icon = 'icons/obj/weapons.dmi'
@@ -123,7 +119,6 @@
 		draw(user)
 
 /obj/item/weapon/crossbow/proc/draw(var/mob/user as mob)
-
 	if(!arrow)
 		user << "You don't have anything nocked to [src]."
 		return
@@ -138,7 +133,6 @@
 	spawn(25) increase_tension(user)
 
 /obj/item/weapon/crossbow/proc/increase_tension(var/mob/user as mob)
-
 	if(!arrow || !tension || current_user != user) //Arrow has been fired, bow has been relaxed or user has changed.
 		return
 
@@ -153,7 +147,6 @@
 		spawn(25) increase_tension(user)
 
 /obj/item/weapon/crossbow/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
-
 	if (istype(target, /obj/item/weapon/storage/backpack ))
 		src.dropped()
 		return
@@ -178,7 +171,6 @@
 		spawn(0) Fire(target,user,params)
 
 /obj/item/weapon/crossbow/proc/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
-
 	add_fingerprint(user)
 
 	var/turf/curloc = get_turf(user)

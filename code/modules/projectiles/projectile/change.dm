@@ -6,14 +6,16 @@
 	nodamage = 1
 	flag = "energy"
 
-	on_hit(var/atom/change)
-		wabbajack(change)
+/obj/item/projectile/change/on_hit(var/atom/change)
+	wabbajack(change)
 
 
-/obj/item/projectile/change/proc/wabbajack (mob/M as mob in living_mob_list)
+/obj/item/projectile/change/proc/wabbajack(mob/M as mob in living_mob_list)
 	if(istype(M, /mob/living) && M.stat != DEAD)
-		if(M.monkeyizing)	return
-		if(M.has_brain_worms()) return //Borer stuff - RR
+		if(M.monkeyizing)
+			return
+		if(M.has_brain_worms())
+			return //Borer stuff - RR
 
 		M.monkeyizing = 1
 		M.canmove = 0
@@ -93,4 +95,3 @@
 
 		del(M)
 		return new_mob
-

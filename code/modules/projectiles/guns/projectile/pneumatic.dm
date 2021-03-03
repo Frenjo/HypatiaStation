@@ -22,7 +22,6 @@
 	                                                    // analyzer with a force_divisor of 10 hit with a damage multiplier of 3000+.
 
 /obj/item/weapon/storage/pneumatic/verb/set_pressure() //set amount of tank pressure.
-
 	set name = "Set valve pressure"
 	set category = "Object"
 	set src in range(0)
@@ -32,11 +31,9 @@
 		usr << "You dial the pressure valve to [pressure_setting]%."
 
 /obj/item/weapon/storage/pneumatic/verb/eject_tank() //Remove the tank.
-
 	set name = "Eject tank"
 	set category = "Object"
 	set src in range(0)
-
 	if(tank)
 		usr << "You twist the valve and pop the tank out of [src]."
 		tank.loc = usr.loc
@@ -99,7 +96,6 @@
 			return
 
 /obj/item/weapon/storage/pneumatic/proc/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
-
 	if (!tank)
 		user << "There is no gas tank in [src]!"
 		return 0

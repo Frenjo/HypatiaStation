@@ -5,7 +5,6 @@
 	damage_type = BURN
 	flag = "energy"
 
-
 /obj/item/projectile/energy/electrode
 	name = "electrode"
 	icon_state = "spark"
@@ -19,8 +18,6 @@
 	damage_type = HALLOSS
 	//Damage will be handled on the MOB side, to prevent window shattering.
 
-
-
 /obj/item/projectile/energy/declone
 	name = "declone"
 	icon_state = "declone"
@@ -28,14 +25,12 @@
 	damage_type = CLONE
 	irradiate = 40
 
-
 /obj/item/projectile/energy/dart
 	name = "dart"
 	icon_state = "toxin"
 	damage = 5
 	damage_type = TOX
 	weaken = 5
-
 
 /obj/item/projectile/energy/bolt
 	name = "bolt"
@@ -46,11 +41,9 @@
 	agony = 40
 	stutter = 10
 
-
 /obj/item/projectile/energy/bolt/large
 	name = "largebolt"
 	damage = 20
-
 
 /obj/item/projectile/energy/neurotoxin
 	name = "neuro"
@@ -65,4 +58,3 @@
 	damage = 20
 	damage_type = TOX
 	irradiate = 20
-

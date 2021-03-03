@@ -20,7 +20,8 @@
 /obj/item/weapon/gun/rocketlauncher/examine()
 	set src in view()
 	..()
-	if (!(usr in view(2)) && usr!=src.loc) return
+	if (!(usr in view(2)) && usr!=src.loc)
+		return
 	usr << "\blue [rockets.len] / [max_rockets] rockets."
 
 /obj/item/weapon/gun/rocketlauncher/attackby(obj/item/I as obj, mob/user as mob)

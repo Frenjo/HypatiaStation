@@ -20,32 +20,33 @@
 	var/charge_tick = 0
 	var/recharge_time = 10 //Time it takes for shots to recharge (in ticks)
 
-	New()
-		..()
-		processing_objects.Add(src)
+/obj/item/weapon/gun/energy/taser/cyborg/New()
+	..()
+	processing_objects.Add(src)
 
+/obj/item/weapon/gun/energy/taser/cyborg/Del()
+	processing_objects.Remove(src)
+	..()
 
-	Del()
-		processing_objects.Remove(src)
-		..()
+/obj/item/weapon/gun/energy/taser/cyborg/process() //Every [recharge_time] ticks, recharge a shot for the cyborg
+	charge_tick++
+	if(charge_tick < recharge_time)
+		return 0
+	charge_tick = 0
 
-	process() //Every [recharge_time] ticks, recharge a shot for the cyborg
-		charge_tick++
-		if(charge_tick < recharge_time) return 0
-		charge_tick = 0
-		
-		if(!power_supply) return 0 //sanity
-		if(power_supply.charge >= power_supply.maxcharge) return 0 // check if we actually need to recharge
-		
-		if(isrobot(src.loc))
-			var/mob/living/silicon/robot/R = src.loc
-			if(R && R.cell)
-				R.cell.use(charge_cost) 		//Take power from the borg...
-				power_supply.give(charge_cost)	//... to recharge the shot
-				
-		update_icon()
-		return 1
+	if(!power_supply)
+		return 0 //sanity
+	if(power_supply.charge >= power_supply.maxcharge)
+		return 0 // check if we actually need to recharge
 
+	if(isrobot(src.loc))
+		var/mob/living/silicon/robot/R = src.loc
+		if(R && R.cell)
+			R.cell.use(charge_cost) 		//Take power from the borg...
+			power_supply.give(charge_cost)	//... to recharge the shot
+
+	update_icon()
+	return 1
 
 /obj/item/weapon/gun/energy/stunrevolver
 	name = "stun revolver"
@@ -56,8 +57,6 @@
 	charge_cost = 125
 	projectile_type = "/obj/item/projectile/energy/electrode"
 	cell_type = "/obj/item/weapon/cell"
-
-
 
 /obj/item/weapon/gun/energy/crossbow
 	name = "mini energy-crossbow"
@@ -73,30 +72,26 @@
 	cell_type = "/obj/item/weapon/cell/crap"
 	var/charge_tick = 0
 
+/obj/item/weapon/gun/energy/crossbow/New()
+	..()
+	processing_objects.Add(src)
 
-	New()
-		..()
-		processing_objects.Add(src)
+/obj/item/weapon/gun/energy/crossbow/Del()
+	processing_objects.Remove(src)
+	..()
 
+/obj/item/weapon/gun/energy/crossbow/process()
+	charge_tick++
+	if(charge_tick < 4)
+		return 0
+	charge_tick = 0
+	if(!power_supply)
+		return 0
+	power_supply.give(100)
+	return 1
 
-	Del()
-		processing_objects.Remove(src)
-		..()
-
-
-	process()
-		charge_tick++
-		if(charge_tick < 4) return 0
-		charge_tick = 0
-		if(!power_supply) return 0
-		power_supply.give(100)
-		return 1
-
-
-	update_icon()
-		return
-
-
+/obj/item/weapon/gun/energy/crossbow/update_icon()
+	return
 
 /obj/item/weapon/gun/energy/crossbow/largecrossbow
 	name = "Energy Crossbow"
@@ -105,5 +100,3 @@
 	force = 10
 	m_amt = 200000
 	projectile_type = "/obj/item/projectile/energy/bolt/large"
-
-
