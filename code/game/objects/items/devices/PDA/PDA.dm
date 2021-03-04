@@ -204,12 +204,10 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	ttone = "data"
 	detonate = 0
 
-
 /obj/item/device/pda/ai/proc/set_name_and_job(newname as text, newjob as text)
 	owner = newname
 	ownjob = newjob
 	name = newname + " (" + ownjob + ")"
-
 
 //AI verb and proc for sending PDA messages.
 /obj/item/device/pda/ai/verb/cmd_send_pdamesg()
@@ -227,7 +225,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		var/selected = plist[c]
 		create_message(usr, selected)
 
-
 /obj/item/device/pda/ai/verb/cmd_toggle_pda_receiver()
 	set category = "AI IM"
 	set name = "Toggle Sender/Receiver"
@@ -238,7 +235,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	toff = !toff
 	usr << "<span class='notice'>PDA sender/receiver toggled [(toff ? "Off" : "On")]!</span>"
 
-
 /obj/item/device/pda/ai/verb/cmd_toggle_pda_silent()
 	set category = "AI IM"
 	set name = "Toggle Ringer"
@@ -248,7 +244,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		return
 	silent=!silent
 	usr << "<span class='notice'>PDA ringer toggled [(silent ? "Off" : "On")]!</span>"
-
 
 /obj/item/device/pda/ai/verb/cmd_show_message_log()
 	set category = "AI IM"
@@ -266,10 +261,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	HTML +="</body></html>"
 	usr << browse(HTML, "window=log;size=400x444;border=1;can_resize=1;can_close=1;can_minimize=0")
 
-
 /obj/item/device/pda/ai/can_use()
 	return 1
-
 
 /obj/item/device/pda/ai/attack_self(mob/user as mob)
 	if ((honkamt > 0) && (prob(60)))//For clown virus.
@@ -277,10 +270,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		playsound(loc, 'sound/items/bikehorn.ogg', 30, 1)
 	return
 
-
 /obj/item/device/pda/ai/pai
 	ttone = "assist"
-
 
 /*
  *	The Actual PDA
@@ -308,7 +299,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	new /obj/item/weapon/pen(src)
 
 /obj/item/device/pda/proc/can_use()
-
 	if(!ismob(loc))
 		return 0
 

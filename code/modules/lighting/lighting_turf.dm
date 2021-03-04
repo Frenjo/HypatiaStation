@@ -8,7 +8,7 @@
 
 /turf/proc/lighting_clear_overlays()
 	if(lighting_overlay)
-		del(lighting_overlay)
+		qdel(lighting_overlay)
 
 /turf/proc/lighting_build_overlays()
 	if(!lighting_overlay)
