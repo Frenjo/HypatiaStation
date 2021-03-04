@@ -269,7 +269,6 @@
 		if(!job.player_old_enough(src.client))	return 0
 		return 1
 
-
 	proc/AttemptLateSpawn(rank)
 		if (src != usr)
 			return 0

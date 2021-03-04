@@ -98,7 +98,6 @@ var/list/department_radio_keys = list(
 
 	var/list/listening = list()
 	if(T)
-
 		var/list/hear = hear(message_range, T)
 		var/list/hearturfs = list()
 
@@ -119,7 +118,7 @@ var/list/department_radio_keys = list(
 						O.hear_talk(src, message, verbage, speaking)
 
 		for(var/mob/M in player_list)
-			if(M.stat == DEAD && client && (M.client.prefs.toggles & CHAT_GHOSTEARS))
+			if(M.stat == DEAD && M.client && (M.client.prefs.toggles & CHAT_GHOSTEARS))
 				listening |= M
 				continue
 			if(M.locs[1] in hearturfs)

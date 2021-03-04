@@ -1,4 +1,4 @@
-obj/machinery/atmospherics/pipe/simple/heat_exchanging
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging
 	icon = 'icons/obj/pipes/heat.dmi'
 	icon_state = "intact"
 	level = 2
@@ -12,12 +12,12 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging
 	var/icon_temperature = T20C //stop small changes in temperature causing an icon refresh
 
 // BubbleWrap
-obj/machinery/atmospherics/pipe/simple/heat_exchanging/New()
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/New()
 	..()
 	initialize_directions_he = initialize_directions	// The auto-detection from /pipe is good enough for a simple HE pipe
 // BubbleWrap END
 
-obj/machinery/atmospherics/pipe/simple/heat_exchanging/initialize()
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/initialize()
 	// Ported this for heat exchange reasons, see big comment below. -Frenjo
 	color = "#404040" //we don't make use of the fancy overlay system for colours, use this to set the default.
 
@@ -44,7 +44,7 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging/initialize()
 	return
 
 
-obj/machinery/atmospherics/pipe/simple/heat_exchanging/process()
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/process()
 	if(!parent)
 		..()
 	else

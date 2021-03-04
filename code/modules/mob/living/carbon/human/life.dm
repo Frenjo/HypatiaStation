@@ -1177,6 +1177,7 @@
 				speech_problem_flag = 1
 				stuttering = max(stuttering-1, 0)
 			if (slurring)
+				speech_problem_flag = 1
 				slurring = max(slurring-1, 0)
 			if(silent)
 				speech_problem_flag = 1

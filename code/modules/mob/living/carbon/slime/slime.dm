@@ -63,7 +63,6 @@
 	update_icon = 0
 	nutrition = 800 // 1200 = max
 
-
 /mob/living/carbon/slime/New()
 	var/datum/reagents/R = new/datum/reagents(100)
 	reagents = R
@@ -105,7 +104,6 @@
 		return -1	// slimes become supercharged at high temperatures
 
 	return tally+config.slime_delay
-
 
 /mob/living/carbon/slime/Bump(atom/movable/AM as mob|obj, yes)
 	spawn( 0 )
@@ -176,7 +174,6 @@
 
 /mob/living/carbon/slime/Process_Spacemove()
 	return 2
-
 
 /mob/living/carbon/slime/Stat()
 	..()

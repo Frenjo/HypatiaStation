@@ -7,7 +7,7 @@
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
 			src << "\red You cannot speak in IC (Muted)."
-		return
+			return
 
 	if(stat == 2)
 		return say_dead(message)
@@ -105,7 +105,7 @@
 			return
 		else
 			if(message_mode)
-				if(message_mode in radiochannels)
+				if(message_mode in (radiochannels | "department"))
 					if(l_ear && istype(l_ear,/obj/item/device/radio))
 						l_ear.talk_into(src,message, message_mode, verbage, speaking)
 						used_radios += l_ear
@@ -113,17 +113,16 @@
 						r_ear.talk_into(src,message, message_mode, verbage, speaking)
 						used_radios += r_ear
 
-
 	if(used_radios.len)
 		italics = 1
-		message_range = 3
+		message_range = 1
 
 	var/datum/gas_mixture/environment = loc.return_air()
 	if(environment)
 		var/pressure = environment.return_pressure()
 		if(pressure < SAY_MINIMUM_PRESSURE)
 			italics = 1
-			message_range =1
+			message_range = 1
 
 	..(message, speaking, verbage, alt_name, italics, message_range, used_radios)
 
