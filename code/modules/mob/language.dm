@@ -11,6 +11,13 @@
 	var/flags = 0                    // Various language flags.
 	var/native                       // If set, non-native speakers will have trouble speaking.
 
+/datum/language/human
+	name = "Sol Common"
+	desc = "A bastardized hybrid of informal English and elements of Mandarin Chinese; the common language of the Sol system."
+	colour = "rough"
+	key = "1"
+	flags = RESTRICTED
+
 /datum/language/soghun
 	name = "Sinta'unathi"
 	desc = "The common language of Moghes, composed of sibilant hisses and rattles. Spoken natively by Soghun."
@@ -20,12 +27,20 @@
 	flags = RESTRICTED
 
 /datum/language/tajaran
-	name = "Siik'tajr"
-	desc = "An expressive language that combines yowls and chirps with posture, tail and ears. Native to the Tajaran."
+	name = "Siik'maas"
+	desc = "The traditionally employed tongue of Ahdomai, composed of expressive yowls and chirps. Native to the Tajaran."
 	speech_verb = "mrowls"
 	colour = "tajaran"
 	key = "j"
 	flags = RESTRICTED
+
+/datum/language/tajaran_sign
+	name = "Siik'tajr"
+	desc = "An expressive language that combines yowls and chirps with posture, tail and ears. Native to the Tajaran."
+	speech_verb = "mrowls"
+	colour = "tajaran"
+	key = "y"
+	flags = RESTRICTED | NONVERBAL
 
 /datum/language/skrell
 	name = "Skrellian"
@@ -43,20 +58,20 @@
 	key = "v"
 	flags = RESTRICTED
 
-/datum/language/obsedai
-	name = "Obsedaian"
-	desc = "The common tongue of the Obsedai. It sounds like deep rumbling and resonant notes to everyone else."
-	speech_verb = "rumbles"
-	colour = "rough"
-	key = "r"
-	flags = RESTRICTED
-
 /datum/language/diona
 	name = "Rootspeak"
 	desc = "A creaking, subvocal language spoken instinctively by the Dionaea. Due to the unique makeup of the average Diona, a phrase of Rootspeak can be a combination of anywhere from one to twelve individual voices and notes."
 	speech_verb = "creaks and rustles"
 	colour = "soghun"
 	key = "q"
+	flags = RESTRICTED
+
+/datum/language/obsedai
+	name = "Obsedaian"
+	desc = "The common tongue of the Obsedai. It sounds like deep rumbling and resonant notes to everyone else."
+	speech_verb = "rumbles"
+	colour = "rough"
+	key = "r"
 	flags = RESTRICTED
 
 /datum/language/plasmaperson
@@ -73,13 +88,6 @@
 	speech_verb = "emits"
 	colour = "vox"
 	key = "a"
-	flags = RESTRICTED
-
-/datum/language/human
-	name = "Sol Common"
-	desc = "A bastardized hybrid of informal English and elements of Mandarin Chinese; the common language of the Sol system."
-	colour = "rough"
-	key = "1"
 	flags = RESTRICTED
 
 // Galactic common languages (systemwide accepted standards).
@@ -113,6 +121,10 @@
 	languages.Remove(all_languages[rem_language])
 
 	return 0
+
+// Can we speak this language, as opposed to just understanding it?
+/mob/proc/can_speak(datum/language/speaking)
+	return (universal_speak || speaking in src.languages)
 
 //TBD
 /mob/verb/check_languages()

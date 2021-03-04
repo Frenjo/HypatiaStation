@@ -12,6 +12,17 @@
 #define IS_ROBOT 2
 #define IS_PAI 3
 
+/mob/living/silicon/say_understands(var/other,var/datum/language/speaking = null)
+	//These only pertain to common. Languages are handled by mob/say_understands()
+	if (!speaking)
+		if (istype(other, /mob/living/carbon/human))
+			return 1
+		if (istype(other, /mob/living/silicon))
+			return 1
+		if (istype(other, /mob/living/carbon/brain))
+			return 1
+	return ..()
+
 /mob/living/silicon/say(var/message)
 	if(!message)
 		return
@@ -20,12 +31,16 @@
 		if(client.prefs.muted & MUTE_IC)
 			src << "You cannot send IC messages (muted)."
 			return
-		if (src.client.handle_spam_prevention(message,MUTE_IC))
+		if(src.client.handle_spam_prevention(message,MUTE_IC))
 			return
 
+	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+
 	if(stat == 2)
-		message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 		return say_dead(message)
+
+	if(copytext(message, 1, 2) == "*")
+		return emote(copytext(message, 2))
 
 	var/bot_type = 0			//Let's not do a fuck ton of type checks, thanks.
 	if(istype(src, /mob/living/silicon/ai))
@@ -39,29 +54,31 @@
 	var/mob/living/silicon/robot/R = src
 	var/mob/living/silicon/pai/P = src
 
+
 	//Must be concious to speak
 	if (stat)
 		return
 
 	var/verbage = say_quote(message)
-	var/message_mode = null
 
-	if(copytext(message, 1, 2) == ";")
-		message_mode = "general"  			// I don't know why but regular radio = fuck you we ain't broadcasting, pAI mode was what was in old say code.
-		message = trim(copytext(message, 2))
+	//parse radio key and consume it
+	var/message_mode = parse_message_mode(message, "general")
+	if (message_mode)
+		if (message_mode == "general")
+			message = trim(copytext(message, 2))
+		else
+			message = trim(copytext(message, 3))
 
-	else if(length(message) >= 2)
-		var/channel_prefix = copytext(message, 1, 3)
-		if(!message_mode)
-			message_mode = department_radio_keys[channel_prefix]
+	if(message_mode && bot_type == IS_ROBOT && message_mode != "binary" && !R.is_component_functioning("radio"))
+		src << "\red Your radio isn't functional at this time."
+		return
 
-	if(message_mode && bot_type == IS_ROBOT)
-		if(message_mode != "binary" && !R.is_component_functioning("radio"))
-			src << "\red Your radio isn't functional at this time."
-			return
 
-	if(message_mode && message_mode != "general")
-		message = trim(copytext(message, 3))
+	//parse language key and consume it
+	var/datum/language/speaking = parse_language(message)
+	if (speaking)
+		verbage = speaking.speech_verb
+		message = copytext(message, 3)
 
 	switch(message_mode)
 		if("department")
@@ -70,10 +87,10 @@
 					AI.holopad_talk(message)
 				if(IS_ROBOT)
 					log_say("[key_name(src)] : [message]")
-					R.radio.talk_into(src, message, message_mode, verbage)
+					R.radio.talk_into(src, message, message_mode, verbage, speaking)
 				if(IS_PAI)
 					log_say("[key_name(src)] : [message]")
-					P.radio.talk_into(src, message, message_mode, verbage)
+					P.radio.talk_into(src, message, message_mode, verbage, speaking)
 			return
 
 		if("binary")
@@ -88,18 +105,18 @@
 
 			robot_talk(message)
 			return
-
 		if("general")
 			switch(bot_type)
 				if(IS_AI)
 					src << "Yeah, not yet, sorry"
 				if(IS_ROBOT)
 					log_say("[key_name(src)] : [message]")
-					R.radio.talk_into(src, message, null, verbage)
+					R.radio.talk_into(src, message, null, verbage, speaking)
 				if(IS_PAI)
 					log_say("[key_name(src)] : [message]")
-					P.radio.talk_into(src, message, null, verbage)
+					P.radio.talk_into(src, message, null, verbage, speaking)
 			return
+
 		else
 			if(message_mode && message_mode in radiochannels)
 				switch(bot_type)
@@ -108,10 +125,10 @@
 						return
 					if(IS_ROBOT)
 						log_say("[key_name(src)] : [message]")
-						R.radio.talk_into(src, message, message_mode, verbage)
+						R.radio.talk_into(src, message, message_mode, verbage, speaking)
 					if(IS_PAI)
 						log_say("[key_name(src)] : [message]")
-						P.radio.talk_into(src, message, message_mode, verbage)
+						P.radio.talk_into(src, message, message_mode, verbage, speaking)
 				return
 
 
@@ -128,17 +145,17 @@
 
 	var/obj/machinery/hologram/holopad/T = src.current
 	if(istype(T) && T.hologram && T.master == src)//If there is a hologram and its master is the user.
-		var/message_a = say_quote(message)
+		var/verbage = say_quote(message)
 
 		//Human-like, sorta, heard by those who understand humans.
-		var/rendered_a = "<span class='game say'><span class='name'>[name]</span> <span class='message'>[message_a]</span></span>"
+		var/rendered_a = "<span class='game say'><span class='name'>[verbage]</span> <span class='message'>[message]</span></span>"
 
 		//Speach distorted, heard by those who do not understand AIs.
-		message = stars(message)
-		var/message_b = say_quote(message)
-		var/rendered_b = "<span class='game say'><span class='name'>[voice_name]</span> <span class='message'>[message_b]</span></span>"
+		var/message_stars = stars(message)
+		var/rendered_b = "<span class='game say'><span class='name'>[voice_name]</span> [verbage], <span class='message'>\"[message_stars]\"</span></span>"
 
-		src << "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> <span class='message'>[message_a]</span></span></i>"//The AI can "hear" its own message.
+		src << "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [verbage], <span class='message'>[message]</span></span></i>"//The AI can "hear" its own message.
+
 		for(var/mob/M in hearers(T.loc))//The location is the object, default distance.
 			if(M.say_understands(src))//If they understand AI speak. Humans and the like will be able to.
 				M.show_message(rendered_a, 2)
@@ -155,24 +172,25 @@
 
 	message = trim(message)
 
-	if(!message)
+	if (!message)
 		return
 
-	var/message_a = say_quote(message)
-	var/rendered = "<i><span class='game say'>Robotic Talk, <span class='name'>[name]</span> <span class='message'>[message_a]</span></span></i>"
+	var/verbage = say_quote(message)
 
-	for(var/mob/living/S in living_mob_list)
+	var/rendered = "<i><span class='game say'>Robotic Talk, <span class='name'>[name]</span> <span class='message'>[verbage], \"[message]\"</span></span></i>"
+
+	for (var/mob/living/S in living_mob_list)
 		if(S.robot_talk_understand && (S.robot_talk_understand == robot_talk_understand)) // This SHOULD catch everything caught by the one below, but I'm not going to change it.
 			if(istype(S , /mob/living/silicon/ai))
-				var/renderedAI = "<i><span class='game say'>Robotic Talk, <a href='byond://?src=\ref[S];track2=\ref[S];track=\ref[src]'><span class='name'>[name]</span></a> <span class='message'>[message_a]</span></span></i>"
+				var/renderedAI = "<i><span class='game say'>Robotic Talk, <a href='byond://?src=\ref[S];track2=\ref[S];track=\ref[src]'><span class='name'>[name]</span></a> <span class='message'>[verbage], \"[message]\"</span></span></i>"
 				S.show_message(renderedAI, 2)
 			else
 				S.show_message(rendered, 2)
 
 
-		else if(S.binarycheck())
+		else if (S.binarycheck())
 			if(istype(S , /mob/living/silicon/ai))
-				var/renderedAI = "<i><span class='game say'>Robotic Talk, <a href='byond://?src=\ref[S];track2=\ref[S];track=\ref[src]'><span class='name'>[name]</span></a> <span class='message'>[message_a]</span></span></i>"
+				var/renderedAI = "<i><span class='game say'>Robotic Talk, <a href='byond://?src=\ref[S];track2=\ref[S];track=\ref[src]'><span class='name'>[name]</span></a> <span class='message'>[verbage], \"[message]\"</span></span></i>"
 				S.show_message(renderedAI, 2)
 			else
 				S.show_message(rendered, 2)
@@ -182,27 +200,22 @@
 	listening += src
 
 	var/list/heard = list()
-	for(var/mob/M in listening)
+	for (var/mob/M in listening)
 		if(!istype(M, /mob/living/silicon) && !M.robot_talk_understand)
 			heard += M
+	if (length(heard))
+		var/message_beep
+		verbage = "beeps"
+		message_beep = "beep beep beep"
 
-	if(length(heard))
-		var/message_b
-
-		message_b = "beep beep beep"
-		message_b = say_quote(message_b)
-		message_b = "<i>[message_b]</i>"
-
-		rendered = "<i><span class='game say'><span class='name'>[voice_name]</span> <span class='message'>[message_b]</span></span></i>"
+		rendered = "<i><span class='game say'><span class='name'>[voice_name]</span> <span class='message'>[verbage], \"[message_beep]\"</span></span></i>"
 
 		for (var/mob/M in heard)
 			M.show_message(rendered, 2)
 
-	message = say_quote(message)
+	rendered = "<i><span class='game say'>Robotic Talk, <span class='name'>[name]</span> <span class='message'>[verbage], \"[message]\"</span></span></i>"
 
-	rendered = "<i><span class='game say'>Robotic Talk, <span class='name'>[name]</span> <span class='message'>[message_a]</span></span></i>"
-
-	for(var/mob/M in dead_mob_list)
+	for (var/mob/M in dead_mob_list)
 		if(!istype(M,/mob/new_player) && !istype(M,/mob/living/carbon/brain)) //No meta-evesdropping
 			M.show_message(rendered, 2)
 

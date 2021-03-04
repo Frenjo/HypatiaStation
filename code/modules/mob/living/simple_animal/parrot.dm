@@ -130,7 +130,6 @@
 	return
 
 /mob/living/simple_animal/parrot/Topic(href, href_list)
-
 	//Can the usr physically do this?
 	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 		return
@@ -206,7 +205,6 @@
 							available_channels.Add(":b")
 		else
 			..()
-
 
 /*
  * Attack responces

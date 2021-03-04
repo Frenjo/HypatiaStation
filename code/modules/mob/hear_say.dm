@@ -1,14 +1,23 @@
 // At minimum every mob has a hear_say proc.
 
-/mob/proc/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null)
+/mob/proc/hear_say(var/message, var/verbage = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null)
 	if(!client)
 		return
 
+	if(sleeping || stat == 1)
+		hear_sleep(message)
+		return
+
 	var/style = "body"
-	if(language)
-		if(!say_understands(speaker,language))
+	if(!say_understands(speaker, language))
+		if(istype(speaker, /mob/living/simple_animal))
+			var/mob/living/simple_animal/S = speaker
+			message = pick(S.speak)
+		else
 			message = stars(message)
-		verb = language.speech_verb
+
+	if(language)
+		verbage = language.speech_verb
 		style = language.colour
 
 	var/speaker_name = speaker.name
@@ -21,7 +30,9 @@
 
 	var/track = null
 	if(istype(src, /mob/dead/observer))
-		if(speaker_name != speaker.real_name)
+		if(italics && client.prefs.toggles & CHAT_GHOSTRADIO)
+			return
+		if(speaker_name != speaker.real_name && speaker.real_name)
 			speaker_name = "[speaker.real_name] ([speaker_name])"
 		track = "(<a href='byond://?src=\ref[src];track=\ref[speaker]'>follow</a>) "
 		if(client.prefs.toggles & CHAT_GHOSTEARS && speaker in view(src))
@@ -31,27 +42,38 @@
 		if(speaker == src)
 			src << "<span class='warning'>You cannot hear yourself speak!</span>"
 		else
-			src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear them."
+			src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him."
 	else
-		src << "<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track]<span class='[style]'>[verb], <span class='message'>\"[message]\"</span></span></span>"
+		src << "<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track]<span class='[style]'>[verbage], <span class='message'>\"[message]\"</span></span></span>"
 
 
-/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0)
+/mob/proc/hear_radio(var/message, var/verbage = "says", var/datum/language/language = null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/vname = "")
 	if(!client)
 		return
+
+	if(sleeping || stat == 1)
+		hear_sleep(message)
+		return
+
 	var/track = null
 
 	var/style = "body"
-	if(language)
-		if(!say_understands(speaker,language))
+	if(!say_understands(speaker, language))
+		if(istype(speaker, /mob/living/simple_animal))
+			var/mob/living/simple_animal/S = speaker
+			message = pick(S.speak)
+		else
 			message = stars(message)
-		verb = language.speech_verb
+
+	if(language)
+		verbage = language.speech_verb
 		style = language.colour
 
 	if(hard_to_hear)
 		message = stars(message)
 
-	var/speaker_name = speaker.name
+	var/speaker_name = vname ? vname : speaker.name
+
 	if(istype(speaker, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = speaker
 		if(H.voice)
@@ -87,6 +109,24 @@
 		if(prob(20))
 			src << "<span class='warning'>You feel your headset vibrate but can hear nothing from it!</span>"
 	else if(track)
-		src << "[part_a][track][part_b]<span class=\"[style]\"> [verb], \"[message]\"</span></span></span>"
+		src << "[part_a][track][part_b]<span class=\"[style]\"> [verbage], \"[message]\"</span></span></span>"
 	else
-		src << "[part_a][speaker_name][part_b]<span class=\"[style]\"> [verb], \"[message]\"</span></span></span>"
+		src << "[part_a][speaker_name][part_b]<span class=\"[style]\"> [verbage], \"[message]\"</span></span></span>"
+
+/mob/proc/hear_sleep(var/message)
+	var/heard = ""
+	if(prob(15))
+		var/list/punctuation = list(",", "!", ".", ";", "?")
+		var/list/messages = text2list(message, " ")
+		var/R = rand(1, messages.len)
+		var/heardword = messages[R]
+		if(copytext(heardword, 1, 1) in punctuation)
+			heardword = copytext(heardword, 2)
+		if(copytext(heardword,-1) in punctuation)
+			heardword = copytext(heardword, 1, length(heardword))
+		heard = "<span class = 'game_say'>...You hear something about...[heardword]</span>"
+
+	else
+		heard = "<span class = 'game_say'>...<i>You almost hear someone talking</i>...</span>"
+
+	src << heard

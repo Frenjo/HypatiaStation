@@ -51,7 +51,6 @@
 	var/ready_evolve = 0
 
 /mob/living/carbon/monkey/diona/attack_hand(mob/living/carbon/human/M as mob)
-
 	//Let people pick the little buggers up.
 	if(M.a_intent == "help")
 		if(M.species && M.species.name == "Diona")
@@ -72,7 +71,6 @@
 	..()
 
 /mob/living/carbon/monkey/diona/New()
-
 	..()
 	gender = NEUTER
 	dna.mutantrace = "plant"
@@ -81,9 +79,7 @@
 	src.verbs += /mob/living/carbon/monkey/diona/proc/merge
 
 //Verbs after this point.
-
 /mob/living/carbon/monkey/diona/proc/merge()
-
 	set category = "Diona"
 	set name = "Merge with gestalt"
 	set desc = "Merge with another diona."
@@ -116,7 +112,6 @@
 		return
 
 /mob/living/carbon/monkey/diona/proc/split()
-
 	set category = "Diona"
 	set name = "Split from gestalt"
 	set desc = "Split away from your gestalt as a lone nymph."
@@ -132,7 +127,6 @@
 	src.verbs += /mob/living/carbon/monkey/diona/proc/merge
 
 /mob/living/carbon/monkey/diona/verb/fertilize_plant()
-
 	set category = "Diona"
 	set name = "Fertilize plant"
 	set desc = "Turn your food into nutrients for plants."
@@ -151,7 +145,6 @@
 	src.visible_message("\red [src] secretes a trickle of green liquid from its tail, refilling [target]'s nutrient tray.","\red You secrete a trickle of green liquid from your tail, refilling [target]'s nutrient tray.")
 
 /mob/living/carbon/monkey/diona/verb/eat_weeds()
-
 	set category = "Diona"
 	set name = "Eat Weeds"
 	set desc = "Clean the weeds out of soil or a hydroponics tray."
@@ -170,7 +163,6 @@
 	src.visible_message("\red [src] begins rooting through [target], ripping out weeds and eating them noisily.","\red You begin rooting through [target], ripping out weeds and eating them noisily.")
 
 /mob/living/carbon/monkey/diona/verb/evolve()
-
 	set category = "Diona"
 	set name = "Evolve"
 	set desc = "Grow to a more complex form."
@@ -252,3 +244,45 @@
 		src << "\green You feel your awareness expand, and realize you know how to understand the creatures around you."
 	else
 		src << "\green The blood seeps into your small form, and you draw out the echoes of memories and personality from it, working them into your budding mind."
+
+/mob/living/carbon/monkey/diona/say_understands(var/mob/other,var/datum/language/speaking = null)
+
+	if (istype(other, /mob/living/carbon/human) && !speaking)
+		if(languages.len >= 2) // They have sucked down some blood.
+			return 1
+	return ..()
+
+/mob/living/carbon/monkey/diona/say(var/message)
+	var/verbage = "says"
+	var/message_range = world.view
+
+	if(client)
+		if(client.prefs.muted & MUTE_IC)
+			src << "\red You cannot speak in IC (Muted)."
+			return
+
+	message =  trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+
+	if(stat == 2)
+		return say_dead(message)
+
+	var/datum/language/speaking = null
+
+	if(length(message) >= 2)
+		var/channel_prefix = copytext(message, 1 ,3)
+		if(languages.len)
+			for(var/datum/language/L in languages)
+				if(lowertext(channel_prefix) == ":[L.key]")
+					verbage = L.speech_verb
+					speaking = L
+					break
+
+	if(speaking)
+		message = trim(copytext(message,3))
+
+	message = capitalize(trim_left(message))
+
+	if(!message || stat)
+		return
+
+	..(message, speaking, verbage, null, null, message_range, null)

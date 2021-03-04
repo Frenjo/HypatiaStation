@@ -8,6 +8,8 @@
 	var/list/alarms_to_clear = list()
 	immune_to_ssd = 1
 	var/list/hud_list[9]
+	var/list/speech_synthesizer_langs = list()	//which languages can be vocalized by the speech synthesizer
+
 	var/list/alarm_types_show = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
 	var/list/alarm_types_clear = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
 
@@ -146,7 +148,6 @@
 		return 1
 	return 0
 
-
 // this function shows the health of the pAI in the Status panel
 /mob/living/silicon/proc/show_system_integrity()
 	if(!src.stat)
@@ -154,16 +155,13 @@
 	else
 		stat(null, text("Systems nonfunctional"))
 
-
 // This is a pure virtual function, it should be overwritten by all subclasses
 /mob/living/silicon/proc/show_malf_ai()
 	return 0
 
-
 // this function displays the station time in the status panel
 /mob/living/silicon/proc/show_station_time()
 	stat(null, "Station Time: [worldtime2text()]")
-
 
 // this function displays the shuttles ETA in the status panel if the shuttle has been called
 /mob/living/silicon/proc/show_emergency_shuttle_eta()
@@ -173,7 +171,6 @@
 		var/timeleft = emergency_shuttle.estimate_arrival_time() // Updated to reflect 'shuttles' port. -Frenjo
 		if (timeleft)
 			stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
-
 
 // This adds the basic clock, shuttle recall timer, and malf_ai info to all silicon lifeforms
 /mob/living/silicon/Stat()
@@ -194,3 +191,31 @@
 	dat += "<br>"
 	src << browse(dat, "window=airoster")
 	onclose(src, "airoster")
+
+//Silicon mob language procs
+/mob/living/silicon/can_speak(datum/language/speaking)
+	return universal_speak || (speaking in src.speech_synthesizer_langs)	//need speech synthesizer support to vocalize a language
+
+/mob/living/silicon/add_language(var/language, var/can_speak=1)
+	if (..(language) && can_speak)
+		speech_synthesizer_langs.Add(all_languages[language])
+
+/mob/living/silicon/remove_language(var/rem_language)
+	..(rem_language)
+
+	for (var/datum/language/L in speech_synthesizer_langs)
+		if (L.name == rem_language)
+			speech_synthesizer_langs -= L
+
+/mob/living/silicon/check_languages()
+	set name = "Check Known Languages"
+	set category = "IC"
+	set src = usr
+
+	var/dat = "<b><font size = 5>Known Languages</font></b><br/><br/>"
+
+	for(var/datum/language/L in languages)
+		dat += "<b>[L.name] (:[L.key])</b><br/>Speech Synthesizer: <i>[(L in speech_synthesizer_langs)? "YES":"NOT SUPPORTED"]</i><br/>[L.desc]<br/><br/>"
+
+	src << browse(dat, "window=checklanguage")
+	return

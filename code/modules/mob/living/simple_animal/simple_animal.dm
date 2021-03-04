@@ -450,10 +450,21 @@
 		overlays += target_locked
 
 
-/mob/living/simple_animal/say(var/message, var/datum/language/speaking = null, var/verbage = "says")
+/mob/living/simple_animal/say(var/message)
 	if(stat)
 		return
+
+	if(copytext(message, 1, 2) == "*")
+		return emote(copytext(message, 2))
+
+	if(stat)
+		return
+
+	var/verbage = "says"
+
 	if(speak_emote.len)
 		verbage = pick(speak_emote)
+
+	message = capitalize(trim_left(message))
 
 	..(message, null, verbage)

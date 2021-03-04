@@ -11,7 +11,6 @@ var/list/ai_list = list()
 				subject.attack_ai(M)
 	return is_in_use
 
-
 /mob/living/silicon/ai
 	name = "AI"
 	icon = 'icons/mob/AI.dmi'//
@@ -95,6 +94,15 @@ var/list/ai_list = list()
 		/mob/living/silicon/ai/proc/ai_statuschange, /mob/living/silicon/ai/proc/ai_hologram_change, \
 		/mob/living/silicon/ai/proc/toggle_camera_light)
 
+	//Languages
+	add_language("Sol Common", 0)
+	add_language("Sinta'unathi", 0)
+	add_language("Siik'maas", 0)
+	add_language("Siik'tajr", 0)
+	add_language("Skrellian", 0)
+	add_language("Rootspeak", 0)
+	add_language("Tradeband", 1)
+	add_language("Gutter", 0)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.

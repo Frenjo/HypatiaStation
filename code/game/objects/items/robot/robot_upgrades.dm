@@ -36,6 +36,8 @@
 	R.updatename("Default")
 	R.status_flags |= CANPUSH
 	R.updateicon()
+	R.languages = list()
+	R.speech_synthesizer_langs = list()
 
 	return 1
 

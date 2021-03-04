@@ -19,10 +19,11 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg)
+obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "says")
 	if(recording)
-		var/ending = copytext(msg, length(msg))
+		//var/ending = copytext(msg, length(msg))
 		timestamp+= timerecorded
+		/*
 		if(M.stuttering)
 			storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] [M.name] stammers, \"[msg]\""
 			return
@@ -36,6 +37,9 @@
 			storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] [M.name] exclaims, \"[msg]\""
 			return
 		storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] [M.name] says, \"[msg]\""
+		*/
+		storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] [M.name] [verbage], \"[msg]\""
+
 		return
 
 /obj/item/device/taperecorder/attackby(obj/item/weapon/W as obj, mob/user as mob)

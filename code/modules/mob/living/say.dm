@@ -81,6 +81,7 @@ var/list/department_radio_keys = list(
 		if(!istype(dongle)) return
 		if(dongle.translate_binary) return 1
 
+/*
 // Now we can start processing languages to sound cool!
 /mob/living/proc/handleLanguage(msg, speaking)
 	if (speaking == "Obsedaian") // Handle the Obsedai Language
@@ -92,12 +93,14 @@ var/list/department_radio_keys = list(
 		return sanitize(list2text(split_phrase," ")) // Return our newly mangled language
 	else // We don't have any handling for this language, spit it back
 		return msg
+*/
 
 /mob/living/say(var/message, var/datum/language/speaking = null, var/verbage="says", var/alt_name="", var/italics=0, var/message_range = world.view, var/list/used_radios = list())
 	var/turf/T = get_turf(src)
 
 	var/list/listening = list()
 	if(T)
+		var/list/objects = list()
 		var/list/hear = hear(message_range, T)
 		var/list/hearturfs = list()
 
@@ -106,23 +109,24 @@ var/list/department_radio_keys = list(
 				var/mob/M = I
 				listening += M
 				hearturfs += M.locs[1]
-				for(var/obj/item/device/radio/R in contents)
-					spawn(0)
-						R.hear_talk(src, message, verbage, speaking)
+				for(var/obj/O in M.contents)
+					objects |= O
 
 			else if(istype(I, /obj/))
 				var/obj/O = I
 				hearturfs += O.locs[1]
-				if(istype(O, /obj/item/device/radio))
-					spawn(0)
-						O.hear_talk(src, message, verbage, speaking)
+				objects |= O
 
 		for(var/mob/M in player_list)
 			if(M.stat == DEAD && M.client && (M.client.prefs.toggles & CHAT_GHOSTEARS))
 				listening |= M
 				continue
-			if(M.locs[1] in hearturfs)
+			if(M.loc && M.locs[1] in hearturfs)
 				listening |= M
+
+		for(var/obj/O in objects)
+			spawn(0)
+				O.hear_talk(src, message, verbage, speaking)
 
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")

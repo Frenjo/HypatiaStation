@@ -78,28 +78,24 @@
 	return
 
 /mob/living/carbon/monkey/soghun/New()
-
 	..()
 	dna.mutantrace = "lizard"
 	greaterform = "Soghun"
 	add_language("Sinta'unathi")
 
 /mob/living/carbon/monkey/skrell/New()
-
 	..()
 	dna.mutantrace = "skrell"
 	greaterform = "Skrell"
 	add_language("Skrellian")
 
 /mob/living/carbon/monkey/tajara/New()
-
 	..()
 	dna.mutantrace = "tajaran"
 	greaterform = "Tajaran"
 	add_language("Siik'tajr")
 
 /mob/living/carbon/monkey/diona/New()
-
 	..()
 	alien = 1
 	gender = NEUTER
@@ -122,7 +118,6 @@
 	return tally+config.monkey_delay
 
 /mob/living/carbon/monkey/Bump(atom/movable/AM as mob|obj, yes)
-
 	spawn( 0 )
 		if ((!( yes ) || now_pushing))
 			return
@@ -190,7 +185,6 @@
 	return
 
 //mob/living/carbon/monkey/bullet_act(var/obj/item/projectile/Proj)taken care of in living
-
 
 /mob/living/carbon/monkey/attack_paw(mob/M as mob)
 	..()
@@ -387,7 +381,6 @@
 		adjustBruteLoss(damage)
 		updatehealth()
 
-
 /mob/living/carbon/monkey/attack_slime(mob/living/carbon/slime/M as mob)
 	if (!ticker)
 		M << "You cannot attack people before the game has started."
@@ -460,7 +453,6 @@
 				stat("Genetic Damage Time", mind.changeling.geneticdamage)
 	return
 
-
 /mob/living/carbon/monkey/verb/removeinternal()
 	set name = "Remove Internals"
 	set category = "IC"
@@ -511,9 +503,21 @@
 		del(src)
 		return
 
-
 /mob/living/carbon/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
 	if(!ticker)	return 0
 	if(!ticker.mode.name == "monkey")	return 0
 	return 1
 
+/mob/living/carbon/monkey/say(var/message, var/datum/language/speaking = null, var/verbage = "says", var/alt_name = "", var/italics = 0, var/message_range = world.view, var/list/used_radios = list())
+	if(stat)
+		return
+
+	if(copytext(message, 1, 2) == "*")
+		return emote(copytext(message, 2))
+
+	if(speak_emote.len)
+		verbage = pick(speak_emote)
+
+	message = capitalize(trim_left(message))
+
+	..(message, speaking, verbage, alt_name, italics, message_range, used_radios)
