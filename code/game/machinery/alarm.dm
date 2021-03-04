@@ -1172,7 +1172,7 @@ table tr:first-child th:first-child { border: none;}
 		if(0)
 			if(istype(W, /obj/item/weapon/airalarm_electronics))
 				user << "You insert the circuit!"
-				del(W)
+				qdel(W)
 				buildstage = 1
 				update_icon()
 				return
@@ -1182,7 +1182,7 @@ table tr:first-child th:first-child { border: none;}
 				var/obj/item/alarm_frame/frame = new /obj/item/alarm_frame()
 				frame.loc = user.loc
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-				del(src)
+				qdel(src)
 
 	return ..()
 
@@ -1229,7 +1229,7 @@ Code shamelessly copied from apc_frame
 /obj/item/alarm_frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/wrench))
 		new /obj/item/stack/sheet/metal( get_turf(src.loc), 2 )
-		del(src)
+		qdel(src)
 		return
 	..()
 
@@ -1255,7 +1255,7 @@ Code shamelessly copied from apc_frame
 		return
 
 	new /obj/machinery/alarm(loc, ndir, 1)
-	del(src)
+	qdel(src)
 
 /*
 FIRE ALARM
@@ -1361,7 +1361,7 @@ FIRE ALARM
 			if(0)
 				if(istype(W, /obj/item/weapon/firealarm_electronics))
 					user << "You insert the circuit!"
-					del(W)
+					qdel(W)
 					buildstage = 1
 					update_icon()
 
@@ -1370,7 +1370,7 @@ FIRE ALARM
 					var/obj/item/firealarm_frame/frame = new /obj/item/firealarm_frame()
 					frame.loc = user.loc
 					playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-					del(src)
+					qdel(src)
 		return
 
 	src.alarm()
@@ -1555,7 +1555,7 @@ Code shamelessly copied from apc_frame
 /obj/item/firealarm_frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/wrench))
 		new /obj/item/stack/sheet/metal( get_turf(src.loc), 2 )
-		del(src)
+		qdel(src)
 		return
 	..()
 
@@ -1582,7 +1582,7 @@ Code shamelessly copied from apc_frame
 
 	new /obj/machinery/firealarm(loc, ndir, 1)
 
-	del(src)
+	qdel(src)
 
 
 /obj/machinery/partyalarm

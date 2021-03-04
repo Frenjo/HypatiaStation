@@ -167,12 +167,12 @@
 		if(1.0)
 			if(prob(50))
 				src.dump_everything() //So suits dont survive all the time
-			del(src)
+			qdel(src)
 			return
 		if(2.0)
 			if(prob(50))
 				src.dump_everything()
-				del(src)
+				qdel(src)
 			return
 		else
 			return
@@ -595,7 +595,7 @@
 			//for(var/obj/O in src)
 			//	O.loc = src.loc
 			src.add_fingerprint(user)
-			del(G)
+			qdel(G)
 			src.updateUsrDialog()
 			src.update_icon()
 			return

@@ -461,7 +461,7 @@
 		playsound(chassis, 'sound/items/syringeproj.ogg', 50, 1)
 		log_message("Launched [S] from [src], targeting [target].")
 		spawn(-1)
-			del(src) //if src is deleted, still process the syringe
+			qdel(src) //if src is deleted, still process the syringe
 			for(var/i=0, i<6, i++)
 				if(!S)
 					break

@@ -23,39 +23,39 @@
 	if(health <= 0)
 		new /obj/item/weapon/shard(loc)
 		new /obj/item/stack/rods(loc)
-		del(src)
+		qdel(src)
 	return
 
 
 /obj/structure/window/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			del(src)
+			qdel(src)
 			return
 		if(2.0)
 			new /obj/item/weapon/shard(loc)
 			if(reinf) new /obj/item/stack/rods(loc)
-			del(src)
+			qdel(src)
 			return
 		if(3.0)
 			if(prob(50))
 				new /obj/item/weapon/shard(loc)
 				if(reinf) new /obj/item/stack/rods(loc)
-				del(src)
+				qdel(src)
 				return
 
 
 /obj/structure/window/blob_act()
 	new /obj/item/weapon/shard(loc)
 	if(reinf) new /obj/item/stack/rods(loc)
-	del(src)
+	qdel(src)
 
 
 /obj/structure/window/meteorhit()
 	//world << "glass at [x],[y],[z] Mhit"
 	new /obj/item/weapon/shard( loc )
 	if(reinf) new /obj/item/stack/rods( loc)
-	del(src)
+	qdel(src)
 
 
 /obj/structure/window/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
@@ -96,7 +96,7 @@
 	if(health <= 0)
 		new /obj/item/weapon/shard(loc)
 		if(reinf) new /obj/item/stack/rods(loc)
-		del(src)
+		qdel(src)
 
 /obj/structure/window/attack_tk(mob/user as mob)
 	user.visible_message("<span class='notice'>Something knocks on [src].</span>")
@@ -108,7 +108,7 @@
 		user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
 		new /obj/item/weapon/shard(loc)
 		if(reinf) new /obj/item/stack/rods(loc)
-		del(src)
+		qdel(src)
 	else if (usr.a_intent == "hurt")
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
 		usr.visible_message("\red [usr.name] bangs against the [src.name]!", \
@@ -132,7 +132,7 @@
 		user.visible_message("<span class='danger'>[user] smashes through [src]!</span>")
 		new /obj/item/weapon/shard(loc)
 		if(reinf) new /obj/item/stack/rods(loc)
-		del(src)
+		qdel(src)
 	else	//for nicer text~
 		user.visible_message("<span class='danger'>[user] smashes into [src]!</span>")
 		playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
@@ -162,7 +162,7 @@
 		if (istype(G.affecting, /mob/living))
 			var/mob/living/M = G.affecting
 			var/state = G.state
-			del(W)	//gotta delete it here because if window breaks, it won't get deleted
+			qdel(W)	//gotta delete it here because if window breaks, it won't get deleted
 			switch (state)
 				if(1)
 					M.apply_damage(7)
@@ -227,7 +227,7 @@
 		else
 			new shardtype(loc)
 			if(reinf) new /obj/item/stack/rods(loc)
-		del(src)
+		qdel(src)
 		return
 
 
@@ -294,7 +294,7 @@
 	return
 
 
-/obj/structure/window/Del()
+/obj/structure/window/Destroy()
 	density = 0
 	update_nearby_tiles()
 	playsound(src, "shatter", 70, 1)

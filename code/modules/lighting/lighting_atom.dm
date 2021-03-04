@@ -34,13 +34,13 @@
 	if(light_power && light_range)
 		update_light()
 
-/atom/Del()
+/atom/Destroy()
 	if(light)
 		light.destroy()
 		light = null
 	return ..()
 
-/atom/movable/Del()
+/atom/movable/Destroy()
 	var/turf/T = loc
 	if(opacity && istype(T))
 		T.reconsider_lights()

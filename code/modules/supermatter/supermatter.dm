@@ -80,7 +80,7 @@
 	radio = new (src)
 
 
-/obj/machinery/power/supermatter/Del()
+/obj/machinery/power/supermatter/Destroy()
 	del radio
 	. = ..()
 

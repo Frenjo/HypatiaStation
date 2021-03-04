@@ -28,7 +28,7 @@
 			for (var/mob/M in viewers(src))
 				M.show_message("\red [src] is shaped into metal by [user.name] with the weldingtool.", 3, "\red You hear welding.", 2)
 			var/obj/item/stack/rods/R = src
-			del(src)
+			qdel(src)
 			var/replace = (user.get_inactive_hand()==R)
 			R.use(2)
 			if (!R && replace)

@@ -195,7 +195,7 @@ var/global/list/autolathe_recipes_hidden = list( \
 			if(g_amount >= 3750)
 				var/obj/item/stack/sheet/glass/G = new /obj/item/stack/sheet/glass(src.loc)
 				G.amount = round(g_amount / 3750)
-			del(src)
+			qdel(src)
 			return 1
 		else
 			user.set_machine(src)
@@ -245,7 +245,7 @@ var/global/list/autolathe_recipes_hidden = list( \
 	src.g_amount += g_amt * amount
 	user << "You insert [amount] sheet[amount>1 ? "s" : ""] to the autolathe."
 	if (O && O.loc == src)
-		del(O)
+		qdel(O)
 	busy = 0
 	src.updateUsrDialog()
 

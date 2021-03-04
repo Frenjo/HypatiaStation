@@ -321,7 +321,7 @@ turf/simulated/floor/proc/update_icon()
 						FF.update_icon() //so siding get updated properly
 
 	if(!floor_tile) return
-	del(floor_tile)
+	qdel(floor_tile)
 	icon_plating = "plating"
 	//SetLuminosity(0)
 	set_light(0)
@@ -444,7 +444,7 @@ turf/simulated/floor/proc/update_icon()
 			var/obj/item/stack/tile/light/T = floor_tile
 			if(T.state)
 				user.drop_item(C)
-				del(C)
+				qdel(C)
 				T.state = C //fixing it by bashing it with a light bulb, fun eh?
 				update_icon()
 				user << "\blue You replace the light bulb."

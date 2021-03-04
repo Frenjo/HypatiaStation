@@ -261,7 +261,7 @@
 		return
 	return
 
-/obj/effect/beam/i_beam/Del()
+/obj/effect/beam/i_beam/Destroy()
 	del(next)
 	..()
 	return

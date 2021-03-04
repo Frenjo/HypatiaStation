@@ -9,7 +9,7 @@
 ///// Z-Level Stuff
 proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = 1)
 ///// Z-Level Stuff
-	//del(src)	//so we don't abort once src is deleted // Commented this out because it seems to be broken. -Frenjo
+	//qdel(src)	//so we don't abort once src is deleted // Commented this out because it seems to be broken. -Frenjo
 	spawn(0)
 		if(config.use_recursive_explosions)
 			var/power = devastation_range * 2 + heavy_impact_range + light_impact_range //The ranges add up, ie light 14 includes both heavy 7 and devestation 3. So this calculation means devestation counts for 4, heavy for 2 and light for 1 power, giving us a cap of 27 power.

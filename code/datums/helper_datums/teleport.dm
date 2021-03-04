@@ -49,7 +49,7 @@
 	//must succeed in most cases
 	proc/setTeleatom(atom/movable/ateleatom)
 		if(istype(ateleatom, /obj/effect) && !istype(ateleatom, /obj/effect/dummy/chameleon))
-			del(ateleatom)
+			qdel(ateleatom)
 			return 0
 		if(istype(ateleatom))
 			teleatom = ateleatom
@@ -82,12 +82,12 @@
 		if(location)
 			if(effect)
 				spawn(-1)
-					del(src)
+					qdel(src)
 					effect.attach(location)
 					effect.start()
 			if(sound)
 				spawn(-1)
-					del(src)
+					qdel(src)
 					playsound(location,sound,60,1)
 		return
 

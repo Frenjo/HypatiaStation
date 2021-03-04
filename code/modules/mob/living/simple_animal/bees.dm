@@ -20,7 +20,7 @@
 	parent = new_parent
 	verbs -= /atom/movable/verb/pull
 
-/mob/living/simple_animal/bee/Del()
+/mob/living/simple_animal/bee/Destroy()
 	if(parent)
 		parent.owned_bee_swarms.Remove(src)
 	..()

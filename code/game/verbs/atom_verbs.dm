@@ -12,7 +12,7 @@
 	set category = "Object"
 	set src in oview()
 	var/atom/this = src//detach proc from src
-	//del(src) // Trying to fix pointing deleting whatever you point at. -Frenjo
+	//qdel(src) // Trying to fix pointing deleting whatever you point at. -Frenjo
 
 	if(!usr || !isturf(usr.loc))
 		return
@@ -28,7 +28,7 @@
 	var/P = new /obj/effect/decal/point(tile)
 	spawn (20)
 		if(P)
-			del(P)
+			qdel(P)
 		else
 			return
 

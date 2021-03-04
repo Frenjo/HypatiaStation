@@ -30,7 +30,7 @@
 		src.base_state = src.icon_state
 	return
 
-/obj/machinery/door/window/Del()
+/obj/machinery/door/window/Destroy()
 	density = 0
 	playsound(src, "shatter", 70, 1)
 	..()
@@ -145,7 +145,7 @@
 			ae.icon_state = "door_electronics_smoked"
 			operating = 0
 		src.density = 0
-		del(src)
+		qdel(src)
 		return
 
 /obj/machinery/door/window/bullet_act(var/obj/item/projectile/Proj)
@@ -243,7 +243,7 @@
 			ae.icon_state = "door_electronics_smoked"
 
 			operating = 0
-			del(src)
+			qdel(src)
 			return
 
 	//If it's a weapon, smash windoor. Unless it's an id card, agent card, ect.. then ignore it (Cards really shouldnt damage a door anyway)

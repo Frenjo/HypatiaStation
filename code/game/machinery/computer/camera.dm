@@ -101,7 +101,7 @@
 					CF.state = 3
 					CF.icon_state = "3"
 					CF.anchored = 1
-					del(src)
+					qdel(src)
 				else
 					user << "\blue You disconnect the monitor."
 					var/obj/structure/computerframe/CF = new /obj/structure/computerframe( loc )
@@ -113,7 +113,7 @@
 					CF.state = 4
 					CF.icon_state = "4"
 					CF.anchored = 1
-					del(src)
+					qdel(src)
 		else
 			attack_hand(user)
 		return

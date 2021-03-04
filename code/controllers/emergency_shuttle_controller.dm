@@ -252,7 +252,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 		sleep(speed)
 		step(src, direction)
 		for(var/obj/effect/starender/E in loc)
-			del(src)
+			qdel(src)
 
 
 /obj/effect/starender

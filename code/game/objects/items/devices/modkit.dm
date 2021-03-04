@@ -35,10 +35,10 @@
 	playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 	var/N = new to_type(O.loc)
 	user.visible_message("\red [user] opens \the [src] and modifies \the [O] into \the [N].","\red You open \the [src] and modify \the [O] into \the [N].")
-	del(O)
+	qdel(O)
 	parts &= ~flag
 	if(!parts)
-		del(src)
+		qdel(src)
 
 /obj/item/device/modkit/tajaran
 	name = "tajara hardsuit modification kit"

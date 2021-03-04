@@ -9,7 +9,7 @@
 	attack_self(mob/user)
 		var/obj/structure/closet/body_bag/R = new /obj/structure/closet/body_bag(user.loc)
 		R.add_fingerprint(user)
-		del(src)
+		qdel(src)
 
 
 /obj/item/weapon/storage/box/bodybags
@@ -77,7 +77,7 @@
 			visible_message("[usr] folds up the [src.name]")
 			new item_path(get_turf(src))
 			spawn(0)
-				del(src)
+				qdel(src)
 			return
 
 /obj/structure/closet/bodybag/update_icon()
@@ -96,7 +96,7 @@
 	attack_self(mob/user)
 		var/obj/structure/closet/body_bag/cryobag/R = new /obj/structure/closet/body_bag/cryobag(user.loc)
 		R.add_fingerprint(user)
-		del(src)
+		qdel(src)
 
 
 
@@ -115,7 +115,7 @@
 			O.icon = src.icon
 			O.icon_state = "bodybag_used"
 			O.desc = "Pretty useless now.."
-			del(src)
+			qdel(src)
 
 	MouseDrop(over_object, src_location, over_location)
 		if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))

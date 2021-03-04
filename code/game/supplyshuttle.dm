@@ -137,7 +137,7 @@ var/list/mechtoys = list(
 						var/obj/item/stack/sheet/mineral/plasma/P = A
 						plasma_count += P.amount
 
-			del(MA)
+			qdel(MA)
 
 		if(plasma_count)
 			points += Floor(plasma_count / plasma_per_point)

@@ -55,7 +55,7 @@ var/intercom_range_display_status = 0
 
 
 	for(var/obj/effect/debugging/camera_range/C in world)
-		del(C)
+		qdel(C)
 
 	if(camera_range_display_status)
 		for(var/obj/machinery/camera/C in cameranet.cameras)

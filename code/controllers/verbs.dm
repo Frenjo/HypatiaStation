@@ -8,7 +8,7 @@
 
 	if(!holder)	return
 	usr = null
-	del(src)
+	qdel(src)
 	switch(controller)
 		//if("Master")
 		//	new /datum/controller/game_controller()

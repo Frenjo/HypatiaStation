@@ -210,7 +210,7 @@ Thus, the two variables affect pump operation are set in New():
 			"\blue You have unfastened \the [src].", \
 			"You hear ratchet.")
 		new /obj/item/pipe(loc, make_from=src)
-		del(src)
+		qdel(src)
 
 // Porting this to NanoUI, it looks way better honestly. -Frenjo
 obj/machinery/atmospherics/binary/volume_pump/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)

@@ -233,7 +233,7 @@
 	animation.master = src
 	flick("h2monkey", animation)
 	sleep(48)
-	del(animation)
+	qdel(animation)
 
 	var/mob/living/carbon/monkey/O = new /mob/living/carbon/monkey(src)
 	O.dna = C.dna.Clone()
@@ -242,7 +242,7 @@
 	for(var/obj/item/W in C)
 		C.drop_from_inventory(W)
 	for(var/obj/T in C)
-		del(T)
+		qdel(T)
 
 	O.loc = C.loc
 	O.name = "monkey ([copytext(md5(C.real_name), 2, 6)])"
@@ -261,7 +261,7 @@
 	O.make_changeling(1)
 	O.verbs += /mob/proc/changeling_lesser_transform
 	feedback_add_details("changeling_powers","LF")
-	del(C)
+	qdel(C)
 	return 1
 
 
@@ -306,7 +306,7 @@
 	animation.master = src
 	flick("monkey2h", animation)
 	sleep(48)
-	del(animation)
+	qdel(animation)
 
 	for(var/obj/item/W in src)
 		C.u_equip(W)
@@ -327,7 +327,7 @@
 	O.real_name = chosen_dna.real_name
 
 	for(var/obj/T in C)
-		del(T)
+		qdel(T)
 
 	O.loc = C.loc
 
@@ -346,7 +346,7 @@
 	O.make_changeling()
 
 	feedback_add_details("changeling_powers","LFT")
-	del(C)
+	qdel(C)
 	return 1
 
 

@@ -124,7 +124,7 @@
 							animation.icon = 'icons/mob/mob.dmi'
 							animation.master = T
 							flick("dust-h", animation)
-							del(animation)
+							qdel(animation)
 							var/mob/living/simple_animal/shade/S = new /mob/living/simple_animal/shade( T.loc )
 							S.loc = C //put shade in stone
 							S.status_flags |= GODMODE //So they won't die inside the stone somehow
@@ -140,7 +140,7 @@
 							U << "\blue <b>Capture successful!</b>: \black [T.real_name]'s soul has been ripped from their body and stored within the soul stone."
 							U << "The soulstone has been imprinted with [S.real_name]'s mind, it will no longer react to other souls."
 							C.imprinted = "[S.name]"
-							del T
+							qdel(T)
 		if("SHADE")
 			var/mob/living/simple_animal/shade/T = target
 			var/obj/item/device/soulstone/C = src
@@ -176,12 +176,12 @@
 							else
 								ticker.mode.cult+=Z.mind
 							ticker.mode.update_cult_icons_added(Z.mind)
-						del(T)
+						qdel(T)
 						Z << "<B>You are playing a Juggernaut. Though slow, you can withstand extreme punishment, and rip apart enemies and walls alike.</B>"
 						Z << "<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>"
 						Z.spell_list += new /obj/effect/proc_holder/spell/aoe_turf/conjure/lesserforcewall(Z)
 						Z.cancel_camera()
-						del(C)
+						qdel(C)
 
 					if("Wraith")
 						var/mob/living/simple_animal/construct/wraith/Z = new /mob/living/simple_animal/construct/wraith (get_turf(T.loc))
@@ -192,12 +192,12 @@
 							else
 								ticker.mode.cult+=Z.mind
 							ticker.mode.update_cult_icons_added(Z.mind)
-						del(T)
+						qdel(T)
 						Z << "<B>You are playing a Wraith. Though relatively fragile, you are fast, deadly, and even able to phase through walls.</B>"
 						Z << "<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>"
 						Z.spell_list += new /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift(Z)
 						Z.cancel_camera()
-						del(C)
+						qdel(C)
 
 					if("Artificer")
 						var/mob/living/simple_animal/construct/builder/Z = new /mob/living/simple_animal/construct/builder (get_turf(T.loc))
@@ -208,7 +208,7 @@
 							else
 								ticker.mode.cult+=Z.mind
 							ticker.mode.update_cult_icons_added(Z.mind)
-						del(T)
+						qdel(T)
 						Z << "<B>You are playing an Artificer. You are incredibly weak and fragile, but you are able to construct fortifications, repair allied constructs (by clicking on them), and even create new constructs</B>"
 						Z << "<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>"
 						Z.spell_list += new /obj/effect/proc_holder/spell/aoe_turf/conjure/construct/lesser(Z)
@@ -216,7 +216,7 @@
 						Z.spell_list += new /obj/effect/proc_holder/spell/aoe_turf/conjure/floor(Z)
 						Z.spell_list += new /obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone(Z)
 						Z.cancel_camera()
-						del(C)
+						qdel(C)
 			else
 				U << "\red <b>Creation failed!</b>: \black The soul stone is empty! Go kill someone!"
 	return

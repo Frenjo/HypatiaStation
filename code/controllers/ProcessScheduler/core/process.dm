@@ -185,7 +185,7 @@ datum/controller/process/proc/kill()
 		killed = TRUE
 
 		// This should del
-		del(src)
+		qdel(src)
 
 datum/controller/process/proc/scheck(var/tickId = 0)
 	if (killed)

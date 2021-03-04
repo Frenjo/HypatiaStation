@@ -47,7 +47,7 @@
 	..()
 	processing_objects.Add(src)
 
-/obj/item/weapon/gun/energy/staff/Del()
+/obj/item/weapon/gun/energy/staff/Destroy()
 	processing_objects.Remove(src)
 	..()
 
@@ -95,7 +95,7 @@
 	processing_objects.Add(src)
 
 
-/obj/item/weapon/gun/energy/floragun/Del()
+/obj/item/weapon/gun/energy/floragun/Destroy()
 	processing_objects.Remove(src)
 	..()
 
@@ -145,7 +145,7 @@
 	processing_objects.Add(src)
 
 
-/obj/item/weapon/gun/energy/meteorgun/Del()
+/obj/item/weapon/gun/energy/meteorgun/Destroy()
 	processing_objects.Remove(src)
 	..()
 

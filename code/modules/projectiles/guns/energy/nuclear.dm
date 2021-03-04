@@ -42,7 +42,7 @@
 	..()
 	processing_objects.Add(src)
 
-/obj/item/weapon/gun/energy/gun/nuclear/Del()
+/obj/item/weapon/gun/energy/gun/nuclear/Destroy()
 	processing_objects.Remove(src)
 	..()
 

@@ -168,4 +168,4 @@
 
 	V.update_icon()
 
-	del(src)
+	qdel(src)

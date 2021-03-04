@@ -83,7 +83,7 @@
 	if (istype(W, /obj/item/pipe) || istype(W, /obj/item/pipe_meter))
 		usr << "\blue You put [W] back to [src]."
 		user.drop_item()
-		del(W)
+		qdel(W)
 		return
 	else if (istype(W, /obj/item/weapon/wrench))
 		if (unwrenched==0)
@@ -141,7 +141,7 @@ Nah
 	if (pipe.anchored)
 		return
 
-	del(pipe)
+	qdel(pipe)
 
 /obj/machinery/pipedispenser/disposal/attack_hand(user as mob)
 	if(..())

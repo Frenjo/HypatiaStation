@@ -31,7 +31,7 @@ obj/item/weapon/gun/energy/laser/retro
 	..()
 	processing_objects.Add(src)
 
-/obj/item/weapon/gun/energy/laser/captain/Del()
+/obj/item/weapon/gun/energy/laser/captain/Destroy()
 	processing_objects.Remove(src)
 	..()
 
@@ -111,7 +111,7 @@ obj/item/weapon/gun/energy/laser/retro
 	..()
 	processing_objects.Add(src)
 
-/obj/item/weapon/gun/energy/laser/bluetag/Del()
+/obj/item/weapon/gun/energy/laser/bluetag/Destroy()
 	processing_objects.Remove(src)
 	..()
 
@@ -146,7 +146,7 @@ obj/item/weapon/gun/energy/laser/retro
 	..()
 	processing_objects.Add(src)
 
-/obj/item/weapon/gun/energy/laser/redtag/Del()
+/obj/item/weapon/gun/energy/laser/redtag/Destroy()
 	processing_objects.Remove(src)
 	..()
 

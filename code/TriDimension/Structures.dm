@@ -49,7 +49,7 @@
 				Del()
 		return*/
 
-	Del()
+	Destroy()
 		spawn(1)
 			if(target && icon_state == "ladderdown")
 				del target

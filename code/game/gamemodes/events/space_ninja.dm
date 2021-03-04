@@ -526,12 +526,12 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 
 /mob/living/carbon/human/proc/equip_space_ninja(safety=0)//Safety in case you need to unequip stuff for existing characters.
 	if(safety)
-		del(w_uniform)
-		del(wear_suit)
-		del(wear_mask)
-		del(head)
-		del(shoes)
-		del(gloves)
+		qdel(w_uniform)
+		qdel(wear_suit)
+		qdel(wear_mask)
+		qdel(head)
+		qdel(shoes)
+		qdel(gloves)
 
 	var/obj/item/device/radio/R = new /obj/item/device/radio/headset(src)
 	equip_to_slot_or_del(R, slot_l_ear)

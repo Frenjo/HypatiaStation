@@ -67,7 +67,7 @@
 	if(rotting) severity = 1.0
 	switch(severity)
 		if(1.0)
-			//SN del(src)
+			//SN qdel(src)
 			src.ChangeTurf(/turf/space)
 			return
 		if(2.0)
@@ -160,7 +160,7 @@
 				user << "<span class='notice'>You burn away the fungi with \the [WT].</span>"
 				playsound(src.loc, 'sound/items/Welder.ogg', 10, 1)
 				for(var/obj/effect/E in src) if(E.name == "Wallrot")
-					del E
+					qdel(E)
 				rotting = 0
 				return
 		else if(!is_sharp(W) && W.force >= 10 || W.force >= 20)
@@ -347,7 +347,7 @@
 	user << "<span class='warning'>The thermite starts melting through the wall.</span>"
 
 	spawn(100)
-		if(O)	del(O)
+		if(O)	qdel(O)
 //	F.sd_LumReset()		//TODO: ~Carn
 	return
 
@@ -360,10 +360,10 @@
 		ReplaceWithLattice()
 	return 0
 
-/turf/simulated/wall/Del()
-	for(var/obj/effect/E in src) if(E.name == "Wallrot") del E
+/turf/simulated/wall/Destroy()
+	for(var/obj/effect/E in src) if(E.name == "Wallrot") qdel(E)
 	..()
 
 /turf/simulated/wall/ChangeTurf(var/newtype)
-	for(var/obj/effect/E in src) if(E.name == "Wallrot") del E
+	for(var/obj/effect/E in src) if(E.name == "Wallrot") qdel(E)
 	..(newtype)

@@ -38,7 +38,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		return
 	return
 
-/obj/effect/effect/water/Del()
+/obj/effect/effect/water/Destroy()
 	//var/turf/T = src.loc
 	//if (istype(T, /turf))
 	//	T.firelevel = 0 //TODO: FIX
@@ -50,7 +50,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	//if (istype(T, /turf))
 	//	T.firelevel = 0 //TODO: FIX
 	if (--src.life < 1)
-		//SN del(src)
+		//SN qdel(src)
 		delete()
 	if(newloc.density)
 		return 0
@@ -155,7 +155,7 @@ steam.start() -- spawns the effect
 		delete()
 	return
 
-/obj/effect/effect/sparks/Del()
+/obj/effect/effect/sparks/Destroy()
 	var/turf/T = src.loc
 	if (istype(T, /turf))
 		T.hotspot_expose(1000,100)
@@ -649,7 +649,7 @@ steam.start() -- spawns the effect
 
 
 
-	Del()
+	Destroy()
 
 		density = 0
 		update_nearby_tiles(1)
@@ -663,14 +663,14 @@ steam.start() -- spawns the effect
 
 
 	ex_act(severity)
-		del(src)
+		qdel(src)
 
 	blob_act()
-		del(src)
+		qdel(src)
 
 	bullet_act()
 		if(metal==1 || prob(50))
-			del(src)
+			qdel(src)
 
 	attack_paw(var/mob/user)
 		attack_hand(user)
@@ -683,7 +683,7 @@ steam.start() -- spawns the effect
 				if ((O.client && !( O.blinded )))
 					O << "\red [user] smashes through the foamed metal."
 
-			del(src)
+			qdel(src)
 		else
 			user << "\blue You hit the metal foam but bounce off it."
 		return
@@ -697,8 +697,8 @@ steam.start() -- spawns the effect
 			for(var/mob/O in viewers(src))
 				if (O.client)
 					O << "\red [G.assailant] smashes [G.affecting] through the foamed metal wall."
-			del(I)
-			del(src)
+			qdel(I)
+			qdel(src)
 			return
 
 		if(prob(I.force*20 - metal*25))
@@ -706,7 +706,7 @@ steam.start() -- spawns the effect
 			for(var/mob/O in oviewers(user))
 				if ((O.client && !( O.blinded )))
 					O << "\red [user] smashes through the foamed metal."
-			del(src)
+			qdel(src)
 		else
 			user << "\blue You hit the metal foam to no effect."
 

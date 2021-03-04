@@ -41,7 +41,7 @@
 		RG.add_to_stacks(user)
 		V.use(1)
 		var/obj/item/stack/sheet/glass/G = src
-		del(src)
+		qdel(src)
 		var/replace = (user.get_inactive_hand()==G)
 		G.use(1)
 		if (!G && !RG && replace)
@@ -274,7 +274,7 @@
 				G.attackby(NG, user)
 				usr << "You add the newly-formed glass to the stack. It now contains [NG.amount] sheets."
 			//SN del(src)
-			del(src)
+			qdel(src)
 			return
 	return ..()
 
@@ -323,7 +323,7 @@
 		RG.add_to_stacks(user)
 		V.use(1)
 		var/obj/item/stack/sheet/glass/G = src
-		del(src)
+		qdel(src)
 		var/replace = (user.get_inactive_hand()==G)
 		G.use(1)
 		if (!G && !RG && replace)

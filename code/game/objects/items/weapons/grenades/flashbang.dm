@@ -20,7 +20,7 @@
 			var/damage = round(30/(get_dist(B,get_turf(src))+1))
 			B.health -= damage
 			B.update_icon()
-		del(src)
+		qdel(src)
 		return
 
 	proc/bang(var/turf/T , var/mob/living/carbon/M)						// Added a new proc called 'bang' that takes a location and a person to be banged.
@@ -123,7 +123,7 @@
 			new /obj/item/weapon/grenade/flashbang/clusterbang/segment(src.loc)//Creates a 'segment' that launches a few more flashbangs
 			playsound(src.loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
 	spawn(0)
-		del(src)
+		qdel(src)
 		return
 
 /obj/item/weapon/grenade/flashbang/clusterbang/segment
@@ -155,7 +155,7 @@
 			new /obj/item/weapon/grenade/flashbang/cluster(src.loc)
 			playsound(src.loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
 	spawn(0)
-		del(src)
+		qdel(src)
 		return
 
 /obj/item/weapon/grenade/flashbang/cluster/New()//Same concept as the segments, so that all of the parts don't become reliant on the clusterbang

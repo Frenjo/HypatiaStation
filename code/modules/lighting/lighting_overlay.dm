@@ -78,7 +78,7 @@
 		warning("A lighting overlay realised its loc was NOT a turf (actual loc: [loc][loc ? ", " + loc.type : ""]) in update_overlay() and got pooled!")
 		del(src)
 
-/atom/movable/lighting_overlay/Del()
+/atom/movable/lighting_overlay/Destroy()
 	lighting_update_overlays -= src
 
 	var/turf/T = loc

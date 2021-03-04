@@ -40,7 +40,7 @@
 			return
 		if(istype(W, /obj/item/weapon/storage/backpack/holding) && !W.crit_fail)
 			user << "\red The Bluespace interfaces of the two devices conflict and malfunction."
-			del(W)
+			qdel(W)
 			return
 			/* //BoH+BoH=Singularity, commented out.
 		if(istype(W, /obj/item/weapon/storage/backpack/holding) && !W.crit_fail)
@@ -63,7 +63,7 @@
 		else
 			user << "\red The Bluespace generator malfunctions!"
 			for (var/obj/O in src.contents) //it broke, delete what was in it
-				del(O)
+				qdel(O)
 			crit_fail = 1
 			icon_state = "brokenpack"
 

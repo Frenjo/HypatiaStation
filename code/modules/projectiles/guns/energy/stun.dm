@@ -24,7 +24,7 @@
 	..()
 	processing_objects.Add(src)
 
-/obj/item/weapon/gun/energy/taser/cyborg/Del()
+/obj/item/weapon/gun/energy/taser/cyborg/Destroy()
 	processing_objects.Remove(src)
 	..()
 
@@ -76,7 +76,7 @@
 	..()
 	processing_objects.Add(src)
 
-/obj/item/weapon/gun/energy/crossbow/Del()
+/obj/item/weapon/gun/energy/crossbow/Destroy()
 	processing_objects.Remove(src)
 	..()
 

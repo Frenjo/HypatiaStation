@@ -68,7 +68,7 @@ var/list/beam_master = list()
 	cleanup(reference)
 	return
 
-/obj/item/projectile/beam/Del()
+/obj/item/projectile/beam/Destroy()
 	cleanup("\ref[src]")
 	..()
 

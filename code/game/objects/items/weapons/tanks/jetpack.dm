@@ -64,7 +64,7 @@
 		if(G.total_moles >= 0.005)
 			return 1
 
-		del(G)
+		qdel(G)
 		return
 
 	ui_action_click()

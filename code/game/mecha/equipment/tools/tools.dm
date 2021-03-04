@@ -302,7 +302,7 @@
 					if(do_after_cooldown(target))
 						if(disabled) return
 						chassis.spark_system.start()
-						del(target)
+						qdel(target)
 						playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
 						chassis.use_power(energy_drain)
 			if(1)
@@ -423,9 +423,9 @@
 		P.icon_state = "anom"
 		P.name = "wormhole"
 		do_after_cooldown()
-		del(src)
+		qdel(src)
 		spawn(rand(150,300))
-			del(P)
+			qdel(P)
 		return
 
 /obj/item/mecha_parts/mecha_equipment/gravcatapult

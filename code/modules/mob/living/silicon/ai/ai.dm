@@ -134,7 +134,7 @@ var/list/ai_list = list()
 	..()
 	return
 
-/mob/living/silicon/ai/Del()
+/mob/living/silicon/ai/Destroy()
 	ai_list -= src
 	..()
 
@@ -154,7 +154,7 @@ var/list/ai_list = list()
 /obj/machinery/ai_powersupply/New(var/mob/living/silicon/ai/ai=null)
 	powered_ai = ai
 	if(isnull(powered_ai))
-		Del()
+		Destroy()
 
 	loc = powered_ai.loc
 	use_power(1) // Just incase we need to wake up the power system.
@@ -163,7 +163,7 @@ var/list/ai_list = list()
 
 /obj/machinery/ai_powersupply/process()
 	if(!powered_ai || powered_ai.stat & DEAD)
-		Del()
+		Destroy()
 	if(!powered_ai.anchored)
 		loc = powered_ai.loc
 		use_power = 0

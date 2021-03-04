@@ -180,7 +180,7 @@
 				return
 		var/mob/M = G:affecting
 		if(put_mob(M))
-			del(G)
+			qdel(G)
 	updateUsrDialog()
 	return
 

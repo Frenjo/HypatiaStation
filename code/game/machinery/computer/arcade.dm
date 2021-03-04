@@ -258,7 +258,7 @@
 				A.state = 4
 				A.icon_state = "4"
 
-			del(src)
+			qdel(src)
 /obj/machinery/computer/arcade/emp_act(severity)
 	if(stat & (NOPOWER|BROKEN))
 		..(severity)

@@ -105,7 +105,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		else
 			item = new path_obj()
 			name = O[3]
-			del item
+			qdel(item)
 
 			dat += "<A href='byond://?src=\ref[src];buy_item=[path_text];cost=[cost]'>[name]</A> ([cost])<BR>"
 			category_items++
@@ -178,7 +178,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		randomItems.Add("/obj/item/weapon/storage/toolbox/syndicate") //Syndicate Toolbox
 
 	if(!randomItems.len)
-		del(randomItems)
+		qdel(randomItems)
 		return 0
 	else
 		var/buyItem = pick(randomItems)
@@ -204,7 +204,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 				uses -= 2
 			if("/obj/item/weapon/soap/syndie" , "/obj/item/weapon/storage/toolbox/syndicate")
 				uses -= 1
-		del(randomItems)
+		qdel(randomItems)
 		return buyItem
 
 /obj/item/device/uplink/proc/handleStatTracking(var/boughtItem)
@@ -315,7 +315,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 /obj/item/device/uplink/hidden/New()
 	spawn(2)
 		if(!istype(src.loc, /obj/item))
-			del(src)
+			qdel(src)
 	..()
 
 // Toggles the uplink on and off. Normally this will bypass the item's normal functions and go to the uplink menu, if activated.

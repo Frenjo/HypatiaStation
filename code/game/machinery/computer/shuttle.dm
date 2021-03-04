@@ -49,7 +49,7 @@
 						//emergency_shuttle.settimeleft(10)
 						emergency_shuttle.set_launch_countdown(10) // Updated to reflect 'shuttles' port. -Frenjo
 						//src.authorized = null
-						del(src.authorized)
+						qdel(src.authorized)
 						src.authorized = list(  )
 
 				if("Repeal")
