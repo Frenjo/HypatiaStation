@@ -62,7 +62,7 @@
 
 		return null
 
-	Del()
+	Destroy()
 		loc = null
 
 		if(connected_device)
@@ -70,7 +70,7 @@
 
 		if(node)
 			node.disconnect(src)
-			del(network)
+			qdel(network)
 
 		node = null
 
@@ -154,4 +154,4 @@
 				"\blue You have unfastened \the [src].", \
 				"You hear ratchet.")
 			new /obj/item/pipe(loc, make_from=src)
-			del(src)
+			qdel(src)

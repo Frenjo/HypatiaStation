@@ -273,7 +273,7 @@
 						user.visible_message(\
 							"<span class='notice'>[user.name] cut the cables and dismantled the power terminal.</span>",\
 							"<span class='notice'>You cut the cables and dismantle the power terminal.</span>")
-						del(terminal)
+						qdel(terminal)
 			building_terminal = 0
 
 /obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
@@ -364,7 +364,7 @@
 			smoke.attach(src)
 			smoke.start()
 			explosion(src.loc, -1, 0, 1, 3, 1, 0)
-			del(src)
+			qdel(src)
 			return
 
 		if(prob(15)) //Power drain

@@ -44,7 +44,7 @@ var/global/list/uneatable = list(
 	src.energy = starting_energy
 	if(temp)
 		spawn(temp)
-			del(src)
+			qdel(src)
 	..()
 	for(var/obj/machinery/singularity_beacon/singubeacon in machines)
 		if(singubeacon.active)
@@ -66,7 +66,7 @@ var/global/list/uneatable = list(
 	switch(severity)
 		if(1.0)
 			if(prob(25))
-				del(src)
+				qdel(src)
 				return
 			else
 				energy += 50
@@ -206,7 +206,7 @@ var/global/list/uneatable = list(
 
 /obj/machinery/singularity/proc/check_energy()
 	if(energy <= 0)
-		del(src)
+		qdel(src)
 		return 0
 	switch(energy)//Some of these numbers might need to be changed up later -Mport
 		if(1 to 199)
@@ -306,7 +306,7 @@ var/global/list/uneatable = list(
 			O.z = 2
 		else
 			A.ex_act(1.0)
-			if(A) del(A)
+			if(A) qdel(A)
 		gain = 2
 	else if(isturf(A))
 		var/turf/T = A

@@ -162,7 +162,7 @@ turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
 	..()
 
 	if(!istype(loc, /turf))
-		del src
+		qdel(src)
 
 	dir = pick(cardinal)
 	var/datum/gas_mixture/air_contents = loc.return_air()
@@ -173,7 +173,7 @@ turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
 	air_master.active_hotspots.Add(src)
 
 
-/obj/fire/Del()
+/obj/fire/Destroy()
 	if(istype(loc, /turf/simulated))
 		set_light(0)
 
@@ -209,7 +209,7 @@ datum/gas_mixture/proc/zburn(obj/effect/decal/cleanable/liquid_fuel/liquid, forc
 		if(liquid)
 		//Liquid Fuel
 			if(liquid.amount <= 0.1)
-				del liquid
+				qdel(liquid)
 			else
 				total_fuel += liquid.amount
 

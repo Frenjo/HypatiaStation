@@ -16,7 +16,7 @@
 	idle_power_usage = 0
 	active_power_usage = 0
 
-/obj/machinery/power/Del()
+/obj/machinery/power/Destroy()
 	disconnect_from_network()
 	disconnect_terminal()
 	..()
@@ -220,7 +220,7 @@ proc/power_list(var/turf/T, var/source, var/d, var/unmarked=0, var/cable_only = 
 // rebuild all power networks from scratch - only called at world creation or by the admin verb
 /proc/makepowernets()
 	for(var/datum/powernet/PN in powernets)
-		del(PN)
+		qdel(PN)
 	powernets.Cut()
 
 	for(var/obj/structure/cable/PC in cable_list)

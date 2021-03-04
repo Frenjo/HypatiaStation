@@ -596,7 +596,7 @@ client
 				for(var/obj/Obj in world)
 					if(Obj.type == O_type)
 						i++
-						del(Obj)
+						qdel(Obj)
 				if(!i)
 					usr << "No objects of this type exist"
 					return
@@ -607,7 +607,7 @@ client
 				for(var/obj/Obj in world)
 					if(istype(Obj,O_type))
 						i++
-						del(Obj)
+						qdel(Obj)
 				if(!i)
 					usr << "No objects of this type exist"
 					return
@@ -815,9 +815,9 @@ client
 
 	else if(href_list["addverb"])
 		if(!check_rights(R_DEBUG))      return
-		
+
 		var/mob/living/H = locate(href_list["addverb"])
-		
+
 		if(!istype(H))
 			usr << "This can only be done to instances of type /mob/living"
 			return
@@ -833,7 +833,7 @@ client
 				possibleverbs += typesof(/mob/living/silicon/proc,/mob/living/silicon/ai/proc,/mob/living/silicon/ai/verb)
 		possibleverbs -= H.verbs
 		possibleverbs += "Cancel" 								// ...And one for the bottom
-		
+
 		var/verb = input("Select a verb!", "Verbs",null) as anything in possibleverbs
 		if(!H)
 			usr << "Mob doesn't exist anymore"
@@ -842,7 +842,7 @@ client
 			return
 		else
 			H.verbs += verb
-		
+
 	else if(href_list["remverb"])
 		if(!check_rights(R_DEBUG))      return
 
@@ -860,7 +860,7 @@ client
 		else
 			H.verbs -= verb
 
-	
+
 	else if(href_list["fix_nano"])
 		if(!check_rights(R_DEBUG)) return
 
@@ -869,11 +869,11 @@ client
 		if(!istype(H) || !H.client)
 			usr << "This can only be done on mobs with clients"
 			return
-		
-				
+
+
 
 		nanomanager.send_resources(H.client)
-		
+
 		usr << "Resource files sent"
 		H << "Your NanoUI Resource files have been refreshed"
 

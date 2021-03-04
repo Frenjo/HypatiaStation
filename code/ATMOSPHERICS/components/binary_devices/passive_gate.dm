@@ -82,7 +82,6 @@ obj/machinery/atmospherics/binary/passive_gate/proc/broadcast_status()
 	)
 
 	radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
-
 	return 1
 
 obj/machinery/atmospherics/binary/passive_gate/interact(mob/user as mob)
@@ -177,4 +176,4 @@ obj/machinery/atmospherics/binary/passive_gate/attackby(var/obj/item/weapon/W as
 			"\blue You have unfastened \the [src].", \
 			"You hear ratchet.")
 		new /obj/item/pipe(loc, make_from=src)
-		del(src)
+		qdel(src)
