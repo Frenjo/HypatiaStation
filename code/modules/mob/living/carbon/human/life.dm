@@ -68,6 +68,8 @@
 	if(life_tick%30==15)
 		hud_updateflag = 1022
 
+	voice = GetVoice()
+
 	//No need to update all of these procs if the guy is dead.
 	if(stat != DEAD && !in_stasis)
 		if(air_master.current_cycle%4==2 || failed_last_breath) 	//First, resolve location and get a breath
@@ -145,8 +147,8 @@
 
 /mob/living/carbon/human
 	proc/handle_disabilities()
-		if (disabilities & EPILEPSY)
-			if ((prob(1) && paralysis < 1))
+		if(disabilities & EPILEPSY)
+			if((prob(1) && paralysis < 1))
 				src << "\red You have a seizure!"
 				for(var/mob/O in viewers(src, null))
 					if(O == src)
@@ -154,16 +156,17 @@
 					O.show_message(text("\red <B>[src] starts having a seizure!"), 1)
 				Paralyse(10)
 				make_jittery(1000)
-		if (disabilities & COUGHING)
-			if ((prob(5) && paralysis <= 1))
+		if(disabilities & COUGHING)
+			if((prob(5) && paralysis <= 1))
 				drop_item()
-				spawn( 0 )
+				spawn(0)
 					emote("cough")
 					return
-		if (disabilities & TOURETTES)
-			if ((prob(10) && paralysis <= 1))
+		if(disabilities & TOURETTES)
+			speech_problem_flag = 1
+			if((prob(10) && paralysis <= 1))
 				Stun(10)
-				spawn( 0 )
+				spawn(0)
 					switch(rand(1, 3))
 						if(1)
 							emote("twitch")
@@ -178,6 +181,7 @@
 					pixel_y = old_y
 					return
 		if (disabilities & NERVOUS)
+			speech_problem_flag = 1
 			if (prob(10))
 				stuttering = max(10, stuttering)
 		// No. -- cib
@@ -232,16 +236,17 @@
 			if(!gene.block)
 				continue
 			if(gene.is_active(src))
+				speech_problem_flag = 1
 				gene.OnMobLife(src)
 
-		if (radiation)
-			if (radiation > 100)
+		if(radiation)
+			if(radiation > 100)
 				radiation = 100
 				Weaken(10)
 				src << "\red You feel weak."
 				emote("collapse")
 
-			if (radiation < 0)
+			if(radiation < 0)
 				radiation = 0
 
 			else
@@ -955,16 +960,10 @@
 			var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
 			if(isturf(loc)) //else, there's considered to be no light
 				var/turf/T = loc
-				//var/area/A = T.loc
-				//if(A)
-				//	if(A.lighting_use_dynamic)	light_amount = min(10,T.lighting_lumcount) - 5 //hardcapped so it's not abused by having a ton of flashlights
-				//	else						light_amount =  5
 				var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
 				if(L)
-					//light_amount = min(10,L.lum_r + L.lum_g + L.lum_b) - 5 //hardcapped so it's not abused by having a ton of flashlights
 					light_amount = min(10,L.lum_r + L.lum_g + L.lum_b) - 2 //hardcapped so it's not abused by having a ton of flashlights
 				else
-					//light_amount =  5
 					light_amount = 1
 			nutrition += light_amount
 			traumatic_shock -= light_amount
@@ -982,10 +981,6 @@
 			var/light_amount = 0
 			if(isturf(loc))
 				var/turf/T = loc
-				//var/area/A = T.loc
-				//if(A)
-					//if(A.lighting_use_dynamic)	light_amount = T.lighting_lumcount
-					//else						light_amount =  10
 				var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
 				if(L)
 					light_amount = L.lum_r + L.lum_g + L.lum_b //hardcapped so it's not abused by having a ton of flashlights
@@ -1079,7 +1074,7 @@
 			analgesic = max(0, analgesic - 1)
 
 			//UNCONSCIOUS. NO-ONE IS HOME
-			if( (getOxyLoss() > 50) || (config.health_threshold_crit > health) )
+			if((getOxyLoss() > 50) || (config.health_threshold_crit > health))
 				Paralyse(3)
 
 				/* Done by handle_breath()
@@ -1120,6 +1115,7 @@
 				if(halloss > 0)
 					adjustHalLoss(-3)
 			else if(sleeping)
+				speech_problem_flag = 1
 				handle_dreams()
 				adjustHalLoss(-3)
 				if (mind)
@@ -1171,16 +1167,19 @@
 
 			//Other
 			if(stunned)
+				speech_problem_flag = 1
 				AdjustStunned(-1)
 
 			if(weakened)
 				weakened = max(weakened-1,0)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
 
 			if(stuttering)
+				speech_problem_flag = 1
 				stuttering = max(stuttering-1, 0)
 			if (slurring)
 				slurring = max(slurring-1, 0)
 			if(silent)
+				speech_problem_flag = 1
 				silent = max(silent-1, 0)
 
 			if(druggy)

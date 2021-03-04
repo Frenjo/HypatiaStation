@@ -38,7 +38,6 @@
 		amount += O.burn_dam
 	return amount
 
-
 /mob/living/carbon/human/adjustBruteLoss(var/amount)
 	if(species && species.brute_mod)
 		amount = amount*species.brute_mod
@@ -136,13 +135,15 @@
 //It automatically updates health status
 /mob/living/carbon/human/take_organ_damage(var/brute, var/burn, var/sharp = 0)
 	var/list/datum/organ/external/parts = get_damageable_organs()
-	if(!parts.len)	return
+	if(!parts.len)
+		return
+
 	var/datum/organ/external/picked = pick(parts)
-	if(picked.take_damage(brute,burn,sharp))
+	if(picked.take_damage(brute, burn, sharp))
 		UpdateDamageIcon()
 		hud_updateflag |= 1 << HEALTH_HUD
 	updatehealth()
-
+	speech_problem_flag = 1
 
 //Heal MANY external organs, in random order
 /mob/living/carbon/human/heal_overall_damage(var/brute, var/burn)
@@ -163,7 +164,9 @@
 		parts -= picked
 	updatehealth()
 	hud_updateflag |= 1 << HEALTH_HUD
-	if(update)	UpdateDamageIcon()
+	speech_problem_flag = 1
+	if(update)
+		UpdateDamageIcon()
 
 // damage MANY external organs, in random order
 /mob/living/carbon/human/take_overall_damage(var/brute, var/burn, var/sharp = 0, var/used_weapon = null)

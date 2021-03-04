@@ -92,7 +92,9 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 			"type" = signal.data["type"],
 			"server" = signal.data["server"],
 			"reject" = signal.data["reject"],
-			"level" = signal.data["level"]
+			"level" = signal.data["level"],
+			"verbage" = signal.data["verbage"],
+			"language" = signal.data["language"]
 			)
 
 			// Keep the "original" signal constant

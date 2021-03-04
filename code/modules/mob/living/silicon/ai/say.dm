@@ -20,7 +20,6 @@ var/const/VOX_DELAY = 100 // 10 seconds
 var/const/VOX_PATH = "sound/vox/"
 
 /mob/living/silicon/ai/verb/announcement_help()
-
 	set name = "Announcement Help"
 	set desc = "Display a list of vocal words to announce to the crew."
 	set category = "AI Commands"
@@ -45,7 +44,6 @@ var/const/VOX_PATH = "sound/vox/"
 
 
 /mob/living/silicon/ai/verb/announcement()
-
 	set name = "Announcement"
 	set desc = "Create a vocal announcement by typing in the available words to create a sentence."
 	set category = "AI Commands"
@@ -89,7 +87,6 @@ var/const/VOX_PATH = "sound/vox/"
 
 
 /proc/play_vox_word(var/word, var/z_level, var/mob/only_listener)
-
 	word = lowertext(word)
 
 	if(vox_word_exists(word))

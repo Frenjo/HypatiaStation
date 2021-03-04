@@ -201,7 +201,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	del(A)
 	return
 
-/obj/item/device/radio/talk_into(mob/living/M as mob, message, channel)
+/obj/item/device/radio/talk_into(mob/living/M as mob, message, channel, var/verbage = "says", var/datum/language/speaking = null)
 	if(!on) return // the device has to be on
 	//  Fix for permacell radios, but kinda eh about actually fixing them.
 	if(!M || !message) return
@@ -327,7 +327,9 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 				"type" = 0, // determines what type of radio input it is: normal broadcast
 				"server" = null, // the last server to log this signal
 				"reject" = 0,	// if nonzero, the signal will not be accepted by any broadcasting machinery
-				"level" = position.z // The source's z level
+				"level" = position.z, // The source's z level
+				"language" = speaking,
+				"verbage" = verbage
 			)
 			signal.frequency = connection.frequency // Quick frequency set
 
@@ -380,7 +382,9 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			"type" = 0,
 			"server" = null,
 			"reject" = 0,
-			"level" = position.z
+			"level" = position.z,
+			"language" = speaking,
+			"verbage" = verbage
 		)
 		signal.frequency = connection.frequency // Quick frequency set
 
@@ -402,7 +406,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 		Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
 						  src, message, displayname, jobname, real_name, M.voice_name,
-		                  filter_type, signal.data["compression"], list(position.z), connection.frequency)
+		                  filter_type, signal.data["compression"], list(position.z), connection.frequency, verbage, speaking)
 
 
 
@@ -575,11 +579,10 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 					else
 						R.show_message(rendered, 2)
 
-/obj/item/device/radio/hear_talk(mob/M as mob, msg)
-
+/obj/item/device/radio/hear_talk(mob/M as mob, msg, var/verbage = "says", var/datum/language/speaking = null)
 	if (broadcasting)
 		if(get_dist(src, M) <= canhear_range)
-			talk_into(M, msg)
+			talk_into(M, msg, null, verbage, speaking)
 /*
 /obj/item/device/radio/proc/accept_rad(obj/item/device/radio/R as obj, message)
 

@@ -60,7 +60,9 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 							  signal.data["vmask"], signal.data["vmessage"],
 							  signal.data["radio"], signal.data["message"],
 							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"],, signal.data["compression"], signal.data["level"], signal.frequency)
+							  signal.data["realname"], signal.data["vname"],,
+							  signal.data["compression"], signal.data["level"], signal.frequency,
+							  signal.data["verbage"], signal.data["language"])
 
 
 	   /** #### - Simple Broadcast - #### **/
@@ -85,7 +87,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 							  signal.data["vmask"], signal.data["vmessage"],
 							  signal.data["radio"], signal.data["message"],
 							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"], 4, signal.data["compression"], signal.data["level"], signal.frequency)
+							  signal.data["realname"], signal.data["vname"], 4, signal.data["compression"], signal.data["level"], signal.frequency,
+							  signal.data["verbage"], signal.data["language"])
 
 		if(!message_delay)
 			message_delay = 1
@@ -149,16 +152,16 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 							  signal.data["vmask"], signal.data["vmessage"],
 							  signal.data["radio"], signal.data["message"],
 							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"],, signal.data["compression"], list(0), connection.frequency)
+							  signal.data["realname"], signal.data["vname"],, signal.data["compression"], list(0), connection.frequency,
+							  signal.data["verbage"], signal.data["language"])
 		else
 			if(intercept)
 				Broadcast_Message(signal.data["connection"], signal.data["mob"],
 							  signal.data["vmask"], signal.data["vmessage"],
 							  signal.data["radio"], signal.data["message"],
 							  signal.data["name"], signal.data["job"],
-							  signal.data["realname"], signal.data["vname"], 3, signal.data["compression"], list(0), connection.frequency)
-
-
+							  signal.data["realname"], signal.data["vname"], 3, signal.data["compression"], list(0), connection.frequency,
+							  signal.data["verbage"], signal.data["language"])
 
 /**
 
@@ -220,18 +223,16 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 /proc/Broadcast_Message(var/datum/radio_frequency/connection, var/mob/M,
 						var/vmask, var/vmessage, var/obj/item/device/radio/radio,
 						var/message, var/name, var/job, var/realname, var/vname,
-						var/data, var/compression, var/list/level, var/freq)
+						var/data, var/compression, var/list/level, var/freq, var/verbage = "says", var/datum/language/speaking = null)
 
   /* ###### Prepare the radio connection ###### */
 
 	var/display_freq = freq
-
 	var/list/obj/item/device/radio/radios = list()
 
 	// --- Broadcast only to intercom devices ---
 
 	if(data == 1)
-
 		for (var/obj/item/device/radio/intercom/R in connection.devices["[RADIO_CHAT]"])
 			if(R.receive_range(display_freq, level) > -1)
 				radios += R
@@ -239,7 +240,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	// --- Broadcast only to intercoms and station-bounced radios ---
 
 	else if(data == 2)
-
 		for (var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
 
 			if(istype(R, /obj/item/device/radio/headset))
@@ -251,7 +251,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	// --- Broadcast to syndicate radio! ---
 
 	else if(data == 3)
-
 		var/datum/radio_frequency/syndicateconnection = radio_controller.return_frequency(SYND_FREQ)
 
 		for (var/obj/item/device/radio/R in syndicateconnection.devices["[RADIO_CHAT]"])
@@ -282,7 +281,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	var/list/heard_gibberish= list() // completely screwed over message (ie "F%! (O*# *#!<>&**%!")
 
 	for (var/mob/R in receive)
-
 	  /* --- Loop through the receivers and categorize them --- */
 
 		if (R.client && !(R.client.prefs.toggles & CHAT_RADIO)) //Adminning with 80 people on can be fun when you're trying to talk and all you can hear is radios.
@@ -333,7 +331,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		// --- Set the name of the channel ---
 		switch(display_freq)
-
 			if(SYND_FREQ)
 				freq_text = "#unkn"
 			if(COMM_FREQ)
@@ -371,35 +368,35 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		var/part_c = "</span></span>"
 
 		// syndies!
-		if (display_freq == SYND_FREQ)
+		if(display_freq == SYND_FREQ)
 			part_a = "<span class='syndradio'><span class='name'>"
 
 		// centcomm channels (deathsquid and ert)
-		else if (display_freq in CENT_FREQS)
+		else if(display_freq in CENT_FREQS)
 			part_a = "<span class='centradio'><span class='name'>"
 
 		// command channel
-		else if (display_freq == COMM_FREQ)
+		else if(display_freq == COMM_FREQ)
 			part_a = "<span class='comradio'><span class='name'>"
 
 		// AI private channel
-		else if (display_freq == 1447)
+		else if(display_freq == 1447)
 			part_a = "<span class='airadio'><span class='name'>"
 
 		// department radio formatting (poorly optimized, ugh)
-		else if (display_freq == SEC_FREQ)
+		else if(display_freq == SEC_FREQ)
 			part_a = "<span class='secradio'><span class='name'>"
 
-		else if (display_freq == ENG_FREQ)
+		else if(display_freq == ENG_FREQ)
 			part_a = "<span class='engradio'><span class='name'>"
 
-		else if (display_freq == SCI_FREQ)
+		else if(display_freq == SCI_FREQ)
 			part_a = "<span class='sciradio'><span class='name'>"
 
-		else if (display_freq == MED_FREQ)
+		else if(display_freq == MED_FREQ)
 			part_a = "<span class='medradio'><span class='name'>"
 
-		else if (display_freq == SUP_FREQ) // cargo
+		else if(display_freq == SUP_FREQ) // cargo
 			part_a = "<span class='supradio'><span class='name'>"
 
 		// If all else fails and it's a dept_freq, color me purple!
@@ -447,103 +444,39 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		//End of research and feedback code.
 
-		var/aitrack = ""
-
 	 /* ###### Send the message ###### */
 
 
 	  	/* --- Process all the mobs that heard a masked voice (understood) --- */
 
-		if (length(heard_masked))
-			var/N = name
-			var/J = job
-			var/rendered = "[part_a][N][part_b][quotedmsg][part_c]"
-			for (var/mob/R in heard_masked)
-				aitrack = "<a href='byond://?src=\ref[radio];track2=\ref[R];track=\ref[M]'>"
-				if(data == 4)
-					aitrack = "<a href='byond://?src=\ref[radio];track2=\ref[R];faketrack=\ref[M]'>"
-
-				if(istype(R, /mob/living/silicon/ai))
-					R.show_message("[part_a][aitrack][N] ([J]) </a>[part_b][quotedmsg][part_c]", 2)
-				else
-					R.show_message(rendered, 2)
+		if(length(heard_masked))
+			for(var/mob/R in heard_masked)
+				R.hear_radio(message,verbage, speaking, part_a, part_b, M)
 
 		/* --- Process all the mobs that heard the voice normally (understood) --- */
 
-		if (length(heard_normal))
-			var/rendered = "[part_a][realname][part_b][quotedmsg][part_c]"
-
-			for (var/mob/R in heard_normal)
-				aitrack = "<a href='byond://?src=\ref[radio];track2=\ref[R];track=\ref[M]'>"
-				if(data == 4)
-					aitrack = "<a href='byond://?src=\ref[radio];track2=\ref[R];faketrack=\ref[M]'>"
-
-				if(istype(R, /mob/living/silicon/ai))
-					R.show_message("[part_a][aitrack][realname] ([job]) </a>[part_b][quotedmsg][part_c]", 2)
-				else
-					R.show_message(rendered, 2)
+		if(length(heard_normal))
+			for(var/mob/R in heard_normal)
+				R.hear_radio(message, verbage, speaking, part_a, part_b, M)
 
 		/* --- Process all the mobs that heard the voice normally (did not understand) --- */
 
 		if (length(heard_voice))
-			var/rendered = "[part_a][vname][part_b][vmessage][part_c]"
-
 			for (var/mob/R in heard_voice)
-				aitrack = "<a href='byond://?src=\ref[radio];track2=\ref[R];track=\ref[M]'>"
-				if(data == 4)
-					aitrack = "<a href='byond://?src=\ref[radio];track2=\ref[R];faketrack=\ref[M]'>"
-
-
-				if(istype(R, /mob/living/silicon/ai))
-					R.show_message("[part_a][aitrack][vname] ([job]) </a>[part_b][vmessage]][part_c]", 2)
-				else
-					R.show_message(rendered, 2)
+				R.hear_radio(message, verbage, speaking, part_a, part_b, M)
 
 		/* --- Process all the mobs that heard a garbled voice (did not understand) --- */
 			// Displays garbled message (ie "f*c* **u, **i*er!")
 
 		if (length(heard_garbled))
-			if(M)
-				quotedmsg = M.say_quote(stars(message))
-			else
-				quotedmsg = stars(quotedmsg)
-
-			var/rendered = "[part_a][vname][part_b][quotedmsg][part_c]"
-
 			for (var/mob/R in heard_garbled)
-				aitrack = "<a href='byond://?src=\ref[radio];track2=\ref[R];track=\ref[M]'>"
-				if(data == 4)
-					aitrack = "<a href='byond://?src=\ref[radio];track2=\ref[R];faketrack=\ref[M]'>"
-
-
-				if(istype(R, /mob/living/silicon/ai))
-					R.show_message("[part_a][aitrack][vname]</a>[part_b][quotedmsg][part_c]", 2)
-				else
-					R.show_message(rendered, 2)
-
+				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 1)
 
 		/* --- Complete gibberish. Usually happens when there's a compressed message --- */
 
 		if (length(heard_gibberish))
-			if(M)
-				quotedmsg = M.say_quote(Gibberish(message, compression + 50))
-			else
-				quotedmsg = Gibberish(quotedmsg, compression + 50)
-
-			var/rendered = "[part_a][Gibberish(name, compression + 50)][part_b][quotedmsg][part_c]"
-
 			for (var/mob/R in heard_gibberish)
-				aitrack = "<a href='byond://?src=\ref[radio];track2=\ref[R];track=\ref[M]'>"
-				if(data == 4)
-					aitrack = "<a href='byond://?src=\ref[radio];track2=\ref[R];faketrack=\ref[M]'>"
-
-
-				if(istype(R, /mob/living/silicon/ai))
-					R.show_message("[part_a][aitrack][Gibberish(realname, compression + 50)] ([Gibberish(job, compression + 50)]) </a>[part_b][quotedmsg][part_c]", 2)
-				else
-					R.show_message(rendered, 2)
-
-
+				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 1)
 
 /proc/Broadcast_SimpleMessage(var/source, var/frequency, var/text, var/data, var/mob/M, var/compression, var/level)
 
