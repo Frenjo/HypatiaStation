@@ -42,7 +42,6 @@
 	clumsy_check = 0
 	var/charge_tick = 0
 
-
 /obj/item/weapon/gun/energy/staff/New()
 	..()
 	processing_objects.Add(src)

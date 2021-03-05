@@ -9,14 +9,27 @@
 	name = "electrode"
 	icon_state = "spark"
 	nodamage = 1
-	/*
-	stun = 10
-	weaken = 10
-	stutter = 10
-	*/
+	stun = 5
+	weaken = 5
+	stutter = 5
 	agony = 40
 	damage_type = HALLOSS
 	//Damage will be handled on the MOB side, to prevent window shattering.
+
+/obj/item/projectile/energy/electrode/on_hit(var/atom/target, var/blocked = 0)
+	if(!ismob(target) || blocked >= 2) //Fully blocked by mob or collided with dense object - burst into sparks!
+		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread
+		sparks.set_up(1, 1, src)
+		sparks.start()
+	..()
+
+/obj/item/projectile/energy/disabler
+	name = "disabler"
+	icon_state = "bluespark"
+	nodamage = 1
+	weaken = 5
+	agony = 20
+	damage_type = HALLOSS
 
 /obj/item/projectile/energy/declone
 	name = "declone"

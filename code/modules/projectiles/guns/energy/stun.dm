@@ -58,6 +58,16 @@
 	projectile_type = "/obj/item/projectile/energy/electrode"
 	cell_type = "/obj/item/weapon/cell"
 
+/obj/item/weapon/gun/energy/disabler
+	name = "disabler"
+	desc = "A non-lethal self-defense weapon that exhausts organic targets, weakening them until they collapse."
+	icon_state = "disabler"
+	fire_sound = 'sound/weapons/Taser.ogg'
+	origin_tech = "combat=3;materials=3;powerstorage=1"
+	charge_cost = 100
+	projectile_type = "/obj/item/projectile/energy/disabler"
+	cell_type = "/obj/item/weapon/cell"
+
 /obj/item/weapon/gun/energy/crossbow
 	name = "mini energy-crossbow"
 	desc = "A weapon favored by many of the syndicates stealth specialists."
