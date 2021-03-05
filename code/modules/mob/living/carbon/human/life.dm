@@ -225,6 +225,8 @@
 			adjustCloneLoss(0.1)
 
 	proc/handle_mutations_and_radiation()
+		if(species.flags & IS_SYNTHETIC) //Robots don't suffer from mutations or radloss.
+			return
 
 		if(getFireLoss())
 			if((COLD_RESISTANCE in mutations) || (prob(1)))

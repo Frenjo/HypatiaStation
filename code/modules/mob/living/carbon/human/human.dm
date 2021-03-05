@@ -885,6 +885,9 @@
 	return
 
 /mob/living/carbon/human/proc/vomit()
+	if(species.flags & IS_SYNTHETIC)
+		return //Machines don't throw up.
+
 	if(!lastpuke)
 		lastpuke = 1
 		src << "<spawn class='warning'>You feel nauseous..."
