@@ -48,7 +48,7 @@
 		message_admins("[key_name_admin(user)] fired a rocket from a rocket launcher ([src.name]).")
 		log_game("[key_name_admin(user)] used a rocket launcher ([src.name]).")
 		rockets -= I
-		del(I)
+		qdel(I)
 		return
 	else
 		usr << "\red [src] is empty."

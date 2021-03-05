@@ -85,7 +85,7 @@
 				M << "<span class='danger'>[src] blows up in your face.</span>"
 				M.take_organ_damage(0,20)
 				M.drop_item()
-				del(src)
+				qdel(src)
 				return
 
 	if (!user.IsAdvancedToolUser())
@@ -126,7 +126,7 @@
 	in_chamber.def_zone = user.zone_sel.selecting
 	if(targloc == curloc)
 		user.bullet_act(in_chamber)
-		del(in_chamber)
+		qdel(in_chamber)
 		update_icon()
 		return
 
@@ -221,7 +221,7 @@
 			else
 				user << "<span class = 'notice'>Ow...</span>"
 				user.apply_effect(110,AGONY,0)
-			del(in_chamber)
+			qdel(in_chamber)
 			mouthshoot = 0
 			return
 		else

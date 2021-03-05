@@ -124,7 +124,7 @@
 /turf/unsimulated/jungle/water/New()
 	..()
 	for(var/obj/structure/bush/B in src)
-		del(B)
+		qdel(B)
 
 /turf/unsimulated/jungle/water/Entered(atom/movable/O)
 	..()

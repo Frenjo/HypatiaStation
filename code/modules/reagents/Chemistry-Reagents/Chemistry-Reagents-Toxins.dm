@@ -36,7 +36,7 @@
 /datum/reagent/toxin/mutagen/reaction_mob(var/mob/living/carbon/M, var/method=TOUCH, var/volume)
 	if(!..())	return
 	if(!istype(M) || !M.dna)	return  //No robots, AIs, aliens, Ians or other mobs should be affected by this.
-	del(src)
+	qdel(src)
 	if((method==TOUCH && prob(33)) || method==INGEST)
 		randmuti(M)
 		if(prob(98))	randmutb(M)
@@ -76,7 +76,7 @@
 	return
 
 /datum/reagent/plasma/reaction_obj(var/obj/O, var/volume)
-	del(src)
+	qdel(src)
 	/*if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/egg/slime))
 		var/obj/item/weapon/reagent_containers/food/snacks/egg/slime/egg = O
 		if (egg.grown)
@@ -86,7 +86,7 @@
 	the_turf.assume_gas("volatile_fuel", volume, T20C)
 
 /datum/reagent/plasma/reaction_turf(var/turf/T, var/volume)
-	del(src)
+	qdel(src)
 	T.assume_gas("volatile_fuel", volume, T20C)
 	return
 
@@ -237,13 +237,13 @@
 		alien_weeds.health -= rand(15,35) // Kills alien weeds pretty fast
 		alien_weeds.healthcheck()
 	else if(istype(O,/obj/effect/glowshroom)) //even a small amount is enough to kill it
-		del(O)
+		qdel(O)
 	else if(istype(O,/obj/effect/spacevine))
-		if(prob(50)) del(O) //Kills kudzu too.
+		if(prob(50)) qdel(O) //Kills kudzu too.
 	// Damage that is done to growing plants is separately at code/game/machinery/hydroponics at obj/item/hydroponics
 
 /datum/reagent/toxin/plantbgone/reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)
-	del(src)
+	qdel(src)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		if(!C.wear_mask) // If not wearing a mask
@@ -375,7 +375,7 @@
 			if(H.head)
 				if(prob(meltprob) && !H.head.unacidable)
 					H << "<span class='danger'>Your headgear melts away but protects you from the acid!</span>"
-					del(H.head)
+					qdel(H.head)
 					H.update_inv_head(0)
 					H.update_hair(0)
 				else
@@ -432,7 +432,7 @@
 			I.desc = "Looks like this was \an [O] some time ago."
 			for(var/mob/M in viewers(5, O))
 				M << "\red \the [O] melts."
-			del(O)
+			qdel(O)
 
 
 /datum/reagent/toxin/acid/polyacid

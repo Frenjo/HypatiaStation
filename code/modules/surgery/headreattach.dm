@@ -182,7 +182,7 @@
 		var/obj/item/weapon/organ/head/B = tool
 		if (B.brainmob.mind)
 			B.brainmob.mind.transfer_to(target)
-		del(B)
+		qdel(B)
 
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

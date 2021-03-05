@@ -19,7 +19,7 @@
 /datum/reagent/proc/reaction_mob(var/mob/M, var/method=TOUCH, var/volume) //By default we have a chance to transfer some
 	if(!istype(M, /mob/living))	return 0
 	var/datum/reagent/self = src
-	del(src)										  //of the reagent to the mob on TOUCHING it.
+	qdel(src)										  //of the reagent to the mob on TOUCHING it.
 
 	if(self.holder)		//for catching rare runtimes
 		if(!istype(self.holder.my_atom, /obj/effect/effect/smoke/chem))
@@ -48,14 +48,14 @@
 	return 1
 
 /datum/reagent/proc/reaction_obj(var/obj/O, var/volume)
-	del(src)
+	qdel(src)
 	//By default we transfer a small part of the reagent to the object if it can hold reagents.
 	if(O.reagents)
 		O.reagents.add_reagent(id,volume/3)
 	return
 
 /datum/reagent/proc/reaction_turf(var/turf/T, var/volume)
-	del(src)
+	qdel(src)
 	return
 
 /datum/reagent/proc/on_mob_life(var/mob/living/M as mob, var/alien)

@@ -79,14 +79,13 @@
 	. = ..()
 	radio = new (src)
 
-
 /obj/machinery/power/supermatter/Destroy()
-	del radio
+	qdel(radio)
 	. = ..()
 
 /obj/machinery/power/supermatter/proc/explode()
 		explosion(get_turf(src), explosion_power, explosion_power * 2, explosion_power * 3, explosion_power * 4, 1)
-		del src
+		qdel(src)
 		return
 
 /obj/machinery/power/supermatter/proc/shift_light(var/lum, var/clr)
@@ -128,11 +127,12 @@
 
 		if(damage > explosion_point)
 			for(var/mob/living/mob in living_mob_list)
-				if(istype(mob, /mob/living/carbon/human))
-					//Hilariously enough, running into a closet should make you get hit the hardest.
-					mob:hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
-				var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(mob, src) + 1) )
-				mob.apply_effect(rads, IRRADIATE)
+				if(loc.z == mob.loc.z)
+					if(istype(mob, /mob/living/carbon/human))
+						//Hilariously enough, running into a closet should make you get hit the hardest.
+						mob.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1))))
+					var/rads = DETONATION_RADS * sqrt( 1 / (get_dist(mob, src) + 1))
+					mob.apply_effect(rads, IRRADIATE)
 
 			explode()
 
@@ -213,7 +213,6 @@
 		return 0	// This stops people from being able to really power up the supermatter
 				// Then bring it inside to explode instantly upon landing on a valid turf.
 
-
 	if(Proj.flag != "bullet")
 		power += Proj.damage * config_bullet_energy
 	else
@@ -223,7 +222,6 @@
 
 /obj/machinery/power/supermatter/attack_paw(mob/user as mob)
 	return attack_hand(user)
-
 
 /obj/machinery/power/supermatter/attack_robot(mob/user as mob)
 	if(Adjacent(user))
@@ -258,7 +256,6 @@
 
 	user.apply_effect(150, IRRADIATE)
 
-
 /obj/machinery/power/supermatter/Bumped(atom/AM as mob|obj)
 	if(istype(AM, /mob/living))
 		AM.visible_message("<span class=\"warning\">\The [AM] slams into \the [src] inducing a resonance... \his body starts to glow and catch flame before flashing into ash.</span>",\
@@ -270,17 +267,16 @@
 
 	Consume(AM)
 
-
 /obj/machinery/power/supermatter/proc/Consume(var/mob/living/user)
 	if(istype(user))
 		user.dust()
 		power += 200
 	else
-		del user
+		qdel(user)
 
 	power += 200
 
-		//Some poor sod got eaten, go ahead and irradiate people nearby.
+	//Some poor sod got eaten, go ahead and irradiate people nearby.
 	for(var/mob/living/l in range(10))
 		if(l in view())
 			l.show_message("<span class=\"warning\">As \the [src] slowly stops resonating, you find your skin covered in new radiation burns.</span>", 1,\
@@ -289,4 +285,3 @@
 			l.show_message("<span class=\"warning\">You hear an uneartly ringing and notice your skin is covered in fresh radiation burns.</span>", 2)
 		var/rads = 500 * sqrt( 1 / (get_dist(l, src) + 1) )
 		l.apply_effect(rads, IRRADIATE)
-

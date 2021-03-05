@@ -57,7 +57,7 @@
 				else
 					for(var/mob/M in viewers(world.view, user))
 						M.show_message("<span class='info'>[src] burns away into nothing.</span>",1)
-				del(src)
+				qdel(src)
 				w.remove_fuel(4)
 			else
 				for(var/mob/M in viewers(world.view, user))
@@ -73,7 +73,7 @@
 	..()
 	if(prob(33))
 		src.visible_message("<span class='warning'>[src] crumbles away, leaving some dust and gravel behind.</span>")
-		del(src)
+		qdel(src)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Archaeological finds
@@ -529,7 +529,7 @@
 		var/turf/T = get_turf(src)
 		if(istype(T, /turf/simulated/mineral))
 			T:last_find = new_item
-		del(src)
+		qdel(src)
 
 	else if(talkative)
 		listening_to_players = 1

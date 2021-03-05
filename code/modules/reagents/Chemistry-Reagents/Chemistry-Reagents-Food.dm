@@ -374,7 +374,7 @@
 
 /datum/reagent/cornoil/reaction_turf(var/turf/simulated/T, var/volume)
 	if (!istype(T)) return
-	del(src)
+	qdel(src)
 	if(volume >= 3)
 		if(T.wet >= 1) return
 		T.wet = 1
@@ -397,7 +397,7 @@
 		lowertemp.temperature = max( min(lowertemp.temperature-2000,lowertemp.temperature / 2) ,0)
 		lowertemp.react()
 		T.assume_air(lowertemp)
-		del(hotspot)
+		qdel(hotspot)
 
 
 /datum/reagent/enzyme
@@ -468,7 +468,7 @@
 				return
 
 			reaction_turf(var/turf/T, var/volume)
-				del(src)
+				qdel(src)
 				if(!istype(T, /turf/space))
 					new /obj/effect/decal/cleanable/flour(T)
 */

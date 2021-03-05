@@ -32,7 +32,7 @@ var/list/beam_master = list()
 
 		if(kill_count < 1)
 			//src = null
-			del(src)
+			qdel(src)
 		kill_count--
 
 		if(!bumped && !isturf(original))

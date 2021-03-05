@@ -3,7 +3,7 @@ var/list/delayed_garbage = list()
 
 /datum/controller/process/garbage_collector
 	var/garbage_collect = 1			// Whether or not to actually do work
-	var/collection_timeout = 300	//deciseconds to wait to let running procs finish before we just say fuck it and force del() the object
+	var/collection_timeout = 300	//deciseconds to wait to let running procs finish before we just say fuck it and force qdel() the object
 	var/max_checks_multiplier = 5	//multiplier (per-decisecond) for calculating max number of tests per tick. These tests check if our GC'd objects are actually GC'd
 	var/max_forcedel_multiplier = 1	//multiplier (per-decisecond) for calculating max number of force del() calls per tick.
 

@@ -542,8 +542,6 @@
 		else
 			toxins_alert = 0
 
-
-
 		// If there's some other shit in the air lets deal with it here.
 		if(breath.gas["sleeping_agent"])
 			var/SA_pp = (breath.gas["sleeping_agent"] / breath.total_moles) * breath_pressure
@@ -743,10 +741,6 @@
 	*/
 
 	proc/stabilize_body_temperature()
-		if(species.flags & IS_SYNTHETIC)
-			bodytemperature += species.synth_temp_gain		//just keep putting out heat.
-			return
-
 		var/body_temperature_difference = 310.15 - bodytemperature
 		if(abs(body_temperature_difference) < 0.5)
 			return //fuck this precision
@@ -1101,7 +1095,7 @@
 
 			else
 				for(var/atom/a in hallucinations)
-					del a
+					qdel(a)
 
 				if(halloss > 100)
 					src << "<span class='notice'>You're in too much pain to keep going...</span>"
@@ -1539,7 +1533,7 @@
 					if(M.stat == 2)
 						M.death(1)
 						stomach_contents.Remove(M)
-						del(M)
+						qdel(M)
 						continue
 					if(air_master.current_cycle%3==1)
 						if(!(M.status_flags & GODMODE))

@@ -3,19 +3,19 @@
 	if(istype(W,/obj/item/weapon/shard) || istype(W,/obj/item/weapon/reagent_containers/food/snacks))
 		var/obj/item/weapon/reagent_containers/food/snacks/customizable/S = new(get_turf(user))
 		S.attackby(W,user)
-		del(src)
+		qdel(src)
 /obj/item/weapon/reagent_containers/food/snacks/bun/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/shard) || istype(W,/obj/item/weapon/reagent_containers/food/snacks))
 		var/obj/item/weapon/reagent_containers/food/snacks/customizable/burger/S = new(get_turf(user))
 		S.attackby(W,user)
-		del(src)
+		qdel(src)
 	..()
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/shard) || istype(W,/obj/item/weapon/reagent_containers/food/snacks))
 		var/obj/item/weapon/reagent_containers/food/snacks/customizable/pizza/S = new(get_turf(user))
 		S.attackby(W,user)
-		del(src)
+		qdel(src)
 	..()
 
 /obj/item/weapon/reagent_containers/food/snacks/boiledspagetti/attackby(obj/item/W as obj, mob/user as mob)
@@ -23,7 +23,7 @@
 	if(istype(W,/obj/item/weapon/shard) || istype(W,/obj/item/weapon/reagent_containers/food/snacks))
 		var/obj/item/weapon/reagent_containers/food/snacks/customizable/pasta/S = new(get_turf(user))
 		S.attackby(W,user)
-		del(src)
+		qdel(src)
 
 /obj/item/trash/bowl
 	name = "bowl"
@@ -36,7 +36,7 @@
 	if(istype(W,/obj/item/weapon/shard) || istype(W,/obj/item/weapon/reagent_containers/food/snacks))
 		var/obj/item/weapon/reagent_containers/food/snacks/customizable/soup/S = new(get_turf(user))
 		S.attackby(W,user)
-		del(src)
+		qdel(src)
 	..()
 
 /obj/item/weapon/reagent_containers/food/snacks/customizable
@@ -152,7 +152,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/customizable/Destroy()
 	for(var/obj/item/O in ingredients)
-		del(O)
+		qdel(O)
 	..()
 
 /obj/item/weapon/reagent_containers/food/snacks/customizable/examine()

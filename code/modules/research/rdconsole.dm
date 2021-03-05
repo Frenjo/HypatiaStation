@@ -58,7 +58,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		check_tech = new T()
 		if(check_tech.id == ID)
 			return_name = check_tech.name
-			del(check_tech)
+			qdel(check_tech)
 			check_tech = null
 			break
 
@@ -92,7 +92,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			temp_reagent = new R()
 			if(temp_reagent.id == ID)
 				return_name = temp_reagent.name
-				del(temp_reagent)
+				qdel(temp_reagent)
 				temp_reagent = null
 				break
 	return return_name
@@ -157,7 +157,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				A.state = 3
 				A.icon_state = "3"
 				A.anchored = 1
-				del(src)
+				qdel(src)
 			else
 				user << "\blue You disconnect the monitor."
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
@@ -168,7 +168,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				A.state = 4
 				A.icon_state = "4"
 				A.anchored = 1
-				del(src)
+				qdel(src)
 	//Loading a disk into it.
 	else if(istype(D, /obj/item/weapon/disk))
 		if(t_disk || d_disk)
@@ -299,11 +299,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 									S.amount--
 									linked_destroy.loaded_item = S
 								else
-									del(S)
+									qdel(S)
 									linked_destroy.icon_state = "d_analyzer"
 							else
 								if(!(I in linked_destroy.component_parts))
-									del(I)
+									qdel(I)
 									linked_destroy.icon_state = "d_analyzer"
 						use_power(250)
 						screen = 1.0
@@ -539,7 +539,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		var/choice = alert("R&D Console Database Reset", "Are you sure you want to reset the R&D console's database? Data lost cannot be recovered.", "Continue", "Cancel")
 		if(choice == "Continue")
 			screen = 0.0
-			del(files)
+			qdel(files)
 			files = new /datum/research(src)
 			spawn(20)
 				screen = 1.6

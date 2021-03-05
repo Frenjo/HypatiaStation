@@ -59,7 +59,7 @@ var/global/list/GlobalPool = list()
 		#ifdef DEBUG_ATOM_POOL
 		world << text("DEBUG_DATUM_POOL: PlaceInPool([]) exceeds []. Discarding.", D.type, ATOM_POOL_COUNT)
 		#endif
-		del(D)
+		qdel(D)
 		return
 
 	if(D in GlobalPool[D.type])

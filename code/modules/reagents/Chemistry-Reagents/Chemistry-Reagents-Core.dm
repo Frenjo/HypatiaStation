@@ -8,7 +8,7 @@
 
 /datum/reagent/blood/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 	var/datum/reagent/blood/self = src
-	del(src)
+	qdel(src)
 	if(self.data && self.data["viruses"])
 		for(var/datum/disease/D in self.data["viruses"])
 			//var/datum/disease/virus = new D.type(0, D, 1)
@@ -30,7 +30,7 @@
 /datum/reagent/blood/reaction_turf(var/turf/simulated/T, var/volume)//splash the blood all over the place
 	if(!istype(T)) return
 	var/datum/reagent/blood/self = src
-	del(src)
+	qdel(src)
 	if(!(volume >= 3)) return
 	//var/datum/disease/D = self.data["virus"]
 	if(!self.data["donor"] || istype(self.data["donor"], /mob/living/carbon/human))
@@ -83,7 +83,7 @@
 
 /datum/reagent/vaccine/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 	var/datum/reagent/vaccine/self = src
-	del(src)
+	qdel(src)
 	if(self.data&&method == INGEST)
 		for(var/datum/disease/D in M.viruses)
 			if(istype(D, /datum/disease/advance))
@@ -109,7 +109,7 @@
 
 /datum/reagent/water/reaction_turf(var/turf/simulated/T, var/volume)
 	if (!istype(T)) return
-	del(src)
+	qdel(src)
 	if(volume >= 3)
 		if(T.wet >= 1) return
 		T.wet = 1
@@ -136,11 +136,11 @@
 		lowertemp.temperature = max( min(lowertemp.temperature-2000,lowertemp.temperature / 2) ,0)
 		lowertemp.react()
 		T.assume_air(lowertemp)
-		del(hotspot)
+		qdel(hotspot)
 	return
 
 /datum/reagent/water/reaction_obj(var/obj/O, var/volume)
-	del(src)
+	qdel(src)
 	var/turf/T = get_turf(O)
 	var/hotspot = (locate(/obj/fire) in T)
 	if(hotspot && !istype(T, /turf/space))
@@ -148,7 +148,7 @@
 		lowertemp.temperature = max( min(lowertemp.temperature-2000,lowertemp.temperature / 2) ,0)
 		lowertemp.react()
 		T.assume_air(lowertemp)
-		del(hotspot)
+		qdel(hotspot)
 	if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/monkeycube))
 		var/obj/item/weapon/reagent_containers/food/snacks/monkeycube/cube = O
 		if(!cube.wrapped)
@@ -183,7 +183,7 @@
 
 /datum/reagent/lube/reaction_turf(var/turf/simulated/T, var/volume)
 	if (!istype(T)) return
-	del(src)
+	qdel(src)
 	if(volume >= 1)
 		if(T.wet >= 2) return
 		T.wet = 2
@@ -253,7 +253,7 @@
 		M.invisibility = 101
 		for(var/obj/item/W in M)
 			if(istype(W, /obj/item/weapon/implant))	//TODO: Carn. give implants a dropped() or something
-				del(W)
+				qdel(W)
 				continue
 			W.layer = initial(W.layer)
 			W.loc = M.loc
@@ -265,7 +265,7 @@
 			M.mind.transfer_to(new_mob)
 		else
 			new_mob.key = M.key
-		del(M)
+		qdel(M)
 	..()
 	return
 
@@ -423,7 +423,7 @@
 	custom_metabolism = 0.01
 
 /datum/reagent/carbon/reaction_turf(var/turf/T, var/volume)
-	del(src)
+	qdel(src)
 	if(!istype(T, /turf/space))
 		var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, T)
 		if (!dirtoverlay)
@@ -557,7 +557,7 @@
 	return
 
 /datum/reagent/radium/reaction_turf(var/turf/T, var/volume)
-	del(src)
+	qdel(src)
 	if(volume >= 3)
 		if(!istype(T, /turf/space))
 			var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
@@ -574,7 +574,7 @@
 	color = "#673910" // rgb: 103, 57, 16
 
 /datum/reagent/thermite/reaction_turf(var/turf/T, var/volume)
-	del(src)
+	qdel(src)
 	if(volume >= 5)
 		if(istype(T, /turf/simulated/wall))
 			var/turf/simulated/wall/W = T
@@ -641,7 +641,7 @@
 	return
 
 /datum/reagent/uranium/reaction_turf(var/turf/T, var/volume)
-	del(src)
+	qdel(src)
 	if(volume >= 3)
 		if(!istype(T, /turf/space))
 			var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
@@ -699,7 +699,7 @@
 
 /datum/reagent/space_cleaner/reaction_obj(var/obj/O, var/volume)
 	if(istype(O,/obj/effect/decal/cleanable))
-		del(O)
+		qdel(O)
 	else
 		if(O)
 			O.clean_blood()
@@ -712,7 +712,7 @@
 		T.clean_blood()
 		for(var/obj/effect/decal/cleanable/C in T.contents)
 			src.reaction_obj(C, volume)
-			del(C)
+			qdel(C)
 
 		for(var/mob/living/carbon/slime/M in T)
 			M.adjustToxLoss(rand(5,10))
@@ -774,7 +774,7 @@
 	color = "#535E66" // rgb: 83, 94, 102
 
 /datum/reagent/nanites/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
-	del(src)
+	qdel(src)
 	if( (prob(10) && method==TOUCH) || method==INGEST)
 		M.contract_disease(new /datum/disease/robotic_transformation(0),1)
 
@@ -787,7 +787,7 @@
 	color = "#535E66" // rgb: 83, 94, 102
 
 /datum/reagent/xenomicrobes/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
-	del(src)
+	qdel(src)
 	if( (prob(10) && method==TOUCH) || method==INGEST)
 		M.contract_disease(new /datum/disease/xeno_transformation(0),1)
 
