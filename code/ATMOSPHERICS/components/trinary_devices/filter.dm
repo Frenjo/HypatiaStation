@@ -21,7 +21,6 @@ Filter types:
  3: Carbon Dioxide: Carbon Dioxide ONLY
  4: Sleeping Agent (N2O)
 */
-
 	var/frequency = 0
 	var/datum/radio_frequency/radio_connection
 

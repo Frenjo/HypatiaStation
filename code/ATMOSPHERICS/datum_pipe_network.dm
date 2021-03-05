@@ -5,7 +5,7 @@ var/global/list/datum/pipe_network/pipe_networks = list()
 
 	var/list/obj/machinery/atmospherics/normal_members = list()
 	var/list/datum/pipeline/line_members = list()
-		//membership roster to go through for updates and what not
+	//membership roster to go through for updates and what not
 
 	var/update = 1
 	//var/datum/gas_mixture/air_transient = null

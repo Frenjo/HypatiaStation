@@ -31,7 +31,7 @@
 		if(air1.temperature > 0 && last_pressure_delta > 0)
 
 			//Calculate necessary moles to transfer using PV = nRT
-			recent_moles_transferred = last_pressure_delta*air2.volume/(air1.temperature * R_IDEAL_GAS_EQUATION)
+			recent_moles_transferred = last_pressure_delta * air2.volume / (air1.temperature * R_IDEAL_GAS_EQUATION)
 
 			//Actually transfer the gas
 			removed = air1.remove(recent_moles_transferred)

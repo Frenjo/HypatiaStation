@@ -1,4 +1,4 @@
-obj/machinery/atmospherics/binary/passive_gate
+/obj/machinery/atmospherics/binary/passive_gate
 	//Tries to achieve target pressure at output (like a normal pump) except
 	//	Uses no power but can not transfer gases from a low pressure area to a high pressure area
 	icon = 'icons/obj/atmospherics/passive_gate.dmi'
@@ -14,7 +14,7 @@ obj/machinery/atmospherics/binary/passive_gate
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
-obj/machinery/atmospherics/binary/passive_gate/update_icon()
+/obj/machinery/atmospherics/binary/passive_gate/update_icon()
 	if(stat & NOPOWER)
 		icon_state = "intact_off"
 	else if(node1 && node2)
@@ -28,7 +28,7 @@ obj/machinery/atmospherics/binary/passive_gate/update_icon()
 			icon_state = "exposed_3_off"
 	return
 
-obj/machinery/atmospherics/binary/passive_gate/process()
+/obj/machinery/atmospherics/binary/passive_gate/process()
 	..()
 	if(!on)
 		return 0
@@ -43,10 +43,10 @@ obj/machinery/atmospherics/binary/passive_gate/process()
 
 	//Calculate necessary moles to transfer using PV = nRT
 	if((air1.total_moles > 0) && (air1.temperature > 0))
-		var/pressure_delta = min(target_pressure - output_starting_pressure, (input_starting_pressure - output_starting_pressure)/2)
+		var/pressure_delta = min(target_pressure - output_starting_pressure, (input_starting_pressure - output_starting_pressure) / 2)
 		//Can not have a pressure delta that would cause output_pressure > input_pressure
 
-		var/transfer_moles = pressure_delta*air2.volume/(air1.temperature * R_IDEAL_GAS_EQUATION)
+		var/transfer_moles = pressure_delta * air2.volume / (air1.temperature * R_IDEAL_GAS_EQUATION)
 
 		//Actually transfer the gas
 		var/datum/gas_mixture/removed = air1.remove(transfer_moles)
@@ -59,13 +59,13 @@ obj/machinery/atmospherics/binary/passive_gate/process()
 			network2.update = 1
 
 	//Radio remote control
-obj/machinery/atmospherics/binary/passive_gate/proc/set_frequency(new_frequency)
+/obj/machinery/atmospherics/binary/passive_gate/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency
 	if(frequency)
 		radio_connection = radio_controller.add_object(src, frequency, filter = RADIO_ATMOSIA)
 
-obj/machinery/atmospherics/binary/passive_gate/proc/broadcast_status()
+/obj/machinery/atmospherics/binary/passive_gate/proc/broadcast_status()
 	if(!radio_connection)
 		return 0
 
@@ -84,7 +84,7 @@ obj/machinery/atmospherics/binary/passive_gate/proc/broadcast_status()
 	radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 	return 1
 
-obj/machinery/atmospherics/binary/passive_gate/interact(mob/user as mob)
+/obj/machinery/atmospherics/binary/passive_gate/interact(mob/user as mob)
 	var/dat = {"<b>Power: </b><a href='?src=\ref[src];power=1'>[on?"On":"Off"]</a><br>
 				<b>Desirable output pressure: </b>
 				[round(target_pressure,0.1)]kPa | <a href='?src=\ref[src];set_press=1'>Change</a>
@@ -93,12 +93,12 @@ obj/machinery/atmospherics/binary/passive_gate/interact(mob/user as mob)
 	user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_pump")
 	onclose(user, "atmo_pump")
 
-obj/machinery/atmospherics/binary/passive_gate/initialize()
+/obj/machinery/atmospherics/binary/passive_gate/initialize()
 	..()
 	if(frequency)
 		set_frequency(frequency)
 
-obj/machinery/atmospherics/binary/passive_gate/receive_signal(datum/signal/signal)
+/obj/machinery/atmospherics/binary/passive_gate/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
 		return 0
 
@@ -125,7 +125,7 @@ obj/machinery/atmospherics/binary/passive_gate/receive_signal(datum/signal/signa
 	update_icon()
 	return
 
-obj/machinery/atmospherics/binary/passive_gate/attack_hand(user as mob)
+/obj/machinery/atmospherics/binary/passive_gate/attack_hand(user as mob)
 	if(..())
 		return
 	src.add_fingerprint(usr)
@@ -136,7 +136,7 @@ obj/machinery/atmospherics/binary/passive_gate/attack_hand(user as mob)
 	interact(user)
 	return
 
-obj/machinery/atmospherics/binary/passive_gate/Topic(href,href_list)
+/obj/machinery/atmospherics/binary/passive_gate/Topic(href,href_list)
 	if(..()) return
 	if(href_list["power"])
 		on = !on
@@ -148,11 +148,11 @@ obj/machinery/atmospherics/binary/passive_gate/Topic(href,href_list)
 	src.updateUsrDialog()
 	return
 
-obj/machinery/atmospherics/binary/passive_gate/power_change()
+/obj/machinery/atmospherics/binary/passive_gate/power_change()
 	..()
 	update_icon()
 
-obj/machinery/atmospherics/binary/passive_gate/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/binary/passive_gate/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if (!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	if (on)

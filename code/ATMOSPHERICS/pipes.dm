@@ -70,12 +70,14 @@
 	if (level==1 && isturf(T) && T.intact)
 		user << "\red You must remove the plating first."
 		return 1
+
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
 		user << "<span class='warning'>You cannot unwrench [src], it is too exerted due to internal pressure.</span>"
 		add_fingerprint(user)
 		return 1
+
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 	user << "\blue You begin to unfasten \the [src]..."
 	if (do_after(user, 40))
