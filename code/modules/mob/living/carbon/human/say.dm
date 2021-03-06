@@ -111,7 +111,7 @@
 	var/datum/gas_mixture/environment = loc.return_air()
 	if(environment)
 		var/pressure = environment.return_pressure()
-		if(pressure < SAY_MINIMUM_PRESSURE)
+		if(pressure < SOUND_MINIMUM_PRESSURE)
 			italics = 1
 			message_range = 1
 

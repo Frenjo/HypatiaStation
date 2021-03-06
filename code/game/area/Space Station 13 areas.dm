@@ -50,6 +50,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
 	var/air_doors_activated = 0
+	var/list/ambience = list('sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg')
 
 /*Adding a wizard area teleport list because motherfucking lag -- Urist*/
 /*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
@@ -96,6 +97,7 @@ var/list/ghostteleportlocs = list()
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
+	ambience = list('sound/ambience/ambispace.ogg','sound/music/title2.ogg','sound/music/space.ogg','sound/music/main.ogg','sound/music/traitor.ogg')
 
 /area/space/poweralert()
 	return
@@ -882,6 +884,9 @@ var/list/ghostteleportlocs = list()
  	name = "\improper Library"
  	icon_state = "library"
 
+/area/chapel
+	ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg','sound/music/traitor.ogg')
+
 /area/chapel/main
 	name = "\improper Chapel"
 	icon_state = "chapel"
@@ -949,98 +954,95 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Holodeck - Space"
 
 //Engineering
-/area/engine/
-
 /area/engine
-	engine_smes
-		name = "\improper Engineering SMES"
-		icon_state = "engine_smes"
-		requires_power = 0//This area only covers the batteries and they deal with their own power
+	ambience = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
 
-		supermatter_smes
-			name = "\improper Supermatter Engine SMES"
+/area/engine/engine_smes
+	name = "\improper Engineering SMES"
+	icon_state = "engine_smes"
+	requires_power = 0//This area only covers the batteries and they deal with their own power
 
-		thermoelectric_smes
-			name = "\improper Thermoelectric Engine SMES"
+/area/engine/engine_smes/supermatter_smes
+	name = "\improper Supermatter Engine SMES"
 
-		singularity_smes
-			name = "\improper Singularity Engine SMES"
+/area/engine/engine_smes/thermoelectric_smes
+	name = "\improper Thermoelectric Engine SMES"
 
-	engineering
-		name = "Engineering"
-		icon_state = "engine"
+/area/engine/engine_smes/singularity_smes
+	name = "\improper Singularity Engine SMES"
 
-	break_room
-		name = "\improper Engineering Foyer"
-		icon_state = "engine"
+/area/engine/engineering
+	name = "Engineering"
+	icon_state = "engine"
 
-	emerg_storage
-		name = "\improper Emergency Materials Storage"
-		icon_state = "engine_storage"
+/area/engine/break_room
+	name = "\improper Engineering Foyer"
+	icon_state = "engine"
 
-	chiefs_office
-		name = "\improper Chief Engineer's office"
-		icon_state = "engine_control"
+/area/engine/emerg_storage
+	name = "\improper Emergency Materials Storage"
+	icon_state = "engine_storage"
 
-	engineering_eva
-		name = "\improper Engineering EVA Storage"
-		icon_state = "engine_storage"
+/area/engine/chiefs_office
+	name = "\improper Chief Engineer's office"
+	icon_state = "engine_control"
 
-	// Added separate engine rooms for the three engines I mapped...
-	// Just using instances of /area/engine makes the APCs break. -Frenjo
-	supermatter_engine
-		name = "\improper Supermatter Engine Room"
-		icon_state = "engine_sm"
+/area/engine/engineering_eva
+	name = "\improper Engineering EVA Storage"
+	icon_state = "engine_storage"
 
-		supermatter_monitoring
-			name = "\improper Supermatter Monitoring Room"
-			icon_state = "engine_control"
+// Added separate engine rooms for the three engines I mapped...
+// Just using instances of /area/engine makes the APCs break. -Frenjo
+/area/engine/supermatter_engine
+	name = "\improper Supermatter Engine Room"
+	icon_state = "engine_sm"
 
-	singularity_engine
-		name = "\improper Singularity Engine Room"
-		icon_state = "engine_sing"
+/area/engine/supermatter_engine/supermatter_monitoring
+	name = "\improper Supermatter Monitoring Room"
+	icon_state = "engine_control"
 
-		singularity_space
-			name = "\improper Singularity Engine Space"
-			icon_state = "engine_sing"
-			requires_power = 0
-			luminosity = 1
-			//lighting_use_dynamic = 0
+/area/engine/singularity_engine
+	name = "\improper Singularity Engine Room"
+	icon_state = "engine_sing"
 
-	thermoelectric_engine
-		name = "\improper Thermoelectric Engine Room"
-		icon_state = "engine_therm"
+/area/engine/singularity_engine/singularity_space
+	name = "\improper Singularity Engine Space"
+	icon_state = "engine_sing"
+	requires_power = 0
+	luminosity = 1
+
+/area/engine/thermoelectric_engine
+	name = "\improper Thermoelectric Engine Room"
+	icon_state = "engine_therm"
 
 //Solars
 /area/solar
 	requires_power = 1
-	//luminosity = 1
 	always_unpowered = 1
-	//lighting_use_dynamic = 0
 
-	auxport
-		name = "\improper Fore Port Solar Array"
-		icon_state = "panelsA"
+/area/solar/auxport
+	name = "\improper Fore Port Solar Array"
+	icon_state = "panelsA"
 
-	auxstarboard
-		name = "\improper Fore Starboard Solar Array"
-		icon_state = "panelsA"
+/area/solar/auxstarboard
+	name = "\improper Fore Starboard Solar Array"
+	icon_state = "panelsA"
 
-	fore
-		name = "\improper Fore Solar Array"
-		icon_state = "yellow"
+/area/solar/fore
+	name = "\improper Fore Solar Array"
+	icon_state = "yellow"
 
-	aft
-		name = "\improper Aft Solar Array"
-		icon_state = "aft"
+/area/solar/aft
+	name = "\improper Aft Solar Array"
+	icon_state = "aft"
 
-	starboard
-		name = "\improper Aft Starboard Solar Array"
-		icon_state = "panelsS"
+/area/solar/starboard
+	name = "\improper Aft Starboard Solar Array"
+	icon_state = "panelsS"
 
-	port
-		name = "\improper Aft Port Solar Array"
-		icon_state = "panelsP"
+/area/solar/port
+	name = "\improper Aft Port Solar Array"
+	icon_state = "panelsP"
 
 /area/maintenance/auxsolarport
 	name = "Fore Port Solar Maintenance"
@@ -1093,6 +1095,7 @@ var/list/ghostteleportlocs = list()
 	name = "\improper AI Satellite Teleporter Room"
 	icon_state = "teleporter"
 	music = "signal"
+	ambience = list('sound/ambience/ambimalf.ogg')
 
 //MedBay
 /area/medical/medbay
@@ -1195,6 +1198,7 @@ var/list/ghostteleportlocs = list()
 /area/medical/morgue
 	name = "\improper Morgue"
 	icon_state = "morgue"
+	ambience = list('sound/ambience/ambimo1.ogg','sound/ambience/ambimo2.ogg','sound/music/main.ogg')
 
 /area/medical/chemistry
 	name = "\improper Chemistry"
@@ -1610,19 +1614,22 @@ var/list/ghostteleportlocs = list()
 	name = "Emergency Storage"
 	icon_state = "storage"
 
-/area/turret_protected/
+/area/turret_protected
 
 /area/turret_protected/ai_upload
 	name = "\improper AI Upload Chamber"
 	icon_state = "ai_upload"
+	ambience = list('sound/ambience/ambimalf.ogg')
 
 /area/turret_protected/ai_upload_foyer
 	name = "AI Upload Access"
 	icon_state = "ai_foyer"
+	ambience = list('sound/ambience/ambimalf.ogg')
 
 /area/turret_protected/ai
 	name = "\improper AI Chamber"
 	icon_state = "ai_chamber"
+	ambience = list('sound/ambience/ambimalf.ogg')
 
 /area/turret_protected/aisat
 	name = "\improper AI Satellite"
@@ -1682,6 +1689,9 @@ var/list/ghostteleportlocs = list()
 	icon_state = "storage"
 
 // Telecommunications Satellite
+/area/tcommsat
+	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
+
 /area/tcommsat/entrance
 	name = "\improper Telecomms Teleporter"
 	icon_state = "tcomsatentrance"
@@ -1693,18 +1703,22 @@ var/list/ghostteleportlocs = list()
 /area/turret_protected/tcomsat
 	name = "\improper Telecomms Satellite"
 	icon_state = "tcomsatlob"
+	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
 /area/turret_protected/tcomfoyer
 	name = "\improper Telecomms Foyer"
 	icon_state = "tcomsatentrance"
+	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
 /area/turret_protected/tcomwest
 	name = "\improper Telecommunications Satellite West Wing"
 	icon_state = "tcomsatwest"
+	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
 /area/turret_protected/tcomeast
 	name = "\improper Telecommunications Satellite East Wing"
 	icon_state = "tcomsateast"
+	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
 
 /area/tcommsat/computer
 	name = "\improper Telecomms Control Room"
