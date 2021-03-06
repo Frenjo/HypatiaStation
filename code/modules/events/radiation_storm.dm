@@ -1,10 +1,9 @@
 /datum/event/radiation_storm
 
-
 /datum/event/radiation_storm/setup()
-	startWhen 		= 25
+	startWhen 		= 15
 	announceWhen	= 1
-	endWhen 		= 50
+	endWhen 		= 35
 	oneShot			= 0
 
 /datum/event/radiation_storm/announce()
@@ -29,9 +28,9 @@
 		if(istype(H,/mob/living/carbon/human))
 			H.client.screen.Remove(global_hud.radstorm)
 			H.client.screen += global_hud.radstorm
-			H.apply_effect((rand(15,35)),IRRADIATE,0)
+			H.apply_effect((rand(15,35)), IRRADIATE,0)
 			if(prob(5))
-				H.apply_effect((rand(40,70)),IRRADIATE,0)
+				H.apply_effect((rand(40,70)), IRRADIATE,0)
 				if (prob(75))
 					randmutb(H) // Applies bad mutation
 					domutcheck(H,null,MUTCHK_FORCED)
