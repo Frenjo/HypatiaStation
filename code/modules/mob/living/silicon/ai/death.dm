@@ -1,16 +1,12 @@
 /mob/living/silicon/ai/death(gibbed)
-	if(stat == DEAD)	return
-	stat = DEAD
-	if (src.custom_sprite == 1)//check for custom AI sprite, defaulting to blue screen if no.
+	if(stat == DEAD)
+		return
+
+	if(src.custom_sprite == 1)//check for custom AI sprite, defaulting to blue screen if no.
 		icon_state = "[ckey]-ai-crash"
-	else icon_state = "ai-crash"
-	update_canmove()
+
 	if(src.eyeobj)
 		src.eyeobj.setLoc(get_turf(src))
-	if(blind)	blind.invisibility = 101 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
-	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
-	see_in_dark = 8
-	see_invisible = SEE_INVISIBLE_LEVEL_TWO
 
 	var/callshuttle = 0
 
@@ -52,7 +48,7 @@
 			explosion(src.loc, 3, 6, 12, 15)
 
 	for(var/obj/machinery/ai_status_display/O in world) //change status
-		spawn( 0 )
+		spawn(0)
 		O.mode = 2
 		if (istype(loc, /obj/item/device/aicard))
 			loc.icon_state = "aicard-404"

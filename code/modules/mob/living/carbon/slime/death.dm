@@ -1,7 +1,7 @@
 /mob/living/carbon/slime/death(gibbed)
-	if(stat == DEAD)	return
+	if(stat == DEAD)
+		return
 	stat = DEAD
-	icon_state = "[colour] baby slime dead"
 
 	if(!gibbed)
 		if(istype(src, /mob/living/carbon/slime/adult))
@@ -10,14 +10,11 @@
 			M1.rabid = 1
 			var/mob/living/carbon/slime/M2 = new primarytype(loc)
 			M2.rabid = 1
-			if(src)	del(src)
-		else
-			for(var/mob/O in viewers(src, null))
-				O.show_message("<b>The [name]</b> seizes up and falls limp...", 1) //ded -- Urist
+			if(src)
+				qdel(src)
 
-	update_canmove()
-	if(blind)	blind.invisibility = 101 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
+	icon_state = "[colour] baby slime dead"
 
-	ticker.mode.check_win()
+	overlays.Cut()
 
 	return ..(gibbed)

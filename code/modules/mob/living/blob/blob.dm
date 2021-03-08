@@ -11,68 +11,58 @@
 	faction = "blob"
 	use_me = 0 //Blobs can't emote
 
-
-	New()
-		real_name += " [pick(rand(1, 99))]"
-		name = real_name
-		..()
-
-
-	say(var/message)
-		return//No talking for you
+/mob/living/blob/New()
+	real_name += " [pick(rand(1, 99))]"
+	name = real_name
+	..()
 
 
-	emote(var/act,var/m_type=1,var/message = null)
-		return
+/mob/living/blob/say(var/message)
+	return//No talking for you
 
 
-	Life()
-		set invisibility = 0
-		set background = 1
-
-		clamp_values()
-		UpdateDamage()
-		if(health < 0)
-			src.dust()
+/mob/living/blob/emote(var/act, var/m_type = 1, var/message = null)
+	return
 
 
-	proc/clamp_values()
-		AdjustStunned(0)
-		AdjustParalysis(0)
-		AdjustWeakened(0)
-		sleeping = 0
-		if(stat)
-			stat = CONSCIOUS
-		return
+/mob/living/blob/Life()
+	set invisibility = 0
+	set background = 1
+
+	clamp_values()
+	UpdateDamage()
+	if(health < 0)
+		src.dust()
+
+/mob/living/blob/proc/clamp_values()
+	AdjustStunned(0)
+	AdjustParalysis(0)
+	AdjustWeakened(0)
+	sleeping = 0
+	if(stat)
+		stat = CONSCIOUS
+	return
+
+/mob/living/blob/proc/UpdateDamage()
+	health = 60 - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
+	return
 
 
-	proc/UpdateDamage()
-		health = 60 - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
-		return
+/mob/living/blob/death(gibbed)
+	ghostize()
+	..(gibbed)
 
 
-	death(gibbed)
-		if(key)
-			var/mob/dead/observer/ghost = new(src)
-			ghost.name = ghost_name
-			ghost.real_name = ghost_name
-			ghost.key = key
-			if (ghost.client)
-				ghost.client.eye = ghost
-			return ..(gibbed)
+/mob/living/blob/blob_act()
+	src << "The blob attempts to reabsorb you."
+	adjustToxLoss(20)
+	return
 
 
-	blob_act()
-		src << "The blob attempts to reabsorb you."
-		adjustToxLoss(20)
-		return
-
-
-	Process_Spacemove()
-		if(locate(/obj/effect/blob) in oview(1,src))
-			return 1
-		return (..())
-
+/mob/living/blob/Process_Spacemove()
+	if(locate(/obj/effect/blob) in oview(1, src))
+		return 1
+	return (..())
 
 /mob/living/blob/verb/create_node()
 	set category = "Blob"
@@ -103,7 +93,6 @@
 	B.change_to("Node")
 	src.dust()
 	return
-
 
 /mob/living/blob/verb/create_factory()
 	set category = "Blob"
@@ -141,7 +130,6 @@
 	src.dust()
 	return
 
-
 /mob/living/blob/verb/revert()
 	set category = "Blob"
 	set name = "Purge Defense"
@@ -165,7 +153,6 @@
 	src.dust()
 	return
 
-
 /mob/living/blob/verb/spawn_blob()
 	set category = "Blob"
 	set name = "Create new blob"
@@ -185,7 +172,6 @@
 	src.dust()
 	return
 
-
 ///mob/proc/Blobize()
 /client/proc/Blobcount()
 	set category = "Debug"
@@ -201,7 +187,6 @@
 		src << "cores: [blob_cores.len]"
 		src << "nodes: [blob_nodes.len]"
 	return
-
 
 /client/proc/Blobize()//Mostly stolen from the respawn command
 	set category = "Debug"
@@ -252,8 +237,4 @@
 	B << "To create this node you will have to be on a normal blob tile and far enough away from any other node."
 	B << "Check your Blob verbs and hit Create Node to build a node."
 	spawn(10)
-		del(G_found)
-
-
-
-
+		qdel(G_found)

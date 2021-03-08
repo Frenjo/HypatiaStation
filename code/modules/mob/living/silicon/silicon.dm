@@ -114,9 +114,19 @@
 /mob/living/silicon/IsAdvancedToolUser()
 	return 1
 
+/mob/living/silicon/blob_act()
+	if(src.stat != 2)
+		src.adjustBruteLoss(60)
+		src.updatehealth()
+		return 1
+	return 0
+
 /mob/living/silicon/bullet_act(var/obj/item/projectile/Proj)
-	if(!Proj.nodamage)	adjustBruteLoss(Proj.damage)
-	Proj.on_hit(src,2)
+	if(!Proj.nodamage)
+		adjustBruteLoss(Proj.damage)
+	Proj.on_hit(src, 2)
+
+	updatehealth()
 	return 2
 
 /mob/living/silicon/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0)
@@ -140,6 +150,27 @@
 			drowsyness = max(drowsyness,(effect/(blocked+1)))
 	updatehealth()
 	return 1*/
+
+/mob/living/silicon/ex_act(severity)
+	if(!blinded)
+		flick("flash", flash)
+
+	switch(severity)
+		if(1.0)
+			if (stat != 2)
+				adjustBruteLoss(100)
+				adjustFireLoss(100)
+				if(!anchored)
+					gib()
+		if(2.0)
+			if (stat != 2)
+				adjustBruteLoss(60)
+				adjustFireLoss(60)
+		if(3.0)
+			if (stat != 2)
+				adjustBruteLoss(30)
+
+	updatehealth()
 
 /proc/islinked(var/mob/living/silicon/robot/bot, var/mob/living/silicon/ai/ai)
 	if(!istype(bot) || !istype(ai))

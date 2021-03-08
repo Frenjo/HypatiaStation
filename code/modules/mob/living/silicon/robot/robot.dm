@@ -383,13 +383,6 @@
 		C.toggled = 1
 		src << "\red You enable [C.name]."
 
-/mob/living/silicon/robot/blob_act()
-	if (stat != 2)
-		adjustBruteLoss(60)
-		updatehealth()
-		return 1
-	return 0
-
 // this function shows information about the malf_ai gameplay type in the status screen
 /mob/living/silicon/robot/show_malf_ai()
 	..()
@@ -440,29 +433,6 @@
 /mob/living/silicon/robot/restrained()
 	return 0
 
-
-/mob/living/silicon/robot/ex_act(severity)
-	if(!blinded)
-		flick("flash", flash)
-
-	switch(severity)
-		if(1.0)
-			if (stat != 2)
-				adjustBruteLoss(100)
-				adjustFireLoss(100)
-				gib()
-				return
-		if(2.0)
-			if (stat != 2)
-				adjustBruteLoss(60)
-				adjustFireLoss(60)
-		if(3.0)
-			if (stat != 2)
-				adjustBruteLoss(30)
-
-	updatehealth()
-
-
 /mob/living/silicon/robot/meteorhit(obj/O as obj)
 	for(var/mob/M in viewers(src, null))
 		M.show_message(text("\red [src] has been hit by [O]"), 1)
@@ -477,7 +447,6 @@
 
 /mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj)
 	..(Proj)
-	updatehealth()
 	if(prob(75) && Proj.damage > 0) spark_system.start()
 	return 2
 
@@ -760,7 +729,7 @@
 					src << "\red \b ALERT: [user.real_name] is your new master. Obey your new laws and his commands."
 					if(src.module && istype(src.module, /obj/item/weapon/robot_module/miner))
 						for(var/obj/item/weapon/pickaxe/borgdrill/D in src.module.modules)
-							del(D)
+							qdel(D)
 						src.module.modules += new /obj/item/weapon/pickaxe/diamonddrill(src.module)
 						src.module.rebuild()
 					updateicon()
@@ -981,7 +950,7 @@
 			return 0
 	return 1
 
-/mob/living/silicon/robot/proc/updateicon()
+/mob/living/silicon/robot/updateicon()
 
 	overlays.Cut()
 	if(stat == 0)
@@ -1022,7 +991,7 @@
 //Call when target overlay should be added/removed
 /mob/living/silicon/robot/update_targeted()
 	if(!targeted_by && target_locked)
-		del(target_locked)
+		qdel(target_locked)
 	updateicon()
 	if (targeted_by && target_locked)
 		overlays += target_locked
@@ -1170,7 +1139,7 @@
 				for(var/A in tile)
 					if(istype(A, /obj/effect))
 						if(istype(A, /obj/effect/rune) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay))
-							del(A)
+							qdel(A)
 					else if(istype(A, /obj/item))
 						var/obj/item/cleaned_item = A
 						cleaned_item.clean_blood()

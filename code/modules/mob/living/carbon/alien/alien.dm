@@ -31,7 +31,7 @@
 	var/heat_protection = 0.5
 
 /mob/living/carbon/alien/adjustToxLoss(amount)
-	storedPlasma = min(max(storedPlasma + amount,0),max_plasma) //upper limit of max_plasma, lower limit of 0
+	storedPlasma = min(max(storedPlasma + amount, 0), max_plasma) //upper limit of max_plasma, lower limit of 0
 	return
 
 /mob/living/carbon/alien/adjustFireLoss(amount) // Weak to Fire
@@ -57,7 +57,6 @@
 		health = maxHealth - getOxyLoss() - getFireLoss() - getBruteLoss() - getCloneLoss()
 
 /mob/living/carbon/alien/proc/handle_environment(var/datum/gas_mixture/environment)
-
 	//If there are alien weeds on the ground then heal if needed or give some toxins
 	if(locate(/obj/effect/alien/weeds) in loc)
 		if(health >= maxHealth - getCloneLoss())
@@ -112,7 +111,6 @@
 	return
 
 /mob/living/carbon/alien/proc/handle_mutations_and_radiation()
-
 	if(getFireLoss())
 		if((COLD_RESISTANCE in mutations) || prob(5))
 			adjustFireLoss(-1)
@@ -148,7 +146,6 @@
 	return 0 // Don't slip in space.
 
 /mob/living/carbon/alien/Stat()
-
 	statpanel("Status")
 	stat(null, "Intent: [a_intent]")
 	stat(null, "Move Mode: [m_intent]")
@@ -176,7 +173,7 @@
 
 /mob/living/carbon/alien/Stun(amount)
 	if(status_flags & CANSTUN)
-		stunned = max(max(stunned,amount),0) //can't go below 0, getting a low amount of stun doesn't lower your current stun
+		stunned = max(max(stunned, amount), 0) //can't go below 0, getting a low amount of stun doesn't lower your current stun
 	else
 		// add some movement delay
 		move_delay_add = min(move_delay_add + round(amount / 2), 10) // a maximum delay of 10
@@ -210,7 +207,7 @@ Des: Removes all infected images from the alien.
 	if (client)
 		for(var/image/I in client.images)
 			if(dd_hasprefix_case(I.icon_state, "infected"))
-				del(I)
+				qdel(I)
 	return
 
 #undef HEAT_DAMAGE_LEVEL_1

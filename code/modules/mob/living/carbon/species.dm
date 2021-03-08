@@ -26,6 +26,13 @@
 	var/punch_damage = 0		 // Extra empty hand attack damage.
 	var/mutantrace               // Safeguard due to old code.
 
+	// Some species-specific gibbing data.
+	var/gibbed_anim = "gibbed-h"
+	var/dusted_anim = "dust-h"
+	var/remains_type = /obj/effect/decal/remains/xeno
+	var/death_sound
+	var/death_message = "seizes up and falls limp, their eyes dead and lifeless..."
+
 	var/breath_type = "oxygen"   // Non-oxygen gas inhaled, if any.
 	var/exhale_type = "carbon_dioxide" // Non-carbon dioxide gas exhaled, if any.
 	var/poison_type = "plasma" // Main toxic gas, usually plasma.
@@ -176,7 +183,7 @@
 	//To avoid duplicates.
 	for(var/obj/item/weapon/implant/cortical/imp in H.contents)
 		affected.implants -= imp
-		del(imp)
+		qdel(imp)
 
 	var/obj/item/weapon/implant/cortical/I = new(H)
 	I.imp_in = H
@@ -230,7 +237,7 @@
 		if(D.client)
 			D.loc = H.loc
 		else
-			del(D)
+			qdel(D)
 
 	H.visible_message("\red[H] splits apart with a wet slithering noise!")
 

@@ -146,26 +146,6 @@
 		if(3)
 			src << "<font color=green>You feel an electric surge run through your circuitry and become acutely aware at how lucky you are that you can still feel at all.</font>"
 
-/mob/living/silicon/pai/ex_act(severity)
-	if(!blinded)
-		flick("flash", src.flash)
-
-	switch(severity)
-		if(1.0)
-			if (src.stat != 2)
-				adjustBruteLoss(100)
-				adjustFireLoss(100)
-		if(2.0)
-			if (src.stat != 2)
-				adjustBruteLoss(60)
-				adjustFireLoss(60)
-		if(3.0)
-			if (src.stat != 2)
-				adjustBruteLoss(30)
-
-	src.updatehealth()
-
-
 // See software.dm for Topic()
 
 /mob/living/silicon/pai/meteorhit(obj/O as obj)
@@ -177,8 +157,6 @@
 			src.adjustFireLoss(40)
 		src.updatehealth()
 	return
-
-//mob/living/silicon/pai/bullet_act(var/obj/item/projectile/Proj)
 
 /mob/living/silicon/pai/attack_alien(mob/living/carbon/alien/humanoid/M as mob)
 	if (!ticker)
@@ -213,8 +191,6 @@
 					if ((O.client && !( O.blinded )))
 						O.show_message(text("\red <B>[] took a swipe at []!</B>", M, src), 1)
 	return
-
-///mob/living/silicon/pai/attack_hand(mob/living/carbon/M as mob)
 
 /mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
 	usr:cameraFollow = null

@@ -107,7 +107,7 @@ var/list/ai_list = list()
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
 			new/obj/structure/AIcore/deactivated(loc)//New empty terminal.
-			del(src)//Delete AI.
+			qdel(src)//Delete AI.
 			return
 		else
 			if (B.brainmob.mind)
@@ -145,7 +145,6 @@ var/list/ai_list = list()
 /mob/living/silicon/ai/Destroy()
 	ai_list -= src
 	..()
-
 
 /*
 	The AI Power supply is a dummy object used for powering the AI since only machinery should be using power.
@@ -323,13 +322,6 @@ var/list/ai_list = list()
 	user.reset_view(current)
 	return 1
 
-/mob/living/silicon/ai/blob_act()
-	if (stat != 2)
-		adjustBruteLoss(60)
-		updatehealth()
-		return 1
-	return 0
-
 /mob/living/silicon/ai/restrained()
 	return 0
 
@@ -341,26 +333,6 @@ var/list/ai_list = list()
 			if(2)
 				ai_call_shuttle()
 	..()
-
-/mob/living/silicon/ai/ex_act(severity)
-	if(!blinded)
-		flick("flash", flash)
-
-	switch(severity)
-		if(1.0)
-			if (stat != 2)
-				adjustBruteLoss(100)
-				adjustFireLoss(100)
-		if(2.0)
-			if (stat != 2)
-				adjustBruteLoss(60)
-				adjustFireLoss(60)
-		if(3.0)
-			if (stat != 2)
-				adjustBruteLoss(30)
-
-	updatehealth()
-
 
 /mob/living/silicon/ai/Topic(href, href_list)
 	if(usr != src)
@@ -448,11 +420,6 @@ var/list/ai_list = list()
 			adjustFireLoss(40)
 		updatehealth()
 	return
-
-/mob/living/silicon/ai/bullet_act(var/obj/item/projectile/Proj)
-	..(Proj)
-	updatehealth()
-	return 2
 
 /mob/living/silicon/ai/attack_alien(mob/living/carbon/alien/humanoid/M as mob)
 	if (!ticker)
@@ -685,7 +652,7 @@ var/list/ai_list = list()
 			input = input("Select a crew member:") as null|anything in personnel_list
 			var/icon/character_icon = personnel_list[input]
 			if(character_icon)
-				del(holo_icon)//Clear old icon so we're not storing it in memory.
+				qdel(holo_icon)//Clear old icon so we're not storing it in memory.
 				holo_icon = getHologramIcon(icon(character_icon))
 		else
 			alert("No suitable records found. Aborting.")
@@ -697,7 +664,7 @@ var/list/ai_list = list()
 		)
 		input = input("Please select a hologram:") as null|anything in icon_list
 		if(input)
-			del(holo_icon)
+			qdel(holo_icon)
 			switch(input)
 				if("default")
 					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))

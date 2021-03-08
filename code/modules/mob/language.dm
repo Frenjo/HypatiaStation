@@ -38,7 +38,7 @@
 	name = "Siik'tajr"
 	desc = "An expressive language that combines yowls and chirps with posture, tail and ears. Native to the Tajaran."
 	speech_verb = "mrowls"
-	colour = "tajaran"
+	colour = "tajaran_signlang"
 	key = "y"
 	flags = RESTRICTED | NONVERBAL
 
@@ -70,7 +70,7 @@
 	name = "Obsedaian"
 	desc = "The common tongue of the Obsedai. It sounds like deep rumbling and resonant notes to everyone else."
 	speech_verb = "rumbles"
-	colour = "rough"
+	colour = "vox"
 	key = "r"
 	flags = RESTRICTED
 

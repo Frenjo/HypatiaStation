@@ -165,21 +165,25 @@
 			qdel(W)	//gotta delete it here because if window breaks, it won't get deleted
 			switch (state)
 				if(1)
+					M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
 					M.apply_damage(7)
 					hit(10)
-					visible_message("\red [user] slams [M] against \the [src]!")
 				if(2)
+					M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
 					if (prob(50))
 						M.Weaken(1)
 					M.apply_damage(10)
 					hit(25)
-					visible_message("\red <b>[user] bashes [M] against \the [src]!</b>")
 				if(3)
+					M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
 					M.Weaken(5)
 					M.apply_damage(20)
 					hit(50)
-					visible_message("\red <big><b>[user] crushes [M] against \the [src]!</b></big>")
 			return
+
+	if(W.flags & NOBLUDGEON)
+		return
+
 	if(istype(W, /obj/item/weapon/screwdriver))
 		if(reinf && state >= 1)
 			state = 3 - state
@@ -230,7 +234,6 @@
 		qdel(src)
 		return
 
-
 /obj/structure/window/verb/rotate()
 	set name = "Rotate Window Counter-Clockwise"
 	set category = "Object"
@@ -246,7 +249,6 @@
 	update_nearby_tiles(need_rebuild=1)
 	ini_dir = dir
 	return
-
 
 /obj/structure/window/verb/revrotate()
 	set name = "Rotate Window Clockwise"
@@ -264,7 +266,6 @@
 	ini_dir = dir
 	return
 
-
 /*
 /obj/structure/window/proc/updateSilicate()
 	if(silicateIcon && silicate)
@@ -280,7 +281,6 @@
 		silicateIcon = I
 */
 
-
 /obj/structure/window/New(Loc,re=0)
 	..()
 
@@ -292,7 +292,6 @@
 	update_nearby_icons()
 
 	return
-
 
 /obj/structure/window/Destroy()
 	density = 0
@@ -307,7 +306,6 @@
 	..()
 	dir = ini_dir
 	update_nearby_tiles(need_rebuild=1)
-
 
 //This proc has to do with airgroups and atmos, it has nothing to do with smoothwindows, that's update_nearby_tiles().
 /obj/structure/window/proc/update_nearby_tiles(need_rebuild)
@@ -363,8 +361,6 @@
 	if(exposed_temperature > T0C + 800)
 		hit(round(exposed_volume / 100), 0)
 	..()
-
-
 
 /obj/structure/window/basic
 	desc = "It looks thin and flimsy. A few knocks with... anything, really should shatter it."

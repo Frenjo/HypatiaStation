@@ -35,7 +35,7 @@
 	faction = "syndicate"
 	status_flags = CANPUSH
 
-/mob/living/simple_animal/hostile/syndicate/Die()
+/mob/living/simple_animal/hostile/syndicate/death()
 	..()
 	if(corpse)
 		new corpse (src.loc)
@@ -43,7 +43,7 @@
 		new weapon1 (src.loc)
 	if(weapon2)
 		new weapon2 (src.loc)
-	del src
+	qdel(src)
 	return
 
 ///////////////Sword and shield////////////
@@ -157,8 +157,6 @@
 	max_n2 = 0
 	minbodytemp = 0
 
-/mob/living/simple_animal/hostile/viscerator/Die()
-	..()
-	visible_message("\red <b>[src]</b> is smashed into pieces!")
-	del src
-	return
+/mob/living/simple_animal/hostile/viscerator/death()
+	..(null, "is smashed into pieces!")
+	qdel(src)

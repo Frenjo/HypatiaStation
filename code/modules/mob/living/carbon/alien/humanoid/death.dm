@@ -1,17 +1,6 @@
 /mob/living/carbon/alien/humanoid/death(gibbed)
-	if(stat == DEAD)	return
-	if(healths)			healths.icon_state = "health6"
-	stat = DEAD
-
-	if(!gibbed)
-		playsound(loc, 'sound/voice/hiss6.ogg', 80, 1, 1)
-		for(var/mob/O in viewers(src, null))
-			O.show_message("<B>[src]</B> lets out a waning guttural screech, green blood bubbling from its maw...", 1)
-		update_canmove()
-		if(client)	blind.invisibility = 101 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
-		update_icons()
-
-	tod = worldtime2text() //weasellos time of death patch
-	if(mind) 	mind.store_memory("Time of death: [tod]", 0)
-
-	return ..(gibbed)
+	/*
+	if(!gibbed && dead_icon)
+		icon_state = dead_icon
+	*/
+	return ..(gibbed, "lets out a waning guttural screech, green blood bubbling from its maw.")

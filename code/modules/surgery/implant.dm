@@ -109,8 +109,7 @@
 		if(isslime(target))
 			return 0
 		var/datum/organ/external/affected = target.get_organ(target_zone)
-		var/can_fit = !affected.hidden && affected.cavity && tool.w_class <= get_max_wclass(affected)
-		return ..() && can_fit
+		return !istype(user,/mob/living/silicon/robot) && !affected.hidden && affected.cavity && tool.w_class <= get_max_wclass(affected)
 
 	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
@@ -185,7 +184,7 @@
 				affected.implants -= obj
 
 				target.hud_updateflag |= 1 << IMPLOYAL_HUD
-				
+
 				//Handle possessive brain borers.
 				if(istype(obj,/mob/living/simple_animal/borer))
 					var/mob/living/simple_animal/borer/worm = obj
