@@ -241,7 +241,8 @@ turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
 		if(liquid)
 			liquid.amount -= (liquid.amount * used_fuel_ratio * used_reactants_ratio) * 5 // liquid fuel burns 5 times as quick
 
-			if(liquid.amount <= 0) del liquid
+			if(liquid.amount <= 0)
+				qdel(liquid)
 
 		//calculate the energy produced by the reaction and then set the new temperature of the mix
 		temperature = (starting_energy + vsc.fire_fuel_energy_release * total_fuel) / heat_capacity()

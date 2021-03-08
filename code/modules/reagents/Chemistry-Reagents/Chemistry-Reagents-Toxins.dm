@@ -226,7 +226,9 @@
 		var/turf/simulated/wall/W = T
 		if(W.rotting)
 			W.rotting = 0
-			for(var/obj/effect/E in W) if(E.name == "Wallrot") del E
+			for(var/obj/effect/E in W)
+				if(E.name == "Wallrot")
+					qdel(E)
 
 			for(var/mob/O in viewers(W, null))
 				O.show_message(text("\blue The fungi are completely dissolved by the solution!"), 1)
@@ -385,7 +387,7 @@
 			if(H.wear_mask)
 				if(prob(meltprob) && !H.wear_mask.unacidable)
 					H << "<span class='danger'>Your mask melts away but protects you from the acid!</span>"
-					del (H.wear_mask)
+					qdel(H.wear_mask)
 					H.update_inv_wear_mask(0)
 					H.update_hair(0)
 				else
@@ -395,7 +397,7 @@
 			if(H.glasses) //Doesn't protect you from the acid but can melt anyways!
 				if(prob(meltprob) && !H.glasses.unacidable)
 					H << "<span class='danger'>Your glasses melts away!</span>"
-					del (H.glasses)
+					qdel(H.glasses)
 					H.update_inv_glasses(0)
 
 		else if(ismonkey(M))
@@ -403,7 +405,7 @@
 			if(MK.wear_mask)
 				if(!MK.wear_mask.unacidable)
 					MK << "<span class='danger'>Your mask melts away but protects you from the acid!</span>"
-					del (MK.wear_mask)
+					qdel(MK.wear_mask)
 					MK.update_inv_wear_mask(0)
 				else
 					MK << "<span class='warning'>Your mask protects you from the acid.</span>"

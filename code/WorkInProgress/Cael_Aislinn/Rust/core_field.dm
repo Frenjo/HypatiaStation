@@ -430,7 +430,7 @@ Deuterium-tritium fusion: 4.5 x 10^7 K
 /obj/effect/rust_em_field/Destroy()
 	//radiate everything in one giant burst
 	for(var/obj/effect/rust_particle_catcher/catcher in particle_catchers)
-		del (catcher)
+		qdel(catcher)
 	RadiateAll()
 
 	processing_objects.Remove(src)

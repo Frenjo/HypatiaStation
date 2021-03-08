@@ -131,7 +131,7 @@
 		else if(istype(O, /obj/item/device/toner))
 			if(toner == 0)
 				user.drop_item()
-				del(O)
+				qdel(O)
 				toner = 30
 				user << "<span class='notice'>You insert the toner cartridge into \the [src].</span>"
 				updateUsrDialog()
@@ -146,10 +146,10 @@
 	ex_act(severity)
 		switch(severity)
 			if(1.0)
-				del(src)
+				qdel(src)
 			if(2.0)
 				if(prob(50))
-					del(src)
+					qdel(src)
 				else
 					if(toner > 0)
 						new /obj/effect/decal/cleanable/blood/oil(get_turf(src))
@@ -163,7 +163,7 @@
 
 	blob_act()
 		if(prob(50))
-			del(src)
+			qdel(src)
 		else
 			if(toner > 0)
 				new /obj/effect/decal/cleanable/blood/oil(get_turf(src))

@@ -234,8 +234,8 @@
 	if(T && ismob(T) && !I.target)
 		T.client.remove_gun_icons()
 	if(!targeted_by.len)
-		del target_locked //Remove the overlay
-		del targeted_by
+		qdel(target_locked) //Remove the overlay
+		qdel(targeted_by)
 	spawn(1) update_targeted()
 
 /mob/living/Move()
@@ -285,9 +285,9 @@
 	screen -= usr.gun_move_icon
 	if (target_can_move)
 		screen -= usr.gun_run_icon
-	del usr.gun_move_icon
-	del usr.item_use_icon
-	del usr.gun_run_icon
+	qdel(usr.gun_move_icon)
+	qdel(usr.item_use_icon)
+	qdel(usr.gun_run_icon)
 
 /client/verb/ToggleGunMode()
 	set hidden = 1

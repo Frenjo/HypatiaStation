@@ -137,7 +137,7 @@ Please contact me on #coderbus IRC. ~Carn x
 	update_hud()		//TODO: remove the need for this
 	overlays.Cut()
 
-	
+
 	//cloaking devices. //TODO: get rid of this :<
 	for(var/obj/item/weapon/cloaking_device/S in list(l_hand,r_hand,belt,l_store,r_store))
 		if(S.active)
@@ -213,7 +213,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 
 //BASE MOB SPRITE
 /mob/living/carbon/human/proc/update_body(var/update_icons=1)
-	if(stand_icon)	del(stand_icon)
+	if(stand_icon)	qdel(stand_icon)
 
 	var/husk_color_mod = rgb(96,88,80)
 	var/hulk_color_mod = rgb(48,224,40)
@@ -434,7 +434,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 	if (targeted_by && target_locked)
 		overlays_standing[TARGETED_LAYER]	= target_locked
 	else if (!targeted_by && target_locked)
-		del(target_locked)
+		qdel(target_locked)
 	if (!targeted_by)
 		overlays_standing[TARGETED_LAYER]	= null
 	if(update_icons)		update_icons()

@@ -203,7 +203,7 @@
 	..()
 	linked_node = node
 	if(istype(loc, /turf/space))
-		del(src)
+		qdel(src)
 		return
 	if(icon_state == "weeds")icon_state = pick("weeds", "weeds1", "weeds2")
 	spawn(rand(150, 200))

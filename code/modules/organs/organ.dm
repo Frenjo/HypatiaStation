@@ -80,7 +80,7 @@
 		bad_external_organs.Cut()
 		for(var/datum/organ/external/Ex in organs)
 			bad_external_organs += Ex
-			
+
 	for(var/datum/organ/external/E in bad_external_organs)
 		if(!E)
 			continue
@@ -128,7 +128,7 @@
 						spark_system.attach(src)
 						spark_system.start()
 						spawn(10)
-							del(spark_system)
+							qdel(spark_system)
 
 			else if(E.name in list("l_leg","l_foot","r_leg","r_foot") && !lying)
 				if (!E.is_usable() || malfunction || (broken && !(E.status & ORGAN_SPLINTED)))
@@ -140,7 +140,7 @@
 			emote("scream")
 		emote("collapse")
 		paralysis = 10
-	
+
 	//Check arms and legs for existence
 	can_stand = 2 //can stand on both legs
 	var/datum/organ/external/E = organs_by_name["l_foot"]

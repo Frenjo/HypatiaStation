@@ -82,7 +82,7 @@ proc/move_mining_shuttle()
 				*/
 
 			if(istype(T, /turf/simulated))
-				del(T)
+				qdel(T)
 
 		for(var/mob/living/carbon/bug in toArea) // If someone somehow is still in the shuttle's docking area...
 			bug.gib()
@@ -239,7 +239,7 @@ proc/move_mining_shuttle()
 				A.state = 4
 				A.icon_state = "4"
 
-			del(src)
+			qdel(src)
 
 /******************************Lantern*******************************/
 

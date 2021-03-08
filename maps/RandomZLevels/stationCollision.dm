@@ -189,7 +189,8 @@ var/sc_safecode5 = "[rand(0,9)]"
 	else if(istype(A,/obj/))
 		var/obj/O = A
 		O.ex_act(1.0)
-		if(O) del(O)
+		if(O)
+			qdel(O)
 	else if(isturf(A))
 		var/turf/T = A
 		if(T.intact)

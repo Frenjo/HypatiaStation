@@ -57,7 +57,7 @@
 				if(airborne_can_reach(get_turf(src), get_turf(target)))
 					if(get_infection_chance(target))
 						infect_virus2(target,src.virus2)
-		del src
+		qdel(src)
 
 /obj/item/weapon/virusdish/examine()
 	usr << "This is a virus containment dish"

@@ -286,7 +286,7 @@ var/global/list/uneatable = list(
 		if(istype(A, /obj/machinery/singularity))//Welp now you did it
 			var/obj/machinery/singularity/S = A
 			src.energy += (S.energy/2)//Absorb most of it
-			del(S)
+			qdel(S)
 			var/dist = max((current_size - 2),1)
 			explosion(src.loc,(dist),(dist*2),(dist*4))
 			return//Quits here, the obj should be gone, hell we might be

@@ -70,7 +70,7 @@ emp_act
 		apply_effect(P.agony,AGONY,0)
 		flash_pain()
 		src <<"\red You have been shot!"
-		del P
+		qdel(P)
 
 		var/obj/item/weapon/cloaking_device/C = locate((/obj/item/weapon/cloaking_device) in src)
 		if(C && C.active)

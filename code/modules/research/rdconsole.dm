@@ -489,7 +489,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				sheet.amount = min(available_num_sheets, desired_num_sheets)
 				linked_lathe.vars[res_amount] = max(0, (linked_lathe.vars[res_amount]-sheet.amount * sheet.perunit))
 			else
-				del sheet
+				qdel(sheet)
 	else if(href_list["imprinter_ejectsheet"] && linked_imprinter) //Causes the protolathe to eject a sheet of material
 		var/desired_num_sheets = text2num(href_list["imprinter_ejectsheet_amt"])
 		var/res_amount, type
@@ -513,7 +513,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				sheet.amount = min(available_num_sheets, desired_num_sheets)
 				linked_imprinter.vars[res_amount] = max(0, (linked_imprinter.vars[res_amount]-sheet.amount * sheet.perunit))
 			else
-				del sheet
+				qdel(sheet)
 
 	else if(href_list["find_device"]) //The R&D console looks for devices nearby to link up with.
 		screen = 0.0

@@ -500,7 +500,7 @@
 		return
 	if (stat == DEAD && !client)
 		gibs(loc, viruses)
-		del(src)
+		qdel(src)
 		return
 
 /mob/living/carbon/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools

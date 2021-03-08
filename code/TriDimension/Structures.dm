@@ -52,7 +52,7 @@
 	Destroy()
 		spawn(1)
 			if(target && icon_state == "ladderdown")
-				del target
+				qdel(target)
 		return ..()
 
 	attack_paw(var/mob/M)

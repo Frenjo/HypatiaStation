@@ -130,7 +130,7 @@ var/list/department_radio_keys = list(
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")
 	spawn(30)
-		del(speech_bubble)
+		qdel(speech_bubble)
 
 	if(used_radios.len)
 		for(var/mob/living/M in hearers(5, src))

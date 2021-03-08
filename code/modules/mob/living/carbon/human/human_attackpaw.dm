@@ -17,7 +17,7 @@
 		for(var/datum/disease/D in M.viruses)
 			if(istype(D, /datum/disease/jungle_fever))
 				var/mob/living/carbon/human/H = src
-				del(src)
+				qdel(src)
 				src = H.monkeyize()
 				contract_disease(D,1,0)
 	return
