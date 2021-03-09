@@ -15,6 +15,17 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 
+		if(H.a_intent == "hurt")
+			if(shattered)
+				playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
+				return
+			if(prob(30) || H.species.can_shred(H))
+				user.visible_message("<span class='danger'>[user] smashes [src]!</span>")
+				shatter()
+			else
+				user.visible_message("<span class='danger'>[user] hits [src] and bounces off!</span>")
+			return
+
 		var/userloc = H.loc
 
 		//see code/modules/mob/new_player/preferences.dm at approx line 545 for comments!
@@ -82,15 +93,6 @@
 	else
 		visible_message("<span class='warning'>[user] hits [src] with [I]!</span>")
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 70, 1)
-
-
-/obj/structure/mirror/attack_alien(mob/user as mob)
-	if(islarva(user)) return
-	if(shattered)
-		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
-		return
-	user.visible_message("<span class='danger'>[user] smashes [src]!</span>")
-	shatter()
 
 
 /obj/structure/mirror/attack_animal(mob/user as mob)

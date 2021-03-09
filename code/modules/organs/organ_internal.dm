@@ -2,7 +2,7 @@
 				INTERNAL ORGANS
 ****************************************************/
 
-/mob/living/carbon/human/var/list/internal_organs = list()
+/mob/living/carbon/var/list/internal_organs = list()
 
 /datum/organ/internal
 	var/damage = 0 // amount of damage to the organ
@@ -12,7 +12,7 @@
 	var/robotic = 0 //For being a robot
 
 /datum/organ/internal/proc/rejuvenate()
-	damage=0
+	damage = 0
 
 /datum/organ/internal/proc/is_bruised()
 	return damage >= min_bruised_damage
@@ -39,7 +39,6 @@
 	var/datum/organ/external/parent = owner.get_organ(parent_organ)
 	if (!silent)
 		owner.custom_pain("Something inside your [parent.display_name] hurts a lot.", 1)
-
 
 /datum/organ/internal/proc/emp_act(severity)
 	switch(robotic)
@@ -83,7 +82,6 @@
 /datum/organ/internal/heart
 	name = "heart"
 	parent_organ = "chest"
-
 
 /datum/organ/internal/lungs
 	name = "lungs"

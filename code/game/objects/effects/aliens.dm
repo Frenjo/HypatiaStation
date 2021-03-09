@@ -14,8 +14,6 @@
 	name = "alien thing"
 	desc = "theres something alien about this"
 	icon = 'icons/mob/alien.dmi'
-//	unacidable = 1 //Aliens won't ment their own.
-
 
 /*
  * Resin
@@ -121,43 +119,7 @@
 /obj/effect/alien/resin/attack_paw()
 	return attack_hand()
 
-/obj/effect/alien/resin/attack_alien()
-	if (islarva(usr))//Safety check for larva. /N
-		return
-	usr << "\green You claw at the [name]."
-	for(var/mob/O in oviewers(src))
-		O.show_message("\red [usr] claws at the resin!", 1)
-	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
-	health -= rand(40, 60)
-	if(health <= 0)
-		usr << "\green You slice the [name] to pieces."
-		for(var/mob/O in oviewers(src))
-			O.show_message("\red [usr] slices the [name] apart!", 1)
-	healthcheck()
-	return
-
 /obj/effect/alien/resin/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	/*if (istype(W, /obj/item/weapon/grab) && get_dist(src,user)<2)
-		var/obj/item/weapon/grab/G = W
-		if(isalien(user)&&(ishuman(G.affecting)||ismonkey(G.affecting)))
-		//Only aliens can stick humans and monkeys into resin walls. Also, the wall must not have a person inside already.
-			if(!affecting)
-				if(G.state<2)
-					user << "\red You need a better grip to do that!"
-					return
-				G.affecting.loc = src
-				G.affecting.paralysis = 10
-				for(var/mob/O in viewers(world.view, src))
-					if (O.client)
-						O << text("\green [] places [] in the resin wall!", G.assailant, G.affecting)
-				affecting=G.affecting
-				qdel(W)
-				spawn(0)
-					process()
-			else
-				user << "\red This wall is already occupied."
-		return */
-
 	var/aforce = W.force
 	health = max(0, health - aforce)
 	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
@@ -170,7 +132,6 @@
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return !opacity
 	return !density
-
 
 /*
  * Weeds
@@ -381,61 +342,58 @@ Alien plants should do something if theres a lot of poison
 	var/health = 100
 	var/status = GROWING //can be GROWING, GROWN or BURST; all mutually exclusive
 
-	New()
-		if(aliens_allowed)
-			..()
-			spawn(rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
-				Grow()
-		else
-			qdel(src)
+/obj/effect/alien/egg/New()
+	if(aliens_allowed)
+		..()
+		spawn(rand(MIN_GROWTH_TIME, MAX_GROWTH_TIME))
+			Grow()
+	else
+		qdel(src)
 
-	attack_paw(user as mob)
-		if(isalien(user))
-			switch(status)
-				if(BURST)
-					user << "\red You clear the hatched egg."
-					qdel(src)
-					return
-				if(GROWING)
-					user << "\red The child is not developed yet."
-					return
-				if(GROWN)
-					user << "\red You retrieve the child."
-					Burst(0)
-					return
-		else
-			return attack_hand(user)
+/obj/effect/alien/egg/attack_hand(user as mob)
+	var/mob/living/carbon/M = user
+	if(!istype(M) || !(locate(/datum/organ/internal/xenos/hivenode) in M.internal_organs))
+		return attack_hand(user)
 
-	attack_hand(user as mob)
-		user << "It feels slimy."
-		return
+	switch(status)
+		if(BURST)
+			user << "\red You clear the hatched egg."
+			del(src)
+			return
+		if(GROWING)
+			user << "\red The child is not developed yet."
+			return
+		if(GROWN)
+			user << "\red You retrieve the child."
+			Burst(0)
+			return
 
-	proc/GetFacehugger()
-		return locate(/obj/item/clothing/mask/facehugger) in contents
+/obj/effect/alien/egg/proc/GetFacehugger()
+	return locate(/obj/item/clothing/mask/facehugger) in contents
 
-	proc/Grow()
-		icon_state = "egg"
-		status = GROWN
-		new /obj/item/clothing/mask/facehugger(src)
-		return
+/obj/effect/alien/egg/proc/Grow()
+	icon_state = "egg"
+	status = GROWN
+	new /obj/item/clothing/mask/facehugger(src)
+	return
 
-	proc/Burst(var/kill = 1) //drops and kills the hugger if any is remaining
-		if(status == GROWN || status == GROWING)
-			var/obj/item/clothing/mask/facehugger/child = GetFacehugger()
-			icon_state = "egg_hatched"
-			flick("egg_opening", src)
-			status = BURSTING
-			spawn(15)
-				status = BURST
-				loc.contents += child//need to write the code for giving it to the alien later
-				if(kill && istype(child))
-					child.Die()
-				else
-					for(var/mob/M in range(1,src))
-						if(CanHug(M))
-							child.Attach(M)
-							break
+/obj/effect/alien/egg/proc/Burst(var/kill = 1) //drops and kills the hugger if any is remaining
+	if(status == GROWN || status == GROWING)
+		var/obj/item/clothing/mask/facehugger/child = GetFacehugger()
+		icon_state = "egg_hatched"
+		flick("egg_opening", src)
+		status = BURSTING
+		spawn(15)
+			status = BURST
+			child.loc = get_turf(src)
 
+			if(kill && istype(child))
+				child.Die()
+			else
+				for(var/mob/M in range(1,src))
+					if(CanHug(M))
+						child.Attach(M)
+						break
 
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage

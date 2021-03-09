@@ -67,8 +67,6 @@
 	var/build_step = 0
 	var/created_name = "Securitron" //To preserve the name if it's a unique securitron I guess
 
-
-
 /obj/machinery/bot/secbot
 	New()
 		..()
@@ -730,12 +728,6 @@ Auto Patrol: []"},
 
 	new /obj/effect/decal/cleanable/blood/oil(src.loc)
 	qdel(src)
-
-/obj/machinery/bot/secbot/attack_alien(var/mob/living/carbon/alien/user as mob)
-	..()
-	if(!isalien(target))
-		src.target = user
-		src.mode = SECBOT_HUNT
 
 //Secbot Construction
 

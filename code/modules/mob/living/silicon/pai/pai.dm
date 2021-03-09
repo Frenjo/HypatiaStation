@@ -3,7 +3,6 @@
 	icon = 'icons/mob/mob.dmi'//
 	icon_state = "shadow"
 
-	robot_talk_understand = 0
 	emote_type = 2		// pAIs emotes are heard, not seen, so they can be seen through a container (eg. person)
 
 	var/network = "SS13"
@@ -158,40 +157,6 @@
 		src.updatehealth()
 	return
 
-/mob/living/silicon/pai/attack_alien(mob/living/carbon/alien/humanoid/M as mob)
-	if (!ticker)
-		M << "You cannot attack people before the game has started."
-		return
-
-	if (istype(src.loc, /turf) && istype(src.loc.loc, /area/start))
-		M << "You cannot attack someone in the spawn area."
-		return
-
-	switch(M.a_intent)
-
-		if ("help")
-			for(var/mob/O in viewers(src, null))
-				if ((O.client && !( O.blinded )))
-					O.show_message(text("\blue [M] caresses [src]'s casing with its scythe like arm."), 1)
-
-		else //harm
-			var/damage = rand(10, 20)
-			if (prob(90))
-				playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] has slashed at []!</B>", M, src), 1)
-				if(prob(8))
-					flick("noise", src.flash)
-				src.adjustBruteLoss(damage)
-				src.updatehealth()
-			else
-				playsound(src.loc, 'sound/weapons/slashmiss.ogg', 25, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] took a swipe at []!</B>", M, src), 1)
-	return
-
 /mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
 	usr:cameraFollow = null
 	if (!C)
@@ -206,7 +171,6 @@
 	src:current = C
 	src.reset_view(C)
 	return 1
-
 
 /mob/living/silicon/pai/cancel_camera()
 	set category = "pAI Commands"
@@ -251,3 +215,7 @@
 	card.setPersonality(pai)
 
 */
+
+// No binary for pAIs.
+/mob/living/silicon/pai/binarycheck()
+	return 0

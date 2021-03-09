@@ -1,12 +1,12 @@
 /mob/living/carbon/human/movement_delay()
 	var/tally = 0
 
-	if(species && species.flags & IS_SLOW)
-		tally = 7
+	if(species.slowdown)
+		tally = species.slowdown
 
 	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
 
-	if(embedded_flag) 
+	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
 	if(reagents.has_reagent("hyperzine")) return -1
@@ -66,6 +66,10 @@
 
 /mob/living/carbon/human/Process_Spaceslipping(var/prob_slip = 5)
 	//If knocked out we might just hit it and stop.  This makes it possible to get dead bodies and such.
+
+	if(species.flags & NO_SLIP)
+		return
+
 	if(stat)
 		prob_slip = 0 // Changing this to zero to make it line up with the comment, and also, make more sense.
 

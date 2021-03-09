@@ -746,26 +746,29 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define NO_BREATHE 2
 #define NO_SCAN 4
 #define NO_PAIN 8
+#define NO_SLIP 16
+#define NO_POISON 32
 
-#define HAS_SKIN_TONE 16
-#define HAS_LIPS 32
-#define HAS_UNDERWEAR 64
-#define HAS_TAIL 128
+#define HAS_SKIN_TONE 64
+#define HAS_SKIN_COLOR 128
+#define HAS_LIPS 256
+#define HAS_UNDERWEAR 512
+#define HAS_TAIL 1024
 
-#define IS_SLOW 256
-#define IS_PLANT 512
-#define IS_WHITELISTED 1024
-
-#define RAD_ABSORB 2048
-#define REQUIRE_LIGHT 4096
-
+#define IS_PLANT 2048
+#define IS_WHITELISTED 4096
 #define IS_SYNTHETIC 8192
 #define IS_PLASMA_IMMUNE 16384
 
+#define RAD_ABSORB 32768
+#define REQUIRE_LIGHT 65536
+
 //Language flags.
-#define WHITELISTED 1  // Language is available if the speaker is whitelisted.
-#define RESTRICTED 2   // Language can only be accquired by spawning or an admin.
-#define NONVERBAL 4    // Language has a significant non-verbal component.
+#define WHITELISTED 1  	// Language is available if the speaker is whitelisted.
+#define RESTRICTED 2   	// Language can only be accquired by spawning or an admin.
+#define NONVERBAL 4    	// Language has a significant non-verbal component.
+#define SIGNLANG 8     	// Language is completely non-verbal. Speech is displayed through emotes for those who can understand.
+#define HIVEMIND 16		// Broadcast to all mobs with this language.
 
 //Flags for zone sleeping
 #define ZONE_ACTIVE 1
@@ -780,6 +783,9 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define COLOR_YELLOW 	"#FFFF00"
 #define COLOR_ORANGE 	"#FF9900"
 #define COLOR_WHITE 	"#FFFFFF"
+
+#define COLOR_YELLOW_PIPE "#FFCC00"
+#define COLOR_PURPLE_PIPE "#5C1EC0"
 
 // Ported 'shuttles' module from Heaven's Gate - NSS Eternal...
 // As part of the docking controller port, because rewriting that code is spaghetti.

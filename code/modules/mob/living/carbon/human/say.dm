@@ -1,4 +1,7 @@
 /mob/living/carbon/human/say(var/message)
+
+	//TODO: Add checks for species who do not speak common.
+
 	var/verbage = "says"
 	var/alt_name = ""
 	var/message_range = world.view
@@ -30,9 +33,15 @@
 
 	//parse the language code and consume it
 	var/datum/language/speaking = parse_language(message)
-	if (speaking)
+	if(speaking)
 		verbage = speaking.speech_verb
 		message = copytext(message,3)
+
+		// This is broadcast to all mobs with the language,
+		// irrespective of distance or anything else.
+		if(speaking.flags & HIVEMIND)
+			speaking.broadcast(src,trim(message))
+			return
 
 	message = capitalize(trim(message))
 
@@ -83,16 +92,6 @@
 				used_radios += I
 		if("whisper")
 			whisper_say(message, speaking, alt_name)
-			return
-		if("binary")
-			if(robot_talk_understand || binarycheck())
-				robot_talk(message)
-			return
-		if("changeling")
-			if(mind && mind.changeling)
-				for(var/mob/Changeling in mob_list)
-					if((Changeling.mind && Changeling.mind.changeling) || istype(Changeling, /mob/dead/observer))
-						Changeling << "<i><font color=#800080><b>[mind.changeling.changelingID]:</b> [message]</font></i>"
 			return
 		else
 			if(message_mode)

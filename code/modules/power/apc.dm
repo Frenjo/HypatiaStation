@@ -684,28 +684,6 @@
 	// do APC interaction
 	src.interact(user)
 
-/obj/machinery/power/apc/attack_alien(mob/living/carbon/alien/humanoid/user)
-	if(!user)
-		return
-	user.visible_message("\red [user.name] slashes at the [src.name]!", "\blue You slash at the [src.name]!")
-	playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
-
-	var/allcut = wires.IsAllCut()
-
-	if(beenhit >= pick(3, 4) && wiresexposed != 1)
-		wiresexposed = 1
-		src.update_icon()
-		src.visible_message("\red The [src.name]'s cover flies open, exposing the wires!")
-
-	else if(wiresexposed == 1 && allcut == 0)
-		wires.CutAll()
-		src.update_icon()
-		src.visible_message("\red The [src.name]'s wires are shredded!")
-	else
-		beenhit += 1
-	return
-
-
 /obj/machinery/power/apc/interact(mob/user)
 	if(!user)
 		return
@@ -1304,9 +1282,7 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
-	if(isalien(user))
-		return 0
-	if (electrocute_mob(user, src, src))
+	if(electrocute_mob(user, src, src))
 		return 1
 	else
 		return 0

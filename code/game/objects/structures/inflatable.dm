@@ -76,17 +76,13 @@
 	add_fingerprint(user)
 	return
 
-/obj/structure/inflatable/proc/attack_generic(mob/user as mob, damage = 0)	//used by attack_alien, attack_animal, and attack_slime
+/obj/structure/inflatable/proc/attack_generic(mob/user as mob, damage = 0)	//used by attack_animal and attack_slime
 	health -= damage
 	if(health <= 0)
 		user.visible_message("<span class='danger'>[user] tears open [src]!</span>")
 		deflate(1)
 	else	//for nicer text~
 		user.visible_message("<span class='danger'>[user] tears at [src]!</span>")
-
-/obj/structure/inflatable/attack_alien(mob/user as mob)
-	if(islarva(user)) return
-	attack_generic(user, 15)
 
 /obj/structure/inflatable/attack_animal(mob/user as mob)
 	if(!isanimal(user)) return

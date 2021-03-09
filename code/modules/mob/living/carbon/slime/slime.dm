@@ -27,7 +27,6 @@
 	var/amount_grown = 0 // controls how long the slime has been overfed, if 10, grows into an adult
 						 // if adult: if 10: reproduces
 
-
 	var/mob/living/Victim = null // the person the slime is currently feeding on
 	var/mob/living/Target = null // AI variable - tells the slime to hunt this down
 
@@ -213,7 +212,6 @@
 	..()
 
 /mob/living/carbon/slime/ex_act(severity)
-
 	if (stat == 2 && client)
 		return
 
@@ -313,7 +311,7 @@
 	return
 
 
-/mob/living/carbon/slime/attack_animal(mob/living/simple_animal/M as mob)
+/mob/living/carbon/slime/attack_animal(mob/living/M as mob)
 	if(M.melee_damage_upper == 0)
 		M.emote("[M.friendly] [src]")
 	else
@@ -502,102 +500,6 @@
 						O.show_message(text("\red <B>[] has attempted to punch []!</B>", M, src), 1)
 	return
 
-
-
-/mob/living/carbon/slime/attack_alien(mob/living/carbon/alien/humanoid/M as mob)
-	if (!ticker)
-		M << "You cannot attack people before the game has started."
-		return
-
-	if (istype(loc, /turf) && istype(loc.loc, /area/start))
-		M << "No attacking people at spawn, you jackass."
-		return
-
-	switch(M.a_intent)
-		if ("help")
-			for(var/mob/O in viewers(src, null))
-				if ((O.client && !( O.blinded )))
-					O.show_message(text("\blue [M] caresses [src] with its scythe like arm."), 1)
-
-		if ("hurt")
-
-			if ((prob(95) && health > 0))
-				attacked += 10
-				playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
-				var/damage = rand(15, 30)
-				if (damage >= 25)
-					damage = rand(20, 40)
-					for(var/mob/O in viewers(src, null))
-						if ((O.client && !( O.blinded )))
-							O.show_message(text("\red <B>[] has attacked [name]!</B>", M), 1)
-				else
-					for(var/mob/O in viewers(src, null))
-						if ((O.client && !( O.blinded )))
-							O.show_message(text("\red <B>[] has wounded [name]!</B>", M), 1)
-				adjustBruteLoss(damage)
-				updatehealth()
-			else
-				playsound(loc, 'sound/weapons/slashmiss.ogg', 25, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] has attempted to lunge at [name]!</B>", M), 1)
-
-		if ("grab")
-			if (M == src)
-				return
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab( M, M, src )
-
-			M.put_in_active_hand(G)
-
-			grabbed_by += G
-			G.synch()
-
-			LAssailant = M
-
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			for(var/mob/O in viewers(src, null))
-				O.show_message(text("\red [] has grabbed [name] passively!", M), 1)
-
-		if ("disarm")
-			playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
-			var/damage = 5
-			attacked += 10
-
-			if(prob(95))
-				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] has tackled [name]!</B>", M), 1)
-
-				if(Victim)
-					Victim = null
-					anchored = 0
-					if(prob(80) && !client)
-						Discipline++
-						if(!istype(src, /mob/living/carbon/slime))
-							if(Discipline == 1)
-								attacked = 0
-
-				spawn()
-					SStun = 1
-					sleep(rand(5,20))
-					SStun = 0
-
-				spawn(0)
-
-					step_away(src,M,15)
-					sleep(3)
-					step_away(src,M,15)
-
-			else
-				drop_item()
-				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] has disarmed [name]!</B>", M), 1)
-			adjustBruteLoss(damage)
-			updatehealth()
-	return
-
-
 /mob/living/carbon/slime/restrained()
 	return 0
 
@@ -632,6 +534,10 @@ mob/living/carbon/slime/var/temperature_resistance = T0C+75
 		else
 			health = 150 - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
 
+/mob/living/carbon/slime/can_use_vents()
+	if(Victim)
+		return "You cannot ventcrawl while feeding."
+	..()
 
 /obj/item/slime_extract
 	name = "slime extract"

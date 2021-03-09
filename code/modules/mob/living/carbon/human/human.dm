@@ -8,51 +8,10 @@
 	var/datum/species/species //Contains icon generation and language information, set during New().
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 
-/mob/living/carbon/human/dummy
-	real_name = "Test Dummy"
-	status_flags = GODMODE|CANPUSH
-
-/mob/living/carbon/human/skrell/New()
-	h_style = "Skrell Male Tentacles"
-	set_species("Skrell")
-	..()
-
-/mob/living/carbon/human/tajaran/New()
-	h_style = "Tajaran Ears"
-	set_species("Tajaran")
-	..()
-
-/mob/living/carbon/human/soghun/New()
-	h_style = "Soghun Horns"
-	set_species("Soghun")
-	..()
-
-/mob/living/carbon/human/vox/New()
-	h_style = "Short Vox Quills"
-	set_species("Vox")
-	..()
-
-/mob/living/carbon/human/diona/New()
-	species = new /datum/species/diona(src)
-	..()
-
-/mob/living/carbon/human/machine/New()
-	species = new /datum/species/machine(src)
-	h_style = "blue IPC screen"
-	set_species("Machine")
-	..()
-
-/mob/living/carbon/human/obsedai/New()
-	species = new /datum/species/obsedai(src)
-	set_species("Obsedai")
-	..()
-
-/mob/living/carbon/human/plasmaperson/New()
-	species = new /datum/species/plasmapeople(src)
-	set_species("Plasmapeople")
-	..()
-
 /mob/living/carbon/human/New()
+	if(!dna)
+		dna = new /datum/dna(null)
+		// Species name is handled by set_species()
 
 	if(!species)
 		set_species()
@@ -60,10 +19,6 @@
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
-
-	if(!dna)
-		dna = new /datum/dna(null)
-		dna.species=species.name
 
 	hud_list[HEALTH_HUD]      = image('icons/mob/hud.dmi', src, "hudhealth100")
 	hud_list[STATUS_HUD]      = image('icons/mob/hud.dmi', src, "hudhealthy")
@@ -197,6 +152,11 @@
 				stat("Internal Atmosphere Info", internal.name)
 				stat("Tank Pressure", internal.air_contents.return_pressure())
 				stat("Distribution Pressure", internal.distribute_pressure)
+
+		var/datum/organ/internal/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
+		if(P)
+			stat(null, "Plasma Stored: [P.stored_plasma]/[P.max_plasma]")
+
 		if(mind)
 			if(mind.changeling)
 				stat("Chemical Storage", mind.changeling.chem_charges)
@@ -313,7 +273,7 @@
 	return
 
 
-/mob/living/carbon/human/attack_animal(mob/living/simple_animal/M as mob)
+/mob/living/carbon/human/attack_animal(mob/living/M as mob)
 	if(M.melee_damage_upper == 0)
 		M.emote("[M.friendly] [src]")
 	else
@@ -409,11 +369,8 @@
 		return 1
 	return 0
 
-
-
 /mob/living/carbon/human/var/co2overloadtime = null
 /mob/living/carbon/human/var/temperature_resistance = T0C+75
-
 
 /mob/living/carbon/human/show_inv(mob/user as mob)
 
@@ -830,6 +787,17 @@
 ///Returns a number between -1 to 2
 /mob/living/carbon/human/eyecheck()
 	var/number = 0
+
+	if(!species.has_organ["eyes"]) //No eyes, can't hurt them.
+		return 2
+
+	if(internal_organs_by_name["eyes"]) // Eyes are fucked, not a 'weak point'.
+		var/datum/organ/internal/I = internal_organs_by_name["eyes"]
+		if(I.is_broken())
+			return 2
+	else
+		return 2
+
 	if(istype(src.head, /obj/item/clothing/head/welding))
 		if(!src.head:up)
 			number += 2
@@ -847,7 +815,7 @@
 
 
 /mob/living/carbon/human/IsAdvancedToolUser()
-	return 1//Humans can use guns and such
+	return species.has_fine_manipulation
 
 
 /mob/living/carbon/human/abiotic(var/full_body = 0)
@@ -1230,8 +1198,7 @@
 	else
 		usr << "\blue [self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)]."
 
-/mob/living/carbon/human/proc/set_species(var/new_species)
-
+/mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
 	if(!dna)
 		if(!new_species)
 			new_species = "Human"
@@ -1241,19 +1208,22 @@
 		else
 			dna.species = new_species
 
-	if(species && (species.name && species.name == new_species))
-		return
-
-	if(species && species.language)
-		remove_language(species.language)
+	if(species)
+		if(species.name && species.name == new_species)
+			return
+		if(species.language)
+			remove_language(species.language)
 
 	species = all_species[new_species]
+
+	species.create_organs(src)
 
 	if(species.language)
 		add_language(species.language)
 
 	spawn(0)
 		update_icons()
+		vessel.add_reagent("blood",560-vessel.total_volume)
 
 	if(species)
 		species.handle_post_spawn(src)
@@ -1315,3 +1285,20 @@
 		W.update_icon()
 		W.message = message
 		W.add_fingerprint(src)
+
+/mob/living/carbon/human/getDNA()
+	if(species.flags & NO_SCAN)
+		return null
+	..()
+
+/mob/living/carbon/human/setDNA()
+	if(species.flags & NO_SCAN)
+		return
+	..()
+
+/mob/living/carbon/human/has_brain()
+	if(internal_organs_by_name["brain"])
+		var/datum/organ/internal/brain = internal_organs_by_name["brain"]
+		if(brain && istype(brain))
+			return 1
+	return 0

@@ -19,9 +19,10 @@
 	anchored = 1.0
 	layer = 2.8
 	throwpass = 1	//You can throw objects over this, despite it's density.")
-	var/parts = /obj/item/weapon/table_parts
 	var/flipped = 0
 	var/health = 100
+	breakable = 1
+	parts = /obj/item/weapon/table_parts
 
 /obj/structure/table/proc/update_adjacent()
 	for(var/direction in list(1,2,4,8,5,6,9,10))
@@ -40,16 +41,6 @@
 /obj/structure/table/Destroy()
 	update_adjacent()
 	..()
-
-/obj/structure/table/proc/destroy()
-	new parts(loc)
-	density = 0
-	qdel(src)
-
-/obj/structure/rack/proc/destroy()
-	new parts(loc)
-	density = 0
-	qdel(src)
 
 /obj/structure/table/update_icon()
 	spawn(2) //So it properly updates when deleting
@@ -244,49 +235,6 @@
 			dir = dir_sum
 		else
 			dir = 2
-
-/obj/structure/table/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			qdel(src)
-			return
-		if(2.0)
-			if (prob(50))
-				qdel(src)
-				return
-		if(3.0)
-			if (prob(25))
-				destroy()
-		else
-	return
-
-
-/obj/structure/table/blob_act()
-	if(prob(75))
-		destroy()
-
-/obj/structure/table/attack_paw(mob/user)
-	if(HULK in user.mutations)
-		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-		visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
-		destroy()
-
-
-/obj/structure/table/attack_alien(mob/user)
-	visible_message("<span class='danger'>[user] slices [src] apart!</span>")
-
-/obj/structure/table/attack_animal(mob/living/simple_animal/user)
-	if(user.wall_smash)
-		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
-		destroy()
-
-
-
-/obj/structure/table/attack_hand(mob/user)
-	if(HULK in user.mutations)
-		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
-		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-		destroy()
 
 /obj/structure/table/attack_tk() // no telehulk sorry
 	return
@@ -576,29 +524,8 @@
 	flags = FPRINT
 	anchored = 1.0
 	throwpass = 1	//You can throw objects over this, despite it's density.
-	var/parts = /obj/item/weapon/rack_parts
-
-/obj/structure/rack/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			qdel(src)
-		if(2.0)
-			qdel(src)
-			if(prob(50))
-				new /obj/item/weapon/rack_parts(src.loc)
-		if(3.0)
-			if(prob(25))
-				qdel(src)
-				new /obj/item/weapon/rack_parts(src.loc)
-
-/obj/structure/rack/blob_act()
-	if(prob(75))
-		qdel(src)
-		return
-	else if(prob(50))
-		new /obj/item/weapon/rack_parts(src.loc)
-		qdel(src)
-		return
+	breakable = 1
+	parts = /obj/item/weapon/rack_parts
 
 /obj/structure/rack/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
@@ -629,32 +556,4 @@
 		return
 	user.drop_item()
 	if(W && W.loc)	W.loc = src.loc
-	return
-
-/obj/structure/rack/meteorhit(obj/O as obj)
-	qdel(src)
-
-
-/obj/structure/table/attack_hand(mob/user)
-	if(HULK in user.mutations)
-		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
-		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-		destroy()
-
-/obj/structure/rack/attack_paw(mob/user)
-	if(HULK in user.mutations)
-		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
-		destroy()
-
-/obj/structure/rack/attack_alien(mob/user)
-	visible_message("<span class='danger'>[user] slices [src] apart!</span>")
-	destroy()
-
-/obj/structure/rack/attack_animal(mob/living/simple_animal/user)
-	if(user.wall_smash)
-		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
-		destroy()
-
-/obj/structure/rack/attack_tk() // no telehulk sorry
 	return

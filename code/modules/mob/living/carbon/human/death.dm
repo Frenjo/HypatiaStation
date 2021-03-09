@@ -30,7 +30,8 @@
 	handle_hud_list()
 
 	//Handle species-specific deaths.
-	if(species) species.handle_death(src)
+	if(species)
+		species.handle_death(src)
 
 	//Handle brain slugs.
 	var/datum/organ/external/head = get_organ("head")
@@ -96,3 +97,10 @@
 	ChangeToHusk()
 	//mutations |= NOCLONE
 	return
+
+/mob/living/silicon/robot/binarycheck()
+	if(is_component_functioning("comms"))
+		//var/datum/robot_component/RC = get_component("comms")
+		//use_power(RC.active_usage)
+		return 1
+	return 0

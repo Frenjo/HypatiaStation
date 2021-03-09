@@ -296,78 +296,7 @@
 								O.show_message(text("\red <B>[] has disarmed [name]!</B>", M), 1)
 	return
 
-/mob/living/carbon/monkey/attack_alien(mob/living/carbon/alien/humanoid/M as mob)
-	if (!ticker)
-		M << "You cannot attack people before the game has started."
-		return
-
-	if (istype(loc, /turf) && istype(loc.loc, /area/start))
-		M << "No attacking people at spawn, you jackass."
-		return
-
-	switch(M.a_intent)
-		if ("help")
-			for(var/mob/O in viewers(src, null))
-				if ((O.client && !( O.blinded )))
-					O.show_message(text("\blue [M] caresses [src] with its scythe like arm."), 1)
-
-		if ("hurt")
-			if ((prob(95) && health > 0))
-				playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
-				var/damage = rand(15, 30)
-				if (damage >= 25)
-					damage = rand(20, 40)
-					if (paralysis < 15)
-						Paralyse(rand(10, 15))
-					for(var/mob/O in viewers(src, null))
-						if ((O.client && !( O.blinded )))
-							O.show_message(text("\red <B>[] has wounded [name]!</B>", M), 1)
-				else
-					for(var/mob/O in viewers(src, null))
-						if ((O.client && !( O.blinded )))
-							O.show_message(text("\red <B>[] has slashed [name]!</B>", M), 1)
-				adjustBruteLoss(damage)
-				updatehealth()
-			else
-				playsound(loc, 'sound/weapons/slashmiss.ogg', 25, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] has attempted to lunge at [name]!</B>", M), 1)
-
-		if ("grab")
-			if (M == src)
-				return
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab( M, M, src )
-
-			M.put_in_active_hand(G)
-
-			grabbed_by += G
-			G.synch()
-
-			LAssailant = M
-
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			for(var/mob/O in viewers(src, null))
-				O.show_message(text("\red [] has grabbed [name] passively!", M), 1)
-
-		if ("disarm")
-			playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
-			var/damage = 5
-			if(prob(95))
-				Weaken(15)
-				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] has tackled down [name]!</B>", M), 1)
-			else
-				drop_item()
-				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] has disarmed [name]!</B>", M), 1)
-			adjustBruteLoss(damage)
-			updatehealth()
-	return
-
-/mob/living/carbon/monkey/attack_animal(mob/living/simple_animal/M as mob)
+/mob/living/carbon/monkey/attack_animal(mob/living/M as mob)
 	if(M.melee_damage_upper == 0)
 		M.emote("[M.friendly] [src]")
 	else

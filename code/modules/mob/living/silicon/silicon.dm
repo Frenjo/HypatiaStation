@@ -1,6 +1,5 @@
 /mob/living/silicon
 	gender = NEUTER
-	robot_talk_understand = 1
 	voice_name = "synthesized voice"
 	var/syndicate = 0
 	var/datum/ai_laws/laws = null//Now... THEY ALL CAN ALL HAVE LAWS
@@ -12,6 +11,8 @@
 
 	var/list/alarm_types_show = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
 	var/list/alarm_types_clear = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
+
+	var/local_transmit //If set, can only speak to others of the same type within a short range.
 
 /mob/living/silicon/proc/cancelAlarm()
 	return
@@ -250,3 +251,6 @@
 
 	src << browse(dat, "window=checklanguage")
 	return
+
+/mob/living/silicon/binarycheck()
+	return 1

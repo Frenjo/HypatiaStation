@@ -1283,6 +1283,9 @@ datum/preferences
 			var/datum/organ/internal/I = character.internal_organs_by_name[name]
 			var/status = organ_data[name]
 
+			if(!I || !O)
+				continue
+
 			if(status == "amputated")
 				O.amputated = 1
 				O.status |= ORGAN_DESTROYED

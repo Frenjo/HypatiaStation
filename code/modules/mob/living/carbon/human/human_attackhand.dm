@@ -37,8 +37,7 @@
 					visible_message("\red <B>[src] has been touched with the stun gloves by [M]!</B>")
 				return
 
-		if(istype(M.gloves , /obj/item/clothing/gloves/boxing/hologlove))
-
+		if(istype(M.gloves, /obj/item/clothing/gloves/boxing/hologlove))
 			var/damage = rand(0, 9)
 			if(!damage)
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
@@ -111,41 +110,48 @@
 			return 1
 
 		if("hurt")
+			// See if they can attack, and which attacks to use.
+			var/datum/unarmed_attack/attack = M.species.unarmed
+			if(!attack.is_usable(M))
+				attack = M.species.secondary_unarmed
+			if(!attack.is_usable(M))
+				return 0
 
-			M.attack_log += text("\[[time_stamp()]\] <font color='red'>[M.species.attack_verb]ed [src.name] ([src.ckey])</font>")
-			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been [M.species.attack_verb]ed by [M.name] ([M.ckey])</font>")
-			msg_admin_attack("[key_name(M)] [M.species.attack_verb]ed [key_name(src)]")
+			M.attack_log += text("\[[time_stamp()]\] <font color='red'>[attack.attack_verb]ed [src.name] ([src.ckey])</font>")
+			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been [attack.attack_verb]ed by [M.name] ([M.ckey])</font>")
+			msg_admin_attack("[key_name(M)] [attack.attack_verb]ed [key_name(src)]")
 
 			var/damage = rand(0, 5)//BS12 EDIT
 			if(!damage)
-				if(M.species.attack_verb == "punch")
+				if(attack.attack_sound == "punch")
 					playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 				else
 					playsound(loc, 'sound/weapons/slashmiss.ogg', 25, 1, -1)
 
-				visible_message("\red <B>[M] has attempted to [M.species.attack_verb] [src]!</B>")
+				visible_message("\red <B>[M] has attempted to [attack.attack_verb] [src]!</B>")
 				return 0
 
 
 			var/datum/organ/external/affecting = get_organ(ran_zone(M.zone_sel.selecting))
 			var/armor_block = run_armor_check(affecting, "melee")
 
-			if(HULK in M.mutations)			damage += 5
+			if(HULK in M.mutations)
+				damage += 5
 
 
-			if(M.species.attack_verb == "punch")
+			if(attack.attack_sound == "punch")
 				playsound(loc, "punch", 25, 1, -1)
 			else
 				playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 
-			visible_message("\red <B>[M] has [M.species.attack_verb]ed [src]!</B>")
+			visible_message("\red <B>[M] has [attack.attack_verb]ed [src]!</B>")
 			//Rearranged, so claws don't increase weaken chance.
 			if(damage >= 5 && prob(50))
 				visible_message("\red <B>[M] has weakened [src]!</B>")
 				apply_effect(2, WEAKEN, armor_block)
 
-			if(M.species.punch_damage)
-				damage += M.species.punch_damage
+			if(attack.damage)
+				damage += attack.damage
 			apply_damage(damage, BRUTE, affecting, armor_block)
 
 

@@ -135,7 +135,7 @@
 		return
 
 	//Is the usr's mob type able to do this? (lolaliens)
-	if(ishuman(usr) || ismonkey(usr) || isrobot(usr) ||  isalienadult(usr))
+	if(ishuman(usr) || ismonkey(usr) || isrobot(usr))
 
 		//Removing from inventory
 		if(href_list["remove_inv"])
@@ -231,9 +231,6 @@
 	return
 
 /mob/living/simple_animal/parrot/attack_paw(mob/living/carbon/monkey/M as mob)
-	attack_hand(M)
-
-/mob/living/simple_animal/parrot/attack_alien(mob/living/carbon/monkey/M as mob)
 	attack_hand(M)
 
 //Simple animals

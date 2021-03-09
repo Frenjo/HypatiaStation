@@ -294,9 +294,12 @@ proc/power_list(var/turf/T, var/source, var/d, var/unmarked=0, var/cable_only = 
 	if(istype(M.loc,/obj/mecha))	return 0	//feckin mechs are dumb
 	if(istype(M,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		if(H.gloves)
+		if(H.species.insulated)
+			return 0
+		else if(H.gloves)
 			var/obj/item/clothing/gloves/G = H.gloves
-			if(G.siemens_coefficient == 0)	return 0		//to avoid spamming with insulated glvoes on
+			if(G.siemens_coefficient == 0)
+				return 0		//to avoid spamming with insulated glvoes on
 
 	var/area/source_area
 	if(istype(power_source,/area))

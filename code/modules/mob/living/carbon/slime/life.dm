@@ -37,10 +37,6 @@
 	//Status updates, death etc.
 	handle_regular_status_updates()
 
-
-
-
-
 /mob/living/carbon/slime
 	var/AIproc = 0 // determines if the AI loop is activated
 	var/Atkcool = 0 // attack cooldown
@@ -242,9 +238,6 @@
 	else
 		health = 150 - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
 
-
-
-
 	if(health < config.health_threshold_dead && stat != 2)
 		death()
 		return
@@ -264,12 +257,10 @@
 		adjustCloneLoss(-1)
 		adjustBruteLoss(-1)
 
-
 	if (src.stat == DEAD)
 
 		src.lying = 1
 		src.blinded = 1
-
 	else
 		if (src.paralysis || src.stunned || src.weakened || (status_flags && FAKEDEATH)) //Stunned etc.
 			if (src.stunned > 0)
@@ -519,9 +510,6 @@
 						for(var/mob/living/carbon/C in targets)
 							if(!Discipline && prob(5))
 								if(ishuman(C))
-									Target = C
-									break
-								if(isalienadult(C))
 									Target = C
 									break
 

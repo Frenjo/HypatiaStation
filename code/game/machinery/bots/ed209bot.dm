@@ -844,13 +844,6 @@ Auto Patrol: []"},
 		return
 	return
 
-/obj/machinery/bot/ed209/attack_alien(var/mob/living/carbon/alien/user as mob)
-	..()
-	if (!isalien(target))
-		src.target = user
-		src.mode = SECBOT_HUNT
-
-
 /obj/machinery/bot/ed209/emp_act(severity)
 
 	if(severity==2 && prob(70))

@@ -339,10 +339,12 @@
 	This is a little buggy but somehow that just seems to plague ventcrawl.
 	I am sorry, I don't know why.
 */
-/obj/machinery/atmospherics/unary/vent_pump/AltClick(var/mob/living/ML)
+// Commenting this out for now, it's not critical, stated to be buggy, and seems like
+// a really clumsy way of doing this. ~Z
+/*/obj/machinery/atmospherics/unary/vent_pump/AltClick(var/mob/living/ML)
 	if(istype(ML))
 		var/list/ventcrawl_verbs = list(/mob/living/carbon/monkey/verb/ventcrawl, /mob/living/carbon/alien/verb/ventcrawl, /mob/living/carbon/slime/verb/ventcrawl,/mob/living/simple_animal/mouse/verb/ventcrawl)
 		if(length(ML.verbs & ventcrawl_verbs)) // alien queens have this removed, an istype would be complicated
 			ML.handle_ventcrawl(src)
 			return
-	..()
+	..()*/
