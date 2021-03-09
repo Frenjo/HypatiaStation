@@ -61,8 +61,8 @@
 				walk_to(src,movement_target,0,3)
 
 //RUNTIME IS ALIVE! SQUEEEEEEEE~
-/mob/living/simple_animal/cat/HappyKitten
-	name = "Happy Kitten"
-	desc = "Its fur has the look and feel of velvet, and it's tail quivers occasionally."
+/mob/living/simple_animal/cat/Runtime
+	name = "Runtime"
+	desc = ""
 
 

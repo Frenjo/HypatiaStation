@@ -58,8 +58,10 @@ var/list/teleportlocs = list()
 
 /hook/startup/proc/setupTeleportLocs()
 	for(var/area/AR in world)
-		if(istype(AR, /area/shuttle) || istype(AR, /area/syndicate_station) || istype(AR, /area/wizard_station)) continue
-		if(teleportlocs.Find(AR.name)) continue
+		if(istype(AR, /area/shuttle) || istype(AR, /area/syndicate_station) || istype(AR, /area/wizard_station))
+			continue
+		if(teleportlocs.Find(AR.name))
+			continue
 		var/turf/picked = pick(get_area_turfs(AR.type))
 		if (picked.z == 1)
 			teleportlocs += AR.name
@@ -342,11 +344,11 @@ var/list/ghostteleportlocs = list()
 /area/shuttle/engineering/outpost
 	icon_state = "shuttle"
 
-/area/airtunnel1/      // referenced in airtunnel.dm:759
+/area/airtunnel1      	// referenced in airtunnel.dm:759
 
-/area/dummy/           // Referenced in engine.dm:261
+/area/dummy           	// Referenced in engine.dm:261
 
-/area/start            // will be unused once kurper gets his login interface patch done
+/area/start            	// will be unused once kurper gets his login interface patch done
 	name = "start area"
 	icon_state = "start"
 	requires_power = 0
@@ -629,6 +631,7 @@ var/list/ghostteleportlocs = list()
 /area/atmos
  	name = "Atmospherics"
  	icon_state = "atmos"
+ 	ambience = list('sound/ambience/ambiatm1.ogg')
 
 //Maintenance
 /area/maintenance/atmos_control
@@ -711,6 +714,7 @@ var/list/ghostteleportlocs = list()
 /area/hallway/primary/aft
 	name = "\improper Aft Primary Hallway"
 	icon_state = "hallA"
+	ambience = list('sound/ambience/ambiruntime.ogg')
 
 /area/hallway/primary/port
 	name = "\improper Port Primary Hallway"
@@ -719,6 +723,7 @@ var/list/ghostteleportlocs = list()
 /area/hallway/primary/central
 	name = "\improper Central Primary Hallway"
 	icon_state = "hallC"
+	ambience = list('sound/ambience/ambiruntime.ogg')
 
 /area/hallway/secondary/exit
 	name = "\improper Escape Shuttle Hallway"
@@ -731,12 +736,14 @@ var/list/ghostteleportlocs = list()
 /area/hallway/secondary/entry
 	name = "\improper Arrival Shuttle Hallway"
 	icon_state = "entry"
+	ambience = list('sound/ambience/ambiruntime.ogg', 'sound/music/title2.ogg')
 
 //Command
 /area/bridge
 	name = "\improper Bridge"
 	icon_state = "bridge"
 	music = "signal"
+	ambience = list('sound/music/title2.ogg')
 
 /area/bridge/meeting_room
 	name = "\improper Heads of Staff Meeting Room"
@@ -1734,21 +1741,21 @@ var/list/ghostteleportlocs = list()
 	luminosity = 1
 	lighting_use_dynamic = 0
 
-	port
-		name = "\improper Telecommunications Port Solar Array"
-		icon_state = "tcomsatlounge"
+/area/tcommsat/solar/port
+	name = "\improper Telecommunications Port Solar Array"
+	icon_state = "tcomsatlounge"
 
-	fore
-		name = "\improper Telecommunications Fore Solar Array"
-		icon_state = "tcomsatlounge"
+/area/tcommsat/solar/fore
+	name = "\improper Telecommunications Fore Solar Array"
+	icon_state = "tcomsatlounge"
 
-	starboard
-		name = "\improper Telecommunications Starboard Solar Array"
-		icon_state = "tcomsatlounge"
+/area/tcommsat/solar/starboard
+	name = "\improper Telecommunications Starboard Solar Array"
+	icon_state = "tcomsatlounge"
 
-	aft
-		name = "\improper Telecommunications Aft Solar Array"
-		icon_state = "tcomsatlounge"
+/area/tcommsat/solar/aft
+	name = "\improper Telecommunications Aft Solar Array"
+	icon_state = "tcomsatlounge"
 
 // Away Missions
 /area/awaymission
@@ -1849,53 +1856,53 @@ var/list/ghostteleportlocs = list()
 	requires_power = 0
 	var/sound/mysound = null
 
-	New()
-		..()
-		var/sound/S = new/sound()
-		mysound = S
-		S.file = 'sound/ambience/shore.ogg'
-		S.repeat = 1
-		S.wait = 0
-		S.channel = 123
-		S.volume = 100
-		S.priority = 255
-		S.status = SOUND_UPDATE
-		process()
+/area/awaymission/beach/New()
+	..()
+	var/sound/S = new/sound()
+	mysound = S
+	S.file = 'sound/ambience/shore.ogg'
+	S.repeat = 1
+	S.wait = 0
+	S.channel = 123
+	S.volume = 100
+	S.priority = 255
+	S.status = SOUND_UPDATE
+	process()
 
-	Entered(atom/movable/Obj,atom/OldLoc)
-		if(ismob(Obj))
-			if(Obj:client)
-				mysound.status = SOUND_UPDATE
-				Obj << mysound
-		return
+/area/awaymission/beach/Entered(atom/movable/Obj, atom/OldLoc)
+	if(ismob(Obj))
+		if(Obj:client)
+			mysound.status = SOUND_UPDATE
+			Obj << mysound
+	return
 
-	Exited(atom/movable/Obj)
-		if(ismob(Obj))
-			if(Obj:client)
-				mysound.status = SOUND_PAUSED | SOUND_UPDATE
-				Obj << mysound
+/area/awaymission/beach/Exited(atom/movable/Obj)
+	if(ismob(Obj))
+		if(Obj:client)
+			mysound.status = SOUND_PAUSED | SOUND_UPDATE
+			Obj << mysound
 
-	proc/process()
-		set background = 1
+/area/awaymission/beach/proc/process()
+	set background = 1
 
-		var/sound/S = null
-		var/sound_delay = 0
-		if(prob(25))
-			S = sound(file=pick('sound/ambience/seag1.ogg','sound/ambience/seag2.ogg','sound/ambience/seag3.ogg'), volume=100)
-			sound_delay = rand(0, 50)
+	var/sound/S = null
+	var/sound_delay = 0
+	if(prob(25))
+		S = sound(file = pick('sound/ambience/seag1.ogg', 'sound/ambience/seag2.ogg', 'sound/ambience/seag3.ogg'), volume = 100)
+		sound_delay = rand(0, 50)
 
-		for(var/mob/living/carbon/human/H in src)
-			if(H.s_tone > -55)
-				H.s_tone--
-				H.update_body()
-			if(H.client)
-				mysound.status = SOUND_UPDATE
-				H << mysound
-				if(S)
-					spawn(sound_delay)
-						H << S
-
-		spawn(60) .()
+	for(var/mob/living/carbon/human/H in src)
+		if(H.s_tone > -55)
+			H.s_tone--
+			H.update_body()
+		if(H.client)
+			mysound.status = SOUND_UPDATE
+			H << mysound
+			if(S)
+				spawn(sound_delay)
+					H << S
+	spawn(60)
+		.()
 
 /////////////////////////////////////////////////////////////////////
 /*
@@ -1968,50 +1975,50 @@ var/list/the_station_areas = list (
 	requires_power = 0
 	var/sound/mysound = null
 
-	New()
-		..()
-		var/sound/S = new/sound()
-		mysound = S
-		S.file = 'sound/ambience/shore.ogg'
-		S.repeat = 1
-		S.wait = 0
-		S.channel = 123
-		S.volume = 100
-		S.priority = 255
-		S.status = SOUND_UPDATE
-		process()
+/area/beach/New()
+	..()
+	var/sound/S = new/sound()
+	mysound = S
+	S.file = 'sound/ambience/shore.ogg'
+	S.repeat = 1
+	S.wait = 0
+	S.channel = 123
+	S.volume = 100
+	S.priority = 255
+	S.status = SOUND_UPDATE
+	process()
 
-	Entered(atom/movable/Obj,atom/OldLoc)
-		if(ismob(Obj))
-			if(Obj:client)
-				mysound.status = SOUND_UPDATE
-				Obj << mysound
-		return
+/area/beach/Entered(atom/movable/Obj, atom/OldLoc)
+	if(ismob(Obj))
+		if(Obj:client)
+			mysound.status = SOUND_UPDATE
+			Obj << mysound
+	return
 
-	Exited(atom/movable/Obj)
-		if(ismob(Obj))
-			if(Obj:client)
-				mysound.status = SOUND_PAUSED | SOUND_UPDATE
-				Obj << mysound
+/area/beach/Exited(atom/movable/Obj)
+	if(ismob(Obj))
+		if(Obj:client)
+			mysound.status = SOUND_PAUSED | SOUND_UPDATE
+			Obj << mysound
 
-	proc/process()
-		set background = 1
+/area/beach/proc/process()
+	set background = 1
 
-		var/sound/S = null
-		var/sound_delay = 0
-		if(prob(25))
-			S = sound(file=pick('sound/ambience/seag1.ogg','sound/ambience/seag2.ogg','sound/ambience/seag3.ogg'), volume=100)
-			sound_delay = rand(0, 50)
+	var/sound/S = null
+	var/sound_delay = 0
+	if(prob(25))
+		S = sound(file = pick('sound/ambience/seag1.ogg', 'sound/ambience/seag2.ogg', 'sound/ambience/seag3.ogg'), volume = 100)
+		sound_delay = rand(0, 50)
 
-		for(var/mob/living/carbon/human/H in src)
-//			if(H.s_tone > -55)	//ugh...nice/novel idea but please no.
-//				H.s_tone--
-//				H.update_body()
-			if(H.client)
-				mysound.status = SOUND_UPDATE
-				H << mysound
-				if(S)
-					spawn(sound_delay)
-						H << S
-
-		spawn(60) .()
+	for(var/mob/living/carbon/human/H in src)
+//		if(H.s_tone > -55)	//ugh...nice/novel idea but please no.
+//			H.s_tone--
+//			H.update_body()
+		if(H.client)
+			mysound.status = SOUND_UPDATE
+			H << mysound
+			if(S)
+				spawn(sound_delay)
+					H << S
+	spawn(60)
+		.()
