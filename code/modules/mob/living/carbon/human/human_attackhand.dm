@@ -123,12 +123,9 @@
 
 			var/damage = rand(0, 5)//BS12 EDIT
 			if(!damage)
-				if(attack.attack_sound == "punch")
-					playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-				else
-					playsound(loc, 'sound/weapons/slashmiss.ogg', 25, 1, -1)
+				playsound(loc, attack.miss_sound, 25, 1, -1)
+				visible_message("\red <B>[M] attempted to [pick(attack.attack_verb)] [src]!</B>")
 
-				visible_message("\red <B>[M] has attempted to [attack.attack_verb] [src]!</B>")
 				return 0
 
 
@@ -139,10 +136,7 @@
 				damage += 5
 
 
-			if(attack.attack_sound == "punch")
-				playsound(loc, "punch", 25, 1, -1)
-			else
-				playsound(loc, 'sound/weapons/slice.ogg', 25, 1, -1)
+			playsound(loc, attack.attack_sound, 25, 1, -1)
 
 			visible_message("\red <B>[M] has [attack.attack_verb]ed [src]!</B>")
 			//Rearranged, so claws don't increase weaken chance.
@@ -150,9 +144,8 @@
 				visible_message("\red <B>[M] has weakened [src]!</B>")
 				apply_effect(2, WEAKEN, armor_block)
 
-			if(attack.damage)
-				damage += attack.damage
-			apply_damage(damage, BRUTE, affecting, armor_block)
+			damage += attack.damage
+			apply_damage(damage, BRUTE, affecting, armor_block, sharp = attack.sharp, edge = attack.edge)
 
 
 		if("disarm")

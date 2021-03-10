@@ -30,6 +30,36 @@
 	H.internal_organs[src.name] = src
 	src.owner = H
 
+/datum/organ/internal/process()
+
+	//Process infections
+	if (!germ_level)
+		return
+
+	if (robotic >= 2)	//TODO make robotic internal and external organs separate types of organ instead of a flag
+		germ_level = 0
+		return
+
+	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+
+	if (germ_level > 0 && antibiotics > 5)
+		if (prob(4*antibiotics)) germ_level--
+		if (antibiotics > 30) germ_level--
+
+	if (germ_level >= INFECTION_LEVEL_ONE/2)
+		if(prob(round(germ_level/6)))	//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes
+			germ_level++
+		if(prob(1))
+			take_damage(1,silent=0)
+
+	if (germ_level >= INFECTION_LEVEL_TWO)
+		var/datum/organ/external/parent = owner.get_organ(parent_organ)
+		if (parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
+			parent.germ_level++
+
+		if (prob(5))	//about once every 20 seconds
+			take_damage(1,silent=prob(30))
+
 /datum/organ/internal/proc/take_damage(amount, var/silent=0)
 	if(src.robotic == 2)
 		src.damage += (amount * 0.8)
@@ -94,7 +124,7 @@
 				owner.drip(10)
 			if(prob(4))
 				spawn owner.emote("me", 1, "gasps for air!")
-				owner.losebreath += 5
+				owner.losebreath += 15
 
 /datum/organ/internal/liver
 	name = "liver"

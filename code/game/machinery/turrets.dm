@@ -74,7 +74,7 @@
 /obj/machinery/turret/proc/take_damage(damage)
 	src.health -= damage
 	if(src.health<=0)
-		del src
+		qdel(src)
 	return
 
 /obj/machinery/turret/attack_hand(var/mob/living/carbon/human/user)
@@ -103,7 +103,7 @@
 
 /obj/machinery/turret/proc/update_health()
 	if(src.health<=0)
-		del src
+		qdel(src)
 	return
 
 /obj/machinery/turretcover
@@ -505,7 +505,7 @@
 	proc/take_damage(damage)
 		src.health -= damage
 		if(src.health<=0)
-			del src
+			qdel(src)
 		return
 
 

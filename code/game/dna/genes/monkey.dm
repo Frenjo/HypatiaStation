@@ -1,10 +1,10 @@
 /datum/dna/gene/monkey
-	name="Monkey"
+	name = "Monkey"
 
 /datum/dna/gene/monkey/New()
-	block=MONKEYBLOCK
+	block = MONKEYBLOCK
 
-/datum/dna/gene/monkey/can_activate(var/mob/M,var/flags)
+/datum/dna/gene/monkey/can_activate(var/mob/M, var/flags)
 	return istype(M, /mob/living/carbon/human) || istype(M,/mob/living/carbon/monkey)
 
 /datum/dna/gene/monkey/activate(var/mob/living/M, var/connected, var/flags)
@@ -110,9 +110,11 @@
 		sleep(48)
 		qdel(animation)
 
-	var/mob/living/carbon/human/O = new( src )
+	var/mob/living/carbon/human/O
 	if(Mo.greaterform)
-		O.set_species(Mo.greaterform)
+		O = new(src, Mo.greaterform)
+	else
+		O = new(src)
 
 	if (M.dna.GetUIState(DNA_UI_GENDER))
 		O.gender = FEMALE

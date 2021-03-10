@@ -8,13 +8,16 @@
 	var/datum/species/species //Contains icon generation and language information, set during New().
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 
-/mob/living/carbon/human/New()
+/mob/living/carbon/human/New(var/new_loc, var/new_species = null)
 	if(!dna)
 		dna = new /datum/dna(null)
 		// Species name is handled by set_species()
 
 	if(!species)
-		set_species()
+		if(new_species)
+			set_species(new_species)
+		else
+			set_species()
 
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
@@ -37,7 +40,6 @@
 		dna.real_name = real_name
 
 	prev_gender = gender // Debug for plural genders
-	make_organs()
 	make_blood()
 
 /mob/living/carbon/human/Bump(atom/movable/AM as mob|obj, yes)
@@ -1191,14 +1193,14 @@
 		return
 
 	usr << "Don't move until counting is finished."
-	var/time = world.timeofday
+	var/time = world.time
 	sleep(60)
 	if(usr.l_move_time >= time)	//checks if our mob has moved during the sleep()
 		usr << "You moved while counting. Try again."
 	else
 		usr << "\blue [self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)]."
 
-/mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
+/mob/living/carbon/human/proc/set_species(var/new_species, var/force_organs)
 	if(!dna)
 		if(!new_species)
 			new_species = "Human"
@@ -1216,7 +1218,8 @@
 
 	species = all_species[new_species]
 
-	species.create_organs(src)
+	if(force_organs || !organs || !organs.len)
+		species.create_organs(src)
 
 	if(species.language)
 		add_language(species.language)

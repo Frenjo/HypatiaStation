@@ -114,7 +114,7 @@
 			affected = affected.parent
 			user.visible_message("\red [user]'s hand slips, ripping apart flesh on [target]'s neck!", \
 			"\red Your hand slips, ripping apart flesh on [target]'s neck!")
-			target.apply_damage(10, BRUTE, affected)
+			target.apply_damage(10, BRUTE, affected, sharp = 1)
 
 /datum/surgery_step/head/prepare
 	allowed_tools = list(

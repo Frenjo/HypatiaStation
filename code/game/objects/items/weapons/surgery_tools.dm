@@ -84,6 +84,8 @@
 	icon_state = "scalpel"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	force = 10.0
+	sharp = 1
+	edge = 1
 	w_class = 2.0
 	throwforce = 5.0
 	throw_speed = 3
@@ -147,6 +149,8 @@
 	g_amt = 10000
 	origin_tech = "materials=1;biotech=1"
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
+	sharp = 1
+	edge = 1
 
 //misc, formerly from code/defines/weapons.dm
 /obj/item/weapon/bonegel

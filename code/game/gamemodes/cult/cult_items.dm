@@ -9,7 +9,6 @@
 	throwforce = 10
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-
 /obj/item/weapon/melee/cultblade/attack(mob/living/target as mob, mob/living/carbon/human/user as mob)
 	if(iscultist(user))
 		playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
@@ -28,7 +27,6 @@
 		user << "\red An overwhelming feeling of dread comes over you as you pick up the cultist's sword. It would be wise to be rid of this blade quickly."
 		user.make_dizzy(120)
 
-
 /obj/item/clothing/head/culthood
 	name = "cult hood"
 	icon_state = "culthood"
@@ -39,7 +37,6 @@
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
-
 
 /obj/item/clothing/head/culthood/alt
 	icon_state = "cult_hoodalt"
@@ -56,7 +53,7 @@
 	item_state = "cultrobes"
 	flags = FPRINT | TABLEPASS
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	allowed = list(/obj/item/weapon/tome,/obj/item/weapon/melee/cultblade)
+	allowed = list(/obj/item/weapon/tome, /obj/item/weapon/melee/cultblade)
 	armor = list(melee = 50, bullet = 30, laser = 50,energy = 20, bomb = 25, bio = 10, rad = 0)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0
@@ -78,11 +75,10 @@
 	item_state = "magusred"
 	flags = FPRINT | TABLEPASS
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	allowed = list(/obj/item/weapon/tome,/obj/item/weapon/melee/cultblade)
+	allowed = list(/obj/item/weapon/tome, /obj/item/weapon/melee/cultblade)
 	armor = list(melee = 50, bullet = 30, laser = 50,energy = 20, bomb = 25, bio = 10, rad = 0)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 0
-
 
 /obj/item/clothing/head/helmet/space/cult
 	name = "cult helmet"
@@ -98,7 +94,7 @@
 	item_state = "cult_armour"
 	desc = "A bulky suit of armour, bristling with spikes. It looks space proof."
 	w_class = 3
-	allowed = list(/obj/item/weapon/tome,/obj/item/weapon/melee/cultblade,/obj/item/weapon/tank/emergency_oxygen)
+	allowed = list(/obj/item/weapon/tome, /obj/item/weapon/melee/cultblade, /obj/item/weapon/tank/emergency_oxygen, /obj/item/device/suit_cooling_unit)
 	slowdown = 1
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0

@@ -50,7 +50,6 @@
 
 
 /datum/species/xenos/handle_post_spawn(var/mob/living/carbon/human/H)
-
 	if(H.mind)
 		H.mind.assigned_role = "Alien"
 		H.mind.special_role = "Alien"
@@ -59,7 +58,7 @@
 	H.real_name = "alien [caste_name] ([alien_number])"
 	H.name = H.real_name
 
-	..()
+	return ..()
 
 /datum/species/xenos/handle_environment_special(var/mob/living/carbon/human/H)
 
@@ -116,14 +115,13 @@
 		)
 
 /datum/species/xenos/drone/handle_post_spawn(var/mob/living/carbon/human/H)
-
 	var/mob/living/carbon/human/A = H
 	if(!istype(A))
 		return ..()
-	..()
+
+	return ..()
 
 /datum/species/xenos/hunter
-
 	name = "Xenomorph Hunter"
 	weeds_plasma_rate = 5
 	caste_name = "hunter"
@@ -179,7 +177,6 @@
 		)
 
 /datum/species/xenos/queen
-
 	name = "Xenomorph Queen"
 	weeds_heal_rate = 5
 	weeds_plasma_rate = 20
@@ -226,7 +223,6 @@
 		H.name = H.real_name
 
 /datum/hud_data/alien
-
 	icon = 'icons/mob/screen1_alien.dmi'
 	has_a_intent =  1
 	has_m_intent =  1

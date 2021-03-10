@@ -11,6 +11,8 @@
 	switch(level)
 		if("green")
 			level = SEC_LEVEL_GREEN
+		if("yellow")
+			level = SEC_LEVEL_YELLOW
 		if("blue")
 			level = SEC_LEVEL_BLUE
 		if("red")

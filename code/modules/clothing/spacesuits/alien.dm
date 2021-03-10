@@ -14,7 +14,6 @@
 	species_restricted = list("Tajaran")
 
 //Skrell space gear. Sleek like a wetsuit.
-
 /obj/item/clothing/head/helmet/space/skrell
 	name = "Skrellian helmet"
 	desc = "Smoothly contoured and polished to a shine. Still looks like a fishbowl."
@@ -52,7 +51,6 @@
 	item_color = "skrell_suit_black"
 
 //Soghun space gear. Huge and restrictive.
-
 /obj/item/clothing/head/helmet/space/soghun
 	armor = list(melee = 40, bullet = 30, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 50)
 	heat_protection = HEAD
@@ -98,7 +96,6 @@
 
 // Vox space gear (vaccuum suit, low pressure armour)
 // Can't be equipped by any other species due to bone structure and vox cybernetics.
-
 /obj/item/clothing/suit/space/vox
 	w_class = 3
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/melee/energy/sword,/obj/item/weapon/handcuffs,/obj/item/weapon/tank)
@@ -216,7 +213,6 @@
 		..()
 
 // Plasmapeople gear.
-
 /obj/item/clothing/head/helmet/space/plasmapeople
 	name = "envirohelmet"
 	desc = "A space-capable helmet designed to prevent a Plasmaperson from combusting in a human-breathable atmosphere."
@@ -225,7 +221,6 @@
 	species_restricted = list("Plasmaperson")
 
 //Species-specific Syndicate rigs.
-
 /obj/item/clothing/head/helmet/space/rig/syndi/tajara
 	icon_state = "rig0-syndie-taj"
 	item_state = "syndie_helm"

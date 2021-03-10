@@ -15,6 +15,8 @@
 	icon_state= "bolter"
 	damage = 50
 	flag = "bullet"
+	sharp = 1
+	edge = 1
 
 /obj/item/projectile/bullet/gyro/on_hit(var/atom/target, var/blocked = 0)
 	explosion(target, -1, 0, 2)

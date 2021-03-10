@@ -6,42 +6,34 @@
 	real_name = "Test Dummy"
 	status_flags = GODMODE|CANPUSH
 
-/mob/living/carbon/human/skrell/New()
+/mob/living/carbon/human/skrell/New(var/new_loc)
 	h_style = "Skrell Male Tentacles"
-	set_species("Skrell")
-	..()
+	..(new_loc, "Skrell")
 
-/mob/living/carbon/human/tajaran/New()
+/mob/living/carbon/human/tajaran/New(var/new_loc)
 	h_style = "Tajaran Ears"
-	set_species("Tajaran")
-	..()
+	..(new_loc, "Tajaran")
 
-/mob/living/carbon/human/soghun/New()
+/mob/living/carbon/human/soghun/New(var/new_loc)
 	h_style = "Soghun Horns"
-	set_species("Soghun")
-	..()
+	..(new_loc, "Soghun")
 
-/mob/living/carbon/human/vox/New()
+/mob/living/carbon/human/vox/New(var/new_loc)
 	h_style = "Short Vox Quills"
-	set_species("Vox")
-	..()
+	..(new_loc, "Vox")
 
-/mob/living/carbon/human/diona/New()
-	species = new /datum/species/diona(src)
-	..()
+/mob/living/carbon/human/diona/New(var/new_loc)
+	h_style = "Bald"
+	..(new_loc, "Diona")
 
-/mob/living/carbon/human/machine/New()
-	species = new /datum/species/machine(src)
+/mob/living/carbon/human/machine/New(var/new_loc)
 	h_style = "blue IPC screen"
-	set_species("Machine")
-	..()
+	..(new_loc, "Machine")
 
-/mob/living/carbon/human/obsedai/New()
-	species = new /datum/species/obsedai(src)
-	set_species("Obsedai")
-	..()
+/mob/living/carbon/human/obsedai/New(var/new_loc)
+	h_style = "Bald"
+	..(new_loc, "Obsedai")
 
-/mob/living/carbon/human/plasmaperson/New()
-	species = new /datum/species/plasmapeople(src)
-	set_species("Plasmapeople")
-	..()
+/mob/living/carbon/human/plasmaperson/New(var/new_loc)
+	h_style = "Bald"
+	..(new_loc, "Plasmapeople")

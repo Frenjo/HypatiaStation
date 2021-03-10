@@ -141,7 +141,7 @@
 		for(var/datum/organ/internal/I in H.internal_organs)
 			I.mechanize()
 
-/datum/species/proc/hug(var/mob/living/carbon/human/H,var/mob/living/target)
+/datum/species/proc/hug(var/mob/living/carbon/human/H, var/mob/living/target)
 	var/t_him = "them"
 	switch(target.gender)
 		if(MALE)
@@ -344,6 +344,8 @@
 	heat_level_2 = 3000
 	heat_level_3 = 4000
 
+	body_temperature = T0C + 15		//make the plant people have a bit lower body temperature, why not
+
 	flags = IS_WHITELISTED | NO_BREATHE | REQUIRE_LIGHT | NO_SCAN | IS_PLANT | RAD_ABSORB | NO_BLOOD | NO_PAIN | NO_SLIP
 
 	blood_color = "#004400"
@@ -351,6 +353,8 @@
 
 /datum/species/diona/handle_post_spawn(var/mob/living/carbon/human/H)
 	H.gender = NEUTER
+
+	return ..()
 
 /datum/species/diona/handle_death(var/mob/living/carbon/human/H)
 	var/mob/living/carbon/monkey/diona/S = new(get_turf(H))
@@ -372,7 +376,7 @@
 	icobase = 'icons/mob/human_races/r_machine.dmi'
 	deform = 'icons/mob/human_races/r_machine.dmi'
 	language = "Binary Audio Language"
-	unarmed_type = /datum/unarmed_attack/punch
+	unarmed_type = /datum/unarmed_attack/punch/strong
 
 	eyes = "blank_eyes"
 	brute_mod = 0.5
@@ -384,15 +388,15 @@
 		)
 
 	warning_low_pressure = 50
-	hazard_low_pressure = 10
+	hazard_low_pressure = 0
 
 	cold_level_1 = 50
 	cold_level_2 = -1
 	cold_level_3 = -1
 
-	heat_level_1 = 2000
-	heat_level_2 = 3000
-	heat_level_3 = 4000
+	heat_level_1 = 500		//gives them about 25 seconds in space before taking damage
+	heat_level_2 = 1000
+	heat_level_3 = 2000
 
 	synth_temp_gain = 10 //this should cause IPCs to stabilize at ~80 C in a 20 C environment.
 
@@ -406,7 +410,7 @@
 	icobase = 'icons/mob/human_races/r_obsedai.dmi'
 	deform = 'icons/mob/human_races/r_obsedai.dmi'
 	language = "Obsedaian"
-	unarmed_type = /datum/unarmed_attack/punch/strong
+	unarmed_type = /datum/unarmed_attack/punch/verystrong
 	slowdown = 7
 
 	eyes = "blank_eyes"
@@ -520,8 +524,11 @@
 	damage = 3
 
 /datum/unarmed_attack/punch/strong
+	damage = 5
+
+/datum/unarmed_attack/punch/verystrong
 	attack_verb = list("pound")
-	damage = 6
+	damage = 7
 
 /datum/unarmed_attack/diona
 	attack_verb = list("lash", "bludgeon")
