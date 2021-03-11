@@ -449,5 +449,5 @@
 
 /obj/screen/space_star/bluespace/New()
 	..()
-	var/star_type = pick( prob(100); 0, prob(50); 1, prob(10); 2, prob(1); 3, prob(10); 4, prob(15); 5, prob(75); 6 )
+	var/star_type = pick(prob(100); 0, prob(50); 1, prob(10); 2, prob(1); 3, prob(10); 4, prob(15); 5, prob(75); 6 )
 	icon_state = "bstar[star_type]"

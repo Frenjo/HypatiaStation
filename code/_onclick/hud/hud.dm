@@ -25,7 +25,7 @@ var/datum/global_hud/global_hud = new()
 /datum/global_hud/New()
 	// Space parallax stuff
 	//var/star_count = 3500
-	var/star_count = 1000
+	var/star_count = 900
 	var/bluespace_star_count = 1000
 
 	parallax_stars = list()
