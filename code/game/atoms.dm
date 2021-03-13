@@ -212,18 +212,22 @@ its easier to just keep the beam vertical.
 
 
 //All atoms
-/atom/verb/examine()
-	set name = "Examine"
-	set category = "IC"
-	set src in view(usr.client) //If it can be seen, it can be examined.
+/atom/proc/examine(mob/user, var/distance = -1)
+	//This reformat names to get a/an properly working on item descriptions when they are bloody
+	var/f_name = "\a [src]."
+	if(src.blood_DNA && !istype(src, /obj/effect/decal))
+		if(gender == PLURAL)
+			f_name = "some "
+		else
+			f_name = "a "
+		f_name += "<span class='danger'>blood-stained</span> [name]!"
 
-	if (!( usr ))
-		return
-	usr << "That's \a [src]." //changed to "That's" from "This is" because "This is some metal sheets" sounds dumb compared to "That's some metal sheets" ~Carn
-	usr << desc
-	// *****RM
-	//usr << "[name]: Dn:[density] dir:[dir] cont:[contents] icon:[icon] is:[icon_state] loc:[loc]"
-	return
+	user << "\icon[src] That's [f_name]"
+
+	if(desc)
+		user << desc
+
+	return distance == -1 || (get_dist(src, user) <= distance)
 
 /atom/proc/relaymove()
 	return

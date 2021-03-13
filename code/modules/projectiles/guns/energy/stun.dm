@@ -62,7 +62,7 @@
 	name = "disabler"
 	desc = "A non-lethal self-defense weapon that exhausts organic targets, weakening them until they collapse."
 	icon_state = "disabler"
-	fire_sound = 'sound/weapons/Taser.ogg'
+	fire_sound = 'sound/weapons/taser2.ogg'
 	origin_tech = "combat=3;materials=3;powerstorage=1"
 	charge_cost = 100
 	projectile_type = "/obj/item/projectile/energy/disabler"
