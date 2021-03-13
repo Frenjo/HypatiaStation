@@ -747,13 +747,8 @@
 	*/
 
 	proc/stabilize_body_temperature()
-		//TODO find a better place to put this
-		if(s_store && istype(s_store, /obj/item/device/suit_cooling_unit))
-			var/obj/item/device/suit_cooling_unit/CU = s_store
-			CU.cool_mob(src)
-
 		if(species.flags & IS_SYNTHETIC)
-			bodytemperature += species.synth_temp_gain		//that CPU/posibrain just keeps putting out heat.
+			bodytemperature += species.synth_temp_gain		//just keep putting out heat.
 			return
 
 		var/body_temperature_difference = species.body_temperature - bodytemperature
@@ -1527,21 +1522,21 @@
 				var/datum/disease2/disease/V = virus2[ID]
 				V.cure(src)
 
-		for(var/obj/effect/decal/cleanable/O in view(1,src))
-			if(istype(O,/obj/effect/decal/cleanable/blood))
-				var/obj/effect/decal/cleanable/blood/B = O
-				if(B.virus2.len)
-					for (var/ID in B.virus2)
-						var/datum/disease2/disease/V = B.virus2[ID]
-						infect_virus2(src,V)
+		if(life_tick % 3) //don't spam checks over all objects in view every tick.
+			for(var/obj/effect/decal/cleanable/O in view(1, src))
+				if(istype(O, /obj/effect/decal/cleanable/blood))
+					var/obj/effect/decal/cleanable/blood/B = O
+					if(B.virus2.len)
+						for (var/ID in B.virus2)
+							var/datum/disease2/disease/V = B.virus2[ID]
+							infect_virus2(src, V.getcopy())
 
-			else if(istype(O,/obj/effect/decal/cleanable/mucus))
-				var/obj/effect/decal/cleanable/mucus/M = O
-				if(M.virus2.len)
-					for (var/ID in M.virus2)
-						var/datum/disease2/disease/V = M.virus2[ID]
-						infect_virus2(src,V)
-
+				else if(istype(O, /obj/effect/decal/cleanable/mucus))
+					var/obj/effect/decal/cleanable/mucus/M = O
+					if(M.virus2.len)
+						for (var/ID in M.virus2)
+							var/datum/disease2/disease/V = M.virus2[ID]
+							infect_virus2(src, V.getcopy())
 
 		if(virus2.len)
 			for (var/ID in virus2)

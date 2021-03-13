@@ -239,7 +239,7 @@
 				return
 	return
 
-/obj/effect/spacevine/temperature_expose(null, temp, volume) //hotspots kill vines
+/obj/effect/spacevine/fire_act(null, temp, volume) //hotspots kill vines
 	qdel(src)
 
 //Carn: Spacevines random event.

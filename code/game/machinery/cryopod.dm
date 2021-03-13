@@ -26,7 +26,7 @@ var/global/list/frozen_items = list()
 /obj/machinery/computer/cryopod/attack_ai()
 	src.attack_hand()
 
-obj/machinery/computer/cryopod/attack_hand(mob/user = usr)
+/obj/machinery/computer/cryopod/attack_hand(mob/user = usr)
 	if(stat & (NOPOWER|BROKEN))
 		return
 
@@ -48,7 +48,7 @@ obj/machinery/computer/cryopod/attack_hand(mob/user = usr)
 	user << browse(dat, "window=cryopod_console")
 	onclose(user, "cryopod_console")
 
-obj/machinery/computer/cryopod/Topic(href, href_list)
+/obj/machinery/computer/cryopod/Topic(href, href_list)
 
 	if(..())
 		return

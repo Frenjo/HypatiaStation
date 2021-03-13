@@ -5,7 +5,6 @@ proc/get_infection_chance(var/mob/living/carbon/M, var/vector = "Airborne")
 		return 0
 
 	if(istype(M, /mob/living/carbon/human))
-
 		if (vector == "Airborne")
 			if(M.internal)	//not breathing infected air helps greatly
 				score = 30
@@ -28,7 +27,6 @@ proc/get_infection_chance(var/mob/living/carbon/M, var/vector = "Airborne")
 
 
 //	log_debug("[M]'s resistance to [vector] viruses: [score]")
-
 	if(score >= 30)
 		return 0
 	else if(score == 25 && prob(99))
@@ -68,10 +66,11 @@ proc/airborne_can_reach(turf/source, turf/target)
 	if ("[disease.uniqueID]" in M.virus2)
 		return
 	// if one of the antibodies in the mob's body matches one of the disease's antigens, don't infect
-	if(M.antibodies & disease.antigen != 0)
+	if((M.antibodies & disease.antigen) != 0)
 		return
 	if(M.reagents.has_reagent("spaceacillin"))
 		return
+
 	if(istype(M,/mob/living/carbon/monkey))
 		var/mob/living/carbon/monkey/chimp = M
 		if (!(chimp.greaterform in disease.affected_species))

@@ -2,9 +2,18 @@
 	name = "portable suit cooling unit"
 	desc = "A portable heat sink and liquid cooled radiator that can be hooked up to a space suit's existing temperature controls to provide industrial levels of cooling."
 	w_class = 4
-	icon = 'icons/obj/device.dmi'	//temporary, I hope
+	icon = 'icons/obj/device.dmi'
 	icon_state = "suitcooler0"
 	slot_flags = SLOT_BACK	//you can carry it on your back if you want, but it won't do anything unless attached to suit storage
+
+	//copied from tank.dm
+	flags = FPRINT | TABLEPASS | CONDUCT
+	force = 5.0
+	throwforce = 10.0
+	throw_speed = 1
+	throw_range = 4
+
+	origin_tech = "magnets=2;materials=2"
 
 	var/on = 0				//is it turned on?
 	var/cover_open = 0		//is the cover open?
@@ -16,26 +25,32 @@
 	//TODO: make it heat up the surroundings when not in space
 
 /obj/item/device/suit_cooling_unit/New()
+	processing_objects |= src
+
 	cell = new/obj/item/weapon/cell()	//comes with the crappy default power cell - high-capacity ones shouldn't be hard to find
 	cell.loc = src
 
-/obj/item/device/suit_cooling_unit/proc/cool_mob(mob/M)
-	if (!on || !cell) return
-
-	//make sure they have a suit and we are attached to it
-	if (!attached_to_suit(M))
+/obj/item/device/suit_cooling_unit/process()
+	if(!on || !cell)
 		return
 
-	var/mob/living/carbon/human/H = M
+	//make sure they have a suit and we are attached to it
+	if(!ismob(loc))
+		return
+
+	if(!attached_to_suit(loc))		//make sure they have a suit and we are attached to it
+		return
+
+	var/mob/living/carbon/human/H = loc
 
 	var/efficiency = H.get_pressure_protection()		//you need to have a good seal for effective cooling
 	var/env_temp = get_environment_temperature()		//wont save you from a fire
 	var/temp_adj = min(H.bodytemperature - max(thermostat, env_temp), max_cooling)
 
-	if (temp_adj < 0)	//only cools, doesn't heat
+	if(temp_adj < 0.5)	//only cools, doesn't heat, also we don't need extreme precision
 		return
 
-	var/charge_usage = (temp_adj/max_cooling)*charge_consumption
+	var/charge_usage = (temp_adj / max_cooling) * charge_consumption
 
 	H.bodytemperature -= temp_adj*efficiency
 
@@ -45,7 +60,7 @@
 		turn_off()
 
 /obj/item/device/suit_cooling_unit/proc/get_environment_temperature()
-	if (ishuman(loc))
+	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		if(istype(H.loc, /obj/mecha))
 			var/obj/mecha/M = loc
@@ -58,18 +73,18 @@
 		return 0	//space has no temperature, this just makes sure the cooling unit works in space
 
 	var/datum/gas_mixture/environment = T.return_air()
-	if (!environment)
+	if(!environment)
 		return 0
 
 	return environment.temperature
 
 /obj/item/device/suit_cooling_unit/proc/attached_to_suit(mob/M)
-	if (!ishuman(M))
+	if(!ishuman(M))
 		return 0
 
 	var/mob/living/carbon/human/H = M
 
-	if (!H.wear_suit || H.s_store != src)
+	if(!H.wear_suit || H.s_store != src)
 		return 0
 
 	return 1
@@ -84,8 +99,9 @@
 	updateicon()
 
 /obj/item/device/suit_cooling_unit/proc/turn_off()
-	if (ismob(src.loc))
-		src.loc << "\The [src] clicks and whines as it powers down."	//let them know
+	if(ismob(src.loc))
+		var/mob/M = src.loc
+		M.show_message("\The [src] clicks and whines as it powers down.", 2)	//let them know in case it's run out of power.
 	on = 0
 	updateicon()
 

@@ -2,6 +2,10 @@
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to seperate rooms."
 	icon_state = "r_wall"
+
+	damage_cap = 200
+	max_temperature = 6000
+
 	opacity = 1
 	density = 1
 
@@ -31,16 +35,16 @@
 
 
 /turf/simulated/wall/r_wall/attackby(obj/item/W as obj, mob/user as mob)
-
-	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if(!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
 		return
 
 	//get the user's location
-	if( !istype(user.loc, /turf) )	return	//can't do this stuff whilst inside objects and such
+	if(!istype(user.loc, /turf))
+		return	//can't do this stuff whilst inside objects and such
 
 	if(rotting)
-		if(istype(W, /obj/item/weapon/weldingtool) )
+		if(istype(W, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/WT = W
 			if( WT.remove_fuel(0,user) )
 				user << "<span class='notice'>You burn away the fungi with \the [WT].</span>"
@@ -55,10 +59,10 @@
 			return
 
 	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
-	if( thermite )
-		if( istype(W, /obj/item/weapon/weldingtool) )
+	if(thermite)
+		if(istype(W, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/WT = W
-			if( WT.remove_fuel(0,user) )
+			if(WT.remove_fuel(0, user))
 				thermitemelt(user)
 				return
 
@@ -66,7 +70,7 @@
 			thermitemelt(user)
 			return
 
-		else if( istype(W, /obj/item/weapon/melee/energy/blade) )
+		else if(istype(W, /obj/item/weapon/melee/energy/blade))
 			var/obj/item/weapon/melee/energy/blade/EB = W
 
 			EB.spark_system.start()
@@ -80,6 +84,19 @@
 	else if(istype(W, /obj/item/weapon/melee/energy/blade))
 		user << "<span class='notice'>This wall is too thick to slice through. You will need to find a different path.</span>"
 		return
+
+	if(damage && istype(W, /obj/item/weapon/weldingtool))
+		var/obj/item/weapon/weldingtool/WT = W
+		if(WT.remove_fuel(0,user))
+			user << "<span class='notice'>You start repairing the damage to [src].</span>"
+			playsound(src, 'sound/items/Welder.ogg', 100, 1)
+			if(do_after(user, max(5, damage / 5)) && WT && WT.isOn())
+				user << "<span class='notice'>You finish repairing the damage to [src].</span>"
+				take_damage(-damage)
+			return
+		else
+			user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
+			return
 
 	var/turf/T = user.loc	//get user's location for delay checks
 

@@ -136,7 +136,6 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 
 //Makes a blood drop, leaking certain amount of blood from the mob
 /mob/living/carbon/human/proc/drip(var/amt as num)
-
 	if(species && species.flags & NO_BLOOD) //TODO: Make drips come from the reagents instead.
 		return
 
@@ -159,7 +158,11 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 		this.icon_state = pick(iconL)
 		this.blood_DNA = list()
 		this.blood_DNA[dna.unique_enzymes] = dna.b_type
-		if (species) this.basecolor = species.blood_color
+		for(var/ID in virus2)
+			var/datum/disease2/disease/V = virus2[ID]
+			this.virus2[ID] = V.getcopy()
+		if(species)
+			this.basecolor = species.blood_color
 		this.update_icon()
 
 	else

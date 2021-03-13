@@ -40,6 +40,14 @@
 			latejoin += loc
 			qdel(src)
 
+		if("JoinLateGateway")
+			latejoin_gateway += loc
+			qdel(src)
+
+		if("JoinLateCryo")
+			latejoin_cryo += loc
+			qdel(src)
+
 		//prisoners
 		if("prisonwarp")
 			prisonwarp += loc
