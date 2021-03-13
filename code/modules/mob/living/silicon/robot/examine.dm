@@ -32,7 +32,8 @@
 		if(DEAD)			msg += "<span class='deadsay'>It looks completely unsalvageable.</span>\n"
 	msg += "*---------*</span>"
 
-	if(print_flavor_text()) msg += "[print_flavor_text()]\n"
+	if(print_flavor_text())
+		msg += "\n[print_flavor_text()]\n"
 
 	if (pose)
 		if( findtext(pose,".",length(pose)) == 0 && findtext(pose,"!",length(pose)) == 0 && findtext(pose,"?",length(pose)) == 0 )

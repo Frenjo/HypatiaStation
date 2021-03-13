@@ -12,13 +12,13 @@
 	var/crisis //Admin-settable for combat module use.
 	var/integrated_light_power = 5
 
-//Hud stuff
+	//Hud stuff
 	var/obj/screen/cells = null
 	var/obj/screen/inv1 = null
 	var/obj/screen/inv2 = null
 	var/obj/screen/inv3 = null
 
-//3 Modules can be activated at any one time.
+	//3 Modules can be activated at any one time.
 	var/obj/item/weapon/robot_module/module = null
 	var/module_active = null
 	var/module_state_1 = null
@@ -90,6 +90,12 @@
 		hands.icon_state = "standard"
 		icon_state = "secborg"
 		modtype = "Security"
+	else if(istype(src, /mob/living/silicon/robot/drone))
+		laws = new /datum/ai_laws/drone()
+		connected_ai = select_active_ai_with_fewest_borgs()
+		if(connected_ai)
+			connected_ai.connected_robots += src
+			lawsync()
 	else
 		laws = new /datum/ai_laws/corporate()
 		connected_ai = select_active_ai_with_fewest_borgs()
@@ -137,7 +143,10 @@
 	hud_list[IMPTRACK_HUD]    = image('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
 
-	playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
+	if(istype(src,/mob/living/silicon/robot/drone))
+		playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 0)
+	else
+		playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
 
 // setup the PDA and its name
 /mob/living/silicon/robot/proc/setup_PDA()

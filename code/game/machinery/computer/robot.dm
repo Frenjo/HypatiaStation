@@ -43,6 +43,8 @@
 			dat += "<A href='?src=\ref[src];screen=2'>2. Emergency Full Destruct</A><BR>"
 		if(screen == 1)
 			for(var/mob/living/silicon/robot/R in mob_list)
+				if(istype(R, /mob/living/silicon/robot/drone))
+					continue //There's a specific console for drones.
 				if(istype(user, /mob/living/silicon/ai))
 					if (R.connected_ai != user)
 						continue
@@ -161,7 +163,7 @@
 					if(choice == "Confirm")
 						if(R && istype(R))
 							if(R.mind && R.mind.special_role && R.emagged)
-								R << "Extreme danger.  Termination codes detected.  Scrambling security codes and automatic AI unlink triggered."
+								R << "Extreme danger. Termination codes detected. Scrambling security codes and automatic AI unlink triggered."
 								R.ResetSecurityCodes()
 
 							else
@@ -211,7 +213,6 @@
 	return
 
 /obj/machinery/computer/robotics/proc/start_sequence()
-
 	do
 		if(src.stop)
 			src.stop = 0
@@ -221,8 +222,7 @@
 	while(src.timeleft)
 
 	for(var/mob/living/silicon/robot/R in mob_list)
-		if(!R.scrambledcodes)
+		if(!R.scrambledcodes && !istype(R, /mob/living/silicon/robot/drone))
 			R.self_destruct()
 
 	return
-

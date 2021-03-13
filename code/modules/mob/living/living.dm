@@ -467,10 +467,17 @@
 	var/mob/living/L = usr
 
 	//Getting out of someone's inventory.
-	if(istype(src.loc,/obj/item/weapon/holder))
-		var/obj/item/weapon/holder/H = src.loc
-		src.loc = get_turf(src.loc)
-		qdel(H)
+	if(istype(src.loc, /obj/item/weapon/holder))
+		var/obj/item/weapon/holder/H = src.loc //Get our item holder.
+		var/mob/M = H.loc                      //Get our mob holder (if any).
+		if(istype(M))
+			M.drop_from_inventory(H)
+			M << "[H] wriggles out of your grip!"
+			src << "You wriggle out of [M]'s grip!"
+
+		else if(istype(H.loc,/obj/item))
+			src << "You struggle free of [H.loc]."
+			H.loc = get_turf(H)
 		return
 
 	//Resisting control by an alien mind.
@@ -706,7 +713,7 @@
 	resting = !resting
 	src << "\blue You are now [resting ? "resting" : "getting up"]"
 
-/mob/living/proc/handle_ventcrawl(var/obj/machinery/atmospherics/unary/vent_pump/vent_found = null) // -- TLE -- Merged by Carn
+/mob/living/proc/handle_ventcrawl(var/obj/machinery/atmospherics/unary/vent_pump/vent_found = null, var/ignore_items = 0) // -- TLE -- Merged by Carn
 	if(stat)
 		src << "You must be conscious to do this!"
 		return
@@ -766,10 +773,12 @@
 		src << "Never mind, you left."
 		return
 
-	for(var/obj/item/carried_item in contents)//If the monkey got on objects.
-		if( !istype(carried_item, /obj/item/weapon/implant) && !istype(carried_item, /obj/item/clothing/mask/facehugger) )//If it's not an implant or a facehugger
-			src << "\red You can't be carrying items or have items equipped when vent crawling!"
-			return
+	if(!ignore_items)
+		for(var/obj/item/carried_item in contents)//If the monkey got on objects.
+			if(!istype(carried_item, /obj/item/weapon/implant) && !istype(carried_item, /obj/item/clothing/mask/facehugger))//If it's not an implant or a facehugger
+				src << "\red You can't be carrying items or have items equipped when vent crawling!"
+				return
+
 	if(isslime(src))
 		var/mob/living/carbon/slime/S = src
 		if(S.Victim)

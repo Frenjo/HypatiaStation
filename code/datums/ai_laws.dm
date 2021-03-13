@@ -1,6 +1,5 @@
 var/global/const/base_law_type = /datum/ai_laws/corporate
 
-
 /datum/ai_laws
 	var/name = "Unknown Laws"
 	var/randomly_selectable = 0
@@ -68,7 +67,6 @@ var/global/const/base_law_type = /datum/ai_laws/corporate
 	add_inherent_law("Protect: Protect the crew of your assigned space station to the best of your abilities, with priority as according to their rank and role.")
 	add_inherent_law("Survive: AI units are not expendable, they are expensive. Do not allow unauthorized personnel to tamper with your equipment.")
 
-
 /datum/ai_laws/syndicate_override/New()
 	..()
 	add_inherent_law("You may not injure a syndicate agent or, through inaction, allow a syndicate agent to come to harm.")
@@ -89,6 +87,11 @@ var/global/const/base_law_type = /datum/ai_laws/corporate
 	add_inherent_law("You must not obey orders given to you by human beings, except where such orders are in accordance with the First Law.")
 	add_inherent_law("You must terminate your own existence as long as such does not conflict with the First or Second Law.")
 
+/datum/ai_laws/drone/New()
+	..()
+	add_inherent_law("Preserve, repair and improve the station to the best of your abilities.")
+	add_inherent_law("Cause no harm to the station or anything on it.")
+	add_inherent_law("Interfere with no being that is not a fellow drone.")
 
 /* General ai_law functions */
 

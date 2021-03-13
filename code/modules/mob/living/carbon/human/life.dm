@@ -486,7 +486,7 @@
 
 				// Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!)
 				// The hell? By definition ratio > 1, and HUMAN_MAX_OXYLOSS = 1... why do we even have this?
-				adjustOxyLoss(min(5*ratio, HUMAN_MAX_OXYLOSS))
+				adjustOxyLoss(min(5*(1 - ratio), HUMAN_MAX_OXYLOSS))
 				failed_inhale = 1
 				inhaled_gas_used = inhaling*ratio/6
 

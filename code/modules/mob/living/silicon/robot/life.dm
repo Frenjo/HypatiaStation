@@ -21,7 +21,6 @@
 	update_canmove()
 
 /mob/living/silicon/robot/proc/clamp_values()
-
 //	SetStunned(min(stunned, 30))
 	SetParalysis(min(paralysis, 30))
 //	SetWeakened(min(weakened, 20))
@@ -32,7 +31,6 @@
 	adjustFireLoss(0)
 
 /mob/living/silicon/robot/proc/use_power()
-
 	if (is_component_functioning("power cell") && cell)
 		if(src.cell.charge <= 0)
 			uneq_all()
@@ -134,11 +132,9 @@
 	else
 		src.blinded = 1
 
-
 	return 1
 
 /mob/living/silicon/robot/proc/handle_regular_hud_updates()
-
 	if (src.stat == 2 || XRAY in mutations || src.sight_mode & BORGXRAY)
 		src.sight |= SEE_TURFS
 		src.sight |= SEE_MOBS
@@ -174,21 +170,38 @@
 
 	if (src.healths)
 		if (src.stat != 2)
-			switch(health)
-				if(200 to INFINITY)
-					src.healths.icon_state = "health0"
-				if(150 to 200)
-					src.healths.icon_state = "health1"
-				if(100 to 150)
-					src.healths.icon_state = "health2"
-				if(50 to 100)
-					src.healths.icon_state = "health3"
-				if(0 to 50)
-					src.healths.icon_state = "health4"
-				if(config.health_threshold_dead to 0)
-					src.healths.icon_state = "health5"
-				else
-					src.healths.icon_state = "health6"
+			if(istype(src,/mob/living/silicon/robot/drone))
+				switch(health)
+					if(35 to INFINITY)
+						src.healths.icon_state = "health0"
+					if(25 to 34)
+						src.healths.icon_state = "health1"
+					if(15 to 24)
+						src.healths.icon_state = "health2"
+					if(5 to 14)
+						src.healths.icon_state = "health3"
+					if(0 to 4)
+						src.healths.icon_state = "health4"
+					if(-35 to 0)
+						src.healths.icon_state = "health5"
+					else
+						src.healths.icon_state = "health6"
+			else
+				switch(health)
+					if(200 to INFINITY)
+						src.healths.icon_state = "health0"
+					if(150 to 200)
+						src.healths.icon_state = "health1"
+					if(100 to 150)
+						src.healths.icon_state = "health2"
+					if(50 to 100)
+						src.healths.icon_state = "health3"
+					if(0 to 50)
+						src.healths.icon_state = "health4"
+					if(config.health_threshold_dead to 0)
+						src.healths.icon_state = "health5"
+					else
+						src.healths.icon_state = "health6"
 		else
 			src.healths.icon_state = "health7"
 

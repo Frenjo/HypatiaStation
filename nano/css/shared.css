@@ -510,5 +510,23 @@ th.misc
 }
 
 
+/* Damage colors for crew monitoring computer */
+.burn
+{
+	color: orange;
+}
 
+.brute
+{
+	color: red;
+}
 
+.toxin
+{
+	color: green;
+}
+
+.oxyloss
+{
+	color: blue;
+}

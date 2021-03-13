@@ -229,7 +229,6 @@
 
 	// user interaction
 	interact(mob/user, var/ai=0)
-
 		src.add_fingerprint(user)
 		if(stat & BROKEN)
 			user.unset_machine()
@@ -350,7 +349,7 @@
 			return
 
 		flush_count++
-		if( flush_count >= flush_every_ticks )
+		if(flush_count >= flush_every_ticks)
 			if( contents.len )
 				if(mode == 2)
 					spawn(0)
@@ -395,13 +394,17 @@
 
 	// perform a flush
 	proc/flush()
-
 		flushing = 1
 		flick("[icon_state]-flush", src)
 
 		var/wrapcheck = 0
 		var/obj/structure/disposalholder/H = new()	// virtual holder object which actually
-											// travels through the pipes.
+													// travels through the pipes.
+
+		//Hacky test to get drones to mail themselves through disposals.
+		for(var/mob/living/silicon/robot/drone/D in src)
+			wrapcheck = 1
+
 		for(var/obj/item/smallDelivery/O in src)
 			wrapcheck = 1
 
@@ -440,7 +443,6 @@
 	// called when holder is expelled from a disposal
 	// should usually only occur if the pipe network is modified
 	proc/expel(var/obj/structure/disposalholder/H)
-
 		var/turf/target
 		playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 		if(H) // Somehow, someone managed to flush a window which broke mid-transit and caused the disposal to go in an infinite loop trying to expel null, hopefully this fixes it
@@ -449,9 +451,10 @@
 
 				AM.loc = src.loc
 				AM.pipe_eject(0)
-				spawn(1)
-					if(AM)
-						AM.throw_at(target, 5, 1)
+				if(!istype(AM, /mob/living/silicon/robot/drone)) //Poor drones kept smashing windows and taking system damage being fired out of disposals. ~Z
+					spawn(1)
+						if(AM)
+							AM.throw_at(target, 5, 1)
 
 			H.vent_gas(loc)
 			qdel(H)
@@ -496,7 +499,7 @@
 		//Check for any living mobs trigger hasmob.
 		//hasmob effects whether the package goes to cargo or its tagged destination.
 		for(var/mob/living/M in D)
-			if(M && M.stat != 2)
+			if(M && M.stat != 2 && !istype(M, /mob/living/silicon/robot/drone))
 				hasmob = 1
 
 		//Checks 1 contents level deep. This means that players can be sent through disposals...
@@ -504,7 +507,7 @@
 		for(var/obj/O in D)
 			if(O.contents)
 				for(var/mob/living/M in O.contents)
-					if(M && M.stat != 2)
+					if(M && M.stat != 2 && !istype(M, /mob/living/silicon/robot/drone))
 						hasmob = 1
 
 		// now everything inside the disposal gets put into the holder
@@ -521,7 +524,10 @@
 			if(istype(AM, /obj/item/smallDelivery) && !hasmob)
 				var/obj/item/smallDelivery/T = AM
 				src.destinationTag = T.sortTag
-
+			//Drones can mail themselves through maint.
+			if(istype(AM, /mob/living/silicon/robot/drone))
+				var/mob/living/silicon/robot/drone/drone = AM
+				src.destinationTag = drone.mail_destination
 
 	// start the movement process
 	// argument is the disposal unit the holder started in
@@ -547,8 +553,9 @@
 					// This is probably a terrible way to do this, but...
 					// Check if mob is wearing the mailman's voidsuit and helmet to avoid damage.
 					// Otherwise... What the other guy said below this. -Frenjo
-					if(!/obj/item/clothing/suit/space/mailmanvoid in H.get_equipped_items() && !/obj/item/clothing/head/helmet/space/mailmanvoid in H.get_equipped_items())
-						H.take_overall_damage(20, 0, "Blunt Trauma")//horribly maim any living creature jumping down disposals.  c'est la vie
+					if(!istype(H,/mob/living/silicon/robot/drone)) //Drones use the mailing code to move through the disposal system,
+						if(!/obj/item/clothing/suit/space/mailmanvoid in H.get_equipped_items() && !/obj/item/clothing/head/helmet/space/mailmanvoid in H.get_equipped_items())
+							H.take_overall_damage(20, 0, "Blunt Trauma")//horribly maim any living creature jumping down disposals.  c'est la vie
 
 			if(has_fat_guy && prob(2)) // chance of becoming stuck per segment if contains a fat guy
 				active = 0
@@ -754,7 +761,6 @@
 				qdel(H)
 
 		else	// no specified direction, so throw in random direction
-
 			playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 			if(H)
 				for(var/atom/movable/AM in H)
@@ -1153,7 +1159,6 @@
 
 //a three-way junction that sorts objects destined for the mail office mail table (tomail = 1)
 /obj/structure/disposalpipe/wrapsortjunction
-
 	desc = "An underfloor disposal pipe which sorts wrapped and unwrapped objects."
 	icon_state = "pipe-j1s"
 	var/posdir = 0
@@ -1376,8 +1381,9 @@
 			for(var/atom/movable/AM in H)
 				AM.loc = src.loc
 				AM.pipe_eject(dir)
-				spawn(5)
-					AM.throw_at(target, 3, 1)
+				if(!istype(AM,/mob/living/silicon/robot/drone)) //Drones keep smashing windows from being fired out of chutes. Bad for the station. ~Z
+					spawn(5)
+						AM.throw_at(target, 3, 1)
 			H.vent_gas(src.loc)
 			qdel(H)
 
