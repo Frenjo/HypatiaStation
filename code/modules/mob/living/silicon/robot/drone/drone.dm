@@ -253,7 +253,6 @@
 			C.prefs.be_special ^= BE_PAI
 
 /mob/living/silicon/robot/drone/proc/transfer_personality(var/client/player)
-
 	if(!player) return
 
 	src.ckey = player.ckey
@@ -265,3 +264,9 @@
 	lawupdate = 0
 	src << "<b>Systems rebooted</b>. Loading base pattern maintenance protocol... <b>loaded</b>."
 	full_law_reset()
+
+/mob/living/silicon/robot/drone/add_robot_verbs()
+	return
+
+/mob/living/silicon/robot/drone/remove_robot_verbs()
+	return

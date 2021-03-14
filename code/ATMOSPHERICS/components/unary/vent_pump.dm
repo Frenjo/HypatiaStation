@@ -42,15 +42,9 @@
 	on = 1
 	icon_state = "in"
 
-/obj/machinery/atmospherics/unary/vent_pump/high_volume
-	name = "Large Air Vent"
-	power_channel = EQUIP
-
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/New()
-	..()
-	air_contents.volume = 1000
-
 /obj/machinery/atmospherics/unary/vent_pump/New()
+	..()
+	air_contents.volume = 200
 	initial_loc = get_area(loc)
 	area_uid = initial_loc.uid
 	if (!id_tag)
@@ -59,7 +53,14 @@
 	if(ticker && ticker.current_state == 3)//if the game is running
 		src.initialize()
 		src.broadcast_status()
+
+/obj/machinery/atmospherics/unary/vent_pump/high_volume
+	name = "Large Air Vent"
+	power_channel = EQUIP
+
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/New()
 	..()
+	air_contents.volume = 1000
 
 /obj/machinery/atmospherics/unary/vent_pump/update_icon()
 	if(welded)
@@ -132,7 +133,7 @@
 
 	return 1
 
-	//Radio remote control
+//Radio remote control
 /obj/machinery/atmospherics/unary/vent_pump/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency

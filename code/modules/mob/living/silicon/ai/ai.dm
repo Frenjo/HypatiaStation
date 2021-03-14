@@ -1,4 +1,19 @@
 var/list/ai_list = list()
+var/list/ai_verbs_default = list(
+	/mob/living/silicon/ai/proc/ai_alerts,
+	/mob/living/silicon/ai/proc/ai_roster,
+	/mob/living/silicon/ai/proc/ai_call_shuttle,
+	/mob/living/silicon/ai/proc/ai_cancel_call,
+	/mob/living/silicon/ai/proc/ai_network_change,
+	/mob/living/silicon/ai/proc/ai_statuschange,
+	/mob/living/silicon/ai/proc/ai_hologram_change,
+
+	/mob/living/silicon/ai/proc/ai_camera_track,
+	/mob/living/silicon/ai/proc/ai_camera_list,
+	/mob/living/silicon/ai/proc/sensor_mode,
+	/mob/living/silicon/ai/proc/show_laws_verb,
+	/mob/living/silicon/ai/proc/toggle_camera_light
+)
 
 //Not sure why this is necessary...
 /proc/AutoUpdateAI(obj/subject)
@@ -23,7 +38,7 @@ var/list/ai_list = list()
 	var/list/connected_robots = list()
 	var/aiRestorePowerRoutine = 0
 	//var/list/laws = list()
-	var/alarms = list("Motion"=list(), "Fire"=list(), "Atmosphere"=list(), "Power"=list(), "Camera"=list())
+	var/alarms = list("Motion" = list(), "Fire" = list(), "Atmosphere" = list(), "Power" = list(), "Camera" = list())
 	var/viewalerts = 0
 	var/lawcheck[1]
 	var/ioncheck[1]
@@ -50,6 +65,12 @@ var/list/ai_list = list()
 	var/camera_light_on = 0	//Defines if the AI toggled the light on the camera it's looking through.
 	var/datum/trackable/track = null
 	var/last_announcement = ""
+
+/mob/living/silicon/ai/proc/add_ai_verbs()
+	src.verbs |= ai_verbs_default
+
+/mob/living/silicon/ai/proc/remove_ai_verbs()
+	src.verbs -= ai_verbs_default
 
 /mob/living/silicon/ai/New(loc, var/datum/ai_laws/L, var/obj/item/device/mmi/B, var/safety = 0)
 	var/list/possibleNames = ai_names
@@ -79,8 +100,6 @@ var/list/ai_list = list()
 	else
 		laws = new base_law_type
 
-	verbs += /mob/living/silicon/ai/proc/show_laws_verb
-
 	aiPDA = new/obj/item/device/pda/ai(src)
 	aiPDA.owner = name
 	aiPDA.ownjob = "AI"
@@ -88,11 +107,8 @@ var/list/ai_list = list()
 
 	aiMulti = new(src)
 
-	if (istype(loc, /turf))
-		verbs.Add(/mob/living/silicon/ai/proc/ai_call_shuttle,/mob/living/silicon/ai/proc/ai_camera_track, \
-		/mob/living/silicon/ai/proc/ai_camera_list, /mob/living/silicon/ai/proc/ai_network_change, \
-		/mob/living/silicon/ai/proc/ai_statuschange, /mob/living/silicon/ai/proc/ai_hologram_change, \
-		/mob/living/silicon/ai/proc/toggle_camera_light)
+	if(istype(loc, /turf))
+		add_ai_verbs()
 
 	//Languages
 	add_language("Sol Common", 0)
@@ -201,8 +217,11 @@ var/list/ai_list = list()
 
 		//if(icon_state == initial(icon_state))
 	var/icontype = ""
-	if (custom_sprite == 1) icontype = ("Custom")//automagically selects custom sprite if one is available
-	else icontype = input("Select an icon!", "AI", null, null) in list("Monochrome", "Blue", "Inverted", "Text", "Smiley", "Angry", "Dorf", "Matrix", "Bliss", "Firewall", "Green", "Red", "Static", "Triumvirate", "Triumvirate Static")
+	if(custom_sprite == 1)
+		icontype = ("Custom")//automagically selects custom sprite if one is available
+	else
+		icontype = input("Select an icon!", "AI", null, null) in list("Monochrome", "Blue", "Inverted", "Text", "Smiley", "Angry", "Dorf", "Matrix", "Bliss", "Firewall", "Green", "Red", "Static", "Triumvirate", "Triumvirate Static")
+
 	switch(icontype)
 		if("Custom") icon_state = "[src.ckey]-ai"
 		if("Clown") icon_state = "ai-clown2"
@@ -233,7 +252,7 @@ var/list/ai_list = list()
 		for (var/datum/mind/malfai in malf.malf_ai)
 			if (mind == malfai) // are we the evil one?
 				if (malf.apcs >= 3)
-					stat(null, "Time until station control secured: [max(malf.AI_win_timeleft/(malf.apcs/3), 0)] seconds")
+					stat(null, "Time until station control secured: [max(malf.AI_win_timeleft / (malf.apcs / 3), 0)] seconds")
 
 
 /mob/living/silicon/ai/proc/ai_alerts()
@@ -401,11 +420,10 @@ var/list/ai_list = list()
 			if (usr.machine == null)
 				usr.machine = usr
 
-			while (src.cameraFollow == target)
+			while(src.cameraFollow == target)
 				usr << "Target is not on or near any active cameras on the station. We'll check again in 5 seconds (unless you use the cancel-camera verb)."
 				sleep(40)
 				continue
-
 		return
 
 	return
@@ -664,11 +682,8 @@ var/list/ai_list = list()
 	else
 		lightNearbyCamera()
 
-
-
 // Handled camera lighting, when toggled.
 // It will get the nearest camera from the eyeobj, lighting it.
-
 /mob/living/silicon/ai/proc/lightNearbyCamera()
 	if(camera_light_on && camera_light_on < world.timeofday)
 		if(src.current)
@@ -694,6 +709,11 @@ var/list/ai_list = list()
 				src.current.set_light(AI_CAMERA_LUMINOSITY)
 		camera_light_on = world.timeofday + 1 * 20 // Update the light every 2 seconds.
 
+/mob/living/silicon/ai/proc/sensor_mode()
+	set name = "Set Sensor Augmentation"
+	set category = "AI Commands"
+	set desc = "Augment visual feed with internal sensor overlays"
+	toggle_sensor_mode()
 
 /mob/living/silicon/ai/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))

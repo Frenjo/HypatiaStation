@@ -189,9 +189,12 @@
 	name = "Human"
 	language = "Sol Common"
 	unarmed_type = /datum/unarmed_attack/punch
+	unarmed_type = /datum/unarmed_attack/bite
 	primitive = /mob/living/carbon/monkey
 
 	flags = HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR
+
+	reagent_tag = IS_HUMAN
 
 	//If you wanted to add a species-level ability:
 	/*abilities = list(/client/proc/test_ability)*/
@@ -219,6 +222,8 @@
 
 	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_TAIL
 
+	reagent_tag = IS_SOGHUN
+
 	flesh_color = "#34AF10"
 
 /datum/species/tajaran
@@ -228,6 +233,7 @@
 	language = "Siik'maas"
 	tail = "tajtail"
 	unarmed_type = /datum/unarmed_attack/claws
+	secondary_unarmed_type = /datum/unarmed_attack/bite
 	darksight = 8
 
 	cold_level_1 = 200 //Default 260
@@ -242,6 +248,8 @@
 
 	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_TAIL | HAS_SKIN_TONE
 
+	reagent_tag = IS_TAJARAN
+
 	flesh_color = "#AFA59E"
 
 /datum/species/skrell
@@ -250,9 +258,12 @@
 	deform = 'icons/mob/human_races/r_def_skrell.dmi'
 	language = "Skrellian"
 	unarmed_type = /datum/unarmed_attack/punch
+	secondary_unarmed_type = /datum/unarmed_attack/bite
 	primitive = /mob/living/carbon/monkey/skrell
 
 	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR
+
+	reagent_tag = IS_SKRELL
 
 	flesh_color = "#8CD7A3"
 
@@ -277,6 +288,8 @@
 	breath_type = "nitrogen"
 
 	flags = IS_WHITELISTED | NO_SCAN | NO_BLOOD
+
+	reagent_tag = IS_VOX
 
 	blood_color = "#2299FC"
 	flesh_color = "#808D11"
@@ -321,6 +334,7 @@
 	deform = 'icons/mob/human_races/r_def_plant.dmi'
 	language = "Rootspeak"
 	unarmed_type = /datum/unarmed_attack/diona
+	secondary_unarmed_type = /datum/unarmed_attack/diona
 	primitive = /mob/living/carbon/monkey/diona
 	slowdown = 7
 
@@ -347,6 +361,8 @@
 	body_temperature = T0C + 15		//make the plant people have a bit lower body temperature, why not
 
 	flags = IS_WHITELISTED | NO_BREATHE | REQUIRE_LIGHT | NO_SCAN | IS_PLANT | RAD_ABSORB | NO_BLOOD | NO_PAIN | NO_SLIP
+
+	reagent_tag = IS_DIONA
 
 	blood_color = "#004400"
 	flesh_color = "#907E4A"
@@ -377,6 +393,7 @@
 	deform = 'icons/mob/human_races/r_machine.dmi'
 	language = "Binary Audio Language"
 	unarmed_type = /datum/unarmed_attack/punch/strong
+	secondary_unarmed_type = /datum/unarmed_attack/punch/strong
 
 	eyes = "blank_eyes"
 	brute_mod = 0.5
@@ -411,6 +428,7 @@
 	deform = 'icons/mob/human_races/r_obsedai.dmi'
 	language = "Obsedaian"
 	unarmed_type = /datum/unarmed_attack/punch/verystrong
+	secondary_unarmed_type = /datum/unarmed_attack/punch/verystrong
 	slowdown = 7
 
 	eyes = "blank_eyes"
@@ -430,6 +448,8 @@
 
 	flags = IS_WHITELISTED | NO_BREATHE | NO_SCAN | NO_BLOOD | NO_PAIN | IS_SYNTHETIC
 
+	reagent_tag = IS_OBSEDAI
+
 	blood_color = "#BD3AC2"
 	flesh_color = "#4A4845"
 
@@ -439,6 +459,7 @@
 	deform = 'icons/mob/human_races/r_plasmapeople.dmi'
 	language = "Plasmaperson"
 	unarmed_type = /datum/unarmed_attack/punch
+	secondary_unarmed_type = /datum/unarmed_attack/punch
 	slowdown = 3
 
 	burn_mod = 1.5
@@ -447,6 +468,8 @@
 	poison_type = "oxygen"
 
 	flags = IS_WHITELISTED | NO_SCAN | NO_BLOOD | NO_PAIN | IS_PLASMA_IMMUNE
+
+	reagent_tag = IS_PLASMAPERSON
 
 /datum/species/plasmapeople/handle_post_spawn(var/mob/living/carbon/human/H)
 	if(!H)
@@ -465,7 +488,6 @@
 
 // Called when using the shredding behavior.
 /datum/species/proc/can_shred(var/mob/living/carbon/human/H)
-
 	if(H.a_intent != "hurt")
 		return 0
 

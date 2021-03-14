@@ -21,6 +21,8 @@
 
 	flags = IS_WHITELISTED | NO_BREATHE | NO_SCAN | NO_PAIN | RAD_ABSORB | NO_SLIP | NO_POISON
 
+	reagent_tag = IS_XENOMORPH
+
 	blood_color = "#05EE05"
 	flesh_color = "#282846"
 	gibbed_anim = "gibbed-a"
@@ -48,7 +50,6 @@
 	H.visible_message("<span class='notice'>[H] caresses [target] with its scythe-like arm.</span>", \
 					"<span class='notice'>You caress [target] with your scythe-like arm.</span>")
 
-
 /datum/species/xenos/handle_post_spawn(var/mob/living/carbon/human/H)
 	if(H.mind)
 		H.mind.assigned_role = "Alien"
@@ -61,7 +62,6 @@
 	return ..()
 
 /datum/species/xenos/handle_environment_special(var/mob/living/carbon/human/H)
-
 	if(!H.loc)
 		return
 

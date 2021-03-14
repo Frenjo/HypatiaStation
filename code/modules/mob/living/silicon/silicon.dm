@@ -14,6 +14,10 @@
 
 	var/local_transmit //If set, can only speak to others of the same type within a short range.
 
+	var/sensor_mode = 0 //Determines the current HUD.
+	#define SEC_HUD 1 //Security HUD mode
+	#define MED_HUD 2 //Medical HUD mode
+
 /mob/living/silicon/proc/cancelAlarm()
 	return
 
@@ -254,3 +258,18 @@
 
 /mob/living/silicon/binarycheck()
 	return 1
+
+/mob/living/silicon/proc/toggle_sensor_mode()
+	set name = "Set Sensor Augmentation"
+	set desc = "Augment visual feed with internal sensor overlays."
+	var/sensor_type = input("Please select sensor type.", "Sensor Integration", null) in list("Security", "Medical","Disable")
+	switch(sensor_type)
+		if ("Security")
+			sensor_mode = SEC_HUD
+			src << "<span class='notice'>Security records overlay enabled.</span>"
+		if ("Medical")
+			sensor_mode = MED_HUD
+			src << "<span class='notice'>Life signs monitor overlay enabled.</span>"
+		if ("Disable")
+			sensor_mode = 0
+			src << "Sensor augmentations disabled."
