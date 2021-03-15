@@ -72,21 +72,21 @@
 						var/mobtype = C.parameters["mobtype"]
 						var/mob/M = new mobtype
 
-						if(ishuman(M) || isbrain(M))
+						if(isHuman(M) || isBrain(M))
 							race = "Human"
 
-						else if(ismonkey(M))
+						else if(isMonkey(M))
 							race = "Monkey"
 							language = race
 
-						else if(issilicon(M) || C.parameters["job"] == "AI") // sometimes M gets deleted prematurely for AIs... just check the job
+						else if(isSilicon(M) || C.parameters["job"] == "AI") // sometimes M gets deleted prematurely for AIs... just check the job
 							race = "Artificial Life"
 
-						else if(isslime(M)) // NT knows a lot about slimes, but not aliens. Can identify slimes
+						else if(isSlime(M)) // NT knows a lot about slimes, but not aliens. Can identify slimes
 							race = "slime"
 							language = race
 
-						else if(isanimal(M))
+						else if(isAnimal(M))
 							race = "Domestic Animal"
 							language = race
 
@@ -196,7 +196,7 @@
 
 			var/newnet = input(usr, "Which network do you want to view?", "Comm Monitor", network) as null|text
 
-			if(newnet && ((usr in range(1, src) || issilicon(usr))))
+			if(newnet && ((usr in range(1, src) || isSilicon(usr))))
 				if(length(newnet) > 15)
 					temp = "<font color = #D70B00>- FAILED: NETWORK TAG STRING TOO LENGHTLY -</font color>"
 

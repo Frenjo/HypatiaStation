@@ -65,7 +65,6 @@
 /mob/proc/update_action_buttons()
 	return
 
-
 /obj/screen/grab
 	name = "grab"
 
@@ -214,17 +213,17 @@
 		if("equip")
 			if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
 				return 1
-			if(ishuman(usr))
+			if(isHuman(usr))
 				var/mob/living/carbon/human/H = usr
 				H.quick_equip()
 
 		if("resist")
-			if(isliving(usr))
+			if(isLiving(usr))
 				var/mob/living/L = usr
 				L.resist()
 
 		if("mov_intent")
-			if(iscarbon(usr))
+			if(isCarbon(usr))
 				var/mob/living/carbon/C = usr
 				if(C.legcuffed)
 					C << "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>"
@@ -286,20 +285,20 @@
 			usr.drop_item_v()
 
 		if("module")
-			if(issilicon(usr))
+			if(isSilicon(usr))
 				if(usr:module)
 					return 1
 				usr:pick_module()
 
 		if("radio")
-			if(issilicon(usr))
+			if(isSilicon(usr))
 				usr:radio_menu()
 		if("panel")
-			if(issilicon(usr))
+			if(isSilicon(usr))
 				usr:installed_modules()
 
 		if("store")
-			if(issilicon(usr))
+			if(isSilicon(usr))
 				usr:uneq_active()
 
 		if("module1")
@@ -387,12 +386,12 @@
 		return 1
 	switch(name)
 		if("r_hand")
-			if(iscarbon(usr))
+			if(isCarbon(usr))
 				var/mob/living/carbon/C = usr
 				C.activate_hand("r")
 				usr.next_move = world.time+2
 		if("l_hand")
-			if(iscarbon(usr))
+			if(isCarbon(usr))
 				var/mob/living/carbon/C = usr
 				C.activate_hand("l")
 				usr.next_move = world.time+2
@@ -410,7 +409,6 @@
 /obj/screen/parallax_master
 	screen_loc = UI_SPACE_PARALLAX
 	plane = SPACE_PARALLAX_PLANE
-	layer = 1.5
 	blend_mode = BLEND_MULTIPLY
 	appearance_flags = PLANE_MASTER
 	mouse_opacity = 0
@@ -437,7 +435,7 @@
 	// Let's try to keep that consistent by probability.
 	// There's also a slightly higher chance for non-animated white stars(3,4) to break up the twinkle a bit.
 	// Along with the default single white star(0) if nothing else is chosen just to fill space.
-	var/star_type = pick(prob(100); 0, prob(40); 1, prob(40); 2, prob(40); 3, prob(45); 4, prob(45); 5, prob(30); 6, prob(25); 7, prob(25); 8, prob(15); 9, prob(14); 10)
+	var/star_type = pick(prob(100); 0, prob(39); 1, prob(39); 2, prob(39); 3, prob(40); 4, prob(40); 5, prob(30); 6, prob(25); 7, prob(25); 8, prob(15); 9, prob(14); 10)
 	//icon_state = "star[star_type]"
 	icon_state = "astar[star_type]"
 	//screen_loc = "[rand( 1, 15 )]:[rand( -16, 16 )],[rand( 1, 15 )]:[rand( -16, 16 )]"
@@ -446,8 +444,9 @@
 
 /obj/screen/space_star/bluespace
 	icon_state = "bstar0"
+	plane = SPACE_DUST_PLANE
 
 /obj/screen/space_star/bluespace/New()
 	..()
-	var/star_type = pick(prob(100); 0, prob(50); 1, prob(10); 2, prob(1); 3, prob(10); 4, prob(15); 5, prob(75); 6 )
+	var/star_type = pick(prob(100); 0, prob(50); 1, prob(10); 2, prob(1); 3, prob(10); 4, prob(15); 5, prob(75); 6)
 	icon_state = "bstar[star_type]"

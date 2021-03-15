@@ -5,10 +5,14 @@
 /turf/space/transit/attackby(obj/O as obj, mob/user as mob)
 	return
 
-/turf/space/transit/north // moving to the north
+/turf/space/transit/New()
+	. = ..()
+	toggle_transit(reverse_dir[pushdirection])
 
+/turf/space/transit/north // moving to the north
 	pushdirection = SOUTH  // south because the space tile is scrolling south
 
+/*
 	//IF ANYONE KNOWS A MORE EFFICIENT WAY OF MANAGING THESE SPRITES, BE MY GUEST.
 	shuttlespace_ns1
 		icon_state = "speedspace_ns_1"
@@ -40,11 +44,15 @@
 		icon_state = "speedspace_ns_14"
 	shuttlespace_ns15
 		icon_state = "speedspace_ns_15"
+*/
+
+/turf/space/transit/south // moving to the south
+	pushdirection = NORTH  // north because the space tile is scrolling north
 
 /turf/space/transit/east // moving to the east
-
 	pushdirection = WEST
 
+/*
 	shuttlespace_ew1
 		icon_state = "speedspace_ew_1"
 	shuttlespace_ew2
@@ -75,11 +83,12 @@
 		icon_state = "speedspace_ew_14"
 	shuttlespace_ew15
 		icon_state = "speedspace_ew_15"
+*/
 
 /turf/space/transit/west // Moving to the west
-
 	pushdirection = EAST
 
+/*
 	shuttlespace_we1
 		icon_state = "speedspace_we_1"
 	shuttlespace_we2
@@ -110,3 +119,4 @@
 		icon_state = "speedspace_we_14"
 	shuttlespace_we15
 		icon_state = "speedspace_we_15"
+*/

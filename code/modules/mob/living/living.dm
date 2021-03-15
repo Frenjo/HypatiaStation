@@ -275,7 +275,7 @@
 /mob/living/proc/revive()
 	rejuvenate()
 	buckled = initial(src.buckled)
-	if(iscarbon(src))
+	if(isCarbon(src))
 		var/mob/living/carbon/C = src
 
 		if (C.handcuffed && !initial(C.handcuffed))
@@ -315,7 +315,7 @@
 	heal_overall_damage(getBruteLoss(), getFireLoss())
 
 	// restore all of a human's blood
-	if(ishuman(src))
+	if(isHuman(src))
 		var/mob/living/carbon/human/human_mob = src
 		human_mob.restore_blood()
 
@@ -394,7 +394,7 @@
 			else
 				diag = null
 			if ((get_dist(src, pulling) > 1 || diag))
-				if (isliving(pulling))
+				if (isLiving(pulling))
 					var/mob/living/M = pulling
 					var/ok = 1
 					if (locate(/obj/item/weapon/grab, M.grabbed_by))
@@ -429,7 +429,7 @@
 								var/turf/location = M.loc
 								if (istype(location, /turf/simulated))
 									location.add_blood(M)
-									if(ishuman(M))
+									if(isHuman(M))
 										var/mob/living/carbon/H = M
 										var/blood_volume = round(H:vessel.get_reagent_amount("blood"))
 										if(blood_volume > 0)
@@ -460,7 +460,7 @@
 	set name = "Resist"
 	set category = "IC"
 
-	if(!isliving(usr) || usr.next_move > world.time)
+	if(!isLiving(usr) || usr.next_move > world.time)
 		return
 	usr.next_move = world.time + 20
 
@@ -541,7 +541,7 @@
 
 	//unbuckling yourself
 	if(L.buckled && (L.last_special <= world.time) )
-		if(iscarbon(L))
+		if(isCarbon(L))
 			var/mob/living/carbon/C = L
 			if( C.handcuffed )
 				C.next_move = world.time + 100
@@ -628,7 +628,7 @@
 					C.open()
 
 	//breaking out of handcuffs
-	else if(iscarbon(L))
+	else if(isCarbon(L))
 		var/mob/living/carbon/CM = L
 		if(CM.handcuffed && CM.canmove && (CM.last_special <= world.time))
 			CM.next_move = world.time + 100
@@ -779,7 +779,7 @@
 				src << "\red You can't be carrying items or have items equipped when vent crawling!"
 				return
 
-	if(isslime(src))
+	if(isSlime(src))
 		var/mob/living/carbon/slime/S = src
 		if(S.Victim)
 			src << "\red You'll have to let [S.Victim] go or finish eating \him first."

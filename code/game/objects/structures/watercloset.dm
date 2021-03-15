@@ -28,7 +28,7 @@
 			return
 		else
 			var/obj/item/I = pick(contents)
-			if(ishuman(user))
+			if(isHuman(user))
 				user.put_in_hands(I)
 			else
 				I.loc = get_turf(src)
@@ -55,7 +55,7 @@
 	if(istype(I, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = I
 
-		if(isliving(G.affecting))
+		if(isLiving(G.affecting))
 			var/mob/living/GM = G.affecting
 
 			if(G.state>1)
@@ -102,7 +102,7 @@
 /obj/structure/urinal/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = I
-		if(isliving(G.affecting))
+		if(isLiving(G.affecting))
 			var/mob/living/GM = G.affecting
 			if(G.state>1)
 				if(!GM.loc == get_turf(src))
@@ -206,7 +206,7 @@
 /obj/machinery/shower/proc/wash(atom/movable/O as obj|mob)
 	if(!on) return
 
-	if(iscarbon(O))
+	if(isCarbon(O))
 		var/mob/living/carbon/M = O
 		if(M.r_hand)
 			M.r_hand.clean_blood()
@@ -215,7 +215,7 @@
 		if(M.back)
 			if(M.back.clean_blood())
 				M.update_inv_back(0)
-		if(ishuman(M))
+		if(isHuman(M))
 			var/mob/living/carbon/human/H = M
 			var/washgloves = 1
 			var/washshoes = 1
@@ -281,7 +281,7 @@
 		var/turf/tile = loc
 		loc.clean_blood()
 		for(var/obj/effect/E in tile)
-			if(istype(E,/obj/effect/rune) || istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
+			if(istype(E, /obj/effect/rune) || istype(E, /obj/effect/decal/cleanable) || istype(E, /obj/effect/overlay))
 				qdel(E)
 
 /obj/machinery/shower/process()
@@ -291,7 +291,7 @@
 
 /obj/machinery/shower/proc/check_heat(mob/M as mob)
 	if(!on || watertemp == "normal") return
-	if(iscarbon(M))
+	if(isCarbon(M))
 		var/mob/living/carbon/C = M
 
 		if(watertemp == "freezing")
@@ -324,7 +324,7 @@
 	var/busy = 0 	//Something's being washed at the moment
 
 /obj/structure/sink/attack_hand(mob/user as mob)
-	if (hasorgans(user))
+	if (hasOrgans(user))
 		var/datum/organ/external/temp = user:organs_by_name["r_hand"]
 		if (user.hand)
 			temp = user:organs_by_name["l_hand"]
@@ -332,7 +332,7 @@
 			user << "<span class='notice'>You try to move your [temp.display_name], but cannot!"
 			return
 
-	if(isrobot(user) || isAI(user))
+	if(isRobot(user) || isAI(user))
 		return
 
 	if(!Adjacent(user))
@@ -351,7 +351,7 @@
 	if(!Adjacent(user)) return		//Person has moved away from the sink
 
 	user.clean_blood()
-	if(ishuman(user))
+	if(isHuman(user))
 		user:update_inv_gloves()
 	for(var/mob/V in viewers(src, null))
 		V.show_message("\blue [user] washes their hands using \the [src].")
@@ -391,7 +391,7 @@
 				user.Stun(10)
 				user.stuttering = 10
 				user.Weaken(10)
-				if(isrobot(user))
+				if(isRobot(user))
 					var/mob/living/silicon/robot/R = user
 					R.cell.charge -= 20
 				else

@@ -51,6 +51,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
 	var/air_doors_activated = 0
 	var/list/ambience = list('sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg')
+	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
 
 /*Adding a wizard area teleport list because motherfucking lag -- Urist*/
 /*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
@@ -135,11 +136,8 @@ var/list/ghostteleportlocs = list()
 //These are shuttle areas, they must contain two areas in a subgroup if you want to move a shuttle from one
 //place to another. Look at escape shuttle for example.
 //All shuttles show now be under shuttle since we have smooth-wall code.
-
 /area/shuttle
 	requires_power = 0
-	//luminosity = 1
-	//lighting_use_dynamic = 0
 
 /area/shuttle/arrival
 	name = "\improper Arrival Shuttle"
@@ -156,6 +154,7 @@ var/list/ghostteleportlocs = list()
 
 /area/shuttle/arrival/transit
 	icon_state = "shuttle"
+	base_turf = /turf/space/transit/west
 // End of new stuff.
 
 /area/shuttle/escape
@@ -173,6 +172,7 @@ var/list/ghostteleportlocs = list()
 /area/shuttle/escape/transit // the area to pass through for 3 minute transit
 	name = "\improper Emergency Shuttle Transit"
 	icon_state = "shuttle"
+	base_turf = /turf/space/transit/north
 
 /area/shuttle/escape_pod1
 	name = "\improper Escape Pod One"
@@ -186,6 +186,7 @@ var/list/ghostteleportlocs = list()
 
 /area/shuttle/escape_pod1/transit
 	icon_state = "shuttle"
+	base_turf = /turf/space/transit/north
 
 /area/shuttle/escape_pod2
 	name = "\improper Escape Pod Two"
@@ -199,6 +200,7 @@ var/list/ghostteleportlocs = list()
 
 /area/shuttle/escape_pod2/transit
 	icon_state = "shuttle"
+	base_turf = /turf/space/transit/north
 
 /area/shuttle/escape_pod3
 	name = "\improper Escape Pod Three"
@@ -212,6 +214,7 @@ var/list/ghostteleportlocs = list()
 
 /area/shuttle/escape_pod3/transit
 	icon_state = "shuttle"
+	base_turf = /turf/space/transit/east
 
 /area/shuttle/escape_pod5 //Pod 4 was lost to meteors
 	name = "\improper Escape Pod Five"
@@ -225,6 +228,7 @@ var/list/ghostteleportlocs = list()
 
 /area/shuttle/escape_pod5/transit
 	icon_state = "shuttle"
+	base_turf = /turf/space/transit/west
 
 /area/shuttle/mining
 	name = "\improper Mining Shuttle"
@@ -248,15 +252,11 @@ var/list/ghostteleportlocs = list()
 	icon_state = "shuttle"
 	name = "\improper Alien Shuttle Base"
 	requires_power = 1
-	//luminosity = 0
-	//lighting_use_dynamic = 1
 
 /area/shuttle/alien/mine
 	icon_state = "shuttle"
 	name = "\improper Alien Shuttle Mine"
 	requires_power = 1
-	//luminosity = 0
-	//lighting_use_dynamic = 1
 
 /area/shuttle/prison/
 	name = "\improper Prison Shuttle"
@@ -352,7 +352,6 @@ var/list/ghostteleportlocs = list()
 	name = "start area"
 	icon_state = "start"
 	requires_power = 0
-	//luminosity = 1
 	lighting_use_dynamic = 0
 	has_gravity = 1
 
@@ -505,6 +504,7 @@ var/list/ghostteleportlocs = list()
 /area/syndicate_station/transit
 	name = "\improper Hyperspace"
 	icon_state = "shuttle"
+	base_turf = /turf/space/transit/north
 
 /area/wizard_station
 	name = "\improper Wizard's Den"
@@ -516,6 +516,7 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Hyperspace"
 	icon_state = "shuttle"
 	requires_power = 0
+	base_turf = /turf/space/transit/north
 
 /area/vox_station/southwest_solars
 	name = "\improper Aft Port Solars"

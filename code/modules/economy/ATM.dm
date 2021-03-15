@@ -399,6 +399,6 @@ log transactions
 	held_card.loc = src.loc
 	authenticated_account = null
 
-	if(ishuman(human_user) && !human_user.get_active_hand())
+	if(isHuman(human_user) && !human_user.get_active_hand())
 		human_user.put_in_hands(held_card)
 	held_card = null

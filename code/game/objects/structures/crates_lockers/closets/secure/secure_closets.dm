@@ -70,7 +70,7 @@
 				src.MouseDrop_T(W:affecting, user)	//act like they were dragged onto the closet
 			else
 				user << "<span class='notice'>The locker is too small to stuff [W:affecting] into!</span>"
-		if(isrobot(user))
+		if(isRobot(user))
 			return
 		user.drop_item()
 		if(W)
@@ -115,7 +115,7 @@
 	if(!usr.canmove || usr.stat || usr.restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
 		return
 
-	if(ishuman(usr))
+	if(isHuman(usr))
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else

@@ -36,7 +36,7 @@
 	//it would be cool to play a sound here
 	moving_status = SHUTTLE_WARMUP
 	spawn(warmup_time*10)
-		if (moving_status == SHUTTLE_IDLE)
+		if(moving_status == SHUTTLE_IDLE)
 			return	//someone cancelled the launch
 
 		arrive_time = world.time + travel_time*10
@@ -44,24 +44,24 @@
 		move(departing, interim, direction)
 
 
-		while (world.time < arrive_time)
+		while(world.time < arrive_time)
 			sleep(5)
 
 		move(interim, destination, direction)
 		moving_status = SHUTTLE_IDLE
 
 /datum/shuttle/proc/dock()
-	if (!docking_controller)
+	if(!docking_controller)
 		return
 
 	var/dock_target = current_dock_target()
-	if (!dock_target)
+	if(!dock_target)
 		return
 
 	docking_controller.initiate_docking(dock_target)
 
 /datum/shuttle/proc/undock()
-	if (!docking_controller)
+	if(!docking_controller)
 		return
 	docking_controller.initiate_undocking()
 
@@ -69,7 +69,7 @@
 	return null
 
 /datum/shuttle/proc/skip_docking_checks()
-	if (!docking_controller || !current_dock_target())
+	if(!docking_controller || !current_dock_target())
 		return 1	//shuttles without docking controllers or at locations without docking ports act like old-style shuttles
 	return 0
 
@@ -77,7 +77,6 @@
 //A note to anyone overriding move in a subtype. move() must absolutely not, under any circumstances, fail to move the shuttle.
 //If you want to conditionally cancel shuttle launches, that logic must go in short_jump() or long_jump()
 /datum/shuttle/proc/move(var/area/origin, var/area/destination, var/direction=null)
-
 	//world << "move_shuttle() called for [shuttle_tag] leaving [origin] en route to [destination]."
 
 	//world << "area_coming_from: [origin]"
@@ -87,7 +86,7 @@
 		//world << "cancelling move, shuttle will overlap."
 		return
 
-	if (docking_controller && !docking_controller.undocked())
+	if(docking_controller && !docking_controller.undocked())
 		docking_controller.force_undock()
 
 	var/list/dstturfs = list()
@@ -100,10 +99,9 @@
 
 	for(var/turf/T in dstturfs)
 		var/turf/D = locate(T.x, throwy - 1, 1)
-		for(var/atom/movable/AM as mob|obj in T)
-			AM.Move(D)
-		if(istype(T, /turf/simulated))
-			qdel(T)
+		for(var/atom/movable/AM in T)
+			if(AM.simulated)
+				AM.Move(D)
 
 	for(var/mob/living/carbon/bug in destination)
 		bug.gib()
@@ -114,7 +112,9 @@
 	origin.move_contents_to(destination, direction=direction)
 
 	for(var/mob/M in destination)
-		if(M.hud_used)	M.hud_used.toggle_parallax_space()
+		if(M.hud_used)
+			M.hud_used.toggle_parallax_space()
+
 		if(M.client)
 			spawn(0)
 				if(M.buckled)

@@ -71,7 +71,7 @@
 	MouseDrop(over_object, src_location, over_location)
 		..()
 		if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
-			if(!ishuman(usr))	return
+			if(!isHuman(usr))	return
 			if(opened)	return 0
 			if(contents.len)	return 0
 			visible_message("[usr] folds up the [src.name]")
@@ -119,6 +119,6 @@
 
 	MouseDrop(over_object, src_location, over_location)
 		if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
-			if(!ishuman(usr))	return
+			if(!isHuman(usr))	return
 			usr << "\red You can't fold that up anymore.."
 		..()

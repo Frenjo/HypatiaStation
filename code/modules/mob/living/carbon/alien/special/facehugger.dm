@@ -27,7 +27,7 @@ var/const/MAX_ACTIVE_TIME = 400
 	var/attached = 0
 
 /obj/item/clothing/mask/facehugger/attack_paw(user as mob) //can be picked up by aliens
-	if(isalien(user))
+	if(isAlien(user))
 		attack_hand(user)
 		return
 	else
@@ -35,7 +35,7 @@ var/const/MAX_ACTIVE_TIME = 400
 		return
 
 /obj/item/clothing/mask/facehugger/attack_hand(user as mob)
-	if((stat == CONSCIOUS && !sterile) && !isalien(user))
+	if((stat == CONSCIOUS && !sterile) && !isAlien(user))
 		Attach(user)
 		return
 	else
@@ -109,7 +109,7 @@ var/const/MAX_ACTIVE_TIME = 400
 		Attach(hit_atom)
 
 /obj/item/clothing/mask/facehugger/proc/Attach(M as mob)
-	if( (!iscorgi(M) && !iscarbon(M)) || isalien(M))
+	if( (!isCorgi(M) && !isCarbon(M)) || isAlien(M))
 		return
 	if(attached)
 		return
@@ -126,14 +126,14 @@ var/const/MAX_ACTIVE_TIME = 400
 
 	L.visible_message("\red \b [src] leaps at [L]'s face!")
 
-	if(ishuman(L))
+	if(isHuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.head && H.head.flags & HEADCOVERSMOUTH)
 			H.visible_message("\red \b [src] smashes against [H]'s [H.head]!")
 			Die()
 			return
 
-	if(iscarbon(M))
+	if(isCarbon(M))
 		var/mob/living/carbon/target = L
 
 		if(target.wear_mask)
@@ -147,7 +147,7 @@ var/const/MAX_ACTIVE_TIME = 400
 		target.equip_to_slot(src, slot_wear_mask)
 
 		if(!sterile) L.Paralyse(MAX_IMPREGNATION_TIME/6) //something like 25 ticks = 20 seconds with the default settings
-	else if (iscorgi(M))
+	else if (isCorgi(M))
 		var/mob/living/simple_animal/corgi/C = M
 		src.loc = C
 		C.facehugger = src
@@ -175,7 +175,7 @@ var/const/MAX_ACTIVE_TIME = 400
 		Die()
 		icon_state = "[initial(icon_state)]_impregnated"
 
-		if(iscorgi(target))
+		if(isCorgi(target))
 			var/mob/living/simple_animal/corgi/C = target
 			src.loc = get_turf(C)
 			C.facehugger = null
@@ -225,14 +225,14 @@ var/const/MAX_ACTIVE_TIME = 400
 	return
 
 /proc/CanHug(var/mob/M)
-
-	if(iscorgi(M))
+	if(isCorgi(M))
 		return 1
 
-	if(!iscarbon(M) || isalien(M))
+	if(!isCarbon(M) || isAlien(M))
 		return 0
+
 	var/mob/living/carbon/C = M
-	if(ishuman(C))
+	if(isHuman(C))
 		var/mob/living/carbon/human/H = C
 		if(H.head && H.head.flags & HEADCOVERSMOUTH)
 			return 0

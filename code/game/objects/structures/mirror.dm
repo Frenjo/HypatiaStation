@@ -12,7 +12,7 @@
 /obj/structure/mirror/attack_hand(mob/user as mob)
 	if(shattered)	return
 
-	if(ishuman(user))
+	if(isHuman(user))
 		var/mob/living/carbon/human/H = user
 
 		if(H.a_intent == "hurt")
@@ -96,7 +96,7 @@
 
 
 /obj/structure/mirror/attack_animal(mob/user as mob)
-	if(!isanimal(user)) return
+	if(!isAnimal(user)) return
 	var/mob/living/simple_animal/M = user
 	if(M.melee_damage_upper <= 0) return
 	if(shattered)
@@ -107,7 +107,7 @@
 
 
 /obj/structure/mirror/attack_slime(mob/user as mob)
-	if(!isslimeadult(user)) return
+	if(!isSlimeAdult(user)) return
 	if(shattered)
 		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 		return

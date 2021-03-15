@@ -96,10 +96,10 @@
 
 
 /obj/item/weapon/melee/baton/attack(mob/M, mob/user)
-	if(isrobot(M))
+	if(isRobot(M))
 		..()
 		return
-	if(!isliving(M))
+	if(!isLiving(M))
 		return
 
 	var/mob/living/L = M
@@ -124,7 +124,7 @@
 
 		msg_admin_attack("[key_name(user)] stunned [key_name(L)] with the [src].")
 
-		if(isrobot(loc))
+		if(isRobot(loc))
 			var/mob/living/silicon/robot/R = loc
 			if(R && R.cell)
 				R.cell.use(hitcost)

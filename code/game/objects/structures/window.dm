@@ -142,14 +142,14 @@
 		playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
 
 /obj/structure/window/attack_animal(mob/user as mob)
-	if(!isanimal(user)) return
+	if(!isAnimal(user)) return
 	var/mob/living/simple_animal/M = user
 	if(M.melee_damage_upper <= 0) return
 	attack_generic(M, M.melee_damage_upper)
 
 
 /obj/structure/window/attack_slime(mob/user as mob)
-	if(!isslimeadult(user)) return
+	if(!isSlimeAdult(user)) return
 	attack_generic(user, rand(10, 15))
 
 
@@ -162,7 +162,7 @@
 			var/mob/living/M = G.affecting
 			var/state = G.state
 			qdel(W)	//gotta delete it here because if window breaks, it won't get deleted
-			switch (state)
+			switch(state)
 				if(1)
 					M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
 					M.apply_damage(7)

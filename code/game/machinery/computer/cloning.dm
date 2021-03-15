@@ -336,7 +336,7 @@
 	return
 
 /obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject as mob)
-	if ((isnull(subject)) || (!(ishuman(subject))) || (!subject.dna))
+	if ((isnull(subject)) || (!(isHuman(subject))) || (!subject.dna))
 		scantemp = "Error: Unable to locate valid genetic data."
 		return
 	if (!subject.has_brain())

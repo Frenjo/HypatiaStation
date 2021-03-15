@@ -33,7 +33,7 @@ Bonus
 			if(1, 2, 3, 4)
 				M << "<span class='notice'>[pick("Your throat hurts.", "You clear your throat.")]</span>"
 			else
-				if(ishuman(M))
+				if(isHuman(M))
 					var/mob/living/carbon/human/H = M
 					var/random_name = ""
 					switch(H.gender)
@@ -48,7 +48,7 @@ Bonus
 
 /datum/symptom/voice_change/End(var/datum/disease/advance/A)
 	..()
-	if(ishuman(A.affected_mob))
+	if(isHuman(A.affected_mob))
 		var/mob/living/carbon/human/H = A.affected_mob
 		H.UnsetSpecialVoice()
 	return

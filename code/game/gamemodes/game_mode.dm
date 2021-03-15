@@ -148,7 +148,7 @@ Implants;
 	for(var/mob/M in player_list)
 		if(M.client)
 			clients++
-			if(ishuman(M))
+			if(isHuman(M))
 				if(!M.stat)
 					surviving_humans++
 					if(M.loc && M.loc.loc && M.loc.loc.type in escape_locations)
@@ -170,7 +170,7 @@ Implants;
 				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod5/centcom)
 					escaped_on_pod_5++
 
-			if(isobserver(M))
+			if(isObserver(M))
 				ghosts++
 
 	if(clients > 0)

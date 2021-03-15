@@ -273,7 +273,7 @@ This function restores all organs.
 	if(blocked >= 2)	return 0
 
 	var/datum/organ/external/organ = null
-	if(isorgan(def_zone))
+	if(isOrgan(def_zone))
 		organ = def_zone
 	else
 		if(!def_zone)	def_zone = ran_zone(def_zone)

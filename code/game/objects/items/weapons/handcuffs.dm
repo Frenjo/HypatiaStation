@@ -16,7 +16,7 @@
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
 
 /obj/item/weapon/handcuffs/attack(mob/living/carbon/C as mob, mob/user as mob)
-	if(istype(src, /obj/item/weapon/handcuffs/cyborg) && isrobot(user))
+	if(istype(src, /obj/item/weapon/handcuffs/cyborg) && isRobot(user))
 		if(!C.handcuffed)
 			var/turf/p_loc = user.loc
 			var/turf/p_loc_m = C.loc

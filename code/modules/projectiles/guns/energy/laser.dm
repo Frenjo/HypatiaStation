@@ -49,7 +49,7 @@ obj/item/weapon/gun/energy/laser/retro
 /obj/item/weapon/gun/energy/laser/cyborg/load_into_chamber()
 	if(in_chamber)
 		return 1
-	if(isrobot(src.loc))
+	if(isRobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		if(R && R.cell)
 			R.cell.use(100)
@@ -73,7 +73,7 @@ obj/item/weapon/gun/energy/laser/retro
 /obj/item/weapon/gun/energy/lasercannon/cyborg/load_into_chamber()
 	if(in_chamber)
 		return 1
-	if(isrobot(src.loc))
+	if(isRobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		if(R && R.cell)
 			R.cell.use(250)
@@ -101,7 +101,7 @@ obj/item/weapon/gun/energy/laser/retro
 	var/charge_tick = 0
 
 /obj/item/weapon/gun/energy/laser/bluetag/special_check(var/mob/living/carbon/human/M)
-	if(ishuman(M))
+	if(isHuman(M))
 		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
 			return 1
 		M << "\red You need to be wearing your laser tag vest!"
@@ -136,7 +136,7 @@ obj/item/weapon/gun/energy/laser/retro
 	var/charge_tick = 0
 
 /obj/item/weapon/gun/energy/laser/redtag/special_check(var/mob/living/carbon/human/M)
-	if(ishuman(M))
+	if(isHuman(M))
 		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
 			return 1
 		M << "\red You need to be wearing your laser tag vest!"

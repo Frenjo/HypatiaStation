@@ -107,7 +107,7 @@
 
 
 	put_mob(mob/living/carbon/M as mob)
-		if(!iscarbon(M))
+		if(!isCarbon(M))
 			usr << "\red <B>The [src.name] cannot hold this!</B>"
 			return
 		if(src.occupant)

@@ -145,7 +145,7 @@
 		if (href_list["scan"])
 			if (src.scan)
 
-				if(ishuman(usr))
+				if(isHuman(usr))
 					scan.loc = usr.loc
 
 					if(!usr.get_active_hand())

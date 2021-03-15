@@ -21,7 +21,7 @@
 		if(fireaxe)
 			hasaxe = 1
 
-		if (isrobot(usr) || src.locked)
+		if (isRobot(usr) || src.locked)
 			if(istype(O, /obj/item/device/multitool))
 				user << "\red Resetting circuitry..."
 				playsound(user, 'sound/machines/lockreset.ogg', 50, 1)
@@ -150,7 +150,7 @@
 		set name = "Open/Close"
 		set category = "Object"
 
-		if (isrobot(usr) || src.locked || src.smashed)
+		if (isRobot(usr) || src.locked || src.smashed)
 			if(src.locked)
 				usr << "\red The cabinet won't budge!"
 			else if(src.smashed)
@@ -164,7 +164,7 @@
 		set name = "Remove Fire Axe"
 		set category = "Object"
 
-		if (isrobot(usr))
+		if (isRobot(usr))
 			return
 
 		if (localopened)

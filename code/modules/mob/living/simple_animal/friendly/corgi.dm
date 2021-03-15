@@ -277,14 +277,14 @@
 		turns_since_scan++
 		if(turns_since_scan > 5)
 			turns_since_scan = 0
-			if((movement_target) && !(isturf(movement_target.loc) || ishuman(movement_target.loc) ))
+			if((movement_target) && !(isturf(movement_target.loc) || isHuman(movement_target.loc) ))
 				movement_target = null
 				stop_automated_movement = 0
 			if( !movement_target || !(movement_target.loc in oview(src, 3)) )
 				movement_target = null
 				stop_automated_movement = 0
 				for(var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src,3))
-					if(isturf(S.loc) || ishuman(S.loc))
+					if(isturf(S.loc) || isHuman(S.loc))
 						movement_target = S
 						break
 			if(movement_target)
@@ -309,7 +309,7 @@
 
 					if(isturf(movement_target.loc) )
 						movement_target.attack_animal(src)
-					else if(ishuman(movement_target.loc) )
+					else if(isHuman(movement_target.loc) )
 						if(prob(20))
 							emote("stares at the [movement_target] that [movement_target.loc] has with a sad puppy-face")
 

@@ -401,7 +401,7 @@
 		qdel(src)
 
 /obj/item/toy/snappop/Crossed(H as mob|obj)
-	if((ishuman(H))) //i guess carp and shit shouldn't set them off
+	if((isHuman(H))) //i guess carp and shit shouldn't set them off
 		var/mob/living/carbon/M = H
 		if(M.m_intent == "run")
 			M << "\red You step on the snap pop!"

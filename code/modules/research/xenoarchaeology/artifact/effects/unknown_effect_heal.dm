@@ -5,13 +5,13 @@
 
 /datum/artifact_effect/heal/DoEffectTouch(var/mob/toucher)
 	//todo: check over this properly
-	if(toucher && iscarbon(toucher))
+	if(toucher && isCarbon(toucher))
 		var/weakness = GetAnomalySusceptibility(toucher)
 		if(prob(weakness * 100))
 			var/mob/living/carbon/C = toucher
 			C << "\blue You feel a soothing energy invigorate you."
 
-			if(ishuman(toucher))
+			if(isHuman(toucher))
 				var/mob/living/carbon/human/H = toucher
 				for(var/datum/organ/external/affecting in H.organs)
 					if(affecting && istype(affecting))

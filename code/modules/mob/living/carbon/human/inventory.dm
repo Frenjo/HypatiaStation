@@ -2,7 +2,7 @@
 	set name = "quick-equip"
 	set hidden = 1
 
-	if(ishuman(src))
+	if(isHuman(src))
 		var/mob/living/carbon/human/H = src
 		var/obj/item/I = H.get_active_hand()
 		if(!I)
@@ -394,7 +394,7 @@
 
 	var/list/L = list( "syringe", "pill", "drink", "dnainjector", "fuel")
 	if ((item && !( L.Find(place) )))
-		if(isrobot(source) && place != "handcuff")
+		if(isRobot(source) && place != "handcuff")
 			qdel(src)
 		for(var/mob/O in viewers(target, null))
 			O.show_message("\red <B>[source] is trying to put \a [item] on [target]</B>", 1)
@@ -556,7 +556,7 @@ It can still be worn/put on as normal.
 */
 /obj/effect/equip_e/human/done()	//TODO: And rewrite this :< ~Carn
 	target.cpr_time = 1
-	if(isanimal(source)) return //animals cannot strip people
+	if(isAnimal(source)) return //animals cannot strip people
 	if(!source || !target) return		//Target or source no longer exist
 	if(source.loc != s_loc) return		//source has moved
 	if(target.loc != t_loc) return		//target has moved

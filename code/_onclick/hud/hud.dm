@@ -25,8 +25,8 @@ var/datum/global_hud/global_hud = new()
 /datum/global_hud/New()
 	// Space parallax stuff
 	//var/star_count = 3500
-	var/star_count = 900
-	var/bluespace_star_count = 1000
+	var/star_count = PARALLAX_STAR_AMOUNT
+	var/bluespace_star_count = PARALLAX_BLUESPACE_STAR_AMOUNT
 
 	parallax_stars = list()
 	for(var/i = 0; i < star_count; i++)
@@ -186,7 +186,7 @@ datum/hud/New(mob/owner)
 
 /datum/hud/proc/hidden_inventory_update()
 	if(!mymob) return
-	if(ishuman(mymob))
+	if(isHuman(mymob))
 		var/mob/living/carbon/human/H = mymob
 		if(inventory_shown && hud_shown)
 			if(H.shoes)		H.shoes.screen_loc = ui_shoes
@@ -214,7 +214,7 @@ datum/hud/New(mob/owner)
 	if(!mymob)
 		return
 
-	if(ishuman(mymob))
+	if(isHuman(mymob))
 		var/mob/living/carbon/human/H = mymob
 		if(hud_shown)
 			if(H.s_store)	H.s_store.screen_loc = ui_sstore1
@@ -236,10 +236,10 @@ datum/hud/New(mob/owner)
 	// SPESS BACKGROUND
 	mymob.parallax_master = new /obj/screen/parallax_master()
 	mymob.space_parallax = new /obj/screen/space_parallax()
-	mymob.space_parallax.overlays += global_hud.parallax_stars
+	mymob.space_parallax.overlays |= global_hud.parallax_stars
 
-	mymob.client.screen += mymob.parallax_master
-	mymob.client.screen += mymob.space_parallax
+	mymob.client.screen |= mymob.parallax_master
+	mymob.client.screen |= mymob.space_parallax
 
 /datum/hud/proc/toggle_parallax_space()
 	var/space_mode = mymob.space_parallax.icon_state == "space" ? 1 : 0
@@ -247,36 +247,37 @@ datum/hud/New(mob/owner)
 	mymob.space_parallax.overlays.Cut()
 
 	if(space_mode)
-		mymob.space_parallax.overlays += global_hud.parallax_bluespace_stars
+		mymob.space_parallax.overlays |= global_hud.parallax_bluespace_stars
 	else
-		mymob.space_parallax.overlays += global_hud.parallax_stars
+		mymob.space_parallax.overlays |= global_hud.parallax_stars
 
 /datum/hud/proc/instantiate()
-	if(!ismob(mymob)) return 0
-	if(!mymob.client) return 0
+	if(!ismob(mymob))
+		return 0
+	if(!mymob.client)
+		return 0
 	var/ui_style = ui_style2icon(mymob.client.prefs.UI_style)
 	var/ui_color = mymob.client.prefs.UI_style_color
 	var/ui_alpha = mymob.client.prefs.UI_style_alpha
 
-	if(ishuman(mymob))
+	if(isHuman(mymob))
 		human_hud(ui_style, ui_color, ui_alpha, mymob) // Pass the player the UI style chosen in preferences
-	else if(ismonkey(mymob))
+	else if(isMonkey(mymob))
 		monkey_hud(ui_style)
-	else if(isbrain(mymob))
+	else if(isBrain(mymob))
 		brain_hud(ui_style)
-	else if(islarva(mymob))
+	else if(isLarva(mymob))
 		larva_hud()
-	else if(isalien(mymob))
+	else if(isAlien(mymob))
 		larva_hud()
 	else if(isAI(mymob))
 		ai_hud()
-	else if(isrobot(mymob))
+	else if(isRobot(mymob))
 		robot_hud()
-	else if(isobserver(mymob))
+	else if(isObserver(mymob))
 		ghost_hud()
 
 	create_parallax()
-
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)
 /mob/verb/button_pressed_F12(var/full = 0 as null)
@@ -284,7 +285,7 @@ datum/hud/New(mob/owner)
 	set hidden = 1
 
 	if(hud_used)
-		if(ishuman(src))
+		if(isHuman(src))
 			if(!client) return
 			if(client.view != world.view)
 				return

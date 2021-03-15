@@ -200,7 +200,7 @@ Class Procs:
 	return 0
 
 /obj/machinery/attack_ai(mob/user as mob)
-	if(isrobot(user))
+	if(isRobot(user))
 		// For some reason attack_robot doesn't work
 		// This is to stop robots from using cameras to remotely control machines.
 		if(user.client && user.client.eye == user)
@@ -226,7 +226,7 @@ Class Procs:
 	if ((get_dist(src, user) > 1 || !istype(src.loc, /turf)) && !istype(user, /mob/living/silicon))
 		return 1
 */
-	if (ishuman(user))
+	if (isHuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 60)
 			visible_message("\red [H] stares cluelessly at [src] and drools.")

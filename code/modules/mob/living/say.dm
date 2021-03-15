@@ -48,7 +48,7 @@ var/list/department_radio_keys = list(
 	if (istype(src, /mob/living/silicon/pai))
 		return
 
-	if (!ishuman(src))
+	if (!isHuman(src))
 		return
 
 	var/mob/living/carbon/human/H = src

@@ -35,7 +35,7 @@
 	if(charge_tick < recharge_time) return 0
 	charge_tick = 0
 
-	if(isrobot(src.loc))
+	if(isRobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		if(R && R.cell)
 			var/datum/reagents/RG = reagent_list[mode]

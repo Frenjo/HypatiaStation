@@ -1342,7 +1342,7 @@
 		var/mob/M = locate(href_list["adminplayerobservejump"])
 
 		var/client/C = usr.client
-		if(!isobserver(usr))	C.admin_ghost()
+		if(!isObserver(usr))	C.admin_ghost()
 		sleep(2)
 		C.jumptomob(M)
 
@@ -1357,7 +1357,7 @@
 		var/z = text2num(href_list["Z"])
 
 		var/client/C = usr.client
-		if(!isobserver(usr))	C.admin_ghost()
+		if(!isObserver(usr))	C.admin_ghost()
 		sleep(2)
 		C.jumptocoord(x,y,z)
 
@@ -1390,7 +1390,7 @@
 			special_role_description = "Role: <i>Mind datum missing</i> Antagonist: <i>Mind datum missing</i>; Has been rev: <i>Mind datum missing</i>;"
 
 		//Health
-		if(isliving(M))
+		if(isLiving(M))
 			var/mob/living/L = M
 			var/status
 			switch (M.stat)
@@ -1418,7 +1418,7 @@
 		if(!check_rights(R_ADMIN|R_FUN))	return
 
 		var/mob/living/carbon/human/H = locate(href_list["adminspawncookie"])
-		if(!ishuman(H))
+		if(!isHuman(H))
 			usr << "This can only be used on instances of type /mob/living/carbon/human"
 			return
 
@@ -1442,7 +1442,7 @@
 		if(!check_rights(R_ADMIN|R_FUN))	return
 
 		var/mob/living/M = locate(href_list["BlueSpaceArtillery"])
-		if(!isliving(M))
+		if(!isLiving(M))
 			usr << "This can only be used on instances of type /mob/living"
 			return
 
@@ -1684,7 +1684,7 @@
 			where = "onfloor"
 
 		if ( where == "inhand" )	//Can only give when human or monkey
-			if ( !( ishuman(usr) || ismonkey(usr) ) )
+			if (!(isHuman(usr) || isMonkey(usr)))
 				usr << "Can only spawn in hand when you're a human or a monkey."
 				where = "onfloor"
 			else if ( usr.get_active_hand() )

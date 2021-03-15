@@ -3,19 +3,21 @@
 	desc = "For shuttle control."
 	icon_state = "shuttle"
 	var/auth_need = 3.0
-	var/list/authorized = list(  )
+	var/list/authorized = list()
 
 	light_color = "#00ffff"
 
 	attackby(var/obj/item/weapon/card/W as obj, var/mob/user as mob)
-		if(stat & (BROKEN|NOPOWER))	return
+		if(stat & (BROKEN|NOPOWER))
+			return
 		//if ((!( istype(W, /obj/item/weapon/card) ) || !( ticker ) || emergency_shuttle.location != 1 || !( user )))	return
-		if ((!( istype(W, /obj/item/weapon/card) ) || !( ticker ) || emergency_shuttle.location() != 1 || !( user )))	return // Updated to reflect 'shuttles' port. -Frenjo
-		if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+		if((!(istype(W, /obj/item/weapon/card)) || !(ticker) || emergency_shuttle.location() != 1 || !(user)))
+			return // Updated to reflect 'shuttles' port. -Frenjo
+		if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
 			if (istype(W, /obj/item/device/pda))
 				var/obj/item/device/pda/pda = W
 				W = pda.id
-			if (!W:access) //no access
+			if(!W:access) //no access
 				user << "The access level of [W:registered_name]\'s card is not high enough. "
 				return
 

@@ -1328,7 +1328,7 @@
 					if(0)
 						var/target_list[] = list()
 						for(var/mob/living/target in oview(src))
-							if( target.mind&&(target.mind.special_role||issilicon(target)) )//They need to have a mind.
+							if( target.mind&&(target.mind.special_role||isSilicon(target)) )//They need to have a mind.
 								target_list += target
 						if(target_list.len)//Everything else is handled by the ninja mask proc.
 							O.assess_targets(target_list, src)

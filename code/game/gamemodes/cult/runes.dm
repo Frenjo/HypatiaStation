@@ -547,7 +547,7 @@ var/list/sacrificed = list()
 			var/list/mob/living/carbon/human/cultsinrange = list()
 			var/list/mob/living/carbon/human/victims = list()
 			for(var/mob/living/carbon/human/V in src.loc)//Checks for non-cultist humans to sacrifice
-				if(ishuman(V))
+				if(isHuman(V))
 					if(!(iscultist(V)))
 						victims += V//Checks for cult status and mob type
 			for(var/obj/item/I in src.loc)//Checks for MMIs/brains/Intellicards
@@ -569,7 +569,7 @@ var/list/sacrificed = list()
 					if(H.mind == ticker.mode:sacrifice_target)
 						if(cultsinrange.len >= 3)
 							sacrificed += H.mind
-							if(isrobot(H))
+							if(isRobot(H))
 								H.dust()//To prevent the MMI from remaining
 							else
 								H.gib()
@@ -585,7 +585,7 @@ var/list/sacrificed = list()
 								else
 									usr << "\red The Geometer of blood accepts this sacrifice."
 									usr << "\red However, this soul was not enough to gain His favor."
-								if(isrobot(H))
+								if(isRobot(H))
 									H.dust()//To prevent the MMI from remaining
 								else
 									H.gib()
@@ -596,7 +596,7 @@ var/list/sacrificed = list()
 								else
 									usr << "\red The Geometer of blood accepts this sacrifice."
 									usr << "\red However, a mere dead body is not enough to satisfy Him."
-								if(isrobot(H))
+								if(isRobot(H))
 									H.dust()//To prevent the MMI from remaining
 								else
 									H.gib()
@@ -610,7 +610,7 @@ var/list/sacrificed = list()
 								else
 									usr << "\red The Geometer of blood accepts this sacrifice."
 									usr << "\red However, a mere dead body is not enough to satisfy Him."
-								if(isrobot(H))
+								if(isRobot(H))
 									H.dust()//To prevent the MMI from remaining
 								else
 									H.gib()
@@ -623,7 +623,7 @@ var/list/sacrificed = list()
 							else
 								usr << "\red The Geometer of blood accepts this sacrifice."
 								usr << "\red However, this soul was not enough to gain His favor."
-							if(isrobot(H))
+							if(isRobot(H))
 								H.dust()//To prevent the MMI from remaining
 							else
 								H.gib()
@@ -634,7 +634,7 @@ var/list/sacrificed = list()
 							else
 								usr << "\red The Geometer of blood accepts this sacrifice."
 								usr << "\red However, a mere dead body is not enough to satisfy Him."
-							if(isrobot(H))
+							if(isRobot(H))
 								H.dust()//To prevent the MMI from remaining
 							else
 								H.gib()
@@ -648,7 +648,7 @@ var/list/sacrificed = list()
 							else
 								usr << "\red The Geometer of blood accepts this sacrifice."
 								usr << "\red However, a mere dead body is not enough to satisfy Him."
-							if(isrobot(H))
+							if(isRobot(H))
 								H.dust()//To prevent the MMI from remaining
 							else
 								H.gib()
@@ -981,7 +981,7 @@ var/list/sacrificed = list()
 				usr.say("Fuu ma[pick("'","`")]jin!")
 				for(var/mob/living/L in viewers(src))
 
-					if(iscarbon(L))
+					if(isCarbon(L))
 						var/mob/living/carbon/C = L
 						flick("e_flash", C.flash)
 						if(C.stuttering < 1 && (!(HULK in C.mutations)))
@@ -990,7 +990,7 @@ var/list/sacrificed = list()
 						C.Stun(1)
 						C.show_message("\red The rune explodes in a bright flash.", 3)
 
-					else if(issilicon(L))
+					else if(isSilicon(L))
 						var/mob/living/silicon/S = L
 						S.Weaken(5)
 						S.show_message("\red BZZZT... The rune has exploded in a bright flash.", 3)
@@ -1005,10 +1005,10 @@ var/list/sacrificed = list()
 					for(var/mob/O in viewers(T, null))
 						O.show_message(text("\red <B>[] invokes a talisman at []</B>", usr, T), 1)
 
-					if(issilicon(T))
+					if(isSilicon(T))
 						T.Weaken(15)
 
-					else if(iscarbon(T))
+					else if(isCarbon(T))
 						var/mob/living/carbon/C = T
 						flick("e_flash", C.flash)
 						if (!(HULK in C.mutations))

@@ -815,7 +815,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		message += "Your [P] suddenly explodes!"
 	if(i>=10 && i<= 20) //The PDA burns a hole in the holder.
 		j=1
-		if(M && isliving(M))
+		if(M && isLiving(M))
 			M.apply_damage( rand(30,60) , BURN)
 		message += "You feel a searing heat! Your [P] is burning!"
 	if(i>=20 && i<=25) //EMP
@@ -836,11 +836,11 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		B.start()
 		message += "Large clouds of noxious smoke billow forth from your [P]!"
 	if(i>=65 && i<=75) //Weaken
-		if(M && isliving(M))
+		if(M && isLiving(M))
 			M.apply_effects(0,1)
 		message += "Your [P] flashes with a blinding white light! You feel weaker."
 	if(i>=75 && i<=85) //Stun and stutter
-		if(M && isliving(M))
+		if(M && isLiving(M))
 			M.apply_effects(1,0,0,0,1)
 		message += "Your [P] flashes with a blinding white light! You feel weaker."
 	if(i>=85) //Sparks
@@ -859,7 +859,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		else
 			message += "Your [P] shatters in a thousand pieces!"
 
-	if(M && isliving(M))
+	if(M && isLiving(M))
 		message = "\red" + message
 		M.show_message(message, 1)
 
@@ -950,7 +950,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			if(!P.silent) O.show_message(text("\icon[P] *[P.ttone]*"))
 		//Search for holder of the PDA.
 		var/mob/living/L = null
-		if(P.loc && isliving(P.loc))
+		if(P.loc && isLiving(P.loc))
 			L = P.loc
 		//Maybe they are a pAI!
 		else
@@ -976,7 +976,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	set name = "Remove id"
 	set src in usr
 
-	if(issilicon(usr))
+	if(isSilicon(usr))
 		return
 
 	if ( can_use(usr) )
@@ -993,7 +993,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	set name = "Remove pen"
 	set src in usr
 
-	if(issilicon(usr))
+	if(isSilicon(usr))
 		return
 
 	if ( can_use(usr) )

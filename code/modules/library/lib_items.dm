@@ -45,7 +45,7 @@
 		if(choice)
 			if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 				return
-			if(ishuman(user))
+			if(isHuman(user))
 				if(!user.get_active_hand())
 					user.put_in_hands(choice)
 			else

@@ -61,7 +61,7 @@
 	if(user && user.client && !(A in target))
 		var/client/C = user.client
 		//If help intent is on and we have clicked on an eligible target, switch to aim mode automatically
-		if(user.a_intent == "help" && isliving(A) && !C.gun_mode)
+		if(user.a_intent == "help" && isLiving(A) && !C.gun_mode)
 			C.ToggleGunMode()
 
 		if(C.gun_mode)
@@ -96,7 +96,7 @@
 		if (HULK in M.mutations)
 			M << "\red Your meaty finger is much too large for the trigger guard!"
 			return
-	if(ishuman(user))
+	if(isHuman(user))
 		if(user.dna && user.dna.mutantrace == "adamantine")
 			user << "\red Your metal fingers don't fit in the trigger guard!"
 			return

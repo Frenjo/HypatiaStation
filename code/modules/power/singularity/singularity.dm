@@ -52,15 +52,12 @@ var/global/list/uneatable = list(
 			break
 	return
 
-
 /obj/machinery/singularity/attack_hand(mob/user as mob)
 	consume(user)
 	return 1
 
-
 /obj/machinery/singularity/blob_act(severity)
 	return
-
 
 /obj/machinery/singularity/ex_act(severity)
 	switch(severity)
@@ -74,7 +71,6 @@ var/global/list/uneatable = list(
 			energy += round((rand(20,60)/2),1)
 			return
 	return
-
 
 /obj/machinery/singularity/Bump(atom/A)
 	consume(A)
@@ -96,10 +92,8 @@ var/global/list/uneatable = list(
 			event()
 	return
 
-
 /obj/machinery/singularity/attack_ai() //to prevent ais from gibbing themselves when they click on one.
 	return
-
 
 /obj/machinery/singularity/proc/admin_investigate_setup()
 	last_warning = world.time
@@ -115,7 +109,6 @@ var/global/list/uneatable = list(
 		dissipate_track = 0
 	else
 		dissipate_track++
-
 
 /obj/machinery/singularity/proc/expand(var/force_size = 0)
 	var/temp_allowed_size = src.allowed_size
@@ -203,7 +196,6 @@ var/global/list/uneatable = list(
 	else
 		return 0
 
-
 /obj/machinery/singularity/proc/check_energy()
 	if(energy <= 0)
 		qdel(src)
@@ -227,7 +219,6 @@ var/global/list/uneatable = list(
 	if(current_size != allowed_size)
 		expand()
 	return 1
-
 
 /obj/machinery/singularity/proc/eat()
 	set background = 1
@@ -256,7 +247,6 @@ var/global/list/uneatable = list(
 		defer_powernet_rebuild = 0
 	return
 
-
 /obj/machinery/singularity/proc/consume(var/atom/A)
 	var/gain = 0
 	if(is_type_in_list(A, uneatable))
@@ -266,19 +256,16 @@ var/global/list/uneatable = list(
 		if(istype(A,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = A
 			if(H.mind)
-
 				if((H.mind.assigned_role == "Station Engineer") || (H.mind.assigned_role == "Chief Engineer") )
 					gain = 100
 
 				if(H.mind.assigned_role == "Clown")
 					gain = rand(-300, 300) // HONK
-
 		spawn()
 			A:gib()
 		sleep(1)
-	else if(istype(A,/obj/))
-
-		if (istype(A,/obj/item/weapon/storage/backpack/holding))
+	else if(istype(A, /obj/))
+		if(istype(A, /obj/item/weapon/storage/backpack/holding))
 			var/dist = max((current_size - 2),1)
 			explosion(src.loc,(dist),(dist*2),(dist*4))
 			return
@@ -321,7 +308,6 @@ var/global/list/uneatable = list(
 	src.energy += gain
 	return
 
-
 /obj/machinery/singularity/proc/move(var/force_move = 0)
 	if(!move_self)
 		return 0
@@ -348,7 +334,6 @@ var/global/list/uneatable = list(
 	else
 		last_failed_movement = movement_dir
 	return 0
-
 
 /obj/machinery/singularity/proc/check_turfs_in(var/direction = 0, var/step = 0)
 	if(!direction)
@@ -591,7 +576,7 @@ var/global/list/uneatable = list(
 /obj/machinery/singularity/narsie/proc/acquire(var/mob/food)
 	target << "\blue <b>NAR-SIE HAS LOST INTEREST IN YOU</b>"
 	target = food
-	if(ishuman(target))
+	if(isHuman(target))
 		target << "\red <b>NAR-SIE HUNGERS FOR YOUR SOUL</b>"
 	else
 		target << "\red <b>NAR-SIE HAS CHOSEN YOU TO LEAD HIM TO HIS NEXT MEAL</b>"

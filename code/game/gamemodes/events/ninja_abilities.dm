@@ -190,7 +190,7 @@ Must right click on a mob to activate.*/
 	set src = usr.contents
 
 	var/C = 700
-	if(!ninjacost(C,0)&&iscarbon(M))
+	if(!ninjacost(C,0)&&isCarbon(M))
 		var/mob/living/carbon/human/U = affecting
 		if(M.client)//Monkeys without a client can still step_to() and bypass the net. Also, netting inactive people is lame.
 		//if(M)//DEBUG

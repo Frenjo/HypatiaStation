@@ -51,7 +51,7 @@
 	attack_self(mob/user as mob)
 		if (src.wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
 			wrapped.loc = user.loc
-			if(ishuman(user))
+			if(isHuman(user))
 				user.put_in_hands(wrapped)
 			else
 				wrapped.loc = get_turf(src)

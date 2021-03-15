@@ -1175,7 +1175,7 @@
 	set src in view(1)
 	var/self = 0
 
-	if(usr.stat == 1 || usr.restrained() || !isliving(usr)) return
+	if(usr.stat == 1 || usr.restrained() || !isLiving(usr)) return
 
 	if(usr == src)
 		self = 1

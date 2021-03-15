@@ -76,7 +76,7 @@
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << "\red You club yourself over the head."
 		user.Weaken(3 * force)
-		if(ishuman(user))
+		if(isHuman(user))
 			var/mob/living/carbon/human/H = user
 			H.apply_damage(2*force, BRUTE, "head")
 		else
@@ -170,7 +170,7 @@
 		if ((CLUMSY in user.mutations) && prob(50))
 			user << "\red You club yourself over the head."
 			user.Weaken(3 * force)
-			if(ishuman(user))
+			if(isHuman(user))
 				var/mob/living/carbon/human/H = user
 				H.apply_damage(2*force, BRUTE, "head")
 			else

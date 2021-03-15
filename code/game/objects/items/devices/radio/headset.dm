@@ -21,7 +21,7 @@
 	recalculateChannels()
 
 /obj/item/device/radio/headset/receive_range(freq, level)
-	if(ishuman(src.loc))
+	if(isHuman(src.loc))
 		var/mob/living/carbon/human/H = src.loc
 		if(H.l_ear == src || H.r_ear == src)
 			return ..(freq, level)

@@ -28,7 +28,7 @@
 			return 0
 
 	go_out()
-		if(ishuman(occupant))
+		if(isHuman(occupant))
 			var/mob/living/carbon/human/H = occupant
 			if(H.glasses == hud)
 				H.glasses = null

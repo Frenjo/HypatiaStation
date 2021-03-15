@@ -33,7 +33,7 @@
 
 /obj/machinery/floodlight/attack_hand(mob/user as mob)
 	if(open && cell)
-		if(ishuman(user))
+		if(isHuman(user))
 			if(!user.get_active_hand())
 				user.put_in_hands(cell)
 				cell.loc = user.loc

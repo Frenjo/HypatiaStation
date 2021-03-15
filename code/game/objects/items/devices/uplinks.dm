@@ -388,7 +388,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			var/path_obj = text2path(href_list["buy_item"])
 
 			var/obj/I = new path_obj(get_turf(usr))
-			if(ishuman(usr))
+			if(isHuman(usr))
 				var/mob/living/carbon/human/A = usr
 				A.put_in_any_hand_if_possible(I)
 			purchase_log += "[usr] ([usr.ckey]) bought [I]."

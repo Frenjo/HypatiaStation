@@ -1,7 +1,6 @@
 /turf/space
 	icon = 'icons/turf/space.dmi'
 	name = "\proper space"
-	//icon_state = "0"
 	icon_state = ""
 
 	temperature = T0C
@@ -10,37 +9,104 @@
 
 	dynamic_lighting = 0
 	luminosity = 1
-	plane = SPACE_PARALLAX_PLANE - 1
+
+	plane = SPACE_PLANE
+	var/static/list/dust_cache
+	var/static/list/speedspace_cache
+	var/static/list/phase_shift_by_x
+	var/static/list/phase_shift_by_y
 
 /turf/space/New()
-	//if(!istype(src, /turf/space/transit))
-	//	icon_state = "[((x + y) ^ ~(x * y) + z) % 25]"
 	if(!config)
 		spawn(1)
-		update_starlight()
+			update_starlight()
+
+	if(!dust_cache)
+		build_dust_cache()
+	toggle_transit() //add static dust
 
 /turf/space/proc/update_starlight()
-	//if(!config)
-	//	return
 	if(!config.starlight)
 		return
 
-	if(locate(/turf/simulated) in orange(src,1))
+	if(locate(/turf/simulated) in orange(src, 1))
 		set_light(config.starlight)
 	else
 		set_light(0)
+
+/turf/space/proc/build_dust_cache()
+	//Static
+	dust_cache = list()
+	for (var/i in 0 to 25)
+		var/image/im = image('icons/turf/space_dust.dmi', "[i]")
+		im.plane = SPACE_DUST_PLANE
+		im.alpha = 128 //80
+		im.blend_mode = BLEND_ADD
+		dust_cache["[i]"] = im
+
+	//Moving
+	speedspace_cache = list()
+	for(var/i in 0 to 14)
+		// NORTH/SOUTH
+		var/image/im = image('icons/turf/space_transit.dmi', "speedspace_ns_[i]")
+		im.plane = SPACE_PARALLAX_PLANE
+		im.blend_mode = BLEND_ADD
+		speedspace_cache["NS_[i]"] = im
+		// EAST/WEST
+		im = image('icons/turf/space_transit.dmi', "speedspace_ew_[i]")
+		im.plane = SPACE_PARALLAX_PLANE
+		im.blend_mode = BLEND_ADD
+		speedspace_cache["EW_[i]"] = im
+
+/turf/space/proc/toggle_transit(var/direction)
+	overlays.Cut()
+
+	if(!direction)
+		overlays |= dust_cache["[((x + y) ^ ~(x * y) + z) % 25]"]
+		return
+
+	if(direction & (NORTH|SOUTH))
+		if(!phase_shift_by_x)
+			phase_shift_by_x = get_cross_shift_list(15)
+		var/x_shift = phase_shift_by_x[src.x % (phase_shift_by_x.len - 1) + 1]
+		var/transit_state = ((direction & SOUTH ? world.maxy - src.y : src.y) + x_shift)%15
+		overlays |= speedspace_cache["NS_[transit_state]"]
+	else if(direction & (EAST|WEST))
+		if(!phase_shift_by_y)
+			phase_shift_by_y = get_cross_shift_list(15)
+		var/y_shift = phase_shift_by_y[src.y % (phase_shift_by_y.len - 1) + 1]
+		var/transit_state = ((direction & WEST ? world.maxx - src.x : src.x) + y_shift)%15
+		overlays |= speedspace_cache["EW_[transit_state]"]
+
+	for(var/atom/movable/AM in src)
+		if(AM.simulated && !AM.anchored)
+			AM.throw_at(get_step(src, reverse_direction(direction)), 5, 1)
+
+//generates a list used to randomize transit animations so they aren't in lockstep
+/turf/space/proc/get_cross_shift_list(var/size)
+	var/list/result = list()
+
+	result += rand(0, 14)
+	for(var/i in 2 to size)
+		var/shifts = list(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
+		shifts -= result[i - 1] //consecutive shifts should not be equal
+		if(i == size)
+			shifts -= result[1] //because shift list is a ring buffer
+		result += pick(shifts)
+
+	return result
 
 /turf/space/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
 /turf/space/attack_hand(mob/user as mob)
-	if ((user.restrained() || !( user.pulling )))
+	if((user.restrained() || !( user.pulling )))
 		return
-	if (user.pulling.anchored || !isturf(user.pulling.loc))
+	if(user.pulling.anchored || !isturf(user.pulling.loc))
 		return
-	if ((user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1))
+	if((user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1))
 		return
-	if (ismob(user.pulling))
+	if(ismob(user.pulling))
 		var/mob/M = user.pulling
 		var/atom/movable/t = M.pulling
 		M.stop_pulling()
@@ -51,7 +117,6 @@
 	return
 
 /turf/space/attackby(obj/item/C as obj, mob/user as mob)
-
 	if (istype(C, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
@@ -89,7 +154,6 @@
 	inertial_drift(A)
 
 	if(ticker && ticker.mode)
-
 		// Okay, so let's make it so that people can travel z levels but not nuke disks!
 		// if(ticker.mode.name == "nuclear emergency")	return
 		if(A.z > 6) return
@@ -143,23 +207,20 @@
 				A.x = world.maxx - TRANSITIONEDGE - 2
 				A.y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
 
-			else if (A.x >= (world.maxx - TRANSITIONEDGE - 1))
+			else if(A.x >= (world.maxx - TRANSITIONEDGE - 1))
 				A.x = TRANSITIONEDGE + 1
 				A.y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
 
-			else if (src.y <= TRANSITIONEDGE)
+			else if(src.y <= TRANSITIONEDGE)
 				A.y = world.maxy - TRANSITIONEDGE -2
 				A.x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
-			else if (A.y >= (world.maxy - TRANSITIONEDGE - 1))
+			else if(A.y >= (world.maxy - TRANSITIONEDGE - 1))
 				A.y = TRANSITIONEDGE + 1
 				A.x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
-
-
-
-			spawn (0)
-				if ((A && A.loc))
+			spawn(0)
+				if((A && A.loc))
 					A.loc.Entered(A)
 
 /turf/space/proc/Sandbox_Spacemove(atom/movable/A as mob|obj)
@@ -182,13 +243,7 @@
 		next_x = (--cur_x||global_map.len)
 		y_arr = global_map[next_x]
 		target_z = y_arr[cur_y]
-/*
-		//debug
-		world << "Src.z = [src.z] in global map X = [cur_x], Y = [cur_y]"
-		world << "Target Z = [target_z]"
-		world << "Next X = [next_x]"
-		//debug
-*/
+
 		if(target_z)
 			A.z = target_z
 			A.x = world.maxx - 2
@@ -207,13 +262,7 @@
 		next_x = (++cur_x > global_map.len ? 1 : cur_x)
 		y_arr = global_map[next_x]
 		target_z = y_arr[cur_y]
-/*
-		//debug
-		world << "Src.z = [src.z] in global map X = [cur_x], Y = [cur_y]"
-		world << "Target Z = [target_z]"
-		world << "Next X = [next_x]"
-		//debug
-*/
+
 		if(target_z)
 			A.z = target_z
 			A.x = 3
@@ -231,13 +280,7 @@
 		y_arr = global_map[cur_x]
 		next_y = (--cur_y||y_arr.len)
 		target_z = y_arr[next_y]
-/*
-		//debug
-		world << "Src.z = [src.z] in global map X = [cur_x], Y = [cur_y]"
-		world << "Next Y = [next_y]"
-		world << "Target Z = [target_z]"
-		//debug
-*/
+
 		if(target_z)
 			A.z = target_z
 			A.y = world.maxy - 2
@@ -256,13 +299,7 @@
 		y_arr = global_map[cur_x]
 		next_y = (++cur_y > y_arr.len ? 1 : cur_y)
 		target_z = y_arr[next_y]
-/*
-		//debug
-		world << "Src.z = [src.z] in global map X = [cur_x], Y = [cur_y]"
-		world << "Next Y = [next_y]"
-		world << "Target Z = [target_z]"
-		//debug
-*/
+
 		if(target_z)
 			A.z = target_z
 			A.y = 3

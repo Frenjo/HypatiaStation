@@ -93,7 +93,7 @@
 		return
 
 	..()
-	if(isrobot(user))
+	if(isRobot(user))
 		user << "\blue You're a robot. No."
 		return //Robots can't interact with storage items.
 
@@ -151,7 +151,7 @@
 	return
 
 /obj/item/clothing/suit/storage/MouseDrop(atom/over_object)
-	if(ishuman(usr))
+	if(isHuman(usr))
 		var/mob/living/carbon/human/M = usr
 		if (!( istype(over_object, /obj/screen) ))
 			return ..()

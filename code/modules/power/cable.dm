@@ -536,7 +536,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	set category = "Object"
 	var/mob/M = usr
 
-	if(ishuman(M) && !M.restrained() && !M.stat && !M.paralysis && ! M.stunned)
+	if(isHuman(M) && !M.restrained() && !M.stat && !M.paralysis && ! M.stunned)
 		if(!istype(usr.loc,/turf)) return
 		if(src.amount <= 14)
 			usr << "\red You need at least 15 lengths to make restraints!"

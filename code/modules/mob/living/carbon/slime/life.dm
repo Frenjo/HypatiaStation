@@ -460,10 +460,10 @@
 				for(var/mob/living/L in view(7,src))
 
 					//Ignore other slimes, dead mobs and simple_animals
-					if(isslime(L) || L.stat != CONSCIOUS || isanimal(L))
+					if(isSlime(L) || L.stat != CONSCIOUS || isAnimal(L))
 						continue
 
-					if(issilicon(L))
+					if(isSilicon(L))
 						if(!istype(src, /mob/living/carbon/slime/adult)) //Non-starving diciplined adult slimes wont eat things
 							if(!starving && Discipline > 0)
 								continue
@@ -473,7 +473,7 @@
 
 						targets += L //Possible target found!
 
-					else if(iscarbon(L))
+					else if(isCarbon(L))
 
 						if(istype(L, /mob/living/carbon/human)) //Ignore slime(wo)men
 							var/mob/living/carbon/human/H = L
@@ -488,7 +488,7 @@
 						if(L in Friends) //No eating friends!
 							continue
 
-						if(tame && ishuman(L)) //Tame slimes dont eat people.
+						if(tame && isHuman(L)) //Tame slimes dont eat people.
 							continue
 
 						if(!L.canmove) //Only one slime can latch on at a time.
@@ -509,14 +509,14 @@
 					if(!starving)
 						for(var/mob/living/carbon/C in targets)
 							if(!Discipline && prob(5))
-								if(ishuman(C))
+								if(isHuman(C))
 									Target = C
 									break
 
-							if(islarva(C))
+							if(isLarva(C))
 								Target = C
 								break
-							if(ismonkey(C))
+							if(isMonkey(C))
 								Target = C
 								break
 					else

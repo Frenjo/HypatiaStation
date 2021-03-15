@@ -371,7 +371,7 @@
 	health = Clamp(health - damage, 0, maxHealth)
 
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
-	if (isliving(target_mob))
+	if (isLiving(target_mob))
 		var/mob/living/L = target_mob
 		if(!L.stat && L.health >= 0)
 			return (0)

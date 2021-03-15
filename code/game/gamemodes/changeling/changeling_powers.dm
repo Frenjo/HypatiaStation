@@ -4,7 +4,7 @@
 	if(!mind.changeling)	mind.changeling = new /datum/changeling(gender)
 	verbs += /datum/changeling/proc/EvolutionMenu
 
-	var/lesser_form = !ishuman(src)
+	var/lesser_form = !isHuman(src)
 
 	if(!powerinstances.len)
 		for(var/P in powers)
@@ -37,7 +37,7 @@
 /mob/proc/changeling_power(var/required_chems=0, var/required_dna=0, var/max_genetic_damage=100, var/max_stat=0)
 
 	if(!src.mind)		return
-	if(!iscarbon(src))	return
+	if(!isCarbon(src))	return
 
 	var/datum/changeling/changeling = src.mind.changeling
 	if(!changeling)
@@ -717,7 +717,7 @@ var/list/datum/dna/hivemind_bank = list()
 
 	var/mob/living/carbon/T = changeling_sting(40,/mob/proc/changeling_transformation_sting)
 	if(!T)	return 0
-	if((HUSK in T.mutations) || (!ishuman(T) && !ismonkey(T)))
+	if((HUSK in T.mutations) || (!isHuman(T) && !isMonkey(T)))
 		src << "<span class='warning'>Our sting appears ineffective against its DNA.</span>"
 		return 0
 	T.visible_message("<span class='warning'>[T] transforms!</span>")

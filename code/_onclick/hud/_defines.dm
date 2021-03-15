@@ -14,8 +14,13 @@
 */
 
 // Space parallax stuff
-#define UI_SPACE_PARALLAX "1:0, 1:0"
-#define SPACE_PARALLAX_PLANE -50
+#define UI_SPACE_PARALLAX "1:0,1:0"
+#define SPACE_PLANE -80
+#define SPACE_PARALLAX_PLANE -79
+#define SPACE_DUST_PLANE -78
+
+#define PARALLAX_STAR_AMOUNT 850
+#define PARALLAX_BLUESPACE_STAR_AMOUNT 1000
 
 //Upper left action buttons, displayed when you pick up an item that has this enabled.
 #define ui_action_slot1 "1:6,14:26"

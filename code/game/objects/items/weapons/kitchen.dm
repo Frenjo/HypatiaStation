@@ -231,7 +231,7 @@
 
 	var/t = user:zone_sel.selecting
 	if (t == "head")
-		if(ishuman(M))
+		if(isHuman(M))
 			var/mob/living/carbon/human/H = M
 			if (H.stat < 2 && H.health < 50 && prob(90))
 				// ******* Check

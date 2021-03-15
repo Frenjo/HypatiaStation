@@ -171,7 +171,7 @@
 	color = "#E0E8EF" // rgb: 224, 232, 239
 
 /datum/reagent/water/water/holywater/on_mob_life(var/mob/living/M as mob)
-	if(ishuman(M))
+	if(isHuman(M))
 		if((M.mind in ticker.mode.cult) && prob(10))
 			M << "\blue A cooling sensation from inside you brings you an untold calmness."
 			ticker.mode.remove_cultist(M.mind)
@@ -231,7 +231,7 @@
 
 /datum/reagent/slimetoxin/on_mob_life(var/mob/living/M as mob)
 	if(!M) M = holder.my_atom
-	if(ishuman(M))
+	if(isHuman(M))
 		var/mob/living/carbon/human/human = M
 		if(human.dna.mutantrace == null)
 			M << "\red Your flesh rapidly mutates!"
@@ -726,7 +726,7 @@
 			M.adjustToxLoss(rand(5,10))
 
 /datum/reagent/space_cleaner/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
-	if(iscarbon(M))
+	if(isCarbon(M))
 		var/mob/living/carbon/C = M
 		if(C.r_hand)
 			C.r_hand.clean_blood()
@@ -735,7 +735,7 @@
 		if(C.wear_mask)
 			if(C.wear_mask.clean_blood())
 				C.update_inv_wear_mask(0)
-		if(ishuman(M))
+		if(isHuman(M))
 			var/mob/living/carbon/human/H = C
 			if(H.head)
 				if(H.head.clean_blood())

@@ -57,7 +57,7 @@
 	if(!FG1 || !FG2)
 		qdel(src)
 		return 0
-	if(iscarbon(user))
+	if(isCarbon(user))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, user.loc)
 		s.start()
@@ -82,7 +82,7 @@
 		hasShocked = 0
 		return
 
-	else if(issilicon(user))
+	else if(isSilicon(user))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, user.loc)
 		s.start()

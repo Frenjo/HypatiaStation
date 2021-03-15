@@ -294,7 +294,7 @@
 /obj/structure/table/MouseDrop_T(obj/O as obj, mob/user as mob)
 	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
 		return
-	if(isrobot(user))
+	if(isRobot(user))
 		return
 	user.drop_item()
 	if (O.loc != src.loc)
@@ -331,7 +331,7 @@
 			destroy()
 		return
 
-	if(isrobot(user))
+	if(isRobot(user))
 		return
 
 	if(istype(W, /obj/item/weapon/melee/energy/blade))
@@ -368,7 +368,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(!can_touch(usr) || ismouse(usr))
+	if(!can_touch(usr) || isMouse(usr))
 		return
 
 	if(!flip(get_cardinal_dir(usr, src)))
@@ -536,7 +536,7 @@
 /obj/structure/rack/MouseDrop_T(obj/O as obj, mob/user as mob)
 	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
 		return
-	if(isrobot(user))
+	if(isRobot(user))
 		return
 	user.drop_item()
 	if (O.loc != src.loc)
@@ -549,7 +549,7 @@
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 		qdel(src)
 		return
-	if(isrobot(user))
+	if(isRobot(user))
 		return
 	user.drop_item()
 	if(W && W.loc)	W.loc = src.loc

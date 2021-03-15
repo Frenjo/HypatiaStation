@@ -1,81 +1,81 @@
 
 // fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
-/proc/ishuman(A)
+/proc/isHuman(A)
 	if(istype(A, /mob/living/carbon/human))
 		return 1
 	return 0
 
-/proc/ismonkey(A)
+/proc/isMonkey(A)
 	if(A && istype(A, /mob/living/carbon/monkey))
 		return 1
 	return 0
 
-/proc/isbrain(A)
+/proc/isBrain(A)
 	if(A && istype(A, /mob/living/carbon/brain))
 		return 1
 	return 0
 
-/proc/isalien(A)
+/proc/isAlien(A)
 	if(istype(A, /mob/living/carbon/alien))
 		return 1
 	return 0
 
-/proc/islarva(A)
+/proc/isLarva(A)
 	if(istype(A, /mob/living/carbon/alien/larva))
 		return 1
 	return 0
 
-/proc/isslime(A)
+/proc/isSlime(A)
 	if(istype(A, /mob/living/carbon/slime))
 		return 1
 	return 0
 
-/proc/isslimeadult(A)
+/proc/isSlimeAdult(A)
 	if(istype(A, /mob/living/carbon/slime/adult))
 		return 1
 	return 0
 
-/proc/isrobot(A)
+/proc/isRobot(A)
 	if(istype(A, /mob/living/silicon/robot))
 		return 1
 	return 0
 
-/proc/isanimal(A)
+/proc/isAnimal(A)
 	if(istype(A, /mob/living/simple_animal))
 		return 1
 	return 0
 
-/proc/iscorgi(A)
+/proc/isCorgi(A)
 	if(istype(A, /mob/living/simple_animal/corgi))
 		return 1
 	return 0
 
-/proc/iscrab(A)
+/proc/isCrab(A)
 	if(istype(A, /mob/living/simple_animal/crab))
 		return 1
 	return 0
 
-/proc/iscat(A)
+/proc/isCat(A)
 	if(istype(A, /mob/living/simple_animal/cat))
 		return 1
 	return 0
 
-/proc/ismouse(A)
+/proc/isMouse(A)
 	if(istype(A, /mob/living/simple_animal/mouse))
 		return 1
 	return 0
 
-/proc/isbear(A)
+/proc/isBear(A)
 	if(istype(A, /mob/living/simple_animal/hostile/bear))
 		return 1
 	return 0
 
-/proc/iscarp(A)
+/proc/isCarp(A)
 	if(istype(A, /mob/living/simple_animal/hostile/carp))
 		return 1
 	return 0
 
-/proc/isclown(A)
+/proc/isClown(A)
 	if(istype(A, /mob/living/simple_animal/hostile/retaliate/clown))
 		return 1
 	return 0
@@ -85,38 +85,38 @@
 		return 1
 	return 0
 
-/proc/ispAI(A)
+/proc/isPAI(A)
 	if(istype(A, /mob/living/silicon/pai))
 		return 1
 	return 0
 
-/proc/iscarbon(A)
+/proc/isCarbon(A)
 	if(istype(A, /mob/living/carbon))
 		return 1
 	return 0
 
-/proc/issilicon(A)
+/proc/isSilicon(A)
 	if(istype(A, /mob/living/silicon))
 		return 1
 	return 0
 
-/proc/isliving(A)
+/proc/isLiving(A)
 	if(istype(A, /mob/living))
 		return 1
 	return 0
 
-proc/isobserver(A)
+proc/isObserver(A)
 	if(istype(A, /mob/dead/observer))
 		return 1
 	return 0
 
-proc/isorgan(A)
+proc/isOrgan(A)
 	if(istype(A, /datum/organ/external))
 		return 1
 	return 0
 
-proc/hasorgans(A)
-	return ishuman(A)
+proc/hasOrgans(A)
+	return isHuman(A)
 
 /proc/hsl2rgb(h, s, l)
 	return
@@ -206,6 +206,7 @@ proc/hasorgans(A)
 					if(10)	return "r_leg"
 
 	return zone
+
 // Holy shit, this code. Why? -- Marajin
 /proc/stars(n, pr)
 	if (pr == null)
@@ -274,7 +275,6 @@ proc/slur(phrase)
 		p++//for each letter p is increased to find where the next letter will be.
 	return copytext(sanitize(t),1,MAX_MESSAGE_LEN)
 
-
 proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
 	/* Turn text into complete gibberish! */
 	var/returntext = ""
@@ -291,7 +291,6 @@ proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 fo
 		returntext += letter
 
 	return returntext
-
 
 /proc/ninjaspeak(n)
 /*
@@ -320,7 +319,6 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		t = text("[t][n_letter]")
 		p=p+n_mod
 	return copytext(sanitize(t),1,MAX_MESSAGE_LEN)
-
 
 /proc/shake_camera(mob/M, duration, strength=1)
 	if(!M || !M.client || M.shakecamera)
@@ -373,7 +371,7 @@ var/list/intents = list("help","disarm","grab","hurt")
 	set name = "a-intent"
 	set hidden = 1
 
-	if(ishuman(src) || isbrain(src))
+	if(isHuman(src) || isBrain(src))
 		switch(input)
 			if("help","disarm","grab","hurt")
 				a_intent = input
@@ -384,7 +382,7 @@ var/list/intents = list("help","disarm","grab","hurt")
 		if(hud_used && hud_used.action_intent)
 			hud_used.action_intent.icon_state = "intent_[a_intent]"
 
-	else if(isrobot(src) || ismonkey(src) || islarva(src))
+	else if(isRobot(src) || isMonkey(src) || isLarva(src))
 		switch(input)
 			if("help")
 				a_intent = "help"

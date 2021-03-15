@@ -168,14 +168,14 @@
 
 /obj/item/weapon/legcuffs/beartrap/attack_self(mob/user as mob)
 	..()
-	if(ishuman(user) && !user.stat && !user.restrained())
+	if(isHuman(user) && !user.stat && !user.restrained())
 		armed = !armed
 		icon_state = "beartrap[armed]"
 		user << "<span class='notice'>[src] is now [armed ? "armed" : "disarmed"]</span>"
 
 /obj/item/weapon/legcuffs/beartrap/Crossed(AM as mob|obj)
 	if(armed)
-		if(ishuman(AM))
+		if(isHuman(AM))
 			if(isturf(src.loc))
 				var/mob/living/carbon/H = AM
 				if(H.m_intent == "run")
@@ -189,7 +189,7 @@
 						if(O == H)
 							continue
 						O.show_message("\red <B>[H] steps on \the [src].</B>", 1)
-		if(isanimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
+		if(isAnimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
 			armed = 0
 			var/mob/living/simple_animal/SA = AM
 			SA.health -= 20

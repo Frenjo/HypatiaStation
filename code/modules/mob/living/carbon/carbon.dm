@@ -63,7 +63,7 @@
 	if(!istype(M, /mob/living/carbon))
 		return
 
-	if (hasorgans(M))
+	if (hasOrgans(M))
 		var/datum/organ/external/temp = M:organs_by_name["r_hand"]
 		if (M.hand)
 			temp = M:organs_by_name["l_hand"]
@@ -231,7 +231,7 @@
 
 /mob/living/carbon/clean_blood()
 	. = ..()
-	if(ishuman(src))
+	if(isHuman(src))
 		var/mob/living/carbon/human/H = src
 		if(H.gloves)
 			if(H.gloves.clean_blood())
@@ -478,7 +478,7 @@
 		return
 
 /mob/living/carbon/ui_toggle_internals()
-	if(iscarbon(usr))
+	if(isCarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
 			if(C.internal)
@@ -496,7 +496,7 @@
 					var/breathes = "oxygen"    //default, we'll check later
 					var/list/contents = list()
 
-					if(ishuman(C))
+					if(isHuman(C))
 						var/mob/living/carbon/human/H = C
 						breathes = H.species.breath_type
 						nicename = list ("suit", "back", "belt", "right hand", "left hand", "left pocket", "right pocket")

@@ -1177,7 +1177,7 @@
 	set src in oview(1)
 
 	//check that usr can climb in
-	if (usr.stat || !ishuman(usr))
+	if (usr.stat || !isHuman(usr))
 		return
 
 	if (!usr.Adjacent(src))
@@ -1187,7 +1187,7 @@
 		usr << "\red You can't reach the passenger compartment from here."
 		return
 
-	if(iscarbon(usr))
+	if(isCarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(C.handcuffed)
 			usr << "\red Kinda hard to climb in while handcuffed don't you think?"

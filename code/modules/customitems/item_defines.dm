@@ -144,11 +144,11 @@
 	item_color = "ana_badge"
 
 /obj/item/fluff/ana_issek_2/attack_self(mob/user as mob)
-	if(isliving(user))
+	if(isLiving(user))
 		user.visible_message("\red [user] flashes their golden security badge.\nIt reads: Ana Issek, NT Security.","\red You display the faded bage.\nIt reads: Ana Issek, NT Security.")
 
 /obj/item/fluff/ana_issek_2/attack(mob/living/carbon/human/M, mob/living/user)
-	if(isliving(user))
+	if(isLiving(user))
 		user.visible_message("\red [user] invades [M]'s personal space, thrusting [src] into their face insistently.","\red You invade [M]'s personal space, thrusting [src] into their face insistently. You are the law.")
 
 /obj/item/weapon/soap/fluff/azare_siraj_1 //mister fox: Azare Siraj

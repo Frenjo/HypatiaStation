@@ -3,8 +3,8 @@
 	var/list/turretTargets = list()
 
 /area/turret_protected/proc/subjectDied(target)
-	if( isliving(target) )
-		if( !issilicon(target) )
+	if( isLiving(target) )
+		if( !isSilicon(target) )
 			var/mob/living/L = target
 			if( L.stat )
 				if( L in turretTargets )
@@ -16,7 +16,7 @@
 	//if( master && master != src )
 	//	return master.Entered(O)
 
-	if( iscarbon(O) )
+	if( isCarbon(O) )
 		turretTargets |= O
 	else if( istype(O, /obj/mecha) )
 		var/obj/mecha/Mech = O
@@ -30,7 +30,7 @@
 	//if( master && master != src )
 	//	return master.Exited(O)
 
-	if( ismob(O) && !issilicon(O) )
+	if( ismob(O) && !isSilicon(O) )
 		turretTargets -= O
 	else if( istype(O, /obj/mecha) )
 		turretTargets -= O
@@ -156,7 +156,7 @@
 		if( !area_T || (area_T.type != protected_area.type) )
 			protected_area.Exited(T)
 			return 0 //If the guy is somehow not in the turret's area (teleportation), get them out the damn list. --NEO
-		if( iscarbon(T) )
+		if( isCarbon(T) )
 			var/mob/living/carbon/MC = T
 			if( !MC.stat )
 				if( !MC.lying || lasers )
@@ -407,7 +407,7 @@
 
 /obj/machinery/turretid/attack_hand(mob/user as mob)
 	if ( get_dist(src, user) > 0 )
-		if ( !issilicon(user) )
+		if ( !isSilicon(user) )
 			user << "<span class='notice'>You are too far away.</span>"
 			user.unset_machine()
 			user << browse(null, "window=turretid")
@@ -452,7 +452,7 @@
 		if (!istype(usr, /mob/living/silicon))
 			usr << "Control panel is locked!"
 			return
-	if ( get_dist(src, usr) == 0 || issilicon(usr))
+	if ( get_dist(src, usr) == 0 || isSilicon(usr))
 		if (href_list["toggleOn"])
 			src.enabled = !src.enabled
 			src.updateTurrets()

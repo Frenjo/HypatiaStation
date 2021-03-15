@@ -193,7 +193,7 @@
 	return
 
 /obj/machinery/mecha_part_fabricator/proc/operation_allowed(mob/M)
-	if(isrobot(M) || isAI(M))
+	if(isRobot(M) || isAI(M))
 		return 1
 	if(!istype(req_access) || !req_access.len)
 		return 1

@@ -92,13 +92,13 @@ var/global/floorIsLava = 0
 			body += "<br>"
 
 			//Monkey
-			if(ismonkey(M))
+			if(isMonkey(M))
 				body += "<B>Monkeyized</B> | "
 			else
 				body += "<A href='?src=\ref[src];monkeyone=\ref[M]'>Monkeyize</A> | "
 
 			//Corgi
-			if(iscorgi(M))
+			if(isCorgi(M))
 				body += "<B>Corgized</B> | "
 			else
 				body += "<A href='?src=\ref[src];corgione=\ref[M]'>Corgize</A> | "
@@ -106,7 +106,7 @@ var/global/floorIsLava = 0
 			//AI / Cyborg
 			if(isAI(M))
 				body += "<B>Is an AI</B> "
-			else if(ishuman(M))
+			else if(isHuman(M))
 				body += {"<A href='?src=\ref[src];makeai=\ref[M]'>Make AI</A> |
 					<A href='?src=\ref[src];makerobot=\ref[M]'>Make Robot</A> |
 					<A href='?src=\ref[src];makealien=\ref[M]'>Make Alien</A> |
@@ -114,13 +114,13 @@ var/global/floorIsLava = 0
 				"}
 
 			//Simple Animals
-			if(isanimal(M))
+			if(isAnimal(M))
 				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Re-Animalize</A> | "
 			else
 				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Animalize</A> | "
 
 			// DNA2 - Admin Hax
-			if(iscarbon(M))
+			if(isCarbon(M))
 				body += "<br><br>"
 				body += "<b>DNA Blocks:</b><br><table border='0'><tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>"
 				var/bname
@@ -946,7 +946,7 @@ var/global/floorIsLava = 0
 			if (ticker.mode.config_tag == "monkey")
 				return 2
 			return 1
-	if(isrobot(M))
+	if(isRobot(M))
 		var/mob/living/silicon/robot/R = M
 		if(R.emagged)
 			return 1
@@ -1056,10 +1056,10 @@ var/global/floorIsLava = 0
 		ai_number++
 		if(isAI(S))
 			usr << "<b>AI [key_name(S, usr)]'s laws:</b>"
-		else if(isrobot(S))
+		else if(isRobot(S))
 			var/mob/living/silicon/robot/R = S
 			usr << "<b>CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [R.connected_ai])":"(Independant)"]: laws:</b>"
-		else if (ispAI(S))
+		else if (isPAI(S))
 			usr << "<b>pAI [key_name(S, usr)]'s laws:</b>"
 		else
 			usr << "<b>SOMETHING SILICON [key_name(S, usr)]'s laws:</b>"

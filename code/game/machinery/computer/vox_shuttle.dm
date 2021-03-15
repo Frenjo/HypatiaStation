@@ -122,7 +122,7 @@ var/global/announce_vox_departure = 1 //Stealth systems - give an announcement o
 
 
 /obj/machinery/computer/vox_station/Topic(href, href_list)
-	if(!isliving(usr))	return
+	if(!isLiving(usr))	return
 	var/mob/living/user = usr
 
 	if(in_range(src, user) || istype(user, /mob/living/silicon))

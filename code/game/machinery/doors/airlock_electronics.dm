@@ -16,7 +16,7 @@
 	var/locked = 1
 
 /obj/item/weapon/airlock_electronics/attack_self(mob/user as mob)
-	if(!ishuman(user) && !istype(user, /mob/living/silicon/robot/drone))
+	if(!isHuman(user) && !istype(user, /mob/living/silicon/robot/drone))
 		return ..(user)
 
 	var/mob/living/carbon/human/H = user
@@ -58,7 +58,7 @@
 
 /obj/item/weapon/airlock_electronics/Topic(href, href_list)
 	..()
-	if(usr.stat || usr.restrained() || !ishuman(usr))
+	if(usr.stat || usr.restrained() || !isHuman(usr))
 		return
 	if(href_list["close"])
 		usr << browse(null, "window=airlock")

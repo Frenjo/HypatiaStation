@@ -32,7 +32,7 @@
 		return
 
 	attack(mob/living/carbon/human/M as mob, mob/user as mob)
-		if (!ishuman(M))
+		if (!isHuman(M))
 			user << "\red [M] is not human and cannot have the fingerprints."
 			flick("forensic0",src)
 			return 0

@@ -3,8 +3,8 @@
 
 //Returns the thing in our active hand
 /mob/proc/get_active_hand()
-	if(issilicon(src))
-		if(isrobot(src))
+	if(isSilicon(src))
+		if(isRobot(src))
 			if(src:module_active)
 				return src:module_active
 	else
@@ -199,8 +199,8 @@
 
 /** BS12's proc to get the item in the active hand. Couldn't find the /tg/ equivalent. **/
 /mob/proc/equipped()
-	if(issilicon(src))
-		if(isrobot(src))
+	if(isSilicon(src))
+		if(isRobot(src))
 			if(src:module_active)
 				return src:module_active
 	else

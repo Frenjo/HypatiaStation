@@ -68,7 +68,7 @@
 
 /obj/item/weapon/cell/attack_self(mob/user as mob)
 	src.add_fingerprint(user)
-	if(ishuman(user))
+	if(isHuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/clothing/gloves/space_ninja/SNG = H.gloves
 		if(!istype(SNG) || !SNG.candrain || !SNG.draining) return

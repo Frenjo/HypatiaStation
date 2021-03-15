@@ -16,7 +16,7 @@
 		if(user.client.prefs.muted & MUTE_IC)
 			src << "\red You cannot speak in IC (muted)."
 			return
-	if(!ishuman(user))
+	if(!isHuman(user))
 		user << "\red You don't know how to use this!"
 		return
 	if(user.silent)

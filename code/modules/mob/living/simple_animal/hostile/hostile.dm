@@ -28,7 +28,7 @@
 			T = F
 			break
 
-		if(isliving(A))
+		if(isLiving(A))
 			var/mob/living/L = A
 			if(L.faction == src.faction && !attack_same)
 				continue
@@ -89,7 +89,7 @@
 /mob/living/simple_animal/hostile/proc/AttackingTarget()
 	if(!Adjacent(target_mob))
 		return
-	if(isliving(target_mob))
+	if(isLiving(target_mob))
 		var/mob/living/L = target_mob
 		L.attack_animal(src)
 		return L

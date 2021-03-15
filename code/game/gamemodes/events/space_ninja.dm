@@ -450,7 +450,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm != "Yes") return
 
-	if(ishuman(M))
+	if(isHuman(M))
 		log_admin("[key_name(src)] turned [M.key] into a Space Ninja.")
 		spawn(10)
 			M:create_mind_space_ninja()

@@ -44,7 +44,7 @@
 
 	if(!istype(M, /mob))	return
 
-	if(ishuman(M))
+	if(isHuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.lip_style)	//if they already have lipstick on
 			user << "<span class='notice'>You need to wipe off the old lipstick first!</span>"
@@ -70,7 +70,7 @@
 	if(user.zone_sel.selecting == "mouth")
 		if(!istype(M, /mob))	return
 
-		if(ishuman(M))
+		if(isHuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H == user)
 				user << "<span class='notice'>You wipe off the lipstick with [src].</span>"

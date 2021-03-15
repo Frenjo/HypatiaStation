@@ -74,7 +74,7 @@
 	return
 
 /mob/living/simple_animal/mouse/Crossed(AM as mob|obj)
-	if( ishuman(AM) )
+	if( isHuman(AM) )
 		if(!stat)
 			var/mob/M = AM
 			M << "\blue \icon[src] Squeek!"

@@ -666,7 +666,7 @@
 				user << "There is no charge to draw from that APC."
 			return
 
-	if(usr == user && opened && (!issilicon(user)))
+	if(usr == user && opened && (!isSilicon(user)))
 		if(cell)
 			user.put_in_hands(cell)
 			cell.add_fingerprint(user)

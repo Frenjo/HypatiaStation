@@ -24,7 +24,7 @@
 	var/foldable = null	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
-	if (ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist
+	if (isHuman(usr) || isMonkey(usr)) //so monkeys can take off their backpacks -- Urist
 		var/mob/M = usr
 
 		if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
@@ -311,7 +311,7 @@
 /obj/item/weapon/storage/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
-	if(isrobot(user))
+	if(isRobot(user))
 		user << "\blue You're a robot. No."
 		return 1 //Robots can't interact with storage items.
 
@@ -340,7 +340,7 @@
 /obj/item/weapon/storage/attack_hand(mob/user as mob)
 	playsound(src.loc, "rustle", 50, 1, -5)
 
-	if(ishuman(user))
+	if(isHuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.l_store == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
 			H.put_in_hands(src)
@@ -380,7 +380,7 @@
 	set name = "Empty Contents"
 	set category = "Object"
 
-	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+	if((!isHuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
 		return
 
 	var/turf/T = get_turf(src)

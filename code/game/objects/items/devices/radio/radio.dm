@@ -116,7 +116,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	if (usr.stat || !on)
 		return
 
-	if (!(issilicon(usr) || (usr.contents.Find(src) || ( in_range(src, usr) && istype(loc, /turf)))))
+	if (!(isSilicon(usr) || (usr.contents.Find(src) || ( in_range(src, usr) && istype(loc, /turf)))))
 		usr << browse(null, "window=radio")
 		return
 	usr.set_machine(src)
@@ -262,11 +262,11 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		var/jobname // the mob's "job"
 
 		// --- Human: use their actual job ---
-		if (ishuman(M))
+		if (isHuman(M))
 			jobname = M:get_assignment()
 
 		// --- Carbon Nonhuman ---
-		else if (iscarbon(M)) // Nonhuman carbon mob
+		else if (isCarbon(M)) // Nonhuman carbon mob
 			jobname = "No id"
 
 		// --- AI ---
@@ -274,7 +274,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			jobname = "AI"
 
 		// --- Cyborg ---
-		else if (isrobot(M))
+		else if (isRobot(M))
 			jobname = "Cyborg"
 
 		// --- Personal AI (pAI) ---
@@ -288,7 +288,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		// --- Modifications to the mob's identity ---
 
 		// The mob is disguising their identity:
-		if (ishuman(M) && M.GetVoice() != real_name)
+		if (isHuman(M) && M.GetVoice() != real_name)
 			displayname = M.GetVoice()
 			jobname = "Unknown"
 			voicemask = 1
@@ -429,13 +429,13 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 		var/eqjobname
 
-		if (ishuman(M))
+		if (isHuman(M))
 			eqjobname = M:get_assignment()
-		else if (iscarbon(M))
+		else if (isCarbon(M))
 			eqjobname = "No id" //only humans can wear ID
 		else if (isAI(M))
 			eqjobname = "AI"
-		else if (isrobot(M))
+		else if (isRobot(M))
 			eqjobname = "Cyborg"//Androids don't really describe these too well, in my opinion.
 		else if (istype(M, /mob/living/silicon/pai))
 			eqjobname = "Personal AI"
@@ -462,7 +462,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			if (R.client && !(R.client.prefs.toggles & CHAT_RADIO)) //Adminning with 80 people on can be fun when you're trying to talk and all you can hear is radios.
 				continue
 			if (R.say_understands(M))
-				if (ishuman(M) && M.GetVoice() != M.real_name)
+				if (isHuman(M) && M.GetVoice() != M.real_name)
 					heard_masked += R
 				else
 					heard_normal += R
@@ -541,7 +541,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			if (length(heard_masked))
 				var/N = M.name
 				var/J = eqjobname
-				if(ishuman(M) && M.GetVoice() != M.real_name)
+				if(isHuman(M) && M.GetVoice() != M.real_name)
 					N = M.GetVoice()
 					J = "Unknown"
 				var/rendered = "[part_a][N][part_b][quotedmsg][part_c]"

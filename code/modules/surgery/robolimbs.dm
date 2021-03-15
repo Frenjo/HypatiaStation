@@ -6,7 +6,7 @@
 /datum/surgery_step/limb/
 	can_infect = 0
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if (!hasorgans(target))
+		if (!hasOrgans(target))
 			return 0
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		if (!affected)

@@ -8,7 +8,7 @@
 	if(usr.stat)
 		usr << "Not when you're incapicated."
 		return
-	if(!ishuman(usr))
+	if(!isHuman(usr))
 		return
 
 	var/mob/living/carbon/human/H = usr
@@ -52,7 +52,7 @@
 	set category = "Mime"
 	set name = "Speech"
 	set desc = "Toggle your speech."
-	if(!ishuman(usr))
+	if(!isHuman(usr))
 		return
 
 	var/mob/living/carbon/human/H = usr

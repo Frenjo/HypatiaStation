@@ -103,7 +103,7 @@
 				if(!P.silent) O.show_message(text("\icon[P] *[P.ttone]*"))
 			//Search for holder of the PDA.
 			var/mob/living/L = null
-			if(P.loc && isliving(P.loc))
+			if(P.loc && isLiving(P.loc))
 				L = P.loc
 			//Maybe they are a pAI!
 			else

@@ -246,11 +246,11 @@
 
 /datum/reagent/toxin/plantbgone/reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)
 	qdel(src)
-	if(iscarbon(M))
+	if(isCarbon(M))
 		var/mob/living/carbon/C = M
 		if(!C.wear_mask) // If not wearing a mask
 			C.adjustToxLoss(2) // 4 toxic damage per application, doubled for some reason
-		if(ishuman(M))
+		if(isHuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.dna)
 				if(H.species.flags & IS_PLANT) //plantmen take a LOT of damage
@@ -315,7 +315,7 @@
 	overdose = 20
 
 /datum/reagent/toxin/potassium_chlorophoride/on_mob_life(var/mob/living/carbon/M as mob)
-	if(ishuman(M))
+	if(isHuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.stat != 1)
 			if(H.losebreath >= 10)
@@ -371,7 +371,7 @@
 	if(!istype(M, /mob/living))
 		return
 	if(method == TOUCH)
-		if(ishuman(M))
+		if(isHuman(M))
 			var/mob/living/carbon/human/H = M
 
 			if(H.head)
@@ -400,7 +400,7 @@
 					qdel(H.glasses)
 					H.update_inv_glasses(0)
 
-		else if(ismonkey(M))
+		else if(isMonkey(M))
 			var/mob/living/carbon/monkey/MK = M
 			if(MK.wear_mask)
 				if(!MK.wear_mask.unacidable)

@@ -47,7 +47,7 @@
 		if(stat & BROKEN || !I || !user)
 			return
 
-		if(isrobot(user) && !istype(I, /obj/item/weapon/storage/bag/trash))
+		if(isRobot(user) && !istype(I, /obj/item/weapon/storage/bag/trash))
 			return
 		src.add_fingerprint(user)
 		if(mode<=0) // It's off
@@ -140,7 +140,7 @@
 	MouseDrop_T(mob/target, mob/user)
 		if (!istype(target) || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.stat || istype(user, /mob/living/silicon/ai))
 			return
-		if(isanimal(user) && target != user) return //animals cannot put mobs other than themselves into disposal
+		if(isAnimal(user) && target != user) return //animals cannot put mobs other than themselves into disposal
 		src.add_fingerprint(user)
 		var/target_loc = target.loc
 		var/msg

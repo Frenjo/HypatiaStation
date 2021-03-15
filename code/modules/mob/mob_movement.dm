@@ -38,7 +38,7 @@
 
 
 /client/Southwest()
-	if(iscarbon(usr))
+	if(isCarbon(usr))
 		var/mob/living/carbon/C = usr
 		C.toggle_throw_mode()
 	else
@@ -47,7 +47,7 @@
 
 
 /client/Northwest()
-	if(iscarbon(usr))
+	if(isCarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(!C.get_active_hand())
 			usr << "\red You have nothing to drop in your hand."
@@ -96,7 +96,7 @@
 
 /client/verb/drop_item()
 	set hidden = 1
-	if(!isrobot(mob))
+	if(!isRobot(mob))
 		mob.drop_item_v()
 	return
 
@@ -168,7 +168,7 @@
 
 	if(mob.control_object)	Move_object(direct)
 
-	if(isobserver(mob))	return mob.Move(n,direct)
+	if(isObserver(mob))	return mob.Move(n,direct)
 
 	// Who thought having two separate statements was a good idea? -Frenjo
 	//if(moving) return 0
@@ -186,7 +186,7 @@
 
 	if(mob.monkeyizing)	return//This is sota the goto stop mobs from moving var
 
-	if(isliving(mob))
+	if(isLiving(mob))
 		var/mob/living/L = mob
 		if(L.incorporeal_move)//Move though walls
 			Process_Incorpmove(direct)
@@ -334,7 +334,7 @@
 ///Allows mobs to run though walls
 /client/proc/Process_Incorpmove(direct)
 	var/turf/mobloc = get_turf(mob)
-	if(!isliving(mob))
+	if(!isLiving(mob))
 		return
 	var/mob/living/L = mob
 	switch(L.incorporeal_move)

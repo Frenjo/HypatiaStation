@@ -25,7 +25,7 @@
 	src << "As a ghost, you will now [(prefs.toggles & CHAT_GHOSTRADIO) ? "hear all radio chat in the world" : "only hear from nearby speakers"]."
 	prefs.save_preferences()
 	feedback_add_details("admin_verb","TGR")
-	
+
 /client/proc/toggle_hear_radio()
 	set name = "Show/Hide RadioChatter"
 	set category = "Preferences"
@@ -154,7 +154,7 @@
 	set category = "Preferences"
 	set desc = "Configure your user interface"
 
-	if(!ishuman(usr))
+	if(!isHuman(usr))
 		usr << "This only for human"
 		return
 

@@ -182,11 +182,11 @@
 
 		var/idname = "*None Provided*"
 		var/idrank = "*None Provided*"
-		if(ishuman(usr))
+		if(isHuman(usr))
 			var/mob/living/carbon/human/H = usr
 			idname = H.get_authentification_name()
 			idrank = H.get_assignment()
-		else if(issilicon(usr))
+		else if(isSilicon(usr))
 			idname = usr.real_name
 
 		//supply_shuttle.ordernum++
@@ -410,11 +410,11 @@
 
 		var/idname = "*None Provided*"
 		var/idrank = "*None Provided*"
-		if(ishuman(usr))
+		if(isHuman(usr))
 			var/mob/living/carbon/human/H = usr
 			idname = H.get_authentification_name()
 			idrank = H.get_assignment()
-		else if(issilicon(usr))
+		else if(isSilicon(usr))
 			idname = usr.real_name
 
 		//supply_shuttle.ordernum++

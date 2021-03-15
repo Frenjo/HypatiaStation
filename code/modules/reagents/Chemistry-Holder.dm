@@ -104,7 +104,7 @@ datum
 				for (var/datum/reagent/current_reagent in src.reagent_list)
 					if (!current_reagent)
 						continue
-					if (current_reagent.id == "blood" && ishuman(target))
+					if (current_reagent.id == "blood" && isHuman(target))
 						var/mob/living/carbon/human/H = target
 						H.inject_blood(my_atom, amount)
 						continue

@@ -220,7 +220,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
-	if(ishuman(M))
+	if(isHuman(M))
 		log_admin("[key_name(src)] has alienized [M.key].")
 		spawn(10)
 			M:Alienize()
@@ -237,7 +237,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
-	if(ishuman(M))
+	if(isHuman(M))
 		log_admin("[key_name(src)] has slimeized [M.key].")
 		spawn(10)
 			M:slimeize()
@@ -418,13 +418,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(usr)] assumed direct control of [M].")
 	var/mob/adminmob = src.mob
 	M.ckey = src.ckey
-	if( isobserver(adminmob) )
+	if(isObserver(adminmob))
 		qdel(adminmob)
 	feedback_add_details("admin_verb","ADC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-
-
-
 
 /client/proc/cmd_switch_radio()
 	set category = "Debug"
@@ -527,7 +523,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 /client/proc/cmd_admin_dress(var/mob/living/carbon/human/M in mob_list)
 	set category = "Fun"
 	set name = "Select equipment"
-	if(!ishuman(M))
+	if(!isHuman(M))
 		alert("Invalid mob")
 		return
 	//log_admin("[key_name(src)] has alienized [M.key].")

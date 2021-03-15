@@ -24,7 +24,7 @@
 		return 0
 
 	if(rigged && locate(/obj/item/device/radio/electropack) in src)
-		if(isliving(usr))
+		if(isLiving(usr))
 			var/mob/living/L = usr
 			if(L.electrocute_act(17, src))
 				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -69,7 +69,7 @@
 
 /obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(opened)
-		if(isrobot(user))
+		if(isRobot(user))
 			return
 		user.drop_item()
 		if(W)
@@ -169,7 +169,7 @@
 	if(!usr.canmove || usr.stat || usr.restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
 		return
 
-	if(ishuman(usr))
+	if(isHuman(usr))
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else

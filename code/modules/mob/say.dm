@@ -92,7 +92,7 @@
 			return 1
 		if(other.universal_speak)
 			return 1
-		if(isAI(src) && ispAI(other))
+		if(isAI(src) && isPAI(other))
 			return 1
 		if (istype(other, src.type) || istype(src, other.type))
 			return 1
@@ -132,7 +132,7 @@
 		speech_verb = "asks"
 	else if (ending == "!")
 		speech_verb = "exclaims"
-	else if(isliving(src))
+	else if(isLiving(src))
 		var/mob/living/L = src
 		if (L.getBrainLoss() >= 60)
 			speech_verb = "gibbers"

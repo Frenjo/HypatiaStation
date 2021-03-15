@@ -53,7 +53,7 @@
 	if(d >= pass_out)
 		M:paralysis = max(M:paralysis, 20)
 		M:drowsyness  = max(M:drowsyness, 30)
-		if(ishuman(M))
+		if(isHuman(M))
 			var/mob/living/carbon/human/H = M
 			var/datum/organ/internal/liver/L = H.internal_organs["liver"]
 			if (istype(L))
@@ -295,13 +295,13 @@
 			M.druggy = max(M.druggy, 60)
 			if(prob(10)) M.emote(pick("twitch","giggle"))
 			if(prob(30)) M.adjustToxLoss(2)
-			if(prob(5)) if(ishuman(M))
+			if(prob(5)) if(isHuman(M))
 				var/mob/living/carbon/human/H = M
 				var/datum/organ/internal/heart/L = H.internal_organs["heart"]
 				if (istype(L))
 					L.take_damage(5, 0)
 		if (300 to INFINITY)
-			if(ishuman(M))
+			if(isHuman(M))
 				var/mob/living/carbon/human/H = M
 				var/datum/organ/internal/heart/L = H.internal_organs["heart"]
 				if (istype(L))

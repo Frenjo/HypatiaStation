@@ -166,7 +166,7 @@ Implant Specifics:<BR>"}
 			log_game("Explosive implant triggered in [T] ([T.key]).")
 			need_gib = 1
 
-			if(ishuman(imp_in))
+			if(isHuman(imp_in))
 				if (elevel == "Localized Limb")
 					if(part) //For some reason, small_boom() didn't work. So have this bit of working copypaste.
 						imp_in.visible_message("\red Something beeps inside [imp_in][part ? "'s [part.display_name]" : ""]!")
@@ -233,11 +233,11 @@ Implant Specifics:<BR>"}
 		return 0
 
 	proc/small_boom()
-		if (ishuman(imp_in) && part)
+		if (isHuman(imp_in) && part)
 			imp_in.visible_message("\red Something beeps inside [imp_in][part ? "'s [part.display_name]" : ""]!")
 			playsound(loc, 'sound/items/countdown.ogg', 75, 1, -3)
 			spawn(25)
-				if (ishuman(imp_in) && part)
+				if (isHuman(imp_in) && part)
 					//No tearing off these parts since it's pretty much killing
 					//and you can't replace groins
 					if (istype(part,/datum/organ/external/chest) ||	\

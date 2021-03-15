@@ -214,7 +214,7 @@
 /obj/machinery/body_scanconsole/attack_hand(user as mob)
 	if(..())
 		return
-	if(!ishuman(connected.occupant))
+	if(!isHuman(connected.occupant))
 		user << "\red This device can only scan compatible lifeforms."
 		return
 	var/dat

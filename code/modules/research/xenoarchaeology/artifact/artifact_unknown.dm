@@ -228,7 +228,7 @@ var/list/valid_secondary_effect_types = list(\
 	if (get_dist(user, src) > 1)
 		user << "\red You can't reach [src] from here."
 		return
-	if(ishuman(user) && user:gloves)
+	if(isHuman(user) && user:gloves)
 		user << "<b>You touch [src]</b> with your gloved hands, [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")]."
 		return
 
@@ -304,7 +304,7 @@ var/list/valid_secondary_effect_types = list(\
 				my_effect.ToggleActivate()
 			if(secondary_effect && secondary_effect.trigger == TRIGGER_FORCE && prob(25))
 				secondary_effect.ToggleActivate(0)
-	else if(ishuman(M) && !istype(M:gloves,/obj/item/clothing/gloves))
+	else if(isHuman(M) && !istype(M:gloves,/obj/item/clothing/gloves))
 		var/warn = 0
 
 		if (my_effect.trigger == TRIGGER_TOUCH && prob(50))

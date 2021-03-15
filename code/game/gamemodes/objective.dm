@@ -23,7 +23,7 @@ datum/objective
 	proc/find_target()
 		var/list/possible_targets = list()
 		for(var/datum/mind/possible_target in ticker.minds)
-			if(possible_target != owner && ishuman(possible_target.current) && (possible_target.current.stat != 2))
+			if(possible_target != owner && isHuman(possible_target.current) && (possible_target.current.stat != 2))
 				possible_targets += possible_target
 		if(possible_targets.len > 0)
 			target = pick(possible_targets)
@@ -31,7 +31,7 @@ datum/objective
 
 	proc/find_target_by_role(role, role_type=0)//Option sets either to check assigned role or special role. Default to assigned.
 		for(var/datum/mind/possible_target in ticker.minds)
-			if((possible_target != owner) && ishuman(possible_target.current) && ((role_type ? possible_target.special_role : possible_target.assigned_role) == role) )
+			if((possible_target != owner) && isHuman(possible_target.current) && ((role_type ? possible_target.special_role : possible_target.assigned_role) == role) )
 				target = possible_target
 				break
 
@@ -58,7 +58,7 @@ datum/objective/assassinate
 
 	check_completion()
 		if(target && target.current)
-			if(target.current.stat == DEAD || issilicon(target.current) || isbrain(target.current) || target.current.z > 6 || !target.current.ckey) //Borgs/brains/AIs count as dead for traitor objectives. --NeoFite
+			if(target.current.stat == DEAD || isSilicon(target.current) || isBrain(target.current) || target.current.z > 6 || !target.current.ckey) //Borgs/brains/AIs count as dead for traitor objectives. --NeoFite
 				return 1
 			return 0
 		return 1
@@ -85,7 +85,7 @@ datum/objective/mutiny
 
 	check_completion()
 		if(target && target.current)
-			if(target.current.stat == DEAD || !ishuman(target.current) || !target.current.ckey)
+			if(target.current.stat == DEAD || !isHuman(target.current) || !target.current.ckey)
 				return 1
 			var/turf/T = get_turf(target.current)
 			if(T && (T.z != 1))			//If they leave the station they count as dead for this
@@ -116,7 +116,7 @@ datum/objective/mutiny/rp
 		var/rval = 1
 		if(target && target.current)
 			//assume that only carbon mobs can become rev heads for now
-			if(target.current.stat == DEAD || target.current:handcuffed || !ishuman(target.current))
+			if(target.current.stat == DEAD || target.current:handcuffed || !isHuman(target.current))
 				return 1
 			// Check if they're converted
 			if(istype(ticker.mode, /datum/game_mode/revolution))
@@ -148,7 +148,7 @@ datum/objective/anti_revolution/execute
 
 	check_completion()
 		if(target && target.current)
-			if(target.current.stat == DEAD || !ishuman(target.current))
+			if(target.current.stat == DEAD || !isHuman(target.current))
 				return 1
 			return 0
 		return 1
@@ -241,7 +241,7 @@ datum/objective/debrain//I want braaaainssss
 			return 1
 		if( !owner.current || owner.current.stat==DEAD )//If you're otherwise dead.
 			return 0
-		if( !target.current || !isbrain(target.current) )
+		if( !target.current || !isBrain(target.current) )
 			return 0
 		var/atom/A = target.current
 		while(A.loc)			//check to see if the brainmob is on our person
@@ -273,7 +273,7 @@ datum/objective/protect//The opposite of killing a dude.
 		if(!target)			//If it's a free objective.
 			return 1
 		if(target.current)
-			if(target.current.stat == DEAD || issilicon(target.current) || isbrain(target.current))
+			if(target.current.stat == DEAD || isSilicon(target.current) || isBrain(target.current))
 				return 0
 			return 1
 		return 0
@@ -288,7 +288,7 @@ datum/objective/hijack
 		//if(emergency_shuttle.location<2)
 		if(emergency_shuttle.returned())// Updated to reflect 'shuttles' port. -Frenjo
 			return 0
-		if(issilicon(owner.current))
+		if(isSilicon(owner.current))
 			return 0
 		var/area/shuttle = locate(/area/shuttle/escape/centcom)
 		var/list/protected_mobs = list(/mob/living/silicon/ai, /mob/living/silicon/pai)
@@ -349,9 +349,9 @@ datum/objective/escape
 
 
 	check_completion()
-		if(issilicon(owner.current))
+		if(isSilicon(owner.current))
 			return 0
-		if(isbrain(owner.current))
+		if(isBrain(owner.current))
 			return 0
 		//if(emergency_shuttle.location<2)
 		if(emergency_shuttle.returned())// Updated to reflect 'shuttles' port. -Frenjo
@@ -389,9 +389,9 @@ datum/objective/survive
 	explanation_text = "Stay alive until the end."
 
 	check_completion()
-		if(!owner.current || owner.current.stat == DEAD || isbrain(owner.current))
+		if(!owner.current || owner.current.stat == DEAD || isBrain(owner.current))
 			return 0		//Brains no longer win survive objectives. --NEO
-		if(issilicon(owner.current) && owner.current != owner.original)
+		if(isSilicon(owner.current) && owner.current != owner.original)
 			return 0
 		return 1
 
@@ -552,7 +552,7 @@ datum/objective/steal
 
 	check_completion()
 		if(!steal_target || !owner.current)	return 0
-		if(!isliving(owner.current))	return 0
+		if(!isLiving(owner.current))	return 0
 		var/list/all_items = owner.current.get_contents()
 		switch (target_name)
 			if("28 moles of plasma (full tank)","10 diamonds","50 gold bars","25 refined uranium bars")
@@ -613,7 +613,7 @@ datum/objective/download
 
 
 	check_completion()
-		if(!ishuman(owner.current))
+		if(!isHuman(owner.current))
 			return 0
 		if(!owner.current || owner.current.stat == 2)
 			return 0
@@ -767,7 +767,7 @@ datum/objective/heist/kidnap
 		var/list/priority_targets = list()
 
 		for(var/datum/mind/possible_target in ticker.minds)
-			if(possible_target != owner && ishuman(possible_target.current) && (possible_target.current.stat != 2) && (possible_target.assigned_role != "MODE"))
+			if(possible_target != owner && isHuman(possible_target.current) && (possible_target.current.stat != 2) && (possible_target.assigned_role != "MODE"))
 				possible_targets += possible_target
 				for(var/role in roles)
 					if(possible_target.assigned_role == role)

@@ -111,7 +111,7 @@
 	for(var/obj/O in src)
 		O.loc = src.loc
 	src.add_fingerprint(user)
-	if(ishuman(C))
+	if(isHuman(C))
 		var/mob/living/carbon/human/H = C
 		src.victim = H
 		icon_state = H.pulse ? "table2-active" : "table2-idle"
@@ -123,7 +123,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat || !ishuman(usr) || usr.buckled || usr.restrained())
+	if(usr.stat || !isHuman(usr) || usr.buckled || usr.restrained())
 		return
 
 	if(src.victim)
@@ -134,7 +134,7 @@
 
 /obj/machinery/optable/attackby(obj/item/weapon/W as obj, mob/living/carbon/user as mob)
 	if (istype(W, /obj/item/weapon/grab))
-		if(iscarbon(W:affecting))
+		if(isCarbon(W:affecting))
 			take_victim(W:affecting,usr)
 			qdel(W)
 			return

@@ -135,7 +135,7 @@
 
 
 	// OTHER
-	else if ((istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/device/pda)) && isliving(user))
+	else if ((istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/device/pda)) && isLiving(user))
 		var/mob/living/U = user
 		var/obj/item/weapon/paper/X = null
 		var/obj/item/device/pda/P = null

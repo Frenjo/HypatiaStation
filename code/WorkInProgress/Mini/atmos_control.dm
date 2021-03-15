@@ -97,7 +97,7 @@
 					var/list/selected = current.TLV[env]
 					var/list/thresholds = list("lower bound", "low warning", "high warning", "upper bound")
 					var/newval = input("Enter [thresholds[threshold]] for [env]", "Alarm triggers", selected[threshold]) as num|null
-					if (isnull(newval) || ..() || (current.locked && issilicon(usr)))
+					if (isnull(newval) || ..() || (current.locked && isSilicon(usr)))
 						return
 					if (newval<0)
 						selected[threshold] = -1.0

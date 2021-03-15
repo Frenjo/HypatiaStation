@@ -14,7 +14,7 @@
 
 /datum/artifact_effect/dnaswitch/DoEffectTouch(var/mob/toucher)
 	var/weakness = GetAnomalySusceptibility(toucher)
-	if(ishuman(toucher) && prob(weakness * 100))
+	if(isHuman(toucher) && prob(weakness * 100))
 		toucher << pick("\green You feel a little different.",\
 		"\green You feel very strange.",\
 		"\green Your stomach churns.",\

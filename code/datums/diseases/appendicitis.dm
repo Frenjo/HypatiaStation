@@ -43,7 +43,7 @@
 				affected_mob.Weaken(10)
 				affected_mob.adjustToxLoss(3)
 	if(stage > 3)
-		if(prob(1) && ishuman(affected_mob))
+		if(prob(1) && isHuman(affected_mob))
 			var/mob/living/carbon/human/H = affected_mob
 			H << "\red Your abdomen is a world of pain!"
 			H.Weaken(10)

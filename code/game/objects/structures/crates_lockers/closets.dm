@@ -193,7 +193,7 @@
 				M.show_message("<span class='notice'>\The [src] has been cut apart by [user] with \the [WT].</span>", 3, "You hear welding.", 2)
 			qdel(src)
 			return
-		if(isrobot(user))
+		if(isRobot(user))
 			return
 		usr.drop_item()
 		if(W)
@@ -271,7 +271,7 @@
 	if(!usr.canmove || usr.stat || usr.restrained())
 		return
 
-	if(ishuman(usr))
+	if(isHuman(usr))
 		src.add_fingerprint(usr)
 		src.toggle(usr)
 	else

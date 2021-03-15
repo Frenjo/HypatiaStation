@@ -84,14 +84,14 @@
 
 	if(istype(src, /mob/living/silicon/ai) && !hard_to_hear)
 		var/jobname // the mob's "job"
-		if (ishuman(speaker))
+		if (isHuman(speaker))
 			var/mob/living/carbon/human/H = speaker
 			jobname = H.get_assignment()
-		else if (iscarbon(speaker)) // Nonhuman carbon mob
+		else if (isCarbon(speaker)) // Nonhuman carbon mob
 			jobname = "No id"
 		else if (isAI(speaker))
 			jobname = "AI"
-		else if (isrobot(speaker))
+		else if (isRobot(speaker))
 			jobname = "Cyborg"
 		else if (istype(speaker, /mob/living/silicon/pai))
 			jobname = "Personal AI"

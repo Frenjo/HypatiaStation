@@ -137,7 +137,7 @@
 				usr << "<span class='warning'>You insert [I], the console flashes \'<i>Access denied.</a>\'</span>"
 	else if(href_list["ejectcard"])
 		if(auth_card)
-			if(ishuman(usr))
+			if(isHuman(usr))
 				auth_card.loc = usr.loc
 				if(!usr.get_active_hand())
 					usr.put_in_hands(auth_card)

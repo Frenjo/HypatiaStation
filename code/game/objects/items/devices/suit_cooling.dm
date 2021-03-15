@@ -60,7 +60,7 @@
 		turn_off()
 
 /obj/item/device/suit_cooling_unit/proc/get_environment_temperature()
-	if(ishuman(loc))
+	if(isHuman(loc))
 		var/mob/living/carbon/human/H = loc
 		if(istype(H.loc, /obj/mecha))
 			var/obj/mecha/M = loc
@@ -79,7 +79,7 @@
 	return environment.temperature
 
 /obj/item/device/suit_cooling_unit/proc/attached_to_suit(mob/M)
-	if(!ishuman(M))
+	if(!isHuman(M))
 		return 0
 
 	var/mob/living/carbon/human/H = M
@@ -107,7 +107,7 @@
 
 /obj/item/device/suit_cooling_unit/attack_self(mob/user as mob)
 	if(cover_open && cell)
-		if(ishuman(user))
+		if(isHuman(user))
 			user.put_in_hands(cell)
 		else
 			cell.loc = get_turf(loc)

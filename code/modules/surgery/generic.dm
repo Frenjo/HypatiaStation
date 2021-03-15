@@ -6,11 +6,11 @@
 /datum/surgery_step/generic/
 	can_infect = 1
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if (isslime(target))
+		if (isSlime(target))
 			return 0
 		if (target_zone == "eyes")	//there are specific steps for eye surgery
 			return 0
-		if (!hasorgans(target))
+		if (!hasOrgans(target))
 			return 0
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		if (affected == null)
@@ -114,7 +114,7 @@
 	max_duration = 110
 
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if(isslime(target))
+		if(isSlime(target))
 			return 0
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		return ..() && affected.open == 0 && target_zone != "mouth"
@@ -278,7 +278,7 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if (target_zone == "eyes")	//there are specific steps for eye surgery
 			return 0
-		if (!hasorgans(target))
+		if (!hasOrgans(target))
 			return 0
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		if (affected == null)

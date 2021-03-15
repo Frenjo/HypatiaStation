@@ -56,6 +56,6 @@
 /obj/machinery/camera/HasProximity(atom/movable/AM as mob|obj)
 	// Motion cameras outside of an "ai monitored" area will use this to detect stuff.
 	if (!area_motion)
-		if(isliving(AM))
+		if(isLiving(AM))
 			newTarget(AM)
 

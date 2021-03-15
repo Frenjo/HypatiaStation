@@ -35,7 +35,7 @@
 	attack_ai(mob/user as mob) //those aren't machinery, they're just big fucking slabs of a mineral
 		if(isAI(user)) //so the AI can't open it
 			return
-		else if(isrobot(user)) //but cyborgs can
+		else if(isRobot(user)) //but cyborgs can
 			if(get_dist(user,src) <= 1) //not remotely though
 				return TryToSwitchState(user)
 
@@ -57,7 +57,7 @@
 			var/mob/M = user
 			if(world.time - user.last_bumped <= 60) return //NOTE do we really need that?
 			if(M.client)
-				if(iscarbon(M))
+				if(isCarbon(M))
 					var/mob/living/carbon/C = M
 					if(!C.handcuffed)
 						SwitchState()

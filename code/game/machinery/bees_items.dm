@@ -32,7 +32,7 @@
 	set name = "Empty bee net"
 	set category = "Object"
 	var/mob/living/carbon/M
-	if(iscarbon(usr))
+	if(isCarbon(usr))
 		M = usr
 
 	while(caught_bees > 0)

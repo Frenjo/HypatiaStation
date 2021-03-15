@@ -54,9 +54,9 @@
 /obj/item/projectile/proc/on_hit(var/atom/target, var/blocked = 0)
 	if(blocked >= 2)
 		return 0//Full block
-	if(!isliving(target))
+	if(!isLiving(target))
 		return 0
-	if(isanimal(target))
+	if(isAnimal(target))
 		return 0
 
 	var/mob/living/L = target

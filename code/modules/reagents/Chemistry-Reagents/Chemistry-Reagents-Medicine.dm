@@ -355,7 +355,7 @@
 	M.sdisabilities = 0
 
 	// Might need to update appearance for hulk etc.
-	if(needs_update && ishuman(M))
+	if(needs_update && isHuman(M))
 		var/mob/living/carbon/human/H = M
 		H.update_mutations()
 
@@ -391,7 +391,7 @@
 	if(!M) M = holder.my_atom
 	M.eye_blurry = max(M.eye_blurry-5 , 0)
 	M.eye_blind = max(M.eye_blind-5 , 0)
-	if(ishuman(M))
+	if(isHuman(M))
 		var/mob/living/carbon/human/H = M
 		var/datum/organ/internal/eyes/E = H.internal_organs["eyes"]
 		if(istype(E))
@@ -481,7 +481,7 @@
 
 /datum/reagent/peridaxon/on_mob_life(var/mob/living/M as mob)
 	if(!M) M = holder.my_atom
-	if(ishuman(M))
+	if(isHuman(M))
 		var/mob/living/carbon/human/H = M
 		var/datum/organ/external/chest/C = H.get_organ("chest")
 		for(var/datum/organ/internal/I in C.internal_organs)
@@ -639,7 +639,7 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/serotrotium/on_mob_life(var/mob/living/M as mob)
-	if(ishuman(M))
+	if(isHuman(M))
 		if(prob(7)) M.emote(pick("twitch","drool","moan","gasp"))
 		holder.remove_reagent(src.id, 0.25 * REAGENTS_METABOLISM)
 	return

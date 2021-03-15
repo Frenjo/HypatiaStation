@@ -224,32 +224,32 @@
 
 			var/M_job = ""
 
-			if(isliving(M))
+			if(isLiving(M))
 
-				if(iscarbon(M)) //Carbon stuff
-					if(ishuman(M))
+				if(isCarbon(M)) //Carbon stuff
+					if(isHuman(M))
 						M_job = M.job
-					else if(isslime(M))
+					else if(isSlime(M))
 						M_job = "slime"
-					else if(ismonkey(M))
+					else if(isMonkey(M))
 						M_job = "Monkey"
-					else if(isalien(M))
+					else if(isAlien(M))
 						M_job = "Alien"
 					else
 						M_job = "Carbon-based"
 
-				else if(issilicon(M)) //silicon
+				else if(isSilicon(M)) //silicon
 					if(isAI(M))
 						M_job = "AI"
-					else if(ispAI(M))
+					else if(isPAI(M))
 						M_job = "pAI"
-					else if(isrobot(M))
+					else if(isRobot(M))
 						M_job = "Cyborg"
 					else
 						M_job = "Silicon-based"
 
-				else if(isanimal(M)) //simple animals
-					if(iscorgi(M))
+				else if(isAnimal(M)) //simple animals
+					if(isCorgi(M))
 						M_job = "Corgi"
 					else
 						M_job = "Animal"
@@ -260,7 +260,7 @@
 			else if(istype(M,/mob/new_player))
 				M_job = "New player"
 
-			else if(isobserver(M))
+			else if(isObserver(M))
 				M_job = "Ghost"
 
 			M_job = replacetextx(M_job, "'", "")
@@ -331,19 +331,19 @@
 		dat += "<tr><td>[M.name]</td>"
 		if(isAI(M))
 			dat += "<td>AI</td>"
-		else if(isrobot(M))
+		else if(isRobot(M))
 			dat += "<td>Cyborg</td>"
-		else if(ishuman(M))
+		else if(isHuman(M))
 			dat += "<td>[M.real_name]</td>"
 		else if(istype(M, /mob/living/silicon/pai))
 			dat += "<td>pAI</td>"
 		else if(istype(M, /mob/new_player))
 			dat += "<td>New Player</td>"
-		else if(isobserver(M))
+		else if(isObserver(M))
 			dat += "<td>Ghost</td>"
-		else if(ismonkey(M))
+		else if(isMonkey(M))
 			dat += "<td>Monkey</td>"
-		else if(isalien(M))
+		else if(isAlien(M))
 			dat += "<td>Alien</td>"
 		else
 			dat += "<td>Unknown</td>"

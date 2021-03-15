@@ -32,7 +32,7 @@
 	item_color = "stethoscope"
 
 /obj/item/clothing/tie/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
-	if(ishuman(M) && isliving(user))
+	if(isHuman(M) && isLiving(user))
 		if(user.a_intent == "help")
 			var/body_part = parse_zone(user.zone_sel.selecting)
 			if(body_part)
@@ -253,7 +253,7 @@
 	if(!stored_name)
 		user << "Waving around a badge before swiping an ID would be pretty pointless."
 		return
-	if(isliving(user))
+	if(isLiving(user))
 		user.visible_message("\red [user] displays their NanoTrasen Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NT Security.","\red You display your NanoTrasen Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NT Security.")
 
 /obj/item/clothing/tie/holobadge/attackby(var/obj/item/O as obj, var/mob/user as mob)
@@ -288,7 +288,7 @@
 	..()
 
 /obj/item/clothing/tie/holobadge/attack(mob/living/carbon/human/M, mob/living/user)
-	if(isliving(user))
+	if(isLiving(user))
 		user.visible_message("\red [user] invades [M]'s personal space, thrusting [src] into their face insistently.","\red You invade [M]'s personal space, thrusting [src] into their face insistently. You are the law.")
 
 /obj/item/weapon/storage/box/holobadge

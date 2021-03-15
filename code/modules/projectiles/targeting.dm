@@ -48,13 +48,13 @@
 		return
 
 	user.dir = get_cardinal_dir(src, A)
-	if(isliving(A) && !(A in target))
+	if(isLiving(A) && !(A in target))
 		Aim(A) 	//Clicked a mob, aim at them
 		return 1
 
 	//Didn't click someone, check if there is anyone along that guntrace
 	var/mob/living/M = GunTrace(usr.x,usr.y,A.x,A.y,usr.z,usr)  //Find dat mob.
-	if(isliving(M) && (M in view(user)) && !(M in target))
+	if(isLiving(M) && (M in view(user)) && !(M in target))
 		Aim(M) //Aha!  Aim at them!
 		return 1
 

@@ -126,9 +126,9 @@
 		if(istype(A,/obj/machinery/camera))
 			jump_to = A
 		else if(ismob(A))
-			if(ishuman(A))
+			if(isHuman(A))
 				jump_to = locate() in A:head
-			else if(isrobot(A))
+			else if(isRobot(A))
 				jump_to = A:camera
 		else if(isobj(A))
 			jump_to = locate() in A

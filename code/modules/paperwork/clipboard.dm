@@ -16,7 +16,7 @@
 	update_icon()
 
 /obj/item/weapon/clipboard/MouseDrop(obj/over_object as obj) //Quick clipboard fix. -Agouri
-	if(ishuman(usr))
+	if(isHuman(usr))
 		var/mob/M = usr
 		if(!(istype(over_object, /obj/screen) ))
 			return ..()

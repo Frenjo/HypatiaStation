@@ -10,7 +10,7 @@
 
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/O, mob/user)
-	if(isrobot(user))
+	if(isRobot(user))
 		return
 	if(istype(O, /obj/item/weapon/extinguisher))
 		if(!has_extinguisher && opened)
@@ -26,9 +26,9 @@
 
 
 /obj/structure/extinguisher_cabinet/attack_hand(mob/user)
-	if(isrobot(user))
+	if(isRobot(user))
 		return
-	if (hasorgans(user))
+	if (hasOrgans(user))
 		var/datum/organ/external/temp = user:organs_by_name["r_hand"]
 		if (user.hand)
 			temp = user:organs_by_name["l_hand"]

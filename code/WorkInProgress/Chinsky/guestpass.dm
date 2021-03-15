@@ -136,7 +136,7 @@
 		switch(href_list["action"])
 			if ("id")
 				if (giver)
-					if(ishuman(usr))
+					if(isHuman(usr))
 						giver.loc = usr.loc
 						if(!usr.get_active_hand())
 							usr.put_in_hands(giver)

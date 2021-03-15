@@ -219,7 +219,6 @@
 					return W
 ///// Z-Level Stuff
 
-	//var/old_lumcount = lighting_lumcount - initial(lighting_lumcount)
 	var/obj/fire/old_fire = fire
 
 	var/old_opacity = opacity
@@ -227,7 +226,6 @@
 	var/list/old_affecting_lights = affecting_lights
 	var/old_lighting_overlay = lighting_overlay
 
-	//world << "Replacing [src.type] with [N]"
 
 	if(connections) connections.erase_all()
 
@@ -239,49 +237,25 @@
 		if(S.zone) S.zone.rebuild()
 
 	if(ispath(N, /turf/simulated/floor))
-		//if the old turf had a zone, connect the new turf to it as well - Cael
-		//Adjusted by SkyMarshal 5/10/13 - The air master will handle the addition of the new turf.
-		//if(zone)
-		//	zone.RemoveTurf(src)
-		//	if(!zone.CheckStatus())
-		//		zone.SetStatus(ZONE_ACTIVE)
-
-		var/turf/simulated/W = new N( locate(src.x, src.y, src.z) )
-		//W.Assimilate_Air()
-
-		//W.lighting_lumcount += old_lumcount
-		//if(old_lumcount != W.lighting_lumcount)
-		//	W.lighting_changed = 1
-		//	lighting_controller.changed_turfs += W
+		var/turf/simulated/W = new N(locate(src.x, src.y, src.z))
 
 		if(old_fire)
 			fire = old_fire
 
-		if (istype(W,/turf/simulated/floor))
+		if(istype(W,/turf/simulated/floor))
 			W.RemoveLattice()
 
 		if(air_master)
 			air_master.mark_for_update(src)
 
-		for(var/turf/space/S in range(W,1))
+		for(var/turf/space/S in range(W, 1))
 			S.update_starlight()
 
 		W.levelupdate()
-		//return W
 		. = W
 
 	else
-		//if(zone)
-		//	zone.RemoveTurf(src)
-		//	if(!zone.CheckStatus())
-		//		zone.SetStatus(ZONE_ACTIVE)
-
 		var/turf/W = new N( locate(src.x, src.y, src.z) )
-		//W.lighting_lumcount += old_lumcount
-		//if(old_lumcount != W.lighting_lumcount)
-		//	W.lighting_changed = 1
-		//	lighting_controller.changed_turfs += W
-
 		if(old_fire)
 			old_fire.RemoveFire()
 
@@ -292,7 +266,6 @@
 			S.update_starlight()
 
 		W.levelupdate()
-		//return W
 		. = W
 
 	lighting_overlay = old_lighting_overlay
@@ -304,6 +277,35 @@
 			lighting_build_overlays()
 		else
 			lighting_clear_overlays()
+
+/turf/proc/transport_properties_from(turf/other)
+	if(!istype(other, src.type))
+		return 0
+
+	src.dir = other.dir
+	src.icon_state = other.icon_state
+	src.icon = other.icon
+	src.overlays = other.overlays.Copy()
+	src.underlays = other.underlays.Copy()
+	return 1
+
+//I would name this copy_from() but we remove the other turf from their air zone for some reason
+/turf/simulated/transport_properties_from(turf/simulated/other)
+	if(!..())
+		return 0
+
+	if(other.zone)
+		if(!src.air)
+			src.make_air()
+		src.air.copy_from(other.zone.air)
+		other.zone.remove(other)
+	return 1
+
+
+//No idea why resetting the base appearence from New() isn't enough, but without this it doesn't work
+/turf/simulated/shuttle/wall/corner/transport_properties_from(turf/simulated/other)
+	. = ..()
+	reset_base_appearance()
 
 
 //Commented out by SkyMarshal 5/10/13 - If you are patching up space, it should be vacuum.
@@ -359,8 +361,8 @@
 
 
 /turf/proc/ReplaceWithLattice()
-	src.ChangeTurf(/turf/space)
-	new /obj/structure/lattice( locate(src.x, src.y, src.z) )
+	src.ChangeTurf(get_base_turf_by_area(get_area(src.loc)))
+	new /obj/structure/lattice(locate(src.x, src.y, src.z))
 
 /turf/proc/kill_creatures(mob/U = null)//Will kill people/creatures and damage mechs./N
 //Useful to batch-add creatures to the list.

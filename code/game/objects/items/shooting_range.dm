@@ -56,7 +56,7 @@
 				layer = OBJ_LAYER
 
 				loc = user.loc
-				if(ishuman(user))
+				if(isHuman(user))
 					if(!user.get_active_hand())
 						user.put_in_hands(src)
 						user << "You take the target out of the stake."

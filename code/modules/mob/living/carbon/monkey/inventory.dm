@@ -29,7 +29,7 @@
 					return
 
 	if (item)
-		if(isrobot(source) && place != "handcuff")
+		if(isRobot(source) && place != "handcuff")
 			var/list/L = list( "syringe", "pill", "drink", "dnainjector", "fuel")
 			if(!(L.Find(place)))
 				qdel(src)

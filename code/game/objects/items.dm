@@ -110,7 +110,7 @@
 
 /obj/item/attack_hand(mob/user as mob)
 	if (!user) return
-	if (hasorgans(user))
+	if (hasOrgans(user))
 		var/datum/organ/external/temp = user:organs_by_name["r_hand"]
 		if (user.hand)
 			temp = user:organs_by_name["l_hand"]
@@ -130,7 +130,7 @@
 		else
 			user.u_equip(src)
 	else
-		if(isliving(src.loc))
+		if(isLiving(src.loc))
 			return
 		user.next_move = max(user.next_move+2,world.time + 2)
 	src.pickup(user)
@@ -246,7 +246,7 @@
 	if(!slot) return 0
 	if(!M) return 0
 
-	if(ishuman(M))
+	if(isHuman(M))
 		//START HUMAN
 		var/mob/living/carbon/human/H = M
 
@@ -405,7 +405,7 @@
 		return 0 //Unsupported slot
 		//END HUMAN
 
-	else if(ismonkey(M))
+	else if(isMonkey(M))
 		//START MONKEY
 		var/mob/living/carbon/monkey/MO = M
 		switch(slot)
