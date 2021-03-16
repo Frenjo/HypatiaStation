@@ -3,14 +3,9 @@
 	voice_name = "synthesized voice"
 	var/syndicate = 0
 	var/datum/ai_laws/laws = null//Now... THEY ALL CAN ALL HAVE LAWS
-	var/list/alarms_to_show = list()
-	var/list/alarms_to_clear = list()
 	immune_to_ssd = 1
 	var/list/hud_list[9]
 	var/list/speech_synthesizer_langs = list()	//which languages can be vocalized by the speech synthesizer
-
-	var/list/alarm_types_show = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
-	var/list/alarm_types_clear = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
 
 	var/local_transmit //If set, can only speak to others of the same type within a short range.
 
@@ -18,84 +13,8 @@
 	#define SEC_HUD 1 //Security HUD mode
 	#define MED_HUD 2 //Medical HUD mode
 
-/mob/living/silicon/proc/cancelAlarm()
-	return
-
-/mob/living/silicon/proc/triggerAlarm()
-	return
-
 /mob/living/silicon/proc/show_laws()
 	return
-
-/mob/living/silicon/proc/queueAlarm(var/message, var/type, var/incoming = 1)
-	var/in_cooldown = (alarms_to_show.len > 0 || alarms_to_clear.len > 0)
-	if(incoming)
-		alarms_to_show += message
-		alarm_types_show[type] += 1
-	else
-		alarms_to_clear += message
-		alarm_types_clear[type] += 1
-
-	if(!in_cooldown)
-		spawn(10 * 10) // 10 seconds
-
-			if(alarms_to_show.len < 5)
-				for(var/msg in alarms_to_show)
-					src << msg
-			else if(alarms_to_show.len)
-
-				var/msg = "--- "
-
-				if(alarm_types_show["Motion"])
-					msg += "MOTION: [alarm_types_show["Motion"]] alarms detected. - "
-
-				if(alarm_types_show["Fire"])
-					msg += "FIRE: [alarm_types_show["Fire"]] alarms detected. - "
-
-				if(alarm_types_show["Atmosphere"])
-					msg += "ATMOSPHERE: [alarm_types_show["Atmosphere"]] alarms detected. - "
-
-				if(alarm_types_show["Power"])
-					msg += "POWER: [alarm_types_show["Power"]] alarms detected. - "
-
-				if(alarm_types_show["Camera"])
-					msg += "CAMERA: [alarm_types_show["Power"]] alarms detected. - "
-
-				msg += "<A href=?src=\ref[src];showalerts=1'>\[Show Alerts\]</a>"
-				src << msg
-
-			if(alarms_to_clear.len < 3)
-				for(var/msg in alarms_to_clear)
-					src << msg
-
-			else if(alarms_to_clear.len)
-				var/msg = "--- "
-
-				if(alarm_types_clear["Motion"])
-					msg += "MOTION: [alarm_types_clear["Motion"]] alarms cleared. - "
-
-				if(alarm_types_clear["Fire"])
-					msg += "FIRE: [alarm_types_clear["Fire"]] alarms cleared. - "
-
-				if(alarm_types_clear["Atmosphere"])
-					msg += "ATMOSPHERE: [alarm_types_clear["Atmosphere"]] alarms cleared. - "
-
-				if(alarm_types_clear["Power"])
-					msg += "POWER: [alarm_types_clear["Power"]] alarms cleared. - "
-
-				if(alarm_types_show["Camera"])
-					msg += "CAMERA: [alarm_types_show["Power"]] alarms detected. - "
-
-				msg += "<A href=?src=\ref[src];showalerts=1'>\[Show Alerts\]</a>"
-				src << msg
-
-
-			alarms_to_show = list()
-			alarms_to_clear = list()
-			for(var/i = 1; i < alarm_types_show.len; i++)
-				alarm_types_show[i] = 0
-			for(var/i = 1; i < alarm_types_clear.len; i++)
-				alarm_types_clear[i] = 0
 
 /mob/living/silicon/drop_item()
 	return
@@ -104,10 +23,10 @@
 	switch(severity)
 		if(1)
 			src.take_organ_damage(20)
-			Stun(rand(5,10))
+			Stun(rand(5, 10))
 		if(2)
 			src.take_organ_damage(10)
-			Stun(rand(1,5))
+			Stun(rand(1, 5))
 	flick("noise", src:flash)
 	src << "\red <B>*BZZZT*</B>"
 	src << "\red Warning: Electromagnetic pulse detected."
@@ -134,7 +53,7 @@
 	updatehealth()
 	return 2
 
-/mob/living/silicon/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0)
+/mob/living/silicon/apply_effect(var/effect = 0, var/effecttype = STUN, var/blocked = 0)
 	return 0//The only effect that can hit them atm is flashes and they still directly edit so this works for now
 /*
 	if(!effect || (blocked >= 2))	return 0
@@ -162,17 +81,17 @@
 
 	switch(severity)
 		if(1.0)
-			if (stat != 2)
+			if(stat != 2)
 				adjustBruteLoss(100)
 				adjustFireLoss(100)
 				if(!anchored)
 					gib()
 		if(2.0)
-			if (stat != 2)
+			if(stat != 2)
 				adjustBruteLoss(60)
 				adjustFireLoss(60)
 		if(3.0)
-			if (stat != 2)
+			if(stat != 2)
 				adjustBruteLoss(30)
 
 	updatehealth()
@@ -205,14 +124,14 @@
 	if(emergency_shuttle.online() && emergency_shuttle.location() < 2)// Updated to reflect 'shuttles' port. -Frenjo
 		//var/timeleft = emergency_shuttle.timeleft()
 		var/timeleft = emergency_shuttle.estimate_arrival_time() // Updated to reflect 'shuttles' port. -Frenjo
-		if (timeleft)
+		if(timeleft)
 			stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 
 // This adds the basic clock, shuttle recall timer, and malf_ai info to all silicon lifeforms
 /mob/living/silicon/Stat()
 	..()
 	statpanel("Status")
-	if (src.client.statpanel == "Status")
+	if(src.client.statpanel == "Status")
 		show_station_time()
 		show_emergency_shuttle_eta()
 		show_system_integrity()
@@ -233,14 +152,14 @@
 	return universal_speak || (speaking in src.speech_synthesizer_langs)	//need speech synthesizer support to vocalize a language
 
 /mob/living/silicon/add_language(var/language, var/can_speak=1)
-	if (..(language) && can_speak)
+	if(..(language) && can_speak)
 		speech_synthesizer_langs.Add(all_languages[language])
 
 /mob/living/silicon/remove_language(var/rem_language)
 	..(rem_language)
 
-	for (var/datum/language/L in speech_synthesizer_langs)
-		if (L.name == rem_language)
+	for(var/datum/language/L in speech_synthesizer_langs)
+		if(L.name == rem_language)
 			speech_synthesizer_langs -= L
 
 /mob/living/silicon/check_languages()
@@ -264,12 +183,12 @@
 	set desc = "Augment visual feed with internal sensor overlays."
 	var/sensor_type = input("Please select sensor type.", "Sensor Integration", null) in list("Security", "Medical","Disable")
 	switch(sensor_type)
-		if ("Security")
+		if("Security")
 			sensor_mode = SEC_HUD
 			src << "<span class='notice'>Security records overlay enabled.</span>"
-		if ("Medical")
+		if("Medical")
 			sensor_mode = MED_HUD
 			src << "<span class='notice'>Life signs monitor overlay enabled.</span>"
-		if ("Disable")
+		if("Disable")
 			sensor_mode = 0
 			src << "Sensor augmentations disabled."

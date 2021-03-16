@@ -31,30 +31,23 @@
 	adjustFireLoss(0)
 
 /mob/living/silicon/robot/proc/use_power()
-	if (is_component_functioning("power cell") && cell)
-		if(src.cell.charge <= 0)
-			uneq_all()
-			src.stat = 1
-		else
-			if(src.module_state_1)
-				src.cell.use(3)
-			if(src.module_state_2)
-				src.cell.use(3)
-			if(src.module_state_3)
-				src.cell.use(3)
+	for(var/V in components)
+		var/datum/robot_component/C = components[V]
+		C.update_power_state()
 
-			for(var/V in components)
-				var/datum/robot_component/C = components[V]
-				C.consume_power()
+	if(cell && is_component_functioning("power cell") && src.cell.charge > 0)
+		if(src.module_state_1)
+			src.cell.use(3)
+		if(src.module_state_2)
+			src.cell.use(3)
+		if(src.module_state_3)
+			src.cell.use(3)
 
-			if(!is_component_functioning("actuator"))
-				Paralyse(3)
-
-			src.stat = 0
+		src.has_power = 1
 	else
-		uneq_all()
-		src.stat = 1
-
+		if(src.has_power)
+			src << "\red You are now running on emergency backup power."
+		src.has_power = 0
 
 /mob/living/silicon/robot/proc/handle_regular_status_updates()
 	if(src.camera && !scrambledcodes)
@@ -75,14 +68,14 @@
 	if(health < config.health_threshold_dead && src.stat != 2) //die only once
 		death()
 
-	if (src.stat != 2) //Alive.
-		if (src.paralysis || src.stunned || src.weakened) //Stunned etc.
+	if(src.stat != 2) //Alive.
+		if(src.paralysis || src.stunned || src.weakened || !src.has_power) //Stunned etc.
 			src.stat = 1
-			if (src.stunned > 0)
+			if(src.stunned > 0)
 				AdjustStunned(-1)
-			if (src.weakened > 0)
+			if(src.weakened > 0)
 				AdjustWeakened(-1)
-			if (src.paralysis > 0)
+			if(src.paralysis > 0)
 				AdjustParalysis(-1)
 				src.blinded = 1
 			else
@@ -121,6 +114,10 @@
 		src.druggy--
 		src.druggy = max(0, src.druggy)
 
+	//update the state of modules and components here
+	if (src.stat != 0)
+		uneq_all()
+
 	if(!is_component_functioning("radio"))
 		radio.on = 0
 	else
@@ -130,6 +127,9 @@
 		src.blinded = 0
 	else
 		src.blinded = 1
+
+	if(!is_component_functioning("actuator"))
+		src.Paralyse(3)
 
 	return 1
 
@@ -259,7 +259,7 @@
 //	if (src.oxygen) src.oxygen.icon_state = "oxy[src.oxygen_alert ? 1 : 0]"
 //	if (src.fire) src.fire.icon_state = "fire[src.fire_alert ? 1 : 0]"
 
-	client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
+	client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired)
 
 	if ((src.blind && src.stat != 2))
 		if(src.blinded)
@@ -320,6 +320,9 @@
 			weaponlock_time = 120
 
 /mob/living/silicon/robot/update_canmove()
-	if(paralysis || stunned || weakened || buckled || lockcharge) canmove = 0
-	else canmove = 1
+	if(paralysis || stunned || weakened || buckled || lockcharge)
+		canmove = 0
+	else
+		canmove = 1
+
 	return canmove

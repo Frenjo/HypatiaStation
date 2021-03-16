@@ -1,5 +1,4 @@
 // At minimum every mob has a hear_say proc.
-
 /mob/proc/hear_say(var/message, var/verbage = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null)
 	if(!client)
 		return
@@ -44,7 +43,7 @@
 		else
 			src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him."
 	else
-		src << "<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track]<span class='[style]'>[verbage], <span class='message'>\"[message]\"</span></span></span>"
+		src << "<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][verbage], <span class='message'><span class='[style]'>\"[message]\"</span></span></span>"
 
 
 /mob/proc/hear_radio(var/message, var/verbage = "says", var/datum/language/language = null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/vname = "")
@@ -109,9 +108,9 @@
 		if(prob(20))
 			src << "<span class='warning'>You feel your headset vibrate but can hear nothing from it!</span>"
 	else if(track)
-		src << "[part_a][track][part_b]<span class=\"[style]\"> [verbage], \"[message]\"</span></span></span>"
+		src << "[part_a][track][part_b][verbage], <span class=\"[style]\">\"[message]\"</span></span></span>"
 	else
-		src << "[part_a][speaker_name][part_b]<span class=\"[style]\"> [verbage], \"[message]\"</span></span></span>"
+		src << "[part_a][speaker_name][part_b][verbage], <span class=\"[style]\">\"[message]\"</span></span></span>"
 
 /mob/proc/hear_sleep(var/message)
 	var/heard = ""

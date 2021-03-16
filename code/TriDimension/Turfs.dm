@@ -14,7 +14,7 @@
 		return
 
 	Enter(var/atom/movable/AM)
-		if (..()) //TODO make this check if gravity is active (future use) - Sukasa
+		if(..()) //TODO make this check if gravity is active (future use) - Sukasa
 			spawn(1)
 				// only fall down in defined areas (read: areas with artificial gravitiy)
 				if(!floorbelow) //make sure that there is actually something below
@@ -38,9 +38,9 @@
 							soft = 1
 							//dont break here, since we still need to be sure that it isnt blocked
 
-					if (soft || (!blocked && !(areacheck.name == "Space")))
+					if(soft || (!blocked && !(areacheck.name == "Space")))
 						AM.Move(floorbelow)
-						if (!soft && istype(AM, /mob/living/carbon/human))
+						if(!soft && istype(AM, /mob/living/carbon/human))
 							var/mob/living/carbon/human/H = AM
 							var/damage = 5
 							H.apply_damage(min(rand(-damage,damage),0), BRUTE, "head")
@@ -52,6 +52,13 @@
 							H:weakened = max(H:weakened,2)
 							H:updatehealth()
 		return ..()
+
+/turf/proc/hasbelow()
+	var/turf/controllerlocation = locate(1, 1, z)
+	for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
+		if(controller.down)
+			return 1
+	return 0
 
 /turf/simulated/floor/open/proc/getbelow()
 	var/turf/controllerlocation = locate(1, 1, z)
@@ -73,7 +80,7 @@
 
 //overwrite the attackby of space to transform it to openspace if necessary
 /turf/space/attackby(obj/item/C as obj, mob/user as mob)
-	if (istype(C, /obj/item/stack/cable_coil))
+	if(istype(C, /obj/item/stack/cable_coil) && src.hasbelow())
 		var/turf/simulated/floor/open/W = src.ChangeTurf(/turf/simulated/floor/open)
 		W.attackby(C, user)
 		return

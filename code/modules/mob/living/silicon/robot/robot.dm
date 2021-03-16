@@ -45,10 +45,10 @@ var/list/robot_verbs_default = list(
 	var/emagged = 0
 	var/wiresexposed = 0
 	var/locked = 1
+	var/has_power = 1
 	var/list/req_access = list(access_robotics)
 	var/ident = 0
 	//var/list/laws = list()
-	var/alarms = list("Motion"=list(), "Fire"=list(), "Atmosphere"=list(), "Power"=list(), "Camera"=list())
 	var/viewalerts = 0
 	var/modtype = "Default"
 	var/lower_mod = 0
@@ -350,16 +350,14 @@ var/list/robot_verbs_default = list(
 	dat += "<A HREF='?src=\ref[src];mach_close=robotalerts'>Close</A><BR><BR>"
 	for (var/cat in alarms)
 		dat += text("<B>[cat]</B><BR>\n")
-		var/list/L = alarms[cat]
-		if (L.len)
-			for (var/alarm in L)
-				var/list/alm = L[alarm]
-				var/area/A = alm[1]
-				var/list/sources = alm[3]
+		var/list/alarmlist = alarms[cat]
+		if (alarmlist.len)
+			for (var/area_name in alarmlist)
+				var/datum/alarm/alarm = alarmlist[area_name]
 				dat += "<NOBR>"
-				dat += text("-- [A.name]")
-				if (sources.len > 1)
-					dat += text("- [sources.len] sources")
+				dat += text("-- [area_name]")
+				if (alarm.sources.len > 1)
+					dat += text("- [alarm.sources.len] sources")
 				dat += "</NOBR><BR>\n"
 		else
 			dat += "-- All Systems Nominal<BR>\n"
@@ -469,9 +467,9 @@ var/list/robot_verbs_default = list(
 	for(var/mob/M in viewers(src, null))
 		M.show_message(text("\red [src] has been hit by [O]"), 1)
 		//Foreach goto(19)
-	if (health > 0)
+	if(health > 0)
 		adjustBruteLoss(30)
-		if ((O.icon_state == "flaming"))
+		if((O.icon_state == "flaming"))
 			adjustFireLoss(40)
 		updatehealth()
 	return
@@ -479,13 +477,13 @@ var/list/robot_verbs_default = list(
 
 /mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj)
 	..(Proj)
-	if(prob(75) && Proj.damage > 0) spark_system.start()
+	if(prob(75) && Proj.damage > 0)
+		spark_system.start()
 	return 2
 
-
 /mob/living/silicon/robot/Bump(atom/movable/AM as mob|obj, yes)
-	spawn( 0 )
-		if ((!( yes ) || now_pushing))
+	spawn(0)
+		if((!(yes) || now_pushing))
 			return
 		now_pushing = 1
 		if(ismob(AM))
@@ -500,18 +498,18 @@ var/list/robot_verbs_default = list(
 				return
 		now_pushing = 0
 		..()
-		if (istype(AM, /obj/machinery/recharge_station))
+		if(istype(AM, /obj/machinery/recharge_station))
 			var/obj/machinery/recharge_station/F = AM
 			F.move_inside()
-		if (!istype(AM, /atom/movable))
+		if(!istype(AM, /atom/movable))
 			return
-		if (!now_pushing)
+		if(!now_pushing)
 			now_pushing = 1
 			if (!AM.anchored)
 				var/t = get_dir(src, AM)
-				if (istype(AM, /obj/structure/window))
+				if(istype(AM, /obj/structure/window))
 					if(AM:ini_dir == NORTHWEST || AM:ini_dir == NORTHEAST || AM:ini_dir == SOUTHWEST || AM:ini_dir == SOUTHEAST)
-						for(var/obj/structure/window/win in get_step(AM,t))
+						for(var/obj/structure/window/win in get_step(AM, t))
 							now_pushing = 0
 							return
 				step(AM, t)
@@ -520,48 +518,18 @@ var/list/robot_verbs_default = list(
 	return
 
 
-/mob/living/silicon/robot/triggerAlarm(var/class, area/A, var/O, var/alarmsource)
+/mob/living/silicon/robot/triggerAlarm(var/class, area/A, list/cameralist, var/source)
 	if (stat == 2)
 		return 1
-	var/list/L = alarms[class]
-	for (var/I in L)
-		if (I == A.name)
-			var/list/alarm = L[I]
-			var/list/sources = alarm[3]
-			if (!(alarmsource in sources))
-				sources += alarmsource
-			return 1
-	var/obj/machinery/camera/C = null
-	var/list/CL = null
-	if (O && istype(O, /list))
-		CL = O
-		if (CL.len == 1)
-			C = CL[1]
-	else if (O && istype(O, /obj/machinery/camera))
-		C = O
-	L[A.name] = list(A, (C) ? C : O, list(alarmsource))
-	queueAlarm(text("--- [class] alarm detected in [A.name]!"), class)
-//	if (viewalerts) robot_alerts()
-	return 1
-
+	..()
 
 /mob/living/silicon/robot/cancelAlarm(var/class, area/A as area, obj/origin)
-	var/list/L = alarms[class]
-	var/cleared = 0
-	for (var/I in L)
-		if (I == A.name)
-			var/list/alarm = L[I]
-			var/list/srcs  = alarm[3]
-			if (origin in srcs)
-				srcs -= origin
-			if (srcs.len == 0)
-				cleared = 1
-				L -= I
-	if (cleared)
+	var/has_alarm = ..()
+
+	if(!has_alarm)
 		queueAlarm(text("--- [class] alarm in [A.name] has been cleared."), class, 0)
 //		if (viewalerts) robot_alerts()
-	return !cleared
-
+	return has_alarm
 
 /mob/living/silicon/robot/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/handcuffs)) // fuck i don't even know why isrobot() in handcuff code isn't working so this will have to do

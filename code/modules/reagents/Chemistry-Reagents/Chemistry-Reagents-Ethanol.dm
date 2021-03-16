@@ -833,20 +833,21 @@
 	color = "#664300" // rgb: 102, 67, 0
 
 /datum/reagent/gargle_blaster/on_mob_life(var/mob/living/M as mob)
-	if(!data) data = 1
+	if(!data)
+		data = 1
 	data++
 	M.dizziness +=6
-	if(data >= 15 && data <45)
-		if (!M.stuttering) M.stuttering = 1
-		M.stuttering += 3
-	else if(data >= 45 && prob(50) && data <55)
-		M.confused = max(M.confused+3,0)
-	else if(data >=55)
-		M.druggy = max(M.druggy, 55)
-	else if(data >=200)
-		M.adjustToxLoss(2)
+	switch(data)
+		if(15 to 45)
+			M.stuttering = max(M.stuttering + 3, 0)
+		if(45 to 55)
+			if(prob(50))
+				M.confused = max(M.confused + 3, 0)
+		if(55 to 200)
+			M.druggy = max(M.druggy, 55)
+		if(200 to INFINITY)
+			M.adjustToxLoss(2)
 	..()
-	return
 
 
 /datum/reagent/neurotoxin
@@ -857,22 +858,24 @@
 	color = "#2E2E61" // rgb: 46, 46, 97
 
 /datum/reagent/neurotoxin/on_mob_life(var/mob/living/carbon/M as mob)
-	if(!M) M = holder.my_atom
+	if(!M)
+		M = holder.my_atom
 	M.weakened = max(M.weakened, 3)
-	if(!data) data = 1
+	if(!data)
+		data = 1
 	data++
 	M.dizziness +=6
-	if(data >= 15 && data <45)
-		if (!M.stuttering) M.stuttering = 1
-		M.stuttering += 3
-	else if(data >= 45 && prob(50) && data <55)
-		M.confused = max(M.confused+3,0)
-	else if(data >=55)
-		M.druggy = max(M.druggy, 55)
-	else if(data >=200)
-		M.adjustToxLoss(2)
+	switch(data)
+		if(15 to 45)
+			M.stuttering = max(M.stuttering + 3, 0)
+		if(45 to 55)
+			if(prob(50))
+				M.confused = max(M.confused + 3, 0)
+		if(55 to 200)
+			M.druggy = max(M.druggy, 55)
+		if(200 to INFINITY)
+			M.adjustToxLoss(2)
 	..()
-	return
 
 
 /datum/reagent/hippies_delight
