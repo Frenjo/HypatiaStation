@@ -286,6 +286,7 @@ var/list/ghostteleportlocs = list()
 /area/shuttle/administration/centcom
 	name = "\improper Administration Shuttle Centcom"
 	icon_state = "shuttlered"
+	base_turf = /turf/unsimulated/floor
 
 /area/shuttle/administration/station
 	name = "\improper Administration Shuttle"
@@ -468,6 +469,7 @@ var/list/ghostteleportlocs = list()
 /area/syndicate_station/start
 	name = "\improper Syndicate Forward Operating Base"
 	icon_state = "yellow"
+	base_turf = /turf/unsimulated/floor
 
 /area/syndicate_station/southwest
 	name = "\improper South-West of SS13"

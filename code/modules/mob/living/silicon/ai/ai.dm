@@ -111,12 +111,18 @@ var/list/ai_verbs_default = list(
 		add_ai_verbs()
 
 	//Languages
+	add_language("Robot Talk", 1)
+	add_language("Drone Talk", 0)
+
 	add_language("Sol Common", 0)
 	add_language("Sinta'unathi", 0)
 	add_language("Siik'maas", 0)
 	add_language("Siik'tajr", 0)
 	add_language("Skrellian", 0)
 	add_language("Rootspeak", 0)
+	add_language("Obsedaian", 0)
+	add_language("Plasmaperson", 0)
+	add_language("Binary Audio Language", 1)
 	add_language("Tradeband", 1)
 	add_language("Gutter", 0)
 

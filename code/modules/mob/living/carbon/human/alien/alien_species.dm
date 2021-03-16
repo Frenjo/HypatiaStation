@@ -69,7 +69,7 @@
 		if(H.health >= H.maxHealth - H.getCloneLoss())
 			var/datum/organ/internal/xenos/plasmavessel/P = H.internal_organs_by_name["plasma vessel"]
 			P.stored_plasma += weeds_plasma_rate
-			P.stored_plasma = min(max(P.stored_plasma,0),P.max_plasma)
+			P.stored_plasma = min(max(P.stored_plasma, 0), P.max_plasma)
 		else
 			H.adjustBruteLoss(-weeds_heal_rate)
 			H.adjustFireLoss(-weeds_heal_rate)

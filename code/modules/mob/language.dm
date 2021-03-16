@@ -101,7 +101,7 @@
 	desc = "Series of beeps, boops, blips and blops representing encoded binary data, frequently used for efficient Machine-Machine communication."
 	speech_verb = "emits"
 	colour = "vox"
-	key = "a"
+	key = "l"
 	flags = RESTRICTED
 
 // Galactic common languages (systemwide accepted standards).
@@ -165,8 +165,8 @@
 			M.show_message("[message_start] [message_body]", 2)
 
 	for (var/mob/living/S in living_mob_list)
-		//if(drone_only && !istype(S, /mob/living/silicon/robot/drone))
-			//continue
+		if(drone_only && !istype(S, /mob/living/silicon/robot/drone))
+			continue
 		if(istype(S, /mob/living/silicon/ai))
 			message_start = "<i><span class='game say'>[name], <a href='byond://?src=\ref[S];track2=\ref[S];track=\ref[src];trackname=[html_encode(speaker.name)]'><span class='name'>[speaker.name]</span></a>"
 		else if (!S.binarycheck())
@@ -193,7 +193,6 @@
 
 // Language handling.
 /mob/proc/add_language(var/language)
-
 	var/datum/language/new_language = all_languages[language]
 
 	if(!istype(new_language) || new_language in languages)
@@ -203,7 +202,6 @@
 	return 1
 
 /mob/proc/remove_language(var/rem_language)
-
 	languages.Remove(all_languages[rem_language])
 
 	return 0

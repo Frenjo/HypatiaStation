@@ -14,7 +14,6 @@
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
 	var/gun_click_time = -100 //I'm lazy.
 
-
 /obj/screen/text
 	icon = null
 	icon_state = null
@@ -23,10 +22,8 @@
 	maptext_height = 480
 	maptext_width = 480
 
-
 /obj/screen/inventory
 	var/slot_id	//The indentifier for the slot. It has nothing to do with ID cards.
-
 
 /obj/screen/close
 	name = "close"
@@ -78,7 +75,6 @@
 
 /obj/screen/grab/attackby()
 	return
-
 
 /obj/screen/storage
 	name = "storage"
@@ -194,7 +190,6 @@
 /obj/screen/zone_sel/update_icon()
 	overlays.Cut()
 	overlays += image('icons/mob/zone_sel.dmi', "[selecting]")
-
 
 /obj/screen/Click(location, control, params)
 	if(!usr)	return 1
@@ -405,48 +400,3 @@
 				usr.update_inv_r_hand(0)
 				usr.next_move = world.time+6
 	return 1
-
-/obj/screen/parallax_master
-	screen_loc = UI_SPACE_PARALLAX
-	plane = SPACE_PARALLAX_PLANE
-	blend_mode = BLEND_MULTIPLY
-	appearance_flags = PLANE_MASTER
-	mouse_opacity = 0
-
-/obj/screen/space_parallax
-	icon = 'icons/mob/screen1_full.dmi'
-	icon_state = "space"
-	name = "space"
-	screen_loc = UI_SPACE_PARALLAX
-	plane = SPACE_PARALLAX_PLANE
-	blend_mode = BLEND_ADD
-
-/obj/screen/space_star
-	icon = 'icons/turf/stars.dmi'
-	icon_state = "star0"
-	name = "star"
-	plane = SPACE_PARALLAX_PLANE
-	blend_mode = BLEND_ADD
-	appearance_flags = KEEP_APART
-
-/obj/screen/space_star/New()
-	//var/star_type = pick( prob(100); 0, prob(10); 1, prob(1); 2 )
-	// At a close look, only 2 tiles contain red stars(9,10), lots more contain blue(6,7,8), and white are everywhere(1,2,3,4,5).
-	// Let's try to keep that consistent by probability.
-	// There's also a slightly higher chance for non-animated white stars(3,4) to break up the twinkle a bit.
-	// Along with the default single white star(0) if nothing else is chosen just to fill space.
-	var/star_type = pick(prob(100); 0, prob(39); 1, prob(39); 2, prob(39); 3, prob(40); 4, prob(40); 5, prob(30); 6, prob(25); 7, prob(25); 8, prob(15); 9, prob(14); 10)
-	//icon_state = "star[star_type]"
-	icon_state = "astar[star_type]"
-	//screen_loc = "[rand( 1, 15 )]:[rand( -16, 16 )],[rand( 1, 15 )]:[rand( -16, 16 )]"
-	pixel_x = rand(-50, 530)
-	pixel_y = rand(-50, 530)
-
-/obj/screen/space_star/bluespace
-	icon_state = "bstar0"
-	plane = SPACE_DUST_PLANE
-
-/obj/screen/space_star/bluespace/New()
-	..()
-	var/star_type = pick(prob(100); 0, prob(50); 1, prob(10); 2, prob(1); 3, prob(10); 4, prob(15); 5, prob(75); 6)
-	icon_state = "bstar[star_type]"

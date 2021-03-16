@@ -231,26 +231,6 @@ datum/hud/New(mob/owner)
 			if(H.l_store)	H.l_store.screen_loc = null
 			if(H.r_store)	H.r_store.screen_loc = null
 
-
-/datum/hud/proc/create_parallax()
-	// SPESS BACKGROUND
-	mymob.parallax_master = new /obj/screen/parallax_master()
-	mymob.space_parallax = new /obj/screen/space_parallax()
-	mymob.space_parallax.overlays |= global_hud.parallax_stars
-
-	mymob.client.screen |= mymob.parallax_master
-	mymob.client.screen |= mymob.space_parallax
-
-/datum/hud/proc/toggle_parallax_space()
-	var/space_mode = mymob.space_parallax.icon_state == "space" ? 1 : 0
-	mymob.space_parallax.icon_state = "[space_mode ? "bluespace" : "space"]"
-	mymob.space_parallax.overlays.Cut()
-
-	if(space_mode)
-		mymob.space_parallax.overlays |= global_hud.parallax_bluespace_stars
-	else
-		mymob.space_parallax.overlays |= global_hud.parallax_stars
-
 /datum/hud/proc/instantiate()
 	if(!ismob(mymob))
 		return 0

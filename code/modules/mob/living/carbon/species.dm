@@ -22,8 +22,8 @@
 	var/primitive                				// Lesser form, if any (ie. monkey for humans)
 	var/tail                     				// Name of tail image in species effects icon file.
 	var/language                 				// Default racial language, if any.
-	var/datum/unarmed_attack/unarmed           // For empty hand harm-intent attack
-	var/datum/unarmed_attack/secondary_unarmed // For empty hand harm-intent attack if the first fails.
+	var/datum/unarmed_attack/unarmed           	// For empty hand harm-intent attack
+	var/datum/unarmed_attack/secondary_unarmed 	// For empty hand harm-intent attack if the first fails.
 	var/datum/hud_data/hud
 	var/hud_type
 	var/slowdown = 0
@@ -33,8 +33,8 @@
 	var/secondary_unarmed_type = /datum/unarmed_attack/bite
 
 	var/mutantrace               				// Safeguard due to old code.
-	var/has_fine_manipulation = 1 // Can use small items.
-	var/insulated                 // Immune to electrocution.
+	var/has_fine_manipulation = 1 				// Can use small items.
+	var/insulated                 				// Immune to electrocution.
 
 	// Some species-specific gibbing data.
 	var/gibbed_anim = "gibbed-h"
@@ -43,9 +43,9 @@
 	var/death_sound
 	var/death_message = "seizes up and falls limp, their eyes dead and lifeless..."
 
-	var/breath_type = "oxygen"   // Non-oxygen gas inhaled, if any.
-	var/exhale_type = "carbon_dioxide" // Non-carbon dioxide gas exhaled, if any.
-	var/poison_type = "plasma" // Main toxic gas, usually plasma.
+	var/breath_type = "oxygen"   		// Non-oxygen gas inhaled, if any.
+	var/exhale_type = "carbon_dioxide" 	// Non-carbon dioxide gas exhaled, if any.
+	var/poison_type = "plasma" 			// Main toxic gas, usually plasma.
 
 	var/total_health = 100  //Point at which the mob will enter crit.
 
@@ -101,10 +101,14 @@
 
 /datum/species/proc/create_organs(var/mob/living/carbon/human/H) //Handles creation of mob organs.
 	//Trying to work out why species changes aren't fixing organs properly.
-	if(H.organs)                  H.organs.Cut()
-	if(H.internal_organs)         H.internal_organs.Cut()
-	if(H.organs_by_name)          H.organs_by_name.Cut()
-	if(H.internal_organs_by_name) H.internal_organs_by_name.Cut()
+	if(H.organs)
+		H.organs.Cut()
+	if(H.internal_organs)
+		H.internal_organs.Cut()
+	if(H.organs_by_name)
+		H.organs_by_name.Cut()
+	if(H.internal_organs_by_name)
+		H.internal_organs_by_name.Cut()
 
 	H.organs = list()
 	H.internal_organs = list()
@@ -136,7 +140,8 @@
 
 	if(flags & IS_SYNTHETIC)
 		for(var/datum/organ/external/E in H.organs)
-			if(E.status & ORGAN_CUT_AWAY || E.status & ORGAN_DESTROYED) continue
+			if(E.status & ORGAN_CUT_AWAY || E.status & ORGAN_DESTROYED)
+				continue
 			E.status |= ORGAN_ROBOT
 		for(var/datum/organ/internal/I in H.internal_organs)
 			I.mechanize()
@@ -152,8 +157,20 @@
 	H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
 					"<span class='notice'>You hug [target] to make [t_him] feel better!</span>")
 
+/datum/species/proc/add_inherent_verbs(var/mob/living/carbon/human/H)
+	if(inherent_verbs)
+		for(var/verb_path in inherent_verbs)
+			H.verbs |= verb_path
+	return
+
+/datum/species/proc/remove_inherent_verbs(var/mob/living/carbon/human/H)
+	if(inherent_verbs)
+		for(var/verb_path in inherent_verbs)
+			H.verbs -= verb_path
+	return
+
 /datum/species/proc/handle_post_spawn(var/mob/living/carbon/human/H) //Handles anything not already covered by basic species assignment.
-//	add_inherent_verbs(H)
+	add_inherent_verbs(H)
 
 /datum/species/proc/handle_death(var/mob/living/carbon/human/H) //Handles any species-specific death events (such as dionaea nymph spawns).
 	if(flags & IS_SYNTHETIC)
