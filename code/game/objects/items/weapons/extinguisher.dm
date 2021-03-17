@@ -59,7 +59,7 @@
 		var/obj/o = target
 		o.reagents.trans_to(src, 50)
 		user << "\blue \The [src] is now refilled"
-		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+		playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
 		return
 
 	if (!safety)
@@ -72,7 +72,7 @@
 
 		src.last_use = world.time
 
-		playsound(src.loc, 'sound/effects/extinguish.ogg', 75, 1, -3)
+		playsound(src, 'sound/effects/extinguish.ogg', 75, 1, -3)
 
 		var/direction = get_dir(src,target)
 

@@ -164,7 +164,7 @@ var/list/robot_verbs_default = list(
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
 
 	if(istype(src,/mob/living/silicon/robot/drone))
-		playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 0)
+		playsound(src, 'sound/machines/twobeep.ogg', 50, 0)
 	else
 		playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
 

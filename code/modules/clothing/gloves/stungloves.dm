@@ -42,7 +42,7 @@
 			cell.loc = get_turf(src.loc)
 			cell = null
 		if(clipped == 0)
-			playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
+			playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 			user.visible_message("\red [user] cut the fingertips off [src].","\red You cut the fingertips off [src].")
 			clipped = 1
 			if("exclude" in species_restricted)

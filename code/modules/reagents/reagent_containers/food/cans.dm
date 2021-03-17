@@ -3,7 +3,7 @@
 
 	attack_self(mob/user as mob)
 		if (canopened == 0)
-			playsound(src.loc,'sound/effects/canopen.ogg', rand(10,50), 1)
+			playsound(src,'sound/effects/canopen.ogg', rand(10,50), 1)
 			user << "<span class='notice'>You open the drink with an audible pop!</span>"
 			canopened = 1
 		else

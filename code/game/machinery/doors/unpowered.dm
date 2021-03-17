@@ -29,9 +29,9 @@
 
 // Play a sound for the shuttle doors because they don't already. -Frenjo
 /obj/machinery/door/unpowered/shuttle/open()
-	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
+	playsound(src, 'sound/machines/windowdoor.ogg', 100, 1)
 	return ..()
 
 /obj/machinery/door/unpowered/shuttle/close()
-	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
+	playsound(src, 'sound/machines/windowdoor.ogg', 100, 1)
 	return ..()

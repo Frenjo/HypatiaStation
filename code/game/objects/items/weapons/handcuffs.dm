@@ -20,7 +20,7 @@
 		if(!C.handcuffed)
 			var/turf/p_loc = user.loc
 			var/turf/p_loc_m = C.loc
-			playsound(src.loc, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
+			playsound(src, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
 			for(var/mob/O in viewers(user, null))
 				O.show_message("\red <B>[user] is trying to put handcuffs on [C]!</B>", 1)
 			spawn(30)
@@ -67,10 +67,10 @@
 				spawn( 0 )
 					if(istype(src, /obj/item/weapon/handcuffs/cable))
 						feedback_add_details("handcuffs","C")
-						playsound(src.loc, 'sound/weapons/cablecuff.ogg', 30, 1, -2)
+						playsound(src, 'sound/weapons/cablecuff.ogg', 30, 1, -2)
 					else
 						feedback_add_details("handcuffs","H")
-						playsound(src.loc, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
+						playsound(src, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
 					O.process()
 			return
 		else
@@ -85,9 +85,9 @@
 				C.requests += O
 				spawn( 0 )
 					if(istype(src, /obj/item/weapon/handcuffs/cable))
-						playsound(src.loc, 'sound/weapons/cablecuff.ogg', 30, 1, -2)
+						playsound(src, 'sound/weapons/cablecuff.ogg', 30, 1, -2)
 					else
-						playsound(src.loc, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
+						playsound(src, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
 					O.process()
 			return
 	return

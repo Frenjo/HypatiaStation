@@ -1416,7 +1416,7 @@ It is possible to destroy the net by the occupant or someone else.
 			tforce = 10
 		else
 			tforce = AM:throwforce
-		playsound(src.loc, 'sound/weapons/slash.ogg', 80, 1)
+		playsound(src, 'sound/weapons/slash.ogg', 80, 1)
 		health = max(0, health - tforce)
 		healthcheck()
 		..()
@@ -1435,7 +1435,7 @@ It is possible to destroy the net by the occupant or someone else.
 				for(var/mob/O in oviewers(src))
 					O.show_message(text("\red [] claws at the energy net!", H), 1)
 
-				playsound(src.loc, 'sound/weapons/slash.ogg', 80, 1)
+				playsound(src, 'sound/weapons/slash.ogg', 80, 1)
 				health -= rand(10, 20)
 
 				if(health <= 0)

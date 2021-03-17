@@ -752,14 +752,14 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 
 #define HAS_SKIN_TONE 64
 #define HAS_SKIN_COLOR 128
-#define HAS_LIPS 256
-#define HAS_UNDERWEAR 512
-#define HAS_TAIL 1024
+#define HAS_EYE_COLOR 256
+#define HAS_LIPS 512
+#define HAS_UNDERWEAR 1024
+#define HAS_TAIL 2048
 
-#define IS_PLANT 2048
-#define IS_WHITELISTED 4096
-#define IS_SYNTHETIC 8192
-#define IS_PLASMA_IMMUNE 16384
+#define IS_PLANT 4096
+#define IS_WHITELISTED 8192
+#define IS_SYNTHETIC 16384
 
 #define RAD_ABSORB 32768
 #define REQUIRE_LIGHT 65536

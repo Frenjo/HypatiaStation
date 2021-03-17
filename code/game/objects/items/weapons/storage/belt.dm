@@ -17,7 +17,7 @@
 	var/mob/M = usr
 	if(!istype(over_object, /obj/screen))
 		return ..()
-	playsound(src.loc, "rustle", 50, 1, -5)
+	playsound(src, "rustle", 50, 1, -5)
 	if (!M.restrained() && !M.stat && can_use())
 		switch(over_object.name)
 			if("r_hand")

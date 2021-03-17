@@ -64,7 +64,10 @@ datum/preferences
 	var/r_facial = 0					//Face hair color
 	var/g_facial = 0					//Face hair color
 	var/b_facial = 0					//Face hair color
-	var/s_tone = 0						//Skin color
+	var/s_tone = 0						//Skin tone
+	var/r_skin = 0						//Skin color
+	var/g_skin = 0						//Skin color
+	var/b_skin = 0						//Skin color
 	var/r_eyes = 0						//Eye color
 	var/g_eyes = 0						//Eye color
 	var/b_eyes = 0						//Eye color
@@ -379,7 +382,10 @@ datum/preferences
 		dat += " Style: <a href='?_src_=prefs;preference=f_style;task=input'>[f_style]</a><br>"
 
 		dat += "<br><b>Eyes</b><br>"
-		dat += "<a href='?_src_=prefs;preference=eyes;task=input'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes)]'><tr><td>__</td></tr></table></font>"
+		dat += "<a href='?_src_=prefs;preference=eyes;task=input'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes)]'><tr><td>__</td></tr></table></font><br>"
+
+		dat += "<br><b>Body Color</b><br>"
+		dat += "<a href='?_src_=prefs;preference=skin;task=input'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_skin, 2)][num2hex(g_skin, 2)][num2hex(b_skin, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_skin, 2)][num2hex(g_skin, 2)][num2hex(b_skin)]'><tr><td>__</td></tr></table></font>"
 
 		dat += "<br><br>"
 		if(jobban_isbanned(user, "Syndicate"))
@@ -838,28 +844,32 @@ datum/preferences
 					if("age")
 						age = rand(AGE_MIN, AGE_MAX)
 					if("hair")
-						r_hair = rand(0,255)
-						g_hair = rand(0,255)
-						b_hair = rand(0,255)
+						r_hair = rand(0, 255)
+						g_hair = rand(0, 255)
+						b_hair = rand(0, 255)
 					if("h_style")
 						h_style = random_hair_style(gender, species)
 					if("facial")
-						r_facial = rand(0,255)
-						g_facial = rand(0,255)
-						b_facial = rand(0,255)
+						r_facial = rand(0, 255)
+						g_facial = rand(0, 255)
+						b_facial = rand(0, 255)
 					if("f_style")
 						f_style = random_facial_hair_style(gender, species)
 					if("underwear")
-						underwear = rand(1,underwear_m.len)
+						underwear = rand(1, underwear_m.len)
 						ShowChoices(user)
 					if("eyes")
-						r_eyes = rand(0,255)
-						g_eyes = rand(0,255)
-						b_eyes = rand(0,255)
+						r_eyes = rand(0, 255)
+						g_eyes = rand(0, 255)
+						b_eyes = rand(0, 255)
 					if("s_tone")
 						s_tone = random_skin_tone()
+					if("s_color")
+						r_skin = rand(0, 255)
+						g_skin = rand(0, 255)
+						b_skin = rand(0, 255)
 					if("bag")
-						backbag = rand(1,4)
+						backbag = rand(1, 4)
 					/*if("skin_style")
 						h_style = random_skin_style(gender)*/
 					if("all")
@@ -867,7 +877,7 @@ datum/preferences
 			if("input")
 				switch(href_list["preference"])
 					if("name")
-						var/new_name = reject_bad_name( input(user, "Choose your character's name:", "Character Preference")  as text|null )
+						var/new_name = reject_bad_name(input(user, "Choose your character's name:", "Character Preference") as text|null)
 						if(new_name)
 							real_name = new_name
 						else
@@ -876,9 +886,8 @@ datum/preferences
 					if("age")
 						var/new_age = input(user, "Choose your character's age:\n([AGE_MIN]-[AGE_MAX])", "Character Preference") as num|null
 						if(new_age)
-							age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
+							age = max(min(round(text2num(new_age)), AGE_MAX),AGE_MIN)
 					if("species")
-
 						var/list/new_species = list("Human")
 						var/prev_species = species
 						var/whitelisted = 0
@@ -972,7 +981,7 @@ datum/preferences
 							b_type = new_b_type
 
 					if("hair")
-						if(species == "Human" || species == "Soghun")
+						if(species == "Human" || species == "Soghun" || species == "Tajaran" || species == "Skrell")
 							var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference") as color|null
 							if(new_hair)
 								r_hair = hex2num(copytext(new_hair, 2, 4))
@@ -1041,6 +1050,14 @@ datum/preferences
 						var/new_s_tone = input(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference")  as num|null
 						if(new_s_tone)
 							s_tone = 35 - max(min( round(new_s_tone), 220),1)
+
+					if("skin")
+						if(species == "Soghun" || species == "Tajaran" || species == "Skrell")
+							var/new_skin = input(user, "Choose your character's skin colour: ", "Character Preference") as color|null
+							if(new_skin)
+								r_skin = hex2num(copytext(new_skin, 2, 4))
+								g_skin = hex2num(copytext(new_skin, 4, 6))
+								b_skin = hex2num(copytext(new_skin, 6, 8))
 
 					if("ooccolor")
 						var/new_ooccolor = input(user, "Choose your OOC colour:", "Game Preference") as color|null
@@ -1281,6 +1298,10 @@ datum/preferences
 		character.r_facial = r_facial
 		character.g_facial = g_facial
 		character.b_facial = b_facial
+
+		character.r_skin = r_skin
+		character.g_skin = g_skin
+		character.b_skin = b_skin
 
 		character.s_tone = s_tone
 

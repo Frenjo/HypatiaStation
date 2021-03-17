@@ -209,7 +209,7 @@
 	unarmed_type = /datum/unarmed_attack/bite
 	primitive = /mob/living/carbon/monkey
 
-	flags = HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR
+	flags = HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
 
 	reagent_tag = IS_HUMAN
 
@@ -237,7 +237,7 @@
 	heat_level_2 = 480 //Default 400
 	heat_level_3 = 1100 //Default 1000
 
-	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_TAIL
+	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_TAIL | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	reagent_tag = IS_SOGHUN
 
@@ -263,7 +263,7 @@
 
 	primitive = /mob/living/carbon/monkey/tajara
 
-	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_TAIL | HAS_SKIN_TONE
+	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_TAIL | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	reagent_tag = IS_TAJARAN
 
@@ -278,7 +278,7 @@
 	secondary_unarmed_type = /datum/unarmed_attack/bite
 	primitive = /mob/living/carbon/monkey/skrell
 
-	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR
+	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	reagent_tag = IS_SKRELL
 
@@ -303,8 +303,9 @@
 
 	eyes = "vox_eyes_s"
 	breath_type = "nitrogen"
+	poison_type = "oxygen"
 
-	flags = IS_WHITELISTED | NO_SCAN | NO_BLOOD
+	flags = IS_WHITELISTED | NO_SCAN | HAS_EYE_COLOR
 
 	reagent_tag = IS_VOX
 
@@ -377,7 +378,7 @@
 
 	body_temperature = T0C + 15		//make the plant people have a bit lower body temperature, why not
 
-	flags = IS_WHITELISTED | NO_BREATHE | REQUIRE_LIGHT | NO_SCAN | IS_PLANT | RAD_ABSORB | NO_BLOOD | NO_PAIN | NO_SLIP
+	flags = IS_WHITELISTED | NO_BREATHE | REQUIRE_LIGHT | NO_SCAN | IS_PLANT | RAD_ABSORB | NO_BLOOD | NO_PAIN | NO_SLIP | HAS_EYE_COLOR
 
 	reagent_tag = IS_DIONA
 
@@ -484,7 +485,7 @@
 	breath_type = "plasma"
 	poison_type = "oxygen"
 
-	flags = IS_WHITELISTED | NO_SCAN | NO_BLOOD | NO_PAIN | IS_PLASMA_IMMUNE
+	flags = IS_WHITELISTED | NO_SCAN | NO_BLOOD | NO_PAIN | NO_POISON
 
 	reagent_tag = IS_PLASMAPERSON
 

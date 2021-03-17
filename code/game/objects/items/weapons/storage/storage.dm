@@ -41,7 +41,7 @@
 			return ..()
 		if (!(src.loc == usr) || (src.loc && src.loc.loc == usr))
 			return
-		playsound(src.loc, "rustle", 50, 1, -5)
+		playsound(src, "rustle", 50, 1, -5)
 		if (!( M.restrained() ) && !( M.stat ))
 			switch(over_object.name)
 				if("r_hand")
@@ -338,7 +338,7 @@
 	return
 
 /obj/item/weapon/storage/attack_hand(mob/user as mob)
-	playsound(src.loc, "rustle", 50, 1, -5)
+	playsound(src, "rustle", 50, 1, -5)
 
 	if(isHuman(user))
 		var/mob/living/carbon/human/H = user

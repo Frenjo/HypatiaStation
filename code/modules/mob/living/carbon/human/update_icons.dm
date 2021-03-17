@@ -101,22 +101,22 @@ Please contact me on #coderbus IRC. ~Carn x
 #define MUTATIONS_LAYER			2
 #define DAMAGE_LAYER			3
 #define UNIFORM_LAYER			4
-#define ID_LAYER				5
-#define SHOES_LAYER				6
-#define GLOVES_LAYER			7
-#define EARS_LAYER				8
-#define SUIT_LAYER				9
-#define GLASSES_LAYER			10
-#define BELT_LAYER				11		//Possible make this an overlay of somethign required to wear a belt?
-#define SUIT_STORE_LAYER		12
-#define BACK_LAYER				13
-#define HAIR_LAYER				14		//TODO: make part of head layer?
-#define FACEMASK_LAYER			15
-#define HEAD_LAYER				16
-#define COLLAR_LAYER			17
-#define HANDCUFF_LAYER			18
-#define LEGCUFF_LAYER			19
-#define TAIL_LAYER				20		//bs12 specific. this hack is probably gonna come back to haunt me
+#define TAIL_LAYER				5		//bs12 specific. this hack is probably gonna come back to haunt me
+#define ID_LAYER				6
+#define SHOES_LAYER				7
+#define GLOVES_LAYER			8
+#define EARS_LAYER				9
+#define SUIT_LAYER				10
+#define GLASSES_LAYER			11
+#define BELT_LAYER				12		//Possible make this an overlay of somethign required to wear a belt?
+#define SUIT_STORE_LAYER		13
+#define BACK_LAYER				14
+#define HAIR_LAYER				15		//TODO: make part of head layer?
+#define FACEMASK_LAYER			16
+#define HEAD_LAYER				17
+#define COLLAR_LAYER			18
+#define HANDCUFF_LAYER			19
+#define LEGCUFF_LAYER			20
 #define L_HAND_LAYER			21
 #define R_HAND_LAYER			22
 #define TARGETED_LAYER			23		//BS12: Layer for the target overlay from weapon targeting system
@@ -287,6 +287,10 @@ proc/get_damage_icon_part(damage_state, body_part)
 		else
 			stand_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 
+	//Skin color
+	if(!skeleton && !husk && !hulk && (species.flags & HAS_SKIN_COLOR))
+		stand_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+
 	if(husk)
 		var/icon/mask = new(stand_icon)
 		var/icon/husk_over = new(race_icon,"overlay_husk")
@@ -298,7 +302,8 @@ proc/get_damage_icon_part(damage_state, body_part)
 		//Eyes
 		if(!skeleton)
 			var/icon/eyes = new/icon('icons/mob/human_face.dmi', species.eyes)
-			eyes.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
+			if(species.flags & HAS_EYE_COLOR)
+				eyes.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
 			stand_icon.Blend(eyes, ICON_OVERLAY)
 
 		//Mouth	(lipstick!)
@@ -732,7 +737,10 @@ proc/get_damage_icon_part(damage_state, body_part)
 
 	if(species.tail && species.flags & HAS_TAIL)
 		if(!wear_suit || !(wear_suit.flags_inv & HIDEJUMPSUIT) && !istype(wear_suit, /obj/item/clothing/suit/space))
-			overlays_standing[TAIL_LAYER] = image("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
+			var/icon/tail_s = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
+			tail_s.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+
+			overlays_standing[TAIL_LAYER]	= image(tail_s)
 
 	if(update_icons)
 		update_icons()
@@ -793,6 +801,7 @@ proc/get_damage_icon_part(damage_state, body_part)
 #undef MUTATIONS_LAYER
 #undef DAMAGE_LAYER
 #undef UNIFORM_LAYER
+#undef TAIL_LAYER
 #undef ID_LAYER
 #undef SHOES_LAYER
 #undef GLOVES_LAYER
@@ -810,6 +819,5 @@ proc/get_damage_icon_part(damage_state, body_part)
 #undef LEGCUFF_LAYER
 #undef L_HAND_LAYER
 #undef R_HAND_LAYER
-#undef TAIL_LAYER
 #undef TARGETED_LAYER
 #undef TOTAL_LAYERS

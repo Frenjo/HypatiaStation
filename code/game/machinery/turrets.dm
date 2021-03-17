@@ -83,7 +83,7 @@
 		return ..()
 
 	if(user.species.can_shred(user) && !(stat & BROKEN))
-		playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1, -1)
+		playsound(src, 'sound/weapons/slash.ogg', 25, 1, -1)
 		visible_message("\red <B>[] has slashed at []!</B>", user, src)
 		src.take_damage(15)
 	return
@@ -219,9 +219,9 @@
 
 		if(prob(15))
 			if(prob(50))
-				playsound(src.loc, 'sound/effects/turret/move1.wav', 60, 1)
+				playsound(src, 'sound/effects/turret/move1.wav', 60, 1)
 			else
-				playsound(src.loc, 'sound/effects/turret/move2.wav', 60, 1)
+				playsound(src, 'sound/effects/turret/move2.wav', 60, 1)
 	else if(!isPopping())//else, pop down
 		if(!isDown())
 			popDown()
@@ -276,7 +276,7 @@
 	if ((!isPopping()) || src.popping==-1)
 		invisibility = 0
 		popping = 1
-		playsound(src.loc, 'sound/effects/turret/open.wav', 60, 1)
+		playsound(src, 'sound/effects/turret/open.wav', 60, 1)
 		if (src.cover!=null)
 			flick("popup", src.cover)
 			src.cover.icon_state = "openTurretCover"
@@ -286,7 +286,7 @@
 /obj/machinery/turret/proc/popDown()
 	if ((!isPopping()) || src.popping==1)
 		popping = -1
-		playsound(src.loc, 'sound/effects/turret/open.wav', 60, 1)
+		playsound(src, 'sound/effects/turret/open.wav', 60, 1)
 		if (src.cover!=null)
 			flick("popdown", src.cover)
 			src.cover.icon_state = "turretCover"
@@ -306,7 +306,7 @@
 
 /obj/machinery/turret/attackby(obj/item/weapon/W, mob/user)//I can't believe no one added this before/N
 	..()
-	playsound(src.loc, 'sound/weapons/smash.ogg', 60, 1)
+	playsound(src, 'sound/weapons/smash.ogg', 60, 1)
 	src.spark_system.start()
 	src.health -= W.force * 0.5
 	if (src.health <= 0)

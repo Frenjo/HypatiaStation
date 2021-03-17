@@ -24,7 +24,6 @@
 						log_access("Notice: [key_name(src)] has the same [matches] as [key_name(M)] (no longer logged in).")
 
 /mob/Login()
-
 	player_list |= src
 	update_Login_details()
 	world.update_status()
@@ -44,3 +43,6 @@
 	else
 		client.eye = src
 		client.perspective = MOB_PERSPECTIVE
+
+	// Send NanoUI resources to this client
+	nanomanager.send_resources(src)

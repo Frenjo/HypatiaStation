@@ -98,7 +98,7 @@
 
 		if (A)
 			A.meteorhit(src)
-			playsound(src.loc, 'sound/effects/meteorimpact.ogg', 40, 1)
+			playsound(src, 'sound/effects/meteorimpact.ogg', 40, 1)
 		if (--src.hits <= 0)
 
 			//Prevent meteors from blowing up the singularity's containment.
@@ -139,7 +139,7 @@
 					if(!T || T.z != src.z)
 						continue
 					shake_camera(M, 3, get_dist(M.loc, src.loc) > 20 ? 1 : 3)
-					playsound(src.loc, 'sound/effects/meteorimpact.ogg', 40, 1)
+					playsound(src, 'sound/effects/meteorimpact.ogg', 40, 1)
 				explosion(src.loc, 0, 1, 2, 3, 0)
 
 			if (--src.hits <= 0)

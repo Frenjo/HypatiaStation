@@ -956,7 +956,7 @@
 				alien = species.reagent_tag
 				reagents.metabolize(src, alien)
 
-		if(!(species.flags & IS_PLASMA_IMMUNE))
+		if(!(species.name == "Plasmaperson"))
 			var/total_plasmaloss = 0
 			for(var/obj/item/I in src)
 				if(I.contaminated)

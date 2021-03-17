@@ -35,7 +35,7 @@
 		src.last_shot = world.time
 		var/obj/effect/accelerated_particle/A = null
 		var/turf/T = get_step(src,dir)
-		playsound(src.loc, 'sound/machines/PA_emission.ogg', 35, 0) // Emit a sound if we're particle accelerating. -Frenjo
+		playsound(src, 'sound/machines/PA_emission.ogg', 35, 0) // Emit a sound if we're particle accelerating. -Frenjo
 		switch(strength)
 			if(0)
 				A = new/obj/effect/accelerated_particle/weak(T, dir)
