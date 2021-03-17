@@ -4,6 +4,7 @@
 	name = "Pod Launch Control"
 	desc = "A controll for launching pods. Some people prefer firing Mechas."
 	icon_state = "computer_generic"
+	circuit = /obj/item/weapon/circuitboard/pod
 	var/id = 1.0
 	var/obj/machinery/mass_driver/connected = null
 	var/timing = 0.0
@@ -14,7 +15,7 @@
 
 /obj/machinery/computer/pod/New()
 	..()
-	spawn( 5 )
+	spawn(5)
 		for(var/obj/machinery/mass_driver/M in world)
 			if(M.id == id)
 				connected = M
@@ -22,12 +23,11 @@
 		return
 	return
 
-
 /obj/machinery/computer/pod/proc/alarm()
 	if(stat & (NOPOWER|BROKEN))
 		return
 
-	if(!( connected ))
+	if(!(connected))
 		viewers(null, null) << "Cannot locate mass driver connector. Cancelling firing sequence!"
 		return
 
@@ -35,6 +35,7 @@
 		if(M.id == id)
 			M.open()
 			return
+
 	sleep(20)
 
 	for(var/obj/machinery/mass_driver/M in world)
@@ -43,13 +44,14 @@
 			M.drive()
 
 	sleep(50)
+
 	for(var/obj/machinery/door/poddoor/M in world)
 		if(M.id == id)
 			M.close()
 			return
 	return
 
-
+/*
 /obj/machinery/computer/pod/attackby(I as obj, user as mob)
 	if(istype(I, /obj/item/weapon/screwdriver))
 		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
@@ -104,7 +106,7 @@
 	else
 		attack_hand(user)
 	return
-
+*/
 
 /obj/machinery/computer/pod/attack_ai(var/mob/user as mob)
 	return attack_hand(user)

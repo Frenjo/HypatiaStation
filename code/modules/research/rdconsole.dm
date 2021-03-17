@@ -34,6 +34,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 /obj/machinery/computer/rdconsole
 	name = "R&D Console"
 	icon_state = "rdcomp"
+	circuit = /obj/item/weapon/circuitboard/rdconsole
 	var/datum/research/files							//Stores all the collected research data.
 	var/obj/item/weapon/disk/tech_disk/t_disk = null	//Stores the technology disk.
 	var/obj/item/weapon/disk/design_disk/d_disk = null	//Stores the design disk.
@@ -46,7 +47,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	var/id = 0			//ID of the computer (for server restrictions).
 	var/sync = 1		//If sync = 0, it doesn't show up on Server Control Console
 
-	req_access = list(access_tox)	//Data and setting manipulation requires scientist access.
+	req_access = list(access_research)	//Data and setting manipulation requires scientist access.
 
 	light_color = "#a97faa"
 
@@ -142,44 +143,20 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 */
 
 /obj/machinery/computer/rdconsole/attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
-	//The construction/deconstruction of the console code.
-	if(istype(D, /obj/item/weapon/screwdriver))
-		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
-			if (src.stat & BROKEN)
-				user << "\blue The broken glass falls out."
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				new /obj/item/weapon/shard( src.loc )
-				var/obj/item/weapon/circuitboard/rdconsole/M = new /obj/item/weapon/circuitboard/rdconsole( A )
-				for (var/obj/C in src)
-					C.loc = src.loc
-				A.circuit = M
-				A.state = 3
-				A.icon_state = "3"
-				A.anchored = 1
-				qdel(src)
-			else
-				user << "\blue You disconnect the monitor."
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/rdconsole/M = new /obj/item/weapon/circuitboard/rdconsole( A )
-				for (var/obj/C in src)
-					C.loc = src.loc
-				A.circuit = M
-				A.state = 4
-				A.icon_state = "4"
-				A.anchored = 1
-				qdel(src)
 	//Loading a disk into it.
-	else if(istype(D, /obj/item/weapon/disk))
+	if(istype(D, /obj/item/weapon/disk))
 		if(t_disk || d_disk)
 			user << "A disk is already loaded into the machine."
 			return
 
-		if(istype(D, /obj/item/weapon/disk/tech_disk)) t_disk = D
-		else if (istype(D, /obj/item/weapon/disk/design_disk)) d_disk = D
+		if(istype(D, /obj/item/weapon/disk/tech_disk))
+			t_disk = D
+		else if(istype(D, /obj/item/weapon/disk/design_disk))
+			d_disk = D
 		else
 			user << "\red Machine cannot accept disks in that format."
 			return
+
 		user.drop_item()
 		D.loc = src
 		user << "\blue You add the disk to the machine!"
@@ -187,6 +164,10 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
 		user << "\blue You you disable the security protocols"
+	else
+		//The construction/deconstruction of the console code.
+		..()
+
 	src.updateUsrDialog()
 	return
 

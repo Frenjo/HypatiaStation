@@ -1,12 +1,21 @@
 
 /**********************Ore box**************************/
-
 /obj/structure/ore_box
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "orebox0"
 	name = "Ore Box"
 	desc = "A heavy box used for storing ore."
 	density = 1
+	var/amt_gold = 0
+	var/amt_silver = 0
+	var/amt_diamond = 0
+	var/amt_glass = 0
+	var/amt_iron = 0
+	var/amt_phoron = 0
+	var/amt_uranium = 0
+	var/amt_clown = 0
+	var/amt_strange = 0
+	var/last_update = 0
 
 /obj/structure/ore_box/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/ore))
@@ -30,7 +39,6 @@
 	var/amt_clown = 0
 	var/amt_strange = 0
 
-
 	for (var/obj/item/weapon/ore/C in contents)
 		if (istype(C,/obj/item/weapon/ore/diamond))
 			amt_diamond++;
@@ -52,23 +60,23 @@
 			amt_strange++;
 
 	var/dat = text("<b>The contents of the ore box reveal...</b><br>")
-	if (amt_gold)
+	if(amt_gold)
 		dat += text("Gold ore: [amt_gold]<br>")
-	if (amt_silver)
+	if(amt_silver)
 		dat += text("Silver ore: [amt_silver]<br>")
-	if (amt_iron)
+	if(amt_iron)
 		dat += text("Metal ore: [amt_iron]<br>")
-	if (amt_glass)
+	if(amt_glass)
 		dat += text("Sand: [amt_glass]<br>")
-	if (amt_diamond)
+	if(amt_diamond)
 		dat += text("Diamond ore: [amt_diamond]<br>")
-	if (amt_plasma)
+	if(amt_plasma)
 		dat += text("Plasma ore: [amt_plasma]<br>")
-	if (amt_uranium)
+	if(amt_uranium)
 		dat += text("Uranium ore: [amt_uranium]<br>")
-	if (amt_clown)
+	if(amt_clown)
 		dat += text("Bananium ore: [amt_clown]<br>")
-	if (amt_strange)
+	if(amt_strange)
 		dat += text("Strange rocks: [amt_strange]<br>")
 
 	dat += text("<br><br><A href='?src=\ref[src];removeall=1'>Empty box</A>")

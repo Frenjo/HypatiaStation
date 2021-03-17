@@ -96,8 +96,6 @@
 	griefProtection()
 	..()
 
-
-
 //Backup files to centcomm to help admins recover data after greifer attacks
 /obj/machinery/r_n_d/server/proc/griefProtection()
 	for(var/obj/machinery/r_n_d/server/centcom/C in machines)
@@ -168,8 +166,6 @@
 	return
 
 
-
-
 /obj/machinery/r_n_d/server/centcom
 	name = "Centcom Central R&D Database"
 	server_id = -1
@@ -204,6 +200,7 @@
 /obj/machinery/computer/rdservercontrol
 	name = "R&D Server Controller"
 	icon_state = "rdcomp"
+	circuit = /obj/item/weapon/circuitboard/rdservercontrol
 	var/screen = 0
 	var/obj/machinery/r_n_d/server/temp_server
 	var/list/servers = list()
@@ -343,46 +340,19 @@
 	return
 
 /obj/machinery/computer/rdservercontrol/attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
-	if(istype(D, /obj/item/weapon/screwdriver))
-		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
-			if (src.stat & BROKEN)
-				user << "\blue The broken glass falls out."
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				new /obj/item/weapon/shard( src.loc )
-				var/obj/item/weapon/circuitboard/rdservercontrol/M = new /obj/item/weapon/circuitboard/rdservercontrol( A )
-				for (var/obj/C in src)
-					C.loc = src.loc
-				A.circuit = M
-				A.state = 3
-				A.icon_state = "3"
-				A.anchored = 1
-				qdel(src)
-			else
-				user << "\blue You disconnect the monitor."
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/rdservercontrol/M = new /obj/item/weapon/circuitboard/rdservercontrol( A )
-				for (var/obj/C in src)
-					C.loc = src.loc
-				A.circuit = M
-				A.state = 4
-				A.icon_state = "4"
-				A.anchored = 1
-				qdel(src)
-	else if(istype(D, /obj/item/weapon/card/emag) && !emagged)
+	if(istype(D, /obj/item/weapon/card/emag) && !emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
 		user << "\blue You you disable the security protocols"
-	src.updateUsrDialog()
-	return
 
+	src.updateUsrDialog()
+	return ..()
 
 /obj/machinery/r_n_d/server/robotics
 	name = "Robotics R&D Server"
 	id_with_upload_string = "1;2"
 	id_with_download_string = "1;2"
 	server_id = 2
-
 
 /obj/machinery/r_n_d/server/core
 	name = "Core R&D Server"

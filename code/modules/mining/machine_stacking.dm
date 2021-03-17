@@ -29,7 +29,6 @@
 	user.set_machine(src)
 
 	var/dat
-
 	dat += text("<b>Stacking unit console</b><br><br>")
 
 	if(machine.ore_iron)
@@ -81,110 +80,110 @@
 	src.add_fingerprint(usr)
 	if(href_list["release"])
 		switch(href_list["release"])
-			if ("plasma")
-				if (machine.ore_plasma > 0)
+			if("plasma")
+				if(machine.ore_plasma > 0)
 					var/obj/item/stack/sheet/mineral/plasma/G = new /obj/item/stack/sheet/mineral/plasma
 					G.amount = machine.ore_plasma
 					G.loc = machine.output.loc
 					machine.ore_plasma = 0
-			if ("plasmaglass")
-				if (machine.ore_plasmaglass > 0)
+			if("plasmaglass")
+				if(machine.ore_plasmaglass > 0)
 					var/obj/item/stack/sheet/glass/plasmaglass/G = new /obj/item/stack/sheet/glass/plasmaglass
 					G.amount = machine.ore_plasmaglass
 					G.loc = machine.output.loc
 					machine.ore_plasmaglass = 0
-			if ("plasmarglass")
-				if (machine.ore_plasmarglass > 0)
+			if("plasmarglass")
+				if(machine.ore_plasmarglass > 0)
 					var/obj/item/stack/sheet/glass/plasmarglass/G = new /obj/item/stack/sheet/glass/plasmarglass
 					G.amount = machine.ore_plasmarglass
 					G.loc = machine.output.loc
 					machine.ore_plasmarglass = 0
-			if ("uranium")
-				if (machine.ore_uranium > 0)
+			if("uranium")
+				if(machine.ore_uranium > 0)
 					var/obj/item/stack/sheet/mineral/uranium/G = new /obj/item/stack/sheet/mineral/uranium
 					G.amount = machine.ore_uranium
 					G.loc = machine.output.loc
 					machine.ore_uranium = 0
-			if ("glass")
-				if (machine.ore_glass > 0)
+			if("glass")
+				if(machine.ore_glass > 0)
 					var/obj/item/stack/sheet/glass/G = new /obj/item/stack/sheet/glass
 					G.amount = machine.ore_glass
 					G.loc = machine.output.loc
 					machine.ore_glass = 0
-			if ("rglass")
-				if (machine.ore_rglass > 0)
+			if("rglass")
+				if(machine.ore_rglass > 0)
 					var/obj/item/stack/sheet/rglass/G = new /obj/item/stack/sheet/rglass
 					G.amount = machine.ore_rglass
 					G.loc = machine.output.loc
 					machine.ore_rglass = 0
-			if ("gold")
-				if (machine.ore_gold > 0)
+			if("gold")
+				if(machine.ore_gold > 0)
 					var/obj/item/stack/sheet/mineral/gold/G = new /obj/item/stack/sheet/mineral/gold
 					G.amount = machine.ore_gold
 					G.loc = machine.output.loc
 					machine.ore_gold = 0
-			if ("silver")
-				if (machine.ore_silver > 0)
+			if("silver")
+				if(machine.ore_silver > 0)
 					var/obj/item/stack/sheet/mineral/silver/G = new /obj/item/stack/sheet/mineral/silver
 					G.amount = machine.ore_silver
 					G.loc = machine.output.loc
 					machine.ore_silver = 0
-			if ("diamond")
-				if (machine.ore_diamond > 0)
+			if("diamond")
+				if(machine.ore_diamond > 0)
 					var/obj/item/stack/sheet/mineral/diamond/G = new /obj/item/stack/sheet/mineral/diamond
 					G.amount = machine.ore_diamond
 					G.loc = machine.output.loc
 					machine.ore_diamond = 0
-			if ("iron")
-				if (machine.ore_iron > 0)
+			if("iron")
+				if(machine.ore_iron > 0)
 					var/obj/item/stack/sheet/metal/G = new /obj/item/stack/sheet/metal
 					G.amount = machine.ore_iron
 					G.loc = machine.output.loc
 					machine.ore_iron = 0
-			if ("plasteel")
-				if (machine.ore_plasteel > 0)
+			if("plasteel")
+				if(machine.ore_plasteel > 0)
 					var/obj/item/stack/sheet/plasteel/G = new /obj/item/stack/sheet/plasteel
 					G.amount = machine.ore_plasteel
 					G.loc = machine.output.loc
 					machine.ore_plasteel = 0
-			if ("wood")
-				if (machine.ore_wood > 0)
+			if("wood")
+				if(machine.ore_wood > 0)
 					var/obj/item/stack/sheet/wood/G = new /obj/item/stack/sheet/wood
 					G.amount = machine.ore_wood
 					G.loc = machine.output.loc
 					machine.ore_wood = 0
-			if ("cardboard")
-				if (machine.ore_cardboard > 0)
+			if("cardboard")
+				if(machine.ore_cardboard > 0)
 					var/obj/item/stack/sheet/cardboard/G = new /obj/item/stack/sheet/cardboard
 					G.amount = machine.ore_cardboard
 					G.loc = machine.output.loc
 					machine.ore_cardboard = 0
-			if ("cloth")
-				if (machine.ore_cloth > 0)
+			if("cloth")
+				if(machine.ore_cloth > 0)
 					var/obj/item/stack/sheet/cloth/G = new /obj/item/stack/sheet/cloth
 					G.amount = machine.ore_cloth
 					G.loc = machine.output.loc
 					machine.ore_cloth = 0
-			if ("leather")
-				if (machine.ore_leather > 0)
+			if("leather")
+				if(machine.ore_leather > 0)
 					var/obj/item/stack/sheet/leather/G = new /obj/item/stack/sheet/leather
 					G.amount = machine.ore_diamond
 					G.loc = machine.output.loc
 					machine.ore_leather = 0
-			if ("clown")
-				if (machine.ore_clown > 0)
+			if("clown")
+				if(machine.ore_clown > 0)
 					var/obj/item/stack/sheet/mineral/clown/G = new /obj/item/stack/sheet/mineral/clown
 					G.amount = machine.ore_clown
 					G.loc = machine.output.loc
 					machine.ore_clown = 0
-			if ("adamantine")
-				if (machine.ore_adamantine > 0)
+			if("adamantine")
+				if(machine.ore_adamantine > 0)
 					var/obj/item/stack/sheet/mineral/adamantine/G = new /obj/item/stack/sheet/mineral/adamantine
 					G.amount = machine.ore_adamantine
 					G.loc = machine.output.loc
 					machine.ore_adamantine = 0
-			if ("mythril")
-				if (machine.ore_mythril > 0)
+			if("mythril")
+				if(machine.ore_mythril > 0)
 					var/obj/item/stack/sheet/mineral/mythril/G = new /obj/item/stack/sheet/mineral/mythril
 					G.amount = machine.ore_mythril
 					G.loc = machine.output.loc
@@ -192,9 +191,7 @@
 	src.updateUsrDialog()
 	return
 
-
 /**********************Mineral stacking unit**************************/
-
 
 /obj/machinery/mineral/stacking_machine
 	name = "stacking machine"
@@ -229,224 +226,226 @@
 
 /obj/machinery/mineral/stacking_machine/New()
 	..()
-	spawn( 5 )
-		for (var/dir in cardinal)
+	spawn(5)
+		for(var/dir in cardinal)
 			src.input = locate(/obj/machinery/mineral/input, get_step(src, dir))
-			if(src.input) break
-		for (var/dir in cardinal)
+			if(src.input)
+				break
+		for(var/dir in cardinal)
 			src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
-			if(src.output) break
+			if(src.output)
+				break
 		processing_objects.Add(src)
 		return
 	return
 
 /obj/machinery/mineral/stacking_machine/process()
-	if (src.output && src.input)
+	if(src.output && src.input)
 		var/obj/item/stack/O
-		while (locate(/obj/item, input.loc))
+		while(locate(/obj/item, input.loc))
 			O = locate(/obj/item/stack, input.loc)
 			if(isnull(O))
 				var/obj/item/I = locate(/obj/item, input.loc)
-				if (istype(I,/obj/item/weapon/ore/slag))
+				if(istype(I, /obj/item/weapon/ore/slag))
 					I.loc = null
 				else
 					I.loc = output.loc
 				continue
-			if (istype(O,/obj/item/stack/sheet/metal))
+			if(istype(O, /obj/item/stack/sheet/metal))
 				ore_iron+= O.amount
 				O.loc = null
 				//del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/mineral/diamond))
+			if(istype(O, /obj/item/stack/sheet/mineral/diamond))
 				ore_diamond+= O.amount
 				O.loc = null
 				//del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/mineral/plasma))
+			if(istype(O, /obj/item/stack/sheet/mineral/plasma))
 				ore_plasma+= O.amount
 				O.loc = null
 				//del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/mineral/gold))
+			if(istype(O, /obj/item/stack/sheet/mineral/gold))
 				ore_gold+= O.amount
 				O.loc = null
 				//del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/mineral/silver))
+			if(istype(O, /obj/item/stack/sheet/mineral/silver))
 				ore_silver+= O.amount
 				O.loc = null
 				//del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/mineral/clown))
+			if(istype(O, /obj/item/stack/sheet/mineral/clown))
 				ore_clown+= O.amount
 				O.loc = null
 				//del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/mineral/uranium))
+			if(istype(O, /obj/item/stack/sheet/mineral/uranium))
 				ore_uranium+= O.amount
 				O.loc = null
 				//del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/glass/plasmaglass))
+			if(istype(O, /obj/item/stack/sheet/glass/plasmaglass))
 				ore_plasmaglass+= O.amount
 				O.loc = null
 				//del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/glass/plasmarglass))
+			if(istype(O, /obj/item/stack/sheet/glass/plasmarglass))
 				ore_plasmarglass+= O.amount
 				O.loc = null
 				//del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/glass))
+			if(istype(O, /obj/item/stack/sheet/glass))
 				ore_glass+= O.amount
 				O.loc = null
 				//del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/rglass))
+			if(istype(O, /obj/item/stack/sheet/rglass))
 				ore_rglass+= O.amount
 				O.loc = null
 				//del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/plasteel))
+			if(istype(O, /obj/item/stack/sheet/plasteel))
 				ore_plasteel+= O.amount
 				O.loc = null
 				//del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/mineral/adamantine))
+			if(istype(O, /obj/item/stack/sheet/mineral/adamantine))
 				ore_adamantine+= O.amount
 				O.loc = null
 				//del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/mineral/mythril))
+			if(istype(O, /obj/item/stack/sheet/mineral/mythril))
 				ore_mythril+= O.amount
 				O.loc = null
 				//del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/cardboard))
+			if(istype(O, /obj/item/stack/sheet/cardboard))
 				ore_cardboard+= O.amount
 				O.loc = null
 				//del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/wood))
+			if(istype(O, /obj/item/stack/sheet/wood))
 				ore_wood+= O.amount
 				O.loc = null
 				//del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/cloth))
+			if(istype(O, /obj/item/stack/sheet/cloth))
 				ore_cloth+= O.amount
 				O.loc = null
 				//del(O)
 				continue
-			if (istype(O,/obj/item/stack/sheet/leather))
+			if(istype(O, /obj/item/stack/sheet/leather))
 				ore_leather+= O.amount
 				O.loc = null
 				//del(O)
 				continue
 			O.loc = src.output.loc
 
-	if (ore_gold >= stack_amt)
+	if(ore_gold >= stack_amt)
 		var/obj/item/stack/sheet/mineral/gold/G = new /obj/item/stack/sheet/mineral/gold
 		G.amount = stack_amt
 		G.loc = output.loc
 		ore_gold -= stack_amt
 		return
-	if (ore_silver >= stack_amt)
+	if(ore_silver >= stack_amt)
 		var/obj/item/stack/sheet/mineral/silver/G = new /obj/item/stack/sheet/mineral/silver
 		G.amount = stack_amt
 		G.loc = output.loc
 		ore_silver -= stack_amt
 		return
-	if (ore_diamond >= stack_amt)
+	if(ore_diamond >= stack_amt)
 		var/obj/item/stack/sheet/mineral/diamond/G = new /obj/item/stack/sheet/mineral/diamond
 		G.amount = stack_amt
 		G.loc = output.loc
 		ore_diamond -= stack_amt
 		return
-	if (ore_plasma >= stack_amt)
+	if(ore_plasma >= stack_amt)
 		var/obj/item/stack/sheet/mineral/plasma/G = new /obj/item/stack/sheet/mineral/plasma
 		G.amount = stack_amt
 		G.loc = output.loc
 		ore_plasma -= stack_amt
 		return
-	if (ore_iron >= stack_amt)
+	if(ore_iron >= stack_amt)
 		var/obj/item/stack/sheet/metal/G = new /obj/item/stack/sheet/metal
 		G.amount = stack_amt
 		G.loc = output.loc
 		ore_iron -= stack_amt
 		return
-	if (ore_clown >= stack_amt)
+	if(ore_clown >= stack_amt)
 		var/obj/item/stack/sheet/mineral/clown/G = new /obj/item/stack/sheet/mineral/clown
 		G.amount = stack_amt
 		G.loc = output.loc
 		ore_clown -= stack_amt
 		return
-	if (ore_uranium >= stack_amt)
+	if(ore_uranium >= stack_amt)
 		var/obj/item/stack/sheet/mineral/uranium/G = new /obj/item/stack/sheet/mineral/uranium
 		G.amount = stack_amt
 		G.loc = output.loc
 		ore_uranium -= stack_amt
 		return
-	if (ore_glass >= stack_amt)
+	if(ore_glass >= stack_amt)
 		var/obj/item/stack/sheet/glass/G = new /obj/item/stack/sheet/glass
 		G.amount = stack_amt
 		G.loc = output.loc
 		ore_glass -= stack_amt
 		return
-	if (ore_rglass >= stack_amt)
+	if(ore_rglass >= stack_amt)
 		var/obj/item/stack/sheet/rglass/G = new /obj/item/stack/sheet/rglass
 		G.amount = stack_amt
 		G.loc = output.loc
 		ore_rglass -= stack_amt
 		return
-	if (ore_plasmaglass >= stack_amt)
+	if(ore_plasmaglass >= stack_amt)
 		var/obj/item/stack/sheet/glass/plasmaglass/G = new /obj/item/stack/sheet/glass/plasmaglass
 		G.amount = stack_amt
 		G.loc = output.loc
 		ore_plasmaglass -= stack_amt
 		return
-	if (ore_plasmarglass >= stack_amt)
+	if(ore_plasmarglass >= stack_amt)
 		var/obj/item/stack/sheet/glass/plasmarglass/G = new /obj/item/stack/sheet/glass/plasmarglass
 		G.amount = stack_amt
 		G.loc = output.loc
 		ore_plasmarglass -= stack_amt
 		return
-	if (ore_plasteel >= stack_amt)
+	if(ore_plasteel >= stack_amt)
 		var/obj/item/stack/sheet/plasteel/G = new /obj/item/stack/sheet/plasteel
 		G.amount = stack_amt
 		G.loc = output.loc
 		ore_plasteel -= stack_amt
 		return
-	if (ore_wood >= stack_amt)
+	if(ore_wood >= stack_amt)
 		var/obj/item/stack/sheet/wood/G = new /obj/item/stack/sheet/wood
 		G.amount = stack_amt
 		G.loc = output.loc
 		ore_wood -= stack_amt
 		return
-	if (ore_cardboard >= stack_amt)
+	if(ore_cardboard >= stack_amt)
 		var/obj/item/stack/sheet/cardboard/G = new /obj/item/stack/sheet/cardboard
 		G.amount = stack_amt
 		G.loc = output.loc
 		ore_cardboard -= stack_amt
 		return
-	if (ore_cloth >= stack_amt)
+	if(ore_cloth >= stack_amt)
 		var/obj/item/stack/sheet/cloth/G = new /obj/item/stack/sheet/cloth
 		G.amount = stack_amt
 		G.loc = output.loc
 		ore_cloth -= stack_amt
 		return
-	if (ore_leather >= stack_amt)
+	if(ore_leather >= stack_amt)
 		var/obj/item/stack/sheet/leather/G = new /obj/item/stack/sheet/leather
 		G.amount = stack_amt
 		G.loc = output.loc
 		ore_leather -= stack_amt
 		return
-	if (ore_adamantine >= stack_amt)
+	if(ore_adamantine >= stack_amt)
 		var/obj/item/stack/sheet/mineral/adamantine/G = new /obj/item/stack/sheet/mineral/adamantine
 		G.amount = stack_amt
 		G.loc = output.loc
 		ore_adamantine -= stack_amt
 		return
-	if (ore_mythril >= stack_amt)
+	if(ore_mythril >= stack_amt)
 		var/obj/item/stack/sheet/mineral/mythril/G = new /obj/item/stack/sheet/mineral/mythril
 		G.amount = stack_amt
 		G.loc = output.loc

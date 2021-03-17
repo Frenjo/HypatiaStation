@@ -31,6 +31,7 @@
 	desc = "A computer to remotely control a gas turbine"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "airtunnel0e"
+	circuit = /obj/item/weapon/circuitboard/turbine_control
 	anchored = 1
 	density = 1
 	var/obj/machinery/power/turbine/compressor/compressor
@@ -63,9 +64,9 @@
 		stat |= BROKEN
 		return
 
-	rpm = 0.9* rpm + 0.1 * rpmtarget
+	rpm = 0.9 * rpm + 0.1 * rpmtarget
 	var/datum/gas_mixture/environment = inturf.return_air()
-	var/transfer_moles = environment.total_moles/10
+	var/transfer_moles = environment.total_moles / 10
 	var/datum/gas_mixture/removed = inturf.remove_air(transfer_moles)
 	gas_contained.merge(removed)
 
@@ -73,19 +74,19 @@
 
 	if(starter && !(stat & NOPOWER))
 		use_power(2800)
-		if(rpm<1000)
+		if(rpm < 1000)
 			rpmtarget = 1000
 	else
-		if(rpm<1000)
+		if(rpm < 1000)
 			rpmtarget = 0
 
-	if(rpm>50000)
+	if(rpm > 50000)
 		overlays += image('icons/obj/pipes.dmi', "comp-o4", FLY_LAYER)
-	else if(rpm>10000)
+	else if(rpm > 10000)
 		overlays += image('icons/obj/pipes.dmi', "comp-o3", FLY_LAYER)
-	else if(rpm>2000)
+	else if(rpm > 2000)
 		overlays += image('icons/obj/pipes.dmi', "comp-o2", FLY_LAYER)
-	else if(rpm>500)
+	else if(rpm > 500)
 		overlays += image('icons/obj/pipes.dmi', "comp-o1", FLY_LAYER)
 	 //TODO: DEFERRED
 
@@ -124,8 +125,8 @@
 	if(!compressor.starter || newrpm > 1000)
 		compressor.rpmtarget = newrpm
 
-	if(compressor.gas_contained.total_moles>0)
-		var/oamount = min(compressor.gas_contained.total_moles, (compressor.rpm+100)/35000*compressor.capacity)
+	if(compressor.gas_contained.total_moles > 0)
+		var/oamount = min(compressor.gas_contained.total_moles, (compressor.rpm + 100) / 35000 * compressor.capacity)
 		var/datum/gas_mixture/removed = compressor.gas_contained.remove(oamount)
 		outturf.assume_air(removed)
 
@@ -166,17 +167,15 @@
 	..()
 	if(stat & BROKEN)
 		return
-	if (usr.stat || usr.restrained())
+	if(usr.stat || usr.restrained())
 		return
-	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if(!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		if(!istype(usr, /mob/living/silicon/ai))
 			usr << "\red You don't have the dexterity to do this!"
 			return
 
-	if ((usr.machine==src && ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
-
-
-		if( href_list["close"] )
+	if((usr.machine==src && ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
+		if(href_list["close"])
 			usr << browse(null, "window=turbine")
 			usr.machine = null
 			return
@@ -210,6 +209,7 @@
 			if(P.id == id)
 				doors += P
 
+/*
 /obj/machinery/computer/turbine_computer/attackby(I as obj, user as mob)
 	if(istype(I, /obj/item/weapon/screwdriver))
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
@@ -242,6 +242,7 @@
 	else
 		src.attack_hand(user)
 	return
+*/
 
 /obj/machinery/computer/turbine_computer/attack_hand(var/mob/user as mob)
 	user.machine = src

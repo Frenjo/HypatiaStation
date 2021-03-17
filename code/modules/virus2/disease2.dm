@@ -13,11 +13,11 @@
 	var/list/affected_species = list("Human","Soghun","Skrell","Tajaran")
 
 /datum/disease2/disease/New()
-	uniqueID = rand(0,10000)
+	uniqueID = rand(0, 10000)
 	..()
 
-/datum/disease2/disease/proc/makerandom(var/greater=0)
-	for(var/i=1 ; i <= max_stage ; i++ )
+/datum/disease2/disease/proc/makerandom(var/greater = 0)
+	for(var/i=1 ; i <= max_stage ; i++)
 		var/datum/disease2/effectholder/holder = new /datum/disease2/effectholder
 		holder.stage = i
 		if(greater)
@@ -25,8 +25,8 @@
 		else
 			holder.getrandomeffect()
 		effects += holder
-	uniqueID = rand(0,10000)
-	infectionchance = rand(60,90)
+	uniqueID = rand(0, 10000)
+	infectionchance = rand(60, 90)
 	antigen |= text2num(pick(ANTIGENS))
 	antigen |= text2num(pick(ANTIGENS))
 	spreadtype = prob(70) ? "Airborne" : "Contact"
@@ -42,8 +42,8 @@
 		if(!(S.flags & IS_SYNTHETIC))
 			meat += S.name
 	if(meat.len)
-		var/num = rand(1,meat.len)
-		for(var/i=0,i<num,i++)
+		var/num = rand(1, meat.len)
+		for(var/i = 0, i < num, i++)
 			var/picked = pick(meat)
 			meat -= picked
 			res += picked
@@ -67,12 +67,12 @@
 	//Space antibiotics stop disease completely
 	if(mob.reagents.has_reagent("spaceacillin"))
 		if(stage == 1 && prob(20))
-			src.cure()
+			src.cure(mob)
 		return
 
 	//Virus food speeds up disease progress
 	if(mob.reagents.has_reagent("virusfood"))
-		mob.reagents.remove_reagent("virusfood",0.1)
+		mob.reagents.remove_reagent("virusfood", 0.1)
 		clicks += 10
 
 	//Moving to the next stage
@@ -93,7 +93,7 @@
 				infect_virus2(M,src)
 
 	//fever
-	mob.bodytemperature = max(mob.bodytemperature, min(310+5*stage ,mob.bodytemperature+5*stage))
+	mob.bodytemperature = max(mob.bodytemperature, min(310 + 5 * stage, mob.bodytemperature + 5 * stage))
 	clicks+=speed
 
 /datum/disease2/disease/proc/cure(var/mob/living/carbon/mob)
@@ -106,10 +106,10 @@
 	//uniqueID = rand(0,10000)
 	var/datum/disease2/effectholder/holder = pick(effects)
 	holder.minormutate()
-	infectionchance = min(50,infectionchance + rand(0,10))
+	infectionchance = min(50, infectionchance + rand(0, 10))
 
 /datum/disease2/disease/proc/majormutate()
-	uniqueID = rand(0,10000)
+	uniqueID = rand(0, 10000)
 	var/datum/disease2/effectholder/holder = pick(effects)
 	holder.majormutate()
 	if (prob(5))

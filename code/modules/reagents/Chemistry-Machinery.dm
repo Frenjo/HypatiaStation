@@ -599,8 +599,9 @@
 	anchored = 1
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
-	use_power = 1
-	idle_power_usage = 20
+	circuit = /obj/item/weapon/circuitboard/pandemic
+	//use_power = 1
+	//idle_power_usage = 20		//defaults make more sense.
 	var/temphtml = ""
 	var/wait = null
 	var/obj/item/weapon/reagent_containers/glass/beaker = null
@@ -610,9 +611,7 @@
 	icon_state = (src.beaker?"mixer1_b":"mixer0_b")
 	stat |= BROKEN
 
-
 /obj/machinery/computer/pandemic/power_change()
-
 	if(stat & BROKEN)
 		icon_state = (src.beaker?"mixer1_b":"mixer0_b")
 
@@ -627,14 +626,18 @@
 
 
 /obj/machinery/computer/pandemic/Topic(href, href_list)
-	if(stat & (NOPOWER|BROKEN)) return
-	if(usr.stat || usr.restrained()) return
-	if(!in_range(src, usr)) return
+	if(stat & (NOPOWER|BROKEN))
+		return
+	if(usr.stat || usr.restrained())
+		return
+	if(!in_range(src, usr))
+		return
 
 	usr.set_machine(src)
-	if(!beaker) return
+	if(!beaker)
+		return
 
-	if (href_list["create_vaccine"])
+	if(href_list["create_vaccine"])
 		if(!src.wait)
 			var/obj/item/weapon/reagent_containers/glass/bottle/B = new/obj/item/weapon/reagent_containers/glass/bottle(src.loc)
 			if(B)
@@ -829,34 +832,9 @@
 
 
 /obj/machinery/computer/pandemic/attackby(var/obj/I as obj, var/mob/user as mob)
-	if(istype(I, /obj/item/weapon/screwdriver))
-		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
-			if (src.stat & BROKEN)
-				user << "\blue The broken glass falls out."
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-				new /obj/item/weapon/shard(src.loc)
-				var/obj/item/weapon/circuitboard/pandemic/M = new /obj/item/weapon/circuitboard/pandemic(A)
-				for (var/obj/C in src)
-					C.loc = src.loc
-				A.circuit = M
-				A.state = 3
-				A.icon_state = "3"
-				A.anchored = 1
-				qdel(src)
-			else
-				user << "\blue You disconnect the monitor."
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/pandemic/M = new /obj/item/weapon/circuitboard/pandemic(A)
-				for (var/obj/C in src)
-					C.loc = src.loc
-				A.circuit = M
-				A.state = 4
-				A.icon_state = "4"
-				A.anchored = 1
-				qdel(src)
-	else if(istype(I, /obj/item/weapon/reagent_containers/glass))
-		if(stat & (NOPOWER|BROKEN)) return
+	if(istype(I, /obj/item/weapon/reagent_containers/glass))
+		if(stat & (NOPOWER|BROKEN))
+			return
 		if(src.beaker)
 			user << "A beaker is already loaded into the machine."
 			return
@@ -871,6 +849,7 @@
 	else
 		..()
 	return
+
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 /obj/machinery/reagentgrinder

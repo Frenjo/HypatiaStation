@@ -8,7 +8,8 @@ var/research_shuttle_moving = 0
 var/research_shuttle_location = 0 // 0 = station 13, 1 = research station
 
 proc/move_research_shuttle()
-	if(research_shuttle_moving)	return
+	if(research_shuttle_moving)
+		return
 
 	research_shuttle_moving = 1
 	spawn(research_shuttle_tickstomove*10)
@@ -104,7 +105,7 @@ proc/move_research_shuttle()
 		//		usr << "Under directive 7-10, [station_name()] is quarantined until further notice."
 		//		return
 
-		if (!research_shuttle_moving)
+		if(!research_shuttle_moving)
 			usr << "\blue Shuttle recieved message and will be sent shortly."
 
 			// EVEN MORE research shuttle airlock interaction.
@@ -152,35 +153,16 @@ proc/move_research_shuttle()
 			usr << "\blue Shuttle is already moving."
 
 /obj/machinery/computer/research_shuttle/attackby(obj/item/weapon/W as obj, mob/user as mob)
-
-	if (istype(W, /obj/item/weapon/card/emag))
+	if(istype(W, /obj/item/weapon/card/emag))
 		var/obj/item/weapon/card/emag/E = W
 		if(E.uses)
 			E.uses--
 		else
 			return
+
 		src.req_access = list()
 		hacked = 1
 		usr << "You fried the consoles ID checking system. It's now available to everyone!"
 
-	else if(istype(W, /obj/item/weapon/screwdriver))
-		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
-			var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-			var/obj/item/weapon/circuitboard/research_shuttle/M = new /obj/item/weapon/circuitboard/research_shuttle( A )
-			for (var/obj/C in src)
-				C.loc = src.loc
-			A.circuit = M
-			A.anchored = 1
-
-			if (src.stat & BROKEN)
-				user << "\blue The broken glass falls out."
-				new /obj/item/weapon/shard( src.loc )
-				A.state = 3
-				A.icon_state = "3"
-			else
-				user << "\blue You disconnect the monitor."
-				A.state = 4
-				A.icon_state = "4"
-
-			qdel(src)
+	else
+		..()

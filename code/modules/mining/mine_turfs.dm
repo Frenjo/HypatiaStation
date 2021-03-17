@@ -42,15 +42,15 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 			if((istype(get_step(src, SOUTH), /turf/simulated/floor)) || (istype(get_step(src, SOUTH), /turf/space)) || (istype(get_step(src, SOUTH), /turf/simulated/shuttle/floor)))
 				T = get_step(src, SOUTH)
 				if (T)
-					T.overlays += image('icons/turf/walls.dmi', "rock_side_n", layer=6)
+					T.overlays += image('icons/turf/walls.dmi', "rock_side_n", layer = 6)
 			if((istype(get_step(src, EAST), /turf/simulated/floor)) || (istype(get_step(src, EAST), /turf/space)) || (istype(get_step(src, EAST), /turf/simulated/shuttle/floor)))
 				T = get_step(src, EAST)
 				if (T)
-					T.overlays += image('icons/turf/walls.dmi', "rock_side_w", layer=6)
+					T.overlays += image('icons/turf/walls.dmi', "rock_side_w", layer = 6)
 			if((istype(get_step(src, WEST), /turf/simulated/floor)) || (istype(get_step(src, WEST), /turf/space)) || (istype(get_step(src, WEST), /turf/simulated/shuttle/floor)))
 				T = get_step(src, WEST)
 				if (T)
-					T.overlays += image('icons/turf/walls.dmi', "rock_side_e", layer=6)
+					T.overlays += image('icons/turf/walls.dmi', "rock_side_e", layer = 6)
 
 
 	ex_act(severity)
@@ -66,21 +66,21 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 
 	Bumped(AM)
 		. = ..()
-		if(istype(AM,/mob/living/carbon/human))
+		if(istype(AM, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = AM
-			if((istype(H.l_hand,/obj/item/weapon/pickaxe)) && (!H.hand))
-				attackby(H.l_hand,H)
-			else if((istype(H.r_hand,/obj/item/weapon/pickaxe)) && H.hand)
-				attackby(H.r_hand,H)
+			if((istype(H.l_hand, /obj/item/weapon/pickaxe)) && (!H.hand))
+				attackby(H.l_hand, H)
+			else if((istype(H.r_hand, /obj/item/weapon/pickaxe)) && H.hand)
+				attackby(H.r_hand, H)
 
-		else if(istype(AM,/mob/living/silicon/robot))
+		else if(istype(AM, /mob/living/silicon/robot))
 			var/mob/living/silicon/robot/R = AM
-			if(istype(R.module_active,/obj/item/weapon/pickaxe))
-				attackby(R.module_active,R)
+			if(istype(R.module_active, /obj/item/weapon/pickaxe))
+				attackby(R.module_active, R)
 
-		else if(istype(AM,/obj/mecha))
+		else if(istype(AM, /obj/mecha))
 			var/obj/mecha/M = AM
-			if(istype(M.selected,/obj/item/mecha_parts/mecha_equipment/tool/drill))
+			if(istype(M.selected, /obj/item/mecha_parts/mecha_equipment/tool/drill))
 				M.selected.action(src)
 
 
