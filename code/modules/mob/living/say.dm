@@ -75,7 +75,7 @@ var/list/department_radio_keys = list(
 		return msg
 */
 
-/mob/living/say(var/message, var/datum/language/speaking = null, var/verbage="says", var/alt_name="", var/italics=0, var/message_range = world.view, var/list/used_radios = list())
+/mob/living/say(var/message, var/datum/language/speaking = null, var/verbage = "says", var/alt_name = "", var/italics = 0, var/message_range = world.view, var/list/used_radios = list())
 	var/turf/T = get_turf(src)
 
 	var/list/listening = list()
@@ -109,7 +109,7 @@ var/list/department_radio_keys = list(
 				O.hear_talk(src, message, verbage, speaking)
 
 	var/speech_bubble_test = say_test(message)
-	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")
+	var/image/speech_bubble = image('icons/mob/talk.dmi', src, "h[speech_bubble_test]")
 	spawn(30)
 		qdel(speech_bubble)
 

@@ -90,7 +90,6 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 	else
 		usr << "<span class='notice'>Either your tape recorder's memory is full, or it is currently playing back its memory.</span>"
 
-
 /obj/item/device/taperecorder/verb/stop()
 	set name = "Stop"
 	set category = "Object"
@@ -114,7 +113,6 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 		icon_state = "taperecorderidle"
 		return
 
-
 /obj/item/device/taperecorder/verb/clear_memory()
 	set name = "Clear Memory"
 	set category = "Object"
@@ -128,8 +126,10 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 		usr << "<span class='notice'>You can't clear the memory while playing or recording!</span>"
 		return
 	else
-		if(storedinfo)	storedinfo.Cut()
-		if(timestamp)	timestamp.Cut()
+		if(storedinfo)
+			storedinfo.Cut()
+		if(timestamp)
+			timestamp.Cut()
 		timerecorded = 0
 		usr << "<span class='notice'>Memory cleared.</span>"
 		return
@@ -153,20 +153,20 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 	playing = 1
 	icon_state = "taperecorderplaying"
 	usr << "<span class='notice'>Playing started.</span>"
-	for(var/i=1,timerecorded<3600,sleep(10 * (playsleepseconds) ))
+	for(var/i = 1, timerecorded < 3600, sleep(10 * (playsleepseconds)))
 		if(playing == 0)
 			break
 		if(storedinfo.len < i)
 			break
 		var/turf/T = get_turf(src)
 		T.visible_message("<font color=Maroon><B>Tape Recorder</B>: [storedinfo[i]]</font>")
-		if(storedinfo.len < i+1)
+		if(storedinfo.len < i + 1)
 			playsleepseconds = 1
 			sleep(10)
 			T = get_turf(src)
 			T.visible_message("<font color=Maroon><B>Tape Recorder</B>: End of recording.</font>")
 		else
-			playsleepseconds = timestamp[i+1] - timestamp[i]
+			playsleepseconds = timestamp[i + 1] - timestamp[i]
 		if(playsleepseconds > 14)
 			sleep(10)
 			T = get_turf(src)
@@ -193,7 +193,6 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 		sleep(10)
 		explode()
 
-
 /obj/item/device/taperecorder/verb/print_transcript()
 	set name = "Print Transcript"
 	set category = "Object"
@@ -215,11 +214,10 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 	for(var/i=1,storedinfo.len >= i,i++)
 		t1 += "[storedinfo[i]]<BR>"
 	P.info = t1
-	P.name = "paper- 'Transcript'"
+	P.name = "Transcript"
 	canprint = 0
 	sleep(300)
 	canprint = 1
-
 
 /obj/item/device/taperecorder/attack_self(mob/user)
 	if(recording == 0 && playing == 0)
@@ -234,7 +232,7 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 			recording = 1
 			timestamp+= timerecorded
 			storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] Recording started."
-			for(timerecorded, timerecorded<3600)
+			for(timerecorded, timerecorded < 3600)
 				if(recording == 0)
 					break
 				timerecorded++
@@ -258,7 +256,7 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 		else if(playing == 1)
 			playing = 0
 			var/turf/T = get_turf(src)
-			for(var/mob/O in hearers(world.view-1, T))
+			for(var/mob/O in hearers(world.view - 1, T))
 				O.show_message("<font color=Maroon><B>Tape Recorder</B>: Playback stopped.</font>",2)
 			icon_state = "taperecorderidle"
 			return

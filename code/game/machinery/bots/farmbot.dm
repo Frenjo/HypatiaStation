@@ -12,7 +12,6 @@
 // The behavior panel can be unlocked with hydroponics access and be modified to disable certain behaviors
 // By default, it will ignore weeds and mushrooms, but can be set to tend to these types of plants as well.
 
-
 #define FARMBOT_MODE_WATER			1
 #define FARMBOT_MODE_FERTILIZE	 	2
 #define FARMBOT_MODE_WEED			3

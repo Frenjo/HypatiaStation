@@ -38,7 +38,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	var/N2O_HALLUCINATION_DESC = "Does being in sleeping gas cause you to hallucinate?"
 
 
-obj/var/contaminated = 0
+/obj/var/contaminated = 0
 
 
 /obj/item/proc/can_contaminate()
@@ -109,7 +109,7 @@ obj/var/contaminated = 0
 
 	//Genetic Corruption
 	if(vsc.plc.GENETIC_CORRUPTION)
-		if(rand(1,10000) < vsc.plc.GENETIC_CORRUPTION)
+		if(rand(1, 10000) < vsc.plc.GENETIC_CORRUPTION)
 			randmutb(src)
 			src << "\red High levels of toxins cause you to spontaneously mutate."
 			domutcheck(src,null)
@@ -120,8 +120,8 @@ obj/var/contaminated = 0
 	if(prob(20)) src << "\red Your eyes burn!"
 	var/datum/organ/internal/eyes/E = internal_organs["eyes"]
 	E.damage += 2.5
-	eye_blurry = min(eye_blurry+1.5,50)
-	if (prob(max(0,E.damage - 15) + 1) &&!eye_blind)
+	eye_blurry = min(eye_blurry+1.5, 50)
+	if (prob(max(0, E.damage - 15) + 1) &&!eye_blind)
 		src << "\red You are blinded!"
 		eye_blind += 20
 
@@ -139,9 +139,12 @@ obj/var/contaminated = 0
 	//Checks if the suit is adequately sealed.
 	if(wear_suit)
 		if(vsc.plc.PLASMAGUARD_ONLY)
-			if(wear_suit.flags & PLASMAGUARD) return 1
+			if(wear_suit.flags & PLASMAGUARD)
+				return 1
 		else
-			if(wear_suit.flags_inv & HIDEJUMPSUIT) return 1
+			if(wear_suit.flags_inv & HIDEJUMPSUIT)
+				return 1
+		//should check HIDETAIL as well, but for the moment tails are not a part that can be damaged separately
 	return 0
 
 /mob/living/carbon/human/proc/suit_contamination()

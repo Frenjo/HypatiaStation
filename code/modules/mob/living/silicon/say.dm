@@ -14,7 +14,7 @@
 
 /mob/living/silicon/say_understands(var/other,var/datum/language/speaking = null)
 	//These only pertain to common. Languages are handled by mob/say_understands()
-	if (!speaking)
+	if(!speaking)
 		if (istype(other, /mob/living/carbon/human))
 			return 1
 		if (istype(other, /mob/living/silicon))
@@ -31,7 +31,7 @@
 		if(client.prefs.muted & MUTE_IC)
 			src << "You cannot send IC messages (muted)."
 			return
-		if(src.client.handle_spam_prevention(message,MUTE_IC))
+		if(src.client.handle_spam_prevention(message, MUTE_IC))
 			return
 
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))

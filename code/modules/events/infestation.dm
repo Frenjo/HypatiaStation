@@ -22,7 +22,6 @@
 	var/vermstring
 
 /datum/event/infestation/start()
-
 	location = rand(0,9)
 	var/list/turf/simulated/floor/turfs = list()
 	var/spawn_area_type
