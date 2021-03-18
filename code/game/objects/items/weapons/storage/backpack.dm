@@ -15,8 +15,21 @@
 	max_combined_w_class = 21
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	playsound(src, "rustle", 50, 1, -5)
+	if(src.use_sound)
+		playsound(src.loc, src.use_sound, 50, 1, -5)
 	..()
+
+/obj/item/weapon/storage/backpack/equipped(var/mob/user, var/slot)
+	if(slot == slot_back && src.use_sound)
+		playsound(src.loc, src.use_sound, 50, 1, -5)
+	..(user, slot)
+
+/*
+/obj/item/weapon/storage/backpack/dropped(mob/user as mob)
+	if (loc == user && src.use_sound)
+		playsound(src.loc, src.use_sound, 50, 1, -5)
+	..(user)
+*/
 
 /*
  * Backpack Types
@@ -30,43 +43,43 @@
 	max_w_class = 4
 	max_combined_w_class = 28
 
-	New()
-		..()
+/obj/item/weapon/storage/backpack/holding/New()
+	..()
+	return
+
+/obj/item/weapon/storage/backpack/holding/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(crit_fail)
+		user << "\red The Bluespace generator isn't working."
 		return
+	if(istype(W, /obj/item/weapon/storage/backpack/holding) && !W.crit_fail)
+		user << "\red The Bluespace interfaces of the two devices conflict and malfunction."
+		qdel(W)
+		return
+		/* //BoH+BoH=Singularity, commented out.
+	if(istype(W, /obj/item/weapon/storage/backpack/holding) && !W.crit_fail)
+		investigate_log("has become a singularity. Caused by [user.key]","singulo")
+		user << "\red The Bluespace interfaces of the two devices catastrophically malfunction!"
+		del(W)
+		var/obj/machinery/singularity/singulo = new /obj/machinery/singularity (get_turf(src))
+		singulo.energy = 300 //should make it a bit bigger~
+		message_admins("[key_name_admin(user)] detonated a bag of holding")
+		log_game("[key_name(user)] detonated a bag of holding")
+		del(src)
+		return
+		*/
+	..()
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(crit_fail)
-			user << "\red The Bluespace generator isn't working."
-			return
-		if(istype(W, /obj/item/weapon/storage/backpack/holding) && !W.crit_fail)
-			user << "\red The Bluespace interfaces of the two devices conflict and malfunction."
-			qdel(W)
-			return
-			/* //BoH+BoH=Singularity, commented out.
-		if(istype(W, /obj/item/weapon/storage/backpack/holding) && !W.crit_fail)
-			investigate_log("has become a singularity. Caused by [user.key]","singulo")
-			user << "\red The Bluespace interfaces of the two devices catastrophically malfunction!"
-			del(W)
-			var/obj/machinery/singularity/singulo = new /obj/machinery/singularity (get_turf(src))
-			singulo.energy = 300 //should make it a bit bigger~
-			message_admins("[key_name_admin(user)] detonated a bag of holding")
-			log_game("[key_name(user)] detonated a bag of holding")
-			del(src)
-			return
-			*/
-		..()
-
-	proc/failcheck(mob/user as mob)
-		if (prob(src.reliability)) return 1 //No failure
-		if (prob(src.reliability))
-			user << "\red The Bluespace portal resists your attempt to add another item." //light failure
-		else
-			user << "\red The Bluespace generator malfunctions!"
-			for (var/obj/O in src.contents) //it broke, delete what was in it
-				qdel(O)
-			crit_fail = 1
-			icon_state = "brokenpack"
-
+/obj/item/weapon/storage/backpack/holding/proc/failcheck(mob/user as mob)
+	if(prob(src.reliability))
+		return 1 //No failure
+	if(prob(src.reliability))
+		user << "\red The Bluespace portal resists your attempt to add another item." //light failure
+	else
+		user << "\red The Bluespace generator malfunctions!"
+		for(var/obj/O in src.contents) //it broke, delete what was in it
+			qdel(O)
+		crit_fail = 1
+		icon_state = "brokenpack"
 
 /obj/item/weapon/storage/backpack/santabag
 	name = "Santa's Gift Bag"
@@ -123,9 +136,9 @@
 	icon_state = "satchel"
 
 /obj/item/weapon/storage/backpack/satchel/withwallet
-	New()
-		..()
-		new /obj/item/weapon/storage/wallet/random( src )
+/obj/item/weapon/storage/backpack/satchel/withwallet/New()
+	..()
+	new /obj/item/weapon/storage/wallet/random(src)
 
 /obj/item/weapon/storage/backpack/satchel_norm
 	name = "satchel"

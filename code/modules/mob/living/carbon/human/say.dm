@@ -1,5 +1,4 @@
 /mob/living/carbon/human/say(var/message)
-
 	//TODO: Add checks for species who do not speak common.
 
 	var/verbage = "says"
@@ -25,8 +24,8 @@
 
 	//parse the radio code and consume it
 	var/message_mode = parse_message_mode(message, "headset")
-	if (message_mode)
-		if (message_mode == "headset")
+	if(message_mode)
+		if(message_mode == "headset")
 			message = copytext(message, 2)	//it would be really nice if the parse procs could do this for us.
 		else
 			message = copytext(message, 3)
@@ -54,7 +53,7 @@
 	if(!message || stat)
 		return
 
-	if (!speaking)
+	if(!speaking)
 		var/ending = copytext(message, length(message))
 		if(ending == "!")
 			verbage = pick("exclaims", "shouts", "yells")
@@ -74,17 +73,31 @@
 				R.talk_into(src,message,null, verbage, speaking)
 				used_radios += r_ear
 
-		if("right_ear")
-			if(r_ear && istype(r_ear,/obj/item/device/radio))
-				var/obj/item/device/radio/R = r_ear
-				R.talk_into(src,message, verbage, speaking)
-				used_radios += r_ear
+		if("right ear")
+			var/obj/item/device/radio/R
+			var/has_radio = 0
+			if(r_ear && istype(r_ear, /obj/item/device/radio))
+				R = r_ear
+				has_radio = 1
+			if(r_hand && istype(r_hand, /obj/item/device/radio))
+				R = r_hand
+				has_radio = 1
+			if(has_radio)
+				R.talk_into(src,message, null, verbage, speaking)
+				used_radios += R
 
-		if("left_ear")
-			if(l_ear && istype(l_ear,/obj/item/device/radio))
-				var/obj/item/device/radio/R = l_ear
-				R.talk_into(src,message, verbage, speaking)
-				used_radios += l_ear
+		if("left ear")
+			var/obj/item/device/radio/R
+			var/has_radio = 0
+			if(l_ear && istype(l_ear, /obj/item/device/radio))
+				R = l_ear
+				has_radio = 1
+			if(l_hand && istype(l_hand, /obj/item/device/radio))
+				R = l_hand
+				has_radio = 1
+			if(has_radio)
+				R.talk_into(src,message, null, verbage, speaking)
+				used_radios += R
 
 		if("intercom")
 			for(var/obj/item/device/radio/intercom/I in view(1, null))
@@ -121,7 +134,7 @@
 		return 1
 
 	//These only pertain to common. Languages are handled by mob/say_understands()
-	if (!speaking)
+	if(!speaking)
 		if(istype(other, /mob/living/carbon/monkey/diona))
 			if(other.languages.len >= 2)			//They've sucked down some blood and can speak common now.
 				return 1

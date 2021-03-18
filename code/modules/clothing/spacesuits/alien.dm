@@ -187,7 +187,6 @@
 	species_restricted = list("Vox")
 
 /obj/item/clothing/shoes/magboots/vox
-
 	desc = "A pair of heavy, jagged armoured foot pieces, seemingly suitable for a velociraptor."
 	name = "vox boots"
 	item_state = "boots-vox"

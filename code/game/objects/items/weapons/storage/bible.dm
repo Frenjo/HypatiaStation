@@ -21,6 +21,7 @@
 	new /obj/item/weapon/spacecash(src)
 	new /obj/item/weapon/spacecash(src)
 	new /obj/item/weapon/spacecash(src)
+
 //BS12 EDIT
 /* // All cult functionality moved to Null Rod
 /obj/item/weapon/storage/bible/proc/bless(mob/living/carbon/M as mob)
@@ -89,7 +90,8 @@
 	return
 */
 /obj/item/weapon/storage/bible/afterattack(atom/A, mob/user as mob, proximity)
-	if(!proximity) return
+	if(!proximity)
+		return
 /*	if (istype(A, /turf/simulated/floor))
 		user << "\blue You hit the floor with the bible."
 		if(user.mind && (user.mind.assigned_role == "Chaplain"))
@@ -102,5 +104,6 @@
 			A.reagents.add_reagent("holywater",water2holy)
 
 /obj/item/weapon/storage/bible/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	playsound(src, "rustle", 50, 1, -5)
+	if(src.use_sound)
+		playsound(src.loc, src.use_sound, 50, 1, -5)
 	..()

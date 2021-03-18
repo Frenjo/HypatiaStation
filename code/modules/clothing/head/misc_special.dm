@@ -24,10 +24,10 @@
 	flags_inv = (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 	icon_action_button = "action_welding"
 	siemens_coefficient = 0.9
+	w_class = 3
 
 /obj/item/clothing/head/welding/attack_self()
 	toggle()
-
 
 /obj/item/clothing/head/welding/verb/toggle()
 	set category = "Object"
@@ -48,7 +48,6 @@
 			icon_state = "[initial(icon_state)]up"
 			usr << "You push the [src] up out of your face."
 		usr.update_inv_head()	//so our mob-overlays update
-
 
 /*
  * Cakehat
@@ -74,7 +73,7 @@
 		if(M.l_hand == src || M.r_hand == src || M.head == src)
 			location = M.loc
 
-	if (istype(location, /turf))
+	if(istype(location, /turf))
 		location.hotspot_expose(700, 1)
 
 /obj/item/clothing/head/cakehat/attack_self(mob/user as mob)
@@ -90,7 +89,6 @@
 		src.damtype = "brute"
 		src.icon_state = "cake0"
 	return
-
 
 /*
  * Ushanka
@@ -125,6 +123,7 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
 	var/brightness_on = 2 //luminosity when on
 	var/on = 0
+	w_class = 3
 
 	attack_self(mob/user)
 		if(!isturf(user.loc))
@@ -134,25 +133,21 @@
 		icon_state = "hardhat[on]_[item_color]"
 		item_state = "hardhat[on]_[item_color]"
 
-		//if(on)	user.SetLuminosity(user.luminosity + brightness_on)
-		//else	user.SetLuminosity(user.luminosity - brightness_on)
-		if(on)	user.set_light(user.luminosity + brightness_on)
-		else	user.set_light(user.luminosity - brightness_on)
+		if(on)
+			user.set_light(user.luminosity + brightness_on)
+		else
+			user.set_light(user.luminosity - brightness_on)
 
 	pickup(mob/user)
 		if(on)
-			//user.SetLuminosity(user.luminosity + brightness_on)
 			user.set_light(user.luminosity + brightness_on)
 //			user.UpdateLuminosity()
-			//SetLuminosity(0)
 			set_light(0)
 
 	dropped(mob/user)
 		if(on)
-			//user.SetLuminosity(user.luminosity - brightness_on)
 			user.set_light(user.luminosity - brightness_on)
 //			user.UpdateLuminosity()
-			//SetLuminosity(brightness_on)
 			set_light(brightness_on)
 
 /*

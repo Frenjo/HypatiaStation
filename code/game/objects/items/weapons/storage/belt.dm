@@ -8,29 +8,6 @@
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
 
-
-/obj/item/weapon/storage/belt/proc/can_use()
-	return is_equipped()
-
-
-/obj/item/weapon/storage/belt/MouseDrop(obj/over_object as obj, src_location, over_location)
-	var/mob/M = usr
-	if(!istype(over_object, /obj/screen))
-		return ..()
-	playsound(src, "rustle", 50, 1, -5)
-	if (!M.restrained() && !M.stat && can_use())
-		switch(over_object.name)
-			if("r_hand")
-				M.u_equip(src)
-				M.put_in_r_hand(src)
-			if("l_hand")
-				M.u_equip(src)
-				M.put_in_l_hand(src)
-		src.add_fingerprint(usr)
-		return
-
-
-
 /obj/item/weapon/storage/belt/utility
 	name = "tool-belt" //Carn: utility belt is nicer, but it bamboozles the text parsing.
 	desc = "Can hold various tools."
@@ -49,7 +26,6 @@
 		"/obj/item/device/analyzer",
 		"/obj/item/taperoll/engineering")
 
-
 /obj/item/weapon/storage/belt/utility/full/New()
 	..()
 	new /obj/item/weapon/screwdriver(src)
@@ -59,7 +35,6 @@
 	new /obj/item/weapon/wirecutters(src)
 	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
 
-
 /obj/item/weapon/storage/belt/utility/atmostech/New()
 	..()
 	new /obj/item/weapon/screwdriver(src)
@@ -68,8 +43,6 @@
 	new /obj/item/weapon/crowbar(src)
 	new /obj/item/weapon/wirecutters(src)
 	new /obj/item/device/t_scanner(src)
-
-
 
 /obj/item/weapon/storage/belt/medical
 	name = "medical belt"
@@ -94,7 +67,6 @@
 		"/obj/item/clothing/gloves/latex",
 	        "/obj/item/weapon/reagent_containers/hypospray"
 	)
-
 
 /obj/item/weapon/storage/belt/security
 	name = "security belt"
@@ -145,7 +117,6 @@
 	new /obj/item/device/soulstone(src)
 	new /obj/item/device/soulstone(src)
 	new /obj/item/device/soulstone(src)
-
 
 /obj/item/weapon/storage/belt/champion
 	name = "championship belt"
