@@ -1,4 +1,3 @@
-
 /mob/living/simple_animal/construct
 	name = "Construct"
 	real_name = "Construct"
@@ -83,7 +82,6 @@
 			step(AM, t)
 		now_pushing = null
 
-
 /mob/living/simple_animal/construct/attack_animal(mob/living/M as mob)
 	if(istype(M, /mob/living/simple_animal/construct/builder))
 		health += 5
@@ -117,11 +115,7 @@
 			if ((M.client && !( M.blinded )))
 				M.show_message("\red [user] gently taps [src] with [O]. ")
 
-
-
 /////////////////Juggernaut///////////////
-
-
 
 /mob/living/simple_animal/construct/armoured
 	name = "Juggernaut"
@@ -163,6 +157,9 @@
 			if ((M.client && !( M.blinded )))
 				M.show_message("\red [user] gently taps [src] with [O]. ")
 
+/mob/living/simple_animal/construct/armoured/Life()
+	weakened = 0
+	..()
 
 /mob/living/simple_animal/construct/armoured/bullet_act(var/obj/item/projectile/P)
 	if(istype(P, /obj/item/projectile/energy) || istype(P, /obj/item/projectile/beam))
@@ -190,11 +187,7 @@
 
 	return (..(P))
 
-
-
 ////////////////////////Wraith/////////////////////////////////////////////
-
-
 
 /mob/living/simple_animal/construct/wraith
 	name = "Wraith"
@@ -213,11 +206,7 @@
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	construct_spells = list(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift)
 
-
-
 /////////////////////////////Artificer/////////////////////////
-
-
 
 /mob/living/simple_animal/construct/builder
 	name = "Artificer"
@@ -239,12 +228,9 @@
 	construct_spells = list(/obj/effect/proc_holder/spell/aoe_turf/conjure/construct/lesser,
 							/obj/effect/proc_holder/spell/aoe_turf/conjure/wall,
 							/obj/effect/proc_holder/spell/aoe_turf/conjure/floor,
-							/obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone,
-							/obj/effect/proc_holder/spell/targeted/projectile/magic_missile)
-
+							/obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone)
 
 /////////////////////////////Behemoth/////////////////////////
-
 
 /mob/living/simple_animal/construct/behemoth
 	name = "Behemoth"
@@ -287,10 +273,7 @@
 			if ((M.client && !( M.blinded )))
 				M.show_message("\red [user] gently taps [src] with [O]. ")
 
-
-
 ////////////////Powers//////////////////
-
 
 /*
 /client/proc/summon_cultist()

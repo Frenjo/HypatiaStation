@@ -10,7 +10,7 @@
 	icon_state = "null"
 	item_state = "null"
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,25,30,50)
+	possible_transfer_amounts = list(5, 10, 15, 25, 30, 50)
 	volume = 50
 	flags = FPRINT | TABLEPASS | OPENCONTAINER
 
@@ -92,7 +92,8 @@
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message(text("\red [] has been splashed with something by []!", target, user), 1)
 			src.reagents.reaction(target, TOUCH)
-			spawn(5) src.reagents.clear_reagents()
+			spawn(5)
+				src.reagents.clear_reagents()
 			return
 		else if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
 
@@ -135,7 +136,8 @@
 		else if(reagents.total_volume)
 			user << "\blue You splash the solution onto [target]."
 			src.reagents.reaction(target, TOUCH)
-			spawn(5) src.reagents.clear_reagents()
+			spawn(5)
+				src.reagents.clear_reagents()
 			return
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -197,7 +199,7 @@
 			filling.icon += mix_color_from_reagents(reagents.reagent_list)
 			overlays += filling
 
-		if (!is_open_container())
+		if(!is_open_container())
 			var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
 			overlays += lid
 
@@ -208,7 +210,7 @@
 	g_amt = 5000
 	volume = 100
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,25,30,50,100)
+	possible_transfer_amounts = list(5, 10, 15, 25, 30, 50, 100)
 	flags = FPRINT | TABLEPASS | OPENCONTAINER
 
 /obj/item/weapon/reagent_containers/glass/beaker/noreact
@@ -227,7 +229,7 @@
 	g_amt = 5000
 	volume = 300
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,25,30,50,100,300)
+	possible_transfer_amounts = list(5, 10, 15, 25, 30, 50, 100, 300)
 	flags = FPRINT | TABLEPASS | OPENCONTAINER
 
 
@@ -238,7 +240,7 @@
 	g_amt = 250
 	volume = 25
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,25)
+	possible_transfer_amounts = list(5, 10, 15, 25)
 	flags = FPRINT | TABLEPASS | OPENCONTAINER
 
 /obj/item/weapon/reagent_containers/glass/beaker/cryoxadone
@@ -269,17 +271,23 @@
 	g_amt = 0
 	w_class = 3.0
 	amount_per_transfer_from_this = 20
-	possible_transfer_amounts = list(10,20,30,50,70)
+	possible_transfer_amounts = list(10, 20, 30, 50, 70)
 	volume = 70
 	flags = FPRINT | OPENCONTAINER
 
-	attackby(var/obj/D, mob/user as mob)
-		if(isprox(D))
-			user << "You add [D] to [src]."
-			qdel(D)
-			user.put_in_hands(new /obj/item/weapon/bucket_sensor)
-			user.drop_from_inventory(src)
-			qdel(src)
+/obj/item/weapon/reagent_containers/glass/bucket/attackby(var/obj/D, mob/user as mob)
+	if(isprox(D))
+		user << "You add [D] to [src]."
+		qdel(D)
+		user.put_in_hands(new /obj/item/weapon/bucket_sensor)
+		user.drop_from_inventory(src)
+		qdel(src)
+
+/obj/item/weapon/reagent_containers/glass/bucket/update_icon()
+	overlays.Cut()
+	if(!is_open_container())
+		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
+		overlays += lid
 
 // vials are defined twice, what?
 /*

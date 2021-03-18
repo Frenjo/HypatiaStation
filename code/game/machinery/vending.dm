@@ -53,6 +53,7 @@
 	var/const/WIRE_SHOOTINV = 4
 
 	var/check_accounts = 0		// 1 = requires PIN and checks accounts.  0 = You slide an ID, it vends, SPACE COMMUNISM!
+	var/obj/item/weapon/spacecash/ewallet/ewallet
 
 /obj/machinery/vending/New()
 	..()
@@ -125,7 +126,7 @@
 	return
 
 /obj/machinery/vending/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/card/emag))
+	if(istype(W, /obj/item/weapon/card/emag))
 		src.emagged = 1
 		user << "You short out the product lock on [src]"
 		return
@@ -150,6 +151,11 @@
 	else if(istype(W, /obj/item/weapon/card) && currently_vending)
 		var/obj/item/weapon/card/I = W
 		scan_card(I)
+	else if (istype(W, /obj/item/weapon/spacecash/ewallet))
+		user.drop_item()
+		W.loc = src
+		ewallet = W
+		user << "\blue You insert the [W] into the [src]"
 
 	else if(src.panel_open)
 
@@ -242,10 +248,13 @@
 	var/dat = "<TT><center><b>[vendorname]</b></center><hr /><br>" //display the name, and added a horizontal rule
 	dat += "<b>Select an item: </b><br><br>" //the rest is just general spacing and bolding
 
-	if (premium.len > 0)
-		dat += "<b>Coin slot:</b> [coin ? coin : "No coin inserted"] (<a href='byond://?src=\ref[src];remove_coin=1'>Remove</A>)<br><br>"
+	if(premium.len > 0)
+		dat += "<b>Coin slot:</b> [coin ? coin : "No coin inserted"] (<a href='byond://?src=\ref[src];remove_coin=1'>Remove</A>)<br>"
 
-	if (src.product_records.len == 0)
+	if(ewallet)
+		dat += "<b>Charge card's credits:</b> [ewallet ? ewallet.worth : "No charge card inserted"] (<a href='byond://?src=\ref[src];remove_ewallet=1'>Remove</A>)<br><br>"
+
+	if(src.product_records.len == 0)
 		dat += "<font color = 'red'>No product loaded!</font>"
 	else
 		var/list/display_records = src.product_records
@@ -306,7 +315,7 @@
 	if(usr.stat || usr.restrained())
 		return
 
-	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))
+	if(href_list["remove_coin"] && !istype(usr, /mob/living/silicon))
 		if(!coin)
 			usr << "There is no coin in this machine."
 			return
@@ -317,10 +326,20 @@
 		usr << "\blue You remove the [coin] from the [src]"
 		coin = null
 
+	if(href_list["remove_ewallet"] && !istype(usr, /mob/living/silicon))
+		if (!ewallet)
+			usr << "There is no charge card in this machine."
+			return
+		ewallet.loc = src.loc
+		if(!usr.get_active_hand())
+			usr.put_in_hands(ewallet)
+		usr << "\blue You remove the [ewallet] from the [src]"
+		ewallet = null
 
-	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
+
+	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
 		usr.set_machine(src)
-		if ((href_list["vend"]) && (src.vend_ready) && (!currently_vending))
+		if((href_list["vend"]) && (src.vend_ready) && (!currently_vending))
 
 			if(istype(usr,/mob/living/silicon))
 				if(istype(usr,/mob/living/silicon/robot))
@@ -332,21 +351,29 @@
 					usr << "\red The vending machine refuses to interface with you, as you are not in its target demographic!"
 					return
 
-			if ((!src.allowed(usr)) && (!src.emagged) && (src.wires & WIRE_SCANID)) //For SECURE VENDING MACHINES YEAH
+			if((!src.allowed(usr)) && (!src.emagged) && (src.wires & WIRE_SCANID)) //For SECURE VENDING MACHINES YEAH
 				usr << "\red Access denied." //Unless emagged of course
 				flick(src.icon_deny,src)
 				return
 
 			var/datum/data/vending_product/R = locate(href_list["vend"])
-			if (!R || !istype(R) || !R.product_path || R.amount <= 0)
+			if(!R || !istype(R) || !R.product_path || R.amount <= 0)
 				return
 
 			if(R.price == null)
 				src.vend(R, usr)
 			else
-				src.currently_vending = R
-				src.updateUsrDialog()
-
+				if(ewallet)
+					if(R.price <= ewallet.worth)
+						ewallet.worth -= R.price
+						src.vend(R, usr)
+					else
+						usr << "\red The ewallet doesn't have enough money to pay for that."
+						src.currently_vending = R
+						src.updateUsrDialog()
+				else
+					src.currently_vending = R
+					src.updateUsrDialog()
 			return
 
 		else if (href_list["cancel_buying"])
@@ -354,9 +381,9 @@
 			src.updateUsrDialog()
 			return
 
-		else if ((href_list["cutwire"]) && (src.panel_open))
+		else if((href_list["cutwire"]) && (src.panel_open))
 			var/twire = text2num(href_list["cutwire"])
-			if (!( istype(usr.get_active_hand(), /obj/item/weapon/wirecutters) ))
+			if(!( istype(usr.get_active_hand(), /obj/item/weapon/wirecutters) ))
 				usr << "You need wirecutters!"
 				return
 			if (src.isWireColorCut(twire))
@@ -364,18 +391,18 @@
 			else
 				src.cut(twire)
 
-		else if ((href_list["pulsewire"]) && (src.panel_open))
+		else if((href_list["pulsewire"]) && (src.panel_open))
 			var/twire = text2num(href_list["pulsewire"])
-			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
 				usr << "You need a multitool!"
 				return
-			if (src.isWireColorCut(twire))
+			if(src.isWireColorCut(twire))
 				usr << "You can't pulse a cut wire."
 				return
 			else
 				src.pulse(twire)
 
-		else if ((href_list["togglevoice"]) && (src.panel_open))
+		else if((href_list["togglevoice"]) && (src.panel_open))
 			src.shut_up = !src.shut_up
 
 		src.add_fingerprint(usr)
@@ -386,13 +413,13 @@
 	return
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
-	if ((!src.allowed(user)) && (!src.emagged) && (src.wires & WIRE_SCANID)) //For SECURE VENDING MACHINES YEAH
+	if((!src.allowed(user)) && (!src.emagged) && (src.wires & WIRE_SCANID)) //For SECURE VENDING MACHINES YEAH
 		user << "\red Access denied." //Unless emagged of course
-		flick(src.icon_deny,src)
+		flick(src.icon_deny, src)
 		return
 	src.vend_ready = 0 //One thing at a time!!
 
-	if (R in coin_records)
+	if(R in coin_records)
 		if(!coin)
 			user << "\blue You need to insert a coin to get this item."
 			return
@@ -413,7 +440,7 @@
 			src.last_reply = world.time
 
 	use_power(5)
-	if (src.icon_vend) //Show the vending animation if needed
+	if(src.icon_vend) //Show the vending animation if needed
 		flick(src.icon_vend,src)
 	spawn(src.vend_delay)
 		new R.product_path(get_turf(src))
@@ -776,14 +803,14 @@
 	product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the station!;Also certain mushroom varieties available, more for experts! Get certified today!"
 	product_ads = "We like plants!;Grow some crops!;Grow, baby, growww!;Aw h'yeah son!"
 	icon_state = "seeds"
-	products = list(/obj/item/seeds/bananaseed = 3,/obj/item/seeds/berryseed = 3,/obj/item/seeds/carrotseed = 3,/obj/item/seeds/chantermycelium = 3,/obj/item/seeds/chiliseed = 3,
-					/obj/item/seeds/cornseed = 3, /obj/item/seeds/eggplantseed = 3, /obj/item/seeds/potatoseed = 3, /obj/item/seeds/replicapod = 3,/obj/item/seeds/soyaseed = 3,
-					/obj/item/seeds/sunflowerseed = 3,/obj/item/seeds/tomatoseed = 3,/obj/item/seeds/towermycelium = 3,/obj/item/seeds/wheatseed = 3,/obj/item/seeds/appleseed = 3,
-					/obj/item/seeds/poppyseed = 3,/obj/item/seeds/ambrosiavulgarisseed = 3,/obj/item/seeds/whitebeetseed = 3,/obj/item/seeds/watermelonseed = 3,/obj/item/seeds/limeseed = 3,
-					/obj/item/seeds/lemonseed = 3,/obj/item/seeds/orangeseed = 3,/obj/item/seeds/grassseed = 3,/obj/item/seeds/cocoapodseed = 3,/obj/item/seeds/plumpmycelium = 2,
-					/obj/item/seeds/cabbageseed = 3,/obj/item/seeds/grapeseed = 3,/obj/item/seeds/pumpkinseed = 3,/obj/item/seeds/cherryseed = 3,/obj/item/seeds/plastiseed = 3,/obj/item/seeds/riceseed = 3)
-	contraband = list(/obj/item/seeds/amanitamycelium = 2,/obj/item/seeds/glowshroom = 2,/obj/item/seeds/libertymycelium = 2,/obj/item/seeds/mtearseed = 2,
-					  /obj/item/seeds/nettleseed = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/shandseed = 2,)
+	products = list(/obj/item/seeds/bananaseed = 3,/obj/item/seeds/berryseed = 3, /obj/item/seeds/carrotseed = 3, /obj/item/seeds/chantermycelium = 3, /obj/item/seeds/chiliseed = 3,
+					/obj/item/seeds/cornseed = 3, /obj/item/seeds/eggplantseed = 3, /obj/item/seeds/potatoseed = 3, /obj/item/seeds/replicapod = 3, /obj/item/seeds/soyaseed = 3,
+					/obj/item/seeds/sunflowerseed = 3, /obj/item/seeds/tomatoseed = 3,/obj/item/seeds/towermycelium = 3, /obj/item/seeds/wheatseed = 3, /obj/item/seeds/appleseed = 3,
+					/obj/item/seeds/poppyseed = 3, /obj/item/seeds/sugarcaneseed = 3, /obj/item/seeds/ambrosiavulgarisseed = 3, /obj/item/seeds/peanutseed = 3, /obj/item/seeds/whitebeetseed = 3, /obj/item/seeds/watermelonseed = 3, /obj/item/seeds/limeseed = 3,
+					/obj/item/seeds/lemonseed = 3, /obj/item/seeds/orangeseed = 3,/obj/item/seeds/grassseed = 3, /obj/item/seeds/cocoapodseed = 3, /obj/item/seeds/plumpmycelium = 2,
+					/obj/item/seeds/cabbageseed = 3, /obj/item/seeds/grapeseed = 3,/obj/item/seeds/pumpkinseed = 3, /obj/item/seeds/cherryseed = 3, /obj/item/seeds/plastiseed = 3, /obj/item/seeds/riceseed = 3)
+	contraband = list(/obj/item/seeds/amanitamycelium = 2, /obj/item/seeds/glowshroom = 2, /obj/item/seeds/libertymycelium = 2, /obj/item/seeds/mtearseed = 2,
+					  /obj/item/seeds/nettleseed = 2, /obj/item/seeds/reishimycelium = 2, /obj/item/seeds/reishimycelium = 2, /obj/item/seeds/shandseed = 2,)
 	premium = list(/obj/item/toy/waterflower = 1)
 
 
