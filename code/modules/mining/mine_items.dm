@@ -45,12 +45,14 @@ var/mining_shuttle_moving = 0
 var/mining_shuttle_location = 0 // 0 = station 13, 1 = mining station
 
 proc/move_mining_shuttle()
-	if(mining_shuttle_moving)	return
+	if(mining_shuttle_moving)
+		return
+
 	mining_shuttle_moving = 1
 	spawn(mining_shuttle_tickstomove*10)
 		var/area/fromArea
 		var/area/toArea
-		if (mining_shuttle_location == 1)
+		if(mining_shuttle_location == 1)
 			fromArea = locate(/area/shuttle/mining/outpost)
 			toArea = locate(/area/shuttle/mining/station)
 
@@ -187,9 +189,9 @@ proc/move_mining_shuttle()
 
 			move_mining_shuttle()
 
-			// This did indeed open the airlocks when we arrived.
 			// And hopefully open an airlock when we arrive. -Frenjo
-			sleep((mining_shuttle_tickstomove+2)*10)
+			// This did indeed open the airlocks when we arrived.
+			sleep((mining_shuttle_tickstomove + 2) * 10)
 			if(mining_shuttle_location == 0)
 				signal.data["tag"] = airlock_tag_station
 				signal.data["command"] = "force_exterior"
@@ -212,8 +214,7 @@ proc/move_mining_shuttle()
 	updateUsrDialog()
 
 /obj/machinery/computer/mining_shuttle/attackby(obj/item/weapon/W as obj, mob/user as mob)
-
-	if (istype(W, /obj/item/weapon/card/emag))
+	if(istype(W, /obj/item/weapon/card/emag))
 		src.req_access = list()
 		hacked = 1
 		usr << "You fried the consoles ID checking system. It's now available to everyone!"
@@ -250,80 +251,80 @@ proc/move_mining_shuttle()
 
 	var/excavation_amount = 100
 
-	hammer
-		name = "sledgehammer"
-		//icon_state = "sledgehammer" Waiting on sprite
-		desc = "A mining hammer made of reinforced metal. You feel like smashing your boss in the face with this."
+/obj/item/weapon/pickaxe/hammer
+	name = "sledgehammer"
+	//icon_state = "sledgehammer" Waiting on sprite
+	desc = "A mining hammer made of reinforced metal. You feel like smashing your boss in the face with this."
 
-	silver
-		name = "silver pickaxe"
-		icon_state = "spickaxe"
-		item_state = "spickaxe"
-		digspeed = 30
-		origin_tech = "materials=3"
-		desc = "This makes no metallurgic sense."
+/obj/item/weapon/pickaxe/silver
+	name = "silver pickaxe"
+	icon_state = "spickaxe"
+	item_state = "spickaxe"
+	digspeed = 30
+	origin_tech = "materials=3"
+	desc = "This makes no metallurgic sense."
 
-	drill
-		name = "mining drill" // Can dig sand as well!
-		icon_state = "handdrill"
-		item_state = "jackhammer"
-		digspeed = 30
-		origin_tech = "materials=2;powerstorage=3;engineering=2"
-		desc = "Yours is the drill that will pierce through the rock walls."
-		drill_verb = "drilling"
+/obj/item/weapon/pickaxe/drill
+	name = "mining drill" // Can dig sand as well!
+	icon_state = "handdrill"
+	item_state = "jackhammer"
+	digspeed = 30
+	origin_tech = "materials=2;powerstorage=3;engineering=2"
+	desc = "Yours is the drill that will pierce through the rock walls."
+	drill_verb = "drilling"
 
-	jackhammer
-		name = "sonic jackhammer"
-		icon_state = "jackhammer"
-		item_state = "jackhammer"
-		digspeed = 20 //faster than drill, but cannot dig
-		origin_tech = "materials=3;powerstorage=2;engineering=2"
-		desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
-		drill_verb = "hammering"
+/obj/item/weapon/pickaxe/jackhammer
+	name = "sonic jackhammer"
+	icon_state = "jackhammer"
+	item_state = "jackhammer"
+	digspeed = 20 //faster than drill, but cannot dig
+	origin_tech = "materials=3;powerstorage=2;engineering=2"
+	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
+	drill_verb = "hammering"
 
-	gold
-		name = "golden pickaxe"
-		icon_state = "gpickaxe"
-		item_state = "gpickaxe"
-		digspeed = 20
-		origin_tech = "materials=4"
-		desc = "This makes no metallurgic sense."
+/obj/item/weapon/pickaxe/gold
+	name = "golden pickaxe"
+	icon_state = "gpickaxe"
+	item_state = "gpickaxe"
+	digspeed = 20
+	origin_tech = "materials=4"
+	desc = "This makes no metallurgic sense."
 
-	plasmacutter
-		name = "plasma cutter"
-		icon_state = "plasmacutter"
-		item_state = "gun"
-		w_class = 3.0 //it is smaller than the pickaxe
-		damtype = "fire"
-		digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/ light thermite on fire
-		origin_tech = "materials=4;plasmatech=3;engineering=3"
-		desc = "A rock cutter that uses bursts of hot plasma. You could use it to cut limbs off of xenos! Or, you know, mine stuff."
-		drill_verb = "cutting"
+/obj/item/weapon/pickaxe/plasmacutter
+	name = "plasma cutter"
+	icon_state = "plasmacutter"
+	item_state = "gun"
+	w_class = 3.0 //it is smaller than the pickaxe
+	damtype = "fire"
+	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/ light thermite on fire
+	origin_tech = "materials=4;plasmatech=3;engineering=3"
+	desc = "A rock cutter that uses bursts of hot plasma. You could use it to cut limbs off of xenos! Or, you know, mine stuff."
+	drill_verb = "cutting"
 
-	diamond
-		name = "diamond pickaxe"
-		icon_state = "dpickaxe"
-		item_state = "dpickaxe"
-		digspeed = 10
-		origin_tech = "materials=6;engineering=4"
-		desc = "A pickaxe with a diamond pick head, this is just like minecraft."
+/obj/item/weapon/pickaxe/diamond
+	name = "diamond pickaxe"
+	icon_state = "dpickaxe"
+	item_state = "dpickaxe"
+	digspeed = 10
+	origin_tech = "materials=6;engineering=4"
+	desc = "A pickaxe with a diamond pick head, this is just like minecraft."
 
-	diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
-		name = "diamond mining drill"
-		icon_state = "diamonddrill"
-		item_state = "jackhammer"
-		digspeed = 5 //Digs through walls, girders, and can dig up sand
-		origin_tech = "materials=6;powerstorage=4;engineering=5"
-		desc = "Yours is the drill that will pierce the heavens!"
-		drill_verb = "drilling"
+/obj/item/weapon/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
+	name = "diamond mining drill"
+	icon_state = "diamonddrill"
+	item_state = "jackhammer"
+	digspeed = 5 //Digs through walls, girders, and can dig up sand
+	origin_tech = "materials=6;powerstorage=4;engineering=5"
+	desc = "Yours is the drill that will pierce the heavens!"
+	drill_verb = "drilling"
 
-	borgdrill
-		name = "cyborg mining drill"
-		icon_state = "diamonddrill"
-		item_state = "jackhammer"
-		digspeed = 15
-		desc = ""
-		drill_verb = "drilling"
+/obj/item/weapon/pickaxe/borgdrill
+	name = "cyborg mining drill"
+	icon_state = "diamonddrill"
+	item_state = "jackhammer"
+	digspeed = 15
+	desc = ""
+	drill_verb = "drilling"
 
 /*****************************Shovel********************************/
 
