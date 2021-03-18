@@ -253,7 +253,7 @@ BLIND     // can't see anything
 	if(!hastie && istype(I, /obj/item/clothing/tie))
 		user.drop_item()
 		hastie = I
-		hastie.attach_to(src, user)
+		hastie.on_attached(src, user)
 
 		if(istype(loc, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = loc
@@ -270,7 +270,7 @@ BLIND     // can't see anything
 		return
 	..()
 
-//This is to allow people to take off suits when there is an attached accessory
+//This is to ensure people can take off suits when there is an attached accessory
 /obj/item/clothing/under/MouseDrop(obj/over_object as obj)
 	if(isHuman(usr) || isMonkey(usr))
 		//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
@@ -335,6 +335,17 @@ BLIND     // can't see anything
 			usr << "Your suit will now report your vital lifesigns as well as your coordinate position."
 	..()
 
+/obj/item/clothing/under/proc/remove_accessory(mob/user as mob)
+	if(!hastie)
+		return
+
+	hastie.on_removed(user)
+	hastie = null
+
+	if(istype(loc, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = loc
+		H.update_inv_w_uniform()
+
 /obj/item/clothing/under/verb/removetie()
 	set name = "Remove Accessory"
 	set category = "Object"
@@ -344,13 +355,7 @@ BLIND     // can't see anything
 	if(usr.stat)
 		return
 
-	if(hastie)
-		hastie.remove(usr)
-		hastie = null
-
-		if(istype(loc, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = loc
-			H.update_inv_w_uniform()
+	src.remove_accessory(usr)
 
 /obj/item/clothing/under/rank/New()
 	sensor_mode = pick(0, 1, 2, 3)
