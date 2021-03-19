@@ -5,14 +5,12 @@
 	var/releaseWhen = 25
 	var/list/area/prisonAreas = list()
 
-
 /datum/event/prison_break/setup()
 	announceWhen = rand(50, 60)
 	releaseWhen = rand(20, 30)
 
-	src.startWhen = src.releaseWhen-1
-	src.endWhen = src.releaseWhen+1
-
+	src.startWhen = src.releaseWhen - 1
+	src.endWhen = src.releaseWhen + 1
 
 /datum/event/prison_break/announce()
 	if(prisonAreas && prisonAreas.len > 0)
@@ -21,10 +19,9 @@
 		world.log << "ERROR: Could not initate grey-tide. Unable find prison or brig area."
 		kill()
 
-
 /datum/event/prison_break/start()
 	for(var/area/A in world)
-		if(istype(A, /area/security/prison) || istype(A, /area/security/brig))
+		if(istype(A, /area/security/prison) || istype(A, /area/security/brig) || istype(A, /area/prison))
 			prisonAreas += A
 
 	if(prisonAreas && prisonAreas.len > 0)

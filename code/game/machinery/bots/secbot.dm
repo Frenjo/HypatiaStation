@@ -38,7 +38,6 @@
 	var/beacon_freq = 1445		// navigation beacon frequency
 	var/control_freq = 1447		// bot control frequency
 
-
 	var/turf/patrol_target	// this is turf to navigate to (location of beacon)
 	var/new_destination		// pending new destination (waiting for beacon response)
 	var/destination			// destination description tag
@@ -57,6 +56,17 @@
 	desc = "It's Officer Beep O'sky! Powered by a potato and a shot of whiskey."
 	idcheck = 0
 	auto_patrol = 1
+
+/obj/machinery/bot/secbot/armsky
+	name = "Sergeant-at-Armsky"
+	desc = "It's Sergeant-at-Armsky! Powered by a potato and a shot of whiskey, protecting the armory 'til the end of time."
+	idcheck = 1
+	arrest_type = 1
+
+/obj/machinery/bot/secbot/pingsky
+	name = "Officer Pingsky"
+	desc = "It's Officer Pingsky! Powered by a potato and a shot of whiskey, protecting the home of its robotic kin."
+	idcheck = 1
 
 /obj/item/weapon/secbot_assembly
 	name = "helmet/signaler assembly"

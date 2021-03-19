@@ -1,8 +1,8 @@
 /mob/living/carbon/human/proc/monkeyize()
-	if (monkeyizing)
+	if(monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		if (W==w_uniform) // will be torn
+		if(W == w_uniform) // will be torn
 			continue
 		drop_from_inventory(W)
 	regenerate_icons()
@@ -13,7 +13,7 @@
 	invisibility = 101
 	for(var/t in organs)
 		qdel(t)
-	var/atom/movable/overlay/animation = new /atom/movable/overlay( loc )
+	var/atom/movable/overlay/animation = new /atom/movable/overlay(loc)
 	animation.icon_state = "blank"
 	animation.icon = 'icons/mob/mob.dmi'
 	animation.master = src
@@ -39,7 +39,7 @@
 	for(var/datum/disease/D in O.viruses)
 		D.affected_mob = O
 
-	if (client)
+	if(client)
 		client.mob = O
 	if(mind)
 		mind.transfer_to(O)
@@ -57,7 +57,7 @@
 	return ..()
 
 /mob/living/carbon/human/AIize()
-	if (monkeyizing)
+	if(monkeyizing)
 		return
 	for(var/t in organs)
 		qdel(t)
@@ -65,7 +65,7 @@
 	return ..()
 
 /mob/living/carbon/AIize()
-	if (monkeyizing)
+	if(monkeyizing)
 		return
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
@@ -90,25 +90,25 @@
 
 	var/obj/loc_landmark
 	for(var/obj/effect/landmark/start/sloc in landmarks_list)
-		if (sloc.name != "AI")
+		if(sloc.name != "AI")
 			continue
-		if (locate(/mob/living) in sloc.loc)
+		if(locate(/mob/living) in sloc.loc)
 			continue
 		loc_landmark = sloc
-	if (!loc_landmark)
+	if(!loc_landmark)
 		for(var/obj/effect/landmark/tripai in landmarks_list)
-			if (tripai.name == "tripai")
+			if(tripai.name == "tripai")
 				if(locate(/mob/living) in tripai.loc)
 					continue
 				loc_landmark = tripai
-	if (!loc_landmark)
+	if(!loc_landmark)
 		O << "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone."
 		for(var/obj/effect/landmark/start/sloc in landmarks_list)
 			if (sloc.name == "AI")
 				loc_landmark = sloc
 
 	O.loc = loc_landmark.loc
-	for (var/obj/item/device/radio/intercom/comm in O.loc)
+	for(var/obj/item/device/radio/intercom/comm in O.loc)
 		comm.ai += O
 
 	O << "<B>You are playing the station's AI. The AI cannot move, but can interact with many objects while viewing them (through cameras).</B>"
@@ -116,7 +116,7 @@
 	O << "<B>While observing through a camera, you can use most (networked) devices which you can see, such as computers, APCs, intercoms, doors, etc.</B>"
 	O << "To use something, simply click on it."
 	O << {"Use say ":b to speak to your cyborgs through binary."}
-	if (!(ticker && ticker.mode && (O.mind in ticker.mode.malf_ai)))
+	if(!(ticker && ticker.mode && (O.mind in ticker.mode.malf_ai)))
 		O.show_laws()
 		O << "<b>These laws may be changed by other players, or by you being the traitor.</b>"
 
@@ -134,10 +134,9 @@
 	. = O
 	qdel(src)
 
-
 //human -> robot
 /mob/living/carbon/human/proc/Robotize()
-	if (monkeyizing)
+	if(monkeyizing)
 		return
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
@@ -165,7 +164,7 @@
 		mind.transfer_to(O)
 		if(O.mind.assigned_role == "Cyborg")
 			O.mind.original = O
-		else if(mind&&mind.special_role)
+		else if(mind && mind.special_role)
 			O.mind.store_memory("In case you look at this after being borged, the objectives are only here until I find a way to make them not show up for you, as I can't simply delete them without screwing up round-end reporting. --NeoFite")
 	else
 		O.key = key
@@ -189,7 +188,7 @@
 
 //human -> alien
 /mob/living/carbon/human/proc/Alienize()
-	if (monkeyizing)
+	if(monkeyizing)
 		return
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
@@ -213,7 +212,7 @@
 	return
 
 /mob/living/carbon/human/proc/slimeize(adult as num, reproduce as num)
-	if (monkeyizing)
+	if(monkeyizing)
 		return
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
@@ -249,7 +248,7 @@
 	return
 
 /mob/living/carbon/human/proc/corgize()
-	if (monkeyizing)
+	if(monkeyizing)
 		return
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
@@ -271,7 +270,6 @@
 	return
 
 /mob/living/carbon/human/Animalize()
-
 	var/list/mobtypes = typesof(/mob/living/simple_animal)
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
@@ -305,7 +303,6 @@
 	return
 
 /mob/proc/Animalize()
-
 	var/list/mobtypes = typesof(/mob/living/simple_animal)
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
@@ -371,6 +368,3 @@
 
 	//Not in here? Must be untested!
 	return 0
-
-
-

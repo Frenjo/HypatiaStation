@@ -3,7 +3,7 @@
 
 //copy paste from the mining shuttle
 
-var/research_shuttle_tickstomove = 10
+var/research_shuttle_tickstomove = 80
 var/research_shuttle_moving = 0
 var/research_shuttle_location = 0 // 0 = station 13, 1 = research station
 
@@ -12,7 +12,7 @@ proc/move_research_shuttle()
 		return
 
 	research_shuttle_moving = 1
-	spawn(research_shuttle_tickstomove*10)
+	spawn(research_shuttle_tickstomove * 10)
 		var/area/fromArea
 		var/area/toArea
 		if (research_shuttle_location == 1)
@@ -90,7 +90,7 @@ proc/move_research_shuttle()
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
 
 	src.add_fingerprint(usr)
-	var/dat = "<center>Research shuttle: <b><A href='?src=\ref[src];move=1'>Send</A></b></center><br>"
+	var/dat = "<center>Research Shuttle: <b><A href='?src=\ref[src];move=1'>Send</A></b></center><br>"
 
 	user << browse("[dat]", "window=researchshuttle;size=200x100")
 
@@ -106,7 +106,7 @@ proc/move_research_shuttle()
 		//		return
 
 		if(!research_shuttle_moving)
-			usr << "\blue Shuttle recieved message and will be sent shortly."
+			usr << "\blue Shuttle recieved message and will arrive in [(research_shuttle_tickstomove / 10)] seconds."
 
 			// EVEN MORE research shuttle airlock interaction.
 			// Shameless port from door access buttons. -Frenjo
@@ -132,7 +132,7 @@ proc/move_research_shuttle()
 			move_research_shuttle()
 
 			// And hopefully open an airlock when we arrive. -Frenjo
-			sleep((research_shuttle_tickstomove+2)*10)
+			sleep((research_shuttle_tickstomove + 2) * 10)
 			if(research_shuttle_location == 0)
 				signal.data["tag"] = airlock_tag_station
 				signal.data["command"] = "force_exterior"

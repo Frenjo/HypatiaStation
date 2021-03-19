@@ -31,7 +31,8 @@
 
 /datum/shuttle/proc/long_jump(var/area/departing, var/area/destination, var/area/interim, var/travel_time, var/direction)
 	//world << "shuttle/long_jump: departing=[departing], destination=[destination], interim=[interim], travel_time=[travel_time]"
-	if(moving_status != SHUTTLE_IDLE) return
+	if(moving_status != SHUTTLE_IDLE)
+		return
 
 	//it would be cool to play a sound here
 	moving_status = SHUTTLE_WARMUP
@@ -43,12 +44,19 @@
 		moving_status = SHUTTLE_INTRANSIT
 		move(departing, interim, direction)
 
+		for(var/mob/M in destination)
+			if(M.hud_used)
+				M.hud_used.toggle_parallax_space()
 
 		while(world.time < arrive_time)
 			sleep(5)
 
 		move(interim, destination, direction)
 		moving_status = SHUTTLE_IDLE
+
+		for(var/mob/M in destination)
+			if(M.hud_used)
+				M.hud_used.toggle_parallax_space()
 
 /datum/shuttle/proc/dock()
 	if(!docking_controller)
@@ -109,12 +117,9 @@
 	for(var/mob/living/simple_animal/pest in destination)
 		pest.gib()
 
-	origin.move_contents_to(destination, direction=direction)
+	origin.move_contents_to(destination, direction = direction)
 
 	for(var/mob/M in destination)
-		if(M.hud_used)
-			M.hud_used.toggle_parallax_space()
-
 		if(M.client)
 			spawn(0)
 				if(M.buckled)

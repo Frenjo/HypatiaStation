@@ -8,6 +8,8 @@
 	name = "Mine"
 	icon_state = "explored"
 	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
+	requires_power = 1
+	always_unpowered = 1
 
 /area/mine/unexplored
 	name = "Mine"

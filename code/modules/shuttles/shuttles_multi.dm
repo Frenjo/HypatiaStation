@@ -4,7 +4,6 @@
 
 //This is a holder for things like the Vox and Nuke shuttle.
 /datum/shuttle/multi_shuttle
-
 	var/cloaked = 1
 	var/at_origin = 1
 	var/returned_home = 0

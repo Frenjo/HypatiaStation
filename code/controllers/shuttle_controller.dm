@@ -4,17 +4,15 @@
 
 var/global/datum/shuttle_controller/shuttle_controller
 
-
 /datum/shuttle_controller
 	var/list/shuttles	//maps shuttle tags to shuttle datums, so that they can be looked up.
 	var/list/process_shuttles	//simple list of shuttles, for processing
 
 /datum/shuttle_controller/proc/process()
 	//process ferry shuttles
-	for (var/datum/shuttle/ferry/shuttle in process_shuttles)
-		if (shuttle.process_state)
+	for(var/datum/shuttle/ferry/shuttle in process_shuttles)
+		if(shuttle.process_state)
 			shuttle.process()
-
 
 /datum/shuttle_controller/New()
 	shuttles = list()
@@ -208,6 +206,17 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttles["Research"] = shuttle
 	process_shuttles += shuttle
 
+	shuttle = new()
+	//shuttle.warmup_time = 10
+	shuttle.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
+	shuttle.area_offsite = locate(/area/shuttle/prison/prison)
+	shuttle.area_station = locate(/area/shuttle/prison/station)
+	shuttle.docking_controller_tag = "prison_shuttle"
+	shuttle.dock_target_station = "prisonshuttle_dock_airlock"
+	shuttle.dock_target_offsite = "prisonshuttle_sat_airlock"
+	shuttles["Prison"] = shuttle
+	process_shuttles += shuttle
+
 	// ERT Shuttle
 	var/datum/shuttle/ferry/multidock/specops/ERT = new()
 	ERT.location = 0
@@ -270,7 +279,6 @@ var/global/datum/shuttle_controller/shuttle_controller
 	MS.warmup_time = 0
 	shuttles["Mercenary"] = MS
 
-
 //This is called by gameticker after all the machines and radio frequencies have been properly initialized
 /datum/shuttle_controller/proc/setup_shuttle_docks()
 	var/datum/shuttle/shuttle
@@ -281,11 +289,11 @@ var/global/datum/shuttle_controller/shuttle_controller
 	var/list/dock_controller_map_station = list()
 	var/list/dock_controller_map_offsite = list()
 
-	for (var/shuttle_tag in shuttles)
+	for(var/shuttle_tag in shuttles)
 		shuttle = shuttles[shuttle_tag]
-		if (shuttle.docking_controller_tag)
+		if(shuttle.docking_controller_tag)
 			dock_controller_map[shuttle.docking_controller_tag] = shuttle
-		if (istype(shuttle, /datum/shuttle/ferry/multidock))
+		if(istype(shuttle, /datum/shuttle/ferry/multidock))
 			multidock = shuttle
 			dock_controller_map_station[multidock.docking_controller_tag_station] = multidock
 			dock_controller_map_offsite[multidock.docking_controller_tag_offsite] = multidock
@@ -293,15 +301,15 @@ var/global/datum/shuttle_controller/shuttle_controller
 	//escape pod arming controllers
 	var/datum/shuttle/ferry/escape_pod/pod
 	var/list/pod_controller_map = list()
-	for (var/datum/shuttle/ferry/escape_pod/P in emergency_shuttle.escape_pods)
-		if (P.dock_target_station)
+	for(var/datum/shuttle/ferry/escape_pod/P in emergency_shuttle.escape_pods)
+		if(P.dock_target_station)
 			pod_controller_map[P.dock_target_station] = P
 
 	//search for the controllers, if we have one.
-	if (dock_controller_map.len)
-		for (var/obj/machinery/embedded_controller/radio/C in machines)	//only radio controllers are supported at the moment
-			if (istype(C.program, /datum/computer/file/embedded_program/docking))
-				if (C.id_tag in dock_controller_map)
+	if(dock_controller_map.len)
+		for(var/obj/machinery/embedded_controller/radio/C in machines)	//only radio controllers are supported at the moment
+			if(istype(C.program, /datum/computer/file/embedded_program/docking))
+				if(C.id_tag in dock_controller_map)
 					shuttle = dock_controller_map[C.id_tag]
 					shuttle.docking_controller = C.program
 					dock_controller_map -= C.id_tag

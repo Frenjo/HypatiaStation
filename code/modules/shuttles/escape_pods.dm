@@ -20,7 +20,6 @@
 /datum/shuttle/ferry/escape_pod/can_cancel()
 	return 0
 
-
 //This controller goes on the escape pod itself
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod
 	name = "escape pod controller"

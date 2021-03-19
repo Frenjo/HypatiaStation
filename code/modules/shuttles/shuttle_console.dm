@@ -11,7 +11,6 @@
 	var/shuttle_tag  // Used to coordinate data in shuttle controller.
 	var/hacked = 0   // Has been emagged, no access restrictions.
 
-
 /obj/machinery/computer/shuttle_control/attack_hand(user as mob)
 	if(..(user))
 		return
@@ -63,7 +62,7 @@
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "shuttle_control_console.tmpl", "[shuttle_tag] Shuttle Control", 470, 310)
 		ui.set_initial_data(data)
 		ui.open()
@@ -77,7 +76,7 @@
 	src.add_fingerprint(usr)
 
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
-	if (!istype(shuttle))
+	if(!istype(shuttle))
 		return
 
 	if(href_list["move"])

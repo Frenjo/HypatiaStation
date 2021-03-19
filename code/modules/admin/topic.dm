@@ -1859,6 +1859,7 @@
 				log_admin("[key_name(usr)] made all SMESs powered", 1)
 				message_admins("\blue [key_name_admin(usr)] made all SMESs powered", 1)
 				power_restore_quick()
+			/*
 			if("activateprison")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","AP")
@@ -1898,7 +1899,7 @@
 					var/turf/loc = find_loc(H)
 					var/security = 0
 					if(loc.z > 1 || prisonwarped.Find(H))
-//don't warp them if they aren't ready or are already there
+						//don't warp them if they aren't ready or are already there
 						continue
 					H.Paralyse(5)
 					if(H.wear_id)
@@ -1927,6 +1928,7 @@
 						//teleport security person
 						H.loc = pick(prisonsecuritywarp)
 					prisonwarped += H
+			*/
 			if("traitor_all")
 				if(!ticker)
 					alert("The game hasn't started yet!")

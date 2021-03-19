@@ -8,9 +8,8 @@
 	icon_state = "sleeperconsole"
 	var/obj/machinery/sleeper/connected = null
 	anchored = 1 //About time someone fixed this.
-	density = 1
+	density = 0
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
-
 
 /obj/machinery/sleep_console/process()
 	if(stat & (NOPOWER|BROKEN))

@@ -258,7 +258,7 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Alien Shuttle Mine"
 	requires_power = 1
 
-/area/shuttle/prison/
+/area/shuttle/prison
 	name = "\improper Prison Shuttle"
 
 /area/shuttle/prison/station
@@ -547,86 +547,87 @@ var/list/ghostteleportlocs = list()
 
 //PRISON
 /area/prison
-	name = "\improper Prison Station"
+	name = "\improper Prison Satellite"
 	icon_state = "brig"
 
 /area/prison/arrival_airlock
-	name = "\improper Prison Station Airlock"
+	name = "\improper Prison Satellite Airlock"
 	icon_state = "green"
 	requires_power = 0
 
 /area/prison/control
-	name = "\improper Prison Security Checkpoint"
+	name = "\improper Prison Satellite Security Checkpoint"
 	icon_state = "security"
 
 /area/prison/crew_quarters
-	name = "\improper Prison Security Quarters"
+	name = "\improper Prison Satellite Security Quarters"
 	icon_state = "security"
 
 /area/prison/rec_room
-	name = "\improper Prison Rec Room"
+	name = "\improper Prison Satellite Recreation Room"
 	icon_state = "green"
 
 /area/prison/closet
-	name = "\improper Prison Supply Closet"
+	name = "\improper Prison Satellite Supply Closet"
 	icon_state = "dk_yellow"
 
 /area/prison/hallway/fore
-	name = "\improper Prison Fore Hallway"
+	name = "\improper Prison Satellite Fore Hallway"
 	icon_state = "yellow"
 
 /area/prison/hallway/aft
-	name = "\improper Prison Aft Hallway"
+	name = "\improper Prison Satellite Aft Hallway"
 	icon_state = "yellow"
 
 /area/prison/hallway/port
-	name = "\improper Prison Port Hallway"
+	name = "\improper Prison Satellite Port Hallway"
 	icon_state = "yellow"
 
 /area/prison/hallway/starboard
-	name = "\improper Prison Starboard Hallway"
+	name = "\improper Prison Satellite Starboard Hallway"
 	icon_state = "yellow"
 
 /area/prison/morgue
-	name = "\improper Prison Morgue"
+	name = "\improper Prison Satellite Morgue"
 	icon_state = "morgue"
 
 /area/prison/medical_research
-	name = "\improper Prison Genetic Research"
+	name = "\improper Prison Satellite Genetic Research"
 	icon_state = "medresearch"
 
 /area/prison/medical
-	name = "\improper Prison Medbay"
+	name = "\improper Prison Satellite Medbay"
 	icon_state = "medbay"
 
 /area/prison/solar
-	name = "\improper Prison Solar Array"
+	name = "\improper Prison Satellite Solar Array"
 	icon_state = "storage"
-	requires_power = 0
+	requires_power = 1
+	always_unpowered = 1
 
 /area/prison/podbay
-	name = "\improper Prison Podbay"
+	name = "\improper Prison Satellite Podbay"
 	icon_state = "dk_yellow"
 
 /area/prison/solar_control
-	name = "\improper Prison Solar Array Control"
+	name = "\improper Prison Satellite Solar Control"
 	icon_state = "dk_yellow"
 
 /area/prison/solitary
-	name = "Solitary Confinement"
+	name = "Prison Satellite Solitary Confinement"
 	icon_state = "brig"
 	lighting_use_dynamic = 0
 
 /area/prison/cell_block/A
-	name = "Prison Cell Block A"
+	name = "Prison Satellite Cell Block A"
 	icon_state = "brig"
 
 /area/prison/cell_block/B
-	name = "Prison Cell Block B"
+	name = "Prison Satellite Cell Block B"
 	icon_state = "brig"
 
 /area/prison/cell_block/C
-	name = "Prison Cell Block C"
+	name = "Prison Satellite Cell Block C"
 	icon_state = "brig"
 
 //STATION13
@@ -834,6 +835,10 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Security Dormitories"
 	icon_state = "Sleep"
 
+/area/crew_quarters/sleeping/sec/old
+	name = "\improper Disused Security Dormitories"
+	icon_state = "Sleep"
+
 /area/crew_quarters/sleeping/bedrooms
 	name = "\improper Dormitory Bedroom"
 	icon_state = "Sleep"
@@ -1019,7 +1024,6 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Singularity Engine Space"
 	icon_state = "engine_sing"
 	requires_power = 0
-	luminosity = 1
 
 /area/engine/thermoelectric_engine
 	name = "\improper Thermoelectric Engine Room"
@@ -1260,7 +1264,7 @@ var/list/ghostteleportlocs = list()
 	icon_state = "brig"
 
 /area/security/prison
-	name = "\improper Prison Wing"
+	name = "\improper Disused Prison Wing"
 	icon_state = "sec_prison"
 
 /area/security/warden
@@ -1740,9 +1744,8 @@ var/list/ghostteleportlocs = list()
 
 // Added these due to map editing. -Frenjo
 /area/tcommsat/solar
-	requires_power = 0
-	luminosity = 1
-	lighting_use_dynamic = 0
+	requires_power = 1
+	always_unpowered = 1
 
 /area/tcommsat/solar/port
 	name = "\improper Telecommunications Port Solar Array"

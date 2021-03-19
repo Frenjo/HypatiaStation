@@ -10,10 +10,8 @@
 	var/moving = 0
 	var/lastMove = 0
 
-
 /obj/machinery/computer/syndicate_station/New()
 	curr_location= locate(/area/syndicate_station/start)
-
 
 /obj/machinery/computer/syndicate_station/proc/syndicate_move_to(area/destination as area)
 	if(moving)	return
@@ -34,7 +32,6 @@
 	curr_location = dest_location
 	moving = 0
 	return 1
-
 
 /obj/machinery/computer/syndicate_station/attackby(obj/item/I as obj, mob/user as mob)
 	return attack_hand(user)

@@ -623,10 +623,12 @@ var/global/floorIsLava = 0
 			<A href='?src=\ref[src];secretsfun=power'>Make all areas powered</A><BR>
 			<A href='?src=\ref[src];secretsfun=unpower'>Make all areas unpowered</A><BR>
 			<A href='?src=\ref[src];secretsfun=quickpower'>Power all SMES</A><BR>
-			<A href='?src=\ref[src];secretsfun=toggleprisonstatus'>Toggle Prison Shuttle Status(Use with S/R)</A><BR>
-			<A href='?src=\ref[src];secretsfun=activateprison'>Send Prison Shuttle</A><BR>
-			<A href='?src=\ref[src];secretsfun=deactivateprison'>Return Prison Shuttle</A><BR>
-			<A href='?src=\ref[src];secretsfun=prisonwarp'>Warp all Players to Prison</A><BR>
+			"}
+			//<A href='?src=\ref[src];secretsfun=toggleprisonstatus'>Toggle Prison Shuttle Status(Use with S/R)</A><BR>
+			//<A href='?src=\ref[src];secretsfun=activateprison'>Send Prison Shuttle</A><BR>
+			//<A href='?src=\ref[src];secretsfun=deactivateprison'>Return Prison Shuttle</A><BR>
+			//<A href='?src=\ref[src];secretsfun=prisonwarp'>Warp all Players to Prison</A><BR>
+		dat += {"
 			<A href='?src=\ref[src];secretsfun=tripleAI'>Triple AI mode (needs to be used in the lobby)</A><BR>
 			<A href='?src=\ref[src];secretsfun=traitor_all'>Everyone is the traitor</A><BR>
 			<A href='?src=\ref[src];secretsfun=onlyone'>There can only be one!</A><BR>
