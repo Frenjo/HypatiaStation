@@ -17,9 +17,7 @@
 	var/static/list/phase_shift_by_y
 
 /turf/space/New()
-	if(!config)
-		spawn(1)
-			update_starlight()
+	update_starlight()
 
 	if(!dust_cache)
 		build_dust_cache()

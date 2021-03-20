@@ -16,10 +16,9 @@
 	var/obj/screen/using
 	var/obj/screen/inventory/inv_box
 
-		// Draw the various inventory equipment slots.
+	// Draw the various inventory equipment slots.
 	var/has_hidden_gear
 	for(var/gear_slot in hud_data.gear)
-
 		inv_box = new /obj/screen/inventory()
 		inv_box.icon = ui_style
 		inv_box.layer = 19
@@ -54,7 +53,6 @@
 
 	// Draw the attack intent dialogue.
 	if(hud_data.has_a_intent)
-
 		using = new /obj/screen()
 		using.name = "act_intent"
 		using.dir = SOUTHWEST
@@ -74,8 +72,8 @@
 
 		ico = new(ui_style, "black")
 		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-		ico.DrawBox(rgb(255,255,255,1),1,ico.Height()/2,ico.Width()/2,ico.Height())
-		using = new /obj/screen( src )
+		ico.DrawBox(rgb(255, 255, 255, 1), 1, ico.Height() / 2, ico.Width() / 2, ico.Height())
+		using = new /obj/screen(src)
 		using.name = "help"
 		using.icon = ico
 		using.screen_loc = ui_acti
@@ -86,8 +84,8 @@
 
 		ico = new(ui_style, "black")
 		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-		ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,ico.Height()/2,ico.Width(),ico.Height())
-		using = new /obj/screen( src )
+		ico.DrawBox(rgb(255, 255, 255, 1), ico.Width() / 2, ico.Height() / 2, ico.Width(), ico.Height())
+		using = new /obj/screen(src)
 		using.name = "disarm"
 		using.icon = ico
 		using.screen_loc = ui_acti
@@ -98,8 +96,8 @@
 
 		ico = new(ui_style, "black")
 		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-		ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,1,ico.Width(),ico.Height()/2)
-		using = new /obj/screen( src )
+		ico.DrawBox(rgb(255, 255, 255, 1), ico.Width() / 2, 1, ico.Width(), ico.Height() / 2)
+		using = new /obj/screen(src)
 		using.name = "grab"
 		using.icon = ico
 		using.screen_loc = ui_acti
@@ -110,8 +108,8 @@
 
 		ico = new(ui_style, "black")
 		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-		ico.DrawBox(rgb(255,255,255,1),1,1,ico.Width()/2,ico.Height()/2)
-		using = new /obj/screen( src )
+		ico.DrawBox(rgb(255, 255, 255, 1), 1, 1, ico.Width() / 2, ico.Height() / 2)
+		using = new /obj/screen(src)
 		using.name = "harm"
 		using.icon = ico
 		using.screen_loc = ui_acti
@@ -146,7 +144,6 @@
 		src.hotkeybuttons += using
 
 	if(hud_data.has_hands)
-
 		using = new /obj/screen()
 		using.name = "equip"
 		using.icon = ui_style
@@ -246,6 +243,7 @@
 		mymob.internals.icon_state = "internal0"
 		mymob.internals.name = "internal"
 		mymob.internals.screen_loc = ui_internal
+		hud_elements |= mymob.internals
 
 	if(hud_data.has_warnings)
 		mymob.oxygen = new /obj/screen()
@@ -340,17 +338,17 @@
 	//Handle the gun settings buttons
 	mymob.gun_setting_icon = new /obj/screen/gun/mode(null)
 	hud_elements |= mymob.gun_setting_icon
-	if (mymob.client)
-		if (mymob.client.gun_mode) // If in aim mode, correct the sprite
+	if(mymob.client)
+		if(mymob.client.gun_mode) // If in aim mode, correct the sprite
 			mymob.gun_setting_icon.dir = 2
 	for(var/obj/item/weapon/gun/G in mymob) // If targeting someone, display other buttons
-		if (G.target)
+		if(G.target)
 			mymob.item_use_icon = new /obj/screen/gun/item(null)
-			if (mymob.client.target_can_click)
+			if(mymob.client.target_can_click)
 				mymob.item_use_icon.dir = 1
 			src.adding += mymob.item_use_icon
 			mymob.gun_move_icon = new /obj/screen/gun/move(null)
-			if (mymob.client.target_can_move)
+			if(mymob.client.target_can_move)
 				mymob.gun_move_icon.dir = 1
 				mymob.gun_run_icon = new /obj/screen/gun/run(null)
 				if (mymob.client.target_can_run)
@@ -358,15 +356,13 @@
 				src.adding += mymob.gun_run_icon
 			src.adding += mymob.gun_move_icon
 
-
 	mymob.client.screen = null
 
 	mymob.client.screen += hud_elements
 	mymob.client.screen += src.adding + src.hotkeybuttons
-	inventory_shown = 0;
+	inventory_shown = 0
 
 	return
-
 
 /mob/living/carbon/human/verb/toggle_hotkey_verbs()
 	set category = "OOC"
@@ -380,12 +376,12 @@
 		client.screen -= hud_used.hotkeybuttons
 		hud_used.hotkey_ui_hidden = 1
 
-
 /mob/living/carbon/human/update_action_buttons()
 	var/num = 1
-	if(!hud_used) return
-	if(!client) return
-
+	if(!hud_used)
+		return
+	if(!client)
+		return
 	if(!hud_used.hud_shown)	//Hud toggled to minimal
 		return
 
@@ -395,7 +391,6 @@
 	for(var/obj/item/I in src)
 		if(I.icon_action_button)
 			var/obj/screen/item_action/A = new(hud_used)
-
 			//A.icon = 'icons/mob/screen1_action.dmi'
 			//A.icon_state = I.icon_action_button
 			A.icon = ui_style2icon(client.prefs.UI_style)

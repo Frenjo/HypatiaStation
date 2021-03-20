@@ -68,6 +68,11 @@
 #define SHOE_MIN_COLD_PROTECTION_TEMPERATURE 2.0	//For gloves
 #define SHOE_MAX_HEAT_PROTECTION_TEMPERATURE 1500		//For gloves
 
+//Fire
+#define FIRE_MIN_STACKS -20
+#define FIRE_MAX_STACKS 25
+//If the number of stacks goes above this firesuits won't protect you anymore. If not you can walk around while on fire like a badass.
+#define FIRE_MAX_FIRESUIT_STACKS 20
 
 #define PRESSURE_DAMAGE_COEFFICIENT 4 //The amount of pressure damage someone takes is equal to (pressure / HAZARD_HIGH_PRESSURE)*PRESSURE_DAMAGE_COEFFICIENT, with the maximum of MAX_PRESSURE_DAMAGE
 #define MAX_HIGH_PRESSURE_DAMAGE 4	//This used to be 20... I got this much random rage for some retarded decision by polymorph?! Polymorph now lies in a pool of blood with a katana jammed in his spleen. ~Errorage --PS: The katana did less than 20 damage to him :(
@@ -191,7 +196,7 @@ var/MAX_EXPLOSION_RANGE = 14
 #define SLOT_LEGS = 16384
 
 //FLAGS BITMASK
-#define STOPSPRESSUREDMAGE 1	//This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage. Note that the flag 1 was previous used as ONBACK, so it is possible for some code to use (flags & 1) when checking if something can be put on your back. Replace this code with (inv_flags & SLOT_BACK) if you see it anywhere
+#define STOPSPRESSUREDAMAGE 1	//This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage. Note that the flag 1 was previous used as ONBACK, so it is possible for some code to use (flags & 1) when checking if something can be put on your back. Replace this code with (inv_flags & SLOT_BACK) if you see it anywhere
                                 //To successfully stop you taking all pressure damage you must have both a suit and head item with this flag.
 #define TABLEPASS 2			// can pass by a table or rack
 

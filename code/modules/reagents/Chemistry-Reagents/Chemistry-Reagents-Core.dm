@@ -163,6 +163,12 @@
 			cube.Expand()
 	return
 
+/datum/reagent/water/reaction_mob(var/mob/living/M, var/method = TOUCH, var/volume)
+	if(method == TOUCH && isLiving(M))
+		M.adjust_fire_stacks(-(volume / 10))
+		if(M.fire_stacks <= 0)
+			M.ExtinguishMob()
+		return
 
 /datum/reagent/water/water/holywater
 	name = "Holy Water"
@@ -689,6 +695,13 @@
 /datum/reagent/fuel/reaction_turf(var/turf/T, var/volume)
 	new /obj/effect/decal/cleanable/liquid_fuel(T, volume)
 	return
+
+/datum/reagent/fuel/reaction_mob(var/mob/living/M, var/method = TOUCH, var/volume)//Splashing people with welding fuel to make them easy to ignite!
+	if(!istype(M, /mob/living))
+		return
+	if(method == TOUCH)
+		M.adjust_fire_stacks(volume / 10)
+		return
 
 /datum/reagent/fuel/on_mob_life(var/mob/living/M as mob)
 	if(!M) M = holder.my_atom

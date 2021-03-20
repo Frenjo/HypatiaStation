@@ -11,7 +11,7 @@ var/global/last_tick_duration = 0
 var/global/air_processing_killed = 0
 var/global/pipe_processing_killed = 0
 
-datum/controller/game_controller
+/datum/controller/game_controller
 	//var/processing = 0
 	//var/breather_ticks = 2		//a somewhat crude attempt to iron over the 'bumps' caused by high-cpu use by letting the MC have a breather for this many ticks after every loop
 	//var/minimum_ticks = 20	//The minimum length of time between MC ticks
@@ -36,7 +36,7 @@ datum/controller/game_controller
 	//var/mob/list/expensive_mobs = list()
 	var/rebuild_active_areas = 0
 
-datum/controller/game_controller/New()
+/datum/controller/game_controller/New()
 	//There can be only one master_controller. Out with the old and in with the new.
 	if(master_controller != src)
 		log_debug("Rebuilding Master Controller")
@@ -59,7 +59,7 @@ datum/controller/game_controller/New()
 	//if(!emergency_shuttle)			emergency_shuttle = new /datum/emergency_shuttle_controller()
 	//if(!shuttle_controller)			shuttle_controller = new /datum/shuttle_controller()
 
-datum/controller/game_controller/proc/setup()
+/datum/controller/game_controller/proc/setup()
 	world.tick_lag = config.Ticklag
 
 	spawn(20)
@@ -79,7 +79,7 @@ datum/controller/game_controller/proc/setup()
 
 	transfer_controller = new
 
-	for(var/i=0, i<max_secret_rooms, i++)
+	for(var/i = 0, i < max_secret_rooms, i++)
 		make_mining_asteroid_secret()
 
 	//Set up spawn points.
@@ -92,13 +92,13 @@ datum/controller/game_controller/proc/setup()
 	//lighting_controller.Initialize()
 
 
-datum/controller/game_controller/proc/setup_objects()
-	world << "\red \b Initializing objects"
+/datum/controller/game_controller/proc/setup_objects()
+	world << "\red \b Initializing objects."
 	sleep(-1)
 	for(var/atom/movable/object in world)
 		object.initialize()
 
-	world << "\red \b Initializing pipe networks"
+	world << "\red \b Initializing pipe networks."
 	sleep(-1)
 	for(var/obj/machinery/atmospherics/machine in machines)
 		machine.build_network()

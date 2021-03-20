@@ -76,6 +76,12 @@
 			usr << "It wasn't enough..."
 	return
 
+/datum/reagent/ethanol/reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)//Splashing people with ethanol isn't quite as good as fuel.
+	if(!istype(M, /mob/living))
+		return
+	if(method == TOUCH)
+		M.adjust_fire_stacks(volume / 15)
+		return
 
 /datum/reagent/ethanol/beer
 	name = "Beer"

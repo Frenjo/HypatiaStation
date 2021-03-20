@@ -107,7 +107,7 @@
 
 /obj/item/clothing/head/helmet/space/vox
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
-	flags = HEADCOVERSEYES|STOPSPRESSUREDMAGE
+	flags = HEADCOVERSEYES | STOPSPRESSUREDAMAGE
 	species_restricted = list("Vox")
 
 /obj/item/clothing/head/helmet/space/vox/pressure

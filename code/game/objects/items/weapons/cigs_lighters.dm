@@ -28,6 +28,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	attack_verb = list("burnt", "singed")
 
 /obj/item/weapon/match/process()
+	if(isLiving(loc))
+		var/mob/living/M = loc
+		M.IgniteMob()
 	var/turf/location = get_turf(src)
 	smoketime--
 	if(smoketime < 1)
@@ -117,7 +120,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	user.update_inv_r_hand(1)
 	return
 
-
 /obj/item/clothing/mask/cigarette/afterattack(obj/item/weapon/reagent_containers/glass/glass, mob/user as mob, proximity)
 	..()
 	if(!proximity) return
@@ -130,7 +132,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				user << "<span class='notice'>[glass] is empty.</span>"
 			else
 				user << "<span class='notice'>[src] is full.</span>"
-
 
 /obj/item/clothing/mask/cigarette/proc/light(var/flavor_text = "[usr] lights the [name].")
 	if(!src.lit)
@@ -158,6 +159,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 
 /obj/item/clothing/mask/cigarette/process()
+	if(isLiving(loc))
+		var/mob/living/M = loc
+		M.IgniteMob()
 	var/turf/location = get_turf(src)
 	smoketime--
 	if(smoketime < 1)
@@ -175,13 +179,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			reagents.remove_any(REAGENTS_METABOLISM)
 	return
 
-
 /obj/item/clothing/mask/cigarette/attack_self(mob/user as mob)
 	if(lit == 1)
 		user.visible_message("<span class='notice'>[user] calmly drops and treads on the lit [src], putting it out instantly.</span>")
 		die()
 	return ..()
-
 
 /obj/item/clothing/mask/cigarette/proc/die()
 	var/turf/T = get_turf(src)
@@ -435,6 +437,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/weapon/lighter/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M, /mob))
 		return
+	M.IgniteMob()
 
 	if(istype(M.wear_mask, /obj/item/clothing/mask/cigarette) && user.zone_sel.selecting == "mouth" && lit)
 		var/obj/item/clothing/mask/cigarette/cig = M.wear_mask

@@ -1146,7 +1146,6 @@
 	return(visible_implants)
 
 /mob/living/carbon/human/proc/handle_embedded_objects()
-
 	for(var/datum/organ/external/organ in src.organs)
 		if(organ.status & ORGAN_SPLINTED) //Splints prevent movement.
 			continue
@@ -1226,7 +1225,8 @@
 
 	spawn(0)
 		update_icons()
-		vessel.add_reagent("blood",560-vessel.total_volume)
+		if(!species.flags & NO_BLOOD)
+			vessel.add_reagent("blood", 560 - vessel.total_volume)
 
 	if(species)
 		species.handle_post_spawn(src)

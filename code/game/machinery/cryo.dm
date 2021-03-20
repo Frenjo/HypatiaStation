@@ -18,10 +18,11 @@
 	initialize_directions = dir
 
 /obj/machinery/atmospherics/unary/cryo_cell/initialize()
-	if(node) return
+	if(node)
+		return
 	var/node_connect = dir
-	for(var/obj/machinery/atmospherics/target in get_step(src,node_connect))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node_connect))
+		if(target.initialize_directions & get_dir(target, src))
 			node = target
 			break
 
@@ -74,7 +75,6 @@
   * @return nothing
   */
 /obj/machinery/atmospherics/unary/cryo_cell/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
-
 	if(user == occupant || user.stat)
 		return
 
@@ -84,7 +84,7 @@
 	data["hasOccupant"] = occupant ? 1 : 0
 
 	var/occupantData[0]
-	if (occupant)
+	if(occupant)
 		occupantData["name"] = occupant.name
 		occupantData["stat"] = occupant.stat
 		occupantData["health"] = occupant.health
@@ -116,13 +116,13 @@
 	data["beakerVolume"] = 0
 	if(beaker)
 		data["beakerLabel"] = beaker.label_text ? beaker.label_text : null
-		if (beaker.reagents && beaker.reagents.reagent_list.len)
+		if(beaker.reagents && beaker.reagents.reagent_list.len)
 			for(var/datum/reagent/R in beaker.reagents.reagent_list)
 				data["beakerVolume"] += R.volume
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "cryo.tmpl", "Cryo Cell Control System", 520, 410)
@@ -244,20 +244,21 @@
 	//loc.assume_air(expel_gas)
 
 /obj/machinery/atmospherics/unary/cryo_cell/proc/go_out()
-	if(!( occupant ))
+	if(!(occupant))
 		return
 	//for(var/obj/O in src)
 	//	O.loc = loc
-	if (occupant.client)
+	if(occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.loc = get_step(loc, SOUTH)	//this doesn't account for walls or anything, but i don't forsee that being a problem.
-	if (occupant.bodytemperature < 261 && occupant.bodytemperature >= 70) //Patch by Aranclanos to stop people from taking burn damage after being ejected
+	if(occupant.bodytemperature < 261 && occupant.bodytemperature >= 70) //Patch by Aranclanos to stop people from taking burn damage after being ejected
 		occupant.bodytemperature = 261									  // Changed to 70 from 140 by Zuhayr due to reoccurance of bug.
 //	occupant.metabslow = 0
 	occupant = null
 	update_icon()
 	return
+
 /obj/machinery/atmospherics/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob)
 	if (!istype(M))
 		usr << "\red <B>The cryo cell cannot handle such a lifeform!</B>"
@@ -276,6 +277,7 @@
 		M.client.eye = src
 	M.stop_pulling()
 	M.loc = src
+	M.ExtinguishMob()
 	if(M.health > -100 && (M.health < 0 || M.sleeping))
 		M << "\blue <b>You feel a cold liquid surround you. Your skin starts to freeze up.</b>"
 	occupant = M

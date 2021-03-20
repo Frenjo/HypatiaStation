@@ -380,7 +380,6 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
 // Plasmapeople clothing.
-
 /obj/item/clothing/under/plasmapeople
 	name = "envirosuit"
 	desc = "A suit designed to prevent a Plasmaperson from combusting in a human-breathable atmosphere."
@@ -389,3 +388,17 @@
 	item_color = "plasmaman"
 	flags_inv = HIDESHOES
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS
+
+/obj/item/clothing/under/plasmapeople/proc/Extinguish(var/mob/living/carbon/human/H)
+	if(!istype(H))
+		return
+
+	if(H.on_fire)
+		//if(extinguishes_left)
+			//if(next_extinguish > world.time)
+			//	return
+			//next_extinguish = world.time + extinguish_cooldown
+			//extinguishes_left--
+		H.visible_message("<span class='warning'>[H]'s suit automatically extinguishes them!</span>","<span class='warning'>Your suit automatically extinguishes you.</span>")
+		H.ExtinguishMob()
+		new /obj/effect/effect/water(get_turf(H))

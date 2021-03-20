@@ -549,13 +549,17 @@
 		var/obj/structure/disposalpipe/last
 		while(active)
 			if(hasmob && prob(3))
-				for(var/mob/living/H in src)
+				for(var/mob/living/L in src)
 					// This is probably a terrible way to do this, but...
 					// Check if mob is wearing the mailman's voidsuit and helmet to avoid damage.
 					// Otherwise... What the other guy said below this. -Frenjo
-					if(!istype(H,/mob/living/silicon/robot/drone)) //Drones use the mailing code to move through the disposal system,
-						if(!/obj/item/clothing/suit/space/mailmanvoid in H.get_equipped_items() && !/obj/item/clothing/head/helmet/space/mailmanvoid in H.get_equipped_items())
-							H.take_overall_damage(20, 0, "Blunt Trauma")//horribly maim any living creature jumping down disposals.  c'est la vie
+					if(!istype(L, /mob/living/silicon/robot/drone)) //Drones use the mailing code to move through the disposal system,
+						if(isHuman(L))
+							var/mob/living/carbon/human/H = L
+							if(!istype(H.wear_suit, /obj/item/clothing/suit/space/mailmanvoid) || !istype(H.head, /obj/item/clothing/head/helmet/space/mailmanvoid))
+								L.take_overall_damage(20, 0, "Blunt Trauma")//horribly maim any living creature jumping down disposals.  c'est la vie
+						else
+							L.take_overall_damage(20, 0, "Blunt Trauma")//horribly maim any living creature jumping down disposals.  c'est la vie
 
 			if(has_fat_guy && prob(2)) // chance of becoming stuck per segment if contains a fat guy
 				active = 0

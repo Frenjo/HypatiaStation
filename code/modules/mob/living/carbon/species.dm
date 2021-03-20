@@ -339,7 +339,7 @@
 	affected.implants += I
 	I.part = affected
 
-	if(ticker.mode && ( istype( ticker.mode,/datum/game_mode/heist ) ) )
+	if(ticker.mode && (istype(ticker.mode,/datum/game_mode/heist)))
 		var/datum/game_mode/heist/M = ticker.mode
 		M.cortical_stacks += I
 		M.raiders[H.mind] = I
@@ -386,6 +386,9 @@
 	flesh_color = "#907E4A"
 
 /datum/species/diona/handle_post_spawn(var/mob/living/carbon/human/H)
+	if(!H)
+		return
+
 	H.gender = NEUTER
 
 	return ..()
@@ -480,10 +483,13 @@
 	secondary_unarmed_type = /datum/unarmed_attack/punch
 	slowdown = 3
 
+	brute_mod = 1.5
 	burn_mod = 1.5
 
 	breath_type = "plasma"
 	poison_type = "oxygen"
+
+	body_temperature = T0C - 3
 
 	flags = IS_WHITELISTED | NO_SCAN | NO_BLOOD | NO_PAIN | NO_POISON
 
@@ -493,6 +499,8 @@
 	if(!H)
 		return 0
 
+	H.gender = NEUTER
+
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/plasmapeople(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/plasmapeople(H), slot_gloves)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/plasmapeople(H), slot_head)
@@ -500,9 +508,32 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
 	H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), slot_belt)
 
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/plasmapeople(H), slot_r_hand)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/plasmapeople(H), slot_in_backpack)
+
+	H.ui_toggle_internals()
+	H.internals.icon_state = "internal1"
 
 	return ..()
+
+/datum/species/plasmapeople/handle_environment_special(var/mob/living/carbon/human/H)
+	if(!H.loc)
+		return
+
+	var/atmos_sealed = (H.wear_suit && H.wear_suit.flags & STOPSPRESSUREDAMAGE) && (H.head && H.head.flags & STOPSPRESSUREDAMAGE)
+	if(!atmos_sealed && (!istype(H.w_uniform, /obj/item/clothing/under/plasmapeople) || !istype(H.head, /obj/item/clothing/head/helmet/space/plasmapeople) || !istype(H.gloves, /obj/item/clothing/gloves)))
+		var/datum/gas_mixture/environment = H.loc.return_air()
+		if(environment.total_moles > 0)
+			// TODO: Make this loop through all gases checking for an XGM_GAS_OXIDIZER flag.
+			if(environment.gas["oxygen"] >= 1)
+				H.adjust_fire_stacks(1)
+				if(!H.on_fire && H.fire_stacks > 0)
+					H.visible_message("<span class='danger'>[H]'s body reacts with the atmosphere and bursts into flames!</span>", "<span class='danger'>Your body reacts with the atmosphere and bursts into flame!</span>")
+				H.IgniteMob()
+	else if(H.fire_stacks)
+		var/obj/item/clothing/under/plasmapeople/P = H.w_uniform
+		if(istype(H.w_uniform, /obj/item/clothing/under/plasmapeople))
+			P.Extinguish(H)
+	H.update_fire()
 
 // Called when using the shredding behavior.
 /datum/species/proc/can_shred(var/mob/living/carbon/human/H)

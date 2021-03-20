@@ -5,7 +5,6 @@
 
 	if(AM.Adjacent(src))
 		src.start_pulling(AM)
-
 	return
 
 //mob verbs are faster than object verbs. See above.
@@ -27,7 +26,6 @@
 		src.health = 100 - src.getOxyLoss() - src.getToxLoss() - src.getFireLoss() - src.getBruteLoss()
 		src << "\blue You have given up life and succumbed to death."
 
-
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
 		health = 100
@@ -35,12 +33,10 @@
 	else
 		health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
 
-
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
 /mob/living/proc/calculate_affecting_pressure(var/pressure)
 	return 0
-
 
 //sort of a legacy burn method for /electrocute, /shock, and the e_chair
 /mob/living/proc/burn_skin(burn_amount)
@@ -48,7 +44,7 @@
 		//world << "DEBUG: burn_skin(), mutations=[mutations]"
 		if(mShock in src.mutations) //shockproof
 			return 0
-		if (COLD_RESISTANCE in src.mutations) //fireproof
+		if(COLD_RESISTANCE in src.mutations) //fireproof
 			return 0
 		var/mob/living/carbon/human/H = src	//make this damage method divide the damage to be done among all the body parts, then burn each body part for that much damage. will have better effect then just randomly picking a body part
 		var/divided_damage = (burn_amount)/(H.organs.len)
@@ -60,7 +56,7 @@
 		H.updatehealth()
 		return 1
 	else if(istype(src, /mob/living/carbon/monkey))
-		if (COLD_RESISTANCE in src.mutations) //fireproof
+		if(COLD_RESISTANCE in src.mutations) //fireproof
 			return 0
 		var/mob/living/carbon/monkey/M = src
 		M.adjustFireLoss(burn_amount)
@@ -287,6 +283,8 @@
 		C.legcuffed = initial(C.legcuffed)
 	hud_updateflag |= 1 << HEALTH_HUD
 	hud_updateflag |= 1 << STATUS_HUD
+	ExtinguishMob()
+	fire_stacks = 0
 
 /mob/living/proc/rejuvenate()
 
@@ -624,9 +622,21 @@
 						BD.attack_hand(usr)
 					C.open()
 
-	//breaking out of handcuffs
+	//drop && roll or breaking out of handcuffs
 	else if(isCarbon(L))
 		var/mob/living/carbon/CM = L
+		if(CM.on_fire && CM.canmove)
+			CM.fire_stacks -= 5
+			CM.Weaken(3)
+			CM.spin(32, 2)
+			CM.visible_message("<span class='danger'>[CM] rolls on the floor, trying to put themselves out!</span>", \
+				"<span class='notice'>You stop, drop, and roll!</span>")
+			sleep(30)
+			if(fire_stacks <= 0)
+				CM.visible_message("<span class='danger'>[CM] has successfully extinguished themselves!</span>", \
+					"<span class='notice'>You extinguish yourself.</span>")
+				ExtinguishMob()
+			return
 		if(CM.handcuffed && CM.canmove && (CM.last_special <= world.time))
 			CM.next_move = world.time + 100
 			CM.last_special = world.time + 100
@@ -814,3 +824,21 @@
 
 /mob/living/proc/has_brain()
 	return 1
+
+/mob/living/carbon/proc/spin(spintime, speed)
+	spawn()
+		var/D = dir
+		while(spintime >= speed)
+			sleep(speed)
+			switch(D)
+				if(NORTH)
+					D = EAST
+				if(SOUTH)
+					D = WEST
+				if(EAST)
+					D = SOUTH
+				if(WEST)
+					D = NORTH
+			set_dir(D)
+			spintime -= speed
+	return

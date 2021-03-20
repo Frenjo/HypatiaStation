@@ -178,14 +178,15 @@ var/datum/global_hud/global_hud = new()
 	var/list/obj/screen/item_action/item_action_list = list()	//Used for the item action ui buttons.
 
 
-datum/hud/New(mob/owner)
+/datum/hud/New(mob/owner)
 	mymob = owner
 	instantiate()
 	..()
 
-
 /datum/hud/proc/hidden_inventory_update()
-	if(!mymob) return
+	if(!mymob)
+		return
+
 	if(isHuman(mymob))
 		var/mob/living/carbon/human/H = mymob
 		if(inventory_shown && hud_shown)
@@ -236,6 +237,7 @@ datum/hud/New(mob/owner)
 		return 0
 	if(!mymob.client)
 		return 0
+
 	var/ui_style = ui_style2icon(mymob.client.prefs.UI_style)
 	var/ui_color = mymob.client.prefs.UI_style_color
 	var/ui_alpha = mymob.client.prefs.UI_style_alpha
@@ -266,9 +268,11 @@ datum/hud/New(mob/owner)
 
 	if(hud_used)
 		if(isHuman(src))
-			if(!client) return
+			if(!client)
+				return
 			if(client.view != world.view)
 				return
+
 			if(hud_used.hud_shown)
 				hud_used.hud_shown = 0
 				if(src.hud_used.adding)

@@ -162,12 +162,10 @@
 	R.add_reagent("fuel", max_fuel)
 	return
 
-
 /obj/item/weapon/weldingtool/examine()
 	set src in usr
 	usr << text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel )
 	return
-
 
 /obj/item/weapon/weldingtool/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/screwdriver))
@@ -182,7 +180,7 @@
 		src.add_fingerprint(user)
 		return
 
-	if((!status) && (istype(W,/obj/item/stack/rods)))
+	if((!status) && (istype(W, /obj/item/stack/rods)))
 		var/obj/item/stack/rods/R = W
 		R.use(1)
 		var/obj/item/weapon/flamethrower/F = new/obj/item/weapon/flamethrower(user.loc)
@@ -205,7 +203,6 @@
 
 	..()
 	return
-
 
 /obj/item/weapon/weldingtool/process()
 	switch(welding)
@@ -262,6 +259,9 @@
 	if (src.welding)
 		remove_fuel(1)
 		var/turf/location = get_turf(user)
+		if(isLiving(O))
+			var/mob/living/L = O
+			L.IgniteMob()
 		if (istype(location, /turf))
 			location.hotspot_expose(700, 50, 1)
 	return

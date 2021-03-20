@@ -90,7 +90,6 @@
 		return
 
 
-
 /obj/structure/urinal
 	name = "urinal"
 	desc = "The HU-452, an experimental urinal."
@@ -112,7 +111,6 @@
 				GM.adjustBruteLoss(8)
 			else
 				user << "<span class='notice'>You need a tighter grip.</span>"
-
 
 
 /obj/machinery/shower
@@ -143,10 +141,10 @@
 	on = !on
 	update_icon()
 	if(on)
-		if (M.loc == loc)
+		if(M.loc == loc)
 			wash(M)
 			check_heat(M)
-		for (var/atom/movable/G in src.loc)
+		for(var/atom/movable/G in src.loc)
 			G.clean_blood()
 
 /obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
@@ -204,7 +202,13 @@
 
 //Yes, showers are super powerful as far as washing goes.
 /obj/machinery/shower/proc/wash(atom/movable/O as obj|mob)
-	if(!on) return
+	if(!on)
+		return
+
+	if(isLiving(O))
+		var/mob/living/L = O
+		L.ExtinguishMob()
+		L.fire_stacks = -20 //Douse ourselves with water to avoid fire more easily
 
 	if(isCarbon(O))
 		var/mob/living/carbon/M = O
@@ -233,9 +237,9 @@
 				washears = !(H.head.flags_inv & HIDEEARS)
 
 			if(H.wear_mask)
-				if (washears)
+				if(washears)
 					washears = !(H.wear_mask.flags_inv & HIDEEARS)
-				if (washglasses)
+				if(washglasses)
 					washglasses = !(H.wear_mask.flags_inv & HIDEEYES)
 
 			if(H.head)

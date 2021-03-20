@@ -298,7 +298,7 @@
 		if(src.back && W.loc != src.back)
 			W.loc = src
 	else
-		if (del_on_fail)
+		if(del_on_fail)
 			qdel(W)
 	return equipped
 

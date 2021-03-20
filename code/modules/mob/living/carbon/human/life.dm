@@ -114,6 +114,9 @@
 	//Handle temperature/pressure differences between body and environment
 	handle_environment(environment)		//Optimized a good bit.
 
+	//Check if we're on fire
+	handle_fire()
+
 	//Status updates, death etc.
 	handle_regular_status_updates()		//Optimized a bit
 	update_canmove()
@@ -133,10 +136,10 @@
 /mob/living/carbon/human/proc/get_pressure_protection()
 	var/pressure_adjustment_coefficient = 1	//Determins how much the clothing you are wearing protects you in percent.
 
-	if(wear_suit && (wear_suit.flags & STOPSPRESSUREDMAGE))
+	if(wear_suit && (wear_suit.flags & STOPSPRESSUREDAMAGE))
 		pressure_adjustment_coefficient -= PRESSURE_SUIT_REDUCTION_COEFFICIENT
 
-	if(head && (head.flags & STOPSPRESSUREDMAGE))
+	if(head && (head.flags & STOPSPRESSUREDAMAGE))
 		pressure_adjustment_coefficient -= PRESSURE_HEAD_REDUCTION_COEFFICIENT
 
 	pressure_adjustment_coefficient = max(pressure_adjustment_coefficient, 0) //So it isn't less than 0
@@ -145,7 +148,7 @@
 
 /mob/living/carbon/human/calculate_affecting_pressure(var/pressure)
 	..()
-	var/pressure_difference = abs( pressure - ONE_ATMOSPHERE )
+	var/pressure_difference = abs(pressure - ONE_ATMOSPHERE)
 
 	pressure_difference = pressure_difference * (1 - get_pressure_protection())
 
@@ -307,9 +310,12 @@
 					if(istype(O)) O.add_autopsy_data("Radiation Poisoning", damage)
 
 	proc/breathe()
-		if(reagents.has_reagent("lexorin")) return
-		if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell)) return
-		if(species && (species.flags & NO_BREATHE || species.flags & IS_SYNTHETIC)) return
+		if(reagents.has_reagent("lexorin"))
+			return
+		if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
+			return
+		if(species && (species.flags & NO_BREATHE || species.flags & IS_SYNTHETIC))
+			return
 
 		var/datum/gas_mixture/environment = loc.return_air()
 		var/datum/gas_mixture/breath
@@ -480,15 +486,16 @@
 		// Not enough to breathe
 		if(inhale_pp < safe_pressure_min)
 			if(prob(20))
-				spawn(0) emote("gasp")
+				spawn(0)
+					emote("gasp")
 			if(inhale_pp > 0)
 				var/ratio = inhale_pp/safe_pressure_min
 
 				// Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!)
 				// The hell? By definition ratio > 1, and HUMAN_MAX_OXYLOSS = 1... why do we even have this?
-				adjustOxyLoss(min(5*(1 - ratio), HUMAN_MAX_OXYLOSS))
+				adjustOxyLoss(min(5 * (1 - ratio), HUMAN_MAX_OXYLOSS))
 				failed_inhale = 1
-				inhaled_gas_used = inhaling*ratio/6
+				inhaled_gas_used = inhaling * ratio / 6
 
 			else
 
@@ -499,7 +506,7 @@
 
 		else
 			// We're in safe limits
-			inhaled_gas_used = inhaling/6
+			inhaled_gas_used = inhaling / 6
 			oxygen_alert = 0
 
 		breath.adjust_gas(breath_type, -inhaled_gas_used)
@@ -509,7 +516,7 @@
 
 		// Too much exhaled gas in the air
 		if(exhaled_pp > safe_exhaled_max)
-			if (!co2_alert|| prob(15))
+			if(!co2_alert|| prob(15))
 				var/word = pick("extremely dizzy","short of breath","faint","confused")
 				src << "<span class='danger'>You feel [word].</span>"
 
@@ -518,21 +525,21 @@
 			failed_exhale = 1
 
 		else if(exhaled_pp > safe_exhaled_max * 0.7)
-			if (!co2_alert || prob(1))
+			if(!co2_alert || prob(1))
 				var/word = pick("dizzy","short of breath","faint","momentarily confused")
 				src << "<span class='warning>You feel [word].</span>"
 
 			//scale linearly from 0 to 1 between safe_exhaled_max and safe_exhaled_max*0.7
-			var/ratio = 1.0 - (safe_exhaled_max - exhaled_pp)/(safe_exhaled_max*0.3)
+			var/ratio = 1.0 - (safe_exhaled_max - exhaled_pp) / (safe_exhaled_max * 0.3)
 
 			//give them some oxyloss, up to the limit - we don't want people falling unconcious due to CO2 alone until they're pretty close to safe_exhaled_max.
-			if (getOxyLoss() < 50*ratio)
+			if(getOxyLoss() < 50 * ratio)
 				adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 			co2_alert = 1
 			failed_exhale = 1
 
 		else if(exhaled_pp > safe_exhaled_max * 0.6)
-			if (prob(0.3))
+			if(prob(0.3))
 				var/word = pick("a little dizzy","short of breath")
 				src << "<span class='warning>You feel [word].</span>"
 
@@ -565,11 +572,12 @@
 			// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
 			else if(SA_pp > 0.15)
 				if(prob(20))
-					spawn(0) emote(pick("giggle", "laugh"))
+					spawn(0)
+						emote(pick("giggle", "laugh"))
 			breath.adjust_gas("sleeping_agent", -breath.gas["sleeping_agent"])
 
 		// Were we able to breathe?
-		if (failed_inhale || failed_exhale)
+		if(failed_inhale || failed_exhale)
 			failed_last_breath = 1
 		else
 			failed_last_breath = 0
@@ -755,6 +763,8 @@
 
 		if(abs(body_temperature_difference) < 0.5)
 			return //fuck this precision
+		if(on_fire)
+			return //too busy for pesky convection
 
 		if(bodytemperature < species.cold_level_1) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
 			if(nutrition >= 2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
@@ -1808,6 +1818,15 @@
 			hud_list[SPECIALROLE_HUD] = holder
 	hud_updateflag = 0
 
+/mob/living/carbon/human/handle_fire()
+	if(..())
+		return
+
+	var/burn_temperature = fire_burn_temperature()
+	var/thermal_protection = get_heat_protection(burn_temperature)
+
+	if(thermal_protection < 1 && bodytemperature < burn_temperature)
+		bodytemperature += round(BODYTEMP_HEATING_MAX*(1 - thermal_protection), 1)
 
 #undef HUMAN_MAX_OXYLOSS
 #undef HUMAN_CRIT_MAX_OXYLOSS

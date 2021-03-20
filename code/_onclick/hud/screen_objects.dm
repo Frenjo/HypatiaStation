@@ -188,7 +188,8 @@
 	overlays += image('icons/mob/zone_sel.dmi', "[selecting]")
 
 /obj/screen/Click(location, control, params)
-	if(!usr)	return 1
+	if(!usr)
+		return 1
 
 	switch(name)
 		if("toggle")
