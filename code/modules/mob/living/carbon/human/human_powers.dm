@@ -49,7 +49,6 @@
 		if ((O.client && !( O.blinded )))
 			O.show_message(text("\red <B>[] [failed ? "tried to tackle" : "has tackled"] down []!</B>", src, T), 1)
 
-/*
 /mob/living/carbon/human/proc/leap()
 	set category = "Abilities"
 	set name = "Leap"
@@ -58,50 +57,41 @@
 	if(last_special > world.time)
 		return
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
+	if(stat || paralysis || stunned || weakened || lying)
 		src << "You cannot leap in your current state."
 		return
 
 	var/list/choices = list()
-	for(var/mob/living/M in view(6,src))
+	for(var/mob/living/M in view(6, src))
 		if(!istype(M,/mob/living/silicon))
 			choices += M
 	choices -= src
 
-	var/mob/living/T = input(src,"Who do you wish to leap at?") as null|anything in choices
+	var/mob/living/T = input(src,"Who do you wish to leap at?") in null|choices
 
-	if(!T || !src || src.stat) return
-
-	if(get_dist(get_turf(T), get_turf(src)) > 6) return
-
-	if(last_special > world.time)
+	if(!T || !src || src.stat)
 		return
 
-	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot leap in your current state."
+	if(get_dist(get_turf(T), get_turf(src)) > 6)
 		return
 
-	last_special = world.time + 75
+	last_special = world.time + 100
 	status_flags |= LEAPING
 
 	src.visible_message("<span class='warning'><b>\The [src]</b> leaps at [T]!</span>")
-	src.throw_at(get_step(get_turf(T),get_turf(src)), 5, 1, src)
-	//playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
+	src.throw_at(get_step(get_turf(T),get_turf(src)), 5, 1)
+	playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
 
 	sleep(5)
 
-	if(status_flags & LEAPING) status_flags &= ~LEAPING
+	if(status_flags & LEAPING)
+		status_flags &= ~LEAPING
 
 	if(!src.Adjacent(T))
 		src << "\red You miss!"
 		return
 
 	T.Weaken(5)
-
-	//Only official cool kids get the grab and no self-prone.
-	if(src.mind && src.mind.special_role)
-		src.Weaken(5)
-		return
 
 	var/use_hand = "left"
 	if(l_hand)
@@ -113,7 +103,7 @@
 
 	src.visible_message("<span class='warning'><b>\The [src]</b> seizes [T] aggressively!</span>")
 
-	var/obj/item/weapon/grab/G = new(src,T)
+	var/obj/item/weapon/grab/G = new(src, T)
 	if(use_hand == "left")
 		l_hand = G
 	else
@@ -122,7 +112,6 @@
 	G.state = GRAB_AGGRESSIVE
 	G.icon_state = "grabbed1"
 	G.synch()
-*/
 
 /mob/living/carbon/human/proc/gut()
 	set category = "Abilities"
@@ -149,15 +138,16 @@
 
 	visible_message("<span class='warning'><b>\The [src]</b> rips viciously at \the [G.affecting]'s body with its claws!</span>")
 
-	if(istype(G.affecting,/mob/living/carbon/human))
+	if(istype(G.affecting, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = G.affecting
-		H.apply_damage(50,BRUTE)
+		H.apply_damage(50, BRUTE)
 		if(H.stat == 2)
 			H.gib()
 	else
 		var/mob/living/M = G.affecting
-		if(!istype(M)) return //wut
-		M.apply_damage(50,BRUTE)
+		if(!istype(M))
+			return //wut
+		M.apply_damage(50, BRUTE)
 		if(M.stat == 2)
 			M.gib()
 

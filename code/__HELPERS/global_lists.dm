@@ -88,7 +88,7 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Al
 		side_effects[M.name] = T
 
 	//List of job. I can't believe this was calculated multiple times per tick!
-	paths = typesof(/datum/job) -list(/datum/job,/datum/job/ai,/datum/job/cyborg)
+	paths = typesof(/datum/job) -list(/datum/job, /datum/job/ai, /datum/job/cyborg)
 	for(var/T in paths)
 		var/datum/job/J = new T
 		joblist[J.title] = J
@@ -99,13 +99,16 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Al
 		var/datum/language/L = new T
 		all_languages[L.name] = L
 
-	for (var/language_name in all_languages)
+	for(var/language_name in all_languages)
 		var/datum/language/L = all_languages[language_name]
 		language_keys[":[lowertext(L.key)]"] = L
 
+	var/rkey = 0
 	paths = typesof(/datum/species)-/datum/species
 	for(var/T in paths)
+		rkey++
 		var/datum/species/S = new T
+		S.race_key = rkey //Used in mob icon caching.
 		all_species[S.name] = S
 
 		if(S.flags & IS_WHITELISTED)

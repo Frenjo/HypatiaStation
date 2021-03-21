@@ -43,29 +43,35 @@
 	make_blood()
 
 /mob/living/carbon/human/Bump(atom/movable/AM as mob|obj, yes)
-	if ((!( yes ) || now_pushing))
+	if((!(yes) || now_pushing))
 		return
 	now_pushing = 1
-	if (ismob(AM))
+	if(ismob(AM))
 		var/mob/tmob = AM
 
-		if( istype(tmob, /mob/living/carbon) && prob(10) )
+		if(istype(tmob, /mob/living/carbon) && prob(10))
 			src.spread_disease_to(AM, "Contact")
 //BubbleWrap - Should stop you pushing a restrained person out of the way
 
 		if(istype(tmob, /mob/living/carbon/human))
-
 			for(var/mob/M in range(tmob, 1))
-				if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)) )
-					if ( !(world.time % 5) )
+				if(tmob.pinned.len || ((M.pulling == tmob && (tmob.restrained() && !(M.restrained()) && M.stat == 0)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)))
+					if(!(world.time % 5))
 						src << "\red [tmob] is restrained, you cannot push past"
 					now_pushing = 0
 					return
-				if( tmob.pulling == M && ( M.restrained() && !( tmob.restrained() ) && tmob.stat == 0) )
-					if ( !(world.time % 5) )
+				if(tmob.pulling == M && (M.restrained() && !(tmob.restrained()) && tmob.stat == 0))
+					if(!(world.time % 5))
 						src << "\red [tmob] is restraining [M], you cannot push past"
 					now_pushing = 0
 					return
+
+		//Leaping mobs just land on the tile, no pushing, no anything.
+		if(status_flags & LEAPING)
+			loc = tmob.loc
+			status_flags &= ~LEAPING
+			now_pushing = 0
+			return
 
 		//BubbleWrap: people in handcuffs are always switched around as if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
 		if((tmob.a_intent == "help" || tmob.restrained()) && (a_intent == "help" || src.restrained()) && tmob.canmove && canmove) // mutual brohugs all around!

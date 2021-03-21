@@ -17,14 +17,14 @@
 	var/static/list/phase_shift_by_y
 
 /turf/space/New()
-	update_starlight()
-
 	if(!dust_cache)
 		build_dust_cache()
 	toggle_transit() //add static dust
 
+	update_starlight()
+
 /turf/space/proc/update_starlight()
-	if(!config && !config.starlight)
+	if(!config)
 		return
 
 	if(locate(/turf/simulated) in orange(src, 1))

@@ -33,24 +33,24 @@
 		..()
 		contents = list()
 		sleep(1)
-		new /obj/item/clothing/mask/breath( src )
-		new /obj/item/weapon/tank/emergency_oxygen( src )
+		new /obj/item/clothing/mask/breath(src)
+		new /obj/item/weapon/tank/emergency_oxygen(src)
 		new /obj/item/weapon/storage/pill_bottle/stokaline(src) // Stokaline pills as an emergency ration. -Frenjo
 		return
 
-/obj/item/weapon/storage/box/engineer
+/obj/item/weapon/storage/box/survival/engineer
 	name = "engineering survival kit"
 	desc = "An engineering issue survival kit for use in emergencies."
 	New()
 		..()
 		contents = list()
 		sleep(1)
-		new /obj/item/clothing/mask/breath( src )
-		new /obj/item/weapon/tank/emergency_oxygen/engi( src )
+		new /obj/item/clothing/mask/breath(src)
+		new /obj/item/weapon/tank/emergency_oxygen/engi(src)
 		new /obj/item/weapon/storage/pill_bottle/stokaline(src) // Stokaline pills as an emergency ration. -Frenjo
 		return
 
-/obj/item/weapon/storage/box/plasmapeople
+/obj/item/weapon/storage/box/survival/plasmapeople
 	name = "plasmapeople survival kit"
 	desc = "A plasmaperson-issue survival kit for use in emergencies."
 	New()
@@ -59,6 +59,18 @@
 		sleep(1)
 		new /obj/item/clothing/mask/breath(src)
 		new /obj/item/weapon/tank/emergency_plasma(src)
+		return
+
+/obj/item/weapon/storage/box/survival/diona
+	name = "diona survival kit"
+	desc = "A diona-issue survival kit for use in emergencies."
+	New()
+		..()
+		contents = list()
+		sleep(1)
+		// I had no idea what to put in here so they get these items.
+		new /obj/item/device/flashlight(src)
+		new /obj/item/device/flashlight/pen(src)
 		return
 
 
@@ -99,13 +111,13 @@
 
 	New()
 		..()
-		new /obj/item/weapon/reagent_containers/syringe( src )
-		new /obj/item/weapon/reagent_containers/syringe( src )
-		new /obj/item/weapon/reagent_containers/syringe( src )
-		new /obj/item/weapon/reagent_containers/syringe( src )
-		new /obj/item/weapon/reagent_containers/syringe( src )
-		new /obj/item/weapon/reagent_containers/syringe( src )
-		new /obj/item/weapon/reagent_containers/syringe( src )
+		new /obj/item/weapon/reagent_containers/syringe(src)
+		new /obj/item/weapon/reagent_containers/syringe(src)
+		new /obj/item/weapon/reagent_containers/syringe(src)
+		new /obj/item/weapon/reagent_containers/syringe(src)
+		new /obj/item/weapon/reagent_containers/syringe(src)
+		new /obj/item/weapon/reagent_containers/syringe(src)
+		new /obj/item/weapon/reagent_containers/syringe(src)
 
 /obj/item/weapon/storage/box/beakers
 	name = "box of beakers"
@@ -113,13 +125,13 @@
 
 	New()
 		..()
-		new /obj/item/weapon/reagent_containers/glass/beaker( src )
-		new /obj/item/weapon/reagent_containers/glass/beaker( src )
-		new /obj/item/weapon/reagent_containers/glass/beaker( src )
-		new /obj/item/weapon/reagent_containers/glass/beaker( src )
-		new /obj/item/weapon/reagent_containers/glass/beaker( src )
-		new /obj/item/weapon/reagent_containers/glass/beaker( src )
-		new /obj/item/weapon/reagent_containers/glass/beaker( src )
+		new /obj/item/weapon/reagent_containers/glass/beaker(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker(src)
+		new /obj/item/weapon/reagent_containers/glass/beaker(src)
 
 /obj/item/weapon/storage/box/injectors
 	name = "box of DNA injectors"
@@ -276,13 +288,13 @@
 	desc = "It has pictures of paper cups on the front."
 	New()
 		..()
-		new /obj/item/weapon/reagent_containers/food/drinks/sillycup( src )
-		new /obj/item/weapon/reagent_containers/food/drinks/sillycup( src )
-		new /obj/item/weapon/reagent_containers/food/drinks/sillycup( src )
-		new /obj/item/weapon/reagent_containers/food/drinks/sillycup( src )
-		new /obj/item/weapon/reagent_containers/food/drinks/sillycup( src )
-		new /obj/item/weapon/reagent_containers/food/drinks/sillycup( src )
-		new /obj/item/weapon/reagent_containers/food/drinks/sillycup( src )
+		new /obj/item/weapon/reagent_containers/food/drinks/sillycup(src)
+		new /obj/item/weapon/reagent_containers/food/drinks/sillycup(src)
+		new /obj/item/weapon/reagent_containers/food/drinks/sillycup(src)
+		new /obj/item/weapon/reagent_containers/food/drinks/sillycup(src)
+		new /obj/item/weapon/reagent_containers/food/drinks/sillycup(src)
+		new /obj/item/weapon/reagent_containers/food/drinks/sillycup(src)
+		new /obj/item/weapon/reagent_containers/food/drinks/sillycup(src)
 
 
 /obj/item/weapon/storage/box/donkpockets
@@ -391,12 +403,12 @@
 
 	New()
 		..()
-		new /obj/item/device/assembly/mousetrap( src )
-		new /obj/item/device/assembly/mousetrap( src )
-		new /obj/item/device/assembly/mousetrap( src )
-		new /obj/item/device/assembly/mousetrap( src )
-		new /obj/item/device/assembly/mousetrap( src )
-		new /obj/item/device/assembly/mousetrap( src )
+		new /obj/item/device/assembly/mousetrap(src)
+		new /obj/item/device/assembly/mousetrap(src)
+		new /obj/item/device/assembly/mousetrap(src)
+		new /obj/item/device/assembly/mousetrap(src)
+		new /obj/item/device/assembly/mousetrap(src)
+		new /obj/item/device/assembly/mousetrap(src)
 
 /obj/item/weapon/storage/box/pillbottles
 	name = "box of pill bottles"
@@ -404,13 +416,13 @@
 
 	New()
 		..()
-		new /obj/item/weapon/storage/pill_bottle( src )
-		new /obj/item/weapon/storage/pill_bottle( src )
-		new /obj/item/weapon/storage/pill_bottle( src )
-		new /obj/item/weapon/storage/pill_bottle( src )
-		new /obj/item/weapon/storage/pill_bottle( src )
-		new /obj/item/weapon/storage/pill_bottle( src )
-		new /obj/item/weapon/storage/pill_bottle( src )
+		new /obj/item/weapon/storage/pill_bottle(src)
+		new /obj/item/weapon/storage/pill_bottle(src)
+		new /obj/item/weapon/storage/pill_bottle(src)
+		new /obj/item/weapon/storage/pill_bottle(src)
+		new /obj/item/weapon/storage/pill_bottle(src)
+		new /obj/item/weapon/storage/pill_bottle(src)
+		new /obj/item/weapon/storage/pill_bottle(src)
 
 
 /obj/item/weapon/storage/box/snappops
@@ -422,7 +434,7 @@
 	can_hold = list("/obj/item/toy/snappop")
 	New()
 		..()
-		for(var/i=1; i <= storage_slots; i++)
+		for(var/i = 1; i <= storage_slots; i++)
 			new /obj/item/toy/snappop(src)
 
 /obj/item/weapon/storage/box/matches
@@ -439,7 +451,7 @@
 
 	New()
 		..()
-		for(var/i=1; i <= storage_slots; i++)
+		for(var/i = 1; i <= storage_slots; i++)
 			new /obj/item/weapon/match(src)
 
 	attackby(obj/item/weapon/match/W as obj, mob/user as mob)

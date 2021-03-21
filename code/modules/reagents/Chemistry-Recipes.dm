@@ -1230,11 +1230,10 @@ datum
 			on_reaction(var/datum/reagents/holder)
 				for(var/mob/O in viewers(get_turf(holder.my_atom), null))
 					O.show_message(text("\red The slime begins to emit a soft light."), 1)
-				var/obj/item/slime_extract/yellow/Y = holder
-				//Y.luminosity = 6
-				Y.light_range = 6
-//Purple
+				var/obj/item/device/flashlight/slime/F = new /obj/item/device/flashlight/slime
+				F.loc = get_turf(holder.my_atom)
 
+//Purple
 		slimepsteroid
 			name = "Slime Steroid"
 			id = "m_steroid"

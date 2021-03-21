@@ -130,6 +130,9 @@
 			italics = 1
 			message_range = 1
 
+	if((species.name == "Vox" || species.name == "Vox Armalis") && prob(20))
+		playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
+
 	..(message, speaking, verbage, alt_name, italics, message_range, used_radios)
 
 /mob/living/carbon/human/say_understands(var/mob/other, var/datum/language/speaking = null)

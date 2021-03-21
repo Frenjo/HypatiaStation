@@ -88,17 +88,19 @@
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	species_restricted = list("Vox")
+	species_restricted = list("Vox", "Vox Armalis")
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/suit.dmi'
+		"Vox" = 'icons/mob/species/vox/suit.dmi',
+		"Vox Armalis" = 'icons/mob/species/armalis/suit.dmi',
 		)
 
 /obj/item/clothing/head/helmet/space/vox
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
 	flags = HEADCOVERSEYES | STOPSPRESSUREDAMAGE
-	species_restricted = list("Vox")
+	species_restricted = list("Vox", "Vox Armalis")
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/head.dmi'
+		"Vox" = 'icons/mob/species/vox/head.dmi',
+		"Vox Armalis" = 'icons/mob/species/armalis/head.dmi',
 		)
 
 /obj/item/clothing/head/helmet/space/vox/pressure
@@ -175,9 +177,10 @@
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	item_color = "gloves-vox"
-	species_restricted = list("Vox")
+	species_restricted = list("Vox", "Vox Armalis")
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/gloves.dmi'
+		"Vox" = 'icons/mob/species/vox/gloves.dmi',
+		"Vox Armalis" = 'icons/mob/species/armalis/gloves.dmi',
 		)
 
 /obj/item/clothing/shoes/magboots/vox
@@ -185,9 +188,10 @@
 	name = "vox boots"
 	item_state = "boots-vox"
 	icon_state = "boots-vox"
-	species_restricted = list("Vox")
+	species_restricted = list("Vox", "Vox Armalis")
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/feet.dmi'
+		"Vox" = 'icons/mob/species/vox/feet.dmi',
+		"Vox Armalis" = 'icons/mob/species/armalis/feet.dmi',
 		)
 
 /obj/item/clothing/shoes/magboots/vox/attack_self(mob/user)

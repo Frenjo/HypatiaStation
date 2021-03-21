@@ -22,6 +22,7 @@
 	var/primitive                				// Lesser form, if any (ie. monkey for humans)
 	var/tail                     				// Name of tail image in species effects icon file.
 	var/language                 				// Default racial language, if any.
+	var/secondary_langs = list() // The names of secondary languages that are available to this species.
 	var/datum/unarmed_attack/unarmed           	// For empty hand harm-intent attack
 	var/datum/unarmed_attack/secondary_unarmed 	// For empty hand harm-intent attack if the first fails.
 	var/datum/hud_data/hud
@@ -77,6 +78,10 @@
 	var/blood_color = "#A10808" //Red.
 	var/flesh_color = "#FFC896" //Pink.
 
+	//Used in icon caching.
+	var/race_key = 0
+	var/icon/icon_template
+
 	// Species-specific abilities.
 	var/list/inherent_verbs
 	var/list/has_organ = list(
@@ -87,6 +92,8 @@
 		"brain" =    /datum/organ/internal/brain,
 		"eyes" =     /datum/organ/internal/eyes
 		)
+
+	var/survival_kit = /obj/item/weapon/storage/box/survival // For species with custom survival kits, default is the standard kit.
 
 /datum/species/New()
 	if(hud_type)
@@ -248,6 +255,7 @@
 	icobase = 'icons/mob/human_races/r_tajaran.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
 	language = "Siik'maas"
+	secondary_langs = list("Siik'tajr")
 	tail = "tajtail"
 	unarmed_type = /datum/unarmed_attack/claws
 	secondary_unarmed_type = /datum/unarmed_attack/bite
@@ -313,7 +321,7 @@
 	flesh_color = "#808D11"
 
 	inherent_verbs = list(
-		///mob/living/carbon/human/proc/leap
+		/mob/living/carbon/human/proc/leap
 		)
 
 	has_organ = list(
@@ -325,7 +333,44 @@
 		"eyes" =     /datum/organ/internal/eyes
 		)
 
-/datum/species/vox/handle_post_spawn(var/mob/living/carbon/human/H)
+/datum/species/vox/armalis
+	name = "Vox Armalis"
+	icobase = 'icons/mob/human_races/r_armalis.dmi'
+	deform = 'icons/mob/human_races/r_armalis.dmi'
+	language = "Vox-pidgin"
+	unarmed_type = /datum/unarmed_attack/claws/strong
+	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
+
+	warning_low_pressure = 50
+	hazard_low_pressure = 0
+
+	cold_level_1 = 80
+	cold_level_2 = 50
+	cold_level_3 = 0
+
+	heat_level_1 = 2000
+	heat_level_2 = 3000
+	heat_level_3 = 4000
+
+	brute_mod = 0.2
+	burn_mod = 0.2
+
+	eyes = "blank_eyes"
+	breath_type = "nitrogen"
+	poison_type = "oxygen"
+
+	flags = NO_SCAN | NO_BLOOD | HAS_TAIL | NO_PAIN | IS_WHITELISTED
+
+	blood_color = "#2299FC"
+	flesh_color = "#808D11"
+
+	tail = "armalis_tail"
+	icon_template = 'icons/mob/human_races/r_armalis.dmi'
+
+/datum/species/vox/create_organs(var/mob/living/carbon/human/H)
+	..() //create organs first.
+
+	//Now apply cortical stack.
 	var/datum/organ/external/affected = H.get_organ("head")
 
 	//To avoid duplicates.
@@ -339,12 +384,10 @@
 	affected.implants += I
 	I.part = affected
 
-	if(ticker.mode && (istype(ticker.mode,/datum/game_mode/heist)))
+	if(ticker.mode && (istype(ticker.mode, /datum/game_mode/heist)))
 		var/datum/game_mode/heist/M = ticker.mode
 		M.cortical_stacks += I
 		M.raiders[H.mind] = I
-
-	return ..()
 
 /datum/species/diona
 	name = "Diona"
@@ -384,6 +427,8 @@
 
 	blood_color = "#004400"
 	flesh_color = "#907E4A"
+
+	survival_kit = /obj/item/weapon/storage/box/survival/diona
 
 /datum/species/diona/handle_post_spawn(var/mob/living/carbon/human/H)
 	if(!H)
@@ -443,6 +488,8 @@
 	blood_color = "#1F181F"
 	flesh_color = "#575757"
 
+	survival_kit = null
+
 /datum/species/obsedai
 	name = "Obsedai"
 	icobase = 'icons/mob/human_races/r_obsedai.dmi'
@@ -474,6 +521,8 @@
 	blood_color = "#BD3AC2"
 	flesh_color = "#4A4845"
 
+	survival_kit = null
+
 /datum/species/plasmapeople
 	name = "Plasmaperson"
 	icobase = 'icons/mob/human_races/r_plasmapeople.dmi'
@@ -495,6 +544,8 @@
 
 	reagent_tag = IS_PLASMAPERSON
 
+	survival_kit = /obj/item/weapon/storage/box/survival/plasmapeople
+
 /datum/species/plasmapeople/handle_post_spawn(var/mob/living/carbon/human/H)
 	if(!H)
 		return 0
@@ -504,14 +555,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/plasmapeople(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/plasmapeople(H), slot_gloves)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/plasmapeople(H), slot_head)
-
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
-	H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), slot_belt)
-
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/plasmapeople(H), slot_in_backpack)
-
-	H.ui_toggle_internals()
-	H.internals.icon_state = "internal1"
 
 	return ..()
 

@@ -41,10 +41,11 @@
 
 /obj/item/weapon/tank/examine()
 	var/obj/icon = src
-	if (istype(src.loc, /obj/item/assembly))
+	if(istype(src.loc, /obj/item/assembly))
 		icon = src.loc
-	if (!in_range(src, usr))
-		if (icon == src) usr << "\blue It's \a \icon[icon][src]! If you want any more information you'll need to get closer."
+	if(!in_range(src, usr))
+		if(icon == src)
+			usr << "\blue It's \a \icon[icon][src]! If you want any more information you'll need to get closer."
 		return
 
 	var/celsius_temperature = src.air_contents.temperature-T0C
@@ -70,7 +71,7 @@
 /obj/item/weapon/tank/blob_act()
 	if(prob(50))
 		var/turf/location = src.loc
-		if (!( istype(location, /turf) ))
+		if(!(istype(location, /turf)))
 			qdel(src)
 
 		if(src.air_contents)
@@ -82,10 +83,10 @@
 	..()
 	var/obj/icon = src
 
-	if (istype(src.loc, /obj/item/assembly))
+	if(istype(src.loc, /obj/item/assembly))
 		icon = src.loc
 
-	if ((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
+	if((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
 		for (var/mob/O in viewers(user, null))
 			O << "\red [user] has used [W] on \icon[icon] [src]"
 
@@ -94,7 +95,7 @@
 		var/total_moles = air_contents.total_moles
 
 		user << "\blue Results of analysis of \icon[icon]"
-		if (total_moles>0)
+		if(total_moles > 0)
 			user << "\blue Pressure: [round(pressure,0.1)] kPa"
 			for(var/g in air_contents.gas)
 				user << "\blue [gas_data.name[g]]: [(round(air_contents.gas[g] / total_moles) * 100)]%"
@@ -102,7 +103,7 @@
 		else
 			user << "\blue Tank is empty!"
 		src.add_fingerprint(user)
-	else if (istype(W,/obj/item/latexballon))
+	else if(istype(W,/obj/item/latexballon))
 		var/obj/item/latexballon/LB = W
 		LB.blow(src)
 		src.add_fingerprint(user)
@@ -111,13 +112,12 @@
 		bomb_assemble(W,user)
 
 /obj/item/weapon/tank/attack_self(mob/user as mob)
-	if (!(src.air_contents))
+	if(!(src.air_contents))
 		return
 
 	ui_interact(user)
 
 /obj/item/weapon/tank/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
-
 	var/using_internal
 	if(istype(loc,/mob/living/carbon))
 		var/mob/living/carbon/location = loc
@@ -140,7 +140,7 @@
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "tanks.tmpl", "Tank", 500, 300)
@@ -153,28 +153,28 @@
 
 /obj/item/weapon/tank/Topic(href, href_list)
 	..()
-	if (usr.stat|| usr.restrained())
+	if(usr.stat|| usr.restrained())
 		return 0
-	if (src.loc != usr)
+	if(src.loc != usr)
 		return 0
 
-	if (href_list["dist_p"])
-		if (href_list["dist_p"] == "reset")
+	if(href_list["dist_p"])
+		if(href_list["dist_p"] == "reset")
 			src.distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
-		else if (href_list["dist_p"] == "max")
+		else if(href_list["dist_p"] == "max")
 			src.distribute_pressure = TANK_MAX_RELEASE_PRESSURE
 		else
 			var/cp = text2num(href_list["dist_p"])
 			src.distribute_pressure += cp
 		src.distribute_pressure = min(max(round(src.distribute_pressure), 0), TANK_MAX_RELEASE_PRESSURE)
-	if (href_list["stat"])
-		if(istype(loc,/mob/living/carbon))
+	if(href_list["stat"])
+		if(istype(loc, /mob/living/carbon))
 			var/mob/living/carbon/location = loc
 			if(location.internal == src)
 				location.internal = null
 				location.internals.icon_state = "internal0"
 				usr << "\blue You close the tank release valve."
-				if (location.internals)
+				if(location.internals)
 					location.internals.icon_state = "internal0"
 			else
 				if(location.wear_mask && (location.wear_mask.flags & MASKINTERNALS))
@@ -187,7 +187,6 @@
 
 	src.add_fingerprint(usr)
 	return 1
-
 
 /obj/item/weapon/tank/remove_air(amount)
 	return air_contents.remove(amount)

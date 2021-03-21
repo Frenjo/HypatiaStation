@@ -17,29 +17,23 @@
 	..()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
-		//SetLuminosity(brightness_on)
 		set_light(brightness_on)
 	else
 		icon_state = initial(icon_state)
-		//SetLuminosity(0)
 		set_light(0)
 
 /obj/item/device/flashlight/proc/update_brightness(var/mob/user = null)
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
 		if(loc == user)
-			//user.SetLuminosity(user.luminosity + brightness_on)
 			user.set_light(user.luminosity + brightness_on)
 		else if(isturf(loc))
-			//SetLuminosity(brightness_on)
 			set_light(brightness_on)
 	else
 		icon_state = initial(icon_state)
 		if(loc == user)
-			//user.SetLuminosity(user.luminosity - brightness_on)
 			user.set_light(user.luminosity - brightness_on)
 		else if(isturf(loc))
-			//SetLuminosity(0)
 			set_light(0)
 
 /obj/item/device/flashlight/attack_self(mob/user)
@@ -49,7 +43,6 @@
 	on = !on
 	update_brightness(user)
 	return 1
-
 
 /obj/item/device/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
@@ -93,22 +86,15 @@
 	else
 		return ..()
 
-
 /obj/item/device/flashlight/pickup(mob/user)
 	if(on)
-		//user.SetLuminosity(user.luminosity + brightness_on)
-		//SetLuminosity(0)
 		user.set_light(user.luminosity + brightness_on)
 		set_light(0)
 
-
 /obj/item/device/flashlight/dropped(mob/user)
 	if(on)
-		//user.SetLuminosity(user.luminosity - brightness_on)
-		//SetLuminosity(brightness_on)
 		user.set_light(user.luminosity - brightness_on)
 		set_light(brightness_on)
-
 
 /obj/item/device/flashlight/pen
 	name = "penlight"
@@ -117,7 +103,6 @@
 	item_state = ""
 	flags = FPRINT | TABLEPASS | CONDUCT
 	brightness_on = 2
-
 
 // the desk lamps are a bit special
 /obj/item/device/flashlight/lamp
@@ -132,14 +117,12 @@
 	g_amt = 0
 	on = 1
 
-
 // green-shaded desk lamp
 /obj/item/device/flashlight/lamp/green
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampgreen"
 	item_state = "lampgreen"
 	brightness_on = 5
-
 
 /obj/item/device/flashlight/lamp/verb/toggle_light()
 	set name = "Toggle light"
@@ -150,7 +133,6 @@
 		attack_self(usr)
 
 // FLARES
-
 /obj/item/device/flashlight/flare
 	name = "flare"
 	desc = "A red NanoTrasen issued flare. There are instructions on the side, it reads 'pull cord, make light'."
@@ -189,7 +171,6 @@
 		update_brightness(null)
 
 /obj/item/device/flashlight/flare/attack_self(mob/user)
-
 	// Usual checks
 	if(!fuel)
 		user << "<span class='notice'>It's out of fuel.</span>"
@@ -204,3 +185,25 @@
 		src.force = on_damage
 		src.damtype = "fire"
 		processing_objects += src
+
+/obj/item/device/flashlight/slime
+	gender = PLURAL
+	name = "glowing slime extract"
+	desc = "A glowing ball of what appears to be amber."
+	icon = 'icons/obj/lighting.dmi'
+	icon_state = "floor1" //not a slime extract sprite but... something close enough!
+	item_state = "slime"
+	w_class = 1
+	m_amt = 0
+	g_amt = 0
+	brightness_on = 6
+	on = 1 //Bio-luminesence has one setting, on.
+
+/obj/item/device/flashlight/slime/New()
+	set_light(brightness_on)
+	spawn(1) //Might be sloppy, but seems to be necessary to prevent further runtimes and make these work as intended... don't judge me!
+		update_brightness()
+		icon_state = initial(icon_state)
+
+/obj/item/device/flashlight/slime/attack_self(mob/user)
+	return //Bio-luminescence does not toggle.

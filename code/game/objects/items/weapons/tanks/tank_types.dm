@@ -17,12 +17,10 @@
 	icon_state = "oxygen"
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 
-
 	New()
 		..()
 		air_contents.adjust_gas("oxygen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 		return
-
 
 	examine()
 		set src in usr
@@ -93,7 +91,6 @@
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = null	//they have no straps!
 
-
 /obj/item/weapon/tank/plasma/New()
 	..()
 
@@ -107,7 +104,8 @@
 
 	if(istype(W, /obj/item/weapon/flamethrower))
 		var/obj/item/weapon/flamethrower/F = W
-		if ((!F.status)||(F.ptank))	return
+		if((!F.status)||(F.ptank))
+			return
 		src.master = F
 		F.ptank = src
 		user.before_take_item(src)
@@ -160,7 +158,7 @@
 
 /obj/item/weapon/tank/emergency_plasma/examine()
 	..()
-	if(air_contents.gas["plasma"] < 0.2 && loc==usr)
+	if(air_contents.gas["plasma"] < 0.2 && loc == usr)
 		usr << text("\red <B>The meter on the [src.name] indicates you are almost out of plasma!</B>")
 		usr << sound('sound/effects/alert.ogg')
 

@@ -12,7 +12,6 @@ var/global/datum/controller/occupations/job_master
 		//Debug info
 	var/list/job_debug = list()
 
-
 	proc/SetupOccupations(var/faction = "Station")
 		occupations = list()
 		var/list/all_jobs = typesof(/datum/job)
@@ -27,12 +26,10 @@ var/global/datum/controller/occupations/job_master
 
 		return 1
 
-
 	proc/Debug(var/text)
 		if(!Debug2)	return 0
 		job_debug.Add(text)
 		return 1
-
 
 	proc/GetJob(var/rank)
 		if(!rank)	return null
@@ -345,7 +342,9 @@ var/global/datum/controller/occupations/job_master
 
 
 	proc/EquipRank(var/mob/living/carbon/human/H, var/rank, var/joined_late = 0)
-		if(!H)	return 0
+		if(!H)
+			return 0
+
 		var/datum/job/job = GetJob(rank)
 		if(job)
 			job.equip(H)
@@ -405,23 +404,49 @@ var/global/datum/controller/occupations/job_master
 				if("Cyborg")
 					H.Robotize()
 					return 1
-				if("AI","Clown")	//don't need bag preference stuff!
+				if("AI", "Clown")	//don't need bag preference stuff!
 				else
 					switch(H.backbag) //BS12 EDIT
 						if(1)
-							H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), slot_r_hand)
+							if(H.species.survival_kit)
+								H.equip_to_slot_or_del(new H.species.survival_kit(H), slot_r_hand)
 						if(2)
 							var/obj/item/weapon/storage/backpack/BPK = new/obj/item/weapon/storage/backpack(H)
-							new /obj/item/weapon/storage/box/survival(BPK)
-							H.equip_to_slot_or_del(BPK, slot_back,1)
+							if(H.species.survival_kit)
+								new H.species.survival_kit(BPK)
+							H.equip_to_slot_or_del(BPK, slot_back, 1)
 						if(3)
 							var/obj/item/weapon/storage/backpack/BPK = new/obj/item/weapon/storage/backpack/satchel_norm(H)
-							new /obj/item/weapon/storage/box/survival(BPK)
-							H.equip_to_slot_or_del(BPK, slot_back,1)
+							if(H.species.survival_kit)
+								new H.species.survival_kit(BPK)
+							H.equip_to_slot_or_del(BPK, slot_back, 1)
 						if(4)
 							var/obj/item/weapon/storage/backpack/BPK = new/obj/item/weapon/storage/backpack/satchel(H)
-							new /obj/item/weapon/storage/box/survival(BPK)
-							H.equip_to_slot_or_del(BPK, slot_back,1)
+							if(H.species.survival_kit)
+								new H.species.survival_kit(BPK)
+							H.equip_to_slot_or_del(BPK, slot_back, 1)
+
+		if(H.species)
+			if(H.species.name == "Tajaran" || H.species.name == "Soghun")
+				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H), slot_shoes, 1)
+			else if(H.species.name == "Vox")
+				H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/vox(src), slot_wear_mask)
+				if(!H.r_hand)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/nitrogen(src), slot_r_hand)
+					H.internal = H.r_hand
+				else if(!H.l_hand)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/nitrogen(src), slot_l_hand)
+					H.internal = H.l_hand
+				H.internals.icon_state = "internal1"
+			else if(H.species.name == "Plasmaperson")
+				H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
+				if(!H.r_hand)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), slot_r_hand)
+					H.internal = H.r_hand
+				else if(!H.l_hand)
+					H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), slot_l_hand)
+					H.internal = H.l_hand
+				H.internals.icon_state = "internal1"
 
 		H << "<B>You are the [alt_title ? alt_title : rank].</B>"
 		H << "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>"

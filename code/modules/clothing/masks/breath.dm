@@ -43,17 +43,18 @@
 	icon_state = "voxmask"
 	item_state = "voxmask"
 	permeability_coefficient = 0.01
-	species_restricted = list("Vox")
+	species_restricted = list("Vox", "Vox Armalis")
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/mask.dmi'
+		"Vox" = 'icons/mob/species/vox/mask.dmi',
+		"Vox Armalis" = 'icons/mob/species/armalis/mask.dmi',
 		)
 
-	toggle()
-		set category = "Object"
-		set name = "Adjust mask"
-		set src in usr
+/obj/item/clothing/mask/breath/vox/toggle()
+	set category = "Object"
+	set name = "Adjust mask"
+	set src in usr
 
-		usr << "You can't really adjust this mask - it's moulded to your beak!"
+	usr << "You can't really adjust this mask - it's moulded to your beak!"
 
 /obj/item/clothing/mask/breath/vox/mob_can_equip(M as mob, slot)
 	var/mob/living/carbon/human/V = M
