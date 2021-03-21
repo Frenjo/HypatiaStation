@@ -75,41 +75,46 @@
 			return 1
 
 /mob/living/carbon/human/u_equip(obj/item/W as obj)
-	if(!W)	return 0
+	if(!W)
+		return 0
 
 	var/success
 
-	if (W == wear_suit)
+	if(W == wear_suit)
 		if(s_store)
 			drop_from_inventory(s_store)
 		if(W)
 			success = 1
 		wear_suit = null
+		if(W.flags_inv & HIDESHOES)
+			update_inv_shoes(0)
 		update_inv_wear_suit()
-	else if (W == w_uniform)
-		if (r_store)
+	else if(W == w_uniform)
+		if(r_store)
 			drop_from_inventory(r_store)
-		if (l_store)
+		if(l_store)
 			drop_from_inventory(l_store)
-		if (wear_id)
+		if(wear_id)
 			drop_from_inventory(wear_id)
-		if (belt)
+		if(belt)
 			drop_from_inventory(belt)
 		w_uniform = null
 		success = 1
 		update_inv_w_uniform()
-	else if (W == gloves)
+	else if(W == gloves)
 		gloves = null
 		success = 1
 		update_inv_gloves()
-	else if (W == glasses)
+	else if(W == glasses)
 		glasses = null
 		success = 1
 		update_inv_glasses()
-	else if (W == head)
+	else if(W == head)
 		head = null
-		if((W.flags & BLOCKHAIR) || (W.flags & BLOCKHEADHAIR))
+		if((W.flags & BLOCKHAIR) || (W.flags & BLOCKHEADHAIR)|| (W.flags_inv & HIDEMASK))
 			update_hair(0)	//rebuild hair
+			update_inv_ears(0)
+			update_inv_wear_mask(0)
 		success = 1
 		update_inv_head()
 	else if (W == l_ear)
@@ -133,12 +138,13 @@
 		success = 1
 		if((W.flags & BLOCKHAIR) || (W.flags & BLOCKHEADHAIR))
 			update_hair(0)	//rebuild hair
+			update_inv_ears(0)
 		if(internal)
 			if(internals)
 				internals.icon_state = "internal0"
 			internal = null
 		update_inv_wear_mask()
-	else if (W == wear_id)
+	else if(W == wear_id)
 		wear_id = null
 		success = 1
 		update_inv_wear_id()
@@ -178,8 +184,8 @@
 		return 0
 
 	if(success)
-		if (W)
-			if (client)
+		if(W)
+			if(client)
 				client.screen -= W
 			W.loc = loc
 			W.dropped(src)
@@ -188,14 +194,15 @@
 	update_action_buttons()
 	return 1
 
-
-
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible() or advanced_equip_to_slot_if_possible()
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
 /mob/living/carbon/human/equip_to_slot(obj/item/W as obj, slot, redraw_mob = 1)
-	if(!slot) return
-	if(!istype(W)) return
-	if(!has_organ_for_slot(slot)) return
+	if(!slot)
+		return
+	if(!istype(W))
+		return
+	if(!has_organ_for_slot(slot))
+		return
 
 	if(W == src.l_hand)
 		src.l_hand = null
@@ -214,6 +221,7 @@
 			src.wear_mask = W
 			if((wear_mask.flags & BLOCKHAIR) || (wear_mask.flags & BLOCKHEADHAIR))
 				update_hair(redraw_mob)	//rebuild hair
+				update_inv_ears(0)
 			W.equipped(src, slot)
 			update_inv_wear_mask(redraw_mob)
 		if(slot_handcuffed)
@@ -267,9 +275,11 @@
 			update_inv_gloves(redraw_mob)
 		if(slot_head)
 			src.head = W
-			if((head.flags & BLOCKHAIR) || (head.flags & BLOCKHEADHAIR))
+			if((head.flags & BLOCKHAIR) || (head.flags & BLOCKHEADHAIR) || (head.flags_inv & HIDEMASK))
 				update_hair(redraw_mob)	//rebuild hair
-			if(istype(W,/obj/item/clothing/head/kitty))
+				update_inv_ears(0)
+				update_inv_wear_mask(0)
+			if(istype(W, /obj/item/clothing/head/kitty))
 				W.update_icon(src)
 			W.equipped(src, slot)
 			update_inv_head(redraw_mob)
@@ -279,6 +289,8 @@
 			update_inv_shoes(redraw_mob)
 		if(slot_wear_suit)
 			src.wear_suit = W
+			if(wear_suit.flags_inv & HIDESHOES)
+				update_inv_shoes(0)
 			W.equipped(src, slot)
 			update_inv_wear_suit(redraw_mob)
 		if(slot_w_uniform)
@@ -332,7 +344,7 @@
 	return
 
 /obj/effect/equip_e/New()
-	if (!ticker)
+	if(!ticker)
 		qdel(src)
 	spawn(100)
 		qdel(src)
@@ -340,27 +352,27 @@
 	return
 
 /obj/effect/equip_e/human/process()
-	if (item)
+	if(item)
 		item.add_fingerprint(source)
 	else
 		switch(place)
 			if("mask")
-				if (!( target.wear_mask ))
+				if(!(target.wear_mask))
 					qdel(src)
 			if("l_hand")
-				if (!( target.l_hand ))
+				if(!(target.l_hand))
 					qdel(src)
 			if("r_hand")
-				if (!( target.r_hand ))
+				if(!(target.r_hand))
 					qdel(src)
 			if("suit")
-				if (!( target.wear_suit ))
+				if(!(target.wear_suit))
 					qdel(src)
 			if("uniform")
-				if (!( target.w_uniform ))
+				if(!(target.w_uniform))
 					qdel(src)
 			if("back")
-				if (!( target.back ))
+				if(!(target.back))
 					qdel(src)
 			if("syringe")
 				return
@@ -373,10 +385,10 @@
 			if("dnainjector")
 				return
 			if("handcuff")
-				if (!( target.handcuffed ))
+				if(!(target.handcuffed))
 					qdel(src)
 			if("id")
-				if ((!( target.wear_id ) || !( target.w_uniform )))
+				if((!(target.wear_id) || !(target.w_uniform)))
 					qdel(src)
 			if("splints")
 				var/count = 0
@@ -389,11 +401,11 @@
 					qdel(src)
 					return
 			if("internal")
-				if ((!( (istype(target.wear_mask, /obj/item/clothing/mask) && istype(target.back, /obj/item/weapon/tank) && !( target.internal )) ) && !( target.internal )))
+				if ((!((istype(target.wear_mask, /obj/item/clothing/mask) && istype(target.back, /obj/item/weapon/tank) && !(target.internal))) && !(target.internal)))
 					qdel(src)
 
 	var/list/L = list( "syringe", "pill", "drink", "dnainjector", "fuel")
-	if ((item && !( L.Find(place) )))
+	if((item && !(L.Find(place))))
 		if(isRobot(source) && place != "handcuff")
 			qdel(src)
 		for(var/mob/O in viewers(target, null))

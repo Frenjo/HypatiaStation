@@ -105,7 +105,7 @@
 /obj/item/weapon/tank/plasma/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 
-	if (istype(W, /obj/item/weapon/flamethrower))
+	if(istype(W, /obj/item/weapon/flamethrower))
 		var/obj/item/weapon/flamethrower/F = W
 		if ((!F.status)||(F.ptank))	return
 		src.master = F
@@ -115,18 +115,18 @@
 	return
 
 /*
- * Plasma2
+ * Plasma2 - Wearable Plasma
  */
 /obj/item/weapon/tank/plasma2
 	name = "wearable plasma tank"
 	desc = "A wearable tank containing dangerous plasma, unless you're a Plasmaperson that is. Warning: extremely flammable."
 	icon_state = "plasma2"
 	slot_flags = SLOT_BELT
-	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
+	distribute_pressure = ((ONE_ATMOSPHERE*O2STANDARD) - 5)
 
 /obj/item/weapon/tank/plasma2/New()
 	..()
-	src.air_contents.adjust_gas("plasma", (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
+	src.air_contents.adjust_gas("plasma", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 	src.air_contents.update_values()
 	return
 
@@ -149,7 +149,7 @@
 	slot_flags = SLOT_BELT
 	w_class = 2.0
 	force = 4.0
-	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
+	distribute_pressure = ((ONE_ATMOSPHERE*O2STANDARD) - 5)
 	volume = 2
 
 /obj/item/weapon/tank/emergency_plasma/New()

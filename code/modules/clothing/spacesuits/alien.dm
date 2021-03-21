@@ -1,25 +1,10 @@
-// Tajaran rigs.
-/obj/item/clothing/head/helmet/space/rig/tajara
-	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has radiation shielding. This one doesn't look like it was made for humans."
-	icon_state = "rig0-taj-helmet"
-	item_state = "rig0-taj-helmet"
-	item_color = "taj-helmet"
-	species_restricted = list("Tajaran")
-
-/obj/item/clothing/suit/space/rig/tajara
-	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding. This one doesn't look like it was made for humans."
-	icon_state = "rig-taj"
-	item_state = "rig-taj"
-	item_color = "rig-taj"
-	species_restricted = list("Tajaran")
-
 //Skrell space gear. Sleek like a wetsuit.
 /obj/item/clothing/head/helmet/space/skrell
 	name = "Skrellian helmet"
 	desc = "Smoothly contoured and polished to a shine. Still looks like a fishbowl."
 	armor = list(melee = 20, bullet = 20, laser = 50,energy = 50, bomb = 50, bio = 100, rad = 100)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	species_restricted = list("Skrell","Human")
+	species_restricted = list("Skrell", "Human")
 
 /obj/item/clothing/head/helmet/space/skrell/white
 	icon_state = "skrell_helmet_white"
@@ -35,10 +20,10 @@
 	name = "Skrellian hardsuit"
 	desc = "Seems like a wetsuit with reinforced plating seamlessly attached to it. Very chic."
 	armor = list(melee = 20, bullet = 20, laser = 50,energy = 50, bomb = 50, bio = 100, rad = 100)
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
+	allowed = list(/obj/item/device/flashlight, /obj/item/weapon/tank, /obj/item/weapon/storage/bag/ore, /obj/item/device/t_scanner, /obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	species_restricted = list("Skrell","Human")
+	species_restricted = list("Skrell", "Human")
 
 /obj/item/clothing/suit/space/skrell/white
 	icon_state = "skrell_suit_white"
@@ -67,7 +52,7 @@
 
 /obj/item/clothing/suit/space/soghun
 	armor = list(melee = 40, bullet = 30, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 50)
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
+	allowed = list(/obj/item/device/flashlight, /obj/item/weapon/tank, /obj/item/weapon/storage/bag/ore, /obj/item/device/t_scanner, /obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = list("Soghun")
@@ -98,17 +83,23 @@
 // Can't be equipped by any other species due to bone structure and vox cybernetics.
 /obj/item/clothing/suit/space/vox
 	w_class = 3
-	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/melee/energy/sword,/obj/item/weapon/handcuffs,/obj/item/weapon/tank)
+	allowed = list(/obj/item/weapon/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/melee/baton, /obj/item/weapon/melee/energy/sword, /obj/item/weapon/handcuffs, /obj/item/weapon/tank)
 	slowdown = 2
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = list("Vox")
+	sprite_sheets = list(
+		"Vox" = 'icons/mob/species/vox/suit.dmi'
+		)
 
 /obj/item/clothing/head/helmet/space/vox
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
 	flags = HEADCOVERSEYES | STOPSPRESSUREDAMAGE
 	species_restricted = list("Vox")
+	sprite_sheets = list(
+		"Vox" = 'icons/mob/species/vox/head.dmi'
+		)
 
 /obj/item/clothing/head/helmet/space/vox/pressure
 	name = "alien helmet"
@@ -183,8 +174,11 @@
 	item_state = "gloves-vox"
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
-	item_color="gloves-vox"
+	item_color = "gloves-vox"
 	species_restricted = list("Vox")
+	sprite_sheets = list(
+		"Vox" = 'icons/mob/species/vox/gloves.dmi'
+		)
 
 /obj/item/clothing/shoes/magboots/vox
 	desc = "A pair of heavy, jagged armoured foot pieces, seemingly suitable for a velociraptor."
@@ -192,74 +186,28 @@
 	item_state = "boots-vox"
 	icon_state = "boots-vox"
 	species_restricted = list("Vox")
+	sprite_sheets = list(
+		"Vox" = 'icons/mob/species/vox/feet.dmi'
+		)
 
-	/*toggle()
-		//set name = "Toggle Floor Grip"
-		if(usr.stat)
-			return
-		if(src.magpulse)
-			src.flags &= ~NOSLIP
-			src.magpulse = 0
-			usr << "You relax your deathgrip on the flooring."
-		else
-			src.flags |= NOSLIP
-			src.magpulse = 1
-			usr << "You dig your claws deeply into the flooring, bracing yourself."*/
+/obj/item/clothing/shoes/magboots/vox/attack_self(mob/user)
+	if(src.magpulse)
+		src.flags &= ~NOSLIP
+		src.magpulse = 0
+		user << "You relax your deathgrip on the flooring."
+	else
+		src.flags |= NOSLIP
+		src.magpulse = 1
+		user << "You dig your claws deeply into the flooring, bracing yourself."
 
-
-	examine()
-		set src in view()
-		..()
+/obj/item/clothing/shoes/magboots/vox/examine()
+	set src in view()
+	..()
 
 // Plasmapeople gear.
 /obj/item/clothing/head/helmet/space/plasmapeople
 	name = "envirohelmet"
 	desc = "A space-capable helmet designed to prevent a Plasmaperson from combusting in a human-breathable atmosphere."
-	icon_state = "rig0-plasmaman"
-	item_state = "plasmaman"
+	icon_state = "rig0-standard-plasmaperson"
+	item_state = "rig0-standard-plasmaperson"
 	species_restricted = list("Plasmaperson")
-
-//Species-specific Syndicate rigs.
-/obj/item/clothing/head/helmet/space/rig/syndi/tajara
-	icon_state = "rig0-syndie-taj"
-	item_state = "syndie_helm"
-	item_color = "syndie-taj"
-	species_restricted = list("Tajaran")
-
-/obj/item/clothing/suit/space/rig/syndi/tajara
-	item_state = "syndie_hardsuit"
-	icon_state = "rig-syndie-taj"
-	species_restricted = list("Tajaran")
-
-/obj/item/clothing/head/helmet/space/rig/syndi/soghun
-	icon_state = "rig0-syndie-soghun"
-	item_state = "syndie_helm"
-	item_color = "syndie-soghun"
-	species_restricted = list("Soghun")
-
-/obj/item/clothing/suit/space/rig/syndi/soghun
-	item_state = "syndie_hardsuit"
-	icon_state = "rig-syndie-soghun"
-	species_restricted = list("Soghun")
-
-/obj/item/clothing/head/helmet/space/rig/syndi/skrell
-	icon_state = "rig0-syndie-skrell"
-	item_state = "syndie_helm"
-	item_color = "syndie-skrell"
-	species_restricted = list("Skrell")
-
-/obj/item/clothing/suit/space/rig/syndi/skrell
-	item_state = "syndie_hardsuit"
-	icon_state = "rig-syndie-skrell"
-	species_restricted = list("Skrell")
-
-/obj/item/clothing/head/helmet/space/rig/syndi/human
-	icon_state = "rig0-syndie-human"
-	item_state = "syndie_helm"
-	item_color = "syndie-human"
-	species_restricted = list("Human")
-
-/obj/item/clothing/suit/space/rig/syndi/human
-	item_state = "syndie_hardsuit"
-	icon_state = "rig-syndie-human"
-	species_restricted = list("Human")

@@ -94,15 +94,18 @@
 	hud_updateflag |= 1 << HEALTH_HUD
 
 /mob/living/carbon/human/Stun(amount)
-	if(HULK in mutations)	return
+	if(HULK in mutations)
+		return
 	..()
 
 /mob/living/carbon/human/Weaken(amount)
-	if(HULK in mutations)	return
+	if(HULK in mutations)
+		return
 	..()
 
 /mob/living/carbon/human/Paralyse(amount)
-	if(HULK in mutations)	return
+	if(HULK in mutations)
+		return
 	..()
 
 /mob/living/carbon/human/adjustCloneLoss(var/amount)
@@ -113,28 +116,28 @@
 
 	var/heal_prob = max(0, 80 - getCloneLoss())
 	var/mut_prob = min(80, getCloneLoss()+10)
-	if (amount > 0)
-		if (prob(mut_prob))
+	if(amount > 0)
+		if(prob(mut_prob))
 			var/list/datum/organ/external/candidates = list()
-			for (var/datum/organ/external/O in organs)
+			for(var/datum/organ/external/O in organs)
 				if(!(O.status & ORGAN_MUTATED))
 					candidates |= O
-			if (candidates.len)
+			if(candidates.len)
 				var/datum/organ/external/O = pick(candidates)
 				O.mutate()
 				src << "<span class = 'notice'>Something is not right with your [O.display_name]...</span>"
 				return
 	else
-		if (prob(heal_prob))
-			for (var/datum/organ/external/O in organs)
-				if (O.status & ORGAN_MUTATED)
+		if(prob(heal_prob))
+			for(var/datum/organ/external/O in organs)
+				if(O.status & ORGAN_MUTATED)
 					O.unmutate()
 					src << "<span class = 'notice'>Your [O.display_name] is shaped normally again.</span>"
 					return
 
-	if (getCloneLoss() < 1)
-		for (var/datum/organ/external/O in organs)
-			if (O.status & ORGAN_MUTATED)
+	if(getCloneLoss() < 1)
+		for(var/datum/organ/external/O in organs)
+			if(O.status & ORGAN_MUTATED)
 				O.unmutate()
 				src << "<span class = 'notice'>Your [O.display_name] is shaped normally again.</span>"
 	hud_updateflag |= 1 << HEALTH_HUD
@@ -249,39 +252,43 @@ This function restores all organs.
 /mob/living/carbon/human/proc/HealDamage(zone, brute, burn)
 	var/datum/organ/external/E = get_organ(zone)
 	if(istype(E, /datum/organ/external))
-		if (E.heal_damage(brute, burn))
+		if(E.heal_damage(brute, burn))
 			UpdateDamageIcon()
 			hud_updateflag |= 1 << HEALTH_HUD
 	else
 		return 0
 	return
 
-
 /mob/living/carbon/human/proc/get_organ(var/zone)
-	if(!zone)	zone = "chest"
-	if (zone in list( "eyes", "mouth" ))
+	if(!zone)
+		zone = "chest"
+	if(zone in list("eyes", "mouth"))
 		zone = "head"
 	return organs_by_name[zone]
 
 /mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/sharp = 0, var/edge = 0, var/obj/used_weapon = null)
+	handle_suit_punctures(damagetype, damage)
 
 	//visible_message("Hit debug. [damage] | [damagetype] | [def_zone] | [blocked] | [sharp] | [used_weapon]")
 	if((damagetype != BRUTE) && (damagetype != BURN))
 		..(damage, damagetype, def_zone, blocked)
 		return 1
 
-	if(blocked >= 2)	return 0
+	if(blocked >= 2)
+		return 0
 
 	var/datum/organ/external/organ = null
 	if(isOrgan(def_zone))
 		organ = def_zone
 	else
-		if(!def_zone)	def_zone = ran_zone(def_zone)
+		if(!def_zone)
+			def_zone = ran_zone(def_zone)
 		organ = get_organ(check_zone(def_zone))
-	if(!organ)	return 0
+	if(!organ)
+		return 0
 
 	if(blocked)
-		damage = (damage/(blocked+1))
+		damage = (damage / (blocked + 1))
 
 	switch(damagetype)
 		if(BRUTE)
@@ -302,8 +309,9 @@ This function restores all organs.
 	hud_updateflag |= 1 << HEALTH_HUD
 
 	//Embedded projectile code.
-	if(!organ) return
-	if(istype(used_weapon,/obj/item/weapon))
+	if(!organ)
+		return
+	if(istype(used_weapon, /obj/item/weapon))
 		var/obj/item/weapon/W = used_weapon  //Sharp objects will always embed if they do enough damage.
 		/*if( (damage > (10*W.w_class)) && ( (sharp && !ismob(W.loc)) || prob(damage/W.w_class) ) )
 			organ.implants += W
@@ -316,7 +324,7 @@ This function restores all organs.
 				H.drop_item()
 			W.loc = src
 		*/
-		if((damage > (4*W.w_class)) && ( (sharp && !ismob(W.loc)) || prob((damage*1.5)/W.w_class)))
+		if((damage > (4 * W.w_class)) && ((sharp && !ismob(W.loc)) || prob((damage * 1.5) / W.w_class)))
 			organ.implants += W
 			visible_message("<span class='danger'>\The [W] sticks in the wound!</span>")
 			embedded_flag = 1
@@ -326,9 +334,8 @@ This function restores all organs.
 				var/mob/living/H = W.loc
 				H.drop_item()
 			W.loc = src
-		else if((damage > (4*W.w_class)) && ((!ismob(W.loc) && !sharp)) || (prob(damage/W.w_class)))
+		else if((damage > (4 * W.w_class)) && ((!ismob(W.loc) && !sharp)) || (prob(damage / W.w_class)))
 			organ.implants += W
 			visible_message("<span class='danger'>\The [W] sticks in the wound!</span>")
 			embedded_flag = 1
-
 	return 1

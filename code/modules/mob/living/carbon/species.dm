@@ -481,7 +481,7 @@
 	language = "Plasmaperson"
 	unarmed_type = /datum/unarmed_attack/punch
 	secondary_unarmed_type = /datum/unarmed_attack/punch
-	slowdown = 3
+	slowdown = 1
 
 	brute_mod = 1.5
 	burn_mod = 1.5

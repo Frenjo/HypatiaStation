@@ -24,7 +24,7 @@
 	toggle_transit() //add static dust
 
 /turf/space/proc/update_starlight()
-	if(!config.starlight)
+	if(!config && !config.starlight)
 		return
 
 	if(locate(/turf/simulated) in orange(src, 1))
@@ -35,7 +35,7 @@
 /turf/space/proc/build_dust_cache()
 	//Static
 	dust_cache = list()
-	for (var/i in 0 to 25)
+	for(var/i in 0 to 25)
 		var/image/im = image('icons/turf/space_dust.dmi', "[i]")
 		im.plane = SPACE_DUST_PLANE
 		im.alpha = 128 //80

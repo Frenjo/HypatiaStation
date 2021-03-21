@@ -2,7 +2,6 @@
 // SUIT STORAGE UNIT /////////////////
 //////////////////////////////////////
 
-
 /obj/machinery/suit_storage_unit
 	name = "Suit Storage Unit"
 	desc = "An industrial U-Stor-It Storage unit designed to accomodate all kinds of space suits. Its on-board equipment also allows the user to decontaminate the contents through a UV-ray purging cycle. There's a warning label dangling from the control pad, reading \"STRICTLY NO BIOLOGICALS IN THE CONFINES OF THE UNIT\"."
@@ -27,9 +26,7 @@
 	var/safetieson = 1
 	var/cycletime_left = 0
 
-
 //The units themselves/////////////////
-
 /obj/machinery/suit_storage_unit/standard_unit
 	SUIT_TYPE = /obj/item/clothing/suit/space
 	HELMET_TYPE = /obj/item/clothing/head/helmet/space
@@ -51,16 +48,18 @@
 	MASK_TYPE = /obj/item/clothing/mask/breath
 
 /obj/machinery/suit_storage_unit/soghun_unit
-	name = "Soghun Suit Storage Unit"
+	name = "Soghun Breacher Suit Storage Unit"
 	SUIT_TYPE = /obj/item/clothing/suit/space/soghun/rig_cheap
 	HELMET_TYPE = /obj/item/clothing/head/helmet/space/soghun/helmet_cheap
 	MASK_TYPE = /obj/item/clothing/mask/breath
 
+/*
 /obj/machinery/suit_storage_unit/tajara_unit
 	name = "Tajara Suit Storage Unit"
 	SUIT_TYPE = /obj/item/clothing/suit/space/rig/tajara
 	HELMET_TYPE = /obj/item/clothing/head/helmet/space/rig/tajara
 	MASK_TYPE = /obj/item/clothing/mask/breath
+*/
 
 // Department-specific next.
 /obj/machinery/suit_storage_unit/engineering_unit
@@ -124,7 +123,6 @@
 	HELMET_TYPE = /obj/item/clothing/head/helmet/space/mailmanvoid
 	MASK_TYPE = /obj/item/clothing/mask/breath
 
-
 /obj/machinery/suit_storage_unit/New()
 	src.update_icon()
 	if(SUIT_TYPE)
@@ -145,7 +143,6 @@
 	if(OCCUPANT)
 		hashuman = 1
 	icon_state = text("suitstorage[][][][][][][][][]",hashelmet,hassuit,hashuman,src.isopen,src.islocked,src.isUV,src.ispowered,src.isbroken,src.issuperUV)
-
 
 /obj/machinery/suit_storage_unit/power_change()
 	if( powered() )
@@ -239,7 +236,6 @@
 	onclose(user, "suit_storage_unit")
 	return
 
-
 /obj/machinery/suit_storage_unit/Topic(href, href_list) //I fucking HATE this proc
 	if(..())
 		return
@@ -286,7 +282,6 @@
 	src.add_fingerprint(usr)
 	return
 
-
 /obj/machinery/suit_storage_unit/proc/toggleUV(mob/user as mob)
 //	var/protected = 0
 //	var/mob/living/carbon/human/H = user
@@ -312,7 +307,6 @@
 			src.issuperUV = 1
 		return
 
-
 /obj/machinery/suit_storage_unit/proc/togglesafeties(mob/user as mob)
 //	var/protected = 0
 //	var/mob/living/carbon/human/H = user
@@ -333,7 +327,6 @@
 		user << "You push the button. The coloured LED next to it changes."
 		src.safetieson = !src.safetieson
 
-
 /obj/machinery/suit_storage_unit/proc/dispense_helmet(mob/user as mob)
 	if(!src.HELMET)
 		return //Do I even need this sanity check? Nyoro~n
@@ -341,7 +334,6 @@
 		src.HELMET.loc = src.loc
 		src.HELMET = null
 		return
-
 
 /obj/machinery/suit_storage_unit/proc/dispense_suit(mob/user as mob)
 	if(!src.SUIT)
@@ -351,7 +343,6 @@
 		src.SUIT = null
 		return
 
-
 /obj/machinery/suit_storage_unit/proc/dispense_mask(mob/user as mob)
 	if(!src.MASK)
 		return
@@ -359,7 +350,6 @@
 		src.MASK.loc = src.loc
 		src.MASK = null
 		return
-
 
 /obj/machinery/suit_storage_unit/proc/dump_everything()
 	src.islocked = 0 //locks go free
@@ -376,7 +366,6 @@
 		src.eject_occupant(OCCUPANT)
 	return
 
-
 /obj/machinery/suit_storage_unit/proc/toggle_open(mob/user as mob)
 	if(src.islocked || src.isUV)
 		user << "<font color='red'>Unable to open unit.</font>"
@@ -387,7 +376,6 @@
 	src.isopen = !src.isopen
 	return
 
-
 /obj/machinery/suit_storage_unit/proc/toggle_lock(mob/user as mob)
 	if(src.OCCUPANT && src.safetieson)
 		user << "<font color='red'>The Unit's safety protocols disallow locking when a biological form is detected inside its compartments.</font>"
@@ -396,7 +384,6 @@
 		return
 	src.islocked = !src.islocked
 	return
-
 
 /obj/machinery/suit_storage_unit/proc/start_UV(mob/user as mob)
 	if(src.isUV || src.isopen) //I'm bored of all these sanity checks
@@ -416,18 +403,18 @@
 	src.updateUsrDialog()
 
 	var/i //our counter
-	for(i=0,i<4,i++)
+	for(i = 0, i < 4, i++)
 		sleep(50)
 		if(src.OCCUPANT)
 			if(src.issuperUV)
-				var/burndamage = rand(28,35)
-				OCCUPANT.take_organ_damage(0,burndamage)
+				var/burndamage = rand(28, 35)
+				OCCUPANT.take_organ_damage(0, burndamage)
 				OCCUPANT.emote("scream")
 			else
-				var/burndamage = rand(6,10)
-				OCCUPANT.take_organ_damage(0,burndamage)
+				var/burndamage = rand(6, 10)
+				OCCUPANT.take_organ_damage(0, burndamage)
 				OCCUPANT.emote("scream")
-		if(i==3) //End of the cycle
+		if(i == 3) //End of the cycle
 			if(!src.issuperUV)
 				if(src.HELMET)
 					HELMET.clean_blood()
@@ -475,12 +462,10 @@
 					user << "Test. You gave him 8 damage"
 	return*/
 
-
 /obj/machinery/suit_storage_unit/proc/cycletimeleft()
 	if(src.cycletime_left >= 1)
 		src.cycletime_left--
 	return src.cycletime_left
-
 
 /obj/machinery/suit_storage_unit/proc/eject_occupant(mob/user as mob)
 	if (src.islocked)
@@ -506,7 +491,6 @@
 	src.update_icon()
 	return
 
-
 /obj/machinery/suit_storage_unit/verb/get_out()
 	set name = "Eject Suit Storage Unit"
 	set category = "Object"
@@ -520,21 +504,20 @@
 	src.update_icon()
 	return
 
-
 /obj/machinery/suit_storage_unit/verb/move_inside()
 	set name = "Hide in Suit Storage Unit"
 	set category = "Object"
 	set src in oview(1)
 
-	if (usr.stat != 0)
+	if(usr.stat != 0)
 		return
-	if (!src.isopen)
+	if(!src.isopen)
 		usr << "<font color='red'>The unit's doors are shut.</font>"
 		return
-	if (!src.ispowered || src.isbroken)
+	if(!src.ispowered || src.isbroken)
 		usr << "<font color='red'>The unit is not operational.</font>"
 		return
-	if ( (src.OCCUPANT) || (src.HELMET) || (src.SUIT) )
+	if((src.OCCUPANT) || (src.HELMET) || (src.SUIT))
 		usr << "<font color='red'>It's too cluttered inside for you to fit in!</font>"
 		return
 	visible_message("[usr] starts squeezing into the suit storage unit!", 3)
@@ -558,7 +541,6 @@
 		src.OCCUPANT = null //Testing this as a backup sanity test
 	return
 
-
 /obj/machinery/suit_storage_unit/attackby(obj/item/I as obj, mob/user as mob)
 	if(!src.ispowered)
 		return
@@ -568,17 +550,17 @@
 		user << text("<font color='blue'>You [] the unit's maintenance panel.</font>",(src.panelopen ? "open up" : "close") )
 		src.updateUsrDialog()
 		return
-	if ( istype(I, /obj/item/weapon/grab) )
+	if(istype(I, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = I
-		if( !(ismob(G.affecting)) )
+		if(!(ismob(G.affecting)))
 			return
-		if (!src.isopen)
+		if(!src.isopen)
 			usr << "<font color='red'>The unit's doors are shut.</font>"
 			return
-		if (!src.ispowered || src.isbroken)
+		if(!src.ispowered || src.isbroken)
 			usr << "<font color='red'>The unit is not operational.</font>"
 			return
-		if ( (src.OCCUPANT) || (src.HELMET) || (src.SUIT) ) //Unit needs to be absolutely empty
+		if((src.OCCUPANT) || (src.HELMET) || (src.SUIT)) //Unit needs to be absolutely empty
 			user << "<font color='red'>The unit's storage area is too cluttered.</font>"
 			return
 		visible_message("[user] starts putting [G.affecting.name] into the Suit Storage Unit.", 3)
@@ -600,7 +582,7 @@
 			src.update_icon()
 			return
 		return
-	if( istype(I,/obj/item/clothing/suit/space) )
+	if(istype(I, /obj/item/clothing/suit/space))
 		if(!src.isopen)
 			return
 		var/obj/item/clothing/suit/space/S = I
@@ -614,7 +596,7 @@
 		src.update_icon()
 		src.updateUsrDialog()
 		return
-	if( istype(I,/obj/item/clothing/head/helmet) )
+	if(istype(I, /obj/item/clothing/head/helmet))
 		if(!src.isopen)
 			return
 		var/obj/item/clothing/head/helmet/H = I
@@ -628,7 +610,7 @@
 		src.update_icon()
 		src.updateUsrDialog()
 		return
-	if( istype(I,/obj/item/clothing/mask) )
+	if(istype(I, /obj/item/clothing/mask))
 		if(!src.isopen)
 			return
 		var/obj/item/clothing/mask/M = I
@@ -646,14 +628,551 @@
 	src.updateUsrDialog()
 	return
 
-
 /obj/machinery/suit_storage_unit/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
-
 
 /obj/machinery/suit_storage_unit/attack_paw(mob/user as mob)
 	user << "<font color='blue'>The console controls are far too complicated for your tiny brain!</font>"
 	return
 
-
 //////////////////////////////REMINDER: Make it lock once you place some fucker inside.
+
+//God this entire file is fucking awful
+//Suit painter for Bay's special snowflake aliums.
+
+/obj/machinery/suit_cycler
+	name = "suit cycler"
+	desc = "An industrial machine for repairing, painting and equipping hardsuits."
+	anchored = 1
+	density = 1
+
+	icon = 'icons/obj/suitstorage.dmi'
+	icon_state = "suitstorage000000100"
+
+	req_access = list(access_captain, access_heads)
+
+	var/active = 0          // PLEASE HOLD.
+	var/safeties = 1        // The cycler won't start with a living thing inside it unless safeties are off.
+	var/irradiating = 0     // If this is > 0, the cycler is decontaminating whatever is inside it.
+	var/radiation_level = 2 // 1 is removing germs, 2 is removing blood, 3 is removing phoron.
+	var/model_text = ""     // Some flavour text for the topic box.
+	var/locked = 1          // If locked, nothing can be taken from or added to the cycler.
+	var/panel_open = 0      // Hacking!
+
+	// Wiring bollocks.
+	var/wires = 15
+	var/electrified = 0
+	var/const/WIRE_EXTEND = 1 // Safeties
+	var/const/WIRE_SCANID = 2 // Locked status
+	var/const/WIRE_SHOCK = 3  // What it says on the tin.
+
+	//Departments that the cycler can paint suits to look like.
+	var/list/departments = list("Engineering", "Mining", "Medical", "Security", "Atmos")
+	//Species that the suits can be configured to fit.
+	var/list/species = list("Human", "Soghun", "Tajaran", "Skrell")
+
+	var/target_department = "Engineering"
+	var/target_species = "Human"
+
+	var/mob/living/carbon/human/occupant = null
+	var/obj/item/clothing/suit/space/rig/suit = null
+	var/obj/item/clothing/head/helmet/space/helmet = null
+
+/obj/machinery/suit_cycler/engineering
+	name = "Engineering suit cycler"
+	model_text = "Engineering"
+	req_access = list(access_construction)
+	departments = list("Engineering", "Atmos")
+	species = list("Human", "Soghun", "Tajaran")
+
+/obj/machinery/suit_cycler/mining
+	name = "Mining suit cycler"
+	model_text = "Mining"
+	req_access = list(access_mining)
+	departments = list("Mining")
+	species = list("Human", "Soghun", "Tajaran")
+
+/obj/machinery/suit_cycler/attack_ai(mob/user as mob)
+	return src.attack_hand(user)
+
+/obj/machinery/suit_cycler/attack_paw(mob/user as mob)
+	user << "\blue The console controls are far too complicated for your tiny brain!"
+	return
+
+/obj/machinery/suit_cycler/attackby(obj/item/I as obj, mob/user as mob)
+	if(electrified != 0)
+		if(src.shock(user, 100))
+			return
+
+	//Hacking init.
+	if(istype(I, /obj/item/device/multitool) || istype(I, /obj/item/weapon/wirecutters))
+		if(panel_open)
+			attack_hand(user)
+		return
+	//Other interface stuff.
+	if(istype(I, /obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = I
+
+		if(!(ismob(G.affecting)))
+			return
+
+		if(locked)
+			user << "\red The suit cycler is locked."
+			return
+
+		if(src.contents.len > 0)
+			user << "\red There is no room inside the cycler for [G.affecting.name]."
+			return
+
+		visible_message("[user] starts putting [G.affecting.name] into the suit cycler.", 3)
+
+		if(do_after(user, 20))
+			if(!G || !G.affecting) return
+			var/mob/M = G.affecting
+			if (M.client)
+				M.client.perspective = EYE_PERSPECTIVE
+				M.client.eye = src
+			M.loc = src
+			src.occupant = M
+
+			src.add_fingerprint(user)
+			del(G)
+
+			src.updateUsrDialog()
+
+			return
+	else if(istype(I, /obj/item/weapon/screwdriver))
+		panel_open = !panel_open
+		user << "You [panel_open ?  "open" : "close"] the maintenance panel."
+		src.updateUsrDialog()
+		return
+
+	else if(istype(I, /obj/item/weapon/card/emag))
+		if(emagged)
+			user << "\red The cycler has already been subverted."
+			return
+
+		var/obj/item/weapon/card/emag/E = I
+		src.updateUsrDialog()
+		E.uses--
+
+		//Clear the access reqs, disable the safeties, and open up all paintjobs.
+		user << "\red You run the sequencer across the interface, corrupting the operating protocols."
+		departments = list("Engineering","Mining","Medical","Security","Atmos","^%###^%$")
+		emagged = 1
+		safeties = 0
+		req_access = list()
+		return
+
+	else if(istype(I, /obj/item/clothing/head/helmet/space))
+		if(locked)
+			user << "\red The suit cycler is locked."
+			return
+
+		if(helmet)
+			user << "The cycler already contains a helmet."
+			return
+
+		user << "You fit \the [I] into the suit cycler."
+		user.drop_item()
+		I.loc = src
+		helmet = I
+
+		src.update_icon()
+		src.updateUsrDialog()
+		return
+
+	else if(istype(I, /obj/item/clothing/suit/space/rig))
+		if(locked)
+			user << "\red The suit cycler is locked."
+			return
+
+		if(suit)
+			user << "The cycler already contains a hardsuit."
+			return
+
+		var/obj/item/clothing/suit/space/rig/S = I
+
+		if(S.helmet)
+			user << "\The [S] will not fit into the cycler with a helmet attached."
+			return
+
+		if(S.boots)
+			user << "\The [S] will not fit into the cycler with boots attached."
+			return
+
+		user << "You fit \the [I] into the suit cycler."
+		user.drop_item()
+		I.loc = src
+		suit = I
+
+		src.update_icon()
+		src.updateUsrDialog()
+		return
+
+	..()
+
+/obj/machinery/suit_cycler/attack_hand(mob/user as mob)
+	add_fingerprint(user)
+
+	if(..() || stat & (BROKEN|NOPOWER))
+		return
+
+	if(electrified != 0)
+		if(src.shock(user, 100))
+			return
+
+	usr.set_machine(src)
+
+	var/dat = "<HEAD><TITLE>Suit Cycler Interface</TITLE></HEAD>"
+
+	if(src.active)
+		dat+= "<br><font color='red'><B>The [model_text ? "[model_text] " : ""]suit cycler is currently in use. Please wait...</b></font>"
+
+	else if(locked)
+		dat += "<br><font color='red'><B>The [model_text ? "[model_text] " : ""]suit cycler is currently locked. Please contact your system administrator.</b></font>"
+		if(src.allowed(usr))
+			dat += "<br><a href='?src=\ref[src];toggle_lock=1'>\[unlock unit\]</a>"
+	else
+		dat += "<h1>Suit cycler</h1>"
+		dat += "<B>Welcome to the [model_text ? "[model_text] " : ""]suit cycler control panel. <a href='?src=\ref[src];toggle_lock=1'>\[lock unit\]</a></B><HR>"
+
+		dat += "<h2>Maintenance</h2>"
+		dat += "<b>Helmet: </b> [helmet ? "\the [helmet]" : "no helmet stored" ]. <A href='?src=\ref[src];eject_helmet=1'>\[eject\]</a><br/>"
+		dat += "<b>Suit: </b> [suit ? "\the [suit]" : "no suit stored" ]. <A href='?src=\ref[src];eject_suit=1'>\[eject\]</a>"
+
+		if(suit && istype(suit))
+			dat += "[(suit.damage ? " <A href='?src=\ref[src];repair_suit=1'>\[repair\]</a>" : "")]"
+
+		dat += "<br/><b>UV decontamination systems:</b> <font color = '[emagged ? "red'>SYSTEM ERROR" : "green'>READY"]</font><br>"
+		dat += "Output level: [radiation_level]<br>"
+		dat += "<A href='?src=\ref[src];select_rad_level=1'>\[select power level\]</a> <A href='?src=\ref[src];begin_decontamination=1'>\[begin decontamination cycle\]</a><br><hr>"
+
+		dat += "<h2>Customisation</h2>"
+		dat += "<b>Target product: <A href='?src=\ref[src];select_department=1'>[target_department]</a>, <A href='?src=\ref[src];select_species=1'>[target_species]</a>."
+		dat += "<A href='?src=\ref[src];apply_paintjob=1'><br>\[apply customisation routine\]</a><br><hr>"
+
+	if(panel_open)
+		var/list/vendwires = list(
+			"Violet" = 1,
+			"Orange" = 2,
+			"Goldenrod" = 3,
+			)
+		dat += "<h2><B>Access Panel</B></h2>"
+		for(var/wiredesc in vendwires)
+			var/is_uncut = src.wires & APCWireColorToFlag[vendwires[wiredesc]]
+			dat += "[wiredesc] wire: "
+			if(!is_uncut)
+				dat += "<a href='?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Mend</a>"
+			else
+				dat += "<a href='?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Cut</a> "
+				dat += "<a href='?src=\ref[src];pulsewire=[vendwires[wiredesc]]'>Pulse</a> "
+			dat += "<br>"
+
+		dat += "<br>"
+		dat += "The orange light is [(electrified == 0) ? "off" : "on"].<BR>"
+		dat += "The red light is [safeties ? "blinking" : "off"].<BR>"
+		dat += "The yellow light is [locked ? "on" : "off"].<BR>"
+
+	user << browse(dat, "window=suit_cycler")
+	onclose(user, "suit_cycler")
+	return
+
+/obj/machinery/suit_cycler/Topic(href, href_list)
+	if(href_list["eject_suit"])
+		if(!suit)
+			return
+		suit.loc = get_turf(src)
+		suit = null
+	else if(href_list["eject_helmet"])
+		if(!helmet)
+			return
+		helmet.loc = get_turf(src)
+		helmet = null
+	else if(href_list["select_department"])
+		target_department = input("Please select the target department paintjob.","Suit cycler",null) as null|anything in departments
+	else if(href_list["select_species"])
+		target_species = input("Please select the target species configuration.","Suit cycler",null) as null|anything in species
+	else if(href_list["select_rad_level"])
+		var/choices = list(1, 2, 3)
+		if(emagged)
+			choices = list(1, 2, 3, 4, 5)
+		radiation_level = input("Please select the desired radiation level.","Suit cycler",null) as null|anything in choices
+	else if(href_list["repair_suit"])
+		if(!suit)
+			return
+		active = 1
+		spawn(100)
+			repair_suit()
+			finished_job()
+
+	else if(href_list["apply_paintjob"])
+		if(!suit && !helmet)
+			return
+		active = 1
+		spawn(100)
+			apply_paintjob()
+			finished_job()
+
+	else if(href_list["toggle_safties"])
+		safeties = !safeties
+
+	else if(href_list["toggle_lock"])
+		if(src.allowed(usr))
+			locked = !locked
+			usr << "You [locked ? "" : "un"]lock \the [src]."
+		else
+			usr << "\red Access denied."
+
+	else if(href_list["begin_decontamination"])
+		if(safeties && occupant)
+			usr << "\red The cycler has detected an occupant. Please remove the occupant before commencing the decontamination cycle."
+			return
+
+		active = 1
+		irradiating = 10
+		src.updateUsrDialog()
+
+		sleep(10)
+
+		if(helmet)
+			if(radiation_level > 2)
+				helmet.decontaminate()
+			if(radiation_level > 1)
+				helmet.clean_blood()
+
+		if(suit)
+			if(radiation_level > 2)
+				suit.decontaminate()
+			if(radiation_level > 1)
+				suit.clean_blood()
+
+	else if((href_list["cutwire"]) && (src.panel_open))
+		var/twire = text2num(href_list["cutwire"])
+		if(!(istype(usr.get_active_hand(), /obj/item/weapon/wirecutters)))
+			usr << "You need wirecutters!"
+			return
+		if (src.isWireColorCut(twire))
+			src.mend(twire)
+		else
+			src.cut(twire)
+
+	else if((href_list["pulsewire"]) && (src.panel_open))
+		var/twire = text2num(href_list["pulsewire"])
+		if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			usr << "You need a multitool!"
+			return
+		if(src.isWireColorCut(twire))
+			usr << "You can't pulse a cut wire."
+			return
+		else
+			src.pulse(twire)
+
+	src.updateUsrDialog()
+	return
+
+/obj/machinery/suit_cycler/process()
+	if(electrified > 0)
+		electrified--
+
+	if(!active)
+		return
+
+	if(active && stat & (BROKEN|NOPOWER))
+		active = 0
+		irradiating = 0
+		electrified = 0
+		return
+
+	if(irradiating == 1)
+		finished_job()
+		irradiating = 0
+		return
+
+	irradiating--
+
+	if(occupant)
+		if(prob(radiation_level * 2)) occupant.emote("scream")
+		if(radiation_level > 2)
+			occupant.take_organ_damage(0,radiation_level*2 + rand(1, 3))
+		if(radiation_level > 1)
+			occupant.take_organ_damage(0,radiation_level + rand(1, 3))
+		occupant.radiation += radiation_level * 10
+
+/obj/machinery/suit_cycler/proc/finished_job()
+	var/turf/T = get_turf(src)
+	T.visible_message("\The [src] pings loudly.")
+	icon_state = initial(icon_state)
+	active = 0
+	src.updateUsrDialog()
+
+/obj/machinery/suit_cycler/proc/repair_suit()
+	if(!suit || !suit.damage || !suit.can_breach)
+		return
+
+	suit.breaches = list()
+	suit.calc_breach_damage()
+
+	return
+
+/obj/machinery/suit_cycler/verb/leave()
+	set name = "Eject Cycler"
+	set category = "Object"
+	set src in oview(1)
+
+	if (usr.stat != 0)
+		return
+
+	eject_occupant(usr)
+
+/obj/machinery/suit_cycler/proc/eject_occupant(mob/user as mob)
+	if(locked || active)
+		user << "\red The cycler is locked."
+		return
+
+	if(!occupant)
+		return
+
+	if(occupant.client)
+		occupant.client.eye = occupant.client.mob
+		occupant.client.perspective = MOB_PERSPECTIVE
+
+	occupant.loc = get_turf(occupant)
+	occupant = null
+
+	add_fingerprint(usr)
+	src.updateUsrDialog()
+	src.update_icon()
+
+	return
+
+//HACKING PROCS, MOSTLY COPIED FROM VENDING MACHINES
+/obj/machinery/suit_cycler/proc/isWireColorCut(var/wireColor)
+	var/wireFlag = APCWireColorToFlag[wireColor]
+	return ((src.wires & wireFlag) == 0)
+
+/obj/machinery/suit_cycler/proc/isWireCut(var/wireIndex)
+	var/wireFlag = APCIndexToFlag[wireIndex]
+	return ((src.wires & wireFlag) == 0)
+
+/obj/machinery/suit_cycler/proc/cut(var/wireColor)
+	var/wireFlag = APCWireColorToFlag[wireColor]
+	var/wireIndex = APCWireColorToIndex[wireColor]
+	src.wires &= ~wireFlag
+	switch(wireIndex)
+
+		if(WIRE_EXTEND)
+			safeties = 0
+		if(WIRE_SHOCK)
+			electrified = -1
+		if (WIRE_SCANID)
+			locked = 0
+
+/obj/machinery/suit_cycler/proc/mend(var/wireColor)
+	var/wireFlag = APCWireColorToFlag[wireColor]
+	var/wireIndex = APCWireColorToIndex[wireColor] //not used in this function
+	src.wires |= wireFlag
+	switch(wireIndex)
+		if(WIRE_SHOCK)
+			src.electrified = 0
+
+/obj/machinery/suit_cycler/proc/pulse(var/wireColor)
+	var/wireIndex = APCWireColorToIndex[wireColor]
+	switch(wireIndex)
+		if(WIRE_EXTEND)
+			safeties = !locked
+		if(WIRE_SHOCK)
+			electrified = 30
+		if (WIRE_SCANID)
+			locked = !locked
+
+/obj/machinery/suit_cycler/proc/shock(mob/user, prb)
+	if(stat & (BROKEN|NOPOWER))		// unpowered, no shock
+		return 0
+	if(!prob(prb))
+		return 0
+	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	s.set_up(5, 1, src)
+	s.start()
+	if(electrocute_mob(user, get_area(src), src, 0.7))
+		return 1
+	else
+		return 0
+
+//There HAS to be a less bloated way to do this. TODO: some kind of table/icon name coding? ~Z
+/obj/machinery/suit_cycler/proc/apply_paintjob()
+	if(!target_species || !target_department)
+		return
+
+	switch(target_species)
+		if("Human" || "Skrell")
+			if(helmet) helmet.species_restricted = list("exclude", "Soghun", "Tajaran", "Diona", "Vox")
+			if(suit) suit.species_restricted = list("exclude", "Soghun", "Tajaran", "Diona", "Vox")
+		if("Soghun")
+			if(helmet) helmet.species_restricted = list("Soghun")
+			if(suit) suit.species_restricted = list("Soghun")
+		if("Tajaran")
+			if(helmet) helmet.species_restricted = list("Tajaran")
+			if(suit) suit.species_restricted = list("Tajaran")
+
+	switch(target_department)
+		if("Engineering")
+			if(helmet)
+				helmet.name = "engineering hardsuit helmet"
+				helmet.icon_state = "rig0-engineering"
+				helmet.item_state = "eng_helm"
+				helmet.item_color = "engineering"
+			if(suit)
+				suit.name = "engineering hardsuit"
+				suit.icon_state = "rig-engineering"
+				suit.item_state = "eng_hardsuit"
+		if("Mining")
+			if(helmet)
+				helmet.name = "mining hardsuit helmet"
+				helmet.icon_state = "rig0-mining"
+				helmet.item_state = "mining_helm"
+				helmet.item_color = "mining"
+			if(suit)
+				suit.name = "mining hardsuit"
+				suit.icon_state = "rig-mining"
+				suit.item_state = "mining_hardsuit"
+		if("Medical")
+			if(helmet)
+				helmet.name = "medical hardsuit helmet"
+				helmet.icon_state = "rig0-medical"
+				helmet.item_state = "medical_helm"
+				helmet.item_color = "medical"
+			if(suit)
+				suit.name = "medical hardsuit"
+				suit.icon_state = "rig-medical"
+				suit.item_state = "medical_hardsuit"
+		if("Security")
+			if(helmet)
+				helmet.name = "security hardsuit helmet"
+				helmet.icon_state = "rig0-sec"
+				helmet.item_state = "sec_helm"
+				helmet.item_color = "sec"
+			if(suit)
+				suit.name = "security hardsuit"
+				suit.icon_state = "rig-sec"
+				suit.item_state = "sec_hardsuit"
+		if("Atmos")
+			if(helmet)
+				helmet.name = "atmospherics hardsuit helmet"
+				helmet.icon_state = "rig0-atmos"
+				helmet.item_state = "atmos_helm"
+				helmet.item_color = "atmos"
+			if(suit)
+				suit.name = "atmospherics hardsuit"
+				suit.icon_state = "rig-atmos"
+				suit.item_state = "atmos_hardsuit"
+		if("^%###^%$")
+			if(helmet)
+				helmet.name = "blood-red hardsuit helmet"
+				helmet.icon_state = "rig0-syndie"
+				helmet.item_state = "syndie_helm"
+				helmet.item_color = "syndie"
+			if(suit)
+				suit.name = "blood-red hardsuit"
+				suit.item_state = "syndie_hardsuit"
+				suit.icon_state = "rig-syndie"
