@@ -17,12 +17,12 @@
 	w_class = 4
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
-	flags = FPRINT | TABLEPASS | STOPSPRESSUREDAMAGE
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
+	flags = STOPSPRESSUREDAMAGE
+	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS
 	allowed = list(/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy, /obj/item/weapon/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs)
 	slowdown = 1.5
 	armor = list(melee = 65, bullet = 50, laser = 50, energy = 25, bomb = 50, bio = 100, rad = 50)
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
+	flags_inv = HIDEGLOVES | HIDESHOES | HIDEJUMPSUIT | HIDETAIL
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
@@ -41,7 +41,7 @@
 	desc = "An armored beret commonly used by special operations officers."
 	icon_state = "beret_badge"
 	armor = list(melee = 65, bullet = 55, laser = 35,energy = 20, bomb = 30, bio = 30, rad = 30)
-	flags = FPRINT | TABLEPASS | HEADCOVERSEYES | BLOCKHAIR | STOPSPRESSUREDAMAGE
+	flags = HEADCOVERSEYES | BLOCKHAIR | STOPSPRESSUREDAMAGE
 	siemens_coefficient = 0.9
 
 //Space santa outfit suit
@@ -49,7 +49,7 @@
 	name = "Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas!"
 	icon_state = "santahat"
-	flags = FPRINT | TABLEPASS | HEADCOVERSEYES | BLOCKHAIR | STOPSPRESSUREDAMAGE
+	flags = HEADCOVERSEYES | BLOCKHAIR | STOPSPRESSUREDAMAGE
 
 /obj/item/clothing/suit/space/santa
 	name = "Santa's suit"
@@ -57,7 +57,7 @@
 	icon_state = "santa"
 	item_state = "santa"
 	slowdown = 0
-	flags = FPRINT | TABLEPASS | ONESIZEFITSALL | STOPSPRESSUREDAMAGE
+	flags = ONESIZEFITSALL | STOPSPRESSUREDAMAGE
 	allowed = list(/obj/item) //for stuffing exta special presents
 
 
@@ -68,7 +68,7 @@
 	icon_state = "pirate"
 	item_state = "pirate"
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
-	flags = FPRINT | TABLEPASS | HEADCOVERSEYES | BLOCKHAIR | STOPSPRESSUREDAMAGE
+	flags = HEADCOVERSEYES | BLOCKHAIR | STOPSPRESSUREDAMAGE
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/suit/space/pirate
@@ -89,7 +89,7 @@
 	desc = "A pressure resistant spacesuit in the colours of the clown. HONK!"
 	icon_state = "clownspace_suit"
 	item_state = "clownspace_suit"
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank)
+	allowed = list(/obj/item/device/flashlight, /obj/item/weapon/tank)
 
 /obj/item/clothing/head/helmet/space/clown
 	name = "Clown's EVA Helmet"
@@ -102,7 +102,7 @@
 	desc = "A pressure resistant spacesuit in the colours of the mime. ..."
 	icon_state = "mimespace_suit"
 	item_state = "mimespace_suit"
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank)
+	allowed = list(/obj/item/device/flashlight, /obj/item/weapon/tank)
 
 /obj/item/clothing/head/helmet/space/mime
 	name = "Mime's EVA Helmet"

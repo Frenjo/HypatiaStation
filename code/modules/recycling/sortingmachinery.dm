@@ -6,7 +6,7 @@
 	var/obj/wrapped = null
 	density = 1
 	var/sortTag = 0
-	flags = FPRINT | NOBLUDGEON
+	flags = NOBLUDGEON
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
 	attack_hand(mob/user as mob)
@@ -45,8 +45,6 @@
 	icon_state = "deliverycrateSmall"
 	var/obj/item/wrapped = null
 	var/sortTag = 0
-	flags = FPRINT
-
 
 	attack_self(mob/user as mob)
 		if (src.wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
@@ -167,7 +165,7 @@
 
 	w_class = 1
 	item_state = "electronic"
-	flags = FPRINT | TABLEPASS | CONDUCT
+	flags = CONDUCT
 	slot_flags = SLOT_BELT
 
 	proc/openwindow(mob/user as mob)

@@ -198,38 +198,34 @@ var/MAX_EXPLOSION_RANGE = 14
 //FLAGS BITMASK
 #define STOPSPRESSUREDAMAGE 1	//This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage. Note that the flag 1 was previous used as ONBACK, so it is possible for some code to use (flags & 1) when checking if something can be put on your back. Replace this code with (inv_flags & SLOT_BACK) if you see it anywhere
                                 //To successfully stop you taking all pressure damage you must have both a suit and head item with this flag.
-#define TABLEPASS 2			// can pass by a table or rack
 
-#define MASKINTERNALS	8	// mask allows internals
-//#define SUITSPACE		8	// suit protects against space
+#define USEDELAY 		2		// 1 second extra delay on use (Can be used once every 2s)
+#define NODELAY 		4		// 1 second attackby delay skipped (Can be used once every 0.2s). Most objects have a 1s attackby delay, which doesn't require a flag.
+#define MASKINTERNALS 	8		// mask allows internals
+#define NOSHIELD		16		// weapon not affected by shield
+#define CONDUCT			32		// conducts electricity (metal etc.)
+#define ON_BORDER		64		// item has priority to check when entering or leaving
+#define NOBLUDGEON  	128  	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
+#define NOBLOODY		512		// used to items if they don't want to get a blood overlay
 
-#define USEDELAY 	16		// 1 second extra delay on use (Can be used once every 2s)
-#define NODELAY 	32768	// 1 second attackby delay skipped (Can be used once every 0.2s). Most objects have a 1s attackby delay, which doesn't require a flag.
-#define NOSHIELD	32		// weapon not affected by shield
-#define CONDUCT		64		// conducts electricity (metal etc.)
-#define FPRINT		256		// takes a fingerprint
-#define ON_BORDER	512		// item has priority to check when entering or leaving
-#define NOBLUDGEON  4  // when an item has this it produces no "X has been hit by Y with Z" message with the default handler
-#define NOBLOODY	2048	// used to items if they don't want to get a blood overlay
+#define GLASSESCOVERSEYES	128
+#define MASKCOVERSEYES		128		// get rid of some of the other retardation in these flags
+#define HEADCOVERSEYES		128		// feel free to realloc these numbers for other purposes
+#define MASKCOVERSMOUTH		512		// on other items, these are just for mask/head
+#define HEADCOVERSMOUTH		512
 
-#define GLASSESCOVERSEYES	1024
-#define MASKCOVERSEYES		1024		// get rid of some of the other retardation in these flags
-#define HEADCOVERSEYES		1024		// feel free to realloc these numbers for other purposes
-#define MASKCOVERSMOUTH		2048		// on other items, these are just for mask/head
-#define HEADCOVERSMOUTH		2048
-
-#define NOSLIP		1024 		//prevents from slipping on wet floors, in space etc
+#define NOSLIP		256 		//prevents from slipping on wet floors, in space etc
 
 #define OPENCONTAINER	4096	// is an open container for chemistry purposes
 
-#define BLOCK_GAS_SMOKE_EFFECT 8192	// blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY! (NOTE: flag shared with ONESIZEFITSALL)
-#define ONESIZEFITSALL 8192
-#define PLASMAGUARD 16384			//Does not get contaminated by plasma.
+#define BLOCK_GAS_SMOKE_EFFECT 2048	// blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY! (NOTE: flag shared with ONESIZEFITSALL)
+#define ONESIZEFITSALL 2048
+#define PLASMAGUARD 4096			//Does not get contaminated by plasma.
 
-#define	NOREACT		16384 			//Reagents dont' react inside this container.
+#define	NOREACT		4096 			//Reagents dont' react inside this container.
 
 #define BLOCKHEADHAIR 4             // temporarily removes the user's hair overlay. Leaves facial hair.
-#define BLOCKHAIR	32768			// temporarily removes the user's hair, facial and otherwise.
+#define BLOCKHAIR	8192			// temporarily removes the user's hair, facial and otherwise.
 
 //flags for pass_flags
 #define PASSTABLE	1

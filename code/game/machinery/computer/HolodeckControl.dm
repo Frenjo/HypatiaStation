@@ -457,7 +457,6 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "stool"
 	anchored = 1.0
-	flags = FPRINT
 	pressure_resistance = 15
 
 
@@ -493,7 +492,7 @@
 	throw_range = 5
 	throwforce = 0
 	w_class = 2.0
-	flags = FPRINT | TABLEPASS | NOSHIELD
+	flags = NOSHIELD
 	var/active = 0
 
 /obj/item/weapon/holo/esword/green
