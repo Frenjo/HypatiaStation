@@ -2,9 +2,12 @@
 
 //A very crude linear approximatiaon of pythagoras theorem.
 /proc/cheap_pythag(var/dx, var/dy)
-	dx = abs(dx); dy = abs(dy);
-	if(dx>=dy)	return dx + (0.5*dy)	//The longest side add half the shortest side approximates the hypotenuse
-	else		return dy + (0.5*dx)
+	dx = abs(dx)
+	dy = abs(dy)
+	if(dx >= dy)
+		return dx + (0.5 * dy)	//The longest side add half the shortest side approximates the hypotenuse
+	else
+		return dy + (0.5 * dx)
 
 ///// Z-Level Stuff
 proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = 1)
@@ -24,8 +27,8 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 
 		var/start = world.timeofday
 		epicenter = get_turf(epicenter)
-		if(!epicenter) return
-
+		if(!epicenter)
+			return
 
 		//playsound(epicenter, 'sound/effects/explosionfar.ogg', 100, 1, round(devastation_range*2,1) )
 		//playsound(epicenter, "explosion", 100, 1, round(devastation_range,1) )
@@ -48,20 +51,20 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 					// If inside the blast radius + world.view - 2
 					if(dist <= round(max_range + world.view - 2, 1))
 						M.playsound_local(epicenter, get_sfx("explosion"), 100, 1, frequency, falloff = 5) // get_sfx() is so that everyone gets the same sound
-
 						//You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
-
 					else if(dist <= far_dist)
 						var/far_volume = Clamp(far_dist, 30, 50) // Volume is based on explosion size and dist
 						far_volume += (dist <= far_dist * 0.5 ? 50 : 0) // add 50 volume if the mob is pretty close to the explosion
 						M.playsound_local(epicenter, 'sound/effects/explosionfar.ogg', far_volume, 1, frequency, falloff = 5)
 
-		var/close = range(world.view+round(devastation_range,1), epicenter)
+		var/close = range(world.view + round(devastation_range, 1), epicenter)
 		// to all distanced mobs play a different sound
-		for(var/mob/M in world) if(M.z == epicenter.z) if(!(M in close))
-			// check if the mob can hear
-			if(M.ear_deaf <= 0 || !M.ear_deaf) if(!istype(M.loc,/turf/space))
-				M << 'sound/effects/explosionfar.ogg'
+		for(var/mob/M in world)
+			if(M.z == epicenter.z)
+				if(!(M in close))
+					// check if the mob can hear
+					if(M.ear_deaf <= 0 || !M.ear_deaf) if(!istype(M.loc,/turf/space))
+						M << 'sound/effects/explosionfar.ogg'
 		if(adminlog)
 			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
 			log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ")
@@ -84,10 +87,14 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 		for(var/turf/T in range(epicenter, max_range))
 			var/dist = cheap_pythag(T.x - x0,T.y - y0)
 
-			if(dist < devastation_range)		dist = 1
-			else if(dist < heavy_impact_range)	dist = 2
-			else if(dist < light_impact_range)	dist = 3
-			else								continue
+			if(dist < devastation_range)
+				dist = 1
+			else if(dist < heavy_impact_range)
+				dist = 2
+			else if(dist < light_impact_range)
+				dist = 3
+			else
+				continue
 
 			T.ex_act(dist)
 			if(T)
@@ -95,15 +102,16 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 					var/atom/movable/AM = atom_movable
 					if(AM)	AM.ex_act(dist)
 
-		var/took = (world.timeofday-start)/10
+		var/took = (world.timeofday - start) / 10
 		//You need to press the DebugGame verb to see these now....they were getting annoying and we've collected a fair bit of data. Just -test- changes  to explosion code using this please so we can compare
-		if(Debug2)	world.log << "## DEBUG: Explosion([x0],[y0],[z0])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [took] seconds."
+		if(Debug2)
+			world.log << "## DEBUG: Explosion([x0],[y0],[z0])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [took] seconds."
 
 		//Machines which report explosions.
-		for(var/i,i<=doppler_arrays.len,i++)
+		for(var/i,i <= doppler_arrays.len, i++)
 			var/obj/machinery/doppler_array/Array = doppler_arrays[i]
 			if(Array)
-				Array.sense_explosion(x0,y0,z0,devastation_range,heavy_impact_range,light_impact_range,took)
+				Array.sense_explosion(x0, y0, z0, devastation_range, heavy_impact_range, light_impact_range, took)
 
 		sleep(8)
 
@@ -111,10 +119,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 		if(!powernet_rebuild_was_deferred_already)
 			if(defer_powernet_rebuild != 2)
 				defer_powernet_rebuild = 0
-
 	return 1
-
-
 
 proc/secondaryexplosion(turf/epicenter, range)
 	for(var/turf/tile in range(range, epicenter))

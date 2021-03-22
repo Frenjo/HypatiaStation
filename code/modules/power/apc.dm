@@ -98,8 +98,105 @@
 	var/global/list/status_overlays_environ
 	var/is_critical = 0
 
+// Variants with different cell configurations for mapping.
+/obj/machinery/power/apc/standard/none
+	cell_type = null
+
+/obj/machinery/power/apc/standard/potato
+	cell_type = /obj/item/weapon/cell/potato
+
+/obj/machinery/power/apc/standard/crap
+	cell_type = /obj/item/weapon/cell/crap
+
+/obj/machinery/power/apc/standard/cell
+	cell_type = /obj/item/weapon/cell
+
+/obj/machinery/power/apc/standard/apc
+	cell_type = /obj/item/weapon/cell/apc
+
+/obj/machinery/power/apc/standard/high
+	cell_type = /obj/item/weapon/cell/high
+
+/obj/machinery/power/apc/standard/super
+	cell_type = /obj/item/weapon/cell/super
+
+/obj/machinery/power/apc/standard/hyper
+	cell_type = /obj/item/weapon/cell/hyper
+
+// These are for disused on-station places, IE the old prison wing or old security dorms.
+/obj/machinery/power/apc/disused
+	icon_state = "apc1"
+	opened = 1
+	shorted = 1
+	lighting = 0
+	equipment = 0
+	environ = 0
+	operating = 0
+	chargemode = 0
+	locked = 0
+	coverlocked = 0
+
+/obj/machinery/power/apc/disused/none
+	cell_type = null
+
+/obj/machinery/power/apc/disused/potato
+	cell_type = /obj/item/weapon/cell/potato
+
+/obj/machinery/power/apc/disused/crap
+	cell_type = /obj/item/weapon/cell/crap
+
+/obj/machinery/power/apc/disused/cell
+	cell_type = /obj/item/weapon/cell
+
+/obj/machinery/power/apc/disused/apc
+	cell_type = /obj/item/weapon/cell/apc
+
+/obj/machinery/power/apc/disused/high
+	cell_type = /obj/item/weapon/cell/high
+
+/obj/machinery/power/apc/disused/super
+	cell_type = /obj/item/weapon/cell/super
+
+/obj/machinery/power/apc/disused/hyper
+	cell_type = /obj/item/weapon/cell/hyper
+
+// These are for abandoned off-station places, IE the derelict or white ship.
+/obj/machinery/power/apc/abandoned
+	lighting = 0
+	equipment = 0
+	environ = 0
+	operating = 0
+	chargemode = 0
+	locked = 0
+	coverlocked = 0
+
+/obj/machinery/power/apc/abandoned/none
+	cell_type = null
+
+/obj/machinery/power/apc/abandoned/potato
+	cell_type = /obj/item/weapon/cell/potato
+
+/obj/machinery/power/apc/abandoned/crap
+	cell_type = /obj/item/weapon/cell/crap
+
+/obj/machinery/power/apc/abandoned/cell
+	cell_type = /obj/item/weapon/cell
+
+/obj/machinery/power/apc/abandoned/apc
+	cell_type = /obj/item/weapon/cell/apc
+
+/obj/machinery/power/apc/abandoned/high
+	cell_type = /obj/item/weapon/cell/high
+
+/obj/machinery/power/apc/abandoned/super
+	cell_type = /obj/item/weapon/cell/super
+
+/obj/machinery/power/apc/abandoned/hyper
+	cell_type = /obj/item/weapon/cell/hyper
+// End variants.
+
 /obj/machinery/power/apc/updateDialog()
-	if (stat & (BROKEN|MAINT))
+	if(stat & (BROKEN|MAINT))
 		return
 	..()
 
@@ -120,14 +217,14 @@
 
 	// offset 24 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
-	if (building)
+	if(building)
 		dir = ndir
 	src.tdir = dir		// to fix Vars bug
 	dir = SOUTH
 
 	pixel_x = (src.tdir & 3)? 0 : (src.tdir == 4 ? 24 : -24)
 	pixel_y = (src.tdir & 3)? (src.tdir ==1 ? 24 : -24) : 0
-	if (building==0)
+	if(building == 0)
 		init()
 	else
 		area = src.loc.loc:master
