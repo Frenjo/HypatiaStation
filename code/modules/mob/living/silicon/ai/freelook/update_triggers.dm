@@ -11,40 +11,37 @@
 	if(ticker)
 		cameranet.updateVisibility(src)
 
-/turf/simulated/Destroy()
-	visibilityChanged()
-	..()
-
 /turf/simulated/New()
 	..()
 	visibilityChanged()
 
-
+/turf/simulated/Destroy()
+	visibilityChanged()
+	..()
 
 // STRUCTURES
-
-/obj/structure/Destroy()
-	if(ticker)
-		cameranet.updateVisibility(src)
-	..()
 
 /obj/structure/New()
 	..()
 	if(ticker)
 		cameranet.updateVisibility(src)
 
-// EFFECTS
-
-/obj/effect/Destroy()
+/obj/structure/Destroy()
 	if(ticker)
 		cameranet.updateVisibility(src)
 	..()
+
+// EFFECTS
 
 /obj/effect/New()
 	..()
 	if(ticker)
 		cameranet.updateVisibility(src)
 
+/obj/effect/Destroy()
+	if(ticker)
+		cameranet.updateVisibility(src)
+	return ..()
 
 // DOORS
 

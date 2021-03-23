@@ -11,37 +11,42 @@
 
 	var/maximum_pressure = 90*ONE_ATMOSPHERE
 
-	New()
-		..()
+/obj/machinery/portable_atmospherics/New()
+	..()
 
-		air_contents.volume = volume
-		air_contents.temperature = T20C
+	air_contents.volume = volume
+	air_contents.temperature = T20C
 
-		return 1
+	return 1
 
-	initialize()
-		. = ..()
-		spawn()
-			var/obj/machinery/atmospherics/portables_connector/port = locate() in loc
-			if(port)
-				connect(port)
-				update_icon()
+/obj/machinery/portable_atmospherics/Destroy()
+	del(air_contents)
+	..()
 
-	process()
-		if(!connected_port) //only react when pipe_network will ont it do it for you
-			//Allow for reactions
-			air_contents.react()
-		else
+/obj/machinery/portable_atmospherics/initialize()
+	. = ..()
+	spawn()
+		var/obj/machinery/atmospherics/portables_connector/port = locate() in loc
+		if(port)
+			connect(port)
 			update_icon()
 
-	Destroy()
-		qdel(air_contents)
+/obj/machinery/portable_atmospherics/process()
+	if(!connected_port) //only react when pipe_network will ont it do it for you
+		//Allow for reactions
+		air_contents.react()
+	else
+		update_icon()
 
-		..()
+/obj/machinery/portable_atmospherics/Destroy()
+	qdel(air_contents)
 
-	update_icon()
-		return null
+	..()
 
+/obj/machinery/portable_atmospherics/update_icon()
+	return null
+
+/obj/machinery/portable_atmospherics
 	proc
 
 		connect(obj/machinery/atmospherics/portables_connector/new_port)

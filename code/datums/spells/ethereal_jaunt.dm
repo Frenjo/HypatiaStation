@@ -11,15 +11,15 @@
 	include_user = 1
 	centcomm_cancast = 0 //Prevent people from getting to centcomm
 
-	var phaseshift = 0
+	var/phaseshift = 0
 	var/jaunt_duration = 50 //in deciseconds
 
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/cast(list/targets) //magnets, so mostly hardcoded
 	for(var/mob/living/target in targets)
 		spawn(0)
 			var/mobloc = get_turf(target.loc)
-			var/obj/effect/dummy/spell_jaunt/holder = new /obj/effect/dummy/spell_jaunt( mobloc )
-			var/atom/movable/overlay/animation = new /atom/movable/overlay( mobloc )
+			var/obj/effect/dummy/spell_jaunt/holder = new /obj/effect/dummy/spell_jaunt(mobloc)
+			var/atom/movable/overlay/animation = new /atom/movable/overlay(mobloc)
 			animation.name = "water"
 			animation.density = 0
 			animation.anchored = 1
@@ -41,7 +41,7 @@
 				flick("phase_shift2",animation)
 				sleep(5)
 				if(!target.Move(mobloc))
-					for(var/direction in list(1,2,4,8,5,6,9,10))
+					for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
 						var/turf/T = get_step(mobloc, direction)
 						if(T)
 							if(target.Move(T))
@@ -64,10 +64,10 @@
 				steam.start()
 				target.canmove = 0
 				sleep(20)
-				flick("reappear",animation)
+				flick("reappear", animation)
 				sleep(5)
 				if(!target.Move(mobloc))
-					for(var/direction in list(1,2,4,8,5,6,9,10))
+					for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
 						var/turf/T = get_step(mobloc, direction)
 						if(T)
 							if(target.Move(T))
@@ -85,9 +85,15 @@
 	density = 0
 	anchored = 1
 
+/obj/effect/dummy/spell_jaunt/Destroy()
+	// Eject contents if deleted somehow
+	for(var/atom/movable/AM in src)
+		AM.loc = get_turf(src)
+	return ..()
+
 /obj/effect/dummy/spell_jaunt/relaymove(var/mob/user, direction)
 	if (!src.canmove) return
-	var/turf/newLoc = get_step(src,direction)
+	var/turf/newLoc = get_step(src, direction)
 	if(!(newLoc.flags & NOJAUNT))
 		loc = newLoc
 	else

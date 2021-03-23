@@ -1,6 +1,6 @@
 /datum/controller/process/shuttle/setup()
-	name = "shuttle controller"
-	schedule_interval = 40 // every 4 seconds
+	name = "shuttle"
+	schedule_interval = 20 // every 2 seconds
 
 	if(!shuttle_controller)
 		shuttle_controller = new

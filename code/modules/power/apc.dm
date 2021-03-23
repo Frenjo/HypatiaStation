@@ -227,7 +227,7 @@
 	if(building == 0)
 		init()
 	else
-		area = src.loc.loc:master
+		area = get_area(src)
 		area.apc = src
 		opened = 1
 		operating = 0
@@ -237,12 +237,17 @@
 		spawn(5)
 			src.update()
 
+/obj/machinery/power/apc/initialize()
+	..()
+	src.update()
+
 /obj/machinery/power/apc/Destroy()
 	if(malfai && operating)
-		if (ticker.mode.config_tag == "malfunction")
-			if (src.z == 1) //if (is_type_in_list(get_area(src), the_station_areas))
+		if(ticker.mode.config_tag == "malfunction")
+			if(src.z == 1) //if (is_type_in_list(get_area(src), the_station_areas))
 				ticker.mode:apcs--
-	area.apc = null
+
+	area.apc -= src
 	area.power_light = 0
 	area.power_equip = 0
 	area.power_environ = 0
@@ -253,7 +258,8 @@
 	if(cell)
 		qdel(cell)
 	if(terminal)
-		disconnect_terminal()
+		qdel(terminal)
+		terminal = null
 	..()
 
 /obj/machinery/power/apc/proc/make_terminal()

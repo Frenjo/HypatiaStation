@@ -13,30 +13,35 @@
 
 	var/mob/living/carbon/brain/brainmob = null
 
-	New()
-		..()
-		//Shifting the brain "mob" over to the brain object so it's easier to keep track of. --NEO
-		//WASSSSSUUUPPPP /N
-		spawn(5)
-			if(brainmob && brainmob.client)
-				brainmob.client.screen.len = null //clear the hud
+/obj/item/brain/New()
+	..()
+	//Shifting the brain "mob" over to the brain object so it's easier to keep track of. --NEO
+	//WASSSSSUUUPPPP /N
+	spawn(5)
+		if(brainmob && brainmob.client)
+			brainmob.client.screen.len = null //clear the hud
 
-	proc
-		transfer_identity(var/mob/living/carbon/H)
-			name = "[H]'s brain"
-			brainmob = new(src)
-			brainmob.name = H.real_name
-			brainmob.real_name = H.real_name
-			brainmob.dna = H.dna.Clone()
-			brainmob.timeofhostdeath = H.timeofdeath
-			if(H.mind)
-				H.mind.transfer_to(brainmob)
-			brainmob << "\blue You feel slightly disoriented. That's normal when you're just a brain."
-			return
+/obj/item/brain/Destroy()
+	if(brainmob)
+		qdel(brainmob)
+		brainmob = null
+	..()
+
+/obj/item/brain/proc/transfer_identity(var/mob/living/carbon/H)
+	name = "[H]'s brain"
+	brainmob = new(src)
+	brainmob.name = H.real_name
+	brainmob.real_name = H.real_name
+	brainmob.dna = H.dna.Clone()
+	brainmob.timeofhostdeath = H.timeofdeath
+	if(H.mind)
+		H.mind.transfer_to(brainmob)
+	brainmob << "\blue You feel slightly disoriented. That's normal when you're just a brain."
+	return
 
 /obj/item/brain/examine() // -- TLE
 	set src in oview(12)
-	if (!( usr ))
+	if(!(usr))
 		return
 	usr << "This is \icon[src] \an [name]."
 
@@ -54,7 +59,7 @@
 	if(!(user.zone_sel.selecting == ("head")) || !istype(M, /mob/living/carbon/human))
 		return ..()
 
-	if(	!(locate(/obj/machinery/optable, M.loc) && M.resting) && ( !(locate(/obj/structure/table/, M.loc) && M.lying) && prob(50) ) )
+	if(!(locate(/obj/machinery/optable, M.loc) && M.resting) && (!(locate(/obj/structure/table/, M.loc) && M.lying) && prob(50)))
 		return ..()
 
 	var/mob/living/carbon/human/H = M

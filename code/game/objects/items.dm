@@ -47,6 +47,12 @@
 	var/list/sprite_sheets = null
 	var/icon_override = null  //Used to override hardcoded clothing dmis in human clothing proc.
 
+/obj/item/Destroy()
+	if(ismob(loc))
+		var/mob/M = loc
+		M.drop_from_inventory(src)
+	return ..()
+
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
 
@@ -582,8 +588,8 @@
 		return
 
 	var/icon/I = new /icon(icon, icon_state)
-	I.Blend(new /icon('icons/effects/blood.dmi', rgb(255,255,255)),ICON_ADD) //fills the icon_state with white (except where it's transparent)
-	I.Blend(new /icon('icons/effects/blood.dmi', "itemblood"),ICON_MULTIPLY) //adds blood and the remaining white areas become transparant
+	I.Blend(new /icon('icons/effects/blood.dmi', rgb(255, 255, 255)), ICON_ADD) //fills the icon_state with white (except where it's transparent)
+	I.Blend(new /icon('icons/effects/blood.dmi', "itemblood"), ICON_MULTIPLY) //adds blood and the remaining white areas become transparant
 
 	//not sure if this is worth it. It attaches the blood_overlay to every item of the same type if they don't have one already made.
 	for(var/obj/item/A in world)
@@ -591,7 +597,7 @@
 			A.blood_overlay = image(I)
 
 /obj/item/proc/showoff(mob/user)
-	for (var/mob/M in view(user))
+	for(var/mob/M in view(user))
 		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];lookitem=\ref[src]>Take a closer look.</a>",1)
 
 /mob/living/carbon/verb/showoff()
@@ -602,3 +608,5 @@
 	if(I && !I.abstract)
 		I.showoff(src)
 
+/obj/item/proc/pwr_drain()
+	return 0 // Process Kill

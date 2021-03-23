@@ -25,6 +25,7 @@
 	var/area_uid
 	var/radio_filter_out
 	var/radio_filter_in
+
 	New()
 		initial_loc = get_area(loc)
 		//if (initial_loc.master)
@@ -33,9 +34,11 @@
 		if (!id_tag)
 			assign_uid()
 			id_tag = num2text(uid)
-		if(ticker && ticker.current_state == 3)//if the game is running
-			src.initialize()
-			src.broadcast_status()
+		..()
+
+	Destroy()
+		if(radio_controller)
+			radio_controller.remove_object(src, frequency)
 		..()
 
 	update_icon()
@@ -89,6 +92,7 @@
 		radio_filter_out = frequency==initial(frequency)?(RADIO_TO_AIRALARM):null
 		if (frequency)
 			set_frequency(frequency)
+			src.broadcast_status()
 
 	process()
 		..()

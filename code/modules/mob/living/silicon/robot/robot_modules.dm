@@ -28,6 +28,15 @@
 //	src.jetpack.name = "Placeholder Upgrade Item"
 	return
 
+/obj/item/weapon/robot_module/Destroy()
+	qdel(modules)
+	qdel(emag)
+	qdel(jetpack)
+	modules = null
+	emag = null
+	jetpack = null
+	..()
+
 /obj/item/weapon/robot_module/proc/respawn_consumable(var/mob/living/silicon/robot/R)
 	return
 

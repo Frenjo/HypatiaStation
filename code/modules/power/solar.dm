@@ -297,10 +297,11 @@ var/list/solars_list = list()
 	var/obj/machinery/power/tracker/connected_tracker = null
 	var/list/connected_panels = list()
 
-/obj/machinery/power/solar_control/New()
+/obj/machinery/power/solar_control/initialize()
 	..()
-	if(ticker)
-		initialize()
+	if(!powernet)
+		return
+	set_panels(cdir)
 	connect_to_network()
 
 /obj/machinery/power/solar_control/Destroy()
@@ -351,11 +352,6 @@ var/list/solars_list = list()
 
 	set_panels(cdir)
 	updateDialog()
-
-/obj/machinery/power/solar_control/initialize()
-	..()
-	if(!powernet) return
-	set_panels(cdir)
 
 /obj/machinery/power/solar_control/update_icon()
 	if(stat & BROKEN)

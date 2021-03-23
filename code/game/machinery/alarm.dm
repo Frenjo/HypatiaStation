@@ -115,7 +115,6 @@
 	TLV["temperature"] =	list(20, 40, 140, 160) // K
 	target_temperature = 90
 
-
 /obj/machinery/alarm/New(var/loc, var/dir, var/building = 0)
 	..()
 
@@ -131,12 +130,14 @@
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 		update_icon()
-		if(ticker && ticker.current_state == 3)//if the game is running
-			src.initialize()
 		return
 
 	first_run()
 
+/obj/machinery/alarm/Destroy()
+	if(radio_controller)
+		radio_controller.remove_object(src, frequency)
+	..()
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)

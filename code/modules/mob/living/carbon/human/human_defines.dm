@@ -72,3 +72,7 @@
 
 	var/mob/remoteview_target = null
 	var/hand_blood_color
+
+	mob_bump_flag = HUMAN
+	mob_push_flags = ALLMOBS
+	mob_swap_flags = ALLMOBS

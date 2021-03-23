@@ -2,6 +2,11 @@
 	mob_list -= src
 	dead_mob_list -= src
 	living_mob_list -= src
+	qdel(hud_used)
+	if(mind && mind.current == src)
+		spellremove(src)
+	for(var/infection in viruses)
+		qdel(infection)
 	ghostize()
 	..()
 
@@ -698,69 +703,16 @@ note dizziness decrements automatically in the mob's Life() proc.
 /mob/Stat()
 	..()
 
-	if(statpanel("Status"))	//not looking at that panel
-
-		if(client && client.holder)
+	if(client && client.holder)
+		if(statpanel("Status"))
 			stat(null,"Location:\t([x], [y], [z])")
 			stat(null,"CPU:\t[world.cpu]")
 			stat(null,"Instances:\t[world.contents.len]")
-
-			if(master_controller)
-				//stat(null,"MasterController-[last_tick_duration] ([master_controller.processing?"On":"Off"]-[controller_iteration])")
-				//stat(null,"Air-[master_controller.air_cost]\tSun-[master_controller.sun_cost]")
-				//stat(null,"Mob-[master_controller.mobs_cost]\t#[mob_list.len]")
-				//stat(null,"Dis-[master_controller.diseases_cost]\t#[active_diseases.len]")
-				//stat(null,"Mch-[master_controller.machines_cost]\t#[machines.len]")
-				//stat(null,"Obj-[master_controller.objects_cost]\t#[processing_objects.len]")
-				//stat(null,"Net-[master_controller.networks_cost]\tPnet-[master_controller.powernets_cost]")
-				//stat(null,"NanoUI-[master_controller.nano_cost]\t#[nanomanager.processing_uis.len]")
-				//stat(null,"Tick-[master_controller.ticker_cost]\tALL-[master_controller.total_cost]")
-			else
-				stat(null,"MasterController-ERROR")
-
-			if(processScheduler.getIsRunning())
-				var/datum/controller/process/process
-
-				process = processScheduler.getProcess("air")
-				stat(null, "Air\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
-
-				process = processScheduler.getProcess("disease")
-				stat(null, "Diseases([active_diseases.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
-
-				process = processScheduler.getProcess("garbage")
-				stat(null, "Garbage([garbage_collector.destroyed.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
-
-				process = processScheduler.getProcess("lighting")
-				stat(null, "Lighting\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
-
-				process = processScheduler.getProcess("machinery")
-				stat(null, "PipeNet([pipe_networks.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
-				stat(null, "Machinery([machines.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
-				stat(null, "PowerNet([powernets.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
-
-				process = processScheduler.getProcess("mob")
-				stat(null, "Mob([mob_list.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
-
-				process = processScheduler.getProcess("nanoui")
-				stat(null, "NanoUI([nanomanager.processing_uis.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
-
-				process = processScheduler.getProcess("obj")
-				stat(null, "Objects([processing_objects.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
-
-				//process = processScheduler.getProcess("pipenet")
-				//stat(null, "PipeNet([pipe_networks.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
-
-				//process = processScheduler.getProcess("powernet")
-				//stat(null, "PowerNet([powernets.len])\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
-
-				process = processScheduler.getProcess("sun")
-				stat(null, "Sun\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
-
-				process = processScheduler.getProcess("ticker")
-				stat(null, "Ticker\t - #[process.getTicks()]\t - [process.getLastRunTime()]")
-
-			else
-				stat(null, "processScheduler is not running.")
+		if(statpanel("Status") && processScheduler && processScheduler.getIsRunning())
+			for(var/datum/controller/process/P in processScheduler.processes)
+				statpanel("Status", P.getStatName(), P.getTickTime())
+		else
+			stat(null, "processScheduler is not running.")
 
 	if(listed_turf && client)
 		if(get_dist(listed_turf,src) > 1)

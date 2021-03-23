@@ -46,11 +46,16 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 /obj/item/device/radio/New()
 	..()
-
 	wires = new(src)
 
+/obj/item/device/radio/Destroy()
+	qdel(wires)
+	wires = null
 	if(radio_controller)
-		initialize()
+		radio_controller.remove_object(src, frequency)
+		for(var/ch_name in channels)
+			radio_controller.remove_object(src, radiochannels[ch_name])
+	..()
 
 /obj/item/device/radio/initialize()
 	if(freerange)
@@ -202,14 +207,19 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	return
 
 /obj/item/device/radio/talk_into(mob/living/M as mob, message, channel, var/verbage = "says", var/datum/language/speaking = null)
-	if(!on) return // the device has to be on
+	if(!on)
+		return // the device has to be on
 	//  Fix for permacell radios, but kinda eh about actually fixing them.
-	if(!M || !message) return
+	if(!M || !message)
+		return
 
 	//  Uncommenting this. To the above comment:
 	// 	The permacell radios aren't suppose to be able to transmit, this isn't a bug and this "fix" is just making radio wires useless. -Giacom
 	if(wires.IsIndexCut(WIRE_TRANSMIT)) // The device has to have all its wires and shit intact
 		return
+
+	if(!radio_connection)
+		set_frequency(frequency)
 
 	if(GLOBAL_RADIO_TYPE == 1) // NEW RADIO SYSTEMS: By Doohl
 

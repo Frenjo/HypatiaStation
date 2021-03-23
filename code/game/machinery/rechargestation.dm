@@ -10,8 +10,6 @@
 	active_power_usage = 75000	//75 kW charging station
 	var/mob/occupant = null
 
-
-
 	New()
 		..()
 		build_icon()
@@ -43,6 +41,9 @@
 			occupant.emp_act(severity)
 			go_out()
 		..(severity)
+
+	Bumped(var/mob/AM)
+		move_inside(AM)
 
 	proc
 		build_icon()
@@ -97,31 +98,36 @@
 			add_fingerprint(usr)
 			return
 
-		move_inside()
+		move_inside(var/mob/user = usr)
 			set category = "Object"
 			set src in oview(1)
-			if (usr.stat == 2)
+			if(!user)
+				return
+
+			if(!(istype(user, /mob/living/silicon/robot)))
+				user << "<span class='notice'>Only non-organics may enter the recharger!</span>"
+				return
+			var/mob/living/silicon/robot/R = user
+
+			if(R.stat == 2)
 				//Whoever had it so that a borg with a dead cell can't enter this thing should be shot. --NEO
 				return
-			if (!(istype(usr, /mob/living/silicon/)))
-				usr << "\blue <B>Only non-organics may enter the recharger!</B>"
+			if(src.occupant)
+				R << "<span class='notice'>The cell is already occupied!</span>"
 				return
-			if (src.occupant)
-				usr << "\blue <B>The cell is already occupied!</B>"
-				return
-			if (!usr:cell)
-				usr<<"\blue Without a powercell, you can't be recharged."
+			if(!R.cell)
+				R << "<span class='notice'>Without a powercell, you can't be recharged.</span>"
 				//Make sure they actually HAVE a cell, now that they can get in while powerless. --NEO
 				return
-			usr.stop_pulling()
-			if(usr && usr.client)
-				usr.client.perspective = EYE_PERSPECTIVE
-				usr.client.eye = src
-			usr.loc = src
-			src.occupant = usr
+				R.stop_pulling()
+			if(R.client)
+				R.client.perspective = EYE_PERSPECTIVE
+				R.client.eye = src
+			R.loc = src
+			occupant = R
 			/*for(var/obj/O in src)
 				O.loc = src.loc*/
-			src.add_fingerprint(usr)
+			add_fingerprint(R)
 			build_icon()
 			src.use_power = 2
 			use_power(0)	//update area power usage

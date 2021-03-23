@@ -16,7 +16,6 @@
 
 /obj/structure/closet/gmcloset/New()
 	..()
-	sleep(2)
 	new /obj/item/clothing/head/that(src)
 	new /obj/item/clothing/head/that(src)
 	new /obj/item/clothing/head/hairflower
@@ -41,7 +40,6 @@
 
 /obj/structure/closet/jcloset/New()
 	..()
-	sleep(2)
 	new /obj/item/clothing/under/rank/janitor(src)
 	new /obj/item/weapon/cartridge/janitor(src)
 	new /obj/item/clothing/gloves/black(src)

@@ -12,11 +12,6 @@
 	active_areas += src
 	all_areas += src
 
-	if(!requires_power)
-		power_light = 0			//rastaf0
-		power_equip = 0			//rastaf0
-		power_environ = 0		//rastaf0
-
 	if(lighting_use_dynamic)
 		luminosity = 0
 	else
@@ -24,6 +19,11 @@
 
 	..()
 
+/area/proc/initialize()
+	if(!requires_power || !(locate(/obj/machinery/power/apc) in apc))
+		power_light = 0			//rastaf0
+		power_equip = 0			//rastaf0
+		power_environ = 0		//rastaf0
 	power_change()		// all machines set to current power level, also updates lighting icon
 
 /area/proc/poweralert(var/state, var/obj/source as obj)

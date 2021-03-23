@@ -36,7 +36,6 @@
 
 /obj/structure/closet/gimmick/russian/New()
 	..()
-	sleep(2)
 	new /obj/item/clothing/head/ushanka(src)
 	new /obj/item/clothing/head/ushanka(src)
 	new /obj/item/clothing/head/ushanka(src)
@@ -58,7 +57,6 @@
 
 /obj/structure/closet/gimmick/tacticool/New()
 	..()
-	sleep(2)
 	new /obj/item/clothing/glasses/eyepatch(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/clothing/gloves/swat(src)
@@ -85,14 +83,12 @@
 
 /obj/structure/closet/thunderdome/New()
 	..()
-	sleep(2)
 
 /obj/structure/closet/thunderdome/tdred
 	name = "red-team Thunderdome closet"
 
 /obj/structure/closet/thunderdome/tdred/New()
 	..()
-	sleep(2)
 	new /obj/item/clothing/suit/armor/tdome/red(src)
 	new /obj/item/clothing/suit/armor/tdome/red(src)
 	new /obj/item/clothing/suit/armor/tdome/red(src)
@@ -120,7 +116,6 @@
 
 /obj/structure/closet/thunderdome/tdgreen/New()
 	..()
-	sleep(2)
 	new /obj/item/clothing/suit/armor/tdome/green(src)
 	new /obj/item/clothing/suit/armor/tdome/green(src)
 	new /obj/item/clothing/suit/armor/tdome/green(src)
@@ -152,18 +147,17 @@
 	icon_broken = "securemailmanbroken"
 	icon_off = "securemailmanoff"
 
-	New()
-		..()
-		sleep(2)
-		new /obj/item/clothing/under/rank/mailman(src)
-		new /obj/item/clothing/shoes/black(src)
-		new /obj/item/device/radio/headset/headset_cargo(src)
-		new /obj/item/clothing/gloves/blue(src)
-		new /obj/item/clothing/head/mailman(src)
-		new /obj/item/weapon/tank/air(src)
-		new /obj/item/clothing/mask/gas(src)
-		new /obj/item/device/flashlight(src)
-		new /obj/item/clothing/suit/space/mailmanvoid(src)
-		new /obj/item/clothing/head/helmet/space/mailmanvoid(src)
-		new /obj/item/clothing/glasses/science(src)
-		return
+/obj/structure/closet/secure_closet/mailman/New()
+	..()
+	new /obj/item/clothing/under/rank/mailman(src)
+	new /obj/item/clothing/shoes/black(src)
+	new /obj/item/device/radio/headset/headset_cargo(src)
+	new /obj/item/clothing/gloves/blue(src)
+	new /obj/item/clothing/head/mailman(src)
+	new /obj/item/weapon/tank/air(src)
+	new /obj/item/clothing/mask/gas(src)
+	new /obj/item/device/flashlight(src)
+	new /obj/item/clothing/suit/space/mailmanvoid(src)
+	new /obj/item/clothing/head/helmet/space/mailmanvoid(src)
+	new /obj/item/clothing/glasses/science(src)
+	return

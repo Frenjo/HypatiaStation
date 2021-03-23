@@ -129,13 +129,14 @@ Class Procs:
 	..()
 
 /obj/machinery/process()//If you dont use process or power why are you here
-	return PROCESS_KILL
+	if(!(use_power || idle_power_usage || active_power_usage))
+		return PROCESS_KILL
 
 /obj/machinery/emp_act(severity)
 	if(use_power && stat == 0)
-		use_power(7500/severity)
+		use_power(7500 / severity)
 
-		var/obj/effect/overlay/pulse2 = new/obj/effect/overlay ( src.loc )
+		var/obj/effect/overlay/pulse2 = new/obj/effect/overlay(src.loc)
 		pulse2.icon = 'icons/effects/effects.dmi'
 		pulse2.icon_state = "empdisable"
 		pulse2.name = "emp sparks"
@@ -143,7 +144,7 @@ Class Procs:
 		pulse2.dir = pick(cardinal)
 
 		spawn(10)
-			pulse2.delete()
+			qdel(pulse2)
 	..()
 
 /obj/machinery/ex_act(severity)
@@ -201,7 +202,7 @@ Class Procs:
 			norange = 1
 
 	if(!norange)
-		if ((!in_range(src, usr) || !istype(src.loc, /turf)) && !istype(usr, /mob/living/silicon))
+		if((!in_range(src, usr) || !istype(src.loc, /turf)) && !istype(usr, /mob/living/silicon))
 			return 1
 
 	src.add_fingerprint(usr)

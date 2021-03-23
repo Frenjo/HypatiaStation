@@ -41,6 +41,12 @@
 			//gas.volume = 1.05 * CELLSTANDARD
 			update()
 
+	Destroy()
+		eject()
+		if(trunk)
+			trunk.linked = null
+		..()
+
 
 	// attack by item places it in to disposal
 	attackby(var/obj/item/I, var/mob/user)
@@ -491,6 +497,10 @@
 	var/tomail = 0 //changes if contains wrapped package
 	var/hasmob = 0 //If it contains a mob
 
+	Destroy()
+		qdel(gas)
+		active = 0
+		..()
 
 	// initialize a holder from the contents of a disposal unit
 	proc/init(var/obj/machinery/disposal/D)

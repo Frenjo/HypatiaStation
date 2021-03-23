@@ -6,8 +6,9 @@
 	..()
 	charge = maxcharge
 
-	spawn(5)
-		updateicon()
+/obj/item/weapon/cell/initialize()
+	..()
+	updateicon()
 
 /obj/item/weapon/cell/proc/updateicon()
 	overlays.Cut()

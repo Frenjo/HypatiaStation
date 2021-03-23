@@ -13,7 +13,6 @@
 	..()
 	return
 
-
 /obj/machinery/computer/teleporter/attackby(I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/weapon/card/data/))
 		var/obj/item/weapon/card/data/C = I
@@ -150,7 +149,7 @@
 
 /obj/machinery/teleport/hub/Bumped(M as mob|obj)
 	spawn()
-		if (src.icon_state == "tele1")
+		if(src.icon_state == "tele1")
 			teleport(M)
 			use_power(5000)
 	return

@@ -85,7 +85,7 @@
 
 	var/tmp/last_object
 
-datum/controller/process/New(var/datum/controller/processScheduler/scheduler)
+/datum/controller/process/New(var/datum/controller/processScheduler/scheduler)
 	..()
 	main = scheduler
 	previousStatus = "idle"
@@ -99,7 +99,7 @@ datum/controller/process/New(var/datum/controller/processScheduler/scheduler)
 	last_task = 0
 	last_object = null
 
-datum/controller/process/proc/started()
+/datum/controller/process/proc/started()
 	// Initialize last_slept so we can know when to sleep
 	last_slept = world.timeofday
 
@@ -114,48 +114,48 @@ datum/controller/process/proc/started()
 
 	onStart()
 
-datum/controller/process/proc/finished()
+/datum/controller/process/proc/finished()
 	ticks++
 	idle()
 	main.processFinished(src)
 
 	onFinish()
 
-datum/controller/process/proc/doWork()
+/datum/controller/process/proc/doWork()
 
-datum/controller/process/proc/setup()
+/datum/controller/process/proc/setup()
 
-datum/controller/process/proc/process()
+/datum/controller/process/proc/process()
 	started()
 	doWork()
 	finished()
 
-datum/controller/process/proc/running()
+/datum/controller/process/proc/running()
 	idle = 0
 	queued = 0
 	running = 1
 	hung = 0
 	setStatus(PROCESS_STATUS_RUNNING)
 
-datum/controller/process/proc/idle()
+/datum/controller/process/proc/idle()
 	queued = 0
 	running = 0
 	idle = 1
 	hung = 0
 	setStatus(PROCESS_STATUS_IDLE)
 
-datum/controller/process/proc/queued()
+/datum/controller/process/proc/queued()
 	idle = 0
 	running = 0
 	queued = 1
 	hung = 0
 	setStatus(PROCESS_STATUS_QUEUED)
 
-datum/controller/process/proc/hung()
+/datum/controller/process/proc/hung()
 	hung = 1
 	setStatus(PROCESS_STATUS_HUNG)
 
-datum/controller/process/proc/handleHung()
+/datum/controller/process/proc/handleHung()
 	var/datum/lastObj = last_object
 	var/lastObjType = "null"
 	if(istype(lastObj))
@@ -172,7 +172,7 @@ datum/controller/process/proc/handleHung()
 
 	main.restartProcess(src.name)
 
-datum/controller/process/proc/kill()
+/datum/controller/process/proc/kill()
 	if (!killed)
 		var/msg = "[name] process was killed at tick #[ticks]."
 		logTheThing("debug", null, null, msg)
@@ -187,7 +187,7 @@ datum/controller/process/proc/kill()
 		// This should del
 		qdel(src)
 
-datum/controller/process/proc/scheck(var/tickId = 0)
+/datum/controller/process/proc/scheck(var/tickId = 0)
 	if (killed)
 		// The kill proc is the only place where killed is set.
 		// The kill proc should have deleted this datum, and all sleeping procs that are
@@ -210,7 +210,7 @@ datum/controller/process/proc/scheck(var/tickId = 0)
 			sleep(0)
 			last_slept = world.timeofday
 
-datum/controller/process/proc/update()
+/datum/controller/process/proc/update()
 	// Clear delta
 	if(previousStatus != status)
 		setStatus(status)
@@ -224,18 +224,18 @@ datum/controller/process/proc/update()
 	else if (elapsedTime > hang_warning_time)
 		setStatus(PROCESS_STATUS_MAYBE_HUNG)
 
-datum/controller/process/proc/getElapsedTime()
+/datum/controller/process/proc/getElapsedTime()
 	if (world.timeofday < run_start)
 		return world.timeofday - (run_start - 864000)
 	return world.timeofday - run_start
 
-datum/controller/process/proc/tickDetail()
+/datum/controller/process/proc/tickDetail()
 	return
 
-datum/controller/process/proc/getContext()
+/datum/controller/process/proc/getContext()
 	return "<tr><td>[name]</td><td>[main.averageRunTime(src)]</td><td>[main.last_run_time[src]]</td><td>[main.highest_run_time[src]]</td><td>[ticks]</td></tr>\n"
 
-datum/controller/process/proc/getContextData()
+/datum/controller/process/proc/getContextData()
 	return list(
 	"name" = name,
 	"averageRunTime" = main.averageRunTime(src),
@@ -247,10 +247,10 @@ datum/controller/process/proc/getContextData()
 	"disabled" = disabled
 	)
 
-datum/controller/process/proc/getStatus()
+/datum/controller/process/proc/getStatus()
 	return status
 
-datum/controller/process/proc/getStatusText(var/s = 0)
+/datum/controller/process/proc/getStatusText(var/s = 0)
 	if(!s)
 		s = status
 	switch(s)
@@ -269,21 +269,21 @@ datum/controller/process/proc/getStatusText(var/s = 0)
 		else
 			return "UNKNOWN"
 
-datum/controller/process/proc/getPreviousStatus()
+/datum/controller/process/proc/getPreviousStatus()
 	return previousStatus
 
-datum/controller/process/proc/getPreviousStatusText()
+/datum/controller/process/proc/getPreviousStatusText()
 	return getStatusText(previousStatus)
 
-datum/controller/process/proc/setStatus(var/newStatus)
+/datum/controller/process/proc/setStatus(var/newStatus)
 	previousStatus = status
 	status = newStatus
 
-datum/controller/process/proc/setLastTask(var/task, var/object)
+/datum/controller/process/proc/setLastTask(var/task, var/object)
 	last_task = task
 	last_object = object
 
-datum/controller/process/proc/_copyStateFrom(var/datum/controller/process/target)
+/datum/controller/process/proc/_copyStateFrom(var/datum/controller/process/target)
 	main = target.main
 	name = target.name
 	schedule_interval = target.schedule_interval
@@ -296,18 +296,18 @@ datum/controller/process/proc/_copyStateFrom(var/datum/controller/process/target
 	last_object = target.last_object
 	copyStateFrom(target)
 
-datum/controller/process/proc/copyStateFrom(var/datum/controller/process/target)
+/datum/controller/process/proc/copyStateFrom(var/datum/controller/process/target)
 
-datum/controller/process/proc/onKill()
+/datum/controller/process/proc/onKill()
 
-datum/controller/process/proc/onStart()
+/datum/controller/process/proc/onStart()
 
-datum/controller/process/proc/onFinish()
+/datum/controller/process/proc/onFinish()
 
-datum/controller/process/proc/disable()
+/datum/controller/process/proc/disable()
 	disabled = 1
 
-datum/controller/process/proc/enable()
+/datum/controller/process/proc/enable()
 	disabled = 0
 
 /datum/controller/process/proc/getLastRunTime()
@@ -315,3 +315,9 @@ datum/controller/process/proc/enable()
 
 /datum/controller/process/proc/getTicks()
 	return ticks
+
+/datum/controller/process/proc/getStatName()
+	return name
+
+/datum/controller/process/proc/getTickTime()
+	return "#[getTicks()]\t- [getLastRunTime()]"

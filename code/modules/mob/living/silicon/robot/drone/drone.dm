@@ -15,6 +15,11 @@
 	integrated_light_power = 2
 	local_transmit = 1
 
+	mob_bump_flag = SIMPLE_ANIMAL
+	mob_swap_flags = SIMPLE_ANIMAL
+	mob_push_flags = SIMPLE_ANIMAL
+	mob_always_swap = 1
+
 	// We need to keep track of a few module items so we don't need to do list operations
 	// every time we need them. These get set in New() after the module is chosen.
 

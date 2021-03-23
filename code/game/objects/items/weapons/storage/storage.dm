@@ -10,6 +10,7 @@
 	w_class = 3.0
 	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
+	var/list/is_seeing = new/list() //List of mobs which are currently seeing the contents of this item's storage
 	var/max_w_class = 2 //Max size of objects that this object can store (in effect only if can_hold isn't set)
 	var/max_combined_w_class = 14 //The sum of the w_classes of all the items in this storage item.
 	var/storage_slots = 7 //The number of storage slots in this container.
@@ -22,6 +23,12 @@
 	var/collection_mode = 1;  //0 = pick one at a time, 1 = pick all on tile
 	var/foldable = null	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
+
+/obj/item/weapon/storage/Destroy()
+	close_all()
+	qdel(boxes)
+	qdel(closer)
+	..()
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
 	if(isHuman(usr) || isMonkey(usr)) //so monkeys can take off their backpacks -- Urist
@@ -77,6 +84,7 @@
 	user.client.screen += src.closer
 	user.client.screen += src.contents
 	user.s_active = src
+	is_seeing |= user
 	return
 
 /obj/item/weapon/storage/proc/hide_from(mob/user as mob)
@@ -87,7 +95,7 @@
 	user.client.screen -= src.contents
 	if(user.s_active == src)
 		user.s_active = null
-	return
+	is_seeing -= user
 
 /obj/item/weapon/storage/proc/open(mob/user as mob)
 	if(src.use_sound)
@@ -102,6 +110,20 @@
 	src.hide_from(user)
 	user.s_active = null
 	return
+
+/obj/item/weapon/storage/proc/close_all()
+	for(var/mob/M in can_see_contents())
+		close(M)
+		. = 1
+
+/obj/item/weapon/storage/proc/can_see_contents()
+	var/list/cansee = list()
+	for(var/mob/M in is_seeing)
+		if(M.s_active == src && M.client)
+			cansee |= M
+		else
+			is_seeing -= M
+	return cansee
 
 //This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right.
 //The numbers are calculated from the bottom-left The bottom-left slot being 1,1.
@@ -392,13 +414,13 @@
 	else
 		verbs -= /obj/item/weapon/storage/verb/toggle_gathering_mode
 
-	src.boxes = new /obj/screen/storage(  )
+	src.boxes = new /obj/screen/storage()
 	src.boxes.name = "storage"
 	src.boxes.master = src
 	src.boxes.icon_state = "block"
 	src.boxes.screen_loc = "7,7 to 10,8"
 	src.boxes.layer = 19
-	src.closer = new /obj/screen/close(  )
+	src.closer = new /obj/screen/close()
 	src.closer.master = src
 	src.closer.icon_state = "x"
 	src.closer.layer = 20

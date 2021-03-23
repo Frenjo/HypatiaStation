@@ -50,3 +50,14 @@
 			continue
 
 		powernets.Remove(powerNetwork)
+
+	// This is necessary to ensure powersinks are always the first devices that drain power from powernet.
+	// Otherwise APCs or other stuff go first, resulting in bad things happening.
+	// Currently only used by powersinks. These items get priority processed before machinery
+	for(var/obj/item/I in processing_power_items)
+		if(!I.pwr_drain()) // 0 = Process Kill, remove from processing list.
+			processing_power_items.Remove(I)
+		scheck()
+
+/datum/controller/process/machinery/getStatName()
+	return ..()+"([machines.len])"

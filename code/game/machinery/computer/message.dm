@@ -37,6 +37,7 @@
 
 /obj/machinery/computer/message_monitor/attackby(obj/item/weapon/O as obj, mob/living/user as mob)
 	if(stat & (NOPOWER|BROKEN))
+		..()
 		return
 	if(!istype(user))
 		return

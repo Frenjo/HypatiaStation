@@ -72,8 +72,14 @@
 		power_change()
 
 		return
-
 	return
+
+/obj/machinery/vending/Destroy()
+	qdel(wires)
+	wires = null
+	qdel(coin)
+	coin = null
+	..()
 
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)

@@ -16,12 +16,14 @@
 /obj/machinery/power/terminal/New()
 	..()
 	var/turf/T = src.loc
-	if(level==1) hide(T.intact)
+	if(level==1)
+		hide(T.intact)
 	return
 
 /obj/machinery/power/terminal/Destroy()
 	if(master)
 		master.disconnect_terminal()
+		master = null
 	return ..()
 
 /obj/machinery/power/terminal/hide(var/i)

@@ -33,7 +33,6 @@
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[STATUS_HUD_OOC]  = image('icons/mob/hud.dmi', src, "hudhealthy")
 
-
 	..()
 
 	if(dna)
@@ -42,90 +41,10 @@
 	prev_gender = gender // Debug for plural genders
 	make_blood()
 
-/mob/living/carbon/human/Bump(atom/movable/AM as mob|obj, yes)
-	if((!(yes) || now_pushing))
-		return
-	now_pushing = 1
-	if(ismob(AM))
-		var/mob/tmob = AM
-
-		if(istype(tmob, /mob/living/carbon) && prob(10))
-			src.spread_disease_to(AM, "Contact")
-//BubbleWrap - Should stop you pushing a restrained person out of the way
-
-		if(istype(tmob, /mob/living/carbon/human))
-			for(var/mob/M in range(tmob, 1))
-				if(tmob.pinned.len || ((M.pulling == tmob && (tmob.restrained() && !(M.restrained()) && M.stat == 0)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)))
-					if(!(world.time % 5))
-						src << "\red [tmob] is restrained, you cannot push past"
-					now_pushing = 0
-					return
-				if(tmob.pulling == M && (M.restrained() && !(tmob.restrained()) && tmob.stat == 0))
-					if(!(world.time % 5))
-						src << "\red [tmob] is restraining [M], you cannot push past"
-					now_pushing = 0
-					return
-
-		//Leaping mobs just land on the tile, no pushing, no anything.
-		if(status_flags & LEAPING)
-			loc = tmob.loc
-			status_flags &= ~LEAPING
-			now_pushing = 0
-			return
-
-		//BubbleWrap: people in handcuffs are always switched around as if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-		if((tmob.a_intent == "help" || tmob.restrained()) && (a_intent == "help" || src.restrained()) && tmob.canmove && canmove) // mutual brohugs all around!
-			var/turf/oldloc = loc
-			loc = tmob.loc
-			tmob.loc = oldloc
-			now_pushing = 0
-			for(var/mob/living/carbon/slime/slime in view(1,tmob))
-				if(slime.Victim == tmob)
-					slime.UpdateFeed()
-			return
-
-		if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
-			if(prob(40) && !(FAT in src.mutations))
-				src << "\red <B>You fail to push [tmob]'s fat ass out of the way.</B>"
-				now_pushing = 0
-				return
-		if(src.species == "Obsedai")
-			src << "\red <B>You bounce off the immovable bulk of [tmob]'s silicoid form.</B>"
-			now_pushing = 0
-			return
-		if(tmob.r_hand && istype(tmob.r_hand, /obj/item/weapon/shield/riot))
-			if(prob(99))
-				now_pushing = 0
-				return
-		if(tmob.l_hand && istype(tmob.l_hand, /obj/item/weapon/shield/riot))
-			if(prob(99))
-				now_pushing = 0
-				return
-		if(!(tmob.status_flags & CANPUSH))
-			now_pushing = 0
-			return
-
-		tmob.LAssailant = src
-
-	now_pushing = 0
-	spawn(0)
-		..()
-		if (!istype(AM, /atom/movable))
-			return
-		if (!now_pushing)
-			now_pushing = 1
-
-			if (!AM.anchored)
-				var/t = get_dir(src, AM)
-				if (istype(AM, /obj/structure/window))
-					if(AM:ini_dir == NORTHWEST || AM:ini_dir == NORTHEAST || AM:ini_dir == SOUTHWEST || AM:ini_dir == SOUTHEAST)
-						for(var/obj/structure/window/win in get_step(AM,t))
-							now_pushing = 0
-							return
-				step(AM, t)
-			now_pushing = 0
-		return
-	return
+/mob/living/carbon/human/Destroy()
+	for(var/organ in organs)
+		qdel(organ)
+	return ..()
 
 /mob/living/carbon/human/Stat()
 	..()
@@ -1239,6 +1158,10 @@
 		return 1
 	else
 		return 0
+
+	mob_bump_flag = species.bump_flag
+	mob_swap_flags = species.swap_flags
+	mob_push_flags = species.push_flags
 
 /mob/living/carbon/human/proc/bloody_doodle()
 	set category = "IC"

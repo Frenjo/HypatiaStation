@@ -16,6 +16,10 @@
 		//var/list/viruses = list()
 		var/color = "#000000" // rgb: 0, 0, 0 (does not support alpha channels - yet!)
 
+datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
+	..()
+	holder = null
+
 /datum/reagent/proc/reaction_mob(var/mob/M, var/method=TOUCH, var/volume) //By default we have a chance to transfer some
 	if(!istype(M, /mob/living))	return 0
 	var/datum/reagent/self = src

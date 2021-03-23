@@ -8,11 +8,14 @@
 	pass_flags = PASSTABLE
 	update_icon = 0		///no need to call regenerate_icon
 
+	mob_swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
+	mob_push_flags = MONKEY|SLIME|SIMPLE_ANIMAL|ALIEN
+
 	var/obj/item/weapon/card/id/wear_id = null // Fix for station bounced radios -- Skie
 	var/greaterform = "Human"                  // Used when humanizing a monkey.
 	icon_state = "monkey1"
 	//var/uni_append = "12C4E2"                // Small appearance modifier for different species.
-	var/list/uni_append = list(0x12C,0x4E2)    // Same as above for DNA2.
+	var/list/uni_append = list(0x12C, 0x4E2)    // Same as above for DNA2.
 	var/update_muts = 1                        // Monkey gene must be set at start.
 	var/alien = 0				   //Used for reagent metabolism.
 
@@ -21,21 +24,21 @@
 	voice_name = "farwa"
 	speak_emote = list("mews")
 	icon_state = "tajkey1"
-	uni_append = list(0x0A0,0xE00) // 0A0E00
+	uni_append = list(0x0A0, 0xE00) // 0A0E00
 
 /mob/living/carbon/monkey/skrell
 	name = "neaera"
 	voice_name = "neaera"
 	speak_emote = list("squicks")
 	icon_state = "skrellkey1"
-	uni_append = list(0x01C,0xC92) // 01CC92
+	uni_append = list(0x01C, 0xC92) // 01CC92
 
 /mob/living/carbon/monkey/soghun
 	name = "stok"
 	voice_name = "stok"
 	speak_emote = list("hisses")
 	icon_state = "stokkey1"
-	uni_append = list(0x044,0xC5D) // 044C5D
+	uni_append = list(0x044, 0xC5D) // 044C5D
 
 /mob/living/carbon/monkey/New()
 	var/datum/reagents/R = new/datum/reagents(1000)
@@ -46,10 +49,10 @@
 		name = "[name] ([rand(1, 1000)])"
 		real_name = name
 
-	if (!(dna))
+	if(!(dna))
 		if(gender == NEUTER)
 			gender = pick(MALE, FEMALE)
-		dna = new /datum/dna( null )
+		dna = new /datum/dna(null)
 		dna.real_name = real_name
 		dna.ResetSE()
 		dna.ResetUI()
@@ -60,15 +63,15 @@
 		dna.unique_enzymes = md5(name)
 
 		// We're a monkey
-		dna.SetSEState(MONKEYBLOCK,   1)
-		dna.SetSEValueRange(MONKEYBLOCK,0xDAC, 0xFFF)
+		dna.SetSEState(MONKEYBLOCK, 1)
+		dna.SetSEValueRange(MONKEYBLOCK, 0xDAC, 0xFFF)
 		// Fix gender
 		dna.SetUIState(DNA_UI_GENDER, gender != MALE, 1)
 
 		// Set the blocks to uni_append, if needed.
 		if(uni_append.len>0)
-			for(var/b=1;b<=uni_append.len;b++)
-				dna.SetUIValue(DNA_UI_LENGTH-(uni_append.len-b),uni_append[b], 1)
+			for(var/b = 1; b <= uni_append.len; b++)
+				dna.SetUIValue(DNA_UI_LENGTH - (uni_append.len - b), uni_append[b], 1)
 		dna.UpdateUI()
 
 		update_muts=1
@@ -115,42 +118,7 @@
 
 	if (bodytemperature < 283.222)
 		tally += (283.222 - bodytemperature) / 10 * 1.75
-	return tally+config.monkey_delay
-
-/mob/living/carbon/monkey/Bump(atom/movable/AM as mob|obj, yes)
-	spawn( 0 )
-		if ((!( yes ) || now_pushing))
-			return
-		now_pushing = 1
-		if(ismob(AM))
-			var/mob/tmob = AM
-			if(istype(tmob, /mob/living/carbon/human) && (HULK in tmob.mutations))
-				if(prob(70))
-					usr << "\red <B>You fail to push [tmob]'s fat ass out of the way.</B>"
-					now_pushing = 0
-					return
-			if(!(tmob.status_flags & CANPUSH))
-				now_pushing = 0
-				return
-
-			tmob.LAssailant = src
-		now_pushing = 0
-		..()
-		if (!( istype(AM, /atom/movable) ))
-			return
-		if (!( now_pushing ))
-			now_pushing = 1
-			if (!( AM.anchored ))
-				var/t = get_dir(src, AM)
-				if (istype(AM, /obj/structure/window))
-					if(AM:ini_dir == NORTHWEST || AM:ini_dir == NORTHEAST || AM:ini_dir == SOUTHWEST || AM:ini_dir == SOUTHEAST)
-						for(var/obj/structure/window/win in get_step(AM,t))
-							now_pushing = 0
-							return
-				step(AM, t)
-			now_pushing = null
-		return
-	return
+	return tally + config.monkey_delay
 
 /mob/living/carbon/monkey/Topic(href, href_list)
 	..()

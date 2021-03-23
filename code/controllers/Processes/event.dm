@@ -1,15 +1,14 @@
 /datum/controller/process/event/setup()
-	name = "event controller"
-	//schedule_interval = 20 // every 2 seconds
-	schedule_interval = 40 // every 2 seconds
+	name = "event"
+	schedule_interval = 20 // every 2 seconds
 
 /datum/controller/process/event/doWork()
 	var/i = 1
-	while(i<=events.len)
+	while(i <= events.len)
 		var/datum/event/Event = events[i]
 		if(Event)
 			Event.process()
 			i++
 			continue
-		events.Cut(i,i+1)
+		events.Cut(i, i + 1)
 	checkEvent()

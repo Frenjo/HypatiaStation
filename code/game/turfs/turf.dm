@@ -23,12 +23,11 @@
 	var/pathweight = 1
 
 	var/dynamic_lighting = 1
-	//luminosity = 0
 
 /turf/New()
 	..()
 	for(var/atom/movable/AM as mob|obj in src)
-		spawn( 0 )
+		spawn(0)
 			src.Entered(AM)
 			return
 	//return
@@ -42,7 +41,6 @@
 
 /turf/ex_act(severity)
 	return 0
-
 
 /turf/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj ,/obj/item/projectile/beam/pulse))
@@ -62,7 +60,6 @@
 		return
 	if (!mover || !isturf(mover.loc))
 		return 1
-
 
 	//First, check objects to block exit that are not on the border
 	for(var/obj/obstacle in mover.loc)
@@ -98,7 +95,6 @@
 				return 0
 	return 1 //Nothing found to block so return success!
 
-
 /turf/Entered(atom/atom as mob|obj)
 	if(movement_disabled)
 		usr << "\red Movement is admin-disabled." //This is to identify lag problems
@@ -106,10 +102,10 @@
 	..()
 //vvvvv Infared beam stuff vvvvv
 
-	if ((atom && atom.density && !( istype(atom, /obj/effect/beam) )))
+	if((atom && atom.density && !(istype(atom, /obj/effect/beam))))
 		for(var/obj/effect/beam/i_beam/I in src)
-			spawn( 0 )
-				if (I)
+			spawn(0)
+				if(I)
 					I.hit()
 				break
 
@@ -132,8 +128,6 @@
 			inertial_drift(M)
 	*/
 
-
-
 		else if(!istype(src, /turf/space))
 			M:inertia_dir = 0
 	..()
@@ -141,8 +135,8 @@
 	for(var/atom/A as mob|obj|turf|area in range(1))
 		if(objects > loopsanity)	break
 		objects++
-		spawn( 0 )
-			if ((A && M))
+		spawn(0)
+			if((A && M))
 				A.HasProximity(M, 1)
 			return
 	return
@@ -168,7 +162,9 @@
 	return 0
 
 /turf/proc/inertial_drift(atom/movable/A as mob|obj)
-	if(!(A.last_move))	return
+	if(!(A.last_move))
+		return
+
 	if((istype(A, /mob/) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy-1)))
 		var/mob/M = A
 		if(M.Process_Spacemove(1))
@@ -215,7 +211,7 @@
 					var/turf/W = src.ChangeTurf(/turf/simulated/floor/open)
 					var/list/temp = list()
 					temp += W
-					c.add(temp,3,1) // report the new open space to the zcontroller
+					c.add(temp, 3, 1) // report the new open space to the zcontroller
 					return W
 ///// Z-Level Stuff
 
@@ -226,15 +222,16 @@
 	var/list/old_affecting_lights = affecting_lights
 	var/old_lighting_overlay = lighting_overlay
 
+	if(connections)
+		connections.erase_all()
 
-	if(connections) connections.erase_all()
-
-	if(istype(src,/turf/simulated))
+	if(istype(src, /turf/simulated))
 		//Yeah, we're just going to rebuild the whole thing.
 		//Despite this being called a bunch during explosions,
 		//the zone will only really do heavy lifting once.
 		var/turf/simulated/S = src
-		if(S.zone) S.zone.rebuild()
+		if(S.zone)
+			S.zone.rebuild()
 
 	if(ispath(N, /turf/simulated/floor))
 		var/turf/simulated/W = new N(locate(src.x, src.y, src.z))
@@ -255,7 +252,7 @@
 		. = W
 
 	else
-		var/turf/W = new N( locate(src.x, src.y, src.z) )
+		var/turf/W = new N(locate(src.x, src.y, src.z))
 		if(old_fire)
 			old_fire.RemoveFire()
 
@@ -367,7 +364,8 @@
 /turf/proc/kill_creatures(mob/U = null)//Will kill people/creatures and damage mechs./N
 //Useful to batch-add creatures to the list.
 	for(var/mob/living/M in src)
-		if(M==U)	continue//Will not harm U. Since null != M, can be excluded to kill everyone.
+		if(M == U)
+			continue//Will not harm U. Since null != M, can be excluded to kill everyone.
 		spawn(0)
 			M.gib()
 	for(var/obj/mecha/M in src)//Mecha are not gibbed but are damaged.
@@ -381,22 +379,25 @@
 
 /turf/proc/AdjacentTurfs()
 	var/L[] = new()
-	for(var/turf/simulated/t in oview(src,1))
+	for(var/turf/simulated/t in oview(src, 1))
 		if(!t.density)
 			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
 				L.Add(t)
 	return L
 /turf/proc/Distance(turf/t)
-	if(get_dist(src,t) == 1)
+	if(get_dist(src, t) == 1)
 		var/cost = (src.x - t.x) * (src.x - t.x) + (src.y - t.y) * (src.y - t.y)
-		cost *= (pathweight+t.pathweight)/2
+		cost *= (pathweight + t.pathweight) / 2
 		return cost
 	else
 		return get_dist(src,t)
 /turf/proc/AdjacentTurfsSpace()
 	var/L[] = new()
-	for(var/turf/t in oview(src,1))
+	for(var/turf/t in oview(src, 1))
 		if(!t.density)
 			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
 				L.Add(t)
 	return L
+
+/turf/proc/process()
+	return PROCESS_KILL

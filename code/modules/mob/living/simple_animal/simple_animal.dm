@@ -187,20 +187,6 @@
 		adjustBruteLoss(unsuitable_atoms_damage)
 	return 1
 
-/mob/living/simple_animal/Bumped(AM as mob|obj)
-	if(!AM) return
-
-	if(resting || buckled)
-		return
-
-	if(isturf(src.loc))
-		if(ismob(AM))
-			var/newamloc = src.loc
-			src.loc = AM:loc
-			AM:loc = newamloc
-		else
-			..()
-
 /mob/living/simple_animal/gib()
 	if(meat_amount && meat_type)
 		for(var/i = 0; i < meat_amount; i++)

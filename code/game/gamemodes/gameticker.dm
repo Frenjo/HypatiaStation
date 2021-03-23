@@ -1,11 +1,5 @@
 var/global/datum/controller/gameticker/ticker
 
-#define GAME_STATE_PREGAME		1
-#define GAME_STATE_SETTING_UP	2
-#define GAME_STATE_PLAYING		3
-#define GAME_STATE_FINISHED		4
-
-
 /datum/controller/gameticker
 	var/const/restart_timeout = 600
 	var/current_state = GAME_STATE_PREGAME
@@ -75,7 +69,7 @@ var/global/datum/controller/gameticker/ticker
 	var/list/datum/game_mode/runnable_modes
 	if((master_mode=="random") || (master_mode=="secret"))
 		runnable_modes = config.get_runnable_modes()
-		if (runnable_modes.len==0)
+		if(runnable_modes.len==0)
 			current_state = GAME_STATE_PREGAME
 			world << "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby."
 			return 0
@@ -91,7 +85,7 @@ var/global/datum/controller/gameticker/ticker
 			src.mode = new mtype
 	else
 		src.mode = config.pick_mode(master_mode)
-	if (!src.mode.can_start())
+	if(!src.mode.can_start())
 		world << "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
 		qdel(mode)
 		current_state = GAME_STATE_PREGAME

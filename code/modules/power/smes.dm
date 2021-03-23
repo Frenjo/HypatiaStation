@@ -78,6 +78,11 @@
 		update_icon()
 	return
 
+/obj/machinery/power/smes/Destroy()
+	if(terminal)
+		disconnect_terminal()
+	..()
+
 /obj/machinery/power/smes/update_icon()
 	overlays.Cut()
 	if(stat & BROKEN)	return

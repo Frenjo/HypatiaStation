@@ -19,37 +19,19 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	var/life = 15.0
 	mouse_opacity = 0
 
-/obj/effect/proc/delete()
+/obj/effect/Destroy()
 	loc = null
 	if(reagents)
 		reagents.delete()
-	return
-
-
-/obj/effect/effect/water/New()
-	..()
-	//var/turf/T = src.loc
-	//if (istype(T, /turf))
-	//	T.firelevel = 0 //TODO: FIX
-	spawn( 70 )
-		delete()
-		return
-	return
-
-/obj/effect/effect/water/Destroy()
-	//var/turf/T = src.loc
-	//if (istype(T, /turf))
-	//	T.firelevel = 0 //TODO: FIX
-	..()
-	return
+	return ..()
 
 /obj/effect/effect/water/Move(turf/newloc)
 	//var/turf/T = src.loc
 	//if (istype(T, /turf))
 	//	T.firelevel = 0 //TODO: FIX
-	if (--src.life < 1)
-		//SN qdel(src)
-		delete()
+	if(--src.life < 1)
+		//SN src = null
+		qdel(src)
 	if(newloc.density)
 		return 0
 	.=..()
@@ -127,7 +109,7 @@ steam.start() -- spawns the effect
 					sleep(5)
 					step(steam,direction)
 				spawn(20)
-					steam.delete()
+					qdel(steam)
 
 /////////////////////////////////////////////
 //SPARK SYSTEM (like steam system)
@@ -149,16 +131,15 @@ steam.start() -- spawns the effect
 	var/turf/T = src.loc
 	if (istype(T, /turf))
 		T.hotspot_expose(1000,100)
-	spawn (100)
-		delete()
+	spawn(100)
+		qdel(src)
 	return
 
 /obj/effect/effect/sparks/Destroy()
 	var/turf/T = src.loc
-	if (istype(T, /turf))
-		T.hotspot_expose(1000,100)
-	..()
-	return
+	if(istype(T, /turf))
+		T.hotspot_expose(1000, 100)
+	return ..()
 
 /obj/effect/effect/sparks/Move()
 	..()
@@ -182,7 +163,7 @@ steam.start() -- spawns the effect
 
 	start()
 		var/i = 0
-		for(i=0, i<src.number, i++)
+		for(i = 0, i < src.number, i++)
 			if(src.total_sparks > 20)
 				return
 			spawn(0)
@@ -195,12 +176,12 @@ steam.start() -- spawns the effect
 					direction = pick(cardinal)
 				else
 					direction = pick(alldirs)
-				for(i=0, i<pick(1,2,3), i++)
+				for(i = 0, i < pick(1, 2, 3), i++)
 					sleep(5)
 					step(sparks,direction)
 				spawn(20)
 					if(sparks)
-						sparks.delete()
+						qdel(sparks)
 					src.total_sparks--
 
 
@@ -228,8 +209,8 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/New()
 	..()
-	spawn (time_to_live)
-		delete()
+	spawn(time_to_live)
+		qdel(src)
 	return
 
 /obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob )
@@ -365,7 +346,8 @@ steam.start() -- spawns the effect
 				sleep(10)
 				step(smoke,direction)
 			spawn(smoke.time_to_live*0.75+rand(10,30))
-				if (smoke) smoke.delete()
+				if(smoke)
+					qdel(smoke)
 				src.total_smoke--
 
 
@@ -416,8 +398,8 @@ steam.start() -- spawns the effect
 						I.dir = src.holder.dir
 						flick("ion_fade", I)
 						I.icon_state = "blank"
-						spawn( 20 )
-							I.delete()
+						spawn(20)
+							qdel(I)
 					spawn(2)
 						if(src.on)
 							src.processing = 1
@@ -462,7 +444,7 @@ steam.start() -- spawns the effect
 					src.oldposition = get_turf(holder)
 					I.dir = src.holder.dir
 					spawn(10)
-						I.delete()
+						qdel(I)
 						src.number--
 					spawn(2)
 						if(src.on)
@@ -517,7 +499,7 @@ steam.start() -- spawns the effect
 
 		flick("[icon_state]-disolve", src)
 		sleep(5)
-		delete()
+		qdel(src)
 	return
 
 // transfer any reagents to the floor
@@ -562,7 +544,7 @@ steam.start() -- spawns the effect
 		flick("[icon_state]-disolve", src)
 
 		spawn(5)
-			delete()
+			qdel(src)
 
 
 /obj/effect/effect/foam/Crossed(var/atom/movable/AM)

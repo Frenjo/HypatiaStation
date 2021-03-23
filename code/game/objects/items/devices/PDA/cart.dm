@@ -58,10 +58,9 @@
 	icon_state = "cart-s"
 	access_security = 1
 
-/obj/item/weapon/cartridge/security/New()
+/obj/item/weapon/cartridge/security/initialize()
+	radio = new /obj/item/radio/integrated/beepsky(src)
 	..()
-	spawn(5)
-		radio = new /obj/item/radio/integrated/beepsky(src)
 
 /obj/item/weapon/cartridge/detective
 	name = "D.E.T.E.C.T. Cartridge"
@@ -102,6 +101,7 @@
 /obj/item/weapon/cartridge/signal
 	name = "generic signaler cartridge"
 	desc = "A data cartridge with an integrated radio signaler module."
+	var/qdeled = 0
 
 /obj/item/weapon/cartridge/signal/toxins
 	name = "Signal Ace 2"
@@ -110,12 +110,13 @@
 	access_reagent_scanner = 1
 	access_atmos = 1
 
-/obj/item/weapon/cartridge/signal/New()
+/obj/item/weapon/cartridge/signal/initialize()
+    radio = new /obj/item/radio/integrated/signal(src)
+    ..()
+
+/obj/item/weapon/cartridge/signal/Destroy()
+	qdel(radio)
 	..()
-	spawn(5)
-		radio = new /obj/item/radio/integrated/signal(src)
-
-
 
 /obj/item/weapon/cartridge/quartermaster
 	name = "Space Parts & Space Vendors Cartridge"
@@ -123,10 +124,9 @@
 	icon_state = "cart-q"
 	access_quartermaster = 1
 
-/obj/item/weapon/cartridge/quartermaster/New()
+/obj/item/weapon/cartridge/quartermaster/initialize()
+	radio = new /obj/item/radio/integrated/mule(src)
 	..()
-	spawn(5)
-		radio = new /obj/item/radio/integrated/mule(src)
 
 /obj/item/weapon/cartridge/head
 	name = "Easy-Record DELUXE"
@@ -141,10 +141,8 @@
 	access_janitor = 1
 	access_security = 1
 
-/obj/item/weapon/cartridge/hop/New()
-	..()
-	spawn(5)
-		radio = new /obj/item/radio/integrated/mule(src)
+/obj/item/weapon/cartridge/hop/initialize()
+	radio = new /obj/item/radio/integrated/mule(src)
 
 /obj/item/weapon/cartridge/hos
 	name = "R.O.B.U.S.T. DELUXE"
@@ -152,10 +150,9 @@
 	access_status_display = 1
 	access_security = 1
 
-/obj/item/weapon/cartridge/hos/New()
+/obj/item/weapon/cartridge/hos/initialize()
+	radio = new /obj/item/radio/integrated/beepsky(src)
 	..()
-	spawn(5)
-		radio = new /obj/item/radio/integrated/beepsky(src)
 
 /obj/item/weapon/cartridge/ce
 	name = "Power-On DELUXE"
@@ -178,10 +175,9 @@
 	access_reagent_scanner = 1
 	access_atmos = 1
 
-/obj/item/weapon/cartridge/rd/New()
+/obj/item/weapon/cartridge/rd/initialize()
+	radio = new /obj/item/radio/integrated/signal(src)
 	..()
-	spawn(5)
-		radio = new /obj/item/radio/integrated/signal(src)
 
 /obj/item/weapon/cartridge/captain
 	name = "Value-PAK Cartridge"

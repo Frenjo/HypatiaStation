@@ -2,6 +2,11 @@
 
 //#define DEBUG
 
+#define GAME_STATE_PREGAME		1
+#define GAME_STATE_SETTING_UP	2
+#define GAME_STATE_PLAYING		3
+#define GAME_STATE_FINISHED		4
+
 #define PI 3.1415
 
 #define R_IDEAL_GAS_EQUATION	8.31 //kPa*L/(K*mol)
@@ -838,4 +843,16 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define END_FOR_DVIEW dview_mob.loc = null
 
 // XGM stuff
-#define QUANTIZE(variable)		(round(variable,0.0001))
+#define QUANTIZE(variable)		(round(variable, 0.0001))
+
+/*
+	These are used Bump() code for living mobs, in the mob_bump_flag, mob_swap_flags, and mob_push_flags vars to determine whom can bump/swap with whom.
+*/
+#define HUMAN 1
+#define MONKEY 2
+#define ALIEN 4
+#define ROBOT 8
+#define SLIME 16
+#define SIMPLE_ANIMAL 32
+
+#define ALLMOBS (HUMAN|MONKEY|ALIEN|ROBOT|SLIME|SIMPLE_ANIMAL)

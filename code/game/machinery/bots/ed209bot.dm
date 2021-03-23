@@ -849,25 +849,25 @@ Auto Patrol: []"},
 	if(severity==2 && prob(70))
 		..(severity-1)
 	else
-		var/obj/effect/overlay/pulse2 = new/obj/effect/overlay ( src.loc )
+		var/obj/effect/overlay/pulse2 = new/obj/effect/overlay(src.loc)
 		pulse2.icon = 'icons/effects/effects.dmi'
 		pulse2.icon_state = "empdisable"
 		pulse2.name = "emp sparks"
 		pulse2.anchored = 1
 		pulse2.dir = pick(cardinal)
 		spawn(10)
-			pulse2.delete()
+			qdel(pulse2)
 		var/list/mob/living/carbon/targets = new
-		for (var/mob/living/carbon/C in view(12,src))
-			if (C.stat==2)
+		for(var/mob/living/carbon/C in view(12, src))
+			if(C.stat==2)
 				continue
 			targets += C
 		if(targets.len)
 			if(prob(50))
 				var/mob/toshoot = pick(targets)
-				if (toshoot)
+				if(toshoot)
 					targets-=toshoot
-					if (prob(50) && emagged < 2)
+					if(prob(50) && emagged < 2)
 						emagged = 2
 						shootAt(toshoot)
 						emagged = 0

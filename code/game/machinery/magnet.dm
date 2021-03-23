@@ -190,7 +190,10 @@
 
 		pulling = 0
 
-
+/obj/machinery/magnetic_module/Destroy()
+	if(radio_controller)
+		radio_controller.remove_object(src, freq)
+	..()
 
 
 /obj/machinery/magnetic_controller
@@ -399,25 +402,7 @@
 
 			// there doesn't HAVE to be separators but it makes paths syntatically visible
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/obj/machinery/magnetic_controller/Destroy()
+	if(radio_controller)
+		radio_controller.remove_object(src, frequency)
+	..()

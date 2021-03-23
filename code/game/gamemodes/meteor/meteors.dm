@@ -93,6 +93,10 @@
 	icon_state = "smallf"
 	pass_flags = PASSTABLE | PASSGRILLE
 
+/obj/effect/meteor/Destroy()
+	walk(src, 0) //this cancels the walk_towards() proc
+	..()
+
 /obj/effect/meteor/Bump(atom/A)
 	spawn(0)
 
@@ -128,12 +132,12 @@
 		spawn(0)
 			//Prevent meteors from blowing up the singularity's containment.
 			//Changing emitter and generator ex_act would result in them being bomb and C4 proof
-			if(!istype(A,/obj/machinery/power/emitter) && \
-				!istype(A,/obj/machinery/field_generator))
+			if(!istype(A, /obj/machinery/power/emitter) && \
+				!istype(A, /obj/machinery/field_generator))
 				if(--src.hits <= 0)
 					qdel(src) //Dont blow up singularity containment if we get stuck there.
 
-			if (A)
+			if(A)
 				for(var/mob/M in player_list)
 					var/turf/T = get_turf(M)
 					if(!T || T.z != src.z)
@@ -142,7 +146,7 @@
 					playsound(src, 'sound/effects/meteorimpact.ogg', 40, 1)
 				explosion(src.loc, 0, 1, 2, 3, 0)
 
-			if (--src.hits <= 0)
+			if(--src.hits <= 0)
 				if(prob(15) && !istype(A, /obj/structure/grille))
 					explosion(src.loc, 1, 2, 3, 4, 0)
 				qdel(src)

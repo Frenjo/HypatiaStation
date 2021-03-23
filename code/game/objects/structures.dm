@@ -4,29 +4,33 @@
 	var/breakable
 	var/parts
 
-/obj/structure/proc/destroy()
+/obj/structure/New()
+	..()
+	if(climbable)
+		verbs += /obj/structure/proc/do_climb
+
+/obj/structure/Destroy()
 	if(parts)
 		new parts(loc)
-	density = 0
-	qdel(src)
+	..()
 
 /obj/structure/attack_hand(mob/user)
 	if(breakable)
 		if(HULK in user.mutations)
 			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 			visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
-			destroy()
+			qdel(src)
 		else if(istype(user,/mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
 			if(H.species.can_shred(user))
 				visible_message("<span class='danger'>[H] slices [src] apart!</span>")
-				destroy()
+				qdel(src)
 
 /obj/structure/attack_animal(mob/living/user)
 	if(breakable)
 		if(user.wall_smash)
 			visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
-			destroy()
+			qdel(src)
 
 /obj/structure/attack_paw(mob/user)
 	if(breakable) attack_hand(user)
@@ -48,12 +52,7 @@
 			return
 
 /obj/structure/meteorhit(obj/O as obj)
-	destroy(src)
-
-/obj/structure/New()
-	..()
-	if(climbable)
-		verbs += /obj/structure/proc/do_climb
+	qdel(src)
 
 /obj/structure/proc/do_climb()
 	set name = "Climb structure"

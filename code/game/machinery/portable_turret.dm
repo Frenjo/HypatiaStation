@@ -179,6 +179,7 @@
 	Destroy()
 		// deletes its own cover with it
 		qdel(cover)
+		cover = null
 		..()
 
 
@@ -863,16 +864,6 @@ Status: []<BR>"},
 			build_step = 4
 
 
-
-
-
-
-
-
-
-
-
-
 /obj/machinery/porta_turret_cover
 	name = "turret"
 	icon = 'icons/obj/turrets.dmi'
@@ -882,7 +873,9 @@ Status: []<BR>"},
 	density = 0
 	var/obj/machinery/porta_turret/Parent_Turret = null
 
-
+/obj/machinery/porta_turret_cover/Destroy()
+	Parent_Turret = null
+	..()
 
 // The below code is pretty much just recoded from the initial turret object. It's necessary but uncommented because it's exactly the same!
 

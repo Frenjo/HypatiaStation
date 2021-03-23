@@ -9,6 +9,17 @@
 	flags = NOBLUDGEON
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
+	Destroy()
+		if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
+			wrapped.loc = (get_turf(loc))
+			if(istype(wrapped, /obj/structure/closet))
+				var/obj/structure/closet/O = wrapped
+				O.welded = 0
+		var/turf/T = get_turf(src)
+		for(var/atom/movable/AM in contents)
+			AM.loc = T
+		..()
+
 	attack_hand(mob/user as mob)
 		if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
 			wrapped.loc = (get_turf(src.loc))
@@ -84,7 +95,6 @@
 	icon_state = "deliveryPaper"
 	w_class = 3.0
 	var/amount = 25.0
-
 
 	afterattack(var/obj/target as obj, mob/user as mob, proximity)
 		if(!proximity) return
@@ -208,6 +218,11 @@
 			trunk = locate() in src.loc
 			if(trunk)
 				trunk.linked = src	// link the pipe trunk to self
+
+	Destroy()
+		if(trunk)
+			trunk.linked = null
+		..()
 
 	interact()
 		return

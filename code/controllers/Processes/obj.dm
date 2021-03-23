@@ -4,7 +4,7 @@ var/global/list/object_profiling = list()
 
 /datum/controller/process/obj/setup()
 	name = "obj"
-	schedule_interval = 40 // every 4 seconds
+	schedule_interval = 20 // every 2 seconds
 	updateQueueInstance = new
 
 /datum/controller/process/obj/started()
@@ -19,3 +19,6 @@ var/global/list/object_profiling = list()
 	if(updateQueueInstance)
 		updateQueueInstance.init(processing_objects, "process")
 		updateQueueInstance.Run()
+
+/datum/controller/process/obj/getStatName()
+	return ..()+"([processing_objects.len])"

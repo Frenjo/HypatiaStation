@@ -16,8 +16,8 @@
 
 /obj/effect/landmark/zcontroller/New()
 	..()
-	for (var/turf/T in world)
-		if (T.z == z)
+	for(var/turf/T in world)
+		if(T.z == z)
 			fast += T
 	slow_time = world.time + 3000
 	normal_time = world.time + 600
@@ -30,7 +30,7 @@
 
 /obj/effect/landmark/zcontroller/Destroy()
 	processing_objects.Remove(src)
-	return
+	return ..()
 
 /obj/effect/landmark/zcontroller/process()
 	if (world.time > fast_time)

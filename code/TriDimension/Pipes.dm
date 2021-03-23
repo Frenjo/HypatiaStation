@@ -23,7 +23,6 @@ obj/machinery/atmospherics/pipe/zpipe
 		var/fatigue_pressure = 55*ONE_ATMOSPHERE
 		alert_pressure = 55*ONE_ATMOSPHERE
 
-
 		level = 1
 
 obj/machinery/atmospherics/pipe/zpipe/New()
@@ -45,8 +44,6 @@ obj/machinery/atmospherics/pipe/zpipe/New()
 			initialize_directions = EAST
 		if(SOUTHWEST)
 			initialize_directions = SOUTH
-	initialize()
-
 
 obj/machinery/atmospherics/pipe/zpipe/hide(var/i)
 	if(level == 1 && istype(loc, /turf/simulated))

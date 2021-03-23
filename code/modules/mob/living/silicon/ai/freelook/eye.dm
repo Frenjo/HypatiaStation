@@ -33,7 +33,6 @@
 // It will also stream the chunk that the new loc is in.
 
 /mob/aiEye/proc/setLoc(var/T)
-
 	if(ai)
 		if(!isturf(ai.loc))
 			return
@@ -68,8 +67,10 @@
 		eyeobj.loc = src.loc
 
 /mob/living/silicon/ai/Destroy()
-	eyeobj.ai = null
-	qdel(eyeobj) // No AI, no Eye
+	if(eyeobj)
+		eyeobj.ai = null
+		qdel(eyeobj) // No AI, no Eye
+		eyeobj = null
 	..()
 
 /atom/proc/move_camera_by_click()

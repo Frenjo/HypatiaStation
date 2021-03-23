@@ -239,6 +239,7 @@ Transponder Codes:<UL>"}
 
 					updateDialog()
 
-
-
-
+/obj/machinery/navbeacon/Destroy()
+	if(radio_controller)
+		radio_controller.remove_object(src, freq)
+	..()

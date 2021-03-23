@@ -94,7 +94,7 @@ var/list/ai_verbs_default = list(
 	proc_holder_list = new()
 
 	if(L)
-		if (istype(L, /datum/ai_laws))
+		if(istype(L, /datum/ai_laws))
 			laws = L
 	else
 		laws = new base_law_type
@@ -158,7 +158,6 @@ var/list/ai_verbs_default = list(
 	hud_list[IMPTRACK_HUD]    = image('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
 
-
 	ai_list += src
 	..()
 	return
@@ -182,7 +181,7 @@ var/list/ai_verbs_default = list(
 /obj/machinery/ai_powersupply/New(var/mob/living/silicon/ai/ai=null)
 	powered_ai = ai
 	if(isnull(powered_ai))
-		Destroy()
+		qdel(src)
 
 	loc = powered_ai.loc
 	use_power(1) // Just incase we need to wake up the power system.
@@ -191,7 +190,7 @@ var/list/ai_verbs_default = list(
 
 /obj/machinery/ai_powersupply/process()
 	if(!powered_ai || powered_ai.stat & DEAD)
-		Destroy()
+		qdel(src)
 	if(!powered_ai.anchored)
 		loc = powered_ai.loc
 		use_power = 0

@@ -21,10 +21,11 @@
 		build_dust_cache()
 	toggle_transit() //add static dust
 
-	update_starlight()
+	if(config)
+		update_starlight()
 
 /turf/space/proc/update_starlight()
-	if(!config)
+	if(!config.starlight)
 		return
 
 	if(locate(/turf/simulated) in orange(src, 1))

@@ -277,7 +277,7 @@
 				return 0
 			else
 				visible_message("<span class='warning'>[src] breaks down!</span>")
-				destroy()
+				qdel(src)
 				return 1
 	return 1
 
@@ -329,7 +329,7 @@
 		user << "\blue Now disassembling table"
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		if(do_after(user,50))
-			destroy()
+			qdel(src)
 		return
 
 	if(isRobot(user))
@@ -343,7 +343,7 @@
 		playsound(src, "sparks", 50, 1)
 		for(var/mob/O in viewers(user, 4))
 			O.show_message("\blue The [src] was sliced apart by [user]!", 1, "\red You hear [src] coming apart.", 2)
-		destroy()
+		qdel(src)
 
 	user.drop_item(src)
 	return

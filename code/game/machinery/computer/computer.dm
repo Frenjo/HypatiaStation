@@ -12,12 +12,6 @@
 	var/light_range_on = 3
 	var/light_power_on = 1
 
-/obj/machinery/computer/New()
-	..()
-	if(ticker)
-		initialize()
-
-
 /obj/machinery/computer/initialize()
 	power_change()
 
