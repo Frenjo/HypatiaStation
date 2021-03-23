@@ -233,7 +233,6 @@
 			color = COLOR_PURPLE_PIPE
 		if("grey")
 			color = null
-
 	if(node1&&node2)
 		icon_state = "intact[invisibility ? "-f" : "" ]"
 
@@ -245,13 +244,13 @@
 		if(!node1 && !node2)
 			var/turf/T = get_turf(src)
 			new /obj/item/pipe(loc, make_from=src)
-			for (var/obj/machinery/meter/meter in T)
-				if (meter.target == src)
+			for(var/obj/machinery/meter/meter in T)
+				if(meter.target == src)
 					new /obj/item/pipe_meter(T)
 					qdel(meter)
 			qdel(src)
-		var/have_node1 = node1?1:0
-		var/have_node2 = node2?1:0
+		var/have_node1 = node1 ? 1: 0
+		var/have_node2 = node2 ? 1 : 0
 		icon_state = "exposed[have_node1][have_node2][invisibility ? "-f" : "" ]"
 
 /obj/machinery/atmospherics/pipe/simple/initialize()
@@ -299,58 +298,66 @@
 	return null
 
 /obj/machinery/atmospherics/pipe/simple/visible
-	name = "Grey pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	name = "grey pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
 	level = 2
 	icon_state = "intact"
 
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers
-	name="Scrubbers pipe"
-	color=COLOR_RED
+	name="scrubbers pipe"
+	color = COLOR_RED
 
 /obj/machinery/atmospherics/pipe/simple/visible/supply
-	name="Air supply pipe"
-	color=COLOR_BLUE
+	name="air supply pipe"
+	color = COLOR_BLUE
 
 /obj/machinery/atmospherics/pipe/simple/visible/yellow
-	name = "Yellow pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color="#FFCC00"
+	name = "yellow pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_YELLOW_PIPE
 
 /obj/machinery/atmospherics/pipe/simple/visible/cyan
-	name = "Cyan pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color=COLOR_CYAN
+	name = "cyan pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_CYAN
 
 /obj/machinery/atmospherics/pipe/simple/visible/green
-	name = "Green pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color=COLOR_GREEN
+	name = "green pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_GREEN
+
+/obj/machinery/atmospherics/pipe/simple/visible/purple
+	name = "purple pipe"
+	color = COLOR_PURPLE_PIPE
 
 /obj/machinery/atmospherics/pipe/simple/hidden
-	name = "Grey pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	name = "grey pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
 	level = 1
 	icon_state = "intact-f"
 	alpha = 192		//set for the benefit of mapping - this is reset to opaque when the pipe is spawned in game
 
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers
-	name="Scrubbers pipe"
-	color=COLOR_RED
+	name="scrubbers pipe"
+	color = COLOR_RED
 
 /obj/machinery/atmospherics/pipe/simple/hidden/supply
-	name="Air supply pipe"
-	color=COLOR_BLUE
+	name="air supply pipe"
+	color = COLOR_BLUE
 
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow
-	name = "Yellow pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color="#FFCC00"
+	name = "yellow pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_YELLOW_PIPE
 
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan
-	name = "Cyan pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color=COLOR_CYAN
+	name = "cyan pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_CYAN
 
 /obj/machinery/atmospherics/pipe/simple/hidden/green
-	name = "Green pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color=COLOR_GREEN
+	name = "green pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_GREEN
+
+/obj/machinery/atmospherics/pipe/simple/hidden/purple
+	name = "purple pipe"
+	color = COLOR_PURPLE_PIPE
 
 /obj/machinery/atmospherics/pipe/simple/insulated
-	name = "Insulated pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	name = "insulated pipe" // Added names to unnamed pipes to avoid confusion. -Frenjo
 	icon = 'icons/obj/atmospherics/red_pipe.dmi'
 	icon_state = "intact"
 
@@ -458,13 +465,20 @@
 /obj/machinery/atmospherics/pipe/manifold/update_icon()
 	if(node1&&node2&&node3)
 		switch(pipe_color)
-			if ("red") color = COLOR_RED
-			if ("blue") color = COLOR_BLUE
-			if ("cyan") color = COLOR_CYAN
-			if ("green") color = COLOR_GREEN
-			if ("yellow") color = "#FFCC00"
-			if ("purple") color = "#5C1EC0"
-			if ("grey") color = null
+			if("red")
+				color = COLOR_RED
+			if("blue")
+				color = COLOR_BLUE
+			if("cyan")
+				color = COLOR_CYAN
+			if("green")
+				color = COLOR_GREEN
+			if("yellow")
+				color = COLOR_YELLOW_PIPE
+			if("purple")
+				color = COLOR_PURPLE_PIPE
+			if("grey")
+				color = null
 		icon_state = "manifold[invisibility ? "-f" : "" ]"
 	else
 		var/connected = 0
@@ -526,59 +540,76 @@
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/manifold/visible
-	name = "Grey pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	name = "grey pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
 	level = 2
 	icon_state = "manifold"
 
 /obj/machinery/atmospherics/pipe/manifold/visible/supply
-	name = "Air supply pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	//name="Air supply pipe"
-	color=COLOR_BLUE
+	name = "air supply pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_BLUE
 
 /obj/machinery/atmospherics/pipe/manifold/visible/scrubbers
-	name = "Scrubbers pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	//name="Scrubbers pipe"
-	color=COLOR_RED
+	name = "scrubbers pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_RED
 
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow
-	name = "Yellow pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color="#FFCC00"
+	name = "yellow pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_YELLOW_PIPE
 
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan
-	name = "Cyan pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color=COLOR_CYAN
+	name = "cyan pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_CYAN
 
 /obj/machinery/atmospherics/pipe/manifold/visible/green
-	name = "Green pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color=COLOR_GREEN
+	name = "green pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_GREEN
+
+/obj/machinery/atmospherics/pipe/manifold/visible/purple
+	name = "purple pipe manifold"
+	color = COLOR_PURPLE_PIPE
 
 /obj/machinery/atmospherics/pipe/manifold/hidden
-	name = "Grey pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	name = "grey pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
 	level = 1
 	icon_state = "manifold-f"
 	alpha = 192		//set for the benefit of mapping - this is reset to opaque when the pipe is spawned in game
 
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply
-	name = "Air supply pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	//name="Air supply pipe"
-	color=COLOR_BLUE
+	name = "air supply pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_BLUE
 
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers
-	name = "Scrubbers pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	//name="Scrubbers pipe"
+	name = "scrubbers pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
 	color = COLOR_RED
 
 /obj/machinery/atmospherics/pipe/manifold/hidden/yellow
-	name = "Yellow pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color="#FFCC00"
+	name = "yellow pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_YELLOW_PIPE
 
 /obj/machinery/atmospherics/pipe/manifold/hidden/cyan
-	name = "Cyan pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color=COLOR_CYAN
+	name = "cyan pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_CYAN
 
 /obj/machinery/atmospherics/pipe/manifold/hidden/green
-	name = "Green pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color=COLOR_GREEN
+	name = "green pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_GREEN
+
+/obj/machinery/atmospherics/pipe/manifold/hidden/purple
+	name = "purple pipe manifold"
+	color = COLOR_PURPLE_PIPE
+
+/obj/machinery/atmospherics/pipe/manifold/insulated
+	name = "insulated pipe manifold"
+	icon = 'icons/obj/atmospherics/red_pipe.dmi'
+	icon_state = "manifold"
+
+	//minimum_temperature_difference = 10000
+	//thermal_conductivity = 0
+	//maximum_pressure = 1000*ONE_ATMOSPHERE
+	//fatigue_pressure = 900*ONE_ATMOSPHERE
+	//alert_pressure = 900*ONE_ATMOSPHERE
+
+	level = 2
 
 /obj/machinery/atmospherics/pipe/manifold4w
 	icon = 'icons/obj/atmospherics/pipe_manifold.dmi'
@@ -675,13 +706,20 @@
 	overlays.Cut()
 	if(node1&&node2&&node3&&node4)
 		switch(pipe_color)
-			if ("red") color = COLOR_RED
-			if ("blue") color = COLOR_BLUE
-			if ("cyan") color = COLOR_CYAN
-			if ("green") color = COLOR_GREEN
-			if ("yellow") color = "#FFCC00"
-			if ("purple") color = "#5C1EC0"
-			if ("grey") color = null
+			if("red")
+				color = COLOR_RED
+			if("blue")
+				color = COLOR_BLUE
+			if("cyan")
+				color = COLOR_CYAN
+			if("green")
+				color = COLOR_GREEN
+			if("yellow")
+				color = COLOR_YELLOW_PIPE
+			if("purple")
+				color = COLOR_PURPLE_PIPE
+			if("grey")
+				color = null
 		icon_state = "manifold4w[invisibility ? "-f" : "" ]"
 
 	else
@@ -728,59 +766,76 @@
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/manifold4w/visible
-	name = "Grey 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	name = "grey 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
 	level = 2
 	icon_state = "manifold4w"
 
 /obj/machinery/atmospherics/pipe/manifold4w/visible/supply
-	name = "Air supply 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	//name="Air supply pipe"
-	color=COLOR_BLUE
+	name = "air supply 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_BLUE
 
 /obj/machinery/atmospherics/pipe/manifold4w/visible/scrubbers
-	name = "Scrubbers 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	//name="Scrubbers pipe"
-	color=COLOR_RED
+	name = "scrubbers 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_RED
 
 /obj/machinery/atmospherics/pipe/manifold4w/visible/yellow
-	name = "Yellow 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color="#FFCC00"
+	name = "yellow 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_YELLOW_PIPE
 
 /obj/machinery/atmospherics/pipe/manifold4w/visible/cyan
-	name = "Cyan 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color=COLOR_CYAN
+	name = "cyan 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_CYAN
 
 /obj/machinery/atmospherics/pipe/manifold4w/visible/green
-	name = "Green 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color=COLOR_GREEN
+	name = "green 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_GREEN
+
+/obj/machinery/atmospherics/pipe/manifold4w/visible/purple
+	name = "purple 4-way pipe manifold"
+	color = COLOR_PURPLE_PIPE
 
 /obj/machinery/atmospherics/pipe/manifold4w/hidden
-	name = "Grey 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	name = "grey 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
 	level = 1
 	icon_state = "manifold4w-f"
 	alpha = 192		//set for the benefit of mapping - this is reset to opaque when the pipe is spawned in game
 
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply
-	name = "Air supply 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	//name="Air supply pipe"
-	color=COLOR_BLUE
+	name = "air supply 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_BLUE
 
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers
-	name = "Scrubbers 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	//name="Scrubbers pipe"
-	color=COLOR_RED
+	name = "scrubbers 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_RED
 
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/yellow
-	name = "Yellow 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color="#FFCC00"
+	name = "yellow 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_YELLOW_PIPE
 
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/cyan
-	name = "Cyan 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color=COLOR_CYAN
+	name = "cyan 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_CYAN
 
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/green
-	name = "Green 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
-	color=COLOR_GREEN
+	name = "green 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
+	color = COLOR_GREEN
+
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/purple
+	name = "purple 4-way pipe manifold"
+	color = COLOR_PURPLE_PIPE
+
+/obj/machinery/atmospherics/pipe/manifold4w/insulated
+	name = "insulated 4-way pipe manifold"
+	icon = 'icons/obj/atmospherics/red_pipe.dmi'
+	icon_state = "manifold4w"
+
+	//minimum_temperature_difference = 10000
+	//thermal_conductivity = 0
+	//maximum_pressure = 1000*ONE_ATMOSPHERE
+	//fatigue_pressure = 900*ONE_ATMOSPHERE
+	//alert_pressure = 900*ONE_ATMOSPHERE
+
+	level = 2
 
 /obj/machinery/atmospherics/pipe/cap
 	name = "pipe endcap"
@@ -845,7 +900,7 @@
 
 /obj/machinery/atmospherics/pipe/cap/initialize()
 	for(var/obj/machinery/atmospherics/target in get_step(src, dir))
-		if(target.initialize_directions & get_dir(target,src))
+		if(target.initialize_directions & get_dir(target, src))
 			node = target
 			break
 
