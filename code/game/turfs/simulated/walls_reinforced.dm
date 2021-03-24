@@ -3,7 +3,7 @@
 	desc = "A huge chunk of reinforced metal used to seperate rooms."
 	icon_state = "r_wall"
 
-	damage_cap = 200
+	damage_cap = 1000
 	max_temperature = 6000
 
 	opacity = 1

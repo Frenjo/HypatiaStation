@@ -95,7 +95,7 @@
 		var/distance = get_dist(starting,loc)
 		var/miss_modifier = -30
 
-		if (istype(shot_from,/obj/item/weapon/gun))	//If you aim at someone beforehead, it'll hit more often.
+		if(istype(shot_from, /obj/item/weapon/gun))	//If you aim at someone beforehead, it'll hit more often.
 			var/obj/item/weapon/gun/daddy = shot_from //Kinda balanced by fact you need like 2 seconds to aim
 			if (daddy.target && original in daddy.target) //As opposed to no-delay pew pew
 				miss_modifier += -30
@@ -118,7 +118,7 @@
 				msg_admin_attack("UNKNOWN shot [M] ([M.ckey]) with a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[firer.x];Y=[firer.y];Z=[firer.z]'>JMP</a>)") //BS12 EDIT ALG
 
 	if(A)
-		if (!forcedodge)
+		if(!forcedodge)
 			forcedodge = A.bullet_act(src, def_zone) // searches for return value
 		if(forcedodge == -1) // the bullet passes through a dense object!
 			bumped = 0 // reset bumped variable!
@@ -128,7 +128,7 @@
 				loc = A.loc
 			permutated.Add(A)
 			return 0
-		if(istype(A,/turf))
+		if(istype(A, /turf))
 			for(var/obj/O in A)
 				O.bullet_act(src)
 			for(var/mob/M in A)
@@ -152,8 +152,9 @@
 	if(kill_count < 1)
 		qdel(src)
 	kill_count--
-	spawn while(src)
-		if((!( current ) || loc == current))
+
+	spawn while(src && src.loc)
+		if((!(current) || loc == current))
 			current = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z)
 		if((x == 1 || x == world.maxx || y == 1 || y == world.maxy))
 			qdel(src)
@@ -163,7 +164,8 @@
 		if(!bumped && !isturf(original))
 			if(loc == get_turf(original))
 				if(!(original in permutated))
-					Bump(original)
+					if(Bump(original))
+						return
 					sleep(1)
 	return
 

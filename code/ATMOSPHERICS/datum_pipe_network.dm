@@ -28,7 +28,6 @@ var/global/list/datum/pipe_network/pipe_networks = list()
 /datum/pipe_network/proc/build_network(obj/machinery/atmospherics/start_normal, obj/machinery/atmospherics/reference)
 	//Purpose: Generate membership roster
 	//Notes: Assuming that members will add themselves to appropriate roster in network_expand()
-
 	if(!start_normal)
 		qdel(src)
 
@@ -36,13 +35,14 @@ var/global/list/datum/pipe_network/pipe_networks = list()
 
 	update_network_gases()
 
-	if((normal_members.len>0)||(line_members.len>0))
+	if((normal_members.len > 0)||(line_members.len > 0))
 		pipe_networks += src
 	else
 		qdel(src)
 
 /datum/pipe_network/proc/merge(datum/pipe_network/giver)
-	if(giver==src) return 0
+	if(giver == src)
+		return 0
 
 	normal_members |= giver.normal_members
 
@@ -59,12 +59,12 @@ var/global/list/datum/pipe_network/pipe_networks = list()
 
 /datum/pipe_network/proc/update_network_gases()
 	//Go through membership roster and make sure gases is up to date
-
 	gases = list()
 
 	for(var/obj/machinery/atmospherics/normal_member in normal_members)
 		var/result = normal_member.return_network_air(src)
-		if(result) gases += result
+		if(result)
+			gases += result
 
 	for(var/datum/pipeline/line_member in line_members)
 		gases += line_member.air

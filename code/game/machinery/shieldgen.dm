@@ -134,7 +134,6 @@
 	return
 
 
-
 /obj/machinery/shieldgen
 		name = "Emergency shield projector"
 		desc = "Used to seal minor hull breaches."
@@ -394,10 +393,9 @@
 	src.add_fingerprint(user)
 
 /obj/machinery/shieldwallgen/process()
-	spawn(100)
-		power()
-		if(power)
-			storedpower -= 50 //this way it can survive longer and survive at all
+	power()
+	if(power)
+		storedpower -= 50 //this way it can survive longer and survive at all
 	if(storedpower >= maxstoredpower)
 		storedpower = maxstoredpower
 	if(storedpower <= 0)

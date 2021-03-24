@@ -18,7 +18,7 @@
 	blocks_air = 1
 
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
-	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
+	heat_capacity = 312500 //a little over 5 cm thick, 312500 for 1m by 2.5m by 0.25m plasteel wall
 
 	var/walltype = "metal"
 
@@ -104,20 +104,20 @@
 
 /turf/simulated/wall/adjacent_fire_act(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
 	if(adj_temp > max_temperature)
-		take_damage(rand(10, 20) * (adj_temp / max_temperature))
+		take_damage(log(rand(5, 10) * (adj_temp - max_temperature)))
 
 	return ..()
 
-/turf/simulated/wall/proc/dismantle_wall(devastated=0, explode=0)
+/turf/simulated/wall/proc/dismantle_wall(devastated = 0, explode = 0)
 	if(istype(src,/turf/simulated/wall/r_wall))
 		if(!devastated)
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			new /obj/structure/girder/reinforced(src)
-			new /obj/item/stack/sheet/plasteel( src )
+			new /obj/item/stack/sheet/plasteel(src)
 		else
-			new /obj/item/stack/sheet/metal( src )
-			new /obj/item/stack/sheet/metal( src )
-			new /obj/item/stack/sheet/plasteel( src )
+			new /obj/item/stack/sheet/metal(src)
+			new /obj/item/stack/sheet/metal(src)
+			new /obj/item/stack/sheet/plasteel(src)
 	else if(istype(src,/turf/simulated/wall/cult))
 		if(!devastated)
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
@@ -132,22 +132,22 @@
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			new /obj/structure/girder(src)
 			if (mineral == "metal")
-				new /obj/item/stack/sheet/metal( src )
-				new /obj/item/stack/sheet/metal( src )
+				new /obj/item/stack/sheet/metal(src)
+				new /obj/item/stack/sheet/metal(src)
 			else
 				var/M = text2path("/obj/item/stack/sheet/mineral/[mineral]")
-				new M( src )
-				new M( src )
+				new M(src)
+				new M(src)
 		else
 			if (mineral == "metal")
-				new /obj/item/stack/sheet/metal( src )
-				new /obj/item/stack/sheet/metal( src )
-				new /obj/item/stack/sheet/metal( src )
+				new /obj/item/stack/sheet/metal(src)
+				new /obj/item/stack/sheet/metal(src)
+				new /obj/item/stack/sheet/metal(src)
 			else
 				var/M = text2path("/obj/item/stack/sheet/mineral/[mineral]")
-				new M( src )
-				new M( src )
-				new /obj/item/stack/sheet/metal( src )
+				new M(src)
+				new M(src)
+				new /obj/item/stack/sheet/metal(src)
 
 	for(var/obj/O in src.contents) //Eject contents!
 		if(istype(O,/obj/structure/sign/poster))
@@ -221,7 +221,7 @@
 	return
 
 /turf/simulated/wall/meteorhit(obj/M as obj)
-	if (prob(15) && !rotting)
+	if(prob(15) && !rotting)
 		dismantle_wall()
 	else if(prob(70) && !rotting)
 		ChangeTurf(/turf/simulated/floor/plating)
@@ -247,11 +247,11 @@
 
 /turf/simulated/wall/attack_animal(mob/living/M as mob)
 	if(M.wall_smash)
-		if (istype(src, /turf/simulated/wall/r_wall) && !rotting)
+		if(istype(src, /turf/simulated/wall/r_wall) && !rotting)
 			M << text("\blue This wall is far too strong for you to destroy.")
 			return
 		else
-			if (prob(40) || rotting)
+			if(prob(40) || rotting)
 				M << text("\blue You smash through the wall.")
 				dismantle_wall(1)
 				return
@@ -264,9 +264,9 @@
 	return
 
 /turf/simulated/wall/attack_hand(mob/user as mob)
-	if ((HULK in user.mutations))
+	if((HULK in user.mutations))
 		usr.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-	if ((HULK in user.mutations)||user.get_species() == "Obsedai")
+	if((HULK in user.mutations)||user.get_species() == "Obsedai")
 		if (prob(40))
 			usr << text("\blue You smash through the wall.")
 			dismantle_wall(1)
@@ -287,17 +287,18 @@
 	return
 
 /turf/simulated/wall/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if(!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
 		return
 
 	//get the user's location
-	if( !istype(user.loc, /turf) )	return	//can't do this stuff whilst inside objects and such
+	if(!istype(user.loc, /turf))
+		return	//can't do this stuff whilst inside objects and such
 
 	if(rotting)
-		if(istype(W, /obj/item/weapon/weldingtool) )
+		if(istype(W, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/WT = W
-			if( WT.remove_fuel(0,user) )
+			if(WT.remove_fuel(0, user))
 				user << "<span class='notice'>You burn away the fungi with \the [WT].</span>"
 				playsound(src, 'sound/items/Welder.ogg', 10, 1)
 				for(var/obj/effect/E in src) if(E.name == "Wallrot")
@@ -310,10 +311,10 @@
 			return
 
 	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
-	if( thermite )
-		if( istype(W, /obj/item/weapon/weldingtool) )
+	if(thermite)
+		if(istype(W, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/WT = W
-			if( WT.remove_fuel(0,user) )
+			if(WT.remove_fuel(0, user))
 				thermitemelt(user)
 				return
 
@@ -321,7 +322,7 @@
 			thermitemelt(user)
 			return
 
-		else if( istype(W, /obj/item/weapon/melee/energy/blade) )
+		else if(istype(W, /obj/item/weapon/melee/energy/blade))
 			var/obj/item/weapon/melee/energy/blade/EB = W
 
 			EB.spark_system.start()
@@ -342,7 +343,7 @@
 
 		var/obj/item/weapon/weldingtool/WT = W
 
-		if(WT.remove_fuel(0,user))
+		if(WT.remove_fuel(0, user))
 			if(response == "Repair")
 				user << "<span class='notice'>You start repairing the damage to [src].</span>"
 				playsound(src, 'sound/items/Welder.ogg', 100, 1)
@@ -366,17 +367,17 @@
 			user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
 			return
 
-	else if( istype(W, /obj/item/weapon/pickaxe/plasmacutter) )
-
+	else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
 		user << "<span class='notice'>You begin slicing through the outer plating.</span>"
 		playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
 		sleep(60)
 		if(mineral == "diamond")//Oh look, it's tougher
 			sleep(60)
-		if( !istype(src, /turf/simulated/wall) || !user || !W || !T )	return
+		if(!istype(src, /turf/simulated/wall) || !user || !W || !T)
+			return
 
-		if( user.loc == T && user.get_active_hand() == W )
+		if(user.loc == T && user.get_active_hand() == W)
 			user << "<span class='notice'>You remove the outer plating.</span>"
 			dismantle_wall()
 			for(var/mob/O in viewers(user, 5))
@@ -384,23 +385,23 @@
 		return
 
 	//DRILLING
-	else if (istype(W, /obj/item/weapon/pickaxe/diamonddrill))
-
+	else if(istype(W, /obj/item/weapon/pickaxe/diamonddrill))
 		user << "<span class='notice'>You begin to drill though the wall.</span>"
 
 		sleep(60)
 		if(mineral == "diamond")
 			sleep(60)
-		if( !istype(src, /turf/simulated/wall) || !user || !W || !T )	return
+		if(!istype(src, /turf/simulated/wall) || !user || !W || !T)
+			return
 
-		if( user.loc == T && user.get_active_hand() == W )
+		if(user.loc == T && user.get_active_hand() == W)
 			user << "<span class='notice'>Your drill tears though the last of the reinforced plating.</span>"
 			dismantle_wall()
 			for(var/mob/O in viewers(user, 5))
 				O.show_message("<span class='warning'>The wall was drilled through by [user]!</span>", 1, "<span class='warning'>You hear the grinding of metal.</span>", 2)
 		return
 
-	else if( istype(W, /obj/item/weapon/melee/energy/blade) )
+	else if(istype(W, /obj/item/weapon/melee/energy/blade))
 		var/obj/item/weapon/melee/energy/blade/EB = W
 
 		EB.spark_system.start()
@@ -410,9 +411,10 @@
 		sleep(70)
 		if(mineral == "diamond")
 			sleep(70)
-		if( !istype(src, /turf/simulated/wall) || !user || !EB || !T )	return
+		if(!istype(src, /turf/simulated/wall) || !user || !EB || !T)
+			return
 
-		if( user.loc == T && user.get_active_hand() == W )
+		if(user.loc == T && user.get_active_hand() == W)
 			EB.spark_system.start()
 			playsound(src, "sparks", 50, 1)
 			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
@@ -421,43 +423,43 @@
 				O.show_message("<span class='warning'>The wall was sliced apart by [user]!</span>", 1, "<span class='warning'>You hear metal being sliced apart and sparks flying.</span>", 2)
 		return
 
-	else if(istype(W,/obj/item/apc_frame))
+	else if(istype(W, /obj/item/apc_frame))
 		var/obj/item/apc_frame/AH = W
 		AH.try_build(src)
 		return
 
-	else if(istype(W,/obj/item/alarm_frame))
+	else if(istype(W, /obj/item/alarm_frame))
 		var/obj/item/alarm_frame/AH = W
 		AH.try_build(src)
 		return
 
-	else if(istype(W,/obj/item/firealarm_frame))
+	else if(istype(W, /obj/item/firealarm_frame))
 		var/obj/item/firealarm_frame/AH = W
 		AH.try_build(src)
 		return
 
-	else if(istype(W,/obj/item/light_fixture_frame))
+	else if(istype(W, /obj/item/light_fixture_frame))
 		var/obj/item/light_fixture_frame/AH = W
 		AH.try_build(src)
 		return
 
-	else if(istype(W,/obj/item/light_fixture_frame/small))
+	else if(istype(W, /obj/item/light_fixture_frame/small))
 		var/obj/item/light_fixture_frame/small/AH = W
 		AH.try_build(src)
 		return
 
-	else if(istype(W,/obj/item/rust_fuel_compressor_frame))
+	else if(istype(W, /obj/item/rust_fuel_compressor_frame))
 		var/obj/item/rust_fuel_compressor_frame/AH = W
 		AH.try_build(src)
 		return
 
-	else if(istype(W,/obj/item/rust_fuel_assembly_port_frame))
+	else if(istype(W, /obj/item/rust_fuel_assembly_port_frame))
 		var/obj/item/rust_fuel_assembly_port_frame/AH = W
 		AH.try_build(src)
 		return
 
 	//Poster stuff
-	else if(istype(W,/obj/item/weapon/contraband/poster))
+	else if(istype(W, /obj/item/weapon/contraband/poster))
 		place_poster(W,user)
 		return
 
@@ -466,7 +468,7 @@
 	return
 
 /turf/simulated/wall/meteorhit(obj/M as obj)
-	if (prob(15) && !rotting)
+	if(prob(15) && !rotting)
 		dismantle_wall()
 	else if(prob(70) && !rotting)
 		ChangeTurf(/turf/simulated/floor/plating)
@@ -475,9 +477,13 @@
 	return 0
 
 /turf/simulated/wall/Destroy()
-	for(var/obj/effect/E in src) if(E.name == "Wallrot") qdel(E)
+	for(var/obj/effect/E in src)
+		if(E.name == "Wallrot")
+			qdel(E)
 	..()
 
 /turf/simulated/wall/ChangeTurf(var/newtype)
-	for(var/obj/effect/E in src) if(E.name == "Wallrot") qdel(E)
+	for(var/obj/effect/E in src)
+		if(E.name == "Wallrot")
+			qdel(E)
 	..(newtype)

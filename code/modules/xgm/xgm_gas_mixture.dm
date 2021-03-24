@@ -61,7 +61,8 @@
 	update_values()
 
 //Merges all the gas from another mixture into this one.  Respects group_multiplies and adjusts temperature correctly.
-/datum/gas_mixture/proc/merge(datum/gas_mixture/giver)
+//Does not modify giver in any way.
+/datum/gas_mixture/proc/merge(const/datum/gas_mixture/giver)
 	if(!giver)
 		return
 
@@ -80,6 +81,23 @@
 			gas[g] += giver.gas[g]
 
 	update_values()
+
+/datum/gas_mixture/proc/equalize(datum/gas_mixture/sharer)
+	for(var/g in sharer.gas)
+		var/comb = gas[g] + sharer.gas[g]
+		comb /= volume + sharer.volume
+		gas[g] = comb * volume
+		sharer.gas[g] = comb * sharer.volume
+
+	var/our_heatcap = heat_capacity()
+	var/share_heatcap = sharer.heat_capacity()
+
+	temperature = 0
+	if(our_heatcap + share_heatcap)
+		temperature = ((temperature * our_heatcap) + (sharer.temperature * share_heatcap)) / (our_heatcap + share_heatcap)
+	sharer.temperature = temperature
+
+	return 1
 
 //Returns the heat capacity of the gas mix based on the specific heat of the gases.
 /datum/gas_mixture/proc/heat_capacity()
@@ -166,7 +184,7 @@
 	return removed
 
 //Copies gas and temperature from another gas_mixture.
-/datum/gas_mixture/proc/copy_from(datum/gas_mixture/sample)
+/datum/gas_mixture/proc/copy_from(const/datum/gas_mixture/sample)
 	gas = sample.gas.Copy()
 	temperature = sample.temperature
 
@@ -311,19 +329,11 @@ datum/gas_mixture/proc/share_ratio(datum/gas_mixture/other, connecting_tiles, sh
 	update_values()
 	other.update_values()
 
-	if(compare(other)) return 1
-	else return 0
+	return compare(other)
 
 //A wrapper around share_ratio for spacing gas at the same rate as if it were going into a large airless room.
 /datum/gas_mixture/proc/share_space(datum/gas_mixture/unsim_air)
-	if(!unsim_air)
-		return 0
-
-	var/old_pressure = return_pressure()
-
-	share_ratio(unsim_air, unsim_air.group_multiplier, max(1, max(group_multiplier + 3, 1) + unsim_air.group_multiplier), one_way = 1)
-
-	return abs(old_pressure - return_pressure())
+	return share_ratio(unsim_air, unsim_air.group_multiplier, max(1, max(group_multiplier + 3, 1) + unsim_air.group_multiplier), one_way = 1)
 
 //Equalizes a list of gas mixtures.  Used for pipe networks.
 /proc/equalize_gases(datum/gas_mixture/list/gases)

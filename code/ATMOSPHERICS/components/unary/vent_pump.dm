@@ -42,15 +42,6 @@
 	on = 1
 	icon_state = "in"
 
-/obj/machinery/atmospherics/unary/vent_pump/New()
-	..()
-	air_contents.volume = 200
-	initial_loc = get_area(loc)
-	area_uid = initial_loc.uid
-	if (!id_tag)
-		assign_uid()
-		id_tag = num2text(uid)
-
 /obj/machinery/atmospherics/unary/vent_pump/high_volume
 	name = "Large Air Vent"
 	power_channel = EQUIP
@@ -58,6 +49,29 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/New()
 	..()
 	air_contents.volume = 1000
+
+/obj/machinery/atmospherics/unary/vent_pump/New()
+	..()
+	air_contents.volume = 200
+	initial_loc = get_area(loc)
+	area_uid = initial_loc.uid
+
+	if(!id_tag)
+		assign_uid()
+		id_tag = num2text(uid)
+
+/obj/machinery/atmospherics/unary/vent_pump/initialize()
+	..()
+	//some vents work his own special way
+	radio_filter_in = frequency == 1439 ? (RADIO_FROM_AIRALARM) : null
+	radio_filter_out = frequency == 1439 ? (RADIO_TO_AIRALARM) : null
+	if(frequency)
+		radio_connection = register_radio(src, frequency, frequency, radio_filter_in)
+		src.broadcast_status()
+
+/obj/machinery/atmospherics/unary/vent_pump/Destroy()
+	unregister_radio(src, frequency)
+	..()
 
 /obj/machinery/atmospherics/unary/vent_pump/update_icon()
 	if(welded)
@@ -82,7 +96,6 @@
 	//broadcast_status() // from now air alarm/control computer should request update purposely --rastaf0
 	if(!on)
 		return 0
-
 	if(welded)
 		return 0
 
@@ -110,32 +123,24 @@
 
 	else //external -> internal
 		var/pressure_delta = 10000
-		if(pressure_checks&1)
+		if(pressure_checks & 1)
 			pressure_delta = min(pressure_delta, (environment_pressure - external_pressure_bound))
-		if(pressure_checks&2)
+		if(pressure_checks & 2)
 			pressure_delta = min(pressure_delta, (internal_pressure_bound - air_contents.return_pressure()))
 
 		if(pressure_delta > 0.5)
 			if(environment.temperature > 0)
-				var/transfer_moles = pressure_delta*air_contents.volume/(environment.temperature * R_IDEAL_GAS_EQUATION)
+				var/transfer_moles = pressure_delta*air_contents.volume / (environment.temperature * R_IDEAL_GAS_EQUATION)
 
 				var/datum/gas_mixture/removed = loc.remove_air(transfer_moles)
-				if (isnull(removed)) //in space
+				if(isnull(removed)) //in space
 					return
 
 				air_contents.merge(removed)
 
 				if(network)
 					network.update = 1
-
 	return 1
-
-//Radio remote control
-/obj/machinery/atmospherics/unary/vent_pump/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
-	frequency = new_frequency
-	if(frequency)
-		radio_connection = radio_controller.add_object(src, frequency,radio_filter_in)
 
 /obj/machinery/atmospherics/unary/vent_pump/proc/broadcast_status()
 	if(!radio_connection)
@@ -167,16 +172,6 @@
 	radio_connection.post_signal(src, signal, radio_filter_out)
 	return 1
 
-/obj/machinery/atmospherics/unary/vent_pump/initialize()
-	..()
-
-	//some vents work his own special way
-	radio_filter_in = frequency==1439?(RADIO_FROM_AIRALARM):null
-	radio_filter_out = frequency==1439?(RADIO_TO_AIRALARM):null
-	if(frequency)
-		set_frequency(frequency)
-		src.broadcast_status()
-
 /obj/machinery/atmospherics/unary/vent_pump/receive_signal(datum/signal/signal)
 	if(stat & (NOPOWER|BROKEN))
 		return
@@ -203,7 +198,7 @@
 		pressure_checks = text2num(signal.data["checks"])
 
 	if(signal.data["checks_toggle"] != null)
-		pressure_checks = (pressure_checks? 0 : 3)
+		pressure_checks = (pressure_checks ? 0 : 3)
 
 	if(signal.data["direction"] != null)
 		pump_direction = text2num(signal.data["direction"])
@@ -212,28 +207,28 @@
 		internal_pressure_bound = between(
 			0,
 			text2num(signal.data["set_internal_pressure"]),
-			ONE_ATMOSPHERE*50
+			ONE_ATMOSPHERE * 50
 		)
 
 	if(signal.data["set_external_pressure"] != null)
 		external_pressure_bound = between(
 			0,
 			text2num(signal.data["set_external_pressure"]),
-			ONE_ATMOSPHERE*50
+			ONE_ATMOSPHERE * 50
 		)
 
 	if(signal.data["adjust_internal_pressure"] != null)
 		internal_pressure_bound = between(
 			0,
 			internal_pressure_bound + text2num(signal.data["adjust_internal_pressure"]),
-			ONE_ATMOSPHERE*50
+			ONE_ATMOSPHERE * 50
 		)
 
 	if(signal.data["adjust_external_pressure"] != null)
 		external_pressure_bound = between(
 			0,
 			external_pressure_bound + text2num(signal.data["adjust_external_pressure"]),
-			ONE_ATMOSPHERE*50
+			ONE_ATMOSPHERE * 50
 		)
 
 	if(signal.data["init"] != null)
@@ -268,10 +263,11 @@
 /obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
-		if (WT.remove_fuel(0,user))
+		if (WT.remove_fuel(0, user))
 			user << "\blue Now welding the vent."
 			if(do_after(user, 20))
-				if(!src || !WT.isOn()) return
+				if(!src || !WT.isOn())
+					return
 				playsound(src, 'sound/items/Welder2.ogg', 50, 1)
 				if(!welded)
 					user.visible_message("[user] welds the vent shut.", "You weld the vent shut.", "You hear welding.")
@@ -312,7 +308,7 @@
 		return 1
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
+	if((int_air.return_pressure() - env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
 		user << "\red You cannot unwrench this [src], it too exerted due to internal pressure."
 		add_fingerprint(user)
 		return 1
@@ -323,15 +319,8 @@
 			"[user] unfastens \the [src].", \
 			"\blue You have unfastened \the [src].", \
 			"You hear ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
+		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)
-
-/obj/machinery/atmospherics/unary/vent_pump/Destroy()
-	if(initial_loc)
-		initial_loc.air_vent_info -= id_tag
-		initial_loc.air_vent_names -= id_tag
-	..()
-	return
 
 /*
 	Alt-click to ventcrawl - Monkeys, aliens, slimes and mice.

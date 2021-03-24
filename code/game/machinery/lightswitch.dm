@@ -34,7 +34,7 @@
 		set_light(0)
 	else
 		icon_state = "light[on]"
-		set_light(2, 1.5, on ? "#82FF4C" : "#F86060")
+		set_light(1, 1, on ? "#82FF4C" : "#F86060")
 
 /obj/machinery/light_switch/examine()
 	set src in oview(1)
@@ -46,16 +46,7 @@
 	src.attack_hand(user)
 
 /obj/machinery/light_switch/attack_hand(mob/user)
-
 	on = !on
-
-	//for(var/area/A in area.master.related)
-	//	A.lightswitch = on
-	//	A.updateicon()
-
-	//	for(var/obj/machinery/light_switch/L in A)
-	//		L.on = on
-	//		L.updateicon()
 
 	area.lightswitch = on
 	area.updateicon()
@@ -64,11 +55,9 @@
 		L.on = on
 		L.updateicon()
 
-	//area.master.power_change()
 	area.power_change()
 
 /obj/machinery/light_switch/power_change()
-
 	if(!otherarea)
 		if(powered(LIGHT))
 			stat &= ~NOPOWER
@@ -81,5 +70,6 @@
 	if(stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
+
 	power_change()
 	..(severity)

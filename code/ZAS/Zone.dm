@@ -132,6 +132,10 @@ Class Procs:
 		for(var/turf/simulated/T in contents)
 			T.set_graphic(air.graphic)
 
+	for(var/connection_edge/E in edges)
+		if(E.sleeping)
+			E.recheck()
+
 /zone/proc/dbg_data(mob/M)
 	M << name
 	for(var/g in air.gas)

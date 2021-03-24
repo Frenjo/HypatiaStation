@@ -45,7 +45,7 @@ var/global/datum/controller/gameticker/ticker
 		world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
 		world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
 		while(current_state == GAME_STATE_PREGAME)
-			for(var/i=0, i<10, i++)
+			for(var/i = 0, i < 10, i++)
 				sleep(1)
 				vote.process()
 			if(going)
@@ -59,7 +59,7 @@ var/global/datum/controller/gameticker/ticker
 							vote.process()*/
 			if(pregame_timeleft <= 0)
 				current_state = GAME_STATE_SETTING_UP
-	while (!setup())
+	while(!setup())
 
 
 /datum/controller/gameticker/proc/setup()
@@ -124,13 +124,12 @@ var/global/datum/controller/gameticker/ticker
 	setup_economy()
 	shuttle_controller.setup_shuttle_docks() // Updated to reflect 'shuttles' port. -Frenjo
 
-
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		mode.post_setup()
 		//Cleanup some stuff
 		for(var/obj/effect/landmark/start/S in landmarks_list)
 			//Deleting Startpoints but we need the ai point to AI-ize people later
-			if (S.name != "AI")
+			if(S.name != "AI")
 				qdel(S)
 		world << "<FONT color='blue'><B>Enjoy the game!</B></FONT>"
 		world << sound('sound/AI/welcome.ogg') // Skie
@@ -169,7 +168,8 @@ var/global/datum/controller/gameticker/ticker
 
 	//Plus it provides an easy way to make cinematics for other events. Just use this as a template :)
 	proc/station_explosion_cinematic(var/station_missed=0, var/override = null)
-		if( cinematic )	return	//already a cinematic in progress!
+		if(cinematic)
+			return	//already a cinematic in progress!
 
 		//initialise our cinematic screen object
 		cinematic = new(src)
@@ -195,7 +195,7 @@ var/global/datum/controller/gameticker/ticker
 				switch(M.z)
 					if(0)	//inside a crate or something
 						var/turf/T = get_turf(M)
-						if(T && T.z==1)				//we don't use M.death(0) because it calls a for(/mob) loop and
+						if(T && T.z == 1)				//we don't use M.death(0) because it calls a for(/mob) loop and
 							M.health = 0
 							M.stat = DEAD
 					if(1)	//on a z-level 1 turf.
@@ -205,17 +205,17 @@ var/global/datum/controller/gameticker/ticker
 		//Now animate the cinematic
 		switch(station_missed)
 			if(1)	//nuke was nearby but (mostly) missed
-				if( mode && !override )
+				if(mode && !override)
 					override = mode.name
-				switch( override )
+				switch(override)
 					if("nuclear emergency") //Nuke wasn't on station when it blew up
-						flick("intro_nuke",cinematic)
+						flick("intro_nuke", cinematic)
 						sleep(35)
 						world << sound('sound/effects/explosionfar.ogg')
-						flick("station_intact_fade_red",cinematic)
+						flick("station_intact_fade_red", cinematic)
 						cinematic.icon_state = "summary_nukefail"
 					else
-						flick("intro_nuke",cinematic)
+						flick("intro_nuke", cinematic)
 						sleep(35)
 						world << sound('sound/effects/explosionfar.ogg')
 						//flick("end",cinematic)
@@ -227,29 +227,29 @@ var/global/datum/controller/gameticker/ticker
 
 
 			else	//station was destroyed
-				if( mode && !override )
+				if(mode && !override)
 					override = mode.name
-				switch( override )
+				switch(override)
 					if("nuclear emergency") //Nuke Ops successfully bombed the station
-						flick("intro_nuke",cinematic)
+						flick("intro_nuke", cinematic)
 						sleep(35)
-						flick("station_explode_fade_red",cinematic)
+						flick("station_explode_fade_red", cinematic)
 						world << sound('sound/effects/explosionfar.ogg')
 						cinematic.icon_state = "summary_nukewin"
 					if("AI malfunction") //Malf (screen,explosion,summary)
-						flick("intro_malf",cinematic)
+						flick("intro_malf", cinematic)
 						sleep(76)
-						flick("station_explode_fade_red",cinematic)
+						flick("station_explode_fade_red", cinematic)
 						world << sound('sound/effects/explosionfar.ogg')
 						cinematic.icon_state = "summary_malf"
 					if("blob") //Station nuked (nuke,explosion,summary)
-						flick("intro_nuke",cinematic)
+						flick("intro_nuke", cinematic)
 						sleep(35)
 						flick("station_explode_fade_red",cinematic)
 						world << sound('sound/effects/explosionfar.ogg')
 						cinematic.icon_state = "summary_selfdes"
 					else //Station nuked (nuke,explosion,summary)
-						flick("intro_nuke",cinematic)
+						flick("intro_nuke", cinematic)
 						sleep(35)
 						flick("station_explode_fade_red", cinematic)
 						world << sound('sound/effects/explosionfar.ogg')
@@ -261,15 +261,17 @@ var/global/datum/controller/gameticker/ticker
 		//Otherwise if its a verb it will continue on afterwards.
 		sleep(300)
 
-		if(cinematic)	qdel(cinematic)		//end the cinematic
-		if(temp_buckle)	qdel(temp_buckle)	//release everybody
+		if(cinematic)
+			qdel(cinematic)		//end the cinematic
+		if(temp_buckle)
+			qdel(temp_buckle)	//release everybody
 		return
 
 
 	proc/create_characters()
 		for(var/mob/new_player/player in player_list)
 			if(player.ready && player.mind)
-				if(player.mind.assigned_role=="AI")
+				if(player.mind.assigned_role == "AI")
 					player.close_spawn_windows()
 					player.AIize()
 				else if(!player.mind.assigned_role)
@@ -286,11 +288,11 @@ var/global/datum/controller/gameticker/ticker
 
 
 	proc/equip_characters()
-		var/captainless=1
+		var/captainless = 1
 		for(var/mob/living/carbon/human/player in player_list)
 			if(player && player.mind && player.mind.assigned_role)
 				if(player.mind.assigned_role == "Captain")
-					captainless=0
+					captainless = 0
 				if(player.mind.assigned_role != "MODE")
 					job_master.EquipRank(player, player.mind.assigned_role, 0)
 					EquipCustomItems(player)
@@ -319,7 +321,7 @@ var/global/datum/controller/gameticker/ticker
 			spawn(50)
 				callHook("roundend")
 
-				if (mode.station_was_nuked)
+				if(mode.station_was_nuked)
 					feedback_set_details("end_proper","nuke")
 					if(!delay_end)
 						world << "\blue <B>Rebooting due to destruction of station in [restart_timeout/10] seconds</B>"

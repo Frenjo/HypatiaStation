@@ -31,6 +31,11 @@ Thus, the two variables affect pump operation are set in New():
 	on = 1
 	icon_state = "intact_on"
 
+/obj/machinery/atmospherics/binary/volume_pump/initialize()
+	..()
+	if(frequency)
+		set_frequency(frequency)
+
 /obj/machinery/atmospherics/binary/volume_pump/update_icon()
 	if(stat & NOPOWER)
 		icon_state = "intact_off"
@@ -58,7 +63,7 @@ Thus, the two variables affect pump operation are set in New():
 	if((input_starting_pressure < 0.01) || (output_starting_pressure > 9000))
 		return 1
 
-	var/transfer_ratio = max(1, transfer_rate/air1.volume)
+	var/transfer_ratio = max(1, transfer_rate / air1.volume)
 	var/datum/gas_mixture/removed = air1.remove_ratio(transfer_ratio)
 
 	air2.merge(removed)
@@ -104,11 +109,6 @@ Thus, the two variables affect pump operation are set in New():
 
 		user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_pump")
 		onclose(user, "atmo_pump")*/
-
-/obj/machinery/atmospherics/binary/volume_pump/initialize()
-	..()
-	if(frequency)
-		set_frequency(frequency)
 
 /obj/machinery/atmospherics/binary/volume_pump/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))

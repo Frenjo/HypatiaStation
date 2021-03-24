@@ -22,7 +22,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /obj/effect/Destroy()
 	loc = null
 	if(reagents)
-		reagents.delete()
+		qdel(reagents)
 	return ..()
 
 /obj/effect/effect/water/Move(turf/newloc)

@@ -20,12 +20,15 @@
 	if(auto_init && ticker && ticker.current_state == GAME_STATE_PLAYING)
 		initialize()
 
+/atom/movable/proc/initialize()
+	return
+
 /atom/movable/Del()
 	if(isnull(gcDestroyed) && loc)
 		testing("GC: -- [type] was deleted via del() rather than qdel() --")
 		Destroy()
-//	else if(isnull(gcDestroyed))
-//		testing("GC: [type] was deleted via GC without qdel()") //Not really a huge issue but from now on, please qdel()
+	else if(isnull(gcDestroyed))
+		testing("GC: [type] was deleted via GC without qdel()") //Not really a huge issue but from now on, please qdel()
 //	else
 //		testing("GC: [type] was deleted via GC with qdel()")
 	..()
@@ -42,9 +45,6 @@
 		if(pulledby.pulling == src)
 			pulledby.pulling = null
 		pulledby = null
-
-/atom/movable/proc/initialize()
-	return
 
 /atom/movable/Move()
 	var/atom/A = src.loc

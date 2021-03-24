@@ -65,13 +65,13 @@
 			C.ToggleGunMode()
 
 		if(C.gun_mode)
-			aiming = PreFire(A,user,params) //They're using the new gun system, locate what they're aiming at.
+			aiming = PreFire(A, user, params) //They're using the new gun system, locate what they're aiming at.
 
-	if (!aiming)
+	if(!aiming)
 		if(user && user.a_intent == "help") //regardless of what happens, refuse to shoot if help intent is on
 			user << "\red You refrain from firing your [src] as your intent is set to help."
 		else
-			Fire(A,user,params) //Otherwise, fire normally.
+			Fire(A, user, params) //Otherwise, fire normally.
 
 /obj/item/weapon/gun/proc/isHandgun()
 	return 1
@@ -83,12 +83,12 @@
 			var/mob/living/M = user
 			if ((CLUMSY in M.mutations) && prob(50))
 				M << "<span class='danger'>[src] blows up in your face.</span>"
-				M.take_organ_damage(0,20)
+				M.take_organ_damage(0, 20)
 				M.drop_item()
 				qdel(src)
 				return
 
-	if (!user.IsAdvancedToolUser())
+	if(!user.IsAdvancedToolUser())
 		user << "\red You don't have the dexterity to do this!"
 		return
 	if(istype(user, /mob/living))
@@ -111,7 +111,7 @@
 	if(!special_check(user))
 		return
 
-	if (!ready_to_fire())
+	if(!ready_to_fire())
 		if (world.time % 3) //to prevent spam
 			user << "<span class='warning'>[src] is not ready to fire again!"
 		return
@@ -154,11 +154,11 @@
 	if(istype(user, /mob/living/carbon))
 		var/mob/living/carbon/mob = user
 		if(mob.shock_stage > 120)
-			in_chamber.yo += rand(-2,2)
-			in_chamber.xo += rand(-2,2)
+			in_chamber.yo += rand(-2, 2)
+			in_chamber.xo += rand(-2, 2)
 		else if(mob.shock_stage > 70)
-			in_chamber.yo += rand(-1,1)
-			in_chamber.xo += rand(-1,1)
+			in_chamber.yo += rand(-1, 1)
+			in_chamber.xo += rand(-1, 1)
 
 	if(params)
 		var/list/mouse_control = params2list(params)
@@ -196,14 +196,14 @@
 
 /obj/item/weapon/gun/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
 	//Suicide handling.
-	if (M == user && user.zone_sel.selecting == "mouth" && !mouthshoot)
+	if(M == user && user.zone_sel.selecting == "mouth" && !mouthshoot)
 		mouthshoot = 1
 		M.visible_message("\red [user] sticks their gun in their mouth, ready to pull the trigger...")
 		if(!do_after(user, 40))
 			M.visible_message("\blue [user] decided life was worth living")
 			mouthshoot = 0
 			return
-		if (load_into_chamber())
+		if(load_into_chamber())
 			user.visible_message("<span class = 'warning'>[user] pulls the trigger.</span>")
 			if(silenced)
 				playsound(user, fire_sound, 10, 1)
@@ -215,7 +215,7 @@
 				return
 
 			in_chamber.on_hit(M)
-			if (in_chamber.damage_type != HALLOSS)
+			if(in_chamber.damage_type != HALLOSS)
 				user.apply_damage(in_chamber.damage * 2.5, in_chamber.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp = 1)
 				user.death()
 			else
@@ -229,7 +229,7 @@
 			mouthshoot = 0
 			return
 
-	if (load_into_chamber())
+	if(load_into_chamber())
 		//Point blank shooting if on harm intent or target we were targeting.
 		if(user.a_intent == "hurt")
 			user.visible_message("\red <b> \The [user] fires \the [src] point blank at [M]!</b>")

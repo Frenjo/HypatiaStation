@@ -9,16 +9,16 @@
 
 #define PI 3.1415
 
-#define R_IDEAL_GAS_EQUATION	8.31 //kPa*L/(K*mol)
-#define ONE_ATMOSPHERE		101.325	//kPa
+#define R_IDEAL_GAS_EQUATION	8.31 	//kPa*L/(K*mol)
+#define ONE_ATMOSPHERE			101.325	//kPa
 
 // Radiation constants.
-#define STEFAN_BOLTZMANN_CONSTANT    5.6704e-8 // W/(m^2*K^4).
-#define IDEAL_GAS_ENTROPY_CONSTANT 	1164	//(mol^3 * s^3) / (kg^3 * L). Equal to (4*pi/(avrogadro's number * planck's constant)^2)^(3/2) / (avrogadro's number * 1000 Liters per m^3).
-#define COSMIC_RADIATION_TEMPERATURE 3.15      // K.
-#define AVERAGE_SOLAR_RADIATION      200       // W/m^2. Kind of arbitrary. Really this should depend on the sun position much like solars.
-#define RADIATOR_OPTIMUM_PRESSURE    3771      // kPa at 20 C. This should be higher as gases aren't great conductors until they are dense. Used the critical pressure for air.
-#define GAS_CRITICAL_TEMPERATURE     132.65    // K. The critical point temperature for air.
+#define STEFAN_BOLTZMANN_CONSTANT    	5.6704e-8 	// W/(m^2*K^4).
+#define IDEAL_GAS_ENTROPY_CONSTANT 		1164		//(mol^3 * s^3) / (kg^3 * L). Equal to (4*pi/(avrogadro's number * planck's constant)^2)^(3/2) / (avrogadro's number * 1000 Liters per m^3).
+#define COSMIC_RADIATION_TEMPERATURE 	3.15      	// K.
+#define AVERAGE_SOLAR_RADIATION      	200       	// W/m^2. Kind of arbitrary. Really this should depend on the sun position much like solars.
+#define RADIATOR_OPTIMUM_PRESSURE    	3771      	// kPa at 20 C. This should be higher as gases aren't great conductors until they are dense. Used the critical pressure for air.
+#define GAS_CRITICAL_TEMPERATURE     	132.65    	// K. The critical point temperature for air.
 
 #define CELL_VOLUME 2500	//liters in a cell
 #define MOLES_CELLSTANDARD (ONE_ATMOSPHERE*CELL_VOLUME/(T20C*R_IDEAL_GAS_EQUATION))	//moles in a 2.5 m^3 cell at 101.325 Pa and 20 degC

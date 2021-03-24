@@ -37,6 +37,16 @@ Thus, the two variables affect pump operation are set in New():
 	on = 1
 	icon_state = "intact_on"
 
+/obj/machinery/atmospherics/binary/pump/New()
+	..()
+	air1.volume = 200
+	air2.volume = 200
+
+/obj/machinery/atmospherics/binary/pump/initialize()
+	..()
+	if(frequency)
+		set_frequency(frequency)
+
 /obj/machinery/atmospherics/binary/pump/update_icon()
 	if(stat & NOPOWER)
 		icon_state = "intact_off"
@@ -73,7 +83,6 @@ Thus, the two variables affect pump operation are set in New():
 
 		if(network1)
 			network1.update = 1
-
 		if(network2)
 			network2.update = 1
 
@@ -114,11 +123,6 @@ Thus, the two variables affect pump operation are set in New():
 
 		user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_pump")
 		onclose(user, "atmo_pump")*/
-
-/obj/machinery/atmospherics/binary/pump/initialize()
-	..()
-	if(frequency)
-		set_frequency(frequency)
 
 /obj/machinery/atmospherics/binary/pump/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))

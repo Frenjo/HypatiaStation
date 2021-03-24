@@ -1,8 +1,8 @@
 /turf/simulated/floor/airless
 	icon_state = "floor"
 	name = "airless floor"
-	oxygen = 0.01
-	nitrogen = 0.01
+	oxygen = 0
+	nitrogen = 0
 	temperature = TCMB
 
 	New()
@@ -90,7 +90,7 @@
 	name = "vacuum floor"
 	icon_state = "engine"
 	oxygen = 0
-	nitrogen = 0.001
+	nitrogen = 0
 	temperature = TCMB
 
 /turf/simulated/floor/plating
@@ -102,8 +102,8 @@
 /turf/simulated/floor/plating/airless
 	icon_state = "plating"
 	name = "airless plating"
-	oxygen = 0.01
-	nitrogen = 0.01
+	oxygen = 0
+	nitrogen = 0
 	temperature = TCMB
 
 	New()

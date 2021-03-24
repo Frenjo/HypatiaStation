@@ -52,6 +52,9 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 	// if hidden[1] is true, then virus is hidden from medical scanners
 	// if hidden[2] is true, then virus is hidden from PANDEMIC machine
 
+/datum/disease/Destroy()
+	active_diseases.Remove(src)
+
 /datum/disease/proc/stage_act()
 	age++
 	var/cure_present = has_cure()
@@ -200,8 +203,3 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 
 /datum/disease/proc/Copy(var/process = 0)
 	return new type(process, src)
-
-/*
-/datum/disease/Del()
-	active_diseases.Remove(src)
-*/

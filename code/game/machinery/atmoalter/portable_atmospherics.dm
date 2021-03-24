@@ -9,7 +9,7 @@
 	var/volume = 0
 	var/destroyed = 0
 
-	var/maximum_pressure = 90*ONE_ATMOSPHERE
+	var/maximum_pressure = 90 * ONE_ATMOSPHERE
 
 /obj/machinery/portable_atmospherics/New()
 	..()
@@ -40,7 +40,6 @@
 
 /obj/machinery/portable_atmospherics/Destroy()
 	qdel(air_contents)
-
 	..()
 
 /obj/machinery/portable_atmospherics/update_icon()

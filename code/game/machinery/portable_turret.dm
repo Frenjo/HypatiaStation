@@ -248,7 +248,6 @@ Status: []<BR>"},
 
 	switch(href_list["operation"])
 		// toggles customizable behavioural protocols
-
 		if ("authweapon")
 			src.auth_weapons = !src.auth_weapons
 		if ("checkrecords")
@@ -261,7 +260,6 @@ Status: []<BR>"},
 
 
 /obj/machinery/porta_turret/power_change()
-
 	if(!anchored)
 		icon_state = "turretCover"
 		return
@@ -283,7 +281,6 @@ Status: []<BR>"},
 			spawn(rand(0, 15))
 				src.icon_state = "[lasercolor]grey_target_prism"
 				stat |= NOPOWER
-
 
 
 /obj/machinery/porta_turret/attackby(obj/item/W as obj, mob/user as mob)
@@ -308,7 +305,7 @@ Status: []<BR>"},
 			qdel(src)
 
 
-	if ((istype(W, /obj/item/weapon/card/emag)) && (!src.emagged))
+	if((istype(W, /obj/item/weapon/card/emag)) && (!src.emagged))
 		// Emagging the turret makes it go bonkers and stun everyone. It also makes
 		// the turret shoot much, much faster.
 
@@ -416,11 +413,10 @@ Status: []<BR>"},
 	src.density = 0
 	src.stat |= BROKEN // enables the BROKEN bit
 	src.icon_state = "[lasercolor]destroyed_target_prism"
-	invisibility=0
+	invisibility = 0
 	src.spark_system.start() // creates some sparks because they look cool
-	src.density=1
+	src.density = 1
 	qdel(cover) // deletes the cover - no need on keeping it there!
-
 
 
 /obj/machinery/porta_turret/process()

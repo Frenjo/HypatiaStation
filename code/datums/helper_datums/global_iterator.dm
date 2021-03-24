@@ -57,14 +57,20 @@ Data storage vars:
 	var/result
 	var/state = 0
 
-	New(list/arguments=null,autostart=1)
-		delay = delay>0?(delay):1
+	New(list/arguments = null, autostart = 1)
+		delay = delay > 0 ? (delay) : 1
 		if(forbid_garbage) //prevents garbage collection with tag != null
 			tag = "\ref[src]"
 		set_process_args(arguments)
 		if(autostart)
 			start()
 		return
+
+	Destroy()
+		tag = null
+		arg_list.Cut()
+		stop()
+		//Do not call ..()
 
 	proc/main()
 		state = 1
@@ -74,13 +80,13 @@ Data storage vars:
 				stop()
 				return 0
 			result = process(arglist(arg_list))
-			for(var/sleep_time=delay;sleep_time>0;sleep_time--) //uhh, this is ugly. But I see no other way to terminate sleeping proc. Such disgrace.
+			for(var/sleep_time = delay; sleep_time > 0; sleep_time--) //uhh, this is ugly. But I see no other way to terminate sleeping proc. Such disgrace.
 				if(!control_switch)
 					return 0
 				sleep(1)
 		return 0
 
-	proc/start(list/arguments=null)
+	proc/start(list/arguments = null)
 		if(active())
 			return
 		if(arguments)
@@ -105,7 +111,7 @@ Data storage vars:
 		var/lag = 0
 		while(state)
 			sleep(1)
-			if(++lag>10)
+			if(++lag > 10)
 				CRASH("The global_iterator loop \ref[src] failed to terminate in designated timeframe. This may be caused by server lagging.")
 		return 1
 

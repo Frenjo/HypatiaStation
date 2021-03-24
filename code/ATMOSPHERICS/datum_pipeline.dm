@@ -19,7 +19,6 @@
 	..()
 
 /datum/pipeline/proc/process()//This use to be called called from the pipe networks
-
 	//Check to see if pressure is within acceptable limits
 	var/pressure = air.return_pressure()
 	if(pressure > alert_pressure)
@@ -32,7 +31,6 @@
 
 /datum/pipeline/proc/temporarily_store_air()
 	//Update individual gas_mixtures by volume ratio
-
 	for(var/obj/machinery/atmospherics/pipe/member in members)
 		member.air_temporary = new
 		member.air_temporary.copy_from(air)
@@ -56,13 +54,13 @@
 	else
 		air = new
 
-	while(possible_expansions.len>0)
+	while(possible_expansions.len > 0)
 		for(var/obj/machinery/atmospherics/pipe/borderline in possible_expansions)
 
 			var/list/result = borderline.pipeline_expansion()
 			var/edge_check = result.len
 
-			if(result.len>0)
+			if(result.len > 0)
 				for(var/obj/machinery/atmospherics/pipe/item in result)
 					if(!members.Find(item))
 						members += item
@@ -78,7 +76,7 @@
 
 					edge_check--
 
-			if(edge_check>0)
+			if(edge_check > 0)
 				edges += borderline
 
 			possible_expansions -= borderline
@@ -95,7 +93,7 @@
 
 	for(var/obj/machinery/atmospherics/pipe/edge in edges)
 		for(var/obj/machinery/atmospherics/result in edge.pipeline_expansion())
-			if(!istype(result,/obj/machinery/atmospherics/pipe) && (result!=reference))
+			if(!istype(result, /obj/machinery/atmospherics/pipe) && (result != reference))
 				result.network_expand(new_network, edge)
 
 	return 1
@@ -107,11 +105,10 @@
 			//technically passing these parameters should not be allowed
 			//however pipe_network.build_network(..) and pipeline.network_extend(...)
 			//		were setup to properly handle this case
-
 	return network
 
 /datum/pipeline/proc/mingle_with_turf(turf/simulated/target, mingle_volume)
-	var/datum/gas_mixture/air_sample = air.remove_ratio(mingle_volume/air.volume)
+	var/datum/gas_mixture/air_sample = air.remove_ratio(mingle_volume / air.volume)
 	air_sample.volume = mingle_volume
 
 	if(istype(target) && target.zone)
@@ -140,20 +137,20 @@
 
 /datum/pipeline/proc/temperature_interact(turf/target, share_volume, thermal_conductivity)
 	var/total_heat_capacity = air.heat_capacity()
-	var/partial_heat_capacity = total_heat_capacity*(share_volume/air.volume)
+	var/partial_heat_capacity = total_heat_capacity * (share_volume / air.volume)
 
 	if(istype(target, /turf/simulated))
 		var/turf/simulated/modeled_location = target
 
 		if(modeled_location.blocks_air)
-			if((modeled_location.heat_capacity>0) && (partial_heat_capacity>0))
+			if((modeled_location.heat_capacity > 0) && (partial_heat_capacity > 0))
 				var/delta_temperature = air.temperature - modeled_location.temperature
 
-				var/heat = thermal_conductivity*delta_temperature* \
-					(partial_heat_capacity*modeled_location.heat_capacity/(partial_heat_capacity+modeled_location.heat_capacity))
+				var/heat = thermal_conductivity * delta_temperature * \
+					(partial_heat_capacity * modeled_location.heat_capacity / (partial_heat_capacity + modeled_location.heat_capacity))
 
 				air.temperature -= heat/total_heat_capacity
-				modeled_location.temperature += heat/modeled_location.heat_capacity
+				modeled_location.temperature += heat / modeled_location.heat_capacity
 
 		else
 			var/delta_temperature = 0
@@ -169,9 +166,9 @@
 			var/self_temperature_delta = 0
 			var/sharer_temperature_delta = 0
 
-			if((sharer_heat_capacity>0) && (partial_heat_capacity>0))
-				var/heat = thermal_conductivity*delta_temperature* \
-					(partial_heat_capacity*sharer_heat_capacity/(partial_heat_capacity+sharer_heat_capacity))
+			if((sharer_heat_capacity > 0) && (partial_heat_capacity > 0))
+				var/heat = thermal_conductivity * delta_temperature * \
+					(partial_heat_capacity * sharer_heat_capacity / (partial_heat_capacity + sharer_heat_capacity))
 
 				self_temperature_delta = -heat/total_heat_capacity
 				sharer_temperature_delta = heat/sharer_heat_capacity
@@ -181,17 +178,16 @@
 			air.temperature += self_temperature_delta
 
 			if(modeled_location.zone)
-				modeled_location.zone.air.temperature += sharer_temperature_delta/modeled_location.zone.air.group_multiplier
+				modeled_location.zone.air.temperature += sharer_temperature_delta / modeled_location.zone.air.group_multiplier
 			else
 				modeled_location.air.temperature += sharer_temperature_delta
 
-
 	else
-		if((target.heat_capacity>0) && (partial_heat_capacity>0))
+		if((target.heat_capacity > 0) && (partial_heat_capacity > 0))
 			var/delta_temperature = air.temperature - target.temperature
 
-			var/heat = thermal_conductivity*delta_temperature* \
-				(partial_heat_capacity*target.heat_capacity/(partial_heat_capacity+target.heat_capacity))
+			var/heat = thermal_conductivity * delta_temperature * \
+				(partial_heat_capacity * target.heat_capacity / (partial_heat_capacity + target.heat_capacity))
 
 			air.temperature -= heat/total_heat_capacity
 	if(network)

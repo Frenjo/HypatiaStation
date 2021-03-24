@@ -12,11 +12,12 @@
 	var/allow_upgrade = 1
 	var/last_upgrade = 0
 
+	var/destroying = 0
+
 	layer = 21
 	abstract = 1
 	item_state = "nothing"
 	w_class = 5.0
-
 
 /obj/item/weapon/grab/New(mob/user, mob/victim)
 	..()
@@ -24,7 +25,7 @@
 	assailant = user
 	affecting = victim
 
-	if(affecting.anchored)
+	if(affecting.anchored || !assailant.Adjacent(victim))
 		qdel(src)
 		return
 
@@ -34,7 +35,6 @@
 	hud.master = src
 
 /obj/item/weapon/grab/Destroy()
-	//make sure the grabbed_by list doesn't fill up with nulls
 	if(affecting)
 		affecting.grabbed_by -= src
 		affecting = null
@@ -43,6 +43,8 @@
 			assailant.client.screen -= hud
 		assailant = null
 	qdel(hud)
+	hud = null
+	destroying = 1 // stops us calling qdel(src) on dropped()
 	..()
 
 //Used by throw code to hand over the mob, instead of throwing the grab. The grab is then deleted by the throw code.
@@ -54,7 +56,6 @@
 			return affecting
 	return null
 
-
 //This makes sure that the grab screen object is displayed in the correct hand.
 /obj/item/weapon/grab/proc/synch()
 	if(affecting)
@@ -63,9 +64,14 @@
 		else
 			hud.screen_loc = ui_lhand
 
-
 /obj/item/weapon/grab/process()
+	if(gcDestroyed) // GC is trying to delete us, we'll kill our processing so we can cleanly GC
+		return PROCESS_KILL
+
 	confirm()
+	if(!assailant)
+		qdel(src) // Same here, except we're trying to delete ourselves.
+		return PROCESS_KILL
 
 	if(assailant.client)
 		assailant.client.screen -= hud
@@ -113,7 +119,6 @@
 		affecting.stuttering = max(affecting.stuttering, 5) //It will hamper your voice, being choked and all.
 		affecting.Weaken(5)	//Should keep you down unless you get help.
 		affecting.losebreath = min(affecting.losebreath + 2, 3)
-
 
 /obj/item/weapon/grab/proc/s_click(obj/screen/S)
 	if(!affecting)
@@ -186,12 +191,11 @@
 		return 0
 
 	if(affecting)
-		if(!isturf(assailant.loc) || ( !isturf(affecting.loc) || assailant.loc != affecting.loc && get_dist(assailant, affecting) > 1) )
+		if(!isturf(assailant.loc) || (!isturf(affecting.loc) || assailant.loc != affecting.loc && get_dist(assailant, affecting) > 1))
 			qdel(src)
 			return 0
 
 	return 1
-
 
 /obj/item/weapon/grab/attack(mob/M, mob/user)
 	if(!affecting)
@@ -218,18 +222,17 @@
 			var/mob/living/carbon/attacker = user
 			user.visible_message("<span class='danger'>[user] is attempting to devour [affecting]!</span>")
 			if(can_eat == 2)
-				if(!do_mob(user, affecting)||!do_after(user, 30)) return
+				if(!do_mob(user, affecting)||!do_after(user, 30))
+					return
 			else
-				if(!do_mob(user, affecting)||!do_after(user, 100)) return
+				if(!do_mob(user, affecting)||!do_after(user, 100))
+					return
 			user.visible_message("<span class='danger'>[user] devours [affecting]!</span>")
 			affecting.loc = user
 			attacker.stomach_contents.Add(affecting)
 			qdel(src)
 
-
 /obj/item/weapon/grab/dropped()
-	qdel(src)
-
-/obj/item/weapon/grab/Destroy()
-	qdel(hud)
-	..()
+	loc = null
+	if(!destroying)
+		qdel(src)

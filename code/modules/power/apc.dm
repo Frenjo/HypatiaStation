@@ -404,7 +404,7 @@
 
 	if(update & 3)
 		if(update_state & UPSTATE_BLUESCREEN)
-			set_light(l_range = 2, l_power = 0.75, l_color = "#0000FF")
+			set_light(l_range = 1, l_power = 1, l_color = "#0000FF")
 		else if(!(stat & (BROKEN|MAINT)) && update_state & UPSTATE_ALLGOOD)
 			var/color
 			switch(charging)
@@ -414,7 +414,7 @@
 					color = "#A8B0F8"
 				if(2)
 					color = "#82FF4C"
-			set_light(l_range = 2, l_power = 0.75, l_color = color)
+			set_light(l_range = 1, l_power = 1, l_color = color)
 		else
 			set_light(0)
 
@@ -497,18 +497,18 @@
 
 //attack with an item - open/close cover, insert cell, or (un)lock interface
 /obj/machinery/power/apc/attackby(obj/item/W, mob/user)
-	if (istype(user, /mob/living/silicon) && get_dist(src,user)>1)
+	if(istype(user, /mob/living/silicon) && get_dist(src, user) > 1)
 		return src.attack_hand(user)
 	src.add_fingerprint(user)
-	if (istype(W, /obj/item/weapon/crowbar) && opened)
-		if (has_electronics==1)
-			if (terminal)
+	if(istype(W, /obj/item/weapon/crowbar) && opened)
+		if(has_electronics==1)
+			if(terminal)
 				user << "<span class='warning'>Disconnect wires first.</span>"
 				return
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 			user << "You are trying to remove the power control board..." //lpeters - fixed grammar issues
 			if(do_after(user, 50))
-				if (has_electronics==1)
+				if(has_electronics == 1)
 					has_electronics = 0
 					if ((stat & BROKEN) || malfhack)
 						user.visible_message(\
@@ -521,22 +521,22 @@
 							"<span class='warning'>[user.name] has removed the power control board from [src.name]!</span>",\
 							"<span class='notice'>You remove the power control board.</span>")
 						new /obj/item/weapon/module/power_control(loc)
-		else if (opened!=2) //cover isn't removed
+		else if(opened != 2) //cover isn't removed
 			opened = 0
 			update_icon()
-	else if (istype(W, /obj/item/weapon/crowbar) && !((stat & BROKEN) || malfhack) )
+	else if(istype(W, /obj/item/weapon/crowbar) && !((stat & BROKEN) || malfhack))
 		if(coverlocked && !(stat & MAINT))
 			user << "<span class='warning'>The cover is locked and cannot be opened.</span>"
 			return
 		else
 			opened = 1
 			update_icon()
-	else if	(istype(W, /obj/item/weapon/cell) && opened)	// trying to put a cell inside
+	else if(istype(W, /obj/item/weapon/cell) && opened)	// trying to put a cell inside
 		if(cell)
 			user << "There is a power cell already installed."
 			return
 		else
-			if (stat & MAINT)
+			if(stat & MAINT)
 				user << "\red There is no connector for your power cell."
 				return
 			user.drop_item()
@@ -547,18 +547,18 @@
 				"<span class='notice'>You insert the power cell.</span>")
 			chargecount = 0
 			update_icon()
-	else if	(istype(W, /obj/item/weapon/screwdriver))	// haxing
+	else if(istype(W, /obj/item/weapon/screwdriver))	// haxing
 		if(opened)
-			if (cell)
+			if(cell)
 				user << "<span class='warning'>Close the APC first.</span>" //Less hints more mystery!
 				return
 			else
-				if (has_electronics==1 && terminal)
+				if(has_electronics == 1 && terminal)
 					has_electronics = 2
 					stat &= ~MAINT
 					playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 					user << "You screw the circuit electronics into place."
-				else if (has_electronics==2)
+				else if(has_electronics == 2)
 					has_electronics = 1
 					stat |= MAINT
 					playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
@@ -574,7 +574,7 @@
 			user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
 			update_icon()
 
-	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
+	else if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
 		if(emagged)
 			user << "The interface is broken."
 		else if(opened)
@@ -590,7 +590,7 @@
 				update_icon()
 			else
 				user << "<span class='warning'>Access denied.</span>"
-	else if (istype(W, /obj/item/weapon/card/emag) && !(emagged || malfhack))		// trying to unlock with an emag card
+	else if(istype(W, /obj/item/weapon/card/emag) && !(emagged || malfhack))		// trying to unlock with an emag card
 		if(opened)
 			user << "You must close the cover to swipe an ID card."
 		else if(wiresexposed)
@@ -599,7 +599,7 @@
 			user << "Nothing happens."
 		else
 			flick("apc-spark", src)
-			if (do_after(user,6))
+			if(do_after(user, 6))
 				if(prob(50))
 					emagged = 1
 					locked = 0
@@ -607,8 +607,8 @@
 					update_icon()
 				else
 					user << "<span class='warning'>You fail to [ locked ? "unlock" : "lock"] the APC interface.</span>"
-	else if (istype(W, /obj/item/stack/cable_coil) && !terminal && opened && has_electronics!=2)
-		if (src.loc:intact)
+	else if(istype(W, /obj/item/stack/cable_coil) && !terminal && opened && has_electronics != 2)
+		if(src.loc:intact)
 			user << "<span class='warning'>You must remove the floor plating in front of the APC first.</span>"
 			return
 		var/obj/item/stack/cable_coil/C = W
@@ -631,8 +631,8 @@
 							"You start adding cables to the APC frame...")
 			make_terminal()
 			terminal.connect_to_network()
-	else if (istype(W, /obj/item/weapon/wirecutters) && terminal && opened && has_electronics!=2)
-		if (src.loc:intact)
+	else if(istype(W, /obj/item/weapon/wirecutters) && terminal && opened && has_electronics != 2)
+		if(src.loc:intact)
 			user << "\red You must remove the floor plating in front of the APC first."
 			return
 		user << "You begin to cut the cables..."
@@ -652,7 +652,7 @@
 							"You start to insert the power control board into the frame...")
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		if(do_after(user, 10))
-			if(has_electronics==0)
+			if(has_electronics == 0)
 				has_electronics = 1
 				user << "<span class='notice'>You place the power control board inside the frame.</span>"
 				qdel(W)

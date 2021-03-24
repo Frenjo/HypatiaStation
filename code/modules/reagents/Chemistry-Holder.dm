@@ -463,7 +463,6 @@ datum
 				if(total_volume + amount > maximum_volume) amount = (maximum_volume - total_volume) //Doesnt fit in. Make it disappear. Shouldnt happen. Will happen.
 
 				for(var/A in reagent_list)
-
 					var/datum/reagent/R = A
 					if (R.id == reagent)
 						R.volume += amount
@@ -602,12 +601,6 @@ datum
 					if(D.id == reagent_id)
 						//world << "reagent data set ([reagent_id])"
 						D.data = new_data
-
-			delete()
-				for(var/datum/reagent/R in reagent_list)
-					R.holder = null
-				if(my_atom)
-					my_atom.reagents = null
 
 
 ///////////////////////////////////////////////////////////////////////////////////

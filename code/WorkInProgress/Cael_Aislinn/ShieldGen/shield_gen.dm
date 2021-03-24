@@ -136,7 +136,6 @@
 	user.set_machine(src)
 
 /obj/machinery/shield_gen/process()
-
 	if(active && field.len)
 		var/stored_renwicks = 0
 		var/target_field_strength = min(strengthen_rate + max(average_field_strength, 0), max_field_strength)
@@ -206,8 +205,8 @@
 	if(stat & BROKEN)
 		icon_state = "broke"
 	else
-		if( powered() )
-			if (src.active)
+		if(powered())
+			if(src.active)
 				icon_state = "generator1"
 			else
 				icon_state = "generator0"
@@ -216,7 +215,7 @@
 			spawn(rand(0, 15))
 				src.icon_state = "generator0"
 				stat |= NOPOWER
-			if (src.active)
+			if(src.active)
 				toggle()
 
 /obj/machinery/shield_gen/ex_act(var/severity)
@@ -268,7 +267,7 @@
 		for(var/turf/O in covered_turfs)
 			var/obj/effect/energy_field/E = new(O)
 			field.Add(E)
-		qdel(covered_turfs)
+		covered_turfs = null
 
 		for(var/mob/M in view(5,src))
 			M << "\icon[src] You hear heavy droning start up."

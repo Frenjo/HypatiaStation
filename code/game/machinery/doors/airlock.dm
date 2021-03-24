@@ -327,6 +327,23 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	icon = 'icons/obj/doors/hightechsecurity.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity
 
+/obj/machinery/door/airlock/New()
+	..()
+
+/obj/machinery/door/airlock/initialize()
+	..()
+	if(src.closeOtherId != null)
+		for(var/obj/machinery/door/airlock/A in world)
+			if(A.closeOtherId == src.closeOtherId && A != src)
+				src.closeOther = A
+				break
+
+/obj/machinery/door/airlock/Destroy()
+	//if(wires)
+	//	qdel(wires)
+	//	wires = null
+	..()
+
 /*
 About the new airlock wires panel:
 *	An airlock wire dialog can be accessed by the normal way or by using wirecutters or a multitool on the door while the wire-panel is open. This would show the following wires, which you can either wirecut/mend or send a multitool pulse through. There are 9 wires.
@@ -340,8 +357,6 @@ About the new airlock wires panel:
 *		one wire for controling door safetys.  When active, door does not close on someone.  When cut, door will ruin someone's shit.  When pulsed, door will immedately ruin someone's shit.
 *		one wire for controlling door speed.  When active, dor closes at normal rate.  When cut, door does not close manually.  When pulsed, door attempts to close every tick.
 */
-
-
 
 /obj/machinery/door/airlock/bumpopen(mob/living/user as mob) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
 	if(!isSilicon(usr))
@@ -384,13 +399,13 @@ About the new airlock wires panel:
 			//raises them if they are down (only if power's on)
 			if(!src.locked)
 				src.locked = 1
-				for(var/mob/M in range(1,src))
+				for(var/mob/M in range(1, src))
 					M << "You hear a click from the bottom of the door."
 				src.updateUsrDialog()
 			else
 				if(src.arePowerSystemsOn()) //only can raise bolts if power's on
 					src.locked = 0
-					for(var/mob/M in range(1,src))
+					for(var/mob/M in range(1, src))
 						M << "You hear a click from the bottom of the door."
 					src.updateUsrDialog()
 			update_icon()
@@ -412,15 +427,15 @@ About the new airlock wires panel:
 				src.updateDialog()
 		if(AIRLOCK_WIRE_ELECTRIFY)
 			//one wire for electrifying the door. Sending a pulse through this electrifies the door for 30 seconds.
-			if(src.secondsElectrified==0)
+			if(src.secondsElectrified == 0)
 				shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
 				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Electrified the [name] at [x] [y] [z]</font>")
 				src.secondsElectrified = 30
 				spawn(10)
 					//TODO: Move this into process() and make pulsing reset secondsElectrified to 30
-					while (src.secondsElectrified>0)
-						src.secondsElectrified-=1
-						if(src.secondsElectrified<0)
+					while (src.secondsElectrified > 0)
+						src.secondsElectrified -= 1
+						if(src.secondsElectrified < 0)
 							src.secondsElectrified = 0
 //						src.updateUsrDialog()  //Commented this line out to keep the airlock from clusterfucking you with electricity. --NeoFite
 						sleep(10)
@@ -428,8 +443,10 @@ About the new airlock wires panel:
 			//tries to open the door without ID
 			//will succeed only if the ID wire is cut or the door requires no access
 			if(!src.requiresID() || src.check_access(null))
-				if(density)	open()
-				else		close()
+				if(density)
+					open()
+				else
+					close()
 		if(AIRLOCK_WIRE_SAFETY)
 			safe = !safe
 			if(!src.density)
@@ -548,13 +565,13 @@ About the new airlock wires panel:
 	return ((src.wires & wireFlag) == 0)
 
 /obj/machinery/door/airlock/proc/canAIControl()
-	return ((src.aiControlDisabled!=1) && (!src.isAllPowerCut()));
+	return ((src.aiControlDisabled != 1) && (!src.isAllPowerCut()));
 
 /obj/machinery/door/airlock/proc/canAIHack()
-	return ((src.aiControlDisabled==1) && (!hackProof) && (!src.isAllPowerCut()));
+	return ((src.aiControlDisabled == 1) && (!hackProof) && (!src.isAllPowerCut()));
 
 /obj/machinery/door/airlock/proc/arePowerSystemsOn()
-	return (src.secondsMainPowerLost==0 || src.secondsBackupPowerLost==0)
+	return (src.secondsMainPowerLost == 0 || src.secondsBackupPowerLost == 0)
 
 /obj/machinery/door/airlock/requiresID()
 	return !(src.isWireCut(AIRLOCK_WIRE_IDSCAN) || aiDisabledIdScanner)
@@ -563,7 +580,7 @@ About the new airlock wires panel:
 	var/retval=0
 	if(src.isWireCut(AIRLOCK_WIRE_MAIN_POWER1) || src.isWireCut(AIRLOCK_WIRE_MAIN_POWER2))
 		if(src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER1) || src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER2))
-			retval=1
+			retval = 1
 	return retval
 
 /obj/machinery/door/airlock/proc/regainMainPower()
@@ -579,10 +596,10 @@ About the new airlock wires panel:
 		src.spawnPowerRestoreRunning = 1
 		spawn(0)
 			var/cont = 1
-			while (cont)
+			while(cont)
 				sleep(10)
 				cont = 0
-				if(src.secondsMainPowerLost>0)
+				if(src.secondsMainPowerLost > 0)
 					if((!src.isWireCut(AIRLOCK_WIRE_MAIN_POWER1)) && (!src.isWireCut(AIRLOCK_WIRE_MAIN_POWER2)))
 						src.secondsMainPowerLost -= 1
 						src.updateDialog()
@@ -1345,16 +1362,6 @@ About the new airlock wires panel:
 			killthis.ex_act(2)//Smashin windows
 	..()
 	return
-
-/obj/machinery/door/airlock/New()
-	..()
-	if(src.closeOtherId != null)
-		spawn (5)
-			for (var/obj/machinery/door/airlock/A in world)
-				if(A.closeOtherId == src.closeOtherId && A != src)
-					src.closeOther = A
-					break
-
 
 /obj/machinery/door/airlock/proc/prison_open()
 	src.locked = 0

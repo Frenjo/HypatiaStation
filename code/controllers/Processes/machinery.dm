@@ -3,7 +3,7 @@
 	schedule_interval = 20 // every 2 seconds
 
 /datum/controller/process/machinery/doWork()
-	//internal_process_pipenets()
+	internal_process_pipenets()
 	internal_process_machinery()
 	internal_process_powernets()
 
