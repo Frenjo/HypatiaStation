@@ -163,7 +163,7 @@ proc/move_mining_shuttle()
 		//		return
 
 		if (!mining_shuttle_moving)
-			usr << "\blue Shuttle recieved message and will be sent shortly."
+			usr << "<span class='info'>Shuttle recieved message and will be sent shortly.</span>"
 
 			// Another rip of the stuff I did for the research shuttle.
 			// EVEN MORE mining shuttle airlock interaction.
@@ -209,7 +209,7 @@ proc/move_mining_shuttle()
 
 			radio_connection.post_signal(src, signal, range = 10, filter = RADIO_AIRLOCK)
 		else
-			usr << "\blue Shuttle is already moving."
+			usr << "<span class='info'>Shuttle is already moving.</span>"
 
 	updateUsrDialog()
 

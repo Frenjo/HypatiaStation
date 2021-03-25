@@ -104,7 +104,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 	//Not even going to touch this pile of spaghetti
 /turf/simulated/mineral/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		usr << "\red You don't have the dexterity to do this!"
+		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
 		return
 
 	if (istype(W, /obj/item/device/core_sampler))
@@ -120,9 +120,9 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 
 	if (istype(W, /obj/item/device/measuring_tape))
 		var/obj/item/device/measuring_tape/P = W
-		user.visible_message("\blue[user] extends [P] towards [src].","\blue You extend [P] towards [src].")
+		user.visible_message("<span class='info'>[user] extends [P] towards [src].</span>","<span class='info'>You extend [P] towards [src].</span>")
 		if(do_after(user,25))
-			user << "\blue \icon[P] [src] has been excavated to a depth of [2*excavation_level]cm."
+			user << "<span class='info'>\icon[P] [src] has been excavated to a depth of [2*excavation_level]cm.</span>"
 		return
 
 	if (istype(W, /obj/item/weapon/pickaxe))
@@ -143,9 +143,9 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 			var/datum/find/F = finds[1]
 			if(excavation_level + P.excavation_amount > F.excavation_required)
 				//Chance to destroy / extract any finds here
-				fail_message = ", <b>[pick("there is a crunching noise","[W] collides with some different rock","part of the rock face crumbles away","something breaks under [W]")]</b>"
+				fail_message = ", <b>[pick("there is a crunching noise", "[W] collides with some different rock", "part of the rock face crumbles away", "something breaks under [W]")]</b>"
 
-		user << "\red You start [P.drill_verb][fail_message ? fail_message : ""]."
+		user << "<span class='warning'>You start [P.drill_verb][fail_message ? fail_message : ""].</span>"
 
 		if(fail_message && prob(90))
 			if(prob(25))
@@ -156,7 +156,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 					artifact_debris()
 
 		if(do_after(user, P.digspeed))
-			user << "\blue You finish [P.drill_verb] the rock."
+			user << "<span class='info'>You finish [P.drill_verb] the rock.</span>"
 
 			if(finds && finds.len)
 				var/datum/find/F = finds[1]
@@ -262,13 +262,13 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 		if(prob(50))
 			pain = 1
 		for(var/mob/living/M in range(src, 200))
-			M << "<font color='red'><b>[pick("A high pitched [pick("keening","wailing","whistle")]","A rumbling noise like [pick("thunder","heavy machinery")]")] somehow penetrates your mind before fading away!</b></font>"
+			M << "<span class='danger'>[pick("A high pitched [pick("keening", "wailing", "whistle")]", "A rumbling noise like [pick("thunder", "heavy machinery")]")] somehow penetrates your mind before fading away!</span>"
 			if(pain)
-				flick("pain",M.pain)
+				flick("pain", M.pain)
 				if(prob(50))
 					M.adjustBruteLoss(5)
 			else
-				flick("flash",M.flash)
+				flick("flash", M.flash)
 				if(prob(50))
 					M.Stun(5)
 			M.apply_effect(25, IRRADIATE)
@@ -276,7 +276,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 	var/turf/simulated/floor/plating/airless/asteroid/N = ChangeTurf(/turf/simulated/floor/plating/airless/asteroid)
 	N.fullUpdateMineralOverlays()
 
-	if(rand(1,500) == 1)
+	if(rand(1, 500) == 1)
 		visible_message("<span class='notice'>An old dusty crate was buried within!</span>")
 		new /obj/structure/closet/crate/secure/loot(src)
 
@@ -304,7 +304,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 		var/obj/effect/suspension_field/S = locate() in src
 		if(!S || S.field_type != get_responsive_reagent(F.find_type))
 			if(X)
-				visible_message("\red<b>[pick("[display_name] crumbles away into dust","[display_name] breaks apart")].</b>")
+				visible_message("<span class='danger'>[pick("[display_name] crumbles away into dust", "[display_name] breaks apart")].</span>")
 				qdel(X)
 
 	finds.Remove(F)
@@ -473,15 +473,15 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 			return
 
 		if(dug)
-			user << "\red This area has already been dug"
+			user << "<span class='warning'>This area has already been dug.</span>"
 			return
 
-		user << "\red You start digging."
+		user << "<span class='warning>You start digging.</span>"
 		playsound(loc, 'sound/effects/rustle1.ogg', 50, 1) //russle sounds sounded better
 
 		sleep(40)
 		if((user.loc == T && user.get_active_hand() == W))
-			user << "\blue You dug a hole."
+			user << "<span class='info'>You dug a hole.</span>"
 			gets_dug()
 
 	if((istype(W, /obj/item/weapon/pickaxe/drill)))
@@ -490,15 +490,15 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 			return
 
 		if(dug)
-			user << "\red This area has already been dug"
+			user << "<span class='warning'>This area has already been dug.</span>"
 			return
 
-		user << "\red You start digging."
+		user << "<span class='warning>You start digging.</span>"
 		playsound(loc, 'sound/effects/rustle1.ogg', 50, 1) //russle sounds sounded better
 
 		sleep(30)
 		if((user.loc == T && user.get_active_hand() == W))
-			user << "\blue You dug a hole."
+			user << "<span class='info'>You dug a hole.</span>"
 			gets_dug()
 
 	if((istype(W, /obj/item/weapon/pickaxe/diamonddrill)) || (istype(W, /obj/item/weapon/pickaxe/borgdrill)))
@@ -507,26 +507,26 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 			return
 
 		if(dug)
-			user << "\red This area has already been dug"
+			user << "<span class='warning'>This area has already been dug.</span>"
 			return
 
-		user << "\red You start digging."
+		user << "<span class='warning>You start digging.</span>"
 		playsound(loc, 'sound/effects/rustle1.ogg', 50, 1) //russle sounds sounded better
 
 		sleep(0)
 		if((user.loc == T && user.get_active_hand() == W))
-			user << "\blue You dug a hole."
+			user << "<span class='info'>You dug a hole.</span>"
 			gets_dug()
 
 	if(istype(W, /obj/item/weapon/storage/bag/ore))
 		var/obj/item/weapon/storage/bag/ore/S = W
 		if(S.collection_mode)
 			for(var/obj/item/weapon/ore/O in contents)
-				O.attackby(W,user)
+				O.attackby(W, user)
 				return
 
 	else
-		..(W,user)
+		..(W, user)
 	return
 
 /turf/simulated/floor/plating/airless/asteroid/proc/gets_dug()

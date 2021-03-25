@@ -168,7 +168,7 @@ var/global/vs_control/vsc = new
 		vars[ch] = vw
 	if(how == "Toggle")
 		newvar = (newvar?"ON":"OFF")
-	world << "\blue <b>[key_name(user)] changed the setting [display_description] to [newvar].</b>"
+	world << "<span class='notice'>[key_name(user)] changed the setting [display_description] to [newvar].</span>"
 	if(ch in plc.settings)
 		ChangeSettingsDialog(user,plc.settings)
 	else
@@ -291,7 +291,7 @@ var/global/vs_control/vsc = new
 			connection_insulation = 0
 
 
-	world << "\blue <b>[key_name(user)] changed the global plasma/ZAS settings to \"[def]\"</b>"
+	world << "<span class='notice'>[key_name(user)] changed the global plasma/ZAS settings to \"[def]\"</span>"
 
 /pl_control/var/list/settings = list()
 
