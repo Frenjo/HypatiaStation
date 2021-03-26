@@ -54,7 +54,7 @@
 	user << browse("<html><head><title>[name]</title></head>" \
 		+ "<body style='overflow:hidden'>" \
 		+ "<div> <img src='tmp_photo.png' width = '180'" \
-		+ "[scribble ? "<div> Written on the back:<br><i>[scribble]</i>" : ]"\
+		+ "[scribble ? "<div> Written on the back:<br><i>[scribble]</i>" : null]"\
 		+ "</body></html>", "window=book;size=200x[scribble ? 400 : 200]")
 	onclose(user, "[name]")
 	return

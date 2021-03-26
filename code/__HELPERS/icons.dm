@@ -107,7 +107,7 @@ AngleToHue(hue)
     Converts an angle to a hue in the valid range.
 RotateHue(hsv, angle)
     Takes an HSV or HSVA value and rotates the hue forward through red, green, and blue by an angle from 0 to 360.
-    (Rotating red by 60° produces yellow.) The result is another HSV or HSVA color with the same saturation and value
+    (Rotating red by 60ï¿½ produces yellow.) The result is another HSV or HSVA color with the same saturation and value
     as the original, but a different hue.
 GrayScale(rgb)
     Takes an RGB or RGBA color and converts it to grayscale. Returns an RGB or RGBA string.
@@ -657,30 +657,32 @@ proc
 		var/compare // The overlay 'add' is being compared against
 		var/cmpIndex // The index in the layers list of 'compare'
 		while(TRUE)
-			if(curIndex<=process.len)
+			if(curIndex <= process.len)
 				current = process[curIndex]
-				if(!current)	continue
+				if(!current)
+					continue
 				currentLayer = current:layer
-				if(currentLayer<0) // Special case for FLY_LAYER
-					if(currentLayer <= -1000) return 0
+				if(currentLayer < 0) // Special case for FLY_LAYER
+					if(currentLayer <= -1000)
+						return 0
 					if(pSet == 0) // Underlay
-						currentLayer = A.layer+currentLayer/1000
+						currentLayer = A.layer + currentLayer / 1000
 					else // Overlay
-						currentLayer = A.layer+(1000+currentLayer)/1000
+						currentLayer = A.layer + (1000 + currentLayer) / 1000
 
 				// Sort add into layers list
-				for(cmpIndex=1,cmpIndex<=layers.len,cmpIndex++)
+				for(cmpIndex = 1, cmpIndex <= layers.len, cmpIndex++)
 					compare = layers[cmpIndex]
 					if(currentLayer < layers[compare]) // Associated value is the calculated layer
-						layers.Insert(cmpIndex,current)
+						layers.Insert(cmpIndex, current)
 						layers[current] = currentLayer
 						break
-				if(cmpIndex>layers.len) // Reached end of list without inserting
-					layers[current]=currentLayer // Place at end
+				if(cmpIndex > layers.len) // Reached end of list without inserting
+					layers[current] = currentLayer // Place at end
 
 				curIndex++
 
-			if(curIndex>process.len)
+			if(curIndex > process.len)
 				if(pSet == 0) // Switch to overlays
 					curIndex = 1
 					pSet = 1
@@ -688,17 +690,23 @@ proc
 				else // All done
 					break
 
-			// We start with a blank canvas, otherwise some icon procs crash silently
-		var/icon/flat = icon('icons/effects/effects.dmi', "icon_state"="nothing") // Final flattened icon
+		// We start with a blank canvas, otherwise some icon procs crash silently
+		var/icon/flat = icon('icons/effects/effects.dmi', "icon_state" = "nothing") // Final flattened icon
 		var/icon/add // Icon of overlay being added
 
-			// Current dimensions of flattened icon
-		var/{flatX1=1;flatX2=flat.Width();flatY1=1;flatY2=flat.Height()}
-			// Dimensions of overlay being added
-		var/{addX1;addX2;addY1;addY2}
+		// Current dimensions of flattened icon
+		var/flatX1 = 1
+		var/flatX2 = flat.Width()
+		var/flatY1 = 1
+		var/flatY2 = flat.Height()
+
+		// Dimensions of overlay being added
+		var/addX1
+		var/addX2
+		var/addY1
+		var/addY2
 
 		for(var/I in layers)
-
 			if(I:icon)
 				if(I:icon_state)
 					// Has icon and state set

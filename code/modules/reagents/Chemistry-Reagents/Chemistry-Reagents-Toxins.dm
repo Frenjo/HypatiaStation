@@ -4,7 +4,7 @@
 	name = "Toxin"
 	id = "toxin"
 	description = "A toxic chemical."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
 	var/toxpwr = 0.7 // Toxins are really weak, but without being treated, last very long.
 	custom_metabolism = 0.1
@@ -21,7 +21,7 @@
 	name = "Amatoxin"
 	id = "amatoxin"
 	description = "A powerful poison derived from certain species of mushroom."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#792300" // rgb: 121, 35, 0
 	toxpwr = 1
 
@@ -29,26 +29,32 @@
 	name = "Unstable mutagen"
 	id = "mutagen"
 	description = "Might cause unpredictable mutations. Keep away from children."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#13BC5E" // rgb: 19, 188, 94
 	toxpwr = 0
 
 /datum/reagent/toxin/mutagen/reaction_mob(var/mob/living/carbon/M, var/method=TOUCH, var/volume)
-	if(!..())	return
-	if(!istype(M) || !M.dna)	return  //No robots, AIs, aliens, Ians or other mobs should be affected by this.
+	if(!..())
+		return
+	if(!istype(M) || !M.dna)
+		return  //No robots, AIs, aliens, Ians or other mobs should be affected by this.
 	qdel(src)
-	if((method==TOUCH && prob(33)) || method==INGEST)
+	if((method==TOUCH && prob(33)) || method == INGEST)
 		randmuti(M)
-		if(prob(98))	randmutb(M)
-		else			randmutg(M)
+		if(prob(98))
+			randmutb(M)
+		else
+			randmutg(M)
 		domutcheck(M, null)
 		M.UpdateAppearance()
 	return
 
 /datum/reagent/toxin/mutagen/on_mob_life(var/mob/living/carbon/M)
-	if(!istype(M))	return
-	if(!M) M = holder.my_atom
-	M.apply_effect(10,IRRADIATE,0)
+	if(!istype(M))
+		return
+	if(!M)
+		M = holder.my_atom
+	M.apply_effect(10, IRRADIATE, 0)
 	..()
 	return
 
@@ -57,18 +63,19 @@
 	name = "Plasma"
 	id = "plasma"
 	description = "Plasma in its liquid form."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#E71B00" // rgb: 231, 27, 0
 	var/toxpwr = 3
 	custom_metabolism = 0.1
 
 /datum/reagent/plasma/on_mob_life(var/mob/living/M as mob, var/alien)
-	if(!M) M = holder.my_atom
+	if(!M)
+		M = holder.my_atom
 	if(alien && alien == IS_PLASMAPERSON)
 		M.adjustBruteLoss(-5)
 		M.adjustFireLoss(-5)
 	if(!alien || alien != IS_PLASMAPERSON)
-		M.adjustToxLoss(toxpwr*REM)
+		M.adjustToxLoss(toxpwr * REM)
 
 	if(holder.has_reagent("inaprovaline"))
 		holder.remove_reagent("inaprovaline", 2*REM)
@@ -81,7 +88,8 @@
 		var/obj/item/weapon/reagent_containers/food/snacks/egg/slime/egg = O
 		if (egg.grown)
 			egg.Hatch()*/
-	if((!O) || (!volume))	return 0
+	if((!O) || (!volume))
+		return 0
 	var/turf/the_turf = get_turf(O)
 	the_turf.assume_gas("volatile_fuel", volume, T20C)
 
@@ -94,7 +102,7 @@
 	name = "Lexorin"
 	id = "lexorin"
 	description = "Lexorin temporarily stops respiration. Causes tissue damage."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	toxpwr = 0
 	overdose = REAGENTS_OVERDOSE
@@ -115,7 +123,7 @@
 	name = "Slime Jelly"
 	id = "slimejelly"
 	description = "A gooey semi-liquid produced from one of the deadliest lifeforms in existence. SO REAL."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#801E28" // rgb: 128, 30, 40
 	toxpwr = 0
 
@@ -133,7 +141,7 @@
 	name = "Cyanide"
 	id = "cyanide"
 	description = "A highly toxic chemical."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
 	toxpwr = 4
 	custom_metabolism = 0.4
@@ -150,7 +158,7 @@
 	name = "Mint Toxin"
 	id = "minttoxin"
 	description = "Useful for dealing with undesirable customers."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
 	toxpwr = 0
 
@@ -166,7 +174,7 @@
 	name = "Carpotoxin"
 	id = "carpotoxin"
 	description = "A deadly neurotoxin produced by the dreaded space carp."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#003333" // rgb: 0, 51, 51
 	toxpwr = 2
 
@@ -174,7 +182,7 @@
 	name = "Zombie Powder"
 	id = "zombiepowder"
 	description = "A strong neurotoxin that puts the subject into a death-like state."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#669900" // rgb: 102, 153, 0
 	toxpwr = 0.5
 
@@ -199,7 +207,7 @@
 	name = "Mindbreaker Toxin"
 	id = "mindbreaker"
 	description = "A powerful hallucinogen, it can cause fatal effects in users."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#B31008" // rgb: 139, 166, 233
 	toxpwr = 0
 	custom_metabolism = 0.05
@@ -216,7 +224,7 @@
 	name = "Plant-B-Gone"
 	id = "plantbgone"
 	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#49002E" // rgb: 73, 0, 46
 	toxpwr = 1
 
@@ -261,7 +269,7 @@
 	name = "Chloral Hydrate"
 	id = "chloralhydrate"
 	description = "A powerful sedative."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#000067" // rgb: 0, 0, 103
 	toxpwr = 1
 	custom_metabolism = 0.1 //Default 0.2
@@ -288,7 +296,7 @@
 	name = "Potassium Chloride"
 	id = "potassium_chloride"
 	description = "A delicious salt that stops the heart when injected into cardiac muscle."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#FFFFFF" // rgb: 255,255,255
 	toxpwr = 0
 	overdose = 30
@@ -309,7 +317,7 @@
 	name = "Potassium Chlorophoride"
 	id = "potassium_chlorophoride"
 	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery. Not safe to eat!"
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#FFFFFF" // rgb: 255,255,255
 	toxpwr = 2
 	overdose = 20
@@ -330,7 +338,7 @@
 	name = "Beer"
 	id = "beer2"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be imcomplete." //If the players manage to analyze this, they deserve to know something is wrong.
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#664300" // rgb: 102, 67, 0
 	custom_metabolism = 0.15 // Sleep toxins should always be consumed pretty fast
 	overdose = REAGENTS_OVERDOSE/2
@@ -356,7 +364,7 @@
 	name = "Sulphuric acid"
 	id = "sacid"
 	description = "A very corrosive mineral acid with the molecular formula H2SO4."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#DB5008" // rgb: 219, 80, 8
 	toxpwr = 1
 	var/meltprob = 10
@@ -441,7 +449,7 @@
 	name = "Polytrinic acid"
 	id = "pacid"
 	description = "Polytrinic acid is a an extremely corrosive chemical substance."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#8E18A9" // rgb: 142, 24, 169
 	toxpwr = 2
 	meltprob = 30

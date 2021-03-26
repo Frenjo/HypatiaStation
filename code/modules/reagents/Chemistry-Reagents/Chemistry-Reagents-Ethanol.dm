@@ -10,7 +10,7 @@
 	name = "Ethanol" //Parent class for all alcoholic reagents.
 	id = "ethanol"
 	description = "A well-known alcohol with a variety of applications."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	nutriment_factor = 0 //So alcohol can fill you up! If they want to.
 	color = "#404030" // rgb: 64, 64, 48
 	var/boozepwr = 5 //higher numbers mean the booze will have an effect faster.
@@ -28,10 +28,13 @@
 	M:nutrition += nutriment_factor
 	holder.remove_reagent(src.id, FOOD_METABOLISM)
 
-	if (adj_drowsy)	M.drowsyness = max(0,M.drowsyness + adj_drowsy)
-	if (adj_sleepy) M.sleeping = max(0,M.sleeping + adj_sleepy)
+	if(adj_drowsy)
+		M.drowsyness = max(0, M.drowsyness + adj_drowsy)
+	if(adj_sleepy)
+		M.sleeping = max(0, M.sleeping + adj_sleepy)
 
-	if(!src.data || (!isnum(src.data)  && src.data.len)) data = 1   //if it doesn't exist we set it.  if it's a list we're going to set it to 1 as well.  This is to
+	if(!src.data || (!isnum(src.data)  && src.data.len))
+		data = 1   //if it doesn't exist we set it.  if it's a list we're going to set it to 1 as well.  This is to
 	src.data += boozepwr						//avoid a runtime error associated with drinking blood mixed in drinks (demon's blood).
 
 	var/d = data
@@ -40,13 +43,15 @@
 	for(var/datum/reagent/ethanol/A in holder.reagent_list)
 		if(isnum(A.data)) d += A.data
 
-	M.dizziness += dizzy_adj.
+	M.dizziness += dizzy_adj
 	if(d >= slur_start && d < pass_out)
-		if (!M:slurring) M:slurring = 1
+		if(!M:slurring)
+			M:slurring = 1
 		M:slurring += slurr_adj
 	if(d >= confused_start && prob(33))
-		if (!M:confused) M:confused = 1
-		M.confused = max(M:confused+confused_adj,0)
+		if(!M:confused)
+			M:confused = 1
+		M.confused = max(M:confused + confused_adj, 0)
 	if(d >= blur_start)
 		M.eye_blurry = max(M.eye_blurry, 10)
 		M:drowsyness  = max(M:drowsyness, 0)
@@ -285,7 +290,7 @@
 			M.make_dizzy(2)
 			M.druggy = max(M.druggy, 45)
 			if(prob(5)) M.emote(pick("twitch","giggle"))
-		if (75 to 150)
+		if(75 to 150)
 			if (!M.stuttering) M.stuttering = 1
 			M.hallucination = max(M.hallucination, 60)
 			M.make_jittery(4)
@@ -293,7 +298,7 @@
 			M.druggy = max(M.druggy, 60)
 			if(prob(10)) M.emote(pick("twitch","giggle"))
 			if(prob(30)) M.adjustToxLoss(2)
-		if (150 to 300)
+		if(150 to 300)
 			if (!M.stuttering) M.stuttering = 1
 			M.hallucination = max(M.hallucination, 60)
 			M.make_jittery(4)
@@ -306,7 +311,7 @@
 				var/datum/organ/internal/heart/L = H.internal_organs["heart"]
 				if (istype(L))
 					L.take_damage(5, 0)
-		if (300 to INFINITY)
+		if(300 to INFINITY)
 			if(isHuman(M))
 				var/mob/living/carbon/human/H = M
 				var/datum/organ/internal/heart/L = H.internal_organs["heart"]
@@ -434,7 +439,7 @@
 	name = "Toxins Special"
 	id = "toxinsspecial"
 	description = "This thing is ON FIRE! CALL THE DAMN SHUTTLE!"
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 5
 
@@ -449,7 +454,7 @@
 	name = "Beepsky Smash"
 	id = "beepskysmash"
 	description = "Deny drinking this and prepare for THE LAW."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 4
 
@@ -664,7 +669,7 @@
 	name = "Mead"
 	id = "mead"
 	description = "A Viking's drink, though a cheap one."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 1.5
 	nutriment_factor = 1 * FOOD_METABOLISM
@@ -687,7 +692,7 @@
 	name = "Grog"
 	id = "grog"
 	description = "Watered down rum, NanoTrasen approves!"
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 0.5
 
@@ -716,7 +721,7 @@
 	name = "Acid Spit"
 	id = "acidspit"
 	description = "A drink for the daring, can be deadly if incorrectly prepared!"
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#365000" // rgb: 54, 80, 0
 	boozepwr = 1.5
 
@@ -724,7 +729,7 @@
 	name = "Amasec"
 	id = "amasec"
 	description = "Official drink of the NanoTrasen Gun-Club!"
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 2
 
@@ -810,7 +815,7 @@
 	name = "Atomic Bomb"
 	id = "atomicbomb"
 	description = "Nuclear proliferation never tasted so good."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#666300" // rgb: 102, 99, 0
 
 /datum/reagent/atomicbomb/on_mob_life(var/mob/living/M as mob)
@@ -835,7 +840,7 @@
 	name = "Pan-Galactic Gargle Blaster"
 	id = "gargleblaster"
 	description = "Whoah, this stuff looks volatile!"
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#664300" // rgb: 102, 67, 0
 
 /datum/reagent/gargle_blaster/on_mob_life(var/mob/living/M as mob)
@@ -860,7 +865,7 @@
 	name = "Neurotoxin"
 	id = "neurotoxin"
 	description = "A strong neurotoxin that puts the subject into a death-like state."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#2E2E61" // rgb: 46, 46, 97
 
 /datum/reagent/neurotoxin/on_mob_life(var/mob/living/carbon/M as mob)
@@ -888,7 +893,7 @@
 	name = "Hippies' Delight"
 	id = "hippiesdelight"
 	description = "You just don't get it maaaan."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#664300" // rgb: 102, 67, 0
 
 /datum/reagent/hippies_delight/on_mob_life(var/mob/living/M as mob)
@@ -907,7 +912,7 @@
 			M.make_dizzy(20)
 			M.druggy = max(M.druggy, 45)
 			if(prob(20)) M.emote(pick("twitch","giggle"))
-		if (10 to 200)
+		if(10 to 200)
 			if (!M.stuttering) M.stuttering = 1
 			M.make_jittery(40)
 			M.make_dizzy(40)

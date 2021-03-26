@@ -30,11 +30,11 @@ var/global/list/ANTIGENS = list(
 )
 
 // pure concentrated antibodies
-datum/reagent/antibodies
+/datum/reagent/antibodies
 	data = list("antibodies"=0)
 	name = "Antibodies"
 	id = "antibodies"
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#0050F0"
 
 	reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
@@ -48,5 +48,7 @@ datum/reagent/antibodies
 // iterate over the list of antigens and see what matches
 /proc/antigens2string(var/antigens)
 	var/code = ""
-	for(var/V in ANTIGENS) if(text2num(V) & antigens) code += ANTIGENS[V]
+	for(var/V in ANTIGENS)
+		if(text2num(V) & antigens)
+			code += ANTIGENS[V]
 	return code

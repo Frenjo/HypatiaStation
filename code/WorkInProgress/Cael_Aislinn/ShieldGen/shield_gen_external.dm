@@ -6,18 +6,16 @@
 	..()
 
 /obj/machinery/shield_gen/external/get_shielded_turfs()
-	var
-		list
-			open = list(get_turf(src))
-			closed = list()
+	var/list/open = list(get_turf(src))
+	var/list/closed = list()
 
 	while(open.len)
 		for(var/turf/T in open)
 			for(var/turf/O in orange(1, T))
-				if(get_dist(O,src) > field_radius)
+				if(get_dist(O, src) > field_radius)
 					continue
 				var/add_this_turf = 0
-				if(istype(O,/turf/space))
+				if(istype(O, /turf/space))
 					for(var/turf/simulated/G in orange(1, O))
 						add_this_turf = 1
 						break

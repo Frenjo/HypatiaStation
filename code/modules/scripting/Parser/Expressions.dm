@@ -53,10 +53,9 @@
 				if(/token/word)
 					return new/node/expression/value/variable(T.value)
 				if(/token/accessor)
-					var
-						token/accessor/A=T
-						node/expression/value/variable/E//=new(A.member)
-						stack/S=new()
+					var/token/accessor/A = T
+					var/node/expression/value/variable/E//=new(A.member)
+					var/stack/S = new()
 					while(istype(A.object, /token/accessor))
 						S.Push(A)
 						A=A.object
@@ -180,29 +179,28 @@
 	- <ParseParenExpression()>
 	- <ParseParamExpression()>
 */
-		ParseExpression(list/end=list(/token/end), list/ErrChars=list("{", "}"))
-			var/stack
-				opr=new
-				val=new
-			src.expecting=VALUE
+		ParseExpression(list/end = list(/token/end), list/ErrChars = list("{", "}"))
+			var/stack/opr = new
+			var/stack/val = new
+			src.expecting = VALUE
 			for()
 				if(EndOfExpression(end))
 					break
 				if(istype(curToken, /token/symbol) && ErrChars.Find(curToken.value))
-					errors+=new/scriptError/BadToken(curToken)
+					errors += new/scriptError/BadToken(curToken)
 					break
 
 
 				if(index>tokens.len)																						//End of File
-					errors+=new/scriptError/EndOfFile()
+					errors += new/scriptError/EndOfFile()
 					break
 				var/token/ntok
-				if(index+1<=tokens.len)
-					ntok=tokens[index+1]
+				if(index + 1 <= tokens.len)
+					ntok=tokens[index + 1]
 
-				if(istype(curToken, /token/symbol) && curToken.value=="(")			//Parse parentheses expression
+				if(istype(curToken, /token/symbol) && curToken.value == "(")			//Parse parentheses expression
 					if(expecting!=VALUE)
-						errors+=new/scriptError/ExpectedToken("operator", curToken)
+						errors += new/scriptError/ExpectedToken("operator", curToken)
 						NextToken()
 						continue
 					val.Push(ParseParenExpression())
@@ -211,13 +209,13 @@
 					if(src.expecting==OPERATOR)
 						curOperator=GetBinaryOperator(curToken)
 						if(!curOperator)
-							errors+=new/scriptError/ExpectedToken("operator", curToken)
+							errors += new/scriptError/ExpectedToken("operator", curToken)
 							NextToken()
 							continue
 					else
 						curOperator=GetUnaryOperator(curToken)
 						if(!curOperator) 																						//given symbol isn't a unary operator
-							errors+=new/scriptError/ExpectedToken("expression", curToken)
+							errors += new/scriptError/ExpectedToken("expression", curToken)
 							NextToken()
 							continue
 
@@ -226,31 +224,31 @@
 						continue
 					opr.Push(curOperator)
 					src.expecting=VALUE
-				else if(ntok && ntok.value=="(" && istype(ntok, /token/symbol)\
+				else if(ntok && ntok.value == "(" && istype(ntok, /token/symbol)\
 											&& istype(curToken, /token/word))								//Parse function call
-					var/token/preToken=curToken
-					var/old_expect=src.expecting
-					var/fex=ParseFunctionExpression()
-					if(old_expect!=VALUE)
-						errors+=new/scriptError/ExpectedToken("operator", preToken)
+					var/token/preToken = curToken
+					var/old_expect = src.expecting
+					var/fex = ParseFunctionExpression()
+					if(old_expect != VALUE)
+						errors += new/scriptError/ExpectedToken("operator", preToken)
 						NextToken()
 						continue
 					val.Push(fex)
 				else if(istype(curToken, /token/keyword)) 										//inline keywords
 					var/n_Keyword/kw=options.keywords[curToken.value]
-					kw=new kw(inline=1)
+					kw = new kw(inline = 1)
 					if(kw)
 						if(!kw.Parse(src))
 							return
 					else
-						errors+=new/scriptError/BadToken(curToken)
+						errors += new/scriptError/BadToken(curToken)
 				else if(istype(curToken, /token/end)) 													//semicolon found where it wasn't expected
-					errors+=new/scriptError/BadToken(curToken)
+					errors += new/scriptError/BadToken(curToken)
 					NextToken()
 					continue
 				else
 					if(expecting!=VALUE)
-						errors+=new/scriptError/ExpectedToken("operator", curToken)
+						errors += new/scriptError/ExpectedToken("operator", curToken)
 						NextToken()
 						continue
 					val.Push(GetExpression(curToken))
@@ -261,7 +259,7 @@
 			.=val.Pop()                       																//Return what should be the last value on the stack
 			if(val.Top())                     																//
 				var/node/N=val.Pop()
-				errors+=new/scriptError("Error parsing expression. Unexpected value left on stack: [N.ToString()].")
+				errors += new/scriptError("Error parsing expression. Unexpected value left on stack: [N.ToString()].")
 				return null
 
 /*

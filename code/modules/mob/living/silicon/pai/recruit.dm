@@ -301,7 +301,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 				<body>
 					<b><font size='3px'>pAI Availability List</font></b><br><br>
 		"}
-		dat += "<p>Displaying available AI personalities from central database... If there are no entries, or if a suitable entry is not listed, check again later as more personalities may be added.</p>"
+	dat += "<p>Displaying available AI personalities from central database... If there are no entries, or if a suitable entry is not listed, check again later as more personalities may be added.</p>"
 
 	for(var/datum/paiCandidate/c in available)
 		dat += {"

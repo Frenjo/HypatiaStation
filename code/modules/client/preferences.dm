@@ -21,11 +21,6 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 
 var/const/MAX_SAVE_SLOTS = 20
 
-//used for alternate_option
-#define GET_RANDOM_JOB 0
-#define BE_ASSISTANT 1
-#define RETURN_TO_LOBBY 2
-
 datum/preferences
 	//doohickeys for savefiles
 	var/path

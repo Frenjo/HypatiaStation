@@ -590,7 +590,6 @@ var/list/TAGGERLOCATIONS = list("Disposals",
 #define ROUNDSTART_LOGOUT_REPORT_TIME 6000 //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
 //Damage things
-
 #define CUT 		"cut"
 #define BRUISE		"bruise"
 #define BRUTE		"brute"
@@ -622,10 +621,6 @@ var/list/TAGGERLOCATIONS = list("Disposals",
 #define SALVED 512
 #define ORGAN_DEAD 1024
 #define ORGAN_MUTATED 2048
-
-#define ROUNDSTART_LOGOUT_REPORT_TIME 6000 //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
-
-
 
 //Please don't edit these values without speaking to Errorage first	~Carn
 //Admin Permissions
@@ -856,3 +851,7 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define SIMPLE_ANIMAL 32
 
 #define ALLMOBS (HUMAN|MONKEY|ALIEN|ROBOT|SLIME|SIMPLE_ANIMAL)
+
+// Door stuff.
+#define DOOR_OPEN 1
+#define DOOR_CLOSED 2

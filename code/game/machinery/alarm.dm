@@ -463,7 +463,7 @@
 			if(istype(E,/obj/machinery/door/firedoor))
 				if(!E:blocked)
 					if(E.operating)
-						E:nextstate = CLOSED
+						E:nextstate = DOOR_CLOSED
 					else if(!E.density)
 						spawn(0)
 							E.close()

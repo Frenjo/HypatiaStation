@@ -1169,7 +1169,6 @@
 
 #define LOCKED 1
 #define OCCUPIED 2
-#undefine
 
 /obj/mecha/proc/move_inside_passenger()
 	set category = "Object"

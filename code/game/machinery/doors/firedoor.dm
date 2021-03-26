@@ -1,5 +1,3 @@
-/var/const/OPEN = 1
-/var/const/CLOSED = 2
 /obj/machinery/door/firedoor
 	name = "\improper Emergency Shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
@@ -121,7 +119,7 @@
 				if(A.fire || A.air_doors_activated)
 					alarmed = 1
 			if(alarmed)
-				nextstate = CLOSED
+				nextstate = DOOR_CLOSED
 				close()
 
 /obj/machinery/door/firedoor/attackby(obj/item/weapon/C as obj, mob/user as mob)
@@ -180,10 +178,10 @@
 	if(operating || stat & NOPOWER || !nextstate)
 		return
 	switch(nextstate)
-		if(OPEN)
+		if(DOOR_OPEN)
 			nextstate = null
 			open()
-		if(CLOSED)
+		if(DOOR_CLOSED)
 			nextstate = null
 			close()
 	return

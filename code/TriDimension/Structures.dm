@@ -59,7 +59,7 @@
 		return attack_hand(M)
 
 	attackby(obj/item/C as obj, mob/user as mob)
-		(..)
+		..(C, user)
 
 // construction commented out for balance concerns
 /*		if (!target && istype(C, /obj/item/stack/rods))

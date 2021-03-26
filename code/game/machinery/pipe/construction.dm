@@ -19,13 +19,14 @@ Buildable meters
 #define PIPE_GAS_MIXER			14
 #define PIPE_PASSIVE_GATE       15
 #define PIPE_VOLUME_PUMP        16
-#define PIPE_HEAT_EXCHANGE      17
-#define PIPE_MTVALVE			18
-#define PIPE_MANIFOLD4W			19
-#define PIPE_CAP				20
+#define PIPE_OUTLET_INJECT		17
+#define PIPE_HEAT_EXCHANGE      18
+#define PIPE_MTVALVE			19
+#define PIPE_MANIFOLD4W			20
+#define PIPE_CAP				21
 ///// Z-Level stuff
-#define PIPE_UP					21
-#define PIPE_DOWN				22
+#define PIPE_UP					22
+#define PIPE_DOWN				23
 ///// Z-Level stuff
 
 /obj/item/pipe

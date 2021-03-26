@@ -44,30 +44,30 @@
 		user << browse(null, "window=stack")
 	user.set_machine(src) //for correct work of onclose
 	var/list/recipe_list = recipes
-	if (recipes_sublist && recipe_list[recipes_sublist] && istype(recipe_list[recipes_sublist], /datum/stack_recipe_list))
+	if(recipes_sublist && recipe_list[recipes_sublist] && istype(recipe_list[recipes_sublist], /datum/stack_recipe_list))
 		var/datum/stack_recipe_list/srl = recipe_list[recipes_sublist]
 		recipe_list = srl.recipes
 	var/t1 = text("<HTML><HEAD><title>Constructions from []</title></HEAD><body><TT>Amount Left: []<br>", src, src.amount)
 	for(var/i=1;i<=recipe_list.len,i++)
 		var/E = recipe_list[i]
-		if (isnull(E))
+		if(isnull(E))
 			t1 += "<hr>"
 			continue
 
-		if (i>1 && !isnull(recipe_list[i-1]))
+		if(i>1 && !isnull(recipe_list[i-1]))
 			t1+="<br>"
 
-		if (istype(E, /datum/stack_recipe_list))
+		if(istype(E, /datum/stack_recipe_list))
 			var/datum/stack_recipe_list/srl = E
 			if (src.amount >= srl.req_amount)
 				t1 += "<a href='?src=\ref[src];sublist=[i]'>[srl.title] ([srl.req_amount] [src.singular_name]\s)</a>"
 			else
 				t1 += "[srl.title] ([srl.req_amount] [src.singular_name]\s)<br>"
 
-		if (istype(E, /datum/stack_recipe))
+		if(istype(E, /datum/stack_recipe))
 			var/datum/stack_recipe/R = E
 			var/max_multiplier = round(src.amount / R.req_amount)
-			var/title as text
+			var/title
 			var/can_build = 1
 			can_build = can_build && (max_multiplier>0)
 			/*
@@ -76,17 +76,17 @@
 			if (R.on_floor)
 				can_build = can_build && istype(usr.loc, /turf/simulated/floor)
 			*/
-			if (R.res_amount>1)
+			if(R.res_amount>1)
 				title+= "[R.res_amount]x [R.title]\s"
 			else
 				title+= "[R.title]"
 			title+= " ([R.req_amount] [src.singular_name]\s)"
-			if (can_build)
+			if(can_build)
 				t1 += text("<A href='?src=\ref[src];sublist=[recipes_sublist];make=[i]'>[title]</A>  ")
 			else
 				t1 += text("[]", title)
 				continue
-			if (R.max_res_amount>1 && max_multiplier>1)
+			if(R.max_res_amount>1 && max_multiplier>1)
 				max_multiplier = min(max_multiplier, round(R.max_res_amount/R.res_amount))
 				t1 += " |"
 				var/list/multipliers = list(5,10,25)
@@ -219,7 +219,7 @@
 		if (S.amount >= max_amount)
 			return 1
 
-		var/to_transfer as num
+		var/to_transfer
 		if(user.get_inactive_hand()==src)
 			to_transfer = 1
 		else

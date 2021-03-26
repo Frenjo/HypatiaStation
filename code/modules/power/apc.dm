@@ -211,7 +211,7 @@
 /obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
 	..()
 	wires = new(src)
-	var/tmp/obj/item/weapon/cell/tmp_cell = new
+	var/obj/item/weapon/cell/tmp_cell = new
 	standard_max_charge = tmp_cell.maxcharge
 	qdel(tmp_cell)
 

@@ -215,54 +215,51 @@
 			overlays += filling
 
 
-	/obj/item/weapon/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
+/obj/item/weapon/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
+	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [target.name] ([target.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
+	target.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
+	msg_admin_attack("[user.name] ([user.ckey]) attacked [target.name] ([target.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-		user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [target.name] ([target.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
-		target.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
-		msg_admin_attack("[user.name] ([user.ckey]) attacked [target.name] ([target.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+	if(istype(target, /mob/living/carbon/human))
+		var/target_zone = check_zone(user.zone_sel.selecting, target)
+		var/datum/organ/external/affecting = target:get_organ(target_zone)
 
-		if(istype(target, /mob/living/carbon/human))
+		if(!affecting)
+			return
+		if(affecting.status & ORGAN_DESTROYED)
+			user << "What [affecting.display_name]?"
+			return
+		var/hit_area = affecting.display_name
 
-			var/target_zone = check_zone(user.zone_sel.selecting, target)
-			var/datum/organ/external/affecting = target:get_organ(target_zone)
+		var/mob/living/carbon/human/H = target
+		if((user != target) && H.check_shields(7, "the [src.name]"))
+			return
 
-			if (!affecting)
-				return
-			if(affecting.status & ORGAN_DESTROYED)
-				user << "What [affecting.display_name]?"
-				return
-			var/hit_area = affecting.display_name
-
-			var/mob/living/carbon/human/H = target
-			if((user != target) && H.check_shields(7, "the [src.name]"))
-				return
-
-			if (target != user && target.getarmor(target_zone, "melee") > 5 && prob(50))
-				for(var/mob/O in viewers(world.view, user))
-					O.show_message(text("\red <B>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</B>"), 1)
-				user.u_equip(src)
-				qdel(src)
-				return
-
+		if(target != user && target.getarmor(target_zone, "melee") > 5 && prob(50))
 			for(var/mob/O in viewers(world.view, user))
-				O.show_message(text("\red <B>[user] stabs [target] in \the [hit_area] with [src.name]!</B>"), 1)
+				O.show_message(text("\red <B>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</B>"), 1)
+			user.u_equip(src)
+			qdel(src)
+			return
 
-			if(affecting.take_damage(3))
-				target:UpdateDamageIcon()
+		for(var/mob/O in viewers(world.view, user))
+			O.show_message(text("\red <B>[user] stabs [target] in \the [hit_area] with [src.name]!</B>"), 1)
 
-		else
-			for(var/mob/O in viewers(world.view, user))
-				O.show_message(text("\red <B>[user] stabs [target] with [src.name]!</B>"), 1)
-			target.take_organ_damage(3)// 7 is the same as crowbar punch
+		if(affecting.take_damage(3))
+			target:UpdateDamageIcon()
+	else
+		for(var/mob/O in viewers(world.view, user))
+			O.show_message(text("\red <B>[user] stabs [target] with [src.name]!</B>"), 1)
+		target.take_organ_damage(3)// 7 is the same as crowbar punch
 
-		src.reagents.reaction(target, INGEST)
-		var/syringestab_amount_transferred = rand(0, (reagents.total_volume - 5)) //nerfed by popular demand
-		src.reagents.trans_to(target, syringestab_amount_transferred)
-		src.desc += " It is broken."
-		src.mode = SYRINGE_BROKEN
-		src.add_blood(target)
-		src.add_fingerprint(usr)
-		src.update_icon()
+	src.reagents.reaction(target, INGEST)
+	var/syringestab_amount_transferred = rand(0, (reagents.total_volume - 5)) //nerfed by popular demand
+	src.reagents.trans_to(target, syringestab_amount_transferred)
+	src.desc += " It is broken."
+	src.mode = SYRINGE_BROKEN
+	src.add_blood(target)
+	src.add_fingerprint(usr)
+	src.update_icon()
 
 
 /obj/item/weapon/reagent_containers/ld50_syringe

@@ -6,7 +6,7 @@
 	name = "Drink"
 	id = "drink"
 	description = "Uh, some kind of drink."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#E78108" // rgb: 231, 129, 8
 	var/adj_dizzy = 0
@@ -294,14 +294,14 @@
 	name = "Ice"
 	id = "ice"
 	description = "Frozen water, your dentist wouldn't like you chewing this."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#619494" // rgb: 97, 148, 148
 
 /datum/reagent/drink/cold/space_cola
 	name = "Space Cola"
 	id = "cola"
 	description = "A refreshing beverage."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#100800" // rgb: 16, 8, 0
 	adj_drowsy 	= 	-3
 
@@ -417,7 +417,7 @@
 	name = "The Doctor's Delight"
 	id = "doctorsdelight"
 	description = "A gulp a day keeps the MediBot away. That's probably for the best."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#FF8CFF" // rgb: 255, 140, 255
 	nutriment_factor = 1 * FOOD_METABOLISM
 

@@ -3,7 +3,7 @@
 	data = new/list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=null,"resistances"=null,"trace_chem"=null, "antibodies" = null)
 	name = "Blood"
 	id = "blood"
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#C80000" // rgb: 200, 0, 0
 
 /datum/reagent/blood/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
@@ -86,7 +86,7 @@
 	//data must contain virus type
 	name = "Vaccine"
 	id = "vaccine"
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#C81040" // rgb: 200, 16, 64
 
 /datum/reagent/vaccine/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
@@ -110,7 +110,7 @@
 	name = "Water"
 	id = "water"
 	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#0064C8" // rgb: 0, 100, 200
 
 	custom_metabolism = 0.01
@@ -191,7 +191,7 @@
 	name = "Space Lube"
 	id = "lube"
 	description = "Lubricant is a substance introduced between two moving surfaces to reduce the friction and wear between them. giggity."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#009CA8" // rgb: 0, 156, 168
 	overdose = REAGENTS_OVERDOSE
 
@@ -214,7 +214,7 @@
 	name = "Plasticide"
 	id = "plasticide"
 	description = "Liquid plastic, do not eat."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
 
 	custom_metabolism = 0.01
@@ -231,7 +231,7 @@
 	name = "Mutation Toxin"
 	id = "mutationtoxin"
 	description = "A corruptive toxin produced by slimes."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#13BC5E" // rgb: 19, 188, 94
 	overdose = REAGENTS_OVERDOSE
 
@@ -251,7 +251,7 @@
 	name = "Advanced Mutation Toxin"
 	id = "amutationtoxin"
 	description = "An advanced corruptive toxin produced by slimes."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#13BC5E" // rgb: 19, 188, 94
 	overdose = REAGENTS_OVERDOSE
 
@@ -285,12 +285,12 @@
 
 
 /datum/reagent/space_drugs
-			name = "Space drugs"
-			id = "space_drugs"
-			description = "An illegal chemical compound used as drug."
-			reagent_state = LIQUID
-			color = "#60A584" // rgb: 96, 165, 132
-			overdose = REAGENTS_OVERDOSE
+	name = "Space drugs"
+	id = "space_drugs"
+	description = "An illegal chemical compound used as drug."
+	reagent_state = REAGENT_LIQUID
+	color = "#60A584" // rgb: 96, 165, 132
+	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/space_drugs/on_mob_life(var/mob/living/M as mob)
 	if(!M) M = holder.my_atom
@@ -342,7 +342,7 @@
 	name = "Oxygen"
 	id = "oxygen"
 	description = "A colorless, odorless gas."
-	reagent_state = GAS
+	reagent_state = REAGENT_GAS
 	color = "#808080" // rgb: 128, 128, 128
 
 	custom_metabolism = 0.01
@@ -368,7 +368,7 @@
 	name = "Nitrogen"
 	id = "nitrogen"
 	description = "A colorless, odorless, tasteless gas."
-	reagent_state = GAS
+	reagent_state = REAGENT_GAS
 	color = "#808080" // rgb: 128, 128, 128
 
 	custom_metabolism = 0.01
@@ -386,7 +386,7 @@
 	name = "Hydrogen"
 	id = "hydrogen"
 	description = "A colorless, odorless, nonmetallic, tasteless, highly combustible diatomic gas."
-	reagent_state = GAS
+	reagent_state = REAGENT_GAS
 	color = "#808080" // rgb: 128, 128, 128
 
 	custom_metabolism = 0.01
@@ -395,7 +395,7 @@
 	name = "Potassium"
 	id = "potassium"
 	description = "A soft, low-melting solid that can easily be cut with a knife. Reacts violently with water."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#A0A0A0" // rgb: 160, 160, 160
 
 	custom_metabolism = 0.01
@@ -404,7 +404,7 @@
 	name = "Mercury"
 	id = "mercury"
 	description = "A chemical element."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#484848" // rgb: 72, 72, 72
 	overdose = REAGENTS_OVERDOSE
 
@@ -422,7 +422,7 @@
 	name = "Sulfur"
 	id = "sulfur"
 	description = "A chemical element with a pungent smell."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#BF8C00" // rgb: 191, 140, 0
 
 	custom_metabolism = 0.01
@@ -431,7 +431,7 @@
 	name = "Carbon"
 	id = "carbon"
 	description = "A chemical element, the builing block of life."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#1C1300" // rgb: 30, 20, 0
 
 	custom_metabolism = 0.01
@@ -451,7 +451,7 @@
 	name = "Chlorine"
 	id = "chlorine"
 	description = "A chemical element with a characteristic odour."
-	reagent_state = GAS
+	reagent_state = REAGENT_GAS
 	color = "#808080" // rgb: 128, 128, 128
 	overdose = REAGENTS_OVERDOSE
 
@@ -466,7 +466,7 @@
 	name = "Fluorine"
 	id = "fluorine"
 	description = "A highly-reactive chemical element."
-	reagent_state = GAS
+	reagent_state = REAGENT_GAS
 	color = "#808080" // rgb: 128, 128, 128
 	overdose = REAGENTS_OVERDOSE
 
@@ -481,7 +481,7 @@
 	name = "Sodium"
 	id = "sodium"
 	description = "A chemical element, readily reacts with water."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#808080" // rgb: 128, 128, 128
 
 	custom_metabolism = 0.01
@@ -490,7 +490,7 @@
 	name = "Phosphorus"
 	id = "phosphorus"
 	description = "A chemical element, the backbone of biological energy carriers."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#832828" // rgb: 131, 40, 40
 
 	custom_metabolism = 0.01
@@ -499,7 +499,7 @@
 	name = "Lithium"
 	id = "lithium"
 	description = "A chemical element, used as antidepressant."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#808080" // rgb: 128, 128, 128
 	overdose = REAGENTS_OVERDOSE
 
@@ -516,7 +516,7 @@
 	name = "Sugar"
 	id = "sugar"
 	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#FFFFFF" // rgb: 255, 255, 255
 
 /datum/reagent/sugar/on_mob_life(var/mob/living/M as mob)
@@ -529,7 +529,7 @@
 	name = "Glycerol"
 	id = "glycerol"
 	description = "Glycerol is a simple polyol compound. Glycerol is sweet-tasting and of low toxicity."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#808080" // rgb: 128, 128, 128
 
 	custom_metabolism = 0.01
@@ -538,7 +538,7 @@
 	name = "Nitroglycerin"
 	id = "nitroglycerin"
 	description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerol."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#808080" // rgb: 128, 128, 128
 
 	custom_metabolism = 0.01
@@ -547,7 +547,7 @@
 	name = "Radium"
 	id = "radium"
 	description = "Radium is an alkaline earth metal. It is extremely radioactive."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#C7C7C7" // rgb: 199,199,199
 
 /datum/reagent/radium/on_mob_life(var/mob/living/M as mob)
@@ -584,7 +584,7 @@
 	name = "Thermite"
 	id = "thermite"
 	description = "Thermite produces an aluminothermic reaction known as a thermite reaction. Can be used to melt walls."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#673910" // rgb: 103, 57, 16
 
 /datum/reagent/thermite/reaction_turf(var/turf/T, var/volume)
@@ -608,7 +608,7 @@
 	name = "Virus Food"
 	id = "virusfood"
 	description = "A mixture of water, milk, and oxygen. Virus cells can use this mixture to reproduce."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#899613" // rgb: 137, 150, 19
 
@@ -623,7 +623,7 @@
 	name = "Iron"
 	id = "iron"
 	description = "Pure iron is a metal."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
 
@@ -631,26 +631,27 @@
 	name = "Gold"
 	id = "gold"
 	description = "Gold is a dense, soft, shiny metal and the most malleable and ductile metal known."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#F7C430" // rgb: 247, 196, 48
 
 /datum/reagent/silver
 	name = "Silver"
 	id = "silver"
 	description = "A soft, white, lustrous transition metal, it has the highest electrical conductivity of any element and the highest thermal conductivity of any metal."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#D0D0D0" // rgb: 208, 208, 208
 
 /datum/reagent/uranium
 	name ="Uranium"
 	id = "uranium"
 	description = "A silvery-white metallic chemical element in the actinide series, weakly radioactive."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#B8B8C0" // rgb: 184, 184, 192
 
 /datum/reagent/uranium/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
-	M.apply_effect(1,IRRADIATE,0)
+	if(!M)
+		M = holder.my_atom
+	M.apply_effect(1, IRRADIATE, 0)
 	..()
 	return
 
@@ -668,21 +669,21 @@
 	name = "Aluminum"
 	id = "aluminum"
 	description = "A silvery white and ductile member of the boron group of chemical elements."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#A8A8A8" // rgb: 168, 168, 168
 
 /datum/reagent/silicon
 	name = "Silicon"
 	id = "silicon"
 	description = "A tetravalent metalloid, silicon is less reactive than its chemical analog carbon."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#A8A8A8" // rgb: 168, 168, 168
 
 /datum/reagent/fuel
 	name = "Welding fuel"
 	id = "fuel"
 	description = "Required for welders. Flamable."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#660000" // rgb: 102, 0, 0
 	overdose = REAGENTS_OVERDOSE
 
@@ -714,7 +715,7 @@
 	name = "Space cleaner"
 	id = "cleaner"
 	description = "A compound used to clean things. Now with 50% more sodium hypochlorite!"
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#A5F0EE" // rgb: 165, 240, 238
 	overdose = REAGENTS_OVERDOSE
 
@@ -772,16 +773,20 @@
 	name = "Impedrezene"
 	id = "impedrezene"
 	description = "Impedrezene is a narcotic that impedes one's ability by slowing down the higher brain cell functions."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/impedrezene/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
-	M.jitteriness = max(M.jitteriness-5,0)
-	if(prob(80)) M.adjustBrainLoss(1*REM)
-	if(prob(50)) M.drowsyness = max(M.drowsyness, 3)
-	if(prob(10)) M.emote("drool")
+	if(!M)
+		M = holder.my_atom
+	M.jitteriness = max(M.jitteriness - 5, 0)
+	if(prob(80))
+		M.adjustBrainLoss(1 * REM)
+	if(prob(50))
+		M.drowsyness = max(M.drowsyness, 3)
+	if(prob(10))
+		M.emote("drool")
 	..()
 	return
 
@@ -791,7 +796,7 @@
 	name = "Nanomachines"
 	id = "nanites"
 	description = "Microscopic construction robots."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#535E66" // rgb: 83, 94, 102
 
 /datum/reagent/nanites/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
@@ -804,7 +809,7 @@
 	name = "Xenomicrobes"
 	id = "xenomicrobes"
 	description = "Microbes with an entirely alien cellular structure."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#535E66" // rgb: 83, 94, 102
 
 /datum/reagent/xenomicrobes/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
@@ -817,28 +822,28 @@
 	name = "Fluorosurfactant"
 	id = "fluorosurfactant"
 	description = "A perfluoronated sulfonic acid that forms a foam when mixed with water."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#9E6B38" // rgb: 158, 107, 56
 
 /datum/reagent/foaming_agent// Metal foaming agent. This is lithium hydride. Add other recipes (e.g. LiH + H2O -> LiOH + H2) eventually.
 	name = "Foaming agent"
 	id = "foaming_agent"
 	description = "A agent that yields metallic foam when mixed with light metal and a strong acid."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#664B63" // rgb: 102, 75, 99
 
 /datum/reagent/nicotine
 	name = "Nicotine"
 	id = "nicotine"
 	description = "A highly addictive stimulant extracted from the tobacco plant."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#181818" // rgb: 24, 24, 24
 
 /datum/reagent/ammonia
 	name = "Ammonia"
 	id = "ammonia"
 	description = "A caustic substance commonly used in fertilizer or household cleaners."
-	reagent_state = GAS
+	reagent_state = REAGENT_GAS
 	color = "#404030" // rgb: 64, 64, 48
 
 /datum/reagent/ultraglue
@@ -851,5 +856,5 @@
 	name = "Diethylamine"
 	id = "diethylamine"
 	description = "A secondary amine, mildly corrosive."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#604030" // rgb: 96, 64, 48

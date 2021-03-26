@@ -5,7 +5,7 @@
 			name = "Nutriment"
 			id = "nutriment"
 			description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
-			reagent_state = SOLID
+			reagent_state = REAGENT_SOLID
 			nutriment_factor = 15 * REAGENTS_METABOLISM
 			color = "#664330" // rgb: 102, 67, 48
 
@@ -38,7 +38,7 @@
 	name = "Stokaline"
 	id = "stokaline"
 	description = "A synthetic vitamin supplement for the health conscious spacer. Don't take too much at once."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 
 	// Okay so this code is untested but I hope it works like I think it does. -Frenjo
 	custom_metabolism = REAGENTS_METABOLISM
@@ -78,7 +78,7 @@
 	name = "Lipozine" // The anti-nutriment.
 	id = "lipozine"
 	description = "A chemical compound that causes a powerful fat-burning reaction."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	nutriment_factor = 10 * REAGENTS_METABOLISM
 	color = "#BBEDA4" // rgb: 187, 237, 164
 	overdose = REAGENTS_OVERDOSE
@@ -97,7 +97,7 @@
 	name = "Soysauce"
 	id = "soysauce"
 	description = "A salty sauce made from the soy plant."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#792300" // rgb: 121, 35, 0
 
@@ -105,7 +105,7 @@
 	name = "Ketchup"
 	id = "ketchup"
 	description = "Ketchup, catsup, whatever. It's tomato paste."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#731008" // rgb: 115, 16, 8
 
@@ -113,7 +113,7 @@
 	name = "Capsaicin Oil"
 	id = "capsaicin"
 	description = "This is what makes chilis hot."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#B31008" // rgb: 179, 16, 8
 
 /datum/reagent/capsaicin/on_mob_life(var/mob/living/M as mob)
@@ -144,7 +144,7 @@
 			name = "Condensed Capsaicin"
 			id = "condensedcapsaicin"
 			description = "A chemical agent used for self-defense and in police work."
-			reagent_state = LIQUID
+			reagent_state = REAGENT_LIQUID
 			color = "#B31008" // rgb: 179, 16, 8
 
 /datum/reagent/condensedcapsaicin/reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)
@@ -156,28 +156,28 @@
 			var/mouth_covered = 0
 			var/eyes_covered = 0
 			var/obj/item/safe_thing = null
-			if( victim.wear_mask )
-				if ( victim.wear_mask.flags & MASKCOVERSEYES )
+			if(victim.wear_mask)
+				if(victim.wear_mask.flags & MASKCOVERSEYES)
 					eyes_covered = 1
 					safe_thing = victim.wear_mask
-				if ( victim.wear_mask.flags & MASKCOVERSMOUTH )
+				if(victim.wear_mask.flags & MASKCOVERSMOUTH)
 					mouth_covered = 1
 					safe_thing = victim.wear_mask
-			if( victim.head )
-				if ( victim.head.flags & MASKCOVERSEYES )
+			if(victim.head)
+				if(victim.head.flags & MASKCOVERSEYES)
 					eyes_covered = 1
 					safe_thing = victim.head
-				if ( victim.head.flags & MASKCOVERSMOUTH )
+				if(victim.head.flags & MASKCOVERSMOUTH)
 					mouth_covered = 1
 					safe_thing = victim.head
 			if(victim.glasses)
 				eyes_covered = 1
-				if ( !safe_thing )
+				if(!safe_thing)
 					safe_thing = victim.glasses
-			if ( eyes_covered && mouth_covered )
+			if(eyes_covered && mouth_covered)
 				victim << "\red Your [safe_thing] protects you from the pepperspray!"
 				return
-			else if ( mouth_covered )	// Reduced effects if partially protected
+			else if(mouth_covered)	// Reduced effects if partially protected
 				victim << "\red Your [safe_thing] protect you from most of the pepperspray!"
 				victim.eye_blurry = max(M.eye_blurry, 15)
 				victim.eye_blind = max(M.eye_blind, 5)
@@ -186,7 +186,7 @@
 				//victim.Paralyse(10)
 				//victim.drop_item()
 				return
-			else if ( eyes_covered ) // Eye cover is better than mouth cover
+			else if(eyes_covered) // Eye cover is better than mouth cover
 				victim << "\red Your [safe_thing] protects your eyes from the pepperspray!"
 				victim.emote("scream")
 				victim.eye_blurry = max(M.eye_blurry, 5)
@@ -212,7 +212,7 @@
 	name = "Frost Oil"
 	id = "frostoil"
 	description = "A special oil that noticably chills the body. Extracted from Ice Peppers."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#B31008" // rgb: 139, 166, 233
 
 /datum/reagent/frostoil/on_mob_life(var/mob/living/M as mob)
@@ -248,7 +248,7 @@
 	name = "Table Salt"
 	id = "sodiumchloride"
 	description = "A salt made of sodium chloride. Commonly used to season food."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	color = "#FFFFFF" // rgb: 255,255,255
 	overdose = REAGENTS_OVERDOSE
 
@@ -256,14 +256,14 @@
 	name = "Black Pepper"
 	id = "blackpepper"
 	description = "A powder ground from peppercorns. *AAAACHOOO*"
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	// no color (ie, black)
 
 /datum/reagent/coco
 	name = "Coco Powder"
 	id = "coco"
 	description = "A fatty, bitter paste made from coco beans."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 
@@ -277,7 +277,7 @@
 	name = "Hot Chocolate"
 	id = "hot_coco"
 	description = "Made with love! And cocoa beans."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#403010" // rgb: 64, 48, 16
 
@@ -363,7 +363,7 @@
 	name = "Corn Oil"
 	id = "cornoil"
 	description = "An oil derived from various types of corn."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	nutriment_factor = 20 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 
@@ -404,7 +404,7 @@
 	name = "Universal Enzyme"
 	id = "enzyme"
 	description = "A universal enzyme used in the preperation of certain chemicals and foods."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	color = "#365E30" // rgb: 54, 94, 48
 	overdose = REAGENTS_OVERDOSE
 
@@ -412,7 +412,7 @@
 	name = "Dry Ramen"
 	id = "dry_ramen"
 	description = "Space age food, since August 25, 1958. Contains dried noodles, vegetables, and chemicals that boil in contact with water."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 
@@ -426,7 +426,7 @@
 	name = "Hot Ramen"
 	id = "hot_ramen"
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 
@@ -442,7 +442,7 @@
 	name = "Hell Ramen"
 	id = "hell_ramen"
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 
@@ -477,7 +477,7 @@
 	name = "Rice"
 	id = "rice"
 	description = "Enjoy the great taste of nothing."
-	reagent_state = SOLID
+	reagent_state = REAGENT_SOLID
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#FFFFFF" // rgb: 0, 0, 0
 
@@ -490,7 +490,7 @@
 	name = "Cherry Jelly"
 	id = "cherryjelly"
 	description = "Totally the best. Only to be spread on foods with excellent lateral symmetry."
-	reagent_state = LIQUID
+	reagent_state = REAGENT_LIQUID
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#801E28" // rgb: 128, 30, 40
 
