@@ -92,7 +92,7 @@
 			if (do_after(user, 40))
 				user.visible_message( \
 					"[user] unfastens \the [src].", \
-					"\blue You have unfastened \the [src]. Now it can be pulled somewhere else.", \
+					span("info", "You have unfastened \the [src]. Now it can be pulled somewhere else."), \
 					"You hear ratchet.")
 				src.anchored = 0
 				src.stat |= MAINT

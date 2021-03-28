@@ -468,7 +468,7 @@ var/list/mechtoys = list(
 
 /obj/machinery/computer/supplycomp/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		user << "\red Access Denied."
+		to_chat(user, span("warning", "Access Denied."))
 		return
 
 	if(..())
@@ -494,14 +494,14 @@ var/list/mechtoys = list(
 
 /obj/machinery/computer/supplycomp/attackby(I as obj, user as mob)
 	if(istype(I,/obj/item/weapon/card/emag) && !hacked)
-		user << "\blue Special supplies unlocked."
+		to_chat(user, span("info", "Special supplies unlocked."))
 		hacked = 1
 		return
 	if(istype(I, /obj/item/weapon/screwdriver))
 		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
-			if (stat & BROKEN)
-				user << "\blue The broken glass falls out."
+			if(stat & BROKEN)
+				to_chat(user, span("info", "The broken glass falls out."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( loc )
 				new /obj/item/weapon/shard( loc )
 				var/obj/item/weapon/circuitboard/supplycomp/M = new /obj/item/weapon/circuitboard/supplycomp( A )
@@ -513,7 +513,7 @@ var/list/mechtoys = list(
 				A.anchored = 1
 				del(src)
 			else
-				user << "\blue You disconnect the monitor."
+				to_chat(user, span("info", "You disconnect the monitor."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( loc )
 				var/obj/item/weapon/circuitboard/supplycomp/M = new /obj/item/weapon/circuitboard/supplycomp( A )
 				if(can_order_contraband)
@@ -536,7 +536,7 @@ var/list/mechtoys = list(
 	if(..())
 		return
 
-	if(isturf(loc) && ( in_range(src, usr) || istype(usr, /mob/living/silicon) ) )
+	if(isturf(loc) && (in_range(src, usr) || istype(usr, /mob/living/silicon)))
 		usr.set_machine(src)
 
 	//Calling the shuttle

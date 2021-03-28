@@ -263,8 +263,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
-		if (WT.remove_fuel(0, user))
-			user << "\blue Now welding the vent."
+		if(WT.remove_fuel(0, user))
+			to_chat(user, span("info", "You begin to weld the vent."))
 			if(do_after(user, 20))
 				if(!src || !WT.isOn())
 					return
@@ -278,9 +278,9 @@
 					welded = 0
 					update_icon()
 			else
-				user << "\blue The welding tool needs to be on to start this task."
+				to_chat(user, span("info", "The welding tool needs to be on to start this task."))
 		else
-			user << "\blue You need more welding fuel to complete this task."
+			to_chat(user, span("info", "You need more welding fuel to complete this task."))
 			return 1
 
 /obj/machinery/atmospherics/unary/vent_pump/examine()
@@ -300,24 +300,27 @@
 	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	if(!(stat & NOPOWER) && on)
-		user << "\red You cannot unwrench this [src], turn it off first."
+		to_chat(user, span("warning", "You cannot unwrench this [src], turn it off first."))
 		return 1
+
 	var/turf/T = src.loc
-	if(level==1 && isturf(T) && T.intact)
-		user << "\red You must remove the plating first."
+	if(level == 1 && isturf(T) && T.intact)
+		to_chat(user, span("warning", "You must remove the plating first."))
 		return 1
+
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if((int_air.return_pressure() - env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
-		user << "\red You cannot unwrench this [src], it too exerted due to internal pressure."
+		to_chat(user, span("warning", "You cannot unwrench this [src], it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
+
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
-	user << "\blue You begin to unfasten \the [src]..."
+	to_chat(user, span("info", "You begin to unfasten \the [src]..."))
 	if(do_after(user, 40))
 		user.visible_message( \
 			"[user] unfastens \the [src].", \
-			"\blue You have unfastened \the [src].", \
+			span("info", "You have unfastened \the [src]."), \
 			"You hear ratchet.")
 		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)

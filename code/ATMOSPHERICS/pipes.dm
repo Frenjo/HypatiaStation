@@ -56,38 +56,38 @@
 	..()
 
 /obj/machinery/atmospherics/pipe/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (istype(src, /obj/machinery/atmospherics/pipe/tank))
+	if(istype(src, /obj/machinery/atmospherics/pipe/tank))
 		return ..()
-	if (istype(src, /obj/machinery/atmospherics/pipe/vent))
+	if(istype(src, /obj/machinery/atmospherics/pipe/vent))
 		return ..()
 
 	if(istype(W,/obj/item/device/pipe_painter))
 		return 0
 
-	if (!istype(W, /obj/item/weapon/wrench))
+	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	var/turf/T = src.loc
-	if (level==1 && isturf(T) && T.intact)
-		user << "\red You must remove the plating first."
+	if(level == 1 && isturf(T) && T.intact)
+		to_chat(user, span("warning", "You must remove the plating first."))
 		return 1
 
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
-	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		user << "<span class='warning'>You cannot unwrench [src], it is too exerted due to internal pressure.</span>"
+	if((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
+		to_chat(user, span("warning", "You cannot unwrench [src], it is too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
 
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
-	user << "\blue You begin to unfasten \the [src]..."
-	if (do_after(user, 40))
+	to_chat(user, span("info", "You begin to unfasten \the [src]..."))
+	if(do_after(user, 40))
 		user.visible_message( \
 			"[user] unfastens \the [src].", \
-			"\blue You have unfastened \the [src].", \
+			span("info", "You have unfastened \the [src]."), \
 			"You hear ratchet.")
 		new /obj/item/pipe(loc, make_from=src)
-		for (var/obj/machinery/meter/meter in T)
-			if (meter.target == src)
+		for(var/obj/machinery/meter/meter in T)
+			if(meter.target == src)
 				new /obj/item/pipe_meter(T)
 				qdel(meter)
 		qdel(src)
@@ -1064,21 +1064,21 @@
 	return null
 
 /obj/machinery/atmospherics/pipe/tank/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (istype(W, /obj/item/device/analyzer) && get_dist(user, src) <= 1)
-		for (var/mob/O in viewers(user, null))
+	if(istype(W, /obj/item/device/analyzer) && get_dist(user, src) <= 1)
+		for(var/mob/O in viewers(user, null))
 			O << "\red [user] has used the analyzer on \icon[icon]"
 
 		var/pressure = parent.air.return_pressure()
 		var/total_moles = parent.air.total_moles
 
-		user << "\blue Results of analysis of \icon[icon]"
-		if (total_moles>0)
-			user << "\blue Pressure: [round(pressure,0.1)] kPa"
+		to_chat(user, span("info", "Results of analysis of \icon[icon]"))
+		if(total_moles > 0)
+			to_chat(user, span("info", "Pressure: [round(pressure, 0.1)] kPa"))
 			for(var/g in parent.air.gas)
-				user << "\blue [gas_data.name[g]]: [round((parent.air.gas[g] / total_moles) * 100)]%"
-			user << "\blue Temperature: [round(parent.air.temperature-T0C)]&deg;C"
+				to_chat(user, span("info", "[gas_data.name[g]]: [round((parent.air.gas[g] / total_moles) * 100)]%"))
+			to_chat(user, span("info", "Temperature: [round(parent.air.temperature - T0C)]&deg;C"))
 		else
-			user << "\blue Tank is empty!"
+			to_chat(user, span("info", "Tank is empty!"))
 
 /obj/machinery/atmospherics/pipe/vent
 	icon = 'icons/obj/atmospherics/pipe_vent.dmi'

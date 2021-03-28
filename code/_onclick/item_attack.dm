@@ -53,7 +53,7 @@
 		if(istype(M, /mob/living/carbon/slime))
 			var/mob/living/carbon/slime/slime = M
 			if(prob(25))
-				user << "\red [src] passes right through [M]!"
+				to_chat(M, span("warning", "[src] passes right through [M]!"))
 				return
 
 			if(power > 0)
@@ -135,8 +135,7 @@
 
 		if(!showname && user)
 			if(user.client)
-				user << "\red <B>You attack [M] with [src]. </B>"
-
+				to_chat(user, span("danger", "You attack [M] with [src]."))
 
 
 	if(istype(M, /mob/living/carbon/human))
@@ -146,9 +145,7 @@
 			if("brute")
 				if(istype(src, /mob/living/carbon/slime))
 					M.adjustBrainLoss(power)
-
 				else
-
 					M.take_organ_damage(power)
 					if (prob(33)) // Added blood for whacking non-humans too
 						var/turf/location = M.loc

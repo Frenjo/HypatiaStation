@@ -87,7 +87,7 @@ var/global/list/rad_collectors = list()
 				src.locked = 0 //just in case it somehow gets locked
 				user << "\red The controls can only be locked when the [src] is active"
 		else
-			user << "\red Access denied!"
+			to_chat(user, span("warning", "Access denied."))
 			return 1
 	else
 		..()

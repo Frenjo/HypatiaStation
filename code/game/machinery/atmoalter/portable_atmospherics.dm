@@ -88,8 +88,8 @@
 
 /obj/machinery/portable_atmospherics/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	var/obj/icon = src
-	if ((istype(W, /obj/item/weapon/tank) && !( src.destroyed )))
-		if (src.holding)
+	if((istype(W, /obj/item/weapon/tank) && !(src.destroyed)))
+		if(src.holding)
 			return
 		var/obj/item/weapon/tank/T = W
 		user.drop_item()
@@ -98,43 +98,43 @@
 		update_icon()
 		return
 
-	else if (istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/weapon/wrench))
 		if(connected_port)
 			disconnect()
-			user << "\blue You disconnect [name] from the port."
+			to_chat(user, span("info", "You disconnect [name] from the port."))
 			update_icon()
 			return
 		else
 			var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
 			if(possible_port)
 				if(connect(possible_port))
-					user << "\blue You connect [name] to the port."
+					to_chat(user, span("info", "You connect [name] to the port."))
 					update_icon()
 					return
 				else
-					user << "\blue [name] failed to connect to the port."
+					to_chat(user, span("info", "[name] failed to connect to the port."))
 					return
 			else
-				user << "\blue Nothing happens."
+				to_chat(user, span("info", "Nothing happens."))
 				return
 
-	else if ((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
+	else if((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
 		visible_message("\red [user] has used [W] on \icon[icon]")
 		if(air_contents)
 			var/pressure = air_contents.return_pressure()
 			var/total_moles = air_contents.total_moles
 
-			user << "\blue Results of analysis of \icon[icon]"
-			if (total_moles>0)
-				user << "\blue Pressure: [round(pressure,0.1)] kPa"
+			to_chat(user, span("info", "Results of analysis of \icon[icon]"))
+			if(total_moles > 0)
+				to_chat(user, span("info", "Pressure: [round(pressure, 0.1)] kPa"))
 				for(var/g in air_contents.gas)
-					user << "\blue [gas_data.name[g]]: [round((air_contents.gas[g] / total_moles) * 100)]%"
+					to_chat(user, span("info", "[gas_data.name[g]]: [round((air_contents.gas[g] / total_moles) * 100)]%"))
 
-				user << "\blue Temperature: [round(air_contents.temperature-T0C)]&deg;C"
+				to_chat(user, span("info", "Temperature: [round(air_contents.temperature - T0C)]&deg;C"))
 			else
-				user << "\blue Tank is empty!"
+				to_chat(user, span("info", "Tank is empty!"))
 		else
-			user << "\blue Tank is empty!"
+			to_chat(user, span("info", "Tank is empty!"))
 		return
 
 	return

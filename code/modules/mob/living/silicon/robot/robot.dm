@@ -650,7 +650,7 @@ var/list/robot_verbs_default = list(
 				user << "You [ locked ? "lock" : "unlock"] [src]'s interface."
 				updateicon()
 			else
-				user << "\red Access denied."
+				to_chat(user, span("warning", "Access denied."))
 
 	else if(istype(W, /obj/item/weapon/card/emag))		// trying to unlock with an emag card
 		if(!opened)//Cover is closed

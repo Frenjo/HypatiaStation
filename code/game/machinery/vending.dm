@@ -420,7 +420,7 @@
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
 	if((!src.allowed(user)) && (!src.emagged) && (src.wires & WIRE_SCANID)) //For SECURE VENDING MACHINES YEAH
-		user << "\red Access denied." //Unless emagged of course
+		to_chat(user, span("warning", "Access denied.")) //Unless emagged of course
 		flick(src.icon_deny, src)
 		return
 	src.vend_ready = 0 //One thing at a time!!

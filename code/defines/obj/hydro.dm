@@ -33,15 +33,15 @@
 	var/plant_type = 0 // 0 = 'normal plant'; 1 = weed; 2 = shroom
 
 /obj/item/seeds/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if (istype(O, /obj/item/device/analyzer/plant_analyzer))
-		user << "*** <B>[plantname]</B> ***"
-		user << "-Plant Endurance: \blue [endurance]"
-		user << "-Plant Lifespan: \blue [lifespan]"
+	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
+		to_chat(user, "*** <B>[plantname]</B> ***")
+		to_chat(user, "-Plant Endurance: \blue [endurance]")
+		to_chat(user, "-Plant Lifespan: \blue [lifespan]")
 		if(yield != -1)
-			user << "-Plant Yield: \blue [yield]"
-		user << "-Plant Production: \blue [production]"
+			to_chat(user, "-Plant Yield: \blue [yield]")
+		to_chat(user, "-Plant Production: \blue [production]")
 		if(potency != -1)
-			user << "-Plant Potency: \blue [potency]"
+			to_chat(user, "-Plant Potency: \blue [potency]")
 		return
 	..() // Fallthrough to item/attackby() so that bags can pick seeds up
 
@@ -1090,7 +1090,7 @@
 /obj/item/seeds/kudzuseed/attack_self(mob/user as mob)
 	if(istype(user.loc,/turf/space))
 		return
-	user << "<span class='notice'>You plant the kudzu. You monster.</span>"
+	to_chat(user, span("notice", "You plant the kudzu. You monster."))
 	new /obj/effect/spacevine_controller(user.loc)
 	qdel(src)
 

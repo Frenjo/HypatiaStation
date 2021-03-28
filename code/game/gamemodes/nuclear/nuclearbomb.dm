@@ -26,7 +26,6 @@ var/bomb_set
 	use_power = 0
 
 
-
 /obj/machinery/nuclearbomb/New()
 	..()
 	r_code = "[rand(10000, 99999.0)]"//Creates a random code upon object spawn.
@@ -47,22 +46,22 @@ var/bomb_set
 	w -= src.safety_wire
 
 /obj/machinery/nuclearbomb/process()
-	if (src.timing)
+	if(src.timing)
 		bomb_set = 1 //So long as there is one nuke timing, it means one nuke is armed.
 		src.timeleft--
-		if (src.timeleft <= 0)
+		if(src.timeleft <= 0)
 			explode()
 		for(var/mob/M in viewers(1, src))
-			if ((M.client && M.machine == src))
+			if((M.client && M.machine == src))
 				src.attack_hand(M)
 	return
 
 /obj/machinery/nuclearbomb/attackby(obj/item/weapon/O as obj, mob/user as mob)
 
-	if (istype(O, /obj/item/weapon/screwdriver))
+	if(istype(O, /obj/item/weapon/screwdriver))
 		src.add_fingerprint(user)
-		if (src.auth)
-			if (src.opened == 0)
+		if(src.auth)
+			if(src.opened == 0)
 				src.opened = 1
 				overlays += image(icon, "npanel_open")
 				user << "You unscrew the control panel of [src]."
@@ -72,92 +71,95 @@ var/bomb_set
 				overlays -= image(icon, "npanel_open")
 				user << "You screw the control panel of [src] back on."
 		else
-			if (src.opened == 0)
+			if(src.opened == 0)
 				user << "The [src] emits a buzzing noise, the panel staying locked in."
-			if (src.opened == 1)
+			if(src.opened == 1)
 				src.opened = 0
 				overlays -= image(icon, "npanel_open")
 				user << "You screw the control panel of [src] back on."
 			flick("nuclearbombc", src)
 
 		return
-	if (istype(O, /obj/item/weapon/wirecutters) || istype(O, /obj/item/device/multitool))
-		if (src.opened == 1)
+	if(istype(O, /obj/item/weapon/wirecutters) || istype(O, /obj/item/device/multitool))
+		if(src.opened == 1)
 			nukehack_win(user)
 		return
 
-	if (src.extended)
-		if (istype(O, /obj/item/weapon/disk/nuclear))
+	if(src.extended)
+		if(istype(O, /obj/item/weapon/disk/nuclear))
 			usr.drop_item()
 			O.loc = src
 			src.auth = O
 			src.add_fingerprint(user)
 			return
 
-	if (src.anchored)
+	if(src.anchored)
 		switch(removal_stage)
 			if(0)
-				if(istype(O,/obj/item/weapon/weldingtool))
-
+				if(istype(O, /obj/item/weapon/weldingtool))
 					var/obj/item/weapon/weldingtool/WT = O
-					if(!WT.isOn()) return
-					if (WT.get_fuel() < 5) // uses up 5 fuel.
-						user << "\red You need more fuel to complete this task."
+					if(!WT.isOn())
+						return
+					if(WT.get_fuel() < 5) // uses up 5 fuel.
+						to_chat(user, span("warning", "You need more fuel to complete this task."))
 						return
 
 					user.visible_message("[user] starts cutting loose the anchoring bolt covers on [src].", "You start cutting loose the anchoring bolt covers with [O]...")
 
-					if(do_after(user,40))
-						if(!src || !user || !WT.remove_fuel(5, user)) return
+					if(do_after(user, 40))
+						if(!src || !user || !WT.remove_fuel(5, user))
+							return
 						user.visible_message("[user] cuts through the bolt covers on [src].", "You cut through the bolt cover.")
 						removal_stage = 1
 				return
 
 			if(1)
-				if(istype(O,/obj/item/weapon/crowbar))
+				if(istype(O, /obj/item/weapon/crowbar))
 					user.visible_message("[user] starts forcing open the bolt covers on [src].", "You start forcing open the anchoring bolt covers with [O]...")
 
-					if(do_after(user,15))
-						if(!src || !user) return
+					if(do_after(user, 15))
+						if(!src || !user)
+							return
 						user.visible_message("[user] forces open the bolt covers on [src].", "You force open the bolt covers.")
 						removal_stage = 2
 				return
 
 			if(2)
-				if(istype(O,/obj/item/weapon/weldingtool))
-
+				if(istype(O, /obj/item/weapon/weldingtool))
 					var/obj/item/weapon/weldingtool/WT = O
-					if(!WT.isOn()) return
-					if (WT.get_fuel() < 5) // uses up 5 fuel.
-						user << "\red You need more fuel to complete this task."
+					if(!WT.isOn())
+						return
+					if(WT.get_fuel() < 5) // uses up 5 fuel.
+						to_chat(user, span("warning", "You need more fuel to complete this task."))
 						return
 
 					user.visible_message("[user] starts cutting apart the anchoring system sealant on [src].", "You start cutting apart the anchoring system's sealant with [O]...")
 
-					if(do_after(user,40))
-						if(!src || !user || !WT.remove_fuel(5, user)) return
+					if(do_after(user, 40))
+						if(!src || !user || !WT.remove_fuel(5, user))
+							return
 						user.visible_message("[user] cuts apart the anchoring system sealant on [src].", "You cut apart the anchoring system's sealant.")
 						removal_stage = 3
 				return
 
 			if(3)
-				if(istype(O,/obj/item/weapon/wrench))
-
+				if(istype(O, /obj/item/weapon/wrench))
 					user.visible_message("[user] begins unwrenching the anchoring bolts on [src].", "You begin unwrenching the anchoring bolts...")
 
-					if(do_after(user,50))
-						if(!src || !user) return
+					if(do_after(user, 50))
+						if(!src || !user)
+							return
 						user.visible_message("[user] unwrenches the anchoring bolts on [src].", "You unwrench the anchoring bolts.")
 						removal_stage = 4
 				return
 
 			if(4)
-				if(istype(O,/obj/item/weapon/crowbar))
-
+				if(istype(O, /obj/item/weapon/crowbar))
 					user.visible_message("[user] begins lifting [src] off of the anchors.", "You begin lifting the device off the anchors...")
 
-					if(do_after(user,80))
-						if(!src || !user) return
+					if(do_after(user, 80))
+						if(!src || !user)
+							return
 						user.visible_message("[user] crowbars [src] off of the anchors. It can now be moved.", "You jam the crowbar under the nuclear device and lift it off its anchors. You can now move it!")
 						anchored = 0
 						removal_stage = 5
@@ -168,40 +170,37 @@ var/bomb_set
 	return src.attack_hand(user)
 
 /obj/machinery/nuclearbomb/attack_hand(mob/user as mob)
-	if (src.extended)
-		if (!isHuman(user))
-			usr << "\red You don't have the dexterity to do this!"
+	if(src.extended)
+		if(!isHuman(user))
+			to_chat(user, span("warning", "You don't have the dexterity to do this!"))
 			return 1
 
-		if (!isHuman(user))
-			usr << "\red You don't have the dexterity to do this!"
-			return 1
 		user.set_machine(src)
 		var/dat = text("<TT><B>Nuclear Fission Explosive</B><BR>\nAuth. Disk: <A href='?src=\ref[];auth=1'>[]</A><HR>", src, (src.auth ? "++++++++++" : "----------"))
-		if (src.auth)
-			if (src.yes_code)
+		if(src.auth)
+			if(src.yes_code)
 				dat += text("\n<B>Status</B>: []-[]<BR>\n<B>Timer</B>: []<BR>\n<BR>\nTimer: [] <A href='?src=\ref[];timer=1'>Toggle</A><BR>\nTime: <A href='?src=\ref[];time=-10'>-</A> <A href='?src=\ref[];time=-1'>-</A> [] <A href='?src=\ref[];time=1'>+</A> <A href='?src=\ref[];time=10'>+</A><BR>\n<BR>\nSafety: [] <A href='?src=\ref[];safety=1'>Toggle</A><BR>\nAnchor: [] <A href='?src=\ref[];anchor=1'>Toggle</A><BR>\n", (src.timing ? "Func/Set" : "Functional"), (src.safety ? "Safe" : "Engaged"), src.timeleft, (src.timing ? "On" : "Off"), src, src, src, src.timeleft, src, src, (src.safety ? "On" : "Off"), src, (src.anchored ? "Engaged" : "Off"), src)
 			else
 				dat += text("\n<B>Status</B>: Auth. S2-[]<BR>\n<B>Timer</B>: []<BR>\n<BR>\nTimer: [] Toggle<BR>\nTime: - - [] + +<BR>\n<BR>\n[] Safety: Toggle<BR>\nAnchor: [] Toggle<BR>\n", (src.safety ? "Safe" : "Engaged"), src.timeleft, (src.timing ? "On" : "Off"), src.timeleft, (src.safety ? "On" : "Off"), (src.anchored ? "Engaged" : "Off"))
 		else
-			if (src.timing)
+			if(src.timing)
 				dat += text("\n<B>Status</B>: Set-[]<BR>\n<B>Timer</B>: []<BR>\n<BR>\nTimer: [] Toggle<BR>\nTime: - - [] + +<BR>\n<BR>\nSafety: [] Toggle<BR>\nAnchor: [] Toggle<BR>\n", (src.safety ? "Safe" : "Engaged"), src.timeleft, (src.timing ? "On" : "Off"), src.timeleft, (src.safety ? "On" : "Off"), (src.anchored ? "Engaged" : "Off"))
 			else
 				dat += text("\n<B>Status</B>: Auth. S1-[]<BR>\n<B>Timer</B>: []<BR>\n<BR>\nTimer: [] Toggle<BR>\nTime: - - [] + +<BR>\n<BR>\nSafety: [] Toggle<BR>\nAnchor: [] Toggle<BR>\n", (src.safety ? "Safe" : "Engaged"), src.timeleft, (src.timing ? "On" : "Off"), src.timeleft, (src.safety ? "On" : "Off"), (src.anchored ? "Engaged" : "Off"))
 		var/message = "AUTH"
-		if (src.auth)
+		if(src.auth)
 			message = text("[]", src.code)
-			if (src.yes_code)
+			if(src.yes_code)
 				message = "*****"
 		dat += text("<HR>\n>[]<BR>\n<A href='?src=\ref[];type=1'>1</A>-<A href='?src=\ref[];type=2'>2</A>-<A href='?src=\ref[];type=3'>3</A><BR>\n<A href='?src=\ref[];type=4'>4</A>-<A href='?src=\ref[];type=5'>5</A>-<A href='?src=\ref[];type=6'>6</A><BR>\n<A href='?src=\ref[];type=7'>7</A>-<A href='?src=\ref[];type=8'>8</A>-<A href='?src=\ref[];type=9'>9</A><BR>\n<A href='?src=\ref[];type=R'>R</A>-<A href='?src=\ref[];type=0'>0</A>-<A href='?src=\ref[];type=E'>E</A><BR>\n</TT>", message, src, src, src, src, src, src, src, src, src, src, src, src)
 		user << browse(dat, "window=nuclearbomb;size=300x400")
 		onclose(user, "nuclearbomb")
-	else if (src.deployable)
+	else if(src.deployable)
 		if(removal_stage < 5)
 			src.anchored = 1
-			visible_message("\red With a steely snap, bolts slide out of [src] and anchor it to the flooring!")
+			visible_message(span("warning", "With a steely snap, bolts slide out of [src] and anchor it to the flooring!"))
 		else
-			visible_message("\red \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.")
+			visible_message(span("warning", "\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 		if(!src.lighthack)
 			flick("nuclearbombc", src)
 			src.icon_state = "nuclearbomb1"
@@ -224,17 +223,17 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 	set name = "Make Deployable"
 	set src in oview(1)
 
-	if (!usr.canmove || usr.stat || usr.restrained())
+	if(!usr.canmove || usr.stat || usr.restrained())
 		return
-	if (!isHuman(usr))
-		usr << "\red You don't have the dexterity to do this!"
+	if(!isHuman(usr))
+		to_chat(usr, span("warning", "You don't have the dexterity to do this!"))
 		return 1
 
-	if (src.deployable)
-		usr << "\red You close several panels to make [src] undeployable."
+	if(src.deployable)
+		to_chat(usr, span("warning", "You close several panels to make [src] undeployable."))
 		src.deployable = 0
 	else
-		usr << "\red You adjust some panels to make [src] deployable."
+		to_chat(usr, span("warning", "You adjust some panels to make [src] deployable."))
 		src.deployable = 1
 	return
 

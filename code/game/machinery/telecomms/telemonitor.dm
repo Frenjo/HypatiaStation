@@ -140,7 +140,7 @@
 					A.anchored = 1
 					qdel(src)
 				else
-					user << "\blue You disconnect the monitor."
+					to_chat(user, span("info", "You disconnect the monitor."))
 					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 					var/obj/item/weapon/circuitboard/comm_monitor/M = new /obj/item/weapon/circuitboard/comm_monitor( A )
 					for (var/obj/C in src)

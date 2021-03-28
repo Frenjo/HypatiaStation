@@ -109,11 +109,11 @@
 				C.loc = src.loc
 			if (src.stat & BROKEN)
 				user << "\blue The broken glass falls out."
-				new /obj/item/weapon/shard( src.loc )
+				new /obj/item/weapon/shard(src.loc)
 				A.state = 3
 				A.icon_state = "3"
 			else
-				user << "\blue You disconnect the monitor."
+				to_chat(user, span("info", "You disconnect the monitor."))
 				A.state = 4
 				A.icon_state = "4"
 			qdel(src)

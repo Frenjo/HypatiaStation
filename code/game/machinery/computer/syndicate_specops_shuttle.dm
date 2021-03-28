@@ -197,7 +197,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 
 /obj/machinery/computer/syndicate_elite_shuttle/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		user << "\red Access Denied."
+		to_chat(user, span("warning", "Access denied."))
 		return
 
 //	if (sent_syndicate_strike_team == 0)

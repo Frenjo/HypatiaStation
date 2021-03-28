@@ -215,10 +215,10 @@ its easier to just keep the beam vertical.
 			f_name = "a "
 		f_name += "<span class='danger'>blood-stained</span> [name]!"
 
-	user << "\icon[src] That's [f_name]"
+	to_chat(user, "\icon[src] That's [f_name]")
 
 	if(desc)
-		user << desc
+		to_chat(user, desc)
 
 	return distance == -1 || (get_dist(src, user) <= distance)
 
@@ -243,18 +243,20 @@ its easier to just keep the beam vertical.
 	return
 
 /atom/proc/add_hiddenprint(mob/living/M as mob)
-	if(isnull(M)) return
-	if(isnull(M.key)) return
-	if (isHuman(M))
+	if(isnull(M))
+		return
+	if(isnull(M.key))
+		return
+	if(isHuman(M))
 		var/mob/living/carbon/human/H = M
-		if (!istype(H.dna, /datum/dna))
+		if(!istype(H.dna, /datum/dna))
 			return 0
-		if (H.gloves)
+		if(H.gloves)
 			if(src.fingerprintslast != H.key)
 				src.fingerprintshidden += text("\[[time_stamp()]\] (Wearing gloves). Real name: [], Key: []",H.real_name, H.key)
 				src.fingerprintslast = H.key
 			return 0
-		if (!( src.fingerprints ))
+		if(!(src.fingerprints))
 			if(src.fingerprintslast != H.key)
 				src.fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []",H.real_name, H.key)
 				src.fingerprintslast = H.key
@@ -266,9 +268,12 @@ its easier to just keep the beam vertical.
 	return
 
 /atom/proc/add_fingerprint(mob/living/M as mob)
-	if(isnull(M)) return
-	if(isAI(M)) return
-	if(isnull(M.key)) return
+	if(isnull(M))
+		return
+	if(isAI(M))
+		return
+	if(isnull(M.key))
+		return
 	if(isHuman(M))
 		//Add the list if it does not exist.
 		if(!fingerprintshidden)

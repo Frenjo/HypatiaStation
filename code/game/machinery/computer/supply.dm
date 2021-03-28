@@ -246,7 +246,7 @@
 
 /obj/machinery/computer/supplycomp/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		user << "\red Access Denied."
+		to_chat(user, span("warning", "Access denied."))
 		return
 
 	if(..())

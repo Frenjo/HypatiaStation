@@ -24,33 +24,33 @@ Also, you never added distance checking after target is selected. I've went ahea
 */
 /obj/effect/proc_holder/spell/targeted/mind_transfer/cast(list/targets,mob/user = usr)
 	if(!targets.len)
-		user << "No mind found."
+		to_chat(user, "No mind found.")
 		return
 
 	if(targets.len > 1)
-		user << "Too many minds! You're not a hive damnit!"//Whaa...aat?
+		to_chat(user, "Too many minds! You're not a hive damnit!")//Whaa...aat?
 		return
 
 	var/mob/living/target = targets[1]
 
 	if(!(target in oview(range)))//If they are not in overview after selection. Do note that !() is necessary for in to work because ! takes precedence over it.
-		user << "They are too far away!"
+		to_chat(user, "They are too far away!")
 		return
 
 	if(!(target.type in compatible_mobs))
-		user << "Their mind isn't compatible with yours."
+		to_chat(user, "Their mind isn't compatible with yours.")
 		return
 
 	if(target.stat == DEAD)
-		user << "You didn't study necromancy back at the Space Wizard Federation academy."
+		to_chat(user, "You didn't study necromancy back at the Space Wizard Federation academy.")
 		return
 
 	if(!target.key || !target.mind)
-		user << "They appear to be catatonic. Not even magic can affect their vacant mind."
+		to_chat(user, "They appear to be catatonic. Not even magic can affect their vacant mind.")
 		return
 
 	if(target.mind.special_role in protected_roles)
-		user << "Their mind is resisting your spell."
+		to_chat(user, "Their mind is resisting your spell.")
 		return
 
 	var/mob/living/victim = target//The target of the spell whos body will be transferred to.
@@ -63,12 +63,12 @@ Also, you never added distance checking after target is selected. I've went ahea
 	checked_spells -= m_transfer //Remove Mind Transfer from the list.
 
 	if(caster.spell_list.len)//If they have any spells left over after mind transfer is taken out. If they don't, we don't need this.
-		for(var/i=spell_loss_amount,(i>0&&checked_spells.len),i--)//While spell loss amount is greater than zero and checked_spells has spells in it, run this proc.
-			for(var/j=checked_spells.len,(j>0&&checked_spells.len),j--)//While the spell list to check is greater than zero and has spells in it, run this proc.
+		for(var/i = spell_loss_amount, (i > 0 && checked_spells.len), i--)//While spell loss amount is greater than zero and checked_spells has spells in it, run this proc.
+			for(var/j = checked_spells.len, (j > 0 && checked_spells.len), j--)//While the spell list to check is greater than zero and has spells in it, run this proc.
 				if(prob(base_spell_loss_chance))
 					checked_spells -= pick(checked_spells)//Pick a random spell to remove.
 					spawn(msg_wait)
-						victim << "The mind transfer has robbed you of a spell."
+						to_chat(victim, "The mind transfer has robbed you of a spell.")
 					break//Spell lost. Break loop, going back to the previous for() statement.
 				else//Or keep checking, adding spell chance modifier to increase chance of losing a spell.
 					base_spell_loss_chance += spell_loss_chance_modifier
@@ -111,4 +111,4 @@ Also, you never added distance checking after target is selected. I've went ahea
 
 	//After a certain amount of time the victim gets a message about being in a different body.
 	spawn(msg_wait)
-		caster << "\red You feel woozy and lightheaded. <b>Your body doesn't seem like your own.</b>"
+		caster << "<span class='warning'>You feel woozy and lightheaded.</span> <span class='danger'>Your body doesn't seem like your own.</span>"

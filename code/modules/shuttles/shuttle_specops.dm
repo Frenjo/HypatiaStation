@@ -8,7 +8,7 @@
 	req_access = list(access_cent_specops)
 
 /obj/machinery/computer/shuttle_control/specops/attack_ai(user as mob)
-	user << "\red Access Denied."
+	to_chat(user, span("warning", "Access denied."))
 	return 1
 
 //for shuttles that may use a different docking port at each location

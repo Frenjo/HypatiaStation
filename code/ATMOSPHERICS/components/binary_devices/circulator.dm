@@ -22,7 +22,7 @@
 
 /obj/machinery/atmospherics/binary/circulator/proc/return_transfer_air()
 	var/datum/gas_mixture/removed
-	if(anchored && !(stat&BROKEN) )
+	if(anchored && !(stat & BROKEN))
 		var/input_starting_pressure = air1.return_pressure()
 		var/output_starting_pressure = air2.return_pressure()
 		last_pressure_delta = max(input_starting_pressure - output_starting_pressure + 10, 0)
@@ -73,7 +73,7 @@
 /obj/machinery/atmospherics/binary/circulator/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
 		anchored = !anchored
-		user << "\blue You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."
+		to_chat(user, span("info", "You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."))
 
 		if(anchored)
 			if(dir & (NORTH|SOUTH))
@@ -83,10 +83,10 @@
 
 			initialize()
 			build_network()
-			if (node1)
+			if(node1)
 				node1.initialize()
 				node1.build_network()
-			if (node2)
+			if(node2)
 				node2.initialize()
 				node2.build_network()
 		else
@@ -108,7 +108,7 @@
 	set name = "Rotate Circulator (Clockwise)"
 	set src in view(1)
 
-	if (usr.stat || usr.restrained() || anchored)
+	if(usr.stat || usr.restrained() || anchored)
 		return
 
 	src.dir = turn(src.dir, 90)

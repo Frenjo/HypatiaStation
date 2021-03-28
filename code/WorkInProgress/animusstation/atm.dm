@@ -170,7 +170,7 @@ log transactions
 
 /obj/item/weapon/card/id/proc/checkaccess(p,var/mob/user)
 	if(p == pin)
-		user << "\green Access granted"
+		user << "\green Access granted."
 		return 1
-	user << "\red Access denied"
+	to_chat(user, span("warning", "Access denied."))
 	return 0

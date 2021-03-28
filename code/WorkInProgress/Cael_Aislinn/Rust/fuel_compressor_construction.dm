@@ -88,7 +88,7 @@
 				user << "You [ locked ? "lock" : "unlock"] the compressor interface."
 				update_icon()
 			else
-				user << "\red Access denied."
+				to_chat(user, span("warning", "Access denied."))
 		return
 
 	else if (istype(W, /obj/item/weapon/card/emag) && !emagged)		// trying to unlock with an emag card

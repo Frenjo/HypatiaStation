@@ -170,7 +170,7 @@
 	if(isHuman(user) && !user.stat && !user.restrained())
 		armed = !armed
 		icon_state = "beartrap[armed]"
-		user << "<span class='notice'>[src] is now [armed ? "armed" : "disarmed"]</span>"
+		to_chat(user, span("notice", "[src] is now [armed ? "armed" : "disarmed"]."))
 
 /obj/item/weapon/legcuffs/beartrap/Crossed(AM as mob|obj)
 	if(armed)
@@ -182,12 +182,12 @@
 					H.legcuffed = src
 					src.loc = H
 					H.update_inv_legcuffed()
-					H << "\red <B>You step on \the [src]!</B>"
+					to_chat(H, span("danger", "You step on \the [src]!"))
 					feedback_add_details("handcuffs","B") //Yes, I know they're legcuffs. Don't change this, no need for an extra variable. The "B" is used to tell them apart.
 					for(var/mob/O in viewers(H, null))
 						if(O == H)
 							continue
-						O.show_message("\red <B>[H] steps on \the [src].</B>", 1)
+						O.show_message(span("danger", "[H] steps on \the [src]."), 1)
 		if(isAnimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
 			armed = 0
 			var/mob/living/simple_animal/SA = AM

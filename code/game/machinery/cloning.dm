@@ -288,26 +288,26 @@
 
 //Let's unlock this early I guess.  Might be too early, needs tweaking.
 /obj/machinery/clonepod/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
-		if (!src.check_access(W))
-			user << "\red Access Denied."
+	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+		if(!src.check_access(W))
+			to_chat(user, span("warning", "Access denied."))
 			return
-		if ((!src.locked) || (isnull(src.occupant)))
+		if((!src.locked) || (isnull(src.occupant)))
 			return
-		if ((src.occupant.health < -20) && (src.occupant.stat != 2))
-			user << "\red Access Refused."
+		if((src.occupant.health < -20) && (src.occupant.stat != 2))
+			to_chat(user, span("warning", "Access refused."))
 			return
 		else
 			src.locked = 0
 			user << "System unlocked."
-	else if (istype(W, /obj/item/weapon/card/emag))
-		if (isnull(src.occupant))
+	else if(istype(W, /obj/item/weapon/card/emag))
+		if(isnull(src.occupant))
 			return
 		user << "You force an emergency ejection."
 		src.locked = 0
 		src.go_out()
 		return
-	else if (istype(W, /obj/item/cloning/charge))
+	else if(istype(W, /obj/item/cloning/charge))
 		user << "\blue \The [src] processes \the [W]."
 		biomass += 1
 		user.drop_item()

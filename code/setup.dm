@@ -314,7 +314,7 @@ var/MAX_EXPLOSION_RANGE = 14
 
 
 //bitflags for mutations
-	// Extra powers:
+// Extra powers:
 #define SHADOW			(1<<10)	// shadow teleportation (create in/out portals anywhere) (25%)
 #define SCREAM			(1<<11)	// supersonic screaming (25%)
 #define EXPLOSIVE		(1<<12)	// exploding on-demand (15%)
@@ -334,7 +334,7 @@ var/MAX_EXPLOSION_RANGE = 14
 #define STRUCDNASIZE 27
 #define UNIDNASIZE 13
 
-	// Generic mutations:
+// Generic mutations:
 #define	TK				1
 #define COLD_RESISTANCE	2
 #define XRAY			3
@@ -345,7 +345,7 @@ var/MAX_EXPLOSION_RANGE = 14
 #define NOCLONE			8
 
 
-	// Extra powers:
+// Extra powers:
 #define LASER			9 	// harm intent - click anywhere to shoot lasers from eyes
 #define HEAL			10 	// healing people with hands
 #define SHADOW			11 	// shadow teleportation (create in/out portals anywhere) (25%)
@@ -359,7 +359,7 @@ var/MAX_EXPLOSION_RANGE = 14
 #define SHOCKWAVE		19 	// attack a nearby tile and cause a massive shockwave, knocking most people on their asses (25%)
 #define ELECTRICITY		20 	// ability to shoot electric attacks (15%)
 
-	//2spooky
+//2spooky
 #define SKELETON 29
 #define PLANT 30
 
@@ -824,21 +824,6 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define INFECTION_LEVEL_ONE		100
 #define INFECTION_LEVEL_TWO		500
 #define INFECTION_LEVEL_THREE	1000
-
-// new lighting
-//#define CLAMP01(x) max(0, min(1, x))
-#define CLAMP02(x, y, z) 	(x <= y ? y : (x >= z ? z : x))
-
-#define CLAMP01(x) 		(Clamp(x, 0, 1))
-
-#define FOR_DVIEW(type, range, center, invis_flags) \
-	dview_mob.loc = center; \
-	dview_mob.see_invisible = invis_flags; \
-	for(type in view(range, dview_mob))
-#define END_FOR_DVIEW dview_mob.loc = null
-
-// XGM stuff
-#define QUANTIZE(variable)		(round(variable, 0.0001))
 
 /*
 	These are used Bump() code for living mobs, in the mob_bump_flag, mob_swap_flags, and mob_push_flags vars to determine whom can bump/swap with whom.

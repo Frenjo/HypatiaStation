@@ -966,11 +966,10 @@ table tr:first-child th:first-child { border: none;}
 	return output
 
 /obj/machinery/alarm/Topic(href, href_list)
-
 	if(href_list["rcon"])
 		rcon_setting = text2num(href_list["rcon"])
 
-	if ( (get_dist(src, usr) > 1 ))
+	if((get_dist(src, usr) > 1 ))
 		if (!istype(usr, /mob/living/silicon))
 			usr.machine = null
 			usr << browse(null, "window=air_alarm")
@@ -1128,30 +1127,30 @@ table tr:first-child th:first-child { border: none;}
 				update_icon()
 				return
 
-			if (wiresexposed && ((istype(W, /obj/item/device/multitool) || istype(W, /obj/item/weapon/wirecutters))))
+			if(wiresexposed && ((istype(W, /obj/item/device/multitool) || istype(W, /obj/item/weapon/wirecutters))))
 				return attack_hand(user)
 
-			if (istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
+			if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
 				if(stat & (NOPOWER|BROKEN))
 					user << "It does nothing"
 					return
 				else
 					if(allowed(usr) && !isWireCut(AALARM_WIRE_IDSCAN))
 						locked = !locked
-						user << "\blue You [ locked ? "lock" : "unlock"] the Air Alarm interface."
+						to_chat(user, span("info", "You [ locked ? "lock" : "unlock"] the Air Alarm interface."))
 						updateUsrDialog()
 					else
-						user << "\red Access denied."
+						to_chat(user, span("warning", "Access denied."))
 			return
 
 		if(1)
 			if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/coil = W
 				if(coil.amount < 5)
-					user << "You need more cable for this!"
+					to_chat(user, "You need more cable for this!")
 					return
 
-				user << "You wire \the [src]!"
+				to_chat(user, "You wire \the [src]!")
 				coil.use(5)
 
 				buildstage = 2
@@ -1160,10 +1159,10 @@ table tr:first-child th:first-child { border: none;}
 				return
 
 			else if(istype(W, /obj/item/weapon/crowbar))
-				user << "You start prying out the circuit."
+				to_chat(user, "You start prying out the circuit.")
 				playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
-				if(do_after(user,20))
-					user << "You pry out the circuit!"
+				if(do_after(user, 20))
+					to_chat(user, "You pry out the circuit!")
 					var/obj/item/weapon/airalarm_electronics/circuit = new /obj/item/weapon/airalarm_electronics()
 					circuit.loc = user.loc
 					buildstage = 0
@@ -1171,14 +1170,14 @@ table tr:first-child th:first-child { border: none;}
 				return
 		if(0)
 			if(istype(W, /obj/item/weapon/airalarm_electronics))
-				user << "You insert the circuit!"
+				to_chat(user, "You insert the circuit!")
 				qdel(W)
 				buildstage = 1
 				update_icon()
 				return
 
 			else if(istype(W, /obj/item/weapon/wrench))
-				user << "You remove the fire alarm assembly from the wall!"
+				to_chat(user, "You remove the fire alarm assembly from the wall!")
 				var/obj/item/alarm_frame/frame = new /obj/item/alarm_frame()
 				frame.loc = user.loc
 				playsound(src, 'sound/items/Ratchet.ogg', 50, 1)

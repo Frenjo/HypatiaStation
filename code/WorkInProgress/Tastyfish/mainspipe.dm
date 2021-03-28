@@ -646,7 +646,7 @@ obj/machinery/atmospherics/mains_pipe/valve
 
 		attack_hand(mob/user as mob)
 			if(!src.allowed(user))
-				user << "\red Access denied."
+				to_chat(user, span("warning", "Access denied."))
 				return
 			..()
 

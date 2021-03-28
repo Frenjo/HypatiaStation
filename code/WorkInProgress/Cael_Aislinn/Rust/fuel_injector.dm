@@ -103,7 +103,7 @@
 			src.locked = !src.locked
 			user << "The controls are now [src.locked ? "locked." : "unlocked."]"
 		else
-			user << "\red Access denied."
+			to_chat(user, span("warning", "Access denied."))
 		return
 
 	if(istype(W, /obj/item/weapon/card/emag) && !emagged)

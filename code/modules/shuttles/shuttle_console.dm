@@ -16,7 +16,7 @@
 		return
 	//src.add_fingerprint(user)	//shouldn't need fingerprints just for looking at it.
 	if(!allowed(user))
-		user << "\red Access Denied."
+		to_chat(user, span("warning", "Access denied."))
 		return 1
 
 	ui_interact(user)

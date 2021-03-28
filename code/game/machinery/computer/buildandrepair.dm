@@ -310,7 +310,7 @@
 			locked = !locked
 			user << "\blue You [locked ? "" : "un"]lock the circuit controls."
 		else
-			user << "\red Access denied."
+			to_chat(user, span("warning", "Access denied."))
 	else if(istype(I,/obj/item/device/multitool))
 		if(locked)
 			user << "\red Circuit controls are locked."

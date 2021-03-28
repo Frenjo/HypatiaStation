@@ -120,7 +120,7 @@
 /obj/machinery/dna_scannernew/attackby(var/obj/item/weapon/item as obj, var/mob/user as mob)
 	if(istype(item, /obj/item/weapon/reagent_containers/glass))
 		if(beaker)
-			user << "\red A beaker is already loaded into the machine."
+			to_chat(user, span("warning", "A beaker is already loaded into the machine."))
 			return
 
 		beaker = item
@@ -131,13 +131,13 @@
 	else if (!istype(item, /obj/item/weapon/grab))
 		return
 	var/obj/item/weapon/grab/G = item
-	if (!ismob(G.affecting))
+	if(!ismob(G.affecting))
 		return
-	if (src.occupant)
-		user << "\blue <B>The scanner is already occupied!</B>"
+	if(src.occupant)
+		to_chat(user, span("notice", "The scanner is already occupied!"))
 		return
-	if (G.affecting.abiotic())
-		user << "\blue <B>Subject cannot have abiotic items on.</B>"
+	if(G.affecting.abiotic())
+		to_chat(user, span("notice", "Subject cannot have abiotic items on."))
 		return
 	put_in(G.affecting)
 	src.add_fingerprint(user)
@@ -166,9 +166,9 @@
 	return
 
 /obj/machinery/dna_scannernew/proc/go_out()
-	if ((!( src.occupant ) || src.locked))
+	if((!(src.occupant) || src.locked))
 		return
-	if (src.occupant.client)
+	if(src.occupant.client)
 		src.occupant.client.eye = src.occupant.client.mob
 		src.occupant.client.perspective = MOB_PERSPECTIVE
 	src.occupant.loc = src.loc

@@ -15,22 +15,22 @@
 
 /obj/effect/proc_holder/spell/targeted/horsemask/cast(list/targets, mob/user = usr)
 	if(!targets.len)
-		user << "<span class='notice'>No target found in range.</span>"
+		to_chat(user, span("notice", "No target found in range."))
 		return
 
 	var/mob/living/carbon/target = targets[1]
 
 	if(!(target.type in compatible_mobs))
-		user << "<span class='notice'>It'd be stupid to curse [target] with a horse's head!</span>"
+		to_chat(user, span("notice", "It'd be stupid to curse [target] with a horse's head!"))
 		return
 
 	if(!(target in oview(range)))//If they are not  in overview after selection.
-		user << "<span class='notice'>They are too far away!</span>"
+		to_chat(user, span("notice", "They are too far away!"))
 		return
 
 	var/obj/item/clothing/mask/horsehead/magic/magichead = new /obj/item/clothing/mask/horsehead/magic
-	target.visible_message(	"<span class='danger'>[target]'s face  lights up in fire, and after the event a horse's head takes its place!</span>", \
-							"<span class='danger'>Your face burns up, and shortly after the fire you realise you have the face of a horse!</span>")
+	target.visible_message(	span("danger", "[target]'s face  lights up in fire, and after the event a horse's head takes its place!"), \
+							span("danger", "Your face burns up, and shortly after the fire you realise you have the face of a horse!"))
 	target.equip_to_slot(magichead, slot_wear_mask)
 
 	flick("e_flash", target.flash)

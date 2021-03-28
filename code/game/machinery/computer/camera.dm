@@ -103,7 +103,7 @@
 					CF.anchored = 1
 					qdel(src)
 				else
-					user << "\blue You disconnect the monitor."
+					to_chat(user, span("info", "You disconnect the monitor."))
 					var/obj/structure/computerframe/CF = new /obj/structure/computerframe( loc )
 					var/obj/item/weapon/circuitboard/security/CB = new /obj/item/weapon/circuitboard/security(CF)
 					CB.network = network

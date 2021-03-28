@@ -188,4 +188,5 @@
 					return
 				var/node/expression/P = ParseParamExpression()
 				stmt.parameters += P
-				if(istype(curToken, /token/symbol) && curToken.value == ",") NextToken()
+				if(istype(curToken, /token/symbol) && curToken.value == ",")
+					NextToken()

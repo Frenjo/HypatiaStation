@@ -45,7 +45,7 @@
 				if (user.machine==src)
 					src.attack_hand(usr)
 		else
-			user << "\red Access denied."
+			to_chat(user, span("warning", "Access denied."))
 			return
 	return
 

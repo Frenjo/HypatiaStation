@@ -69,7 +69,7 @@
 		return
 
 	if(!allowed(user) && (wires & 1))
-		user << "\red Access Denied"
+		to_chat(user, span("warning", "Access denied."))
 		flick("doorctrl-denied",src)
 		return
 
