@@ -26,7 +26,7 @@ Header Section
 	<tr>
 		<td valign='top'>
 			<div align='center'><font size='3'><b>Space Station 13</b></font></div>
-			<p><div align='center'><font size='3'><a href="http://wiki.hypatiastation.net">Wiki</a> | <a href="https://github.com/HypatiaStation/HypatiaStation">Source code</a></font></div></p>
+			<p><div align='center'><font size='3'><a href="http://wiki.hypatiastation.net">Wiki</a> | <a href="https://github.com/Frenjo/HypatiaStation">Source Code</a></font></div></p>
 			<font size='2'>Code licensed under <a href="http://www.gnu.org/licenses/gpl.html">GPLv3</a>. Content licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.<br><br>
 			</td>
 	</tr>
@@ -35,12 +35,21 @@ Header Section
 <table align='center' class="top">
 	<tr>
 		<td valign='top'>
-			<font size='2'><b>Hypatia Code: TwistedAkai, Numbers, KBernges, Askarn, Techy, Marajin</b></font>
-			<font size='2'><b>Hypatia Sprites: Religue, Gerrymouse, If you should be here remind Marajin</b></font>
-			<font size='2'><b>Code:</b> Abi79, Aryn, Cael_Aislinn,Ccomp5950 ,Chinsky, cib, CompactNinja, DopeGhoti, Erthilo, Hawk_v3, Head, Ispil, Lexusjjss, Melonstorm, Miniature, Mloc, NerdyBoy1104, SkyMarshal, Snapshot, Spectre, Strumpetplaya, Sunfall, Tastyfish, Uristqwerty<br></font>
-			<font size='2'><b>Sprites:</b> Apple_Master, Arcalane, Chinsky, CompactNinja, Deus Dactyl, Erthilo, Flashkirby, Miniature, Searif, Xenone, faux<br></font>
-			<font size='2'><b>Sounds:</b> Aryn<br></font>
-			<font size='2'><b>Thanks To:</b> Baystation12, /tg/ station, Goonstation, Animus Station, Daedalus, and original Spacestation 13 devs. Skibiliano for the IRC bot.</font>
+			<font size='2'><b>Updated Code/Porting:</b> Frenjo.<br></font>
+			<font size='2'><b>Updated Sprites:</b> MisterFox.<br></font>
+			<font size='2'><b>Updated Sounds:</b> Serithi.<br></font>
+			<font size='2'><b>Additional Research:</b> Rowtree.<br></font>
+			<font size='2'><b>Technical Advice:</b> Geeves, Neerti, SierraKomodo, MarinaGryphon, Funguss, Loaf.<br></font>
+			<br>
+			<font size='2'><b>Hypatia Code:</b> TwistedAkai, Numbers, KBernges, Askarn, Techy, Marajin.<br></font>
+			<font size='2'><b>Hypatia Sprites:</b> Religue, Gerrymouse.<br></font>
+			<br>
+			<font size='2'><b>Code:</b> Abi79, Aryn, Cael_Aislinn, Ccomp5950, Chinsky, cib, CompactNinja, DopeGhoti, Erthilo, Hawk_v3, Head, Ispil, Lexusjjss, Melonstorm, Miniature, Mloc, NerdyBoy1104, SkyMarshal, Snapshot, Spectre, Strumpetplaya, Sunfall, Tastyfish, Uristqwerty.<br></font>
+			<font size='2'><b>Sprites:</b> Apple_Master, Arcalane, Chinsky, CompactNinja, Deus Dactyl, Erthilo, Flashkirby, Miniature, Searif, Xenone, faux.<br></font>
+			<font size='2'><b>Sounds:</b> Aryn.<br></font>
+			<br>
+			<font size='2'><b>Thanks To:</b> BayStation12, /tg/Station, Goonstation, Animus Station, Daedalus, Heaven's Gate, /vg/Station, ApolloStation, EuropaStation and the NebulaSS13 discord server.<br></font>
+			<font size='2'><b>Special Thanks To:</b> Exadv1 for the original Space Station 13 and Skibiliano for the IRC bot.<br></font>
 		</td>
 	</tr>
 </table>
@@ -59,19 +68,155 @@ should be listed in the changelog upon commit though. Thanks. -->
 <!-- DO NOT REMOVE, MOVE, OR COPY THIS COMMENT! THIS MUST BE THE LAST NON-EMPTY LINE BEFORE THE LOGS #ADDTOCHANGELOGMARKER# -->
 
 <div class='commit sansserif'>
+	<h2 class='date'>20th April 2014 -> 3rd April 2021</h2>
+	<h3 class='author'>Frenjo updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>IMPORTANT: These changes are mostly ported from BayStation12, /tg/Station or various other sources. I only personally authored certain ones, see github for specifics. --Frenjo.</li>
+		<li class='rscadd'>Ports Airlock and Docking Controllers! Airlocks will now cycle manually via button press or automatically if a shuttle docks with them.</li>
+		<li class='rscadd'>Because of the above, most external airlocks now have associated pipe-work and air canisters!</li>
+		<li class='rscadd'>Re-adds the Singularity Engine and associated areas/components!</li>
+		<li class='rscadd'>A new door has been added to Engineering Hard Storage to allow access to the Singularity Engine Hallway.</li>
+		<li class='tweak'>Rearranges Engineering Hard Storage since an extra door just got added at the back.</li>
+		<li class='rscadd'>Adds a Thermo-Electric Generator and burn chamber, for those Atmospheric Technicians who enjoy a little useful pyromania.</li>
+		<li class='rscadd'>A new door has been added to Engineering EVA to allow access to the Thermo-Electric Generator Hallway.</li>
+		<li class='bugfix'>Fixes a lot of grammar issues and various typos that have accumulated over the years.</li>
+		<li class='rscadd'>Re-adds the Prison Station, floating just to the south of Virology and Xenobiology.</li>
+		<li class='tweak'>The Security Prison Wing and Execution Chamber have been abandoned and boarded up due to the reconstruction of the Prison Station.</li>
+		<li class='rscadd'>Adds a customised implementation of background Space Parallax! The background and Space tiles now look much cooler.</li>
+		<li class='rscadd'>Shuttle Transit areas are now also affected by Parallax, having their own unique animation!</li>
+		<li class='tweak'>Rearranges the Arrivals Dock to accommodate the expansion of Docking Controllers and the Arrivals Security Checkpoint.</li>
+		<li class='rscadd'>Re-adds the Clown and Mime jobs!</li>
+		<li class='rscadd'>The Vacant Office in the Arrivals Dock has been removed and replaced with the Clown's and Mime's shared quarters.</li>
+		<li class='rscadd'>Electrical Storms and Ion Storms are now more akin to Radiation Storms.</li>
+		<li class='rscadd'>Radiation Storms, Electrical Storms and Ion Storms now have their own visual effects to indicate if you are exposed to them.</li>
+		<li class='rscadd'>Ports /tg/'s Plasmapeople, who breathe Plasma and require special sealed suits to avoid igniting in the Station's Oxygen atmosphere.</li>
+		<li class='rscadd'>Adds Blue Alert and Yellow Alert as new alert levels.</li>
+		<li class='rscadd'>Adds status display animations for Blue Alert, Yellow Alert, Evacuation Alert, Delta Alert and a mysterious Omega.</li>
+		<li class='tweak'>Massively tweaks mining, adding Adamantine and Mythril ores while reshuffling various probabilities and spawn weights.</li>
+		<li class='tweak'>Updates Computer and Console sprites, along with Guest Pass Terminals.</li>
+		<li class='rscadd'>Re-enables Away Missions, and updates them to be compatible with current code changes.</li>
+		<li class='rscadd'>Ports Mloc's new lighting system, for Lambertian-shaded beautiful-ness.</li>
+		<li class='rscadd'>Dynamic Lighting can now be used on shuttles! Adds lights to most shuttles to account for this.</li>
+		<li class='tweak'>Adds and rearranges various light fixtures to ensure even lighting with the new system.</li>
+		<li class='rscadd'>NSS Hypatia now has it's own unique floor sign! This replaces the old SPACE STATION 13 above the Bridge with a brand new NSS HYPATIA.</li>
+		<li class='tweak'>Unifies multiple sets of Firelocks, Engineering Firelocks, Emergency Shutters, Engineering Emergency Shutters and Windoors for consistency.</li>
+		<li class='rscadd'>Re-adds the Zero-Point Emitter to the Supermatter Engine Room, along with it's associated console. As a placeholder, it currently uses an unused Emitter sound effect.</li>
+		<li class='tweak'>Telecommunications and Research Server equipment now generates the correct amount of heat corresponding to the amount of power it uses.</li>
+		<li class='rscadd'>It can also now be repaired with Nanopaste after taking too much damage.</li>
+		<li class='rscadd'>The Arrivals Shuttle will now function as an Escape Pod in the event of an emergency evacuation, docking at a freshly mapped area of CentComm.</li>
+		<li class='tweak'>Changes the sprites of multiple types of Gas Canister for consistency.</li>
+		<li class='rscadd'>The Engineering Dormitories have been removed and replaced with an expansion and remodel of Atmospherics.</li>
+		<li class='rscadd'>The Incinerator and Thermo-Electric Generator burn chambers now have a direct pipeline to the Atmospherics pure loop, enabling direct pumping of fuel input.</li>
+		<li class='rscadd'>The Security Dormitories have been relocated to a new area north of the Security Office.</li>
+		<li class='rscadd'>The old location of the Security Dormitories is now the Disused Security Dormitories and has been boarded up.</li>
+		<li class='tweak'>Virologist is now an actual job rather than a Medical Doctor alt title! It correspondingly has it's own new alt titles Pathologist and Microbiologist.</li>
+		<li class='rscadd'>Adds Researcher as a new alt title for Scientists.</li>
+		<li class='rscadd'>Adds a new inverted black version of the white shuttle walls.</li>
+		<li class='tweak'>Remaps most shuttles and spacecraft to have consistent wall layouts and colour schemes.</li>
+		<li class='rscadd'>All shuttle or spacecraft windows now have a full-pane window covering their directional variants and grilles.</li>
+		<li class='bugfix'>Fixes shuttle corner walls displaying their base tile weirdly.</li>
+		<li class='rscadd'>Virology and Xenobiology now have their own miniature atmospheric stations, so you can choose whether to vent scrubbed air to space or store it in a canister.</li>
+		<li class='rscadd'>Airlock and Docking Controllers now use NanoUI! This makes things a lot prettier.</li>
+		<li class='rscadd'>Adds a Gas Turbine, Gas Turbine Compressor and SMES unit to the Incinerator. Now you can generate power whilst you indulge your inner pyromaniac.</li>
+		<li class='rscadd'>Gas Turbine Control Computers, Gas Pumps, Volumetric Gas Pumps, SMESs and pAIs now use NanoUI!</li>
+		<li class='bugfix'>IS_SYNTHETIC species such as Machines and Obsedai will no longer be affected by radiation or vomiting.</li>
+		<li class='bugfix'>Additionally, they also now no longer take damage from CLONELOSS or stepping on broken glass.</li>
+		<li class='rscadd'>Ports Mloc's XGM system, meaning gases are now modular and can potentially have their properties changed on-the-fly.</li>
+		<li class='rscadd'>Ports /tg/'s Disabler guns with slightly altered functionality, giving Security another non-lethal option for combat.</li>
+		<li class='bugfix'>Construction steps for Singularity Particle Accelerator components will now use the correct sound effects based on the tool the step requires.</li>
+		<li class='bugfix'>Fixes cable coils being unusable to build machines or computers, this one was pretty gamebreaking.</li>
+		<li class='bugfix'>Fixes most shuttles and spacecraft having incorrect or no plating underneath their engines.</li>
+		<li class='tweak'>Cleans up a bunch of behind-the-scenes code, including mob say and life code, language code, and master controller code.</li>
+		<li class='bugfix'>Somewhat fixes annoying jittery walking and running movements.</li>
+		<li class='rscadd'>Characters will now spawn with a species-specific survival kit, species that do not have a practical survival requirement won't spawn with one at all!</li>
+		<li class='rscadd'>The Bar's sign is now changeable by swiping an ID with the correct access on it.</li>
+		<li class='bugfix'>Body bags can now be placed back into their own box.</li>
+		<li class='bugfix'>Holopads can now hear what is being spoken through them.</li>
+		<li class='rscadd'>Adds Officer Beepsky's two friends, Sergeant-At-Armsky and Officer Pingsky to the Secure Armoury and AI Upload Access respectively.</li>
+		<li class='tweak'>Removes density from Sleeper and Body Scanner Consoles so you can now stand on their tiles, this should de-cramp things a little.</li>
+		<li class='rscadd'>Supermatter, APCs and Light Switches now glow and emit visible light, with colour and brightness depending on their states.</li>
+		<li class='rscadd'>Adds Peanuts and Sugarcane Seeds to the Hydroponics vendor.</li>
+		<li class='bugfix'>Fixes Cyborg HUD modules having incorrect icon states.</li>
+		<li class='bugfix'>Fixes partial fingerprints not working correctly.</li>
+		<li class='bugfix'>Fixes readying up post-roundstart being weird.</li>
+		<li class='bugfix'>Fixes Juggernauts being perma-weakened by ZAS knockdown.</li>
+		<li class='bugfix'>Removes an unusable Magic Missile spell from the Artificer's spell tab.</li>
+		<li class='bugfix'>Fixes failed gamemode votes not undelaying correctly.</li>
+		<li class='rscadd'>Adds new unused satchel sprites to the Research Director, Xenobiologist, Scientist, Botanist, Virologist, Geneticist and Chemist.</li>
+		<li class='tweak'>Roboticists will now once again spawn with black gloves.</li>
+		<li class='rscadd'>Ports five new coloured labcoats in red, green, blue, orange and purple.</li>
+		<li class='tweak'>Radiation Hoods and Gas Masks can now be stored in the suit storage of Radiation Suits.</li>
+		<li class='rscadd'>Buckets now have lids and can be opened and closed.</li>
+		<li class='rscadd'>Ports Charge Cards in addition to Space Cash for ATMs.</li>
+		<li class='bugfix'>Fixes gun firerate being incorrect.</li>
+		<li class='bugfix'>Fixes multiple people being able to enter a transit tube at the same time, and thereby causing a server crash.</li>
+		<li class='bugfix'>Fixes gloves/stungloves getting their fingertips randomly cut off while cutting wires.</li>
+		<li class='bugfix'>Fixes tape recorders printing transcripts with a 'paper-' prefix.</li>
+		<li class='bugfix'>Fixes the Wizard's Horsehead Mask working incorrectly.</li>
+		<li class='bugfix'>Suits and clothing now have the option to hide the tails of species that have them.</li>
+		<li class='bugfix'>Fixes muzzled people being able to talk.</li>
+		<li class='rscadd'>Adds a new radiation first aid kit to make use of an unused set of sprites.</li>
+		<li class='rscadd'>Adds Arithracaridine pills, containing a mixture of Arithrazine and Bicaridine for use in the radiation first aid kits.</li>
+		<li class='rscadd'>Adds Stokaline pills, to act as an emergency ration supply for survival kits.</li>
+		<li class='rscadd'>Clothing can now have accessories attached to it, which will render as an overlay on both the item and in-world.</li>
+		<li class='bugfix'>Fixes the Thermo-Electric Generator not updating pipenet gas amounts correctly, and thereby eating gas for no reason.</li>
+		<li class='rscadd'>Soghun, Tajara and Skrell can now select their base colours using an RGB selection palette.</li>
+		<li class='rscadd'>Ports a set of new Machine (IPC) faces.</li>
+		<li class='bugfix'>Fixes tails being invisible in record photos and on the character setup page.</li>
+		<li class='bugfix'>Shotguns will now play the correct pumping sound when being pumped.</li>
+		<li class='bugfix'>Fixes ghosts being unable to write in blood during cult rounds.</li>
+		<li class='tweak'>Cyborgs and AIs can now understand all standard languages, but only speak some of them.</li>
+		<li class='rscadd'>Wounds and infections now function correctly, watch out for getting damaged!</li>
+		<li class='rscadd'>Ports Suit Cooling Units to reflect Machine temperature refactors, several are located in main EVA Storage.</li>
+		<li class='tweak'>Renames Happy Kitten to Runtime.</li>
+		<li class='rscadd'>Adds Poly the parrot to the Chief Engineer's Office.</li>
+		<li class='rscadd'>Ports a Tajaran-specific version of Sign Language.</li>
+		<li class='rscadd'>You can now climb over tables, racks and crates! If somebody flips or opens it while you're standing on top, you'll fall flat on your face.</li>
+		<li class='rscadd'>Walls and windows will now take damage and melt due to high temperatures, being hit repeatedly by a Hulk or being whacked by a lot of things.</li>
+		<li class='rscadd'>Ports maintenance drones!</li>
+		<li class='bugfix'>Fixes a bunch of bugs related to Away Missions.</li>
+		<li class='bugfix'>Replaces all exterior plating with airless plating, since it's supposed to start airless anyway given it's exposed to space.</li>
+		<li class='rscadd'>Ports emergency exit holosigns to most departments, triggerable by a switch in the respective Head's Office.</li>
+		<li class='rscadd'>Ports a system for rigsuit/spacesuit breaches.</li>
+		<li class='rscadd'>Ports a rigsuit cycling unit, allowing repainting and alteration of rigsuits for different species.</li>
+		<li class='tweak'>Rearranges main EVA Storage and Engineering EVA Storage to accommodate various new suit storage and cycling units.</li>
+		<li class='rscadd'>Space tiles now emit ambient starlight, illuminating nearby tiles for that atmospheric feel.</li>
+		<li class='rscadd'>Remaps the Telecomms Satellite Solar Arrays into functional solar arrays, with associated wiring and SMESs!</li>
+		<li class='bugfix'>Fixes light fixtures being permanently switched off in the Explored Mine area.</li>
+		<li class='rscadd'>Research's Toxins Mixing Chamber now has a cooler unit on the output pipe.</li>
+		<li class='rscadd'>Adds insulated pipe manifolds and 4-way manifold variants!</li>
+		<li class='rscadd'>Adds an unused purple pipe variant, manifold and 4-way manifold, for all of you rainbow atmospherics enthusiasts.</li>
+		<li class='rscadd'>Mobs can now be set on fire and visibly burn! Remember to stop, drop and roll!</li>
+		<li class='tweak'>APCs now actually contain different cells depending on capacity, there is also now a default APC cell variant.</li>
+		<li class='rscadd'>Ports Vox Armalis and their associated items, including a special gun.</li>
+		<li class='rscadd'>Ports more sprites for Tajaran-specific rigsuits!</li>
+		<li class='rscadd'>Diona Nymphs now have their own *chirp emote, with a custom sound.</li>
+		<li class='bugfix'>Fixes compressed matter implants duplicating items and being generally wonky.</li>
+		<li class='rscadd'>Ports Advanced Magboots and gives a pair to the Chief Engineer.</li>
+		<li class='rscadd'>Ports 3-dimensional sound from /tg/, along with ambient sound cleanups and new ambience files.</li>
+		<li class='rscadd'>Sound will now be limited in a vacuum! This includes audible sound as well as typed speech.</li>
+		<li class='rscadd'>Ports inflatable walls and doors, and adds crates of them to Engineering Storage, Emergency Materials Storage and Atmospherics.</li>
+		<li class='rscadd'>Ports the Mining Satchel of Holding, the ore satchel equivalent to the bag of holding.</li>
+		<li class='tweak'>Firing weapons is now restricted by intent, you won't accidentally shoot someone if on help intent.</li>
+		<li class='experiment'>Ports across several versions of BYOND, currently compatible with 513.1542.</li>
+		<li class='rscadd'>A bunch of other things which I've forgotten about, it's been over a year or two of changes in one go, don't judge me.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
 	<h2 class='date'>20th April 2014</h2>
 	<h3 class='author'>Marajin updated:</h3>
 	<ul class='changes bgimages16'>
-		<li class='rcsadd'>The Security Arrivals post has been deleted and turned into a 'Construction Area' until something fits in there.</li>
-		<li class='rcsadd'>A Space Cleaner spray has been added to Security! You can found it in the medical area.</li>
-		<li class='rcsadd'>The Starboard Emergency storage has been turned into a Security post!</li>
-		<li class='rcsadd'>The Chapel doors have been moved to the front of it, leading to the main Hallway.</li>
-		<li class='rcsadd'>Science has got a new Break Room!</li>
-		<li class='rcsadd'>The Engineering Emergency Storage walls have been changed into windows, to make it more visible to Engineers.</li>
+		<li class='rscadd'>The Security Arrivals post has been deleted and turned into a 'Construction Area' until something fits in there.</li>
+		<li class='rscadd'>A Space Cleaner spray has been added to Security! You can found it in the medical area.</li>
+		<li class='rscadd'>The Starboard Emergency storage has been turned into a Security post!</li>
+		<li class='rscadd'>The Chapel doors have been moved to the front of it, leading to the main Hallway.</li>
+		<li class='rscadd'>Science has got a new Break Room!</li>
+		<li class='rscadd'>The Engineering Emergency Storage walls have been changed into windows, to make it more visible to Engineers.</li>
 		<li class='tweak'>The engine's pipes have been moved a bit, to avoid overlapping.</li>
-		<li class='rcsadd'>A new scrubbers emptying system has been added in Engineering.</li>
-		<li class='rcsadd'>CE's office now has some privacy shutters.</li>
-		<li class='rcsadd'>A new engine telescreen now fills the space that was left after deleting the button from the office.</li>
+		<li class='rscadd'>A new scrubbers emptying system has been added in Engineering.</li>
+		<li class='rscadd'>CE's office now has some privacy shutters.</li>
+		<li class='rscadd'>A new engine telescreen now fills the space that was left after deleting the button from the office.</li>
 		<li class='bugfix'>Two cameras were missing on the Engine.</li>
 		<li class='tweak'>Removed the changeling fat reduction sting. Why is this even a thing?</li>
 		<li class='bugfix'>Improve master controller restart and prevent multiple master controllers existing</li>
@@ -79,12 +224,12 @@ should be listed in the changelog upon commit though. Thanks. -->
 		<li class='tweak'>Tweaked atmospherics s'more</li>
 		<li class='bugfix'>Grammar and typo fixes aplenty</li>
 		<li class='bugfix'>Die nasty dupe bug in the autolathe! Die! Mwahahah</li>
-		<li class='rcsadd'>Attacking a seed bed is now treated as an attempt to weed/harvest the plants</li>
+		<li class='rscadd'>Attacking a seed bed is now treated as an attempt to weed/harvest the plants</li>
 		<li class='tweak'>Broken hands now stop you messing with more things, cause your hand is broken dope!</li>
 		<li class='tweak'>Grilles take less damage from a kicking</li>
-		<li class='rcsadd'>pAIs/Recorders/etc. should now hear stuff in a room when hidden in closets/crates.</li>
+		<li class='rscadd'>pAIs/Recorders/etc. should now hear stuff in a room when hidden in closets/crates.</li>
 		<li class='experiment'>Energy bolts don't 'weaken' but they do hurt.. a lot.. like seriously, OW.</li>
-		<li class='rcsadd'>Fix NanoUI verb added to view variables drop down options</li>
+		<li class='rscadd'>Fix NanoUI verb added to view variables drop down options</li>
 		<li class='tweak'>Tofu added to food crate</li>
 		<li class='tweak'>Flask added to party crate</li>
 		<li class='tweak'>Apple, Harebell, Lemon, Orange, grass added to seed crate.</li>
@@ -123,7 +268,7 @@ should be listed in the changelog upon commit though. Thanks. -->
 		<li class='rscadd'>Obsedai species code is extended</li>
 		<li class='bugfix'>Arkovans don't magically get rejuv'd into organic organs and limbs</li>
 		<li class='bugfix'>Arkovans don't spam you with notifications that they have robotic limbs. They're machines, it'd be odd if they didn't.</li>
-		<li class='rcsadd'>The Alden-Saraspova counters are now available in the excavation closets</li>
+		<li class='rscadd'>The Alden-Saraspova counters are now available in the excavation closets</li>
 		<li class='tweak'>New shiny console sprites -- Chi Garnett</li>
 		<li class='bugfix'>Telescopic Baton in-hand sprites -- Kbernges</li>
 		<li class='tweak'>Plasma no longer used up in Dexalin/Clonexadone reactions -- Kbernges</li>
