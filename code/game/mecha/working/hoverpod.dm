@@ -25,17 +25,17 @@
 //Modified phazon code
 /obj/mecha/working/hoverpod/Topic(href, href_list)
 	..()
-	if (href_list["toggle_stabilization"])
+	if(href_list["toggle_stabilization"])
 		stabilization_enabled = !stabilization_enabled
-		send_byjax(src.occupant,"exosuit.browser","stabilization_command","[stabilization_enabled?"Dis":"En"]able thruster stabilization")
-		src.occupant_message("\blue Thruster stabilization [stabilization_enabled? "enabled" : "disabled"].")
+		send_byjax(src.occupant, "exosuit.browser", "stabilization_command", "[stabilization_enabled ? "Dis" : "En"]able thruster stabilization")
+		src.occupant_message("\blue Thruster stabilization [stabilization_enabled ? "enabled" : "disabled"].")
 		return
 
 /obj/mecha/working/hoverpod/get_commands()
 	var/output = {"<div class='wr'>
 						<div class='header'>Special</div>
 						<div class='links'>
-						<a href='?src=\ref[src];toggle_stabilization=1'><span id="stabilization_command">[stabilization_enabled?"Dis":"En"]able thruster stabilization</span></a><br>
+						<a href='?src=\ref[src];toggle_stabilization=1'><span id="stabilization_command">[stabilization_enabled ? "Dis" : "En"]able thruster stabilization</span></a><br>
 						</div>
 						</div>
 						"}
@@ -64,16 +64,14 @@
 /obj/mecha/working/hoverpod/mechstep(direction)
 	var/result = step(src,direction)
 	if(result)
-		playsound(src,'sound/machines/hiss.ogg',40,1)
+		playsound(src,'sound/machines/hiss.ogg', 40, 1)
 	return result
-
 
 /obj/mecha/working/hoverpod/mechsteprand()
 	var/result = step_rand(src)
 	if(result)
-		playsound(src,'sound/machines/hiss.ogg',40,1)
+		playsound(src,'sound/machines/hiss.ogg', 40, 1)
 	return result
-
 
 //Hoverpod variants
 /obj/mecha/working/hoverpod/combatpod
@@ -90,7 +88,6 @@
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive
 	ME.attach(src)
-
 
 /obj/mecha/working/hoverpod/shuttlepod
 	desc = "Who knew a tiny ball could fit three people?"

@@ -23,7 +23,7 @@
 	max_temperature = 65000
 	health = 250
 	lights_power = 8
-	damage_absorption = list("fire"=0.5,"bullet"=0.8,"bomb"=0.5)
+	damage_absorption = list("fire" = 0.5, "bullet" = 0.8, "bomb" = 0.5)
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley/firefighter
 
 /obj/mecha/working/ripley/deathripley
@@ -31,7 +31,7 @@
 	name = "DEATH-RIPLEY"
 	icon_state = "deathripley"
 	step_in = 2
-	opacity=0
+	opacity = 0
 	lights_power = 60
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley/deathripley
 	step_energy_drain = 0
@@ -60,7 +60,7 @@
 	var/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/HC = new /obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp
 	HC.attach(src)
 	for(var/obj/item/mecha_parts/mecha_tracking/B in src.contents)//Deletes the beacon so it can't be found easily
-		qdel (B)
+		qdel(B)
 
 /obj/mecha/working/ripley/Exit(atom/movable/O)
 	if(O in cargo)
@@ -81,8 +81,6 @@
 			src.log_message("Unloaded [O]. Cargo compartment capacity: [cargo_capacity - src.cargo.len]")
 	return
 
-
-
 /obj/mecha/working/ripley/get_stats_part()
 	var/output = ..()
 	output += "<b>Cargo Compartment Contents:</b><div style=\"margin-left: 15px;\">"
@@ -96,7 +94,7 @@
 
 /obj/mecha/working/ripley/Destroy()
 	for(var/mob/M in src)
-		if(M==src.occupant)
+		if(M == src.occupant)
 			continue
 		M.loc = get_turf(src)
 		M.loc.Entered(M)

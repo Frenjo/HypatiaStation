@@ -7,7 +7,7 @@
 	dir_in = 1 //Facing North.
 	health = 400
 	deflect_chance = 20
-	damage_absorption = list("brute"=0.5,"fire"=1.1,"bullet"=0.65,"laser"=0.85,"energy"=0.9,"bomb"=0.8)
+	damage_absorption = list("brute" = 0.5, "fire" = 1.1, "bullet" = 0.65, "laser" = 0.85, "energy" = 0.9, "bomb" = 0.8)
 	max_temperature = 30000
 	infra_luminosity = 8
 	force = 40
@@ -24,7 +24,7 @@
 	return
 */
 
-/obj/mecha/combat/durand/relaymove(mob/user,direction)
+/obj/mecha/combat/durand/relaymove(mob/user, direction)
 	if(defence)
 		if(world.time - last_message > 20)
 			src.occupant_message("<font color='red'>Unable to move while in defence mode</font>")
@@ -32,7 +32,6 @@
 		return 0
 	. = ..()
 	return
-
 
 /obj/mecha/combat/durand/verb/defence_mode()
 	set category = "Exosuit Interface"
@@ -50,7 +49,6 @@
 		src.occupant_message("<font color='red'>You disable [src] defence mode.</font>")
 	src.log_message("Toggled defence mode.")
 	return
-
 
 /obj/mecha/combat/durand/get_stats_part()
 	var/output = ..()
@@ -70,6 +68,6 @@
 
 /obj/mecha/combat/durand/Topic(href, href_list)
 	..()
-	if (href_list["toggle_defence_mode"])
+	if(href_list["toggle_defence_mode"])
 		src.defence_mode()
 	return

@@ -315,6 +315,8 @@ var/MAX_EXPLOSION_RANGE = 14
 
 //bitflags for mutations
 // Extra powers:
+#define LASER			(1<<8) 	// harm intent - click anywhere to shoot lasers from eyes
+#define HEAL			(1<<9) 	// healing people with hands
 #define SHADOW			(1<<10)	// shadow teleportation (create in/out portals anywhere) (25%)
 #define SCREAM			(1<<11)	// supersonic screaming (25%)
 #define EXPLOSIVE		(1<<12)	// exploding on-demand (15%)
@@ -325,7 +327,6 @@ var/MAX_EXPLOSION_RANGE = 14
 #define SHIELD			(1<<17)	// shielding from all projectile attacks (30%)
 #define SHOCKWAVE		(1<<18)	// attack a nearby tile and cause a massive shockwave, knocking most people on their asses (25%)
 #define ELECTRICITY		(1<<19)	// ability to shoot electric attacks (15%)
-
 
 // String identifiers for associative list lookup
 
@@ -343,21 +344,6 @@ var/MAX_EXPLOSION_RANGE = 14
 #define FAT				6
 #define HUSK			7
 #define NOCLONE			8
-
-
-// Extra powers:
-#define LASER			9 	// harm intent - click anywhere to shoot lasers from eyes
-#define HEAL			10 	// healing people with hands
-#define SHADOW			11 	// shadow teleportation (create in/out portals anywhere) (25%)
-#define SCREAM			12 	// supersonic screaming (25%)
-#define EXPLOSIVE		13 	// exploding on-demand (15%)
-#define REGENERATION	14 	// superhuman regeneration (30%)
-#define REPROCESSOR		15 	// eat anything (50%)
-#define SHAPESHIFTING	16 	// take on the appearance of anything (40%)
-#define PHASING			17 	// ability to phase through walls (40%)
-#define SHIELD			18 	// shielding from all projectile attacks (30%)
-#define SHOCKWAVE		19 	// attack a nearby tile and cause a massive shockwave, knocking most people on their asses (25%)
-#define ELECTRICITY		20 	// ability to shoot electric attacks (15%)
 
 //2spooky
 #define SKELETON 29
@@ -444,6 +430,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 //Damage things	//TODO: merge these down to reduce on defines
 //Way to waste perfectly good damagetype names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used lowertext(damagetype) in the proc...
+#define CUT 		"cut"
+#define BRUISE		"bruise"
 #define BRUTE		"brute"
 #define BURN		"fire"
 #define TOX			"tox"
@@ -458,6 +446,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define AGONY		"agony" // Added in PAIN!
 #define STUTTER		"stutter"
 #define EYE_BLUR	"eye_blur"
+#define SLUR 		"slur"
 #define DROWSY		"drowsy"
 
 //I hate adding defines like this but I'd much rather deal with bitflags than lists and string searches
@@ -588,25 +577,6 @@ var/list/TAGGERLOCATIONS = list("Disposals",
 #define HOSTILE_STANCE_TIRED 5
 
 #define ROUNDSTART_LOGOUT_REPORT_TIME 6000 //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
-
-//Damage things
-#define CUT 		"cut"
-#define BRUISE		"bruise"
-#define BRUTE		"brute"
-#define BURN		"fire"
-#define TOX			"tox"
-#define OXY			"oxy"
-#define CLONE		"clone"
-#define HALLOSS		"halloss"
-
-#define STUN		"stun"
-#define WEAKEN		"weaken"
-#define PARALYZE	"paralize"
-#define IRRADIATE	"irradiate"
-#define STUTTER		"stutter"
-#define SLUR 		"slur"
-#define EYE_BLUR	"eye_blur"
-#define DROWSY		"drowsy"
 
 ///////////////////ORGAN DEFINES///////////////////
 

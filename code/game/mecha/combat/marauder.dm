@@ -6,7 +6,7 @@
 	step_in = 5
 	health = 500
 	deflect_chance = 25
-	damage_absorption = list("brute"=0.5,"fire"=0.7,"bullet"=0.45,"laser"=0.6,"energy"=0.7,"bomb"=0.7)
+	damage_absorption = list("brute" = 0.5, "fire" = 0.7, "bullet" = 0.45, "laser" = 0.6, "energy" = 0.7, "bomb" = 0.7)
 	max_temperature = 60000
 	infra_luminosity = 3
 	var/zoom = 0
@@ -76,7 +76,7 @@
 	ME.attach(src)
 	return
 
-/obj/mecha/combat/marauder/relaymove(mob/user,direction)
+/obj/mecha/combat/marauder/relaymove(mob/user, direction)
 	if(user != src.occupant) //While not "realistic", this piece is player friendly.
 		user.loc = get_turf(src)
 		user << "You climb out from [src]"
@@ -100,26 +100,25 @@
 	var/tmp_step_in = step_in
 	var/tmp_step_energy_drain = step_energy_drain
 	var/move_result = 0
-	if(internal_damage&MECHA_INT_CONTROL_LOST)
+	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		move_result = mechsteprand()
-	else if(src.dir!=direction)
+	else if(src.dir != direction)
 		move_result = mechturn(direction)
 	else
 		move_result	= mechstep(direction)
 	if(move_result)
 		if(istype(src.loc, /turf/space))
 			if(!src.check_for_support())
-				src.pr_inertial_movement.start(list(src,direction))
+				src.pr_inertial_movement.start(list(src, direction))
 				if(thrusters)
-					src.pr_inertial_movement.set_process_args(list(src,direction))
-					tmp_step_energy_drain = step_energy_drain*2
+					src.pr_inertial_movement.set_process_args(list(src, direction))
+					tmp_step_energy_drain = step_energy_drain * 2
 
 		can_move = 0
 		spawn(tmp_step_in) can_move = 1
 		use_power(tmp_step_energy_drain)
 		return 1
 	return 0
-
 
 /obj/mecha/combat/marauder/verb/toggle_thrusters()
 	set category = "Exosuit Interface"
@@ -135,13 +134,12 @@
 			src.occupant_message("<font color='[src.thrusters?"blue":"red"]'>Thrusters [thrusters?"en":"dis"]abled.")
 	return
 
-
 /obj/mecha/combat/marauder/verb/smoke()
 	set category = "Exosuit Interface"
 	set name = "Smoke"
 	set src = usr.loc
 	set popup_menu = 0
-	if(usr!=src.occupant)
+	if(usr != src.occupant)
 		return
 	if(smoke_ready && smoke>0)
 		src.smoke_system.start()
@@ -156,7 +154,7 @@
 	set name = "Zoom"
 	set src = usr.loc
 	set popup_menu = 0
-	if(usr!=src.occupant)
+	if(usr != src.occupant)
 		return
 	if(src.occupant.client)
 		src.zoom = !src.zoom
@@ -164,11 +162,10 @@
 		src.occupant_message("<font color='[src.zoom?"blue":"red"]'>Zoom mode [zoom?"en":"dis"]abled.</font>")
 		if(zoom)
 			src.occupant.client.view = 12
-			src.occupant << sound('sound/mecha/imag_enh.ogg',volume=50)
+			src.occupant << sound('sound/mecha/imag_enh.ogg', volume = 50)
 		else
 			src.occupant.client.view = world.view//world.view - default mob view size
 	return
-
 
 /obj/mecha/combat/marauder/go_out()
 	if(src.occupant && src.occupant.client)
@@ -177,7 +174,6 @@
 	..()
 	return
 
-
 /obj/mecha/combat/marauder/get_stats_part()
 	var/output = ..()
 	output += {"<b>Smoke:</b> [smoke]
@@ -185,7 +181,6 @@
 					<b>Thrusters:</b> [thrusters?"on":"off"]
 					"}
 	return output
-
 
 /obj/mecha/combat/marauder/get_commands()
 	var/output = {"<div class='wr'>
@@ -202,10 +197,10 @@
 
 /obj/mecha/combat/marauder/Topic(href, href_list)
 	..()
-	if (href_list["toggle_thrusters"])
+	if(href_list["toggle_thrusters"])
 		src.toggle_thrusters()
-	if (href_list["smoke"])
+	if(href_list["smoke"])
 		src.smoke()
-	if (href_list["toggle_zoom"])
+	if(href_list["toggle_zoom"])
 		src.zoom()
 	return
