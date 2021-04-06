@@ -342,16 +342,16 @@
 	proc/reset()
 		last_piece = null
 
-	proc/dismantleFloor(var/turf/new_turf)
+	proc/dismantleFloor(turf/new_turf)
 		if(istype(new_turf, /turf/simulated/floor))
 			var/turf/simulated/floor/T = new_turf
 			if(!T.is_plating())
 				if(!T.broken && !T.burnt)
-					new T.floor_tile.type(T)
+					new T.floor_type(T)
 				T.make_plating()
 		return !new_turf.intact
 
-	proc/layCable(var/turf/new_turf)
+	proc/layCable(turf/new_turf)
 		if(equip_ready || !istype(new_turf) || !dismantleFloor(new_turf))
 			return reset()
 		var/fdirn = turn(chassis.dir,180)

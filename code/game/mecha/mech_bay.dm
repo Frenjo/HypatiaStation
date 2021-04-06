@@ -6,7 +6,7 @@
 	var/obj/machinery/computer/mech_bay_power_console/recharge_console
 	var/obj/mecha/recharging_mecha = null
 
-	Entered(var/obj/mecha/mecha)
+	Entered(obj/mecha/mecha)
 		. = ..()
 		if(istype(mecha))
 			mecha.occupant_message("<b>Initializing power control devices.</b>")
@@ -30,7 +30,7 @@
 		return
 
 	proc/init_devices()
-		recharge_console = locate() in range(1,src)
+		recharge_console = locate() in range(1, src)
 		recharge_port = locate(/obj/machinery/mech_bay_recharge_port, get_step(src, WEST))
 		if(recharge_console)
 			recharge_console.recharge_floor = src
@@ -57,17 +57,17 @@
 
 	New()
 		..()
-		pr_recharger = new /datum/global_iterator/mech_bay_recharger(null,0)
+		pr_recharger = new /datum/global_iterator/mech_bay_recharger(null, 0)
 		return
 
-	proc/start_charge(var/obj/mecha/recharging_mecha)
-		if(stat&(NOPOWER|BROKEN))
+	proc/start_charge(obj/mecha/recharging_mecha)
+		if(stat & (NOPOWER | BROKEN))
 			recharging_mecha.occupant_message("<font color='red'>Power port not responding. Terminating.</font>")
 			return 0
 		else
 			if(recharging_mecha.cell)
 				recharging_mecha.occupant_message("Now charging...")
-				pr_recharger.start(list(src,recharging_mecha))
+				pr_recharger.start(list(src, recharging_mecha))
 				return 1
 			else
 				return 0
@@ -106,15 +106,16 @@
 	var/max_charge = 45
 	check_for_null = 0 //since port.stop_charge() must be called. The checks are made in process()
 
-	process(var/obj/machinery/mech_bay_recharge_port/port, var/obj/mecha/mecha)
+	process(obj/machinery/mech_bay_recharge_port/port, obj/mecha/mecha)
 		if(!port)
 			return 0
 		if(mecha && mecha in port.recharge_floor)
-			if(!mecha.cell)	return
+			if(!mecha.cell)
+				return
 			var/delta = min(max_charge, mecha.cell.maxcharge - mecha.cell.charge)
 			if(delta>0)
 				mecha.give_power(delta)
-				port.use_power(delta*150)
+				port.use_power(delta * 150)
 			else
 				mecha.occupant_message("<font color='blue'><b>Fully charged.</b></font>")
 				port.stop_charge()

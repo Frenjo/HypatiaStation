@@ -112,11 +112,12 @@
 	for(var/typepath in productlist)
 		var/amount = productlist[typepath]
 		var/price = prices[typepath]
-		if(isnull(amount)) amount = 1
+		if(isnull(amount))
+			amount = 1
 
-		var/atom/temp = new typepath(null)
 		var/datum/data/vending_product/R = new /datum/data/vending_product()
-		R.product_name = temp.name
+		var/atom/temp = typepath
+		R.product_name = initial(temp.name)
 		R.product_path = typepath
 		R.amount = amount
 		R.price = price

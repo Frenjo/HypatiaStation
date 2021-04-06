@@ -3,6 +3,16 @@
 	Uses the same visual objects for all players.
 */
 var/datum/global_hud/global_hud = new()
+var/list/global_huds = list(
+		global_hud.druggy,
+		global_hud.blurry,
+		global_hud.vimpaired,
+		global_hud.darkMask,
+		global_hud.nvg,
+		global_hud.scig,
+		global_hud.thermal,
+		global_hud.meson
+		)
 
 /datum/hud/var/obj/screen/grab_intent
 /datum/hud/var/obj/screen/hurt_intent
@@ -21,6 +31,18 @@ var/datum/global_hud/global_hud = new()
 	var/obj/screen/electricalstorm // Overlay for electrical effects from electrical storms. -Frenjo
 	var/list/parallax_stars
 	var/list/parallax_bluespace_stars
+	var/obj/screen/thermal
+	var/obj/screen/meson
+
+/datum/global_hud/proc/setup_overlay(var/icon_state)
+	var/obj/screen/screen = new /obj/screen()
+	screen.screen_loc = "1,1"
+	screen.icon = 'icons/obj/hud_full.dmi'
+	screen.icon_state = icon_state
+	screen.layer = 17
+	screen.mouse_opacity = 0
+
+	return screen
 
 /datum/global_hud/New()
 	// Space parallax stuff
@@ -50,20 +72,10 @@ var/datum/global_hud/global_hud = new()
 	blurry.layer = 17
 	blurry.mouse_opacity = 0
 
-	nvg = new /obj/screen()
-	nvg.screen_loc = "1,1"
-	nvg.icon = 'icons/obj/nvg_hud_full.dmi'
-	nvg.icon_state = "nvg_hud"
-	nvg.layer = 17
-	nvg.mouse_opacity = 0
-
-	// Overlay for purple effects from science goggles. -Frenjo
-	scig = new /obj/screen()
-	scig.screen_loc ="1,1"
-	scig.icon = 'icons/obj/scig_hud_full.dmi'
-	scig.icon_state = "scig_hud"
-	scig.layer = 17
-	scig.mouse_opacity = 0
+	nvg = setup_overlay("nvg_hud")
+	scig = setup_overlay("scig_hud")
+	thermal = setup_overlay("thermal_hud")
+	meson = setup_overlay("meson_hud")
 
 	// Overlay for radiation effects from rad storms. -Frenjo
 	radstorm = new /obj/screen()

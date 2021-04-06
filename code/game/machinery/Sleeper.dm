@@ -33,7 +33,7 @@
 
 /obj/machinery/sleep_console/New()
 	..()
-	spawn( 5 )
+	spawn(5)
 		if(orient == "RIGHT")
 			icon_state = "sleeperconsole-r"
 			src.connected = locate(/obj/machinery/sleeper, get_step(src, EAST))
@@ -162,8 +162,8 @@
 
 	New()
 		..()
-		beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large()
-		spawn( 5 )
+		beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
+		spawn(5)
 			if(orient == "RIGHT")
 				icon_state = "sleeper_0-r"
 			return

@@ -68,7 +68,7 @@
 
 /obj/machinery/bot/floorbot/attack_hand(mob/user as mob)
 	. = ..()
-	if (.)
+	if(.)
 		return
 	usr.set_machine(src)
 	interact(user)
@@ -96,7 +96,7 @@
 	return
 
 
-/obj/machinery/bot/floorbot/attackby(var/obj/item/W , mob/user as mob)
+/obj/machinery/bot/floorbot/attackby(obj/item/W , mob/user as mob)
 	if(istype(W, /obj/item/stack/tile/plasteel))
 		var/obj/item/stack/tile/plasteel/T = W
 		if(src.amount >= 50)
@@ -205,13 +205,13 @@
 				src.oldtarget = T
 				src.target = T
 		if(!src.target || src.target == null)
-			for (var/turf/space/D in view(7,src))
+			for (var/turf/space/D in view(7, src))
 				if(!(D in floorbottargets) && D != src.oldtarget && (D.loc.name != "Space"))
 					src.oldtarget = D
 					src.target = D
 					break
 		if((!src.target || src.target == null ) && src.improvefloors)
-			for (var/turf/simulated/floor/F in view(7,src))
+			for (var/turf/simulated/floor/F in view(7, src))
 				if(!(F in floorbottargets) && F != src.oldtarget && F.icon_state == "Floor1" && !(istype(F, /turf/simulated/floor/plating)))
 					src.oldtarget = F
 					src.target = F
@@ -225,8 +225,8 @@
 
 	if((!src.target || src.target == null) && emagged == 2)
 		if(!src.target || src.target == null)
-			for (var/turf/simulated/floor/D in view(7,src))
-				if(!(D in floorbottargets) && D != src.oldtarget && D.floor_tile)
+			for (var/turf/simulated/floor/D in view(7, src))
+				if(!(D in floorbottargets) && D != src.oldtarget && D.floor_type)
 					src.oldtarget = D
 					src.target = D
 					break

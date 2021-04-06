@@ -9,14 +9,36 @@
 	//var/darkness_view = 0//Base human is 2
 	//var/invisa_view = 0
 	var/prescription = 0
+	var/toggleable = 0
+	var/active = 1
+	var/obj/screen/overlay = null
+
+/obj/item/clothing/glasses/attack_self(mob/user)
+	if(toggleable)
+		if(active)
+			active = 0
+			icon_state = "degoggles"
+			user.update_inv_glasses()
+			usr << "You deactivate the optical matrix on the [src]."
+		else
+			active = 1
+			icon_state = initial(icon_state)
+			user.update_inv_glasses()
+			usr << "You activate the optical matrix on the [src]."
 
 /obj/item/clothing/glasses/meson
 	name = "Optical Meson Scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
 	item_state = "glasses"
+	icon_action_button = "action_meson"
 	origin_tech = "magnets=2;engineering=2"
+	toggleable = 1
 	vision_flags = SEE_TURFS
+
+/obj/item/clothing/glasses/meson/New()
+	..()
+	overlay = global_hud.meson
 
 /obj/item/clothing/glasses/meson/prescription
 	name = "prescription mesons"
@@ -28,6 +50,12 @@
 	desc = "The goggles do nothing!"
 	icon_state = "purple"
 	item_state = "glasses"
+	icon_action_button = "action_science"
+	toggleable = 1
+
+/obj/item/clothing/glasses/science/New()
+	..()
+	overlay = global_hud.scig
 
 /obj/item/clothing/glasses/night
 	name = "Night Vision Goggles"
@@ -36,6 +64,10 @@
 	item_state = "glasses"
 	origin_tech = "magnets=2"
 	darkness_view = 7
+
+/obj/item/clothing/glasses/night/New()
+	..()
+	overlay = global_hud.nvg
 
 /obj/item/clothing/glasses/eyepatch
 	name = "eyepatch"
@@ -54,7 +86,9 @@
 	desc = "Very confusing glasses."
 	icon_state = "material"
 	item_state = "glasses"
+	icon_action_button = "action_material"
 	origin_tech = "magnets=3;engineering=3"
+	toggleable = 1
 	vision_flags = SEE_OBJS
 
 /obj/item/clothing/glasses/regular
@@ -166,26 +200,33 @@
 	desc = "Thermals in the shape of glasses."
 	icon_state = "thermal"
 	item_state = "glasses"
+	icon_action_button = "action_thermal"
 	origin_tech = "magnets=3"
+	toggleable = 1
 	vision_flags = SEE_MOBS
 	invisa_view = 2
 
-	emp_act(severity)
-		if(istype(src.loc, /mob/living/carbon/human))
-			var/mob/living/carbon/human/M = src.loc
-			M << "\red The Optical Thermal Scanner overloads and blinds you!"
-			if(M.glasses == src)
-				M.eye_blind = 3
-				M.eye_blurry = 5
-				M.disabilities |= NEARSIGHTED
-				spawn(100)
-					M.disabilities &= ~NEARSIGHTED
-		..()
+/obj/item/clothing/glasses/thermal/New()
+	..()
+	overlay = global_hud.thermal
+
+/obj/item/clothing/glasses/thermal/emp_act(severity)
+	if(istype(src.loc, /mob/living/carbon/human))
+		var/mob/living/carbon/human/M = src.loc
+		M << "\red The Optical Thermal Scanner overloads and blinds you!"
+		if(M.glasses == src)
+			M.eye_blind = 3
+			M.eye_blurry = 5
+			M.disabilities |= NEARSIGHTED
+			spawn(100)
+				M.disabilities &= ~NEARSIGHTED
+	..()
 
 /obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
 	name = "Optical Meson Scanner"
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
+	icon_action_button = "action_meson"
 	origin_tech = "magnets=3;syndicate=4"
 
 /obj/item/clothing/glasses/thermal/monocle
@@ -193,15 +234,18 @@
 	desc = "A monocle thermal."
 	icon_state = "thermoncle"
 	flags = null //doesn't protect eyes because it's a monocle, duh
+	toggleable = 0
 
 /obj/item/clothing/glasses/thermal/eyepatch
 	name = "Optical Thermal Eyepatch"
 	desc = "An eyepatch with built-in thermal optics"
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
+	toggleable = 0
 
 /obj/item/clothing/glasses/thermal/jensen
 	name = "Optical Thermal Implants"
 	desc = "A set of implantable lenses designed to augment your vision"
 	icon_state = "thermalimplants"
 	item_state = "syringe_kit"
+	toggleable = 0

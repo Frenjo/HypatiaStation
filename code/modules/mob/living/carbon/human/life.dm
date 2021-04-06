@@ -1210,19 +1210,15 @@
 		if(hud_updateflag)
 			handle_hud_list()
 
-
-		if(!client)	return 0
-
-		if(hud_updateflag)
-			handle_hud_list()
-
+		if(!client)
+			return 0
 
 		for(var/image/hud in client.images)
-			if(copytext(hud.icon_state,1,4) == "hud") //ugly, but icon comparison is worse, I believe
+			if(copytext(hud.icon_state, 1, 4) == "hud") //ugly, but icon comparison is worse, I believe
 				client.images.Remove(hud)
 
 		// Add scigoggle overlay to end of this. -Frenjo
-		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.scig)
+		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.scig, global_hud.thermal, global_hud.meson)
 
 		update_action_buttons()
 
@@ -1296,7 +1292,7 @@
 						I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay6")
 				damageoverlay.overlays += I
 
-		if( stat == DEAD )
+		if(stat == DEAD)
 			sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
 			see_in_dark = 8
 			if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
@@ -1334,60 +1330,21 @@
 					see_invisible = SEE_INVISIBLE_LIVING
 					seer = 0
 
+			var/glasses_processed = 0
 			if(istype(wear_mask, /obj/item/clothing/mask/gas/voice/space_ninja))
 				var/obj/item/clothing/mask/gas/voice/space_ninja/O = wear_mask
-				switch(O.mode)
-					if(0)
-						var/target_list[] = list()
-						for(var/mob/living/target in oview(src))
-							if( target.mind&&(target.mind.special_role||isSilicon(target)) )//They need to have a mind.
-								target_list += target
-						if(target_list.len)//Everything else is handled by the ninja mask proc.
-							O.assess_targets(target_list, src)
-						if(!druggy)		see_invisible = SEE_INVISIBLE_LIVING
-					if(1)
-						see_in_dark = 5
-						if(!druggy)		see_invisible = SEE_INVISIBLE_LIVING
-					if(2)
-						sight |= SEE_MOBS
-						if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
-					if(3)
-						sight |= SEE_TURFS
-						if(!druggy)		see_invisible = SEE_INVISIBLE_LIVING
+				glasses_processed = 1
+				process_glasses(O.ninja_vision.glasses)
 
 			if(glasses)
-				var/obj/item/clothing/glasses/G = glasses
-				if(istype(G))
-					see_in_dark += G.darkness_view
-					if(G.vision_flags)		// MESONS
-						sight |= G.vision_flags
-						if(!druggy)
-							see_invisible = SEE_INVISIBLE_MINIMUM
-				if(istype(G,/obj/item/clothing/glasses/night))
-					see_invisible = SEE_INVISIBLE_MINIMUM
-					client.screen += global_hud.nvg
-				// If we're wearing purple goggles, give a purple overlay. -Frenjo
-				if(istype(G, /obj/item/clothing/glasses/science))
-					client.screen += global_hud.scig
+				glasses_processed = 1
+				process_glasses(glasses)
 
-	/* HUD shit goes here, as long as it doesn't modify sight flags */
-	// The purpose of this is to stop xray and w/e from preventing you from using huds -- Love, Doohl
-
-				if(istype(glasses, /obj/item/clothing/glasses/sunglasses/sechud))
-					var/obj/item/clothing/glasses/sunglasses/sechud/O = glasses
-					if(O.hud)		O.hud.process_hud(src)
-					if(!druggy)		see_invisible = SEE_INVISIBLE_LIVING
-				else if(istype(glasses, /obj/item/clothing/glasses/hud))
-					var/obj/item/clothing/glasses/hud/O = glasses
-					O.process_hud(src)
-					if(!druggy)
-						see_invisible = SEE_INVISIBLE_LIVING
-
-			else if(!seer)
+			if(!seer && !glasses_processed)
 				see_invisible = SEE_INVISIBLE_LIVING
 
 			if(healths)
-				if (analgesic)
+				if(analgesic)
 					healths.icon_state = "health_health_numb"
 				else
 					switch(hal_screwyhud)
@@ -1512,6 +1469,31 @@
 					remoteview_target = null
 					reset_view(null)
 		return 1
+	
+	proc/process_glasses(var/obj/item/clothing/glasses/G)
+		if(G && G.active)
+			see_in_dark += G.darkness_view
+			if(G.overlay)
+				client.screen |= G.overlay
+			if(G.vision_flags)
+				sight |= G.vision_flags
+				if(!druggy)
+					see_invisible = SEE_INVISIBLE_MINIMUM
+			if(istype(G,/obj/item/clothing/glasses/night))
+				see_invisible = SEE_INVISIBLE_MINIMUM
+	/* HUD shit goes here, as long as it doesn't modify sight flags */
+	// The purpose of this is to stop xray and w/e from preventing you from using huds -- Love, Doohl
+			if(istype(G, /obj/item/clothing/glasses/sunglasses/sechud))
+				var/obj/item/clothing/glasses/sunglasses/sechud/O = G
+				if(O.hud)
+					O.hud.process_hud(src)
+				if(!druggy)
+					see_invisible = SEE_INVISIBLE_LIVING
+			else if(istype(G, /obj/item/clothing/glasses/hud))
+				var/obj/item/clothing/glasses/hud/O = G
+				O.process_hud(src)
+				if(!druggy)
+					see_invisible = SEE_INVISIBLE_LIVING
 
 	proc/handle_random_events()
 		// Puke if toxloss is too high

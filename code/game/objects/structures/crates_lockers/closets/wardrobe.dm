@@ -243,9 +243,9 @@
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/slippers
-	new /obj/item/clothing/shoes/slippers
-	new /obj/item/clothing/shoes/slippers
+	new /obj/item/clothing/shoes/slippers(src)
+	new /obj/item/clothing/shoes/slippers(src)
+	new /obj/item/clothing/shoes/slippers(src)
 	return
 
 

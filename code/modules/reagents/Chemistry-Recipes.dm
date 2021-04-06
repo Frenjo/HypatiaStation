@@ -535,7 +535,7 @@ datum
 			result = null
 			required_reagents = list("iron" = 5, "frostoil" = 5, "plasma" = 20)
 			result_amount = 1
-			on_reaction(var/datum/reagents/holder, var/created_volume)
+			on_reaction(datum/reagents/holder, created_volume)
 				var/location = get_turf(holder.my_atom)
 				new /obj/item/stack/sheet/mineral/plasma(location)
 				return
@@ -1267,7 +1267,7 @@ datum
 			result_amount = 1
 			required_container = /obj/item/slime_extract/darkpurple
 			required_other = 1
-			on_reaction(var/datum/reagents/holder)
+			on_reaction(datum/reagents/holder)
 				var/obj/item/stack/sheet/mineral/plasma/P = new /obj/item/stack/sheet/mineral/plasma
 				P.amount = 10
 				P.loc = get_turf(holder.my_atom)

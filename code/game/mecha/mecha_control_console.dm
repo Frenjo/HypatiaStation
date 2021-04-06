@@ -10,13 +10,13 @@
 
 	light_color = "#a97faa"
 
-	attack_ai(var/mob/user as mob)
+	attack_ai(mob/user as mob)
 		return src.attack_hand(user)
 
-	attack_paw(var/mob/user as mob)
+	attack_paw(mob/user as mob)
 		return src.attack_hand(user)
 
-	attack_hand(var/mob/user as mob)
+	attack_hand(mob/user as mob)
 		if(..())
 			return
 		user.set_machine(src)
@@ -30,7 +30,7 @@
 							  <a href='?src=\ref[src];send_message=\ref[TR]'>Send message</a><br/>
 							  <a href='?src=\ref[src];get_log=\ref[TR]'>Show exosuit log</a> | <a style='color: #f00;' href='?src=\ref[src];shock=\ref[TR]'>(EMP pulse)</a><br>"}
 
-		if(screen==1)
+		if(screen == 1)
 			dat += "<h3>Log contents</h3>"
 			dat += "<a href='?src=\ref[src];return=1'>Return</a><hr>"
 			dat += "[stored_data]"
@@ -48,7 +48,7 @@
 		var/datum/topic_input/new_filter = new /datum/topic_input(href,href_list)
 		if(href_list["send_message"])
 			var/obj/item/mecha_parts/mecha_tracking/MT = new_filter.getObj("send_message")
-			var/message = strip_html_simple(input(usr,"Input message","Transmit message") as text)
+			var/message = strip_html_simple(input(usr, "Input message", "Transmit message") as text)
 			var/obj/mecha/M = MT.in_mecha()
 			if(trim(message) && M)
 				M.occupant_message(message)

@@ -1,5 +1,5 @@
 
-/obj/item/device/encryptionkey/
+/obj/item/device/encryptionkey
 	name = "Standard Encrpytion Key"
 	desc = "An encyption key for a radio headset.  Has no special codes in it.  WHY DOES IT EXIST?  ASK NANOTRASEN."
 	icon = 'icons/obj/radio.dmi'
@@ -109,13 +109,13 @@
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "hop_cypherkey"
 	channels = list("Command" = 1, "Security" = 0)
-/*
+
 /obj/item/device/encryptionkey/headset_mine
 	name = "Mining Radio Encryption Key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "mine_cypherkey"
 	channels = list("Mining" = 1)
-*/
+
 /obj/item/device/encryptionkey/heads/qm
 	name = "Quartermaster's Encryption Key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."

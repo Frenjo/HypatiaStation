@@ -339,7 +339,7 @@
 
 	spawn(30)
 		for(var/obj/effect/landmark/L in linkedholodeck)
-			if(L.name=="Atmospheric Test Start")
+			if(L.name == "Atmospheric Test Start")
 				spawn(20)
 					var/turf/T = get_turf(L)
 					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -347,8 +347,8 @@
 					s.start()
 					if(T)
 						T.temperature = 5000
-						T.hotspot_expose(50000,50000,1)
-			if(L.name=="Holocarp Spawn")
+						T.hotspot_expose(50000, 50000, 1)
+			if(L.name == "Holocarp Spawn")
 				new /mob/living/simple_animal/hostile/carp(L.loc)
 
 
@@ -362,7 +362,7 @@
 		loadProgram(target)
 
 	var/area/targetsource = locate(/area/holodeck/source_plating)
-	targetsource.copy_contents_to(linkedholodeck , 1)
+	targetsource.copy_contents_to(linkedholodeck, 1)
 	active = 0
 
 
@@ -373,23 +373,22 @@
 
 // Holographic Items!
 
-/turf/simulated/floor/holofloor/
+/turf/simulated/floor/holofloor
 	thermal_conductivity = 0
 
 /turf/simulated/floor/holofloor/grass
 	name = "Lush Grass"
 	icon_state = "grass1"
-	floor_tile = new/obj/item/stack/tile/grass
+	floor_type = /obj/item/stack/tile/grass
 
 	New()
-		floor_tile.New() //I guess New() isn't run on objects spawned without the definition of a turf to house them, ah well.
 		icon_state = "grass[pick("1","2","3","4")]"
 		..()
 		spawn(4)
 			update_icon()
 			for(var/direction in cardinal)
-				if(istype(get_step(src,direction),/turf/simulated/floor))
-					var/turf/simulated/floor/FF = get_step(src,direction)
+				if(istype(get_step(src, direction), /turf/simulated/floor))
+					var/turf/simulated/floor/FF = get_step(src, direction)
 					FF.update_icon() //so siding get updated properly
 
 /turf/simulated/floor/holofloor/attackby(obj/item/weapon/W as obj, mob/user as mob)

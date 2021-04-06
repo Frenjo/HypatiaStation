@@ -72,8 +72,7 @@
 			sound = 1
 			iconholder = 1
 		else
-			var/obj/item/weapon/gun/energy/E=new installation
-					// All energy-based weapons are applicable
+			var/obj/item/weapon/gun/energy/E = installation	//All energy-based weapons are applicable
 			switch(E.type)
 				if(/obj/item/weapon/gun/energy/laser/bluetag)
 					projectile = /obj/item/projectile/beam/lastertag/blue

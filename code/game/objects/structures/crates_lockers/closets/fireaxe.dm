@@ -2,7 +2,7 @@
 /obj/structure/closet/fireaxecabinet
 	name = "Fire Axe Cabinet"
 	desc = "There is small label that reads \"For Emergency use only\" along with details for safe use of the axe. As if."
-	var/obj/item/weapon/twohanded/fireaxe/fireaxe = new/obj/item/weapon/twohanded/fireaxe
+	var/obj/item/weapon/twohanded/fireaxe/fireaxe
 	icon_state = "fireaxe1000"
 	icon_closed = "fireaxe1000"
 	icon_opened = "fireaxe1100"
@@ -14,7 +14,11 @@
 	var/locked = 1
 	var/smashed = 0
 
-	attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
+	New()
+		..()
+		fireaxe = new /obj/item/weapon/twohanded/fireaxe(src)
+
+	attackby(obj/item/O as obj, mob/user as mob)  //Marker -Agouri
 		//..() //That's very useful, Erro
 
 		var/hasaxe = 0       //gonna come in handy later~
