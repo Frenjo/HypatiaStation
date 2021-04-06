@@ -6,12 +6,12 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "the Head of Personnel and the Captain"
 	selection_color = "#8c7846"
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mint, access_mining, access_mining_station, access_heads, access_RC_announce, access_keycard_auth, access_sec_doors)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mint, access_mining, access_mining_station, access_heads, access_RC_announce, access_keycard_auth, access_sec_doors)
 
-/datum/job/qm/equip(var/mob/living/carbon/human/H)
+/datum/job/qm/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -35,12 +35,12 @@
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the quartermaster"
+	supervisors = "the Quartermaster"
 	selection_color = "#aa9682"
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mint, access_mining, access_mining_station)
 	minimal_access = list(access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
 
-/datum/job/cargo_tech/equip(var/mob/living/carbon/human/H)
+/datum/job/cargo_tech/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -62,16 +62,16 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the quartermaster"
+	supervisors = "the Quartermaster"
 	selection_color = "#aa9682"
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mint, access_mining, access_mining_station)
 	minimal_access = list(access_mining, access_mint, access_mining_station, access_mailsorting)
 
-/datum/job/miningforeman/equip(var/mob/living/carbon/human/H)
+/datum/job/miningforeman/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_cargo (H), slot_l_ear)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_mineforeman(H), slot_l_ear)
 	switch(H.backbag)
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial(H), slot_back)
@@ -100,16 +100,16 @@
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
-	supervisors = "the mining foreman and the quartermaster"
+	supervisors = "the Mining Foreman and the Quartermaster"
 	selection_color = "#aa9682"
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mint, access_mining, access_mining_station)
 	minimal_access = list(access_mining, access_mint, access_mining_station, access_mailsorting)
 
-/datum/job/mining/equip(var/mob/living/carbon/human/H)
+/datum/job/mining/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_cargo (H), slot_l_ear)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_mine(H), slot_l_ear)
 	switch(H.backbag)
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial(H), slot_back)
@@ -142,13 +142,13 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the head of personnel and the quartermaster"
+	supervisors = "the Head of Personnel and the Quartermaster"
 	selection_color = "#aa9682"
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo)
 	minimal_access = list(access_maint_tunnels, access_cargo, access_mailsorting)
 	alt_titles = list("Postman", "Delivery Technician") // Should probably change this to "Delivery Specialist", but "Cargo Technician" exists. -Frenjo
 
-/datum/job/mailman/equip(var/mob/living/carbon/human/H)
+/datum/job/mailman/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 

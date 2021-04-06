@@ -11,7 +11,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	item_state = "walkietalkie"
 	var/on = 1 // 0 for off
 	var/last_transmission
-	var/frequency = 1459 //common chat
+	var/frequency = FREQUENCY_COMMON //common chat
 	var/traitor_frequency = 0 //tune to frequency to unlock traitor supplies
 	var/canhear_range = 3 // the range which mobs can hear this radio from
 	var/obj/item/device/radio/patch_link = null
@@ -202,7 +202,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	Broadcast_Message(connection, A,
 						0, "*garbled automated announcement*", src,
 						message, from, "Automated Announcement", from, "synthesized voice",
-						4, 0, list(1), 1459)
+						4, 0, list(1), FREQUENCY_COMMON)
 	qdel(A)
 	return
 
@@ -484,20 +484,22 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			//var/part_b = "</span><b> \icon[src]\[[format_frequency(frequency)]\]</b> <span class='message'>"
 			var/freq_text
 			switch(display_freq)
-				if(SYND_FREQ)
+				if(FREQUENCY_SYNDICATE)
 					freq_text = "#unkn"
-				if(COMM_FREQ)
+				if(FREQUENCY_COMMAND)
 					freq_text = "Command"
-				if(1351)
+				if(FREQUENCY_SCIENCE)
 					freq_text = "Science"
-				if(1355)
+				if(FREQUENCY_MEDICAL)
 					freq_text = "Medical"
-				if(1357)
+				if(FREQUENCY_ENGINEERING)
 					freq_text = "Engineering"
-				if(1359)
+				if(FREQUENCY_SECURITY)
 					freq_text = "Security"
-				if(1347)
+				if(FREQUENCY_SUPPLY)
 					freq_text = "Supply"
+				if(FREQUENCY_MINING)
+					freq_text = "Mining"
 			//There's probably a way to use the list var of channels in code\game\communications.dm to make the dept channels non-hardcoded, but I wasn't in an experimentive mood. --NEO
 
 			if(!freq_text)
@@ -506,9 +508,9 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			var/part_b = "</span><b> \icon[src]\[[freq_text]\]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 			var/part_c = "</span></span>"
 
-			if (display_freq==SYND_FREQ)
+			if (display_freq == FREQUENCY_SYNDICATE)
 				part_a = "<span class='syndradio'><span class='name'>"
-			else if (display_freq==COMM_FREQ)
+			else if (display_freq == FREQUENCY_COMMAND)
 				part_a = "<span class='comradio'><span class='name'>"
 			else if (display_freq in DEPT_FREQS)
 				part_a = "<span class='deptradio'><span class='name'>"
@@ -523,26 +525,26 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			if(istype(blackbox))
 				//BR.messages_admin += blackbox_admin_msg
 				switch(display_freq)
-					if(1459)
+					if(FREQUENCY_COMMON)
 						blackbox.msg_common += blackbox_msg
-					if(1351)
+					if(FREQUENCY_SCIENCE)
 						blackbox.msg_science += blackbox_msg
-					if(1353)
+					if(FREQUENCY_COMMAND)
 						blackbox.msg_command += blackbox_msg
-					if(1355)
+					if(FREQUENCY_MEDICAL)
 						blackbox.msg_medical += blackbox_msg
-					if(1357)
+					if(FREQUENCY_ENGINEERING)
 						blackbox.msg_engineering += blackbox_msg
-					if(1359)
+					if(FREQUENCY_SECURITY)
 						blackbox.msg_security += blackbox_msg
-					if(1441)
+					if(FREQUENCY_DEATHSQUAD)
 						blackbox.msg_deathsquad += blackbox_msg
-					if(1213)
+					if(FREQUENCY_SYNDICATE)
 						blackbox.msg_syndicate += blackbox_msg
-					if(1349)
-						blackbox.msg_mining += blackbox_msg
-					if(1347)
+					if(FREQUENCY_SUPPLY)
 						blackbox.msg_cargo += blackbox_msg
+					if(FREQUENCY_MINING)
+						blackbox.msg_mining += blackbox_msg
 					else
 						blackbox.messages += blackbox_msg
 
@@ -620,7 +622,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		var/turf/position = get_turf(src)
 		if(!position || !(position.z in level))
 			return -1
-	if(freq == SYND_FREQ)
+	if(freq == FREQUENCY_SYNDICATE)
 		if(!(src.syndie))//Checks to see if it's allowed on that frequency, based on the encryption keys
 			return -1
 	if (!on)

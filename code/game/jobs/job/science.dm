@@ -5,7 +5,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "the Captain"
 	selection_color = "#ffddff"
 	idtype = /obj/item/weapon/card/id/silver
 	req_admin_notify = 1
@@ -19,7 +19,7 @@
 			            access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch)
 	minimal_player_age = 7
 
-/datum/job/rd/equip(var/mob/living/carbon/human/H)
+/datum/job/rd/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -39,6 +39,7 @@
 
 	return 1
 
+
 /datum/job/scientist
 	title = "Scientist"
 	flag = SCIENTIST
@@ -46,13 +47,13 @@
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 3
-	supervisors = "the research director"
+	supervisors = "the Research Director"
 	selection_color = "#ffeeff"
 	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch)
 	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch)
 	alt_titles = list("Researcher", "Xenoarcheologist", "Anomalist", "Plasma Researcher")
 
-/datum/job/scientist/equip(var/mob/living/carbon/human/H)
+/datum/job/scientist/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -70,6 +71,7 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
 
 	return 1
+
 
 /datum/job/xenobiologist
 	title = "Xenobiologist"
@@ -78,12 +80,12 @@
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the research director"
+	supervisors = "the Research Director"
 	selection_color = "#ffeeff"
 	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology)
 	minimal_access = list(access_research, access_xenobiology)
 
-/datum/job/xenobiologist/equip(var/mob/living/carbon/human/H)
+/datum/job/xenobiologist/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -102,6 +104,7 @@
 
 	return 1
 
+
 /datum/job/roboticist
 	title = "Roboticist"
 	flag = ROBOTICIST
@@ -109,13 +112,13 @@
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "research director"
+	supervisors = "the Research Director"
 	selection_color = "#ffeeff"
 	access = list(access_robotics, access_tox, access_tox_storage, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.
 	minimal_access = list(access_robotics, access_tech_storage, access_morgue, access_research) //As a job that handles so many corpses, it makes sense for them to have morgue access.
-	alt_titles = list("Biomechanical Engineer","Mechatronic Engineer")
+	alt_titles = list("Biomechanical Engineer", "Mechatronic Engineer")
 
-/datum/job/roboticist/equip(var/mob/living/carbon/human/H)
+/datum/job/roboticist/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 

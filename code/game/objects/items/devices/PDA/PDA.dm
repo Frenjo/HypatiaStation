@@ -702,7 +702,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 							M.close()
 
 		if("Detonate")//Detonate PDA... maybe
-			// check if telecomms I/O route 1459 is stable
+			// check if telecomms I/O route FREQUENCY_COMMON (1459) is stable
 			//var/telecomms_intact = telecomms_process(P.owner, owner, t)
 			var/obj/machinery/message_server/useMS = null
 			if(message_servers)
@@ -886,7 +886,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		return
 
 	last_text = world.time
-	// check if telecomms I/O route 1459 is stable
+	// check if telecomms I/O route FREQUENCY_COMMON (1459) is stable
 	//var/telecomms_intact = telecomms_process(P.owner, owner, t)
 	var/obj/machinery/message_server/useMS = null
 	if(message_servers)

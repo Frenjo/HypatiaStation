@@ -10,10 +10,10 @@
 	req_admin_notify = 1
 	minimal_player_age = 7
 
-	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
-		return 1
-
+/datum/job/ai/equip(mob/living/carbon/human/H)
+	if(!H)
+		return 0
+	return 1
 
 
 /datum/job/cyborg
@@ -26,8 +26,9 @@
 	supervisors = "your laws and the AI"	//Nodrak
 	selection_color = "#ddffdd"
 	minimal_player_age = 1
-	alt_titles = list("Android", "Robot")
+	alt_titles = list("Android", "Robot", "Drone")
 
-	equip(var/mob/living/carbon/human/H)
-		if(!H)	return 0
-		return 1
+/datum/job/cyborg/equip(mob/living/carbon/human/H)
+	if(!H)
+		return 0
+	return 1

@@ -75,6 +75,7 @@ Radio:
 1441 - death squad
 1443 - Confession Intercom
 1347 - Cargo techs
+1349 - Mining
 
 Devices:
 1451 - tracking implant
@@ -97,32 +98,18 @@ On the map:
 */
 
 var/list/radiochannels = list(
-	"Common" = 1459,
-	"Science" = 1351,
-	"Command" = 1353,
-	"Medical" = 1355,
-	"Engineering" = 1357,
-	"Security" = 1359,
-	"Response Team" = 1345,
-	"Deathsquad" = 1341,
-	"Syndicate" = 1213,
-	"Supply" = 1347,
+	"Common" = FREQUENCY_COMMON,
+	"Science" = FREQUENCY_SCIENCE,
+	"Command" = FREQUENCY_COMMAND,
+	"Medical" = FREQUENCY_MEDICAL,
+	"Engineering" = FREQUENCY_ENGINEERING,
+	"Security" = FREQUENCY_SECURITY,
+	"Response Team" = FREQUENCY_RESPONSETEAM,
+	"Deathsquad" = FREQUENCY_DEATHSQUAD,
+	"Syndicate" = FREQUENCY_SYNDICATE,
+	"Supply" = FREQUENCY_SUPPLY,
+	"Mining" = FREQUENCY_MINING,
 )
-//depenging helpers
-var/list/DEPT_FREQS = list(1351, 1355, 1357, 1359, 1213, 1345, 1341, 1347)
-
-// central command channels, i.e deathsquid & response teams
-var/list/CENT_FREQS = list(1345, 1341)
-
-var/const/COMM_FREQ = 1353 //command, colored gold in chat window
-var/const/SYND_FREQ = 1213
-
-// department channels
-var/const/SEC_FREQ = 1359
-var/const/ENG_FREQ = 1357
-var/const/SCI_FREQ = 1351
-var/const/MED_FREQ = 1355
-var/const/SUP_FREQ = 1347
 
 #define TRANSMISSION_WIRE	0
 #define TRANSMISSION_RADIO	1
@@ -147,7 +134,7 @@ var/global/datum/controller/radio/radio_controller
 datum/controller/radio
 	var/list/datum/radio_frequency/frequencies = list()
 
-	proc/add_object(obj/device as obj, var/new_frequency as num, var/filter = null as text|null)
+	proc/add_object(obj/device as obj, new_frequency as num, filter = null as text|null)
 		var/f_text = num2text(new_frequency)
 		var/datum/radio_frequency/frequency = frequencies[f_text]
 
@@ -172,7 +159,7 @@ datum/controller/radio
 
 		return 1
 
-	proc/return_frequency(var/new_frequency as num)
+	proc/return_frequency(new_frequency as num)
 		var/f_text = num2text(new_frequency)
 		var/datum/radio_frequency/frequency = frequencies[f_text]
 
@@ -188,7 +175,7 @@ datum/radio_frequency
 	var/list/list/obj/devices = list()
 
 	proc
-		post_signal(obj/source as obj|null, datum/signal/signal, var/filter = null as text|null, var/range = null as num|null)
+		post_signal(obj/source as obj|null, datum/signal/signal, filter = null as text|null, range = null as num|null)
 			//log_admin("DEBUG \[[world.timeofday]\]: post_signal {source=\"[source]\", [signal.debug_print()], filter=[filter]}")
 //			var/N_f=0
 //			var/N_nf=0
@@ -245,7 +232,7 @@ datum/radio_frequency
 
 //			del(signal)
 
-		add_listener(obj/device as obj, var/filter as text|null)
+		add_listener(obj/device as obj, filter as text|null)
 			if (!filter)
 				filter = "_default"
 			//log_admin("add_listener(device=[device],filter=[filter]) frequency=[frequency]")

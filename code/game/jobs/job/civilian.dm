@@ -6,13 +6,12 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the head of personnel"
+	supervisors = "the Head of Personnel"
 	selection_color = "#dddddd"
 	access = list(access_hydroponics, access_bar, access_kitchen, access_morgue)
 	minimal_access = list(access_bar)
 
-
-/datum/job/bartender/equip(var/mob/living/carbon/human/H)
+/datum/job/bartender/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -50,14 +49,13 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the head of personnel"
+	supervisors = "the Head of Personnel"
 	selection_color = "#dddddd"
 	access = list(access_hydroponics, access_bar, access_kitchen, access_morgue)
 	minimal_access = list(access_kitchen)
 	alt_titles = list("Cook")
 
-
-/datum/job/chef/equip(var/mob/living/carbon/human/H)
+/datum/job/chef/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -81,13 +79,13 @@
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 2
-	supervisors = "the head of personnel"
+	supervisors = "the Head of Personnel"
 	selection_color = "#dddddd"
 	access = list(access_hydroponics, access_bar, access_kitchen, access_morgue) // Removed tox and chem access because STOP PISSING OFF THE CHEMIST GUYS // //Removed medical access because WHAT THE FUCK YOU AREN'T A DOCTOR YOU GROW WHEAT //Given Morgue access because they have a viable means of cloning.
 	minimal_access = list(access_hydroponics, access_morgue) // Removed tox and chem access because STOP PISSING OFF THE CHEMIST GUYS // //Removed medical access because WHAT THE FUCK YOU AREN'T A DOCTOR YOU GROW WHEAT //Given Morgue access because they have a viable means of cloning.
-	alt_titles = list("Hydroponicist")
+	alt_titles = list("Hydroponicist", "Gardener")
 
-/datum/job/hydro/equip(var/mob/living/carbon/human/H)
+/datum/job/hydro/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -115,13 +113,12 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the head of personnel"
+	supervisors = "the Head of Personnel"
 	selection_color = "#dddddd"
 	access = list(access_clown, access_theatre, access_maint_tunnels)
 	minimal_access = list(access_clown, access_theatre)
 
-
-/datum/job/clown/equip(var/mob/living/carbon/human/H)
+/datum/job/clown/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -148,12 +145,12 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the head of personnel"
+	supervisors = "the Head of Personnel"
 	selection_color = "#dddddd"
 	access = list(access_mime, access_theatre, access_maint_tunnels)
 	minimal_access = list(access_mime, access_theatre)
 
-/datum/job/mime/equip(var/mob/living/carbon/human/H)
+/datum/job/mime/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -194,13 +191,13 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the head of personnel"
+	supervisors = "the Head of Personnel"
 	selection_color = "#dddddd"
 	access = list(access_janitor, access_maint_tunnels)
 	minimal_access = list(access_janitor, access_maint_tunnels)
+	alt_titles = list("Custodial Specialist", "Sanitation Technician")
 
-
-/datum/job/janitor/equip(var/mob/living/carbon/human/H)
+/datum/job/janitor/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -223,14 +220,13 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the head of personnel"
+	supervisors = "the Head of Personnel"
 	selection_color = "#dddddd"
 	access = list(access_library, access_maint_tunnels)
 	minimal_access = list(access_library)
-	alt_titles = list("Journalist")
+	alt_titles = list("Journalist", "Reporter")
 
-
-/datum/job/librarian/equip(var/mob/living/carbon/human/H)
+/datum/job/librarian/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -254,13 +250,12 @@
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the captain"
+	supervisors = "the Captain"
 	selection_color = "#dddddd"
 	access = list(access_lawyer, access_court, access_sec_doors, access_maint_tunnels)
 	minimal_access = list(access_lawyer, access_court, access_sec_doors)
 
-
-/datum/job/lawyer/equip(var/mob/living/carbon/human/H)
+/datum/job/lawyer/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 

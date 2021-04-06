@@ -147,7 +147,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		var/datum/radio_frequency/connection = signal.data["connection"]
 
-		if(connection.frequency == SYND_FREQ) // if syndicate broadcast, just
+		if(connection.frequency == FREQUENCY_SYNDICATE) // if syndicate broadcast, just
 			Broadcast_Message(signal.data["connection"], signal.data["mob"],
 							  signal.data["vmask"], signal.data["vmessage"],
 							  signal.data["radio"], signal.data["message"],
@@ -251,11 +251,11 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	// --- Broadcast to syndicate radio! ---
 
 	else if(data == 3)
-		var/datum/radio_frequency/syndicateconnection = radio_controller.return_frequency(SYND_FREQ)
+		var/datum/radio_frequency/syndicateconnection = radio_controller.return_frequency(FREQUENCY_SYNDICATE)
 
 		for (var/obj/item/device/radio/R in syndicateconnection.devices["[RADIO_CHAT]"])
 
-			if(R.receive_range(SYND_FREQ, level) > -1)
+			if(R.receive_range(FREQUENCY_SYNDICATE, level) > -1)
 				radios += R
 
 	// --- Broadcast to ALL radio devices ---
@@ -331,25 +331,27 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		// --- Set the name of the channel ---
 		switch(display_freq)
-			if(SYND_FREQ)
+			if(FREQUENCY_SYNDICATE)
 				freq_text = "#unkn"
-			if(COMM_FREQ)
+			if(FREQUENCY_COMMAND)
 				freq_text = "Command"
-			if(SCI_FREQ)
+			if(FREQUENCY_SCIENCE)
 				freq_text = "Science"
-			if(MED_FREQ)
+			if(FREQUENCY_MEDICAL)
 				freq_text = "Medical"
-			if(ENG_FREQ)
+			if(FREQUENCY_ENGINEERING)
 				freq_text = "Engineering"
-			if(SEC_FREQ)
+			if(FREQUENCY_SECURITY)
 				freq_text = "Security"
-			if(SUP_FREQ)
+			if(FREQUENCY_SUPPLY)
 				freq_text = "Supply"
-			if(1341)
+			if(FREQUENCY_MINING)
+				freq_text = "Mining"
+			if(FREQUENCY_DEATHSQUAD)
 				freq_text = "Special Ops"
-			if(1345)
+			if(FREQUENCY_RESPONSETEAM)
 				freq_text = "Response Team"
-			if(1447)
+			if(FREQUENCY_AI)
 				freq_text = "AI Private"
 		//There's probably a way to use the list var of channels in code\game\communications.dm to make the dept channels non-hardcoded, but I wasn't in an experimentive mood. --NEO
 
@@ -368,7 +370,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		var/part_c = "</span></span>"
 
 		// syndies!
-		if(display_freq == SYND_FREQ)
+		if(display_freq == FREQUENCY_SYNDICATE)
 			part_a = "<span class='syndradio'><span class='name'>"
 
 		// centcomm channels (deathsquid and ert)
@@ -376,31 +378,34 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			part_a = "<span class='centradio'><span class='name'>"
 
 		// command channel
-		else if(display_freq == COMM_FREQ)
+		else if(display_freq == FREQUENCY_COMMAND)
 			part_a = "<span class='comradio'><span class='name'>"
 
 		// AI private channel
-		else if(display_freq == 1447)
+		else if(display_freq == FREQUENCY_AI)
 			part_a = "<span class='airadio'><span class='name'>"
 
 		// department radio formatting (poorly optimized, ugh)
-		else if(display_freq == SEC_FREQ)
+		else if(display_freq == FREQUENCY_SECURITY)
 			part_a = "<span class='secradio'><span class='name'>"
 
-		else if(display_freq == ENG_FREQ)
+		else if(display_freq == FREQUENCY_ENGINEERING)
 			part_a = "<span class='engradio'><span class='name'>"
 
-		else if(display_freq == SCI_FREQ)
+		else if(display_freq == FREQUENCY_SCIENCE)
 			part_a = "<span class='sciradio'><span class='name'>"
 
-		else if(display_freq == MED_FREQ)
+		else if(display_freq == FREQUENCY_MEDICAL)
 			part_a = "<span class='medradio'><span class='name'>"
 
-		else if(display_freq == SUP_FREQ) // cargo
+		else if(display_freq == FREQUENCY_SUPPLY) // cargo
 			part_a = "<span class='supradio'><span class='name'>"
+		
+		else if(display_freq == FREQUENCY_MINING) // mining
+			part_a = "<span class='minradio'><span class='name'>"
 
 		// If all else fails and it's a dept_freq, color me purple!
-		else if (display_freq in DEPT_FREQS)
+		else if(display_freq in DEPT_FREQS)
 			part_a = "<span class='deptradio'><span class='name'>"
 
 
@@ -421,24 +426,26 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		//BR.messages_admin += blackbox_admin_msg
 		if(istype(blackbox))
 			switch(display_freq)
-				if(1459)
+				if(FREQUENCY_COMMON)
 					blackbox.msg_common += blackbox_msg
-				if(1351)
+				if(FREQUENCY_SCIENCE)
 					blackbox.msg_science += blackbox_msg
-				if(1353)
+				if(FREQUENCY_COMMAND)
 					blackbox.msg_command += blackbox_msg
-				if(1355)
+				if(FREQUENCY_MEDICAL)
 					blackbox.msg_medical += blackbox_msg
-				if(1357)
+				if(FREQUENCY_ENGINEERING)
 					blackbox.msg_engineering += blackbox_msg
-				if(1359)
+				if(FREQUENCY_SECURITY)
 					blackbox.msg_security += blackbox_msg
-				if(1441)
+				if(FREQUENCY_DEATHSQUAD)
 					blackbox.msg_deathsquad += blackbox_msg
-				if(1213)
+				if(FREQUENCY_SYNDICATE)
 					blackbox.msg_syndicate += blackbox_msg
-				if(1347)
+				if(FREQUENCY_SUPPLY)
 					blackbox.msg_cargo += blackbox_msg
+				if(FREQUENCY_MINING)
+					blackbox.msg_mining += blackbox_msg
 				else
 					blackbox.messages += blackbox_msg
 
@@ -517,12 +524,12 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	// --- Broadcast to syndicate radio! ---
 
 	else if(data == 3)
-		var/datum/radio_frequency/syndicateconnection = radio_controller.return_frequency(SYND_FREQ)
+		var/datum/radio_frequency/syndicateconnection = radio_controller.return_frequency(FREQUENCY_SYNDICATE)
 
 		for (var/obj/item/device/radio/R in syndicateconnection.devices["[RADIO_CHAT]"])
 			var/turf/position = get_turf(R)
 			if(position && position.z == level)
-				receive |= R.send_hear(SYND_FREQ)
+				receive |= R.send_hear(FREQUENCY_SYNDICATE)
 
 
 	// --- Broadcast to ALL radio devices ---
@@ -581,20 +588,22 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		// --- Set the name of the channel ---
 		switch(display_freq)
 
-			if(SYND_FREQ)
+			if(FREQUENCY_SYNDICATE)
 				freq_text = "#unkn"
-			if(COMM_FREQ)
+			if(FREQUENCY_COMMAND)
 				freq_text = "Command"
-			if(1351)
+			if(FREQUENCY_SCIENCE)
 				freq_text = "Science"
-			if(1355)
+			if(FREQUENCY_MEDICAL)
 				freq_text = "Medical"
-			if(1357)
+			if(FREQUENCY_ENGINEERING)
 				freq_text = "Engineering"
-			if(1359)
+			if(FREQUENCY_SECURITY)
 				freq_text = "Security"
-			if(1347)
+			if(FREQUENCY_SUPPLY)
 				freq_text = "Supply"
+			if(FREQUENCY_MINING)
+				freq_text = "Mining"
 		//There's probably a way to use the list var of channels in code\game\communications.dm to make the dept channels non-hardcoded, but I wasn't in an experimentive mood. --NEO
 
 
@@ -615,11 +624,11 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		var/part_b = "</span><b> \icon[radio]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 		var/part_c = "</span></span>"
 
-		if (display_freq==SYND_FREQ)
+		if(display_freq == FREQUENCY_SYNDICATE)
 			part_a = "<span class='syndradio'><span class='name'>"
-		else if (display_freq==COMM_FREQ)
+		else if(display_freq == FREQUENCY_COMMAND)
 			part_a = "<span class='comradio'><span class='name'>"
-		else if (display_freq in DEPT_FREQS)
+		else if(display_freq in DEPT_FREQS)
 			part_a = "<span class='deptradio'><span class='name'>"
 
 		// --- This following recording is intended for research and feedback in the use of department radio channels ---
@@ -631,24 +640,26 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		//BR.messages_admin += blackbox_admin_msg
 		if(istype(blackbox))
 			switch(display_freq)
-				if(1459)
+				if(FREQUENCY_COMMON)
 					blackbox.msg_common += blackbox_msg
-				if(1351)
+				if(FREQUENCY_SCIENCE)
 					blackbox.msg_science += blackbox_msg
-				if(1353)
+				if(FREQUENCY_COMMAND)
 					blackbox.msg_command += blackbox_msg
-				if(1355)
+				if(FREQUENCY_MEDICAL)
 					blackbox.msg_medical += blackbox_msg
-				if(1357)
+				if(FREQUENCY_ENGINEERING)
 					blackbox.msg_engineering += blackbox_msg
-				if(1359)
+				if(FREQUENCY_SECURITY)
 					blackbox.msg_security += blackbox_msg
-				if(1441)
+				if(FREQUENCY_DEATHSQUAD)
 					blackbox.msg_deathsquad += blackbox_msg
-				if(1213)
+				if(FREQUENCY_SYNDICATE)
 					blackbox.msg_syndicate += blackbox_msg
-				if(1347)
+				if(FREQUENCY_SUPPLY)
 					blackbox.msg_cargo += blackbox_msg
+				if(FREQUENCY_MINING)
+					blackbox.msg_mining += blackbox_msg
 				else
 					blackbox.messages += blackbox_msg
 
@@ -709,7 +720,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		"done" = 0,
 		"level" = pos.z // The level it is being broadcasted at.
 	)
-	signal.frequency = 1459// Common channel
+	signal.frequency = FREQUENCY_COMMON// Common channel
 
   //#### Sending the signal to all subspace receivers ####//
 	for(var/obj/machinery/telecomms/receiver/R in telecomms_list)

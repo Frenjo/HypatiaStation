@@ -72,7 +72,7 @@
 
 /obj/item/device/radio/headset/headset_rob
 	name = "robotics radio headset"
-	desc = "Made specifically for the roboticists who cannot decide between departments. To access the engineering channel, use :e. For research, use :n."
+	desc = "Made specifically for the Roboticists who cannot decide between departments. To access the engineering channel, use :e. For science, use :n."
 	icon_state = "rob_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_rob
@@ -100,14 +100,14 @@
 
 /obj/item/device/radio/headset/headset_com
 	name = "command radio headset"
-	desc = "A headset with a commanding channel. To access the command channel, use :c."
+	desc = "A headset with a commanding channel. To access the Command channel, use :c."
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_com
 
 /obj/item/device/radio/headset/heads/captain
 	name = "captain's headset"
-	desc = "The headset of the boss. Channels are as follows: :c - command, :s - security, :e - engineering, :u - supply, :m - medical, :n - science."
+	desc = "The headset of the boss. Channels are as follows: :c - Command, :s - Security, :e - Engineering, :u - Supply, :m - Medical, :n - Science, :d - Mining."
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/captain
@@ -121,7 +121,7 @@
 
 /obj/item/device/radio/headset/heads/hos
 	name = "head of security's headset"
-	desc = "The headset of the man who protects your worthless lifes. To access the security channel, use :s. For command, use :c."
+	desc = "The headset of the man who protects your worthless lives. To access the security channel, use :s. For command, use :c."
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hos
@@ -142,7 +142,7 @@
 
 /obj/item/device/radio/headset/heads/hop
 	name = "head of personnel's headset"
-	desc = "The headset of the guy who will one day be captain. Channels are as follows: :c - command, :s - security"
+	desc = "The headset of the guy who will one day be Captain. Channels are as follows: :c - Command, :s - Security, :u - Supply, :d - Mining."
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hop
@@ -154,9 +154,16 @@
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_mine
 
+/obj/item/device/radio/headset/headset_mineforeman
+	name = "mining foreman's radio headset"
+	desc = "Headset used by the Mining Foreman. How slightly less useless. To access the mining channel, use :d. For supply, use :u."
+	icon_state = "mine_headset"
+	item_state = "headset"
+	ks2type = /obj/item/device/encryptionkey/headset_mineforeman
+
 /obj/item/device/radio/headset/heads/qm
 	name = "quartermaster's headset"
-	desc = "The headset of the man who control your toiletpaper supply. To access the supply channel, use :u. For command, use :c."
+	desc = "The headset of the man who controls your toilet paper supply. Channels are as follows: :c - Command, :u - Supply, :d - Mining."
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/qm
@@ -170,7 +177,7 @@
 
 /obj/item/device/radio/headset/ert
 	name = "CentCom Response Team headset"
-	desc = "The headset of the boss's boss. Channels are as follows: :h - Response Team :c - command, :s - security, :e - engineering, :d - mining, :q - cargo, :m - medical, :n - science."
+	desc = "The headset of the boss's boss. Channels are as follows: :h - Response Team :c - Command, :s - Security, :e - Engineering, :d - Mining, :u - Supply, :m - Medical, :n - Science."
 	icon_state = "com_headset"
 	item_state = "headset"
 	freerange = 1

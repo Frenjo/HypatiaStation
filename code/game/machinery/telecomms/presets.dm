@@ -41,7 +41,7 @@
 	id = "Hub"
 	network = "tcommsat"
 	autolinkers = list("hub", "relay", "c_relay", "s_relay", "m_relay", "r_relay", "science", "medical",
-	"supply", "common", "command", "engineering", "security",
+	"supply", "mining", "common", "command", "engineering", "security",
 	"receiverA", "receiverB", "broadcasterA", "broadcasterB")
 
 /obj/machinery/telecomms/hub/preset_cent
@@ -60,7 +60,7 @@
 	id = "Receiver A"
 	network = "tcommsat"
 	autolinkers = list("receiverA") // link to relay
-	freq_listening = list(1351, 1355, 1347) // science, medical, supply
+	freq_listening = list(FREQUENCY_SCIENCE, FREQUENCY_MEDICAL, FREQUENCY_SUPPLY) // science, medical, supply
 
 
 //--PRESET RIGHT--//
@@ -69,7 +69,7 @@
 	id = "Receiver B"
 	network = "tcommsat"
 	autolinkers = list("receiverB") // link to relay
-	freq_listening = list(1353, 1357, 1359) //command, engineering, security
+	freq_listening = list(FREQUENCY_COMMAND, FREQUENCY_ENGINEERING, FREQUENCY_SECURITY) //command, engineering, security
 
 	//Common and other radio frequencies for people to freely use
 	New()
@@ -83,7 +83,7 @@
 	//heatgen = 0
 	operating_temperature = null
 	autolinkers = list("receiverCent")
-	freq_listening = list(1345, 1341)
+	freq_listening = list(FREQUENCY_RESPONSETEAM, FREQUENCY_DEATHSQUAD)
 
 
 //Buses
@@ -91,25 +91,25 @@
 /obj/machinery/telecomms/bus/preset_one
 	id = "Bus 1"
 	network = "tcommsat"
-	freq_listening = list(1351, 1355)
+	freq_listening = list(FREQUENCY_SCIENCE, FREQUENCY_MEDICAL)
 	autolinkers = list("processor1", "science", "medical")
 
 /obj/machinery/telecomms/bus/preset_two
 	id = "Bus 2"
 	network = "tcommsat"
-	freq_listening = list(1347)
-	autolinkers = list("processor2", "supply")
+	freq_listening = list(FREQUENCY_SUPPLY, FREQUENCY_MINING)
+	autolinkers = list("processor2", "supply", "mining")
 
 /obj/machinery/telecomms/bus/preset_three
 	id = "Bus 3"
 	network = "tcommsat"
-	freq_listening = list(1359, 1353)
+	freq_listening = list(FREQUENCY_SECURITY, FREQUENCY_COMMAND)
 	autolinkers = list("processor3", "security", "command")
 
 /obj/machinery/telecomms/bus/preset_four
 	id = "Bus 4"
 	network = "tcommsat"
-	freq_listening = list(1357)
+	freq_listening = list(FREQUENCY_ENGINEERING)
 	autolinkers = list("processor4", "engineering", "common")
 
 /obj/machinery/telecomms/bus/preset_four/New()
@@ -120,7 +120,7 @@
 /obj/machinery/telecomms/bus/preset_cent
 	id = "CentComm Bus"
 	network = "tcommsat"
-	freq_listening = list(1345, 1341)
+	freq_listening = list(FREQUENCY_RESPONSETEAM, FREQUENCY_DEATHSQUAD)
 	//heatgen = 0
 	operating_temperature = null
 	autolinkers = list("processorCent", "centcomm")
@@ -162,26 +162,31 @@
 
 /obj/machinery/telecomms/server/presets/science
 	id = "Science Server"
-	freq_listening = list(1351)
+	freq_listening = list(FREQUENCY_SCIENCE)
 	autolinkers = list("science")
 
 /obj/machinery/telecomms/server/presets/medical
 	id = "Medical Server"
-	freq_listening = list(1355)
+	freq_listening = list(FREQUENCY_MEDICAL)
 	autolinkers = list("medical")
 
 /obj/machinery/telecomms/server/presets/supply
 	id = "Supply Server"
-	freq_listening = list(1347)
+	freq_listening = list(FREQUENCY_SUPPLY)
 	autolinkers = list("supply")
+
+/obj/machinery/telecomms/server/presets/mining
+	id = "Mining Server"
+	freq_listening = list(FREQUENCY_MINING)
+	autolinkers = list("mining")
 
 /obj/machinery/telecomms/server/presets/common
 	id = "Common Server"
 	freq_listening = list()
 	autolinkers = list("common")
 
-	//Common and other radio frequencies for people to freely use
-	// 1441 to 1489
+//Common and other radio frequencies for people to freely use
+// 1441 to 1489
 /obj/machinery/telecomms/server/presets/common/New()
 	for(var/i = 1441, i < 1489, i += 2)
 		freq_listening |= i
@@ -189,22 +194,22 @@
 
 /obj/machinery/telecomms/server/presets/command
 	id = "Command Server"
-	freq_listening = list(1353)
+	freq_listening = list(FREQUENCY_COMMAND)
 	autolinkers = list("command")
 
 /obj/machinery/telecomms/server/presets/engineering
 	id = "Engineering Server"
-	freq_listening = list(1357)
+	freq_listening = list(FREQUENCY_ENGINEERING)
 	autolinkers = list("engineering")
 
 /obj/machinery/telecomms/server/presets/security
 	id = "Security Server"
-	freq_listening = list(1359)
+	freq_listening = list(FREQUENCY_SECURITY)
 	autolinkers = list("security")
 
 /obj/machinery/telecomms/server/presets/centcomm
 	id = "CentComm Server"
-	freq_listening = list(1345, 1341)
+	freq_listening = list(FREQUENCY_RESPONSETEAM, FREQUENCY_DEATHSQUAD)
 	//heatgen = 0
 	operating_temperature = null
 	autolinkers = list("centcomm")

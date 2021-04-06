@@ -5,7 +5,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "the Captain"
 	selection_color = "#ffeeaa"
 	idtype = /obj/item/weapon/card/id/silver
 	req_admin_notify = 1
@@ -19,7 +19,7 @@
 			            access_ce, access_RC_announce, access_keycard_auth, access_tcomsat, access_ai_upload)
 	minimal_player_age = 7
 
-/datum/job/chief_engineer/equip(var/mob/living/carbon/human/H)
+/datum/job/chief_engineer/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -50,13 +50,13 @@
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 5
-	supervisors = "the chief engineer"
+	supervisors = "the Chief Engineer"
 	selection_color = "#fff5cc"
 	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics)
 	minimal_access = list(access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction)
 	alt_titles = list("Maintenance Technician", "Engine Technician", "Electrician")
 
-/datum/job/engineer/equip(var/mob/living/carbon/human/H)
+/datum/job/engineer/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -88,12 +88,12 @@
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 2
-	supervisors = "the chief engineer"
+	supervisors = "the Chief Engineer"
 	selection_color = "#fff5cc"
 	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics, access_external_airlocks)
 	minimal_access = list(access_atmospherics, access_maint_tunnels, access_emergency_storage, access_construction, access_external_airlocks)
 
-/datum/job/atmos/equip(var/mob/living/carbon/human/H)
+/datum/job/atmos/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 

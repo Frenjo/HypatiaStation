@@ -62,13 +62,14 @@
 		interpreter.SetVar("WEST" 	, 	WEST)			// WEST  (8)
 
 		// Channel macros
-		interpreter.SetVar("$common",	1459)
-		interpreter.SetVar("$science",	1351)
-		interpreter.SetVar("$command",	1353)
-		interpreter.SetVar("$medical",	1355)
-		interpreter.SetVar("$engineering",1357)
-		interpreter.SetVar("$security",	1359)
-		interpreter.SetVar("$supply",	1347)
+		interpreter.SetVar("$common", FREQUENCY_COMMON)
+		interpreter.SetVar("$science", FREQUENCY_SCIENCE)
+		interpreter.SetVar("$command", FREQUENCY_COMMAND)
+		interpreter.SetVar("$medical", FREQUENCY_MEDICAL)
+		interpreter.SetVar("$engineering", FREQUENCY_ENGINEERING)
+		interpreter.SetVar("$security", FREQUENCY_SECURITY)
+		interpreter.SetVar("$supply", FREQUENCY_SUPPLY)
+		interpreter.SetVar("$mining", FREQUENCY_MINING)
 
 		// Signal data
 
@@ -236,7 +237,7 @@ datum/signal
 			source = "[html_encode(uppertext(S.id))]"
 			hradio = new // sets the hradio as a radio intercom
 		if(!freq)
-			freq = 1459
+			freq = FREQUENCY_COMMON
 		if(findtext(num2text(freq), ".")) // if the frequency has been set as a decimal
 			freq *= 10 // shift the decimal one place
 

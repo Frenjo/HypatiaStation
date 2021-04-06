@@ -5,7 +5,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
+	supervisors = "the Captain"
 	selection_color = "#ffddf0"
 	idtype = /obj/item/weapon/card/id/silver
 	req_admin_notify = 1
@@ -17,7 +17,7 @@
 			access_keycard_auth, access_sec_doors, access_psychiatrist)
 	minimal_player_age = 10
 
-/datum/job/cmo/equip(var/mob/living/carbon/human/H)
+/datum/job/cmo/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -49,13 +49,13 @@
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 3
-	supervisors = "the chief medical officer"
+	supervisors = "the Chief Medical Officer"
 	selection_color = "#ffeef0"
 	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
 	minimal_access = list(access_medical, access_morgue, access_surgery, access_virology)
-	alt_titles = list("Surgeon","Emergency Physician","Nurse")
+	alt_titles = list("Surgeon", "Emergency Physician", "Nurse")
 
-/datum/job/doctor/equip(var/mob/living/carbon/human/H)
+/datum/job/doctor/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -111,13 +111,13 @@
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the chief medical officer"
+	supervisors = "the Chief Medical Officer"
 	selection_color = "#ffeef0"
 	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
 	minimal_access = list(access_medical, access_chemistry)
 	alt_titles = list("Pharmacist")
 
-/datum/job/chemist/equip(var/mob/living/carbon/human/H)
+/datum/job/chemist/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -143,12 +143,12 @@
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
-	supervisors = "the chief medical officer and research director"
+	supervisors = "the Chief Medical Officer and the Research Director"
 	selection_color = "#ffeef0"
 	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_research)
 	minimal_access = list(access_medical, access_morgue, access_genetics, access_research)
 
-/datum/job/geneticist/equip(var/mob/living/carbon/human/H)
+/datum/job/geneticist/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -167,6 +167,7 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
 	return 1
 
+
 /datum/job/virologist
 	title = "Virologist"
 	flag = VIROLOGIST
@@ -174,14 +175,13 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the chief medical officer"
+	supervisors = "the Chief Medical Officer"
 	selection_color = "#ffeef0"
 	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
 	minimal_access = list(access_medical, access_virology)
 	alt_titles = list("Pathologist", "Microbiologist")
 
-
-/datum/job/virologist/equip(var/mob/living/carbon/human/H)
+/datum/job/virologist/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 
@@ -208,13 +208,13 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the chief medical officer"
+	supervisors = "the Chief Medical Officer"
 	selection_color = "#ffeef0"
 	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_psychiatrist)
 	minimal_access = list(access_medical, access_psychiatrist)
 	alt_titles = list("Psychologist")
 
-/datum/job/psychiatrist/equip(var/mob/living/carbon/human/H)
+/datum/job/psychiatrist/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
 

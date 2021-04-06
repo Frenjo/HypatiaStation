@@ -78,7 +78,7 @@
 	name = "Captain's Encryption Key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "cap_cypherkey"
-	channels = list("Command" = 1, "Security" = 1, "Engineering" = 0, "Science" = 0, "Medical" = 0, "Supply" = 0)
+	channels = list("Command" = 1, "Security" = 1, "Engineering" = 0, "Science" = 0, "Medical" = 0, "Supply" = 0, "Mining" = 0)
 
 /obj/item/device/encryptionkey/heads/rd
 	name = "Research Director's Encryption Key"
@@ -108,7 +108,7 @@
 	name = "Head of Personnel's Encryption Key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "hop_cypherkey"
-	channels = list("Command" = 1, "Security" = 0)
+	channels = list("Command" = 1, "Security" = 0, "Supply" = 0, "Mining" = 0)
 
 /obj/item/device/encryptionkey/headset_mine
 	name = "Mining Radio Encryption Key"
@@ -116,11 +116,17 @@
 	icon_state = "mine_cypherkey"
 	channels = list("Mining" = 1)
 
+/obj/item/device/encryptionkey/headset_mineforeman
+	name = "Mining Foreman's Radio Encryption Key"
+	desc = "An encyption key for a radio headset.  Contains cypherkeys."
+	icon_state = "mine_cypherkey"
+	channels = list("Mining" = 1, "Supply" = 1)
+
 /obj/item/device/encryptionkey/heads/qm
 	name = "Quartermaster's Encryption Key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
 	icon_state = "qm_cypherkey"
-	channels = list("Supply" = 1, "Command" = 1)
+	channels = list("Supply" = 1, "Mining" = 1, "Command" = 1)
 
 /obj/item/device/encryptionkey/headset_cargo
 	name = "Supply Radio Encryption Key"
@@ -131,4 +137,4 @@
 /obj/item/device/encryptionkey/ert
 	name = "NanoTrasen ERT Radio Encryption Key"
 	desc = "An encyption key for a radio headset.  Contains cypherkeys."
-	channels = list("Response Team" = 1, "Science" = 1, "Command" = 1, "Medical" = 1, "Engineering" = 1, "Security" = 1, "Supply" = 1)
+	channels = list("Response Team" = 1, "Science" = 1, "Command" = 1, "Medical" = 1, "Engineering" = 1, "Security" = 1, "Supply" = 1, "Mining" = 1)
