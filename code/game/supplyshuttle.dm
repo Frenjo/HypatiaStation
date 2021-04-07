@@ -72,7 +72,7 @@ var/list/mechtoys = list(
 	var/datum/shuttle/ferry/supply/shuttle
 
 	New()
-		ordernum = rand(1,9000)
+		ordernum = rand(1, 9000)
 
 	//Supply shuttle ticker - handles supply point regenertion and shuttle travelling between centcomm and the station
 	proc/process()
@@ -91,16 +91,16 @@ var/list/mechtoys = list(
 
 	//To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
 	proc/forbidden_atoms_check(atom/A)
-		if(istype(A,/mob/living))
+		if(istype(A, /mob/living))
 			return 1
-		if(istype(A,/obj/item/weapon/disk/nuclear))
+		if(istype(A, /obj/item/weapon/disk/nuclear))
 			return 1
-		if(istype(A,/obj/machinery/nuclearbomb))
+		if(istype(A, /obj/machinery/nuclearbomb))
 			return 1
-		if(istype(A,/obj/item/device/radio/beacon))
+		if(istype(A, /obj/item/device/radio/beacon))
 			return 1
 
-		for(var/i=1, i<=A.contents.len, i++)
+		for(var/i = 1, i <= A.contents.len, i++)
 			var/atom/B = A.contents[i]
 			if(.(B))
 				return 1
@@ -108,15 +108,17 @@ var/list/mechtoys = list(
 	//Sellin
 	proc/sell()
 		var/area/area_shuttle = shuttle.get_location_area()
-		if(!area_shuttle)	return
+		if(!area_shuttle)
+			return
 
 		var/plasma_count = 0
 
 		for(var/atom/movable/MA in area_shuttle)
-			if(MA.anchored)	continue
+			if(MA.anchored)
+				continue
 
 			// Must be in a crate!
-			if(istype(MA,/obj/structure/closet/crate))
+			if(istype(MA, /obj/structure/closet/crate))
 				callHook("sell_crate", list(MA, area_shuttle))
 
 				points += points_per_crate
@@ -144,22 +146,26 @@ var/list/mechtoys = list(
 
 	//Buyin
 	proc/buy()
-		if(!shoppinglist.len) return
+		if(!shoppinglist.len)
+			return
 
 		var/area/area_shuttle = shuttle.get_location_area()
-		if(!area_shuttle)	return
+		if(!area_shuttle)
+			return
 
 		var/list/clear_turfs = list()
 
 		for(var/turf/T in area_shuttle)
-			if(T.density || T.contents.len)	continue
+			if(T.density || T.contents.len)
+				continue
 			clear_turfs += T
 
 		for(var/S in shoppinglist)
-			if(!clear_turfs.len)	break
-			var/i = rand(1,clear_turfs.len)
+			if(!clear_turfs.len)
+				break
+			var/i = rand(1, clear_turfs.len)
 			var/turf/pickedloc = clear_turfs[i]
-			clear_turfs.Cut(i,i+1)
+			clear_turfs.Cut(i, i + 1)
 
 			var/datum/supply_order/SO = S
 			var/datum/supply_packs/SP = SO.object
@@ -182,11 +188,11 @@ var/list/mechtoys = list(
 				A:req_access += text2num(SP.access)
 
 			var/list/contains
-			if(istype(SP,/datum/supply_packs/randomised))
+			if(istype(SP, /datum/supply_packs/randomised))
 				var/datum/supply_packs/randomised/SPR = SP
 				contains = list()
 				if(SPR.contains.len)
-					for(var/j=1,j<=SPR.num_contained,j++)
+					for(var/j = 1, j <= SPR.num_contained, j++)
 						contains += pick(SPR.contains)
 			else
 				contains = SP.contains

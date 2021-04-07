@@ -5,7 +5,7 @@
 //BIG NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NEW NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-var/list/all_supply_groups = list("Operations","Security","Hospitality","Engineering","Medical / Science","Hydroponics", "Supply", "Miscellaneous")
+var/list/all_supply_groups = list("Operations", "Security", "Hospitality", "Engineering", "Medical / Science", "Hydroponics", "Supply", "Miscellaneous")
 
 /datum/supply_packs
 	var/name = null
@@ -23,7 +23,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_packs/New()
 	manifest += "<ul>"
 	for(var/path in contains)
-		if(!path)	continue
+		if(!path)
+			continue
 		var/atom/movable/AM = new path()
 		manifest += "<li>[AM.name]</li>"
 		AM.loc = null	//just to make sure they're deleted by the garbage collector
@@ -32,7 +33,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_packs/stemcell
         name = "Stem-Cell Pack (2)"
         contains = list(/obj/item/cloning/charge,
-                                        /obj/item/cloning/charge)
+                        /obj/item/cloning/charge)
         cost = 125
         containertype = /obj/structure/closet/crate/secure/bio
         containername = "Stem-Cell Long Term Storage Unit"

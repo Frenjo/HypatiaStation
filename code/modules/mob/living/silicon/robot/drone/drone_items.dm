@@ -61,7 +61,6 @@
 			break
 
 	if(wrapped) //Already have an item.
-
 		wrapped.loc = user
 		//Pass the attack on to the target.
 		target.attackby(wrapped,user)
@@ -78,8 +77,7 @@
 			wrapped = null
 			return
 
-	if(istype(target,/obj/item)) //Check that we're not pocketing a mob.
-
+	if(istype(target, /obj/item)) //Check that we're not pocketing a mob.
 		//...and that the item is not in a container.
 		if(!isturf(target.loc))
 			return
@@ -89,7 +87,7 @@
 		//Check if the item is blacklisted.
 		var/grab = 0
 		for(var/typepath in can_hold)
-			if(istype(I,typepath))
+			if(istype(I, typepath))
 				grab = 1
 				break
 
