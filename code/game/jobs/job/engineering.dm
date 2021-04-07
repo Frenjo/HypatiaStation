@@ -37,10 +37,11 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/white(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), slot_gloves)
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival/engineer(H), slot_r_hand)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival/engineer(H.back), slot_in_backpack)
+	if(istype(H.species.survival_kit, /obj/item/weapon/storage/box/survival))
+		if(H.backbag == 1)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival/engineer(H), slot_r_hand)
+		else
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival/engineer(H.back), slot_in_backpack)
 	return 1
 
 /datum/job/engineer
@@ -74,7 +75,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat(H), slot_head)
 	H.equip_to_slot_or_del(new /obj/item/device/t_scanner(H), slot_r_store)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/engineering(H), slot_l_store)
-	if(H.species != "Plasmaperson")
+	if(istype(H.species.survival_kit, /obj/item/weapon/storage/box/survival))
 		if(H.backbag == 1)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival/engineer(H), slot_r_hand)
 		else
@@ -109,8 +110,9 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/atmos(H), slot_l_store)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/atmostech/(H), slot_belt)
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival/engineer(H), slot_r_hand)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival/engineer(H.back), slot_in_backpack)
+	if(!istype(H.species.survival_kit, /obj/item/weapon/storage/box/survival))
+		if(H.backbag == 1)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival/engineer(H), slot_r_hand)
+		else
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival/engineer(H.back), slot_in_backpack)
 	return 1
