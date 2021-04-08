@@ -1,19 +1,18 @@
 /mob/living/silicon/ai/proc/get_camera_list()
-
 	if(src.stat == 2)
 		return
 
 	var/list/L = list()
-	for (var/obj/machinery/camera/C in cameranet.cameras)
+	for(var/obj/machinery/camera/C in cameranet.cameras)
 		L.Add(C)
 
 	camera_sort(L)
 
 	var/list/T = list()
 	T["Cancel"] = "Cancel"
-	for (var/obj/machinery/camera/C in L)
-		var/list/tempnetwork = C.network&src.network
-		if (tempnetwork.len)
+	for(var/obj/machinery/camera/C in L)
+		var/list/tempnetwork = C.network & src.network
+		if(tempnetwork.len)
 			T[text("[][]", C.c_tag, (C.can_use() ? null : " (Deactivated)"))] = C
 
 	track = new()
@@ -21,7 +20,7 @@
 	return T
 
 
-/mob/living/silicon/ai/proc/ai_camera_list(var/camera in get_camera_list())
+/mob/living/silicon/ai/proc/ai_camera_list(camera in get_camera_list())
 	set category = "AI Commands"
 	set name = "Show Camera List"
 
@@ -29,7 +28,7 @@
 		src << "You can't list the cameras because you are dead!"
 		return
 
-	if (!camera || camera == "Cancel")
+	if(!camera || camera == "Cancel")
 		return 0
 
 	var/obj/machinery/camera/C = track.cameras[camera]
@@ -47,7 +46,6 @@
 	var/list/cameras = list()
 
 /mob/living/silicon/ai/proc/trackable_mobs()
-
 	if(usr.stat == 2)
 		return list()
 
@@ -85,7 +83,7 @@
 			continue
 
 		var/name = M.name
-		if (name in TB.names)
+		if(name in TB.names)
 			TB.namecounts[name]++
 			name = text("[] ([])", name, TB.namecounts[name])
 		else
@@ -100,7 +98,7 @@
 	src.track = TB
 	return targets
 
-/mob/living/silicon/ai/proc/ai_camera_track(var/target_name in trackable_mobs())
+/mob/living/silicon/ai/proc/ai_camera_track(target_name in trackable_mobs())
 	set category = "AI Commands"
 	set name = "Track With Camera"
 	set desc = "Select who you would like to track."
@@ -116,7 +114,8 @@
 	ai_actual_track(target)
 
 /mob/living/silicon/ai/proc/ai_actual_track(mob/living/target as mob)
-	if(!istype(target))	return
+	if(!istype(target))
+		return
 	var/mob/living/silicon/ai/U = usr
 
 	U.cameraFollow = target
@@ -126,10 +125,10 @@
 	U << "Now tracking [target.name] on camera."
 
 	spawn (0)
-		while (U.cameraFollow == target)
-			if (U.cameraFollow == null)
+		while(U.cameraFollow == target)
+			if(U.cameraFollow == null)
 				return
-			if (istype(target, /mob/living/carbon/human))
+			if(istype(target, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = target
 				if(H.wear_id && istype(H.wear_id.GetID(), /obj/item/weapon/card/id/syndicate))
 					U << "Follow camera mode terminated."
@@ -149,7 +148,7 @@
 				U.cameraFollow = null
 				return
 
-			if (!near_camera(target))
+			if(!near_camera(target))
 				U << "Target is not near any active cameras."
 				sleep(100)
 				continue
@@ -161,8 +160,8 @@
 				return
 			sleep(10)
 
-/proc/near_camera(var/mob/living/M)
-	if (!isturf(M.loc))
+/proc/near_camera(mob/living/M)
+	if(!isturf(M.loc))
 		return 0
 	if(isRobot(M))
 		var/mob/living/silicon/robot/R = M
@@ -173,9 +172,9 @@
 	return 1
 
 /obj/machinery/camera/attack_ai(var/mob/living/silicon/ai/user as mob)
-	if (!istype(user))
+	if(!istype(user))
 		return
-	if (!src.can_use())
+	if(!src.can_use())
 		return
 	user.eyeobj.setLoc(get_turf(src))
 
@@ -187,14 +186,14 @@
 	var/obj/machinery/camera/a
 	var/obj/machinery/camera/b
 
-	for (var/i = L.len, i > 0, i--)
-		for (var/j = 1 to i - 1)
+	for(var/i = L.len, i > 0, i--)
+		for(var/j = 1 to i - 1)
 			a = L[j]
 			b = L[j + 1]
-			if (a.c_tag_order != b.c_tag_order)
-				if (a.c_tag_order > b.c_tag_order)
+			if(a.c_tag_order != b.c_tag_order)
+				if(a.c_tag_order > b.c_tag_order)
 					L.Swap(j, j + 1)
 			else
-				if (sorttext(a.c_tag, b.c_tag) < 0)
+				if(sorttext(a.c_tag, b.c_tag) < 0)
 					L.Swap(j, j + 1)
 	return L

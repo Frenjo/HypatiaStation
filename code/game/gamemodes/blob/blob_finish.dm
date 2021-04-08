@@ -7,12 +7,14 @@
 		return 1
 
 	for(var/obj/effect/blob/B in blob_cores)
-		if(B && B.z != 1)	continue
+		if(B && isNotStationLevel(B.z))
+			continue
 		return 0
 
 	var/nodes = 0
 	for(var/obj/effect/blob/B in blob_nodes)
-		if(B && B.z != 1)	continue
+		if(B && isNotStationLevel(B.z))
+			continue
 		nodes++
 		if(nodes > 4)//Perhapse make a new core with a low prob
 			return 0
@@ -52,21 +54,21 @@
 	var/numAlive = 0
 	var/numSpace = 0
 	var/numOffStation = 0
-	for (var/mob/living/silicon/ai/aiPlayer in mob_list)
+	for(var/mob/living/silicon/ai/aiPlayer in mob_list)
 		for(var/mob/living/carbon/human/M in mob_list)
-			if ((M != aiPlayer && M.client))
-				if (M.stat == 2)
+			if((M != aiPlayer && M.client))
+				if(M.stat == 2)
 					numDead += 1
 				else
 					var/T = M.loc
-					if (istype(T, /turf/space))
+					if(istype(T, /turf/space))
 						numSpace += 1
 					else if(istype(T, /turf))
-						if (M.z!=1)
+						if(isNotStationLevel(M.z))
 							numOffStation += 1
 						else
 							numAlive += 1
-		if (numSpace==0 && numOffStation==0)
+		if(numSpace == 0 && numOffStation == 0)
 			world << "<FONT size = 3><B>The AI has won!</B></FONT>"
 			world << "<B>The AI successfully maintained the quarantine - no players were in space or were off-station (as far as we can tell).</B>"
 			log_game("AI won at Blob mode despite overall loss.")

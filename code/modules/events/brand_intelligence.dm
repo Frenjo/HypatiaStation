@@ -7,14 +7,13 @@
 	var/list/obj/machinery/vending/infectedVendingMachines = list()
 	var/obj/machinery/vending/originMachine
 
-
 /datum/event/brand_intelligence/announce()
 	command_alert("Rampant brand intelligence has been detected aboard [station_name()], please stand-by.", "Machine Learning Alert")
 
-
 /datum/event/brand_intelligence/start()
 	for(var/obj/machinery/vending/V in machines)
-		if(V.z != 1)	continue
+		if(isNotStationLevel(V.z))
+			continue
 		vendingMachines.Add(V)
 
 	if(!vendingMachines.len)
@@ -25,7 +24,6 @@
 	vendingMachines.Remove(originMachine)
 	originMachine.shut_up = 0
 	originMachine.shoot_inventory = 1
-
 
 /datum/event/brand_intelligence/tick()
 	if(!vendingMachines.len || !originMachine || originMachine.shut_up)	//if every machine is infected, or if the original vending machine is missing or has it's voice switch flipped

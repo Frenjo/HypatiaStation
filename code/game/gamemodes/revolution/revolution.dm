@@ -41,7 +41,6 @@
 //Gets the round setup, cancelling if there's not enough players at the start//
 ///////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/revolution/pre_setup()
-
 	if(config.protect_roles_from_antagonist)
 		restricted_jobs += protected_jobs
 
@@ -58,16 +57,15 @@
 			if(player.assigned_role == job)
 				possible_headrevs -= player
 
-	for (var/i=1 to max_headrevs)
-		if (possible_headrevs.len==0)
+	for(var/i = 1 to max_headrevs)
+		if(possible_headrevs.len == 0)
 			break
 		var/datum/mind/lenin = pick(possible_headrevs)
 		possible_headrevs -= lenin
 		head_revolutionaries += lenin
 
-	if((head_revolutionaries.len==0)||(!head_check))
+	if((head_revolutionaries.len == 0) || !head_check)
 		return 0
-
 	return 1
 
 
@@ -93,7 +91,7 @@
 	if(emergency_shuttle)
 		//emergency_shuttle.always_fake_recall = 1
 		emergency_shuttle.auto_recall = 1 // Updated to reflect 'shuttles' port. -Frenjo
-	spawn (rand(waittime_l, waittime_h))
+	spawn(rand(waittime_l, waittime_h))
 		send_intercept()
 	..()
 
@@ -107,7 +105,7 @@
 	return 0
 
 
-/datum/game_mode/proc/forge_revolutionary_objectives(var/datum/mind/rev_mind)
+/datum/game_mode/proc/forge_revolutionary_objectives(datum/mind/rev_mind)
 	if(!config.objectives_disabled)
 		var/list/heads = get_living_heads()
 		for(var/datum/mind/head_mind in heads)
@@ -117,9 +115,9 @@
 			rev_obj.explanation_text = "Assassinate [head_mind.name], the [head_mind.assigned_role]."
 			rev_mind.objectives += rev_obj
 
-/datum/game_mode/proc/greet_revolutionary(var/datum/mind/rev_mind, var/you_are=1)
+/datum/game_mode/proc/greet_revolutionary(datum/mind/rev_mind, you_are = 1)
 	var/obj_count = 1
-	if (you_are)
+	if(you_are)
 		rev_mind.current << "\blue You are a member of the revolutionaries' leadership!"
 	if(!config.objectives_disabled)
 		for(var/datum/objective/objective in rev_mind.objectives)
@@ -136,11 +134,10 @@
 	if(!istype(mob))
 		return
 
-	if (mob.mind)
-		if (mob.mind.assigned_role == "Clown")
+	if(mob.mind)
+		if(mob.mind.assigned_role == "Clown")
 			mob << "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself."
 			mob.mutations.Remove(CLUMSY)
-
 
 	var/obj/item/device/flash/T = new(mob)
 
@@ -152,7 +149,7 @@
 		"right hand" = slot_r_hand,
 	)
 	var/where = mob.equip_in_one_of_slots(T, slots)
-	if (!where)
+	if(!where)
 		mob << "The Syndicate were unfortunately unable to get you a flash."
 	else
 		mob << "The flash in your [where] will help you to persuade the crew to join your cause."
@@ -206,7 +203,7 @@
 //////////////////////////////////////////////////////////////////////////////
 //Deals with players being converted from the revolution (Not a rev anymore)//  // Modified to handle borged MMIs.  Accepts another var if the target is being borged at the time  -- Polymorph.
 //////////////////////////////////////////////////////////////////////////////
-/datum/game_mode/proc/remove_revolutionary(datum/mind/rev_mind , beingborged)
+/datum/game_mode/proc/remove_revolutionary(datum/mind/rev_mind, beingborged)
 	if(rev_mind in revolutionaries)
 		revolutionaries -= rev_mind
 		rev_mind.special_role = null
@@ -342,7 +339,7 @@
 /datum/game_mode/revolution/proc/check_heads_victory()
 	for(var/datum/mind/rev_mind in head_revolutionaries)
 		var/turf/T = get_turf(rev_mind.current)
-		if((rev_mind) && (rev_mind.current) && (rev_mind.current.stat != 2) && T && (T.z == 1))
+		if((rev_mind) && (rev_mind.current) && (rev_mind.current.stat != 2) && T && (T.z in config.station_levels))
 			if(isHuman(rev_mind.current))
 				return 0
 	return 1
@@ -364,15 +361,14 @@
 /datum/game_mode/proc/auto_declare_completion_revolution()
 	var/list/targets = list()
 
-	if(head_revolutionaries.len || istype(ticker.mode,/datum/game_mode/revolution))
+	if(head_revolutionaries.len || istype(ticker.mode, /datum/game_mode/revolution))
 		var/text = "<FONT size = 2><B>The head revolutionaries were:</B></FONT>"
-
 		for(var/datum/mind/headrev in head_revolutionaries)
 			text += "<br>[headrev.key] was [headrev.name] ("
 			if(headrev.current)
 				if(headrev.current.stat == DEAD)
 					text += "died"
-				else if(headrev.current.z != 1)
+				else if(isNotStationLevel(headrev.current.z))
 					text += "fled the station"
 				else
 					text += "survived the revolution"
@@ -387,15 +383,14 @@
 
 		world << text
 
-	if(revolutionaries.len || istype(ticker.mode,/datum/game_mode/revolution))
+	if(revolutionaries.len || istype(ticker.mode, /datum/game_mode/revolution))
 		var/text = "<FONT size = 2><B>The revolutionaries were:</B></FONT>"
-
 		for(var/datum/mind/rev in revolutionaries)
 			text += "<br>[rev.key] was [rev.name] ("
 			if(rev.current)
 				if(rev.current.stat == DEAD)
 					text += "died"
-				else if(rev.current.z != 1)
+				else if(isNotStationLevel(rev.current.z))
 					text += "fled the station"
 				else
 					text += "survived the revolution"
@@ -407,10 +402,8 @@
 
 		world << text
 
-
-	if( head_revolutionaries.len || revolutionaries.len || istype(ticker.mode,/datum/game_mode/revolution) )
+	if(head_revolutionaries.len || revolutionaries.len || istype(ticker.mode, /datum/game_mode/revolution))
 		var/text = "<FONT size = 2><B>The heads of staff were:</B></FONT>"
-
 		var/list/heads = get_all_heads()
 		for(var/datum/mind/head in heads)
 			var/target = (head in targets)
@@ -420,7 +413,7 @@
 			if(head.current)
 				if(head.current.stat == DEAD)
 					text += "died"
-				else if(head.current.z != 1)
+				else if(isNotStationLevel(head.current.z))
 					text += "fled the station"
 				else
 					text += "survived the revolution"

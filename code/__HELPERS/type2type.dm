@@ -171,19 +171,20 @@
 
 
 //slower then list2text, but correctly processes associative lists.
-proc/tg_list2text(list/list, glue=",")
+proc/tg_list2text(list/list, glue= ",")
 	if(!istype(list) || !list.len)
 		return
 	var/output
-	for(var/i=1 to list.len)
-		output += (i!=1? glue : null)+(!isnull(list["[list[i]]"])?"[list["[list[i]]"]]":"[list[i]]")
+	for(var/i = 1 to list.len)
+		output += (i !=1 ? glue : null) + (!isnull(list["[list[i]]"]) ? "[list["[list[i]]"]]" : "[list[i]]")
 	return output
 
 
 //Converts a string into a list by splitting the string at each delimiter found. (discarding the seperator)
-/proc/text2list(text, delimiter="\n")
+/proc/text2list(text, delimiter = "\n")
 	var/delim_len = length(delimiter)
-	if(delim_len < 1) return list(text)
+	if(delim_len < 1)
+		return list(text)
 	. = list()
 	var/last_found = 1
 	var/found
@@ -193,10 +194,17 @@ proc/tg_list2text(list/list, glue=",")
 		last_found = found + delim_len
 	while(found)
 
+/proc/text2numlist(text, delimiter = "\n")
+	var/list/num_list = list()
+	for(var/x in text2list(text, delimiter))
+		num_list += text2num(x)
+	return num_list
+
 //Case Sensitive!
-/proc/text2listEx(text, delimiter="\n")
+/proc/text2listEx(text, delimiter = "\n")
 	var/delim_len = length(delimiter)
-	if(delim_len < 1) return list(text)
+	if(delim_len < 1)
+		return list(text)
 	. = list()
 	var/last_found = 1
 	var/found
@@ -207,8 +215,8 @@ proc/tg_list2text(list/list, glue=",")
 	while(found)
 
 //Splits the text of a file at seperator and returns them in a list.
-/proc/file2list(filename, seperator="\n")
-	return text2list(return_file_text(filename),seperator)
+/proc/file2list(filename, seperator = "\n")
+	return text2list(return_file_text(filename), seperator)
 
 
 //Turns a direction into text

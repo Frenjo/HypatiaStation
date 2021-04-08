@@ -15,7 +15,6 @@
 		if(newEpicentre.name == "lightsout" && !(newEpicentre in epicentreList))
 			possibleEpicentres += newEpicentre
 
-
 /datum/event/electrical_storm/announce()
 	command_alert("An electrical storm has been detected in your area, please repair potential electronic overloads.", "Electrical Storm Alert")
 
@@ -27,7 +26,7 @@
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
-		if(T.z != 1)
+		if(isNotStationLevel(T.z))
 			continue
 		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew_quarters))
 			if(H.client)
@@ -60,7 +59,7 @@
 	if(possibleEpicentres.len)
 		var/obj/effect/landmark/epicentre = pick(possibleEpicentres)
 		possibleEpicentres -= epicentre
-		for(var/obj/machinery/power/apc/apc in range(epicentre,lightsoutRange))
+		for(var/obj/machinery/power/apc/apc in range(epicentre, lightsoutRange))
 			// Has a 2% chance to flat out detonate APCs instead of just blowing lights. -Frenjo
 			if(prob(2))
 				// Exploding APCs in AI areas could be REALLY bad, so let's not do that. -Frenjo
@@ -86,7 +85,7 @@
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
-		if(T.z != 1)
+		if(isNotStationLevel(T.z))
 			continue
 		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew_quarters))
 			if(H.client)

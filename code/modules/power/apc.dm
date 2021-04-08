@@ -208,7 +208,7 @@
 	if(terminal)
 		terminal.connect_to_network()
 
-/obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
+/obj/machinery/power/apc/New(turf/loc, ndir, building = 0)
 	..()
 	wires = new(src)
 	var/obj/item/weapon/cell/tmp_cell = new
@@ -244,7 +244,7 @@
 /obj/machinery/power/apc/Destroy()
 	if(malfai && operating)
 		if(ticker.mode.config_tag == "malfunction")
-			if(src.z == 1) //if (is_type_in_list(get_area(src), the_station_areas))
+			if(src.z in config.station_levels) //if (is_type_in_list(get_area(src), the_station_areas))
 				ticker.mode:apcs--
 
 	area.apc -= src
@@ -798,11 +798,11 @@
 	return ui_interact(user)
 
 /obj/machinery/power/apc/proc/get_malf_status(mob/user)
-	if (ticker && ticker.mode && (user.mind in ticker.mode.malf_ai) && istype(user, /mob/living/silicon/ai))
-		if (src.malfai == (user:parent ? user:parent : user))
-			if (src.occupant == user)
+	if(ticker && ticker.mode && (user.mind in ticker.mode.malf_ai) && istype(user, /mob/living/silicon/ai))
+		if(src.malfai == (user:parent ? user:parent : user))
+			if(src.occupant == user)
 				return 3 // 3 = User is shunted in this APC
-			else if (istype(user.loc, /obj/machinery/power/apc))
+			else if(istype(user.loc, /obj/machinery/power/apc))
 				return 4 // 4 = User is shunted in another APC
 			else
 				return 2 // 2 = APC hacked by user, and user is in its core.
@@ -946,19 +946,19 @@
 	if(!can_use(usr, 1))
 		return 0
 
-	if (href_list["lock"])
+	if(href_list["lock"])
 		coverlocked = !coverlocked
 
-	else if (href_list["breaker"])
+	else if(href_list["breaker"])
 		toggle_breaker()
 
-	else if (href_list["cmode"])
+	else if(href_list["cmode"])
 		chargemode = !chargemode
 		if(!chargemode)
 			charging = 0
 			update_icon()
 
-	else if (href_list["eqp"])
+	else if(href_list["eqp"])
 		var/val = text2num(href_list["eqp"])
 
 		equipment = setsubsystem(val)
@@ -966,7 +966,7 @@
 		update_icon()
 		update()
 
-	else if (href_list["lgt"])
+	else if(href_list["lgt"])
 		var/val = text2num(href_list["lgt"])
 
 		lighting = setsubsystem(val)
@@ -974,7 +974,7 @@
 		update_icon()
 		update()
 
-	else if (href_list["env"])
+	else if(href_list["env"])
 		var/val = text2num(href_list["env"])
 
 		environ = setsubsystem(val)
@@ -982,14 +982,14 @@
 		update_icon()
 		update()
 
-	else if (href_list["overload"])
+	else if(href_list["overload"])
 		if(istype(usr, /mob/living/silicon))
 			src.overload_lighting()
 
-	else if (href_list["malfhack"])
+	else if(href_list["malfhack"])
 		var/mob/living/silicon/ai/malfai = usr
-		if(get_malf_status(malfai)==1)
-			if (malfai.malfhacking)
+		if(get_malf_status(malfai) == 1)
+			if(malfai.malfhacking)
 				malfai << "You are already hacking an APC."
 				return 1
 			malfai << "Beginning override of APC systems. This takes some time, and you cannot perform other actions during the process."
@@ -997,12 +997,12 @@
 			malfai.malfhacking = 1
 			sleep(600)
 			if(src)
-				if (!src.aidisabled)
+				if(!src.aidisabled)
 					malfai.malfhack = null
 					malfai.malfhacking = 0
 					locked = 1
-					if (ticker.mode.config_tag == "malfunction")
-						if (src.z == 1) //if (is_type_in_list(get_area(src), the_station_areas))
+					if(ticker.mode.config_tag == "malfunction")
+						if(src.z in config.station_levels) //if (is_type_in_list(get_area(src), the_station_areas))
 							ticker.mode:apcs++
 					if(usr:parent)
 						src.malfai = usr:parent
@@ -1011,15 +1011,15 @@
 					malfai << "Hack complete. The APC is now under your exclusive control."
 					update_icon()
 
-	else if (href_list["occupyapc"])
+	else if(href_list["occupyapc"])
 		if(get_malf_status(usr))
 			malfoccupy(usr)
 
-	else if (href_list["deoccupyapc"])
+	else if(href_list["deoccupyapc"])
 		if(get_malf_status(usr))
 			malfvacate()
 
-	else if (href_list["toggleaccess"])
+	else if(href_list["toggleaccess"])
 		if(istype(usr, /mob/living/silicon))
 			if(emagged || (stat & (BROKEN|MAINT)))
 				usr << "The APC does not respond to the command."
@@ -1033,22 +1033,22 @@
 	operating = !operating
 
 	if(malfai)
-		if (ticker.mode.config_tag == "malfunction")
-			if (src.z == 1) //if (is_type_in_list(get_area(src), the_station_areas))
+		if(ticker.mode.config_tag == "malfunction")
+			if(src.z in config.station_levels) //if (is_type_in_list(get_area(src), the_station_areas))
 				operating ? ticker.mode:apcs++ : ticker.mode:apcs--
 
 	src.update()
 	update_icon()
 
-/obj/machinery/power/apc/proc/malfoccupy(var/mob/living/silicon/ai/malf)
+/obj/machinery/power/apc/proc/malfoccupy(mob/living/silicon/ai/malf)
 	if(!istype(malf))
 		return
 	if(istype(malf.loc, /obj/machinery/power/apc)) // Already in an APC
 		malf << "<span class='warning'>You must evacuate your current apc first.</span>"
 		return
-	if(src.z != 1)
+	if(isNotStationLevel(src.z))
 		return
-	src.occupant = new /mob/living/silicon/ai(src,malf.laws,null,1)
+	src.occupant = new /mob/living/silicon/ai(src, malf.laws, null, 1)
 	src.occupant.adjustOxyLoss(malf.getOxyLoss())
 	if(!findtext(src.occupant.name,"APC Copy"))
 		src.occupant.name = "[malf.name] APC Copy"
@@ -1064,7 +1064,7 @@
 	src.occupant.verbs += /datum/game_mode/malfunction/proc/takeover
 	src.occupant.cancel_camera()
 
-/obj/machinery/power/apc/proc/malfvacate(var/forced)
+/obj/machinery/power/apc/proc/malfvacate(forced)
 	if(!src.occupant)
 		return
 	if(src.occupant.parent && src.occupant.parent.stat != 2)
@@ -1090,10 +1090,10 @@
 
 /obj/machinery/power/apc/proc/ion_act()
 	//intended to be exactly the same as an AI malf attack
-	if(!src.malfhack && src.z == 1)
+	if(!src.malfhack && src.z in config.station_levels)
 		if(prob(3))
 			src.locked = 1
-			if (src.cell.charge > 0)
+			if(src.cell.charge > 0)
 //				world << "\red blew APC in [src.loc.loc]"
 				src.cell.charge = 0
 				cell.corrupt()
@@ -1125,7 +1125,7 @@
 /obj/machinery/power/apc/proc/attempt_charging()
 	return (chargemode && charging == 1 && operating)
 
-/obj/machinery/power/apc/draw_power(var/amount)
+/obj/machinery/power/apc/draw_power(amount)
 	if(terminal && terminal.powernet)
 		return terminal.powernet.draw_power(amount)
 	return 0
@@ -1285,19 +1285,19 @@
 
 // val 0=off, 1=off(auto) 2=on 3=on(auto)
 // on 0=off, 1=on, 2=autooff
-/obj/machinery/power/apc/proc/autoset(var/val, var/on)
-	if(on==0)
-		if(val==2)			// if on, return off
+/obj/machinery/power/apc/proc/autoset(val, on)
+	if(on == 0)
+		if(val == 2)			// if on, return off
 			return 0
-		else if(val==3)		// if auto-on, return auto-off
+		else if(val == 3)		// if auto-on, return auto-off
 			return 1
 
-	else if(on==1)
-		if(val==1)			// if auto-off, return auto-on
+	else if(on == 1)
+		if(val == 1)			// if auto-off, return auto-on
 			return 3
 
-	else if(on==2)
-		if(val==3)			// if auto-on, return auto-off
+	else if(on == 2)
+		if(val == 3)			// if auto-on, return auto-off
 			return 1
 
 	return val
@@ -1317,7 +1317,6 @@
 	..()
 
 /obj/machinery/power/apc/ex_act(severity)
-
 	switch(severity)
 		if(1.0)
 			if (cell)
@@ -1349,8 +1348,8 @@
 
 /obj/machinery/power/apc/proc/set_broken()
 	if(malfai && operating)
-		if (ticker.mode.config_tag == "malfunction")
-			if (src.z == 1) //if (is_type_in_list(get_area(src), the_station_areas))
+		if(ticker.mode.config_tag == "malfunction")
+			if(src.z in config.station_levels) //if (is_type_in_list(get_area(src), the_station_areas))
 				ticker.mode:apcs--
 	stat |= BROKEN
 	operating = 0
@@ -1363,7 +1362,7 @@
 /obj/machinery/power/apc/proc/overload_lighting()
 	if(/* !get_connection() || */ !operating || shorted)
 		return
-	if( cell && cell.charge>=20)
+	if(cell && cell.charge >= 20)
 		cell.use(20);
 		spawn(0)
 			for(var/obj/machinery/light/L in area)

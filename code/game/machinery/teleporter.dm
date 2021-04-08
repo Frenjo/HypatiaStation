@@ -43,8 +43,8 @@
 					O.show_message("\red Incoming bluespace portal detected, unable to lock in.", 2)
 
 				for(var/obj/machinery/teleport/hub/H in range(1))
-					var/amount = rand(2,5)
-					for(var/i=0;i<amount;i++)
+					var/amount = rand(2, 5)
+					for(var/i = 0;i < amount; i++)
 						new /mob/living/simple_animal/hostile/carp(get_turf(H))
 				//
 			else
@@ -76,7 +76,7 @@
 		var/turf/T = get_turf(R)
 		if (!T)
 			continue
-		if(T.z == 2 || T.z > 7)
+		if(!(T.z in config.player_levels))
 			continue
 		var/tmpname = T.loc.name
 		if(areaindex[tmpname])
@@ -86,16 +86,18 @@
 		L[tmpname] = R
 
 	for (var/obj/item/weapon/implant/tracking/I in world)
-		if (!I.implanted || !ismob(I.loc))
+		if(!I.implanted || !ismob(I.loc))
 			continue
 		else
 			var/mob/M = I.loc
-			if (M.stat == 2)
+			if(M.stat == 2)
 				if (M.timeofdeath + 6000 < world.time)
 					continue
 			var/turf/T = get_turf(M)
-			if(T)	continue
-			if(T.z == 2)	continue
+			if(T)
+				continue
+			if(T.z == 2)
+				continue
 			var/tmpname = M.real_name
 			if(areaindex[tmpname])
 				tmpname = "[tmpname] ([++areaindex[tmpname]])"
@@ -118,16 +120,18 @@
 
 	if(stat & (NOPOWER|BROKEN) || !istype(usr,/mob/living))
 		return
-	if (t)
+	if(t)
 		src.id = t
 	return
 
 /proc/find_loc(obj/R as obj)
-	if (!R)	return null
+	if(!R)
+		return null
 	var/turf/T = R.loc
 	while(!istype(T, /turf))
 		T = T.loc
-		if(!T || istype(T, /area))	return null
+		if(!T || istype(T, /area))
+			return null
 	return T
 
 /obj/machinery/teleport
@@ -136,7 +140,6 @@
 	density = 1
 	anchored = 1.0
 	var/lockeddown = 0
-
 
 /obj/machinery/teleport/hub
 	name = "teleporter hub"
@@ -157,13 +160,13 @@
 /obj/machinery/teleport/hub/proc/teleport(atom/movable/M as mob|obj)
 	var/atom/l = src.loc
 	var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(l.x - 2, l.y, l.z))
-	if (!com)
+	if(!com)
 		return
-	if (!com.locked)
+	if(!com.locked)
 		for(var/mob/O in hearers(src, null))
 			O.show_message("\red Failure: Cannot authenticate locked on coordinates. Please reinstate coordinate matrix.")
 		return
-	if (istype(M, /atom/movable))
+	if(istype(M, /atom/movable))
 		if(prob(5) && !accurate) //oh dear a problem, put em in deep space
 			do_teleport(M, locate(rand((2*TRANSITIONEDGE), world.maxx - (2*TRANSITIONEDGE)), rand((2*TRANSITIONEDGE), world.maxy - (2*TRANSITIONEDGE)), 3), 2)
 		else
@@ -297,7 +300,7 @@
 
 	var/atom/l = src.loc
 	var/atom/com = locate(/obj/machinery/teleport/hub, locate(l.x + 1, l.y, l.z))
-	if (com)
+	if(com)
 		com.icon_state = "tele1"
 		use_power(5000)
 		for(var/mob/O in hearers(src, null))
@@ -312,7 +315,7 @@
 
 	var/atom/l = src.loc
 	var/atom/com = locate(/obj/machinery/teleport/hub, locate(l.x + 1, l.y, l.z))
-	if (com)
+	if(com)
 		com.icon_state = "tele0"
 		for(var/mob/O in hearers(src, null))
 			O.show_message("\blue Teleporter disengaged!", 2)
@@ -330,7 +333,7 @@
 
 	var/atom/l = src.loc
 	var/obj/machinery/teleport/hub/com = locate(/obj/machinery/teleport/hub, locate(l.x + 1, l.y, l.z))
-	if (com && !active)
+	if(com && !active)
 		active = 1
 		for(var/mob/O in hearers(src, null))
 			O.show_message("\blue Test firing!", 2)
@@ -338,7 +341,7 @@
 		use_power(5000)
 
 		spawn(30)
-			active=0
+			active = 0
 
 	src.add_fingerprint(usr)
 	return
@@ -352,7 +355,6 @@
 			com.icon_state = "tele0"
 	else
 		icon_state = "controller"
-
 
 /obj/effect/laser/Bump()
 	src.range--

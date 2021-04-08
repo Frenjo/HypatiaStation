@@ -7,7 +7,7 @@
 
 //config.alert_desc_blue_downto
 
-/proc/set_security_level(var/level)
+/proc/set_security_level(level)
 	switch(level)
 		if("green")
 			level = SEC_LEVEL_GREEN
@@ -26,7 +26,7 @@
 			if(SEC_LEVEL_GREEN)
 				world << "<font size=4 color='red'>Attention! Security level lowered to green</font>"
 				world << "<font color='red'>[config.alert_desc_green]</font>"
-				world << sound('sound/vox/doop.wav', volume=37) // Play a sound whenever the level changes downwards. -Frenjo
+				world << sound('sound/vox/doop.wav', volume = 37) // Play a sound whenever the level changes downwards. -Frenjo
 				security_level = SEC_LEVEL_GREEN
 
 				// Stole this code from below, again. -Frenjo
@@ -35,13 +35,13 @@
 					CC.post_status("alert", "default")
 
 				for(var/obj/machinery/firealarm/FA in machines)
-					if(FA.z == 1 || FA.z == 5)
+					if(FA.z in config.contact_levels)
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_green")
 
 				// Hopefully this works. -Frenjo
 				for(var/turf/simulated/floor/bluegrid/BG in world)
-					if(BG.z == 1 || BG.z == 5)
+					if(BG.z in config.contact_levels)
 						BG.icon_state = "bcircuit"
 				for(var/area/A in world)
 					if(istype(A, /area/hallway))
@@ -51,11 +51,11 @@
 				if(security_level < SEC_LEVEL_YELLOW)
 					world << "<font size=4 color='red'>Attention! Security level elevated to yellow</font>"
 					world << "<font color='red'>[config.alert_desc_yellow_upto]</font>"
-					world << sound('sound/vox/dadeda.wav', volume=34) // Play a sound whenever the level changes upwards. -Frenjo
+					world << sound('sound/vox/dadeda.wav', volume = 34) // Play a sound whenever the level changes upwards. -Frenjo
 				else
 					world << "<font size=4 color='red'>Attention! Security level lowered to yellow</font>"
 					world << "<font color='red'>[config.alert_desc_yellow_downto]</font>"
-					world << sound('sound/vox/doop.wav', volume=37) // Play a sound whenever the level changes downwards. -Frenjo
+					world << sound('sound/vox/doop.wav', volume = 37) // Play a sound whenever the level changes downwards. -Frenjo
 				security_level = SEC_LEVEL_YELLOW
 
 				// Stole this code from below, made the blue alert sprite to go with it too! -Frenjo
@@ -64,13 +64,13 @@
 					CC.post_status("alert", "yellowalert")
 
 				for(var/obj/machinery/firealarm/FA in machines)
-					if(FA.z == 1 || FA.z == 5)
+					if(FA.z in config.contact_levels)
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_yellow")
 
 				// Hopefully this works. -Frenjo
 				for(var/turf/simulated/floor/bluegrid/BG in world)
-					if(BG.z == 1 || BG.z == 5)
+					if(BG.z in config.contact_levels)
 						BG.icon_state = "bcircuit"
 
 				for(var/area/A in world)
@@ -81,12 +81,12 @@
 				if(security_level < SEC_LEVEL_BLUE)
 					world << "<font size=4 color='red'>Attention! Security level elevated to blue</font>"
 					world << "<font color='red'>[config.alert_desc_blue_upto]</font>"
-					world << sound('sound/vox/dadeda.wav', volume=34) // Play a sound whenever the level changes upwards. -Frenjo
+					world << sound('sound/vox/dadeda.wav', volume = 34) // Play a sound whenever the level changes upwards. -Frenjo
 					world << sound('sound/AI/securityblue.ogg') // Play a sound when we elevate to blue. -Frenjo
 				else
 					world << "<font size=4 color='red'>Attention! Security level lowered to blue</font>"
 					world << "<font color='red'>[config.alert_desc_blue_downto]</font>"
-					world << sound('sound/vox/doop.wav', volume=37) // Play a sound whenever the level changes downwards. -Frenjo
+					world << sound('sound/vox/doop.wav', volume = 37) // Play a sound whenever the level changes downwards. -Frenjo
 				security_level = SEC_LEVEL_BLUE
 
 				// Stole this code from below, made the blue alert sprite to go with it too! -Frenjo
@@ -95,13 +95,13 @@
 					CC.post_status("alert", "bluealert")
 
 				for(var/obj/machinery/firealarm/FA in machines)
-					if(FA.z == 1 || FA.z == 5)
+					if(FA.z in config.contact_levels)
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_blue")
 
 				// Hopefully this works. -Frenjo
 				for(var/turf/simulated/floor/bluegrid/BG in world)
-					if(BG.z == 1 || BG.z == 5)
+					if(BG.z in config.contact_levels)
 						BG.icon_state = "bcircuit"
 				for(var/area/A in world)
 					if(istype(A, /area/hallway))
@@ -111,11 +111,11 @@
 				if(security_level < SEC_LEVEL_RED)
 					world << "<font size=4 color='red'>Attention! Code red!</font>"
 					world << "<font color='red'>[config.alert_desc_red_upto]</font>"
-					world << sound('sound/vox/dadeda.wav', volume=34) // Play a sound whenever the level changes upwards. -Frenjo
+					world << sound('sound/vox/dadeda.wav', volume = 34) // Play a sound whenever the level changes upwards. -Frenjo
 				else
 					world << "<font size=4 color='red'>Attention! Code red!</font>"
 					world << "<font color='red'>[config.alert_desc_red_downto]</font>"
-					world << sound('sound/vox/doop.wav', volume=37) // Play a sound whenever the level changes downwards. -Frenjo
+					world << sound('sound/vox/doop.wav', volume = 37) // Play a sound whenever the level changes downwards. -Frenjo
 				security_level = SEC_LEVEL_RED
 
 				//	- At the time of commit, setting status displays didn't work properly
@@ -125,13 +125,13 @@
 					CC.post_status("alert", "redalert")
 
 				for(var/obj/machinery/firealarm/FA in machines)
-					if(FA.z == 1 || FA.z == 5)
+					if(FA.z in config.contact_levels)
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_red")
 
 				// Hopefully this works. -Frenjo
 				for(var/turf/simulated/floor/bluegrid/BG in world)
-					if(BG.z == 1 || BG.z == 5)
+					if(BG.z in config.contact_levels)
 						BG.icon_state = "rcircuit"
 				for(var/area/A in world)
 					if(istype(A, /area/hallway))
@@ -140,8 +140,8 @@
 			if(SEC_LEVEL_DELTA)
 				world << "<font size=4 color='red'>Attention! Delta security level reached!</font>"
 				world << "<font color='red'>[config.alert_desc_delta]</font>"
-				world << sound('sound/vox/dadeda.wav', volume=34) // Play a sound whenever the level changes upwards. -Frenjo
-				world << sound('sound/misc/bloblarm.ogg', volume=70) // Self destruction needs dramatic noises. -Frenjo
+				world << sound('sound/vox/dadeda.wav', volume = 34) // Play a sound whenever the level changes upwards. -Frenjo
+				world << sound('sound/misc/bloblarm.ogg', volume = 70) // Self destruction needs dramatic noises. -Frenjo
 				security_level = SEC_LEVEL_DELTA
 
 				// Stole this code from above, again again, made the alien-esque sprite to go with it! -Frenjo
@@ -150,13 +150,13 @@
 					CC.post_status("alert", "delta")
 
 				for(var/obj/machinery/firealarm/FA in machines)
-					if(FA.z == 1 || FA.z == 5)
+					if(FA.z in config.contact_levels)
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_delta")
 
 				// Hopefully this works. -Frenjo
 				for(var/turf/simulated/floor/bluegrid/BG in world)
-					if(BG.z == 1 || BG.z == 5)
+					if(BG.z in config.contact_levels)
 						BG.icon_state = "rcircuit_flash"
 				for(var/area/A in world)
 					if(istype(A, /area/hallway))
@@ -177,7 +177,7 @@
 		if(SEC_LEVEL_DELTA)
 			return "delta"
 
-/proc/num2seclevel(var/num)
+/proc/num2seclevel(num)
 	switch(num)
 		if(SEC_LEVEL_GREEN)
 			return "green"
@@ -190,8 +190,8 @@
 		if(SEC_LEVEL_DELTA)
 			return "delta"
 
-/proc/seclevel2num(var/seclevel)
-	switch( lowertext(seclevel) )
+/proc/seclevel2num(seclevel)
+	switch(lowertext(seclevel))
 		if("green")
 			return SEC_LEVEL_GREEN
 		if("yellow")

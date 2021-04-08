@@ -19,7 +19,7 @@
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
-		if(T.z != 1)
+		if(isNotStationLevel(T.z))
 			continue
 		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew_quarters))
 			H.client.screen.Remove(global_hud.radstorm)
@@ -28,23 +28,23 @@
 		if(istype(H,/mob/living/carbon/human))
 			H.client.screen.Remove(global_hud.radstorm)
 			H.client.screen += global_hud.radstorm
-			H.apply_effect((rand(15,35)), IRRADIATE,0)
+			H.apply_effect((rand(15, 35)), IRRADIATE, 0)
 			if(prob(5))
-				H.apply_effect((rand(40,70)), IRRADIATE,0)
+				H.apply_effect((rand(40, 70)), IRRADIATE, 0)
 				if (prob(75))
 					randmutb(H) // Applies bad mutation
-					domutcheck(H,null,MUTCHK_FORCED)
+					domutcheck(H, null, MUTCHK_FORCED)
 				else
 					randmutg(H) // Applies good mutation
-					domutcheck(H,null,MUTCHK_FORCED)
+					domutcheck(H, null, MUTCHK_FORCED)
 
 	for(var/mob/living/carbon/monkey/M in living_mob_list)
 		var/turf/T = get_turf(M)
 		if(!T)
 			continue
-		if(T.z != 1)
+		if(isNotStationLevel(T.z))
 			continue
-		M.apply_effect((rand(5,25)),IRRADIATE,0)
+		M.apply_effect((rand(5, 25)), IRRADIATE, 0)
 
 	//sleep(10)
 

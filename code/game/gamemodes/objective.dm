@@ -8,7 +8,7 @@ datum/objective
 	var/target_amount = 0				//If they are focused on a particular number. Steal objectives have their own counter.
 	var/completed = 0					//currently only used for custom objectives.
 
-	New(var/text)
+	New(text)
 		all_objectives |= src
 		if(text)
 			explanation_text = text
@@ -29,7 +29,7 @@ datum/objective
 			target = pick(possible_targets)
 
 
-	proc/find_target_by_role(role, role_type=0)//Option sets either to check assigned role or special role. Default to assigned.
+	proc/find_target_by_role(role, role_type = 0)//Option sets either to check assigned role or special role. Default to assigned.
 		for(var/datum/mind/possible_target in ticker.minds)
 			if((possible_target != owner) && isHuman(possible_target.current) && ((role_type ? possible_target.special_role : possible_target.assigned_role) == role) )
 				target = possible_target
@@ -88,7 +88,7 @@ datum/objective/mutiny
 			if(target.current.stat == DEAD || !isHuman(target.current) || !target.current.ckey)
 				return 1
 			var/turf/T = get_turf(target.current)
-			if(T && (T.z != 1))			//If they leave the station they count as dead for this
+			if(T && isNotStationLevel(T.z))			//If they leave the station they count as dead for this
 				return 2
 			return 0
 		return 1
@@ -123,7 +123,7 @@ datum/objective/mutiny/rp
 				if(target in ticker.mode:head_revolutionaries)
 					return 1
 			var/turf/T = get_turf(target.current)
-			if(T && (T.z != 1))			//If they leave the station they count as dead for this
+			if(T && isNotStationLevel(T.z))			//If they leave the station they count as dead for this
 				rval = 2
 			return 0
 		return rval

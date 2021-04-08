@@ -35,7 +35,7 @@
 
 // Like view but bypasses luminosity check
 
-/proc/hear(var/range, var/atom/source)
+/proc/hear(range, atom/source)
 
 	//var/lum = source.luminosity
 	//source.luminosity = 6
@@ -47,6 +47,21 @@
 	source.light_range = lum
 
 	return heard
+
+/proc/isStationLevel(level)
+	return level in config.station_levels
+
+/proc/isNotStationLevel(level)
+	return !isStationLevel()
+
+/proc/isPlayerLevel(level)
+	return level in config.player_levels
+
+/proc/isAdminLevel(level)
+	return level in config.admin_levels
+
+/proc/isNotAdminLevel(level)
+	return !isAdminLevel(level)
 
 //Magic constants obtained by using linear regression on right-angled triangles of sides 0<x<1, 0<y<1
 //They should approximate pythagoras theorem well enough for our needs.

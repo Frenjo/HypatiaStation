@@ -57,7 +57,6 @@ var/bomb_set
 	return
 
 /obj/machinery/nuclearbomb/attackby(obj/item/weapon/O as obj, mob/user as mob)
-
 	if(istype(O, /obj/item/weapon/screwdriver))
 		src.add_fingerprint(user)
 		if(src.auth)
@@ -80,6 +79,7 @@ var/bomb_set
 			flick("nuclearbombc", src)
 
 		return
+
 	if(istype(O, /obj/item/weapon/wirecutters) || istype(O, /obj/item/device/multitool))
 		if(src.opened == 1)
 			nukehack_win(user)
@@ -240,14 +240,14 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 
 /obj/machinery/nuclearbomb/Topic(href, href_list)
 	..()
-	if (!usr.canmove || usr.stat || usr.restrained())
+	if(!usr.canmove || usr.stat || usr.restrained())
 		return
-	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
+	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
 		usr.set_machine(src)
 		if(href_list["act"])
 			var/temp_wire = href_list["wire"]
 			if(href_list["act"] == "pulse")
-				if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
+				if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
 					usr << "You need a multitool!"
 				else
 					if(src.wires[temp_wire])
@@ -270,7 +270,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 							else
 								visible_message("\blue The [src] emits a quiet whirling noise!")
 			if(href_list["act"] == "wire")
-				if (!istype(usr.get_active_hand(), /obj/item/weapon/wirecutters))
+				if(!istype(usr.get_active_hand(), /obj/item/weapon/wirecutters))
 					usr << "You need wirecutters!"
 				else
 					wires[temp_wire] = !wires[temp_wire]
@@ -286,8 +286,8 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 					if(src.light_wire == temp_wire)
 						src.lighthack = !src.lighthack
 
-		if (href_list["auth"])
-			if (src.auth)
+		if(href_list["auth"])
+			if(src.auth)
 				src.auth.loc = src.loc
 				src.yes_code = 0
 				src.auth = null
@@ -297,35 +297,35 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 					usr.drop_item()
 					I.loc = src
 					src.auth = I
-		if (src.auth)
-			if (href_list["type"])
-				if (href_list["type"] == "E")
-					if (src.code == src.r_code)
+		if(src.auth)
+			if(href_list["type"])
+				if(href_list["type"] == "E")
+					if(src.code == src.r_code)
 						src.yes_code = 1
 						src.code = null
 					else
 						src.code = "ERROR"
 				else
-					if (href_list["type"] == "R")
+					if(href_list["type"] == "R")
 						src.yes_code = 0
 						src.code = null
 					else
 						src.code += text("[]", href_list["type"])
-						if (length(src.code) > 5)
+						if(length(src.code) > 5)
 							src.code = "ERROR"
-			if (src.yes_code)
-				if (href_list["time"])
+			if(src.yes_code)
+				if(href_list["time"])
 					var/time = text2num(href_list["time"])
 					src.timeleft += time
 					src.timeleft = min(max(round(src.timeleft), 60), 600)
-				if (href_list["timer"])
-					if (src.timing == -1.0)
+				if(href_list["timer"])
+					if(src.timing == -1.0)
 						return
-					if (src.safety)
+					if(src.safety)
 						usr << "\red The safety is still on."
 						return
-					src.timing = !( src.timing )
-					if (src.timing)
+					src.timing = !src.timing
+					if(src.timing)
 						if(!src.lighthack)
 							src.icon_state = "nuclearbomb2"
 						if(!src.safety)
@@ -338,14 +338,13 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 						set_security_level(SEC_LEVEL_RED) // Lower to level red when the timer's stopped. -Frenjo
 						if(!src.lighthack)
 							src.icon_state = "nuclearbomb1"
-				if (href_list["safety"])
-					src.safety = !( src.safety )
+				if(href_list["safety"])
+					src.safety = !src.safety
 					if(safety)
 						src.timing = 0
 						bomb_set = 0
 						set_security_level(SEC_LEVEL_RED) // Lower to level red when the safety's put back on. -Frenjo
-				if (href_list["anchor"])
-
+				if(href_list["anchor"])
 					if(removal_stage == 5)
 						src.anchored = 0
 						visible_message("\red \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.")
@@ -359,7 +358,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 
 		src.add_fingerprint(usr)
 		for(var/mob/M in viewers(1, src))
-			if ((M.client && M.machine == src))
+			if((M.client && M.machine == src))
 				src.attack_hand(M)
 	else
 		usr << browse(null, "window=nuclearbomb")
@@ -377,7 +376,6 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 		return ..()
 	return
 
-
 #define NUKERANGE 80
 /obj/machinery/nuclearbomb/proc/explode()
 	if(src.safety)
@@ -388,7 +386,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 	src.safety = 1
 	if(!src.lighthack)
 		src.icon_state = "nuclearbomb3"
-	playsound(src,'sound/machines/Alarm.ogg',100,0,5)
+	playsound(src,'sound/machines/Alarm.ogg', 100, 0, 5)
 	if(ticker && ticker.mode)
 		ticker.mode.explosion_in_progress = 1
 	sleep(100)
@@ -397,8 +395,8 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 
 	var/off_station = 0
 	var/turf/bomb_location = get_turf(src)
-	if(bomb_location && (bomb_location.z == 1))
-		if((bomb_location.x < (128-NUKERANGE)) || (bomb_location.x > (128+NUKERANGE)) || (bomb_location.y < (128-NUKERANGE)) || (bomb_location.y > (128+NUKERANGE)))
+	if(bomb_location && (bomb_location.z in config.station_levels))
+		if((bomb_location.x < (128 - NUKERANGE)) || (bomb_location.x > (128 + NUKERANGE)) || (bomb_location.y < (128 - NUKERANGE)) || (bomb_location.y > (128 + NUKERANGE)))
 			off_station = 1
 	else
 		off_station = 2

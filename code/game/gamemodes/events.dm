@@ -117,7 +117,7 @@
 		H.viruses += D
 		break
 
-/proc/viral_outbreak(var/virus = null)
+/proc/viral_outbreak(virus = null)
 //	command_alert("Confirmed outbreak of level 7 viral biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert")
 //	world << sound('sound/AI/outbreak7.ogg')
 	var/virus_type
@@ -145,13 +145,13 @@
 //				virus_type = /datum/disease/t_virus
 			if("pierrot's throat")
 				virus_type = /datum/disease/pierrot_throat
-	for(var/mob/living/carbon/human/H in shuffle(living_mob_list))
 
+	for(var/mob/living/carbon/human/H in shuffle(living_mob_list))
 		var/foundAlready = 0 // don't infect someone that already has the virus
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
-		if(T.z != 1)
+		if(isNotStationLevel(T.z))
 			continue
 		for(var/datum/disease/D in H.viruses)
 			foundAlready = 1
@@ -182,12 +182,12 @@
 		for(var/mob/M in player_list)
 			M << sound('sound/AI/outbreak7.ogg')
 
-/proc/alien_infestation(var/spawncount = 1) // -- TLE
+/proc/alien_infestation(spawncount = 1) // -- TLE
 	//command_alert("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert")
 	//world << sound('sound/AI/aliens.ogg')
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
-		if(temp_vent.loc.z == 1 && !temp_vent.welded && temp_vent.network)
+		if(!temp_vent.welded && temp_vent.network && temp_vent.loc.z in config.station_levels)
 			if(temp_vent.network.normal_members.len > 50) // Stops Aliens getting stuck in small networks. See: Security, Virology
 				vents += temp_vent
 
@@ -224,26 +224,26 @@
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
-		if(T.z != 1)
+		if(isNotStationLevel(T.z))
 			continue
-		if(istype(H,/mob/living/carbon/human))
-			H.apply_effect((rand(15,75)),IRRADIATE,0)
-			if (prob(5))
-				H.apply_effect((rand(90,150)),IRRADIATE,0)
-			if (prob(25))
-				if (prob(75))
+		if(istype(H, /mob/living/carbon/human))
+			H.apply_effect((rand(15, 75)), IRRADIATE, 0)
+			if(prob(5))
+				H.apply_effect((rand(90, 150)), IRRADIATE, 0)
+			if(prob(25))
+				if(prob(75))
 					randmutb(H)
-					domutcheck(H,null,MUTCHK_FORCED)
+					domutcheck(H, null, MUTCHK_FORCED)
 				else
 					randmutg(H)
-					domutcheck(H,null,MUTCHK_FORCED)
+					domutcheck(H, null, MUTCHK_FORCED)
 	for(var/mob/living/carbon/monkey/M in living_mob_list)
 		var/turf/T = get_turf(M)
 		if(!T)
 			continue
-		if(T.z != 1)
+		if(isNotStationLevel(T.z))
 			continue
-		M.apply_effect((rand(15,75)),IRRADIATE,0)
+		M.apply_effect((rand(15, 75)), IRRADIATE, 0)
 	sleep(100)
 	command_alert("High levels of radiation detected near the station. Please report to the Med-bay if you feel strange.", "Anomaly Alert")
 	for(var/mob/M in player_list)

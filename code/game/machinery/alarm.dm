@@ -1408,21 +1408,21 @@ FIRE ALARM
 	if(user.stat || stat & (NOPOWER|BROKEN))
 		return
 
-	if (buildstage != 2)
+	if(buildstage != 2)
 		return
 
 	user.set_machine(src)
 	var/area/A = src.loc
 	var/d1
 	var/d2
-	if (istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon))
+	if(istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon))
 		A = A.loc
 
-		if (A.fire)
+		if(A.fire)
 			d1 = text("<A href='?src=\ref[];reset=1'>Reset - Lockdown</A>", src)
 		else
 			d1 = text("<A href='?src=\ref[];alarm=1'>Alarm - Lockdown</A>", src)
-		if (src.timing)
+		if(src.timing)
 			d2 = text("<A href='?src=\ref[];time=0'>Stop Time Lock</A>", src)
 		else
 			d2 = text("<A href='?src=\ref[];time=1'>Initiate Time Lock</A>", src)
@@ -1433,11 +1433,11 @@ FIRE ALARM
 		onclose(user, "firealarm")
 	else
 		A = A.loc
-		if (A.fire)
+		if(A.fire)
 			d1 = text("<A href='?src=\ref[];reset=1'>[]</A>", src, stars("Reset - Lockdown"))
 		else
 			d1 = text("<A href='?src=\ref[];alarm=1'>[]</A>", src, stars("Alarm - Lockdown"))
-		if (src.timing)
+		if(src.timing)
 			d2 = text("<A href='?src=\ref[];time=0'>[]</A>", src, stars("Stop Time Lock"))
 		else
 			d2 = text("<A href='?src=\ref[];time=1'>[]</A>", src, stars("Initiate Time Lock"))
@@ -1480,22 +1480,22 @@ FIRE ALARM
 	return
 
 /obj/machinery/firealarm/proc/reset()
-	if (!( src.working ))
+	if(!src.working)
 		return
 	var/area/A = src.loc
 	A = A.loc
-	if (!( istype(A, /area) ))
+	if(!(istype(A, /area)))
 		return
 	A.firereset()
 	update_icon()
 	return
 
 /obj/machinery/firealarm/proc/alarm()
-	if (!( src.working ))
+	if(!src.working)
 		return
 	var/area/A = src.loc
 	A = A.loc
-	if (!( istype(A, /area) ))
+	if(!(istype(A, /area)))
 		return
 	A.firealert()
 	update_icon()
@@ -1517,7 +1517,8 @@ FIRE ALARM
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 
-	if(z == 1 || z == 5)
+/obj/machinery/firealarm/initialize()
+	if(z in config.contact_levels)
 		if(security_level)
 			src.overlays += image('icons/obj/monitors.dmi', "overlay_[get_security_level()]")
 		else

@@ -21,7 +21,6 @@
 //Gets the round setup, cancelling if there's not enough players at the start//
 ///////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/revolution/rp_revolution/pre_setup()
-
 	if(config.protect_roles_from_antagonist)
 		restricted_jobs += protected_jobs
 
@@ -42,16 +41,15 @@
 			if(player.assigned_role == job)
 				possible_headrevs -= player
 
-	for (var/i=1 to max_headrevs)
-		if (possible_headrevs.len==0)
+	for (var/i = 1 to max_headrevs)
+		if (possible_headrevs.len == 0)
 			break
 		var/datum/mind/lenin = pick(possible_headrevs)
 		possible_headrevs -= lenin
 		head_revolutionaries += lenin
 
-	if((head_revolutionaries.len==0)||(!head_check))
+	if((head_revolutionaries.len == 0)||!head_check)
 		return 0
-
 	return 1
 
 
@@ -74,12 +72,12 @@
 		equip_traitor(rev_mind.current, 1) //changing how revs get assigned their uplink so they can get PDA uplinks. --NEO
 
 	modePlayer += head_revolutionaries
-	spawn (rand(waittime_l, waittime_h))
+	spawn(rand(waittime_l, waittime_h))
 		send_intercept()
 
-/datum/game_mode/revolution/rp_revolution/greet_revolutionary(var/datum/mind/rev_mind, var/you_are=1)
+/datum/game_mode/revolution/rp_revolution/greet_revolutionary(datum/mind/rev_mind, you_are = 1)
 	var/obj_count = 1
-	if (you_are)
+	if(you_are)
 		rev_mind.current << "\blue You are a member of the revolutionaries' leadership!"
 	if(!config.objectives_disabled)
 		for(var/datum/objective/objective in rev_mind.objectives)
@@ -130,7 +128,7 @@
 			//       probably wanna export this stuff into a separate function for use by both
 			//       revs and heads
 			//assume that only carbon mobs can become rev heads for now
-			if(!rev_mind.current:handcuffed && T && T.z == 1)
+			if(!rev_mind.current:handcuffed && T && T.z in config.station_levels)
 				return 0
 	return 1
 
@@ -160,7 +158,6 @@
 	for(var/obj/item/weapon/implant/loyalty/L in M)//Checking that there is a loyalty implant in the contents
 		if(L.imp_in == M)//Checking that it's actually implanted
 			return 0
-
 	return 1
 
 /mob/living/carbon/human/proc/RevConvert()
@@ -194,28 +191,29 @@
 			else if(choice == "No!")
 				M << "\red You reject this traitorous cause!"
 				src << "\red <b>[M] does not support the revolution!</b>"
-			M.mind.rev_cooldown = world.time+50
+			M.mind.rev_cooldown = world.time + 50
 
 /datum/game_mode/revolution/rp_revolution/process()
 	// only perform rev checks once in a while
 	if(tried_to_add_revheads < world.time)
-		tried_to_add_revheads = world.time+50
+		tried_to_add_revheads = world.time + 50
 		var/active_revs = 0
 		for(var/datum/mind/rev_mind in head_revolutionaries)
-			if(rev_mind.current && rev_mind.current.client && rev_mind.current.client.inactivity <= 10*60*20) // 20 minutes inactivity are OK
+			if(rev_mind.current && rev_mind.current.client && rev_mind.current.client.inactivity <= 10 * 60 * 20) // 20 minutes inactivity are OK
 				active_revs++
 
 		if(active_revs == 0)
 			log_debug("There are zero active heads of revolution, trying to add some..")
 			var/added_heads = 0
-			for(var/mob/living/carbon/human/H in world) if(H.client && H.mind && H.client.inactivity <= 10*60*20 && H.mind in revolutionaries)
-				head_revolutionaries += H.mind
-				for(var/datum/mind/head_mind in heads)
-					var/datum/objective/mutiny/rp/rev_obj = new
-					rev_obj.owner = H.mind
-					rev_obj.target = head_mind
-					rev_obj.explanation_text = "Assassinate or capture [head_mind.name], the [head_mind.assigned_role]."
-					H.mind.objectives += rev_obj
+			for(var/mob/living/carbon/human/H in world)
+				if(H.client && H.mind && H.client.inactivity <= 10 * 60 * 20 && H.mind in revolutionaries)
+					head_revolutionaries += H.mind
+					for(var/datum/mind/head_mind in heads)
+						var/datum/objective/mutiny/rp/rev_obj = new
+						rev_obj.owner = H.mind
+						rev_obj.target = head_mind
+						rev_obj.explanation_text = "Assassinate or capture [head_mind.name], the [head_mind.assigned_role]."
+						H.mind.objectives += rev_obj
 
 				update_rev_icons_added(H.mind)
 				H.verbs += /mob/living/carbon/human/proc/RevConvert
@@ -247,7 +245,7 @@
 /datum/game_mode/revolution/rp_revolution/proc/command_report(message)
 	for (var/obj/machinery/computer/communications/comm in world)
 		if (!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
-			var/obj/item/weapon/paper/intercept = new /obj/item/weapon/paper( comm.loc )
+			var/obj/item/weapon/paper/intercept = new /obj/item/weapon/paper(comm.loc)
 			intercept.name = "paper - 'Cent. Com. Announcement'"
 			intercept.info = message
 

@@ -17,15 +17,15 @@
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
-		if(T.z != 1)
+		if(isNotStationLevel(T.z))
 			continue
 		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew_quarters))
 			continue
 
-		if(istype(H,/mob/living/carbon/human))
+		if(istype(H, /mob/living/carbon/human))
 			H.client.screen += global_hud.ionstorm
 
-	for (var/mob/living/carbon/human/player in world)
+	for(var/mob/living/carbon/human/player in world)
 		if(player.client)
 			players += player.real_name
 	var/random_player = "The Captain"
@@ -61,11 +61,11 @@
 
 	var/law = pick(laws)
 
-	for (var/mob/living/silicon/ai/target in world)
+	for(var/mob/living/silicon/ai/target in world)
 		if(target.mind.special_role == "traitor")
 			continue
-		target << "\red <b>You have detected a change in your laws information:</b>"
-		target << law
+		to_chat(target, span("danger", "You have detected a change in your laws information:"))
+		to_chat(target, law)
 		target.add_ion_law(law)
 
 /datum/event/ionstorm/tick()
@@ -73,18 +73,20 @@
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
-		if(T.z != 1)
+		if(isNotStationLevel(T.z))
 			continue
 		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew_quarters))
 			H.client.screen.Remove(global_hud.ionstorm)
 			continue
 
-		if(istype(H,/mob/living/carbon/human))
+		if(istype(H, /mob/living/carbon/human))
 			H.client.screen.Remove(global_hud.ionstorm)
 			H.client.screen += global_hud.ionstorm
 
 	if(botEmagChance)
 		for(var/obj/machinery/bot/bot in world)
+			if(!(bot.z in config.station_levels))
+				continue
 			if(prob(botEmagChance))
 				bot.Emag()
 

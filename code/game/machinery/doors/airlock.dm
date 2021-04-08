@@ -659,7 +659,7 @@ About the new airlock wires panel:
 		overlays.Cut()
 	if(density)
 		// Makes the maintenance doors flash yellow if we have emergency maintenance access. -Frenjo
-		if(maint_all_access && istype(src, /obj/machinery/door/airlock/maintenance))
+		if(z in config.station_levels && maint_all_access && istype(src, /obj/machinery/door/airlock/maintenance))
 			if(lights && !locked)
 				icon_state = "door_maint_access"
 			else if(lights && locked)
@@ -700,7 +700,7 @@ About the new airlock wires panel:
 			flick("door_spark", src)
 		if("deny")
 			// Flick to deny even if the door has maint access. -Frenjo
-			if(maint_all_access && istype(src, /obj/machinery/door/airlock/maintenance))
+			if(z in config.station_levels && maint_all_access && istype(src, /obj/machinery/door/airlock/maintenance))
 				flick("door_maint_access_locked_deny", src)
 			else
 				flick("door_deny", src)

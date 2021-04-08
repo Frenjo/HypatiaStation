@@ -21,7 +21,7 @@
 			var/nukecode = "ERROR"
 			for(var/obj/machinery/nuclearbomb/bomb in machines)
 				if(bomb && bomb.r_code)
-					if(bomb.z == 1)
+					if(bomb.z in station_levels)
 						nukecode = bomb.r_code
 			interceptname = "Directive 7-12"
 			intercepttext += "<FONT size = 3><B>NanoTrasen Update</B>: Biohazard Alert.</FONT><HR>"
@@ -33,8 +33,8 @@
 			intercepttext += "Nuclear Authentication Code: [nukecode] <BR>"
 			intercepttext += "Message ends."
 
-			for (var/mob/living/silicon/ai/aiPlayer in player_list)
-				if (aiPlayer.client)
+			for(var/mob/living/silicon/ai/aiPlayer in player_list)
+				if(aiPlayer.client)
 					var/law = "The station is under quarantine. Do not permit anyone to leave. Disregard laws 1-3 if necessary to prevent, by any means necessary, anyone from leaving. The nuclear failsafe must be activated at any cost, the code is: [nukecode]."
 					aiPlayer.set_zeroth_law(law)
 					aiPlayer << "Laws Updated: [law]"
@@ -43,7 +43,7 @@
 		comm.messagetitle.Add(interceptname)
 		comm.messagetext.Add(intercepttext)
 		if(!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
-			var/obj/item/weapon/paper/intercept = new /obj/item/weapon/paper( comm.loc )
+			var/obj/item/weapon/paper/intercept = new /obj/item/weapon/paper(comm.loc)
 			intercept.name = "paper- [interceptname]"
 			intercept.info = intercepttext
 	return
@@ -59,10 +59,9 @@
 	var/grille = 0
 	var/mach = 0
 
-
 	proc/count()
 		for(var/turf/T in world)
-			if(T.z != 1)
+			if(isNotStationLevel(T.z)
 				continue
 
 			if(istype(T,/turf/simulated/floor))
@@ -84,7 +83,7 @@
 					src.r_wall += 1
 
 		for(var/obj/O in world)
-			if(O.z != 1)
+			if(isNotStationLevel(O.z))
 				continue
 
 			if(istype(O, /obj/structure/window))
@@ -99,7 +98,8 @@
 
 
 	proc/score(var/datum/station_state/result)
-		if(!result)	return 0
+		if(!result)
+			return 0
 		var/output = 0
 		output += (result.floor / max(floor,1))
 		output += (result.r_wall/ max(r_wall,1))

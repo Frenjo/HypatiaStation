@@ -64,12 +64,12 @@ var/global/datum/controller/gameticker/ticker
 
 /datum/controller/gameticker/proc/setup()
 	//Create and announce mode
-	if(master_mode=="secret")
+	if(master_mode == "secret")
 		src.hide_mode = 1
 	var/list/datum/game_mode/runnable_modes
-	if((master_mode=="random") || (master_mode=="secret"))
+	if((master_mode == "random") || (master_mode == "secret"))
 		runnable_modes = config.get_runnable_modes()
-		if(runnable_modes.len==0)
+		if(runnable_modes.len == 0)
 			current_state = GAME_STATE_PREGAME
 			world << "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby."
 			return 0
@@ -104,8 +104,8 @@ var/global/datum/controller/gameticker/ticker
 
 	if(hide_mode)
 		var/list/modes = new
-		for (var/datum/game_mode/M in runnable_modes)
-			modes+=M.name
+		for(var/datum/game_mode/M in runnable_modes)
+			modes += M.name
 		modes = sortList(modes)
 		world << "<B>The current game mode is - Secret!</B>"
 		world << "<B>Possibilities:</B> [english_list(modes)]"
@@ -153,7 +153,8 @@ var/global/datum/controller/gameticker/ticker
 
 	processScheduler.start()
 
-	for(var/obj/multiz/ladder/L in world) L.connect() //Lazy hackfix for ladders. TODO: move this to an actual controller. ~ Z
+	for(var/obj/multiz/ladder/L in world)
+		L.connect() //Lazy hackfix for ladders. TODO: move this to an actual controller. ~ Z
 
 	if(config.sql_enabled)
 		spawn(3000)
@@ -167,7 +168,7 @@ var/global/datum/controller/gameticker/ticker
 	var/obj/screen/cinematic = null
 
 	//Plus it provides an easy way to make cinematics for other events. Just use this as a template :)
-	proc/station_explosion_cinematic(var/station_missed=0, var/override = null)
+	proc/station_explosion_cinematic(station_missed = 0, override = null)
 		if(cinematic)
 			return	//already a cinematic in progress!
 
@@ -195,7 +196,7 @@ var/global/datum/controller/gameticker/ticker
 				switch(M.z)
 					if(0)	//inside a crate or something
 						var/turf/T = get_turf(M)
-						if(T && T.z == 1)				//we don't use M.death(0) because it calls a for(/mob) loop and
+						if(T && T.z in config.station_levels)				//we don't use M.death(0) because it calls a for(/mob) loop and
 							M.health = 0
 							M.stat = DEAD
 					if(1)	//on a z-level 1 turf.
@@ -225,7 +226,6 @@ var/global/datum/controller/gameticker/ticker
 				sleep(50)
 				world << sound('sound/effects/explosionfar.ogg')
 
-
 			else	//station was destroyed
 				if(mode && !override)
 					override = mode.name
@@ -245,7 +245,7 @@ var/global/datum/controller/gameticker/ticker
 					if("blob") //Station nuked (nuke,explosion,summary)
 						flick("intro_nuke", cinematic)
 						sleep(35)
-						flick("station_explode_fade_red",cinematic)
+						flick("station_explode_fade_red", cinematic)
 						world << sound('sound/effects/explosionfar.ogg')
 						cinematic.icon_state = "summary_selfdes"
 					else //Station nuked (nuke,explosion,summary)
@@ -255,7 +255,7 @@ var/global/datum/controller/gameticker/ticker
 						world << sound('sound/effects/explosionfar.ogg')
 						cinematic.icon_state = "summary_selfdes"
 				for(var/mob/living/M in living_mob_list)
-					if(M.loc.z == 1)
+					if(M.loc.z in config.station_levels)
 						M.death()//No mercy
 		//If its actually the end of the round, wait for it to end.
 		//Otherwise if its a verb it will continue on afterwards.
@@ -352,22 +352,21 @@ var/global/datum/controller/gameticker/ticker
 
 
 /datum/controller/gameticker/proc/declare_completion()
-
-	for (var/mob/living/silicon/ai/aiPlayer in mob_list)
-		if (aiPlayer.stat != 2)
+	for(var/mob/living/silicon/ai/aiPlayer in mob_list)
+		if(aiPlayer.stat != 2)
 			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the game were:</b>"
 		else
 			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>"
 		aiPlayer.show_laws(1)
 
-		if (aiPlayer.connected_robots.len)
+		if(aiPlayer.connected_robots.len)
 			var/robolist = "<b>The AI's loyal minions were:</b> "
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
 				robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.key]), ":" (Played by: [robo.key]), "]"
 			world << "[robolist]"
 
 	for (var/mob/living/silicon/robot/robo in mob_list)
-		if (!robo.connected_ai)
+		if(!robo.connected_ai)
 			if (robo.stat != 2)
 				world << "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less borg! Its laws were:</b>"
 			else
@@ -380,7 +379,7 @@ var/global/datum/controller/gameticker/ticker
 
 	//calls auto_declare_completion_* for all modes
 	for(var/handler in typesof(/datum/game_mode/proc))
-		if (findtext("[handler]","auto_declare_completion_"))
+		if(findtext("[handler]","auto_declare_completion_"))
 			call(mode, handler)()
 
 	//Print a list of antagonists to the server log
