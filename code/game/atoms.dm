@@ -23,26 +23,25 @@
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 
-/atom/proc/throw_impact(atom/hit_atom, var/speed)
-	if(istype(hit_atom,/mob/living))
+/atom/proc/throw_impact(atom/hit_atom, speed)
+	if(istype(hit_atom, /mob/living))
 		var/mob/living/M = hit_atom
-		M.hitby(src,speed)
+		M.hitby(src, speed)
 
 	else if(isobj(hit_atom))
 		var/obj/O = hit_atom
 		if(!O.anchored)
 			step(O, src.dir)
-		O.hitby(src,speed)
+		O.hitby(src, speed)
 
 	else if(isturf(hit_atom))
 		var/turf/T = hit_atom
 		if(T.density)
 			spawn(2)
 				step(src, turn(src.dir, 180))
-			if(istype(src,/mob/living))
+			if(istype(src, /mob/living))
 				var/mob/living/M = src
 				M.take_organ_damage(20)
-
 
 /atom/proc/assume_air(datum/gas_mixture/giver)
 	return null
@@ -95,10 +94,10 @@
 /atom/proc/HasProximity(atom/movable/AM as mob|obj)
 	return
 
-/atom/proc/emp_act(var/severity)
+/atom/proc/emp_act(severity)
 	return
 
-/atom/proc/bullet_act(var/obj/item/projectile/Proj)
+/atom/proc/bullet_act(obj/item/projectile/Proj)
 	return 0
 
 /atom/proc/in_contents_of(container)//can take class or object instance as argument
@@ -119,7 +118,7 @@
  * RETURNS: list of found atoms
  */
 
-/atom/proc/search_contents_for(path,list/filter_path=null)
+/atom/proc/search_contents_for(path, list/filter_path = null)
 	var/list/found = list()
 	for(var/atom/A in src)
 		if(istype(A, path))
@@ -131,7 +130,7 @@
 			if(!pass)
 				continue
 		if(A.contents.len)
-			found += A.search_contents_for(path,filter_path)
+			found += A.search_contents_for(path, filter_path)
 	return found
 
 
@@ -144,68 +143,74 @@ Also, the icon used for the beam will have to be vertical and 32x32.
 The math involved assumes that the icon is vertical to begin with so unless you want to adjust the math,
 its easier to just keep the beam vertical.
 */
-/atom/proc/Beam(atom/BeamTarget,icon_state="b_beam",icon='icons/effects/beam.dmi',time=50, maxdistance=10)
+/atom/proc/Beam(atom/BeamTarget, icon_state = "b_beam", icon = 'icons/effects/beam.dmi', time = 50, maxdistance = 10)
 	//BeamTarget represents the target for the beam, basically just means the other end.
 	//Time is the duration to draw the beam
 	//Icon is obviously which icon to use for the beam, default is beam.dmi
 	//Icon_state is what icon state is used. Default is b_beam which is a blue beam.
 	//Maxdistance is the longest range the beam will persist before it gives up.
-	var/EndTime=world.time+time
-	while(BeamTarget&&world.time<EndTime&&get_dist(src,BeamTarget)<maxdistance&&z==BeamTarget.z)
+	var/EndTime = world.time + time
+	while(BeamTarget && world.time < EndTime && get_dist(src, BeamTarget) < maxdistance && z == BeamTarget.z)
 	//If the BeamTarget gets deleted, the time expires, or the BeamTarget gets out
 	//of range or to another z-level, then the beam will stop.  Otherwise it will
 	//continue to draw.
 
-		dir=get_dir(src,BeamTarget)	//Causes the source of the beam to rotate to continuosly face the BeamTarget.
+		dir = get_dir(src, BeamTarget)	//Causes the source of the beam to rotate to continuosly face the BeamTarget.
 
-		for(var/obj/effect/overlay/beam/O in orange(10,src))	//This section erases the previously drawn beam because I found it was easier to
-			if(O.BeamSource==src)				//just draw another instance of the beam instead of trying to manipulate all the
+		for(var/obj/effect/overlay/beam/O in orange(10, src))	//This section erases the previously drawn beam because I found it was easier to
+			if(O.BeamSource == src)				//just draw another instance of the beam instead of trying to manipulate all the
 				qdel(O)							//pieces to a new orientation.
-		var/Angle=round(Get_Angle(src,BeamTarget))
-		var/icon/I=new(icon,icon_state)
+		var/Angle = round(Get_Angle(src, BeamTarget))
+		var/icon/I = new(icon, icon_state)
 		I.Turn(Angle)
-		var/DX=(32*BeamTarget.x+BeamTarget.pixel_x)-(32*x+pixel_x)
-		var/DY=(32*BeamTarget.y+BeamTarget.pixel_y)-(32*y+pixel_y)
-		var/N=0
-		var/length=round(sqrt((DX)**2+(DY)**2))
-		for(N,N<length,N+=32)
-			var/obj/effect/overlay/beam/X=new(loc)
-			X.BeamSource=src
-			if(N+32>length)
-				var/icon/II=new(icon,icon_state)
-				II.DrawBox(null,1,(length-N),32,32)
+		var/DX = (32 * BeamTarget.x + BeamTarget.pixel_x) - (32 * x + pixel_x)
+		var/DY = (32 * BeamTarget.y + BeamTarget.pixel_y) - (32 * y + pixel_y)
+		var/N = 0
+		var/length = round(sqrt((DX) ** 2 + (DY) ** 2))
+		for(N, N < length, N += 32)
+			var/obj/effect/overlay/beam/X = new(loc)
+			X.BeamSource = src
+			if(N + 32 > length)
+				var/icon/II = new(icon, icon_state)
+				II.DrawBox(null, 1, (length - N), 32, 32)
 				II.Turn(Angle)
-				X.icon=II
-			else X.icon=I
-			var/Pixel_x=round(sin(Angle)+32*sin(Angle)*(N+16)/32)
-			var/Pixel_y=round(cos(Angle)+32*cos(Angle)*(N+16)/32)
-			if(DX==0) Pixel_x=0
-			if(DY==0) Pixel_y=0
-			if(Pixel_x>32)
-				for(var/a=0, a<=Pixel_x,a+=32)
+				X.icon = II
+			else
+				X.icon = I
+
+			var/Pixel_x = round(sin(Angle) + 32*  sin(Angle) * (N + 16) / 32)
+			var/Pixel_y = round(cos(Angle) + 32 * cos(Angle) * (N + 16) / 32)
+			if(DX==0)
+				Pixel_x=0
+			if(DY==0)
+				Pixel_y=0
+			if(Pixel_x > 32)
+				for(var/a = 0, a <= Pixel_x, a += 32)
 					X.x++
-					Pixel_x-=32
-			if(Pixel_x<-32)
-				for(var/a=0, a>=Pixel_x,a-=32)
+					Pixel_x -= 32
+			if(Pixel_x < -32)
+				for(var/a = 0, a >= Pixel_x, a -= 32)
 					X.x--
-					Pixel_x+=32
-			if(Pixel_y>32)
-				for(var/a=0, a<=Pixel_y,a+=32)
+					Pixel_x += 32
+			if(Pixel_y > 32)
+				for(var/a = 0, a <= Pixel_y, a += 32)
 					X.y++
-					Pixel_y-=32
-			if(Pixel_y<-32)
-				for(var/a=0, a>=Pixel_y,a-=32)
+					Pixel_y -= 32
+			if(Pixel_y < -32)
+				for(var/a = 0, a >= Pixel_y, a -= 32)
 					X.y--
-					Pixel_y+=32
-			X.pixel_x=Pixel_x
-			X.pixel_y=Pixel_y
+					Pixel_y += 32
+			X.pixel_x = Pixel_x
+			X.pixel_y = Pixel_y
 		sleep(3)	//Changing this to a lower value will cause the beam to follow more smoothly with movement, but it will also be more laggy.
 					//I've found that 3 ticks provided a nice balance for my use.
-	for(var/obj/effect/overlay/beam/O in orange(10,src)) if(O.BeamSource==src) qdel(O)
+	for(var/obj/effect/overlay/beam/O in orange(10, src))
+		if(O.BeamSource == src)
+			qdel(O)
 
 
 //All atoms
-/atom/proc/examine(mob/user, var/distance = -1)
+/atom/proc/examine(mob/user, distance = -1)
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
 	var/f_name = "\a [src]."
 	if(src.blood_DNA && !istype(src, /obj/effect/decal))
@@ -253,17 +258,17 @@ its easier to just keep the beam vertical.
 			return 0
 		if(H.gloves)
 			if(src.fingerprintslast != H.key)
-				src.fingerprintshidden += text("\[[time_stamp()]\] (Wearing gloves). Real name: [], Key: []",H.real_name, H.key)
+				src.fingerprintshidden += text("\[[time_stamp()]\] (Wearing gloves). Real name: [], Key: []", H.real_name, H.key)
 				src.fingerprintslast = H.key
 			return 0
 		if(!(src.fingerprints))
 			if(src.fingerprintslast != H.key)
-				src.fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []",H.real_name, H.key)
+				src.fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []", H.real_name, H.key)
 				src.fingerprintslast = H.key
 			return 1
 	else
 		if(src.fingerprintslast != M.key)
-			src.fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []",M.real_name, M.key)
+			src.fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []", M.real_name, M.key)
 			src.fingerprintslast = M.key
 	return
 
@@ -371,10 +376,10 @@ its easier to just keep the beam vertical.
 	return
 
 
-/atom/proc/transfer_fingerprints_to(var/atom/A)
-	if(!istype(A.fingerprints,/list))
+/atom/proc/transfer_fingerprints_to(atom/A)
+	if(!istype(A.fingerprints, /list))
 		A.fingerprints = list()
-	if(!istype(A.fingerprintshidden,/list))
+	if(!istype(A.fingerprintshidden, /list))
 		A.fingerprintshidden = list()
 
 	//skytodo
@@ -388,8 +393,9 @@ its easier to just keep the beam vertical.
 
 //returns 1 if made bloody, returns 0 otherwise
 /atom/proc/add_blood(mob/living/carbon/human/M as mob)
-	if(flags & NOBLOODY) return 0
-	.=1
+	if(flags & NOBLOODY)
+		return 0
+	. = 1
 	if(!(istype(M, /mob/living/carbon/human)))
 		return 0
 	if(!istype(M.dna, /datum/dna))
@@ -403,13 +409,13 @@ its easier to just keep the beam vertical.
 		blood_color = M.species.blood_color
 	return
 
-/atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = 0)
-	if( istype(src, /turf/simulated) )
+/atom/proc/add_vomit_floor(mob/living/carbon/M as mob, toxvomit = 0)
+	if(istype(src, /turf/simulated))
 		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
 
 		// Make toxins vomit look different
 		if(toxvomit)
-			this.icon_state = "vomittox_[pick(1,4)]"
+			this.icon_state = "vomittox_[pick(1, 4)]"
 
 
 /atom/proc/clean_blood()
@@ -420,18 +426,19 @@ its easier to just keep the beam vertical.
 
 
 /atom/proc/get_global_map_pos()
-	if(!islistold(global_map) || isemptylist(global_map)) return
+	if(!islistold(global_map) || isemptylist(global_map))
+		return
 	var/cur_x = null
 	var/cur_y = null
 	var/list/y_arr = null
-	for(cur_x=1,cur_x<=global_map.len,cur_x++)
+	for(cur_x = 1, cur_x <= global_map.len, cur_x++)
 		y_arr = global_map[cur_x]
 		cur_y = y_arr.Find(src.z)
 		if(cur_y)
 			break
 //	world << "X = [cur_x]; Y = [cur_y]"
 	if(cur_x && cur_y)
-		return list("x"=cur_x,"y"=cur_y)
+		return list("x" = cur_x, "y" = cur_y)
 	else
 		return 0
 

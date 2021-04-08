@@ -38,13 +38,13 @@
 	airlockIndexToWireColor = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 	airlockWireColorToIndex = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 	var/flagIndex = 1
-	for (var/flag=1, flag<4096, flag+=flag)
+	for(var/flag = 1, flag < 4096, flag += flag)
 		var/valid = 0
 		var/list/colorList = list(AIRLOCK_WIRE_IDSCAN, AIRLOCK_WIRE_MAIN_POWER1, AIRLOCK_WIRE_MAIN_POWER2, AIRLOCK_WIRE_DOOR_BOLTS,
 		AIRLOCK_WIRE_BACKUP_POWER1, AIRLOCK_WIRE_BACKUP_POWER2, AIRLOCK_WIRE_OPEN_DOOR, AIRLOCK_WIRE_AI_CONTROL, AIRLOCK_WIRE_ELECTRIFY,
 		AIRLOCK_WIRE_SAFETY, AIRLOCK_WIRE_SPEED, AIRLOCK_WIRE_LIGHT)
 
-		while (!valid)
+		while(!valid)
 			var/colorIndex = pick(colorList)
 			if(wires[colorIndex]==0)
 				valid = 1
@@ -53,7 +53,7 @@
 				airlockIndexToWireColor[flagIndex] = colorIndex
 				airlockWireColorToIndex[colorIndex] = flagIndex
 				colorList -= colorIndex
-		flagIndex+=1
+		flagIndex += 1
 	return wires
 
 /* Example:
@@ -260,15 +260,15 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	var/last_event = 0
 
 /obj/machinery/door/airlock/uranium/process()
-	if(world.time > last_event+20)
+	if(world.time > last_event + 20)
 		if(prob(50))
 			radiate()
 		last_event = world.time
 	..()
 
 /obj/machinery/door/airlock/uranium/proc/radiate()
-	for(var/mob/living/L in range (3,src))
-		L.apply_effect(15,IRRADIATE,0)
+	for(var/mob/living/L in range (3, src))
+		L.apply_effect(15, IRRADIATE, 0)
 	return
 
 /obj/machinery/door/airlock/plasma
@@ -286,19 +286,20 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 		PlasmaBurn(exposed_temperature)
 
 /obj/machinery/door/airlock/plasma/proc/PlasmaBurn(temperature)
-	for(var/turf/simulated/floor/target_tile in range(2,loc))
-		target_tile.assume_gas("plasma", 35, 400+T0C)
-		spawn (0) target_tile.hotspot_expose(temperature, 400)
-	for(var/obj/structure/falsewall/plasma/F in range(3,src))//Hackish as fuck, but until temperature_expose works, there is nothing I can do -Sieve
+	for(var/turf/simulated/floor/target_tile in range(2, loc))
+		target_tile.assume_gas("plasma", 35, 400 + T0C)
+		spawn(0)
+			target_tile.hotspot_expose(temperature, 400)
+	for(var/obj/structure/falsewall/plasma/F in range(3, src))//Hackish as fuck, but until temperature_expose works, there is nothing I can do -Sieve
 		var/turf/T = get_turf(F)
 		T.ChangeTurf(/turf/simulated/wall/mineral/plasma/)
-		qdel (F)
-	for(var/turf/simulated/wall/mineral/plasma/W in range(3,src))
+		qdel(F)
+	for(var/turf/simulated/wall/mineral/plasma/W in range(3, src))
 		W.ignite((temperature/4))//Added so that you can't set off a massive chain reaction with a small flame
-	for(var/obj/machinery/door/airlock/plasma/D in range(3,src))
+	for(var/obj/machinery/door/airlock/plasma/D in range(3, src))
 		D.ignite(temperature/4)
-	new/obj/structure/door_assembly( src.loc )
-	qdel (src)
+	new/obj/structure/door_assembly(src.loc)
+	qdel(src)
 
 /obj/machinery/door/airlock/clown
 	name = "Bananium Airlock"
@@ -370,7 +371,7 @@ About the new airlock wires panel:
 			else /*if(src.justzap)*/
 				return
 		else if(user.hallucination > 50 && prob(10) && src.operating == 0)
-			user << "\red <B>You feel a powerful shock course through your body!</B>"
+			to_chat(user, span("danger", "You feel a powerful shock course through your body!"))
 			user.halloss += 10
 			user.stunned += 10
 			return
@@ -382,8 +383,7 @@ About the new airlock wires panel:
 /obj/machinery/door/airlock/bumpopen(mob/living/simple_animal/user as mob)
 	..(user)
 
-
-/obj/machinery/door/airlock/proc/pulse(var/wireColor)
+/obj/machinery/door/airlock/proc/pulse(wireColor)
 	//var/wireFlag = airlockWireColorToFlag[wireColor] //not used in this function
 	var/wireIndex = airlockWireColorToIndex[wireColor]
 	switch(wireIndex)
@@ -391,28 +391,31 @@ About the new airlock wires panel:
 			//Sending a pulse through this flashes the red light on the door (if the door has power).
 			if((src.arePowerSystemsOn()) && (!(stat & NOPOWER)))
 				do_animate("deny")
+
 		if(AIRLOCK_WIRE_MAIN_POWER1 || AIRLOCK_WIRE_MAIN_POWER2)
 			//Sending a pulse through either one causes a breaker to trip, disabling the door for 10 seconds if backup power is connected, or 1 minute if not (or until backup power comes back on, whichever is shorter).
 			src.loseMainPower()
+
 		if(AIRLOCK_WIRE_DOOR_BOLTS)
 			//one wire for door bolts. Sending a pulse through this drops door bolts if they're not down (whether power's on or not),
 			//raises them if they are down (only if power's on)
 			if(!src.locked)
 				src.locked = 1
 				for(var/mob/M in range(1, src))
-					M << "You hear a click from the bottom of the door."
+					to_chat(M, "You hear a click from the bottom of the door.")
 				src.updateUsrDialog()
 			else
 				if(src.arePowerSystemsOn()) //only can raise bolts if power's on
 					src.locked = 0
 					for(var/mob/M in range(1, src))
-						M << "You hear a click from the bottom of the door."
+						to_chat(M, "You hear a click from the bottom of the door.")
 					src.updateUsrDialog()
 			update_icon()
 
 		if(AIRLOCK_WIRE_BACKUP_POWER1 || AIRLOCK_WIRE_BACKUP_POWER2)
 			//two wires for backup power. Sending a pulse through either one causes a breaker to trip, but this does not disable it unless main power is down too (in which case it is disabled for 1 minute or however long it takes main power to come back, whichever is shorter).
 			src.loseBackupPower()
+
 		if(AIRLOCK_WIRE_AI_CONTROL)
 			if(src.aiControlDisabled == 0)
 				src.aiControlDisabled = 1
@@ -425,6 +428,7 @@ About the new airlock wires panel:
 				else if(src.aiControlDisabled == 2)
 					src.aiControlDisabled = -1
 				src.updateDialog()
+
 		if(AIRLOCK_WIRE_ELECTRIFY)
 			//one wire for electrifying the door. Sending a pulse through this electrifies the door for 30 seconds.
 			if(src.secondsElectrified == 0)
@@ -433,12 +437,13 @@ About the new airlock wires panel:
 				src.secondsElectrified = 30
 				spawn(10)
 					//TODO: Move this into process() and make pulsing reset secondsElectrified to 30
-					while (src.secondsElectrified > 0)
+					while(src.secondsElectrified > 0)
 						src.secondsElectrified -= 1
 						if(src.secondsElectrified < 0)
 							src.secondsElectrified = 0
 //						src.updateUsrDialog()  //Commented this line out to keep the airlock from clusterfucking you with electricity. --NeoFite
 						sleep(10)
+
 		if(AIRLOCK_WIRE_OPEN_DOOR)
 			//tries to open the door without ID
 			//will succeed only if the ID wire is cut or the door requires no access
@@ -447,6 +452,7 @@ About the new airlock wires panel:
 					open()
 				else
 					close()
+
 		if(AIRLOCK_WIRE_SAFETY)
 			safe = !safe
 			if(!src.density)
@@ -461,8 +467,7 @@ About the new airlock wires panel:
 			lights = !lights
 			src.updateUsrDialog()
 
-
-/obj/machinery/door/airlock/proc/cut(var/wireColor)
+/obj/machinery/door/airlock/proc/cut(wireColor)
 	var/wireFlag = airlockWireColorToFlag[wireColor]
 	var/wireIndex = airlockWireColorToIndex[wireColor]
 	wires &= ~wireFlag
@@ -472,17 +477,20 @@ About the new airlock wires panel:
 			src.loseMainPower()
 			src.shock(usr, 50)
 			src.updateUsrDialog()
+
 		if(AIRLOCK_WIRE_DOOR_BOLTS)
 			//Cutting this wire also drops the door bolts, and mending it does not raise them. (This is what happens now, except there are a lot more wires going to door bolts at present)
 			if(src.locked!=1)
 				src.locked = 1
 			update_icon()
 			src.updateUsrDialog()
+
 		if(AIRLOCK_WIRE_BACKUP_POWER1 || AIRLOCK_WIRE_BACKUP_POWER2)
 			//Cutting either one disables the backup door power (allowing it to be crowbarred open, but disabling bolts-raising), but may electocute the user.
 			src.loseBackupPower()
 			src.shock(usr, 50)
 			src.updateUsrDialog()
+
 		if(AIRLOCK_WIRE_AI_CONTROL)
 			//one wire for AI control. Cutting this prevents the AI from controlling the door unless it has hacked the door through the power connection (which takes about a minute). If both main and backup power are cut, as well as this wire, then the AI cannot operate or hack the door at all.
 			//aiControlDisabled: If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
@@ -491,13 +499,15 @@ About the new airlock wires panel:
 			else if(src.aiControlDisabled == -1)
 				src.aiControlDisabled = 2
 			src.updateUsrDialog()
+
 		if(AIRLOCK_WIRE_ELECTRIFY)
 			//Cutting this wire electrifies the door, so that the next person to touch the door without insulated gloves gets electrocuted.
 			if(src.secondsElectrified != -1)
 				shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
 				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Electrified the [name] at [x] [y] [z]</font>")
 				src.secondsElectrified = -1
-		if (AIRLOCK_WIRE_SAFETY)
+
+		if(AIRLOCK_WIRE_SAFETY)
 			safe = 0
 			src.updateUsrDialog()
 
@@ -509,7 +519,7 @@ About the new airlock wires panel:
 			lights = 0
 			src.updateUsrDialog()
 
-/obj/machinery/door/airlock/proc/mend(var/wireColor)
+/obj/machinery/door/airlock/proc/mend(wireColor)
 	var/wireFlag = airlockWireColorToFlag[wireColor]
 	var/wireIndex = airlockWireColorToIndex[wireColor] //not used in this function
 	wires |= wireFlag
@@ -519,11 +529,13 @@ About the new airlock wires panel:
 				src.regainMainPower()
 				src.shock(usr, 50)
 				src.updateUsrDialog()
+
 		if(AIRLOCK_WIRE_BACKUP_POWER1 || AIRLOCK_WIRE_BACKUP_POWER2)
 			if((!src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER1)) && (!src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER2)))
 				src.regainBackupPower()
 				src.shock(usr, 50)
 				src.updateUsrDialog()
+
 		if(AIRLOCK_WIRE_AI_CONTROL)
 			//one wire for AI control. Cutting this prevents the AI from controlling the door unless it has hacked the door through the power connection (which takes about a minute). If both main and backup power are cut, as well as this wire, then the AI cannot operate or hack the door at all.
 			//aiControlDisabled: If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
@@ -532,11 +544,12 @@ About the new airlock wires panel:
 			else if(src.aiControlDisabled == 2)
 				src.aiControlDisabled = -1
 			src.updateUsrDialog()
+
 		if(AIRLOCK_WIRE_ELECTRIFY)
 			if(src.secondsElectrified == -1)
 				src.secondsElectrified = 0
 
-		if (AIRLOCK_WIRE_SAFETY)
+		if(AIRLOCK_WIRE_SAFETY)
 			safe = 1
 			src.updateUsrDialog()
 
@@ -550,17 +563,16 @@ About the new airlock wires panel:
 			lights = 1
 			src.updateUsrDialog()
 
-
 /obj/machinery/door/airlock/proc/isElectrified()
 	if(src.secondsElectrified != 0)
 		return 1
 	return 0
 
-/obj/machinery/door/airlock/proc/isWireColorCut(var/wireColor)
+/obj/machinery/door/airlock/proc/isWireColorCut(wireColor)
 	var/wireFlag = airlockWireColorToFlag[wireColor]
 	return ((src.wires & wireFlag) == 0)
 
-/obj/machinery/door/airlock/proc/isWireCut(var/wireIndex)
+/obj/machinery/door/airlock/proc/isWireCut(wireIndex)
 	var/wireFlag = airlockIndexToFlag[wireIndex]
 	return ((src.wires & wireFlag) == 0)
 
@@ -642,9 +654,9 @@ About the new airlock wires panel:
 	else
 		return 0
 
-
 /obj/machinery/door/airlock/update_icon()
-	if(overlays) overlays.Cut()
+	if(overlays)
+		overlays.Cut()
 	if(density)
 		// Makes the maintenance doors flash yellow if we have emergency maintenance access. -Frenjo
 		if(maint_all_access && istype(src, /obj/machinery/door/airlock/maintenance))
@@ -670,7 +682,8 @@ About the new airlock wires panel:
 /obj/machinery/door/airlock/do_animate(animation)
 	switch(animation)
 		if("opening")
-			if(overlays) overlays.Cut()
+			if(overlays)
+				overlays.Cut()
 			if(p_open)
 				// Commented this out as of 30/10/2019, I pray this works now??? -Frenjo
 				//spawn(2) // The only work around that works. Downside is that the door will be gone for a millisecond.
@@ -699,7 +712,7 @@ About the new airlock wires panel:
 			src.hack(user)
 			return
 		else
-			user << "Airlock AI control has been blocked with a firewall. Unable to hack."
+			to_chat(user, "Airlock AI control has been blocked with a firewall. Unable to hack.")
 
 	//Separate interface for the AI.
 	user.set_machine(src)
@@ -800,64 +813,64 @@ About the new airlock wires panel:
 //aiDisable - 1 idscan, 2 disrupt main power, 3 disrupt backup power, 4 drop door bolts, 5 un-electrify door, 7 close door
 //aiEnable - 1 idscan, 4 raise door bolts, 5 electrify door for 30 seconds, 6 electrify door indefinitely, 7 open door
 
-
 /obj/machinery/door/airlock/proc/hack(mob/user as mob)
-	if(src.aiHacking==0)
-		src.aiHacking=1
+	if(src.aiHacking == 0)
+		src.aiHacking = 1
 		spawn(20)
 			//TODO: Make this take a minute
-			user << "Airlock AI control has been blocked. Beginning fault-detection."
+			to_chat(user, "Airlock AI control has been blocked. Beginning fault-detection.")
 			sleep(50)
 			if(src.canAIControl())
-				user << "Alert cancelled. Airlock control has been restored without our assistance."
-				src.aiHacking=0
+				to_chat(user, "Alert cancelled. Airlock control has been restored without our assistance.")
+				src.aiHacking = 0
 				return
 			else if(!src.canAIHack())
-				user << "We've lost our connection! Unable to hack airlock."
-				src.aiHacking=0
+				to_chat(user, "We've lost our connection! Unable to hack airlock.")
+				src.aiHacking = 0
 				return
-			user << "Fault confirmed: airlock control wire disabled or cut."
+			to_chat(user, "Fault confirmed: airlock control wire disabled or cut.")
 			sleep(20)
-			user << "Attempting to hack into airlock. This may take some time."
+			to_chat(user, "Attempting to hack into airlock. This may take some time.")
 			sleep(200)
 			if(src.canAIControl())
-				user << "Alert cancelled. Airlock control has been restored without our assistance."
-				src.aiHacking=0
+				to_chat(user, "Alert cancelled. Airlock control has been restored without our assistance.")
+				src.aiHacking = 0
 				return
 			else if(!src.canAIHack())
-				user << "We've lost our connection! Unable to hack airlock."
-				src.aiHacking=0
+				to_chat(user, "We've lost our connection! Unable to hack airlock.")
+				src.aiHacking = 0
 				return
-			user << "Upload access confirmed. Loading control program into airlock software."
+			to_chat(user, "Upload access confirmed. Loading control program into airlock software.")
 			sleep(170)
 			if(src.canAIControl())
-				user << "Alert cancelled. Airlock control has been restored without our assistance."
-				src.aiHacking=0
+				to_chat(user, "Alert cancelled. Airlock control has been restored without our assistance.")
+				src.aiHacking = 0
 				return
 			else if(!src.canAIHack())
-				user << "We've lost our connection! Unable to hack airlock."
-				src.aiHacking=0
+				to_chat(user, "We've lost our connection! Unable to hack airlock.")
+				src.aiHacking = 0
 				return
-			user << "Transfer complete. Forcing airlock to execute program."
+			to_chat(user, "Transfer complete. Forcing airlock to execute program.")
 			sleep(50)
 			//disable blocked control
 			src.aiControlDisabled = 2
-			user << "Receiving control information from airlock."
+			to_chat(user, "Receiving control information from airlock.")
 			sleep(10)
 			//bring up airlock dialog
 			src.aiHacking = 0
-			if (user)
+			if(user)
 				src.attack_ai(user)
 
-/obj/machinery/door/airlock/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if (src.isElectrified())
-		if (istype(mover, /obj/item))
+/obj/machinery/door/airlock/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	if(src.isElectrified())
+		if(istype(mover, /obj/item))
 			var/obj/item/i = mover
-			if (i.m_amt)
+			if(i.m_amt)
 				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 				s.set_up(5, 1, src)
 				s.start()
 	return ..()
+
 /obj/machinery/door/airlock/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
@@ -871,7 +884,6 @@ About the new airlock wires panel:
 			do_animate("deny")
 
 	// No. -- cib
-
 	// Uncommented as of 30/10/2019...
 	// Yes. -Frenjo
 	if(isHuman(user) && prob(40) && src.density)
@@ -879,14 +891,14 @@ About the new airlock wires panel:
 		if(H.getBrainLoss() >= 60)
 			playsound(src, 'sound/effects/bang.ogg', 25, 1)
 			if(!istype(H.head, /obj/item/clothing/head/helmet))
-				visible_message("\red [user] headbutts the airlock.")
+				visible_message(span("warning", "[user] headbutts the airlock."))
 				var/datum/organ/external/affecting = H.get_organ("head")
 				H.Stun(8)
 				H.Weaken(5)
 				if(affecting.take_damage(10, 0))
 					H.UpdateDamageIcon()
 			else
-				visible_message("\red [user] headbutts the airlock. Good thing they're wearing a helmet.")
+				visible_message(span("warning", "[user] headbutts the airlock. Good thing they're wearing a helmet."))
 			return
 
 	if(src.p_open)
@@ -933,8 +945,7 @@ About the new airlock wires panel:
 		..(user)
 	return
 
-
-/obj/machinery/door/airlock/Topic(href, href_list, var/nowindow = 0)
+/obj/machinery/door/airlock/Topic(href, href_list, nowindow = 0)
 	if(!nowindow)
 		..()
 	if(usr.stat || usr.restrained()|| usr.small)
@@ -942,7 +953,7 @@ About the new airlock wires panel:
 	add_fingerprint(usr)
 	if(href_list["close"])
 		usr << browse(null, "window=airlock")
-		if(usr.machine==src)
+		if(usr.machine == src)
 			usr.unset_machine()
 			return
 
@@ -950,8 +961,8 @@ About the new airlock wires panel:
 		usr.set_machine(src)
 		if(href_list["wires"])
 			var/t1 = text2num(href_list["wires"])
-			if(!( istype(usr.get_active_hand(), /obj/item/weapon/wirecutters) ))
-				usr << "You need wirecutters!"
+			if(!(istype(usr.get_active_hand(), /obj/item/weapon/wirecutters)))
+				to_chat(usr, "You need wirecutters!")
 				return
 			if(src.isWireColorCut(t1))
 				src.mend(t1)
@@ -960,24 +971,24 @@ About the new airlock wires panel:
 		else if(href_list["pulse"])
 			var/t1 = text2num(href_list["pulse"])
 			if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
-				usr << "You need a multitool!"
+				to_chat(usr, "You need a multitool!")
 				return
 			if(src.isWireColorCut(t1))
-				usr << "You can't pulse a cut wire."
+				to_chat(usr, "You can't pulse a cut wire.")
 				return
 			else
 				src.pulse(t1)
 		else if(href_list["signaler"])
 			var/wirenum = text2num(href_list["signaler"])
 			if(!istype(usr.get_active_hand(), /obj/item/device/assembly/signaler))
-				usr << "You need a signaller!"
+				to_chat(usr, "You need a signaller!")
 				return
 			if(src.isWireColorCut(wirenum))
-				usr << "You can't attach a signaller to a cut wire."
+				to_chat(usr, "You can't attach a signaller to a cut wire.")
 				return
 			var/obj/item/device/assembly/signaler/R = usr.get_active_hand()
 			if(R.secured)
-				usr << "This radio can't be attached!"
+				to_chat(usr, "This radio can't be attached!")
 				return
 			var/mob/M = usr
 			M.drop_item()
@@ -987,13 +998,12 @@ About the new airlock wires panel:
 		else if(href_list["remove-signaler"])
 			var/wirenum = text2num(href_list["remove-signaler"])
 			if(!(src.signalers[wirenum]))
-				usr << "There's no signaller attached to that wire!"
+				to_chat(usr, "There's no signaller attached to that wire!")
 				return
 			var/obj/item/device/assembly/signaler/R = src.signalers[wirenum]
 			R.loc = usr.loc
 			R.airlock_wire = null
 			src.signalers[wirenum] = null
-
 
 	if(istype(usr, /mob/living/silicon) && src.canAIControl())
 		//AI
@@ -1001,13 +1011,13 @@ About the new airlock wires panel:
 		//aiEnable - 1 idscan, 4 raise door bolts, 5 electrify door for 30 seconds, 6 electrify door indefinitely, 7 open door,  8 door safties, 9 door speed
 		if(href_list["aiDisable"])
 			var/code = text2num(href_list["aiDisable"])
-			switch (code)
+			switch(code)
 				if(1)
 					//disable idscan
 					if(src.isWireCut(AIRLOCK_WIRE_IDSCAN))
-						usr << "The IdScan wire has been cut - So, you can't disable it, but it is already disabled anyways."
+						to_chat(usr, "The IdScan wire has been cut - So, you can't disable it, but it is already disabled anyways.")
 					else if(src.aiDisabledIdScanner)
-						usr << "You've already disabled the IdScan feature."
+						to_chat(usr, "You've already disabled the IdScan feature.")
 					else
 						src.aiDisabledIdScanner = 1
 				if(2)
@@ -1015,70 +1025,66 @@ About the new airlock wires panel:
 					if(src.secondsMainPowerLost == 0)
 						src.loseMainPower()
 					else
-						usr << "Main power is already offline."
+						to_chat(usr, "Main power is already offline.")
 				if(3)
 					//disrupt backup power
 					if(src.secondsBackupPowerLost == 0)
 						src.loseBackupPower()
 					else
-						usr << "Backup power is already offline."
+						to_chat(usr, "Backup power is already offline.")
 				if(4)
 					//drop door bolts
 					if(src.isWireCut(AIRLOCK_WIRE_DOOR_BOLTS))
-						usr << "You can't drop the door bolts - The door bolt dropping wire has been cut."
-					else if(src.locked!=1)
+						to_chat(usr, "You can't drop the door bolts - The door bolt dropping wire has been cut.")
+					else if(src.locked != 1)
 						src.locked = 1
 						update_icon()
 				if(5)
 					//un-electrify door
 					if(src.isWireCut(AIRLOCK_WIRE_ELECTRIFY))
-						usr << text("Can't un-electrify the airlock - The electrification wire is cut.")
-					else if(src.secondsElectrified==-1)
+						to_chat(usr, "Can't un-electrify the airlock - The electrification wire is cut.")
+					else if(src.secondsElectrified == -1)
 						src.secondsElectrified = 0
-					else if(src.secondsElectrified>0)
+					else if(src.secondsElectrified > 0)
 						src.secondsElectrified = 0
-
-				if(8)
-					// Safeties!  We don't need no stinking safeties!
-					if (src.isWireCut(AIRLOCK_WIRE_SAFETY))
-						usr << text("Control to door sensors is disabled.")
-					else if (src.safe)
-						safe = 0
-					else
-						usr << text("Firmware reports safeties already overriden.")
-
-
-
-				if(9)
-					// Door speed control
-					if(src.isWireCut(AIRLOCK_WIRE_SPEED))
-						usr << text("Control to door timing circuitry has been severed.")
-					else if (src.normalspeed)
-						normalspeed = 0
-					else
-						usr << text("Door timing circurity already accellerated.")
 
 				if(7)
 					//close door
 					if(src.welded)
-						usr << text("The airlock has been welded shut!")
+						to_chat(usr, "The airlock has been welded shut!")
 					else if(src.locked)
-						usr << text("The door bolts are down!")
+						to_chat(usr, "The door bolts are down!")
 					else if(!src.density)
 						close()
 					else
 						open()
+				
+				if(8)
+					// Safeties!  We don't need no stinking safeties!
+					if(src.isWireCut(AIRLOCK_WIRE_SAFETY))
+						to_chat(usr, "Control to door sensors is disabled.")
+					else if(src.safe)
+						safe = 0
+					else
+						to_chat(usr, "Firmware reports safeties already overriden.")
+
+				if(9)
+					// Door speed control
+					if(src.isWireCut(AIRLOCK_WIRE_SPEED))
+						to_chat(usr, "Control to door timing circuitry has been severed.")
+					else if (src.normalspeed)
+						normalspeed = 0
+					else
+						to_chat(usr, "Door timing circurity already accellerated.")
 
 				if(10)
 					// Bolt lights
 					if(src.isWireCut(AIRLOCK_WIRE_LIGHT))
-						usr << text("Control to door bolt lights has been severed.</a>")
+						to_chat(usr, "Control to door bolt lights has been severed.</a>")
 					else if (src.lights)
 						lights = 0
 					else
-						usr << text("Door bolt lights are already disabled!")
-
-
+						to_chat(usr, "Door bolt lights are already disabled!")
 
 		else if(href_list["aiEnable"])
 			var/code = text2num(href_list["aiEnable"])
@@ -1086,96 +1092,92 @@ About the new airlock wires panel:
 				if(1)
 					//enable idscan
 					if(src.isWireCut(AIRLOCK_WIRE_IDSCAN))
-						usr << "You can't enable IdScan - The IdScan wire has been cut."
+						to_chat(usr, "You can't enable IdScan - The IdScan wire has been cut.")
 					else if(src.aiDisabledIdScanner)
 						src.aiDisabledIdScanner = 0
 					else
-						usr << "The IdScan feature is not disabled."
+						to_chat(usr, "The IdScan feature is not disabled.")
 				if(4)
 					//raise door bolts
 					if(src.isWireCut(AIRLOCK_WIRE_DOOR_BOLTS))
-						usr << text("The door bolt drop wire is cut - you can't raise the door bolts.<br>\n")
+						to_chat(usr, "The door bolt drop wire is cut - you can't raise the door bolts.<br>\n")
 					else if(!src.locked)
-						usr << text("The door bolts are already up.<br>\n")
+						to_chat(usr, "The door bolts are already up.<br>\n")
 					else
 						if(src.arePowerSystemsOn())
 							src.locked = 0
 							update_icon()
 						else
-							usr << text("Cannot raise door bolts due to power failure.<br>\n")
-
+							to_chat(usr, "Cannot raise door bolts due to power failure.<br>\n")
 				if(5)
 					//electrify door for 30 seconds
 					if(src.isWireCut(AIRLOCK_WIRE_ELECTRIFY))
-						usr << text("The electrification wire has been cut.<br>\n")
-					else if(src.secondsElectrified==-1)
-						usr << text("The door is already indefinitely electrified. You'd have to un-electrify it before you can re-electrify it with a non-forever duration.<br>\n")
-					else if(src.secondsElectrified!=0)
-						usr << text("The door is already electrified. You can't re-electrify it while it's already electrified.<br>\n")
+						to_chat(usr, "The electrification wire has been cut.<br>\n")
+					else if(src.secondsElectrified == -1)
+						to_chat(usr, "The door is already indefinitely electrified. You'd have to un-electrify it before you can re-electrify it with a non-forever duration.<br>\n")
+					else if(src.secondsElectrified != 0)
+						to_chat(usr, "The door is already electrified. You can't re-electrify it while it's already electrified.<br>\n")
 					else
 						shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
 						usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Electrified the [name] at [x] [y] [z]</font>")
 						src.secondsElectrified = 30
 						spawn(10)
-							while (src.secondsElectrified>0)
-								src.secondsElectrified-=1
-								if(src.secondsElectrified<0)
+							while(src.secondsElectrified > 0)
+								src.secondsElectrified -= 1
+								if(src.secondsElectrified < 0)
 									src.secondsElectrified = 0
 								src.updateUsrDialog()
 								sleep(10)
 				if(6)
 					//electrify door indefinitely
 					if(src.isWireCut(AIRLOCK_WIRE_ELECTRIFY))
-						usr << text("The electrification wire has been cut.<br>\n")
+						to_chat(usr, "The electrification wire has been cut.<br>\n")
 					else if(src.secondsElectrified==-1)
-						usr << text("The door is already indefinitely electrified.<br>\n")
+						to_chat(usr, "The door is already indefinitely electrified.<br>\n")
 					else if(src.secondsElectrified!=0)
-						usr << text("The door is already electrified. You can't re-electrify it while it's already electrified.<br>\n")
+						to_chat(usr, "The door is already electrified. You can't re-electrify it while it's already electrified.<br>\n")
 					else
 						shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
 						usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Electrified the [name] at [x] [y] [z]</font>")
 						src.secondsElectrified = -1
-
-				if (8) // Not in order >.>
-					// Safeties!  Maybe we do need some stinking safeties!
-					if (src.isWireCut(AIRLOCK_WIRE_SAFETY))
-						usr << text("Control to door sensors is disabled.")
-					else if (!src.safe)
-						safe = 1
-						src.updateUsrDialog()
-					else
-						usr << text("Firmware reports safeties already in place.")
-
-				if(9)
-					// Door speed control
-					if(src.isWireCut(AIRLOCK_WIRE_SPEED))
-						usr << text("Control to door timing circuitry has been severed.")
-					else if (!src.normalspeed)
-						normalspeed = 1
-						src.updateUsrDialog()
-					else
-						usr << text("Door timing circurity currently operating normally.")
-
 				if(7)
 					//open door
 					if(src.welded)
-						usr << text("The airlock has been welded shut!")
+						to_chat(usr, "The airlock has been welded shut!")
 					else if(src.locked)
-						usr << text("The door bolts are down!")
+						to_chat(usr, "The door bolts are down!")
 					else if(src.density)
 						open()
 					else
 						close()
+				if (8)
+					// Safeties!  Maybe we do need some stinking safeties!
+					if(src.isWireCut(AIRLOCK_WIRE_SAFETY))
+						to_chat(usr, "Control to door sensors is disabled.")
+					else if(!src.safe)
+						safe = 1
+						src.updateUsrDialog()
+					else
+						to_chat(usr, "Firmware reports safeties already in place.")
+				if(9)
+					// Door speed control
+					if(src.isWireCut(AIRLOCK_WIRE_SPEED))
+						to_chat(usr, "Control to door timing circuitry has been severed.")
+					else if(!src.normalspeed)
+						normalspeed = 1
+						src.updateUsrDialog()
+					else
+						to_chat(usr, "Door timing circurity currently operating normally.")
 
 				if(10)
 					// Bolt lights
 					if(src.isWireCut(AIRLOCK_WIRE_LIGHT))
-						usr << text("Control to door bolt lights has been severed.</a>")
-					else if (!src.lights)
+						to_chat(usr, "Control to door bolt lights has been severed.</a>")
+					else if(!src.lights)
 						lights = 1
 						src.updateUsrDialog()
 					else
-						usr << text("Door bolt lights are already enabled!")
+						to_chat(usr, "Door bolt lights are already enabled!")
 
 	add_fingerprint(usr)
 	update_icon()
@@ -1193,9 +1195,9 @@ About the new airlock wires panel:
 		return
 
 	src.add_fingerprint(user)
-	if((istype(C, /obj/item/weapon/weldingtool) && !( src.operating > 0 ) && src.density))
+	if((istype(C, /obj/item/weapon/weldingtool) && !(src.operating > 0) && src.density))
 		var/obj/item/weapon/weldingtool/W = C
-		if(W.remove_fuel(0,user))
+		if(W.remove_fuel(0, user))
 			if(!src.welded)
 				src.welded = 1
 			else
@@ -1205,7 +1207,7 @@ About the new airlock wires panel:
 		else
 			return
 	else if(istype(C, /obj/item/weapon/screwdriver))
-		src.p_open = !( src.p_open )
+		src.p_open = !src.p_open
 		src.update_icon()
 	else if(istype(C, /obj/item/weapon/wirecutters))
 		return src.attack_hand(user)
@@ -1216,17 +1218,17 @@ About the new airlock wires panel:
 	else if(istype(C, /obj/item/weapon/pai_cable))	// -- TLE
 		var/obj/item/weapon/pai_cable/cable = C
 		cable.plugin(src, user)
-	else if(istype(C, /obj/item/weapon/crowbar) || istype(C, /obj/item/weapon/twohanded/fireaxe) )
+	else if(istype(C, /obj/item/weapon/crowbar) || istype(C, /obj/item/weapon/twohanded/fireaxe))
 		var/beingcrowbarred = null
 		if(istype(C, /obj/item/weapon/crowbar) )
 			beingcrowbarred = 1 //derp, Agouri
 		else
 			beingcrowbarred = 0
-		if( beingcrowbarred && (operating == -1 || density && welded && operating != 1 && src.p_open && (!src.arePowerSystemsOn() || stat & NOPOWER) && !src.locked) )
+		if(beingcrowbarred && (operating == -1 || density && welded && operating != 1 && src.p_open && (!src.arePowerSystemsOn() || stat & NOPOWER) && !src.locked))
 			playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
 			if(do_after(user,40))
-				user << "\blue You removed the airlock electronics!"
+				to_chat(user, span("info", "You removed the airlock electronics!"))
 
 				var/obj/structure/door_assembly/da = new assembly_type(src.loc)
 				da.anchored = 1
@@ -1241,12 +1243,12 @@ About the new airlock wires panel:
 
 				var/obj/item/weapon/airlock_electronics/ae
 				if(!electronics)
-					ae = new/obj/item/weapon/airlock_electronics( src.loc )
+					ae = new/obj/item/weapon/airlock_electronics(src.loc)
 					if(!src.req_access)
 						src.check_access()
 					if(src.req_access.len)
 						ae.conf_access = src.req_access
-					else if (src.req_one_access.len)
+					else if(src.req_one_access.len)
 						ae.conf_access = src.req_one_access
 						ae.one_access = 1
 				else

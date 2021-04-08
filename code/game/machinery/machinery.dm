@@ -104,8 +104,8 @@ Class Procs:
 		//2 = run auto, use active
 	var/idle_power_usage = 0
 	var/active_power_usage = 0
+	//EQUIP, ENVIRON or LIGHT
 	var/power_channel = EQUIP
-		//EQUIP,ENVIRON or LIGHT
 	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
 	var/uid
 	var/manual = 0
@@ -153,11 +153,11 @@ Class Procs:
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if(prob(50))
 				qdel(src)
 				return
 		if(3.0)
-			if (prob(25))
+			if(prob(25))
 				qdel(src)
 				return
 		else
@@ -168,7 +168,7 @@ Class Procs:
 		qdel(src)
 
 //sets the use_power var and then forces an area power update
-/obj/machinery/proc/update_use_power(var/new_use_power)
+/obj/machinery/proc/update_use_power(new_use_power)
 	use_power = new_use_power
 	use_power(0) //force area power update
 
@@ -176,21 +176,21 @@ Class Procs:
 	if(!powered(power_channel))
 		return 0
 	if(src.use_power == 1)
-		use_power(idle_power_usage,power_channel, 1)
+		use_power(idle_power_usage, power_channel, 1)
 	else if(src.use_power >= 2)
-		use_power(active_power_usage,power_channel, 1)
+		use_power(active_power_usage, power_channel, 1)
 	return 1
 
 /obj/machinery/Topic(href, href_list)
 	..()
-	if(stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER | BROKEN))
 		return 1
 	if(usr.restrained() || usr.lying || usr.stat)
 		return 1
-	if (!(istype(usr, /mob/living/carbon/human) || \
+	if(!(istype(usr, /mob/living/carbon/human) || \
 			istype(usr, /mob/living/silicon) || \
 			istype(usr, /mob/living/carbon/monkey) && ticker && ticker.mode.name == "monkey"))
-		usr << "\red You don't have the dexterity to do this!"
+		to_chat(usr, span("warning", "You don't have the dexterity to do this!"))
 		return 1
 
 	var/norange = 0
@@ -206,7 +206,6 @@ Class Procs:
 			return 1
 
 	src.add_fingerprint(usr)
-
 	return 0
 
 /obj/machinery/attack_ai(mob/user as mob)
@@ -222,31 +221,30 @@ Class Procs:
 	return src.attack_hand(user)
 
 /obj/machinery/attack_hand(mob/user as mob)
-	if(stat & (NOPOWER|BROKEN|MAINT))
+	if(stat & (NOPOWER | BROKEN | MAINT))
 		return 1
 	if(user.lying || user.stat)
 		return 1
-	if (!(istype(usr, /mob/living/carbon/human) || \
+	if(!(istype(usr, /mob/living/carbon/human) || \
 			istype(usr, /mob/living/silicon) || \
 			istype(usr, /mob/living/carbon/monkey) && ticker && ticker.mode.name == "monkey"))
-		usr << "\red You don't have the dexterity to do this!"
+		to_chat(usr, span("warning", "You don't have the dexterity to do this!"))
 		return 1
 /*
 	//distance checks are made by atom/proc/DblClick
 	if ((get_dist(src, user) > 1 || !istype(src.loc, /turf)) && !istype(user, /mob/living/silicon))
 		return 1
 */
-	if (isHuman(user))
+	if(isHuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 60)
-			visible_message("\red [H] stares cluelessly at [src] and drools.")
+			visible_message(span("warning", "[H] stares cluelessly at [src] and drools."))
 			return 1
 		else if(prob(H.getBrainLoss()))
-			user << "\red You momentarily forget how to use [src]."
+			to_chat(H, span("warning", "\red You momentarily forget how to use [src]."))
 			return 1
 
 	src.add_fingerprint(user)
-
 	return 0
 
 /obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.
