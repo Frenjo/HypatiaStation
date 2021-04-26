@@ -27,31 +27,29 @@ Growing it to term with nothing injected will grab a ghost from the observers. *
 	var/found_player = 0
 
 /obj/item/seeds/replicapod/attackby(obj/item/weapon/W as obj, mob/user as mob)
-
-	if(istype(W,/obj/item/weapon/reagent_containers))
-
-		user << "You inject the contents of the syringe into the seeds."
+	if(istype(W, /obj/item/weapon/reagent_containers))
+		to_chat(user, "You inject the contents of the syringe into the seeds.")
 
 		var/datum/reagent/blood/B
 
 		//Find a blood sample to inject.
 		for(var/datum/reagent/R in W:reagents.reagent_list)
-			if(istype(R,/datum/reagent/blood))
+			if(istype(R, /datum/reagent/blood))
 				B = R
 				break
 		if(B)
 			source = B.data["donor"]
-			user << "The strange, sluglike seeds quiver gently and swell with blood."
+			to_chat(user, "The strange, sluglike seeds quiver gently and swell with blood.")
 			if(!source.client && source.mind)
 				for(var/mob/dead/observer/O in player_list)
 					if(O.mind == source.mind && config.revival_pod_plants)
 						O << "<b><font color = #330033><font size = 3>Your blood has been placed into a replica pod seed. Return to your body if you want to be returned to life as a pod person!</b> (Verbs -> Ghost -> Re-enter corpse)</font color>"
 						break
 		else
-			user << "Nothing happens."
+			to_chat(user, "Nothing happens.")
 			return
 
-		if (!istype(source))
+		if(!istype(source))
 			return
 
 		if(source.ckey)
@@ -64,11 +62,10 @@ Growing it to term with nothing injected will grab a ghost from the observers. *
 	return ..()
 
 /obj/item/seeds/replicapod/harvest(mob/user = usr)
-
 	parent = loc
 	var/found_player = 0
 
-	user.visible_message("\blue [user] carefully begins to open the pod...","\blue You carefully begin to open the pod...")
+	user.visible_message(span("info", "[user] carefully begins to open the pod..."), span("info", "You carefully begin to open the pod..."))
 
 	//If a sample is injected (and revival is allowed) the plant will be controlled by the original donor.
 	if(source && source.stat == 2 && source.client && source.ckey && config.revival_pod_plants)
@@ -84,7 +81,7 @@ Growing it to term with nothing injected will grab a ghost from the observers. *
 			if(prob(yield * parent.yieldmod * 20))
 				seed_count++
 
-			for(var/i=0,i<seed_count,i++)
+			for(var/i = 0, i < seed_count, i++)
 				new /obj/item/seeds/replicapod(user.loc)
 
 			parent.update_tray()
@@ -98,9 +95,10 @@ Growing it to term with nothing injected will grab a ghost from the observers. *
 			if(O.client.prefs.be_special & BE_PLANT)
 				question(O.client)
 
-/obj/item/seeds/replicapod/proc/question(var/client/C)
+/obj/item/seeds/replicapod/proc/question(client/C)
 	spawn(0)
-		if(!C)	return
+		if(!C)
+			return
 		var/response = alert(C, "Someone is harvesting a replica pod. Would you like to play as a Dionaea?", "Replica pod harvest", "Yes", "No", "Never for this round.")
 		if(!C || ckey)
 			return
@@ -109,9 +107,9 @@ Growing it to term with nothing injected will grab a ghost from the observers. *
 		else if (response == "Never for this round")
 			C.prefs.be_special ^= BE_PLANT
 
-/obj/item/seeds/replicapod/proc/transfer_personality(var/client/player)
-
-	if(!player) return
+/obj/item/seeds/replicapod/proc/transfer_personality(client/player)
+	if(!player)
+		return
 
 	found_player = 1
 
@@ -128,30 +126,30 @@ Growing it to term with nothing injected will grab a ghost from the observers. *
 
 	// Update mode specific HUD icons.
 	switch(ticker.mode.name)
-		if ("revolution")
-			if (podman.mind in ticker.mode:revolutionaries)
+		if("revolution")
+			if(podman.mind in ticker.mode:revolutionaries)
 				ticker.mode:add_revolutionary(podman.mind)
 				ticker.mode:update_all_rev_icons() //So the icon actually appears
-			if (podman.mind in ticker.mode:head_revolutionaries)
+			if(podman.mind in ticker.mode:head_revolutionaries)
 				ticker.mode:update_all_rev_icons()
-		if ("nuclear emergency")
-			if (podman.mind in ticker.mode:syndicates)
+		if("nuclear emergency")
+			if(podman.mind in ticker.mode:syndicates)
 				ticker.mode:update_all_synd_icons()
-		if ("cult")
-			if (podman.mind in ticker.mode:cult)
+		if("cult")
+			if(podman.mind in ticker.mode:cult)
 				ticker.mode:add_cultist(podman.mind)
 				ticker.mode:update_all_cult_icons() //So the icon actually appears
 		// -- End mode specific stuff
 
-	podman << "\green <B>You awaken slowly, feeling your sap stir into sluggish motion as the warm air caresses your bark.</B>"
+	to_chat(podman, "\green <B>You awaken slowly, feeling your sap stir into sluggish motion as the warm air caresses your bark.</B>")
 	if(source && ckey && podman.ckey == ckey)
-		podman << "<B>Memories of a life as [source] drift oddly through a mind unsuited for them, like a skin of oil over a fathomless lake.</B>"
-	podman << "<B>You are now one of the Dionaea, a race of drifting interstellar plantlike creatures that sometimes share their seeds with human traders.</B>"
-	podman << "<B>Too much darkness will send you into shock and starve you, but light will help you heal.</B>"
+		to_chat(podman, "<B>Memories of a life as [source] drift oddly through a mind unsuited for them, like a skin of oil over a fathomless lake.</B>")
+	to_chat(podman, "<B>You are now one of the Dionaea, a race of drifting interstellar plantlike creatures that sometimes share their seeds with human traders.</B>")
+	to_chat(podman, "<B>Too much darkness will send you into shock and starve you, but light will help you heal.</B>")
 	if(!realName)
-		var/newname = input(podman,"Enter a name, or leave blank for the default name.", "Name change","") as text
-		if (newname != "")
+		var/newname = input(podman, "Enter a name, or leave blank for the default name.", "Name change", "") as text
+		if(newname != "")
 			podman.real_name = newname
 
-	parent.visible_message("\blue The pod disgorges a fully-formed plant creature!")
+	parent.visible_message(span("info", "The pod disgorges a fully-formed plant creature!"))
 	parent.update_tray()

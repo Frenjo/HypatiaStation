@@ -14,7 +14,7 @@
 	return
 
 /obj/machinery/computer/teleporter/attackby(I as obj, mob/living/user as mob)
-	if(istype(I, /obj/item/weapon/card/data/))
+	if(istype(I, /obj/item/weapon/card/data))
 		var/obj/item/weapon/card/data/C = I
 		if(stat & (NOPOWER|BROKEN) & (C.function != "teleporter"))
 			src.attack_hand()
@@ -22,34 +22,35 @@
 		var/obj/L = null
 
 		for(var/obj/effect/landmark/sloc in landmarks_list)
-			if(sloc.name != C.data) continue
-			if(locate(/mob/living) in sloc.loc) continue
+			if(sloc.name != C.data)
+				continue
+			if(locate(/mob/living) in sloc.loc)
+				continue
 			L = sloc
 			break
 
 		if(!L)
 			L = locate("landmark*[C.data]") // use old stype
 
-
-		if(istype(L, /obj/effect/landmark/) && istype(L.loc, /turf))
-			usr << "You insert the coordinates into the machine."
-			usr << "A message flashes across the screen reminding the traveller that the nuclear authentication disk is to remain on the station at all times."
+		if(istype(L, /obj/effect/landmark) && istype(L.loc, /turf))
+			to_chat(usr, "You insert the coordinates into the machine.")
+			to_chat(usr, "A message flashes across the screen reminding the traveller that the nuclear authentication disk is to remain on the station at all times.")
 			user.drop_item()
 			qdel(I)
 
 			if(C.data == "Clown Land")
 				//whoops
 				for(var/mob/O in hearers(src, null))
-					O.show_message("\red Incoming bluespace portal detected, unable to lock in.", 2)
+					O.show_message(span("warning", "Incoming bluespace portal detected, unable to lock in."), 2)
 
 				for(var/obj/machinery/teleport/hub/H in range(1))
 					var/amount = rand(2, 5)
-					for(var/i = 0;i < amount; i++)
+					for(var/i = 0; i < amount; i++)
 						new /mob/living/simple_animal/hostile/carp(get_turf(H))
 				//
 			else
 				for(var/mob/O in hearers(src, null))
-					O.show_message("\blue Locked In", 2)
+					O.show_message(span("info", "Locked In"), 2)
 				src.locked = L
 				one_time_use = 1
 
@@ -74,7 +75,7 @@
 
 	for(var/obj/item/device/radio/beacon/R in world)
 		var/turf/T = get_turf(R)
-		if (!T)
+		if(!T)
 			continue
 		if(!(T.z in config.player_levels))
 			continue
@@ -85,13 +86,13 @@
 			areaindex[tmpname] = 1
 		L[tmpname] = R
 
-	for (var/obj/item/weapon/implant/tracking/I in world)
+	for(var/obj/item/weapon/implant/tracking/I in world)
 		if(!I.implanted || !ismob(I.loc))
 			continue
 		else
 			var/mob/M = I.loc
 			if(M.stat == 2)
-				if (M.timeofdeath + 6000 < world.time)
+				if(M.timeofdeath + 6000 < world.time)
 					continue
 			var/turf/T = get_turf(M)
 			if(T)
@@ -108,7 +109,7 @@
 	var/desc = input("Please select a location to lock in.", "Locking Computer") in L
 	src.locked = L[desc]
 	for(var/mob/O in hearers(src, null))
-		O.show_message("\blue Locked In", 2)
+		O.show_message(span("info", "Locked In"), 2)
 	src.add_fingerprint(usr)
 	return
 
@@ -118,7 +119,7 @@
 	set src in oview(1)
 	set desc = "ID Tag:"
 
-	if(stat & (NOPOWER|BROKEN) || !istype(usr,/mob/living))
+	if(stat & (NOPOWER|BROKEN) || !istype(usr, /mob/living))
 		return
 	if(t)
 		src.id = t
@@ -164,7 +165,7 @@
 		return
 	if(!com.locked)
 		for(var/mob/O in hearers(src, null))
-			O.show_message("\red Failure: Cannot authenticate locked on coordinates. Please reinstate coordinate matrix.")
+			O.show_message(span("warning", "Failure: Cannot authenticate locked on coordinates. Please reinstate coordinate matrix."))
 		return
 	if(istype(M, /atom/movable))
 		if(prob(5) && !accurate) //oh dear a problem, put em in deep space
@@ -180,7 +181,7 @@
 		s.set_up(5, 1, src)
 		s.start()
 		for(var/mob/B in hearers(src, null))
-			B.show_message("\blue Test fire completed.")
+			B.show_message(span("info", "Test fire completed."))
 	return
 /*
 /proc/do_teleport(atom/movable/M as mob|obj, atom/destination, precision)
@@ -279,7 +280,7 @@
 	idle_power_usage = 10
 	active_power_usage = 2000
 
-/obj/machinery/teleport/station/attackby(var/obj/item/weapon/W)
+/obj/machinery/teleport/station/attackby(obj/item/weapon/W)
 	src.attack_hand()
 
 /obj/machinery/teleport/station/attack_paw()
@@ -304,7 +305,7 @@
 		com.icon_state = "tele1"
 		use_power(5000)
 		for(var/mob/O in hearers(src, null))
-			O.show_message("\blue Teleporter engaged!", 2)
+			O.show_message(span("info", "Teleporter engaged!"), 2)
 	src.add_fingerprint(usr)
 	src.engaged = 1
 	return
@@ -318,7 +319,7 @@
 	if(com)
 		com.icon_state = "tele0"
 		for(var/mob/O in hearers(src, null))
-			O.show_message("\blue Teleporter disengaged!", 2)
+			O.show_message(span("info", "Teleporter disengaged!"), 2)
 	src.add_fingerprint(usr)
 	src.engaged = 0
 	return
@@ -336,7 +337,7 @@
 	if(com && !active)
 		active = 1
 		for(var/mob/O in hearers(src, null))
-			O.show_message("\blue Test firing!", 2)
+			O.show_message(span("info", "Test firing!"), 2)
 		com.teleport()
 		use_power(5000)
 

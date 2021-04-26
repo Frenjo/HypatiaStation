@@ -14,7 +14,7 @@
 	return 0*/
 
 /obj/machinery/bodyscanner/relaymove(mob/user as mob)
-	if (user.stat)
+	if(user.stat)
 		return
 	src.go_out()
 	return
@@ -24,7 +24,7 @@
 	set category = "Object"
 	set name = "Eject Body Scanner"
 
-	if (usr.stat != 0)
+	if(usr.stat != 0)
 		return
 	src.go_out()
 	add_fingerprint(usr)
@@ -35,14 +35,15 @@
 	set category = "Object"
 	set name = "Enter Body Scanner"
 
-	if (usr.stat != 0)
+	if(usr.stat != 0)
 		return
-	if (src.occupant)
-		usr << "\blue <B>The scanner is already occupied!</B>"
+	if(src.occupant)
+		to_chat(usr, span("notice", "The scanner is already occupied!"))
 		return
-	if (usr.abiotic())
-		usr << "\blue <B>Subject cannot have abiotic items on.</B>"
+	if(usr.abiotic())
+		to_chat(usr, span("notice", "Subject cannot have abiotic items on."))
 		return
+
 	usr.pulling = null
 	usr.client.perspective = EYE_PERSPECTIVE
 	usr.client.eye = src
@@ -57,12 +58,12 @@
 	return
 
 /obj/machinery/bodyscanner/proc/go_out()
-	if ((!( src.occupant ) || src.locked))
+	if((!(src.occupant) || src.locked))
 		return
 	for(var/obj/O in src)
 		O.loc = src.loc
 		//Foreach goto(30)
-	if (src.occupant.client)
+	if(src.occupant.client)
 		src.occupant.client.eye = src.occupant.client.mob
 		src.occupant.client.perspective = MOB_PERSPECTIVE
 	src.occupant.loc = src.loc
@@ -71,13 +72,13 @@
 	return
 
 /obj/machinery/bodyscanner/attackby(obj/item/weapon/grab/G as obj, user as mob)
-	if ((!( istype(G, /obj/item/weapon/grab) ) || !( ismob(G.affecting) )))
+	if((!(istype(G, /obj/item/weapon/grab)) || !(ismob(G.affecting))))
 		return
-	if (src.occupant)
-		user << "\blue <B>The scanner is already occupied!</B>"
+	if(src.occupant)
+		to_chat(user, span("notice", "The scanner is already occupied!"))
 		return
-	if (G.affecting.abiotic())
-		user << "\blue <B>Subject cannot have abiotic items on.</B>"
+	if(G.affecting.abiotic())
+		to_chat(user, span("notice", "Subject cannot have abiotic items on."))
 		return
 	var/mob/M = G.affecting
 	if (M.client)
@@ -132,7 +133,6 @@
 		qdel(src)
 
 /obj/machinery/body_scanconsole/ex_act(severity)
-
 	switch(severity)
 		if(1.0)
 			//SN del(src)
@@ -147,7 +147,6 @@
 	return
 
 /obj/machinery/body_scanconsole/blob_act()
-
 	if(prob(50))
 		qdel(src)
 
@@ -172,7 +171,6 @@
 	icon_state = "body_scannerconsole"
 	density = 0
 	anchored = 1
-
 
 /obj/machinery/body_scanconsole/New()
 	..()
@@ -204,7 +202,6 @@
 
 */
 
-
 /obj/machinery/body_scanconsole/attack_paw(user as mob)
 	return src.attack_hand(user)
 
@@ -215,18 +212,18 @@
 	if(..())
 		return
 	if(!isHuman(connected.occupant))
-		user << "\red This device can only scan compatible lifeforms."
+		to_chat(user, span("warning", "This device can only scan compatible lifeforms."))
 		return
 	var/dat
-	if (src.delete && src.temphtml) //Window in buffer but its just simple message, so nothing
+	if(src.delete && src.temphtml) //Window in buffer but its just simple message, so nothing
 		src.delete = src.delete
-	else if (!src.delete && src.temphtml) //Window in buffer - its a menu, dont add clear message
+	else if(!src.delete && src.temphtml) //Window in buffer - its a menu, dont add clear message
 		dat = text("[]<BR><BR><A href='?src=\ref[];clear=1'>Main Menu</A>", src.temphtml, src)
 	else
-		if (src.connected) //Is something connected?
+		if(src.connected) //Is something connected?
 			var/mob/living/carbon/human/occupant = src.connected.occupant
 			dat = "<font color='blue'><B>Occupant Statistics:</B></FONT><BR>" //Blah obvious
-			if (istype(occupant)) //is there REALLY someone in there?
+			if(istype(occupant)) //is there REALLY someone in there?
 				var/t1
 				switch(occupant.stat) // obvious, see what their status is
 					if(0)
@@ -235,7 +232,7 @@
 						t1 = "Unconscious"
 					else
 						t1 = "*dead*"
-				if (!istype(occupant,/mob/living/carbon/human))
+				if(!istype(occupant, /mob/living/carbon/human))
 					dat += "<font color='red'>This device can only scan human occupants.</FONT>"
 				else
 					dat += text("[]\tHealth %: [] ([])</FONT><BR>", (occupant.health > 50 ? "<font color='blue'>" : "<font color='red'>"), occupant.health, t1)
@@ -292,9 +289,10 @@
 						var/splint = ""
 						var/internal_bleeding = ""
 						var/lung_ruptured = ""
-						for(var/datum/wound/W in e.wounds) if(W.internal)
-							internal_bleeding = "<br>Internal bleeding"
-							break
+						for(var/datum/wound/W in e.wounds)
+							if(W.internal)
+								internal_bleeding = "<br>Internal bleeding"
+								break
 						if(istype(e, /datum/organ/external/chest) && occupant.is_lung_ruptured())
 							lung_ruptured = "Lung ruptured:"
 						if(e.status & ORGAN_SPLINTED)
@@ -317,7 +315,7 @@
 
 						var/unknown_body = 0
 						for(var/I in e.implants)
-							if(is_type_in_list(I,known_implants))
+							if(is_type_in_list(I, known_implants))
 								imp += "[I] implanted:"
 							else
 								unknown_body++

@@ -15,28 +15,27 @@
 
 /obj/machinery/optable/New()
 	..()
-	for(dir in list(NORTH,EAST,SOUTH,WEST))
+	for(dir in list(NORTH, EAST, SOUTH, WEST))
 		computer = locate(/obj/machinery/computer/operating, get_step(src, dir))
-		if (computer)
+		if(computer)
 			computer.table = src
 			break
 //	spawn(100) //Wont the MC just call this process() before and at the 10 second mark anyway?
 //		process()
 
 /obj/machinery/optable/ex_act(severity)
-
 	switch(severity)
 		if(1.0)
 			//SN del(src)
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if(prob(50))
 				//SN del(src)
 				qdel(src)
 				return
 		if(3.0)
-			if (prob(25))
+			if(prob(25))
 				src.density = 0
 		else
 	return
@@ -46,41 +45,40 @@
 		qdel(src)
 
 /obj/machinery/optable/attack_paw(mob/user as mob)
-	if ((HULK in usr.mutations))
-		usr << text("\blue You destroy the operating table.")
-		visible_message("\red [usr] destroys the operating table!")
+	if((HULK in usr.mutations))
+		to_chat(usr, span("info", "You destroy the operating table."))
+		visible_message(span("warning", "[usr] destroys the operating table!"))
 		src.density = 0
 		qdel(src)
-	if (!( locate(/obj/machinery/optable, user.loc) ))
+	if(!(locate(/obj/machinery/optable, user.loc)))
 		step(user, get_dir(user, src))
-		if (user.loc == src.loc)
+		if(user.loc == src.loc)
 			user.layer = TURF_LAYER
 			visible_message("The monkey hides under the table!")
 	return
 
 /obj/machinery/optable/attack_hand(mob/user as mob)
-	if (HULK in usr.mutations)
-		usr << text("\blue You destroy the table.")
-		visible_message("\red [usr] destroys the operating table!")
+	if(HULK in usr.mutations)
+		to_chat(usr, span("info", "You destroy the table."))
+		visible_message(span("warning", "[usr] destroys the operating table!"))
 		src.density = 0
 		qdel(src)
 	return
 
-/obj/machinery/optable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
+/obj/machinery/optable/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	if(air_group || (height == 0))
+		return 1
 
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return 1
 	else
 		return 0
 
-
 /obj/machinery/optable/MouseDrop_T(obj/O as obj, mob/user as mob)
-
-	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
+	if((!(istype(O, /obj/item/weapon)) || user.get_active_hand() != O))
 		return
 	user.drop_item()
-	if (O.loc != src.loc)
+	if(O.loc != src.loc)
 		step(O, get_dir(O, src))
 	return
 
@@ -99,11 +97,11 @@
 	check_victim()
 
 /obj/machinery/optable/proc/take_victim(mob/living/carbon/C, mob/living/carbon/user as mob)
-	if (C == user)
+	if(C == user)
 		user.visible_message("[user] climbs on the operating table.","You climb on the operating table.")
 	else
-		visible_message("\red [C] has been laid on the operating table by [user].", 3)
-	if (C.client)
+		visible_message(span("warning", "[C] has been laid on the operating table by [user]."), 3)
+	if(C.client)
 		C.client.perspective = EYE_PERSPECTIVE
 		C.client.eye = src
 	C.resting = 1
@@ -127,15 +125,15 @@
 		return
 
 	if(src.victim)
-		usr << "\blue <B>The table is already occupied!</B>"
+		to_chat(usr, span("notice", "The table is already occupied!"))
 		return
 
-	take_victim(usr,usr)
+	take_victim(usr, usr)
 
 /obj/machinery/optable/attackby(obj/item/weapon/W as obj, mob/living/carbon/user as mob)
-	if (istype(W, /obj/item/weapon/grab))
+	if(istype(W, /obj/item/weapon/grab))
 		if(isCarbon(W:affecting))
-			take_victim(W:affecting,usr)
+			take_victim(W:affecting, usr)
 			qdel(W)
 			return
 	user.drop_item()
