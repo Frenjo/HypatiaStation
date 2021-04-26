@@ -172,11 +172,11 @@ var/global/list/autolathe_recipes_hidden = list( \
 		if(!panel_open)
 			src.panel_open = 1
 			src.icon_state = "autolathe_t"
-			user << "You open the maintenance hatch of [src]."
+			to_chat(user, "You open the maintenance hatch of [src].")
 		else
 			src.panel_open = 0
 			src.icon_state = "autolathe"
-			user << "You close the maintenance hatch of [src]."
+			to_chat(user, "You close the maintenance hatch of [src].")
 		return 1
 
 	if(panel_open)
