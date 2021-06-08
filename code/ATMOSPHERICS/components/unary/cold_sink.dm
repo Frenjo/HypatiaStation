@@ -14,7 +14,7 @@
 
 /obj/machinery/atmospherics/unary/cold_sink/update_icon()
 	if(node)
-		icon_state = "intact_[on?("on"):("off")]"
+		icon_state = "intact_[on ? ("on") : ("off")]"
 	else
 		icon_state = "exposed"
 
@@ -31,11 +31,11 @@
 	var/old_temperature = air_contents.temperature
 
 	if(combined_heat_capacity > 0)
-		var/combined_energy = current_temperature*current_heat_capacity + air_heat_capacity*air_contents.temperature
+		var/combined_energy = current_temperature * current_heat_capacity + air_heat_capacity * air_contents.temperature
 		air_contents.temperature = combined_energy/combined_heat_capacity
 
 	//todo: have current temperature affected. require power to bring down current temperature again
 
-	if(abs(old_temperature-air_contents.temperature) > 1)
+	if(abs(old_temperature - air_contents.temperature) > 1)
 		network.update = 1
 	return 1

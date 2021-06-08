@@ -125,7 +125,7 @@ Filter types:
 	set_frequency(frequency)
 	..()
 
-/obj/machinery/atmospherics/trinary/filter/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/trinary/filter/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	var/turf/T = src.loc
@@ -135,7 +135,7 @@ Filter types:
 
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
+	if((int_air.return_pressure()-env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
 		to_chat(user, span("warning", "You cannot unwrench this [src], it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
@@ -247,7 +247,7 @@ obj/machinery/atmospherics/trinary/filter/Topic(href, href_list) // -- TLE
 	return
 
 // Porting this to NanoUI, it looks way better honestly. -Frenjo
-/obj/machinery/atmospherics/trinary/filter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
+/obj/machinery/atmospherics/trinary/filter/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	if(stat & BROKEN)
 		return
 

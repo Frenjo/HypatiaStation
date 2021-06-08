@@ -186,7 +186,7 @@ datum/radio_frequency
 				if(!start_point)
 					qdel(signal)
 					return 0
-			if (filter) //here goes some copypasta. It is for optimisation. -rastaf0
+			if(filter) //here goes some copypasta. It is for optimisation. -rastaf0
 				for(var/obj/device in devices[filter])
 					if(device == source)
 						continue
@@ -195,7 +195,7 @@ datum/radio_frequency
 						if(!end_point)
 							continue
 						//if(max(abs(start_point.x-end_point.x), abs(start_point.y-end_point.y)) <= range)
-						if(start_point.z!=end_point.z || get_dist(start_point, end_point) > range)
+						if(start_point.z != end_point.z || get_dist(start_point, end_point) > range)
 							continue
 					device.receive_signal(signal, TRANSMISSION_RADIO, frequency)
 				for(var/obj/device in devices["_default"])
@@ -206,7 +206,7 @@ datum/radio_frequency
 						if(!end_point)
 							continue
 						//if(max(abs(start_point.x-end_point.x), abs(start_point.y-end_point.y)) <= range)
-						if(start_point.z!=end_point.z || get_dist(start_point, end_point) > range)
+						if(start_point.z != end_point.z || get_dist(start_point, end_point) > range)
 							continue
 					device.receive_signal(signal, TRANSMISSION_RADIO, frequency)
 //					N_f++
@@ -222,7 +222,7 @@ datum/radio_frequency
 							if(!end_point)
 								continue
 							//if(max(abs(start_point.x-end_point.x), abs(start_point.y-end_point.y)) <= range)
-							if(start_point.z!=end_point.z || get_dist(start_point, end_point) > range)
+							if(start_point.z != end_point.z || get_dist(start_point, end_point) > range)
 								continue
 						device.receive_signal(signal, TRANSMISSION_RADIO, frequency)
 //						N_nf++
@@ -233,26 +233,26 @@ datum/radio_frequency
 //			del(signal)
 
 		add_listener(obj/device as obj, filter as text|null)
-			if (!filter)
+			if(!filter)
 				filter = "_default"
 			//log_admin("add_listener(device=[device],filter=[filter]) frequency=[frequency]")
 			var/list/obj/devices_line = devices[filter]
-			if (!devices_line)
+			if(!devices_line)
 				devices_line = new
 				devices[filter] = devices_line
-			devices_line+=device
+			devices_line += device
 //			var/list/obj/devices_line___ = devices[filter_str]
 //			var/l = devices_line___.len
 			//log_admin("DEBUG: devices_line.len=[devices_line.len]")
 			//log_admin("DEBUG: devices(filter_str).len=[l]")
 
 		remove_listener(obj/device)
-			for (var/devices_filter in devices)
+			for(var/devices_filter in devices)
 				var/list/devices_line = devices[devices_filter]
-				devices_line-=device
+				devices_line -= device
 				while (null in devices_line)
 					devices_line -= null
-				if (devices_line.len==0)
+				if(devices_line.len == 0)
 					devices -= devices_filter
 					qdel(devices_line)
 
@@ -282,11 +282,11 @@ datum/signal
 		frequency = model.frequency
 
 	proc/debug_print()
-		if (source)
+		if(source)
 			. = "signal = {source = '[source]' ([source:x],[source:y],[source:z])\n"
 		else
 			. = "signal = {source = '[source]' ()\n"
-		for (var/i in data)
+		for(var/i in data)
 			. += "data\[\"[i]\"\] = \"[data[i]]\"\n"
 			if(islistold(data[i]))
 				var/list/L = data[i]

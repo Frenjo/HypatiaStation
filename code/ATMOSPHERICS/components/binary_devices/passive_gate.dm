@@ -36,7 +36,7 @@
 	var/output_starting_pressure = air2.return_pressure()
 	var/input_starting_pressure = air1.return_pressure()
 
-	if(output_starting_pressure >= min(target_pressure,input_starting_pressure-10))
+	if(output_starting_pressure >= min(target_pressure, input_starting_pressure - 10))
 		//No need to pump gas if target is already reached or input pressure is too low
 		//Need at least 10 KPa difference to overcome friction in the mechanism
 		return 1
@@ -136,7 +136,7 @@
 	interact(user)
 	return
 
-/obj/machinery/atmospherics/binary/passive_gate/Topic(href,href_list)
+/obj/machinery/atmospherics/binary/passive_gate/Topic(href, href_list)
 	if(..()) return
 	if(href_list["power"])
 		on = !on
@@ -152,7 +152,7 @@
 	..()
 	update_icon()
 
-/obj/machinery/atmospherics/binary/passive_gate/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/binary/passive_gate/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	if(on)

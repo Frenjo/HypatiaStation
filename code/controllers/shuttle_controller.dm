@@ -319,31 +319,31 @@ var/global/datum/shuttle_controller/shuttle_controller
 						var/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/EPC = C
 						EPC.pod = shuttle
 
-				if (C.id_tag in dock_controller_map_station)
+				if(C.id_tag in dock_controller_map_station)
 					multidock = dock_controller_map_station[C.id_tag]
-					if (istype(multidock))
+					if(istype(multidock))
 						multidock.docking_controller_station = C.program
 						dock_controller_map_station -= C.id_tag
-				if (C.id_tag in dock_controller_map_offsite)
+				if(C.id_tag in dock_controller_map_offsite)
 					multidock = dock_controller_map_offsite[C.id_tag]
-					if (istype(multidock))
+					if(istype(multidock))
 						multidock.docking_controller_offsite = C.program
 						dock_controller_map_offsite -= C.id_tag
 
 				//escape pods
-				if (C.id_tag in pod_controller_map)
+				if(C.id_tag in pod_controller_map)
 					pod = pod_controller_map[C.id_tag]
-					if (istype(C.program, /datum/computer/file/embedded_program/docking/simple/escape_pod/))
+					if(istype(C.program, /datum/computer/file/embedded_program/docking/simple/escape_pod/))
 						pod.arming_controller = C.program
 
 	//sanity check
-	if (dock_controller_map.len || dock_controller_map_station.len || dock_controller_map_offsite.len)
+	if(dock_controller_map.len || dock_controller_map_station.len || dock_controller_map_offsite.len)
 		var/dat = ""
-		for (var/dock_tag in dock_controller_map + dock_controller_map_station + dock_controller_map_offsite)
+		for(var/dock_tag in dock_controller_map + dock_controller_map_station + dock_controller_map_offsite)
 			dat += "\"[dock_tag]\", "
 		world << "\red \b warning: shuttles with docking tags [dat] could not find their controllers!"
 
 	//makes all shuttles docked to something at round start go into the docked state
-	for (var/shuttle_tag in shuttles)
+	for(var/shuttle_tag in shuttles)
 		shuttle = shuttles[shuttle_tag]
 		shuttle.dock()

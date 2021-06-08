@@ -198,7 +198,7 @@ Thus, the two variables affect pump operation are set in New():
 	..()
 	update_icon()
 
-/obj/machinery/atmospherics/binary/pump/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/binary/pump/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	if(!(stat & NOPOWER) && on)
@@ -228,7 +228,7 @@ Thus, the two variables affect pump operation are set in New():
 		qdel(src)
 
 // Porting this to NanoUI, it looks way better honestly. -Frenjo
-/obj/machinery/atmospherics/binary/pump/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
+/obj/machinery/atmospherics/binary/pump/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	if(stat & BROKEN)
 		return
 

@@ -149,7 +149,7 @@ Thus, the two variables affect pump operation are set in New():
 	ui_interact(user) // Edited this to reflect NanoUI port. -Frenjo
 	return
 
-/obj/machinery/atmospherics/binary/volume_pump/Topic(href,href_list)
+/obj/machinery/atmospherics/binary/volume_pump/Topic(href, href_list)
 	if(..()) return
 	/*if(href_list["power"])
 		on = !on
@@ -182,7 +182,7 @@ Thus, the two variables affect pump operation are set in New():
 	..()
 	update_icon()
 
-/obj/machinery/atmospherics/binary/volume_pump/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/binary/volume_pump/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	if(!(stat & NOPOWER) && on)
@@ -196,7 +196,7 @@ Thus, the two variables affect pump operation are set in New():
 
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
+	if((int_air.return_pressure()-env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
 		to_chat(user, span("warning", "You cannot unwrench this [src], it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
@@ -212,7 +212,7 @@ Thus, the two variables affect pump operation are set in New():
 		qdel(src)
 
 // Porting this to NanoUI, it looks way better honestly. -Frenjo
-obj/machinery/atmospherics/binary/volume_pump/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
+obj/machinery/atmospherics/binary/volume_pump/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	if(stat & BROKEN)
 		return
 

@@ -109,9 +109,9 @@
 	return 1
 
 /obj/machinery/atmospherics/valve/proc/normalize_dir()
-	if(dir==3)
+	if(dir == 3)
 		dir = 1
-	else if(dir==12)
+	else if(dir == 12)
 		dir = 4
 
 /obj/machinery/atmospherics/valve/attack_ai(mob/user as mob)
@@ -162,12 +162,12 @@
 			else if (!node2_dir)
 				node2_dir = direction
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node1_dir))
+		if(target.initialize_directions & get_dir(target, src))
 			node1 = target
 			break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_dir))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node2_dir))
+		if(target.initialize_directions & get_dir(target, src))
 			node2 = target
 			break
 
@@ -227,10 +227,10 @@
 /obj/machinery/atmospherics/valve/return_network(obj/machinery/atmospherics/reference)
 	build_network()
 
-	if(reference==node1)
+	if(reference == node1)
 		return network_node1
 
-	if(reference==node2)
+	if(reference == node2)
 		return network_node2
 
 	return null
@@ -247,11 +247,11 @@
 	return null
 
 /obj/machinery/atmospherics/valve/disconnect(obj/machinery/atmospherics/reference)
-	if(reference==node1)
+	if(reference == node1)
 		qdel(network_node1)
 		node1 = null
 
-	else if(reference==node2)
+	else if(reference == node2)
 		qdel(network_node2)
 		node2 = null
 
@@ -306,7 +306,7 @@
 			else
 				open()
 
-/obj/machinery/atmospherics/valve/digital/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/valve/digital/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	if(istype(src, /obj/machinery/atmospherics/valve/digital))
@@ -320,7 +320,7 @@
 
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
+	if((int_air.return_pressure() - env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
 		to_chat(user, span("warning", "You cannot unwrench this [src], it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
@@ -332,5 +332,5 @@
 			"[user] unfastens \the [src].", \
 			span("info", "You have unfastened \the [src]."), \
 			"You hear ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
+		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)

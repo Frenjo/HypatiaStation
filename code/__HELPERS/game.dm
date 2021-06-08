@@ -12,7 +12,7 @@
 /proc/get_area(O)
 	var/atom/location = O
 	var/i
-	for(i=1, i<=20, i++)
+	for(i = 1, i <= 20, i++)
 		if(isarea(location))
 			return location
 		else if (istype(location))
@@ -34,9 +34,7 @@
 	return 0 //not in range and not telekinetic
 
 // Like view but bypasses luminosity check
-
 /proc/hear(range, atom/source)
-
 	//var/lum = source.luminosity
 	//source.luminosity = 6
 	var/lum = source.light_range
@@ -75,37 +73,35 @@
 //#undef k1
 //#undef k2
 
-/proc/circlerange(center=usr,radius=3)
-
+/proc/circlerange(center = usr, radius = 3)
 	var/turf/centerturf = get_turf(center)
 	var/list/turfs = new/list()
-	var/rsq = radius * (radius+0.5)
+	var/rsq = radius * (radius + 0.5)
 
 	for(var/atom/T in range(radius, centerturf))
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
+		if(dx * dx + dy * dy <= rsq)
 			turfs += T
 
 	//turfs += centerturf
 	return turfs
 
-/proc/circleview(center=usr,radius=3)
-
+/proc/circleview(center = usr, radius = 3)
 	var/turf/centerturf = get_turf(center)
 	var/list/atoms = new/list()
-	var/rsq = radius * (radius+0.5)
+	var/rsq = radius * (radius + 0.5)
 
 	for(var/atom/A in view(radius, centerturf))
 		var/dx = A.x - centerturf.x
 		var/dy = A.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
+		if(dx * dx + dy * dy <= rsq)
 			atoms += A
 
 	//turfs += centerturf
 	return atoms
 
-/proc/get_dist_euclidian(atom/Loc1 as turf|mob|obj,atom/Loc2 as turf|mob|obj)
+/proc/get_dist_euclidian(atom/Loc1 as turf|mob|obj, atom/Loc2 as turf|mob|obj)
 	var/dx = Loc1.x - Loc2.x
 	var/dy = Loc1.y - Loc2.y
 
@@ -113,24 +109,22 @@
 
 	return dist
 
-/proc/circlerangeturfs(center=usr,radius=3)
-
+/proc/circlerangeturfs(center = usr, radius = 3)
 	var/turf/centerturf = get_turf(center)
 	var/list/turfs = new/list()
-	var/rsq = radius * (radius+0.5)
+	var/rsq = radius * (radius + 0.5)
 
 	for(var/turf/T in range(radius, centerturf))
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
+		if(dx * dx + dy * dy <= rsq)
 			turfs += T
 	return turfs
 
-/proc/circleviewturfs(center=usr,radius=3)		//Is there even a diffrence between this proc and circlerangeturfs()?
-
+/proc/circleviewturfs(center = usr, radius = 3)		//Is there even a diffrence between this proc and circlerangeturfs()?
 	var/turf/centerturf = get_turf(center)
 	var/list/turfs = new/list()
-	var/rsq = radius * (radius+0.5)
+	var/rsq = radius * (radius + 0.5)
 
 	for(var/turf/T in view(radius, centerturf))
 		var/dx = T.x - centerturf.x
@@ -140,15 +134,13 @@
 	return turfs
 
 
-
 //var/debug_mob = 0
 
 // Will recursively loop through an atom's contents and check for mobs, then it will loop through every atom in that atom's contents.
 // It will keep doing this until it checks every content possible. This will fix any problems with mobs, that are inside objects,
 // being unable to hear people due to being in a box within a bag.
 
-/proc/recursive_mob_check(var/atom/O,  var/list/L = list(), var/recursion_limit = 3, var/client_check = 1, var/sight_check = 1, var/include_radio = 1)
-
+/proc/recursive_mob_check(atom/O,  list/L = list(), recursion_limit = 3, client_check = 1, sight_check = 1, include_radio = 1)
 	//debug_mob += O.contents.len
 	if(!recursion_limit)
 		return L
@@ -176,7 +168,7 @@
 // The old system would loop through lists for a total of 5000 per function call, in an empty server.
 // This new system will loop at around 1000 in an empty server.
 
-/proc/get_mobs_in_view(var/R, var/atom/source)
+/proc/get_mobs_in_view(R, atom/source)
 	// Returns a list of mobs in range of R from source. Used in radio and say code.
 
 	var/turf/T = get_turf(source)
@@ -202,8 +194,7 @@
 	return hear
 
 
-/proc/get_mobs_in_radio_ranges(var/list/obj/item/device/radio/radios)
-
+/proc/get_mobs_in_radio_ranges(list/obj/item/device/radio/radios)
 	set background = 1
 
 	. = list()
@@ -263,14 +254,14 @@ proc
 		return 1
 #undef SIGN
 
-proc/isInSight(var/atom/A, var/atom/B)
+proc/isInSight(atom/A, atom/B)
 	var/turf/Aturf = get_turf(A)
 	var/turf/Bturf = get_turf(B)
 
 	if(!Aturf || !Bturf)
 		return 0
 
-	if(inLineOfSight(Aturf.x,Aturf.y, Bturf.x,Bturf.y,Aturf.z))
+	if(inLineOfSight(Aturf.x, Aturf.y, Bturf.x, Bturf.y, Aturf.z))
 		return 1
 
 	else
@@ -291,7 +282,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 		else
 			return get_step(start, EAST)
 
-/proc/get_mob_by_key(var/key)
+/proc/get_mob_by_key(key)
 	for(var/mob/M in mob_list)
 		if(M.ckey == lowertext(key))
 			return M
@@ -299,8 +290,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 
 
 // Will return a list of active candidates. It increases the buffer 5 times until it finds a candidate which is active within the buffer.
-/proc/get_active_candidates(var/buffer = 1)
-
+/proc/get_active_candidates(buffer = 1)
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
 	while(candidates.len <= 0 && i < 5)
@@ -314,7 +304,6 @@ proc/isInSight(var/atom/A, var/atom/B)
 // Same as above but for alien candidates.
 
 /proc/get_alien_candidates()
-
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
 	while(candidates.len <= 0 && i < 5)
@@ -326,7 +315,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 		i++
 	return candidates
 
-/proc/ScreenText(obj/O, maptext="", screen_loc="CENTER-7,CENTER-7", maptext_height=480, maptext_width=480)
+/proc/ScreenText(obj/O, maptext = "", screen_loc = "CENTER-7,CENTER-7", maptext_height = 480, maptext_width = 480)
 	if(!isobj(O))	O = new /obj/screen/text()
 	O.maptext = maptext
 	O.maptext_height = maptext_height
@@ -354,8 +343,8 @@ datum/projectile_data
 	var/dest_x
 	var/dest_y
 
-/datum/projectile_data/New(var/src_x, var/src_y, var/time, var/distance, \
-						   var/power_x, var/power_y, var/dest_x, var/dest_y)
+/datum/projectile_data/New(src_x, src_y, time, distance, \
+						   power_x, power_y, dest_x, dest_y)
 	src.src_x = src_x
 	src.src_y = src_y
 	src.time = time
@@ -365,8 +354,7 @@ datum/projectile_data
 	src.dest_x = dest_x
 	src.dest_y = dest_y
 
-/proc/projectile_trajectory(var/src_x, var/src_y, var/rotation, var/angle, var/power)
-
+/proc/projectile_trajectory(src_x, src_y, rotation, angle, power)
 	// returns the destination (Vx,y) that a projectile shot at [src_x], [src_y], with an angle of [angle],
 	// rotated at [rotation] and with the power of [power]
 	// Thanks to VistaPOWA for this function

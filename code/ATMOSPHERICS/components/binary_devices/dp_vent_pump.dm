@@ -47,7 +47,7 @@
 
 	return
 
-/obj/machinery/atmospherics/binary/dp_vent_pump/hide(var/i) //to make the little pipe section invisible, the icon changes.
+/obj/machinery/atmospherics/binary/dp_vent_pump/hide(i) //to make the little pipe section invisible, the icon changes.
 	if(on)
 		if(pump_direction)
 			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]out"
@@ -77,7 +77,7 @@
 
 		if(pressure_delta > 0)
 			if(air1.temperature > 0)
-				var/transfer_moles = pressure_delta*environment.volume/(air1.temperature * R_IDEAL_GAS_EQUATION)
+				var/transfer_moles = pressure_delta * environment.volume / (air1.temperature * R_IDEAL_GAS_EQUATION)
 
 				var/datum/gas_mixture/removed = air1.remove(transfer_moles)
 
@@ -96,7 +96,7 @@
 
 		if(pressure_delta > 0)
 			if(environment.temperature > 0)
-				var/transfer_moles = pressure_delta*air2.volume/(environment.temperature * R_IDEAL_GAS_EQUATION)
+				var/transfer_moles = pressure_delta * air2.volume / (environment.temperature * R_IDEAL_GAS_EQUATION)
 
 				var/datum/gas_mixture/removed = loc.remove_air(transfer_moles)
 

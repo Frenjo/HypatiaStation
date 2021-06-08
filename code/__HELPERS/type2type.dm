@@ -11,7 +11,7 @@
 
 //Returns an integer given a hex input
 /proc/hex2num(hex)
-	if (!( istext(hex) ))
+	if (!(istext(hex)))
 		return
 
 	var/num = 0
@@ -45,12 +45,11 @@
 
 //Returns the hex value of a number given a value assumed to be a base-ten value
 /proc/num2hex(num, placeholder)
-
-	if (placeholder == null)
+	if(placeholder == null)
 		placeholder = 2
-	if (!( isnum(num) ))
+	if(!(isnum(num)))
 		return
-	if (!( num ))
+	if(!(num))
 		return "0"
 	var/hex = ""
 	var/i = 0
@@ -171,7 +170,7 @@
 
 
 //slower then list2text, but correctly processes associative lists.
-proc/tg_list2text(list/list, glue= ",")
+proc/tg_list2text(list/list, glue = ",")
 	if(!istype(list) || !list.len)
 		return
 	var/output
@@ -277,7 +276,7 @@ proc/tg_list2text(list/list, glue= ",")
 	return
 
 //Converts an angle (degrees) into an ss13 direction
-/proc/angle2dir(var/degree)
+/proc/angle2dir(degree)
 	degree = ((degree+22.5)%365)
 	if(degree < 45)		return NORTH
 	if(degree < 90)		return NORTHEAST
@@ -290,7 +289,7 @@ proc/tg_list2text(list/list, glue= ",")
 
 //returns the north-zero clockwise angle in degrees, given a direction
 
-/proc/dir2angle(var/D)
+/proc/dir2angle(D)
 	switch(D)
 		if(NORTH)		return 0
 		if(SOUTH)		return 180
@@ -303,12 +302,12 @@ proc/tg_list2text(list/list, glue= ",")
 		else			return null
 
 //Returns the angle in english
-/proc/angle2text(var/degree)
+/proc/angle2text(degree)
 	return dir2text(angle2dir(degree))
 
 
 //Converts a rights bitfield into a string
-/proc/rights2text(rights,seperator="")
+/proc/rights2text(rights, seperator = "")
 	if(rights & R_BUILDMODE)	. += "[seperator]+BUILDMODE"
 	if(rights & R_ADMIN)		. += "[seperator]+ADMIN"
 	if(rights & R_BAN)			. += "[seperator]+BAN"

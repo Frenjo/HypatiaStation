@@ -55,7 +55,7 @@
 
 	..()
 
-/obj/machinery/atmospherics/pipe/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/pipe/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(src, /obj/machinery/atmospherics/pipe/tank))
 		return ..()
 	if(istype(src, /obj/machinery/atmospherics/pipe/vent))
@@ -132,7 +132,7 @@
 		if(SOUTHWEST)
 			initialize_directions = SOUTH|WEST
 
-/obj/machinery/atmospherics/pipe/simple/hide(var/i)
+/obj/machinery/atmospherics/pipe/simple/hide(i)
 	if(level == 1 && istype(loc, /turf/simulated))
 		invisibility = i ? 101 : 0
 	update_icon()
@@ -401,7 +401,7 @@
 
 	..()
 
-/obj/machinery/atmospherics/pipe/manifold/hide(var/i)
+/obj/machinery/atmospherics/pipe/manifold/hide(i)
 	if(level == 1 && istype(loc, /turf/simulated))
 		invisibility = i ? 101 : 0
 	update_icon()
@@ -634,7 +634,7 @@
 	..()
 	alpha = 255
 
-/obj/machinery/atmospherics/pipe/manifold4w/hide(var/i)
+/obj/machinery/atmospherics/pipe/manifold4w/hide(i)
 	if(level == 1 && istype(loc, /turf/simulated))
 		invisibility = i ? 101 : 0
 	update_icon()
@@ -864,7 +864,7 @@
 		if(EAST)
 		 initialize_directions = WEST
 
-/obj/machinery/atmospherics/pipe/cap/hide(var/i)
+/obj/machinery/atmospherics/pipe/cap/hide(i)
 	if(level == 1 && istype(loc, /turf/simulated))
 		invisibility = i ? 101 : 0
 	update_icon()
@@ -1063,7 +1063,7 @@
 	update_icon()
 	return null
 
-/obj/machinery/atmospherics/pipe/tank/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/pipe/tank/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/analyzer) && get_dist(user, src) <= 1)
 		for(var/mob/O in viewers(user, null))
 			O << "\red [user] has used the analyzer on \icon[icon]"
@@ -1142,8 +1142,8 @@
 /obj/machinery/atmospherics/pipe/vent/initialize()
 	var/connect_direction = dir
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,connect_direction))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, connect_direction))
+		if(target.initialize_directions & get_dir(target, src))
 			node1 = target
 			break
 
@@ -1158,7 +1158,7 @@
 	update_icon()
 	return null
 
-/obj/machinery/atmospherics/pipe/vent/hide(var/i) //to make the little pipe section invisible, the icon changes.
+/obj/machinery/atmospherics/pipe/vent/hide(i) //to make the little pipe section invisible, the icon changes.
 	if(node1)
 		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]intact"
 		dir = get_dir(src, node1)

@@ -37,12 +37,12 @@ datum/controller/vote
 				result()
 				for(var/client/C in voting)
 					if(C)
-						C << browse(null,"window=vote;can_close=0")
+						C << browse(null, "window=vote;can_close=0")
 				reset()
 			else
 				for(var/client/C in voting)
 					if(C)
-						C << browse(vote.interface(C),"window=vote;can_close=0")
+						C << browse(vote.interface(C), "window=vote;can_close=0")
 
 				voting.Cut()
 
@@ -182,20 +182,20 @@ datum/controller/vote
 
 		return .
 
-	proc/submit_vote(var/ckey, var/vote)
+	proc/submit_vote(ckey, vote)
 		if(mode)
 			if(config.vote_no_dead && usr.stat == DEAD && !usr.client.holder)
 				return 0
 			if(current_votes[ckey])
 				choices[choices[current_votes[ckey]]]--
-			if(vote && 1<=vote && vote<=choices.len)
+			if(vote && 1 <= vote && vote <= choices.len)
 				voted += usr.ckey
 				choices[choices[vote]]++	//check this
 				current_votes[ckey] = vote
 				return vote
 		return 0
 
-	proc/initiate_vote(var/vote_type, var/initiator_key)
+	proc/initiate_vote(vote_type, initiator_key)
 		if(!mode)
 			if(started_time != null && !check_rights(R_ADMIN))
 				var/next_allowed_time = (started_time + config.vote_delay)
@@ -205,17 +205,17 @@ datum/controller/vote
 			reset()
 			switch(vote_type)
 				if("restart")
-					choices.Add("Restart Round","Continue Playing")
+					choices.Add("Restart Round", "Continue Playing")
 				if("gamemode")
 					if(ticker.current_state >= 2)
 						return 0
 					choices.Add(config.votable_modes)
 				if("crew_transfer")
-					if(check_rights(R_ADMIN|R_MOD, 0))
+					if(check_rights(R_ADMIN | R_MOD, 0))
 						question = "End the shift?"
 						choices.Add("Initiate Crew Transfer", "Continue The Round")
 					else
-						if (get_security_level() == "red" || get_security_level() == "delta")
+						if(get_security_level() == "red" || get_security_level() == "delta")
 							initiator_key << "The current alert status is too high to call for a crew transfer!"
 							return 0
 						if(ticker.current_state <= 2)
@@ -224,10 +224,10 @@ datum/controller/vote
 						question = "End the shift?"
 						choices.Add("Initiate Crew Transfer", "Continue The Round")
 				if("custom")
-					question = html_encode(input(usr,"What is the vote for?") as text|null)
+					question = html_encode(input(usr, "What is the vote for?") as text|null)
 					if(!question)	return 0
-					for(var/i=1,i<=10,i++)
-						var/option = capitalize(html_encode(input(usr,"Please enter an option or hit cancel to finish") as text|null))
+					for(var/i = 1, i <= 10, i++)
+						var/option = capitalize(html_encode(input(usr, "Please enter an option or hit cancel to finish") as text|null))
 						if(!option || mode || !usr.client)	break
 						choices.Add(option)
 				else			return 0
@@ -276,8 +276,9 @@ datum/controller/vote
 			return 1
 		return 0
 
-	proc/interface(var/client/C)
-		if(!C)	return
+	proc/interface(client/C)
+		if(!C)
+			return
 		var/admin = 0
 		var/trialmin = 0
 		if(C.holder)
@@ -335,7 +336,8 @@ datum/controller/vote
 
 
 	Topic(href,href_list[],hsrc)
-		if(!usr || !usr.client)	return	//not necessary but meh...just in-case somebody does something stupid
+		if(!usr || !usr.client)
+			return	//not necessary but meh...just in-case somebody does something stupid
 		switch(href_list["vote"])
 			if("close")
 				voting -= usr.client

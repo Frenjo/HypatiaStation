@@ -8,7 +8,7 @@ proc/random_hair_style(gender, species = "Human")
 			continue
 		if(gender == FEMALE && S.gender == MALE)
 			continue
-		if( !(species in S.species_allowed))
+		if(!(species in S.species_allowed))
 			continue
 		valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
 
@@ -52,7 +52,7 @@ proc/random_skin_tone()
 	return min(max( .+rand(-25, 25), -185),34)
 
 proc/skintone2racedescription(tone)
-	switch (tone)
+	switch(tone)
 		if(30 to INFINITY)		return "albino"
 		if(20 to 30)			return "pale"
 		if(5 to 15)				return "light skinned"

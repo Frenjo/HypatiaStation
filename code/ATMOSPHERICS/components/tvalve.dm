@@ -187,16 +187,16 @@
 	node2_dir = turn(dir, -90)
 	node3_dir = dir
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node1_dir))
+		if(target.initialize_directions & get_dir(target, src))
 			node1 = target
 			break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_dir))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node2_dir))
+		if(target.initialize_directions & get_dir(target, src))
 			node2 = target
 			break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node3_dir))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node3_dir))
+		if(target.initialize_directions & get_dir(target, src))
 			node3 = target
 			break
 
@@ -220,13 +220,13 @@
 /obj/machinery/atmospherics/tvalve/return_network(obj/machinery/atmospherics/reference)
 	build_network()
 
-	if(reference==node1)
+	if(reference == node1)
 		return network_node1
 
-	if(reference==node2)
+	if(reference == node2)
 		return network_node2
 
-	if(reference==node3)
+	if(reference == node3)
 		return network_node3
 
 	return null
@@ -308,7 +308,7 @@
 			else
 				go_to_side()
 
-/obj/machinery/atmospherics/tvalve/digital/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/tvalve/digital/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	if(istype(src, /obj/machinery/atmospherics/tvalve/digital))
@@ -334,7 +334,7 @@
 			"[user] unfastens \the [src].", \
 			span("info", "You have unfastened \the [src]."), \
 			"You hear ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
+		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)
 
 /obj/machinery/atmospherics/tvalve/mirrored
@@ -360,16 +360,16 @@
 	node2_dir = turn(dir, 90)
 	node3_dir = dir
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node1_dir))
+		if(target.initialize_directions & get_dir(target, src))
 			node1 = target
 			break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_dir))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node2_dir))
+		if(target.initialize_directions & get_dir(target, src))
 			node2 = target
 			break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node3_dir))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node3_dir))
+		if(target.initialize_directions & get_dir(target, src))
 			node3 = target
 			break
 

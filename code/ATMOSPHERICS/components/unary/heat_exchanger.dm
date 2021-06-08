@@ -19,10 +19,10 @@
 
 /obj/machinery/atmospherics/unary/heat_exchanger/initialize()
 	if(!partner)
-		var/partner_connect = turn(dir,180)
+		var/partner_connect = turn(dir, 180)
 
-		for(var/obj/machinery/atmospherics/unary/heat_exchanger/target in get_step(src,partner_connect))
-			if(target.dir & get_dir(src,target))
+		for(var/obj/machinery/atmospherics/unary/heat_exchanger/target in get_step(src, partner_connect))
+			if(target.dir & get_dir(src, target))
 				partner = target
 				partner.partner = src
 				break
@@ -55,7 +55,7 @@
 		partner.air_contents.temperature = new_temperature
 
 	if(network)
-		if(abs(old_temperature-air_contents.temperature) > 1)
+		if(abs(old_temperature - air_contents.temperature) > 1)
 			network.update = 1
 
 	if(partner.network)
@@ -64,7 +64,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/unary/heat_exchanger/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/unary/heat_exchanger/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	var/turf/T = src.loc

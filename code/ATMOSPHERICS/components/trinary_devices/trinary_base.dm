@@ -73,24 +73,25 @@
 	..()
 
 /obj/machinery/atmospherics/trinary/initialize()
-	if(node1 && node2 && node3) return
+	if(node1 && node2 && node3)
+		return
 
 	var/node1_connect = turn(dir, -180)
 	var/node2_connect = turn(dir, -90)
 	var/node3_connect = dir
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_connect))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node1_connect))
+		if(target.initialize_directions & get_dir(target, src))
 			node1 = target
 			break
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_connect))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node2_connect))
+		if(target.initialize_directions & get_dir(target, src))
 			node2 = target
 			break
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node3_connect))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node3_connect))
+		if(target.initialize_directions & get_dir(target, src))
 			node3 = target
 			break
 
@@ -115,13 +116,13 @@
 /obj/machinery/atmospherics/trinary/return_network(obj/machinery/atmospherics/reference)
 	build_network()
 
-	if(reference==node1)
+	if(reference == node1)
 		return network1
 
-	if(reference==node2)
+	if(reference == node2)
 		return network2
 
-	if(reference==node3)
+	if(reference == node3)
 		return network3
 
 	return null
@@ -149,15 +150,15 @@
 	return results
 
 /obj/machinery/atmospherics/trinary/disconnect(obj/machinery/atmospherics/reference)
-	if(reference==node1)
+	if(reference == node1)
 		qdel(network1)
 		node1 = null
 
-	else if(reference==node2)
+	else if(reference == node2)
 		qdel(network2)
 		node2 = null
 
-	else if(reference==node3)
+	else if(reference == node3)
 		qdel(network3)
 		node3 = null
 

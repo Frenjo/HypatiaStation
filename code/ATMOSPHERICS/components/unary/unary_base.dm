@@ -40,12 +40,13 @@
 	..()
 
 /obj/machinery/atmospherics/unary/initialize()
-	if(node) return
+	if(node)
+		return
 
 	var/node_connect = dir
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node_connect))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node_connect))
+		if(target.initialize_directions & get_dir(target, src))
 			node = target
 			break
 
@@ -61,7 +62,7 @@
 /obj/machinery/atmospherics/unary/return_network(obj/machinery/atmospherics/reference)
 	build_network()
 
-	if(reference==node)
+	if(reference == node)
 		return network
 
 	return null
@@ -81,7 +82,7 @@
 	return results
 
 /obj/machinery/atmospherics/unary/disconnect(obj/machinery/atmospherics/reference)
-	if(reference==node)
+	if(reference == node)
 		qdel(network)
 		node = null
 

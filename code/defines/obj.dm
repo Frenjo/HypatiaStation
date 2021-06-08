@@ -8,7 +8,7 @@
 		return attack_hand(user)
 
 	attack_hand(mob/user as mob)
-		switch(alert("Travel back to ss13?",,"Yes","No"))
+		switch(alert("Travel back to ss13?", , "Yes", "No"))
 			if("Yes")
 				if(user.z != src.z)	return
 				user.loc.loc.Exited(user)
@@ -196,38 +196,38 @@ var/global/list/PDA_Manifest = list()
 			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			depthead = 1
-			if(rank=="Captain" && heads.len != 1)
-				heads.Swap(1,heads.len)
+			if(rank == "Captain" && heads.len != 1)
+				heads.Swap(1, heads.len)
 
 		if(real_rank in security_positions)
 			sec[++sec.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && sec.len != 1)
-				sec.Swap(1,sec.len)
+				sec.Swap(1, sec.len)
 
 		if(real_rank in engineering_positions)
 			eng[++eng.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && eng.len != 1)
-				eng.Swap(1,eng.len)
+				eng.Swap(1, eng.len)
 
 		if(real_rank in medical_positions)
 			med[++med.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && med.len != 1)
-				med.Swap(1,med.len)
+				med.Swap(1, med.len)
 
 		if(real_rank in science_positions)
 			sci[++sci.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && sci.len != 1)
-				sci.Swap(1,sci.len)
+				sci.Swap(1, sci.len)
 
 		if(real_rank in civilian_positions)
 			civ[++civ.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && civ.len != 1)
-				civ.Swap(1,civ.len)
+				civ.Swap(1, civ.len)
 
 		if(real_rank in nonhuman_positions)
 			bot[++bot.len] = list("name" = name, "rank" = rank, "active" = isactive)

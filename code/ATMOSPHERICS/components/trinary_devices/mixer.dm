@@ -89,7 +89,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/trinary/mixer/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/trinary/mixer/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	var/turf/T = src.loc
@@ -99,7 +99,7 @@
 
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
+	if((int_air.return_pressure()-env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
 		to_chat(user, span("warning", "You cannot unwrench this [src], it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
@@ -146,7 +146,7 @@
 	ui_interact(user) // Edited this to reflect NanoUI port. -Frenjo
 	return
 
-/obj/machinery/atmospherics/trinary/mixer/Topic(href,href_list)
+/obj/machinery/atmospherics/trinary/mixer/Topic(href, href_list)
 	if(..()) return
 	/*if(href_list["power"])
 		on = !on
@@ -190,7 +190,7 @@
 
 // Porting this to NanoUI, it looks way better honestly. -Frenjo
 // Porting this one was literally satan, just saying.
-/obj/machinery/atmospherics/trinary/mixer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
+/obj/machinery/atmospherics/trinary/mixer/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	if(stat & BROKEN)
 		return
 

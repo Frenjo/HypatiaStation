@@ -87,8 +87,8 @@
 
 	initialize()
 		..()
-		radio_filter_in = frequency==initial(frequency)?(RADIO_FROM_AIRALARM):null
-		radio_filter_out = frequency==initial(frequency)?(RADIO_TO_AIRALARM):null
+		radio_filter_in = frequency == initial(frequency) ? (RADIO_FROM_AIRALARM) : null
+		radio_filter_out = frequency == initial(frequency) ? (RADIO_TO_AIRALARM) : null
 		if (frequency)
 			set_frequency(frequency)
 			src.broadcast_status()
@@ -107,7 +107,7 @@
 		var/datum/gas_mixture/environment = loc.return_air()
 
 		if(scrubbing)
-			if((environment.gas["plasma"]>0.001) || (environment.gas["carbon_dioxide"]>0.001) || (environment.gas["oxygen_agent_b"]>0.001) || (environment.gas["sleeping_agent"]>0.001))
+			if((environment.gas["plasma"] > 0.001) || (environment.gas["carbon_dioxide"] > 0.001) || (environment.gas["oxygen_agent_b"] > 0.001) || (environment.gas["sleeping_agent"] > 0.001))
 				var/transfer_moles = min(1, volume_rate/environment.volume)*environment.total_moles
 
 				//Take a gas sample
@@ -140,10 +140,10 @@
 					network.update = 1
 
 		else //Just siphoning all air
-			if (air_contents.return_pressure()>=50*ONE_ATMOSPHERE)
+			if (air_contents.return_pressure() >= 50 * ONE_ATMOSPHERE)
 				return
 
-			var/transfer_moles = environment.total_moles*(volume_rate/environment.volume)
+			var/transfer_moles = environment.total_moles * (volume_rate / environment.volume)
 
 			var/datum/gas_mixture/removed = loc.remove_air(transfer_moles)
 
@@ -238,7 +238,7 @@
 			stat |= NOPOWER
 		update_icon()
 
-	attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(!istype(W, /obj/item/weapon/wrench))
 			return ..()
 		if(!(stat & NOPOWER) && on)

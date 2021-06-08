@@ -112,7 +112,7 @@
 
 		if(pressure_delta > 0.5)
 			if(air_contents.temperature > 0)
-				var/transfer_moles = pressure_delta*environment.volume/(air_contents.temperature * R_IDEAL_GAS_EQUATION)
+				var/transfer_moles = pressure_delta * environment.volume / (air_contents.temperature * R_IDEAL_GAS_EQUATION)
 
 				var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
 
@@ -130,7 +130,7 @@
 
 		if(pressure_delta > 0.5)
 			if(environment.temperature > 0)
-				var/transfer_moles = pressure_delta*air_contents.volume / (environment.temperature * R_IDEAL_GAS_EQUATION)
+				var/transfer_moles = pressure_delta * air_contents.volume / (environment.temperature * R_IDEAL_GAS_EQUATION)
 
 				var/datum/gas_mixture/removed = loc.remove_air(transfer_moles)
 				if(isnull(removed)) //in space
@@ -246,7 +246,7 @@
 	update_icon()
 	return
 
-/obj/machinery/atmospherics/unary/vent_pump/hide(var/i) //to make the little pipe section invisible, the icon changes.
+/obj/machinery/atmospherics/unary/vent_pump/hide(i) //to make the little pipe section invisible, the icon changes.
 	if(welded)
 		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]weld"
 		return
@@ -296,7 +296,7 @@
 		stat |= NOPOWER
 	update_icon()
 
-/obj/machinery/atmospherics/unary/vent_pump/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	if(!(stat & NOPOWER) && on)

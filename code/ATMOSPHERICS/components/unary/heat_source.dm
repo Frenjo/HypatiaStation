@@ -15,7 +15,7 @@
 
 /obj/machinery/atmospherics/unary/heat_reservoir/update_icon()
 	if(node)
-		icon_state = "intact_[on?("on"):("off")]"
+		icon_state = "intact_[on ? ("on") : ("off")]"
 	else
 		icon_state = "exposed"
 
@@ -37,6 +37,6 @@
 
 	//todo: have current temperature affected. require power to bring up current temperature again
 
-	if(abs(old_temperature-air_contents.temperature) > 1)
+	if(abs(old_temperature - air_contents.temperature) > 1)
 		network.update = 1
 	return 1

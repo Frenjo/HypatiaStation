@@ -53,12 +53,12 @@ client/verb/JoinResponseTeam()
 			usr << "<font color=red><b>You are jobbanned from the emergency reponse team!"
 			return
 
-		if(response_team_members.len > 5) usr << "The emergency response team is already full!"
-
+		if(response_team_members.len > 5)
+			usr << "The emergency response team is already full!"
 
 		for (var/obj/effect/landmark/L in landmarks_list) if (L.name == "Commando")
 			L.name = null//Reserving the place.
-			var/new_name = input(usr, "Pick a name","Name") as null|text
+			var/new_name = input(usr, "Pick a name", "Name") as null|text
 			if(!new_name)//Somebody changed his mind, place is available again.
 				L.name = "Commando"
 				return
@@ -88,7 +88,8 @@ proc/percentage_dead()
 			if(H.stat == 2) deadcount++
 			total++
 
-	if(total == 0) return 0
+	if(total == 0)
+		return 0
 	else return round(100 * deadcount / total)
 
 // counts the number of antagonists in %
@@ -100,7 +101,8 @@ proc/percentage_antagonists()
 			antagonists++
 		total++
 
-	if(total == 0) return 0
+	if(total == 0)
+		return 0
 	else return round(100 * antagonists / total)
 
 // Increments the ERT chance automatically, so that the later it is in the round,
@@ -118,14 +120,14 @@ proc/increment_ert_chance()
 		sleep(600 * 3) // Minute * Number of Minutes
 
 
-proc/trigger_armed_response_team(var/force = 0)
+proc/trigger_armed_response_team(force = 0)
 	if(!can_call_ert && !force)
 		return
 	if(send_emergency_team)
 		return
 
 	var/send_team_chance = ert_base_chance // Is incremented by increment_ert_chance.
-	send_team_chance += 2*percentage_dead() // the more people are dead, the higher the chance
+	send_team_chance += 2 * percentage_dead() // the more people are dead, the higher the chance
 	send_team_chance += percentage_antagonists() // the more antagonists, the higher the chance
 	send_team_chance = min(send_team_chance, 100)
 
@@ -160,7 +162,6 @@ proc/trigger_armed_response_team(var/force = 0)
 */
 
 /client/proc/create_response_team(obj/spawn_location, leader_selected = 0, commando_name)
-
 	//usr << "\red ERT has been temporarily disabled. Talk to a coder."
 	//return
 
@@ -189,10 +190,10 @@ proc/trigger_armed_response_team(var/force = 0)
 
 	var/new_tone = input("Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation")  as text
 
-	if (!new_tone)
+	if(!new_tone)
 		new_tone = 35
 	M.s_tone = max(min(round(text2num(new_tone)), 220), 1)
-	M.s_tone =  -M.s_tone + 35
+	M.s_tone = -M.s_tone + 35
 
 	// hair
 	var/list/all_hairs = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair
@@ -249,7 +250,7 @@ proc/trigger_armed_response_team(var/force = 0)
 				del(H)
 */
 	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female")
-	if (new_gender)
+	if(new_gender)
 		if(new_gender == "Male")
 			M.gender = MALE
 		else
@@ -278,7 +279,6 @@ proc/trigger_armed_response_team(var/force = 0)
 	return M
 
 /mob/living/carbon/human/proc/equip_strike_team(leader_selected = 0)
-
 	//Special radio setup
 	equip_to_slot_or_del(new /obj/item/device/radio/headset/ert(src), slot_l_ear)
 

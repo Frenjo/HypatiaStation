@@ -19,7 +19,7 @@ var/global/list/GlobalPool = list()
 //Or a list of arguments
 //Either way it gets passed to new
 
-/proc/PoolOrNew(var/get_type,var/second_arg)
+/proc/PoolOrNew(get_type, second_arg)
 	if(!get_type)
 		return
 
@@ -34,7 +34,7 @@ var/global/list/GlobalPool = list()
 				return new get_type (second_arg)
 	return D
 
-/proc/GetFromPool(var/get_type,var/second_arg)
+/proc/GetFromPool(get_type, second_arg)
 	if(!get_type)
 		return 0
 
@@ -51,7 +51,7 @@ var/global/list/GlobalPool = list()
 		return D
 	return 0
 
-/proc/PlaceInPool(var/datum/D)
+/proc/PlaceInPool(datum/D)
 	if(!istype(D))
 		return
 
@@ -73,7 +73,7 @@ var/global/list/GlobalPool = list()
 	D.Destroy()
 	D.ResetVars()
 
-/proc/IsPooled(var/datum/D)
+/proc/IsPooled(datum/D)
 	if(isnull(GlobalPool[D.type]) || length(GlobalPool[D.type]) == 0)
 		return 0
 	return 1
@@ -90,7 +90,7 @@ var/global/list/GlobalPool = list()
 		loc = args
 	..()
 
-/datum/proc/ResetVars(var/list/exlude = list())
+/datum/proc/ResetVars(list/exlude = list())
 	var/list/excluded = list("animate_movement", "loc", "locs", "parent_type", "vars", "verbs", "type") + exlude
 
 	for(var/V in vars)
