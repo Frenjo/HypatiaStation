@@ -44,7 +44,7 @@
 /obj/machinery/door/firedoor/examine()
 	set src in view()
 	. = ..()
-	if( islistold(users_to_open) && users_to_open.len)
+	if(islist(users_to_open) && users_to_open.len)
 		var/users_to_open_string = users_to_open[1]
 		if(users_to_open.len >= 2)
 			for(var/i = 2 to users_to_open.len)

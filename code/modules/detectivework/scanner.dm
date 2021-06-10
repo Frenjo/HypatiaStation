@@ -146,7 +146,7 @@
 	proc/add_data(atom/A as mob|obj|turf|area)
 		//I love associative lists.
 		var/list/data_entry = stored["\ref [A]"]
-		if(islistold(data_entry)) //Yay, it was already stored!
+		if(islist(data_entry)) //Yay, it was already stored!
 			//Merge the fingerprints.
 			var/list/data_prints = data_entry[1]
 			for(var/print in A.fingerprints)

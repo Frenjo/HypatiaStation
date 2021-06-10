@@ -40,14 +40,9 @@ proc/listgetindex(list/list, index)
 			return list[index]
 	return
 
-proc/islistold(list/list)
-	if(istype(list))
-		return 1
-	return 0
-
 //Return either pick(list) or null if list is not of type /list or is empty
 proc/safepick(list/list)
-	if(!islistold(list) || !list.len)
+	if(!islist(list) || !list.len)
 		return
 	return pick(list)
 
@@ -83,7 +78,7 @@ proc/listclearnulls(list/list)
  * If either of arguments is not a list, returns null
  */
 /proc/difflist(list/first, list/second, skiprep=0)
-	if(!islistold(first) || !islistold(second))
+	if(!islist(first) || !islist(second))
 		return
 	var/list/result = new
 	if(skiprep)
@@ -100,7 +95,7 @@ proc/listclearnulls(list/list)
  * If either of arguments is not a list, returns null
  */
 /proc/uniquemergelist(list/first, list/second, skiprep=0)
-	if(!islistold(first) || !islistold(second))
+	if(!islist(first) || !islist(second))
 		return
 	var/list/result = new
 	if(skiprep)

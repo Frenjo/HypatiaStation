@@ -288,7 +288,7 @@ datum/signal
 			. = "signal = {source = '[source]' ()\n"
 		for(var/i in data)
 			. += "data\[\"[i]\"\] = \"[data[i]]\"\n"
-			if(islistold(data[i]))
+			if(islist(data[i]))
 				var/list/L = data[i]
 				for(var/t in L)
 					. += "data\[\"[i]\"\] list has: [t]"

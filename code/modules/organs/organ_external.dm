@@ -45,7 +45,7 @@
 	var/wound_update_accuracy = 1
 
 
-/datum/organ/external/New(var/datum/organ/external/P)
+/datum/organ/external/New(datum/organ/external/P)
 	if(P)
 		parent = P
 		if(!parent.children)
@@ -76,8 +76,7 @@
 
 	if(status & ORGAN_DESTROYED)
 		return 0
-	if(status & ORGAN_ROBOT )
-
+	if(status & ORGAN_ROBOT)
 		var/brmod = 0.66
 		var/bumod = 0.66
 
@@ -98,7 +97,7 @@
 				return
 
 	// High brute damage or sharp objects may damage internal organs
-	if(internal_organs != null) if( (sharp && brute >= 5) || brute >= 10) if(prob(5))
+	if(internal_organs != null) if((sharp && brute >= 5) || brute >= 10) if(prob(5))
 		// Damage an internal organ
 		var/datum/organ/internal/I = pick(internal_organs)
 		I.take_damage(brute / 2)
@@ -109,41 +108,41 @@
 	if(used_weapon)
 		add_autopsy_data("[used_weapon]", brute + burn)
 
-	var/can_cut = (prob(brute*2) || sharp) && !(status & ORGAN_ROBOT)
+	var/can_cut = (prob(brute * 2) || sharp) && !(status & ORGAN_ROBOT)
 	// If the limbs can break, make sure we don't exceed the maximum damage a limb can take before breaking
 	if((brute_dam + burn_dam + brute + burn) < max_damage || !config.limbs_can_break)
 		if(brute)
 			if(can_cut)
-				createwound( CUT, brute )
+				createwound(CUT, brute)
 			else
-				createwound( BRUISE, brute )
+				createwound(BRUISE, brute)
 		if(burn)
-			createwound( BURN, burn )
+			createwound(BURN, burn)
 	else
 		//If we can't inflict the full amount of damage, spread the damage in other ways
 		//How much damage can we actually cause?
 		var/can_inflict = max_damage * config.organ_health_multiplier - (brute_dam + burn_dam)
 		if(can_inflict)
-			if (brute > 0)
+			if(brute > 0)
 				//Inflict all burte damage we can
 				if(can_cut)
-					createwound( CUT, min(brute,can_inflict) )
+					createwound(CUT, min(brute, can_inflict))
 				else
-					createwound( BRUISE, min(brute,can_inflict) )
+					createwound(BRUISE, min(brute, can_inflict))
 				var/temp = can_inflict
 				//How much mroe damage can we inflict
 				can_inflict = max(0, can_inflict - brute)
 				//How much brute damage is left to inflict
 				brute = max(0, brute - temp)
 
-			if (burn > 0 && can_inflict)
+			if(burn > 0 && can_inflict)
 				//Inflict all burn damage we can
-				createwound(BURN, min(burn,can_inflict))
+				createwound(BURN, min(burn, can_inflict))
 				//How much burn damage is left to inflict
 				burn = max(0, burn - can_inflict)
 		//If there are still hurties to dispense
-		if (burn || brute)
-			if (status & ORGAN_ROBOT)
+		if(burn || brute)
+			if(status & ORGAN_ROBOT)
 				droplimb(1) //Robot limbs just kinda fail at full damage.
 			else
 				//List organs we can pass it to
@@ -211,15 +210,16 @@ This function completely restores a damaged organ to perfect condition.
 
 	// remove embedded objects and drop them on the floor
 	for(var/obj/implanted_object in implants)
-		if(!istype(implanted_object,/obj/item/weapon/implant))	// We don't want to remove REAL implants. Just shrapnel etc.
+		if(!istype(implanted_object, /obj/item/weapon/implant))	// We don't want to remove REAL implants. Just shrapnel etc.
 			implanted_object.loc = owner.loc
 			implants -= implanted_object
 
 	owner.updatehealth()
 
 
-/datum/organ/external/proc/createwound(var/type = CUT, var/damage)
-	if(damage == 0) return
+/datum/organ/external/proc/createwound(type = CUT, damage)
+	if(damage == 0)
+		return
 
 	//moved this before the open_wound check so that having many small wounds for example doesn't somehow protect you from taking internal damage
 
@@ -231,12 +231,12 @@ This function completely restores a damaged organ to perfect condition.
 		owner.custom_pain("You feel something rip in your [display_name]!", 1)
 
 		// first check whether we can widen an existing wound
-	if(wounds.len > 0 && prob(max(50+(number_wounds-1)*10,90)))
+	if(wounds.len > 0 && prob(max(50 + (number_wounds - 1) * 10, 90)))
 		if((type == CUT || type == BRUISE) && damage >= 5)
 			//we need to make sure that the wound we are going to worsen is compatible with the type of damage...
 			var/list/compatible_wounds = list()
-			for (var/datum/wound/W in wounds)
-				if (W.can_worsen(type, damage))
+			for(var/datum/wound/W in wounds)
+				if(W.can_worsen(type, damage))
 					compatible_wounds += W
 
 			var/datum/wound/W = pick(compatible_wounds)
@@ -265,20 +265,20 @@ This function completely restores a damaged organ to perfect condition.
 	//if you look a the names in the wound's stages list for each wound type you will see the logic behind these values
 	switch(type)
 		if(CUT)
-			if (damage <= 5) return /datum/wound/cut/small
-			if (damage <= 15) return /datum/wound/cut/deep
-			if (damage <= 25) return /datum/wound/cut/flesh
-			if (damage <= 50) return /datum/wound/cut/gaping
-			if (damage <= 60) return /datum/wound/cut/gaping_big
+			if(damage <= 5) return /datum/wound/cut/small
+			if(damage <= 15) return /datum/wound/cut/deep
+			if(damage <= 25) return /datum/wound/cut/flesh
+			if(damage <= 50) return /datum/wound/cut/gaping
+			if(damage <= 60) return /datum/wound/cut/gaping_big
 			return /datum/wound/cut/massive
 		if(BRUISE)
 			return /datum/wound/bruise
 		if(BURN)
-			if (damage <= 5) return /datum/wound/burn/moderate
-			if (damage <= 15) return /datum/wound/burn/large
-			if (damage <= 30) return /datum/wound/burn/severe
-			if (damage <= 40) return /datum/wound/burn/deep
-			if (damage <= 50) return /datum/wound/burn/carbonised
+			if(damage <= 5) return /datum/wound/burn/moderate
+			if(damage <= 15) return /datum/wound/burn/large
+			if(damage <= 30) return /datum/wound/burn/severe
+			if(damage <= 40) return /datum/wound/burn/deep
+			if(damage <= 50) return /datum/wound/burn/carbonised
 
 /****************************************************
 			   PROCESSING & UPDATING
@@ -358,45 +358,45 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 		//Syncing germ levels with external wounds
 		for(var/datum/wound/W in wounds)
 						//Open wounds can become infected
-			if (owner.germ_level > W.germ_level && W.infection_check())
+			if(owner.germ_level > W.germ_level && W.infection_check())
 				W.germ_level++
 
 			//Infected wounds raise the organ's germ level
 			W.germ_level = max(W.germ_level, germ_level)	//Wounds get all the germs
-			if (W.germ_level > germ_level)	//Badly infected wounds raise internal germ levels
+			if(W.germ_level > germ_level)	//Badly infected wounds raise internal germ levels
 				germ_level++
 
 		var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
-		if (germ_level > 0 && antibiotics > 5)
-			if (prob(4*antibiotics)) germ_level--	//the higher the germ level the more antibiotics you'll need.
+		if(germ_level > 0 && antibiotics > 5)
+			if(prob(4 * antibiotics)) germ_level--	//the higher the germ level the more antibiotics you'll need.
 
 		if(germ_level >= INFECTION_LEVEL_ONE)
 			//having an infection raises your body temperature
-			var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 1)* min(germ_level/INFECTION_LEVEL_THREE, 1) + owner.species.body_temperature
-			if (owner.bodytemperature < fever_temperature)
+			var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 1)* min(germ_level / INFECTION_LEVEL_THREE, 1) + owner.species.body_temperature
+			if(owner.bodytemperature < fever_temperature)
 				//world << "fever: [owner.bodytemperature] < [fever_temperature], raising temperature."
 				owner.bodytemperature++
 
-			if(prob(round(germ_level/10)))
+			if(prob(round(germ_level / 10)))
 				germ_level++
-				if (prob(5))	//adjust this to tweak how fast people take toxin damage from infections
+				if(prob(5))	//adjust this to tweak how fast people take toxin damage from infections
 					owner.adjustToxLoss(1)
 
 		if(germ_level >= INFECTION_LEVEL_TWO)
 			//spread the infection
-			for (var/datum/organ/internal/I in internal_organs)
-				if (I.germ_level < germ_level)
+			for(var/datum/organ/internal/I in internal_organs)
+				if(I.germ_level < germ_level)
 					I.germ_level++
 
-			if (children)	//To child organs
-				for (var/datum/organ/external/child in children)
-					if (child.germ_level < germ_level && !(child.status & ORGAN_ROBOT))
-						if (child.germ_level < INFECTION_LEVEL_ONE*2 || prob(30))
+			if(children)	//To child organs
+				for(var/datum/organ/external/child in children)
+					if(child.germ_level < germ_level && !(child.status & ORGAN_ROBOT))
+						if(child.germ_level < INFECTION_LEVEL_ONE * 2 || prob(30))
 							child.germ_level++
 
-			if (parent)
-				if (parent.germ_level < germ_level && !(parent.status & ORGAN_ROBOT))
-					if (parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30))
+			if(parent)
+				if(parent.germ_level < germ_level && !(parent.status & ORGAN_ROBOT))
+					if(parent.germ_level < INFECTION_LEVEL_ONE * 2 || prob(30))
 						parent.germ_level++
 
 		if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 30)	//overdosing is necessary to stop severe infections
@@ -408,7 +408,6 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 
 //Updating wounds. Handles wound natural I had some free spachealing, internal bleedings and infections
 /datum/organ/external/proc/update_wounds()
-
 	if((status & ORGAN_ROBOT)) //Robotic limbs don't heal or get worse.
 		return
 
@@ -440,7 +439,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 		var/heal_amt = 0
 
 		// if damage >= 50 AFTER treatment then it's probably too severe to heal within the timeframe of a round.
-		if (W.is_treated() && W.wound_damage() < 50)
+		if(W.is_treated() && W.wound_damage() < 50)
 			heal_amt += 0.5
 
 		//we only update wounds once in [wound_update_accuracy] ticks so have to emulate realtime
@@ -460,7 +459,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 
 	// sync the organ's damage with its wounds
 	src.update_damages()
-	if (update_icon())
+	if(update_icon())
 		owner.UpdateDamageIcon(1)
 
 //Updates brute_damn and burn_damn from wound damages. Updates BLEEDING status.
@@ -484,7 +483,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 
 		number_wounds += W.amount
 
-	if (open && !clamped)	//things tend to bleed if they are CUT OPEN
+	if(open && !clamped)	//things tend to bleed if they are CUT OPEN
 		status |= ORGAN_BLEEDING
 
 
@@ -492,7 +491,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 // adjusted to set damage_state to brute/burn code only (without r_name0 as before)
 /datum/organ/external/proc/update_icon()
 	var/n_is = damage_state_text()
-	if (n_is != damage_state)
+	if(n_is != damage_state)
 		damage_state = n_is
 		return 1
 	return 0
@@ -508,18 +507,18 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 
 	if(burn_dam ==0)
 		tburn =0
-	else if (burn_dam < (max_damage * 0.25 / 2))
+	else if(burn_dam < (max_damage * 0.25 / 2))
 		tburn = 1
-	else if (burn_dam < (max_damage * 0.75 / 2))
+	else if(burn_dam < (max_damage * 0.75 / 2))
 		tburn = 2
 	else
 		tburn = 3
 
-	if (brute_dam == 0)
+	if(brute_dam == 0)
 		tbrute = 0
-	else if (brute_dam < (max_damage * 0.25 / 2))
+	else if(brute_dam < (max_damage * 0.25 / 2))
 		tbrute = 1
-	else if (brute_dam < (max_damage * 0.75 / 2))
+	else if(brute_dam < (max_damage * 0.75 / 2))
 		tbrute = 2
 	else
 		tbrute = 3
@@ -536,7 +535,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 		O.setAmputatedTree()
 
 //Handles dismemberment
-/datum/organ/external/proc/droplimb(var/override = 0,var/no_explode = 0)
+/datum/organ/external/proc/droplimb(override = 0, no_explode = 0)
 	if(destspawn) return
 	if(override)
 		status |= ORGAN_DESTROYED
@@ -612,7 +611,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 				owner.visible_message("\red \The [owner]'s [display_name] explodes violently!",\
 				"\red <b>Your [display_name] explodes!</b>",\
 				"You hear an explosion followed by a scream!")
-				explosion(get_turf(owner),-1,-1,2,3)
+				explosion(get_turf(owner), -1, -1, 2, 3)
 				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 				spark_system.set_up(5, 0, owner)
 				spark_system.attach(owner)
@@ -626,7 +625,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 
 			//Throw organs around
 			var/lol = pick(cardinal)
-			step(organ,lol)
+			step(organ, lol)
 
 			owner.update_body(1)
 
@@ -638,14 +637,14 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 ****************************************************/
 
 /datum/organ/external/proc/release_restraints()
-	if (owner.handcuffed && body_part in list(ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT))
+	if(owner.handcuffed && body_part in list(ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT))
 		owner.visible_message(\
 			"\The [owner.handcuffed.name] falls off of [owner.name].",\
 			"\The [owner.handcuffed.name] falls off you.")
 
 		owner.drop_from_inventory(owner.handcuffed)
 
-	if (owner.legcuffed && body_part in list(FOOT_LEFT, FOOT_RIGHT, LEG_LEFT, LEG_RIGHT))
+	if(owner.legcuffed && body_part in list(FOOT_LEFT, FOOT_RIGHT, LEG_LEFT, LEG_RIGHT))
 		owner.visible_message(\
 			"\The [owner.legcuffed.name] falls off of [owner.name].",\
 			"\The [owner.legcuffed.name] falls off you.")
@@ -661,7 +660,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 		W.bandaged = 1
 	return rval
 
-/datum/organ/external/proc/clampold()
+/datum/organ/external/proc/clamp_bleeding()
 	var/rval = 0
 	src.status &= ~ORGAN_BLEEDING
 	for(var/datum/wound/W in wounds)
@@ -693,7 +692,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	perma_injury = brute_dam
 
 	// Fractures have a chance of getting you out of restraints
-	if (prob(25))
+	if(prob(25))
 		release_restraints()
 
 /datum/organ/external/proc/robotize()
@@ -705,7 +704,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	src.status &= ~ORGAN_DESTROYED
 	src.status |= ORGAN_ROBOT
 	src.destspawn = 0
-	for (var/datum/organ/external/T in children)
+	for(var/datum/organ/external/T in children)
 		if(T)
 			T.robotize()
 
@@ -726,11 +725,11 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 			return 1
 	return 0
 
-/datum/organ/external/get_icon(gender="")
-	if (status & ORGAN_ROBOT && !(owner.species && owner.species.flags & IS_SYNTHETIC))
+/datum/organ/external/get_icon(gender = "")
+	if(status & ORGAN_ROBOT && !(owner.species && owner.species.flags & IS_SYNTHETIC))
 		return new /icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
 
-	if (status & ORGAN_MUTATED)
+	if(status & ORGAN_MUTATED)
 		return new /icon(owner.deform_icon, "[icon_name][gender ? "_[gender]" : ""]")
 
 	return new /icon(owner.race_icon, "[icon_name][gender ? "_[gender]" : ""]")
@@ -746,8 +745,8 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	return ((status & ORGAN_ROBOT) && prob(brute_dam + burn_dam))
 
 //for arms and hands
-/datum/organ/external/proc/process_grasp(var/obj/item/c_hand, var/hand_name)
-	if (!c_hand)
+/datum/organ/external/proc/process_grasp(obj/item/c_hand, hand_name)
+	if(!c_hand)
 		return
 
 	if(is_broken())
@@ -879,26 +878,26 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	var/disfigured = 0
 
 /datum/organ/external/head/get_icon()
-	if (!owner)
+	if(!owner)
 	 return ..()
 	var/g = "m"
 	if(owner.gender == FEMALE)	g = "f"
-	if (status & ORGAN_MUTATED)
+	if(status & ORGAN_MUTATED)
 		. = new /icon(owner.deform_icon, "[icon_name]_[g]")
 	else
 		. = new /icon(owner.race_icon, "[icon_name]_[g]")
 
 /datum/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())
 	..(brute, burn, sharp, edge, used_weapon, forbidden_limbs)
-	if (!disfigured)
-		if (brute_dam > 40)
-			if (prob(50))
+	if(!disfigured)
+		if(brute_dam > 40)
+			if(prob(50))
 				disfigure("brute")
-		if (burn_dam > 40)
+		if(burn_dam > 40)
 			disfigure("burn")
 
-/datum/organ/external/head/proc/disfigure(var/type = "brute")
-	if (disfigured)
+/datum/organ/external/head/proc/disfigure(type = "brute")
+	if(disfigured)
 		return
 	if(type == "brute")
 		owner.visible_message("\red You hear a sickening cracking sound coming from \the [owner]'s face.",	\
@@ -938,7 +937,7 @@ obj/item/weapon/organ/New(loc, mob/living/carbon/human/H)
 	if(base)
 		//Changing limb's skin tone to match owner
 		if(!H.species || H.species.flags & HAS_SKIN_TONE)
-			if (H.s_tone >= 0)
+			if(H.s_tone >= 0)
 				base.Blend(rgb(H.s_tone, H.s_tone, H.s_tone), ICON_ADD)
 			else
 				base.Blend(rgb(-H.s_tone,  -H.s_tone,  -H.s_tone), ICON_SUBTRACT)
@@ -1029,7 +1028,7 @@ obj/item/weapon/organ/head/New(loc, mob/living/carbon/human/H)
 	brainmob.stat = 2
 	brainmob.death()
 
-obj/item/weapon/organ/head/proc/transfer_identity(var/mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->head
+obj/item/weapon/organ/head/proc/transfer_identity(mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->head
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
@@ -1039,7 +1038,7 @@ obj/item/weapon/organ/head/proc/transfer_identity(var/mob/living/carbon/human/H)
 	brainmob.container = src
 
 obj/item/weapon/organ/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/scalpel))
+	if(istype(W, /obj/item/weapon/scalpel))
 		switch(brain_op_stage)
 			if(0)
 				for(var/mob/O in (oviewers(brainmob) - user))
@@ -1058,7 +1057,7 @@ obj/item/weapon/organ/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
 				brain_op_stage = 3.0
 			else
 				..()
-	else if(istype(W,/obj/item/weapon/circular_saw))
+	else if(istype(W, /obj/item/weapon/circular_saw))
 		switch(brain_op_stage)
 			if(1)
 				for(var/mob/O in (oviewers(brainmob) - user))
@@ -1077,7 +1076,7 @@ obj/item/weapon/organ/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
 				brainmob.attack_log += "\[[time_stamp()]\]<font color='orange'> Debrained by [user.name] ([user.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)])</font>"
 				msg_admin_attack("[user] ([user.ckey]) debrained [brainmob] ([brainmob.ckey]) (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-				if(istype(src,/obj/item/weapon/organ/head/posi))
+				if(istype(src, /obj/item/weapon/organ/head/posi))
 					var/obj/item/device/mmi/posibrain/B = new(loc)
 					user.put_in_hands(B)
 					B.transfer_identity(brainmob)

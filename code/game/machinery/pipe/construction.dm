@@ -134,7 +134,7 @@ Buildable meters
 ///// Z-Level stuff
 	)
 	name = nlist[pipe_type+1] + " fitting"
-	var/list/islistold = list( \
+	var/list/islist = list( \
 		"simple", \
 		"simple", \
 		"he", \
@@ -161,7 +161,7 @@ Buildable meters
 		"cap", \
 ///// Z-Level stuff
 	)
-	icon_state = islistold[pipe_type + 1]
+	icon_state = islist[pipe_type + 1]
 
 //called when a turf is attacked with a pipe item
 // place the pipe on the turf, setting pipe level to 1 (underfloor) if the turf is not intact

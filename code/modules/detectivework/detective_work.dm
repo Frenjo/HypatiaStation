@@ -592,7 +592,7 @@ obj/machinery/computer/forensic_scanning
 		return
 
 	proc/process_card()	//Same as above, but for fingerprint cards
-		if(card.fingerprints && !(card.amount > 1) && islistold(card.fingerprints) && files && files.len)
+		if(card.fingerprints && !(card.amount > 1) && islist(card.fingerprints) && files && files.len)
 			usr << "You insert the card, and it is destroyed by the machinery in the process of comparing prints."
 			var/found = 0
 			for(var/master_print in card.fingerprints)

@@ -350,7 +350,7 @@
 ///////////////////////////////////
 
 /obj/mecha/proc/check_for_internal_damage(list/possible_int_damage, ignore_threshold = null)
-	if(!islistold(possible_int_damage) || isemptylist(possible_int_damage))
+	if(!islist(possible_int_damage) || isemptylist(possible_int_damage))
 		return
 	if(prob(20))
 		if(ignore_threshold || src.health * 100 / initial(src.health) < src.internal_damage_threshold)

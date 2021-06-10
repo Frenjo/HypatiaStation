@@ -20,7 +20,6 @@
 /datum/organ/internal/proc/is_broken()
 	return damage >= min_broken_damage
 
-
 /datum/organ/internal/New(mob/living/carbon/human/H)
 	..()
 	var/datum/organ/external/E = H.organs_by_name[src.parent_organ]
@@ -31,43 +30,44 @@
 	src.owner = H
 
 /datum/organ/internal/process()
-
 	//Process infections
-	if (!germ_level)
+	if(!germ_level)
 		return
 
-	if (robotic >= 2)	//TODO make robotic internal and external organs separate types of organ instead of a flag
+	if(robotic >= 2)	//TODO make robotic internal and external organs separate types of organ instead of a flag
 		germ_level = 0
 		return
 
 	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
 
-	if (germ_level > 0 && antibiotics > 5)
-		if (prob(4*antibiotics)) germ_level--
-		if (antibiotics > 30) germ_level--
+	if(germ_level > 0 && antibiotics > 5)
+		if(prob(4 * antibiotics))
+			germ_level--
+		if(antibiotics > 30)
+			germ_level--
 
-	if (germ_level >= INFECTION_LEVEL_ONE/2)
-		if(prob(round(germ_level/6)))	//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes
+	if(germ_level >= INFECTION_LEVEL_ONE / 2)
+		if(prob(round(germ_level / 6)))	//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes
 			germ_level++
 		if(prob(1))
-			take_damage(1,silent=0)
+			take_damage(1, silent = 0)
 
-	if (germ_level >= INFECTION_LEVEL_TWO)
+	if(germ_level >= INFECTION_LEVEL_TWO)
 		var/datum/organ/external/parent = owner.get_organ(parent_organ)
-		if (parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
+		if(parent.germ_level < germ_level && (parent.germ_level < INFECTION_LEVEL_ONE * 2 || prob(30)))
 			parent.germ_level++
 
-		if (prob(5))	//about once every 20 seconds
-			take_damage(1,silent=prob(30))
+		if(prob(5))	//about once every 20 seconds
+			take_damage(1, silent = prob(30))
 
-/datum/organ/internal/proc/take_damage(amount, var/silent=0)
+/datum/organ/internal/proc/take_damage(amount, silent = 0)
 	if(src.robotic == 2)
 		src.damage += (amount * 0.8)
 	else
 		src.damage += amount
 
 	var/datum/organ/external/parent = owner.get_organ(parent_organ)
-	if (!silent)
+	if(!silent)
 		owner.custom_pain("Something inside your [parent.display_name] hurts a lot.", 1)
 
 /datum/organ/internal/proc/emp_act(severity)
@@ -75,26 +75,26 @@
 		if(0)
 			return
 		if(1)
-			switch (severity)
-				if (1.0)
-					take_damage(20,0)
+			switch(severity)
+				if(1.0)
+					take_damage(20, 0)
 					return
-				if (2.0)
-					take_damage(7,0)
+				if(2.0)
+					take_damage(7, 0)
 					return
 				if(3.0)
-					take_damage(3,0)
+					take_damage(3, 0)
 					return
 		if(2)
-			switch (severity)
-				if (1.0)
-					take_damage(40,0)
+			switch(severity)
+				if(1.0)
+					take_damage(40, 0)
 					return
-				if (2.0)
-					take_damage(15,0)
+				if(2.0)
+					take_damage(15, 0)
 					return
 				if(3.0)
-					take_damage(10,0)
+					take_damage(10, 0)
 					return
 
 /datum/organ/internal/proc/mechanize() //Being used to make robutt hearts, etc
@@ -139,7 +139,7 @@
 			//High toxins levels are dangerous
 			if(owner.getToxLoss() >= 60 && !owner.reagents.has_reagent("anti_toxin"))
 				//Healthy liver suffers on its own
-				if (src.damage < min_broken_damage)
+				if(src.damage < min_broken_damage)
 					src.damage += 0.2 * process_accuracy
 				//Damaged one shares the fun
 				else
@@ -148,7 +148,7 @@
 					O.damage += 0.2  * process_accuracy
 
 			//Detox can heal small amounts of damage
-			if (src.damage && src.damage < src.min_bruised_damage && owner.reagents.has_reagent("anti_toxin"))
+			if(src.damage && src.damage < src.min_bruised_damage && owner.reagents.has_reagent("anti_toxin"))
 				src.damage -= 0.2 * process_accuracy
 
 			// Damaged liver means some chemicals are very dangerous

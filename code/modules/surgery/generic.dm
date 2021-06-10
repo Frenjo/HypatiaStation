@@ -53,7 +53,7 @@
 		affected.open = 1
 		affected.status |= ORGAN_BLEEDING
 		affected.createwound(CUT, 1)
-		affected.clampold()
+		affected.clamp_bleeding()
 		spread_germs_to_organ(affected, user)
 		if (target_zone == "head")
 			target.brain_op_stage = 1
@@ -91,7 +91,7 @@
 		affected.open = 1
 		affected.status |= ORGAN_BLEEDING
 		affected.createwound(CUT, 1)
-		affected.clampold()
+		affected.clamp_bleeding()
 		affected.open = 2
 		if (target_zone == "head")
 			target.brain_op_stage = 1
@@ -167,7 +167,7 @@
 		var/datum/organ/external/affected = target.get_organ(target_zone)
 		user.visible_message("\blue [user] clamps bleeders in [target]'s [affected.display_name] with \the [tool].",	\
 		"\blue You clamp bleeders in [target]'s [affected.display_name] with \the [tool].")
-		affected.clampold()
+		affected.clamp_bleeding()
 		spread_germs_to_organ(affected, user)
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
