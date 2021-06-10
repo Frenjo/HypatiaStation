@@ -19,7 +19,7 @@
 /obj/machinery/conveyor/centcom_auto
 	id = "round_end_belt"
 
-	// create a conveyor
+// create a conveyor
 /obj/machinery/conveyor/New(loc, newdir, on = 0)
 	..(loc)
 	if(newdir)
@@ -71,8 +71,8 @@
 		operating = 0
 	icon_state = "conveyor[operating]"
 
-	// machine process
-	// move items to the target location
+// machine process
+// move items to the target location
 /obj/machinery/conveyor/process()
 	if(stat & (BROKEN | NOPOWER))
 		return
@@ -86,27 +86,29 @@
 		for(var/atom/movable/A in affecting)
 			if(!A.anchored)
 				if(A.loc == src.loc) // prevents the object from being affected if it's not currently here.
-					step(A,movedir)
+					step(A, movedir)
 					items_moved++
 			if(items_moved >= 10)
 				break
 
 // attack with item, place item on conveyor
-/obj/machinery/conveyor/attackby(var/obj/item/I, mob/user)
-	if(isRobot(user))	return //Carn: fix for borgs dropping their modules on conveyor belts
+/obj/machinery/conveyor/attackby(obj/item/I, mob/user)
+	if(isRobot(user))
+		return //Carn: fix for borgs dropping their modules on conveyor belts
 	user.drop_item()
-	if(I && I.loc)	I.loc = src.loc
+	if(I && I.loc)
+		I.loc = src.loc
 	return
 
 // attack with hand, move pulled object onto conveyor
 /obj/machinery/conveyor/attack_hand(mob/user as mob)
-	if ((!( user.canmove ) || user.restrained() || !( user.pulling )))
+	if((!(user.canmove) || user.restrained() || !(user.pulling)))
 		return
-	if (user.pulling.anchored)
+	if(user.pulling.anchored)
 		return
-	if ((user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1))
+	if((user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1))
 		return
-	if (ismob(user.pulling))
+	if(ismob(user.pulling))
 		var/mob/M = user.pulling
 		M.stop_pulling()
 		step(user.pulling, get_dir(user.pulling.loc, src))
@@ -127,15 +129,13 @@
 	if(C)
 		C.set_operable(dir, id, 0)
 
-	C = locate() in get_step(src, turn(dir,180))
+	C = locate() in get_step(src, turn(dir, 180))
 	if(C)
-		C.set_operable(turn(dir,180), id, 0)
+		C.set_operable(turn(dir, 180), id, 0)
 
 
 //set the operable var if ID matches, propagating in the given direction
-
 /obj/machinery/conveyor/proc/set_operable(stepdir, match_id, op)
-
 	if(id != match_id)
 		return
 	operable = op
@@ -158,9 +158,7 @@
 // the conveyor control switch
 //
 //
-
 /obj/machinery/conveyor_switch
-
 	name = "conveyor switch"
 	desc = "A conveyor control switch."
 	icon = 'icons/obj/recycling.dmi'
@@ -174,8 +172,6 @@
 	var/list/conveyors		// the list of converyors that are controlled by this switch
 	anchored = 1
 
-
-
 /obj/machinery/conveyor_switch/New()
 	..()
 	update()
@@ -187,11 +183,10 @@
 				conveyors += C
 
 // update the icon depending on the position
-
 /obj/machinery/conveyor_switch/proc/update()
-	if(position<0)
+	if(position < 0)
 		icon_state = "switch-rev"
-	else if(position>0)
+	else if(position > 0)
 		icon_state = "switch-fwd"
 	else
 		icon_state = "switch-off"
@@ -199,7 +194,6 @@
 
 // timed process
 // if the switch changed, update the linked conveyors
-
 /obj/machinery/conveyor_switch/process()
 	if(!operated)
 		return
@@ -212,7 +206,7 @@
 // attack with hand, switch position
 /obj/machinery/conveyor_switch/attack_hand(mob/user)
 	if(!allowed(user))
-		user << "<span class='warning'>Access denied.</span>"
+		to_chat(user, span("warning", "Access denied."))
 		return
 
 	if(position == 0)
