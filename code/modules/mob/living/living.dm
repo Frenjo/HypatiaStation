@@ -139,7 +139,7 @@ default behaviour is:
 
 /mob/living/verb/succumb()
 	set hidden = 1
-	if ((src.health < 0 && src.health > -95.0))
+	if((src.health < 0 && src.health > -95.0))
 		src.adjustOxyLoss(src.health + 200)
 		src.health = 100 - src.getOxyLoss() - src.getToxLoss() - src.getFireLoss() - src.getBruteLoss()
 		src << "\blue You have given up life and succumbed to death."
@@ -153,7 +153,7 @@ default behaviour is:
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
-/mob/living/proc/calculate_affecting_pressure(var/pressure)
+/mob/living/proc/calculate_affecting_pressure(pressure)
 	return 0
 
 //sort of a legacy burn method for /electrocute, /shock, and the e_chair
@@ -169,7 +169,7 @@ default behaviour is:
 		var/extradam = 0	//added to when organ is at max dam
 		for(var/datum/organ/external/affecting in H.organs)
 			if(!affecting)	continue
-			if(affecting.take_damage(0, divided_damage+extradam))	//TODO: fix the extradam stuff. Or, ebtter yet...rewrite this entire proc ~Carn
+			if(affecting.take_damage(0, divided_damage + extradam))	//TODO: fix the extradam stuff. Or, ebtter yet...rewrite this entire proc ~Carn
 				H.UpdateDamageIcon()
 		H.updatehealth()
 		return 1
@@ -211,76 +211,88 @@ default behaviour is:
 /mob/living/proc/getBruteLoss()
 	return bruteloss
 
-/mob/living/proc/adjustBruteLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	bruteloss = min(max(bruteloss + amount, 0),(maxHealth*2))
+/mob/living/proc/adjustBruteLoss(amount)
+	if(status_flags & GODMODE)
+		return 0	//godmode
+	bruteloss = min(max(bruteloss + amount, 0), (maxHealth * 2))
 
 /mob/living/proc/getOxyLoss()
 	return oxyloss
 
-/mob/living/proc/adjustOxyLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	oxyloss = min(max(oxyloss + amount, 0),(maxHealth*2))
+/mob/living/proc/adjustOxyLoss(amount)
+	if(status_flags & GODMODE)
+		return 0	//godmode
+	oxyloss = min(max(oxyloss + amount, 0), (maxHealth * 2))
 
-/mob/living/proc/setOxyLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
+/mob/living/proc/setOxyLoss(amount)
+	if(status_flags & GODMODE)
+		return 0	//godmode
 	oxyloss = amount
 
 /mob/living/proc/getToxLoss()
 	return toxloss
 
-/mob/living/proc/adjustToxLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	toxloss = min(max(toxloss + amount, 0),(maxHealth*2))
+/mob/living/proc/adjustToxLoss(amount)
+	if(status_flags & GODMODE)
+		return 0	//godmode
+	toxloss = min(max(toxloss + amount, 0), (maxHealth * 2))
 
-/mob/living/proc/setToxLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
+/mob/living/proc/setToxLoss(amount)
+	if(status_flags & GODMODE)
+		return 0	//godmode
 	toxloss = amount
 
 /mob/living/proc/getFireLoss()
 	return fireloss
 
-/mob/living/proc/adjustFireLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	fireloss = min(max(fireloss + amount, 0),(maxHealth*2))
+/mob/living/proc/adjustFireLoss(amount)
+	if(status_flags & GODMODE)
+		return 0	//godmode
+	fireloss = min(max(fireloss + amount, 0), (maxHealth * 2))
 
 /mob/living/proc/getCloneLoss()
 	return cloneloss
 
-/mob/living/proc/adjustCloneLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	cloneloss = min(max(cloneloss + amount, 0),(maxHealth*2))
+/mob/living/proc/adjustCloneLoss(amount)
+	if(status_flags & GODMODE)
+		return 0	//godmode
+	cloneloss = min(max(cloneloss + amount, 0), (maxHealth * 2))
 
-/mob/living/proc/setCloneLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
+/mob/living/proc/setCloneLoss(amount)
+	if(status_flags & GODMODE)
+		return 0	//godmode
 	cloneloss = amount
 
 /mob/living/proc/getBrainLoss()
 	return brainloss
 
-/mob/living/proc/adjustBrainLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	brainloss = min(max(brainloss + amount, 0),(maxHealth*2))
+/mob/living/proc/adjustBrainLoss(amount)
+	if(status_flags & GODMODE)
+		return 0	//godmode
+	brainloss = min(max(brainloss + amount, 0), (maxHealth * 2))
 
-/mob/living/proc/setBrainLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
+/mob/living/proc/setBrainLoss(amount)
+	if(status_flags & GODMODE)
+		return 0	//godmode
 	brainloss = amount
 
 /mob/living/proc/getHalLoss()
 	return halloss
 
-/mob/living/proc/adjustHalLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	halloss = min(max(halloss + amount, 0),(maxHealth*2))
+/mob/living/proc/adjustHalLoss(amount)
+	if(status_flags & GODMODE)
+		return 0	//godmode
+	halloss = min(max(halloss + amount, 0), (maxHealth * 2))
 
-/mob/living/proc/setHalLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
+/mob/living/proc/setHalLoss(amount)
+	if(status_flags & GODMODE)
+		return 0	//godmode
 	halloss = amount
 
 /mob/living/proc/getMaxHealth()
 	return maxHealth
 
-/mob/living/proc/setMaxHealth(var/newMaxHealth)
+/mob/living/proc/setMaxHealth(newMaxHealth)
 	maxHealth = newMaxHealth
 
 // ++++ROCKDTBEN++++ MOB PROCS //END
@@ -290,7 +302,7 @@ default behaviour is:
 
 
 //Recursive function to find everything a mob is holding.
-/mob/living/get_contents(var/obj/item/weapon/storage/Storage = null)
+/mob/living/get_contents(obj/item/weapon/storage/Storage = null)
 	var/list/L = list()
 
 	if(Storage) //If it called itself
@@ -337,7 +349,7 @@ default behaviour is:
 	return 0
 
 
-/mob/living/proc/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0)
+/mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0)
 	  return 0 //only carbon liveforms have this proc
 
 /mob/living/emp_act(severity)
@@ -349,34 +361,36 @@ default behaviour is:
 /mob/living/proc/get_organ_target()
 	var/mob/shooter = src
 	var/t = shooter:zone_sel.selecting
-	if ((t in list( "eyes", "mouth" )))
+	if((t in list("eyes", "mouth")))
 		t = "head"
 	var/datum/organ/external/def_zone = ran_zone(t)
 	return def_zone
 
 
 // heal ONE external organ, organ gets randomly selected from damaged ones.
-/mob/living/proc/heal_organ_damage(var/brute, var/burn)
+/mob/living/proc/heal_organ_damage(brute, burn)
 	adjustBruteLoss(-brute)
 	adjustFireLoss(-burn)
 	src.updatehealth()
 
 // damage ONE external organ, organ gets randomly selected from damaged ones.
-/mob/living/proc/take_organ_damage(var/brute, var/burn)
-	if(status_flags & GODMODE)	return 0	//godmode
+/mob/living/proc/take_organ_damage(brute, burn)
+	if(status_flags & GODMODE)
+		return 0	//godmode
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
 	src.updatehealth()
 
 // heal MANY external organs, in random order
-/mob/living/proc/heal_overall_damage(var/brute, var/burn)
+/mob/living/proc/heal_overall_damage(brute, burn)
 	adjustBruteLoss(-brute)
 	adjustFireLoss(-burn)
 	src.updatehealth()
 
 // damage MANY external organs, in random order
-/mob/living/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
-	if(status_flags & GODMODE)	return 0	//godmode
+/mob/living/proc/take_overall_damage(brute, burn, used_weapon = null)
+	if(status_flags & GODMODE)
+		return 0	//godmode
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
 	src.updatehealth()
@@ -392,11 +406,11 @@ default behaviour is:
 	if(isCarbon(src))
 		var/mob/living/carbon/C = src
 
-		if (C.handcuffed && !initial(C.handcuffed))
+		if(C.handcuffed && !initial(C.handcuffed))
 			C.drop_from_inventory(C.handcuffed)
 		C.handcuffed = initial(C.handcuffed)
 
-		if (C.legcuffed && !initial(C.legcuffed))
+		if(C.legcuffed && !initial(C.legcuffed))
 			C.drop_from_inventory(C.legcuffed)
 		C.legcuffed = initial(C.legcuffed)
 	BITSET(hud_updateflag, HEALTH_HUD)
@@ -405,7 +419,6 @@ default behaviour is:
 	fire_stacks = 0
 
 /mob/living/proc/rejuvenate()
-
 	// shut down various types of badness
 	setToxLoss(0)
 	setOxyLoss(0)
@@ -474,24 +487,24 @@ default behaviour is:
 	return
 
 /mob/living/Move(a, b, flag)
-	if (buckled)
+	if(buckled)
 		return
 
-	if (restrained())
+	if(restrained())
 		stop_pulling()
 
 
 	var/t7 = 1
-	if (restrained())
+	if(restrained())
 		for(var/mob/living/M in range(src, 1))
-			if ((M.pulling == src && M.stat == 0 && !( M.restrained() )))
+			if((M.pulling == src && M.stat == 0 && !( M.restrained() )))
 				t7 = null
-	if ((t7 && (pulling && ((get_dist(src, pulling) <= 1 || pulling.loc == loc) && (client && client.moving)))))
+	if((t7 && (pulling && ((get_dist(src, pulling) <= 1 || pulling.loc == loc) && (client && client.moving)))))
 		var/turf/T = loc
 		. = ..()
 
-		if (pulling && pulling.loc)
-			if(!( isturf(pulling.loc) ))
+		if(pulling && pulling.loc)
+			if(!(isturf(pulling.loc)))
 				stop_pulling()
 				return
 			else
@@ -504,35 +517,35 @@ default behaviour is:
 			stop_pulling()
 			return
 
-		if (!restrained())
+		if(!restrained())
 			var/diag = get_dir(src, pulling)
-			if ((diag - 1) & diag)
+			if((diag - 1) & diag)
 			else
 				diag = null
-			if ((get_dist(src, pulling) > 1 || diag))
-				if (isLiving(pulling))
+			if((get_dist(src, pulling) > 1 || diag))
+				if(isLiving(pulling))
 					var/mob/living/M = pulling
 					var/ok = 1
-					if (locate(/obj/item/weapon/grab, M.grabbed_by))
-						if (prob(75))
+					if(locate(/obj/item/weapon/grab, M.grabbed_by))
+						if(prob(75))
 							var/obj/item/weapon/grab/G = pick(M.grabbed_by)
-							if (istype(G, /obj/item/weapon/grab))
+							if(istype(G, /obj/item/weapon/grab))
 								for(var/mob/O in viewers(M, null))
 									O.show_message(text("\red [] has been pulled from []'s grip by []", G.affecting, G.assailant, src), 1)
 								//G = null
 								qdel(G)
 						else
 							ok = 0
-						if (locate(/obj/item/weapon/grab, M.grabbed_by.len))
+						if(locate(/obj/item/weapon/grab, M.grabbed_by.len))
 							ok = 0
-					if (ok)
+					if(ok)
 						var/atom/movable/t = M.pulling
 						M.stop_pulling()
 
 						//this is the gay blood on floor shit -- Added back -- Skie
-						if (M.lying && (prob(M.getBruteLoss() / 6)))
+						if(M.lying && (prob(M.getBruteLoss() / 6)))
 							var/turf/location = M.loc
-							if (istype(location, /turf/simulated))
+							if(istype(location, /turf/simulated))
 								location.add_blood(M)
 						//pull damage with injured people
 							if(prob(25))
@@ -543,7 +556,7 @@ default behaviour is:
 								M.adjustBruteLoss(2)
 								visible_message("\red \The [M]'s wounds worsen terribly from being dragged!")
 								var/turf/location = M.loc
-								if (istype(location, /turf/simulated))
+								if(istype(location, /turf/simulated))
 									location.add_blood(M)
 									if(isHuman(M))
 										var/mob/living/carbon/H = M
@@ -555,21 +568,21 @@ default behaviour is:
 						step(pulling, get_dir(pulling.loc, T))
 						M.start_pulling(t)
 				else
-					if (pulling)
-						if (istype(pulling, /obj/structure/window))
+					if(pulling)
+						if(istype(pulling, /obj/structure/window))
 							if(pulling:ini_dir == NORTHWEST || pulling:ini_dir == NORTHEAST || pulling:ini_dir == SOUTHWEST || pulling:ini_dir == SOUTHEAST)
-								for(var/obj/structure/window/win in get_step(pulling,get_dir(pulling.loc, T)))
+								for(var/obj/structure/window/win in get_step(pulling, get_dir(pulling.loc, T)))
 									stop_pulling()
-					if (pulling)
+					if(pulling)
 						step(pulling, get_dir(pulling.loc, T))
 	else
 		stop_pulling()
 		. = ..()
-	if ((s_active && !( s_active in contents ) ))
+	if((s_active && !(s_active in contents)))
 		s_active.close(src)
 
 	if(update_slimes)
-		for(var/mob/living/carbon/slime/M in view(1,src))
+		for(var/mob/living/carbon/slime/M in view(1, src))
 			M.UpdateFeed(src)
 
 /mob/living/verb/resist()
@@ -597,19 +610,19 @@ default behaviour is:
 		return
 
 	//Resisting control by an alien mind.
-	if(istype(src.loc,/mob/living/simple_animal/borer))
+	if(istype(src.loc, /mob/living/simple_animal/borer))
 		var/mob/living/simple_animal/borer/B = src.loc
 		var/mob/living/captive_brain/H = src
 
 		H << "\red <B>You begin doggedly resisting the parasite's control (this will take approximately sixty seconds).</B>"
 		B.host << "\red <B>You feel the captive mind of [src] begin to resist your control.</B>"
 
-		spawn(rand(350,450)+B.host.brainloss)
+		spawn(rand(350, 450)+ B.host.brainloss)
 
 			if(!B || !B.controlling)
 				return
 
-			B.host.adjustBrainLoss(rand(5,10))
+			B.host.adjustBrainLoss(rand(5, 10))
 			H << "\red <B>With an immense exertion of will, you regain control of your body!</B>"
 			B.host << "\red <B>You feel control of the host brain ripped from your grasp, and retract your probosci before the wild neural impulses can damage you.</b>"
 			B.controlling = 0
@@ -653,10 +666,10 @@ default behaviour is:
 			L.visible_message("<span class='danger'>[L] resists!</span>")
 
 	//unbuckling yourself
-	if(L.buckled && (L.last_special <= world.time) )
+	if(L.buckled && (L.last_special <= world.time))
 		if(isCarbon(L))
 			var/mob/living/carbon/C = L
-			if( C.handcuffed )
+			if(C.handcuffed)
 				C.next_move = world.time + 100
 				C.last_special = world.time + 100
 				C << "\red You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)"
@@ -674,7 +687,7 @@ default behaviour is:
 			L.buckled.manual_unbuckle(L)
 
 	//Breaking out of a locker?
-	else if( src.loc && (istype(src.loc, /obj/structure/closet)) )
+	else if(src.loc && (istype(src.loc, /obj/structure/closet)))
 		var/breakout_time = 2 //2 minutes by default
 
 		var/obj/structure/closet/C = L.loc
@@ -699,7 +712,7 @@ default behaviour is:
 
 
 		spawn(0)
-			if(do_after(usr,(breakout_time*60*10))) //minutes * 60seconds * 10deciseconds
+			if(do_after(usr, (breakout_time * 60 * 10))) //minutes * 60seconds * 10deciseconds
 				if(!C || !L || L.stat != CONSCIOUS || L.loc != C || C.opened) //closet/user destroyed OR user dead/unconcious OR user no longer in closet OR closet opened
 					return
 
@@ -838,7 +851,7 @@ default behaviour is:
 	resting = !resting
 	src << "\blue You are now [resting ? "resting" : "getting up"]"
 
-/mob/living/proc/handle_ventcrawl(var/obj/machinery/atmospherics/unary/vent_pump/vent_found = null, var/ignore_items = 0) // -- TLE -- Merged by Carn
+/mob/living/proc/handle_ventcrawl(obj/machinery/atmospherics/unary/vent_pump/vent_found = null, ignore_items = 0) // -- TLE -- Merged by Carn
 	if(stat)
 		src << "You must be conscious to do this!"
 		return
@@ -858,7 +871,7 @@ default behaviour is:
 		if(!vent_found.Adjacent(src))
 			return // don't even acknowledge that
 	else
-		for(var/obj/machinery/atmospherics/unary/vent_pump/v in range(1,src))
+		for(var/obj/machinery/atmospherics/unary/vent_pump/v in range(1, src))
 			if(!v.welded)
 				if(v.Adjacent(src))
 					vent_found = v
@@ -892,7 +905,8 @@ default behaviour is:
 		return
 
 	var/obj/selection = input("Select a destination.", "Duct System") as null|anything in sortAssoc(vents)
-	if(!selection)	return
+	if(!selection)
+		return
 
 	if(!vent_found.Adjacent(src))
 		src << "Never mind, you left."
@@ -922,13 +936,15 @@ default behaviour is:
 
 	spawn(travel_time)
 
-		if(!target_vent)	return
-		for(var/mob/O in hearers(target_vent,null))
+		if(!target_vent)
+			return
+		for(var/mob/O in hearers(target_vent, null))
 			O.show_message("You hear something squeezing through the ventilation ducts.",2)
 
 		sleep(travel_time)
 
-		if(!target_vent)	return
+		if(!target_vent)
+			return
 		if(target_vent.welded)			//the vent can be welded while alien scrolled through the list or travelled.
 			target_vent = vent_found 	//travel back. No additional time required.
 			src << "\red The vent you were heading to appears to be welded."

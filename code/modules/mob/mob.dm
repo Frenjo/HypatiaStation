@@ -220,31 +220,31 @@ var/list/slot_equipment_priority = list( \
 	return 1
 
 /mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
-	if ((!( istype(l_hand, /obj/item/weapon/grab) ) && !( istype(r_hand, /obj/item/weapon/grab) )))
-		if (!( L ))
+	if((!(istype(l_hand, /obj/item/weapon/grab)) && !(istype(r_hand, /obj/item/weapon/grab))))
+		if(!(L))
 			return null
 		else
 			return L.container
 	else
-		if (!( L ))
-			L = new /obj/effect/list_container/mobl( null )
+		if(!(L))
+			L = new /obj/effect/list_container/mobl(null)
 			L.container += src
 			L.master = src
-		if (istype(l_hand, /obj/item/weapon/grab))
+		if(istype(l_hand, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = l_hand
-			if (!( L.container.Find(G.affecting) ))
+			if(!(L.container.Find(G.affecting)))
 				L.container += G.affecting
-				if (G.affecting)
+				if(G.affecting)
 					G.affecting.ret_grab(L, 1)
-		if (istype(r_hand, /obj/item/weapon/grab))
+		if(istype(r_hand, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = r_hand
-			if (!( L.container.Find(G.affecting) ))
+			if(!(L.container.Find(G.affecting)))
 				L.container += G.affecting
-				if (G.affecting)
+				if(G.affecting)
 					G.affecting.ret_grab(L, 1)
-		if (!( flag ))
-			if (L.master == src)
-				var/list/temp = list(  )
+		if(!(flag))
+			if(L.master == src)
+				var/list/temp = list()
 				temp += L.container
 				//L = null
 				qdel(L)
@@ -782,7 +782,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		drop_l_hand()
 		drop_r_hand()
 	else
-		density = 1
+		density = initial(density)
 
 	for(var/obj/item/weapon/grab/G in grabbed_by)
 		if(G.state >= GRAB_AGGRESSIVE)
@@ -803,32 +803,36 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 /mob/verb/eastface()
 	set hidden = 1
-	if(!canface())	return 0
-	dir = EAST
+	if(!canface())
+		return 0
+	set_dir(EAST)
 	client.move_delay += movement_delay()
 	return 1
 
 
 /mob/verb/westface()
 	set hidden = 1
-	if(!canface())	return 0
-	dir = WEST
+	if(!canface())
+		return 0
+	set_dir(WEST)
 	client.move_delay += movement_delay()
 	return 1
 
 
 /mob/verb/northface()
 	set hidden = 1
-	if(!canface())	return 0
-	dir = NORTH
+	if(!canface())
+		return 0
+	set_dir(NORTH)
 	client.move_delay += movement_delay()
 	return 1
 
 
 /mob/verb/southface()
 	set hidden = 1
-	if(!canface())	return 0
-	dir = SOUTH
+	if(!canface())
+		return 0
+	set_dir(SOUTH)
 	client.move_delay += movement_delay()
 	return 1
 
@@ -839,83 +843,83 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 /mob/proc/Stun(amount)
 	if(status_flags & CANSTUN)
-		stunned = max(max(stunned,amount),0) //can't go below 0, getting a low amount of stun doesn't lower your current stun
+		stunned = max(max(stunned, amount), 0) //can't go below 0, getting a low amount of stun doesn't lower your current stun
 	return
 
 /mob/proc/SetStunned(amount) //if you REALLY need to set stun to a set amount without the whole "can't go below current stunned"
 	if(status_flags & CANSTUN)
-		stunned = max(amount,0)
+		stunned = max(amount, 0)
 	return
 
 /mob/proc/AdjustStunned(amount)
 	if(status_flags & CANSTUN)
-		stunned = max(stunned + amount,0)
+		stunned = max(stunned + amount, 0)
 	return
 
 /mob/proc/Weaken(amount)
 	if(status_flags & CANWEAKEN)
-		weakened = max(max(weakened,amount),0)
+		weakened = max(max(weakened, amount), 0)
 		update_canmove()	//updates lying, canmove and icons
 	return
 
 /mob/proc/SetWeakened(amount)
 	if(status_flags & CANWEAKEN)
-		weakened = max(amount,0)
+		weakened = max(amount, 0)
 		update_canmove()	//updates lying, canmove and icons
 	return
 
 /mob/proc/AdjustWeakened(amount)
 	if(status_flags & CANWEAKEN)
-		weakened = max(weakened + amount,0)
+		weakened = max(weakened + amount, 0)
 		update_canmove()	//updates lying, canmove and icons
 	return
 
 /mob/proc/Paralyse(amount)
 	if(status_flags & CANPARALYSE)
-		paralysis = max(max(paralysis,amount),0)
+		paralysis = max(max(paralysis, amount), 0)
 	return
 
 /mob/proc/SetParalysis(amount)
 	if(status_flags & CANPARALYSE)
-		paralysis = max(amount,0)
+		paralysis = max(amount, 0)
 	return
 
 /mob/proc/AdjustParalysis(amount)
 	if(status_flags & CANPARALYSE)
-		paralysis = max(paralysis + amount,0)
+		paralysis = max(paralysis + amount, 0)
 	return
 
 /mob/proc/Sleeping(amount)
-	sleeping = max(max(sleeping,amount),0)
+	sleeping = max(max(sleeping, amount), 0)
 	return
 
 /mob/proc/SetSleeping(amount)
-	sleeping = max(amount,0)
+	sleeping = max(amount, 0)
 	return
 
 /mob/proc/AdjustSleeping(amount)
-	sleeping = max(sleeping + amount,0)
+	sleeping = max(sleeping + amount, 0)
 	return
 
 /mob/proc/Resting(amount)
-	resting = max(max(resting,amount),0)
+	resting = max(max(resting, amount), 0)
 	return
 
 /mob/proc/SetResting(amount)
-	resting = max(amount,0)
+	resting = max(amount, 0)
 	return
 
 /mob/proc/AdjustResting(amount)
-	resting = max(resting + amount,0)
+	resting = max(resting + amount, 0)
 	return
 
 /mob/proc/get_species()
 	return ""
 
 /mob/proc/flash_weak_pain()
-	flick("weak_pain",pain)
+	flick("weak_pain", pain)
 
-/mob/proc/get_visible_implants(var/class = 0)
+/mob/proc/get_visible_implants(class = 0)
 	var/list/visible_implants = list()
 	for(var/obj/item/O in embedded)
 		if(O.w_class > class)
@@ -977,7 +981,6 @@ mob/proc/yank_out_object()
 		src.verbs -= /mob/proc/yank_out_object
 
 	if(istype(src,/mob/living/carbon/human))
-
 		var/mob/living/carbon/human/H = src
 		var/datum/organ/external/affected
 
@@ -987,7 +990,7 @@ mob/proc/yank_out_object()
 					affected = organ
 
 		affected.implants -= selection
-		H.shock_stage+=10
+		H.shock_stage += 10
 		H.bloody_hands(S)
 
 		//if(prob(10)) //I'M SO ANEMIC I COULD JUST -DIE-.

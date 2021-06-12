@@ -19,7 +19,7 @@
 		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
 			germ_level++
 
-/mob/living/carbon/relaymove(var/mob/user, direction)
+/mob/living/carbon/relaymove(mob/user, direction)
 	if(user in src.stomach_contents)
 		if(prob(40))
 			for(var/mob/M in hearers(4, src))
@@ -63,9 +63,9 @@
 	if(!istype(M, /mob/living/carbon))
 		return
 
-	if (hasOrgans(M))
+	if(hasOrgans(M))
 		var/datum/organ/external/temp = M:organs_by_name["r_hand"]
-		if (M.hand)
+		if(M.hand)
 			temp = M:organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
 			M << "\red You can't use your [temp.display_name]"
@@ -86,23 +86,22 @@
 		return
 
 	for(var/datum/disease/D in viruses)
-
 		if(D.spread_by_touch())
 			M.contract_disease(D, 0, 1, CONTACT_HANDS)
 
 	for(var/datum/disease/D in M.viruses)
-
 		if(D.spread_by_touch())
 			contract_disease(D, 0, 1, CONTACT_HANDS)
 
 	return
 
-/mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0)
-	if(status_flags & GODMODE)	return 0	//godmode
+/mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0)
+	if(status_flags & GODMODE)
+		return 0	//godmode
 	shock_damage *= siemens_coeff
-	if (shock_damage<1)
+	if(shock_damage < 1)
 		return 0
-	src.take_overall_damage(0,shock_damage,used_weapon="Electrocution")
+	src.take_overall_damage(0, shock_damage, used_weapon = "Electrocution")
 	//src.burn_skin(shock_damage)
 	//src.adjustFireLoss(shock_damage) //burn_skin will do this for us
 	//src.updatehealth()
@@ -121,11 +120,11 @@
 /mob/living/carbon/proc/swap_hand()
 	var/obj/item/item_in_hand = src.get_active_hand()
 	if(item_in_hand) //this segment checks if the item in your hand is twohanded.
-		if(istype(item_in_hand,/obj/item/weapon/twohanded))
+		if(istype(item_in_hand, /obj/item/weapon/twohanded))
 			if(item_in_hand:wielded == 1)
 				usr << "<span class='warning'>Your other hand is too busy holding the [item_in_hand.name]</span>"
 				return
-	src.hand = !( src.hand )
+	src.hand = !(src.hand)
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
 		if(hand)	//This being 1 means the left hand is in use
 			hud_used.l_hand_hud_object.icon_state = "hand_active"
@@ -139,7 +138,7 @@
 		src.hands.dir = SOUTH*/
 	return
 
-/mob/living/carbon/proc/activate_hand(var/selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
+/mob/living/carbon/proc/activate_hand(selhand) //0 or "r" or "right" for right hand; 1 or "l" or "left" for left hand.
 	if(istext(selhand))
 		selhand = lowertext(selhand)
 
@@ -156,7 +155,7 @@
 		if(src == M && istype(src, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = src
 			src.visible_message( \
-				text("\blue [src] examines [].",src.gender==MALE?"himself":"herself"), \
+				text("\blue [src] examines [].", src.gender==MALE ? "himself" : "herself"), \
 				"\blue You check yourself for injuries." \
 				)
 
@@ -191,16 +190,16 @@
 					status = "weirdly shapen."
 				if(status == "")
 					status = "OK"
-				src.show_message(text("\t []My [] is [].",status=="OK"?"\blue ":"\red ",org.display_name,status),1)
+				src.show_message(text("\t []My [] is [].", status == "OK" ? "\blue " : "\red ", org.display_name, status), 1)
 			if((SKELETON in H.mutations) && (!H.w_uniform) && (!H.wear_suit))
 				H.play_xylophone()
 		else
 			var/t_him = "it"
-			if (src.gender == MALE)
+			if(src.gender == MALE)
 				t_him = "him"
-			else if (src.gender == FEMALE)
+			else if(src.gender == FEMALE)
 				t_him = "her"
-			if (istype(src,/mob/living/carbon/human) && src:w_uniform)
+			if(istype(src,/mob/living/carbon/human) && src:w_uniform)
 				var/mob/living/carbon/human/H = src
 				H.w_uniform.add_fingerprint(M)
 			src.sleeping = max(0,src.sleeping-5)
@@ -224,7 +223,7 @@
 /mob/living/carbon/proc/getDNA()
 	return dna
 
-/mob/living/carbon/proc/setDNA(var/datum/dna/newDNA)
+/mob/living/carbon/proc/setDNA(datum/dna/newDNA)
 	dna = newDNA
 
 // ++++ROCKDTBEN++++ MOB PROCS //END
@@ -268,11 +267,13 @@
 	src.throw_mode_off()
 	if(usr.stat || !target)
 		return
-	if(target.type == /obj/screen) return
+	if(target.type == /obj/screen)
+		return
 
 	var/atom/movable/item = src.get_active_hand()
 
-	if(!item) return
+	if(!item)
+		return
 
 	if (istype(item, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = item
@@ -289,13 +290,14 @@
 				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
 				msg_admin_attack("[usr.name] ([usr.ckey]) has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
 
-	if(!item) return //Grab processing has a chance of returning null
+	if(!item)
+		return //Grab processing has a chance of returning null
 
 	item.layer = initial(item.layer)
 	u_equip(item)
 	update_icons()
 
-	if (istype(usr, /mob/living/carbon)) //Check if a carbon mob is throwing. Modify/remove this line as required.
+	if(istype(usr, /mob/living/carbon)) //Check if a carbon mob is throwing. Modify/remove this line as required.
 		item.loc = src.loc
 		if(src.client)
 			src.client.screen -= item
@@ -303,7 +305,7 @@
 			item:dropped(src) // let it know it's been dropped
 
 	//actually throw it!
-	if (item)
+	if(item)
 		src.visible_message("\red [src] has thrown [item].")
 
 		if(!src.lastarea)
@@ -324,7 +326,7 @@
 
 /mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	..()
-	bodytemperature = max(bodytemperature, BODYTEMP_HEAT_DAMAGE_LIMIT+10)
+	bodytemperature = max(bodytemperature, BODYTEMP_HEAT_DAMAGE_LIMIT + 10)
 
 /mob/living/carbon/can_use_hands()
 	if(handcuffed)
@@ -404,7 +406,7 @@
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
 		usr.sleeping = 20 //Short nap
 
-/mob/living/carbon/Bump(var/atom/movable/AM, yes)
+/mob/living/carbon/Bump(atom/movable/AM, yes)
 	if(now_pushing || !yes)
 		return
 	..()

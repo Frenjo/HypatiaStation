@@ -30,8 +30,8 @@
 	O = new species.primitive(loc)
 
 	O.dna = dna.Clone()
-	O.dna.SetSEState(MONKEYBLOCK,1)
-	O.dna.SetSEValueRange(MONKEYBLOCK,0xDAC, 0xFFF)
+	O.dna.SetSEState(MONKEYBLOCK, 1)
+	O.dna.SetSEValueRange(MONKEYBLOCK, 0xDAC, 0xFFF)
 	O.loc = loc
 	O.viruses = viruses
 	O.a_intent = "hurt"
@@ -78,7 +78,7 @@
 /mob/proc/AIize()
 	if(client)
 		src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jams for AIs
-	var/mob/living/silicon/ai/O = new (loc, base_law_type,,1)//No MMI but safety is in effect.
+	var/mob/living/silicon/ai/O = new(loc, base_law_type, , 1)//No MMI but safety is in effect.
 	O.invisibility = 0
 	O.aiRestorePowerRoutine = 0
 
@@ -104,7 +104,7 @@
 	if(!loc_landmark)
 		O << "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone."
 		for(var/obj/effect/landmark/start/sloc in landmarks_list)
-			if (sloc.name == "AI")
+			if(sloc.name == "AI")
 				loc_landmark = sloc
 
 	O.loc = loc_landmark.loc
@@ -130,7 +130,7 @@
 
 	O.job = "AI"
 
-	O.rename_self("ai",1)
+	O.rename_self("ai", 1)
 	. = O
 	qdel(src)
 
@@ -148,17 +148,15 @@
 	for(var/t in organs)
 		qdel(t)
 
-	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot( loc )
+	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(loc)
 
 	// cyborgs produced by Robotize get an automatic power cell
 	O.cell = new(O)
 	O.cell.maxcharge = 7500
 	O.cell.charge = 7500
 
-
 	O.gender = gender
 	O.invisibility = 0
-
 
 	if(mind)		//TODO
 		mind.transfer_to(O)
@@ -200,7 +198,7 @@
 	for(var/t in organs)
 		qdel(t)
 
-	var/alien_caste = pick("Hunter","Sentinel","Drone")
+	var/alien_caste = pick("Hunter", "Sentinel", "Drone")
 	var/mob/living/carbon/human/new_xeno = create_new_xenomorph(alien_caste, loc)
 
 	new_xeno.a_intent = "hurt"
@@ -226,12 +224,12 @@
 
 	var/mob/living/carbon/slime/new_slime
 	if(reproduce)
-		var/number = pick(14;2,3,4)	//reproduce (has a small chance of producing 3 or 4 offspring)
+		var/number = pick(14;2, 3, 4)	//reproduce (has a small chance of producing 3 or 4 offspring)
 		var/list/babies = list()
-		for(var/i=1,i<=number,i++)
+		for(var/i = 1, i <= number, i++)
 			var/mob/living/carbon/slime/M = new/mob/living/carbon/slime(loc)
 			M.nutrition = round(nutrition/number)
-			step_away(M,src)
+			step_away(M, src)
 			babies += M
 		new_slime = pick(babies)
 	else
@@ -260,7 +258,7 @@
 	for(var/t in organs)	//this really should not be necessary
 		qdel(t)
 
-	var/mob/living/simple_animal/corgi/new_corgi = new /mob/living/simple_animal/corgi (loc)
+	var/mob/living/simple_animal/corgi/new_corgi = new /mob/living/simple_animal/corgi(loc)
 	new_corgi.a_intent = "hurt"
 	new_corgi.key = key
 
@@ -296,7 +294,6 @@
 	new_mob.key = key
 	new_mob.a_intent = "hurt"
 
-
 	new_mob << "You suddenly feel more... animalistic."
 	spawn()
 		qdel(src)
@@ -323,8 +320,7 @@
  * This proc is here to force coders to manually place their mob in this list, hopefully tested.
  * This also gives a place to explain -why- players shouldnt be turn into certain mobs and hopefully someone can fix them.
  */
-/mob/proc/safe_animal(var/MP)
-
+/mob/proc/safe_animal(MP)
 //Bad mobs! - Remember to add a comment explaining what's wrong with the mob
 	if(!MP)
 		return 0	//Sanity, this should never happen.

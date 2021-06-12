@@ -1,9 +1,10 @@
-/mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
+/mob/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	if(air_group || (height == 0))
+		return 1
 
 	if(ismob(mover))
 		var/mob/moving_mob = mover
-		if ((other_mobs && moving_mob.other_mobs))
+		if((other_mobs && moving_mob.other_mobs))
 			return 1
 		return (!mover.density || !density || lying)
 	else
@@ -151,8 +152,9 @@
 	if(mob && mob.control_object)
 		if(mob.control_object.density)
 			step(mob.control_object,direct)
-			if(!mob.control_object)	return
-			mob.control_object.dir = direct
+			if(!mob.control_object)
+				return
+			mob.control_object.set_dir(direct)
 		else
 			mob.control_object.loc = get_step(mob.control_object,direct)
 	return
@@ -324,7 +326,7 @@
 	switch(L.incorporeal_move)
 		if(1)
 			L.loc = get_step(L, direct)
-			L.dir = direct
+			L.set_dir(direct)
 		if(2)
 			if(prob(50))
 				var/locx
@@ -332,39 +334,39 @@
 				switch(direct)
 					if(NORTH)
 						locx = mobloc.x
-						locy = (mobloc.y+2)
-						if(locy>world.maxy)
+						locy = (mobloc.y + 2)
+						if(locy > world.maxy)
 							return
 					if(SOUTH)
 						locx = mobloc.x
-						locy = (mobloc.y-2)
-						if(locy<1)
+						locy = (mobloc.y - 2)
+						if(locy < 1)
 							return
 					if(EAST)
 						locy = mobloc.y
-						locx = (mobloc.x+2)
-						if(locx>world.maxx)
+						locx = (mobloc.x + 2)
+						if(locx > world.maxx)
 							return
 					if(WEST)
 						locy = mobloc.y
-						locx = (mobloc.x-2)
-						if(locx<1)
+						locx = (mobloc.x - 2)
+						if(locx < 1)
 							return
 					else
 						return
-				L.loc = locate(locx,locy,mobloc.z)
+				L.loc = locate(locx, locy, mobloc.z)
 				spawn(0)
 					var/limit = 2//For only two trailing shadows.
 					for(var/turf/T in getline(mobloc, L.loc))
 						spawn(0)
-							anim(T,L,'icons/mob/mob.dmi',,"shadow",,L.dir)
+							anim(T, L, 'icons/mob/mob.dmi', , "shadow", , L.dir)
 						limit--
 						if(limit<=0)	break
 			else
 				spawn(0)
-					anim(mobloc,mob,'icons/mob/mob.dmi',,"shadow",,L.dir)
+					anim(mobloc, mob, 'icons/mob/mob.dmi', , "shadow", , L.dir)
 				L.loc = get_step(L, direct)
-			L.dir = direct
+			L.set_dir(direct)
 	return 1
 
 
@@ -372,7 +374,7 @@
 ///Called by /client/Move()
 ///For moving in space
 ///Return 1 for movement 0 for none
-/mob/proc/Process_Spacemove(var/check_drift = 0)
+/mob/proc/Process_Spacemove(check_drift = 0)
 	//First check to see if we can do things
 	if(restrained())
 		return 0
@@ -385,16 +387,16 @@
 
 	var/dense_object = 0
 	for(var/turf/turf in oview(1,src))
-		if(istype(turf,/turf/space))
+		if(istype(turf, /turf/space))
 			continue
 
-		if(istype(src,/mob/living/carbon/human/))  // Only humans can wear magboots, so we give them a chance to.
-			if((istype(turf,/turf/simulated/floor)) && (src.lastarea.has_gravity == 0) && !(istype(src:shoes, /obj/item/clothing/shoes/magboots) && (src:shoes:flags & NOSLIP)))
+		if(istype(src, /mob/living/carbon/human/))  // Only humans can wear magboots, so we give them a chance to.
+			if((istype(turf, /turf/simulated/floor)) && (src.lastarea.has_gravity == 0) && !(istype(src:shoes, /obj/item/clothing/shoes/magboots) && (src:shoes:flags & NOSLIP)))
 				continue
 
 
 		else
-			if((istype(turf,/turf/simulated/floor)) && (src.lastarea.has_gravity == 0)) // No one else gets a chance.
+			if((istype(turf, /turf/simulated/floor)) && (src.lastarea.has_gravity == 0)) // No one else gets a chance.
 				continue
 
 
@@ -437,7 +439,7 @@
 	return 1
 
 
-/mob/proc/Process_Spaceslipping(var/prob_slip = 5)
+/mob/proc/Process_Spaceslipping(prob_slip = 5)
 	//Setup slipage
 	//If knocked out we might just hit it and stop.  This makes it possible to get dead bodies and such.
 	if(stat)
