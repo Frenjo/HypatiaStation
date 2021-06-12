@@ -179,14 +179,13 @@ var/list/rune_animation = list(
 	var/icon/base = icon('icons/effects/uristrunes.dmi', "")
 
 	for(var/i = 0, i < 10, i++)
-		if(rune_bits & (1 << i))
+		if(BITTEST(rune_bits, i))
 			base.Blend(icon('icons/effects/uristrunes.dmi', "rune-[1 << i]"), ICON_OVERLAY)
 
 	var/icon/result
 
 	if(animated == 1)
 		result = animate_rune(base)
-
 	else
 		result = inanimate_rune(base)
 

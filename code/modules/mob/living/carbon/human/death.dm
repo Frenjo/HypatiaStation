@@ -24,8 +24,8 @@
 	if(stat == DEAD)
 		return
 
-	hud_updateflag |= 1 << HEALTH_HUD
-	hud_updateflag |= 1 << STATUS_HUD
+	BITSET(hud_updateflag, HEALTH_HUD)
+	BITSET(hud_updateflag, STATUS_HUD)
 
 	handle_hud_list()
 
@@ -38,7 +38,7 @@
 	var/mob/living/simple_animal/borer/B
 
 	for(var/I in head.implants)
-		if(istype(I,/mob/living/simple_animal/borer))
+		if(istype(I, /mob/living/simple_animal/borer))
 			B = I
 	if(B)
 		if(!B.ckey && ckey && B.controlling)

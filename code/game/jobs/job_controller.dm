@@ -464,14 +464,15 @@ var/global/datum/controller/occupations/job_master
 				G.prescription = 1
 //		H.update_icons()
 
-		H.hud_updateflag |= (1 << ID_HUD)
-		H.hud_updateflag |= (1 << IMPLOYAL_HUD)
-		H.hud_updateflag |= (1 << SPECIALROLE_HUD)
+		BITSET(H.hud_updateflag, ID_HUD)
+		BITSET(H.hud_updateflag, IMPLOYAL_HUD)
+		BITSET(H.hud_updateflag, SPECIALROLE_HUD)
 		return 1
 
 
-	proc/spawnId(var/mob/living/carbon/human/H, rank, title)
-		if(!H)	return 0
+	proc/spawnId(mob/living/carbon/human/H, rank, title)
+		if(!H)
+			return 0
 		var/obj/item/weapon/card/id/C = null
 
 		var/datum/job/job = null
@@ -501,8 +502,8 @@ var/global/datum/controller/occupations/job_master
 			H.equip_to_slot_or_del(C, slot_wear_id)
 
 		H.equip_to_slot_or_del(new /obj/item/device/pda(H), slot_belt)
-		if(locate(/obj/item/device/pda,H))
-			var/obj/item/device/pda/pda = locate(/obj/item/device/pda,H)
+		if(locate(/obj/item/device/pda, H))
+			var/obj/item/device/pda/pda = locate(/obj/item/device/pda, H)
 			pda.owner = H.real_name
 			pda.ownjob = C.assignment
 			pda.name = "PDA - [H.real_name] ([pda.ownjob])" // Edited this to space out the dash. -Frenjo
@@ -521,7 +522,7 @@ var/global/datum/controller/occupations/job_master
 				continue
 
 			job = trim(job)
-			if (!length(job))
+			if(!length(job))
 				continue
 
 			var/pos = findtext(job, "=")
@@ -536,7 +537,8 @@ var/global/datum/controller/occupations/job_master
 
 			if(name && value)
 				var/datum/job/J = GetJob(name)
-				if(!J)	continue
+				if(!J)
+					continue
 				J.total_positions = text2num(value)
 				J.spawn_positions = text2num(value)
 				if(name == "AI" || name == "Cyborg")//I dont like this here but it will do for now

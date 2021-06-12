@@ -10,14 +10,14 @@
 	var/list/datum/disease2/effectholder/effects = list()
 	var/antigen = 0 // 16 bits describing the antigens, when one bit is set, a cure with that bit can dock here
 	var/max_stage = 4
-	var/list/affected_species = list("Human","Soghun","Skrell","Tajaran")
+	var/list/affected_species = list("Human", "Soghun", "Skrell", "Tajaran")
 
 /datum/disease2/disease/New()
 	uniqueID = rand(0, 10000)
 	..()
 
-/datum/disease2/disease/proc/makerandom(var/greater = 0)
-	for(var/i=1 ; i <= max_stage ; i++)
+/datum/disease2/disease/proc/makerandom(greater = 0)
+	for(var/i = 1 ; i <= max_stage ; i++)
 		var/datum/disease2/effectholder/holder = new /datum/disease2/effectholder
 		holder.stage = i
 		if(greater)
@@ -49,7 +49,7 @@
 			res += picked
 	return res
 
-/datum/disease2/disease/proc/activate(var/mob/living/carbon/mob)
+/datum/disease2/disease/proc/activate(mob/living/carbon/mob)
 	if(dead)
 		cure(mob)
 		return
@@ -90,17 +90,17 @@
 	if(src.spreadtype == "Airborne")
 		for(var/mob/living/carbon/M in oview(1,mob))
 			if(airborne_can_reach(get_turf(mob), get_turf(M)))
-				infect_virus2(M,src)
+				infect_virus2(M, src)
 
 	//fever
 	mob.bodytemperature = max(mob.bodytemperature, min(310 + 5 * stage, mob.bodytemperature + 5 * stage))
-	clicks+=speed
+	clicks += speed
 
-/datum/disease2/disease/proc/cure(var/mob/living/carbon/mob)
+/datum/disease2/disease/proc/cure(mob/living/carbon/mob)
 	for(var/datum/disease2/effectholder/e in effects)
 		e.effect.deactivate(mob)
 	mob.virus2.Remove("[uniqueID]")
-	mob.hud_updateflag |= 1 << STATUS_HUD
+	BITSET(mob.hud_updateflag, STATUS_HUD)
 
 /datum/disease2/disease/proc/minormutate()
 	//uniqueID = rand(0,10000)
@@ -137,7 +137,7 @@
 		disease.effects += newholder
 	return disease
 
-/datum/disease2/disease/proc/issame(var/datum/disease2/disease/disease)
+/datum/disease2/disease/proc/issame(datum/disease2/disease/disease)
 	var/list/types = list()
 	var/list/types2 = list()
 	for(var/datum/disease2/effectholder/d in effects)
@@ -151,13 +151,13 @@
 		if(!(type in types2))
 			equal = 0
 
-	if (antigen != disease.antigen)
+	if(antigen != disease.antigen)
 		equal = 0
 	return equal
 
-/proc/virus_copylist(var/list/datum/disease2/disease/viruses)
+/proc/virus_copylist(list/datum/disease2/disease/viruses)
 	var/list/res = list()
-	for (var/ID in viruses)
+	for(var/ID in viruses)
 		var/datum/disease2/disease/V = viruses[ID]
 		res["[V.uniqueID]"] = V.getcopy()
 	return res
@@ -204,7 +204,8 @@ proc/virus2_lesser_infection()
 		if(G.client && G.stat != DEAD)
 			candidates += G
 
-	if(!candidates.len)	return
+	if(!candidates.len)
+		return
 
 	candidates = shuffle(candidates)
 
@@ -216,7 +217,8 @@ proc/virus2_greater_infection()
 	for(var/mob/living/carbon/human/G in player_list)
 		if(G.client && G.stat != DEAD)
 			candidates += G
-	if(!candidates.len)	return
+	if(!candidates.len)
+		return
 
 	candidates = shuffle(candidates)
 

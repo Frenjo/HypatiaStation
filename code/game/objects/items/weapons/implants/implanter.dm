@@ -46,7 +46,7 @@
 						affected.implants += src.imp
 						imp.part = affected
 
-						H.hud_updateflag |= 1 << IMPLOYAL_HUD
+						BITSET(H.hud_updateflag, WANTED_HUD)
 
 				src.imp = null
 				update()

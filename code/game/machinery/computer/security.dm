@@ -42,16 +42,16 @@
 /obj/machinery/computer/secure_data/attack_hand(mob/user as mob)
 	if(..())
 		return
-	if (src.z > 6)
+	if(src.z > 6)
 		user << "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!"
 		return
 	var/dat
 
-	if (temp)
+	if(temp)
 		dat = text("<TT>[]</TT><BR><BR><A href='?src=\ref[];choice=Clear Screen'>Clear Screen</A>", temp, src)
 	else
 		dat = text("Confirm Identity: <A href='?src=\ref[];choice=Confirm Identity'>[]</A><HR>", src, (scan ? text("[]", scan.name) : "----------"))
-		if (authenticated)
+		if(authenticated)
 			switch(screen)
 				if(1.0)
 					dat += {"
@@ -508,9 +508,9 @@ What a mess.*/
 						else
 							alert(usr, "You do not have the required rank to do this!")
 					if("species")
-						if (istype(active1, /datum/data/record))
+						if(istype(active1, /datum/data/record))
 							var/t1 = copytext(sanitize(input("Please enter race:", "General records", active1.fields["species"], null)  as message),1,MAX_MESSAGE_LEN)
-							if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!istype(usr, /mob/living/silicon))) || active1 != a1))
+							if((!(t1) || !(authenticated) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!istype(usr, /mob/living/silicon))) || active1 != a1))
 								return
 							active1.fields["species"] = t1
 
@@ -518,16 +518,16 @@ What a mess.*/
 			else//To properly clear as per clear screen.
 				temp=null
 				switch(href_list["choice"])
-					if ("Change Rank")
-						if (active1)
+					if("Change Rank")
+						if(active1)
 							active1.fields["rank"] = href_list["rank"]
 							if(href_list["rank"] in joblist)
 								active1.fields["real_rank"] = href_list["real_rank"]
 
-					if ("Change Criminal Status")
-						if (active2)
+					if("Change Criminal Status")
+						if(active2)
 							for(var/mob/living/carbon/human/H in player_list)
-								H.hud_updateflag |= 1 << WANTED_HUD
+								BITSET(H.hud_updateflag, WANTED_HUD)
 							switch(href_list["criminal2"])
 								if("none")
 									active2.fields["criminal"] = "None"
@@ -540,18 +540,18 @@ What a mess.*/
 								if("released")
 									active2.fields["criminal"] = "Released"
 
-					if ("Delete Record (Security) Execute")
-						if (active2)
+					if("Delete Record (Security) Execute")
+						if(active2)
 							qdel(active2)
 
-					if ("Delete Record (ALL) Execute")
-						if (active1)
+					if("Delete Record (ALL) Execute")
+						if(active1)
 							for(var/datum/data/record/R in data_core.medical)
-								if ((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
+								if((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
 									qdel(R)
 								else
 							qdel(active1)
-						if (active2)
+						if(active2)
 							qdel(active2)
 					else
 						temp = "This function does not appear to be working at the moment. Our apologies."

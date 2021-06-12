@@ -29,7 +29,7 @@
 
 */
 
-datum/mind
+/datum/mind
 	var/key
 	var/name				//replaces mob/var/original_name
 	var/mob/living/current
@@ -499,9 +499,7 @@ datum/mind
 
 		else if(href_list["implant"])
 			var/mob/living/carbon/human/H = current
-
-			H.hud_updateflag |= (1 << IMPLOYAL_HUD)   // updates that players HUD images so secHUD's pick up they are implanted or not.
-
+			BITSET(H.hud_updateflag, IMPLOYAL_HUD)   // updates that players HUD images so secHUD's pick up they are implanted or not.
 			switch(href_list["implant"])
 				if("remove")
 					for(var/obj/item/weapon/implant/loyalty/I in H.contents)
@@ -542,9 +540,8 @@ datum/mind
 						current << "\red <FONT size = 3><B>The nanobots in the loyalty implant remove all thoughts about being a traitor to NanoTrasen.  Have a nice day!</B></FONT>"
 						log_admin("[key_name_admin(usr)] has de-traitor'ed [current].")
 
-		else if (href_list["revolution"])
-			current.hud_updateflag |= (1 << SPECIALROLE_HUD)
-
+		else if(href_list["revolution"])
+			BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 			switch(href_list["revolution"])
 				if("clear")
 					if(src in ticker.mode.revolutionaries)
@@ -637,8 +634,8 @@ datum/mind
 					if (fail)
 						usr << "\red Reequipping revolutionary goes wrong!"
 
-		else if (href_list["cult"])
-			current.hud_updateflag |= (1 << SPECIALROLE_HUD)
+		else if(href_list["cult"])
+			BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 			switch(href_list["cult"])
 				if("clear")
 					if(src in ticker.mode.cult)
@@ -687,9 +684,8 @@ datum/mind
 					if (!ticker.mode.equip_cultist(current))
 						usr << "\red Spawning amulet failed!"
 
-		else if (href_list["wizard"])
-			current.hud_updateflag |= (1 << SPECIALROLE_HUD)
-
+		else if(href_list["wizard"])
+			BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 			switch(href_list["wizard"])
 				if("clear")
 					if(src in ticker.mode.wizards)
@@ -717,8 +713,8 @@ datum/mind
 						ticker.mode.forge_wizard_objectives(src)
 						usr << "\blue The objectives for wizard [key] have been generated. You can edit them and anounce manually."
 
-		else if (href_list["changeling"])
-			current.hud_updateflag |= (1 << SPECIALROLE_HUD)
+		else if(href_list["changeling"])
+			BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 			switch(href_list["changeling"])
 				if("clear")
 					if(src in ticker.mode.changelings)
@@ -752,11 +748,9 @@ datum/mind
 						current.UpdateAppearance()
 						domutcheck(current, null)
 
-		else if (href_list["nuclear"])
+		else if(href_list["nuclear"])
 			var/mob/living/carbon/human/H = current
-
-			current.hud_updateflag |= (1 << SPECIALROLE_HUD)
-
+			BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 			switch(href_list["nuclear"])
 				if("clear")
 					if(src in ticker.mode.syndicates)
@@ -771,7 +765,7 @@ datum/mind
 					if(!(src in ticker.mode.syndicates))
 						ticker.mode.syndicates += src
 						ticker.mode.update_synd_icons_added(src)
-						if (ticker.mode.syndicates.len==1)
+						if(ticker.mode.syndicates.len==1)
 							ticker.mode.prepare_syndicate_leader(src)
 						else
 							current.real_name = "[syndicate_name()] Operative #[ticker.mode.syndicates.len-1]"
@@ -797,22 +791,22 @@ datum/mind
 					qdel(H.wear_suit)
 					qdel(H.w_uniform)
 
-					if (!ticker.mode.equip_syndicate(current))
+					if(!ticker.mode.equip_syndicate(current))
 						usr << "\red Equipping a syndicate failed!"
 				if("tellcode")
 					var/code
-					for (var/obj/machinery/nuclearbomb/bombue in machines)
-						if (length(bombue.r_code) <= 5 && bombue.r_code != "LOLNO" && bombue.r_code != "ADMIN")
+					for(var/obj/machinery/nuclearbomb/bombue in machines)
+						if(length(bombue.r_code) <= 5 && bombue.r_code != "LOLNO" && bombue.r_code != "ADMIN")
 							code = bombue.r_code
 							break
-					if (code)
+					if(code)
 						store_memory("<B>Syndicate Nuclear Bomb Code</B>: [code]", 0, 0)
 						current << "The nuclear authorization code is: <B>[code]</B>"
 					else
 						usr << "\red No valid nuke found!"
 
-		else if (href_list["traitor"])
-			current.hud_updateflag |= (1 << SPECIALROLE_HUD)
+		else if(href_list["traitor"])
+			BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 			switch(href_list["traitor"])
 				if("clear")
 					if(src in ticker.mode.traitors)
@@ -844,16 +838,16 @@ datum/mind
 						ticker.mode.forge_traitor_objectives(src)
 						usr << "\blue The objectives for traitor [key] have been generated. You can edit them and anounce manually."
 
-		else if (href_list["monkey"])
+		else if(href_list["monkey"])
 			var/mob/living/L = current
-			if (L.monkeyizing)
+			if(L.monkeyizing)
 				return
 			switch(href_list["monkey"])
 				if("healthy")
-					if (usr.client.holder.rights & R_ADMIN)
+					if(usr.client.holder.rights & R_ADMIN)
 						var/mob/living/carbon/human/H = current
 						var/mob/living/carbon/monkey/M = current
-						if (istype(H))
+						if(istype(H))
 							log_admin("[key_name(usr)] attempting to monkeyize [key_name(current)]")
 							message_admins("\blue [key_name_admin(usr)] attempting to monkeyize [key_name_admin(current)]")
 							qdel(src)
@@ -865,23 +859,23 @@ datum/mind
 								D.cure(0)
 							sleep(0) //because deleting of virus is done through spawn(0)
 				if("infected")
-					if (usr.client.holder.rights & R_ADMIN)
+					if(usr.client.holder.rights & R_ADMIN)
 						var/mob/living/carbon/human/H = current
 						var/mob/living/carbon/monkey/M = current
-						if (istype(H))
+						if(istype(H))
 							log_admin("[key_name(usr)] attempting to monkeyize and infect [key_name(current)]")
 							message_admins("\blue [key_name_admin(usr)] attempting to monkeyize and infect [key_name_admin(current)]", 1)
 							qdel(src)
 							M = H.monkeyize()
 							src = M.mind
 							current.contract_disease(new /datum/disease/jungle_fever,1,0)
-						else if (istype(M))
+						else if(istype(M))
 							current.contract_disease(new /datum/disease/jungle_fever,1,0)
 				if("human")
 					var/mob/living/carbon/monkey/M = current
-					if (istype(M))
+					if(istype(M))
 						for(var/datum/disease/D in M.viruses)
-							if (istype(D,/datum/disease/jungle_fever))
+							if(istype(D, /datum/disease/jungle_fever))
 								D.cure(0)
 								sleep(0) //because deleting of virus is doing throught spawn(0)
 						log_admin("[key_name(usr)] attempting to humanize [key_name(current)]")
@@ -894,8 +888,8 @@ datum/mind
 						qdel(mobfinder)
 						current.radiation -= 50
 
-		else if (href_list["silicon"])
-			current.hud_updateflag |= (1 << SPECIALROLE_HUD)
+		else if(href_list["silicon"])
+			BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 			switch(href_list["silicon"])
 				if("unmalf")
 					if(src in ticker.mode.malf_ai)
@@ -927,7 +921,7 @@ datum/mind
 
 				if("unemag")
 					var/mob/living/silicon/robot/R = current
-					if (istype(R))
+					if(istype(R))
 						R.emagged = 0
 						if (R.activated(R.module.emag))
 							R.module_active = null
@@ -943,7 +937,7 @@ datum/mind
 						log_admin("[key_name_admin(usr)] has unemag'ed [R].")
 
 				if("unemagcyborgs")
-					if (istype(current, /mob/living/silicon/ai))
+					if(istype(current, /mob/living/silicon/ai))
 						var/mob/living/silicon/ai/ai = current
 						for (var/mob/living/silicon/robot/R in ai.connected_robots)
 							R.emagged = 0
@@ -961,7 +955,7 @@ datum/mind
 									R.contents -= R.module.emag
 						log_admin("[key_name_admin(usr)] has unemag'ed [ai]'s Cyborgs.")
 
-		else if (href_list["common"])
+		else if(href_list["common"])
 			switch(href_list["common"])
 				if("undress")
 					for(var/obj/item/W in current)

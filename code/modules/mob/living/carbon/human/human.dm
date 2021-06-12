@@ -457,10 +457,10 @@
 				perpname = name
 
 			if(perpname)
-				for (var/datum/data/record/E in data_core.general)
-					if (E.fields["name"] == perpname)
-						for (var/datum/data/record/R in data_core.security)
-							if (R.fields["id"] == E.fields["id"])
+				for(var/datum/data/record/E in data_core.general)
+					if(E.fields["name"] == perpname)
+						for(var/datum/data/record/R in data_core.security)
+							if(R.fields["id"] == E.fields["id"])
 
 								var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Incarcerated", "Parolled", "Released", "Cancel")
 
@@ -470,34 +470,34 @@
 										modified = 1
 
 										spawn()
-											hud_updateflag |= 1 << WANTED_HUD
-											if(istype(usr,/mob/living/carbon/human))
+											BITSET(hud_updateflag, WANTED_HUD)
+											if(istype(usr, /mob/living/carbon/human))
 												var/mob/living/carbon/human/U = usr
 												U.handle_regular_hud_updates()
-											if(istype(usr,/mob/living/silicon/robot))
+											if(istype(usr, /mob/living/silicon/robot))
 												var/mob/living/silicon/robot/U = usr
 												U.handle_regular_hud_updates()
 
 			if(!modified)
 				usr << "\red Unable to locate a data core entry for this person."
 
-	if (href_list["secrecord"])
+	if(href_list["secrecord"])
 		if(hasHUD(usr,"security"))
 			var/perpname = "wot"
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id, /obj/item/weapon/card/id))
 					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/device/pda))
+				else if(istype(wear_id, /obj/item/device/pda))
 					var/obj/item/device/pda/tempPda = wear_id
 					perpname = tempPda.owner
 			else
 				perpname = src.name
-			for (var/datum/data/record/E in data_core.general)
-				if (E.fields["name"] == perpname)
-					for (var/datum/data/record/R in data_core.security)
-						if (R.fields["id"] == E.fields["id"])
+			for(var/datum/data/record/E in data_core.general)
+				if(E.fields["name"] == perpname)
+					for(var/datum/data/record/R in data_core.security)
+						if(R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security"))
 								usr << "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]"
 								usr << "<b>Minor Crimes:</b> [R.fields["mi_crim"]]"
@@ -940,7 +940,7 @@
 
 	var/mob/target = input ("Who do you want to project your mind to ?") as mob in creatures
 
-	if (target)
+	if(target)
 		remoteview_target = target
 		reset_view(target)
 	else
@@ -959,17 +959,17 @@
 		germ_level += n
 
 /mob/living/carbon/human/revive()
-	for (var/datum/organ/external/O in organs)
+	for(var/datum/organ/external/O in organs)
 		O.status &= ~ORGAN_BROKEN
 		O.status &= ~ORGAN_BLEEDING
 		O.status &= ~ORGAN_SPLINTED
 		O.status &= ~ORGAN_CUT_AWAY
 		O.status &= ~ORGAN_ATTACHABLE
-		if (!O.amputated)
+		if(!O.amputated)
 			O.status &= ~ORGAN_DESTROYED
 			O.destspawn = 0
 		O.wounds.Cut()
-		O.heal_damage(1000,1000,1,1)
+		O.heal_damage(1000, 1000, 1, 1)
 
 	var/datum/organ/external/head/h = organs_by_name["head"]
 	h.disfigured = 0
@@ -978,7 +978,7 @@
 		vessel.add_reagent("blood",560-vessel.total_volume)
 		fixblood()
 
-	for (var/obj/item/weapon/organ/head/H in world)
+	for(var/obj/item/weapon/organ/head/H in world)
 		if(H.brainmob)
 			if(H.brainmob.real_name == src.real_name)
 				if(H.brainmob.mind)
@@ -989,9 +989,9 @@
 		var/datum/organ/internal/I = internal_organs[E]
 		I.damage = 0
 
-	for (var/datum/disease/virus in viruses)
+	for(var/datum/disease/virus in viruses)
 		virus.cure()
-	for (var/ID in virus2)
+	for(var/ID in virus2)
 		var/datum/disease2/disease/V = virus2[ID]
 		V.cure(src)
 
@@ -1041,7 +1041,7 @@
 //returns 1 if made bloody, returns 0 otherwise
 
 /mob/living/carbon/human/add_blood(mob/living/carbon/human/M as mob)
-	if (!..())
+	if(!..())
 		return 0
 	//if this blood isn't already in the list, add it
 	if(blood_DNA[M.dna.unique_enzymes])
@@ -1052,7 +1052,7 @@
 	verbs += /mob/living/carbon/human/proc/bloody_doodle
 	return 1 //we applied blood to the item
 
-/mob/living/carbon/human/clean_blood(var/clean_feet)
+/mob/living/carbon/human/clean_blood(clean_feet)
 	.=..()
 	if(clean_feet && !shoes && istype(feet_blood_DNA, /list) && feet_blood_DNA.len)
 		feet_blood_color = null
@@ -1060,7 +1060,7 @@
 		update_inv_shoes(1)
 		return 1
 
-/mob/living/carbon/human/get_visible_implants(var/class = 0)
+/mob/living/carbon/human/get_visible_implants(class = 0)
 
 	var/list/visible_implants = list()
 	for(var/datum/organ/external/organ in src.organs)
@@ -1078,7 +1078,7 @@
 			if(!istype(O,/obj/item/weapon/implant) && prob(5)) //Moving with things stuck in you could be bad.
 				// All kinds of embedded objects cause bleeding.
 				var/msg = null
-				switch(rand(1,3))
+				switch(rand(1, 3))
 					if(1)
 						msg ="<span class='warning'>A spike of pain jolts your [organ.display_name] as you bump [O] inside.</span>"
 					if(2)
@@ -1090,7 +1090,7 @@
 				organ.take_damage(rand(1,3), 0, 0)
 				if(!(organ.status & ORGAN_ROBOT)) //There is no blood in protheses.
 					organ.status |= ORGAN_BLEEDING
-					src.adjustToxLoss(rand(1,3))
+					src.adjustToxLoss(rand(1, 3))
 
 /mob/living/carbon/human/verb/check_pulse()
 	set category = "Object"
@@ -1099,7 +1099,8 @@
 	set src in view(1)
 	var/self = 0
 
-	if(usr.stat == 1 || usr.restrained() || !isLiving(usr)) return
+	if(usr.stat == 1 || usr.restrained() || !isLiving(usr))
+		return
 
 	if(usr == src)
 		self = 1
@@ -1124,7 +1125,7 @@
 	else
 		usr << "\blue [self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)]."
 
-/mob/living/carbon/human/proc/set_species(var/new_species, var/force_organs)
+/mob/living/carbon/human/proc/set_species(new_species, force_organs)
 	if(!dna)
 		if(!new_species)
 			new_species = "Human"
@@ -1168,35 +1169,35 @@
 	set name = "Write in blood"
 	set desc = "Use blood on your hands to write a short message on the floor or a wall, murder mystery style."
 
-	if (src.stat)
+	if(src.stat)
 		return
 
-	if (usr != src)
+	if(usr != src)
 		return 0 //something is terribly wrong
 
-	if (!bloody_hands)
+	if(!bloody_hands)
 		verbs -= /mob/living/carbon/human/proc/bloody_doodle
 
-	if (src.gloves)
+	if(src.gloves)
 		src << "<span class='warning'>Your [src.gloves] are getting in the way.</span>"
 		return
 
 	var/turf/simulated/T = src.loc
-	if (!istype(T)) //to prevent doodling out of mechs and lockers
+	if(!istype(T)) //to prevent doodling out of mechs and lockers
 		src << "<span class='warning'>You cannot reach the floor.</span>"
 		return
 
 	var/direction = input(src,"Which way?","Tile selection") as anything in list("Here","North","South","East","West")
-	if (direction != "Here")
+	if(direction != "Here")
 		T = get_step(T,text2dir(direction))
-	if (!istype(T))
+	if(!istype(T))
 		src << "<span class='warning'>You cannot doodle there.</span>"
 		return
 
 	var/num_doodles = 0
-	for (var/obj/effect/decal/cleanable/blood/writing/W in T)
+	for(var/obj/effect/decal/cleanable/blood/writing/W in T)
 		num_doodles++
-	if (num_doodles > 4)
+	if(num_doodles > 4)
 		src << "<span class='warning'>There is no space to write on!</span>"
 		return
 
@@ -1204,11 +1205,11 @@
 
 	var/message = stripped_input(src,"Write a message. It cannot be longer than [max_length] characters.","Blood writing", "")
 
-	if (message)
+	if(message)
 		var/used_blood_amount = round(length(message) / 30, 1)
 		bloody_hands = max(0, bloody_hands - used_blood_amount) //use up some blood
 
-		if (length(message) > max_length)
+		if(length(message) > max_length)
 			message += "-"
 			src << "<span class='warning'>You ran out of blood to write with!</span>"
 
