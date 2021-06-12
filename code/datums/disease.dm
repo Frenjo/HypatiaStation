@@ -60,7 +60,7 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 	var/cure_present = has_cure()
 	//world << "[cure_present]"
 
-	if(carrier&&!cure_present)
+	if(carrier && !cure_present)
 		//world << "[affected_mob] is carrier"
 		return
 
@@ -110,7 +110,7 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 			return 1
 	return 0
 
-/datum/disease/proc/spread(var/atom/source=null, var/airborne_range = 2,  var/force_spread)
+/datum/disease/proc/spread(atom/source = null, airborne_range = 2,  force_spread)
 	//world << "Disease [src] proc spread was called from holder [source]"
 
 	// If we're overriding how we spread, say so here
@@ -178,7 +178,7 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 				cure(0)
 	return
 
-/datum/disease/proc/cure(var/resistance=1)//if resistance = 0, the mob won't develop resistance to disease
+/datum/disease/proc/cure(resistance = 1)//if resistance = 0, the mob won't develop resistance to disease
 	if(affected_mob)
 		if(resistance && !(type in affected_mob.resistances))
 			var/saved_type = "[type]"
@@ -190,16 +190,16 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 	return
 
 
-/datum/disease/New(var/process=1, var/datum/disease/D)//process = 1 - adding the object to global list. List is processed by master controller.
+/datum/disease/New(process = 1, datum/disease/D)//process = 1 - adding the object to global list. List is processed by master controller.
 	cure_list = list(cure_id) // to add more cures, add more vars to this list in the actual disease's New()
 	if(process)				 // Viruses in list are considered active.
 		active_diseases += src
 	initial_spread = spread
 
-/datum/disease/proc/IsSame(var/datum/disease/D)
+/datum/disease/proc/IsSame(datum/disease/D)
 	if(istype(src, D.type))
 		return 1
 	return 0
 
-/datum/disease/proc/Copy(var/process = 0)
+/datum/disease/proc/Copy(process = 0)
 	return new type(process, src)

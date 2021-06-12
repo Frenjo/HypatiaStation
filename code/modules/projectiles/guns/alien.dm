@@ -36,7 +36,7 @@
 	processing_objects.Add(src)
 	last_regen = world.time
 
-/obj/item/weapon/spikethrower/Del()
+/obj/item/weapon/spikethrower/Destroy()
 	processing_objects.Remove(src)
 	..()
 
@@ -70,10 +70,10 @@
 	if(spikes > 0)
 		if(user.a_intent == "hurt")
 			user.visible_message("\red <b> \The [user] fires \the [src] point blank at [M]!</b>")
-			Fire(M,user)
+			Fire(M, user)
 			return
 		else if(target && M in target)
-			Fire(M,user)
+			Fire(M, user)
 			return
 	else
 		return ..()

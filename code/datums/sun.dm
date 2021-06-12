@@ -9,9 +9,8 @@
 	var/lastAngleUpdate
 
 /datum/sun/New()
-
 	solars = solars_list
-	rate = rand(750,1250)/1000			// 75.0% - 125.0% of standard rotation
+	rate = rand(750, 1250) / 1000			// 75.0% - 125.0% of standard rotation
 	if(prob(50))
 		rate = -rate
 
@@ -28,7 +27,7 @@
 		return
 	counter = 0 */
 
-	angle = ((rate*world.time/100)%360 + 360)%360
+	angle = ((rate * world.time / 100) % 360 + 360) % 360
 
 	/*
 		Yields a 45 - 75 IC minute rotational period
@@ -41,9 +40,7 @@
 				solars_list.Remove(T)
 				continue
 			T.set_angle(angle)
-	lastAngleUpdate=angle
-
-
+	lastAngleUpdate = angle
 
 	if(nexttime > world.time)
 		return
@@ -55,22 +52,17 @@
 	var/c = cos(angle)
 
 	if(c == 0)
-
 		dx = 0
 		dy = s
-
-	else if( abs(s) < abs(c))
-
+	else if(abs(s) < abs(c))
 		dx = s / abs(c)
 		dy = c / abs(c)
-
 	else
 		dx = s/abs(s)
 		dy = c / abs(s)
 
 
 	for(var/obj/machinery/power/solar/S in solars_list)
-
 		if(!S.powernet)
 			solars_list.Remove(S)
 			continue
@@ -81,8 +73,7 @@
 
 // for a solar panel, trace towards sun to see if we're in shadow
 
-/datum/sun/proc/occlusion(var/obj/machinery/power/solar/S)
-
+/datum/sun/proc/occlusion(obj/machinery/power/solar/S)
 	var/ax = S.x		// start at the solar panel
 	var/ay = S.y
 
@@ -90,9 +81,9 @@
 		ax += dx	// do step
 		ay += dy
 
-		var/turf/T = locate( round(ax,0.5),round(ay,0.5),S.z)
+		var/turf/T = locate(round(ax, 0.5),round(ay, 0.5), S.z)
 
-		if(T.x == 1 || T.x==world.maxx || T.y==1 || T.y==world.maxy)		// not obscured if we reach the edge
+		if(T.x == 1 || T.x == world.maxx || T.y == 1 || T.y == world.maxy)		// not obscured if we reach the edge
 			break
 
 		if(T.density)			// if we hit a solid turf, panel is obscured
@@ -101,7 +92,3 @@
 
 	S.obscured = 0		// if hit the edge or stepped 20 times, not obscured
 	S.update_solar_exposure()
-
-
-
-

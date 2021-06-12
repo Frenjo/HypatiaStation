@@ -17,8 +17,7 @@ var/list/modules = list(			// global associative list
 "/obj/machinery/power/apc" = "card_reader,power_control,id_auth,cell_power,cell_charge")
 
 
-/datum/module/New(var/obj/O)
-
+/datum/module/New(obj/O)
 	var/type = O.type		// the type of the creating object
 
 	var/mneed = mods.inmodlist(type)		// find if this type has modules defined
@@ -30,17 +29,17 @@ var/list/modules = list(			// global associative list
 	status = needed
 	installed = needed
 
-/datum/moduletypes/proc/addmod(var/type, var/modtextlist)
+/datum/moduletypes/proc/addmod(type, modtextlist)
 	modules += type	// index by type text
 	modules[type] = modtextlist
 
-/datum/moduletypes/proc/inmodlist(var/type)
+/datum/moduletypes/proc/inmodlist(type)
 	return ("[type]" in modules)
 
-/datum/moduletypes/proc/getbitmask(var/type)
+/datum/moduletypes/proc/getbitmask(type)
 	var/count = modcount["[type]"]
 	if(count)
-		return 2**count-1
+		return 2 ** count - 1
 
 	var/modtext = modules["[type]"]
 	var/num = 1
@@ -57,6 +56,4 @@ var/list/modules = list(			// global associative list
 	modcount += "[type]"
 	modcount["[type]"] = num
 
-	return 2**num-1
-
-
+	return 2 ** num - 1

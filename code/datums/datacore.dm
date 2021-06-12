@@ -8,14 +8,14 @@
 			manifest_inject(H)
 		return
 
-/obj/effect/datacore/proc/manifest_modify(var/name, var/assignment)
+/obj/effect/datacore/proc/manifest_modify(name, assignment)
 	if(PDA_Manifest.len)
 		PDA_Manifest.Cut()
 	var/datum/data/record/foundrecord
 	var/real_title = assignment
 
 	for(var/datum/data/record/t in data_core.general)
-		if (t)
+		if(t)
 			if(t.fields["name"] == name)
 				foundrecord = t
 				break
@@ -24,7 +24,8 @@
 
 	for(var/datum/job/J in all_jobs)
 		var/list/alttitles = get_alternate_titles(J.title)
-		if(!J)	continue
+		if(!J)
+			continue
 		if(assignment in alttitles)
 			real_title = J.title
 			break
@@ -33,7 +34,7 @@
 		foundrecord.fields["rank"] = assignment
 		foundrecord.fields["real_rank"] = real_title
 
-/obj/effect/datacore/proc/manifest_inject(var/mob/living/carbon/human/H)
+/obj/effect/datacore/proc/manifest_inject(mob/living/carbon/human/H)
 	if(PDA_Manifest.len)
 		PDA_Manifest.Cut()
 
@@ -122,11 +123,11 @@
 	return
 
 
-proc/get_id_photo(var/mob/living/carbon/human/H)
+proc/get_id_photo(mob/living/carbon/human/H)
 	var/icon/preview_icon = null
 
 	var/g = "m"
-	if (H.gender == FEMALE)
+	if(H.gender == FEMALE)
 		g = "f"
 
 	var/icon/icobase = H.species.icobase
@@ -153,7 +154,7 @@ proc/get_id_photo(var/mob/living/carbon/human/H)
 
 	// Skin tone
 	if(H.species.flags & HAS_SKIN_TONE)
-		if (H.s_tone >= 0)
+		if(H.s_tone >= 0)
 			preview_icon.Blend(rgb(H.s_tone, H.s_tone, H.s_tone), ICON_ADD)
 		else
 			preview_icon.Blend(rgb(-H.s_tone,  -H.s_tone,  -H.s_tone), ICON_SUBTRACT)

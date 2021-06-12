@@ -183,7 +183,6 @@
 				A.loc = src.loc
 				ex_act(severity)
 				//Foreach goto(35)
-			//SN del(src)
 			qdel(src)
 			return
 		if(2.0)
@@ -192,7 +191,6 @@
 					A.loc = src.loc
 					ex_act(severity)
 					//Foreach goto(108)
-				//SN del(src)
 				qdel(src)
 				return
 		if(3.0)
@@ -201,7 +199,6 @@
 					A.loc = src.loc
 					ex_act(severity)
 					//Foreach goto(181)
-				//SN del(src)
 				qdel(src)
 				return
 		else
@@ -258,12 +255,10 @@
 
 	switch(severity)
 		if(1.0)
-			//SN del(src)
 			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
-				//SN del(src)
 				qdel(src)
 				return
 		else

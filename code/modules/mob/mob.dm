@@ -208,14 +208,14 @@ var/list/slot_equipment_priority = list( \
 		return 0
 
 	var/tile = get_turf(A)
-	if (!tile)
+	if(!tile)
 		return 0
 
 	var/obj/P = new /obj/effect/decal/point(tile)
 	P.invisibility = invisibility
 	spawn (20)
 		if(P)
-			del(P)	// qdel
+			qdel(P)
 
 	return 1
 

@@ -15,7 +15,6 @@
 	..()
 	if (istype(W, /obj/item/weapon/wrench))
 		new /obj/item/stack/sheet/metal( user.loc )
-		//SN del(src)
 		qdel(src)
 	if (istype(W, /obj/item/stack/rods))
 		if (W:amount >= 4)

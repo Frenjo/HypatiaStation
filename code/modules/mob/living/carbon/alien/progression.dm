@@ -20,7 +20,7 @@
 
 	// confirm_evolution() handles choices and other specific requirements.
 	var/new_species = confirm_evolution()
-	if(!new_species || !adult_form )
+	if(!new_species || !adult_form)
 		return
 
 	var/mob/living/carbon/human/adult = new adult_form(get_turf(src))
@@ -37,7 +37,7 @@
 
 	for(var/datum/language/L in languages)
 		adult.add_language(L.name)
-	del(src)
+	qdel(src)
 
 /mob/living/carbon/alien/proc/update_progression()
 	return

@@ -125,10 +125,10 @@
 	var/grabbed_something = 0
 
 	for(var/mob/M in T)
-		if(istype(M,/mob/living/simple_animal/lizard) || istype(M,/mob/living/simple_animal/mouse))
+		if(istype(M, /mob/living/simple_animal/lizard) || istype(M, /mob/living/simple_animal/mouse))
 			src.loc.visible_message("\red [src.loc] sucks [M] into its decompiler. There's a horrible crunching noise.","\red It's a bit of a struggle, but you manage to suck [M] into your decompiler. It makes a series of visceral crunching noises.")
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
-			del(M)
+			qdel(M)
 			stored_comms["wood"]++
 			stored_comms["wood"]++
 			stored_comms["plastic"]++

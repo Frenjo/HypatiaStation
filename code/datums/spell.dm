@@ -40,8 +40,7 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 	var/critfailchance = 0
 	var/centcomm_cancast = 1 //Whether or not the spell should be allowed on z2
 
-/obj/effect/proc_holder/spell/proc/cast_check(skipcharge = 0,mob/user = usr) //checks if the spell can be cast based on its settings; skipcharge is used when an additional cast_check is called inside the spell
-
+/obj/effect/proc_holder/spell/proc/cast_check(skipcharge = 0, mob/user = usr) //checks if the spell can be cast based on its settings; skipcharge is used when an additional cast_check is called inside the spell
 	if(!(src in usr.spell_list))
 		usr << "\red You shouldn't have this spell! Something's wrong."
 		return 0
@@ -95,22 +94,21 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 	return 1
 
 /obj/effect/proc_holder/spell/proc/invocation(mob/user = usr) //spelling the spell out and setting it on recharge/reducing charges amount
-
 	switch(invocation_type)
 		if("shout")
 			if(prob(50))//Auto-mute? Fuck that noise
 				usr.say(invocation)
 			else
-				usr.say(replacetextx(invocation," ","`"))
-			if(usr.gender==MALE)
-				playsound(usr.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 100, 1)
+				usr.say(replacetextx(invocation, " ", "`"))
+			if(usr.gender == MALE)
+				playsound(usr.loc, pick('sound/misc/null.ogg', 'sound/misc/null.ogg'), 100, 1)
 			else
-				playsound(usr.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 100, 1)
+				playsound(usr.loc, pick('sound/misc/null.ogg', 'sound/misc/null.ogg'), 100, 1)
 		if("whisper")
 			if(prob(50))
 				usr.whisper(invocation)
 			else
-				usr.whisper(replacetextx(invocation," ","`"))
+				usr.whisper(replacetextx(invocation, " ", "`"))
 
 /obj/effect/proc_holder/spell/New()
 	..()
@@ -146,9 +144,9 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 	if(overlay)
 		for(var/atom/target in targets)
 			var/location
-			if(istype(target,/mob/living))
+			if(istype(target, /mob/living))
 				location = target.loc
-			else if(istype(target,/turf))
+			else if(istype(target, /turf))
 				location = target
 			var/obj/effect/overlay/spell = new /obj/effect/overlay(location)
 			spell.icon = overlay_icon
@@ -161,11 +159,11 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 /obj/effect/proc_holder/spell/proc/after_cast(list/targets)
 	for(var/atom/target in targets)
 		var/location
-		if(istype(target,/mob/living))
+		if(istype(target, /mob/living))
 			location = target.loc
-		else if(istype(target,/turf))
+		else if(istype(target, /turf))
 			location = target
-		if(istype(target,/mob/living) && message)
+		if(istype(target, /mob/living) && message)
 			target << text("[message]")
 		if(sparks_spread)
 			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
@@ -249,7 +247,7 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 			var/list/possible_targets = list()
 			for(var/mob/living/target in view_or_range(range, user, selection_type))
 				possible_targets += target
-			for(var/i=1,i<=max_targets,i++)
+			for(var/i = 1, i <= max_targets, i++)
 				if(!possible_targets.len)
 					break
 				if(target_ignore_prev)
@@ -273,8 +271,8 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 /obj/effect/proc_holder/spell/aoe_turf/choose_targets(mob/user = usr)
 	var/list/targets = list()
 
-	for(var/turf/target in view_or_range(range,user,selection_type))
-		if(!(target in view_or_range(inner_radius,user,selection_type)))
+	for(var/turf/target in view_or_range(range, user, selection_type))
+		if(!(target in view_or_range(inner_radius, user, selection_type)))
 			targets += target
 
 	if(!targets.len) //doesn't waste the spell
