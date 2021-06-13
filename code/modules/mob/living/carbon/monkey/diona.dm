@@ -40,7 +40,7 @@
 
 /obj/item/weapon/holder/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	for(var/mob/M in src.contents)
-		M.attackby(W,user)
+		M.attackby(W, user)
 
 //Mob defines.
 /mob/living/carbon/monkey/diona
@@ -85,25 +85,27 @@
 	set name = "Merge with gestalt"
 	set desc = "Merge with another diona."
 
-	if(istype(src.loc,/mob/living/carbon))
+	if(istype(src.loc, /mob/living/carbon))
 		src.verbs -= /mob/living/carbon/monkey/diona/proc/merge
 		return
 
 	var/list/choices = list()
-	for(var/mob/living/carbon/C in view(1,src))
+	for(var/mob/living/carbon/C in view(1, src))
 
-		if(!(src.Adjacent(C)) || !(C.client)) continue
+		if(!(src.Adjacent(C)) || !(C.client))
+			continue
 
-		if(istype(C,/mob/living/carbon/human))
+		if(istype(C, /mob/living/carbon/human))
 			var/mob/living/carbon/human/D = C
 			if(D.species && D.species.name == "Diona")
 				choices += C
 
-	var/mob/living/M = input(src,"Who do you wish to merge with?") in null|choices
+	var/mob/living/M = input(src, "Who do you wish to merge with?") in null|choices
 
-	if(!M || !src || !(src.Adjacent(M))) return
+	if(!M || !src || !(src.Adjacent(M)))
+		return
 
-	if(istype(M,/mob/living/carbon/human))
+	if(istype(M, /mob/living/carbon/human))
 		M << "You feel your being twine with that of [src] as it merges with your biomass."
 		src << "You feel your being twine with that of [M] as you merge with its biomass."
 		src.loc = M
@@ -117,7 +119,7 @@
 	set name = "Split from gestalt"
 	set desc = "Split away from your gestalt as a lone nymph."
 
-	if(!(istype(src.loc,/mob/living/carbon)))
+	if(!(istype(src.loc, /mob/living/carbon)))
 		src.verbs -= /mob/living/carbon/monkey/diona/proc/split
 		return
 
@@ -150,7 +152,7 @@
 	var/mob/living/carbon/human/adult = new(get_turf(src.loc))
 	adult.set_species("Diona")
 
-	if(istype(loc,/obj/item/weapon/holder/diona))
+	if(istype(loc, /obj/item/weapon/holder/diona))
 		var/obj/item/weapon/holder/diona/L = loc
 		src.loc = L.loc
 		qdel(L)
@@ -163,7 +165,7 @@
 	adult.real_name = adult.name
 	adult.ckey = src.ckey
 
-	for (var/obj/item/W in src.contents)
+	for(var/obj/item/W in src.contents)
 		src.drop_from_inventory(W)
 	qdel(src)
 
@@ -176,9 +178,10 @@
 	for(var/mob/living/carbon/human/H in oview(1,src))
 		choices += H
 
-	var/mob/living/carbon/human/M = input(src,"Who do you wish to take a sample from?") in null|choices
+	var/mob/living/carbon/human/M = input(src, "Who do you wish to take a sample from?") in null|choices
 
-	if(!M || !src) return
+	if(!M || !src)
+		return
 
 	if(M.species.flags & NO_BLOOD)
 		src << "\red That donor has no blood to take."
@@ -197,7 +200,6 @@
 		update_progression()
 
 /mob/living/carbon/monkey/diona/proc/update_progression()
-
 	if(!donors.len)
 		return
 
@@ -210,14 +212,13 @@
 	else
 		src << "\green The blood seeps into your small form, and you draw out the echoes of memories and personality from it, working them into your budding mind."
 
-/mob/living/carbon/monkey/diona/say_understands(var/mob/other,var/datum/language/speaking = null)
-
-	if (istype(other, /mob/living/carbon/human) && !speaking)
+/mob/living/carbon/monkey/diona/say_understands(mob/other, datum/language/speaking = null)
+	if(istype(other, /mob/living/carbon/human) && !speaking)
 		if(languages.len >= 2) // They have sucked down some blood.
 			return 1
 	return ..()
 
-/mob/living/carbon/monkey/diona/say(var/message)
+/mob/living/carbon/monkey/diona/say(message)
 	var/verbage = "says"
 	var/message_range = world.view
 
@@ -234,7 +235,7 @@
 	var/datum/language/speaking = null
 
 	if(length(message) >= 2)
-		var/channel_prefix = copytext(message, 1 ,3)
+		var/channel_prefix = copytext(message, 1, 3)
 		if(languages.len)
 			for(var/datum/language/L in languages)
 				if(lowertext(channel_prefix) == ":[L.key]")

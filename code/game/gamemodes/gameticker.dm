@@ -42,8 +42,8 @@ var/global/datum/controller/gameticker/ticker
 	'sound/music/space_oddity.ogg') //Ground Control to Major Tom, this song is cool, what's going on?
 	do
 		pregame_timeleft = 180
-		world << "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>"
-		world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
+		to_chat(world, "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>")
+		to_chat(world, "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds.")
 		while(current_state == GAME_STATE_PREGAME)
 			for(var/i = 0, i < 10, i++)
 				sleep(1)
@@ -71,13 +71,13 @@ var/global/datum/controller/gameticker/ticker
 		runnable_modes = config.get_runnable_modes()
 		if(runnable_modes.len == 0)
 			current_state = GAME_STATE_PREGAME
-			world << "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby."
+			to_chat(world, "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby.")
 			return 0
 		if(secret_force_mode != "secret")
 			var/datum/game_mode/M = config.pick_mode(secret_force_mode)
 			if(M.can_start())
 				src.mode = config.pick_mode(secret_force_mode)
-		job_master.ResetOccupations()
+		job_master.reset_occupations()
 		if(!src.mode)
 			src.mode = pickweight(runnable_modes)
 		if(src.mode)
@@ -86,20 +86,20 @@ var/global/datum/controller/gameticker/ticker
 	else
 		src.mode = config.pick_mode(master_mode)
 	if(!src.mode.can_start())
-		world << "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
+		to_chat(world, "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
 		qdel(mode)
 		current_state = GAME_STATE_PREGAME
-		job_master.ResetOccupations()
+		job_master.reset_occupations()
 		return 0
 
 	//Configure mode and assign player to special mode stuff
-	job_master.DivideOccupations() //Distribute jobs
+	job_master.divide_occupations() //Distribute jobs
 	var/can_continue = src.mode.pre_setup()//Setup special modes
 	if(!can_continue)
 		qdel(mode)
 		current_state = GAME_STATE_PREGAME
-		world << "<B>Error setting up [master_mode].</B> Reverting to pre-game lobby."
-		job_master.ResetOccupations()
+		to_chat(world, "<B>Error setting up [master_mode].</B> Reverting to pre-game lobby.")
+		job_master.reset_occupations()
 		return 0
 
 	if(hide_mode)
@@ -107,8 +107,8 @@ var/global/datum/controller/gameticker/ticker
 		for(var/datum/game_mode/M in runnable_modes)
 			modes += M.name
 		modes = sortList(modes)
-		world << "<B>The current game mode is - Secret!</B>"
-		world << "<B>Possibilities:</B> [english_list(modes)]"
+		to_chat(world, "<B>The current game mode is - Secret!</B>")
+		to_chat(world, "<B>Possibilities:</B> [english_list(modes)]")
 	else
 		src.mode.announce()
 
@@ -145,11 +145,6 @@ var/global/datum/controller/gameticker/ticker
 			admins_number++
 	if(admins_number == 0)
 		send2adminirc("Round has started with no admins online.")
-
-	//supply_shuttle.process() 		//Start the supply shuttle regenerating points -- TLE
-	//supply_controller.process() // Edited this to reflect 'shuttles' port. -Frenjo
-	//master_controller.process()		//Start master_controller.process()
-	//lighting_controller.process()	//Start processing DynamicAreaLighting updates
 
 	processScheduler.start()
 
@@ -294,12 +289,12 @@ var/global/datum/controller/gameticker/ticker
 				if(player.mind.assigned_role == "Captain")
 					captainless = 0
 				if(player.mind.assigned_role != "MODE")
-					job_master.EquipRank(player, player.mind.assigned_role, 0)
+					job_master.equip_rank(player, player.mind.assigned_role, 0)
 					EquipCustomItems(player)
 		if(captainless)
 			for(var/mob/M in player_list)
-				if(!istype(M,/mob/new_player))
-					M << "Captainship not forced on anyone."
+				if(!istype(M, /mob/new_player))
+					to_chat(M, "Captainship not forced on anyone.")
 
 
 	proc/process()
@@ -307,8 +302,6 @@ var/global/datum/controller/gameticker/ticker
 			return 0
 
 		mode.process()
-
-		//emergency_shuttle.process()
 
 		//var/mode_finished = mode.check_finished() || (emergency_shuttle.location == 2 && emergency_shuttle.alert == 1)
 		var/mode_finished = mode.check_finished() || (emergency_shuttle.returned() && emergency_shuttle.evac) // Updated this to reflect 'shuttles' port. -Frenjo
@@ -322,14 +315,13 @@ var/global/datum/controller/gameticker/ticker
 				callHook("roundend")
 
 				if(mode.station_was_nuked)
-					feedback_set_details("end_proper","nuke")
+					feedback_set_details("end_proper", "nuke")
 					if(!delay_end)
-						world << "\blue <B>Rebooting due to destruction of station in [restart_timeout/10] seconds</B>"
+						to_chat(world, span("notice", "Rebooting due to destruction of station in [restart_timeout/10] seconds"))
 				else
-					feedback_set_details("end_proper","proper completion")
+					feedback_set_details("end_proper", "proper completion")
 					if(!delay_end)
-						world << "\blue <B>Restarting in [restart_timeout/10] seconds</B>"
-
+						to_chat(world, span("notice", "Restarting in [restart_timeout/10] seconds"))
 
 				if(blackbox)
 					blackbox.save_all_data_to_sql()
@@ -339,13 +331,13 @@ var/global/datum/controller/gameticker/ticker
 					if(!delay_end)
 						world.Reboot()
 					else
-						world << "\blue <B>An admin has delayed the round end</B>"
+						to_chat(world, span("notice", "An admin has delayed the round end"))
 				else
-					world << "\blue <B>An admin has delayed the round end</B>"
+					to_chat(world, span("notice", "An admin has delayed the round end"))
 
 		return 1
 
-	proc/getfactionbyname(var/name)
+	proc/getfactionbyname(name)
 		for(var/datum/faction/F in factions)
 			if(F.name == name)
 				return F
@@ -379,7 +371,7 @@ var/global/datum/controller/gameticker/ticker
 
 	//calls auto_declare_completion_* for all modes
 	for(var/handler in typesof(/datum/game_mode/proc))
-		if(findtext("[handler]","auto_declare_completion_"))
+		if(findtext("[handler]", "auto_declare_completion_"))
 			call(mode, handler)()
 
 	//Print a list of antagonists to the server log

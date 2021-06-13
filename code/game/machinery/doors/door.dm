@@ -20,6 +20,8 @@
 	var/heat_proof = 0 // For glass airlocks/opacity firedoors
 	var/air_properties_vary_with_direction = 0
 
+	var/block_air_zones = 1 //If set, air zones cannot merge across the door even when it is opened.
+
 	//Multi-tile doors
 	dir = EAST
 	var/width = 1
@@ -43,7 +45,7 @@
 			bound_width = world.icon_size
 			bound_height = width * world.icon_size
 
-	update_nearby_tiles(need_rebuild=1)
+	update_nearby_tiles(need_rebuild = 1)
 	return
 
 
@@ -61,7 +63,8 @@
 		return
 	if(ismob(AM))
 		var/mob/M = AM
-		if(world.time - M.last_bumped <= 10) return	//Can bump-open one airlock per second. This is to prevent shock spam.
+		if(world.time - M.last_bumped <= 10)
+			return	//Can bump-open one airlock per second. This is to prevent shock spam.
 		M.last_bumped = world.time
 		if(!M.restrained() && !M.small)
 			bumpopen(M)
@@ -85,15 +88,17 @@
 	return
 
 
-/obj/machinery/door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group) return 0
+/obj/machinery/door/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	if(air_group)
+		return !block_air_zones
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return !opacity
 	return !density
 
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
-	if(operating)	return
+	if(operating)
+		return
 	if(user.last_airflow > world.time - vsc.airflow_delay) //Fakkit
 		return
 	src.add_fingerprint(user)
@@ -101,8 +106,10 @@
 		user = null
 
 	if(density)
-		if(allowed(user))	open()
-		else				flick("door_deny", src)
+		if(allowed(user))
+			open()
+		else
+			flick("door_deny", src)
 	return
 
 /obj/machinery/door/meteorhit(obj/M as obj)
@@ -129,7 +136,8 @@
 /obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/device/detective_scanner))
 		return
-	if(src.operating || isRobot(user))	return //borgs can't attack doors open because it conflicts with their AI-like interaction with them.
+	if(src.operating || isRobot(user))
+		return //borgs can't attack doors open because it conflicts with their AI-like interaction with them.
 	src.add_fingerprint(user)
 	if(!Adjacent(user))
 		user = null
@@ -159,9 +167,9 @@
 
 
 /obj/machinery/door/emp_act(severity)
-	if(prob(20/severity) && (istype(src,/obj/machinery/door/airlock) || istype(src,/obj/machinery/door/window)) )
+	if(prob(20 / severity) && (istype(src, /obj/machinery/door/airlock) || istype(src, /obj/machinery/door/window)))
 		open()
-	if(prob(40/severity))
+	if(prob(40 / severity))
 		if(secondsElectrified == 0)
 			secondsElectrified = -1
 			spawn(300)
@@ -210,10 +218,14 @@
 
 
 /obj/machinery/door/proc/open()
-	if(!density)		return 1
-	if(operating > 0)	return
-	if(!ticker)			return 0
-	if(!operating)		operating = 1
+	if(!density)
+		return 1
+	if(operating > 0)
+		return
+	if(!ticker)
+		return 0
+	if(!operating)
+		operating = 1
 
 	do_animate("opening")
 	icon_state = "door0"
@@ -229,7 +241,8 @@
 	set_opacity(0)
 	update_nearby_tiles()
 
-	if(operating)	operating = 0
+	if(operating)
+		operating = 0
 
 	if(autoclose  && normalspeed)
 		spawn(150)
@@ -242,8 +255,10 @@
 
 
 /obj/machinery/door/proc/close()
-	if(density)	return 1
-	if(operating > 0)	return
+	if(density)
+		return 1
+	if(operating > 0)
+		return
 	operating = 1
 
 	do_animate("closing")
@@ -278,7 +293,7 @@
 
 	return 1
 
-/obj/machinery/door/proc/update_heat_protection(var/turf/simulated/source)
+/obj/machinery/door/proc/update_heat_protection(turf/simulated/source)
 	if(istype(source))
 		if(src.density && (src.opacity || src.heat_proof))
 			source.thermal_conductivity = DOOR_HEAT_TRANSFER_COEFFICIENT

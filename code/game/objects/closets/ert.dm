@@ -8,19 +8,18 @@
 	icon_broken = "capsecurebroken"
 	icon_off = "capsecureoff"
 
-	New()
-		..()
-		sleep(2)
-		new /obj/item/clothing/head/helmet/space/ert/commander(src)
-		new /obj/item/clothing/suit/space/ert/commander(src)
-		new /obj/item/weapon/plastique(src)
-		new /obj/item/weapon/storage/belt/security/full(src)
-		new /obj/item/weapon/gun/energy/ionrifle(src)
-		new /obj/item/weapon/gun/energy/gun/nuclear(src)
-		new /obj/item/clothing/glasses/thermal(src)
-		new /obj/item/weapon/lighter/zippo(src)
-		new /obj/item/weapon/pinpointer(src)
-		return
+/obj/structure/closet/secure_closet/ert/commander/New()
+	..()
+	new /obj/item/clothing/head/helmet/space/ert/commander(src)
+	new /obj/item/clothing/suit/space/ert/commander(src)
+	new /obj/item/weapon/plastique(src)
+	new /obj/item/weapon/storage/belt/security/full(src)
+	new /obj/item/weapon/gun/energy/ionrifle(src)
+	new /obj/item/weapon/gun/energy/gun/nuclear(src)
+	new /obj/item/clothing/glasses/thermal(src)
+	new /obj/item/weapon/lighter/zippo(src)
+	new /obj/item/weapon/pinpointer(src)
+
 
 /obj/structure/closet/secure_closet/ert/security
 	name = "\improper ERT security locker"
@@ -32,17 +31,15 @@
 	icon_broken = "secbroken"
 	icon_off = "secoff"
 
-	New()
-		..()
-		sleep(2)
-		new /obj/item/clothing/head/helmet/space/ert/security(src)
-		new /obj/item/clothing/suit/space/ert/security(src)
-		new /obj/item/weapon/plastique(src)
-		new /obj/item/weapon/storage/belt/security/full(src)
-		new /obj/item/weapon/gun/energy/ionrifle(src)
-		new /obj/item/weapon/gun/energy/gun/nuclear(src)
-		new /obj/item/clothing/glasses/thermal(src)
-		return
+/obj/structure/closet/secure_closet/ert/security/New()
+	..()
+	new /obj/item/clothing/head/helmet/space/ert/security(src)
+	new /obj/item/clothing/suit/space/ert/security(src)
+	new /obj/item/weapon/plastique(src)
+	new /obj/item/weapon/storage/belt/security/full(src)
+	new /obj/item/weapon/gun/energy/ionrifle(src)
+	new /obj/item/weapon/gun/energy/gun/nuclear(src)
+	new /obj/item/clothing/glasses/thermal(src)
 
 
 /obj/structure/closet/secure_closet/ert/engineer
@@ -55,17 +52,16 @@
 	icon_broken = "secureengbroken"
 	icon_off = "secureengoff"
 
-	New()
-		..()
-		sleep(2)
-		new /obj/item/clothing/head/helmet/space/ert/engineer(src)
-		new /obj/item/clothing/suit/space/ert/engineer(src)
-		new /obj/item/weapon/gun/energy/taser(src)
-		new /obj/item/weapon/storage/belt/utility/full(src)
-		new /obj/item/weapon/storage/backpack/industrial/full(src)
-		new /obj/item/device/t_scanner(src)
-		new /obj/item/clothing/glasses/meson(src)
-		return
+/obj/structure/closet/secure_closet/ert/engineer/New()
+	..()
+	new /obj/item/clothing/head/helmet/space/ert/engineer(src)
+	new /obj/item/clothing/suit/space/ert/engineer(src)
+	new /obj/item/weapon/gun/energy/taser(src)
+	new /obj/item/weapon/storage/belt/utility/full(src)
+	new /obj/item/weapon/storage/backpack/industrial/full(src)
+	new /obj/item/device/t_scanner(src)
+	new /obj/item/clothing/glasses/meson(src)
+
 
 /obj/structure/closet/secure_closet/ert/medical
 	name = "\improper ERT medical locker"
@@ -77,13 +73,11 @@
 	icon_broken = "securemedbroken"
 	icon_off = "securemedoff"
 
-	New()
-		..()
-		sleep(2)
-		new /obj/item/clothing/head/helmet/space/ert/medical(src)
-		new /obj/item/clothing/suit/space/ert/medical(src)
-		new /obj/item/weapon/gun/energy/taser(src)
-		new /obj/item/weapon/storage/backpack/medic/full(src)
-		new /obj/item/weapon/storage/belt/medical(src)
-		new /obj/item/clothing/glasses/hud/health(src)
-		return
+/obj/structure/closet/secure_closet/ert/medical/New()
+	..()
+	new /obj/item/clothing/head/helmet/space/ert/medical(src)
+	new /obj/item/clothing/suit/space/ert/medical(src)
+	new /obj/item/weapon/gun/energy/taser(src)
+	new /obj/item/weapon/storage/backpack/medic/full(src)
+	new /obj/item/weapon/storage/belt/medical(src)
+	new /obj/item/clothing/glasses/hud/health(src)

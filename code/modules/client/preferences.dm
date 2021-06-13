@@ -593,7 +593,7 @@ datum/preferences
 			player_alt_titles[job.title] = new_title
 
 	proc/SetJob(mob/user, role)
-		var/datum/job/job = job_master.GetJob(role)
+		var/datum/job/job = job_master.get_job(role)
 		if(!job)
 			user << browse(null, "window=mob_occupation")
 			ShowChoices(user)

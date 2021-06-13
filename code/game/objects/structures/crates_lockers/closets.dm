@@ -17,14 +17,16 @@
 /obj/structure/closet/initialize()
 	if(!opened)		// if closed, any item at the crate's loc is put in the contents
 		for(var/obj/item/I in src.loc)
-			if(I.density || I.anchored || I == src) continue
+			if(I.density || I.anchored || I == src)
+				continue
 			I.loc = src
 
 /obj/structure/closet/alter_health()
 	return get_turf(src)
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0 || wall_mounted)) return 1
+	if(air_group || (height==0 || wall_mounted))
+		return 1
 	return (!density)
 
 /obj/structure/closet/proc/can_open()
@@ -217,7 +219,7 @@
 		return
 	if(user.restrained() || user.stat || user.weakened || user.stunned || user.paralysis)
 		return
-	if((!( istype(O, /atom/movable) ) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src)))
+	if((!(istype(O, /atom/movable)) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src)))
 		return
 	if(user.loc==null) // just in case someone manages to get a closet into the blue light dimension, as unlikely as that seems
 		return
@@ -241,7 +243,7 @@
 		user << "<span class='notice'>It won't budge!</span>"
 		if(!lastbang)
 			lastbang = 1
-			for (var/mob/M in hearers(src, null))
+			for(var/mob/M in hearers(src, null))
 				M << text("<FONT size=[]>BANG, bang!</FONT>", max(0, 5 - get_dist(src, M)))
 			spawn(30)
 				lastbang = 0
@@ -285,6 +287,6 @@
 
 /obj/structure/closet/hear_talk(mob/M as mob, text)
 	for (var/atom/A in src)
-		if(istype(A,/obj/))
+		if(istype(A, /obj/))
 			var/obj/O = A
 			O.hear_talk(M, text)

@@ -9,7 +9,7 @@
 
 	for(var/obj/machinery/power/smes/S in world)
 		var/area/current_area = get_area(S)
-		if(current_area.type in skipped_areas || !(S.z in config.station_levels))
+		if(current_area.type in skipped_areas || isNotStationLevel(S.z))
 			continue
 		S.last_charge			= S.charge
 		S.last_output_attempt	= S.output_attempt
@@ -21,7 +21,7 @@
 		S.power_change()
 
 	for(var/obj/machinery/power/apc/C in world)
-		if(C.cell && C.z in config.station_levels)
+		if(C.cell && isStationLevel(C.z))
 			var/area/A = get_area(C)
 			var/skip = 0
 			for(var/area_type in skipped_areas)
@@ -42,7 +42,7 @@
 	var/list/skipped_areas = list(/area/engine/engineering, /area/turret_protected/ai)
 
 	for(var/obj/machinery/power/apc/C in world)
-		if(C.cell && C.z in config.station_levels)
+		if(C.cell && isStationLevel(C.z))
 			C.cell.charge = C.cell.maxcharge
 
 	for(var/obj/machinery/power/smes/S in world)

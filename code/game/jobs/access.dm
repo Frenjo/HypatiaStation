@@ -121,7 +121,7 @@
 	if(!src.req_access)
 		src.req_access = list()
 		if(src.req_access_txt)
-			var/list/req_access_str = text2list(req_access_txt,";")
+			var/list/req_access_str = text2list(req_access_txt, ";")
 			for(var/x in req_access_str)
 				var/n = text2num(x)
 				if(n)
@@ -130,7 +130,7 @@
 	if(!src.req_one_access)
 		src.req_one_access = list()
 		if(src.req_one_access_txt)
-			var/list/req_one_access_str = text2list(req_one_access_txt,";")
+			var/list/req_one_access_str = text2list(req_one_access_txt, ";")
 			for(var/x in req_one_access_str)
 				var/n = text2num(x)
 				if(n)
@@ -155,12 +155,17 @@
 	return 1
 
 
-/obj/proc/check_access_list(var/list/L)
-	if(!src.req_access  && !src.req_one_access)	return 1
-	if(!istype(src.req_access, /list))	return 1
-	if(!src.req_access.len && (!src.req_one_access || !src.req_one_access.len))	return 1
-	if(!L)	return 0
-	if(!istype(L, /list))	return 0
+/obj/proc/check_access_list(list/L)
+	if(!src.req_access  && !src.req_one_access)
+		return 1
+	if(!istype(src.req_access, /list))
+		return 1
+	if(!src.req_access.len && (!src.req_one_access || !src.req_one_access.len))
+		return 1
+	if(!L)
+		return 0
+	if(!istype(L, /list))
+		return 0
 	for(var/req in src.req_access)
 		if(!(req in L)) //doesn't have this access
 			return 0
@@ -211,7 +216,7 @@
 /proc/get_all_syndicate_access()
 	return list(access_syndicate)
 
-/proc/get_region_accesses(var/code)
+/proc/get_region_accesses(code)
 	switch(code)
 		if(0)
 			return get_all_accesses()
@@ -230,7 +235,7 @@
 		if(7) //supply
 			return list(access_mailsorting, access_mining, access_mining_station, access_cargo, access_qm)
 
-/proc/get_region_accesses_name(var/code)
+/proc/get_region_accesses_name(code)
 	switch(code)
 		if(0)
 			return "All"
@@ -407,7 +412,7 @@
 /proc/get_all_jobs()
 	var/list/all_jobs = list()
 	var/list/all_datums = typesof(/datum/job)
-	all_datums.Remove(list(/datum/job,/datum/job/ai,/datum/job/cyborg))
+	all_datums.Remove(list(/datum/job, /datum/job/ai, /datum/job/cyborg))
 	var/datum/job/jobdatum
 	for(var/jobtype in all_datums)
 		jobdatum = new jobtype
@@ -415,12 +420,12 @@
 	return all_jobs
 
 /proc/get_all_centcom_jobs()
-	return list("VIP Guest","Custodian","Thunderdome Overseer","Intel Officer","Medical Officer","Death Commando","Research Officer","BlackOps Commander","Supreme Commander")
+	return list("VIP Guest", "Custodian", "Thunderdome Overseer", "Intel Officer", "Medical Officer", "Death Commando", "Research Officer", "BlackOps Commander", "Supreme Commander")
 
 //gets the actual job rank (ignoring alt titles)
 //this is used solely for sechuds
 /obj/proc/GetJobRealName()
-	if (!istype(src, /obj/item/device/pda) && !istype(src,/obj/item/weapon/card/id))
+	if(!istype(src, /obj/item/device/pda) && !istype(src,/obj/item/weapon/card/id))
 		return
 
 	var/rank
@@ -433,10 +438,10 @@
 		rank = src:rank
 		assignment = src:assignment
 
-	if( rank in joblist )
+	if(rank in joblist)
 		return rank
 
-	if( assignment in joblist )
+	if(assignment in joblist)
 		return assignment
 
 	return "Unknown"
@@ -444,7 +449,7 @@
 //gets the alt title, failing that the actual job rank
 //this is unused
 /obj/proc/sdsdsd()	//GetJobDisplayName
-	if (!istype(src, /obj/item/device/pda) && !istype(src,/obj/item/weapon/card/id))
+	if(!istype(src, /obj/item/device/pda) && !istype(src, /obj/item/weapon/card/id))
 		return
 
 	var/assignment
@@ -459,13 +464,13 @@
 
 	return "Unknown"
 
-proc/FindNameFromID(var/mob/living/carbon/human/H)
+proc/FindNameFromID(mob/living/carbon/human/H)
 	ASSERT(istype(H))
 	var/obj/item/weapon/card/id/C = H.get_active_hand()
-	if( istype(C) || istype(C, /obj/item/device/pda) )
+	if(istype(C) || istype(C, /obj/item/device/pda))
 		var/obj/item/weapon/card/id/ID = C
 
-		if( istype(C, /obj/item/device/pda) )
+		if(istype(C, /obj/item/device/pda))
 			var/obj/item/device/pda/pda = C
 			ID = pda.id
 		if(!istype(ID))
@@ -476,10 +481,10 @@ proc/FindNameFromID(var/mob/living/carbon/human/H)
 
 	C = H.wear_id
 
-	if( istype(C) || istype(C, /obj/item/device/pda) )
+	if(istype(C) || istype(C, /obj/item/device/pda))
 		var/obj/item/weapon/card/id/ID = C
 
-		if( istype(C, /obj/item/device/pda) )
+		if(istype(C, /obj/item/device/pda))
 			var/obj/item/device/pda/pda = C
 			ID = pda.id
 		if(!istype(ID))
@@ -492,7 +497,7 @@ proc/get_all_job_icons() //For all existing HUD icons
 	return joblist + list("Prisoner")
 
 /obj/proc/GetJobName() //Used in secHUD icon generation
-	if (!istype(src, /obj/item/device/pda) && !istype(src,/obj/item/weapon/card/id))
+	if(!istype(src, /obj/item/device/pda) && !istype(src,/obj/item/weapon/card/id))
 		return
 
 	var/jobName

@@ -15,7 +15,7 @@
 		return 0
 
 /datum/organ/proc/get_icon()
-	return icon('icons/mob/human.dmi',"blank")
+	return icon('icons/mob/human.dmi', "blank")
 
 //Handles chem traces
 /mob/living/carbon/human/proc/handle_trace_chems()
@@ -25,7 +25,7 @@
 		O.trace_chemicals[A.name] = 100
 
 //Adds autopsy data for used_weapon.
-/datum/organ/proc/add_autopsy_data(var/used_weapon, var/damage)
+/datum/organ/proc/add_autopsy_data(used_weapon, damage)
 	var/datum/autopsy_data/W = autopsy_data[used_weapon]
 	if(!W)
 		W = new()

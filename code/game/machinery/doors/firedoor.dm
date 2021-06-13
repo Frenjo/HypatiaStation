@@ -8,6 +8,10 @@
 	density = 0
 	layer = 3.5 // Sets layer to higher than most other things for mapping reasons.
 
+	//These are frequenly used with windows, so make sure zones can pass. 
+	//Generally if a firedoor is at a place where there should be a zone boundery then there will be a regular door underneath it.
+	block_air_zones = 0
+
 	var/blocked = 0
 	var/nextstate = null
 	var/net_id
@@ -29,7 +33,7 @@
 	areas_added = list(A)
 
 	for(var/direction in cardinal)
-		A = get_area(get_step(src,direction))
+		A = get_area(get_step(src, direction))
 		if(istype(A) && !(A in areas_added))
 			A.all_doors.Add(src)
 			areas_added += A
@@ -141,11 +145,11 @@
 		return
 
 
-	if( istype(C, /obj/item/weapon/crowbar) || ( istype(C,/obj/item/weapon/twohanded/fireaxe) && C:wielded == 1 ) )
+	if(istype(C, /obj/item/weapon/crowbar) || (istype(C, /obj/item/weapon/twohanded/fireaxe) && C:wielded == 1))
 		if(operating)
 			return
 
-		if( blocked && istype(C, /obj/item/weapon/crowbar) )
+		if(blocked && istype(C, /obj/item/weapon/crowbar))
 			user.visible_message("\red \The [user] pries at \the [src] with \a [C], but \the [src] is welded in place!",\
 			"You try to pry \the [src] [density ? "open" : "closed"], but it is welded in place!",\
 			"You hear someone struggle and metal straining.")
@@ -154,9 +158,9 @@
 		user.visible_message("\red \The [user] starts to force \the [src] [density ? "open" : "closed"] with \a [C]!",\
 				"You start forcing \the [src] [density ? "open" : "closed"] with \the [C]!",\
 				"You hear metal strain.")
-		if(do_after(user,30))
-			if( istype(C, /obj/item/weapon/crowbar) )
-				if( stat & (BROKEN|NOPOWER) || !density)
+		if(do_after(user, 30))
+			if(istype(C, /obj/item/weapon/crowbar))
+				if(stat & (BROKEN|NOPOWER) || !density)
 					user.visible_message("\red \The [user] forces \the [src] [density ? "open" : "closed"] with \a [C]!",\
 					"You force \the [src] [density ? "open" : "closed"] with \the [C]!",\
 					"You hear metal strain, and a door [density ? "open" : "close"].")
@@ -217,9 +221,8 @@
 	return
 
 
-
-/obj/machinery/door/firedoor/border_only
 //These are playing merry hell on ZAS.  Sorry fellas :(
+/obj/machinery/door/firedoor/border_only
 /*
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	glass = 1 //There is a glass window so you can see through the door

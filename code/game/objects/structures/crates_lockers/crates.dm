@@ -87,13 +87,13 @@
 		return
 	else if(istype(W, /obj/item/device/radio/electropack))
 		if(rigged)
-			user  << "<span class='notice'>You attach [W] to [src].</span>"
+			user << "<span class='notice'>You attach [W] to [src].</span>"
 			user.drop_item()
 			W.loc = src
 			return
 	else if(istype(W, /obj/item/weapon/wirecutters))
 		if(rigged)
-			user  << "<span class='notice'>You cut away the wiring.</span>"
+			user << "<span class='notice'>You cut away the wiring.</span>"
 			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 			rigged = 0
 			return
@@ -113,7 +113,7 @@
 			qdel(src)
 			return
 		if(3.0)
-			if (prob(50))
+			if(prob(50))
 				qdel(src)
 			return
 		else
@@ -154,7 +154,7 @@
 	if(src.allowed(user))
 		src.locked = !src.locked
 		for(var/mob/O in viewers(user, 3))
-			if((O.client && !( O.blinded )))
+			if((O.client && !(O.blinded)))
 				O << "<span class='notice'>The crate has been [locked ? null : "un"]locked by [user].</span>"
 		overlays.Cut()
 		overlays += locked ? redlight : greenlight
@@ -203,7 +203,7 @@
 /obj/structure/closet/crate/secure/emp_act(severity)
 	for(var/obj/O in src)
 		O.emp_act(severity)
-	if(!broken && !opened  && prob(50/severity))
+	if(!broken && !opened  && prob(50 / severity))
 		if(!locked)
 			src.locked = 1
 			overlays.Cut()
@@ -212,10 +212,11 @@
 			overlays.Cut()
 			overlays += emag
 			overlays += sparks
-			spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
+			spawn(6)
+				overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
 			playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 			src.locked = 0
-	if(!opened && prob(20/severity))
+	if(!opened && prob(20 / severity))
 		if(!locked)
 			open()
 		else

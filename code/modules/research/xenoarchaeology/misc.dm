@@ -2,8 +2,8 @@
 #define XENOARCH_SPREAD_CHANCE 15
 #define ARTIFACT_SPAWN_CHANCE 20
 
-proc/SetupXenoarch()
-	for(var/turf/simulated/mineral/M in block(locate(1,1,1), locate(world.maxx, world.maxy, world.maxz)))
+proc/setup_xenoarch()
+	for(var/turf/simulated/mineral/M in block(locate(1, 1, 1), locate(world.maxx, world.maxy, world.maxz)))
 		if(!M.geologic_data)
 			M.geologic_data = new/datum/geosample(M)
 
@@ -14,7 +14,6 @@ proc/SetupXenoarch()
 		var/list/processed_turfs = list()
 		var/list/turfs_to_process = list(M)
 		for(var/turf/simulated/mineral/archeo_turf in turfs_to_process)
-
 			for(var/turf/simulated/mineral/T in orange(1, archeo_turf))
 				if(T.finds)
 					continue
@@ -27,14 +26,14 @@ proc/SetupXenoarch()
 			if(!archeo_turf.finds)
 				archeo_turf.finds = list()
 				if(prob(50))
-					archeo_turf.finds.Add(new /datum/find(digsite, rand(5,95)))
+					archeo_turf.finds.Add(new /datum/find(digsite, rand(5, 95)))
 				else if(prob(75))
-					archeo_turf.finds.Add(new /datum/find(digsite, rand(5,45)))
-					archeo_turf.finds.Add(new /datum/find(digsite, rand(55,95)))
+					archeo_turf.finds.Add(new /datum/find(digsite, rand(5, 45)))
+					archeo_turf.finds.Add(new /datum/find(digsite, rand(55, 95)))
 				else
-					archeo_turf.finds.Add(new /datum/find(digsite, rand(5,30)))
-					archeo_turf.finds.Add(new /datum/find(digsite, rand(35,75)))
-					archeo_turf.finds.Add(new /datum/find(digsite, rand(75,95)))
+					archeo_turf.finds.Add(new /datum/find(digsite, rand(5, 30)))
+					archeo_turf.finds.Add(new /datum/find(digsite, rand(35, 75)))
+					archeo_turf.finds.Add(new /datum/find(digsite, rand(75, 95)))
 
 				//sometimes a find will be close enough to the surface to show
 				var/datum/find/F = archeo_turf.finds[1]
@@ -96,15 +95,15 @@ proc/SetupXenoarch()
 /obj/structure/bookcase/manuals/xenoarchaeology
 	name = "Xenoarchaeology Manuals bookcase"
 
-	New()
-		..()
-		new /obj/item/weapon/book/manual/excavation(src)
-		new /obj/item/weapon/book/manual/mass_spectrometry(src)
-		new /obj/item/weapon/book/manual/materials_chemistry_analysis(src)
-		new /obj/item/weapon/book/manual/anomaly_testing(src)
-		new /obj/item/weapon/book/manual/anomaly_spectroscopy(src)
-		new /obj/item/weapon/book/manual/stasis(src)
-		update_icon()
+/obj/structure/bookcase/manuals/xenoarchaeology/New()
+	..()
+	new /obj/item/weapon/book/manual/excavation(src)
+	new /obj/item/weapon/book/manual/mass_spectrometry(src)
+	new /obj/item/weapon/book/manual/materials_chemistry_analysis(src)
+	new /obj/item/weapon/book/manual/anomaly_testing(src)
+	new /obj/item/weapon/book/manual/anomaly_spectroscopy(src)
+	new /obj/item/weapon/book/manual/stasis(src)
+	update_icon()
 
 //---- Lockers and closets
 
@@ -119,17 +118,16 @@ proc/SetupXenoarch()
 	icon_broken = "secureresbroken"
 	icon_off = "secureresoff"
 
-	New()
-		..()
-		sleep(2)
-		new /obj/item/clothing/under/rank/scientist(src)
-		new /obj/item/clothing/suit/storage/labcoat(src)
-		new /obj/item/clothing/shoes/white(src)
-		new /obj/item/clothing/glasses/science(src)
-		new /obj/item/device/radio/headset/headset_sci(src)
-		new /obj/item/weapon/storage/belt/archaeology(src)
-		new /obj/item/weapon/storage/box/excavation(src)
-		return
+/obj/structure/closet/secure_closet/xenoarchaeologist/New()
+	..()
+	new /obj/item/clothing/under/rank/scientist(src)
+	new /obj/item/clothing/suit/storage/labcoat(src)
+	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/glasses/science(src)
+	new /obj/item/device/radio/headset/headset_sci(src)
+	new /obj/item/weapon/storage/belt/archaeology(src)
+	new /obj/item/weapon/storage/box/excavation(src)
+	return
 
 /obj/structure/closet/excavation
 	name = "Excavation tools"
@@ -137,23 +135,22 @@ proc/SetupXenoarch()
 	icon_closed = "toolcloset"
 	icon_opened = "toolclosetopen"
 
-	New()
-		..()
-		sleep(2)
-		new /obj/item/weapon/storage/belt/archaeology(src)
-		new /obj/item/weapon/storage/box/excavation(src)
-		new /obj/item/device/flashlight/lantern(src)
-		new /obj/item/device/ano_scanner(src)
-		new /obj/item/device/depth_scanner(src)
-		new /obj/item/device/core_sampler(src)
-		new /obj/item/device/gps(src)
-		new /obj/item/device/beacon_locator(src)
-		new /obj/item/device/radio/beacon(src)
-		new /obj/item/clothing/glasses/meson(src)
-		new /obj/item/weapon/pickaxe(src)
-		new /obj/item/device/measuring_tape(src)
-		new /obj/item/weapon/pickaxe/hand(src)
-		return
+/obj/structure/closet/excavation/New()
+	..()
+	new /obj/item/weapon/storage/belt/archaeology(src)
+	new /obj/item/weapon/storage/box/excavation(src)
+	new /obj/item/device/flashlight/lantern(src)
+	new /obj/item/device/ano_scanner(src)
+	new /obj/item/device/depth_scanner(src)
+	new /obj/item/device/core_sampler(src)
+	new /obj/item/device/gps(src)
+	new /obj/item/device/beacon_locator(src)
+	new /obj/item/device/radio/beacon(src)
+	new /obj/item/clothing/glasses/meson(src)
+	new /obj/item/weapon/pickaxe(src)
+	new /obj/item/device/measuring_tape(src)
+	new /obj/item/weapon/pickaxe/hand(src)
+	return
 
 //---- Isolation room air alarms
 

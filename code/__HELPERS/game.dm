@@ -50,7 +50,7 @@
 	return level in config.station_levels
 
 /proc/isNotStationLevel(level)
-	return !isStationLevel()
+	return !isStationLevel(level)
 
 /proc/isPlayerLevel(level)
 	return level in config.player_levels

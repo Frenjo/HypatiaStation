@@ -5,24 +5,23 @@
 // Randomize block, assign a reference name, and optionally define difficulty (by making activation zone smaller or bigger)
 // The name is used on /vg/ for species with predefined genetic traits,
 //  and for the DNA panel in the player panel.
-/proc/getAssignedBlock(var/name,var/list/blocksLeft, var/activity_bounds=DNA_DEFAULT_BOUNDS)
-	if(blocksLeft.len==0)
+/proc/getAssignedBlock(name, list/blocksLeft, activity_bounds = DNA_DEFAULT_BOUNDS)
+	if(blocksLeft.len == 0)
 		warning("[name]: No more blocks left to assign!")
 		return 0
 	var/assigned = pick(blocksLeft)
 	blocksLeft.Remove(assigned)
-	assigned_blocks[assigned]=name
-	dna_activity_bounds[assigned]=activity_bounds
+	assigned_blocks[assigned] = name
+	dna_activity_bounds[assigned] = activity_bounds
 	//testing("[name] assigned to block #[assigned].")
 	return assigned
 
-/proc/setupgenetics()
-
-	if (prob(50))
+/proc/setup_genetics()
+	if(prob(50))
 		// Currently unused.  Will revisit. - N3X
-		BLOCKADD = rand(-300,300)
-	if (prob(75))
-		DIFFMUT = rand(0,20)
+		BLOCKADD = rand(-300, 300)
+	if(prob(75))
+		DIFFMUT = rand(0, 20)
 
 	/* Old, for reference (so I don't accidentally activate something) - N3X
 	var/list/avnums = new/list()
@@ -62,8 +61,8 @@
 	avnums.Remove(tempnum)
 	BLINDBLOCK = tempnum
 	*/
-	var/list/numsToAssign=new()
-	for(var/i=1;i<DNA_SE_LENGTH;i++)
+	var/list/numsToAssign = new()
+	for(var/i = 1; i < DNA_SE_LENGTH; i++)
 		numsToAssign += i
 
 	//testing("Assigning DNA blocks:")
@@ -116,9 +115,9 @@
 			dna_genes.Add(G)
 			var/list/assignedToBlock[0]
 			if(blocks_assigned[G.block])
-				assignedToBlock=blocks_assigned[G.block]
+				assignedToBlock = blocks_assigned[G.block]
 			assignedToBlock.Add(G.name)
-			blocks_assigned[G.block]=assignedToBlock
+			blocks_assigned[G.block] = assignedToBlock
 			//testing("DNA2: Gene [G.name] assigned to block [G.block].")
 
 	testing("DNA2: [numsToAssign.len] blocks are unused: [english_list(numsToAssign)]")
@@ -145,8 +144,7 @@
 	*/
 
 
-/proc/setupfactions()
-
+/proc/setup_factions()
 	// Populate the factions list:
 	for(var/x in typesof(/datum/faction))
 		var/datum/faction/F = new x

@@ -177,13 +177,11 @@ var/global/list/frozen_items = list()
 //Lifted from Unity stasis.dm and refactored. ~Zuhayr
 /obj/machinery/cryopod/process()
 	if(occupant)
-
 		//Allow a ten minute gap between entering the pod and actually despawning.
 		if(world.time - time_entered < time_till_despawn)
 			return
 
 		if(!occupant.client && occupant.stat<2) //Occupant is living and has no client.
-
 			//Drop all items into the pod.
 			for(var/obj/item/W in occupant)
 				occupant.drop_from_inventory(W)
@@ -212,15 +210,16 @@ var/global/list/frozen_items = list()
 
 			//Update any existing objectives involving this mob.
 			for(var/datum/objective/O in all_objectives)
-				if(istype(O,/datum/objective/mutiny) && O.target == occupant.mind) //We don't want revs to get objectives that aren't for heads of staff. Letting them win or lose based on cryo is silly so we remove the objective.
+				if(istype(O, /datum/objective/mutiny) && O.target == occupant.mind) //We don't want revs to get objectives that aren't for heads of staff. Letting them win or lose based on cryo is silly so we remove the objective.
 					qdel(O) //TODO: Update rev objectives on login by head (may happen already?) ~ Z
-				else if(O.target && istype(O.target,/datum/mind))
+				else if(O.target && istype(O.target, /datum/mind))
 					if(O.target == occupant.mind)
 						if(O.owner && O.owner.current)
-							O.owner.current << "\red You get the feeling your target is no longer within your reach. Time for Plan [pick(list("A","B","C","D","X","Y","Z"))]..."
+							to_chat(O.owner.current, span("warning", "You get the feeling your target is no longer within your reach. Time for Plan [pick(list("A","B","C","D","X","Y","Z"))]..."))
 						O.target = null
 						spawn(1) //This should ideally fire after the occupant is deleted.
-							if(!O) return
+							if(!O)
+								return
 							O.find_target()
 							if(!(O.target))
 								all_objectives -= O
@@ -230,7 +229,7 @@ var/global/list/frozen_items = list()
 			//Handle job slot/tater cleanup.
 			var/job = occupant.mind.assigned_role
 
-			job_master.FreeRole(job)
+			job_master.free_role(job)
 
 			if(occupant.mind.objectives.len)
 				qdel(occupant.mind.objectives)
@@ -241,17 +240,16 @@ var/global/list/frozen_items = list()
 					current_mode.possible_traitors.Remove(occupant)
 
 			// Delete them from datacore.
-
 			if(PDA_Manifest.len)
 				PDA_Manifest.Cut()
 			for(var/datum/data/record/R in data_core.medical)
-				if ((R.fields["name"] == occupant.real_name))
+				if((R.fields["name"] == occupant.real_name))
 					qdel(R)
 			for(var/datum/data/record/T in data_core.security)
-				if ((T.fields["name"] == occupant.real_name))
+				if((T.fields["name"] == occupant.real_name))
 					qdel(T)
 			for(var/datum/data/record/G in data_core.general)
-				if ((G.fields["name"] == occupant.real_name))
+				if((G.fields["name"] == occupant.real_name))
 					qdel(G)
 
 			if(orient_right)
@@ -268,22 +266,18 @@ var/global/list/frozen_items = list()
 			frozen_crew += "[occupant.real_name]"
 
 			announce.autosay("[occupant.real_name] has entered long-term storage.", "Cryogenic Oversight")
-			visible_message("\blue The crypod hums and hisses as it moves [occupant.real_name] into storage.", 3)
+			visible_message(span("info", "The crypod hums and hisses as it moves [occupant.real_name] into storage."), 3)
 
 			// Delete the mob.
 			qdel(occupant)
 			occupant = null
 
-
 	return
 
-
-/obj/machinery/cryopod/attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
-
+/obj/machinery/cryopod/attackby(obj/item/weapon/G as obj, mob/user as mob)
 	if(istype(G, /obj/item/weapon/grab))
-
 		if(occupant)
-			user << "\blue The cryo pod is in use."
+			to_chat(user, span("info", "The cryo pod is in use."))
 			return
 
 		if(!ismob(G:affecting))
@@ -293,18 +287,19 @@ var/global/list/frozen_items = list()
 		var/mob/M = G:affecting
 
 		if(M.client)
-			if(alert(M,"Would you like to enter cryosleep?",,"Yes","No") == "Yes")
-				if(!M || !G || !G:affecting) return
+			if(alert(M, "Would you like to enter cryosleep?", , "Yes", "No") == "Yes")
+				if(!M || !G || !G:affecting)
+					return
 				willing = 1
 		else
 			willing = 1
 
 		if(willing)
-
 			visible_message("[user] starts putting [G:affecting:name] into the cryo pod.", 3)
 
 			if(do_after(user, 20))
-				if(!M || !G || !G:affecting) return
+				if(!M || !G || !G:affecting)
+					return
 
 				M.loc = src
 
@@ -317,8 +312,8 @@ var/global/list/frozen_items = list()
 			else
 				icon_state = "body_scanner_1"
 
-			M << "\blue You feel cool air surround you. You go numb as your senses turn inward."
-			M << "\blue <b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>"
+			to_chat(M, span("info", "You feel cool air surround you. You go numb as your senses turn inward."))
+			to_chat(M, span("notice", "If you ghost, log out or close your client now, your character will shortly be permanently removed from the round."))
 			occupant = M
 			time_entered = world.time
 
@@ -354,23 +349,22 @@ var/global/list/frozen_items = list()
 		return
 
 	if(src.occupant)
-		usr << "\blue <B>The cryo pod is in use.</B>"
+		to_chat(usr, span("notice", "The cryo pod is in use."))
 		return
 
-	for(var/mob/living/carbon/slime/M in range(1,usr))
+	for(var/mob/living/carbon/slime/M in range(1, usr))
 		if(M.Victim == usr)
-			usr << "You're too busy getting your life sucked out of you."
+			to_chat(usr, "You're too busy getting your life sucked out of you.")
 			return
 
 	visible_message("[usr] starts climbing into the cryo pod.", 3)
 
 	if(do_after(usr, 20))
-
 		if(!usr || !usr.client)
 			return
 
 		if(src.occupant)
-			usr << "\blue <B>The cryo pod is in use.</B>"
+			to_chat(usr, span("notice", "The cryo pod is in use."))
 			return
 
 		usr.stop_pulling()
@@ -394,7 +388,6 @@ var/global/list/frozen_items = list()
 	return
 
 /obj/machinery/cryopod/proc/go_out()
-
 	if(!occupant)
 		return
 
@@ -411,7 +404,6 @@ var/global/list/frozen_items = list()
 		icon_state = "body_scanner_0"
 
 	return
-
 
 //Attacks/effects.
 /obj/machinery/cryopod/blob_act()

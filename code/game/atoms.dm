@@ -178,12 +178,12 @@ its easier to just keep the beam vertical.
 			else
 				X.icon = I
 
-			var/Pixel_x = round(sin(Angle) + 32*  sin(Angle) * (N + 16) / 32)
+			var/Pixel_x = round(sin(Angle) + 32 * sin(Angle) * (N + 16) / 32)
 			var/Pixel_y = round(cos(Angle) + 32 * cos(Angle) * (N + 16) / 32)
-			if(DX==0)
-				Pixel_x=0
-			if(DY==0)
-				Pixel_y=0
+			if(DX == 0)
+				Pixel_x = 0
+			if(DY == 0)
+				Pixel_y = 0
 			if(Pixel_x > 32)
 				for(var/a = 0, a <= Pixel_x, a += 32)
 					X.x++
@@ -304,7 +304,7 @@ its easier to just keep the beam vertical.
 		//Now, deal with gloves.
 		if(H.gloves && H.gloves != src)
 			if(fingerprintslast != H.key)
-				fingerprintshidden += text("\[[]\](Wearing gloves). Real name: [], Key: []",time_stamp(), H.real_name, H.key)
+				fingerprintshidden += text("\[[]\](Wearing gloves). Real name: [], Key: []", time_stamp(), H.real_name, H.key)
 				fingerprintslast = H.key
 			H.gloves.add_fingerprint(M)
 
@@ -317,7 +317,7 @@ its easier to just keep the beam vertical.
 
 		//More adminstuffz
 		if(fingerprintslast != H.key)
-			fingerprintshidden += text("\[[]\]Real name: [], Key: []",time_stamp(), H.real_name, H.key)
+			fingerprintshidden += text("\[[]\]Real name: [], Key: []", time_stamp(), H.real_name, H.key)
 			fingerprintslast = H.key
 
 		//Make the list if it does not exist.
@@ -367,7 +367,7 @@ its easier to just keep the beam vertical.
 	else
 		//Smudge up dem prints some
 		if(fingerprintslast != M.key)
-			fingerprintshidden += text("\[[]\]Real name: [], Key: []",time_stamp(), M.real_name, M.key)
+			fingerprintshidden += text("\[[]\]Real name: [], Key: []", time_stamp(), M.real_name, M.key)
 			fingerprintslast = M.key
 
 	//Cleaning up shit.
@@ -405,7 +405,7 @@ its easier to just keep the beam vertical.
 	if(!blood_DNA || !istype(blood_DNA, /list))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
 		blood_DNA = list()
 	blood_color = "#A10808"
-	if (M.species)
+	if(M.species)
 		blood_color = M.species.blood_color
 	return
 

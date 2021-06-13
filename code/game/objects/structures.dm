@@ -33,7 +33,8 @@
 			qdel(src)
 
 /obj/structure/attack_paw(mob/user)
-	if(breakable) attack_hand(user)
+	if(breakable)
+		attack_hand(user)
 
 /obj/structure/blob_act()
 	if(prob(50))
@@ -65,7 +66,7 @@
 
 	usr.visible_message("<span class='warning'>[usr] starts climbing onto \the [src]!</span>")
 
-	if(!do_after(usr,50))
+	if(!do_after(usr, 50))
 		return
 
 	usr.loc = get_turf(src)
@@ -81,7 +82,7 @@
 		M << "\red You topple as \the [src] moves under you!"
 
 		if(prob(25))
-			var/damage = rand(15,30)
+			var/damage = rand(15, 30)
 			var/mob/living/carbon/human/H = M
 			if(!istype(M))
 				H << "\red You land heavily!"
@@ -115,7 +116,7 @@
 			H.updatehealth()
 	return
 
-/obj/structure/proc/can_touch(var/mob/user)
+/obj/structure/proc/can_touch(mob/user)
 	if(!user)
 		return 0
 	if(user.stat || user.restrained() || user.paralysis || user.sleeping || user.lying || user.weakened)
