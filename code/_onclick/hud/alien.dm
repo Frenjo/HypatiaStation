@@ -1,7 +1,6 @@
 /datum/hud/proc/alien_hud()
-
-	src.adding = list(  )
-	src.other = list(  )
+	src.adding = list()
+	src.other = list()
 
 	var/obj/screen/using
 	var/obj/screen/inventory/inv_box
@@ -21,8 +20,8 @@
 
 	ico = new('icons/mob/screen1_alien.dmi', "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255,255,255,1),1,ico.Height()/2,ico.Width()/2,ico.Height())
-	using = new /obj/screen( src )
+	ico.DrawBox(rgb(255, 255, 255, 1), 1, ico.Height() / 2, ico.Width() / 2, ico.Height())
+	using = new /obj/screen(src)
 	using.name = "help"
 	using.icon = ico
 	using.screen_loc = ui_acti
@@ -32,8 +31,8 @@
 
 	ico = new('icons/mob/screen1_alien.dmi', "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,ico.Height()/2,ico.Width(),ico.Height())
-	using = new /obj/screen( src )
+	ico.DrawBox(rgb(255, 255, 255, 1),ico.Width() / 2, ico.Height() / 2, ico.Width(), ico.Height())
+	using = new /obj/screen(src)
 	using.name = "disarm"
 	using.icon = ico
 	using.screen_loc = ui_acti
@@ -43,8 +42,8 @@
 
 	ico = new('icons/mob/screen1_alien.dmi', "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,1,ico.Width(),ico.Height()/2)
-	using = new /obj/screen( src )
+	ico.DrawBox(rgb(255, 255, 255, 1), ico.Width() / 2, 1, ico.Width(), ico.Height() / 2)
+	using = new /obj/screen(src)
 	using.name = "grab"
 	using.icon = ico
 	using.screen_loc = ui_acti
@@ -54,8 +53,8 @@
 
 	ico = new('icons/mob/screen1_alien.dmi', "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255,255,255,1),1,1,ico.Width()/2,ico.Height()/2)
-	using = new /obj/screen( src )
+	ico.DrawBox(rgb(255, 255, 255, 1), 1, 1, ico.Width() / 2, ico.Height() / 2)
+	using = new /obj/screen(src)
 	using.name = "harm"
 	using.icon = ico
 	using.screen_loc = ui_acti
@@ -237,5 +236,5 @@
 
 	mymob.client.screen = null
 
-	mymob.client.screen += list( mymob.throw_icon, mymob.zone_sel, mymob.oxygen, mymob.toxin, mymob.fire, mymob.healths, mymob.pullin, mymob.blind, mymob.flash) //, mymob.hands, mymob.rest, mymob.sleep, mymob.mach )
+	mymob.client.screen += list(mymob.throw_icon, mymob.zone_sel, mymob.oxygen, mymob.toxin, mymob.fire, mymob.healths, mymob.pullin, mymob.blind, mymob.flash) //, mymob.hands, mymob.rest, mymob.sleep, mymob.mach )
 	mymob.client.screen += src.adding + src.other

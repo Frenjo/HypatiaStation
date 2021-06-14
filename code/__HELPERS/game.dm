@@ -1,18 +1,15 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-/proc/dopage(src,target)
-	var/href_list
-	var/href
-	href_list = params2list("src=\ref[src]&[target]=1")
-	href = "src=\ref[src];[target]=1"
+/proc/dopage(src, target)
+	var/href_list = params2list("src=\ref[src]&[target]=1")
+	var/href = "src=\ref[src];[target]=1"
 	src:temphtml = null
 	src:Topic(href, href_list)
 	return null
 
 /proc/get_area(O)
 	var/atom/location = O
-	var/i
-	for(i = 1, i <= 20, i++)
+	for(var/i = 1, i <= 20, i++)
 		if(isarea(location))
 			return location
 		else if (istype(location))
@@ -105,7 +102,7 @@
 	var/dx = Loc1.x - Loc2.x
 	var/dy = Loc1.y - Loc2.y
 
-	var/dist = sqrt(dx**2 + dy**2)
+	var/dist = sqrt(dx ** 2 + dy ** 2)
 
 	return dist
 
@@ -129,7 +126,7 @@
 	for(var/turf/T in view(radius, centerturf))
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
-		if(dx*dx + dy*dy <= rsq)
+		if(dx * dx + dy * dy <= rsq)
 			turfs += T
 	return turfs
 
@@ -140,12 +137,12 @@
 // It will keep doing this until it checks every content possible. This will fix any problems with mobs, that are inside objects,
 // being unable to hear people due to being in a box within a bag.
 
-/proc/recursive_mob_check(atom/O,  list/L = list(), recursion_limit = 3, client_check = 1, sight_check = 1, include_radio = 1)
+/proc/recursive_mob_check(atom/O, list/L = list(), recursion_limit = 3, client_check = 1, sight_check = 1, include_radio = 1)
 	//debug_mob += O.contents.len
 	if(!recursion_limit)
 		return L
-	for(var/atom/A in O.contents)
 
+	for(var/atom/A in O.contents)
 		if(ismob(A))
 			var/mob/M = A
 			if(client_check && !M.client)
@@ -170,7 +167,6 @@
 
 /proc/get_mobs_in_view(R, atom/source)
 	// Returns a list of mobs in range of R from source. Used in radio and say code.
-
 	var/turf/T = get_turf(source)
 	var/list/hear = list()
 
@@ -205,7 +201,7 @@
 		if(R)
 			var/turf/speaker = get_turf(R)
 			if(speaker)
-				for(var/turf/T in hear(R.canhear_range,speaker))
+				for(var/turf/T in hear(R.canhear_range, speaker))
 					speaker_coverage[T] = T
 
 

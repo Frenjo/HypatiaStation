@@ -6,11 +6,11 @@
 	if(!client) return
 	client.inquisitive_ghost = !client.inquisitive_ghost
 	if(client.inquisitive_ghost)
-		src << "\blue You will now examine everything you click on."
+		to_chat(src, span("info", "You will now examine everything you click on."))
 	else
-		src << "\blue You will no longer examine things you click on."
+		to_chat(src, span("info", "You will no longer examine things you click on."))
 
-/mob/dead/observer/DblClickOn(var/atom/A, var/params)
+/mob/dead/observer/DblClickOn(atom/A, params)
 	if(client.buildmode)
 		build_click(src, client.buildmode, params, A)
 		return
@@ -20,18 +20,19 @@
 			return									// seems legit.
 
 	// Things you might plausibly want to follow
-	if((ismob(A) && A != src) || istype(A,/obj/machinery/bot) || istype(A,/obj/machinery/singularity))
+	if((ismob(A) && A != src) || istype(A, /obj/machinery/bot) || istype(A, /obj/machinery/singularity))
 		ManualFollow(A)
 
 	// Otherwise jump
 	else
 		loc = get_turf(A)
 
-/mob/dead/observer/ClickOn(var/atom/A, var/params)
+/mob/dead/observer/ClickOn(atom/A, params)
 	if(client.buildmode)
 		build_click(src, client.buildmode, params, A)
 		return
-	if(world.time <= next_move) return
+	if(world.time <= next_move)
+		return
 	next_move = world.time + 8
 	// You are responsible for checking config.ghost_interaction when you override this function
 	// Not all of them require checking, see below

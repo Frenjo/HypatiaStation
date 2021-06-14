@@ -68,11 +68,11 @@ Class Procs:
 	zoneA = A.zone
 	if(!istype(B))
 		mark_space()
-		edge = air_master.get_edge(A.zone,B)
+		edge = air_master.get_edge(A.zone, B)
 		edge.add_connection(src)
 	else
 		zoneB = B.zone
-		edge = air_master.get_edge(A.zone,B.zone)
+		edge = air_master.get_edge(A.zone, B.zone)
 		edge.add_connection(src)
 
 /connection/proc/mark_direct()
@@ -99,7 +99,7 @@ Class Procs:
 
 /connection/proc/update()
 	//world << "Updated, \..."
-	if(!istype(A,/turf/simulated))
+	if(!istype(A, /turf/simulated))
 		//world << "Invalid A."
 		erase()
 		return
@@ -115,7 +115,7 @@ Class Procs:
 		else
 			mark_direct()
 
-	var/b_is_space = !istype(B,/turf/simulated)
+	var/b_is_space = !istype(B, /turf/simulated)
 
 	if(state & CONNECTION_SPACE)
 		if(!b_is_space)
@@ -148,7 +148,6 @@ Class Procs:
 		return
 
 	if(A.zone != zoneA || (zoneB && (B.zone != zoneB)))
-
 		//world << "Zones changed, \..."
 		if(A.zone && B.zone)
 			edge.remove_connection(src)

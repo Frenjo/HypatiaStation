@@ -112,7 +112,8 @@ Class Procs:
 	#endif
 
 /zone/proc/rebuild()
-	if(invalid) return //Short circuit for explosions where rebuild is called many times over.
+	if(invalid)
+		return //Short circuit for explosions where rebuild is called many times over.
 	c_invalidate()
 	for(var/turf/simulated/T in contents)
 		//T.dbg(invalid_zone)
@@ -137,27 +138,29 @@ Class Procs:
 			E.recheck()
 
 /zone/proc/dbg_data(mob/M)
-	M << name
+	to_chat(M, name)
 	for(var/g in air.gas)
-		M << "[gas_data.name[g]]: [air.gas[g]]"
-	M << "P: [air.return_pressure()] kPa V: [air.volume]L T: [air.temperature]°K ([air.temperature - T0C]°C)"
-	M << "O2 per N2: [(air.gas["nitrogen"] ? air.gas["oxygen"]/air.gas["nitrogen"] : "N/A")] Moles: [air.total_moles]"
-	M << "Simulated: [contents.len] ([air.group_multiplier])"
-	//M << "Unsimulated: [unsimulated_contents.len]"
-	//M << "Edges: [edges.len]"
-	if(invalid) M << "Invalid!"
+		to_chat(M, "[gas_data.name[g]]: [air.gas[g]]")
+	to_chat(M, "P: [air.return_pressure()] kPa V: [air.volume]L T: [air.temperature]ï¿½K ([air.temperature - T0C]ï¿½C)")
+	to_chat(M, "O2 per N2: [(air.gas["nitrogen"] ? air.gas["oxygen"]/air.gas["nitrogen"] : "N/A")] Moles: [air.total_moles]")
+	to_chat(M, "Simulated: [contents.len] ([air.group_multiplier])")
+	//to_chat(M, "Unsimulated: [unsimulated_contents.len]")
+	//to_chat(M, "Edges: [edges.len]")
+	if(invalid)
+		to_chat(M, "Invalid!")
 	var/zone_edges = 0
 	var/space_edges = 0
 	var/space_coefficient = 0
 	for(var/connection_edge/E in edges)
-		if(E.type == /connection_edge/zone) zone_edges++
+		if(E.type == /connection_edge/zone)
+			zone_edges++
 		else
 			space_edges++
 			space_coefficient += E.coefficient
-			M << "[E:air:return_pressure()]kPa"
+			to_chat(M, "[E:air:return_pressure()]kPa")
 
-	M << "Zone Edges: [zone_edges]"
-	M << "Space Edges: [space_edges] ([space_coefficient] connections)"
+	to_chat(M, "Zone Edges: [zone_edges]")
+	to_chat(M, "Space Edges: [space_edges] ([space_coefficient] connections)")
 
 	//for(var/turf/T in unsimulated_contents)
-	//	M << "[T] at ([T.x],[T.y])"
+	//	to_chat(M, "[T] at ([T.x],[T.y])")

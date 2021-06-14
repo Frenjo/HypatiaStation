@@ -64,7 +64,7 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 		//world << "[affected_mob] is carrier"
 		return
 
-	spread = (cure_present?"Remissive":initial_spread)
+	spread = (cure_present ? "Remissive" : initial_spread)
 	if(stage > max_stages)
 		stage = max_stages
 
@@ -81,7 +81,8 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 	return
 
 /datum/disease/proc/has_cure()//check if affected_mob has required reagents.
-	if(!cure_id) return 0
+	if(!cure_id)
+		return 0
 	var/result = 1
 	if(cure_list == list(cure_id))
 		if(istype(cure_id, /list))
@@ -174,7 +175,7 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 //		world << "[src] longevity = [longevity]"
 
 		if(prob(70))
-			if(--longevity<=0)
+			if(--longevity <= 0)
 				cure(0)
 	return
 

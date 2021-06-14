@@ -1,4 +1,4 @@
-/datum/hud/proc/human_hud(var/ui_style='icons/mob/screen1_White.dmi', var/ui_color = "#ffffff", var/ui_alpha = 255, var/mob/living/carbon/human/target)
+/datum/hud/proc/human_hud(ui_style = 'icons/mob/screen1_White.dmi', ui_color = "#ffffff", ui_alpha = 255, mob/living/carbon/human/target)
 	var/datum/hud_data/hud_data
 	if(!istype(target))
 		hud_data = new()
@@ -351,7 +351,7 @@
 			if(mymob.client.target_can_move)
 				mymob.gun_move_icon.dir = 1
 				mymob.gun_run_icon = new /obj/screen/gun/run(null)
-				if (mymob.client.target_can_run)
+				if(mymob.client.target_can_run)
 					mymob.gun_run_icon.dir = 1
 				src.adding += mymob.gun_run_icon
 			src.adding += mymob.gun_move_icon

@@ -7,8 +7,8 @@
 /atom/proc/attackby(obj/item/W, mob/user)
 	return
 /atom/movable/attackby(obj/item/W, mob/user)
-	if(!(W.flags&NOBLUDGEON))
-		visible_message("<span class='danger'>[src] has been hit by [user] with [W].</span>")
+	if(!(W.flags & NOBLUDGEON))
+		visible_message(span("danger", "[src] has been hit by [user] with [W]."))
 
 /mob/living/attackby(obj/item/I, mob/user)
 	if(istype(I) && ismob(user))
@@ -22,16 +22,15 @@
 
 
 /obj/item/proc/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
-
-	if (!istype(M)) // not sure if this is the right thing...
+	if(!istype(M)) // not sure if this is the right thing...
 		return
 	var/messagesource = M
-	if (can_operate(M))        //Checks if mob is lying down on table for surgery
-		if (do_surgery(M,user,src))
+	if(can_operate(M))        //Checks if mob is lying down on table for surgery
+		if(do_surgery(M, user, src))
 			return
-	if (istype(M,/mob/living/carbon/brain))
+	if(istype(M, /mob/living/carbon/brain))
 		messagesource = M:container
-	if (hitsound)
+	if(hitsound)
 		playsound(loc, hitsound, 50, 1, -1)
 	/////////////////////////
 	user.lastattacked = M
@@ -64,7 +63,7 @@
 
 			if(power >= 3)
 				if(istype(slime, /mob/living/carbon/slime/adult))
-					if(prob(5 + round(power/2)))
+					if(prob(5 + round(power / 2)))
 
 						if(slime.Victim)
 							if(prob(80) && !slime.client)
@@ -75,7 +74,7 @@
 						spawn()
 							if(slime)
 								slime.SStun = 1
-								sleep(rand(5,20))
+								sleep(rand(5, 20))
 								if(slime)
 									slime.SStun = 0
 
@@ -90,7 +89,7 @@
 								slime.canmove = 1
 
 				else
-					if(prob(10 + power*2))
+					if(prob(10 + power * 2))
 						if(slime)
 							if(slime.Victim)
 								if(prob(80) && !slime.client)
@@ -102,7 +101,7 @@
 								spawn()
 									if(slime)
 										slime.SStun = 1
-										sleep(rand(5,20))
+										sleep(rand(5, 20))
 										if(slime)
 											slime.SStun = 0
 
@@ -114,7 +113,7 @@
 							if(slime && user)
 								step_away(slime, user)
 								slime.canmove = 0
-								if(prob(25 + power*4))
+								if(prob(25 + power * 4))
 									sleep(2)
 									if(slime && user)
 										step_away(slime, user)
@@ -147,14 +146,14 @@
 					M.adjustBrainLoss(power)
 				else
 					M.take_organ_damage(power)
-					if (prob(33)) // Added blood for whacking non-humans too
+					if(prob(33)) // Added blood for whacking non-humans too
 						var/turf/location = M.loc
 						if (istype(location, /turf/simulated))
 							location:add_blood_floor(M)
 			if("fire")
-				if (!(COLD_RESISTANCE in M.mutations))
+				if(!(COLD_RESISTANCE in M.mutations))
 					M.take_organ_damage(0, power)
-					M << "Aargh it burns!"
+					to_chat(M, "Aargh it burns!")
 		M.updatehealth()
 	add_fingerprint(user)
 	return 1

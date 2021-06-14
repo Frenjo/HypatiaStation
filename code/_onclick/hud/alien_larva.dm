@@ -1,5 +1,4 @@
 /datum/hud/proc/larva_hud()
-
 	src.adding = list()
 	src.other = list()
 
@@ -77,5 +76,5 @@
 
 	mymob.client.screen = null
 
-	mymob.client.screen += list( mymob.zone_sel, mymob.oxygen, mymob.toxin, mymob.fire, mymob.healths, mymob.pullin, mymob.blind, mymob.flash) //, mymob.rest, mymob.sleep, mymob.mach )
+	mymob.client.screen += list(mymob.zone_sel, mymob.oxygen, mymob.toxin, mymob.fire, mymob.healths, mymob.pullin, mymob.blind, mymob.flash) //, mymob.rest, mymob.sleep, mymob.mach )
 	mymob.client.screen += src.adding + src.other

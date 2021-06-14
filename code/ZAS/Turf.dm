@@ -54,7 +54,8 @@
 	var/s_block = c_airblock(src)
 	if(s_block & AIR_BLOCKED)
 		#ifdef ZASDBG
-		if(verbose) world << "Self-blocked."
+		if(verbose)
+			world << "Self-blocked."
 		//dbg(blocked)
 		#endif
 		if(zone)
@@ -84,7 +85,8 @@
 		var/block = unsim.c_airblock(src)
 		if(block & AIR_BLOCKED)
 			#ifdef ZASDBG
-			if(verbose) world << "[d] is blocked."
+			if(verbose)
+				world << "[d] is blocked."
 			//unsim.dbg(air_blocked, turn(180,d))
 			#endif
 
@@ -94,7 +96,8 @@
 		if(r_block & AIR_BLOCKED)
 
 			#ifdef ZASDBG
-			if(verbose) world << "[d] is blocked."
+			if(verbose)
+				world << "[d] is blocked."
 			//dbg(air_blocked, d)
 			#endif
 
@@ -121,12 +124,14 @@
 					//if((block & ZONE_BLOCKED) || (r_block & ZONE_BLOCKED && !(s_block & ZONE_BLOCKED)))
 					if(((block & ZONE_BLOCKED) && !(r_block & ZONE_BLOCKED)) || (r_block & ZONE_BLOCKED && !(s_block & ZONE_BLOCKED)))
 						#ifdef ZASDBG
-						if(verbose) world << "[d] is zone blocked."
+						if(verbose)
+							world << "[d] is zone blocked."
 						//dbg(zone_blocked, d)
 						#endif
 
 						//Postpone this tile rather than exit, since a connection can still be made.
-						if(!postponed) postponed = list()
+						if(!postponed)
+							postponed = list()
 						postponed.Add(sim)
 
 					else
@@ -135,28 +140,33 @@
 
 						#ifdef ZASDBG
 						dbg(assigned)
-						if(verbose) world << "Added to [zone]"
+						if(verbose)
+							world << "Added to [zone]"
 						#endif
 
 				else if(sim.zone != zone)
 
 					#ifdef ZASDBG
-					if(verbose) world << "Connecting to [sim.zone]"
+					if(verbose)
+						world << "Connecting to [sim.zone]"
 					#endif
 
 					air_master.connect(src, sim)
 
 
 			#ifdef ZASDBG
-				else if(verbose) world << "[d] has same zone."
+				else if(verbose)
+					world << "[d] has same zone."
 
-			else if(verbose) world << "[d] has invalid zone."
+			else if(verbose)
+				world << "[d] has invalid zone."
 			#endif
 
 		else
 
 			//Postponing connections to tiles until a zone is assured.
-			if(!postponed) postponed = list()
+			if(!postponed)
+				postponed = list()
 			postponed.Add(unsim)
 
 	if(!air_master.has_valid_zone(src)) //Still no zone, make a new one.
@@ -175,7 +185,8 @@
 		air_master.connect(src, T)
 
 /turf/proc/post_update_air_properties()
-	if(connections) connections.update_all()
+	if(connections)
+		connections.update_all()
 
 /turf/assume_air(datum/gas_mixture/giver) //use this for machines to adjust air
 	return 0
@@ -197,7 +208,7 @@
 	var/datum/gas_mixture/GM = new
 
 	var/sum = oxygen + carbon_dioxide + nitrogen + toxins
-	if(sum>0)
+	if(sum > 0)
 		GM.gas["oxygen"] = (oxygen/sum)*amount
 		GM.gas["carbon_dioxide"] = (carbon_dioxide/sum)*amount
 		GM.gas["nitrogen"] = (nitrogen/sum)*amount
@@ -249,6 +260,7 @@
 	air.volume = CELL_VOLUME
 
 /turf/simulated/proc/c_copy_air()
-	if(!air) air = new/datum/gas_mixture
+	if(!air)
+		air = new/datum/gas_mixture
 	air.copy_from(zone.air)
 	air.group_multiplier = 1

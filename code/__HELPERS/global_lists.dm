@@ -56,8 +56,10 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Al
 		var/datum/sprite_accessory/hair/H = new path()
 		hair_styles_list[H.name] = H
 		switch(H.gender)
-			if(MALE)	hair_styles_male_list += H.name
-			if(FEMALE)	hair_styles_female_list += H.name
+			if(MALE)
+				hair_styles_male_list += H.name
+			if(FEMALE)
+				hair_styles_female_list += H.name
 			else
 				hair_styles_male_list += H.name
 				hair_styles_female_list += H.name
@@ -68,8 +70,10 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Al
 		var/datum/sprite_accessory/facial_hair/H = new path()
 		facial_hair_styles_list[H.name] = H
 		switch(H.gender)
-			if(MALE)	facial_hair_styles_male_list += H.name
-			if(FEMALE)	facial_hair_styles_female_list += H.name
+			if(MALE)
+				facial_hair_styles_male_list += H.name
+			if(FEMALE)
+				facial_hair_styles_female_list += H.name
 			else
 				facial_hair_styles_male_list += H.name
 				facial_hair_styles_female_list += H.name
@@ -88,7 +92,7 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Al
 		side_effects[M.name] = T
 
 	//List of job. I can't believe this was calculated multiple times per tick!
-	paths = typesof(/datum/job) -list(/datum/job, /datum/job/ai, /datum/job/cyborg)
+	paths = typesof(/datum/job)-list(/datum/job, /datum/job/ai, /datum/job/cyborg)
 	for(var/T in paths)
 		var/datum/job/J = new T
 		joblist[J.title] = J

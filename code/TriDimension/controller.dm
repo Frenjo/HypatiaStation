@@ -33,11 +33,11 @@
 	return ..()
 
 /obj/effect/landmark/zcontroller/process()
-	if (world.time > fast_time)
+	if(world.time > fast_time)
 		calc(fast)
 		fast_time = world.time + 10
 
-	if (world.time > normal_time)
+	if(world.time > normal_time)
 		calc(normal)
 		normal_time = world.time + 600
 
@@ -46,8 +46,8 @@
 		slow_time = world.time + 3000 */
 	return
 
-/obj/effect/landmark/zcontroller/proc/add(var/list/L, var/I, var/transfer)
-	while (L.len)
+/obj/effect/landmark/zcontroller/proc/add(list/L, I, transfer)
+	while(L.len)
 		var/turf/T = pick(L)
 
 		L -= T
@@ -69,14 +69,14 @@
 				for(var/obj/effect/landmark/zcontroller/c_up in controller_up)
 					var/list/temp = list()
 					temp += locate(T.x, T.y, up_target)
-					c_up.add(temp, I, transfer-1)
+					c_up.add(temp, I, transfer - 1)
 
 			if(down)
 				var/turf/controller_down = locate(1, 1, down_target)
 				for(var/obj/effect/landmark/zcontroller/c_down in controller_down)
 					var/list/temp = list()
 					temp += locate(T.x, T.y, down_target)
-					c_down.add(temp, I, transfer-1)
+					c_down.add(temp, I, transfer - 1)
 	return
 
 /turf
@@ -90,7 +90,7 @@
 		if(c.initialized)
 			var/list/turf = list()
 			turf += src
-			c.add(turf,3,1)
+			c.add(turf, 3, 1)
 
 /turf/space/New()
 	..()
@@ -100,7 +100,7 @@
 		if(c.initialized)
 			var/list/turf = list()
 			turf += src
-			c.add(turf,3,1)
+			c.add(turf, 3, 1)
 
 atom/movable/Move() //Hackish
 	. = ..()
@@ -110,9 +110,9 @@ atom/movable/Move() //Hackish
 		if(controller.up || controller.down)
 			var/list/temp = list()
 			temp += locate(src.x, src.y, src.z)
-			controller.add(temp,3,1)
+			controller.add(temp, 3, 1)
 
-/obj/effect/landmark/zcontroller/proc/calc(var/list/L)
+/obj/effect/landmark/zcontroller/proc/calc(list/L)
 	var/list/slowholder = list()
 	var/list/normalholder = list()
 	var/list/fastholder = list()
@@ -136,9 +136,9 @@ atom/movable/Move() //Hackish
 					var/image/t_img = list()
 					new_list = 1
 
-					var/image/temp = image(below, dir=below.dir, layer = TURF_LAYER + 0.04)
+					var/image/temp = image(below, dir = below.dir, layer = TURF_LAYER + 0.04)
 
-					temp.color = rgb(127,127,127)
+					temp.color = rgb(127, 127, 127)
 					temp.overlays += below.overlays
 					t_img += temp
 					T.overlays += t_img
@@ -148,10 +148,11 @@ atom/movable/Move() //Hackish
 				var/image/o_img = list()
 				for(var/obj/o in below)
 					// ingore objects that have any form of invisibility
-					if(o.invisibility) continue
+					if(o.invisibility)
+						continue
 					new_list = 2
-					var/image/temp2 = image(o, dir=o.dir, layer = TURF_LAYER+0.05*o.layer)
-					temp2.color = rgb(127,127,127)
+					var/image/temp2 = image(o, dir = o.dir, layer = TURF_LAYER + 0.05 * o.layer)
+					temp2.color = rgb(127, 127, 127)
 					temp2.overlays += o.overlays
 					o_img += temp2
 					// you need to add a list to .overlays or it will not display any because space
@@ -162,11 +163,13 @@ atom/movable/Move() //Hackish
 				var/image/m_img = list()
 				for(var/mob/m in below)
 					// ingore mobs that have any form of invisibility
-					if(m.invisibility) continue
+					if(m.invisibility)
+						continue
 					// only add this tile to fastprocessing if there is a living mob, not a dead one
-					if(istype(m, /mob/living)) new_list = 3
-					var/image/temp2 = image(m, dir=m.dir, layer = TURF_LAYER+0.05*m.layer)
-					temp2.color = rgb(127,127,127)
+					if(istype(m, /mob/living))
+						new_list = 3
+					var/image/temp2 = image(m, dir = m.dir, layer = TURF_LAYER + 0.05 * m.layer)
+					temp2.color = rgb(127, 127, 127)
 					temp2.overlays += m.overlays
 					m_img += temp2
 					// you need to add a list to .overlays or it will not display any because space
@@ -249,15 +252,15 @@ atom/movable/Move() //Hackish
 		if(new_list == 3)
 			fastholder += T
 			for(var/d in cardinal)
-				var/turf/mT = get_step(T,d)
+				var/turf/mT = get_step(T, d)
 				if(!(mT in fastholder))
 					fastholder += mT
 				for(var/f in cardinal)
-					var/turf/nT = get_step(mT,f)
+					var/turf/nT = get_step(mT, f)
 					if(!(nT in fastholder))
 						fastholder += nT
 
-	add(slowholder,1, 0)
+	add(slowholder, 1, 0)
 	add(normalholder, 2, 0)
 	add(fastholder, 3, 0)
 	return

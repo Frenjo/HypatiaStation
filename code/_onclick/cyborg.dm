@@ -6,7 +6,7 @@
 	adjacency code.
 */
 
-/mob/living/silicon/robot/ClickOn(var/atom/A, var/params)
+/mob/living/silicon/robot/ClickOn(atom/A, params)
 	if(world.time <= next_click)
 		return
 	next_click = world.time + 1
@@ -53,12 +53,12 @@
 		return
 
 	// buckled cannot prevent machine interlinking but stops arm movement
-	if( buckled )
+	if(buckled)
 		return
 
 	if(W == A)
 		next_move = world.time + 8
-		if(W.flags&USEDELAY)
+		if(W.flags & USEDELAY)
 			next_move += 5
 
 		W.attack_self(src)
@@ -68,12 +68,12 @@
 	if(A == loc || (A in loc) || (A in contents))
 		// No adjacency checks
 		next_move = world.time + 8
-		if(W.flags&USEDELAY)
+		if(W.flags & USEDELAY)
 			next_move += 5
 
-		var/resolved = A.attackby(W,src)
+		var/resolved = A.attackby(W, src)
 		if(!resolved && A && W)
-			W.afterattack(A,src,1,params)
+			W.afterattack(A, src, 1, params)
 		return
 
 	if(!isturf(loc))
@@ -83,7 +83,7 @@
 	if(isturf(A) || isturf(A.loc))
 		if(A.Adjacent(src)) // see adjacent.dm
 			next_move = world.time + 10
-			if(W.flags&USEDELAY)
+			if(W.flags & USEDELAY)
 				next_move += 5
 
 			var/resolved = A.attackby(W, src)
@@ -97,7 +97,7 @@
 	return
 
 //Middle click cycles through selected modules.
-/mob/living/silicon/robot/MiddleClickOn(var/atom/A)
+/mob/living/silicon/robot/MiddleClickOn(atom/A)
 	cycle_modules()
 	return
 

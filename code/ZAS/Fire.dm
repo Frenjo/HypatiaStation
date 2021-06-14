@@ -13,13 +13,13 @@ Attach to transfer valve and open. BOOM.
 /turf/var/obj/fire/fire = null
 
 //Some legacy definitions so fires can be started.
-atom/proc/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/atom/proc/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	return null
 
-turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
+/turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
-turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
-	if(fire_protection > world.time-300)
+/turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
+	if(fire_protection > world.time - 300)
 		return 0
 	if(locate(/obj/fire) in src)
 		return 1
@@ -150,7 +150,7 @@ turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
 					continue
 
 				//Spread the fire.
-				if(prob( 50 + 50 * (firelevel/vsc.fire_firelevel_multiplier) ) && my_tile.CanPass(null, enemy_tile, 0,0) && enemy_tile.CanPass(null, my_tile, 0,0))
+				if(prob(50 + 50 * (firelevel/vsc.fire_firelevel_multiplier)) && my_tile.CanPass(null, enemy_tile, 0, 0) && enemy_tile.CanPass(null, my_tile, 0, 0))
 					enemy_tile.create_fire(firelevel)
 			else
 				enemy_tile.adjacent_fire_act(loc, air_contents, air_contents.temperature, air_contents.volume)
@@ -315,15 +315,14 @@ turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
 	return max( 0, firelevel)
 
 
-/mob/living/proc/FireBurn(var/firelevel, var/last_temperature, var/pressure)
+/mob/living/proc/FireBurn(firelevel, last_temperature, pressure)
 	var/mx = 5 * firelevel/vsc.fire_firelevel_multiplier * min(pressure / ONE_ATMOSPHERE, 1)
 	apply_damage(2.5*mx, BURN)
 
 
-/mob/living/carbon/human/FireBurn(var/firelevel, var/last_temperature, var/pressure)
+/mob/living/carbon/human/FireBurn(firelevel, last_temperature, pressure)
 	//Burns mobs due to fire. Respects heat transfer coefficients on various body parts.
 	//Due to TG reworking how fireprotection works, this is kinda less meaningful.
-
 	var/head_exposure = 1
 	var/chest_exposure = 1
 	var/groin_exposure = 1
@@ -336,7 +335,7 @@ turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
 		if(l_hand == C || r_hand == C)
 			continue
 
-		if( C.max_heat_protection_temperature >= last_temperature )
+		if(C.max_heat_protection_temperature >= last_temperature)
 			if(C.body_parts_covered & HEAD)
 				head_exposure = 0
 			if(C.body_parts_covered & UPPER_TORSO)
@@ -348,14 +347,14 @@ turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
 			if(C.body_parts_covered & ARMS)
 				arms_exposure = 0
 	//minimize this for low-pressure enviroments
-	var/mx = 5 * firelevel/vsc.fire_firelevel_multiplier * min(pressure / ONE_ATMOSPHERE, 1)
+	var/mx = 5 * firelevel / vsc.fire_firelevel_multiplier * min(pressure / ONE_ATMOSPHERE, 1)
 
 	//Always check these damage procs first if fire damage isn't working. They're probably what's wrong.
 
-	apply_damage(2.5*mx*head_exposure, BURN, "head", 0, 0, "Fire")
-	apply_damage(2.5*mx*chest_exposure, BURN, "chest", 0, 0, "Fire")
-	apply_damage(2.0*mx*groin_exposure, BURN, "groin", 0, 0, "Fire")
-	apply_damage(0.6*mx*legs_exposure, BURN, "l_leg", 0, 0, "Fire")
-	apply_damage(0.6*mx*legs_exposure, BURN, "r_leg", 0, 0, "Fire")
-	apply_damage(0.4*mx*arms_exposure, BURN, "l_arm", 0, 0, "Fire")
-	apply_damage(0.4*mx*arms_exposure, BURN, "r_arm", 0, 0, "Fire")
+	apply_damage(2.5 * mx * head_exposure, BURN, "head", 0, 0, "Fire")
+	apply_damage(2.5 * mx * chest_exposure, BURN, "chest", 0, 0, "Fire")
+	apply_damage(2.0 * mx * groin_exposure, BURN, "groin", 0, 0, "Fire")
+	apply_damage(0.6 * mx * legs_exposure, BURN, "l_leg", 0, 0, "Fire")
+	apply_damage(0.6 * mx * legs_exposure, BURN, "r_leg", 0, 0, "Fire")
+	apply_damage(0.4 * mx * arms_exposure, BURN, "l_arm", 0, 0, "Fire")
+	apply_damage(0.4 * mx * arms_exposure, BURN, "r_arm", 0, 0, "Fire")

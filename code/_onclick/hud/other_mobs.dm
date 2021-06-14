@@ -17,7 +17,6 @@
 	return
 
 /datum/hud/proc/blob_hud(ui_style = 'icons/mob/screen1_Midnight.dmi')
-
 	blobpwrdisplay = new /obj/screen()
 	blobpwrdisplay.name = "blob power"
 	blobpwrdisplay.icon_state = "block"

@@ -12,17 +12,17 @@
 //Returns a list in plain english as a string
 /proc/english_list(list/input, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "")
 	var/total = input.len
-	if (!total)
+	if(!total)
 		return "[nothing_text]"
-	else if (total == 1)
+	else if(total == 1)
 		return "[input[1]]"
-	else if (total == 2)
+	else if(total == 2)
 		return "[input[1]][and_text][input[2]]"
 	else
 		var/output = ""
 		var/index = 1
-		while (index < total)
-			if (index == total - 1)
+		while(index < total)
+			if(index == total - 1)
 				comma_text = final_comma_text
 
 			output += "[input[index]][comma_text]"
@@ -34,7 +34,7 @@
 proc/listgetindex(list/list, index)
 	if(istype(list) && list.len)
 		if(isnum(index))
-			if(InRange(index,1,list.len))
+			if(InRange(index, 1, list.len))
 				return list[index]
 		else if(index in list)
 			return list[index]
@@ -77,7 +77,7 @@ proc/listclearnulls(list/list)
  * If skiprep = 1, repeated elements are treated as one.
  * If either of arguments is not a list, returns null
  */
-/proc/difflist(list/first, list/second, skiprep=0)
+/proc/difflist(list/first, list/second, skiprep = 0)
 	if(!islist(first) || !islist(second))
 		return
 	var/list/result = new
@@ -94,12 +94,12 @@ proc/listclearnulls(list/list)
  * If skipref = 1, repeated elements are treated as one.
  * If either of arguments is not a list, returns null
  */
-/proc/uniquemergelist(list/first, list/second, skiprep=0)
+/proc/uniquemergelist(list/first, list/second, skiprep = 0)
 	if(!islist(first) || !islist(second))
 		return
 	var/list/result = new
 	if(skiprep)
-		result = difflist(first, second, skiprep)+difflist(second, first, skiprep)
+		result = difflist(first, second, skiprep) + difflist(second, first, skiprep)
 	else
 		result = first ^ second
 	return result
@@ -108,22 +108,22 @@ proc/listclearnulls(list/list)
 /proc/pickweight(list/L)
 	var/total = 0
 	var/item
-	for (item in L)
-		if (!L[item])
+	for(item in L)
+		if(!L[item])
 			L[item] = 1
 		total += L[item]
 
 	total = rand(1, total)
-	for (item in L)
-		total -=L [item]
-		if (total <= 0)
+	for(item in L)
+		total -= L[item]
+		if(total <= 0)
 			return item
 
 	return null
 
 //Pick a random element from the list and remove it from the list.
 /proc/pick_n_take(list/listfrom)
-	if (listfrom.len > 0)
+	if(listfrom.len > 0)
 		var/picked = pick(listfrom)
 		listfrom -= picked
 		return picked
@@ -131,7 +131,7 @@ proc/listclearnulls(list/list)
 
 //Returns the top(last) element from the list and removes it from the list (typical stack function)
 /proc/pop(list/listfrom)
-	if (listfrom.len > 0)
+	if(listfrom.len > 0)
 		var/picked = listfrom[listfrom.len]
 		listfrom.len--
 		return picked
@@ -139,9 +139,9 @@ proc/listclearnulls(list/list)
 
 //Returns the next element in parameter list after first appearance of parameter element. If it is the last element of the list or not present in list, returns first element.
 /proc/next_in_list(element, list/L)
-	for(var/i=1, i<L.len, i++)
+	for(var/i = 1, i < L.len, i++)
 		if(L[i] == element)
-			return L[i+1]
+			return L[i + 1]
 	return L[1]
 
 /*
@@ -181,12 +181,12 @@ proc/listclearnulls(list/list)
 	if(isnull(L) || L.len < 2)
 		return L
 	var/middle = L.len / 2 + 1
-	return mergeKey(sortKey(L.Copy(0,middle)), sortKey(L.Copy(middle)), order)
+	return mergeKey(sortKey(L.Copy(0, middle)), sortKey(L.Copy(middle)), order)
 
 //Mergsort: does the actual sorting and returns the results back to sortAtom
 /proc/mergeKey(list/client/L, list/client/R, order = 1)
-	var/Li=1
-	var/Ri=1
+	var/Li = 1
+	var/Ri = 1
 	var/list/result = new()
 	while(Li <= L.len && Ri <= R.len)
 		var/client/rL = L[Li]
@@ -205,12 +205,12 @@ proc/listclearnulls(list/list)
 	if(isnull(L) || L.len < 2)
 		return L
 	var/middle = L.len / 2 + 1
-	return mergeAtoms(sortAtom(L.Copy(0,middle)), sortAtom(L.Copy(middle)), order)
+	return mergeAtoms(sortAtom(L.Copy(0, middle)), sortAtom(L.Copy(middle)), order)
 
 //Mergsort: does the actual sorting and returns the results back to sortAtom
 /proc/mergeAtoms(list/atom/L, list/atom/R, order = 1)
-	var/Li=1
-	var/Ri=1
+	var/Li = 1
+	var/Ri = 1
 	var/list/result = new()
 	while(Li <= L.len && Ri <= R.len)
 		var/atom/rL = L[Li]
@@ -238,8 +238,8 @@ proc/listclearnulls(list/list)
 
 //Mergsort: does the actual sorting and returns the results back to sortRecord
 /proc/mergeRecordLists(list/datum/data/record/L, list/datum/data/record/R, field = "name", order = 1)
-	var/Li=1
-	var/Ri=1
+	var/Li = 1
+	var/Ri = 1
 	var/list/result = new()
 	if(!isnull(L) && !isnull(R))
 		while(Li <= L.len && Ri <= R.len)
@@ -266,7 +266,7 @@ proc/listclearnulls(list/list)
 	if(L.len < 2)
 		return L
 	var/middle = L.len / 2 + 1 // Copy is first,second-1
-	return mergeLists(sortList(L.Copy(0,middle)), sortList(L.Copy(middle))) //second parameter null = to end of list
+	return mergeLists(sortList(L.Copy(0, middle)), sortList(L.Copy(middle))) //second parameter null = to end of list
 
 //Mergsorge: uses sortList() but uses the var's name specifically. This should probably be using mergeAtom() instead
 /proc/sortNames(list/L)
@@ -276,8 +276,8 @@ proc/listclearnulls(list/list)
 	return sortList(Q)
 
 /proc/mergeLists(list/L, list/R)
-	var/Li=1
-	var/Ri=1
+	var/Li = 1
+	var/Ri = 1
 	var/list/result = new()
 	while(Li <= L.len && Ri <= R.len)
 		if(sorttext(L[Li], R[Ri]) < 1)
@@ -297,8 +297,8 @@ proc/listclearnulls(list/list)
 	return mergeKeyedLists(sortByKey(L.Copy(0, middle), key), sortByKey(L.Copy(middle), key), key)
 
 /proc/mergeKeyedLists(list/L, list/R, key)
-	var/Li=1
-	var/Ri=1
+	var/Li = 1
+	var/Ri = 1
 	var/list/result = new()
 	while(Li <= L.len && Ri <= R.len)
 		if(sorttext(L[Li][key], R[Ri][key]) < 1)
@@ -318,11 +318,11 @@ proc/listclearnulls(list/list)
 	if(L.len < 2)
 		return L
 	var/middle = L.len / 2 + 1 // Copy is first,second-1
-	return mergeAssoc(sortAssoc(L.Copy(0,middle)), sortAssoc(L.Copy(middle))) //second parameter null = to end of list
+	return mergeAssoc(sortAssoc(L.Copy(0, middle)), sortAssoc(L.Copy(middle))) //second parameter null = to end of list
 
 /proc/mergeAssoc(list/L, list/R)
-	var/Li=1
-	var/Ri=1
+	var/Li = 1
+	var/Ri = 1
 	var/list/result = new()
 	while(Li <= L.len && Ri <= R.len)
 		if(sorttext(L[Li], R[Ri]) < 1)
@@ -343,15 +343,15 @@ proc/listclearnulls(list/list)
 //Converts a bitfield to a list of numbers (or words if a wordlist is provided)
 /proc/bitfield2list(bitfield = 0, list/wordlist)
 	var/list/r = list()
-	if(istype(wordlist,/list))
-		var/max = min(wordlist.len,16)
+	if(istype(wordlist, /list))
+		var/max = min(wordlist.len, 16)
 		var/bit = 1
-		for(var/i=1, i<=max, i++)
+		for(var/i = 1, i <= max, i++)
 			if(bitfield & bit)
 				r += wordlist[i]
 			bit = bit << 1
 	else
-		for(var/bit=1, bit<=65535, bit = bit << 1)
+		for(var/bit = 1, bit <= 65535, bit = bit << 1)
 			if(bitfield & bit)
 				r += bit
 
@@ -380,7 +380,7 @@ proc/listclearnulls(list/list)
 	for(var/entry in L)
 		if(isnum(entry))
 			var/success = 0
-			for(var/i=1, i<=out.len, i++)
+			for(var/i = 1, i <= out.len, i++)
 				if(entry <= out[i])
 					success = 1
 					out.Insert(i, entry)

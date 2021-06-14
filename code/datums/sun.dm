@@ -21,7 +21,6 @@
 // calculate the sun's position given the time of day
 
 /datum/sun/proc/calc_position()
-
 /*	counter++
 	if(counter<50)		// count 50 pticks (50 seconds, roughly - about a 5deg change)
 		return
@@ -61,7 +60,6 @@
 		dx = s/abs(s)
 		dy = c / abs(s)
 
-
 	for(var/obj/machinery/power/solar/S in solars_list)
 		if(!S.powernet)
 			solars_list.Remove(S)
@@ -70,9 +68,7 @@
 			occlusion(S)
 
 
-
 // for a solar panel, trace towards sun to see if we're in shadow
-
 /datum/sun/proc/occlusion(obj/machinery/power/solar/S)
 	var/ax = S.x		// start at the solar panel
 	var/ay = S.y

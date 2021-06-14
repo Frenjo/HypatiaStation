@@ -19,9 +19,9 @@ obj/machinery/atmospherics/pipe/zpipe
 		var/minimum_temperature_difference = 300
 		var/thermal_conductivity = 0 //WALL_HEAT_TRANSFER_COEFFICIENT No
 
-		var/maximum_pressure = 70*ONE_ATMOSPHERE
-		var/fatigue_pressure = 55*ONE_ATMOSPHERE
-		alert_pressure = 55*ONE_ATMOSPHERE
+		var/maximum_pressure = 70 * ONE_ATMOSPHERE
+		var/fatigue_pressure = 55 * ONE_ATMOSPHERE
+		alert_pressure = 55 * ONE_ATMOSPHERE
 
 		level = 1
 
@@ -45,7 +45,7 @@ obj/machinery/atmospherics/pipe/zpipe/New()
 		if(SOUTHWEST)
 			initialize_directions = SOUTH
 
-obj/machinery/atmospherics/pipe/zpipe/hide(var/i)
+obj/machinery/atmospherics/pipe/zpipe/hide(i)
 	if(level == 1 && istype(loc, /turf/simulated))
 		invisibility = i ? 101 : 0
 	update_icon()
@@ -75,14 +75,14 @@ obj/machinery/atmospherics/pipe/zpipe/proc/burst()
 	src.visible_message("\red \bold [src] bursts!");
 	playsound(src, 'sound/effects/bang.ogg', 25, 1)
 	var/datum/effect/effect/system/smoke_spread/smoke = new
-	smoke.set_up(1,0, src.loc, 0)
+	smoke.set_up(1, 0, src.loc, 0)
 	smoke.start()
 	qdel(src)
 
 obj/machinery/atmospherics/pipe/zpipe/proc/normalize_dir()
-	if(dir==3)
+	if(dir == 3)
 		dir = 1
-	else if(dir==12)
+	else if(dir == 12)
 		dir = 4
 
 obj/machinery/atmospherics/pipe/zpipe/Destroy()
@@ -129,8 +129,8 @@ obj/machinery/atmospherics/pipe/zpipe/up/initialize()
 			if (!node1_dir)
 				node1_dir = direction
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node1_dir))
+		if(target.initialize_directions & get_dir(target, src))
 			node1 = target
 			break
 
@@ -168,8 +168,8 @@ obj/machinery/atmospherics/pipe/zpipe/down/initialize()
 			if (!node1_dir)
 				node1_dir = direction
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node1_dir))
+		if(target.initialize_directions & get_dir(target, src))
 			node1 = target
 			break
 

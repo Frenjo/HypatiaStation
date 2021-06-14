@@ -43,9 +43,12 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 /obj/item/proc/can_contaminate()
 	//Clothing and backpacks can be contaminated.
-	if(flags & PLASMAGUARD) return 0
-	else if(istype(src,/obj/item/weapon/storage/backpack)) return 0 //Cannot be washed :(
-	else if(istype(src,/obj/item/clothing)) return 1
+	if(flags & PLASMAGUARD)
+		return 0
+	else if(istype(src, /obj/item/weapon/storage/backpack))
+		return 0 //Cannot be washed :(
+	else if(istype(src, /obj/item/clothing))
+		return 1
 
 /obj/item/proc/contaminate()
 	//Do a contamination overlay? Temporary measure to keep contamination less deadly than it was.
@@ -61,12 +64,12 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 /mob/living/carbon/human/contaminate()
 	//See if anything can be contaminated.
-
 	if(!pl_suit_protected())
 		suit_contamination()
 
 	if(!pl_head_protected())
-		if(prob(1)) suit_contamination() //Plasma can sometimes get through such an open suit.
+		if(prob(1))
+			suit_contamination() //Plasma can sometimes get through such an open suit.
 
 //Cannot wash backpacks currently.
 //	if(istype(back,/obj/item/weapon/storage/backpack))
@@ -78,7 +81,8 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	//Handles all the bad things plasma can do.
 
 	//Contamination
-	if(vsc.plc.CLOTH_CONTAMINATION) contaminate()
+	if(vsc.plc.CLOTH_CONTAMINATION)
+		contaminate()
 
 	//Anything else requires them to not be dead.
 	if(stat >= 2)
@@ -88,7 +92,8 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	if(vsc.plc.SKIN_BURNS)
 		if(!pl_head_protected() || !pl_suit_protected())
 			burn_skin(0.75)
-			if(prob(20)) src << "<span class='warning'>Your skin burns!</span>"
+			if(prob(20))
+				to_chat(src, span("warning", "Your skin burns!"))
 			updatehealth()
 
 	//Burn eyes if exposed.
@@ -111,18 +116,19 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	if(vsc.plc.GENETIC_CORRUPTION)
 		if(rand(1, 10000) < vsc.plc.GENETIC_CORRUPTION)
 			randmutb(src)
-			src << "<span class='warning'>High levels of toxins cause you to spontaneously mutate.</span>"
-			domutcheck(src,null)
+			to_chat(src, span("warning", "High levels of toxins cause you to spontaneously mutate."))
+			domutcheck(src, null)
 
 
 /mob/living/carbon/human/proc/burn_eyes()
 	//The proc that handles eye burning.
-	if(prob(20)) src << "<span class='warning'>Your eyes burn!</span>"
+	if(prob(20))
+		to_chat(src, span("warning", "Your eyes burn!"))
 	var/datum/organ/internal/eyes/E = internal_organs["eyes"]
 	E.damage += 2.5
-	eye_blurry = min(eye_blurry+1.5, 50)
-	if (prob(max(0, E.damage - 15) + 1) &&!eye_blind)
-		src << "<span class='warning'>You are blinded!</span>"
+	eye_blurry = min(eye_blurry + 1.5, 50)
+	if(prob(max(0, E.damage - 15) + 1) && !eye_blind)
+		to_chat(src, span("warning", "You are blinded!"))
 		eye_blind += 20
 
 /mob/living/carbon/human/proc/pl_head_protected()
@@ -149,12 +155,15 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 /mob/living/carbon/human/proc/suit_contamination()
 	//Runs over the things that can be contaminated and does so.
-	if(w_uniform) w_uniform.contaminate()
-	if(shoes) shoes.contaminate()
-	if(gloves) gloves.contaminate()
+	if(w_uniform)
+		w_uniform.contaminate()
+	if(shoes)
+		shoes.contaminate()
+	if(gloves)
+		gloves.contaminate()
 
 
-turf/Entered(obj/item/I)
+/turf/Entered(obj/item/I)
 	. = ..()
 	//Items that are in plasma, but not on a mob, can still be contaminated.
 	if(istype(I) && vsc.plc.CLOTH_CONTAMINATION && I.can_contaminate())

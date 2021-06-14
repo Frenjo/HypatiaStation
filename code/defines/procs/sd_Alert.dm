@@ -73,28 +73,31 @@ proc/sd_Alert(client/who, message, title, buttons = list("Ok"),\
 	if(ismob(who))
 		var/mob/M = who
 		who = M.client
-	if(!istype(who)) CRASH("sd_Alert: Invalid target:[who] (\ref[who])")
+	if(!istype(who))
+		CRASH("sd_Alert: Invalid target:[who] (\ref[who])")
 
 	var/sd_alert/T = locate(tag)
 	if(T)
-		if(istype(T)) qdel(T)
-		else CRASH("sd_Alert: tag \"[tag]\" is already in use by datum '[T]' (type: [T.type])")
+		if(istype(T))
+			qdel(T)
+		else
+			CRASH("sd_Alert: tag \"[tag]\" is already in use by datum '[T]' (type: [T.type])")
 	T = new(who, tag)
 	if(duration)
 		spawn(duration)
-			if(T) qdel(T)
+			if(T)
+				qdel(T)
 			return
-	T.Display(message,title,buttons,default,unfocus,size,table,style,select,flags)
+	T.Display(message, title, buttons, default, unfocus, size, table, style, select, flags)
 	. = T.Response()
 
 sd_alert
-	var
-		client/target
-		response
-		list/validation
+	var/client/target
+	var/response
+	var/list/validation
 
 	Destroy()
-		target << browse(null,"window=\ref[src]")
+		target << browse(null, "window=\ref[src]")
 		..()
 
 	New(who, tag)
@@ -102,15 +105,21 @@ sd_alert
 		target = who
 		src.tag = tag
 
-	Topic(href,params[])
-		if(usr.client != target) return
+	Topic(href, params[])
+		if(usr.client != target)
+			return
 		response = params["clk"]
 
-	proc/Display(message,title,list/buttons,default,unfocus,size,table,style,select,flags)
-		if(unfocus) spawn() target << browse(null,null)
-		if(istext(buttons)) buttons = list(buttons)
-		if(!default) default = buttons[1]
-		if(!(flags & SD_ALERT_NOVALIDATE)) validation = buttons.Copy()
+	proc/Display(message, title, list/buttons, default, unfocus, size, table, style, select, flags)
+		if(unfocus)
+			spawn()
+				target << browse(null, null)
+		if(istext(buttons))
+			buttons = list(buttons)
+		if(!default)
+			default = buttons[1]
+		if(!(flags & SD_ALERT_NOVALIDATE))
+			validation = buttons.Copy()
 
 		var/html = {"<head><title>[title]</title>[style]<script>\
 		function c(x) {document.location.href='BYOND://?src=\ref[src];'+x;}\
@@ -131,24 +140,26 @@ sd_alert
 			for(var/b in buttons)
 				var/list/L = list()
 				L["clk"] = b
-				var/html_string=list2params(L)
+				var/html_string = list2params(L)
 				var/focus
-				if(b == default) focus = " ID=fcs"
+				if(b == default)
+					focus = " ID=fcs"
 				html += "<A[focus] href=# onClick=\"c('[html_string]')\">[html_encode(b)]</A>\
 					<BR>"
 		else	// button style choices
 			for(var/b in buttons)
 				var/list/L = list()
 				L["clk"] = b
-				var/html_string=list2params(L)
+				var/html_string = list2params(L)
 				var/focus
-				if(b == default) focus = " ID=fcs"
+				if(b == default)
+					focus = " ID=fcs"
 				html += "<INPUT[focus] TYPE=button VALUE='[html_encode(b)]' \
 					onClick=\"c('[html_string]')\"> "
 
 		html += "</th></tr></table></body>"
 
-		target << browse(html,"window=\ref[src];size=[size];can_close=0")
+		target << browse(html, "window=\ref[src];size=[size];can_close=0")
 
 	proc/Response()
 		var/validated
@@ -159,10 +170,16 @@ sd_alert
 			if(response && validation)
 				if(istype(response, /list))
 					var/list/L = response - validation
-					if(L.len) response = null
-					else validated = 1
-				else if(response in validation) validated = 1
-				else response=null
-			else validated = 1
-		spawn(2) qdel(src)
+					if(L.len)
+						response = null
+					else
+						validated = 1
+				else if(response in validation)
+					validated = 1
+				else
+					response = null
+			else
+				validated = 1
+		spawn(2)
+			qdel(src)
 		return response

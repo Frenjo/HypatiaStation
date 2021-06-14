@@ -87,38 +87,43 @@ var/global/vs_control/vsc = new
 		settings -= V
 
 	for(var/V in settings)
-		if(findtextEx(V,"_RANDOM") || findtextEx(V,"_DESC") || findtextEx(V,"_METHOD"))
+		if(findtextEx(V, "_RANDOM") || findtextEx(V, "_DESC") || findtextEx(V, "_METHOD"))
 			settings -= V
 
 	settings -= "settings"
 	settings -= "bitflags"
 	settings -= "plc"
 
-/vs_control/proc/ChangeSettingsDialog(mob/user,list/L)
+/vs_control/proc/ChangeSettingsDialog(mob/user, list/L)
 	//var/which = input(user,"Choose a setting:") in L
 	var/dat = ""
 	for(var/ch in L)
-		if(findtextEx(ch,"_RANDOM") || findtextEx(ch,"_DESC") || findtextEx(ch,"_METHOD") || findtextEx(ch,"_NAME")) continue
+		if(findtextEx(ch, "_RANDOM") || findtextEx(ch, "_DESC") || findtextEx(ch, "_METHOD") || findtextEx(ch, "_NAME"))
+			continue
 		var/vw
 		var/vw_desc = "No Description."
 		var/vw_name = ch
 		if(ch in plc.settings)
 			vw = plc.vars[ch]
-			if("[ch]_DESC" in plc.vars) vw_desc = plc.vars["[ch]_DESC"]
-			if("[ch]_NAME" in plc.vars) vw_name = plc.vars["[ch]_NAME"]
+			if("[ch]_DESC" in plc.vars)
+				vw_desc = plc.vars["[ch]_DESC"]
+			if("[ch]_NAME" in plc.vars)
+				vw_name = plc.vars["[ch]_NAME"]
 		else
 			vw = vars[ch]
-			if("[ch]_DESC" in vars) vw_desc = vars["[ch]_DESC"]
-			if("[ch]_NAME" in vars) vw_name = vars["[ch]_NAME"]
+			if("[ch]_DESC" in vars)
+				vw_desc = vars["[ch]_DESC"]
+			if("[ch]_NAME" in vars)
+				vw_name = vars["[ch]_NAME"]
 		dat += "<b>[vw_name] = [vw]</b> <A href='?src=\ref[src];changevar=[ch]'>\[Change\]</A><br>"
 		dat += "<i>[vw_desc]</i><br><br>"
 	user << browse(dat,"window=settings")
 
-/vs_control/Topic(href,href_list)
+/vs_control/Topic(href, href_list)
 	if("changevar" in href_list)
-		ChangeSetting(usr,href_list["changevar"])
+		ChangeSetting(usr, href_list["changevar"])
 
-/vs_control/proc/ChangeSetting(mob/user,ch)
+/vs_control/proc/ChangeSetting(mob/user, ch)
 	var/vw
 	var/how = "Text"
 	var/display_description = ch
@@ -147,9 +152,9 @@ var/global/vs_control/vsc = new
 	var/newvar = vw
 	switch(how)
 		if("Numeric")
-			newvar = input(user,"Enter a number:","Settings",newvar) as num
+			newvar = input(user, "Enter a number:", "Settings", newvar) as num
 		if("Bit Flag")
-			var/flag = input(user,"Toggle which bit?","Settings") in bitflags
+			var/flag = input(user, "Toggle which bit?", "Settings") in bitflags
 			flag = text2num(flag)
 			if(newvar & flag)
 				newvar &= ~flag
@@ -158,21 +163,21 @@ var/global/vs_control/vsc = new
 		if("Toggle")
 			newvar = !newvar
 		if("Text")
-			newvar = input(user,"Enter a string:","Settings",newvar) as text
+			newvar = input(user, "Enter a string:", "Settings", newvar) as text
 		if("Long Text")
-			newvar = input(user,"Enter text:","Settings",newvar) as message
+			newvar = input(user, "Enter text:", "Settings", newvar) as message
 	vw = newvar
 	if(ch in plc.settings)
 		plc.vars[ch] = vw
 	else
 		vars[ch] = vw
 	if(how == "Toggle")
-		newvar = (newvar?"ON":"OFF")
-	world << "<span class='notice'>[key_name(user)] changed the setting [display_description] to [newvar].</span>"
+		newvar = (newvar ? "ON" : "OFF")
+	to_chat(world, span("notice", "[key_name(user)] changed the setting [display_description] to [newvar]."))
 	if(ch in plc.settings)
-		ChangeSettingsDialog(user,plc.settings)
+		ChangeSettingsDialog(user, plc.settings)
 	else
-		ChangeSettingsDialog(user,settings)
+		ChangeSettingsDialog(user, settings)
 
 /vs_control/proc/RandomizeWithProbability()
 	for(var/V in settings)
@@ -190,7 +195,7 @@ var/global/vs_control/vsc = new
 	for(var/V in plc.settings)
 		plc.Randomize(V)
 
-/vs_control/proc/SetDefault(var/mob/user)
+/vs_control/proc/SetDefault(mob/user)
 	var/list/setting_choices = list("Plasma - Standard", "Plasma - Low Hazard", "Plasma - High Hazard", "Plasma - Oh Shit!",\
 	"ZAS - Normal", "ZAS - Forgiving", "ZAS - Dangerous", "ZAS - Hellish")
 	var/def = input(user, "Which of these presets should be used?") as null|anything in setting_choices
@@ -291,7 +296,7 @@ var/global/vs_control/vsc = new
 			connection_insulation = 0
 
 
-	world << "<span class='notice'>[key_name(user)] changed the global plasma/ZAS settings to \"[def]\"</span>"
+	to_chat(world, span("notice", "[key_name(user)] changed the global plasma/ZAS settings to \"[def]\""))
 
 /pl_control/var/list/settings = list()
 
@@ -304,7 +309,7 @@ var/global/vs_control/vsc = new
 		settings -= V
 
 	for(var/V in settings)
-		if(findtextEx(V,"_RANDOM") || findtextEx(V,"_DESC"))
+		if(findtextEx(V, "_RANDOM") || findtextEx(V, "_DESC"))
 			settings -= V
 
 	settings -= "settings"
@@ -317,17 +322,17 @@ var/global/vs_control/vsc = new
 		else if(istext(vars["[V]_RANDOM"]))
 			var/txt = vars["[V]_RANDOM"]
 			if(findtextEx(txt,"PROB"))
-				txt = text2list(txt,"/")
-				txt[1] = replacetextx(txt[1],"PROB","")
+				txt = text2list(txt, "/")
+				txt[1] = replacetextx(txt[1], "PROB", "")
 				var/p = text2num(txt[1])
 				var/r = txt[2]
 				if(prob(p))
 					newvalue = roll(r)
 				else
 					newvalue = vars[V]
-			else if(findtextEx(txt,"PICK"))
-				txt = replacetextx(txt,"PICK","")
-				txt = text2list(txt,",")
+			else if(findtextEx(txt, "PICK"))
+				txt = replacetextx(txt, "PICK", "")
+				txt = text2list(txt, ",")
 				newvalue = pick(txt)
 			else
 				newvalue = roll(txt)

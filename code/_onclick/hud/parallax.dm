@@ -22,15 +22,12 @@
 	appearance_flags = KEEP_APART
 
 /obj/screen/space_star/New()
-	//var/star_type = pick( prob(100); 0, prob(10); 1, prob(1); 2 )
 	// At a close look, only 2 tiles contain red stars(9,10), lots more contain blue(6,7,8), and white are everywhere(1,2,3,4,5).
 	// Let's try to keep that consistent by probability.
 	// There's also a slightly higher chance for non-animated white stars(3,4) to break up the twinkle a bit.
 	// Along with the default single white star(0) if nothing else is chosen just to fill space.
 	var/star_type = pick(prob(100); 0, prob(38); 1, prob(38); 2, prob(38); 3, prob(40); 4, prob(40); 5, prob(30); 6, prob(25); 7, prob(25); 8, prob(15); 9, prob(14); 10)
-	//icon_state = "star[star_type]"
 	icon_state = "astar[star_type]"
-	//screen_loc = "[rand( 1, 15 )]:[rand( -16, 16 )],[rand( 1, 15 )]:[rand( -16, 16 )]"
 	pixel_x = rand(-50, 530)
 	pixel_y = rand(-50, 530)
 

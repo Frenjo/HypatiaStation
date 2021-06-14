@@ -105,13 +105,13 @@ var/shuttle_left = 0
 var/tinted_weldhelh = 1
 
 var/list/jobMax = list()
-var/list/bombers = list(  )
-var/list/admin_log = list (  )
-var/list/lastsignalers = list(	)	//keeps last 100 signals here in format: "[src] used \ref[src] @ location [src.loc]: [freq]/[code]"
-var/list/lawchanges = list(  ) //Stores who uploaded laws to which silicon-based lifeform, and what the law was
-var/list/shuttles = list(  )
-var/list/reg_dna = list(  )
-//	list/traitobj = list(  )
+var/list/bombers = list()
+var/list/admin_log = list ()
+var/list/lastsignalers = list()	//keeps last 100 signals here in format: "[src] used \ref[src] @ location [src.loc]: [freq]/[code]"
+var/list/lawchanges = list() //Stores who uploaded laws to which silicon-based lifeform, and what the law was
+var/list/shuttles = list()
+var/list/reg_dna = list()
+//	list/traitobj = list()
 
 var/mouse_respawn_time = 5 //Amount of time that must pass between a player dying as a mouse and repawning as a mouse. In minutes.
 
@@ -269,15 +269,15 @@ var/global/const/TICKS_IN_SECOND = 10
 	APCIndexToWireColor = list(0, 0, 0, 0)
 	APCWireColorToIndex = list(0, 0, 0, 0)
 	var/flagIndex = 1
-	for (var/flag=1, flag<16, flag+=flag)
+	for(var/flag = 1, flag < 16, flag += flag)
 		var/valid = 0
 		while (!valid)
 			var/colorIndex = rand(1, 4)
-			if (apcwires[colorIndex]==0)
+			if(apcwires[colorIndex] == 0)
 				valid = 1
 				apcwires[colorIndex] = flag
 				APCIndexToFlag[flagIndex] = flag
 				APCIndexToWireColor[flagIndex] = colorIndex
 				APCWireColorToIndex[colorIndex] = flagIndex
-		flagIndex+=1
+		flagIndex += 1
 	return apcwires

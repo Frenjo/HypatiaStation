@@ -8,50 +8,50 @@
 	var/turf/floorbelow
 	var/list/overlay_references
 
-	New()
-		..()
-		getbelow()
-		return
+/turf/simulated/floor/open/New()
+	..()
+	getbelow()
+	return
 
-	Enter(var/atom/movable/AM)
-		if(..()) //TODO make this check if gravity is active (future use) - Sukasa
-			spawn(1)
-				// only fall down in defined areas (read: areas with artificial gravitiy)
-				if(!floorbelow) //make sure that there is actually something below
-					if(!getbelow())
-						return
-				if(AM)
-					var/area/areacheck = get_area(src)
-					var/blocked = 0
-					var/soft = 0
-					for(var/atom/A in floorbelow.contents)
-						if(A.density)
-							blocked = 1
-							break
-						if(istype(A, /obj/machinery/atmospherics/pipe/zpipe/up) && istype(AM,/obj/item/pipe))
-							blocked = 1
-							break
-						if(istype(A, /obj/structure/disposalpipe/up) && istype(AM,/obj/item/pipe))
-							blocked = 1
-							break
-						if(istype(A, /obj/multiz/stairs))
-							soft = 1
-							//dont break here, since we still need to be sure that it isnt blocked
+/turf/simulated/floor/open/Enter(atom/movable/AM)
+	if(..()) //TODO make this check if gravity is active (future use) - Sukasa
+		spawn(1)
+			// only fall down in defined areas (read: areas with artificial gravitiy)
+			if(!floorbelow) //make sure that there is actually something below
+				if(!getbelow())
+					return
+			if(AM)
+				var/area/areacheck = get_area(src)
+				var/blocked = 0
+				var/soft = 0
+				for(var/atom/A in floorbelow.contents)
+					if(A.density)
+						blocked = 1
+						break
+					if(istype(A, /obj/machinery/atmospherics/pipe/zpipe/up) && istype(AM, /obj/item/pipe))
+						blocked = 1
+						break
+					if(istype(A, /obj/structure/disposalpipe/up) && istype(AM, /obj/item/pipe))
+						blocked = 1
+						break
+					if(istype(A, /obj/multiz/stairs))
+						soft = 1
+						//dont break here, since we still need to be sure that it isnt blocked
 
-					if(soft || (!blocked && !(areacheck.name == "Space")))
-						AM.Move(floorbelow)
-						if(!soft && istype(AM, /mob/living/carbon/human))
-							var/mob/living/carbon/human/H = AM
-							var/damage = 5
-							H.apply_damage(min(rand(-damage,damage),0), BRUTE, "head")
-							H.apply_damage(min(rand(-damage,damage),0), BRUTE, "chest")
-							H.apply_damage(min(rand(-damage,damage),0), BRUTE, "l_leg")
-							H.apply_damage(min(rand(-damage,damage),0), BRUTE, "r_leg")
-							H.apply_damage(min(rand(-damage,damage),0), BRUTE, "l_arm")
-							H.apply_damage(min(rand(-damage,damage),0), BRUTE, "r_arm")
-							H:weakened = max(H:weakened,2)
-							H:updatehealth()
-		return ..()
+				if(soft || (!blocked && !(areacheck.name == "Space")))
+					AM.Move(floorbelow)
+					if(!soft && istype(AM, /mob/living/carbon/human))
+						var/mob/living/carbon/human/H = AM
+						var/damage = 5
+						H.apply_damage(min(rand(-damage, damage), 0), BRUTE, "head")
+						H.apply_damage(min(rand(-damage, damage), 0), BRUTE, "chest")
+						H.apply_damage(min(rand(-damage, damage), 0), BRUTE, "l_leg")
+						H.apply_damage(min(rand(-damage, damage), 0), BRUTE, "r_leg")
+						H.apply_damage(min(rand(-damage, damage), 0), BRUTE, "l_arm")
+						H.apply_damage(min(rand(-damage, damage), 0), BRUTE, "r_arm")
+						H:weakened = max(H:weakened,2)
+						H:updatehealth()
+	return ..()
 
 /turf/proc/hasbelow()
 	var/turf/controllerlocation = locate(1, 1, z)
@@ -92,23 +92,23 @@
 
 /turf/simulated/floor/open/attackby(obj/item/C as obj, mob/user as mob)
 	..(C, user)
-	if (istype(C, /obj/item/stack/cable_coil))
+	if(istype(C, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/cable = C
 		cable.turf_place(src, user)
 		return
 
-	if (istype(C, /obj/item/stack/rods))
+	if(istype(C, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
 			return
 		var/obj/item/stack/rods/R = C
-		user << "\blue Constructing support lattice ..."
+		to_chat(user, span("info", "Constructing support lattice..."))
 		playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 		ReplaceWithLattice()
 		R.use(1)
 		return
 
-	if (istype(C, /obj/item/stack/tile/plasteel))
+	if(istype(C, /obj/item/stack/tile/plasteel))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
 			var/obj/item/stack/tile/plasteel/S = C
@@ -118,5 +118,5 @@
 			S.use(1)
 			return
 		else
-			user << "\red The plating is going to need some support."
+			to_chat(user, span("warning", "The plating is going to need some support."))
 	return

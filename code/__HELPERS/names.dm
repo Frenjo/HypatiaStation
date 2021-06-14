@@ -64,13 +64,13 @@ var/religion_name = null
 
 		//For special days like christmas, easter, new-years etc ~Carn
 		if("Friday the 13th")
-			name = pick("Mike","Friday","Evil","Myers","Murder","Deathly","Stabby")
+			name = pick("Mike", "Friday", "Evil", "Myers", "Murder", "Deathly", "Stabby")
 			station_name += name + " "
 			random = 13
 		else
 			//get the first word of the Holiday and use that
-			var/i = findtext(Holiday," ",1,0)
-			name = copytext(Holiday,1,i)
+			var/i = findtext(Holiday," ", 1, 0)
+			name = copytext(Holiday, 1, i)
 			station_name += name + " "
 
 	// Suffix
@@ -90,7 +90,7 @@ var/religion_name = null
 		if(5)
 			station_name += pick("One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen")
 		if(13)
-			station_name += pick("13","XIII","Thirteen")
+			station_name += pick("13", "XIII", "Thirteen")
 
 
 	if(config && config.server_name)

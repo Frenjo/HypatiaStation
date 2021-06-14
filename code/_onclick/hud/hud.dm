@@ -34,7 +34,7 @@ var/list/global_huds = list(
 	var/obj/screen/thermal
 	var/obj/screen/meson
 
-/datum/global_hud/proc/setup_overlay(var/icon_state)
+/datum/global_hud/proc/setup_overlay(icon_state)
 	var/obj/screen/screen = new /obj/screen()
 	screen.screen_loc = "1,1"
 	screen.icon = 'icons/obj/hud_full.dmi'
@@ -115,7 +115,7 @@ var/list/global_huds = list(
 	var/obj/screen/O
 	var/i
 	//that nasty looking dither you  get when you're short-sighted
-	vimpaired = newlist(/obj/screen,/obj/screen,/obj/screen,/obj/screen)
+	vimpaired = newlist(/obj/screen, /obj/screen, /obj/screen, /obj/screen)
 	O = vimpaired[1]
 	O.screen_loc = "1,1 to 5,15"
 	O = vimpaired[2]
@@ -202,25 +202,43 @@ var/list/global_huds = list(
 	if(isHuman(mymob))
 		var/mob/living/carbon/human/H = mymob
 		if(inventory_shown && hud_shown)
-			if(H.shoes)		H.shoes.screen_loc = ui_shoes
-			if(H.gloves)	H.gloves.screen_loc = ui_gloves
-			if(H.l_ear)		H.l_ear.screen_loc = ui_l_ear
-			if(H.r_ear)		H.r_ear.screen_loc = ui_r_ear
-			if(H.glasses)	H.glasses.screen_loc = ui_glasses
-			if(H.w_uniform)	H.w_uniform.screen_loc = ui_iclothing
-			if(H.wear_suit)	H.wear_suit.screen_loc = ui_oclothing
-			if(H.wear_mask)	H.wear_mask.screen_loc = ui_mask
-			if(H.head)		H.head.screen_loc = ui_head
+			if(H.shoes)
+				H.shoes.screen_loc = ui_shoes
+			if(H.gloves)
+				H.gloves.screen_loc = ui_gloves
+			if(H.l_ear)
+				H.l_ear.screen_loc = ui_l_ear
+			if(H.r_ear)
+				H.r_ear.screen_loc = ui_r_ear
+			if(H.glasses)
+				H.glasses.screen_loc = ui_glasses
+			if(H.w_uniform)
+				H.w_uniform.screen_loc = ui_iclothing
+			if(H.wear_suit)
+				H.wear_suit.screen_loc = ui_oclothing
+			if(H.wear_mask)
+				H.wear_mask.screen_loc = ui_mask
+			if(H.head)
+				H.head.screen_loc = ui_head
 		else
-			if(H.shoes)		H.shoes.screen_loc = null
-			if(H.gloves)	H.gloves.screen_loc = null
-			if(H.l_ear)		H.l_ear.screen_loc = null
-			if(H.r_ear)		H.r_ear.screen_loc = null
-			if(H.glasses)	H.glasses.screen_loc = null
-			if(H.w_uniform)	H.w_uniform.screen_loc = null
-			if(H.wear_suit)	H.wear_suit.screen_loc = null
-			if(H.wear_mask)	H.wear_mask.screen_loc = null
-			if(H.head)		H.head.screen_loc = null
+			if(H.shoes)
+				H.shoes.screen_loc = null
+			if(H.gloves)
+				H.gloves.screen_loc = null
+			if(H.l_ear)
+				H.l_ear.screen_loc = null
+			if(H.r_ear)
+				H.r_ear.screen_loc = null
+			if(H.glasses)
+				H.glasses.screen_loc = null
+			if(H.w_uniform)
+				H.w_uniform.screen_loc = null
+			if(H.wear_suit)
+				H.wear_suit.screen_loc = null
+			if(H.wear_mask)
+				H.wear_mask.screen_loc = null
+			if(H.head)
+				H.head.screen_loc = null
 
 
 /datum/hud/proc/persistant_inventory_update()
@@ -230,19 +248,31 @@ var/list/global_huds = list(
 	if(isHuman(mymob))
 		var/mob/living/carbon/human/H = mymob
 		if(hud_shown)
-			if(H.s_store)	H.s_store.screen_loc = ui_sstore1
-			if(H.wear_id)	H.wear_id.screen_loc = ui_id
-			if(H.belt)		H.belt.screen_loc = ui_belt
-			if(H.back)		H.back.screen_loc = ui_back
-			if(H.l_store)	H.l_store.screen_loc = ui_storage1
-			if(H.r_store)	H.r_store.screen_loc = ui_storage2
+			if(H.s_store)
+				H.s_store.screen_loc = ui_sstore1
+			if(H.wear_id)
+				H.wear_id.screen_loc = ui_id
+			if(H.belt)
+				H.belt.screen_loc = ui_belt
+			if(H.back)
+				H.back.screen_loc = ui_back
+			if(H.l_store)
+				H.l_store.screen_loc = ui_storage1
+			if(H.r_store)
+				H.r_store.screen_loc = ui_storage2
 		else
-			if(H.s_store)	H.s_store.screen_loc = null
-			if(H.wear_id)	H.wear_id.screen_loc = null
-			if(H.belt)		H.belt.screen_loc = null
-			if(H.back)		H.back.screen_loc = null
-			if(H.l_store)	H.l_store.screen_loc = null
-			if(H.r_store)	H.r_store.screen_loc = null
+			if(H.s_store)
+				H.s_store.screen_loc = null
+			if(H.wear_id)
+				H.wear_id.screen_loc = null
+			if(H.belt)
+				H.belt.screen_loc = null
+			if(H.back)
+				H.back.screen_loc = null
+			if(H.l_store)
+				H.l_store.screen_loc = null
+			if(H.r_store)
+				H.r_store.screen_loc = null
 
 /datum/hud/proc/instantiate()
 	if(!ismob(mymob))
@@ -272,7 +302,7 @@ var/list/global_huds = list(
 	create_parallax()
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)
-/mob/verb/button_pressed_F12(var/full = 0 as null)
+/mob/verb/button_pressed_F12(full = 0 as null)
 	set name = "F12"
 	set hidden = 1
 
@@ -331,6 +361,6 @@ var/list/global_huds = list(
 			hud_used.persistant_inventory_update()
 			update_action_buttons()
 		else
-			usr << "\red Inventory hiding is currently only supported for human mobs, sorry."
+			to_chat(usr, span("warning", "Inventory hiding is currently only supported for human mobs, sorry."))
 	else
-		usr << "\red This mob type does not use a HUD."
+		to_chat(usr, span("warning", "This mob type does not use a HUD."))

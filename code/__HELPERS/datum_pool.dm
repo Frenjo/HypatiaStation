@@ -24,14 +24,14 @@ var/global/list/GlobalPool = list()
 		return
 
 	var/datum/D
-	D = GetFromPool(get_type,second_arg)
+	D = GetFromPool(get_type, second_arg)
 
 	if(!D)
 		if(ispath(get_type))
 			if(islist(second_arg))
-				return new get_type (arglist(second_arg))
+				return new get_type(arglist(second_arg))
 			else
-				return new get_type (second_arg)
+				return new get_type(second_arg)
 	return D
 
 /proc/GetFromPool(get_type, second_arg)
@@ -90,8 +90,8 @@ var/global/list/GlobalPool = list()
 		loc = args
 	..()
 
-/datum/proc/ResetVars(list/exlude = list())
-	var/list/excluded = list("animate_movement", "loc", "locs", "parent_type", "vars", "verbs", "type") + exlude
+/datum/proc/ResetVars(list/exclude = list())
+	var/list/excluded = list("animate_movement", "loc", "locs", "parent_type", "vars", "verbs", "type") + exclude
 
 	for(var/V in vars)
 		if(V in excluded)

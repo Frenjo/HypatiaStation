@@ -32,7 +32,7 @@
 	var/growthstages = 0
 	var/plant_type = 0 // 0 = 'normal plant'; 1 = weed; 2 = shroom
 
-/obj/item/seeds/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/seeds/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
 		to_chat(user, "*** <B>[plantname]</B> ***")
 		to_chat(user, "-Plant Endurance: \blue [endurance]")
@@ -1088,7 +1088,7 @@
 	plant_type = 1
 
 /obj/item/seeds/kudzuseed/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/space))
+	if(istype(user.loc, /turf/space))
 		return
 	to_chat(user, span("notice", "You plant the kudzu. You monster."))
 	new /obj/effect/spacevine_controller(user.loc)
@@ -1157,10 +1157,11 @@
 	var/yield = 2
 	var/potency = 1
 	var/plant_type = 0
-	New()
-		var/datum/reagents/R = new/datum/reagents(50)
-		reagents = R
-		R.my_atom = src
+	
+/obj/item/weapon/grown/New()
+	var/datum/reagents/R = new/datum/reagents(50)
+	reagents = R
+	R.my_atom = src
 
 /obj/item/weapon/grown/proc/changePotency(newValue) //-QualityVan
 	potency = newValue
@@ -1180,20 +1181,20 @@
 	seed = "/obj/item/seeds/towermycelium"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/weapon/circular_saw) || istype(W, /obj/item/weapon/hatchet) || (istype(W, /obj/item/weapon/twohanded/fireaxe) && W:wielded) || istype(W, /obj/item/weapon/melee/energy))
-			user.show_message("<span class='notice'>You make planks out of \the [src]!</span>", 1)
-			for(var/i=0,i<2,i++)
-				var/obj/item/stack/sheet/wood/NG = new (user.loc)
-				for (var/obj/item/stack/sheet/wood/G in user.loc)
-					if(G==NG)
-						continue
-					if(G.amount>=G.max_amount)
-						continue
-					G.attackby(NG, user)
-					usr << "You add the newly-formed wood to the stack. It now contains [NG.amount] planks."
-			qdel(src)
-			return
+/obj/item/weapon/grown/log/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/circular_saw) || istype(W, /obj/item/weapon/hatchet) || (istype(W, /obj/item/weapon/twohanded/fireaxe) && W:wielded) || istype(W, /obj/item/weapon/melee/energy))
+		user.show_message(span("notice", "You make planks out of \the [src]!"), 1)
+		for(var/i = 0, i < 2, i++)
+			var/obj/item/stack/sheet/wood/NG = new(user.loc)
+			for(var/obj/item/stack/sheet/wood/G in user.loc)
+				if(G == NG)
+					continue
+				if(G.amount >= G.max_amount)
+					continue
+				G.attackby(NG, user)
+				to_chat(usr, "You add the newly-formed wood to the stack. It now contains [NG.amount] planks.")
+		qdel(src)
+		return
 
 
 /obj/item/weapon/grown/sunflower // FLOWER POWER!
@@ -1248,12 +1249,13 @@
 	plant_type = 1
 	origin_tech = "combat=1"
 	seed = "/obj/item/seeds/nettleseed"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 50), 1))
-			reagents.add_reagent("sacid", round(potency, 1))
-			force = round((5+potency/5), 1)
+	
+/obj/item/weapon/grown/nettle/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
+		reagents.add_reagent("sacid", round(potency, 1))
+		force = round((5 + potency / 5), 1)
 
 /obj/item/weapon/grown/deathnettle // -- Skie
 	desc = "The \red glowing \black nettle incites \red<B>rage</B>\black in you just from looking at it!"
@@ -1270,16 +1272,17 @@
 	seed = "/obj/item/seeds/deathnettleseed"
 	origin_tech = "combat=3"
 	attack_verb = list("stung")
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 50), 1))
-			reagents.add_reagent("pacid", round(potency, 1))
-			force = round((5+potency/2.5), 1)
 
-	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is eating some of the [src.name]! It looks like \he's trying to commit suicide.</b>"
-		return (BRUTELOSS|TOXLOSS)
+/obj/item/weapon/grown/deathnettle/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
+		reagents.add_reagent("pacid", round(potency, 1))
+		force = round((5 + potency / 2.5), 1)
+
+/obj/item/weapon/grown/deathnettle/suicide_act(mob/user)
+	viewers(user) << "\red <b>[user] is eating some of the [src.name]! It looks like \he's trying to commit suicide.</b>"
+	return (BRUTELOSS|TOXLOSS)
 
 // *************************************
 // Pestkiller defines for hydroponics
@@ -1291,9 +1294,10 @@
 	icon_state = "bottle16"
 	var/toxicity = 0
 	var/PestKillStr = 0
-	New()
-		src.pixel_x = rand(-5.0, 5)
-		src.pixel_y = rand(-5.0, 5)
+
+/obj/item/pestkiller/New()
+	src.pixel_x = rand(-5.0, 5)
+	src.pixel_y = rand(-5.0, 5)
 
 /obj/item/pestkiller/carbaryl
 	name = "bottle of carbaryl"
@@ -1301,9 +1305,10 @@
 	icon_state = "bottle16"
 	toxicity = 4
 	PestKillStr = 2
-	New()
-		src.pixel_x = rand(-5.0, 5)
-		src.pixel_y = rand(-5.0, 5)
+
+/obj/item/pestkiller/carbaryl/New()
+	src.pixel_x = rand(-5.0, 5)
+	src.pixel_y = rand(-5.0, 5)
 
 /obj/item/pestkiller/lindane
 	name = "bottle of lindane"
@@ -1311,9 +1316,10 @@
 	icon_state = "bottle18"
 	toxicity = 6
 	PestKillStr = 4
-	New()
-		src.pixel_x = rand(-5.0, 5)
-		src.pixel_y = rand(-5.0, 5)
+
+/obj/item/pestkiller/lindane/New()
+	src.pixel_x = rand(-5.0, 5)
+	src.pixel_y = rand(-5.0, 5)
 
 /obj/item/pestkiller/phosmet
 	name = "bottle of phosmet"
@@ -1321,9 +1327,10 @@
 	icon_state = "bottle15"
 	toxicity = 8
 	PestKillStr = 7
-	New()
-		src.pixel_x = rand(-5.0, 5)
-		src.pixel_y = rand(-5.0, 5)
+
+/obj/item/pestkiller/phosmet/New()
+	src.pixel_x = rand(-5.0, 5)
+	src.pixel_y = rand(-5.0, 5)
 
 // *************************************
 // Hydroponics Tools
@@ -1344,9 +1351,9 @@
 	var/toxicity = 4
 	var/WeedKillStr = 2
 
-	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is huffing the [src.name]! It looks like \he's trying to commit suicide.</b>"
-		return (TOXLOSS)
+/obj/item/weapon/weedspray/suicide_act(mob/user)
+	viewers(user) << "\red <b>[user] is huffing the [src.name]! It looks like \he's trying to commit suicide.</b>"
+	return (TOXLOSS)
 
 /obj/item/weapon/pestspray // -- Skie
 	desc = "It's some pest eliminator spray! <I>Do not inhale!</I>"
@@ -1363,9 +1370,9 @@
 	var/toxicity = 4
 	var/PestKillStr = 2
 
-	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is huffing the [src.name]! It looks like \he's trying to commit suicide.</b>"
-		return (TOXLOSS)
+/obj/item/weapon/pestspray/suicide_act(mob/user)
+	viewers(user) << "\red <b>[user] is huffing the [src.name]! It looks like \he's trying to commit suicide.</b>"
+	return (TOXLOSS)
 
 /obj/item/weapon/minihoe // -- Numbers
 	name = "mini hoe"
@@ -1423,9 +1430,10 @@
 	w_class = 1.0
 	var/mutmod = 0
 	var/yieldmod = 0
-	New()
-		src.pixel_x = rand(-5.0, 5)
-		src.pixel_y = rand(-5.0, 5)
+
+/obj/item/nutrient/New()
+	src.pixel_x = rand(-5.0, 5)
+	src.pixel_y = rand(-5.0, 5)
 
 /obj/item/nutrient/ez
 	name = "bottle of E-Z-Nutrient"
@@ -1433,9 +1441,10 @@
 	icon_state = "bottle16"
 	mutmod = 1
 	yieldmod = 1
-	New()
-		src.pixel_x = rand(-5.0, 5)
-		src.pixel_y = rand(-5.0, 5)
+	
+/obj/item/nutrient/ez/New()
+	src.pixel_x = rand(-5.0, 5)
+	src.pixel_y = rand(-5.0, 5)
 
 /obj/item/nutrient/l4z
 	name = "bottle of Left 4 Zed"
@@ -1443,9 +1452,10 @@
 	icon_state = "bottle18"
 	mutmod = 2
 	yieldmod = 0
-	New()
-		src.pixel_x = rand(-5.0, 5)
-		src.pixel_y = rand(-5.0, 5)
+	
+/obj/item/nutrient/l4z/New()
+	src.pixel_x = rand(-5.0, 5)
+	src.pixel_y = rand(-5.0, 5)
 
 /obj/item/nutrient/rh
 	name = "bottle of Robust Harvest"
@@ -1453,8 +1463,9 @@
 	icon_state = "bottle15"
 	mutmod = 0
 	yieldmod = 2
-	New()
-		src.pixel_x = rand(-5.0, 5)
-		src.pixel_y = rand(-5.0, 5)
+	
+/obj/item/nutrient/rh/New()
+	src.pixel_x = rand(-5.0, 5)
+	src.pixel_y = rand(-5.0, 5)
 
 
