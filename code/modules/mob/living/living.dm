@@ -27,7 +27,7 @@ default behaviour is:
  - passive mob checks to see if its mob_bump_flag is in the non-passive's mob_bump_flags
  - if si, the proc returns
 */
-/mob/living/proc/can_move_mob(var/mob/living/swapped, swapping = 0, passive = 0)
+/mob/living/proc/can_move_mob(mob/living/swapped, swapping = 0, passive = 0)
 	if(!swapped)
 		return 1
 	if(!passive)
@@ -51,16 +51,15 @@ default behaviour is:
 		now_pushing = 1
 		if(istype(AM, /mob/living))
 			var/mob/living/tmob = AM
-
 			for(var/mob/living/M in range(tmob, 1))
 				if(tmob.pinned.len || ((M.pulling == tmob && (tmob.restrained() && !(M.restrained()) && M.stat == 0)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)))
 					if(!(world.time % 5))
-						src << "<span class='warning'>[tmob] is restrained, you cannot push past</span>"
+						to_chat(src, span("warning", "[tmob] is restrained, you cannot push past."))
 					now_pushing = 0
 					return
-				if(tmob.pulling == M && ( M.restrained() && !( tmob.restrained() ) && tmob.stat == 0))
+				if(tmob.pulling == M && (M.restrained() && !( tmob.restrained() ) && tmob.stat == 0))
 					if(!(world.time % 5))
-						src << "<span class='warning'>[tmob] is restraining [M], you cannot push past</span>"
+						to_chat(src, span("warning", "[tmob] is restraining [M], you cannot push past."))
 					now_pushing = 0
 					return
 
@@ -91,7 +90,7 @@ default behaviour is:
 				loc = tmob.loc
 				tmob.loc = oldloc
 				now_pushing = 0
-				for(var/mob/living/carbon/slime/slime in view(1,tmob))
+				for(var/mob/living/carbon/slime/slime in view(1, tmob))
 					if(slime.Victim == tmob)
 						slime.UpdateFeed()
 				return
@@ -101,7 +100,7 @@ default behaviour is:
 				return
 			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
 				if(prob(40) && !(FAT in src.mutations))
-					src << "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>"
+					to_chat(src, span("danger", "You fail to push [tmob]'s fat ass out of the way."))
 					now_pushing = 0
 					return
 			if(tmob.r_hand && istype(tmob.r_hand, /obj/item/weapon/shield/riot))
@@ -129,7 +128,7 @@ default behaviour is:
 				if(!AM.anchored)
 					var/t = get_dir(src, AM)
 					if(istype(AM, /obj/structure/window))
-						for(var/obj/structure/window/win in get_step(AM,t))
+						for(var/obj/structure/window/win in get_step(AM, t))
 							now_pushing = 0
 							return
 					step(AM, t)
@@ -142,7 +141,7 @@ default behaviour is:
 	if((src.health < 0 && src.health > -95.0))
 		src.adjustOxyLoss(src.health + 200)
 		src.health = 100 - src.getOxyLoss() - src.getToxLoss() - src.getFireLoss() - src.getBruteLoss()
-		src << "\blue You have given up life and succumbed to death."
+		to_chat(src, span("info", "You have given up life and succumbed to death."))
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
@@ -168,7 +167,8 @@ default behaviour is:
 		var/divided_damage = (burn_amount)/(H.organs.len)
 		var/extradam = 0	//added to when organ is at max dam
 		for(var/datum/organ/external/affecting in H.organs)
-			if(!affecting)	continue
+			if(!affecting)
+				continue
 			if(affecting.take_damage(0, divided_damage + extradam))	//TODO: fix the extradam stuff. Or, ebtter yet...rewrite this entire proc ~Carn
 				H.UpdateDamageIcon()
 		H.updatehealth()
@@ -185,9 +185,9 @@ default behaviour is:
 
 /mob/living/proc/adjustBodyTemp(actual, desired, incrementboost)
 	var/temperature = actual
-	var/difference = abs(actual-desired)	//get difference
-	var/increments = difference/10 //find how many increments apart they are
-	var/change = increments*incrementboost	// Get the amount to change by (x per increment)
+	var/difference = abs(actual - desired)	//get difference
+	var/increments = difference / 10 //find how many increments apart they are
+	var/change = increments * incrementboost	// Get the amount to change by (x per increment)
 
 	// Too cold
 	if(actual < desired)

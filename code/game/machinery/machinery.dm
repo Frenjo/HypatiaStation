@@ -241,7 +241,7 @@ Class Procs:
 			visible_message(span("warning", "[H] stares cluelessly at [src] and drools."))
 			return 1
 		else if(prob(H.getBrainLoss()))
-			to_chat(H, span("warning", "\red You momentarily forget how to use [src]."))
+			to_chat(H, span("warning", "You momentarily forget how to use [src]."))
 			return 1
 
 	src.add_fingerprint(user)

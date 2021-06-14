@@ -52,7 +52,7 @@
 	//		null if object handles breathing logic for lifeform
 	//		datum/air_group to tell lifeform to process using that breath return
 	//DEFAULT: Take air from turf to give to have mob process
-	if(breath_request>0)
+	if(breath_request > 0)
 		return remove_air(breath_request)
 	else
 		return null
@@ -72,7 +72,7 @@
 					src.attack_ai(usr)
 
 		// check for TK users
-		if (istype(usr, /mob/living/carbon/human))
+		if(istype(usr, /mob/living/carbon/human))
 			if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
 				if(!(usr in nearby))
 					if(usr.client && usr.machine == src)

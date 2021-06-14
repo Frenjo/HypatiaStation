@@ -48,7 +48,7 @@
 // message is the message output to anyone who can see e.g. "[src] does something!"
 // self_message (optional) is what the src mob sees  e.g. "You do something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
-/mob/visible_message(var/message, var/self_message, var/blind_message)
+/mob/visible_message(message, self_message, blind_message)
 	for(var/mob/M in viewers(src))
 		if(M.see_invisible < invisibility)
 			continue // Cannot view the invisible
@@ -62,7 +62,7 @@
 // Use for objects performing visible actions
 // message is output to anyone who can see, e.g. "The [src] does something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
-/atom/proc/visible_message(var/message, var/blind_message)
+/atom/proc/visible_message(message, blind_message)
 	for(var/mob/M in viewers(src))
 		M.show_message( message, 1, blind_message, 2)
 
