@@ -91,14 +91,14 @@
 		AM.loc = get_turf(src)
 	return ..()
 
-/obj/effect/dummy/spell_jaunt/relaymove(var/mob/user, direction)
+/obj/effect/dummy/spell_jaunt/relaymove(mob/user, direction)
 	if(!src.canmove)
 		return
 	var/turf/newLoc = get_step(src, direction)
 	if(!(newLoc.flags & NOJAUNT))
 		loc = newLoc
 	else
-		to_chat(user, span("warning", "Some strange aura is blocking the way!"))
+		to_chat(user, SPAN_WARNING("Some strange aura is blocking the way!"))
 	src.canmove = 0
 	spawn(2) src.canmove = 1
 

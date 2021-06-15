@@ -44,7 +44,7 @@
 		src.update_icon()
 		return
 
-	if(in_range(src, usr) && isHuman(over_object) && get_dist(over_object, src) <= 1)
+	if(in_range(src, usr) && ishuman(over_object) && get_dist(over_object, src) <= 1)
 		visible_message("[usr] attaches \the [src] to \the [over_object].")
 		src.attached = over_object
 		src.update_icon()

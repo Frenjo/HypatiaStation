@@ -7,7 +7,7 @@
 	priority = 2
 	blood_level = 1
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		return target_zone == "head" && hasOrgans(target)
+		return target_zone == "head" && hasorgans(target)
 
 /datum/surgery_step/brain/saw_skull
 	allowed_tools = list(
@@ -115,7 +115,7 @@
 		user.visible_message("\red [user]'s hand slips, cutting a vein in [target]'s brain with \the [tool]!", \
 		"\red Your hand slips, cutting a vein in [target]'s brain with \the [tool]!")
 		target.apply_damage(30, BRUTE, "head", 1, sharp = 1)
-		if (isHuman(user))
+		if(ishuman(user))
 			user:bloody_body(target)
 			user:bloody_hands(target, 0)
 

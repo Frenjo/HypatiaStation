@@ -47,14 +47,14 @@
 	// does stuff to begin the step, usually just printing messages. Moved germs transfering and bloodying here too
 	proc/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/datum/organ/external/affected = target.get_organ(target_zone)
-		if (can_infect && affected)
+		if(can_infect && affected)
 			spread_germs_to_organ(affected, user)
-		if (isHuman(user) && prob(60))
+		if(ishuman(user) && prob(60))
 			var/mob/living/carbon/human/H = user
-			if (blood_level)
-				H.bloody_hands(target,0)
-			if (blood_level > 1)
-				H.bloody_body(target,0)
+			if(blood_level)
+				H.bloody_hands(target, 0)
+			if(blood_level > 1)
+				H.bloody_body(target, 0)
 		return
 
 	// does stuff to end the step, which is normally print a message + do whatever this step changes
@@ -66,7 +66,8 @@
 		return null
 
 proc/spread_germs_to_organ(datum/organ/external/E, mob/living/carbon/human/user)
-	if(!istype(user) || !istype(E)) return
+	if(!istype(user) || !istype(E))
+		return
 
 	var/germ_level = user.germ_level
 	if(user.gloves)
@@ -75,16 +76,16 @@ proc/spread_germs_to_organ(datum/organ/external/E, mob/living/carbon/human/user)
 	E.germ_level = max(germ_level,E.germ_level) //as funny as scrubbing microbes out with clean gloves is - no.
 
 proc/do_surgery(mob/living/M, mob/living/user, obj/item/tool)
-	if(!istype(M,/mob/living/carbon))
+	if(!iscarbon(M))
 		return 0
-	if (user.a_intent == "harm")	//check for Hippocratic Oath
+	if(user.a_intent == "harm")	//check for Hippocratic Oath
 		return 0
 	for(var/datum/surgery_step/S in surgery_steps)
 		//check if tool is right or close enough and if this step is possible
-		if( S.tool_quality(tool) && S.can_use(user, M, user.zone_sel.selecting, tool) && S.is_valid_mutantrace(M))
+		if(S.tool_quality(tool) && S.can_use(user, M, user.zone_sel.selecting, tool) && S.is_valid_mutantrace(M))
 			S.begin_step(user, M, user.zone_sel.selecting, tool)		//start on it
 			//We had proper tools! (or RNG smiled.) and User did not move or change hands.
-			if( prob(S.tool_quality(tool)) &&  do_mob(user, M, rand(S.min_duration, S.max_duration)))
+			if(prob(S.tool_quality(tool)) &&  do_mob(user, M, rand(S.min_duration, S.max_duration)))
 				S.end_step(user, M, user.zone_sel.selecting, tool)		//finish successfully
 			else														//or
 				S.fail_step(user, M, user.zone_sel.selecting, tool)		//malpractice~
@@ -94,7 +95,7 @@ proc/do_surgery(mob/living/M, mob/living/user, obj/item/tool)
 proc/sort_surgeries()
 	var/gap = surgery_steps.len
 	var/swapped = 1
-	while (gap > 1 || swapped)
+	while(gap > 1 || swapped)
 		swapped = 0
 		if(gap > 1)
 			gap = round(gap / 1.247330950103979)
@@ -102,7 +103,7 @@ proc/sort_surgeries()
 			gap = 1
 		for(var/i = 1; gap + i <= surgery_steps.len; i++)
 			var/datum/surgery_step/l = surgery_steps[i]		//Fucking hate
-			var/datum/surgery_step/r = surgery_steps[gap+i]	//how lists work here
+			var/datum/surgery_step/r = surgery_steps[gap + i]	//how lists work here
 			if(l.priority < r.priority)
 				surgery_steps.Swap(i, gap + i)
 				swapped = 1

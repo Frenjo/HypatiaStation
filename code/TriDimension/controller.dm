@@ -102,7 +102,7 @@
 			turf += src
 			c.add(turf, 3, 1)
 
-atom/movable/Move() //Hackish
+/atom/movable/Move() //Hackish
 	. = ..()
 
 	var/turf/controllerlocation = locate(1, 1, src.z)

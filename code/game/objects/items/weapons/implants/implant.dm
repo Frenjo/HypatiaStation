@@ -156,25 +156,25 @@ Implant Specifics:<BR>"}
 			qdel(src)
 
 	activate()
-		if (malfunction == MALFUNCTION_PERMANENT)
+		if(malfunction == MALFUNCTION_PERMANENT)
 			return
 
 		var/need_gib = null
-		if(istype(imp_in, /mob/))
+		if(ismob(imp_in))
 			var/mob/T = imp_in
 			message_admins("Explosive implant triggered in [T] ([T.key]). (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>) ")
 			log_game("Explosive implant triggered in [T] ([T.key]).")
 			need_gib = 1
 
-			if(isHuman(imp_in))
-				if (elevel == "Localized Limb")
+			if(ishuman(imp_in))
+				if(elevel == "Localized Limb")
 					if(part) //For some reason, small_boom() didn't work. So have this bit of working copypaste.
 						imp_in.visible_message("\red Something beeps inside [imp_in][part ? "'s [part.display_name]" : ""]!")
 						playsound(loc, 'sound/items/countdown.ogg', 75, 1, -3)
 						sleep(25)
-						if (istype(part,/datum/organ/external/chest) ||	\
-							istype(part,/datum/organ/external/groin) ||	\
-							istype(part,/datum/organ/external/head))
+						if(istype(part, /datum/organ/external/chest) ||	\
+							istype(part, /datum/organ/external/groin) ||	\
+							istype(part, /datum/organ/external/head))
 							part.createwound(BRUISE, 60)	//mangle them instead
 							explosion(get_turf(imp_in), -1, -1, 2, 3)
 							qdel(src)
@@ -182,10 +182,10 @@ Implant Specifics:<BR>"}
 							explosion(get_turf(imp_in), -1, -1, 2, 3)
 							part.droplimb(1)
 							qdel(src)
-				if (elevel == "Destroy Body")
+				if(elevel == "Destroy Body")
 					explosion(get_turf(T), -1, 0, 1, 6)
 					T.gib()
-				if (elevel == "Full Explosion")
+				if(elevel == "Full Explosion")
 					explosion(get_turf(T), 0, 1, 3, 6)
 					T.gib()
 
@@ -198,7 +198,7 @@ Implant Specifics:<BR>"}
 		var/turf/t = get_turf(imp_in)
 
 		if(t)
-			t.hotspot_expose(3500,125)
+			t.hotspot_expose(3500, 125)
 
 	implanted(mob/source as mob)
 		elevel = alert("What sort of explosion would you prefer?", "Implant Intent", "Localized Limb", "Destroy Body", "Full Explosion")
@@ -210,39 +210,39 @@ Implant Specifics:<BR>"}
 		return 1
 
 	emp_act(severity)
-		if (malfunction)
+		if(malfunction)
 			return
 		malfunction = MALFUNCTION_TEMPORARY
 		switch (severity)
-			if (2.0)	//Weak EMP will make implant tear limbs off.
-				if (prob(50))
+			if(2.0)	//Weak EMP will make implant tear limbs off.
+				if(prob(50))
 					small_boom()
-			if (1.0)	//strong EMP will melt implant either making it go off, or disarming it
-				if (prob(70))
-					if (prob(50))
+			if(1.0)	//strong EMP will melt implant either making it go off, or disarming it
+				if(prob(70))
+					if(prob(50))
 						small_boom()
 					else
-						if (prob(50))
+						if(prob(50))
 							activate()		//50% chance of bye bye
 						else
 							meltdown()		//50% chance of implant disarming
-		spawn (20)
+		spawn(20)
 			malfunction--
 
 	islegal()
 		return 0
 
 	proc/small_boom()
-		if (isHuman(imp_in) && part)
+		if(ishuman(imp_in) && part)
 			imp_in.visible_message("\red Something beeps inside [imp_in][part ? "'s [part.display_name]" : ""]!")
 			playsound(loc, 'sound/items/countdown.ogg', 75, 1, -3)
 			spawn(25)
-				if (isHuman(imp_in) && part)
+				if(ishuman(imp_in) && part)
 					//No tearing off these parts since it's pretty much killing
 					//and you can't replace groins
-					if (istype(part,/datum/organ/external/chest) ||	\
-						istype(part,/datum/organ/external/groin) ||	\
-						istype(part,/datum/organ/external/head))
+					if(istype(part, /datum/organ/external/chest) ||	\
+						istype(part, /datum/organ/external/groin) ||	\
+						istype(part, /datum/organ/external/head))
 						part.createwound(BRUISE, 60)	//mangle them instead
 					else
 						part.droplimb(1)

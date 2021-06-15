@@ -12,11 +12,11 @@
 	var/list/insultmsg = list("FUCK EVERYONE!", "I'M A TATER!", "ALL SECURITY TO SHOOT ME ON SIGHT!", "I HAVE A BOMB!", "CAPTAIN IS A COMDOM!", "FOR THE SYNDICATE!")
 
 /obj/item/device/megaphone/attack_self(mob/living/user as mob)
-	if (user.client)
+	if(user.client)
 		if(user.client.prefs.muted & MUTE_IC)
 			src << "\red You cannot speak in IC (muted)."
 			return
-	if(!isHuman(user))
+	if(!ishuman(user))
 		user << "\red You don't know how to use this!"
 		return
 	if(user.silent)
@@ -25,7 +25,7 @@
 		user << "\red \The [src] needs to recharge!"
 		return
 
-	var/message = copytext(sanitize(input(user, "Shout a message?", "Megaphone", null)  as text),1,MAX_MESSAGE_LEN)
+	var/message = copytext(sanitize(input(user, "Shout a message?", "Megaphone", null)  as text), 1, MAX_MESSAGE_LEN)
 	if(!message)
 		return
 	message = capitalize(message)

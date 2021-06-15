@@ -35,17 +35,17 @@
 
 		if(src.sortTag != O.currTag)
 			var/tag = uppertext(TAGGERLOCATIONS[O.currTag])
-			to_chat(user, span("info", "*[tag]*"))
+			to_chat(user, SPAN_INFO("*[tag]*"))
 			src.sortTag = O.currTag
 			playsound(src, 'sound/machines/twobeep.ogg', 100, 1)
 
 	else if(istype(W, /obj/item/weapon/pen))
 		var/str = copytext(sanitize(input(usr, "Label text?", "Set label", "")), 1, MAX_NAME_LEN)
 		if(!str || !length(str))
-			to_chat(usr, span("warning", "Invalid text."))
+			to_chat(usr, SPAN_WARNING("Invalid text."))
 			return
 		for(var/mob/M in viewers())
-			to_chat(M, span("info", "[user] labels [src] as [str]."))
+			to_chat(M, SPAN_INFO("[user] labels [src] as [str]."))
 		src.name = "[src.name] ([str])"
 	return
 
@@ -60,7 +60,7 @@
 /obj/item/smallDelivery/attack_self(mob/user as mob)
 	if(src.wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
 		wrapped.loc = user.loc
-		if(isHuman(user))
+		if(ishuman(user))
 			user.put_in_hands(wrapped)
 		else
 			wrapped.loc = get_turf(src)
@@ -74,17 +74,17 @@
 
 		if(src.sortTag != O.currTag)
 			var/tag = uppertext(TAGGERLOCATIONS[O.currTag])
-			to_chat(user, span("info", "*[tag]*"))
+			to_chat(user, SPAN_INFO("*[tag]*"))
 			src.sortTag = O.currTag
 			playsound(src, 'sound/machines/twobeep.ogg', 100, 1)
 
 	else if(istype(W, /obj/item/weapon/pen))
 		var/str = copytext(sanitize(input(usr, "Label text?", "Set label", "")), 1, MAX_NAME_LEN)
 		if(!str || !length(str))
-			to_chat(usr, span("warning", "Invalid text."))
+			to_chat(usr, SPAN_WARNING("Invalid text."))
 			return
 		for(var/mob/M in viewers())
-			to_chat(M, span("info", "[user] labels [src] as [str]."))
+			to_chat(M, SPAN_INFO("[user] labels [src] as [str]."))
 		src.name = "[src.name] ([str])"
 	return
 
@@ -136,7 +136,7 @@
 			O.loc = P
 			src.amount -= 3
 		else if(src.amount < 3)
-			to_chat(user, span("info", "You need more paper."))
+			to_chat(user, SPAN_INFO("You need more paper."))
 	else if(istype(target, /obj/structure/closet))
 		var/obj/structure/closet/O = target
 		if(src.amount > 3 && !O.opened)
@@ -146,9 +146,9 @@
 			O.loc = P
 			src.amount -= 3
 		else if(src.amount < 3)
-			to_chat(user, span("info", "You need more paper."))
+			to_chat(user, SPAN_INFO("You need more paper."))
 	else
-		to_chat(user, span("info", "The object you are trying to wrap is unsuitable for the sorting machinery!"))
+		to_chat(user, SPAN_INFO("The object you are trying to wrap is unsuitable for the sorting machinery!"))
 	if(src.amount <= 0)
 		new /obj/item/weapon/c_tube(src.loc)
 		qdel(src)
@@ -157,7 +157,7 @@
 
 /obj/item/weapon/packageWrap/examine()
 	if(src in usr)
-		to_chat(usr, span("info", "There are [amount] units of package wrap left!"))
+		to_chat(usr, SPAN_INFO("There are [amount] units of package wrap left!"))
 	..()
 	return
 

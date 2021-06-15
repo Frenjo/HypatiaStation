@@ -360,7 +360,7 @@ About the new airlock wires panel:
 */
 
 /obj/machinery/door/airlock/bumpopen(mob/living/user as mob) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
-	if(!isSilicon(usr))
+	if(!issilicon(usr))
 		if(src.isElectrified())
 			if(!src.justzap)
 				if(src.shock(user, 100))
@@ -371,7 +371,7 @@ About the new airlock wires panel:
 			else /*if(src.justzap)*/
 				return
 		else if(user.hallucination > 50 && prob(10) && src.operating == 0)
-			to_chat(user, span("danger", "You feel a powerful shock course through your body!"))
+			to_chat(user, SPAN_DANGER("You feel a powerful shock course through your body!"))
 			user.halloss += 10
 			user.stunned += 10
 			return
@@ -886,19 +886,19 @@ About the new airlock wires panel:
 	// No. -- cib
 	// Uncommented as of 30/10/2019...
 	// Yes. -Frenjo
-	if(isHuman(user) && prob(40) && src.density)
+	if(ishuman(user) && prob(40) && src.density)
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 60)
 			playsound(src, 'sound/effects/bang.ogg', 25, 1)
 			if(!istype(H.head, /obj/item/clothing/head/helmet))
-				visible_message(span("warning", "[user] headbutts the airlock."))
+				visible_message(SPAN_WARNING("[user] headbutts the airlock."))
 				var/datum/organ/external/affecting = H.get_organ("head")
 				H.Stun(8)
 				H.Weaken(5)
 				if(affecting.take_damage(10, 0))
 					H.UpdateDamageIcon()
 			else
-				visible_message(span("warning", "[user] headbutts the airlock. Good thing they're wearing a helmet."))
+				visible_message(SPAN_WARNING("[user] headbutts the airlock. Good thing they're wearing a helmet."))
 			return
 
 	if(src.p_open)
@@ -1228,7 +1228,7 @@ About the new airlock wires panel:
 			playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
 			if(do_after(user,40))
-				to_chat(user, span("info", "You removed the airlock electronics!"))
+				to_chat(user, SPAN_INFO("You removed the airlock electronics!"))
 
 				var/obj/structure/door_assembly/da = new assembly_type(src.loc)
 				da.anchored = 1
@@ -1331,7 +1331,7 @@ About the new airlock wires panel:
 
 	for(var/turf/turf in locs)
 		for(var/mob/living/M in turf)
-			if(isRobot(M))
+			if(isrobot(M))
 				M.adjustBruteLoss(DOOR_CRUSH_DAMAGE)
 			else
 				M.adjustBruteLoss(DOOR_CRUSH_DAMAGE)

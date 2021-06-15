@@ -90,7 +90,7 @@
 
 
 	go_out(var/mob/M)
-		if(!( src.occupant ))
+		if(!(src.occupant))
 			return
 		if(M == occupant) // so that the guy inside can't eject himself -Agouri
 			return
@@ -107,7 +107,7 @@
 
 
 	put_mob(mob/living/carbon/M as mob)
-		if(!isCarbon(M))
+		if(!iscarbon(M))
 			usr << "\red <B>The [src.name] cannot hold this!</B>"
 			return
 		if(src.occupant)
@@ -125,11 +125,13 @@
 
 
 	implant(var/mob/M)
-		if (!istype(M, /mob/living/carbon))
+		if(!iscarbon(M))
 			return
-		if(!implant_list.len)	return
+		if(!implant_list.len)
+			return
 		for(var/obj/item/weapon/implant/loyalty/imp in implant_list)
-			if(!imp)	continue
+			if(!imp)
+				continue
 			if(istype(imp, /obj/item/weapon/implant/loyalty))
 				for (var/mob/O in viewers(M, null))
 					O.show_message("\red [M] has been implanted by the [src.name].", 1)

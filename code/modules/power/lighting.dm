@@ -359,7 +359,7 @@
 	//Light replacer code
 	if(istype(W, /obj/item/device/lightreplacer))
 		var/obj/item/device/lightreplacer/LR = W
-		if(isLiving(user))
+		if(isliving(user))
 			var/mob/living/U = user
 			LR.ReplaceLight(src, U)
 			return

@@ -121,7 +121,7 @@
 		return 0
 	if(user.stat || user.restrained() || user.paralysis || user.sleeping || user.lying || user.weakened)
 		return 0
-	if(isSilicon(user))
+	if(issilicon(user))
 		user << "<span class='notice'>You need hands for this.</span>"
 		return 0
 	return 1

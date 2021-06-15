@@ -119,7 +119,7 @@
 	if (!src.implanted)
 		return "ERROR"
 	else
-		if(isLiving(src.implanted))
+		if(isliving(src.implanted))
 			var/mob/living/L = src.implanted
 			src.healthstring = "[round(L.getOxyLoss())] - [round(L.getFireLoss())] - [round(L.getToxLoss())] - [round(L.getBruteLoss())]"
 		if (!src.healthstring)
@@ -290,12 +290,12 @@
 /obj/machinery/clonepod/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
 		if(!src.check_access(W))
-			to_chat(user, span("warning", "Access denied."))
+			to_chat(user, SPAN_WARNING("Access denied."))
 			return
 		if((!src.locked) || (isnull(src.occupant)))
 			return
 		if((src.occupant.health < -20) && (src.occupant.stat != 2))
-			to_chat(user, span("warning", "Access refused."))
+			to_chat(user, SPAN_WARNING("Access refused."))
 			return
 		else
 			src.locked = 0

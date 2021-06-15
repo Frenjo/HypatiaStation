@@ -86,7 +86,7 @@
 				src.registered_name = I.registered_name
 				src.desc = "Owned by [I.registered_name]."
 		else
-			to_chat(user, span("warning", "Access denied."))
+			to_chat(user, SPAN_WARNING("Access denied."))
 	else if((istype(W, /obj/item/weapon/card/emag) || istype(W, /obj/item/weapon/melee/energy/blade)) && !src.broken)
 		broken = 1
 		locked = 0
@@ -101,5 +101,5 @@
 			for(var/mob/O in viewers(user, 3))
 				O.show_message("\blue The locker has been sliced open by [user] with an energy blade!", 1, "\red You hear metal being sliced and sparks flying.", 2)
 	else
-		to_chat(user, span("warning", "Access denied."))
+		to_chat(user, SPAN_WARNING("Access denied."))
 	return

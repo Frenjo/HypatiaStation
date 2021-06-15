@@ -522,7 +522,7 @@
 		if(exhaled_pp > safe_exhaled_max)
 			if(!co2_alert|| prob(15))
 				var/word = pick("extremely dizzy", "short of breath", "faint", "confused")
-				to_chat(src, span("danger", "You feel [word]."))
+				to_chat(src, SPAN_DANGER("You feel [word]."))
 
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 			co2_alert = 1
@@ -531,7 +531,7 @@
 		else if(exhaled_pp > safe_exhaled_max * 0.7)
 			if(!co2_alert || prob(1))
 				var/word = pick("dizzy", "short of breath", "faint", "momentarily confused")
-				to_chat(src, span("warning", "You feel [word]."))
+				to_chat(src, SPAN_WARNING("You feel [word]."))
 
 			//scale linearly from 0 to 1 between safe_exhaled_max and safe_exhaled_max*0.7
 			var/ratio = 1.0 - (safe_exhaled_max - exhaled_pp) / (safe_exhaled_max * 0.3)
@@ -545,7 +545,7 @@
 		else if(exhaled_pp > safe_exhaled_max * 0.6)
 			if(prob(0.3))
 				var/word = pick("a little dizzy", "short of breath")
-				to_chat(src, span("warning", "You feel [word]."))
+				to_chat(src, SPAN_WARNING("You feel [word]."))
 
 		else
 			co2_alert = 0
@@ -595,10 +595,10 @@
 
 			if(breath.temperature < species.cold_level_1)
 				if(prob(20))
-					to_chat(src, span("danger", "You feel your face freezing and icicles forming in your lungs!"))
+					to_chat(src, SPAN_DANGER("You feel your face freezing and icicles forming in your lungs!"))
 			else if(breath.temperature > species.heat_level_1)
 				if(prob(20))
-					to_chat(src, span("danger", "You feel your face burning and a searing heat in your lungs!"))
+					to_chat(src, SPAN_DANGER("You feel your face burning and a searing heat in your lungs!"))
 
 			switch(breath.temperature)
 				if(-INFINITY to species.cold_level_3)

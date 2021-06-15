@@ -1342,7 +1342,7 @@
 		var/mob/M = locate(href_list["adminplayerobservejump"])
 
 		var/client/C = usr.client
-		if(!isObserver(usr))	C.admin_ghost()
+		if(!isobserver(usr))	C.admin_ghost()
 		sleep(2)
 		C.jumptomob(M)
 
@@ -1357,7 +1357,7 @@
 		var/z = text2num(href_list["Z"])
 
 		var/client/C = usr.client
-		if(!isObserver(usr))	C.admin_ghost()
+		if(!isobserver(usr))	C.admin_ghost()
 		sleep(2)
 		C.jumptocoord(x,y,z)
 
@@ -1390,7 +1390,7 @@
 			special_role_description = "Role: <i>Mind datum missing</i> Antagonist: <i>Mind datum missing</i>; Has been rev: <i>Mind datum missing</i>;"
 
 		//Health
-		if(isLiving(M))
+		if(isliving(M))
 			var/mob/living/L = M
 			var/status
 			switch (M.stat)
@@ -1415,17 +1415,18 @@
 		src.owner << "(<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a>) (<A HREF='?src=\ref[src];adminplayeropts=\ref[M]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[M]'>VV</A>) (<A HREF='?src=\ref[src];subtlemessage=\ref[M]'>SM</A>) (<A HREF='?src=\ref[src];adminplayerobservejump=\ref[M]'>JMP</A>) (<A HREF='?src=\ref[src];secretsadmin=check_antagonist'>CA</A>)"
 
 	else if(href_list["adminspawncookie"])
-		if(!check_rights(R_ADMIN|R_FUN))	return
+		if(!check_rights(R_ADMIN|R_FUN))
+			return
 
 		var/mob/living/carbon/human/H = locate(href_list["adminspawncookie"])
-		if(!isHuman(H))
+		if(!ishuman(H))
 			usr << "This can only be used on instances of type /mob/living/carbon/human"
 			return
 
-		H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_l_hand )
-		if(!(istype(H.l_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
-			H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_r_hand )
-			if(!(istype(H.r_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
+		H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_l_hand)
+		if(!(istype(H.l_hand, /obj/item/weapon/reagent_containers/food/snacks/cookie)))
+			H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_r_hand)
+			if(!(istype(H.r_hand, /obj/item/weapon/reagent_containers/food/snacks/cookie)))
 				log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				return
@@ -1439,10 +1440,11 @@
 		H << "\blue Your prayers have been answered!! You received the <b>best cookie</b>!"
 
 	else if(href_list["BlueSpaceArtillery"])
-		if(!check_rights(R_ADMIN|R_FUN))	return
+		if(!check_rights(R_ADMIN|R_FUN))
+			return
 
 		var/mob/living/M = locate(href_list["BlueSpaceArtillery"])
-		if(!isLiving(M))
+		if(!isliving(M))
 			usr << "This can only be used on instances of type /mob/living"
 			return
 
@@ -1676,27 +1678,27 @@
 			obj_dir = 2
 		var/obj_name = sanitize(href_list["object_name"])
 		var/where = href_list["object_where"]
-		if (!( where in list("onfloor","inhand","inmarked") ))
+		if(!(where in list("onfloor", "inhand", "inmarked")))
 			where = "onfloor"
 
-		if( where == "inhand" )
+		if(where == "inhand")
 			usr << "Support for inhand not available yet. Will spawn on floor."
 			where = "onfloor"
 
-		if ( where == "inhand" )	//Can only give when human or monkey
-			if (!(isHuman(usr) || isMonkey(usr)))
+		if(where == "inhand")	//Can only give when human or monkey
+			if(!(ishuman(usr) || ismonkey(usr)))
 				usr << "Can only spawn in hand when you're a human or a monkey."
 				where = "onfloor"
-			else if ( usr.get_active_hand() )
+			else if(usr.get_active_hand())
 				usr << "Your active hand is full. Spawning on floor."
 				where = "onfloor"
 
-		if ( where == "inmarked" )
-			if ( !marked_datum )
+		if(where == "inmarked")
+			if(!marked_datum)
 				usr << "You don't have any object marked. Abandoning spawn."
 				return
 			else
-				if ( !istype(marked_datum,/atom) )
+				if(!istype(marked_datum, /atom))
 					usr << "The object you have marked cannot be used as a target. Target must be of type /atom. Abandoning spawn."
 					return
 

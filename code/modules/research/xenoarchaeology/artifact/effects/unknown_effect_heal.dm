@@ -5,19 +5,19 @@
 
 /datum/artifact_effect/heal/DoEffectTouch(var/mob/toucher)
 	//todo: check over this properly
-	if(toucher && isCarbon(toucher))
+	if(toucher && iscarbon(toucher))
 		var/weakness = GetAnomalySusceptibility(toucher)
 		if(prob(weakness * 100))
 			var/mob/living/carbon/C = toucher
 			C << "\blue You feel a soothing energy invigorate you."
 
-			if(isHuman(toucher))
+			if(ishuman(toucher))
 				var/mob/living/carbon/human/H = toucher
 				for(var/datum/organ/external/affecting in H.organs)
 					if(affecting && istype(affecting))
 						affecting.heal_damage(25 * weakness, 25 * weakness)
 				//H:heal_organ_damage(25, 25)
-				H.vessel.add_reagent("blood",5)
+				H.vessel.add_reagent("blood", 5)
 				H.nutrition += 50 * weakness
 				H.adjustBrainLoss(-25 * weakness)
 				H.radiation -= min(H.radiation, 25 * weakness)

@@ -215,7 +215,7 @@ var/global/list/frozen_items = list()
 				else if(O.target && istype(O.target, /datum/mind))
 					if(O.target == occupant.mind)
 						if(O.owner && O.owner.current)
-							to_chat(O.owner.current, span("warning", "You get the feeling your target is no longer within your reach. Time for Plan [pick(list("A","B","C","D","X","Y","Z"))]..."))
+							to_chat(O.owner.current, SPAN_WARNING("You get the feeling your target is no longer within your reach. Time for Plan [pick(list("A","B","C","D","X","Y","Z"))]..."))
 						O.target = null
 						spawn(1) //This should ideally fire after the occupant is deleted.
 							if(!O)
@@ -266,7 +266,7 @@ var/global/list/frozen_items = list()
 			frozen_crew += "[occupant.real_name]"
 
 			announce.autosay("[occupant.real_name] has entered long-term storage.", "Cryogenic Oversight")
-			visible_message(span("info", "The crypod hums and hisses as it moves [occupant.real_name] into storage."), 3)
+			visible_message(SPAN_INFO("The crypod hums and hisses as it moves [occupant.real_name] into storage."), 3)
 
 			// Delete the mob.
 			qdel(occupant)
@@ -277,7 +277,7 @@ var/global/list/frozen_items = list()
 /obj/machinery/cryopod/attackby(obj/item/weapon/G as obj, mob/user as mob)
 	if(istype(G, /obj/item/weapon/grab))
 		if(occupant)
-			to_chat(user, span("info", "The cryo pod is in use."))
+			to_chat(user, SPAN_INFO("The cryo pod is in use."))
 			return
 
 		if(!ismob(G:affecting))
@@ -312,8 +312,8 @@ var/global/list/frozen_items = list()
 			else
 				icon_state = "body_scanner_1"
 
-			to_chat(M, span("info", "You feel cool air surround you. You go numb as your senses turn inward."))
-			to_chat(M, span("notice", "If you ghost, log out or close your client now, your character will shortly be permanently removed from the round."))
+			to_chat(M, SPAN_INFO("You feel cool air surround you. You go numb as your senses turn inward."))
+			to_chat(M, SPAN_NOTICE("If you ghost, log out or close your client now, your character will shortly be permanently removed from the round."))
 			occupant = M
 			time_entered = world.time
 
@@ -345,11 +345,11 @@ var/global/list/frozen_items = list()
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat != 0 || !(isHuman(usr) || isMonkey(usr)))
+	if(usr.stat != 0 || !(ishuman(usr) || ismonkey(usr)))
 		return
 
 	if(src.occupant)
-		to_chat(usr, span("notice", "The cryo pod is in use."))
+		to_chat(usr, SPAN_NOTICE("The cryo pod is in use."))
 		return
 
 	for(var/mob/living/carbon/slime/M in range(1, usr))
@@ -364,7 +364,7 @@ var/global/list/frozen_items = list()
 			return
 
 		if(src.occupant)
-			to_chat(usr, span("notice", "The cryo pod is in use."))
+			to_chat(usr, SPAN_NOTICE("The cryo pod is in use."))
 			return
 
 		usr.stop_pulling()

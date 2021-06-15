@@ -424,7 +424,7 @@ var/list/solars_list = list()
 				A.anchored = 1
 				qdel(src)
 			else
-				to_chat(user, span("info", "You disconnect the monitor."))
+				to_chat(user, SPAN_INFO("You disconnect the monitor."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
 				for (var/obj/C in src)

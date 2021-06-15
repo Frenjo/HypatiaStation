@@ -161,7 +161,7 @@
 		playsound(user, 'sound/weapons/empty.ogg', 100, 1)
 		return
 
-	if(isLiving(target) && isLiving(user))
+	if(isliving(target) && isliving(user))
 		if(target == user)
 			var/datum/organ/external/affecting = user.zone_sel.selecting
 			if(affecting == "head")

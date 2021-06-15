@@ -48,7 +48,7 @@
 			if(reagents.total_volume)
 				reagents.trans_to_ingest(M, gulp_size)
 
-			if(isRobot(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
+			if(isrobot(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
 				var/mob/living/silicon/robot/bro = user
 				bro.cell.use(30)
 				var/refill = R.get_master_reagent_id()
@@ -90,14 +90,14 @@
 
 			var/datum/reagent/refill
 			var/datum/reagent/refillName
-			if(isRobot(user))
+			if(isrobot(user))
 				refill = reagents.get_master_reagent_id()
 				refillName = reagents.get_master_reagent_name()
 
 			var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
 			user << "\blue You transfer [trans] units of the solution to [target]."
 
-			if(isRobot(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
+			if(isrobot(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
 				var/mob/living/silicon/robot/bro = user
 				var/chargeAmount = max(30,4*trans)
 				bro.cell.use(chargeAmount)

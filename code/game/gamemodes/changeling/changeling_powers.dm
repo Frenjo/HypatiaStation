@@ -1,10 +1,12 @@
 //Restores our verbs. It will only restore verbs allowed during lesser (monkey) form if we are not human
 /mob/proc/make_changeling()
-	if(!mind)				return
-	if(!mind.changeling)	mind.changeling = new /datum/changeling(gender)
+	if(!mind)
+		return
+	if(!mind.changeling)
+		mind.changeling = new /datum/changeling(gender)
 	verbs += /datum/changeling/proc/EvolutionMenu
 
-	var/lesser_form = !isHuman(src)
+	var/lesser_form = !ishuman(src)
 
 	if(!powerinstances.len)
 		for(var/P in powers)
@@ -18,7 +20,8 @@
 
 	for(var/datum/power/changeling/P in mind.changeling.purchasedpowers)
 		if(P.isVerb)
-			if(lesser_form && !P.allowduringlesserform)	continue
+			if(lesser_form && !P.allowduringlesserform)
+				continue
 			if(!(P in src.verbs))
 				src.verbs += P.verbpath
 
@@ -27,17 +30,18 @@
 
 //removes our changeling verbs
 /mob/proc/remove_changeling_powers()
-	if(!mind || !mind.changeling)	return
+	if(!mind || !mind.changeling)
+		return
 	for(var/datum/power/changeling/P in mind.changeling.purchasedpowers)
 		if(P.isVerb)
 			verbs -= P.verbpath
 
-
 //Helper proc. Does all the checks and stuff for us to avoid copypasta
-/mob/proc/changeling_power(var/required_chems=0, var/required_dna=0, var/max_genetic_damage=100, var/max_stat=0)
-
-	if(!src.mind)		return
-	if(!isCarbon(src))	return
+/mob/proc/changeling_power(required_chems = 0, required_dna = 0, max_genetic_damage = 100, max_stat = 0)
+	if(!src.mind)
+		return
+	if(!iscarbon(src))
+		return
 
 	var/datum/changeling/changeling = src.mind.changeling
 	if(!changeling)
@@ -45,19 +49,19 @@
 		return
 
 	if(src.stat > max_stat)
-		src << "<span class='warning'>We are incapacitated.</span>"
+		to_chat(src, SPAN_WARNING("We are incapacitated."))
 		return
 
 	if(changeling.absorbed_dna.len < required_dna)
-		src << "<span class='warning'>We require at least [required_dna] samples of compatible DNA.</span>"
+		to_chat(src, SPAN_WARNING("We require at least [required_dna] samples of compatible DNA."))
 		return
 
 	if(changeling.chem_charges < required_chems)
-		src << "<span class='warning'>We require at least [required_chems] units of chemicals to do that!</span>"
+		to_chat(src, SPAN_WARNING("We require at least [required_chems] units of chemicals to do that!"))
 		return
 
 	if(changeling.geneticdamage > max_genetic_damage)
-		src << "<span class='warning'>Our genomes are still reassembling. We need time to recover first.</span>"
+		to_chat(src, SPAN_WARNING("Our genomes are still reassembling. We need time to recover first."))
 		return
 
 	return changeling
@@ -69,61 +73,63 @@
 	set category = "Changeling"
 	set name = "Absorb DNA"
 
-	var/datum/changeling/changeling = changeling_power(0,0,100)
-	if(!changeling)	return
+	var/datum/changeling/changeling = changeling_power(0, 0, 100)
+	if(!changeling)
+		return
 
 	var/obj/item/weapon/grab/G = src.get_active_hand()
 	if(!istype(G))
-		src << "<span class='warning'>We must be grabbing a creature in our active hand to absorb them.</span>"
+		to_chat(src, SPAN_WARNING("We must be grabbing a creature in our active hand to absorb them."))
 		return
 
 	var/mob/living/carbon/human/T = G.affecting
 	if(!istype(T))
-		src << "<span class='warning'>[T] is not compatible with our biology.</span>"
+		to_chat(src, SPAN_WARNING("[T] is not compatible with our biology."))
 		return
 
 	if(NOCLONE in T.mutations)
-		src << "<span class='warning'>This creature's DNA is ruined beyond useability!</span>"
+		to_chat(src, SPAN_WARNING("This creature's DNA is ruined beyond useability!"))
 		return
 
 	if(!G.state == GRAB_KILL)
-		src << "<span class='warning'>We must have a tighter grip to absorb this creature.</span>"
+		to_chat(src, SPAN_WARNING("We must have a tighter grip to absorb this creature."))
 		return
 
 	if(changeling.isabsorbing)
-		src << "<span class='warning'>We are already absorbing!</span>"
+		to_chat(src, SPAN_WARNING("We are already absorbing!"))
 		return
 
 	changeling.isabsorbing = 1
-	for(var/stage = 1, stage<=3, stage++)
+	for(var/stage = 1, stage <= 3, stage++)
 		switch(stage)
 			if(1)
-				src << "<span class='notice'>This creature is compatible. We must hold still...</span>"
+				to_chat(src, SPAN_NOTICE("This creature is compatible. We must hold still..."))
 			if(2)
-				src << "<span class='notice'>We extend a proboscis.</span>"
-				src.visible_message("<span class='warning'>[src] extends a proboscis!</span>")
+				to_chat(src, SPAN_NOTICE("We extend a proboscis."))
+				src.visible_message(SPAN_WARNING("[src] extends a proboscis!"))
 			if(3)
-				src << "<span class='notice'>We stab [T] with the proboscis.</span>"
-				src.visible_message("<span class='danger'>[src] stabs [T] with the proboscis!</span>")
-				T << "<span class='danger'>You feel a sharp stabbing pain!</span>"
+				to_chat(src, SPAN_NOTICE("We stab [T] with the proboscis."))
+				src.visible_message(SPAN_DANGER("[src] stabs [T] with the proboscis!"))
+				to_chat(T, SPAN_DANGER("You feel a sharp stabbing pain!"))
 				var/datum/organ/external/affecting = T.get_organ(src.zone_sel.selecting)
 				if(affecting.take_damage(39, 0, 1, 0, "large organic needle"))
 					T:UpdateDamageIcon()
 					continue
 
-		feedback_add_details("changeling_powers","A[stage]")
+		feedback_add_details("changeling_powers", "A[stage]")
 		if(!do_mob(src, T, 150))
-			src << "<span class='warning'>Our absorption of [T] has been interrupted!</span>"
+			to_chat(src, SPAN_WARNING("Our absorption of [T] has been interrupted!"))
 			changeling.isabsorbing = 0
 			return
 
-	src << "<span class='notice'>We have absorbed [T]!</span>"
-	src.visible_message("<span class='danger'>[src] sucks the fluids from [T]!</span>")
-	T << "<span class='danger'>You have been absorbed by the changeling!</span>"
+	to_chat(src, SPAN_NOTICE("We have absorbed [T]!"))
+	src.visible_message(SPAN_DANGER("[src] sucks the fluids from [T]!"))
+	to_chat(T, SPAN_DANGER("You have been absorbed by the changeling!"))
 
 	T.dna.real_name = T.real_name //Set this again, just to be sure that it's properly set.
 	changeling.absorbed_dna |= T.dna
-	if(src.nutrition < 400) src.nutrition = min((src.nutrition + T.nutrition), 400)
+	if(src.nutrition < 400)
+		src.nutrition = min((src.nutrition + T.nutrition), 400)
 	changeling.chem_charges += 10
 	changeling.geneticpoints += 2
 
@@ -167,22 +173,24 @@
 	set category = "Changeling"
 	set name = "Transform (5)"
 
-	var/datum/changeling/changeling = changeling_power(5,1,0)
-	if(!changeling)	return
+	var/datum/changeling/changeling = changeling_power(5, 1, 0)
+	if(!changeling)
+		return
 
 	var/list/names = list()
 	for(var/datum/dna/DNA in changeling.absorbed_dna)
 		names += "[DNA.real_name]"
 
 	var/S = input("Select the target DNA: ", "Target DNA", null) as null|anything in names
-	if(!S)	return
+	if(!S)
+		return
 
 	var/datum/dna/chosen_dna = changeling.GetDNA(S)
 	if(!chosen_dna)
 		return
 
 	changeling.chem_charges -= 5
-	src.visible_message("<span class='warning'>[src] transforms!</span>")
+	src.visible_message(SPAN_WARNING("[src] transforms!"))
 	changeling.geneticdamage = 30
 	src.dna = chosen_dna.Clone()
 	src.real_name = chosen_dna.real_name
@@ -191,9 +199,10 @@
 	domutcheck(src, null)
 
 	src.verbs -= /mob/proc/changeling_transform
-	spawn(10)	src.verbs += /mob/proc/changeling_transform
+	spawn(10)
+		src.verbs += /mob/proc/changeling_transform
 
-	feedback_add_details("changeling_powers","TR")
+	feedback_add_details("changeling_powers", "TR")
 	return 1
 
 
@@ -202,19 +211,20 @@
 	set category = "Changeling"
 	set name = "Lesser Form (1)"
 
-	var/datum/changeling/changeling = changeling_power(1,0,0)
-	if(!changeling)	return
+	var/datum/changeling/changeling = changeling_power(1, 0, 0)
+	if(!changeling)
+		return
 
 	if(src.has_brain_worms())
-		src << "<span class='warning'>We cannot perform this ability at the present time!</span>"
+		to_chat(src, SPAN_WARNING("We cannot perform this ability at the present time!"))
 		return
 
 	var/mob/living/carbon/C = src
 	changeling.chem_charges--
 	C.remove_changeling_powers()
-	C.visible_message("<span class='warning'>[C] transforms!</span>")
+	C.visible_message(SPAN_WARNING("[C] transforms!"))
 	changeling.geneticdamage = 30
-	C << "<span class='warning'>Our genes cry out!</span>"
+	to_chat(C, SPAN_WARNING("Our genes cry out!"))
 
 	//TODO replace with monkeyize proc
 	var/list/implants = list() //Try to preserve implants.
@@ -227,7 +237,7 @@
 	C.overlays.Cut()
 	C.invisibility = 101
 
-	var/atom/movable/overlay/animation = new /atom/movable/overlay( C.loc )
+	var/atom/movable/overlay/animation = new /atom/movable/overlay(C.loc)
 	animation.icon_state = "blank"
 	animation.icon = 'icons/mob/mob.dmi'
 	animation.master = src
@@ -260,7 +270,7 @@
 
 	O.make_changeling(1)
 	O.verbs += /mob/proc/changeling_lesser_transform
-	feedback_add_details("changeling_powers","LF")
+	feedback_add_details("changeling_powers", "LF")
 	qdel(C)
 	return 1
 
@@ -270,15 +280,17 @@
 	set category = "Changeling"
 	set name = "Transform (1)"
 
-	var/datum/changeling/changeling = changeling_power(1,1,0)
-	if(!changeling)	return
+	var/datum/changeling/changeling = changeling_power(1, 1, 0)
+	if(!changeling)
+		return
 
 	var/list/names = list()
 	for(var/datum/dna/DNA in changeling.absorbed_dna)
 		names += "[DNA.real_name]"
 
 	var/S = input("Select the target DNA: ", "Target DNA", null) as null|anything in names
-	if(!S)	return
+	if(!S)
+		return
 
 	var/datum/dna/chosen_dna = changeling.GetDNA(S)
 	if(!chosen_dna)
@@ -288,7 +300,7 @@
 
 	changeling.chem_charges--
 	C.remove_changeling_powers()
-	C.visible_message("<span class='warning'>[C] transforms!</span>")
+	C.visible_message(SPAN_WARNING("[C] transforms!"))
 	C.dna = chosen_dna.Clone()
 
 	var/list/implants = list()
@@ -300,7 +312,7 @@
 	C.icon = null
 	C.overlays.Cut()
 	C.invisibility = 101
-	var/atom/movable/overlay/animation = new /atom/movable/overlay( C.loc )
+	var/atom/movable/overlay/animation = new /atom/movable/overlay(C.loc)
 	animation.icon_state = "blank"
 	animation.icon = 'icons/mob/mob.dmi'
 	animation.master = src
@@ -310,15 +322,15 @@
 
 	for(var/obj/item/W in src)
 		C.u_equip(W)
-		if (C.client)
+		if(C.client)
 			C.client.screen -= W
-		if (W)
+		if(W)
 			W.loc = C.loc
 			W.dropped(C)
 			W.layer = initial(W.layer)
 
-	var/mob/living/carbon/human/O = new /mob/living/carbon/human( src )
-	if (C.dna.GetUIState(DNA_UI_GENDER))
+	var/mob/living/carbon/human/O = new /mob/living/carbon/human(src)
+	if(C.dna.GetUIState(DNA_UI_GENDER))
 		O.gender = FEMALE
 	else
 		O.gender = MALE
@@ -338,14 +350,14 @@
 	O.setOxyLoss(C.getOxyLoss())
 	O.adjustFireLoss(C.getFireLoss())
 	O.stat = C.stat
-	for (var/obj/item/weapon/implant/I in implants)
+	for(var/obj/item/weapon/implant/I in implants)
 		I.loc = O
 		I.implanted = O
 
 	C.mind.transfer_to(O)
 	O.make_changeling()
 
-	feedback_add_details("changeling_powers","LFT")
+	feedback_add_details("changeling_powers", "LFT")
 	qdel(C)
 	return 1
 
@@ -709,15 +721,17 @@ var/list/datum/dna/hivemind_bank = list()
 		names += "[DNA.real_name]"
 
 	var/S = input("Select the target DNA: ", "Target DNA", null) as null|anything in names
-	if(!S)	return
+	if(!S)
+		return
 
 	var/datum/dna/chosen_dna = changeling.GetDNA(S)
 	if(!chosen_dna)
 		return
 
 	var/mob/living/carbon/T = changeling_sting(40,/mob/proc/changeling_transformation_sting)
-	if(!T)	return 0
-	if((HUSK in T.mutations) || (!isHuman(T) && !isMonkey(T)))
+	if(!T)
+		return 0
+	if((HUSK in T.mutations) || (!ishuman(T) && !ismonkey(T)))
 		src << "<span class='warning'>Our sting appears ineffective against its DNA.</span>"
 		return 0
 	T.visible_message("<span class='warning'>[T] transforms!</span>")

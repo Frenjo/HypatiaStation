@@ -13,13 +13,13 @@
 					for(var/atom/A in T.contents)
 						if(A.density)
 							blocked = 1
-							to_chat(usr, span("warning", "You bump into [A.name]."))
+							to_chat(usr, SPAN_WARNING("You bump into [A.name]."))
 							break
 					if(!blocked)
 						usr.Move(T)
 						to_chat(usr, "You move upwards.")
 				else
-					to_chat(usr, span("warning", "There is something in your way."))
+					to_chat(usr, SPAN_WARNING("There is something in your way."))
 		if(legal == 0)
 			to_chat(usr, "There is nothing of interest in this direction.")
 	return 1
@@ -40,13 +40,13 @@
 					for(var/atom/A in T.contents)
 						if(A.density)
 							blocked = 1
-							to_chat(usr, span("warning", "You bump into [A.name]."))
+							to_chat(usr, SPAN_WARNING("You bump into [A.name]."))
 							break
 					if(!blocked)
 						usr.Move(T)
 						to_chat(usr, "You move downwards.")
 				else
-					to_chat(usr, span("warning", "You can't move through the floor."))
+					to_chat(usr, SPAN_WARNING("You can't move through the floor."))
 		if(legal == 0)
 			to_chat(usr, "There is nothing of interest in this direction.")
 	return 1

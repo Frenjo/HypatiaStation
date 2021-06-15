@@ -57,13 +57,13 @@
 	if(!FG1 || !FG2)
 		qdel(src)
 		return 0
-	if(isCarbon(user))
+	if(iscarbon(user))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, user.loc)
 		s.start()
 
 		hasShocked = 1
-		var/shock_damage = min(rand(30,40),rand(30,40))
+		var/shock_damage = min(rand(30, 40), rand(30, 40))
 		user.burn_skin(shock_damage)
 		user.updatehealth()
 		user.visible_message("\red [user.name] was shocked by the [src.name]!", \
@@ -82,7 +82,7 @@
 		hasShocked = 0
 		return
 
-	else if(isSilicon(user))
+	else if(issilicon(user))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, user.loc)
 		s.start()

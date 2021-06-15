@@ -39,11 +39,13 @@
 		icon_state = initial(icon_state)
 
 /obj/item/weapon/lipstick/attack(mob/M as mob, mob/user as mob)
-	if(!open)	return
+	if(!open)
+		return
 
-	if(!istype(M, /mob))	return
+	if(!ismob(M))
+		return
 
-	if(isHuman(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.lip_style)	//if they already have lipstick on
 			user << "<span class='notice'>You need to wipe off the old lipstick first!</span>"
@@ -67,9 +69,10 @@
 //you can wipe off lipstick with paper!
 /obj/item/weapon/paper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(user.zone_sel.selecting == "mouth")
-		if(!istype(M, /mob))	return
+		if(!ismob(M))
+			return
 
-		if(isHuman(M))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H == user)
 				user << "<span class='notice'>You wipe off the lipstick with [src].</span>"

@@ -40,13 +40,13 @@
 
 			activate()
 			add_fingerprint(user)
-			if(isCarbon(user))
+			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.throw_mode_on()
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 
-		if(istype(W,/obj/item/device/assembly_holder) && (!stage || stage==1) && path != 2)
+		if(istype(W, /obj/item/device/assembly_holder) && (!stage || stage == 1) && path != 2)
 			var/obj/item/device/assembly_holder/det = W
 			if(istype(det.a_left,det.a_right.type) || (!isigniter(det.a_left) && !isigniter(det.a_right)))
 				user << "\red Assembly must contain one igniter."
@@ -63,7 +63,7 @@
 			icon_state = initial(icon_state) +"_ass"
 			name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 			stage = 1
-		else if(istype(W,/obj/item/weapon/screwdriver) && path != 2)
+		else if(istype(W, /obj/item/weapon/screwdriver) && path != 2)
 			if(stage == 1)
 				path = 1
 				if(beakers.len)
@@ -88,7 +88,7 @@
 					icon_state = initial(icon_state) + (detonator?"_ass":"")
 					stage = 1
 					active = 0
-		else if(is_type_in_list(W, allowed_containers) && (!stage || stage==1) && path != 2)
+		else if(is_type_in_list(W, allowed_containers) && (!stage || stage == 1) && path != 2)
 			path = 1
 			if(beakers.len == 2)
 				user << "\red The grenade can not hold more containers."

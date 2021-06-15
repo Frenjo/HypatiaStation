@@ -85,20 +85,20 @@ var/global/floorIsLava = 0
 		<A href='?src=\ref[src];subtlemessage=\ref[M]'>Subtle message</A>
 	"}
 
-	if (M.client)
+	if(M.client)
 		if(!istype(M, /mob/new_player))
 			body += "<br><br>"
 			body += "<b>Transformation:</b>"
 			body += "<br>"
 
 			//Monkey
-			if(isMonkey(M))
+			if(ismonkey(M))
 				body += "<B>Monkeyized</B> | "
 			else
 				body += "<A href='?src=\ref[src];monkeyone=\ref[M]'>Monkeyize</A> | "
 
 			//Corgi
-			if(isCorgi(M))
+			if(iscorgi(M))
 				body += "<B>Corgized</B> | "
 			else
 				body += "<A href='?src=\ref[src];corgione=\ref[M]'>Corgize</A> | "
@@ -106,7 +106,7 @@ var/global/floorIsLava = 0
 			//AI / Cyborg
 			if(isAI(M))
 				body += "<B>Is an AI</B> "
-			else if(isHuman(M))
+			else if(ishuman(M))
 				body += {"<A href='?src=\ref[src];makeai=\ref[M]'>Make AI</A> |
 					<A href='?src=\ref[src];makerobot=\ref[M]'>Make Robot</A> |
 					<A href='?src=\ref[src];makealien=\ref[M]'>Make Alien</A> |
@@ -114,24 +114,24 @@ var/global/floorIsLava = 0
 				"}
 
 			//Simple Animals
-			if(isAnimal(M))
+			if(isanimal(M))
 				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Re-Animalize</A> | "
 			else
 				body += "<A href='?src=\ref[src];makeanimal=\ref[M]'>Animalize</A> | "
 
 			// DNA2 - Admin Hax
-			if(isCarbon(M))
+			if(iscarbon(M))
 				body += "<br><br>"
 				body += "<b>DNA Blocks:</b><br><table border='0'><tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>"
 				var/bname
-				for(var/block=1;block<=DNA_SE_LENGTH;block++)
-					if(((block-1)%5)==0)
+				for(var/block = 1; block <= DNA_SE_LENGTH; block++)
+					if(((block - 1) % 5) == 0)
 						body += "</tr><tr><th>[block-1]</th>"
 					bname = assigned_blocks[block]
 					body += "<td>"
 					if(bname)
-						var/bstate=M.dna.GetSEState(block)
-						var/bcolor="[(bstate)?"#006600":"#ff0000"]"
+						var/bstate = M.dna.GetSEState(block)
+						var/bcolor = "[(bstate)?"#006600":"#ff0000"]"
 						body += "<A href='?src=\ref[src];togmutate=\ref[M];block=[block]' style='color:[bcolor];'>[bname]</A><sub>[block]</sub>"
 					else
 						body += "[block]"
@@ -916,43 +916,43 @@ var/global/floorIsLava = 0
 /proc/is_special_character(mob/M as mob) // returns 1 for specail characters and 2 for heroes of gamemode
 	if(!ticker || !ticker.mode)
 		return 0
-	if (!istype(M))
+	if(!istype(M))
 		return 0
 	if((M.mind in ticker.mode.head_revolutionaries) || (M.mind in ticker.mode.revolutionaries))
-		if (ticker.mode.config_tag == "revolution")
+		if(ticker.mode.config_tag == "revolution")
 			return 2
 		return 1
 	if(M.mind in ticker.mode.cult)
-		if (ticker.mode.config_tag == "cult")
+		if(ticker.mode.config_tag == "cult")
 			return 2
 		return 1
 	if(M.mind in ticker.mode.malf_ai)
-		if (ticker.mode.config_tag == "malfunction")
+		if(ticker.mode.config_tag == "malfunction")
 			return 2
 		return 1
 	if(M.mind in ticker.mode.syndicates)
-		if (ticker.mode.config_tag == "nuclear")
+		if(ticker.mode.config_tag == "nuclear")
 			return 2
 		return 1
 	if(M.mind in ticker.mode.wizards)
-		if (ticker.mode.config_tag == "wizard")
+		if(ticker.mode.config_tag == "wizard")
 			return 2
 		return 1
 	if(M.mind in ticker.mode.changelings)
-		if (ticker.mode.config_tag == "changeling")
+		if(ticker.mode.config_tag == "changeling")
 			return 2
 		return 1
 
 	for(var/datum/disease/D in M.viruses)
 		if(istype(D, /datum/disease/jungle_fever))
-			if (ticker.mode.config_tag == "monkey")
+			if(ticker.mode.config_tag == "monkey")
 				return 2
 			return 1
-	if(isRobot(M))
+	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		if(R.emagged)
 			return 1
-	if(M.mind&&M.mind.special_role)//If they have a mind and special role, they are some type of traitor or antagonist.
+	if(M.mind && M.mind.special_role)//If they have a mind and special role, they are some type of traitor or antagonist.
 		return 1
 
 	return 0
@@ -975,12 +975,13 @@ var/global/floorIsLava = 0
 		else
 			return "Error: Invalid sabotage target: [target]"
 */
-/datum/admins/proc/spawn_atom(var/object as text)
+/datum/admins/proc/spawn_atom(object as text)
 	set category = "Debug"
 	set desc = "(atom path) Spawn an atom"
 	set name = "Spawn"
 
-	if(!check_rights(R_SPAWN))	return
+	if(!check_rights(R_SPAWN))
+		return
 
 	var/list/types = typesof(/atom)
 	var/list/matches = new()
@@ -989,28 +990,28 @@ var/global/floorIsLava = 0
 		if(findtext("[path]", object))
 			matches += path
 
-	if(matches.len==0)
+	if(matches.len == 0)
 		return
 
 	var/chosen
-	if(matches.len==1)
+	if(matches.len == 1)
 		chosen = matches[1]
 	else
 		chosen = input("Select an atom type", "Spawn Atom", matches[1]) as null|anything in matches
 		if(!chosen)
 			return
 
-	if(ispath(chosen,/turf))
+	if(ispath(chosen, /turf))
 		var/turf/T = get_turf(usr.loc)
 		T.ChangeTurf(chosen)
 	else
 		new chosen(usr.loc)
 
 	log_admin("[key_name(usr)] spawned [chosen] at ([usr.x],[usr.y],[usr.z])")
-	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb", "SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/datum/admins/proc/show_traitor_panel(var/mob/M in mob_list)
+/datum/admins/proc/show_traitor_panel(mob/M in mob_list)
 	set category = "Admin"
 	set desc = "Edit mobs's memory and role"
 	set name = "Show Traitor Panel"
@@ -1023,7 +1024,7 @@ var/global/floorIsLava = 0
 		return
 
 	M.mind.edit_memory()
-	feedback_add_details("admin_verb","STP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb", "STP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
 /datum/admins/proc/toggletintedweldhelmets()
@@ -1037,20 +1038,20 @@ var/global/floorIsLava = 0
 		world << "<B>The tinted_weldhelh has been disabled!</B>"
 	log_admin("[key_name(usr)] toggled tinted_weldhelh.")
 	message_admins("[key_name_admin(usr)] toggled tinted_weldhelh.", 1)
-	feedback_add_details("admin_verb","TTWH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb", "TTWH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleguests()
 	set category = "Server"
 	set desc="Guests can't enter"
 	set name="Toggle guests"
-	guests_allowed = !( guests_allowed )
-	if (!( guests_allowed ))
+	guests_allowed = !(guests_allowed)
+	if(!(guests_allowed))
 		world << "<B>Guests may no longer enter the game.</B>"
 	else
 		world << "<B>Guests may now enter the game.</B>"
 	log_admin("[key_name(usr)] toggled guests game entering [guests_allowed?"":"dis"]allowed.")
 	message_admins("\blue [key_name_admin(usr)] toggled guests game entering [guests_allowed?"":"dis"]allowed.", 1)
-	feedback_add_details("admin_verb","TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb", "TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/output_ai_laws()
 	var/ai_number = 0
@@ -1058,28 +1059,28 @@ var/global/floorIsLava = 0
 		ai_number++
 		if(isAI(S))
 			usr << "<b>AI [key_name(S, usr)]'s laws:</b>"
-		else if(isRobot(S))
+		else if(isrobot(S))
 			var/mob/living/silicon/robot/R = S
 			usr << "<b>CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [R.connected_ai])":"(Independant)"]: laws:</b>"
-		else if (isPAI(S))
+		else if(ispAI(S))
 			usr << "<b>pAI [key_name(S, usr)]'s laws:</b>"
 		else
 			usr << "<b>SOMETHING SILICON [key_name(S, usr)]'s laws:</b>"
 
-		if (S.laws == null)
+		if(S.laws == null)
 			usr << "[key_name(S, usr)]'s laws are null?? Contact a coder."
 		else
 			S.laws.show_laws(usr)
 	if(!ai_number)
 		usr << "<b>No AIs located</b>" //Just so you know the thing is actually working and not just ignoring you.
 
-/datum/admins/proc/show_skills(var/mob/living/carbon/human/M as mob in world)
+/datum/admins/proc/show_skills(mob/living/carbon/human/M as mob in world)
 	set category = "Admin"
 	set name = "Show Skills"
 
-	if (!istype(src,/datum/admins))
+	if(!istype(src, /datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins))
+	if(!istype(src, /datum/admins))
 		usr << "Error: you are not an admin!"
 		return
 
@@ -1092,7 +1093,7 @@ var/global/floorIsLava = 0
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite update errors."
 
-	if (!holder)
+	if(!holder)
 		src << "Only administrators may use this command."
 		return
 
@@ -1100,7 +1101,7 @@ var/global/floorIsLava = 0
 		H.regenerate_icons()
 
 
-/client/proc/cmd_mob_weaken(var/mob/living/carbon/human/M in mob_list)  // Copy Pasta from the old code, sadly :(
+/client/proc/cmd_mob_weaken(mob/living/carbon/human/M in mob_list)  // Copy Pasta from the old code, sadly :(
     set category = "Admin"
     set name = "Weaken"
     set desc = "Anti griffin', weaken!"
@@ -1111,14 +1112,12 @@ var/global/floorIsLava = 0
     message_admins("\blue [key_name(usr)] weakened [key_name(M)].",1)
     return
 
-/client/proc/cmd_mob_unweaken(var/mob/living/carbon/human/M in mob_list)  // Copy Pasta from the old code, sadly :(
+/client/proc/cmd_mob_unweaken(mob/living/carbon/human/M in mob_list)  // Copy Pasta from the old code, sadly :(
     set category = "Admin"
     set name = "Unweaken"
     set desc = "No griffin' let's get out."
 
-
     M.SetWeakened(0)
-
 
     log_admin("[key_name(usr)] unweakened [key_name(M)].")
     message_admins("\blue [key_name(usr)] unweakened [key_name(M)].",1)
@@ -1140,14 +1139,14 @@ var/admin_shuttle_location = 0 // 0 = centcom 13, 1 = station
 proc/move_admin_shuttle()
 	var/area/fromArea
 	var/area/toArea
-	if (admin_shuttle_location == 1)
+	if(admin_shuttle_location == 1)
 		fromArea = locate(/area/shuttle/administration/station)
 		toArea = locate(/area/shuttle/administration/centcom)
 	else
 		fromArea = locate(/area/shuttle/administration/centcom)
 		toArea = locate(/area/shuttle/administration/station)
 	fromArea.move_contents_to(toArea)
-	if (admin_shuttle_location)
+	if(admin_shuttle_location)
 		admin_shuttle_location = 0
 	else
 		admin_shuttle_location = 1
@@ -1160,14 +1159,14 @@ var/ferry_location = 0 // 0 = centcom , 1 = station
 proc/move_ferry()
 	var/area/fromArea
 	var/area/toArea
-	if (ferry_location == 1)
+	if(ferry_location == 1)
 		fromArea = locate(/area/shuttle/transport1/station)
 		toArea = locate(/area/shuttle/transport1/centcom)
 	else
 		fromArea = locate(/area/shuttle/transport1/centcom)
 		toArea = locate(/area/shuttle/transport1/station)
 	fromArea.move_contents_to(toArea)
-	if (ferry_location)
+	if(ferry_location)
 		ferry_location = 0
 	else
 		ferry_location = 1
@@ -1180,14 +1179,14 @@ var/alien_ship_location = 1 // 0 = base , 1 = mine
 proc/move_alien_ship()
 	var/area/fromArea
 	var/area/toArea
-	if (alien_ship_location == 1)
+	if(alien_ship_location == 1)
 		fromArea = locate(/area/shuttle/alien/mine)
 		toArea = locate(/area/shuttle/alien/base)
 	else
 		fromArea = locate(/area/shuttle/alien/base)
 		toArea = locate(/area/shuttle/alien/mine)
 	fromArea.move_contents_to(toArea)
-	if (alien_ship_location)
+	if(alien_ship_location)
 		alien_ship_location = 0
 	else
 		alien_ship_location = 1

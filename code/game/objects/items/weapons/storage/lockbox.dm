@@ -33,7 +33,7 @@
 					user << "\red You unlock the [src.name]!"
 					return
 			else
-				to_chat(user, span("warning", "Access denied."))
+				to_chat(user, SPAN_WARNING("Access denied."))
 		else if((istype(W, /obj/item/weapon/card/emag)||istype(W, /obj/item/weapon/melee/energy/blade)) && !src.broken)
 			broken = 1
 			locked = 0

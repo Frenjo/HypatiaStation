@@ -2,7 +2,7 @@
 	set name = "quick-equip"
 	set hidden = 1
 
-	if(isHuman(src))
+	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		var/obj/item/I = H.get_active_hand()
 		if(!I)
@@ -17,10 +17,10 @@
 			H << "\red You are unable to equip that."
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
-	for (var/slot in slots)
-		if (equip_to_slot_if_possible(W, slots[slot], del_on_fail = 0))
+	for(var/slot in slots)
+		if(equip_to_slot_if_possible(W, slots[slot], del_on_fail = 0))
 			return slot
-	if (del_on_fail)
+	if(del_on_fail)
 		qdel(W)
 	return null
 
@@ -28,7 +28,7 @@
 /mob/living/carbon/human/proc/has_organ(name)
 	var/datum/organ/external/O = organs_by_name[name]
 
-	return (O && !(O.status & ORGAN_DESTROYED) )
+	return (O && !(O.status & ORGAN_DESTROYED))
 
 /mob/living/carbon/human/proc/has_organ_for_slot(slot)
 	switch(slot)
@@ -406,7 +406,7 @@
 
 	var/list/L = list( "syringe", "pill", "drink", "dnainjector", "fuel")
 	if((item && !(L.Find(place))))
-		if(isRobot(source) && place != "handcuff")
+		if(isrobot(source) && place != "handcuff")
 			qdel(src)
 		for(var/mob/O in viewers(target, null))
 			O.show_message("\red <B>[source] is trying to put \a [item] on [target]</B>", 1)
@@ -568,7 +568,7 @@ It can still be worn/put on as normal.
 */
 /obj/effect/equip_e/human/done()	//TODO: And rewrite this :< ~Carn
 	target.cpr_time = 1
-	if(isAnimal(source)) return //animals cannot strip people
+	if(isanimal(source)) return //animals cannot strip people
 	if(!source || !target) return		//Target or source no longer exist
 	if(source.loc != s_loc) return		//source has moved
 	if(target.loc != t_loc) return		//target has moved

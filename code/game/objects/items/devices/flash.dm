@@ -63,13 +63,13 @@
 	playsound(src, 'sound/weapons/flash.ogg', 100, 1)
 	var/flashfail = 0
 
-	if(isCarbon(M))
+	if(iscarbon(M))
 		var/safety = M:eyecheck()
 		if(safety <= 0)
 			M.Weaken(10)
 			flick("e_flash", M.flash)
 
-			if(isHuman(M) && isHuman(user) && M.stat!=DEAD)
+			if(ishuman(M) && ishuman(user) && M.stat != DEAD)
 				if(user.mind && user.mind in ticker.mode.head_revolutionaries && ticker.mode.name == "revolution")
 					var/revsafe = 0
 					for(var/obj/item/weapon/implant/loyalty/L in M)
@@ -89,12 +89,12 @@
 		else
 			flashfail = 1
 
-	else if(isSilicon(M))
+	else if(issilicon(M))
 		M.Weaken(rand(5,10))
 	else
 		flashfail = 1
 
-	if(isRobot(user))
+	if(isrobot(user))
 		spawn(0)
 			var/atom/movable/overlay/animation = new(user.loc)
 			animation.layer = user.layer + 1
@@ -107,7 +107,7 @@
 
 	if(!flashfail)
 		flick("flash2", src)
-		if(!isSilicon(M))
+		if(!issilicon(M))
 
 			user.visible_message("<span class='disarm'>[user] blinds [M] with the flash!</span>")
 		else
@@ -145,7 +145,7 @@
 			return
 	playsound(src, 'sound/weapons/flash.ogg', 100, 1)
 	flick("flash2", src)
-	if(user && isRobot(user))
+	if(user && isrobot(user))
 		spawn(0)
 			var/atom/movable/overlay/animation = new(user.loc)
 			animation.layer = user.layer + 1

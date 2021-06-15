@@ -29,37 +29,39 @@ var/list/department_radio_keys = list(
 
 	  //kinda localization -- rastaf0
 	  //same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
-	  ":ê" = "right ear",	"#ê" = "right ear",		".ê" = "right ear",
-	  ":ä" = "left ear",	"#ä" = "left ear",		".ä" = "left ear",
-	  ":ø" = "intercom",	"#ø" = "intercom",		".ø" = "intercom",
-	  ":ð" = "department",	"#ð" = "department",	".ð" = "department",
-	  ":ñ" = "Command",		"#ñ" = "Command",		".ñ" = "Command",
-	  ":ò" = "Science",		"#ò" = "Science",		".ò" = "Science",
-	  ":ü" = "Medical",		"#ü" = "Medical",		".ü" = "Medical",
-	  ":ó" = "Engineering",	"#ó" = "Engineering",	".ó" = "Engineering",
-	  ":û" = "Security",	"#û" = "Security",		".û" = "Security",
-	  ":ö" = "whisper",		"#ö" = "whisper",		".ö" = "whisper",
-	  ":å" = "Syndicate",	"#å" = "Syndicate",		".å" = "Syndicate",
-	  ":é" = "Supply",		"#é" = "Supply",		".é" = "Supply",
-	  ":ï" = "changeling",	"#ï" = "changeling",	".ï" = "changeling"
+	  ":ï¿½" = "right ear",	"#ï¿½" = "right ear",		".ï¿½" = "right ear",
+	  ":ï¿½" = "left ear",	"#ï¿½" = "left ear",		".ï¿½" = "left ear",
+	  ":ï¿½" = "intercom",	"#ï¿½" = "intercom",		".ï¿½" = "intercom",
+	  ":ï¿½" = "department",	"#ï¿½" = "department",	".ï¿½" = "department",
+	  ":ï¿½" = "Command",		"#ï¿½" = "Command",		".ï¿½" = "Command",
+	  ":ï¿½" = "Science",		"#ï¿½" = "Science",		".ï¿½" = "Science",
+	  ":ï¿½" = "Medical",		"#ï¿½" = "Medical",		".ï¿½" = "Medical",
+	  ":ï¿½" = "Engineering",	"#ï¿½" = "Engineering",	".ï¿½" = "Engineering",
+	  ":ï¿½" = "Security",	"#ï¿½" = "Security",		".ï¿½" = "Security",
+	  ":ï¿½" = "whisper",		"#ï¿½" = "whisper",		".ï¿½" = "whisper",
+	  ":ï¿½" = "Syndicate",	"#ï¿½" = "Syndicate",		".ï¿½" = "Syndicate",
+	  ":ï¿½" = "Supply",		"#ï¿½" = "Supply",		".ï¿½" = "Supply",
+	  ":ï¿½" = "changeling",	"#ï¿½" = "changeling",	".ï¿½" = "changeling"
 )
 
 /mob/living/proc/binarycheck()
-	if (istype(src, /mob/living/silicon/pai))
+	if(ispAI(src))
 		return
 
-	if (!isHuman(src))
+	if(!ishuman(src))
 		return
 
 	var/mob/living/carbon/human/H = src
-	if (H.l_ear || H.r_ear)
+	if(H.l_ear || H.r_ear)
 		var/obj/item/device/radio/headset/dongle
 		if(istype(H.l_ear,/obj/item/device/radio/headset))
 			dongle = H.l_ear
 		else
 			dongle = H.r_ear
-		if(!istype(dongle)) return
-		if(dongle.translate_binary) return 1
+		if(!istype(dongle))
+			return
+		if(dongle.translate_binary)
+			return 1
 
 /*
 // Now we can start processing languages to sound cool!

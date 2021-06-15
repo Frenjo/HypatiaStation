@@ -190,7 +190,7 @@ Must right click on a mob to activate.*/
 	set src = usr.contents
 
 	var/C = 700
-	if(!ninjacost(C,0)&&isCarbon(M))
+	if(!ninjacost(C, 0) && iscarbon(M))
 		var/mob/living/carbon/human/U = affecting
 		if(M.client)//Monkeys without a client can still step_to() and bypass the net. Also, netting inactive people is lame.
 		//if(M)//DEBUG
@@ -200,18 +200,18 @@ Must right click on a mob to activate.*/
 						U << "You may not use an energy net through solid obstacles!"
 						return
 				spawn(0)
-					U.Beam(M,"n_beam",,15)
+					U.Beam(M, "n_beam", , 15)
 				M.captured = 1
 				U.say("Get over here!")
 				var/obj/effect/energy_net/E = new /obj/effect/energy_net(M.loc)
-				E.layer = M.layer+1//To have it appear one layer above the mob.
+				E.layer = M.layer + 1//To have it appear one layer above the mob.
 				for(var/mob/O in viewers(U, 3))
 					O.show_message(text("\red [] caught [] with an energy net!", U, M), 1)
 				E.affecting = M
 				E.master = U
 				spawn(0)//Parallel processing.
 					E.process(M)
-				cell.use(C*10) // Nets now cost what should be most of a standard battery, since your taking someone out of the round
+				cell.use(C * 10) // Nets now cost what should be most of a standard battery, since your taking someone out of the round
 			else
 				U << "They are already trapped inside an energy net."
 		else

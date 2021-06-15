@@ -109,7 +109,7 @@ var/list/alldepartments = list("Central Command")
 
 	if(href_list["remove"])
 		if(tofax)
-			if(!isHuman(usr))
+			if(!ishuman(usr))
 				usr << "<span class='warning'>You can't do it.</span>"
 			else
 				tofax.loc = usr.loc
@@ -118,8 +118,8 @@ var/list/alldepartments = list("Central Command")
 				tofax = null
 
 	if(href_list["scan"])
-		if (scan)
-			if(isHuman(usr))
+		if(scan)
+			if(ishuman(usr))
 				scan.loc = usr.loc
 				if(!usr.get_active_hand())
 					usr.put_in_hands(scan)

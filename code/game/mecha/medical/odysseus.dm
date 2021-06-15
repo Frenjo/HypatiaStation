@@ -28,7 +28,7 @@
 		return 0
 
 /obj/mecha/medical/odysseus/go_out()
-	if(isHuman(occupant))
+	if(ishuman(occupant))
 		var/mob/living/carbon/human/H = occupant
 		if(H.glasses == hud)
 			H.glasses = null

@@ -32,16 +32,16 @@
 		return
 
 	attack(mob/living/carbon/human/M as mob, mob/user as mob)
-		if (!isHuman(M))
+		if(!ishuman(M))
 			user << "\red [M] is not human and cannot have the fingerprints."
-			flick("forensic0",src)
+			flick("forensic0", src)
 			return 0
-		if (( !( istype(M.dna, /datum/dna) ) || M.gloves) )
+		if((!(istype(M.dna, /datum/dna)) || M.gloves))
 			user << "\blue No fingerprints found on [M]"
-			flick("forensic0",src)
+			flick("forensic0", src)
 			return 0
 		else
-			if (src.amount < 1)
+			if(src.amount < 1)
 				user << text("\blue Fingerprints scanned on [M]. Need more cards to print.")
 			else
 				src.amount--

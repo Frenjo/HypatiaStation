@@ -219,7 +219,7 @@
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "whacked") //I think the rollingpin attackby will end up ignoring this anyway.
 
 /obj/item/weapon/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
+	if((CLUMSY in user.mutations) && prob(50))
 		user << "\red The [src] slips out of your hand and hits your head."
 		user.take_organ_damage(10)
 		user.Paralyse(2)
@@ -230,20 +230,21 @@
 	msg_admin_attack("[user.name] ([user.ckey]) used the [src.name] to attack [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 	var/t = user:zone_sel.selecting
-	if (t == "head")
-		if(isHuman(M))
+	if(t == "head")
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if (H.stat < 2 && H.health < 50 && prob(90))
+			if(H.stat < 2 && H.health < 50 && prob(90))
 				// ******* Check
-				if (istype(H, /obj/item/clothing/head) && H.flags & 8 && prob(80))
+				if(istype(H, /obj/item/clothing/head) && H.flags & 8 && prob(80))
 					H << "\red The helmet protects you from being hit hard in the head!"
 					return
 				var/time = rand(2, 6)
-				if (prob(75))
+				if(prob(75))
 					H.Paralyse(time)
 				else
 					H.Stun(time)
-				if(H.stat != 2)	H.stat = 1
+				if(H.stat != 2)
+					H.stat = 1
 				user.visible_message("\red <B>[H] has been knocked unconscious!</B>", "\red <B>You knock [H] unconscious!</B>")
 				return
 			else

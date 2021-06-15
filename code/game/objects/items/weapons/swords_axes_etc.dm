@@ -72,14 +72,14 @@
 	force = 10
 
 /obj/item/weapon/melee/classic_baton/attack(mob/M as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
+	if((CLUMSY in user.mutations) && prob(50))
 		user << "\red You club yourself over the head."
 		user.Weaken(3 * force)
-		if(isHuman(user))
+		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			H.apply_damage(2*force, BRUTE, "head")
+			H.apply_damage(2 * force, BRUTE, "head")
 		else
-			user.take_organ_damage(2*force)
+			user.take_organ_damage(2 * force)
 		return
 /*this is already called in ..()
 	src.add_fingerprint(user)
@@ -88,15 +88,17 @@
 
 	log_attack("<font color='red'>[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>")
 */
-	if (user.a_intent == "hurt")
-		if(!..()) return
+	if(user.a_intent == "hurt")
+		if(!..())
+			return
 		playsound(src, "swing_hit", 50, 1, -1)
-		if (M.stuttering < 8 && (!(HULK in M.mutations))  /*&& (!istype(H:wear_suit, /obj/item/clothing/suit/judgerobe))*/)
+		if(M.stuttering < 8 && (!(HULK in M.mutations))  /*&& (!istype(H:wear_suit, /obj/item/clothing/suit/judgerobe))*/)
 			M.stuttering = 8
 		M.Stun(8)
 		M.Weaken(8)
 		for(var/mob/O in viewers(M))
-			if (O.client)	O.show_message("\red <B>[M] has been beaten with \the [src] by [user]!</B>", 1, "\red You hear someone fall", 2)
+			if(O.client)
+				O.show_message("\red <B>[M] has been beaten with \the [src] by [user]!</B>", 1, "\red You hear someone fall", 2)
 	else
 		playsound(src, 'sound/weapons/Genhit.ogg', 50, 1, -1)
 		M.Stun(5)
@@ -165,12 +167,12 @@
 
 /obj/item/weapon/melee/telebaton/attack(mob/target as mob, mob/living/user as mob)
 	if(on)
-		if ((CLUMSY in user.mutations) && prob(50))
+		if((CLUMSY in user.mutations) && prob(50))
 			user << "\red You club yourself over the head."
 			user.Weaken(3 * force)
-			if(isHuman(user))
+			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
-				H.apply_damage(2*force, BRUTE, "head")
+				H.apply_damage(2 * force, BRUTE, "head")
 			else
 				user.take_organ_damage(2*force)
 			return

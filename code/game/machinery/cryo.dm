@@ -161,7 +161,7 @@
 			beaker = null
 
 	if(href_list["ejectOccupant"])
-		if(!occupant || isSlime(usr) || isPAI(usr))
+		if(!occupant || isslime(usr) || ispAI(usr))
 			return 0 // don't update UIs attached to this object
 		go_out()
 

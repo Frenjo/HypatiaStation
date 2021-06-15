@@ -207,7 +207,7 @@
 				var/list/notes = text2list(beat, "/")
 				for(var/note in text2list(notes[1], "-"))
 					//world << "note: [note]"
-					if(!playing || !isLiving(loc))//If the violin is playing, or isn't held by a person
+					if(!playing || !isliving(loc))//If the violin is playing, or isn't held by a person
 						playing = 0
 						return
 					if(length(note) == 0)
@@ -236,7 +236,7 @@
 	playing = 0
 
 /obj/item/device/violin/attack_self(mob/user as mob)
-	if(!isLiving(user) || user.stat || user.restrained() || user.lying)	return
+	if(!isliving(user) || user.stat || user.restrained() || user.lying)	return
 	user.set_machine(src)
 
 	var/dat = "<HEAD><TITLE>Violin</TITLE></HEAD><BODY>"
@@ -289,7 +289,7 @@
 
 /obj/item/device/violin/Topic(href, href_list)
 
-	if(!in_range(src, usr) || isSilicon(usr) || !isLiving(usr) || !usr.canmove || usr.restrained())
+	if(!in_range(src, usr) || issilicon(usr) || !isliving(usr) || !usr.canmove || usr.restrained())
 		usr << browse(null, "window=violin;size=700x300")
 		onclose(usr, "violin")
 		return

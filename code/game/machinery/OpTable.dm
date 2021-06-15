@@ -44,8 +44,8 @@
 
 /obj/machinery/optable/attack_paw(mob/user as mob)
 	if((HULK in usr.mutations))
-		to_chat(usr, span("info", "You destroy the operating table."))
-		visible_message(span("warning", "[usr] destroys the operating table!"))
+		to_chat(usr, SPAN_INFO("You destroy the operating table."))
+		visible_message(SPAN_WARNING("[usr] destroys the operating table!"))
 		src.density = 0
 		qdel(src)
 	if(!(locate(/obj/machinery/optable, user.loc)))
@@ -57,8 +57,8 @@
 
 /obj/machinery/optable/attack_hand(mob/user as mob)
 	if(HULK in usr.mutations)
-		to_chat(usr, span("info", "You destroy the table."))
-		visible_message(span("warning", "[usr] destroys the operating table!"))
+		to_chat(usr, SPAN_INFO("You destroy the table."))
+		visible_message(SPAN_WARNING("[usr] destroys the operating table!"))
 		src.density = 0
 		qdel(src)
 	return
@@ -98,7 +98,7 @@
 	if(C == user)
 		user.visible_message("[user] climbs on the operating table.","You climb on the operating table.")
 	else
-		visible_message(span("warning", "[C] has been laid on the operating table by [user]."), 3)
+		visible_message(SPAN_WARNING("[C] has been laid on the operating table by [user]."), 3)
 	if(C.client)
 		C.client.perspective = EYE_PERSPECTIVE
 		C.client.eye = src
@@ -107,7 +107,7 @@
 	for(var/obj/O in src)
 		O.loc = src.loc
 	src.add_fingerprint(user)
-	if(isHuman(C))
+	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
 		src.victim = H
 		icon_state = H.pulse ? "table2-active" : "table2-idle"
@@ -119,18 +119,18 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat || !isHuman(usr) || usr.buckled || usr.restrained())
+	if(usr.stat || !ishuman(usr) || usr.buckled || usr.restrained())
 		return
 
 	if(src.victim)
-		to_chat(usr, span("notice", "The table is already occupied!"))
+		to_chat(usr, SPAN_NOTICE("The table is already occupied!"))
 		return
 
 	take_victim(usr, usr)
 
 /obj/machinery/optable/attackby(obj/item/weapon/W as obj, mob/living/carbon/user as mob)
 	if(istype(W, /obj/item/weapon/grab))
-		if(isCarbon(W:affecting))
+		if(iscarbon(W:affecting))
 			take_victim(W:affecting, usr)
 			qdel(W)
 			return

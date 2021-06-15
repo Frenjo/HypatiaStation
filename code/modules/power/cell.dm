@@ -69,12 +69,13 @@
 
 /obj/item/weapon/cell/attack_self(mob/user as mob)
 	src.add_fingerprint(user)
-	if(isHuman(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/clothing/gloves/space_ninja/SNG = H.gloves
-		if(!istype(SNG) || !SNG.candrain || !SNG.draining) return
+		if(!istype(SNG) || !SNG.candrain || !SNG.draining)
+			return
 
-		SNG.drain("CELL",src,H.wear_suit)
+		SNG.drain("CELL", src, H.wear_suit)
 	return
 
 /obj/item/weapon/cell/attackby(obj/item/W, mob/user)
@@ -85,7 +86,6 @@
 		user << "You inject the solution into the power cell."
 
 		if(S.reagents.has_reagent("plasma", 5))
-
 			rigged = 1
 
 			log_admin("LOG: [user.name] ([user.ckey]) injected a power cell with plasma, rigging it to explode.")
@@ -102,13 +102,13 @@
  * 10000-cell	explosion(T, -1, 1, 3, 3)
  * 15000-cell	explosion(T, -1, 2, 4, 4)
  * */
-	if (charge==0)
+	if(charge == 0)
 		return
 	var/devastation_range = -1 //round(charge/11000)
 	var/heavy_impact_range = round(sqrt(charge)/60)
 	var/light_impact_range = round(sqrt(charge)/30)
 	var/flash_range = light_impact_range
-	if (light_impact_range==0)
+	if(light_impact_range == 0)
 		rigged = 0
 		corrupt()
 		return
@@ -125,12 +125,12 @@
 /obj/item/weapon/cell/proc/corrupt()
 	charge /= 2
 	maxcharge /= 2
-	if (prob(10))
+	if(prob(10))
 		rigged = 1 //broken batterys are dangerous
 
 /obj/item/weapon/cell/emp_act(severity)
 	charge -= 1000 / severity
-	if (charge < 0)
+	if(charge < 0)
 		charge = 0
 	if(reliability != 100 && prob(50/severity))
 		reliability -= 10 / severity

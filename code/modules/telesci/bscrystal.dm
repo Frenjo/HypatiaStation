@@ -25,7 +25,7 @@
 
 /obj/item/bluespace_crystal/throw_impact(atom/hit_atom)
 	..()
-	if(isLiving(hit_atom))
+	if(isliving(hit_atom))
 		blink_mob(hit_atom)
 	qdel(src)
 

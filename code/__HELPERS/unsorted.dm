@@ -402,8 +402,10 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/select_active_ai(mob/user)
 	var/list/ais = active_ais()
 	if(ais.len)
-		if(user)	. = input(usr,"AI signals detected:", "AI selection") in ais
-		else		. = pick(ais)
+		if(user)
+			. = input(usr,"AI signals detected:", "AI selection") in ais
+		else
+			. = pick(ais)
 	return .
 
 /proc/get_sorted_mobs()
@@ -415,9 +417,9 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/logged_list = list()
 	for(var/named in old_list)
 		var/mob/M = old_list[named]
-		if(isSilicon(M))
+		if(issilicon(M))
 			AI_list |= M
-		else if(isObserver(M) || M.stat == 2)
+		else if(isobserver(M) || M.stat == 2)
 			Dead_list |= M
 		else if(M.key && M.client)
 			keyclient_list |= M

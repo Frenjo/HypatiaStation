@@ -49,11 +49,11 @@
 			dat += "<A href='?src=\ref[src];wildlifecarp=1'>(<font color=red>Begin Wildlife Simulation</font>)</A><BR>"
 			dat += "Ensure the holodeck is empty before testing.<BR>"
 			dat += "<BR>"
-			if(isSilicon(user))
+			if(issilicon(user))
 				dat += "<A href='?src=\ref[src];AIoverride=1'>(<font color=green>Re-Enable Safety Protocols?</font>)</A><BR>"
 			dat += "Safety Protocols are <font color=red> DISABLED </font><BR>"
 		else
-			if(isSilicon(user))
+			if(issilicon(user))
 				dat += "<A href='?src=\ref[src];AIoverride=1'>(<font color=red>Override Safety Protocols?</font>)</A><BR>"
 			dat += "<BR>"
 			dat += "Safety Protocols are <font color=green> ENABLED </font><BR>"
@@ -144,7 +144,7 @@
 					loadProgram(target)
 
 			else if(href_list["AIoverride"])
-				if(!isSilicon(usr))	return
+				if(!issilicon(usr))	return
 				emagged = !emagged
 				if(emagged)
 					message_admins("[key_name_admin(usr)] overrode the holodeck's safeties")
@@ -441,7 +441,7 @@
 		user << "It's a holotable!  There are no bolts!"
 		return
 
-	if(isRobot(user))
+	if(isrobot(user))
 		return
 
 /obj/structure/table/holotable/wood

@@ -27,7 +27,7 @@
 	src.scanner = findscanner()
 	src.pod1 = findcloner()
 
-	if (!isnull(src.pod1))
+	if(!isnull(src.pod1))
 		src.pod1.connected = src // Some variable the pod needs
 
 /obj/machinery/computer/cloning/proc/findscanner()
@@ -53,14 +53,14 @@
 
 		podf = locate(/obj/machinery/clonepod, get_step(src, dir))
 
-		if (!isnull(podf))
+		if(!isnull(podf))
 			break
 
 	return podf
 
 /obj/machinery/computer/cloning/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/disk/data)) //INSERT SOME DISKETTES
-		if (!src.diskette)
+	if(istype(W, /obj/item/weapon/disk/data)) //INSERT SOME DISKETTES
+		if(!src.diskette)
 			user.drop_item()
 			W.loc = src
 			src.diskette = W
@@ -96,11 +96,11 @@
 			// Modules
 			dat += "<h4>Modules</h4>"
 			//dat += "<a href='byond://?src=\ref[src];relmodules=1'>Reload Modules</a>"
-			if (isnull(src.scanner))
+			if(isnull(src.scanner))
 				dat += " <font color=red>Scanner-ERROR</font><br>"
 			else
 				dat += " <font color=green>Scanner-Found!</font><br>"
-			if (isnull(src.pod1))
+			if(isnull(src.pod1))
 				dat += " <font color=red>Pod-ERROR</font><br>"
 			else
 				dat += " <font color=green>Pod-Found!</font><br>"
@@ -113,10 +113,10 @@
 			else
 				dat += "<b>[scantemp]</b><br>"
 
-			if (isnull(src.scanner))
+			if(isnull(src.scanner))
 				dat += "No scanner connected!<br>"
 			else
-				if (src.scanner.occupant)
+				if(src.scanner.occupant)
 					if(scantemp == "Scanner unoccupied") scantemp = "" // Stupid check to remove the text
 
 					dat += "<a href='byond://?src=\ref[src];scan=1'>Scan - [src.scanner.occupant]</a><br>"
@@ -125,7 +125,7 @@
 
 				dat += "Lock status: <a href='byond://?src=\ref[src];lock=1'>[src.scanner.locked ? "Locked" : "Unlocked"]</a><br>"
 
-			if (!isnull(src.pod1))
+			if(!isnull(src.pod1))
 				dat += "Biomass: <i>[src.pod1.biomass]</i><br>"
 
 			// Database
@@ -145,7 +145,7 @@
 			dat += "<h4>Selected Record</h4>"
 			dat += "<a href='byond://?src=\ref[src];menu=2'>Back</a><br>"
 
-			if (!src.active_record)
+			if(!src.active_record)
 				dat += "<font color=red>ERROR: Record not found.</font>"
 			else
 				dat += {"<br><font size=1><a href='byond://?src=\ref[src];del_rec=1'>Delete Record</a></font><br>
@@ -154,12 +154,12 @@
 				if(src.active_record.implant)
 					H=locate(src.active_record.implant)
 
-				if ((H) && (istype(H)))
+				if((H) && (istype(H)))
 					dat += "<b>Health:</b> [H.sensehealth()] | OXY-BURN-TOX-BRUTE<br>"
 				else
 					dat += "<font color=red>Unable to locate implant.</font><br>"
 
-				if (!isnull(src.diskette))
+				if(!isnull(src.diskette))
 					dat += "<a href='byond://?src=\ref[src];disk=load'>Load from disk.</a>"
 
 					dat += " | Save: <a href='byond://?src=\ref[src];save_disk=ue'>UI + UE</a>"
@@ -178,7 +178,7 @@
 					dat += {"<b>Insufficient stem cell charges</b><br>"}
 
 		if(4)
-			if (!src.active_record)
+			if(!src.active_record)
 				src.menu = 2
 			dat = "[src.temp]<br>"
 			dat += "<h4>Confirm Record Deletion</h4>"
@@ -198,7 +198,7 @@
 	if(loading)
 		return
 
-	if ((href_list["scan"]) && (!isnull(src.scanner)))
+	if((href_list["scan"]) && (!isnull(src.scanner)))
 		scantemp = ""
 
 		loading = 1
@@ -212,8 +212,8 @@
 
 
 		//No locking an open scanner.
-	else if ((href_list["lock"]) && (!isnull(src.scanner)))
-		if ((!src.scanner.locked) && (src.scanner.occupant))
+	else if((href_list["lock"]) && (!isnull(src.scanner)))
+		if((!src.scanner.locked) && (src.scanner.occupant))
 			src.scanner.locked = 1
 		else
 			src.scanner.locked = 0
@@ -231,15 +231,15 @@
 			src.temp = "Record missing."
 
 	else if (href_list["del_rec"])
-		if ((!src.active_record) || (src.menu < 3))
+		if((!src.active_record) || (src.menu < 3))
 			return
-		if (src.menu == 3) //If we are viewing a record, confirm deletion
+		if(src.menu == 3) //If we are viewing a record, confirm deletion
 			src.temp = "Delete record?"
 			src.menu = 4
 
 		else if (src.menu == 4)
 			var/obj/item/weapon/card/id/C = usr.get_active_hand()
-			if (istype(C)||istype(C, /obj/item/device/pda))
+			if(istype(C)||istype(C, /obj/item/device/pda))
 				if(src.check_access(C))
 					src.records.Remove(src.active_record)
 					qdel(src.active_record)
@@ -270,7 +270,7 @@
 					src.diskette = null
 
 	else if (href_list["save_disk"]) //Save to disk!
-		if ((isnull(src.diskette)) || (src.diskette.read_only) || (isnull(src.active_record)))
+		if((isnull(src.diskette)) || (src.diskette.read_only) || (isnull(src.active_record)))
 			src.temp = "Save error."
 			src.updateUsrDialog()
 			return
@@ -336,10 +336,10 @@
 	return
 
 /obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject as mob)
-	if ((isnull(subject)) || (!(isHuman(subject))) || (!subject.dna))
+	if((isnull(subject)) || (!(ishuman(subject))) || (!subject.dna))
 		scantemp = "Error: Unable to locate valid genetic data."
 		return
-	if (!subject.has_brain())
+	if(!subject.has_brain())
 		if(istype(subject, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = subject
 			if(H.species.has_organ["brain"])
@@ -347,31 +347,31 @@
 		else
 			scantemp = "Error: No signs of intelligence detected."
 		return
-	if (subject.suiciding == 1)
+	if(subject.suiciding == 1)
 		scantemp = "Error: Subject's brain is not responding to scanning stimuli."
 		return
-	if ((!subject.ckey) || (!subject.client))
+	if((!subject.ckey) || (!subject.client))
 		scantemp = "Error: Mental interface failure."
 		return
-	if (NOCLONE in subject.mutations)
+	if(NOCLONE in subject.mutations)
 		scantemp = "Error: Mental interface failure."
 		return
-	if (!isnull(find_record(subject.ckey)))
+	if(!isnull(find_record(subject.ckey)))
 		scantemp = "Subject already in database."
 		return
 
 	subject.dna.check_integrity()
 
 	var/datum/dna2/record/R = new /datum/dna2/record()
-	R.dna=subject.dna
+	R.dna = subject.dna
 	R.ckey = subject.ckey
-	R.id= copytext(md5(subject.real_name), 2, 6)
-	R.name=R.dna.real_name
-	R.types=DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
+	R.id = copytext(md5(subject.real_name), 2, 6)
+	R.name = R.dna.real_name
+	R.types = DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
 
 	//Add an implant if needed
 	var/obj/item/weapon/implant/health/imp = locate(/obj/item/weapon/implant/health, subject)
-	if (isnull(imp))
+	if(isnull(imp))
 		imp = new /obj/item/weapon/implant/health(subject)
 		imp.implanted = subject
 		R.implant = "\ref[imp]"
@@ -379,14 +379,14 @@
 	else
 		R.implant = "\ref[imp]"
 
-	if (!isnull(subject.mind)) //Save that mind so traitors can continue traitoring after cloning.
+	if(!isnull(subject.mind)) //Save that mind so traitors can continue traitoring after cloning.
 		R.mind = "\ref[subject.mind]"
 
 	src.records += R
 	scantemp = "Subject successfully scanned."
 
 //Find a specific record by key.
-/obj/machinery/computer/cloning/proc/find_record(var/find_key)
+/obj/machinery/computer/cloning/proc/find_record(find_key)
 	var/selected_record = null
 	for(var/datum/dna2/record/R in src.records)
 		if (R.ckey == find_key)

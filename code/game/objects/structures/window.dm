@@ -166,7 +166,7 @@
 	take_damage(damage)
 
 /obj/structure/window/attack_animal(mob/user as mob)
-	if(!isAnimal(user))
+	if(!isanimal(user))
 		return
 	var/mob/living/simple_animal/M = user
 	if(M.melee_damage_upper <= 0)
@@ -174,7 +174,7 @@
 	attack_generic(M, M.melee_damage_upper)
 
 /obj/structure/window/attack_slime(mob/user as mob)
-	if(!isSlimeAdult(user))
+	if(!isslimeadult(user))
 		return
 	attack_generic(user, rand(10, 15))
 

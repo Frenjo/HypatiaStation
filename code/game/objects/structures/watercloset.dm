@@ -28,7 +28,7 @@
 			return
 		else
 			var/obj/item/I = pick(contents)
-			if(isHuman(user))
+			if(ishuman(user))
 				user.put_in_hands(I)
 			else
 				I.loc = get_turf(src)
@@ -55,7 +55,7 @@
 	if(istype(I, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = I
 
-		if(isLiving(G.affecting))
+		if(isliving(G.affecting))
 			var/mob/living/GM = G.affecting
 
 			if(G.state>1)
@@ -101,7 +101,7 @@
 /obj/structure/urinal/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = I
-		if(isLiving(G.affecting))
+		if(isliving(G.affecting))
 			var/mob/living/GM = G.affecting
 			if(G.state>1)
 				if(!GM.loc == get_turf(src))
@@ -205,12 +205,12 @@
 	if(!on)
 		return
 
-	if(isLiving(O))
+	if(isliving(O))
 		var/mob/living/L = O
 		L.ExtinguishMob()
 		L.fire_stacks = -20 //Douse ourselves with water to avoid fire more easily
 
-	if(isCarbon(O))
+	if(iscarbon(O))
 		var/mob/living/carbon/M = O
 		if(M.r_hand)
 			M.r_hand.clean_blood()
@@ -219,7 +219,7 @@
 		if(M.back)
 			if(M.back.clean_blood())
 				M.update_inv_back(0)
-		if(isHuman(M))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/washgloves = 1
 			var/washshoes = 1
@@ -289,13 +289,15 @@
 				qdel(E)
 
 /obj/machinery/shower/process()
-	if(!on || !mobpresent) return
+	if(!on || !mobpresent)
+		return
 	for(var/mob/living/carbon/C in loc)
 		check_heat(C)
 
 /obj/machinery/shower/proc/check_heat(mob/M as mob)
-	if(!on || watertemp == "normal") return
-	if(isCarbon(M))
+	if(!on || watertemp == "normal")
+		return
+	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 
 		if(watertemp == "freezing")
@@ -328,15 +330,15 @@
 	var/busy = 0 	//Something's being washed at the moment
 
 /obj/structure/sink/attack_hand(mob/user as mob)
-	if (hasOrgans(user))
+	if(hasorgans(user))
 		var/datum/organ/external/temp = user:organs_by_name["r_hand"]
-		if (user.hand)
+		if(user.hand)
 			temp = user:organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
 			user << "<span class='notice'>You try to move your [temp.display_name], but cannot!"
 			return
 
-	if(isRobot(user) || isAI(user))
+	if(isrobot(user) || isAI(user))
 		return
 
 	if(!Adjacent(user))
@@ -352,10 +354,11 @@
 	sleep(40)
 	busy = 0
 
-	if(!Adjacent(user)) return		//Person has moved away from the sink
+	if(!Adjacent(user))
+		return		//Person has moved away from the sink
 
 	user.clean_blood()
-	if(isHuman(user))
+	if(ishuman(user))
 		user:update_inv_gloves()
 	for(var/mob/V in viewers(src, null))
 		V.show_message("\blue [user] washes their hands using \the [src].")
@@ -366,13 +369,13 @@
 		user << "\red Someone's already washing here."
 		return
 
-	if (istype(O, /obj/item/weapon/reagent_containers))
+	if(istype(O, /obj/item/weapon/reagent_containers))
 		var/obj/item/weapon/reagent_containers/RG = O
 		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message("\blue [user] fills \the [RG] using \the [src].","\blue You fill \the [RG] using \the [src].")
 		return
 
-	else if (istype(O, /obj/item/weapon/melee/baton))
+	else if(istype(O, /obj/item/weapon/melee/baton))
 		var/obj/item/weapon/melee/baton/B = O
 		/*if (B.charges > 0 && B.status == 1)
 			flick("baton_active", src)
@@ -395,7 +398,7 @@
 				user.Stun(10)
 				user.stuttering = 10
 				user.Weaken(10)
-				if(isRobot(user))
+				if(isrobot(user))
 					var/mob/living/silicon/robot/R = user
 					R.cell.charge -= 20
 				else
@@ -406,10 +409,12 @@
 				return
 
 	var/turf/location = user.loc
-	if(!isturf(location)) return
+	if(!isturf(location))
+		return
 
 	var/obj/item/I = O
-	if(!I || !istype(I,/obj/item)) return
+	if(!I || !istype(I,/obj/item))
+		return
 
 	usr << "\blue You start washing \the [I]."
 
@@ -417,9 +422,12 @@
 	sleep(40)
 	busy = 0
 
-	if(user.loc != location) return				//User has moved
-	if(!I) return 								//Item's been destroyed while washing
-	if(user.get_active_hand() != I) return		//Person has switched hands or the item in their hands
+	if(user.loc != location)
+		return				//User has moved
+	if(!I)
+		return 								//Item's been destroyed while washing
+	if(user.get_active_hand() != I)
+		return		//Person has switched hands or the item in their hands
 
 	O.clean_blood()
 	user.visible_message( \

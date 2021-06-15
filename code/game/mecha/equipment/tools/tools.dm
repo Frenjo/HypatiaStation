@@ -1176,23 +1176,23 @@
 	set src in oview(1)
 
 	//check that usr can climb in
-	if (usr.stat || !isHuman(usr))
+	if(usr.stat || !ishuman(usr))
 		return
 
-	if (!usr.Adjacent(src))
+	if(!usr.Adjacent(src))
 		return
 
-	if (!isturf(usr.loc))
+	if(!isturf(usr.loc))
 		usr << "\red You can't reach the passenger compartment from here."
 		return
 
-	if(isCarbon(usr))
+	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(C.handcuffed)
 			usr << "\red Kinda hard to climb in while handcuffed don't you think?"
 			return
 
-	for(var/mob/living/carbon/slime/M in range(1,usr))
+	for(var/mob/living/carbon/slime/M in range(1, usr))
 		if(M.Victim == usr)
 			usr << "\red You're too busy getting your life sucked out of you."
 			return
@@ -1200,10 +1200,10 @@
 	//search for a valid passenger compartment
 	var/feedback = 0 //for nicer user feedback
 	for(var/obj/item/mecha_parts/mecha_equipment/tool/passenger/P in src)
-		if (P.occupant)
+		if(P.occupant)
 			feedback |= OCCUPIED
 			continue
-		if (P.door_locked)
+		if(P.door_locked)
 			feedback |= LOCKED
 			continue
 
@@ -1213,13 +1213,13 @@
 
 	//didn't find anything
 	switch (feedback)
-		if (OCCUPIED)
+		if(OCCUPIED)
 			usr << "\red The passenger compartment is already occupied!"
-		if (LOCKED)
+		if(LOCKED)
 			usr << "\red The passenger compartment hatch is locked!"
-		if (OCCUPIED|LOCKED)
+		if(OCCUPIED|LOCKED)
 			usr << "\red All of the passenger compartments are already occupied or locked!"
-		if (0)
+		if(0)
 			usr << "\red \The [src] doesn't have a passenger compartment."
 // END PORT -Frenjo
 

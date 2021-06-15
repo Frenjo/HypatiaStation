@@ -35,9 +35,9 @@
 //Checking for protections
 		var/eye_safety = 0
 		var/ear_safety = 0
-		if(isCarbon(M))
+		if(iscarbon(M))
 			eye_safety = M.eyecheck()
-			if(isHuman(M))
+			if(ishuman(M))
 				if(istype(M:l_ear, /obj/item/clothing/ears/earmuffs) || istype(M:r_ear, /obj/item/clothing/ears/earmuffs))
 					ear_safety += 2
 				if(HULK in M.mutations)
@@ -79,22 +79,22 @@
 			M.ear_deaf = max(M.ear_deaf,5)
 
 //This really should be in mob not every check
-		if(isHuman(M))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/datum/organ/internal/eyes/E = H.internal_organs["eyes"]
 			if (E.damage >= E.min_bruised_damage)
 				M << "\red Your eyes start to burn badly!"
 				if(!banglet && !(istype(src , /obj/item/weapon/grenade/flashbang/clusterbang)))
-					if (E.damage >= E.min_broken_damage)
+					if(E.damage >= E.min_broken_damage)
 						M << "\red You can't see anything!"
-		if (M.ear_damage >= 15)
+		if(M.ear_damage >= 15)
 			M << "\red Your ears start to ring badly!"
 			if(!banglet && !(istype(src , /obj/item/weapon/grenade/flashbang/clusterbang)))
-				if (prob(M.ear_damage - 10 + 5))
+				if(prob(M.ear_damage - 10 + 5))
 					M << "\red You can't hear anything!"
 					M.sdisabilities |= DEAF
 		else
-			if (M.ear_damage >= 5)
+			if(M.ear_damage >= 5)
 				M << "\red Your ears start to ring!"
 		M.update_icons()
 

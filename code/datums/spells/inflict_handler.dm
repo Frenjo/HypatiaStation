@@ -18,13 +18,12 @@
 	var/destroys = "none" //can be "none", "gib" or "disintegrate"
 
 /obj/effect/proc_holder/spell/targeted/inflict_handler/cast(list/targets)
-
 	for(var/mob/living/target in targets)
 		switch(destroys)
 			if("gib")
 				target.gib()
 			if("gib_brain")
-				if(isHuman(target) || isMonkey(target))
+				if(ishuman(target) || ismonkey(target))
 					var/mob/living/carbon/C = target
 					if(C.brain_op_stage != 4) // Their brain is already taken out
 						var/obj/item/brain/B = new(C.loc)
@@ -38,16 +37,16 @@
 		//damage
 		if(amt_dam_brute > 0)
 			if(amt_dam_fire >= 0)
-				target.take_overall_damage(amt_dam_brute,amt_dam_fire)
-			else if (amt_dam_fire < 0)
-				target.take_overall_damage(amt_dam_brute,0)
-				target.heal_overall_damage(0,amt_dam_fire)
+				target.take_overall_damage(amt_dam_brute, amt_dam_fire)
+			else if(amt_dam_fire < 0)
+				target.take_overall_damage(amt_dam_brute, 0)
+				target.heal_overall_damage(0, amt_dam_fire)
 		else if(amt_dam_brute < 0)
 			if(amt_dam_fire > 0)
-				target.take_overall_damage(0,amt_dam_fire)
-				target.heal_overall_damage(amt_dam_brute,0)
-			else if (amt_dam_fire <= 0)
-				target.heal_overall_damage(amt_dam_brute,amt_dam_fire)
+				target.take_overall_damage(0, amt_dam_fire)
+				target.heal_overall_damage(amt_dam_brute, 0)
+			else if(amt_dam_fire <= 0)
+				target.heal_overall_damage(amt_dam_brute, amt_dam_fire)
 		target.adjustToxLoss(amt_dam_tox)
 		target.oxyloss += amt_dam_oxy
 		//disabling

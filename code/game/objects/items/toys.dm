@@ -394,12 +394,12 @@
 		s.set_up(3, 1, src)
 		s.start()
 		new /obj/effect/decal/cleanable/ash(src.loc)
-		src.visible_message("\red The [src.name] explodes!","\red You hear a snap!")
+		src.visible_message("\red The [src.name] explodes!", "\red You hear a snap!")
 		playsound(src, 'sound/effects/snap.ogg', 50, 1)
 		qdel(src)
 
 /obj/item/toy/snappop/Crossed(H as mob|obj)
-	if((isHuman(H))) //i guess carp and shit shouldn't set them off
+	if((ishuman(H))) //i guess carp and shit shouldn't set them off
 		var/mob/living/carbon/M = H
 		if(M.m_intent == "run")
 			M << "\red You step on the snap pop!"
@@ -408,7 +408,7 @@
 			s.set_up(2, 0, src)
 			s.start()
 			new /obj/effect/decal/cleanable/ash(src.loc)
-			src.visible_message("\red The [src.name] explodes!","\red You hear a snap!")
+			src.visible_message("\red The [src.name] explodes!", "\red You hear a snap!")
 			playsound(src, 'sound/effects/snap.ogg', 50, 1)
 			qdel(src)
 
@@ -434,26 +434,24 @@
 	return
 
 /obj/item/toy/waterflower/afterattack(atom/A as mob|obj, mob/user as mob)
-
-	if (istype(A, /obj/item/weapon/storage/backpack ))
+	if(istype(A, /obj/item/weapon/storage/backpack))
 		return
 
-	else if (locate (/obj/structure/table, src.loc))
+	else if(locate (/obj/structure/table, src.loc))
 		return
 
-	else if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
+	else if(istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src, A) <= 1)
 		A.reagents.trans_to(src, 10)
 		user << "\blue You refill your flower!"
 		return
 
-	else if (src.reagents.total_volume < 1)
+	else if(src.reagents.total_volume < 1)
 		src.empty = 1
 		user << "\blue Your flower has run dry!"
 		return
 
 	else
 		src.empty = 0
-
 
 		var/obj/effect/decal/D = new/obj/effect/decal/(get_turf(src))
 		D.name = "water"
@@ -464,8 +462,8 @@
 		playsound(src, 'sound/effects/spray3.ogg', 50, 1, -6)
 
 		spawn(0)
-			for(var/i=0, i<1, i++)
-				step_towards(D,A)
+			for(var/i = 0, i < 1, i++)
+				step_towards(D, A)
 				D.reagents.reaction(get_turf(D))
 				for(var/atom/T in get_turf(D))
 					D.reagents.reaction(T)

@@ -190,7 +190,7 @@ Class Procs:
 	if(!(istype(usr, /mob/living/carbon/human) || \
 			istype(usr, /mob/living/silicon) || \
 			istype(usr, /mob/living/carbon/monkey) && ticker && ticker.mode.name == "monkey"))
-		to_chat(usr, span("warning", "You don't have the dexterity to do this!"))
+		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return 1
 
 	var/norange = 0
@@ -209,7 +209,7 @@ Class Procs:
 	return 0
 
 /obj/machinery/attack_ai(mob/user as mob)
-	if(isRobot(user))
+	if(isrobot(user))
 		// For some reason attack_robot doesn't work
 		// This is to stop robots from using cameras to remotely control machines.
 		if(user.client && user.client.eye == user)
@@ -228,20 +228,20 @@ Class Procs:
 	if(!(istype(usr, /mob/living/carbon/human) || \
 			istype(usr, /mob/living/silicon) || \
 			istype(usr, /mob/living/carbon/monkey) && ticker && ticker.mode.name == "monkey"))
-		to_chat(usr, span("warning", "You don't have the dexterity to do this!"))
+		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return 1
 /*
 	//distance checks are made by atom/proc/DblClick
 	if ((get_dist(src, user) > 1 || !istype(src.loc, /turf)) && !istype(user, /mob/living/silicon))
 		return 1
 */
-	if(isHuman(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 60)
-			visible_message(span("warning", "[H] stares cluelessly at [src] and drools."))
+			visible_message(SPAN_WARNING("[H] stares cluelessly at [src] and drools."))
 			return 1
 		else if(prob(H.getBrainLoss()))
-			to_chat(H, span("warning", "You momentarily forget how to use [src]."))
+			to_chat(H, SPAN_WARNING("You momentarily forget how to use [src]."))
 			return 1
 
 	src.add_fingerprint(user)

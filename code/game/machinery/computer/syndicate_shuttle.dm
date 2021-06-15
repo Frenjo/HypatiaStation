@@ -44,7 +44,7 @@
 
 /obj/machinery/computer/syndicate_station/attack_hand(mob/user as mob)
 	if(!allowed(user))
-		to_chat(user, span("warning", "Access denied."))
+		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 
 	user.set_machine(src)
@@ -68,7 +68,7 @@
 
 
 /obj/machinery/computer/syndicate_station/Topic(href, href_list)
-	if(!isLiving(usr))	return
+	if(!isliving(usr))	return
 	var/mob/living/user = usr
 
 	if(in_range(src, user) || istype(user, /mob/living/silicon))

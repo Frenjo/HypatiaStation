@@ -548,7 +548,7 @@ var/list/slot_equipment_priority = list( \
 
 
 /mob/proc/pull_damage()
-	if(isHuman(src))
+	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if(H.health - H.halloss <= config.health_threshold_softcrit)
 			for(var/name in H.organs_by_name)
@@ -586,7 +586,7 @@ var/list/slot_equipment_priority = list( \
 
 	var/mob/M = AM
 	if(ismob(AM))
-		if(!isCarbon(src))
+		if(!iscarbon(src))
 			M.LAssailant = null
 		else
 			M.LAssailant = usr
@@ -601,7 +601,7 @@ var/list/slot_equipment_priority = list( \
 	src.pulling = AM
 	AM.pulledby = src
 
-	if(isHuman(AM))
+	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(H.pull_damage())
 			src << "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>"
@@ -932,7 +932,7 @@ mob/proc/yank_out_object()
 	set desc = "Remove an embedded item at the cost of bleeding and pain."
 	set src in view(1)
 
-	if(!isLiving(usr) || usr.next_move > world.time)
+	if(!isliving(usr) || usr.next_move > world.time)
 		return
 	usr.next_move = world.time + 20
 

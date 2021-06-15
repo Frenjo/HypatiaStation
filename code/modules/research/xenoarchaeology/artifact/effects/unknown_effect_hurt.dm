@@ -6,7 +6,7 @@
 /datum/artifact_effect/hurt/DoEffectTouch(var/mob/toucher)
 	if(toucher)
 		var/weakness = GetAnomalySusceptibility(toucher)
-		if(isCarbon(toucher) && prob(weakness * 100))
+		if(iscarbon(toucher) && prob(weakness * 100))
 			var/mob/living/carbon/C = toucher
 			C << "\red A painful discharge of energy strikes you!"
 			C.adjustOxyLoss(rand(5,25) * weakness)

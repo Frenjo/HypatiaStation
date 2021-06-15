@@ -7,10 +7,10 @@
 	priority = 2
 	can_infect = 1
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if (!hasOrgans(target))
+		if(!hasorgans(target))
 			return 0
 		var/datum/organ/external/affected = target.get_organ(target_zone)
-		if (!affected)
+		if(!affected)
 			return 0
 		return target_zone == "eyes"
 

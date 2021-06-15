@@ -232,7 +232,7 @@ update_flag
 
 /obj/machinery/portable_atmospherics/canister/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench) && !istype(W, /obj/item/weapon/tank) && !istype(W, /obj/item/device/analyzer) && !istype(W, /obj/item/device/pda))
-		visible_message(span("warning", "[user] hits the [src] with a [W]!"))
+		visible_message(SPAN_WARNING("[user] hits the [src] with a [W]!"))
 		src.health -= W.force
 		src.add_fingerprint(user)
 		healthcheck()

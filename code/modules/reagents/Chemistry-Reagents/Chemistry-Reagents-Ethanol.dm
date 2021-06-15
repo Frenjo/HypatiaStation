@@ -24,7 +24,7 @@
 	var/blur_start = 300	//amount absorbed after which mob starts getting blurred vision
 	var/pass_out = 400	//amount absorbed after which mob starts passing out
 
-/datum/reagent/ethanol/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/ethanol/on_mob_life(mob/living/M as mob)
 	M:nutrition += nutriment_factor
 	holder.remove_reagent(src.id, FOOD_METABOLISM)
 
@@ -41,7 +41,8 @@
 
 	// make all the beverages work together
 	for(var/datum/reagent/ethanol/A in holder.reagent_list)
-		if(isnum(A.data)) d += A.data
+		if(isnum(A.data))
+			d += A.data
 
 	M.dizziness += dizzy_adj
 	if(d >= slur_start && d < pass_out)
@@ -58,21 +59,21 @@
 	if(d >= pass_out)
 		M:paralysis = max(M:paralysis, 20)
 		M:drowsyness  = max(M:drowsyness, 30)
-		if(isHuman(M))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/datum/organ/internal/liver/L = H.internal_organs["liver"]
-			if (istype(L))
+			if(istype(L))
 				L.take_damage(0.1, 1)
 			H.adjustToxLoss(0.1)
 	..()
 	return
 
-/datum/reagent/ethanol/reaction_obj(var/obj/O, var/volume)
-	if(istype(O,/obj/item/weapon/paper))
+/datum/reagent/ethanol/reaction_obj(obj/O, volume)
+	if(istype(O, /obj/item/weapon/paper))
 		var/obj/item/weapon/paper/paperaffected = O
 		paperaffected.clearpaper()
 		usr << "The solution dissolves the ink on the paper."
-	if(istype(O,/obj/item/weapon/book))
+	if(istype(O, /obj/item/weapon/book))
 		if(volume >= 5)
 			var/obj/item/weapon/book/affectedbook = O
 			affectedbook.dat = null
@@ -81,8 +82,8 @@
 			usr << "It wasn't enough..."
 	return
 
-/datum/reagent/ethanol/reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)//Splashing people with ethanol isn't quite as good as fuel.
-	if(!istype(M, /mob/living))
+/datum/reagent/ethanol/reaction_mob(mob/living/M, method = TOUCH, volume)//Splashing people with ethanol isn't quite as good as fuel.
+	if(!isliving(M))
 		return
 	if(method == TOUCH)
 		M.adjust_fire_stacks(volume / 15)
@@ -96,8 +97,8 @@
 	boozepwr = 1
 	nutriment_factor = 1 * FOOD_METABOLISM
 
-/datum/reagent/ethanol/beer/on_mob_life(var/mob/living/M as mob)
-	M:jitteriness = max(M:jitteriness-3,0)
+/datum/reagent/ethanol/beer/on_mob_life(mob/living/M as mob)
+	M:jitteriness = max(M:jitteriness - 3, 0)
 	..()
 	return
 
@@ -112,7 +113,7 @@
 	adj_drowsy = -3
 	adj_sleepy = -2
 
-/datum/reagent/ethanol/kahlua/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/ethanol/kahlua/on_mob_life(mob/living/M as mob)
 	M.make_jittery(5)
 	..()
 	return
@@ -143,9 +144,9 @@
 	boozepwr = 2
 	nutriment_factor = 1 * FOOD_METABOLISM
 
-/datum/reagent/ethanol/thirteenloko/on_mob_life(var/mob/living/M as mob)
-	M:drowsyness = max(0,M:drowsyness-7)
-	if (M.bodytemperature > 310)
+/datum/reagent/ethanol/thirteenloko/on_mob_life(mob/living/M as mob)
+	M:drowsyness = max(0, M:drowsyness - 7)
+	if(M.bodytemperature > 310)
 		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	M.make_jittery(5)
 	..()
@@ -159,8 +160,8 @@
 	color = "#0064C8" // rgb: 0, 100, 200
 	boozepwr = 2
 
-/datum/reagent/ethanol/vodka/on_mob_life(var/mob/living/M as mob)
-	M.radiation = max(M.radiation-1,0)
+/datum/reagent/ethanol/vodka/on_mob_life(mob/living/M as mob)
+	M.radiation = max(M.radiation - 1, 0)
 	..()
 	return
 
@@ -180,7 +181,7 @@
 	color = "#666340" // rgb: 102, 99, 64
 	boozepwr = 5
 
-/datum/reagent/ethanol/threemileisland/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/ethanol/threemileisland/on_mob_life(mob/living/M as mob)
 	M.druggy = max(M.druggy, 50)
 	..()
 	return
@@ -272,50 +273,62 @@
 	slur_start = 1
 	confused_start = 1
 
-/datum/reagent/ethanol/pwine/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
+/datum/reagent/ethanol/pwine/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
 	M.druggy = max(M.druggy, 50)
-	if(!data) data = 1
+	if(!data)
+		data = 1
 	data++
 	switch(data)
 		if(1 to 25)
-			if (!M.stuttering) M.stuttering = 1
+			if(!M.stuttering)
+				M.stuttering = 1
 			M.make_dizzy(1)
 			M.hallucination = max(M.hallucination, 3)
-			if(prob(1)) M.emote(pick("twitch","giggle"))
+			if(prob(1))
+				M.emote(pick("twitch", "giggle"))
 		if(25 to 75)
 			if (!M.stuttering) M.stuttering = 1
 			M.hallucination = max(M.hallucination, 10)
 			M.make_jittery(2)
 			M.make_dizzy(2)
 			M.druggy = max(M.druggy, 45)
-			if(prob(5)) M.emote(pick("twitch","giggle"))
+			if(prob(5))
+				M.emote(pick("twitch", "giggle"))
 		if(75 to 150)
-			if (!M.stuttering) M.stuttering = 1
+			if(!M.stuttering)
+				M.stuttering = 1
 			M.hallucination = max(M.hallucination, 60)
 			M.make_jittery(4)
 			M.make_dizzy(4)
 			M.druggy = max(M.druggy, 60)
-			if(prob(10)) M.emote(pick("twitch","giggle"))
-			if(prob(30)) M.adjustToxLoss(2)
+			if(prob(10))
+				M.emote(pick("twitch", "giggle"))
+			if(prob(30))
+				M.adjustToxLoss(2)
 		if(150 to 300)
-			if (!M.stuttering) M.stuttering = 1
+			if(!M.stuttering)
+				M.stuttering = 1
 			M.hallucination = max(M.hallucination, 60)
 			M.make_jittery(4)
 			M.make_dizzy(4)
 			M.druggy = max(M.druggy, 60)
-			if(prob(10)) M.emote(pick("twitch","giggle"))
-			if(prob(30)) M.adjustToxLoss(2)
-			if(prob(5)) if(isHuman(M))
-				var/mob/living/carbon/human/H = M
-				var/datum/organ/internal/heart/L = H.internal_organs["heart"]
-				if (istype(L))
-					L.take_damage(5, 0)
+			if(prob(10))
+				M.emote(pick("twitch", "giggle"))
+			if(prob(30))
+				M.adjustToxLoss(2)
+			if(prob(5))
+				if(ishuman(M))
+					var/mob/living/carbon/human/H = M
+					var/datum/organ/internal/heart/L = H.internal_organs["heart"]
+					if(istype(L))
+						L.take_damage(5, 0)
 		if(300 to INFINITY)
-			if(isHuman(M))
+			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				var/datum/organ/internal/heart/L = H.internal_organs["heart"]
-				if (istype(L))
+				if(istype(L))
 					L.take_damage(100, 0)
 	holder.remove_reagent(src.id, FOOD_METABOLISM)
 

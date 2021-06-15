@@ -85,13 +85,13 @@
 		user.visible_message("<span class='danger'>[user] tears at [src]!</span>")
 
 /obj/structure/inflatable/attack_animal(mob/user as mob)
-	if(!isAnimal(user)) return
+	if(!isanimal(user)) return
 	var/mob/living/simple_animal/M = user
 	if(M.melee_damage_upper <= 0) return
 	attack_generic(M, M.melee_damage_upper)
 
 /obj/structure/inflatable/attack_slime(mob/user as mob)
-	if(!isSlimeAdult(user)) return
+	if(!isslimeadult(user)) return
 	attack_generic(user, rand(10, 15))
 
 /obj/structure/inflatable/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -132,7 +132,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(isObserver(usr)) //to stop ghosts from deflating
+	if(isobserver(usr)) //to stop ghosts from deflating
 		return
 
 	deflate()
@@ -172,7 +172,7 @@
 /obj/structure/inflatable/door/attack_ai(mob/user as mob) //those aren't machinery, they're just big fucking slabs of a mineral
 	if(isAI(user)) //so the AI can't open it
 		return
-	else if(isRobot(user)) //but cyborgs can
+	else if(isrobot(user)) //but cyborgs can
 		if(get_dist(user,src) <= 1) //not remotely though
 			return TryToSwitchState(user)
 
@@ -190,12 +190,14 @@
 	return !density
 
 /obj/structure/inflatable/door/proc/TryToSwitchState(atom/user)
-	if(isSwitchingStates) return
+	if(isSwitchingStates)
+		return
 	if(ismob(user))
 		var/mob/M = user
-		if(world.time - user.last_bumped <= 60) return //NOTE do we really need that?
+		if(world.time - user.last_bumped <= 60)
+			return //NOTE do we really need that?
 		if(M.client)
-			if(isCarbon(M))
+			if(iscarbon(M))
 				var/mob/living/carbon/C = M
 				if(!C.handcuffed)
 					SwitchState()

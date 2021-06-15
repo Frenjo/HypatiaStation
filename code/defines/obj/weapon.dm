@@ -161,20 +161,20 @@
 	desc = "A trap used to catch bears and other legged creatures."
 	var/armed = 0
 
-	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is putting the [src.name] on \his head! It looks like \he's trying to commit suicide.</b>"
-		return (BRUTELOSS)
+/obj/item/weapon/legcuffs/beartrap/suicide_act(mob/user)
+	viewers(user) << SPAN_DANGER("[user] is putting the [src.name] on \his head! It looks like \he's trying to commit suicide.")
+	return (BRUTELOSS)
 
 /obj/item/weapon/legcuffs/beartrap/attack_self(mob/user as mob)
 	..()
-	if(isHuman(user) && !user.stat && !user.restrained())
+	if(ishuman(user) && !user.stat && !user.restrained())
 		armed = !armed
 		icon_state = "beartrap[armed]"
-		to_chat(user, span("notice", "[src] is now [armed ? "armed" : "disarmed"]."))
+		to_chat(user, SPAN_NOTICE("[src] is now [armed ? "armed" : "disarmed"]."))
 
 /obj/item/weapon/legcuffs/beartrap/Crossed(AM as mob|obj)
 	if(armed)
-		if(isHuman(AM))
+		if(ishuman(AM))
 			if(isturf(src.loc))
 				var/mob/living/carbon/H = AM
 				if(H.m_intent == "run")
@@ -182,13 +182,13 @@
 					H.legcuffed = src
 					src.loc = H
 					H.update_inv_legcuffed()
-					to_chat(H, span("danger", "You step on \the [src]!"))
+					to_chat(H, SPAN_DANGER("You step on \the [src]!"))
 					feedback_add_details("handcuffs","B") //Yes, I know they're legcuffs. Don't change this, no need for an extra variable. The "B" is used to tell them apart.
 					for(var/mob/O in viewers(H, null))
 						if(O == H)
 							continue
-						O.show_message(span("danger", "[H] steps on \the [src]."), 1)
-		if(isAnimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
+						O.show_message(SPAN_DANGER("[H] steps on \the [src]."), 1)
+		if(isanimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
 			armed = 0
 			var/mob/living/simple_animal/SA = AM
 			SA.health -= 20

@@ -52,7 +52,7 @@ var/prison_shuttle_timeleft = 0
 					A.state = 3
 					A.icon_state = "3"
 				else
-					to_chat(user, span("info", "You disconnect the monitor."))
+					to_chat(user, SPAN_INFO("You disconnect the monitor."))
 					A.state = 4
 					A.icon_state = "4"
 
@@ -66,7 +66,7 @@ var/prison_shuttle_timeleft = 0
 
 	attack_hand(var/mob/user as mob)
 		if(!src.allowed(user) && (!hacked))
-			to_chat(user, span("warning", "Access denied."))
+			to_chat(user, SPAN_WARNING("Access denied."))
 			return
 		if(prison_break)
 			user << "\red Unable to locate shuttle."

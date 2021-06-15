@@ -289,11 +289,11 @@
 		nutrition = max(nutrition - rand(1, 5), 0)
 		handle_regular_hud_updates()
 	else
-		to_chat(src, span("warning", "You're out of energy! You need food!"))
+		to_chat(src, SPAN_WARNING("You're out of energy! You need food!"))
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
 /mob/proc/face_atom(atom/A)
-	if(buckled || !A || !x || !y || !A.x || !A.y || (stat && !isObserver(src)))
+	if(buckled || !A || !x || !y || !A.x || !A.y || (stat && !isobserver(src)))
 		return
 	var/dx = A.x - x
 	var/dy = A.y - y

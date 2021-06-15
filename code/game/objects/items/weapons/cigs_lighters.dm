@@ -28,7 +28,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	attack_verb = list("burnt", "singed")
 
 /obj/item/weapon/match/process()
-	if(isLiving(loc))
+	if(isliving(loc))
 		var/mob/living/M = loc
 		M.IgniteMob()
 	var/turf/location = get_turf(src)
@@ -159,7 +159,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 
 /obj/item/clothing/mask/cigarette/process()
-	if(isLiving(loc))
+	if(isliving(loc))
 		var/mob/living/M = loc
 		M.IgniteMob()
 	var/turf/location = get_turf(src)
@@ -170,7 +170,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(location)
 		location.hotspot_expose(700, 5)
 	if(reagents && reagents.total_volume)	//	check if it has any reagents at all
-		if(isCarbon(loc) && (src == loc:wear_mask)) // if it's in the human/monkey mouth, transfer reagents to the mob
+		if(iscarbon(loc) && (src == loc:wear_mask)) // if it's in the human/monkey mouth, transfer reagents to the mob
 			var/mob/living/carbon/C = loc
 			if(prob(15)) // so it's not an instarape in case of acid
 				reagents.reaction(C, INGEST)

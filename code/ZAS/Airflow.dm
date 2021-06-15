@@ -10,10 +10,10 @@ Contains helper procs for airflow, handled in /connection_group.
 	if(last_airflow_stun > world.time - vsc.airflow_stun_cooldown)
 		return 0
 	if(!(status_flags & CANSTUN) && !(status_flags & CANWEAKEN))
-		to_chat(src, span("info", "You stay upright as the air rushes past you."))
+		to_chat(src, SPAN_INFO("You stay upright as the air rushes past you."))
 		return 0
 	if(weakened <= 0)
-		to_chat(src, span("warning", "The sudden rush of air knocks you over!"))
+		to_chat(src, SPAN_WARNING("The sudden rush of air knocks you over!"))
 	weakened = max(weakened, 5)
 	last_airflow_stun = world.time
 
@@ -32,10 +32,10 @@ Contains helper procs for airflow, handled in /connection_group.
 		if(shoes.flags & NOSLIP)
 			return 0
 	if(!(status_flags & CANSTUN) && !(status_flags & CANWEAKEN))
-		to_chat(src, span("info", "You stay upright as the air rushes past you."))
+		to_chat(src, SPAN_INFO("You stay upright as the air rushes past you."))
 		return 0
 	if(weakened <= 0)
-		to_chat(src, span("warning", "The sudden rush of air knocks you over!"))
+		to_chat(src, SPAN_WARNING("The sudden rush of air knocks you over!"))
 	weakened = max(weakened, rand(1, 5))
 	last_airflow_stun = world.time
 
@@ -101,7 +101,7 @@ Contains helper procs for airflow, handled in /connection_group.
 				if(istype(src:shoes, /obj/item/clothing/shoes/magboots))
 					if(src:shoes:magpulse)
 						return
-		to_chat(src, span("warning", "You are sucked away by airflow!"))
+		to_chat(src, SPAN_WARNING("You are sucked away by airflow!"))
 	var/airflow_falloff = 9 - ul_FalloffAmount(airflow_dest) //It's a fast falloff calc.  Very useful.
 	if(airflow_falloff < 1)
 		airflow_dest = null
@@ -168,7 +168,7 @@ Contains helper procs for airflow, handled in /connection_group.
 				if(istype(src:shoes, /obj/item/clothing/shoes/magboots))
 					if(src:shoes.flags & NOSLIP)
 						return
-		to_chat(src, span("warning", "You are pushed away by airflow!"))
+		to_chat(src, SPAN_WARNING("You are pushed away by airflow!"))
 		last_airflow = world.time
 	var/airflow_falloff = 9 - ul_FalloffAmount(airflow_dest) //It's a fast falloff calc.  Very useful.
 	if(airflow_falloff < 1)
@@ -221,14 +221,14 @@ Contains helper procs for airflow, handled in /connection_group.
 
 /mob/airflow_hit(atom/A)
 	for(var/mob/M in hearers(src))
-		M.show_message(span("danger", "\The [src] slams into \a [A]!"), 1, span("warning", "You hear a loud slam!"), 2)
+		M.show_message(SPAN_DANGER("\The [src] slams into \a [A]!"), 1, SPAN_WARNING("You hear a loud slam!"), 2)
 	playsound(src, "smash.ogg", 25, 1, -1)
 	weakened = max(weakened, (istype(A, /obj/item) ? A:w_class : rand(1, 5))) //Heheheh
 	. = ..()
 
 /obj/airflow_hit(atom/A)
 	for(var/mob/M in hearers(src))
-		M.show_message(span("danger", "\The [src] slams into \a [A]!"), 1, span("warning", "You hear a loud slam!"), 2)
+		M.show_message(SPAN_DANGER("\The [src] slams into \a [A]!"), 1, SPAN_WARNING("You hear a loud slam!"), 2)
 	playsound(src, "smash.ogg", 25, 1, -1)
 	. = ..()
 

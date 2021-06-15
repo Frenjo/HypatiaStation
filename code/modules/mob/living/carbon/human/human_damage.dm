@@ -284,7 +284,7 @@ This function restores all organs.
 		return 0
 
 	var/datum/organ/external/organ = null
-	if(isOrgan(def_zone))
+	if(isorgan(def_zone))
 		organ = def_zone
 	else
 		if(!def_zone)

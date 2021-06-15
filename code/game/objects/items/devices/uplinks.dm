@@ -366,14 +366,14 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 // The purchasing code.
 /obj/item/device/uplink/hidden/Topic(href, href_list)
-	if (usr.stat || usr.restrained())
+	if(usr.stat || usr.restrained())
 		return
 
-	if (!( istype(usr, /mob/living/carbon/human)))
+	if(!(ishuman(usr)))
 		return 0
 	var/mob/user = usr
 	var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
-	if ((usr.contents.Find(src.loc) || (in_range(src.loc, usr) && istype(src.loc.loc, /turf))))
+	if((usr.contents.Find(src.loc) || (in_range(src.loc, usr) && istype(src.loc.loc, /turf))))
 		usr.set_machine(src)
 		if(href_list["lock"])
 			toggle()
@@ -388,7 +388,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			var/path_obj = text2path(href_list["buy_item"])
 
 			var/obj/I = new path_obj(get_turf(usr))
-			if(isHuman(usr))
+			if(ishuman(usr))
 				var/mob/living/carbon/human/A = usr
 				A.put_in_any_hand_if_possible(I)
 			purchase_log += "[usr] ([usr.ckey]) bought [I]."

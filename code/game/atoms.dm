@@ -252,7 +252,7 @@ its easier to just keep the beam vertical.
 		return
 	if(isnull(M.key))
 		return
-	if(isHuman(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(!istype(H.dna, /datum/dna))
 			return 0
@@ -279,7 +279,7 @@ its easier to just keep the beam vertical.
 		return
 	if(isnull(M.key))
 		return
-	if(isHuman(M))
+	if(ishuman(M))
 		//Add the list if it does not exist.
 		if(!fingerprintshidden)
 			fingerprintshidden = list()

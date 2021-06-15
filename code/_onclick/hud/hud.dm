@@ -199,7 +199,7 @@ var/list/global_huds = list(
 	if(!mymob)
 		return
 
-	if(isHuman(mymob))
+	if(ishuman(mymob))
 		var/mob/living/carbon/human/H = mymob
 		if(inventory_shown && hud_shown)
 			if(H.shoes)
@@ -245,7 +245,7 @@ var/list/global_huds = list(
 	if(!mymob)
 		return
 
-	if(isHuman(mymob))
+	if(ishuman(mymob))
 		var/mob/living/carbon/human/H = mymob
 		if(hud_shown)
 			if(H.s_store)
@@ -284,19 +284,19 @@ var/list/global_huds = list(
 	var/ui_color = mymob.client.prefs.UI_style_color
 	var/ui_alpha = mymob.client.prefs.UI_style_alpha
 
-	if(isHuman(mymob))
+	if(ishuman(mymob))
 		human_hud(ui_style, ui_color, ui_alpha, mymob) // Pass the player the UI style chosen in preferences
-	else if(isMonkey(mymob))
+	else if(ismonkey(mymob))
 		monkey_hud(ui_style)
-	else if(isBrain(mymob))
+	else if(isbrain(mymob))
 		brain_hud(ui_style)
-	else if(isLarva(mymob) || isAlien(mymob))
+	else if(islarva(mymob) || isalien(mymob))
 		larva_hud()
 	else if(isAI(mymob))
 		ai_hud()
-	else if(isRobot(mymob))
+	else if(isrobot(mymob))
 		robot_hud()
-	else if(isObserver(mymob))
+	else if(isobserver(mymob))
 		ghost_hud()
 
 	create_parallax()
@@ -307,7 +307,7 @@ var/list/global_huds = list(
 	set hidden = 1
 
 	if(hud_used)
-		if(isHuman(src))
+		if(ishuman(src))
 			if(!client)
 				return
 			if(client.view != world.view)
@@ -361,6 +361,6 @@ var/list/global_huds = list(
 			hud_used.persistant_inventory_update()
 			update_action_buttons()
 		else
-			to_chat(usr, span("warning", "Inventory hiding is currently only supported for human mobs, sorry."))
+			to_chat(usr, SPAN_WARNING("Inventory hiding is currently only supported for human mobs, sorry."))
 	else
-		to_chat(usr, span("warning", "This mob type does not use a HUD."))
+		to_chat(usr, SPAN_WARNING("This mob type does not use a HUD."))

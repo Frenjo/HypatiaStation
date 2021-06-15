@@ -46,7 +46,7 @@
 		src << "<span class='game say'><span class='name'>[speaker_name]</span>[alt_name] [track][verbage], <span class='message'><span class='[style]'>\"[message]\"</span></span></span>"
 
 
-/mob/proc/hear_radio(var/message, var/verbage = "says", var/datum/language/language = null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/vname = "")
+/mob/proc/hear_radio(message, verbage = "says", datum/language/language = null, part_a, part_b, mob/speaker = null, hard_to_hear = 0, vname = "")
 	if(!client)
 		return
 
@@ -58,7 +58,7 @@
 
 	var/style = "body"
 	if(!say_understands(speaker, language))
-		if(istype(speaker, /mob/living/simple_animal))
+		if(isanimal(speaker))
 			var/mob/living/simple_animal/S = speaker
 			message = pick(S.speak)
 		else
@@ -73,7 +73,7 @@
 
 	var/speaker_name = vname ? vname : speaker.name
 
-	if(istype(speaker, /mob/living/carbon/human))
+	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
 		if(H.voice)
 			speaker_name = H.voice
@@ -83,16 +83,16 @@
 
 	if(istype(src, /mob/living/silicon/ai) && !hard_to_hear)
 		var/jobname // the mob's "job"
-		if (isHuman(speaker))
+		if(ishuman(speaker))
 			var/mob/living/carbon/human/H = speaker
 			jobname = H.get_assignment()
-		else if (isCarbon(speaker)) // Nonhuman carbon mob
+		else if(iscarbon(speaker)) // Nonhuman carbon mob
 			jobname = "No id"
-		else if (isAI(speaker))
+		else if(isAI(speaker))
 			jobname = "AI"
-		else if (isRobot(speaker))
+		else if(isrobot(speaker))
 			jobname = "Cyborg"
-		else if (istype(speaker, /mob/living/silicon/pai))
+		else if(ispAI(speaker))
 			jobname = "Personal AI"
 		else
 			jobname = "Unknown"

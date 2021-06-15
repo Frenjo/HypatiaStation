@@ -9,10 +9,11 @@
 	var/toxpwr = 0.7 // Toxins are really weak, but without being treated, last very long.
 	custom_metabolism = 0.1
 
-/datum/reagent/toxin/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
+/datum/reagent/toxin/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
 	if(toxpwr)
-		M.adjustToxLoss(toxpwr*REM)
+		M.adjustToxLoss(toxpwr * REM)
 	..()
 	return
 
@@ -33,13 +34,13 @@
 	color = "#13BC5E" // rgb: 19, 188, 94
 	toxpwr = 0
 
-/datum/reagent/toxin/mutagen/reaction_mob(var/mob/living/carbon/M, var/method=TOUCH, var/volume)
+/datum/reagent/toxin/mutagen/reaction_mob(mob/living/carbon/M, method = TOUCH, volume)
 	if(!..())
 		return
 	if(!istype(M) || !M.dna)
 		return  //No robots, AIs, aliens, Ians or other mobs should be affected by this.
 	qdel(src)
-	if((method==TOUCH && prob(33)) || method == INGEST)
+	if((method == TOUCH && prob(33)) || method == INGEST)
 		randmuti(M)
 		if(prob(98))
 			randmutb(M)
@@ -49,7 +50,7 @@
 		M.UpdateAppearance()
 	return
 
-/datum/reagent/toxin/mutagen/on_mob_life(var/mob/living/carbon/M)
+/datum/reagent/toxin/mutagen/on_mob_life(mob/living/carbon/M)
 	if(!istype(M))
 		return
 	if(!M)
@@ -68,7 +69,7 @@
 	var/toxpwr = 3
 	custom_metabolism = 0.1
 
-/datum/reagent/plasma/on_mob_life(var/mob/living/M as mob, var/alien)
+/datum/reagent/plasma/on_mob_life(mob/living/M as mob, alien)
 	if(!M)
 		M = holder.my_atom
 	if(alien && alien == IS_PLASMAPERSON)
@@ -78,11 +79,11 @@
 		M.adjustToxLoss(toxpwr * REM)
 
 	if(holder.has_reagent("inaprovaline"))
-		holder.remove_reagent("inaprovaline", 2*REM)
+		holder.remove_reagent("inaprovaline", 2 * REM)
 	..()
 	return
 
-/datum/reagent/plasma/reaction_obj(var/obj/O, var/volume)
+/datum/reagent/plasma/reaction_obj(obj/O, volume)
 	qdel(src)
 	/*if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/egg/slime))
 		var/obj/item/weapon/reagent_containers/food/snacks/egg/slime/egg = O
@@ -93,7 +94,7 @@
 	var/turf/the_turf = get_turf(O)
 	the_turf.assume_gas("volatile_fuel", volume, T20C)
 
-/datum/reagent/plasma/reaction_turf(var/turf/T, var/volume)
+/datum/reagent/plasma/reaction_turf(turf/T, volume)
 	qdel(src)
 	T.assume_gas("volatile_fuel", volume, T20C)
 	return
@@ -107,14 +108,16 @@
 	toxpwr = 0
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/toxin/lexorin/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/toxin/lexorin/on_mob_life(mob/living/M as mob)
 	if(M.stat == 2.0)
 		return
-	if(!M) M = holder.my_atom
+	if(!M)
+		M = holder.my_atom
 	if(prob(33))
-		M.take_organ_damage(1*REM, 0)
+		M.take_organ_damage(1 * REM, 0)
 	M.adjustOxyLoss(3)
-	if(prob(20)) M.emote("gasp")
+	if(prob(20))
+		M.emote("gasp")
 	..()
 	return
 
@@ -127,12 +130,12 @@
 	color = "#801E28" // rgb: 128, 30, 40
 	toxpwr = 0
 
-/datum/reagent/toxin/slimejelly/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/toxin/slimejelly/on_mob_life(mob/living/M as mob)
 	if(prob(10))
-		M << "\red Your insides are burning!"
-		M.adjustToxLoss(rand(20,60)*REM)
+		to_chat(M, SPAN_WARNING("Your insides are burning!"))
+		M.adjustToxLoss(rand(20, 60) * REM)
 	else if(prob(40))
-		M.heal_organ_damage(5*REM,0)
+		M.heal_organ_damage(5 * REM, 0)
 	..()
 	return
 
@@ -146,9 +149,10 @@
 	toxpwr = 4
 	custom_metabolism = 0.4
 
-/datum/reagent/toxin/cyanide/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
-	M.adjustOxyLoss(4*REM)
+/datum/reagent/toxin/cyanide/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
+	M.adjustOxyLoss(4 * REM)
 	M.sleeping += 1
 	..()
 	return
@@ -162,9 +166,10 @@
 	color = "#CF3600" // rgb: 207, 54, 0
 	toxpwr = 0
 
-/datum/reagent/toxin/minttoxin/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
-	if (FAT in M.mutations)
+/datum/reagent/toxin/minttoxin/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
+	if(FAT in M.mutations)
 		M.gib()
 	..()
 	return
@@ -186,10 +191,11 @@
 	color = "#669900" // rgb: 102, 153, 0
 	toxpwr = 0.5
 
-/datum/reagent/toxin/zombiepowder/on_mob_life(var/mob/living/carbon/M as mob)
-	if(!M) M = holder.my_atom
+/datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/carbon/M as mob)
+	if(!M)
+		M = holder.my_atom
 	M.status_flags |= FAKEDEATH
-	M.adjustOxyLoss(0.5*REM)
+	M.adjustOxyLoss(0.5 * REM)
 	M.Weaken(10)
 	M.silent = max(M.silent, 10)
 	M.tod = worldtime2text()
@@ -213,7 +219,7 @@
 	custom_metabolism = 0.05
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/toxin/mindbreaker/on_mob_life(var/mob/living/M)
+/datum/reagent/toxin/mindbreaker/on_mob_life(mob/living/M)
 	if(!M) M = holder.my_atom
 	M.hallucination += 10
 	..()
@@ -229,7 +235,7 @@
 	toxpwr = 1
 
 	// Clear off wallrot fungi
-/datum/reagent/toxin/plantbgone/reaction_turf(var/turf/T, var/volume)
+/datum/reagent/toxin/plantbgone/reaction_turf(turf/T, volume)
 	if(istype(T, /turf/simulated/wall))
 		var/turf/simulated/wall/W = T
 		if(W.rotting)
@@ -239,26 +245,27 @@
 					qdel(E)
 
 			for(var/mob/O in viewers(W, null))
-				O.show_message(text("\blue The fungi are completely dissolved by the solution!"), 1)
+				O.show_message(SPAN_INFO("The fungi are completely dissolved by the solution!"), 1)
 
-/datum/reagent/toxin/plantbgone/reaction_obj(var/obj/O, var/volume)
-	if(istype(O,/obj/effect/alien/weeds/))
+/datum/reagent/toxin/plantbgone/reaction_obj(obj/O, volume)
+	if(istype(O, /obj/effect/alien/weeds/))
 		var/obj/effect/alien/weeds/alien_weeds = O
-		alien_weeds.health -= rand(15,35) // Kills alien weeds pretty fast
+		alien_weeds.health -= rand(15, 35) // Kills alien weeds pretty fast
 		alien_weeds.healthcheck()
-	else if(istype(O,/obj/effect/glowshroom)) //even a small amount is enough to kill it
+	else if(istype(O, /obj/effect/glowshroom)) //even a small amount is enough to kill it
 		qdel(O)
-	else if(istype(O,/obj/effect/spacevine))
-		if(prob(50)) qdel(O) //Kills kudzu too.
+	else if(istype(O, /obj/effect/spacevine))
+		if(prob(50))
+			qdel(O) //Kills kudzu too.
 	// Damage that is done to growing plants is separately at code/game/machinery/hydroponics at obj/item/hydroponics
 
-/datum/reagent/toxin/plantbgone/reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)
+/datum/reagent/toxin/plantbgone/reaction_mob(mob/living/M, method = TOUCH, volume)
 	qdel(src)
-	if(isCarbon(M))
+	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		if(!C.wear_mask) // If not wearing a mask
 			C.adjustToxLoss(2) // 4 toxic damage per application, doubled for some reason
-		if(isHuman(M))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.dna)
 				if(H.species.flags & IS_PLANT) //plantmen take a LOT of damage
@@ -276,9 +283,11 @@
 	overdose = 15
 	overdose_dam = 5
 
-/datum/reagent/toxin/chloralhydrate/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
-	if(!data) data = 1
+/datum/reagent/toxin/chloralhydrate/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
+	if(!data)
+		data = 1
 	data++
 	switch(data)
 		if(1)
@@ -301,12 +310,12 @@
 	toxpwr = 0
 	overdose = 30
 
-/datum/reagent/toxin/potassium_chloride/on_mob_life(var/mob/living/carbon/M as mob)
+/datum/reagent/toxin/potassium_chloride/on_mob_life(mob/living/carbon/M as mob)
 	var/mob/living/carbon/human/H = M
 	if(H.stat != 1)
-		if (volume >= overdose)
+		if(volume >= overdose)
 			if(H.losebreath >= 10)
-				H.losebreath = max(10, H.losebreath-10)
+				H.losebreath = max(10, H.losebreath - 10)
 			H.adjustOxyLoss(2)
 			H.Weaken(10)
 	..()
@@ -322,12 +331,12 @@
 	toxpwr = 2
 	overdose = 20
 
-/datum/reagent/toxin/potassium_chlorophoride/on_mob_life(var/mob/living/carbon/M as mob)
-	if(isHuman(M))
+/datum/reagent/toxin/potassium_chlorophoride/on_mob_life(mob/living/carbon/M as mob)
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.stat != 1)
 			if(H.losebreath >= 10)
-				H.losebreath = max(10, M.losebreath-10)
+				H.losebreath = max(10, M.losebreath - 10)
 			H.adjustOxyLoss(2)
 			H.Weaken(10)
 	..()
@@ -343,9 +352,11 @@
 	custom_metabolism = 0.15 // Sleep toxins should always be consumed pretty fast
 	overdose = REAGENTS_OVERDOSE/2
 
-/datum/reagent/toxin/beer2/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
-	if(!data) data = 1
+/datum/reagent/toxin/beer2/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
+	if(!data)
+		data = 1
 	switch(data)
 		if(1)
 			M.confused += 2
@@ -354,7 +365,7 @@
 			M.sleeping += 1
 		if(51 to INFINITY)
 			M.sleeping += 1
-			M.adjustToxLoss((data - 50)*REM)
+			M.adjustToxLoss((data - 50) * REM)
 	data++
 	..()
 	return
@@ -369,54 +380,54 @@
 	toxpwr = 1
 	var/meltprob = 10
 
-/datum/reagent/toxin/acid/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
-	M.take_organ_damage(0, 1*REM)
+/datum/reagent/toxin/acid/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
+	M.take_organ_damage(0, 1 * REM)
 	..()
 	return
 
-/datum/reagent/toxin/acid/reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)//magic numbers everywhere
-	if(!istype(M, /mob/living))
+/datum/reagent/toxin/acid/reaction_mob(mob/living/M, method = TOUCH, volume)//magic numbers everywhere
+	if(!isliving(M))
 		return
 	if(method == TOUCH)
-		if(isHuman(M))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-
 			if(H.head)
 				if(prob(meltprob) && !H.head.unacidable)
-					H << "<span class='danger'>Your headgear melts away but protects you from the acid!</span>"
+					to_chat(H, SPAN_DANGER("Your headgear melts away but protects you from the acid!"))
 					qdel(H.head)
 					H.update_inv_head(0)
 					H.update_hair(0)
 				else
-					H << "<span class='warning'>Your headgear protects you from the acid.</span>"
+					to_chat(H, SPAN_WARNING("Your headgear protects you from the acid."))
 				return
 
 			if(H.wear_mask)
 				if(prob(meltprob) && !H.wear_mask.unacidable)
-					H << "<span class='danger'>Your mask melts away but protects you from the acid!</span>"
+					to_chat(H, SPAN_DANGER("Your mask melts away but protects you from the acid!"))
 					qdel(H.wear_mask)
 					H.update_inv_wear_mask(0)
 					H.update_hair(0)
 				else
-					H << "<span class='warning'>Your mask protects you from the acid.</span>"
+					to_chat(H, SPAN_WARNING("Your mask protects you from the acid."))
 				return
 
 			if(H.glasses) //Doesn't protect you from the acid but can melt anyways!
 				if(prob(meltprob) && !H.glasses.unacidable)
-					H << "<span class='danger'>Your glasses melts away!</span>"
+					to_chat(H, SPAN_DANGER("Your glasses melt away!"))
 					qdel(H.glasses)
 					H.update_inv_glasses(0)
 
-		else if(isMonkey(M))
+		else if(ismonkey(M))
 			var/mob/living/carbon/monkey/MK = M
 			if(MK.wear_mask)
 				if(!MK.wear_mask.unacidable)
-					MK << "<span class='danger'>Your mask melts away but protects you from the acid!</span>"
+					to_chat(MK, SPAN_DANGER("Your mask melts away but protects you from the acid!"))
 					qdel(MK.wear_mask)
 					MK.update_inv_wear_mask(0)
 				else
-					MK << "<span class='warning'>Your mask protects you from the acid.</span>"
+					to_chat(MK, SPAN_WARNING("Your mask protects you from the acid."))
 				return
 
 		if(!M.unacidable)
@@ -424,24 +435,24 @@
 				var/mob/living/carbon/human/H = M
 				var/datum/organ/external/affecting = H.get_organ("head")
 				if(affecting)
-					if(affecting.take_damage(4*toxpwr, 2*toxpwr))
+					if(affecting.take_damage(4 * toxpwr, 2 * toxpwr))
 						H.UpdateDamageIcon()
 					if(prob(meltprob)) //Applies disfigurement
 						H.emote("scream")
 						H.status_flags |= DISFIGURED
 			else
-				M.take_organ_damage(min(6*toxpwr, volume * toxpwr)) // uses min() and volume to make sure they aren't being sprayed in trace amounts (1 unit != insta rape) -- Doohl
+				M.take_organ_damage(min(6 * toxpwr, volume * toxpwr)) // uses min() and volume to make sure they aren't being sprayed in trace amounts (1 unit != insta rape) -- Doohl
 	else
 		if(!M.unacidable)
-			M.take_organ_damage(min(6*toxpwr, volume * toxpwr))
+			M.take_organ_damage(min(6 * toxpwr, volume * toxpwr))
 
-/datum/reagent/toxin/acid/reaction_obj(var/obj/O, var/volume)
-	if((istype(O,/obj/item) || istype(O,/obj/effect/glowshroom)) && prob(meltprob * 3))
+/datum/reagent/toxin/acid/reaction_obj(obj/O, volume)
+	if((istype(O, /obj/item) || istype(O, /obj/effect/glowshroom)) && prob(meltprob * 3))
 		if(!O.unacidable)
 			var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 			I.desc = "Looks like this was \an [O] some time ago."
 			for(var/mob/M in viewers(5, O))
-				M << "\red \the [O] melts."
+				to_chat(M, SPAN_WARNING("\the [O] melts."))
 			qdel(O)
 
 

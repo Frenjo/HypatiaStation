@@ -82,7 +82,7 @@ RCD
 /obj/item/weapon/rcd/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
-	if(disabled && !isRobot(user))
+	if(disabled && !isrobot(user))
 		return 0
 	if(istype(A,/area/shuttle)||istype(A,/turf/space/transit))
 		return 0
@@ -179,12 +179,12 @@ RCD
 /obj/item/weapon/rcd/proc/checkResource(var/amount, var/mob/user)
 	return matter >= amount
 /obj/item/weapon/rcd/borg/useResource(var/amount, var/mob/user)
-	if(!isRobot(user))
+	if(!isrobot(user))
 		return 0
 	return user:cell:use(amount * 30)
 
 /obj/item/weapon/rcd/borg/checkResource(var/amount, var/mob/user)
-	if(!isRobot(user))
+	if(!isrobot(user))
 		return 0
 	return user:cell:charge >= (amount * 30)
 

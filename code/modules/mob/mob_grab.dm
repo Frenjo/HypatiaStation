@@ -110,7 +110,7 @@
 
 	if(state >= GRAB_NECK)
 		affecting.Stun(1)
-		if(isLiving(affecting))
+		if(isliving(affecting))
 			var/mob/living/L = affecting
 			L.adjustOxyLoss(1)
 
@@ -143,7 +143,7 @@
 		icon_state = "grabbed1"
 
 	else if(state < GRAB_NECK)
-		if(isSlime(affecting))
+		if(isslime(affecting))
 			assailant << "<span class='notice'>You squeeze [affecting], but nothing interesting happens.</span>"
 			return
 
@@ -208,14 +208,14 @@
 	if(M == assailant && state >= GRAB_AGGRESSIVE)
 		var/can_eat
 
-		if((FAT in user.mutations) && isMonkey(affecting))
+		if((FAT in user.mutations) && ismonkey(affecting))
 			can_eat = 1
 		else
 			var/mob/living/carbon/human/H = user
-			if(istype(H) && isCarbon(affecting) && H.species.gluttonous)
+			if(istype(H) && iscarbon(affecting) && H.species.gluttonous)
 				if(H.species.gluttonous == 2)
 					can_eat = 2
-				else if(!isHuman(affecting))
+				else if(!ishuman(affecting))
 					can_eat = 1
 
 		if(can_eat)

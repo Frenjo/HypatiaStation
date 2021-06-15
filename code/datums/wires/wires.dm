@@ -100,7 +100,7 @@ var/list/wireColours = list("red", "blue", "green", "black", "orange", "brown", 
 
 /datum/wires/Topic(href, href_list)
 	..()
-	if(in_range(holder, usr) && isLiving(usr))
+	if(in_range(holder, usr) && isliving(usr))
 
 		var/mob/living/L = usr
 		if(CanUse(L) && href_list["action"])
@@ -111,14 +111,14 @@ var/list/wireColours = list("red", "blue", "green", "black", "orange", "brown", 
 					var/colour = href_list["cut"]
 					CutWireColour(colour)
 				else
-					to_chat(L, span("error", "You need wirecutters!"))
+					to_chat(L, SPAN_ERROR("You need wirecutters!"))
 
 			else if(href_list["pulse"])
 				if(istype(I, /obj/item/device/multitool))
 					var/colour = href_list["pulse"]
 					PulseColour(colour)
 				else
-					to_chat(L, span("error", "You need a multitool!"))
+					to_chat(L, SPAN_ERROR("You need a multitool!"))
 
 			else if(href_list["attach"])
 				var/colour = href_list["attach"]
@@ -134,7 +134,7 @@ var/list/wireColours = list("red", "blue", "green", "black", "orange", "brown", 
 						L.drop_item()
 						Attach(colour, I)
 					else
-						to_chat(L, span("error", "You need a remote signaller!"))
+						to_chat(L, SPAN_ERROR("You need a remote signaller!"))
 
 
 		// Update Window

@@ -436,7 +436,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 
 //=======//CURRENT PLAYER VERB//=======//
 
-/client/proc/cmd_admin_ninjafy(var/mob/M in player_list)
+/client/proc/cmd_admin_ninjafy(mob/M in player_list)
 	set category = null
 	set name = "Make Space Ninja"
 
@@ -448,9 +448,10 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 		return
 
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
-	if(confirm != "Yes") return
+	if(confirm != "Yes")
+		return
 
-	if(isHuman(M))
+	if(ishuman(M))
 		log_admin("[key_name(src)] turned [M.key] into a Space Ninja.")
 		spawn(10)
 			M:create_mind_space_ninja()
@@ -458,7 +459,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 			if(istype(M:wear_suit, /obj/item/clothing/suit/space/space_ninja))
 				M:wear_suit:randomize_param()
 				spawn(0)
-					M:wear_suit:ninitialize(10,M)
+					M:wear_suit:ninitialize(10, M)
 	else
 		alert("Invalid mob")
 
@@ -479,12 +480,12 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 	if(!toggle_space_ninja)
 		alert("Space Ninjas spawning is disabled.")
 		return
-	if(alert("Are you sure you want to send in a space ninja?",,"Yes","No")=="No")
+	if(alert("Are you sure you want to send in a space ninja?", , "Yes", "No") == "No")
 		return
 
 	var/mission
 	while(!mission)
-		mission = copytext(sanitize(input(src, "Please specify which mission the space ninja shall undertake.", "Specify Mission", "")),1,MAX_MESSAGE_LEN)
+		mission = copytext(sanitize(input(src, "Please specify which mission the space ninja shall undertake.", "Specify Mission", "")), 1, MAX_MESSAGE_LEN)
 		if(!mission)
 			if(alert("Error, no mission set. Do you want to exit the setup process?",,"Yes","No")=="Yes")
 				return
@@ -524,7 +525,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 	//ticker.mode.ninjas |= mind
 	return 1
 
-/mob/living/carbon/human/proc/equip_space_ninja(safety=0)//Safety in case you need to unequip stuff for existing characters.
+/mob/living/carbon/human/proc/equip_space_ninja(safety = 0)//Safety in case you need to unequip stuff for existing characters.
 	if(safety)
 		qdel(w_uniform)
 		qdel(wear_suit)
@@ -535,7 +536,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 
 	var/obj/item/device/radio/R = new /obj/item/device/radio/headset(src)
 	equip_to_slot_or_del(R, slot_l_ear)
-	if(gender==FEMALE)
+	if(gender == FEMALE)
 		equip_to_slot_or_del(new /obj/item/clothing/under/color/blackf(src), slot_w_uniform)
 	else
 		equip_to_slot_or_del(new /obj/item/clothing/under/color/black(src), slot_w_uniform)
@@ -554,45 +555,45 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 
 //Randomizes suit parameters.
 /obj/item/clothing/suit/space/space_ninja/proc/randomize_param()
-	s_cost = rand(1,20)
-	s_acost = rand(20,100)
-	k_cost = rand(100,500)
-	k_damage = rand(1,20)
-	s_delay = rand(10,100)
-	s_bombs = rand(5,20)
-	a_boost = rand(1,7)
+	s_cost = rand(1, 20)
+	s_acost = rand(20, 100)
+	k_cost = rand(100, 500)
+	k_damage = rand(1, 20)
+	s_delay = rand(10, 100)
+	s_bombs = rand(5, 20)
+	a_boost = rand(1, 7)
 
 //This proc prevents the suit from being taken off.
 /obj/item/clothing/suit/space/space_ninja/proc/lock_suit(mob/living/carbon/U, X = 0)
 	if(X)//If you want to check for icons.
-		icon_state = U.gender==FEMALE ? "s-ninjanf" : "s-ninjan"
+		icon_state = U.gender == FEMALE ? "s-ninjanf" : "s-ninjan"
 		U:gloves.icon_state = "s-ninjan"
 		U:gloves.item_state = "s-ninjan"
 	else
-		if(U.mind.special_role!="Ninja")
-			U << "\red <B>fÄTaL ÈÈRRoR</B>: 382200-*#00CÖDE <B>RED</B>\nUNAU†HORIZED USÈ DETÈC†††eD\nCoMMÈNCING SUB-R0U†IN3 13...\nTÈRMInATING U-U-USÈR..."
+		if(U.mind.special_role != "Ninja")
+			to_chat(U, SPAN_WARNING("<B>fï¿½TaL ï¿½ï¿½RRoR</B>: 382200-*#00Cï¿½DE <B>RED</B>\nUNAUï¿½HORIZED USï¿½ DETï¿½Cï¿½ï¿½ï¿½eD\nCoMMï¿½NCING SUB-R0Uï¿½IN3 13...\nTï¿½RMInATING U-U-USï¿½R..."))
 			U.gib()
 			return 0
 		if(!istype(U:head, /obj/item/clothing/head/helmet/space/space_ninja))
-			U << "\red <B>ERROR</B>: 100113 \black UNABLE TO LOCATE HEAD GEAR\nABORTING..."
+			to_chat(U, SPAN_WARNING("<B>ERROR</B>: 100113 \black UNABLE TO LOCATE HEAD GEAR\nABORTING..."))
 			return 0
 		if(!istype(U:shoes, /obj/item/clothing/shoes/space_ninja))
-			U << "\red <B>ERROR</B>: 122011 \black UNABLE TO LOCATE FOOT GEAR\nABORTING..."
+			to_chat(U, SPAN_WARNING("<B>ERROR</B>: 122011 \black UNABLE TO LOCATE FOOT GEAR\nABORTING..."))
 			return 0
 		if(!istype(U:gloves, /obj/item/clothing/gloves/space_ninja))
-			U << "\red <B>ERROR</B>: 110223 \black UNABLE TO LOCATE HAND GEAR\nABORTING..."
+			to_chat(U, SPAN_WARNING("<B>ERROR</B>: 110223 \black UNABLE TO LOCATE HAND GEAR\nABORTING..."))
 			return 0
 
 		affecting = U
 		canremove = 0
 		slowdown = 0
 		n_hood = U:head
-		n_hood.canremove=0
+		n_hood.canremove = 0
 		n_shoes = U:shoes
-		n_shoes.canremove=0
+		n_shoes.canremove = 0
 		n_shoes.slowdown--
 		n_gloves = U:gloves
-		n_gloves.canremove=0
+		n_gloves.canremove = 0
 
 	return 1
 
@@ -603,16 +604,16 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 	slowdown = 1
 	icon_state = "s-ninja"
 	if(n_hood)//Should be attached, might not be attached.
-		n_hood.canremove=1
+		n_hood.canremove = 1
 	if(n_shoes)
-		n_shoes.canremove=1
+		n_shoes.canremove = 1
 		n_shoes.slowdown++
 	if(n_gloves)
 		n_gloves.icon_state = "s-ninja"
 		n_gloves.item_state = "s-ninja"
-		n_gloves.canremove=1
-		n_gloves.candrain=0
-		n_gloves.draining=0
+		n_gloves.canremove = 1
+		n_gloves.candrain = 0
+		n_gloves.draining = 0
 
 //Allows the mob to grab a stealth icon.
 /mob/proc/NinjaStealthActive(atom/A)//A is the atom which we are using as the overlay.
@@ -622,8 +623,8 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 	var/icon/alpha_mask_2 = new('icons/effects/effects.dmi', "at_shield1")
 	alpha_mask.AddAlphaMask(alpha_mask_2)
 	opacity_icon.AddAlphaMask(alpha_mask)
-	for(var/i=0,i<5,i++)//And now we add it as overlays. It's faster than creating an icon and then merging it.
-		var/image/I = image("icon" = opacity_icon, "icon_state" = A.icon_state, "layer" = layer+0.8)//So it's above other stuff but below weapons and the like.
+	for(var/i = 0, i < 5, i++)//And now we add it as overlays. It's faster than creating an icon and then merging it.
+		var/image/I = image("icon" = opacity_icon, "icon_state" = A.icon_state, "layer" = layer + 0.8)//So it's above other stuff but below weapons and the like.
 		switch(i)//Now to determine offset so the result is somewhat blurred.
 			if(1)
 				I.pixel_x -= 1
@@ -635,12 +636,12 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 				I.pixel_y += 1
 
 		overlays += I//And finally add the overlay.
-	overlays += image("icon"='icons/effects/effects.dmi',"icon_state" ="electricity","layer" = layer+0.9)
+	overlays += image("icon"='icons/effects/effects.dmi', "icon_state" = "electricity", "layer" = layer + 0.9)
 
 //When ninja steal malfunctions.
 /mob/proc/NinjaStealthMalf()
 	invisibility = 0//Set ninja invis to 0.
-	overlays += image("icon"='icons/effects/effects.dmi',"icon_state" ="electricity","layer" = layer+0.9)
+	overlays += image("icon"='icons/effects/effects.dmi', "icon_state" = "electricity", "layer" = layer + 0.9)
 	playsound(loc, 'sound/effects/stealthoff.ogg', 75, 1)
 
 //=======//GENERIC VERB MODIFIERS//=======//
@@ -673,8 +674,8 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 	verbs += /obj/item/clothing/suit/space/space_ninja/proc/ninjastar
 	verbs += /obj/item/clothing/suit/space/space_ninja/proc/ninjanet
 
-	s_initialized=1
-	slowdown=0
+	s_initialized = 1
+	slowdown = 0
 
 /obj/item/clothing/suit/space/space_ninja/proc/remove_ninja_verbs()
 	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/ninjashift
@@ -697,7 +698,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 
 	kamikaze = 1
 
-	icon_state = U.gender==FEMALE ? "s-ninjakf" : "s-ninjak"
+	icon_state = U.gender == FEMALE ? "s-ninjakf" : "s-ninjak"
 	if(n_gloves)
 		n_gloves.icon_state = "s-ninjak"
 		n_gloves.item_state = "s-ninjak"
@@ -708,7 +709,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 	cancel_stealth()
 
 	U << browse(null, "window=spideros")
-	U << "\red Do or Die, <b>LET'S ROCK!!</b>"
+	to_chat(U, SPAN_WARNING("Do or Die, <b>LET'S ROCK!!</b>"))
 
 /obj/item/clothing/suit/space/space_ninja/proc/remove_kamikaze(mob/living/carbon/U)
 	if(kamikaze)
@@ -726,7 +727,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 		U.incorporeal_move = 0
 		kamikaze = 0
 		k_unlock = 0
-		U << "\blue Disengaging mode...\n\black<b>CODE NAME</b>: \red <b>KAMIKAZE</b>"
+		to_chat(U, SPAN_INFO("Disengaging mode...\n\black<b>CODE NAME</b>: \red <b>KAMIKAZE</b>"))
 
 //=======//AI VERBS//=======//
 

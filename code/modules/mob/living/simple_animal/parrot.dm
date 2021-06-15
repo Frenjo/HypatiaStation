@@ -135,7 +135,7 @@
 		return
 
 	//Is the usr's mob type able to do this? (lolaliens)
-	if(isHuman(usr) || isMonkey(usr) || isRobot(usr))
+	if(ishuman(usr) || ismonkey(usr) || isrobot(usr))
 
 		//Removing from inventory
 		if(href_list["remove_inv"])
@@ -376,7 +376,7 @@
 		if(!held_item && !parrot_perch) //If we've got nothing to do.. look for something to do.
 			var/atom/movable/AM = search_for_perch_and_item() //This handles checking through lists so we know it's either a perch or stealable item
 			if(AM)
-				if(istype(AM, /obj/item) || isLiving(AM))	//If stealable item
+				if(istype(AM, /obj/item) || isliving(AM))	//If stealable item
 					parrot_interest = AM
 					emote("turns and flies towards [parrot_interest]")
 					parrot_state = PARROT_SWOOP | PARROT_STEAL
@@ -413,7 +413,7 @@
 
 		if(in_range(src, parrot_interest))
 
-			if(isLiving(parrot_interest))
+			if(isliving(parrot_interest))
 				steal_from_mob()
 
 			else //This should ensure that we only grab the item we want, and make sure it's not already collected on our perch
@@ -450,7 +450,7 @@
 //-----FLEEING
 	else if(parrot_state == (PARROT_SWOOP | PARROT_FLEE))
 		walk(src,0)
-		if(!parrot_interest || !isLiving(parrot_interest)) //Sanity
+		if(!parrot_interest || !isliving(parrot_interest)) //Sanity
 			parrot_state = PARROT_WANDER
 
 		walk_away(src, parrot_interest, 1, parrot_speed-parrot_been_shot)
@@ -461,7 +461,7 @@
 	else if(parrot_state == (PARROT_SWOOP | PARROT_ATTACK))
 
 		//If we're attacking a nothing, an object, a turf or a ghost for some stupid reason, switch to wander
-		if(!parrot_interest || !isLiving(parrot_interest))
+		if(!parrot_interest || !isliving(parrot_interest))
 			parrot_interest = null
 			parrot_state = PARROT_WANDER
 			return
@@ -487,7 +487,7 @@
 			//Time for the hurt to begin!
 			var/damage = rand(5,10)
 
-			if(isHuman(parrot_interest))
+			if(ishuman(parrot_interest))
 				var/mob/living/carbon/human/H = parrot_interest
 				var/datum/organ/external/affecting = H.get_organ(ran_zone(pick(parrot_dam_zone)))
 
@@ -532,7 +532,7 @@
 			if(I.w_class < 2)
 				return I
 
-		if(isCarbon(AM))
+		if(iscarbon(AM))
 			var/mob/living/carbon/C = AM
 			if((C.l_hand && C.l_hand.w_class <= 2) || (C.r_hand && C.r_hand.w_class <= 2))
 				return C
@@ -561,7 +561,7 @@
 			if(I.w_class <= 2)
 				return I
 
-		if(isCarbon(AM))
+		if(iscarbon(AM))
 			var/mob/living/carbon/C = AM
 			if(C.l_hand && C.l_hand.w_class <= 2 || C.r_hand && C.r_hand.w_class <= 2)
 				return C

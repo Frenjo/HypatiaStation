@@ -965,10 +965,10 @@
 	set name = "Enter Exosuit"
 	set src in oview(1)
 
-	if (usr.stat || !isHuman(usr))
+	if(usr.stat || !ishuman(usr))
 		return
 	src.log_message("[usr] tries to move in.")
-	if(isCarbon(usr))
+	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(C.handcuffed)
 			usr << "\red Kinda hard to climb in while handcuffed don't you think?"
@@ -1125,7 +1125,7 @@
 	if(!src.occupant)
 		return
 	var/atom/movable/mob_container
-	if(isHuman(occupant))
+	if(ishuman(occupant))
 		mob_container = src.occupant
 	else if(istype(occupant, /mob/living/carbon/brain))
 		var/mob/living/carbon/brain/brain = occupant

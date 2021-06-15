@@ -576,7 +576,7 @@ var/global/list/uneatable = list(
 /obj/machinery/singularity/narsie/proc/acquire(var/mob/food)
 	target << "\blue <b>NAR-SIE HAS LOST INTEREST IN YOU</b>"
 	target = food
-	if(isHuman(target))
+	if(ishuman(target))
 		target << "\red <b>NAR-SIE HUNGERS FOR YOUR SOUL</b>"
 	else
 		target << "\red <b>NAR-SIE HAS CHOSEN YOU TO LEAD HIM TO HIS NEXT MEAL</b>"

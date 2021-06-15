@@ -13,9 +13,9 @@
 
 
 /obj/item/weapon/paper_bin/MouseDrop(mob/user as mob)
-	if((user == usr && (!( usr.restrained() ) && (!( usr.stat ) && (usr.contents.Find(src) || in_range(src, usr))))))
-		if(!istype(usr, /mob/living/carbon/slime) && !istype(usr, /mob/living/simple_animal))
-			if( !usr.get_active_hand() )		//if active hand is empty
+	if((user == usr && (!(usr.restrained()) && (!(usr.stat) && (usr.contents.Find(src) || in_range(src, usr))))))
+		if(!isslime(usr) && !isanimal(usr))
+			if(!usr.get_active_hand())		//if active hand is empty
 				attack_hand(usr, 1, 1)
 
 	return
@@ -26,7 +26,7 @@
 
 
 /obj/item/weapon/paper_bin/attack_hand(mob/user as mob)
-	if (hasOrgans(user))
+	if(hasorgans(user))
 		var/datum/organ/external/temp = user:organs_by_name["r_hand"]
 		if (user.hand)
 			temp = user:organs_by_name["l_hand"]

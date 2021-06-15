@@ -1,7 +1,8 @@
 /client/proc/Debug2()
 	set category = "Debug"
 	set name = "Debug-Game"
-	if(!check_rights(R_DEBUG))	return
+	if(!check_rights(R_DEBUG))
+		return
 
 	if(Debug2)
 		Debug2 = 0
@@ -29,7 +30,8 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set category = "Debug"
 	set name = "Advanced ProcCall"
 
-	if(!check_rights(R_DEBUG)) return
+	if(!check_rights(R_DEBUG))
+		return
 
 	spawn(0)
 		var/target = null
@@ -42,14 +44,14 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		switch(alert("Proc owned by something?",,"Yes","No"))
 			if("Yes")
 				targetselected = 1
-				class = input("Proc owned by...","Owner",null) as null|anything in list("Obj","Mob","Area or Turf","Client")
+				class = input("Proc owned by...", "Owner", null) as null|anything in list("Obj", "Mob", "Area or Turf", "Client")
 				switch(class)
 					if("Obj")
-						target = input("Enter target:","Target",usr) as obj in world
+						target = input("Enter target:", "Target", usr) as obj in world
 					if("Mob")
-						target = input("Enter target:","Target",usr) as mob in world
+						target = input("Enter target:", "Target", usr) as mob in world
 					if("Area or Turf")
-						target = input("Enter target:","Target",usr.loc) as area|turf in world
+						target = input("Enter target:", "Target", usr.loc) as area|turf in world
 					if("Client")
 						var/list/keys = list()
 						for(var/client/C)
@@ -61,46 +63,46 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				target = null
 				targetselected = 0
 
-		var/procname = input("Proc path, eg: /proc/fake_blood","Path:", null) as text|null
-		if(!procname)	return
+		var/procname = input("Proc path, eg: /proc/fake_blood", "Path:", null) as text|null
+		if(!procname)
+			return
 
-		var/argnum = input("Number of arguments","Number:",0) as num|null
-		if(!argnum && (argnum!=0))	return
+		var/argnum = input("Number of arguments", "Number:", 0) as num|null
+		if(!argnum && (argnum != 0))
+			return
 
 		lst.len = argnum // Expand to right length
 		//TODO: make a list to store whether each argument was initialised as null.
 		//Reason: So we can abort the proccall if say, one of our arguments was a mob which no longer exists
 		//this will protect us from a fair few errors ~Carn
 
-		var/i
-		for(i=1, i<argnum+1, i++) // Lists indexed from 1 forwards in byond
-
+		for(var/i = 1, i < argnum + 1, i++) // Lists indexed from 1 forwards in byond
 			// Make a list with each index containing one variable, to be given to the proc
-			class = input("What kind of variable?","Variable Type") in list("text","num","type","reference","mob reference","icon","file","client","mob's area","CANCEL")
+			class = input("What kind of variable?", "Variable Type") in list("text", "num", "type", "reference", "mob reference", "icon", "file", "client", "mob's area", "CANCEL")
 			switch(class)
 				if("CANCEL")
 					return
 
 				if("text")
-					lst[i] = input("Enter new text:","Text",null) as text
+					lst[i] = input("Enter new text:", "Text", null) as text
 
 				if("num")
-					lst[i] = input("Enter new number:","Num",0) as num
+					lst[i] = input("Enter new number:", "Num", 0) as num
 
 				if("type")
-					lst[i] = input("Enter type:","Type") in typesof(/obj,/mob,/area,/turf)
+					lst[i] = input("Enter type:", "Type") in typesof(/obj,/mob,/area,/turf)
 
 				if("reference")
-					lst[i] = input("Select reference:","Reference",src) as mob|obj|turf|area in world
+					lst[i] = input("Select reference:", "Reference", src) as mob|obj|turf|area in world
 
 				if("mob reference")
-					lst[i] = input("Select reference:","Reference",usr) as mob in world
+					lst[i] = input("Select reference:", "Reference", usr) as mob in world
 
 				if("file")
-					lst[i] = input("Pick file:","File") as file
+					lst[i] = input("Pick file:", "File") as file
 
 				if("icon")
-					lst[i] = input("Pick icon:","Icon") as icon
+					lst[i] = input("Pick icon:", "Icon") as icon
 
 				if("client")
 					var/list/keys = list()
@@ -116,7 +118,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			if(!target)
 				usr << "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>"
 				return
-			if(!hascall(target,procname))
+			if(!hascall(target, procname))
 				usr << "<font color='red'>Error: callproc(): target has no such call [procname].</font>"
 				return
 			log_admin("[key_name(src)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
@@ -136,7 +138,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		return
 	var/turf/T = mob.loc
 
-	if (!( istype(T, /turf) ))
+	if(!(istype(T, /turf)))
 		return
 
 	var/datum/gas_mixture/env = T.return_air()
@@ -150,14 +152,14 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	usr.show_message(t, 1)
 	feedback_add_details("admin_verb","ASL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_robotize(var/mob/M in mob_list)
+/client/proc/cmd_admin_robotize(mob/M in mob_list)
 	set category = "Fun"
 	set name = "Make Robot"
 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		log_admin("[key_name(src)] has robotized [M.key].")
 		spawn(10)
 			M:Robotize()
@@ -165,7 +167,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	else
 		alert("Invalid mob")
 
-/client/proc/cmd_admin_animalize(var/mob/M in mob_list)
+/client/proc/cmd_admin_animalize(mob/M in mob_list)
 	set category = "Fun"
 	set name = "Make Simple Animal"
 
@@ -186,7 +188,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		M.Animalize()
 
 
-/client/proc/makepAI(var/turf/T in mob_list)
+/client/proc/makepAI(turf/T in mob_list)
 	set category = "Fun"
 	set name = "Make pAI"
 	set desc = "Specify a location to spawn a pAI device, then specify a key to play that pAI"
@@ -198,7 +200,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	var/mob/choice = input("Choose a player to play the pAI", "Spawn pAI") in available
 	if(!choice)
 		return 0
-	if(!istype(choice, /mob/dead/observer))
+	if(!isobserver(choice))
 		var/confirm = input("[choice.key] isn't ghosting right now. Are you sure you want to yank him out of them out of their body and place them in this pAI?", "Spawn pAI Confirmation", "No") in list("Yes", "No")
 		if(confirm != "Yes")
 			return 0
@@ -211,16 +213,16 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	for(var/datum/paiCandidate/candidate in paiController.pai_candidates)
 		if(candidate.key == choice.key)
 			paiController.pai_candidates.Remove(candidate)
-	feedback_add_details("admin_verb","MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb", "MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_alienize(var/mob/M in mob_list)
+/client/proc/cmd_admin_alienize(mob/M in mob_list)
 	set category = "Fun"
 	set name = "Make Alien"
 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
-	if(isHuman(M))
+	if(ishuman(M))
 		log_admin("[key_name(src)] has alienized [M.key].")
 		spawn(10)
 			M:Alienize()
@@ -230,14 +232,14 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	else
 		alert("Invalid mob")
 
-/client/proc/cmd_admin_slimeize(var/mob/M in mob_list)
+/client/proc/cmd_admin_slimeize(mob/M in mob_list)
 	set category = "Fun"
 	set name = "Make slime"
 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
-	if(isHuman(M))
+	if(ishuman(M))
 		log_admin("[key_name(src)] has slimeized [M.key].")
 		spawn(10)
 			M:slimeize()
@@ -412,15 +414,15 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if(alert("This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.",,"Yes","No") != "Yes")
 			return
 		else
-			var/mob/dead/observer/ghost = new/mob/dead/observer(M,1)
+			var/mob/dead/observer/ghost = new/mob/dead/observer(M, 1)
 			ghost.ckey = M.ckey
 	message_admins("\blue [key_name_admin(usr)] assumed direct control of [M].", 1)
 	log_admin("[key_name(usr)] assumed direct control of [M].")
 	var/mob/adminmob = src.mob
 	M.ckey = src.ckey
-	if(isObserver(adminmob))
+	if(isobserver(adminmob))
 		qdel(adminmob)
-	feedback_add_details("admin_verb","ADC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb", "ADC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_switch_radio()
 	set category = "Debug"
@@ -520,10 +522,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	for(var/areatype in areas_without_camera)
 		world << "* [areatype]"
 
-/client/proc/cmd_admin_dress(var/mob/living/carbon/human/M in mob_list)
+/client/proc/cmd_admin_dress(mob/living/carbon/human/M in mob_list)
 	set category = "Fun"
 	set name = "Select equipment"
-	if(!isHuman(M))
+	if(!ishuman(M))
 		alert("Invalid mob")
 		return
 	//log_admin("[key_name(src)] has alienized [M.key].")

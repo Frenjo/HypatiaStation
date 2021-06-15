@@ -1000,7 +1000,7 @@ table tr:first-child th:first-child { border: none;}
 				var/list/selected = TLV[env]
 				var/list/thresholds = list("lower bound", "low warning", "high warning", "upper bound")
 				var/newval = input("Enter [thresholds[threshold]] for [env]", "Alarm triggers", selected[threshold]) as null|num
-				if (isnull(newval) || ..() || (locked && isSilicon(usr)))
+				if (isnull(newval) || ..() || (locked && issilicon(usr)))
 					return
 				if (newval<0)
 					selected[threshold] = -1.0
@@ -1137,10 +1137,10 @@ table tr:first-child th:first-child { border: none;}
 				else
 					if(allowed(usr) && !isWireCut(AALARM_WIRE_IDSCAN))
 						locked = !locked
-						to_chat(user, span("info", "You [ locked ? "lock" : "unlock"] the Air Alarm interface."))
+						to_chat(user, SPAN_INFO("You [ locked ? "lock" : "unlock"] the Air Alarm interface."))
 						updateUsrDialog()
 					else
-						to_chat(user, span("warning", "Access denied."))
+						to_chat(user, SPAN_WARNING("Access denied."))
 			return
 
 		if(1)

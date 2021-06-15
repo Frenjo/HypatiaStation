@@ -121,7 +121,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	if (usr.stat || !on)
 		return
 
-	if (!(isSilicon(usr) || (usr.contents.Find(src) || ( in_range(src, usr) && istype(loc, /turf)))))
+	if (!(issilicon(usr) || (usr.contents.Find(src) || ( in_range(src, usr) && istype(loc, /turf)))))
 		usr << browse(null, "window=radio")
 		return
 	usr.set_machine(src)
@@ -251,9 +251,9 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		else // If a channel isn't specified, send to common.
 			connection = radio_connection
 			channel = null
-		if (!istype(connection))
+		if(!istype(connection))
 			return
-		if (!connection)
+		if(!connection)
 			return
 
 		var/turf/position = get_turf(src)
@@ -272,23 +272,23 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		var/jobname // the mob's "job"
 
 		// --- Human: use their actual job ---
-		if (isHuman(M))
+		if(ishuman(M))
 			jobname = M:get_assignment()
 
 		// --- Carbon Nonhuman ---
-		else if (isCarbon(M)) // Nonhuman carbon mob
+		else if(iscarbon(M)) // Nonhuman carbon mob
 			jobname = "No id"
 
 		// --- AI ---
-		else if (isAI(M))
+		else if(isAI(M))
 			jobname = "AI"
 
 		// --- Cyborg ---
-		else if (isRobot(M))
+		else if(isrobot(M))
 			jobname = "Cyborg"
 
 		// --- Personal AI (pAI) ---
-		else if (istype(M, /mob/living/silicon/pai))
+		else if(ispAI(M))
 			jobname = "Personal AI"
 
 		// --- Unidentifiable mob ---
@@ -298,7 +298,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		// --- Modifications to the mob's identity ---
 
 		// The mob is disguising their identity:
-		if (isHuman(M) && M.GetVoice() != real_name)
+		if(ishuman(M) && M.GetVoice() != real_name)
 			displayname = M.GetVoice()
 			jobname = "Unknown"
 			voicemask = 1
@@ -424,14 +424,14 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 		var/datum/radio_frequency/connection = null
 		if(channel && channels && channels.len > 0)
-			if (channel == "department")
+			if(channel == "department")
 				//world << "DEBUG: channel=\"[channel]\" switching to \"[channels[1]]\""
 				channel = channels[1]
 			connection = secure_radio_connections[channel]
 		else
 			connection = radio_connection
 			channel = null
-		if (!istype(connection))
+		if(!istype(connection))
 			return
 		var/display_freq = connection.frequency
 
@@ -439,15 +439,15 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 		var/eqjobname
 
-		if (isHuman(M))
+		if(ishuman(M))
 			eqjobname = M:get_assignment()
-		else if (isCarbon(M))
+		else if(iscarbon(M))
 			eqjobname = "No id" //only humans can wear ID
-		else if (isAI(M))
+		else if(isAI(M))
 			eqjobname = "AI"
-		else if (isRobot(M))
+		else if(isrobot(M))
 			eqjobname = "Cyborg"//Androids don't really describe these too well, in my opinion.
-		else if (istype(M, /mob/living/silicon/pai))
+		else if(ispAI(M))
 			eqjobname = "Personal AI"
 		else
 			eqjobname = "Unknown"
@@ -468,18 +468,18 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		var/list/heard_voice = list() // voice message
 		var/list/heard_garbled = list() // garbled message
 
-		for (var/mob/R in receive)
-			if (R.client && !(R.client.prefs.toggles & CHAT_RADIO)) //Adminning with 80 people on can be fun when you're trying to talk and all you can hear is radios.
+		for(var/mob/R in receive)
+			if(R.client && !(R.client.prefs.toggles & CHAT_RADIO)) //Adminning with 80 people on can be fun when you're trying to talk and all you can hear is radios.
 				continue
-			if (R.say_understands(M))
-				if (isHuman(M) && M.GetVoice() != M.real_name)
+			if(R.say_understands(M))
+				if(ishuman(M) && M.GetVoice() != M.real_name)
 					heard_masked += R
 				else
 					heard_normal += R
 			else
 				heard_voice += R
 
-		if (length(heard_masked) || length(heard_normal) || length(heard_voice) || length(heard_garbled))
+		if(length(heard_masked) || length(heard_normal) || length(heard_voice) || length(heard_garbled))
 			var/part_a = "<span class='radio'><span class='name'>"
 			//var/part_b = "</span><b> \icon[src]\[[format_frequency(frequency)]\]</b> <span class='message'>"
 			var/freq_text
@@ -550,49 +550,49 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 			//End of research and feedback code.
 
-			if (length(heard_masked))
+			if(length(heard_masked))
 				var/N = M.name
 				var/J = eqjobname
-				if(isHuman(M) && M.GetVoice() != M.real_name)
+				if(ishuman(M) && M.GetVoice() != M.real_name)
 					N = M.GetVoice()
 					J = "Unknown"
 				var/rendered = "[part_a][N][part_b][quotedmsg][part_c]"
-				for (var/mob/R in heard_masked)
-					if(istype(R, /mob/living/silicon/ai))
+				for(var/mob/R in heard_masked)
+					if(isAI(R))
 						R.show_message("[part_a]<a href='byond://?src=\ref[src];track2=\ref[R];track=\ref[M]'>[N] ([J]) </a>[part_b][quotedmsg][part_c]", 2)
 					else
 						R.show_message(rendered, 2)
 
-			if (length(heard_normal))
+			if(length(heard_normal))
 				var/rendered = "[part_a][M.real_name][part_b][quotedmsg][part_c]"
 
-				for (var/mob/R in heard_normal)
-					if(istype(R, /mob/living/silicon/ai))
+				for(var/mob/R in heard_normal)
+					if(isAI(R))
 						R.show_message("[part_a]<a href='byond://?src=\ref[src];track2=\ref[R];track=\ref[M]'>[M.real_name] ([eqjobname]) </a>[part_b][quotedmsg][part_c]", 2)
 					else
 						R.show_message(rendered, 2)
 
-			if (length(heard_voice))
+			if(length(heard_voice))
 				var/rendered = "[part_a][M.voice_name][part_b][pick(M.speak_emote)][part_c]"
 
-				for (var/mob/R in heard_voice)
-					if(istype(R, /mob/living/silicon/ai))
+				for(var/mob/R in heard_voice)
+					if(isAI(R))
 						R.show_message("[part_a]<a href='byond://?src=\ref[src];track2=\ref[R];track=\ref[M]'>[M.voice_name] ([eqjobname]) </a>[part_b][pick(M.speak_emote)][part_c]", 2)
 					else
 						R.show_message(rendered, 2)
 
-			if (length(heard_garbled))
+			if(length(heard_garbled))
 				quotedmsg = M.say_quote(stars(message))
 				var/rendered = "[part_a][M.voice_name][part_b][quotedmsg][part_c]"
 
-				for (var/mob/R in heard_voice)
-					if(istype(R, /mob/living/silicon/ai))
+				for(var/mob/R in heard_voice)
+					if(isAI(R))
 						R.show_message("[part_a]<a href='byond://?src=\ref[src];track2=\ref[R];track=\ref[M]'>[M.voice_name]</a>[part_b][quotedmsg][part_c]", 2)
 					else
 						R.show_message(rendered, 2)
 
 /obj/item/device/radio/hear_talk(mob/M as mob, msg, var/verbage = "says", var/datum/language/speaking = null)
-	if (broadcasting)
+	if(broadcasting)
 		if(get_dist(src, M) <= canhear_range)
 			talk_into(M, msg, null, verbage, speaking)
 /*
@@ -625,25 +625,24 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	if(freq == FREQUENCY_SYNDICATE)
 		if(!(src.syndie))//Checks to see if it's allowed on that frequency, based on the encryption keys
 			return -1
-	if (!on)
+	if(!on)
 		return -1
-	if (!freq) //recieved on main frequency
-		if (!listening)
+	if(!freq) //recieved on main frequency
+		if(!listening)
 			return -1
 	else
 		var/accept = (freq==frequency && listening)
-		if (!accept)
-			for (var/ch_name in channels)
+		if(!accept)
+			for(var/ch_name in channels)
 				var/datum/radio_frequency/RF = secure_radio_connections[ch_name]
-				if (RF.frequency==freq && (channels[ch_name]&FREQ_LISTENING))
+				if(RF.frequency == freq && (channels[ch_name] & FREQ_LISTENING))
 					accept = 1
 					break
-		if (!accept)
+		if(!accept)
 			return -1
 	return canhear_range
 
 /obj/item/device/radio/proc/send_hear(freq, level)
-
 	var/range = receive_range(freq, level)
 	if(range > -1)
 		return get_mobs_in_view(canhear_range, src)
@@ -653,8 +652,8 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	set src in view()
 
 	..()
-	if ((in_range(src, usr) || loc == usr))
-		if (b_stat)
+	if((in_range(src, usr) || loc == usr))
+		if(b_stat)
 			usr.show_message("\blue \the [src] can be attached and modified!")
 		else
 			usr.show_message("\blue \the [src] can not be modified or attached!")
@@ -663,9 +662,9 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 /obj/item/device/radio/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	user.set_machine(src)
-	if (!( istype(W, /obj/item/weapon/screwdriver) ))
+	if(!(istype(W, /obj/item/weapon/screwdriver)))
 		return
-	b_stat = !( b_stat )
+	b_stat = !(b_stat)
 	if(!istype(src, /obj/item/device/radio/beacon))
 		if (b_stat)
 			user.show_message("\blue The radio can now be attached and modified!")

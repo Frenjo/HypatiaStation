@@ -122,28 +122,29 @@
 	return
 
 /obj/item/attack_hand(mob/user as mob)
-	if (!user) return
-	if (hasOrgans(user))
+	if(!user)
+		return
+	if(hasorgans(user))
 		var/datum/organ/external/temp = user:organs_by_name["r_hand"]
-		if (user.hand)
+		if(user.hand)
 			temp = user:organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
 			user << "<span class='notice'>You try to move your [temp.display_name], but cannot!"
 			return
 
-	if (istype(src.loc, /obj/item/weapon/storage))
+	if(istype(src.loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = src.loc
 		S.remove_from_storage(src)
 
 	src.throwing = 0
-	if (src.loc == user)
+	if(src.loc == user)
 		//canremove==0 means that object may not be removed. You can still wear it. This only applies to clothing. /N
 		if(!src.canremove)
 			return
 		else
 			user.u_equip(src)
 	else
-		if(isLiving(src.loc))
+		if(isliving(src.loc))
 			return
 		user.next_move = max(user.next_move+2,world.time + 2)
 	src.pickup(user)
@@ -159,17 +160,17 @@
 				if(M.client)
 					M.client.screen -= src
 	src.throwing = 0
-	if (src.loc == user)
+	if(src.loc == user)
 		//canremove==0 means that object may not be removed. You can still wear it. This only applies to clothing. /N
 		if(istype(src, /obj/item/clothing) && !src:canremove)
 			return
 		else
 			user.u_equip(src)
 	else
-		if(istype(src.loc, /mob/living))
+		if(isliving(src.loc))
 			return
 		src.pickup(user)
-		user.next_move = max(user.next_move+2,world.time + 2)
+		user.next_move = max(user.next_move + 2, world.time + 2)
 
 	user.put_in_active_hand(src)
 	return
@@ -245,10 +246,12 @@
 //If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
 //Set disable_warning to 1 if you wish it to not give you outputs.
 /obj/item/proc/mob_can_equip(M as mob, slot, disable_warning = 0)
-	if(!slot) return 0
-	if(!M) return 0
+	if(!slot)
+		return 0
+	if(!M)
+		return 0
 
-	if(isHuman(M))
+	if(ishuman(M))
 		//START HUMAN
 		var/mob/living/carbon/human/H = M
 
@@ -264,31 +267,31 @@
 			if(slot_wear_mask)
 				if(H.wear_mask)
 					return 0
-				if( !(slot_flags & SLOT_MASK) )
+				if(!(slot_flags & SLOT_MASK))
 					return 0
 				return 1
 			if(slot_back)
 				if(H.back)
 					return 0
-				if( !(slot_flags & SLOT_BACK) )
+				if(!(slot_flags & SLOT_BACK))
 					return 0
 				return 1
 			if(slot_wear_suit)
 				if(H.wear_suit)
 					return 0
-				if( !(slot_flags & SLOT_OCLOTHING) )
+				if(!(slot_flags & SLOT_OCLOTHING))
 					return 0
 				return 1
 			if(slot_gloves)
 				if(H.gloves)
 					return 0
-				if( !(slot_flags & SLOT_GLOVES) )
+				if(!(slot_flags & SLOT_GLOVES))
 					return 0
 				return 1
 			if(slot_shoes)
 				if(H.shoes)
 					return 0
-				if( !(slot_flags & SLOT_FEET) )
+				if(!(slot_flags & SLOT_FEET))
 					return 0
 				return 1
 			if(slot_belt)
@@ -298,45 +301,45 @@
 					if(!disable_warning)
 						H << "\red You need a jumpsuit before you can attach this [name]."
 					return 0
-				if( !(slot_flags & SLOT_BELT) )
+				if(!(slot_flags & SLOT_BELT))
 					return
 				return 1
 			if(slot_glasses)
 				if(H.glasses)
 					return 0
-				if( !(slot_flags & SLOT_EYES) )
+				if(!(slot_flags & SLOT_EYES))
 					return 0
 				return 1
 			if(slot_head)
 				if(H.head)
 					return 0
-				if( !(slot_flags & SLOT_HEAD) )
+				if(!(slot_flags & SLOT_HEAD))
 					return 0
 				return 1
 			if(slot_l_ear)
 				if(H.l_ear)
 					return 0
-				if( w_class < 2	)
+				if(w_class < 2)
 					return 1
-				if( !(slot_flags & SLOT_EARS) )
+				if(!(slot_flags & SLOT_EARS))
 					return 0
-				if( (slot_flags & SLOT_TWOEARS) && H.r_ear )
+				if((slot_flags & SLOT_TWOEARS) && H.r_ear)
 					return 0
 				return 1
 			if(slot_r_ear)
 				if(H.r_ear)
 					return 0
-				if( w_class < 2 )
+				if(w_class < 2)
 					return 1
-				if( !(slot_flags & SLOT_EARS) )
+				if(!(slot_flags & SLOT_EARS))
 					return 0
-				if( (slot_flags & SLOT_TWOEARS) && H.l_ear )
+				if((slot_flags & SLOT_TWOEARS) && H.l_ear)
 					return 0
 				return 1
 			if(slot_w_uniform)
 				if(H.w_uniform)
 					return 0
-				if( !(slot_flags & SLOT_ICLOTHING) )
+				if(!(slot_flags & SLOT_ICLOTHING))
 					return 0
 				return 1
 			if(slot_wear_id)
@@ -346,7 +349,7 @@
 					if(!disable_warning)
 						H << "\red You need a jumpsuit before you can attach this [name]."
 					return 0
-				if( !(slot_flags & SLOT_ID) )
+				if(!(slot_flags & SLOT_ID))
 					return 0
 				return 1
 			if(slot_l_store)
@@ -358,7 +361,7 @@
 					return 0
 				if(slot_flags & SLOT_DENYPOCKET)
 					return 0
-				if( w_class <= 2 || (slot_flags & SLOT_POCKET) )
+				if(w_class <= 2 || (slot_flags & SLOT_POCKET))
 					return 1
 			if(slot_r_store)
 				if(H.r_store)
@@ -369,7 +372,7 @@
 					return 0
 				if(slot_flags & SLOT_DENYPOCKET)
 					return 0
-				if( w_class <= 2 || (slot_flags & SLOT_POCKET) )
+				if(w_class <= 2 || (slot_flags & SLOT_POCKET))
 					return 1
 				return 0
 			if(slot_s_store)
@@ -383,7 +386,7 @@
 					if(!disable_warning)
 						usr << "You somehow have a suit with no defined allowed items for suit storage, stop that."
 					return 0
-				if( istype(src, /obj/item/device/pda) || istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed) )
+				if(istype(src, /obj/item/device/pda) || istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed))
 					return 1
 				return 0
 			if(slot_handcuffed)
@@ -399,7 +402,7 @@
 					return 0
 				return 1
 			if(slot_in_backpack)
-				if (H.back && istype(H.back, /obj/item/weapon/storage/backpack))
+				if(H.back && istype(H.back, /obj/item/weapon/storage/backpack))
 					var/obj/item/weapon/storage/backpack/B = H.back
 					if(B.contents.len < B.storage_slots && w_class <= B.max_w_class)
 						return 1
@@ -407,7 +410,7 @@
 		return 0 //Unsupported slot
 		//END HUMAN
 
-	else if(isMonkey(M))
+	else if(ismonkey(M))
 		//START MONKEY
 		var/mob/living/carbon/monkey/MO = M
 		switch(slot)
@@ -422,13 +425,13 @@
 			if(slot_wear_mask)
 				if(MO.wear_mask)
 					return 0
-				if( !(slot_flags & SLOT_MASK) )
+				if(!(slot_flags & SLOT_MASK))
 					return 0
 				return 1
 			if(slot_back)
 				if(MO.back)
 					return 0
-				if( !(slot_flags & SLOT_BACK) )
+				if(!(slot_flags & SLOT_BACK))
 					return 0
 				return 1
 		return 0 //Unsupported slot
@@ -448,7 +451,7 @@
 	if((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/carbon/brain)))//Is humanoid, and is not a brain
 		usr << "\red You can't pick things up!"
 		return
-	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
+	if(usr.stat || usr.restrained())//Is not asleep/dead and is not restrained
 		usr << "\red You can't pick things up!"
 		return
 	if(src.anchored) //Object isn't anchored

@@ -120,7 +120,7 @@ Maintenance panel panel is [src.open ? "opened" : "closed"]"},
 
 "<A href='?src=\ref[src];power=1'>[src.on ? "On" : "Off"]</A>" )
 
-	if(!src.locked || isSilicon(user))
+	if(!src.locked || issilicon(user))
 		dat += text({"<BR>
 Check for Weapon Authorization: []<BR>
 Check Security Records: []<BR>
@@ -173,7 +173,7 @@ Auto Patrol: []"},
 			if(open)
 				user << "\red Please close the access panel before locking it."
 			else
-				to_chat(user, span("warning", "Access denied."))
+				to_chat(user, SPAN_WARNING("Access denied."))
 	else
 		..()
 		if(!istype(W, /obj/item/weapon/screwdriver) && (W.force) && (!src.target))

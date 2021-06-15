@@ -197,8 +197,8 @@
 	/*if(istype(W,/obj/item/weapon/screwdriver))
 		panel = !panel
 		user << "\blue you [panel ? "open" : "close"] the [src]'s maintenance panel"*/
-	if(istype(W,/obj/item/toy/crayon) ||istype(W,/obj/item/weapon/stamp))
-		if( state in list(	1, 3, 6 ) )
+	if(istype(W, /obj/item/toy/crayon) ||istype(W, /obj/item/weapon/stamp))
+		if(state in list(1, 3, 6))
 			if(!crayon)
 				user.drop_item()
 				crayon = W
@@ -208,63 +208,63 @@
 		else
 			..()
 	else if(istype(W,/obj/item/weapon/grab))
-		if( (state == 1) && hacked)
+		if((state == 1) && hacked)
 			var/obj/item/weapon/grab/G = W
-			if(isHuman(G.assailant) && isCorgi(G.affecting))
+			if(ishuman(G.assailant) && iscorgi(G.affecting))
 				G.affecting.loc = src
 				qdel(G)
 				state = 3
 		else
 			..()
-	else if(istype(W,/obj/item/stack/sheet/hairlesshide) || \
-		istype(W,/obj/item/clothing/under) || \
-		istype(W,/obj/item/clothing/mask) || \
-		istype(W,/obj/item/clothing/head) || \
-		istype(W,/obj/item/clothing/gloves) || \
-		istype(W,/obj/item/clothing/shoes) || \
-		istype(W,/obj/item/clothing/suit) || \
-		istype(W,/obj/item/weapon/bedsheet))
+	else if(istype(W, /obj/item/stack/sheet/hairlesshide) || \
+		istype(W, /obj/item/clothing/under) || \
+		istype(W, /obj/item/clothing/mask) || \
+		istype(W, /obj/item/clothing/head) || \
+		istype(W, /obj/item/clothing/gloves) || \
+		istype(W, /obj/item/clothing/shoes) || \
+		istype(W, /obj/item/clothing/suit) || \
+		istype(W, /obj/item/weapon/bedsheet))
 
 		//YES, it's hardcoded... saves a var/can_be_washed for every single clothing item.
-		if ( istype(W,/obj/item/clothing/suit/space ) )
+		if(istype(W, /obj/item/clothing/suit/space))
 			user << "This item does not fit."
 			return
-		if ( istype(W,/obj/item/clothing/suit/syndicatefake ) )
+		if(istype(W, /obj/item/clothing/suit/syndicatefake))
 			user << "This item does not fit."
 			return
 //		if ( istype(W,/obj/item/clothing/suit/powered ) )
 //			user << "This item does not fit."
 //			return
-		if ( istype(W,/obj/item/clothing/suit/cyborg_suit ) )
+		if(istype(W, /obj/item/clothing/suit/cyborg_suit))
 			user << "This item does not fit."
 			return
-		if ( istype(W,/obj/item/clothing/suit/bomb_suit ) )
+		if(istype(W, /obj/item/clothing/suit/bomb_suit))
 			user << "This item does not fit."
 			return
-		if ( istype(W,/obj/item/clothing/suit/armor ) )
+		if(istype(W, /obj/item/clothing/suit/armor))
 			user << "This item does not fit."
 			return
-		if ( istype(W,/obj/item/clothing/suit/armor ) )
+		if(istype(W, /obj/item/clothing/suit/armor))
 			user << "This item does not fit."
 			return
-		if ( istype(W,/obj/item/clothing/mask/gas ) )
+		if(istype(W, /obj/item/clothing/mask/gas))
 			user << "This item does not fit."
 			return
-		if ( istype(W,/obj/item/clothing/mask/cigarette ) )
+		if(istype(W, /obj/item/clothing/mask/cigarette))
 			user << "This item does not fit."
 			return
-		if ( istype(W,/obj/item/clothing/head/syndicatefake ) )
+		if(istype(W, /obj/item/clothing/head/syndicatefake))
 			user << "This item does not fit."
 			return
 //		if ( istype(W,/obj/item/clothing/head/powered ) )
 //			user << "This item does not fit."
 //			return
-		if ( istype(W,/obj/item/clothing/head/helmet ) )
+		if(istype(W, /obj/item/clothing/head/helmet))
 			user << "This item does not fit."
 			return
 
 		if(contents.len < 5)
-			if ( state in list(1, 3) )
+			if(state in list(1, 3))
 				user.drop_item()
 				W.loc = src
 				state = 3
@@ -299,8 +299,8 @@
 		if(7)
 			if(gibs_ready)
 				gibs_ready = 0
-				if(locate(/mob,contents))
-					var/mob/M = locate(/mob,contents)
+				if(locate(/mob, contents))
+					var/mob/M = locate(/mob, contents)
 					M.gib()
 			for(var/atom/movable/O in contents)
 				O.loc = src.loc

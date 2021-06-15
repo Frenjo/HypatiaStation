@@ -64,7 +64,7 @@
 					t1 = "<font color='red'>*dead*</font>"
 				else
 			dat += text("[]\tHealth %: [] ([])</FONT><BR>", (occupant.health > 50 ? "<font color='blue'>" : "<font color='red'>"), occupant.health, t1)
-			if(isCarbon(occupant))
+			if(iscarbon(occupant))
 				var/mob/living/carbon/C = occupant
 				dat += text("[]\t-Pulse, bpm: []</FONT><BR>", (C.pulse == PULSE_NONE || C.pulse == PULSE_THREADY ? "<font color='red'>" : "<font color='blue'>"), C.get_pulse(GETPULSE_TOOL))
 			dat += text("[]\t-Brute Damage %: []</FONT><BR>", (occupant.getBruteLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getBruteLoss())
@@ -386,7 +386,7 @@
 		set category = "Object"
 		set src in oview(1)
 
-		if(usr.stat != 0 || !(isHuman(usr) || isMonkey(usr)))
+		if(usr.stat != 0 || !(ishuman(usr) || ismonkey(usr)))
 			return
 
 		if(src.occupant)

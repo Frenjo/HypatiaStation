@@ -96,7 +96,7 @@ var/engwords = list("travel", "blood", "join", "hell", "destroy", "technology", 
 			qdel(src)
 			return
 		else if(istype(I, /obj/item/weapon/nullrod))
-			to_chat(user, span("info", "You disrupt the vile magic with the deadening field of the null rod!"))
+			to_chat(user, SPAN_INFO("You disrupt the vile magic with the deadening field of the null rod!"))
 			qdel(src)
 			return
 		return
@@ -172,7 +172,7 @@ var/engwords = list("travel", "blood", "join", "hell", "destroy", "technology", 
 			else
 				usr.whisper(pick("Hakkrutju gopoenjim.", "Nherasai pivroiashan.", "Firjji prhiv mazenhor.", "Tanah eh wakantahe.", "Obliyae na oraie.", "Miyf hon vnor'c.", "Wakabai hij fen juswix."))
 			for(var/mob/V in viewers(src))
-				V.show_message(span("warning", "The markings pulse with a small burst of light, then fall dark."), 3, span("warning", "You hear a faint fizzle."), 2)
+				V.show_message(SPAN_WARNING("The markings pulse with a small burst of light, then fall dark."), 3, SPAN_WARNING("You hear a faint fizzle."), 2)
 			return
 
 		check_icon()
@@ -344,8 +344,8 @@ var/engwords = list("travel", "blood", "join", "hell", "destroy", "technology", 
 		if(istype(M, /mob/dead))
 			M.invisibility = 0
 			user.visible_message( \
-				span("warning", "[user] drags the ghost to our plan of reality!"), \
-				span("warning", "You drag the ghost to our plan of reality!") \
+				SPAN_WARNING("[user] drags the ghost to our plan of reality!"), \
+				SPAN_WARNING("You drag the ghost to our plan of reality!") \
 			)
 			return
 		if(!istype(M))
@@ -357,7 +357,7 @@ var/engwords = list("travel", "blood", "join", "hell", "destroy", "technology", 
 		M.take_organ_damage(0, rand(5, 20)) //really lucky - 5 hits for a crit
 		for(var/mob/O in viewers(M, null))
 			O.show_message(text("\red <B>[] beats [] with the arcane tome!</B>", user, M), 1)
-		to_chat(user, span("warning", "You feel searing heat inside!"))
+		to_chat(user, SPAN_WARNING("You feel searing heat inside!"))
 
 
 	attack_self(mob/living/user as mob)
@@ -372,7 +372,7 @@ var/engwords = list("travel", "blood", "join", "hell", "destroy", "technology", 
 			for(var/obj/effect/rune/N in world)
 				C++
 			if(!istype(user.loc, /turf))
-				to_chat(user, span("warning", "You do not have enough space to write a proper rune."))
+				to_chat(user, SPAN_WARNING("You do not have enough space to write a proper rune."))
 				return
 
 			if (C >= 26 + runedec + ticker.mode.cult.len) //including the useless rune at the secret room, shouldn't count against the limit of 25 runes - Urist
@@ -435,15 +435,15 @@ var/engwords = list("travel", "blood", "join", "hell", "destroy", "technology", 
 				return
 
 			for(var/mob/V in viewers(src))
-				V.show_message(span("warning", "[user] slices open a finger and begins to chant and paint symbols on the floor."), 3, span("warning", "You hear chanting."), 2)
-			to_chat(user, span("warning", "You slice open one of your fingers and begin drawing a rune on the floor whilst chanting the ritual that binds your life essence with the dark arcane energies flowing through the surrounding world."))
+				V.show_message(SPAN_WARNING("[user] slices open a finger and begins to chant and paint symbols on the floor."), 3, SPAN_WARNING("You hear chanting."), 2)
+			to_chat(user, SPAN_WARNING("You slice open one of your fingers and begin drawing a rune on the floor whilst chanting the ritual that binds your life essence with the dark arcane energies flowing through the surrounding world."))
 			user.take_overall_damage((rand(9) + 1) / 10) // 0.1 to 1.0 damage
 			if(do_after(user, 50))
 				if(usr.get_active_hand() != src)
 					return
 				var/mob/living/carbon/human/H = user
 				var/obj/effect/rune/R = new /obj/effect/rune(user.loc)
-				to_chat(user, span("warning", "You finish drawing the arcane markings of the Geometer."))
+				to_chat(user, SPAN_WARNING("You finish drawing the arcane markings of the Geometer."))
 				R.word1 = w1
 				R.word2 = w2
 				R.word3 = w3
@@ -488,7 +488,7 @@ var/engwords = list("travel", "blood", "join", "hell", "destroy", "technology", 
 		if(user)
 			var/r
 			if(!istype(user.loc,/turf))
-				to_chat(user, span("warning", "You do not have enough space to write a proper rune."))
+				to_chat(user, SPAN_WARNING("You do not have enough space to write a proper rune."))
 			var/list/runes = list("teleport", "itemport", "tome", "armor", "convert", "tear in reality", "emp", "drain", "seer", "raise", "obscure", "reveal", "astral journey", "manifest", "imbue talisman", "sacrifice", "wall", "freedom", "cultsummon", "deafen", "blind", "bloodboil", "communicate", "stun")
 			r = input("Choose a rune to scribe", "Rune Scribing") in runes //not cancellable.
 			var/obj/effect/rune/R = new /obj/effect/rune

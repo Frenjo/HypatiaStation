@@ -277,44 +277,44 @@
 		turns_since_scan++
 		if(turns_since_scan > 5)
 			turns_since_scan = 0
-			if((movement_target) && !(isturf(movement_target.loc) || isHuman(movement_target.loc) ))
+			if((movement_target) && !(isturf(movement_target.loc) || ishuman(movement_target.loc) ))
 				movement_target = null
 				stop_automated_movement = 0
-			if( !movement_target || !(movement_target.loc in oview(src, 3)) )
+			if(!movement_target || !(movement_target.loc in oview(src, 3)))
 				movement_target = null
 				stop_automated_movement = 0
-				for(var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src,3))
-					if(isturf(S.loc) || isHuman(S.loc))
+				for(var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src, 3))
+					if(isturf(S.loc) || ishuman(S.loc))
 						movement_target = S
 						break
 			if(movement_target)
 				stop_automated_movement = 1
-				step_to(src,movement_target,1)
+				step_to(src, movement_target, 1)
 				sleep(3)
-				step_to(src,movement_target,1)
+				step_to(src, movement_target, 1)
 				sleep(3)
-				step_to(src,movement_target,1)
+				step_to(src, movement_target, 1)
 
 				if(movement_target)		//Not redundant due to sleeps, Item can be gone in 6 decisecomds
-					if (movement_target.loc.x < src.x)
+					if(movement_target.loc.x < src.x)
 						dir = WEST
-					else if (movement_target.loc.x > src.x)
+					else if(movement_target.loc.x > src.x)
 						dir = EAST
-					else if (movement_target.loc.y < src.y)
+					else if(movement_target.loc.y < src.y)
 						dir = SOUTH
-					else if (movement_target.loc.y > src.y)
+					else if(movement_target.loc.y > src.y)
 						dir = NORTH
 					else
 						dir = SOUTH
 
-					if(isturf(movement_target.loc) )
+					if(isturf(movement_target.loc))
 						movement_target.attack_animal(src)
-					else if(isHuman(movement_target.loc) )
+					else if(ishuman(movement_target.loc))
 						if(prob(20))
 							emote("stares at the [movement_target] that [movement_target.loc] has with a sad puppy-face")
 
 		if(prob(1))
-			emote(pick("dances around","chases its tail"))
+			emote(pick("dances around", "chases its tail"))
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					dir = i
@@ -324,11 +324,11 @@
 	name = "Corgi meat"
 	desc = "Tastes like... well you know..."
 
-/mob/living/simple_animal/corgi/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
+/mob/living/simple_animal/corgi/attackby(obj/item/O as obj, mob/user as mob)  //Marker -Agouri
 	if(istype(O, /obj/item/weapon/newspaper))
 		if(!stat)
 			for(var/mob/M in viewers(user, null))
-				if((M.client && !( M.blinded )))
+				if((M.client && !(M.blinded)))
 					M.show_message("\blue [user] baps [name] on the nose with the rolled up [O]")
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2))
@@ -345,7 +345,7 @@
 		if(health <= 0)
 			head_icon_state += "2"
 
-		var/icon/head_icon = image('icons/mob/corgi_head.dmi',head_icon_state)
+		var/icon/head_icon = image('icons/mob/corgi_head.dmi', head_icon_state)
 		if(head_icon)
 			overlays += head_icon
 
@@ -354,15 +354,15 @@
 		if(health <= 0)
 			back_icon_state += "2"
 
-		var/icon/back_icon = image('icons/mob/corgi_back.dmi',back_icon_state)
+		var/icon/back_icon = image('icons/mob/corgi_back.dmi', back_icon_state)
 		if(back_icon)
 			overlays += back_icon
 
 	if(facehugger)
 		if(istype(src, /mob/living/simple_animal/corgi/puppy))
-			overlays += image('icons/mob/mask.dmi',"facehugger_corgipuppy")
+			overlays += image('icons/mob/mask.dmi', "facehugger_corgipuppy")
 		else
-			overlays += image('icons/mob/mask.dmi',"facehugger_corgi")
+			overlays += image('icons/mob/mask.dmi', "facehugger_corgi")
 
 	return
 

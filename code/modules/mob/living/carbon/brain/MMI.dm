@@ -22,7 +22,7 @@
 	var/obj/mecha = null//This does not appear to be used outside of reference in mecha.dm.
 
 /obj/item/device/mmi/Destroy()
-	if(isRobot(loc))
+	if(isrobot(loc))
 		var/mob/living/silicon/robot/borg = loc
 		borg.mmi = null
 	if(brainmob)
@@ -63,7 +63,7 @@
 			locked = !locked
 			user << "\blue You [locked ? "lock" : "unlock"] the brain holder."
 		else
-			to_chat(user, span("warning", "Access denied."))
+			to_chat(user, SPAN_WARNING("Access denied."))
 		return
 	if(brainmob)
 		O.attack(brainmob, user)//Oh noooeeeee

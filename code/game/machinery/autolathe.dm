@@ -153,7 +153,7 @@ var/global/list/autolathe_recipes_hidden = list( \
 		return
 
 	if(src.disabled)
-		to_chat(user, span("warning", "You press the button, but nothing happens."))
+		to_chat(user, SPAN_WARNING("You press the button, but nothing happens."))
 		return
 
 	regular_win(user)
@@ -165,7 +165,7 @@ var/global/list/autolathe_recipes_hidden = list( \
 		return 1
 
 	if(busy)
-		to_chat(user, span("warning", "The autolathe is busy. Please wait for completion of previous operation."))
+		to_chat(user, SPAN_WARNING("The autolathe is busy. Please wait for completion of previous operation."))
 		return 1
 
 	if(istype(O, /obj/item/weapon/screwdriver))
@@ -203,13 +203,13 @@ var/global/list/autolathe_recipes_hidden = list( \
 			return 1
 
 	if(src.m_amount + O.m_amt > max_m_amount)
-		to_chat(user, span("warning", "The autolathe is full. Please remove metal from the autolathe in order to insert more."))
+		to_chat(user, SPAN_WARNING("The autolathe is full. Please remove metal from the autolathe in order to insert more."))
 		return 1
 	if(src.g_amount + O.g_amt > max_g_amount)
-		to_chat(user, span("warning", "The autolathe is full. Please remove glass from the autolathe in order to insert more."))
+		to_chat(user, SPAN_WARNING("The autolathe is full. Please remove glass from the autolathe in order to insert more."))
 		return 1
 	if(O.m_amt == 0 && O.g_amt == 0)
-		to_chat(user, span("warning", "This object does not contain significant amounts of metal or glass, or cannot be accepted by the autolathe due to size or hazardous materials."))
+		to_chat(user, SPAN_WARNING("This object does not contain significant amounts of metal or glass, or cannot be accepted by the autolathe due to size or hazardous materials."))
 		return 1
 	/*
 		if (istype(O, /obj/item/weapon/grab) && src.hacked)
@@ -324,7 +324,7 @@ var/global/list/autolathe_recipes_hidden = list( \
 							busy = 0
 							src.updateUsrDialog()
 	else
-		to_chat(usr, span("warning", "The autolathe is busy. Please wait for completion of previous operation."))
+		to_chat(usr, SPAN_WARNING("The autolathe is busy. Please wait for completion of previous operation."))
 	src.updateUsrDialog()
 	return
 

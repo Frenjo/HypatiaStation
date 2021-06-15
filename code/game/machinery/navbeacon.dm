@@ -117,7 +117,7 @@
 					src.locked = !src.locked
 					user << "Controls are now [src.locked ? "locked." : "unlocked."]"
 				else
-					to_chat(user, span("warning", "Access denied."))
+					to_chat(user, SPAN_WARNING("Access denied."))
 				updateDialog()
 			else
 				user << "You must open the cover first!"

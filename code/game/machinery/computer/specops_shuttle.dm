@@ -261,7 +261,7 @@ var/specops_shuttle_timeleft = 0
 
 /obj/machinery/computer/specops_shuttle/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		to_chat(user, span("warning", "Access denied."))
+		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 
 //Commented out so admins can do shenanigans at their leisure. Also makes the force-spawned admin ERTs able to use the shuttle.

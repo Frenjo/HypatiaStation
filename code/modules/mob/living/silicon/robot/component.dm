@@ -135,7 +135,7 @@
 	icon = 'icons/obj/robot_component.dmi'
 	icon_state = "working"
 	construction_time = 200
-	construction_cost = list("metal"=5000)
+	construction_cost = list("metal" = 5000)
 
 
 // TODO: actual icons ;)
@@ -176,7 +176,7 @@
 	var/mode = 1;
 
 /obj/item/device/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
-	if(( (CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
+	if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
 		user << text("\red You try to analyze the floor's vitals!")
 		for(var/mob/O in viewers(M, null))
 			O.show_message(text("\red [user] has analyzed the floor's vitals!"), 1)
@@ -185,10 +185,10 @@
 		user.show_message("\blue Key: Suffocation/Toxin/Burns/Brute", 1)
 		user.show_message("\blue Body Temperature: ???", 1)
 		return
-	if(!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if(!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
 		user << "\red You don't have the dexterity to do this!"
 		return
-	if(!istype(M, /mob/living/silicon/robot) && !(isHuman(M) && (M:species.flags & IS_SYNTHETIC)))
+	if(!isrobot(M) && !(ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
 		user << "\red You can't analyze non-robotic things!"
 		return
 
@@ -201,9 +201,9 @@
 	if(M.tod && M.stat == DEAD)
 		user.show_message("\blue Time of Disable: [M.tod]")
 
-	if(istype(M, /mob/living/silicon/robot))
+	if(isrobot(M))
 		var/mob/living/silicon/robot/H = M
-		var/list/damaged = H.get_damaged_components(1,1,1)
+		var/list/damaged = H.get_damaged_components(1, 1, 1)
 		user.show_message("\blue Localized Damage:",1)
 		if(length(damaged)>0)
 			for(var/datum/robot_component/org in damaged)
@@ -219,11 +219,11 @@
 		if(H.emagged && prob(5))
 			user.show_message("\red \t ERROR: INTERNAL SYSTEMS COMPROMISED",1)
 
-	if(isHuman(M) && (M:species.flags & IS_SYNTHETIC))
+	if(ishuman(M) && (M:species.flags & IS_SYNTHETIC))
 		var/mob/living/carbon/human/H = M
-		var/list/damaged = H.get_damaged_organs(1,1)
+		var/list/damaged = H.get_damaged_organs(1, 1)
 		user.show_message("\blue Localized Damage, Brute/Electronics:",1)
-		if(length(damaged)>0)
+		if(length(damaged) > 0)
 			for(var/datum/organ/external/org in damaged)
 				user.show_message(text("\blue \t []: [] - []",	\
 				capitalize(org.display_name),					\

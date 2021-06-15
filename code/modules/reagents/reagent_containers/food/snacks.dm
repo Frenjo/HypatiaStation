@@ -133,11 +133,11 @@
 		)
 		inaccurate = 1
 	else if(W.w_class <= 2 && istype(src,/obj/item/weapon/reagent_containers/food/snacks/sliceable))
-		if(!isCarbon(user))
+		if(!iscarbon(user))
 			return 1
 		user << "\red You slip [W] inside [src]."
 		user.u_equip(W)
-		if ((user.client && user.s_active != src))
+		if((user.client && user.s_active != src))
 			user.client.screen -= W
 		W.dropped(user)
 		add_fingerprint(user)
@@ -179,8 +179,8 @@
 	..()
 
 /obj/item/weapon/reagent_containers/food/snacks/attack_animal(var/mob/M)
-	if(isAnimal(M))
-		if(isCorgi(M))
+	if(isanimal(M))
+		if(iscorgi(M))
 			if(bitecount == 0 || prob(50))
 				M.emote("nibbles away at the [src]")
 			bitecount++
@@ -189,7 +189,7 @@
 				if(sattisfaction_text)
 					M.emote("[sattisfaction_text]")
 				qdel(src)
-		if(isMouse(M))
+		if(ismouse(M))
 			var/mob/living/simple_animal/mouse/N = M
 			N << text("\blue You nibble away at [src].")
 			if(prob(50))

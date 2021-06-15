@@ -282,7 +282,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	for (var/mob/R in receive)
 	  /* --- Loop through the receivers and categorize them --- */
-
 		if (R.client && !(R.client.prefs.toggles & CHAT_RADIO)) //Adminning with 80 people on can be fun when you're trying to talk and all you can hear is radios.
 			continue
 
@@ -300,10 +299,10 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		// --- Can understand the speech ---
 
-		if (!M || R.say_understands(M))
+		if(!M || R.say_understands(M))
 
 			// - Not human or wearing a voice mask -
-			if (!M || !isHuman(M) || vmask)
+			if(!M || !ishuman(M) || vmask)
 				heard_masked += R
 
 			// - Human and not wearing voice mask -
@@ -314,7 +313,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 		else
 			// - The speaker has a prespecified "voice message" to display if not understood -
-			if (vmessage)
+			if(vmessage)
 				heard_voice += R
 
 			// - Just display a garbled message -
@@ -323,7 +322,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 
   /* ###### Begin formatting and sending the message ###### */
-	if (length(heard_masked) || length(heard_normal) || length(heard_voice) || length(heard_garbled) || length(heard_gibberish))
+	if(length(heard_masked) || length(heard_normal) || length(heard_voice) || length(heard_garbled) || length(heard_gibberish))
 
 	  /* --- Some miscellaneous variables to format the string output --- */
 		var/part_a = "<span class='radio'><span class='name'>" // goes in the actual output

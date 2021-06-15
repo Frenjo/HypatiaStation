@@ -101,19 +101,19 @@ datum
 
 				return the_id
 
-			trans_to(var/obj/target, var/amount=1, var/multiplier=1, var/preserve_data=1)//if preserve_data=0, the reagents data will be lost. Usefull if you use data for some strange stuff and don't want it to be transferred.
-				if (!target )
+			trans_to(obj/target, amount = 1, multiplier = 1, preserve_data = 1)//if preserve_data=0, the reagents data will be lost. Usefull if you use data for some strange stuff and don't want it to be transferred.
+				if(!target )
 					return
-				if (!target.reagents || src.total_volume<=0)
+				if(!target.reagents || src.total_volume<=0)
 					return
 				var/datum/reagents/R = target.reagents
 				amount = min(min(amount, src.total_volume), R.maximum_volume-R.total_volume)
 				var/part = amount / src.total_volume
 				var/trans_data = null
-				for (var/datum/reagent/current_reagent in src.reagent_list)
-					if (!current_reagent)
+				for(var/datum/reagent/current_reagent in src.reagent_list)
+					if(!current_reagent)
 						continue
-					if (current_reagent.id == "blood" && isHuman(target))
+					if(current_reagent.id == "blood" && ishuman(target))
 						var/mob/living/carbon/human/H = target
 						H.inject_blood(my_atom, amount)
 						continue
@@ -130,10 +130,10 @@ datum
 				src.handle_reactions()
 				return amount
 
-			trans_to_ingest(var/obj/target, var/amount=1, var/multiplier=1, var/preserve_data=1)//For items ingested. A delay is added between ingestion and addition of the reagents
-				if (!target )
+			trans_to_ingest(obj/target, amount = 1, multiplier = 1, preserve_data = 1)//For items ingested. A delay is added between ingestion and addition of the reagents
+				if(!target)
 					return
-				if (!target.reagents || src.total_volume<=0)
+				if(!target.reagents || src.total_volume <= 0)
 					return
 
 				/*var/datum/reagents/R = target.reagents
@@ -180,10 +180,10 @@ datum
 
 				return amount
 
-			copy_to(var/obj/target, var/amount=1, var/multiplier=1, var/preserve_data=1, var/safety = 0)
+			copy_to(obj/target, amount=1, multiplier = 1, preserve_data = 1, safety = 0)
 				if(!target)
 					return
-				if(!target.reagents || src.total_volume<=0)
+				if(!target.reagents || src.total_volume <= 0)
 					return
 				var/datum/reagents/R = target.reagents
 				amount = min(min(amount, src.total_volume), R.maximum_volume-R.total_volume)
@@ -202,10 +202,10 @@ datum
 					src.handle_reactions()
 				return amount
 
-			trans_id_to(var/obj/target, var/reagent, var/amount=1, var/preserve_data=1)//Not sure why this proc didn't exist before. It does now! /N
-				if (!target)
+			trans_id_to(obj/target, reagent, amount = 1, preserve_data = 1)//Not sure why this proc didn't exist before. It does now! /N
+				if(!target)
 					return
-				if (!target.reagents || src.total_volume<=0 || !src.get_reagent_amount(reagent))
+				if(!target.reagents || src.total_volume <= 0 || !src.get_reagent_amount(reagent))
 					return
 
 				var/datum/reagents/R = target.reagents
@@ -213,7 +213,7 @@ datum
 					amount = src.get_reagent_amount(reagent)
 				amount = min(amount, R.maximum_volume-R.total_volume)
 				var/trans_data = null
-				for (var/datum/reagent/current_reagent in src.reagent_list)
+				for(var/datum/reagent/current_reagent in src.reagent_list)
 					if(current_reagent.id == reagent)
 						if(preserve_data)
 							trans_data = current_reagent.data

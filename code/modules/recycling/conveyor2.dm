@@ -93,7 +93,7 @@
 
 // attack with item, place item on conveyor
 /obj/machinery/conveyor/attackby(obj/item/I, mob/user)
-	if(isRobot(user))
+	if(isrobot(user))
 		return //Carn: fix for borgs dropping their modules on conveyor belts
 	user.drop_item()
 	if(I && I.loc)
@@ -206,7 +206,7 @@
 // attack with hand, switch position
 /obj/machinery/conveyor_switch/attack_hand(mob/user)
 	if(!allowed(user))
-		to_chat(user, span("warning", "Access denied."))
+		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 
 	if(position == 0)

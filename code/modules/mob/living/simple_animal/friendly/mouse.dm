@@ -69,12 +69,12 @@
 	if(client)
 		client.time_died_as_mouse = world.time
 
-/mob/living/simple_animal/mouse/start_pulling(var/atom/movable/AM)//Prevents mouse from pulling things
+/mob/living/simple_animal/mouse/start_pulling(atom/movable/AM)//Prevents mouse from pulling things
 	src << "<span class='warning'>You are too small to pull anything.</span>"
 	return
 
 /mob/living/simple_animal/mouse/Crossed(AM as mob|obj)
-	if( isHuman(AM) )
+	if(ishuman(AM))
 		if(!stat)
 			var/mob/M = AM
 			M << "\blue \icon[src] Squeek!"

@@ -8,7 +8,7 @@
 	return
 /atom/movable/attackby(obj/item/W, mob/user)
 	if(!(W.flags & NOBLUDGEON))
-		visible_message(span("danger", "[src] has been hit by [user] with [W]."))
+		visible_message(SPAN_DANGER("[src] has been hit by [user] with [W]."))
 
 /mob/living/attackby(obj/item/I, mob/user)
 	if(istype(I) && ismob(user))
@@ -52,7 +52,7 @@
 		if(istype(M, /mob/living/carbon/slime))
 			var/mob/living/carbon/slime/slime = M
 			if(prob(25))
-				to_chat(M, span("warning", "[src] passes right through [M]!"))
+				to_chat(M, SPAN_WARNING("[src] passes right through [M]!"))
 				return
 
 			if(power > 0)
@@ -134,7 +134,7 @@
 
 		if(!showname && user)
 			if(user.client)
-				to_chat(user, span("danger", "You attack [M] with [src]."))
+				to_chat(user, SPAN_DANGER("You attack [M] with [src]."))
 
 
 	if(istype(M, /mob/living/carbon/human))

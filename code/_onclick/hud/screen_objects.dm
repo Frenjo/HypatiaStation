@@ -205,20 +205,20 @@
 		if("equip")
 			if(istype(usr.loc, /obj/mecha)) // stops inventory actions in a mech
 				return 1
-			if(isHuman(usr))
+			if(ishuman(usr))
 				var/mob/living/carbon/human/H = usr
 				H.quick_equip()
 
 		if("resist")
-			if(isLiving(usr))
+			if(isliving(usr))
 				var/mob/living/L = usr
 				L.resist()
 
 		if("mov_intent")
-			if(isCarbon(usr))
+			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
 				if(C.legcuffed)
-					to_chat(C, span("notice", "You are legcuffed! You cannot run until you get [C.legcuffed] removed!"))
+					to_chat(C, SPAN_NOTICE("You are legcuffed! You cannot run until you get [C.legcuffed] removed!"))
 					C.m_intent = "walk"	//Just incase
 					C.hud_used.move_intent.icon_state = "walking"
 					return 1
@@ -277,20 +277,20 @@
 			usr.drop_item_v()
 
 		if("module")
-			if(isSilicon(usr))
+			if(issilicon(usr))
 				if(usr:module)
 					return 1
 				usr:pick_module()
 
 		if("radio")
-			if(isSilicon(usr))
+			if(issilicon(usr))
 				usr:radio_menu()
 		if("panel")
-			if(isSilicon(usr))
+			if(issilicon(usr))
 				usr:installed_modules()
 
 		if("store")
-			if(isSilicon(usr))
+			if(issilicon(usr))
 				usr:uneq_active()
 
 		if("module1")
@@ -378,12 +378,12 @@
 		return 1
 	switch(name)
 		if("r_hand")
-			if(isCarbon(usr))
+			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
 				C.activate_hand("r")
 				usr.next_move = world.time + 2
 		if("l_hand")
-			if(isCarbon(usr))
+			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
 				C.activate_hand("l")
 				usr.next_move = world.time + 2

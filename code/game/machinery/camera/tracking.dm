@@ -163,7 +163,7 @@
 /proc/near_camera(mob/living/M)
 	if(!isturf(M.loc))
 		return 0
-	if(isRobot(M))
+	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		if(!(R.camera && R.camera.can_use()) && !cameranet.checkCameraVis(M))
 			return 0

@@ -110,7 +110,7 @@
 		if(href_list["network"])
 
 			var/newnet = input(usr, "Which network do you want to view?", "Comm Monitor", network) as null|text
-			if(newnet && ((usr in range(1, src) || isSilicon(usr))))
+			if(newnet && ((usr in range(1, src) || issilicon(usr))))
 				if(length(newnet) > 15)
 					temp = "<font color = #D70B00>- FAILED: NETWORK TAG STRING TOO LENGHTLY -</font color>"
 
@@ -140,7 +140,7 @@
 					A.anchored = 1
 					qdel(src)
 				else
-					to_chat(user, span("info", "You disconnect the monitor."))
+					to_chat(user, SPAN_INFO("You disconnect the monitor."))
 					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 					var/obj/item/weapon/circuitboard/comm_monitor/M = new /obj/item/weapon/circuitboard/comm_monitor( A )
 					for (var/obj/C in src)

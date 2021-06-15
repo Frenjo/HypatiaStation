@@ -23,10 +23,10 @@
 	if(length(A.name) + length(label) > 64)
 		user << "<span class='notice'>Label too big.</span>"
 		return
-	if(isHuman(A))
+	if(ishuman(A))
 		user << "<span class='notice'>You can't label humans.</span>"
 		return
-	if(isSilicon(A))
+	if(issilicon(A))
 		user << "<span class='notice'>You can't label cyborgs.</span>"
 		return
 	if(istype(A, /obj/item/weapon/reagent_containers/glass))

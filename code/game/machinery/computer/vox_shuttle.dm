@@ -22,7 +22,7 @@ var/global/announce_vox_departure = 1 //Stealth systems - give an announcement o
 
 /obj/machinery/computer/vox_stealth/attack_hand(mob/user as mob)
 	if(!allowed(user))
-		to_chat(user, span("warning", "Access denied."))
+		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 
 	// Changed 'Exodus' to 'Hypatia'. -Frenjo
@@ -101,7 +101,7 @@ var/global/announce_vox_departure = 1 //Stealth systems - give an announcement o
 
 /obj/machinery/computer/vox_station/attack_hand(mob/user as mob)
 	if(!allowed(user))
-		to_chat(user, span("warning", "Access denied."))
+		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 
 	user.set_machine(src)
@@ -122,7 +122,7 @@ var/global/announce_vox_departure = 1 //Stealth systems - give an announcement o
 
 
 /obj/machinery/computer/vox_station/Topic(href, href_list)
-	if(!isLiving(usr))	return
+	if(!isliving(usr))	return
 	var/mob/living/user = usr
 
 	if(in_range(src, user) || istype(user, /mob/living/silicon))

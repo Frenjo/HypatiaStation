@@ -39,13 +39,13 @@
 	else
 		..()
 
-/obj/structure/bookcase/attack_hand(var/mob/user as mob)
+/obj/structure/bookcase/attack_hand(mob/user as mob)
 	if(contents.len)
 		var/obj/item/weapon/book/choice = input("Which book would you like to remove from the shelf?") in contents
 		if(choice)
 			if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 				return
-			if(isHuman(user))
+			if(ishuman(user))
 				if(!user.get_active_hand())
 					user.put_in_hands(choice)
 			else

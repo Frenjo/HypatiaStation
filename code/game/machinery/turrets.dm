@@ -3,8 +3,8 @@
 	var/list/turretTargets = list()
 
 /area/turret_protected/proc/subjectDied(target)
-	if( isLiving(target) )
-		if( !isSilicon(target) )
+	if( isliving(target) )
+		if( !issilicon(target) )
 			var/mob/living/L = target
 			if( L.stat )
 				if( L in turretTargets )
@@ -16,13 +16,13 @@
 	//if( master && master != src )
 	//	return master.Entered(O)
 
-	if( isCarbon(O) )
+	if(iscarbon(O))
 		turretTargets |= O
-	else if( istype(O, /obj/mecha) )
+	else if(istype(O, /obj/mecha))
 		var/obj/mecha/Mech = O
-		if( Mech.occupant )
+		if(Mech.occupant)
 			turretTargets |= Mech
-	else if(istype(O,/mob/living/simple_animal))
+	else if(isanimal(O))
 		turretTargets |= O
 	return 1
 
@@ -30,9 +30,9 @@
 	//if( master && master != src )
 	//	return master.Exited(O)
 
-	if( ismob(O) && !isSilicon(O) )
+	if(ismob(O) && !issilicon(O))
 		turretTargets -= O
-	else if( istype(O, /obj/mecha) )
+	else if(istype(O, /obj/mecha))
 		turretTargets -= O
 	..()
 	return 1
@@ -150,24 +150,24 @@
 		return TP
 	return
 
-/obj/machinery/turret/proc/check_target(var/atom/movable/T as mob|obj)
-	if( T && T in protected_area.turretTargets )
+/obj/machinery/turret/proc/check_target(atom/movable/T as mob|obj)
+	if(T && T in protected_area.turretTargets)
 		var/area/area_T = get_area(T)
-		if( !area_T || (area_T.type != protected_area.type) )
+		if(!area_T || (area_T.type != protected_area.type))
 			protected_area.Exited(T)
 			return 0 //If the guy is somehow not in the turret's area (teleportation), get them out the damn list. --NEO
-		if( isCarbon(T) )
+		if(iscarbon(T) )
 			var/mob/living/carbon/MC = T
-			if( !MC.stat )
-				if( !MC.lying || lasers )
+			if(!MC.stat)
+				if(!MC.lying || lasers)
 					return 1
-		else if( istype(T, /obj/mecha) )
+		else if(istype(T, /obj/mecha))
 			var/obj/mecha/ME = T
-			if( ME.occupant )
+			if(ME.occupant)
 				return 1
-		else if(istype(T,/mob/living/simple_animal))
+		else if(isanimal(T))
 			var/mob/living/simple_animal/A = T
-			if( !A.stat )
+			if(!A.stat)
 				if(lasers)
 					return 1
 	return 0
@@ -407,7 +407,7 @@
 
 /obj/machinery/turretid/attack_hand(mob/user as mob)
 	if ( get_dist(src, user) > 0 )
-		if ( !isSilicon(user) )
+		if ( !issilicon(user) )
 			user << "<span class='notice'>You are too far away.</span>"
 			user.unset_machine()
 			user << browse(null, "window=turretid")
@@ -452,7 +452,7 @@
 		if (!istype(usr, /mob/living/silicon))
 			usr << "Control panel is locked!"
 			return
-	if ( get_dist(src, usr) == 0 || isSilicon(usr))
+	if ( get_dist(src, usr) == 0 || issilicon(usr))
 		if (href_list["toggleOn"])
 			src.enabled = !src.enabled
 			src.updateTurrets()

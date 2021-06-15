@@ -173,20 +173,23 @@
 		//Find the correct supply_pack datum
 		//var/datum/supply_packs/P = supply_shuttle.supply_packs[href_list["doorder"]]
 		var/datum/supply_packs/P = supply_controller.supply_packs[href_list["doorder"]] // Edited this to reflect 'shuttles' port. -Frenjo
-		if(!istype(P))	return
+		if(!istype(P))
+			return
 
 		var/timeout = world.time + 600
-		var/reason = copytext(sanitize(input(usr,"Reason:","Why do you require this item?","") as null|text),1,MAX_MESSAGE_LEN)
-		if(world.time > timeout)	return
-		if(!reason)	return
+		var/reason = copytext(sanitize(input(usr, "Reason:", "Why do you require this item?", "") as null|text), 1, MAX_MESSAGE_LEN)
+		if(world.time > timeout)
+			return
+		if(!reason)
+			return
 
 		var/idname = "*None Provided*"
 		var/idrank = "*None Provided*"
-		if(isHuman(usr))
+		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			idname = H.get_authentification_name()
 			idrank = H.get_assignment()
-		else if(isSilicon(usr))
+		else if(issilicon(usr))
 			idname = usr.real_name
 
 		//supply_shuttle.ordernum++
@@ -246,7 +249,7 @@
 
 /obj/machinery/computer/supplycomp/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		to_chat(user, span("warning", "Access denied."))
+		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 
 	if(..())
@@ -373,20 +376,23 @@
 		//Find the correct supply_pack datum
 		//var/datum/supply_packs/P = supply_shuttle.supply_packs[href_list["doorder"]]
 		var/datum/supply_packs/P = supply_controller.supply_packs[href_list["doorder"]] // Edited this to reflect 'shuttles' port. -Frenjo
-		if(!istype(P))	return
+		if(!istype(P))
+			return
 
 		var/timeout = world.time + 600
-		var/reason = copytext(sanitize(input(usr,"Reason:","Why do you require this item?","") as null|text),1,MAX_MESSAGE_LEN)
-		if(world.time > timeout)	return
-		if(!reason)	return
+		var/reason = copytext(sanitize(input(usr, "Reason:", "Why do you require this item?","") as null|text), 1, MAX_MESSAGE_LEN)
+		if(world.time > timeout)
+			return
+		if(!reason)
+			return
 
 		var/idname = "*None Provided*"
 		var/idrank = "*None Provided*"
-		if(isHuman(usr))
+		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			idname = H.get_authentification_name()
 			idrank = H.get_assignment()
-		else if(isSilicon(usr))
+		else if(issilicon(usr))
 			idname = usr.real_name
 
 		//supply_shuttle.ordernum++

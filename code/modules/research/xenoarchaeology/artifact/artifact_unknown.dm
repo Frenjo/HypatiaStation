@@ -161,10 +161,10 @@
 			secondary_effect.ToggleActivate(0)
 
 /obj/machinery/artifact/attack_hand(var/mob/user as mob)
-	if (get_dist(user, src) > 1)
+	if(get_dist(user, src) > 1)
 		user << "\red You can't reach [src] from here."
 		return
-	if(isHuman(user) && user:gloves)
+	if(ishuman(user) && user:gloves)
 		user << "<b>You touch [src]</b> with your gloved hands, [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")]."
 		return
 
@@ -179,7 +179,7 @@
 	if(prob(25) && secondary_effect && secondary_effect.trigger == TRIGGER_TOUCH)
 		secondary_effect.ToggleActivate(0)
 
-	if (my_effect.effect == EFFECT_TOUCH)
+	if(my_effect.effect == EFFECT_TOUCH)
 		my_effect.DoEffectTouch(user)
 
 	if(secondary_effect && secondary_effect.effect == EFFECT_TOUCH && secondary_effect.activated)
@@ -240,17 +240,17 @@
 				my_effect.ToggleActivate()
 			if(secondary_effect && secondary_effect.trigger == TRIGGER_FORCE && prob(25))
 				secondary_effect.ToggleActivate(0)
-	else if(isHuman(M) && !istype(M:gloves,/obj/item/clothing/gloves))
+	else if(ishuman(M) && !istype(M:gloves, /obj/item/clothing/gloves))
 		var/warn = 0
 
-		if (my_effect.trigger == TRIGGER_TOUCH && prob(50))
+		if(my_effect.trigger == TRIGGER_TOUCH && prob(50))
 			my_effect.ToggleActivate()
 			warn = 1
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_TOUCH && prob(25))
 			secondary_effect.ToggleActivate(0)
 			warn = 1
 
-		if (my_effect.effect == EFFECT_TOUCH && prob(50))
+		if(my_effect.effect == EFFECT_TOUCH && prob(50))
 			my_effect.DoEffectTouch(M)
 			warn = 1
 		if(secondary_effect && secondary_effect.effect == EFFECT_TOUCH && secondary_effect.activated && prob(50))

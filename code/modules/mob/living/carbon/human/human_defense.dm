@@ -112,7 +112,7 @@ emp_act
 	var/organnum = 0
 
 	if(def_zone)
-		if(isOrgan(def_zone))
+		if(isorgan(def_zone))
 			return checkarmor(def_zone, type)
 		var/datum/organ/external/affecting = get_organ(ran_zone(def_zone))
 		return checkarmor(affecting, type)
@@ -245,7 +245,7 @@ emp_act
 			var/turf/location = loc
 			if(istype(location, /turf/simulated))
 				location.add_blood(src)
-			if(isHuman(user))
+			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
 				if(get_dist(H, src) <= 1) //people with TK won't get smeared with blood
 					H.bloody_body(src)

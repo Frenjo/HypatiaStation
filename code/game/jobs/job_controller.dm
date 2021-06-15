@@ -16,7 +16,7 @@ var/global/datum/controller/occupations/job_master
 	occupations = list()
 	var/list/all_jobs = typesof(/datum/job)
 	if(!all_jobs.len)
-		to_chat(world, span("danger", "Error setting up jobs, no job datums found"))
+		to_chat(world, SPAN_DANGER("Error setting up jobs, no job datums found"))
 		return 0
 	for(var/J in all_jobs)
 		var/datum/job/job = new J()
@@ -390,7 +390,7 @@ var/global/datum/controller/occupations/job_master
 		H.mind.store_memory(remembered_info)
 
 	spawn(0)
-		to_chat(H, span("notice", "Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]"))
+		to_chat(H, SPAN_NOTICE("Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]"))
 
 	var/alt_title = null
 	if(H.mind)

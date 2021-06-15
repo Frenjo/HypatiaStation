@@ -52,7 +52,7 @@
 	if(stat & BROKEN || !I || !user)
 		return
 
-	if(isRobot(user) && !istype(I, /obj/item/weapon/storage/bag/trash))
+	if(isrobot(user) && !istype(I, /obj/item/weapon/storage/bag/trash))
 		return
 	src.add_fingerprint(user)
 	if(mode <= 0) // It's off
@@ -101,7 +101,7 @@
 
 	if(istype(I, /obj/item/weapon/storage/bag/trash))
 		var/obj/item/weapon/storage/bag/trash/T = I
-		to_chat(user, span("info", "You empty the bag."))
+		to_chat(user, SPAN_INFO("You empty the bag."))
 		for(var/obj/item/O in T.contents)
 			T.remove_from_storage(O, src)
 		T.update_icon()
@@ -146,7 +146,7 @@
 /obj/machinery/disposal/MouseDrop_T(mob/target, mob/user)
 	if(!istype(target) || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.stat || istype(user, /mob/living/silicon/ai))
 		return
-	if(isAnimal(user) && target != user)
+	if(isanimal(user) && target != user)
 		return //animals cannot put mobs other than themselves into disposal
 	src.add_fingerprint(user)
 	var/target_loc = target.loc
@@ -224,11 +224,11 @@
 // human interact with machine
 /obj/machinery/disposal/attack_hand(mob/user as mob)
 	if(user && user.loc == src)
-		to_chat(user, span("warning", "You cannot reach the controls from inside."))
+		to_chat(user, SPAN_WARNING("You cannot reach the controls from inside."))
 		return
 	/*
 	if(mode == -1)
-		to_chat(user, span("warning", "The disposal unit's power is disabled."))
+		to_chat(user, SPAN_WARNING("The disposal unit's power is disabled."))
 		return
 	*/
 	interact(user, 0)
@@ -267,11 +267,11 @@
 // handle machine interaction
 /obj/machinery/disposal/Topic(href, href_list)
 	if(usr.loc == src)
-		to_chat(usr, span("warning", "You cannot reach the controls from inside."))
+		to_chat(usr, SPAN_WARNING("You cannot reach the controls from inside."))
 		return
 
 	if(mode == -1 && !href_list["eject"]) // only allow ejecting if mode is -1
-		to_chat(usr, span("warning", "The disposal unit's power is disabled."))
+		to_chat(usr, SPAN_WARNING("The disposal unit's power is disabled."))
 		return
 	..()
 	src.add_fingerprint(usr)
@@ -547,7 +547,7 @@
 
 	return
 
-	// movement process, persists while holder is moving through pipes
+// movement process, persists while holder is moving through pipes
 /obj/structure/disposalholder/proc/move()
 	var/obj/structure/disposalpipe/last
 	while(active)
@@ -556,8 +556,8 @@
 				// This is probably a terrible way to do this, but...
 				// Check if mob is wearing the mailman's voidsuit and helmet to avoid damage.
 				// Otherwise... What the other guy said below this. -Frenjo
-				if(!istype(L, /mob/living/silicon/robot/drone)) //Drones use the mailing code to move through the disposal system,
-					if(isHuman(L))
+				if(!isdrone(L)) //Drones use the mailing code to move through the disposal system,
+					if(ishuman(L))
 						var/mob/living/carbon/human/H = L
 						if(!istype(H.wear_suit, /obj/item/clothing/suit/space/mailmanvoid) || !istype(H.head, /obj/item/clothing/head/helmet/space/mailmanvoid))
 							L.take_overall_damage(20, 0, "Blunt Trauma")//horribly maim any living creature jumping down disposals.  c'est la vie
@@ -1110,7 +1110,7 @@
 			sortType = O.currTag
 			playsound(src, 'sound/machines/twobeep.ogg', 100, 1)
 			var/tag = uppertext(TAGGERLOCATIONS[O.currTag])
-			to_chat(user, span("info", "Changed filter to [tag]."))
+			to_chat(user, SPAN_INFO("Changed filter to [tag]."))
 			updatedesc()
 
 

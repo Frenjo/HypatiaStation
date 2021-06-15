@@ -132,29 +132,29 @@
 	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	if(connected_device)
-		to_chat(user, span("warning", "You cannot unwrench this [src], dettach [connected_device] first."))
+		to_chat(user, SPAN_WARNING("You cannot unwrench this [src], dettach [connected_device] first."))
 		return 1
 	if(locate(/obj/machinery/portable_atmospherics, src.loc))
 		return 1
 
 	var/turf/T = src.loc
 	if(level == 1 && isturf(T) && T.intact)
-		to_chat(user, span("warning", "You must remove the plating first."))
+		to_chat(user, SPAN_WARNING("You must remove the plating first."))
 		return 1
 
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if((int_air.return_pressure() - env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
-		to_chat(user, span("warning", "You cannot unwrench this [src], it too exerted due to internal pressure."))
+		to_chat(user, SPAN_WARNING("You cannot unwrench this [src], it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
 
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
-	to_chat(user, span("info", "You begin to unfasten \the [src]..."))
+	to_chat(user, SPAN_INFO("You begin to unfasten \the [src]..."))
 	if(do_after(user, 40))
 		user.visible_message( \
 			"[user] unfastens \the [src].", \
-			span("info", "You have unfastened \the [src]."), \
+			SPAN_INFO("You have unfastened \the [src]."), \
 			"You hear ratchet.")
 		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)

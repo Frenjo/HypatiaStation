@@ -66,19 +66,21 @@
 	item_color = "stethoscope"
 
 /obj/item/clothing/tie/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
-	if(isHuman(M) && isLiving(user))
+	if(ishuman(M) && isliving(user))
 		if(user.a_intent == "help")
 			var/body_part = parse_zone(user.zone_sel.selecting)
 			if(body_part)
 				var/their = "their"
 				switch(M.gender)
-					if(MALE)	their = "his"
-					if(FEMALE)	their = "her"
+					if(MALE)
+						their = "his"
+					if(FEMALE)
+						their = "her"
 
 				var/sound = "pulse"
 				var/sound_strength
 
-				if(M.stat == DEAD || (M.status_flags&FAKEDEATH))
+				if(M.stat == DEAD || (M.status_flags & FAKEDEATH))
 					sound_strength = "cannot hear"
 					sound = "anything"
 				else
@@ -88,7 +90,7 @@
 							if(M.oxyloss < 50)
 								sound_strength = "hear a healthy"
 							sound = "pulse and respiration"
-						if("eyes","mouth")
+						if("eyes", "mouth")
 							sound_strength = "cannot hear"
 							sound = "anything"
 						else
@@ -402,7 +404,7 @@
 	if(!stored_name)
 		user << "Waving around a badge before swiping an ID would be pretty pointless."
 		return
-	if(isLiving(user))
+	if(isliving(user))
 		user.visible_message("\red [user] displays their NanoTrasen Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NT Security.","\red You display your NanoTrasen Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NT Security.")
 
 /obj/item/clothing/tie/holobadge/attackby(var/obj/item/O as obj, var/mob/user as mob)
@@ -435,7 +437,7 @@
 	..()
 
 /obj/item/clothing/tie/holobadge/attack(mob/living/carbon/human/M, mob/living/user)
-	if(isLiving(user))
+	if(isliving(user))
 		user.visible_message("\red [user] invades [M]'s personal space, thrusting [src] into their face insistently.","\red You invade [M]'s personal space, thrusting [src] into their face insistently. You are the law.")
 
 /obj/item/weapon/storage/box/holobadge

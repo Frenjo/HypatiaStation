@@ -120,23 +120,23 @@
 			if ("reason")
 				var/reas = input("Reason why pass is issued", "Reason", reason)
 				reason = reas
-			if ("duration")
+			if("duration")
 				var/dur = input("Duration (in minutes) during which pass is valid.", "Duration") as num
 				if (dur > 0 && dur < 30)
 					duration = dur
 				else
 					usr << "\red Invalid duration."
-			if ("access")
+			if("access")
 				var/A = text2num(href_list["access"])
-				if (A in accesses)
+				if(A in accesses)
 					accesses.Remove(A)
 				else
 					accesses.Add(A)
-	if (href_list["action"])
+	if(href_list["action"])
 		switch(href_list["action"])
-			if ("id")
-				if (giver)
-					if(isHuman(usr))
+			if("id")
+				if(giver)
+					if(ishuman(usr))
 						giver.loc = usr.loc
 						if(!usr.get_active_hand())
 							usr.put_in_hands(giver)
@@ -146,29 +146,29 @@
 						giver = null
 				else
 					var/obj/item/I = usr.get_active_hand()
-					if (istype(I, /obj/item/weapon/card/id))
+					if(istype(I, /obj/item/weapon/card/id))
 						usr.drop_item()
 						I.loc = src
 						giver = I
 				updateUsrDialog()
 
-			if ("print")
+			if("print")
 				var/dat = "<h3>Activity log of guest pass terminal #[uid]</h3><br>"
-				for (var/entry in internal_log)
+				for(var/entry in internal_log)
 					dat += "[entry]<br><hr>"
 				//usr << "Printing the log, standby..."
 				//sleep(50)
-				var/obj/item/weapon/paper/P = new/obj/item/weapon/paper( loc )
+				var/obj/item/weapon/paper/P = new/obj/item/weapon/paper(loc)
 				P.name = "activity log"
 				P.info = dat
 
-			if ("issue")
-				if (giver)
+			if("issue")
+				if(giver)
 					var/number = add_zero("[rand(0,9999)]", 4)
 					var/entry = "\[[worldtime2text()]\] Pass #[number] issued by [giver.registered_name] ([giver.assignment]) to [giv_name]. Reason: [reason]. Grants access to following areas: "
-					for (var/i=1 to accesses.len)
+					for(var/i = 1 to accesses.len)
 						var/A = accesses[i]
-						if (A)
+						if(A)
 							var/area = get_access_desc(A)
 							entry += "[i > 1 ? ", [area]" : "[area]"]"
 					entry += ". Expires at [worldtime2text(world.time + duration*10*60)]."
@@ -177,7 +177,7 @@
 					var/obj/item/weapon/card/id/guest/pass = new(src.loc)
 					pass.temp_access = accesses.Copy()
 					pass.registered_name = giv_name
-					pass.expiration_time = world.time + duration*10*60
+					pass.expiration_time = world.time + duration * 10 * 60
 					pass.reason = reason
 					pass.name = "guest pass #[number]"
 				else

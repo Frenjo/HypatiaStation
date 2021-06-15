@@ -94,22 +94,22 @@
 		return ..()
 	var/turf/T = src.loc
 	if(level == 1 && isturf(T) && T.intact)
-		to_chat(user, span("warning", "You must remove the plating first."))
+		to_chat(user, SPAN_WARNING("You must remove the plating first."))
 		return 1
 
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if((int_air.return_pressure()-env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
-		to_chat(user, span("warning", "You cannot unwrench this [src], it too exerted due to internal pressure."))
+		to_chat(user, SPAN_WARNING("You cannot unwrench this [src], it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
 
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
-	to_chat(user, span("info", "You begin to unfasten \the [src]..."))
+	to_chat(user, SPAN_INFO("You begin to unfasten \the [src]..."))
 	if(do_after(user, 40))
 		user.visible_message( \
 			"[user] unfastens \the [src].", \
-			span("info", "You have unfastened \the [src]."), \
+			SPAN_INFO("You have unfastened \the [src]."), \
 			"You hear ratchet.")
 		new /obj/item/pipe(loc, make_from=src)
 		qdel(src)
@@ -119,7 +119,7 @@
 		return
 	src.add_fingerprint(usr)
 	if(!src.allowed(user))
-		to_chat(user, span("warning", "Access denied."))
+		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 	usr.set_machine(src)
 	/*var/dat = {"<b>Power: </b><a href='?src=\ref[src];power=1'>[on?"On":"Off"]</a><br>

@@ -536,8 +536,9 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	set category = "Object"
 	var/mob/M = usr
 
-	if(isHuman(M) && !M.restrained() && !M.stat && !M.paralysis && ! M.stunned)
-		if(!istype(usr.loc,/turf)) return
+	if(ishuman(M) && !M.restrained() && !M.stat && !M.paralysis && ! M.stunned)
+		if(!istype(usr.loc, /turf))
+			return
 		if(src.amount <= 14)
 			usr << "\red You need at least 15 lengths to make restraints!"
 			return
@@ -555,7 +556,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 /obj/item/stack/cable_coil/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/wirecutters) && src.amount > 1)
 		src.amount--
-		new/obj/item/stack/cable_coil(user.loc, 1,item_color)
+		new/obj/item/stack/cable_coil(user.loc, 1, item_color)
 		user << "<span class='notice'>You cut a piece off the cable coil.</span>"
 		src.update_icon()
 		return

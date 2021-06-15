@@ -15,9 +15,9 @@
 	update_icon()
 
 /obj/item/weapon/clipboard/MouseDrop(obj/over_object as obj) //Quick clipboard fix. -Agouri
-	if(isHuman(usr))
+	if(ishuman(usr))
 		var/mob/M = usr
-		if(!(istype(over_object, /obj/screen) ))
+		if(!(istype(over_object, /obj/screen)))
 			return ..()
 
 		if(!M.restrained() && !M.stat)
@@ -68,7 +68,7 @@
 		dat += "<A href='?src=\ref[src];write=\ref[P]'>Write</A> <A href='?src=\ref[src];remove=\ref[P]'>Remove</A> - <A href='?src=\ref[src];read=\ref[P]'>[P.name]</A><BR><HR>"
 
 	for(var/obj/item/weapon/paper/P in src)
-		if(P==toppaper)
+		if(P == toppaper)
 			continue
 		dat += "<A href='?src=\ref[src];remove=\ref[P]'>Remove</A> - <A href='?src=\ref[src];read=\ref[P]'>[P.name]</A><BR>"
 	for(var/obj/item/weapon/photo/Ph in src)
@@ -85,7 +85,6 @@
 		return
 
 	if(usr.contents.Find(src))
-
 		if(href_list["pen"])
 			if(haspen)
 				haspen.loc = usr.loc
@@ -123,7 +122,7 @@
 		if(href_list["read"])
 			var/obj/item/weapon/paper/P = locate(href_list["read"])
 			if(P)
-				if(!(istype(usr, /mob/living/carbon/human) || istype(usr, /mob/dead/observer) || istype(usr, /mob/living/silicon)))
+				if(!(ishuman(usr) || isobserver(usr) || issilicon(usr)))
 					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
 					onclose(usr, "[P.name]")
 				else

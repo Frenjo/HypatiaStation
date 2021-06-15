@@ -49,7 +49,7 @@
 	var/armor_duration = 0 //The more force the bottle has, the longer the duration.
 
 	//Calculating duration and calculating damage.
-	if(isHuman(target))
+	if(ishuman(target))
 
 		var/mob/living/carbon/human/H = target
 		var/headarmor = 0 // Target's head armour

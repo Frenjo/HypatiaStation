@@ -70,7 +70,7 @@ RSF
 			user << "Dispensing Dosh..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/weapon/spacecash/c10( A.loc )
-			if (isRobot(user))
+			if (isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 200 //once money becomes useful, I guess changing this to a high ammount, like 500 units a kick, till then, enjoy dosh!
 			else
@@ -84,7 +84,7 @@ RSF
 			user << "Dispensing Dosh..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/weapon/spacecash/c10( A )
-			if (isRobot(user))
+			if (isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 200 //once money becomes useful, I guess changing this to a high ammount, like 500 units a kick, till then, enjoy dosh!
 			else
@@ -98,7 +98,7 @@ RSF
 			user << "Dispensing Drinking Glass..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/weapon/reagent_containers/food/drinks/drinkingglass( A.loc )
-			if (isRobot(user))
+			if (isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 50
 			else
@@ -112,7 +112,7 @@ RSF
 			user << "Dispensing Drinking Glass..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/weapon/reagent_containers/food/drinks/drinkingglass( A )
-			if (isRobot(user))
+			if (isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 50
 			else
@@ -126,7 +126,7 @@ RSF
 			user << "Dispensing Paper Sheet..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/weapon/paper( A.loc )
-			if (isRobot(user))
+			if (isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 10
 			else
@@ -140,7 +140,7 @@ RSF
 			user << "Dispensing Paper Sheet..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/weapon/paper( A )
-			if (isRobot(user))
+			if (isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 10
 			else
@@ -154,7 +154,7 @@ RSF
 			user << "Dispensing Pen..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/weapon/pen( A.loc )
-			if (isRobot(user))
+			if (isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 50
 			else
@@ -168,7 +168,7 @@ RSF
 			user << "Dispensing Pen..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/weapon/pen( A )
-			if (isRobot(user))
+			if (isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 50
 			else
@@ -182,7 +182,7 @@ RSF
 			user << "Dispensing Dice Pack..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/weapon/storage/pill_bottle/dice( A.loc )
-			if (isRobot(user))
+			if (isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 200
 			else
@@ -196,7 +196,7 @@ RSF
 			user << "Dispensing Dice Pack..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/weapon/storage/pill_bottle/dice( A )
-			if (isRobot(user))
+			if (isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 200
 			else
@@ -210,7 +210,7 @@ RSF
 			user << "Dispensing Cigarette..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/clothing/mask/cigarette( A.loc )
-			if (isRobot(user))
+			if (isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 10
 			else
@@ -224,7 +224,7 @@ RSF
 			user << "Dispensing Cigarette..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/clothing/mask/cigarette( A )
-			if (isRobot(user))
+			if (isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 10
 			else

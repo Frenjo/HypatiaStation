@@ -76,7 +76,7 @@ REAGENT SCANNER
 
 
 /obj/item/device/healthanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
-	if (( (CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
+	if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
 		user << text("\red You try to analyze the floor's vitals!")
 		for(var/mob/O in viewers(M, null))
 			O.show_message(text("\red [user] has analyzed the floor's vitals!"), 1)
@@ -85,12 +85,12 @@ REAGENT SCANNER
 		user.show_message("\blue Key: Suffocation/Toxin/Burns/Brute", 1)
 		user.show_message("\blue Body Temperature: ???", 1)
 		return
-	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if(!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		usr << "\red You don't have the dexterity to do this!"
 		return
 	user.visible_message("<span class='notice'> [user] has analyzed [M]'s vitals.","<span class='notice'> You have analyzed [M]'s vitals.")
 
-	if(!istype(M, /mob/living/carbon) || (isHuman(M) && (M:species.flags & IS_SYNTHETIC)))
+	if(!iscarbon(M) || (ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
 		//these sensors are designed for organic life
 		user.show_message("\blue Analyzing Results for ERROR:\n\t Overall Status: ERROR")
 		user.show_message("\t Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>", 1)
@@ -100,7 +100,7 @@ REAGENT SCANNER
 		user.show_message("\blue Subject's pulse: <font color='red'>-- bpm.</font>")
 		return
 
-	var/fake_oxy = max(rand(1,40), M.getOxyLoss(), (300 - (M.getToxLoss() + M.getFireLoss() + M.getBruteLoss())))
+	var/fake_oxy = max(rand(1, 40), M.getOxyLoss(), (300 - (M.getToxLoss() + M.getFireLoss() + M.getBruteLoss())))
 	var/OX = M.getOxyLoss() > 50 	? 	"<b>[M.getOxyLoss()]</b>" 		: M.getOxyLoss()
 	var/TX = M.getToxLoss() > 50 	? 	"<b>[M.getToxLoss()]</b>" 		: M.getToxLoss()
 	var/BU = M.getFireLoss() > 50 	? 	"<b>[M.getFireLoss()]</b>" 		: M.getFireLoss()
@@ -117,7 +117,7 @@ REAGENT SCANNER
 		user.show_message("\blue Time of Death: [M.tod]")
 	if(istype(M, /mob/living/carbon/human) && mode == 1)
 		var/mob/living/carbon/human/H = M
-		var/list/damaged = H.get_damaged_organs(1,1)
+		var/list/damaged = H.get_damaged_organs(1, 1)
 		user.show_message("\blue Localized Damage, Brute/Burn:",1)
 		if(length(damaged)>0)
 			for(var/datum/organ/external/org in damaged)
@@ -136,32 +136,32 @@ REAGENT SCANNER
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 ? 		"\red Severe oxygen deprivation detected\blue" 	: 	"Subject bloodstream oxygen level normal"
 	user.show_message("[OX] | [TX] | [BU] | [BR]")
-	if (istype(M, /mob/living/carbon))
+	if(iscarbon(M))
 		if(M:reagents.total_volume > 0)
 			user.show_message(text("\red Warning: Unknown substance detected in subject's blood."))
 		if(M:virus2.len)
 			var/mob/living/carbon/C = M
-			for (var/ID in C.virus2)
-				if (ID in virusDB)
+			for(var/ID in C.virus2)
+				if(ID in virusDB)
 					var/datum/data/record/V = virusDB[ID]
 					user.show_message(text("\red Warning: Pathogen [V.fields["name"]] detected in subject's blood. Known antigen : [V.fields["antigen"]]"))
 //			user.show_message(text("\red Warning: Unknown pathogen detected in subject's blood."))
-	if (M.getCloneLoss())
+	if(M.getCloneLoss())
 		user.show_message("\red Subject appears to have been imperfectly cloned.")
 	for(var/datum/disease/D in M.viruses)
 		if(!D.hidden[SCANNER])
 			user.show_message(text("\red <b>Warning: [D.form] Detected</b>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]"))
-	if (M.reagents && M.reagents.get_reagent_amount("inaprovaline"))
+	if(M.reagents && M.reagents.get_reagent_amount("inaprovaline"))
 		user.show_message("\blue Bloodstream Analysis located [M.reagents:get_reagent_amount("inaprovaline")] units of rejuvenation chemicals.")
-	if (M.has_brain_worms())
+	if(M.has_brain_worms())
 		user.show_message("\red Subject suffering from aberrant brain activity. Recommend further scanning.")
-	else if (M.getBrainLoss() >= 100 || istype(M, /mob/living/carbon/human) && M:brain_op_stage == 4.0)
+	else if(M.getBrainLoss() >= 100 || istype(M, /mob/living/carbon/human) && M:brain_op_stage == 4.0)
 		user.show_message("\red Subject is brain dead.")
-	else if (M.getBrainLoss() >= 60)
+	else if(M.getBrainLoss() >= 60)
 		user.show_message("\red Severe brain damage detected. Subject likely to have mental retardation.")
-	else if (M.getBrainLoss() >= 10)
+	else if(M.getBrainLoss() >= 10)
 		user.show_message("\red Significant brain damage detected. Subject may have had a concussion.")
-	if(isHuman(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/name in H.organs_by_name)
 			var/datum/organ/external/e = H.organs_by_name[name]

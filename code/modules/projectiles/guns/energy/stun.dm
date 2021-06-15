@@ -39,7 +39,7 @@
 	if(power_supply.charge >= power_supply.maxcharge)
 		return 0 // check if we actually need to recharge
 
-	if(isRobot(src.loc))
+	if(isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		if(R && R.cell)
 			R.cell.use(charge_cost) 		//Take power from the borg...

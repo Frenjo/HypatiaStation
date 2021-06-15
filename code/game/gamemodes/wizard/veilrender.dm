@@ -32,7 +32,7 @@
 	if(charged == 1)
 		new /obj/effect/rend(get_turf(usr))
 		charged = 0
-		visible_message(span("danger", "[src] hums with power as [usr] deals a blow to reality itself!"))
+		visible_message(SPAN_DANGER("[src] hums with power as [usr] deals a blow to reality itself!"))
 	else
-		to_chat(user, span("warning", "The unearthly energies that powered the blade are now dormant."))
+		to_chat(user, SPAN_WARNING("The unearthly energies that powered the blade are now dormant."))
 

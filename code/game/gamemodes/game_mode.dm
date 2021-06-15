@@ -105,15 +105,15 @@ Implants;
 ///post_setup()
 ///Everyone should now be on the station and have their normal gear.  This is the place to give the special roles extra things
 /datum/game_mode/proc/post_setup()
-	spawn (ROUNDSTART_LOGOUT_REPORT_TIME)
+	spawn(ROUNDSTART_LOGOUT_REPORT_TIME)
 		display_roundstart_logout_report()
 
-	feedback_set_details("round_start","[time2text(world.realtime)]")
+	feedback_set_details("round_start", "[time2text(world.realtime)]")
 	if(ticker && ticker.mode)
-		feedback_set_details("game_mode","[ticker.mode]")
+		feedback_set_details("game_mode", "[ticker.mode]")
 	if(revdata)
-		feedback_set_details("revision","[revdata.revision]")
-	feedback_set_details("server_ip","[world.internet_address]:[world.port]")
+		feedback_set_details("revision", "[revdata.revision]")
+	feedback_set_details("server_ip", "[world.internet_address]:[world.port]")
 	return 1
 
 
@@ -143,12 +143,12 @@ Implants;
 	var/escaped_on_pod_5 = 0
 	var/escaped_on_shuttle = 0
 
-	var/list/area/escape_locations = list(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom)
+	var/list/area/escape_locations = list(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom, /area/shuttle/arrival/centcom)
 
 	for(var/mob/M in player_list)
 		if(M.client)
 			clients++
-			if(isHuman(M))
+			if(ishuman(M))
 				if(!M.stat)
 					surviving_humans++
 					if(M.loc && M.loc.loc && M.loc.loc.type in escape_locations)
@@ -170,31 +170,31 @@ Implants;
 				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod5/centcom)
 					escaped_on_pod_5++
 
-			if(isObserver(M))
+			if(isobserver(M))
 				ghosts++
 
 	if(clients > 0)
-		feedback_set("round_end_clients",clients)
+		feedback_set("round_end_clients", clients)
 	if(ghosts > 0)
-		feedback_set("round_end_ghosts",ghosts)
+		feedback_set("round_end_ghosts", ghosts)
 	if(surviving_humans > 0)
-		feedback_set("survived_human",surviving_humans)
+		feedback_set("survived_human", surviving_humans)
 	if(surviving_total > 0)
-		feedback_set("survived_total",surviving_total)
+		feedback_set("survived_total", surviving_total)
 	if(escaped_humans > 0)
-		feedback_set("escaped_human",escaped_humans)
+		feedback_set("escaped_human", escaped_humans)
 	if(escaped_total > 0)
-		feedback_set("escaped_total",escaped_total)
+		feedback_set("escaped_total", escaped_total)
 	if(escaped_on_shuttle > 0)
-		feedback_set("escaped_on_shuttle",escaped_on_shuttle)
+		feedback_set("escaped_on_shuttle", escaped_on_shuttle)
 	if(escaped_on_pod_1 > 0)
-		feedback_set("escaped_on_pod_1",escaped_on_pod_1)
+		feedback_set("escaped_on_pod_1", escaped_on_pod_1)
 	if(escaped_on_pod_2 > 0)
-		feedback_set("escaped_on_pod_2",escaped_on_pod_2)
+		feedback_set("escaped_on_pod_2", escaped_on_pod_2)
 	if(escaped_on_pod_3 > 0)
-		feedback_set("escaped_on_pod_3",escaped_on_pod_3)
+		feedback_set("escaped_on_pod_3", escaped_on_pod_3)
 	if(escaped_on_pod_5 > 0)
-		feedback_set("escaped_on_pod_5",escaped_on_pod_5)
+		feedback_set("escaped_on_pod_5", escaped_on_pod_5)
 
 	send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
 
@@ -209,12 +209,11 @@ Implants;
 	var/intercepttext = "<FONT size = 3><B>Cent. Com. Update</B> Requested status information:</FONT><HR>"
 	intercepttext += "<B> In case you have misplaced your copy, attached is a list of personnel whom reliable sources&trade; suspect may be affiliated with the Syndicate:</B><br>"
 
-
 	var/list/suspects = list()
 	for(var/mob/living/carbon/human/man in player_list) if(man.client && man.mind)
 		// NT relation option
 		var/special_role = man.mind.special_role
-		if (special_role == "Wizard" || special_role == "Ninja" || special_role == "Syndicate" || special_role == "Vox Raider")
+		if(special_role == "Wizard" || special_role == "Ninja" || special_role == "Syndicate" || special_role == "Vox Raider")
 			continue	//NT intelligence ruled out possiblity that those are too classy to pretend to be a crew.
 		if(man.client.prefs.nanotrasen_relation == "Opposed" && prob(50) || \
 		   man.client.prefs.nanotrasen_relation == "Skeptical" && prob(20))
@@ -246,9 +245,9 @@ Implants;
 			else
 				intercepttext += "<b>[M.name]</b>, the <b>[M.mind.assigned_role]</b> <br>"
 
-	for (var/obj/machinery/computer/communications/comm in machines)
-		if (!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
-			var/obj/item/weapon/paper/intercept = new /obj/item/weapon/paper( comm.loc )
+	for(var/obj/machinery/computer/communications/comm in machines)
+		if(!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
+			var/obj/item/weapon/paper/intercept = new /obj/item/weapon/paper(comm.loc)
 			intercept.name = "paper - 'Cent. Com. Status Summary'"
 			intercept.info = intercepttext
 
@@ -264,7 +263,7 @@ Implants;
 		set_security_level(SEC_LEVEL_BLUE)*/
 
 
-/datum/game_mode/proc/get_players_for_role(var/role, override_jobbans=0)
+/datum/game_mode/proc/get_players_for_role(role, override_jobbans = 0)
 	var/list/players = list()
 	var/list/candidates = list()
 	//var/list/drafted = list()

@@ -104,7 +104,7 @@
 /obj/structure/janitorialcart/Topic(href, href_list)
 	if(!in_range(src, usr))
 		return
-	if(!isLiving(usr))
+	if(!isliving(usr))
 		return
 	var/mob/living/user = usr
 	if(href_list["garbage"])

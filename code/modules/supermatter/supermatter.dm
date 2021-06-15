@@ -224,16 +224,16 @@
 	if(Adjacent(user))
 		return attack_hand(user)
 	else
-		to_chat(user, span("warning", "You attempt to interface with the control circuits but find they are not connected to your network. Maybe in a future firmware update."))
+		to_chat(user, SPAN_WARNING("You attempt to interface with the control circuits but find they are not connected to your network. Maybe in a future firmware update."))
 	return
 
 /obj/machinery/power/supermatter/attack_ai(mob/user as mob)
-	to_chat(user, span("warning", "You attempt to interface with the control circuits but find they are not connected to your network. Maybe in a future firmware update."))
+	to_chat(user, SPAN_WARNING("You attempt to interface with the control circuits but find they are not connected to your network. Maybe in a future firmware update."))
 
 /obj/machinery/power/supermatter/attack_hand(mob/user as mob)
-	user.visible_message(span("warning", "The [user] reaches out and touches \the [src], inducing a resonance... \his body starts to glow and bursts into flames before flashing into ash."),\
-		span("danger", "You reach out and touch \the [src]. Everything starts burning and all you can hear is ringing. Your last thought is \"That was not a wise decision.\""),\
-		span("warning", "You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat."))
+	user.visible_message(SPAN_WARNING("The [user] reaches out and touches \the [src], inducing a resonance... \his body starts to glow and bursts into flames before flashing into ash."),\
+		SPAN_DANGER("You reach out and touch \the [src]. Everything starts burning and all you can hear is ringing. Your last thought is \"That was not a wise decision.\""),\
+		SPAN_WARNING("You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat."))
 
 	Consume(user)
 
@@ -244,9 +244,9 @@
 	return
 
 /obj/machinery/power/supermatter/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
-	user.visible_message(span("warning", "\The [user] touches \a [W] to \the [src] as a silence fills the room..."),\
+	user.visible_message(SPAN_WARNING("\The [user] touches \a [W] to \the [src] as a silence fills the room..."),\
 		"<span class=\"danger\">You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span>\n<span class=\"notice\">\The [W] flashes into dust as you flinch away from \the [src].</span>",\
-		span("warning", "Everything suddenly goes silent."))
+		SPAN_WARNING("Everything suddenly goes silent."))
 
 	user.drop_from_inventory(W)
 	Consume(W)
@@ -255,12 +255,12 @@
 
 /obj/machinery/power/supermatter/Bumped(atom/AM as mob|obj)
 	if(istype(AM, /mob/living))
-		AM.visible_message(span("warning", "\The [AM] slams into \the [src] inducing a resonance... \his body starts to glow and catch flame before flashing into ash."),\
-		span("danger", "You slam into \the [src] as your ears are filled with unearthly ringing. Your last thought is \"Oh, fuck.\""),\
-		span("warning", "You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat."))
+		AM.visible_message(SPAN_WARNING("\The [AM] slams into \the [src] inducing a resonance... \his body starts to glow and catch flame before flashing into ash."),\
+		SPAN_DANGER("You slam into \the [src] as your ears are filled with unearthly ringing. Your last thought is \"Oh, fuck.\""),\
+		SPAN_WARNING("You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat."))
 	else
-		AM.visible_message(span("warning", "\The [AM] smacks into \the [src] and rapidly flashes to ash."),\
-		span("warning", "You hear a loud crack as you are washed with a wave of heat."))
+		AM.visible_message(SPAN_WARNING("\The [AM] smacks into \the [src] and rapidly flashes to ash."),\
+		SPAN_WARNING("You hear a loud crack as you are washed with a wave of heat."))
 
 	Consume(AM)
 
@@ -276,9 +276,9 @@
 	//Some poor sod got eaten, go ahead and irradiate people nearby.
 	for(var/mob/living/l in range(10))
 		if(l in view())
-			l.show_message(span("warning", "As \the [src] slowly stops resonating, you find your skin covered in new radiation burns."), 1,\
-				span("warning", "The unearthly ringing subsides and you notice you have new radiation burns."), 2)
+			l.show_message(SPAN_WARNING("As \the [src] slowly stops resonating, you find your skin covered in new radiation burns."), 1,\
+				SPAN_WARNING("The unearthly ringing subsides and you notice you have new radiation burns."), 2)
 		else
-			l.show_message(span("warning", "You hear an uneartly ringing and notice your skin is covered in fresh radiation burns."), 2)
+			l.show_message(SPAN_WARNING("You hear an uneartly ringing and notice your skin is covered in fresh radiation burns."), 2)
 		var/rads = 500 * sqrt( 1 / (get_dist(l, src) + 1) )
 		l.apply_effect(rads, IRRADIATE)

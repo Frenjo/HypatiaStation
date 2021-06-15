@@ -93,7 +93,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 		if(!pl_head_protected() || !pl_suit_protected())
 			burn_skin(0.75)
 			if(prob(20))
-				to_chat(src, span("warning", "Your skin burns!"))
+				to_chat(src, SPAN_WARNING("Your skin burns!"))
 			updatehealth()
 
 	//Burn eyes if exposed.
@@ -116,19 +116,19 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	if(vsc.plc.GENETIC_CORRUPTION)
 		if(rand(1, 10000) < vsc.plc.GENETIC_CORRUPTION)
 			randmutb(src)
-			to_chat(src, span("warning", "High levels of toxins cause you to spontaneously mutate."))
+			to_chat(src, SPAN_WARNING("High levels of toxins cause you to spontaneously mutate."))
 			domutcheck(src, null)
 
 
 /mob/living/carbon/human/proc/burn_eyes()
 	//The proc that handles eye burning.
 	if(prob(20))
-		to_chat(src, span("warning", "Your eyes burn!"))
+		to_chat(src, SPAN_WARNING("Your eyes burn!"))
 	var/datum/organ/internal/eyes/E = internal_organs["eyes"]
 	E.damage += 2.5
 	eye_blurry = min(eye_blurry + 1.5, 50)
 	if(prob(max(0, E.damage - 15) + 1) && !eye_blind)
-		to_chat(src, span("warning", "You are blinded!"))
+		to_chat(src, SPAN_WARNING("You are blinded!"))
 		eye_blind += 20
 
 /mob/living/carbon/human/proc/pl_head_protected()

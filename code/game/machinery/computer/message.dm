@@ -19,7 +19,7 @@
 	var/noserver = "<span class='alert'>ALERT: No server detected.</span>"
 	var/incorrectkey = "<span class='warning'>ALERT: Incorrect decryption key!</span>"
 	var/defaultmsg = "<span class='notice'>Welcome. Please select an option.</span>"
-	var/rebootmsg = "<span class='warning'>%$&(£: Critical %$$@ Error // !RestArting! <lOadiNg backUp iNput ouTput> - ?pLeaSe wAit!</span>"
+	var/rebootmsg = "<span class='warning'>%$&(ï¿½: Critical %$$@ Error // !RestArting! <lOadiNg backUp iNput ouTput> - ?pLeaSe wAit!</span>"
 	//Computer properties
 	var/screen = 0 		// 0 = Main menu, 1 = Message Logs, 2 = Hacked screen, 3 = Custom Message
 	var/hacking = 0		// Is it being hacked into by the AI/Cyborg
@@ -54,7 +54,7 @@
 				var/obj/item/weapon/paper/monitorkey/MK = new/obj/item/weapon/paper/monitorkey
 				MK.loc = src.loc
 				// Will help make emagging the console not so easy to get away with.
-				MK.info += "<br><br><font color='red'>£%@%(*$%&(£&?*(%&£/{}</font>"
+				MK.info += "<br><br><font color='red'>ï¿½%@%(*$%&(ï¿½&?*(%&ï¿½/{}</font>"
 				spawn(100*length(src.linkedServer.decryptkey)) UnmagConsole()
 				message = rebootmsg
 			else
@@ -439,17 +439,18 @@
 
 						var/obj/item/device/pda/PDARec = null
 						for (var/obj/item/device/pda/P in PDAs)
-							if (!P.owner || P.toff || P.hidden)	continue
+							if (!P.owner || P.toff || P.hidden)
+								continue
 							if(P.owner == customsender)
 								PDARec = P
 						//Sender isn't faking as someone who exists
 						if(isnull(PDARec))
 							src.linkedServer.send_pda_message("[customrecepient.owner]", "[customsender]","[custommessage]")
-							if (!customrecepient.silent)
+							if(!customrecepient.silent)
 								playsound(customrecepient.loc, 'sound/machines/twobeep.ogg', 50, 1)
 								for (var/mob/O in hearers(3, customrecepient.loc))
 									O.show_message(text("\icon[customrecepient] *[customrecepient.ttone]*"))
-								if( customrecepient.loc && isHuman(customrecepient.loc) )
+								if(customrecepient.loc && ishuman(customrecepient.loc))
 									var/mob/living/carbon/human/H = customrecepient.loc
 									H << "\icon[customrecepient] <b>Message from [customsender] ([customjob]), </b>\"[custommessage]\" (<a href='byond://?src=\ref[src];choice=Message;skiprefresh=1;target=\ref[src]'>Reply</a>)"
 								log_pda("[usr] (PDA: [customsender]) sent \"[custommessage]\" to [customrecepient.owner]")
@@ -464,11 +465,11 @@
 							if(!customrecepient.conversations.Find("\ref[PDARec]"))
 								customrecepient.conversations.Add("\ref[PDARec]")
 
-							if (!customrecepient.silent)
+							if(!customrecepient.silent)
 								playsound(customrecepient.loc, 'sound/machines/twobeep.ogg', 50, 1)
 								for (var/mob/O in hearers(3, customrecepient.loc))
 									O.show_message(text("\icon[customrecepient] *[customrecepient.ttone]*"))
-								if( customrecepient.loc && isHuman(customrecepient.loc) )
+								if(customrecepient.loc && ishuman(customrecepient.loc))
 									var/mob/living/carbon/human/H = customrecepient.loc
 									H << "\icon[customrecepient] <b>Message from [PDARec.owner] ([customjob]), </b>\"[custommessage]\" (<a href='byond://?src=\ref[customrecepient];choice=Message;skiprefresh=1;target=\ref[PDARec]'>Reply</a>)"
 								log_pda("[usr] (PDA: [PDARec.owner]) sent \"[custommessage]\" to [customrecepient.owner]")

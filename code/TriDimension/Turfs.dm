@@ -102,7 +102,7 @@
 		if(L)
 			return
 		var/obj/item/stack/rods/R = C
-		to_chat(user, span("info", "Constructing support lattice..."))
+		to_chat(user, SPAN_INFO("Constructing support lattice..."))
 		playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 		ReplaceWithLattice()
 		R.use(1)
@@ -118,5 +118,5 @@
 			S.use(1)
 			return
 		else
-			to_chat(user, span("warning", "The plating is going to need some support."))
+			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
 	return

@@ -164,7 +164,7 @@
 	return
 
 /datum/reagent/water/reaction_mob(var/mob/living/M, var/method = TOUCH, var/volume)
-	if(method == TOUCH && isLiving(M))
+	if(method == TOUCH && isliving(M))
 		M.adjust_fire_stacks(-(volume / 10))
 		if(M.fire_stacks <= 0)
 			M.ExtinguishMob()
@@ -177,7 +177,7 @@
 	color = "#E0E8EF" // rgb: 224, 232, 239
 
 /datum/reagent/water/water/holywater/on_mob_life(var/mob/living/M as mob)
-	if(isHuman(M))
+	if(ishuman(M))
 		if((M.mind in ticker.mode.cult) && prob(10))
 			M << "\blue A cooling sensation from inside you brings you an untold calmness."
 			ticker.mode.remove_cultist(M.mind)
@@ -236,8 +236,9 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/slimetoxin/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
-	if(isHuman(M))
+	if(!M)
+		M = holder.my_atom
+	if(ishuman(M))
 		var/mob/living/carbon/human/human = M
 		if(human.dna.mutantrace == null)
 			M << "\red Your flesh rapidly mutates!"
@@ -347,8 +348,9 @@
 
 	custom_metabolism = 0.01
 
-/datum/reagent/oxygen/on_mob_life(var/mob/living/M as mob, var/alien)
-	if(M.stat == 2) return
+/datum/reagent/oxygen/on_mob_life(mob/living/M as mob, alien)
+	if(M.stat == 2)
+		return
 	if(alien && (alien == IS_VOX || alien == IS_PLASMAPERSON))
 		M.adjustToxLoss(REAGENTS_METABOLISM)
 		holder.remove_reagent(src.id, REAGENTS_METABOLISM) //By default it slowly disappears.
@@ -373,10 +375,11 @@
 
 	custom_metabolism = 0.01
 
-/datum/reagent/nitrogen/on_mob_life(var/mob/living/M as mob, var/alien)
-	if(M.stat == 2) return
+/datum/reagent/nitrogen/on_mob_life(mob/living/M as mob, alien)
+	if(M.stat == 2)
+		return
 	if(alien && alien == IS_VOX)
-		M.adjustOxyLoss(-2*REM)
+		M.adjustOxyLoss(-2 * REM)
 		holder.remove_reagent(src.id, REAGENTS_METABOLISM) //By default it slowly disappears.
 		return
 	..()
@@ -408,11 +411,13 @@
 	color = "#484848" // rgb: 72, 72, 72
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/mercury/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
+/datum/reagent/mercury/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
 	if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
 		step(M, pick(cardinal))
-	if(prob(5)) M.emote(pick("twitch","drool","moan"))
+	if(prob(5))
+		M.emote(pick("twitch", "drool", "moan"))
 	M.adjustBrainLoss(2)
 	..()
 	return
@@ -436,15 +441,15 @@
 
 	custom_metabolism = 0.01
 
-/datum/reagent/carbon/reaction_turf(var/turf/T, var/volume)
+/datum/reagent/carbon/reaction_turf(turf/T, volume)
 	qdel(src)
 	if(!istype(T, /turf/space))
 		var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, T)
 		if (!dirtoverlay)
 			dirtoverlay = new/obj/effect/decal/cleanable/dirt(T)
-			dirtoverlay.alpha = volume*30
+			dirtoverlay.alpha = volume * 30
 		else
-			dirtoverlay.alpha = min(dirtoverlay.alpha+volume*30, 255)
+			dirtoverlay.alpha = min(dirtoverlay.alpha + volume * 30, 255)
 
 
 /datum/reagent/chlorine
@@ -455,9 +460,10 @@
 	color = "#808080" // rgb: 128, 128, 128
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/chlorine/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
-	M.take_organ_damage(1*REM, 0)
+/datum/reagent/chlorine/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
+	M.take_organ_damage(1 * REM, 0)
 	..()
 	return
 
@@ -470,9 +476,10 @@
 	color = "#808080" // rgb: 128, 128, 128
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/fluorine/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
-	M.adjustToxLoss(1*REM)
+/datum/reagent/fluorine/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
+	M.adjustToxLoss(1 * REM)
 	..()
 	return
 
@@ -503,11 +510,13 @@
 	color = "#808080" // rgb: 128, 128, 128
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/lithium/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
+/datum/reagent/lithium/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
 	if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
 		step(M, pick(cardinal))
-	if(prob(5)) M.emote(pick("twitch","drool","moan"))
+	if(prob(5))
+		M.emote(pick("twitch", "drool", "moan"))
 	..()
 	return
 
@@ -519,8 +528,8 @@
 	reagent_state = REAGENT_SOLID
 	color = "#FFFFFF" // rgb: 255, 255, 255
 
-/datum/reagent/sugar/on_mob_life(var/mob/living/M as mob)
-	M.nutrition += 1*REM
+/datum/reagent/sugar/on_mob_life(mob/living/M as mob)
+	M.nutrition += 1 * REM
 	..()
 	return
 
@@ -550,27 +559,29 @@
 	reagent_state = REAGENT_SOLID
 	color = "#C7C7C7" // rgb: 199,199,199
 
-/datum/reagent/radium/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
-	M.apply_effect(2*REM,IRRADIATE,0)
+/datum/reagent/radium/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
+	M.apply_effect(2 * REM, IRRADIATE, 0)
 	// radium may increase your chances to cure a disease
-	if(istype(M,/mob/living/carbon)) // make sure to only use it on carbon mobs
+	if(iscarbon(M)) // make sure to only use it on carbon mobs
 		var/mob/living/carbon/C = M
 		if(C.virus2.len)
-			for (var/ID in C.virus2)
+			for(var/ID in C.virus2)
 				var/datum/disease2/disease/V = C.virus2[ID]
 				if(prob(5))
 					if(prob(50))
 						M.radiation += 50 // curing it that way may kill you instead
 						var/mob/living/carbon/human/H
-						if(istype(C,/mob/living/carbon/human))
+						if(ishuman(C))
 							H = C
-						if(!H || (H.species && !(H.species.flags & RAD_ABSORB))) M.adjustToxLoss(100)
+						if(!H || (H.species && !(H.species.flags & RAD_ABSORB)))
+							M.adjustToxLoss(100)
 					M:antibodies |= V.antigen
 	..()
 	return
 
-/datum/reagent/radium/reaction_turf(var/turf/T, var/volume)
+/datum/reagent/radium/reaction_turf(turf/T, volume)
 	qdel(src)
 	if(volume >= 3)
 		if(!istype(T, /turf/space))
@@ -587,18 +598,19 @@
 	reagent_state = REAGENT_SOLID
 	color = "#673910" // rgb: 103, 57, 16
 
-/datum/reagent/thermite/reaction_turf(var/turf/T, var/volume)
+/datum/reagent/thermite/reaction_turf(turf/T, volume)
 	qdel(src)
 	if(volume >= 5)
 		if(istype(T, /turf/simulated/wall))
 			var/turf/simulated/wall/W = T
 			W.thermite = 1
-			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
+			W.overlays += image('icons/effects/effects.dmi', icon_state = "#673910")
 	return
 
 
-/datum/reagent/thermite/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
+/datum/reagent/thermite/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
 	M.adjustFireLoss(1)
 	..()
 	return
@@ -612,9 +624,10 @@
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#899613" // rgb: 137, 150, 19
 
-/datum/reagent/virus_food/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
-	M.nutrition += nutriment_factor*REM
+/datum/reagent/virus_food/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
+	M.nutrition += nutriment_factor * REM
 	..()
 	return
 
@@ -648,14 +661,14 @@
 	reagent_state = REAGENT_SOLID
 	color = "#B8B8C0" // rgb: 184, 184, 192
 
-/datum/reagent/uranium/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/uranium/on_mob_life(mob/living/M as mob)
 	if(!M)
 		M = holder.my_atom
 	M.apply_effect(1, IRRADIATE, 0)
 	..()
 	return
 
-/datum/reagent/uranium/reaction_turf(var/turf/T, var/volume)
+/datum/reagent/uranium/reaction_turf(turf/T, volume)
 	qdel(src)
 	if(volume >= 3)
 		if(!istype(T, /turf/space))
@@ -687,25 +700,26 @@
 	color = "#660000" // rgb: 102, 0, 0
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/fuel/reaction_obj(var/obj/O, var/volume)
+/datum/reagent/fuel/reaction_obj(obj/O, volume)
 	var/turf/the_turf = get_turf(O)
 	if(!the_turf)
 		return //No sense trying to start a fire if you don't have a turf to set on fire. --NEO
 	new /obj/effect/decal/cleanable/liquid_fuel(the_turf, volume)
 
-/datum/reagent/fuel/reaction_turf(var/turf/T, var/volume)
+/datum/reagent/fuel/reaction_turf(turf/T, volume)
 	new /obj/effect/decal/cleanable/liquid_fuel(T, volume)
 	return
 
-/datum/reagent/fuel/reaction_mob(var/mob/living/M, var/method = TOUCH, var/volume)//Splashing people with welding fuel to make them easy to ignite!
+/datum/reagent/fuel/reaction_mob(mob/living/M, method = TOUCH, volume)//Splashing people with welding fuel to make them easy to ignite!
 	if(!istype(M, /mob/living))
 		return
 	if(method == TOUCH)
 		M.adjust_fire_stacks(volume / 10)
 		return
 
-/datum/reagent/fuel/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
+/datum/reagent/fuel/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
 	M.adjustToxLoss(1)
 	..()
 	return
@@ -719,14 +733,14 @@
 	color = "#A5F0EE" // rgb: 165, 240, 238
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/space_cleaner/reaction_obj(var/obj/O, var/volume)
-	if(istype(O,/obj/effect/decal/cleanable))
+/datum/reagent/space_cleaner/reaction_obj(obj/O, volume)
+	if(istype(O, /obj/effect/decal/cleanable))
 		qdel(O)
 	else
 		if(O)
 			O.clean_blood()
 
-/datum/reagent/space_cleaner/reaction_turf(var/turf/T, var/volume)
+/datum/reagent/space_cleaner/reaction_turf(turf/T, volume)
 	if(volume >= 1)
 		if(istype(T, /turf/simulated))
 			var/turf/simulated/S = T
@@ -737,10 +751,10 @@
 			qdel(C)
 
 		for(var/mob/living/carbon/slime/M in T)
-			M.adjustToxLoss(rand(5,10))
+			M.adjustToxLoss(rand(5, 10))
 
-/datum/reagent/space_cleaner/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
-	if(isCarbon(M))
+/datum/reagent/space_cleaner/reaction_mob(mob/M, method = TOUCH, volume)
+	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		if(C.r_hand)
 			C.r_hand.clean_blood()
@@ -749,7 +763,7 @@
 		if(C.wear_mask)
 			if(C.wear_mask.clean_blood())
 				C.update_inv_wear_mask(0)
-		if(isHuman(M))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = C
 			if(H.head)
 				if(H.head.clean_blood())

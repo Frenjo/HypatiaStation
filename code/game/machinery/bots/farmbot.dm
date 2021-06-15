@@ -165,7 +165,7 @@
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
 			src.updateUsrDialog()
 		else
-			to_chat(user, span("warning", "Access denied."))
+			to_chat(user, SPAN_WARNING("Access denied."))
 
 	else if (istype(W, /obj/item/nutrient))
 		if ( get_total_ferts() >= Max_Fertilizers )

@@ -54,12 +54,12 @@ default behaviour is:
 			for(var/mob/living/M in range(tmob, 1))
 				if(tmob.pinned.len || ((M.pulling == tmob && (tmob.restrained() && !(M.restrained()) && M.stat == 0)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)))
 					if(!(world.time % 5))
-						to_chat(src, span("warning", "[tmob] is restrained, you cannot push past."))
+						to_chat(src, SPAN_WARNING("[tmob] is restrained, you cannot push past."))
 					now_pushing = 0
 					return
 				if(tmob.pulling == M && (M.restrained() && !( tmob.restrained() ) && tmob.stat == 0))
 					if(!(world.time % 5))
-						to_chat(src, span("warning", "[tmob] is restraining [M], you cannot push past."))
+						to_chat(src, SPAN_WARNING("[tmob] is restraining [M], you cannot push past."))
 					now_pushing = 0
 					return
 
@@ -100,7 +100,7 @@ default behaviour is:
 				return
 			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
 				if(prob(40) && !(FAT in src.mutations))
-					to_chat(src, span("danger", "You fail to push [tmob]'s fat ass out of the way."))
+					to_chat(src, SPAN_DANGER("You fail to push [tmob]'s fat ass out of the way."))
 					now_pushing = 0
 					return
 			if(tmob.r_hand && istype(tmob.r_hand, /obj/item/weapon/shield/riot))
@@ -141,7 +141,7 @@ default behaviour is:
 	if((src.health < 0 && src.health > -95.0))
 		src.adjustOxyLoss(src.health + 200)
 		src.health = 100 - src.getOxyLoss() - src.getToxLoss() - src.getFireLoss() - src.getBruteLoss()
-		to_chat(src, span("info", "You have given up life and succumbed to death."))
+		to_chat(src, SPAN_INFO("You have given up life and succumbed to death."))
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
@@ -403,7 +403,7 @@ default behaviour is:
 /mob/living/proc/revive()
 	rejuvenate()
 	buckled = initial(src.buckled)
-	if(isCarbon(src))
+	if(iscarbon(src))
 		var/mob/living/carbon/C = src
 
 		if(C.handcuffed && !initial(C.handcuffed))
@@ -444,7 +444,7 @@ default behaviour is:
 	heal_overall_damage(getBruteLoss(), getFireLoss())
 
 	// restore all of a human's blood
-	if(isHuman(src))
+	if(ishuman(src))
 		var/mob/living/carbon/human/human_mob = src
 		human_mob.restore_blood()
 
@@ -523,7 +523,7 @@ default behaviour is:
 			else
 				diag = null
 			if((get_dist(src, pulling) > 1 || diag))
-				if(isLiving(pulling))
+				if(isliving(pulling))
 					var/mob/living/M = pulling
 					var/ok = 1
 					if(locate(/obj/item/weapon/grab, M.grabbed_by))
@@ -558,7 +558,7 @@ default behaviour is:
 								var/turf/location = M.loc
 								if(istype(location, /turf/simulated))
 									location.add_blood(M)
-									if(isHuman(M))
+									if(ishuman(M))
 										var/mob/living/carbon/H = M
 										var/blood_volume = round(H:vessel.get_reagent_amount("blood"))
 										if(blood_volume > 0)
@@ -589,7 +589,7 @@ default behaviour is:
 	set name = "Resist"
 	set category = "IC"
 
-	if(!isLiving(usr) || usr.next_move > world.time)
+	if(!isliving(usr) || usr.next_move > world.time)
 		return
 	usr.next_move = world.time + 20
 
@@ -667,7 +667,7 @@ default behaviour is:
 
 	//unbuckling yourself
 	if(L.buckled && (L.last_special <= world.time))
-		if(isCarbon(L))
+		if(iscarbon(L))
 			var/mob/living/carbon/C = L
 			if(C.handcuffed)
 				C.next_move = world.time + 100
@@ -754,7 +754,7 @@ default behaviour is:
 					C.open()
 
 	//drop && roll or breaking out of handcuffs
-	else if(isCarbon(L))
+	else if(iscarbon(L))
 		var/mob/living/carbon/CM = L
 		if(CM.on_fire && CM.canmove)
 			CM.fire_stacks -= 5
@@ -918,7 +918,7 @@ default behaviour is:
 				src << "\red You can't be carrying items or have items equipped when vent crawling!"
 				return
 
-	if(isSlime(src))
+	if(isslime(src))
 		var/mob/living/carbon/slime/S = src
 		if(S.Victim)
 			src << "\red You'll have to let [S.Victim] go or finish eating \him first."

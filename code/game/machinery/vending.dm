@@ -153,7 +153,7 @@
 		user.drop_item()
 		W.loc = src
 		coin = W
-		to_chat(user, span("info", "You insert the [W] into the [src]"))
+		to_chat(user, SPAN_INFO("You insert the [W] into the [src]"))
 		return
 	else if(istype(W, /obj/item/weapon/card) && currently_vending)
 		var/obj/item/weapon/card/I = W
@@ -162,7 +162,7 @@
 		user.drop_item()
 		W.loc = src
 		ewallet = W
-		to_chat(user, span("info", "You insert the [W] into the [src]"))
+		to_chat(user, SPAN_INFO("You insert the [W] into the [src]"))
 	else if(src.panel_open)
 		for(var/datum/data/vending_product/R in product_records)
 			if(istype(W, R.product_path))
@@ -176,7 +176,7 @@
 		return
 	if(istype(I, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/C = I
-		visible_message(span("info", "[usr] swipes a card through [src]."))
+		visible_message(SPAN_INFO("[usr] swipes a card through [src]."))
 		if(check_accounts)
 			if(vendor_account)
 				var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
@@ -328,7 +328,7 @@
 		coin.loc = src.loc
 		if(!usr.get_active_hand())
 			usr.put_in_hands(coin)
-		to_chat(usr, span("info", "You remove the [coin] from the [src]"))
+		to_chat(usr, SPAN_INFO("You remove the [coin] from the [src]"))
 		coin = null
 
 	if(href_list["remove_ewallet"] && !istype(usr, /mob/living/silicon))
@@ -338,7 +338,7 @@
 		ewallet.loc = src.loc
 		if(!usr.get_active_hand())
 			usr.put_in_hands(ewallet)
-		to_chat(usr, span("info", "You remove the [ewallet] from the [src]"))
+		to_chat(usr, SPAN_INFO("You remove the [ewallet] from the [src]"))
 		ewallet = null
 
 	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
@@ -348,14 +348,14 @@
 				if(istype(usr, /mob/living/silicon/robot))
 					var/mob/living/silicon/robot/R = usr
 					if(!(R.module && istype(R.module, /obj/item/weapon/robot_module/butler)))
-						to_chat(usr, span("warning", "The vending machine refuses to interface with you, as you are not in its target demographic!"))
+						to_chat(usr, SPAN_WARNING("The vending machine refuses to interface with you, as you are not in its target demographic!"))
 						return
 				else
-					to_chat(usr, span("warning", "The vending machine refuses to interface with you, as you are not in its target demographic!"))
+					to_chat(usr, SPAN_WARNING("The vending machine refuses to interface with you, as you are not in its target demographic!"))
 					return
 
 			if((!src.allowed(usr)) && (!src.emagged) && (src.wires & WIRE_SCANID)) //For SECURE VENDING MACHINES YEAH
-				to_chat(usr, span("warning", "Access denied.")) //Unless emagged of course
+				to_chat(usr, SPAN_WARNING("Access denied.")) //Unless emagged of course
 				flick(src.icon_deny,src)
 				return
 
@@ -371,7 +371,7 @@
 						ewallet.worth -= R.price
 						src.vend(R, usr)
 					else
-						to_chat(usr, span("warning", "The ewallet doesn't have enough money to pay for that."))
+						to_chat(usr, SPAN_WARNING("The ewallet doesn't have enough money to pay for that."))
 						src.currently_vending = R
 						src.updateUsrDialog()
 				else
@@ -417,7 +417,7 @@
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
 	if((!src.allowed(user)) && (!src.emagged) && (src.wires & WIRE_SCANID)) //For SECURE VENDING MACHINES YEAH
-		to_chat(user, span("warning", "Access denied.")) //Unless emagged of course
+		to_chat(user, SPAN_WARNING("Access denied.")) //Unless emagged of course
 		flick(src.icon_deny, src)
 		return
 	src.vend_ready = 0 //One thing at a time!!
@@ -454,7 +454,7 @@
 
 /obj/machinery/vending/proc/stock(datum/data/vending_product/R, mob/user)
 	if(src.panel_open)
-		to_chat(usr, span("info", "You stock the [src] with \a [R.product_name]"))
+		to_chat(usr, SPAN_INFO("You stock the [src] with \a [R.product_name]"))
 		R.amount++
 
 	src.updateUsrDialog()
@@ -542,7 +542,7 @@
 		return 0
 	spawn(0)
 		throw_item.throw_at(target, 16, 3)
-	src.visible_message(span("danger", "[src] launches [throw_item.name] at [target.name]!"))
+	src.visible_message(SPAN_DANGER("[src] launches [throw_item.name] at [target.name]!"))
 	return 1
 
 /obj/machinery/vending/proc/isWireColorCut(wireColor)

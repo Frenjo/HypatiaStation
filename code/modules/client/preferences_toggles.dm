@@ -154,18 +154,21 @@
 	set category = "Preferences"
 	set desc = "Configure your user interface"
 
-	if(!isHuman(usr))
+	if(!ishuman(usr))
 		usr << "This only for human"
 		return
 
 	var/UI_style_new = input(usr, "Select a style, we recommend White for customization") in list("White", "Midnight", "Orange", "old")
-	if(!UI_style_new) return
+	if(!UI_style_new)
+		return
 
 	var/UI_style_alpha_new = input(usr, "Select a new alpha(transparence) parametr for UI, between 50 and 255") as num
-	if(!UI_style_alpha_new | !(UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50)) return
+	if(!UI_style_alpha_new | !(UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50))
+		return
 
 	var/UI_style_color_new = input(usr, "Choose your UI color, dark colors are not recommended!") as color|null
-	if(!UI_style_color_new) return
+	if(!UI_style_color_new)
+		return
 
 	//update UI
 	var/list/icons = usr.hud_used.adding + usr.hud_used.other +usr.hud_used.hotkeybuttons
@@ -176,8 +179,6 @@
 			I.icon = ui_style2icon(UI_style_new)
 			I.color = UI_style_color_new
 			I.alpha = UI_style_alpha_new
-
-
 
 	if(alert("Like it? Save changes?",,"Yes", "No") == "Yes")
 		prefs.UI_style = UI_style_new

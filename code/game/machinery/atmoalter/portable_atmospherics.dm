@@ -101,21 +101,21 @@
 	else if(istype(W, /obj/item/weapon/wrench))
 		if(connected_port)
 			disconnect()
-			to_chat(user, span("info", "You disconnect [name] from the port."))
+			to_chat(user, SPAN_INFO("You disconnect [name] from the port."))
 			update_icon()
 			return
 		else
 			var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
 			if(possible_port)
 				if(connect(possible_port))
-					to_chat(user, span("info", "You connect [name] to the port."))
+					to_chat(user, SPAN_INFO("You connect [name] to the port."))
 					update_icon()
 					return
 				else
-					to_chat(user, span("info", "[name] failed to connect to the port."))
+					to_chat(user, SPAN_INFO("[name] failed to connect to the port."))
 					return
 			else
-				to_chat(user, span("info", "Nothing happens."))
+				to_chat(user, SPAN_INFO("Nothing happens."))
 				return
 
 	else if((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
@@ -124,17 +124,17 @@
 			var/pressure = air_contents.return_pressure()
 			var/total_moles = air_contents.total_moles
 
-			to_chat(user, span("info", "Results of analysis of \icon[icon]"))
+			to_chat(user, SPAN_INFO("Results of analysis of \icon[icon]"))
 			if(total_moles > 0)
-				to_chat(user, span("info", "Pressure: [round(pressure, 0.1)] kPa"))
+				to_chat(user, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
 				for(var/g in air_contents.gas)
-					to_chat(user, span("info", "[gas_data.name[g]]: [round((air_contents.gas[g] / total_moles) * 100)]%"))
+					to_chat(user, SPAN_INFO("[gas_data.name[g]]: [round((air_contents.gas[g] / total_moles) * 100)]%"))
 
-				to_chat(user, span("info", "Temperature: [round(air_contents.temperature - T0C)]&deg;C"))
+				to_chat(user, SPAN_INFO("Temperature: [round(air_contents.temperature - T0C)]&deg;C"))
 			else
-				to_chat(user, span("info", "Tank is empty!"))
+				to_chat(user, SPAN_INFO("Tank is empty!"))
 		else
-			to_chat(user, span("info", "Tank is empty!"))
+			to_chat(user, SPAN_INFO("Tank is empty!"))
 		return
 
 	return

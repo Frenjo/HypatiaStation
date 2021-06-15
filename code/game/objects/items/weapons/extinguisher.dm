@@ -123,7 +123,7 @@
 						if(!W)
 							return
 						W.reagents.reaction(atm)
-						if(isLiving(atm)) //For extinguishing mobs on fire
+						if(isliving(atm)) //For extinguishing mobs on fire
 							var/mob/living/M = atm
 							M.ExtinguishMob()
 					if(W.loc == my_target)

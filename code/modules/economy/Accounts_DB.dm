@@ -142,14 +142,14 @@
 				if(held_card)
 					held_card.loc = src.loc
 
-					if(isHuman(usr) && !usr.get_active_hand())
+					if(ishuman(usr) && !usr.get_active_hand())
 						usr.put_in_hands(held_card)
 					held_card = null
 					access_level = 0
 
 				else
 					var/obj/item/I = usr.get_active_hand()
-					if (istype(I, /obj/item/weapon/card/id))
+					if(istype(I, /obj/item/weapon/card/id))
 						var/obj/item/weapon/card/id/C = I
 						usr.drop_item()
 						C.loc = src

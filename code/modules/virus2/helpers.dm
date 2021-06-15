@@ -144,7 +144,7 @@ proc/airborne_can_reach(turf/source, turf/target)
 //		log_debug("Spreading [vector] diseases from [victim] to [src]")
 		var/nudity = 1
 
-		if(isHuman(victim))
+		if(ishuman(victim))
 			var/mob/living/carbon/human/H = victim
 			var/datum/organ/external/select_area = H.get_organ(src.zone_sel.selecting)
 			var/list/clothes = list(H.head, H.wear_mask, H.wear_suit, H.w_uniform, H.gloves, H.shoes)
@@ -155,5 +155,6 @@ proc/airborne_can_reach(turf/source, turf/target)
 		if(nudity)
 			for(var/ID in victim.virus2)
 				var/datum/disease2/disease/V = victim.virus2[ID]
-				if(V && V.spreadtype != vector) continue
+				if(V && V.spreadtype != vector)
+					continue
 				infect_virus2(src, V)

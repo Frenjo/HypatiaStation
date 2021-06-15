@@ -1090,7 +1090,7 @@
 /obj/item/seeds/kudzuseed/attack_self(mob/user as mob)
 	if(istype(user.loc, /turf/space))
 		return
-	to_chat(user, span("notice", "You plant the kudzu. You monster."))
+	to_chat(user, SPAN_NOTICE("You plant the kudzu. You monster."))
 	new /obj/effect/spacevine_controller(user.loc)
 	qdel(src)
 
@@ -1183,7 +1183,7 @@
 
 /obj/item/weapon/grown/log/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/circular_saw) || istype(W, /obj/item/weapon/hatchet) || (istype(W, /obj/item/weapon/twohanded/fireaxe) && W:wielded) || istype(W, /obj/item/weapon/melee/energy))
-		user.show_message(span("notice", "You make planks out of \the [src]!"), 1)
+		user.show_message(SPAN_NOTICE("You make planks out of \the [src]!"), 1)
 		for(var/i = 0, i < 2, i++)
 			var/obj/item/stack/sheet/wood/NG = new(user.loc)
 			for(var/obj/item/stack/sheet/wood/G in user.loc)

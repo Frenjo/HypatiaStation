@@ -157,7 +157,7 @@
 //When an object is thrown at the window
 /obj/machinery/door/window/hitby(AM as mob|obj)
 	..()
-	visible_message(span("danger", "The glass door was hit by [AM]."), 1)
+	visible_message(SPAN_DANGER("The glass door was hit by [AM]."), 1)
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 40
@@ -177,7 +177,7 @@
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
 			playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
-			visible_message(span("danger", "[user] smashes against the [src.name]."), 1)
+			visible_message(SPAN_DANGER("[user] smashes against the [src.name]."), 1)
 			take_damage(25)
 			return
 
@@ -197,7 +197,7 @@
 			spark_system.start()
 			playsound(src, "sparks", 50, 1)
 			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
-			visible_message(span("info", "The glass door was sliced open by [user]!"))
+			visible_message(SPAN_INFO("The glass door was sliced open by [user]!"))
 		flick("[src.base_state]spark", src)
 		sleep(6)
 		open()
@@ -208,7 +208,7 @@
 		playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 		user.visible_message("[user] removes the electronics from the windoor.", "You start to remove electronics from the windoor.")
 		if(do_after(user, 40))
-			to_chat(user, span("info", "You removed the windoor electronics!"))
+			to_chat(user, SPAN_INFO("You removed the windoor electronics!"))
 
 			var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)
 			if(istype(src, /obj/machinery/door/window/brigdoor))
@@ -246,7 +246,7 @@
 	if(src.density && istype(I, /obj/item/weapon) && !istype(I, /obj/item/weapon/card))
 		var/aforce = I.force
 		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
-		visible_message(span("danger", "[src] was hit by [I]."))
+		visible_message(SPAN_DANGER("[src] was hit by [I]."))
 		if(I.damtype == BRUTE || I.damtype == BURN)
 			take_damage(aforce)
 		return

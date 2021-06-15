@@ -35,7 +35,7 @@
 		T = get_turf(body)				//Where is the body located?
 		attack_log = body.attack_log	//preserve our attack logs by copying them to our ghost
 
-		if (isHuman(body))
+		if(ishuman(body))
 			var/mob/living/carbon/human/H = body
 			icon = H.stand_icon
 			overlays = H.overlays_standing
@@ -111,7 +111,7 @@ Works together with spawning an observer, noted above.
 	if(antagHUD)
 		var/list/target_list = list()
 		for(var/mob/living/target in oview(src, 14))
-			if(target.mind&&(target.mind.special_role||isSilicon(target)) )
+			if(target.mind&&(target.mind.special_role||issilicon(target)) )
 				target_list += target
 		if(target_list.len)
 			assess_targets(target_list, src)

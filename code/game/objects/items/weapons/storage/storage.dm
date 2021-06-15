@@ -31,7 +31,7 @@
 	..()
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
-	if(isHuman(usr) || isMonkey(usr)) //so monkeys can take off their backpacks -- Urist
+	if(ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist
 		if(istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
 			return
 
@@ -329,7 +329,7 @@
 /obj/item/weapon/storage/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
-	if(isRobot(user))
+	if(isrobot(user))
 		user << "\blue You're a robot. No."
 		return //Robots can't interact with storage items.
 
@@ -357,7 +357,7 @@
 	return
 
 /obj/item/weapon/storage/attack_hand(mob/user as mob)
-	if(isHuman(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.l_store == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
 			H.put_in_hands(src)
@@ -394,7 +394,7 @@
 	set name = "Empty Contents"
 	set category = "Object"
 
-	if((!isHuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
 		return
 
 	var/turf/T = get_turf(src)
@@ -403,7 +403,6 @@
 		remove_from_storage(I, T)
 
 /obj/item/weapon/storage/New()
-
 	if(allow_quick_empty)
 		verbs += /obj/item/weapon/storage/verb/quick_empty
 	else

@@ -103,7 +103,7 @@
 					CF.anchored = 1
 					qdel(src)
 				else
-					to_chat(user, span("info", "You disconnect the monitor."))
+					to_chat(user, SPAN_INFO("You disconnect the monitor."))
 					var/obj/structure/computerframe/CF = new /obj/structure/computerframe( loc )
 					var/obj/item/weapon/circuitboard/security/CB = new /obj/item/weapon/circuitboard/security(CF)
 					CB.network = network
@@ -119,16 +119,16 @@
 		return
 
 //Camera control: moving.
-	proc/jump_on_click(var/mob/user,var/A)
+	proc/jump_on_click(mob/user, A)
 		if(user.machine != src)
 			return
 		var/obj/machinery/camera/jump_to
-		if(istype(A,/obj/machinery/camera))
+		if(istype(A, /obj/machinery/camera))
 			jump_to = A
 		else if(ismob(A))
-			if(isHuman(A))
+			if(ishuman(A))
 				jump_to = locate() in A:head
-			else if(isRobot(A))
+			else if(isrobot(A))
 				jump_to = A:camera
 		else if(isobj(A))
 			jump_to = locate() in A
@@ -139,30 +139,30 @@
 					continue
 				if(!can_access_camera(camera))
 					continue
-				var/dist = get_dist(camera,A)
+				var/dist = get_dist(camera, A)
 				if(dist < best_dist)
 					best_dist = dist
 					jump_to = camera
 		if(isnull(jump_to))
 			return
 		if(can_access_camera(jump_to))
-			switch_to_camera(user,jump_to)
+			switch_to_camera(user, jump_to)
 //Camera control: mouse.
 /atom/DblClick()
 	..()
-	if(istype(usr.machine,/obj/machinery/computer/security))
+	if(istype(usr.machine, /obj/machinery/computer/security))
 		var/obj/machinery/computer/security/console = usr.machine
-		console.jump_on_click(usr,src)
+		console.jump_on_click(usr, src)
 //Camera control: arrow keys.
-/mob/Move(n,direct)
-	if(istype(machine,/obj/machinery/computer/security))
+/mob/Move(n, direct)
+	if(istype(machine, /obj/machinery/computer/security))
 		var/obj/machinery/computer/security/console = machine
 		var/turf/T = get_turf(console.current)
-		for(var/i;i<10;i++)
-			T = get_step(T,direct)
-		console.jump_on_click(src,T)
+		for(var/i; i < 10; i++)
+			T = get_step(T, direct)
+		console.jump_on_click(src, T)
 		return
-	return ..(n,direct)
+	return ..(n, direct)
 
 /obj/machinery/computer/security/telescreen
 	name = "Telescreen"

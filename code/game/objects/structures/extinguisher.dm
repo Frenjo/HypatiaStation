@@ -13,7 +13,7 @@
 	has_extinguisher = new/obj/item/weapon/extinguisher(src)
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/O, mob/user)
-	if(isRobot(user))
+	if(isrobot(user))
 		return
 	if(istype(O, /obj/item/weapon/extinguisher))
 		if(!has_extinguisher && opened)
@@ -29,11 +29,11 @@
 
 
 /obj/structure/extinguisher_cabinet/attack_hand(mob/user)
-	if(isRobot(user))
+	if(isrobot(user))
 		return
-	if (hasOrgans(user))
+	if(hasorgans(user))
 		var/datum/organ/external/temp = user:organs_by_name["r_hand"]
-		if (user.hand)
+		if(user.hand)
 			temp = user:organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
 			user << "<span class='notice'>You try to move your [temp.display_name], but cannot!"

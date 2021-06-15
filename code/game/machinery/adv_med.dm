@@ -38,10 +38,10 @@
 	if(usr.stat != 0)
 		return
 	if(src.occupant)
-		to_chat(usr, span("notice", "The scanner is already occupied!"))
+		to_chat(usr, SPAN_NOTICE("The scanner is already occupied!"))
 		return
 	if(usr.abiotic())
-		to_chat(usr, span("notice", "Subject cannot have abiotic items on."))
+		to_chat(usr, SPAN_NOTICE("Subject cannot have abiotic items on."))
 		return
 
 	usr.pulling = null
@@ -75,10 +75,10 @@
 	if((!(istype(G, /obj/item/weapon/grab)) || !(ismob(G.affecting))))
 		return
 	if(src.occupant)
-		to_chat(user, span("notice", "The scanner is already occupied!"))
+		to_chat(user, SPAN_NOTICE("The scanner is already occupied!"))
 		return
 	if(G.affecting.abiotic())
-		to_chat(user, span("notice", "Subject cannot have abiotic items on."))
+		to_chat(user, SPAN_NOTICE("Subject cannot have abiotic items on."))
 		return
 	var/mob/M = G.affecting
 	if (M.client)
@@ -206,8 +206,8 @@
 /obj/machinery/body_scanconsole/attack_hand(user as mob)
 	if(..())
 		return
-	if(!isHuman(connected.occupant))
-		to_chat(user, span("warning", "This device can only scan compatible lifeforms."))
+	if(!ishuman(connected.occupant))
+		to_chat(user, SPAN_WARNING("This device can only scan compatible lifeforms."))
 		return
 	var/dat
 	if(src.delete && src.temphtml) //Window in buffer but its just simple message, so nothing

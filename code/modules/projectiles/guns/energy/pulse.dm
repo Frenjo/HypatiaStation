@@ -39,7 +39,7 @@
 /obj/item/weapon/gun/energy/pulse_rifle/cyborg/load_into_chamber()
 	if(in_chamber)
 		return 1
-	if(isRobot(src.loc))
+	if(isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		if(R && R.cell)
 			R.cell.use(charge_cost)

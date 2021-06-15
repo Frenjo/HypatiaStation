@@ -22,6 +22,6 @@
 			else
 				config.Tickcomp = 0
 	else
-		to_chat(src, span("warning", "Error: ticklag(): Invalid world.ticklag value. No changes made."))
+		to_chat(src, SPAN_WARNING("Error: ticklag(): Invalid world.ticklag value. No changes made."))
 
 

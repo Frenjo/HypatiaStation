@@ -58,7 +58,7 @@
 
 			activate(user)
 			add_fingerprint(user)
-			if(isCarbon(user))
+			if(iscarbon(user))
 				var/mob/living/carbon/C = user
 				C.throw_mode_on()
 	return

@@ -171,7 +171,7 @@ client
 
 		if(istype(D, /atom))
 			var/atom/A = D
-			if(isLiving(A))
+			if(isliving(A))
 				body += "<a href='?_src_=vars;rename=\ref[D]'><b>[D]</b></a>"
 				if(A.dir)
 					body += "<br><font size='1'><a href='?_src_=vars;rotatedatum=\ref[D];rotatedir=left'><<</a> <a href='?_src_=vars;datumedit=\ref[D];varnameedit=dir'>[dir2text(A.dir)]</a> <a href='?_src_=vars;rotatedatum=\ref[D];rotatedir=right'>>></a></font>"
@@ -262,7 +262,7 @@ client
 
 			body += "<option value='?_src_=vars;addverb=\ref[D]'>Add Verb</option>"
 			body += "<option value='?_src_=vars;remverb=\ref[D]'>Remove Verb</option>"
-			if(isHuman(D))
+			if(ishuman(D))
 				body += "<option value>---</option>"
 				body += "<option value='?_src_=vars;setmutantrace=\ref[D]'>Set Mutantrace</option>"
 				body += "<option value='?_src_=vars;setspecies=\ref[D]'>Set Species</option>"

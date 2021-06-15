@@ -7,7 +7,7 @@
 	effect_type = pick(2,5)
 
 /datum/artifact_effect/stun/DoEffectTouch(var/mob/toucher)
-	if(toucher && isCarbon(toucher))
+	if(toucher && iscarbon(toucher))
 		var/mob/living/carbon/C = toucher
 		var/weakness = GetAnomalySusceptibility(C)
 		if(prob(weakness * 100))

@@ -59,7 +59,7 @@
 			playsound(src, 'sound/effects/meteorimpact.ogg', 40, 1)
 
 			for(var/mob/M in range(10, src))
-				if(!M.stat && !istype(M, /mob/living/silicon/ai))\
+				if(!M.stat && !isAI(M))\
 					shake_camera(M, 3, 1)
 			qdel(src)
 			return 1
@@ -74,10 +74,10 @@
 	nodamage = 1
 	flag = "energy"
 
-/obj/item/projectile/energy/floramut/on_hit(var/atom/target, var/blocked = 0)
+/obj/item/projectile/energy/floramut/on_hit(atom/target, blocked = 0)
 	var/mob/living/M = target
 //	if(ishuman(target) && M.dna && M.dna.mutantrace == "plant") //Plantmen possibly get mutated and damaged by the rays.
-	if(isHuman(target))
+	if(ishuman(target))
 		var/mob/living/carbon/human/H = M
 		if((H.species.flags & IS_PLANT) && (M.nutrition < 500))
 			if(prob(15))
@@ -90,16 +90,16 @@
 			//		V.show_message("\red [M] is mutated by the radiation beam.", 3, "\red You hear the snapping of twigs.", 2)
 				if(prob(80))
 					randmutb(M)
-					domutcheck(M,null)
+					domutcheck(M, null)
 				else
 					randmutg(M)
-					domutcheck(M,null)
+					domutcheck(M, null)
 			else
-				M.adjustFireLoss(rand(5,15))
+				M.adjustFireLoss(rand(5, 15))
 				M.show_message("\red The radiation beam singes you!")
 			//	for (var/mob/V in viewers(src))
 			//		V.show_message("\red [M] is singed by the radiation beam.", 3, "\red You hear the crackle of burning leaves.", 2)
-	else if(istype(target, /mob/living/carbon/))
+	else if(iscarbon(target))
 	//	for (var/mob/V in viewers(src))
 	//		V.show_message("The radiation beam dissipates harmlessly through [M]", 3)
 		M.show_message("\blue The radiation beam dissipates harmlessly through your body.")
@@ -114,14 +114,14 @@
 	nodamage = 1
 	flag = "energy"
 
-/obj/item/projectile/energy/florayield/on_hit(var/atom/target, var/blocked = 0)
+/obj/item/projectile/energy/florayield/on_hit(atom/target, blocked = 0)
 	var/mob/M = target
 //	if(ishuman(target) && M.dna && M.dna.mutantrace == "plant") //These rays make plantmen fat.
-	if(isHuman(target)) //These rays make plantmen fat.
+	if(ishuman(target)) //These rays make plantmen fat.
 		var/mob/living/carbon/human/H = M
 		if((H.species.flags & IS_PLANT) && (M.nutrition < 500))
 			M.nutrition += 30
-	else if (istype(target, /mob/living/carbon))
+	else if(iscarbon(target))
 		M.show_message("\blue The radiation beam dissipates harmlessly through your body.")
 	else
 		return 1
@@ -129,8 +129,8 @@
 /obj/item/projectile/beam/mindflayer
 	name = "flayer ray"
 
-/obj/item/projectile/beam/mindflayer/on_hit(var/atom/target, var/blocked = 0)
-	if(isHuman(target))
+/obj/item/projectile/beam/mindflayer/on_hit(atom/target, blocked = 0)
+	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		M.adjustBrainLoss(20)
 		M.hallucination += 20

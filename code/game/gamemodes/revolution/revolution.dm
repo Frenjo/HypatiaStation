@@ -340,7 +340,7 @@
 	for(var/datum/mind/rev_mind in head_revolutionaries)
 		var/turf/T = get_turf(rev_mind.current)
 		if((rev_mind) && (rev_mind.current) && (rev_mind.current.stat != 2) && T && (T.z in config.station_levels))
-			if(isHuman(rev_mind.current))
+			if(ishuman(rev_mind.current))
 				return 0
 	return 1
 

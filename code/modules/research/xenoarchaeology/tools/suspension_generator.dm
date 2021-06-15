@@ -127,7 +127,7 @@
 		field_type = href_list["select_field"]
 	else if(href_list["insertcard"])
 		var/obj/item/I = usr.get_active_hand()
-		if (istype(I, /obj/item/weapon/card))
+		if(istype(I, /obj/item/weapon/card))
 			usr.drop_item()
 			I.loc = src
 			auth_card = I
@@ -137,7 +137,7 @@
 				usr << "<span class='warning'>You insert [I], the console flashes \'<i>Access denied.</a>\'</span>"
 	else if(href_list["ejectcard"])
 		if(auth_card)
-			if(isHuman(usr))
+			if(ishuman(usr))
 				auth_card.loc = usr.loc
 				if(!usr.get_active_hand())
 					usr.put_in_hands(auth_card)

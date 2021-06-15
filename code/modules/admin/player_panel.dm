@@ -218,38 +218,38 @@
 		if(M.ckey)
 
 			var/color = "#e6e6e6"
-			if(i%2 == 0)
+			if(i % 2 == 0)
 				color = "#f2f2f2"
 			var/is_antagonist = is_special_character(M)
 
 			var/M_job = ""
 
-			if(isLiving(M))
+			if(isliving(M))
 
-				if(isCarbon(M)) //Carbon stuff
-					if(isHuman(M))
+				if(iscarbon(M)) //Carbon stuff
+					if(ishuman(M))
 						M_job = M.job
-					else if(isSlime(M))
+					else if(isslime(M))
 						M_job = "slime"
-					else if(isMonkey(M))
+					else if(ismonkey(M))
 						M_job = "Monkey"
-					else if(isAlien(M))
+					else if(isalien(M))
 						M_job = "Alien"
 					else
 						M_job = "Carbon-based"
 
-				else if(isSilicon(M)) //silicon
+				else if(issilicon(M)) //silicon
 					if(isAI(M))
 						M_job = "AI"
-					else if(isPAI(M))
+					else if(ispAI(M))
 						M_job = "pAI"
-					else if(isRobot(M))
+					else if(isrobot(M))
 						M_job = "Cyborg"
 					else
 						M_job = "Silicon-based"
 
-				else if(isAnimal(M)) //simple animals
-					if(isCorgi(M))
+				else if(isanimal(M)) //simple animals
+					if(iscorgi(M))
 						M_job = "Corgi"
 					else
 						M_job = "Animal"
@@ -257,10 +257,10 @@
 				else
 					M_job = "Living"
 
-			else if(istype(M,/mob/new_player))
+			else if(istype(M, /mob/new_player))
 				M_job = "New player"
 
-			else if(isObserver(M))
+			else if(isobserver(M))
 				M_job = "Ghost"
 
 			M_job = replacetextx(M_job, "'", "")
@@ -317,7 +317,7 @@
 
 //The old one
 /datum/admins/proc/player_panel_old()
-	if (!usr.client.holder)
+	if(!usr.client.holder)
 		return
 	var/dat = "<html><head><title>Player Menu</title></head>"
 	dat += "<body><table border=1 cellspacing=5><B><tr><th>Name</th><th>Real Name</th><th>Assigned Job</th><th>Key</th><th>Options</th><th>PM</th><th>Traitor?</th></tr></B>"
@@ -326,30 +326,31 @@
 	var/list/mobs = sortmobs()
 
 	for(var/mob/M in mobs)
-		if(!M.ckey)	continue
+		if(!M.ckey)
+			continue
 
 		dat += "<tr><td>[M.name]</td>"
 		if(isAI(M))
 			dat += "<td>AI</td>"
-		else if(isRobot(M))
+		else if(isrobot(M))
 			dat += "<td>Cyborg</td>"
-		else if(isHuman(M))
+		else if(ishuman(M))
 			dat += "<td>[M.real_name]</td>"
-		else if(istype(M, /mob/living/silicon/pai))
+		else if(ispAI(M))
 			dat += "<td>pAI</td>"
 		else if(istype(M, /mob/new_player))
 			dat += "<td>New Player</td>"
-		else if(isObserver(M))
+		else if(isobserver(M))
 			dat += "<td>Ghost</td>"
-		else if(isMonkey(M))
+		else if(ismonkey(M))
 			dat += "<td>Monkey</td>"
-		else if(isAlien(M))
+		else if(isalien(M))
 			dat += "<td>Alien</td>"
 		else
 			dat += "<td>Unknown</td>"
 
 
-		if(istype(M,/mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H.mind && H.mind.assigned_role)
 				dat += "<td>[H.mind.assigned_role]</td>"
@@ -376,12 +377,12 @@
 
 
 /datum/admins/proc/check_antagonists()
-	if (ticker && ticker.current_state >= GAME_STATE_PLAYING)
+	if(ticker && ticker.current_state >= GAME_STATE_PLAYING)
 		var/dat = "<html><head><title>Round Status</title></head><body><h1><B>Round Status</B></h1>"
 		dat += "Current Game Mode: <B>[ticker.mode.name]</B><BR>"
 		dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
 		dat += "<B>Emergency shuttle</B><BR>"
-		if (!emergency_shuttle.online())
+		if(!emergency_shuttle.online())
 			dat += "<a href='?src=\ref[src];call_shuttle=1'>Call Shuttle</a><br>"
 		else
 			//var/timeleft = emergency_shuttle.timeleft()

@@ -127,21 +127,21 @@
 /mob/living/simple_animal/hostile/bear/AttackingTarget()
 	if(!Adjacent(target_mob))
 		return
-	custom_emote(1, pick( list("slashes at [target_mob]", "bites [target_mob]") ) )
+	custom_emote(1, pick(list("slashes at [target_mob]", "bites [target_mob]")))
 
 	var/damage = rand(20,30)
 
-	if(isHuman(target_mob))
+	if(ishuman(target_mob))
 		var/mob/living/carbon/human/H = target_mob
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		var/datum/organ/external/affecting = H.get_organ(ran_zone(dam_zone))
 		H.apply_damage(damage, BRUTE, affecting, H.run_armor_check(affecting, "melee"), sharp = 1, edge = 1)
 		return H
-	else if(isLiving(target_mob))
+	else if(isliving(target_mob))
 		var/mob/living/L = target_mob
 		L.adjustBruteLoss(damage)
 		return L
-	else if(istype(target_mob,/obj/mecha))
+	else if(istype(target_mob, /obj/mecha))
 		var/obj/mecha/M = target_mob
 		M.attack_animal(src)
 		return M

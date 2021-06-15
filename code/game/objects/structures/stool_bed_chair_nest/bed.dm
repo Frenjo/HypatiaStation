@@ -153,8 +153,10 @@
 /obj/structure/stool/bed/roller/MouseDrop(over_object, src_location, over_location)
 	..()
 	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
-		if(!isHuman(usr))	return
-		if(buckled_mob)	return 0
+		if(!ishuman(usr))
+			return
+		if(buckled_mob)
+			return 0
 		visible_message("[usr] collapses \the [src.name].")
 		new/obj/item/roller(get_turf(src))
 		spawn(0)

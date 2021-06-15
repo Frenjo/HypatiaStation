@@ -61,7 +61,7 @@
 	if(user && user.client && !(A in target))
 		var/client/C = user.client
 		//If help intent is on and we have clicked on an eligible target, switch to aim mode automatically
-		if(user.a_intent == "help" && isLiving(A) && !C.gun_mode)
+		if(user.a_intent == "help" && isliving(A) && !C.gun_mode)
 			C.ToggleGunMode()
 
 		if(C.gun_mode)
@@ -79,7 +79,7 @@
 /obj/item/weapon/gun/proc/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)//TODO: go over this
 	//Exclude lasertag guns from the CLUMSY check.
 	if(clumsy_check)
-		if(istype(user, /mob/living))
+		if(isliving(user))
 			var/mob/living/M = user
 			if ((CLUMSY in M.mutations) && prob(50))
 				M << "<span class='danger'>[src] blows up in your face.</span>"
@@ -91,12 +91,12 @@
 	if(!user.IsAdvancedToolUser())
 		user << "\red You don't have the dexterity to do this!"
 		return
-	if(istype(user, /mob/living))
+	if(isliving(user))
 		var/mob/living/M = user
 		if (HULK in M.mutations)
 			M << "\red Your meaty finger is much too large for the trigger guard!"
 			return
-	if(isHuman(user))
+	if(ishuman(user))
 		if(user.dna && user.dna.mutantrace == "adamantine")
 			user << "\red Your metal fingers don't fit in the trigger guard!"
 			return
@@ -105,14 +105,14 @@
 
 	var/turf/curloc = get_turf(user)
 	var/turf/targloc = get_turf(target)
-	if (!istype(targloc) || !istype(curloc))
+	if(!istype(targloc) || !istype(curloc))
 		return
 
 	if(!special_check(user))
 		return
 
 	if(!ready_to_fire())
-		if (world.time % 3) //to prevent spam
+		if(world.time % 3) //to prevent spam
 			user << "<span class='warning'>[src] is not ready to fire again!"
 		return
 

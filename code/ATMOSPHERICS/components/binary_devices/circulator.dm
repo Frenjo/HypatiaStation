@@ -73,7 +73,7 @@
 /obj/machinery/atmospherics/binary/circulator/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
 		anchored = !anchored
-		to_chat(user, span("info", "You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."))
+		to_chat(user, SPAN_INFO("You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."))
 
 		if(anchored)
 			if(dir & (NORTH|SOUTH))

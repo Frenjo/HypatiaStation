@@ -172,5 +172,5 @@ log transactions
 	if(p == pin)
 		user << "\green Access granted."
 		return 1
-	to_chat(user, span("warning", "Access denied."))
+	to_chat(user, SPAN_WARNING("Access denied."))
 	return 0

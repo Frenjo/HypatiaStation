@@ -13,57 +13,65 @@
 
 // Mob helpers
 // fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
-#define isHuman(A) istype(A, /mob/living/carbon/human)
+#define ishuman(A) istype(A, /mob/living/carbon/human)
 
-#define isMonkey(A) istype(A, /mob/living/carbon/monkey)
+#define ismonkey(A) istype(A, /mob/living/carbon/monkey)
 
-#define isBrain(A) istype(A, /mob/living/carbon/brain)
+#define isbrain(A) istype(A, /mob/living/carbon/brain)
 
-#define isAlien(A) istype(A, /mob/living/carbon/alien)
+#define isalien(A) istype(A, /mob/living/carbon/alien)
 
-#define isLarva(A) istype(A, /mob/living/carbon/alien/larva)
+#define islarva(A) istype(A, /mob/living/carbon/alien/larva)
 
-#define isSlime(A) istype(A, /mob/living/carbon/slime)
+#define isslime(A) istype(A, /mob/living/carbon/slime)
 
-#define isSlimeAdult(A) istype(A, /mob/living/carbon/slime/adult)
+#define isslimeadult(A) istype(A, /mob/living/carbon/slime/adult)
 
-#define isRobot(A) istype(A, /mob/living/silicon/robot)
+#define isrobot(A) istype(A, /mob/living/silicon/robot)
 
-#define isAnimal(A) istype(A, /mob/living/simple_animal)
+#define isdrone(A) istype(A, /mob/living/silicon/robot/drone)
 
-#define isCorgi(A) istype(A, /mob/living/simple_animal/corgi)
+#define isanimal(A) istype(A, /mob/living/simple_animal)
 
-#define isCrab(A) istype(A, /mob/living/simple_animal/crab)
+#define iscorgi(A) istype(A, /mob/living/simple_animal/corgi)
 
-#define isCat(A) istype(A, /mob/living/simple_animal/cat)
+#define iscrab(A) istype(A, /mob/living/simple_animal/crab)
 
-#define isMouse(A) istype(A, /mob/living/simple_animal/mouse)
+#define iscat(A) istype(A, /mob/living/simple_animal/cat)
 
-#define isBear(A) istype(A, /mob/living/simple_animal/hostile/bear)
+#define ismouse(A) istype(A, /mob/living/simple_animal/mouse)
 
-#define isCarp(A) istype(A, /mob/living/simple_animal/hostile/carp)
+#define isnear(A) istype(A, /mob/living/simple_animal/hostile/bear)
 
-#define isClown(A) istype(A, /mob/living/simple_animal/hostile/retaliate/clown)
+#define iscarp(A) istype(A, /mob/living/simple_animal/hostile/carp)
+
+#define isclown(A) istype(A, /mob/living/simple_animal/hostile/retaliate/clown)
 
 #define isAI(A) istype(A, /mob/living/silicon/ai)
 
-#define isPAI(A) istype(A, /mob/living/silicon/pai)
+#define ispAI(A) istype(A, /mob/living/silicon/pai)
 
-#define isCarbon(A) istype(A, /mob/living/carbon)
+#define iscarbon(A) istype(A, /mob/living/carbon)
 
-#define isSilicon(A) istype(A, /mob/living/silicon)
+#define issilicon(A) istype(A, /mob/living/silicon)
 
-#define isLiving(A) istype(A, /mob/living)
+#define isliving(A) istype(A, /mob/living)
 
-#define isObserver(A) istype(A, /mob/dead/observer)
+#define isobserver(A) istype(A, /mob/dead/observer)
 
-#define isOrgan(A) istype(A, /datum/organ/external)
+#define isorgan(A) istype(A, /datum/organ/external)
 
-#define hasOrgans(A) isHuman(A)
+#define hasorgans(A) ishuman(A)
 
 // Chat-related stuff
 #define to_chat(target, message) target << message
-#define span(class, text) ("<span class='[class]'>[text]</span>")
+#define SPAN(class, text) "<span class='[class]'>[text]</span>"
+#define SPAN_INFO(text) SPAN("info", text)
+#define SPAN_NOTICE(text) SPAN("notice", text)
+#define SPAN_WARNING(text) SPAN("warning", text)
+#define SPAN_DANGER(text) SPAN("danger", text)
+#define SPAN_ALERT(text) SPAN("alert", text)
+#define SPAN_ERROR(text) SPAN("error", text)
 
 // GC/qdel stuff
 #define qdel_null(x) if(x) { qdel(x) ; x = null }

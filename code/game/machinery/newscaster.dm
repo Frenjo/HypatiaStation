@@ -785,7 +785,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	world << "derp"*/
 
 obj/item/weapon/newspaper/attack_self(mob/user as mob)
-	if(isHuman(user))
+	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		var/dat
 		src.pages = 0

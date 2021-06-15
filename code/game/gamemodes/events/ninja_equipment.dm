@@ -1182,10 +1182,10 @@ ________________________________________________________________________________
 	desc = "Assesses targets"
 	body_parts_covered = 0
 
-/obj/item/clothing/glasses/hud/ninja/process_hud(var/mob/M)
+/obj/item/clothing/glasses/hud/ninja/process_hud(mob/M)
 	var/target_list[] = list()
 	for(var/mob/living/target in oview(M))
-		if(target.mind && (target.mind.special_role || isSilicon(target))) //They need to have a mind.
+		if(target.mind && (target.mind.special_role || issilicon(target))) //They need to have a mind.
 			target_list += target
 	if(target_list.len)
 		assess_targets(target_list, M)
@@ -1195,7 +1195,7 @@ ________________________________________________________________________________
 /obj/item/clothing/glasses/hud/ninja/proc/assess_targets(list/target_list, mob/living/carbon/U)
 	var/icon/tempHud = 'icons/mob/hud.dmi'
 	for(var/mob/living/target in target_list)
-		if(isCarbon(target))
+		if(iscarbon(target))
 			switch(target.mind.special_role)
 				if("traitor")
 					U.client.images += image(tempHud,target,"hudtraitor")
@@ -1220,7 +1220,7 @@ ________________________________________________________________________________
 		else//If the silicon mob has no law datum, no inherent laws, or a law zero, add them to the hud.
 			var/mob/living/silicon/silicon_target = target
 			if(!silicon_target.laws||(silicon_target.laws&&(silicon_target.laws.zeroth||!silicon_target.laws.inherent.len)))
-				if(isRobot(silicon_target))//Different icons for robutts and AI.
+				if(isrobot(silicon_target))//Different icons for robutts and AI.
 					U.client.images += image(tempHud,silicon_target,"hudmalborg")
 				else
 					U.client.images += image(tempHud,silicon_target,"hudmalai")

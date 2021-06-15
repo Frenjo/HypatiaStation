@@ -1099,7 +1099,7 @@
 	set src in view(1)
 	var/self = 0
 
-	if(usr.stat == 1 || usr.restrained() || !isLiving(usr))
+	if(usr.stat == 1 || usr.restrained() || !isliving(usr))
 		return
 
 	if(usr == src)

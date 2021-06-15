@@ -89,9 +89,9 @@
 
 	var/t = "<div class='statusDisplay'>[temp_msg]</div><BR>"
 	t += "<A href='?src=\ref[src];setrotation=1'>Set Bearing</A>"
-	t += "<div class='statusDisplay'>[rotation]°</div>"
+	t += "<div class='statusDisplay'>[rotation]ï¿½</div>"
 	t += "<A href='?src=\ref[src];setangle=1'>Set Elevation</A>"
-	t += "<div class='statusDisplay'>[angle]°</div>"
+	t += "<div class='statusDisplay'>[angle]ï¿½</div>"
 	t += "<span class='linkOn'>Set Power</span>"
 	t += "<div class='statusDisplay'>"
 
@@ -213,7 +213,7 @@
 			for(var/atom/movable/ROI in source)
 				// if is anchored, don't let through
 				if(ROI.anchored)
-					if(isLiving(ROI))
+					if(isliving(ROI))
 						var/mob/living/L = ROI
 						if(L.buckled)
 							// TP people on office chairs
@@ -221,7 +221,7 @@
 								continue
 						else
 							continue
-					else if(!isObserver(ROI))
+					else if(!isobserver(ROI))
 						continue
 				do_teleport(ROI, dest)
 			updateDialog()

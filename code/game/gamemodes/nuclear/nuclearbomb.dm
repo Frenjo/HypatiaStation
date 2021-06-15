@@ -101,7 +101,7 @@ var/bomb_set
 					if(!WT.isOn())
 						return
 					if(WT.get_fuel() < 5) // uses up 5 fuel.
-						to_chat(user, span("warning", "You need more fuel to complete this task."))
+						to_chat(user, SPAN_WARNING("You need more fuel to complete this task."))
 						return
 
 					user.visible_message("[user] starts cutting loose the anchoring bolt covers on [src].", "You start cutting loose the anchoring bolt covers with [O]...")
@@ -130,7 +130,7 @@ var/bomb_set
 					if(!WT.isOn())
 						return
 					if(WT.get_fuel() < 5) // uses up 5 fuel.
-						to_chat(user, span("warning", "You need more fuel to complete this task."))
+						to_chat(user, SPAN_WARNING("You need more fuel to complete this task."))
 						return
 
 					user.visible_message("[user] starts cutting apart the anchoring system sealant on [src].", "You start cutting apart the anchoring system's sealant with [O]...")
@@ -171,8 +171,8 @@ var/bomb_set
 
 /obj/machinery/nuclearbomb/attack_hand(mob/user as mob)
 	if(src.extended)
-		if(!isHuman(user))
-			to_chat(user, span("warning", "You don't have the dexterity to do this!"))
+		if(!ishuman(user))
+			to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
 			return 1
 
 		user.set_machine(src)
@@ -198,9 +198,9 @@ var/bomb_set
 	else if(src.deployable)
 		if(removal_stage < 5)
 			src.anchored = 1
-			visible_message(span("warning", "With a steely snap, bolts slide out of [src] and anchor it to the flooring!"))
+			visible_message(SPAN_WARNING("With a steely snap, bolts slide out of [src] and anchor it to the flooring!"))
 		else
-			visible_message(span("warning", "\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
+			visible_message(SPAN_WARNING("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 		if(!src.lighthack)
 			flick("nuclearbombc", src)
 			src.icon_state = "nuclearbomb1"
@@ -225,15 +225,15 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 
 	if(!usr.canmove || usr.stat || usr.restrained())
 		return
-	if(!isHuman(usr))
-		to_chat(usr, span("warning", "You don't have the dexterity to do this!"))
+	if(!ishuman(usr))
+		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return 1
 
 	if(src.deployable)
-		to_chat(usr, span("warning", "You close several panels to make [src] undeployable."))
+		to_chat(usr, SPAN_WARNING("You close several panels to make [src] undeployable."))
 		src.deployable = 0
 	else
-		to_chat(usr, span("warning", "You adjust some panels to make [src] deployable."))
+		to_chat(usr, SPAN_WARNING("You adjust some panels to make [src] deployable."))
 		src.deployable = 1
 	return
 
@@ -370,7 +370,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 	return
 
 /obj/machinery/nuclearbomb/blob_act()
-	if (src.timing == -1.0)
+	if(src.timing == -1.0)
 		return
 	else
 		return ..()

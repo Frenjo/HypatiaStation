@@ -63,7 +63,7 @@
 	if(!istype(M, /mob/living/carbon))
 		return
 
-	if(hasOrgans(M))
+	if(hasorgans(M))
 		var/datum/organ/external/temp = M:organs_by_name["r_hand"]
 		if(M.hand)
 			temp = M:organs_by_name["l_hand"]
@@ -230,7 +230,7 @@
 
 /mob/living/carbon/clean_blood()
 	. = ..()
-	if(isHuman(src))
+	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if(H.gloves)
 			if(H.gloves.clean_blood())
@@ -487,7 +487,7 @@
 		return
 
 /mob/living/carbon/ui_toggle_internals()
-	if(isCarbon(usr))
+	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
 			if(C.internal)
@@ -505,7 +505,7 @@
 					var/breathes = "oxygen"    //default, we'll check later
 					var/list/contents = list()
 
-					if(isHuman(C))
+					if(ishuman(C))
 						var/mob/living/carbon/human/H = C
 						breathes = H.species.breath_type
 						nicename = list ("suit", "back", "belt", "right hand", "left hand", "left pocket", "right pocket")
@@ -514,10 +514,10 @@
 						nicename = list("Right Hand", "Left Hand", "Back")
 						tankcheck = list(C.r_hand, C.l_hand, C.back)
 
-					for(var/i=1, i<tankcheck.len+1, ++i)
+					for(var/i = 1, i < tankcheck.len + 1, ++i)
 						if(istype(tankcheck[i], /obj/item/weapon/tank))
 							var/obj/item/weapon/tank/t = tankcheck[i]
-							if (!isnull(t.manipulated_by) && t.manipulated_by != C.real_name && findtext(t.desc,breathes))
+							if(!isnull(t.manipulated_by) && t.manipulated_by != C.real_name && findtext(t.desc, breathes))
 								contents.Add(t.air_contents.total_moles)	//Someone messed with the tank and put unknown gasses
 								continue					//in it, so we're going to believe the tank is what it says it is
 							switch(breathes)
