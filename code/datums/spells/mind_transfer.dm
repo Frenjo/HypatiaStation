@@ -8,8 +8,8 @@
 	invocation = "GIN'YU CAPAN"
 	invocation_type = "whisper"
 	range = 1
-	var/list/protected_roles = list("Wizard","Changeling","Cultist") //which roles are immune to the spell
-	var/list/compatible_mobs = list(/mob/living/carbon/human,/mob/living/carbon/monkey) //which types of mobs are affected by the spell. NOTE: change at your own risk
+	var/list/protected_roles = list("Wizard", "Changeling", "Cultist") //which roles are immune to the spell
+	var/list/compatible_mobs = list(/mob/living/carbon/human, /mob/living/carbon/monkey) //which types of mobs are affected by the spell. NOTE: change at your own risk
 	var/base_spell_loss_chance = 20 //base probability of the wizard losing a spell in the process
 	var/spell_loss_chance_modifier = 7 //amount of probability of losing a spell added per spell (mind_transfer included)
 	var/spell_loss_amount = 1 //the maximum amount of spells possible to lose during a single transfer
@@ -22,7 +22,7 @@ Urist: I don't feel like figuring out how you store object spells so I'm leaving
 Make sure spells that are removed from spell_list are actually removed and deleted when mind transfering.
 Also, you never added distance checking after target is selected. I've went ahead and did that.
 */
-/obj/effect/proc_holder/spell/targeted/mind_transfer/cast(list/targets,mob/user = usr)
+/obj/effect/proc_holder/spell/targeted/mind_transfer/cast(list/targets, mob/user = usr)
 	if(!targets.len)
 		to_chat(user, "No mind found.")
 		return
@@ -111,4 +111,6 @@ Also, you never added distance checking after target is selected. I've went ahea
 
 	//After a certain amount of time the victim gets a message about being in a different body.
 	spawn(msg_wait)
-		caster << "<span class='warning'>You feel woozy and lightheaded.</span> <span class='danger'>Your body doesn't seem like your own.</span>"
+		//caster << "<span class='warning'>You feel woozy and lightheaded.</span> <span class='danger'>Your body doesn't seem like your own.</span>"
+		to_chat(caster, SPAN_WARNING("You feel woozy and lightheaded."))
+		to_chat(caster, SPAN_DANGER("Your body doesn't seem like your own."))

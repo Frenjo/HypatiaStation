@@ -17,14 +17,14 @@
 
 /obj/effect/jungle_tribe_spawn/New()
 	processing_objects.Add(src)
-	tribe_type = rand(1,5)
+	tribe_type = rand(1, 5)
 
-	var/num_tribesmen = rand(3,6)
-	for(var/i=0,i<num_tribesmen,i++)
+	var/num_tribesmen = rand(3, 6)
+	for(var/i = 0, i < num_tribesmen, i++)
 		var/mob/living/simple_animal/hostile/tribesman/T = new(src.loc)
 		T.my_type = tribe_type
-		T.x += rand(-6,6)
-		T.y += rand(-6,6)
+		T.x += rand(-6, 6)
+		T.y += rand(-6, 6)
 		tribesmen += T
 
 /obj/effect/jungle_tribe_spawn/Destroy()
@@ -35,11 +35,11 @@
 	for(var/mob/living/simple_animal/hostile/tribesman/T in tribesmen)
 		if(T.stat == DEAD)
 			tribesmen.Remove(T)
-			spawn(rand(50,300))
+			spawn(rand(50, 300))
 				var/mob/living/simple_animal/hostile/tribesman/B = new(src.loc)
 				B.my_type = tribe_type
-				B.x += rand(-4,4)
-				B.y += rand(-4,4)
+				B.x += rand(-4, 4)
+				B.y += rand(-4, 4)
 				tribesmen += B
 
 
@@ -51,9 +51,9 @@
 	icon_living = "native1"
 	icon_dead = "native1_dead"
 	speak_chance = 25
-	speak = list("Rong a'hu dong'a sik?","Ahi set mep'a teth.","Ohen nek'ti ep esi.")
+	speak = list("Rong a'hu dong'a sik?", "Ahi set mep'a teth.", "Ohen nek'ti ep esi.")
 	speak_emote = list("chatters")
-	emote_hear = list("chatters to themselves","chatters away at something","whistles")
+	emote_hear = list("chatters to themselves", "chatters away at something", "whistles")
 	emote_see = list("bends down to examine something")
 	melee_damage_lower = 5
 	melee_damage_upper = 15
@@ -84,7 +84,7 @@
 		emote("waves a spear at [.]")
 
 /mob/living/simple_animal/hostile/tribesman/OpenFire(target_mob)
-	visible_message("\red <b>[src]</b> throws a spear at [target_mob]!", 1)
+	visible_message(SPAN_WARNING("\red <b>[src]</b> throws a spear at [target_mob]!"), 1)
 	flick(src, "native[my_type]_act")
 
 	var/tturf = get_turf(target_mob)

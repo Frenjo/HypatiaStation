@@ -497,7 +497,7 @@
 
 //attack with an item - open/close cover, insert cell, or (un)lock interface
 /obj/machinery/power/apc/attackby(obj/item/W, mob/user)
-	if(istype(user, /mob/living/silicon) && get_dist(src, user) > 1)
+	if(issilicon(user) && get_dist(src, user) > 1)
 		return src.attack_hand(user)
 	src.add_fingerprint(user)
 	if(istype(W, /obj/item/weapon/crowbar) && opened)
@@ -722,7 +722,7 @@
 				"You hear a bang.")
 			update_icon()
 		else
-			if (istype(user, /mob/living/silicon))
+			if (issilicon(user))
 				return src.attack_hand(user)
 			if (!opened && wiresexposed && \
 				(istype(W, /obj/item/device/multitool) || \
@@ -791,7 +791,7 @@
 	if(!user)
 		return
 
-	if(wiresexposed /*&& (!istype(user, /mob/living/silicon))*/) //Commented out the typecheck to allow engiborgs to repair damaged apcs.
+	if(wiresexposed /*&& (!issilicon(user))*/) //Commented out the typecheck to allow engiborgs to repair damaged apcs.
 		wires.Interact(user)
 
 	// Open the APC NanoUI
@@ -898,7 +898,7 @@
 	if(!user.client)
 		return 0
 	if(!(istype(user, /mob/living/carbon/human) || \
-			istype(user, /mob/living/silicon) || \
+			issilicon(user) || \
 			istype(user, /mob/living/carbon/monkey) /*&& ticker && ticker.mode.name == "monkey"*/) )
 		user << "<span class='warning'>You don't have the dexterity to use [src]!</span>"
 
@@ -910,7 +910,7 @@
 		user << "<span class='warning'>You must stand to use [src]!</span>"
 		return 0
 	autoflag = 5
-	if (istype(user, /mob/living/silicon))
+	if (issilicon(user))
 		var/mob/living/silicon/ai/AI = user
 		var/mob/living/silicon/robot/robot = user
 		if (                                                             \

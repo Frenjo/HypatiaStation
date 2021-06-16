@@ -69,7 +69,7 @@
 	if(!istype(H, /mob/living/carbon/human))
 		return 1
 
-	if(loc == H || (in_range(src, H) && istype(loc, /turf)))
+	if(loc == H || (in_range(src, H) && isturf(loc)))
 		H.set_machine(src)
 		if(href_list["spell_choice"])
 			if(href_list["spell_choice"] == "rememorize")

@@ -16,7 +16,7 @@
 	if(template)
 		return
 
-	if (istype(O, /obj/item/weapon/paper) || istype(O, /obj/item/weapon/photo))
+	if(istype(O, /obj/item/weapon/paper) || istype(O, /obj/item/weapon/photo))
 		// put it inside
 		template = O
 		usr.drop_item()

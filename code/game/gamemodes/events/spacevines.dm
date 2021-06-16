@@ -12,37 +12,49 @@
 	var/obj/effect/spacevine_controller/master = null
 	var/mob/living/buckled_mob
 
-	New()
-		return
+/obj/effect/spacevine/New()
+	return
 
-	Destroy()
-		if(master)
-			master.vines -= src
-			master.growth_queue -= src
-		..()
+/obj/effect/spacevine/Destroy()
+	if(master)
+		master.vines -= src
+		master.growth_queue -= src
+	..()
 
 
 /obj/effect/spacevine/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (!W || !user || !W.type) return
+	if(!W || !user || !W.type)
+		return
+
 	switch(W.type)
-		if(/obj/item/weapon/circular_saw) qdel(src)
-		if(/obj/item/weapon/kitchen/utensil/knife) qdel(src)
-		if(/obj/item/weapon/scalpel) qdel(src)
-		if(/obj/item/weapon/twohanded/fireaxe) qdel(src)
-		if(/obj/item/weapon/hatchet) qdel(src)
-		if(/obj/item/weapon/melee/energy) qdel(src)
+		if(/obj/item/weapon/circular_saw)
+			qdel(src)
+		if(/obj/item/weapon/kitchen/utensil/knife)
+			qdel(src)
+		if(/obj/item/weapon/scalpel)
+			qdel(src)
+		if(/obj/item/weapon/twohanded/fireaxe)
+			qdel(src)
+		if(/obj/item/weapon/hatchet)
+			qdel(src)
+		if(/obj/item/weapon/melee/energy)
+			qdel(src)
 
 		//less effective weapons
 		if(/obj/item/weapon/wirecutters)
-			if(prob(25)) qdel(src)
+			if(prob(25))
+				qdel(src)
 		if(/obj/item/weapon/shard)
-			if(prob(25)) qdel(src)
+			if(prob(25))
+				qdel(src)
 
 		else //weapons with subtypes
-			if(istype(W, /obj/item/weapon/melee/energy/sword)) qdel(src)
+			if(istype(W, /obj/item/weapon/melee/energy/sword))
+				qdel(src)
 			else if(istype(W, /obj/item/weapon/weldingtool))
 				var/obj/item/weapon/weldingtool/WT = W
-				if(WT.remove_fuel(0, user)) qdel(src)
+				if(WT.remove_fuel(0, user))
+					qdel(src)
 			else
 				manual_unbuckle(user)
 				return
@@ -72,21 +84,21 @@
 			if(buckled_mob.buckled == src)
 				if(buckled_mob != user)
 					buckled_mob.visible_message(\
-						"<span class='notice'>[user.name] frees [buckled_mob.name] from the vines.</span>",\
-						"<span class='notice'>[user.name] frees you from the vines.</span>",\
-						"<span class='warning'>You hear shredding and ripping.</span>")
+						SPAN_NOTICE("[user.name] frees [buckled_mob.name] from the vines."),\
+						SPAN_NOTICE("[user.name] frees you from the vines."),\
+						SPAN_WARNING("You hear shredding and ripping."))
 				else
 					buckled_mob.visible_message(\
-						"<span class='notice'>[buckled_mob.name] struggles free of the vines.</span>",\
-						"<span class='notice'>You untangle the vines from around yourself.</span>",\
-						"<span class='warning'>You hear shredding and ripping.</span>")
+						SPAN_NOTICE("[buckled_mob.name] struggles free of the vines."),\
+						SPAN_NOTICE("You untangle the vines from around yourself."),\
+						SPAN_WARNING("You hear shredding and ripping."))
 			unbuckle()
 		else
-			var/text = pick("rips","tears","pulls")
+			var/text = pick("rips", "tears", "pulls")
 			user.visible_message(\
-				"<span class='notice'>[user.name] [text] at the vines.</span>",\
-				"<span class='notice'>You [text] at the vines.</span>",\
-				"<span class='warning'>You hear shredding and ripping.</span>")
+				SPAN_NOTICE("[user.name] [text] at the vines."),\
+				SPAN_NOTICE("You [text] at the vines."),\
+				SPAN_WARNING("You hear shredding and ripping."))
 	return
 
 /obj/effect/spacevine_controller
@@ -97,67 +109,67 @@
 	//What this does is that instead of having the grow minimum of 1, required to start growing, the minimum will be 0,
 	//meaning if you get the spacevines' size to something less than 20 plots, it won't grow anymore.
 
-	New()
-		if(!istype(src.loc,/turf/simulated/floor))
-			qdel(src)
+/obj/effect/spacevine_controller/New()
+	if(!istype(src.loc, /turf/simulated/floor))
+		qdel(src)
 
-		spawn_spacevine_piece(src.loc)
-		processing_objects.Add(src)
+	spawn_spacevine_piece(src.loc)
+	processing_objects.Add(src)
 
-	Destroy()
-		processing_objects.Remove(src)
-		..()
+/obj/effect/spacevine_controller/Destroy()
+	processing_objects.Remove(src)
+	..()
 
-	proc/spawn_spacevine_piece(var/turf/location)
-		var/obj/effect/spacevine/SV = new(location)
-		growth_queue += SV
-		vines += SV
-		SV.master = src
+/obj/effect/spacevine_controller/proc/spawn_spacevine_piece(turf/location)
+	var/obj/effect/spacevine/SV = new(location)
+	growth_queue += SV
+	vines += SV
+	SV.master = src
 
-	process()
-		if(!vines)
-			qdel(src) //space  vines exterminated. Remove the controller
-			return
-		if(!growth_queue)
-			qdel(src) //Sanity check
-			return
-		if(vines.len >= 250 && !reached_collapse_size)
-			reached_collapse_size = 1
-		if(vines.len >= 30 && !reached_slowdown_size )
-			reached_slowdown_size = 1
+/obj/effect/spacevine_controller/process()
+	if(!vines)
+		qdel(src) //space vines exterminated. Remove the controller
+		return
+	if(!growth_queue)
+		qdel(src) //Sanity check
+		return
+	if(vines.len >= 250 && !reached_collapse_size)
+		reached_collapse_size = 1
+	if(vines.len >= 30 && !reached_slowdown_size)
+		reached_slowdown_size = 1
 
-		var/length = 0
-		if(reached_collapse_size)
-			length = 0
-		else if(reached_slowdown_size)
-			if(prob(25))
-				length = 1
-			else
-				length = 0
-		else
+	var/length = 0
+	if(reached_collapse_size)
+		length = 0
+	else if(reached_slowdown_size)
+		if(prob(25))
 			length = 1
-		length = min( 30 , max( length , vines.len / 5 ) )
-		var/i = 0
-		var/list/obj/effect/spacevine/queue_end = list()
+		else
+			length = 0
+	else
+		length = 1
+	length = min(30, max(length, vines.len / 5))
+	var/i = 0
+	var/list/obj/effect/spacevine/queue_end = list()
 
-		for( var/obj/effect/spacevine/SV in growth_queue )
-			i++
-			queue_end += SV
-			growth_queue -= SV
-			if(SV.energy < 2) //If tile isn't fully grown
-				if(prob(20))
-					SV.grow()
-			else //If tile is fully grown
-				SV.buckle_mob()
+	for(var/obj/effect/spacevine/SV in growth_queue)
+		i++
+		queue_end += SV
+		growth_queue -= SV
+		if(SV.energy < 2) //If tile isn't fully grown
+			if(prob(20))
+				SV.grow()
+		else //If tile is fully grown
+			SV.buckle_mob()
 
-			//if(prob(25))
-			SV.spread()
-			if(i >= length)
-				break
+		//if(prob(25))
+		SV.spread()
+		if(i >= length)
+			break
 
-		growth_queue = growth_queue + queue_end
-		//sleep(5)
-		//src.process()
+	growth_queue = growth_queue + queue_end
+	//sleep(5)
+	//src.process()
 
 /obj/effect/spacevine/proc/grow()
 	if(!energy)
@@ -172,23 +184,23 @@
 /obj/effect/spacevine/proc/buckle_mob()
 	if(!buckled_mob && prob(25))
 		for(var/mob/living/carbon/V in src.loc)
-			if((V.stat != DEAD)  && (V.buckled != src)) //if mob not dead or captured
+			if((V.stat != DEAD) && (V.buckled != src)) //if mob not dead or captured
 				V.buckled = src
 				V.loc = src.loc
 				V.update_canmove()
 				src.buckled_mob = V
-				V << "<span class='danger'>The vines [pick("wind", "tangle", "tighten")] around you!</span>"
+				to_chat(V, SPAN_DANGER("The vines [pick("wind", "tangle", "tighten")] around you!"))
 				break //only capture one mob at a time.
 
 /obj/effect/spacevine/proc/spread()
 	var/direction = pick(cardinal)
-	var/step = get_step(src,direction)
-	if(istype(step,/turf/simulated/floor))
+	var/step = get_step(src, direction)
+	if(istype(step, /turf/simulated/floor))
 		var/turf/simulated/floor/F = step
-		if(!locate(/obj/effect/spacevine,F))
+		if(!locate(/obj/effect/spacevine, F))
 			if(F.Enter(src))
 				if(master)
-					master.spawn_spacevine_piece( F )
+					master.spawn_spacevine_piece(F)
 
 /*
 /obj/effect/spacevine/proc/Life()
@@ -244,7 +256,6 @@
 
 //Carn: Spacevines random event.
 /proc/spacevine_infestation()
-
 	spawn() //to stop the secrets panel hanging
 		var/list/turf/simulated/floor/turfs = list() //list of all the empty floor turfs in the hallway areas
 		for(var/areapath in typesof(/area/hallway))
@@ -260,4 +271,4 @@
 		if(turfs.len) //Pick a turf to spawn at if we can
 			var/turf/simulated/floor/T = pick(turfs)
 			new/obj/effect/spacevine_controller(T) //spawn a controller at turf
-			message_admins("\blue Event: Spacevines spawned at [T.loc] ([T.x],[T.y],[T.z])")
+			message_admins(SPAN_INFO("Event: Spacevines spawned at [T.loc] ([T.x],[T.y],[T.z])"))

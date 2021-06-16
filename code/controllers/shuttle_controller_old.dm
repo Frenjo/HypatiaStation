@@ -151,7 +151,7 @@ datum/shuttle_controller/emergency_shuttle/process()
 									shake_camera(M, 4, 1) // buckled, not a lot of shaking
 								else
 									shake_camera(M, 10, 2) // unbuckled, HOLY SHIT SHAKE THE ROOM
-						if(istype(M, /mob/living/carbon))
+						if(iscarbon(M))
 							if(!M.buckled)
 								M.Weaken(5)
 
@@ -161,7 +161,7 @@ datum/shuttle_controller/emergency_shuttle/process()
 					start_location.move_contents_to(end_location, null, NORTH)
 
 					for(var/obj/machinery/door/D in machines)
-						if( get_area(D) == end_location )
+						if(get_area(D) == end_location)
 							spawn(0)
 								D.open()
 
@@ -172,7 +172,7 @@ datum/shuttle_controller/emergency_shuttle/process()
 									shake_camera(M, 4, 1) // buckled, not a lot of shaking
 								else
 									shake_camera(M, 10, 2) // unbuckled, HOLY SHIT SHAKE THE ROOM
-						if(istype(M, /mob/living/carbon))
+						if(iscarbon(M))
 							if(!M.buckled)
 								M.Weaken(5)
 
@@ -181,7 +181,7 @@ datum/shuttle_controller/emergency_shuttle/process()
 					start_location.move_contents_to(end_location, null, NORTH)
 
 					for(var/obj/machinery/door/D in machines)
-						if( get_area(D) == end_location )
+						if(get_area(D) == end_location)
 							spawn(0)
 								D.open()
 
@@ -192,7 +192,7 @@ datum/shuttle_controller/emergency_shuttle/process()
 									shake_camera(M, 4, 1) // buckled, not a lot of shaking
 								else
 									shake_camera(M, 10, 2) // unbuckled, HOLY SHIT SHAKE THE ROOM
-						if(istype(M, /mob/living/carbon))
+						if(iscarbon(M))
 							if(!M.buckled)
 								M.Weaken(5)
 
@@ -201,7 +201,7 @@ datum/shuttle_controller/emergency_shuttle/process()
 					start_location.move_contents_to(end_location, null, NORTH)
 
 					for(var/obj/machinery/door/D in machines)
-						if( get_area(D) == end_location )
+						if(get_area(D) == end_location)
 							spawn(0)
 								D.open()
 
@@ -212,7 +212,7 @@ datum/shuttle_controller/emergency_shuttle/process()
 									shake_camera(M, 4, 1) // buckled, not a lot of shaking
 								else
 									shake_camera(M, 10, 2) // unbuckled, HOLY SHIT SHAKE THE ROOM
-						if(istype(M, /mob/living/carbon))
+						if(iscarbon(M))
 							if(!M.buckled)
 								M.Weaken(5)
 
@@ -221,7 +221,7 @@ datum/shuttle_controller/emergency_shuttle/process()
 					start_location.move_contents_to(end_location, null, EAST)
 
 					for(var/obj/machinery/door/D in machines)
-						if( get_area(D) == end_location )
+						if(get_area(D) == end_location)
 							spawn(0)
 								D.open()
 
@@ -232,7 +232,7 @@ datum/shuttle_controller/emergency_shuttle/process()
 									shake_camera(M, 4, 1) // buckled, not a lot of shaking
 								else
 									shake_camera(M, 10, 2) // unbuckled, HOLY SHIT SHAKE THE ROOM
-						if(istype(M, /mob/living/carbon))
+						if(iscarbon(M))
 							if(!M.buckled)
 								M.Weaken(5)
 
@@ -241,7 +241,7 @@ datum/shuttle_controller/emergency_shuttle/process()
 					return 1
 
 					/* --- Shuttle has docked centcom after being recalled --- */
-			if(timeleft>timelimit)
+			if(timeleft > timelimit)
 				online = 0
 				direction = 1
 				endtime = null
@@ -351,7 +351,7 @@ datum/shuttle_controller/emergency_shuttle/process()
 								shake_camera(M, 4, 1) // buckled, not a lot of shaking
 							else
 								shake_camera(M, 10, 2) // unbuckled, HOLY SHIT SHAKE THE ROOM
-					if(istype(M, /mob/living/carbon))
+					if(iscarbon(M))
 						if(!M.buckled)
 							M.Weaken(5)
 
@@ -370,7 +370,7 @@ datum/shuttle_controller/emergency_shuttle/process()
 								shake_camera(M, 4, 1) // buckled, not a lot of shaking
 							else
 								shake_camera(M, 10, 2) // unbuckled, HOLY SHIT SHAKE THE ROOM
-					if(istype(M, /mob/living/carbon))
+					if(iscarbon(M))
 						if(!M.buckled)
 							M.Weaken(5)
 
@@ -388,7 +388,7 @@ datum/shuttle_controller/emergency_shuttle/process()
 								shake_camera(M, 4, 1) // buckled, not a lot of shaking
 							else
 								shake_camera(M, 10, 2) // unbuckled, HOLY SHIT SHAKE THE ROOM
-					if(istype(M, /mob/living/carbon))
+					if(iscarbon(M))
 						if(!M.buckled)
 							M.Weaken(5)
 
@@ -406,7 +406,7 @@ datum/shuttle_controller/emergency_shuttle/process()
 								shake_camera(M, 4, 1) // buckled, not a lot of shaking
 							else
 								shake_camera(M, 10, 2) // unbuckled, HOLY SHIT SHAKE THE ROOM
-					if(istype(M, /mob/living/carbon))
+					if(iscarbon(M))
 						if(!M.buckled)
 							M.Weaken(5)
 
@@ -424,7 +424,7 @@ datum/shuttle_controller/emergency_shuttle/process()
 								shake_camera(M, 4, 1) // buckled, not a lot of shaking
 							else
 								shake_camera(M, 10, 2) // unbuckled, HOLY SHIT SHAKE THE ROOM
-					if(istype(M, /mob/living/carbon))
+					if(iscarbon(M))
 						if(!M.buckled)
 							M.Weaken(5)
 

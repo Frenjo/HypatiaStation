@@ -82,7 +82,7 @@ obj/structure/cable/Destroy()					// called when a cable is deleted
 
 //If underfloor, hide the cable
 /obj/structure/cable/hide(var/i)
-	if(level == 1 && istype(loc, /turf))
+	if(level == 1 && isturf(loc))
 		invisibility = i ? 101 : 0
 	updateicon()
 

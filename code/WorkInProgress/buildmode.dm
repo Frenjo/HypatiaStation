@@ -173,7 +173,7 @@
 							master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as turf in world
     	return 1
 
-/proc/build_click(var/mob/user, buildmode, params, var/obj/object)
+/proc/build_click(mob/user, buildmode, params, obj/object)
 	var/obj/effect/bmode/buildholder/holder = null
 	for(var/obj/effect/bmode/buildholder/H)
 		if(H.cl == user.client)
@@ -184,38 +184,38 @@
 
 	switch(buildmode)
 		if(1)
-			if(istype(object,/turf) && pa.Find("left") && !pa.Find("alt") && !pa.Find("ctrl") )
-				if(istype(object,/turf/space))
+			if(isturf(object) && pa.Find("left") && !pa.Find("alt") && !pa.Find("ctrl") )
+				if(istype(object, /turf/space))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/floor)
 					return
-				else if(istype(object,/turf/simulated/floor))
+				else if(istype(object, /turf/simulated/floor))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/wall)
 					return
-				else if(istype(object,/turf/simulated/wall))
+				else if(istype(object, /turf/simulated/wall))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/wall/r_wall)
 					return
 			else if(pa.Find("right"))
-				if(istype(object,/turf/simulated/wall))
+				if(istype(object, /turf/simulated/wall))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/floor)
 					return
-				else if(istype(object,/turf/simulated/floor))
+				else if(istype(object, /turf/simulated/floor))
 					var/turf/T = object
 					T.ChangeTurf(/turf/space)
 					return
-				else if(istype(object,/turf/simulated/wall/r_wall))
+				else if(istype(object, /turf/simulated/wall/r_wall))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/wall)
 					return
-				else if(istype(object,/obj))
+				else if(istype(object, /obj))
 					qdel(object)
 					return
-			else if(istype(object,/turf) && pa.Find("alt") && pa.Find("left"))
+			else if(isturf(object) && pa.Find("alt") && pa.Find("left"))
 				new/obj/machinery/door/airlock(get_turf(object))
-			else if(istype(object,/turf) && pa.Find("ctrl") && pa.Find("left"))
+			else if(isturf(object) && pa.Find("ctrl") && pa.Find("left"))
 				switch(holder.builddir.dir)
 					if(NORTH)
 						var/obj/structure/window/reinforced/WIN = new/obj/structure/window/reinforced(get_turf(object))

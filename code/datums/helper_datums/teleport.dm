@@ -14,13 +14,13 @@
 	var/force_teleport = 1 //if false, teleport will use Move() proc (dense objects will prevent teleportation)
 
 
-	New(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
+	New(ateleatom, adestination, aprecision = 0, afteleport = 1, aeffectin = null, aeffectout = null, asoundin = null, asoundout = null)
 		..()
 		if(!Init(arglist(args)))
 			return 0
 		return 1
 
-	proc/Init(ateleatom,adestination,aprecision,afteleport,aeffectin,aeffectout,asoundin,asoundout)
+	proc/Init(ateleatom, adestination, aprecision, afteleport, aeffectin, aeffectout, asoundin, asoundout)
 		if(!setTeleatom(ateleatom))
 			return 0
 		if(!setDestination(adestination))
@@ -58,7 +58,7 @@
 
 	//custom effects must be properly set up first for instant-type teleports
 	//optional
-	proc/setEffects(datum/effect/effect/system/aeffectin=null,datum/effect/effect/system/aeffectout=null)
+	proc/setEffects(datum/effect/effect/system/aeffectin = null, datum/effect/effect/system/aeffectout = null)
 		effectin = istype(aeffectin) ? aeffectin : null
 		effectout = istype(aeffectout) ? aeffectout : null
 		return 1
@@ -78,7 +78,7 @@
 	proc/teleportChecks()
 		return 1
 
-	proc/playSpecials(atom/location,datum/effect/effect/system/effect,sound)
+	proc/playSpecials(atom/location, datum/effect/effect/system/effect, sound)
 		if(location)
 			if(effect)
 				spawn(-1)
@@ -88,7 +88,7 @@
 			if(sound)
 				spawn(-1)
 					qdel(src)
-					playsound(location,sound,60,1)
+					playsound(location, sound, 60, 1)
 		return
 
 	//do the monkey dance
@@ -147,12 +147,12 @@
 	setPrecision(aprecision)
 		..()
 		if(istype(teleatom, /obj/item/weapon/storage/backpack/holding))
-			precision = rand(1,100)
+			precision = rand(1, 100)
 
 		var/list/bagholding = teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)
 		if(bagholding.len)
-			precision = max(rand(1,100)*bagholding.len,100)
-			if(istype(teleatom, /mob/living))
+			precision = max(rand(1, 100) * bagholding.len, 100)
+			if(isliving(teleatom))
 				var/mob/living/MM = teleatom
 				MM << "\red The Bluespace interface on your Bag of Holding interferes with the teleport!"
 		return 1
@@ -163,7 +163,7 @@
 			return 0
 
 		if(!isemptylist(teleatom.search_contents_for(/obj/item/weapon/disk/nuclear)))
-			if(istype(teleatom, /mob/living))
+			if(isliving(teleatom))
 				var/mob/living/MM = teleatom
 				MM.visible_message("\red <B>The [MM] bounces off of the portal!</B>","\red Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through.")
 			else

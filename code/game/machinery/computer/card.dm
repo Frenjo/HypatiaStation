@@ -279,7 +279,7 @@
 			if(authenticated)
 				var/t2 = modify
 				//var/t1 = input(usr, "What name?", "ID computer", null)  as text
-				if((authenticated && modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && istype(loc, /turf)))
+				if((authenticated && modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && isturf(loc)))
 					var/temp_name = reject_bad_name(href_list["reg"])
 					if(temp_name)
 						modify.registered_name = temp_name
@@ -289,7 +289,7 @@
 			if(authenticated)
 				var/t2 = modify
 				//var/t1 = input(usr, "What name?", "ID computer", null)  as text
-				if((authenticated && modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && istype(loc, /turf)))
+				if((authenticated && modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && isturf(loc)))
 					var/account_num = text2num(href_list["account"])
 					modify.associated_account_number = account_num
 		if("mode")

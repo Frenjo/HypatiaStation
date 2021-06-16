@@ -24,7 +24,7 @@
 	var/list/original_atom
 
 /atom/proc/throw_impact(atom/hit_atom, speed)
-	if(istype(hit_atom, /mob/living))
+	if(isliving(hit_atom))
 		var/mob/living/M = hit_atom
 		M.hitby(src, speed)
 
@@ -39,7 +39,7 @@
 		if(T.density)
 			spawn(2)
 				step(src, turn(src.dir, 180))
-			if(istype(src, /mob/living))
+			if(isliving(src))
 				var/mob/living/M = src
 				M.take_organ_damage(20)
 
@@ -56,7 +56,7 @@
 		return null
 
 /atom/proc/check_eye(user as mob)
-	if(istype(user, /mob/living/silicon/ai)) // WHYYYY
+	if(isAI(user)) // WHYYYY
 		return 1
 	return
 
@@ -396,7 +396,7 @@ its easier to just keep the beam vertical.
 	if(flags & NOBLOODY)
 		return 0
 	. = 1
-	if(!(istype(M, /mob/living/carbon/human)))
+	if(!(ishuman(M)))
 		return 0
 	if(!istype(M.dna, /datum/dna))
 		M.dna = new /datum/dna(null)

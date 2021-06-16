@@ -126,9 +126,9 @@
 		)
 		var/text = ""
 		var/mob/living/carbon/human/H = current
-		if(istype(current, /mob/living/carbon/human) || istype(current, /mob/living/carbon/monkey))
+		if(ishuman(current) || ismonkey(current))
 			/** Impanted**/
-			if(istype(current, /mob/living/carbon/human))
+			if(ishuman(current))
 				if(H.is_loyalty_implanted(H))
 					text = "Loyalty Implant:<a href='?src=\ref[src];implant=remove'>Remove</a>|<b>Implanted</b></br>"
 				else
@@ -141,7 +141,7 @@
 			if(ticker.mode.config_tag == "revolution")
 				text += uppertext(text)
 			text = "<i><b>[text]</b></i>: "
-			if(istype(current, /mob/living/carbon/monkey) || H.is_loyalty_implanted(H))
+			if(ismonkey(current) || H.is_loyalty_implanted(H))
 				text += "<b>LOYAL EMPLOYEE</b>|headrev|rev"
 			else if(src in ticker.mode.head_revolutionaries)
 				text = "<a href='?src=\ref[src];revolution=clear'>employee</a>|<b>HEADREV</b>|<a href='?src=\ref[src];revolution=rev'>rev</a>"
@@ -158,7 +158,7 @@
 					text += "."
 
 				text += " <a href='?src=\ref[src];revolution=reequip'>Reequip</a> (gives traitor uplink)."
-				if(objectives.len==0)
+				if(objectives.len == 0)
 					text += "<br>Objectives are empty! <a href='?src=\ref[src];revolution=autoobjectives'>Set to kill all heads</a>."
 			else if(src in ticker.mode.revolutionaries)
 				text += "<a href='?src=\ref[src];revolution=clear'>employee</a>|<a href='?src=\ref[src];revolution=headrev'>headrev</a>|<b>REV</b>"
@@ -168,10 +168,10 @@
 
 			/** CULT ***/
 			text = "cult"
-			if(ticker.mode.config_tag=="cult")
+			if(ticker.mode.config_tag == "cult")
 				text = uppertext(text)
 			text = "<i><b>[text]</b></i>: "
-			if(istype(current, /mob/living/carbon/monkey) || H.is_loyalty_implanted(H))
+			if(ismonkey(current) || H.is_loyalty_implanted(H))
 				text += "<B>LOYAL EMPLOYEE</B>|cultist"
 			else if(src in ticker.mode.cult)
 				text += "<a href='?src=\ref[src];cult=clear'>employee</a>|<b>CULTIST</b>"
@@ -186,7 +186,7 @@
 
 			/** WIZARD ***/
 			text = "wizard"
-			if(ticker.mode.config_tag=="wizard")
+			if(ticker.mode.config_tag == "wizard")
 				text = uppertext(text)
 			text = "<i><b>[text]</b></i>: "
 			if(src in ticker.mode.wizards)
@@ -240,7 +240,7 @@
 		if(ticker.mode.config_tag == "traitor" || ticker.mode.config_tag == "traitorchan")
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
-		if(istype(current, /mob/living/carbon/human))
+		if(ishuman(current))
 			if(H.is_loyalty_implanted(H))
 				text +="traitor|<b>LOYAL EMPLOYEE</b>"
 			else
@@ -253,14 +253,14 @@
 		sections["traitor"] = text
 
 		/** MONKEY ***/
-		if(istype(current, /mob/living/carbon))
+		if(iscarbon(current))
 			text = "monkey"
 			if(ticker.mode.config_tag == "monkey")
 				text = uppertext(text)
 			text = "<i><b>[text]</b></i>: "
-			if(istype(current, /mob/living/carbon/human))
+			if(ishuman(current))
 				text += "<a href='?src=\ref[src];monkey=healthy'>healthy</a>|<a href='?src=\ref[src];monkey=infected'>infected</a>|<b>HUMAN</b>|other"
-			else if(istype(current, /mob/living/carbon/monkey))
+			else if(ismonkey(current))
 				var/found = 0
 				for(var/datum/disease/D in current.viruses)
 					if(istype(D, /datum/disease/jungle_fever))
@@ -277,12 +277,12 @@
 
 
 		/** SILICON ***/
-		if(istype(current, /mob/living/silicon))
+		if(issilicon(current))
 			text = "silicon"
 			if(ticker.mode.config_tag == "malfunction")
 				text = uppertext(text)
 			text = "<i><b>[text]</b></i>: "
-			if(istype(current, /mob/living/silicon/ai))
+			if(isAI(current))
 				if(src in ticker.mode.malf_ai)
 					text += "<b>MALF</b>|<a href='?src=\ref[src];silicon=unmalf'>not malf</a>"
 				else
@@ -315,7 +315,7 @@
 				out += sections[i]+"<br>"
 
 
-		if((src in ticker.mode.head_revolutionaries || src in ticker.mode.traitors || src in ticker.mode.syndicates) && istype(current, /mob/living/carbon/human))
+		if((src in ticker.mode.head_revolutionaries || src in ticker.mode.traitors || src in ticker.mode.syndicates) && ishuman(current))
 			text = "Uplink: <a href='?src=\ref[src];common=uplink'>give</a>"
 			var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink()
 			var/crystals
@@ -397,7 +397,7 @@
 
 					var/list/possible_targets = list("Free objective")
 					for(var/datum/mind/possible_target in ticker.minds)
-						if((possible_target != src) && istype(possible_target.current, /mob/living/carbon/human))
+						if((possible_target != src) && ishuman(possible_target.current))
 							possible_targets += possible_target.current
 
 					var/mob/def_target = null
@@ -420,7 +420,7 @@
 						new_objective.owner = src
 						new_objective:target = new_target:mind
 						//Will display as special role if the target is set as MODE. Ninjas/commandos/nuke ops.
-						new_objective.explanation_text = "[objective_type] [new_target:real_name], the [new_target:mind:assigned_role=="MODE" ? (new_target:mind:special_role) : (new_target:mind:assigned_role)]."
+						new_objective.explanation_text = "[objective_type] [new_target:real_name], the [new_target:mind:assigned_role == "MODE" ? (new_target:mind:special_role) : (new_target:mind:assigned_role)]."
 
 				if("prevent")
 					new_objective = new /datum/objective/block
@@ -835,7 +835,7 @@
 						log_admin("[key_name_admin(usr)] has traitor'ed [current].")
 						if(config.objectives_disabled)
 							current << "<i>You have been turned into an antagonist- <font color=blue>Within the rules,</font> try to act as an opposing force to the crew- This can be via corporate payoff, personal motives, or maybe just being a dick. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonist.</i></b>"
-						if(istype(current, /mob/living/silicon))
+						if(issilicon(current))
 							var/mob/living/silicon/A = current
 							call(/datum/game_mode/proc/add_law_zero)(A)
 							A.show_laws()
@@ -944,7 +944,7 @@
 						log_admin("[key_name_admin(usr)] has unemag'ed [R].")
 
 				if("unemagcyborgs")
-					if(istype(current, /mob/living/silicon/ai))
+					if(isAI(current))
 						var/mob/living/silicon/ai/ai = current
 						for(var/mob/living/silicon/robot/R in ai.connected_robots)
 							R.emagged = 0

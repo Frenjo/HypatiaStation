@@ -1,5 +1,5 @@
 /mob/living/carbon/human/attack_hand(mob/living/carbon/human/M as mob)
-	if (istype(loc, /turf) && istype(loc.loc, /area/start))
+	if (isturf(loc) && istype(loc.loc, /area/start))
 		M << "No attacking people at spawn, you jackass."
 		return
 

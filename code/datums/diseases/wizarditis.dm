@@ -54,8 +54,8 @@ STI KALY - blind
 
 
 
-/datum/disease/wizarditis/proc/spawn_wizard_clothes(var/chance = 0)
-	if(istype(affected_mob, /mob/living/carbon/human))
+/datum/disease/wizarditis/proc/spawn_wizard_clothes(chance = 0)
+	if(ishuman(affected_mob))
 		var/mob/living/carbon/human/H = affected_mob
 		if(prob(chance))
 			if(!istype(H.head, /obj/item/clothing/head/wizard))
@@ -83,7 +83,7 @@ STI KALY - blind
 		if(prob(chance))
 			if(!istype(H.r_hand, /obj/item/weapon/staff))
 				H.drop_r_hand()
-				H.put_in_r_hand( new /obj/item/weapon/staff(H) )
+				H.put_in_r_hand(new /obj/item/weapon/staff(H))
 			return
 	return
 
@@ -92,7 +92,8 @@ STI KALY - blind
 /datum/disease/wizarditis/proc/teleport()
 	var/list/theareas = new/list()
 	for(var/area/AR in orange(80, affected_mob))
-		if(theareas.Find(AR) || AR.name == "Space") continue
+		if(theareas.Find(AR) || AR.name == "Space")
+			continue
 		theareas += AR
 
 	if(!theareas)
@@ -102,8 +103,10 @@ STI KALY - blind
 
 	var/list/L = list()
 	for(var/turf/T in get_area_turfs(thearea.type))
-		if(T.z != affected_mob.z) continue
-		if(T.name == "space") continue
+		if(T.z != affected_mob.z)
+			continue
+		if(T.name == "space")
+			continue
 		if(!T.density)
 			var/clear = 1
 			for(var/obj/O in T)

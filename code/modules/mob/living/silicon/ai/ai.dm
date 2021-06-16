@@ -106,7 +106,7 @@ var/list/ai_verbs_default = list(
 
 	aiMulti = new(src)
 
-	if(istype(loc, /turf))
+	if(isturf(loc))
 		add_ai_verbs()
 
 	//Languages

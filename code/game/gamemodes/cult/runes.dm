@@ -808,7 +808,7 @@ var/list/sacrificed = list()
 				var/mob/living/carbon/cultist = input("Choose the one who you want to summon", "Followers of Geometer") as null|anything in (cultists - user)
 				if(!cultist)
 					return fizzle()
-				if (cultist == user) //just to be sure.
+				if(cultist == user) //just to be sure.
 					return
 				if(cultist.buckled || cultist.handcuffed || (!isturf(cultist.loc) && !istype(cultist.loc, /obj/structure/closet)))
 					to_chat(user, SPAN_WARNING("You cannot summon \the [cultist], for his shackles of blood are strong."))

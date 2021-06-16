@@ -16,7 +16,6 @@ Bonus
 */
 
 /datum/symptom/confusion
-
 	name = "Confusion"
 	stealth = 1
 	resistance = -1
@@ -24,16 +23,15 @@ Bonus
 	transmittable = 0
 	level = 4
 
-
-/datum/symptom/confusion/Activate(var/datum/disease/advance/A)
+/datum/symptom/confusion/Activate(datum/disease/advance/A)
 	..()
 	if(prob(SYMPTOM_ACTIVATION_PROB))
 		var/mob/living/carbon/M = A.affected_mob
 		switch(A.stage)
 			if(1, 2, 3, 4)
-				M << "<span class='notice'>[pick("You feel confused.", "You forgot what you were thinking about.")]</span>"
+				to_chat(M, SPAN_NOTICE("[pick("You feel confused.", "You forgot what you were thinking about.")]"))
 			else
-				M << "<span class='notice'>You are unable to think straight!</span>"
+				to_chat(M, SPAN_NOTICE("You are unable to think straight!"))
 				M.confused = min(100, M.confused + 2)
 
 	return

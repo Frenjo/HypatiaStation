@@ -121,7 +121,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	if (usr.stat || !on)
 		return
 
-	if (!(issilicon(usr) || (usr.contents.Find(src) || ( in_range(src, usr) && istype(loc, /turf)))))
+	if (!(issilicon(usr) || (usr.contents.Find(src) || ( in_range(src, usr) && isturf(loc)))))
 		usr << browse(null, "window=radio")
 		return
 	usr.set_machine(src)

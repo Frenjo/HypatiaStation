@@ -27,7 +27,6 @@ VOX HEIST ROUNDTYPE
 	world << "<B>Personnel:</B> Repel the raiders and their low, low prices and/or crossbows."
 
 /datum/game_mode/heist/can_start()
-
 	if(!..())
 		return 0
 
@@ -58,7 +57,6 @@ VOX HEIST ROUNDTYPE
 	return 1
 
 /datum/game_mode/heist/post_setup()
-
 	//Build a list of spawn points.
 	var/list/turf/raider_spawn = list()
 
@@ -76,27 +74,26 @@ VOX HEIST ROUNDTYPE
 
 	//Spawn the vox!
 	for(var/datum/mind/raider in raiders)
-
 		if(index > raider_spawn.len)
 			index = 1
 
 		raider.current.loc = raider_spawn[index]
 		index++
 
-		var/sounds = rand(2,8)
+		var/sounds = rand(2, 8)
 		var/i = 0
 		var/newname = ""
 
-		while(i<=sounds)
+		while(i <= sounds)
 			i++
-			newname += pick(list("ti","hi","ki","ya","ta","ha","ka","ya","chi","cha","kah"))
+			newname += pick(list("ti", "hi", "ki", "ya", "ta", "ha", "ka", "ya", "chi", "cha", "kah"))
 
 		var/mob/living/carbon/human/vox = raider.current
 
 		vox.real_name = capitalize(newname)
 		vox.name = vox.real_name
 		raider.name = vox.name
-		vox.age = rand(12,20)
+		vox.age = rand(12, 20)
 		vox.dna.mutantrace = "vox"
 		vox.set_species("Vox")
 		vox.languages = list() // Removing language from chargen.
@@ -112,34 +109,31 @@ VOX HEIST ROUNDTYPE
 		raider.objectives = raid_objectives
 		greet_vox(raider)
 
-	spawn (rand(waittime_l, waittime_h))
+	spawn(rand(waittime_l, waittime_h))
 		send_intercept()
 
 /datum/game_mode/heist/proc/is_raider_crew_safe()
-
 	if(cortical_stacks.len == 0)
 		return 0
 
 	for(var/obj/stack in cortical_stacks)
-		if (get_area(stack) != locate(/area/shuttle/vox/station))
+		if(get_area(stack) != locate(/area/shuttle/vox/station))
 			return 0
 	return 1
 
 /datum/game_mode/heist/proc/is_raider_crew_alive()
-
 	for(var/datum/mind/raider in raiders)
 		if(raider.current)
-			if(istype(raider.current,/mob/living/carbon/human) && raider.current.stat != 2)
+			if(ishuman(raider.current) && raider.current.stat != 2)
 				return 1
 	return 0
 
 /datum/game_mode/heist/proc/forge_vox_objectives()
-
 	var/i = 1
-	var/max_objectives = pick(2,2,2,2,3,3,3,4)
+	var/max_objectives = pick(2, 2, 2, 2, 3, 3, 3, 4)
 	var/list/objs = list()
-	while(i<= max_objectives)
-		var/list/goals = list("kidnap","loot","salvage")
+	while(i <= max_objectives)
+		var/list/goals = list("kidnap", "loot", "salvage")
 		var/goal = pick(goals)
 		var/datum/objective/heist/O
 
@@ -161,7 +155,7 @@ VOX HEIST ROUNDTYPE
 
 	return objs
 
-/datum/game_mode/heist/proc/greet_vox(var/datum/mind/raider)
+/datum/game_mode/heist/proc/greet_vox(datum/mind/raider)
 	raider.current << "\blue <B>You are a Vox Raider, fresh from the Shoal!</b>"
 	raider.current << "\blue The Vox are a race of cunning, sharp-eyed nomadic raiders and traders endemic to Tau Ceti and much of the unexplored galaxy. You and the crew have come to the Exodus for plunder, trade or both."
 	raider.current << "\blue Vox are cowardly and will flee from larger groups, but corner one or find them en masse and they are vicious."
@@ -177,9 +171,9 @@ VOX HEIST ROUNDTYPE
 
 
 /datum/game_mode/heist/declare_completion()
-
 	//No objectives, go straight to the feedback.
-	if(!(raid_objectives.len)) return ..()
+	if(!(raid_objectives.len))
+		return ..()
 
 	var/win_type = "Major"
 	var/win_group = "Crew"
@@ -204,13 +198,11 @@ VOX HEIST ROUNDTYPE
 
 	//Now we modify that result by the state of the vox crew.
 	if(!is_raider_crew_alive())
-
 		win_type = "Major"
 		win_group = "Crew"
 		win_msg += "<B>The Vox Raiders have been wiped out!</B>"
 
 	else if(!is_raider_crew_safe())
-
 		if(win_group == "Crew" && win_type == "Minor")
 			win_type = "Major"
 
@@ -218,7 +210,6 @@ VOX HEIST ROUNDTYPE
 		win_msg += "<B>The Vox Raiders have left someone behind!</B>"
 
 	else
-
 		if(win_group == "Vox")
 			if(win_type == "Minor")
 
@@ -246,7 +237,7 @@ VOX HEIST ROUNDTYPE
 datum/game_mode/proc/auto_declare_completion_heist()
 	if(raiders.len)
 		var/check_return = 0
-		if(ticker && istype(ticker.mode,/datum/game_mode/heist))
+		if(ticker && istype(ticker.mode, /datum/game_mode/heist))
 			check_return = 1
 		var/text = "<FONT size = 2><B>The vox raiders were:</B></FONT>"
 

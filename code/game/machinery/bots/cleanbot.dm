@@ -184,7 +184,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 				if(T.wet_overlay)
 					T.overlays -= T.wet_overlay
 					T.wet_overlay = null
-				T.wet_overlay = image('icons/effects/water.dmi',T,"wet_floor")
+				T.wet_overlay = image('icons/effects/water.dmi', T, "wet_floor")
 				T.overlays += T.wet_overlay
 				spawn(800)
 					if (istype(T) && T.wet < 2)
@@ -198,7 +198,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 		//gib.streak(list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 		src.oldtarget = gib
 	if(!src.target || src.target == null)
-		for (var/obj/effect/decal/cleanable/D in view(7,src))
+		for(var/obj/effect/decal/cleanable/D in view(7, src))
 			for(var/T in src.target_types)
 				if(isnull(D.targeted_by) && (D.type == T || D.parent_type == T) && D != src.oldtarget)   // If the mess isn't targeted
 					src.oldtarget = D								 // or if it is but the bot is gone.
@@ -210,10 +210,10 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 		if(src.loc != src.oldloc)
 			src.oldtarget = null
 
-		if (!should_patrol)
+		if(!should_patrol)
 			return
 
-		if (!patrol_path || patrol_path.len < 1)
+		if(!patrol_path || patrol_path.len < 1)
 			var/datum/radio_frequency/frequency = radio_controller.return_frequency(beacon_freq)
 
 			if(!frequency) return

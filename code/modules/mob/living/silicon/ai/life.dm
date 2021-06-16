@@ -43,7 +43,7 @@
 		if (istype(T, /turf))
 			//stage = 3
 			loc = T.loc
-			if (istype(loc, /area))
+			if (isarea(loc))
 				//stage = 4
 				//if (!loc.master.power_equip && !istype(src.loc,/obj/item))
 				if (!loc.power_equip && !istype(src.loc,/obj/item))

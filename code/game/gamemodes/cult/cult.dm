@@ -9,8 +9,10 @@
 	return istype(M) && M.mind && ticker && ticker.mode && (M.mind in ticker.mode.cult)
 
 /proc/is_convertable_to_cult(datum/mind/mind)
-	if(!istype(mind))	return 0
-	if(istype(mind.current, /mob/living/carbon/human) && (mind.assigned_role in list("Captain", "Chaplain")))	return 0
+	if(!istype(mind))
+		return 0
+	if(ishuman(mind.current) && (mind.assigned_role in list("Captain", "Chaplain")))
+		return 0
 	for(var/obj/item/weapon/implant/loyalty/L in mind.current)
 		if(L && (L.imp_in == mind.current))//Checks to see if the person contains an implant, then checks that the implant is actually inside of them
 			return 0
@@ -20,7 +22,7 @@
 /datum/game_mode/cult
 	name = "cult"
 	config_tag = "cult"
-	restricted_jobs = list("Chaplain","AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain")
+	restricted_jobs = list("Chaplain", "AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	protected_jobs = list()
 	required_players = 5
 	required_players_secret = 15
@@ -35,7 +37,7 @@
 	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
 	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 
-	var/list/startwords = list("blood","join","self","hell")
+	var/list/startwords = list("blood", "join", "self", "hell")
 
 	var/list/objectives = list()
 
@@ -104,13 +106,13 @@
 			cult_mind.current << "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>"
 		cult_mind.special_role = "Cultist"
 
-	spawn (rand(waittime_l, waittime_h))
+	spawn(rand(waittime_l, waittime_h))
 		send_intercept()
 	..()
 
 
-/datum/game_mode/cult/proc/memoize_cult_objectives(var/datum/mind/cult_mind)
-	for(var/obj_count = 1,obj_count <= objectives.len,obj_count++)
+/datum/game_mode/cult/proc/memoize_cult_objectives(datum/mind/cult_mind)
+	for(var/obj_count = 1, obj_count <= objectives.len, obj_count++)
 		var/explanation
 		switch(objectives[obj_count])
 			if("survive")
@@ -132,14 +134,14 @@
 	if(!istype(mob))
 		return
 
-	if (mob.mind)
-		if (mob.mind.assigned_role == "Clown")
+	if(mob.mind)
+		if(mob.mind.assigned_role == "Clown")
 			mob << "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself."
 			mob.mutations.Remove(CLUMSY)
 
 
 	var/obj/item/weapon/paper/talisman/supply/T = new(mob)
-	var/list/slots = list (
+	var/list/slots = list(
 		"backpack" = slot_in_backpack,
 		"left pocket" = slot_l_store,
 		"right pocket" = slot_r_store,
@@ -147,7 +149,7 @@
 		"right hand" = slot_r_hand,
 	)
 	var/where = mob.equip_in_one_of_slots(T, slots)
-	if (!where)
+	if(!where)
 		mob << "Unfortunately, you weren't able to get a talisman. This is very bad and you should adminhelp immediately."
 	else
 		mob << "You have a talisman in your [where], one that will help you start the cult on this station. Use it well and remember - there are others."
@@ -155,26 +157,26 @@
 		return 1
 
 
-/datum/game_mode/cult/grant_runeword(mob/living/carbon/human/cult_mob, var/word)
-	if (!word)
+/datum/game_mode/cult/grant_runeword(mob/living/carbon/human/cult_mob, word)
+	if(!word)
 		if(startwords.len > 0)
 			word=pick(startwords)
 			startwords -= word
 	return ..(cult_mob,word)
 
 
-/datum/game_mode/proc/grant_runeword(mob/living/carbon/human/cult_mob, var/word)
+/datum/game_mode/proc/grant_runeword(mob/living/carbon/human/cult_mob, word)
 	if(!cultwords["travel"])
 		runerandom()
-	if (!word)
-		word=pick(allwords)
+	if(!word)
+		word = pick(allwords)
 	var/wordexp = "[cultwords[word]] is [word]..."
 	cult_mob << "\red You remember one thing from the dark teachings of your master... [wordexp]"
 	cult_mob.mind.store_memory("<B>You remember that</B> [wordexp]", 0, 0)
 
 
 /datum/game_mode/proc/add_cultist(datum/mind/cult_mind) //BASE
-	if (!istype(cult_mind))
+	if(!istype(cult_mind))
 		return 0
 	if(!(cult_mind in cult) && is_convertable_to_cult(cult_mind))
 		cult += cult_mind
@@ -332,7 +334,7 @@
 
 
 /datum/game_mode/proc/auto_declare_completion_cult()
-	if( cult.len || (ticker && istype(ticker.mode,/datum/game_mode/cult)) )
+	if(cult.len || (ticker && istype(ticker.mode, /datum/game_mode/cult)))
 		var/text = "<FONT size = 2><B>The cultists were:</B></FONT>"
 		for(var/datum/mind/cultist in cult)
 

@@ -108,7 +108,6 @@ var/global/list/frozen_items = list()
 
 //Decorative structures to go alongside cryopods.
 /obj/structure/cryofeed
-
 	name = "\improper cryogenic feed"
 	desc = "A bewildering tangle of machinery and pipes."
 	icon = 'icons/obj/Cryogenic2.dmi'
@@ -122,7 +121,6 @@ var/global/list/frozen_items = list()
 	icon_state = "cryo_rear-r"
 
 /obj/structure/cryofeed/New()
-
 	if(orient_right)
 		icon_state = "cryo_rear-r"
 	else
@@ -165,7 +163,6 @@ var/global/list/frozen_items = list()
 	icon_state = "body_scanner_0-r"
 
 /obj/machinery/cryopod/New()
-
 	announce = new /obj/item/device/radio/intercom(src)
 
 	if(orient_right)

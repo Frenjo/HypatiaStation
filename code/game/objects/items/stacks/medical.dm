@@ -16,7 +16,7 @@
 		return 1
 
 	if(!(istype(user, /mob/living/carbon/human) || \
-			istype(user, /mob/living/silicon) || \
+			issilicon(user) || \
 			istype(user, /mob/living/carbon/monkey) && ticker && ticker.mode.name == "monkey") )
 		user << "\red You don't have the dexterity to do this!"
 		return 1

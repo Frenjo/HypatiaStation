@@ -123,10 +123,10 @@
 				var/mob/living/newtraitor = pick(possible_traitors)
 				//message_admins("[newtraitor.real_name] is the new Traitor.")
 
-				if (!config.objectives_disabled)
+				if(!config.objectives_disabled)
 					forge_traitor_objectives(newtraitor.mind)
 
-				if(istype(newtraitor, /mob/living/silicon))
+				if(issilicon(newtraitor))
 					add_law_zero(newtraitor)
 				else
 					equip_traitor(newtraitor)
@@ -165,9 +165,9 @@
 		var/traitorcount = 0
 		for(var/mob/living/player in mob_list)
 
-			if (player.client && player.stat != 2)
+			if(player.client && player.stat != 2)
 				playercount += 1
-			if (player.client && player.mind && player.mind.special_role && player.stat != 2)
+			if(player.client && player.mind && player.mind.special_role && player.stat != 2)
 				traitorcount += 1
 		//message_admins("Live Players: [playercount]")
 		//message_admins("Live Traitors: [traitorcount]")
@@ -183,7 +183,7 @@
 
 		//target_traitors = max(1, min(round((playercount + r) / 10, 1), traitors_possible))
 		//message_admins("Target Traitor Count is: [target_traitors]")
-		if (traitorcount < max_traitors)
+		if(traitorcount < max_traitors)
 			//message_admins("Number of Traitors is below maximum.  Rolling for New Arrival Traitor.")
 			//message_admins("The probability of a new traitor is [traitor_prob]%")
 			if(prob(traitor_prob))
@@ -193,7 +193,7 @@
 				traitors += character.mind
 				character << "\red <B>You are the traitor.</B>"
 				character.mind.special_role = "traitor"
-				if (config.objectives_disabled)
+				if(config.objectives_disabled)
 					character << "<i>You have been selected this round as an antagonist- <font color=blue>Within the rules,</font> try to act as an opposing force to the crew- This can be via corporate payoff, personal motives, or maybe just being a dick. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonist.</i></b>"
 				else
 					var/obj_count = 1

@@ -4,11 +4,11 @@
 /datum/dna/gene/monkey/New()
 	block = MONKEYBLOCK
 
-/datum/dna/gene/monkey/can_activate(var/mob/M, var/flags)
-	return istype(M, /mob/living/carbon/human) || istype(M,/mob/living/carbon/monkey)
+/datum/dna/gene/monkey/can_activate(mob/M, flags)
+	return ishuman(M) || ismonkey(M)
 
-/datum/dna/gene/monkey/activate(var/mob/living/M, var/connected, var/flags)
-	if(!istype(M,/mob/living/carbon/human))
+/datum/dna/gene/monkey/activate(mob/living/M, connected, flags)
+	if(!ishuman(M))
 		//testing("Cannot monkey-ify [M], type is [M.type].")
 		return
 	var/mob/living/carbon/human/H = M
@@ -20,21 +20,20 @@
 
 	if(!connected)
 		for(var/obj/item/W in (H.contents-implants))
-			if (W==H.w_uniform) // will be teared
+			if(W == H.w_uniform) // will be teared
 				continue
 			H.drop_from_inventory(W)
 		M.monkeyizing = 1
 		M.canmove = 0
 		M.icon = null
 		M.invisibility = 101
-		var/atom/movable/overlay/animation = new( M.loc )
+		var/atom/movable/overlay/animation = new(M.loc)
 		animation.icon_state = "blank"
 		animation.icon = 'icons/mob/mob.dmi'
 		animation.master = src
 		flick("h2monkey", animation)
 		sleep(48)
 		qdel(animation)
-
 
 	var/mob/living/carbon/monkey/O = null
 	if(H.species.primitive)
@@ -67,7 +66,7 @@
 	if(M.mind)
 		M.mind.transfer_to(O)	//transfer our mind to the cute little monkey
 
-	if (connected) //inside dna thing
+	if(connected) //inside dna thing
 		var/obj/machinery/dna_scannernew/C = connected
 		O.loc = C
 		C.occupant = O
@@ -78,15 +77,15 @@
 	O.adjustOxyLoss(M.getOxyLoss())
 	O.stat = M.stat
 	O.a_intent = "hurt"
-	for (var/obj/item/weapon/implant/I in implants)
+	for(var/obj/item/weapon/implant/I in implants)
 		I.loc = O
 		I.implanted = O
 //		O.update_icon = 1	//queue a full icon update at next life() call
 	qdel(M)
 	return
 
-/datum/dna/gene/monkey/deactivate(var/mob/living/M, var/connected, var/flags)
-	if(!istype(M,/mob/living/carbon/monkey))
+/datum/dna/gene/monkey/deactivate(mob/living/M, connected, flags)
+	if(!ismonkey(M))
 		//testing("Cannot humanize [M], type is [M.type].")
 		return
 	var/mob/living/carbon/monkey/Mo = M
@@ -102,7 +101,7 @@
 		M.canmove = 0
 		M.icon = null
 		M.invisibility = 101
-		var/atom/movable/overlay/animation = new( M.loc )
+		var/atom/movable/overlay/animation = new(M.loc)
 		animation.icon_state = "blank"
 		animation.icon = 'icons/mob/mob.dmi'
 		animation.master = src
@@ -116,17 +115,17 @@
 	else
 		O = new(src)
 
-	if (M.dna.GetUIState(DNA_UI_GENDER))
+	if(M.dna.GetUIState(DNA_UI_GENDER))
 		O.gender = FEMALE
 	else
 		O.gender = MALE
 
-	if (M)
-		if (M.dna)
+	if(M)
+		if(M.dna)
 			O.dna = M.dna.Clone()
 			M.dna = null
 
-		if (M.suiciding)
+		if(M.suiciding)
 			O.suiciding = M.suiciding
 			M.suiciding = null
 
@@ -143,20 +142,20 @@
 	if(M.mind)
 		M.mind.transfer_to(O)	//transfer our mind to the human
 
-	if (connected) //inside dna thing
+	if(connected) //inside dna thing
 		var/obj/machinery/dna_scannernew/C = connected
 		O.loc = C
 		C.occupant = O
 		connected = null
 
 	var/i
-	while (!i)
+	while(!i)
 		var/randomname
-		if (O.gender == MALE)
+		if(O.gender == MALE)
 			randomname = capitalize(pick(first_names_male) + " " + capitalize(pick(last_names)))
 		else
 			randomname = capitalize(pick(first_names_female) + " " + capitalize(pick(last_names)))
-		if (findname(randomname))
+		if(findname(randomname))
 			continue
 		else
 			O.real_name = randomname
@@ -166,7 +165,7 @@
 	O.adjustToxLoss(M.getToxLoss())
 	O.adjustOxyLoss(M.getOxyLoss())
 	O.stat = M.stat
-	for (var/obj/item/weapon/implant/I in implants)
+	for(var/obj/item/weapon/implant/I in implants)
 		I.loc = O
 		I.implanted = O
 //		O.update_icon = 1	//queue a full icon update at next life() call

@@ -161,7 +161,7 @@ Attach to transfer valve and open. BOOM.
 /obj/fire/New(newLoc,fl)
 	..()
 
-	if(!istype(loc, /turf))
+	if(!isturf(loc))
 		qdel(src)
 
 	dir = pick(cardinal)
@@ -183,7 +183,7 @@ Attach to transfer valve and open. BOOM.
 	..()
 
 /obj/fire/proc/RemoveFire()
-	if(istype(loc, /turf))
+	if(isturf(loc))
 		set_light(0)
 		loc = null
 	air_master.active_hotspots.Remove(src)

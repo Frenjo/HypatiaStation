@@ -17,7 +17,6 @@ BONUS
 */
 
 /datum/symptom/itching
-
 	name = "Itching"
 	stealth = 0
 	resistance = 3
@@ -25,9 +24,9 @@ BONUS
 	transmittable = 1
 	level = 1
 
-/datum/symptom/itching/Activate(var/datum/disease/advance/A)
+/datum/symptom/itching/Activate(datum/disease/advance/A)
 	..()
 	if(prob(SYMPTOM_ACTIVATION_PROB))
 		var/mob/living/M = A.affected_mob
-		M << "<span class='notice'>Your [pick("back", "arm", "leg", "elbow", "head")] itches.</span>"
+		to_chat(M, SPAN_NOTICE("Your [pick("back", "arm", "leg", "elbow", "head")] itches."))
 	return

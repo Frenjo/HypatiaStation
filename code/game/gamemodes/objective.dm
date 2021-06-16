@@ -584,7 +584,7 @@ var/global/list/all_objectives = list()
 		if("a functional AI")
 			for(var/obj/item/device/aicard/C in all_items) //Check for ai card
 				for(var/mob/living/silicon/ai/M in C)
-					if(istype(M, /mob/living/silicon/ai) && M.stat != 2) //See if any AI's are alive inside that card.
+					if(isAI(M) && M.stat != 2) //See if any AI's are alive inside that card.
 						return 1
 
 			for(var/obj/item/clothing/suit/space/space_ninja/S in all_items) //Let an AI downloaded into a space ninja suit count
@@ -592,7 +592,7 @@ var/global/list/all_objectives = list()
 					return 1
 
 			for(var/mob/living/silicon/ai/ai in world)
-				if(istype(ai.loc, /turf))
+				if(isturf(ai.loc))
 					var/area/check_area = get_area(ai)
 					if(istype(check_area, /area/shuttle/escape/centcom))
 						return 1

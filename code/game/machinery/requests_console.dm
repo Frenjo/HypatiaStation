@@ -54,7 +54,6 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	var/message = "";
 	var/dpt = ""; //the department which will be receiving the message
 	var/priority = -1 ; //Priority of the message being sent
-	//luminosity = 0
 	light_range = 0
 
 /obj/machinery/requests_console/power_change()

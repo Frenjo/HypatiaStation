@@ -28,7 +28,7 @@
 	if(can_operate(M))        //Checks if mob is lying down on table for surgery
 		if(do_surgery(M, user, src))
 			return
-	if(istype(M, /mob/living/carbon/brain))
+	if(isbrain(M))
 		messagesource = M:container
 	if(hitsound)
 		playsound(loc, hitsound, 50, 1, -1)
@@ -48,8 +48,8 @@
 	if(HULK in user.mutations)
 		power *= 2
 
-	if(!istype(M, /mob/living/carbon/human))
-		if(istype(M, /mob/living/carbon/slime))
+	if(!ishuman(M))
+		if(isslime(M))
 			var/mob/living/carbon/slime/slime = M
 			if(prob(25))
 				to_chat(M, SPAN_WARNING("[src] passes right through [M]!"))
@@ -62,7 +62,7 @@
 				slime.Discipline = 0
 
 			if(power >= 3)
-				if(istype(slime, /mob/living/carbon/slime/adult))
+				if(isslimeadult(slime))
 					if(prob(5 + round(power / 2)))
 
 						if(slime.Victim)
@@ -137,18 +137,18 @@
 				to_chat(user, SPAN_DANGER("You attack [M] with [src]."))
 
 
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		return M:attacked_by(src, user, def_zone)
 	else
 		switch(damtype)
 			if("brute")
-				if(istype(src, /mob/living/carbon/slime))
+				if(isslime(src))
 					M.adjustBrainLoss(power)
 				else
 					M.take_organ_damage(power)
 					if(prob(33)) // Added blood for whacking non-humans too
 						var/turf/location = M.loc
-						if (istype(location, /turf/simulated))
+						if(istype(location, /turf/simulated))
 							location:add_blood_floor(M)
 			if("fire")
 				if(!(COLD_RESISTANCE in M.mutations))

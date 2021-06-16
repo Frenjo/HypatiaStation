@@ -13,25 +13,25 @@ var/can_call_ert
 	set desc = "Send an emergency response team to the station"
 
 	if(!holder)
-		usr << "\red Only administrators may use this command."
+		to_chat(usr, SPAN_WARNING("Only administrators may use this command."))
 		return
 	if(!ticker)
-		usr << "\red The game hasn't started yet!"
+		to_chat(usr, SPAN_WARNING("The game hasn't started yet!"))
 		return
 	if(ticker.current_state == 1)
-		usr << "\red The round hasn't started yet!"
+		to_chat(usr, SPAN_WARNING("The round hasn't started yet!"))
 		return
 	if(send_emergency_team)
-		usr << "\red Central Command has already dispatched an emergency response team!"
+		to_chat(usr, SPAN_WARNING("Central Command has already dispatched an emergency response team!"))
 		return
-	if(alert("Do you want to dispatch an Emergency Response Team?",,"Yes","No") != "Yes")
+	if(alert("Do you want to dispatch an Emergency Response Team?", , "Yes", "No") != "Yes")
 		return
 	if(get_security_level() != "red") // Allow admins to reconsider if the alert level isn't Red
-		switch(alert("The station is not in red alert. Do you still want to dispatch a response team?",,"Yes","No"))
+		switch(alert("The station is not in red alert. Do you still want to dispatch a response team?", , "Yes", "No"))
 			if("No")
 				return
 	if(send_emergency_team)
-		usr << "\red Looks like somebody beat you to it!"
+		to_chat(usr, SPAN_WARNING("Looks like somebody beat you to it!"))
 		return
 
 	message_admins("[key_name_admin(usr)] is dispatching an Emergency Response Team.", 1)
@@ -42,39 +42,40 @@ var/can_call_ert
 client/verb/JoinResponseTeam()
 	set category = "IC"
 
-	if(istype(usr,/mob/dead/observer) || istype(usr,/mob/new_player))
+	if(isobserver(usr) || istype(usr, /mob/new_player))
 		if(!send_emergency_team)
-			usr << "No emergency response team is currently being sent."
+			to_chat(usr, "No emergency response team is currently being sent.")
 			return
 	/*	if(admin_emergency_team)
 			usr << "An emergency response team has already been sent."
 			return */
 		if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team") || jobban_isbanned(usr, "Security Officer"))
-			usr << "<font color=red><b>You are jobbanned from the emergency reponse team!"
+			to_chat(usr, "<font color=red><b>You are jobbanned from the emergency reponse team!")
 			return
 
 		if(response_team_members.len > 5)
-			usr << "The emergency response team is already full!"
+			to_chat(usr, "The emergency response team is already full!")
 
-		for (var/obj/effect/landmark/L in landmarks_list) if (L.name == "Commando")
-			L.name = null//Reserving the place.
-			var/new_name = input(usr, "Pick a name", "Name") as null|text
-			if(!new_name)//Somebody changed his mind, place is available again.
-				L.name = "Commando"
+		for(var/obj/effect/landmark/L in landmarks_list)
+			if(L.name == "Commando")
+				L.name = null//Reserving the place.
+				var/new_name = input(usr, "Pick a name", "Name") as null|text
+				if(!new_name)//Somebody changed his mind, place is available again.
+					L.name = "Commando"
+					return
+				var/leader_selected = isemptylist(response_team_members)
+				var/mob/living/carbon/human/new_commando = create_response_team(L.loc, leader_selected, new_name)
+				qdel(L)
+				new_commando.mind.key = usr.key
+				new_commando.key = usr.key
+
+				to_chat(new_commando, SPAN_INFO("You are [!leader_selected ? "a member" : "the <B>LEADER</B>"] of an Emergency Response Team, a type of military division, under CentComm's service. There is a code red alert on [station_name()], you are tasked to go and fix the problem."))
+				to_chat(new_commando, "<b>You should first gear up and discuss a plan with your team. More members may be joining, don't move out before you're ready.")
+				if(!leader_selected)
+					to_chat(new_commando, "<b>As member of the Emergency Response Team, you answer only to your leader and CentComm officials.</b>")
+				else
+					to_chat(new_commando, "<b>As leader of the Emergency Response Team, you answer only to CentComm, and have authority to override the Captain where it is necessary to achieve your mission goals. It is recommended that you attempt to cooperate with the captain where possible, however.")
 				return
-			var/leader_selected = isemptylist(response_team_members)
-			var/mob/living/carbon/human/new_commando = create_response_team(L.loc, leader_selected, new_name)
-			qdel(L)
-			new_commando.mind.key = usr.key
-			new_commando.key = usr.key
-
-			new_commando << "\blue You are [!leader_selected?"a member":"the <B>LEADER</B>"] of an Emergency Response Team, a type of military division, under CentComm's service. There is a code red alert on [station_name()], you are tasked to go and fix the problem."
-			new_commando << "<b>You should first gear up and discuss a plan with your team. More members may be joining, don't move out before you're ready."
-			if(!leader_selected)
-				new_commando << "<b>As member of the Emergency Response Team, you answer only to your leader and CentComm officials.</b>"
-			else
-				new_commando << "<b>As leader of the Emergency Response Team, you answer only to CentComm, and have authority to override the Captain where it is necessary to achieve your mission goals. It is recommended that you attempt to cooperate with the captain where possible, however."
-			return
 
 	else
 		usr << "You need to be an observer or new player to use this."
@@ -85,7 +86,8 @@ proc/percentage_dead()
 	var/deadcount = 0
 	for(var/mob/living/carbon/human/H in mob_list)
 		if(H.client) // Monkeys and mice don't have a client, amirite?
-			if(H.stat == 2) deadcount++
+			if(H.stat == 2)
+				deadcount++
 			total++
 
 	if(total == 0)
@@ -103,7 +105,8 @@ proc/percentage_antagonists()
 
 	if(total == 0)
 		return 0
-	else return round(100 * antagonists / total)
+	else
+		return round(100 * antagonists / total)
 
 // Increments the ERT chance automatically, so that the later it is in the round,
 // the more likely an ERT is to be able to be called.
@@ -131,7 +134,8 @@ proc/trigger_armed_response_team(force = 0)
 	send_team_chance += percentage_antagonists() // the more antagonists, the higher the chance
 	send_team_chance = min(send_team_chance, 100)
 
-	if(force) send_team_chance = 100
+	if(force)
+		send_team_chance = 100
 
 	// there's only a certain chance a team will be sent
 	if(!prob(send_team_chance))
@@ -262,9 +266,9 @@ proc/trigger_armed_response_team(force = 0)
 
 	M.real_name = commando_name
 	M.name = commando_name
-	M.age = !leader_selected ? rand(23,35) : rand(35,45)
+	M.age = !leader_selected ? rand(23, 35) : rand(35, 45)
 
-	M.dna.ready_dna(M)//Creates DNA.
+	M.dna.ready_dna(M)	//Creates DNA.
 
 	//Creates mind stuff.
 	M.mind = new
@@ -273,7 +277,7 @@ proc/trigger_armed_response_team(force = 0)
 	M.mind.assigned_role = "MODE"
 	M.mind.special_role = "Response Team"
 	if(!(M.mind in ticker.minds))
-		ticker.minds += M.mind//Adds them to regular mind list.
+		ticker.minds += M.mind	//Adds them to regular mind list.
 	M.loc = spawn_location
 	M.equip_strike_team(leader_selected)
 	return M

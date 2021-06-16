@@ -20,14 +20,14 @@
 	var/chargesa = 1
 	var/insistinga = 0
 
-/obj/machinery/wish_granter_dark/attack_hand(var/mob/living/carbon/human/user as mob)
+/obj/machinery/wish_granter_dark/attack_hand(mob/living/carbon/human/user as mob)
 	usr.set_machine(src)
 
 	if(chargesa <= 0)
 		user << "The Wish Granter lies silent."
 		return
 
-	else if(!istype(user, /mob/living/carbon/human))
+	else if(!ishuman(user))
 		user << "You feel a dark stirring inside of the Wish Granter, something you want nothing of. Your instincts are better than any man's."
 		return
 
@@ -46,13 +46,13 @@
 			if("Power")
 				user << "<B>Your wish is granted, but at a terrible cost...</B>"
 				user << "The Wish Granter punishes you for your selfishness, claiming your soul and warping your body to match the darkness in your heart."
-				if (!(LASER in user.mutations))
+				if(!(LASER in user.mutations))
 					user.mutations.Add(LASER)
 					user << "\blue You feel pressure building behind your eyes."
-				if (!(COLD_RESISTANCE in user.mutations))
+				if(!(COLD_RESISTANCE in user.mutations))
 					user.mutations.Add(COLD_RESISTANCE)
 					user << "\blue Your body feels warm."
-				if (!(XRAY in user.mutations))
+				if(!(XRAY in user.mutations))
 					user.mutations.Add(XRAY)
 					user.sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 					user.see_in_dark = 8
@@ -117,14 +117,14 @@
 	Bumped(AM)
 
 /obj/effect/meatgrinder/Bumped(mob/M as mob|obj)
+	if(triggered)
+		return
 
-	if(triggered) return
-
-	if(istype(M, /mob/living/carbon/human) || istype(M, /mob/living/carbon/monkey))
+	if(ishuman(M) || ismonkey(M))
 		for(var/mob/O in viewers(world.view, src.loc))
 			O << "<font color='red'>[M] triggered the \icon[src] [src]</font>"
 		triggered = 1
-		call(src,triggerproc)(M)
+		call(src, triggerproc)(M)
 
 /obj/effect/meatgrinder/proc/triggerrad1(mob)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -153,7 +153,7 @@
 		return
 	C << "<span class='notice'>Death is not your end!</span>"
 
-	spawn(rand(800,1200))
+	spawn(rand(800, 1200))
 		if(C.stat == DEAD)
 			dead_mob_list -= C
 			living_mob_list += C

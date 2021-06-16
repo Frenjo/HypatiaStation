@@ -134,7 +134,7 @@ Contains helper procs for airflow, handled in /connection_group.
 			src.airflow_dest = locate(min(max(src.x + xo, 1), world.maxx), min(max(src.y + yo, 1), world.maxy), src.z)
 		if((src.x == 1 || src.x == world.maxx || src.y == 1 || src.y == world.maxy))
 			return
-		if(!istype(loc, /turf))
+		if(!isturf(loc))
 			return
 		step_towards(src, src.airflow_dest)
 		if(ismob(src) && src:client)
@@ -154,14 +154,14 @@ Contains helper procs for airflow, handled in /connection_group.
 	if(last_airflow > world.time - vsc.airflow_delay)
 		return
 	if(airflow_speed)
-		airflow_speed = n/max(get_dist(src, airflow_dest), 1)
+		airflow_speed = n / max(get_dist(src, airflow_dest), 1)
 		return
 	if(airflow_dest == loc)
 		step_away(src, loc)
 	if(ismob(src))
 		if(src:status_flags & GODMODE)
 			return
-		if(istype(src, /mob/living/carbon/human))
+		if(ishuman(src))
 			if(src:buckled)
 				return
 			if(src:shoes)
@@ -196,7 +196,7 @@ Contains helper procs for airflow, handled in /connection_group.
 			src.airflow_dest = locate(min(max(src.x + xo, 1), world.maxx), min(max(src.y + yo, 1), world.maxy), src.z)
 		if((src.x == 1 || src.x == world.maxx || src.y == 1 || src.y == world.maxy))
 			return
-		if(!istype(loc, /turf))
+		if(!isturf(loc))
 			return
 		step_towards(src, src.airflow_dest)
 		if(ismob(src) && src:client)

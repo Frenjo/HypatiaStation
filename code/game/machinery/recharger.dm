@@ -12,7 +12,7 @@
 	var/obj/item/weapon/charging = null
 
 /obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
-	if(istype(user,/mob/living/silicon))
+	if(issilicon(user))
 		return
 
 	if(istype(G, /obj/item/weapon/gun/energy) || istype(G, /obj/item/weapon/melee/baton) || istype(G, /obj/item/weapon/cell))
@@ -22,29 +22,29 @@
 		// Checks to make sure he's not in space doing it, and that the area got proper power.
 		var/area/a = get_area(src)
 		if(!isarea(a))
-			user << "\red The [name] blinks red as you try to insert the item!"
+			to_chat(user, SPAN_WARNING("The [name] blinks red as you try to insert the item!"))
 			return
 		if(a.power_equip == 0)
-			user << "\red The [name] blinks red as you try to insert the item!"
+			to_chat(user, SPAN_WARNING("The [name] blinks red as you try to insert the item!"))
 			return
 
-		if (istype(G, /obj/item/weapon/gun/energy/gun/nuclear) || istype(G, /obj/item/weapon/gun/energy/crossbow))
-			user << "<span class='notice'>Your gun's recharge port was removed to make room for a miniaturized reactor.</span>"
+		if(istype(G, /obj/item/weapon/gun/energy/gun/nuclear) || istype(G, /obj/item/weapon/gun/energy/crossbow))
+			to_chat(user, SPAN_NOTICE("Your gun's recharge port was removed to make room for a miniaturized reactor."))
 			return
-		if (istype(G, /obj/item/weapon/gun/energy/staff))
+		if(istype(G, /obj/item/weapon/gun/energy/staff))
 			return
 		user.drop_item()
 		G.loc = src
 		charging = G
 		use_power = 2
 		update_icon()
+
 	else if(istype(G, /obj/item/weapon/wrench))
 		if(charging)
-			//user << "\red Remove the weapon first!"
-			user << "\red Remove [charging] first!"
+			to_chat(user, SPAN_WARNING("Remove [charging] first!"))
 			return
 		anchored = !anchored
-		user << "You [anchored ? "attached" : "detached"] the recharger."
+		to_chat(user, "You [anchored ? "attached" : "detached"] the recharger.")
 		playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
 
 /obj/machinery/recharger/attack_hand(mob/user as mob)
@@ -69,7 +69,7 @@
 			var/obj/item/weapon/gun/energy/E = charging
 			if(!E.power_supply.fully_charged()) //Because otherwise it takes two minutes to fully charge due to 15k cells. - Neerti
 				icon_state = "recharger1"
-				var/charge_used = E.power_supply.give(power_rating*CELLRATE)
+				var/charge_used = E.power_supply.give(power_rating * CELLRATE)
 				use_power(charge_used/CELLRATE)
 			else
 				icon_state = "recharger2"
@@ -78,8 +78,8 @@
 			var/obj/item/weapon/melee/baton/B = charging
 			if(!B.bcell.fully_charged()) //Because otherwise it takes two minutes to fully charge due to 15k cells. - Neerti
 				icon_state = "recharger1"
-				var/charge_used = B.bcell.give(power_rating*CELLRATE)
-				use_power(charge_used/CELLRATE)
+				var/charge_used = B.bcell.give(power_rating * CELLRATE)
+				use_power(charge_used / CELLRATE)
 			else
 				icon_state = "recharger2"
 			return
@@ -87,8 +87,8 @@
 			var/obj/item/weapon/cell/C = charging
 			if(!C.fully_charged())
 				icon_state = "recharger1"
-				var/charge_used = C.give(power_rating*CELLRATE)
-				use_power(charge_used/CELLRATE)
+				var/charge_used = C.give(power_rating * CELLRATE)
+				use_power(charge_used / CELLRATE)
 			else
 				icon_state = "recharger2"
 			return
@@ -98,7 +98,7 @@
 		..(severity)
 		return
 
-	if(istype(charging,  /obj/item/weapon/gun/energy))
+	if(istype(charging, /obj/item/weapon/gun/energy))
 		var/obj/item/weapon/gun/energy/E = charging
 		if(E.power_supply)
 			E.power_supply.emp_act(severity)
@@ -132,8 +132,8 @@
 			var/obj/item/weapon/gun/energy/E = charging
 			if(!E.power_supply.fully_charged()) //Because otherwise it takes two minutes to fully charge due to 15k cells. - Neerti
 				icon_state = "wrecharger1"
-				var/charge_used = E.power_supply.give(power_rating*CELLRATE)
-				use_power(charge_used/CELLRATE)
+				var/charge_used = E.power_supply.give(power_rating * CELLRATE)
+				use_power(charge_used / CELLRATE)
 			else
 				icon_state = "wrecharger2"
 			return
@@ -141,8 +141,8 @@
 			var/obj/item/weapon/melee/baton/B = charging
 			if(!B.bcell.fully_charged()) //Because otherwise it takes two minutes to fully charge due to 15k cells. - Neerti
 				icon_state = "wrecharger1"
-				var/charge_used = B.bcell.give(power_rating*CELLRATE)
-				use_power(charge_used/CELLRATE)
+				var/charge_used = B.bcell.give(power_rating * CELLRATE)
+				use_power(charge_used / CELLRATE)
 			else
 				icon_state = "wrecharger2"
 

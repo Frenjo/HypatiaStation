@@ -371,11 +371,11 @@ var/engwords = list("travel", "blood", "join", "hell", "destroy", "technology", 
 			var/C = 0
 			for(var/obj/effect/rune/N in world)
 				C++
-			if(!istype(user.loc, /turf))
+			if(!isturf(user.loc))
 				to_chat(user, SPAN_WARNING("You do not have enough space to write a proper rune."))
 				return
 
-			if (C >= 26 + runedec + ticker.mode.cult.len) //including the useless rune at the secret room, shouldn't count against the limit of 25 runes - Urist
+			if(C >= 26 + runedec + ticker.mode.cult.len) //including the useless rune at the secret room, shouldn't count against the limit of 25 runes - Urist
 				alert("The cloth of reality can't take that much of a strain. Remove some runes first!")
 				return
 			else
@@ -487,12 +487,12 @@ var/engwords = list("travel", "blood", "join", "hell", "destroy", "technology", 
 			runerandom()
 		if(user)
 			var/r
-			if(!istype(user.loc,/turf))
+			if(!isturf(user.loc))
 				to_chat(user, SPAN_WARNING("You do not have enough space to write a proper rune."))
 			var/list/runes = list("teleport", "itemport", "tome", "armor", "convert", "tear in reality", "emp", "drain", "seer", "raise", "obscure", "reveal", "astral journey", "manifest", "imbue talisman", "sacrifice", "wall", "freedom", "cultsummon", "deafen", "blind", "bloodboil", "communicate", "stun")
 			r = input("Choose a rune to scribe", "Rune Scribing") in runes //not cancellable.
 			var/obj/effect/rune/R = new /obj/effect/rune
-			if(istype(user, /mob/living/carbon/human))
+			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
 				R.blood_DNA = list()
 				R.blood_DNA[H.dna.unique_enzymes] = H.dna.b_type

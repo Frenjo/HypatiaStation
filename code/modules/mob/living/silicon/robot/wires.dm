@@ -88,7 +88,7 @@
 	src.interact(usr)
 
 /mob/living/silicon/robot/proc/interact(mob/user)
-	if(wiresexposed && (!istype(user, /mob/living/silicon)))
+	if(wiresexposed && (!issilicon(user)))
 		user.set_machine(src)
 		var/t1 = text("<B>Access Panel</B><br>\n")
 		var/list/Borgwires = list(

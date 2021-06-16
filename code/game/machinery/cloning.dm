@@ -30,40 +30,40 @@
 	icon_state = "datadisk0" //Gosh I hope syndies don't mistake them for the nuke disk.
 	item_state = "card-id"
 	w_class = 1.0
-	var/datum/dna2/record/buf=null
+	var/datum/dna2/record/buf = null
 	var/read_only = 0 //Well,it's still a floppy disk
 
 /obj/item/weapon/disk/data/proc/Initialize()
 	buf = new
-	buf.dna=new
+	buf.dna = new
 
 /obj/item/weapon/disk/data/demo
 	name = "data disk - 'God Emperor of Mankind'"
 	read_only = 1
 
-	New()
-		Initialize()
-		buf.types=DNA2_BUF_UE|DNA2_BUF_UI
-		//data = "066000033000000000AF00330660FF4DB002690"
-		//data = "0C80C80C80C80C80C8000000000000161FBDDEF" - Farmer Jeff
-		buf.dna.real_name="God Emperor of Mankind"
-		buf.dna.unique_enzymes = md5(buf.dna.real_name)
-		buf.dna.UI=list(0x066,0x000,0x033,0x000,0x000,0x000,0xAF0,0x033,0x066,0x0FF,0x4DB,0x002,0x690)
-		//buf.dna.UI=list(0x0C8,0x0C8,0x0C8,0x0C8,0x0C8,0x0C8,0x000,0x000,0x000,0x000,0x161,0xFBD,0xDEF) // Farmer Jeff
-		buf.dna.UpdateUI()
+/obj/item/weapon/disk/data/demo/New()
+	Initialize()
+	buf.types = DNA2_BUF_UE | DNA2_BUF_UI
+	//data = "066000033000000000AF00330660FF4DB002690"
+	//data = "0C80C80C80C80C80C8000000000000161FBDDEF" - Farmer Jeff
+	buf.dna.real_name="God Emperor of Mankind"
+	buf.dna.unique_enzymes = md5(buf.dna.real_name)
+	buf.dna.UI = list(0x066, 0x000, 0x033, 0x000, 0x000, 0x000, 0xAF0, 0x033, 0x066, 0x0FF, 0x4DB, 0x002, 0x690)
+	//buf.dna.UI=list(0x0C8,0x0C8,0x0C8,0x0C8,0x0C8,0x0C8,0x000,0x000,0x000,0x000,0x161,0xFBD,0xDEF) // Farmer Jeff
+	buf.dna.UpdateUI()
 
 /obj/item/weapon/disk/data/monkey
 	name = "data disk - 'Mr. Muggles'"
 	read_only = 1
 
-	New()
-		Initialize()
-		buf.types=DNA2_BUF_SE
-		var/list/new_SE=list(0x098,0x3E8,0x403,0x44C,0x39F,0x4B0,0x59D,0x514,0x5FC,0x578,0x5DC,0x640,0x6A4)
-		for(var/i=new_SE.len;i<=DNA_SE_LENGTH;i++)
-			new_SE += rand(1,1024)
-		buf.dna.SE=new_SE
-		buf.dna.SetSEValueRange(MONKEYBLOCK,0xDAC, 0xFFF)
+/obj/item/weapon/disk/data/monkey/New()
+	Initialize()
+	buf.types = DNA2_BUF_SE
+	var/list/new_SE = list(0x098, 0x3E8, 0x403, 0x44C, 0x39F, 0x4B0, 0x59D, 0x514, 0x5FC, 0x578, 0x5DC, 0x640, 0x6A4)
+	for(var/i = new_SE.len; i <= DNA_SE_LENGTH; i++)
+		new_SE += rand(1, 1024)
+	buf.dna.SE = new_SE
+	buf.dna.SetSEValueRange(MONKEYBLOCK, 0xDAC, 0xFFF)
 
 /obj/item/cloning/charge
     name = "Short-Term Biological Suspension Unit (SBSU)"
@@ -73,14 +73,14 @@
     icon_state = "stem-charge"
 
 //Find a dead mob with a brain and client.
-/proc/find_dead_player(var/find_key)
-	if (isnull(find_key))
+/proc/find_dead_player(find_key)
+	if(isnull(find_key))
 		return
 
 	var/mob/selected = null
 	for(var/mob/M in player_list)
 		//Dead people only thanks!
-		if ((M.stat != 2) || (!M.client))
+		if((M.stat != 2) || (!M.client))
 			continue
 		//They need a brain!
 		if(istype(M, /mob/living/carbon/human))
@@ -88,7 +88,7 @@
 			if(H.species.has_organ["brain"] && !H.has_brain())
 				continue
 
-		if (M.ckey == find_key)
+		if(M.ckey == find_key)
 			selected = M
 			break
 	return selected
@@ -96,7 +96,7 @@
 //Disk stuff.
 /obj/item/weapon/disk/data/New()
 	..()
-	var/diskcolor = pick(0,1,2)
+	var/diskcolor = pick(0, 1, 2)
 	src.icon_state = "datadisk[diskcolor]"
 
 /obj/item/weapon/disk/data/attack_self(mob/user as mob)
@@ -116,13 +116,13 @@
 	var/healthstring = ""
 
 /obj/item/weapon/implant/health/proc/sensehealth()
-	if (!src.implanted)
+	if(!src.implanted)
 		return "ERROR"
 	else
 		if(isliving(src.implanted))
 			var/mob/living/L = src.implanted
 			src.healthstring = "[round(L.getOxyLoss())] - [round(L.getFireLoss())] - [round(L.getToxLoss())] - [round(L.getBruteLoss())]"
-		if (!src.healthstring)
+		if(!src.healthstring)
 			src.healthstring = "ERROR"
 		return src.healthstring
 
@@ -132,9 +132,9 @@
 /obj/machinery/clonepod/attack_paw(mob/user as mob)
 	return attack_hand(user)
 /obj/machinery/clonepod/attack_hand(mob/user as mob)
-	if ((isnull(src.occupant)) || (stat & NOPOWER))
+	if((isnull(src.occupant)) || (stat & NOPOWER))
 		return
-	if ((!isnull(src.occupant)) && (src.occupant.stat != 2))
+	if((!isnull(src.occupant)) && (src.occupant.stat != 2))
 		var/completion = (100 * ((src.occupant.health + 100) / (src.heal_level + 100)))
 		user << "Current clone cycle is [round(completion)]% complete."
 	return
@@ -142,16 +142,16 @@
 //Clonepod
 
 //Start growing a human clone in the pod!
-/obj/machinery/clonepod/proc/growclone(var/datum/dna2/record/R)
+/obj/machinery/clonepod/proc/growclone(datum/dna2/record/R)
 	if(mess || attempting)
 		return 0
 	var/datum/mind/clonemind = locate(R.mind)
-	if(!istype(clonemind,/datum/mind))	//not a mind
+	if(!istype(clonemind, /datum/mind))	//not a mind
 		return 0
-	if( clonemind.current && clonemind.current.stat != DEAD )	//mind is associated with a non-dead body
+	if(clonemind.current && clonemind.current.stat != DEAD)	//mind is associated with a non-dead body
 		return 0
 	if(clonemind.active)	//somebody is using that mind
-		if( ckey(clonemind.key)!=R.ckey )
+		if(ckey(clonemind.key) != R.ckey)
 			return 0
 	else
 		for(var/mob/dead/observer/G in player_list)
@@ -188,7 +188,7 @@
 
 	clonemind.transfer_to(H)
 	H.ckey = R.ckey
-	H << "<span class='notice'><b>Consciousness slowly creeps over you as your body regenerates.</b><br><i>So this is what cloning feels like?</i></span>"
+	to_chat(H, SPAN_NOTICE("<b>Consciousness slowly creeps over you as your body regenerates.</b><br><i>So this is what cloning feels like?</i>"))
 
 	// -- Mode/mind specific stuff goes here
 
@@ -210,7 +210,7 @@
 		H.dna = new /datum/dna()
 		H.dna.real_name = H.real_name
 	else
-		H.dna=R.dna
+		H.dna = R.dna
 	H.UpdateAppearance()
 	randmutb(H) //Sometimes the clones come out wrong.
 	H.dna.UpdateSE()
@@ -230,9 +230,8 @@
 
 //Grow clones to maturity then kick them out.  FREELOADERS
 /obj/machinery/clonepod/process()
-
 	if(stat & NOPOWER) //Autoeject if power is lost
-		if (src.occupant)
+		if(src.occupant)
 			src.locked = 0
 			src.go_out()
 		return
@@ -254,13 +253,13 @@
 			src.occupant.adjustBrainLoss(-1)
 
 			//So clones don't die of oxyloss in a running pod.
-			if (src.occupant.reagents.get_reagent_amount("inaprovaline") < 30)
+			if(src.occupant.reagents.get_reagent_amount("inaprovaline") < 30)
 				src.occupant.reagents.add_reagent("inaprovaline", 60)
 
 			//So clones will remain asleep for long enough to get them into cryo (Bay RP edit)
-			if (src.occupant.reagents.get_reagent_amount("stoxin") < 10)
+			if(src.occupant.reagents.get_reagent_amount("stoxin") < 10)
 				src.occupant.reagents.add_reagent("stoxin", 5)
-			if (src.occupant.reagents.get_reagent_amount("chloralhydrate") < 1)
+			if(src.occupant.reagents.get_reagent_amount("chloralhydrate") < 1)
 				src.occupant.reagents.add_reagent("chloralhydrate", 1)
 
 			//Also heal some oxyloss ourselves because inaprovaline is so bad at preventing it!!
@@ -275,11 +274,11 @@
 			src.go_out()
 			return
 
-	else if ((!src.occupant) || (src.occupant.loc != src))
+	else if((!src.occupant) || (src.occupant.loc != src))
 		src.occupant = null
-		if (src.locked)
+		if(src.locked)
 			src.locked = 0
-		if (!src.mess)
+		if(!src.mess)
 			icon_state = "pod_0"
 		//use_power(200)
 		return
@@ -299,16 +298,16 @@
 			return
 		else
 			src.locked = 0
-			user << "System unlocked."
+			to_chat(user, "System unlocked.")
 	else if(istype(W, /obj/item/weapon/card/emag))
 		if(isnull(src.occupant))
 			return
-		user << "You force an emergency ejection."
+		to_chat(user, "You force an emergency ejection.")
 		src.locked = 0
 		src.go_out()
 		return
 	else if(istype(W, /obj/item/cloning/charge))
-		user << "\blue \The [src] processes \the [W]."
+		to_chat(user, SPAN_INFO("\The [src] processes \the [W]."))
 		biomass += 1
 		user.drop_item()
 		qdel(W)
@@ -317,10 +316,10 @@
 		..()
 
 //Put messages in the connected computer's temp var for display.
-/obj/machinery/clonepod/proc/connected_message(var/message)
-	if ((isnull(src.connected)) || (!istype(src.connected, /obj/machinery/computer/cloning)))
+/obj/machinery/clonepod/proc/connected_message(message)
+	if((isnull(src.connected)) || (!istype(src.connected, /obj/machinery/computer/cloning)))
 		return 0
-	if (!message)
+	if(!message)
 		return 0
 
 	src.connected.temp = message
@@ -332,17 +331,17 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if (usr.stat != 0)
+	if(usr.stat != 0)
 		return
 	src.go_out()
 	add_fingerprint(usr)
 	return
 
 /obj/machinery/clonepod/proc/go_out()
-	if (src.locked)
+	if(src.locked)
 		return
 
-	if (src.mess) //Clean that mess and dump those gibs!
+	if(src.mess) //Clean that mess and dump those gibs!
 		src.mess = 0
 		gibs(src.loc)
 		src.icon_state = "pod_0"
@@ -353,7 +352,7 @@
 		*/
 		return
 
-	if (!(src.occupant))
+	if(!(src.occupant))
 		return
 
 	/*
@@ -361,7 +360,7 @@
 		O.loc = src.loc
 	*/
 
-	if (src.occupant.client)
+	if(src.occupant.client)
 		src.occupant.client.eye = src.occupant.client.mob
 		src.occupant.client.perspective = MOB_PERSPECTIVE
 	src.occupant.loc = src.loc
@@ -386,13 +385,14 @@
 	return
 
 /obj/machinery/clonepod/relaymove(mob/user as mob)
-	if (user.stat)
+	if(user.stat)
 		return
 	src.go_out()
 	return
 
 /obj/machinery/clonepod/emp_act(severity)
-	if(prob(100/severity)) malfunction()
+	if(prob(100 / severity))
+		malfunction()
 	..()
 
 /obj/machinery/clonepod/ex_act(severity)
@@ -404,14 +404,14 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if(prob(50))
 				for(var/atom/movable/A as mob|obj in src)
 					A.loc = src.loc
 					ex_act(severity)
 				qdel(src)
 				return
 		if(3.0)
-			if (prob(25))
+			if(prob(25))
 				for(var/atom/movable/A as mob|obj in src)
 					A.loc = src.loc
 					ex_act(severity)

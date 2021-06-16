@@ -17,13 +17,13 @@
 	if(stat & BROKEN)
 		return
 	else
-		if( powered() )
+		if(powered())
 			stat &= ~NOPOWER
 		else
 			icon_state = "motion0"
 			stat |= NOPOWER
 
-/obj/machinery/ai_slipper/proc/setState(var/enabled, var/uses)
+/obj/machinery/ai_slipper/proc/setState(enabled, uses)
 	src.disabled = disabled
 	src.uses = uses
 	src.power_change()
@@ -31,18 +31,18 @@
 /obj/machinery/ai_slipper/attackby(obj/item/weapon/W, mob/user)
 	if(stat & (NOPOWER|BROKEN))
 		return
-	if (istype(user, /mob/living/silicon))
+	if(issilicon(user))
 		return src.attack_hand(user)
 	else // trying to unlock the interface
-		if (src.allowed(usr))
+		if(src.allowed(usr))
 			locked = !locked
-			user << "You [ locked ? "lock" : "unlock"] the device."
-			if (locked)
-				if (user.machine==src)
+			to_chat(user, "You [ locked ? "lock" : "unlock"] the device.")
+			if(locked)
+				if(user.machine == src)
 					user.unset_machine()
 					user << browse(null, "window=ai_slipper")
 			else
-				if (user.machine==src)
+				if(user.machine == src)
 					src.attack_hand(usr)
 		else
 			to_chat(user, SPAN_WARNING("Access denied."))
@@ -55,8 +55,8 @@
 /obj/machinery/ai_slipper/attack_hand(mob/user as mob)
 	if(stat & (NOPOWER|BROKEN))
 		return
-	if ( (get_dist(src, user) > 1 ))
-		if (!istype(user, /mob/living/silicon))
+	if((get_dist(src, user) > 1))
+		if(!issilicon(user))
 			user << text("Too far away.")
 			user.unset_machine()
 			user << browse(null, "window=ai_slipper")
@@ -64,15 +64,15 @@
 
 	user.set_machine(src)
 	var/loc = src.loc
-	if (istype(loc, /turf))
+	if (isturf(loc))
 		loc = loc:loc
-	if (!istype(loc, /area))
+	if (!isarea(loc))
 		user << text("Turret badly positioned - loc.loc is [].", loc)
 		return
 	var/area/area = loc
 	var/t = "<TT><B>AI Liquid Dispenser</B> ([area.name])<HR>"
 
-	if(src.locked && (!istype(user, /mob/living/silicon)))
+	if(src.locked && (!issilicon(user)))
 		t += "<I>(Swipe ID card to unlock control panel.)</I><BR>"
 	else
 		t += text("Dispenser [] - <A href='?src=\ref[];toggleOn=1'>[]?</a><br>\n", src.disabled?"deactivated":"activated", src, src.disabled?"Enable":"Disable")

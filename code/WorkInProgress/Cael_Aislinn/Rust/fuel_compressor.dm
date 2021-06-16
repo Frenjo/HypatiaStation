@@ -31,7 +31,7 @@ var/const/max_assembly_amount = 300
 
 /obj/machinery/rust_fuel_compressor/interact(mob/user)
 	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
-		if (!istype(user, /mob/living/silicon))
+		if (!issilicon(user))
 			user.unset_machine()
 			user << browse(null, "window=fuelcomp")
 			return

@@ -658,19 +658,19 @@
 		return
 
 	if ( (get_dist(src, user) > 1 ))
-		if (!istype(user, /mob/living/silicon))
+		if (!issilicon(user))
 			user.machine = null
 			user << browse(null, "window=air_alarm")
 			user << browse(null, "window=AAlarmwires")
 			return
 
 
-		else if (istype(user, /mob/living/silicon) && aidisabled)
+		else if (issilicon(user) && aidisabled)
 			user << "AI control for this Air Alarm interface has been disabled."
 			user << browse(null, "window=air_alarm")
 			return
 
-	if(wiresexposed && (!istype(user, /mob/living/silicon)))
+	if(wiresexposed && (!issilicon(user)))
 		var/t1 = text("<html><head><title>[alarm_area.name] Air Alarm Wires</title></head><body><B>Access Panel</B><br>\n")
 		var/list/wirecolors = list(
 			"Orange" = 1,
@@ -702,7 +702,7 @@
 	return
 
 /obj/machinery/alarm/proc/return_text(mob/user)
-	if(!(istype(user, /mob/living/silicon)) && locked)
+	if(!(issilicon(user)) && locked)
 		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr><i>(Swipe ID card to unlock interface)</i></body></html>"
 	else
 		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr>[return_controls()]</body></html>"
@@ -1074,32 +1074,32 @@ table tr:first-child th:first-child { border: none;}
 		var/min_temperature = max(selected[2] - T0C, MIN_TEMPERATURE)
 		var/input_temperature = input("What temperature would you like the system to mantain? (Capped between [min_temperature]C and [max_temperature]C)", "Thermostat Controls") as num|null
 		if(!input_temperature || input_temperature > max_temperature || input_temperature < min_temperature)
-			usr << "Temperature must be between [min_temperature]C and [max_temperature]C"
+			to_chat(usr, "Temperature must be between [min_temperature]C and [max_temperature]C.")
 		else
 			target_temperature = input_temperature + T0C
 
-	if (href_list["AAlarmwires"])
+	if(href_list["AAlarmwires"])
 		var/t1 = text2num(href_list["AAlarmwires"])
-		if (!( istype(usr.equipped(), /obj/item/weapon/wirecutters) ))
-			usr << "You need wirecutters!"
+		if(!(istype(usr.equipped(), /obj/item/weapon/wirecutters)))
+			to_chat(usr, "You need wirecutters!")
 			return
-		if (isWireColorCut(t1))
+		if(isWireColorCut(t1))
 			mend(t1)
 		else
 			cut(t1)
-			if (AAlarmwires == 0)
-				usr << "<span class='notice'>You cut last of wires inside [src]</span>"
+			if(AAlarmwires == 0)
+				to_chat(usr, SPAN_NOTICE("You cut the last of the wires inside [src]."))
 				update_icon()
 				buildstage = 1
 			return
 
-	else if (href_list["pulse"])
+	else if(href_list["pulse"])
 		var/t1 = text2num(href_list["pulse"])
-		if (!istype(usr.equipped(), /obj/item/device/multitool))
-			usr << "You need a multitool!"
+		if(!istype(usr.equipped(), /obj/item/device/multitool))
+			to_chat(usr, "You need a multitool!")
 			return
-		if (isWireColorCut(t1))
-			usr << "You can't pulse a cut wire."
+		if(isWireColorCut(t1))
+			to_chat(usr, "You can't pulse a cut wire.")
 			return
 		else
 			pulse(t1)
@@ -1123,7 +1123,7 @@ table tr:first-child th:first-child { border: none;}
 			if(istype(W, /obj/item/weapon/screwdriver))  // Opening that Air Alarm up.
 				//user << "You pop the Air Alarm's maintence panel open."
 				wiresexposed = !wiresexposed
-				user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
+				to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"].")
 				update_icon()
 				return
 
@@ -1132,12 +1132,12 @@ table tr:first-child th:first-child { border: none;}
 
 			if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
 				if(stat & (NOPOWER|BROKEN))
-					user << "It does nothing"
+					to_chat(user, "It does nothing.")
 					return
 				else
 					if(allowed(usr) && !isWireCut(AALARM_WIRE_IDSCAN))
 						locked = !locked
-						to_chat(user, SPAN_INFO("You [ locked ? "lock" : "unlock"] the Air Alarm interface."))
+						to_chat(user, SPAN_INFO("You [locked ? "lock" : "unlock"] the Air Alarm interface."))
 						updateUsrDialog()
 					else
 						to_chat(user, SPAN_WARNING("Access denied."))
@@ -1195,10 +1195,10 @@ table tr:first-child th:first-child { border: none;}
 
 /obj/machinery/alarm/examine()
 	..()
-	if (buildstage < 2)
-		usr << "It is not wired."
-	if (buildstage < 1)
-		usr << "The circuit is missing."
+	if(buildstage < 2)
+		to_chat(usr, "It is not wired.")
+	if(buildstage < 1)
+		to_chat(usr, "The circuit is missing.")
 /*
 AIR ALARM CIRCUIT
 Just a object used in constructing air alarms
@@ -1226,31 +1226,31 @@ Code shamelessly copied from apc_frame
 	flags = CONDUCT
 
 /obj/item/alarm_frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/wrench))
-		new /obj/item/stack/sheet/metal( get_turf(src.loc), 2 )
+	if(istype(W, /obj/item/weapon/wrench))
+		new /obj/item/stack/sheet/metal(get_turf(src.loc), 2)
 		qdel(src)
 		return
 	..()
 
 /obj/item/alarm_frame/proc/try_build(turf/on_wall)
-	if (get_dist(on_wall,usr)>1)
+	if(get_dist(on_wall, usr) > 1)
 		return
 
-	var/ndir = get_dir(on_wall,usr)
-	if (!(ndir in cardinal))
+	var/ndir = get_dir(on_wall, usr)
+	if(!(ndir in cardinal))
 		return
 
 	var/turf/loc = get_turf(usr)
 	var/area/A = loc.loc
-	if (!istype(loc, /turf/simulated/floor))
-		usr << "\red Air Alarm cannot be placed on this spot."
+	if(!istype(loc, /turf/simulated/floor))
+		to_chat(usr, SPAN_WARNING("Air Alarm cannot be placed on this spot."))
 		return
-	if (A.requires_power == 0 || A.name == "Space")
-		usr << "\red Air Alarm cannot be placed in this area."
+	if(A.requires_power == 0 || A.name == "Space")
+		to_chat(usr, SPAN_WARNING("Air Alarm cannot be placed in this area."))
 		return
 
 	if(gotwallitem(loc, ndir))
-		usr << "\red There's already an item on this wall!"
+		to_chat(usr, SPAN_WARNING("There's already an item on this wall!"))
 		return
 
 	new /obj/machinery/alarm(loc, ndir, 1)
@@ -1279,15 +1279,14 @@ FIRE ALARM
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
 
 /obj/machinery/firealarm/update_icon()
-
 	if(wiresexposed)
 		switch(buildstage)
 			if(2)
-				icon_state="fire_b2"
+				icon_state = "fire_b2"
 			if(1)
-				icon_state="fire_b1"
+				icon_state = "fire_b1"
 			if(0)
-				icon_state="fire_b0"
+				icon_state = "fire_b0"
 
 		return
 
@@ -1302,7 +1301,7 @@ FIRE ALARM
 
 /obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)
 	if(src.detecting)
-		if(temperature > T0C+200)
+		if(temperature > T0C + 200)
 			src.alarm()			// added check of detector status here
 	return
 
@@ -1316,13 +1315,14 @@ FIRE ALARM
 	return src.attack_hand(user)
 
 /obj/machinery/firealarm/emp_act(severity)
-	if(prob(50/severity)) alarm()
+	if(prob(50 / severity))
+		alarm()
 	..()
 
 /obj/machinery/firealarm/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 
-	if (istype(W, /obj/item/weapon/screwdriver) && buildstage == 2)
+	if(istype(W, /obj/item/weapon/screwdriver) && buildstage == 2)
 		wiresexposed = !wiresexposed
 		update_icon()
 		return
@@ -1330,23 +1330,23 @@ FIRE ALARM
 	if(wiresexposed)
 		switch(buildstage)
 			if(2)
-				if (istype(W, /obj/item/device/multitool))
-					src.detecting = !( src.detecting )
-					if (src.detecting)
-						user.visible_message("\red [user] has reconnected [src]'s detecting unit!", "You have reconnected [src]'s detecting unit.")
+				if(istype(W, /obj/item/device/multitool))
+					src.detecting = !(src.detecting)
+					if(src.detecting)
+						user.visible_message(SPAN_WARNING("[user] has reconnected [src]'s detecting unit!"), "You have reconnected [src]'s detecting unit.")
 					else
-						user.visible_message("\red [user] has disconnected [src]'s detecting unit!", "You have disconnected [src]'s detecting unit.")
+						user.visible_message(SPAN_WARNING("[user] has disconnected [src]'s detecting unit!"), "You have disconnected [src]'s detecting unit.")
 			if(1)
 				if(istype(W, /obj/item/stack/cable_coil))
 					var/obj/item/stack/cable_coil/coil = W
 					if(coil.amount < 5)
-						user << "You need more cable for this!"
+						to_chat(user, "You need more cable for this!")
 						return
 
 					coil.use(5)
 
 					buildstage = 2
-					user << "You wire \the [src]!"
+					to_chat(user, "You wire \the [src]!")
 					update_icon()
 
 				else if(istype(W, /obj/item/weapon/crowbar))
@@ -1359,13 +1359,13 @@ FIRE ALARM
 						update_icon()
 			if(0)
 				if(istype(W, /obj/item/weapon/firealarm_electronics))
-					user << "You insert the circuit!"
+					to_chat(user, "You insert the circuit!")
 					qdel(W)
 					buildstage = 1
 					update_icon()
 
 				else if(istype(W, /obj/item/weapon/wrench))
-					user << "You remove the fire alarm assembly from the wall!"
+					to_chat(user, "You remove the fire alarm assembly from the wall!")
 					var/obj/item/firealarm_frame/frame = new /obj/item/firealarm_frame()
 					frame.loc = user.loc
 					playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
@@ -1415,7 +1415,7 @@ FIRE ALARM
 	var/area/A = src.loc
 	var/d1
 	var/d2
-	if(istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon))
+	if(istype(user, /mob/living/carbon/human) || issilicon(user))
 		A = A.loc
 
 		if(A.fire)
@@ -1450,23 +1450,23 @@ FIRE ALARM
 
 /obj/machinery/firealarm/Topic(href, href_list)
 	..()
-	if (usr.stat || stat & (BROKEN|NOPOWER))
+	if(usr.stat || stat & (BROKEN|NOPOWER))
 		return
 
-	if (buildstage != 2)
+	if(buildstage != 2)
 		return
 
-	if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
+	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
 		usr.set_machine(src)
-		if (href_list["reset"])
+		if(href_list["reset"])
 			src.reset()
-		else if (href_list["alarm"])
+		else if(href_list["alarm"])
 			src.alarm()
-		else if (href_list["time"])
+		else if(href_list["time"])
 			src.timing = text2num(href_list["time"])
 			last_process = world.timeofday
 			processing_objects.Add(src)
-		else if (href_list["tp"])
+		else if(href_list["tp"])
 			var/tp = text2num(href_list["tp"])
 			src.time += tp
 			src.time = min(max(round(src.time), 0), 120)
@@ -1553,35 +1553,34 @@ Code shamelessly copied from apc_frame
 	flags = CONDUCT
 
 /obj/item/firealarm_frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/wrench))
-		new /obj/item/stack/sheet/metal( get_turf(src.loc), 2 )
+	if(istype(W, /obj/item/weapon/wrench))
+		new /obj/item/stack/sheet/metal(get_turf(src.loc), 2)
 		qdel(src)
 		return
 	..()
 
 /obj/item/firealarm_frame/proc/try_build(turf/on_wall)
-	if (get_dist(on_wall,usr)>1)
+	if(get_dist(on_wall, usr) > 1)
 		return
 
 	var/ndir = get_dir(on_wall,usr)
-	if (!(ndir in cardinal))
+	if(!(ndir in cardinal))
 		return
 
 	var/turf/loc = get_turf(usr)
 	var/area/A = loc.loc
-	if (!istype(loc, /turf/simulated/floor))
-		usr << "\red Fire Alarm cannot be placed on this spot."
+	if(!istype(loc, /turf/simulated/floor))
+		to_chat(usr, SPAN_WARNING("Fire Alarm cannot be placed on this spot."))
 		return
-	if (A.requires_power == 0 || A.name == "Space")
-		usr << "\red Fire Alarm cannot be placed in this area."
+	if(A.requires_power == 0 || A.name == "Space")
+		to_chat(usr, SPAN_WARNING("Fire Alarm cannot be placed in this area."))
 		return
 
 	if(gotwallitem(loc, ndir))
-		usr << "\red There's already an item on this wall!"
+		to_chat(usr, SPAN_WARNING("There's already an item on this wall!"))
 		return
 
 	new /obj/machinery/firealarm(loc, ndir, 1)
-
 	qdel(src)
 
 
@@ -1614,13 +1613,12 @@ Code shamelessly copied from apc_frame
 		//A = A.master
 	var/d1
 	var/d2
-	if (istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon/ai))
-
-		if (A.party)
+	if(istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon/ai))
+		if(A.party)
 			d1 = text("<A href='?src=\ref[];reset=1'>No Party :(</A>", src)
 		else
 			d1 = text("<A href='?src=\ref[];alarm=1'>PARTY!!!</A>", src)
-		if (timing)
+		if(timing)
 			d2 = text("<A href='?src=\ref[];time=0'>Stop Time Lock</A>", src)
 		else
 			d2 = text("<A href='?src=\ref[];time=1'>Initiate Time Lock</A>", src)
@@ -1630,11 +1628,11 @@ Code shamelessly copied from apc_frame
 		user << browse(dat, "window=partyalarm")
 		onclose(user, "partyalarm")
 	else
-		if (A.fire)
+		if(A.fire)
 			d1 = text("<A href='?src=\ref[];reset=1'>[]</A>", src, stars("No Party :("))
 		else
 			d1 = text("<A href='?src=\ref[];alarm=1'>[]</A>", src, stars("PARTY!!!"))
-		if (timing)
+		if(timing)
 			d2 = text("<A href='?src=\ref[];time=0'>[]</A>", src, stars("Stop Time Lock"))
 		else
 			d2 = text("<A href='?src=\ref[];time=1'>[]</A>", src, stars("Initiate Time Lock"))
@@ -1646,7 +1644,7 @@ Code shamelessly copied from apc_frame
 	return
 
 /obj/machinery/partyalarm/proc/reset()
-	if (!( working ))
+	if(!(working))
 		return
 	var/area/A = get_area(src)
 	ASSERT(isarea(A))
@@ -1656,7 +1654,7 @@ Code shamelessly copied from apc_frame
 	return
 
 /obj/machinery/partyalarm/proc/alarm()
-	if (!( working ))
+	if(!(working))
 		return
 	var/area/A = get_area(src)
 	ASSERT(isarea(A))
@@ -1667,20 +1665,20 @@ Code shamelessly copied from apc_frame
 
 /obj/machinery/partyalarm/Topic(href, href_list)
 	..()
-	if (usr.stat || stat & (BROKEN|NOPOWER))
+	if(usr.stat || stat & (BROKEN|NOPOWER))
 		return
-	if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
+	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && isturf(loc))) || (istype(usr, /mob/living/silicon/ai)))
 		usr.machine = src
-		if (href_list["reset"])
+		if(href_list["reset"])
 			reset()
 		else
-			if (href_list["alarm"])
+			if(href_list["alarm"])
 				alarm()
 			else
-				if (href_list["time"])
+				if(href_list["time"])
 					timing = text2num(href_list["time"])
 				else
-					if (href_list["tp"])
+					if(href_list["tp"])
 						var/tp = text2num(href_list["tp"])
 						time += tp
 						time = min(max(round(time), 0), 120)

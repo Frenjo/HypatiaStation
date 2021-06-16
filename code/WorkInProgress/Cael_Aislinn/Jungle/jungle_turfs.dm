@@ -10,32 +10,32 @@
 	//luminosity = 3
 	light_range = 3
 
-	New()
-		icon_state = icon_spawn_state
+/turf/unsimulated/jungle/New()
+	icon_state = icon_spawn_state
 
-		if(plants_spawn && prob(40))
-			if(prob(90))
-				var/image/I
-				if(prob(35))
-					I = image('code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi',"plant[rand(1,7)]")
-				else
-					if(prob(30))
-						I = image('icons/obj/flora/ausflora.dmi',"reedbush_[rand(1,4)]")
-					else if(prob(33))
-						I = image('icons/obj/flora/ausflora.dmi',"leafybush_[rand(1,3)]")
-					else if(prob(50))
-						I = image('icons/obj/flora/ausflora.dmi',"fernybush_[rand(1,3)]")
-					else
-						I = image('icons/obj/flora/ausflora.dmi',"stalkybush_[rand(1,3)]")
-				I.pixel_x = rand(-6,6)
-				I.pixel_y = rand(-6,6)
-				overlays += I
+	if(plants_spawn && prob(40))
+		if(prob(90))
+			var/image/I
+			if(prob(35))
+				I = image('code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi', "plant[rand(1,7)]")
 			else
-				var/obj/structure/jungle_plant/J = new(src)
-				J.pixel_x = rand(-6,6)
-				J.pixel_y = rand(-6,6)
-		if(bushes_spawn && prob(90))
-			new /obj/structure/bush(src)
+				if(prob(30))
+					I = image('icons/obj/flora/ausflora.dmi', "reedbush_[rand(1,4)]")
+				else if(prob(33))
+					I = image('icons/obj/flora/ausflora.dmi', "leafybush_[rand(1,3)]")
+				else if(prob(50))
+					I = image('icons/obj/flora/ausflora.dmi', "fernybush_[rand(1,3)]")
+				else
+					I = image('icons/obj/flora/ausflora.dmi', "stalkybush_[rand(1,3)]")
+			I.pixel_x = rand(-6, 6)
+			I.pixel_y = rand(-6, 6)
+			overlays += I
+		else
+			var/obj/structure/jungle_plant/J = new(src)
+			J.pixel_x = rand(-6, 6)
+			J.pixel_y = rand(-6, 6)
+	if(bushes_spawn && prob(90))
+		new /obj/structure/bush(src)
 
 /turf/unsimulated/jungle/clear
 	bushes_spawn = 0
@@ -51,12 +51,12 @@
 	icon_state = "grass_path"
 	icon_spawn_state = "grass2"
 
-	New()
-		..()
-		for(var/obj/structure/bush/B in src)
-			qdel(B)
+/turf/unsimulated/jungle/path/New()
+	..()
+	for(var/obj/structure/bush/B in src)
+		qdel(B)
 
-/turf/unsimulated/jungle/proc/Spread(var/probability, var/prob_loss = 50)
+/turf/unsimulated/jungle/proc/Spread(probability, prob_loss = 50)
 	if(probability <= 0)
 		return
 
@@ -78,10 +78,11 @@
 	bushes_spawn = 0
 	icon_state = "grass_impenetrable"
 	icon_spawn_state = "grass1"
-	New()
-		..()
-		var/obj/structure/bush/B = new(src)
-		B.indestructable = 1
+	
+/turf/unsimulated/jungle/impenetrable/New()
+	..()
+	var/obj/structure/bush/B = new(src)
+	B.indestructable = 1
 
 //copy paste from asteroid mineral turfs
 /turf/unsimulated/jungle/rock
@@ -98,20 +99,20 @@
 		var/turf/T
 		if(!istype(get_step(src, NORTH), /turf/unsimulated/jungle/rock) && !istype(get_step(src, NORTH), /turf/unsimulated/wall))
 			T = get_step(src, NORTH)
-			if (T)
+			if(T)
 				T.overlays += image('icons/turf/walls.dmi', "rock_side_s")
 		if(!istype(get_step(src, SOUTH), /turf/unsimulated/jungle/rock) && !istype(get_step(src, SOUTH), /turf/unsimulated/wall))
 			T = get_step(src, SOUTH)
-			if (T)
-				T.overlays += image('icons/turf/walls.dmi', "rock_side_n", layer=6)
+			if(T)
+				T.overlays += image('icons/turf/walls.dmi', "rock_side_n", layer = 6)
 		if(!istype(get_step(src, EAST), /turf/unsimulated/jungle/rock) && !istype(get_step(src, EAST), /turf/unsimulated/wall))
 			T = get_step(src, EAST)
-			if (T)
-				T.overlays += image('icons/turf/walls.dmi', "rock_side_w", layer=6)
+			if(T)
+				T.overlays += image('icons/turf/walls.dmi', "rock_side_w", layer = 6)
 		if(!istype(get_step(src, WEST), /turf/unsimulated/jungle/rock) && !istype(get_step(src, WEST), /turf/unsimulated/wall))
 			T = get_step(src, WEST)
-			if (T)
-				T.overlays += image('icons/turf/walls.dmi', "rock_side_e", layer=6)
+			if(T)
+				T.overlays += image('icons/turf/walls.dmi', "rock_side_e", layer = 6)
 
 /turf/unsimulated/jungle/water
 	bushes_spawn = 0
@@ -128,40 +129,40 @@
 
 /turf/unsimulated/jungle/water/Entered(atom/movable/O)
 	..()
-	if(istype(O, /mob/living/))
+	if(isliving(O))
 		var/mob/living/M = O
 		//slip in the murky water if we try to run through it
 		if(prob(10 + (M.m_intent == "run" ? 40 : 0)))
-			M << pick("\blue You slip on something slimy.","\blue You fall over into the murk.")
+			to_chat(M, pick(SPAN_INFO("You slip on something slimy."), SPAN_INFO("You fall over into the murk.")))
 			M.Stun(2)
 			M.Weaken(1)
 
 		//piranhas - 25% chance to be an omnipresent risk, although they do practically no damage
 		if(prob(25))
-			M << "\blue You feel something slithering around your legs."
+			to_chat(M, SPAN_INFO("You feel something slithering around your legs."))
 			if(prob(50))
-				spawn(rand(25,50))
+				spawn(rand(25, 50))
 					var/turf/T = get_turf(M)
 					if(istype(T, /turf/unsimulated/jungle/water))
-						M << pick("\red Something sharp bites you!","\red Sharp teeth grab hold of you!","\red You feel something take a chunk out of your leg!")
+						to_chat(M, pick(SPAN_WARNING("Something sharp bites you!"), SPAN_WARNING("Sharp teeth grab hold of you!"), SPAN_WARNING("You feel something take a chunk out of your leg!")))
 						M.apply_damage(rand(0, 1), BRUTE, sharp = 1)
 			if(prob(50))
-				spawn(rand(25,50))
+				spawn(rand(25, 50))
 					var/turf/T = get_turf(M)
 					if(istype(T, /turf/unsimulated/jungle/water))
-						M << pick("\red Something sharp bites you!","\red Sharp teeth grab hold of you!","\red You feel something take a chunk out of your leg!")
+						to_chat(M, pick(SPAN_WARNING("Something sharp bites you!"), SPAN_WARNING("Sharp teeth grab hold of you!"), SPAN_WARNING("You feel something take a chunk out of your leg!")))
 						M.apply_damage(rand(0, 1), BRUTE, sharp = 1)
 			if(prob(50))
-				spawn(rand(25,50))
+				spawn(rand(25, 50))
 					var/turf/T = get_turf(M)
 					if(istype(T, /turf/unsimulated/jungle/water))
-						M << pick("\red Something sharp bites you!","\red Sharp teeth grab hold of you!","\red You feel something take a chunk out of your leg!")
+						to_chat(M, pick(SPAN_WARNING("Something sharp bites you!"), SPAN_WARNING("Sharp teeth grab hold of you!"), SPAN_WARNING("You feel something take a chunk out of your leg!")))
 						M.apply_damage(rand(0, 1), BRUTE, sharp = 1)
 			if(prob(50))
-				spawn(rand(25,50))
+				spawn(rand(25, 50))
 					var/turf/T = get_turf(M)
 					if(istype(T, /turf/unsimulated/jungle/water))
-						M << pick("\red Something sharp bites you!","\red Sharp teeth grab hold of you!","\red You feel something take a chunk out of your leg!")
+						to_chat(M, pick(SPAN_WARNING("Something sharp bites you!"), SPAN_WARNING("Sharp teeth grab hold of you!"), SPAN_WARNING("You feel something take a chunk out of your leg!")))
 						M.apply_damage(rand(0, 1), BRUTE, sharp = 1)
 
 /turf/unsimulated/jungle/water/deep

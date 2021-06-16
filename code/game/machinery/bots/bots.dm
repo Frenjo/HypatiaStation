@@ -12,7 +12,6 @@
 /obj/machinery/bot
 	icon = 'icons/obj/aibots.dmi'
 	layer = MOB_LAYER
-	//luminosity = 3
 	light_range = 3
 	use_power = 0
 	var/obj/item/weapon/card/id/botcard			// the ID card that the bot "holds"
@@ -25,48 +24,47 @@
 	var/locked = 1
 	//var/emagged = 0 //Urist: Moving that var to the general /bot tree as it's used by most bots
 
-
 /obj/machinery/bot/proc/turn_on()
-	if(stat)	return 0
+	if(stat)
+		return 0
 	on = 1
-	//SetLuminosity(initial(luminosity))
 	set_light(initial(light_range))
 	return 1
 
 /obj/machinery/bot/proc/turn_off()
 	on = 0
-	//SetLuminosity(0)
 	set_light(0)
 
 /obj/machinery/bot/proc/explode()
 	qdel(src)
 
 /obj/machinery/bot/proc/healthcheck()
-	if (src.health <= 0)
+	if(src.health <= 0)
 		src.explode()
 
 /obj/machinery/bot/proc/Emag(mob/user as mob)
 	if(locked)
 		locked = 0
 		emagged = 1
-		user << "<span class='warning'>You bypass [src]'s controls.</span>"
+		to_chat(user, SPAN_WARNING("You bypass [src]'s controls."))
 	if(!locked && open)
 		emagged = 2
 
 /obj/machinery/bot/examine()
 	set src in view()
 	..()
-	if (src.health < maxhealth)
-		if (src.health > maxhealth/3)
-			usr << "<span class='warning'>[src]'s parts look loose.</span>"
+	if(src.health < maxhealth)
+		if(src.health > maxhealth / 3)
+			to_chat(usr, SPAN_WARNING("[src]'s parts look loose."))
 		else
-			usr << "<span class='danger'>[src]'s parts look very loose!</span>"
+			to_chat(usr, SPAN_DANGER("[src]'s parts look very loose!"))
 	return
 
-/obj/machinery/bot/attack_animal(var/mob/living/simple_animal/M as mob)
-	if(M.melee_damage_upper == 0)	return
+/obj/machinery/bot/attack_animal(mob/living/simple_animal/M as mob)
+	if(M.melee_damage_upper == 0)
+		return
 	src.health -= M.melee_damage_upper
-	src.visible_message("\red <B>[M] has [M.attacktext] [src]!</B>")
+	src.visible_message(SPAN_DANGER("[M] has [M.attacktext] [src]!"))
 	M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
 	if(prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)
@@ -76,20 +74,20 @@
 	if(istype(W, /obj/item/weapon/screwdriver))
 		if(!locked)
 			open = !open
-			user << "<span class='notice'>Maintenance panel is now [src.open ? "opened" : "closed"].</span>"
+			to_chat(user, SPAN_NOTICE("Maintenance panel is now [src.open ? "opened" : "closed"]."))
 	else if(istype(W, /obj/item/weapon/weldingtool))
 		if(health < maxhealth)
 			if(open)
-				health = min(maxhealth, health+10)
-				user.visible_message("\red [user] repairs [src]!","\blue You repair [src]!")
+				health = min(maxhealth, health + 10)
+				user.visible_message(SPAN_WARNING("[user] repairs [src]!"), SPAN_INFO("You repair [src]!"))
 			else
-				user << "<span class='notice'>Unable to repair with the maintenance panel closed.</span>"
+				to_chat(user, SPAN_NOTICE("Unable to repair with the maintenance panel closed."))
 		else
-			user << "<span class='notice'>[src] does not need a repair.</span>"
-	else if (istype(W, /obj/item/weapon/card/emag) && emagged < 2)
+			to_chat(user, SPAN_NOTICE("[src] does not need a repair."))
+	else if(istype(W, /obj/item/weapon/card/emag) && emagged < 2)
 		Emag(user)
 	else
-		if(hasvar(W,"force") && hasvar(W,"damtype"))
+		if(hasvar(W, "force") && hasvar(W, "damtype"))
 			switch(W.damtype)
 				if("fire")
 					src.health -= W.force * fire_dam_coeff
@@ -100,7 +98,7 @@
 		else
 			..()
 
-/obj/machinery/bot/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/bot/bullet_act(obj/item/projectile/Proj)
 	health -= Proj.damage
 	..()
 	healthcheck()
@@ -110,7 +108,7 @@
 	return
 
 /obj/machinery/bot/blob_act()
-	src.health -= rand(20,40)*fire_dam_coeff
+	src.health -= rand(20, 40) * fire_dam_coeff
 	healthcheck()
 	return
 
@@ -120,14 +118,14 @@
 			src.explode()
 			return
 		if(2.0)
-			src.health -= rand(5,10)*fire_dam_coeff
-			src.health -= rand(10,20)*brute_dam_coeff
+			src.health -= rand(5, 10) * fire_dam_coeff
+			src.health -= rand(10, 20) * brute_dam_coeff
 			healthcheck()
 			return
 		if(3.0)
-			if (prob(50))
-				src.health -= rand(1,5)*fire_dam_coeff
-				src.health -= rand(1,5)*brute_dam_coeff
+			if(prob(50))
+				src.health -= rand(1, 5) * fire_dam_coeff
+				src.health -= rand(1, 5) * brute_dam_coeff
 				healthcheck()
 				return
 	return
@@ -151,17 +149,16 @@
 		if(was_on)
 			turn_on()
 
-
 /obj/machinery/bot/attack_ai(mob/user as mob)
 	src.attack_hand(user)
 
-/obj/machinery/bot/attack_hand(var/mob/living/carbon/human/user)
+/obj/machinery/bot/attack_hand(mob/living/carbon/human/user)
 	if(!istype(user))
 		return ..()
 
 	if(user.species.can_shred(user))
-		src.health -= rand(15,30)*brute_dam_coeff
-		src.visible_message("\red <B>[user] has slashed [src]!</B>")
+		src.health -= rand(15, 30) * brute_dam_coeff
+		src.visible_message(SPAN_DANGER("[user] has slashed [src]!"))
 		playsound(src, 'sound/weapons/slice.ogg', 25, 1, -1)
 		if(prob(10))
 			new /obj/effect/decal/cleanable/blood/oil(src.loc)
@@ -174,7 +171,7 @@
 
 // Returns the surrounding cardinal turfs with open links
 // Including through doors openable with the ID
-/turf/proc/CardinalTurfsWithAccess(var/obj/item/weapon/card/id/ID)
+/turf/proc/CardinalTurfsWithAccess(obj/item/weapon/card/id/ID)
 	var/L[] = new()
 
 	//	for(var/turf/simulated/t in oview(src,1))
@@ -190,17 +187,17 @@
 // Returns true if a link between A and B is blocked
 // Movement through doors allowed if ID has access
 /proc/LinkBlockedWithAccess(turf/A, turf/B, obj/item/weapon/card/id/ID)
-
-	if(A == null || B == null) return 1
-	var/adir = get_dir(A,B)
-	var/rdir = get_dir(B,A)
+	if(A == null || B == null)
+		return 1
+	var/adir = get_dir(A, B)
+	var/rdir = get_dir(B, A)
 	if((adir & (NORTH|SOUTH)) && (adir & (EAST|WEST)))	//	diagonal
-		var/iStep = get_step(A,adir&(NORTH|SOUTH))
-		if(!LinkBlockedWithAccess(A,iStep, ID) && !LinkBlockedWithAccess(iStep,B,ID))
+		var/iStep = get_step(A, adir & (NORTH|SOUTH))
+		if(!LinkBlockedWithAccess(A, iStep, ID) && !LinkBlockedWithAccess(iStep, B, ID))
 			return 0
 
-		var/pStep = get_step(A,adir&(EAST|WEST))
-		if(!LinkBlockedWithAccess(A,pStep,ID) && !LinkBlockedWithAccess(pStep,B,ID))
+		var/pStep = get_step(A, adir & (EAST|WEST))
+		if(!LinkBlockedWithAccess(A, pStep,ID) && !LinkBlockedWithAccess(pStep, B, ID))
 			return 0
 		return 1
 
@@ -218,16 +215,21 @@
 
 // Returns true if direction is blocked from loc
 // Checks doors against access with given ID
-/proc/DirBlockedWithAccess(turf/loc,var/dir,var/obj/item/weapon/card/id/ID)
+/proc/DirBlockedWithAccess(turf/loc, dir, obj/item/weapon/card/id/ID)
 	for(var/obj/structure/window/D in loc)
-		if(!D.density)			continue
-		if(D.dir == SOUTHWEST)	return 1
-		if(D.dir == dir)		return 1
+		if(!D.density)
+			continue
+		if(D.dir == SOUTHWEST)
+			return 1
+		if(D.dir == dir)
+			return 1
 
 	for(var/obj/machinery/door/D in loc)
-		if(!D.density)			continue
+		if(!D.density)
+			continue
 		if(istype(D, /obj/machinery/door/window))
-			if( dir & D.dir )	return !D.check_access(ID)
+			if(dir & D.dir)
+				return !D.check_access(ID)
 
 			//if((dir & SOUTH) && (D.dir & (EAST|WEST)))		return !D.check_access(ID)
 			//if((dir & EAST ) && (D.dir & (NORTH|SOUTH)))	return !D.check_access(ID)

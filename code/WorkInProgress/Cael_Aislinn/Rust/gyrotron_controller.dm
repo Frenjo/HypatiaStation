@@ -26,7 +26,7 @@
 
 	interact(mob/user)
 		if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
-			if (!istype(user, /mob/living/silicon))
+			if (!issilicon(user))
 				user.machine = null
 				user << browse(null, "window=gyrotron_controller")
 				return

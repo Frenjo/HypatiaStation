@@ -777,106 +777,106 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	var/curr_page = 0
 	var/list/datum/feed_channel/news_content = list()
 	var/datum/feed_message/important_message = null
-	var/scribble=""
+	var/scribble = ""
 	var/scribble_page = null
 
 /*obj/item/weapon/newspaper/attack_hand(mob/user as mob)
 	..()
 	world << "derp"*/
 
-obj/item/weapon/newspaper/attack_self(mob/user as mob)
+/obj/item/weapon/newspaper/attack_self(mob/user as mob)
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		var/dat
 		src.pages = 0
 		switch(screen)
 			if(0) //Cover
-				dat+="<DIV ALIGN='center'><B><FONT SIZE=6>The Griffon</FONT></B></div>"
-				dat+="<DIV ALIGN='center'><FONT SIZE=2>NanoTrasen-standard newspaper, for use on NanoTrasen� Space Facilities</FONT></div><HR>"
+				dat += "<DIV ALIGN='center'><B><FONT SIZE=6>The Griffon</FONT></B></div>"
+				dat += "<DIV ALIGN='center'><FONT SIZE=2>NanoTrasen-standard newspaper, for use on NanoTrasen� Space Facilities</FONT></div><HR>"
 				if(isemptylist(src.news_content))
 					if(src.important_message)
-						dat+="Contents:<BR><ul><B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [src.pages+2]\]</FONT><BR></ul>"
+						dat += "Contents:<BR><ul><B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [src.pages+2]\]</FONT><BR></ul>"
 					else
-						dat+="<I>Other than the title, the rest of the newspaper is unprinted...</I>"
+						dat += "<I>Other than the title, the rest of the newspaper is unprinted...</I>"
 				else
-					dat+="Contents:<BR><ul>"
+					dat += "Contents:<BR><ul>"
 					for(var/datum/feed_channel/NP in src.news_content)
 						src.pages++
 					if(src.important_message)
-						dat+="<B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [src.pages+2]\]</FONT><BR>"
-					var/temp_page=0
+						dat += "<B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [src.pages+2]\]</FONT><BR>"
+					var/temp_page = 0
 					for(var/datum/feed_channel/NP in src.news_content)
 						temp_page++
-						dat+="<B>[NP.channel_name]</B> <FONT SIZE=2>\[page [temp_page+1]\]</FONT><BR>"
-					dat+="</ul>"
+						dat += "<B>[NP.channel_name]</B> <FONT SIZE=2>\[page [temp_page+1]\]</FONT><BR>"
+					dat += "</ul>"
 				if(scribble_page==curr_page)
-					dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[src.scribble]\"</I>"
-				dat+= "<HR><DIV STYLE='float:right;'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV> <div style='float:left;'><A href='?src=\ref[human_user];mach_close=newspaper_main'>Done reading</A></DIV>"
+					dat += "<BR><I>There is a small scribble near the end of this page... It reads: \"[src.scribble]\"</I>"
+				dat += "<HR><DIV STYLE='float:right;'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV> <div style='float:left;'><A href='?src=\ref[human_user];mach_close=newspaper_main'>Done reading</A></DIV>"
 			if(1) // X channel pages inbetween.
 				for(var/datum/feed_channel/NP in src.news_content)
 					src.pages++ //Let's get it right again.
 				var/datum/feed_channel/C = src.news_content[src.curr_page]
-				dat+="<FONT SIZE=4><B>[C.channel_name]</B></FONT><FONT SIZE=1> \[created by: <FONT COLOR='maroon'>[C.author]</FONT>\]</FONT><BR><BR>"
+				dat += "<FONT SIZE=4><B>[C.channel_name]</B></FONT><FONT SIZE=1> \[created by: <FONT COLOR='maroon'>[C.author]</FONT>\]</FONT><BR><BR>"
 				if(C.censored)
-					dat+="This channel was deemed dangerous to the general welfare of the station and therefore marked with a <B><FONT COLOR='red'>D-Notice</B></FONT>. Its contents were not transferred to the newspaper at the time of printing."
+					dat += "This channel was deemed dangerous to the general welfare of the station and therefore marked with a <B><FONT COLOR='red'>D-Notice</B></FONT>. Its contents were not transferred to the newspaper at the time of printing."
 				else
 					if(isemptylist(C.messages))
-						dat+="No Feed stories stem from this channel..."
+						dat += "No Feed stories stem from this channel..."
 					else
-						dat+="<ul>"
+						dat += "<ul>"
 						var/i = 0
 						for(var/datum/feed_message/MESSAGE in C.messages)
 							i++
-							dat+="-[MESSAGE.body] <BR>"
+							dat += "-[MESSAGE.body] <BR>"
 							if(MESSAGE.img)
 								user << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
-								dat+="<img src='tmp_photo[i].png' width = '180'><BR>"
-							dat+="<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR><BR>"
-						dat+="</ul>"
-				if(scribble_page==curr_page)
-					dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[src.scribble]\"</I>"
-				dat+= "<BR><HR><DIV STYLE='float:left;'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV> <DIV STYLE='float:right;'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV>"
+								dat += "<img src='tmp_photo[i].png' width = '180'><BR>"
+							dat += "<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR><BR>"
+						dat += "</ul>"
+				if(scribble_page == curr_page)
+					dat += "<BR><I>There is a small scribble near the end of this page... It reads: \"[src.scribble]\"</I>"
+				dat += "<BR><HR><DIV STYLE='float:left;'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV> <DIV STYLE='float:right;'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV>"
 			if(2) //Last page
 				for(var/datum/feed_channel/NP in src.news_content)
 					src.pages++
-				if(src.important_message!=null)
-					dat+="<DIV STYLE='float:center;'><FONT SIZE=4><B>Wanted Issue:</B></FONT SIZE></DIV><BR><BR>"
-					dat+="<B>Criminal name</B>: <FONT COLOR='maroon'>[important_message.author]</FONT><BR>"
-					dat+="<B>Description</B>: [important_message.body]<BR>"
-					dat+="<B>Photo:</B>: "
+				if(src.important_message != null)
+					dat += "<DIV STYLE='float:center;'><FONT SIZE=4><B>Wanted Issue:</B></FONT SIZE></DIV><BR><BR>"
+					dat += "<B>Criminal name</B>: <FONT COLOR='maroon'>[important_message.author]</FONT><BR>"
+					dat += "<B>Description</B>: [important_message.body]<BR>"
+					dat += "<B>Photo:</B>: "
 					if(important_message.img)
 						user << browse_rsc(important_message.img, "tmp_photow.png")
-						dat+="<BR><img src='tmp_photow.png' width = '180'>"
+						dat += "<BR><img src='tmp_photow.png' width = '180'>"
 					else
-						dat+="None"
+						dat += "None"
 				else
-					dat+="<I>Apart from some uninteresting Classified ads, there's nothing on this page...</I>"
-				if(scribble_page==curr_page)
-					dat+="<BR><I>There is a small scribble near the end of this page... It reads: \"[src.scribble]\"</I>"
-				dat+= "<HR><DIV STYLE='float:left;'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV>"
+					dat += "<I>Apart from some uninteresting Classified ads, there's nothing on this page...</I>"
+				if(scribble_page == curr_page)
+					dat += "<BR><I>There is a small scribble near the end of this page... It reads: \"[src.scribble]\"</I>"
+				dat +=  "<HR><DIV STYLE='float:left;'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV>"
 			else
-				dat+="I'm sorry to break your immersion. This shit's bugged. Report this bug to Agouri, polyxenitopalidou@gmail.com"
+				dat += "I'm sorry to break your immersion. This shit's bugged. Report this bug to Agouri, polyxenitopalidou@gmail.com"
 
-		dat+="<BR><HR><div align='center'>[src.curr_page+1]</div>"
+		dat += "<BR><HR><div align='center'>[src.curr_page+1]</div>"
 		human_user << browse(dat, "window=newspaper_main;size=300x400")
 		onclose(human_user, "newspaper_main")
 	else
-		user << "The paper is full of intelligible symbols!"
+		to_chat(user, "The paper is full of intelligible symbols!")
 
 
-obj/item/weapon/newspaper/Topic(href, href_list)
+/obj/item/weapon/newspaper/Topic(href, href_list)
 	var/mob/living/U = usr
 	..()
-	if ((src in U.contents) || ( istype(loc, /turf) && in_range(src, U) ))
+	if((src in U.contents) || (isturf(loc) && in_range(src, U)))
 		U.set_machine(src)
 		if(href_list["next_page"])
-			if(curr_page==src.pages+1)
+			if(curr_page == src.pages + 1)
 				return //Don't need that at all, but anyway.
 			if(src.curr_page == src.pages) //We're at the middle, get to the end
 				src.screen = 2
 			else
 				if(curr_page == 0) //We're at the start, get to the middle
-					src.screen=1
+					src.screen = 1
 			src.curr_page++
 			playsound(src, "pageturn", 50, 1)
 
@@ -892,20 +892,20 @@ obj/item/weapon/newspaper/Topic(href, href_list)
 			src.curr_page--
 			playsound(src, "pageturn", 50, 1)
 
-		if (istype(src.loc, /mob))
+		if(istype(src.loc, /mob))
 			src.attack_self(src.loc)
 
 
-obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/pen))
 		if(src.scribble_page == src.curr_page)
-			user << "<FONT COLOR='blue'>There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?</FONT>"
+			to_chat(user, "<FONT COLOR='blue'>There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?</FONT>")
 		else
-			var/s = strip_html( input(user, "Write something", "Newspaper", "") )
+			var/s = strip_html(input(user, "Write something", "Newspaper", ""))
 			s = copytext(sanitize(s), 1, MAX_MESSAGE_LEN)
-			if (!s)
+			if(!s)
 				return
-			if (!in_range(src, usr) && src.loc != usr)
+			if(!in_range(src, usr) && src.loc != usr)
 				return
 			src.scribble_page = src.curr_page
 			src.scribble = s
@@ -917,10 +917,10 @@ obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 
 /obj/machinery/newscaster/proc/scan_user(mob/living/user as mob)
-	if(istype(user,/mob/living/carbon/human))                       //User is a human
+	if(istype(user, /mob/living/carbon/human))                       //User is a human
 		var/mob/living/carbon/human/human_user = user
 		if(human_user.wear_id)                                      //Newscaster scans you
-			if(istype(human_user.wear_id, /obj/item/device/pda) )	//autorecognition, woo!
+			if(istype(human_user.wear_id, /obj/item/device/pda))	//autorecognition, woo!
 				var/obj/item/device/pda/P = human_user.wear_id
 				if(P.id)
 					src.scanned_user = "[P.id.registered_name] ([P.id.assignment])"
@@ -939,7 +939,7 @@ obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 
 /obj/machinery/newscaster/proc/print_paper()
-	feedback_inc("newscaster_newspapers_printed",1)
+	feedback_inc("newscaster_newspapers_printed", 1)
 	var/obj/item/weapon/newspaper/NEWSPAPER = new /obj/item/weapon/newspaper
 	for(var/datum/feed_channel/FC in news_network.network_channels)
 		NEWSPAPER.news_content += FC
@@ -956,7 +956,7 @@ obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 /obj/machinery/newscaster/proc/newsAlert(channel)   //This isn't Agouri's work, for it is ugly and vile.
 	var/turf/T = get_turf(src)                      //Who the fuck uses spawn(600) anyway, jesus christ
 	if(channel)
-		for(var/mob/O in hearers(world.view-1, T))
+		for(var/mob/O in hearers(world.view - 1, T))
 			O.show_message("<span class='newscaster'><EM>[src.name]</EM> beeps, \"Breaking news from [channel]!\"</span>",2)
 		src.alert = 1
 		src.update_icon()
@@ -965,7 +965,7 @@ obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 			src.update_icon()
 		playsound(src, 'sound/machines/twobeep.ogg', 75, 1)
 	else
-		for(var/mob/O in hearers(world.view-1, T))
+		for(var/mob/O in hearers(world.view - 1, T))
 			O.show_message("<span class='newscaster'><EM>[src.name]</EM> beeps, \"Attention! Wanted issue distributed!\"</span>",2)
 		playsound(src, 'sound/machines/warning-buzzer.ogg', 75, 1)
 	return

@@ -125,7 +125,7 @@ var/global/announce_vox_departure = 1 //Stealth systems - give an announcement o
 	if(!isliving(usr))	return
 	var/mob/living/user = usr
 
-	if(in_range(src, user) || istype(user, /mob/living/silicon))
+	if(in_range(src, user) || issilicon(user))
 		user.set_machine(src)
 
 	vox_shuttle_location = "station"

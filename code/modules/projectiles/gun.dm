@@ -151,7 +151,7 @@
 	in_chamber.current = curloc
 	in_chamber.yo = targloc.y - curloc.y
 	in_chamber.xo = targloc.x - curloc.x
-	if(istype(user, /mob/living/carbon))
+	if(iscarbon(user))
 		var/mob/living/carbon/mob = user
 		if(mob.shock_stage > 120)
 			in_chamber.yo += rand(-2, 2)

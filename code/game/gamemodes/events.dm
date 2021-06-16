@@ -122,7 +122,7 @@
 //	world << sound('sound/AI/outbreak7.ogg')
 	var/virus_type
 	if(!virus)
-		virus_type = pick(/datum/disease/dnaspread,/datum/disease/advance/flu,/datum/disease/advance/cold,/datum/disease/brainrot,/datum/disease/magnitis,/datum/disease/pierrot_throat)
+		virus_type = pick(/datum/disease/dnaspread, /datum/disease/advance/flu, /datum/disease/advance/cold, /datum/disease/brainrot, /datum/disease/magnitis, /datum/disease/pierrot_throat)
 	else
 		switch(virus)
 			if("fake gbs")
@@ -226,7 +226,7 @@
 			continue
 		if(isNotStationLevel(T.z))
 			continue
-		if(istype(H, /mob/living/carbon/human))
+		if(ishuman(H))
 			H.apply_effect((rand(15, 75)), IRRADIATE, 0)
 			if(prob(5))
 				H.apply_effect((rand(90, 150)), IRRADIATE, 0)
@@ -253,15 +253,12 @@
 
 //Changing this to affect the main station. Blame Urist. --Pete
 /proc/prison_break() // -- Callagan
-
-
 	var/list/area/areas = list()
 	for(var/area/A in world)
 		if(istype(A, /area/security/prison) || istype(A, /area/security/brig))
 			areas += A
 
 	if(areas && areas.len > 0)
-
 		for(var/area/A in areas)
 			for(var/obj/machinery/light/L in A)
 				L.flicker(10)
@@ -269,20 +266,22 @@
 		sleep(100)
 
 		for(var/area/A in areas)
-			for (var/obj/machinery/power/apc/temp_apc in A)
+			for(var/obj/machinery/power/apc/temp_apc in A)
 				temp_apc.overload_lighting()
 
-			for (var/obj/structure/closet/secure_closet/brig/temp_closet in A)
+			for(var/obj/structure/closet/secure_closet/brig/temp_closet in A)
 				temp_closet.locked = 0
 				temp_closet.icon_state = temp_closet.icon_closed
 
-			for (var/obj/machinery/door/airlock/security/temp_airlock in A)
-				spawn(0) temp_airlock.prison_open()
+			for(var/obj/machinery/door/airlock/security/temp_airlock in A)
+				spawn(0)
+					temp_airlock.prison_open()
 
-			for (var/obj/machinery/door/airlock/glass_security/temp_glassairlock in A)
-				spawn(0) temp_glassairlock.prison_open()
+			for(var/obj/machinery/door/airlock/glass_security/temp_glassairlock in A)
+				spawn(0)
+					temp_glassairlock.prison_open()
 
-			for (var/obj/machinery/door_timer/temp_timer in A)
+			for(var/obj/machinery/door_timer/temp_timer in A)
 				temp_timer.releasetime = 1
 
 		sleep(150)
@@ -300,14 +299,14 @@
 		for(var/mob/M in player_list)
 			M << sound('sound/AI/commandreport.ogg')
 
-/proc/lightsout(isEvent = 0, lightsoutAmount = 1,lightsoutRange = 25) //leave lightsoutAmount as 0 to break ALL lights
+/proc/lightsout(isEvent = 0, lightsoutAmount = 1, lightsoutRange = 25) //leave lightsoutAmount as 0 to break ALL lights
 	if(isEvent)
 		command_alert("An Electrical storm has been detected in your area, please repair potential electronic overloads.","Electrical Storm Alert")
 
 	if(lightsoutAmount)
 		var/list/epicentreList = list()
 
-		for(var/i=1,i<=lightsoutAmount,i++)
+		for(var/i = 1, i <= lightsoutAmount, i++)
 			var/list/possibleEpicentres = list()
 			for(var/obj/effect/landmark/newEpicentre in landmarks_list)
 				if(newEpicentre.name == "lightsout" && !(newEpicentre in epicentreList))
@@ -363,7 +362,7 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 				crew = pick(pos_crew)
 			else
 				crew = "Any Human"
-			switch(rand(1,14))
+			switch(rand(1, 14))
 				if(1)
 					M << "<br>"
 					M << "\red THERE ARE [amount] [who2] ON THE STATION...LAWS UPDATED"

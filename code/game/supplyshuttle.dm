@@ -91,7 +91,7 @@ var/list/mechtoys = list(
 
 	//To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
 	proc/forbidden_atoms_check(atom/A)
-		if(istype(A, /mob/living))
+		if(isliving(A))
 			return 1
 		if(istype(A, /obj/item/weapon/disk/nuclear))
 			return 1
@@ -127,7 +127,7 @@ var/list/mechtoys = list(
 				for(var/atom in MA)
 					// Sell manifests
 					var/atom/A = atom
-					if(find_slip && istype(A,/obj/item/weapon/paper/manifest))
+					if(find_slip && istype(A, /obj/item/weapon/paper/manifest))
 						var/obj/item/weapon/paper/slip = A
 						if(slip.stamped && slip.stamped.len) //yes, the clown stamp will work. clown is the highest authority on the station, it makes sense
 							points += points_per_slip

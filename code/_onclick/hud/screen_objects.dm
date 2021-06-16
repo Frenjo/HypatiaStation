@@ -294,15 +294,15 @@
 				usr:uneq_active()
 
 		if("module1")
-			if(istype(usr, /mob/living/silicon/robot))
+			if(isrobot(usr))
 				usr:toggle_module(1)
 
 		if("module2")
-			if(istype(usr, /mob/living/silicon/robot))
+			if(isrobot(usr))
 				usr:toggle_module(2)
 
 		if("module3")
-			if(istype(usr, /mob/living/silicon/robot))
+			if(isrobot(usr))
 				usr:toggle_module(3)
 
 		if("Allow Walking")
@@ -374,7 +374,7 @@
 		return 1
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
 		return 1
-	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
+	if(istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
 		return 1
 	switch(name)
 		if("r_hand")

@@ -26,8 +26,8 @@
 		power_environ = 0		//rastaf0
 	power_change()		// all machines set to current power level, also updates lighting icon
 
-/area/proc/poweralert(var/state, var/obj/source as obj)
-	if (state != poweralm)
+/area/proc/poweralert(state, obj/source as obj)
+	if(state != poweralm)
 		poweralm = state
 		if(istype(source))	//Only report power alarms on the z-level where the source is located.
 			var/list/cameras = list()
@@ -39,7 +39,7 @@
 					C.network.Add("Power Alarms")
 			for(var/mob/living/silicon/aiPlayer in player_list)
 				if(aiPlayer.z == source.z)
-					if (state == 1)
+					if(state == 1)
 						aiPlayer.cancelAlarm("Power", src, source)
 					else
 						aiPlayer.triggerAlarm("Power", src, cameras, source)
@@ -53,7 +53,7 @@
 
 /area/proc/atmosalert(danger_level)
 	if(danger_level != atmosalm)
-		if(danger_level==2)
+		if(danger_level == 2)
 			var/list/cameras = list()
 			for(var/obj/machinery/camera/C in src)
 				cameras += C
@@ -86,12 +86,12 @@
 					spawn()
 						D.close()
 		var/list/cameras = list()
-		for (var/obj/machinery/camera/C in src)
+		for(var/obj/machinery/camera/C in src)
 			cameras.Add(C)
 			C.network.Add("Fire Alarms")
-		for (var/mob/living/silicon/ai/aiPlayer in player_list)
+		for(var/mob/living/silicon/ai/aiPlayer in player_list)
 			aiPlayer.triggerAlarm("Fire", src, cameras, src)
-		for (var/obj/machinery/computer/station_alert/a in machines)
+		for(var/obj/machinery/computer/station_alert/a in machines)
 			a.triggerAlarm("Fire", src, cameras, src)
 
 /area/proc/firereset()
@@ -106,11 +106,11 @@
 				else if(D.density)
 					spawn(0)
 						D.open()
-		for (var/obj/machinery/camera/C in src)
+		for(var/obj/machinery/camera/C in src)
 			C.network.Remove("Fire Alarms")
-		for (var/mob/living/silicon/ai/aiPlayer in player_list)
+		for(var/mob/living/silicon/ai/aiPlayer in player_list)
 			aiPlayer.cancelAlarm("Fire", src, src)
-		for (var/obj/machinery/computer/station_alert/a in machines)
+		for(var/obj/machinery/computer/station_alert/a in machines)
 			a.cancelAlarm("Fire", src, src)
 
 /area/proc/readyalert()
@@ -177,7 +177,7 @@
 	//	new lighting behaviour with obj lights
 		icon_state = null
 
-/area/proc/powered(var/chan)		// return true if the area has power to given channel
+/area/proc/powered(chan)		// return true if the area has power to given channel
 	if(!requires_power)
 		return 1
 	if(always_unpowered)
@@ -197,10 +197,10 @@
 /area/proc/power_change()
 	for(var/obj/machinery/M in src)	// for each machine in the area
 		M.power_change()			// reverify power status (to update icons etc.)
-	if (fire || eject || party || destruct)
+	if(fire || eject || party || destruct)
 		updateicon()
 
-/area/proc/usage(var/chan)
+/area/proc/usage(chan)
 	var/used = 0
 	switch(chan)
 		if(LIGHT)
@@ -218,7 +218,7 @@
 	used_light = 0
 	used_environ = 0
 
-/area/proc/use_power(var/amount, var/chan)
+/area/proc/use_power(amount, chan)
 	switch(chan)
 		if(EQUIP)
 			used_equip += amount
@@ -231,7 +231,7 @@
 	var/musVolume = 25
 	var/sound = 'sound/ambience/ambigen1.ogg'
 
-	if(!istype(A, /mob/living))
+	if(!isliving(A))
 		return
 
 	var/mob/living/L = A
@@ -262,25 +262,25 @@
 			L << sound(sound, repeat = 0, wait = 0, volume = musVolume, channel = 1)
 			L.client.played = world.time
 
-/area/proc/gravitychange(var/gravitystate = 0, var/area/A)
+/area/proc/gravitychange(gravitystate = 0, area/A)
 	A.has_gravity = gravitystate
 	if(gravitystate)
 		for(var/mob/living/carbon/human/M in A)
 			thunk(M)
 
 /area/proc/thunk(mob)
-	if(istype(mob, /mob/living/carbon/human/))  // Only humans can wear magboots, so we give them a chance to.
+	if(ishuman(mob))  // Only humans can wear magboots, so we give them a chance to.
 		if((istype(mob:shoes, /obj/item/clothing/shoes/magboots) && (mob:shoes.flags & NOSLIP)))
 			return
 
 	if(istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.
 		return
 
-	if((istype(mob, /mob/living/carbon/human/)) && (mob:m_intent == "run")) // Only clumbsy humans can fall on their asses.
+	if((ishuman(mob)) && (mob:m_intent == "run")) // Only clumbsy humans can fall on their asses.
 		mob:AdjustStunned(5)
 		mob:AdjustWeakened(5)
 
-	else if (istype(mob, /mob/living/carbon/human/))
+	else if(ishuman(mob))
 		mob:AdjustStunned(2)
 		mob:AdjustWeakened(2)
 

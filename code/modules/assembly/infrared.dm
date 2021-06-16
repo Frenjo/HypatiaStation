@@ -58,7 +58,7 @@
 				qdel(first)
 				return
 
-		if((!(first) && (secured && (istype(loc, /turf) || (holder && istype(holder.loc, /turf))))))
+		if((!(first) && (secured && (isturf(loc) || (holder && istype(holder.loc, /turf))))))
 			var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam((holder ? holder.loc : loc) )
 			I.master = src
 			I.density = 1

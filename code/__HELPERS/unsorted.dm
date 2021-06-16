@@ -195,7 +195,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		if(istype(D, /obj/machinery/door/window))
 			if((dir & SOUTH) && (D.dir & (EAST|WEST)))
 				return 1
-			if((dir & EAST ) && (D.dir & (NORTH|SOUTH)))
+			if((dir & EAST) && (D.dir & (NORTH|SOUTH)))
 				return 1
 		else return 1	// it's a real, air blocking door
 	return 0
@@ -271,7 +271,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //This will update a mob's name, real_name, mind.name, data_core records, pda and id
 //Calling this proc without an oldname will only update the mob and skip updating the pda, id and records ~Carn
 /mob/proc/fully_replace_character_name(oldname, newname)
-	if(!newname)	return 0
+	if(!newname)
+		return 0
 	real_name = newname
 	name = newname
 	if(mind)
@@ -281,7 +282,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	if(oldname)
 		//update the datacore records! This is goig to be a bit costly.
-		for(var/list/L in list(data_core.general,data_core.medical,data_core.security,data_core.locked))
+		for(var/list/L in list(data_core.general, data_core.medical, data_core.security, data_core.locked))
 			for(var/datum/data/record/R in L)
 				if(R.fields["name"] == oldname)
 					R.fields["name"] = newname
@@ -293,20 +294,22 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		var/search_pda = 1
 
 		for(var/A in searching)
-			if( search_id && istype(A,/obj/item/weapon/card/id) )
+			if(search_id && istype(A, /obj/item/weapon/card/id))
 				var/obj/item/weapon/card/id/ID = A
 				if(ID.registered_name == oldname)
 					ID.registered_name = newname
 					ID.name = "[newname]'s ID Card ([ID.assignment])"
-					if(!search_pda)	break
+					if(!search_pda)
+						break
 					search_id = 0
 
-			else if( search_pda && istype(A,/obj/item/device/pda) )
+			else if(search_pda && istype(A, /obj/item/device/pda))
 				var/obj/item/device/pda/PDA = A
 				if(PDA.owner == oldname)
 					PDA.owner = newname
 					PDA.name = "PDA - [newname] ([PDA.ownjob])" // Edited this to space out the dash. -Frenjo
-					if(!search_id)	break
+					if(!search_id)
+						break
 					search_pda = 0
 	return 1
 
@@ -368,13 +371,13 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/freeborg()
 	var/select = null
 	var/list/borgs = list()
-	for (var/mob/living/silicon/robot/A in player_list)
-		if (A.stat == 2 || A.connected_ai || A.scrambledcodes || istype(A, /mob/living/silicon/robot/drone))
+	for(var/mob/living/silicon/robot/A in player_list)
+		if(A.stat == 2 || A.connected_ai || A.scrambledcodes || isdrone(A))
 			continue
 		var/name = "[A.real_name] ([A.modtype] [A.braintype])"
 		borgs[name] = A
 
-	if (borgs.len)
+	if(borgs.len)
 		select = input("Unshackled borg signals detected:", "Borg selection", null, null) as null|anything in borgs
 		return borgs[select]
 
@@ -445,16 +448,16 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/namecounts = list()
 	for(var/mob/M in mobs)
 		var/name = M.name
-		if (name in names)
+		if(name in names)
 			namecounts[name]++
 			name = "[name] ([namecounts[name]])"
 		else
 			names.Add(name)
 			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
+		if(M.real_name && M.real_name != M.name)
 			name += " \[[M.real_name]\]"
-		if (M.stat == 2)
-			if(istype(M, /mob/dead/observer/))
+		if(M.stat == 2)
+			if(isobserver(M))
 				name += " \[ghost\]"
 			else
 				name += " \[dead\]"
@@ -517,7 +520,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/client/C
 	var/key
 
-	if(!whom)	return "*null*"
+	if(!whom)
+		return "*null*"
 	if(istype(whom, /client))
 		C = whom
 		M = C.mob
@@ -763,22 +767,27 @@ proc/anim(turf/location as turf, target as mob|obj, a_icon, a_icon_state as text
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all areas of that type in the world.
 /proc/get_areas(areatype)
-	if(!areatype) return null
-	if(istext(areatype)) areatype = text2path(areatype)
+	if(!areatype)
+		return null
+	if(istext(areatype))
+		areatype = text2path(areatype)
 	if(isarea(areatype))
 		var/area/areatemp = areatype
 		areatype = areatemp.type
 
 	var/list/areas = new/list()
 	for(var/area/N in world)
-		if(istype(N, areatype)) areas += N
+		if(istype(N, areatype))
+			areas += N
 	return areas
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all turfs in areas of that type of that type in the world.
 /proc/get_area_turfs(areatype)
-	if(!areatype) return null
-	if(istext(areatype)) areatype = text2path(areatype)
+	if(!areatype)
+		return null
+	if(istext(areatype))
+		areatype = text2path(areatype)
 	if(isarea(areatype))
 		var/area/areatemp = areatype
 		areatype = areatemp.type
@@ -786,14 +795,17 @@ proc/anim(turf/location as turf, target as mob|obj, a_icon, a_icon_state as text
 	var/list/turfs = new/list()
 	for(var/area/N in world)
 		if(istype(N, areatype))
-			for(var/turf/T in N) turfs += T
+			for(var/turf/T in N)
+				turfs += T
 	return turfs
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all atoms	(objs, turfs, mobs) in areas of that type of that type in the world.
 /proc/get_area_all_atoms(areatype)
-	if(!areatype) return null
-	if(istext(areatype)) areatype = text2path(areatype)
+	if(!areatype)
+		return null
+	if(istext(areatype))
+		areatype = text2path(areatype)
 	if(isarea(areatype))
 		var/area/areatemp = areatype
 		areatype = areatemp.type
@@ -986,7 +998,7 @@ proc/DuplicateObject(obj/original, perfectcopy = 0 , sameloc = 0)
 						O.loc = X
 
 					for(var/mob/M in T)
-						if(!istype(M,/mob) || istype(M, /mob/aiEye))
+						if(!ismob(M) || istype(M, /mob/aiEye))
 							continue // If we need to check for more mobs, I'll add a variable
 						mobs += M
 

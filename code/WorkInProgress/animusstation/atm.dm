@@ -65,7 +65,7 @@ log transactions
 		..()
 
 	attack_hand(var/mob/user)
-		if(istype(user, /mob/living/silicon))
+		if(issilicon(user))
 			user << "\red Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per NanoTrasen regulation #1005."
 			return
 

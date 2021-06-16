@@ -20,7 +20,7 @@
 	// Edited/ported this code to work with the attack_hand verb. -Frenjo
 	/*interact(mob/user)
 		if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
-			if (!istype(user, /mob/living/silicon))
+			if (!issilicon(user))
 				user.machine = null
 				user << browse(null, "window=laser_control")
 				return
@@ -40,7 +40,7 @@
 // Ported and reformatted/edited above code to actually work, what is interact() anyway? -Frenjo
 /obj/machinery/computer/lasercon/attack_hand(mob/user)
 	if((get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)))
-		if (!istype(user, /mob/living/silicon))
+		if (!issilicon(user))
 			user.machine = null
 			user << browse(null, "window=laser_control")
 			return
@@ -71,7 +71,7 @@
 /obj/machinery/computer/lasercon/proc/interact(mob/user)
 
 	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
-		if (!istype(user, /mob/living/silicon))
+		if (!issilicon(user))
 			user.machine = null
 			user << browse(null, "window=powcomp")
 			return

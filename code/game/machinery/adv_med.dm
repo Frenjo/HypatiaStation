@@ -227,7 +227,7 @@
 						t1 = "Unconscious"
 					else
 						t1 = "*dead*"
-				if(!istype(occupant, /mob/living/carbon/human))
+				if(!ishuman(occupant))
 					dat += "<font color='red'>This device can only scan human occupants.</FONT>"
 				else
 					dat += text("[]\tHealth %: [] ([])</FONT><BR>", (occupant.health > 50 ? "<font color='blue'>" : "<font color='red'>"), occupant.health, t1)

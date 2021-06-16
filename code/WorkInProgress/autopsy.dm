@@ -79,7 +79,7 @@
 	set category = "Object"
 	set src in view(usr, 1)
 	set name = "Print Data"
-	if(usr.stat || !(istype(usr,/mob/living/carbon/human)))
+	if(usr.stat || !(ishuman(usr)))
 		usr << "No."
 		return
 
@@ -150,7 +150,7 @@
 			scan_data += "<br>"
 
 	for(var/mob/O in viewers(usr))
-		O.show_message("\red \the [src] rattles and prints out a sheet of paper.", 1)
+		O.show_message(SPAN_WARNING("\the [src] rattles and prints out a sheet of paper."), 1)
 
 	sleep(10)
 
@@ -159,7 +159,7 @@
 	P.info = "<tt>[scan_data]</tt>"
 	P.overlays += "paper_words"
 
-	if(istype(usr,/mob/living/carbon))
+	if(iscarbon(usr))
 		// place the item in the usr's hand if possible
 		if(!usr.r_hand)
 			P.loc = usr
@@ -170,7 +170,7 @@
 			usr.l_hand = P
 			P.layer = 20
 
-	if(istype(usr,/mob/living/carbon/human))
+	if(ishuman(usr))
 		usr:update_inv_l_hand()
 		usr:update_inv_r_hand()
 
@@ -186,19 +186,19 @@
 		src.wdata = list()
 		src.chemtraces = list()
 		src.timeofdeath = null
-		user << "\red A new patient has been registered.. Purging data for previous patient."
+		to_chat(user, SPAN_WARNING("A new patient has been registered.. Purging data for previous patient."))
 
 	src.timeofdeath = M.timeofdeath
 
 	var/datum/organ/external/S = M.get_organ(user.zone_sel.selecting)
 	if(!S)
-		usr << "<b>You can't scan this body part.</b>"
+		to_chat(usr, "<b>You can't scan this body part.</b>")
 		return
 	if(!S.open)
-		usr << "<b>You have to cut the limb open first!</b>"
+		to_chat(usr, "<b>You have to cut the limb open first!</b>")
 		return
 	for(var/mob/O in viewers(M))
-		O.show_message("\red [user.name] scans the wounds on [M.name]'s [S.display_name] with \the [src.name]", 1)
+		O.show_message(SPAN_WARNING("[user.name] scans the wounds on [M.name]'s [S.display_name] with \the [src.name]"), 1)
 
 	src.add_data(S)
 
