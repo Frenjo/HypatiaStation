@@ -36,8 +36,7 @@
 					return
 		if(locate(/obj/item, input.loc))
 			var/obj/item/O
-			var/i
-			for(i = 0; i < 10; i++)
+			for(var/i = 0; i < 10; i++)
 				O = locate(/obj/item, input.loc)
 				if (O)
 					O.loc = src.output.loc

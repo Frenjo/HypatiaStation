@@ -41,7 +41,7 @@
 /datum/updateQueue/proc/init(list/objects = list(), procName = "update", list/arguments = list(), workerTimeout = 2, inplace = 0)
 	uq_dbg("Update queue initialization started.")
 
-	if (!inplace)
+	if(!inplace)
 		// Make an internal copy of the list so we're not modifying the original.
 		initList(objects)
 	else
@@ -69,7 +69,7 @@
 
 	uq_dbg("Copying [toCopy.len] items for processing.")
 
-	for(var/i=toCopy.len,i>0,)
+	for(var/i = toCopy.len, i > 0, )
 		objects.len++
 		objects[objects.len] = toCopy[i--]
 
@@ -77,7 +77,7 @@
 	uq_dbg("Starting run...")
 
 	startWorker()
-	while (istype(currentWorker) && !currentWorker.finished)
+	while(istype(currentWorker) && !currentWorker.finished)
 		sleep(2)
 		checkWorker()
 
@@ -104,7 +104,7 @@
 		uq_dbg("Starting worker process.")
 
 		// No need to create a fresh worker if we already have one...
-		if (istype(currentWorker))
+		if(istype(currentWorker))
 			currentWorker.init(objects, procName, arguments)
 		else
 			currentWorker = new(objects, procName, arguments)
@@ -121,7 +121,7 @@
 	sleep(-1)
 	currentKillCount++
 	totalKillCount++
-	if (currentKillCount >= 3)
+	if(currentKillCount >= 3)
 		uq_dbg("[currentKillCount] workers have been killed with a timeout of [adjustedWorkerTimeout]. Increasing worker timeout to compensate.")
 		adjustedWorkerTimeout++
 		currentKillCount = 0

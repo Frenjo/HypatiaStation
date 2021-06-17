@@ -21,11 +21,12 @@
 
 /obj/structure/closet/secure_closet/miner/New()
 	..()
-	sleep(2)
+
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/industrial(src)
 	else
 		new /obj/item/weapon/storage/backpack/satchel_eng(src)
+
 	new /obj/item/device/radio/headset/headset_cargo(src)
 	new /obj/item/clothing/under/rank/miner(src)
 	new /obj/item/clothing/gloves/black(src)
@@ -162,7 +163,7 @@ proc/move_mining_shuttle()
 		//		usr << "Under directive 7-10, [station_name()] is quarantined until further notice."
 		//		return
 
-		if (!mining_shuttle_moving)
+		if(!mining_shuttle_moving)
 			usr << "<span class='info'>Shuttle recieved message and will be sent shortly.</span>"
 
 			// Another rip of the stuff I did for the research shuttle.

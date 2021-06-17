@@ -15,7 +15,7 @@
 	new /obj/item/device/radio/headset/headset_cargo(src)
 	new /obj/item/clothing/gloves/black(src)
 	new /obj/item/clothing/head/soft(src)
-	return
+
 
 /obj/structure/closet/secure_closet/quartermaster
 	name = "Quartermaster's Locker"
@@ -40,4 +40,3 @@
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/clothing/glasses/meson(src)
 	new /obj/item/clothing/head/soft(src)
-	return

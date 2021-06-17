@@ -252,94 +252,94 @@
 					I.loc = output.loc
 				continue
 			if(istype(O, /obj/item/stack/sheet/metal))
-				ore_iron+= O.amount
+				ore_iron += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			if(istype(O, /obj/item/stack/sheet/mineral/diamond))
-				ore_diamond+= O.amount
+				ore_diamond += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			if(istype(O, /obj/item/stack/sheet/mineral/plasma))
-				ore_plasma+= O.amount
+				ore_plasma += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			if(istype(O, /obj/item/stack/sheet/mineral/gold))
-				ore_gold+= O.amount
+				ore_gold += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			if(istype(O, /obj/item/stack/sheet/mineral/silver))
-				ore_silver+= O.amount
+				ore_silver += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			if(istype(O, /obj/item/stack/sheet/mineral/clown))
-				ore_clown+= O.amount
+				ore_clown += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			if(istype(O, /obj/item/stack/sheet/mineral/uranium))
-				ore_uranium+= O.amount
+				ore_uranium += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			if(istype(O, /obj/item/stack/sheet/glass/plasmaglass))
-				ore_plasmaglass+= O.amount
+				ore_plasmaglass += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			if(istype(O, /obj/item/stack/sheet/glass/plasmarglass))
-				ore_plasmarglass+= O.amount
+				ore_plasmarglass += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			if(istype(O, /obj/item/stack/sheet/glass))
-				ore_glass+= O.amount
+				ore_glass += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			if(istype(O, /obj/item/stack/sheet/rglass))
-				ore_rglass+= O.amount
+				ore_rglass += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			if(istype(O, /obj/item/stack/sheet/plasteel))
-				ore_plasteel+= O.amount
+				ore_plasteel += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			if(istype(O, /obj/item/stack/sheet/mineral/adamantine))
-				ore_adamantine+= O.amount
+				ore_adamantine += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			if(istype(O, /obj/item/stack/sheet/mineral/mythril))
-				ore_mythril+= O.amount
+				ore_mythril += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			if(istype(O, /obj/item/stack/sheet/cardboard))
-				ore_cardboard+= O.amount
+				ore_cardboard += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			if(istype(O, /obj/item/stack/sheet/wood))
-				ore_wood+= O.amount
+				ore_wood += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			if(istype(O, /obj/item/stack/sheet/cloth))
-				ore_cloth+= O.amount
+				ore_cloth += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			if(istype(O, /obj/item/stack/sheet/leather))
-				ore_leather+= O.amount
+				ore_leather += O.amount
 				O.loc = null
-				//del(O)
+				qdel(O)
 				continue
 			O.loc = src.output.loc
 

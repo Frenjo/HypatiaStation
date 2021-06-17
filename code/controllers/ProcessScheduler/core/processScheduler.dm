@@ -45,8 +45,8 @@ var/global/datum/controller/processScheduler/processScheduler
  * the deferred setup list. On goonstation, only the ticker needs to have
  * this treatment.
  */
-/datum/controller/processScheduler/proc/deferSetupFor(var/processPath)
-	if (!(processPath in deferredSetupList))
+/datum/controller/processScheduler/proc/deferSetupFor(processPath)
+	if(!(processPath in deferredSetupList))
 		deferredSetupList += processPath
 
 /datum/controller/processScheduler/proc/setup()
@@ -57,11 +57,11 @@ var/global/datum/controller/processScheduler/processScheduler
 
 	var/process
 	// Add all the processes we can find, except for the ticker
-	for (process in typesof(/datum/controller/process) - /datum/controller/process)
-		if (!(process in deferredSetupList))
+	for(process in typesof(/datum/controller/process) - /datum/controller/process)
+		if(!(process in deferredSetupList))
 			addProcess(new process(src))
 
-	for (process in deferredSetupList)
+	for(process in deferredSetupList)
 		addProcess(new process(src))
 
 /datum/controller/processScheduler/proc/start()
@@ -83,7 +83,7 @@ var/global/datum/controller/processScheduler/processScheduler
 	for(var/datum/controller/process/p in running)
 		p.update()
 
-		if (isnull(p)) // Process was killed
+		if(isnull(p)) // Process was killed
 			continue
 
 		var/status = p.getStatus()
@@ -92,7 +92,6 @@ var/global/datum/controller/processScheduler/processScheduler
 		// Check status changes
 		if(status != previousStatus)
 			//Status changed.
-
 			switch(status)
 				if(PROCESS_STATUS_MAYBE_HUNG)
 					message_admins("Process '[p.name]' is [p.getStatusText(status)].")
@@ -105,22 +104,22 @@ var/global/datum/controller/processScheduler/processScheduler
 /datum/controller/processScheduler/proc/queueProcesses()
 	for(var/datum/controller/process/p in processes)
 		// Don't double-queue, don't queue running processes
-		if (p.disabled || p.running || p.queued || !p.idle)
+		if(p.disabled || p.running || p.queued || !p.idle)
 			continue
 
 		// If world.timeofday has rolled over, then we need to adjust.
-		if (world.timeofday < last_start[p])
+		if(world.timeofday < last_start[p])
 			last_start[p] -= 864000
 
 		// If the process should be running by now, go ahead and queue it
-		if (world.timeofday > last_start[p] + p.schedule_interval)
+		if(world.timeofday > last_start[p] + p.schedule_interval)
 			setQueuedProcessState(p)
 
 /datum/controller/processScheduler/proc/runQueuedProcesses()
 	for(var/datum/controller/process/p in queued)
 		runProcess(p)
 
-/datum/controller/processScheduler/proc/addProcess(var/datum/controller/process/process)
+/datum/controller/processScheduler/proc/addProcess(datum/controller/process/process)
 	processes.Add(process)
 	process.idle()
 	idle.Add(process)
@@ -145,7 +144,7 @@ var/global/datum/controller/processScheduler/processScheduler
 	// Save process in the name -> process map
 	nameToProcessMap[process.name] = process
 
-/datum/controller/processScheduler/proc/replaceProcess(var/datum/controller/process/oldProcess, var/datum/controller/process/newProcess)
+/datum/controller/processScheduler/proc/replaceProcess(datum/controller/process/oldProcess, datum/controller/process/newProcess)
 	processes.Remove(oldProcess)
 	processes.Add(newProcess)
 
@@ -177,61 +176,61 @@ var/global/datum/controller/processScheduler/processScheduler
 	nameToProcessMap[newProcess.name] = newProcess
 
 
-/datum/controller/processScheduler/proc/runProcess(var/datum/controller/process/process)
+/datum/controller/processScheduler/proc/runProcess(datum/controller/process/process)
 	spawn(0)
 		process.process()
 
-/datum/controller/processScheduler/proc/processStarted(var/datum/controller/process/process)
+/datum/controller/processScheduler/proc/processStarted(datum/controller/process/process)
 	setRunningProcessState(process)
 	recordStart(process)
 
-/datum/controller/processScheduler/proc/processFinished(var/datum/controller/process/process)
+/datum/controller/processScheduler/proc/processFinished(datum/controller/process/process)
 	setIdleProcessState(process)
 	recordEnd(process)
 
-/datum/controller/processScheduler/proc/setIdleProcessState(var/datum/controller/process/process)
-	if (process in running)
+/datum/controller/processScheduler/proc/setIdleProcessState(datum/controller/process/process)
+	if(process in running)
 		running -= process
-	if (process in queued)
+	if(process in queued)
 		queued -= process
-	if (!(process in idle))
+	if(!(process in idle))
 		idle += process
 
 	process.idle()
 
-/datum/controller/processScheduler/proc/setQueuedProcessState(var/datum/controller/process/process)
-	if (process in running)
+/datum/controller/processScheduler/proc/setQueuedProcessState(datum/controller/process/process)
+	if(process in running)
 		running -= process
-	if (process in idle)
+	if(process in idle)
 		idle -= process
-	if (!(process in queued))
+	if(!(process in queued))
 		queued += process
 
 	// The other state transitions are handled internally by the process.
 	process.queued()
 
-/datum/controller/processScheduler/proc/setRunningProcessState(var/datum/controller/process/process)
-	if (process in queued)
+/datum/controller/processScheduler/proc/setRunningProcessState(datum/controller/process/process)
+	if(process in queued)
 		queued -= process
-	if (process in idle)
+	if(process in idle)
 		idle -= process
-	if (!(process in running))
+	if(!(process in running))
 		running += process
 
 	process.running()
 
-/datum/controller/processScheduler/proc/recordStart(var/datum/controller/process/process, var/time = null)
-	if (isnull(time))
+/datum/controller/processScheduler/proc/recordStart(datum/controller/process/process, time = null)
+	if(isnull(time))
 		time = world.timeofday
 
 	last_start[process] = time
 
-/datum/controller/processScheduler/proc/recordEnd(var/datum/controller/process/process, var/time = null)
-	if (isnull(time))
+/datum/controller/processScheduler/proc/recordEnd(datum/controller/process/process, time = null)
+	if(isnull(time))
 		time = world.timeofday
 
 	// If world.timeofday has rolled over, then we need to adjust.
-	if (time < last_start[process])
+	if(time < last_start[process])
 		last_start[process] -= 864000
 
 	var/lastRunTime = time - last_start[process]
@@ -245,13 +244,13 @@ var/global/datum/controller/processScheduler/processScheduler
  * recordRunTime
  * Records a run time for a process
  */
-/datum/controller/processScheduler/proc/recordRunTime(var/datum/controller/process/process, time)
+/datum/controller/processScheduler/proc/recordRunTime(datum/controller/process/process, time)
 	last_run_time[process] = time
 	if(time > highest_run_time[process])
 		highest_run_time[process] = time
 
 	var/list/lastTwenty = last_twenty_run_times[process]
-	if (lastTwenty.len == 20)
+	if(lastTwenty.len == 20)
 		lastTwenty.Cut(1, 2)
 	lastTwenty.len++
 	lastTwenty[lastTwenty.len] = time
@@ -260,7 +259,7 @@ var/global/datum/controller/processScheduler/processScheduler
  * averageRunTime
  * returns the average run time (over the last 20) of the process
  */
-/datum/controller/processScheduler/proc/averageRunTime(var/datum/controller/process/process)
+/datum/controller/processScheduler/proc/averageRunTime(datum/controller/process/process)
 	var/lastTwenty = last_twenty_run_times[process]
 
 	var/t = 0
@@ -285,35 +284,35 @@ var/global/datum/controller/processScheduler/processScheduler
 /datum/controller/processScheduler/proc/getProcessCount()
 	return processes.len
 
-/datum/controller/processScheduler/proc/hasProcess(var/processName as text)
-	if (nameToProcessMap[processName])
+/datum/controller/processScheduler/proc/hasProcess(processName as text)
+	if(nameToProcessMap[processName])
 		return 1
 
-/datum/controller/processScheduler/proc/killProcess(var/processName as text)
+/datum/controller/processScheduler/proc/killProcess(processName as text)
 	restartProcess(processName)
 
-/datum/controller/processScheduler/proc/restartProcess(var/processName as text)
-	if (hasProcess(processName))
+/datum/controller/processScheduler/proc/restartProcess(processName as text)
+	if(hasProcess(processName))
 		var/datum/controller/process/oldInstance = nameToProcessMap[processName]
 		var/datum/controller/process/newInstance = new oldInstance.type(src)
 		newInstance._copyStateFrom(oldInstance)
 		replaceProcess(oldInstance, newInstance)
 		oldInstance.kill()
 
-/datum/controller/processScheduler/proc/enableProcess(var/processName as text)
-	if (hasProcess(processName))
+/datum/controller/processScheduler/proc/enableProcess(processName as text)
+	if(hasProcess(processName))
 		var/datum/controller/process/process = nameToProcessMap[processName]
 		process.enable()
 
-/datum/controller/processScheduler/proc/disableProcess(var/processName as text)
-	if (hasProcess(processName))
+/datum/controller/processScheduler/proc/disableProcess(processName as text)
+	if(hasProcess(processName))
 		var/datum/controller/process/process = nameToProcessMap[processName]
 		process.disable()
 
-/datum/controller/processScheduler/proc/getProcess(var/name)
+/datum/controller/processScheduler/proc/getProcess(name)
 	return nameToProcessMap[name]
 
-/datum/controller/processScheduler/proc/getProcessLastRunTime(var/datum/controller/process/process)
+/datum/controller/processScheduler/proc/getProcessLastRunTime(datum/controller/process/process)
 	return last_run_time[process]
 
 /datum/controller/processScheduler/proc/getIsRunning()

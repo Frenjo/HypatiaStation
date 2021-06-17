@@ -9,7 +9,7 @@ proc/SetupMinerals()
 		name_to_mineral[new_mineral.name] = new_mineral
 	return 1
 
-mineral
+/mineral
 	///What am I called?
 	var/name
 	var/display_name
@@ -23,61 +23,61 @@ mineral
 	///Path to the resultant ore.
 	var/ore
 
-	New()
-		. = ..()
-		if(!display_name)
-			display_name = name
+/mineral/New()
+	. = ..()
+	if(!display_name)
+		display_name = name
 
-mineral/uranium
+/mineral/uranium
 	name = "Uranium"
 	result_amount = 5
 	spread_chance = 13
 	ore = /obj/item/weapon/ore/uranium
 
-mineral/iron
+/mineral/iron
 	name = "Iron"
 	result_amount = 5
 	spread_chance = 20
 	ore = /obj/item/weapon/ore/iron
 
-mineral/diamond
+/mineral/diamond
 	name = "Diamond"
 	result_amount = 5
 	spread_chance = 13
 	ore = /obj/item/weapon/ore/diamond
 
-mineral/gold
+/mineral/gold
 	name = "Gold"
 	result_amount = 5
 	spread_chance = 13
 	ore = /obj/item/weapon/ore/gold
 
-mineral/silver
+/mineral/silver
 	name = "Silver"
 	result_amount = 5
 	spread_chance = 13
 	ore = /obj/item/weapon/ore/silver
 
-mineral/plasma
+/mineral/plasma
 	name = "Plasma"
 	result_amount = 5
 	spread_chance = 20
 	ore = /obj/item/weapon/ore/plasma
 
-mineral/clown
+/mineral/clown
 	display_name = "Bananium"
 	name = "Clown"
 	result_amount = 3
 	spread_chance = 1
 	ore = /obj/item/weapon/ore/clown
 
-mineral/adamantine
+/mineral/adamantine
 	name = "Adamantine"
 	result_amount = 2
 	spread_chance = 1
 	ore = /obj/item/weapon/ore/adamantine
 
-mineral/mythril
+/mineral/mythril
 	name = "Mythril"
 	result_amount = 2
 	spread_chance = 1

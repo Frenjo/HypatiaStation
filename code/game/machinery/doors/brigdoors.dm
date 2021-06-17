@@ -39,7 +39,7 @@
 
 	spawn(20)
 		for(var/obj/machinery/door/window/brigdoor/M in machines)
-			if (M.id == src.id)
+			if(M.id == src.id)
 				targets += M
 
 		for(var/obj/machinery/flasher/F in machines)
@@ -50,7 +50,7 @@
 			if(C.id == src.id)
 				targets += C
 
-		if(targets.len==0)
+		if(targets.len == 0)
 			stat |= BROKEN
 		update_icon()
 		return
@@ -97,19 +97,23 @@
 
 // Closes and locks doors, power check
 /obj/machinery/door_timer/proc/timer_start()
-	if(stat & (NOPOWER|BROKEN))	return 0
+	if(stat & (NOPOWER|BROKEN))
+		return 0
 
 	// Set releasetime
 	releasetime = world.timeofday + timetoset
 
 	for(var/obj/machinery/door/window/brigdoor/door in targets)
-		if(door.density)	continue
+		if(door.density)
+			continue
 		spawn(0)
 			door.close()
 
 	for(var/obj/structure/closet/secure_closet/brig/C in targets)
-		if(C.broken)	continue
-		if(C.opened && !C.close())	continue
+		if(C.broken)
+			continue
+		if(C.opened && !C.close())
+			continue
 		C.locked = 1
 		C.icon_state = C.icon_locked
 	return 1
@@ -117,19 +121,23 @@
 
 // Opens and unlocks doors, power check
 /obj/machinery/door_timer/proc/timer_end()
-	if(stat & (NOPOWER|BROKEN))	return 0
+	if(stat & (NOPOWER|BROKEN))
+		return 0
 
 	// Reset releasetime
 	releasetime = 0
 
 	for(var/obj/machinery/door/window/brigdoor/door in targets)
-		if(!door.density)	continue
+		if(!door.density)
+			continue
 		spawn(0)
 			door.open()
 
 	for(var/obj/structure/closet/secure_closet/brig/C in targets)
-		if(C.broken)	continue
-		if(C.opened)	continue
+		if(C.broken)
+			continue
+		if(C.opened)
+			continue
 		C.locked = 0
 		C.icon_state = C.icon_closed
 
@@ -143,7 +151,7 @@
 		. = 0
 
 // Set timetoset
-/obj/machinery/door_timer/proc/timeset(var/seconds)
+/obj/machinery/door_timer/proc/timeset(seconds)
 	timetoset = seconds * 10
 
 	if(timetoset <= 0)
@@ -152,7 +160,7 @@
 	return
 
 //Allows AIs to use door_timer, see human attack_hand function below
-/obj/machinery/door_timer/attack_ai(var/mob/user as mob)
+/obj/machinery/door_timer/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
 
@@ -160,7 +168,7 @@
 //Opens dialog window when someone clicks on door timer
 // Allows altering timer and the timing boolean.
 // Flasher activation limited to 150 seconds
-/obj/machinery/door_timer/attack_hand(var/mob/user as mob)
+/obj/machinery/door_timer/attack_hand(mob/user as mob)
 	if(..())
 		return
 

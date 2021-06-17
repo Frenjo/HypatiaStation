@@ -5,9 +5,9 @@
 	nitrogen = 0
 	temperature = TCMB
 
-	New()
-		..()
-		name = "floor"
+/turf/simulated/floor/airless/New()
+	..()
+	name = "floor"
 
 /turf/simulated/floor/airless/ceiling
 	icon_state = "rockvault"
@@ -19,14 +19,13 @@
 	icon_state = "light_on"
 	floor_type = /obj/item/stack/tile/light
 
-	New()
-		var/n = name //just in case commands rename it in the ..() call
-		..()
-		spawn(4)
-			if(src)
-				update_icon()
-				name = n
-
+/turf/simulated/floor/light/New()
+	var/n = name //just in case commands rename it in the ..() call
+	..()
+	spawn(4)
+		if(src)
+			update_icon()
+			name = n
 
 
 /turf/simulated/floor/wood
@@ -37,16 +36,16 @@
 /turf/simulated/floor/vault
 	icon_state = "rockvault"
 
-	New(location, type)
-		..()
-		icon_state = "[type]vault"
+/turf/simulated/floor/vault/New(location, type)
+	..()
+	icon_state = "[type]vault"
 
 /turf/simulated/wall/vault
 	icon_state = "rockvault"
 
-	New(location, type)
-		..()
-		icon_state = "[type]vault"
+/turf/simulated/wall/vault/New(location, type)
+	..()
+	icon_state = "[type]vault"
 
 /turf/simulated/floor/engine
 	name = "reinforced floor"
@@ -60,7 +59,7 @@
 	if(!user)
 		return
 	if(istype(C, /obj/item/weapon/wrench))
-		user << "\blue Removing rods..."
+		to_chat(user, SPAN_INFO("Removing rods..."))
 		playsound(src, 'sound/items/Ratchet.ogg', 80, 1)
 		if(do_after(user, 30))
 			new /obj/item/stack/rods(src, 2)
@@ -75,15 +74,17 @@
 
 
 /turf/simulated/floor/engine/n20
-	New()
-		. = ..()
-		assume_gas("sleeping_agent", 2000)
+	
+/turf/simulated/floor/engine/n20/New()
+	. = ..()
+	assume_gas("sleeping_agent", 2000)
 
 // Added this for the atmos tanks. -Frenjo
 /turf/simulated/floor/engine/oxygen_agent_b
-	New()
-		. = ..()
-		assume_gas("oxygen_agent_b", 2000)
+
+/turf/simulated/floor/engine/oxygen_agent_b/New()
+	. = ..()
+	assume_gas("oxygen_agent_b", 2000)
 
 /turf/simulated/floor/engine/vacuum
 	name = "vacuum floor"
@@ -105,9 +106,9 @@
 	nitrogen = 0
 	temperature = TCMB
 
-	New()
-		..()
-		name = "plating"
+/turf/simulated/floor/plating/airless/New()
+	..()
+	name = "plating"
 
 /turf/simulated/floor/bluegrid
 	icon = 'icons/turf/floors.dmi'
@@ -164,41 +165,40 @@
 
 /turf/simulated/floor/beach/water/New()
 	..()
-	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
+	overlays += image("icon" = 'icons/misc/beach.dmi', "icon_state" = "water5", "layer" = MOB_LAYER + 0.1)
 
 /turf/simulated/floor/grass
 	name = "Grass patch"
 	icon_state = "grass1"
 	floor_type = /obj/item/stack/tile/grass
 
-	New()
-		icon_state = "grass[pick("1","2","3","4")]"
-		..()
-		spawn(4)
-			if(src)
-				update_icon()
-				for(var/direction in cardinal)
-					if(istype(get_step(src,direction),/turf/simulated/floor))
-						var/turf/simulated/floor/FF = get_step(src,direction)
-						FF.update_icon() //so siding get updated properly
+/turf/simulated/floor/grass/New()
+	icon_state = "grass[pick("1","2","3","4")]"
+	..()
+	spawn(4)
+		if(src)
+			update_icon()
+			for(var/direction in cardinal)
+				if(istype(get_step(src, direction), /turf/simulated/floor))
+					var/turf/simulated/floor/FF = get_step(src, direction)
+					FF.update_icon() //so siding get updated properly
 
 /turf/simulated/floor/carpet
 	name = "Carpet"
 	icon_state = "carpet"
 	floor_type = /obj/item/stack/tile/carpet
 
-	New()
-		if(!icon_state)
-			icon_state = "carpet"
-		..()
-		spawn(4)
-			if(src)
-				update_icon()
-				for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
-					if(istype(get_step(src, direction), /turf/simulated/floor))
-						var/turf/simulated/floor/FF = get_step(src, direction)
-						FF.update_icon() //so siding get updated properly
-
+/turf/simulated/floor/carpet/New()
+	if(!icon_state)
+		icon_state = "carpet"
+	..()
+	spawn(4)
+		if(src)
+			update_icon()
+			for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
+				if(istype(get_step(src, direction), /turf/simulated/floor))
+					var/turf/simulated/floor/FF = get_step(src, direction)
+					FF.update_icon() //so siding get updated properly
 
 
 /turf/simulated/floor/plating/ironsand/New()

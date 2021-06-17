@@ -203,7 +203,6 @@
 
 /obj/structure/closet/hydrant/New()
 	..()
-	sleep(2)
 	new /obj/item/clothing/suit/fire/firefighter(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/device/flashlight(src)

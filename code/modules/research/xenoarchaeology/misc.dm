@@ -105,6 +105,7 @@ proc/setup_xenoarch()
 	new /obj/item/weapon/book/manual/stasis(src)
 	update_icon()
 
+
 //---- Lockers and closets
 
 /obj/structure/closet/secure_closet/xenoarchaeologist
@@ -127,7 +128,7 @@ proc/setup_xenoarch()
 	new /obj/item/device/radio/headset/headset_sci(src)
 	new /obj/item/weapon/storage/belt/archaeology(src)
 	new /obj/item/weapon/storage/box/excavation(src)
-	return
+
 
 /obj/structure/closet/excavation
 	name = "Excavation tools"
@@ -150,7 +151,7 @@ proc/setup_xenoarch()
 	new /obj/item/weapon/pickaxe(src)
 	new /obj/item/device/measuring_tape(src)
 	new /obj/item/weapon/pickaxe/hand(src)
-	return
+
 
 //---- Isolation room air alarms
 

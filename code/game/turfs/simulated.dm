@@ -14,30 +14,31 @@
 	..()
 	levelupdate()
 
-/turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
+/turf/simulated/proc/AddTracks(typepath, bloodDNA, comingdir, goingdir, bloodcolor = "#A10808")
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
 	if(!tracks)
 		tracks = new typepath(src)
-	tracks.AddTracks(bloodDNA,comingdir,goingdir,bloodcolor)
+	tracks.AddTracks(bloodDNA, comingdir, goingdir, bloodcolor)
 
 /turf/simulated/Entered(atom/A, atom/OL)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
 		usr << "\red Movement is admin-disabled." //This is to identify lag problems
 		return
 
-	if (istype(A,/mob/living/carbon))
+	if(iscarbon(A))
 		var/mob/living/carbon/M = A
-		if(M.lying)        return
+		if(M.lying)
+			return
 		dirt++
 		var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, src)
-		if (dirt >= 50)
-			if (!dirtoverlay)
+		if(dirt >= 50)
+			if(!dirtoverlay)
 				dirtoverlay = new/obj/effect/decal/cleanable/dirt(src)
 				dirtoverlay.alpha = 15
-			else if (dirt > 50)
+			else if(dirt > 50)
 				dirtoverlay.alpha = min(dirtoverlay.alpha+5, 255)
 
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(istype(H.shoes, /obj/item/clothing/shoes/clown_shoes))
 				// Disabled footstep spacing, oh god what have I done? -Frenjo
@@ -67,32 +68,32 @@
 					bloodcolor=H.feet_blood_color
 					H.track_blood--
 
-			if (bloodDNA)
-				src.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,H.dir,0,bloodcolor) // Coming
+			if(bloodDNA)
+				src.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints, bloodDNA, H.dir, 0, bloodcolor) // Coming
 				var/turf/simulated/from = get_step(H,reverse_direction(H.dir))
 				if(istype(from) && from)
-					from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,0,H.dir,bloodcolor) // Going
+					from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints, bloodDNA, 0, H.dir, bloodcolor) // Going
 
 				bloodDNA = null
 
-		switch (src.wet)
+		switch(src.wet)
 			if(1)
-				if(istype(M, /mob/living/carbon/human)) // Added check since monkeys don't have shoes
-					if ((M.m_intent == "run") && !(istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags&NOSLIP))
+				if(ishuman(M)) // Added check since monkeys don't have shoes
+					if((M.m_intent == "run") && !(istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags & NOSLIP))
 						M.stop_pulling()
 						step(M, M.dir)
-						M << "\blue You slipped on the wet floor!"
+						to_chat(M, SPAN_INFO("You slipped on the wet floor!"))
 						playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
 						M.Stun(5)
 						M.Weaken(3)
 					else
 						M.inertia_dir = 0
 						return
-				else if(!istype(M, /mob/living/carbon/slime))
-					if (M.m_intent == "run")
+				else if(!isslime(M))
+					if(M.m_intent == "run")
 						M.stop_pulling()
 						step(M, M.dir)
-						M << "\blue You slipped on the wet floor!"
+						to_chat(M, SPAN_INFO("You slipped on the wet floor!"))
 						playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
 						M.Stun(5)
 						M.Weaken(3)
@@ -101,7 +102,7 @@
 						return
 
 			if(2) //lube                //can cause infinite loops - needs work
-				if(!istype(M, /mob/living/carbon/slime))
+				if(!isslime(M))
 					M.stop_pulling()
 					step(M, M.dir)
 					spawn(1) step(M, M.dir)
@@ -109,26 +110,26 @@
 					spawn(3) step(M, M.dir)
 					spawn(4) step(M, M.dir)
 					M.take_organ_damage(2) // Was 5 -- TLE
-					M << "\blue You slipped on the floor!"
+					to_chat(M, SPAN_INFO("You slipped on the floor!"))
 					playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
 					M.Weaken(10)
 			if(3) // Ice
-				if(istype(M, /mob/living/carbon/human)) // Added check since monkeys don't have shoes
-					if ((M.m_intent == "run") && !(istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags&NOSLIP) && prob(30))
+				if(ishuman(M)) // Added check since monkeys don't have shoes
+					if((M.m_intent == "run") && !(istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags & NOSLIP) && prob(30))
 						M.stop_pulling()
 						step(M, M.dir)
-						M << "\blue You slipped on the icy floor!"
+						to_chat(M, SPAN_INFO("You slipped on the icy floor!"))
 						playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
 						M.Stun(4)
 						M.Weaken(3)
 					else
 						M.inertia_dir = 0
 						return
-				else if(!istype(M, /mob/living/carbon/slime))
-					if (M.m_intent == "run" && prob(30))
+				else if(!isslime(M))
+					if(M.m_intent == "run" && prob(30))
 						M.stop_pulling()
 						step(M, M.dir)
-						M << "\blue You slipped on the icy floor!"
+						to_chat(M, SPAN_INFO("You slipped on the icy floor!"))
 						playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
 						M.Stun(4)
 						M.Weaken(3)
@@ -140,7 +141,7 @@
 
 //returns 1 if made bloody, returns 0 otherwise
 /turf/simulated/add_blood(mob/living/carbon/human/M as mob)
-	if (!..())
+	if(!..())
 		return 0
 
 	for(var/obj/effect/decal/cleanable/blood/B in contents)
@@ -167,15 +168,13 @@
 
 // Only adds blood on the floor -- Skie
 /turf/simulated/proc/add_blood_floor(mob/living/carbon/M as mob)
-	if(istype(M, /mob/living/carbon/monkey))
-
+	if(ismonkey(M))
 		var/obj/effect/decal/cleanable/blood/this = new /obj/effect/decal/cleanable/blood(src)
 		this.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 		this.basecolor = "#A10808"
 		this.update_icon()
 
-	else if(istype(M,/mob/living/carbon/human))
-
+	else if(ishuman(M))
 		var/obj/effect/decal/cleanable/blood/this = new /obj/effect/decal/cleanable/blood(src)
 		var/mob/living/carbon/human/H = M
 
@@ -188,9 +187,9 @@
 
 		this.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 
-	else if( istype(M, /mob/living/carbon/alien ))
+	else if(isalien(M))
 		var/obj/effect/decal/cleanable/blood/xeno/this = new /obj/effect/decal/cleanable/blood/xeno(src)
 		this.blood_DNA["UNKNOWN BLOOD"] = "X*"
 
-	else if( istype(M, /mob/living/silicon/robot ))
+	else if(isrobot(M))
 		new /obj/effect/decal/cleanable/blood/oil(src)

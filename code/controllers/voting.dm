@@ -2,7 +2,7 @@ var/datum/controller/vote/vote = new()
 
 var/global/list/round_voters = list() //Keeps track of the individuals voting for a given round, for use in forcedrafting.
 
-datum/controller/vote
+/datum/controller/vote
 	var/initiator = null
 	var/started_time = null
 	var/time_remaining = 0
@@ -25,7 +25,7 @@ datum/controller/vote
 			// No more change mode votes after the game has started.
 			// 3 is GAME_STATE_PLAYING, but that #define is undefined for some reason
 			if(mode == "gamemode" && ticker.current_state >= 2)
-				world << "<b>Voting aborted due to game start.</b>"
+				to_chat(world, "<b>Voting aborted due to game start.</b>")
 				src.reset()
 				return
 
@@ -47,7 +47,7 @@ datum/controller/vote
 				voting.Cut()
 
 	proc/autotransfer()
-		initiate_vote("crew_transfer","the server")
+		initiate_vote("crew_transfer", "the server")
 		log_debug("The server has called a crew transfer vote")
 
 /*	proc/autogamemode() //This is here for whoever can figure out how to make this work
@@ -108,7 +108,7 @@ datum/controller/vote
 						else
 							factor = 1.4
 					choices["Initiate Crew Transfer"] = round(choices["Initiate Crew Transfer"] * factor)
-					world << "<font color='purple'>Crew Transfer Factor: [factor]</font>"
+					to_chat(world, "<font color='purple'>Crew Transfer Factor: [factor]</font>")
 					greatest_votes = max(choices["Initiate Crew Transfer"], choices["Continue The Round"])
 
 
@@ -145,7 +145,7 @@ datum/controller/vote
 		else
 			text += "<b>Vote Result: Inconclusive - No Votes!</b>"
 		log_vote(text)
-		world << "<font color='purple'>[text]</font>"
+		to_chat(world, "<font color='purple'>[text]</font>")
 		return .
 
 	proc/result()
@@ -170,12 +170,13 @@ datum/controller/vote
 		if(mode == "gamemode") //fire this even if the vote fails.
 			if(!going)
 				going = 1
-				world << "<font color='red'><b>The round will start soon.</b></font>"
+				to_chat(world, "<font color='red'><b>The round will start soon.</b></font>")
 
 		if(restart)
-			world << "World restarting due to vote..."
-			feedback_set_details("end_error","restart vote")
-			if(blackbox)	blackbox.save_all_data_to_sql()
+			to_chat(world, "World restarting due to vote...")
+			feedback_set_details("end_error", "restart vote")
+			if(blackbox)
+				blackbox.save_all_data_to_sql()
 			sleep(50)
 			log_game("Rebooting due to restart vote")
 			world.Reboot()
@@ -216,19 +217,21 @@ datum/controller/vote
 						choices.Add("Initiate Crew Transfer", "Continue The Round")
 					else
 						if(get_security_level() == "red" || get_security_level() == "delta")
-							initiator_key << "The current alert status is too high to call for a crew transfer!"
+							to_chat(initiator_key, "The current alert status is too high to call for a crew transfer!")
 							return 0
 						if(ticker.current_state <= 2)
+							to_chat(initiator_key, "The crew transfer button has been disabled!")
 							return 0
-							initiator_key << "The crew transfer button has been disabled!"
 						question = "End the shift?"
 						choices.Add("Initiate Crew Transfer", "Continue The Round")
 				if("custom")
 					question = html_encode(input(usr, "What is the vote for?") as text|null)
-					if(!question)	return 0
+					if(!question)
+						return 0
 					for(var/i = 1, i <= 10, i++)
 						var/option = capitalize(html_encode(input(usr, "Please enter an option or hit cancel to finish") as text|null))
-						if(!option || mode || !usr.client)	break
+						if(!option || mode || !usr.client)
+							break
 						choices.Add(option)
 				else			return 0
 			mode = vote_type
@@ -239,7 +242,7 @@ datum/controller/vote
 				text += "\n[question]"
 
 			log_vote(text)
-			world << "<font color='purple'><b>[text]</b>\nType vote to place your votes.\nYou have [config.vote_period/10] seconds to vote.</font>"
+			to_chat(world, "<font color='purple'><b>[text]</b>\nType vote to place your votes.\nYou have [config.vote_period/10] seconds to vote.</font>")
 			switch(vote_type)
 				if("crew_transfer")
 					world << sound('sound/ambience/alarm4.ogg')
@@ -249,7 +252,7 @@ datum/controller/vote
 					world << sound('sound/ambience/alarm4.ogg')
 			if(mode == "gamemode" && going)
 				going = 0
-				world << "<font color='red'><b>Round start has been delayed.</b></font>"
+				to_chat(world, "<font color='red'><b>Round start has been delayed.</b></font>")
 		/*	if(mode == "crew_transfer" && ooc_allowed)
 				auto_muted = 1
 				ooc_allowed = !( ooc_allowed )
@@ -270,8 +273,6 @@ datum/controller/vote
 				message_admins("OOC has been toggled off automatically.")
 		*/
 
-
-
 			time_remaining = round(config.vote_period/10)
 			return 1
 		return 0
@@ -289,12 +290,15 @@ datum/controller/vote
 
 		. = "<html><head><title>Voting Panel</title></head><body>"
 		if(mode)
-			if(question)	. += "<h2>Vote: '[question]'</h2>"
-			else			. += "<h2>Vote: [capitalize(mode)]</h2>"
+			if(question)
+				. += "<h2>Vote: '[question]'</h2>"
+			else
+				. += "<h2>Vote: [capitalize(mode)]</h2>"
 			. += "Time Left: [time_remaining] s<hr><ul>"
 			for(var/i = 1, i <= choices.len, i++)
 				var/votes = choices[choices[i]]
-				if(!votes)	votes = 0
+				if(!votes)
+					votes = 0
 				if(current_votes[C.ckey] == i)
 					. += "<li><b><a href='?src=\ref[src];vote=[i]'>[choices[i]] ([votes] votes)</a></b></li>"
 				else
@@ -335,7 +339,7 @@ datum/controller/vote
 		return .
 
 
-	Topic(href,href_list[],hsrc)
+	Topic(href, href_list[], hsrc)
 		if(!usr || !usr.client)
 			return	//not necessary but meh...just in-case somebody does something stupid
 		switch(href_list["vote"])
@@ -354,16 +358,16 @@ datum/controller/vote
 					config.allow_vote_mode = !config.allow_vote_mode
 			if("restart")
 				if(config.allow_vote_restart || usr.client.holder)
-					initiate_vote("restart",usr.key)
+					initiate_vote("restart", usr.key)
 			if("gamemode")
 				if(config.allow_vote_mode || usr.client.holder)
-					initiate_vote("gamemode",usr.key)
+					initiate_vote("gamemode", usr.key)
 			if("crew_transfer")
 				if(config.allow_vote_restart || usr.client.holder)
-					initiate_vote("crew_transfer",usr.key)
+					initiate_vote("crew_transfer", usr.key)
 			if("custom")
 				if(usr.client.holder)
-					initiate_vote("custom",usr.key)
+					initiate_vote("custom", usr.key)
 			else
 				submit_vote(usr.ckey, round(text2num(href_list["vote"])))
 		usr.vote()
@@ -374,4 +378,4 @@ datum/controller/vote
 	set name = "Vote"
 
 	if(vote)
-		src << browse(vote.interface(client),"window=vote;can_close=0")
+		src << browse(vote.interface(client), "window=vote;can_close=0")

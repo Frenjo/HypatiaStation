@@ -49,7 +49,6 @@
 	new /obj/item/device/pda/syndicate(src)
 	var/obj/item/device/radio/uplink/U = new(src)
 	U.hidden_uplink.uses = 40
-	return
 
 /obj/structure/closet/syndicate/resources
 	desc = "An old, dusty locker."

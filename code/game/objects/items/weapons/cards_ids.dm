@@ -18,7 +18,7 @@
 	w_class = 1.0
 	var/associated_account_number = 0
 
-	var/list/files = list(  )
+	var/list/files = list()
 
 /obj/item/weapon/card/data
 	name = "data disk"
@@ -34,7 +34,7 @@
 	set category = "Object"
 	set src in usr
 
-	if (t)
+	if(t)
 		src.name = text("data disk- '[]'", t)
 	else
 		src.name = "data disk"
@@ -104,14 +104,13 @@
 		)
 
 
-/obj/item/weapon/card/emag/afterattack(var/obj/item/weapon/O as obj, mob/user as mob)
-
+/obj/item/weapon/card/emag/afterattack(obj/item/weapon/O as obj, mob/user as mob)
 	for(var/type in devices)
-		if(istype(O,type))
+		if(istype(O, type))
 			uses--
 			break
 
-	if(uses<1)
+	if(uses < 1)
 		user.visible_message("[src] fizzles and sparks - it seems it's been used once too often, and is now broken.")
 		user.drop_item()
 		var/obj/item/weapon/card/emag_broken/junk = new(user.loc)
@@ -142,7 +141,7 @@
 /obj/item/weapon/card/id/New()
 	..()
 	spawn(30)
-	if(istype(loc, /mob/living/carbon/human))
+	if(ishuman(loc))
 		blood_type = loc:dna:b_type
 		dna_hash = loc:dna:unique_enzymes
 		fingerprint_hash = md5(loc:dna:uni_identity)
@@ -210,7 +209,7 @@
 	assignment = "Agent"
 	name = "[registered_name]'s ID Card ([assignment])"
 
-/obj/item/weapon/card/id/syndicate/afterattack(var/obj/item/weapon/O as obj, mob/user as mob, proximity)
+/obj/item/weapon/card/id/syndicate/afterattack(obj/item/weapon/O as obj, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	if(istype(O, /obj/item/weapon/card/id))
@@ -265,13 +264,13 @@
 		..()
 
 
-
 /obj/item/weapon/card/id/syndicate_command
 	name = "syndicate ID card"
 	desc = "An ID straight from the Syndicate."
 	registered_name = "Syndicate"
 	assignment = "Syndicate Overlord"
 	access = list(access_syndicate, access_external_airlocks)
+
 
 /obj/item/weapon/card/id/captains_spare
 	name = "captain's spare ID"
@@ -280,10 +279,12 @@
 	item_state = "gold_id"
 	registered_name = "Captain"
 	assignment = "Captain"
-	New()
-		var/datum/job/captain/J = new/datum/job/captain
-		access = J.get_access()
-		..()
+	
+/obj/item/weapon/card/id/captains_spare/New()
+	var/datum/job/captain/J = new/datum/job/captain
+	access = J.get_access()
+	..()
+
 
 /obj/item/weapon/card/id/centcom
 	name = "\improper CentCom. ID"
@@ -291,6 +292,7 @@
 	icon_state = "centcom"
 	registered_name = "Central Command"
 	assignment = "General"
-	New()
-		access = get_all_centcom_access()
-		..()
+	
+/obj/item/weapon/card/id/centcom/New()
+	access = get_all_centcom_access()
+	..()

@@ -25,12 +25,12 @@
   *
   * @return /nanoui Returns the found ui, for null if none exists
   */
-/datum/nanomanager/proc/try_update_ui(var/mob/user, src_object, ui_key, var/datum/nanoui/ui, data)
-	if (isnull(ui)) // no ui has been passed, so we'll search for one
+/datum/nanomanager/proc/try_update_ui(mob/user, src_object, ui_key, datum/nanoui/ui, data)
+	if(isnull(ui)) // no ui has been passed, so we'll search for one
 	{
 		ui = get_open_ui(user, src_object, ui_key)
 	}
-	if (!isnull(ui))		
+	if(!isnull(ui))		
 		// The UI is already open so push the data to it
 		ui.push_data(data)
 		return ui
@@ -46,15 +46,15 @@
   *
   * @return /nanoui Returns the found ui, or null if none exists
   */
-/datum/nanomanager/proc/get_open_ui(var/mob/user, src_object, ui_key)
+/datum/nanomanager/proc/get_open_ui(mob/user, src_object, ui_key)
 	var/src_object_key = "\ref[src_object]"
-	if (isnull(open_uis[src_object_key]) || !istype(open_uis[src_object_key], /list))
+	if(isnull(open_uis[src_object_key]) || !islist(open_uis[src_object_key]))
 		return null
-	else if (isnull(open_uis[src_object_key][ui_key]) || !istype(open_uis[src_object_key][ui_key], /list))
+	else if(isnull(open_uis[src_object_key][ui_key]) || !islist(open_uis[src_object_key][ui_key]))
 		return null
 
-	for (var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
-		if (ui.user == user)
+	for(var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
+		if(ui.user == user)
 			return ui
 
 	return null
@@ -68,12 +68,12 @@
   */
 /datum/nanomanager/proc/update_uis(src_object)
 	var/src_object_key = "\ref[src_object]"
-	if (isnull(open_uis[src_object_key]) || !istype(open_uis[src_object_key], /list))
+	if(isnull(open_uis[src_object_key]) || !islist(open_uis[src_object_key]))
 		return 0	
 
 	var/update_count = 0
-	for (var/ui_key in open_uis[src_object_key])			
-		for (var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
+	for(var/ui_key in open_uis[src_object_key])			
+		for(var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
 			if(ui && ui.src_object && ui.user)
 				ui.process(1)
 				update_count++
@@ -88,13 +88,13 @@
   *
   * @return int The number of uis updated
   */
-/datum/nanomanager/proc/update_user_uis(var/mob/user, src_object = null, ui_key = null)
-	if (isnull(user.open_uis) || !istype(user.open_uis, /list) || open_uis.len == 0)
+/datum/nanomanager/proc/update_user_uis(mob/user, src_object = null, ui_key = null)
+	if(isnull(user.open_uis) || !islist(user.open_uis) || open_uis.len == 0)
 		return 0 // has no open uis
 
 	var/update_count = 0
-	for (var/datum/nanoui/ui in user.open_uis)		
-		if ((isnull(src_object) || !isnull(src_object) && ui.src_object == src_object) && (isnull(ui_key) || !isnull(ui_key) && ui.ui_key == ui_key))
+	for(var/datum/nanoui/ui in user.open_uis)		
+		if((isnull(src_object) || !isnull(src_object) && ui.src_object == src_object) && (isnull(ui_key) || !isnull(ui_key) && ui.ui_key == ui_key))
 			ui.process(1)
 			update_count++
 			
@@ -109,13 +109,13 @@
   *
   * @return int The number of uis closed
   */
-/datum/nanomanager/proc/close_user_uis(var/mob/user, src_object = null, ui_key = null)
-	if (isnull(user.open_uis) || !istype(user.open_uis, /list) || open_uis.len == 0)
+/datum/nanomanager/proc/close_user_uis(mob/user, src_object = null, ui_key = null)
+	if(isnull(user.open_uis) || !islist(user.open_uis) || open_uis.len == 0)
 		return 0 // has no open uis
 
 	var/close_count = 0
-	for (var/datum/nanoui/ui in user.open_uis)		
-		if ((isnull(src_object) || !isnull(src_object) && ui.src_object == src_object) && (isnull(ui_key) || !isnull(ui_key) && ui.ui_key == ui_key))
+	for(var/datum/nanoui/ui in user.open_uis)		
+		if((isnull(src_object) || !isnull(src_object) && ui.src_object == src_object) && (isnull(ui_key) || !isnull(ui_key) && ui.ui_key == ui_key))
 			ui.close()
 			close_count++
 			
@@ -129,11 +129,11 @@
   *
   * @return nothing
   */
-/datum/nanomanager/proc/ui_opened(var/datum/nanoui/ui)
+/datum/nanomanager/proc/ui_opened(datum/nanoui/ui)
 	var/src_object_key = "\ref[ui.src_object]"
-	if (isnull(open_uis[src_object_key]) || !istype(open_uis[src_object_key], /list))
+	if(isnull(open_uis[src_object_key]) || !islist(open_uis[src_object_key]))
 		open_uis[src_object_key] = list(ui.ui_key = list())
-	else if (isnull(open_uis[src_object_key][ui.ui_key]) || !istype(open_uis[src_object_key][ui.ui_key], /list))
+	else if(isnull(open_uis[src_object_key][ui.ui_key]) || !islist(open_uis[src_object_key][ui.ui_key]))
 		open_uis[src_object_key][ui.ui_key] = list();
 
 	ui.user.open_uis.Add(ui)
@@ -149,11 +149,11 @@
   *
   * @return int 0 if no ui was removed, 1 if removed successfully
   */
-/datum/nanomanager/proc/ui_closed(var/datum/nanoui/ui)
+/datum/nanomanager/proc/ui_closed(datum/nanoui/ui)
 	var/src_object_key = "\ref[ui.src_object]"
-	if (isnull(open_uis[src_object_key]) || !istype(open_uis[src_object_key], /list))
+	if(isnull(open_uis[src_object_key]) || !islist(open_uis[src_object_key]))
 		return 0 // wasn't open
-	else if (isnull(open_uis[src_object_key][ui.ui_key]) || !istype(open_uis[src_object_key][ui.ui_key], /list))
+	else if(isnull(open_uis[src_object_key][ui.ui_key]) || !islist(open_uis[src_object_key][ui.ui_key]))
 		return 0 // wasn't open
 
 	processing_uis.Remove(ui)
@@ -171,7 +171,7 @@
   */
 
 // 
-/datum/nanomanager/proc/user_logout(var/mob/user)
+/datum/nanomanager/proc/user_logout(mob/user)
 	return close_user_uis(user)
 
  /**
@@ -183,14 +183,14 @@
   *
   * @return nothing
   */
-/datum/nanomanager/proc/user_transferred(var/mob/oldMob, var/mob/newMob)
-	if (isnull(oldMob.open_uis) || !istype(oldMob.open_uis, /list) || open_uis.len == 0)
+/datum/nanomanager/proc/user_transferred(mob/oldMob, mob/newMob)
+	if(isnull(oldMob.open_uis) || !islist(oldMob.open_uis) || open_uis.len == 0)
 		return 0 // has no open uis
 
-	if (isnull(newMob.open_uis) || !istype(newMob.open_uis, /list))
+	if(isnull(newMob.open_uis) || !islist(newMob.open_uis))
 		newMob.open_uis = list()
 
-	for (var/datum/nanoui/ui in oldMob.open_uis)
+	for(var/datum/nanoui/ui in oldMob.open_uis)
 		ui.user = newMob
 		newMob.open_uis.Add(ui)
 
@@ -216,7 +216,7 @@
 	)
 	
 	var/list/files = null
-	for (var/path in nano_asset_dirs)
+	for(var/path in nano_asset_dirs)
 		files = flist(path)
 		for(var/file in files)
 			if(copytext(file, length(file)) != "/") // files which end in "/" are actually directories, which we want to ignore

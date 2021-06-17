@@ -24,8 +24,8 @@
 /obj/structure/closet/alter_health()
 	return get_turf(src)
 
-/obj/structure/closet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0 || wall_mounted))
+/obj/structure/closet/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	if(air_group || (height == 0 || wall_mounted))
 		return 1
 	return (!density)
 
@@ -145,7 +145,7 @@
 					A.ex_act(severity++)
 				qdel(src)
 
-/obj/structure/closet/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/closet/bullet_act(obj/item/projectile/Proj)
 	health -= Proj.damage
 	..()
 	if(health <= 0)
@@ -180,16 +180,16 @@
 	if(src.opened)
 		if(istype(W, /obj/item/weapon/grab))
 			src.MouseDrop_T(W:affecting, user)      //act like they were dragged onto the closet
-		if(istype(W,/obj/item/tk_grab))
+		if(istype(W, /obj/item/tk_grab))
 			return 0
 		if(istype(W, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/WT = W
-			if(!WT.remove_fuel(0,user))
-				user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
+			if(!WT.remove_fuel(0, user))
+				to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
 				return
 			new /obj/item/stack/sheet/metal(src.loc)
 			for(var/mob/M in viewers(src))
-				M.show_message("<span class='notice'>\The [src] has been cut apart by [user] with \the [WT].</span>", 3, "You hear welding.", 2)
+				M.show_message(SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [WT]."), 3, "You hear welding.", 2)
 			qdel(src)
 			return
 		if(isrobot(user))
@@ -202,12 +202,12 @@
 	else if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		if(!WT.remove_fuel(0,user))
-			user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
+			to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
 			return
 		src.welded = !src.welded
 		src.update_icon()
 		for(var/mob/M in viewers(src))
-			M.show_message("<span class='warning'>[src] has been [welded?"welded shut":"unwelded"] by [user.name].</span>", 3, "You hear welding.", 2)
+			M.show_message(SPAN_WARNING("[src] has been [welded ? "welded shut" : "unwelded"] by [user.name]."), 3, "You hear welding.", 2)
 	else
 		src.attack_hand(user)
 	return
@@ -231,7 +231,7 @@
 		return
 	step_towards(O, src.loc)
 	if(user != O)
-		user.show_viewers("<span class='danger'>[user] stuffs [O] into [src]!</span>")
+		user.show_viewers(SPAN_DANGER("[user] stuffs [O] into [src]!"))
 	src.add_fingerprint(user)
 	return
 
@@ -260,7 +260,7 @@
 /obj/structure/closet/attack_self_tk(mob/user as mob)
 	src.add_fingerprint(user)
 	if(!src.toggle())
-		usr << "<span class='notice'>It won't budge!</span>"
+		to_chat(usr, SPAN_NOTICE("It won't budge!"))
 
 /obj/structure/closet/verb/verb_toggleopen()
 	set src in oview(1)
@@ -274,7 +274,7 @@
 		src.add_fingerprint(usr)
 		src.toggle(usr)
 	else
-		usr << "<span class='warning'>This mob type can't use this verb.</span>"
+		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
 
 /obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()
@@ -286,7 +286,7 @@
 		icon_state = icon_opened
 
 /obj/structure/closet/hear_talk(mob/M as mob, text)
-	for (var/atom/A in src)
+	for(var/atom/A in src)
 		if(istype(A, /obj/))
 			var/obj/O = A
 			O.hear_talk(M, text)

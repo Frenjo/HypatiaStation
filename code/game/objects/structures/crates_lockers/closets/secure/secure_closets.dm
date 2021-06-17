@@ -33,10 +33,10 @@
 	for(var/obj/O in src)
 		O.emp_act(severity)
 	if(!broken)
-		if(prob(50/severity))
+		if(prob(50 / severity))
 			src.locked = !src.locked
 			src.update_icon()
-		if(prob(20/severity) && !opened)
+		if(prob(20 / severity) && !opened)
 			if(!locked)
 				open()
 			else
@@ -46,22 +46,22 @@
 
 /obj/structure/closet/secure_closet/proc/togglelock(mob/user as mob)
 	if(src.opened)
-		user << "<span class='notice'>Close the locker first.</span>"
+		to_chat(user, SPAN_NOTICE("Close the locker first."))
 		return
 	if(src.broken)
-		user << "<span class='warning'>The locker appears to be broken.</span>"
+		to_chat(user, SPAN_WARNING("The locker appears to be broken."))
 		return
 	if(user.loc == src)
-		user << "<span class='notice'>You can't reach the lock from inside.</span>"
+		to_chat(user, SPAN_NOTICE("You can't reach the lock from inside."))
 		return
 	if(src.allowed(user))
 		src.locked = !src.locked
 		for(var/mob/O in viewers(user, 3))
-			if((O.client && !( O.blinded )))
-				O << "<span class='notice'>The locker has been [locked ? null : "un"]locked by [user].</span>"
+			if((O.client && !(O.blinded)))
+				to_chat(O, SPAN_NOTICE("The locker has been [locked ? null : "un"]locked by [user]."))
 		update_icon()
 	else
-		user << "<span class='notice'>Access Denied</span>"
+		to_chat(user, SPAN_NOTICE("Access denied."))
 
 /obj/structure/closet/secure_closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(src.opened)
@@ -69,7 +69,7 @@
 			if(src.large)
 				src.MouseDrop_T(W:affecting, user)	//act like they were dragged onto the closet
 			else
-				user << "<span class='notice'>The locker is too small to stuff [W:affecting] into!</span>"
+				to_chat(user, SPAN_NOTICE("The locker is too small to stuff [W:affecting] into!"))
 		if(isrobot(user))
 			return
 		user.drop_item()
@@ -88,12 +88,12 @@
 			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 			playsound(src, "sparks", 50, 1)
 			for(var/mob/O in viewers(user, 3))
-				O.show_message("<span class='warning'>The locker has been sliced open by [user] with an energy blade!</span>", 1, "You hear metal being sliced and sparks flying.", 2)
+				O.show_message(SPAN_WARNING("The locker has been sliced open by [user] with an energy blade!"), 1, "You hear metal being sliced and sparks flying.", 2)
 		else
 			for(var/mob/O in viewers(user, 3))
-				O.show_message("<span class='warning'>The locker has been broken by [user] with an electromagnetic card!</span>", 1, "You hear a faint electrical spark.", 2)
-	else if(istype(W,/obj/item/weapon/packageWrap) || istype(W,/obj/item/weapon/weldingtool))
-		return ..(W,user)
+				O.show_message(SPAN_WARNING("The locker has been broken by [user] with an electromagnetic card!"), 1, "You hear a faint electrical spark.", 2)
+	else if(istype(W, /obj/item/weapon/packageWrap) || istype(W, /obj/item/weapon/weldingtool))
+		return ..(W, user)
 	else
 		togglelock(user)
 
@@ -119,7 +119,7 @@
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else
-		usr << "<span class='warning'>This mob type can't use this verb.</span>"
+		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
 
 /obj/structure/closet/secure_closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()

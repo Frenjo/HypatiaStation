@@ -432,7 +432,7 @@ periods of time. There is some small print on top, \n \
 
 /obj/structure/closet/crate/large/close()
 	. = ..()
-	if (.)//we can hold up to one large item
+	if(.)//we can hold up to one large item
 		var/found = 0
 		for(var/obj/structure/S in src.loc)
 			if(S == src)
@@ -460,7 +460,7 @@ periods of time. There is some small print on top, \n \
 
 /obj/structure/closet/crate/secure/large/close()
 	. = ..()
-	if (.)//we can hold up to one large item
+	if(.)//we can hold up to one large item
 		var/found = 0
 		for(var/obj/structure/S in src.loc)
 			if(S == src)
@@ -493,13 +493,13 @@ periods of time. There is some small print on top, \n \
 /obj/structure/closet/crate/hydroponics/prespawned
 	//This exists so the prespawned hydro crates spawn with their contents.
 
-	New()
-		..()
-		new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
-		new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
-		new /obj/item/weapon/minihoe(src)
-//		new /obj/item/weapon/weedspray(src)
-//		new /obj/item/weapon/weedspray(src)
-//		new /obj/item/weapon/pestspray(src)
-//		new /obj/item/weapon/pestspray(src)
-//		new /obj/item/weapon/pestspray(src)
+/obj/structure/closet/crate/hydroponics/prespawned/New()
+	..()
+	new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
+	new /obj/item/weapon/reagent_containers/spray/plantbgone(src)
+	new /obj/item/weapon/minihoe(src)
+//	new /obj/item/weapon/weedspray(src)
+//	new /obj/item/weapon/weedspray(src)
+//	new /obj/item/weapon/pestspray(src)
+//	new /obj/item/weapon/pestspray(src)
+//	new /obj/item/weapon/pestspray(src)

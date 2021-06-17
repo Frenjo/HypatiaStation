@@ -6,7 +6,8 @@
 	set name = "Restart Controller"
 	set desc = "Restart one of the various periodic loop controllers for the game (be careful!)"
 
-	if(!holder)	return
+	if(!holder)
+		return
 	usr = null
 	qdel(src)
 	switch(controller)
@@ -22,7 +23,8 @@
 	set name = "Debug Controller"
 	set desc = "Debug the various periodic loop controllers for the game (be careful!)"
 
-	if(!holder)	return
+	if(!holder)
+		return
 	switch(controller)
 		if("Master")
 			debug_variables(master_controller)
@@ -43,7 +45,6 @@
 			debug_variables(radio_controller)
 			feedback_add_details("admin_verb", "DRadio")
 		if("Supply Shuttle")
-			//debug_variables(supply_shuttle)
 			debug_variables(supply_controller) // Edited this to reflect 'shuttles' port. -Frenjo
 			feedback_add_details("admin_verb", "DSupply")
 		if("Emergency Shuttle")

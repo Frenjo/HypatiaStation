@@ -20,7 +20,7 @@
 	var/amt_adamantine = 0
 	var/amt_mythril = 0
 
-	for (var/obj/item/weapon/coin/C in contents)
+	for(var/obj/item/weapon/coin/C in contents)
 		if(istype(C, /obj/item/weapon/coin/diamond))
 			amt_diamond++
 		if(istype(C, /obj/item/weapon/coin/plasma))
@@ -63,16 +63,16 @@
 
 /obj/item/weapon/moneybag/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
-	if (istype(W, /obj/item/weapon/coin))
+	if(istype(W, /obj/item/weapon/coin))
 		var/obj/item/weapon/coin/C = W
-		user << "<span class='info'>You add the [C.name] into the bag.</span>"
+		to_chat(user, SPAN_INFO("You add the [C.name] into the bag."))
 		usr.drop_item()
 		contents += C
-	if (istype(W, /obj/item/weapon/moneybag))
+	if(istype(W, /obj/item/weapon/moneybag))
 		var/obj/item/weapon/moneybag/C = W
-		for (var/obj/O in C.contents)
+		for(var/obj/O in C.contents)
 			contents += O;
-		user << "<span class='info'>You empty the [C.name] into the bag.</span>"
+		to_chat(user, SPAN_INFO("You empty the [C.name] into the bag."))
 	return
 
 /obj/item/weapon/moneybag/Topic(href, href_list)
@@ -80,6 +80,7 @@
 		return
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
+
 	if(href_list["remove"])
 		var/obj/item/weapon/coin/COIN
 		switch(href_list["remove"])

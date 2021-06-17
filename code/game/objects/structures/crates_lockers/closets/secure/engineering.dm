@@ -18,6 +18,7 @@
 		new /obj/item/clothing/tie/storage/brown_vest(src)
 	else
 		new /obj/item/clothing/tie/storage/webbing(src)
+
 	new /obj/item/blueprints(src)
 	new /obj/item/clothing/under/rank/chief_engineer(src)
 	new /obj/item/clothing/head/hardhat/white(src)
@@ -32,7 +33,7 @@
 	new /obj/item/device/multitool(src)
 	new /obj/item/device/flash(src)
 	new /obj/item/taperoll/engineering(src)
-	return
+
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "Electrical Supplies"
@@ -61,7 +62,7 @@
 	// Adds the new circuit storage boxes to these, I can't think of anywhere better to put them except laying around. -Frenjo
 	new /obj/item/weapon/storage/box/circuits(src)
 	new /obj/item/weapon/storage/box/circuits(src)
-	return
+
 
 /obj/structure/closet/secure_closet/engineering_welding
 	name = "Welding Supplies"
@@ -84,7 +85,7 @@
 	new /obj/item/weapon/weldpack(src)
 	new /obj/item/weapon/weldpack(src)
 	new /obj/item/weapon/weldpack(src)
-	return
+
 
 /obj/structure/closet/secure_closet/engineering_personal
 	name = "Engineer's Locker"
@@ -102,10 +103,11 @@
 		new /obj/item/weapon/storage/backpack/industrial(src)
 	else
 		new /obj/item/weapon/storage/backpack/satchel_eng(src)
-	if (prob(70))
+	if(prob(70))
 		new /obj/item/clothing/tie/storage/brown_vest(src)
 	else
 		new /obj/item/clothing/tie/storage/webbing(src)
+
 	new /obj/item/weapon/storage/toolbox/mechanical(src)
 	new /obj/item/device/radio/headset/headset_eng(src)
 	new /obj/item/clothing/suit/storage/hazardvest(src)
@@ -113,7 +115,7 @@
 	new /obj/item/clothing/glasses/meson(src)
 	new /obj/item/weapon/cartridge/engineering(src)
 	new /obj/item/taperoll/engineering(src)
-	return
+
 
 /obj/structure/closet/secure_closet/atmos_personal
 	name = "Technician's Locker"
@@ -135,6 +137,7 @@
 		new /obj/item/clothing/tie/storage/brown_vest(src)
 	else
 		new /obj/item/clothing/tie/storage/webbing(src)
+
 	new /obj/item/clothing/suit/fire/firefighter(src)
 	new /obj/item/device/flashlight(src)
 	new /obj/item/weapon/extinguisher(src)
@@ -143,4 +146,3 @@
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/weapon/cartridge/atmos(src)
 	new /obj/item/taperoll/engineering(src)
-	return

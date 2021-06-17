@@ -160,4 +160,3 @@
 	new /obj/item/clothing/suit/space/mailmanvoid(src)
 	new /obj/item/clothing/head/helmet/space/mailmanvoid(src)
 	new /obj/item/clothing/glasses/science(src)
-	return

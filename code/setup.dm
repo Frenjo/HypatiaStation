@@ -485,7 +485,6 @@ var/static/list/scarySounds = list('sound/weapons/thudswoosh.ogg','sound/weapons
 #define TRANSITIONEDGE	7 //Distance from edge to move to another z-level
 
 var/list/liftable_structures = list(\
-
 	/obj/machinery/autolathe, \
 	/obj/machinery/constructable_frame, \
 	/obj/machinery/hydroponics, \

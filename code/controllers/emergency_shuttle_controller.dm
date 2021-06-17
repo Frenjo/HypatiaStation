@@ -27,29 +27,29 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	var/datum/announcement/priority/emergency_shuttle_recalled = new(0, new_sound = sound('sound/AI/shuttlerecalled.ogg'))*/
 
 /datum/emergency_shuttle_controller/proc/process()
-	if (wait_for_launch)
-		if (auto_recall && world.time >= auto_recall_time)
+	if(wait_for_launch)
+		if(auto_recall && world.time >= auto_recall_time)
 			recall()
-		if (world.time >= launch_time)	//time to launch the shuttle
+		if(world.time >= launch_time)	//time to launch the shuttle
 			stop_launch_countdown()
 
-			if (!shuttle.location)	//leaving from the station
+			if(!shuttle.location)	//leaving from the station
 				//launch the pods!
-				for (var/datum/shuttle/ferry/escape_pod/pod in escape_pods)
-					if (!pod.arming_controller || pod.arming_controller.armed)
+				for(var/datum/shuttle/ferry/escape_pod/pod in escape_pods)
+					if(!pod.arming_controller || pod.arming_controller.armed)
 						pod.launch(src)
 
-			if (autopilot)
+			if(autopilot)
 				shuttle.launch(src)
 
 //called when the shuttle has arrived.
 
 /datum/emergency_shuttle_controller/proc/shuttle_arrived()
-	if (!shuttle.location)	//at station
-		if (autopilot)
+	if(!shuttle.location)	//at station
+		if(autopilot)
 			set_launch_countdown(SHUTTLE_LEAVETIME)	//get ready to return
 
-			if (evac)
+			if(evac)
 				//captain_announce("The emergency shuttle has docked with the station. You have approximately [round(estimate_launch_time()/60,1)] minutes to board the Emergency Shuttle.")
 				captain_announce("The emergency shuttle has docked with the station. You have approximately [round(estimate_launch_time()/60,1)] minutes to board the emergency shuttle.")
 				world << sound('sound/AI/shuttledock.ogg') // Updated to reflect 'shuttles' port. -Frenjo
@@ -58,15 +58,15 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 				world << sound('sound/AI/shuttledock2.ogg') // Updated to reflect 'shuttles' port. -Frenjo
 
 		//arm the escape pods
-		if (evac)
-			for (var/datum/shuttle/ferry/escape_pod/pod in escape_pods)
-				if (pod.arming_controller)
+		if(evac)
+			for(var/datum/shuttle/ferry/escape_pod/pod in escape_pods)
+				if(pod.arming_controller)
 					pod.arming_controller.arm()
 
 //begins the launch countdown and sets the amount of time left until launch
 /datum/emergency_shuttle_controller/proc/set_launch_countdown(var/seconds)
 	wait_for_launch = 1
-	launch_time = world.time + seconds*10
+	launch_time = world.time + seconds * 10
 
 /datum/emergency_shuttle_controller/proc/stop_launch_countdown()
 	wait_for_launch = 0
@@ -241,16 +241,15 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 /obj/effect/bgstar/New()
 	..()
-	pixel_x += rand(-2,30)
-	pixel_y += rand(-2,30)
+	pixel_x += rand(-2, 30)
+	pixel_y += rand(-2, 30)
 	var/starnum = pick("1", "1", "1", "2", "3", "4")
 
-	icon_state = "star"+starnum
+	icon_state = "star" + starnum
 
 	speed = rand(2, 5)
 
 /obj/effect/bgstar/proc/startmove()
-
 	while(src)
 		sleep(speed)
 		step(src, direction)

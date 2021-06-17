@@ -143,7 +143,7 @@
 
 		//On or off
 		dat += text("Machine is currently ")
-		if(machine.on==1)
+		if(machine.on == 1)
 			dat += text("<A href='?src=\ref[src];set_on=off'>On</A> ")
 		else
 			dat += text("<A href='?src=\ref[src];set_on=on'>Off</A> ")
@@ -382,6 +382,7 @@
 					else
 						on = 0
 					continue
+
 				// Added these as their own naturally spawning ores also, so you can either find them, make them, or both.
 				if(selected == ORE_PROC_ADAMANTINE)
 					if(ore_adamantine > 0)
@@ -466,6 +467,7 @@
 				break
 			else
 				break
+
 		for(i = 0; i < 10; i++)
 			var/obj/item/O
 			O = locate(/obj/item, input.loc)
@@ -473,53 +475,53 @@
 				if(istype(O, /obj/item/weapon/ore/iron))
 					ore_iron++;
 					O.loc = null
-					//del(O)
+					qdel(O)
 					continue
 				if(istype(O, /obj/item/weapon/ore/glass))
 					ore_glass++;
 					O.loc = null
-					//del(O)
+					qdel(O)
 					continue
 				if(istype(O, /obj/item/weapon/ore/diamond))
 					ore_diamond++;
 					O.loc = null
-					//del(O)
+					qdel(O)
 					continue
 				if(istype(O, /obj/item/weapon/ore/plasma))
 					ore_plasma++
 					O.loc = null
-					//del(O)
+					qdel(O)
 					continue
 				if(istype(O, /obj/item/weapon/ore/gold))
 					ore_gold++
 					O.loc = null
-					//del(O)
+					qdel(O)
 					continue
 				if(istype(O, /obj/item/weapon/ore/silver))
 					ore_silver++
 					O.loc = null
-					//del(O)
+					qdel(O)
 					continue
 				if(istype(O, /obj/item/weapon/ore/uranium))
 					ore_uranium++
 					O.loc = null
-					//del(O)
+					qdel(O)
 					continue
 				if(istype(O, /obj/item/weapon/ore/clown))
 					ore_clown++
 					O.loc = null
-					//del(O)
+					qdel(O)
 					continue
 
 				if(istype(O, /obj/item/weapon/ore/adamantine))
 					ore_adamantine++
 					O.loc = null
-					//del(O)
+					qdel(O)
 					continue
 				if(istype(O, /obj/item/weapon/ore/mythril))
 					ore_mythril++
 					O.loc = null
-					//del(O)
+					qdel(O)
 					continue
 
 				O.loc = src.output.loc

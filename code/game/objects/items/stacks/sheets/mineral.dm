@@ -144,10 +144,10 @@ var/global/list/datum/stack_recipe/plastic_recipes = list ( \
 	new/datum/stack_recipe("plastic bag", /obj/item/weapon/storage/bag/plasticbag, 3, on_floor = 1), \
 	)
 
-/obj/item/stack/sheet/mineral/plastic/New(var/loc, var/amount=null)
+/obj/item/stack/sheet/mineral/plastic/New(loc, amount = null)
 	recipes = plastic_recipes
-	pixel_x = rand(0,4)-4
-	pixel_y = rand(0,4)-4
+	pixel_x = rand(0, 4) - 4
+	pixel_y = rand(0, 4) - 4
 	..()
 
 /*
@@ -169,10 +169,10 @@ var/global/list/datum/stack_recipe/gold_recipes = list ( \
 	new/datum/stack_recipe("golden door", /obj/structure/mineral_door/gold, 10, one_per_turf = 1, on_floor = 1), \
 	)
 
-/obj/item/stack/sheet/mineral/gold/New(var/loc, var/amount=null)
+/obj/item/stack/sheet/mineral/gold/New(loc, amount = null)
 	recipes = gold_recipes
-	pixel_x = rand(0,4)-4
-	pixel_y = rand(0,4)-4
+	pixel_x = rand(0, 4) - 4
+	pixel_y = rand(0, 4) - 4
 	..()
 
 /*
@@ -194,10 +194,10 @@ var/global/list/datum/stack_recipe/silver_recipes = list ( \
 	new/datum/stack_recipe("silver door", /obj/structure/mineral_door/silver, 10, one_per_turf = 1, on_floor = 1), \
 	)
 
-/obj/item/stack/sheet/mineral/silver/New(var/loc, var/amount=null)
+/obj/item/stack/sheet/mineral/silver/New(loc, amount = null)
 	recipes = silver_recipes
-	pixel_x = rand(0,4)-4
-	pixel_y = rand(0,4)-4
+	pixel_x = rand(0, 4) - 4
+	pixel_y = rand(0, 4) - 4
 	..()
 
 /*
@@ -215,9 +215,9 @@ var/global/list/datum/stack_recipe/silver_recipes = list ( \
 	perunit = 2000
 	sheettype = "clown"
 
-/obj/item/stack/sheet/mineral/clown/New(var/loc, var/amount=null)
-	pixel_x = rand(0,4)-4
-	pixel_y = rand(0,4)-4
+/obj/item/stack/sheet/mineral/clown/New(loc, amount = null)
+	pixel_x = rand(0, 4) - 4
+	pixel_y = rand(0, 4) - 4
 	..()
 
 

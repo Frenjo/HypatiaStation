@@ -85,7 +85,7 @@
 
 	var/tmp/last_object
 
-/datum/controller/process/New(var/datum/controller/processScheduler/scheduler)
+/datum/controller/process/New(datum/controller/processScheduler/scheduler)
 	..()
 	main = scheduler
 	previousStatus = "idle"
@@ -162,7 +162,7 @@
 		lastObjType = lastObj.type
 
 	// If world.timeofday has rolled over, then we need to adjust.
-	if (world.timeofday < run_start)
+	if(world.timeofday < run_start)
 		run_start -= 864000
 
 	var/msg = "[name] process hung at tick #[ticks]. Process was unresponsive for [(world.timeofday - run_start) / 10] seconds and was restarted. Last task: [last_task]. Last Object Type: [lastObjType]"
@@ -173,7 +173,7 @@
 	main.restartProcess(src.name)
 
 /datum/controller/process/proc/kill()
-	if (!killed)
+	if(!killed)
 		var/msg = "[name] process was killed at tick #[ticks]."
 		logTheThing("debug", null, null, msg)
 		logTheThing("diary", null, null, msg, "debug")
@@ -187,8 +187,8 @@
 		// This should del
 		qdel(src)
 
-/datum/controller/process/proc/scheck(var/tickId = 0)
-	if (killed)
+/datum/controller/process/proc/scheck(tickId = 0)
+	if(killed)
 		// The kill proc is the only place where killed is set.
 		// The kill proc should have deleted this datum, and all sleeping procs that are
 		// owned by it.
@@ -196,16 +196,16 @@
 
 	// For each tick the process defers, it increments the cpu_defer_count so we don't
 	// defer indefinitely
-	if (world.cpu >= cpu_threshold + cpu_defer_count * 10)
+	if(world.cpu >= cpu_threshold + cpu_defer_count * 10)
 		sleep(1)
 		cpu_defer_count++
 		last_slept = world.timeofday
 	else
 		// If world.timeofday has rolled over, then we need to adjust.
-		if (world.timeofday < last_slept)
+		if(world.timeofday < last_slept)
 			last_slept -= 864000
 
-		if (world.timeofday > last_slept + sleep_interval)
+		if(world.timeofday > last_slept + sleep_interval)
 			// If we haven't slept in sleep_interval ticks, sleep to allow other work to proceed.
 			sleep(0)
 			last_slept = world.timeofday
@@ -217,7 +217,7 @@
 
 	var/elapsedTime = getElapsedTime()
 
-	if (elapsedTime > hang_restart_time)
+	if(elapsedTime > hang_restart_time)
 		hung()
 	else if (elapsedTime > hang_alert_time)
 		setStatus(PROCESS_STATUS_PROBABLY_HUNG)
@@ -225,7 +225,7 @@
 		setStatus(PROCESS_STATUS_MAYBE_HUNG)
 
 /datum/controller/process/proc/getElapsedTime()
-	if (world.timeofday < run_start)
+	if(world.timeofday < run_start)
 		return world.timeofday - (run_start - 864000)
 	return world.timeofday - run_start
 
@@ -250,7 +250,7 @@
 /datum/controller/process/proc/getStatus()
 	return status
 
-/datum/controller/process/proc/getStatusText(var/s = 0)
+/datum/controller/process/proc/getStatusText(s = 0)
 	if(!s)
 		s = status
 	switch(s)
@@ -275,15 +275,15 @@
 /datum/controller/process/proc/getPreviousStatusText()
 	return getStatusText(previousStatus)
 
-/datum/controller/process/proc/setStatus(var/newStatus)
+/datum/controller/process/proc/setStatus(newStatus)
 	previousStatus = status
 	status = newStatus
 
-/datum/controller/process/proc/setLastTask(var/task, var/object)
+/datum/controller/process/proc/setLastTask(task, object)
 	last_task = task
 	last_object = object
 
-/datum/controller/process/proc/_copyStateFrom(var/datum/controller/process/target)
+/datum/controller/process/proc/_copyStateFrom(datum/controller/process/target)
 	main = target.main
 	name = target.name
 	schedule_interval = target.schedule_interval
@@ -296,7 +296,7 @@
 	last_object = target.last_object
 	copyStateFrom(target)
 
-/datum/controller/process/proc/copyStateFrom(var/datum/controller/process/target)
+/datum/controller/process/proc/copyStateFrom(datum/controller/process/target)
 
 /datum/controller/process/proc/onKill()
 

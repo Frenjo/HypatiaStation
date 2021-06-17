@@ -41,8 +41,8 @@
 			if(player.assigned_role == job)
 				possible_headrevs -= player
 
-	for (var/i = 1 to max_headrevs)
-		if (possible_headrevs.len == 0)
+	for(var/i = 1 to max_headrevs)
+		if(possible_headrevs.len == 0)
 			break
 		var/datum/mind/lenin = pick(possible_headrevs)
 		possible_headrevs -= lenin
@@ -146,17 +146,17 @@
 /datum/game_mode/revolution/rp_revolution/declare_completion()
 	if(!config.objectives_disabled)
 		if(finished == 1)
-			feedback_set_details("round_end_result","win - heads overthrown")
+			feedback_set_details("round_end_result", "win - heads overthrown")
 			world << "\red <FONT size = 3><B> The heads of staff were overthrown! The revolutionaries win!</B></FONT>"
 		else if(finished == 2)
-			feedback_set_details("round_end_result","loss - revolution stopped")
+			feedback_set_details("round_end_result", "loss - revolution stopped")
 			world << "\red <FONT size = 3><B> The heads of staff managed to stop the revolution!</B></FONT>"
 		..()
 	return 1
 
 /datum/game_mode/revolution/proc/is_convertible(mob/M)
-	for(var/obj/item/weapon/implant/loyalty/L in M)//Checking that there is a loyalty implant in the contents
-		if(L.imp_in == M)//Checking that it's actually implanted
+	for(var/obj/item/weapon/implant/loyalty/L in M)	//Checking that there is a loyalty implant in the contents
+		if(L.imp_in == M)	//Checking that it's actually implanted
 			return 0
 	return 1
 
@@ -243,8 +243,8 @@
 	return ..()
 
 /datum/game_mode/revolution/rp_revolution/proc/command_report(message)
-	for (var/obj/machinery/computer/communications/comm in world)
-		if (!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
+	for(var/obj/machinery/computer/communications/comm in world)
+		if(!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
 			var/obj/item/weapon/paper/intercept = new /obj/item/weapon/paper(comm.loc)
 			intercept.name = "paper - 'Cent. Com. Announcement'"
 			intercept.info = message

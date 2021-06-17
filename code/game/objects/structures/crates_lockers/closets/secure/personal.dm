@@ -6,13 +6,11 @@
 
 /obj/structure/closet/secure_closet/personal/New()
 	..()
-	spawn(2)
-		if(prob(50))
-			new /obj/item/weapon/storage/backpack(src)
-		else
-			new /obj/item/weapon/storage/backpack/satchel_norm(src)
-		new /obj/item/device/radio/headset(src)
-	return
+	if(prob(50))
+		new /obj/item/weapon/storage/backpack(src)
+	else
+		new /obj/item/weapon/storage/backpack/satchel_norm(src)
+	new /obj/item/device/radio/headset(src)
 
 
 /obj/structure/closet/secure_closet/personal/patient
@@ -20,14 +18,11 @@
 
 /obj/structure/closet/secure_closet/personal/patient/New()
 	..()
-	spawn(4)
-		// Not really the best way to do this, but it's better than "contents = list()"!
-		for(var/atom/movable/AM in contents)
-			qdel(AM)
-		new /obj/item/clothing/under/color/white(src)
-		new /obj/item/clothing/shoes/white(src)
-	return
-
+	// Not really the best way to do this, but it's better than "contents = list()"!
+	for(var/atom/movable/AM in contents)
+		qdel(AM)
+	new /obj/item/clothing/under/color/white(src)
+	new /obj/item/clothing/shoes/white(src)
 
 
 /obj/structure/closet/secure_closet/personal/cabinet
@@ -52,13 +47,11 @@
 
 /obj/structure/closet/secure_closet/personal/cabinet/New()
 	..()
-	spawn(4)
-		// Not really the best way to do this, but it's better than "contents = list()"!
-		for(var/atom/movable/AM in contents)
-			qdel(AM)
-		new /obj/item/weapon/storage/backpack/satchel/withwallet(src)
-		new /obj/item/device/radio/headset(src)
-	return
+	// Not really the best way to do this, but it's better than "contents = list()"!
+	for(var/atom/movable/AM in contents)
+		qdel(AM)
+	new /obj/item/weapon/storage/backpack/satchel/withwallet(src)
+	new /obj/item/device/radio/headset(src)
 
 /obj/structure/closet/secure_closet/personal/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(src.opened)
@@ -69,7 +62,7 @@
 			W.loc = src.loc
 	else if(istype(W, /obj/item/weapon/card/id))
 		if(src.broken)
-			user << "\red It appears to be broken."
+			to_chat(user, SPAN_WARNING("It appears to be broken."))
 			return
 		var/obj/item/weapon/card/id/I = W
 		if(!I || !I.registered_name)
@@ -99,7 +92,7 @@
 			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 			playsound(src, "sparks", 50, 1)
 			for(var/mob/O in viewers(user, 3))
-				O.show_message("\blue The locker has been sliced open by [user] with an energy blade!", 1, "\red You hear metal being sliced and sparks flying.", 2)
+				O.show_message(SPAN_INFO("The locker has been sliced open by [user] with an energy blade!"), 1, SPAN_WARNING("You hear metal being sliced and sparks flying."), 2)
 	else
 		to_chat(user, SPAN_WARNING("Access denied."))
 	return

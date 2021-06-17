@@ -17,19 +17,19 @@ var/global/list/spawned_surprises = list()
 
 var/global/max_secret_rooms = 3
 
-proc/spawn_room(var/atom/start_loc,var/x_size,var/y_size,var/wall,var/floor , var/clean = 0 , var/name)
-	var/list/room_turfs = list("walls"=list(),"floors"=list())
+proc/spawn_room(atom/start_loc, x_size, y_size, wall, floor, clean = 0, name)
+	var/list/room_turfs = list("walls" = list(), "floors" = list())
 
 	//world << "Room spawned at [start_loc.x],[start_loc.y],[start_loc.z]"
 	if(!wall)
-		wall = pick(/turf/simulated/wall/r_wall,/turf/simulated/wall,/obj/effect/alien/resin)
+		wall = pick(/turf/simulated/wall/r_wall, /turf/simulated/wall, /obj/effect/alien/resin)
 	if(!floor)
-		floor = pick(/turf/simulated/floor,/turf/simulated/floor/engine)
+		floor = pick(/turf/simulated/floor, /turf/simulated/floor/engine)
 
-	for(var/x = 0,x<x_size,x++)
-		for(var/y = 0,y<y_size,y++)
+	for(var/x = 0, x < x_size, x++)
+		for(var/y = 0, y < y_size, y++)
 			var/turf/T
-			var/cur_loc = locate(start_loc.x+x,start_loc.y+y,start_loc.z)
+			var/cur_loc = locate(start_loc.x + x, start_loc.y + y, start_loc.z)
 			if(clean)
 				for(var/O in cur_loc)
 					qdel(O)
@@ -41,8 +41,7 @@ proc/spawn_room(var/atom/start_loc,var/x_size,var/y_size,var/wall,var/floor , va
 				A.name = "Artifact Room #[start_loc.x][start_loc.y][start_loc.z]"
 
 
-
-			if(x == 0 || x==x_size-1 || y==0 || y==y_size-1)
+			if(x == 0 || x == x_size - 1 || y == 0 || y == y_size - 1)
 				if(wall == /obj/effect/alien/resin)
 					T = new floor(cur_loc)
 					new /obj/effect/alien/resin(T)
@@ -55,46 +54,40 @@ proc/spawn_room(var/atom/start_loc,var/x_size,var/y_size,var/wall,var/floor , va
 
 			A.contents += T
 
-
 	return room_turfs
 
 proc/admin_spawn_room_at_pos()
 	var/wall
 	var/floor
-	var/x = input("X position","X pos",usr.x)
-	var/y = input("Y position","Y pos",usr.y)
-	var/z = input("Z position","Z pos",usr.z)
-	var/x_len = input("Desired length.","Length",5)
-	var/y_len = input("Desired width.","Width",5)
-	var/clean = input("Delete existing items in area?" , "Clean area?", 0)
-	switch(alert("Wall type",null,"Reinforced wall","Regular wall","Resin wall"))
+	var/x = input("X position", "X pos", usr.x)
+	var/y = input("Y position", "Y pos", usr.y)
+	var/z = input("Z position", "Z pos", usr.z)
+	var/x_len = input("Desired length.", "Length", 5)
+	var/y_len = input("Desired width.", "Width", 5)
+	var/clean = input("Delete existing items in area?", "Clean area?", 0)
+	switch(alert("Wall type", null,"Reinforced wall", "Regular wall", "Resin wall"))
 		if("Reinforced wall")
-			wall=/turf/simulated/wall/r_wall
+			wall = /turf/simulated/wall/r_wall
 		if("Regular wall")
-			wall=/turf/simulated/wall
+			wall = /turf/simulated/wall
 		if("Resin wall")
-			wall=/obj/effect/alien/resin
-	switch(alert("Floor type",null,"Regular floor","Reinforced floor"))
+			wall = /obj/effect/alien/resin
+	switch(alert("Floor type", null, "Regular floor", "Reinforced floor"))
 		if("Regular floor")
-			floor=/turf/simulated/floor
+			floor = /turf/simulated/floor
 		if("Reinforced floor")
-			floor=/turf/simulated/floor/engine
+			floor = /turf/simulated/floor/engine
 	if(x && y && z && wall && floor && x_len && y_len)
-		spawn_room(locate(x,y,z),x_len,y_len,wall,floor,clean)
+		spawn_room(locate(x, y, z), x_len, y_len, wall, floor, clean)
 	return
 
 
-
-
-
-
-proc/make_mining_asteroid_secret(var/size = 5)
+proc/make_mining_asteroid_secret(size = 5)
 	var/valid = 0
 	var/turf/T = null
 	var/sanity = 0
 	var/list/room = null
 	var/list/turfs = null
-
 
 	turfs = get_area_turfs(/area/mine/unexplored)
 
@@ -107,16 +100,16 @@ proc/make_mining_asteroid_secret(var/size = 5)
 		if(sanity > 100)
 			return 0
 
-		T=pick(turfs)
+		T = pick(turfs)
 		if(!T)
 			return 0
 
 		var/list/surroundings = list()
 
-		surroundings += range(7, locate(T.x,T.y,T.z))
-		surroundings += range(7, locate(T.x+size,T.y,T.z))
-		surroundings += range(7, locate(T.x,T.y+size,T.z))
-		surroundings += range(7, locate(T.x+size,T.y+size,T.z))
+		surroundings += range(7, locate(T.x, T.y, T.z))
+		surroundings += range(7, locate(T.x + size, T.y, T.z))
+		surroundings += range(7, locate(T.x, T.y + size, T.z))
+		surroundings += range(7, locate(T.x + size, T.y + size, T.z))
 
 		if(locate(/area/mine/explored) in surroundings)			// +5s are for view range
 			valid = 0
@@ -137,7 +130,7 @@ proc/make_mining_asteroid_secret(var/size = 5)
 	if(!T)
 		return 0
 
-	room = spawn_room(T,size,size,,,1)
+	room = spawn_room(T, size, size, , , 1)
 
 	if(room)
 		T = pick(room["floors"])

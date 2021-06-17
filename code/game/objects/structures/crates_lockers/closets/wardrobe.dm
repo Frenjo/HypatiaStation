@@ -26,7 +26,6 @@
 	new /obj/item/clothing/head/beret/sec(src)
 	new /obj/item/clothing/head/beret/sec(src)
 	new /obj/item/clothing/head/beret/sec(src)
-	return
 
 
 /obj/structure/closet/wardrobe/pink
@@ -42,7 +41,7 @@
 	new /obj/item/clothing/shoes/brown(src)
 	new /obj/item/clothing/shoes/brown(src)
 	new /obj/item/clothing/shoes/brown(src)
-	return
+
 
 /obj/structure/closet/wardrobe/black
 	name = "black wardrobe"
@@ -60,7 +59,6 @@
 	new /obj/item/clothing/head/that(src)
 	new /obj/item/clothing/head/that(src)
 	new /obj/item/clothing/head/that(src)
-	return
 
 
 /obj/structure/closet/wardrobe/chaplain_black
@@ -82,7 +80,6 @@
 	new /obj/item/weapon/storage/backpack/cultpack (src)
 	new /obj/item/weapon/storage/fancy/candle_box(src)
 	new /obj/item/weapon/storage/fancy/candle_box(src)
-	return
 
 
 /obj/structure/closet/wardrobe/green
@@ -98,7 +95,7 @@
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/shoes/black(src)
-	return
+
 
 /obj/structure/closet/wardrobe/xenos
 	name = "xenos wardrobe"
@@ -112,7 +109,6 @@
 	new /obj/item/clothing/shoes/sandal(src)
 	new /obj/item/clothing/shoes/sandal(src)
 	new /obj/item/clothing/shoes/sandal(src)
-	return
 
 
 /obj/structure/closet/wardrobe/orange
@@ -129,7 +125,6 @@
 	new /obj/item/clothing/shoes/orange(src)
 	new /obj/item/clothing/shoes/orange(src)
 	new /obj/item/clothing/shoes/orange(src)
-	return
 
 
 /obj/structure/closet/wardrobe/yellow
@@ -145,7 +140,6 @@
 	new /obj/item/clothing/shoes/orange(src)
 	new /obj/item/clothing/shoes/orange(src)
 	new /obj/item/clothing/shoes/orange(src)
-	return
 
 
 /obj/structure/closet/wardrobe/atmospherics_yellow
@@ -167,8 +161,6 @@
 	new /obj/item/clothing/head/beret/eng(src)
 	new /obj/item/clothing/head/beret/eng(src)
 	new /obj/item/clothing/head/beret/eng(src)
-	return
-
 
 
 /obj/structure/closet/wardrobe/engineering_yellow
@@ -190,7 +182,6 @@
 	new /obj/item/clothing/head/beret/eng(src)
 	new /obj/item/clothing/head/beret/eng(src)
 	new /obj/item/clothing/head/beret/eng(src)
-	return
 
 
 /obj/structure/closet/wardrobe/white
@@ -206,7 +197,6 @@
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
-	return
 
 
 /obj/structure/closet/wardrobe/pjs
@@ -224,7 +214,6 @@
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/slippers(src)
 	new /obj/item/clothing/shoes/slippers(src)
-	return
 
 
 /obj/structure/closet/wardrobe/toxins_white
@@ -246,7 +235,6 @@
 	new /obj/item/clothing/shoes/slippers(src)
 	new /obj/item/clothing/shoes/slippers(src)
 	new /obj/item/clothing/shoes/slippers(src)
-	return
 
 
 /obj/structure/closet/wardrobe/robotics_black
@@ -264,7 +252,6 @@
 	new /obj/item/clothing/shoes/black(src)
 	new /obj/item/clothing/gloves/black(src)
 	new /obj/item/clothing/gloves/black(src)
-	return
 
 
 /obj/structure/closet/wardrobe/chemistry_white
@@ -280,7 +267,6 @@
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/suit/storage/labcoat/chemist(src)
 	new /obj/item/clothing/suit/storage/labcoat/chemist(src)
-	return
 
 
 /obj/structure/closet/wardrobe/genetics_white
@@ -296,7 +282,6 @@
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/suit/storage/labcoat/genetics(src)
 	new /obj/item/clothing/suit/storage/labcoat/genetics(src)
-	return
 
 
 /obj/structure/closet/wardrobe/virology_white
@@ -314,7 +299,6 @@
 	new /obj/item/clothing/suit/storage/labcoat/virologist(src)
 	new /obj/item/clothing/mask/surgical(src)
 	new /obj/item/clothing/mask/surgical(src)
-	return
 
 
 /obj/structure/closet/wardrobe/medic_white
@@ -335,7 +319,6 @@
 	new /obj/item/clothing/suit/storage/labcoat(src)
 	new /obj/item/clothing/mask/surgical(src)
 	new /obj/item/clothing/mask/surgical(src)
-	return
 
 
 /obj/structure/closet/wardrobe/grey
@@ -354,7 +337,6 @@
 	new /obj/item/clothing/head/soft/grey(src)
 	new /obj/item/clothing/head/soft/grey(src)
 	new /obj/item/clothing/head/soft/grey(src)
-	return
 
 
 /obj/structure/closet/wardrobe/mixed
@@ -379,7 +361,7 @@
 	new /obj/item/clothing/shoes/purple(src)
 	new /obj/item/clothing/shoes/red(src)
 	new /obj/item/clothing/shoes/leather(src)
-	return
+
 
 /obj/structure/closet/wardrobe/tactical
 	name = "tactical equipment"
@@ -396,4 +378,4 @@
 	new /obj/item/weapon/storage/belt/security/tactical(src)
 	new /obj/item/clothing/shoes/jackboots(src)
 	new /obj/item/clothing/gloves/black(src)
-	return
+

@@ -11,7 +11,7 @@ nanoui is used to open and update nano browser uis
 #define STATUS_UPDATE 1 // ORANGE Visability
 #define STATUS_DISABLED 0 // RED Visability
 
-/datum/nanoui	
+/datum/nanoui
 	// the user who opened this ui
 	var/mob/user
 	// the object this ui "belongs" to
@@ -65,7 +65,7 @@ nanoui is used to open and update nano browser uis
   *
   * @return /nanoui new nanoui object
   */
-/datum/nanoui/New(nuser, nsrc_object, nui_key, ntemplate, ntitle = 0, nwidth = 0, nheight = 0, var/atom/nref = null)
+/datum/nanoui/New(nuser, nsrc_object, nui_key, ntemplate, ntitle = 0, nwidth = 0, nheight = 0, atom/nref = null)
 	user = nuser
 	src_object = nsrc_object
 	ui_key = nui_key
@@ -74,13 +74,13 @@ nanoui is used to open and update nano browser uis
 	// Add the passed template as the 'main' template, this is required
 	add_template("main", ntemplate)
 
-	if (ntitle)
+	if(ntitle)
 		title = ntitle
-	if (nwidth)
+	if(nwidth)
 		width = nwidth
-	if (nheight)
+	if(nheight)
 		height = nheight
-	if (nref)
+	if(nref)
 		ref = nref
 
 	add_common_assets()
@@ -107,9 +107,9 @@ nanoui is used to open and update nano browser uis
   * @return nothing
   */
 /datum/nanoui/proc/set_status(state, push_update)
-	if (state != status)
+	if(state != status)
 		status = state
-		if (push_update || !status)
+		if(push_update || !status)
 			push_data(list(), 1) // Update the UI, force the update in case the status is 0
 	else
 		status = state
@@ -122,33 +122,33 @@ nanoui is used to open and update nano browser uis
   * @return nothing
   */
 /datum/nanoui/proc/update_status(push_update = 0)
-	if (istype(user, /mob/living/silicon/ai))
+	if(isAI(user))
 		set_status(STATUS_INTERACTIVE, push_update) // interactive (green visibility)
-	else if (istype(user, /mob/living/silicon/robot))
-		if (src_object in view(7, user)) // robots can see and interact with things they can see within 7 tiles
+	else if(isrobot(user))
+		if(src_object in view(7, user)) // robots can see and interact with things they can see within 7 tiles
 			set_status(STATUS_INTERACTIVE, push_update) // interactive (green visibility)
 		else
 			set_status(STATUS_DISABLED, push_update) // no updates, completely disabled (red visibility)
 	else
 		var/dist = get_dist(src_object, user)
 
-		if (dist > 4)
+		if(dist > 4)
 			close()
 			return
 		
-		if ((allowed_user_stat > -1) && (user.stat > allowed_user_stat))
+		if((allowed_user_stat > -1) && (user.stat > allowed_user_stat))
 			set_status(STATUS_DISABLED, push_update) // no updates, completely disabled (red visibility)
-		else if (user.restrained() || user.lying)
+		else if(user.restrained() || user.lying)
 			set_status(STATUS_UPDATE, push_update) // update only (orange visibility)
-		else if (istype(src_object, /obj/item/device/uplink/hidden)) // You know what if they have the uplink open let them use the UI 
+		else if(istype(src_object, /obj/item/device/uplink/hidden)) // You know what if they have the uplink open let them use the UI 
 			set_status(STATUS_INTERACTIVE, push_update)	     // Will build in distance checks on the topics for sanity.
-		else if (!(src_object in view(4, user))) // If the src object is not in visable, set status to 0
+		else if(!(src_object in view(4, user))) // If the src object is not in visable, set status to 0
 			set_status(STATUS_DISABLED, push_update) // interactive (green visibility)
-		else if (dist <= 1)
+		else if(dist <= 1)
 			set_status(STATUS_INTERACTIVE, push_update) // interactive (green visibility)
-		else if (dist <= 2)
+		else if(dist <= 2)
 			set_status(STATUS_UPDATE, push_update) // update only (orange visibility)
-		else if (dist <= 4)
+		else if(dist <= 4)
 			set_status(STATUS_DISABLED, push_update) // no updates, completely disabled (red visibility)
 
  /**
@@ -259,22 +259,22 @@ nanoui is used to open and update nano browser uis
 /datum/nanoui/proc/get_header()
 	var/head_content = ""
 	
-	for (var/filename in scripts)
+	for(var/filename in scripts)
 		head_content += "<script type='text/javascript' src='[filename]'></script> "
 	
-	for (var/filename in stylesheets)
+	for(var/filename in stylesheets)
 		head_content += "<link rel='stylesheet' type='text/css' href='[filename]'> "
 
 	var/templatel_data[0]
-	for (var/key in templates)
+	for(var/key in templates)
 		templatel_data[key] = templates[key];
 
 	var/template_data_json = "{}" // An empty JSON object
-	if (templatel_data.len > 0)
+	if(templatel_data.len > 0)
 		template_data_json = list2json(templatel_data)
 
 	var/initial_data_json = "{}" // An empty JSON object
-	if (initial_data.len > 0)
+	if(initial_data.len > 0)
 		initial_data_json = list2json(initial_data)
 
 	var/url_parameters_json = list2json(list("src" = "\ref[src]"))
@@ -309,7 +309,6 @@ nanoui is used to open and update nano browser uis
   * @return string HTML footer content
   */
 /datum/nanoui/proc/get_footer()
-
 	return {"
 			</div>
 		</div>
@@ -335,7 +334,7 @@ nanoui is used to open and update nano browser uis
   */
 /datum/nanoui/proc/open()
 	var/window_size = ""
-	if (width && height)
+	if(width && height)
 		window_size = "size=[width]x[height];"
 	update_status(0)
 	user << browse(get_html(), "window=[window_id];[window_size][window_options]")
@@ -374,12 +373,12 @@ nanoui is used to open and update nano browser uis
   */
 /datum/nanoui/proc/push_data(data, force_push = 0)
 	update_status(0)
-	if (status == STATUS_DISABLED && !force_push)
+	if(status == STATUS_DISABLED && !force_push)
 		return // Cannot update UI, no visibility
 
 	data = add_default_data(data)
 	//user << list2json(data) // used for debugging
-	user << output(list2params(list(list2json(data))),"[window_id].browser:receiveUpdateData")
+	user << output(list2params(list(list2json(data))), "[window_id].browser:receiveUpdateData")
 
  /**
   * This Topic() proc is called whenever a user clicks on a link within a Nano UI
@@ -390,10 +389,10 @@ nanoui is used to open and update nano browser uis
   */
 /datum/nanoui/Topic(href, href_list)
 	update_status(0) // update the status
-	if (status != STATUS_INTERACTIVE || user != usr) // If UI is not interactive or usr calling Topic is not the UI user
+	if(status != STATUS_INTERACTIVE || user != usr) // If UI is not interactive or usr calling Topic is not the UI user
 		return
 
-	if (src_object && src_object.Topic(href, href_list))
+	if(src_object && src_object.Topic(href, href_list))
 		nanomanager.update_uis(src_object) // update all UIs attached to src_object
 
  /**
@@ -405,11 +404,11 @@ nanoui is used to open and update nano browser uis
   * @return nothing
   */
 /datum/nanoui/proc/process(update = 0)
-	if (!src_object || !user)
+	if(!src_object || !user)
 		close()
 		return
 		
-	if (status && (update || is_auto_updating))
+	if(status && (update || is_auto_updating))
 		src_object.ui_interact(user, ui_key, src) // Update the UI (update_status() is called whenever a UI is updated)
 	else
 		update_status(1) // Not updating UI, so lets check here if status has changed

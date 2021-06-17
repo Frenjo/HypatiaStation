@@ -64,14 +64,14 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 
 /turf/simulated/mineral/Bumped(AM)
 	. = ..()
-	if(istype(AM, /mob/living/carbon/human))
+	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if((istype(H.l_hand, /obj/item/weapon/pickaxe)) && (!H.hand))
 			attackby(H.l_hand, H)
 		else if((istype(H.r_hand, /obj/item/weapon/pickaxe)) && H.hand)
 			attackby(H.r_hand, H)
 
-	else if(istype(AM, /mob/living/silicon/robot))
+	else if(isrobot(AM))
 		var/mob/living/silicon/robot/R = AM
 		if(istype(R.module_active, /obj/item/weapon/pickaxe))
 			attackby(R.module_active, R)
@@ -103,31 +103,31 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 
 	//Not even going to touch this pile of spaghetti
 /turf/simulated/mineral/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		usr << "<span class='warning'>You don't have the dexterity to do this!</span>"
+	if(!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
+		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return
 
-	if (istype(W, /obj/item/device/core_sampler))
+	if(istype(W, /obj/item/device/core_sampler))
 		geologic_data.UpdateNearbyArtifactInfo(src)
 		var/obj/item/device/core_sampler/C = W
 		C.sample_item(src, user)
 		return
 
-	if (istype(W, /obj/item/device/depth_scanner))
+	if(istype(W, /obj/item/device/depth_scanner))
 		var/obj/item/device/depth_scanner/C = W
 		C.scan_atom(user, src)
 		return
 
-	if (istype(W, /obj/item/device/measuring_tape))
+	if(istype(W, /obj/item/device/measuring_tape))
 		var/obj/item/device/measuring_tape/P = W
-		user.visible_message("<span class='info'>[user] extends [P] towards [src].</span>","<span class='info'>You extend [P] towards [src].</span>")
-		if(do_after(user,25))
-			user << "<span class='info'>\icon[P] [src] has been excavated to a depth of [2*excavation_level]cm.</span>"
+		user.visible_message(SPAN_INFO("[user] extends [P] towards [src]."), SPAN_INFO("You extend [P] towards [src]."))
+		if(do_after(user, 25))
+			to_chat(user, SPAN_INFO("\icon[P] [src] has been excavated to a depth of [2*excavation_level]cm."))
 		return
 
-	if (istype(W, /obj/item/weapon/pickaxe))
+	if(istype(W, /obj/item/weapon/pickaxe))
 		var/turf/T = user.loc
-		if (!(istype(T, /turf)))
+		if(!(isturf(T)))
 			return
 
 		var/obj/item/weapon/pickaxe/P = W
@@ -145,7 +145,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 				//Chance to destroy / extract any finds here
 				fail_message = ", <b>[pick("there is a crunching noise", "[W] collides with some different rock", "part of the rock face crumbles away", "something breaks under [W]")]</b>"
 
-		user << "<span class='warning'>You start [P.drill_verb][fail_message ? fail_message : ""].</span>"
+		to_chat(user, SPAN_WARNING("You start [P.drill_verb][fail_message ? fail_message : ""]."))
 
 		if(fail_message && prob(90))
 			if(prob(25))
@@ -156,7 +156,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 					artifact_debris()
 
 		if(do_after(user, P.digspeed))
-			user << "<span class='info'>You finish [P.drill_verb] the rock.</span>"
+			to_chat(user, SPAN_INFO("You finish [P.drill_verb] the rock."))
 
 			if(finds && finds.len)
 				var/datum/find/F = finds[1]
@@ -241,18 +241,18 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 	if(!mineral)
 		return
 
-	var/obj/item/weapon/ore/O = new mineral.ore (src)
+	var/obj/item/weapon/ore/O = new mineral.ore(src)
 	if(istype(O))
 		geologic_data.UpdateNearbyArtifactInfo(src)
 		O.geologic_data = geologic_data
 	return O
 
-/turf/simulated/mineral/proc/GetDrilled(var/artifact_fail = 0)
+/turf/simulated/mineral/proc/GetDrilled(artifact_fail = 0)
 	//var/destroyed = 0 //used for breaking strange rocks
-	if (mineral && mineral.result_amount)
+	if(mineral && mineral.result_amount)
 
 		//if the turf has already been excavated, some of it's ore has been removed
-		for (var/i = 1 to mineral.result_amount - mined_ore)
+		for(var/i = 1 to mineral.result_amount - mined_ore)
 			DropMineral()
 
 	//destroyed artifacts have weird, unpleasant effects
@@ -262,7 +262,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 		if(prob(50))
 			pain = 1
 		for(var/mob/living/M in range(src, 200))
-			M << "<span class='danger'>[pick("A high pitched [pick("keening", "wailing", "whistle")]", "A rumbling noise like [pick("thunder", "heavy machinery")]")] somehow penetrates your mind before fading away!</span>"
+			to_chat(M, SPAN_DANGER("[pick("A high pitched [pick("keening", "wailing", "whistle")]", "A rumbling noise like [pick("thunder", "heavy machinery")]")] somehow penetrates your mind before fading away!"))
 			if(pain)
 				flick("pain", M.pain)
 				if(prob(50))
@@ -277,10 +277,10 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 	N.fullUpdateMineralOverlays()
 
 	if(rand(1, 500) == 1)
-		visible_message("<span class='notice'>An old dusty crate was buried within!</span>")
+		visible_message(SPAN_NOTICE("An old dusty crate was buried within!"))
 		new /obj/structure/closet/crate/secure/loot(src)
 
-/turf/simulated/mineral/proc/excavate_find(var/prob_clean = 0, var/datum/find/F)
+/turf/simulated/mineral/proc/excavate_find(prob_clean = 0, datum/find/F)
 	//with skill and luck, players can cleanly extract finds
 	//otherwise, they come out inside a chunk of rock
 	var/obj/item/weapon/X
@@ -304,12 +304,12 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 		var/obj/effect/suspension_field/S = locate() in src
 		if(!S || S.field_type != get_responsive_reagent(F.find_type))
 			if(X)
-				visible_message("<span class='danger'>[pick("[display_name] crumbles away into dust", "[display_name] breaks apart")].</span>")
+				visible_message(SPAN_DANGER("[pick("[display_name] crumbles away into dust", "[display_name] breaks apart")]."))
 				qdel(X)
 
 	finds.Remove(F)
 
-/turf/simulated/mineral/proc/artifact_debris(var/severity = 0)
+/turf/simulated/mineral/proc/artifact_debris(severity = 0)
 	//cael's patented random limited drop componentized loot system!
 	//sky's patented not-fucking-retarded overhaul!
 
@@ -448,7 +448,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 	//	seedName = pick(list("1","2","3","4"))
 	//	seedAmt = rand(1,4)
 	if(prob(20))
-		icon_state = "asteroid[rand(0,12)]"
+		icon_state = "asteroid[rand(0, 12)]"
 	spawn(2)
 		updateMineralOverlays()
 
@@ -469,36 +469,36 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 
 	if((istype(W, /obj/item/weapon/shovel)))
 		var/turf/T = user.loc
-		if(!(istype(T, /turf)))
+		if(!(isturf(T)))
 			return
 
 		if(dug)
-			user << "<span class='warning'>This area has already been dug.</span>"
+			to_chat(user, SPAN_WARNING("This area has already been dug."))
 			return
 
-		user << "<span class='warning>You start digging.</span>"
+		to_chat(user, SPAN_WARNING("You start digging."))
 		playsound(loc, 'sound/effects/rustle1.ogg', 50, 1) //russle sounds sounded better
 
 		sleep(40)
 		if((user.loc == T && user.get_active_hand() == W))
-			user << "<span class='info'>You dug a hole.</span>"
+			to_chat(user, SPAN_INFO("You dug a hole."))
 			gets_dug()
 
 	if((istype(W, /obj/item/weapon/pickaxe/drill)))
 		var/turf/T = user.loc
-		if(!(istype(T, /turf)))
+		if(!(isturf(T)))
 			return
 
 		if(dug)
-			user << "<span class='warning'>This area has already been dug.</span>"
+			to_chat(user, SPAN_WARNING("This area has already been dug."))
 			return
 
-		user << "<span class='warning>You start digging.</span>"
+		to_chat(user, SPAN_WARNING("You start digging."))
 		playsound(loc, 'sound/effects/rustle1.ogg', 50, 1) //russle sounds sounded better
 
 		sleep(30)
 		if((user.loc == T && user.get_active_hand() == W))
-			user << "<span class='info'>You dug a hole.</span>"
+			to_chat(user, SPAN_INFO("You dug a hole."))
 			gets_dug()
 
 	if((istype(W, /obj/item/weapon/pickaxe/diamonddrill)) || (istype(W, /obj/item/weapon/pickaxe/borgdrill)))
@@ -507,15 +507,15 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 			return
 
 		if(dug)
-			user << "<span class='warning'>This area has already been dug.</span>"
+			to_chat(user, SPAN_WARNING("This area has already been dug."))
 			return
 
-		user << "<span class='warning>You start digging.</span>"
+		to_chat(user, SPAN_WARNING("You start digging."))
 		playsound(loc, 'sound/effects/rustle1.ogg', 50, 1) //russle sounds sounded better
 
 		sleep(0)
 		if((user.loc == T && user.get_active_hand() == W))
-			user << "<span class='info'>You dug a hole.</span>"
+			to_chat(user, SPAN_INFO("You dug a hole."))
 			gets_dug()
 
 	if(istype(W, /obj/item/weapon/storage/bag/ore))
@@ -548,11 +548,11 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 	if(istype(get_step(src, NORTH), /turf/simulated/mineral))
 		overlays += image('icons/turf/walls.dmi', "rock_side_n")
 	if(istype(get_step(src, SOUTH), /turf/simulated/mineral))
-		overlays += image('icons/turf/walls.dmi', "rock_side_s", layer=6)
+		overlays += image('icons/turf/walls.dmi', "rock_side_s", layer = 6)
 	if(istype(get_step(src, EAST), /turf/simulated/mineral))
-		overlays += image('icons/turf/walls.dmi', "rock_side_e", layer=6)
+		overlays += image('icons/turf/walls.dmi', "rock_side_e", layer = 6)
 	if(istype(get_step(src, WEST), /turf/simulated/mineral))
-		overlays += image('icons/turf/walls.dmi', "rock_side_w", layer=6)
+		overlays += image('icons/turf/walls.dmi', "rock_side_w", layer = 6)
 
 /turf/simulated/floor/plating/airless/asteroid/proc/fullUpdateMineralOverlays()
 	var/turf/simulated/floor/plating/airless/asteroid/A
@@ -584,14 +584,14 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 
 /turf/simulated/floor/plating/airless/asteroid/Entered(atom/movable/M as mob|obj)
 	..()
-	if(istype(M,/mob/living/silicon/robot))
+	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		if(istype(R.module, /obj/item/weapon/robot_module/miner))
-			if(istype(R.module_state_1,/obj/item/weapon/storage/bag/ore))
-				attackby(R.module_state_1,R)
-			else if(istype(R.module_state_2,/obj/item/weapon/storage/bag/ore))
-				attackby(R.module_state_2,R)
-			else if(istype(R.module_state_3,/obj/item/weapon/storage/bag/ore))
-				attackby(R.module_state_3,R)
+			if(istype(R.module_state_1, /obj/item/weapon/storage/bag/ore))
+				attackby(R.module_state_1, R)
+			else if(istype(R.module_state_2, /obj/item/weapon/storage/bag/ore))
+				attackby(R.module_state_2, R)
+			else if(istype(R.module_state_3, /obj/item/weapon/storage/bag/ore))
+				attackby(R.module_state_3, R)
 			else
 				return

@@ -30,10 +30,6 @@
 		spawn(0)
 			src.Entered(AM)
 			return
-	//return
-	//var/area/A = loc
-	//if(!dynamic_lighting || !A.lighting_use_dynamic)
-	//	luminosity = 1
 	if(dynamic_lighting)
 		luminosity = 0
 	else
@@ -42,14 +38,14 @@
 /turf/ex_act(severity)
 	return 0
 
-/turf/bullet_act(var/obj/item/projectile/Proj)
-	if(istype(Proj ,/obj/item/projectile/beam/pulse))
+/turf/bullet_act(obj/item/projectile/Proj)
+	if(istype(Proj, /obj/item/projectile/beam/pulse))
 		src.ex_act(2)
 	..()
 	return 0
 
-/turf/bullet_act(var/obj/item/projectile/Proj)
-	if(istype(Proj ,/obj/item/projectile/bullet/gyro))
+/turf/bullet_act(obj/item/projectile/Proj)
+	if(istype(Proj, /obj/item/projectile/bullet/gyro))
 		explosion(src, -1, 0, 2)
 	..()
 	return 0
@@ -58,7 +54,7 @@
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
 		usr << "\red Movement is admin-disabled." //This is to identify lag problems
 		return
-	if (!mover || !isturf(mover.loc))
+	if(!mover || !isturf(mover.loc))
 		return 1
 
 	//First, check objects to block exit that are not on the border
@@ -83,7 +79,7 @@
 				return 0
 
 	//Then, check the turf itself
-	if (!src.CanPass(mover, src))
+	if(!src.CanPass(mover, src))
 		mover.Bump(src, 1)
 		return 0
 
@@ -133,7 +129,8 @@
 	..()
 	var/objects = 0
 	for(var/atom/A as mob|obj|turf|area in range(1))
-		if(objects > loopsanity)	break
+		if(objects > loopsanity)
+			break
 		objects++
 		spawn(0)
 			if((A && M))
@@ -197,8 +194,8 @@
 		qdel(L)
 
 //Creates a new turf
-/turf/proc/ChangeTurf(var/turf/N)
-	if (!N)
+/turf/proc/ChangeTurf(turf/N)
+	if(!N)
 		return
 
 ///// Z-Level Stuff ///// This makes sure that turfs are not changed to space when one side is part of a zone
@@ -361,11 +358,11 @@
 	src.ChangeTurf(get_base_turf_by_area(get_area(src.loc)))
 	new /obj/structure/lattice(locate(src.x, src.y, src.z))
 
-/turf/proc/kill_creatures(mob/U = null)//Will kill people/creatures and damage mechs./N
+/turf/proc/kill_creatures(mob/U = null)	//Will kill people/creatures and damage mechs./N
 //Useful to batch-add creatures to the list.
 	for(var/mob/living/M in src)
 		if(M == U)
-			continue//Will not harm U. Since null != M, can be excluded to kill everyone.
+			continue	//Will not harm U. Since null != M, can be excluded to kill everyone.
 		spawn(0)
 			M.gib()
 	for(var/obj/mecha/M in src)//Mecha are not gibbed but are damaged.
