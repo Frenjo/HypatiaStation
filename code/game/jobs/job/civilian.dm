@@ -195,7 +195,7 @@
 	selection_color = "#dddddd"
 	access = list(access_janitor, access_maint_tunnels)
 	minimal_access = list(access_janitor, access_maint_tunnels)
-	alt_titles = list("Custodial Specialist", "Sanitation Technician")
+	alt_titles = list("Custodial Specialist", "Sanitation Technician", "Cleaner")
 
 /datum/job/janitor/equip(mob/living/carbon/human/H)
 	if(!H)
@@ -254,6 +254,7 @@
 	selection_color = "#dddddd"
 	access = list(access_lawyer, access_court, access_sec_doors, access_maint_tunnels)
 	minimal_access = list(access_lawyer, access_court, access_sec_doors)
+	alt_titles = list("Lawyer")
 
 /datum/job/lawyer/equip(mob/living/carbon/human/H)
 	if(!H)

@@ -9,7 +9,8 @@ var/list/whitelist = list()
 
 /proc/load_whitelist()
 	whitelist = file2list(WHITELISTFILE)
-	if(!whitelist.len)	whitelist = null
+	if(!whitelist.len)
+		whitelist = null
 
 /proc/check_whitelist(mob/M /*, var/rank*/)
 	if(!whitelist)
@@ -25,13 +26,13 @@ var/list/whitelist = list()
 
 /proc/load_alienwhitelist()
 	var/text = file2text("config/alienwhitelist.txt")
-	if (!text)
+	if(!text)
 		log_misc("Failed to load config/alienwhitelist.txt")
 	else
 		alien_whitelist = text2list(text, "\n")
 
 //todo: admin aliens
-/proc/is_alien_whitelisted(mob/M, var/species)
+/proc/is_alien_whitelisted(mob/M, species)
 	if(!config.usealienwhitelist)
 		return 1
 	if(species == "human" || species == "Human")
@@ -41,10 +42,10 @@ var/list/whitelist = list()
 	if(!alien_whitelist)
 		return 0
 	if(M && species)
-		for (var/s in alien_whitelist)
-			if(findtext(s,"[M.ckey] - [species]"))
+		for(var/s in alien_whitelist)
+			if(findtext(s, "[M.ckey] - [species]"))
 				return 1
-			if(findtext(s,"[M.ckey] - All"))
+			if(findtext(s, "[M.ckey] - All"))
 				return 1
 
 	return 0

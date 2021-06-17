@@ -76,7 +76,7 @@
 			            access_crematorium, access_kitchen, access_cargo,  access_hydroponics, access_lawyer,
 			            access_theatre, access_chapel_office, access_library, access_research, access_heads_vault, access_clown, access_mime,
 			            access_hop, access_RC_announce, access_keycard_auth, access_gateway)
-
+	alt_titles = list("Human Resources Director")
 
 /datum/job/hop/equip(mob/living/carbon/human/H)
 	if(!H)
