@@ -19,7 +19,7 @@
 	throw_speed = 4
 	throw_range = 20
 
-obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "says")
+/obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, verbage = "says")
 	if(recording)
 		//var/ending = copytext(msg, length(msg))
 		timestamp+= timerecorded
@@ -48,18 +48,18 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 		if(emagged == 0)
 			emagged = 1
 			recording = 0
-			user << "<span class='warning'>PZZTTPFFFT</span>"
+			to_chat(user, SPAN_WARNING("PZZTTPFFFT"))
 			icon_state = "taperecorderidle"
 		else
-			user << "<span class='warning'>It is already emagged!</span>"
+			to_chat(user, SPAN_WARNING("It is already emagged!"))
 
 /obj/item/device/taperecorder/proc/explode()
 	var/turf/T = get_turf(loc)
 	if(ismob(loc))
 		var/mob/M = loc
-		M << "<span class='danger'>\The [src] explodes!</span>"
+		to_chat(M, SPAN_DANGER("\The [src] explodes!"))
 	if(T)
-		T.hotspot_expose(700,125)
+		T.hotspot_expose(700, 125)
 		explosion(T, -1, -1, 0, 4)
 	qdel(src)
 	return
@@ -71,15 +71,15 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 	if(usr.stat)
 		return
 	if(emagged == 1)
-		usr << "\red The tape recorder makes a scratchy noise."
+		to_chat(usr, SPAN_WARNING("The tape recorder makes a scratchy noise."))
 		return
 	icon_state = "taperecorderrecording"
 	if(timerecorded < 3600 && playing == 0)
-		usr << "<span class='notice'>Recording started.</span>"
+		to_chat(usr, SPAN_NOTICE("Recording started."))
 		recording = 1
-		timestamp+= timerecorded
+		timestamp += timerecorded
 		storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] Recording started."
-		for(timerecorded, timerecorded<3600)
+		for(timerecorded, timerecorded < 3600)
 			if(recording == 0)
 				break
 			timerecorded++
@@ -88,7 +88,7 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 		icon_state = "taperecorderidle"
 		return
 	else
-		usr << "<span class='notice'>Either your tape recorder's memory is full, or it is currently playing back its memory.</span>"
+		to_chat(usr, SPAN_NOTICE("Either your tape recorder's memory is full, or it is currently playing back its memory."))
 
 /obj/item/device/taperecorder/verb/stop()
 	set name = "Stop"
@@ -97,13 +97,13 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 	if(usr.stat)
 		return
 	if(emagged == 1)
-		usr << "\red The tape recorder makes a scratchy noise."
+		to_chat(usr, SPAN_WARNING("The tape recorder makes a scratchy noise."))
 		return
 	if(recording == 1)
 		recording = 0
-		timestamp+= timerecorded
+		timestamp += timerecorded
 		storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] Recording stopped."
-		usr << "<span class='notice'>Recording stopped.</span>"
+		to_chat(usr, SPAN_NOTICE("Recording stopped."))
 		icon_state = "taperecorderidle"
 		return
 	else if(playing == 1)
@@ -120,10 +120,10 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 	if(usr.stat)
 		return
 	if(emagged == 1)
-		usr << "<span class='warning'>The tape recorder makes a scratchy noise.</span>"
+		to_chat(usr, SPAN_WARNING("The tape recorder makes a scratchy noise."))
 		return
 	if(recording == 1 || playing == 1)
-		usr << "<span class='notice'>You can't clear the memory while playing or recording!</span>"
+		to_chat(usr, SPAN_NOTICE("You can't clear the memory while playing or recording!"))
 		return
 	else
 		if(storedinfo)
@@ -142,13 +142,13 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 	if(usr.stat)
 		return
 	if(emagged == 1)
-		usr << "\red The tape recorder makes a scratchy noise."
+		to_chat(usr, SPAN_WARNING("The tape recorder makes a scratchy noise."))
 		return
 	if(recording == 1)
-		usr << "<span class='notice'>You can't playback when recording!</span>"
+		to_chat(usr, SPAN_NOTICE("You can't playback when recording!"))
 		return
 	if(playing == 1)
-		usr << "<span class='notice'>You're already playing!</span>"
+		to_chat(usr, SPAN_NOTICE("You're already playing!"))
 		return
 	playing = 1
 	icon_state = "taperecorderplaying"
@@ -200,18 +200,18 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 	if(usr.stat)
 		return
 	if(emagged == 1)
-		usr << "\red The tape recorder makes a scratchy noise."
+		to_chat(usr, SPAN_WARNING("The tape recorder makes a scratchy noise."))
 		return
 	if(!canprint)
-		usr << "<span class='notice'>The recorder can't print that fast!</span>"
+		to_chat(usr, SPAN_NOTICE("The recorder can't print that fast!"))
 		return
 	if(recording == 1 || playing == 1)
-		usr << "<span class='notice'>You can't print the transcript while playing or recording!</span>"
+		to_chat(usr, SPAN_NOTICE("You can't print the transcript while playing or recording!"))
 		return
-	usr << "<span class='notice'>Transcript printed.</span>"
+	to_chat(usr, SPAN_NOTICE("Transcript printed."))
 	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
 	var/t1 = "<B>Transcript:</B><BR><BR>"
-	for(var/i=1,storedinfo.len >= i,i++)
+	for(var/i = 1, storedinfo.len >= i, i++)
 		t1 += "[storedinfo[i]]<BR>"
 	P.info = t1
 	P.name = "Transcript"
@@ -224,11 +224,11 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 		if(usr.stat)
 			return
 		if(emagged == 1)
-			usr << "\red The tape recorder makes a scratchy noise."
+			to_chat(usr, SPAN_WARNING("The tape recorder makes a scratchy noise."))
 			return
 		icon_state = "taperecorderrecording"
 		if(timerecorded < 3600 && playing == 0)
-			usr << "\blue Recording started."
+			to_chat(usr, SPAN_INFO("Recording started."))
 			recording = 1
 			timestamp+= timerecorded
 			storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] Recording started."
@@ -241,16 +241,16 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 			icon_state = "taperecorderidle"
 			return
 		else
-			usr << "\red Either your tape recorder's memory is full, or it is currently playing back its memory."
+			to_chat(usr, SPAN_WARNING("Either your tape recorder's memory is full, or it is currently playing back its memory."))
 	else
 		if(usr.stat)
-			usr << "Not when you're incapacitated."
+			to_chat(usr, "Not when you're incapacitated.")
 			return
 		if(recording == 1)
 			recording = 0
 			timestamp+= timerecorded
 			storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] Recording stopped."
-			usr << "\blue Recording stopped."
+			to_chat(usr, SPAN_INFO("Recording stopped."))
 			icon_state = "taperecorderidle"
 			return
 		else if(playing == 1)
@@ -261,5 +261,5 @@ obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, var/verbage = "
 			icon_state = "taperecorderidle"
 			return
 		else
-			usr << "\red Stop what?"
+			to_chat(usr, SPAN_WARNING("Stop what?"))
 			return

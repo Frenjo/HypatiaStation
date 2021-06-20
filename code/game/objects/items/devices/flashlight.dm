@@ -22,7 +22,7 @@
 		icon_state = initial(icon_state)
 		set_light(0)
 
-/obj/item/device/flashlight/proc/update_brightness(var/mob/user = null)
+/obj/item/device/flashlight/proc/update_brightness(mob/user = null)
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
 		if(loc == user)
@@ -51,38 +51,38 @@
 		if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
-		if(!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")	//don't have dexterity
-			user << "<span class='notice'>You don't have the dexterity to do this!</span>"
+		if(!(ishuman(user) || ticker) && ticker.mode.name != "monkey")	//don't have dexterity
+			to_chat(user, SPAN_NOTICE("You don't have the dexterity to do this!"))
 			return
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
-		if(istype(M, /mob/living/carbon/human) && ((H.head && H.head.flags & HEADCOVERSEYES) || (H.wear_mask && H.wear_mask.flags & MASKCOVERSEYES) || (H.glasses && H.glasses.flags & GLASSESCOVERSEYES)))
-			user << "<span class='notice'>You're going to need to remove that [(H.head && H.head.flags & HEADCOVERSEYES) ? "helmet" : (H.wear_mask && H.wear_mask.flags & MASKCOVERSEYES) ? "mask": "glasses"] first.</span>"
+		if(ishuman(M) && ((H.head && H.head.flags & HEADCOVERSEYES) || (H.wear_mask && H.wear_mask.flags & MASKCOVERSEYES) || (H.glasses && H.glasses.flags & GLASSESCOVERSEYES)))
+			to_chat(user, SPAN_NOTICE("You're going to need to remove that [(H.head && H.head.flags & HEADCOVERSEYES) ? "helmet" : (H.wear_mask && H.wear_mask.flags & MASKCOVERSEYES) ? "mask": "glasses"] first."))
 			return
 
 		if(M == user)	//they're using it on themselves
 			if(!M.blinded)
 				flick("flash", M.flash)
-				M.visible_message("<span class='notice'>[M] directs [src] to \his eyes.</span>", \
-									 "<span class='notice'>You wave the light in front of your eyes! Trippy!</span>")
+				M.visible_message(SPAN_NOTICE("[M] directs [src] to \his eyes."), \
+									SPAN_NOTICE("You wave the light in front of your eyes! Trippy!"))
 			else
-				M.visible_message("<span class='notice'>[M] directs [src] to \his eyes.</span>", \
-									 "<span class='notice'>You wave the light in front of your eyes.</span>")
+				M.visible_message(SPAN_NOTICE("[M] directs [src] to \his eyes."), \
+									SPAN_NOTICE("You wave the light in front of your eyes."))
 			return
 
-		user.visible_message("<span class='notice'>[user] directs [src] to [M]'s eyes.</span>", \
-							 "<span class='notice'>You direct [src] to [M]'s eyes.</span>")
+		user.visible_message(SPAN_NOTICE("[user] directs [src] to [M]'s eyes."), \
+								SPAN_NOTICE("You direct [src] to [M]'s eyes."))
 
-		if(istype(M, /mob/living/carbon/human) || istype(M, /mob/living/carbon/monkey))	//robots and aliens are unaffected
+		if(ishuman(M) || ismonkey(M))	//robots and aliens are unaffected
 			if(M.stat == DEAD || M.sdisabilities & BLIND)	//mob is dead or fully blind
-				user << "<span class='notice'>[M] pupils does not react to the light!</span>"
+				to_chat(user, SPAN_NOTICE("[M]'s pupils do not react to the light!"))
 			else if(XRAY in M.mutations)	//mob has X-RAY vision
 				flick("flash", M.flash) //Yes, you can still get flashed wit X-Ray.
-				user << "<span class='notice'>[M] pupils give an eerie glow!</span>"
+				to_chat(user, SPAN_NOTICE("[M]'s pupils give an eerie glow!"))
 			else	//they're okay!
 				if(!M.blinded)
 					flick("flash", M.flash)	//flash the affected mob
-					user << "<span class='notice'>[M]'s pupils narrow.</span>"
+					to_chat(user, SPAN_NOTICE("[M]'s pupils narrow."))
 	else
 		return ..()
 
@@ -173,7 +173,7 @@
 /obj/item/device/flashlight/flare/attack_self(mob/user)
 	// Usual checks
 	if(!fuel)
-		user << "<span class='notice'>It's out of fuel.</span>"
+		to_chat(user, SPAN_NOTICE("It's out of fuel."))
 		return
 	if(on)
 		return
@@ -181,7 +181,7 @@
 	. = ..()
 	// All good, turn it on.
 	if(.)
-		user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You pull the cord on the flare, activating it!</span>")
+		user.visible_message(SPAN_NOTICE("[user] activates the flare."), SPAN_NOTICE("You pull the cord on the flare, activating it!"))
 		src.force = on_damage
 		src.damtype = "fire"
 		processing_objects += src

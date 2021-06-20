@@ -34,10 +34,10 @@ var/global/list/datum/stack_recipe/sandstone_recipes = list ( \
 		new/datum/stack_recipe("sandstone floor", ???),\ */
 	)
 
-/obj/item/stack/sheet/mineral/sandstone/New(var/loc, var/amount=null)
+/obj/item/stack/sheet/mineral/sandstone/New(loc, amount = null)
 	recipes = sandstone_recipes
-	pixel_x = rand(0,4)-4
-	pixel_y = rand(0,4)-4
+	pixel_x = rand(0, 4) - 4
+	pixel_y = rand(0, 4) - 4
 	..()
 
 /*
@@ -58,10 +58,10 @@ var/global/list/datum/stack_recipe/diamond_recipes = list ( \
 	new/datum/stack_recipe("diamond door", /obj/structure/mineral_door/transparent/diamond, 10, one_per_turf = 1, on_floor = 1), \
 	)
 
-/obj/item/stack/sheet/mineral/diamond/New(loc, amount=null)
+/obj/item/stack/sheet/mineral/diamond/New(loc, amount = null)
 	recipes = diamond_recipes
-	pixel_x = rand(0,4)-4
-	pixel_y = rand(0,4)-4
+	pixel_x = rand(0, 4) - 4
+	pixel_y = rand(0, 4) - 4
 	..()
 
 /*
@@ -85,8 +85,8 @@ var/global/list/datum/stack_recipe/uranium_recipes = list ( \
 
 /obj/item/stack/sheet/mineral/uranium/New(loc, amount = null)
 	recipes = uranium_recipes
-	pixel_x = rand(0,4)-4
-	pixel_y = rand(0,4)-4
+	pixel_x = rand(0, 4) - 4
+	pixel_y = rand(0, 4) - 4
 	..()
 
 /*
@@ -110,8 +110,8 @@ var/global/list/datum/stack_recipe/plasma_recipes = list ( \
 
 /obj/item/stack/sheet/mineral/plasma/New(loc, amount = null)
 	recipes = plasma_recipes
-	pixel_x = rand(0,4)-4
-	pixel_y = rand(0,4)-4
+	pixel_x = rand(0, 4) - 4
+	pixel_y = rand(0, 4) - 4
 	..()
 
 /obj/item/stack/sheet/mineral/plastic

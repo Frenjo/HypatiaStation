@@ -8,32 +8,32 @@
 	var/on = 0 //Are we currently active??
 	var/menu_message = ""
 
-	New()
-		..()
-		if(istype(loc.loc, /obj/item/device/pda))
-			hostpda = loc.loc
+/obj/item/radio/integrated/New()
+	..()
+	if(istype(loc.loc, /obj/item/device/pda))
+		hostpda = loc.loc
 
-	proc/post_signal(var/freq, var/key, var/value, var/key2, var/value2, var/key3, var/value3, s_filter)
+/obj/item/radio/integrated/proc/post_signal(freq, key, value, key2, value2, key3, value3, s_filter)
+	//world << "Post: [freq]: [key]=[value], [key2]=[value2]"
+	var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
 
-		//world << "Post: [freq]: [key]=[value], [key2]=[value2]"
-		var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
-
-		if(!frequency) return
-
-		var/datum/signal/signal = new()
-		signal.source = src
-		signal.transmission_method = 1
-		signal.data[key] = value
-		if(key2)
-			signal.data[key2] = value2
-		if(key3)
-			signal.data[key3] = value3
-
-		frequency.post_signal(src, signal, filter = s_filter)
-
+	if(!frequency)
 		return
 
-	proc/generate_menu()
+	var/datum/signal/signal = new()
+	signal.source = src
+	signal.transmission_method = 1
+	signal.data[key] = value
+	if(key2)
+		signal.data[key2] = value2
+	if(key3)
+		signal.data[key3] = value3
+
+	frequency.post_signal(src, signal, filter = s_filter)
+
+	return
+
+/obj/item/radio/integrated/proc/generate_menu()
 
 /obj/item/radio/integrated/beepsky
 	var/list/botlist = null		// list of bots
@@ -157,7 +157,8 @@
 /obj/item/radio/integrated/mule/Topic(href, href_list)
 	..()
 	var/cmd = "command"
-	if(active) cmd = "command [active.suffix]"
+	if(active)
+		cmd = "command [active.suffix]"
 
 	switch(href_list["op"])
 		if("control")

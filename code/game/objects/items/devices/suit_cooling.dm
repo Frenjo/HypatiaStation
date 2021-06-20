@@ -115,7 +115,7 @@
 		cell.add_fingerprint(user)
 		cell.updateicon()
 
-		user << "You remove the [src.cell]."
+		to_chat(user, "You remove the [src.cell].")
 		src.cell = null
 		updateicon()
 		return
@@ -125,37 +125,37 @@
 		turn_off()
 	else
 		turn_on()
-		if (on)
-			user << "You switch on the [src]."
+		if(on)
+			to_chat(user, "You switch on the [src].")
 
 /obj/item/device/suit_cooling_unit/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/weapon/screwdriver))
 		if(cover_open)
 			cover_open = 0
-			user << "You screw the panel into place."
+			to_chat(user, "You screw the panel into place.")
 		else
 			cover_open = 1
-			user << "You unscrew the panel."
+			to_chat(user, "You unscrew the panel.")
 		updateicon()
 		return
 
-	if (istype(W, /obj/item/weapon/cell))
+	if(istype(W, /obj/item/weapon/cell))
 		if(cover_open)
 			if(cell)
-				user << "There is a [cell] already installed here."
+				to_chat(user, "There is a [cell] already installed here.")
 			else
 				user.drop_item()
 				W.loc = src
 				cell = W
-				user << "You insert the [cell]."
+				to_chat(user, "You insert the [cell].")
 		updateicon()
 		return
 
 	return ..()
 
 /obj/item/device/suit_cooling_unit/proc/updateicon()
-	if (cover_open)
-		if (cell)
+	if(cover_open)
+		if(cell)
 			icon_state = "suitcooler1"
 		else
 			icon_state = "suitcooler2"
@@ -167,21 +167,21 @@
 
 	..()
 
-	if (on)
-		if (attached_to_suit(src.loc))
-			usr << "It's switched on and running."
+	if(on)
+		if(attached_to_suit(src.loc))
+			to_chat(usr, "It's switched on and running.")
 		else
-			usr << "It's switched on, but not attached to anything."
+			to_chat(usr, "It's switched on, but not attached to anything.")
 	else
-		usr << "It is switched off."
+		to_chat(usr, "It is switched off.")
 
-	if (cover_open)
+	if(cover_open)
 		if(cell)
-			usr << "The panel is open, exposing the [cell]."
+			to_chat(usr, "The panel is open, exposing the [cell].")
 		else
-			usr << "The panel is open."
+			to_chat(usr, "The panel is open.")
 
-	if (cell)
-		usr << "The charge meter reads [round(cell.percent())]%."
+	if(cell)
+		to_chat(usr, "The charge meter reads [round(cell.percent())]%.")
 	else
-		usr << "It doesn't have a power cell installed."
+		to_chat(usr, "It doesn't have a power cell installed.")

@@ -199,10 +199,10 @@
 	remote_door_id = "smindicate" //Make sure this matches the syndicate shuttle's shield/door id!!	//don't ask about the name, testing.
 	charges = 4
 
-/obj/item/weapon/cartridge/proc/post_status(var/command, var/data1, var/data2)
-
+/obj/item/weapon/cartridge/proc/post_status(command, data1, data2)
 	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
-	if(!frequency) return
+	if(!frequency)
+		return
 
 	var/datum/signal/status_signal = new
 	status_signal.source = src
@@ -216,7 +216,7 @@
 			if(loc)
 				var/obj/item/PDA = loc
 				var/mob/user = PDA.fingerprintslast
-				if(istype(PDA.loc,/mob/living))
+				if(isliving(PDA.loc))
 					name = PDA.loc
 				log_admin("STATUS: [user] set status screen with [PDA]. Message: [data1] [data2]")
 				message_admins("STATUS: [user] set status screen with [PDA]. Message: [data1] [data2]")
@@ -234,15 +234,13 @@
 	the user can't access.  Well, unless they are href hacking.
 	But in that case their UI will just lock up.
 */
-
-
 /obj/item/weapon/cartridge/proc/create_NanoUI_values(mob/user as mob)
 	var/values[0]
 
 	/*		Signaler (Mode: 40)				*/
 
 
-	if(istype(radio,/obj/item/radio/integrated/signal) && (mode==40))
+	if(istype(radio, /obj/item/radio/integrated/signal) && (mode == 40))
 		var/obj/item/radio/integrated/signal/R = radio
 		values["signal_freq"] = format_frequency(R.frequency)
 		values["signal_code"] = R.code
@@ -250,19 +248,19 @@
 
 	/*		Station Display (Mode: 42)			*/
 
-	if(mode==42)
+	if(mode == 42)
 		values["message1"] = message1 ? message1 : "(none)"
 		values["message2"] = message2 ? message2 : "(none)"
 
 
-
 	/*		Power Monitor (Mode: 43 / 433)			*/
-	if(mode==43 || mode==433)
+	if(mode == 43 || mode == 433)
 		var/pMonData[0]
 		for(var/obj/machinery/power/monitor/pMon in world)
-			if(!(pMon.stat & (NOPOWER|BROKEN)) )
+			if(!(pMon.stat & (NOPOWER|BROKEN)))
 				pMonData[++pMonData.len] = list ("Name" = pMon.name, "ref" = "\ref[pMon]")
-				if(isnull(powmonitor)) powmonitor = pMon
+				if(isnull(powmonitor))
+					powmonitor = pMon
 
 		values["powermonitors"] = pMonData
 
@@ -275,8 +273,8 @@
 				var/obj/machinery/power/apc/A = term.master
 				L += A
 
-		var/list/Status = list(0,0,1,1) // Status:  off, auto-off, on, auto-on
-		var/list/chg = list(0,1,1)	// Charging: nope, charging, full
+		var/list/Status = list(0, 0, 1, 1) // Status:  off, auto-off, on, auto-on
+		var/list/chg = list(0, 1, 1)	// Charging: nope, charging, full
 		var/apcData[0]
 		for(var/obj/machinery/power/apc/A in L)
 			apcData[++apcData.len] = list("Name" = html_encode(A.area.name), "Equipment" = Status[A.equipment+1], "Lights" = Status[A.lighting+1], "Environment" = Status[A.environ+1], "CellPct" = A.cell ? round(A.cell.percent(),1) : -1, "CellStatus" = A.cell ? chg[A.charging+1] : 0)

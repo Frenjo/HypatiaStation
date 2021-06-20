@@ -14,7 +14,7 @@
 	var/on = 1
 	var/state //0 = fine, 1 = flickering, 2 = breaking, 3 = broken
 
-/obj/item/stack/tile/light/New(var/loc, var/amount=null)
+/obj/item/stack/tile/light/New(loc, amount = null)
 	..()
 	if(prob(5))
 		state = 3 //broken
@@ -25,9 +25,9 @@
 	else
 		state = 0 //fine
 
-/obj/item/stack/tile/light/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/stack/tile/light/attackby(obj/item/O as obj, mob/user as mob)
 	..()
-	if(istype(O,/obj/item/weapon/crowbar))
+	if(istype(O, /obj/item/weapon/crowbar))
 		new/obj/item/stack/sheet/metal(user.loc)
 		amount--
 		new/obj/item/stack/light_w(user.loc)

@@ -87,19 +87,20 @@
 	origin_tech = "materials=2"
 
 
-
 //Step one - dehairing.
-
 /obj/item/stack/sheet/animalhide/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(	istype(W, /obj/item/weapon/kitchenknife) || \
+	if(istype(W, /obj/item/weapon/kitchenknife) || \
 		istype(W, /obj/item/weapon/kitchen/utensil/knife) || \
 		istype(W, /obj/item/weapon/twohanded/fireaxe) || \
 		istype(W, /obj/item/weapon/hatchet) )
 
 		//visible message on mobs is defined as visible_message(var/message, var/self_message, var/blind_message)
-		usr.visible_message("\blue \the [usr] starts cutting hair off \the [src]", "\blue You start cutting the hair off \the [src]", "You hear the sound of a knife rubbing against flesh")
-		if(do_after(user,50))
-			usr << "\blue You cut the hair from this [src.singular_name]"
+		usr.visible_message(SPAN_INFO("\the [usr] starts cutting hair off \the [src]."), \
+							SPAN_INFO("You start cutting the hair off \the [src]."), \
+							"You hear the sound of a knife rubbing against flesh.")
+
+		if(do_after(user, 50))
+			to_chat(usr, SPAN_INFO("You cut the hair from this [src.singular_name]."))
 			//Try locating an exisitng stack on the tile and add to there if possible
 			for(var/obj/item/stack/sheet/hairlesshide/HS in usr.loc)
 				if(HS.amount < 50)

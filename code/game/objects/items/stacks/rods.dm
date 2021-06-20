@@ -15,23 +15,23 @@
 
 /obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if (istype(W, /obj/item/weapon/weldingtool))
+	if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 
 		if(amount < 2)
-			user << "\red You need at least two rods to do this."
+			to_chat(user, SPAN_WARNING("You need at least two rods to do this."))
 			return
 
-		if(WT.remove_fuel(0,user))
+		if(WT.remove_fuel(0, user))
 			var/obj/item/stack/sheet/metal/new_item = new(usr.loc)
 			new_item.add_to_stacks(usr)
-			for (var/mob/M in viewers(src))
-				M.show_message("\red [src] is shaped into metal by [user.name] with the weldingtool.", 3, "\red You hear welding.", 2)
+			for(var/mob/M in viewers(src))
+				M.show_message(SPAN_WARNING("[src] is shaped into metal by [user.name] with the weldingtool."), 3, SPAN_WARNING("You hear welding."), 2)
 			var/obj/item/stack/rods/R = src
 			qdel(src)
-			var/replace = (user.get_inactive_hand()==R)
+			var/replace = (user.get_inactive_hand() == R)
 			R.use(2)
-			if (!R && replace)
+			if(!R && replace)
 				user.put_in_hands(new_item)
 		return
 	..()
@@ -40,11 +40,12 @@
 /obj/item/stack/rods/attack_self(mob/user as mob)
 	src.add_fingerprint(user)
 
-	if(!istype(user.loc,/turf)) return 0
+	if(!isturf(user.loc))
+		return 0
 
-	if (locate(/obj/structure/grille, usr.loc))
+	if(locate(/obj/structure/grille, usr.loc))
 		for(var/obj/structure/grille/G in usr.loc)
-			if (G.destroyed)
+			if(G.destroyed)
 				G.health = 10
 				G.density = 1
 				G.destroyed = 0
@@ -54,13 +55,13 @@
 				return 1
 	else
 		if(amount < 2)
-			user << "\blue You need at least two rods to do this."
+			to_chat(user, SPAN_INFO("You need at least two rods to do this."))
 			return
-		usr << "\blue Assembling grille..."
-		if (!do_after(usr, 10))
+		to_chat(usr, SPAN_INFO("Assembling grille..."))
+		if(!do_after(usr, 10))
 			return
-		var/obj/structure/grille/F = new /obj/structure/grille/ ( usr.loc )
-		usr << "\blue You assemble a grille"
+		var/obj/structure/grille/F = new /obj/structure/grille(usr.loc)
+		to_chat(usr, SPAN_INFO("You assemble a grille."))
 		F.add_fingerprint(usr)
 		use(2)
 	return

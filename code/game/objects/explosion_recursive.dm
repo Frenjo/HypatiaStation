@@ -7,23 +7,24 @@
 	var/explosion_resistance
 
 
-
 var/list/explosion_turfs = list()
 
 var/explosion_in_progress = 0
 
 
 proc/explosion_rec(turf/epicenter, power)
-
 	var/loopbreak = 0
 	while(explosion_in_progress)
-		if(loopbreak >= 15) return
+		if(loopbreak >= 15)
+			return
 		sleep(10)
 		loopbreak++
 
-	if(power <= 0) return
+	if(power <= 0)
+		return
 	epicenter = get_turf(epicenter)
-	if(!epicenter) return
+	if(!epicenter)
+		return
 
 	message_admins("Explosion with size ([power]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z])")
 	log_game("Explosion with size ([power]) in area [epicenter.loc.name] ")
@@ -43,11 +44,13 @@ proc/explosion_rec(turf/epicenter, power)
 
 	//This step applies the ex_act effects for the explosion, as planned in the previous step.
 	for(var/turf/T in explosion_turfs)
-		if(explosion_turfs[T] <= 0) continue
-		if(!T) continue
+		if(explosion_turfs[T] <= 0)
+			continue
+		if(!T)
+			continue
 
 		//Wow severity looks confusing to calculate... Fret not, I didn't leave you with any additional instructions or help. (just kidding, see the line under the calculation)
-		var/severity = 4 - round(max(min( 3, ((explosion_turfs[T] - T.explosion_resistance) / (max(3,(power/3)))) ) ,1), 1)								//sanity			effective power on tile				divided by either 3 or one third the total explosion power
+		var/severity = 4 - round(max(min(3, ((explosion_turfs[T] - T.explosion_resistance) / (max(3, (power/3))))), 1), 1)								//sanity			effective power on tile				divided by either 3 or one third the total explosion power
 								//															One third because there are three power levels and I
 								//															want each one to take up a third of the crater
 		var/x = T.x
@@ -55,7 +58,7 @@ proc/explosion_rec(turf/epicenter, power)
 		var/z = T.z
 		T.ex_act(severity)
 		if(!T)
-			T = locate(x,y,z)
+			T = locate(x, y, z)
 		for(var/atom/A in T)
 			A.ex_act(severity)
 
@@ -115,10 +118,10 @@ proc/explosion_rec(turf/epicenter, power)
 
 	var/turf/T = get_step(src, direction)
 	T.explosion_spread(spread_power, direction)
-	T = get_step(src, turn(direction,90))
-	T.explosion_spread(side_spread_power, turn(direction,90))
-	T = get_step(src, turn(direction,-90))
-	T.explosion_spread(side_spread_power, turn(direction,90))
+	T = get_step(src, turn(direction, 90))
+	T.explosion_spread(side_spread_power, turn(direction, 90))
+	T = get_step(src, turn(direction, -90))
+	T.explosion_spread(side_spread_power, turn(direction, 90))
 
 	/*
 	for(var/direction in cardinal)

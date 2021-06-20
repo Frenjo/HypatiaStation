@@ -26,26 +26,26 @@
 	processing_power_items.Remove(src)
 	..()
 
-/obj/item/device/powersink/attackby(var/obj/item/I, var/mob/user)
+/obj/item/device/powersink/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/screwdriver))
 		if(mode == 0)
 			var/turf/T = loc
 			if(isturf(T) && !T.intact)
 				attached = locate() in T
 				if(!attached)
-					user << "No exposed cable here to attach to."
+					to_chat(user, "No exposed cable here to attach to.")
 					return
 				else
 					anchored = 1
 					mode = 1
-					user << "You attach the device to the cable."
+					to_chat(user, "You attach the device to the cable.")
 					for(var/mob/M in viewers(user))
 						if(M == user)
 							continue
-						M << "[user] attaches the power sink to the cable."
+						to_chat(M, "[user] attaches the power sink to the cable.")
 					return
 			else
-				user << "Device must be placed over an exposed cable to attach to it."
+				to_chat(user, "Device must be placed over an exposed cable to attach to it.")
 				return
 		else
 			if(mode == 2)
@@ -53,11 +53,11 @@
 				processing_power_items.Remove(src)
 			anchored = 0
 			mode = 0
-			user << "You detach	the device from the cable."
+			to_chat(user, "You detach the device from the cable.")
 			for(var/mob/M in viewers(user))
 				if(M == user)
 					continue
-				M << "[user] detaches the power sink from the cable."
+				to_chat(M, "[user] detaches the power sink from the cable.")
 			set_light(0)
 			icon_state = "powersink0"
 
@@ -71,28 +71,28 @@
 /obj/item/device/powersink/attack_ai()
 	return
 
-/obj/item/device/powersink/attack_hand(var/mob/user)
+/obj/item/device/powersink/attack_hand(mob/user)
 	switch(mode)
 		if(0)
 			..()
 
 		if(1)
-			user << "You activate the device!"
+			to_chat(user, "You activate the device!")
 			for(var/mob/M in viewers(user))
 				if(M == user)
 					continue
-				M << "[user] activates the power sink!"
+				to_chat(M, "[user] activates the power sink!")
 			mode = 2
 			icon_state = "powersink1"
 			processing_objects.Add(src)
 			processing_power_items.Add(src)
 
 		if(2)  //This switch option wasn't originally included. It exists now. --NeoFite
-			user << "You deactivate the device!"
+			to_chat(user, "You deactivate the device!")
 			for(var/mob/M in viewers(user))
 				if(M == user)
 					continue
-				M << "[user] deactivates the power sink!"
+				to_chat(M, "[user] deactivates the power sink!")
 			mode = 1
 			set_light(0)
 			icon_state = "powersink0"

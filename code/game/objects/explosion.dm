@@ -1,7 +1,7 @@
 //TODO: Flash range does nothing currently
 
 //A very crude linear approximatiaon of pythagoras theorem.
-/proc/cheap_pythag(var/dx, var/dy)
+/proc/cheap_pythag(dx, dy)
 	dx = abs(dx)
 	dy = abs(dy)
 	if(dx >= dy)
@@ -63,7 +63,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 			if(M.z == epicenter.z)
 				if(!(M in close))
 					// check if the mob can hear
-					if(M.ear_deaf <= 0 || !M.ear_deaf) if(!istype(M.loc,/turf/space))
+					if(M.ear_deaf <= 0 || !M.ear_deaf) if(!istype(M.loc, /turf/space))
 						M << 'sound/effects/explosionfar.ogg'
 		if(adminlog)
 			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
@@ -85,7 +85,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 		var/z0 = epicenter.z
 
 		for(var/turf/T in range(epicenter, max_range))
-			var/dist = cheap_pythag(T.x - x0,T.y - y0)
+			var/dist = cheap_pythag(T.x - x0, T.y - y0)
 
 			if(dist < devastation_range)
 				dist = 1
@@ -108,7 +108,7 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 			world.log << "## DEBUG: Explosion([x0],[y0],[z0])(d[devastation_range],h[heavy_impact_range],l[light_impact_range]): Took [took] seconds."
 
 		//Machines which report explosions.
-		for(var/i,i <= doppler_arrays.len, i++)
+		for(var/i, i <= doppler_arrays.len, i++)
 			var/obj/machinery/doppler_array/Array = doppler_arrays[i]
 			if(Array)
 				Array.sense_explosion(x0, y0, z0, devastation_range, heavy_impact_range, light_impact_range, took)

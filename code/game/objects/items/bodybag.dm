@@ -40,14 +40,14 @@
 	density = 0
 
 /obj/structure/closet/body_bag/attackby(W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/pen))
-		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
-		if (user.get_active_hand() != W)
+	if(istype(W, /obj/item/weapon/pen))
+		var/t = input(user, "What would you like the label to be?", src.name, null) as text
+		if(user.get_active_hand() != W)
 			return
-		if (!in_range(src, user) && src.loc != user)
+		if(!in_range(src, user) && src.loc != user)
 			return
-		t = copytext(sanitize(t),1,MAX_MESSAGE_LEN)
-		if (t)
+		t = copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
+		if(t)
 			src.name = "body bag - "
 			src.name += t
 			src.overlays += image(src.icon, "bodybag_label")
@@ -56,7 +56,7 @@
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
 		return
 	else if(istype(W, /obj/item/weapon/wirecutters))
-		user << "You cut the tag off the bodybag"
+		to_chat(user, "You cut the tag off the bodybag.")
 		src.name = "body bag"
 		src.overlays.Cut()
 		return
@@ -122,5 +122,5 @@
 	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
 		if(!ishuman(usr))
 			return
-		to_chat(usr, SPAN_WARNING("You can't fold that up anymore.."))
+		to_chat(usr, SPAN_WARNING("You can't fold that up anymore..."))
 	..()

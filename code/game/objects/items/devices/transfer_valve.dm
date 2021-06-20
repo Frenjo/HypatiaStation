@@ -10,7 +10,7 @@
 	var/valve_open = 0
 	var/toggle = 1
 
-/obj/item/device/transfer_valve/proc/process_activation(var/obj/item/device/D)
+/obj/item/device/transfer_valve/proc/process_activation(obj/item/device/D)
 
 /obj/item/device/transfer_valve/IsAssemblyHolder()
 	return 1
@@ -18,19 +18,19 @@
 /obj/item/device/transfer_valve/attackby(obj/item/item, mob/user)
 	if(istype(item, /obj/item/weapon/tank))
 		if(tank_one && tank_two)
-			user << "<span class='warning'>There are already two tanks attached, remove one first.</span>"
+			to_chat(user, SPAN_WARNING("There are already two tanks attached, remove one first."))
 			return
 
 		if(!tank_one)
 			tank_one = item
 			user.drop_item()
 			item.loc = src
-			user << "<span class='notice'>You attach the tank to the transfer valve.</span>"
+			to_chat(user, SPAN_NOTICE("You attach the tank to the transfer valve."))
 		else if(!tank_two)
 			tank_two = item
 			user.drop_item()
 			item.loc = src
-			user << "<span class='notice'>You attach the tank to the transfer valve.</span>"
+			to_chat(user, SPAN_NOTICE("You attach the tank to the transfer valve."))
 
 		update_icon()
 		nanomanager.update_uis(src) // update all UIs attached to src
@@ -38,15 +38,15 @@
 	else if(isassembly(item))
 		var/obj/item/device/assembly/A = item
 		if(A.secured)
-			user << "<span class='notice'>The device is secured.</span>"
+			to_chat(user, SPAN_NOTICE("The device is secured."))
 			return
 		if(attached_device)
-			user << "<span class='warning'>There is already an device attached to the valve, remove it first.</span>"
+			to_chat(user, SPAN_WARNING("There is already a device attached to the valve, remove it first."))
 			return
 		user.remove_from_mob(item)
 		attached_device = A
 		A.loc = src
-		user << "<span class='notice'>You attach the [item] to the valve controls and secure it.</span>"
+		to_chat(user, SPAN_NOTICE("You attach the [item] to the valve controls and secure it."))
 		A.holder = src
 		A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).
 
@@ -59,16 +59,16 @@
 
 
 /obj/item/device/transfer_valve/HasProximity(atom/movable/AM as mob|obj)
-	if(!attached_device)	return
+	if(!attached_device)
+		return
 	attached_device.HasProximity(AM)
 	return
 
 
 /obj/item/device/transfer_valve/attack_self(mob/user as mob)
 	ui_interact(user)
-	
-/obj/item/device/transfer_valve/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
 
+/obj/item/device/transfer_valve/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["attachmentOne"] = tank_one ? tank_one.name : null
@@ -78,7 +78,7 @@
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)	
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "transfer_valve.tmpl", "Tank Transfer Valve", 460, 280)
@@ -91,9 +91,9 @@
 
 /obj/item/device/transfer_valve/Topic(href, href_list)
 	..()
-	if ( usr.stat || usr.restrained() )
+	if(usr.stat || usr.restrained())
 		return 0
-	if (src.loc != usr)
+	if(src.loc != usr)
 		return 0
 	if(tank_one && href_list["tankone"])
 		split_gases()
@@ -120,7 +120,7 @@
 	src.add_fingerprint(usr)
 	return 1 // Returning 1 sends an update to attached UIs
 
-/obj/item/device/transfer_valve/process_activation(var/obj/item/device/D)
+/obj/item/device/transfer_valve/process_activation(obj/item/device/D)
 	if(toggle)
 		toggle = 0
 		toggle_valve()
@@ -152,7 +152,7 @@
 	tank_two.air_contents.merge(temp)
 
 /obj/item/device/transfer_valve/proc/split_gases()
-	if (!valve_open || !tank_one || !tank_two)
+	if(!valve_open || !tank_one || !tank_two)
 		return
 	var/ratio1 = tank_one.air_contents.volume/tank_two.air_contents.volume
 	var/datum/gas_mixture/temp
@@ -166,7 +166,7 @@
 	*/
 
 /obj/item/device/transfer_valve/proc/toggle_valve()
-	if(valve_open==0 && (tank_one && tank_two))
+	if(valve_open == 0 && (tank_one && tank_two))
 		valve_open = 1
 		var/turf/bombturf = get_turf(src)
 		var/area/A = get_area(bombturf)
@@ -194,12 +194,12 @@
 		log_game(log_str)
 		merge_gases()
 		spawn(20) // In case one tank bursts
-			for (var/i=0,i<5,i++)
+			for(var/i = 0, i < 5, i++)
 				src.update_icon()
 				sleep(10)
 			src.update_icon()
 
-	else if(valve_open==1 && (tank_one && tank_two))
+	else if(valve_open == 1 && (tank_one && tank_two))
 		split_gases()
 		valve_open = 0
 		src.update_icon()

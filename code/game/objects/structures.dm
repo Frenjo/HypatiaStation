@@ -17,19 +17,19 @@
 /obj/structure/attack_hand(mob/user)
 	if(breakable)
 		if(HULK in user.mutations)
-			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-			visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
+			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
+			visible_message(SPAN_DANGER("[user] smashes the [src] apart!"))
 			qdel(src)
-		else if(istype(user,/mob/living/carbon/human))
+		else if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(H.species.can_shred(user))
-				visible_message("<span class='danger'>[H] slices [src] apart!</span>")
+				visible_message(SPAN_DANGER("[H] slices [src] apart!"))
 				qdel(src)
 
 /obj/structure/attack_animal(mob/living/user)
 	if(breakable)
 		if(user.wall_smash)
-			visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
+			visible_message(SPAN_DANGER("[user] smashes [src] apart!"))
 			qdel(src)
 
 /obj/structure/attack_paw(mob/user)
@@ -64,14 +64,14 @@
 	if(!can_touch(usr) || !climbable)
 		return
 
-	usr.visible_message("<span class='warning'>[usr] starts climbing onto \the [src]!</span>")
+	usr.visible_message(SPAN_WARNING("[usr] starts climbing onto \the [src]!"))
 
 	if(!do_after(usr, 50))
 		return
 
 	usr.loc = get_turf(src)
 	if(get_turf(usr) == get_turf(src))
-		usr.visible_message("<span class='warning'>[usr] climbs onto \the [src]!</span>")
+		usr.visible_message(SPAN_WARNING("[usr] climbs onto \the [src]!"))
 
 /obj/structure/proc/structure_shaken()
 	for(var/mob/living/M in get_turf(src))
@@ -79,19 +79,19 @@
 			return //No spamming this on people.
 
 		M.Weaken(5)
-		M << "\red You topple as \the [src] moves under you!"
+		to_chat(M, SPAN_WARNING("You topple as \the [src] moves under you!"))
 
 		if(prob(25))
 			var/damage = rand(15, 30)
 			var/mob/living/carbon/human/H = M
 			if(!istype(M))
-				H << "\red You land heavily!"
+				to_chat(H, SPAN_WARNING("You land heavily!"))
 				M.adjustBruteLoss(damage)
 				return
 
 			var/datum/organ/external/affecting
 
-			switch(pick(list("ankle","wrist","head","knee","elbow")))
+			switch(pick(list("ankle", "wrist", "head", "knee", "elbow")))
 				if("ankle")
 					affecting = H.get_organ(pick("l_foot", "r_foot"))
 				if("knee")
@@ -104,12 +104,12 @@
 					affecting = H.get_organ("head")
 
 			if(affecting)
-				M << "\red You land heavily on your [affecting.display_name]!"
+				to_chat(M, SPAN_WARNING("You land heavily on your [affecting.display_name]!"))
 				affecting.take_damage(damage, 0)
 				if(affecting.parent)
 					affecting.parent.add_autopsy_data("Misadventure", damage)
 			else
-				H << "\red You land heavily!"
+				to_chat(H, SPAN_WARNING("You land heavily!"))
 				H.adjustBruteLoss(damage)
 
 			H.UpdateDamageIcon()
@@ -122,6 +122,6 @@
 	if(user.stat || user.restrained() || user.paralysis || user.sleeping || user.lying || user.weakened)
 		return 0
 	if(issilicon(user))
-		user << "<span class='notice'>You need hands for this.</span>"
+		to_chat(user, SPAN_NOTICE("You need hands for this."))
 		return 0
 	return 1

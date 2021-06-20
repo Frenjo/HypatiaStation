@@ -13,7 +13,7 @@
 	var/edit = 1
 	var/repeat = 0
 
-/obj/item/device/violin/proc/playnote(var/note as text)
+/obj/item/device/violin/proc/playnote(note as text)
 	//world << "Note: [note]"
 	var/soundfile
 	/*BYOND loads resource files at compile time if they are ''. This means you can't really manipulate them dynamically.
@@ -236,7 +236,8 @@
 	playing = 0
 
 /obj/item/device/violin/attack_self(mob/user as mob)
-	if(!isliving(user) || user.stat || user.restrained() || user.lying)	return
+	if(!isliving(user) || user.stat || user.restrained() || user.lying)
+		return
 	user.set_machine(src)
 
 	var/dat = "<HEAD><TITLE>Violin</TITLE></HEAD><BODY>"
@@ -255,7 +256,7 @@
 		dat += "<A href='?src=\ref[src];newsong=1'>Start a New Song</A><BR>"
 		dat += "<A href='?src=\ref[src];import=1'>Import a Song</A><BR><BR>"
 		if(song)
-			var/calctempo = (10/song.tempo)*60
+			var/calctempo = (10 / song.tempo) * 60
 			dat += "Tempo : <A href='?src=\ref[src];tempo=10'>-</A><A href='?src=\ref[src];tempo=1'>-</A> [calctempo] BPM <A href='?src=\ref[src];tempo=-1'>+</A><A href='?src=\ref[src];tempo=-10'>+</A><BR><BR>"
 			var/linecount = 0
 			for(var/line in song.lines)
@@ -288,7 +289,6 @@
 	onclose(user, "violin")
 
 /obj/item/device/violin/Topic(href, href_list)
-
 	if(!in_range(src, usr) || issilicon(usr) || !isliving(usr) || !usr.canmove || usr.restrained())
 		usr << browse(null, "window=violin;size=700x300")
 		onclose(usr, "violin")
@@ -333,7 +333,7 @@
 			song.lines.Cut(num, num+1)
 
 		else if(href_list["modifyline"])
-			var/num = round(text2num(href_list["modifyline"]),1)
+			var/num = round(text2num(href_list["modifyline"]), 1)
 			var/content = html_encode(input("Enter your line: ", "violin", song.lines[num]) as text|null)
 			if(!content)
 				return
@@ -369,16 +369,16 @@
 			spawn()
 				var/list/lines = text2list(t, "\n")
 				var/tempo = 5
-				if(copytext(lines[1],1,6) == "BPM: ")
+				if(copytext(lines[1], 1, 6) == "BPM: ")
 					tempo = 600 / text2num(copytext(lines[1],6))
-					lines.Cut(1,2)
+					lines.Cut(1, 2)
 				if(lines.len > 50)
-					usr << "Too many lines!"
+					to_chat(usr, "Too many lines!")
 					lines.Cut(51)
 				var/linenum = 1
 				for(var/l in lines)
 					if(length(l) > 50)
-						usr << "Line [linenum] too long!"
+						to_chat(usr, "Line [linenum] too long!")
 						lines.Remove(l)
 					else
 						linenum++

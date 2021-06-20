@@ -10,6 +10,7 @@
 	selection_color = "#dddddd"
 	access = list(access_hydroponics, access_bar, access_kitchen, access_morgue)
 	minimal_access = list(access_bar)
+	alt_titles = list("Barista", "Mixologist")
 
 /datum/job/bartender/equip(mob/living/carbon/human/H)
 	if(!H)

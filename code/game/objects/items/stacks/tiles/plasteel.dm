@@ -12,7 +12,7 @@
 	flags = CONDUCT
 	max_amount = 60
 
-/obj/item/stack/tile/plasteel/New(var/loc, var/amount=null)
+/obj/item/stack/tile/plasteel/New(loc, amount = null)
 	..()
 	src.pixel_x = rand(1, 14)
 	src.pixel_y = rand(1, 14)
@@ -36,7 +36,7 @@
 */
 
 /obj/item/stack/tile/plasteel/proc/build(turf/S as turf)
-	if (istype(S,/turf/space))
+	if(istype(S, /turf/space))
 		S.ChangeTurf(/turf/simulated/floor/plating/airless)
 	else
 		S.ChangeTurf(/turf/simulated/floor/plating)

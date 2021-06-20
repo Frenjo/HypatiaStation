@@ -7,7 +7,6 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 */
 
 /obj/item/device/uplink
-
 	var/welcome 					// Welcoming menu message
 	var/items						// List of items
 	var/valid_items = list()
@@ -29,9 +28,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	nanoui_items = generate_nanoui_items()
 	for(var/D in ItemList)
 		var/list/O = text2list(D, ":")
-		if(O.len>0)
+		if(O.len > 0)
 			valid_items += O[1]
-
 
 
 /*
@@ -64,7 +62,6 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 //Let's build a menu!
 /obj/item/device/uplink/proc/generate_menu()
-
 	var/dat = "<B>[src.welcome]</B><BR>"
 	dat += "Tele-Crystals left: [src.uses]<BR>"
 	dat += "<HR>"
@@ -91,7 +88,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			continue
 
 		path_text = O[1]
-		cost = Clamp(text2num(O[2]),1,20) //Another halfassed fix for href exploit ~Z
+		cost = Clamp(text2num(O[2]), 1, 20) //Another halfassed fix for href exploit ~Z
 
 		if(cost>uses)
 			continue
@@ -186,107 +183,104 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		switch(buyItem) //Ok, this gets a little messy, sorry.
 			if("/obj/item/weapon/circuitboard/teleporter")
 				uses -= 20
-			if("/obj/item/toy/syndicateballoon" , "/obj/item/weapon/storage/box/syndie_kit/imp_uplink" , "/obj/item/weapon/storage/box/syndicate")
+			if("/obj/item/toy/syndicateballoon", "/obj/item/weapon/storage/box/syndie_kit/imp_uplink", "/obj/item/weapon/storage/box/syndicate")
 				uses -= 10
-			if("/obj/item/weapon/aiModule/syndicate" , "/obj/item/device/radio/beacon/syndicate")
+			if("/obj/item/weapon/aiModule/syndicate", "/obj/item/device/radio/beacon/syndicate")
 				uses -= 7
 			if("/obj/item/weapon/gun/projectile")
 				uses -= 6
-			if("/obj/item/weapon/gun/energy/crossbow" , "/obj/item/device/powersink")
+			if("/obj/item/weapon/gun/energy/crossbow", "/obj/item/device/powersink")
 				uses -= 5
-			if("/obj/item/weapon/melee/energy/sword" , "/obj/item/clothing/mask/gas/voice" , "/obj/item/device/chameleon")
+			if("/obj/item/weapon/melee/energy/sword", "/obj/item/clothing/mask/gas/voice", "/obj/item/device/chameleon")
 				uses -= 4
-			if("/obj/item/weapon/storage/box/emps" , "/obj/item/weapon/pen/paralysis" , "/obj/item/weapon/cartridge/syndicate" , "/obj/item/clothing/under/chameleon" , \
-			"/obj/item/weapon/card/emag" , "/obj/item/weapon/storage/box/syndie_kit/space" , "/obj/item/device/encryptionkey/binary" , \
-			"/obj/item/weapon/storage/box/syndie_kit/imp_freedom" , "/obj/item/clothing/glasses/thermal/syndi")
+			if("/obj/item/weapon/storage/box/emps", "/obj/item/weapon/pen/paralysis", "/obj/item/weapon/cartridge/syndicate", "/obj/item/clothing/under/chameleon", \
+			"/obj/item/weapon/card/emag", "/obj/item/weapon/storage/box/syndie_kit/space", "/obj/item/device/encryptionkey/binary", \
+			"/obj/item/weapon/storage/box/syndie_kit/imp_freedom", "/obj/item/clothing/glasses/thermal/syndi")
 				uses -= 3
-			if("/obj/item/ammo_magazine/a357" , "/obj/item/clothing/shoes/syndigaloshes" , "/obj/item/weapon/plastique", "/obj/item/weapon/card/id/syndicate")
+			if("/obj/item/ammo_magazine/a357", "/obj/item/clothing/shoes/syndigaloshes", "/obj/item/weapon/plastique", "/obj/item/weapon/card/id/syndicate")
 				uses -= 2
-			if("/obj/item/weapon/soap/syndie" , "/obj/item/weapon/storage/toolbox/syndicate")
+			if("/obj/item/weapon/soap/syndie", "/obj/item/weapon/storage/toolbox/syndicate")
 				uses -= 1
 		qdel(randomItems)
 		return buyItem
 
-/obj/item/device/uplink/proc/handleStatTracking(var/boughtItem)
+/obj/item/device/uplink/proc/handleStatTracking(boughtItem)
 //For stat tracking, sorry for making it so ugly
-	if(!boughtItem) return
+	if(!boughtItem)
+		return
 
 	switch(boughtItem)
 		if("/obj/item/weapon/circuitboard/teleporter")
-			feedback_add_details("traitor_uplink_items_bought","TP")
+			feedback_add_details("traitor_uplink_items_bought", "TP")
 		if("/obj/item/toy/syndicateballoon")
-			feedback_add_details("traitor_uplink_items_bought","BS")
+			feedback_add_details("traitor_uplink_items_bought", "BS")
 		if("/obj/item/weapon/storage/box/syndie_kit/imp_uplink")
-			feedback_add_details("traitor_uplink_items_bought","UI")
+			feedback_add_details("traitor_uplink_items_bought", "UI")
 		if("/obj/item/weapon/storage/box/syndicate")
-			feedback_add_details("traitor_uplink_items_bought","BU")
+			feedback_add_details("traitor_uplink_items_bought", "BU")
 		if("/obj/item/weapon/aiModule/syndicate")
-			feedback_add_details("traitor_uplink_items_bought","AI")
+			feedback_add_details("traitor_uplink_items_bought", "AI")
 		if("/obj/item/device/radio/beacon/syndicate")
-			feedback_add_details("traitor_uplink_items_bought","SB")
+			feedback_add_details("traitor_uplink_items_bought", "SB")
 		if("/obj/item/weapon/gun/projectile")
-			feedback_add_details("traitor_uplink_items_bought","RE")
+			feedback_add_details("traitor_uplink_items_bought", "RE")
 		if("/obj/item/weapon/gun/energy/crossbow")
-			feedback_add_details("traitor_uplink_items_bought","XB")
+			feedback_add_details("traitor_uplink_items_bought", "XB")
 		if("/obj/item/device/powersink")
-			feedback_add_details("traitor_uplink_items_bought","PS")
+			feedback_add_details("traitor_uplink_items_bought", "PS")
 		if("/obj/item/weapon/melee/energy/sword")
-			feedback_add_details("traitor_uplink_items_bought","ES")
+			feedback_add_details("traitor_uplink_items_bought", "ES")
 		if("/obj/item/clothing/mask/gas/voice")
-			feedback_add_details("traitor_uplink_items_bought","VC")
+			feedback_add_details("traitor_uplink_items_bought", "VC")
 		if("/obj/item/device/chameleon")
-			feedback_add_details("traitor_uplink_items_bought","CP")
+			feedback_add_details("traitor_uplink_items_bought", "CP")
 		if("/obj/item/weapon/storage/box/emps")
-			feedback_add_details("traitor_uplink_items_bought","EM")
+			feedback_add_details("traitor_uplink_items_bought", "EM")
 		if("/obj/item/weapon/pen/paralysis")
-			feedback_add_details("traitor_uplink_items_bought","PP")
+			feedback_add_details("traitor_uplink_items_bought", "PP")
 		if("/obj/item/weapon/cartridge/syndicate")
-			feedback_add_details("traitor_uplink_items_bought","DC")
+			feedback_add_details("traitor_uplink_items_bought", "DC")
 		if("/obj/item/clothing/under/chameleon")
-			feedback_add_details("traitor_uplink_items_bought","CJ")
+			feedback_add_details("traitor_uplink_items_bought", "CJ")
 		if("/obj/item/weapon/card/id/syndicate")
-			feedback_add_details("traitor_uplink_items_bought","AC")
+			feedback_add_details("traitor_uplink_items_bought", "AC")
 		if("/obj/item/weapon/card/emag")
-			feedback_add_details("traitor_uplink_items_bought","EC")
+			feedback_add_details("traitor_uplink_items_bought", "EC")
 		if("/obj/item/weapon/storage/box/syndie_kit/space")
-			feedback_add_details("traitor_uplink_items_bought","SS")
+			feedback_add_details("traitor_uplink_items_bought", "SS")
 		if("/obj/item/device/encryptionkey/binary")
-			feedback_add_details("traitor_uplink_items_bought","BT")
+			feedback_add_details("traitor_uplink_items_bought", "BT")
 		if("/obj/item/weapon/storage/box/syndie_kit/imp_freedom")
-			feedback_add_details("traitor_uplink_items_bought","FI")
+			feedback_add_details("traitor_uplink_items_bought", "FI")
 		if("/obj/item/clothing/glasses/thermal/syndi")
-			feedback_add_details("traitor_uplink_items_bought","TM")
+			feedback_add_details("traitor_uplink_items_bought", "TM")
 		if("/obj/item/ammo_magazine/a357")
-			feedback_add_details("traitor_uplink_items_bought","RA")
+			feedback_add_details("traitor_uplink_items_bought", "RA")
 		if("/obj/item/clothing/shoes/syndigaloshes")
-			feedback_add_details("traitor_uplink_items_bought","SH")
+			feedback_add_details("traitor_uplink_items_bought", "SH")
 		if("/obj/item/weapon/plastique")
-			feedback_add_details("traitor_uplink_items_bought","C4")
+			feedback_add_details("traitor_uplink_items_bought", "C4")
 		if("/obj/item/weapon/soap/syndie")
-			feedback_add_details("traitor_uplink_items_bought","SP")
+			feedback_add_details("traitor_uplink_items_bought", "SP")
 		if("/obj/item/weapon/storage/toolbox/syndicate")
-			feedback_add_details("traitor_uplink_items_bought","ST")
+			feedback_add_details("traitor_uplink_items_bought", "ST")
 
 /obj/item/device/uplink/Topic(href, href_list)
-	if (href_list["buy_item"])
-
+	if(href_list["buy_item"])
 		if(href_list["buy_item"] == "random")
 			var/boughtItem = chooseRandomItem()
 			if(boughtItem)
 				href_list["buy_item"] = boughtItem
-				feedback_add_details("traitor_uplink_items_bought","RN")
+				feedback_add_details("traitor_uplink_items_bought", "RN")
 				return 1
 			else
 				return 0
-
 		else
 			if(text2num(href_list["cost"]) > uses) // Not enough crystals for the item
 				return 0
-
 			//if(usr:mind && ticker.mode.traitors[usr:mind])
 				//var/datum/traitorinfo/info = ticker.mode.traitors[usr:mind]
 				//info.spawnlist += href_list["buy_item"]
-
 			uses -= text2num(href_list["cost"])
 			handleStatTracking(href_list["buy_item"]) //Note: chooseRandomItem handles it's own stat tracking. This proc is not meant for 'random'.
 		return 1
@@ -331,7 +325,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 // Checks to see if the value meets the target. Like a frequency being a traitor_frequency, in order to unlock a headset.
 // If true, it accesses trigger() and returns 1. If it fails, it returns false. Use this to see if you need to close the
 // current item's menu.
-/obj/item/device/uplink/hidden/proc/check_trigger(mob/user as mob, var/value, var/target)
+/obj/item/device/uplink/hidden/proc/check_trigger(mob/user as mob, value, target)
 	if(value == target)
 		trigger(user)
 		return 1
@@ -340,7 +334,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 /*
 	NANO UI FOR UPLINK WOOP WOOP
 */
-/obj/item/device/uplink/hidden/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
+/obj/item/device/uplink/hidden/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	var/title = "Syndicate Uplink"
 	var/data[0]
 
@@ -350,7 +344,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600)
@@ -361,7 +355,6 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 // Interaction code. Gathers a list of items purchasable from the paren't uplink and displays it. It also adds a lock button.
 /obj/item/device/uplink/hidden/interact(mob/user)
-
 	ui_interact(user)
 
 // The purchasing code.
@@ -371,9 +364,10 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 	if(!(ishuman(usr)))
 		return 0
+
 	var/mob/user = usr
 	var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
-	if((usr.contents.Find(src.loc) || (in_range(src.loc, usr) && istype(src.loc.loc, /turf))))
+	if((usr.contents.Find(src.loc) || (in_range(src.loc, usr) && isturf(src.loc.loc))))
 		usr.set_machine(src)
 		if(href_list["lock"])
 			toggle()
@@ -381,7 +375,6 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			return 1
 
 		if(..(href, href_list) == 1)
-
 			if(!(href_list["buy_item"] in valid_items))
 				return
 
