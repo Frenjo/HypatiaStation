@@ -29,7 +29,7 @@
 	createCorpse()
 
 /obj/effect/landmark/corpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
-	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
+	var/mob/living/carbon/human/M = new /mob/living/carbon/human(src.loc)
 	M.dna.mutantrace = mutantrace
 	M.real_name = src.name
 	M.death(1) //Kills the new mob
@@ -80,12 +80,7 @@
 	qdel(src)
 
 
-
 // I'll work on making a list of corpses people request for maps, or that I think will be commonly used. Syndicate operatives for example.
-
-
-
-
 
 /obj/effect/landmark/corpse/syndicatesoldier
 	name = "Syndicate Operative"
@@ -102,7 +97,6 @@
 	corpseidaccess = "Syndicate"
 
 
-
 /obj/effect/landmark/corpse/syndicatecommando
 	name = "Syndicate Commando"
 	corpseuniform = /obj/item/clothing/under/syndicate
@@ -117,7 +111,6 @@
 	corpseid = 1
 	corpseidjob = "Operative"
 	corpseidaccess = "Syndicate"
-
 
 
 ///////////Civilians//////////////////////
@@ -147,6 +140,7 @@
 	corpseidjob = "Medical Doctor"
 	corpseidaccess = "Medical Doctor"
 
+
 /obj/effect/landmark/corpse/engineer
 	name = "Engineer"
 	corpseradio = /obj/item/device/radio/headset/headset_eng
@@ -165,6 +159,7 @@
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig
 
+
 /obj/effect/landmark/corpse/clown
 	name = "Clown"
 	corpseuniform = /obj/item/clothing/under/rank/clown
@@ -177,6 +172,7 @@
 	corpseidjob = "Clown"
 	corpseidaccess = "Clown"
 
+
 /obj/effect/landmark/corpse/scientist
 	name = "Scientist"
 	corpseradio = /obj/item/device/radio/headset/headset_sci
@@ -187,6 +183,7 @@
 	corpseid = 1
 	corpseidjob = "Scientist"
 	corpseidaccess = "Scientist"
+
 
 /obj/effect/landmark/corpse/miner
 	corpseradio = /obj/item/device/radio/headset/headset_cargo
@@ -216,6 +213,7 @@
 	corpseid = 1
 	corpseidjob = "Bridge Officer"
 	corpseidaccess = "Captain"
+
 
 /obj/effect/landmark/corpse/commander
 	name = "Commander"

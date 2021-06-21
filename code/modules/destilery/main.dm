@@ -6,9 +6,7 @@
 // - V.   Centrifuge
 
 
-
 // I. The mill is intended to be loaded with produce and returns ground up items. For example: Wheat should become flour and grapes should become raisins.
-
 /obj/machinery/mill
 	var/list/obj/item/weapon/reagent_containers/food/input = list()
 	var/list/obj/item/weapon/reagent_containers/food/output = list()
@@ -56,26 +54,21 @@
 	qdel(milled_item)
 	busy = 0
 
-/obj/machinery/mill/attackby(var/obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/reagent_containers/food))
+/obj/machinery/mill/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/reagent_containers/food))
 		user.u_equip(W)
 		W.loc = src
 		input += W
 	else
 		..()
 
-/obj/machinery/mill/attack_hand(var/mob/user as mob)
+/obj/machinery/mill/attack_hand(mob/user as mob)
 	for(var/obj/item/weapon/reagent_containers/food/F in output)
 		F.loc = src.loc
 		output -= F
 
 
-
-
-
-
 // II. The fermenter is intended to be loaded with food items and returns medium-strength alcohol items, sucha s wine and beer.
-
 /obj/machinery/fermenter
 	var/list/obj/item/weapon/reagent_containers/food/input = list()
 	var/list/obj/item/weapon/reagent_containers/food/output = list()
@@ -126,23 +119,21 @@
 	qdel(fermenting_item)
 	busy = 0
 
-/obj/machinery/fermenter/attackby(var/obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/reagent_containers/food))
+/obj/machinery/fermenter/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/reagent_containers/food))
 		user.u_equip(W)
 		W.loc = src
 		input += W
 	else
 		..()
 
-/obj/machinery/fermenter/attack_hand(var/mob/user as mob)
+/obj/machinery/fermenter/attack_hand(mob/user as mob)
 	for(var/obj/item/weapon/reagent_containers/food/F in output)
 		F.loc = src.loc
 		output -= F
 
 
-
 // III. The still is a machine that is loaded with food items and returns hard liquor, such as vodka.
-
 /obj/machinery/still
 	var/list/obj/item/weapon/reagent_containers/food/input = list()
 	var/list/obj/item/weapon/reagent_containers/food/output = list()
@@ -187,24 +178,21 @@
 	qdel(destilling_item)
 	busy = 0
 
-/obj/machinery/still/attackby(var/obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/reagent_containers/food))
+/obj/machinery/still/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/reagent_containers/food))
 		user.u_equip(W)
 		W.loc = src
 		input += W
 	else
 		..()
 
-/obj/machinery/still/attack_hand(var/mob/user as mob)
+/obj/machinery/still/attack_hand(mob/user as mob)
 	for(var/obj/item/weapon/reagent_containers/food/F in output)
 		F.loc = src.loc
 		output -= F
 
 
-
-
 // IV. The squeezer is intended to destroy inserted food items, but return some of the reagents they contain.
-
 /obj/machinery/squeezer
 	var/list/obj/item/weapon/reagent_containers/food/input = list()
 	var/obj/item/weapon/reagent_containers/food/squeezed_item
@@ -222,11 +210,7 @@
 	active_power_usage = 500
 
 
-
-
-
 // V. The centrifuge spins inserted food items. It is intended to squeeze out the reagents that are common food catalysts (enzymes currently)
-
 /obj/machinery/centrifuge
 	var/list/obj/item/weapon/reagent_containers/food/input = list()
 	var/list/obj/item/weapon/reagent_containers/food/output = list()
@@ -272,15 +256,15 @@
 	output += spinning_item
 	busy = 0
 
-/obj/machinery/centrifuge/attackby(var/obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/reagent_containers/food))
+/obj/machinery/centrifuge/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/reagent_containers/food))
 		user.u_equip(W)
 		W.loc = src
 		input += W
 	else
 		..()
 
-/obj/machinery/centrifuge/attack_hand(var/mob/user as mob)
+/obj/machinery/centrifuge/attack_hand(mob/user as mob)
 	for(var/obj/item/weapon/reagent_containers/food/F in output)
 		F.loc = src.loc
 		output -= F

@@ -3,24 +3,25 @@ proc/createRandomZlevel()
 		return
 
 	var/list/potentialRandomZlevels = list()
-	world << "\red \b Searching for away missions..."
+	to_chat(world, SPAN_DANGER("Searching for away missions..."))
 	var/list/Lines = file2list("maps/RandomZLevels/fileList.txt")
-	if(!Lines.len)	return
-	for (var/t in Lines)
-		if (!t)
+	if(!Lines.len)
+		return
+	for(var/t in Lines)
+		if(!t)
 			continue
 
 		t = trim(t)
-		if (length(t) == 0)
+		if(length(t) == 0)
 			continue
-		else if (copytext(t, 1, 2) == "#")
+		else if(copytext(t, 1, 2) == "#")
 			continue
 
 		var/pos = findtext(t, " ")
 		var/name = null
 	//	var/value = null
 
-		if (pos)
+		if(pos)
             // No, don't do lowertext here, that breaks paths on linux
 			name = copytext(t, 1, pos)
 		//	value = copytext(t, pos + 1)
@@ -28,14 +29,14 @@ proc/createRandomZlevel()
             // No, don't do lowertext here, that breaks paths on linux
 			name = t
 
-		if (!name)
+		if(!name)
 			continue
 
 		potentialRandomZlevels.Add(name)
 
 
 	if(potentialRandomZlevels.len)
-		world << "\red \b Loading away mission..."
+		to_chat(world, SPAN_DANGER("Loading away mission..."))
 
 		var/map = pick(potentialRandomZlevels)
 		var/file = file(map)
@@ -43,12 +44,12 @@ proc/createRandomZlevel()
 			maploader.load_map(file, load_speed = 100)
 
 		for(var/obj/effect/landmark/L in landmarks_list)
-			if (L.name != "awaystart")
+			if(L.name != "awaystart")
 				continue
 			awaydestinations.Add(L)
 
-		world << "\red \b Away mission loaded."
+		to_chat(world, SPAN_DANGER("Away mission loaded."))
 
 	else
-		world << "\red \b No away missions found."
+		to_chat(world, SPAN_DANGER("No away missions found."))
 		return
