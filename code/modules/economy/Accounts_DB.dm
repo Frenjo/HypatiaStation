@@ -19,7 +19,7 @@
 	machine_id = "[station_name()] Acc. DB #[num_financial_terminals++]"
 
 /obj/machinery/account_database/attack_hand(mob/user as mob)
-	if(get_dist(src,user) <= 1)
+	if(get_dist(src, user) <= 1)
 		var/dat = "<b>Accounts Database</b><br>"
 		dat += "<i>[machine_id]</i><br>"
 		dat += "Confirm identity: <a href='?src=\ref[src];choice=insert_card'>[held_card ? held_card : "-----"]</a><br>"
@@ -70,7 +70,7 @@
 				else
 					dat += "<a href='?src=\ref[src];choice=create_account;'>Create new account</a><br><br>"
 					dat += "<table border=1 style='width:100%'>"
-					for(var/i=1, i<=all_money_accounts.len, i++)
+					for(var/i = 1, i <= all_money_accounts.len, i++)
 						var/datum/money_account/D = all_money_accounts[i]
 						dat += "<tr>"
 						dat += "<td>#[D.account_number]</td>"
@@ -99,8 +99,7 @@
 	else
 		..()
 
-/obj/machinery/account_database/Topic(var/href, var/href_list)
-
+/obj/machinery/account_database/Topic(href, href_list)
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("create_account")

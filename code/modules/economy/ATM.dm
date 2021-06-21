@@ -66,19 +66,19 @@ log transactions
 	if(istype(I, /obj/item/weapon/card))
 		if(emagged > 0)
 			//prevent inserting id into an emagged ATM
-			user << "\red \icon[src] CARD READER ERROR. This system has been compromised!"
+			to_chat(user, SPAN_WARNING("\icon[src] CARD READER ERROR. This system has been compromised!"))
 			return
-		else if(istype(I,/obj/item/weapon/card/emag))
+		else if(istype(I, /obj/item/weapon/card/emag))
 			//short out the machine, shoot sparks, spew money!
 			emagged = 1
 			spark_system.start()
-			spawn_money(rand(100,500),src.loc)
+			spawn_money(rand(100, 500), src.loc)
 			//we don't want to grief people by locking their id in an emagged ATM
 			release_held_id(user)
 
 			//display a message to the user
-			var/response = pick("Initiating withdraw. Have a nice day!", "CRITICAL ERROR: Activating cash chamber panic siphon.","PIN Code accepted! Emptying account balance.", "Jackpot!")
-			user << "\red \icon[src] The [src] beeps: \"[response]\""
+			var/response = pick("Initiating withdraw. Have a nice day!", "CRITICAL ERROR: Activating cash chamber panic siphon.", "PIN Code accepted! Emptying account balance.", "Jackpot!")
+			to_chat(user, SPAN_WARNING("\icon[src] The [src] beeps: \"[response]\""))
 			return
 
 		var/obj/item/weapon/card/id/idcard = I
@@ -89,7 +89,7 @@ log transactions
 			if(authenticated_account && held_card.associated_account_number != authenticated_account.account_number)
 				authenticated_account = null
 	else if(authenticated_account)
-		if(istype(I,/obj/item/weapon/spacecash))
+		if(istype(I, /obj/item/weapon/spacecash))
 			//consume the money
 			authenticated_account.money += I:worth
 			if(prob(50))
@@ -107,7 +107,7 @@ log transactions
 			T.time = worldtime2text()
 			authenticated_account.transaction_log.Add(T)
 
-			user << "<span class='info'>You insert [I] into [src].</span>"
+			to_chat(user, SPAN_INFO("You insert [I] into [src]."))
 			src.attack_hand(user)
 			qdel(I)
 	else
@@ -115,10 +115,9 @@ log transactions
 
 /obj/machinery/atm/attack_hand(mob/user as mob)
 	if(issilicon(user))
-		user << "\red \icon[src] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per NanoTrasen regulation #1005."
+		to_chat(user, SPAN_WARNING("\icon[src] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per NanoTrasen regulation #1005."))
 		return
-	if(get_dist(src,user) <= 1)
-
+	if(get_dist(src, user) <= 1)
 		//js replicated from obj/machinery/computer/card
 		var/dat = "<h1>NanoTrasen Automatic Teller Machine</h1>"
 		dat += "For all your monetary needs!<br>"
@@ -130,10 +129,10 @@ log transactions
 			dat += "Card: <a href='?src=\ref[src];choice=insert_card'>[held_card ? held_card.name : "------"]</a><br><br>"
 
 			if(ticks_left_locked_down > 0)
-				dat += "<span class='alert'>Maximum number of pin attempts exceeded! Access to this ATM has been temporarily disabled.</span>"
+				dat += SPAN_ALERT("Maximum number of pin attempts exceeded! Access to this ATM has been temporarily disabled.")
 			else if(authenticated_account)
 				if(authenticated_account.suspended)
-					dat += "\red<b>Access to this account has been suspended, and the funds within frozen.</b>"
+					dat += SPAN_DANGER("Access to this account has been suspended, and the funds within frozen.")
 				else
 					switch(view_screen)
 						if(CHANGE_SECURITY_LEVEL)
@@ -211,7 +210,7 @@ log transactions
 	else
 		user << browse(null,"window=atm")
 
-/obj/machinery/atm/Topic(var/href, var/href_list)
+/obj/machinery/atm/Topic(href, href_list)
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("transfer")
@@ -223,7 +222,7 @@ log transactions
 						var/target_account_number = text2num(href_list["target_acc_number"])
 						var/transfer_purpose = href_list["purpose"]
 						if(charge_to_account(target_account_number, authenticated_account.owner_name, transfer_purpose, machine_id, transfer_amount))
-							usr << "\icon[src]<span class='info'>Funds transfer successful.</span>"
+							to_chat(usr, SPAN_INFO("\icon[src] Funds transfer successful."))
 							authenticated_account.money -= transfer_amount
 
 							//create an entry in the account transaction log
@@ -236,10 +235,10 @@ log transactions
 							T.amount = "([transfer_amount])"
 							authenticated_account.transaction_log.Add(T)
 						else
-							usr << "\icon[src]<span class='warning'>Funds transfer failed.</span>"
+							to_chat(usr, SPAN_WARNING("\icon[src] Funds transfer failed."))
 
 					else
-						usr << "\icon[src]<span class='warning'>You don't have enough funds to do that!</span>"
+						to_chat(usr, SPAN_WARNING("\icon[src] You don't have enough funds to do that!"))
 			if("view_screen")
 				view_screen = text2num(href_list["view_screen"])
 			if("change_security_level")
@@ -276,11 +275,11 @@ log transactions
 									T.time = worldtime2text()
 									failed_account.transaction_log.Add(T)
 							else
-								usr << "\red \icon[src] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."
+								to_chat(usr, SPAN_WARNING("\icon[src] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."))
 								previous_account_number = tried_account_num
 								playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 						else
-							usr << "\red \icon[src] incorrect pin/account combination entered."
+							to_chat(usr, SPAN_WARNING("\icon[src] incorrect pin/account combination entered."))
 							number_incorrect_tries = 0
 					else
 						playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
@@ -296,7 +295,7 @@ log transactions
 						T.time = worldtime2text()
 						authenticated_account.transaction_log.Add(T)
 
-						usr << "\blue \icon[src] Access granted. Welcome user '[authenticated_account.owner_name].'"
+						to_chat(usr, SPAN_INFO("\icon[src] Access granted. Welcome user '[authenticated_account.owner_name].'"))
 
 					previous_account_number = tried_account_num
 			if("withdrawal")
@@ -310,7 +309,7 @@ log transactions
 						//remove the money
 						authenticated_account.money -= amount
 						//	spawn_money(amount,src.loc)
-						spawn_ewallet(amount,src.loc)
+						spawn_ewallet(amount, src.loc)
 
 						//create an entry in the account transaction log
 						var/datum/transaction/T = new()
@@ -322,7 +321,7 @@ log transactions
 						T.time = worldtime2text()
 						authenticated_account.transaction_log.Add(T)
 					else
-						usr << "\icon[src]<span class='warning'>You don't have enough funds to do that!</span>"
+						to_chat(usr, SPAN_WARNING("\icon[src] You don't have enough funds to do that!"))
 			if("balance_statement")
 				if(authenticated_account)
 					var/obj/item/weapon/paper/R = new(src.loc)
@@ -395,10 +394,10 @@ log transactions
 				if(!held_card)
 					//this might happen if the user had the browser window open when somebody emagged it
 					if(emagged > 0)
-						usr << "\red \icon[src] The ATM card reader rejected your ID because this machine has been sabotaged!"
+						to_chat(usr, SPAN_WARNING("\icon[src] The ATM card reader rejected your ID because this machine has been sabotaged!"))
 					else
 						var/obj/item/I = usr.get_active_hand()
-						if (istype(I, /obj/item/weapon/card/id))
+						if(istype(I, /obj/item/weapon/card/id))
 							usr.drop_item()
 							I.loc = src
 							held_card = I
@@ -415,15 +414,15 @@ log transactions
 	if(!authenticated_account)
 		if(human_user.wear_id)
 			var/obj/item/weapon/card/id/I
-			if(istype(human_user.wear_id, /obj/item/weapon/card/id) )
+			if(istype(human_user.wear_id, /obj/item/weapon/card/id))
 				I = human_user.wear_id
-			else if(istype(human_user.wear_id, /obj/item/device/pda) )
+			else if(istype(human_user.wear_id, /obj/item/device/pda))
 				var/obj/item/device/pda/P = human_user.wear_id
 				I = P.id
 			if(I)
 				authenticated_account = attempt_account_access(I.associated_account_number)
 				if(authenticated_account)
-					human_user << "\blue \icon[src] Access granted. Welcome user '[authenticated_account.owner_name].'"
+					to_chat(human_user, SPAN_INFO("\icon[src] Access granted. Welcome user '[authenticated_account.owner_name].'"))
 
 					//create a transaction log entry
 					var/datum/transaction/T = new()
@@ -448,7 +447,7 @@ log transactions
 		human_user.put_in_hands(held_card)
 	held_card = null
 
-/obj/machinery/atm/proc/spawn_ewallet(var/sum, loc)
+/obj/machinery/atm/proc/spawn_ewallet(sum, loc)
 	var/obj/item/weapon/spacecash/ewallet/E = new /obj/item/weapon/spacecash/ewallet(loc)
 	E.worth = sum
 	E.owner_name = authenticated_account.owner_name

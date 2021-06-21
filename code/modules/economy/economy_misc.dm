@@ -1,4 +1,5 @@
 
+// Events
 #define RIOTS 1
 #define WILD_ANIMAL_ATTACK 2
 #define INDUSTRIAL_ACCIDENT 3
@@ -14,6 +15,7 @@
 #define ANIMAL_RIGHTS_RAID 13
 #define FESTIVAL 14
 
+// Mundane Events
 #define RESEARCH_BREAKTHROUGH 15
 #define BARGAINS 16
 #define SONG_DEBUT 17
@@ -25,6 +27,7 @@
 #define CELEBRITY_DEATH 23
 #define RESIGNATION 24
 
+// Location Types?
 #define DEFAULT 1
 
 #define ADMINISTRATIVE 2
@@ -103,7 +106,7 @@ var/global/economy_init = 0
 	create_department_account("Vendor")
 	vendor_account = department_accounts["Vendor"]
 
-	current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [game_year]"
+	current_date_string = "[num2text(rand(1, 31))] [pick("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")], [game_year]"
 
 	economy_init = 1
 	return 1
