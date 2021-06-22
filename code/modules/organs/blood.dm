@@ -29,8 +29,8 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 /mob/living/carbon/human/proc/fixblood()
 	for(var/datum/reagent/blood/B in vessel.reagent_list)
 		if(B.id == "blood")
-			B.data = list(	"donor" = src, "viruses" = null, "blood_DNA" = dna.unique_enzymes, "blood_type" = dna.b_type,	\
-							"resistances" = null, "trace_chem" = null, "virus2" = null, "antibodies" = null)
+			B.data = list("donor" = src, "viruses" = null, "blood_DNA" = dna.unique_enzymes, "blood_type" = dna.b_type,	\
+						"resistances" = null, "trace_chem" = null, "virus2" = null, "antibodies" = null)
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/proc/handle_blood()
@@ -80,10 +80,10 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 					pale = 1
 					update_body()
 					var/word = pick("dizzy", "woosey", "faint")
-					src << "\red You feel [word]"
+					to_chat(src, SPAN_WARNING("You feel [word]."))
 				if(prob(1))
 					var/word = pick("dizzy", "woosey", "faint")
-					src << "\red You feel [word]"
+					to_chat(src, SPAN_WARNING("You feel [word]."))
 				if(oxyloss < 20)
 					oxyloss += 3
 			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
@@ -97,13 +97,13 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 				if(prob(15))
 					Paralyse(rand(1, 3))
 					var/word = pick("dizzy", "woosey", "faint")
-					src << "\red You feel extremely [word]"
+					to_chat(src, SPAN_WARNING("You feel [word]."))
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 				oxyloss += 5
 				toxloss += 3
 				if(prob(15))
 					var/word = pick("dizzy", "woosey", "faint")
-					src << "\red You feel extremely [word]"
+					to_chat(src, SPAN_WARNING("You feel [word]."))
 			if(0 to BLOOD_VOLUME_SURVIVE)
 				// There currently is a strange bug here. If the mob is not below -100 health
 				// when death() is called, apparently they will be just fine, and this way it'll
@@ -174,7 +174,8 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 //Gets blood from mob to the container, preserving all data in it.
 /mob/living/carbon/proc/take_blood(obj/item/weapon/reagent_containers/container, amount)
 	var/datum/reagent/B = get_blood(container.reagents)
-	if(!B) B = new /datum/reagent/blood
+	if(!B)
+		B = new /datum/reagent/blood
 	B.holder = container
 	B.volume += amount
 

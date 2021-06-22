@@ -5,8 +5,6 @@
 //3 = code red
 //4 = code delta
 
-//config.alert_desc_blue_downto
-
 /proc/set_security_level(level)
 	switch(level)
 		if("green")
@@ -24,8 +22,8 @@
 	if(level >= SEC_LEVEL_GREEN && level <= SEC_LEVEL_DELTA && level != security_level)
 		switch(level)
 			if(SEC_LEVEL_GREEN)
-				world << "<font size=4 color='red'>Attention! Security level lowered to green</font>"
-				world << "<font color='red'>[config.alert_desc_green]</font>"
+				to_chat(world, "<font size=4 color='red'>Attention! Security level lowered to green</font>")
+				to_chat(world, "<font color='red'>[config.alert_desc_green]</font>")
 				world << sound('sound/vox/doop.wav', volume = 37) // Play a sound whenever the level changes downwards. -Frenjo
 				security_level = SEC_LEVEL_GREEN
 
@@ -49,12 +47,12 @@
 
 			if(SEC_LEVEL_YELLOW)
 				if(security_level < SEC_LEVEL_YELLOW)
-					world << "<font size=4 color='red'>Attention! Security level elevated to yellow</font>"
-					world << "<font color='red'>[config.alert_desc_yellow_upto]</font>"
+					to_chat(world, "<font size=4 color='red'>Attention! Security level elevated to yellow</font>")
+					to_chat(world, "<font color='red'>[config.alert_desc_yellow_upto]</font>")
 					world << sound('sound/vox/dadeda.wav', volume = 34) // Play a sound whenever the level changes upwards. -Frenjo
 				else
-					world << "<font size=4 color='red'>Attention! Security level lowered to yellow</font>"
-					world << "<font color='red'>[config.alert_desc_yellow_downto]</font>"
+					to_chat(world, "<font size=4 color='red'>Attention! Security level lowered to yellow</font>")
+					to_chat(world, "<font color='red'>[config.alert_desc_yellow_downto]</font>")
 					world << sound('sound/vox/doop.wav', volume = 37) // Play a sound whenever the level changes downwards. -Frenjo
 				security_level = SEC_LEVEL_YELLOW
 
@@ -79,13 +77,13 @@
 
 			if(SEC_LEVEL_BLUE)
 				if(security_level < SEC_LEVEL_BLUE)
-					world << "<font size=4 color='red'>Attention! Security level elevated to blue</font>"
-					world << "<font color='red'>[config.alert_desc_blue_upto]</font>"
+					to_chat(world, "<font size=4 color='red'>Attention! Security level elevated to blue</font>")
+					to_chat(world, "<font color='red'>[config.alert_desc_blue_upto]</font>")
 					world << sound('sound/vox/dadeda.wav', volume = 34) // Play a sound whenever the level changes upwards. -Frenjo
 					world << sound('sound/AI/securityblue.ogg') // Play a sound when we elevate to blue. -Frenjo
 				else
-					world << "<font size=4 color='red'>Attention! Security level lowered to blue</font>"
-					world << "<font color='red'>[config.alert_desc_blue_downto]</font>"
+					to_chat(world, "<font size=4 color='red'>Attention! Security level lowered to blue</font>")
+					to_chat(world, "<font color='red'>[config.alert_desc_blue_downto]</font>")
 					world << sound('sound/vox/doop.wav', volume = 37) // Play a sound whenever the level changes downwards. -Frenjo
 				security_level = SEC_LEVEL_BLUE
 
@@ -109,12 +107,12 @@
 
 			if(SEC_LEVEL_RED)
 				if(security_level < SEC_LEVEL_RED)
-					world << "<font size=4 color='red'>Attention! Code red!</font>"
-					world << "<font color='red'>[config.alert_desc_red_upto]</font>"
+					to_chat(world, "<font size=4 color='red'>Attention! Code red!</font>")
+					to_chat(world, "<font color='red'>[config.alert_desc_red_upto]</font>")
 					world << sound('sound/vox/dadeda.wav', volume = 34) // Play a sound whenever the level changes upwards. -Frenjo
 				else
-					world << "<font size=4 color='red'>Attention! Code red!</font>"
-					world << "<font color='red'>[config.alert_desc_red_downto]</font>"
+					to_chat(world, "<font size=4 color='red'>Attention! Code red!</font>")
+					to_chat(world, "<font color='red'>[config.alert_desc_red_downto]</font>")
 					world << sound('sound/vox/doop.wav', volume = 37) // Play a sound whenever the level changes downwards. -Frenjo
 				security_level = SEC_LEVEL_RED
 
@@ -138,8 +136,8 @@
 						A.destructreset()
 
 			if(SEC_LEVEL_DELTA)
-				world << "<font size=4 color='red'>Attention! Delta security level reached!</font>"
-				world << "<font color='red'>[config.alert_desc_delta]</font>"
+				to_chat(world, "<font size=4 color='red'>Attention! Delta security level reached!</font>")
+				to_chat(world, "<font color='red'>[config.alert_desc_delta]</font>")
 				world << sound('sound/vox/dadeda.wav', volume = 34) // Play a sound whenever the level changes upwards. -Frenjo
 				world << sound('sound/misc/bloblarm.ogg', volume = 70) // Self destruction needs dramatic noises. -Frenjo
 				security_level = SEC_LEVEL_DELTA

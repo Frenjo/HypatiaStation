@@ -28,14 +28,14 @@
 /obj/item/weapon/paper_bin/attack_hand(mob/user as mob)
 	if(hasorgans(user))
 		var/datum/organ/external/temp = user:organs_by_name["r_hand"]
-		if (user.hand)
+		if(user.hand)
 			temp = user:organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
-			user << "<span class='notice'>You try to move your [temp.display_name], but cannot!"
+			to_chat(user, SPAN_NOTICE("You try to move your [temp.display_name], but cannot!"))
 			return
 	if(amount >= 1)
 		amount--
-		if(amount==0)
+		if(amount == 0)
 			update_icon()
 
 		var/obj/item/weapon/paper/P
@@ -52,9 +52,9 @@
 
 		P.loc = user.loc
 		user.put_in_hands(P)
-		user << "<span class='notice'>You take [P] out of the [src].</span>"
+		to_chat(user, SPAN_NOTICE("You take [P] out of the [src]."))
 	else
-		user << "<span class='notice'>[src] is empty!</span>"
+		to_chat(user, SPAN_NOTICE("[src] is empty!"))
 
 	add_fingerprint(user)
 	return
@@ -66,7 +66,7 @@
 
 	user.drop_item()
 	i.loc = src
-	user << "<span class='notice'>You put [i] in [src].</span>"
+	to_chat(user, SPAN_NOTICE("You put [i] in [src]."))
 	papers.Add(i)
 	amount++
 
@@ -75,9 +75,9 @@
 	set src in oview(1)
 
 	if(amount)
-		usr << "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>"
+		to_chat(usr, SPAN_NOTICE("There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin."))
 	else
-		usr << "<span class='notice'>There are no papers in the bin.</span>"
+		to_chat(usr, SPAN_NOTICE("There are no papers in the bin."))
 	return
 
 

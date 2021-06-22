@@ -243,8 +243,8 @@ This function completely restores a damaged organ to perfect condition.
 			W.open_wound(damage)
 			if(prob(25))
 				//maybe have a separate message for BRUISE type damage?
-				owner.visible_message("\red The wound on [owner.name]'s [display_name] widens with a nasty ripping voice.",\
-				"\red The wound on your [display_name] widens with a nasty ripping voice.",\
+				owner.visible_message(SPAN_WARNING("The wound on [owner.name]'s [display_name] widens with a nasty ripping voice."),\
+				SPAN_WARNING("The wound on your [display_name] widens with a nasty ripping voice."),\
 				"You hear a nasty ripping noise, as if flesh is being torn apart.")
 			return
 
@@ -261,24 +261,34 @@ This function completely restores a damaged organ to perfect condition.
 	if(W)
 		wounds += W
 
-/datum/organ/external/proc/get_wound_type(var/type = CUT, var/damage)
+/datum/organ/external/proc/get_wound_type(type = CUT, damage)
 	//if you look a the names in the wound's stages list for each wound type you will see the logic behind these values
 	switch(type)
 		if(CUT)
-			if(damage <= 5) return /datum/wound/cut/small
-			if(damage <= 15) return /datum/wound/cut/deep
-			if(damage <= 25) return /datum/wound/cut/flesh
-			if(damage <= 50) return /datum/wound/cut/gaping
-			if(damage <= 60) return /datum/wound/cut/gaping_big
+			if(damage <= 5)
+				return /datum/wound/cut/small
+			if(damage <= 15)
+				return /datum/wound/cut/deep
+			if(damage <= 25)
+				return /datum/wound/cut/flesh
+			if(damage <= 50)
+				return /datum/wound/cut/gaping
+			if(damage <= 60)
+				return /datum/wound/cut/gaping_big
 			return /datum/wound/cut/massive
 		if(BRUISE)
 			return /datum/wound/bruise
 		if(BURN)
-			if(damage <= 5) return /datum/wound/burn/moderate
-			if(damage <= 15) return /datum/wound/burn/large
-			if(damage <= 30) return /datum/wound/burn/severe
-			if(damage <= 40) return /datum/wound/burn/deep
-			if(damage <= 50) return /datum/wound/burn/carbonised
+			if(damage <= 5)
+				return /datum/wound/burn/moderate
+			if(damage <= 15)
+				return /datum/wound/burn/large
+			if(damage <= 30)
+				return /datum/wound/burn/severe
+			if(damage <= 40)
+				return /datum/wound/burn/deep
+			if(damage <= 50)
+				return /datum/wound/burn/carbonised
 
 /****************************************************
 			   PROCESSING & UPDATING
@@ -402,7 +412,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 		if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 30)	//overdosing is necessary to stop severe infections
 			if(!(status & ORGAN_DEAD))
 				status |= ORGAN_DEAD
-				owner << "<span class='notice'>You can't feel your [display_name] anymore...</span>"
+				to_chat(owner, SPAN_NOTICE("You can't feel your [display_name] anymore..."))
 			germ_level++
 			owner.adjustToxLoss(1)
 
@@ -536,7 +546,8 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 
 //Handles dismemberment
 /datum/organ/external/proc/droplimb(override = 0, no_explode = 0)
-	if(destspawn) return
+	if(destspawn)
+		return
 	if(override)
 		status |= ORGAN_DESTROYED
 	if(status & ORGAN_DESTROYED)
@@ -557,7 +568,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 		var/obj/organ	//Dropped limb object
 		switch(body_part)
 			if(LOWER_TORSO)
-				owner << "\red You are now sterile."
+				to_chat(owner, SPAN_WARNING("You are now sterile."))
 			if(HEAD)
 				if(owner.species.flags & IS_SYNTHETIC)
 					organ= new /obj/item/weapon/organ/head/posi(owner.loc, owner)
@@ -572,33 +583,33 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 				if(status & ORGAN_ROBOT)
 					organ = new /obj/item/robot_parts/r_arm(owner.loc)
 				else
-					organ= new /obj/item/weapon/organ/r_arm(owner.loc, owner)
+					organ = new /obj/item/weapon/organ/r_arm(owner.loc, owner)
 			if(ARM_LEFT)
 				if(status & ORGAN_ROBOT)
-					organ= new /obj/item/robot_parts/l_arm(owner.loc)
+					organ = new /obj/item/robot_parts/l_arm(owner.loc)
 				else
-					organ= new /obj/item/weapon/organ/l_arm(owner.loc, owner)
+					organ = new /obj/item/weapon/organ/l_arm(owner.loc, owner)
 			if(LEG_RIGHT)
 				if(status & ORGAN_ROBOT)
 					organ = new /obj/item/robot_parts/r_leg(owner.loc)
 				else
-					organ= new /obj/item/weapon/organ/r_leg(owner.loc, owner)
+					organ = new /obj/item/weapon/organ/r_leg(owner.loc, owner)
 			if(LEG_LEFT)
 				if(status & ORGAN_ROBOT)
 					organ = new /obj/item/robot_parts/l_leg(owner.loc)
 				else
-					organ= new /obj/item/weapon/organ/l_leg(owner.loc, owner)
+					organ = new /obj/item/weapon/organ/l_leg(owner.loc, owner)
 			if(HAND_RIGHT)
 				if(!(status & ORGAN_ROBOT))
-					organ= new /obj/item/weapon/organ/r_hand(owner.loc, owner)
+					organ = new /obj/item/weapon/organ/r_hand(owner.loc, owner)
 				owner.u_equip(owner.gloves)
 			if(HAND_LEFT)
 				if(!(status & ORGAN_ROBOT))
-					organ= new /obj/item/weapon/organ/l_hand(owner.loc, owner)
+					organ = new /obj/item/weapon/organ/l_hand(owner.loc, owner)
 				owner.u_equip(owner.gloves)
 			if(FOOT_RIGHT)
 				if(!(status & ORGAN_ROBOT))
-					organ= new /obj/item/weapon/organ/r_foot/(owner.loc, owner)
+					organ = new /obj/item/weapon/organ/r_foot/(owner.loc, owner)
 				owner.u_equip(owner.shoes)
 			if(FOOT_LEFT)
 				if(!(status & ORGAN_ROBOT))
@@ -608,8 +619,8 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 			destspawn = 1
 			//Robotic limbs explode if sabotaged.
 			if(status & ORGAN_ROBOT && !no_explode && sabotaged)
-				owner.visible_message("\red \The [owner]'s [display_name] explodes violently!",\
-				"\red <b>Your [display_name] explodes!</b>",\
+				owner.visible_message(SPAN_WARNING("\The [owner]'s [display_name] explodes violently!"),\
+				SPAN_DANGER("Your [display_name] explodes!"),\
 				"You hear an explosion followed by a scream!")
 				explosion(get_turf(owner), -1, -1, 2, 3)
 				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
@@ -619,7 +630,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 				spawn(10)
 					qdel(spark_system)
 
-			owner.visible_message("\red [owner.name]'s [display_name] flies off in an arc.",\
+			owner.visible_message(SPAN_WARNING("[owner.name]'s [display_name] flies off in an arc."),\
 			"<span class='moderate'><b>Your [display_name] goes flying off!</b></span>",\
 			"You hear a terrible sound of ripping tendons and flesh.")
 
@@ -655,7 +666,8 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	var/rval = 0
 	src.status &= ~ORGAN_BLEEDING
 	for(var/datum/wound/W in wounds)
-		if(W.internal) continue
+		if(W.internal)
+			continue
 		rval |= !W.bandaged
 		W.bandaged = 1
 	return rval
@@ -664,7 +676,8 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	var/rval = 0
 	src.status &= ~ORGAN_BLEEDING
 	for(var/datum/wound/W in wounds)
-		if(W.internal) continue
+		if(W.internal)
+			continue
 		rval |= !W.clamped
 		W.clamped = 1
 	return rval
@@ -680,15 +693,15 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	if(status & ORGAN_BROKEN)
 		return
 	owner.visible_message(\
-		"\red You hear a loud cracking sound coming from \the [owner].",\
-		"\red <b>Something feels like it shattered in your [display_name]!</b>",\
+		SPAN_WARNING("You hear a loud cracking sound coming from \the [owner]."),\
+		SPAN_DANGER("Something feels like it shattered in your [display_name]!"),\
 		"You hear a sickening crack.")
 
 	if(owner.species && !(owner.species.flags & NO_PAIN))
 		owner.emote("scream")
 
 	status |= ORGAN_BROKEN
-	broken_description = pick("broken","fracture","hairline fracture")
+	broken_description = pick("broken", "fracture", "hairline fracture")
 	perma_injury = brute_dam
 
 	// Fractures have a chance of getting you out of restraints
@@ -784,6 +797,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	min_broken_damage = 30
 	body_part = LOWER_TORSO
 
+
 /datum/organ/external/l_arm
 	name = "l_arm"
 	display_name = "left arm"
@@ -792,9 +806,10 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	min_broken_damage = 20
 	body_part = ARM_LEFT
 
-	process()
-		..()
-		process_grasp(owner.l_hand, "left hand")
+/datum/organ/external/l_arm/process()
+	..()
+	process_grasp(owner.l_hand, "left hand")
+
 
 /datum/organ/external/l_leg
 	name = "l_leg"
@@ -805,6 +820,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	body_part = LEG_LEFT
 	icon_position = LEFT
 
+
 /datum/organ/external/r_arm
 	name = "r_arm"
 	display_name = "right arm"
@@ -813,9 +829,10 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	min_broken_damage = 20
 	body_part = ARM_RIGHT
 
-	process()
-		..()
-		process_grasp(owner.r_hand, "right hand")
+/datum/organ/external/r_arm/process()
+	..()
+	process_grasp(owner.r_hand, "right hand")
+
 
 /datum/organ/external/r_leg
 	name = "r_leg"
@@ -826,6 +843,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	body_part = LEG_RIGHT
 	icon_position = RIGHT
 
+
 /datum/organ/external/l_foot
 	name = "l_foot"
 	display_name = "left foot"
@@ -834,6 +852,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	min_broken_damage = 15
 	body_part = FOOT_LEFT
 	icon_position = LEFT
+
 
 /datum/organ/external/r_foot
 	name = "r_foot"
@@ -844,6 +863,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	body_part = FOOT_RIGHT
 	icon_position = RIGHT
 
+
 /datum/organ/external/r_hand
 	name = "r_hand"
 	display_name = "right hand"
@@ -852,9 +872,10 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	min_broken_damage = 15
 	body_part = HAND_RIGHT
 
-	process()
-		..()
-		process_grasp(owner.r_hand, "right hand")
+/datum/organ/external/r_hand/process()
+	..()
+	process_grasp(owner.r_hand, "right hand")
+
 
 /datum/organ/external/l_hand
 	name = "l_hand"
@@ -864,9 +885,10 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	min_broken_damage = 15
 	body_part = HAND_LEFT
 
-	process()
-		..()
-		process_grasp(owner.l_hand, "left hand")
+/datum/organ/external/l_hand/process()
+	..()
+	process_grasp(owner.l_hand, "left hand")
+
 
 /datum/organ/external/head
 	name = "head"
@@ -881,7 +903,8 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	if(!owner)
 	 return ..()
 	var/g = "m"
-	if(owner.gender == FEMALE)	g = "f"
+	if(owner.gender == FEMALE)
+		g = "f"
 	if(status & ORGAN_MUTATED)
 		. = new /icon(owner.deform_icon, "[icon_name]_[g]")
 	else
@@ -900,23 +923,23 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	if(disfigured)
 		return
 	if(type == "brute")
-		owner.visible_message("\red You hear a sickening cracking sound coming from \the [owner]'s face.",	\
-		"\red <b>Your face becomes unrecognizible mangled mess!</b>",	\
-		"\red You hear a sickening crack.")
+		owner.visible_message(SPAN_WARNING("You hear a sickening cracking sound coming from \the [owner]'s face."),	\
+		SPAN_DANGER("Your face becomes unrecognizible mangled mess!"),	\
+		SPAN_WARNING("You hear a sickening crack."))
 	else
-		owner.visible_message("\red [owner]'s face melts away, turning into mangled mess!",	\
-		"\red <b>Your face melts off!</b>",	\
-		"\red You hear a sickening sizzle.")
+		owner.visible_message(SPAN_WARNING("[owner]'s face melts away, turning into mangled mess!"),	\
+		SPAN_DANGER("Your face melts off!"),	\
+		SPAN_WARNING("You hear a sickening sizzle."))
 	disfigured = 1
 
 /****************************************************
 			   EXTERNAL ORGAN ITEMS
 ****************************************************/
 
-obj/item/weapon/organ
+/obj/item/weapon/organ
 	icon = 'icons/mob/human_races/r_human.dmi'
 
-obj/item/weapon/organ/New(loc, mob/living/carbon/human/H)
+/obj/item/weapon/organ/New(loc, mob/living/carbon/human/H)
 	..(loc)
 	if(!istype(H))
 		return
@@ -956,31 +979,31 @@ obj/item/weapon/organ/New(loc, mob/living/carbon/human/H)
 			   EXTERNAL ORGAN ITEMS DEFINES
 ****************************************************/
 
-obj/item/weapon/organ/l_arm
+/obj/item/weapon/organ/l_arm
 	name = "left arm"
 	icon_state = "l_arm"
-obj/item/weapon/organ/l_foot
+/obj/item/weapon/organ/l_foot
 	name = "left foot"
 	icon_state = "l_foot"
-obj/item/weapon/organ/l_hand
+/obj/item/weapon/organ/l_hand
 	name = "left hand"
 	icon_state = "l_hand"
-obj/item/weapon/organ/l_leg
+/obj/item/weapon/organ/l_leg
 	name = "left leg"
 	icon_state = "l_leg"
-obj/item/weapon/organ/r_arm
+/obj/item/weapon/organ/r_arm
 	name = "right arm"
 	icon_state = "r_arm"
-obj/item/weapon/organ/r_foot
+/obj/item/weapon/organ/r_foot
 	name = "right foot"
 	icon_state = "r_foot"
-obj/item/weapon/organ/r_hand
+/obj/item/weapon/organ/r_hand
 	name = "right hand"
 	icon_state = "r_hand"
-obj/item/weapon/organ/r_leg
+/obj/item/weapon/organ/r_leg
 	name = "right leg"
 	icon_state = "r_leg"
-obj/item/weapon/organ/head
+/obj/item/weapon/organ/head
 	name = "head"
 	icon_state = "head_m"
 	var/mob/living/carbon/brain/brainmob
@@ -989,7 +1012,7 @@ obj/item/weapon/organ/head
 /obj/item/weapon/organ/head/posi
 	name = "robotic head"
 
-obj/item/weapon/organ/head/New(loc, mob/living/carbon/human/H)
+/obj/item/weapon/organ/head/New(loc, mob/living/carbon/human/H)
 	if(istype(H))
 		src.icon_state = H.gender == MALE? "head_m" : "head_f"
 	..()
@@ -1028,7 +1051,7 @@ obj/item/weapon/organ/head/New(loc, mob/living/carbon/human/H)
 	brainmob.stat = 2
 	brainmob.death()
 
-obj/item/weapon/organ/head/proc/transfer_identity(mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->head
+/obj/item/weapon/organ/head/proc/transfer_identity(mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->head
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
@@ -1037,22 +1060,22 @@ obj/item/weapon/organ/head/proc/transfer_identity(mob/living/carbon/human/H)//Sa
 		H.mind.transfer_to(brainmob)
 	brainmob.container = src
 
-obj/item/weapon/organ/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/organ/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/scalpel))
 		switch(brain_op_stage)
 			if(0)
 				for(var/mob/O in (oviewers(brainmob) - user))
-					O.show_message("\red [brainmob] is beginning to have \his head cut open with [W] by [user].", 1)
-				brainmob << "\red [user] begins to cut open your head with [W]!"
-				user << "\red You cut [brainmob]'s head open with [W]!"
+					O.show_message(SPAN_WARNING("[brainmob] is beginning to have \his head cut open with [W] by [user]."), 1)
+				to_chat(brainmob, SPAN_WARNING("[user] begins to cut open your head with [W]!"))
+				to_chat(user, SPAN_WARNING("You cut [brainmob]'s head open with [W]!"))
 
 				brain_op_stage = 1
 
 			if(2)
 				for(var/mob/O in (oviewers(brainmob) - user))
-					O.show_message("\red [brainmob] is having \his connections to the brain delicately severed with [W] by [user].", 1)
-				brainmob << "\red [user] begins to cut open your head with [W]!"
-				user << "\red You cut [brainmob]'s head open with [W]!"
+					O.show_message(SPAN_WARNING("[brainmob] is having \his connections to the brain delicately severed with [W] by [user]."), 1)
+				to_chat(brainmob, SPAN_WARNING("[user] begins to cut open your head with [W]!"))
+				to_chat(user, SPAN_WARNING("You cut [brainmob]'s head open with [W]!"))
 
 				brain_op_stage = 3.0
 			else
@@ -1061,16 +1084,16 @@ obj/item/weapon/organ/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
 		switch(brain_op_stage)
 			if(1)
 				for(var/mob/O in (oviewers(brainmob) - user))
-					O.show_message("\red [brainmob] has \his head sawed open with [W] by [user].", 1)
-				brainmob << "\red [user] begins to saw open your head with [W]!"
-				user << "\red You saw [brainmob]'s head open with [W]!"
+					O.show_message(SPAN_WARNING("[brainmob] has \his head sawed open with [W] by [user]."), 1)
+				to_chat(brainmob, SPAN_WARNING("[user] begins to saw open your head with [W]!"))
+				to_chat(user, SPAN_WARNING("You saw [brainmob]'s head open with [W]!"))
 
 				brain_op_stage = 2
 			if(3)
 				for(var/mob/O in (oviewers(brainmob) - user))
-					O.show_message("\red [brainmob] has \his spine's connection to the brain severed with [W] by [user].", 1)
-				brainmob << "\red [user] severs your brain's connection to the spine with [W]!"
-				user << "\red You sever [brainmob]'s brain's connection to the spine with [W]!"
+					O.show_message(SPAN_WARNING("[brainmob] has \his spine's connection to the brain severed with [W] by [user]."), 1)
+				to_chat(brainmob, SPAN_WARNING("[user] severs your brain's connection to the spine with [W]!"))
+				to_chat(user, SPAN_WARNING("You sever [brainmob]'s brain's connection to the spine with [W]!"))
 
 				user.attack_log += "\[[time_stamp()]\]<font color='red'> Debrained [brainmob.name] ([brainmob.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)])</font>"
 				brainmob.attack_log += "\[[time_stamp()]\]<font color='orange'> Debrained by [user.name] ([user.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)])</font>"

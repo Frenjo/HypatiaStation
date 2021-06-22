@@ -56,14 +56,14 @@
 // I didn't like the idea that people can read tiny pieces of paper from across the room.
 // Now you need to be next to the paper in order to read it.
 	if(in_range(usr, src))
-		if(!(istype(usr, /mob/living/carbon/human) || istype(usr, /mob/dead/observer) || istype(usr, /mob/living/silicon)))
+		if(!(ishuman(usr) || isobserver(usr) || issilicon(usr)))
 			usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 			onclose(usr, "[name]")
 		else
 			usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
 			onclose(usr, "[name]")
 	else
-		usr << "<span class='notice'>It is too far away.</span>"
+		to_chat(usr, SPAN_NOTICE("It is too far away."))
 	return
 
 /obj/item/weapon/paper/verb/rename()
@@ -72,9 +72,9 @@
 	set src in usr
 
 	if((CLUMSY in usr.mutations) && prob(50))
-		usr << "<span class='warning'>You cut yourself on the paper.</span>"
+		to_chat(usr, SPAN_WARNING("You cut yourself on the paper."))
 		return
-	var/n_name = copytext(sanitize(input(usr, "What would you like to label the paper?", "Paper Labelling", null)  as text), 1, MAX_NAME_LEN)
+	var/n_name = copytext(sanitize(input(usr, "What would you like to label the paper?", "Paper Labelling", null) as text), 1, MAX_NAME_LEN)
 	if((loc == usr && usr.stat == 0))
 		name = "paper[(n_name ? text("- '[n_name]'") : null)]"
 	add_fingerprint(usr)
@@ -90,7 +90,7 @@
 				spam_flag = 0
 	return
 
-/obj/item/weapon/paper/attack_ai(var/mob/living/silicon/ai/user as mob)
+/obj/item/weapon/paper/attack_ai(mob/living/silicon/ai/user as mob)
 	var/dist
 	if(istype(user) && user.current) //is AI
 		dist = get_dist(src, user.current)
@@ -104,7 +104,7 @@
 		onclose(usr, "[name]")
 	return
 
-/obj/item/weapon/paper/proc/addtofield(var/id, var/text, var/links = 0)
+/obj/item/weapon/paper/proc/addtofield(id, text, links = 0)
 	var/locid = 0
 	var/laststart = 1
 	var/textindex = 1
@@ -118,7 +118,7 @@
 		if(istart==0)
 			return // No field found with matching id
 
-		laststart = istart+1
+		laststart = istart + 1
 		locid++
 		if(locid == id)
 			var/iend = 1
@@ -143,8 +143,7 @@
 
 /obj/item/weapon/paper/proc/updateinfolinks()
 	info_links = info
-	var/i = 0
-	for(i=1,i<=fields,i++)
+	for(var/i = 1, i <= fields, i++)
 		addtofield(i, "<font face=\"[deffont]\"><A href='?src=\ref[src];write=[i]'>write</A></font>", 1)
 	info_links = info_links + "<font face=\"[deffont]\"><A href='?src=\ref[src];write=end'>write</A></font>"
 
@@ -158,7 +157,7 @@
 	update_icon()
 
 
-/obj/item/weapon/paper/proc/parsepencode(var/t, var/obj/item/weapon/pen/P, mob/user as mob, var/iscrayon = 0)
+/obj/item/weapon/paper/proc/parsepencode(t, obj/item/weapon/pen/P, mob/user as mob, iscrayon = 0)
 //	t = copytext(sanitize(t),1,MAX_MESSAGE_LEN)
 
 	t = replacetextx(t, "\[center\]", "<center>")
@@ -200,9 +199,9 @@
 	var/laststart = 1
 	while(1)
 		var/i = findtext(t, "<span class=\"paper_field\">", laststart)
-		if(i==0)
+		if(i == 0)
 			break
-		laststart = i+1
+		laststart = i + 1
 		fields++
 
 	return t
@@ -251,7 +250,7 @@
 				qdel(src)
 
 			else
-				user << "\red You must hold \the [P] steady to burn \the [src]."
+				to_chat(usr, SPAN_WARNING("You must hold \the [P] steady to burn \the [src]."))
 
 
 /obj/item/weapon/paper/Topic(href, href_list)
@@ -263,7 +262,7 @@
 		var/id = href_list["write"]
 		//var/t = strip_html_simple(input(usr, "What text do you wish to add to " + (id=="end" ? "the end of the paper" : "field "+id) + "?", "[name]", null),8192) as message
 		//var/t =  strip_html_simple(input("Enter what you want to write:", "Write", null, null)  as message, MAX_MESSAGE_LEN)
-		var/t =  input("Enter what you want to write:", "Write", null, null)  as message
+		var/t = input("Enter what you want to write:", "Write", null, null) as message
 		var/obj/item/i = usr.get_active_hand() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
 		var/iscrayon = 0
 		if(!istype(i, /obj/item/weapon/pen))
@@ -271,16 +270,15 @@
 				return
 			iscrayon = 1
 
-
-		if((!in_range(src, usr) && loc != usr && !( istype(loc, /obj/item/weapon/clipboard) ) && loc.loc != usr && usr.get_active_hand() != i)) // Some check to see if he's allowed to write
+		if((!in_range(src, usr) && loc != usr && !(istype(loc, /obj/item/weapon/clipboard)) && loc.loc != usr && usr.get_active_hand() != i)) // Some check to see if he's allowed to write
 			return
 
 		t = checkhtml(t)
 
 		// check for exploits
 		for(var/bad in paper_blacklist)
-			if(findtext(t,bad))
-				usr << "\blue You think to yourself, \"Hm.. this is only paper...\""
+			if(findtext(t, bad))
+				to_chat(usr, SPAN_INFO("You think to yourself, \"Hm.. this is only paper...\""))
 				log_admin("PAPER: [usr] ([usr.ckey]) tried to use forbidden word in [src]: [bad].")
 				message_admins("PAPER: [usr] ([usr.ckey]) tried to use forbidden word in [src]: [bad].")
 				return
@@ -306,7 +304,7 @@
 		clown = 1
 
 	if(istype(P, /obj/item/weapon/pen) || istype(P, /obj/item/toy/crayon))
-		if ( istype(P, /obj/item/weapon/pen/robopen) && P:mode == 2 )
+		if(istype(P, /obj/item/weapon/pen/robopen) && P:mode == 2)
 			P:RenamePaper(user,src)
 		else
 			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
@@ -314,10 +312,10 @@
 		return
 
 	else if(istype(P, /obj/item/weapon/stamp))
-		if((!in_range(src, usr) && loc != user && !( istype(loc, /obj/item/weapon/clipboard) ) && loc.loc != user && user.get_active_hand() != P))
+		if((!in_range(src, usr) && loc != user && !(istype(loc, /obj/item/weapon/clipboard)) && loc.loc != user && user.get_active_hand() != P))
 			return
 
-		stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the [P.name].</i>"
+		stamps += (stamps == "" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the [P.name].</i>"
 
 		var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
 		stampoverlay.pixel_x = rand(-2, 2)
@@ -325,7 +323,7 @@
 
 		if(istype(P, /obj/item/weapon/stamp/clown))
 			if(!clown)
-				user << "<span class='notice'>You are totally unable to use the stamp. HONK!</span>"
+				to_chat(user, SPAN_NOTICE("You are totally unable to use the stamp. HONK!"))
 				return
 
 		stampoverlay.icon_state = "paper_[P.icon_state]"
@@ -335,7 +333,7 @@
 		stamped += P.type
 		overlays += stampoverlay
 
-		user << "<span class='notice'>You stamp the paper with your rubber stamp.</span>"
+		to_chat(user, SPAN_NOTICE("You stamp the paper with your rubber stamp."))
 
 	else if(istype(P, /obj/item/weapon/lighter))
 		burnpaper(P, user)

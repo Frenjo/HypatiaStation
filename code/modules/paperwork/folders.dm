@@ -32,7 +32,7 @@
 	if(istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/weapon/photo))
 		user.drop_item()
 		W.loc = src
-		user << "<span class='notice'>You put the [W] into \the [src].</span>"
+		to_chat(user, SPAN_NOTICE("You put the [W] into \the [src]."))
 		update_icon()
 	else if(istype(W, /obj/item/weapon/pen))
 		var/n_name = copytext(sanitize(input(usr, "What would you like to label the folder?", "Folder Labelling", null)  as text), 1, MAX_NAME_LEN)
@@ -58,7 +58,6 @@
 		return
 
 	if(usr.contents.Find(src))
-
 		if(href_list["remove"])
 			var/obj/item/P = locate(href_list["remove"])
 			if(P && P.loc == src)

@@ -73,6 +73,7 @@
 #define SPAN_ALERT(text) SPAN("alert", text)
 #define SPAN_ERROR(text) SPAN("error", text)
 #define SPAN_DISARM(text) SPAN("disarm", text)
+#define SPAN_CAUTION(text) SPAN("caution", text)
 
 // GC/qdel stuff
 #define qdel_null(x) if(x) { qdel(x) ; x = null }

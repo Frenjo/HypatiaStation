@@ -1,14 +1,15 @@
-mob/proc/flash_pain()
-	flick("pain",pain)
+/mob/proc/flash_pain()
+	flick("pain", pain)
 
-mob/var/list/pain_stored = list()
-mob/var/last_pain_message = ""
-mob/var/next_pain_time = 0
+/mob/var/list/pain_stored = list()
+/mob/var/last_pain_message = ""
+/mob/var/next_pain_time = 0
 
 // partname is the name of a body part
 // amount is a num from 1 to 100
-mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0)
-	if(stat >= 2) return
+/mob/living/carbon/proc/pain(partname, amount, force, burning = 0)
+	if(stat >= 2)
+		return
 	if(reagents.has_reagent("paracetamol"))
 		return
 	if(reagents.has_reagent("tramadol"))
@@ -19,22 +20,22 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 		return
 	if(world.time < next_pain_time && !force)
 		return
-	if(amount > 10 && istype(src,/mob/living/carbon/human))
+	if(amount > 10 && ishuman(src))
 		if(src:paralysis)
-			src:paralysis = max(0, src:paralysis-round(amount/10))
+			src:paralysis = max(0, src:paralysis - round(amount / 10))
 	if(amount > 50 && prob(amount / 5))
 		src:drop_item()
 	var/msg
 	if(burning)
 		switch(amount)
 			if(1 to 10)
-				msg = "\red <b>Your [partname] burns.</b>"
+				msg = SPAN_DANGER("Your [partname] burns.")
 			if(11 to 90)
 				flash_weak_pain()
-				msg = "\red <b><font size=2>Your [partname] burns badly!</font></b>"
+				msg = SPAN_DANGER("<font size=2>Your [partname] burns badly!</font>")
 			if(91 to 10000)
 				flash_pain()
-				msg = "\red <b><font size=3>OH GOD! Your [partname] is on fire!</font></b>"
+				msg = SPAN_DANGER("<font size=3>OH GOD! Your [partname] is on fire!</font>")
 	else
 		switch(amount)
 			if(1 to 10)
@@ -53,20 +54,20 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 
 // message is the custom message to be displayed
 // flash_strength is 0 for weak pain flash, 1 for strong pain flash
-mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
-	if(stat >= 1) return
-
-	if(species && species.flags & NO_PAIN) return
-
+/mob/living/carbon/human/proc/custom_pain(message, flash_strength)
+	if(stat >= 1)
+		return
+	if(species && species.flags & NO_PAIN)
+		return
 	if(reagents.has_reagent("tramadol"))
 		return
 	if(reagents.has_reagent("oxycodone"))
 		return
 	if(analgesic)
 		return
-	var/msg = "\red <b>[message]</b>"
+	var/msg = SPAN_DANGER("[message]")
 	if(flash_strength >= 1)
-		msg = "\red <font size=3><b>[message]</b></font>"
+		msg = SPAN_DANGER("<font size=3>[message]</font>")
 
 	// Anti message spam checks
 	if(msg && ((msg != last_pain_message) || (world.time >= next_pain_time)))
@@ -74,24 +75,27 @@ mob/living/carbon/human/proc/custom_pain(var/message, var/flash_strength)
 		src << msg
 	next_pain_time = world.time + 100
 
-mob/living/carbon/human/proc/handle_pain()
+/mob/living/carbon/human/proc/handle_pain()
 	// not when sleeping
-
-	if(species && species.flags & NO_PAIN) return
-
-	if(stat >= 2) return
+	if(species && species.flags & NO_PAIN)
+		return
+	if(stat >= 2)
+		return
 	if(reagents.has_reagent("tramadol"))
 		return
 	if(reagents.has_reagent("oxycodone"))
 		return
 	if(analgesic)
 		return
+
 	var/maxdam = 0
 	var/datum/organ/external/damaged_organ = null
 	for(var/datum/organ/external/E in organs)
 		// amputated limbs don't cause pain
-		if(E.amputated) continue
-		if(E.status & ORGAN_DEAD) continue
+		if(E.amputated)
+			continue
+		if(E.status & ORGAN_DEAD)
+			continue
 		var/dam = E.get_damage()
 		// make the choice of the organ depend on damage,
 		// but also sometimes use one of the less damaged ones
@@ -104,9 +108,10 @@ mob/living/carbon/human/proc/handle_pain()
 	// Damage to internal organs hurts a lot.
 	for(var/organ_name in internal_organs)
 		var/datum/organ/internal/I = internal_organs[organ_name]
-		if(I.damage > 2) if(prob(2))
-			var/datum/organ/external/parent = get_organ(I.parent_organ)
-			src.custom_pain("You feel a sharp pain in your [parent.display_name]", 1)
+		if(I.damage > 2)
+			if(prob(2))
+				var/datum/organ/external/parent = get_organ(I.parent_organ)
+				src.custom_pain("You feel a sharp pain in your [parent.display_name]", 1)
 
 	var/toxDamageMessage = null
 	var/toxMessageProb = 1

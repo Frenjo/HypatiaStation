@@ -35,7 +35,7 @@
 
 /obj/item/weapon/photo/attackby(obj/item/weapon/P as obj, mob/user as mob)
 	if(istype(P, /obj/item/weapon/pen) || istype(P, /obj/item/toy/crayon))
-		var/txt = sanitize(input(user, "What would you like to write on the back?", "Photo Writing", null)  as text)
+		var/txt = sanitize(input(user, "What would you like to write on the back?", "Photo Writing", null) as text)
 		txt = copytext(txt, 1, 128)
 		if(loc == user && user.stat == 0)
 			scribble = txt
@@ -47,7 +47,7 @@
 		show(usr)
 		usr << desc
 	else
-		usr << "<span class='notice'>It is too far away.</span>"
+		to_chat(usr, SPAN_NOTICE("It is too far away."))
 
 /obj/item/weapon/photo/proc/show(mob/user as mob)
 	user << browse_rsc(img, "tmp_photo.png")
@@ -64,9 +64,9 @@
 	set category = "Object"
 	set src in usr
 
-	var/n_name = copytext(sanitize(input(usr, "What would you like to label the photo?", "Photo Labelling", null)  as text), 1, MAX_NAME_LEN)
+	var/n_name = copytext(sanitize(input(usr, "What would you like to label the photo?", "Photo Labelling", null) as text), 1, MAX_NAME_LEN)
 	//loc.loc check is for making possible renaming photos in clipboards
-	if(( (loc == usr || (loc.loc && loc.loc == usr)) && usr.stat == 0))
+	if(((loc == usr || (loc.loc && loc.loc == usr)) && usr.stat == 0))
 		name = "photo[(n_name ? text("- '[n_name]'") : null)]"
 	add_fingerprint(usr)
 	return
@@ -83,13 +83,12 @@
 	can_hold = list("/obj/item/weapon/photo",)
 
 /obj/item/weapon/storage/photo_album/MouseDrop(obj/over_object as obj)
-
-	if((istype(usr, /mob/living/carbon/human) || (ticker && ticker.mode.name == "monkey")))
+	if((ishuman(usr) || (ticker && ticker.mode.name == "monkey")))
 		var/mob/M = usr
-		if(!( istype(over_object, /obj/screen) ))
+		if(!(istype(over_object, /obj/screen)))
 			return ..()
 		playsound(loc, "rustle", 50, 1, -5)
-		if((!( M.restrained() ) && !( M.stat ) && M.back == src))
+		if((!(M.restrained()) && !(M.stat) && M.back == src))
 			switch(over_object.name)
 				if("r_hand")
 					M.u_equip(src)
@@ -141,9 +140,9 @@
 /obj/item/device/camera/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/device/camera_film))
 		if(pictures_left)
-			user << "<span class='notice'>[src] still has some film in it!</span>"
+			to_chat(user, SPAN_NOTICE("[src] still has some film in it!"))
 			return
-		user << "<span class='notice'>You insert [I] into [src].</span>"
+		to_chat(user, SPAN_NOTICE("You insert [I] into [src]."))
 		user.drop_item()
 		qdel(I)
 		pictures_left = pictures_max
@@ -161,13 +160,14 @@
 
 	var/atoms[] = list()
 	for(var/atom/A in the_turf)
-		if(A.invisibility) continue
+		if(A.invisibility)
+			continue
 		atoms.Add(A)
 
 	//Sorting icons based on levels
 	var/gap = atoms.len
 	var/swapped = 1
-	while (gap > 1 || swapped)
+	while(gap > 1 || swapped)
 		swapped = 0
 		if(gap > 1)
 			gap = round(gap / 1.247330950103979)
@@ -192,10 +192,12 @@
 /obj/item/device/camera/proc/get_mobs(turf/the_turf as turf)
 	var/mob_detail
 	for(var/mob/living/carbon/A in the_turf)
-		if(A.invisibility) continue
+		if(A.invisibility)
+			continue
 		var/holding = null
 		if(A.l_hand || A.r_hand)
-			if(A.l_hand) holding = "They are holding \a [A.l_hand]"
+			if(A.l_hand)
+				holding = "They are holding \a [A.l_hand]"
 			if(A.r_hand)
 				if(holding)
 					holding += " and \a [A.r_hand]"
@@ -210,7 +212,8 @@
 
 
 /obj/item/device/camera/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
-	if(!on || !pictures_left || ismob(target.loc)) return
+	if(!on || !pictures_left || ismob(target.loc))
+		return
 
 	var/x_c = target.x - 1
 	var/y_c = target.y + 1
@@ -254,7 +257,7 @@
 
 	pictures_left--
 	desc = "A polaroid camera. It has [pictures_left] photos left."
-	user << "<span class='notice'>[pictures_left] photos left.</span>"
+	to_chat(user, SPAN_NOTICE("[pictures_left] photos left."))
 	icon_state = icon_off
 	on = 0
 	spawn(64)

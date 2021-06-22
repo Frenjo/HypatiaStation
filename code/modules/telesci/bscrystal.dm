@@ -1,5 +1,4 @@
 // Bluespace crystals, used in telescience and when crushed it will blink you to a random turf.
-
 /obj/item/bluespace_crystal
 	name = "bluespace crystal"
 	desc = "A glowing bluespace crystal, not much is known about how they work. It looks very delicate."
@@ -14,13 +13,13 @@
 	pixel_x = rand(-5, 5)
 	pixel_y = rand(-5, 5)
 
-/obj/item/bluespace_crystal/attack_self(var/mob/user)
+/obj/item/bluespace_crystal/attack_self(mob/user)
 	blink_mob(user)
 	user.drop_item()
-	user.visible_message("<span class='notice'>[user] crushes the [src]!</span>")
+	user.visible_message(SPAN_NOTICE("[user] crushes the [src]!"))
 	qdel(src)
 
-/obj/item/bluespace_crystal/proc/blink_mob(var/mob/living/L)
+/obj/item/bluespace_crystal/proc/blink_mob(mob/living/L)
 	do_teleport(L, get_turf(L), blink_range, asoundin = 'sound/effects/phasein.ogg')
 
 /obj/item/bluespace_crystal/throw_impact(atom/hit_atom)

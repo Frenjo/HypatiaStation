@@ -8,14 +8,15 @@
 
 	var/germ_level = 0		// INTERNAL germs inside the organ, this is BAD if it's greater than INFECTION_LEVEL_ONE
 
-	proc/process()
-		return 0
+/datum/organ/proc/process()
+	return 0
 
-	proc/receive_chem(chemical as obj)
-		return 0
+/datum/organ/proc/receive_chem(chemical as obj)
+	return 0
 
 /datum/organ/proc/get_icon()
 	return icon('icons/mob/human.dmi', "blank")
+
 
 //Handles chem traces
 /mob/living/carbon/human/proc/handle_trace_chems()
@@ -23,6 +24,7 @@
 	for(var/datum/reagent/A in reagents.reagent_list)
 		var/datum/organ/O = pick(organs)
 		O.trace_chemicals[A.name] = 100
+
 
 //Adds autopsy data for used_weapon.
 /datum/organ/proc/add_autopsy_data(used_weapon, damage)
@@ -39,6 +41,7 @@
 /mob/living/carbon/human/var/list/organs = list()
 /mob/living/carbon/human/var/list/organs_by_name = list() // map organ names to organs
 /mob/living/carbon/human/var/list/internal_organs_by_name = list() // so internal organs have less ickiness too
+
 
 // Takes care of organ related updates, such as broken and missing limbs
 /mob/living/carbon/human/proc/handle_organs()
@@ -84,7 +87,7 @@
 						if(W.infection_check())
 							W.germ_level += 1
 
-			if(E.name in list("l_leg","l_foot","r_leg","r_foot") && !lying)
+			if(E.name in list("l_leg", "l_foot", "r_leg", "r_foot") && !lying)
 				if(!E.is_usable() || E.is_malfunctioning() || (E.is_broken() && !(E.status & ORGAN_SPLINTED)))
 					leg_tally--			// let it fail even if just foot&leg
 

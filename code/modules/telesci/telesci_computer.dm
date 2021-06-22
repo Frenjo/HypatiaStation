@@ -60,18 +60,18 @@
 			stat &= ~NOPOWER
 
 /obj/machinery/computer/telescience/attack_paw(mob/user)
-	user << "You are too primitive to use this computer."
+	to_chat(user, "You are too primitive to use this computer.")
 	return
 
 /obj/machinery/computer/telescience/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/bluespace_crystal))
 		if(crystals.len >= power_options.len)
-			user << "<span class='warning'>There are not enough crystal ports.</span>"
+			to_chat(user, SPAN_WARNING("There are not enough crystal ports."))
 			return
 		user.drop_item()
 		crystals += W
 		W.loc = null
-		user.visible_message("<span class='notice'>[user] inserts a [W] into the [src]'s crystal port.</span>")
+		user.visible_message(SPAN_NOTICE("[user] inserts a [W] into the [src]'s crystal port."))
 	else
 		..()
 
@@ -137,11 +137,10 @@
 
 /obj/machinery/computer/telescience/proc/telefail()
 	sparks()
-	visible_message("<span class='warning'>The telepad weakly fizzles.</span>")
+	visible_message(SPAN_WARNING("The telepad weakly fizzles."))
 	return
 
 /obj/machinery/computer/telescience/proc/doteleport(mob/user)
-
 	if(teleport_cooldown > world.time)
 		temp_msg = "Telepad is recharging power.<BR>Please wait [round((teleport_cooldown - world.time) / 10)] seconds."
 		return
