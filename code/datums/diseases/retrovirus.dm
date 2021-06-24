@@ -14,17 +14,15 @@
 	var/SE
 	var/UI
 	var/restcure = 0
-	New()
-		..()
-		agent = "Virus class [pick("A","B","C","D","E","F")][pick("A","B","C","D","E","F")]-[rand(50,300)]"
-		if(prob(40))
-			cure_id = list("ryetalyn")
-			cure_list = list("ryetalyn")
-		else
-			restcure = 1
-
-
-
+	
+/datum/disease/dna_retrovirus/New()
+	..()
+	agent = "Virus class [pick("A", "B", "C", "D", "E", "F")][pick("A", "B", "C", "D", "E", "F")]-[rand(50, 300)]"
+	if(prob(40))
+		cure_id = list("ryetalyn")
+		cure_list = list("ryetalyn")
+	else
+		restcure = 1
 
 /datum/disease/dna_retrovirus/stage_act()
 	..()
@@ -38,15 +36,15 @@
 					return
 */
 				if(affected_mob.lying && prob(30))  //changed FROM prob(20) until sleeping is fixed
-					affected_mob << "\blue You feel better."
+					to_chat(affected_mob, SPAN_INFO("You feel better."))
 					cure()
 					return
-			if (prob(8))
-				affected_mob << "\red Your head hurts."
-			if (prob(9))
-				affected_mob << "You feel a tingling sensation in your chest."
-			if (prob(9))
-				affected_mob << "\red You feel angry."
+			if(prob(8))
+				to_chat(affected_mob, SPAN_WARNING("Your head hurts."))
+			if(prob(9))
+				to_chat(affected_mob, "You feel a tingling sensation in your chest.")
+			if(prob(9))
+				to_chat(affected_mob, SPAN_WARNING("You feel angry."))
 		if(2)
 			if(restcure)
 /*
@@ -56,18 +54,18 @@
 					return
 */
 				if(affected_mob.lying && prob(20))  //changed FROM prob(10) until sleeping is fixed
-					affected_mob << "\blue You feel better."
+					to_chat(affected_mob, SPAN_INFO("You feel better."))
 					cure()
 					return
-			if (prob(8))
-				affected_mob << "\red Your skin feels loose."
-			if (prob(10))
-				affected_mob << "You feel very strange."
-			if (prob(4))
-				affected_mob << "\red You feel a stabbing pain in your head!"
+			if(prob(8))
+				to_chat(affected_mob, SPAN_WARNING("Your skin feels loose."))
+			if(prob(10))
+				to_chat(affected_mob, "You feel very strange.")
+			if(prob(4))
+				to_chat(affected_mob, SPAN_WARNING("You feel a stabbing pain in your head!"))
 				affected_mob.Paralyse(2)
-			if (prob(4))
-				affected_mob << "\red Your stomach churns."
+			if(prob(4))
+				to_chat(affected_mob, SPAN_WARNING("Your stomach churns."))
 		if(3)
 			if(restcure)
 /*
@@ -77,17 +75,17 @@
 					return
 */
 				if(affected_mob.lying && prob(20))  //changed FROM prob(10) until sleeping is fixed
-					affected_mob << "\blue You feel better."
+					to_chat(affected_mob, SPAN_INFO("You feel better."))
 					cure()
 					return
-			if (prob(10))
-				affected_mob << "\red Your entire body vibrates."
+			if(prob(10))
+				to_chat(affected_mob, SPAN_WARNING("Your entire body vibrates."))
 
-			if (prob(35))
+			if(prob(35))
 				if(prob(50))
-					scramble(1, affected_mob, rand(15,45))
+					scramble(1, affected_mob, rand(15, 45))
 				else
-					scramble(0, affected_mob, rand(15,45))
+					scramble(0, affected_mob, rand(15, 45))
 
 		if(4)
 			if(restcure)
@@ -98,10 +96,10 @@
 					return
 */
 				if(affected_mob.lying && prob(5))  //changed FROM prob(5) until sleeping is fixed
-					affected_mob << "\blue You feel better."
+					to_chat(affected_mob, SPAN_INFO("You feel better."))
 					cure()
 					return
-			if (prob(60))
+			if(prob(60))
 				if(prob(50))
 					scramble(1, affected_mob, rand(50,75))
 				else

@@ -23,7 +23,7 @@
 
 	var/last_dock_attempt_time = 0
 
-/datum/shuttle/ferry/short_jump(var/area/origin,var/area/destination)
+/datum/shuttle/ferry/short_jump(area/origin, area/destination)
 	if(isnull(location))
 		return
 
@@ -35,7 +35,7 @@
 	direction = !location
 	..(origin, destination)
 
-/datum/shuttle/ferry/long_jump(var/area/departing, var/area/destination, var/area/interim, var/travel_time, var/direction)
+/datum/shuttle/ferry/long_jump(area/departing, area/destination, area/interim, travel_time, direction)
 	//world << "shuttle/ferry/long_jump: departing=[departing], destination=[destination], interim=[interim], travel_time=[travel_time]"
 	if(isnull(location))
 		return
@@ -48,11 +48,13 @@
 	direction = !location
 	..(departing, destination, interim, travel_time, direction)
 
-/datum/shuttle/ferry/move(var/area/origin,var/area/destination)
+/datum/shuttle/ferry/move(area/origin, area/destination)
 	..(origin, destination)
 
-	if (destination == area_station) location = 0
-	if (destination == area_offsite) location = 1
+	if(destination == area_station)
+		location = 0
+	if(destination == area_offsite)
+		location = 1
 	//if this is a long_jump retain the location we were last at until we get to the new one
 
 /datum/shuttle/ferry/dock()
@@ -60,10 +62,10 @@
 	last_dock_attempt_time = world.time
 
 /datum/shuttle/ferry/proc/get_location_area(location_id = null)
-	if (isnull(location_id))
+	if(isnull(location_id))
 		location_id = location
 
-	if (!location_id)
+	if(!location_id)
 		return area_station
 	return area_offsite
 
@@ -73,68 +75,71 @@
 */
 /datum/shuttle/ferry/proc/process()
 	switch(process_state)
-		if (WAIT_LAUNCH)
-			if (skip_docking_checks() || docking_controller.can_launch())
+		if(WAIT_LAUNCH)
+			if(skip_docking_checks() || docking_controller.can_launch())
 
 				//world << "shuttle/ferry/process: area_transition=[area_transition], travel_time=[travel_time]"
-				if (move_time && area_transition)
-					long_jump(interim=area_transition, travel_time=move_time, direction=transit_direction)
+				if(move_time && area_transition)
+					long_jump(interim = area_transition, travel_time = move_time, direction = transit_direction)
 				else
 					short_jump()
 
 				process_state = WAIT_ARRIVE
 
-		if (FORCE_LAUNCH)
-			if (move_time && area_transition)
-				long_jump(interim=area_transition, travel_time=move_time, direction=transit_direction)
+		if(FORCE_LAUNCH)
+			if(move_time && area_transition)
+				long_jump(interim = area_transition, travel_time = move_time, direction = transit_direction)
 			else
 				short_jump()
 
 			process_state = WAIT_ARRIVE
 
-		if (WAIT_ARRIVE)
-			if (moving_status == SHUTTLE_IDLE)
+		if(WAIT_ARRIVE)
+			if(moving_status == SHUTTLE_IDLE)
 				dock()
 				in_use = null	//release lock
 				process_state = WAIT_FINISH
 
-		if (WAIT_FINISH)
-			if (skip_docking_checks() || docking_controller.docked() || world.time > last_dock_attempt_time + DOCK_ATTEMPT_TIMEOUT)
+		if(WAIT_FINISH)
+			if(skip_docking_checks() || docking_controller.docked() || world.time > last_dock_attempt_time + DOCK_ATTEMPT_TIMEOUT)
 				process_state = IDLE_STATE
 				arrived()
 
 /datum/shuttle/ferry/current_dock_target()
 	var/dock_target
-	if (!location)	//station
+	if(!location)	//station
 		dock_target = dock_target_station
 	else
 		dock_target = dock_target_offsite
 	return dock_target
 
 
-/datum/shuttle/ferry/proc/launch(var/user)
-	if (!can_launch()) return
+/datum/shuttle/ferry/proc/launch(user)
+	if(!can_launch())
+		return
 
 	in_use = user	//obtain an exclusive lock on the shuttle
 
 	process_state = WAIT_LAUNCH
 	undock()
 
-/datum/shuttle/ferry/proc/force_launch(var/user)
-	if (!can_force()) return
+/datum/shuttle/ferry/proc/force_launch(user)
+	if(!can_force())
+		return
 
 	in_use = user	//obtain an exclusive lock on the shuttle
 
 	process_state = FORCE_LAUNCH
 
-/datum/shuttle/ferry/proc/cancel_launch(var/user)
-	if (!can_cancel()) return
+/datum/shuttle/ferry/proc/cancel_launch(user)
+	if(!can_cancel())
+		return
 
 	moving_status = SHUTTLE_IDLE
 	process_state = WAIT_FINISH
 	in_use = null
 
-	if (docking_controller && !docking_controller.undocked())
+	if(docking_controller && !docking_controller.undocked())
 		docking_controller.force_undock()
 
 	spawn(10)
@@ -143,21 +148,21 @@
 	return
 
 /datum/shuttle/ferry/proc/can_launch()
-	if (moving_status != SHUTTLE_IDLE)
+	if(moving_status != SHUTTLE_IDLE)
 		return 0
 
-	if (in_use)
+	if(in_use)
 		return 0
 
 	return 1
 
 /datum/shuttle/ferry/proc/can_force()
-	if (moving_status == SHUTTLE_IDLE && process_state == WAIT_LAUNCH)
+	if(moving_status == SHUTTLE_IDLE && process_state == WAIT_LAUNCH)
 		return 1
 	return 0
 
 /datum/shuttle/ferry/proc/can_cancel()
-	if (moving_status == SHUTTLE_WARMUP || process_state == WAIT_LAUNCH || process_state == FORCE_LAUNCH)
+	if(moving_status == SHUTTLE_WARMUP || process_state == WAIT_LAUNCH || process_state == FORCE_LAUNCH)
 		return 1
 	return 0
 

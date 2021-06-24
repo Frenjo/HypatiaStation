@@ -44,7 +44,7 @@
 	canremove = 1
 	..()
 
-/obj/item/clothing/mask/horsehead/magic/equipped(var/mob/user, var/slot)
+/obj/item/clothing/mask/horsehead/magic/equipped(mob/user, slot)
 	if(slot == slot_wear_mask)
 		canremove = 0		//curses!
 	..()

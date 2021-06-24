@@ -27,9 +27,9 @@
 	if(istype(W, /obj/item/device/analyzer))
 		bombtank.attackby(W, user)
 		return
-	if(istype(W, /obj/item/weapon/wrench) && !status)	//This is basically bomb assembly code inverted. apparently it works.
 
-		user << "<span class='notice'>You disassemble [src].</span>"
+	if(istype(W, /obj/item/weapon/wrench) && !status)	//This is basically bomb assembly code inverted. apparently it works.
+		to_chat(user, SPAN_NOTICE("You disassemble [src]."))
 
 		bombassembly.loc = user.loc
 		bombassembly.master = null
@@ -41,16 +41,17 @@
 
 		qdel(src)
 		return
+
 	if((istype(W, /obj/item/weapon/weldingtool) && W:welding))
 		if(!status)
 			status = 1
 			bombers += "[key_name(user)] welded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]"
 			message_admins("[key_name_admin(user)] welded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]")
-			user << "<span class='notice'>A pressure hole has been bored to [bombtank] valve. \The [bombtank] can now be ignited.</span>"
+			to_chat(user, SPAN_NOTICE("A pressure hole has been bored to [bombtank] valve. \The [bombtank] can now be ignited."))
 		else
 			status = 0
 			bombers += "[key_name(user)] unwelded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]"
-			user << "<span class='notice'>The hole has been closed.</span>"
+			to_chat(user, SPAN_NOTICE("The hole has been closed."))
 	add_fingerprint(user)
 	..()
 
@@ -75,9 +76,10 @@
 
 // ---------- Procs below are for tanks that are used exclusively in 1-tank bombs ----------
 
-/obj/item/weapon/tank/proc/bomb_assemble(W,user)	//Bomb assembly proc. This turns assembly+tank into a bomb
+/obj/item/weapon/tank/proc/bomb_assemble(W, user)	//Bomb assembly proc. This turns assembly+tank into a bomb
 	var/obj/item/device/assembly_holder/S = W
 	var/mob/M = user
+
 	if(!S.secured)										//Check if the assembly is secured
 		return
 	if(isigniter(S.a_left) == isigniter(S.a_right))		//Check if either part of the assembly has an igniter, but if both parts are igniters, then fuck it
@@ -109,32 +111,32 @@
 	if(air_contents.temperature > (T0C + 400))
 		strength = (fuel_moles/15)
 
-		if(strength >=1)
-			explosion(ground_zero, round(strength,1), round(strength*2,1), round(strength*3,1), round(strength*4,1))
-		else if(strength >=0.5)
+		if(strength >= 1)
+			explosion(ground_zero, round(strength, 1), round(strength * 2, 1), round(strength * 3, 1), round(strength * 4, 1))
+		else if(strength >= 0.5)
 			explosion(ground_zero, 0, 1, 2, 4)
-		else if(strength >=0.2)
+		else if(strength >= 0.2)
 			explosion(ground_zero, -1, 0, 1, 2)
 		else
 			ground_zero.assume_air(air_contents)
 			ground_zero.hotspot_expose(1000, 125)
 
 	else if(air_contents.temperature > (T0C + 250))
-		strength = (fuel_moles/20)
+		strength = (fuel_moles / 20)
 
-		if(strength >=1)
-			explosion(ground_zero, 0, round(strength,1), round(strength*2,1), round(strength*3,1))
-		else if (strength >=0.5)
+		if(strength >= 1)
+			explosion(ground_zero, 0, round(strength, 1), round(strength * 2, 1), round(strength * 3, 1))
+		else if(strength >= 0.5)
 			explosion(ground_zero, -1, 0, 1, 2)
 		else
 			ground_zero.assume_air(air_contents)
 			ground_zero.hotspot_expose(1000, 125)
 
 	else if(air_contents.temperature > (T0C + 100))
-		strength = (fuel_moles/25)
+		strength = (fuel_moles / 25)
 
-		if (strength >=1)
-			explosion(ground_zero, -1, 0, round(strength,1), round(strength*3,1))
+		if(strength >= 1)
+			explosion(ground_zero, -1, 0, round(strength, 1), round(strength * 3, 1))
 		else
 			ground_zero.assume_air(air_contents)
 			ground_zero.hotspot_expose(1000, 125)

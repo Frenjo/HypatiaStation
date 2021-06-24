@@ -24,14 +24,14 @@
 
 	processing_objects.Add(src)
 
-
 /obj/item/weapon/reagent_containers/borghypo/Destroy()
 	processing_objects.Remove(src)
 	..()
 
 /obj/item/weapon/reagent_containers/borghypo/process() //Every [recharge_time] seconds, recharge some reagents for the cyborg
 	charge_tick++
-	if(charge_tick < recharge_time) return 0
+	if(charge_tick < recharge_time)
+		return 0
 	charge_tick = 0
 
 	if(isrobot(src.loc))
@@ -52,7 +52,7 @@
 */
 
 // Use this to add more chemicals for the borghypo to produce.
-/obj/item/weapon/reagent_containers/borghypo/proc/add_reagent(var/reagent)
+/obj/item/weapon/reagent_containers/borghypo/proc/add_reagent(reagent)
 	reagent_ids |= reagent
 	var/datum/reagents/RG = new(30)
 	RG.my_atom = src
@@ -64,18 +64,18 @@
 /obj/item/weapon/reagent_containers/borghypo/attack(mob/M as mob, mob/user as mob)
 	var/datum/reagents/R = reagent_list[mode]
 	if(!R.total_volume)
-		user << "\red The injector is empty."
+		to_chat(user, SPAN_WARNING("The injector is empty."))
 		return
-	if (!( istype(M, /mob) ))
+	if(!ismob(M))
 		return
-	if (R.total_volume)
-		user << "\blue You inject [M] with the injector."
-		M << "\red You feel a tiny prick!"
+	if(R.total_volume)
+		to_chat(user, SPAN_INFO("You inject [M] with the injector."))
+		to_chat(M, SPAN_WARNING("You feel a tiny prick!"))
 
 		R.reaction(M, INGEST)
 		if(M.reagents)
 			var/trans = R.trans_to(M, amount_per_transfer_from_this)
-			user << "\blue [trans] units injected. [R.total_volume] units remaining."
+			to_chat(user, SPAN_INFO("[trans] units injected. [R.total_volume] units remaining."))
 	return
 
 /obj/item/weapon/reagent_containers/borghypo/attack_self(mob/user as mob)
@@ -86,21 +86,22 @@
 
 	charge_tick = 0 //Prevents wasted chems/cell charge if you're cycling through modes.
 	var/datum/reagent/R = chemical_reagents_list[reagent_ids[mode]]
-	user << "\blue Synthesizer is now producing '[R.name]'."
+	to_chat(user, SPAN_INFO("Synthesizer is now producing '[R.name]'."))
 	return
 
 /obj/item/weapon/reagent_containers/borghypo/examine()
 	set src in view()
 	..()
-	if (!(usr in view(2)) && usr!=src.loc) return
+	if(!(usr in view(2)) && usr != src.loc)
+		return
 
 	var/empty = 1
 
 	for(var/datum/reagents/RS in reagent_list)
 		var/datum/reagent/R = locate() in RS.reagent_list
 		if(R)
-			usr << "\blue It currently has [R.volume] units of [R.name] stored."
+			to_chat(usr, SPAN_INFO("It currently has [R.volume] units of [R.name] stored."))
 			empty = 0
 
 	if(empty)
-		usr << "\blue It is currently empty. Allow some time for the internal syntheszier to produce more."
+		to_chat(usr, SPAN_INFO("It is currently empty. Allow some time for the internal syntheszier to produce more."))

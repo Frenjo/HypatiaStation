@@ -99,7 +99,7 @@
 
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure()-env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
+	if((int_air.return_pressure() - env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
 		to_chat(user, SPAN_WARNING("You cannot unwrench this [src], it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
@@ -110,7 +110,7 @@
 		user.visible_message( \
 			"[user] unfastens \the [src].", \
 			SPAN_INFO("You have unfastened \the [src]."), \
-			"You hear ratchet.")
+			"You hear a ratchet.")
 		new /obj/item/pipe(loc, make_from=src)
 		qdel(src)
 
@@ -202,7 +202,7 @@
 
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "gas_mixer.tmpl", "Gas Mixer", 540, 380)
 		ui.set_initial_data(data)
 		ui.open()

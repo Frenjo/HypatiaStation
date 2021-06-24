@@ -1,4 +1,4 @@
-/mob/living/carbon/human/say(var/message)
+/mob/living/carbon/human/say(message)
 	//TODO: Add checks for species who do not speak common.
 
 	var/verbage = "says"
@@ -13,7 +13,7 @@
 
 	message =  trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 
-	if(stat == 2)
+	if(stat == DEAD)
 		return say_dead(message)
 
 	if(istype(wear_mask, /obj/item/clothing/mask/muzzle))  //Todo:  Add this to speech_problem_flag checks.
@@ -67,11 +67,11 @@
 
 	switch(message_mode)
 		if("headset")
-			if(l_ear && istype(l_ear,/obj/item/device/radio))
+			if(l_ear && istype(l_ear, /obj/item/device/radio))
 				var/obj/item/device/radio/R = l_ear
 				R.talk_into(src,message,null, verbage, speaking)
 				used_radios += l_ear
-			else if(r_ear && istype(r_ear,/obj/item/device/radio))
+			else if(r_ear && istype(r_ear, /obj/item/device/radio))
 				var/obj/item/device/radio/R = r_ear
 				R.talk_into(src,message,null, verbage, speaking)
 				used_radios += r_ear
@@ -112,10 +112,10 @@
 		else
 			if(message_mode)
 				if(message_mode in (radiochannels | "department"))
-					if(l_ear && istype(l_ear,/obj/item/device/radio))
+					if(l_ear && istype(l_ear, /obj/item/device/radio))
 						l_ear.talk_into(src,message, message_mode, verbage, speaking)
 						used_radios += l_ear
-					else if(r_ear && istype(r_ear,/obj/item/device/radio))
+					else if(r_ear && istype(r_ear, /obj/item/device/radio))
 						r_ear.talk_into(src,message, message_mode, verbage, speaking)
 						used_radios += r_ear
 
@@ -135,7 +135,7 @@
 
 	..(message, speaking, verbage, alt_name, italics, message_range, used_radios)
 
-/mob/living/carbon/human/say_understands(var/mob/other, var/datum/language/speaking = null)
+/mob/living/carbon/human/say_understands(mob/other, datum/language/speaking = null)
 	if(has_brain_worms()) //Brain worms translate everything. Even mice and alien speak.
 		return 1
 
@@ -144,11 +144,11 @@
 		if(istype(other, /mob/living/carbon/monkey/diona))
 			if(other.languages.len >= 2)			//They've sucked down some blood and can speak common now.
 				return 1
-		if(istype(other, /mob/living/silicon))
+		if(issilicon(other))
 			return 1
-		if(istype(other, /mob/living/carbon/brain))
+		if(isbrain(other))
 			return 1
-		if(istype(other, /mob/living/carbon/slime))
+		if(isslime(other))
 			return 1
 
 	//This is already covered by mob/say_understands()
@@ -172,7 +172,7 @@
 		return GetSpecialVoice()
 	return real_name
 
-/mob/living/carbon/human/proc/SetSpecialVoice(var/new_voice)
+/mob/living/carbon/human/proc/SetSpecialVoice(new_voice)
 	if(new_voice)
 		special_voice = new_voice
 	return
@@ -184,7 +184,7 @@
 /mob/living/carbon/human/proc/GetSpecialVoice()
 	return special_voice
 
-/mob/living/carbon/human/proc/handle_speech_problems(var/message)
+/mob/living/carbon/human/proc/handle_speech_problems(message)
 	var/list/returns[3]
 	var/verbage = "says"
 	var/handled = 0

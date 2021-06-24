@@ -27,9 +27,10 @@
 		part2 = null
 		qdel(src)
 		return
+
 	if(istype(W, /obj/item/weapon/screwdriver))
 		status = !status
-		user << "<span class='notice'>[src] is now [status ? "secured" : "unsecured"]!</span>"
+		to_chat(user, SPAN_NOTICE("[src] is now [status ? "secured" : "unsecured"]!"))
 	add_fingerprint(user)
 	return
 

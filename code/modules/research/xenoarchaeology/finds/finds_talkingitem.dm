@@ -17,14 +17,14 @@
 	if(prob(10) && world.timeofday >= lastsaid && heard_words.len >= 1)
 		SaySomething()
 
-/obj/item/weapon/proc/catchMessage(var/msg, var/mob/source)
+/obj/item/weapon/proc/catchMessage(msg, mob/source)
 	if(speaking_to_players)
 		var/list/seperate = list()
-		if(findtext(msg,"(("))
+		if(findtext(msg, "(("))
 			return
-		else if(findtext(msg,"))"))
+		else if(findtext(msg, "))"))
 			return
-		else if(findtext(msg," ")==0)
+		else if(findtext(msg, " ") == 0)
 			return
 		else
 			/*var/l = length(msg)
@@ -32,9 +32,9 @@
 				msg+=" "*/
 			seperate = text2list(msg, " ")
 
-		for(var/Xa = 1,Xa<seperate.len,Xa++)
+		for(var/Xa = 1, Xa < seperate.len, Xa++)
 			var/next = Xa + 1
-			if(heard_words.len > 20 + rand(10,20))
+			if(heard_words.len > 20 + rand(10, 20))
 				heard_words.Remove(heard_words[1])
 			if(!heard_words["[lowertext(seperate[Xa])]"])
 				heard_words["[lowertext(seperate[Xa])]"] = list()
@@ -44,10 +44,11 @@
 			//world << "Adding [lowertext(seperate[next])] to [lowertext(seperate[Xa])]"
 
 		if(!rand(0, 5))
-			spawn(2) SaySomething(pick(seperate))
+			spawn(2)
+				SaySomething(pick(seperate))
 	if(prob(30))
 		for(var/mob/O in viewers(src))
-			O.show_message("\blue [src] hums for bit then stops...", 1)
+			O.show_message(SPAN_INFO("[src] hums for bit then stops..."), 1)
 
 /*/obj/item/weapon/talkingcrystal/proc/debug()
 	//set src in view()
@@ -57,53 +58,51 @@
 		for(var/X in d)
 			world << "[X]"*/
 
-/obj/item/weapon/proc/SaySomething(var/word = null)
-
+/obj/item/weapon/proc/SaySomething(word = null)
 	var/msg
-	var/limit = rand(max(5,heard_words.len/2))+3
+	var/limit = rand(max(5, heard_words.len / 2)) + 3
 	var/text
 	if(!word)
 		text = "[pick(heard_words)]"
 	else
 		text = pick(text2list(word, " "))
-	if(length(text)==1)
-		text=uppertext(text)
+	if(length(text) == 1)
+		text = uppertext(text)
 	else
-		var/cap = copytext(text,1,2)
+		var/cap = copytext(text, 1, 2)
 		cap = uppertext(cap)
-		cap += copytext(text,2,length(text)+1)
+		cap += copytext(text, 2, length(text) + 1)
 		text=cap
 	var/q = 0
-	msg+=text
-	if(msg=="What" | msg == "Who" | msg == "How" | msg == "Why" | msg == "Are")
-		q=1
+	msg += text
+	if(msg == "What" | msg == "Who" | msg == "How" | msg == "Why" | msg == "Are")
+		q = 1
 
-	text=lowertext(text)
-	for(var/ya,ya <= limit,ya++)
-
+	text = lowertext(text)
+	for(var/ya, ya <= limit, ya++)
 		if(heard_words.Find("[text]"))
 			var/list/w = heard_words["[text]"]
-			text=pick(w)
+			text = pick(w)
 		else
 			text = "[pick(heard_words)]"
-		msg+=" [text]"
+		msg += " [text]"
 	if(q)
-		msg+="?"
+		msg += "?"
 	else
-		if(rand(0,10))
-			msg+="."
+		if(rand(0, 10))
+			msg += "."
 		else
-			msg+="!"
+			msg += "!"
 
 	var/list/listening = viewers(src)
 	for(var/mob/M in mob_list)
-		if (!M.client)
+		if(!M.client)
 			continue //skip monkeys and leavers
-		if (istype(M, /mob/new_player))
+		if(istype(M, /mob/new_player))
 			continue
-		if(M.stat == 2 &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
+		if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
 			listening|=M
 
 	for(var/mob/M in listening)
 		M << "<b>[src]</b> reverberates, \blue\"[msg]\""
-	lastsaid = world.timeofday + rand(300,800)
+	lastsaid = world.timeofday + rand(300, 800)

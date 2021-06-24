@@ -33,7 +33,6 @@
 	var/list/starting_chems = null
 
 /obj/item/weapon/gun/dartgun/update_icon()
-
 	if(!cartridge)
 		icon_state = "dartgun-empty"
 		return 1
@@ -47,7 +46,6 @@
 	return 1
 
 /obj/item/weapon/gun/dartgun/New()
-
 	..()
 	if(starting_chems)
 		for(var/chem in starting_chems)
@@ -61,49 +59,48 @@
 	set src in view()
 	update_icon()
 	..()
-	if (!(usr in view(2)) && usr!=src.loc)
+	if(!(usr in view(2)) && usr!=src.loc)
 		return
-	if (beakers.len)
-		usr << "\blue [src] contains:"
+	if(beakers.len)
+		to_chat(usr, SPAN_INFO("[src] contains:"))
 		for(var/obj/item/weapon/reagent_containers/glass/beaker/B in beakers)
 			if(B.reagents && B.reagents.reagent_list.len)
 				for(var/datum/reagent/R in B.reagents.reagent_list)
-					usr << "\blue [R.volume] units of [R.name]"
+					to_chat(usr, SPAN_INFO("[R.volume] units of [R.name]"))
 
 /obj/item/weapon/gun/dartgun/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/dart_cartridge))
-
 		var/obj/item/weapon/dart_cartridge/D = I
 
 		if(!D.darts)
-			user << "\blue [D] is empty."
+			to_chat(user, SPAN_INFO("[D] is empty."))
 			return 0
 
 		if(cartridge)
 			if(cartridge.darts <= 0)
 				src.remove_cartridge()
 			else
-				user << "\blue There's already a cartridge in [src]."
+				to_chat(user, SPAN_INFO("There's already a cartridge in [src]."))
 				return 0
 
 		user.drop_item()
 		cartridge = D
 		D.loc = src
-		user << "\blue You slot [D] into [src]."
+		to_chat(user, SPAN_INFO("You slot [D] into [src]."))
 		update_icon()
 		return
 	if(istype(I, /obj/item/weapon/reagent_containers/glass))
 		if(!istype(I, container_type))
-			user << "\blue [I] doesn't seem to fit into [src]."
+			to_chat(user, SPAN_INFO("[I] doesn't seem to fit into [src]."))
 			return
 		if(beakers.len >= max_beakers)
-			user << "\blue [src] already has [max_beakers] beakers in it - another one isn't going to fit!"
+			to_chat(user, SPAN_INFO("[src] already has [max_beakers] beakers in it - another one isn't going to fit!"))
 			return
 		var/obj/item/weapon/reagent_containers/glass/beaker/B = I
 		user.drop_item()
 		B.loc = src
 		beakers += B
-		user << "\blue You slot [B] into [src]."
+		to_chat(user, SPAN_INFO("You slot [B] into [src]."))
 		src.updateUsrDialog()
 
 /obj/item/weapon/gun/dartgun/can_fire()
@@ -117,7 +114,7 @@
 
 /obj/item/weapon/gun/dartgun/proc/remove_cartridge()
 	if(cartridge)
-		usr << "\blue You pop the cartridge out of [src]."
+		to_chat(usr, SPAN_INFO("You pop the cartridge out of [src]."))
 		var/obj/item/weapon/dart_cartridge/C = cartridge
 		C.loc = get_turf(src)
 		C.update_icon()
@@ -125,7 +122,7 @@
 		src.update_icon()
 
 /obj/item/weapon/gun/dartgun/proc/get_mixed_syringe()
-	if (!cartridge)
+	if(!cartridge)
 		return 0
 	if(!cartridge.darts)
 		return 0
@@ -140,17 +137,17 @@
 	return dart
 
 /obj/item/weapon/gun/dartgun/proc/fire_dart(atom/target, mob/user)
-	if (locate (/obj/structure/table, src.loc))
+	if(locate(/obj/structure/table, src.loc))
 		return
 	else
 		var/turf/trg = get_turf(target)
 		var/obj/effect/syringe_gun_dummy/D = new/obj/effect/syringe_gun_dummy(get_turf(src))
 		var/obj/item/weapon/reagent_containers/syringe/S = get_mixed_syringe()
 		if(!S)
-			user << "\red There are no darts in [src]!"
+			to_chat(user, SPAN_WARNING("There are no darts in [src]!"))
 			return
 		if(!S.reagents)
-			user << "\red There are no reagents available!"
+			to_chat(user, SPAN_WARNING("There are no reagents available!"))
 			return
 		cartridge.darts--
 		src.update_icon()
@@ -161,22 +158,26 @@
 		D.flags |= NOREACT
 		playsound(user.loc, 'sound/items/syringeproj.ogg', 50, 1)
 
-		for(var/i=0, i<6, i++)
-			if(!D) break
-			if(D.loc == trg) break
-			step_towards(D,trg)
+		for(var/i = 0, i < 6, i++)
+			if(!D)
+				break
+			if(D.loc == trg)
+				break
+			step_towards(D, trg)
 
 			if(D)
 				for(var/mob/living/carbon/M in D.loc)
-					if(!istype(M,/mob/living/carbon)) continue
-					if(M == user) continue
+					if(!iscarbon(M))
+						continue
+					if(M == user)
+						continue
 					//Syringe gun attack logging by Yvarov
 					var/R
 					if(D.reagents)
 						for(var/datum/reagent/A in D.reagents.reagent_list)
 							R += A.id + " ("
 							R += num2text(A.volume) + "),"
-					if (istype(M, /mob))
+					if(ismob(M))
 						M.attack_log += "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> shot <b>[M]/[M.ckey]</b> with a <b>dartgun</b> ([R])"
 						user.attack_log += "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> shot <b>[M]/[M.ckey]</b> with a <b>dartgun</b> ([R])"
 						msg_admin_attack("[user] ([user.ckey]) shot [M] ([M.ckey]) with a dartgun ([R]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
@@ -187,41 +188,45 @@
 
 					if(D.reagents)
 						D.reagents.trans_to(M, 15)
-					M << "<span class='danger'>You feel a slight prick.</span>"
+					to_chat(M, SPAN_DANGER("You feel a slight prick."))
 
 					qdel(D)
 					break
 			if(D)
 				for(var/atom/A in D.loc)
-					if(A == user) continue
-					if(A.density) qdel(D)
+					if(A == user)
+						continue
+					if(A.density)
+						qdel(D)
 
 			sleep(1)
 
-		if (D) spawn(10) qdel(D)
+		if(D)
+			spawn(10)
+				qdel(D)
 
 		return
 
 /obj/item/weapon/gun/dartgun/afterattack(obj/target, mob/user , flag)
-	if(!isturf(target.loc) || target == user) return
+	if(!isturf(target.loc) || target == user)
+		return
 	..()
 
-/obj/item/weapon/gun/dartgun/can_hit(var/mob/living/target as mob, var/mob/living/user as mob)
+/obj/item/weapon/gun/dartgun/can_hit(mob/living/target as mob, mob/living/user as mob)
 	return 1
 
 /obj/item/weapon/gun/dartgun/attack_self(mob/user)
-
 	user.set_machine(src)
 	var/dat = "<b>[src] mixing control:</b><br><br>"
 
-	if (beakers.len)
+	if(beakers.len)
 		var/i = 1
 		for(var/obj/item/weapon/reagent_containers/glass/beaker/B in beakers)
 			dat += "Beaker [i] contains: "
 			if(B.reagents && B.reagents.reagent_list.len)
 				for(var/datum/reagent/R in B.reagents.reagent_list)
 					dat += "<br>    [R.volume] units of [R.name], "
-				if (check_beaker_mixing(B))
+				if(check_beaker_mixing(B))
 					dat += text("<A href='?src=\ref[src];stop_mix=[i]'><font color='green'>Mixing</font></A> ")
 				else
 					dat += text("<A href='?src=\ref[src];mix=[i]'><font color='red'>Not mixing</font></A> ")
@@ -242,7 +247,7 @@
 	user << browse(dat, "window=dartgun")
 	onclose(user, "dartgun", src)
 
-/obj/item/weapon/gun/dartgun/proc/check_beaker_mixing(var/obj/item/B)
+/obj/item/weapon/gun/dartgun/proc/check_beaker_mixing(obj/item/B)
 	if(!mixing || !beakers)
 		return 0
 	for(var/obj/item/M in mixing)
@@ -259,16 +264,16 @@
 				if(M == beakers[index])
 					mixing -= M
 					break
-	else if (href_list["mix"])
+	else if(href_list["mix"])
 		var/index = text2num(href_list["mix"])
 		if(index <= beakers.len)
 			mixing += beakers[index]
-	else if (href_list["eject"])
+	else if(href_list["eject"])
 		var/index = text2num(href_list["eject"])
 		if(index <= beakers.len)
 			if(beakers[index])
 				var/obj/item/weapon/reagent_containers/glass/beaker/B = beakers[index]
-				usr << "You remove [B] from [src]."
+				to_chat(usr, "You remove [B] from [src].")
 				mixing -= B
 				beakers -= B
 				B.loc = get_turf(src)
@@ -281,15 +286,14 @@
 	if(cartridge)
 		spawn(0) fire_dart(target,user)
 	else
-		usr << "\red [src] is empty."
-
+		to_chat(usr, SPAN_WARNING("[src] is empty."))
 
 /obj/item/weapon/gun/dartgun/vox
 	name = "alien dart gun"
 	desc = "A small gas-powered dartgun, fitted for nonhuman hands."
 
 /obj/item/weapon/gun/dartgun/vox/medical
-	starting_chems = list("kelotane","bicaridine","anti_toxin")
+	starting_chems = list("kelotane", "bicaridine", "anti_toxin")
 
 /obj/item/weapon/gun/dartgun/vox/raider
-	starting_chems = list("space_drugs","stoxin","impedrezene")
+	starting_chems = list("space_drugs", "stoxin", "impedrezene")

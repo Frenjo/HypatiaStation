@@ -875,7 +875,7 @@ About the new airlock wires panel:
 	return src.attack_hand(user)
 
 /obj/machinery/door/airlock/attack_hand(mob/user as mob)
-	if(!istype(usr, /mob/living/silicon))
+	if(!issilicon(usr))
 		if(src.isElectrified())
 			if(src.shock(user, 100))
 				return
@@ -948,7 +948,7 @@ About the new airlock wires panel:
 /obj/machinery/door/airlock/Topic(href, href_list, nowindow = 0)
 	if(!nowindow)
 		..()
-	if(usr.stat || usr.restrained()|| usr.small)
+	if(usr.stat || usr.restrained() || usr.small)
 		return
 	add_fingerprint(usr)
 	if(href_list["close"])
@@ -957,7 +957,7 @@ About the new airlock wires panel:
 			usr.unset_machine()
 			return
 
-	if((in_range(src, usr) && istype(src.loc, /turf)) && src.p_open)
+	if((in_range(src, usr) && isturf(src.loc)) && src.p_open)
 		usr.set_machine(src)
 		if(href_list["wires"])
 			var/t1 = text2num(href_list["wires"])
@@ -1005,7 +1005,7 @@ About the new airlock wires panel:
 			R.airlock_wire = null
 			src.signalers[wirenum] = null
 
-	if(istype(usr, /mob/living/silicon) && src.canAIControl())
+	if(issilicon(usr) && src.canAIControl())
 		//AI
 		//aiDisable - 1 idscan, 2 disrupt main power, 3 disrupt backup power, 4 drop door bolts, 5 un-electrify door, 7 close door, 8 door safties, 9 door speed
 		//aiEnable - 1 idscan, 4 raise door bolts, 5 electrify door for 30 seconds, 6 electrify door indefinitely, 7 open door,  8 door safties, 9 door speed
@@ -1132,9 +1132,9 @@ About the new airlock wires panel:
 					//electrify door indefinitely
 					if(src.isWireCut(AIRLOCK_WIRE_ELECTRIFY))
 						to_chat(usr, "The electrification wire has been cut.<br>\n")
-					else if(src.secondsElectrified==-1)
+					else if(src.secondsElectrified == -1)
 						to_chat(usr, "The door is already indefinitely electrified.<br>\n")
-					else if(src.secondsElectrified!=0)
+					else if(src.secondsElectrified != 0)
 						to_chat(usr, "The door is already electrified. You can't re-electrify it while it's already electrified.<br>\n")
 					else
 						shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
@@ -1187,7 +1187,7 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/attackby(C as obj, mob/user as mob)
 	//world << text("airlock attackby src [] obj [] mob []", src, C, user)
-	if(!istype(usr, /mob/living/silicon))
+	if(!issilicon(usr))
 		if(src.isElectrified())
 			if(src.shock(user, 75))
 				return
@@ -1227,7 +1227,7 @@ About the new airlock wires panel:
 		if(beingcrowbarred && (operating == -1 || density && welded && operating != 1 && src.p_open && (!src.arePowerSystemsOn() || stat & NOPOWER) && !src.locked))
 			playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
-			if(do_after(user,40))
+			if(do_after(user, 40))
 				to_chat(user, SPAN_INFO("You removed the airlock electronics!"))
 
 				var/obj/structure/door_assembly/da = new assembly_type(src.loc)
@@ -1270,20 +1270,24 @@ About the new airlock wires panel:
 				if(beingcrowbarred == 0) //being fireaxe'd
 					var/obj/item/weapon/twohanded/fireaxe/F = C
 					if(F:wielded)
-						spawn(0)	open(1)
+						spawn(0)
+							open(1)
 					else
 						user << "\red You need to be wielding the Fire axe to do that."
 				else
-					spawn(0)	open(1)
+					spawn(0)
+						open(1)
 			else
 				if(beingcrowbarred == 0)
 					var/obj/item/weapon/twohanded/fireaxe/F = C
 					if(F:wielded)
-						spawn(0)	close(1)
+						spawn(0)
+							close(1)
 					else
 						user << "\red You need to be wielding the Fire axe to do that."
 				else
-					spawn(0)	close(1)
+					spawn(0)
+						close(1)
 
 	else
 		..()
@@ -1294,11 +1298,11 @@ About the new airlock wires panel:
 		ignite(is_hot(C))
 	..()
 
-/obj/machinery/door/airlock/open(var/forced=0)
-	if( operating || welded || locked )
+/obj/machinery/door/airlock/open(forced = 0)
+	if(operating || welded || locked)
 		return 0
 	if(!forced)
-		if( !arePowerSystemsOn() || (stat & NOPOWER) || isWireCut(AIRLOCK_WIRE_OPEN_DOOR) )
+		if(!arePowerSystemsOn() || (stat & NOPOWER) || isWireCut(AIRLOCK_WIRE_OPEN_DOOR))
 			return 0
 	//use_power(50)
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
@@ -1314,18 +1318,18 @@ About the new airlock wires panel:
 		src.closeOther.close()
 	return ..()
 
-/obj/machinery/door/airlock/close(var/forced=0)
+/obj/machinery/door/airlock/close(forced = 0)
 	if(operating || welded || locked)
 		return
 	if(!forced)
-		if( !arePowerSystemsOn() || (stat & NOPOWER) || isWireCut(AIRLOCK_WIRE_DOOR_BOLTS) )
+		if(!arePowerSystemsOn() || (stat & NOPOWER) || isWireCut(AIRLOCK_WIRE_DOOR_BOLTS))
 			return
 	if(safe)
 		for(var/turf/turf in locs)
 			if(locate(/mob/living) in turf)
 				// Uncommented sound to play when door is blocked. -Frenjo
 				playsound(src, 'sound/machines/buzz-two.ogg', 25, 0)	//THE BUZZING IT NEVER STOPS	-Pete
-				spawn (60)
+				spawn(60)
 					close()
 				return
 

@@ -242,14 +242,14 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //Returns whether or not a player is a guest using their ckey as an input
 /proc/IsGuestKey(key)
-	if (findtext(key, "Guest-", 1, 7) != 1) //was findtextEx
+	if(findtext(key, "Guest-", 1, 7) != 1) //was findtextEx
 		return 0
 
 	var/i, ch, len = length(key)
 
-	for (i = 7, i <= len, ++i)
+	for(i = 7, i <= len, ++i)
 		ch = text2ascii(key, i)
-		if (ch < 48 || ch > 57)
+		if(ch < 48 || ch > 57)
 			return 0
 	return 1
 
@@ -258,7 +258,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	f = round(f)
 	f = max(1441, f) // 144.1
 	f = min(1489, f) // 148.9
-	if ((f % 2) == 0) //Ensure the last digit is an odd number
+	if((f % 2) == 0) //Ensure the last digit is an odd number
 		f += 1
 	return f
 
@@ -372,13 +372,13 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/select = null
 	var/list/borgs = list()
 	for(var/mob/living/silicon/robot/A in player_list)
-		if(A.stat == 2 || A.connected_ai || A.scrambledcodes || isdrone(A))
+		if(A.stat == DEAD || A.connected_ai || A.scrambledcodes || isdrone(A))
 			continue
 		var/name = "[A.real_name] ([A.modtype] [A.braintype])"
 		borgs[name] = A
 
 	if(borgs.len)
-		select = input("Unshackled borg signals detected:", "Borg selection", null, null) as null|anything in borgs
+		select = input("Unshackled borg signals detected:", "Borg selection", null, null) as null | anything in borgs
 		return borgs[select]
 
 //When a borg is activated, it can choose which AI it wants to be slaved to
@@ -422,7 +422,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		var/mob/M = old_list[named]
 		if(issilicon(M))
 			AI_list |= M
-		else if(isobserver(M) || M.stat == 2)
+		else if(isobserver(M) || M.stat == DEAD)
 			Dead_list |= M
 		else if(M.key && M.client)
 			keyclient_list |= M
@@ -456,7 +456,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			namecounts[name] = 1
 		if(M.real_name && M.real_name != M.name)
 			name += " \[[M.real_name]\]"
-		if(M.stat == 2)
+		if(M.stat == DEAD)
 			if(isobserver(M))
 				name += " \[ghost\]"
 			else
@@ -1061,24 +1061,36 @@ proc/DuplicateObject(obj/original, perfectcopy = 0 , sameloc = 0)
 /proc/get_mob_with_client_list()
 	var/list/mobs = list()
 	for(var/mob/M in mob_list)
-		if (M.client)
+		if(M.client)
 			mobs += M
 	return mobs
 
 
 /proc/parse_zone(zone)
-	if(zone == "r_hand") return "right hand"
-	else if (zone == "l_hand") return "left hand"
-	else if (zone == "l_arm") return "left arm"
-	else if (zone == "r_arm") return "right arm"
-	else if (zone == "l_leg") return "left leg"
-	else if (zone == "r_leg") return "right leg"
-	else if (zone == "l_foot") return "left foot"
-	else if (zone == "r_foot") return "right foot"
-	else if (zone == "l_hand") return "left hand"
-	else if (zone == "r_hand") return "right hand"
-	else if (zone == "l_foot") return "left foot"
-	else if (zone == "r_foot") return "right foot"
+	if(zone == "r_hand")
+		return "right hand"
+	else if(zone == "l_hand")
+		return "left hand"
+	else if(zone == "l_arm")
+		return "left arm"
+	else if(zone == "r_arm")
+		return "right arm"
+	else if(zone == "l_leg")
+		return "left leg"
+	else if(zone == "r_leg")
+		return "right leg"
+	else if(zone == "l_foot")
+		return "left foot"
+	else if(zone == "r_foot")
+		return "right foot"
+	else if(zone == "l_hand")
+		return "left hand"
+	else if(zone == "r_hand")
+		return "right hand"
+	else if(zone == "l_foot")
+		return "left foot"
+	else if(zone == "r_foot")
+		return "right foot"
 	else return zone
 
 

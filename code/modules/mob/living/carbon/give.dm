@@ -2,7 +2,7 @@
 	set category = "IC"
 	set name = "Give"
 	set src in view(1)
-	if(src.stat == 2 || usr.stat == 2 || src.client == null)
+	if(src.stat == DEAD || usr.stat == DEAD || src.client == null)
 		return
 	if(src == usr)
 		usr << "\red I feel stupider, suddenly."
@@ -21,7 +21,7 @@
 	if(!I)
 		return
 	if(src.r_hand == null || src.l_hand == null)
-		switch(alert(src,"[usr] wants to give you \a [I]?",,"Yes","No"))
+		switch(alert(src, "[usr] wants to give you \a [I]?", , "Yes", "No"))
 			if("Yes")
 				if(!I)
 					return

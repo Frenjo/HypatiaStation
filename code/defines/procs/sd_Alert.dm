@@ -60,7 +60,6 @@ Version 1 changes (from version 0):
 
 */
 
-
 #define SD_ALERT_SCROLL			1
 #define SD_ALERT_SELECT_MULTI	2
 #define SD_ALERT_LINKS			4
@@ -90,6 +89,7 @@ proc/sd_Alert(client/who, message, title, buttons = list("Ok"),\
 			return
 	T.Display(message, title, buttons, default, unfocus, size, table, style, select, flags)
 	. = T.Response()
+
 
 sd_alert
 	var/client/target
@@ -168,7 +168,7 @@ sd_alert
 				sleep(2)
 
 			if(response && validation)
-				if(istype(response, /list))
+				if(islist(response))
 					var/list/L = response - validation
 					if(L.len)
 						response = null

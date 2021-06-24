@@ -81,7 +81,6 @@
 		return flags & INSERT_CONTAINER
 */
 
-
 /atom/proc/meteorhit(obj/meteor as obj)
 	return
 
@@ -377,9 +376,9 @@ its easier to just keep the beam vertical.
 
 
 /atom/proc/transfer_fingerprints_to(atom/A)
-	if(!istype(A.fingerprints, /list))
+	if(!islist(A.fingerprints))
 		A.fingerprints = list()
-	if(!istype(A.fingerprintshidden, /list))
+	if(!islist(A.fingerprintshidden))
 		A.fingerprintshidden = list()
 
 	//skytodo
@@ -402,7 +401,7 @@ its easier to just keep the beam vertical.
 		M.dna = new /datum/dna(null)
 		M.dna.real_name = M.real_name
 	M.check_dna()
-	if(!blood_DNA || !istype(blood_DNA, /list))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
+	if(!blood_DNA || !islist(blood_DNA))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
 		blood_DNA = list()
 	blood_color = "#A10808"
 	if(M.species)
@@ -420,7 +419,7 @@ its easier to just keep the beam vertical.
 
 /atom/proc/clean_blood()
 	src.germ_level = 0
-	if(istype(blood_DNA, /list))
+	if(islist(blood_DNA))
 		qdel(blood_DNA)
 		return 1
 
@@ -443,4 +442,4 @@ its easier to just keep the beam vertical.
 		return 0
 
 /atom/proc/checkpass(passflag)
-	return pass_flags&passflag
+	return pass_flags & passflag

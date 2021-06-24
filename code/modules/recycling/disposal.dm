@@ -502,7 +502,7 @@
 	//Check for any living mobs trigger hasmob.
 	//hasmob effects whether the package goes to cargo or its tagged destination.
 	for(var/mob/living/M in D)
-		if(M && M.stat != 2 && !istype(M, /mob/living/silicon/robot/drone))
+		if(M && M.stat != DEAD && !isdrone(M))
 			hasmob = 1
 
 	//Checks 1 contents level deep. This means that players can be sent through disposals...
@@ -510,14 +510,14 @@
 	for(var/obj/O in D)
 		if(O.contents)
 			for(var/mob/living/M in O.contents)
-				if(M && M.stat != 2 && !istype(M, /mob/living/silicon/robot/drone))
+				if(M && M.stat != DEAD && !isdrone(M))
 					hasmob = 1
 
 	// now everything inside the disposal gets put into the holder
 	// note AM since can contain mobs or objs
 	for(var/atom/movable/AM in D)
 		AM.loc = src
-		if(istype(AM, /mob/living/carbon/human))
+		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
 			if(FAT in H.mutations)		// is a human and fat?
 				has_fat_guy = 1			// set flag on holder
@@ -528,7 +528,7 @@
 			var/obj/item/smallDelivery/T = AM
 			src.destinationTag = T.sortTag
 		//Drones can mail themselves through maint.
-		if(istype(AM, /mob/living/silicon/robot/drone))
+		if(isdrone(AM))
 			var/mob/living/silicon/robot/drone/drone = AM
 			src.destinationTag = drone.mail_destination
 

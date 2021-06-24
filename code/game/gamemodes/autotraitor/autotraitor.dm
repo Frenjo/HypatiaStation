@@ -1,7 +1,6 @@
 //This is a beta game mode to test ways to implement an "infinite" traitor round in which more traitors are automatically added in as needed.
 //Automatic traitor adding is complete pending the inevitable bug fixes.  Need to add a respawn system to let dead people respawn after 30 minutes or so.
 
-
 /datum/game_mode/traitor/autotraitor
 	name = "AutoTraitor"
 	config_tag = "extend-a-traitormongous"
@@ -11,10 +10,9 @@
 
 /datum/game_mode/traitor/autotraitor/announce()
 	..()
-	world << "<B>Game mode is AutoTraitor. Traitors will be added to the round automagically as needed.</B>"
+	to_chat(world, "<B>Game mode is AutoTraitor. Traitors will be added to the round automagically as needed.</B>")
 
 /datum/game_mode/traitor/autotraitor/pre_setup()
-
 	if(config.protect_roles_from_antagonist)
 		restricted_jobs += protected_jobs
 
@@ -48,7 +46,6 @@
 	else
 		num_traitors = max(1, min(num_players(), traitors_possible))
 
-
 	for(var/i = 0, i < num_traitors, i++)
 		var/datum/mind/traitor = pick(possible_traitors)
 		traitors += traitor
@@ -65,9 +62,6 @@
 //		return 0
 	return 1
 
-
-
-
 /datum/game_mode/traitor/autotraitor/post_setup()
 	..()
 	abandon_allowed = 1
@@ -83,11 +77,11 @@
 		var/possible_traitors[0]
 		for(var/mob/living/player in mob_list)
 
-			if (player.client && player.stat != 2)
+			if(player.client && player.stat != DEAD)
 				playercount += 1
-			if (player.client && player.mind && player.mind.special_role && player.stat != 2)
+			if(player.client && player.mind && player.mind.special_role && player.stat != DEAD)
 				traitorcount += 1
-			if (player.client && player.mind && !player.mind.special_role && player.stat != 2 && (player.client && player.client.prefs.be_special & BE_TRAITOR) && !jobban_isbanned(player, "Syndicate"))
+			if(player.client && player.mind && !player.mind.special_role && player.stat != DEAD && (player.client && player.client.prefs.be_special & BE_TRAITOR) && !jobban_isbanned(player, "Syndicate"))
 				possible_traitors += player
 		for(var/datum/mind/player in possible_traitors)
 			for(var/job in restricted_jobs)
@@ -132,18 +126,18 @@
 					equip_traitor(newtraitor)
 
 				traitors += newtraitor.mind
-				newtraitor << "\red <B>ATTENTION:</B> \black It is time to pay your debt to the Syndicate..."
-				newtraitor << "<B>You are now a traitor.</B>"
+				to_chat(newtraitor, "\red <B>ATTENTION:</B> \black It is time to pay your debt to the Syndicate...")
+				to_chat(newtraitor, "<B>You are now a traitor.</B>")
 				newtraitor.mind.special_role = "traitor"
 				BITSET(newtraitor.hud_updateflag, SPECIALROLE_HUD)
 				var/obj_count = 1
-				newtraitor << "\blue Your current objectives:"
+				to_chat(newtraitor, SPAN_INFO("Your current objectives:"))
 				if(!config.objectives_disabled)
 					for(var/datum/objective/objective in newtraitor.mind.objectives)
-						newtraitor << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
+						to_chat(newtraitor, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 						obj_count++
 				else
-					newtraitor << "<i>You have been selected this round as an antagonist- <font color=blue>Within the rules,</font> try to act as an opposing force to the crew- This can be via corporate payoff, personal motives, or maybe just being a dick. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonist.</i></b>"
+					to_chat(newtraitor, "<i>You have been selected this round as an antagonist - <font color=blue>Within the rules,</font> try to act as an opposing force to the crew - This can be via corporate payoff, personal motives, or maybe just being a dick. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonist.</i></b>")
 			//else
 				//message_admins("No new traitor being added.")
 		//else
@@ -164,10 +158,9 @@
 		var/playercount = 0
 		var/traitorcount = 0
 		for(var/mob/living/player in mob_list)
-
-			if(player.client && player.stat != 2)
+			if(player.client && player.stat != DEAD)
 				playercount += 1
-			if(player.client && player.mind && player.mind.special_role && player.stat != 2)
+			if(player.client && player.mind && player.mind.special_role && player.stat != DEAD)
 				traitorcount += 1
 		//message_admins("Live Players: [playercount]")
 		//message_admins("Live Traitors: [traitorcount]")
@@ -191,19 +184,17 @@
 				forge_traitor_objectives(character.mind)
 				equip_traitor(character)
 				traitors += character.mind
-				character << "\red <B>You are the traitor.</B>"
+				to_chat(character, SPAN_DANGER("You are the traitor."))
 				character.mind.special_role = "traitor"
 				if(config.objectives_disabled)
-					character << "<i>You have been selected this round as an antagonist- <font color=blue>Within the rules,</font> try to act as an opposing force to the crew- This can be via corporate payoff, personal motives, or maybe just being a dick. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonist.</i></b>"
+					to_chat(character, "<i>You have been selected this round as an antagonist - <font color=blue>Within the rules,</font> try to act as an opposing force to the crew - This can be via corporate payoff, personal motives, or maybe just being a dick. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonist.</i></b>")
 				else
 					var/obj_count = 1
-					character << "\blue Your current objectives:"
+					to_chat(character, SPAN_INFO("Your current objectives:"))
 					for(var/datum/objective/objective in character.mind.objectives)
-						character << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
+						to_chat(character, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 						obj_count++
 			//else
 				//message_admins("New traitor roll failed.  No new traitor.")
 	//else
 		//message_admins("Late Joiner does not have Be Syndicate")
-
-

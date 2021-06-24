@@ -17,9 +17,11 @@
 	else		return l_hand
 
 //Puts the item into your l_hand if possible and calls all necessary triggers/updates. returns 1 on success.
-/mob/proc/put_in_l_hand(var/obj/item/W)
-	if(lying)			return 0
-	if(!istype(W))		return 0
+/mob/proc/put_in_l_hand(obj/item/W)
+	if(lying)
+		return 0
+	if(!istype(W))
+		return 0
 	if(!l_hand)
 		W.loc = src		//TODO: move to equipped?
 		l_hand = W
@@ -33,15 +35,17 @@
 	return 0
 
 //Puts the item into your r_hand if possible and calls all necessary triggers/updates. returns 1 on success.
-/mob/proc/put_in_r_hand(var/obj/item/W)
-	if(lying)			return 0
-	if(!istype(W))		return 0
+/mob/proc/put_in_r_hand(obj/item/W)
+	if(lying)
+		return 0
+	if(!istype(W))
+		return 0
 	if(!r_hand)
 		W.loc = src
 		r_hand = W
 		W.layer = 20
 //		r_hand.screen_loc = ui_rhand
-		W.equipped(src,slot_r_hand)
+		W.equipped(src, slot_r_hand)
 		if(client)	client.screen |= W
 		if(pulling == W) stop_pulling()
 		update_inv_r_hand()
@@ -49,20 +53,25 @@
 	return 0
 
 //Puts the item into our active hand if possible. returns 1 on success.
-/mob/proc/put_in_active_hand(var/obj/item/W)
-	if(hand)	return put_in_l_hand(W)
-	else		return put_in_r_hand(W)
+/mob/proc/put_in_active_hand(obj/item/W)
+	if(hand)
+		return put_in_l_hand(W)
+	else
+		return put_in_r_hand(W)
 
 //Puts the item into our inactive hand if possible. returns 1 on success.
-/mob/proc/put_in_inactive_hand(var/obj/item/W)
-	if(hand)	return put_in_r_hand(W)
-	else		return put_in_l_hand(W)
+/mob/proc/put_in_inactive_hand(obj/item/W)
+	if(hand)
+		return put_in_r_hand(W)
+	else
+		return put_in_l_hand(W)
 
 //Puts the item our active hand if possible. Failing that it tries our inactive hand. Returns 1 on success.
 //If both fail it drops it on the floor and returns 0.
 //This is probably the main one you need to know :)
-/mob/proc/put_in_hands(var/obj/item/W)
-	if(!W)		return 0
+/mob/proc/put_in_hands(obj/item/W)
+	if(!W)
+		return 0
 	if(put_in_active_hand(W))
 		update_inv_l_hand()
 		update_inv_r_hand()
@@ -82,9 +91,10 @@
 		return drop_item()
 	return 0
 
-/mob/proc/drop_from_inventory(var/obj/item/W)
+/mob/proc/drop_from_inventory(obj/item/W)
 	if(W)
-		if(client)	client.screen -= W
+		if(client)
+			client.screen -= W
 		u_equip(W)
 		if(!(W && W.loc))
 			return 1 // self destroying objects (tk, grabs)
@@ -101,13 +111,16 @@
 	return 0
 
 //Drops the item in our left hand
-/mob/proc/drop_l_hand(var/atom/Target)
+/mob/proc/drop_l_hand(atom/Target)
 	if(l_hand)
-		if(client)	client.screen -= l_hand
+		if(client)
+			client.screen -= l_hand
 		l_hand.layer = initial(l_hand.layer)
 
-		if(Target)	l_hand.loc = Target.loc
-		else		l_hand.loc = loc
+		if(Target)
+			l_hand.loc = Target.loc
+		else
+			l_hand.loc = loc
 
 		var/turf/T = get_turf(loc)
 		if(isturf(T))
@@ -120,13 +133,16 @@
 	return 0
 
 //Drops the item in our right hand
-/mob/proc/drop_r_hand(var/atom/Target)
+/mob/proc/drop_r_hand(atom/Target)
 	if(r_hand)
-		if(client)	client.screen -= r_hand
+		if(client)
+			client.screen -= r_hand
 		r_hand.layer = initial(r_hand.layer)
 
-		if(Target)	r_hand.loc = Target.loc
-		else		r_hand.loc = loc
+		if(Target)
+			r_hand.loc = Target.loc
+		else
+			r_hand.loc = loc
 
 		var/turf/T = get_turf(Target)
 		if(istype(T))
@@ -139,12 +155,14 @@
 	return 0
 
 //Drops the item in our active hand.
-/mob/proc/drop_item(var/atom/Target)
-	if(hand)	return drop_l_hand(Target)
-	else		return drop_r_hand(Target)
+/mob/proc/drop_item(atom/Target)
+	if(hand)
+		return drop_l_hand(Target)
+	else
+		return drop_r_hand(Target)
 
 //TODO: phase out this proc
-/mob/proc/before_take_item(var/obj/item/W)	//TODO: what is this?
+/mob/proc/before_take_item(obj/item/W)	//TODO: what is this?
 	W.loc = null
 	W.layer = initial(W.layer)
 	u_equip(W)
@@ -152,24 +170,24 @@
 	return
 
 /mob/proc/u_equip(W as obj)
-	if (W == r_hand)
+	if(W == r_hand)
 		r_hand = null
 		update_inv_r_hand(0)
-	else if (W == l_hand)
+	else if(W == l_hand)
 		l_hand = null
 		update_inv_l_hand(0)
-	else if (W == back)
+	else if(W == back)
 		back = null
 		update_inv_back(0)
-	else if (W == wear_mask)
+	else if(W == wear_mask)
 		wear_mask = null
 		update_inv_wear_mask(0)
 	return
 
 //Attemps to remove an object on a mob.  Will not move it to another area or such, just removes from the mob.
-/mob/proc/remove_from_mob(var/obj/O)
+/mob/proc/remove_from_mob(obj/O)
 	src.u_equip(O)
-	if (src.client)
+	if(src.client)
 		src.client.screen -= O
 	O.layer = initial(O.layer)
 	O.screen_loc = null
@@ -288,7 +306,7 @@
 				src.s_store = W
 				equipped = 1
 		if(slot_in_backpack)
-			if (src.back && istype(src.back, /obj/item/weapon/storage/backpack))
+			if(src.back && istype(src.back, /obj/item/weapon/storage/backpack))
 				var/obj/item/weapon/storage/backpack/B = src.back
 				if(B.contents.len < B.storage_slots && W.w_class <= B.max_w_class)
 					W.loc = B

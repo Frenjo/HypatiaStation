@@ -55,7 +55,7 @@
 	)
 
 
-/datum/intercept_text/proc/build(var/mode_type, datum/mind/correct_person)
+/datum/intercept_text/proc/build(mode_type, datum/mind/correct_person)
 	switch(mode_type)
 		if("revolution")
 			src.text = ""
@@ -124,7 +124,8 @@
 	var/name_2 = pick(src.org_names_2)
 
 	var/mob/living/carbon/human/H = get_suspect()
-	if(!H) return
+	if(!H)
+		return
 
 	var/fingerprints = num2text(md5(H.dna.uni_identity))
 	var/traitor_name = H.real_name
@@ -168,7 +169,8 @@
 
 	var/prob_right_dude = rand(1, 100)
 	var/mob/living/carbon/human/H = get_suspect()
-	if(!H) return
+	if(!H)
+		return
 	var/traitor_job = H.mind.assigned_role
 
 	src.text += "<BR><BR>It has been brought to our attention that the [name_1] [name_2] are attempting to stir unrest on one of our stations in your sector."

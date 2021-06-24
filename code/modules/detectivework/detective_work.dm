@@ -1,9 +1,9 @@
 //CONTAINS: Suit fibers and Detective's Scanning Computer
 
-atom/var/list/suit_fibers
+/atom/var/list/suit_fibers
 
-atom/proc/add_fibers(mob/living/carbon/human/M)
-	if(M.gloves && istype(M.gloves,/obj/item/clothing/))
+/atom/proc/add_fibers(mob/living/carbon/human/M)
+	if(M.gloves && istype(M.gloves, /obj/item/clothing/))
 		var/obj/item/clothing/gloves/G = M.gloves
 		if(G.transfer_blood) //bloodied gloves transfer blood to touched objects
 			if(add_blood(G.bloody_hands_mob)) //only reduces the bloodiness of our gloves if the item wasn't already bloody
@@ -13,7 +13,7 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 			M.bloody_hands--
 	if(!suit_fibers) suit_fibers = list()
 	var/fibertext
-	var/item_multiplier = istype(src,/obj/item)?1.2:1
+	var/item_multiplier = istype(src, /obj/item)?1.2:1
 	if(M.wear_suit)
 		fibertext = "Material from \a [M.wear_suit]."
 		if(prob(10*item_multiplier) && !(fibertext in suit_fibers))
@@ -52,7 +52,7 @@ atom/proc/add_fibers(mob/living/carbon/human/M)
 var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(print) proc, and means about 80% of
 								//the print must be there for it to be complete.  (Prints are 32 digits)
 
-obj/machinery/computer/forensic_scanning
+/obj/machinery/computer/forensic_scanning
 	name = "\improper High-Res Forensic Scanning Computer"
 	icon_state = "forensic"
 	var/obj/item/scanning
@@ -96,7 +96,7 @@ obj/machinery/computer/forensic_scanning
 		user.set_machine(src)
 		var/dat = ""
 		var/isai = 0
-		if(istype(usr,/mob/living/silicon))
+		if(issilicon(usr))
 			isai = 1
 		if(temp)
 			dat += "<tt>[temp]</tt><br><br>"
@@ -126,15 +126,15 @@ obj/machinery/computer/forensic_scanning
 		onclose(user,"scanner")
 
 
-	Topic(href,href_list)
+	Topic(href, href_list)
 		switch(href_list["operation"])
 			if("login")
 				var/mob/M = usr
-				if(istype(M,/mob/living/silicon))
+				if(issilicon(M))
 					authenticated = 1
 					updateDialog()
 					return
-				if (allowed(M))
+				if(allowed(M))
 					authenticated = 1
 			if("logout")
 				authenticated = 0
@@ -458,7 +458,7 @@ obj/machinery/computer/forensic_scanning
 		return
 
 
-	proc/add_data_scanner(var/obj/item/device/W)
+	proc/add_data_scanner(obj/item/device/W)
 		if(istype(W, /obj/item/device/detective_scanner))
 			var/obj/item/device/detective_scanner/D = W
 			if(D.stored)
@@ -474,7 +474,7 @@ obj/machinery/computer/forensic_scanning
 			W:cartridge.stored_data = list()
 		return
 
-	proc/add_data(var/atom/scanned_atom)
+	proc/add_data(atom/scanned_atom)
 		return add_data_master("\ref [scanned_atom]", scanned_atom.fingerprints,\
 		scanned_atom.suit_fibers, scanned_atom.blood_DNA, "[scanned_atom.name] (Direct Scan)")
 

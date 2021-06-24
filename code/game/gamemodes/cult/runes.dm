@@ -3,7 +3,7 @@ var/list/sacrificed = list()
 /obj/effect/rune
 /////////////////////////////////////////FIRST RUNE
 	proc
-		teleport(var/key)
+		teleport(key)
 			var/mob/living/user = usr
 			var/allrunesloc[]
 			allrunesloc = new/list()
@@ -23,12 +23,12 @@ var/list/sacrificed = list()
 				qdel(src)
 			if(allrunesloc && index != 0)
 				if(istype(src, /obj/effect/rune))
-					user.say("Sas[pick("'","`")]so c'arta forbici!")//Only you can stop auto-muting
+					user.say("Sas[pick("'", "`")]so c'arta forbici!")//Only you can stop auto-muting
 				else
-					user.whisper("Sas[pick("'","`")]so c'arta forbici!")
+					user.whisper("Sas[pick("'", "`")]so c'arta forbici!")
 				user.visible_message(SPAN_WARNING("[user] disappears in a flash of red light!"), \
-				SPAN_WARNING("You feel as your body gets dragged through the dimension of Nar-Sie!"), \
-				SPAN_WARNING("You hear a sickening crunch and sloshing of viscera."))
+									SPAN_WARNING("You feel as your body gets dragged through the dimension of Nar-Sie!"), \
+									SPAN_WARNING("You hear a sickening crunch and sloshing of viscera."))
 				user.loc = allrunesloc[rand(1, index)]
 				return
 			if(istype(src, /obj/effect/rune))
@@ -38,7 +38,7 @@ var/list/sacrificed = list()
 				return
 
 
-		itemport(var/key)
+		itemport(key)
 //			var/allrunesloc[]
 //			allrunesloc = new/list()
 //			var/index = 0
@@ -62,10 +62,10 @@ var/list/sacrificed = list()
 				if(iscultist(C) && !C.stat)
 					culcount++
 			if(culcount>=3)
-				user.say("Sas[pick("'","`")]so c'arta forbici tarem!")
+				user.say("Sas[pick("'", "`")]so c'arta forbici tarem!")
 				user.visible_message(SPAN_WARNING("You feel air moving from the rune - like as it was swapped with somewhere else."), \
-				SPAN_WARNING("You feel air moving from the rune - like as it was swapped with somewhere else."), \
-				SPAN_WARNING("You smell ozone."))
+									SPAN_WARNING("You feel air moving from the rune - like as it was swapped with somewhere else."), \
+									SPAN_WARNING("You smell ozone."))
 				for(var/obj/O in src.loc)
 					if(!O.anchored)
 						O.loc = IP.loc
@@ -80,12 +80,12 @@ var/list/sacrificed = list()
 
 		tomesummon()
 			if(istype(src, /obj/effect/rune))
-				usr.say("N[pick("'","`")]ath reth sh'yro eth d'raggathnor!")
+				usr.say("N[pick("'", "`")]ath reth sh'yro eth d'raggathnor!")
 			else
-				usr.whisper("N[pick("'","`")]ath reth sh'yro eth d'raggathnor!")
+				usr.whisper("N[pick("'", "`")]ath reth sh'yro eth d'raggathnor!")
 			usr.visible_message(SPAN_WARNING("Rune disappears with a flash of red light, and in its place now a book lies."), \
-			SPAN_WARNING("You are blinded by the flash of red light! After you're able to see again, you see that now instead of the rune there's a book."), \
-			SPAN_WARNING("You hear a pop and smell ozone."))
+								SPAN_WARNING("You are blinded by the flash of red light! After you're able to see again, you see that now instead of the rune there's a book."), \
+								SPAN_WARNING("You hear a pop and smell ozone."))
 			if(istype(src, /obj/effect/rune))
 				new /obj/item/weapon/tome(src.loc)
 			else
@@ -101,9 +101,9 @@ var/list/sacrificed = list()
 			for(var/mob/living/carbon/M in src.loc)
 				if(iscultist(M))
 					continue
-				if(M.stat == 2)
+				if(M.stat == DEAD)
 					continue
-				usr.say("Mah[pick("'","`")]weyh pleggh at e'ntrath!")
+				usr.say("Mah[pick("'", "`")]weyh pleggh at e'ntrath!")
 				M.visible_message(SPAN_WARNING("[M] writhes in pain as the markings below him glow a bloody red."), \
 				SPAN_WARNING("AAAAAAHHHH!."), \
 				SPAN_WARNING("You hear an anguished scream."))
@@ -126,9 +126,9 @@ var/list/sacrificed = list()
 
 		tearreality()
 			var/cultist_count = 0
-			for(var/mob/M in range(1,src))
+			for(var/mob/M in range(1, src))
 				if(iscultist(M) && !M.stat)
-					M.say("Tok-lyr rqa'nap g[pick("'","`")]lt-ulotf!")
+					M.say("Tok-lyr rqa'nap g[pick("'", "`")]lt-ulotf!")
 					cultist_count += 1
 			if(cultist_count >= 9)
 				new /obj/machinery/singularity/narsie/large(src.loc)
@@ -140,11 +140,11 @@ var/list/sacrificed = list()
 
 /////////////////////////////////////////FIFTH RUNE
 
-		emp(var/U,var/range_red) //range_red - var which determines by which number to reduce the default emp range, U is the source loc, needed because of talisman emps which are held in hand at the moment of using and that apparently messes things up -- Urist
-			if(istype(src,/obj/effect/rune))
-				usr.say("Ta'gh fara[pick("'","`")]qha fel d'amar det!")
+		emp(U, range_red) //range_red - var which determines by which number to reduce the default emp range, U is the source loc, needed because of talisman emps which are held in hand at the moment of using and that apparently messes things up -- Urist
+			if(istype(src, /obj/effect/rune))
+				usr.say("Ta'gh fara[pick("'", "`")]qha fel d'amar det!")
 			else
-				usr.whisper("Ta'gh fara[pick("'","`")]qha fel d'amar det!")
+				usr.whisper("Ta'gh fara[pick("'", "`")]qha fel d'amar det!")
 			playsound(U, 'sound/items/Welder2.ogg', 25, 1)
 			var/turf/T = get_turf(U)
 			if(T)
@@ -159,36 +159,36 @@ var/list/sacrificed = list()
 		drain()
 			var/drain = 0
 			for(var/obj/effect/rune/R in world)
-				if(R.word1==cultwords["travel"] && R.word2==cultwords["blood"] && R.word3==cultwords["self"])
+				if(R.word1 == cultwords["travel"] && R.word2 == cultwords["blood"] && R.word3 == cultwords["self"])
 					for(var/mob/living/carbon/D in R.loc)
-						if(D.stat!=2)
-							var/bdrain = rand(1,25)
-							D << "\red You feel weakened."
+						if(D.stat != DEAD)
+							var/bdrain = rand(1, 25)
+							to_chat(D, SPAN_WARNING("You feel weakened."))
 							D.take_overall_damage(bdrain, 0)
 							drain += bdrain
 			if(!drain)
 				return fizzle()
-			usr.say ("Yu[pick("'","`")]gular faras desdae. Havas mithum javara. Umathar uf'kal thenar!")
-			usr.visible_message("\red Blood flows from the rune into [usr]!", \
-			"\red The blood starts flowing from the rune and into your frail mortal body. You feel... empowered.", \
-			"\red You hear a liquid flowing.")
+			usr.say ("Yu[pick("'", "`")]gular faras desdae. Havas mithum javara. Umathar uf'kal thenar!")
+			usr.visible_message(SPAN_WARNING("Blood flows from the rune into [usr]!"), \
+								SPAN_WARNING("The blood starts flowing from the rune and into your frail mortal body. You feel... empowered."), \
+								SPAN_WARNING("You hear a liquid flowing."))
 			var/mob/living/user = usr
 			if(user.bhunger)
-				user.bhunger = max(user.bhunger-2*drain,0)
-			if(drain>=50)
-				user.visible_message("\red [user]'s eyes give off eerie red glow!", \
-				"\red ...but it wasn't nearly enough. You crave, crave for more. The hunger consumes you from within.", \
-				"\red You hear a heartbeat.")
+				user.bhunger = max(user.bhunger - 2 * drain, 0)
+			if(drain >= 50)
+				user.visible_message(SPAN_WARNING("[user]'s eyes give off eerie red glow!"), \
+									SPAN_WARNING("...but it wasn't nearly enough. You crave, crave for more. The hunger consumes you from within."), \
+									SPAN_WARNING("You hear a heartbeat."))
 				user.bhunger += drain
 				src = user
 				spawn()
-					for (,user.bhunger>0,user.bhunger--)
+					for(, user.bhunger > 0, user.bhunger--)
 						sleep(50)
 						user.take_overall_damage(3, 0)
 				return
-			user.heal_organ_damage(drain%5, 0)
-			drain-=drain%5
-			for (,drain>0,drain-=5)
+			user.heal_organ_damage(drain % 5, 0)
+			drain -= drain % 5
+			for(, drain > 0, drain -= 5)
 				sleep(2)
 				user.heal_organ_damage(5, 0)
 			return
@@ -201,19 +201,19 @@ var/list/sacrificed = list()
 /////////////////////////////////////////SEVENTH RUNE
 
 		seer()
-			if(usr.loc==src.loc)
-				if(usr.seer==1)
-					usr.say("Rash'tla sektath mal[pick("'","`")]zua. Zasan therium viortia.")
-					usr << "\red The world beyond fades from your vision."
+			if(usr.loc == src.loc)
+				if(usr.seer == 1)
+					usr.say("Rash'tla sektath mal[pick("'", "`")]zua. Zasan therium viortia.")
+					to_chat(usr, SPAN_WARNING("The world beyond fades from your vision."))
 					usr.see_invisible = SEE_INVISIBLE_LIVING
 					usr.seer = 0
-				else if(usr.see_invisible!=SEE_INVISIBLE_LIVING)
-					usr << "\red The world beyond flashes your eyes but disappears quickly, as if something is disrupting your vision."
+				else if(usr.see_invisible != SEE_INVISIBLE_LIVING)
+					to_chat(usr, SPAN_WARNING("The world beyond flashes your eyes but disappears quickly, as if something is disrupting your vision."))
 					usr.see_invisible = SEE_INVISIBLE_OBSERVER
 					usr.seer = 0
 				else
-					usr.say("Rash'tla sektath mal[pick("'","`")]zua. Zasan therium vivira. Itonis al'ra matum!")
-					usr << "\red The world beyond opens to your eyes."
+					usr.say("Rash'tla sektath mal[pick("'", "`")]zua. Zasan therium vivira. Itonis al'ra matum!")
+					to_chat(usr, SPAN_WARNING("The world beyond opens to your eyes."))
 					usr.see_invisible = SEE_INVISIBLE_OBSERVER
 					usr.seer = 1
 				return
@@ -237,38 +237,40 @@ var/list/sacrificed = list()
 						break
 			if(!corpse_to_raise)
 				if(is_sacrifice_target)
-					usr << "\red The Geometer of blood wants this mortal for himself."
+					to_chat(usr, SPAN_WARNING("The Geometer of blood wants this mortal for himself."))
 				return fizzle()
 
 
 			is_sacrifice_target = 0
 			find_sacrifice:
 				for(var/obj/effect/rune/R in world)
-					if(R.word1==cultwords["blood"] && R.word2==cultwords["join"] && R.word3==cultwords["hell"])
+					if(R.word1 == cultwords["blood"] && R.word2 == cultwords["join"] && R.word3 == cultwords["hell"])
 						for(var/mob/living/carbon/human/N in R.loc)
 							if(ticker.mode.name == "cult" && N.mind && N.mind == ticker.mode:sacrifice_target)
 								is_sacrifice_target = 1
 							else
-								if(N.stat!= DEAD)
+								if(N.stat != DEAD)
 									body_to_sacrifice = N
 									break find_sacrifice
 
 			if(!body_to_sacrifice)
-				if (is_sacrifice_target)
-					usr << "\red The Geometer of blood wants that corpse for himself."
+				if(is_sacrifice_target)
+					to_chat(usr, SPAN_WARNING("The Geometer of blood wants that corpse for himself."))
 				else
-					usr << "\red The sacrifical corpse is not dead. You must free it from this world of illusions before it may be used."
+					to_chat(usr, SPAN_WARNING("The sacrifical corpse is not dead. You must free it from this world of illusions before it may be used."))
 				return fizzle()
 
 			var/mob/dead/observer/ghost
 			for(var/mob/dead/observer/O in loc)
-				if(!O.client)	continue
-				if(O.mind && O.mind.current && O.mind.current.stat != DEAD)	continue
+				if(!O.client)
+					continue
+				if(O.mind && O.mind.current && O.mind.current.stat != DEAD)
+					continue
 				ghost = O
 				break
 
 			if(!ghost)
-				usr << "\red You require a restless spirit which clings to this world. Beckon their prescence with the sacred chants of Nar-Sie."
+				to_chat(usr, SPAN_WARNING("You require a restless spirit which clings to this world. Beckon their prescence with the sacred chants of Nar-Sie."))
 				return fizzle()
 
 			corpse_to_raise.revive()
@@ -276,12 +278,12 @@ var/list/sacrificed = list()
 			corpse_to_raise.key = ghost.key	//the corpse will keep its old mind! but a new player takes ownership of it (they are essentially possessed)
 											//This means, should that player leave the body, the original may re-enter
 			usr.say("Pasnar val'keriam usinar. Savrae ines amutan. Yam'toth remium il'tarat!")
-			corpse_to_raise.visible_message("\red [corpse_to_raise]'s eyes glow with a faint red as he stands up, slowly starting to breathe again.", \
-			"\red Life... I'm alive again...", \
-			"\red You hear a faint, slightly familiar whisper.")
-			body_to_sacrifice.visible_message("\red [body_to_sacrifice] is torn apart, a black smoke swiftly dissipating from his remains!", \
-			"\red You feel as your blood boils, tearing you apart.", \
-			"\red You hear a thousand voices, all crying in pain.")
+			corpse_to_raise.visible_message(SPAN_WARNING("[corpse_to_raise]'s eyes glow with a faint red as he stands up, slowly starting to breathe again."), \
+											SPAN_WARNING("Life... I'm alive again..."), \
+											SPAN_WARNING("You hear a faint, slightly familiar whisper."))
+			body_to_sacrifice.visible_message(SPAN_WARNING("[body_to_sacrifice] is torn apart, a black smoke swiftly dissipating from his remains!"), \
+											SPAN_WARNING("You feel as your blood boils, tearing you apart."), \
+											SPAN_WARNING("You hear a thousand voices, all crying in pain."))
 			body_to_sacrifice.gib()
 
 //			if(ticker.mode.name == "cult")
@@ -295,31 +297,29 @@ var/list/sacrificed = list()
 
 
 
-
-
 /////////////////////////////////////////NINETH RUNE
 
-		obscure(var/rad)
-			var/S=0
-			for(var/obj/effect/rune/R in orange(rad,src))
-				if(R!=src)
-					R.invisibility=INVISIBILITY_OBSERVER
+		obscure(rad)
+			var/S = 0
+			for(var/obj/effect/rune/R in orange(rad, src))
+				if(R != src)
+					R.invisibility = INVISIBILITY_OBSERVER
 				S=1
 			if(S)
 				if(istype(src,/obj/effect/rune))
-					usr.say("Kla[pick("'","`")]atu barada nikt'o!")
-					for (var/mob/V in viewers(src))
-						V.show_message("\red The rune turns into gray dust, veiling the surrounding runes.", 3)
+					usr.say("Kla[pick("'", "`")]atu barada nikt'o!")
+					for(var/mob/V in viewers(src))
+						V.show_message(SPAN_WARNING("The rune turns into gray dust, veiling the surrounding runes."), 3)
 					qdel(src)
 				else
-					usr.whisper("Kla[pick("'","`")]atu barada nikt'o!")
-					usr << "\red Your talisman turns into gray dust, veiling the surrounding runes."
-					for (var/mob/V in orange(1,src))
-						if(V!=usr)
-							V.show_message("\red Dust emanates from [usr]'s hands for a moment.", 3)
+					usr.whisper("Kla[pick("'", "`")]atu barada nikt'o!")
+					to_chat(usr, SPAN_WARNING("Your talisman turns into gray dust, veiling the surrounding runes."))
+					for(var/mob/V in orange(1, src))
+						if(V != usr)
+							V.show_message(SPAN_WARNING("Dust emanates from [usr]'s hands for a moment."), 3)
 
 				return
-			if(istype(src,/obj/effect/rune))
+			if(istype(src, /obj/effect/rune))
 				return	fizzle()
 			else
 				call(/obj/effect/rune/proc/fizzle)()
@@ -328,17 +328,17 @@ var/list/sacrificed = list()
 /////////////////////////////////////////TENTH RUNE
 
 		ajourney() //some bits copypastaed from admin tools - Urist
-			if(usr.loc==src.loc)
+			if(usr.loc == src.loc)
 				var/mob/living/carbon/human/L = usr
-				usr.say("Fwe[pick("'","`")]sh mah erl nyag r'ya!")
-				usr.visible_message("\red [usr]'s eyes glow blue as \he freezes in place, absolutely motionless.", \
-				"\red The shadow that is your spirit separates itself from your body. You are now in the realm beyond. While this is a great sight, being here strains your mind and body. Hurry...", \
-				"\red You hear only complete silence for a moment.")
+				usr.say("Fwe[pick("'", "`")]sh mah erl nyag r'ya!")
+				usr.visible_message(SPAN_WARNING("[usr]'s eyes glow blue as \he freezes in place, absolutely motionless."), \
+									SPAN_WARNING("The shadow that is your spirit separates itself from your body. You are now in the realm beyond. While this is a great sight, being here strains your mind and body. Hurry..."), \
+									SPAN_WARNING("You hear only complete silence for a moment."))
 				usr.ghostize(1)
 				L.ajourn = 1
 				while(L)
 					if(L.key)
-						L.ajourn=0
+						L.ajourn = 0
 						return
 					else
 						L.take_organ_damage(10, 0)
@@ -353,12 +353,14 @@ var/list/sacrificed = list()
 		manifest()
 			var/obj/effect/rune/this_rune = src
 			qdel(src)
-			if(usr.loc!=this_rune.loc)
+			if(usr.loc != this_rune.loc)
 				return this_rune.fizzle()
 			var/mob/dead/observer/ghost
 			for(var/mob/dead/observer/O in this_rune.loc)
-				if(!O.client)	continue
-				if(O.mind && O.mind.current && O.mind.current.stat != DEAD)	continue
+				if(!O.client)
+					continue
+				if(O.mind && O.mind.current && O.mind.current.stat != DEAD)
+					continue
 				ghost = O
 				break
 			if(!ghost)
@@ -366,16 +368,16 @@ var/list/sacrificed = list()
 			if(jobban_isbanned(ghost, "cultist"))
 				return this_rune.fizzle()
 
-			usr.say("Gal'h'rfikk harfrandid mud[pick("'","`")]gib!")
+			usr.say("Gal'h'rfikk harfrandid mud[pick("'", "`")]gib!")
 			var/mob/living/carbon/human/dummy/D = new(this_rune.loc)
-			usr.visible_message("\red A shape forms in the center of the rune. A shape of... a man.", \
-			"\red A shape forms in the center of the rune. A shape of... a man.", \
-			"\red You hear liquid flowing.")
+			usr.visible_message(SPAN_WARNING("A shape forms in the center of the rune. A shape of... a man."), \
+								SPAN_WARNING("A shape forms in the center of the rune. A shape of... a man."), \
+								SPAN_WARNING("You hear liquid flowing."))
 			D.real_name = "Unknown"
 			var/chose_name = 0
 			for(var/obj/item/weapon/paper/P in this_rune.loc)
 				if(P.info)
-					D.real_name = copytext(P.info, findtext(P.info,">")+1, findtext(P.info,"<",2) )
+					D.real_name = copytext(P.info, findtext(P.info,">") + 1, findtext(P.info, "<", 2) )
 					chose_name = 1
 					break
 			if(!chose_name)
@@ -396,17 +398,17 @@ var/list/sacrificed = list()
 				ticker.mode.cult+=D.mind
 
 			D.mind.special_role = "Cultist"
-			D << "<font color=\"purple\"><b><i>Your blood pulses. Your head throbs. The world goes red. All at once you are aware of a horrible, horrible truth. The veil of reality has been ripped away and in the festering wound left behind something sinister takes root.</b></i></font>"
-			D << "<font color=\"purple\"><b><i>Assist your new compatriots in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</b></i></font>"
+			to_chat(D, "<font color=\"purple\"><b><i>Your blood pulses. Your head throbs. The world goes red. All at once you are aware of a horrible, horrible truth. The veil of reality has been ripped away and in the festering wound left behind something sinister takes root.</b></i></font>")
+			to_chat(D, "<font color=\"purple\"><b><i>Assist your new compatriots in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</b></i></font>")
 
 			var/mob/living/user = usr
-			while(this_rune && user && user.stat==CONSCIOUS && user.client && user.loc==this_rune.loc)
+			while(this_rune && user && user.stat == CONSCIOUS && user.client && user.loc == this_rune.loc)
 				user.take_organ_damage(1, 0)
 				sleep(30)
 			if(D)
-				D.visible_message("\red [D] slowly dissipates into dust and bones.", \
-				"\red You feel pain, as bonds formed between your soul and this homunculus break.", \
-				"\red You hear faint rustle.")
+				D.visible_message(SPAN_WARNING("[D] slowly dissipates into dust and bones."), \
+								SPAN_WARNING("You feel pain, as bonds formed between your soul and this homunculus break."), \
+								SPAN_WARNING("You hear a faint rustle."))
 				D.dust()
 			return
 
@@ -425,71 +427,71 @@ var/list/sacrificed = list()
 					break
 				else
 					unsuitable_newtalisman = 1
-			if (!newtalisman)
-				if (unsuitable_newtalisman)
-					usr << "\red The blank is tainted. It is unsuitable."
+			if(!newtalisman)
+				if(unsuitable_newtalisman)
+					to_chat(usr, SPAN_WARNING("The blank is tainted. It is unsuitable."))
 				return fizzle()
 
 			var/obj/effect/rune/imbued_from
 			var/obj/item/weapon/paper/talisman/T
-			for(var/obj/effect/rune/R in orange(1,src))
-				if(R==src)
+			for(var/obj/effect/rune/R in orange(1, src))
+				if(R == src)
 					continue
-				if(R.word1==cultwords["travel"] && R.word2==cultwords["self"])  //teleport
+				if(R.word1==cultwords["travel"] && R.word2 == cultwords["self"])  //teleport
 					T = new(src.loc)
 					T.imbue = "[R.word3]"
 					T.info = "[R.word3]"
 					imbued_from = R
 					break
-				if(R.word1==cultwords["see"] && R.word2==cultwords["blood"] && R.word3==cultwords["hell"]) //tome
+				if(R.word1 == cultwords["see"] && R.word2 == cultwords["blood"] && R.word3 == cultwords["hell"]) //tome
 					T = new(src.loc)
 					T.imbue = "newtome"
 					imbued_from = R
 					break
-				if(R.word1==cultwords["destroy"] && R.word2==cultwords["see"] && R.word3==cultwords["technology"]) //emp
+				if(R.word1 == cultwords["destroy"] && R.word2 == cultwords["see"] && R.word3 == cultwords["technology"]) //emp
 					T = new(src.loc)
 					T.imbue = "emp"
 					imbued_from = R
 					break
-				if(R.word1==cultwords["blood"] && R.word2==cultwords["see"] && R.word3==cultwords["destroy"]) //conceal
+				if(R.word1 == cultwords["blood"] && R.word2 == cultwords["see"] && R.word3 == cultwords["destroy"]) //conceal
 					T = new(src.loc)
 					T.imbue = "conceal"
 					imbued_from = R
 					break
-				if(R.word1==cultwords["hell"] && R.word2==cultwords["destroy"] && R.word3==cultwords["other"]) //armor
+				if(R.word1 == cultwords["hell"] && R.word2 == cultwords["destroy"] && R.word3 == cultwords["other"]) //armor
 					T = new(src.loc)
 					T.imbue = "armor"
 					imbued_from = R
 					break
-				if(R.word1==cultwords["blood"] && R.word2==cultwords["see"] && R.word3==cultwords["hide"]) //reveal
+				if(R.word1 == cultwords["blood"] && R.word2 == cultwords["see"] && R.word3 == cultwords["hide"]) //reveal
 					T = new(src.loc)
 					T.imbue = "revealrunes"
 					imbued_from = R
 					break
-				if(R.word1==cultwords["hide"] && R.word2==cultwords["other"] && R.word3==cultwords["see"]) //deafen
+				if(R.word1 == cultwords["hide"] && R.word2 == cultwords["other"] && R.word3 == cultwords["see"]) //deafen
 					T = new(src.loc)
 					T.imbue = "deafen"
 					imbued_from = R
 					break
-				if(R.word1==cultwords["destroy"] && R.word2==cultwords["see"] && R.word3==cultwords["other"]) //blind
+				if(R.word1 == cultwords["destroy"] && R.word2 == cultwords["see"] && R.word3 == cultwords["other"]) //blind
 					T = new(src.loc)
 					T.imbue = "blind"
 					imbued_from = R
 					break
-				if(R.word1==cultwords["self"] && R.word2==cultwords["other"] && R.word3==cultwords["technology"]) //communicat
+				if(R.word1 == cultwords["self"] && R.word2 == cultwords["other"] && R.word3 == cultwords["technology"]) //communicat
 					T = new(src.loc)
 					T.imbue = "communicate"
 					imbued_from = R
 					break
-				if(R.word1==cultwords["join"] && R.word2==cultwords["hide"] && R.word3==cultwords["technology"]) //communicat
+				if(R.word1 == cultwords["join"] && R.word2 == cultwords["hide"] && R.word3 == cultwords["technology"]) //communicat
 					T = new(src.loc)
 					T.imbue = "runestun"
 					imbued_from = R
 					break
-			if (imbued_from)
-				for (var/mob/V in viewers(src))
-					V.show_message("\red The runes turn into dust, which then forms into an arcane image on the paper.", 3)
-				usr.say("H'drak v[pick("'","`")]loso, mir'kanas verbot!")
+			if(imbued_from)
+				for(var/mob/V in viewers(src))
+					V.show_message(SPAN_WARNING("The runes turn into dust, which then forms into an arcane image on the paper."), 3)
+				usr.say("H'drak v[pick("'", "`")]loso, mir'kanas verbot!")
 				qdel(imbued_from)
 				qdel(newtalisman)
 			else
@@ -500,17 +502,17 @@ var/list/sacrificed = list()
 		mend()
 			var/mob/living/user = usr
 			qdel(src)
-			user.say("Uhrast ka'hfa heldsagen ver[pick("'","`")]lot!")
+			user.say("Uhrast ka'hfa heldsagen ver[pick("'", "`")]lot!")
 			user.take_overall_damage(200, 0)
-			runedec+=10
-			user.visible_message("\red [user] keels over dead, his blood glowing blue as it escapes his body and dissipates into thin air.", \
-			"\red In the last moment of your humble life, you feel an immense pain as fabric of reality mends... with your blood.", \
-			"\red You hear faint rustle.")
-			for(,user.stat==2)
+			runedec += 10
+			user.visible_message(SPAN_WARNING("[user] keels over dead, his blood glowing blue as it escapes his body and dissipates into thin air."), \
+								SPAN_WARNING("In the last moment of your humble life, you feel an immense pain as fabric of reality mends... with your blood."), \
+								SPAN_WARNING("You hear faint rustle."))
+			for(, user.stat == DEAD)
 				sleep(600)
-				if (!user)
+				if(!user)
 					return
-			runedec-=10
+			runedec -= 10
 			return
 
 
@@ -521,23 +523,23 @@ var/list/sacrificed = list()
 			. = 1 // Default output is 1. If the rune is deleted it will return 1
 			var/input = stripped_input(usr, "Please choose a message to tell to the other acolytes.", "Voice of Blood", "")
 			if(!input)
-				if (istype(src))
+				if(istype(src))
 					fizzle()
 					return 0
 				else
 					return 0
-			if(istype(src,/obj/effect/rune))
-				usr.say("O bidai nabora se[pick("'","`")]sma!")
+			if(istype(src, /obj/effect/rune))
+				usr.say("O bidai nabora se[pick("'", "`")]sma!")
 			else
-				usr.whisper("O bidai nabora se[pick("'","`")]sma!")
+				usr.whisper("O bidai nabora se[pick("'", "`")]sma!")
 
-			if(istype(src,/obj/effect/rune))
+			if(istype(src, /obj/effect/rune))
 				usr.say("[input]")
 			else
 				usr.whisper("[input]")
 			for(var/datum/mind/H in ticker.mode.cult)
-				if (H.current)
-					H.current << "\red \b [input]"
+				if(H.current)
+					to_chat(H.current, SPAN_WARNING("\b [input]"))
 			qdel(src)
 			return 1
 
@@ -546,11 +548,11 @@ var/list/sacrificed = list()
 		sacrifice()
 			var/list/mob/living/carbon/human/cultsinrange = list()
 			var/list/mob/living/carbon/human/victims = list()
-			for(var/mob/living/carbon/human/V in src.loc)//Checks for non-cultist humans to sacrifice
+			for(var/mob/living/carbon/human/V in src.loc)	//Checks for non-cultist humans to sacrifice
 				if(ishuman(V))
 					if(!(iscultist(V)))
-						victims += V//Checks for cult status and mob type
-			for(var/obj/item/I in src.loc)//Checks for MMIs/brains/Intellicards
+						victims += V		//Checks for cult status and mob type
+			for(var/obj/item/I in src.loc)	//Checks for MMIs/brains/Intellicards
 				if(istype(I, /obj/item/brain))
 					var/obj/item/brain/B = I
 					victims += B.brainmob
@@ -563,53 +565,53 @@ var/list/sacrificed = list()
 			for(var/mob/living/carbon/C in orange(1, src))
 				if(iscultist(C) && !C.stat)
 					cultsinrange += C
-					C.say("Barhah hra zar[pick("'","`")]garis!")
+					C.say("Barhah hra zar[pick("'", "`")]garis!")
 			for(var/mob/H in victims)
 				if(ticker.mode.name == "cult")
 					if(H.mind == ticker.mode:sacrifice_target)
 						if(cultsinrange.len >= 3)
 							sacrificed += H.mind
 							if(isrobot(H))
-								H.dust()//To prevent the MMI from remaining
+								H.dust()	//To prevent the MMI from remaining
 							else
 								H.gib()
-							usr << "\red The Geometer of Blood accepts this sacrifice, your objective is now complete."
+							to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice, your objective is now complete."))
 						else
-							usr << "\red Your target's earthly bonds are too strong. You need more cultists to succeed in this ritual."
+							to_chat(usr, SPAN_WARNING("Your target's earthly bonds are too strong. You need more cultists to succeed in this ritual."))
 					else
 						if(cultsinrange.len >= 3)
 							if(H.stat !=2)
 								if(prob(80))
-									usr << "\red The Geometer of Blood accepts this sacrifice."
+									to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
 									ticker.mode:grant_runeword(usr)
 								else
-									usr << "\red The Geometer of blood accepts this sacrifice."
-									usr << "\red However, this soul was not enough to gain His favor."
+									to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+									to_chat(usr, SPAN_WARNING("However, this soul was not enough to gain His favor."))
 								if(isrobot(H))
-									H.dust()//To prevent the MMI from remaining
+									H.dust()	//To prevent the MMI from remaining
 								else
 									H.gib()
 							else
 								if(prob(40))
-									usr << "\red The Geometer of blood accepts this sacrifice."
+									to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
 									ticker.mode:grant_runeword(usr)
 								else
-									usr << "\red The Geometer of blood accepts this sacrifice."
-									usr << "\red However, a mere dead body is not enough to satisfy Him."
+									to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+									to_chat(usr, SPAN_WARNING("However, a mere dead body is not enough to satisfy Him."))
 								if(isrobot(H))
-									H.dust()//To prevent the MMI from remaining
+									H.dust()	//To prevent the MMI from remaining
 								else
 									H.gib()
 						else
-							if(H.stat !=2)
-								usr << "\red The victim is still alive, you will need more cultists chanting for the sacrifice to succeed."
+							if(H.stat != DEAD)
+								to_chat(usr, SPAN_WARNING("The victim is still alive, you will need more cultists chanting for the sacrifice to succeed."))
 							else
 								if(prob(40))
-									usr << "\red The Geometer of blood accepts this sacrifice."
+									to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
 									ticker.mode:grant_runeword(usr)
 								else
-									usr << "\red The Geometer of blood accepts this sacrifice."
-									usr << "\red However, a mere dead body is not enough to satisfy Him."
+									to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+									to_chat(usr, SPAN_WARNING("However, a mere dead body is not enough to satisfy Him."))
 								if(isrobot(H))
 									H.dust()//To prevent the MMI from remaining
 								else
@@ -618,36 +620,36 @@ var/list/sacrificed = list()
 					if(cultsinrange.len >= 3)
 						if(H.stat !=2)
 							if(prob(80))
-								usr << "\red The Geometer of Blood accepts this sacrifice."
+								to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
 								ticker.mode:grant_runeword(usr)
 							else
-								usr << "\red The Geometer of blood accepts this sacrifice."
-								usr << "\red However, this soul was not enough to gain His favor."
+								to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+								to_chat(usr, SPAN_WARNING("However, this soul was not enough to gain His favor."))
 							if(isrobot(H))
 								H.dust()//To prevent the MMI from remaining
 							else
 								H.gib()
 						else
 							if(prob(40))
-								usr << "\red The Geometer of blood accepts this sacrifice."
+								to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
 								ticker.mode:grant_runeword(usr)
 							else
-								usr << "\red The Geometer of blood accepts this sacrifice."
-								usr << "\red However, a mere dead body is not enough to satisfy Him."
+								to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+								to_chat(usr, SPAN_WARNING("However, a mere dead body is not enough to satisfy Him."))
 							if(isrobot(H))
 								H.dust()//To prevent the MMI from remaining
 							else
 								H.gib()
 					else
-						if(H.stat !=2)
-							usr << "\red The victim is still alive, you will need more cultists chanting for the sacrifice to succeed."
+						if(H.stat != DEAD)
+							to_chat(usr, SPAN_WARNING("The victim is still alive, you will need more cultists chanting for the sacrifice to succeed."))
 						else
 							if(prob(40))
-								usr << "\red The Geometer of blood accepts this sacrifice."
+								to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
 								ticker.mode:grant_runeword(usr)
 							else
-								usr << "\red The Geometer of blood accepts this sacrifice."
-								usr << "\red However, a mere dead body is not enough to satisfy Him."
+								to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+								to_chat(usr, SPAN_WARNING("However, a mere dead body is not enough to satisfy Him."))
 							if(isrobot(H))
 								H.dust()//To prevent the MMI from remaining
 							else
@@ -657,19 +659,19 @@ var/list/sacrificed = list()
 					if(M.mind == ticker.mode:sacrifice_target)
 						if(cultsinrange.len >= 3)
 							sacrificed += M.mind
-							usr << "\red The Geometer of Blood accepts this sacrifice, your objective is now complete."
+							to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice, your objective is now complete."))
 						else
-							usr << "\red Your target's earthly bonds are too strong. You need more cultists to succeed in this ritual."
+							to_chat(usr, SPAN_WARNING("Your target's earthly bonds are too strong. You need more cultists to succeed in this ritual."))
 							continue
 					else
 						if(prob(20))
-							usr << "\red The Geometer of Blood accepts your meager sacrifice."
+							to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts your meager sacrifice."))
 							ticker.mode:grant_runeword(usr)
 						else
-							usr << "\red The Geometer of blood accepts this sacrifice."
-							usr << "\red However, a mere monkey is not enough to satisfy Him."
+							to_chat(usr, SPAN_WARNING("The Geometer of blood accepts this sacrifice."))
+							to_chat(usr, SPAN_WARNING("However, a mere monkey is not enough to satisfy Him."))
 				else
-					usr << "\red The Geometer of Blood accepts your meager sacrifice."
+					to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts your meager sacrifice."))
 					if(prob(20))
 						ticker.mode.grant_runeword(usr)
 				M.gib()
@@ -677,7 +679,7 @@ var/list/sacrificed = list()
 				for(var/mob/K in cultsinrange)
 					K.say("Barhah hra zar'garis!")
 				A.dust()      /// A.gib() doesnt work for some reason, and dust() leaves that skull and bones thingy which we dont really need.
-				if (ticker.mode.name == "cult")
+				if(ticker.mode.name == "cult")
 					if(prob(75))
 						usr << "\red The Geometer of Blood accepts your exotic sacrifice."
 						ticker.mode:grant_runeword(usr)
@@ -714,13 +716,13 @@ var/list/sacrificed = list()
 					to_chat(usr, SPAN_WARNING("Arcane markings suddenly glow from underneath a thin layer of dust!"))
 					return
 				if(istype(W, /obj/effect/rune))
-					usr.say("Nikt[pick("'","`")]o barada kla'atu!")
+					usr.say("Nikt[pick("'", "`")]o barada kla'atu!")
 					for(var/mob/V in viewers(src))
 						V.show_message(SPAN_WARNING("The rune turns into red dust, reveaing the surrounding runes."), 3)
 					qdel(src)
 					return
 				if(istype(W, /obj/item/weapon/paper/talisman))
-					usr.whisper("Nikt[pick("'","`")]o barada kla'atu!")
+					usr.whisper("Nikt[pick("'", "`")]o barada kla'atu!")
 					to_chat(usr, SPAN_WARNING("Your talisman turns into red dust, revealing the surrounding runes."))
 					for(var/mob/V in orange(1, usr.loc))
 						if(V != usr)
@@ -736,7 +738,7 @@ var/list/sacrificed = list()
 /////////////////////////////////////////SEVENTEENTH RUNE
 
 		wall()
-			usr.say("Khari[pick("'","`")]d! Eske'te tannin!")
+			usr.say("Khari[pick("'", "`")]d! Eske'te tannin!")
 			src.density = !src.density
 			var/mob/living/user = usr
 			user.take_organ_damage(2, 0)
@@ -788,7 +790,7 @@ var/list/sacrificed = list()
 					cultist.loc:locked = 0
 				for(var/mob/living/carbon/C in users)
 					user.take_overall_damage(15, 0)
-					C.say("Khari[pick("'","`")]d! Gual'te nikka!")
+					C.say("Khari[pick("'", "`")]d! Gual'te nikka!")
 				qdel(src)
 			return fizzle()
 
@@ -818,11 +820,11 @@ var/list/sacrificed = list()
 				cultist.regenerate_icons()
 				for(var/mob/living/carbon/human/C in orange(1, src))
 					if(iscultist(C) && !C.stat)
-						C.say("N'ath reth sh'yro eth d[pick("'","`")]rekkathnor!")
+						C.say("N'ath reth sh'yro eth d[pick("'", "`")]rekkathnor!")
 						C.take_overall_damage(25, 0)
 				user.visible_message(SPAN_WARNING("Rune disappears with a flash of red light, and in its place now a body lies."), \
-				SPAN_WARNING("You are blinded by the flash of red light! After you're able to see again, you see that now instead of the rune there's a body."), \
-				SPAN_WARNING("You hear a pop and smell ozone."))
+									SPAN_WARNING("You are blinded by the flash of red light! After you're able to see again, you see that now instead of the rune there's a body."), \
+									SPAN_WARNING("You hear a pop and smell ozone."))
 				qdel(src)
 			return fizzle()
 

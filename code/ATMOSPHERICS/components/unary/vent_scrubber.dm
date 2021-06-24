@@ -31,7 +31,7 @@
 		//if (initial_loc.master)
 			//initial_loc = initial_loc.master
 		area_uid = initial_loc.uid
-		if (!id_tag)
+		if(!id_tag)
 			assign_uid()
 			id_tag = num2text(uid)
 		..()
@@ -89,7 +89,7 @@
 		..()
 		radio_filter_in = frequency == initial(frequency) ? (RADIO_FROM_AIRALARM) : null
 		radio_filter_out = frequency == initial(frequency) ? (RADIO_TO_AIRALARM) : null
-		if (frequency)
+		if(frequency)
 			set_frequency(frequency)
 			src.broadcast_status()
 
@@ -97,7 +97,7 @@
 		..()
 		if(stat & (NOPOWER|BROKEN))
 			return
-		if (!node)
+		if(!node)
 			on = 0
 		//broadcast_status()
 		if(!on)
@@ -108,11 +108,11 @@
 
 		if(scrubbing)
 			if((environment.gas["plasma"] > 0.001) || (environment.gas["carbon_dioxide"] > 0.001) || (environment.gas["oxygen_agent_b"] > 0.001) || (environment.gas["sleeping_agent"] > 0.001))
-				var/transfer_moles = min(1, volume_rate/environment.volume)*environment.total_moles
+				var/transfer_moles = min(1, volume_rate / environment.volume) * environment.total_moles
 
 				//Take a gas sample
 				var/datum/gas_mixture/removed = loc.remove_air(transfer_moles)
-				if (isnull(removed)) //in space
+				if(isnull(removed)) //in space
 					return
 
 				//Filter it
@@ -140,7 +140,7 @@
 					network.update = 1
 
 		else //Just siphoning all air
-			if (air_contents.return_pressure() >= 50 * ONE_ATMOSPHERE)
+			if(air_contents.return_pressure() >= 50 * ONE_ATMOSPHERE)
 				return
 
 			var/transfer_moles = environment.total_moles * (volume_rate / environment.volume)
@@ -169,7 +169,7 @@
 	receive_signal(datum/signal/signal)
 		if(stat & (NOPOWER|BROKEN))
 			return
-		if(!signal.data["tag"] || (signal.data["tag"] != id_tag) || (signal.data["sigtype"]!="command"))
+		if(!signal.data["tag"] || (signal.data["tag"] != id_tag) || (signal.data["sigtype"] != "command"))
 			return 0
 
 		if(signal.data["power"] != null)
@@ -261,8 +261,8 @@
 			user.visible_message( \
 				"[user] unfastens \the [src].", \
 				SPAN_INFO("You have unfastened \the [src]."), \
-				"You hear ratchet.")
-			new /obj/item/pipe(loc, make_from=src)
+				"You hear a ratchet.")
+			new /obj/item/pipe(loc, make_from = src)
 			qdel(src)
 
 /obj/machinery/atmospherics/unary/vent_scrubber/Destroy()

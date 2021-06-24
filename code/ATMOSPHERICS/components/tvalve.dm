@@ -154,7 +154,7 @@
 	src.add_fingerprint(usr)
 	update_icon(1)
 	sleep(10)
-	if (src.state)
+	if(src.state)
 		src.go_straight()
 	else
 		src.go_to_side()
@@ -245,15 +245,15 @@
 	return null
 
 /obj/machinery/atmospherics/tvalve/disconnect(obj/machinery/atmospherics/reference)
-	if(reference==node1)
+	if(reference == node1)
 		qdel(network_node1)
 		node1 = null
 
-	else if(reference==node2)
+	else if(reference == node2)
 		qdel(network_node2)
 		node2 = null
 
-	else if(reference==node3)
+	else if(reference == node3)
 		qdel(network_node3)
 		node2 = null
 
@@ -329,11 +329,11 @@
 
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 	to_chat(user, SPAN_INFO("You begin to unfasten \the [src]..."))
-	if (do_after(user, 40))
+	if(do_after(user, 40))
 		user.visible_message( \
 			"[user] unfastens \the [src].", \
 			SPAN_INFO("You have unfastened \the [src]."), \
-			"You hear ratchet.")
+			"You hear a ratchet.")
 		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)
 

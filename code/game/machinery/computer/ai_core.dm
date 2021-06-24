@@ -121,7 +121,7 @@
 				if(!P:brainmob)
 					user << "\red Sticking an empty [P] into the frame would sort of defeat the purpose."
 					return
-				if(P:brainmob.stat == 2)
+				if(P:brainmob.stat == DEAD)
 					user << "\red Sticking a dead [P] into the frame would sort of defeat the purpose."
 					return
 
@@ -196,7 +196,7 @@ That prevents a few funky behaviors.
 						if(C.contents.len)//If there is an AI on card.
 							U << "\red <b>Transfer failed</b>: \black Existing AI found on this terminal. Remove existing AI to install a new one."
 						else
-							if (ticker.mode.name == "AI malfunction")
+							if(ticker.mode.name == "AI malfunction")
 								var/datum/game_mode/malfunction/malf = ticker.mode
 								for (var/datum/mind/malfai in malf.malf_ai)
 									if (T.mind == malfai)
@@ -207,7 +207,7 @@ That prevents a few funky behaviors.
 							T.control_disabled = 1//Can't control things remotely if you're stuck in a card!
 							T.loc = C//Throw AI into the card.
 							C.name = "inteliCard - [T.name]"
-							if (T.stat == 2)
+							if(T.stat == DEAD)
 								C.icon_state = "aicard-404"
 							else
 								C.icon_state = "aicard-full"
@@ -219,7 +219,7 @@ That prevents a few funky behaviors.
 						if(C.AI)//If there is an AI on card.
 							U << "\red <b>Transfer failed</b>: \black Existing AI found on this terminal. Remove existing AI to install a new one."
 						else
-							if (ticker.mode.name == "AI malfunction")
+							if(ticker.mode.name == "AI malfunction")
 								var/datum/game_mode/malfunction/malf = ticker.mode
 								for (var/datum/mind/malfai in malf.malf_ai)
 									if (T.mind == malfai)
@@ -279,7 +279,7 @@ That prevents a few funky behaviors.
 								A.loc = T
 								T.occupant = A
 								A.control_disabled = 1
-								if (A.stat == 2)
+								if(A.stat == DEAD)
 									T.overlays += image('icons/obj/computer.dmi', "ai-fixer-404")
 								else
 									T.overlays += image('icons/obj/computer.dmi', "ai-fixer-full")
@@ -291,7 +291,7 @@ That prevents a few funky behaviors.
 							if(!C.contents.len && T.occupant && !T.active)
 								C.name = "inteliCard - [T.occupant.name]"
 								T.overlays += image('icons/obj/computer.dmi', "ai-fixer-empty")
-								if (T.occupant.stat == 2)
+								if(T.occupant.stat == DEAD)
 									C.icon_state = "aicard-404"
 									T.overlays -= image('icons/obj/computer.dmi', "ai-fixer-404")
 								else
@@ -302,11 +302,11 @@ That prevents a few funky behaviors.
 								T.occupant.loc = C
 								T.occupant.cancel_camera()
 								T.occupant = null
-							else if (C.contents.len)
+							else if(C.contents.len)
 								U << "\red <b>ERROR</b>: \black Artificial intelligence detected on terminal."
-							else if (T.active)
+							else if(T.active)
 								U << "\red <b>ERROR</b>: \black Reconstruction in progress."
-							else if (!T.occupant)
+							else if(!T.occupant)
 								U << "\red <b>ERROR</b>: \black Unable to locate artificial intelligence."
 					if("NINJASUIT")
 						var/obj/item/clothing/suit/space/space_ninja/C = src

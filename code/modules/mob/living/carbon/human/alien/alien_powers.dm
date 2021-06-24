@@ -1,4 +1,4 @@
-/proc/alien_queen_exists(var/ignore_self, var/mob/living/carbon/human/self)
+/proc/alien_queen_exists(ignore_self, mob/living/carbon/human/self)
 	for(var/mob/living/carbon/human/Q in living_mob_list)
 		if(self && ignore_self && self == Q)
 			continue
@@ -9,17 +9,16 @@
 		return 1
 	return 0
 
-/mob/living/carbon/human/proc/gain_plasma(var/amount)
-
+/mob/living/carbon/human/proc/gain_plasma(amount)
 	var/datum/organ/internal/xenos/plasmavessel/I = internal_organs_by_name["plasma vessel"]
-	if(!istype(I)) return
+	if(!istype(I))
+		return
 
 	if(amount)
 		I.stored_plasma += amount
-	I.stored_plasma = max(0,min(I.stored_plasma,I.max_plasma))
+	I.stored_plasma = max(0, min(I.stored_plasma, I.max_plasma))
 
-/mob/living/carbon/human/proc/check_alien_ability(var/cost,var/needs_foundation,var/needs_organ)
-
+/mob/living/carbon/human/proc/check_alien_ability(cost, needs_foundation, needs_organ)
 	var/datum/organ/internal/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
 	if(!istype(P))
 		src << "<span class='danger'>Your plasma vessel has been removed!</span>"
@@ -58,7 +57,7 @@
 	set desc = "Transfer Plasma to another alien"
 	set category = "Abilities"
 
-	if (get_dist(src,M) <= 1)
+	if(get_dist(src, M) <= 1)
 		src << "\green You need to be closer."
 		return
 
@@ -68,9 +67,9 @@
 		return
 
 	var/amount = input("Amount:", "Transfer Plasma to [M]") as num
-	if (amount)
+	if(amount)
 		amount = abs(round(amount))
-		if(check_alien_ability(amount,0,"plasma vessel"))
+		if(check_alien_ability(amount, 0, "plasma vessel"))
 			M.gain_plasma(amount)
 			M << "\green [src] has transfered [amount] plasma to you."
 			src << "\green You have transferred [amount] plasma to [M]"
@@ -78,7 +77,6 @@
 
 // Queen verbs.
 /mob/living/carbon/human/proc/lay_egg()
-
 	set name = "Lay Egg (75)"
 	set desc = "Lay an egg to produce huggers to impregnate prey with."
 	set category = "Abilities"
@@ -92,7 +90,7 @@
 		src << "There's already an egg here."
 		return
 
-	if(check_alien_ability(75,1,"egg sac"))
+	if(check_alien_ability(75, 1, "egg sac"))
 		for(var/mob/O in viewers(src, null))
 			O.show_message(text("\green <B>[src] has laid an egg!</B>"), 1)
 		new /obj/effect/alien/egg(loc)
@@ -122,7 +120,7 @@
 	set desc = "Plants some alien weeds"
 	set category = "Abilities"
 
-	if(check_alien_ability(50,1,"resin spinner"))
+	if(check_alien_ability(50, 1, "resin spinner"))
 		for(var/mob/O in viewers(src, null))
 			O.show_message(text("\green <B>[src] has planted some alien weeds!</B>"), 1)
 		new /obj/effect/alien/weeds/node(loc)
@@ -158,7 +156,7 @@
 		else// Not a type we can acid.
 			return
 
-	if(check_alien_ability(200,0,"acid gland"))
+	if(check_alien_ability(200, 0, "acid gland"))
 		new /obj/effect/alien/acid(get_turf(O), O)
 		visible_message("\green <B>[src] vomits globs of vile stuff all over [O]. It begins to sizzle and melt under the bubbling mess of acid!</B>")
 
@@ -169,7 +167,7 @@
 	set desc = "Spits neurotoxin at someone, paralyzing them for a short time if they are not wearing protective gear."
 	set category = "Abilities"
 
-	if(!check_alien_ability(50,0,"acid gland"))
+	if(!check_alien_ability(50, 0, "acid gland"))
 		return
 
 	src << "\green You spit neurotoxin at [target]."
@@ -184,14 +182,14 @@
 
 	if(!U || !T)
 		return
-	while(U && !istype(U,/turf))
+	while(U && !isturf(U))
 		U = U.loc
-	if(!istype(T, /turf))
+	if(!isturf(T))
 		return
-	if (U == T)
+	if(U == T)
 		usr.bullet_act(new /obj/item/projectile/energy/neurotoxin(usr.loc), get_organ_target())
 		return
-	if(!istype(U, /turf))
+	if(!isturf(U))
 		return
 
 	var/obj/item/projectile/energy/neurotoxin/A = new /obj/item/projectile/energy/neurotoxin(usr.loc)
@@ -210,7 +208,7 @@
 	if(!choice)
 		return
 
-	if(!check_alien_ability(75,1,"resin spinner"))
+	if(!check_alien_ability(75, 1, "resin spinner"))
 		return
 
 	src << "\green You shape a [choice]."

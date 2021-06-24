@@ -355,18 +355,18 @@ var/list/slot_equipment_priority = list( \
 	set name = "Respawn"
 	set category = "OOC"
 
-	if (!( abandon_allowed ))
+	if(!abandon_allowed)
 		usr << "\blue Respawn is disabled."
 		return
-	if ((stat != 2 || !( ticker )))
+	if((stat != DEAD || !ticker))
 		usr << "\blue <B>You must be dead to use this!</B>"
 		return
-	if (ticker.mode.name == "meteor" || ticker.mode.name == "epidemic") //BS12 EDIT
+	if(ticker.mode.name == "meteor" || ticker.mode.name == "epidemic") //BS12 EDIT
 		usr << "\blue Respawn is disabled for this roundtype."
 		return
 	else
 		var/deathtime = world.time - src.timeofdeath
-		if(istype(src,/mob/dead/observer))
+		if(isobserver(src))
 			var/mob/dead/observer/G = src
 			if(G.has_enabled_antagHUD == 1 && config.antag_hud_restricted)
 				usr << "\blue <B>Upon using the antagHUD you forfeighted the ability to join the round.</B>"
@@ -382,7 +382,7 @@ var/list/slot_equipment_priority = list( \
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 		usr << "You have been dead for[pluralcheck] [deathtimeseconds] seconds."
 
-		if (deathtime < 18000)
+		if(deathtime < 18000)
 			usr << "You must wait 30 minutes to respawn!"
 			return
 		else
@@ -744,7 +744,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		return 0
 	if(world.time < client.move_delay)
 		return 0
-	if(stat == 2)
+	if(stat == DEAD)
 		return 0
 	if(anchored)
 		return 0
@@ -936,7 +936,7 @@ mob/proc/yank_out_object()
 		return
 	usr.next_move = world.time + 20
 
-	if(usr.stat == 1)
+	if(usr.stat == UNCONSCIOUS)
 		usr << "You are unconcious and cannot do that!"
 		return
 

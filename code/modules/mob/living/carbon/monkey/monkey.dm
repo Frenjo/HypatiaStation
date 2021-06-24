@@ -369,43 +369,45 @@
 
 	switch(severity)
 		if(1.0)
-			if (stat != 2)
+			if(stat != DEAD)
 				adjustBruteLoss(200)
 				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
 		if(2.0)
-			if (stat != 2)
+			if(stat != DEAD)
 				adjustBruteLoss(60)
 				adjustFireLoss(60)
 				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
 		if(3.0)
-			if (stat != 2)
+			if(stat != DEAD)
 				adjustBruteLoss(30)
 				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
-			if (prob(50))
+			if(prob(50))
 				Paralyse(10)
 		else
 	return
 
 /mob/living/carbon/monkey/blob_act()
-	if (stat != 2)
+	if(stat != DEAD)
 		adjustFireLoss(60)
 		health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
-	if (prob(50))
+	if(prob(50))
 		Paralyse(10)
-	if (stat == DEAD && client)
+	if(stat == DEAD && client)
 		gib()
 		return
-	if (stat == DEAD && !client)
+	if(stat == DEAD && !client)
 		gibs(loc, viruses)
 		qdel(src)
 		return
 
 /mob/living/carbon/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
-	if(!ticker)	return 0
-	if(!ticker.mode.name == "monkey")	return 0
+	if(!ticker)
+		return 0
+	if(!ticker.mode.name == "monkey")
+		return 0
 	return 1
 
-/mob/living/carbon/monkey/say(var/message, var/datum/language/speaking = null, var/verbage = "says", var/alt_name = "", var/italics = 0, var/message_range = world.view, var/list/used_radios = list())
+/mob/living/carbon/monkey/say(message, datum/language/speaking = null, verbage = "says", alt_name = "", italics = 0, message_range = world.view, list/used_radios = list())
 	if(stat)
 		return
 

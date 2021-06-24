@@ -9,6 +9,14 @@
 	w_class = 3
 	var/charged = 1
 
+/obj/item/weapon/veilrender/attack_self(mob/user as mob)
+	if(charged == 1)
+		new /obj/effect/rend(get_turf(usr))
+		charged = 0
+		visible_message(SPAN_DANGER("[src] hums with power as [usr] deals a blow to reality itself!"))
+	else
+		to_chat(user, SPAN_WARNING("The unearthly energies that powered the blade are now dormant."))
+
 
 /obj/effect/rend
 	name = "Tear in the fabric of reality"
@@ -19,20 +27,9 @@
 	unacidable = 1
 	anchored = 1.0
 
-
 /obj/effect/rend/New()
 	spawn(50)
 		new /obj/machinery/singularity/narsie/wizard(get_turf(src))
 		qdel(src)
 		return
 	return
-
-
-/obj/item/weapon/veilrender/attack_self(mob/user as mob)
-	if(charged == 1)
-		new /obj/effect/rend(get_turf(usr))
-		charged = 0
-		visible_message(SPAN_DANGER("[src] hums with power as [usr] deals a blow to reality itself!"))
-	else
-		to_chat(user, SPAN_WARNING("The unearthly energies that powered the blade are now dormant."))
-

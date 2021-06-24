@@ -570,22 +570,21 @@
 
 
 	proc/handle_regular_hud_updates()
-
-		if (stat == 2 || (XRAY in mutations))
+		if(stat == DEAD || (XRAY in mutations))
 			sight |= SEE_TURFS
 			sight |= SEE_MOBS
 			sight |= SEE_OBJS
 			see_in_dark = 8
 			see_invisible = SEE_INVISIBLE_LEVEL_TWO
-		else if (stat != 2)
+		else if(stat != DEAD)
 			sight &= ~SEE_TURFS
 			sight &= ~SEE_MOBS
 			sight &= ~SEE_OBJS
 			see_in_dark = 2
 			see_invisible = SEE_INVISIBLE_LIVING
 
-		if (healths)
-			if (stat != 2)
+		if(healths)
+			if(stat != DEAD)
 				switch(health)
 					if(100 to INFINITY)
 						healths.icon_state = "health0"
@@ -608,12 +607,16 @@
 		if(pressure)
 			pressure.icon_state = "pressure[pressure_alert]"
 
-		if(pullin)	pullin.icon_state = "pull[pulling ? 1 : 0]"
+		if(pullin)
+			pullin.icon_state = "pull[pulling ? 1 : 0]"
 
 
-		if (toxin)	toxin.icon_state = "tox[toxins_alert ? 1 : 0]"
-		if (oxygen) oxygen.icon_state = "oxy[oxygen_alert ? 1 : 0]"
-		if (fire) fire.icon_state = "fire[fire_alert ? 2 : 0]"
+		if(toxin)
+			toxin.icon_state = "tox[toxins_alert ? 1 : 0]"
+		if(oxygen)
+			oxygen.icon_state = "oxy[oxygen_alert ? 1 : 0]"
+		if(fire)
+			fire.icon_state = "fire[fire_alert ? 2 : 0]"
 		//NOTE: the alerts dont reset when youre out of danger. dont blame me,
 		//blame the person who coded them. Temporary fix added.
 
@@ -638,7 +641,7 @@
 				else
 					bodytemp.icon_state = "temp-4"
 
-		client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
+		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired)
 
 		if(blind && stat != DEAD)
 			if(blinded)
@@ -655,9 +658,9 @@
 				if(druggy)
 					client.screen += global_hud.druggy
 
-		if (stat != 2)
-			if (machine)
-				if (!( machine.check_eye(src) ))
+		if(stat != DEAD)
+			if(machine)
+				if(!machine.check_eye(src))
 					reset_view(null)
 			else
 				if(client && !client.adminobs)
@@ -666,7 +669,7 @@
 		return 1
 
 	proc/handle_random_events()
-		if (prob(1) && prob(2))
+		if(prob(1) && prob(2))
 			spawn(0)
 				emote("scratch")
 				return

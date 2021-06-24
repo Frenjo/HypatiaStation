@@ -62,7 +62,7 @@
 
 		dat += "Laws:<br>[laws]<br>"
 
-		if(A.stat == 2)
+		if(A.stat == DEAD)
 			dat += "<b>AI nonfunctional</b>"
 		else
 			if(!src.flush)
@@ -106,7 +106,7 @@
 					for(var/mob/living/silicon/ai/A in src)
 						A.suiciding = 1
 						to_chat(A, "Your core files are being wiped!")
-						while(A.stat != 2)
+						while(A.stat != DEAD)
 							A.adjustOxyLoss(2)
 							A.updatehealth()
 							sleep(10)

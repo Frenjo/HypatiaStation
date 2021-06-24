@@ -231,9 +231,9 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 				//Here we want the ninja to murder all the queens. The other aliens don't really matter.
 				var/xeno_queen_list[] = list()
 				for(var/mob/living/carbon/human/xeno_queen in xeno_list)
-					if(xeno_queen.species.name == "Xenomorph Queen" && xeno_queen.mind && xeno_queen.stat != 2)
+					if(xeno_queen.species.name == "Xenomorph Queen" && xeno_queen.mind && xeno_queen.stat != DEAD)
 						xeno_queen_list += xeno_queen
-				if(xeno_queen_list.len&&side=="face")//If there are queen about and the probability is 50.
+				if(xeno_queen_list.len && side == "face")//If there are queen about and the probability is 50.
 					for(var/mob/living/carbon/human/xeno_queen in xeno_queen_list)
 						var/datum/objective/assassinate/ninja_objective = new
 						ninja_objective.owner = ninja_mind
@@ -243,9 +243,9 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 						ninja_mind.objectives += ninja_objective
 					mission_set = 1
 
-			if(sent_strike_team&&side=="heel"&&antagonist_list.len)//If a strike team was sent, murder them all like a champ.
+			if(sent_strike_team && side == "heel" && antagonist_list.len)//If a strike team was sent, murder them all like a champ.
 				for(current_mind in antagonist_list)//Search and destroy. Since we already have an antagonist list, they should appear there.
-					if(current_mind && current_mind.special_role=="Death Commando")
+					if(current_mind && current_mind.special_role == "Death Commando")
 						commando_list += current_mind
 				if(commando_list.len)//If there are living commandos still in play.
 					for(var/mob/living/carbon/human/commando in commando_list)
@@ -263,24 +263,24 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 			if(!mission_set)//If mission was not set.
 
 				var/current_minds[]//List being looked on in the following code.
-				var/side_list = side=="face" ? 2 : 1//For logic gating.
+				var/side_list = side == "face" ? 2 : 1//For logic gating.
 				var/hostile_targets[] = list()//The guys actually picked for the assassination or whatever.
 				var/friendly_targets[] = list()//The guys the ninja must protect.
 
-				for(var/i=2,i>0,i--)//Two lists.
-					current_minds = i==2 ? antagonist_list : protagonist_list//Which list are we looking at?
-					for(var/t=3,(current_minds.len&&t>0),t--)//While the list is not empty and targets remain. Also, 3 targets is good.
+				for(var/i = 2, i > 0, i--)//Two lists.
+					current_minds = i == 2 ? antagonist_list : protagonist_list//Which list are we looking at?
+					for(var/t = 3, (current_minds.len && t > 0), t--)//While the list is not empty and targets remain. Also, 3 targets is good.
 						current_mind = pick(current_minds)//Pick a random person.
 						/*I'm creating a logic gate here based on the ninja affiliation that compares the list being
 						looked at to the affiliation. Affiliation is just a number used to compare. Meaning comes from the logic involved.
 						If the list being looked at is equal to the ninja's affiliation, add the mind to hostiles.
 						If not, add the mind to friendlies. Since it can't be both, it will be added only to one or the other.*/
-						hostile_targets += i==side_list ? current_mind : null//Adding null doesn't add anything.
-						friendly_targets += i!=side_list ? current_mind : null
+						hostile_targets += i == side_list ? current_mind : null//Adding null doesn't add anything.
+						friendly_targets += i != side_list ? current_mind : null
 						current_minds -= current_mind//Remove the mind so it's not picked again.
 
 				var/objective_list[] = list(1,2,3,4,5,6)//To remove later.
-				for(var/i=rand(1,3),i>0,i--)//Want to get a few random objectives. Currently up to 3.
+				for(var/i = rand(1, 3), i > 0, i--)//Want to get a few random objectives. Currently up to 3.
 					if(!hostile_targets.len)//Remove appropriate choices from switch list if the target lists are empty.
 						objective_list -= 1
 						objective_list -= 4
@@ -293,7 +293,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 							if(current_mind)
 								var/datum/objective/assassinate/ninja_objective = new
 								ninja_objective.owner = ninja_mind
-								ninja_objective.find_target_by_role((current_mind.special_role ? current_mind.special_role : current_mind.assigned_role),(current_mind.special_role?1:0))//If they have a special role, use that instead to find em.
+								ninja_objective.find_target_by_role((current_mind.special_role ? current_mind.special_role : current_mind.assigned_role), (current_mind.special_role ? 1 : 0))//If they have a special role, use that instead to find em.
 								ninja_mind.objectives += ninja_objective
 
 							else

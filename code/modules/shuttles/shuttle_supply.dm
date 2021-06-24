@@ -7,7 +7,7 @@
 	var/late_chance = 80
 	var/max_late_time = 300
 
-/datum/shuttle/ferry/supply/short_jump(var/area/origin,var/area/destination)
+/datum/shuttle/ferry/supply/short_jump(area/origin, area/destination)
 	if(moving_status != SHUTTLE_IDLE)
 		return
 
@@ -21,7 +21,7 @@
 
 	//it would be cool to play a sound here
 	moving_status = SHUTTLE_WARMUP
-	spawn(warmup_time*10)
+	spawn(warmup_time * 10)
 		if(moving_status == SHUTTLE_IDLE)
 			return	//someone cancelled the launch
 
@@ -50,7 +50,7 @@
 
 		if(destination != away_area)
 			//late
-			if (prob(late_chance))
+			if(prob(late_chance))
 				sleep(rand(0, max_late_time))
 
 			move(away_area, destination)

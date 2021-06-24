@@ -129,10 +129,11 @@ datum/preferences
 	alternate_option = 1
 
 /datum/preferences
-	proc/ZeroSkills(var/forced = 0)
+	proc/ZeroSkills(forced = 0)
 		for(var/V in SKILLS) for(var/datum/skill/S in SKILLS[V])
 			if(!skills.Find(S.ID) || forced)
 				skills[S.ID] = SKILL_NONE
+
 	proc/CalculateSkillPoints()
 		used_skillpoints = 0
 		for(var/V in SKILLS) for(var/datum/skill/S in SKILLS[V])
@@ -388,7 +389,7 @@ datum/preferences
 			src.be_special = 0
 		else
 			var/n = 0
-			for (var/i in special_roles)
+			for(var/i in special_roles)
 				if(special_roles[i]) //if mode is available on the server
 					if(jobban_isbanned(user, i))
 						dat += "<b>Be [i]:</b> <font color=red><b> \[BANNED]</b></font><br>"
@@ -429,7 +430,8 @@ datum/preferences
 
 		//The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
 		var/datum/job/lastJob
-		if (!job_master)		return
+		if(!job_master)
+			return
 		for(var/datum/job/job in job_master.occupations)
 
 			index += 1
@@ -633,8 +635,9 @@ datum/preferences
 		job_engsec_low = 0
 
 
-	proc/GetJobDepartment(var/datum/job/job, var/level)
-		if(!job || !level)	return 0
+	proc/GetJobDepartment(datum/job/job, level)
+		if(!job || !level)
+			return 0
 		switch(job.department_flag)
 			if(CIVILIAN)
 				switch(level)
@@ -662,8 +665,9 @@ datum/preferences
 						return job_engsec_low
 		return 0
 
-	proc/SetJobDepartment(var/datum/job/job, var/level)
-		if(!job || !level)	return 0
+	proc/SetJobDepartment(datum/job/job, level)
+		if(!job || !level)
+			return 0
 		switch(level)
 			if(1)//Only one of these should ever be active at once so clear them all here
 				job_civilian_high = 0
@@ -712,9 +716,11 @@ datum/preferences
 		return 1
 
 	proc/process_link(mob/user, list/href_list)
-		if(!user)	return
+		if(!user)
+			return
 
-		if(!istype(user, /mob/new_player))	return
+		if(!istype(user, /mob/new_player))
+			return
 		if(href_list["preference"] == "job")
 			switch(href_list["task"])
 				if("close")
@@ -731,9 +737,9 @@ datum/preferences
 					else
 						return 0
 					SetChoices(user)
-				if ("alt_title")
+				if("alt_title")
 					var/datum/job/job = locate(href_list["job"])
-					if (job)
+					if(job)
 						var/choices = list(job.title) + job.alt_titles
 						var/choice = input("Pick a title for [job.title].", "Character Generation", GetPlayerAltTitle(job)) as anything in choices | null
 						if(choice)
@@ -759,8 +765,9 @@ datum/preferences
 				CalculateSkillPoints()
 				SetSkills(user)
 			else if(href_list["preconfigured"])
-				var/selected = input(user, "Select a skillset", "Skillset") as null|anything in SKILL_PRE
-				if(!selected) return
+				var/selected = input(user, "Select a skillset", "Skillset") as null | anything in SKILL_PRE
+				if(!selected)
+					return
 
 				ZeroSkills(1)
 				for(var/V in SKILL_PRE[selected])
@@ -786,7 +793,7 @@ datum/preferences
 			else
 				user << browse(null, "window=records")
 			if(href_list["task"] == "med_record")
-				var/medmsg = input(usr,"Set your medical notes here.","Medical Records",html_decode(med_record)) as message
+				var/medmsg = input(usr,"Set your medical notes here.", "Medical Records", html_decode(med_record)) as message
 
 				if(medmsg != null)
 					medmsg = copytext(medmsg, 1, MAX_PAPER_MESSAGE_LEN)
@@ -796,7 +803,7 @@ datum/preferences
 					SetRecords(user)
 
 			if(href_list["task"] == "sec_record")
-				var/secmsg = input(usr,"Set your security notes here.","Security Records",html_decode(sec_record)) as message
+				var/secmsg = input(usr, "Set your security notes here.", "Security Records", html_decode(sec_record)) as message
 
 				if(secmsg != null)
 					secmsg = copytext(secmsg, 1, MAX_PAPER_MESSAGE_LEN)
@@ -805,7 +812,7 @@ datum/preferences
 					sec_record = secmsg
 					SetRecords(user)
 			if(href_list["task"] == "gen_record")
-				var/genmsg = input(usr,"Set your employment notes here.","Employment Records",html_decode(gen_record)) as message
+				var/genmsg = input(usr, "Set your employment notes here.", "Employment Records", html_decode(gen_record)) as message
 
 				if(genmsg != null)
 					genmsg = copytext(genmsg, 1, MAX_PAPER_MESSAGE_LEN)
@@ -814,11 +821,11 @@ datum/preferences
 					gen_record = genmsg
 					SetRecords(user)
 
-		else if (href_list["preference"] == "antagoptions")
+		else if(href_list["preference"] == "antagoptions")
 			if(text2num(href_list["active"]) == 0)
 				SetAntagoptions(user)
 				return
-			if (href_list["antagtask"] == "uplinktype")
+			if(href_list["antagtask"] == "uplinktype")
 				if (uplinklocation == "PDA")
 					uplinklocation = "Headset"
 				else if(uplinklocation == "Headset")
@@ -826,7 +833,7 @@ datum/preferences
 				else
 					uplinklocation = "PDA"
 				SetAntagoptions(user)
-			if (href_list["antagtask"] == "done")
+			if(href_list["antagtask"] == "done")
 				user << browse(null, "window=antagoptions")
 				ShowChoices(user)
 			return 1
@@ -872,16 +879,16 @@ datum/preferences
 			if("input")
 				switch(href_list["preference"])
 					if("name")
-						var/new_name = reject_bad_name(input(user, "Choose your character's name:", "Character Preference") as text|null)
+						var/new_name = reject_bad_name(input(user, "Choose your character's name:", "Character Preference") as text | null)
 						if(new_name)
 							real_name = new_name
 						else
-							user << "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>"
+							to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
 
 					if("age")
-						var/new_age = input(user, "Choose your character's age:\n([AGE_MIN]-[AGE_MAX])", "Character Preference") as num|null
+						var/new_age = input(user, "Choose your character's age:\n([AGE_MIN] - [AGE_MAX])", "Character Preference") as num | null
 						if(new_age)
-							age = max(min(round(text2num(new_age)), AGE_MAX),AGE_MIN)
+							age = max(min(round(text2num(new_age)), AGE_MAX), AGE_MIN)
 					if("species")
 						var/list/new_species = list("Human")
 						var/prev_species = species
@@ -889,7 +896,7 @@ datum/preferences
 
 						if(config.usealienwhitelist) //If we're using the whitelist, make sure to check it!
 							for(var/S in whitelisted_species)
-								if(is_alien_whitelisted(user,S))
+								if(is_alien_whitelisted(user, S))
 									new_species += S
 									whitelisted = 1
 							if(!whitelisted)
@@ -908,7 +915,7 @@ datum/preferences
 									continue
 								if(gender == FEMALE && S.gender == MALE)
 									continue
-								if( !(species in S.species_allowed))
+								if(!(species in S.species_allowed))
 									continue
 								valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
 
@@ -926,7 +933,7 @@ datum/preferences
 									continue
 								if(gender == FEMALE && S.gender == MALE)
 									continue
-								if( !(species in S.species_allowed))
+								if(!(species in S.species_allowed))
 									continue
 
 								valid_facialhairstyles[facialhairstyle] = facial_hair_styles_list[facialhairstyle]
@@ -952,7 +959,7 @@ datum/preferences
 						if(config.usealienwhitelist)
 							for(var/L in all_languages)
 								var/datum/language/lang = all_languages[L]
-								if((!(lang.flags & RESTRICTED)) && (is_alien_whitelisted(user, L)||(!(lang.flags & WHITELISTED))||(S && (L in S.secondary_langs))))
+								if((!(lang.flags & RESTRICTED)) && (is_alien_whitelisted(user, L) || (!(lang.flags & WHITELISTED)) || (S && (L in S.secondary_langs))))
 									new_languages += lang
 									languages_available = 1
 
@@ -967,18 +974,18 @@ datum/preferences
 						language = input("Please select a secondary language", "Character Generation", null) in new_languages
 
 					if("metadata")
-						var/new_metadata = input(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , metadata)  as message|null
+						var/new_metadata = input(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference", metadata) as message | null
 						if(new_metadata)
-							metadata = sanitize(copytext(new_metadata,1,MAX_MESSAGE_LEN))
+							metadata = sanitize(copytext(new_metadata, 1, MAX_MESSAGE_LEN))
 
 					if("b_type")
-						var/new_b_type = input(user, "Choose your character's blood-type:", "Character Preference") as null|anything in list( "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" )
+						var/new_b_type = input(user, "Choose your character's blood-type:", "Character Preference") as null | anything in list("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
 						if(new_b_type)
 							b_type = new_b_type
 
 					if("hair")
 						if(species == "Human" || species == "Soghun" || species == "Tajaran" || species == "Skrell")
-							var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference") as color|null
+							var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference") as color | null
 							if(new_hair)
 								r_hair = hex2num(copytext(new_hair, 2, 4))
 								g_hair = hex2num(copytext(new_hair, 4, 6))
@@ -993,12 +1000,12 @@ datum/preferences
 
 							valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
 
-						var/new_h_style = input(user, "Choose your character's hair style:", "Character Preference")  as null|anything in valid_hairstyles
+						var/new_h_style = input(user, "Choose your character's hair style:", "Character Preference") as null | anything in valid_hairstyles
 						if(new_h_style)
 							h_style = new_h_style
 
 					if("facial")
-						var/new_facial = input(user, "Choose your character's facial-hair colour:", "Character Preference") as color|null
+						var/new_facial = input(user, "Choose your character's facial-hair colour:", "Character Preference") as color | null
 						if(new_facial)
 							r_facial = hex2num(copytext(new_facial, 2, 4))
 							g_facial = hex2num(copytext(new_facial, 4, 6))
@@ -1012,12 +1019,12 @@ datum/preferences
 								continue
 							if(gender == FEMALE && S.gender == MALE)
 								continue
-							if( !(species in S.species_allowed))
+							if(!(species in S.species_allowed))
 								continue
 
 							valid_facialhairstyles[facialhairstyle] = facial_hair_styles_list[facialhairstyle]
 
-						var/new_f_style = input(user, "Choose your character's facial-hair style:", "Character Preference")  as null|anything in valid_facialhairstyles
+						var/new_f_style = input(user, "Choose your character's facial-hair style:", "Character Preference") as null | anything in valid_facialhairstyles
 						if(new_f_style)
 							f_style = new_f_style
 
@@ -1028,13 +1035,13 @@ datum/preferences
 						else
 							underwear_options = underwear_f
 
-						var/new_underwear = input(user, "Choose your character's underwear:", "Character Preference")  as null|anything in underwear_options
+						var/new_underwear = input(user, "Choose your character's underwear:", "Character Preference") as null | anything in underwear_options
 						if(new_underwear)
 							underwear = underwear_options.Find(new_underwear)
 						ShowChoices(user)
 
 					if("eyes")
-						var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference") as color|null
+						var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference") as color | null
 						if(new_eyes)
 							r_eyes = hex2num(copytext(new_eyes, 2, 4))
 							g_eyes = hex2num(copytext(new_eyes, 4, 6))
@@ -1043,35 +1050,35 @@ datum/preferences
 					if("s_tone")
 						if(!species == "Human" || !species == "Tajaran")
 							return
-						var/new_s_tone = input(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference")  as num|null
+						var/new_s_tone = input(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference") as num | null
 						if(new_s_tone)
 							s_tone = 35 - max(min( round(new_s_tone), 220),1)
 
 					if("skin")
 						if(species == "Soghun" || species == "Tajaran" || species == "Skrell")
-							var/new_skin = input(user, "Choose your character's skin colour: ", "Character Preference") as color|null
+							var/new_skin = input(user, "Choose your character's skin colour: ", "Character Preference") as color | null
 							if(new_skin)
 								r_skin = hex2num(copytext(new_skin, 2, 4))
 								g_skin = hex2num(copytext(new_skin, 4, 6))
 								b_skin = hex2num(copytext(new_skin, 6, 8))
 
 					if("ooccolor")
-						var/new_ooccolor = input(user, "Choose your OOC colour:", "Game Preference") as color|null
+						var/new_ooccolor = input(user, "Choose your OOC colour:", "Game Preference") as color | null
 						if(new_ooccolor)
 							ooccolor = new_ooccolor
 
 					if("bag")
-						var/new_backbag = input(user, "Choose your character's style of bag:", "Character Preference")  as null|anything in backbaglist
+						var/new_backbag = input(user, "Choose your character's style of bag:", "Character Preference") as null | anything in backbaglist
 						if(new_backbag)
 							backbag = backbaglist.Find(new_backbag)
 
 					if("nt_relation")
-						var/new_relation = input(user, "Choose your relation to NT. Note that this represents what others can find out about your character by researching your background, not what your character actually thinks.", "Character Preference")  as null|anything in list("Loyal", "Supportive", "Neutral", "Skeptical", "Opposed")
+						var/new_relation = input(user, "Choose your relation to NT. Note that this represents what others can find out about your character by researching your background, not what your character actually thinks.", "Character Preference") as null|anything in list("Loyal", "Supportive", "Neutral", "Skeptical", "Opposed")
 						if(new_relation)
 							nanotrasen_relation = new_relation
 
 					if("flavor_text")
-						var/msg = input(usr,"Set the flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!","Flavor Text",html_decode(flavor_text)) as message
+						var/msg = input(usr, "Set the flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!", "Flavor Text", html_decode(flavor_text)) as message
 
 						if(msg != null)
 							msg = copytext(msg, 1, MAX_MESSAGE_LEN)
@@ -1089,8 +1096,9 @@ datum/preferences
 							user << browse(null, "window=disabil")
 
 					if("limbs")
-						var/limb_name = input(user, "Which limb do you want to change?") as null|anything in list("Left Leg","Right Leg","Left Arm","Right Arm","Left Foot","Right Foot","Left Hand","Right Hand")
-						if(!limb_name) return
+						var/limb_name = input(user, "Which limb do you want to change?") as null | anything in list("Left Leg", "Right Leg", "Left Arm", "Right Arm", "Left Foot", "Right Foot", "Left Hand", "Right Hand")
+						if(!limb_name)
+							return
 
 						var/limb = null
 						var/second_limb = null // if you try to change the arm, the hand should also change
@@ -1121,8 +1129,9 @@ datum/preferences
 								limb = "r_hand"
 								third_limb = "r_arm"
 
-						var/new_state = input(user, "What state do you wish the limb to be in?") as null|anything in list("Normal","Amputated","Prothesis")
-						if(!new_state) return
+						var/new_state = input(user, "What state do you wish the limb to be in?") as null | anything in list("Normal", "Amputated", "Prothesis")
+						if(!new_state)
+							return
 
 						switch(new_state)
 							if("Normal")
@@ -1139,8 +1148,9 @@ datum/preferences
 									organ_data[second_limb] = "cyborg"
 
 					if("organs")
-						var/organ_name = input(user, "Which internal function do you want to change?") as null|anything in list("Heart", "Eyes")
-						if(!organ_name) return
+						var/organ_name = input(user, "Which internal function do you want to change?") as null | anything in list("Heart", "Eyes")
+						if(!organ_name)
+							return
 
 						var/organ = null
 						switch(organ_name)
@@ -1149,8 +1159,9 @@ datum/preferences
 							if("Eyes")
 								organ = "eyes"
 
-						var/new_state = input(user, "What state do you wish the organ to be in?") as null|anything in list("Normal","Assisted","Mechanical")
-						if(!new_state) return
+						var/new_state = input(user, "What state do you wish the organ to be in?") as null | anything in list("Normal", "Assisted", "Mechanical")
+						if(!new_state)
+							return
 
 						switch(new_state)
 							if("Normal")
@@ -1162,13 +1173,14 @@ datum/preferences
 
 					if("skin_style")
 						var/skin_style_name = input(user, "Select a new skin style") as null|anything in list("default1", "default2", "default3")
-						if(!skin_style_name) return
+						if(!skin_style_name)
+							return
 
 					if("spawnpoint")
 						var/list/spawnkeys = list()
 						for(var/S in spawntypes)
 							spawnkeys += S
-						var/choice = input(user, "Where would you like to spawn when latejoining?") as null|anything in spawnkeys
+						var/choice = input(user, "Where would you like to spawn when latejoining?") as null | anything in spawnkeys
 						if(!choice || !spawntypes[choice])
 							spawnpoint = "Arrivals Shuttle"
 							return
@@ -1200,13 +1212,15 @@ datum/preferences
 								UI_style = "Midnight"
 
 					if("UIcolor")
-						var/UI_style_color_new = input(user, "Choose your UI color, dark colors are not recommended!") as color|null
-						if(!UI_style_color_new) return
+						var/UI_style_color_new = input(user, "Choose your UI color, dark colors are not recommended!") as color | null
+						if(!UI_style_color_new)
+							return
 						UI_style_color = UI_style_color_new
 
 					if("UIalpha")
 						var/UI_style_alpha_new = input(user, "Select a new alpha(transparence) parametr for UI, between 50 and 255") as num
-						if(!UI_style_alpha_new | !(UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50)) return
+						if(!UI_style_alpha_new | !(UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50))
+							return
 						UI_style_alpha = UI_style_alpha_new
 
 					if("be_special")
@@ -1352,7 +1366,7 @@ datum/preferences
 		if(S)
 			dat += "<b>Select a character slot to load</b><hr>"
 			var/name
-			for(var/i=1, i<=MAX_SAVE_SLOTS, i++)
+			for(var/i = 1, i <= MAX_SAVE_SLOTS, i++)
 				S.cd = "/character[i]"
 				S["real_name"] >> name
 				if(!name)	name = "Character[i]"

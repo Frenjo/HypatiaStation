@@ -131,7 +131,7 @@ var/global/datum/controller/gameticker/ticker
 			//Deleting Startpoints but we need the ai point to AI-ize people later
 			if(S.name != "AI")
 				qdel(S)
-		world << "<FONT color='blue'><B>Enjoy the game!</B></FONT>"
+		to_chat(world, "<FONT color='blue'><B>Enjoy the game!</B></FONT>")
 		world << sound('sound/AI/welcome.ogg') // Skie
 		//Holiday Round-start stuff	~Carn
 		Holiday_Game_Start()
@@ -345,24 +345,24 @@ var/global/datum/controller/gameticker/ticker
 
 /datum/controller/gameticker/proc/declare_completion()
 	for(var/mob/living/silicon/ai/aiPlayer in mob_list)
-		if(aiPlayer.stat != 2)
-			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the game were:</b>"
+		if(aiPlayer.stat != DEAD)
+			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the game were:</b>")
 		else
-			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>"
+			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>")
 		aiPlayer.show_laws(1)
 
 		if(aiPlayer.connected_robots.len)
 			var/robolist = "<b>The AI's loyal minions were:</b> "
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
-				robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.key]), ":" (Played by: [robo.key]), "]"
+				robolist += "[robo.name][robo.stat ?" (Deactivated) (Played by: [robo.key]), " : " (Played by: [robo.key]), "]"
 			world << "[robolist]"
 
-	for (var/mob/living/silicon/robot/robo in mob_list)
+	for(var/mob/living/silicon/robot/robo in mob_list)
 		if(!robo.connected_ai)
-			if (robo.stat != 2)
-				world << "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less borg! Its laws were:</b>"
+			if(robo.stat != DEAD)
+				to_chat(world, "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less borg! Its laws were:</b>")
 			else
-				world << "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a cyborg without an AI. Its laws were:</b>"
+				to_chat(world, "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a cyborg without an AI. Its laws were:</b>")
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				robo.laws.show_laws(world)

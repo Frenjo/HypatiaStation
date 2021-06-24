@@ -1,44 +1,47 @@
 // Reagent declarations
 /datum/reagent/blood
-	data = new/list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=null,"resistances"=null,"trace_chem"=null, "antibodies" = null)
+	data = new/list("donor" = null, "viruses" = null, "blood_DNA" = null, "blood_type" = null, "resistances" = null, "trace_chem" = null, "antibodies" = null)
 	name = "Blood"
 	id = "blood"
 	reagent_state = REAGENT_LIQUID
 	color = "#C80000" // rgb: 200, 0, 0
 
-/datum/reagent/blood/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
+/datum/reagent/blood/reaction_mob(mob/M, method = TOUCH, volume)
 	var/datum/reagent/blood/self = src
 	qdel(src)
 	if(self.data && self.data["viruses"])
 		for(var/datum/disease/D in self.data["viruses"])
 			//var/datum/disease/virus = new D.type(0, D, 1)
 			// We don't spread.
-			if(D.spread_type == SPECIAL || D.spread_type == NON_CONTAGIOUS) continue
+			if(D.spread_type == SPECIAL || D.spread_type == NON_CONTAGIOUS)
+				continue
 			if(method == TOUCH)
 				M.contract_disease(D)
 			else //injected
 				M.contract_disease(D, 1, 0)
-	if(self.data && self.data["virus2"] && istype(M, /mob/living/carbon))//infecting...
+	if(self.data && self.data["virus2"] && iscarbon(M))//infecting...
 		var/list/vlist = self.data["virus2"]
 		if(vlist.len)
 			for(var/ID in vlist)
 				var/datum/disease2/disease/V = vlist[ID]
-
 				if(method == TOUCH)
-					infect_virus2(M,V.getcopy())
+					infect_virus2(M, V.getcopy())
 				else
-					infect_virus2(M,V.getcopy(),1) //injected, force infection!
-	if(self.data && self.data["antibodies"] && istype(M, /mob/living/carbon))//... and curing
+					infect_virus2(M, V.getcopy(),1) //injected, force infection!
+
+	if(self.data && self.data["antibodies"] && iscarbon(M))//... and curing
 		var/mob/living/carbon/C = M
 		C.antibodies |= self.data["antibodies"]
 
-/datum/reagent/blood/reaction_turf(var/turf/simulated/T, var/volume)//splash the blood all over the place
-	if(!istype(T)) return
+/datum/reagent/blood/reaction_turf(turf/simulated/T, volume)//splash the blood all over the place
+	if(!istype(T))
+		return
 	var/datum/reagent/blood/self = src
 	qdel(src)
-	if(!(volume >= 3)) return
+	if(!(volume >= 3))
+		return
 	//var/datum/disease/D = self.data["virus"]
-	if(!self.data["donor"] || istype(self.data["donor"], /mob/living/carbon/human))
+	if(!self.data["donor"] || ishuman(self.data["donor"]))
 		var/obj/effect/decal/cleanable/blood/blood_prop = locate() in T //find some blood here
 		if(!blood_prop) //first blood!
 			blood_prop = new(T)
@@ -52,7 +55,7 @@
 		if(self.data["virus2"])
 			blood_prop.virus2 = virus_copylist(self.data["virus2"])
 
-	else if(istype(self.data["donor"], /mob/living/carbon/monkey))
+	else if(ismonkey(self.data["donor"]))
 		var/obj/effect/decal/cleanable/blood/blood_prop = locate() in T
 		if(!blood_prop)
 			blood_prop = new(T)
@@ -62,7 +65,7 @@
 			blood_prop.viruses += newVirus
 			newVirus.holder = blood_prop
 
-	else if(istype(self.data["donor"], /mob/living/carbon/alien))
+	else if(isalien(self.data["donor"]))
 		var/obj/effect/decal/cleanable/blood/xeno/blood_prop = locate() in T
 		if(!blood_prop)
 			blood_prop = new(T)
@@ -82,6 +85,7 @@
 					D.cure(0)
 				..()
 */
+
 /datum/reagent/vaccine
 	//data must contain virus type
 	name = "Vaccine"
@@ -89,7 +93,7 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#C81040" // rgb: 200, 16, 64
 
-/datum/reagent/vaccine/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
+/datum/reagent/vaccine/reaction_mob(mob/M, method = TOUCH, volume)
 	var/datum/reagent/vaccine/self = src
 	qdel(src)
 	if(self.data&&method == INGEST)
@@ -115,60 +119,65 @@
 
 	custom_metabolism = 0.01
 
-/datum/reagent/water/reaction_turf(var/turf/simulated/T, var/volume)
-	if (!istype(T)) return
+/datum/reagent/water/reaction_turf(turf/simulated/T, volume)
+	if(!istype(T))
+		return
 	qdel(src)
 	if(volume >= 3)
-		if(T.wet >= 1) return
+		if(T.wet >= 1)
+			return
 		T.wet = 1
 		if(T.wet_overlay)
 			T.overlays -= T.wet_overlay
 			T.wet_overlay = null
-		T.wet_overlay = image('icons/effects/water.dmi',T,"wet_floor")
+		T.wet_overlay = image('icons/effects/water.dmi', T, "wet_floor")
 		T.overlays += T.wet_overlay
 
 		spawn(800)
-			if (!istype(T)) return
-			if(T.wet >= 2) return
+			if(!istype(T))
+				return
+			if(T.wet >= 2)
+				return
 			T.wet = 0
 			if(T.wet_overlay)
 				T.overlays -= T.wet_overlay
 				T.wet_overlay = null
 
 	for(var/mob/living/carbon/slime/M in T)
-		M.adjustToxLoss(rand(15,20))
+		M.adjustToxLoss(rand(15, 20))
 
 	var/hotspot = (locate(/obj/fire) in T)
 	if(hotspot && !istype(T, /turf/space))
 		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
-		lowertemp.temperature = max( min(lowertemp.temperature-2000,lowertemp.temperature / 2) ,0)
+		lowertemp.temperature = max(min(lowertemp.temperature - 2000, lowertemp.temperature / 2), 0)
 		lowertemp.react()
 		T.assume_air(lowertemp)
 		qdel(hotspot)
 	return
 
-/datum/reagent/water/reaction_obj(var/obj/O, var/volume)
+/datum/reagent/water/reaction_obj(obj/O, volume)
 	qdel(src)
 	var/turf/T = get_turf(O)
 	var/hotspot = (locate(/obj/fire) in T)
 	if(hotspot && !istype(T, /turf/space))
 		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
-		lowertemp.temperature = max( min(lowertemp.temperature-2000,lowertemp.temperature / 2) ,0)
+		lowertemp.temperature = max(min(lowertemp.temperature - 2000,lowertemp.temperature / 2), 0)
 		lowertemp.react()
 		T.assume_air(lowertemp)
 		qdel(hotspot)
-	if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/monkeycube))
+	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/monkeycube))
 		var/obj/item/weapon/reagent_containers/food/snacks/monkeycube/cube = O
 		if(!cube.wrapped)
 			cube.Expand()
 	return
 
-/datum/reagent/water/reaction_mob(var/mob/living/M, var/method = TOUCH, var/volume)
+/datum/reagent/water/reaction_mob(mob/living/M, method = TOUCH, volume)
 	if(method == TOUCH && isliving(M))
 		M.adjust_fire_stacks(-(volume / 10))
 		if(M.fire_stacks <= 0)
 			M.ExtinguishMob()
 		return
+
 
 /datum/reagent/water/water/holywater
 	name = "Holy Water"
@@ -176,13 +185,13 @@
 	description = "An ashen-obsidian-water mix, this solution will alter certain sections of the brain's rationality."
 	color = "#E0E8EF" // rgb: 224, 232, 239
 
-/datum/reagent/water/water/holywater/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/water/water/holywater/on_mob_life(mob/living/M as mob)
 	if(ishuman(M))
 		if((M.mind in ticker.mode.cult) && prob(10))
-			M << "\blue A cooling sensation from inside you brings you an untold calmness."
+			to_chat(M, SPAN_INFO("A cooling sensation from inside you brings you an untold calmness."))
 			ticker.mode.remove_cultist(M.mind)
 			for(var/mob/O in viewers(M, null))
-				O.show_message(text("\blue []'s eyes blink and become clearer.", M), 1) // So observers know it worked.
+				O.show_message(SPAN_INFO("[M]'s eyes blink and become clearer."), 1) // So observers know it worked.
 	holder.remove_reagent(src.id, 10 * REAGENTS_METABOLISM) //high metabolism to prevent extended uncult rolls.
 	return
 
@@ -195,14 +204,17 @@
 	color = "#009CA8" // rgb: 0, 156, 168
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/lube/reaction_turf(var/turf/simulated/T, var/volume)
-	if (!istype(T)) return
+/datum/reagent/lube/reaction_turf(turf/simulated/T, volume)
+	if(!istype(T))
+		return
 	qdel(src)
 	if(volume >= 1)
-		if(T.wet >= 2) return
+		if(T.wet >= 2)
+			return
 		T.wet = 2
 		spawn(800)
-			if (!istype(T)) return
+			if(!istype(T))
+				return
 			T.wet = 0
 			if(T.wet_overlay)
 				T.overlays -= T.wet_overlay
@@ -219,8 +231,9 @@
 
 	custom_metabolism = 0.01
 
-/datum/reagent/plasticide/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
+/datum/reagent/plasticide/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
 	// Toxins are really weak, but without being treated, last very long.
 	M.adjustToxLoss(0.2)
 	..()
@@ -235,13 +248,13 @@
 	color = "#13BC5E" // rgb: 19, 188, 94
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/slimetoxin/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/slimetoxin/on_mob_life(mob/living/M as mob)
 	if(!M)
 		M = holder.my_atom
 	if(ishuman(M))
 		var/mob/living/carbon/human/human = M
 		if(human.dna.mutantrace == null)
-			M << "\red Your flesh rapidly mutates!"
+			to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
 			human.dna.mutantrace = "slime"
 			human.update_mutantrace()
 	..()
@@ -256,11 +269,13 @@
 	color = "#13BC5E" // rgb: 19, 188, 94
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/aslimetoxin/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
-	if(istype(M, /mob/living/carbon) && M.stat != DEAD)
-		M << "\red Your flesh rapidly mutates!"
-		if(M.monkeyizing)	return
+/datum/reagent/aslimetoxin/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
+	if(iscarbon(M) && M.stat != DEAD)
+		to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
+		if(M.monkeyizing)
+			return
 		M.monkeyizing = 1
 		M.canmove = 0
 		M.icon = null
@@ -293,13 +308,16 @@
 	color = "#60A584" // rgb: 96, 165, 132
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/space_drugs/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
+/datum/reagent/space_drugs/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
 	M.druggy = max(M.druggy, 15)
 	if(isturf(M.loc) && !istype(M.loc, /turf/space))
 		if(M.canmove && !M.restrained())
-			if(prob(10)) step(M, pick(cardinal))
-	if(prob(7)) M.emote(pick("twitch","drool","moan","giggle"))
+			if(prob(10))
+				step(M, pick(cardinal))
+	if(prob(7))
+		M.emote(pick("twitch", "drool", "moan", "giggle"))
 	holder.remove_reagent(src.id, 0.5 * REAGENTS_METABOLISM)
 	return
 
@@ -339,6 +357,7 @@
 
 				return*/
 
+
 /datum/reagent/oxygen
 	name = "Oxygen"
 	id = "oxygen"
@@ -349,7 +368,7 @@
 	custom_metabolism = 0.01
 
 /datum/reagent/oxygen/on_mob_life(mob/living/M as mob, alien)
-	if(M.stat == 2)
+	if(M.stat == DEAD)
 		return
 	if(alien && (alien == IS_VOX || alien == IS_PLASMAPERSON))
 		M.adjustToxLoss(REAGENTS_METABOLISM)
@@ -366,6 +385,7 @@
 
 	custom_metabolism = 0.01
 
+
 /datum/reagent/nitrogen
 	name = "Nitrogen"
 	id = "nitrogen"
@@ -376,7 +396,7 @@
 	custom_metabolism = 0.01
 
 /datum/reagent/nitrogen/on_mob_life(mob/living/M as mob, alien)
-	if(M.stat == 2)
+	if(M.stat == DEAD)
 		return
 	if(alien && alien == IS_VOX)
 		M.adjustOxyLoss(-2 * REM)
@@ -394,6 +414,7 @@
 
 	custom_metabolism = 0.01
 
+
 /datum/reagent/potassium
 	name = "Potassium"
 	id = "potassium"
@@ -402,6 +423,7 @@
 	color = "#A0A0A0" // rgb: 160, 160, 160
 
 	custom_metabolism = 0.01
+
 
 /datum/reagent/mercury
 	name = "Mercury"
@@ -431,6 +453,7 @@
 	color = "#BF8C00" // rgb: 191, 140, 0
 
 	custom_metabolism = 0.01
+
 
 /datum/reagent/carbon
 	name = "Carbon"
@@ -493,6 +516,7 @@
 
 	custom_metabolism = 0.01
 
+
 /datum/reagent/phosphorus
 	name = "Phosphorus"
 	id = "phosphorus"
@@ -501,6 +525,7 @@
 	color = "#832828" // rgb: 131, 40, 40
 
 	custom_metabolism = 0.01
+
 
 /datum/reagent/lithium
 	name = "Lithium"
@@ -543,6 +568,7 @@
 
 	custom_metabolism = 0.01
 
+
 /datum/reagent/nitroglycerin
 	name = "Nitroglycerin"
 	id = "nitroglycerin"
@@ -551,6 +577,7 @@
 	color = "#808080" // rgb: 128, 128, 128
 
 	custom_metabolism = 0.01
+
 
 /datum/reagent/radium
 	name = "Radium"
@@ -607,7 +634,6 @@
 			W.overlays += image('icons/effects/effects.dmi', icon_state = "#673910")
 	return
 
-
 /datum/reagent/thermite/on_mob_life(mob/living/M as mob)
 	if(!M)
 		M = holder.my_atom
@@ -640,6 +666,7 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
 
+
 /datum/reagent/gold
 	name = "Gold"
 	id = "gold"
@@ -647,12 +674,14 @@
 	reagent_state = REAGENT_SOLID
 	color = "#F7C430" // rgb: 247, 196, 48
 
+
 /datum/reagent/silver
 	name = "Silver"
 	id = "silver"
 	description = "A soft, white, lustrous transition metal, it has the highest electrical conductivity of any element and the highest thermal conductivity of any metal."
 	reagent_state = REAGENT_SOLID
 	color = "#D0D0D0" // rgb: 208, 208, 208
+
 
 /datum/reagent/uranium
 	name ="Uranium"
@@ -685,12 +714,14 @@
 	reagent_state = REAGENT_SOLID
 	color = "#A8A8A8" // rgb: 168, 168, 168
 
+
 /datum/reagent/silicon
 	name = "Silicon"
 	id = "silicon"
 	description = "A tetravalent metalloid, silicon is less reactive than its chemical analog carbon."
 	reagent_state = REAGENT_SOLID
 	color = "#A8A8A8" // rgb: 168, 168, 168
+
 
 /datum/reagent/fuel
 	name = "Welding fuel"
@@ -711,7 +742,7 @@
 	return
 
 /datum/reagent/fuel/reaction_mob(mob/living/M, method = TOUCH, volume)//Splashing people with welding fuel to make them easy to ignite!
-	if(!istype(M, /mob/living))
+	if(!isliving(M))
 		return
 	if(method == TOUCH)
 		M.adjust_fire_stacks(volume / 10)
@@ -791,7 +822,7 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/impedrezene/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/impedrezene/on_mob_life(mob/living/M as mob)
 	if(!M)
 		M = holder.my_atom
 	M.jitteriness = max(M.jitteriness - 5, 0)
@@ -813,10 +844,10 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#535E66" // rgb: 83, 94, 102
 
-/datum/reagent/nanites/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
+/datum/reagent/nanites/reaction_mob(mob/M, method = TOUCH, volume)
 	qdel(src)
-	if( (prob(10) && method==TOUCH) || method==INGEST)
-		M.contract_disease(new /datum/disease/robotic_transformation(0),1)
+	if((prob(10) && method == TOUCH) || method == INGEST)
+		M.contract_disease(new /datum/disease/robotic_transformation(0), 1)
 
 
 /datum/reagent/xenomicrobes
@@ -826,10 +857,10 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#535E66" // rgb: 83, 94, 102
 
-/datum/reagent/xenomicrobes/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
+/datum/reagent/xenomicrobes/reaction_mob(mob/M, method = TOUCH, volume)
 	qdel(src)
-	if( (prob(10) && method==TOUCH) || method==INGEST)
-		M.contract_disease(new /datum/disease/xeno_transformation(0),1)
+	if((prob(10) && method == TOUCH) || method == INGEST)
+		M.contract_disease(new /datum/disease/xeno_transformation(0), 1)
 
 
 /datum/reagent/fluorosurfactant//foam precursor
@@ -839,12 +870,14 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#9E6B38" // rgb: 158, 107, 56
 
+
 /datum/reagent/foaming_agent// Metal foaming agent. This is lithium hydride. Add other recipes (e.g. LiH + H2O -> LiOH + H2) eventually.
 	name = "Foaming agent"
 	id = "foaming_agent"
 	description = "A agent that yields metallic foam when mixed with light metal and a strong acid."
 	reagent_state = REAGENT_SOLID
 	color = "#664B63" // rgb: 102, 75, 99
+
 
 /datum/reagent/nicotine
 	name = "Nicotine"
@@ -853,6 +886,7 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#181818" // rgb: 24, 24, 24
 
+
 /datum/reagent/ammonia
 	name = "Ammonia"
 	id = "ammonia"
@@ -860,11 +894,13 @@
 	reagent_state = REAGENT_GAS
 	color = "#404030" // rgb: 64, 64, 48
 
+
 /datum/reagent/ultraglue
 	name = "Ultra Glue"
 	id = "glue"
 	description = "An extremely powerful bonding agent."
 	color = "#FFFFCC" // rgb: 255, 255, 204
+
 
 /datum/reagent/diethylamine
 	name = "Diethylamine"

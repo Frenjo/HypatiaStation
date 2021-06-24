@@ -487,19 +487,19 @@ var/list/robot_verbs_default = list(
 	return
 
 
-/mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/silicon/robot/bullet_act(obj/item/projectile/Proj)
 	..(Proj)
 	if(prob(75) && Proj.damage > 0)
 		spark_system.start()
 	return 2
 
 
-/mob/living/silicon/robot/triggerAlarm(var/class, area/A, list/cameralist, var/source)
-	if (stat == 2)
+/mob/living/silicon/robot/triggerAlarm(class, area/A, list/cameralist, source)
+	if(stat == DEAD)
 		return 1
 	..()
 
-/mob/living/silicon/robot/cancelAlarm(var/class, area/A as area, obj/origin)
+/mob/living/silicon/robot/cancelAlarm(class, area/A as area, obj/origin)
 	var/has_alarm = ..()
 
 	if(!has_alarm)
@@ -508,7 +508,7 @@ var/list/robot_verbs_default = list(
 	return has_alarm
 
 /mob/living/silicon/robot/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/handcuffs)) // fuck i don't even know why isrobot() in handcuff code isn't working so this will have to do
+	if(istype(W, /obj/item/weapon/handcuffs)) // fuck i don't even know why isrobot() in handcuff code isn't working so this will have to do
 		return
 
 	if(opened) // Are they trying to insert something?
@@ -525,23 +525,23 @@ var/list/robot_verbs_default = list(
 
 				return
 
-	if (istype(W, /obj/item/weapon/weldingtool))
-		if (!getBruteLoss())
+	if(istype(W, /obj/item/weapon/weldingtool))
+		if(!getBruteLoss())
 			user << "Nothing to fix here!"
 			return
 		var/obj/item/weapon/weldingtool/WT = W
-		if (WT.remove_fuel(0))
+		if(WT.remove_fuel(0))
 			adjustBruteLoss(-30)
 			updatehealth()
 			add_fingerprint(user)
 			for(var/mob/O in viewers(user, null))
-				O.show_message(text("\red [user] has fixed some of the dents on [src]!"), 1)
+				O.show_message(SPAN_WARNING("[user] has fixed some of the dents on [src]!"), 1)
 		else
 			user << "Need more welding fuel!"
 			return
 
 	else if(istype(W, /obj/item/stack/cable_coil) && wiresexposed)
-		if (!getFireLoss())
+		if(!getFireLoss())
 			user << "Nothing to fix here!"
 			return
 		var/obj/item/stack/cable_coil/coil = W
@@ -549,7 +549,7 @@ var/list/robot_verbs_default = list(
 		updatehealth()
 		coil.use(1)
 		for(var/mob/O in viewers(user, null))
-			O.show_message(text("\red [user] has fixed some of the burnt wires on [src]!"), 1)
+			O.show_message(SPAN_WARNING("[user] has fixed some of the burnt wires on [src]!"), 1)
 
 	else if(istype(W, /obj/item/weapon/crowbar))	// crowbar means open or close the cover
 		if(opened)
@@ -579,7 +579,7 @@ var/list/robot_verbs_default = list(
 					if(C.installed == 1 || C.installed == -1)
 						removable_components += V
 
-				var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null|anything in removable_components
+				var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null | anything in removable_components
 				if(!remove)
 					return
 				var/datum/robot_component/C = components[remove]
@@ -639,7 +639,7 @@ var/list/robot_verbs_default = list(
 		else
 			user << "Unable to locate a radio."
 
-	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
+	else if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
 		if(emagged)//still allow them to open the cover
 			user << "The interface seems slightly damaged"
 		if(opened)
@@ -668,7 +668,8 @@ var/list/robot_verbs_default = list(
 			return
 
 		if(opened)//Cover is open
-			if(emagged)	return//Prevents the X has hit Y with Z message also you cant emag them twice
+			if(emagged)
+				return//Prevents the X has hit Y with Z message also you cant emag them twice
 			if(wiresexposed)
 				user << "You must close the panel first"
 				return
@@ -732,26 +733,27 @@ var/list/robot_verbs_default = list(
 
 
 	else
-		if( !(istype(W, /obj/item/device/robotanalyzer) || istype(W, /obj/item/device/healthanalyzer)) )
+		if(!(istype(W, /obj/item/device/robotanalyzer) || istype(W, /obj/item/device/healthanalyzer)))
 			spark_system.start()
 		return ..()
 
 /mob/living/silicon/robot/attack_slime(mob/living/carbon/slime/M as mob)
-	if (!ticker)
+	if(!ticker)
 		M << "You cannot attack people before the game has started."
 		return
 
-	if(M.Victim) return // can't attack while eating!
+	if(M.Victim)
+		return // can't attack while eating!
 
-	if (health > -100)
+	if(health > -100)
 
 		for(var/mob/O in viewers(src, null))
-			if ((O.client && !( O.blinded )))
+			if((O.client && !O.blinded))
 				O.show_message(text("\red <B>The [M.name] glomps []!</B>", src), 1)
 
 		var/damage = rand(1, 3)
 
-		if(istype(src, /mob/living/carbon/slime/adult))
+		if(isslimeadult(src))
 			damage = rand(20, 40)
 		else
 			damage = rand(5, 35)
@@ -759,17 +761,22 @@ var/list/robot_verbs_default = list(
 		damage = round(damage / 2) // borgs recieve half damage
 		adjustBruteLoss(damage)
 
-
 		if(M.powerlevel > 0)
 			var/stunprob = 10
 
 			switch(M.powerlevel)
-				if(1 to 2) stunprob = 20
-				if(3 to 4) stunprob = 30
-				if(5 to 6) stunprob = 40
-				if(7 to 8) stunprob = 60
-				if(9) 	   stunprob = 70
-				if(10) 	   stunprob = 95
+				if(1 to 2)
+					stunprob = 20
+				if(3 to 4)
+					stunprob = 30
+				if(5 to 6)
+					stunprob = 40
+				if(7 to 8)
+					stunprob = 60
+				if(9)
+					stunprob = 70
+				if(10)
+					stunprob = 95
 
 			if(prob(stunprob))
 				M.powerlevel -= 3
@@ -777,8 +784,8 @@ var/list/robot_verbs_default = list(
 					M.powerlevel = 0
 
 				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>The [M.name] has electrified []!</B>", src), 1)
+					if((O.client && !O.blinded))
+						O.show_message(SPAN_DANGER("The [M.name] has electrified [src]!</B>"), 1)
 
 				flick("noise", flash)
 
@@ -786,9 +793,8 @@ var/list/robot_verbs_default = list(
 				s.set_up(5, 1, src)
 				s.start()
 
-				if (prob(stunprob) && M.powerlevel >= 8)
-					adjustBruteLoss(M.powerlevel * rand(6,10))
-
+				if(prob(stunprob) && M.powerlevel >= 8)
+					adjustBruteLoss(M.powerlevel * rand(6, 10))
 
 		updatehealth()
 
@@ -801,7 +807,7 @@ var/list/robot_verbs_default = list(
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 50, 1, 1)
 		for(var/mob/O in viewers(src, null))
-			O.show_message("\red <B>[M]</B> [M.attacktext] [src]!", 1)
+			O.show_message(SPAN_WARNING("<B>[M]</B> [M.attacktext] [src]!"), 1)
 		M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
 		src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>")
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
@@ -810,7 +816,6 @@ var/list/robot_verbs_default = list(
 
 
 /mob/living/silicon/robot/attack_hand(mob/user)
-
 	add_fingerprint(user)
 
 	if(opened && !wiresexposed && (!issilicon(user)))
@@ -847,7 +852,7 @@ var/list/robot_verbs_default = list(
 	return 0
 
 /mob/living/silicon/robot/proc/check_access(obj/item/weapon/card/id/I)
-	if(!istype(req_access, /list)) //something's very wrong
+	if(!islist(req_access)) //something's very wrong
 		return 1
 
 	var/list/L = req_access
@@ -861,9 +866,8 @@ var/list/robot_verbs_default = list(
 	return 1
 
 /mob/living/silicon/robot/updateicon()
-
 	overlays.Cut()
-	if(stat == 0)
+	if(stat == CONSCIOUS)
 		overlays += "eyes"
 		overlays.Cut()
 		overlays += "eyes-[icon_state]"

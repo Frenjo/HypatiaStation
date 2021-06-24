@@ -219,9 +219,9 @@
 
 	if(elapsedTime > hang_restart_time)
 		hung()
-	else if (elapsedTime > hang_alert_time)
+	else if(elapsedTime > hang_alert_time)
 		setStatus(PROCESS_STATUS_PROBABLY_HUNG)
-	else if (elapsedTime > hang_warning_time)
+	else if(elapsedTime > hang_warning_time)
 		setStatus(PROCESS_STATUS_MAYBE_HUNG)
 
 /datum/controller/process/proc/getElapsedTime()

@@ -2,7 +2,7 @@ dmm_suite
 
 	var/debug_file = file("maploader_debug.txt")
 
-	load_map(var/dmm_file as file, var/z_offset as num, var/y_offset as num, var/x_offset as num, var/load_speed = 0 as num)
+	load_map(dmm_file as file, z_offset as num, y_offset as num, x_offset as num, load_speed = 0 as num)
 		if(!z_offset)
 			z_offset = world.maxz + 1
 
@@ -136,7 +136,7 @@ dmm_suite
 				break
 
 
-	proc/parse_grid(var/model as text, var/x_coordinate as num, var/y_coordinate as num, var/z_coordinate as num)
+	proc/parse_grid(model as text, x_coordinate as num, y_coordinate as num, z_coordinate as num)
 		//Accepts a text string containing a comma separated list of type paths of the
 		//  same construction as those contained in a .dmm file, and instantiates them.
 
@@ -202,7 +202,7 @@ dmm_suite
 					trim_right = get_list(trim_right, text_strings)
 
 				else if(findtext(trim_right, "~"))//Check for strings
-					while(findtext(trim_right,"~"))
+					while(findtext(trim_right, "~"))
 						var/reference_index = copytext(trim_right, findtext(trim_right, "~") + 1)
 						trim_right = text_strings[text2num(reference_index)]
 
@@ -211,7 +211,7 @@ dmm_suite
 					trim_right = text2num(trim_right)
 
 				//Check for file
-				else if(copytext(trim_right,1,2) == "'")
+				else if(copytext(trim_right, 1, 2) == "'")
 					trim_right = file(copytext(trim_right, 2, length(trim_right)))
 
 				fields[trim_left] = trim_right
@@ -227,14 +227,14 @@ dmm_suite
 			//Begin Instanciation
 			var/atom/instance
 
-			if(ispath(atom_def,/area))
+			if(ispath(atom_def, /area))
 				instance = locate(atom_def)
 				if(!istype(instance, atom_def))
 					instance = new atom_def
-				instance.contents.Add(locate(x_coordinate,y_coordinate,z_coordinate))
+				instance.contents.Add(locate(x_coordinate, y_coordinate, z_coordinate))
 
 			else
-				instance = new atom_def(locate(x_coordinate,y_coordinate,z_coordinate))
+				instance = new atom_def(locate(x_coordinate, y_coordinate, z_coordinate))
 				if(instance)
 					for(var/item in fields)
 						instance.vars[item] = fields[item]
@@ -250,7 +250,7 @@ dmm_suite
 
 	var/list/borked_paths = list()
 
-	proc/trim_text(var/what as text)
+	proc/trim_text(what as text)
 		while(length(what) && findtext(what, " ", 1, 2))
 			what = copytext(what, 2)
 
@@ -259,7 +259,7 @@ dmm_suite
 
 		return what
 
-	proc/get_list(var/text, var/list/text_strings)
+	proc/get_list(text, list/text_strings)
 		//First, trim the data to just the list contents
 		var/list_start = findtext(text, "(") + 1
 		var/list_end = findtext(text, ")", list_start)
@@ -287,7 +287,7 @@ dmm_suite
 					trim_right = get_list(trim_right, text_strings)
 
 				else if(findtext(trim_right, "~"))//Check for strings
-					while(findtext(trim_right,"~"))
+					while(findtext(trim_right, "~"))
 						var/reference_index = copytext(trim_right, findtext(trim_right, "~") + 1)
 						trim_right = text_strings[text2num(reference_index)]
 
@@ -296,11 +296,11 @@ dmm_suite
 					trim_right = text2num(trim_right)
 
 				//Check for file
-				else if(copytext(trim_right,1,2) == "'")
+				else if(copytext(trim_right, 1, 2) == "'")
 					trim_right = file(copytext(trim_right, 2, length(trim_right)))
 
 				if(findtext(trim_left, "~"))//Check for strings
-					while(findtext(trim_left,"~"))
+					while(findtext(trim_left, "~"))
 						var/reference_index = copytext(trim_left, findtext(trim_left, "~") + 1)
 						trim_left = text_strings[text2num(reference_index)]
 

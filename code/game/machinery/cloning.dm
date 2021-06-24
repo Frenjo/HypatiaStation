@@ -80,10 +80,10 @@
 	var/mob/selected = null
 	for(var/mob/M in player_list)
 		//Dead people only thanks!
-		if((M.stat != 2) || (!M.client))
+		if((M.stat != DEAD) || (!M.client))
 			continue
 		//They need a brain!
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman("M"))
 			var/mob/living/carbon/human/H = M
 			if(H.species.has_organ["brain"] && !H.has_brain())
 				continue
@@ -134,7 +134,7 @@
 /obj/machinery/clonepod/attack_hand(mob/user as mob)
 	if((isnull(src.occupant)) || (stat & NOPOWER))
 		return
-	if((!isnull(src.occupant)) && (src.occupant.stat != 2))
+	if((!isnull(src.occupant)) && (src.occupant.stat != DEAD))
 		var/completion = (100 * ((src.occupant.health + 100) / (src.heal_level + 100)))
 		user << "Current clone cycle is [round(completion)]% complete."
 	return
@@ -293,7 +293,7 @@
 			return
 		if((!src.locked) || (isnull(src.occupant)))
 			return
-		if((src.occupant.health < -20) && (src.occupant.stat != 2))
+		if((src.occupant.health < -20) && (src.occupant.stat != DEAD))
 			to_chat(user, SPAN_WARNING("Access refused."))
 			return
 		else

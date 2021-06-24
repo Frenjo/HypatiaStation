@@ -105,7 +105,7 @@
 		return
 
 	var/mob/living/silicon/robot/R = user
-	if(R.stat == 2)
+	if(R.stat == DEAD)
 		//Whoever had it so that a borg with a dead cell can't enter this thing should be shot. --NEO
 		return
 	if(src.occupant)

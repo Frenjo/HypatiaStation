@@ -86,7 +86,7 @@ proc/percentage_dead()
 	var/deadcount = 0
 	for(var/mob/living/carbon/human/H in mob_list)
 		if(H.client) // Monkeys and mice don't have a client, amirite?
-			if(H.stat == 2)
+			if(H.stat == DEAD)
 				deadcount++
 			total++
 

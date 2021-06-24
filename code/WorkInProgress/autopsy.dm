@@ -37,8 +37,9 @@
 		W.time_inflicted = time_inflicted
 		return W
 
-/obj/item/weapon/autopsy_scanner/proc/add_data(var/datum/organ/external/O)
-	if(!O.autopsy_data.len && !O.trace_chemicals.len) return
+/obj/item/weapon/autopsy_scanner/proc/add_data(datum/organ/external/O)
+	if(!O.autopsy_data.len && !O.trace_chemicals.len)
+		return
 
 	for(var/V in O.autopsy_data)
 		var/datum/autopsy_data/W = O.autopsy_data[V]

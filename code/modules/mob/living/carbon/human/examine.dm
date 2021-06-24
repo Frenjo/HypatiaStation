@@ -206,14 +206,14 @@
 	if(mSmallsize in mutations)
 		msg += "[t_He] [t_is] small halfling!\n"
 
-	var/distance = get_dist(usr,src)
-	if(istype(usr, /mob/dead/observer) || usr.stat == 2) // ghosts can see anything
+	var/distance = get_dist(usr, src)
+	if(isobserver(usr) || usr.stat == DEAD) // ghosts can see anything
 		distance = 1
 	if(src.stat)
 		msg += "<span class='warning'>[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep.</span>\n"
-		if((stat == 2 || src.losebreath) && distance <= 3)
+		if((stat == DEAD || src.losebreath) && distance <= 3)
 			msg += "<span class='warning'>[t_He] does not appear to be breathing.</span>\n"
-		if(istype(usr, /mob/living/carbon/human) && !usr.stat && distance <= 1)
+		if(ishuman(usr) && !usr.stat && distance <= 1)
 			for(var/mob/O in viewers(usr.loc, null))
 				O.show_message("[usr] checks [src]'s pulse.", 1)
 		spawn(15)

@@ -1,4 +1,4 @@
-/mob/living/carbon/alien/say(var/message)
+/mob/living/carbon/alien/say(message)
 	var/verb = "says"
 	var/message_range = world.view
 
@@ -9,7 +9,7 @@
 
 	message =  trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 
-	if(stat == 2)
+	if(stat == DEAD)
 		return say_dead(message)
 
 	var/datum/language/speaking = null
@@ -24,7 +24,7 @@
 					break
 
 	if(speaking)
-		message = trim(copytext(message,3))
+		message = trim(copytext(message, 3))
 
 	message = capitalize(trim_left(message))
 

@@ -533,18 +533,18 @@
 		var/datum/organ/internal/eyes/eyes = H.internal_organs["eyes"]
 		eyes.damage += rand(3, 4)
 		if(eyes.damage >= eyes.min_bruised_damage)
-			if(M.stat != 2)
+			if(M.stat != DEAD)
 				if(eyes.robotic <= 1) //robot eyes bleeding might be a bit silly
 					to_chat(M, SPAN_WARNING("Your eyes start to bleed profusely!"))
 			if(prob(50))
-				if(M.stat != 2)
+				if(M.stat != DEAD)
 					to_chat(M, SPAN_WARNING("You drop what you're holding and clutch at your eyes!"))
 					M.drop_item()
 				M.eye_blurry += 10
 				M.Paralyse(1)
 				M.Weaken(4)
 			if(eyes.damage >= eyes.min_broken_damage)
-				if(M.stat != 2)
+				if(M.stat != DEAD)
 					to_chat(M, SPAN_WARNING("You go blind!"))
 		var/datum/organ/external/affecting = M:get_organ("head")
 		if(affecting.take_damage(7))

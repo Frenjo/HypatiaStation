@@ -84,7 +84,7 @@
 		user.visible_message( \
 			"[user] unfastens \the [src].", \
 			SPAN_INFO("You have unfastened \the [src]."), \
-			"You hear ratchet.")
+			"You hear a ratchet.")
 		new /obj/item/pipe(loc, make_from=src)
 		for(var/obj/machinery/meter/meter in T)
 			if(meter.target == src)
@@ -201,9 +201,9 @@
 	src = null
 
 /obj/machinery/atmospherics/pipe/simple/proc/normalize_dir()
-	if(dir==3)
+	if(dir == 3)
 		dir = 1
-	else if(dir==12)
+	else if(dir == 12)
 		dir = 4
 
 /obj/machinery/atmospherics/pipe/simple/Destroy()
@@ -260,9 +260,9 @@
 
 	for(var/direction in cardinal)
 		if(direction&initialize_directions)
-			if (!node1_dir)
+			if(!node1_dir)
 				node1_dir = direction
-			else if (!node2_dir)
+			else if(!node2_dir)
 				node2_dir = direction
 
 	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
@@ -505,34 +505,34 @@
 
 	for(var/direction in cardinal)
 		if(direction&connect_directions)
-			for(var/obj/machinery/atmospherics/target in get_step(src,direction))
-				if(target.initialize_directions & get_dir(target,src))
+			for(var/obj/machinery/atmospherics/target in get_step(src, direction))
+				if(target.initialize_directions & get_dir(target, src))
 					node1 = target
 					connect_directions &= ~direction
 					break
-			if (node1)
+			if(node1)
 				break
 
 
 	for(var/direction in cardinal)
 		if(direction&connect_directions)
-			for(var/obj/machinery/atmospherics/target in get_step(src,direction))
-				if(target.initialize_directions & get_dir(target,src))
+			for(var/obj/machinery/atmospherics/target in get_step(src, direction))
+				if(target.initialize_directions & get_dir(target, src))
 					node2 = target
 					connect_directions &= ~direction
 					break
-			if (node2)
+			if(node2)
 				break
 
 
 	for(var/direction in cardinal)
 		if(direction&connect_directions)
-			for(var/obj/machinery/atmospherics/target in get_step(src,direction))
-				if(target.initialize_directions & get_dir(target,src))
+			for(var/obj/machinery/atmospherics/target in get_step(src, direction))
+				if(target.initialize_directions & get_dir(target, src))
 					node3 = target
 					connect_directions &= ~direction
 					break
-			if (node3)
+			if(node3)
 				break
 
 	var/turf/T = src.loc			// hide if turf is not intact
@@ -620,7 +620,7 @@
 	volume = 140
 
 	dir = SOUTH
-	initialize_directions = NORTH|SOUTH|EAST|WEST
+	initialize_directions = NORTH | SOUTH | EAST | WEST
 
 	var/obj/machinery/atmospherics/node1
 	var/obj/machinery/atmospherics/node2

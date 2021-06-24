@@ -12,7 +12,6 @@
 	desc = "Some speculate, that this virus is the cause of Wizard Federation existance. Subjects affected show the signs of mental retardation, yelling obscure sentences or total gibberish. On late stages subjects sometime express the feelings of inner power, and, cite, 'the ability to control the forces of cosmos themselves!' A gulp of strong, manly spirits usually reverts them to normal, humanlike, condition."
 	severity = "Major"
 
-
 /*
 BIRUZ BENNAR
 SCYAR NILA - teleport
@@ -25,34 +24,29 @@ STI KALY - blind
 
 /datum/disease/wizarditis/stage_act()
 	..()
-
 	switch(stage)
 		if(2)
-			if(prob(1)&&prob(50))
+			if(prob(1) && prob(50))
 				affected_mob.say(pick("You shall not pass!", "Expeliarmus!", "By Merlins beard!", "Feel the power of the Dark Side!"))
-			if(prob(1)&&prob(50))
-				affected_mob << "\red You feel [pick("that you don't have enough mana.", "that the winds of magic are gone.", "an urge to summon familiar.")]"
-
+			if(prob(1) && prob(50))
+				to_chat(affected_mob, SPAN_WARNING("You feel [pick("that you don't have enough mana", "that the winds of magic are gone", "an urge to summon familiar")]."))
 
 		if(3)
-			if(prob(1)&&prob(50))
-				affected_mob.say(pick("NEC CANTIO!","AULIE OXIN FIERA!", "STI KALY!", "TARCOL MINTI ZHERI!"))
-			if(prob(1)&&prob(50))
-				affected_mob << "\red You feel [pick("the magic bubbling in your veins","that this location gives you a +1 to INT","an urge to summon familiar.")]."
+			if(prob(1) && prob(50))
+				affected_mob.say(pick("NEC CANTIO!", "AULIE OXIN FIERA!", "STI KALY!", "TARCOL MINTI ZHERI!"))
+			if(prob(1) && prob(50))
+				to_chat(affected_mob, SPAN_WARNING("You feel [pick("the magic bubbling in your veins", "that this location gives you a +1 to INT", "an urge to summon familiar")]."))
 
 		if(4)
-
 			if(prob(1))
-				affected_mob.say(pick("NEC CANTIO!","AULIE OXIN FIERA!","STI KALY!","EI NATH!"))
+				affected_mob.say(pick("NEC CANTIO!", "AULIE OXIN FIERA!", "STI KALY!", "EI NATH!"))
 				return
-			if(prob(1)&&prob(50))
-				affected_mob << "\red You feel [pick("the tidal wave of raw power building inside","that this location gives you a +2 to INT and +1 to WIS","an urge to teleport")]."
+			if(prob(1) && prob(50))
+				to_chat(affected_mob, SPAN_WARNING("You feel [pick("the tidal wave of raw power building inside", "that this location gives you a +2 to INT and +1 to WIS", "an urge to teleport")]."))
 				spawn_wizard_clothes(50)
-			if(prob(1)&&prob(1))
+			if(prob(1) && prob(1))
 				teleport()
 	return
-
-
 
 /datum/disease/wizarditis/proc/spawn_wizard_clothes(chance = 0)
 	if(ishuman(affected_mob))
@@ -86,8 +80,6 @@ STI KALY - blind
 				H.put_in_r_hand(new /obj/item/weapon/staff(H))
 			return
 	return
-
-
 
 /datum/disease/wizarditis/proc/teleport()
 	var/list/theareas = new/list()

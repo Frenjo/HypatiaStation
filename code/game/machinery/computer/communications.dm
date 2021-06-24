@@ -463,9 +463,9 @@
 		PS.allowedtocall = !(PS.allowedtocall)
 */
 
-/proc/call_shuttle_proc(var/mob/user)
+/proc/call_shuttle_proc(mob/user)
 	//if ((!( ticker ) || emergency_shuttle.location))
-	if ((!( ticker ) || emergency_shuttle.location())) // Updated to reflect 'shuttles' port. -Frenjo
+	if((!ticker || emergency_shuttle.location())) // Updated to reflect 'shuttles' port. -Frenjo
 		return
 
 	if(sent_strike_team == 1)
@@ -473,7 +473,7 @@
 		return
 
 	if(world.time < 6000) // Ten minute grace period to let the game get going without lolmetagaming. -- TLE
-		user << "The emergency shuttle is refueling. Please wait another [round((6000-world.time)/600)] minutes before trying again."
+		user << "The emergency shuttle is refueling. Please wait another [round((6000 - world.time) / 600)] minutes before trying again."
 		return
 
 	//if(emergency_shuttle.direction == -1)
@@ -482,7 +482,7 @@
 		return
 
 	//if(emergency_shuttle.online)
-	if (emergency_shuttle.online()) // Updated to reflect 'shuttles' port. -Frenjo.
+	if(emergency_shuttle.online()) // Updated to reflect 'shuttles' port. -Frenjo.
 		user << "The emergency shuttle is already on its way."
 		return
 
@@ -499,9 +499,9 @@
 
 	return
 
-/proc/init_shift_change(var/mob/user, var/force = 0)
+/proc/init_shift_change(mob/user, force = 0)
 	//if ((!( ticker ) || emergency_shuttle.location))
-	if ((!( ticker ) || emergency_shuttle.location())) // Updated to reflect 'shuttles' port. -Frenjo
+	if((!ticker || emergency_shuttle.location())) // Updated to reflect 'shuttles' port. -Frenjo
 		return
 
 	//if(emergency_shuttle.direction == -1)
@@ -510,7 +510,7 @@
 		return
 
 	//if(emergency_shuttle.online)
-	if (emergency_shuttle.online()) // Updated to reflect 'shuttles' port. -Frenjo.
+	if(emergency_shuttle.online()) // Updated to reflect 'shuttles' port. -Frenjo.
 		user << "The shuttle is already on its way."
 		return
 
@@ -525,7 +525,7 @@
 			return
 
 		if(world.time < 135000) // cant call the transfer until 15:45
-			user << "It is not crew transfer time. [round((135000-world.time)/600)] minutes before trying again."//may need to change "/600"
+			user << "It is not crew transfer time. [round((135000 - world.time) / 600)] minutes before trying again."//may need to change "/600"
 			return
 
 		if(ticker.mode.name == "revolution" || ticker.mode.name == "AI malfunction" || ticker.mode.name == "sandbox")
@@ -548,9 +548,9 @@
 
 	return
 
-/proc/cancel_call_proc(var/mob/user)
+/proc/cancel_call_proc(mob/user)
 	//if ((!( ticker ) || emergency_shuttle.location || emergency_shuttle.direction == 0 || emergency_shuttle.timeleft() < 300))
-	if ((!( ticker ) || !emergency_shuttle.can_recall())) // Updated to reflect 'shuttles' port. -Frenjo
+	if((!ticker || !emergency_shuttle.can_recall())) // Updated to reflect 'shuttles' port. -Frenjo
 		return
 	if((ticker.mode.name == "blob")||(ticker.mode.name == "meteor"))
 		return
@@ -562,11 +562,11 @@
 		message_admins("[key_name_admin(user)] has recalled the shuttle.", 1)
 	return
 
-/obj/machinery/computer/communications/proc/post_status(var/command, var/data1, var/data2)
-
+/obj/machinery/computer/communications/proc/post_status(command, data1, data2)
 	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
 
-	if(!frequency) return
+	if(!frequency)
+		return
 
 	var/datum/signal/status_signal = new
 	status_signal.source = src
@@ -586,17 +586,16 @@
 
 
 /obj/machinery/computer/communications/Destroy()
-
 	for(var/obj/machinery/computer/communications/commconsole in world)
-		if(istype(commconsole.loc,/turf) && commconsole != src)
+		if(isturf(commconsole.loc) && commconsole != src)
 			return ..()
 
 	for(var/obj/item/weapon/circuitboard/communications/commboard in world)
-		if(istype(commboard.loc,/turf) || istype(commboard.loc,/obj/item/weapon/storage))
+		if(isturf(commboard.loc) || istype(commboard.loc, /obj/item/weapon/storage))
 			return ..()
 
 	for(var/mob/living/silicon/ai/shuttlecaller in player_list)
-		if(!shuttlecaller.stat && shuttlecaller.client && istype(shuttlecaller.loc,/turf))
+		if(!shuttlecaller.stat && shuttlecaller.client && isturf(shuttlecaller.loc))
 			return ..()
 
 	if(ticker.mode.name == "revolution" || ticker.mode.name == "AI malfunction" || sent_strike_team)
@@ -613,17 +612,16 @@
 	..()
 
 /obj/item/weapon/circuitboard/communications/Destroy()
-
 	for(var/obj/machinery/computer/communications/commconsole in world)
-		if(istype(commconsole.loc,/turf))
+		if(isturf(commconsole.loc))
 			return ..()
 
 	for(var/obj/item/weapon/circuitboard/communications/commboard in world)
-		if((istype(commboard.loc,/turf) || istype(commboard.loc,/obj/item/weapon/storage)) && commboard != src)
+		if((isturf(commboard.loc) || istype(commboard.loc, /obj/item/weapon/storage)) && commboard != src)
 			return ..()
 
 	for(var/mob/living/silicon/ai/shuttlecaller in player_list)
-		if(!shuttlecaller.stat && shuttlecaller.client && istype(shuttlecaller.loc,/turf))
+		if(!shuttlecaller.stat && shuttlecaller.client && isturf(shuttlecaller.loc))
 			return ..()
 
 	if(ticker.mode.name == "revolution" || ticker.mode.name == "AI malfunction" || sent_strike_team)

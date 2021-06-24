@@ -75,7 +75,7 @@
 		to_chat(usr, SPAN_WARNING("You cut yourself on the paper."))
 		return
 	var/n_name = copytext(sanitize(input(usr, "What would you like to label the paper?", "Paper Labelling", null) as text), 1, MAX_NAME_LEN)
-	if((loc == usr && usr.stat == 0))
+	if((loc == usr && usr.stat == CONSCIOUS))
 		name = "paper[(n_name ? text("- '[n_name]'") : null)]"
 	add_fingerprint(usr)
 	return

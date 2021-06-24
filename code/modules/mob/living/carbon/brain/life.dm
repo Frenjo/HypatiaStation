@@ -205,21 +205,21 @@
 
 	proc/handle_regular_hud_updates()
 
-		if (stat == 2 || (XRAY in src.mutations))
+		if(stat == DEAD || (XRAY in src.mutations))
 			sight |= SEE_TURFS
 			sight |= SEE_MOBS
 			sight |= SEE_OBJS
 			see_in_dark = 8
 			see_invisible = SEE_INVISIBLE_LEVEL_TWO
-		else if (stat != 2)
+		else if(stat != DEAD)
 			sight &= ~SEE_TURFS
 			sight &= ~SEE_MOBS
 			sight &= ~SEE_OBJS
 			see_in_dark = 2
 			see_invisible = SEE_INVISIBLE_LIVING
 
-		if (healths)
-			if (stat != 2)
+		if(healths)
+			if(stat != DEAD)
 				switch(health)
 					if(100 to INFINITY)
 						healths.icon_state = "health0"
@@ -238,28 +238,29 @@
 			else
 				healths.icon_state = "health7"
 
-		if(pullin)	pullin.icon_state = "pull[pulling ? 1 : 0]"
-		if (client)
-			client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
+		if(pullin)
+			pullin.icon_state = "pull[pulling ? 1 : 0]"
+		if(client)
+			client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired)
 
-		if ((blind && stat != 2))
-			if ((blinded))
+		if((blind && stat != DEAD))
+			if((blinded))
 				blind.invisibility = 0 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 			else
 				blind.invisibility = 101 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 
-				if (disabilities & NEARSIGHTED)
+				if(disabilities & NEARSIGHTED)
 					client.screen += global_hud.vimpaired
 
-				if (eye_blurry)
+				if(eye_blurry)
 					client.screen += global_hud.blurry
 
-				if (druggy)
+				if(druggy)
 					client.screen += global_hud.druggy
 
-		if (stat != 2)
-			if (machine)
-				if (!( machine.check_eye(src) ))
+		if(stat != DEAD)
+			if(machine)
+				if(!machine.check_eye(src))
 					reset_view(null)
 			else
 				if(client && !client.adminobs)

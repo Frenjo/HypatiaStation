@@ -18,17 +18,15 @@
 	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
 	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 
-
 /datum/game_mode/wizard/announce()
-	world << "<B>The current game mode is - Wizard!</B>"
-	world << "<B>There is a \red SPACE WIZARD\black on the station. You can't let him achieve his objective!</B>"
-
+	to_chat(world, "<B>The current game mode is - Wizard!</B>")
+	to_chat(world, "<B>There is a \red SPACE WIZARD\black on the station. You can't let him achieve his objective!</B>")
 
 /datum/game_mode/wizard/can_start()//This could be better, will likely have to recode it later
 	if(!..())
 		return 0
 	var/list/datum/mind/possible_wizards = get_players_for_role(BE_WIZARD)
-	if(possible_wizards.len==0)
+	if(possible_wizards.len == 0)
 		return 0
 	var/datum/mind/wizard = pick(possible_wizards)
 	wizards += wizard
@@ -37,16 +35,14 @@
 	wizard.special_role = "Wizard"
 	wizard.original = wizard.current
 	if(wizardstart.len == 0)
-		wizard.current << "<B>\red A starting location for you could not be found, please report this bug!</B>"
+		to_chat(wizard.current, SPAN_DANGER("A starting location for you could not be found, please report this bug!"))
 		return 0
 	return 1
-
 
 /datum/game_mode/wizard/pre_setup()
 	for(var/datum/mind/wizard in wizards)
 		wizard.current.loc = pick(wizardstart)
 	return 1
-
 
 /datum/game_mode/wizard/post_setup()
 	for(var/datum/mind/wizard in wizards)
@@ -57,22 +53,20 @@
 		name_wizard(wizard.current)
 		greet_wizard(wizard)
 
-	spawn (rand(waittime_l, waittime_h))
+	spawn(rand(waittime_l, waittime_h))
 		send_intercept()
 	..()
 	return
 
-
-/datum/game_mode/proc/forge_wizard_objectives(var/datum/mind/wizard)
-	switch(rand(1,100))
+/datum/game_mode/proc/forge_wizard_objectives(datum/mind/wizard)
+	switch(rand(1, 100))
 		if(1 to 30)
-
 			var/datum/objective/assassinate/kill_objective = new
 			kill_objective.owner = wizard
 			kill_objective.find_target()
 			wizard.objectives += kill_objective
 
-			if (!(locate(/datum/objective/escape) in wizard.objectives))
+			if(!(locate(/datum/objective/escape) in wizard.objectives))
 				var/datum/objective/escape/escape_objective = new
 				escape_objective.owner = wizard
 				wizard.objectives += escape_objective
@@ -82,7 +76,7 @@
 			steal_objective.find_target()
 			wizard.objectives += steal_objective
 
-			if (!(locate(/datum/objective/escape) in wizard.objectives))
+			if(!(locate(/datum/objective/escape) in wizard.objectives))
 				var/datum/objective/escape/escape_objective = new
 				escape_objective.owner = wizard
 				wizard.objectives += escape_objective
@@ -98,13 +92,13 @@
 			steal_objective.find_target()
 			wizard.objectives += steal_objective
 
-			if (!(locate(/datum/objective/survive) in wizard.objectives))
+			if(!(locate(/datum/objective/survive) in wizard.objectives))
 				var/datum/objective/survive/survive_objective = new
 				survive_objective.owner = wizard
 				wizard.objectives += survive_objective
 
 		else
-			if (!(locate(/datum/objective/hijack) in wizard.objectives))
+			if(!(locate(/datum/objective/hijack) in wizard.objectives))
 				var/datum/objective/hijack/hijack_objective = new
 				hijack_objective.owner = wizard
 				wizard.objectives += hijack_objective
@@ -117,9 +111,10 @@
 	var/wizard_name_second = pick(wizard_second)
 	var/randomname = "[wizard_name_first] [wizard_name_second]"
 	spawn(0)
-		var/newname = copytext(sanitize(input(wizard_mob, "You are the Space Wizard. Would you like to change your name to something else?", "Name change", randomname) as null|text),1,MAX_NAME_LEN)
+		var/newname = copytext(sanitize(input(wizard_mob, "You are the Space Wizard. Would you like to change your name to something else?", \
+											"Name change", randomname) as null | text), 1, MAX_NAME_LEN)
 
-		if (!newname)
+		if(!newname)
 			newname = randomname
 
 		wizard_mob.real_name = newname
@@ -129,17 +124,17 @@
 	return
 
 
-/datum/game_mode/proc/greet_wizard(var/datum/mind/wizard, var/you_are=1)
-	if (you_are)
-		wizard.current << "<B>\red You are the Space Wizard!</B>"
-	wizard.current << "<B>The Space Wizards Federation has given you the following tasks:</B>"
+/datum/game_mode/proc/greet_wizard(datum/mind/wizard, you_are = 1)
+	if(you_are)
+		to_chat(wizard.current, SPAN_DANGER("You are the Space Wizard!"))
+	to_chat(wizard.current, "<B>The Space Wizards Federation has given you the following tasks:</B>")
 	if(!config.objectives_disabled)
 		var/obj_count = 1
 		for(var/datum/objective/objective in wizard.objectives)
-			wizard.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
+			to_chat(wizard.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			obj_count++
 	else
-		wizard.current << "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>"
+		to_chat(wizard.current, "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>")
 	return
 
 
@@ -154,7 +149,7 @@
 */
 
 /datum/game_mode/proc/equip_wizard(mob/living/carbon/human/wizard_mob)
-	if (!istype(wizard_mob))
+	if(!istype(wizard_mob))
 		return
 
 	//So zards properly get their items when they are admin-made.
@@ -170,56 +165,53 @@
 	wizard_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(wizard_mob), slot_shoes)
 	wizard_mob.equip_to_slot_or_del(new /obj/item/clothing/suit/wizrobe(wizard_mob), slot_wear_suit)
 	wizard_mob.equip_to_slot_or_del(new /obj/item/clothing/head/wizard(wizard_mob), slot_head)
-	if(wizard_mob.backbag == 2) wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(wizard_mob), slot_back)
-	if(wizard_mob.backbag == 3) wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(wizard_mob), slot_back)
-	if(wizard_mob.backbag == 4) wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(wizard_mob), slot_back)
+	if(wizard_mob.backbag == 2)
+		wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(wizard_mob), slot_back)
+	if(wizard_mob.backbag == 3)
+		wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(wizard_mob), slot_back)
+	if(wizard_mob.backbag == 4)
+		wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(wizard_mob), slot_back)
 	wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/box(wizard_mob), slot_in_backpack)
 //	wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/scrying_gem(wizard_mob), slot_l_store) For scrying gem.
 	wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/teleportation_scroll(wizard_mob), slot_r_store)
 	wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/spellbook(wizard_mob), slot_r_hand)
 
-	wizard_mob << "You will find a list of available spells in your spell book. Choose your magic arsenal carefully."
-	wizard_mob << "In your pockets you will find a teleport scroll. Use it as needed."
+	to_chat(wizard_mob, "You will find a list of available spells in your spell book. Choose your magic arsenal carefully.")
+	to_chat(wizard_mob, "In your pockets you will find a teleport scroll. Use it as needed.")
 	wizard_mob.mind.store_memory("<B>Remember:</B> do not forget to prepare your spells.")
 	wizard_mob.update_icons()
 	return 1
 
-
 /datum/game_mode/wizard/check_finished()
-
 	if(config.continous_rounds)
 		return ..()
 
 	var/wizards_alive = 0
 	for(var/datum/mind/wizard in wizards)
-		if(!istype(wizard.current,/mob/living/carbon))
+		if(!iscarbon(wizard.current))
 			continue
-		if(wizard.current.stat==2)
+		if(wizard.current.stat == DEAD)
 			continue
 		wizards_alive++
 
-	if (wizards_alive)
+	if(wizards_alive)
 		return ..()
 	else
 		finished = 1
 		return 1
 
-
-
 /datum/game_mode/wizard/declare_completion()
 	if(finished)
-		feedback_set_details("round_end_result","loss - wizard killed")
-		world << "\red <FONT size = 3><B> The wizard[(wizards.len>1)?"s":""] has been killed by the crew! The Space Wizards Federation has been taught a lesson they will not soon forget!</B></FONT>"
+		feedback_set_details("round_end_result", "loss - wizard killed")
+		to_chat(world, SPAN_DANGER("<FONT size = 3>The wizard[(wizards.len > 1) ? "s" : ""] has been killed by the crew! The Space Wizards Federation has been taught a lesson they will not soon forget!</FONT>"))
 	..()
 	return 1
-
 
 /datum/game_mode/proc/auto_declare_completion_wizard()
 	if(wizards.len)
 		var/text = "<FONT size = 2><B>The wizards/witches were:</B></FONT>"
 
 		for(var/datum/mind/wizard in wizards)
-
 			text += "<br>[wizard.key] was [wizard.name] ("
 			if(wizard.current)
 				if(wizard.current.stat == DEAD)
@@ -238,27 +230,27 @@
 				for(var/datum/objective/objective in wizard.objectives)
 					if(objective.check_completion())
 						text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='green'><B>Success!</B></font>"
-						feedback_add_details("wizard_objective","[objective.type]|SUCCESS")
+						feedback_add_details("wizard_objective", "[objective.type]|SUCCESS")
 					else
 						text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='red'>Fail.</font>"
-						feedback_add_details("wizard_objective","[objective.type]|FAIL")
+						feedback_add_details("wizard_objective", "[objective.type]|FAIL")
 						wizardwin = 0
 					count++
 
-				if(wizard.current && wizard.current.stat!=2 && wizardwin)
+				if(wizard.current && wizard.current.stat != DEAD && wizardwin)
 					text += "<br><font color='green'><B>The wizard was successful!</B></font>"
-					feedback_add_details("wizard_success","SUCCESS")
+					feedback_add_details("wizard_success", "SUCCESS")
 				else
 					text += "<br><font color='red'><B>The wizard has failed!</B></font>"
-					feedback_add_details("wizard_success","FAIL")
+					feedback_add_details("wizard_success", "FAIL")
 
-		world << text
+		to_chat(world, text)
 	return 1
 
 //OTHER PROCS
 
 //To batch-remove wizard spells. Linked to mind.dm.
-/mob/proc/spellremove(var/mob/M as mob)
+/mob/proc/spellremove(mob/M as mob)
 	for(var/obj/effect/proc_holder/spell/spell_to_remove in src.spell_list)
 		qdel(spell_to_remove)
 
@@ -267,13 +259,13 @@ Made a proc so this is not repeated 14 (or more) times.*/
 /mob/proc/casting()
 //Removed the stat check because not all spells require clothing now.
 	if(!istype(usr:wear_suit, /obj/item/clothing/suit/wizrobe))
-		usr << "I don't feel strong enough without my robe."
+		to_chat(usr, "I don't feel strong enough without my robe.")
 		return 0
 	if(!istype(usr:shoes, /obj/item/clothing/shoes/sandal))
-		usr << "I don't feel strong enough without my sandals."
+		to_chat(usr, "I don't feel strong enough without my sandals.")
 		return 0
 	if(!istype(usr:head, /obj/item/clothing/head/wizard))
-		usr << "I don't feel strong enough without my hat."
+		to_chat(usr, "I don't feel strong enough without my hat.")
 		return 0
 	else
 		return 1

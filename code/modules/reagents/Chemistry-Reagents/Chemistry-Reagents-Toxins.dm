@@ -109,7 +109,7 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/toxin/lexorin/on_mob_life(mob/living/M as mob)
-	if(M.stat == 2.0)
+	if(M.stat == DEAD)
 		return
 	if(!M)
 		M = holder.my_atom

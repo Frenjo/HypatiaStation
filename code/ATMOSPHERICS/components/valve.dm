@@ -124,7 +124,7 @@
 	src.add_fingerprint(usr)
 	update_icon(1)
 	sleep(10)
-	if (src.open)
+	if(src.open)
 		src.close()
 	else
 		src.open()
@@ -157,9 +157,9 @@
 
 	for(var/direction in cardinal)
 		if(direction&initialize_directions)
-			if (!node1_dir)
+			if(!node1_dir)
 				node1_dir = direction
-			else if (!node2_dir)
+			else if(!node2_dir)
 				node2_dir = direction
 
 	for(var/obj/machinery/atmospherics/target in get_step(src, node1_dir))
@@ -331,6 +331,6 @@
 		user.visible_message( \
 			"[user] unfastens \the [src].", \
 			SPAN_INFO("You have unfastened \the [src]."), \
-			"You hear ratchet.")
+			"You hear a ratchet.")
 		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)

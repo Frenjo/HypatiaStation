@@ -1,9 +1,9 @@
-/mob/living/silicon/say_quote(var/text)
+/mob/living/silicon/say_quote(text)
 	var/ending = copytext(text, length(text))
 
-	if (ending == "?")
+	if(ending == "?")
 		return "queries"
-	else if (ending == "!")
+	else if(ending == "!")
 		return "declares"
 
 	return "states"
@@ -12,18 +12,18 @@
 #define IS_ROBOT 2
 #define IS_PAI 3
 
-/mob/living/silicon/say_understands(var/other,var/datum/language/speaking = null)
+/mob/living/silicon/say_understands(other, datum/language/speaking = null)
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if(!speaking)
-		if (istype(other, /mob/living/carbon/human))
+		if(ishuman(other))
 			return 1
-		if (istype(other, /mob/living/silicon))
+		if(issilicon(other))
 			return 1
-		if (istype(other, /mob/living/carbon/brain))
+		if(isbrain(other))
 			return 1
 	return ..()
 
-/mob/living/silicon/say(var/message)
+/mob/living/silicon/say(message)
 	if(!message)
 		return
 
@@ -36,18 +36,19 @@
 
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 
-	if(stat == 2)
+	if(stat == DEAD)
 		return say_dead(message)
 
 	if(copytext(message, 1, 2) == "*")
 		return emote(copytext(message, 2))
 
 	var/bot_type = 0			//Let's not do a fuck ton of type checks, thanks.
-	if(istype(src, /mob/living/silicon/ai))
+								// This is slightly more acceptable now given it's just tiny macro checks. -Frenjo
+	if(isAI(src))
 		bot_type = IS_AI
-	else if(istype(src, /mob/living/silicon/robot))
+	else if(isrobot(src))
 		bot_type = IS_ROBOT
-	else if(istype(src, /mob/living/silicon/pai))
+	else if(ispAI(src))
 		bot_type = IS_PAI
 
 	var/mob/living/silicon/ai/AI = src		//and let's not declare vars over and over and over for these guys.
@@ -56,15 +57,15 @@
 
 
 	//Must be concious to speak
-	if (stat)
+	if(stat)
 		return
 
 	var/verbage = say_quote(message)
 
 	//parse radio key and consume it
 	var/message_mode = parse_message_mode(message, "general")
-	if (message_mode)
-		if (message_mode == "general")
+	if(message_mode)
+		if(message_mode == "general")
 			message = trim(copytext(message, 2))
 		else
 			message = trim(copytext(message, 3))
@@ -72,27 +73,27 @@
 
 	//parse language key and consume it
 	var/datum/language/speaking = parse_language(message)
-	if (speaking)
+	if(speaking)
 		verbage = speaking.speech_verb
 		message = copytext(message, 3)
 
 		if(speaking.flags & HIVEMIND)
-			speaking.broadcast(src,trim(message))
+			speaking.broadcast(src, trim(message))
 			return
 
 	// Currently used by drones.
 	if(local_transmit)
-		var/list/listeners = hearers(5,src)
+		var/list/listeners = hearers(5, src)
 		listeners |= src
 
 		for(var/mob/living/silicon/D in listeners)
-			if(D.client && istype(D,src.type))
+			if(D.client && istype(D, src.type))
 				D << "<b>[src]</b> transmits, \"[message]\""
 
-		for (var/mob/M in player_list)
-			if (istype(M, /mob/new_player))
+		for(var/mob/M in player_list)
+			if(istype(M, /mob/new_player))
 				continue
-			else if(M.stat == 2 &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
+			else if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
 				if(M.client) M << "<b>[src]</b> transmits, \"[message]\""
 		return
 
@@ -142,12 +143,12 @@
 	return ..(message, null, verbage)
 
 //For holopads only. Usable by AI.
-/mob/living/silicon/ai/proc/holopad_talk(var/message)
+/mob/living/silicon/ai/proc/holopad_talk(message)
 	log_say("[key_name(src)] : [message]")
 
 	message = trim(message)
 
-	if (!message)
+	if(!message)
 		return
 
 	var/obj/machinery/hologram/holopad/T = src.current

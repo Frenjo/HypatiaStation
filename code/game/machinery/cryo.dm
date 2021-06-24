@@ -42,7 +42,7 @@
 		return
 
 	if(occupant)
-		if(occupant.stat != 2)
+		if(occupant.stat != DEAD)
 			process_occupant()
 
 	if(air_contents)
@@ -204,25 +204,25 @@
 	if(air_contents.total_moles < 10)
 		return
 	if(occupant)
-		if(occupant.stat == 2)
+		if(occupant.stat == DEAD)
 			return
-		occupant.bodytemperature += 2*(air_contents.temperature - occupant.bodytemperature)*current_heat_capacity/(current_heat_capacity + air_contents.heat_capacity())
+		occupant.bodytemperature += 2 * (air_contents.temperature - occupant.bodytemperature) * current_heat_capacity / (current_heat_capacity + air_contents.heat_capacity())
 		occupant.bodytemperature = max(occupant.bodytemperature, air_contents.temperature) // this is so ugly i'm sorry for doing it i'll fix it later i promise
 		occupant.stat = 1
 		if(occupant.bodytemperature < T0C)
-			occupant.sleeping = max(5, (1/occupant.bodytemperature)*2000)
-			occupant.Paralyse(max(5, (1/occupant.bodytemperature)*3000))
+			occupant.sleeping = max(5, (1 / occupant.bodytemperature) * 2000)
+			occupant.Paralyse(max(5, (1 / occupant.bodytemperature) * 3000))
 			if(air_contents.gas["oxygen"] > 2)
 				if(occupant.getOxyLoss()) occupant.adjustOxyLoss(-1)
 			else
 				occupant.adjustOxyLoss(-1)
 			//severe damage should heal waaay slower without proper chemicals
 			if(occupant.bodytemperature < 225)
-				if (occupant.getToxLoss())
-					occupant.adjustToxLoss(max(-1, -20/occupant.getToxLoss()))
-				var/heal_brute = occupant.getBruteLoss() ? min(1, 20/occupant.getBruteLoss()) : 0
-				var/heal_fire = occupant.getFireLoss() ? min(1, 20/occupant.getFireLoss()) : 0
-				occupant.heal_organ_damage(heal_brute,heal_fire)
+				if(occupant.getToxLoss())
+					occupant.adjustToxLoss(max(-1, -20 / occupant.getToxLoss()))
+				var/heal_brute = occupant.getBruteLoss() ? min(1, 20 / occupant.getBruteLoss()) : 0
+				var/heal_fire = occupant.getFireLoss() ? min(1, 20 / occupant.getFireLoss()) : 0
+				occupant.heal_organ_damage(heal_brute, heal_fire)
 		var/has_cryo = occupant.reagents.get_reagent_amount("cryoxadone") >= 1
 		var/has_clonexa = occupant.reagents.get_reagent_amount("clonexadone") >= 1
 		var/has_cryo_medicine = has_cryo || has_clonexa
@@ -236,7 +236,7 @@
 	var/air_heat_capacity = air_contents.heat_capacity()
 	var/combined_heat_capacity = current_heat_capacity + air_heat_capacity
 	if(combined_heat_capacity > 0)
-		var/combined_energy = T20C*current_heat_capacity + air_heat_capacity*air_contents.temperature
+		var/combined_energy = T20C * current_heat_capacity + air_heat_capacity * air_contents.temperature
 		air_contents.temperature = combined_energy/combined_heat_capacity
 
 /obj/machinery/atmospherics/unary/cryo_cell/proc/expel_gas()
@@ -251,7 +251,7 @@
 	//loc.assume_air(expel_gas)
 
 /obj/machinery/atmospherics/unary/cryo_cell/proc/go_out()
-	if(!(occupant))
+	if(!occupant)
 		return
 	//for(var/obj/O in src)
 	//	O.loc = loc
@@ -267,19 +267,19 @@
 	return
 
 /obj/machinery/atmospherics/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob)
-	if (!istype(M))
+	if(!istype(M))
 		usr << "\red <B>The cryo cell cannot handle such a lifeform!</B>"
 		return
-	if (occupant)
+	if(occupant)
 		usr << "\red <B>The cryo cell is already occupied!</B>"
 		return
-	if (M.abiotic())
+	if(M.abiotic())
 		usr << "\red Subject may not have abiotic items on."
 		return
 	if(!node)
 		usr << "\red The cell is not correctly connected to its pipe network!"
 		return
-	if (M.client)
+	if(M.client)
 		M.client.perspective = EYE_PERSPECTIVE
 		M.client.eye = src
 	M.stop_pulling()
@@ -298,7 +298,7 @@
 	set category = "Object"
 	set src in oview(1)
 	if(usr == occupant)//If the user is inside the tube...
-		if (usr.stat == 2)//and he's not dead....
+		if(usr.stat == DEAD)//and he's not dead....
 			return
 		usr << "\blue Release sequence activated. This will take two minutes."
 		sleep(1200)
@@ -306,7 +306,7 @@
 			return
 		go_out()//and release him from the eternal prison.
 	else
-		if (usr.stat != 0)
+		if(usr.stat != CONSCIOUS)
 			return
 		go_out()
 	add_fingerprint(usr)
@@ -320,7 +320,7 @@
 		if(M.Victim == usr)
 			usr << "You're too busy getting your life sucked out of you."
 			return
-	if (usr.stat != 0 || stat & (NOPOWER|BROKEN))
+	if(usr.stat != CONSCIOUS || stat & (NOPOWER | BROKEN))
 		return
 	put_mob(usr)
 	return

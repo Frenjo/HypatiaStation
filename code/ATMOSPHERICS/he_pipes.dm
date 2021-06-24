@@ -27,9 +27,9 @@
 
 	for(var/direction in cardinal)
 		if(direction&initialize_directions_he)
-			if (!node1_dir)
+			if(!node1_dir)
 				node1_dir = direction
-			else if (!node2_dir)
+			else if(!node2_dir)
 				node2_dir = direction
 
 	for(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target in get_step(src,node1_dir))
@@ -97,17 +97,17 @@
 // BubbleWrap
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/New()
 	.. ()
-	switch (dir)
-		if (SOUTH)
+	switch(dir)
+		if(SOUTH)
 			initialize_directions = NORTH
 			initialize_directions_he = SOUTH
-		if (NORTH)
+		if(NORTH)
 			initialize_directions = SOUTH
 			initialize_directions_he = NORTH
-		if (EAST)
+		if(EAST)
 			initialize_directions = WEST
 			initialize_directions_he = EAST
-		if (WEST)
+		if(WEST)
 			initialize_directions = EAST
 			initialize_directions_he = WEST
 // BubbleWrap END

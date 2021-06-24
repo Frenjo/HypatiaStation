@@ -35,7 +35,7 @@ var/list/weighted_mundaneevent_locations = list()
 	viable_random_events = list(SECURITY_BREACH, CULT_CELL_REVEALED, BIOHAZARD_OUTBREAK, PIRATES, ALIEN_RAIDERS)
 	viable_mundane_events = list(RESEARCH_BREAKTHROUGH, RESEARCH_BREAKTHROUGH, BARGAINS, GOSSIP)
 
-/datum/trade_destination/anansi/get_custom_eventstring(var/event_type)
+/datum/trade_destination/anansi/get_custom_eventstring(event_type)
 	if(event_type == RESEARCH_BREAKTHROUGH)
 		return "Thanks to research conducted on the NSS Anansi, Second Red Cross Society wishes to announce a major breakthough in the field of \
 		[pick("mind-machine interfacing", "neuroscience", "nano-augmentation", "genetics")]. NanoTrasen is expected to announce a co-exploitation deal within the fortnight."

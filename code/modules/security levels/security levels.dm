@@ -143,7 +143,7 @@
 				security_level = SEC_LEVEL_DELTA
 
 				// Stole this code from above, again again, made the alien-esque sprite to go with it! -Frenjo
-				var/obj/machinery/computer/communications/CC = locate(/obj/machinery/computer/communications,world)
+				var/obj/machinery/computer/communications/CC = locate(/obj/machinery/computer/communications, world)
 				if(CC)
 					CC.post_status("alert", "delta")
 

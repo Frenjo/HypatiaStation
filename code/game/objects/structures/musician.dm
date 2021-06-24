@@ -27,7 +27,7 @@
 		desc = "This is a space piano, like a regular piano, but always in tune! Even if the musician isn't."
 		icon_state = "piano"
 
-/obj/structure/device/piano/proc/playnote(var/note as text)
+/obj/structure/device/piano/proc/playnote(note as text)
 	//world << "Note: [note]"
 	var/soundfile
 	/*BYOND loads resource files at compile time if they are ''. This means you can't really manipulate them dynamically.
@@ -253,7 +253,7 @@
 	playing = 0
 	updateUsrDialog()
 
-/obj/structure/device/piano/attack_hand(var/mob/user as mob)
+/obj/structure/device/piano/attack_hand(mob/user as mob)
 	if(!anchored)
 		return
 
@@ -307,7 +307,6 @@
 	onclose(user, "piano")
 
 /obj/structure/device/piano/Topic(href, href_list)
-
 	if(!in_range(src, usr) || issilicon(usr) || !anchored || !usr.canmove || usr.restrained())
 		usr << browse(null, "window=piano;size=700x300")
 		onclose(usr, "piano")
@@ -411,24 +410,24 @@
 	return
 
 /obj/structure/device/piano/attackby(obj/item/O as obj, mob/user as mob)
-	if (istype(O, /obj/item/weapon/wrench))
-		if (anchored)
+	if(istype(O, /obj/item/weapon/wrench))
+		if(anchored)
 			playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 			user << "\blue You begin to loosen \the [src]'s casters..."
-			if (do_after(user, 40))
+			if(do_after(user, 40))
 				user.visible_message( \
 					"[user] loosens \the [src]'s casters.", \
 					"\blue You have loosened \the [src]. Now it can be pulled somewhere else.", \
-					"You hear ratchet.")
+					"You hear a ratchet.")
 				src.anchored = 0
 		else
 			playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 			user << "\blue You begin to tighten \the [src] to the floor..."
-			if (do_after(user, 20))
+			if(do_after(user, 20))
 				user.visible_message( \
 					"[user] tightens \the [src]'s casters.", \
 					"\blue You have tightened \the [src]'s casters. Now it can be played again.", \
-					"You hear ratchet.")
+					"You hear a ratchet.")
 				src.anchored = 1
 	else
 		..()

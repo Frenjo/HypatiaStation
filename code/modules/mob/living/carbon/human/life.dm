@@ -195,7 +195,7 @@
 					pixel_x = old_x
 					pixel_y = old_y
 					return
-		if (disabilities & NERVOUS)
+		if(disabilities & NERVOUS)
 			speech_problem_flag = 1
 			if (prob(10))
 				stuttering = max(10, stuttering)
@@ -211,7 +211,7 @@
 						emote("drool")
 		*/
 
-		if(stat != 2)
+		if(stat != DEAD)
 			var/rn = rand(0, 200)
 			if(getBrainLoss() >= 5)
 				if(0 <= rn && rn <= 3)
@@ -1041,7 +1041,7 @@
 */
 
 		// nutrition decrease
-		if(nutrition > 0 && stat != 2)
+		if(nutrition > 0 && stat != DEAD)
 			nutrition = max (0, nutrition - HUNGER_FACTOR)
 
 		if(nutrition > 450)
@@ -1575,13 +1575,13 @@
 				if(M.loc != src)
 					stomach_contents.Remove(M)
 					continue
-				if(istype(M, /mob/living/carbon) && stat != 2)
-					if(M.stat == 2)
+				if(iscarbon(M) && stat != DEAD)
+					if(M.stat == DEAD)
 						M.death(1)
 						stomach_contents.Remove(M)
 						qdel(M)
 						continue
-					if(air_master.current_cycle%3==1)
+					if(air_master.current_cycle % 3 == 1)
 						if(!(M.status_flags & GODMODE))
 							M.adjustBruteLoss(5)
 						nutrition += 10
@@ -1594,7 +1594,8 @@
 		..()
 		if(status_flags & GODMODE)
 			return 0	//godmode
-		if(analgesic || (species && species.flags & NO_PAIN)) return // analgesic avoids all traumatic shock temporarily
+		if(analgesic || (species && species.flags & NO_PAIN))
+			return // analgesic avoids all traumatic shock temporarily
 
 		if(health < config.health_threshold_softcrit)// health 0 makes you immediately collapse
 			shock_stage = max(shock_stage, 61)
@@ -1609,7 +1610,7 @@
 			return
 
 		if(shock_stage == 10)
-			src << "<font color='red'><b>"+pick("It hurts so much!", "You really need some painkillers..", "Dear god, the pain!")
+			src << "<font color='red'><b>" + pick("It hurts so much!", "You really need some painkillers..", "Dear god, the pain!")
 
 		if(shock_stage >= 30)
 			if(shock_stage == 30)
@@ -1618,22 +1619,22 @@
 			stuttering = max(stuttering, 5)
 
 		if(shock_stage == 40)
-			src << "<font color='red'><b>"+pick("The pain is excrutiating!", "Please, just end the pain!", "Your whole body is going numb!")
+			src << "<font color='red'><b>" + pick("The pain is excruciating!", "Please, just end the pain!", "Your whole body is going numb!")
 
 		if(shock_stage >= 60)
 			if(shock_stage == 60) emote("me",1,"'s body becomes limp.")
 			if(prob(2))
-				src << "<font color='red'><b>"+pick("The pain is excrutiating!", "Please, just end the pain!", "Your whole body is going numb!")
+				src << "<font color='red'><b>" + pick("The pain is excruciating!", "Please, just end the pain!", "Your whole body is going numb!")
 				Weaken(20)
 
 		if(shock_stage >= 80)
 			if(prob(5))
-				src << "<font color='red'><b>"+pick("The pain is excrutiating!", "Please, just end the pain!", "Your whole body is going numb!")
+				src << "<font color='red'><b>" + pick("The pain is excruciating!", "Please, just end the pain!", "Your whole body is going numb!")
 				Weaken(20)
 
 		if(shock_stage >= 120)
 			if(prob(2))
-				src << "<font color='red'><b>"+pick("You black out!", "You feel like you could die any moment now.", "You're about to lose consciousness.")
+				src << "<font color='red'><b>" + pick("You black out!", "You feel like you could die any moment now.", "You're about to lose consciousness.")
 				Paralyse(5)
 
 		if(shock_stage == 150)
@@ -1687,11 +1688,10 @@
 	This proc below is only called when those HUD elements need to change as determined by the mobs hud_updateflag.
 */
 
-
 /mob/living/carbon/human/proc/handle_hud_list()
 	if(BITTEST(hud_updateflag, HEALTH_HUD))
 		var/image/holder = hud_list[HEALTH_HUD]
-		if(stat == 2)
+		if(stat == DEAD)
 			holder.icon_state = "hudhealth-100" 	// X_X
 		else
 			var/percentage_health = RoundHealth(((0.0 + health) / species.total_health) * 100)
@@ -1711,7 +1711,7 @@
 
 		var/image/holder = hud_list[STATUS_HUD]
 		var/image/holder2 = hud_list[STATUS_HUD_OOC]
-		if(stat == 2)
+		if(stat == DEAD)
 			holder.icon_state = "huddead"
 			holder2.icon_state = "huddead"
 		else if(status_flags & XENO_HOST)
@@ -1802,7 +1802,6 @@
 		var/image/holder = hud_list[SPECIALROLE_HUD]
 		holder.icon_state = "hudblank"
 		if(mind)
-
 			switch(mind.special_role)
 				if("traitor","Syndicate")
 					holder.icon_state = "hudsyndicate"

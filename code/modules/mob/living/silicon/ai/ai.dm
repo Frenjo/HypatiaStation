@@ -297,10 +297,10 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/ai_call_shuttle()
 	set category = "AI Commands"
 	set name = "Call Emergency Shuttle"
-	if(src.stat == 2)
+	if(src.stat == DEAD)
 		src << "You can't call the shuttle because you are dead!"
 		return
-	if(istype(usr,/mob/living/silicon/ai))
+	if(isAI(usr))
 		var/mob/living/silicon/ai/AI = src
 		if(AI.control_disabled)
 			usr << "Wireless control is disabled!"
@@ -321,7 +321,7 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/proc/ai_cancel_call()
 	set category = "AI Commands"
-	if(src.stat == 2)
+	if(src.stat == DEAD)
 		src << "You can't send the shuttle back because you are dead!"
 		return
 	if(istype(usr,/mob/living/silicon/ai))
@@ -332,8 +332,8 @@ var/list/ai_verbs_default = list(
 	cancel_call_proc(src)
 	return
 
-/mob/living/silicon/ai/check_eye(var/mob/user as mob)
-	if (!current)
+/mob/living/silicon/ai/check_eye(mob/user as mob)
+	if(!current)
 		return null
 	user.reset_view(current)
 	return 1
@@ -342,8 +342,8 @@ var/list/ai_verbs_default = list(
 	return 0
 
 /mob/living/silicon/ai/emp_act(severity)
-	if (prob(30))
-		switch(pick(1,2))
+	if(prob(30))
+		switch(pick(1, 2))
 			if(1)
 				view_core()
 			if(2)
@@ -354,18 +354,18 @@ var/list/ai_verbs_default = list(
 	if(usr != src)
 		return
 	..()
-	if (href_list["mach_close"])
-		if (href_list["mach_close"] == "aialerts")
+	if(href_list["mach_close"])
+		if(href_list["mach_close"] == "aialerts")
 			viewalerts = 0
 		var/t1 = text("window=[]", href_list["mach_close"])
 		unset_machine()
 		src << browse(null, t1)
-	if (href_list["switchcamera"])
+	if(href_list["switchcamera"])
 		switchCamera(locate(href_list["switchcamera"])) in cameranet.cameras
-	if (href_list["showalerts"])
+	if(href_list["showalerts"])
 		ai_alerts()
 	//Carn: holopad requests
-	if (href_list["jumptoholopad"])
+	if(href_list["jumptoholopad"])
 		var/obj/machinery/hologram/holopad/H = locate(href_list["jumptoholopad"])
 		if(stat == CONSCIOUS)
 			if(H)
@@ -373,11 +373,13 @@ var/list/ai_verbs_default = list(
 			else
 				src << "<span class='notice'>Unable to locate the holopad.</span>"
 
-	if (href_list["lawc"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
+	if(href_list["lawc"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
 		var/L = text2num(href_list["lawc"])
-		switch(lawcheck[L+1])
-			if ("Yes") lawcheck[L+1] = "No"
-			if ("No") lawcheck[L+1] = "Yes"
+		switch(lawcheck[L + 1])
+			if("Yes")
+				lawcheck[L + 1] = "No"
+			if("No")
+				lawcheck[L + 1] = "Yes"
 //		src << text ("Switching Law [L]'s report status to []", lawcheck[L+1])
 		checklaws()
 
@@ -385,18 +387,20 @@ var/list/ai_verbs_default = list(
 		play_vox_word(href_list["say_word"], null, src)
 		return
 
-	if (href_list["lawi"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
+	if(href_list["lawi"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
 		var/L = text2num(href_list["lawi"])
 		switch(ioncheck[L])
-			if ("Yes") ioncheck[L] = "No"
-			if ("No") ioncheck[L] = "Yes"
+			if("Yes")
+				ioncheck[L] = "No"
+			if("No")
+				ioncheck[L] = "Yes"
 //		src << text ("Switching Law [L]'s report status to []", lawcheck[L+1])
 		checklaws()
 
-	if (href_list["laws"]) // With how my law selection code works, I changed statelaws from a verb to a proc, and call it through my law selection panel. --NeoFite
+	if(href_list["laws"]) // With how my law selection code works, I changed statelaws from a verb to a proc, and call it through my law selection panel. --NeoFite
 		statelaws()
 
-	if (href_list["track"])
+	if(href_list["track"])
 		var/mob/target = locate(href_list["track"]) in mob_list
 		/*
 		var/mob/living/silicon/ai/A = locate(href_list["track2"]) in mob_list
@@ -407,14 +411,14 @@ var/list/ai_verbs_default = list(
 			ai_actual_track(target)
 		return
 
-	else if (href_list["faketrack"])
+	else if(href_list["faketrack"])
 		var/mob/target = locate(href_list["track"]) in mob_list
 		var/mob/living/silicon/ai/A = locate(href_list["track2"]) in mob_list
 		if(A && target)
 
 			A.cameraFollow = target
 			A << text("Now tracking [] on camera.", target.name)
-			if (usr.machine == null)
+			if(usr.machine == null)
 				usr.machine = usr
 
 			while(src.cameraFollow == target)
@@ -429,9 +433,9 @@ var/list/ai_verbs_default = list(
 	for(var/mob/M in viewers(src, null))
 		M.show_message(text("\red [] has been hit by []", src, O), 1)
 		//Foreach goto(19)
-	if (health > 0)
+	if(health > 0)
 		adjustBruteLoss(30)
-		if ((O.icon_state == "flaming"))
+		if((O.icon_state == "flaming"))
 			adjustFireLoss(40)
 		updatehealth()
 	return
@@ -464,11 +468,10 @@ var/list/ai_verbs_default = list(
 		else				A.set_light(0)
 
 
-/mob/living/silicon/ai/proc/switchCamera(var/obj/machinery/camera/C)
-
+/mob/living/silicon/ai/proc/switchCamera(obj/machinery/camera/C)
 	src.cameraFollow = null
 
-	if (!C || stat == 2) //C.can_use())
+	if(!C || stat == DEAD) //C.can_use())
 		return 0
 
 	if(!src.eyeobj)
@@ -480,8 +483,8 @@ var/list/ai_verbs_default = list(
 
 	return 1
 
-/mob/living/silicon/ai/triggerAlarm(var/class, area/A, list/cameralist, var/source)
-	if (stat == 2)
+/mob/living/silicon/ai/triggerAlarm(class, area/A, list/cameralist, source)
+	if(stat == DEAD)
 		return 1
 
 	..()
@@ -494,7 +497,7 @@ var/list/ai_verbs_default = list(
 	if(viewalerts)
 		ai_alerts()
 
-/mob/living/silicon/ai/cancelAlarm(var/class, area/A as area, var/source)
+/mob/living/silicon/ai/cancelAlarm(class, area/A as area, source)
 	var/has_alarm = ..()
 
 	if(!has_alarm)
@@ -522,22 +525,22 @@ var/list/ai_verbs_default = list(
 	src.cameraFollow = null
 	var/cameralist[0]
 
-	if(usr.stat == 2)
+	if(usr.stat == DEAD)
 		usr << "You can't change your camera network because you are dead!"
 		return
 
 	var/mob/living/silicon/ai/U = usr
 
-	for (var/obj/machinery/camera/C in cameranet.cameras)
+	for(var/obj/machinery/camera/C in cameranet.cameras)
 		if(!C.can_use())
 			continue
 
-		var/list/tempnetwork = difflist(C.network,RESTRICTED_CAMERA_NETWORKS,1)
+		var/list/tempnetwork = difflist(C.network, RESTRICTED_CAMERA_NETWORKS, 1)
 		if(tempnetwork.len)
 			for(var/i in tempnetwork)
 				cameralist[i] = i
 	var/old_network = network
-	network = input(U, "Which network would you like to view?") as null|anything in cameralist
+	network = input(U, "Which network would you like to view?") as null | anything in cameralist
 
 	if(!U.eyeobj)
 		U.view_core()
@@ -566,20 +569,19 @@ var/list/ai_verbs_default = list(
 	set category = "AI Commands"
 	set name = "AI Status"
 
-	if(usr.stat == 2)
+	if(usr.stat == DEAD)
 		usr <<"You cannot change your emotional status because you are dead!"
 		return
 	var/list/ai_emotions = list("Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Sad", "BSOD", "Blank", "Problems?", "Awesome", "Facepalm", "Friend Computer")
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
-	for (var/obj/machinery/M in machines) //change status
+	for(var/obj/machinery/M in machines) //change status
 		if(istype(M, /obj/machinery/ai_status_display))
 			var/obj/machinery/ai_status_display/AISD = M
 			AISD.emotion = emote
 		//if Friend Computer, change ALL displays
 		else if(istype(M, /obj/machinery/status_display))
-
 			var/obj/machinery/status_display/SD = M
-			if(emote=="Friend Computer")
+			if(emote == "Friend Computer")
 				SD.friendc = 1
 			else
 				SD.friendc = 0
@@ -592,8 +594,7 @@ var/list/ai_verbs_default = list(
 	set category = "AI Commands"
 
 	var/input
-	if(alert("Would you like to select a hologram based on a crew member or switch to unique avatar?",,"Crew Member","Unique")=="Crew Member")
-
+	if(alert("Would you like to select a hologram based on a crew member or switch to unique avatar?", , "Crew Member", "Unique") == "Crew Member")
 		var/personnel_list[] = list()
 
 		for(var/datum/data/record/t in data_core.locked)//Look in data core locked.
@@ -613,7 +614,7 @@ var/list/ai_verbs_default = list(
 		"default",
 		"floating face"
 		)
-		input = input("Please select a hologram:") as null|anything in icon_list
+		input = input("Please select a hologram:") as null | anything in icon_list
 		if(input)
 			qdel(holo_icon)
 			switch(input)

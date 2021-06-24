@@ -99,11 +99,11 @@
 /obj/machinery/camera/blob_act()
 	return
 
-/obj/machinery/camera/proc/setViewRange(var/num = 7)
+/obj/machinery/camera/proc/setViewRange(num = 7)
 	src.view_range = num
 	cameranet.updateVisibility(src, 0)
 
-/obj/machinery/camera/proc/shock(var/mob/living/user)
+/obj/machinery/camera/proc/shock(mob/living/user)
 	if(!istype(user))
 		return
 	user.electrocute_act(10, src)
@@ -121,7 +121,6 @@
 		deactivate(user, 0)
 
 /obj/machinery/camera/attackby(W as obj, mob/living/user as mob)
-
 	// DECONSTRUCTION
 	if(isscrewdriver(W))
 		//user << "<span class='notice'>You start to [panel_open ? "close" : "open"] the camera's panel.</span>"
@@ -143,7 +142,7 @@
 
 
 	// OTHER
-	else if ((istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/device/pda)) && isliving(user))
+	else if((istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/device/pda)) && isliving(user))
 		var/mob/living/U = user
 		var/obj/item/weapon/paper/X = null
 		var/obj/item/device/pda/P = null
@@ -193,7 +192,7 @@
 		..()
 	return
 
-/obj/machinery/camera/proc/deactivate(user as mob, var/choice = 1)
+/obj/machinery/camera/proc/deactivate(user as mob, choice = 1)
 	if(choice==1)
 		status = !( src.status )
 		if (!(src.status))
@@ -264,15 +263,14 @@
 
 //Return a working camera that can see a given mob
 //or null if none
-/proc/seen_by_camera(var/mob/M)
+/proc/seen_by_camera(mob/M)
 	for(var/obj/machinery/camera/C in oview(4, M))
 		if(C.can_use())	// check if camera disabled
 			return C
 			break
 	return null
 
-/proc/near_range_camera(var/mob/M)
-
+/proc/near_range_camera(mob/M)
 	for(var/obj/machinery/camera/C in range(4, M))
 		if(C.can_use())	// check if camera disabled
 			return C
@@ -280,8 +278,7 @@
 
 	return null
 
-/obj/machinery/camera/proc/weld(var/obj/item/weapon/weldingtool/WT, var/mob/user)
-
+/obj/machinery/camera/proc/weld(obj/item/weapon/weldingtool/WT, mob/user)
 	if(busy)
 		return 0
 	if(!WT.isOn())

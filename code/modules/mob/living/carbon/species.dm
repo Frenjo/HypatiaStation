@@ -158,7 +158,7 @@
 		for(var/datum/organ/internal/I in H.internal_organs)
 			I.mechanize()
 
-/datum/species/proc/hug(mob/living/carbon/human/H, var/mob/living/target)
+/datum/species/proc/hug(mob/living/carbon/human/H, mob/living/target)
 	var/t_him = "them"
 	switch(target.gender)
 		if(MALE)
@@ -166,8 +166,8 @@
 		if(FEMALE)
 			t_him = "her"
 
-	H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
-					"<span class='notice'>You hug [target] to make [t_him] feel better!</span>")
+	H.visible_message(SPAN_NOTICE("[H] hugs [target] to make [t_him] feel better!"), \
+					SPAN_NOTICE("You hug [target] to make [t_him] feel better!"))
 
 /datum/species/proc/add_inherent_verbs(mob/living/carbon/human/H)
 	if(inherent_verbs)
@@ -184,7 +184,7 @@
 /datum/species/proc/handle_post_spawn(mob/living/carbon/human/H) //Handles anything not already covered by basic species assignment.
 	add_inherent_verbs(H)
 
-/datum/species/proc/handle_death(var/mob/living/carbon/human/H) //Handles any species-specific death events (such as dionaea nymph spawns).
+/datum/species/proc/handle_death(mob/living/carbon/human/H) //Handles any species-specific death events (such as dionaea nymph spawns).
 	if(flags & IS_SYNTHETIC)
 		//H.make_jittery(200) //S-s-s-s-sytem f-f-ai-i-i-i-i-lure-ure-ure-ure
 		H.h_style = ""
@@ -228,6 +228,7 @@
 	//If you wanted to add a species-level ability:
 	/*abilities = list(/client/proc/test_ability)*/
 
+
 // Standardised the species is called 'Soghun' but their language is 'Sinta'unathi'. -Frenjo
 /datum/species/soghun
 	name = "Soghun"
@@ -254,6 +255,7 @@
 	reagent_tag = IS_SOGHUN
 
 	flesh_color = "#34AF10"
+
 
 /datum/species/tajaran
 	name = "Tajaran"
@@ -282,6 +284,7 @@
 
 	flesh_color = "#AFA59E"
 
+
 /datum/species/skrell
 	name = "Skrell"
 	icobase = 'icons/mob/human_races/r_skrell.dmi'
@@ -298,6 +301,7 @@
 	flesh_color = "#8CD7A3"
 
 	abilities = list(/client/proc/skrell_remotesay) // Added Skrell telepathy. -Frenjo
+
 
 /datum/species/vox
 	name = "Vox"
@@ -394,6 +398,7 @@
 		M.cortical_stacks += I
 		M.raiders[H.mind] = I
 
+
 /datum/species/diona
 	name = "Diona"
 	icobase = 'icons/mob/human_races/r_diona.dmi'
@@ -456,7 +461,8 @@
 		else
 			qdel(D)
 
-	H.visible_message("\red[H] splits apart with a wet slithering noise!")
+	H.visible_message(SPAN_WARNING("[H] splits apart with a wet slithering noise!"))
+
 
 /datum/species/machine
 	name = "Machine"
@@ -495,6 +501,7 @@
 
 	survival_kit = null
 
+
 /datum/species/obsedai
 	name = "Obsedai"
 	icobase = 'icons/mob/human_races/r_obsedai.dmi'
@@ -527,6 +534,7 @@
 	flesh_color = "#4A4845"
 
 	survival_kit = null
+
 
 /datum/species/plasmapeople
 	name = "Plasmaperson"
@@ -575,7 +583,7 @@
 			if(environment.gas["oxygen"] >= 1)
 				H.adjust_fire_stacks(1)
 				if(!H.on_fire && H.fire_stacks > 0)
-					H.visible_message("<span class='danger'>[H]'s body reacts with the atmosphere and bursts into flames!</span>", "<span class='danger'>Your body reacts with the atmosphere and bursts into flame!</span>")
+					H.visible_message(SPAN_DANGER("[H]'s body reacts with the atmosphere and bursts into flames!"), SPAN_DANGER("Your body reacts with the atmosphere and bursts into flame!"))
 				H.IgniteMob()
 	else if(H.fire_stacks)
 		var/obj/item/clothing/under/plasmapeople/P = H.w_uniform
@@ -594,6 +602,7 @@
 		return 1
 
 	return 0
+
 
 //Species unarmed attacks
 /datum/unarmed_attack
@@ -629,7 +638,7 @@
 	edge = 1
 
 /datum/unarmed_attack/bite/is_usable(mob/living/carbon/human/user)
-	if (user.wear_mask && istype(user.wear_mask, /obj/item/clothing/mask/muzzle))
+	if(user.wear_mask && istype(user.wear_mask, /obj/item/clothing/mask/muzzle))
 		return 0
 	return 1
 

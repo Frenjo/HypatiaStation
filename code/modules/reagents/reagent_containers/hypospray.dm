@@ -1,7 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// HYPOSPRAY
 ////////////////////////////////////////////////////////////////////////////////
-
 /obj/item/weapon/reagent_containers/hypospray
 	name = "hypospray"
 	desc = "The DeForest Medical Corporation hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients."
@@ -17,7 +16,6 @@
 /obj/item/weapon/reagent_containers/hypospray/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-
 /obj/item/weapon/reagent_containers/hypospray/New() //comment this to make hypos start off empty
 	..()
 	//reagents.add_reagent("tricordrazine", 30) // Commented this, planning on adding hypos to the RnD protolathe. -Frenjo
@@ -25,17 +23,16 @@
 
 /obj/item/weapon/reagent_containers/hypospray/attack(mob/M as mob, mob/user as mob)
 	if(!reagents.total_volume)
-		user << "\red [src] is empty."
+		to_chat(user, SPAN_WARNING("[src] is empty."))
 		return
-	if (!( istype(M, /mob) ))
+	if(!ismob(M))
 		return
-	if (reagents.total_volume)
-		user << "\blue You inject [M] with [src]."
-		M << "\red You feel a tiny prick!"
+	if(reagents.total_volume)
+		to_chat(user, SPAN_INFO("You inject [M] with [src]."))
+		to_chat(M, SPAN_WARNING("You feel a tiny prick!"))
 
 		src.reagents.reaction(M, INGEST)
 		if(M.reagents)
-
 			var/list/injected = list()
 			for(var/datum/reagent/R in src.reagents.reagent_list)
 				injected += R.name
@@ -45,9 +42,10 @@
 			msg_admin_attack("[user.name] ([user.ckey]) injected [M.name] ([M.key]) with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 			var/trans = reagents.trans_to(M, amount_per_transfer_from_this)
-			user << "\blue [trans] units injected. [reagents.total_volume] units remaining in [src]."
+			to_chat(user, SPAN_INFO("[trans] units injected. [reagents.total_volume] units remaining in [src]."))
 
 	return
+
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector
 	name = "autoinjector"
@@ -80,6 +78,6 @@
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/examine()
 	..()
 	if(reagents && reagents.reagent_list.len)
-		usr << "\blue It is currently loaded."
+		to_chat(usr, SPAN_INFO("It is currently loaded."))
 	else
-		usr << "\blue It is spent."
+		to_chat(usr, SPAN_INFO("It is spent."))

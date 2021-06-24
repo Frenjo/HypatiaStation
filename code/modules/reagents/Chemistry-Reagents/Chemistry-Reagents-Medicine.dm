@@ -63,7 +63,7 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/bicaridine/on_mob_life(mob/living/M as mob, alien)
-	if(M.stat == 2.0)
+	if(M.stat == DEAD)
 		return
 	if(!M)
 		M = holder.my_atom
@@ -82,7 +82,7 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/kelotane/on_mob_life(mob/living/M as mob)
-	if(M.stat == 2.0)
+	if(M.stat == DEAD)
 		return
 	if(!M)
 		M = holder.my_atom
@@ -120,7 +120,7 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/dexalin/on_mob_life(mob/living/M as mob, alien)
-	if(M.stat == 2.0)
+	if(M.stat == DEAD)
 		return  //See above, down and around. --Agouri
 	if(!M)
 		M = holder.my_atom
@@ -145,7 +145,7 @@
 	color = "#DDC8EA" // rgb: 221, 200, 234 - I was aiming for a lighter version of tricordrazine.
 
 /datum/reagent/cordrazine/on_mob_life(mob/living/M as mob, alien)
-	if(M.stat == 2.0)
+	if(M.stat == DEAD)
 		return
 	if(!M)
 		M = holder.my_atom
@@ -170,7 +170,7 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/tricordrazine/on_mob_life(mob/living/M as mob, alien)
-	if(M.stat == 2.0)
+	if(M.stat == DEAD)
 		return
 	if(!M)
 		M = holder.my_atom
@@ -261,7 +261,7 @@
 	overdose = REAGENTS_OVERDOSE/2
 
 /datum/reagent/dermaline/on_mob_life(mob/living/M as mob, alien)
-	if(M.stat == 2.0) //THE GUY IS **DEAD**! BEREFT OF ALL LIFE HE RESTS IN PEACE etc etc. He does NOT metabolise shit anymore, god DAMN
+	if(M.stat == DEAD) //THE GUY IS **DEAD**! BEREFT OF ALL LIFE HE RESTS IN PEACE etc etc. He does NOT metabolise shit anymore, god DAMN
 		return
 	if(!M)
 		M = holder.my_atom
@@ -280,7 +280,7 @@
 	overdose = REAGENTS_OVERDOSE/2
 
 /datum/reagent/dexalinp/on_mob_life(mob/living/M as mob, alien)
-	if(M.stat == 2.0)
+	if(M.stat == DEAD)
 		return
 	if(!M)
 		M = holder.my_atom
@@ -306,7 +306,7 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/arithrazine/on_mob_life(mob/living/M as mob)
-	if(M.stat == 2.0)
+	if(M.stat == DEAD)
 		return  //See above, down and around. --Agouri
 	if(!M)
 		M = holder.my_atom

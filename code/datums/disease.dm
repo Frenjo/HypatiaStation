@@ -85,7 +85,7 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 		return 0
 	var/result = 1
 	if(cure_list == list(cure_id))
-		if(istype(cure_id, /list))
+		if(islist(cure_id))
 			for(var/C_id in cure_id)
 				if(!affected_mob.reagents.has_reagent(C_id))
 					result = 0
@@ -93,7 +93,7 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 			result = 0
 	else
 		for(var/C_list in cure_list)
-			if(istype(C_list, /list))
+			if(islist(C_list))
 				for(var/C_id in cure_id)
 					if(affected_mob.reagents != null)
 						result = 0
@@ -111,7 +111,7 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 			return 1
 	return 0
 
-/datum/disease/proc/spread(atom/source = null, airborne_range = 2,  force_spread)
+/datum/disease/proc/spread(atom/source = null, airborne_range = 2, force_spread)
 	//world << "Disease [src] proc spread was called from holder [source]"
 
 	// If we're overriding how we spread, say so here
@@ -168,7 +168,7 @@ var/list/diseases = typesof(/datum/disease) - /datum/disease
 		if(affected_mob.stat != DEAD) //he's alive
 			stage_act()
 		else //he's dead.
-			if(spread_type!=SPECIAL)
+			if(spread_type != SPECIAL)
 				spread_type = CONTACT_GENERAL
 			affected_mob = null
 	if(!affected_mob) //the virus is in inanimate obj

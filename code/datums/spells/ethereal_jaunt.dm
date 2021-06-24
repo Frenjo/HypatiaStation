@@ -77,6 +77,7 @@
 				qdel(animation)
 				qdel(holder)
 
+
 /obj/effect/dummy/spell_jaunt
 	name = "water"
 	icon = 'icons/effects/effects.dmi'
@@ -100,7 +101,8 @@
 	else
 		to_chat(user, SPAN_WARNING("Some strange aura is blocking the way!"))
 	src.canmove = 0
-	spawn(2) src.canmove = 1
+	spawn(2)
+		src.canmove = 1
 
 /obj/effect/dummy/spell_jaunt/ex_act(blah)
 	return

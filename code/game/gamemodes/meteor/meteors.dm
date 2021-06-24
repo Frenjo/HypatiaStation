@@ -10,7 +10,7 @@
 
 	wavesecret = 1
 	for(var/i = 0 to number)
-		spawn(rand(10,100))
+		spawn(rand(10, 100))
 			spawn_meteor()
 	spawn(meteor_wave_delay)
 		wavesecret = 0
@@ -32,25 +32,25 @@
 	do
 		switch(pick(1, 2, 3, 4))
 			if(1) //NORTH
-				starty = world.maxy-(TRANSITIONEDGE+1)
-				startx = rand((TRANSITIONEDGE+1), world.maxx-(TRANSITIONEDGE+1))
+				starty = world.maxy - (TRANSITIONEDGE + 1)
+				startx = rand((TRANSITIONEDGE + 1), world.maxx - (TRANSITIONEDGE + 1))
 				endy = TRANSITIONEDGE
-				endx = rand(TRANSITIONEDGE, world.maxx-TRANSITIONEDGE)
+				endx = rand(TRANSITIONEDGE, world.maxx - TRANSITIONEDGE)
 			if(2) //EAST
-				starty = rand((TRANSITIONEDGE+1),world.maxy-(TRANSITIONEDGE+1))
-				startx = world.maxx-(TRANSITIONEDGE+1)
-				endy = rand(TRANSITIONEDGE, world.maxy-TRANSITIONEDGE)
+				starty = rand((TRANSITIONEDGE + 1), world.maxy - (TRANSITIONEDGE + 1))
+				startx = world.maxx - (TRANSITIONEDGE + 1)
+				endy = rand(TRANSITIONEDGE, world.maxy - TRANSITIONEDGE)
 				endx = TRANSITIONEDGE
 			if(3) //SOUTH
-				starty = (TRANSITIONEDGE+1)
-				startx = rand((TRANSITIONEDGE+1), world.maxx-(TRANSITIONEDGE+1))
+				starty = (TRANSITIONEDGE + 1)
+				startx = rand((TRANSITIONEDGE + 1), world.maxx - (TRANSITIONEDGE + 1))
 				endy = world.maxy-TRANSITIONEDGE
-				endx = rand(TRANSITIONEDGE, world.maxx-TRANSITIONEDGE)
+				endx = rand(TRANSITIONEDGE, world.maxx - TRANSITIONEDGE)
 			if(4) //WEST
-				starty = rand((TRANSITIONEDGE+1), world.maxy-(TRANSITIONEDGE+1))
-				startx = (TRANSITIONEDGE+1)
-				endy = rand(TRANSITIONEDGE,world.maxy-TRANSITIONEDGE)
-				endx = world.maxx-TRANSITIONEDGE
+				starty = rand((TRANSITIONEDGE + 1), world.maxy - (TRANSITIONEDGE + 1))
+				startx = (TRANSITIONEDGE + 1)
+				endy = rand(TRANSITIONEDGE, world.maxy - TRANSITIONEDGE)
+				endx = world.maxx - TRANSITIONEDGE
 
 		pickedstart = locate(startx, starty, 1)
 		pickedgoal = locate(endx, endy, 1)
@@ -59,7 +59,6 @@
 			return
 
 	while(!istype(pickedstart, /turf/space) || pickedstart.loc.name != "Space") //FUUUCK, should never happen.
-
 
 	var/obj/effect/meteor/M
 	switch(rand(1, 100))

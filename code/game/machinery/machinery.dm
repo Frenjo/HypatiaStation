@@ -187,14 +187,12 @@ Class Procs:
 		return 1
 	if(usr.restrained() || usr.lying || usr.stat)
 		return 1
-	if(!(istype(usr, /mob/living/carbon/human) || \
-			istype(usr, /mob/living/silicon) || \
-			istype(usr, /mob/living/carbon/monkey) && ticker && ticker.mode.name == "monkey"))
+	if(!(ishuman(usr) || issilicon(usr) || ismonkey(usr) && ticker && ticker.mode.name == "monkey"))
 		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return 1
 
 	var/norange = 0
-	if(istype(usr, /mob/living/carbon/human))
+	if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		if(istype(H.l_hand, /obj/item/tk_grab))
 			norange = 1
@@ -202,7 +200,7 @@ Class Procs:
 			norange = 1
 
 	if(!norange)
-		if((!in_range(src, usr) || !istype(src.loc, /turf)) && !istype(usr, /mob/living/silicon))
+		if((!in_range(src, usr) || !isturf(src.loc)) && !issilicon(usr))
 			return 1
 
 	src.add_fingerprint(usr)
@@ -225,9 +223,7 @@ Class Procs:
 		return 1
 	if(user.lying || user.stat)
 		return 1
-	if(!(istype(usr, /mob/living/carbon/human) || \
-			istype(usr, /mob/living/silicon) || \
-			istype(usr, /mob/living/carbon/monkey) && ticker && ticker.mode.name == "monkey"))
+	if(!(ishuman(usr) || issilicon(usr) || ismonkey(usr) && ticker && ticker.mode.name == "monkey"))
 		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return 1
 /*

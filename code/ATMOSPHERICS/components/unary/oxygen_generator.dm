@@ -15,7 +15,7 @@
 
 /obj/machinery/atmospherics/unary/oxygen_generator/update_icon()
 	if(node)
-		icon_state = "intact_[on?("on"):("off")]"
+		icon_state = "intact_[on ? ("on") : ("off")]"
 	else
 		icon_state = "exposed_off"
 

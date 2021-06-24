@@ -32,8 +32,8 @@
 
 	if(temp)
 		left_part = temp
-	else if(src.stat == 2)						// Show some flavor text if the pAI is dead
-		left_part = "<b><font color=red>ÈRrÖR Ða†Ä ÇÖRrÚþ†Ìoñ</font></b>"	//This file has to be saved as ANSI or this will not display correctly
+	else if(src.stat == DEAD)					// Show some flavor text if the pAI is dead
+		left_part = "<b><font color=red>ï¿½Rrï¿½R ï¿½aï¿½ï¿½ ï¿½ï¿½Rrï¿½ï¿½ï¿½ï¿½oï¿½</font></b>"	//This file has to be saved as ANSI or this will not display correctly
 		right_part = "<pre>Program index hash not found</pre>"
 
 	else
@@ -299,7 +299,7 @@
 	dat += "<b>Basic</b> <br>"
 	for(var/s in src.software)
 		if(s == "digital messenger")
-			dat += "<a href='byond://?src=\ref[src];software=pdamessage;sub=0'>Digital Messenger</a> [(pda.toff) ? "<font color=#FF5555>•</font>" : "<font color=#55FF55>•</font>"] <br>"
+			dat += "<a href='byond://?src=\ref[src];software=pdamessage;sub=0'>Digital Messenger</a> [(pda.toff) ? "<font color=#FF5555>ï¿½</font>" : "<font color=#55FF55>ï¿½</font>"] <br>"
 		if(s == "crew manifest")
 			dat += "<a href='byond://?src=\ref[src];software=manifest;sub=0'>Crew Manifest</a> <br>"
 		if(s == "medical records")
@@ -320,11 +320,11 @@
 		if(s == "heartbeat sensor")
 			dat += "<a href='byond://?src=\ref[src];software=[s]'>Heartbeat Sensor</a> <br>"
 		if(s == "security HUD")	//This file has to be saved as ANSI or this will not display correctly
-			dat += "<a href='byond://?src=\ref[src];software=securityhud;sub=0'>Facial Recognition Suite</a> [(src.secHUD) ? "<font color=#55FF55>•</font>" : "<font color=#FF5555>•</font>"] <br>"
+			dat += "<a href='byond://?src=\ref[src];software=securityhud;sub=0'>Facial Recognition Suite</a> [(src.secHUD) ? "<font color=#55FF55>ï¿½</font>" : "<font color=#FF5555>ï¿½</font>"] <br>"
 		if(s == "medical HUD")	//This file has to be saved as ANSI or this will not display correctly
-			dat += "<a href='byond://?src=\ref[src];software=medicalhud;sub=0'>Medical Analysis Suite</a> [(src.medHUD) ? "<font color=#55FF55>•</font>" : "<font color=#FF5555>•</font>"] <br>"
+			dat += "<a href='byond://?src=\ref[src];software=medicalhud;sub=0'>Medical Analysis Suite</a> [(src.medHUD) ? "<font color=#55FF55>ï¿½</font>" : "<font color=#FF5555>ï¿½</font>"] <br>"
 		if(s == "universal translator")	//This file has to be saved as ANSI or this will not display correctly
-			dat += "<a href='byond://?src=\ref[src];software=translator;sub=0'>Universal Translator</a> [(src.universal_speak) ? "<font color=#55FF55>•</font>" : "<font color=#FF5555>•</font>"] <br>"
+			dat += "<a href='byond://?src=\ref[src];software=translator;sub=0'>Universal Translator</a> [(src.universal_speak) ? "<font color=#55FF55>ï¿½</font>" : "<font color=#FF5555>ï¿½</font>"] <br>"
 		if(s == "projection array")
 			dat += "<a href='byond://?src=\ref[src];software=projectionarray;sub=0'>Projection Array</a> <br>"
 		if(s == "camera jack")
@@ -379,7 +379,7 @@
 			"}
 	return dat
 
-/mob/living/silicon/pai/proc/CheckDNA(var/mob/M, var/mob/living/silicon/pai/P)
+/mob/living/silicon/pai/proc/CheckDNA(mob/M, mob/living/silicon/pai/P)
 	var/answer = input(M, "[P] is requesting a DNA sample from you. Will you allow it to confirm your identity?", "[P] Check DNA", "No") in list("Yes", "No")
 	if(answer == "Yes")
 		var/turf/T = get_turf_or_move(P.loc)

@@ -564,7 +564,7 @@
 
 	return
 
-/obj/machinery/alarm/proc/mend(var/wireColor)
+/obj/machinery/alarm/proc/mend(wireColor)
 	var/wireFlag = AAlarmWireColorToFlag[wireColor]
 	var/wireIndex = AAlarmWireColorToIndex[wireColor] //not used in this function
 	AAlarmwires |= wireFlag
@@ -577,13 +577,13 @@
 			update_icon()
 
 		if(AALARM_WIRE_AI_CONTROL)
-			if (aidisabled == 1)
+			if(aidisabled == 1)
 				aidisabled = 0
 
 	updateDialog()
 	return
 
-/obj/machinery/alarm/proc/pulse(var/wireColor)
+/obj/machinery/alarm/proc/pulse(wireColor)
 	//var/wireFlag = AAlarmWireColorToFlag[wireColor] //not used in this function
 	var/wireIndex = AAlarmWireColorToIndex[wireColor]
 	switch(wireIndex)
@@ -592,7 +592,7 @@
 			spawn(300)
 				locked = 1
 
-		if (AALARM_WIRE_POWER)
+		if(AALARM_WIRE_POWER)
 			if(shorted == 0)
 				shorted = 1
 				update_icon()
@@ -603,12 +603,12 @@
 					update_icon()
 
 
-		if (AALARM_WIRE_AI_CONTROL)
-			if (aidisabled == 0)
+		if(AALARM_WIRE_AI_CONTROL)
+			if(aidisabled == 0)
 				aidisabled = 1
 			updateDialog()
 			spawn(10)
-				if (aidisabled == 1)
+				if(aidisabled == 1)
 					aidisabled = 0
 				updateDialog()
 
@@ -617,7 +617,7 @@
 			apply_mode()
 
 		if(AALARM_WIRE_AALARM)
-			if (alarm_area.atmosalert(0))
+			if(alarm_area.atmosalert(0))
 				apply_danger_level(0)
 			spawn(1)
 				updateUsrDialog()
@@ -634,7 +634,7 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, src)
 	s.start() //sparks always.
-	if (electrocute_mob(user, get_area(src), src))
+	if(electrocute_mob(user, get_area(src), src))
 		return 1
 	else
 		return 0
@@ -647,25 +647,25 @@
 
 /obj/machinery/alarm/attack_hand(mob/user)
 	. = ..()
-	if (.)
+	if(.)
 		return
 	return interact(user)
 
 /obj/machinery/alarm/interact(mob/user)
 	user.set_machine(src)
 
-	if(buildstage!=2)
+	if(buildstage != 2)
 		return
 
-	if ( (get_dist(src, user) > 1 ))
-		if (!issilicon(user))
+	if((get_dist(src, user) > 1))
+		if(!issilicon(user))
 			user.machine = null
 			user << browse(null, "window=air_alarm")
 			user << browse(null, "window=AAlarmwires")
 			return
 
 
-		else if (issilicon(user) && aidisabled)
+		else if(issilicon(user) && aidisabled)
 			user << "AI control for this Air Alarm interface has been disabled."
 			user << browse(null, "window=air_alarm")
 			return
@@ -725,22 +725,22 @@
 </style>
 "}
 
-	var/partial_pressure = R_IDEAL_GAS_EQUATION*environment.temperature/environment.volume
+	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.temperature/environment.volume
 
 	var/list/current_settings = TLV["pressure"]
 	var/environment_pressure = environment.return_pressure()
 	var/pressure_dangerlevel = get_danger_level(environment_pressure, current_settings)
 
 	current_settings = TLV["oxygen"]
-	var/oxygen_dangerlevel = get_danger_level(environment.gas["oxygen"]*partial_pressure, current_settings)
+	var/oxygen_dangerlevel = get_danger_level(environment.gas["oxygen"] * partial_pressure, current_settings)
 	var/oxygen_percent = round(environment.gas["oxygen"] / total * 100, 2)
 
 	current_settings = TLV["carbon dioxide"]
-	var/co2_dangerlevel = get_danger_level(environment.gas["carbon_dioxide"]*partial_pressure, current_settings)
+	var/co2_dangerlevel = get_danger_level(environment.gas["carbon_dioxide"] * partial_pressure, current_settings)
 	var/co2_percent = round(environment.gas["carbon_dioxide"] / total * 100, 2)
 
 	current_settings = TLV["plasma"]
-	var/plasma_dangerlevel = get_danger_level(environment.gas["plasma"]*partial_pressure, current_settings)
+	var/plasma_dangerlevel = get_danger_level(environment.gas["plasma"] * partial_pressure, current_settings)
 	var/plasma_percent = round(environment.gas["plasma"] / total * 100, 2)
 
 	//current_settings = TLV["other"]
@@ -767,7 +767,7 @@ Toxins: <span class='dl[plasma_dangerlevel]'>[plasma_percent]</span>%<br>
 
 	//Overall status
 	output += "Local Status: "
-	switch(max(pressure_dangerlevel,oxygen_dangerlevel,co2_dangerlevel,plasma_dangerlevel,other_dangerlevel,temperature_dangerlevel))
+	switch(max(pressure_dangerlevel, oxygen_dangerlevel, co2_dangerlevel, plasma_dangerlevel, other_dangerlevel, temperature_dangerlevel))
 		if(2)
 			output += "<span class='dl2'>DANGER: Internals Required</span>"
 		if(1)
@@ -806,7 +806,7 @@ Toxins: <span class='dl[plasma_dangerlevel]'>[plasma_percent]</span>%<br>
 	var/output = ""//"<B>[alarm_zone] Air [name]</B><HR>"
 
 	switch(screen)
-		if (AALARM_SCREEN_MAIN)
+		if(AALARM_SCREEN_MAIN)
 			if(alarm_area.atmosalm)
 				output += "<a href='?src=\ref[src];atmos_reset=1'>Reset - Atmospheric Alarm</a><hr>"
 			else
@@ -819,13 +819,13 @@ Toxins: <span class='dl[plasma_dangerlevel]'>[plasma_percent]</span>%<br>
 <a href='?src=\ref[src];screen=[AALARM_SCREEN_SENSORS]'>Sensor Settings</a><br>
 <HR>
 "}
-			if (mode==AALARM_MODE_PANIC)
+			if(mode == AALARM_MODE_PANIC)
 				output += "<font color='red'><B>PANIC SYPHON ACTIVE</B></font><br><A href='?src=\ref[src];mode=[AALARM_MODE_SCRUBBING]'>Turn syphoning off</A>"
 			else
 				output += "<A href='?src=\ref[src];mode=[AALARM_MODE_PANIC]'><font color='red'>ACTIVATE PANIC SYPHON IN AREA</font></A>"
 
 
-		if (AALARM_SCREEN_VENT)
+		if(AALARM_SCREEN_VENT)
 			var/sensor_data = ""
 			if(alarm_area.air_vent_names.len)
 				for(var/id_tag in alarm_area.air_vent_names)
@@ -857,7 +857,7 @@ Toxins: <span class='dl[plasma_dangerlevel]'>[plasma_percent]</span>%<br>
 <A href='?src=\ref[src];id_tag=[id_tag];command=set_external_pressure;val=[ONE_ATMOSPHERE]'> (reset) </A>
 <BR>
 "}
-					if (data["direction"] == "siphon")
+					if(data["direction"] == "siphon")
 						sensor_data += {"
 <B>Direction:</B>
 siphoning
@@ -867,7 +867,7 @@ siphoning
 			else
 				sensor_data = "No vents connected.<BR>"
 			output = {"<a href='?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br>[sensor_data]"}
-		if (AALARM_SCREEN_SCRUB)
+		if(AALARM_SCREEN_SCRUB)
 			var/sensor_data = ""
 			if(alarm_area.air_scrub_names.len)
 				for(var/id_tag in alarm_area.air_scrub_names)
@@ -905,7 +905,7 @@ Nitrous Oxide
 				sensor_data = "No scrubbers connected.<BR>"
 			output = {"<a href='?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br>[sensor_data]"}
 
-		if (AALARM_SCREEN_MODE)
+		if(AALARM_SCREEN_MODE)
 			output += "<a href='?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br><b>Air machinery mode for the area:</b><ul>"
 			var/list/modes = list(AALARM_MODE_SCRUBBING   = "Filtering - Scrubs out contaminants",\
 				AALARM_MODE_REPLACEMENT = "<font color='blue'>Replace Air - Siphons out air while replacing</font>",\
@@ -913,14 +913,14 @@ Nitrous Oxide
 				AALARM_MODE_CYCLE       = "<font color='red'>Cycle - Siphons air before replacing</font>",\
 				AALARM_MODE_FILL        = "<font color='green'>Fill - Shuts off scrubbers and opens vents</font>",\
 				AALARM_MODE_OFF         = "<font color='blue'>Off - Shuts off vents and scrubbers</font>",)
-			for (var/m=1,m<=modes.len,m++)
-				if (mode==m)
+			for(var/m = 1, m <= modes.len, m++)
+				if(mode == m)
 					output += "<li><A href='?src=\ref[src];mode=[m]'><b>[modes[m]]</b></A> (selected)</li>"
 				else
 					output += "<li><A href='?src=\ref[src];mode=[m]'>[modes[m]]</A></li>"
 			output += "</ul>"
 
-		if (AALARM_SCREEN_SENSORS)
+		if(AALARM_SCREEN_SENSORS)
 			output += {"
 <a href='?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br>
 <b>Alarm thresholds:</b><br>
@@ -944,7 +944,7 @@ table tr:first-child th:first-child { border: none;}
 				"other"          = "Other",)
 
 			var/list/selected
-			for (var/g in gases)
+			for(var/g in gases)
 				output += "<TR><th>[gases[g]]</th>"
 				selected = TLV[g]
 				for(var/i = 1, i <= 4, i++)
@@ -969,8 +969,8 @@ table tr:first-child th:first-child { border: none;}
 	if(href_list["rcon"])
 		rcon_setting = text2num(href_list["rcon"])
 
-	if((get_dist(src, usr) > 1 ))
-		if (!istype(usr, /mob/living/silicon))
+	if((get_dist(src, usr) > 1))
+		if(!issilicon(usr))
 			usr.machine = null
 			usr << browse(null, "window=air_alarm")
 			usr << browse(null, "window=AAlarmwires")
@@ -1000,18 +1000,18 @@ table tr:first-child th:first-child { border: none;}
 				var/list/selected = TLV[env]
 				var/list/thresholds = list("lower bound", "low warning", "high warning", "upper bound")
 				var/newval = input("Enter [thresholds[threshold]] for [env]", "Alarm triggers", selected[threshold]) as null|num
-				if (isnull(newval) || ..() || (locked && issilicon(usr)))
+				if(isnull(newval) || ..() || (locked && issilicon(usr)))
 					return
-				if (newval<0)
+				if(newval < 0)
 					selected[threshold] = -1.0
-				else if (env=="temperature" && newval>5000)
+				else if(env == "temperature" && newval > 5000)
 					selected[threshold] = 5000
-				else if (env=="pressure" && newval>50*ONE_ATMOSPHERE)
-					selected[threshold] = 50*ONE_ATMOSPHERE
-				else if (env!="temperature" && env!="pressure" && newval>200)
+				else if(env == "pressure" && newval > 50 * ONE_ATMOSPHERE)
+					selected[threshold] = 50 * ONE_ATMOSPHERE
+				else if(env != "temperature" && env != "pressure" && newval > 200)
 					selected[threshold] = 200
 				else
-					newval = round(newval,0.01)
+					newval = round(newval, 0.01)
 					selected[threshold] = newval
 				if(threshold == 1)
 					if(selected[1] > selected[2])
@@ -1055,12 +1055,12 @@ table tr:first-child th:first-child { border: none;}
 				air_doors_open(1)
 
 	if(href_list["atmos_alarm"])
-		if (alarm_area.atmosalert(2))
+		if(alarm_area.atmosalert(2))
 			apply_danger_level(2)
 		update_icon()
 
 	if(href_list["atmos_reset"])
-		if (alarm_area.atmosalert(0))
+		if(alarm_area.atmosalert(0))
 			apply_danger_level(0)
 		update_icon()
 
@@ -1190,7 +1190,7 @@ table tr:first-child th:first-child { border: none;}
 		stat &= ~NOPOWER
 	else
 		stat |= NOPOWER
-	spawn(rand(0,15))
+	spawn(rand(0, 15))
 		update_icon()
 
 /obj/machinery/alarm/examine()
@@ -1415,9 +1415,8 @@ FIRE ALARM
 	var/area/A = src.loc
 	var/d1
 	var/d2
-	if(istype(user, /mob/living/carbon/human) || issilicon(user))
+	if(ishuman(user) || issilicon(user))
 		A = A.loc
-
 		if(A.fire)
 			d1 = text("<A href='?src=\ref[];reset=1'>Reset - Lockdown</A>", src)
 		else
@@ -1456,7 +1455,7 @@ FIRE ALARM
 	if(buildstage != 2)
 		return
 
-	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
+	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && isturf(src.loc))) || (issilicon(usr)))
 		usr.set_machine(src)
 		if(href_list["reset"])
 			src.reset()
@@ -1484,7 +1483,7 @@ FIRE ALARM
 		return
 	var/area/A = src.loc
 	A = A.loc
-	if(!(istype(A, /area)))
+	if(!isarea(A))
 		return
 	A.firereset()
 	update_icon()
@@ -1495,7 +1494,7 @@ FIRE ALARM
 		return
 	var/area/A = src.loc
 	A = A.loc
-	if(!(istype(A, /area)))
+	if(!isarea(A))
 		return
 	A.firealert()
 	update_icon()
@@ -1504,7 +1503,6 @@ FIRE ALARM
 
 /obj/machinery/firealarm/New(loc, dir, building)
 	..()
-
 	if(loc)
 		src.loc = loc
 
@@ -1563,7 +1561,7 @@ Code shamelessly copied from apc_frame
 	if(get_dist(on_wall, usr) > 1)
 		return
 
-	var/ndir = get_dir(on_wall,usr)
+	var/ndir = get_dir(on_wall, usr)
 	if(!(ndir in cardinal))
 		return
 
@@ -1613,7 +1611,7 @@ Code shamelessly copied from apc_frame
 		//A = A.master
 	var/d1
 	var/d2
-	if(istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon/ai))
+	if(ishuman(user) || issilicon(user))
 		if(A.party)
 			d1 = text("<A href='?src=\ref[];reset=1'>No Party :(</A>", src)
 		else
@@ -1667,7 +1665,7 @@ Code shamelessly copied from apc_frame
 	..()
 	if(usr.stat || stat & (BROKEN|NOPOWER))
 		return
-	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && isturf(loc))) || (istype(usr, /mob/living/silicon/ai)))
+	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && isturf(loc))) || issilicon(usr))
 		usr.machine = src
 		if(href_list["reset"])
 			reset()

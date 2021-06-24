@@ -12,7 +12,7 @@
 	for(var/i = 1, i <= 20, i++)
 		if(isarea(location))
 			return location
-		else if (istype(location))
+		else if(istype(location))
 			location = location.loc
 		else
 			return null
@@ -291,7 +291,7 @@ proc/isInSight(atom/A, atom/B)
 	var/i = 0
 	while(candidates.len <= 0 && i < 5)
 		for(var/mob/dead/observer/G in player_list)
-			if(((G.client.inactivity/10)/60) <= buffer + i) // the most active players are more likely to become an alien
+			if(((G.client.inactivity / 10) / 60) <= buffer + i) // the most active players are more likely to become an alien
 				if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 					candidates += G.key
 		i++

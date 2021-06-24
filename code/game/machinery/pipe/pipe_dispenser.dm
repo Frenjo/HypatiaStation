@@ -93,7 +93,7 @@
 				user.visible_message( \
 					"[user] unfastens \the [src].", \
 					SPAN_INFO("You have unfastened \the [src]. Now it can be pulled somewhere else."), \
-					"You hear ratchet.")
+					"You hear a ratchet.")
 				src.anchored = 0
 				src.stat |= MAINT
 				src.unwrenched = 1
@@ -106,7 +106,7 @@
 				user.visible_message( \
 					"[user] fastens \the [src].", \
 					"\blue You have fastened \the [src]. Now it can dispense pipes.", \
-					"You hear ratchet.")
+					"You hear a ratchet.")
 				src.anchored = 1
 				src.stat &= ~MAINT
 				src.unwrenched = 0

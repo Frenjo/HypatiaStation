@@ -161,14 +161,14 @@
 	return ..()
 
 
-/datum/game_mode/proc/prepare_syndicate_leader(var/datum/mind/synd_mind, var/nuke_code)
-	if (nuke_code)
+/datum/game_mode/proc/prepare_syndicate_leader(datum/mind/synd_mind, nuke_code)
+	if(nuke_code)
 		synd_mind.store_memory("<B>Syndicate Nuclear Bomb Code</B>: [nuke_code]", 0, 0)
 		synd_mind.current << "The nuclear authorization code is: <B>[nuke_code]</B>"
 		var/obj/item/weapon/paper/P = new
 		P.info = "The nuclear authorization code is: <b>[nuke_code]</b>"
 		P.name = "nuclear bomb code"
-		if (ticker.mode.config_tag=="nuclear")
+		if(ticker.mode.config_tag=="nuclear")
 			P.loc = synd_mind.current.loc
 		else
 			var/mob/living/carbon/human/H = synd_mind.current
@@ -181,14 +181,14 @@
 	return
 
 
-/datum/game_mode/proc/forge_syndicate_objectives(var/datum/mind/syndicate)
+/datum/game_mode/proc/forge_syndicate_objectives(datum/mind/syndicate)
 	var/datum/objective/nuclear/syndobj = new
 	syndobj.owner = syndicate
 	syndicate.objectives += syndobj
 
 
-/datum/game_mode/proc/greet_syndicate(var/datum/mind/syndicate, var/you_are=1)
-	if (you_are)
+/datum/game_mode/proc/greet_syndicate(datum/mind/syndicate, you_are = 1)
+	if(you_are)
 		syndicate.current << "\blue You are a [syndicate_name()] agent!"
 	var/obj_count = 1
 	if(!config.objectives_disabled)
@@ -215,9 +215,12 @@
 	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(synd_mob), slot_shoes)
 	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(synd_mob), slot_gloves)
 	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/card/id/syndicate(synd_mob), slot_wear_id)
-	if(synd_mob.backbag == 2) synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(synd_mob), slot_back)
-	if(synd_mob.backbag == 3) synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(synd_mob), slot_back)
-	if(synd_mob.backbag == 4) synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(synd_mob), slot_back)
+	if(synd_mob.backbag == 2)
+		synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(synd_mob), slot_back)
+	if(synd_mob.backbag == 3)
+		synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(synd_mob), slot_back)
+	if(synd_mob.backbag == 4)
+		synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(synd_mob), slot_back)
 	synd_mob.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(synd_mob), slot_in_backpack)
 	synd_mob.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(synd_mob), slot_in_backpack)
 	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/pill/cyanide(synd_mob), slot_in_backpack)
@@ -249,16 +252,16 @@
 
 
 /datum/game_mode/nuclear/check_win()
-	if (nukes_left == 0)
+	if(nukes_left == 0)
 		return 1
 	return ..()
 
 
 /datum/game_mode/proc/is_operatives_are_dead()
 	for(var/datum/mind/operative_mind in syndicates)
-		if (!istype(operative_mind.current,/mob/living/carbon/human))
+		if(!ishuman(operative_mind.current))
 			if(operative_mind.current)
-				if(operative_mind.current.stat!=2)
+				if(operative_mind.current.stat != DEAD)
 					return 0
 	return 1
 
@@ -332,7 +335,7 @@
 
 
 /datum/game_mode/proc/auto_declare_completion_nuclear()
-	if( syndicates.len || (ticker && istype(ticker.mode,/datum/game_mode/nuclear)) )
+	if(syndicates.len || (ticker && istype(ticker.mode, /datum/game_mode/nuclear)))
 		var/text = "<FONT size = 2><B>The syndicate operatives were:</B></FONT>"
 
 		for(var/datum/mind/syndicate in syndicates)
@@ -349,7 +352,7 @@
 				text += "body destroyed"
 			text += ")"
 
-		world << text
+		to_chat(world, text)
 	return 1
 
 
@@ -368,7 +371,7 @@
 	return newname
 */
 
-/proc/NukeNameAssign(var/datum/mind/synd_mind)
+/proc/NukeNameAssign(datum/mind/synd_mind)
 	var/choose_name = input(synd_mind.current, "You are a [syndicate_name()] agent! What is your name?", "Choose a name") as text
 
 	if(!choose_name)

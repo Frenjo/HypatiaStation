@@ -1,12 +1,12 @@
 /mob/living/silicon/pai/Life()
-	if (src.stat == 2)
+	if(src.stat == DEAD)
 		return
 
 	if(src.cable)
 		if(get_dist(src, src.cable) > 1)
 			var/turf/T = get_turf_or_move(src.loc)
 			for(var/mob/M in viewers(T))
-				M.show_message("\red The data cable rapidly retracts back into its spool.", 3, "\red You hear a click and the sound of wire spooling rapidly.", 2)
+				M.show_message(SPAN_WARNING("The data cable rapidly retracts back into its spool."), 3, SPAN_WARNING("You hear a click and the sound of wire spooling rapidly."), 2)
 			qdel(src.cable)
 
 	regular_hud_updates()
@@ -20,7 +20,7 @@
 	if(silence_time)
 		if(world.timeofday >= silence_time)
 			silence_time = null
-			src << "<font color=green>Communication circuit reinitialized. Speech and messaging functionality restored.</font>"
+			to_chat(src, "<font color=green>Communication circuit reinitialized. Speech and messaging functionality restored.</font>")
 
 	if(health <= 0)
 		death(null, "gives one shrill beep before falling lifeless.")

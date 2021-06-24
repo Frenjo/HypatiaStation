@@ -1,5 +1,5 @@
 /mob/living/silicon/ai/proc/get_camera_list()
-	if(src.stat == 2)
+	if(src.stat == DEAD)
 		return
 
 	var/list/L = list()
@@ -24,7 +24,7 @@
 	set category = "AI Commands"
 	set name = "Show Camera List"
 
-	if(src.stat == 2)
+	if(src.stat == DEAD)
 		src << "You can't list the cameras because you are dead!"
 		return
 
@@ -46,7 +46,7 @@
 	var/list/cameras = list()
 
 /mob/living/silicon/ai/proc/trackable_mobs()
-	if(usr.stat == 2)
+	if(usr.stat == DEAD)
 		return list()
 
 	var/datum/trackable/TB = new()
@@ -103,7 +103,7 @@
 	set name = "Track With Camera"
 	set desc = "Select who you would like to track."
 
-	if(src.stat == 2)
+	if(src.stat == DEAD)
 		src << "You can't track with camera because you are dead!"
 		return
 	if(!target_name)

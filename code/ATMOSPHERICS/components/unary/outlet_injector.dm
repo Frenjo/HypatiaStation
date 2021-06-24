@@ -101,11 +101,10 @@
 
 /obj/machinery/atmospherics/unary/outlet_injector/initialize()
 	..()
-
 	set_frequency(frequency)
 
 /obj/machinery/atmospherics/unary/outlet_injector/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
+	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"] != "command"))
 		return 0
 
 	if("power" in signal.data)

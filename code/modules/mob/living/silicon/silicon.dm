@@ -28,24 +28,24 @@
 			src.take_organ_damage(10)
 			Stun(rand(1, 5))
 	flick("noise", src:flash)
-	src << "\red <B>*BZZZT*</B>"
-	src << "\red Warning: Electromagnetic pulse detected."
+	to_chat(src, SPAN_DANGER("*BZZZT*"))
+	to_chat(src, SPAN_WARNING("Warning: Electromagnetic pulse detected."))
 	..()
 
-/mob/living/silicon/proc/damage_mob(var/brute = 0, var/fire = 0, var/tox = 0)
+/mob/living/silicon/proc/damage_mob(brute = 0, fire = 0, tox = 0)
 	return
 
 /mob/living/silicon/IsAdvancedToolUser()
 	return 1
 
 /mob/living/silicon/blob_act()
-	if(src.stat != 2)
+	if(src.stat != DEAD)
 		src.adjustBruteLoss(60)
 		src.updatehealth()
 		return 1
 	return 0
 
-/mob/living/silicon/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/silicon/bullet_act(obj/item/projectile/Proj)
 	if(!Proj.nodamage)
 		adjustBruteLoss(Proj.damage)
 	Proj.on_hit(src, 2)
@@ -53,7 +53,7 @@
 	updatehealth()
 	return 2
 
-/mob/living/silicon/apply_effect(var/effect = 0, var/effecttype = STUN, var/blocked = 0)
+/mob/living/silicon/apply_effect(effect = 0, effecttype = STUN, blocked = 0)
 	return 0//The only effect that can hit them atm is flashes and they still directly edit so this works for now
 /*
 	if(!effect || (blocked >= 2))	return 0
@@ -81,32 +81,32 @@
 
 	switch(severity)
 		if(1.0)
-			if(stat != 2)
+			if(stat != DEAD)
 				adjustBruteLoss(100)
 				adjustFireLoss(100)
 				if(!anchored)
 					gib()
 		if(2.0)
-			if(stat != 2)
+			if(stat != DEAD)
 				adjustBruteLoss(60)
 				adjustFireLoss(60)
 		if(3.0)
-			if(stat != 2)
+			if(stat != DEAD)
 				adjustBruteLoss(30)
 
 	updatehealth()
 
-/proc/islinked(var/mob/living/silicon/robot/bot, var/mob/living/silicon/ai/ai)
+/proc/islinked(mob/living/silicon/robot/bot, mob/living/silicon/ai/ai)
 	if(!istype(bot) || !istype(ai))
 		return 0
-	if (bot.connected_ai == ai)
+	if(bot.connected_ai == ai)
 		return 1
 	return 0
 
 // this function shows the health of the pAI in the Status panel
 /mob/living/silicon/proc/show_system_integrity()
 	if(!src.stat)
-		stat(null, text("System integrity: [(src.health+100)/2]%"))
+		stat(null, text("System integrity: [(src.health + 100) / 2]%"))
 	else
 		stat(null, text("Systems nonfunctional"))
 
@@ -151,11 +151,11 @@
 /mob/living/silicon/can_speak(datum/language/speaking)
 	return universal_speak || (speaking in src.speech_synthesizer_langs)	//need speech synthesizer support to vocalize a language
 
-/mob/living/silicon/add_language(var/language, var/can_speak=1)
+/mob/living/silicon/add_language(language, can_speak = 1)
 	if(..(language) && can_speak)
 		speech_synthesizer_langs.Add(all_languages[language])
 
-/mob/living/silicon/remove_language(var/rem_language)
+/mob/living/silicon/remove_language(rem_language)
 	..(rem_language)
 
 	for(var/datum/language/L in speech_synthesizer_langs)
@@ -181,14 +181,14 @@
 /mob/living/silicon/proc/toggle_sensor_mode()
 	set name = "Set Sensor Augmentation"
 	set desc = "Augment visual feed with internal sensor overlays."
-	var/sensor_type = input("Please select sensor type.", "Sensor Integration", null) in list("Security", "Medical","Disable")
+	var/sensor_type = input("Please select sensor type.", "Sensor Integration", null) in list("Security", "Medical", "Disable")
 	switch(sensor_type)
 		if("Security")
 			sensor_mode = SEC_HUD
-			src << "<span class='notice'>Security records overlay enabled.</span>"
+			to_chat(src, SPAN_NOTICE("Security records overlay enabled."))
 		if("Medical")
 			sensor_mode = MED_HUD
-			src << "<span class='notice'>Life signs monitor overlay enabled.</span>"
+			to_chat(src, SPAN_NOTICE("Life signs monitor overlay enabled."))
 		if("Disable")
 			sensor_mode = 0
 			src << "Sensor augmentations disabled."

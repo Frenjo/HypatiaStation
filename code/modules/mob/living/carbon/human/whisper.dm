@@ -15,10 +15,10 @@
 		if(src.client.handle_spam_prevention(message,MUTE_IC))
 			return
 
-	if (src.stat == 2)
+	if(src.stat == DEAD)
 		return src.say_dead(message)
 
-	if (src.stat)
+	if(src.stat)
 		return
 
 	message =  trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))	//made consistent with say
@@ -28,14 +28,14 @@
 
 	//parse the language code and consume it
 	var/datum/language/speaking = parse_language(message)
-	if (speaking)
-		message = copytext(message,3)
+	if(speaking)
+		message = copytext(message, 3)
 
 	whisper_say(message, speaking, alt_name)
 
 
 //This is used by both the whisper verb and human/say() to handle whispering
-/mob/living/carbon/human/proc/whisper_say(var/message, var/datum/language/speaking = null, var/alt_name = "", var/verbage = "whispers")
+/mob/living/carbon/human/proc/whisper_say(message, datum/language/speaking = null, alt_name = "", verbage = "whispers")
 	var/message_range = 1
 	var/eavesdropping_range = 2
 	var/watching_range = 5
@@ -72,12 +72,12 @@
 				temp_message[H] = ninjaspeak(temp_message[H])
 				pick_list -= H
 			message = list2text(temp_message, " ")
-			message = replacetextx(message, "o", "¤")
-			message = replacetextx(message, "p", "þ")
-			message = replacetextx(message, "l", "£")
-			message = replacetextx(message, "s", "§")
-			message = replacetextx(message, "u", "µ")
-			message = replacetextx(message, "b", "ß")
+			message = replacetextx(message, "o", "ï¿½")
+			message = replacetextx(message, "p", "ï¿½")
+			message = replacetextx(message, "l", "ï¿½")
+			message = replacetextx(message, "s", "ï¿½")
+			message = replacetextx(message, "u", "ï¿½")
+			message = replacetextx(message, "b", "ï¿½")
 
 	//TODO: handle_speech_problems
 	if(src.stuttering)
@@ -92,8 +92,8 @@
 	listening |= src
 
 	//ghosts
-	for (var/mob/M in dead_mob_list)	//does this include players who joined as observers as well?
-		if (!(M.client))
+	for(var/mob/M in dead_mob_list)	//does this include players who joined as observers as well?
+		if(!(M.client))
 			continue
 		if(M.stat == DEAD && M.client && (M.client.prefs.toggles & CHAT_GHOSTEARS))
 			listening |= M
@@ -105,9 +105,9 @@
 				listening += C
 
 	//pass on the message to objects that can hear us.
-	for (var/obj/O in view(message_range, src))
-		spawn (0)
-			if (O)
+	for(var/obj/O in view(message_range, src))
+		spawn(0)
+			if(O)
 				O.hear_talk(src, message)	//O.hear_talk(src, message, verb, speaking)
 
 	var/list/eavesdropping = hearers(eavesdropping_range, src)
@@ -122,7 +122,8 @@
 	//now mobs
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")
-	spawn(30) qdel(speech_bubble)
+	spawn(30)
+		qdel(speech_bubble)
 
 	for(var/mob/M in listening)
 		M << speech_bubble

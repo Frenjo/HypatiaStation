@@ -124,7 +124,7 @@ VOX HEIST ROUNDTYPE
 /datum/game_mode/heist/proc/is_raider_crew_alive()
 	for(var/datum/mind/raider in raiders)
 		if(raider.current)
-			if(ishuman(raider.current) && raider.current.stat != 2)
+			if(ishuman(raider.current) && raider.current.stat != DEAD)
 				return 1
 	return 0
 
@@ -183,7 +183,8 @@ VOX HEIST ROUNDTYPE
 
 	//Decrease success for failed objectives.
 	for(var/datum/objective/O in raid_objectives)
-		if(!(O.check_completion())) success--
+		if(!(O.check_completion()))
+			success--
 
 	//Set result by objectives.
 	if(success == raid_objectives.len)
@@ -263,6 +264,6 @@ datum/game_mode/proc/auto_declare_completion_heist()
 	return 1
 
 /datum/game_mode/heist/check_finished()
-	if (!(is_raider_crew_alive()) || (vox_shuttle_location && (vox_shuttle_location == "start")))
+	if(!(is_raider_crew_alive()) || (vox_shuttle_location && (vox_shuttle_location == "start")))
 		return 1
 	return ..()

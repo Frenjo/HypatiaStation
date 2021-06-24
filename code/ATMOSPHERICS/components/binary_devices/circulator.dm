@@ -18,7 +18,7 @@
 
 /obj/machinery/atmospherics/binary/circulator/New()
 	..()
-	desc = initial(desc) + "  Its outlet port is to the [dir2text(dir)]."
+	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
 
 /obj/machinery/atmospherics/binary/circulator/proc/return_transfer_air()
 	var/datum/gas_mixture/removed
@@ -76,10 +76,10 @@
 		to_chat(user, SPAN_INFO("You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."))
 
 		if(anchored)
-			if(dir & (NORTH|SOUTH))
-				initialize_directions = NORTH|SOUTH
+			if(dir & (NORTH | SOUTH))
+				initialize_directions = NORTH | SOUTH
 			else if(dir & (EAST|WEST))
-				initialize_directions = EAST|WEST
+				initialize_directions = EAST | WEST
 
 			initialize()
 			build_network()
@@ -120,7 +120,7 @@
 	set name = "Rotate Circulator (Counterclockwise)"
 	set src in view(1)
 
-	if (usr.stat || usr.restrained() || anchored)
+	if(usr.stat || usr.restrained() || anchored)
 		return
 
 	src.dir = turn(src.dir, -90)

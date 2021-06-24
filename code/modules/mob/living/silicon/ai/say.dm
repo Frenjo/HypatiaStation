@@ -1,16 +1,16 @@
-/mob/living/silicon/ai/say(var/message)
-	if(parent && istype(parent) && parent.stat != 2)
+/mob/living/silicon/ai/say(message)
+	if(parent && istype(parent) && parent.stat != DEAD)
 		parent.say(message)
 		return
 		//If there is a defined "parent" AI, it is actually an AI, and it is alive, anything the AI tries to say is said by the parent instead.
 	..(message)
 
-/mob/living/silicon/say_understands(var/other)
-	if (istype(other, /mob/living/carbon/human))
+/mob/living/silicon/say_understands(other)
+	if(ishuman(other))
 		return 1
-	if (istype(other, /mob/living/silicon))
+	if(issilicon(other))
 		return 1
-	if (istype(other, /mob/living/carbon/brain))
+	if(isbrain(other))
 		return 1
 	return ..()
 
@@ -23,7 +23,6 @@ var/const/VOX_PATH = "sound/vox/"
 	set name = "Announcement Help"
 	set desc = "Display a list of vocal words to announce to the crew."
 	set category = "AI Commands"
-
 
 	var/dat = "Here is a list of words you can type into the 'Announcement' button to create sentences to vocally announce to everyone on the same level at you.<BR> \
 	<UL><LI>You can also click on the word to preview it.</LI>\

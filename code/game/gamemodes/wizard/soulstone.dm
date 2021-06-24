@@ -9,11 +9,10 @@
 	origin_tech = "bluespace=4;materials=4"
 	var/imprinted = "empty"
 
-
 //////////////////////////////Capturing////////////////////////////////////////////////////////
 
 /obj/item/device/soulstone/attack(mob/living/carbon/human/M as mob, mob/user as mob)
-	if(!istype(M, /mob/living/carbon/human))//If target is not a human.
+	if(!ishuman(M))//If target is not a human.
 		return ..()
 	if(istype(M, /mob/living/carbon/human/dummy))
 		return..()
@@ -52,7 +51,6 @@
 	onclose(user, "aicard")
 	return
 
-
 /obj/item/device/soulstone/Topic(href, href_list)
 	var/mob/U = usr
 	if(!in_range(src, U) || U.machine != src)
@@ -79,6 +77,7 @@
 				src.icon_state = "soulstone"
 	attack_self(U)
 
+
 ///////////////////////////Transferring to constructs/////////////////////////////////////////////////////
 /obj/structure/constructshell
 	name = "empty shell"
@@ -100,7 +99,7 @@
 			if(C.imprinted != "empty")
 				to_chat(U, "\red <b>Capture failed!</b>: \black The soul stone has already been imprinted with [C.imprinted]'s mind!")
 			else
-				if(T.stat == 0)
+				if(T.stat == CONSCIOUS)
 					to_chat(U, "\red <b>Capture failed!</b>: \black Kill or maim the victim first!")
 				else
 					if(T.client == null)

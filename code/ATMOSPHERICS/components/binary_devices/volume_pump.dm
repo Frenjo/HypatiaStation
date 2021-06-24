@@ -207,8 +207,8 @@ Thus, the two variables affect pump operation are set in New():
 		user.visible_message( \
 			"[user] unfastens \the [src].", \
 			SPAN_INFO("You have unfastened \the [src]."), \
-			"You hear ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
+			"You hear a ratchet.")
+		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)
 
 // Porting this to NanoUI, it looks way better honestly. -Frenjo
@@ -223,7 +223,7 @@ obj/machinery/atmospherics/binary/volume_pump/ui_interact(mob/user, ui_key = "ma
 
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "volume_gas_pump.tmpl", "Volumetric Gas Pump", 470, 290)
 		ui.set_initial_data(data)
 		ui.open()

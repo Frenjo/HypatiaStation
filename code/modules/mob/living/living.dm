@@ -52,12 +52,12 @@ default behaviour is:
 		if(istype(AM, /mob/living))
 			var/mob/living/tmob = AM
 			for(var/mob/living/M in range(tmob, 1))
-				if(tmob.pinned.len || ((M.pulling == tmob && (tmob.restrained() && !(M.restrained()) && M.stat == 0)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)))
+				if(tmob.pinned.len || ((M.pulling == tmob && (tmob.restrained() && !(M.restrained()) && M.stat == CONSCIOUS)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)))
 					if(!(world.time % 5))
 						to_chat(src, SPAN_WARNING("[tmob] is restrained, you cannot push past."))
 					now_pushing = 0
 					return
-				if(tmob.pulling == M && (M.restrained() && !( tmob.restrained() ) && tmob.stat == 0))
+				if(tmob.pulling == M && (M.restrained() && !( tmob.restrained() ) && tmob.stat == CONSCIOUS))
 					if(!(world.time % 5))
 						to_chat(src, SPAN_WARNING("[tmob] is restraining [M], you cannot push past."))
 					now_pushing = 0
@@ -452,7 +452,7 @@ default behaviour is:
 	restore_all_organs()
 
 	// remove the character from the list of the dead
-	if(stat == 2)
+	if(stat == DEAD)
 		dead_mob_list -= src
 		living_mob_list += src
 		tod = null
@@ -497,7 +497,7 @@ default behaviour is:
 	var/t7 = 1
 	if(restrained())
 		for(var/mob/living/M in range(src, 1))
-			if((M.pulling == src && M.stat == 0 && !( M.restrained() )))
+			if((M.pulling == src && M.stat == CONSCIOUS && !M.restrained()))
 				t7 = null
 	if((t7 && (pulling && ((get_dist(src, pulling) <= 1 || pulling.loc == loc) && (client && client.moving)))))
 		var/turf/T = loc

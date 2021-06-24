@@ -332,14 +332,15 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 
 	implanted(mob/M)
-		if(!istype(M, /mob/living/carbon/human))	return 0
+		if(!ishuman(M))
+			return 0
 		var/mob/living/carbon/human/H = M
 		if(H.mind in ticker.mode.head_revolutionaries)
 			H.visible_message("[H] seems to resist the implant!", "You feel the corporate tendrils of NanoTrasen try to invade your mind!")
 			return 0
 		else if(H.mind in ticker.mode:revolutionaries)
 			ticker.mode:remove_revolutionary(H.mind)
-		H << "\blue You feel a surge of loyalty towards NanoTrasen."
+		to_chat(H, SPAN_INFO("You feel a surge of loyalty towards NanoTrasen."))
 		return 1
 
 
@@ -363,14 +364,14 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 
 	trigger(emote, mob/source as mob)
-		if (src.uses < 1)	return 0
-		if (emote == "pale")
+		if(src.uses < 1)
+			return 0
+		if(emote == "pale")
 			src.uses--
 			source << "\blue You feel a sudden surge of energy!"
 			source.SetStunned(0)
 			source.SetWeakened(0)
 			source.SetParalysis(0)
-
 		return
 
 
@@ -399,28 +400,29 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		return dat
 
 	process()
-		if (!implanted) return
+		if(!implanted)
+			return
 		var/mob/M = imp_in
 
 		if(isnull(M)) // If the mob got gibbed
 			activate()
-		else if(M.stat == 2)
+		else if(M.stat == DEAD)
 			activate("death")
 
-	activate(var/cause)
+	activate(cause)
 		var/mob/M = imp_in
 		var/area/t = get_area(M)
-		switch (cause)
+		switch(cause)
 			if("death")
 				var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
-				if(istype(t, /area/syndicate_station) || istype(t, /area/syndicate_mothership) || istype(t, /area/shuttle/syndicate_elite) )
+				if(istype(t, /area/syndicate_station) || istype(t, /area/syndicate_mothership) || istype(t, /area/shuttle/syndicate_elite))
 					//give the syndies a bit of stealth
 					a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm")
 				else
 					a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm")
 				qdel(a)
 				processing_objects.Remove(src)
-			if ("emp")
+			if("emp")
 				var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
 				var/name = prob(50) ? t.name : pick(teleportlocs)
 				a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm")
@@ -432,7 +434,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 				processing_objects.Remove(src)
 
 	emp_act(severity)			//for some reason alarms stop going off in case they are emp'd, even without this
-		if (malfunction)		//so I'm just going to add a meltdown chance here
+		if(malfunction)		//so I'm just going to add a meltdown chance here
 			return
 		malfunction = MALFUNCTION_TEMPORARY
 
@@ -440,7 +442,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		if(severity == 1)
 			if(prob(40))	//small chance of obvious meltdown
 				meltdown()
-			else if (prob(60))	//but more likely it will just quietly die
+			else if(prob(60))	//but more likely it will just quietly die
 				malfunction = MALFUNCTION_PERMANENT
 			processing_objects.Remove(src)
 
@@ -473,16 +475,16 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		return dat
 
 	trigger(emote, mob/source as mob)
-		if (src.scanned == null)
+		if(src.scanned == null)
 			return 0
 
-		if (emote == src.activation_emote)
+		if(emote == src.activation_emote)
 			source << "The air glows as \the [src.scanned.name] uncompresses."
 			activate()
 
 	activate()
 		var/turf/t = get_turf(src)
-		if (imp_in)
+		if(imp_in)
 			imp_in.put_in_hands(scanned)
 		else
 			scanned.loc = t
@@ -490,7 +492,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 	implanted(mob/source as mob)
 		src.activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
-		if (source.mind)
+		if(source.mind)
 			source.mind.store_memory("Compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
 		source << "The implanted compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate."
 		return 1

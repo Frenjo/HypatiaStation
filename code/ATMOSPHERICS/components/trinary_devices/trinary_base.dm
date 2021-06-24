@@ -19,13 +19,13 @@
 	..()
 	switch(dir)
 		if(NORTH)
-			initialize_directions = EAST|NORTH|SOUTH
+			initialize_directions = EAST | NORTH | SOUTH
 		if(SOUTH)
-			initialize_directions = SOUTH|WEST|NORTH
+			initialize_directions = SOUTH | WEST | NORTH
 		if(EAST)
-			initialize_directions = EAST|WEST|SOUTH
+			initialize_directions = EAST | WEST | SOUTH
 		if(WEST)
-			initialize_directions = WEST|NORTH|EAST
+			initialize_directions = WEST | NORTH | EAST
 
 	air1 = new
 	air2 = new
@@ -43,7 +43,7 @@
 	else if(reference == node2)
 		network2 = new_network
 
-	else if (reference == node3)
+	else if(reference == node3)
 		network3 = new_network
 
 	if(new_network.normal_members.Find(src))

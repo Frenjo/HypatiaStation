@@ -18,9 +18,9 @@
 	var/datum/computer/file/embedded_program/docking/docking_controller_station
 	var/datum/computer/file/embedded_program/docking/docking_controller_offsite
 
-/datum/shuttle/ferry/multidock/move(var/area/origin,var/area/destination)
+/datum/shuttle/ferry/multidock/move(area/origin, area/destination)
 	..(origin, destination)
-	if (!location)
+	if(!location)
 		docking_controller = docking_controller_station
 	else
 		docking_controller = docking_controller_offsite
@@ -39,29 +39,29 @@
 	announcer = new /obj/item/device/radio/intercom(null)//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
 	announcer.config(list("Response Team" = 0))
 
-/datum/shuttle/ferry/multidock/specops/proc/radio_announce(var/message)
+/datum/shuttle/ferry/multidock/specops/proc/radio_announce(message)
 	if(announcer)
 		announcer.autosay(message, "A.L.I.C.E.", "Response Team")
 
 
-/datum/shuttle/ferry/multidock/specops/launch(var/user)
-	if (!can_launch())
+/datum/shuttle/ferry/multidock/specops/launch(user)
+	if(!can_launch())
 		return
 
-	if (istype(user, /obj/machinery/computer))
+	if(istype(user, /obj/machinery/computer))
 		var/obj/machinery/computer/C = user
 
 		if(world.time <= reset_time)
-			C.visible_message("\blue Central Command will not allow the Special Operations shuttle to launch yet.")
-			if (((world.time - reset_time)/10) > 60)
-				C.visible_message("\blue [-((world.time - reset_time)/10)/60] minutes remain!")
+			C.visible_message(SPAN_INFO("Central Command will not allow the Special Operations shuttle to launch yet."))
+			if(((world.time - reset_time) / 10) > 60)
+				C.visible_message(SPAN_INFO("[-((world.time - reset_time) / 10) / 60] minutes remain!"))
 			else
-				C.visible_message("\blue [-(world.time - reset_time)/10] seconds remain!")
+				C.visible_message(SPAN_INFO("[-(world.time - reset_time) / 10] seconds remain!"))
 			return
 
-		C.visible_message("\blue The Special Operations shuttle will depart in [(specops_countdown_time/10)] seconds.")
+		C.visible_message(SPAN_INFO("The Special Operations shuttle will depart in [(specops_countdown_time / 10)] seconds."))
 
-	if (location)	//returning
+	if(location)	//returning
 		radio_announce("THE SPECIAL OPERATIONS SHUTTLE IS PREPARING TO RETURN")
 	else
 		radio_announce("THE SPECIAL OPERATIONS SHUTTLE IS PREPARING FOR LAUNCH")
@@ -72,32 +72,31 @@
 	radio_announce("ALERT: INITIATING LAUNCH SEQUENCE")
 	..(user)
 
-/datum/shuttle/ferry/multidock/specops/move(var/area/origin,var/area/destination)
+/datum/shuttle/ferry/multidock/specops/move(area/origin, area/destination)
 	..(origin, destination)
-	if (!location)	//just arrived home
+	if(!location)	//just arrived home
 		for(var/turf/T in get_area_turfs(destination))
 			var/mob/M = locate(/mob) in T
-			M << "\red You have arrived at Central Command. Operation has ended!"
+			to_chat(M, SPAN_WARNING("You have arrived at Central Command. Operation has ended!"))
 	else	//just left for the station
 		launch_mauraders()
 		for(var/turf/T in get_area_turfs(destination))
 			var/mob/M = locate(/mob) in T
-			M << "\red You have arrived at [station_name]. Commence operation!"
+			to_chat(M, SPAN_WARNING("You have arrived at [station_name]. Commence operation!"))
 
 	reset_time = world.time + specops_return_delay	//set the timeout
 
 /datum/shuttle/ferry/multidock/specops/cancel_launch()
-	if (!can_cancel())
+	if(!can_cancel())
 		return
 
 	cancel_countdown = 1
 	radio_announce("ALERT: LAUNCH SEQUENCE ABORTED")
-	if (istype(in_use, /obj/machinery/computer))
+	if(istype(in_use, /obj/machinery/computer))
 		var/obj/machinery/computer/C = in_use
-		C.visible_message("\red Launch sequence aborted.")
+		C.visible_message(SPAN_WARNING("Launch sequence aborted."))
 
 	..()
-
 
 
 /datum/shuttle/ferry/multidock/specops/can_launch()
@@ -115,7 +114,7 @@
 	return ..()
 
 /datum/shuttle/ferry/multidock/specops/proc/sleep_until_launch()
-	var/message_tracker[] = list(0,1,2,3,5,10,30,45)//Create a a list with potential time values.
+	var/message_tracker[] = list(0, 1, 2, 3, 5, 10, 30, 45)//Create a a list with potential time values.
 
 	var/launch_time = world.time + specops_countdown_time
 	var/time_until_launch
@@ -132,7 +131,7 @@
 		//All this does is announce the time before launch.
 		var/rounded_time_left = round(time_until_launch)//Round time so that it will report only once, not in fractions.
 		if(rounded_time_left in message_tracker)//If that time is in the list for message announce.
-			radio_announce("ALERT: [rounded_time_left] SECOND[(rounded_time_left!=1)?"S":""] REMAIN")
+			radio_announce("ALERT: [rounded_time_left] SECOND[(rounded_time_left != 1) ? "S" : ""] REMAIN")
 			message_tracker -= rounded_time_left//Remove the number from the list so it won't be called again next cycle.
 			//Should call all the numbers but lag could mean some issues. Oh well. Not much I can do about that.
 

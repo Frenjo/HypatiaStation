@@ -91,7 +91,7 @@
 	..()
 	if(stat & (NOPOWER|BROKEN))
 		return
-	if (!node)
+	if(!node)
 		on = 0
 	//broadcast_status() // from now air alarm/control computer should request update purposely --rastaf0
 	if(!on)
@@ -321,7 +321,7 @@
 		user.visible_message( \
 			"[user] unfastens \the [src].", \
 			SPAN_INFO("You have unfastened \the [src]."), \
-			"You hear ratchet.")
+			"You hear a ratchet.")
 		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)
 

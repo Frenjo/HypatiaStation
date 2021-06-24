@@ -74,12 +74,12 @@
 
 //Redefining some robot procs...
 /mob/living/silicon/robot/drone/updatename()
-	real_name = "maintenance drone ([rand(100,999)])"
+	real_name = "maintenance drone ([rand(100, 999)])"
 	name = real_name
 
 /mob/living/silicon/robot/drone/updateicon()
 	overlays.Cut()
-	if(stat == 0)
+	if(stat == CONSCIOUS)
 		overlays += "eyes-[icon_state]"
 	else
 		overlays -= "eyes"
@@ -94,9 +94,10 @@
 /mob/living/silicon/robot/drone/show_system_integrity()
 	if(!src.stat)
 		var/temphealth = health+35 //Brings it to 0.
-		if(temphealth<0)	temphealth = 0
+		if(temphealth < 0)
+			temphealth = 0
 		//Convert to percentage.
-		temphealth = (temphealth / (maxHealth*2)) * 100
+		temphealth = (temphealth / (maxHealth * 2)) * 100
 
 		stat(null, text("System integrity: [temphealth]%"))
 	else
@@ -105,17 +106,16 @@
 //Drones cannot be upgraded with borg modules so we need to catch some items before they get used in ..().
 /mob/living/silicon/robot/drone/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
-	if(istype(W, /obj/item/borg/upgrade/))
+	if(istype(W, /obj/item/borg/upgrade))
 		user << "\red The maintenance drone chassis not compatible with \the [W]."
 		return
 
-	else if (istype(W, /obj/item/weapon/crowbar))
+	else if(istype(W, /obj/item/weapon/crowbar))
 		user << "The machine is hermetically sealed. You can't open the case."
 		return
 
-	else if (istype(W, /obj/item/weapon/card/emag))
-
-		if(!client || stat == 2)
+	else if(istype(W, /obj/item/weapon/card/emag))
+		if(!client || stat == DEAD)
 			user << "\red There's not much point subverting this heap of junk."
 			return
 
@@ -149,8 +149,7 @@
 		return
 
 	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
-
-		if(stat == 2)
+		if(stat == DEAD)
 			user << "\red You swipe your ID card through [src], attempting to reboot it."
 			if(!config.allow_drone_spawn || emagged || health < -35) //It's dead, Dave.
 				user << "\red The interface is fried, and a distressing burned smell wafts from the robot's interior. You're not rebooting this one."
@@ -194,7 +193,7 @@
 //Drones killed by damage will gib.
 /mob/living/silicon/robot/drone/handle_regular_status_updates()
 
-	if(health <= -35 && src.stat != 2)
+	if(health <= -35 && src.stat != DEAD)
 		gib()
 		return
 	..()
@@ -209,13 +208,13 @@
 	..(gibbed)
 
 //DRONE MOVEMENT.
-/mob/living/silicon/robot/drone/Process_Spaceslipping(var/prob_slip)
+/mob/living/silicon/robot/drone/Process_Spaceslipping(prob_slip)
 	//TODO: Consider making a magboot item for drones to equip. ~Z
 	return 0
 
 //CONSOLE PROCS
 /mob/living/silicon/robot/drone/proc/law_resync()
-	if(stat != 2)
+	if(stat != DEAD)
 		if(emagged)
 			src << "\red You feel something attempting to modify your programming, but your hacked subroutines are unaffected."
 		else
@@ -224,7 +223,7 @@
 			show_laws()
 
 /mob/living/silicon/robot/drone/proc/shut_down()
-	if(stat != 2)
+	if(stat != DEAD)
 		if(emagged)
 			src << "\red You feel a system kill order percolate through your tiny brain, but it doesn't seem like a good idea to you."
 		else
@@ -246,7 +245,7 @@
 			if(O.client.prefs.be_special & BE_PAI)
 				question(O.client)
 
-/mob/living/silicon/robot/drone/proc/question(var/client/C)
+/mob/living/silicon/robot/drone/proc/question(client/C)
 	spawn(0)
 		if(!C)	return
 		var/response = alert(C, "Someone is attempting to reboot a maintenance drone. Would you like to play as one?", "Maintenance drone reboot", "Yes", "No", "Never for this round.")
@@ -257,8 +256,9 @@
 		else if (response == "Never for this round")
 			C.prefs.be_special ^= BE_PAI
 
-/mob/living/silicon/robot/drone/proc/transfer_personality(var/client/player)
-	if(!player) return
+/mob/living/silicon/robot/drone/proc/transfer_personality(client/player)
+	if(!player)
+		return
 
 	src.ckey = player.ckey
 

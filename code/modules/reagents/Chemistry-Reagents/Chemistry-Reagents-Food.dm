@@ -9,9 +9,11 @@
 			nutriment_factor = 15 * REAGENTS_METABOLISM
 			color = "#664330" // rgb: 102, 67, 48
 
-/datum/reagent/nutriment/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
-	if(prob(50)) M.heal_organ_damage(1,0)
+/datum/reagent/nutriment/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
+	if(prob(50))
+		M.heal_organ_damage(1, 0)
 	M.nutrition += nutriment_factor	// For hunger and fatness
 /*
 				// If overeaten - vomit and fall down
@@ -47,8 +49,9 @@
 	color = "#665145" // rgb: 102, 81, 69 - Sort of a more grey nutriment.
 	overdose = REAGENTS_OVERDOSE / 3 // 30 becomes 10. -Frenjo
 
-/datum/reagent/stokaline/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
+/datum/reagent/stokaline/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
 	//if(prob(50)) M.heal_organ_damage(1,0)
 	M.nutrition += nutriment_factor	// For hunger and fatness
 
@@ -64,7 +67,8 @@
 		M.updatehealth()*/
 
 	if(volume >= overdose)
-		if(!M.stuttering) M.stuttering = 1
+		if(!M.stuttering)
+			M.stuttering = 1
 		M.make_jittery(10)
 		M.make_dizzy(10)
 		M.druggy = max(M.druggy, 15)
@@ -83,8 +87,9 @@
 	color = "#BBEDA4" // rgb: 187, 237, 164
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/lipozine/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
+/datum/reagent/lipozine/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
 	M.nutrition -= nutriment_factor
 	M.overeatduration = 0
 	if(M.nutrition < 0)//Prevent from going into negatives.
@@ -101,6 +106,7 @@
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#792300" // rgb: 121, 35, 0
 
+
 /datum/reagent/ketchup
 	name = "Ketchup"
 	id = "ketchup"
@@ -109,6 +115,7 @@
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#731008" // rgb: 115, 16, 8
 
+
 /datum/reagent/capsaicin
 	name = "Capsaicin Oil"
 	id = "capsaicin"
@@ -116,24 +123,26 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#B31008" // rgb: 179, 16, 8
 
-/datum/reagent/capsaicin/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
-	if(!data) data = 1
+/datum/reagent/capsaicin/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
+	if(!data)
+		data = 1
 	switch(data)
 		if(1 to 15)
 			M.bodytemperature += 5 * TEMPERATURE_DAMAGE_COEFFICIENT
 			if(holder.has_reagent("frostoil"))
 				holder.remove_reagent("frostoil", 5)
-			if(istype(M, /mob/living/carbon/slime))
-				M.bodytemperature += rand(5,20)
+			if(isslime(M))
+				M.bodytemperature += rand(5, 20)
 		if(15 to 25)
 			M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT
-			if(istype(M, /mob/living/carbon/slime))
-				M.bodytemperature += rand(10,20)
+			if(isslime(M))
+				M.bodytemperature += rand(10, 20)
 		if(25 to INFINITY)
 			M.bodytemperature += 15 * TEMPERATURE_DAMAGE_COEFFICIENT
-			if(istype(M, /mob/living/carbon/slime))
-				M.bodytemperature += rand(15,20)
+			if(isslime(M))
+				M.bodytemperature += rand(15, 20)
 	holder.remove_reagent(src.id, FOOD_METABOLISM)
 	data++
 	..()
@@ -147,11 +156,11 @@
 			reagent_state = REAGENT_LIQUID
 			color = "#B31008" // rgb: 179, 16, 8
 
-/datum/reagent/condensedcapsaicin/reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)
-	if(!istype(M, /mob/living))
+/datum/reagent/condensedcapsaicin/reaction_mob(mob/living/M, method = TOUCH, volume)
+	if(!isliving(M))
 		return
 	if(method == TOUCH)
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/victim = M
 			var/mouth_covered = 0
 			var/eyes_covered = 0
@@ -201,10 +210,11 @@
 				//victim.Paralyse(10)
 				//victim.drop_item()
 
-/datum/reagent/condensedcapsaicin/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
+/datum/reagent/condensedcapsaicin/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
 	if(prob(5))
-		M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>")
+		M.visible_message(SPAN_WARNING("[M] [pick("dry heaves!","coughs!","splutters!")]"))
 	return
 
 
@@ -215,33 +225,36 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#B31008" // rgb: 139, 166, 233
 
-/datum/reagent/frostoil/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
-	if(!data) data = 1
+/datum/reagent/frostoil/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
+	if(!data)
+		data = 1
 	switch(data)
 		if(1 to 15)
 			M.bodytemperature -= 5 * TEMPERATURE_DAMAGE_COEFFICIENT
 			if(holder.has_reagent("capsaicin"))
 				holder.remove_reagent("capsaicin", 5)
-			if(istype(M, /mob/living/carbon/slime))
-				M.bodytemperature -= rand(5,20)
+			if(isslime(M))
+				M.bodytemperature -= rand(5, 20)
 		if(15 to 25)
 			M.bodytemperature -= 10 * TEMPERATURE_DAMAGE_COEFFICIENT
-			if(istype(M, /mob/living/carbon/slime))
-				M.bodytemperature -= rand(10,20)
+			if(isslime(M))
+				M.bodytemperature -= rand(10, 20)
 		if(25 to INFINITY)
 			M.bodytemperature -= 15 * TEMPERATURE_DAMAGE_COEFFICIENT
-			if(prob(1)) M.emote("shiver")
-			if(istype(M, /mob/living/carbon/slime))
-				M.bodytemperature -= rand(15,20)
+			if(prob(1))
+				M.emote("shiver")
+			if(isslime(M))
+				M.bodytemperature -= rand(15, 20)
 	data++
 	holder.remove_reagent(src.id, FOOD_METABOLISM)
 	..()
 	return
 
-/datum/reagent/frostoil/reaction_turf(var/turf/simulated/T, var/volume)
+/datum/reagent/frostoil/reaction_turf(turf/simulated/T, volume)
 	for(var/mob/living/carbon/slime/M in T)
-		M.adjustToxLoss(rand(15,30))
+		M.adjustToxLoss(rand(15, 30))
 
 
 /datum/reagent/sodiumchloride
@@ -252,12 +265,14 @@
 	color = "#FFFFFF" // rgb: 255,255,255
 	overdose = REAGENTS_OVERDOSE
 
+
 /datum/reagent/blackpepper
 	name = "Black Pepper"
 	id = "blackpepper"
 	description = "A powder ground from peppercorns. *AAAACHOOO*"
 	reagent_state = REAGENT_SOLID
 	// no color (ie, black)
+
 
 /datum/reagent/coco
 	name = "Coco Powder"
@@ -267,7 +282,7 @@
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 
-/datum/reagent/coco/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/coco/on_mob_life(mob/living/M as mob)
 	M.nutrition += nutriment_factor
 	..()
 	return
@@ -281,8 +296,8 @@
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#403010" // rgb: 64, 48, 16
 
-/datum/reagent/hot_coco/on_mob_life(var/mob/living/M as mob)
-	if (M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
+/datum/reagent/hot_coco/on_mob_life(mob/living/M as mob)
+	if(M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
 		M.bodytemperature = min(310, M.bodytemperature + (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	M.nutrition += nutriment_factor
 	..()
@@ -296,27 +311,35 @@
 	color = "#E700E7" // rgb: 231, 0, 231
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/psilocybin/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
+/datum/reagent/psilocybin/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
 	M.druggy = max(M.druggy, 30)
-	if(!data) data = 1
+	if(!data)
+		data = 1
 	switch(data)
 		if(1 to 5)
-			if (!M.stuttering) M.stuttering = 1
+			if(!M.stuttering)
+				M.stuttering = 1
 			M.make_dizzy(5)
-			if(prob(10)) M.emote(pick("twitch","giggle"))
+			if(prob(10))
+				M.emote(pick("twitch", "giggle"))
 		if(5 to 10)
-			if (!M.stuttering) M.stuttering = 1
+			if(!M.stuttering)
+				M.stuttering = 1
 			M.make_jittery(10)
 			M.make_dizzy(10)
 			M.druggy = max(M.druggy, 35)
-			if(prob(20)) M.emote(pick("twitch","giggle"))
-		if (10 to INFINITY)
-			if (!M.stuttering) M.stuttering = 1
+			if(prob(20))
+				M.emote(pick("twitch", "giggle"))
+		if(10 to INFINITY)
+			if(!M.stuttering)
+				M.stuttering = 1
 			M.make_jittery(20)
 			M.make_dizzy(20)
 			M.druggy = max(M.druggy, 40)
-			if(prob(30)) M.emote(pick("twitch","giggle"))
+			if(prob(30))
+				M.emote(pick("twitch", "giggle"))
 	holder.remove_reagent(src.id, 0.2)
 	data++
 	..()
@@ -330,11 +353,12 @@
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#FF00FF" // rgb: 255, 0, 255
 
-/datum/reagent/sprinkles/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/sprinkles/on_mob_life(mob/living/M as mob)
 	M.nutrition += nutriment_factor
-	if(istype(M, /mob/living/carbon/human) && M.job in list("Security Officer", "Head of Security", "Detective", "Warden"))
-		if(!M) M = holder.my_atom
-		M.heal_organ_damage(1,1)
+	if(ishuman(M) && M.job in list("Security Officer", "Head of Security", "Detective", "Warden"))
+		if(!M)
+			M = holder.my_atom
+		M.heal_organ_damage(1, 1)
 		M.nutrition += nutriment_factor
 		..()
 		return
@@ -359,6 +383,7 @@
 						return
 				..()
 */
+
 /datum/reagent/cornoil
 	name = "Corn Oil"
 	id = "cornoil"
@@ -367,16 +392,18 @@
 	nutriment_factor = 20 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 
-/datum/reagent/cornoil/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/cornoil/on_mob_life(mob/living/M as mob)
 	M.nutrition += nutriment_factor
 	..()
 	return
 
-/datum/reagent/cornoil/reaction_turf(var/turf/simulated/T, var/volume)
-	if (!istype(T)) return
+/datum/reagent/cornoil/reaction_turf(turf/simulated/T, volume)
+	if (!istype(T))
+		return
 	qdel(src)
 	if(volume >= 3)
-		if(T.wet >= 1) return
+		if(T.wet >= 1)
+			return
 		T.wet = 1
 		if(T.wet_overlay)
 			T.overlays -= T.wet_overlay
@@ -385,8 +412,10 @@
 		T.overlays += T.wet_overlay
 
 		spawn(800)
-			if (!istype(T)) return
-			if(T.wet >= 2) return
+			if(!istype(T))
+				return
+			if(T.wet >= 2)
+				return
 			T.wet = 0
 			if(T.wet_overlay)
 				T.overlays -= T.wet_overlay
@@ -394,7 +423,7 @@
 	var/hotspot = (locate(/obj/fire) in T)
 	if(hotspot)
 		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
-		lowertemp.temperature = max( min(lowertemp.temperature-2000,lowertemp.temperature / 2) ,0)
+		lowertemp.temperature = max(min(lowertemp.temperature - 2000, lowertemp.temperature / 2), 0)
 		lowertemp.react()
 		T.assume_air(lowertemp)
 		qdel(hotspot)
@@ -408,6 +437,7 @@
 	color = "#365E30" // rgb: 54, 94, 48
 	overdose = REAGENTS_OVERDOSE
 
+
 /datum/reagent/dry_ramen
 	name = "Dry Ramen"
 	id = "dry_ramen"
@@ -416,7 +446,7 @@
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 
-/datum/reagent/dry_ramen/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/dry_ramen/on_mob_life(mob/living/M as mob)
 	M.nutrition += nutriment_factor
 	..()
 	return
@@ -430,9 +460,9 @@
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 
-/datum/reagent/hot_ramen/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/hot_ramen/on_mob_life(mob/living/M as mob)
 	M.nutrition += nutriment_factor
-	if (M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
+	if(M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
 		M.bodytemperature = min(310, M.bodytemperature + (10 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	..()
 	return
@@ -446,7 +476,7 @@
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#302000" // rgb: 48, 32, 0
 
-/datum/reagent/hell_ramen/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/hell_ramen/on_mob_life(mob/living/M as mob)
 	M.nutrition += nutriment_factor
 	M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT
 	..()
@@ -481,10 +511,11 @@
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#FFFFFF" // rgb: 0, 0, 0
 
-/datum/reagent/rice/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/rice/on_mob_life(mob/living/M as mob)
 	M.nutrition += nutriment_factor
 	..()
 	return
+
 
 /datum/reagent/cherryjelly
 	name = "Cherry Jelly"
@@ -494,7 +525,7 @@
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#801E28" // rgb: 128, 30, 40
 
-/datum/reagent/cherryjelly/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/cherryjelly/on_mob_life(mob/living/M as mob)
 	M.nutrition += nutriment_factor
 	..()
 	return

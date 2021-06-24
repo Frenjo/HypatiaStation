@@ -179,13 +179,13 @@ var/list/datum/power/changeling/powerinstances = list()
 	verbpath = /mob/proc/changeling_rapidregen
 
 
-
 // Modularchangling, totally stolen from the new player panel.  YAYY
 /datum/changeling/proc/EvolutionMenu()//The new one
 	set category = "Changeling"
 	set desc = "Level up!"
 
-	if(!usr || !usr.mind || !usr.mind.changeling)	return
+	if(!usr || !usr.mind || !usr.mind.changeling)
+		return
 	src = usr.mind.changeling
 
 	if(!powerinstances.len)
@@ -462,14 +462,14 @@ var/list/datum/power/changeling/powerinstances = list()
 
 
 
-/datum/changeling/proc/purchasePower(var/datum/mind/M, var/Pname, var/remake_verbs = 1)
+/datum/changeling/proc/purchasePower(datum/mind/M, Pname, remake_verbs = 1)
 	if(!M || !M.changeling)
 		return
 
 	var/datum/power/changeling/Thepower = Pname
 
 
-	for (var/datum/power/changeling/P in powerinstances)
+	for(var/datum/power/changeling/P in powerinstances)
 		//world << "[P] - [Pname] = [P.name == Pname ? "True" : "False"]"
 		if(P.name == Pname)
 			Thepower = P
@@ -477,16 +477,16 @@ var/list/datum/power/changeling/powerinstances = list()
 
 
 	if(Thepower == null)
-		M.current << "This is awkward.  Changeling power purchase failed, please report this bug to a coder!"
+		to_chat(M.current, "This is awkward.  Changeling power purchase failed, please report this bug to a coder!")
 		return
 
 	if(Thepower in purchasedpowers)
-		M.current << "We have already evolved this ability!"
+		to_chat(M.current, "We have already evolved this ability!")
 		return
 
 
 	if(geneticpoints < Thepower.genomecost)
-		M.current << "We cannot evolve this... yet.  We must acquire more DNA."
+		to_chat(M.current, "We cannot evolve this... yet.  We must acquire more DNA.")
 		return
 
 	geneticpoints -= Thepower.genomecost

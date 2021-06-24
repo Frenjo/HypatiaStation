@@ -101,7 +101,7 @@
 
 	Life()
 		..()
-		if(stat == 0)
+		if(stat == CONSCIOUS)
 			if(prob(2))//Might be a bit low, will mess with it likely
 				warpbots()
 

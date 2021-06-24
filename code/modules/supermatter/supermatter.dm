@@ -58,19 +58,20 @@
 
 	var/obj/item/device/radio/radio
 
-	shard //Small subtype, less efficient and more sensitive, but less boom.
-		name = "Supermatter Shard"
-		desc = "A strangely translucent and iridescent crystal that looks like it used to be part of a larger structure. \red You get headaches just from looking at it."
-		icon_state = "darkmatter_shard"
-		base_icon_state = "darkmatter_shard"
 
-		warning_point = 50
-		emergency_point = 500
-		explosion_point = 900
+/obj/machinery/power/supermatter/shard //Small subtype, less efficient and more sensitive, but less boom.
+	name = "Supermatter Shard"
+	desc = "A strangely translucent and iridescent crystal that looks like it used to be part of a larger structure. \red You get headaches just from looking at it."
+	icon_state = "darkmatter_shard"
+	base_icon_state = "darkmatter_shard"
 
-		gasefficency = 0.125
+	warning_point = 50
+	emergency_point = 500
+	explosion_point = 900
 
-		explosion_power = 3 //3,6,9,12? Or is that too small?
+	gasefficency = 0.125
+
+	explosion_power = 3 //3,6,9,12? Or is that too small?
 
 
 /obj/machinery/power/supermatter/New()
@@ -102,7 +103,7 @@
 	if(istype(L, /turf/space))	// Stop processing this stuff if we've been ejected.
 		return
 
-	if(damage > warning_point) // while the core is still damaged and it's still worth noting its status
+	if(damage > warning_point)	// while the core is still damaged and it's still worth noting its status
 		shift_light(5, warning_color)
 		if((world.timeofday - lastwarning) / 10 >= WARNING_DELAY)
 			var/stability = num2text(round((damage / explosion_point) * 100))
@@ -113,11 +114,11 @@
 				world << sound('sound/effects/siren_shortened.ogg', volume = 100) // Play a sound if shit's fucked, yo. -Frenjo
 				lastwarning = world.timeofday
 
-			else if(damage >= damage_archived) // The damage is still going up
-				radio.autosay(addtext(warning_alert," Instability: ", stability, "%"), "Supermatter Monitor")
+			else if(damage >= damage_archived)	// The damage is still going up
+				radio.autosay(addtext(warning_alert, " Instability: ", stability, "%"), "Supermatter Monitor")
 				lastwarning = world.timeofday - 150
 
-			else                                                 // Phew, we're safe
+			else	 // Phew, we're safe
 				shift_light(4, initial(light_color))
 				radio.autosay(safe_alert, "Supermatter Monitor")
 				lastwarning = world.timeofday
@@ -125,7 +126,7 @@
 		if(damage > explosion_point)
 			for(var/mob/living/mob in living_mob_list)
 				if(loc.z == mob.loc.z)
-					if(istype(mob, /mob/living/carbon/human))
+					if(ishuman(mob))
 						//Hilariously enough, running into a closet should make you get hit the hardest.
 						mob.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1))))
 					var/rads = DETONATION_RADS * sqrt(1 / (get_dist(mob, src) + 1))
@@ -185,7 +186,7 @@
 
 	//Calculate how much gas to release
 	removed.adjust_multi("plasma", max(device_energy / PLASMA_RELEASE_MODIFIER, 0), \
-		                     "oxygen", max((device_energy + removed.temperature - T0C) / OXYGEN_RELEASE_MODIFIER, 0))
+						"oxygen", max((device_energy + removed.temperature - T0C) / OXYGEN_RELEASE_MODIFIER, 0))
 
 	removed.update_values()
 
@@ -232,8 +233,8 @@
 
 /obj/machinery/power/supermatter/attack_hand(mob/user as mob)
 	user.visible_message(SPAN_WARNING("The [user] reaches out and touches \the [src], inducing a resonance... \his body starts to glow and bursts into flames before flashing into ash."),\
-		SPAN_DANGER("You reach out and touch \the [src]. Everything starts burning and all you can hear is ringing. Your last thought is \"That was not a wise decision.\""),\
-		SPAN_WARNING("You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat."))
+						SPAN_DANGER("You reach out and touch \the [src]. Everything starts burning and all you can hear is ringing. Your last thought is \"That was not a wise decision.\""),\
+						SPAN_WARNING("You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat."))
 
 	Consume(user)
 
@@ -245,8 +246,10 @@
 
 /obj/machinery/power/supermatter/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
 	user.visible_message(SPAN_WARNING("\The [user] touches \a [W] to \the [src] as a silence fills the room..."),\
-		"<span class=\"danger\">You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span>\n<span class=\"notice\">\The [W] flashes into dust as you flinch away from \the [src].</span>",\
-		SPAN_WARNING("Everything suddenly goes silent."))
+						//"<span class=\"danger\">You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span>\n<span class=\"notice\">\The [W] flashes into dust as you flinch away from \the [src].</span>"
+						// Not sure if this is a valid replacement for this? But I mean, it compiles so... -Frenjo
+						SPAN_DANGER("You touch \the [W] to \the [src] when everything suddenly goes silent.") + "\n" + SPAN_NOTICE("\The [W] flashes into dust as you flinch away from \the [src]."),\
+						SPAN_WARNING("Everything suddenly goes silent."))
 
 	user.drop_from_inventory(W)
 	Consume(W)
@@ -277,8 +280,8 @@
 	for(var/mob/living/l in range(10))
 		if(l in view())
 			l.show_message(SPAN_WARNING("As \the [src] slowly stops resonating, you find your skin covered in new radiation burns."), 1,\
-				SPAN_WARNING("The unearthly ringing subsides and you notice you have new radiation burns."), 2)
+						SPAN_WARNING("The unearthly ringing subsides and you notice you have new radiation burns."), 2)
 		else
 			l.show_message(SPAN_WARNING("You hear an uneartly ringing and notice your skin is covered in fresh radiation burns."), 2)
-		var/rads = 500 * sqrt( 1 / (get_dist(l, src) + 1) )
+		var/rads = 500 * sqrt(1 / (get_dist(l, src) + 1))
 		l.apply_effect(rads, IRRADIATE)

@@ -14,75 +14,73 @@
 
 /obj/effect/bhole/proc/controller()
 	while(src)
-
 		if(!isturf(loc))
 			qdel(src)
 			return
 
 		//DESTROYING STUFF AT THE EPICENTER
-		for(var/mob/living/M in orange(1,src))
+		for(var/mob/living/M in orange(1, src))
 			qdel(M)
-		for(var/obj/O in orange(1,src))
+		for(var/obj/O in orange(1, src))
 			qdel(O)
-		for(var/turf/simulated/ST in orange(1,src))
+		for(var/turf/simulated/ST in orange(1, src))
 			ST.ChangeTurf(/turf/space)
 
 		sleep(6)
-		grav(10, 4, 10, 0 )
+		grav(10, 4, 10, 0)
 		sleep(6)
-		grav( 8, 4, 10, 0 )
+		grav(8, 4, 10, 0)
 		sleep(6)
-		grav( 9, 4, 10, 0 )
+		grav(9, 4, 10, 0)
 		sleep(6)
-		grav( 7, 3, 40, 1 )
+		grav(7, 3, 40, 1)
 		sleep(6)
-		grav( 5, 3, 40, 1 )
+		grav(5, 3, 40, 1)
 		sleep(6)
-		grav( 6, 3, 40, 1 )
+		grav(6, 3, 40, 1)
 		sleep(6)
-		grav( 4, 2, 50, 6 )
+		grav(4, 2, 50, 6)
 		sleep(6)
-		grav( 3, 2, 50, 6 )
+		grav(3, 2, 50, 6)
 		sleep(6)
-		grav( 2, 2, 75,25 )
+		grav(2, 2, 75,25)
 		sleep(6)
-
-
 
 		//MOVEMENT
-		if( prob(50) )
+		if(prob(50))
 			src.anchored = 0
-			step(src,pick(alldirs))
+			step(src, pick(alldirs))
 			src.anchored = 1
 
-/obj/effect/bhole/proc/grav(var/r, var/ex_act_force, var/pull_chance, var/turf_removal_chance)
+/obj/effect/bhole/proc/grav(r, ex_act_force, pull_chance, turf_removal_chance)
 	if(!isturf(loc))	//blackhole cannot be contained inside anything. Weird stuff might happen
 		qdel(src)
 		return
 	for(var/t = -r, t < r, t++)
-		affect_coord(x+t, y-r, ex_act_force, pull_chance, turf_removal_chance)
-		affect_coord(x-t, y+r, ex_act_force, pull_chance, turf_removal_chance)
-		affect_coord(x+r, y+t, ex_act_force, pull_chance, turf_removal_chance)
-		affect_coord(x-r, y-t, ex_act_force, pull_chance, turf_removal_chance)
+		affect_coord(x + t, y - r, ex_act_force, pull_chance, turf_removal_chance)
+		affect_coord(x - t, y + r, ex_act_force, pull_chance, turf_removal_chance)
+		affect_coord(x + r, y + t, ex_act_force, pull_chance, turf_removal_chance)
+		affect_coord(x - r, y - t, ex_act_force, pull_chance, turf_removal_chance)
 	return
 
-/obj/effect/bhole/proc/affect_coord(var/x, var/y, var/ex_act_force, var/pull_chance, var/turf_removal_chance)
+/obj/effect/bhole/proc/affect_coord(x, y, ex_act_force, pull_chance, turf_removal_chance)
 	//Get turf at coordinate
 	var/turf/T = locate(x, y, z)
-	if(isnull(T))	return
+	if(isnull(T))
+		return
 
 	//Pulling and/or ex_act-ing movable atoms in that turf
-	if( prob(pull_chance) )
+	if(prob(pull_chance))
 		for(var/obj/O in T.contents)
 			if(O.anchored)
 				O.ex_act(ex_act_force)
 			else
-				step_towards(O,src)
+				step_towards(O, src)
 		for(var/mob/living/M in T.contents)
-			step_towards(M,src)
+			step_towards(M, src)
 
 	//Destroying the turf
-	if( T && istype(T,/turf/simulated) && prob(turf_removal_chance) )
+	if(T && istype(T, /turf/simulated) && prob(turf_removal_chance))
 		var/turf/simulated/ST = T
 		ST.ChangeTurf(/turf/space)
 	return

@@ -10,20 +10,21 @@
 	var/slice_path
 	var/slices_num
 
-	//Placeholder for effect that trigger on eating that aren't tied to reagents.
-/obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
-	if(!usr)	return
+//Placeholder for effect that trigger on eating that aren't tied to reagents.
+/obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(mob/M)
+	if(!usr)
+		return
 	if(!reagents.total_volume)
 		if(M == usr)
-			usr << "<span class='notice'>You finish eating \the [src].</span>"
-		usr.visible_message("<span class='notice'>[usr] finishes eating \the [src].</span>")
+			to_chat(usr, SPAN_NOTICE("You finish eating \the [src]."))
+		usr.visible_message(SPAN_NOTICE("[usr] finishes eating \the [src]."))
 		usr.drop_from_inventory(src)	//so icons update :[
 
 		if(trash)
-			if(ispath(trash,/obj/item))
+			if(ispath(trash, /obj/item))
 				var/obj/item/TrashItem = new trash(usr)
 				usr.put_in_hands(TrashItem)
-			else if(istype(trash,/obj/item))
+			else if(istype(trash, /obj/item))
 				usr.put_in_hands(trash)
 		qdel(src)
 	return
@@ -32,51 +33,52 @@
 	return
 
 /obj/item/weapon/reagent_containers/food/snacks/attack(mob/M as mob, mob/user as mob, def_zone)
-	if(!reagents.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.
-		user << "\red None of [src] left, oh no!"
-		M.drop_from_inventory(src)	//so icons update :[
+	if(!reagents.total_volume) //Shouldn't be needed but it checks to see if it has anything left in it.
+		to_chat(user, SPAN_WARNING("None of [src] left, oh no!"))
+		M.drop_from_inventory(src) //so icons update :[
 		qdel(src)
 		return 0
-	if(istype(M, /mob/living/carbon))
+	if(iscarbon(M))
 		if(M == user)								//If you're eating it yourself.
 			var/fullness = M.nutrition + (M.reagents.get_reagent_amount("nutriment") * 25)
-			if (fullness <= 50)
-				M << "\red You hungrily chew out a piece of [src] and gobble it!"
-			if (fullness > 50 && fullness <= 150)
-				M << "\blue You hungrily begin to eat [src]."
-			if (fullness > 150 && fullness <= 350)
-				M << "\blue You take a bite of [src]."
-			if (fullness > 350 && fullness <= 550)
-				M << "\blue You unwillingly chew a bit of [src]."
-			if (fullness > (550 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
-				M << "\red You cannot force any more of [src] to go down your throat."
+			if(fullness <= 50)
+				to_chat(M, SPAN_WARNING("You hungrily chew out a piece of [src] and gobble it!"))
+			if(fullness > 50 && fullness <= 150)
+				to_chat(M, SPAN_INFO("You hungrily begin to eat [src]."))
+			if(fullness > 150 && fullness <= 350)
+				to_chat(M, SPAN_INFO("You take a bite of [src]."))
+			if(fullness > 350 && fullness <= 550)
+				to_chat(M, SPAN_INFO("You unwillingly chew a bit of [src]."))
+			if(fullness > (550 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
+				to_chat(M, SPAN_WARNING("You cannot force any more of [src] to go down your throat."))
 				return 0
 		else
-			if(!istype(M, /mob/living/carbon/slime))		//If you're feeding it to someone else.
+			if(!isslime(M))		//If you're feeding it to someone else.
 				var/fullness = M.nutrition + (M.reagents.get_reagent_amount("nutriment") * 25)
-				if (fullness <= (550 * (1 + M.overeatduration / 1000)))
+				if(fullness <= (550 * (1 + M.overeatduration / 1000)))
 					for(var/mob/O in viewers(world.view, user))
-						O.show_message("\red [user] attempts to feed [M] [src].", 1)
+						O.show_message(SPAN_WARNING("[user] attempts to feed [M] [src]."), 1)
 				else
 					for(var/mob/O in viewers(world.view, user))
-						O.show_message("\red [user] cannot force anymore of [src] down [M]'s throat.", 1)
+						O.show_message(SPAN_WARNING("[user] cannot force anymore of [src] down [M]'s throat."), 1)
 						return 0
 
-				if(!do_mob(user, M)) return
+				if(!do_mob(user, M))
+					return
 
 				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
 				user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
 				msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
 
 				for(var/mob/O in viewers(world.view, user))
-					O.show_message("\red [user] feeds [M] [src].", 1)
+					O.show_message(SPAN_WARNING("[user] feeds [M] [src]."), 1)
 
 			else
-				user << "This creature does not seem to have a mouth!"
+				to_chat(user, "This creature does not seem to have a mouth!")
 				return
 
 		if(reagents)								//Handle ingestion of the reagent.
-			playsound(M.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
+			playsound(M.loc,'sound/items/eatfood.ogg', rand(10, 50), 1)
 			if(reagents.total_volume)
 				if(reagents.total_volume > bitesize)
 					/*
@@ -100,15 +102,16 @@
 /obj/item/weapon/reagent_containers/food/snacks/examine()
 	set src in view()
 	..()
-	if (!(usr in range(0)) && usr!=src.loc) return
-	if (bitecount==0)
+	if(!(usr in range(0)) && usr != src.loc)
 		return
-	else if (bitecount==1)
-		usr << "\blue \The [src] was bitten by someone!"
-	else if (bitecount<=3)
-		usr << "\blue \The [src] was bitten [bitecount] times!"
+	if(bitecount == 0)
+		return
+	else if(bitecount == 1)
+		to_chat(usr, SPAN_INFO("\The [src] was bitten by someone!"))
+	else if(bitecount <= 3)
+		to_chat(usr, SPAN_INFO("\The [src] was bitten [bitecount] times!"))
 	else
-		usr << "\blue \The [src] was bitten multiple times!"
+		to_chat(usr, SPAN_INFO("\The [src] was bitten multiple times!"))
 
 /obj/item/weapon/reagent_containers/food/snacks/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/storage))
@@ -132,10 +135,10 @@
 			istype(W, /obj/item/weapon/hatchet) \
 		)
 		inaccurate = 1
-	else if(W.w_class <= 2 && istype(src,/obj/item/weapon/reagent_containers/food/snacks/sliceable))
+	else if(W.w_class <= 2 && istype(src, /obj/item/weapon/reagent_containers/food/snacks/sliceable))
 		if(!iscarbon(user))
 			return 1
-		user << "\red You slip [W] inside [src]."
+		to_chat(user, SPAN_WARNING("You slip [W] inside [src]."))
 		user.u_equip(W)
 		if((user.client && user.s_active != src))
 			user.client.screen -= W
@@ -151,24 +154,25 @@
 			!(locate(/obj/machinery/optable) in src.loc) && \
 			!(locate(/obj/item/weapon/tray) in src.loc) \
 		)
-		user << "\red You cannot slice [src] here! You need a table or at least a tray to do it."
+		to_chat(user, SPAN_WARNING("You cannot slice [src] here! You need a table or at least a tray to do it."))
 		return 1
 	var/slices_lost = 0
-	if (!inaccurate)
+
+	if(!inaccurate)
 		user.visible_message( \
-			"\blue [user] slices \the [src]!", \
-			"\blue You slice \the [src]!" \
+			SPAN_INFO("[user] slices \the [src]!"), \
+			SPAN_INFO("You slice \the [src]!") \
 		)
 	else
 		user.visible_message( \
-			"\blue [user] inaccurately slices \the [src] with [W]!", \
-			"\blue You inaccurately slice \the [src] with your [W]!" \
+			SPAN_INFO("[user] inaccurately slices \the [src] with [W]!"), \
+			SPAN_INFO("You inaccurately slice \the [src] with your [W]!") \
 		)
-		slices_lost = rand(1,min(1,round(slices_num/2)))
+		slices_lost = rand(1, min(1, round(slices_num / 2)))
 	var/reagents_per_slice = reagents.total_volume/slices_num
-	for(var/i=1 to (slices_num-slices_lost))
+	for(var/i = 1 to (slices_num-slices_lost))
 		var/obj/slice = new slice_path (src.loc)
-		reagents.trans_to(slice,reagents_per_slice)
+		reagents.trans_to(slice, reagents_per_slice)
 	qdel(src)
 	return
 
@@ -178,7 +182,7 @@
 			something.loc = get_turf(src)
 	..()
 
-/obj/item/weapon/reagent_containers/food/snacks/attack_animal(var/mob/M)
+/obj/item/weapon/reagent_containers/food/snacks/attack_animal(mob/M)
 	if(isanimal(M))
 		if(iscorgi(M))
 			if(bitecount == 0 || prob(50))
@@ -191,7 +195,7 @@
 				qdel(src)
 		if(ismouse(M))
 			var/mob/living/simple_animal/mouse/N = M
-			N << text("\blue You nibble away at [src].")
+			to_chat(N, SPAN_INFO("You nibble away at [src]."))
 			if(prob(50))
 				N.visible_message("[N] nibbles away at [src].", "")
 			//N.emote("nibbles away at the [src]")

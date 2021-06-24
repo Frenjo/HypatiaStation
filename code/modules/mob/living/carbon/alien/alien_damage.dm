@@ -10,8 +10,7 @@
 			gib()
 			return
 
-		if (2.0)
-
+		if(2.0)
 			b_loss += 60
 
 			f_loss += 60
@@ -21,7 +20,7 @@
 
 		if(3.0)
 			b_loss += 30
-			if (prob(50))
+			if(prob(50))
 				Paralyse(1)
 			ear_damage += 15
 			ear_deaf += 60
@@ -31,23 +30,21 @@
 
 	updatehealth()
 
-
-
 /mob/living/carbon/alien/blob_act()
-	if (stat == 2)
+	if(stat == DEAD)
 		return
 	var/shielded = 0
 
 	var/damage = null
-	if (stat != 2)
-		damage = rand(10,30)
+	if(stat != DEAD)
+		damage = rand(10, 30)
 
 	if(shielded)
 		damage /= 4
 
 		//paralysis += 1
 
-	show_message("\red The blob attacks you!")
+	show_message(SPAN_WARNING("The blob attacks you!"))
 
 	adjustFireLoss(damage)
 

@@ -70,7 +70,7 @@
 /world/Topic(T, addr, master, key)
 	diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
 
-	if (T == "ping")
+	if(T == "ping")
 		var/x = 1
 		for (var/client/C)
 			x++
@@ -83,7 +83,7 @@
 				n++
 		return n
 
-	else if (T == "status")
+	else if(T == "status")
 		var/list/s = list()
 		s["version"] = game_version
 		s["mode"] = master_mode
@@ -105,13 +105,14 @@
 			n++
 		s["players"] = n
 
-		if(revdata)	s["revision"] = revdata.revision
+		if(revdata)
+			s["revision"] = revdata.revision
 		s["admins"] = admins
 
 		return list2params(s)
 
 
-/world/Reboot(var/reason)
+/world/Reboot(reason)
 	/*spawn(0)
 		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
 		*/
@@ -137,7 +138,7 @@
 				if(C.is_afk(INACTIVITY_KICK))
 					if(!istype(C.mob, /mob/dead))
 						log_access("AFK: [key_name(C)]")
-						C << "\red You have been inactive for more than 10 minutes and have been disconnected."
+						to_chat(C, SPAN_WARNING("You have been inactive for more than 10 minutes and have been disconnected."))
 						qdel(C)
 //#undef INACTIVITY_KICK
 
@@ -153,7 +154,7 @@
 			master_mode = Lines[1]
 			log_misc("Saved mode is '[master_mode]'")
 
-/world/proc/save_mode(var/the_mode)
+/world/proc/save_mode(the_mode)
 	var/F = file("data/mode.txt")
 	fdel(F)
 	F << the_mode
@@ -184,15 +185,15 @@
 /world/proc/load_mods()
 	if(config.admin_legacy_system)
 		var/text = file2text("config/moderators.txt")
-		if (!text)
+		if(!text)
 			error("Failed to load config/mods.txt")
 		else
 			var/list/lines = text2list(text, "\n")
 			for(var/line in lines)
-				if (!line)
+				if(!line)
 					continue
 
-				if (copytext(line, 1, 2) == ";")
+				if(copytext(line, 1, 2) == ";")
 					continue
 
 				var/rights = admin_ranks["Moderator"]
@@ -203,7 +204,7 @@
 /world/proc/update_status()
 	var/s = ""
 
-	if (config && config.server_name)
+	if(config && config.server_name)
 		s += "<b>[config.server_name]</b> &#8212; "
 
 	s += "<b>[station_name()]</b>";
@@ -222,41 +223,41 @@
 	else
 		features += "<b>STARTING</b>"
 
-	if (!enter_allowed)
+	if(!enter_allowed)
 		features += "closed"
 
 	features += abandon_allowed ? "respawn" : "no respawn"
 
-	if (config && config.allow_vote_mode)
+	if(config && config.allow_vote_mode)
 		features += "vote"
 
-	if (config && config.allow_ai)
+	if(config && config.allow_ai)
 		features += "AI allowed"
 
 	var/n = 0
-	for (var/mob/M in player_list)
-		if (M.client)
+	for(var/mob/M in player_list)
+		if(M.client)
 			n++
 
-	if (n > 1)
+	if(n > 1)
 		features += "~[n] players"
-	else if (n > 0)
+	else if(n > 0)
 		features += "~[n] player"
 
 	/*
 	is there a reason for this? the byond site shows 'hosted by X' when there is a proper host already.
-	if (host)
+	if(host)
 		features += "hosted by <b>[host]</b>"
 	*/
 
-	if (!host && config && config.hostedby)
+	if(!host && config && config.hostedby)
 		features += "hosted by <b>[config.hostedby]</b>"
 
-	if (features)
+	if(features)
 		s += ": [list2text(features, ", ")]"
 
 	/* does this help? I do not know */
-	if (src.status != s)
+	if(src.status != s)
 		src.status = s
 
 #define FAILED_DB_CONNECTION_CUTOFF 5
@@ -271,7 +272,6 @@ var/failed_old_db_connections = 0
 	return 1
 
 proc/setup_database_connection()
-
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
 
@@ -286,7 +286,7 @@ proc/setup_database_connection()
 
 	dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
 	. = dbcon.IsConnected()
-	if ( . )
+	if(.)
 		failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
 		failed_db_connections++		//If it failed, increase the failed connections counter.
@@ -329,7 +329,7 @@ proc/setup_old_database_connection()
 
 	dbcon_old.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
 	. = dbcon_old.IsConnected()
-	if ( . )
+	if(.)
 		failed_old_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
 		failed_old_db_connections++		//If it failed, increase the failed connections counter.

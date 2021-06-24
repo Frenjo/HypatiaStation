@@ -19,10 +19,10 @@
 
 	// canstun and canweaken don't affect slimes because they ignore stun and weakened variables
 	// for the sake of cleanliness, though, here they are.
-	status_flags = CANPARALYSE|CANPUSH
+	status_flags = CANPARALYSE | CANPUSH
 
-	mob_swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
-	mob_push_flags = MONKEY|SLIME|SIMPLE_ANIMAL
+	mob_swap_flags = MONKEY | SLIME | SIMPLE_ANIMAL
+	mob_push_flags = MONKEY | SLIME | SIMPLE_ANIMAL
 
 	var/cores = 1 // the number of /obj/item/slime_extract's the slime has left inside
 
@@ -74,9 +74,9 @@
 	else
 		name = text("[colour] adult slime ([rand(1,1000)])")
 	real_name = name
-	spawn (1)
+	spawn(1)
 		regenerate_icons()
-		src << "\blue Your icons have been generated!"
+		to_chat(src, SPAN_INFO("Your icons have been generated!"))
 	..()
 
 /mob/living/carbon/slime/adult/New()
@@ -87,9 +87,10 @@
 	var/tally = 0
 
 	var/health_deficiency = (100 - health)
-	if(health_deficiency >= 45) tally += (health_deficiency / 25)
+	if(health_deficiency >= 45)
+		tally += (health_deficiency / 25)
 
-	if (bodytemperature < 183.222)
+	if(bodytemperature < 183.222)
 		tally += (283.222 - bodytemperature) / 10 * 1.75
 
 	if(reagents)
@@ -102,7 +103,7 @@
 	if(health <= 0) // if damaged, the slime moves twice as slow
 		tally *= 2
 
-	if (bodytemperature >= 330.23) // 135 F
+	if(bodytemperature >= 330.23) // 135 F
 		return -1	// slimes become supercharged at high temperatures
 
 	return tally + config.slime_delay
@@ -114,14 +115,13 @@
 	..()
 
 	statpanel("Status")
-	if(istype(src, /mob/living/carbon/slime/adult))
+	if(isslimeadult(src))
 		stat(null, "Health: [round((health / 200) * 100)]%")
 	else
 		stat(null, "Health: [round((health / 150) * 100)]%")
 
-
-	if (client.statpanel == "Status")
-		if(istype(src,/mob/living/carbon/slime/adult))
+	if(client.statpanel == "Status")
+		if(isslimeadult(src))
 			stat(null, "Nutrition: [nutrition]/1200")
 			if(amount_grown >= 10)
 				stat(null, "You can reproduce!")
@@ -137,7 +137,7 @@
 	..(-abs(amount)) // Heals them
 	return
 
-/mob/living/carbon/slime/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/carbon/slime/bullet_act(obj/item/projectile/Proj)
 	attacked += 10
 	..(Proj)
 	return 0
@@ -148,21 +148,21 @@
 	..()
 
 /mob/living/carbon/slime/ex_act(severity)
-	if (stat == 2 && client)
+	if(stat == DEAD && client)
 		return
 
-	else if (stat == 2 && !client)
+	else if(stat == DEAD && !client)
 		qdel(src)
 		return
 
 	var/b_loss = null
 	var/f_loss = null
 	switch (severity)
-		if (1.0)
+		if(1.0)
 			b_loss += 500
 			return
 
-		if (2.0)
+		if(2.0)
 
 			b_loss += 60
 			f_loss += 60
@@ -178,20 +178,20 @@
 
 
 /mob/living/carbon/slime/blob_act()
-	if (stat == 2)
+	if(stat == DEAD)
 		return
 	var/shielded = 0
 
 	var/damage = null
-	if (stat != 2)
-		damage = rand(10,30)
+	if(stat != DEAD)
+		damage = rand(10, 30)
 
 	if(shielded)
 		damage /= 4
 
 		//paralysis += 1
 
-	show_message("\red The blob attacks you!")
+	show_message(SPAN_WARNING("The blob attacks you!"))
 
 	adjustFireLoss(damage)
 
@@ -208,9 +208,9 @@
 
 /mob/living/carbon/slime/meteorhit(O as obj)
 	for(var/mob/M in viewers(src, null))
-		if ((M.client && !( M.blinded )))
-			M.show_message(text("\red [] has been hit by []", src, O), 1)
-	if (health > 0)
+		if((M.client && !( M.blinded )))
+			M.show_message(SPAN_WARNING("[src] has been hit by [O]!"), 1)
+	if(health > 0)
 		adjustBruteLoss((istype(O, /obj/effect/meteor/small) ? 10 : 25))
 		adjustFireLoss(30)
 
@@ -219,22 +219,22 @@
 
 
 /mob/living/carbon/slime/attack_slime(mob/living/carbon/slime/M as mob)
-	if (!ticker)
-		M << "You cannot attack people before the game has started."
+	if(!ticker)
+		to_chat(M, "You cannot attack people before the game has started.")
 		return
 
-	if(Victim) return // can't attack while eating!
+	if(Victim)
+		return // can't attack while eating!
 
-	if (health > -100)
-
+	if(health > -100)
 		for(var/mob/O in viewers(src, null))
-			if ((O.client && !( O.blinded )))
-				O.show_message(text("\red <B>The [M.name] has glomped []!</B>", src), 1)
+			if((O.client && !O.blinded))
+				O.show_message(SPAN_DANGER("The [M.name] has glomped [src]!"), 1)
 
 		var/damage = rand(1, 3)
 		attacked += 5
 
-		if(istype(src, /mob/living/carbon/slime/adult))
+		if(isslimeadult(src))
 			damage = rand(1, 6)
 		else
 			damage = rand(1, 3)
@@ -262,42 +262,43 @@
 		updatehealth()
 
 /mob/living/carbon/slime/attack_paw(mob/living/carbon/monkey/M as mob)
-	if(!(istype(M, /mob/living/carbon/monkey)))	return//Fix for aliens receiving double messages when attacking other aliens.
+	if(!ismonkey(M))
+		return//Fix for aliens receiving double messages when attacking other aliens.
 
-	if (!ticker)
-		M << "You cannot attack people before the game has started."
+	if(!ticker)
+		to_chat(M, "You cannot attack people before the game has started.")
 		return
 
-	if (isturf(loc) && istype(loc.loc, /area/start))
-		M << "No attacking people at spawn, you jackass."
+	if(isturf(loc) && istype(loc.loc, /area/start))
+		to_chat(M, "No attacking people at spawn, you jackass.")
 		return
 	..()
 
 	switch(M.a_intent)
 
-		if ("help")
+		if("help")
 			help_shake_act(M)
 		else
-			if (istype(wear_mask, /obj/item/clothing/mask/muzzle))
+			if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
 				return
-			if (health > 0)
+			if(health > 0)
 				attacked += 10
 				//playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
 				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[M.name] has attacked [src]!</B>"), 1)
+					if((O.client && !O.blinded))
+						O.show_message(SPAN_DANGER("[M.name] has attacked [src]!"), 1)
 				adjustBruteLoss(rand(1, 3))
 				updatehealth()
 	return
 
 
 /mob/living/carbon/slime/attack_hand(mob/living/carbon/human/M as mob)
-	if (!ticker)
-		M << "You cannot attack people before the game has started."
+	if(!ticker)
+		to_chat(M, "You cannot attack people before the game has started.")
 		return
 
-	if (isturf(loc) && istype(loc.loc, /area/start))
-		M << "No attacking people at spawn, you jackass."
+	if(isturf(loc) && istype(loc.loc, /area/start))
+		to_chat(M, "No attacking people at spawn, you jackass.")
 		return
 
 	..()
@@ -306,14 +307,14 @@
 		if(Victim == M)
 			if(prob(60))
 				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message("\red [M] attempts to wrestle \the [name] off!", 1)
+					if((O.client && !O.blinded))
+						O.show_message(SPAN_WARNING("[M] attempts to wrestle \the [name] off!"), 1)
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
 			else
 				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message("\red [M] manages to wrestle \the [name] off!", 1)
+					if((O.client && !O.blinded))
+						O.show_message(SPAN_WARNING("[M] manages to wrestle \the [name] off!"), 1)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 				if(prob(90) && !client)
@@ -321,7 +322,7 @@
 
 				spawn()
 					SStun = 1
-					sleep(rand(45,60))
+					sleep(rand(45, 60))
 					if(src)
 						SStun = 0
 
@@ -334,61 +335,60 @@
 		else
 			if(prob(30))
 				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message("\red [M] attempts to wrestle \the [name] off of [Victim]!", 1)
+					if((O.client && !O.blinded))
+						O.show_message(SPAN_WARNING("[M] attempts to wrestle \the [name] off of [Victim]!"), 1)
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
 			else
 				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message("\red [M] manages to wrestle \the [name] off of [Victim]!", 1)
+					if((O.client && !O.blinded))
+						O.show_message(SPAN_WARNING("[M] manages to wrestle \the [name] off of [Victim]!"), 1)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 				if(prob(80) && !client)
 					Discipline++
 
-					if(!istype(src, /mob/living/carbon/slime/adult))
+					if(!isslimeadult(src))
 						if(Discipline == 1)
 							attacked = 0
 
 				spawn()
 					SStun = 1
-					sleep(rand(55,65))
+					sleep(rand(55, 65))
 					if(src)
 						SStun = 0
 
 				Victim = null
 				anchored = 0
-				step_away(src,M)
+				step_away(src, M)
 
 			return
 
 
 
 
-	if(M.gloves && istype(M.gloves,/obj/item/clothing/gloves))
+	if(M.gloves && istype(M.gloves, /obj/item/clothing/gloves))
 		var/obj/item/clothing/gloves/G = M.gloves
 		if(G.cell)
 			if(M.a_intent == "hurt")//Stungloves. Any contact will stun the alien.
 				if(G.cell.charge >= 2500)
 					G.cell.use(2500)
 					for(var/mob/O in viewers(src, null))
-						if ((O.client && !( O.blinded )))
-							O.show_message("\red <B>[src] has been touched with the stun gloves by [M]!</B>", 1, "\red You hear someone fall.", 2)
+						if((O.client && !O.blinded))
+							O.show_message(SPAN_DANGER("[src] has been touched with the stun gloves by [M]!"), 1, SPAN_WARNING("You hear someone fall."), 2)
 					return
 				else
-					M << "\red Not enough charge! "
+					to_chat(M, SPAN_WARNING("Not enough charge!"))
 					return
 
 	switch(M.a_intent)
-
-		if ("help")
+		if("help")
 			help_shake_act(M)
 
-		if ("grab")
-			if (M == src)
+		if("grab")
+			if(M == src)
 				return
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab( M, src )
+			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
 
 			M.put_in_active_hand(G)
 
@@ -399,16 +399,16 @@
 
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			for(var/mob/O in viewers(src, null))
-				if ((O.client && !( O.blinded )))
-					O.show_message(text("\red [] has grabbed [] passively!", M, src), 1)
+				if((O.client && !O.blinded))
+					O.show_message(SPAN_WARNING("[M] has grabbed [src] passively!"), 1)
 
 		else
 
 			var/damage = rand(1, 9)
 
 			attacked += 10
-			if (prob(90))
-				if (HULK in M.mutations)
+			if(prob(90))
+				if(HULK in M.mutations)
 					damage += 5
 					if(Victim)
 						Victim = null
@@ -417,23 +417,22 @@
 							Discipline++
 					spawn(0)
 
-						step_away(src,M,15)
+						step_away(src, M, 15)
 						sleep(3)
-						step_away(src,M,15)
-
+						step_away(src, M, 15)
 
 				playsound(loc, "punch", 25, 1, -1)
 				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] has punched []!</B>", M, src), 1)
+					if((O.client && !O.blinded))
+						O.show_message(SPAN_DANGER("[M] has punched [src]!"), 1)
 
 				adjustBruteLoss(damage)
 				updatehealth()
 			else
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] has attempted to punch []!</B>", M, src), 1)
+					if((O.client && !O.blinded))
+						O.show_message(SPAN_DANGER("[M] has attempted to punch [src]!"), 1)
 	return
 
 /mob/living/carbon/slime/restrained()
@@ -445,7 +444,6 @@ mob/living/carbon/slime/var/temperature_resistance = T0C+75
 
 
 /mob/living/carbon/slime/show_inv(mob/user as mob)
-
 	user.set_machine(src)
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
@@ -458,14 +456,14 @@ mob/living/carbon/slime/var/temperature_resistance = T0C+75
 
 /mob/living/carbon/slime/updatehealth()
 	if(status_flags & GODMODE)
-		if(istype(src, /mob/living/carbon/slime/adult))
+		if(isslimeadult(src))
 			health = 200
 		else
 			health = 150
 		stat = CONSCIOUS
 	else
 		// slimes can't suffocate unless they suicide. They are also not harmed by fire
-		if(istype(src, /mob/living/carbon/slime/adult))
+		if(isslimeadult(src))
 			health = 200 - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
 		else
 			health = 150 - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
@@ -489,111 +487,129 @@ mob/living/carbon/slime/var/temperature_resistance = T0C+75
 	var/Uses = 1 // uses before it goes inert
 
 /obj/item/slime_extract/New()
-		..()
-		var/datum/reagents/R = new/datum/reagents(100)
-		reagents = R
-		R.my_atom = src
+	..()
+	var/datum/reagents/R = new/datum/reagents(100)
+	reagents = R
+	R.my_atom = src
+
 
 /obj/item/slime_extract/grey
 	name = "grey slime extract"
 	icon_state = "grey slime extract"
 
+
 /obj/item/slime_extract/gold
 	name = "gold slime extract"
 	icon_state = "gold slime extract"
+
 
 /obj/item/slime_extract/silver
 	name = "silver slime extract"
 	icon_state = "silver slime extract"
 
+
 /obj/item/slime_extract/metal
 	name = "metal slime extract"
 	icon_state = "metal slime extract"
+
 
 /obj/item/slime_extract/purple
 	name = "purple slime extract"
 	icon_state = "purple slime extract"
 
+
 /obj/item/slime_extract/darkpurple
 	name = "dark purple slime extract"
 	icon_state = "dark purple slime extract"
+
 
 /obj/item/slime_extract/orange
 	name = "orange slime extract"
 	icon_state = "orange slime extract"
 
+
 /obj/item/slime_extract/yellow
 	name = "yellow slime extract"
 	icon_state = "yellow slime extract"
+
 
 /obj/item/slime_extract/red
 	name = "red slime extract"
 	icon_state = "red slime extract"
 
+
 /obj/item/slime_extract/blue
 	name = "blue slime extract"
 	icon_state = "blue slime extract"
+
 
 /obj/item/slime_extract/darkblue
 	name = "dark blue slime extract"
 	icon_state = "dark blue slime extract"
 
+
 /obj/item/slime_extract/pink
 	name = "pink slime extract"
 	icon_state = "pink slime extract"
+
 
 /obj/item/slime_extract/green
 	name = "green slime extract"
 	icon_state = "green slime extract"
 
+
 /obj/item/slime_extract/lightpink
 	name = "light pink slime extract"
 	icon_state = "light pink slime extract"
+
 
 /obj/item/slime_extract/black
 	name = "black slime extract"
 	icon_state = "black slime extract"
 
+
 /obj/item/slime_extract/oil
 	name = "oil slime extract"
 	icon_state = "oil slime extract"
+
 
 /obj/item/slime_extract/adamantine
 	name = "adamantine slime extract"
 	icon_state = "adamantine slime extract"
 
-////Pet Slime Creation///
 
+////Pet Slime Creation///
 /obj/item/weapon/slimepotion
 	name = "docility potion"
 	desc = "A potent chemical mix that will nullify a slime's powers, causing it to become docile and tame."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle19"
 
-	attack(mob/living/carbon/slime/M as mob, mob/user as mob)
-		if(!istype(M, /mob/living/carbon/slime))//If target is not a slime.
-			user << "\red The potion only works on baby slimes!"
-			return ..()
-		if(istype(M, /mob/living/carbon/slime/adult)) //Can't tame adults
-			user << "\red Only baby slimes can be tamed!"
-			return..()
-		if(M.stat)
-			user << "\red The slime is dead!"
-			return..()
-		var/mob/living/simple_animal/slime/pet = new /mob/living/simple_animal/slime(M.loc)
-		pet.icon_state = "[M.colour] baby slime"
-		pet.icon_living = "[M.colour] baby slime"
-		pet.icon_dead = "[M.colour] baby slime dead"
-		pet.colour = "[M.colour]"
-		user <<"You feed the slime the potion, removing it's powers and calming it."
-		qdel (M)
-		var/newname = copytext(sanitize(input(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime") as null|text),1,MAX_NAME_LEN)
+/obj/item/weapon/slimepotion/attack(mob/living/carbon/slime/M as mob, mob/user as mob)
+	if(!isslime(M))//If target is not a slime.
+		to_chat(user, SPAN_WARNING("The potion only works on baby slimes!"))
+		return ..()
+	if(isslimeadult(M)) //Can't tame adults
+		to_chat(user, SPAN_WARNING("Only baby slimes can be tamed!"))
+		return..()
+	if(M.stat)
+		to_chat(user, SPAN_WARNING("The slime is dead!"))
+		return..()
+	var/mob/living/simple_animal/slime/pet = new /mob/living/simple_animal/slime(M.loc)
+	pet.icon_state = "[M.colour] baby slime"
+	pet.icon_living = "[M.colour] baby slime"
+	pet.icon_dead = "[M.colour] baby slime dead"
+	pet.colour = "[M.colour]"
+	to_chat(user, "You feed the slime the potion, removing it's powers and calming it.")
+	qdel(M)
+	var/newname = copytext(sanitize(input(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime") as null | text), 1, MAX_NAME_LEN)
 
-		if (!newname)
-			newname = "pet slime"
-		pet.name = newname
-		pet.real_name = newname
-		qdel (src)
+	if(!newname)
+		newname = "pet slime"
+	pet.name = newname
+	pet.real_name = newname
+	qdel(src)
+
 
 /obj/item/weapon/slimepotion2
 	name = "advanced docility potion"
@@ -601,27 +617,27 @@ mob/living/carbon/slime/var/temperature_resistance = T0C+75
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle19"
 
-	attack(mob/living/carbon/slime/adult/M as mob, mob/user as mob)
-		if(!istype(M, /mob/living/carbon/slime/adult))//If target is not a slime.
-			user << "\red The potion only works on adult slimes!"
-			return ..()
-		if(M.stat)
-			user << "\red The slime is dead!"
-			return..()
-		var/mob/living/simple_animal/adultslime/pet = new /mob/living/simple_animal/adultslime(M.loc)
-		pet.icon_state = "[M.colour] adult slime"
-		pet.icon_living = "[M.colour] adult slime"
-		pet.icon_dead = "[M.colour] baby slime dead"
-		pet.colour = "[M.colour]"
-		user <<"You feed the slime the potion, removing it's powers and calming it."
-		qdel (M)
-		var/newname = copytext(sanitize(input(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime") as null|text),1,MAX_NAME_LEN)
+/obj/item/weapon/slimepotion2/attack(mob/living/carbon/slime/adult/M as mob, mob/user as mob)
+	if(!isslimeadult(M))	//If target is not a slime.
+		to_chat(user, SPAN_WARNING("The potion only works on adult slimes!"))
+		return ..()
+	if(M.stat)
+		to_chat(user, SPAN_WARNING("The slime is dead!"))
+		return..()
+	var/mob/living/simple_animal/adultslime/pet = new /mob/living/simple_animal/adultslime(M.loc)
+	pet.icon_state = "[M.colour] adult slime"
+	pet.icon_living = "[M.colour] adult slime"
+	pet.icon_dead = "[M.colour] baby slime dead"
+	pet.colour = "[M.colour]"
+	to_chat(user, "You feed the slime the potion, removing it's powers and calming it.")
+	qdel(M)
+	var/newname = copytext(sanitize(input(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime") as null | text), 1, MAX_NAME_LEN)
 
-		if (!newname)
-			newname = "pet slime"
-		pet.name = newname
-		pet.real_name = newname
-		qdel (src)
+	if(!newname)
+		newname = "pet slime"
+	pet.name = newname
+	pet.real_name = newname
+	qdel(src)
 
 
 /obj/item/weapon/slimesteroid
@@ -630,27 +646,26 @@ mob/living/carbon/slime/var/temperature_resistance = T0C+75
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 
-	attack(mob/living/carbon/slime/M as mob, mob/user as mob)
-		if(!istype(M, /mob/living/carbon/slime))//If target is not a slime.
-			user << "\red The steroid only works on baby slimes!"
-			return ..()
-		if(istype(M, /mob/living/carbon/slime/adult)) //Can't tame adults
-			user << "\red Only baby slimes can use the steroid!"
-			return..()
-		if(M.stat)
-			user << "\red The slime is dead!"
-			return..()
-		if(M.cores == 3)
-			user <<"\red The slime already has the maximum amount of extract!"
-			return..()
+/obj/item/weapon/slimesteroid/attack(mob/living/carbon/slime/M as mob, mob/user as mob)
+	if(!isslime(M))	//If target is not a slime.
+		to_chat(user, SPAN_WARNING("The steroid only works on baby slimes!"))
+		return ..()
+	if(isslimeadult(M)) //Can't tame adults
+		to_chat(user, SPAN_WARNING("Only baby slimes can use the steroid!"))
+		return..()
+	if(M.stat)
+		to_chat(user, SPAN_WARNING("The slime is dead!"))
+		return..()
+	if(M.cores == 3)
+		to_chat(user, SPAN_WARNING("The slime already has the maximum amount of extract!"))
+		return..()
 
-		user <<"You feed the slime the steroid. It now has triple the amount of extract."
-		M.cores = 3
-		qdel (src)
+	to_chat(user, "You feed the slime the steroid. It now has triple the amount of extract.")
+	M.cores = 3
+	qdel(src)
 
 
 ////////Adamantine Golem stuff I dunno where else to put it
-
 /obj/item/clothing/under/golem
 	name = "adamantine skin"
 	desc = "a golem's skin"
@@ -658,12 +673,13 @@ mob/living/carbon/slime/var/temperature_resistance = T0C+75
 	item_state = "golem"
 	item_color = "golem"
 	has_sensor = 0
-	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	canremove = 0
+
 
 /obj/item/clothing/suit/golem
 	name = "adamantine shell"
-	desc = "a golem's thick outter shell"
+	desc = "a golem's thick outer shell"
 	icon_state = "golem"
 	item_state = "golem"
 	w_class = 4//bulky item
@@ -680,6 +696,7 @@ mob/living/carbon/slime/var/temperature_resistance = T0C+75
 	canremove = 0
 	armor = list(melee = 80, bullet = 20, laser = 20, energy = 10, bomb = 0, bio = 0, rad = 0)
 
+
 /obj/item/clothing/shoes/golem
 	name = "golem's feet"
 	desc = "sturdy adamantine feet"
@@ -689,15 +706,6 @@ mob/living/carbon/slime/var/temperature_resistance = T0C+75
 	flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN + 1
 
-
-/obj/item/clothing/mask/gas/golem
-	name = "golem's face"
-	desc = "the imposing face of an adamantine golem"
-	icon_state = "golem"
-	item_state = "golem"
-	canremove = 0
-	siemens_coefficient = 0
-	unacidable = 1
 
 /obj/item/clothing/mask/gas/golem
 	name = "golem's face"
@@ -731,6 +739,7 @@ mob/living/carbon/slime/var/temperature_resistance = T0C+75
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	armor = list(melee = 80, bullet = 20, laser = 20, energy = 10, bomb = 0, bio = 0, rad = 0)
 
+
 /obj/effect/golemrune
 	anchored = 1
 	desc = "a strange rune used to create golems. It glows when spirits are nearby."
@@ -740,53 +749,57 @@ mob/living/carbon/slime/var/temperature_resistance = T0C+75
 	unacidable = 1
 	layer = TURF_LAYER
 
-	New()
-		..()
-		processing_objects.Add(src)
+/obj/effect/golemrune/New()
+	..()
+	processing_objects.Add(src)
 
-	process()
-		var/mob/dead/observer/ghost
-		for(var/mob/dead/observer/O in src.loc)
-			if(!O.client)	continue
-			if(O.mind && O.mind.current && O.mind.current.stat != DEAD)	continue
-			ghost = O
-			break
-		if(ghost)
-			icon_state = "golem2"
-		else
-			icon_state = "golem"
+/obj/effect/golemrune/process()
+	var/mob/dead/observer/ghost
+	for(var/mob/dead/observer/O in src.loc)
+		if(!O.client)
+			continue
+		if(O.mind && O.mind.current && O.mind.current.stat != DEAD)
+			continue
+		ghost = O
+		break
+	if(ghost)
+		icon_state = "golem2"
+	else
+		icon_state = "golem"
 
-	attack_hand(mob/living/user as mob)
-		var/mob/dead/observer/ghost
-		for(var/mob/dead/observer/O in src.loc)
-			if(!O.client)	continue
-			if(O.mind && O.mind.current && O.mind.current.stat != DEAD)	continue
-			ghost = O
-			break
-		if(!ghost)
-			user << "The rune fizzles uselessly. There is no spirit nearby."
-			return
-		var/mob/living/carbon/human/G = new /mob/living/carbon/human
-		G.dna.mutantrace = "adamantine"
-		G.real_name = text("Adamantine Golem ([rand(1, 1000)])")
-		G.equip_to_slot_or_del(new /obj/item/clothing/under/golem(G), slot_w_uniform)
-		G.equip_to_slot_or_del(new /obj/item/clothing/suit/golem(G), slot_wear_suit)
-		G.equip_to_slot_or_del(new /obj/item/clothing/shoes/golem(G), slot_shoes)
-		G.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/golem(G), slot_wear_mask)
-		G.equip_to_slot_or_del(new /obj/item/clothing/gloves/golem(G), slot_gloves)
-		//G.equip_to_slot_or_del(new /obj/item/clothing/head/space/golem(G), slot_head)
-		G.loc = src.loc
-		G.key = ghost.key
-		G << "You are an adamantine golem. You move slowly, but are highly resistant to heat and cold as well as blunt trauma. You are unable to wear clothes, but can still use most tools. Serve [user], and assist them in completing their goals at any cost."
-		qdel (src)
+/obj/effect/golemrune/attack_hand(mob/living/user as mob)
+	var/mob/dead/observer/ghost
+	for(var/mob/dead/observer/O in src.loc)
+		if(!O.client)
+			continue
+		if(O.mind && O.mind.current && O.mind.current.stat != DEAD)
+			continue
+		ghost = O
+		break
+	if(!ghost)
+		to_chat(user, "The rune fizzles uselessly. There is no spirit nearby.")
+		return
+	var/mob/living/carbon/human/G = new /mob/living/carbon/human
+	G.dna.mutantrace = "adamantine"
+	G.real_name = text("Adamantine Golem ([rand(1, 1000)])")
+	G.equip_to_slot_or_del(new /obj/item/clothing/under/golem(G), slot_w_uniform)
+	G.equip_to_slot_or_del(new /obj/item/clothing/suit/golem(G), slot_wear_suit)
+	G.equip_to_slot_or_del(new /obj/item/clothing/shoes/golem(G), slot_shoes)
+	G.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/golem(G), slot_wear_mask)
+	G.equip_to_slot_or_del(new /obj/item/clothing/gloves/golem(G), slot_gloves)
+	//G.equip_to_slot_or_del(new /obj/item/clothing/head/space/golem(G), slot_head)
+	G.loc = src.loc
+	G.key = ghost.key
+	to_chat(G, "You are an adamantine golem. You move slowly, but are highly resistant to heat and cold as well as blunt trauma. You are unable to wear clothes, but can still use most tools. Serve [user], and assist them in completing their goals at any cost.")
+	qdel (src)
 
+/obj/effect/golemrune/proc/announce_to_ghosts()
+	for(var/mob/dead/observer/G in player_list)
+		if(G.client)
+			var/area/A = get_area(src)
+			if(A)
+				to_chat(G, "Golem rune created in [A.name].")
 
-	proc/announce_to_ghosts()
-		for(var/mob/dead/observer/G in player_list)
-			if(G.client)
-				var/area/A = get_area(src)
-				if(A)
-					G << "Golem rune created in [A.name]."
 //////////////////////////////Old shit from metroids/RoRos, and the old cores, would not take much work to re-add them////////////////////////
 
 /*

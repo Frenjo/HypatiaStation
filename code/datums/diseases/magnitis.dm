@@ -16,7 +16,7 @@
 	switch(stage)
 		if(2)
 			if(prob(2))
-				affected_mob << "\red You feel a slight shock course through your body."
+				to_chat(affected_mob, SPAN_WARNING("You feel a slight shock course through your body."))
 			if(prob(2))
 				for(var/obj/M in orange(2, affected_mob))
 					if(!M.anchored && (M.flags & CONDUCT))
@@ -37,9 +37,9 @@
 						*/
 		if(3)
 			if(prob(2))
-				affected_mob << "\red You feel a strong shock course through your body."
+				to_chat(affected_mob, SPAN_WARNING("You feel a strong shock course through your body."))
 			if(prob(2))
-				affected_mob << "\red You feel like clowning around."
+				to_chat(affected_mob, SPAN_WARNING("You feel like clowning around."))
 			if(prob(4))
 				for(var/obj/M in orange(4, affected_mob))
 					if(!M.anchored && (M.flags & CONDUCT))
@@ -62,9 +62,9 @@
 						*/
 		if(4)
 			if(prob(2))
-				affected_mob << "\red You feel a powerful shock course through your body."
+				to_chat(affected_mob, SPAN_WARNING("You feel a powerful shock course through your body."))
 			if(prob(2))
-				affected_mob << "\red You query upon the nature of miracles."
+				to_chat(affected_mob, SPAN_WARNING("You query upon the nature of miracles."))
 			if(prob(8))
 				for(var/obj/M in orange(6, affected_mob))
 					if(!M.anchored && (M.flags & CONDUCT))
@@ -74,7 +74,7 @@
 					if(isAI(S))
 						continue
 					for(var/i = 0, i < rand(1, 3), i++)
-						step_towards(S,affected_mob)
+						step_towards(S, affected_mob)
 						/*
 						if(M.x > affected_mob.x)
 							M.x-=rand(1,min(5,M.x-affected_mob.x))

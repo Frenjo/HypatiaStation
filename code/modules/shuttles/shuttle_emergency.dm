@@ -67,7 +67,7 @@
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
 		if(emergency_shuttle.autopilot)
 			emergency_shuttle.autopilot = 0
-			world << "\blue <B>Alert: The shuttle autopilot has been overridden. Launch sequence initiated!</B>"
+			to_chat(world, SPAN_NOTICE("Alert: The shuttle autopilot has been overridden. Launch sequence initiated!"))
 
 	..(user)
 
@@ -78,7 +78,7 @@
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
 		if(emergency_shuttle.autopilot)
 			emergency_shuttle.autopilot = 0
-			world << "\blue <B>Alert: The shuttle autopilot has been overridden. Bluespace drive engaged!</B>"
+			to_chat(world, SPAN_NOTICE("Alert: The shuttle autopilot has been overridden. Bluespace drive engaged!"))
 
 	..(user)
 
@@ -89,10 +89,9 @@
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
 		if(emergency_shuttle.autopilot)
 			emergency_shuttle.autopilot = 0
-			world << "\blue <B>Alert: The shuttle autopilot has been overridden. Launch sequence aborted!</B>"
+			to_chat(world, SPAN_NOTICE("Alert: The shuttle autopilot has been overridden. Launch sequence aborted!"))
 
 	..(user)
-
 
 
 /obj/machinery/computer/shuttle_control/emergency
@@ -145,15 +144,12 @@
 	src.visible_message("[src] beeps as it scans [ident].")
 	authorized[dna_hash] = auth_name
 	if(req_authorizations - authorized.len)
-		world << "\blue <B>Alert: [req_authorizations - authorized.len] authorization\s needed to override the shuttle autopilot.</B>"
+		to_chat(world, SPAN_NOTICE("Alert: [req_authorizations - authorized.len] authorization\s needed to override the shuttle autopilot."))
 	return 1
-
-
-
 
 /obj/machinery/computer/shuttle_control/emergency/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/card/emag) && !emagged)
-		user << "\blue You short out the [src]'s authorization protocols."
+		to_chat(user, SPAN_INFO("You short out the [src]'s authorization protocols."))
 		emagged = 1
 		return
 
@@ -210,9 +206,9 @@
 	data = list(
 		"shuttle_status" = shuttle_status,
 		"shuttle_state" = shuttle_state,
-		"has_docking" = shuttle.docking_controller? 1 : 0,
-		"docking_status" = shuttle.docking_controller? shuttle.docking_controller.get_docking_status() : null,
-		"docking_override" = shuttle.docking_controller? shuttle.docking_controller.override_enabled : null,
+		"has_docking" = shuttle.docking_controller ? 1 : 0,
+		"docking_status" = shuttle.docking_controller ? shuttle.docking_controller.get_docking_status() : null,
+		"docking_override" = shuttle.docking_controller ? shuttle.docking_controller.override_enabled : null,
 		"can_launch" = shuttle.can_launch(src),
 		"can_cancel" = shuttle.can_cancel(src),
 		"can_force" = shuttle.can_force(src),

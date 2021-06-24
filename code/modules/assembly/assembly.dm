@@ -16,7 +16,7 @@
 	var/secured = 1
 	var/list/attached_overlays = null
 	var/obj/item/device/assembly_holder/holder = null
-	var/cooldown = 0//To prevent spam
+	var/cooldown = 0	//To prevent spam
 	var/wires = WIRE_RECEIVE | WIRE_PULSE
 
 	var/const/WIRE_RECEIVE = 1			//Allows Pulsed(0) to call Activate()
@@ -25,120 +25,131 @@
 	var/const/WIRE_RADIO_RECEIVE = 8		//Allows Pulsed(1) to call Activate()
 	var/const/WIRE_RADIO_PULSE = 16		//Allows Pulse(1) to send a radio message
 
-	proc/activate()									//What the device does when turned on
-		return
+//What the device does when turned on
+/obj/item/device/assembly/proc/activate()
+	return
 
-	proc/pulsed(var/radio = 0)						//Called when another assembly acts on this one, var/radio will determine where it came from for wire calcs
-		return
+//Called when another assembly acts on this one, var/radio will determine where it came from for wire calcs
+/obj/item/device/assembly/proc/pulsed(radio = 0)
+	return
 
-	proc/pulse(var/radio = 0)						//Called when this device attempts to act on another device, var/radio determines if it was sent via radio or direct
-		return
+//Called when this device attempts to act on another device, var/radio determines if it was sent via radio or direct
+/obj/item/device/assembly/proc/pulse(radio = 0)
+	return
 
-	proc/toggle_secure()								//Code that has to happen when the assembly is un\secured goes here
-		return
+//Code that has to happen when the assembly is un\secured goes here
+/obj/item/device/assembly/proc/toggle_secure()
+	return
 
-	proc/attach_assembly(var/obj/A, var/mob/user)	//Called when an assembly is attacked by another
-		return
+//Called when an assembly is attacked by another
+/obj/item/device/assembly/proc/attach_assembly(obj/A, mob/user)
+	return
 
-	proc/process_cooldown()							//Called via spawn(10) to have it count down the cooldown var
-		return
+//Called via spawn(10) to have it count down the cooldown var
+/obj/item/device/assembly/proc/process_cooldown()
+	return
 
-	proc/holder_movement()							//Called when the holder is moved
-		return
+//Called when the holder is moved
+/obj/item/device/assembly/proc/holder_movement()
+	return
 
-	interact(mob/user as mob)					//Called when attack_self is called
-		return
-
-
-	process_cooldown()
-		cooldown--
-		if(cooldown <= 0)	return 0
-		spawn(10)
-			process_cooldown()
-		return 1
-
-
-	pulsed(var/radio = 0)
-		if(holder && (wires & WIRE_RECEIVE))
-			activate()
-		if(radio && (wires & WIRE_RADIO_RECEIVE))
-			activate()
-		return 1
+//Called when attack_self is called
+/obj/item/device/assembly/interact(mob/user as mob)
+	return
 
 
-	pulse(var/radio = 0)
-		if(holder && (wires & WIRE_PULSE))
-			holder.process_activation(src, 1, 0)
-		if(holder && (wires & WIRE_PULSE_SPECIAL))
-			holder.process_activation(src, 0, 1)
-//		if(radio && (wires & WIRE_RADIO_PULSE))
-			//Not sure what goes here quite yet send signal?
-		return 1
-
-
-	activate()
-		if(!secured || (cooldown > 0))	return 0
-		cooldown = 2
-		spawn(10)
-			process_cooldown()
-		return 1
-
-
-	toggle_secure()
-		secured = !secured
-		update_icon()
-		return secured
-
-
-	attach_assembly(var/obj/item/device/assembly/A, var/mob/user)
-		holder = new/obj/item/device/assembly_holder(get_turf(src))
-		if(holder.attach(A,src,user))
-			user << "\blue You attach \the [A] to \the [src]!"
-			return 1
+/obj/item/device/assembly/process_cooldown()
+	cooldown--
+	if(cooldown <= 0)
 		return 0
+	spawn(10)
+		process_cooldown()
+	return 1
 
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(isassembly(W))
-			var/obj/item/device/assembly/A = W
-			if((!A.secured) && (!secured))
-				attach_assembly(A,user)
-				return
-		if(isscrewdriver(W))
-			if(toggle_secure())
-				user << "\blue \The [src] is ready!"
-			else
-				user << "\blue \The [src] can now be attached!"
-			return
-		..()
-		return
+/obj/item/device/assembly/pulsed(radio = 0)
+	if(holder && (wires & WIRE_RECEIVE))
+		activate()
+	if(radio && (wires & WIRE_RADIO_RECEIVE))
+		activate()
+	return 1
 
 
-	process()
-		processing_objects.Remove(src)
-		return
+/obj/item/device/assembly/pulse(radio = 0)
+	if(holder && (wires & WIRE_PULSE))
+		holder.process_activation(src, 1, 0)
+	if(holder && (wires & WIRE_PULSE_SPECIAL))
+		holder.process_activation(src, 0, 1)
+//	if(radio && (wires & WIRE_RADIO_PULSE))
+		//Not sure what goes here quite yet send signal?
+	return 1
 
 
-	examine()
-		set src in view()
-		..()
-		if((in_range(src, usr) || loc == usr))
-			if(secured)
-				usr << "\The [src] is ready!"
-			else
-				usr << "\The [src] can be attached!"
-		return
+/obj/item/device/assembly/activate()
+	if(!secured || (cooldown > 0))
+		return 0
+	cooldown = 2
+	spawn(10)
+		process_cooldown()
+	return 1
 
 
-	attack_self(mob/user as mob)
-		if(!user)	return 0
-		user.set_machine(src)
-		interact(user)
+/obj/item/device/assembly/toggle_secure()
+	secured = !secured
+	update_icon()
+	return secured
+
+
+/obj/item/device/assembly/attach_assembly(obj/item/device/assembly/A, mob/user)
+	holder = new/obj/item/device/assembly_holder(get_turf(src))
+	if(holder.attach(A, src, user))
+		to_chat(user, SPAN_INFO("You attach \the [A] to \the [src]!"))
 		return 1
+	return 0
 
 
-	interact(mob/user as mob)
-		return //HTML MENU FOR WIRES GOES HERE
+/obj/item/device/assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(isassembly(W))
+		var/obj/item/device/assembly/A = W
+		if((!A.secured) && (!secured))
+			attach_assembly(A, user)
+			return
+	if(isscrewdriver(W))
+		if(toggle_secure())
+			to_chat(user, SPAN_INFO("\The [src] is ready!"))
+		else
+			to_chat(user, SPAN_INFO("\The [src] can now be attached!"))
+		return
+	..()
+	return
+
+
+/obj/item/device/assembly/process()
+	processing_objects.Remove(src)
+	return
+
+
+/obj/item/device/assembly/examine()
+	set src in view()
+	..()
+	if((in_range(src, usr) || loc == usr))
+		if(secured)
+			to_chat(usr, "\The [src] is ready!")
+		else
+			to_chat(usr, "\The [src] can be attached!")
+	return
+
+
+/obj/item/device/assembly/attack_self(mob/user as mob)
+	if(!user)
+		return 0
+	user.set_machine(src)
+	interact(user)
+	return 1
+
+
+/obj/item/device/assembly/interact(mob/user as mob)
+	return //HTML MENU FOR WIRES GOES HERE
 
 /*
 	var/small_icon_state = null//If this obj will go inside the assembly use this for icons

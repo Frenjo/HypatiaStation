@@ -94,18 +94,18 @@
 	if (src.client.statpanel == "Status")
 		show_silenced()
 
-	if (proc_holder_list.len)//Generic list for proc_holder objects.
+	if(proc_holder_list.len)//Generic list for proc_holder objects.
 		for(var/obj/effect/proc_holder/P in proc_holder_list)
-			statpanel("[P.panel]","",P)
+			statpanel("[P.panel]", "", P)
 
-/mob/living/silicon/pai/check_eye(var/mob/user as mob)
-	if (!src.current)
+/mob/living/silicon/pai/check_eye(mob/user as mob)
+	if(!src.current)
 		return null
 	user.reset_view(src.current)
 	return 1
 
 /mob/living/silicon/pai/blob_act()
-	if (src.stat != 2)
+	if(src.stat != DEAD)
 		src.adjustBruteLoss(60)
 		src.updatehealth()
 		return 1
@@ -125,18 +125,18 @@
 	src << "<font color=green><b>Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging functionality will be unavailable until the reboot is complete.</b></font>"
 	if(prob(20))
 		var/turf/T = get_turf_or_move(src.loc)
-		for (var/mob/M in viewers(T))
+		for(var/mob/M in viewers(T))
 			M.show_message("\red A shower of sparks spray from [src]'s inner workings.", 3, "\red You hear and smell the ozone hiss of electrical sparks being expelled violently.", 2)
 		return src.death(0)
 
-	switch(pick(1,2,3))
+	switch(pick(1, 2, 3))
 		if(1)
 			src.master = null
 			src.master_dna = null
 			src << "<font color=green>You feel unbound.</font>"
 		if(2)
 			var/command
-			if(severity  == 1)
+			if(severity == 1)
 				command = pick("Serve", "Love", "Fool", "Entice", "Observe", "Judge", "Respect", "Educate", "Amuse", "Entertain", "Glorify", "Memorialize", "Analyze")
 			else
 				command = pick("Serve", "Kill", "Love", "Hate", "Disobey", "Devour", "Fool", "Enrage", "Entice", "Observe", "Judge", "Respect", "Disrespect", "Consume", "Educate", "Destroy", "Disgrace", "Amuse", "Entertain", "Ignite", "Glorify", "Memorialize", "Analyze")
@@ -149,21 +149,22 @@
 
 /mob/living/silicon/pai/meteorhit(obj/O as obj)
 	for(var/mob/M in viewers(src, null))
-		M.show_message(text("\red [] has been hit by []", src, O), 1)
-	if (src.health > 0)
+		M.show_message(SPAN_WARNING("[src] has been hit by [O]!"), 1)
+	if(src.health > 0)
 		src.adjustBruteLoss(30)
-		if ((O.icon_state == "flaming"))
+		if((O.icon_state == "flaming"))
 			src.adjustFireLoss(40)
 		src.updatehealth()
 	return
 
-/mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
+/mob/living/silicon/pai/proc/switchCamera(obj/machinery/camera/C)
 	usr:cameraFollow = null
-	if (!C)
+	if(!C)
 		src.unset_machine()
 		src.reset_view(null)
 		return 0
-	if (stat == 2 || !C.status || !(src.network in C.network)) return 0
+	if(stat == DEAD || !C.status || !(src.network in C.network))
+		return 0
 
 	// ok, we're alive, camera is good and in our network...
 

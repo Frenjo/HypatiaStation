@@ -11,9 +11,9 @@
 		var/health = max_health //The shield can only take so much beating (prevents perma-prisons)
 
 /obj/machinery/shield/New()
-	src.dir = pick(1,2,3,4)
+	src.dir = pick(1, 2, 3, 4)
 	..()
-	update_nearby_tiles(need_rebuild=1)
+	update_nearby_tiles(need_rebuild = 1)
 
 /obj/machinery/shield/Destroy()
 	opacity = 0
@@ -22,8 +22,10 @@
 	..()
 
 /obj/machinery/shield/CanPass(atom/movable/mover, turf/target, height, air_group)
-	if(!height || air_group) return 0
-	else return ..()
+	if(!height || air_group)
+		return 0
+	else
+		return ..()
 
 //Looks like copy/pasted code... I doubt 'need_rebuild' is even used here - Nodrak
 /obj/machinery/shield/proc/update_nearby_tiles(need_rebuild)
@@ -36,7 +38,8 @@
 
 
 /obj/machinery/shield/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(!istype(W)) return
+	if(!istype(W))
+		return
 
 	//Calculate damage
 	var/aforce = W.force
@@ -46,19 +49,20 @@
 	//Play a fitting sound
 	playsound(src, 'sound/effects/EMPulse.ogg', 75, 1)
 
-
-	if (src.health <= 0)
+	if(src.health <= 0)
 		visible_message("\blue The [src] dissipates!")
 		qdel(src)
 		return
 
 	opacity = 1
-	spawn(20) if(src) opacity = 0
+	spawn(20)
+		if(src)
+			opacity = 0
 
 	..()
 
 /obj/machinery/shield/meteorhit()
-	src.health -= max_health*0.75 //3/4 health as damage
+	src.health -= max_health * 0.75 //3/4 health as damage
 
 	if(src.health <= 0)
 		visible_message("\blue The [src] dissipates!")
@@ -69,7 +73,7 @@
 	spawn(20) if(src) opacity = 0
 	return
 
-/obj/machinery/shield/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/shield/bullet_act(obj/item/projectile/Proj)
 	health -= Proj.damage
 	..()
 	if(health <=0)
@@ -77,7 +81,9 @@
 		qdel(src)
 		return
 	opacity = 1
-	spawn(20) if(src) opacity = 0
+	spawn(20)
+		if(src)
+			opacity = 0
 
 /obj/machinery/shield/ex_act(severity)
 	switch(severity)
@@ -103,7 +109,6 @@
 /obj/machinery/shield/blob_act()
 	qdel(src)
 
-
 /obj/machinery/shield/hitby(AM as mob|obj)
 	//Let everyone know we've been hit!
 	visible_message("\red <B>[src] was hit by [AM].</B>")
@@ -121,14 +126,16 @@
 	playsound(src, 'sound/effects/EMPulse.ogg', 100, 1)
 
 	//Handle the destruction of the shield
-	if (src.health <= 0)
+	if(src.health <= 0)
 		visible_message("\blue The [src] dissipates!")
 		qdel(src)
 		return
 
 	//The shield becomes dense to absorb the blow.. purely asthetic.
 	opacity = 1
-	spawn(20) if(src) opacity = 0
+	spawn(20)
+		if(src)
+			opacity = 0
 
 	..()
 	return
@@ -157,20 +164,21 @@
 		qdel(shield_tile)
 	..()
 
-
 /obj/machinery/shieldgen/proc/shields_up()
-	if(active) return 0 //If it's already turned on, how did this get called?
+	if(active)
+		return 0 //If it's already turned on, how did this get called?
 
 	src.active = 1
 	update_icon()
 
 	for(var/turf/target_tile in range(2, src))
-		if (istype(target_tile,/turf/space) && !(locate(/obj/machinery/shield) in target_tile))
-			if (malfunction && prob(33) || !malfunction)
+		if(istype(target_tile, /turf/space) && !(locate(/obj/machinery/shield) in target_tile))
+			if(malfunction && prob(33) || !malfunction)
 				deployed_shields += new /obj/machinery/shield(target_tile)
 
 /obj/machinery/shieldgen/proc/shields_down()
-	if(!active) return 0 //If it's already off, how did this get called?
+	if(!active)
+		return 0 //If it's already off, how did this get called?
 
 	src.active = 0
 	update_icon()
@@ -194,8 +202,8 @@
 	return
 
 /obj/machinery/shieldgen/meteorhit(obj/O as obj)
-	src.health -= max_health*0.25 //A quarter of the machine's health
-	if (prob(5))
+	src.health -= max_health * 0.25 //A quarter of the machine's health
+	if(prob(5))
 		src.malfunction = 1
 	src.checkhp()
 	return
@@ -207,7 +215,7 @@
 			src.checkhp()
 		if(2.0)
 			src.health -= 30
-			if (prob(15))
+			if(prob(15))
 				src.malfunction = 1
 			src.checkhp()
 		if(3.0)
@@ -220,7 +228,7 @@
 		if(1)
 			src.health /= 2 //cut health in half
 			malfunction = 1
-			locked = pick(0,1)
+			locked = pick(0, 1)
 		if(2)
 			if(prob(50))
 				src.health *= 0.3 //chop off a third of the health
@@ -235,7 +243,7 @@
 		user << "The panel must be closed before operating this machine."
 		return
 
-	if (src.active)
+	if(src.active)
 		user.visible_message("\blue \icon[src] [user] deactivated the shield generator.", \
 			"\blue \icon[src] You deactivate the shield generator.", \
 			"You hear heavy droning fade out.")
@@ -352,9 +360,9 @@
 		power = 0
 		return 0
 
-	var/surplus = max(PN.avail-PN.load, 0)
-	var/shieldload = min(rand(50,200), surplus)
-	if(shieldload==0 && !storedpower)		// no cable or no power, and no power stored
+	var/surplus = max(PN.avail - PN.load, 0)
+	var/shieldload = min(rand(50, 200), surplus)
+	if(shieldload == 0 && !storedpower)		// no cable or no power, and no power stored
 		power = 0
 		return 0
 	else
@@ -422,9 +430,10 @@
 				"You hear heavy droning fade out")
 			icon_state = "Shield_Gen"
 			src.active = 0
-			for(var/dir in list(1,2,4,8)) src.cleanup(dir)
+			for(var/dir in list(1, 2, 4, 8))
+				src.cleanup(dir)
 
-/obj/machinery/shieldwallgen/proc/setup_field(var/NSEW = 0)
+/obj/machinery/shieldwallgen/proc/setup_field(NSEW = 0)
 	var/turf/T = src.loc
 	var/turf/T2 = src.loc
 	var/obj/machinery/shieldwallgen/G
@@ -490,7 +499,7 @@
 			return
 
 	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
-		if (src.allowed(user))
+		if(src.allowed(user))
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
 		else
@@ -500,7 +509,7 @@
 		src.add_fingerprint(user)
 		visible_message("\red The [src.name] has been hit with \the [W.name] by [user.name]!")
 
-/obj/machinery/shieldwallgen/proc/cleanup(var/NSEW)
+/obj/machinery/shieldwallgen/proc/cleanup(NSEW)
 	var/obj/machinery/shieldwall/F
 	var/obj/machinery/shieldwallgen/G
 	var/turf/T = src.loc
@@ -525,7 +534,7 @@
 	src.cleanup(8)
 	..()
 
-/obj/machinery/shieldwallgen/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/shieldwallgen/bullet_act(obj/item/projectile/Proj)
 	storedpower -= Proj.damage
 	..()
 	return
@@ -551,7 +560,7 @@
 		var/obj/machinery/shieldwallgen/gen_primary
 		var/obj/machinery/shieldwallgen/gen_secondary
 
-/obj/machinery/shieldwall/New(var/obj/machinery/shieldwallgen/A, var/obj/machinery/shieldwallgen/B)
+/obj/machinery/shieldwall/New(obj/machinery/shieldwallgen/A, obj/machinery/shieldwallgen/B)
 	..()
 	src.gen_primary = A
 	src.gen_secondary = B
@@ -560,7 +569,6 @@
 
 /obj/machinery/shieldwall/attack_hand(mob/user as mob)
 	return
-
 
 /obj/machinery/shieldwall/process()
 	if(needs_power)
@@ -578,7 +586,7 @@
 			gen_secondary.storedpower -=10
 
 
-/obj/machinery/shieldwall/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/shieldwall/bullet_act(obj/item/projectile/Proj)
 	if(needs_power)
 		var/obj/machinery/shieldwallgen/G
 		if(prob(50))
@@ -617,13 +625,14 @@
 	return
 
 
-/obj/machinery/shieldwall/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
+/obj/machinery/shieldwall/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	if(air_group || (height == 0))
+		return 1
 
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return prob(20)
 	else
-		if (istype(mover, /obj/item/projectile))
+		if(istype(mover, /obj/item/projectile))
 			return prob(10)
 		else
 			return !src.density

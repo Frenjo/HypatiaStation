@@ -32,7 +32,6 @@
 Name:	IsSpecialAssembly
 Desc:	If true is an object that can be attached to an assembly holder but is a special thing like a plasma can or door
 */
-
 /obj/proc/IsSpecialAssembly()
 	return 0
 

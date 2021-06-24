@@ -16,13 +16,13 @@
 	..()
 	switch(dir)
 		if(NORTH)
-			initialize_directions = NORTH|SOUTH
+			initialize_directions = NORTH | SOUTH
 		if(SOUTH)
-			initialize_directions = NORTH|SOUTH
+			initialize_directions = NORTH | SOUTH
 		if(EAST)
-			initialize_directions = EAST|WEST
+			initialize_directions = EAST | WEST
 		if(WEST)
-			initialize_directions = EAST|WEST
+			initialize_directions = EAST | WEST
 	air1 = new
 	air2 = new
 
@@ -60,7 +60,8 @@
 	..()
 
 /obj/machinery/atmospherics/binary/initialize()
-	if(node1 && node2) return
+	if(node1 && node2)
+		return
 
 	var/node2_connect = dir
 	var/node1_connect = turn(dir, 180)

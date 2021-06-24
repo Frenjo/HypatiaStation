@@ -16,27 +16,28 @@
 
 	var/arrive_time = 0	//the time at which the shuttle arrives when long jumping
 
-/datum/shuttle/proc/short_jump(var/area/origin,var/area/destination)
-	if(moving_status != SHUTTLE_IDLE) return
+/datum/shuttle/proc/short_jump(area/origin, area/destination)
+	if(moving_status != SHUTTLE_IDLE)
+		return
 
 	//it would be cool to play a sound here
 	moving_status = SHUTTLE_WARMUP
-	spawn(warmup_time*10)
-		if (moving_status == SHUTTLE_IDLE)
+	spawn(warmup_time * 10)
+		if(moving_status == SHUTTLE_IDLE)
 			return	//someone cancelled the launch
 
 		moving_status = SHUTTLE_INTRANSIT //shouldn't matter but just to be safe
 		move(origin, destination)
 		moving_status = SHUTTLE_IDLE
 
-/datum/shuttle/proc/long_jump(var/area/departing, var/area/destination, var/area/interim, var/travel_time, var/direction)
+/datum/shuttle/proc/long_jump(area/departing, area/destination, area/interim, travel_time, direction)
 	//world << "shuttle/long_jump: departing=[departing], destination=[destination], interim=[interim], travel_time=[travel_time]"
 	if(moving_status != SHUTTLE_IDLE)
 		return
 
 	//it would be cool to play a sound here
 	moving_status = SHUTTLE_WARMUP
-	spawn(warmup_time*10)
+	spawn(warmup_time * 10)
 		if(moving_status == SHUTTLE_IDLE)
 			return	//someone cancelled the launch
 
@@ -84,7 +85,7 @@
 //just moves the shuttle from A to B, if it can be moved
 //A note to anyone overriding move in a subtype. move() must absolutely not, under any circumstances, fail to move the shuttle.
 //If you want to conditionally cancel shuttle launches, that logic must go in short_jump() or long_jump()
-/datum/shuttle/proc/move(var/area/origin, var/area/destination, var/direction=null)
+/datum/shuttle/proc/move(area/origin, area/destination, direction = null)
 	//world << "move_shuttle() called for [shuttle_tag] leaving [origin] en route to [destination]."
 
 	//world << "area_coming_from: [origin]"
@@ -123,12 +124,12 @@
 		if(M.client)
 			spawn(0)
 				if(M.buckled)
-					M << "\red Sudden acceleration presses you into your chair!"
+					to_chat(M, SPAN_WARNING("Sudden acceleration presses you into your chair!"))
 					shake_camera(M, 3, 1)
 				else
-					M << "\red The floor lurches beneath you!"
+					to_chat(M, SPAN_WARNING("The floor lurches beneath you!"))
 					shake_camera(M, 10, 1)
-		if(istype(M, /mob/living/carbon))
+		if(iscarbon(M))
 			if(!M.buckled)
 				M.Weaken(3)
 

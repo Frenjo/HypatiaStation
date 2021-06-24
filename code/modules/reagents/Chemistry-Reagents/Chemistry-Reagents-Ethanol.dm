@@ -89,6 +89,7 @@
 		M.adjust_fire_stacks(volume / 15)
 		return
 
+
 /datum/reagent/ethanol/beer
 	name = "Beer"
 	id = "beer"
@@ -127,6 +128,7 @@
 	boozepwr = 2
 	dizzy_adj = 4
 
+
 /datum/reagent/ethanol/specialwhiskey
 	name = "Special Blend Whiskey"
 	id = "specialwhiskey"
@@ -135,6 +137,7 @@
 	boozepwr = 2
 	dizzy_adj = 4
 	slur_start = 30		//amount absorbed after which mob starts slurring
+
 
 /datum/reagent/ethanol/thirteenloko
 	name = "Thirteen Loko"
@@ -174,6 +177,7 @@
 	boozepwr = 1
 	nutriment_factor = 2 * FOOD_METABOLISM
 
+
 /datum/reagent/ethanol/threemileisland
 	name = "Three Mile Island Iced Tea"
 	id = "threemileisland"
@@ -195,12 +199,14 @@
 	boozepwr = 1
 	dizzy_adj = 3
 
+
 /datum/reagent/ethanol/rum
 	name = "Rum"
 	id = "rum"
 	description = "Yohoho and all that."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 1.5
+
 
 /datum/reagent/ethanol/tequilla
 	name = "Tequila"
@@ -209,12 +215,14 @@
 	color = "#FFFF91" // rgb: 255, 255, 145
 	boozepwr = 2
 
+
 /datum/reagent/ethanol/vermouth
 	name = "Vermouth"
 	id = "vermouth"
 	description = "You suddenly feel a craving for a martini..."
 	color = "#91FF91" // rgb: 145, 255, 145
 	boozepwr = 1.5
+
 
 /datum/reagent/ethanol/wine
 	name = "Wine"
@@ -226,6 +234,7 @@
 	slur_start = 65			//amount absorbed after which mob starts slurring
 	confused_start = 145	//amount absorbed after which mob starts confusing directions
 
+
 /datum/reagent/ethanol/cognac
 	name = "Cognac"
 	id = "cognac"
@@ -234,6 +243,7 @@
 	boozepwr = 1.5
 	dizzy_adj = 4
 	confused_start = 115	//amount absorbed after which mob starts confusing directions
+
 
 /datum/reagent/ethanol/hooch
 	name = "Hooch"
@@ -246,12 +256,14 @@
 	slur_start = 35			//amount absorbed after which mob starts slurring
 	confused_start = 90	//amount absorbed after which mob starts confusing directions
 
+
 /datum/reagent/ethanol/ale
 	name = "Ale"
 	id = "ale"
 	description = "A dark alchoholic beverage made by malted barley and yeast."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 1
+
 
 /datum/reagent/ethanol/absinthe
 	name = "Absinthe"
@@ -262,6 +274,7 @@
 	dizzy_adj = 5
 	slur_start = 15
 	confused_start = 30
+
 
 /datum/reagent/ethanol/pwine
 	name = "Poison Wine"
@@ -340,7 +353,7 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 1
 
-/datum/reagent/ethanol/deadrum/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/ethanol/deadrum/on_mob_life(mob/living/M as mob)
 	..()
 	M.dizziness +=5
 	return
@@ -364,12 +377,14 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 3
 
+
 /datum/reagent/ethanol/patron
 	name = "Patron"
 	id = "patron"
 	description = "Tequila with silver in it, a favorite of alcoholic women in the club scene."
 	color = "#585840" // rgb: 88, 88, 64
 	boozepwr = 1.5
+
 
 /datum/reagent/ethanol/gintonic
 	name = "Gin and Tonic"
@@ -378,12 +393,14 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 1
 
+
 /datum/reagent/ethanol/cuba_libre
 	name = "Cuba Libre"
 	id = "cubalibre"
 	description = "Rum, mixed with cola. Viva la revolucion."
 	color = "#3E1B00" // rgb: 62, 27, 0
 	boozepwr = 1.5
+
 
 /datum/reagent/ethanol/whiskey_cola
 	name = "Whiskey Cola"
@@ -392,12 +409,14 @@
 	color = "#3E1B00" // rgb: 62, 27, 0
 	boozepwr = 2
 
+
 /datum/reagent/ethanol/martini
 	name = "Classic Martini"
 	id = "martini"
 	description = "Vermouth with Gin. Not quite how 007 enjoyed it, but still delicious."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 2
+
 
 /datum/reagent/ethanol/vodkamartini
 	name = "Vodka Martini"
@@ -406,12 +425,14 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 4
 
+
 /datum/reagent/ethanol/white_russian
 	name = "White Russian"
 	id = "whiterussian"
 	description = "That's just, like, your opinion, man..."
 	color = "#A68340" // rgb: 166, 131, 64
 	boozepwr = 3
+
 
 /datum/reagent/ethanol/screwdrivercocktail
 	name = "Screwdriver"
@@ -420,12 +441,14 @@
 	color = "#A68310" // rgb: 166, 131, 16
 	boozepwr = 3
 
+
 /datum/reagent/ethanol/booger
 	name = "Booger"
 	id = "booger"
 	description = "Ewww..."
 	color = "#8CFF8C" // rgb: 140, 255, 140
 	boozepwr = 1.5
+
 
 /datum/reagent/ethanol/bloody_mary
 	name = "Bloody Mary"
@@ -434,6 +457,7 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 3
 
+
 /datum/reagent/ethanol/brave_bull
 	name = "Brave Bull"
 	id = "bravebull"
@@ -441,12 +465,14 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 3
 
+
 /datum/reagent/ethanol/tequilla_sunrise
 	name = "Tequila Sunrise"
 	id = "tequillasunrise"
 	description = "Tequila and orange juice. Much like a Screwdriver, only Mexican~"
 	color = "#FFE48C" // rgb: 255, 228, 140
 	boozepwr = 2
+
 
 /datum/reagent/ethanol/toxins_special
 	name = "Toxins Special"
@@ -456,8 +482,8 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 5
 
-/datum/reagent/ethanol/toxins_special/on_mob_life(var/mob/living/M as mob)
-	if (M.bodytemperature < 330)
+/datum/reagent/ethanol/toxins_special/on_mob_life(mob/living/M as mob)
+	if(M.bodytemperature < 330)
 		M.bodytemperature = min(330, M.bodytemperature + (15 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
 	..()
 	return
@@ -471,7 +497,7 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 4
 
-/datum/reagent/ethanol/beepsky_smash/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/ethanol/beepsky_smash/on_mob_life(mob/living/M as mob)
 	M.Stun(2)
 	..()
 	return
@@ -484,12 +510,14 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 2
 
+
 /datum/reagent/ethanol/manly_dorf
 	name = "The Manly Dorf"
 	id = "manlydorf"
 	description = "Beer and Ale, brought together in a delicious mix. Intended for true men only."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 2
+
 
 /datum/reagent/ethanol/longislandicedtea
 	name = "Long Island Iced Tea"
@@ -498,12 +526,14 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 4
 
+
 /datum/reagent/ethanol/moonshine
 	name = "Moonshine"
 	id = "moonshine"
 	description = "You've really hit rock bottom now... your liver packed its bags and left last night."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 4
+
 
 /datum/reagent/ethanol/b52
 	name = "B-52"
@@ -512,12 +542,14 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 4
 
+
 /datum/reagent/ethanol/irishcoffee
 	name = "Irish Coffee"
 	id = "irishcoffee"
 	description = "Coffee, and alcohol. More fun than a Mimosa to drink in the morning."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 3
+
 
 /datum/reagent/ethanol/margarita
 	name = "Margarita"
@@ -526,12 +558,14 @@
 	color = "#8CFF8C" // rgb: 140, 255, 140
 	boozepwr = 3
 
+
 /datum/reagent/ethanol/black_russian
 	name = "Black Russian"
 	id = "blackrussian"
 	description = "For the lactose-intolerant. Still as classy as a White Russian."
 	color = "#360000" // rgb: 54, 0, 0
 	boozepwr = 3
+
 
 /datum/reagent/ethanol/manhattan
 	name = "Manhattan"
@@ -540,6 +574,7 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 3
 
+
 /datum/reagent/ethanol/manhattan_proj
 	name = "Manhattan Project"
 	id = "manhattan_proj"
@@ -547,18 +582,19 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 5
 
-/datum/reagent/ethanol/manhattan_proj/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/ethanol/manhattan_proj/on_mob_life(mob/living/M as mob)
 	M.druggy = max(M.druggy, 30)
 	..()
 	return
 
 
 /datum/reagent/ethanol/whiskeysoda
-			name = "Whiskey Soda"
-			id = "whiskeysoda"
-			description = "For the more refined griffon."
-			color = "#664300" // rgb: 102, 67, 0
-			boozepwr = 3
+	name = "Whiskey Soda"
+	id = "whiskeysoda"
+	description = "For the more refined griffon."
+	color = "#664300" // rgb: 102, 67, 0
+	boozepwr = 3
+
 
 /datum/reagent/ethanol/antifreeze
 	name = "Anti-freeze"
@@ -567,8 +603,8 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 4
 
-/datum/reagent/ethanol/antifreeze/on_mob_life(var/mob/living/M as mob)
-	if (M.bodytemperature < 330)
+/datum/reagent/ethanol/antifreeze/on_mob_life(mob/living/M as mob)
+	if(M.bodytemperature < 330)
 		M.bodytemperature = min(330, M.bodytemperature + (20 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
 	..()
 	return
@@ -581,12 +617,14 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 1.5
 
+
 /datum/reagent/ethanol/snowwhite
 	name = "Snow White"
 	id = "snowwhite"
 	description = "A cold refreshment"
 	color = "#FFFFFF" // rgb: 255, 255, 255
 	boozepwr = 1.5
+
 
 /datum/reagent/ethanol/melonliquor
 	name = "Melon Liquor"
@@ -595,12 +633,14 @@
 	color = "#138808" // rgb: 19, 136, 8
 	boozepwr = 1
 
+
 /datum/reagent/ethanol/bluecuracao
 	name = "Blue Curacao"
 	id = "bluecuracao"
 	description = "Exotically blue, fruity drink, distilled from oranges."
 	color = "#0000CD" // rgb: 0, 0, 205
 	boozepwr = 1.5
+
 
 /datum/reagent/ethanol/suidream
 	name = "Sui Dream"
@@ -609,12 +649,14 @@
 	color = "#00A86B" // rgb: 0, 168, 107
 	boozepwr = 0.5
 
+
 /datum/reagent/ethanol/demonsblood
 	name = "Demons Blood"
 	id = "demonsblood"
 	description = "AHHHH!!!!"
 	color = "#820000" // rgb: 130, 0, 0
 	boozepwr = 3
+
 
 /datum/reagent/ethanol/vodkatonic
 	name = "Vodka and Tonic"
@@ -625,6 +667,7 @@
 	dizzy_adj = 4
 	slurr_adj = 3
 
+
 /datum/reagent/ethanol/ginfizz
 	name = "Gin Fizz"
 	id = "ginfizz"
@@ -634,12 +677,14 @@
 	dizzy_adj = 4
 	slurr_adj = 3
 
+
 /datum/reagent/ethanol/bahama_mama
 	name = "Bahama mama"
 	id = "bahama_mama"
 	description = "Tropical cocktail."
 	color = "#FF7F3B" // rgb: 255, 127, 59
 	boozepwr = 2
+
 
 /datum/reagent/ethanol/singulo
 	name = "Singulo"
@@ -650,6 +695,7 @@
 	dizzy_adj = 15
 	slurr_adj = 15
 
+
 /datum/reagent/ethanol/sbiten
 	name = "Sbiten"
 	id = "sbiten"
@@ -657,8 +703,8 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 3
 
-/datum/reagent/ethanol/sbiten/on_mob_life(var/mob/living/M as mob)
-	if (M.bodytemperature < 360)
+/datum/reagent/ethanol/sbiten/on_mob_life(mob/living/M as mob)
+	if(M.bodytemperature < 360)
 		M.bodytemperature = min(360, M.bodytemperature + (50 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
 	..()
 	return
@@ -671,12 +717,14 @@
 	color = "#A68310" // rgb: 166, 131, 16
 	boozepwr = 3
 
+
 /datum/reagent/ethanol/red_mead
 	name = "Red Mead"
 	id = "red_mead"
 	description = "The true Viking's drink! Even though it has a strange red color."
 	color = "#C73C00" // rgb: 199, 60, 0
 	boozepwr = 1.5
+
 
 /datum/reagent/ethanol/mead
 	name = "Mead"
@@ -687,6 +735,7 @@
 	boozepwr = 1.5
 	nutriment_factor = 1 * FOOD_METABOLISM
 
+
 /datum/reagent/ethanol/iced_beer
 	name = "Iced Beer"
 	id = "iced_beer"
@@ -694,7 +743,7 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 1
 
-/datum/reagent/ethanol/iced_beer/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/ethanol/iced_beer/on_mob_life(mob/living/M as mob)
 	if(M.bodytemperature > 270)
 		M.bodytemperature = max(270, M.bodytemperature - (20 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
 	..()
@@ -709,12 +758,14 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 0.5
 
+
 /datum/reagent/ethanol/aloe
 	name = "Aloe"
 	id = "aloe"
 	description = "So very, very, very good."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 3
+
 
 /datum/reagent/ethanol/andalusia
 	name = "Andalusia"
@@ -723,12 +774,14 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 3
 
+
 /datum/reagent/ethanol/alliescocktail
 	name = "Allies Cocktail"
 	id = "alliescocktail"
 	description = "A drink made from your allies, not as sweet as when made from your enemies."
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 2
+
 
 /datum/reagent/ethanol/acid_spit
 	name = "Acid Spit"
@@ -738,6 +791,7 @@
 	color = "#365000" // rgb: 54, 80, 0
 	boozepwr = 1.5
 
+
 /datum/reagent/ethanol/amasec
 	name = "Amasec"
 	id = "amasec"
@@ -746,12 +800,14 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 2
 
+
 /datum/reagent/ethanol/changelingsting
 	name = "Changeling Sting"
 	id = "changelingsting"
 	description = "You take a tiny sip and feel a burning sensation..."
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 5
+
 
 /datum/reagent/ethanol/irishcarbomb
 	name = "Irish Car Bomb"
@@ -761,6 +817,7 @@
 	boozepwr = 3
 	dizzy_adj = 5
 
+
 /datum/reagent/ethanol/syndicatebomb
 	name = "Syndicate Bomb"
 	id = "syndicatebomb"
@@ -768,12 +825,14 @@
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 5
 
+
 /datum/reagent/ethanol/erikasurprise
 	name = "Erika Surprise"
 	id = "erikasurprise"
 	description = "The surprise is it's green!"
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 3
+
 
 /datum/reagent/ethanol/driestmartini
 	name = "Driest Martini"
@@ -783,6 +842,7 @@
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 4
 
+
 /datum/reagent/ethanol/bananahonk
 	name = "Banana Mama"
 	id = "bananahonk"
@@ -790,6 +850,7 @@
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	color = "#FFFF91" // rgb: 255, 255, 140
 	boozepwr = 4
+
 
 /datum/reagent/ethanol/silencer
 	name = "Silencer"
@@ -799,17 +860,20 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 4
 
-/datum/reagent/ethanol/silencer/on_mob_life(var/mob/living/M as mob)
-	if(!data) data = 1
+/datum/reagent/ethanol/silencer/on_mob_life(mob/living/M as mob)
+	if(!data)
+		data = 1
 	data++
-	M.dizziness +=10
+	M.dizziness += 10
 	if(data >= 55 && data <115)
-		if (!M.stuttering) M.stuttering = 1
+		if(!M.stuttering)
+			M.stuttering = 1
 		M.stuttering += 10
 	else if(data >= 115 && prob(33))
-		M.confused = max(M.confused+15,15)
+		M.confused = max(M.confused + 15, 15)
 	..()
 	return
+
 
 /datum/reagent/ethanol/tricordrazine_surprise
 	name = "Tricordrazine Surprise"
@@ -831,13 +895,15 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#666300" // rgb: 102, 99, 0
 
-/datum/reagent/atomicbomb/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/atomicbomb/on_mob_life(mob/living/M as mob)
 	M.druggy = max(M.druggy, 50)
-	M.confused = max(M.confused+2,0)
+	M.confused = max(M.confused + 2,0)
 	M.make_dizzy(10)
-	if (!M.stuttering) M.stuttering = 1
+	if(!M.stuttering)
+		M.stuttering = 1
 	M.stuttering += 3
-	if(!data) data = 1
+	if(!data)
+		data = 1
 	data++
 	switch(data)
 		if(51 to 200)
@@ -856,11 +922,11 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#664300" // rgb: 102, 67, 0
 
-/datum/reagent/gargle_blaster/on_mob_life(var/mob/living/M as mob)
+/datum/reagent/gargle_blaster/on_mob_life(mob/living/M as mob)
 	if(!data)
 		data = 1
 	data++
-	M.dizziness +=6
+	M.dizziness += 6
 	switch(data)
 		if(15 to 45)
 			M.stuttering = max(M.stuttering + 3, 0)
@@ -881,14 +947,14 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#2E2E61" // rgb: 46, 46, 97
 
-/datum/reagent/neurotoxin/on_mob_life(var/mob/living/carbon/M as mob)
+/datum/reagent/neurotoxin/on_mob_life(mob/living/carbon/M as mob)
 	if(!M)
 		M = holder.my_atom
 	M.weakened = max(M.weakened, 3)
 	if(!data)
 		data = 1
 	data++
-	M.dizziness +=6
+	M.dizziness += 6
 	switch(data)
 		if(15 to 45)
 			M.stuttering = max(M.stuttering + 3, 0)
@@ -909,35 +975,46 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#664300" // rgb: 102, 67, 0
 
-/datum/reagent/hippies_delight/on_mob_life(var/mob/living/M as mob)
-	if(!M) M = holder.my_atom
+/datum/reagent/hippies_delight/on_mob_life(mob/living/M as mob)
+	if(!M)
+		M = holder.my_atom
 	M.druggy = max(M.druggy, 50)
-	if(!data) data = 1
+	if(!data)
+		data = 1
 	data++
 	switch(data)
 		if(1 to 5)
-			if (!M.stuttering) M.stuttering = 1
+			if(!M.stuttering)
+				M.stuttering = 1
 			M.make_dizzy(10)
-			if(prob(10)) M.emote(pick("twitch","giggle"))
+			if(prob(10))
+				M.emote(pick("twitch", "giggle"))
 		if(5 to 10)
-			if (!M.stuttering) M.stuttering = 1
+			if(!M.stuttering)
+				M.stuttering = 1
 			M.make_jittery(20)
 			M.make_dizzy(20)
 			M.druggy = max(M.druggy, 45)
-			if(prob(20)) M.emote(pick("twitch","giggle"))
+			if(prob(20))
+				M.emote(pick("twitch", "giggle"))
 		if(10 to 200)
-			if (!M.stuttering) M.stuttering = 1
+			if(!M.stuttering)
+				M.stuttering = 1
 			M.make_jittery(40)
 			M.make_dizzy(40)
 			M.druggy = max(M.druggy, 60)
-			if(prob(30)) M.emote(pick("twitch","giggle"))
+			if(prob(30))
+				M.emote(pick("twitch", "giggle"))
 		if(200 to INFINITY)
-			if (!M.stuttering) M.stuttering = 1
+			if(!M.stuttering)
+				M.stuttering = 1
 			M.make_jittery(60)
 			M.make_dizzy(60)
 			M.druggy = max(M.druggy, 75)
-			if(prob(40)) M.emote(pick("twitch","giggle"))
-			if(prob(30)) M.adjustToxLoss(2)
+			if(prob(40))
+				M.emote(pick("twitch", "giggle"))
+			if(prob(30))
+				M.adjustToxLoss(2)
 	holder.remove_reagent(src.id, 0.2)
 	..()
 	return

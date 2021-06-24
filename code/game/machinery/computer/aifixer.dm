@@ -15,7 +15,7 @@
 /obj/machinery/computer/aifixer/attackby(I as obj, user as mob)
 	if(istype(I, /obj/item/device/aicard))
 		if(stat & (NOPOWER|BROKEN))
-			user << "This terminal isn't functioning right now, get it working!"
+			to_chat(user, "This terminal isn't functioning right now, get it working!")
 			return
 		I:transfer_ai("AIFIXER", "AICARD", src, user)
 
@@ -35,33 +35,33 @@
 	user.set_machine(src)
 	var/dat = "<h3>AI System Integrity Restorer</h3><br><br>"
 
-	if (src.occupant)
+	if(src.occupant)
 		var/laws
 		dat += "Stored AI: [src.occupant.name]<br>System integrity: [(src.occupant.health+100)/2]%<br>"
 
-		if (src.occupant.laws.zeroth)
+		if(src.occupant.laws.zeroth)
 			laws += "0: [src.occupant.laws.zeroth]<BR>"
 
 		var/number = 1
-		for (var/index = 1, index <= src.occupant.laws.inherent.len, index++)
+		for(var/index = 1, index <= src.occupant.laws.inherent.len, index++)
 			var/law = src.occupant.laws.inherent[index]
-			if (length(law) > 0)
+			if(length(law) > 0)
 				laws += "[number]: [law]<BR>"
 				number++
 
-		for (var/index = 1, index <= src.occupant.laws.supplied.len, index++)
+		for(var/index = 1, index <= src.occupant.laws.supplied.len, index++)
 			var/law = src.occupant.laws.supplied[index]
-			if (length(law) > 0)
+			if(length(law) > 0)
 				laws += "[number]: [law]<BR>"
 				number++
 
 		dat += "Laws:<br>[laws]<br>"
 
-		if (src.occupant.stat == 2)
+		if(src.occupant.stat == DEAD)
 			dat += "<b>AI nonfunctional</b>"
 		else
 			dat += "<b>AI functional</b>"
-		if (!src.active)
+		if(!src.active)
 			dat += {"<br><br><A href='byond://?src=\ref[src];fix=1'>Begin Reconstruction</A>"}
 		else
 			dat += "<br><br>Reconstruction in process, please wait.<br>"
@@ -79,16 +79,16 @@
 /obj/machinery/computer/aifixer/Topic(href, href_list)
 	if(..())
 		return
-	if (href_list["fix"])
+	if(href_list["fix"])
 		src.active = 1
 		src.overlays += image('icons/obj/computer.dmi', "ai-fixer-on")
-		while (src.occupant.health < 100)
+		while(src.occupant.health < 100)
 			src.occupant.adjustOxyLoss(-1)
 			src.occupant.adjustFireLoss(-1)
 			src.occupant.adjustToxLoss(-1)
 			src.occupant.adjustBruteLoss(-1)
 			src.occupant.updatehealth()
-			if (src.occupant.health >= 0 && src.occupant.stat == 2)
+			if(src.occupant.health >= 0 && src.occupant.stat == DEAD)
 				src.occupant.stat = 0
 				src.occupant.lying = 0
 				dead_mob_list -= src.occupant
@@ -99,7 +99,6 @@
 			sleep(10)
 		src.active = 0
 		src.overlays -= image('icons/obj/computer.dmi', "ai-fixer-on")
-
 
 		src.add_fingerprint(usr)
 	src.updateUsrDialog()
@@ -114,11 +113,11 @@
 
 	// Working / Powered
 	else
-		if (occupant)
-			switch (occupant.stat)
-				if (0)
+		if(occupant)
+			switch(occupant.stat)
+				if(0)
 					overlays += image('icons/obj/computer.dmi', "ai-fixer-full")
-				if (2)
+				if(2)
 					overlays += image('icons/obj/computer.dmi', "ai-fixer-404")
 		else
 			overlays += image('icons/obj/computer.dmi', "ai-fixer-empty")

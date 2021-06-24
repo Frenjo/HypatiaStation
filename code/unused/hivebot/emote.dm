@@ -130,8 +130,8 @@
 			m_type = 1
 		else
 			src << text("Invalid Emote: []", act)
-	if ((message && src.stat == 0))
-		if (m_type & 1)
+	if((message && src.stat == CONSCIOUS))
+		if(m_type & 1)
 			for(var/mob/O in viewers(src, null))
 				O.show_message(message, m_type)
 		else

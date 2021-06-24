@@ -7,7 +7,7 @@
 
 //Grown foods
 //Subclass so we can pass on values
-/obj/item/weapon/reagent_containers/food/snacks/grown/
+/obj/item/weapon/reagent_containers/food/snacks/grown
 	var/seed = ""
 	var/plantname = ""
 	var/productname = ""
@@ -20,18 +20,19 @@
 	var/potency = -1
 	var/plant_type = 0
 	icon = 'icons/obj/harvest.dmi'
-	New(newloc,newpotency)
-		if (!isnull(newpotency))
-			potency = newpotency
-		..()
-		src.pixel_x = rand(-5.0, 5)
-		src.pixel_y = rand(-5.0, 5)
-
-/obj/item/weapon/reagent_containers/food/snacks/grown/attackby(var/obj/item/O as obj, var/mob/user as mob)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/New(newloc, newpotency)
+	if(!isnull(newpotency))
+		potency = newpotency
 	..()
-	if (istype(O, /obj/item/device/analyzer/plant_analyzer))
+	src.pixel_x = rand(-5.0, 5)
+	src.pixel_y = rand(-5.0, 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/grown/attackby(obj/item/O as obj, mob/user as mob)
+	..()
+	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
 		var/msg
-		msg = "<span class='info'>*---------*\n This is \a <span class='name'>[src]</span>\n"
+		msg = "*---------*\n This is \a <span class='name'>[src]</span>\n"
 		switch(plant_type)
 			if(0)
 				msg += "- Plant type: <i>Normal plant</i>\n"
@@ -45,8 +46,8 @@
 		msg += "- Production speed: <i>[production]</i>\n"
 		msg += "- Endurance: <i>[endurance]</i>\n"
 		msg += "- Healing properties: <i>[reagents.get_reagent_amount("nutriment")]</i>\n"
-		msg += "*---------*</span>"
-		usr << msg
+		msg += "*---------*"
+		to_chat(usr, SPAN_INFO(msg))
 		return
 
 	/*if (istype(O, /obj/item/weapon/storage/bag/plants))
@@ -86,11 +87,11 @@
 				user << "\blue The plant bag is full."
 	return*/
 
-/obj/item/weapon/grown/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/weapon/grown/attackby(obj/item/O as obj, mob/user as mob)
 	..()
-	if (istype(O, /obj/item/device/analyzer/plant_analyzer))
+	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
 		var/msg
-		msg = "<span class='info'>*---------*\n This is \a <span class='name'>[src]</span>\n"
+		msg = "*---------*\n This is \a <span class='name'>[src]</span>\n"
 		switch(plant_type)
 			if(0)
 				msg += "- Plant type: <i>Normal plant</i>\n"
@@ -103,9 +104,11 @@
 		msg += "- Maturation speed: <i>[maturation]</i>\n"
 		msg += "- Production speed: <i>[production]</i>\n"
 		msg += "- Endurance: <i>[endurance]</i>\n"
-		msg += "*---------*</span>"
-		usr << msg
+		msg += "*---------*"
+		to_chat(usr, SPAN_INFO(msg))
 		return
+	return
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/corn
 	seed = "/obj/item/seeds/cornseed"
@@ -116,11 +119,12 @@
 	filling_color = "#FFEE00"
 	trash = /obj/item/weapon/corncob
 
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 10), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+/obj/item/weapon/reagent_containers/food/snacks/grown/corn/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/cherries
 	seed = "/obj/item/seeds/cherryseed"
@@ -129,12 +133,14 @@
 	icon_state = "cherry"
 	filling_color = "#FF0000"
 	gender = PLURAL
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 15), 1))
-			reagents.add_reagent("sugar", 1+round((potency / 15), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/cherries/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 15), 1))
+		reagents.add_reagent("sugar", 1 + round((potency / 15), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/poppy
 	seed = "/obj/item/seeds/poppyseed"
@@ -143,25 +149,29 @@
 	icon_state = "poppy"
 	potency = 30
 	filling_color = "#CC6464"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 20), 1))
-			reagents.add_reagent("bicaridine", 1+round((potency / 10), 1))
-			bitesize = 1+round(reagents.total_volume / 3, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/poppy/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
+		reagents.add_reagent("bicaridine", 1 + round((potency / 10), 1))
+		bitesize = 1 + round(reagents.total_volume / 3, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/harebell
 	seed = "obj/item/seeds/harebellseed"
 	name = "harebell"
-	desc = "\"I'll sweeten thy sad grave: thou shalt not lack the flower that's like thy face, pale primrose, nor the azured hare-bell, like thy veins; no, nor the leaf of eglantine, whom not to slander, out-sweeten’d not thy breath.\""
+	desc = "\"I'll sweeten thy sad grave: thou shalt not lack the flower that's like thy face, pale primrose, nor the azured hare-bell, like thy veins; no, nor the leaf of eglantine, whom not to slander, out-sweetenï¿½d not thy breath.\""
 	icon_state = "harebell"
 	potency = 1
 	filling_color = "#D4B2C9"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 20), 1))
-			bitesize = 1+round(reagents.total_volume / 3, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/harebell/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
+		bitesize = 1 + round(reagents.total_volume / 3, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/potato
 	seed = "/obj/item/seeds/potatoseed"
@@ -170,24 +180,27 @@
 	icon_state = "potato"
 	potency = 25
 	filling_color = "#E6E8DA"
-	New()
-		..()
-		reagents.add_reagent("nutriment", 1+round((potency / 10), 1))
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			bitesize = reagents.total_volume
+
+/obj/item/weapon/reagent_containers/food/snacks/grown/potato/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
+		bitesize = reagents.total_volume
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/potato/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/stack/cable_coil))
 		if(W:amount >= 5)
 			W:amount -= 5
-			if(!W:amount) qdel(W)
-			user << "<span class='notice'>You add some cable to the potato and slide it inside the battery encasing.</span>"
+			if(!W:amount)
+				qdel(W)
+			to_chat(user, SPAN_NOTICE("You add some cable to the potato and slide it inside the battery casing."))
 			var/obj/item/weapon/cell/potato/pocell = new /obj/item/weapon/cell/potato(user.loc)
 			pocell.maxcharge = src.potency * 10
 			pocell.charge = pocell.maxcharge
 			qdel(src)
 			return
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/grapes
 	seed = "/obj/item/seeds/grapeseed"
@@ -195,12 +208,14 @@
 	desc = "Nutritious!"
 	icon_state = "grapes"
 	filling_color = "#A332AD"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 10), 1))
-			reagents.add_reagent("sugar", 1+round((potency / 5), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/grapes/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
+		reagents.add_reagent("sugar", 1 + round((potency / 5), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/greengrapes
 	seed = "/obj/item/seeds/greengrapeseed"
@@ -209,12 +224,14 @@
 	icon_state = "greengrapes"
 	potency = 25
 	filling_color = "#A6FFA3"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 10), 1))
-			reagents.add_reagent("kelotane", 3+round((potency / 5), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/greengrapes/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
+		reagents.add_reagent("kelotane", 3 + round((potency / 5), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/peanut
 	seed = "/obj/item/seeds/peanutseed"
@@ -223,11 +240,13 @@
 	icon_state = "peanut"
 	filling_color = "857e27"
 	potency = 25
-	New ()
-		..()
-		spawn(5)
-			reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
-			bitesize = 1 + round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/peanut/New()
+	..()
+	spawn(5)
+		reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/cabbage
 	seed = "/obj/item/seeds/cabbageseed"
@@ -236,11 +255,13 @@
 	icon_state = "cabbage"
 	potency = 25
 	filling_color = "#A2B5A1"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 10), 1))
-			bitesize = reagents.total_volume
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/cabbage/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
+		bitesize = reagents.total_volume
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/berries
 	seed = "/obj/item/seeds/berryseed"
@@ -248,11 +269,13 @@
 	desc = "Nutritious!"
 	icon_state = "berrypile"
 	filling_color = "#C2C9FF"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 10), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/berries/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/plastellium
 	seed = "/obj/item/seeds/plastiseed"
@@ -260,11 +283,12 @@
 	desc = "Hmm, needs some processing"
 	icon_state = "plastellium"
 	filling_color = "#C4C4C4"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("plasticide", 1+round((potency / 10), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/plastellium/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("plasticide", 1 + round((potency / 10), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/shand
@@ -273,11 +297,24 @@
 	desc = "A leaf sample from a lowland thicket shrub, often hid in by prey and predator to staunch their wounds and conceal their scent, allowing the plant to spread far on its native Ahdomai. Smells strongly like wax."
 	icon_state = "shand"
 	filling_color = "#70C470"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("bicaridine", round((potency / 10), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/shand/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("bicaridine", round((potency / 10), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/grown/shand/attack_self(mob/user as mob)
+	if(istype(user.loc, /turf/space))
+		return
+
+	var/obj/item/stack/medical/bruise_pack/tajaran/poultice = new /obj/item/stack/medical/bruise_pack/tajaran(user.loc)
+
+	poultice.heal_brute = potency
+	qdel(src)
+
+	to_chat(user, SPAN_NOTICE("You mash the leaves into a poultice."))
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mtear
 	seed = "/obj/item/seeds/mtearseed"
@@ -285,32 +322,25 @@
 	desc = "A mountain climate herb with a soft, cold blue flower, known to contain an abundance of chemicals in it's flower useful to treating burns- Bad for the allergic to pollen."
 	icon_state = "mtear"
 	filling_color = "#70C470"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("honey", 1+round((potency / 10), 1))
-			reagents.add_reagent("kelotane", 3+round((potency / 5), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/mtear/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("honey", 1 + round((potency / 10), 1))
+		reagents.add_reagent("kelotane", 3 + round((potency / 5), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mtear/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/space))
+	if(istype(user.loc, /turf/space))
 		return
+
 	var/obj/item/stack/medical/ointment/tajaran/poultice = new /obj/item/stack/medical/ointment/tajaran(user.loc)
 
 	poultice.heal_burn = potency
 	qdel(src)
 
-	user << "<span class='notice'>You mash the petals into a poultice.</span>"
+	to_chat(user, SPAN_NOTICE("You mash the petals into a poultice."))
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/shand/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/space))
-		return
-	var/obj/item/stack/medical/bruise_pack/tajaran/poultice = new /obj/item/stack/medical/bruise_pack/tajaran(user.loc)
-
-	poultice.heal_brute = potency
-	qdel(src)
-
-	user << "<span class='notice'>You mash the leaves into a poultice.</span>"
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/glowberries
 	seed = "/obj/item/seeds/glowberryseed"
@@ -320,30 +350,27 @@
 	var/brightness_on = 2 //luminosity when on
 	filling_color = "#D3FF9E"
 	icon_state = "glowberrypile"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", round((potency / 10), 1))
-			reagents.add_reagent("uranium", 3+round(potency / 5, 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/glowberries/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", round((potency / 10), 1))
+		reagents.add_reagent("uranium", 3 + round(potency / 5, 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/glowberries/Destroy()
-	if(istype(loc,/mob))
-		//loc.SetLuminosity(round(loc.luminosity - potency/5,1))
-		loc.set_light(round(loc.luminosity - potency/5,1))
+	if(ismob(loc))
+		loc.set_light(round(loc.luminosity - potency / 5, 1))
 	..()
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/glowberries/pickup(mob/user)
-	//src.SetLuminosity(0)
-	//user.SetLuminosity(round(user.luminosity + (potency/5),1))
 	src.set_light(0)
-	user.set_light(round(user.luminosity + (potency/5),1))
+	user.set_light(round(user.luminosity + (potency / 5), 1))
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/glowberries/dropped(mob/user)
-	//user.SetLuminosity(round(user.luminosity - (potency/5),1))
-	//src.SetLuminosity(round(potency/5,1))
-	user.set_light(round(user.luminosity - (potency/5),1))
-	src.set_light(round(potency/5,1))
+	user.set_light(round(user.luminosity - (potency / 5), 1))
+	src.set_light(round(potency / 5, 1))
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/cocoapod
 	seed = "/obj/item/seeds/cocoapodseed"
@@ -352,12 +379,14 @@
 	icon_state = "cocoapod"
 	potency = 50
 	filling_color = "#9C8E54"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 10), 1))
-			reagents.add_reagent("coco", 4+round((potency / 5), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/cocoapod/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
+		reagents.add_reagent("coco", 4 + round((potency / 5), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/sugarcane
 	seed = "/obj/item/seeds/sugarcaneseed"
@@ -366,10 +395,12 @@
 	icon_state = "sugarcane"
 	potency = 50
 	filling_color = "#C0C9AD"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("sugar", 4+round((potency / 5), 1))
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/sugarcane/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("sugar", 4 + round((potency / 5), 1))
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/poisonberries
 	seed = "/obj/item/seeds/poisonberryseed"
@@ -379,12 +410,14 @@
 	gender = PLURAL
 	potency = 15
 	filling_color = "#B422C7"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1)
-			reagents.add_reagent("toxin", 3+round(potency / 5, 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/poisonberries/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1)
+		reagents.add_reagent("toxin", 3 + round(potency / 5, 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/deathberries
 	seed = "/obj/item/seeds/deathberryseed"
@@ -394,13 +427,15 @@
 	gender = PLURAL
 	potency = 50
 	filling_color = "#4E0957"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1)
-			reagents.add_reagent("toxin", 3+round(potency / 3, 1))
-			reagents.add_reagent("lexorin", 1+round(potency / 5, 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/deathberries/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1)
+		reagents.add_reagent("toxin", 3 + round(potency / 3, 1))
+		reagents.add_reagent("lexorin", 1 + round(potency / 5, 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris
 	seed = "/obj/item/seeds/ambrosiavulgaris"
@@ -409,15 +444,17 @@
 	icon_state = "ambrosiavulgaris"
 	potency = 10
 	filling_color = "#125709"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1)
-			reagents.add_reagent("space_drugs", 1+round(potency / 8, 1))
-			reagents.add_reagent("kelotane", 1+round(potency / 8, 1))
-			reagents.add_reagent("bicaridine", 1+round(potency / 10, 1))
-			reagents.add_reagent("toxin", 1+round(potency / 10, 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1)
+		reagents.add_reagent("space_drugs", 1 + round(potency / 8, 1))
+		reagents.add_reagent("kelotane", 1 + round(potency / 8, 1))
+		reagents.add_reagent("bicaridine", 1 + round(potency / 10, 1))
+		reagents.add_reagent("toxin", 1 + round(potency / 10, 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus
 	seed = "/obj/item/seeds/ambrosiadeus"
@@ -426,15 +463,17 @@
 	icon_state = "ambrosiadeus"
 	potency = 10
 	filling_color = "#229E11"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1)
-			reagents.add_reagent("bicaridine", 1+round(potency / 8, 1))
-			reagents.add_reagent("synaptizine", 1+round(potency / 8, 1))
-			reagents.add_reagent("hyperzine", 1+round(potency / 10, 1))
-			reagents.add_reagent("space_drugs", 1+round(potency / 10, 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1)
+		reagents.add_reagent("bicaridine", 1 + round(potency / 8, 1))
+		reagents.add_reagent("synaptizine", 1 + round(potency / 8, 1))
+		reagents.add_reagent("hyperzine", 1 + round(potency / 10, 1))
+		reagents.add_reagent("space_drugs", 1 + round(potency / 10, 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/apple
 	seed = "/obj/item/seeds/appleseed"
@@ -443,12 +482,14 @@
 	icon_state = "apple"
 	potency = 15
 	filling_color = "#DFE88B"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.maximum_volume = 20
-			reagents.add_reagent("nutriment", 1+round((potency / 10), 1))
-			bitesize = reagents.maximum_volume // Always eat the apple in one
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/apple/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.maximum_volume = 20
+		reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
+		bitesize = reagents.maximum_volume // Always eat the apple in one
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/apple/poisoned
 	seed = "/obj/item/seeds/poisonedappleseed"
@@ -457,12 +498,14 @@
 	icon_state = "apple"
 	potency = 15
 	filling_color = "#B3BD5E"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.maximum_volume = 20
-			reagents.add_reagent("cyanide", 1+round((potency / 5), 1))
-			bitesize = reagents.maximum_volume // Always eat the apple in one
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/apple/poisoned/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.maximum_volume = 20
+		reagents.add_reagent("cyanide", 1 + round((potency / 5), 1))
+		bitesize = reagents.maximum_volume // Always eat the apple in one
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/goldapple
 	seed = "/obj/item/seeds/goldappleseed"
@@ -471,17 +514,18 @@
 	icon_state = "goldapple"
 	potency = 15
 	filling_color = "#F5CB42"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 10), 1))
-			reagents.add_reagent("gold", 1+round((potency / 5), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/goldapple/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
+		reagents.add_reagent("gold", 1 + round((potency / 5), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/libertycap/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/libertycap/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if (istype(O, /obj/item/device/analyzer/plant_analyzer))
-		user << "<span class='info'>- Mineral Content: <i>[reagents.get_reagent_amount("gold")]%</i></span>"
+	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
+		to_chat(user, SPAN_INFO("- Mineral Content: <i>[reagents.get_reagent_amount("gold")]%</i>"))
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/watermelon
@@ -493,11 +537,13 @@
 	filling_color = "#FA2863"
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/watermelonslice
 	slices_num = 5
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 6), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/watermelon/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 6), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/pumpkin
 	seed = "/obj/item/seeds/pumpkinseed"
@@ -506,20 +552,21 @@
 	icon_state = "pumpkin"
 	potency = 10
 	filling_color = "#FAB728"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 6), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
-
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/pumpkin/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 6), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/pumpkin/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/weapon/circular_saw) || istype(W, /obj/item/weapon/hatchet) || istype(W, /obj/item/weapon/twohanded/fireaxe) || istype(W, /obj/item/weapon/kitchen/utensil/knife) || istype(W, /obj/item/weapon/kitchenknife) || istype(W, /obj/item/weapon/melee/energy))
-		user.show_message("<span class='notice'>You carve a face into [src]!</span>", 1)
+		user.show_message(SPAN_NOTICE("You carve a face into [src]!"), 1)
 		new /obj/item/clothing/head/pumpkinhead (user.loc)
 		qdel(src)
 		return
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/lime
 	seed = "/obj/item/seeds/limeseed"
@@ -528,11 +575,13 @@
 	icon_state = "lime"
 	potency = 20
 	filling_color = "#28FA59"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 20), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/lime/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/lemon
 	seed = "/obj/item/seeds/lemonseed"
@@ -541,11 +590,13 @@
 	icon_state = "lemon"
 	potency = 20
 	filling_color = "#FAF328"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 20), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/lemon/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/orange
 	seed = "/obj/item/seeds/orangeseed"
@@ -554,11 +605,13 @@
 	icon_state = "orange"
 	potency = 20
 	filling_color = "#FAAD28"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 20), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/orange/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/whitebeet
 	seed = "/obj/item/seeds/whitebeetseed"
@@ -567,12 +620,14 @@
 	icon_state = "whitebeet"
 	potency = 15
 	filling_color = "#FFFCCC"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", round((potency / 20), 1))
-			reagents.add_reagent("sugar", 1+round((potency / 5), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/whitebeet/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", round((potency / 20), 1))
+		reagents.add_reagent("sugar", 1 + round((potency / 5), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/banana
 	seed = "/obj/item/seeds/bananaseed"
@@ -584,13 +639,14 @@
 	filling_color = "#FCF695"
 	trash = /obj/item/weapon/bananapeel
 
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("banana", 1+round((potency / 10), 1))
-			bitesize = 5
-		src.pixel_x = rand(-5.0, 5)
-		src.pixel_y = rand(-5.0, 5)
+/obj/item/weapon/reagent_containers/food/snacks/grown/banana/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("banana", 1 + round((potency / 10), 1))
+		bitesize = 5
+	src.pixel_x = rand(-5.0, 5)
+	src.pixel_y = rand(-5.0, 5)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/chili
 	seed = "/obj/item/seeds/chiliseed"
@@ -598,17 +654,19 @@
 	desc = "It's spicy! Wait... IT'S BURNING ME!!"
 	icon_state = "chilipepper"
 	filling_color = "#FF0000"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 25), 1))
-			reagents.add_reagent("capsaicin", 3+round(potency / 5, 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/chili/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/weapon/reagent_containers/food/snacks/grown/chili/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 25), 1))
+		reagents.add_reagent("capsaicin", 3 + round(potency / 5, 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/grown/chili/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if (istype(O, /obj/item/device/analyzer/plant_analyzer))
-		user << "<span class='info'>- Capsaicin: <i>[reagents.get_reagent_amount("capsaicin")]%</i></span>"
+	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
+		to_chat(user, SPAN_INFO("- Capsaicin: <i>[reagents.get_reagent_amount("capsaicin")]%</i>"))
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/eggplant
 	seed = "/obj/item/seeds/eggplantseed"
@@ -616,11 +674,13 @@
 	desc = "Maybe there's a chicken inside?"
 	icon_state = "eggplant"
 	filling_color = "#550F5C"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 10), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/eggplant/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/soybeans
 	seed = "/obj/item/seeds/soyaseed"
@@ -629,11 +689,13 @@
 	gender = PLURAL
 	filling_color = "#E6E8B7"
 	icon_state = "soybeans"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 20), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/soybeans/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/tomato
 	seed = "/obj/item/seeds/tomatoseed"
@@ -642,18 +704,20 @@
 	icon_state = "tomato"
 	filling_color = "#FF0000"
 	potency = 10
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 10), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/tomato/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-	throw_impact(atom/hit_atom)
-		..()
-		new/obj/effect/decal/cleanable/tomato_smudge(src.loc)
-		src.visible_message("<span class='notice'>The [src.name] has been squashed.</span>","<span class='moderate'>You hear a smack.</span>")
-		qdel(src)
-		return
+/obj/item/weapon/reagent_containers/food/snacks/grown/tomato/throw_impact(atom/hit_atom)
+	..()
+	new/obj/effect/decal/cleanable/tomato_smudge(src.loc)
+	src.visible_message(SPAN_NOTICE("The [src.name] has been squashed."), SPAN_MODERATE("You hear a smack."))
+	qdel(src)
+	return
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/killertomato
 	seed = "/obj/item/seeds/killertomatoseed"
@@ -662,13 +726,7 @@
 	icon_state = "killertomato"
 	potency = 10
 	filling_color = "#FF0000"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 10), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
-		if(istype(src.loc,/mob))
-			pickup(src.loc)
+
 	lifespan = 120
 	endurance = 30
 	maturation = 15
@@ -677,13 +735,23 @@
 	potency = 30
 	plant_type = 2
 
+/obj/item/weapon/reagent_containers/food/snacks/grown/killertomato/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+	if(ismob(src.loc))
+		pickup(src.loc)
+
 /obj/item/weapon/reagent_containers/food/snacks/grown/killertomato/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/space))
+	if(istype(user.loc, /turf/space))
 		return
+
 	new /mob/living/simple_animal/tomato(user.loc)
 	qdel(src)
 
-	user << "<span class='notice'>You plant the killer-tomato.</span>"
+	to_chat(user, SPAN_NOTICE("You plant the killer-tomato."))
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/bloodtomato
 	seed = "/obj/item/seeds/bloodtomatoseed"
@@ -692,22 +760,24 @@
 	icon_state = "bloodtomato"
 	potency = 10
 	filling_color = "#FF0000"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 10), 1))
-			reagents.add_reagent("blood", 1+round((potency / 5), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/bloodtomato/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
+		reagents.add_reagent("blood", 1 + round((potency / 5), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-	throw_impact(atom/hit_atom)
-		..()
-		new/obj/effect/decal/cleanable/blood/splatter(src.loc)
-		src.visible_message("<span class='notice'>The [src.name] has been squashed.</span>","<span class='moderate'>You hear a smack.</span>")
-		src.reagents.reaction(get_turf(hit_atom))
-		for(var/atom/A in get_turf(hit_atom))
-			src.reagents.reaction(A)
-		qdel(src)
-		return
+/obj/item/weapon/reagent_containers/food/snacks/grown/bloodtomato/throw_impact(atom/hit_atom)
+	..()
+	new/obj/effect/decal/cleanable/blood/splatter(src.loc)
+	src.visible_message(SPAN_NOTICE("The [src.name] has been squashed."), SPAN_MODERATE("You hear a smack."))
+	src.reagents.reaction(get_turf(hit_atom))
+	for(var/atom/A in get_turf(hit_atom))
+		src.reagents.reaction(A)
+	qdel(src)
+	return
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/bluetomato
 	seed = "/obj/item/seeds/bluetomatoseed"
@@ -716,34 +786,36 @@
 	icon_state = "bluetomato"
 	potency = 10
 	filling_color = "#586CFC"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 20), 1))
-			reagents.add_reagent("lube", 1+round((potency / 5), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/bluetomato/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
+		reagents.add_reagent("lube", 1 + round((potency / 5), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-	throw_impact(atom/hit_atom)
-		..()
-		new/obj/effect/decal/cleanable/blood/oil(src.loc)
-		src.visible_message("<span class='notice'>The [src.name] has been squashed.</span>","<span class='moderate'>You hear a smack.</span>")
-		src.reagents.reaction(get_turf(hit_atom))
-		for(var/atom/A in get_turf(hit_atom))
-			src.reagents.reaction(A)
-		qdel(src)
-		return
+/obj/item/weapon/reagent_containers/food/snacks/grown/bluetomato/throw_impact(atom/hit_atom)
+	..()
+	new/obj/effect/decal/cleanable/blood/oil(src.loc)
+	src.visible_message(SPAN_NOTICE("The [src.name] has been squashed."), SPAN_MODERATE("You hear a smack."))
+	src.reagents.reaction(get_turf(hit_atom))
+	for(var/atom/A in get_turf(hit_atom))
+		src.reagents.reaction(A)
+	qdel(src)
+	return
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/bluetomato/Crossed(AM as mob|obj)
-	if (istype(AM, /mob/living/carbon))
+	if(iscarbon(AM))
 		var/mob/M =	AM
-		if (istype(M, /mob/living/carbon/human) && (isobj(M:shoes) && M:shoes.flags&NOSLIP))
+		if(ishuman(M) && (isobj(M:shoes) && M:shoes.flags & NOSLIP))
 			return
 
 		M.stop_pulling()
-		M << "\blue You slipped on the [name]!"
+		to_chat(M, SPAN_INFO("You slipped on the [name]!"))
 		playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
 		M.Stun(8)
 		M.Weaken(5)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/wheat
 	seed = "/obj/item/seeds/wheatseed"
@@ -752,11 +824,13 @@
 	gender = PLURAL
 	icon_state = "wheat"
 	filling_color = "#F7E186"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 25), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/grown/wheat/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 25), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/ricestalk
 	seed = "/obj/item/seeds/riceseed"
@@ -765,11 +839,13 @@
 	gender = PLURAL
 	icon_state = "rice"
 	filling_color = "#FFF8DB"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 25), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/ricestalk/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 25), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/kudzupod
 	seed = "/obj/item/seeds/kudzuseed"
@@ -777,12 +853,14 @@
 	desc = "<I>Pueraria Virallis</I>: An invasive species with vines that rapidly creep and wrap around whatever they contact."
 	icon_state = "kudzupod"
 	filling_color = "#59691B"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment",1+round((potency / 50), 1))
-			reagents.add_reagent("anti_toxin",1+round((potency / 25), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/kudzupod/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
+		reagents.add_reagent("anti_toxin", 1 + round((potency / 25), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/icepepper
 	seed = "/obj/item/seeds/icepepperseed"
@@ -791,17 +869,19 @@
 	icon_state = "icepepper"
 	potency = 20
 	filling_color = "#66CEED"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 50), 1))
-			reagents.add_reagent("frostoil", 3+round(potency / 5, 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/icepepper/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
+		reagents.add_reagent("frostoil", 3 + round(potency / 5, 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/icepepper/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/weapon/reagent_containers/food/snacks/grown/icepepper/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if (istype(O, /obj/item/device/analyzer/plant_analyzer))
-		user << "<span class='info'>- Frostoil: <i>[reagents.get_reagent_amount("frostoil")]%</i></span>"
+	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
+		to_chat(user, SPAN_INFO("- Frostoil: <i>[reagents.get_reagent_amount("frostoil")]%</i>"))
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/carrot
 	seed = "/obj/item/seeds/carrotseed"
@@ -810,12 +890,14 @@
 	icon_state = "carrot"
 	potency = 10
 	filling_color = "#FFC400"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 20), 1))
-			reagents.add_reagent("imidazoline", 3+round(potency / 5, 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/carrot/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
+		reagents.add_reagent("imidazoline", 3 + round(potency / 5, 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/reishi
 	seed = "/obj/item/seeds/reishimycelium"
@@ -824,19 +906,21 @@
 	icon_state = "reishi"
 	potency = 10
 	filling_color = "#FF4800"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1)
-			reagents.add_reagent("stoxin", 3+round(potency / 3, 1))
-			reagents.add_reagent("space_drugs", 1+round(potency / 25, 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/reishi/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1)
+		reagents.add_reagent("stoxin", 3 + round(potency / 3, 1))
+		reagents.add_reagent("space_drugs", 1 + round(potency / 25, 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/reishi/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/reishi/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if (istype(O, /obj/item/device/analyzer/plant_analyzer))
-		user << "<span class='info'>- Sleep Toxin: <i>[reagents.get_reagent_amount("stoxin")]%</i></span>"
-		user << "<span class='info'>- Space Drugs: <i>[reagents.get_reagent_amount("space_drugs")]%</i></span>"
+	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
+		to_chat(user, SPAN_INFO("- Sleep Toxin: <i>[reagents.get_reagent_amount("stoxin")]%</i>"))
+		to_chat(user, SPAN_INFO("- Space Drugs: <i>[reagents.get_reagent_amount("space_drugs")]%</i>"))
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/amanita
 	seed = "/obj/item/seeds/amanitamycelium"
@@ -845,19 +929,21 @@
 	icon_state = "amanita"
 	potency = 10
 	filling_color = "#FF0000"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1)
-			reagents.add_reagent("amatoxin", 3+round(potency / 3, 1))
-			reagents.add_reagent("psilocybin", 1+round(potency / 25, 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/amanita/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1)
+		reagents.add_reagent("amatoxin", 3 + round(potency / 3, 1))
+		reagents.add_reagent("psilocybin", 1 + round(potency / 25, 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/amanita/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/amanita/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if (istype(O, /obj/item/device/analyzer/plant_analyzer))
-		user << "<span class='info'>- Amatoxins: <i>[reagents.get_reagent_amount("amatoxin")]%</i></span>"
-		user << "<span class='info'>- Psilocybin: <i>[reagents.get_reagent_amount("psilocybin")]%</i></span>"
+	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
+		to_chat(user, SPAN_INFO("- Amatoxins: <i>[reagents.get_reagent_amount("amatoxin")]%</i>"))
+		to_chat(user, SPAN_INFO("- Psilocybin: <i>[reagents.get_reagent_amount("psilocybin")]%</i>"))
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/angel
 	seed = "/obj/item/seeds/angelmycelium"
@@ -866,19 +952,21 @@
 	icon_state = "angel"
 	potency = 35
 	filling_color = "#FFDEDE"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 50), 1))
-			reagents.add_reagent("amatoxin", 13+round(potency / 3, 1))
-			reagents.add_reagent("psilocybin", 1+round(potency / 25, 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/angel/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
+		reagents.add_reagent("amatoxin", 13 + round(potency / 3, 1))
+		reagents.add_reagent("psilocybin", 1 + round(potency / 25, 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/angel/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/angel/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if (istype(O, /obj/item/device/analyzer/plant_analyzer))
-		user << "<span class='info'>- Amatoxins: <i>[reagents.get_reagent_amount("amatoxin")]%</i></span>"
-		user << "<span class='info'>- Psilocybin: <i>[reagents.get_reagent_amount("psilocybin")]%</i></span>"
+	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
+		to_chat(user, SPAN_INFO("- Amatoxins: <i>[reagents.get_reagent_amount("amatoxin")]%</i>"))
+		to_chat(user, SPAN_INFO("- Psilocybin: <i>[reagents.get_reagent_amount("psilocybin")]%</i>"))
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/libertycap
 	seed = "/obj/item/seeds/libertymycelium"
@@ -887,17 +975,19 @@
 	icon_state = "libertycap"
 	potency = 15
 	filling_color = "#F714BE"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 50), 1))
-			reagents.add_reagent("psilocybin", 3+round(potency / 5, 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/libertycap/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
+		reagents.add_reagent("psilocybin", 3 + round(potency / 5, 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/libertycap/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/libertycap/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if (istype(O, /obj/item/device/analyzer/plant_analyzer))
-		user << "<span class='info'>- Psilocybin: <i>[reagents.get_reagent_amount("psilocybin")]%</i></span>"
+	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
+		to_chat(user, SPAN_INFO("- Psilocybin: <i>[reagents.get_reagent_amount("psilocybin")]%</i>"))
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/plumphelmet
 	seed = "/obj/item/seeds/plumpmycelium"
@@ -905,11 +995,13 @@
 	desc = "<I>Plumus Hellmus</I>: Plump, soft and s-so inviting~"
 	icon_state = "plumphelmet"
 	filling_color = "#F714BE"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 2+round((potency / 10), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/plumphelmet/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 2 + round((potency / 10), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/walkingmushroom
 	seed = "/obj/item/seeds/walkingmushroom"
@@ -917,13 +1009,7 @@
 	desc = "<I>Plumus Locomotus</I>: The beginning of the great walk."
 	icon_state = "walkingmushroom"
 	filling_color = "#FFBFEF"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 2+round((potency / 10), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
-		if(istype(src.loc,/mob))
-			pickup(src.loc)
+
 	lifespan = 120
 	endurance = 30
 	maturation = 15
@@ -932,13 +1018,23 @@
 	potency = 30
 	plant_type = 2
 
+/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/walkingmushroom/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 2 + round((potency / 10), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+	if(ismob(src.loc))
+		pickup(src.loc)
+
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/walkingmushroom/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/space))
+	if(istype(user.loc, /turf/space))
 		return
+
 	new /mob/living/simple_animal/mushroom(user.loc)
 	qdel(src)
 
-	user << "<span class='notice'>You plant the walking mushroom.</span>"
+	to_chat(user, SPAN_NOTICE("You plant the walking mushroom."))
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/chanterelle
 	seed = "/obj/item/seeds/chantermycelium"
@@ -946,11 +1042,13 @@
 	desc = "<I>Cantharellus Cibarius</I>: These jolly yellow little shrooms sure look tasty!"
 	icon_state = "chanterelle"
 	filling_color = "#FFE991"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment",1+round((potency / 25), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/chanterelle/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 25), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/glowshroom
 	seed = "/obj/item/seeds/glowshroom"
@@ -958,15 +1056,7 @@
 	desc = "<I>Mycena Bregprox</I>: This species of mushroom glows in the dark. Or does it?"
 	icon_state = "glowshroom"
 	filling_color = "#DAFF91"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("radium",1+round((potency / 20), 1))
-		if(istype(src.loc,/mob))
-			pickup(src.loc)
-		else
-			//src.SetLuminosity(round(potency/10,1))
-			src.set_light(round(potency/10,1))
+
 	lifespan = 120 //ten times that is the delay
 	endurance = 30
 	maturation = 15
@@ -974,10 +1064,20 @@
 	yield = 3
 	potency = 30
 	plant_type = 2
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/glowshroom/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("radium", 1 + round((potency / 20), 1))
+	if(ismob(src.loc))
+		pickup(src.loc)
+	else
+		src.set_light(round(potency / 10, 1))
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/glowshroom/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/space))
+	if(istype(user.loc, /turf/space))
 		return
+
 	var/obj/effect/glowshroom/planted = new /obj/effect/glowshroom(user.loc)
 
 	planted.delay = lifespan * 50
@@ -986,25 +1086,20 @@
 	planted.potency = potency
 	qdel(src)
 
-	user << "<span class='notice'>You plant the glowshroom.</span>"
+	to_chat(user, SPAN_NOTICE("You plant the glowshroom."))
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/glowshroom/Destroy()
-	if(istype(loc,/mob))
-		//loc.SetLuminosity(round(loc.luminosity - potency/10,1))
-		loc.set_light(round(loc.luminosity - potency/10,1))
+	if(ismob(loc))
+		loc.set_light(round(loc.luminosity - potency / 10, 1))
 	..()
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/glowshroom/pickup(mob/user)
-	//SetLuminosity(0)
-	//user.SetLuminosity(round(user.luminosity + (potency/10),1))
 	set_light(0)
-	user.set_light(round(user.luminosity + (potency/10),1))
+	user.set_light(round(user.luminosity + (potency / 10), 1))
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/glowshroom/dropped(mob/user)
-	//user.SetLuminosity(round(user.luminosity - (potency/10),1))
-	//SetLuminosity(round(potency/10,1))
-	user.set_light(round(user.luminosity - (potency/10),1))
-	set_light(round(potency/10,1))
+	user.set_light(round(user.luminosity - (potency / 10), 1))
+	set_light(round(potency / 10, 1))
 
 
 // *************************************

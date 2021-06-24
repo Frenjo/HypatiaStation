@@ -1067,12 +1067,12 @@
 /obj/machinery/power/apc/proc/malfvacate(forced)
 	if(!src.occupant)
 		return
-	if(src.occupant.parent && src.occupant.parent.stat != 2)
+	if(src.occupant.parent && src.occupant.parent.stat != DEAD)
 		src.occupant.mind.transfer_to(src.occupant.parent)
 		src.occupant.parent.adjustOxyLoss(src.occupant.getOxyLoss())
 		src.occupant.parent.cancel_camera()
 		qdel(src.occupant)
-		if (seclevel2num(get_security_level()) == SEC_LEVEL_DELTA)
+		if(seclevel2num(get_security_level()) == SEC_LEVEL_DELTA)
 			for(var/obj/item/weapon/pinpointer/point in world)
 				for(var/datum/mind/AI_mind in ticker.mode.malf_ai)
 					var/mob/living/silicon/ai/A = AI_mind.current // the current mob the mind owns
