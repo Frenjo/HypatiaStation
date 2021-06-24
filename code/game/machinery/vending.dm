@@ -656,11 +656,13 @@
 	product_ads = "Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;Quite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best quality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
 	req_access_txt = "25"
 
+
 /obj/machinery/vending/assist
 	products = list(/obj/item/device/assembly/prox_sensor = 5, /obj/item/device/assembly/igniter = 3, /obj/item/device/assembly/signaler = 4,
 					/obj/item/weapon/wirecutters = 1, /obj/item/weapon/cartridge/signal = 4)
 	contraband = list(/obj/item/device/flashlight = 5, /obj/item/device/assembly/timer = 2)
 	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
+
 
 /obj/machinery/vending/coffee
 	name = "Hot Drinks machine"
@@ -672,8 +674,6 @@
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 25, /obj/item/weapon/reagent_containers/food/drinks/tea = 25, /obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 25)
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/ice = 10)
 	prices = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 25, /obj/item/weapon/reagent_containers/food/drinks/tea = 25, /obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 25)
-
-
 
 
 /obj/machinery/vending/snack
@@ -690,6 +690,20 @@
 					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 2, /obj/item/weapon/reagent_containers/food/snacks/no_raisin = 1, /obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 1,
 					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 1)
 
+// A prefab empty version which contains just the hidden contraband items.
+/obj/machinery/vending/snack/empty
+	name = "Getmore Chocolate Corp"
+	desc = "A snack machine courtesy of the Getmore Chocolate Corporation, based out of Mars."
+	product_slogans = "Try our new nougat bar!;Twice the calories for half the price!"
+	product_ads = "The healthiest!;Award-winning chocolate bars!;Mmm! So good!;Oh my god it's so juicy!;Have a snack.;Snacks are good for you!;Have some more Getmore!;Best quality snacks straight from mars.;We love chocolate!;Try our new jerky!"
+	icon_state = "snack"
+	products = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 0, /obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 0, /obj/item/weapon/reagent_containers/food/snacks/chips = 0,
+					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 0, /obj/item/weapon/reagent_containers/food/snacks/no_raisin = 0, /obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 0,
+					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 0)
+	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6)
+	prices = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 1, /obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 5, /obj/item/weapon/reagent_containers/food/snacks/chips = 1,
+					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 2, /obj/item/weapon/reagent_containers/food/snacks/no_raisin = 1, /obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 1,
+					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 1)
 
 
 /obj/machinery/vending/cola
@@ -707,6 +721,24 @@
 					/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = 1, /obj/item/weapon/reagent_containers/food/drinks/cans/starkist = 1,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 2, /obj/item/weapon/reagent_containers/food/drinks/cans/space_up = 1,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 1, /obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 1)
+
+// A prefab empty version which contains just the hidden contraband items.
+/obj/machinery/vending/cola/empty
+	name = "Robust Softdrinks"
+	desc = "A softdrink vendor provided by Robust Industries, LLC."
+	icon_state = "Cola_Machine"
+	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
+	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
+	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind = 0,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/starkist = 0,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/space_up = 0,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 0)
+	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/cans/thirteenloko = 5)
+	prices = list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 1, /obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = 1, /obj/item/weapon/reagent_containers/food/drinks/cans/starkist = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 2, /obj/item/weapon/reagent_containers/food/drinks/cans/space_up = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 1, /obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 1)
+
 
 //This one's from bay12
 /obj/machinery/vending/cart

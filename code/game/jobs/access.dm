@@ -95,15 +95,15 @@
 	//check if it doesn't require any access at all
 	if(src.check_access(null))
 		return 1
-	if(istype(M, /mob/living/silicon))
+	if(issilicon(M))
 		//AI can do whatever he wants
 		return 1
-	else if(istype(M, /mob/living/carbon/human))
+	else if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		//if they are holding or wearing a card that has access, that works
 		if(src.check_access(H.get_active_hand()) || src.check_access(H.wear_id))
 			return 1
-	else if(istype(M, /mob/living/carbon/monkey))
+	else if(ismonkey(M))
 		var/mob/living/carbon/george = M
 		//they can only hold things :(
 		if(src.check_access(george.get_active_hand()))
@@ -136,7 +136,7 @@
 				if(n)
 					req_one_access += n
 
-	if(!istype(src.req_access, /list)) //something's very wrong
+	if(!islist(src.req_access)) //something's very wrong
 		return 1
 
 	var/list/L = src.req_access
@@ -158,13 +158,13 @@
 /obj/proc/check_access_list(list/L)
 	if(!src.req_access  && !src.req_one_access)
 		return 1
-	if(!istype(src.req_access, /list))
+	if(!islist(src.req_access))
 		return 1
 	if(!src.req_access.len && (!src.req_one_access || !src.req_one_access.len))
 		return 1
 	if(!L)
 		return 0
-	if(!istype(L, /list))
+	if(!islist(L))
 		return 0
 	for(var/req in src.req_access)
 		if(!(req in L)) //doesn't have this access
@@ -513,4 +513,3 @@ proc/get_all_job_icons() //For all existing HUD icons
 	if(jobName in get_all_centcom_jobs()) //Return with the NT logo if it is a Centcom job
 		return "Centcom"
 	return "Unknown" //Return unknown if none of the above apply
-

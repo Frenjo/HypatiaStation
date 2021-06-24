@@ -142,7 +142,7 @@
 
 /obj/item/device/radio/headset/heads/hop
 	name = "head of personnel's headset"
-	desc = "The headset of the guy who will one day be Captain. Channels are as follows: :c - Command, :s - Security, :u - Supply, :d - Mining."
+	desc = "The headset of the guy who will one day be Captain. Channels are as follows: :c - Command, :u - Supply, :d - Mining."
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hop
@@ -161,12 +161,12 @@
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_mineforeman
 
-/obj/item/device/radio/headset/heads/qm
+/obj/item/device/radio/headset/headset_qm
 	name = "quartermaster's headset"
-	desc = "The headset of the man who controls your toilet paper supply. Channels are as follows: :c - Command, :u - Supply, :d - Mining."
+	desc = "The headset of the man who controls your toilet paper supply. To access the mining channel, use :d. For supply, use :u."
 	icon_state = "cargo_headset"
 	item_state = "headset"
-	ks2type = /obj/item/device/encryptionkey/heads/qm
+	ks2type = /obj/item/device/encryptionkey/headset_qm
 
 /obj/item/device/radio/headset/headset_cargo
 	name = "supply radio headset"

@@ -51,11 +51,26 @@
 	storage_slots = 6
 	can_hold = list("/obj/item/weapon/reagent_containers/food/snacks/donut")
 
-
 /obj/item/weapon/storage/fancy/donut_box/New()
 	..()
-	for(var/i=1; i <= storage_slots; i++)
+	for(var/i = 1; i <= storage_slots; i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/donut/normal(src)
+	return
+
+
+/*
+ * Empty Donut Box
+ */
+
+/obj/item/weapon/storage/fancy/donut_box/empty
+	icon = 'icons/obj/food.dmi'
+	icon_state = "donutbox0"
+	icon_type = "donut"
+	name = "donut box"
+	storage_slots = 6
+	can_hold = list("/obj/item/weapon/reagent_containers/food/snacks/donut")
+
+/obj/item/weapon/storage/fancy/donut_box/empty/New()
 	return
 
 /*
@@ -72,7 +87,7 @@
 
 /obj/item/weapon/storage/fancy/egg_box/New()
 	..()
-	for(var/i=1; i <= storage_slots; i++)
+	for(var/i = 1; i <= storage_slots; i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/egg(src)
 	return
 
@@ -91,10 +106,9 @@
 	throwforce = 2
 	slot_flags = SLOT_BELT
 
-
 /obj/item/weapon/storage/fancy/candle_box/New()
 	..()
-	for(var/i=1; i <= storage_slots; i++)
+	for(var/i = 1; i <= storage_slots; i++)
 		new /obj/item/candle(src)
 	return
 
@@ -131,7 +145,7 @@
 		overlays += image('icons/obj/crayons.dmi',crayon.colourName)
 
 /obj/item/weapon/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/toy/crayon))
+	if(istype(W, /obj/item/toy/crayon))
 		switch(W:colourName)
 			if("mime")
 				usr << "This crayon is too sad to be contained in this box."

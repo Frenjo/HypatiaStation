@@ -23,6 +23,7 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
 		if(4)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+	
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/bartender(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/bar(H), slot_belt)
@@ -42,6 +43,7 @@
 		H.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun/beanbag(H), slot_in_backpack)
 
 	return 1
+
 
 /datum/job/chef
 	title = "Chef"
@@ -72,6 +74,7 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
 
 	return 1
+
 
 /datum/job/hydro
 	title = "Botanist"
@@ -104,6 +107,7 @@
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
 	return 1
+
 
 //Griff //BS12 EDIT
 // Re-enabled clown and mime. -Frenjo
@@ -138,6 +142,7 @@
 	H.mutations.Add(CLUMSY)
 
 	return 1
+
 
 /datum/job/mime
 	title = "Mime"
@@ -185,6 +190,7 @@
 
 	return 1
 
+
 /datum/job/janitor
 	title = "Janitor"
 	flag = JANITOR
@@ -212,6 +218,7 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
 
 	return 1
+
 
 //More or less assistants
 /datum/job/librarian
@@ -243,6 +250,7 @@
 
 	return 1
 
+
 //var/global/lawyer = 0//Checks for another lawyer //This changed clothes on 2nd lawyer, both IA get the same dreds.
 /datum/job/lawyer
 	title = "Internal Affairs Agent"
@@ -269,6 +277,7 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
 		if(4)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/internalaffairs(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/internalaffairs(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)

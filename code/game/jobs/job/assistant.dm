@@ -15,8 +15,10 @@
 /datum/job/assistant/equip(mob/living/carbon/human/H)
 	if(!H)
 		return 0
+
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+
 	if(H.backbag == 1)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), slot_r_hand)
 	else
