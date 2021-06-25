@@ -7,8 +7,8 @@
 maps/RandomZLevels/listeningpost.dmm
 maps/RandomZLevels/spacebattle.dmm
 maps/RandomZLevels/stationCollision.dmm
-maps/RandomZLevels/blackmarketpackers.dmm
-maps/RandomZLevels/Academy.dmm
+#maps/RandomZLevels/blackmarketpackers.dmm
+#maps/RandomZLevels/Academy.dmm
 maps/RandomZLevels/challenge.dmm
 maps/RandomZLevels/wildwest.dmm
 maps/RandomZLevels/beach.dmm
