@@ -38,189 +38,9 @@
 	new /obj/item/weapon/pickaxe(src)
 	new /obj/item/clothing/glasses/meson(src)
 
-
 /**********************Shuttle Computer**************************/
 
-var/mining_shuttle_tickstomove = 10
-var/mining_shuttle_moving = 0
-var/mining_shuttle_location = 0 // 0 = station 13, 1 = mining station
-
-proc/move_mining_shuttle()
-	if(mining_shuttle_moving)
-		return
-
-	mining_shuttle_moving = 1
-	spawn(mining_shuttle_tickstomove*10)
-		var/area/fromArea
-		var/area/toArea
-		if(mining_shuttle_location == 1)
-			fromArea = locate(/area/shuttle/mining/outpost)
-			toArea = locate(/area/shuttle/mining/station)
-
-		else
-			fromArea = locate(/area/shuttle/mining/station)
-			toArea = locate(/area/shuttle/mining/outpost)
-
-		var/list/dstturfs = list()
-		var/throwy = world.maxy
-
-		for(var/turf/T in toArea)
-			dstturfs += T
-			if(T.y < throwy)
-				throwy = T.y
-
-		// hey you, get out of the way!
-		for(var/turf/T in dstturfs)
-			// find the turf to move things to
-			var/turf/D = locate(T.x, throwy - 1, 1)
-			//var/turf/E = get_step(D, SOUTH)
-			for(var/atom/movable/AM as mob|obj in T)
-				AM.Move(D)
-				// NOTE: Commenting this out to avoid recreating mass driver glitch
-				/*
-				spawn(0)
-					AM.throw_at(E, 1, 1)
-					return
-				*/
-
-			if(istype(T, /turf/simulated))
-				qdel(T)
-
-		for(var/mob/living/carbon/bug in toArea) // If someone somehow is still in the shuttle's docking area...
-			bug.gib()
-
-		for(var/mob/living/simple_animal/pest in toArea) // And for the other kind of bug...
-			pest.gib()
-
-		fromArea.move_contents_to(toArea)
-		if (mining_shuttle_location)
-			mining_shuttle_location = 0
-		else
-			mining_shuttle_location = 1
-
-		for(var/mob/M in toArea)
-			if(M.client)
-				spawn(0)
-					if(M.buckled)
-						shake_camera(M, 3, 1) // buckled, not a lot of shaking
-					else
-						shake_camera(M, 10, 1) // unbuckled, HOLY SHIT SHAKE THE ROOM
-			if(istype(M, /mob/living/carbon))
-				if(!M.buckled)
-					M.Weaken(3)
-
-		mining_shuttle_moving = 0
-	return
-
-/obj/machinery/computer/mining_shuttle
-	name = "mining shuttle console"
-	icon = 'icons/obj/computer.dmi'
-	icon_state = "shuttle"
-	req_access = list(access_mining)
-	circuit = "/obj/item/weapon/circuitboard/mining_shuttle"
-	var/hacked = 0
-	var/location = 0 //0 = station, 1 = mining base
-
-	// Literally copied this from what I did for the research shuttle.
-	// Adding ability for mining shuttle to close it's airlock before it leaves a place. -Frenjo
-	var/airlock_tag_station
-	var/airlock_tag_outpost
-	var/airlock_tag_shuttle // Added this to reflect docking controller port. -Frenjo
-	var/frequency = 1379
-	var/datum/radio_frequency/radio_connection //= radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
-
-/obj/machinery/computer/mining_shuttle/attack_hand(user as mob)
-	// More copy-pasted stuff from the research shuttle.
-	// I prayed, and this did indeed work. -Frenjo
-	radio_controller.remove_object(src, frequency)
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
-
-	if(..(user))
-		return
-	src.add_fingerprint(usr)
-	var/dat
-
-	dat = "<center>Mining Shuttle Control<hr>"
-
-	if(mining_shuttle_moving)
-		dat += "Location: <font color='red'>Moving</font> <br>"
-	else
-		dat += "Location: [mining_shuttle_location ? "Outpost" : "Station"] <br>"
-
-	dat += "<b><A href='?src=\ref[src];move=[1]'>Send</A></b></center>"
-
-
-	user << browse("[dat]", "window=miningshuttle;size=200x150")
-
-/obj/machinery/computer/mining_shuttle/Topic(href, href_list)
-	if(..())
-		return
-	usr.set_machine(src)
-	src.add_fingerprint(usr)
-	if(href_list["move"])
-		//if(ticker.mode.name == "blob")
-		//	if(ticker.mode:declared)
-		//		usr << "Under directive 7-10, [station_name()] is quarantined until further notice."
-		//		return
-
-		if(!mining_shuttle_moving)
-			usr << "<span class='info'>Shuttle recieved message and will be sent shortly.</span>"
-
-			// Another rip of the stuff I did for the research shuttle.
-			// EVEN MORE mining shuttle airlock interaction.
-			// Shameless port from door access buttons. -Frenjo
-			var/datum/signal/signal = new
-			signal.transmission_method = 1
-			if(mining_shuttle_location == 0)
-				signal.data["tag"] = airlock_tag_station
-				signal.data["command"] = "cycle_interior"
-				radio_connection.post_signal(src, signal, range = 10, filter = RADIO_AIRLOCK)
-
-				signal.data["tag"] = airlock_tag_shuttle
-				signal.data["command"] = "force_door"
-			else
-				signal.data["tag"] = airlock_tag_outpost
-				signal.data["command"] = "secure_close"
-				radio_connection.post_signal(src, signal, range = 10, filter = RADIO_AIRLOCK)
-
-				signal.data["tag"] = airlock_tag_shuttle
-				signal.data["command"] = "force_door"
-
-			radio_connection.post_signal(src, signal, range = 10, filter = RADIO_AIRLOCK)
-
-			move_mining_shuttle()
-
-			// And hopefully open an airlock when we arrive. -Frenjo
-			// This did indeed open the airlocks when we arrived.
-			sleep((mining_shuttle_tickstomove + 2) * 10)
-			if(mining_shuttle_location == 0)
-				signal.data["tag"] = airlock_tag_station
-				signal.data["command"] = "force_exterior"
-				radio_connection.post_signal(src, signal, range = 10, filter = RADIO_AIRLOCK)
-
-				signal.data["tag"] = airlock_tag_shuttle
-				signal.data["command"] = "force_door"
-			else
-				signal.data["tag"] = airlock_tag_outpost
-				signal.data["command"] = "secure_open"
-				radio_connection.post_signal(src, signal, range = 10, filter = RADIO_AIRLOCK)
-
-				signal.data["tag"] = airlock_tag_shuttle
-				signal.data["command"] = "force_door"
-
-			radio_connection.post_signal(src, signal, range = 10, filter = RADIO_AIRLOCK)
-		else
-			usr << "<span class='info'>Shuttle is already moving.</span>"
-
-	updateUsrDialog()
-
-/obj/machinery/computer/mining_shuttle/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/card/emag))
-		src.req_access = list()
-		hacked = 1
-		usr << "You fried the consoles ID checking system. It's now available to everyone!"
-	else
-		..()
+// MOVED TO /obj/machinery/computer/shuttle_control/mining
 
 /******************************Lantern*******************************/
 
@@ -353,7 +173,6 @@ proc/move_mining_shuttle()
 	throwforce = 7.0
 	w_class = 2.0
 
-
 /**********************Mining car (Crate like thing, not the rail car)**************************/
 
 /obj/structure/closet/crate/miningcar
@@ -364,4 +183,3 @@ proc/move_mining_shuttle()
 	density = 1
 	icon_opened = "miningcaropen"
 	icon_closed = "miningcar"
-

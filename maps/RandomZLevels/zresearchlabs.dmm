@@ -713,7 +713,7 @@
 "nK" = (/obj/structure/stool/bed/chair{dir = 1},/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor{icon_state = "red"; dir = 1},/area/awaymission/labs/command)
 "nL" = (/turf/simulated/floor{icon_state = "red"; dir = 1},/area/awaymission/labs/command)
 "nM" = (/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor{icon_state = "blue"; dir = 4},/area/awaymission/labs/command)
-"nN" = (/obj/machinery/computer/mining_shuttle,/turf/simulated/floor{icon_state = "white"},/area/awaymission/labs/command)
+"nN" = (/obj/machinery/computer/shuttle_control/mining,/turf/simulated/floor{icon_state = "white"},/area/awaymission/labs/command)
 "nO" = (/obj/structure/stool/bed/chair{dir = 1},/turf/simulated/floor,/area/awaymission/labs/command)
 "nP" = (/obj/machinery/computer/station_alert,/turf/simulated/floor{dir = 5; icon_state = "blue"},/area/awaymission/labs/command)
 "nQ" = (/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor{icon_state = "blue"; dir = 8},/area/awaymission/labs/command)

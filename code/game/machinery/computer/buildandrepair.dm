@@ -203,11 +203,6 @@
 	origin_tech = "programming=3"
 	var/contraband_enabled = 0
 
-/obj/item/weapon/circuitboard/research_shuttle
-	name = "Circuit board (Research Shuttle)"
-	build_path = "/obj/machinery/computer/research_shuttle"
-	origin_tech = "programming=2"
-
 /obj/item/weapon/circuitboard/operating
 	name = "Circuit board (Operating Computer)"
 	build_path = "/obj/machinery/computer/operating"
@@ -237,12 +232,12 @@
 
 /obj/item/weapon/circuitboard/mining_shuttle
 	name = "Circuit board (Mining Shuttle)"
-	build_path = "/obj/machinery/computer/mining_shuttle"
+	build_path = "/obj/machinery/computer/shuttle_control/mining"
 	origin_tech = "programming=2"
 
 /obj/item/weapon/circuitboard/research_shuttle
 	name = "Circuit board (Research Shuttle)"
-	build_path = "/obj/machinery/computer/research_shuttle"
+	build_path = "/obj/machinery/computer/shuttle_control/research"
 	origin_tech = "programming=2"
 
 // Added engineering shuttle to make use of the 'Ruskie DJ Station'. -Frenjo

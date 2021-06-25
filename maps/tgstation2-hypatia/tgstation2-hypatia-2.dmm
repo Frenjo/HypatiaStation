@@ -1258,7 +1258,7 @@
 "OO" = (/obj/machinery/portable_atmospherics/scrubber,/turf/simulated/shuttle/plating,/area/centcom/evac)
 "OQ" = (/obj/structure/artilleryplaceholder{icon_state = "27"},/turf/space,/area/space)
 "OR" = (/obj/structure/bookcase{name = "Forbidden Knowledge"},/obj/effect/decal/cleanable/cobweb,/turf/unsimulated/floor{dir = 8; icon_state = "wood"},/area/wizard_station)
-"OT" = (/obj/machinery/computer/shuttle,/turf/simulated/shuttle/floor,/area/centcom/evac)
+"OT" = (/obj/machinery/computer{desc = "For shuttle control."; icon_state = "shuttle"; name = "Shuttle"},/turf/simulated/shuttle/floor,/area/centcom/evac)
 "OU" = (/obj/machinery/computer/security/telescreen{name = "Spec. Ops. Monitor"; network = list("ERT")},/obj/structure/table/woodentable{dir = 5},/turf/unsimulated/floor{icon_state = "grimy"},/area/centcom/creed)
 "OV" = (/obj/mecha/working/ripley/firefighter,/turf/unsimulated/floor{dir = 6; icon_state = "delivery"},/area/centcom/specops)
 "Pb" = (/obj/machinery/door/airlock/hatch{req_access_txt = "150"; req_one_access = null; req_one_access_txt = "0"},/turf/simulated/shuttle/plating,/area/shuttle/vox/station)

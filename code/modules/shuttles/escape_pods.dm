@@ -59,7 +59,6 @@
 
 	return 0
 
-
 //This controller is for the escape pod berth (station side)
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth
 	name = "escape pod berth controller"
@@ -114,7 +113,6 @@
 /datum/computer/file/embedded_program/docking/simple/escape_pod/proc/arm()
 	armed = 1
 	open_door()
-
 
 /datum/computer/file/embedded_program/docking/simple/escape_pod/receive_user_command(command)
 	if(!armed)

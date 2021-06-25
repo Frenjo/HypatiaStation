@@ -110,7 +110,6 @@
 		MS.at_origin = 1
 
 	if(href_list["toggle_cloak"])
-
 		MS.cloaked = !MS.cloaked
 		to_chat(usr, SPAN_WARNING("Ship stealth systems have been [(MS.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival."))
 

@@ -43,7 +43,6 @@
 	if(announcer)
 		announcer.autosay(message, "A.L.I.C.E.", "Response Team")
 
-
 /datum/shuttle/ferry/multidock/specops/launch(user)
 	if(!can_launch())
 		return
@@ -98,7 +97,6 @@
 
 	..()
 
-
 /datum/shuttle/ferry/multidock/specops/can_launch()
 	if(launch_prep)
 		return 0
@@ -139,7 +137,6 @@
 
 	launch_prep = 0
 
-
 /proc/launch_mauraders()
 	var/area/centcom/specops/special_ops = locate()//Where is the specops area located?
 	//Begin Marauder launchpad.
@@ -158,7 +155,6 @@
 				if("ASSAULT3")
 					spawn(40)
 						M.open()
-
 		sleep(10)
 
 		var/spawn_marauder[] = new()
@@ -172,7 +168,6 @@
 				P.failchance = 0//So it has no fail chance when teleporting.
 				P.target = pick(spawn_marauder)//Where the marauder will arrive.
 				spawn_marauder.Remove(P.target)
-
 		sleep(10)
 
 		for(var/obj/machinery/mass_driver/M in special_ops)
@@ -189,7 +184,6 @@
 				if("ASSAULT3")
 					spawn(40)
 						M.drive()
-
 		sleep(50)//Doors remain open for 5 seconds.
 
 		for(var/obj/machinery/door/poddoor/M in special_ops)

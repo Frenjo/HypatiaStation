@@ -38,7 +38,6 @@ var/global/datum/shuttle_controller/shuttle_controller
 	// Escape shuttle and pods
 	shuttle = new/datum/shuttle/ferry/emergency()
 	shuttle.location = 1
-	//shuttle.warmup_time = 10
 	shuttle.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	shuttle.area_offsite = locate(/area/shuttle/escape/centcom)
 	shuttle.area_station = locate(/area/shuttle/escape/station)
@@ -48,8 +47,6 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.dock_target_offsite = "escapeshuttle_centcomdock"
 	shuttle.transit_direction = NORTH
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN
-	//shuttle.docking_controller_tag = "supply_shuttle"
-	//shuttle.dock_target_station = "cargo_bay"
 	shuttles["Escape"] = shuttle
 	process_shuttles += shuttle
 
@@ -124,7 +121,6 @@ var/global/datum/shuttle_controller/shuttle_controller
 	// Supply shuttle
 	shuttle = new/datum/shuttle/ferry/supply()
 	shuttle.location = 1
-	//shuttle.warmup_time = 10
 	shuttle.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	shuttle.area_offsite = locate(/area/supply/dock)
 	shuttle.area_station = locate(/area/supply/station)
@@ -139,7 +135,6 @@ var/global/datum/shuttle_controller/shuttle_controller
 	// Admin shuttles.
 	shuttle = new()
 	shuttle.location = 1
-	//shuttle.warmup_time = 10
 	shuttle.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	shuttle.area_offsite = locate(/area/shuttle/transport1/centcom)
 	shuttle.area_station = locate(/area/shuttle/transport1/station)
@@ -151,8 +146,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 
 	shuttle = new()
 	shuttle.location = 1
-	//shuttle.warmup_time = 10	//want some warmup time so people can cancel.
-	shuttle.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
+	shuttle.warmup_time = 7 //want some warmup time so people can cancel. // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	shuttle.area_offsite = locate(/area/shuttle/administration/centcom)
 	shuttle.area_station = locate(/area/shuttle/administration/station)
 	shuttle.docking_controller_tag = "admin_shuttle"
@@ -165,17 +159,14 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle.area_offsite = locate(/area/shuttle/alien/base)
 	shuttle.area_station = locate(/area/shuttle/alien/mine)
 	shuttles["Alien"] = shuttle
-	//process_shuttles += shuttle	//don't need to process this. It can only be moved using admin magic anyways.
+	process_shuttles += shuttle
 
 	// Public shuttles
 
 	// Added engineering shuttle to make use of the 'Ruskie DJ Station'. -Frenjo
 	shuttle = new()
 	shuttle.location = 0
-	//shuttle.warmup_time = 10
-	shuttle.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
-	//shuttle.area_offsite = locate(/area/shuttle/constructionsite/site)
-	//shuttle.area_station = locate(/area/shuttle/constructionsite/station)
+	shuttle.warmup_time = 7 //want some warmup time so people can cancel. // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	shuttle.area_offsite = locate(/area/shuttle/engineering/outpost)
 	shuttle.area_station = locate(/area/shuttle/engineering/station)
 	shuttle.docking_controller_tag = "engineering_shuttle"
@@ -185,7 +176,6 @@ var/global/datum/shuttle_controller/shuttle_controller
 	process_shuttles += shuttle
 
 	shuttle = new()
-	//shuttle.warmup_time = 10
 	shuttle.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	shuttle.area_offsite = locate(/area/shuttle/mining/outpost)
 	shuttle.area_station = locate(/area/shuttle/mining/station)
@@ -196,7 +186,6 @@ var/global/datum/shuttle_controller/shuttle_controller
 	process_shuttles += shuttle
 
 	shuttle = new()
-	//shuttle.warmup_time = 10
 	shuttle.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	shuttle.area_offsite = locate(/area/shuttle/research/outpost)
 	shuttle.area_station = locate(/area/shuttle/research/station)
@@ -207,7 +196,6 @@ var/global/datum/shuttle_controller/shuttle_controller
 	process_shuttles += shuttle
 
 	shuttle = new()
-	//shuttle.warmup_time = 10
 	shuttle.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	shuttle.area_offsite = locate(/area/shuttle/prison/prison)
 	shuttle.area_station = locate(/area/shuttle/prison/station)
@@ -220,7 +208,6 @@ var/global/datum/shuttle_controller/shuttle_controller
 	// ERT Shuttle
 	var/datum/shuttle/ferry/multidock/specops/ERT = new()
 	ERT.location = 0
-	//ERT.warmup_time = 10
 	ERT.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	ERT.area_offsite = locate(/area/shuttle/specops/station)	//centcom is the home station, the Exodus is offsite
 	ERT.area_station = locate(/area/shuttle/specops/centcom)
@@ -245,9 +232,6 @@ var/global/datum/shuttle_controller/shuttle_controller
 		)
 
 	VS.announcer = "NSV Icarus"
-	//VS.arrival_message = "Attention NSS Eternal, we just tracked a small target bypassing our defensive perimeter. Can't fire on it without hitting the station - you've got incoming visitors, like it or not."
-	//VS.departure_message = "Your guests are pulling away, NSS Eternal - moving too fast for us to draw a bead on them. Looks like they're heading out of the system at a rapid clip."
-	// Sorted these out since they're a loose end. -Frenjo
 	VS.arrival_message = "Attention [station_name], we just tracked a small target bypassing our defensive perimeter. Can't fire on it without hitting the station - you've got incoming visitors, like it or not."
 	VS.departure_message = "Your guests are pulling away, [station_name] - moving too fast for us to draw a bead on them. Looks like they're heading out of the system at a rapid clip."
 	VS.interim = locate(/area/vox_station/transit)

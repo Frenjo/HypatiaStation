@@ -77,7 +77,6 @@
 	switch(process_state)
 		if(WAIT_LAUNCH)
 			if(skip_docking_checks() || docking_controller.can_launch())
-
 				//world << "shuttle/ferry/process: area_transition=[area_transition], travel_time=[travel_time]"
 				if(move_time && area_transition)
 					long_jump(interim = area_transition, travel_time = move_time, direction = transit_direction)
@@ -112,7 +111,6 @@
 	else
 		dock_target = dock_target_offsite
 	return dock_target
-
 
 /datum/shuttle/ferry/proc/launch(user)
 	if(!can_launch())
@@ -174,4 +172,3 @@
 //This can be used by subtypes to do things when the shuttle arrives.
 /datum/shuttle/ferry/proc/arrived()
 	return	//do nothing for now
-

@@ -32,9 +32,9 @@
 		emergency_shuttle.departed = 1
 
 		if(emergency_shuttle.evac)
-			captain_announce("The emergency shuttle has left the station. Estimate [round(emergency_shuttle.estimate_arrival_time()/60,1)] minutes until the shuttle docks at Central Command.")
+			captain_announce("The emergency shuttle has left the station. Estimate [round(emergency_shuttle.estimate_arrival_time() / 60, 1)] minutes until the shuttle docks at Central Command.")
 		else
-			captain_announce("The crew transfer shuttle has left the station. Estimate [round(emergency_shuttle.estimate_arrival_time()/60,1)] minutes until the shuttle docks at Central Command.")
+			captain_announce("The crew transfer shuttle has left the station. Estimate [round(emergency_shuttle.estimate_arrival_time() / 60, 1)] minutes until the shuttle docks at Central Command.")
 
 /datum/shuttle/ferry/emergency/can_launch(user)
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))

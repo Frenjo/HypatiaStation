@@ -41,7 +41,7 @@
 		if(moving_status == SHUTTLE_IDLE)
 			return	//someone cancelled the launch
 
-		arrive_time = world.time + travel_time*10
+		arrive_time = world.time + travel_time * 10
 		moving_status = SHUTTLE_INTRANSIT
 		move(departing, interim, direction)
 
@@ -132,7 +132,6 @@
 		if(iscarbon(M))
 			if(!M.buckled)
 				M.Weaken(3)
-
 	return
 
 //returns 1 if the shuttle has a valid arrive time
