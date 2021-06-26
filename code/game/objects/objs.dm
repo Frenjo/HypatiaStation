@@ -17,12 +17,6 @@
 	var/damtype = "brute"
 	var/force = 0
 
-/obj/New()
-	..()
-	// If the game is already underway initialize will no longer be called for us
-	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
-		initialize()
-
 /obj/item/proc/is_used_on(obj/O, mob/user)
 
 /obj/proc/process()
