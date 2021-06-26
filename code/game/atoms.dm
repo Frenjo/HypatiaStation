@@ -23,6 +23,18 @@
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 
+/atom/Destroy()
+	. = ..()
+	density = 0
+	set_opacity(0)
+
+	if(reagents)
+		qdel(reagents)
+		reagents = null
+	for(var/atom/movable/AM in contents)
+		qdel(AM)
+	invisibility = 101
+
 /atom/proc/throw_impact(atom/hit_atom, speed)
 	if(isliving(hit_atom))
 		var/mob/living/M = hit_atom

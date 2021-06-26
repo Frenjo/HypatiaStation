@@ -1,6 +1,6 @@
 /datum/controller/process/event/setup()
 	name = "event"
-	schedule_interval = 20 // every 2 seconds
+	schedule_interval = 2 SECONDS
 
 /datum/controller/process/event/doWork()
 	var/i = 1

@@ -1,3 +1,35 @@
+#define SECOND * 10
+#define SECONDS * 10
+
+#define MINUTE * 600
+#define MINUTES * 600
+
+#define HOUR * 36000
+#define HOURS * 36000
+
+#define DAY * 864000
+#define DAYS * 864000
+
+#define TimeOfGame (get_game_time())
+#define TimeOfTick (world.tick_usage * 0.01 * world.tick_lag)
+
+/proc/get_game_time()
+	var/global/time_offset = 0
+	var/global/last_time = 0
+	var/global/last_usage = 0
+
+	var/wtime = world.time
+	var/wusage = world.tick_usage * 0.01
+
+	if(last_time < wtime && last_usage > 1)
+		time_offset += last_usage - 1
+
+	last_time = wtime
+	last_usage = wusage
+
+	return wtime + (time_offset + wusage) * world.tick_lag
+
+
 //Returns the world time in english
 proc/worldtime2text(time = world.time)
 	return "[round(time / 36000)+12]:[(time / 600 % 60) < 10 ? add_zero(time / 600 % 60, 1) : time / 600 % 60]"

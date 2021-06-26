@@ -1,6 +1,6 @@
 /datum/controller/process/vote/setup()
 	name = "vote"
-	schedule_interval = 10 // every 1 second
+	schedule_interval = 1 SECOND
 
 /datum/controller/process/vote/doWork()
 	vote.process()

@@ -1,4 +1,4 @@
-#define LIGHTING_INTERVAL 5 // frequency, in 1/10ths of a second, of the lighting process
+#define LIGHTING_INTERVAL 0.5 SECONDS // frequency of the lighting process
 
 #define LIGHTING_FALLOFF 1 // type of falloff to use for lighting; 1 for circular, 2 for square
 #define LIGHTING_LAMBERTIAN 1 // use lambertian shading for light sources

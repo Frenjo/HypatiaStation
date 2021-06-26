@@ -6,7 +6,7 @@ var/global/datum/controller/process/ticker/tickerProcess
 
 /datum/controller/process/ticker/setup()
 	name = "ticker"
-	schedule_interval = 20 // every 2 seconds
+	schedule_interval = 2 SECONDS
 
 	lastTickerTime = world.timeofday
 

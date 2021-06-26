@@ -396,3 +396,6 @@ proc/listclearnulls(list/list)
 	var/list/out = insertion_sort_numeric_list_ascending(L)
 	//world.log << "	output: [out.len]"
 	return reverselist(out)
+
+/proc/subtypesof(prototype)
+	return (typesof(prototype) - prototype)

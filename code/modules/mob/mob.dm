@@ -705,14 +705,12 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	if(client && client.holder)
 		if(statpanel("Status"))
-			stat(null,"Location:\t([x], [y], [z])")
-			stat(null,"CPU:\t[world.cpu]")
-			stat(null,"Instances:\t[world.contents.len]")
-		if(statpanel("Status") && processScheduler && processScheduler.getIsRunning())
-			for(var/datum/controller/process/P in processScheduler.processes)
-				statpanel("Status", P.getStatName(), P.getTickTime())
-		else
-			stat(null, "processScheduler is not running.")
+			stat("Location:", "([x], [y], [z]) [loc]")
+			stat("CPU:", "[world.cpu]")
+			stat("Instances:", "[world.contents.len]")
+		if(statpanel("Processes"))
+			if(processScheduler)
+				processScheduler.statProcesses()
 
 	if(listed_turf && client)
 		if(get_dist(listed_turf,src) > 1)
