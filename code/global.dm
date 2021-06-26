@@ -14,8 +14,6 @@ var/global/list/med_hud_users = list() //list of all entities using a medical HU
 var/global/list/sec_hud_users = list() //list of all entities using a security HUD.
 //items that ask to be called every cycle
 
-var/global/defer_powernet_rebuild = 0		// true if net rebuild will be called manually after an event
-
 var/global/list/global_map = null
 //list/global_map = list(list(1,5),list(4,3))//an array of map Z levels.
 //Resulting sector map looks like
@@ -115,9 +113,6 @@ var/list/reg_dna = list()
 
 var/mouse_respawn_time = 5 //Amount of time that must pass between a player dying as a mouse and repawning as a mouse. In minutes.
 
-var/CELLRATE = 0.002  // multiplier for watts per tick <> cell storage (eg: 0.02 means if there is a load of 1000 watts, 20 units will be taken from a cell per second)
-var/CHARGELEVEL = 0.0005 // Cap for how fast cells charge, as a percentage-per-tick (0.01 means cellcharge is capped to 1% per second)
-
 var/shuttle_z = 2	//default
 var/airtunnel_start = 68 // default
 var/airtunnel_stop = 68 // default
@@ -199,20 +194,11 @@ var/list/AAlarmIndexToFlag
 var/list/AAlarmIndexToWireColor
 var/list/AAlarmWireColorToIndex
 
-#define SPEED_OF_LIGHT 3e8 //not exact but hey!
-#define SPEED_OF_LIGHT_SQ 9e+16
-#define FIRE_DAMAGE_MODIFIER 0.0215 //Higher values result in more external fire damage to the skin (default 0.0215)
-#define AIR_DAMAGE_MODIFIER 2.025 //More means less damage from hot air scalding lungs, less = more damage. (default 2.025)
-#define INFINITY 1.#INF
-
 //Don't set this very much higher then 1024 unless you like inviting people in to dos your server with message spam
-#define MAX_MESSAGE_LEN 1024
-#define MAX_PAPER_MESSAGE_LEN 3072
-#define MAX_BOOK_MESSAGE_LEN 9216
-#define MAX_NAME_LEN 26
-
-#define shuttle_time_in_station 1800 // 3 minutes in the station
-#define shuttle_time_to_arrive 6000 // 10 minutes to arrive
+#define MAX_MESSAGE_LEN			1024
+#define MAX_PAPER_MESSAGE_LEN	3072
+#define MAX_BOOK_MESSAGE_LEN	9216
+#define MAX_NAME_LEN			26
 
 //away missions
 var/list/awaydestinations = list()	//a list of landmarks that the warpgate can take you to
@@ -256,10 +242,6 @@ var/custom_event_msg = null
 //A connection is established on world creation. Ideally, the connection dies when the server restarts (After feedback logging.).
 var/DBConnection/dbcon = new()	//Feedback database (New database)
 var/DBConnection/dbcon_old = new()	//Tgstation database (Old database) - See the files in the SQL folder for information what goes where.
-
-// processScheduler stuff
-var/global/const/TICKS_IN_DAY = 864000
-var/global/const/TICKS_IN_SECOND = 10
 
 // TODO: Replace
 /proc/RandomAPCWires()

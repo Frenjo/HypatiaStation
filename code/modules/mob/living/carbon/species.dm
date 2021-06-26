@@ -2,17 +2,6 @@
 	Datum-based species. Should make for much cleaner and easier to maintain mutantrace code.
 */
 
-//Some on_mob_life() procs check for alien races.
-#define IS_HUMAN 0
-#define IS_SOGHUN 1
-#define IS_TAJARAN 2
-#define IS_SKRELL 3
-#define IS_VOX 4
-#define IS_DIONA 5
-#define IS_OBSEDAI 6
-#define IS_PLASMAPERSON 7
-#define IS_XENOMORPH 8
-
 /datum/species
 	var/name                     							// Species name.
 	var/icobase = 'icons/mob/human_races/r_human.dmi'    	// Normal icon set.

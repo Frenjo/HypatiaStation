@@ -146,8 +146,6 @@
 // Because I would never figure this out myself.
 // (Yes this is the big comment I was talking about up there.) -Frenjo
 
-#define RADIATOR_EXPOSED_SURFACE_AREA_RATIO 0.04 // (3 cm + 100 cm * sin(3deg))/(2*(3+100 cm)). Unitless ratio.
-
 //surface must be the surface area in m^2
 /datum/pipeline/proc/radiate_heat_to_space(surface, thermal_conductivity)
 	var/gas_density = air.total_moles/air.volume

@@ -1,18 +1,3 @@
-// New lighting
-#define CLAMP01(x) 			(Clamp(x, 0, 1))
-#define CLAMP02(x, y, z) 	(x <= y ? y : (x >= z ? z : x))
-
-#define FOR_DVIEW(type, range, center, invis_flags) \
-	dview_mob.loc = center; \
-	dview_mob.see_invisible = invis_flags; \
-	for(type in view(range, dview_mob))
-#define END_FOR_DVIEW dview_mob.loc = null
-
-
-// XGM stuff
-#define QUANTIZE(variable)	(round(variable, 0.0001))
-
-
 // Mob helpers
 // fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
 #define ishuman(A) 		istype(A, /mob/living/carbon/human)

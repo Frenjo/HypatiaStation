@@ -18,5 +18,5 @@
 #define SCHECK_EVERY(this_many_calls) if(++src.calls_since_last_scheck >= this_many_calls) sleepCheck()
 #define SCHECK sleepCheck()
 
-#define SIMPLE_SIGN(X)	((X) < 0 ? -1 : 1)
-#define SIGN(X)			((X) ? SIMPLE_SIGN(X) : 0)
+#define TICKS_IN_DAY	864000
+#define TICKS_IN_SECOND 10
