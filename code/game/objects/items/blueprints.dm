@@ -80,6 +80,7 @@ move an amendment</a> to the drawing.</p>
 /obj/item/blueprints/proc/get_area_type(area/A = get_area())
 	if(A.name == "Space")
 		return AREA_SPACE
+
 	var/list/SPECIALS = list(
 		/area/shuttle,
 		/area/admin,
@@ -141,12 +142,10 @@ move an amendment</a> to the drawing.</p>
 		interact()
 	return
 
-
 /obj/item/blueprints/proc/move_turfs_to_area(list/turf/turfs, area/A)
 	A.contents.Add(turfs)
 		//oldarea.contents.Remove(usr.loc) // not needed
 		//T.loc = A //error: cannot change constant value
-
 
 /obj/item/blueprints/proc/edit_area()
 	var/area/A = get_area()
@@ -165,8 +164,6 @@ move an amendment</a> to the drawing.</p>
 	to_chat(usr, SPAN_INFO("You set the area '[prevname]' title to '[str]'."))
 	interact()
 	return
-
-
 
 /obj/item/blueprints/proc/set_area_machinery_title(area/A, title, oldtitle)
 	if(!oldtitle) // or replacetextx goes to infinite loop

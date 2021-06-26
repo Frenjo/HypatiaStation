@@ -6,7 +6,6 @@
 	unacidable = 1
 
 /obj/effect/landmark/New()
-
 	..()
 	tag = text("landmark*[]", name)
 	invisibility = 101
@@ -88,6 +87,7 @@
 	landmarks_list -= src
 	return ..()
 
+
 /obj/effect/landmark/start
 	name = "start"
 	icon = 'icons/mob/screen1.dmi'
@@ -101,12 +101,11 @@
 
 	return 1
 
+
 //Costume spawner landmarks
-
 /obj/effect/landmark/costume/New() //costume spawner, selects a random subclass and disappears
-
 	var/list/options = typesof(/obj/effect/landmark/costume)
-	var/PICK= options[rand(1,options.len)]
+	var/PICK = options[rand(1, options.len)]
 	new PICK(src.loc)
 	qdel(src)
 
@@ -143,7 +142,7 @@
 
 /obj/effect/landmark/costume/maid/New()
 	new /obj/item/clothing/under/blackskirt(src.loc)
-	var/CHOICE = pick( /obj/item/clothing/head/beret , /obj/item/clothing/head/rabbitears )
+	var/CHOICE = pick(/obj/item/clothing/head/beret, /obj/item/clothing/head/rabbitears)
 	new CHOICE(src.loc)
 	new /obj/item/clothing/glasses/sunglasses/blindfold(src.loc)
 	qdel(src)
@@ -158,7 +157,7 @@
 	new /obj/item/clothing/gloves/white(src.loc)
 	new /obj/item/clothing/shoes/white(src.loc)
 	new /obj/item/clothing/under/scratch(src.loc)
-	if (prob(30))
+	if(prob(30))
 		new /obj/item/clothing/head/cueball(src.loc)
 	qdel(src)
 
@@ -170,7 +169,7 @@
 /obj/effect/landmark/costume/prig/New()
 	new /obj/item/clothing/suit/wcoat(src.loc)
 	new /obj/item/clothing/glasses/monocle(src.loc)
-	var/CHOICE= pick( /obj/item/clothing/head/bowler, /obj/item/clothing/head/that)
+	var/CHOICE = pick(/obj/item/clothing/head/bowler, /obj/item/clothing/head/that)
 	new CHOICE(src.loc)
 	new /obj/item/clothing/shoes/black(src.loc)
 	new /obj/item/weapon/cane(src.loc)
@@ -190,7 +189,7 @@
 
 /obj/effect/landmark/costume/waiter/New()
 	new /obj/item/clothing/under/waiter(src.loc)
-	var/CHOICE= pick( /obj/item/clothing/head/kitty, /obj/item/clothing/head/rabbitears)
+	var/CHOICE = pick(/obj/item/clothing/head/kitty, /obj/item/clothing/head/rabbitears)
 	new CHOICE(src.loc)
 	new /obj/item/clothing/suit/apron(src.loc)
 	qdel(src)
@@ -198,7 +197,7 @@
 /obj/effect/landmark/costume/pirate/New()
 	new /obj/item/clothing/under/pirate(src.loc)
 	new /obj/item/clothing/suit/pirate(src.loc)
-	var/CHOICE = pick( /obj/item/clothing/head/pirate , /obj/item/clothing/head/bandana )
+	var/CHOICE = pick(/obj/item/clothing/head/pirate , /obj/item/clothing/head/bandana)
 	new CHOICE(src.loc)
 	new /obj/item/clothing/glasses/eyepatch(src.loc)
 	qdel(src)
@@ -210,7 +209,7 @@
 
 /obj/effect/landmark/costume/imperium_monk/New()
 	new /obj/item/clothing/suit/imperium_monk(src.loc)
-	if (prob(25))
+	if(prob(25))
 		new /obj/item/clothing/mask/gas/cyborg(src.loc)
 	qdel(src)
 

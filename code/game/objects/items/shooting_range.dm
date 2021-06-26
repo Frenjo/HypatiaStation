@@ -18,7 +18,6 @@
 			break
 	..() // delete target
 
-
 /obj/item/target/Move()
 	..()
 	// After target moves, check for nearby stakes. If associated, move to target
@@ -31,7 +30,6 @@
 	// a stake's density to 0 meaning it can't be pushed anymore. Instead of pushing
 	// the stake now, we have to push the target.
 
-
 /obj/item/target/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
@@ -39,7 +37,6 @@
 			overlays.Cut()
 			to_chat(usr, "You slice off [src]'s uneven chunks of aluminum and scorch marks.")
 			return
-
 
 /obj/item/target/attack_hand(mob/user as mob)
 	// taking pinned targets off!
@@ -70,10 +67,12 @@
 	else
 		..()
 
+
 /obj/item/target/syndicate
 	icon_state = "target_s"
 	desc = "A shooting target that looks like a hostile agent."
 	hp = 2600 // i guess syndie targets are sturdier?
+
 
 /obj/item/target/alien
 	icon_state = "target_q"
@@ -81,8 +80,8 @@
 	hp = 2350 // alium onest too kinda
 
 /obj/item/target/bullet_act(obj/item/projectile/Proj)
-	var/p_x = Proj.p_x + pick(0,0,0,0,0,-1,1) // really ugly way of coding "sometimes offset Proj.p_x!"
-	var/p_y = Proj.p_y + pick(0,0,0,0,0,-1,1)
+	var/p_x = Proj.p_x + pick(0, 0, 0, 0, 0, -1, 1) // really ugly way of coding "sometimes offset Proj.p_x!"
+	var/p_y = Proj.p_y + pick(0, 0, 0, 0, 0, -1, 1)
 	var/decaltype = 1 // 1 - scorch, 2 - bullet
 
 	if(istype(/obj/item/projectile/bullet, Proj))
@@ -116,7 +115,6 @@
 			if(Proj.damage >= 20 || istype(Proj, /obj/item/projectile/beam/practice))
 				bmark.icon_state = "scorch"
 				bmark.dir = pick(NORTH, SOUTH, EAST, WEST) // random scorch design
-
 
 			else
 				bmark.icon_state = "light_scorch"

@@ -4,8 +4,6 @@ defined, then set up when it is created with New(). Then this same system can ju
 it needs to create more trails.A beaker could have a steam_trail_follow system set up, then the steam
 would spawn and follow the beaker, even if it is carried or thrown.
 */
-
-
 /obj/effect/effect
 	name = "effect"
 	icon = 'icons/effects/effects.dmi'
@@ -49,18 +47,18 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	var/atom/holder
 	var/setup = 0
 
-	proc/set_up(n = 3, c = 0, turf/loc)
-		if(n > 10)
-			n = 10
-		number = n
-		cardinals = c
-		location = loc
-		setup = 1
+/datum/effect/effect/system/proc/set_up(n = 3, c = 0, turf/loc)
+	if(n > 10)
+		n = 10
+	number = n
+	cardinals = c
+	location = loc
+	setup = 1
 
-	proc/attach(atom/atom)
-		holder = atom
+/datum/effect/effect/system/proc/attach(atom/atom)
+	holder = atom
 
-	proc/start()
+/datum/effect/effect/system/proc/start()
 
 
 /////////////////////////////////////////////
@@ -85,7 +83,6 @@ steam.start() -- spawns the effect
 	density = 0
 
 /datum/effect/effect/system/steam_spread
-
 	set_up(n = 3, c = 0, turf/loc)
 		if(n > 10)
 			n = 10
@@ -93,23 +90,24 @@ steam.start() -- spawns the effect
 		cardinals = c
 		location = loc
 
-	start()
-		var/i = 0
-		for(i=0, i<src.number, i++)
-			spawn(0)
-				if(holder)
-					src.location = get_turf(holder)
-				var/obj/effect/effect/steam/steam = new /obj/effect/effect/steam(src.location)
-				var/direction
-				if(src.cardinals)
-					direction = pick(cardinal)
-				else
-					direction = pick(alldirs)
-				for(i=0, i<pick(1,2,3), i++)
-					sleep(5)
-					step(steam,direction)
-				spawn(20)
-					qdel(steam)
+/datum/effect/effect/system/steam_spread/start()
+	var/i = 0
+	for(i = 0, i < src.number, i++)
+		spawn(0)
+			if(holder)
+				src.location = get_turf(holder)
+			var/obj/effect/effect/steam/steam = new /obj/effect/effect/steam(src.location)
+			var/direction
+			if(src.cardinals)
+				direction = pick(cardinal)
+			else
+				direction = pick(alldirs)
+			for(i = 0, i < pick(1, 2, 3), i++)
+				sleep(5)
+				step(steam, direction)
+			spawn(20)
+				qdel(steam)
+
 
 /////////////////////////////////////////////
 //SPARK SYSTEM (like steam system)
@@ -117,7 +115,6 @@ steam.start() -- spawns the effect
 // to something, like the RCD, so then you can just call start() and the sparks
 // will always spawn at the items location.
 /////////////////////////////////////////////
-
 /obj/effect/effect/sparks
 	name = "sparks"
 	icon_state = "sparks"
@@ -161,29 +158,28 @@ steam.start() -- spawns the effect
 		else
 			location = get_turf(loca)
 
-	start()
-		var/i = 0
-		for(i = 0, i < src.number, i++)
-			if(src.total_sparks > 20)
-				return
-			spawn(0)
-				if(holder)
-					src.location = get_turf(holder)
-				var/obj/effect/effect/sparks/sparks = new /obj/effect/effect/sparks(src.location)
-				src.total_sparks++
-				var/direction
-				if(src.cardinals)
-					direction = pick(cardinal)
-				else
-					direction = pick(alldirs)
-				for(i = 0, i < pick(1, 2, 3), i++)
-					sleep(5)
-					step(sparks,direction)
-				spawn(20)
-					if(sparks)
-						qdel(sparks)
-					src.total_sparks--
-
+/datum/effect/effect/system/spark_spread/start()
+	var/i = 0
+	for(i = 0, i < src.number, i++)
+		if(src.total_sparks > 20)
+			return
+		spawn(0)
+			if(holder)
+				src.location = get_turf(holder)
+			var/obj/effect/effect/sparks/sparks = new /obj/effect/effect/sparks(src.location)
+			src.total_sparks++
+			var/direction
+			if(src.cardinals)
+				direction = pick(cardinal)
+			else
+				direction = pick(alldirs)
+			for(i = 0, i < pick(1, 2, 3), i++)
+				sleep(5)
+				step(sparks,direction)
+			spawn(20)
+				if(sparks)
+					qdel(sparks)
+				src.total_sparks--
 
 
 /////////////////////////////////////////////
@@ -191,8 +187,6 @@ steam.start() -- spawns the effect
 // direct can be optinally added when set_up, to make the smoke always travel in one direction
 // in case you wanted a vent to always smoke north for example
 /////////////////////////////////////////////
-
-
 /obj/effect/effect/smoke
 	name = "smoke"
 	icon_state = "smoke"
@@ -218,17 +212,17 @@ steam.start() -- spawns the effect
 	if(istype(M))
 		affect(M)
 
-/obj/effect/effect/smoke/proc/affect(var/mob/living/carbon/M)
-	if (istype(M))
+/obj/effect/effect/smoke/proc/affect(mob/living/carbon/M)
+	if(istype(M))
 		return 0
-	if (M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS))
+	if(M.internal != null && M.wear_mask && (M.wear_mask.flags & MASKINTERNALS))
 		return 0
 	return 1
+
 
 /////////////////////////////////////////////
 // Bad smoke
 /////////////////////////////////////////////
-
 /obj/effect/effect/smoke/bad
 	time_to_live = 200
 
@@ -237,27 +231,28 @@ steam.start() -- spawns the effect
 	for(var/mob/living/carbon/M in get_turf(src))
 		affect(M)
 
-/obj/effect/effect/smoke/bad/affect(var/mob/living/carbon/M)
-	if (!..())
+/obj/effect/effect/smoke/bad/affect(mob/living/carbon/M)
+	if(!..())
 		return 0
 	M.drop_item()
 	M.adjustOxyLoss(1)
-	if (M.coughedtime != 1)
+	if(M.coughedtime != 1)
 		M.coughedtime = 1
 		M.emote("cough")
-		spawn ( 20 )
+		spawn(20)
 			M.coughedtime = 0
 
-/obj/effect/effect/smoke/bad/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/effect/effect/smoke/bad/CanPass(atom/movable/mover, turf/target, height = 0, air_group=0)
 	if(air_group || (height==0)) return 1
 	if(istype(mover, /obj/item/projectile/beam))
 		var/obj/item/projectile/beam/B = mover
 		B.damage = (B.damage/2)
 	return 1
+
+
 /////////////////////////////////////////////
 // Sleep smoke
 /////////////////////////////////////////////
-
 /obj/effect/effect/smoke/sleepy
 
 /obj/effect/effect/smoke/sleepy/Move()
@@ -265,22 +260,22 @@ steam.start() -- spawns the effect
 	for(var/mob/living/carbon/M in get_turf(src))
 		affect(M)
 
-/obj/effect/effect/smoke/sleepy/affect(mob/living/carbon/M as mob )
+/obj/effect/effect/smoke/sleepy/affect(mob/living/carbon/M as mob)
 	if (!..())
 		return 0
 
 	M.drop_item()
 	M:sleeping += 1
-	if (M.coughedtime != 1)
+	if(M.coughedtime != 1)
 		M.coughedtime = 1
 		M.emote("cough")
-		spawn ( 20 )
+		spawn(20)
 			M.coughedtime = 0
+
+
 /////////////////////////////////////////////
 // Mustard Gas
 /////////////////////////////////////////////
-
-
 /obj/effect/effect/smoke/mustard
 	name = "mustard gas"
 	icon_state = "mustard"
@@ -290,25 +285,25 @@ steam.start() -- spawns the effect
 	for(var/mob/living/carbon/human/R in get_turf(src))
 		affect(R)
 
-/obj/effect/effect/smoke/mustard/affect(var/mob/living/carbon/human/R)
-	if (!..())
+/obj/effect/effect/smoke/mustard/affect(mob/living/carbon/human/R)
+	if(!..())
 		return 0
-	if (R.wear_suit != null)
+	if(R.wear_suit != null)
 		return 0
 
 	R.burn_skin(0.75)
-	if (R.coughedtime != 1)
+	if(R.coughedtime != 1)
 		R.coughedtime = 1
 		R.emote("gasp")
-		spawn (20)
+		spawn(20)
 			R.coughedtime = 0
 	R.updatehealth()
 	return
 
+
 /////////////////////////////////////////////
 // Smoke spread
 /////////////////////////////////////////////
-
 /datum/effect/effect/system/smoke_spread
 	var/total_smoke = 0 // To stop it being spammed and lagging!
 	var/direction
@@ -319,7 +314,7 @@ steam.start() -- spawns the effect
 		n = 10
 	number = n
 	cardinals = c
-	if(istype(loca, /turf/))
+	if(isturf(loca))
 		location = loca
 	else
 		location = get_turf(loca)
@@ -328,7 +323,7 @@ steam.start() -- spawns the effect
 
 /datum/effect/effect/system/smoke_spread/start()
 	var/i = 0
-	for(i=0, i<src.number, i++)
+	for(i = 0, i < src.number, i++)
 		if(src.total_smoke > 20)
 			return
 		spawn(0)
@@ -342,21 +337,19 @@ steam.start() -- spawns the effect
 					direction = pick(cardinal)
 				else
 					direction = pick(alldirs)
-			for(i=0, i<pick(0,1,1,1,2,2,2,3), i++)
+			for(i = 0, i < pick(0, 1, 1, 1, 2, 2, 2, 3), i++)
 				sleep(10)
 				step(smoke,direction)
-			spawn(smoke.time_to_live*0.75+rand(10,30))
+			spawn(smoke.time_to_live * 0.75 + rand(10, 30))
 				if(smoke)
 					qdel(smoke)
 				src.total_smoke--
-
 
 /datum/effect/effect/system/smoke_spread/bad
 	smoke_type = /obj/effect/effect/smoke/bad
 
 /datum/effect/effect/system/smoke_spread/sleepy
 	smoke_type = /obj/effect/effect/smoke/sleepy
-
 
 /datum/effect/effect/system/smoke_spread/mustard
 	smoke_type = /obj/effect/effect/smoke/mustard

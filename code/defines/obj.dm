@@ -4,17 +4,19 @@
 	anchored = 1
 	density = 1
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		return attack_hand(user)
+/obj/structure/signpost/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	return attack_hand(user)
 
-	attack_hand(mob/user as mob)
-		switch(alert("Travel back to ss13?", , "Yes", "No"))
-			if("Yes")
-				if(user.z != src.z)	return
-				user.loc.loc.Exited(user)
-				user.loc = pick(latejoin)
-			if("No")
+/obj/structure/signpost/attack_hand(mob/user as mob)
+	switch(alert("Travel back to ss13?", , "Yes", "No"))
+		if("Yes")
+			if(user.z != src.z)
 				return
+			user.loc.loc.Exited(user)
+			user.loc = pick(latejoin)
+		if("No")
+			return
+
 
 /obj/effect/mark
 		var/mark = ""
@@ -24,6 +26,7 @@
 		layer = 99
 		mouse_opacity = 0
 		unacidable = 1//Just to be sure.
+
 
 /obj/effect/beam
 	name = "beam"
@@ -42,7 +45,6 @@
 /*
  * This item is completely unused, but removing it will break something in R&D and Radio code causing PDA and Ninja code to fail on compile
  */
-
 /obj/effect/datacore
 	name = "datacore"
 	var/medical[] = list()
@@ -50,8 +52,6 @@
 	var/security[] = list()
 	//This list tracks characters spawned in the world and cannot be modified in-game. Currently referenced by respawn_character().
 	var/locked[] = list()
-
-
 
 /obj/effect/datacore/proc/get_manifest(monochrome, OOC)
 	var/list/heads = new()
@@ -171,7 +171,6 @@ Instead of creating this list over and over when someone leaves their PDA open t
 we'll only update it when it changes.  The PDA_Manifest global list is zeroed out upon any change
 using /obj/effect/datacore/proc/manifest_inject( ), or manifest_insert( )
 */
-
 var/global/list/PDA_Manifest = list()
 
 /obj/effect/datacore/proc/get_manifest_json()
@@ -236,7 +235,6 @@ var/global/list/PDA_Manifest = list()
 		if(!department && !(name in heads))
 			misc[++misc.len] = list("name" = name, "rank" = rank, "active" = isactive)
 
-
 	PDA_Manifest = list(\
 		"heads" = heads,\
 		"sec" = sec,\
@@ -248,7 +246,6 @@ var/global/list/PDA_Manifest = list()
 		"misc" = misc\
 		)
 	return PDA_Manifest
-
 
 
 /obj/effect/laser
@@ -266,7 +263,8 @@ var/global/list/PDA_Manifest = list()
 	name = "mobl"
 	var/master = null
 
-	var/list/container = list(  )
+	var/list/container = list()
+
 
 /obj/effect/projection
 	name = "Projection"
@@ -277,7 +275,8 @@ var/global/list/PDA_Manifest = list()
 /obj/effect/shut_controller
 	name = "shut controller"
 	var/moving = null
-	var/list/parts = list(  )
+	var/list/parts = list()
+
 
 /obj/structure/showcase
 	name = "Showcase"
@@ -288,7 +287,9 @@ var/global/list/PDA_Manifest = list()
 	anchored = 1
 	unacidable = 1//temporary until I decide whether the borg can be removed. -veyveyr
 
+
 /obj/item/mouse_drag_pointer = MOUSE_ACTIVE_POINTER
+
 
 /obj/item/weapon/beach_ball
 	icon = 'icons/misc/beach.dmi'
@@ -303,9 +304,11 @@ var/global/list/PDA_Manifest = list()
 	throw_speed = 1
 	throw_range = 20
 	flags = CONDUCT
-	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
-		user.drop_item()
-		src.throw_at(target, throw_range, throw_speed)
+	
+/obj/item/weapon/beach_ball/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
+	user.drop_item()
+	src.throw_at(target, throw_range, throw_speed)
+
 
 /obj/effect/stop
 	var/victim = null
@@ -313,6 +316,7 @@ var/global/list/PDA_Manifest = list()
 	name = "Geas"
 	desc = "You can't resist."
 	// name = ""
+
 
 /obj/effect/spawner
 	name = "object spawner"

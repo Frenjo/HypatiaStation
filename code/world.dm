@@ -17,7 +17,7 @@
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)
-		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND"
+		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND."
 
 	load_configuration()
 
@@ -49,12 +49,8 @@
 	spawn(3000)		//so we aren't adding to the round-start lag
 		if(config.ToRban)
 			ToRban_autoupdate()
-		//if(config.kick_inactive)
-		//	KickInactiveClients()
-
-#undef RECOMMENDED_VERSION
-
 	return
+#undef RECOMMENDED_VERSION
 
 //world/Topic(href, href_list[])
 //		world << "Received a Topic() call!"
@@ -113,9 +109,8 @@
 
 
 /world/Reboot(reason)
-	/*spawn(0)
+	spawn(0)
 		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
-		*/
 
 	processScheduler.stop()
 
@@ -126,21 +121,6 @@
 			C << link("byond://[world.address]:[world.port]")
 
 	..(reason)
-
-
-#define INACTIVITY_KICK	6000	//10 minutes in ticks (approx.)
-/world/proc/KickInactiveClients()
-	spawn(-1)
-		set background = 1
-		while(1)
-			sleep(INACTIVITY_KICK)
-			for(var/client/C in clients)
-				if(C.is_afk(INACTIVITY_KICK))
-					if(!istype(C.mob, /mob/dead))
-						log_access("AFK: [key_name(C)]")
-						to_chat(C, SPAN_WARNING("You have been inactive for more than 10 minutes and have been disconnected."))
-						qdel(C)
-//#undef INACTIVITY_KICK
 
 
 /hook/startup/proc/loadMode()
@@ -197,9 +177,10 @@
 					continue
 
 				var/rights = admin_ranks["Moderator"]
-				var/ckey = copytext(line, 1, length(line)+1)
+				var/ckey = copytext(line, 1, length(line) + 1)
 				var/datum/admins/D = new /datum/admins("Moderator", rights, ckey)
 				D.associate(directory[ckey])
+
 
 /world/proc/update_status()
 	var/s = ""
@@ -260,6 +241,7 @@
 	if(src.status != s)
 		src.status = s
 
+
 #define FAILED_DB_CONNECTION_CUTOFF 5
 var/failed_db_connections = 0
 var/failed_old_db_connections = 0
@@ -314,7 +296,6 @@ proc/establish_db_connection()
 
 //These two procs are for the old database, while it's being phased out. See the tgstation.sql file in the SQL folder for more information.
 proc/setup_old_database_connection()
-
 	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
 

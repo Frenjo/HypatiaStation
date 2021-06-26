@@ -10,8 +10,6 @@
  *		Snap pops
  *		Water flower
  */
-
-
 /obj/item/toy
 	throwforce = 0
 	throw_speed = 4

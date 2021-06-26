@@ -15,6 +15,7 @@
 	new /obj/item/weapon/reagent_containers/pill/happy(src)
 	new /obj/item/weapon/reagent_containers/pill/happy(src)
 
+
 /obj/item/weapon/storage/pill_bottle/zoom
 	name = "Zoom pills"
 	desc = "Highly illegal drug. Trade brain for speed."

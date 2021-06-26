@@ -29,17 +29,17 @@
 	var/health = 200
 	//var/mob/living/affecting = null
 
-	wall
-		name = "resin wall"
-		desc = "Purple slime solidified into a wall."
-		icon_state = "resinwall" //same as resin, but consistency ho!
+/obj/effect/alien/resin/wall
+	name = "resin wall"
+	desc = "Purple slime solidified into a wall."
+	icon_state = "resinwall" //same as resin, but consistency ho!
 
-	membrane
-		name = "resin membrane"
-		desc = "Purple slime just thin enough to let light pass through."
-		icon_state = "resinmembrane"
-		opacity = 0
-		health = 120
+/obj/effect/alien/resin/membrane
+	name = "resin membrane"
+	desc = "Purple slime just thin enough to let light pass through."
+	icon_state = "resinmembrane"
+	opacity = 0
+	health = 120
 
 /obj/effect/alien/resin/New()
 	..()
@@ -57,7 +57,7 @@
 		qdel(src)
 	return
 
-/obj/effect/alien/resin/bullet_act(var/obj/item/projectile/Proj)
+/obj/effect/alien/resin/bullet_act(obj/item/projectile/Proj)
 	health -= Proj.damage
 	..()
 	healthcheck()
@@ -70,7 +70,7 @@
 		if(2.0)
 			health -= 50
 		if(3.0)
-			if (prob(50))
+			if(prob(50))
 				health -= 50
 			else
 				health -= 25
@@ -90,7 +90,7 @@
 /obj/effect/alien/resin/hitby(AM as mob|obj)
 	..()
 	for(var/mob/O in viewers(src, null))
-		O.show_message("\red <B>[src] was hit by [AM].</B>", 1)
+		O.show_message(SPAN_DANGER("[src] was hit by [AM]."), 1)
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 10
@@ -103,16 +103,16 @@
 	return
 
 /obj/effect/alien/resin/attack_hand()
-	if (HULK in usr.mutations)
-		usr << "\blue You easily destroy the [name]."
+	if(HULK in usr.mutations)
+		to_chat(usr, SPAN_INFO("You easily destroy the [name]."))
 		for(var/mob/O in oviewers(src))
-			O.show_message("\red [usr] destroys the [name]!", 1)
+			O.show_message(SPAN_WARNING("[usr] destroys the [name]!"), 1)
 		health = 0
 	else
-		usr << "\blue You claw at the [name]."
+		to_chat(usr, SPAN_INFO("You claw at the [name]."))
 		for(var/mob/O in oviewers(src))
-			O.show_message("\red [usr] claws at the [name]!", 1)
-		health -= rand(5,10)
+			O.show_message(SPAN_WARNING("[usr] claws at the [name]!"), 1)
+		health -= rand(5, 10)
 	healthcheck()
 	return
 
@@ -138,7 +138,6 @@
  * Weeds
  */
 #define NODERANGE 3
-
 /obj/effect/alien/weeds
 	name = "weeds"
 	desc = "Weird purple weeds."
@@ -162,7 +161,6 @@
 
 /obj/effect/alien/weeds/node/New()
 	..(src.loc, src)
-
 
 /obj/effect/alien/weeds/New(pos, node)
 	..()
@@ -218,7 +216,6 @@ Alien plants should do something if theres a lot of poison
 
 			new /obj/effect/alien/weeds(T, linked_node)
 
-
 /obj/effect/alien/weeds/ex_act(severity)
 	switch(severity)
 		if(1.0)
@@ -231,11 +228,11 @@ Alien plants should do something if theres a lot of poison
 				qdel(src)
 	return
 
-/obj/effect/alien/weeds/attackby(var/obj/item/weapon/W, var/mob/user)
+/obj/effect/alien/weeds/attackby(obj/item/weapon/W, mob/user)
 	if(W.attack_verb.len)
-		visible_message("\red <B>\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]")
+		visible_message(SPAN_DANGER("\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]"))
 	else
-		visible_message("\red <B>\The [src] have been attacked with \the [W][(user ? " by [user]." : ".")]")
+		visible_message(SPAN_DANGER("\The [src] have been attacked with \the [W][(user ? " by [user]." : ".")]"))
 
 	var/damage = W.force / 4.0
 
@@ -253,7 +250,6 @@ Alien plants should do something if theres a lot of poison
 	if(health <= 0)
 		qdel(src)
 
-
 /obj/effect/alien/weeds/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
 		health -= 5
@@ -267,7 +263,6 @@ Alien plants should do something if theres a lot of poison
 		return 0
 	return 1
 */
-
 #undef NODERANGE
 
 
@@ -325,7 +320,8 @@ Alien plants should do something if theres a lot of poison
 			visible_message("\green <B>[src.target] is struggling to withstand the acid!</B>")
 		if(0 to 1)
 			visible_message("\green <B>[src.target] begins to crumble under the acid!</B>")
-	spawn(rand(150, 200)) tick()
+	spawn(rand(150, 200))
+		tick()
 
 /*
  * Egg
@@ -364,14 +360,14 @@ Alien plants should do something if theres a lot of poison
 
 	switch(status)
 		if(BURST)
-			user << "\red You clear the hatched egg."
+			to_chat(user, SPAN_WARNING("You clear the hatched egg."))
 			qdel(src)
 			return
 		if(GROWING)
-			user << "\red The child is not developed yet."
+			to_chat(user, SPAN_WARNING("The child is not developed yet."))
 			return
 		if(GROWN)
-			user << "\red You retrieve the child."
+			to_chat(user, SPAN_WARNING("You retrieve the child."))
 			Burst(0)
 			return
 
@@ -384,7 +380,7 @@ Alien plants should do something if theres a lot of poison
 	new /obj/item/clothing/mask/facehugger(src)
 	return
 
-/obj/effect/alien/egg/proc/Burst(var/kill = 1) //drops and kills the hugger if any is remaining
+/obj/effect/alien/egg/proc/Burst(kill = 1) //drops and kills the hugger if any is remaining
 	if(status == GROWN || status == GROWING)
 		var/obj/item/clothing/mask/facehugger/child = GetFacehugger()
 		icon_state = "egg_hatched"
@@ -397,25 +393,24 @@ Alien plants should do something if theres a lot of poison
 			if(kill && istype(child))
 				child.Die()
 			else
-				for(var/mob/M in range(1,src))
+				for(var/mob/M in range(1, src))
 					if(CanHug(M))
 						child.Attach(M)
 						break
 
-/obj/effect/alien/egg/bullet_act(var/obj/item/projectile/Proj)
+/obj/effect/alien/egg/bullet_act(obj/item/projectile/Proj)
 	health -= Proj.damage
 	..()
 	healthcheck()
 	return
 
-
-/obj/effect/alien/egg/attackby(var/obj/item/weapon/W, var/mob/user)
+/obj/effect/alien/egg/attackby(obj/item/weapon/W, mob/user)
 	if(health <= 0)
 		return
 	if(W.attack_verb.len)
-		src.visible_message("\red <B>\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]")
+		src.visible_message(SPAN_DANGER("\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]"))
 	else
-		src.visible_message("\red <B>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]")
+		src.visible_message(SPAN_DANGER("\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]"))
 	var/damage = W.force / 4.0
 
 	if(istype(W, /obj/item/weapon/weldingtool))
@@ -427,7 +422,6 @@ Alien plants should do something if theres a lot of poison
 
 	src.health -= damage
 	src.healthcheck()
-
 
 /obj/effect/alien/egg/proc/healthcheck()
 	if(health <= 0)

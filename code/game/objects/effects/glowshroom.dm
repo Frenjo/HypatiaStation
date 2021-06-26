@@ -23,7 +23,6 @@
 	spreadChance = 0
 
 /obj/effect/glowshroom/New()
-
 	..()
 
 	dir = CalcDir()
@@ -60,7 +59,7 @@
 		lastTick = world.timeofday
 		spreaded = 0
 
-		for(var/i=1,i<=yield,i++)
+		for(var/i = 1, i <= yield, i++)
 			if(prob(spreadChance))
 				var/list/possibleLocs = list()
 				var/spreadsIntoAdjacent = 0
@@ -68,8 +67,8 @@
 				if(prob(spreadIntoAdjacentChance))
 					spreadsIntoAdjacent = 1
 
-				for(var/turf/simulated/floor/plating/airless/asteroid/earth in view(3,src))
-					if(spreadsIntoAdjacent || !locate(/obj/effect/glowshroom) in view(1,earth))
+				for(var/turf/simulated/floor/plating/airless/asteroid/earth in view(3, src))
+					if(spreadsIntoAdjacent || !locate(/obj/effect/glowshroom) in view(1, earth))
 						possibleLocs += earth
 
 				if(!possibleLocs.len)
@@ -97,14 +96,14 @@
 				spreaded++
 
 		if(prob(evolveChance)) //very low chance to evolve on its own
-			potency += rand(4,6)
+			potency += rand(4, 6)
 
 /obj/effect/glowshroom/proc/CalcDir(turf/location = loc)
 	set background = 1
 	var/direction = 16
 
 	for(var/wallDir in cardinal)
-		var/turf/newTurf = get_step(location,wallDir)
+		var/turf/newTurf = get_step(location, wallDir)
 		if(newTurf.density)
 			direction |= wallDir
 
@@ -118,7 +117,7 @@
 
 	var/list/dirList = list()
 
-	for(var/i=1,i<=16,i <<= 1)
+	for(var/i = 1,i <= 16,i <<= 1)
 		if(direction & i)
 			dirList += i
 
@@ -145,11 +144,11 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if(prob(50))
 				qdel(src)
 				return
 		if(3.0)
-			if (prob(5))
+			if(prob(5))
 				qdel(src)
 				return
 		else

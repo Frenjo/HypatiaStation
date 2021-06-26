@@ -20,7 +20,6 @@
 	else i = 3
 	icon_state = "candle[i][lit ? "_lit" : ""]"
 
-
 /obj/item/candle/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/weapon/weldingtool))
@@ -40,7 +39,6 @@
 		if(C.lit)
 			light()
 
-
 /obj/item/candle/light(flavor_text = SPAN_WARNING("[usr] lights the [name]."))
 	if(!src.lit)
 		src.lit = 1
@@ -50,7 +48,6 @@
 		//SetLuminosity(CANDLE_LUM)
 		set_light(CANDLE_LUM)
 		processing_objects.Add(src)
-
 
 /obj/item/candle/process()
 	if(!lit)
@@ -66,7 +63,6 @@
 		var/turf/T = loc
 		T.hotspot_expose(700, 5)
 
-
 /obj/item/candle/attack_self(mob/user as mob)
 	if(lit)
 		lit = 0
@@ -74,12 +70,10 @@
 		set_light(0)
 		user.set_light(user.luminosity - CANDLE_LUM)
 
-
 /obj/item/candle/pickup(mob/user)
 	if(lit)
 		set_light(0)
 		user.set_light(user.luminosity + CANDLE_LUM)
-
 
 /obj/item/candle/dropped(mob/user)
 	if(lit)

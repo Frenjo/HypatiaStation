@@ -448,13 +448,13 @@
 		return
 	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
 		return
-	if((!iscarbon(usr)) || (isbrain(usr)))//Is humanoid, and is not a brain
+	if(!iscarbon(usr) || isbrain(usr))	//Is humanoid, and is not a brain
 		to_chat(usr, SPAN_WARNING("You can't pick things up!"))
 		return
-	if(usr.stat || usr.restrained())//Is not asleep/dead and is not restrained
+	if(usr.stat || usr.restrained())	//Is not asleep/dead and is not restrained
 		to_chat(usr, SPAN_WARNING("You can't pick things up!"))
 		return
-	if(src.anchored) //Object isn't anchored
+	if(src.anchored) 			//Object isn't anchored
 		to_chat(usr, SPAN_WARNING("You can't pick that up!"))
 		return
 	if(!usr.hand && usr.r_hand) //Right hand is not full
@@ -463,7 +463,7 @@
 	if(usr.hand && usr.l_hand) //Left hand is not full
 		to_chat(usr, SPAN_WARNING("Your left hand is full."))
 		return
-	if(!isturf(src.loc)) //Object is on a turf
+	if(!isturf(src.loc)) 		//Object is on a turf
 		to_chat(usr, SPAN_WARNING("You can't pick that up!"))
 		return
 	//All checks are done, time to pick it up!
@@ -481,6 +481,7 @@
 
 /obj/item/proc/IsShield()
 	return 0
+
 
 /obj/item/proc/eyestab(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	var/mob/living/carbon/human/H = M
@@ -554,6 +555,7 @@
 	M.eye_blurry += rand(3, 4)
 	return
 
+
 /obj/item/clean_blood()
 	. = ..()
 	if(blood_overlay)
@@ -586,6 +588,7 @@
 	blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 	return 1 //we applied blood to the item
 
+
 /obj/item/proc/generate_blood_overlay()
 	if(blood_overlay)
 		return
@@ -599,9 +602,11 @@
 		if(A.type == type && !A.blood_overlay)
 			A.blood_overlay = image(I)
 
+
 /obj/item/proc/showoff(mob/user)
 	for(var/mob/M in view(user))
 		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];lookitem=\ref[src]>Take a closer look.</a>", 1)
+
 
 /mob/living/carbon/verb/showoff()
 	set name = "Show Held Item"
@@ -610,6 +615,7 @@
 	var/obj/item/I = get_active_hand()
 	if(I && !I.abstract)
 		I.showoff(src)
+
 
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill

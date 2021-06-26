@@ -52,7 +52,7 @@
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		usr << "\red Movement is admin-disabled." //This is to identify lag problems
+		to_chat(usr, SPAN_WARNING("Movement is admin-disabled.")) //This is to identify lag problems
 		return
 	if(!mover || !isturf(mover.loc))
 		return 1
@@ -93,7 +93,7 @@
 
 /turf/Entered(atom/atom as mob|obj)
 	if(movement_disabled)
-		usr << "\red Movement is admin-disabled." //This is to identify lag problems
+		to_chat(usr, SPAN_WARNING("Movement is admin-disabled.")) //This is to identify lag problems
 		return
 	..()
 //vvvvv Infared beam stuff vvvvv
@@ -162,7 +162,7 @@
 	if(!(A.last_move))
 		return
 
-	if((istype(A, /mob/) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy-1)))
+	if((ismob(A) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy - 1)))
 		var/mob/M = A
 		if(M.Process_Spacemove(1))
 			M.inertia_dir  = 0
@@ -256,7 +256,7 @@
 		if(air_master)
 			air_master.mark_for_update(src)
 
-		for(var/turf/space/S in range(W,1))
+		for(var/turf/space/S in range(W, 1))
 			S.update_starlight()
 
 		W.levelupdate()
@@ -381,6 +381,7 @@
 			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
 				L.Add(t)
 	return L
+
 /turf/proc/Distance(turf/t)
 	if(get_dist(src, t) == 1)
 		var/cost = (src.x - t.x) * (src.x - t.x) + (src.y - t.y) * (src.y - t.y)
@@ -388,6 +389,7 @@
 		return cost
 	else
 		return get_dist(src,t)
+
 /turf/proc/AdjacentTurfsSpace()
 	var/L[] = new()
 	for(var/turf/t in oview(src, 1))

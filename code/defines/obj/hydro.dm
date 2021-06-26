@@ -45,6 +45,7 @@
 		return
 	..() // Fallthrough to item/attackby() so that bags can pick seeds up
 
+
 /obj/item/seeds/chiliseed
 	name = "pack of chili seeds"
 	desc = "These seeds grow into chili plants. HOT! HOT! HOT!"
@@ -61,6 +62,7 @@
 	potency = 20
 	plant_type = 0
 	growthstages = 6
+
 
 /obj/item/seeds/plastiseed
 	name = "plastellium mycelium"
@@ -80,6 +82,7 @@
 	plant_type = 2
 	growthstages = 3
 
+
 /obj/item/seeds/grapeseed
 	name = "pack of grape seeds"
 	desc = "These seeds grow into grape vines."
@@ -96,6 +99,7 @@
 	potency = 10
 	plant_type = 0
 	growthstages = 2
+
 
 /obj/item/seeds/greengrapeseed
 	name = "pack of green grape seeds"
@@ -114,6 +118,7 @@
 	plant_type = 0
 	growthstages = 2
 
+
 /obj/item/seeds/peanutseed
 	name = "pack of peanut seeds"
 	desc = "These seeds grow into peanut vines."
@@ -130,6 +135,7 @@
 	potency = 10
 	plant_type = 0
 	growthstages = 6
+
 
 /obj/item/seeds/cabbageseed
 	name = "pack of cabbage seeds"
@@ -148,6 +154,7 @@
 	plant_type = 0
 	growthstages = 1
 
+
 /obj/item/seeds/shandseed
 	name = "pack of s'rendarr's hand seeds"
 	desc = "These seeds grow into a helpful herb called S'Rendarr's Hand, native to Ahdomai."
@@ -164,6 +171,7 @@
 	potency = 10
 	plant_type = 0
 	growthstages = 3
+
 
 /obj/item/seeds/mtearseed
 	name = "pack of messa's tear seeds"
@@ -182,6 +190,7 @@
 	plant_type = 0
 	growthstages = 3
 
+
 /obj/item/seeds/berryseed
 	name = "pack of berry seeds"
 	desc = "These seeds grow into berry bushes."
@@ -198,6 +207,7 @@
 	potency = 10
 	plant_type = 0
 	growthstages = 6
+
 
 /obj/item/seeds/glowberryseed
 	name = "pack of glow-berry seeds"
@@ -216,6 +226,7 @@
 	plant_type = 0
 	growthstages = 6
 
+
 /obj/item/seeds/bananaseed
 	name = "pack of banana seeds"
 	desc = "They're seeds that grow into banana trees."
@@ -231,6 +242,7 @@
 	yield = 3
 	plant_type = 0
 	growthstages = 6
+
 
 /obj/item/seeds/eggplantseed
 	name = "pack of eggplant seeds"
@@ -249,6 +261,7 @@
 	plant_type = 0
 	growthstages = 6
 
+
 /obj/item/seeds/eggyseed
 	name = "pack of eggplant seeds"
 	desc = "These seeds grow to produce berries that look a lot like eggs."
@@ -264,6 +277,7 @@
 	yield = 2
 	plant_type = 0
 	growthstages = 6
+
 
 /obj/item/seeds/bloodtomatoseed
 	name = "pack of blood-tomato seeds"
@@ -282,6 +296,7 @@
 	plant_type = 0
 	growthstages = 6
 
+
 /obj/item/seeds/tomatoseed
 	name = "pack of tomato seeds"
 	desc = "These seeds grow into tomato plants."
@@ -298,6 +313,7 @@
 	potency = 10
 	plant_type = 0
 	growthstages = 6
+
 
 /obj/item/seeds/killertomatoseed
 	name = "pack of killer-tomato seeds"
@@ -317,6 +333,7 @@
 	oneharvest = 1
 	growthstages = 2
 
+
 /obj/item/seeds/bluetomatoseed
 	name = "pack of blue-tomato seeds"
 	desc = "These seeds grow into blue-tomato plants."
@@ -334,6 +351,7 @@
 	plant_type = 0
 	growthstages = 6
 
+
 /obj/item/seeds/bluespacetomatoseed
 	name = "pack of blue-space tomato seeds"
 	desc = "These seeds grow into blue-space tomato plants."
@@ -350,6 +368,7 @@
 	potency = 10
 	plant_type = 0
 	growthstages = 6
+
 
 /obj/item/seeds/cornseed
 	name = "pack of corn seeds"
@@ -369,6 +388,7 @@
 	potency = 20
 	growthstages = 3
 
+
 /obj/item/seeds/poppyseed
 	name = "pack of poppy seeds"
 	desc = "These seeds grow into poppies."
@@ -386,6 +406,7 @@
 	plant_type = 0
 	oneharvest = 1
 	growthstages = 3
+
 
 /obj/item/seeds/potatoseed
 	name = "pack of potato seeds"
@@ -405,6 +426,7 @@
 	potency = 10
 	growthstages = 4
 
+
 /obj/item/seeds/icepepperseed
 	name = "pack of ice-pepper seeds"
 	desc = "These seeds grow into ice-pepper plants."
@@ -422,6 +444,7 @@
 	plant_type = 0
 	growthstages = 6
 
+
 /obj/item/seeds/soyaseed
 	name = "pack of soybean seeds"
 	desc = "These seeds grow into soybean plants."
@@ -438,6 +461,7 @@
 	potency = 5
 	plant_type = 0
 	growthstages = 6
+
 
 /obj/item/seeds/wheatseed
 	name = "pack of wheat seeds"
@@ -457,6 +481,7 @@
 	plant_type = 0
 	growthstages = 6
 
+
 /obj/item/seeds/riceseed
 	name = "pack of rice seeds"
 	desc = "These seeds grow into rice stalks."
@@ -474,6 +499,7 @@
 	oneharvest = 1
 	plant_type = 0
 	growthstages = 4
+
 
 /obj/item/seeds/carrotseed
 	name = "pack of carrot seeds"
@@ -493,6 +519,7 @@
 	plant_type = 0
 	growthstages = 3
 
+
 /obj/item/seeds/reishimycelium
 	name = "pack of reishi mycelium"
 	desc = "This mycelium grows into something relaxing."
@@ -510,6 +537,7 @@
 	oneharvest = 1
 	growthstages = 4
 	plant_type = 2
+
 
 /obj/item/seeds/amanitamycelium
 	name = "pack of fly amanita mycelium"
@@ -529,6 +557,7 @@
 	growthstages = 3
 	plant_type = 2
 
+
 /obj/item/seeds/angelmycelium
 	name = "pack of destroying angel mycelium"
 	desc = "This mycelium grows into something devestating."
@@ -546,6 +575,7 @@
 	oneharvest = 1
 	growthstages = 3
 	plant_type = 2
+
 
 /obj/item/seeds/libertymycelium
 	name = "pack of liberty-cap mycelium"
@@ -565,6 +595,7 @@
 	growthstages = 3
 	plant_type = 2
 
+
 /obj/item/seeds/chantermycelium
 	name = "pack of chanterelle mycelium"
 	desc = "This mycelium grows into chanterelle mushrooms."
@@ -582,6 +613,7 @@
 	oneharvest = 1
 	growthstages = 3
 	plant_type = 2
+
 
 /obj/item/seeds/towermycelium
 	name = "pack of tower-cap mycelium"
@@ -601,6 +633,7 @@
 	growthstages = 3
 	plant_type = 2
 
+
 /obj/item/seeds/glowshroom
 	name = "pack of glowshroom mycelium"
 	desc = "This mycelium -glows- into mushrooms!"
@@ -618,6 +651,7 @@
 	oneharvest = 1
 	growthstages = 4
 	plant_type = 2
+
 
 /obj/item/seeds/plumpmycelium
 	name = "pack of plump-helmet mycelium"
@@ -637,6 +671,7 @@
 	growthstages = 3
 	plant_type = 2
 
+
 /obj/item/seeds/walkingmushroommycelium
 	name = "pack of walking mushroom mycelium"
 	desc = "This mycelium will grow into huge stuff!"
@@ -654,6 +689,7 @@
 	oneharvest = 1
 	growthstages = 3
 	plant_type = 2
+
 
 /obj/item/seeds/nettleseed
 	name = "pack of nettle seeds"
@@ -673,6 +709,7 @@
 	growthstages = 5
 	plant_type = 1
 
+
 /obj/item/seeds/deathnettleseed
 	name = "pack of death-nettle seeds"
 	desc = "These seeds grow into death-nettles."
@@ -690,6 +727,7 @@
 	oneharvest = 0
 	growthstages = 5
 	plant_type = 1
+
 
 /obj/item/seeds/weeds
 	name = "pack of weed seeds"
@@ -709,6 +747,7 @@
 	growthstages = 4
 	plant_type = 1
 
+
 /obj/item/seeds/harebell
 	name = "pack of harebell seeds"
 	desc = "These seeds grow into pretty little flowers."
@@ -726,6 +765,7 @@
 	oneharvest = 1
 	growthstages = 4
 	plant_type = 1
+
 
 /obj/item/seeds/sunflowerseed
 	name = "pack of sunflower seeds"
@@ -745,6 +785,7 @@
 	growthstages = 3
 	plant_type = 1
 
+
 /obj/item/seeds/brownmold
 	name = "pack of brown mold"
 	desc = "Eww.. moldy."
@@ -763,6 +804,7 @@
 	growthstages = 3
 	plant_type = 2
 
+
 /obj/item/seeds/appleseed
 	name = "pack of apple seeds"
 	desc = "These seeds grow into apple trees."
@@ -779,6 +821,7 @@
 	potency = 10
 	plant_type = 0
 	growthstages = 6
+
 
 /obj/item/seeds/poisonedappleseed
 	name = "pack of apple seeds"
@@ -797,6 +840,7 @@
 	plant_type = 0
 	growthstages = 6
 
+
 /obj/item/seeds/goldappleseed
 	name = "pack of golden apple seeds"
 	desc = "These seeds grow into golden apple trees. Good thing there are no firebirds in space."
@@ -813,6 +857,7 @@
 	potency = 10
 	plant_type = 0
 	growthstages = 6
+
 
 /obj/item/seeds/ambrosiavulgarisseed
 	name = "pack of ambrosia vulgaris seeds"
@@ -831,6 +876,7 @@
 	plant_type = 0
 	growthstages = 6
 
+
 /obj/item/seeds/ambrosiadeusseed
 	name = "pack of ambrosia deus seeds"
 	desc = "These seeds grow into ambrosia deus. Could it be the food of the gods..?"
@@ -847,6 +893,7 @@
 	potency = 5
 	plant_type = 0
 	growthstages = 6
+
 
 /obj/item/seeds/whitebeetseed
 	name = "pack of white-beet seeds"
@@ -866,6 +913,7 @@
 	plant_type = 0
 	growthstages = 6
 
+
 /obj/item/seeds/sugarcaneseed
 	name = "pack of sugarcane seeds"
 	desc = "These seeds grow into sugarcane."
@@ -883,6 +931,7 @@
 	plant_type = 0
 	growthstages = 3
 
+
 /obj/item/seeds/watermelonseed
 	name = "pack of watermelon seeds"
 	desc = "These seeds grow into watermelon plants."
@@ -899,6 +948,7 @@
 	potency = 1
 	plant_type = 0
 	growthstages = 6
+
 
 /obj/item/seeds/pumpkinseed
 	name = "pack of pumpkin seeds"
@@ -935,6 +985,7 @@
 	plant_type = 0
 	growthstages = 6
 
+
 /obj/item/seeds/lemonseed
 	name = "pack of lemon seeds"
 	desc = "These are sour seeds."
@@ -951,6 +1002,7 @@
 	potency = 10
 	plant_type = 0
 	growthstages = 6
+
 
 /obj/item/seeds/cashseed
 	name = "pack of money seeds"
@@ -969,6 +1021,7 @@
 	plant_type = 0
 	growthstages = 6
 
+
 /obj/item/seeds/orangeseed
 	name = "pack of orange seed"
 	desc = "Sour seeds."
@@ -985,6 +1038,7 @@
 	potency = 1
 	plant_type = 0
 	growthstages = 6
+
 
 /obj/item/seeds/poisonberryseed
 	name = "pack of poison-berry seeds"
@@ -1003,6 +1057,7 @@
 	plant_type = 0
 	growthstages = 6
 
+
 /obj/item/seeds/deathberryseed
 	name = "pack of death-berry seeds"
 	desc = "These seeds grow into death berries."
@@ -1020,6 +1075,7 @@
 	plant_type = 0
 	growthstages = 6
 
+
 /obj/item/seeds/grassseed
 	name = "pack of grass seeds"
 	desc = "These seeds grow into grass. Yummy!"
@@ -1035,6 +1091,7 @@
 	yield = 5
 	plant_type = 0
 	growthstages = 2
+
 
 /obj/item/seeds/cocoapodseed
 	name = "pack of cocoa pod seeds"
@@ -1053,6 +1110,7 @@
 	plant_type = 0
 	growthstages = 5
 
+
 /obj/item/seeds/cherryseed
 	name = "pack of cherry pits"
 	desc = "Careful not to crack a tooth on one... That'd be the pits."
@@ -1069,6 +1127,7 @@
 	potency = 10
 	plant_type = 0
 	growthstages = 5
+
 
 /obj/item/seeds/kudzuseed
 	name = "pack of kudzu seeds"
@@ -1093,7 +1152,6 @@
 	to_chat(user, SPAN_NOTICE("You plant the kudzu. You monster."))
 	new /obj/effect/spacevine_controller(user.loc)
 	qdel(src)
-
 
 
 /*  // Maybe one day when I get it to work like a grenade which exlodes gibs.
@@ -1166,6 +1224,7 @@
 /obj/item/weapon/grown/proc/changePotency(newValue) //-QualityVan
 	potency = newValue
 
+
 /obj/item/weapon/grown/log
 	name = "tower-cap log"
 	desc = "It's better than bad, it's good!"
@@ -1235,6 +1294,8 @@
 	src.gibs.attach(src)
 	src.smoke.set_up(10, 0, usr.loc)
 */
+
+
 /obj/item/weapon/grown/nettle // -- Skie
 	desc = "It's probably <B>not</B> wise to touch it with bare hands..."
 	icon = 'icons/obj/weapons.dmi'
@@ -1256,6 +1317,7 @@
 		reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
 		reagents.add_reagent("sacid", round(potency, 1))
 		force = round((5 + potency / 5), 1)
+
 
 /obj/item/weapon/grown/deathnettle // -- Skie
 	desc = "The \red glowing \black nettle incites \red<B>rage</B>\black in you just from looking at it!"
@@ -1299,6 +1361,7 @@
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
 
+
 /obj/item/pestkiller/carbaryl
 	name = "bottle of carbaryl"
 	icon = 'icons/obj/chemical.dmi'
@@ -1310,6 +1373,7 @@
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
 
+
 /obj/item/pestkiller/lindane
 	name = "bottle of lindane"
 	icon = 'icons/obj/chemical.dmi'
@@ -1320,6 +1384,7 @@
 /obj/item/pestkiller/lindane/New()
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
+
 
 /obj/item/pestkiller/phosmet
 	name = "bottle of phosmet"
@@ -1355,6 +1420,7 @@
 	viewers(user) << "\red <b>[user] is huffing the [src.name]! It looks like \he's trying to commit suicide.</b>"
 	return (TOXLOSS)
 
+
 /obj/item/weapon/pestspray // -- Skie
 	desc = "It's some pest eliminator spray! <I>Do not inhale!</I>"
 	icon = 'icons/obj/hydroponics.dmi'
@@ -1373,6 +1439,7 @@
 /obj/item/weapon/pestspray/suicide_act(mob/user)
 	viewers(user) << "\red <b>[user] is huffing the [src.name]! It looks like \he's trying to commit suicide.</b>"
 	return (TOXLOSS)
+
 
 /obj/item/weapon/minihoe // -- Numbers
 	name = "mini hoe"
@@ -1398,6 +1465,7 @@
 	var/toxicity = 0
 	var/WeedKillStr = 0
 
+
 /obj/item/weedkiller/triclopyr
 	name = "bottle of glyphosate"
 	icon = 'icons/obj/chemical.dmi'
@@ -1405,12 +1473,14 @@
 	toxicity = 4
 	WeedKillStr = 2
 
+
 /obj/item/weedkiller/lindane
 	name = "bottle of triclopyr"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle18"
 	toxicity = 6
 	WeedKillStr = 4
+
 
 /obj/item/weedkiller/D24
 	name = "bottle of 2,4-D"
@@ -1435,6 +1505,7 @@
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
 
+
 /obj/item/nutrient/ez
 	name = "bottle of E-Z-Nutrient"
 	icon = 'icons/obj/chemical.dmi'
@@ -1445,6 +1516,7 @@
 /obj/item/nutrient/ez/New()
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
+
 
 /obj/item/nutrient/l4z
 	name = "bottle of Left 4 Zed"
@@ -1457,6 +1529,7 @@
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
 
+
 /obj/item/nutrient/rh
 	name = "bottle of Robust Harvest"
 	icon = 'icons/obj/chemical.dmi'
@@ -1467,5 +1540,3 @@
 /obj/item/nutrient/rh/New()
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
-
-

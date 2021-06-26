@@ -16,14 +16,14 @@
 	Bumped(AM)
 
 /obj/effect/mine/Bumped(mob/M as mob|obj)
+	if(triggered)
+		return
 
-	if(triggered) return
-
-	if(istype(M, /mob/living/carbon/human) || istype(M, /mob/living/carbon/monkey))
+	if(ishuman(M) || ismonkey(M))
 		for(var/mob/O in viewers(world.view, src.loc))
-			O << "<font color='red'>[M] triggered the \icon[src] [src]</font>"
+			to_chat(O, "<font color='red'>[M] triggered the \icon[src] [src]</font>")
 		triggered = 1
-		call(src,triggerproc)(M)
+		call(src, triggerproc)(M)
 
 /obj/effect/mine/proc/triggerrad(obj)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -49,7 +49,7 @@
 	//example: n2o triggerproc
 	//note: im lazy
 
-	for (var/turf/simulated/floor/target in range(1,src))
+	for(var/turf/simulated/floor/target in range(1, src))
 		if(!target.blocks_air)
 			target.assume_gas("sleeping_agent", 30)
 
@@ -57,9 +57,8 @@
 		qdel(src)
 
 /obj/effect/mine/proc/triggerplasma(obj)
-	for (var/turf/simulated/floor/target in range(1,src))
+	for(var/turf/simulated/floor/target in range(1, src))
 		if(!target.blocks_air)
-
 			target.assume_gas("plasma", 30)
 
 			target.hotspot_expose(1000, CELL_VOLUME)
@@ -80,25 +79,30 @@
 	spawn(0)
 		qdel(src)
 
+
 /obj/effect/mine/dnascramble
 	name = "Radiation Mine"
 	icon_state = "uglymine"
 	triggerproc = "triggerrad"
+
 
 /obj/effect/mine/plasma
 	name = "Plasma Mine"
 	icon_state = "uglymine"
 	triggerproc = "triggerplasma"
 
+
 /obj/effect/mine/kick
 	name = "Kick Mine"
 	icon_state = "uglymine"
 	triggerproc = "triggerkick"
 
+
 /obj/effect/mine/n2o
 	name = "N2O Mine"
 	icon_state = "uglymine"
 	triggerproc = "triggern2o"
+
 
 /obj/effect/mine/stun
 	name = "Stun Mine"

@@ -22,7 +22,7 @@
 
 /turf/simulated/Entered(atom/A, atom/OL)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		usr << "\red Movement is admin-disabled." //This is to identify lag problems
+		to_chat(usr, SPAN_WARNING("Movement is admin-disabled.")) //This is to identify lag problems
 		return
 
 	if(iscarbon(A))
@@ -55,7 +55,7 @@
 
 			// Tracking blood
 			var/list/bloodDNA = null
-			var/bloodcolor=""
+			var/bloodcolor = ""
 			if(H.shoes)
 				var/obj/item/clothing/shoes/S = H.shoes
 				if(S.track_blood && S.blood_DNA)

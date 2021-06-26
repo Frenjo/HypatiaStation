@@ -11,7 +11,6 @@ var/list/explosion_turfs = list()
 
 var/explosion_in_progress = 0
 
-
 proc/explosion_rec(turf/epicenter, power)
 	var/loopbreak = 0
 	while(explosion_in_progress)

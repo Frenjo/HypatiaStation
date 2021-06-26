@@ -1,5 +1,4 @@
 // APC HULL
-
 /obj/item/apc_frame
 	name = "APC frame"
 	desc = "Used for repairing or building APCs"

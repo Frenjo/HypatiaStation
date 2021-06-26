@@ -108,8 +108,7 @@
 		src.preload_rsc = pick(config.resource_urls)
 	else src.preload_rsc = 1 // If config.resource_urls is not set, preload like normal.
 
-	src << "\red If the title screen is black, resources are still downloading. Please be patient until the title screen appears."
-
+	to_chat(src, SPAN_WARNING("If the title screen is black, resources are still downloading. Please be patient until the title screen appears."))
 
 	clients += src
 	directory[ckey] = src
@@ -131,12 +130,12 @@
 	. = ..()	//calls mob.Login()
 
 	if(custom_event_msg && custom_event_msg != "")
-		src << "<h1 class='alert'>Custom Event</h1>"
-		src << "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>"
-		src << "<span class='alert'>[html_encode(custom_event_msg)]</span>"
-		src << "<br>"
+		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
+		to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
+		to_chat(src, SPAN_ALERT("[html_encode(custom_event_msg)]"))
+		to_chat(src, "<br>")
 
-	if( (world.address == address || !address) && !host )
+	if((world.address == address || !address) && !host)
 		host = key
 		world.update_status()
 
@@ -152,9 +151,9 @@
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 
 
-	//////////////
-	//DISCONNECT//
-	//////////////
+//////////////
+//DISCONNECT//
+//////////////
 /client/Del()
 	if(holder)
 		holder.owner = null
@@ -164,10 +163,8 @@
 	return ..()
 
 
-
 /client/proc/log_client_to_db()
-
-	if ( IsGuestKey(src.key) )
+	if(IsGuestKey(src.key))
 		return
 
 	establish_db_connection()
@@ -213,7 +210,6 @@
 	var/sql_computerid = sql_sanitize_text(src.computer_id)
 	var/sql_admin_rank = sql_sanitize_text(admin_rank)
 
-
 	if(sql_id)
 		//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
 		var/DBQuery/query_update = dbcon.NewQuery("UPDATE erro_player SET lastseen = Now(), ip = '[sql_ip]', computerid = '[sql_computerid]', lastadminrank = '[sql_admin_rank]' WHERE id = [sql_id]")
@@ -233,16 +229,18 @@
 #undef UPLOAD_LIMIT
 #undef MIN_CLIENT_VERSION
 
+
 //checks if a client is afk
 //3000 frames = 5 minutes
-/client/proc/is_afk(duration=3000)
-	if(inactivity > duration)	return inactivity
+/client/proc/is_afk(duration = 3000)
+	if(inactivity > duration)
+		return inactivity
 	return 0
+
 
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
 /client/proc/send_resources()
 //	preload_vox() //Causes long delays with initial start window and subsequent windows when first logged in.
-
 	getFiles(
 		'html/search.js',
 		'html/panels.css',
