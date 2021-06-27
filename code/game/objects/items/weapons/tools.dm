@@ -54,32 +54,32 @@
 		return(BRUTELOSS)
 
 /obj/item/weapon/screwdriver/New()
-	switch(pick("red","blue","purple","brown","green","cyan","yellow"))
-		if ("red")
+	switch(pick("red", "blue", "purple", "brown", "green", "cyan", "yellow"))
+		if("red")
 			icon_state = "screwdriver2"
 			item_state = "screwdriver"
-		if ("blue")
+		if("blue")
 			icon_state = "screwdriver"
 			item_state = "screwdriver_blue"
-		if ("purple")
+		if("purple")
 			icon_state = "screwdriver3"
 			item_state = "screwdriver_purple"
-		if ("brown")
+		if("brown")
 			icon_state = "screwdriver4"
 			item_state = "screwdriver_brown"
-		if ("green")
+		if("green")
 			icon_state = "screwdriver5"
 			item_state = "screwdriver_green"
-		if ("cyan")
+		if("cyan")
 			icon_state = "screwdriver6"
 			item_state = "screwdriver_cyan"
-		if ("yellow")
+		if("yellow")
 			icon_state = "screwdriver7"
 			item_state = "screwdriver_yellow"
 
-	if (prob(75))
+	if(prob(75))
 		src.pixel_y = rand(0, 16)
-	return
+	..()
 
 /obj/item/weapon/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M))	return ..()
@@ -113,6 +113,7 @@
 	if(prob(50))
 		icon_state = "cutters-y"
 		item_state = "cutters_yellow"
+	..()
 
 /obj/item/weapon/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
 	if((C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))
@@ -160,7 +161,12 @@
 	reagents = R
 	R.my_atom = src
 	R.add_reagent("fuel", max_fuel)
-	return
+	..()
+
+/obj/item/weapon/weldingtool/Destroy()
+	if(welding)
+		processing_objects -= src
+	return ..()
 
 /obj/item/weapon/weldingtool/examine()
 	set src in usr

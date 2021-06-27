@@ -36,6 +36,7 @@
 	reagents = R
 	R.my_atom = src
 	R.add_reagent("water", max_water)
+	..()
 
 /obj/item/weapon/extinguisher/examine()
 	set src in usr

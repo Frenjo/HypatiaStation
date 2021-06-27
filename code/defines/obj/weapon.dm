@@ -571,6 +571,7 @@
 /obj/item/weapon/stock_parts/New()
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
+	..()
 
 // Sprited/added unique icons for upgraded capacitors and scanning modules, along with rating 4 parts. -Frenjo
 //Rank 1

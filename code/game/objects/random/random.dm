@@ -9,8 +9,11 @@
 // creates a new object and deletes itself
 /obj/random/New()
 	..()
-	if (!prob(spawn_nothing_percentage))
+	if(!prob(spawn_nothing_percentage))
 		spawn_item()
+
+/obj/random/initialize()
+	..()
 	qdel(src)
 
 

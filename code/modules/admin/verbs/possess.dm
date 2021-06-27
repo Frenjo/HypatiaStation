@@ -2,7 +2,7 @@
 	set name = "Possess Obj"
 	set category = "Object"
 
-	if(istype(O,/obj/machinery/singularity))
+	if(istype(O, /obj/singularity))
 		if(config.forbid_singulo_possession)
 			usr << "It is forbidden to possess singularities."
 			return
@@ -24,7 +24,7 @@
 	usr.name = O.name
 	usr.client.eye = O
 	usr.control_object = O
-	feedback_add_details("admin_verb","PO") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb", "PO") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /proc/release(obj/O as obj in world)
 	set name = "Release Obj"

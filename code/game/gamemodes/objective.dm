@@ -12,6 +12,7 @@ var/global/list/all_objectives = list()
 	all_objectives |= src
 	if(text)
 		explanation_text = text
+	..()
 
 /datum/objective/Destroy()
 	all_objectives -= src

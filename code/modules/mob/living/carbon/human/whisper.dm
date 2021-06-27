@@ -72,12 +72,12 @@
 				temp_message[H] = ninjaspeak(temp_message[H])
 				pick_list -= H
 			message = list2text(temp_message, " ")
-			message = replacetextx(message, "o", "�")
-			message = replacetextx(message, "p", "�")
-			message = replacetextx(message, "l", "�")
-			message = replacetextx(message, "s", "�")
-			message = replacetextx(message, "u", "�")
-			message = replacetextx(message, "b", "�")
+			message = replacetext(message, "o", "�")
+			message = replacetext(message, "p", "�")
+			message = replacetext(message, "l", "�")
+			message = replacetext(message, "s", "�")
+			message = replacetext(message, "u", "�")
+			message = replacetext(message, "b", "�")
 
 	//TODO: handle_speech_problems
 	if(src.stuttering)

@@ -7,7 +7,7 @@
 	caliber = ".45"
 	silenced = 1
 	origin_tech = "combat=2;materials=2;syndicate=8"
-	ammo_type = "/obj/item/ammo_casing/c45"
+	ammo_type = /obj/item/ammo_casing/c45
 
 /obj/item/weapon/gun/projectile/deagle
 	name = "desert eagle"
@@ -16,7 +16,7 @@
 	force = 14.0
 	max_shells = 7
 	caliber = ".50"
-	ammo_type ="/obj/item/ammo_casing/a50"
+	ammo_type = /obj/item/ammo_casing/a50
 	load_method = 2
 
 /obj/item/weapon/gun/projectile/deagle/New()
@@ -53,7 +53,7 @@
 	caliber = "75"
 	fire_sound = 'sound/effects/Explosion1.ogg'
 	origin_tech = "combat=3"
-	ammo_type = "/obj/item/ammo_casing/a75"
+	ammo_type = /obj/item/ammo_casing/a75
 	load_method = 2
 
 /obj/item/weapon/gun/projectile/gyropistol/New()
@@ -88,7 +88,7 @@
 	caliber = "9mm"
 	silenced = 0
 	origin_tech = "combat=2;materials=2;syndicate=2"
-	ammo_type = "/obj/item/ammo_casing/c9mm"
+	ammo_type = /obj/item/ammo_casing/c9mm
 	load_method = 2
 
 /obj/item/weapon/gun/projectile/pistol/New()

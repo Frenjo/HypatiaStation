@@ -60,6 +60,7 @@
 
 	New(key)
 		src.key = key
+		..()
 
 	//put this here for easier tracking ingame
 	var/datum/money_account/initial_account

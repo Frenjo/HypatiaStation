@@ -87,7 +87,7 @@
 
 	for(var/turf/unsimulated/wall/T in temple_turfs)
 		if(mineral != "plasma")
-			T.icon_state = replacetextx(T.icon_state, "plasma", mineral)
+			T.icon_state = replacetext(T.icon_state, "plasma", mineral)
 
 		/*for(var/obj/effect/landmark/falsewall_spawner/F in T.contents)
 			//world << "falsewall_spawner found in wall"

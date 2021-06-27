@@ -126,7 +126,7 @@ steam.start() -- spawns the effect
 	..()
 	playsound(src, "sparks", 100, 1)
 	var/turf/T = src.loc
-	if (istype(T, /turf))
+	if(isturf(T))
 		T.hotspot_expose(1000,100)
 	spawn(100)
 		qdel(src)
@@ -134,16 +134,15 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/sparks/Destroy()
 	var/turf/T = src.loc
-	if(istype(T, /turf))
+	if(isturf(T))
 		T.hotspot_expose(1000, 100)
 	return ..()
 
 /obj/effect/effect/sparks/Move()
 	..()
 	var/turf/T = src.loc
-	if (istype(T, /turf))
+	if(isturf(T))
 		T.hotspot_expose(1000,100)
-	return
 
 /datum/effect/effect/system/spark_spread
 	var/total_sparks = 0 // To stop it being spammed and lagging!
@@ -153,7 +152,7 @@ steam.start() -- spawns the effect
 			n = 10
 		number = n
 		cardinals = c
-		if(istype(loca, /turf/))
+		if(isturf(loca))
 			location = loca
 		else
 			location = get_turf(loca)
@@ -205,9 +204,8 @@ steam.start() -- spawns the effect
 	..()
 	spawn(time_to_live)
 		qdel(src)
-	return
 
-/obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob )
+/obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob)
 	..()
 	if(istype(M))
 		affect(M)

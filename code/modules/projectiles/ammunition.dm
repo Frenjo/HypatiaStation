@@ -54,11 +54,12 @@
 	throw_speed = 4
 	throw_range = 10
 	var/list/stored_ammo = list()
-	var/ammo_type = "/obj/item/ammo_casing"
+	var/ammo_type = /obj/item/ammo_casing
 	var/max_ammo = 7
 	var/multiple_sprites = 0
 
 /obj/item/ammo_magazine/New()
+	..()
 	for(var/i = 1, i <= max_ammo, i++)
 		stored_ammo += new ammo_type(src)
 	update_icon()

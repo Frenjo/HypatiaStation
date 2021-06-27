@@ -182,15 +182,15 @@ move an amendment</a> to the drawing.</p>
 	//TODO: much much more. Unnamed airlocks, cameras, etc.
 
 	for(var/obj/machinery/alarm/M in A)
-		M.name = replacetextx(M.name, oldtitle, title)
+		M.name = replacetext(M.name, oldtitle, title)
 	for(var/obj/machinery/power/apc/M in A)
-		M.name = replacetextx(M.name, oldtitle, title)
+		M.name = replacetext(M.name, oldtitle, title)
 	for(var/obj/machinery/atmospherics/unary/vent_scrubber/M in A)
-		M.name = replacetextx(M.name, oldtitle, title)
+		M.name = replacetext(M.name, oldtitle, title)
 	for(var/obj/machinery/atmospherics/unary/vent_pump/M in A)
-		M.name = replacetextx(M.name, oldtitle, title)
+		M.name = replacetext(M.name, oldtitle, title)
 	for(var/obj/machinery/door/M in A)
-		M.name = replacetextx(M.name, oldtitle, title)
+		M.name = replacetext(M.name, oldtitle, title)
 	//TODO: much much more. Unnamed airlocks, cameras, etc.
 
 /obj/item/blueprints/proc/check_tile_is_border(turf/T2, dir)

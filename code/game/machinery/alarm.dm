@@ -136,7 +136,7 @@
 
 /obj/machinery/alarm/Destroy()
 	unregister_radio(src, frequency)
-	..()
+	return ..()
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
@@ -155,7 +155,7 @@
 
 /obj/machinery/alarm/initialize()
 	set_frequency(frequency)
-	if (!master_is_operating())
+	if(!master_is_operating())
 		elect_master()
 
 

@@ -1,17 +1,16 @@
 /var/create_object_html = null
 
-/datum/admins/proc/create_object(var/mob/user)
-	if (!create_object_html)
+/datum/admins/proc/create_object(mob/user)
+	if(!create_object_html)
 		var/objectjs = null
 		objectjs = list2text(typesof(/obj), ";")
 		create_object_html = file2text('html/create_object.html')
-		create_object_html = replacetextx(create_object_html, "null /* object types */", "\"[objectjs]\"")
+		create_object_html = replacetext(create_object_html, "null /* object types */", "\"[objectjs]\"")
 
-	user << browse(replacetextx(create_object_html, "/* ref src */", "\ref[src]"), "window=create_object;size=425x475")
+	user << browse(replacetext(create_object_html, "/* ref src */", "\ref[src]"), "window=create_object;size=425x475")
 
 
-/datum/admins/proc/quick_create_object(var/mob/user)
-
+/datum/admins/proc/quick_create_object(mob/user)
 	var/quick_create_object_html = null
 	var/pathtext = null
 
@@ -19,10 +18,10 @@
 
 	var path = text2path(pathtext)
 
-	if (!quick_create_object_html)
+	if(!quick_create_object_html)
 		var/objectjs = null
 		objectjs = list2text(typesof(path), ";")
 		quick_create_object_html = file2text('html/create_object.html')
-		quick_create_object_html = replacetextx(quick_create_object_html, "null /* object types */", "\"[objectjs]\"")
+		quick_create_object_html = replacetext(quick_create_object_html, "null /* object types */", "\"[objectjs]\"")
 
-	user << browse(replacetextx(quick_create_object_html, "/* ref src */", "\ref[src]"), "window=quick_create_object;size=425x475")
+	user << browse(replacetext(quick_create_object_html, "/* ref src */", "\ref[src]"), "window=quick_create_object;size=425x475")

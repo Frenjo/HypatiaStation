@@ -156,5 +156,3 @@ Data storage vars:
 		if(!stop())
 			start()
 		return active()
-
-

@@ -196,7 +196,7 @@
 /atom/movable/overlay/New()
 	for(var/x in src.verbs)
 		src.verbs -= x
-	return
+	..()
 
 /atom/movable/overlay/attackby(a, b)
 	if(src.master)

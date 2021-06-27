@@ -3,7 +3,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "mecha"
 	req_access = list(access_robotics)
-	circuit = "/obj/item/weapon/circuitboard/mecha_control"
+	circuit = /obj/item/weapon/circuitboard/mecha_control
 	var/list/located = list()
 	var/screen = 0
 	var/stored_data

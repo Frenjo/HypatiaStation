@@ -37,7 +37,7 @@
 
 	node = null
 
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/unary/initialize()
 	if(node)

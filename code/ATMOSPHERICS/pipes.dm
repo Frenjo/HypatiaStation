@@ -53,7 +53,7 @@
 	if(air_temporary)
 		loc.assume_air(air_temporary)
 
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/pipe/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(src, /obj/machinery/atmospherics/pipe/tank))

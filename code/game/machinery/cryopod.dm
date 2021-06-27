@@ -17,7 +17,7 @@ var/global/list/frozen_items = list()
 	desc = "An interface between crew and the cryogenic storage oversight systems."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cellconsole"
-	circuit = "/obj/item/weapon/circuitboard/cryopodcontrol"
+	circuit = /obj/item/weapon/circuitboard/cryopodcontrol
 	var/mode = null
 
 /obj/machinery/computer/cryopod/attack_paw()
@@ -103,7 +103,7 @@ var/global/list/frozen_items = list()
 
 /obj/item/weapon/circuitboard/cryopodcontrol
 	name = "Circuit board (Cryogenic Oversight Console)"
-	build_path = "/obj/machinery/computer/cryopod"
+	build_path = /obj/machinery/computer/cryopod
 	origin_tech = "programming=3"
 
 //Decorative structures to go alongside cryopods.

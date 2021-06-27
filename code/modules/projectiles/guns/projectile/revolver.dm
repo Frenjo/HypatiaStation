@@ -5,7 +5,7 @@
 	max_shells = 6
 	caliber = "38"
 	origin_tech = "combat=2;materials=2"
-	ammo_type = "/obj/item/ammo_casing/c38"
+	ammo_type = /obj/item/ammo_casing/c38
 
 
 /obj/item/weapon/gun/projectile/detective/special_check(var/mob/living/carbon/human/M)
@@ -75,7 +75,7 @@
 	icon_state = "colt"
 	max_shells = 7
 	caliber = ".45"
-	ammo_type = "/obj/item/ammo_casing/c45r"
+	ammo_type = /obj/item/ammo_casing/c45r
 	load_method = 2
 
 /obj/item/weapon/gun/projectile/detective/semiauto/New()

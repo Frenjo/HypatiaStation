@@ -608,7 +608,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				if (mode == 1)
 					note = html_decode(n)
 					notehtml = note
-					note = replacetextx(note, "\n", "<br>")
+					note = replacetext(note, "\n", "<br>")
 			else
 				ui.close()
 		if("Toggle Messenger")
