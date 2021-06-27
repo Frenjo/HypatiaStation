@@ -98,7 +98,7 @@ Class Procs:
 	set background = 1
 	#endif
 
-	world << "<span class='danger'>Processing Geometry...</span>"
+	to_chat(world, SPAN_DANGER("Processing Geometry..."))
 	sleep(-1)
 
 	var/start_time = world.timeofday
@@ -109,13 +109,13 @@ Class Procs:
 		simulated_turf_count++
 		S.update_air_properties()
 
-	world << {"<span class='danger'>Geometry initialized in [round(0.1*(world.timeofday-start_time),0.1)] seconds.</b></span>
+	world << {"<span class='danger'>Geometry initialized in [round(0.1 * (world.timeofday - start_time), 0.1)] seconds.</b></span>
 <span class='info'>
 Total Simulated Turfs: [simulated_turf_count]
 Total Zones: [zones.len]
 Total Edges: [edges.len]
 Total Active Edges: [active_edges.len ? "<span class='danger'>[active_edges.len]</span>" : "None"]
-Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_count]</font>
+Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_count]</font>
 </span>"}
 
 //	spawn Start()
@@ -165,7 +165,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		#ifdef ZASDBG
 		if(updated != updating.len)
 			tick_progress = "[updating.len - updated] tiles left unupdated."
-			world << "\red [tick_progress]"
+			to_chat(world, SPAN_WARNING("[tick_progress]"))
 			. = 0
 		#endif
 
@@ -281,8 +281,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		if(A.zone == B.zone)
 			return
 
-
-	var/connection/c = new /connection(A,B)
+	var/connection/c = new /connection(A, B)
 
 	A.connections.place(c, a_to_b)
 	B.connections.place(c, b_to_a)

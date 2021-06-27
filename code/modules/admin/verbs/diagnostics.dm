@@ -3,7 +3,7 @@
 	set name = "Show Air Report"
 
 	if(!master_controller || !air_master)
-		alert(usr,"Master_controller or air_master not found.","Air Report")
+		alert(usr, "Master_controller or air_master not found.", "Air Report")
 		return
 
 	var/active_groups = air_master.active_zones
@@ -41,6 +41,7 @@
 
 	usr << browse(output,"window=airreport")
 
+
 /client/proc/fix_next_move()
 	set category = "Debug"
 	set name = "Unfreeze Everyone"
@@ -69,8 +70,9 @@
 	message_admins("[key_name_admin(largest_move_mob)] had the largest move delay with [largest_move_time] frames / [largest_move_time/10] seconds!", 1)
 	message_admins("[key_name_admin(largest_click_mob)] had the largest click delay with [largest_click_time] frames / [largest_click_time/10] seconds!", 1)
 	message_admins("world.time = [world.time]", 1)
-	feedback_add_details("admin_verb","UFE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb", "UFE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
+
 
 /client/proc/radio_report()
 	set category = "Debug"
@@ -87,37 +89,41 @@
 		"8" = "RADIO_MULEBOT",
 		"_default" = "NO_FILTER"
 		)
+
 	var/output = "<b>Radio Report</b><hr>"
-	for (var/fq in radio_controller.frequencies)
+	for(var/fq in radio_controller.frequencies)
 		output += "<b>Freq: [fq]</b><br>"
 		var/list/datum/radio_frequency/fqs = radio_controller.frequencies[fq]
-		if (!fqs)
+		if(!fqs)
 			output += "&nbsp;&nbsp;<b>ERROR</b><br>"
 			continue
-		for (var/filter in fqs.devices)
+		for(var/filter in fqs.devices)
 			var/list/f = fqs.devices[filter]
-			if (!f)
+			if(!f)
 				output += "&nbsp;&nbsp;[filters[filter]]: ERROR<br>"
 				continue
 			output += "&nbsp;&nbsp;[filters[filter]]: [f.len]<br>"
-			for (var/device in f)
-				if (isobj(device))
+			for(var/device in f)
+				if(isobj(device))
 					output += "&nbsp;&nbsp;&nbsp;&nbsp;[device] ([device:x],[device:y],[device:z] in area [get_area(device:loc)])<br>"
 				else
 					output += "&nbsp;&nbsp;&nbsp;&nbsp;[device]<br>"
 
 	usr << browse(output,"window=radioreport")
-	feedback_add_details("admin_verb","RR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb", "RR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 /client/proc/reload_admins()
 	set name = "Reload Admins"
 	set category = "Debug"
 
-	if(!check_rights(R_SERVER))	return
+	if(!check_rights(R_SERVER))
+		return
 
 	message_admins("[usr] manually reloaded admins")
 	load_admins()
-	feedback_add_details("admin_verb","RLDA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb", "RLDA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 //todo:
 /client/proc/jump_to_dead_group()
@@ -141,6 +147,7 @@
 	return
 	*/
 
+
 /client/proc/kill_airgroup()
 	set name = "Kill Local Airgroup"
 	set desc = "Use this to allow manual manupliation of atmospherics."
@@ -161,28 +168,30 @@
 		AG.group_processing = 0
 	else
 		usr << "Local airgroup is unsimulated!"
-	feedback_add_details("admin_verb","KLAG") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb", "KLAG") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	*/
+
 
 /client/proc/print_jobban_old()
 	set name = "Print Jobban Log"
 	set desc = "This spams all the active jobban entries for the current round to standard output."
 	set category = "Debug"
 
-	usr << "<b>Jobbans active in this round.</b>"
+	to_chat(usr, "<b>Jobbans active in this round.</b>")
 	for(var/t in jobban_keylist)
-		usr << "[t]"
+		to_chat(usr, "[t]")
+
 
 /client/proc/print_jobban_old_filter()
 	set name = "Search Jobban Log"
 	set desc = "This searches all the active jobban entries for the current round and outputs the results to standard output."
 	set category = "Debug"
 
-	var/filter = input("Contains what?","Filter") as text|null
+	var/filter = input("Contains what?", "Filter") as text | null
 	if(!filter)
 		return
 
-	usr << "<b>Jobbans active in this round.</b>"
+	to_chat(usr, "<b>Jobbans active in this round.</b>")
 	for(var/t in jobban_keylist)
 		if(findtext(t, filter))
-			usr << "[t]"
+			to_chat(usr, "[t]")

@@ -13,7 +13,6 @@
 	codebase for the entire /TG/station commuity a TONNE easier :3 Thanks for your help!
 */
 
-
 //This proc allows Game Masters to grant a client access to the .getruntimelog verb
 //Permissions expire at the end of each round.
 //Runtimes can be used to meta or spot game-crashing exploits so it's advised to only grant coders that
@@ -24,16 +23,16 @@
 	set category = null
 
 	if(!src.holder)
-		src << "<font color='red'>Only Admins may use this command.</font>"
+		to_chat(src, "<font color='red'>Only Admins may use this command.</font>")
 		return
 
-	var/client/target = input(src,"Choose somebody to grant access to the server's runtime logs (permissions expire at the end of each round):","Grant Permissions",null) as null|anything in clients
-	if(!istype(target,/client))
-		src << "<font color='red'>Error: giveruntimelog(): Client not found.</font>"
+	var/client/target = input(src, "Choose somebody to grant access to the server's runtime logs (permissions expire at the end of each round):", "Grant Permissions", null) as null | anything in clients
+	if(!istype(target, /client))
+		to_chat(src, "<font color='red'>Error: giveruntimelog(): Client not found.</font>")
 		return
 
 	target.verbs |= /client/proc/getruntimelog
-	target << "<font color='red'>You have been granted access to runtime logs. Please use them responsibly or risk being banned.</font>"
+	to_chat(target, "<font color='red'>You have been granted access to runtime logs. Please use them responsibly or risk being banned.</font>")
 	return
 
 
@@ -52,8 +51,8 @@
 		return
 
 	message_admins("[key_name_admin(src)] accessed file: [path]")
-	src << run( file(path) )
-	src << "Attempting to send file, this may take a fair few minutes if the file is very large."
+	to_chat(src, run(file(path)))
+	to_chat(src, "Attempting to send file, this may take a fair few minutes if the file is very large.")
 	return
 
 
@@ -72,8 +71,8 @@
 		return
 
 	message_admins("[key_name_admin(src)] accessed file: [path]")
-	src << run( file(path) )
-	src << "Attempting to send file, this may take a fair few minutes if the file is very large."
+	to_chat(src, run(file(path)))
+	to_chat(src, "Attempting to send file, this may take a fair few minutes if the file is very large.")
 	return
 
 
@@ -86,13 +85,14 @@
 	set desc = "Shows today's server log."
 
 	var/path = "data/logs/[time2text(world.realtime,"YYYY/MM-Month/DD-Day")].log"
-	if( fexists(path) )
-		src << run( file(path) )
+	if(fexists(path))
+		to_chat(src, run(file(path)))
 	else
-		src << "<font color='red'>Error: view_txt_log(): File not found/Invalid path([path]).</font>"
+		to_chat(src, "<font color='red'>Error: view_txt_log(): File not found/Invalid path([path]).</font>")
 		return
-	feedback_add_details("admin_verb","VTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb", "VTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
+
 
 //Shows today's attack log
 /datum/admins/proc/view_atk_log()
@@ -101,11 +101,11 @@
 	set desc = "Shows today's server attack log."
 
 	var/path = "data/logs/[time2text(world.realtime,"YYYY/MM-Month/DD-Day")] Attack.log"
-	if( fexists(path) )
-		src << run( file(path) )
+	if(fexists(path))
+		to_chat(src, run(file(path)))
 	else
-		src << "<font color='red'>Error: view_atk_log(): File not found/Invalid path([path]).</font>"
+		to_chat(src, "<font color='red'>Error: view_atk_log(): File not found/Invalid path([path]).</font>")
 		return
-	usr << run( file(path) )
-	feedback_add_details("admin_verb","SSAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	to_chat(usr, run(file(path)))
+	feedback_add_details("admin_verb", "SSAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return

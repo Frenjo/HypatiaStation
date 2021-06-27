@@ -7,9 +7,9 @@ var/list/spawntypes = list()
 		spawntypes[S.display_name] = S
 
 /datum/spawnpoint
-	var/msg          //Message to display on the arrivals computer.
-	var/list/turfs   //List of turfs to spawn on.
-	var/display_name //Name used in preference setup.
+	var/msg				//Message to display on the arrivals computer.
+	var/list/turfs		//List of turfs to spawn on.
+	var/display_name	//Name used in preference setup.
 
 
 /datum/spawnpoint/arrivals

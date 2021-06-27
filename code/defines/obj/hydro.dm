@@ -6,8 +6,8 @@
 	icon_state = "hydro"
 	item_state = "analyzer"
 
-	attack_self(mob/user as mob)
-		return 0
+/obj/item/device/analyzer/plant_analyzer/attack_self(mob/user as mob)
+	return 0
 
 // ********************************************************
 // Here's all the seeds (plants) that can be used in hydro

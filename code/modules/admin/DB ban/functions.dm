@@ -1,7 +1,7 @@
 
-datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/rounds = 0, var/banckey = null)
-
-	if(!check_rights(R_MOD,0) && !check_rights(R_BAN))	return
+/datum/admins/proc/DB_ban_record(bantype, mob/banned_mob, duration = -1, reason, job = "", rounds = 0, banckey = null)
+	if(!check_rights(R_MOD, 0) && !check_rights(R_BAN))
+		return
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
@@ -25,9 +25,12 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 		if(BANTYPE_JOB_TEMP)
 			bantype_str = "JOB_TEMPBAN"
 			bantype_pass = 1
-	if( !bantype_pass ) return
-	if( !istext(reason) ) return
-	if( !isnum(duration) ) return
+	if(!bantype_pass)
+		return
+	if(!istext(reason))
+		return
+	if(!isnum(duration))
+		return
 
 	var/ckey
 	var/computerid
@@ -79,14 +82,13 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 	var/sql = "INSERT INTO erro_ban (`id`,`bantime`,`serverip`,`bantype`,`reason`,`job`,`duration`,`rounds`,`expiration_time`,`ckey`,`computerid`,`ip`,`a_ckey`,`a_computerid`,`a_ip`,`who`,`adminwho`,`edits`,`unbanned`,`unbanned_datetime`,`unbanned_ckey`,`unbanned_computerid`,`unbanned_ip`) VALUES (null, Now(), '[serverip]', '[bantype_str]', '[reason]', '[job]', [(duration)?"[duration]":"0"], [(rounds)?"[rounds]":"0"], Now() + INTERVAL [(duration>0) ? duration : 0] MINUTE, '[ckey]', '[computerid]', '[ip]', '[a_ckey]', '[a_computerid]', '[a_ip]', '[who]', '[adminwho]', '', null, null, null, null, null)"
 	var/DBQuery/query_insert = dbcon.NewQuery(sql)
 	query_insert.Execute()
-	usr << "\blue Ban saved to database."
+	to_chat(usr, SPAN_INFO("Ban saved to database."))
 	message_admins("[key_name_admin(usr)] has added a [bantype_str] for [ckey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database.",1)
 
 
-
-datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
-
-	if(!check_rights(R_BAN))	return
+/datum/admins/proc/DB_ban_unban(ckey, bantype, job = "")
+	if(!check_rights(R_BAN))
+		return
 
 	var/bantype_str
 	if(bantype)
@@ -107,7 +109,8 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 			if(BANTYPE_ANY_FULLBAN)
 				bantype_str = "ANY"
 				bantype_pass = 1
-		if( !bantype_pass ) return
+		if(!bantype_pass)
+			return
 
 	var/bantype_sql
 	if(bantype_str == "ANY")
@@ -133,27 +136,27 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 		ban_number++;
 
 	if(ban_number == 0)
-		usr << "\red Database update failed due to no bans fitting the search criteria. If this is not a legacy ban you should contact the database admin."
+		to_chat(usr, SPAN_WARNING("Database update failed due to no bans fitting the search criteria. If this is not a legacy ban you should contact the database admin."))
 		return
 
 	if(ban_number > 1)
-		usr << "\red Database update failed due to multiple bans fitting the search criteria. Note down the ckey, job and current time and contact the database admin."
+		to_chat(usr, SPAN_WARNING("Database update failed due to multiple bans fitting the search criteria. Note down the ckey, job and current time and contact the database admin."))
 		return
 
 	if(istext(ban_id))
 		ban_id = text2num(ban_id)
 	if(!isnum(ban_id))
-		usr << "\red Database update failed due to a ban ID mismatch. Contact the database admin."
+		to_chat(usr, SPAN_WARNING("Database update failed due to a ban ID mismatch. Contact the database admin."))
 		return
 
 	DB_ban_unban_by_id(ban_id)
 
-datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
-
-	if(!check_rights(R_BAN))	return
+/datum/admins/proc/DB_ban_edit(banid = null, param = null)
+	if(!check_rights(R_BAN))
+		return
 
 	if(!isnum(banid) || !istext(param))
-		usr << "Cancelled"
+		to_chat(usr, "Cancelled.")
 		return
 
 	var/DBQuery/query = dbcon.NewQuery("SELECT ckey, duration, reason FROM erro_ban WHERE id = [banid]")
@@ -169,7 +172,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 		duration = query.item[2]
 		reason = query.item[3]
 	else
-		usr << "Invalid ban id. Contact the database admin"
+		to_chat(usr, "Invalid ban id. Contact the database admin.")
 		return
 
 	reason = sql_sanitize_text(reason)
@@ -178,10 +181,10 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 	switch(param)
 		if("reason")
 			if(!value)
-				value = input("Insert the new reason for [pckey]'s ban", "New Reason", "[reason]", null) as null|text
+				value = input("Insert the new reason for [pckey]'s ban", "New Reason", "[reason]", null) as null | text
 				value = sql_sanitize_text(value)
 				if(!value)
-					usr << "Cancelled"
+					to_chat(usr, "Cancelled.")
 					return
 
 			var/DBQuery/update_query = dbcon.NewQuery("UPDATE erro_ban SET reason = '[value]', edits = CONCAT(edits,'- [eckey] changed ban reason from <cite><b>\\\"[reason]\\\"</b></cite> to <cite><b>\\\"[value]\\\"</b></cite><BR>') WHERE id = [banid]")
@@ -191,7 +194,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 			if(!value)
 				value = input("Insert the new duration (in minutes) for [pckey]'s ban", "New Duration", "[duration]", null) as null|num
 				if(!isnum(value) || !value)
-					usr << "Cancelled"
+					to_chat(usr, "Cancelled.")
 					return
 
 			var/DBQuery/update_query = dbcon.NewQuery("UPDATE erro_ban SET duration = [value], edits = CONCAT(edits,'- [eckey] changed ban duration from [duration] to [value]<br>'), expiration_time = DATE_ADD(bantime, INTERVAL [value] MINUTE) WHERE id = [banid]")
@@ -202,15 +205,15 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 				DB_ban_unban_by_id(banid)
 				return
 			else
-				usr << "Cancelled"
+				to_chat(usr, "Cancelled.")
 				return
 		else
-			usr << "Cancelled"
+			to_chat(usr, "Cancelled.")
 			return
 
-datum/admins/proc/DB_ban_unban_by_id(var/id)
-
-	if(!check_rights(R_BAN))	return
+/datum/admins/proc/DB_ban_unban_by_id(id)
+	if(!check_rights(R_BAN))
+		return
 
 	var/sql = "SELECT ckey FROM erro_ban WHERE id = [id]"
 
@@ -228,11 +231,11 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 		ban_number++;
 
 	if(ban_number == 0)
-		usr << "\red Database update failed due to a ban id not being present in the database."
+		to_chat(usr, SPAN_WARNING("Database update failed due to a ban id not being present in the database."))
 		return
 
 	if(ban_number > 1)
-		usr << "\red Database update failed due to multiple bans having the same ID. Contact the database admin."
+		to_chat(usr, SPAN_WARNING("Database update failed due to multiple bans having the same ID. Contact the database admin."))
 		return
 
 	if(!src.owner || !istype(src.owner, /client))
@@ -259,16 +262,16 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 	holder.DB_ban_panel()
 
-
-/datum/admins/proc/DB_ban_panel(var/playerckey = null, var/adminckey = null)
+/datum/admins/proc/DB_ban_panel(playerckey = null, adminckey = null)
 	if(!usr.client)
 		return
 
-	if(!check_rights(R_BAN))	return
+	if(!check_rights(R_BAN))
+		return
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
-		usr << "\red Failed to establish database connection"
+		to_chat(usr, SPAN_WARNING("Failed to establish database connection."))
 		return
 
 	var/output = "<div align='center'><table width='90%'><tr>"
@@ -317,7 +320,6 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 	output += "Please note that all jobban bans or unbans are in-effect the following round."
 
 	if(adminckey || playerckey)
-
 		var/blcolor = "#ffeeee" //banned light
 		var/bdcolor = "#ffdddd" //banned dark
 		var/ulcolor = "#eeffee" //unbanned light

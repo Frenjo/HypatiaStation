@@ -218,7 +218,8 @@ datum/preferences
 		return
 
 	proc/ShowChoices(mob/user)
-		if(!user || !user.client)	return
+		if(!user || !user.client)
+			return
 		update_preview_icon()
 		user << browse_rsc(preview_icon_front, "previewicon.png")
 		user << browse_rsc(preview_icon_side, "previewicon2.png")
@@ -433,7 +434,6 @@ datum/preferences
 		if(!job_master)
 			return
 		for(var/datum/job/job in job_master.occupations)
-
 			index += 1
 			if((index >= limit) || (job.title in splitJobs))
 				if((index < limit) && (lastJob != null))
@@ -579,8 +579,6 @@ datum/preferences
 		user << browse(HTML, "window=antagoptions")
 		return
 
-
-
 	proc/GetPlayerAltTitle(datum/job/job)
 		return player_alt_titles.Find(job.title) > 0 \
 			? player_alt_titles[job.title] \
@@ -633,7 +631,6 @@ datum/preferences
 		job_engsec_high = 0
 		job_engsec_med = 0
 		job_engsec_low = 0
-
 
 	proc/GetJobDepartment(datum/job/job, level)
 		if(!job || !level)
@@ -826,7 +823,7 @@ datum/preferences
 				SetAntagoptions(user)
 				return
 			if(href_list["antagtask"] == "uplinktype")
-				if (uplinklocation == "PDA")
+				if(uplinklocation == "PDA")
 					uplinklocation = "Headset"
 				else if(uplinklocation == "Headset")
 					uplinklocation = "None"
