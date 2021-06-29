@@ -8,9 +8,9 @@
 //Grown foods
 //Subclass so we can pass on values
 /obj/item/weapon/reagent_containers/food/snacks/grown
-	var/seed = ""
+	var/seed
 	var/plantname = ""
-	var/productname = ""
+	var/productname
 	var/species = ""
 	var/lifespan = 0
 	var/endurance = 0
@@ -111,7 +111,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/corn
-	seed = "/obj/item/seeds/cornseed"
+	seed = /obj/item/seeds/cornseed
 	name = "ear of corn"
 	desc = "Needs some butter!"
 	icon_state = "corn"
@@ -127,7 +127,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/cherries
-	seed = "/obj/item/seeds/cherryseed"
+	seed = /obj/item/seeds/cherryseed
 	name = "cherries"
 	desc = "Great for toppings!"
 	icon_state = "cherry"
@@ -143,7 +143,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/poppy
-	seed = "/obj/item/seeds/poppyseed"
+	seed = /obj/item/seeds/poppyseed
 	name = "poppy"
 	desc = "Long-used as a symbol of rest, peace, and death."
 	icon_state = "poppy"
@@ -159,7 +159,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/harebell
-	seed = "obj/item/seeds/harebellseed"
+	seed = /obj/item/seeds/harebell
 	name = "harebell"
 	desc = "\"I'll sweeten thy sad grave: thou shalt not lack the flower that's like thy face, pale primrose, nor the azured hare-bell, like thy veins; no, nor the leaf of eglantine, whom not to slander, out-sweeten�d not thy breath.\""
 	icon_state = "harebell"
@@ -174,7 +174,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/potato
-	seed = "/obj/item/seeds/potatoseed"
+	seed = /obj/item/seeds/potatoseed
 	name = "potato"
 	desc = "Boil 'em! Mash 'em! Stick 'em in a stew!"
 	icon_state = "potato"
@@ -203,7 +203,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/grapes
-	seed = "/obj/item/seeds/grapeseed"
+	seed = /obj/item/seeds/grapeseed
 	name = "bunch of grapes"
 	desc = "Nutritious!"
 	icon_state = "grapes"
@@ -218,7 +218,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/greengrapes
-	seed = "/obj/item/seeds/greengrapeseed"
+	seed = /obj/item/seeds/greengrapeseed
 	name = "bunch of green grapes"
 	desc = "Nutritious!"
 	icon_state = "greengrapes"
@@ -234,7 +234,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/peanut
-	seed = "/obj/item/seeds/peanutseed"
+	seed = /obj/item/seeds/peanutseed
 	name = "peanut"
 	desc = "Nuts!"
 	icon_state = "peanut"
@@ -249,7 +249,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/cabbage
-	seed = "/obj/item/seeds/cabbageseed"
+	seed = /obj/item/seeds/cabbageseed
 	name = "cabbage"
 	desc = "Ewwwwwwwwww. Cabbage."
 	icon_state = "cabbage"
@@ -264,7 +264,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/berries
-	seed = "/obj/item/seeds/berryseed"
+	seed = /obj/item/seeds/berryseed
 	name = "bunch of berries"
 	desc = "Nutritious!"
 	icon_state = "berrypile"
@@ -278,7 +278,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/plastellium
-	seed = "/obj/item/seeds/plastiseed"
+	seed = /obj/item/seeds/plastiseed
 	name = "clump of plastellium"
 	desc = "Hmm, needs some processing"
 	icon_state = "plastellium"
@@ -292,7 +292,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/shand
-	seed = "/obj/item/seeds/shandseed"
+	seed = /obj/item/seeds/shandseed
 	name = "S'rendarr's Hand leaf"
 	desc = "A leaf sample from a lowland thicket shrub, often hid in by prey and predator to staunch their wounds and conceal their scent, allowing the plant to spread far on its native Ahdomai. Smells strongly like wax."
 	icon_state = "shand"
@@ -317,7 +317,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mtear
-	seed = "/obj/item/seeds/mtearseed"
+	seed = /obj/item/seeds/mtearseed
 	name = "sprig of Messa's Tear"
 	desc = "A mountain climate herb with a soft, cold blue flower, known to contain an abundance of chemicals in it's flower useful to treating burns- Bad for the allergic to pollen."
 	icon_state = "mtear"
@@ -343,7 +343,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/glowberries
-	seed = "/obj/item/seeds/glowberryseed"
+	seed = /obj/item/seeds/glowberryseed
 	name = "bunch of glow-berries"
 	desc = "Nutritious!"
 	var/light_on = 1
@@ -373,7 +373,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/cocoapod
-	seed = "/obj/item/seeds/cocoapodseed"
+	seed = /obj/item/seeds/cocoapodseed
 	name = "cocoa pod"
 	desc = "Fattening... Mmmmm... chucklate."
 	icon_state = "cocoapod"
@@ -389,7 +389,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/sugarcane
-	seed = "/obj/item/seeds/sugarcaneseed"
+	seed = /obj/item/seeds/sugarcaneseed
 	name = "sugarcane"
 	desc = "Sickly sweet."
 	icon_state = "sugarcane"
@@ -403,7 +403,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/poisonberries
-	seed = "/obj/item/seeds/poisonberryseed"
+	seed = /obj/item/seeds/poisonberryseed
 	name = "bunch of poison-berries"
 	desc = "Taste so good, you could die!"
 	icon_state = "poisonberrypile"
@@ -420,7 +420,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/deathberries
-	seed = "/obj/item/seeds/deathberryseed"
+	seed = /obj/item/seeds/deathberryseed
 	name = "bunch of death-berries"
 	desc = "Taste so good, you could die!"
 	icon_state = "deathberrypile"
@@ -438,7 +438,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris
-	seed = "/obj/item/seeds/ambrosiavulgaris"
+	seed = /obj/item/seeds/ambrosiavulgarisseed
 	name = "ambrosia vulgaris branch"
 	desc = "This is a plant containing various healing chemicals."
 	icon_state = "ambrosiavulgaris"
@@ -457,7 +457,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus
-	seed = "/obj/item/seeds/ambrosiadeus"
+	seed = /obj/item/seeds/ambrosiadeusseed
 	name = "ambrosia deus branch"
 	desc = "Eating this makes you feel immortal!"
 	icon_state = "ambrosiadeus"
@@ -476,7 +476,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/apple
-	seed = "/obj/item/seeds/appleseed"
+	seed = /obj/item/seeds/appleseed
 	name = "apple"
 	desc = "It's a little piece of Eden."
 	icon_state = "apple"
@@ -492,7 +492,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/apple/poisoned
-	seed = "/obj/item/seeds/poisonedappleseed"
+	seed = /obj/item/seeds/poisonedappleseed
 	name = "apple"
 	desc = "It's a little piece of Eden."
 	icon_state = "apple"
@@ -508,7 +508,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/goldapple
-	seed = "/obj/item/seeds/goldappleseed"
+	seed = /obj/item/seeds/goldappleseed
 	name = "golden apple"
 	desc = "Emblazoned upon the apple is the word 'Kallisti'."
 	icon_state = "goldapple"
@@ -529,7 +529,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/watermelon
-	seed = "/obj/item/seeds/watermelonseed"
+	seed = /obj/item/seeds/watermelonseed
 	name = "watermelon"
 	desc = "It's full of watery goodness."
 	icon_state = "watermelon"
@@ -546,7 +546,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/pumpkin
-	seed = "/obj/item/seeds/pumpkinseed"
+	seed = /obj/item/seeds/pumpkinseed
 	name = "pumpkin"
 	desc = "It's large and scary."
 	icon_state = "pumpkin"
@@ -569,7 +569,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/lime
-	seed = "/obj/item/seeds/limeseed"
+	seed = /obj/item/seeds/limeseed
 	name = "lime"
 	desc = "It's so sour, your face will twist."
 	icon_state = "lime"
@@ -584,7 +584,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/lemon
-	seed = "/obj/item/seeds/lemonseed"
+	seed = /obj/item/seeds/lemonseed
 	name = "lemon"
 	desc = "When life gives you lemons, be grateful they aren't limes."
 	icon_state = "lemon"
@@ -599,7 +599,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/orange
-	seed = "/obj/item/seeds/orangeseed"
+	seed = /obj/item/seeds/orangeseed
 	name = "orange"
 	desc = "It's an tangy fruit."
 	icon_state = "orange"
@@ -614,7 +614,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/whitebeet
-	seed = "/obj/item/seeds/whitebeetseed"
+	seed = /obj/item/seeds/whitebeetseed
 	name = "white-beet"
 	desc = "You can't beat white-beet."
 	icon_state = "whitebeet"
@@ -630,7 +630,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/banana
-	seed = "/obj/item/seeds/bananaseed"
+	seed = /obj/item/seeds/bananaseed
 	name = "banana"
 	desc = "It's an excellent prop for a comedy."
 	icon = 'icons/obj/items.dmi'
@@ -649,7 +649,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/chili
-	seed = "/obj/item/seeds/chiliseed"
+	seed = /obj/item/seeds/chiliseed
 	name = "chili"
 	desc = "It's spicy! Wait... IT'S BURNING ME!!"
 	icon_state = "chilipepper"
@@ -669,7 +669,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/eggplant
-	seed = "/obj/item/seeds/eggplantseed"
+	seed = /obj/item/seeds/eggplantseed
 	name = "eggplant"
 	desc = "Maybe there's a chicken inside?"
 	icon_state = "eggplant"
@@ -683,7 +683,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/soybeans
-	seed = "/obj/item/seeds/soyaseed"
+	seed = /obj/item/seeds/soyaseed
 	name = "soybeans"
 	desc = "It's pretty bland, but oh the possibilities..."
 	gender = PLURAL
@@ -698,7 +698,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/tomato
-	seed = "/obj/item/seeds/tomatoseed"
+	seed = /obj/item/seeds/tomatoseed
 	name = "tomato"
 	desc = "I say to-mah-to, you say tom-mae-to."
 	icon_state = "tomato"
@@ -720,7 +720,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/killertomato
-	seed = "/obj/item/seeds/killertomatoseed"
+	seed = /obj/item/seeds/killertomatoseed
 	name = "killer-tomato"
 	desc = "I say to-mah-to, you say tom-mae-to... OH GOD IT'S EATING MY LEGS!!"
 	icon_state = "killertomato"
@@ -754,7 +754,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/bloodtomato
-	seed = "/obj/item/seeds/bloodtomatoseed"
+	seed = /obj/item/seeds/bloodtomatoseed
 	name = "blood-tomato"
 	desc = "So bloody...so...very...bloody....AHHHH!!!!"
 	icon_state = "bloodtomato"
@@ -780,7 +780,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/bluetomato
-	seed = "/obj/item/seeds/bluetomatoseed"
+	seed = /obj/item/seeds/bluetomatoseed
 	name = "blue-tomato"
 	desc = "I say blue-mah-to, you say blue-mae-to."
 	icon_state = "bluetomato"
@@ -818,7 +818,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/wheat
-	seed = "/obj/item/seeds/wheatseed"
+	seed = /obj/item/seeds/wheatseed
 	name = "wheat"
 	desc = "Sigh... wheat... a-grain?"
 	gender = PLURAL
@@ -833,7 +833,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/ricestalk
-	seed = "/obj/item/seeds/riceseed"
+	seed = /obj/item/seeds/riceseed
 	name = "rice stalk"
 	desc = "Rice to see you."
 	gender = PLURAL
@@ -848,7 +848,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/kudzupod
-	seed = "/obj/item/seeds/kudzuseed"
+	seed = /obj/item/seeds/kudzuseed
 	name = "kudzu pod"
 	desc = "<I>Pueraria Virallis</I>: An invasive species with vines that rapidly creep and wrap around whatever they contact."
 	icon_state = "kudzupod"
@@ -863,7 +863,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/icepepper
-	seed = "/obj/item/seeds/icepepperseed"
+	seed = /obj/item/seeds/icepepperseed
 	name = "ice-pepper"
 	desc = "It's a mutant strain of chili"
 	icon_state = "icepepper"
@@ -884,7 +884,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/carrot
-	seed = "/obj/item/seeds/carrotseed"
+	seed = /obj/item/seeds/carrotseed
 	name = "carrot"
 	desc = "It's good for the eyes!"
 	icon_state = "carrot"
@@ -900,7 +900,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/reishi
-	seed = "/obj/item/seeds/reishimycelium"
+	seed = /obj/item/seeds/reishimycelium
 	name = "reishi"
 	desc = "<I>Ganoderma lucidum</I>: A special fungus believed to help relieve stress."
 	icon_state = "reishi"
@@ -923,7 +923,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/amanita
-	seed = "/obj/item/seeds/amanitamycelium"
+	seed = /obj/item/seeds/amanitamycelium
 	name = "fly amanita"
 	desc = "<I>Amanita Muscaria</I>: Learn poisonous mushrooms by heart. Only pick mushrooms you know."
 	icon_state = "amanita"
@@ -946,7 +946,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/angel
-	seed = "/obj/item/seeds/angelmycelium"
+	seed = /obj/item/seeds/angelmycelium
 	name = "destroying angel"
 	desc = "<I>Amanita Virosa</I>: Deadly poisonous basidiomycete fungus filled with alpha amatoxins."
 	icon_state = "angel"
@@ -969,7 +969,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/libertycap
-	seed = "/obj/item/seeds/libertymycelium"
+	seed = /obj/item/seeds/libertymycelium
 	name = "liberty-cap"
 	desc = "<I>Psilocybe Semilanceata</I>: Liberate yourself!"
 	icon_state = "libertycap"
@@ -990,7 +990,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/plumphelmet
-	seed = "/obj/item/seeds/plumpmycelium"
+	seed = /obj/item/seeds/plumpmycelium
 	name = "plump-helmet"
 	desc = "<I>Plumus Hellmus</I>: Plump, soft and s-so inviting~"
 	icon_state = "plumphelmet"
@@ -1004,7 +1004,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/walkingmushroom
-	seed = "/obj/item/seeds/walkingmushroom"
+	seed = /obj/item/seeds/walkingmushroommycelium
 	name = "walking mushroom"
 	desc = "<I>Plumus Locomotus</I>: The beginning of the great walk."
 	icon_state = "walkingmushroom"
@@ -1037,7 +1037,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/chanterelle
-	seed = "/obj/item/seeds/chantermycelium"
+	seed = /obj/item/seeds/chantermycelium
 	name = "chanterelle cluster"
 	desc = "<I>Cantharellus Cibarius</I>: These jolly yellow little shrooms sure look tasty!"
 	icon_state = "chanterelle"
@@ -1051,7 +1051,7 @@
 
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/glowshroom
-	seed = "/obj/item/seeds/glowshroom"
+	seed = /obj/item/seeds/glowshroom
 	name = "glowshroom cluster"
 	desc = "<I>Mycena Bregprox</I>: This species of mushroom glows in the dark. Or does it?"
 	icon_state = "glowshroom"
@@ -1110,7 +1110,7 @@
 /*
 //This object is just a transition object. All it does is make a grass tile and delete itself.
 /obj/item/weapon/reagent_containers/food/snacks/grown/grass
-	seed = "/obj/item/seeds/grassseed"
+	seed = /obj/item/seeds/grassseed
 	name = "grass"
 	desc = "Green and lush."
 	icon_state = "spawner"
@@ -1123,93 +1123,102 @@
 
 //This object is just a transition object. All it does is make dosh and delete itself. -Cheridan
 /obj/item/weapon/reagent_containers/food/snacks/grown/money
-	seed = "/obj/item/seeds/cashseed"
+	seed = /obj/item/seeds/cashseed
 	name = "dosh"
 	desc = "Green and lush."
 	icon_state = "spawner"
 	potency = 10
-	New()
-		switch(rand(1,100))//(potency) //It wants to use the default potency instead of the new, so it was always 10. Will try to come back to this later - Cheridan
-			if(0 to 10)
-				new/obj/item/weapon/spacecash/(src.loc)
-			if(11 to 20)
-				new/obj/item/weapon/spacecash/c10(src.loc)
-			if(21 to 30)
-				new/obj/item/weapon/spacecash/c20(src.loc)
-			if(31 to 40)
-				new/obj/item/weapon/spacecash/c50(src.loc)
-			if(41 to 50)
-				new/obj/item/weapon/spacecash/c100(src.loc)
-			if(51 to 60)
-				new/obj/item/weapon/spacecash/c200(src.loc)
-			if(61 to 80)
-				new/obj/item/weapon/spacecash/c500(src.loc)
-			else
-				new/obj/item/weapon/spacecash/c1000(src.loc)
-		spawn(5) //Workaround to keep harvesting from working weirdly.
-			qdel(src)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/money/New()
+	switch(rand(1, 100))//(potency) //It wants to use the default potency instead of the new, so it was always 10. Will try to come back to this later - Cheridan
+		if(0 to 10)
+			new/obj/item/weapon/spacecash/(src.loc)
+		if(11 to 20)
+			new/obj/item/weapon/spacecash/c10(src.loc)
+		if(21 to 30)
+			new/obj/item/weapon/spacecash/c20(src.loc)
+		if(31 to 40)
+			new/obj/item/weapon/spacecash/c50(src.loc)
+		if(41 to 50)
+			new/obj/item/weapon/spacecash/c100(src.loc)
+		if(51 to 60)
+			new/obj/item/weapon/spacecash/c200(src.loc)
+		if(61 to 80)
+			new/obj/item/weapon/spacecash/c500(src.loc)
+		else
+			new/obj/item/weapon/spacecash/c1000(src.loc)
+	spawn(5) //Workaround to keep harvesting from working weirdly.
+		qdel(src)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/bluespacetomato
-	seed = "/obj/item/seeds/bluespacetomatoseed"
+	seed = /obj/item/seeds/bluespacetomatoseed
 	name = "blue-space tomato"
 	desc = "So lubricated, you might slip through space-time."
 	icon_state = "bluespacetomato"
 	potency = 20
 	origin_tech = "bluespace=3"
 	filling_color = "#91F8FF"
-	New()
-		..()
-		spawn(5)	//So potency can be set in the proc that creates these crops
-			reagents.add_reagent("nutriment", 1+round((potency / 20), 1))
-			reagents.add_reagent("singulo", 1+round((potency / 5), 1))
-			bitesize = 1+round(reagents.total_volume / 2, 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/bluespacetomato/New()
+	..()
+	spawn(5)	//So potency can be set in the proc that creates these crops
+		reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
+		reagents.add_reagent("singulo", 1 + round((potency / 5), 1))
+		bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-	throw_impact(atom/hit_atom)
-		..()
-		var/mob/M = usr
-		var/outer_teleport_radius = potency/10 //Plant potency determines radius of teleport.
-		var/inner_teleport_radius = potency/15
-		var/list/turfs = new/list()
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-		if(inner_teleport_radius < 1) //Wasn't potent enough, it just splats.
-			new/obj/effect/decal/cleanable/blood/oil(src.loc)
-			src.visible_message("<span class='notice'>The [src.name] has been squashed.</span>","<span class='moderate'>You hear a smack.</span>")
-			qdel(src)
-			return
-		for(var/turf/T in orange(M,outer_teleport_radius))
-			if(T in orange(M,inner_teleport_radius)) continue
-			if(istype(T,/turf/space)) continue
-			if(T.density) continue
-			if(T.x>world.maxx-outer_teleport_radius || T.x<outer_teleport_radius)	continue
-			if(T.y>world.maxy-outer_teleport_radius || T.y<outer_teleport_radius)	continue
-			turfs += T
-		if(!turfs.len)
-			var/list/turfs_to_pick_from = list()
-			for(var/turf/T in orange(M,outer_teleport_radius))
-				if(!(T in orange(M,inner_teleport_radius)))
-					turfs_to_pick_from += T
-			turfs += pick(/turf in turfs_to_pick_from)
-		var/turf/picked = pick(turfs)
-		if(!isturf(picked)) return
-		switch(rand(1,2))//Decides randomly to teleport the thrower or the throwee.
-			if(1) // Teleports the person who threw the tomato.
-				s.set_up(3, 1, M)
-				s.start()
-				new/obj/effect/decal/cleanable/molten_item(M.loc) //Leaves a pile of goo behind for dramatic effect.
-				M.loc = picked //
-				sleep(1)
-				s.set_up(3, 1, M)
-				s.start() //Two set of sparks, one before the teleport and one after.
-			if(2) //Teleports mob the tomato hit instead.
-				for(var/mob/A in get_turf(hit_atom))//For the mobs in the tile that was hit...
-					s.set_up(3, 1, A)
-					s.start()
-					new/obj/effect/decal/cleanable/molten_item(A.loc) //Leave a pile of goo behind for dramatic effect...
-					A.loc = picked//And teleport them to the chosen location.
-					sleep(1)
-					s.set_up(3, 1, A)
-					s.start()
+/obj/item/weapon/reagent_containers/food/snacks/grown/bluespacetomato/throw_impact(atom/hit_atom)
+	..()
+	var/mob/M = usr
+	var/outer_teleport_radius = potency / 10 //Plant potency determines radius of teleport.
+	var/inner_teleport_radius = potency / 15
+	var/list/turfs = new/list()
+	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	if(inner_teleport_radius < 1) //Wasn't potent enough, it just splats.
 		new/obj/effect/decal/cleanable/blood/oil(src.loc)
-		src.visible_message("<span class='notice'>The [src.name] has been squashed, causing a distortion in space-time.</span>","<span class='moderate'>You hear a splat and a crackle.</span>")
+		src.visible_message(SPAN_NOTICE("The [src.name] has been squashed."), SPAN_MODERATE("You hear a smack."))
 		qdel(src)
 		return
+	for(var/turf/T in orange(M,outer_teleport_radius))
+		if(T in orange(M, inner_teleport_radius))
+			continue
+		if(istype(T, /turf/space))
+			continue
+		if(T.density)
+			continue
+		if(T.x > world.maxx-outer_teleport_radius || T.x < outer_teleport_radius)
+			continue
+		if(T.y > world.maxy-outer_teleport_radius || T.y < outer_teleport_radius)
+			continue
+		turfs += T
+	if(!turfs.len)
+		var/list/turfs_to_pick_from = list()
+		for(var/turf/T in orange(M, outer_teleport_radius))
+			if(!(T in orange(M, inner_teleport_radius)))
+				turfs_to_pick_from += T
+		turfs += pick(/turf in turfs_to_pick_from)
+	var/turf/picked = pick(turfs)
+	if(!isturf(picked))
+		return
+	switch(rand(1, 2))//Decides randomly to teleport the thrower or the throwee.
+		if(1) // Teleports the person who threw the tomato.
+			s.set_up(3, 1, M)
+			s.start()
+			new/obj/effect/decal/cleanable/molten_item(M.loc) //Leaves a pile of goo behind for dramatic effect.
+			M.loc = picked //
+			sleep(1)
+			s.set_up(3, 1, M)
+			s.start() //Two set of sparks, one before the teleport and one after.
+		if(2) //Teleports mob the tomato hit instead.
+			for(var/mob/A in get_turf(hit_atom))//For the mobs in the tile that was hit...
+				s.set_up(3, 1, A)
+				s.start()
+				new/obj/effect/decal/cleanable/molten_item(A.loc) //Leave a pile of goo behind for dramatic effect...
+				A.loc = picked//And teleport them to the chosen location.
+				sleep(1)
+				s.set_up(3, 1, A)
+				s.start()
+	new/obj/effect/decal/cleanable/blood/oil(src.loc)
+	src.visible_message(SPAN_NOTICE("The [src.name] has been squashed, causing a distortion in space-time."), SPAN_MODERATE("You hear a splat and a crackle."))
+	qdel(src)
+	return

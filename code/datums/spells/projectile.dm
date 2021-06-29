@@ -11,7 +11,7 @@
 	var/proj_trail_icon = 'icons/obj/wizard.dmi'
 	var/proj_trail_icon_state = "trail"
 
-	var/proj_type = "/obj/effect/proc_holder/spell/targeted" //IMPORTANT use only subtypes of this
+	var/proj_type = /obj/effect/proc_holder/spell/targeted //IMPORTANT use only subtypes of this
 
 	var/proj_lingering = 0 //if it lingers or disappears upon hitting an obstacle
 	var/proj_homing = 1 //if it follows the target
@@ -22,19 +22,18 @@
 	var/proj_step_delay = 1 //lower = faster
 
 /obj/effect/proc_holder/spell/targeted/projectile/cast(list/targets, mob/user = usr)
-
 	for(var/mob/living/target in targets)
 		spawn(0)
 			var/obj/effect/proc_holder/spell/targeted/projectile
 			if(istext(proj_type))
-				var/projectile_type = text2path(proj_type)
+				var/projectile_type = proj_type
 				projectile = new projectile_type(user)
 			if(istype(proj_type,/obj/effect/proc_holder/spell))
 				projectile = new /obj/effect/proc_holder/spell/targeted/trigger(user)
 				projectile:linked_spells += proj_type
 			projectile.icon = proj_icon
 			projectile.icon_state = proj_icon_state
-			projectile.dir = get_dir(target,projectile)
+			projectile.dir = get_dir(target, projectile)
 			projectile.name = proj_name
 
 			var/current_loc = usr.loc
@@ -47,13 +46,13 @@
 
 				if(proj_homing)
 					if(proj_insubstantial)
-						projectile.dir = get_dir(projectile,target)
-						projectile.loc = get_step_to(projectile,target)
+						projectile.dir = get_dir(projectile, target)
+						projectile.loc = get_step_to(projectile, target)
 					else
 						step_to(projectile,target)
 				else
 					if(proj_insubstantial)
-						projectile.loc = get_step(projectile,dir)
+						projectile.loc = get_step(projectile, dir)
 					else
 						step(projectile,dir)
 
@@ -71,7 +70,7 @@
 							spawn(proj_trail_lifespan)
 								qdel(trail)
 
-				if(projectile.loc in range(target.loc,proj_trigger_range))
+				if(projectile.loc in range(target.loc, proj_trigger_range))
 					projectile.perform(list(target))
 					break
 

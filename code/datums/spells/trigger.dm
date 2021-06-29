@@ -7,15 +7,13 @@
 
 /obj/effect/proc_holder/spell/targeted/trigger/New()
 	..()
-
 	for(var/spell in starting_spells)
-		var/spell_to_add = text2path(spell)
+		var/spell_to_add = spell
 		new spell_to_add(src) //should result in adding to contents, needs testing
 
 /obj/effect/proc_holder/spell/targeted/trigger/Destroy()
 	for(var/spell in contents)
 		qdel(spell)
-
 	..()
 
 /obj/effect/proc_holder/spell/targeted/trigger/cast(list/targets)

@@ -823,13 +823,14 @@ obj/machinery/hydroponics/attackby(var/obj/item/O as obj, var/mob/user as mob)
 		usr << text ("") // Empty line for readability.
 
 /obj/item/seeds/proc/harvest(mob/user = usr)
-	var/produce = text2path(productname)
+	var/produce = productname
 	var/obj/machinery/hydroponics/parent = loc //for ease of access
 	var/t_amount = 0
 
-	while ( t_amount < (yield * parent.yieldmod ))
+	while(t_amount < (yield * parent.yieldmod))
 		var/obj/item/weapon/reagent_containers/food/snacks/grown/t_prod = new produce(user.loc, potency) // User gets a consumable
-		if(!t_prod)	return
+		if(!t_prod)
+			return
 		t_prod.seed = mypath
 		t_prod.species = species
 		t_prod.lifespan = lifespan
@@ -845,7 +846,7 @@ obj/machinery/hydroponics/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
 /obj/item/seeds/grassseed/harvest(mob/user = usr)
 	var/obj/machinery/hydroponics/parent = loc //for ease of access
-	var/t_yield = round(yield*parent.yieldmod)
+	var/t_yield = round(yield * parent.yieldmod)
 
 	if(t_yield > 0)
 		var/obj/item/stack/tile/grass/new_grass = new/obj/item/stack/tile/grass(user.loc)
@@ -854,13 +855,12 @@ obj/machinery/hydroponics/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	parent.update_tray()
 
 /obj/item/seeds/gibtomato/harvest(mob/user = usr)
-	var/produce = text2path(productname)
+	var/produce = productname
 	var/obj/machinery/hydroponics/parent = loc //for ease of access
 	var/t_amount = 0
 
-	while ( t_amount < (yield * parent.yieldmod ))
+	while(t_amount < (yield * parent.yieldmod))
 		var/obj/item/weapon/reagent_containers/food/snacks/grown/t_prod = new produce(user.loc, potency) // User gets a consumable
-
 		t_prod.seed = mypath
 		t_prod.species = species
 		t_prod.lifespan = lifespan
@@ -875,11 +875,11 @@ obj/machinery/hydroponics/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	parent.update_tray()
 
 /obj/item/seeds/nettleseed/harvest(mob/user = usr)
-	var/produce = text2path(productname)
+	var/produce = productname
 	var/obj/machinery/hydroponics/parent = loc //for ease of access
 	var/t_amount = 0
 
-	while ( t_amount < (yield * parent.yieldmod ))
+	while(t_amount < (yield * parent.yieldmod))
 		var/obj/item/weapon/grown/t_prod = new produce(user.loc, potency) // User gets a consumable -QualityVan
 		t_prod.seed = mypath
 		t_prod.species = species
@@ -895,11 +895,11 @@ obj/machinery/hydroponics/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	parent.update_tray()
 
 /obj/item/seeds/deathnettleseed/harvest(mob/user = usr) //isn't a nettle subclass yet, so
-	var/produce = text2path(productname)
+	var/produce = productname
 	var/obj/machinery/hydroponics/parent = loc //for ease of access
 	var/t_amount = 0
 
-	while ( t_amount < (yield * parent.yieldmod ))
+	while(t_amount < (yield * parent.yieldmod))
 		var/obj/item/weapon/grown/t_prod = new produce(user.loc, potency) // User gets a consumable -QualityVan
 		t_prod.seed = mypath
 		t_prod.species = species
@@ -915,11 +915,11 @@ obj/machinery/hydroponics/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	parent.update_tray()
 
 /obj/item/seeds/eggyseed/harvest(mob/user = usr)
-	var/produce = text2path(productname)
+	var/produce = productname
 	var/obj/machinery/hydroponics/parent = loc //for ease of access
 	var/t_amount = 0
 
-	while ( t_amount < (yield * parent.yieldmod ))
+	while(t_amount < (yield * parent.yieldmod))
 		new produce(user.loc)
 		t_amount++
 

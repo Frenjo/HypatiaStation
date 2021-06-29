@@ -45,7 +45,7 @@ var/list/mechtoys = list(
 
 /datum/supply_order
 	var/ordernum
-	var/datum/supply_packs/object = null
+	var/decl/hierarchy/supply_pack/object = null
 	var/orderedby = null
 	var/comment = null
 
@@ -64,17 +64,12 @@ var/list/mechtoys = list(
 	var/ordernum
 	var/list/shoppinglist = list()
 	var/list/requestlist = list()
-	var/list/supply_packs = list()
 	//shuttle movement
 	var/movetime = 1200
 	var/datum/shuttle/ferry/supply/shuttle
 
 /datum/controller/supply/New()
 	ordernum = rand(1, 9000)
-
-	for(var/typepath in (typesof(/datum/supply_packs) - /datum/supply_packs))
-		var/datum/supply_packs/P = new typepath()
-		supply_packs[P.name] = P
 
 //Supply shuttle ticker - handles supply point regenertion and shuttle travelling between centcomm and the station
 /datum/controller/supply/proc/process()
@@ -147,7 +142,16 @@ var/list/mechtoys = list(
 	var/list/clear_turfs = list()
 
 	for(var/turf/T in area_shuttle)
-		if(T.density || T.contents.len)
+		if(T.density)
+			continue
+		var/contcount
+		for(var/atom/A in T.contents)
+			if(istype(A, /atom/movable/lighting_overlay))
+				continue
+			if(istype(A, /obj/machinery/light))
+				continue
+			contcount++
+		if(contcount)
 			continue
 		clear_turfs += T
 
@@ -159,7 +163,7 @@ var/list/mechtoys = list(
 		clear_turfs.Cut(i, i + 1)
 
 		var/datum/supply_order/SO = S
-		var/datum/supply_packs/SP = SO.object
+		var/decl/hierarchy/supply_pack/SP = SO.object
 
 		var/atom/A = new SP.containertype(pickedloc)
 		A.name = "[SP.containername] [SO.comment ? "([SO.comment])":"" ]"
@@ -178,25 +182,9 @@ var/list/mechtoys = list(
 			A:req_access = list()
 			A:req_access += text2num(SP.access)
 
-		var/list/contains
-		if(istype(SP, /datum/supply_packs/randomised))
-			var/datum/supply_packs/randomised/SPR = SP
-			contains = list()
-			if(SPR.contains.len)
-				for(var/j = 1, j <= SPR.num_contained, j++)
-					contains += pick(SPR.contains)
-		else
-			contains = SP.contains
-
-		for(var/typepath in contains)
-			if(!typepath)
-				continue
-			var/atom/B2 = new typepath(A)
-			if(SP.amount && B2:amount)
-				B2:amount = SP.amount
-			slip.info += "<li>[B2.name]</li>" //add the item to the manifest
-
-		//manifest finalisation
+		var/list/spawned = SP.spawn_contents(A)
+		for(var/atom/content in spawned)
+			slip.info += "<li>[content.name]</li>" //add the item to the manifest
 		slip.info += "</ul><br>"
 		slip.info += "CHECK CONTENTS AND STAMP BELOW THE LINE TO CONFIRM RECEIPT OF GOODS<hr>"
 		if(SP.contraband)

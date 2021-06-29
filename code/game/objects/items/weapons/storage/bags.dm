@@ -79,7 +79,7 @@
 	storage_slots = 50
 	max_combined_w_class = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * ore.w_class
 	max_w_class = 3
-	can_hold = list("/obj/item/weapon/ore")
+	can_hold = list(/obj/item/weapon/ore)
 
 // -----------------------------
 //   Mining Satchel of Holding
@@ -92,7 +92,7 @@
 	storage_slots = INFINITY
 	max_combined_w_class = INFINITY
 	origin_tech = "bluespace=3"
-	can_hold = list("/obj/item/weapon/ore")
+	can_hold = list(/obj/item/weapon/ore)
 
 // -----------------------------
 //          Plant bag
@@ -106,7 +106,7 @@
 	max_combined_w_class = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * plants.w_class
 	max_w_class = 3
 	w_class = 1
-	can_hold = list("/obj/item/weapon/reagent_containers/food/snacks/grown","/obj/item/seeds","/obj/item/weapon/grown")
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/grown, /obj/item/seeds, /obj/item/weapon/grown)
 
 
 // -----------------------------
@@ -264,4 +264,4 @@
 	max_combined_w_class = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * cash.w_class
 	max_w_class = 3
 	w_class = 1
-	can_hold = list("/obj/item/weapon/coin","/obj/item/weapon/spacecash")
+	can_hold = list(/obj/item/weapon/coin, /obj/item/weapon/spacecash)

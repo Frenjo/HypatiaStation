@@ -354,7 +354,7 @@
 	icon = 'icons/obj/food.dmi'
 	icon_state = "monkeycubebox"
 	storage_slots = 7
-	can_hold = list("/obj/item/weapon/reagent_containers/food/snacks/monkeycube")
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube)
 
 /obj/item/weapon/storage/box/monkeycubes/New()
 	..()
@@ -477,7 +477,7 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "spbox"
 	storage_slots = 8
-	can_hold = list("/obj/item/toy/snappop")
+	can_hold = list(/obj/item/toy/snappop)
 
 /obj/item/weapon/storage/box/snappops/New()
 	..()
@@ -494,7 +494,7 @@
 	storage_slots = 10
 	w_class = 1
 	slot_flags = SLOT_BELT
-	can_hold = list("/obj/item/weapon/match")
+	can_hold = list(/obj/item/weapon/match)
 
 /obj/item/weapon/storage/box/matches/New()
 	..()
@@ -530,7 +530,7 @@
 	item_state = "syringe_kit"
 	foldable = /obj/item/stack/sheet/cardboard //BubbleWrap
 	storage_slots = 21
-	can_hold = list("/obj/item/weapon/light/tube", "/obj/item/weapon/light/bulb")
+	can_hold = list(/obj/item/weapon/light/tube, /obj/item/weapon/light/bulb)
 	max_combined_w_class = 42	//holds 21 items of w_class 2
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
 
@@ -569,4 +569,4 @@
 	desc = "This box appears to be shaped to hold circuit boards."
 	foldable = /obj/item/stack/sheet/cardboard //BubbleWrap
 	storage_slots = 5
-	can_hold = list("/obj/item/weapon/circuitboard", "/obj/item/weapon/module")
+	can_hold = list(/obj/item/weapon/circuitboard, /obj/item/weapon/module)

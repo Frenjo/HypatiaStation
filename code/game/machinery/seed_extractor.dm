@@ -6,12 +6,12 @@
 	density = 1
 	anchored = 1
 
-obj/machinery/seed_extractor/attackby(obj/item/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/grown/))
+/obj/machinery/seed_extractor/attackby(obj/item/O as obj, mob/user as mob)
+	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/grown))
 		var/obj/item/weapon/reagent_containers/food/snacks/grown/F = O
 		user.drop_item()
 		to_chat(user, SPAN_NOTICE("You extract some seeds from the [F.name]."))
-		var/seed = text2path(F.seed)
+		var/seed = F.seed
 		var/t_amount = 0
 		var/t_max = rand(1, 4)
 		while(t_amount < t_max)
@@ -26,11 +26,11 @@ obj/machinery/seed_extractor/attackby(obj/item/O as obj, mob/user as mob)
 			t_amount++
 		qdel(O)
 
-	else if(istype(O, /obj/item/weapon/grown/))
+	else if(istype(O, /obj/item/weapon/grown))
 		var/obj/item/weapon/grown/F = O
 		user.drop_item()
 		to_chat(user, SPAN_NOTICE("You extract some seeds from the [F.name]."))
-		var/seed = text2path(F.seed)
+		var/seed = F.seed
 		var/t_amount = 0
 		var/t_max = rand(1, 4)
 		while(t_amount < t_max)

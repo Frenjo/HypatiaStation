@@ -398,4 +398,32 @@ proc/listclearnulls(list/list)
 	return reverselist(out)
 
 
+// Insert an object into a sorted list, preserving sortedness
+/proc/dd_insertObjectList(list/L, O)
+	var/min = 1
+	var/max = L.len
+	var/Oval = O:dd_SortValue()
+
+	while(1)
+		var/mid = min+round((max - min) / 2)
+
+		if(mid == max)
+			L.Insert(mid, O)
+			return
+
+		var/Lmid = L[mid]
+		var/midval = Lmid:dd_SortValue()
+		if(Oval == midval)
+			L.Insert(mid, O)
+			return
+		else if(Oval < midval)
+			max = mid
+		else
+			min = mid + 1
+
+
+/datum/proc/dd_SortValue()
+	return "[src]"
+
+
 #define subtypesof(prototype) (typesof(prototype) - prototype)

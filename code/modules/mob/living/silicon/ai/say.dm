@@ -17,7 +17,7 @@
 var/announcing_vox = 0 // Stores the time of the last announcement
 var/const/VOX_CHANNEL = 200
 var/const/VOX_DELAY = 100 // 10 seconds
-var/const/VOX_PATH = "sound/vox/"
+#define VOX_PATH "sound/vox/"
 
 /mob/living/silicon/ai/verb/announcement_help()
 	set name = "Announcement Help"
@@ -85,7 +85,7 @@ var/const/VOX_PATH = "sound/vox/"
 		play_vox_word(word, src.z, null)
 
 
-/proc/play_vox_word(var/word, var/z_level, var/mob/only_listener)
+/proc/play_vox_word(word, z_level, mob/only_listener)
 	word = lowertext(word)
 
 	if(vox_word_exists(word))
@@ -108,10 +108,10 @@ var/const/VOX_PATH = "sound/vox/"
 	return 0
 
 
-/proc/vox_word_exists(var/word)
+/proc/vox_word_exists(word)
 	return fexists("[VOX_PATH][word].wav")
 
-/proc/get_vox_file(var/word)
+/proc/get_vox_file(word)
 	if(vox_word_exists(word))
 		return file("[VOX_PATH][word].wav")
 
@@ -124,3 +124,5 @@ var/const/VOX_PATH = "sound/vox/"
 	//	src << "Downloading [file]"
 		var/sound/S = sound("[VOX_PATH][file]")
 		src << browse_rsc(S)
+
+#undef VOX_PATH

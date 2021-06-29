@@ -21,7 +21,7 @@
 		/obj/item/weapon/table_parts,
 		/obj/item/weapon/rack_parts,
 		/obj/item/weapon/camera_assembly,
-		)
+	)
 
 	//Item currently being held.
 	var/obj/item/wrapped = null

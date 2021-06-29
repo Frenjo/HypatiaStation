@@ -68,7 +68,7 @@
 							req_components[A] = circuit.req_components[A]
 						req_component_names = circuit.req_components.Copy()
 						for(var/A in req_components)
-							var/cp = text2path(A)
+							var/cp = A
 							var/obj/ct = new cp() // have to quickly instantiate it get name
 							req_component_names[A] = ct.name
 						if(circuit.frame_desc)
@@ -131,7 +131,7 @@
 					else
 						if(istype(P, /obj/item/weapon))
 							for(var/I in req_components)
-								if(istype(P, text2path(I)) && (req_components[I] > 0))
+								if(istype(P, I) && (req_components[I] > 0))
 									playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 									if(istype(P, /obj/item/stack/cable_coil))
 										var/obj/item/stack/cable_coil/CP = P
@@ -169,9 +169,9 @@ to destroy them and players will be able to make replacements.
 	origin_tech = "magnets=2;engineering=2;programming=2"
 	frame_desc = "Requires 1 Scanning Module, 1 Micro Manipulator, and 1 Micro-Laser."
 	req_components = list(
-							"/obj/item/weapon/stock_parts/scanning_module" = 1,
-							"/obj/item/weapon/stock_parts/manipulator" = 1,
-							"/obj/item/weapon/stock_parts/micro_laser" = 1)
+							/obj/item/weapon/stock_parts/scanning_module = 1,
+							/obj/item/weapon/stock_parts/manipulator = 1,
+							/obj/item/weapon/stock_parts/micro_laser = 1)
 
 /obj/item/weapon/circuitboard/autolathe
 	name = "Circuit board (Autolathe)"
