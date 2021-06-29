@@ -58,11 +58,11 @@
 				qdel(first)
 				return
 
-		if((!(first) && (secured && (isturf(loc) || (holder && istype(holder.loc, /turf))))))
-			var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam((holder ? holder.loc : loc) )
+		if((!first && (secured && (isturf(loc) || (holder && isturf(holder.loc))))))
+			var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam((holder ? holder.loc : loc))
 			I.master = src
 			I.density = 1
-			I.dir = dir
+			I.set_dir(dir)
 			step(I, I.dir)
 			if(I)
 				I.density = 0
@@ -214,7 +214,7 @@
 	var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam(loc)
 	I.master = master
 	I.density = 1
-	I.dir = dir
+	I.set_dir(dir)
 	//world << "created new beam \ref[I] at [I.x] [I.y] [I.z]"
 	step(I, I.dir)
 

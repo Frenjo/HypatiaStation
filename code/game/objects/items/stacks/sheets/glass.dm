@@ -98,7 +98,7 @@
 					break
 			var/obj/structure/window/W
 			W = new created_window(user.loc, 0)
-			W.dir = dir_to_set
+			W.set_dir(dir_to_set)
 			W.ini_dir = W.dir
 			W.anchored = 0
 			src.use(1)
@@ -117,7 +117,7 @@
 
 			var/obj/structure/window/W
 			W = new created_window(user.loc, 0)
-			W.dir = SOUTHWEST
+			W.set_dir(SOUTHWEST)
 			W.ini_dir = SOUTHWEST
 			W.anchored = 0
 			src.use(2)
@@ -191,7 +191,7 @@
 			var/obj/structure/window/W
 			W = new /obj/structure/window/reinforced(user.loc, 1)
 			W.state = 0
-			W.dir = dir_to_set
+			W.set_dir(dir_to_set)
 			W.ini_dir = W.dir
 			W.anchored = 0
 			src.use(1)
@@ -210,7 +210,7 @@
 			var/obj/structure/window/W
 			W = new /obj/structure/window/reinforced(user.loc, 1)
 			W.state = 0
-			W.dir = SOUTHWEST
+			W.set_dir(SOUTHWEST)
 			W.ini_dir = SOUTHWEST
 			W.anchored = 0
 			src.use(2)
@@ -238,16 +238,16 @@
 			src.use(5)
 			switch(user.dir)
 				if(SOUTH)
-					WD.dir = SOUTH
+					WD.set_dir(SOUTH)
 					WD.ini_dir = SOUTH
 				if(EAST)
-					WD.dir = EAST
+					WD.set_dir(EAST)
 					WD.ini_dir = EAST
 				if(WEST)
-					WD.dir = WEST
+					WD.set_dir(WEST)
 					WD.ini_dir = WEST
 				else	//If the user is facing northeast. northwest, southeast, southwest or north, default to north
-					WD.dir = NORTH
+					WD.set_dir(NORTH)
 					WD.ini_dir = NORTH
 		else
 			return 1

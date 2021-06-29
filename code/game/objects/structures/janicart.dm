@@ -237,7 +237,7 @@
 		"<span class='notice'>You climb onto the [callme]!</span>")
 	M.buckled = src
 	M.loc = loc
-	M.dir = dir
+	M.set_dir(dir)
 	M.update_canmove()
 	buckled_mob = M
 	update_mob()
@@ -267,7 +267,7 @@
 
 /obj/structure/stool/bed/chair/janicart/proc/update_mob()
 	if(buckled_mob)
-		buckled_mob.dir = dir
+		buckled_mob.set_dir(dir)
 		switch(dir)
 			if(SOUTH)
 				buckled_mob.pixel_x = 0

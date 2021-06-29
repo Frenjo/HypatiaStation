@@ -166,8 +166,8 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if (src.anchored)
+	if(src.anchored)
 		usr << "It is fastened to the floor!"
 		return
-	src.dir = turn(src.dir, 270)
+	src.set_dir(turn(src.dir, 270))
 	return

@@ -87,7 +87,7 @@
 					for(var/area/chapel/main/A in world)
 						for(var/turf/T in A.contents)
 							if(T.icon_state == "carpetsymbol")
-								T.dir = 4
+								T.set_dir(4)
 				if("Scrapbook")
 					B.icon_state = "scrapbook"
 					B.item_state = "scrapbook"
@@ -106,7 +106,7 @@
 					for(var/area/chapel/main/A in world)
 						for(var/turf/T in A.contents)
 							if(T.icon_state == "carpetsymbol")
-								T.dir = 10
+								T.set_dir(10)
 				if("Tome")
 					B.icon_state = "tome"
 					B.item_state = "syringe_kit"
@@ -122,7 +122,7 @@
 					for(var/area/chapel/main/A in world)
 						for(var/turf/T in A.contents)
 							if(T.icon_state == "carpetsymbol")
-								T.dir = 8
+								T.set_dir(8)
 				if("the bible melts")
 					B.icon_state = "melted"
 					B.item_state = "melted"
@@ -136,7 +136,7 @@
 					for(var/area/chapel/main/A in world)
 						for(var/turf/T in A.contents)
 							if(T.icon_state == "carpetsymbol")
-								T.dir = 2
+								T.set_dir(2)
 
 			H.update_inv_l_hand() // so that it updates the bible's item_state in his hand
 

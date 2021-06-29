@@ -146,7 +146,7 @@ obj/structure/ex_act(severity)
 						nexttube = tube
 						break
 				if(!nexttube)
-					pod.dir = turn(pod.dir, 180)
+					pod.set_dir(turn(pod.dir, 180))
 
 				if(icon_state == "closed" && pod)
 					pod.follow_tube()
@@ -276,7 +276,7 @@ obj/structure/ex_act(severity)
 					break
 
 			if(current_tube == null)
-				dir = next_dir
+				set_dir(next_dir)
 				Move(get_step(loc, dir)) // Allow collisions when leaving the tubes.
 				break
 

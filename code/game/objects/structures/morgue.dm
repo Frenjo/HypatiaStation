@@ -61,26 +61,26 @@
 	return src.attack_hand(user)
 
 /obj/structure/morgue/attack_hand(mob/user as mob)
-	if (src.connected)
+	if(src.connected)
 		for(var/atom/movable/A as mob|obj in src.connected.loc)
-			if (!( A.anchored ))
+			if(!A.anchored)
 				A.loc = src
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		//src.connected = null
 		qdel(src.connected)
 	else
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-		src.connected = new /obj/structure/m_tray( src.loc )
+		src.connected = new /obj/structure/m_tray(src.loc)
 		step(src.connected, src.dir)
 		src.connected.layer = OBJ_LAYER
 		var/turf/T = get_step(src, src.dir)
-		if (T.contents.Find(src.connected))
+		if(T.contents.Find(src.connected))
 			src.connected.connected = src
 			src.icon_state = "morgue0"
 			for(var/atom/movable/A as mob|obj in src)
 				A.loc = src.connected.loc
 			src.connected.icon_state = "morguet"
-			src.connected.dir = src.dir
+			src.connected.set_dir(src.dir)
 		else
 			//src.connected = null
 			qdel(src.connected)

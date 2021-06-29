@@ -7,7 +7,7 @@
 
 	using = new /obj/screen()
 	using.name = "act_intent"
-	using.dir = SOUTHWEST
+	using.set_dir(SOUTHWEST)
 	using.icon = 'icons/mob/screen1_alien.dmi'
 	using.icon_state = (mymob.a_intent == "hurt" ? "harm" : mymob.a_intent)
 	using.screen_loc = ui_acti
@@ -66,7 +66,7 @@
 
 	using = new /obj/screen()
 	using.name = "mov_intent"
-	using.dir = SOUTHWEST
+	using.set_dir(SOUTHWEST)
 	using.icon = 'icons/mob/screen1_alien.dmi'
 	using.icon_state = (mymob.m_intent == "run" ? "running" : "walking")
 	using.screen_loc = ui_movi
@@ -86,7 +86,7 @@
 	//suit
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "o_clothing"
-	inv_box.dir = SOUTH
+	inv_box.set_dir(SOUTH)
 	inv_box.icon = 'icons/mob/screen1_alien.dmi'
 	inv_box.icon_state = "equip"
 	inv_box.screen_loc = ui_alien_oclothing
@@ -96,7 +96,7 @@
 
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "r_hand"
-	inv_box.dir = WEST
+	inv_box.set_dir(WEST)
 	inv_box.icon = 'icons/mob/screen1_alien.dmi'
 	inv_box.icon_state = "hand_inactive"
 	if(mymob && !mymob.hand)	//This being 0 or null means the right hand is in use
@@ -109,7 +109,7 @@
 
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "l_hand"
-	inv_box.dir = EAST
+	inv_box.set_dir(EAST)
 	inv_box.icon = 'icons/mob/screen1_alien.dmi'
 	inv_box.icon_state = "hand_inactive"
 	if(mymob && mymob.hand)	//This being 1 means the left hand is in use
@@ -122,7 +122,7 @@
 
 	using = new /obj/screen/inventory()
 	using.name = "hand"
-	using.dir = SOUTH
+	using.set_dir(SOUTH)
 	using.icon = 'icons/mob/screen1_alien.dmi'
 	using.icon_state = "hand1"
 	using.screen_loc = ui_swaphand1
@@ -131,7 +131,7 @@
 
 	using = new /obj/screen/inventory()
 	using.name = "hand"
-	using.dir = SOUTH
+	using.set_dir(SOUTH)
 	using.icon = 'icons/mob/screen1_alien.dmi'
 	using.icon_state = "hand2"
 	using.screen_loc = ui_swaphand2

@@ -276,7 +276,7 @@
 	if(!istype(other, src.type))
 		return 0
 
-	src.dir = other.dir
+	src.set_dir(other.dir)
 	src.icon_state = other.icon_state
 	src.icon = other.icon
 	src.overlays = other.overlays.Copy()

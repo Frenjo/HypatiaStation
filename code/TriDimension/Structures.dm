@@ -224,8 +224,8 @@
 			var/turf/T = get_step(src.loc, dir)
 			for(var/obj/multiz/stairs/S in T)
 				if(S && S.icon_state == "rampbottom" && !S.connected)
-					S.dir = dir
-					src.dir = dir
+					S.set_dir(dir)
+					src.set_dir(dir)
 					S.connected = src
 					src.connected = S
 					src.icon_state = "ramptop"

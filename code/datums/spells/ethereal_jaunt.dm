@@ -28,8 +28,8 @@
 			animation.layer = 5
 			animation.master = holder
 			if(phaseshift == 1)
-				animation.dir = target.dir
-				flick("phase_shift",animation)
+				animation.set_dir(target.dir)
+				flick("phase_shift", animation)
 				target.loc = holder
 				target.client.eye = holder
 				sleep(jaunt_duration)
@@ -37,8 +37,8 @@
 				animation.loc = mobloc
 				target.canmove = 0
 				sleep(20)
-				animation.dir = target.dir
-				flick("phase_shift2",animation)
+				animation.set_dir(target.dir)
+				flick("phase_shift2", animation)
 				sleep(5)
 				if(!target.Move(mobloc))
 					for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))

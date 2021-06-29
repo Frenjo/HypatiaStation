@@ -89,9 +89,9 @@
 			if(speed >= 20)
 				var/obj/item/weapon/W = O
 				var/momentum = speed/2
-				var/dir = get_dir(M,src)
+				var/dir = get_dir(M, src)
 
-				visible_message("\red [src] staggers under the impact!","\red You stagger under the impact!")
+				visible_message("\red [src] staggers under the impact!", "\red You stagger under the impact!")
 				src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 				if(istype(W.loc,/mob/living) && W.sharp) //Projectile is embedded and suitable for pinning.

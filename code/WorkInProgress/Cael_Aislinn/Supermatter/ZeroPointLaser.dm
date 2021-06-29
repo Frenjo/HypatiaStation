@@ -31,10 +31,10 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if (src.anchored || usr:stat)
+	if(src.anchored || usr:stat)
 		usr << "It is fastened to the floor!"
 		return 0
-	src.dir = turn(src.dir, 90)
+	src.set_dir(turn(src.dir, 90))
 	return 1
 
 /obj/machinery/zero_point_emitter/New()
@@ -42,7 +42,7 @@
 	return
 
 /obj/machinery/zero_point_emitter/update_icon()
-	if (active && !(stat & (NOPOWER|BROKEN)))
+	if(active && !(stat & (NOPOWER | BROKEN)))
 		icon_state = "laser"//"emitter_+a"
 	else
 		icon_state = "laser"//"emitter"
@@ -70,7 +70,7 @@
 		return 1*/
 
 
-/obj/machinery/zero_point_emitter/emp_act(var/severity)//Emitters are hardened but still might have issues
+/obj/machinery/zero_point_emitter/emp_act(severity)//Emitters are hardened but still might have issues
 	use_power(1000)
 /*	if((severity == 1)&&prob(1)&&prob(1))
 		if(src.active)
@@ -93,13 +93,13 @@
 			src.fire_delay = rand(20,100)
 			src.shot_number = 0
 		use_power(1000)
-		var/obj/item/projectile/beam/emitter/A = new /obj/item/projectile/beam/emitter( src.loc )
+		var/obj/item/projectile/beam/emitter/A = new /obj/item/projectile/beam/emitter(src.loc)
 		playsound(src, 'sound/weapons/emitter2.ogg', 25, 1)
 		if(prob(35))
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(5, 1, src)
 			s.start()
-		A.dir = src.dir
+		A.set_dir(src.dir)
 		switch(dir)
 			if(NORTH)
 				A.yo = 20
@@ -117,7 +117,6 @@
 
 
 /obj/machinery/zero_point_emitter/attackby(obj/item/W, mob/user)
-
 	if(istype(W, /obj/item/weapon/wrench))
 		if(active)
 			user << "Turn off the [src] first."
@@ -150,25 +149,27 @@
 			if(0)
 				user << "\red The [src.name] needs to be wrenched to the floor."
 			if(1)
-				if (WT.remove_fuel(0,user))
+				if(WT.remove_fuel(0,user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
 					user.visible_message("[user.name] starts to weld the [src.name] to the floor.", \
 						"You start to weld the [src] to the floor.", \
 						"You hear welding")
-					if (do_after(user,20))
-						if(!src || !WT.isOn()) return
+					if(do_after(user, 20))
+						if(!src || !WT.isOn())
+							return
 						state = 2
 						user << "You weld the [src] to the floor."
 				else
 					user << "\red You need more welding fuel to complete this task."
 			if(2)
-				if (WT.remove_fuel(0,user))
+				if(WT.remove_fuel(0,user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
 					user.visible_message("[user.name] starts to cut the [src.name] free from the floor.", \
 						"You start to cut the [src] free from the floor.", \
 						"You hear welding")
-					if (do_after(user,20))
-						if(!src || !WT.isOn()) return
+					if(do_after(user, 20))
+						if(!src || !WT.isOn())
+							return
 						state = 1
 						user << "You cut the [src] free from the floor."
 				else
@@ -208,7 +209,7 @@
 
 /obj/machinery/zero_point_emitter/Topic(href, href_list)
 	..()
-	if( href_list["input"] )
+	if(href_list["input"] )
 		var/i = text2num(href_list["input"])
 		var/d = i
 		var/new_power = energy + d
@@ -219,17 +220,17 @@
 		for(var/obj/machinery/computer/lasercon/comp in world)
 			if(comp.id == src.id)
 				comp.updateDialog()
-	else if( href_list["online"] )
+	else if(href_list["online"] )
 		active = !active
 		//
 		for(var/obj/machinery/computer/lasercon/comp in world)
 			if(comp.id == src.id)
 				comp.updateDialog()
-	else if( href_list["freq"] )
+	else if(href_list["freq"] )
 		var/amt = text2num(href_list["freq"])
 		var/new_freq = frequency + amt
-		new_freq = max(new_freq,1)		//lowest possible value
-		new_freq = min(new_freq,20000)	//highest possible value
+		new_freq = max(new_freq, 1)		//lowest possible value
+		new_freq = min(new_freq, 20000)	//highest possible value
 		frequency = new_freq
 		//
 		for(var/obj/machinery/computer/lasercon/comp in world)

@@ -54,7 +54,7 @@ var/list/department_radio_keys = list(
 	var/mob/living/carbon/human/H = src
 	if(H.l_ear || H.r_ear)
 		var/obj/item/device/radio/headset/dongle
-		if(istype(H.l_ear,/obj/item/device/radio/headset))
+		if(istype(H.l_ear, /obj/item/device/radio/headset))
 			dongle = H.l_ear
 		else
 			dongle = H.r_ear
@@ -77,7 +77,7 @@ var/list/department_radio_keys = list(
 		return msg
 */
 
-/mob/living/say(var/message, var/datum/language/speaking = null, var/verbage = "says", var/alt_name = "", var/italics = 0, var/message_range = world.view, var/list/used_radios = list())
+/mob/living/say(message, datum/language/speaking = null, verbage = "says", alt_name = "", italics = 0, message_range = world.view, list/used_radios = list())
 	if(stat)
 		return
 
@@ -93,14 +93,14 @@ var/list/department_radio_keys = list(
 		var/list/hearturfs = list()
 
 		for(var/I in hear)
-			if(istype(I, /mob/))
+			if(ismob(I))
 				var/mob/M = I
 				listening += M
 				hearturfs += M.locs[1]
 				for(var/obj/O in M.contents)
 					objects |= O
 
-			else if(istype(I, /obj/))
+			else if(istype(I, /obj))
 				var/obj/O = I
 				hearturfs += O.locs[1]
 				objects |= O
@@ -124,7 +124,7 @@ var/list/department_radio_keys = list(
 	if(used_radios.len)
 		for(var/mob/living/M in hearers(5, src))
 			if(M != src)
-				M.show_message("<span class='notice'>[src] talks into [used_radios.len ? used_radios[1] : "radio"]</span>")
+				M.show_message(SPAN_NOTICE("[src] talks into [used_radios.len ? used_radios[1] : "radio"]"))
 
 	for(var/mob/M in listening)
 		if(M.client)

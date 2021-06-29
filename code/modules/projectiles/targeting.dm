@@ -47,7 +47,7 @@
 	if(lock_time > world.time - 2)
 		return
 
-	user.dir = get_cardinal_dir(src, A)
+	user.set_dir(get_cardinal_dir(src, A))
 	if(isliving(A) && !(A in target))
 		Aim(A) 	//Clicked a mob, aim at them
 		return 1
@@ -102,9 +102,9 @@
 	else
 		click_empty(M)
 
-	usr.dir = get_cardinal_dir(src, T)
+	usr.set_dir(get_cardinal_dir(src, T))
 
-	if (!firerate) // If firerate is set to lower aim after one shot, untarget the target
+	if(!firerate) // If firerate is set to lower aim after one shot, untarget the target
 		T.NotTargeted(src)
 
 //Yay, math!

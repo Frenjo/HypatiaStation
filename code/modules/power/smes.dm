@@ -211,12 +211,12 @@
 	user << "<span class='notice'>You start adding cable to the SMES.</span>"
 	if(do_after(user, 50))
 		terminal = new /obj/machinery/power/terminal(tempLoc)
-		terminal.dir = tempDir
+		terminal.set_dir(tempDir)
 		terminal.master = src
 		return 0
 	return 1
 
-/obj/machinery/power/smes/draw_power(var/amount)
+/obj/machinery/power/smes/draw_power(amount)
 	if(terminal && terminal.powernet)
 		return terminal.powernet.draw_power(amount)
 	return 0
@@ -229,7 +229,7 @@
 	add_fingerprint(user)
 	ui_interact(user)
 
-/obj/machinery/power/smes/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/power/smes/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/screwdriver))
 		if(!open_hatch)
 			open_hatch = 1
@@ -237,15 +237,15 @@
 		else
 			open_hatch = 0
 			user << "<span class='notice'>You close the maintenance hatch of [src].</span>"
-	if (open_hatch)
+	if(open_hatch)
 		if(istype(W, /obj/item/stack/cable_coil) && !terminal && !building_terminal)
 			building_terminal = 1
 			var/obj/item/stack/cable_coil/CC = W
-			if (CC.amount < 10)
+			if(CC.amount < 10)
 				user << "<span class='warning'>You need more cables.</span>"
 				building_terminal = 0
 				return
-			if (make_terminal(user))
+			if(make_terminal(user))
 				building_terminal = 0
 				return
 			building_terminal = 0
@@ -259,7 +259,7 @@
 		else if(istype(W, /obj/item/weapon/wirecutters) && terminal && !building_terminal)
 			building_terminal = 1
 			var/turf/tempTDir = terminal.loc
-			if (istype(tempTDir))
+			if(istype(tempTDir))
 				if(tempTDir.intact)
 					user << "<span class='warning'>You must remove the floor plating first.</span>"
 				else
@@ -279,14 +279,14 @@
 						qdel(terminal)
 			building_terminal = 0
 
-/obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
+/obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	if(stat & BROKEN)
 		return
 
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["nameTag"] = name_tag
-	data["storedCapacity"] = round(100.0*charge/capacity, 0.1)
+	data["storedCapacity"] = round(100.0 * charge / capacity, 0.1)
 	data["charging"] = inputting
 	data["chargeMode"] = input_attempt
 	data["chargeLevel"] = input_level
@@ -299,7 +299,7 @@
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "smes.tmpl", "SMES Power Storage Unit", 540, 380)
@@ -313,15 +313,15 @@
 /obj/machinery/power/smes/Topic(href, href_list)
 	..()
 
-	if (usr.stat || usr.restrained())
+	if(usr.stat || usr.restrained())
 		return
 
-	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		if(!istype(usr, /mob/living/silicon/ai))
+	if(!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
+		if(!isAI(usr))
 			usr << "\red You don't have the dexterity to do this!"
 			return
 
-	if (!istype(src.loc, /turf) && !istype(usr, /mob/living/silicon/))
+	if(!isturf(src.loc) && !issilicon(usr))
 		return 0 // Do not update ui
 
 	if(href_list["cmode"])

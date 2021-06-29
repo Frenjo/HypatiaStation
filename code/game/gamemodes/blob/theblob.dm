@@ -26,7 +26,7 @@
 	New(loc, h = 30)
 		blobs += src
 		src.health = h
-		src.dir = pick(1, 2, 4, 8)
+		src.set_dir(pick(1, 2, 4, 8))
 		src.update_icon()
 		..(loc)
 		return
@@ -201,7 +201,7 @@
 
 	New(loc, h = 10)
 		src.health = h
-		src.dir = pick(1, 2, 4, 8)
+		src.set_dir(pick(1, 2, 4, 8))
 		src.update_idle()
 
 	proc/update_idle()

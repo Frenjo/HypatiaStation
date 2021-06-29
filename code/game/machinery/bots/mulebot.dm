@@ -518,39 +518,37 @@
 				return
 
 			else if(path.len > 0 && target)		// valid path
-
 				var/turf/next = path[1]
 				reached_target = 0
 				if(next == loc)
 					path -= next
 					return
 
-				if(istype( next, /turf/simulated))
+				if(istype(next, /turf/simulated))
 					//world << "at ([x],[y]) moving to ([next.x],[next.y])"
-
 					if(bloodiness)
 						var/obj/effect/decal/cleanable/blood/tracks/B = new(loc)
 						var/newdir = get_dir(next, loc)
 						if(newdir == dir)
-							B.dir = newdir
+							B.set_dir(newdir)
 						else
 							newdir = newdir | dir
 							if(newdir == 3)
 								newdir = 1
 							else if(newdir == 12)
 								newdir = 4
-							B.dir = newdir
+							B.set_dir(newdir)
 						bloodiness--
 
 					var/moved = step_towards(src, next)	// attempt to move
-					if(cell) cell.use(1)
+					if(cell)
+						cell.use(1)
 					if(moved)	// successful move
 						//world << "Successful move."
 						blockcount = 0
 						path -= loc
 
-
-						if(mode==4)
+						if(mode == 4)
 							spawn(1)
 								send_status()
 
@@ -562,8 +560,6 @@
 					else		// failed to move
 
 						//world << "Unable to move."
-
-
 
 						blockcount++
 						mode = 4

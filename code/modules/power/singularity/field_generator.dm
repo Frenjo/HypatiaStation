@@ -298,14 +298,14 @@ field_generator power level display
 		T = get_step(T, NSEW)
 		if(!locate(/obj/machinery/containment_field) in T)
 			var/obj/machinery/containment_field/CF = new/obj/machinery/containment_field()
-			CF.set_master(src,G)
+			CF.set_master(src, G)
 			fields += CF
 			G.fields += CF
 			CF.loc = T
-			CF.dir = field_dir
+			CF.set_dir(field_dir)
 	var/listcheck = 0
 	for(var/obj/machinery/field_generator/FG in connected_gens)
-		if (isnull(FG))
+		if(isnull(FG))
 			continue
 		if(FG == G)
 			listcheck = 1

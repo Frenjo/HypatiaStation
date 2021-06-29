@@ -24,7 +24,7 @@
 		user.drop_item()
 		var/obj/structure/stool/bed/chair/e_chair/E = new /obj/structure/stool/bed/chair/e_chair(src.loc)
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-		E.dir = dir
+		E.set_dir(dir)
 		E.part = SK
 		SK.loc = E
 		SK.master = E
@@ -43,7 +43,7 @@
 	else
 		src.layer = OBJ_LAYER
 	if(buckled_mob)
-		buckled_mob.dir = dir
+		buckled_mob.set_dir(dir)
 
 /obj/structure/stool/bed/chair/verb/rotate()
 	set name = "Rotate Chair"
@@ -51,7 +51,7 @@
 	set src in oview(1)
 
 	if(config.ghost_interaction)
-		src.dir = turn(src.dir, 90)
+		src.set_dir(turn(src.dir, 90))
 		handle_rotation()
 		return
 	else
@@ -62,7 +62,7 @@
 		if(usr.stat || usr.restrained())
 			return
 
-		src.dir = turn(src.dir, 90)
+		src.set_dir(turn(src.dir, 90))
 		handle_rotation()
 		return
 

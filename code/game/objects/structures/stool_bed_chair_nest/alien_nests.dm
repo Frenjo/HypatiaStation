@@ -58,7 +58,7 @@
 			"<span class='notice'>You hear squelching...</span>")
 	M.buckled = src
 	M.loc = src.loc
-	M.dir = src.dir
+	M.set_dir(src.dir)
 	M.update_canmove()
 	M.pixel_y = 6
 	src.buckled_mob = M

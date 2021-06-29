@@ -115,7 +115,7 @@
 	TLV["temperature"] =	list(20, 40, 140, 160) // K
 	target_temperature = 90
 
-/obj/machinery/alarm/New(var/loc, var/dir, var/building = 0)
+/obj/machinery/alarm/New(loc, dir, building = 0)
 	..()
 
 	if(building)
@@ -123,7 +123,7 @@
 			src.loc = loc
 
 		if(dir)
-			src.dir = dir
+			src.set_dir(dir)
 
 		buildstage = 0
 		wiresexposed = 1
@@ -1507,7 +1507,7 @@ FIRE ALARM
 		src.loc = loc
 
 	if(dir)
-		src.dir = dir
+		src.set_dir(dir)
 
 	if(building)
 		buildstage = 0
