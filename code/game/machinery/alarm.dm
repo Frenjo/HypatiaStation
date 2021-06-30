@@ -9,17 +9,17 @@
 	AAlarmIndexToWireColor = list(0, 0, 0, 0, 0)
 	AAlarmWireColorToIndex = list(0, 0, 0, 0, 0)
 	var/flagIndex = 1
-	for (var/flag=1, flag<32, flag+=flag)
+	for(var/flag = 1, flag < 32, flag += flag)
 		var/valid = 0
-		while (!valid)
+		while(!valid)
 			var/colorIndex = rand(1, 5)
-			if (AAlarmwires[colorIndex]==0)
+			if(AAlarmwires[colorIndex] == 0)
 				valid = 1
 				AAlarmwires[colorIndex] = flag
 				AAlarmIndexToFlag[flagIndex] = flag
 				AAlarmIndexToWireColor[flagIndex] = colorIndex
 				AAlarmWireColorToIndex[colorIndex] = flagIndex
-		flagIndex+=1
+		flagIndex += 1
 	return AAlarmwires
 
 #define AALARM_WIRE_IDSCAN		1	//Added wires
@@ -89,7 +89,7 @@
 	var/area/alarm_area
 	var/buildstage = 2 //2 is built, 1 is building, 0 is frame.
 
-	var/target_temperature = T0C+20
+	var/target_temperature = T0C + 20
 	var/regulating_temperature = 0
 
 	var/datum/radio_frequency/radio_connection
@@ -117,7 +117,6 @@
 
 /obj/machinery/alarm/New(loc, dir, building = 0)
 	..()
-
 	if(building)
 		if(loc)
 			src.loc = loc
@@ -134,6 +133,12 @@
 
 	first_run()
 
+/obj/machinery/alarm/initialize()
+	..()
+	set_frequency(frequency)
+	if(!master_is_operating())
+		elect_master()
+
 /obj/machinery/alarm/Destroy()
 	unregister_radio(src, frequency)
 	return ..()
@@ -141,7 +146,9 @@
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
 	area_uid = alarm_area.uid
-	if (name == "alarm")
+	if(name in list("north bump", "south bump", "east bump", "west bump",
+			"server north bump", "server south bump", "server east bump", "server west bump",
+			"freezer north bump", "freezer south bump", "freezer east bump", "freezer west bump"))
 		name = "[alarm_area.name] Air Alarm"
 
 	// breathable air according to human/Life()
@@ -149,15 +156,8 @@
 	TLV["carbon dioxide"] = list(-1.0, -1.0, 5, 10) // Partial pressure, kpa
 	TLV["plasma"] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
-	TLV["pressure"] =		list(ONE_ATMOSPHERE*0.80,ONE_ATMOSPHERE*0.90,ONE_ATMOSPHERE*1.10,ONE_ATMOSPHERE*1.20) /* kpa */
-	TLV["temperature"] =	list(T0C-26, T0C, T0C+40, T0C+66) // K
-
-
-/obj/machinery/alarm/initialize()
-	set_frequency(frequency)
-	if(!master_is_operating())
-		elect_master()
-
+	TLV["pressure"] =		list(ONE_ATMOSPHERE * 0.80, ONE_ATMOSPHERE * 0.90, ONE_ATMOSPHERE * 1.10, ONE_ATMOSPHERE * 1.20) /* kpa */
+	TLV["temperature"] =	list(T0C - 26, T0C, T0C + 40, T0C + 66) // K
 
 /obj/machinery/alarm/process()
 	if((stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
@@ -186,12 +186,12 @@
 			target_temperature = T0C + MIN_TEMPERATURE
 
 		var/datum/gas_mixture/gas
-		gas = location.remove_air(0.25*environment.total_moles)
+		gas = location.remove_air(0.25 * environment.total_moles)
 		if(gas)
 			var/heat_capacity = gas.heat_capacity()
 			if(heat_capacity)
-				if (gas.temperature <= target_temperature)	//gas heating
-					var/energy_used = min(gas.get_thermal_energy_change(target_temperature) , MAX_ENERGY_CHANGE)
+				if(gas.temperature <= target_temperature)	//gas heating
+					var/energy_used = min(gas.get_thermal_energy_change(target_temperature), MAX_ENERGY_CHANGE)
 
 					gas.add_thermal_energy(energy_used)
 					use_power(energy_used, ENVIRON)
@@ -218,12 +218,12 @@
 	var/old_level = danger_level
 	danger_level = overall_danger_level()
 
-	if (old_level != danger_level)
+	if(old_level != danger_level)
 		refresh_danger_level()
 		update_icon()
 
-	if (mode==AALARM_MODE_CYCLE && environment.return_pressure()<ONE_ATMOSPHERE*0.05)
-		mode=AALARM_MODE_FILL
+	if(mode == AALARM_MODE_CYCLE && environment.return_pressure() < ONE_ATMOSPHERE * 0.05)
+		mode = AALARM_MODE_FILL
 		apply_mode()
 
 
@@ -244,11 +244,12 @@
 
 /obj/machinery/alarm/proc/overall_danger_level()
 	var/turf/simulated/location = loc
-	if(!istype(location))	return//returns if loc is not simulated
+	if(!istype(location))
+		return//returns if loc is not simulated
 
 	var/datum/gas_mixture/environment = location.return_air()
 
-	var/partial_pressure = R_IDEAL_GAS_EQUATION*environment.temperature/environment.volume
+	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.temperature / environment.volume
 	var/environment_pressure = environment.return_pressure()
 	//var/other_moles = 0.0
 	//for(var/datum/gas/G in environment.trace_gases)
@@ -271,17 +272,16 @@
 		)
 
 /obj/machinery/alarm/proc/master_is_operating()
-	return alarm_area.master_air_alarm && !(alarm_area.master_air_alarm.stat & (NOPOWER|BROKEN))
-
+	return alarm_area.master_air_alarm && !(alarm_area.master_air_alarm.stat & (NOPOWER | BROKEN))
 
 /obj/machinery/alarm/proc/elect_master()
-	for (var/obj/machinery/alarm/AA in alarm_area)
-		if (!(AA.stat & (NOPOWER|BROKEN)))
+	for(var/obj/machinery/alarm/AA in alarm_area)
+		if(!(AA.stat & (NOPOWER | BROKEN)))
 			alarm_area.master_air_alarm = AA
 			return 1
 	return 0
 
-/obj/machinery/alarm/proc/get_danger_level(var/current_value, var/list/danger_levels)
+/obj/machinery/alarm/proc/get_danger_level(current_value, list/danger_levels)
 	if((current_value >= danger_levels[4] && danger_levels[4] > 0) || current_value <= danger_levels[1])
 		return 2
 	if((current_value >= danger_levels[3] && danger_levels[3] > 0) || current_value <= danger_levels[2])
@@ -296,30 +296,30 @@
 		icon_state = "alarmp"
 		return
 	switch(max(danger_level, alarm_area.atmosalm))
-		if (0)
+		if(0)
 			icon_state = "alarm0"
-		if (1)
+		if(1)
 			icon_state = "alarm2" //yes, alarm2 is yellow alarm
-		if (2)
+		if(2)
 			icon_state = "alarm1"
 
 /obj/machinery/alarm/receive_signal(datum/signal/signal)
 	if(stat & (NOPOWER|BROKEN))
 		return
-	if (alarm_area.master_air_alarm != src)
-		if (master_is_operating())
+	if(alarm_area.master_air_alarm != src)
+		if(master_is_operating())
 			return
 		elect_master()
-		if (alarm_area.master_air_alarm != src)
+		if(alarm_area.master_air_alarm != src)
 			return
 	if(!signal || signal.encryption)
 		return
 	var/id_tag = signal.data["tag"]
-	if (!id_tag)
+	if(!id_tag)
 		return
-	if (signal.data["area"] != area_uid)
+	if(signal.data["area"] != area_uid)
 		return
-	if (signal.data["sigtype"] != "status")
+	if(signal.data["sigtype"] != "status")
 		return
 
 	var/dev_type = signal.data["device"]
@@ -330,37 +330,37 @@
 	else if(dev_type == "AVP")
 		alarm_area.air_vent_info[id_tag] = signal.data
 
-/obj/machinery/alarm/proc/register_env_machine(var/m_id, var/device_type)
+/obj/machinery/alarm/proc/register_env_machine(m_id, device_type)
 	var/new_name
-	if (device_type=="AVP")
+	if(device_type == "AVP")
 		new_name = "[alarm_area.name] Vent Pump #[alarm_area.air_vent_names.len+1]"
 		alarm_area.air_vent_names[m_id] = new_name
-	else if (device_type=="AScr")
+	else if(device_type == "AScr")
 		new_name = "[alarm_area.name] Air Scrubber #[alarm_area.air_scrub_names.len+1]"
 		alarm_area.air_scrub_names[m_id] = new_name
 	else
 		return
 	spawn (10)
-		send_signal(m_id, list("init" = new_name) )
+		send_signal(m_id, list("init" = new_name))
 
 /obj/machinery/alarm/proc/refresh_all()
 	for(var/id_tag in alarm_area.air_vent_names)
 		var/list/I = alarm_area.air_vent_info[id_tag]
-		if (I && I["timestamp"]+AALARM_REPORT_TIMEOUT/2 > world.time)
+		if(I && I["timestamp"] + AALARM_REPORT_TIMEOUT / 2 > world.time)
 			continue
 		send_signal(id_tag, list("status") )
 	for(var/id_tag in alarm_area.air_scrub_names)
 		var/list/I = alarm_area.air_scrub_info[id_tag]
-		if (I && I["timestamp"]+AALARM_REPORT_TIMEOUT/2 > world.time)
+		if(I && I["timestamp"] + AALARM_REPORT_TIMEOUT / 2 > world.time)
 			continue
-		send_signal(id_tag, list("status") )
+		send_signal(id_tag, list("status"))
 
 /obj/machinery/alarm/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_TO_AIRALARM)
 
-/obj/machinery/alarm/proc/send_signal(var/target, var/list/command)//sends signal 'command' to 'target'. Returns 0 if no radio connection, 1 otherwise
+/obj/machinery/alarm/proc/send_signal(target, list/command)//sends signal 'command' to 'target'. Returns 0 if no radio connection, 1 otherwise
 	if(!radio_connection)
 		return 0
 
@@ -411,13 +411,13 @@
 			for(var/device_id in alarm_area.air_vent_names)
 				send_signal(device_id, list("power"= 0) )
 
-/obj/machinery/alarm/proc/apply_danger_level(var/new_danger_level)
-	if (alarm_area.atmosalert(new_danger_level))
+/obj/machinery/alarm/proc/apply_danger_level(new_danger_level)
+	if(alarm_area.atmosalert(new_danger_level))
 		post_alert(new_danger_level)
 
 	for(var/area/A in alarm_area)
-		for (var/obj/machinery/alarm/AA in A)
-			if ( !(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted && AA.danger_level != new_danger_level)
+		for(var/obj/machinery/alarm/AA in A)
+			if(!(AA.stat & (NOPOWER | BROKEN)) && !AA.shorted && AA.danger_level != new_danger_level)
 				AA.update_icon()
 
 	if(danger_level > 1)
@@ -438,20 +438,20 @@
 	alert_signal.data["zone"] = alarm_area.name
 	alert_signal.data["type"] = "Atmospheric"
 
-	if(alert_level==2)
+	if(alert_level == 2)
 		alert_signal.data["alert"] = "severe"
-	else if (alert_level==1)
+	else if(alert_level == 1)
 		alert_signal.data["alert"] = "minor"
-	else if (alert_level==0)
+	else if(alert_level == 0)
 		alert_signal.data["alert"] = "clear"
 
 	frequency.post_signal(src, alert_signal)
 
 /obj/machinery/alarm/proc/refresh_danger_level()
 	var/level = 0
-	for (var/obj/machinery/alarm/AA in alarm_area)
-		if ( !(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
-			if (AA.danger_level > level)
+	for(var/obj/machinery/alarm/AA in alarm_area)
+		if(!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
+			if(AA.danger_level > level)
 				level = AA.danger_level
 	apply_danger_level(level)
 
@@ -460,7 +460,7 @@
 	if(!A.air_doors_activated)
 		A.air_doors_activated = 1
 		for(var/obj/machinery/door/firedoor/E in A.all_doors)
-			if(istype(E,/obj/machinery/door/firedoor))
+			if(istype(E, /obj/machinery/door/firedoor))
 				if(!E:blocked)
 					if(E.operating)
 						E:nextstate = DOOR_CLOSED
@@ -515,23 +515,23 @@
 ///////////
 //HACKING//
 ///////////
-/obj/machinery/alarm/proc/isWireColorCut(var/wireColor)
+/obj/machinery/alarm/proc/isWireColorCut(wireColor)
 	var/wireFlag = AAlarmWireColorToFlag[wireColor]
 	return ((AAlarmwires & wireFlag) == 0)
 
-/obj/machinery/alarm/proc/isWireCut(var/wireIndex)
+/obj/machinery/alarm/proc/isWireCut(wireIndex)
 	var/wireFlag = AAlarmIndexToFlag[wireIndex]
 	return ((AAlarmwires & wireFlag) == 0)
 
 /obj/machinery/alarm/proc/allWiresCut()
 	var/i = 1
-	while(i<=5)
+	while(i <= 5)
 		if(AAlarmwires & AAlarmIndexToFlag[i])
 			return 0
 		i++
 	return 1
 
-/obj/machinery/alarm/proc/cut(var/wireColor)
+/obj/machinery/alarm/proc/cut(wireColor)
 	var/wireFlag = AAlarmWireColorToFlag[wireColor]
 	var/wireIndex = AAlarmWireColorToIndex[wireColor]
 	AAlarmwires &= ~wireFlag
@@ -544,8 +544,8 @@
 			shorted = 1
 			update_icon()
 
-		if (AALARM_WIRE_AI_CONTROL)
-			if (aidisabled == 0)
+		if(AALARM_WIRE_AI_CONTROL)
+			if(aidisabled == 0)
 				aidisabled = 1
 
 		if(AALARM_WIRE_SYPHON)
@@ -553,8 +553,7 @@
 			apply_mode()
 
 		if(AALARM_WIRE_AALARM)
-
-			if (alarm_area.atmosalert(2))
+			if(alarm_area.atmosalert(2))
 				apply_danger_level(2)
 			spawn(1)
 				updateUsrDialog()
@@ -725,7 +724,7 @@
 </style>
 "}
 
-	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.temperature/environment.volume
+	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.temperature / environment.volume
 
 	var/list/current_settings = TLV["pressure"]
 	var/environment_pressure = environment.return_pressure()
