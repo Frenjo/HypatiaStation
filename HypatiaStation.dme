@@ -1453,6 +1453,7 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
+#include "maps\RandomZLevels\Academy.dm"
 #include "maps\RandomZLevels\challenge.dm"
 #include "maps\RandomZLevels\stationCollision.dm"
 #include "maps\RandomZLevels\wildwest.dm"

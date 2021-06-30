@@ -193,6 +193,70 @@
 
 /obj/machinery/power/apc/abandoned/hyper
 	cell_type = /obj/item/weapon/cell/hyper
+
+// These are for away mission locations, IE the Academy or Black Market Packers.
+/obj/machinery/power/apc/away
+	locked = 0
+
+// These are switched fully on, but still unlocked.
+/obj/machinery/power/apc/away/on
+	lighting = 3
+	equipment = 3
+	environ = 3
+
+/obj/machinery/power/apc/away/on/none
+	cell_type = null
+
+/obj/machinery/power/apc/away/on/potato
+	cell_type = /obj/item/weapon/cell/potato
+
+/obj/machinery/power/apc/away/on/crap
+	cell_type = /obj/item/weapon/cell/crap
+
+/obj/machinery/power/apc/away/on/cell
+	cell_type = /obj/item/weapon/cell
+
+/obj/machinery/power/apc/away/on/apc
+	cell_type = /obj/item/weapon/cell/apc
+
+/obj/machinery/power/apc/away/on/high
+	cell_type = /obj/item/weapon/cell/high
+
+/obj/machinery/power/apc/away/on/super
+	cell_type = /obj/item/weapon/cell/super
+
+/obj/machinery/power/apc/away/on/hyper
+	cell_type = /obj/item/weapon/cell/hyper
+
+// These are switched fully off, but still unlocked.
+/obj/machinery/power/apc/away/off
+	lighting = 0
+	equipment = 0
+	environ = 0
+
+/obj/machinery/power/apc/away/off/none
+	cell_type = null
+
+/obj/machinery/power/apc/away/off/potato
+	cell_type = /obj/item/weapon/cell/potato
+
+/obj/machinery/power/apc/away/off/crap
+	cell_type = /obj/item/weapon/cell/crap
+
+/obj/machinery/power/apc/away/off/cell
+	cell_type = /obj/item/weapon/cell
+
+/obj/machinery/power/apc/away/off/apc
+	cell_type = /obj/item/weapon/cell/apc
+
+/obj/machinery/power/apc/away/off/high
+	cell_type = /obj/item/weapon/cell/high
+
+/obj/machinery/power/apc/away/off/super
+	cell_type = /obj/item/weapon/cell/super
+
+/obj/machinery/power/apc/away/off/hyper
+	cell_type = /obj/item/weapon/cell/hyper
 // End variants.
 
 /obj/machinery/power/apc/updateDialog()

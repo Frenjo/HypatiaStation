@@ -565,7 +565,7 @@
 "kS" = (/obj/structure/closet/crate,/obj/item/weapon/cell/high,/obj/item/weapon/cell/high,/turf/simulated/floor/plating,/area/awaymission/spacebattle/cruiser)
 "kT" = (/obj/structure/closet/crate/medical,/obj/item/weapon/storage/firstaid/regular,/turf/simulated/floor/plating,/area/awaymission/spacebattle/cruiser)
 "kU" = (/obj/structure/closet/crate/medical,/obj/item/weapon/tank/anesthetic,/turf/simulated/floor/plating,/area/awaymission/spacebattle/cruiser)
-"kV" = (/obj/machinery/door/airlock/glass_medical{id_tag = ""; name = "Medbay"; req_access_txt = "0"; req_one_access_txt = "0"},/turf/simulated/floor{icon_state = "white"},/area/awaymission/spacebattle/cruiser)
+"kV" = (/obj/machinery/door/airlock/glass_medical{id_tag = ""; name = "Medbay"},/turf/simulated/floor{icon_state = "white"},/area/awaymission/spacebattle/cruiser)
 "kW" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/firstaid/regular,/obj/item/weapon/storage/firstaid/regular,/turf/simulated/floor{icon_state = "whitehall"; dir = 8},/area/awaymission/spacebattle/cruiser)
 "kX" = (/obj/structure/table/woodentable,/obj/item/device/violin,/turf/simulated/floor/wood,/area/awaymission/spacebattle/cruiser)
 "kY" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 5; health = 1e+007},/turf/simulated/floor/engine,/area/awaymission/spacebattle/cruiser)
