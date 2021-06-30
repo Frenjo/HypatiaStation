@@ -80,7 +80,7 @@
 		"kidneys" =  /datum/organ/internal/kidney,
 		"brain" =    /datum/organ/internal/brain,
 		"eyes" =     /datum/organ/internal/eyes
-		)
+	)
 
 	var/survival_kit = /obj/item/weapon/storage/box/survival // For species with custom survival kits, default is the standard kit.
 
@@ -320,7 +320,7 @@
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/leap
-		)
+	)
 
 	has_organ = list(
 		"heart" =    /datum/organ/internal/heart,

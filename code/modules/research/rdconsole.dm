@@ -890,7 +890,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	name = "Robotics R&D Console"
 	id = 2
 	req_access = null
-	req_access_txt = "29"
+	req_access = list(access_robotics)
 
 /obj/machinery/computer/rdconsole/core
 	name = "Core R&D Console"

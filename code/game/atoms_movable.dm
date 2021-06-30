@@ -22,7 +22,8 @@
 		initialize()
 
 /atom/movable/proc/initialize()
-	return
+	if(!isnull(gcDestroyed))
+		CRASH("GC: -- [type] had initialize() called after qdel() --")
 
 /atom/movable/Del()
 	if(isnull(gcDestroyed) && loc)

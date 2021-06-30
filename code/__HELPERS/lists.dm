@@ -398,6 +398,36 @@ proc/listclearnulls(list/list)
 	return reverselist(out)
 
 
+/proc/dd_sortedObjectList(list/L, cache = list())
+	if(L.len < 2)
+		return L
+	var/middle = L.len / 2 + 1 // Copy is first,second-1
+	return dd_mergeObjectList(dd_sortedObjectList(L.Copy(0, middle), cache), dd_sortedObjectList(L.Copy(middle), cache), cache) //second parameter null = to end of list
+
+/proc/dd_mergeObjectList(list/L, list/R, list/cache)
+	var/Li = 1
+	var/Ri = 1
+	var/list/result = new()
+	while(Li <= L.len && Ri <= R.len)
+		var/LLi = L[Li]
+		var/RRi = R[Ri]
+		var/LLiV = cache[LLi]
+		var/RRiV = cache[RRi]
+		if(!LLiV)
+			LLiV = LLi:dd_SortValue()
+			cache[LLi] = LLiV
+		if(!RRiV)
+			RRiV = RRi:dd_SortValue()
+			cache[RRi] = RRiV
+		if(LLiV < RRiV)
+			result += L[Li++]
+		else
+			result += R[Ri++]
+
+	if(Li <= L.len)
+		return (result + L.Copy(Li, 0))
+	return (result + R.Copy(Ri, 0))
+
 // Insert an object into a sorted list, preserving sortedness
 /proc/dd_insertObjectList(list/L, O)
 	var/min = 1
@@ -424,6 +454,12 @@ proc/listclearnulls(list/list)
 
 /datum/proc/dd_SortValue()
 	return "[src]"
+
+/obj/machinery/dd_SortValue()
+	return "[sanitize(name)]"
+
+/obj/machinery/camera/dd_SortValue()
+	return "[c_tag]"
 
 
 #define subtypesof(prototype) (typesof(prototype) - prototype)

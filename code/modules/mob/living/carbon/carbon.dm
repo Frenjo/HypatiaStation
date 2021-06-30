@@ -375,7 +375,7 @@
 	return
 
 //generates realistic-ish pulse output based on preset levels
-/mob/living/carbon/proc/get_pulse(var/method)	//method 0 is for hands, 1 is for machines, more accurate
+/mob/living/carbon/proc/get_pulse(method)	//method 0 is for hands, 1 is for machines, more accurate
 	var/temp = 0								//see setup.dm:694
 	switch(src.pulse)
 		if(PULSE_NONE)
@@ -401,16 +401,16 @@
 	set category = "IC"
 
 	if(usr.sleeping)
-		usr << "\red You are already sleeping"
+		to_chat(usr, SPAN_WARNING("You are already sleeping."))
 		return
-	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
+	if(alert(src, "You sure you want to sleep for a while?", "Sleep", "Yes", "No") == "Yes")
 		usr.sleeping = 20 //Short nap
 
 /mob/living/carbon/Bump(atom/movable/AM, yes)
 	if(now_pushing || !yes)
 		return
 	..()
-	if(istype(AM, /mob/living/carbon) && prob(10))
+	if(iscarbon(AM) && prob(10))
 		src.spread_disease_to(AM, "Contact")
 
 //Brain slug proc for voluntary removal of control.

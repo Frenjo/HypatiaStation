@@ -8,7 +8,7 @@
 	var/datum/species/species //Contains icon generation and language information, set during New().
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 
-/mob/living/carbon/human/New(var/new_loc, var/new_species = null)
+/mob/living/carbon/human/New(new_loc, new_species = null)
 	if(!dna)
 		dna = new /datum/dna(null)
 		// Species name is handled by set_species()
@@ -1157,16 +1157,16 @@
 		update_icons()
 		if(!species.flags & NO_BLOOD)
 			vessel.add_reagent("blood", 560 - vessel.total_volume)
+	
+	mob_bump_flag = species.bump_flag
+	mob_swap_flags = species.swap_flags
+	mob_push_flags = species.push_flags
 
 	if(species)
 		species.handle_post_spawn(src)
 		return 1
 	else
 		return 0
-
-	mob_bump_flag = species.bump_flag
-	mob_swap_flags = species.swap_flags
-	mob_push_flags = species.push_flags
 
 /mob/living/carbon/human/proc/bloody_doodle()
 	set category = "IC"

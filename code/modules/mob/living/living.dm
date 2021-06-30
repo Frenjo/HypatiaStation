@@ -46,10 +46,10 @@ default behaviour is:
 
 /mob/living/Bump(atom/movable/AM, yes)
 	spawn(0)
-		if((!(yes) || now_pushing) || !loc)
+		if((!yes || now_pushing) || !loc)
 			return
 		now_pushing = 1
-		if(istype(AM, /mob/living))
+		if(isliving(AM))
 			var/mob/living/tmob = AM
 			for(var/mob/living/M in range(tmob, 1))
 				if(tmob.pinned.len || ((M.pulling == tmob && (tmob.restrained() && !(M.restrained()) && M.stat == CONSCIOUS)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)))
@@ -98,7 +98,7 @@ default behaviour is:
 			if(!can_move_mob(tmob, 0, 0))
 				now_pushing = 0
 				return
-			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
+			if(ishuman(tmob) && (FAT in tmob.mutations))
 				if(prob(40) && !(FAT in src.mutations))
 					to_chat(src, SPAN_DANGER("You fail to push [tmob]'s fat ass out of the way."))
 					now_pushing = 0

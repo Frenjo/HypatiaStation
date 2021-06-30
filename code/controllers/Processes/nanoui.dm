@@ -1,6 +1,3 @@
-/datum/controller/process/nanoui
-	var/tmp/datum/updateQueue/updateQueueInstance
-
 /datum/controller/process/nanoui/setup()
 	name = "nanoui"
 	schedule_interval = 2 SECONDS

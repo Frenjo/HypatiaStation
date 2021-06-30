@@ -1,12 +1,20 @@
+/var/global/machinery_sort_required = 0
+
 /datum/controller/process/machinery/setup()
 	name = "machinery"
 	schedule_interval = 2 SECONDS
 	start_delay = 12
 
 /datum/controller/process/machinery/doWork()
+	internal_sort()
 	internal_process_pipenets()
 	internal_process_machinery()
 	internal_process_powernets()
+
+/datum/controller/process/machinery/proc/internal_sort()
+	if(machinery_sort_required)
+		machinery_sort_required = 0
+		machines = dd_sortedObjectList(machines)
 
 /datum/controller/process/machinery/proc/internal_process_pipenets()
 	for(var/datum/pipe_network/pipeNetwork in pipe_networks)

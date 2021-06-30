@@ -1,8 +1,3 @@
-var/global/list/object_profiling = list()
-
-/datum/controller/process/obj
-	var/tmp/datum/updateQueue/updateQueueInstance
-
 /datum/controller/process/obj/setup()
 	name = "obj"
 	schedule_interval = 2 SECONDS

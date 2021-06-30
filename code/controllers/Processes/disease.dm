@@ -1,6 +1,3 @@
-/datum/controller/process/disease
-	var/tmp/datum/updateQueue/updateQueueInstance
-
 /datum/controller/process/disease/setup()
 	name = "disease"
 	schedule_interval = 2 SECONDS
