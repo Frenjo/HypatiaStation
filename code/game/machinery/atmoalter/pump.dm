@@ -28,17 +28,17 @@
 	return
 
 /obj/machinery/portable_atmospherics/pump/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(stat & (BROKEN | NOPOWER))
 		..(severity)
 		return
 
-	if(prob(50/severity))
+	if(prob(50 / severity))
 		on = !on
 
-	if(prob(100/severity))
+	if(prob(100 / severity))
 		direction_out = !direction_out
 
-	target_pressure = rand(0,1300)
+	target_pressure = rand(0, 1300)
 	update_icon()
 
 	..(severity)
@@ -90,14 +90,13 @@
 /obj/machinery/portable_atmospherics/pump/return_air()
 	return air_contents
 
-/obj/machinery/portable_atmospherics/pump/attack_ai(var/mob/user as mob)
+/obj/machinery/portable_atmospherics/pump/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/pump/attack_paw(var/mob/user as mob)
+/obj/machinery/portable_atmospherics/pump/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/pump/attack_hand(var/mob/user as mob)
-
+/obj/machinery/portable_atmospherics/pump/attack_hand(mob/user as mob)
 	user.set_machine(src)
 	var/holding_text
 
@@ -124,10 +123,10 @@ Target Pressure: <A href='?src=\ref[src];pressure_adj=-1000'>-</A> <A href='?src
 
 /obj/machinery/portable_atmospherics/pump/Topic(href, href_list)
 	..()
-	if (usr.stat || usr.restrained())
+	if(usr.stat || usr.restrained())
 		return
 
-	if (((get_dist(src, usr) <= 1) && istype(src.loc, /turf)))
+	if(((get_dist(src, usr) <= 1) && isturf(src.loc)))
 		usr.set_machine(src)
 
 		if(href_list["power"])
@@ -136,14 +135,14 @@ Target Pressure: <A href='?src=\ref[src];pressure_adj=-1000'>-</A> <A href='?src
 		if(href_list["direction"])
 			direction_out = !direction_out
 
-		if (href_list["remove_tank"])
+		if(href_list["remove_tank"])
 			if(holding)
 				holding.loc = loc
 				holding = null
 
-		if (href_list["pressure_adj"])
+		if(href_list["pressure_adj"])
 			var/diff = text2num(href_list["pressure_adj"])
-			target_pressure = min(10*ONE_ATMOSPHERE, max(0, target_pressure+diff))
+			target_pressure = min(10 * ONE_ATMOSPHERE, max(0, target_pressure + diff))
 
 		src.updateUsrDialog()
 		src.add_fingerprint(usr)

@@ -42,7 +42,7 @@
 	name = "Volatile Fuel"
 
 	specific_heat = 253	// J/(mol*K)	C8H18 gasoline. Isobaric, but good enough.
-	molar_mass = 0.114	// kg/mol. 		same.
+	molar_mass = 0.114	// kg/mol.		same.
 
 	flags = XGM_GAS_FUEL
 

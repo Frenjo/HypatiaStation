@@ -1,6 +1,6 @@
 /obj/machinery/portable_atmospherics/canister
 	name = "canister"
-	icon = 'icons/obj/atmos.dmi'
+	icon = 'icons/obj/canister.dmi'
 	icon_state = "yellow"
 	density = 1
 	var/health = 100.0
@@ -22,8 +22,6 @@
 // Edited canister icon names to be more consistent, and added a few more. -Frenjo
 /obj/machinery/portable_atmospherics/canister/sleeping_agent
 	name = "Canister: \[N2O\]"
-	//icon_state = "redws"
-	//canister_color = "redws"
 	icon_state = "redws2"
 	canister_color = "redws2"
 	can_label = 0
@@ -36,8 +34,6 @@
 
 /obj/machinery/portable_atmospherics/canister/oxygen
 	name = "Canister: \[O2\]"
-	//icon_state = "blue"
-	//canister_color = "blue"
 	icon_state = "bluews"
 	canister_color = "bluews"
 	can_label = 0
@@ -70,8 +66,8 @@
 // Added this because of updated atmos stuff. -Frenjo
 /obj/machinery/portable_atmospherics/canister/oxygen_toxins
 	name = "Canister \[O2/TOX\]"
-	icon_state = "orangebs2"
-	canister_color = "orangebs2"
+	icon_state = "orangews2"
+	canister_color = "orangews2"
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/proc/check_change()
@@ -332,29 +328,29 @@ update_flag
 			// Edited these to be consistent with above changes.
 			// And add the new options. -Frenjo
 			var/list/colors = list(\
-				/*"\[N2O\]" = "redws", \*/
-				"\[N2O\]" = "redws2", \
-				"\[N2\]" = "red", \
-				/*"\[O2\]" = "blue", \*/
-				"\[O2\]" = "bluews", \
-				"\[Toxin (Bio)\]" = "orange", \
-				"\[CO2\]" = "black", \
-				"\[Air\]" = "grey", \
-				"\[CAUTION\]" = "yellow", \
-				"\[Blue\]" = "blue", \
-				"\[Blue 2Stripe\]" = "bluews2", \
-				"\[Cyan\]" = "cyan", \
-				"\[Cyan 1Stripe\]" = "cyanws", \
-				"\[Red 1Stripe\]" = "redws", \
-				"\[O2/TOX\]" = "orangebs", \
-				"\[O2-Agent-B\]" = "orangebs2", \
-				"\[Green\]" = "green", \
-				"\[Light Purple\]" = "lightpurple", \
-				"\[Medium Purple\]" = "medpurple", \
-				"\[Dark Purple\]" = "darkpurple", \
-				"\[Rainbow\]" = "rainbow", \
+				"\[N2O\]" = "redws2",
+				"\[N2\]" = "red",
+				"\[O2\]" = "bluews",
+				"\[Toxin (Bio)\]" = "orange",
+				"\[CO2\]" = "black",
+				"\[Air\]" = "grey",
+				"\[CAUTION\]" = "yellow",
+				"\[O2/TOX\]" = "orangews2",
+				"\[O2-Agent-B\]" = "orangebs",
+				"\[Blue\]" = "blue",
+				"\[Blue 2Stripe\]" = "bluews2",
+				"\[Cyan\]" = "cyan",
+				"\[Cyan 1Stripe\]" = "cyanws",
+				"\[Red 1Stripe\]" = "redws",
+				"\[Orange 1Stripe\]" = "orangews",
+				"\[Orange 2Stripe-B\]" = "orangebs2",
+				"\[Green\]" = "green",
+				"\[Light Purple\]" = "lightpurple",
+				"\[Medium Purple\]" = "medpurple",
+				"\[Dark Purple\]" = "darkpurple",
+				"\[Rainbow\]" = "rainbow",
 			)
-			var/label = input("Choose canister label", "Gas Canister") as null|anything in colors
+			var/label = input("Choose canister label", "Gas Canister") as null | anything in colors
 			if(label)
 				src.canister_color = colors[label]
 				src.icon_state = colors[label]
@@ -367,34 +363,28 @@ update_flag
 
 /obj/machinery/portable_atmospherics/canister/toxins/New()
 	..()
-
 	src.air_contents.adjust_gas("plasma", (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
-
 	src.update_icon()
 	return 1
+
 
 /obj/machinery/portable_atmospherics/canister/oxygen/New()
 	..()
-
 	src.air_contents.adjust_gas("oxygen", (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
-
 	src.update_icon()
 	return 1
 
+
 /obj/machinery/portable_atmospherics/canister/sleeping_agent/New()
 	..()
-
 	air_contents.adjust_gas("sleeping_agent", (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
-
 	src.update_icon()
 	return 1
 
 //Dirty way to fill room with gas. However it is a bit easier to do than creating some floor/engine/n2o -rastaf0
 /obj/machinery/portable_atmospherics/canister/sleeping_agent/roomfiller/New()
 	..()
-
 	air_contents.gas["sleeping_agent"] = 9*4000
-
 	spawn(10)
 		var/turf/simulated/location = src.loc
 		if(istype(src.loc))
@@ -404,47 +394,41 @@ update_flag
 			air_contents = new
 	return 1
 
+
 /obj/machinery/portable_atmospherics/canister/nitrogen/New()
 	..()
-
 	src.air_contents.adjust_gas("nitrogen", (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
-
 	src.update_icon()
 	return 1
 
+
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide/New()
 	..()
-
 	src.air_contents.adjust_gas("carbon_dioxide", (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
-
 	src.update_icon()
 	return 1
 
 
 /obj/machinery/portable_atmospherics/canister/air/New()
 	..()
-
 	src.air_contents.adjust_multi("oxygen", (O2STANDARD * src.maximum_pressure * filled) * air_contents.volume/(R_IDEAL_GAS_EQUATION * air_contents.temperature), "nitrogen", (N2STANDARD * src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
-
 	src.update_icon()
 	return 1
+
 
 // Added this because I'm curious. -Frenjo
 /obj/machinery/portable_atmospherics/canister/oxygen_agent_b/New()
 	..()
-
 	air_contents.adjust_gas("oxygen_agent_b", (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
-
 	src.update_icon()
 	return 1
+
 
 // Added this because of updated atmos stuff. -Frenjo
 /obj/machinery/portable_atmospherics/canister/oxygen_toxins/New()
 	..()
-
 	// This has a 75/25 plasma/oxygen mixture, used in the atmospheric tank. -Frenjo
 	src.air_contents.adjust_gas("oxygen", (src.maximum_pressure * filled / 0.25) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
 	src.air_contents.adjust_gas("plasma", (src.maximum_pressure * filled / 0.75) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
-
 	src.update_icon()
 	return 1

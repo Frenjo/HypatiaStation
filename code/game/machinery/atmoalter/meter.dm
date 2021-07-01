@@ -18,7 +18,7 @@
 	return 1
 
 /obj/machinery/meter/initialize()
-	if (!target)
+	if(!target)
 		src.target = locate(/obj/machinery/atmospherics/pipe) in loc
 
 /obj/machinery/meter/process()
@@ -26,7 +26,7 @@
 		icon_state = "meterX"
 		return 0
 
-	if(stat & (BROKEN|NOPOWER))
+	if(stat & (BROKEN | NOPOWER))
 		icon_state = "meter0"
 		return 0
 
@@ -38,24 +38,24 @@
 		return 0
 
 	var/env_pressure = environment.return_pressure()
-	if(env_pressure <= 0.15*ONE_ATMOSPHERE)
+	if(env_pressure <= 0.15 * ONE_ATMOSPHERE)
 		icon_state = "meter0"
-	else if(env_pressure <= 1.8*ONE_ATMOSPHERE)
-		var/val = round(env_pressure/(ONE_ATMOSPHERE*0.3) + 0.5)
+	else if(env_pressure <= 1.8 * ONE_ATMOSPHERE)
+		var/val = round(env_pressure / (ONE_ATMOSPHERE * 0.3) + 0.5)
 		icon_state = "meter1_[val]"
-	else if(env_pressure <= 30*ONE_ATMOSPHERE)
-		var/val = round(env_pressure/(ONE_ATMOSPHERE*5)-0.35) + 1
+	else if(env_pressure <= 30 * ONE_ATMOSPHERE)
+		var/val = round(env_pressure / (ONE_ATMOSPHERE * 5) - 0.35) + 1
 		icon_state = "meter2_[val]"
-	else if(env_pressure <= 59*ONE_ATMOSPHERE)
-		var/val = round(env_pressure/(ONE_ATMOSPHERE*5) - 6) + 1
+	else if(env_pressure <= 59 * ONE_ATMOSPHERE)
+		var/val = round(env_pressure / (ONE_ATMOSPHERE * 5) - 6) + 1
 		icon_state = "meter3_[val]"
 	else
 		icon_state = "meter4"
 
 	if(frequency)
 		var/datum/radio_frequency/radio_connection = radio_controller.return_frequency(frequency)
-
-		if(!radio_connection) return
+		if(!radio_connection)
+			return
 
 		var/datum/signal/signal = new
 		signal.source = src
@@ -87,47 +87,40 @@
 	t += status()
 	usr << t
 
-
-
 /obj/machinery/meter/Click()
-
-	if(stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER | BROKEN))
 		return 1
 
 	var/t = null
-	if (get_dist(usr, src) <= 3 || istype(usr, /mob/living/silicon/ai) || istype(usr, /mob/dead))
+	if(get_dist(usr, src) <= 3 || isAI(usr) || istype(usr, /mob/dead))
 		t += status()
 	else
-		usr << "\blue <B>You are too far away.</B>"
+		to_chat(usr, SPAN_NOTICE("You are too far away."))
 		return 1
 
 	usr << t
 	return 1
 
-/obj/machinery/meter/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/weapon/wrench))
+/obj/machinery/meter/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
-	user << "\blue You begin to unfasten \the [src]..."
-	if (do_after(user, 40))
-		user.visible_message( \
-			"[user] unfastens \the [src].", \
-			SPAN_INFO("You have unfastened \the [src]."), \
-			"You hear a ratchet.")
+	to_chat(user, SPAN_INFO("You begin to unfasten \the [src]..."))
+	if(do_after(user, 40))
+		user.visible_message("[user] unfastens \the [src].", SPAN_INFO("You have unfastened \the [src]."), "You hear a ratchet.")
 		new /obj/item/pipe_meter(src.loc)
 		qdel(src)
 
-// TURF METER - REPORTS A TILE'S AIR CONTENTS
 
+// TURF METER - REPORTS A TILE'S AIR CONTENTS
 /obj/machinery/meter/turf/New()
 	..()
 	src.target = loc
 	return 1
 
-
 /obj/machinery/meter/turf/initialize()
-	if (!target)
+	if(!target)
 		src.target = loc
 
-/obj/machinery/meter/turf/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/meter/turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	return

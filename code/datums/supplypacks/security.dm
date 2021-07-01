@@ -53,7 +53,7 @@
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Weapons crate"
-	access = access_security
+	access = access_armory
 
 
 /decl/hierarchy/supply_pack/security/eweapons
@@ -225,3 +225,16 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Wall shield generators crate"
 	access = access_teleporter
+
+
+/decl/hierarchy/supply_pack/security/disablers
+	name = "Disabler supply crate"
+	contains = list(
+		/obj/item/weapon/gun/energy/disabler,
+		/obj/item/weapon/gun/energy/disabler,
+		/obj/item/weapon/gun/energy/disabler
+	)
+	cost = 20 // This cost seems to be roughly similar to the taser crate except slightly less since they're only disablers.
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Disabler supply crate"
+	access = access_security

@@ -13,23 +13,20 @@
 
 /obj/machinery/portable_atmospherics/New()
 	..()
-
 	air_contents.volume = volume
 	air_contents.temperature = T20C
-
 	return 1
 
 /obj/machinery/portable_atmospherics/Destroy()
-	del(air_contents)
+	qdel(air_contents)
 	..()
 
 /obj/machinery/portable_atmospherics/initialize()
-	. = ..()
-	spawn()
-		var/obj/machinery/atmospherics/portables_connector/port = locate() in loc
-		if(port)
-			connect(port)
-			update_icon()
+	..()
+	var/obj/machinery/atmospherics/portables_connector/port = locate() in loc
+	if(port)
+		connect(port)
+		update_icon()
 
 /obj/machinery/portable_atmospherics/process()
 	if(!connected_port) //only react when pipe_network will ont it do it for you
@@ -38,57 +35,50 @@
 	else
 		update_icon()
 
-/obj/machinery/portable_atmospherics/Destroy()
-	qdel(air_contents)
-	..()
-
 /obj/machinery/portable_atmospherics/update_icon()
 	return null
 
-/obj/machinery/portable_atmospherics
-	proc
+/obj/machinery/portable_atmospherics/proc/connect(obj/machinery/atmospherics/portables_connector/new_port)
+	//Make sure not already connected to something else
+	if(connected_port || !new_port || new_port.connected_device)
+		return 0
 
-		connect(obj/machinery/atmospherics/portables_connector/new_port)
-			//Make sure not already connected to something else
-			if(connected_port || !new_port || new_port.connected_device)
-				return 0
+	//Make sure are close enough for a valid connection
+	if(new_port.loc != loc)
+		return 0
 
-			//Make sure are close enough for a valid connection
-			if(new_port.loc != loc)
-				return 0
+	//Perform the connection
+	connected_port = new_port
+	connected_port.connected_device = src
 
-			//Perform the connection
-			connected_port = new_port
-			connected_port.connected_device = src
+	anchored = 1 //Prevent movement
 
-			anchored = 1 //Prevent movement
+	//Actually enforce the air sharing
+	var/datum/pipe_network/network = connected_port.return_network(src)
+	if(network && !network.gases.Find(air_contents))
+		network.gases += air_contents
+		network.update = 1
 
-			//Actually enforce the air sharing
-			var/datum/pipe_network/network = connected_port.return_network(src)
-			if(network && !network.gases.Find(air_contents))
-				network.gases += air_contents
-				network.update = 1
+	return 1
 
-			return 1
+/obj/machinery/portable_atmospherics/proc/disconnect()
+	if(!connected_port)
+		return 0
 
-		disconnect()
-			if(!connected_port)
-				return 0
+	var/datum/pipe_network/network = connected_port.return_network(src)
+	if(network)
+		network.gases -= air_contents
 
-			var/datum/pipe_network/network = connected_port.return_network(src)
-			if(network)
-				network.gases -= air_contents
+	anchored = 0
 
-			anchored = 0
+	connected_port.connected_device = null
+	connected_port = null
 
-			connected_port.connected_device = null
-			connected_port = null
+	return 1
 
-			return 1
-
-/obj/machinery/portable_atmospherics/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/portable_atmospherics/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	var/obj/icon = src
-	if((istype(W, /obj/item/weapon/tank) && !(src.destroyed)))
+	if((istype(W, /obj/item/weapon/tank) && !src.destroyed))
 		if(src.holding)
 			return
 		var/obj/item/weapon/tank/T = W
@@ -136,5 +126,4 @@
 		else
 			to_chat(user, SPAN_INFO("Tank is empty!"))
 		return
-
 	return

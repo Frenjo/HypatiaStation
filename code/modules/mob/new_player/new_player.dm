@@ -28,8 +28,10 @@
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character</A></p>"
 
 	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
-		if(!ready)	output += "<p><a href='byond://?src=\ref[src];ready=1'>Declare Ready</A></p>"
-		else	output += "<p><b>You are ready</b> (<a href='byond://?src=\ref[src];ready=2'>Cancel</A>)</p>"
+		if(!ready)
+			output += "<p><a href='byond://?src=\ref[src];ready=1'>Declare Ready</A></p>"
+		else
+			output += "<p><b>You are ready</b> (<a href='byond://?src=\ref[src];ready=2'>Cancel</A>)</p>"
 
 	else
 		output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"
@@ -65,11 +67,11 @@
 	..()
 
 	statpanel("Status")
-	if (client.statpanel == "Status" && ticker)
-		if (ticker.current_state != GAME_STATE_PREGAME)
-			stat(null, "Station Time: [worldtime2text()]")
+	if(client.statpanel == "Status" && ticker)
+		if(ticker.current_state != GAME_STATE_PREGAME)
+			stat("Station Time:", "[worldtime2text()]")
 	statpanel("Lobby")
-	if(client.statpanel=="Lobby" && ticker)
+	if(client.statpanel == "Lobby" && ticker)
 		if(ticker.hide_mode)
 			stat("Game Mode:", "Secret")
 		else
@@ -82,12 +84,13 @@
 			totalPlayers = 0
 			totalPlayersReady = 0
 			for(var/mob/new_player/player in player_list)
-				stat("[player.key]", (player.ready)?("(Playing)"):(null))
+				stat("[player.key]", (player.ready) ? ("(Playing)") : (null))
 				totalPlayers++
 				if(player.ready)totalPlayersReady++
 
 /mob/new_player/Topic(href, href_list[])
-	if(!client)	return 0
+	if(!client)
+		return 0
 
 	if(href_list["show_preferences"])
 		client.prefs.ShowChoices(src)
@@ -104,8 +107,9 @@
 		new_player_panel_proc()
 
 	if(href_list["observe"])
-		if(alert(src,"Are you sure you wish to observe? You will have to wait 30 minutes before being able to respawn!","Player Setup","Yes","No") == "Yes")
-			if(!client)	return 1
+		if(alert(src, "Are you sure you wish to observe? You will have to wait 30 minutes before being able to respawn!", "Player Setup", "Yes", "No") == "Yes")
+			if(!client)
+				return 1
 			var/mob/dead/observer/observer = new()
 
 			spawning = 1
@@ -114,7 +118,7 @@
 			observer.started_as_observer = 1
 			close_spawn_windows()
 			var/obj/O = locate("landmark*Observer-Start")
-			src << "\blue Now teleporting."
+			to_chat(src, SPAN_INFO("Now teleporting."))
 			observer.loc = O.loc
 			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
@@ -126,8 +130,8 @@
 				client.prefs.real_name = random_name(client.prefs.gender)
 			observer.real_name = client.prefs.real_name
 			observer.name = observer.real_name
-			if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
-				observer.verbs -= /mob/dead/observer/verb/toggle_antagHUD        // Poor guys, don't know what they are missing!
+			if(!client.holder && !config.antag_hud_allowed)				// For new ghosts we remove the verb from even showing up if it's not allowed.
+				observer.verbs -= /mob/dead/observer/verb/toggle_antagHUD		// Poor guys, don't know what they are missing!
 			observer.key = key
 			qdel(src)
 
@@ -135,7 +139,7 @@
 
 	if(href_list["late_join"])
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
-			usr << "\red The round is either not ready, or has already finished..."
+			to_chat(usr, SPAN_WARNING("The round is either not ready, or has already finished..."))
 			return
 
 		if(client.prefs.species != "Human")
@@ -150,7 +154,7 @@
 
 	if(href_list["SelectedJob"])
 		if(!enter_allowed)
-			usr << "\blue There is an administrative lock on entering the game!"
+			to_chat(usr, SPAN_INFO("There is an administrative lock on entering the game!"))
 			return
 
 		if(!is_alien_whitelisted(src, client.prefs.species) && config.usealienwhitelist)
@@ -274,10 +278,10 @@
 	if(src != usr)
 		return 0
 	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
-		usr << "\red The round is either not ready, or has already finished..."
+		to_chat(usr, SPAN_WARNING("The round is either not ready, or has already finished..."))
 		return 0
 	if(!enter_allowed)
-		usr << "\blue There is an administrative lock on entering the game!"
+		to_chat(usr, SPAN_INFO("There is an administrative lock on entering the game!"))
 		return 0
 	if(!IsJobAvailable(rank))
 		src << alert("[rank] is not available. Please try another.")
@@ -326,7 +330,7 @@
 		var/obj/item/device/radio/intercom/a = new /obj/item/device/radio/intercom(null)// BS12 EDIT Arrivals Announcement Computer, rather than the AI.
 		if(character.mind.role_alt_title)
 			rank = character.mind.role_alt_title
-		a.autosay("[character.real_name],[rank ? " [rank]," : " visitor," ] [join_message ? join_message : "has arrived on the station"].", "Arrivals Announcement Computer")
+		a.autosay("[character.real_name], [rank ? "[rank]," : "visitor," ] [join_message ? join_message : "has arrived on the station"].", "Arrivals Announcement Computer")
 		qdel(a)
 
 /mob/new_player/proc/LateChoices()
@@ -339,15 +343,15 @@
 	dat += "Round Duration: [round(hours)]h [round(mins)]m<br>"
 
 	if(emergency_shuttle) //In case Nanotrasen decides reposess CentComm's shuttles.
-		//if(emergency_shuttle.direction == 2) //Shuttle is going to centcomm, not recalled
+		//Shuttle is going to centcomm, not recalled
 		if(emergency_shuttle.going_to_centcom()) // Updated to reflect 'shuttles' port. -Frenjo
 			dat += "<font color='red'><b>The station has been evacuated.</b></font><br>"
-		//if(emergency_shuttle.direction == 1 && emergency_shuttle.timeleft() < 300 && emergency_shuttle.alert == 0) // Emergency shuttle is past the point of no recall
+		// Emergency shuttle is past the point of no recall
 		if(emergency_shuttle.online()) // Updated to reflect 'shuttles' port. -Frenjo
 			if(emergency_shuttle.evac) // Updated to reflect 'shuttles' port. -Frenjo
 				dat += "<font color='red'>The station is currently undergoing evacuation procedures.</font><br>"
 			else // Updated to reflect 'shuttles' port. -Frenjo
-		//if(emergency_shuttle.direction == 1 && emergency_shuttle.alert == 1) // Crew transfer initiated
+				// Crew transfer initiated
 				dat += "<font color='red'>The station is currently undergoing crew transfer procedures.</font><br>"
 
 	dat += "Choose from the following open positions:<br>"
