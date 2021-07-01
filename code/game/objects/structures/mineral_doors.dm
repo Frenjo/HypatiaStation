@@ -10,7 +10,7 @@
 	icon = 'icons/obj/doors/mineral_doors.dmi'
 	icon_state = "metal"
 
-	var/mineralType = "metal"
+	var/mineralType = MATERIAL_METAL
 	var/state = 0 //closed, 1 == open
 	var/isSwitchingStates = 0
 	var/hardness = 1
@@ -126,7 +126,7 @@
 
 	proc/Dismantle(devastated = 0)
 		if(!devastated)
-			if (mineralType == "metal")
+			if (mineralType == MATERIAL_METAL)
 				var/ore = /obj/item/stack/sheet/metal
 				for(var/i = 1, i <= oreAmount, i++)
 					new ore(get_turf(src))
@@ -135,7 +135,7 @@
 				for(var/i = 1, i <= oreAmount, i++)
 					new ore(get_turf(src))
 		else
-			if (mineralType == "metal")
+			if (mineralType == MATERIAL_METAL)
 				var/ore = /obj/item/stack/sheet/metal
 				for(var/i = 3, i <= oreAmount, i++)
 					new ore(get_turf(src))
@@ -167,24 +167,23 @@
 		return 1
 
 /obj/structure/mineral_door/iron
-	mineralType = "metal"
+	mineralType = MATERIAL_METAL
 	hardness = 3
 
 /obj/structure/mineral_door/silver
-	mineralType = "silver"
+	mineralType = MATERIAL_SILVER
 	hardness = 3
 
 /obj/structure/mineral_door/gold
-	mineralType = "gold"
+	mineralType = MATERIAL_GOLD
 
 /obj/structure/mineral_door/uranium
-	mineralType = "uranium"
+	mineralType = MATERIAL_URANIUM
 	hardness = 3
-	//luminosity = 2
 	light_range = 2
 
 /obj/structure/mineral_door/sandstone
-	mineralType = "sandstone"
+	mineralType = MATERIAL_SANDSTONE
 	hardness = 0.5
 
 /obj/structure/mineral_door/transparent
@@ -195,10 +194,10 @@
 		opacity = 0
 
 /obj/structure/mineral_door/transparent/plasma
-	mineralType = "plasma"
+	mineralType = MATERIAL_PLASMA
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W,/obj/item/weapon/weldingtool))
+		if(istype(W, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/WT = W
 			if(WT.remove_fuel(0, user))
 				TemperatureAct(100)
@@ -221,11 +220,11 @@
 			CheckHardness()
 
 /obj/structure/mineral_door/transparent/diamond
-	mineralType = "diamond"
+	mineralType = MATERIAL_DIAMOND
 	hardness = 10
 
 /obj/structure/mineral_door/wood
-	mineralType = "wood"
+	mineralType = MATERIAL_WOOD
 	hardness = 1
 
 	Open()
@@ -257,7 +256,7 @@
 		qdel(src)
 
 /obj/structure/mineral_door/resin
-	mineralType = "resin"
+	mineralType = MATERIAL_RESIN
 	hardness = 1.5
 	var/close_delay = 100
 

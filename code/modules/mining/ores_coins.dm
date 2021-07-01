@@ -49,9 +49,9 @@
 	icon_state = "Diamond ore"
 	origin_tech = "materials=6"
 
-/obj/item/weapon/ore/clown
+/obj/item/weapon/ore/bananium
 	name = "Bananium ore"
-	icon_state = "Clown ore"
+	icon_state = "Bananium ore"
 	origin_tech = "materials=4"
 
 /obj/item/weapon/ore/adamantine
@@ -121,8 +121,8 @@
 	name = "uranium coin"
 	icon_state = "coin_uranium"
 
-/obj/item/weapon/coin/clown
-	name = "bananaium coin"
+/obj/item/weapon/coin/bananium
+	name = "bananium coin"
 	icon_state = "coin_clown"
 
 /obj/item/weapon/coin/adamantine

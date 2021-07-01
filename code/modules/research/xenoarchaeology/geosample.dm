@@ -46,12 +46,11 @@
 	//all potential finds are initialised to null, so nullcheck before you access them
 	var/list/find_presence = list()
 
-/datum/geosample/New(var/turf/simulated/mineral/container)
-
+/datum/geosample/New(turf/simulated/mineral/container)
 	UpdateTurf(container)
 
 //this should only need to be called once
-/datum/geosample/proc/UpdateTurf(var/turf/simulated/mineral/container)
+/datum/geosample/proc/UpdateTurf(turf/simulated/mineral/container)
 	set background = 1
 	if(!container || !istype(container))
 		return

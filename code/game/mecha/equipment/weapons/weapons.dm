@@ -11,7 +11,7 @@
 	var/fire_volume = 50 //How loud it is played.
 	var/auto_rearm = 0 //Does the weapon reload itself after each shot?
 
-/obj/item/mecha_parts/mecha_equipment/weapon/can_attach(var/obj/mecha/combat/M as obj)
+/obj/item/mecha_parts/mecha_equipment/weapon/can_attach(obj/mecha/combat/M as obj)
 	if(!istype(M))
 		return 0
 	return ..()
@@ -128,7 +128,7 @@
 	equip_cooldown = 150
 	range = MELEE|RANGED
 	construction_time = 500
-	construction_cost = list("metal"=20000,"bananium"=10000)
+	construction_cost = list(MATERIAL_METAL = 20000, MATERIAL_BANANIUM = 10000)
 
 	can_attach(obj/mecha/combat/honker/M as obj)
 		if(!istype(M))
@@ -280,7 +280,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/clusterbang//Because I am a heartless bastard -Sieve
 	name = "SOP-6 Grenade Launcher"
 	projectile = /obj/item/weapon/grenade/flashbang/clusterbang
-	construction_cost = list("metal"=20000,"gold"=6000,"uranium"=6000)
+	construction_cost = list(MATERIAL_METAL = 20000, MATERIAL_GOLD = 6000, MATERIAL_URANIUM = 6000)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited/get_equip_info()//Limited version of the clusterbang launcher that can't reload
 	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[chassis.selected==src?"<b>":"<a href='?src=\ref[chassis];select_equip=\ref[src]'>"][src.name][chassis.selected==src?"</b>":"</a>"]\[[src.projectiles]\]"
@@ -298,7 +298,7 @@
 	projectile_energy_cost = 100
 	equip_cooldown = 20
 	construction_time = 300
-	construction_cost = list("metal"=20000,"bananium"=5000)
+	construction_cost = list(MATERIAL_METAL = 20000, MATERIAL_BANANIUM = 5000)
 
 	can_attach(obj/mecha/combat/honker/M as obj)
 		if(!istype(M))

@@ -6,7 +6,7 @@
 	w_class = 3
 	origin_tech = "engineering=4;materials=4;bluespace=2;programming=4"
 
-	construction_cost = list("metal"=500,"glass"=500,"silver"=200,"gold"=200,"plasma"=100,"diamond"=10)
+	construction_cost = list(MATERIAL_METAL = 500, MATERIAL_GLASS = 500, MATERIAL_SILVER = 200, MATERIAL_GOLD = 200, MATERIAL_PLASMA = 100, MATERIAL_DIAMOND = 10)
 	construction_time = 75
 	var/searching = 0
 	var/askDelay = 10 * 60 * 1
@@ -46,7 +46,7 @@
 				C.prefs.be_special ^= BE_PAI
 
 
-	transfer_identity(var/mob/living/carbon/H)
+	transfer_identity(mob/living/carbon/H)
 		name = "positronic brain ([H])"
 		brainmob.name = H.real_name
 		brainmob.real_name = H.real_name
@@ -60,8 +60,7 @@
 		icon_state = "posibrain-occupied"
 		return
 
-	proc/transfer_personality(var/mob/candidate)
-
+	proc/transfer_personality(mob/candidate)
 		src.searching = 0
 		src.brainmob.mind = candidate.mind
 		//src.brainmob.key = candidate.key

@@ -177,4 +177,4 @@
 	density = 1
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "plasma0"
-	var/mineral = "plasma"
+	var/mineral = MATERIAL_PLASMA

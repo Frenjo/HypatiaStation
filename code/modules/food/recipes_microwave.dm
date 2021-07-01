@@ -1173,7 +1173,7 @@ I said no!
 	reagents = list("water" = 10)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/grown/banana,
-		/obj/item/weapon/ore/clown,
+		/obj/item/weapon/ore/bananium,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/clownstears
 

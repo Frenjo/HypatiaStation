@@ -109,11 +109,11 @@
 
 	//Metal, glass, wood, plastic.
 	var/list/stored_comms = list(
-		"metal" = 0,
-		"glass" = 0,
-		"wood" = 0,
-		"plastic" = 0
-		)
+		MATERIAL_METAL		= 0,
+		MATERIAL_GLASS		= 0,
+		MATERIAL_WOOD		= 0,
+		MATERIAL_PLASTIC	= 0
+	)
 
 /obj/item/weapon/matter_decompiler/afterattack(atom/target, mob/user as mob)
 	//We only want to deal with using this on turfs. Specific items aren't important.
@@ -129,10 +129,10 @@
 			src.loc.visible_message("\red [src.loc] sucks [M] into its decompiler. There's a horrible crunching noise.","\red It's a bit of a struggle, but you manage to suck [M] into your decompiler. It makes a series of visceral crunching noises.")
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 			qdel(M)
-			stored_comms["wood"]++
-			stored_comms["wood"]++
-			stored_comms["plastic"]++
-			stored_comms["plastic"]++
+			stored_comms[MATERIAL_WOOD]++
+			stored_comms[MATERIAL_WOOD]++
+			stored_comms[MATERIAL_PLASTIC]++
+			stored_comms[MATERIAL_PLASTIC]++
 			return
 		else
 			continue
@@ -140,48 +140,48 @@
 	for(var/obj/W in T)
 		//Different classes of items give different commodities.
 		if(istype(W, /obj/effect/spider/spiderling))
-			stored_comms["wood"]++
-			stored_comms["wood"]++
-			stored_comms["plastic"]++
-			stored_comms["plastic"]++
+			stored_comms[MATERIAL_WOOD]++
+			stored_comms[MATERIAL_WOOD]++
+			stored_comms[MATERIAL_PLASTIC]++
+			stored_comms[MATERIAL_PLASTIC]++
 		else if(istype(W, /obj/item/weapon/light))
 			var/obj/item/weapon/light/L = W
 			if(L.status >= 2) //In before someone changes the inexplicably local defines. ~ Z
-				stored_comms["metal"]++
-				stored_comms["glass"]++
+				stored_comms[MATERIAL_METAL]++
+				stored_comms[MATERIAL_GLASS]++
 			else
 				continue
 		else if(istype(W, /obj/effect/decal/remains/robot))
-			stored_comms["metal"]++
-			stored_comms["metal"]++
-			stored_comms["plastic"]++
-			stored_comms["plastic"]++
-			stored_comms["glass"]++
+			stored_comms[MATERIAL_METAL]++
+			stored_comms[MATERIAL_METAL]++
+			stored_comms[MATERIAL_PLASTIC]++
+			stored_comms[MATERIAL_PLASTIC]++
+			stored_comms[MATERIAL_GLASS]++
 		else if(istype(W, /obj/item/trash))
-			stored_comms["metal"]++
-			stored_comms["plastic"]++
-			stored_comms["plastic"]++
-			stored_comms["plastic"]++
+			stored_comms[MATERIAL_METAL]++
+			stored_comms[MATERIAL_PLASTIC]++
+			stored_comms[MATERIAL_PLASTIC]++
+			stored_comms[MATERIAL_PLASTIC]++
 		else if(istype(W, /obj/effect/decal/cleanable/blood/gibs/robot))
-			stored_comms["metal"]++
-			stored_comms["glass"]++
-			stored_comms["metal"]++
-			stored_comms["glass"]++
+			stored_comms[MATERIAL_METAL]++
+			stored_comms[MATERIAL_GLASS]++
+			stored_comms[MATERIAL_METAL]++
+			stored_comms[MATERIAL_GLASS]++
 		else if(istype(W, /obj/item/ammo_casing))
-			stored_comms["metal"]++
+			stored_comms[MATERIAL_METAL]++
 		else if(istype(W, /obj/item/weapon/shard/shrapnel))
-			stored_comms["metal"]++
-			stored_comms["metal"]++
-			stored_comms["metal"]++
+			stored_comms[MATERIAL_METAL]++
+			stored_comms[MATERIAL_METAL]++
+			stored_comms[MATERIAL_METAL]++
 		else if(istype(W, /obj/item/weapon/shard))
-			stored_comms["glass"]++
-			stored_comms["glass"]++
-			stored_comms["glass"]++
+			stored_comms[MATERIAL_GLASS]++
+			stored_comms[MATERIAL_GLASS]++
+			stored_comms[MATERIAL_GLASS]++
 		else if(istype(W, /obj/item/weapon/reagent_containers/food/snacks/grown))
-			stored_comms["wood"]++
-			stored_comms["wood"]++
-			stored_comms["wood"]++
-			stored_comms["wood"]++
+			stored_comms[MATERIAL_WOOD]++
+			stored_comms[MATERIAL_WOOD]++
+			stored_comms[MATERIAL_WOOD]++
+			stored_comms[MATERIAL_WOOD]++
 		else
 			continue
 
@@ -259,22 +259,22 @@
 		if(decompiler.stored_comms[type] > 0)
 			var/obj/item/stack/sheet/stack
 			switch(type)
-				if("metal")
+				if(MATERIAL_METAL)
 					if(!stack_metal)
 						stack_metal = new(src.module)
 						stack_metal.amount = 1
 					stack = stack_metal
-				if("glass")
+				if(MATERIAL_GLASS)
 					if(!stack_glass)
 						stack_glass = new(src.module)
 						stack_glass.amount = 1
 					stack = stack_glass
-				if("wood")
+				if(MATERIAL_WOOD)
 					if(!stack_wood)
 						stack_wood = new(src.module)
 						stack_wood.amount = 1
 					stack = stack_wood
-				if("plastic")
+				if(MATERIAL_PLASTIC)
 					if(!stack_plastic)
 						stack_plastic = new(src.module)
 						stack_plastic.amount = 1

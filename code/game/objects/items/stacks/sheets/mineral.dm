@@ -25,14 +25,14 @@ Mineral Sheets
 	throw_speed = 4
 	throw_range = 5
 	origin_tech = "materials=1"
-	sheettype = "sandstone"
+	sheettype = MATERIAL_SANDSTONE
 
-var/global/list/datum/stack_recipe/sandstone_recipes = list ( \
-	new/datum/stack_recipe("pile of dirt", /obj/machinery/hydroponics/soil, 3, time = 10, one_per_turf = 1, on_floor = 1), \
-	new/datum/stack_recipe("sandstone door", /obj/structure/mineral_door/sandstone, 10, one_per_turf = 1, on_floor = 1), \
+var/global/list/datum/stack_recipe/sandstone_recipes = list(
+	new/datum/stack_recipe("pile of dirt", /obj/machinery/hydroponics/soil, 3, time = 10, one_per_turf = 1, on_floor = 1),
+	new/datum/stack_recipe("sandstone door", /obj/structure/mineral_door/sandstone, 10, one_per_turf = 1, on_floor = 1),
 /*	new/datum/stack_recipe("sandstone wall", ???), \
 		new/datum/stack_recipe("sandstone floor", ???),\ */
-	)
+)
 
 /obj/item/stack/sheet/mineral/sandstone/New(loc, amount = null)
 	recipes = sandstone_recipes
@@ -52,11 +52,11 @@ var/global/list/datum/stack_recipe/sandstone_recipes = list ( \
 	throw_range = 3
 	origin_tech = "materials=6"
 	perunit = 3750
-	sheettype = "diamond"
+	sheettype = MATERIAL_DIAMOND
 
-var/global/list/datum/stack_recipe/diamond_recipes = list ( \
-	new/datum/stack_recipe("diamond door", /obj/structure/mineral_door/transparent/diamond, 10, one_per_turf = 1, on_floor = 1), \
-	)
+var/global/list/datum/stack_recipe/diamond_recipes = list(
+	new/datum/stack_recipe("diamond door", /obj/structure/mineral_door/transparent/diamond, 10, one_per_turf = 1, on_floor = 1),
+)
 
 /obj/item/stack/sheet/mineral/diamond/New(loc, amount = null)
 	recipes = diamond_recipes
@@ -77,11 +77,11 @@ var/global/list/datum/stack_recipe/diamond_recipes = list ( \
 	throw_range = 3
 	origin_tech = "materials=5"
 	perunit = 2000
-	sheettype = "uranium"
+	sheettype = MATERIAL_URANIUM
 
-var/global/list/datum/stack_recipe/uranium_recipes = list ( \
-	new/datum/stack_recipe("uranium door", /obj/structure/mineral_door/uranium, 10, one_per_turf = 1, on_floor = 1), \
-	)
+var/global/list/datum/stack_recipe/uranium_recipes = list(
+	new/datum/stack_recipe("uranium door", /obj/structure/mineral_door/uranium, 10, one_per_turf = 1, on_floor = 1),
+)
 
 /obj/item/stack/sheet/mineral/uranium/New(loc, amount = null)
 	recipes = uranium_recipes
@@ -102,11 +102,11 @@ var/global/list/datum/stack_recipe/uranium_recipes = list ( \
 	throw_range = 3
 	origin_tech = "plasmatech=2;materials=2"
 	perunit = 2000
-	sheettype = "plasma"
+	sheettype = MATERIAL_PLASMA
 
-var/global/list/datum/stack_recipe/plasma_recipes = list ( \
-	new/datum/stack_recipe("plasma door", /obj/structure/mineral_door/transparent/plasma, 10, one_per_turf = 1, on_floor = 1), \
-	)
+var/global/list/datum/stack_recipe/plasma_recipes = list(
+	new/datum/stack_recipe("plasma door", /obj/structure/mineral_door/transparent/plasma, 10, one_per_turf = 1, on_floor = 1),
+)
 
 /obj/item/stack/sheet/mineral/plasma/New(loc, amount = null)
 	recipes = plasma_recipes
@@ -124,6 +124,7 @@ var/global/list/datum/stack_recipe/plasma_recipes = list ( \
 	throw_range = 3
 	origin_tech = "materials=3"
 	perunit = 2000
+	sheettype = MATERIAL_PLASTIC
 
 /obj/item/stack/sheet/mineral/plastic/cyborg
 	name = "plastic sheets"
@@ -134,15 +135,16 @@ var/global/list/datum/stack_recipe/plasma_recipes = list ( \
 	throw_speed = 3
 	throw_range = 3
 	perunit = 2000
+	sheettype = MATERIAL_PLASTIC
 
-var/global/list/datum/stack_recipe/plastic_recipes = list ( \
-	new/datum/stack_recipe("plastic crate", /obj/structure/closet/crate/plastic, 10, one_per_turf = 1, on_floor = 1), \
-	new/datum/stack_recipe("plastic ashtray", /obj/item/ashtray/plastic, 2, one_per_turf = 1, on_floor = 1), \
-	new/datum/stack_recipe("plastic fork", /obj/item/weapon/kitchen/utensil/pfork, 1, on_floor = 1), \
-	new/datum/stack_recipe("plastic spoon", /obj/item/weapon/kitchen/utensil/pspoon, 1, on_floor = 1), \
-	new/datum/stack_recipe("plastic knife", /obj/item/weapon/kitchen/utensil/pknife, 1, on_floor = 1), \
-	new/datum/stack_recipe("plastic bag", /obj/item/weapon/storage/bag/plasticbag, 3, on_floor = 1), \
-	)
+var/global/list/datum/stack_recipe/plastic_recipes = list(
+	new/datum/stack_recipe("plastic crate", /obj/structure/closet/crate/plastic, 10, one_per_turf = 1, on_floor = 1),
+	new/datum/stack_recipe("plastic ashtray", /obj/item/ashtray/plastic, 2, one_per_turf = 1, on_floor = 1),
+	new/datum/stack_recipe("plastic fork", /obj/item/weapon/kitchen/utensil/pfork, 1, on_floor = 1),
+	new/datum/stack_recipe("plastic spoon", /obj/item/weapon/kitchen/utensil/pspoon, 1, on_floor = 1),
+	new/datum/stack_recipe("plastic knife", /obj/item/weapon/kitchen/utensil/pknife, 1, on_floor = 1),
+	new/datum/stack_recipe("plastic bag", /obj/item/weapon/storage/bag/plasticbag, 3, on_floor = 1),
+)
 
 /obj/item/stack/sheet/mineral/plastic/New(loc, amount = null)
 	recipes = plastic_recipes
@@ -163,11 +165,11 @@ var/global/list/datum/stack_recipe/plastic_recipes = list ( \
 	throw_range = 3
 	origin_tech = "materials=4"
 	perunit = 2000
-	sheettype = "gold"
+	sheettype = MATERIAL_GOLD
 
-var/global/list/datum/stack_recipe/gold_recipes = list ( \
-	new/datum/stack_recipe("golden door", /obj/structure/mineral_door/gold, 10, one_per_turf = 1, on_floor = 1), \
-	)
+var/global/list/datum/stack_recipe/gold_recipes = list(
+	new/datum/stack_recipe("golden door", /obj/structure/mineral_door/gold, 10, one_per_turf = 1, on_floor = 1),
+)
 
 /obj/item/stack/sheet/mineral/gold/New(loc, amount = null)
 	recipes = gold_recipes
@@ -188,11 +190,11 @@ var/global/list/datum/stack_recipe/gold_recipes = list ( \
 	throw_range = 3
 	origin_tech = "materials=3"
 	perunit = 2000
-	sheettype = "silver"
+	sheettype = MATERIAL_SILVER
 
-var/global/list/datum/stack_recipe/silver_recipes = list ( \
-	new/datum/stack_recipe("silver door", /obj/structure/mineral_door/silver, 10, one_per_turf = 1, on_floor = 1), \
-	)
+var/global/list/datum/stack_recipe/silver_recipes = list(
+	new/datum/stack_recipe("silver door", /obj/structure/mineral_door/silver, 10, one_per_turf = 1, on_floor = 1),
+)
 
 /obj/item/stack/sheet/mineral/silver/New(loc, amount = null)
 	recipes = silver_recipes
@@ -203,9 +205,9 @@ var/global/list/datum/stack_recipe/silver_recipes = list ( \
 /*
  * Clown
  */
-/obj/item/stack/sheet/mineral/clown
+/obj/item/stack/sheet/mineral/bananium
 	name = "bananium"
-	icon_state = "sheet-clown"
+	icon_state = "sheet-bananium"
 	force = 5.0
 	throwforce = 5
 	w_class = 3.0
@@ -213,9 +215,9 @@ var/global/list/datum/stack_recipe/silver_recipes = list ( \
 	throw_range = 3
 	origin_tech = "materials=4"
 	perunit = 2000
-	sheettype = "clown"
+	sheettype = MATERIAL_BANANIUM
 
-/obj/item/stack/sheet/mineral/clown/New(loc, amount = null)
+/obj/item/stack/sheet/mineral/bananium/New(loc, amount = null)
 	pixel_x = rand(0, 4) - 4
 	pixel_y = rand(0, 4) - 4
 	..()
@@ -236,6 +238,7 @@ var/global/list/datum/stack_recipe/silver_recipes = list ( \
 	throw_range = 3
 	origin_tech = "materials=5"
 	perunit = 1000
+	sheettype = MATERIAL_ENRICHED_URANIUM
 
 /*
  * Adamantine
@@ -250,6 +253,7 @@ var/global/list/datum/stack_recipe/silver_recipes = list ( \
 	throw_range = 3
 	origin_tech = "materials=4"
 	perunit = 2000
+	sheettype = MATERIAL_ADAMANTINE
 
 /*
  * Mythril
@@ -264,3 +268,4 @@ var/global/list/datum/stack_recipe/silver_recipes = list ( \
 	throw_range = 3
 	origin_tech = "materials=4"
 	perunit = 2000
+	sheettype = MATERIAL_MYTHRIL

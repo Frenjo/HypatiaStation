@@ -2,7 +2,7 @@
 	name = "wall"
 	desc = "A huge chunk of metal used to seperate rooms."
 	icon = 'icons/turf/walls.dmi'
-	var/mineral = "metal"
+	var/mineral = MATERIAL_METAL
 	var/rotting = 0
 
 	var/damage = 0
@@ -20,7 +20,7 @@
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 312500 //a little over 5 cm thick, 312500 for 1m by 2.5m by 0.25m plasteel wall
 
-	var/walltype = "metal"
+	var/walltype = MATERIAL_METAL
 
 /turf/simulated/wall/Destroy()
 	for(var/obj/effect/E in src)
@@ -28,7 +28,7 @@
 			qdel(E)
 	..()
 
-/turf/simulated/wall/ChangeTurf(var/newtype)
+/turf/simulated/wall/ChangeTurf(newtype)
 	for(var/obj/effect/E in src)
 		if(E.name == "Wallrot")
 			qdel(E)
@@ -131,7 +131,7 @@
 		if(!devastated)
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			new /obj/structure/girder(src)
-			if (mineral == "metal")
+			if (mineral == MATERIAL_METAL)
 				new /obj/item/stack/sheet/metal(src)
 				new /obj/item/stack/sheet/metal(src)
 			else
@@ -139,7 +139,7 @@
 				new M(src)
 				new M(src)
 		else
-			if (mineral == "metal")
+			if (mineral == MATERIAL_METAL)
 				new /obj/item/stack/sheet/metal(src)
 				new /obj/item/stack/sheet/metal(src)
 				new /obj/item/stack/sheet/metal(src)
@@ -196,7 +196,7 @@
 			O.mouse_opacity = 0
 
 /turf/simulated/wall/proc/thermitemelt(mob/user as mob)
-	if(mineral == "diamond")
+	if(mineral == MATERIAL_DIAMOND)
 		return
 	var/obj/effect/overlay/O = new/obj/effect/overlay( src )
 	O.name = "Thermite"
@@ -372,7 +372,7 @@
 		playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
 		sleep(60)
-		if(mineral == "diamond")//Oh look, it's tougher
+		if(mineral == MATERIAL_DIAMOND)//Oh look, it's tougher
 			sleep(60)
 		if(!istype(src, /turf/simulated/wall) || !user || !W || !T)
 			return
@@ -389,7 +389,7 @@
 		user << "<span class='notice'>You begin to drill though the wall.</span>"
 
 		sleep(60)
-		if(mineral == "diamond")
+		if(mineral == MATERIAL_DIAMOND)
 			sleep(60)
 		if(!istype(src, /turf/simulated/wall) || !user || !W || !T)
 			return
@@ -409,7 +409,7 @@
 		playsound(src, "sparks", 50, 1)
 
 		sleep(70)
-		if(mineral == "diamond")
+		if(mineral == MATERIAL_DIAMOND)
 			sleep(70)
 		if(!istype(src, /turf/simulated/wall) || !user || !EB || !T)
 			return
@@ -482,7 +482,7 @@
 			qdel(E)
 	..()
 
-/turf/simulated/wall/ChangeTurf(var/newtype)
+/turf/simulated/wall/ChangeTurf(newtype)
 	for(var/obj/effect/E in src)
 		if(E.name == "Wallrot")
 			qdel(E)

@@ -8,7 +8,7 @@
 	w_class = 3
 	origin_tech = "biotech=3"
 
-	var/list/construction_cost = list("metal"=1000,"glass"=500)
+	var/list/construction_cost = list(MATERIAL_METAL = 1000, MATERIAL_GLASS = 500)
 	var/construction_time = 75
 	//these vars are so the mecha fabricator doesn't shit itself anymore. --NEO
 
@@ -30,7 +30,7 @@
 		brainmob = null
 	..()
 
-/obj/item/device/mmi/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/device/mmi/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/brain) && !brainmob) //Time to stick a brain in it --NEO
 		if(!O:brainmob)
 			user << "\red You aren't sure where this brain came from, but you're pretty sure it's a useless brain."
@@ -87,7 +87,7 @@
 		icon_state = "mmi_empty"
 		name = "Man-Machine Interface"
 
-/obj/item/device/mmi/proc/transfer_identity(var/mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->robot people.
+/obj/item/device/mmi/proc/transfer_identity(mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->robot people.
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name

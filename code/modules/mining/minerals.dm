@@ -64,12 +64,11 @@ proc/SetupMinerals()
 	spread_chance = 20
 	ore = /obj/item/weapon/ore/plasma
 
-/mineral/clown
-	display_name = "Bananium"
-	name = "Clown"
+/mineral/bananium
+	name = "Bananium"
 	result_amount = 3
 	spread_chance = 1
-	ore = /obj/item/weapon/ore/clown
+	ore = /obj/item/weapon/ore/bananium
 
 /mineral/adamantine
 	name = "Adamantine"

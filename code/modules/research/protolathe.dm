@@ -20,7 +20,7 @@ Note: Must be placed west/left of and R&D console to function.
 	var/plasma_amount = 0.0
 	var/uranium_amount = 0.0
 	var/diamond_amount = 0.0
-	var/clown_amount = 0.0
+	var/bananium_amount = 0.0
 	var/adamantine_amount = 0.0
 
 
@@ -37,7 +37,7 @@ Note: Must be placed west/left of and R&D console to function.
 	RefreshParts()
 
 /obj/machinery/r_n_d/protolathe/proc/TotalMaterials() //returns the total of all the stored materials. Makes code neater.
-	return m_amount + g_amount + gold_amount + silver_amount + plasma_amount + uranium_amount + diamond_amount + clown_amount
+	return m_amount + g_amount + gold_amount + silver_amount + plasma_amount + uranium_amount + diamond_amount + bananium_amount
 
 /obj/machinery/r_n_d/protolathe/RefreshParts()
 	var/T = 0
@@ -102,9 +102,9 @@ Note: Must be placed west/left of and R&D console to function.
 			if(diamond_amount >= 2000)
 				var/obj/item/stack/sheet/mineral/diamond/G = new /obj/item/stack/sheet/mineral/diamond(src.loc)
 				G.amount = round(diamond_amount / G.perunit)
-			if(clown_amount >= 2000)
-				var/obj/item/stack/sheet/mineral/clown/G = new /obj/item/stack/sheet/mineral/clown(src.loc)
-				G.amount = round(clown_amount / G.perunit)
+			if(bananium_amount >= 2000)
+				var/obj/item/stack/sheet/mineral/bananium/G = new /obj/item/stack/sheet/mineral/bananium(src.loc)
+				G.amount = round(bananium_amount / G.perunit)
 			if(adamantine_amount >= 2000)
 				var/obj/item/stack/sheet/mineral/adamantine/G = new /obj/item/stack/sheet/mineral/adamantine(src.loc)
 				G.amount = round(adamantine_amount / G.perunit)
@@ -172,8 +172,8 @@ Note: Must be placed west/left of and R&D console to function.
 				uranium_amount += amount * 2000
 			if(/obj/item/stack/sheet/mineral/diamond)
 				diamond_amount += amount * 2000
-			if(/obj/item/stack/sheet/mineral/clown)
-				clown_amount += amount * 2000
+			if(/obj/item/stack/sheet/mineral/bananium)
+				bananium_amount += amount * 2000
 			if(/obj/item/stack/sheet/mineral/adamantine)
 				adamantine_amount += amount * 2000
 	else

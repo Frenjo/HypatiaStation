@@ -34,7 +34,7 @@
 "H" = (/turf/simulated/floor{icon_state = "freezerfloor"},/area/awaymission/listeningpost)
 "I" = (/obj/machinery/shower{dir = 8; tag = "icon-shower (WEST)"},/turf/simulated/floor{icon_state = "freezerfloor"},/area/awaymission/listeningpost)
 "J" = (/obj/structure/toilet{dir = 8; tag = "icon-toilet00 (WEST)"},/turf/simulated/floor{icon_state = "freezerfloor"},/area/awaymission/listeningpost)
-"K" = (/turf/simulated/mineral/clown,/area/mine/unexplored)
+"K" = (/turf/simulated/mineral/bananium,/area/mine/unexplored)
 "L" = (/turf/simulated/shuttle/wall{icon_state = "wall3"; tag = "icon-wall3"},/area/mine/explored)
 "M" = (/turf/simulated/floor/airless{icon_state = "gcircuit"; tag = "icon-gcircuit"},/area/mine/explored)
 "N" = (/obj/machinery/gateway{dir = 9; tag = "icon-off (NORTHWEST)"},/turf/simulated/floor/airless{icon_state = "gcircuit"; tag = "icon-gcircuit"},/area/mine/explored)

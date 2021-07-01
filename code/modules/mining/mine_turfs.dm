@@ -347,11 +347,11 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 				R.amount = rand(5, 25)
 
 // Re-added these because some away missions require them.
-/turf/simulated/mineral/clown
-	icon_state = "rock_Clown"
-	var/mineral_name = "Clown"
+/turf/simulated/mineral/bananium
+	icon_state = "rock_Bananium"
+	var/mineral_name = "Bananium"
 
-/turf/simulated/mineral/clown/New()
+/turf/simulated/mineral/bananium/New()
 	if(!name_to_mineral)
 		SetupMinerals()
 
@@ -406,9 +406,8 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 
 /turf/simulated/mineral/random
 	name = "Mineral deposit"
-	var/mineralSpawnChanceList = list("Uranium" = 7, "Iron" = 40, "Diamond" = 3, "Gold" = 7, "Silver" = 7, "Plasma" = 25, "Clown" = 2, "Adamantine" = 1, "Mythril" = 1)//Currently, Adamantine won't spawn as it has no uses. -Durandan
-	// Now adamantine spawns, along with mythril.
-	var/mineralChance = 9 //means 10% chance of this plot changing to a mineral deposit
+	var/mineralSpawnChanceList = list("Uranium" = 7, "Iron" = 40, "Diamond" = 3, "Gold" = 7, "Silver" = 7, "Plasma" = 25, "Clown" = 2, "Adamantine" = 1, "Mythril" = 1)
+	var/mineralChance = 9 //means 9% chance of this plot changing to a mineral deposit
 
 /turf/simulated/mineral/random/New()
 	if(prob(mineralChance) && !mineral)

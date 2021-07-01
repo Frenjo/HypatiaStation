@@ -4117,7 +4117,7 @@
 "mPT" = (/obj/item/weapon/folder/red,/obj/structure/table/woodentable,/turf/simulated/floor/carpet,/area/bridge/meeting_room)
 "mPX" = (/turf/simulated/floor/engine/vacuum,/area/toxins/mixing)
 "mQa" = (/turf/simulated/wall/r_wall,/area/crew_quarters/sleeping/sec)
-"mQf" = (/obj/structure/closet{name = "Clown's Closet"},/obj/item/clothing/under/rank/clown,/obj/item/clothing/shoes/clown_shoes,/obj/item/clothing/mask/gas/clown_hat,/obj/item/clothing/gloves/rainbow/clown,/obj/item/weapon/storage/backpack/clown,/obj/item/weapon/cartridge/clown,/obj/item/toy/crayon/rainbow,/obj/item/weapon/coin/clown,/obj/structure/window/reinforced/tinted{dir = 8; opacity = 0},/obj/item/weapon/reagent_containers/spray/waterflower,/turf/simulated/floor/wood,/area/crew_quarters/theatre)
+"mQf" = (/obj/structure/closet{name = "Clown's Closet"},/obj/item/clothing/under/rank/clown,/obj/item/clothing/shoes/clown_shoes,/obj/item/clothing/mask/gas/clown_hat,/obj/item/clothing/gloves/rainbow/clown,/obj/item/weapon/storage/backpack/clown,/obj/item/weapon/cartridge/clown,/obj/item/toy/crayon/rainbow,/obj/item/weapon/coin/bananium,/obj/structure/window/reinforced/tinted{dir = 8; opacity = 0},/obj/item/weapon/reagent_containers/spray/waterflower,/turf/simulated/floor/wood,/area/crew_quarters/theatre)
 "mQh" = (/obj/machinery/atmospherics/pipe/manifold/visible{dir = 8},/turf/simulated/floor,/area/atmos)
 "mQj" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated/shuttle/floor{icon_state = "floor2"},/area/shuttle/arrival/station)
 "mQq" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/wall/r_wall,/area/crew_quarters/heads)

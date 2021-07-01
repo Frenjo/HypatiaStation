@@ -5,7 +5,7 @@
 #define ORE_PROC_PLASMA 16
 #define ORE_PROC_URANIUM 32
 #define ORE_PROC_IRON 64
-#define ORE_PROC_CLOWN 128
+#define ORE_PROC_BANANIUM 128
 #define ORE_PROC_ADAMANTINE 256
 #define ORE_PROC_MYTHRIL 512
 
@@ -41,7 +41,7 @@
 
 	var/dat = "<b>Smelter control console</b><br><br>"
 	//iron
-	if(machine.ore_iron || machine.ore_glass || machine.ore_plasma || machine.ore_uranium || machine.ore_gold || machine.ore_silver || machine.ore_diamond || machine.ore_clown || machine.ore_adamantine)
+	if(machine.ore_iron || machine.ore_glass || machine.ore_plasma || machine.ore_uranium || machine.ore_gold || machine.ore_silver || machine.ore_diamond || machine.ore_bananium || machine.ore_adamantine)
 		if(machine.ore_iron)
 			if(machine.selected & ORE_PROC_IRON)
 				dat += text("<A href='?src=\ref[src];sel_iron=no'><font color='green'>Smelting</font></A> ")
@@ -112,14 +112,14 @@
 			machine.selected &= ~ORE_PROC_DIAMOND
 
 		//bananium
-		if(machine.ore_clown)
-			if(machine.selected & ORE_PROC_CLOWN)
+		if(machine.ore_bananium)
+			if(machine.selected & ORE_PROC_BANANIUM)
 				dat += text("<A href='?src=\ref[src];sel_clown=no'><font color='green'>Smelting</font></A> ")
 			else
 				dat += text("<A href='?src=\ref[src];sel_clown=yes'><font color='red'>Not smelting</font></A> ")
-			dat += text("Bananium: [machine.ore_clown]<br>")
+			dat += text("Bananium: [machine.ore_bananium]<br>")
 		else
-			machine.selected &= ~ORE_PROC_CLOWN
+			machine.selected &= ~ORE_PROC_BANANIUM
 
 		// Adamantine
 		if(machine.ore_adamantine)
@@ -127,7 +127,7 @@
 				dat += text("<A href='?src=\ref[src];sel_adamantine=no'><font color='green'>Smelting</font></A> ")
 			else
 				dat += text("<A href='?src=\ref[src];sel_adamantine=yes'><font color='red'>Not smelting</font></A> ")
-			dat += text("Adamantine: [machine.ore_clown]<br>")
+			dat += text("Adamantine: [machine.ore_adamantine]<br>")
 		else
 			machine.selected &= ~ORE_PROC_ADAMANTINE
 
@@ -137,7 +137,7 @@
 				dat += text("<A href='?src=\ref[src];sel_mythril=no'><font color='green'>Smelting</font></A> ")
 			else
 				dat += text("<A href='?src=\ref[src];sel_mythril=yes'><font color='red'>Not smelting</font></A> ")
-			dat += text("Mythril: [machine.ore_clown]<br>")
+			dat += text("Mythril: [machine.ore_mythril]<br>")
 		else
 			machine.selected &= ~ORE_PROC_MYTHRIL
 
@@ -197,9 +197,9 @@
 			machine.selected &= ~ORE_PROC_DIAMOND
 	if(href_list["sel_clown"])
 		if(href_list["sel_clown"] == "yes")
-			machine.selected |= ORE_PROC_CLOWN
+			machine.selected |= ORE_PROC_BANANIUM
 		else
-			machine.selected &= ~ORE_PROC_CLOWN
+			machine.selected &= ~ORE_PROC_BANANIUM
 
 	if(href_list["sel_adamantine"])
 		if(href_list["sel_adamantine"] == "yes")
@@ -239,7 +239,7 @@
 	var/ore_plasma = 0;
 	var/ore_uranium = 0;
 	var/ore_iron = 0;
-	var/ore_clown = 0;
+	var/ore_bananium = 0;
 	var/ore_adamantine = 0;
 	var/ore_mythril = 0;
 	var/selected = 0
@@ -340,10 +340,10 @@
 					else
 						on = 0
 					continue
-				if(selected == ORE_PROC_CLOWN)
-					if(ore_clown > 0)
-						ore_clown--;
-						new /obj/item/stack/sheet/mineral/clown(output.loc)
+				if(selected == ORE_PROC_BANANIUM)
+					if(ore_bananium > 0)
+						ore_bananium--;
+						new /obj/item/stack/sheet/mineral/bananium(output.loc)
 					else
 						on = 0
 					continue
@@ -427,8 +427,8 @@
 				if(selected & ORE_PROC_GLASS)
 					if(ore_glass <= 0)
 						b = 0
-				if(selected & ORE_PROC_CLOWN)
-					if(ore_clown <= 0)
+				if(selected & ORE_PROC_BANANIUM)
+					if(ore_bananium <= 0)
 						b = 0
 
 				if(selected & ORE_PROC_ADAMANTINE)
@@ -451,8 +451,8 @@
 						ore_plasma--
 					if(selected & ORE_PROC_IRON)
 						ore_iron--
-					if(selected & ORE_PROC_CLOWN)
-						ore_clown--
+					if(selected & ORE_PROC_BANANIUM)
+						ore_bananium--
 
 					if(selected & ORE_PROC_ADAMANTINE)
 						ore_adamantine--
@@ -507,8 +507,8 @@
 					O.loc = null
 					qdel(O)
 					continue
-				if(istype(O, /obj/item/weapon/ore/clown))
-					ore_clown++
+				if(istype(O, /obj/item/weapon/ore/bananium))
+					ore_bananium++
 					O.loc = null
 					qdel(O)
 					continue

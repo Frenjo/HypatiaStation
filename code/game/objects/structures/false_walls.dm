@@ -6,7 +6,7 @@
 	desc = "A huge chunk of metal used to seperate rooms."
 	anchored = 1
 	icon = 'icons/turf/walls.dmi'
-	var/mineral = "metal"
+	var/mineral = MATERIAL_METAL
 	var/opening = 0
 
 /obj/structure/falsewall/New()
@@ -62,7 +62,6 @@
 		flick("[mineral]fwall_opening", src)
 		sleep(15)
 		src.density = 0
-		//SetOpacity(0)
 		set_opacity(0)
 		opening = 0
 	else
@@ -71,7 +70,6 @@
 		icon_state = "[mineral]0"
 		density = 1
 		sleep(15)
-		//SetOpacity(1)
 		set_opacity(1)
 		src.relativewall()
 		opening = 0
@@ -96,7 +94,7 @@
 			return
 		if(istype(W, /obj/item/weapon/screwdriver))
 			user.visible_message("[user] tightens some bolts on the wall.", "You tighten the bolts on the wall.")
-			if(!mineral || mineral == "metal")
+			if(!mineral || mineral == MATERIAL_METAL)
 				T.ChangeTurf(/turf/simulated/wall)
 			else
 				T.ChangeTurf(text2path("/turf/simulated/wall/mineral/[mineral]"))
@@ -169,7 +167,7 @@
 	density = 1
 	opacity = 1
 	anchored = 1
-	var/mineral = "metal"
+	var/mineral = MATERIAL_METAL
 	var/opening = 0
 
 /obj/structure/falserwall/New()
@@ -188,7 +186,6 @@
 		flick("frwall_opening", src)
 		sleep(15)
 		density = 0
-		//SetOpacity(0)
 		set_opacity(0)
 		opening = 0
 	else
@@ -197,7 +194,6 @@
 		flick("frwall_closing", src)
 		density = 1
 		sleep(15)
-		//SetOpacity(1)
 		set_opacity(1)
 		relativewall()
 		opening = 0
@@ -278,7 +274,7 @@
 	name = "uranium wall"
 	desc = "A wall with uranium plating. This is probably a bad idea."
 	icon_state = ""
-	mineral = "uranium"
+	mineral = MATERIAL_URANIUM
 	var/active = null
 	var/last_event = 0
 
@@ -310,36 +306,36 @@
 	name = "gold wall"
 	desc = "A wall with gold plating. Swag!"
 	icon_state = ""
-	mineral = "gold"
+	mineral = MATERIAL_GOLD
 
 /obj/structure/falsewall/silver
 	name = "silver wall"
 	desc = "A wall with silver plating. Shiny."
 	icon_state = ""
-	mineral = "silver"
+	mineral = MATERIAL_SILVER
 
 /obj/structure/falsewall/diamond
 	name = "diamond wall"
 	desc = "A wall with diamond plating. You monster."
 	icon_state = ""
-	mineral = "diamond"
+	mineral = MATERIAL_DIAMOND
 
 /obj/structure/falsewall/plasma
 	name = "plasma wall"
 	desc = "A wall with plasma plating. This is definately a bad idea."
 	icon_state = ""
-	mineral = "plasma"
+	mineral = MATERIAL_PLASMA
 
 //-----------wtf?-----------start
 /obj/structure/falsewall/clown
 	name = "bananium wall"
 	desc = "A wall with bananium plating. Honk!"
 	icon_state = ""
-	mineral = "clown"
+	mineral = MATERIAL_BANANIUM
 
 /obj/structure/falsewall/sandstone
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating."
 	icon_state = ""
-	mineral = "sandstone"
+	mineral = MATERIAL_SANDSTONE
 //------------wtf?------------end

@@ -135,7 +135,7 @@
 	icon = 'icons/obj/robot_component.dmi'
 	icon_state = "working"
 	construction_time = 200
-	construction_cost = list("metal" = 5000)
+	construction_cost = list(MATERIAL_METAL = 5000)
 
 
 // TODO: actual icons ;)

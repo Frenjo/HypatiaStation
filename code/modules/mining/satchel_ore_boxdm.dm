@@ -13,7 +13,7 @@
 	var/amt_iron = 0
 	var/amt_phoron = 0
 	var/amt_uranium = 0
-	var/amt_clown = 0
+	var/amt_bananium = 0
 	var/amt_adamantine = 0
 	var/amt_mythril = 0
 	var/amt_strange = 0
@@ -58,8 +58,8 @@
 			amt_gold++;
 		if(istype(C, /obj/item/weapon/ore/uranium))
 			amt_uranium++;
-		if(istype(C, /obj/item/weapon/ore/clown))
-			amt_clown++;
+		if(istype(C, /obj/item/weapon/ore/bananium))
+			amt_bananium++;
 		if(istype(C, /obj/item/weapon/ore/adamantine))
 			amt_adamantine++;
 		if(istype(C, /obj/item/weapon/ore/mythril))
@@ -83,7 +83,7 @@
 	if(amt_uranium)
 		dat += text("Uranium ore: [amt_uranium]<br>")
 	if(amt_clown)
-		dat += text("Bananium ore: [amt_clown]<br>")
+		dat += text("Bananium ore: [amt_bananium]<br>")
 	if(amt_adamantine)
 		dat += text("Adamantine ore: [amt_adamantine]<br>")
 	if(amt_mythril)

@@ -10,7 +10,7 @@
 	desc = "A wall with gold plating. Swag!"
 	icon_state = "gold0"
 	walltype = "gold"
-	mineral = "gold"
+	mineral = MATERIAL_GOLD
 	//var/electro = 1
 	//var/shocked = null
 
@@ -19,7 +19,7 @@
 	desc = "A wall with silver plating. Shiny!"
 	icon_state = "silver0"
 	walltype = "silver"
-	mineral = "silver"
+	mineral = MATERIAL_SILVER
 	//var/electro = 0.75
 	//var/shocked = null
 
@@ -28,28 +28,28 @@
 	desc = "A wall with diamond plating. You monster."
 	icon_state = "diamond0"
 	walltype = "diamond"
-	mineral = "diamond"
+	mineral = MATERIAL_DIAMOND
 
-/turf/simulated/wall/mineral/clown
+/turf/simulated/wall/mineral/bananium
 	name = "bananium wall"
 	desc = "A wall with bananium plating. Honk!"
 	icon_state = "clown0"
 	walltype = "clown"
-	mineral = "clown"
+	mineral = MATERIAL_BANANIUM
 
 /turf/simulated/wall/mineral/sandstone
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating."
 	icon_state = "sandstone0"
 	walltype = "sandstone"
-	mineral = "sandstone"
+	mineral = MATERIAL_SANDSTONE
 
 /turf/simulated/wall/mineral/uranium
 	name = "uranium wall"
 	desc = "A wall with uranium plating. This is probably a bad idea."
 	icon_state = "uranium0"
 	walltype = "uranium"
-	mineral = "uranium"
+	mineral = MATERIAL_URANIUM
 
 /turf/simulated/wall/mineral/uranium/proc/radiate()
 	if(!active)
@@ -81,7 +81,7 @@
 	desc = "A wall with plasma plating. This is definately a bad idea."
 	icon_state = "plasma0"
 	walltype = "plasma"
-	mineral = "plasma"
+	mineral = MATERIAL_PLASMA
 
 /turf/simulated/wall/mineral/plasma/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(is_hot(W) > 300)//If the temperature of the object is over 300, then ignite
@@ -114,7 +114,7 @@
 	if(exposed_temperature > 300)
 		PlasmaBurn(exposed_temperature)
 
-/turf/simulated/wall/mineral/plasma/bullet_act(var/obj/item/projectile/Proj)
+/turf/simulated/wall/mineral/plasma/bullet_act(obj/item/projectile/Proj)
 	if(istype(Proj, /obj/item/projectile/beam))
 		PlasmaBurn(2500)
 	else if(istype(Proj, /obj/item/projectile/ion))

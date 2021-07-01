@@ -11,7 +11,7 @@
 	opacity = 1
 	var/closed_wall_dir = 0
 	var/opening = 0
-	var/mineral = "plasma"
+	var/mineral = MATERIAL_PLASMA
 	var/is_metal = 0
 
 /obj/structure/temple_falsewall/New()

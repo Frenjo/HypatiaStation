@@ -16,16 +16,16 @@
 	var/time_coeff = 1.5 //can be upgraded with research
 	var/resource_coeff = 1.5 //can be upgraded with research
 	var/list/resources = list(
-										"metal"=0,
-										"glass"=0,
-										"gold"=0,
-										"silver"=0,
-										"diamond"=0,
-										"plasma"=0,
-										"uranium"=0,
-										"bananium"=0 //No need to state what it can no longer hold
-										// Re-enabled bananium. -Frenjo
-										)
+		MATERIAL_METAL			= 0,
+		MATERIAL_GLASS			= 0,
+		MATERIAL_GOLD			= 0,
+		MATERIAL_SILVER			= 0,
+		MATERIAL_DIAMOND		= 0,
+		MATERIAL_PLASMA			= 0,
+		MATERIAL_URANIUM		= 0,
+		MATERIAL_BANANIUM		= 0
+		// Re-enabled bananium. -Frenjo
+	)
 	var/res_max_amount = 200000
 	var/datum/research/files
 	var/id
@@ -91,7 +91,7 @@
 						/obj/item/mecha_parts/part/durand_right_leg,
 						/obj/item/mecha_parts/part/durand_armour
 					),
-	/*"H.O.N.K"=list(
+	"H.O.N.K"=list(
 						/obj/item/mecha_parts/chassis/honker,
 						/obj/item/mecha_parts/part/honker_torso,
 						/obj/item/mecha_parts/part/honker_head,
@@ -99,7 +99,7 @@
 						/obj/item/mecha_parts/part/honker_right_arm,
 						/obj/item/mecha_parts/part/honker_left_leg,
 						/obj/item/mecha_parts/part/honker_right_leg
-						), No need for HONK stuff*/
+					),
 	"Exosuit Equipment"=list(
 						/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp,
 						/obj/item/mecha_parts/mecha_equipment/tool/drill,
@@ -114,10 +114,10 @@
 						///obj/item/mecha_parts/mecha_equipment/jetpack, //TODO MECHA JETPACK SPRITE MISSING
 						/obj/item/mecha_parts/mecha_equipment/weapon/energy/taser,
 						/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg,
-						///obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar/mousetrap_mortar, HONK-related mech part
-						///obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar, Also HONK-related
-						///obj/item/mecha_parts/mecha_equipment/weapon/honker Thirdly HONK-related
-						),
+						/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar/mousetrap_mortar,
+						/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar,
+						/obj/item/mecha_parts/mecha_equipment/weapon/honker
+					),
 
 	"Robotic Upgrade Modules" = list(
 						/obj/item/borg/upgrade/reset,
@@ -126,7 +126,7 @@
 						/obj/item/borg/upgrade/vtec,
 						/obj/item/borg/upgrade/tasercooler,
 						/obj/item/borg/upgrade/jetpack
-						),
+					),
 
 
 
@@ -676,22 +676,22 @@
 /obj/machinery/mecha_part_fabricator/proc/remove_material(mat_string, amount)
 	var/type
 	switch(mat_string)
-		if("metal")
+		if(MATERIAL_METAL)
 			type = /obj/item/stack/sheet/metal
-		if("glass")
+		if(MATERIAL_GLASS)
 			type = /obj/item/stack/sheet/glass
-		if("gold")
+		if(MATERIAL_GOLD)
 			type = /obj/item/stack/sheet/mineral/gold
-		if("silver")
+		if(MATERIAL_SILVER)
 			type = /obj/item/stack/sheet/mineral/silver
-		if("diamond")
+		if(MATERIAL_DIAMOND)
 			type = /obj/item/stack/sheet/mineral/diamond
-		if("plasma")
+		if(MATERIAL_PLASMA)
 			type = /obj/item/stack/sheet/mineral/plasma
-		if("uranium")
+		if(MATERIAL_URANIUM)
 			type = /obj/item/stack/sheet/mineral/uranium
-		if("bananium")
-			type = /obj/item/stack/sheet/mineral/clown
+		if(MATERIAL_BANANIUM)
+			type = /obj/item/stack/sheet/mineral/bananium
 		else
 			return 0
 	var/result = 0
@@ -728,30 +728,30 @@
 				if(I.reliability != 100 && crit_fail)
 					I.crit_fail = 1
 				I.loc = src.loc
-			if(src.resources["metal"] >= 3750)
+			if(src.resources[MATERIAL_METAL] >= 3750)
 				var/obj/item/stack/sheet/metal/G = new /obj/item/stack/sheet/metal(src.loc)
-				G.amount = round(src.resources["metal"] / G.perunit)
-			if(src.resources["glass"] >= 3750)
+				G.amount = round(src.resources[MATERIAL_METAL] / G.perunit)
+			if(src.resources[MATERIAL_GLASS] >= 3750)
 				var/obj/item/stack/sheet/glass/G = new /obj/item/stack/sheet/glass(src.loc)
-				G.amount = round(src.resources["glass"] / G.perunit)
-			if(src.resources["plasma"] >= 2000)
+				G.amount = round(src.resources[MATERIAL_GLASS] / G.perunit)
+			if(src.resources[MATERIAL_PLASMA] >= 2000)
 				var/obj/item/stack/sheet/mineral/plasma/G = new /obj/item/stack/sheet/mineral/plasma(src.loc)
-				G.amount = round(src.resources["plasma"] / G.perunit)
-			if(src.resources["silver"] >= 2000)
+				G.amount = round(src.resources[MATERIAL_PLASMA] / G.perunit)
+			if(src.resources[MATERIAL_SILVER] >= 2000)
 				var/obj/item/stack/sheet/mineral/silver/G = new /obj/item/stack/sheet/mineral/silver(src.loc)
-				G.amount = round(src.resources["silver"] / G.perunit)
-			if(src.resources["gold"] >= 2000)
+				G.amount = round(src.resources[MATERIAL_SILVER] / G.perunit)
+			if(src.resources[MATERIAL_GOLD] >= 2000)
 				var/obj/item/stack/sheet/mineral/gold/G = new /obj/item/stack/sheet/mineral/gold(src.loc)
-				G.amount = round(src.resources["gold"] / G.perunit)
-			if(src.resources["uranium"] >= 2000)
+				G.amount = round(src.resources[MATERIAL_GOLD] / G.perunit)
+			if(src.resources[MATERIAL_URANIUM] >= 2000)
 				var/obj/item/stack/sheet/mineral/uranium/G = new /obj/item/stack/sheet/mineral/uranium(src.loc)
-				G.amount = round(src.resources["uranium"] / G.perunit)
-			if(src.resources["diamond"] >= 2000)
+				G.amount = round(src.resources[MATERIAL_URANIUM] / G.perunit)
+			if(src.resources[MATERIAL_DIAMOND] >= 2000)
 				var/obj/item/stack/sheet/mineral/diamond/G = new /obj/item/stack/sheet/mineral/diamond(src.loc)
-				G.amount = round(src.resources["diamond"] / G.perunit)
-			if(src.resources["bananium"] >= 2000)
-				var/obj/item/stack/sheet/mineral/clown/G = new /obj/item/stack/sheet/mineral/clown(src.loc)
-				G.amount = round(src.resources["bananium"] / G.perunit)
+				G.amount = round(src.resources[MATERIAL_DIAMOND] / G.perunit)
+			if(src.resources[MATERIAL_BANANIUM] >= 2000)
+				var/obj/item/stack/sheet/mineral/bananium/G = new /obj/item/stack/sheet/mineral/bananium(src.loc)
+				G.amount = round(src.resources[MATERIAL_BANANIUM] / G.perunit)
 			qdel(src)
 			return 1
 		else
@@ -764,21 +764,21 @@
 	var/material
 	switch(W.type)
 		if(/obj/item/stack/sheet/mineral/gold)
-			material = "gold"
+			material = MATERIAL_GOLD
 		if(/obj/item/stack/sheet/mineral/silver)
-			material = "silver"
+			material = MATERIAL_SILVER
 		if(/obj/item/stack/sheet/mineral/diamond)
-			material = "diamond"
+			material = MATERIAL_DIAMOND
 		if(/obj/item/stack/sheet/mineral/plasma)
-			material = "plasma"
+			material = MATERIAL_PLASMA
 		if(/obj/item/stack/sheet/metal)
-			material = "metal"
+			material = MATERIAL_METAL
 		if(/obj/item/stack/sheet/glass)
-			material = "glass"
-		if(/obj/item/stack/sheet/mineral/clown)
-			material = "bananium"
+			material = MATERIAL_GLASS
+		if(/obj/item/stack/sheet/mineral/bananium)
+			material = MATERIAL_BANANIUM
 		if(/obj/item/stack/sheet/mineral/uranium)
-			material = "uranium"
+			material = MATERIAL_URANIUM
 		else
 			return ..()
 
