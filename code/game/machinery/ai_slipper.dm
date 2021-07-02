@@ -84,18 +84,18 @@
 
 /obj/machinery/ai_slipper/Topic(href, href_list)
 	..()
-	if (src.locked)
-		if (!istype(usr, /mob/living/silicon))
+	if(src.locked)
+		if (!issilicon(usr))
 			usr << "Control panel is locked!"
 			return
-	if (href_list["toggleOn"])
+	if(href_list["toggleOn"])
 		src.disabled = !src.disabled
 		icon_state = src.disabled? "motion0":"motion3"
-	if (href_list["toggleUse"])
+	if(href_list["toggleUse"])
 		if(cooldown_on || disabled)
 			return
 		else
-			new /obj/effect/effect/foam(src.loc)
+			new /obj/effect/foam(src.loc)
 			src.uses--
 			cooldown_on = 1
 			cooldown_time = world.timeofday + 100

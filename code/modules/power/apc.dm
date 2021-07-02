@@ -686,7 +686,7 @@
 				var/turf/T = get_turf(src)
 				var/obj/structure/cable/N = T.get_cable_node()
 				if (prob(50) && electrocute_mob(usr, N, N))
-					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+					var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 					s.set_up(5, 1, src)
 					s.start()
 					return
@@ -704,7 +704,7 @@
 		if(do_after(user, 50))
 			if(terminal && opened && has_electronics!=2)
 				if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
-					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+					var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 					s.set_up(5, 1, src)
 					s.start()
 					return
@@ -807,7 +807,7 @@
 		var/mob/living/carbon/human/H = user
 		if(H.species.flags & IS_SYNTHETIC && H.a_intent == "grab")
 			if(emagged || stat & BROKEN)
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 				s.set_up(3, 1, src)
 				s.start()
 				H << "\red The APC power currents surge eratically, damaging your chassis!"
@@ -1163,11 +1163,11 @@
 				cell.corrupt()
 				src.malfhack = 1
 				update_icon()
-				var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
+				var/datum/effect/system/smoke_spread/smoke = new /datum/effect/system/smoke_spread()
 				smoke.set_up(3, 0, src.loc)
 				smoke.attach(src)
 				smoke.start()
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 				s.set_up(3, 1, src)
 				s.start()
 				visible_message("<span class='danger'>The [src.name] suddenly lets out a blast of smoke and some sparks!</span>", \
@@ -1445,7 +1445,7 @@
 /obj/machinery/power/apc/proc/shock(mob/user, prb)
 	if(!prob(prb))
 		return 0
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
 	if(electrocute_mob(user, src, src))

@@ -397,4 +397,4 @@
 			//extinguishes_left--
 		H.visible_message("<span class='warning'>[H]'s suit automatically extinguishes them!</span>","<span class='warning'>Your suit automatically extinguishes you.</span>")
 		H.ExtinguishMob()
-		new /obj/effect/effect/water(get_turf(H))
+		new /obj/effect/water(get_turf(H))

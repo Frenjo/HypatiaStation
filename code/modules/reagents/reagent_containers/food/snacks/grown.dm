@@ -1173,7 +1173,7 @@
 	var/outer_teleport_radius = potency / 10 //Plant potency determines radius of teleport.
 	var/inner_teleport_radius = potency / 15
 	var/list/turfs = new/list()
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 	if(inner_teleport_radius < 1) //Wasn't potent enough, it just splats.
 		new/obj/effect/decal/cleanable/blood/oil(src.loc)
 		src.visible_message(SPAN_NOTICE("The [src.name] has been squashed."), SPAN_MODERATE("You hear a smack."))

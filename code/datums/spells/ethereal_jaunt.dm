@@ -54,7 +54,7 @@
 				flick("liquify",animation)
 				target.loc = holder
 				target.client.eye = holder
-				var/datum/effect/effect/system/steam_spread/steam = new /datum/effect/effect/system/steam_spread()
+				var/datum/effect/system/steam_spread/steam = new /datum/effect/system/steam_spread()
 				steam.set_up(10, 0, mobloc)
 				steam.start()
 				sleep(jaunt_duration)

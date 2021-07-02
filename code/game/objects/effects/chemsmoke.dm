@@ -1,13 +1,13 @@
 /////////////////////////////////////////////
 // Chem smoke
 /////////////////////////////////////////////
-/obj/effect/effect/smoke/chem
+/obj/effect/smoke/chem
 	icon = 'icons/effects/chemsmoke.dmi'
 	opacity = 0
 	time_to_live = 300
 	pass_flags = PASSTABLE | PASSGRILLE | PASSGLASS		//PASSGLASS is fine here, it's just so the visual effect can "flow" around glass
 
-/obj/effect/effect/smoke/chem/New()
+/obj/effect/smoke/chem/New()
 	..()
 	var/datum/reagents/R = new/datum/reagents(500)
 	reagents = R
@@ -15,15 +15,15 @@
 	return
 
 
-/datum/effect/effect/system/smoke_spread/chem
-	smoke_type = /obj/effect/effect/smoke/chem
+/datum/effect/system/smoke_spread/chem
+	smoke_type = /obj/effect/smoke/chem
 	var/obj/chemholder
 	var/range
 	var/list/targetTurfs
 	var/list/wallList
 	var/density
 
-/datum/effect/effect/system/smoke_spread/chem/New()
+/datum/effect/system/smoke_spread/chem/New()
 	..()
 	chemholder = new/obj()
 	var/datum/reagents/R = new/datum/reagents(500)
@@ -37,7 +37,7 @@
 // Culls the selected turfs to a (roughly) circle shape, then calls smokeFlow() to make
 // sure the smoke can actually path to the turfs. This culls any turfs it can't reach.
 //------------------------------------------
-/datum/effect/effect/system/smoke_spread/chem/set_up(var/datum/reagents/carry = null, n = 10, c = 0, loca, direct)
+/datum/effect/system/smoke_spread/chem/set_up(var/datum/reagents/carry = null, n = 10, c = 0, loca, direct)
 	range = n * 0.3
 	cardinals = c
 	carry.copy_to(chemholder, carry.total_volume)
@@ -98,7 +98,7 @@
 // Also calculates target locations to spawn the visual smoke effect on, so the whole area
 // is covered fairly evenly.
 //------------------------------------------
-/datum/effect/effect/system/smoke_spread/chem/start()
+/datum/effect/system/smoke_spread/chem/start()
 	if(!location)	//kill grenade if it somehow ends up in nullspace
 		return
 
@@ -129,7 +129,7 @@
 						if(prob(proba))
 							R.reaction_turf(T, R.volume)
 						for(var/atom/A in T.contents)
-							if(istype(A, /obj/effect/effect/smoke/chem))	//skip the item if it is chem smoke
+							if(istype(A, /obj/effect/smoke/chem))	//skip the item if it is chem smoke
 								continue
 							else if(ismob(A))
 								var/dist = cheap_pythag(T.x - location.x, T.y - location.y)
@@ -183,8 +183,8 @@
 // Randomizes and spawns the smoke effect.
 // Also handles deleting the smoke once the effect is finished.
 //------------------------------------------
-/datum/effect/effect/system/smoke_spread/chem/proc/spawnSmoke(turf/T, icon/I, dist = 1)
-	var/obj/effect/effect/smoke/chem/smoke = new(location)
+/datum/effect/system/smoke_spread/chem/proc/spawnSmoke(turf/T, icon/I, dist = 1)
+	var/obj/effect/smoke/chem/smoke = new(location)
 	if(chemholder.reagents.reagent_list.len)
 		chemholder.reagents.copy_to(smoke, chemholder.reagents.total_volume / dist, safety = 1)	//copy reagents to the smoke so mob/breathe() can handle inhaling the reagents
 	smoke.icon = I
@@ -203,7 +203,7 @@
 //------------------------------------------
 // Fades out the smoke smoothly using it's alpha variable.
 //------------------------------------------
-/datum/effect/effect/system/smoke_spread/chem/proc/fadeOut(atom/A, frames = 16)
+/datum/effect/system/smoke_spread/chem/proc/fadeOut(atom/A, frames = 16)
 	var/step = A.alpha / frames
 	for(var/i = 0, i < frames, i++)
 		A.alpha -= step
@@ -215,7 +215,7 @@
 // Smoke pathfinder. Uses a flood fill method based on zones to
 // quickly check what turfs the smoke (airflow) can actually reach.
 //------------------------------------------
-/datum/effect/effect/system/smoke_spread/chem/proc/smokeFlow()
+/datum/effect/system/smoke_spread/chem/proc/smokeFlow()
 	var/list/pending = new()
 	var/list/complete = new()
 

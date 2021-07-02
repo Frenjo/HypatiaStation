@@ -169,19 +169,19 @@
 				if (S.current == src)
 					O << "[U] holds \a [itemname] up to one of the cameras ..."
 					O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
-	else if (istype(W, /obj/item/weapon/camera_bug))
-		if (!src.can_use())
+	else if(istype(W, /obj/item/weapon/camera_bug))
+		if(!src.can_use())
 			user << "\blue Camera non-functional"
 			return
-		if (src.bugged)
+		if(src.bugged)
 			user << "\blue Camera bug removed."
 			src.bugged = 0
 		else
 			user << "\blue Camera bugged."
 			src.bugged = 1
 	else if(istype(W, /obj/item/weapon/melee/energy/blade))//Putting it here last since it's a special case. I wonder if there is a better way to do these than type casting.
-		deactivate(user,2)//Here so that you can disconnect anyone viewing the camera, regardless if it's on or off.
-		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+		deactivate(user, 2)//Here so that you can disconnect anyone viewing the camera, regardless if it's on or off.
+		var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
 		spark_system.set_up(5, 0, loc)
 		spark_system.start()
 		playsound(loc, 'sound/weapons/blade1.ogg', 50, 1)

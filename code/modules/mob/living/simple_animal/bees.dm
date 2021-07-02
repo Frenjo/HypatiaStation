@@ -80,11 +80,13 @@
 
 		//smoke, water and steam calms us down
 		var/calming = 0
-		var/list/calmers = list(/obj/effect/effect/smoke/chem, \
-		/obj/effect/effect/water, \
-		/obj/effect/effect/foam, \
-		/obj/effect/effect/steam, \
-		/obj/effect/mist)
+		var/list/calmers = list(
+			/obj/effect/smoke/chem,
+			/obj/effect/water,
+			/obj/effect/foam,
+			/obj/effect/steam,
+			/obj/effect/mist
+		)
 
 		for(var/this_type in calmers)
 			var/mob/living/simple_animal/check_effect = locate() in src.loc

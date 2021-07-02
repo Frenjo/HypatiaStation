@@ -949,7 +949,7 @@ ________________________________________________________________________________
 		if("APC")
 			var/obj/machinery/power/apc/A = target
 			if(A.cell&&A.cell.charge)
-				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+				var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
 				spark_system.set_up(5, 0, A.loc)
 				while(G.candrain&&A.cell.charge>0&&!maxcapacity)
 					drain = rand(G.mindrain,G.maxdrain)
@@ -977,7 +977,7 @@ ________________________________________________________________________________
 		if("SMES")
 			var/obj/machinery/power/smes/A = target
 			if(A.charge)
-				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+				var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
 				spark_system.set_up(5, 0, A.loc)
 				while(G.candrain&&A.charge>0&&!maxcapacity)
 					drain = rand(G.mindrain,G.maxdrain)
@@ -1019,7 +1019,7 @@ ________________________________________________________________________________
 			var/obj/machinery/A = target
 			if(A.powered())//If powered.
 
-				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+				var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
 				spark_system.set_up(5, 0, A.loc)
 
 				var/obj/machinery/power/apc/B = A.loc.loc:get_apc()//Object.turf.area find APC
@@ -1383,7 +1383,7 @@ It is possible to destroy the net by the occupant or someone else.
 			M << "\red You appear in a strange place!"
 
 			spawn(0)
-				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+				var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
 				spark_system.set_up(5, 0, M.loc)
 				spark_system.start()
 				playsound(M.loc, 'sound/effects/phasein.ogg', 25, 1)

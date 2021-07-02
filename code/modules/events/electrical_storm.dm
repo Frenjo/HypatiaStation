@@ -65,7 +65,7 @@
 				// Exploding APCs in AI areas could be REALLY bad, so let's not do that. -Frenjo
 				if(!istype(apc.area, /area/turret_protected/ai) && !istype(apc.area, /area/turret_protected/ai_upload) && !istype(apc.area, /area/turret_protected/ai_upload_foyer))
 					if(!istype(apc.area, /area/engine/supermatter_engine) && !istype(apc.area, /area/engine/singularity_engine) && !istype(apc.area, /area/engine/thermoelectric_engine))
-						var/datum/effect/effect/system/spark_spread/spark = new
+						var/datum/effect/system/spark_spread/spark = new
 						spark.set_up(5, 1, apc)
 						spark.start()
 						explosion(apc.loc, -1, -1, 2)
@@ -92,7 +92,7 @@
 				H.client.screen.Remove(global_hud.electricalstorm)
 			continue
 
-		if(istype(H,/mob/living/carbon/human))
+		if(ishuman(H))
 			if(H.client)
 				H.client.screen.Remove(global_hud.electricalstorm)
 				H.client.screen += global_hud.electricalstorm

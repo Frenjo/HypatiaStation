@@ -401,6 +401,10 @@ var/list/ghostteleportlocs = list()
 /area/centcom/holding
 	name = "\improper Holding Facility"
 
+/area/centcom/solitary
+	name = "Solitary Confinement"
+	icon_state = "brig"
+
 //SYNDICATES
 /area/syndicate_mothership
 	name = "\improper Syndicate Mothership"

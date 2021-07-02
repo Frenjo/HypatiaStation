@@ -105,7 +105,7 @@
 
 		for(var/a = 0, a < 5, a++)
 			spawn(0)
-				var/obj/effect/effect/water/W = new /obj/effect/effect/water(get_turf(src))
+				var/obj/effect/water/W = new /obj/effect/water(get_turf(src))
 				var/turf/my_target = pick(the_targets)
 				var/datum/reagents/R = new/datum/reagents(5)
 				if(!W)

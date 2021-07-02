@@ -3,28 +3,29 @@
 */
 
 /datum/species
-	var/name                     							// Species name.
-	var/icobase = 'icons/mob/human_races/r_human.dmi'    	// Normal icon set.
-	var/deform = 'icons/mob/human_races/r_def_human.dmi' 	// Mutated icon set.
-	var/eyes = "eyes_s"                                  	// Icon for eyes.
+	var/name												// Species name.
+	var/icobase = 'icons/mob/human_races/r_human.dmi'		// Normal icon set.
+	var/deform = 'icons/mob/human_races/r_def_human.dmi'	// Mutated icon set.
+	var/eyes = "eyes_s"										// Icon for eyes.
 
-	var/primitive                				// Lesser form, if any (ie. monkey for humans)
-	var/tail                     				// Name of tail image in species effects icon file.
-	var/language                 				// Default racial language, if any.
-	var/secondary_langs = list() // The names of secondary languages that are available to this species.
-	var/datum/unarmed_attack/unarmed           	// For empty hand harm-intent attack
-	var/datum/unarmed_attack/secondary_unarmed 	// For empty hand harm-intent attack if the first fails.
+	var/primitive								// Lesser form, if any (ie. monkey for humans)
+	var/tail									// Name of tail image in species effects icon file.
+	var/language								// Default racial language, if any.
+	var/secondary_langs = list()				// The names of secondary languages that are available to this species.
+	var/list/unarmed_attacks					// For empty hand harm-intent attack
 	var/datum/hud_data/hud
 	var/hud_type
 	var/slowdown = 0
-	var/gluttonous 								// Can eat some mobs. 1 for monkeys, 2 for people.
+	var/gluttonous								// Can eat some mobs. 1 for monkeys, 2 for people.
 
-	var/unarmed_type =           /datum/unarmed_attack
-	var/secondary_unarmed_type = /datum/unarmed_attack/bite
+	var/list/unarmed_types = list(
+		/datum/unarmed_attack,
+		/datum/unarmed_attack/bite
+	)
 
-	var/mutantrace               				// Safeguard due to old code.
-	var/has_fine_manipulation = 1 				// Can use small items.
-	var/insulated                 				// Immune to electrocution.
+	var/mutantrace								// Safeguard due to old code.
+	var/has_fine_manipulation = 1				// Can use small items.
+	var/insulated								// Immune to electrocution.
 
 	// Some species-specific gibbing data.
 	var/gibbed_anim = "gibbed-h"
@@ -33,34 +34,34 @@
 	var/death_sound
 	var/death_message = "seizes up and falls limp, their eyes dead and lifeless..."
 
-	var/breath_type = "oxygen"   		// Non-oxygen gas inhaled, if any.
-	var/exhale_type = "carbon_dioxide" 	// Non-carbon dioxide gas exhaled, if any.
-	var/poison_type = "plasma" 			// Main toxic gas, usually plasma.
+	var/breath_type = "oxygen"			// Non-oxygen gas inhaled, if any.
+	var/exhale_type = "carbon_dioxide"	// Non-carbon dioxide gas exhaled, if any.
+	var/poison_type = "plasma"			// Main toxic gas, usually plasma.
 
-	var/total_health = 100  //Point at which the mob will enter crit.
+	var/total_health = 100	//Point at which the mob will enter crit.
 
-	var/cold_level_1 = 260  // Cold damage level 1 below this point.
-	var/cold_level_2 = 200  // Cold damage level 2 below this point.
-	var/cold_level_3 = 120  // Cold damage level 3 below this point.
+	var/cold_level_1 = 260	// Cold damage level 1 below this point.
+	var/cold_level_2 = 200	// Cold damage level 2 below this point.
+	var/cold_level_3 = 120	// Cold damage level 3 below this point.
 
-	var/heat_level_1 = 360  // Heat damage level 1 above this point.
-	var/heat_level_2 = 400  // Heat damage level 2 above this point.
-	var/heat_level_3 = 1000 // Heat damage level 2 above this point.
+	var/heat_level_1 = 360	// Heat damage level 1 above this point.
+	var/heat_level_2 = 400	// Heat damage level 2 above this point.
+	var/heat_level_3 = 1000	// Heat damage level 2 above this point.
 
 	var/body_temperature = 310.15	//non-IS_SYNTHETIC species will try to stabilize at this temperature. (also affects temperature processing)
 	var/synth_temp_gain = 0			//IS_SYNTHETIC species will gain this much temperature every second
-	var/reagent_tag                 //Used for metabolizing reagents.
+	var/reagent_tag					//Used for metabolizing reagents.
 
 	var/darksight = 2
-	var/hazard_high_pressure = HAZARD_HIGH_PRESSURE   // Dangerously high pressure.
-	var/warning_high_pressure = WARNING_HIGH_PRESSURE // High pressure warning.
-	var/warning_low_pressure = WARNING_LOW_PRESSURE   // Low pressure warning.
-	var/hazard_low_pressure = HAZARD_LOW_PRESSURE     // Dangerously low pressure.
+	var/hazard_high_pressure = HAZARD_HIGH_PRESSURE		// Dangerously high pressure.
+	var/warning_high_pressure = WARNING_HIGH_PRESSURE	// High pressure warning.
+	var/warning_low_pressure = WARNING_LOW_PRESSURE		// Low pressure warning.
+	var/hazard_low_pressure = HAZARD_LOW_PRESSURE		// Dangerously low pressure.
 
-	var/brute_mod = null    // Physical damage reduction/malus.
-	var/burn_mod = null     // Burn damage reduction/malus.
+	var/brute_mod = null	// Physical damage reduction/malus.
+	var/burn_mod = null		// Burn damage reduction/malus.
 
-	var/flags = 0       // Various specific features.
+	var/flags = 0		// Various specific features.
 
 	var/list/abilities = list()	// For species-derived or admin-given powers
 
@@ -74,12 +75,12 @@
 	// Species-specific abilities.
 	var/list/inherent_verbs
 	var/list/has_organ = list(
-		"heart" =    /datum/organ/internal/heart,
-		"lungs" =    /datum/organ/internal/lungs,
-		"liver" =    /datum/organ/internal/liver,
-		"kidneys" =  /datum/organ/internal/kidney,
-		"brain" =    /datum/organ/internal/brain,
-		"eyes" =     /datum/organ/internal/eyes
+		"heart" =		/datum/organ/internal/heart,
+		"lungs" =		/datum/organ/internal/lungs,
+		"liver" =		/datum/organ/internal/liver,
+		"kidneys" =		/datum/organ/internal/kidney,
+		"brain" =		/datum/organ/internal/brain,
+		"eyes" =		/datum/organ/internal/eyes
 	)
 
 	var/survival_kit = /obj/item/weapon/storage/box/survival // For species with custom survival kits, default is the standard kit.
@@ -94,11 +95,10 @@
 		hud = new hud_type()
 	else
 		hud = new()
-
-	if(unarmed_type)
-		unarmed = new unarmed_type()
-	if(secondary_unarmed_type)
-		secondary_unarmed = new secondary_unarmed_type()
+	
+	unarmed_attacks = list()
+	for(var/datum/unarmed_attack/type in unarmed_types)
+		unarmed_attacks += new type()
 
 /datum/species/proc/create_organs(mob/living/carbon/human/H) //Handles creation of mob organs.
 	//Trying to work out why species changes aren't fixing organs properly.
@@ -206,8 +206,7 @@
 /datum/species/human
 	name = "Human"
 	language = "Sol Common"
-	unarmed_type = /datum/unarmed_attack/punch
-	unarmed_type = /datum/unarmed_attack/bite
+	unarmed_types = list(/datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
 	primitive = /mob/living/carbon/monkey
 
 	flags = HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
@@ -225,8 +224,7 @@
 	deform = 'icons/mob/human_races/r_def_lizard.dmi'
 	language = "Sinta'unathi"
 	tail = "sogtail"
-	unarmed_type = /datum/unarmed_attack/claws
-	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
+	unarmed_types = list(/datum/unarmed_attack/claws, /datum/unarmed_attack/bite/strong)
 	primitive = /mob/living/carbon/monkey/soghun
 	darksight = 3
 	gluttonous = 1
@@ -253,8 +251,7 @@
 	language = "Siik'maas"
 	secondary_langs = list("Siik'tajr")
 	tail = "tajtail"
-	unarmed_type = /datum/unarmed_attack/claws
-	secondary_unarmed_type = /datum/unarmed_attack/bite
+	unarmed_types = list(/datum/unarmed_attack/claws, /datum/unarmed_attack/bite)
 	darksight = 8
 
 	cold_level_1 = 200 //Default 260
@@ -279,8 +276,7 @@
 	icobase = 'icons/mob/human_races/r_skrell.dmi'
 	deform = 'icons/mob/human_races/r_def_skrell.dmi'
 	language = "Skrellian"
-	unarmed_type = /datum/unarmed_attack/punch
-	secondary_unarmed_type = /datum/unarmed_attack/bite
+	unarmed_types = list(/datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
 	primitive = /mob/living/carbon/monkey/skrell
 
 	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
@@ -297,8 +293,7 @@
 	icobase = 'icons/mob/human_races/r_vox.dmi'
 	deform = 'icons/mob/human_races/r_def_vox.dmi'
 	language = "Vox-Pidgin"
-	unarmed_type = /datum/unarmed_attack/claws/strong
-	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
+	unarmed_types = list(/datum/unarmed_attack/claws/strong, /datum/unarmed_attack/bite/strong)
 
 	warning_low_pressure = 50
 	hazard_low_pressure = 0
@@ -323,21 +318,20 @@
 	)
 
 	has_organ = list(
-		"heart" =    /datum/organ/internal/heart,
-		"lungs" =    /datum/organ/internal/lungs,
-		"liver" =    /datum/organ/internal/liver,
-		"kidneys" =  /datum/organ/internal/kidney,
-		"brain" =    /datum/organ/internal/brain,
-		"eyes" =     /datum/organ/internal/eyes
-		)
+		"heart" =		/datum/organ/internal/heart,
+		"lungs" =		/datum/organ/internal/lungs,
+		"liver" =		/datum/organ/internal/liver,
+		"kidneys" =		/datum/organ/internal/kidney,
+		"brain" =		/datum/organ/internal/brain,
+		"eyes" =		/datum/organ/internal/eyes
+	)
 
 /datum/species/vox/armalis
 	name = "Vox Armalis"
 	icobase = 'icons/mob/human_races/r_armalis.dmi'
 	deform = 'icons/mob/human_races/r_armalis.dmi'
 	language = "Vox-pidgin"
-	unarmed_type = /datum/unarmed_attack/claws/strong
-	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
+	unarmed_types = list(/datum/unarmed_attack/claws/strong, /datum/unarmed_attack/bite/strong)
 
 	warning_low_pressure = 50
 	hazard_low_pressure = 0
@@ -393,19 +387,18 @@
 	icobase = 'icons/mob/human_races/r_diona.dmi'
 	deform = 'icons/mob/human_races/r_def_plant.dmi'
 	language = "Rootspeak"
-	unarmed_type = /datum/unarmed_attack/diona
-	secondary_unarmed_type = /datum/unarmed_attack/diona
+	unarmed_types = list(/datum/unarmed_attack/diona)
 	primitive = /mob/living/carbon/monkey/diona
 	slowdown = 7
 
 	has_organ = list(
-		"nutrient channel" =   /datum/organ/internal/diona/nutrients,
-		"neural strata" =      /datum/organ/internal/diona/strata,
-		"response node" =      /datum/organ/internal/diona/node,
-		"gas bladder" =        /datum/organ/internal/diona/bladder,
-		"polyp segment" =      /datum/organ/internal/diona/polyp,
-		"anchoring ligament" = /datum/organ/internal/diona/ligament
-		)
+		"nutrient channel" =	/datum/organ/internal/diona/nutrients,
+		"neural strata" =		/datum/organ/internal/diona/strata,
+		"response node" =		/datum/organ/internal/diona/node,
+		"gas bladder" =			/datum/organ/internal/diona/bladder,
+		"polyp segment" =		/datum/organ/internal/diona/polyp,
+		"anchoring ligament" =	/datum/organ/internal/diona/ligament
+	)
 
 	warning_low_pressure = 50
 	hazard_low_pressure = -1
@@ -458,17 +451,16 @@
 	icobase = 'icons/mob/human_races/r_machine.dmi'
 	deform = 'icons/mob/human_races/r_machine.dmi'
 	language = "Binary Audio Language"
-	unarmed_type = /datum/unarmed_attack/punch/strong
-	secondary_unarmed_type = /datum/unarmed_attack/punch/strong
+	unarmed_types = list(/datum/unarmed_attack/punch/strong)
 
 	eyes = "blank_eyes"
 	brute_mod = 0.5
 	burn_mod = 1
 
 	has_organ = list(
-		"heart" =    /datum/organ/internal/heart,
-		"brain" =    /datum/organ/internal/brain,
-		)
+		"heart" =		/datum/organ/internal/heart,
+		"brain" =		/datum/organ/internal/brain,
+	)
 
 	warning_low_pressure = 50
 	hazard_low_pressure = 0
@@ -496,8 +488,7 @@
 	icobase = 'icons/mob/human_races/r_obsedai.dmi'
 	deform = 'icons/mob/human_races/r_obsedai.dmi'
 	language = "Obsedaian"
-	unarmed_type = /datum/unarmed_attack/punch/verystrong
-	secondary_unarmed_type = /datum/unarmed_attack/punch/verystrong
+	unarmed_types = list(/datum/unarmed_attack/punch/verystrong)
 	slowdown = 7
 
 	eyes = "blank_eyes"
@@ -530,8 +521,7 @@
 	icobase = 'icons/mob/human_races/r_plasmapeople.dmi'
 	deform = 'icons/mob/human_races/r_plasmapeople.dmi'
 	language = "Plasmaperson"
-	unarmed_type = /datum/unarmed_attack/punch
-	secondary_unarmed_type = /datum/unarmed_attack/punch
+	unarmed_types = list(/datum/unarmed_attack/punch)
 	slowdown = 1
 
 	brute_mod = 1.5
@@ -584,11 +574,12 @@
 /datum/species/proc/can_shred(mob/living/carbon/human/H)
 	if(H.a_intent != "hurt")
 		return 0
-
-	if(unarmed.shredding && unarmed.is_usable(H))
-		return 1
-	else if(secondary_unarmed.shredding && secondary_unarmed.is_usable(H))
-		return 1
+	
+	for(var/datum/unarmed_attack/attack in unarmed_attacks)
+		if(!attack.is_usable(H))
+			continue
+		if(attack.shredding)
+			return 1
 
 	return 0
 
@@ -665,36 +656,36 @@
 	shredding = 1
 
 /datum/hud_data
-	var/icon              // If set, overrides ui_style.
-	var/has_a_intent = 1  // Set to draw intent box.
-	var/has_m_intent = 1  // Set to draw move intent box.
-	var/has_warnings = 1  // Set to draw environment warnings.
-	var/has_pressure = 1  // Draw the pressure indicator.
-	var/has_nutrition = 1 // Draw the nutrition indicator.
-	var/has_bodytemp = 1  // Draw the bodytemp indicator.
-	var/has_hands = 1     // Set to draw shand.
-	var/has_drop = 1      // Set to draw drop button.
-	var/has_throw = 1     // Set to draw throw button.
-	var/has_resist = 1    // Set to draw resist button.
-	var/has_internals = 1 // Set to draw the internals toggle button.
+	var/icon				// If set, overrides ui_style.
+	var/has_a_intent = 1	// Set to draw intent box.
+	var/has_m_intent = 1	// Set to draw move intent box.
+	var/has_warnings = 1	// Set to draw environment warnings.
+	var/has_pressure = 1	// Draw the pressure indicator.
+	var/has_nutrition = 1	// Draw the nutrition indicator.
+	var/has_bodytemp = 1	// Draw the bodytemp indicator.
+	var/has_hands = 1		// Set to draw shand.
+	var/has_drop = 1		// Set to draw drop button.
+	var/has_throw = 1		// Set to draw throw button.
+	var/has_resist = 1		// Set to draw resist button.
+	var/has_internals = 1	// Set to draw the internals toggle button.
 
 	// Contains information on the position and tag for all inventory slots
 	// to be drawn for the mob. This is fairly delicate, try to avoid messing with it
 	// unless you know exactly what it does.
 	var/list/gear = list(
-		"i_clothing" =   list("loc" = ui_iclothing, "slot" = slot_w_uniform, "state" = "center", "toggle" = 1, "dir" = SOUTH),
-		"o_clothing" =   list("loc" = ui_oclothing, "slot" = slot_wear_suit, "state" = "equip",  "toggle" = 1,  "dir" = SOUTH),
-		"mask" =         list("loc" = ui_mask,      "slot" = slot_wear_mask, "state" = "equip",  "toggle" = 1,  "dir" = NORTH),
-		"gloves" =       list("loc" = ui_gloves,    "slot" = slot_gloves,    "state" = "gloves", "toggle" = 1),
-		"eyes" =         list("loc" = ui_glasses,   "slot" = slot_glasses,   "state" = "glasses","toggle" = 1),
-		"l_ear" =        list("loc" = ui_l_ear,     "slot" = slot_l_ear,     "state" = "ears",   "toggle" = 1),
-		"r_ear" =        list("loc" = ui_r_ear,     "slot" = slot_r_ear,     "state" = "ears",   "toggle" = 1),
-		"head" =         list("loc" = ui_head,      "slot" = slot_head,      "state" = "hair",   "toggle" = 1),
-		"shoes" =        list("loc" = ui_shoes,     "slot" = slot_shoes,     "state" = "shoes",  "toggle" = 1),
-		"suit storage" = list("loc" = ui_sstore1,   "slot" = slot_s_store,   "state" = "belt",   "dir" = 8),
-		"back" =         list("loc" = ui_back,      "slot" = slot_back,      "state" = "back",   "dir" = NORTH),
-		"id" =           list("loc" = ui_id,        "slot" = slot_wear_id,   "state" = "id",     "dir" = NORTH),
-		"storage1" =     list("loc" = ui_storage1,  "slot" = slot_l_store,   "state" = "pocket"),
-		"storage2" =     list("loc" = ui_storage2,  "slot" = slot_r_store,   "state" = "pocket"),
-		"belt" =         list("loc" = ui_belt,      "slot" = slot_belt,      "state" = "belt")
-		)
+		"i_clothing" =		list("loc" = ui_iclothing,	"slot" = slot_w_uniform,	"state" = "center",		"toggle" = 1,	"dir" = SOUTH),
+		"o_clothing" =		list("loc" = ui_oclothing,	"slot" = slot_wear_suit,	"state" = "equip",		"toggle" = 1,	"dir" = SOUTH),
+		"mask" =			list("loc" = ui_mask,		"slot" = slot_wear_mask,	"state" = "equip",		"toggle" = 1,	"dir" = NORTH),
+		"gloves" =			list("loc" = ui_gloves,		"slot" = slot_gloves,		"state" = "gloves",		"toggle" = 1),
+		"eyes" =			list("loc" = ui_glasses,	"slot" = slot_glasses,		"state" = "glasses",	"toggle" = 1),
+		"l_ear" =			list("loc" = ui_l_ear,		"slot" = slot_l_ear,		"state" = "ears",		"toggle" = 1),
+		"r_ear" =			list("loc" = ui_r_ear,		"slot" = slot_r_ear,		"state" = "ears",		"toggle" = 1),
+		"head" =			list("loc" = ui_head,		"slot" = slot_head,			"state" = "hair",		"toggle" = 1),
+		"shoes" =			list("loc" = ui_shoes,		"slot" = slot_shoes,		"state" = "shoes",		"toggle" = 1),
+		"suit storage" =	list("loc" = ui_sstore1,	"slot" = slot_s_store,		"state" = "belt",		"dir" = 8),
+		"back" =			list("loc" = ui_back,		"slot" = slot_back,			"state" = "back",		"dir" = NORTH),
+		"id" =				list("loc" = ui_id,			"slot" = slot_wear_id,		"state" = "id",			"dir" = NORTH),
+		"storage1" =		list("loc" = ui_storage1,	"slot" = slot_l_store,		"state" = "pocket"),
+		"storage2" =		list("loc" = ui_storage2,	"slot" = slot_r_store,		"state" = "pocket"),
+		"belt" =			list("loc" = ui_belt, 		"slot" = slot_belt,			"state" = "belt")
+	)

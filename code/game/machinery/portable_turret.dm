@@ -55,13 +55,13 @@
 	var/on = 1				// determines if the turret is on
 	var/disabled = 0
 
-	var/datum/effect/effect/system/spark_spread/spark_system // the spark system, used for generating... sparks?
+	var/datum/effect/system/spark_spread/spark_system // the spark system, used for generating... sparks?
 
 	New()
 		..()
 		icon_state = "[lasercolor]grey_target_prism"
 		// Sets up a spark system
-		spark_system = new /datum/effect/effect/system/spark_spread
+		spark_system = new /datum/effect/system/spark_spread
 		spark_system.set_up(5, 0, src)
 		spark_system.attach(src)
 		sleep(10)

@@ -343,7 +343,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	//if(wires)
 	//	qdel(wires)
 	//	wires = null
-	..()
+	return ..()
 
 /*
 About the new airlock wires panel:
@@ -643,7 +643,7 @@ About the new airlock wires panel:
 		return 0	//Already shocked someone recently?
 	if(!prob(prb))
 		return 0 //you lucked out, no shock for you
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 	s.set_up(5, 1, src)
 	s.start() //sparks always.
 	if(electrocute_mob(user, get_area(src), src))
@@ -866,7 +866,7 @@ About the new airlock wires panel:
 		if(istype(mover, /obj/item))
 			var/obj/item/i = mover
 			if(i.m_amt)
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 				s.set_up(5, 1, src)
 				s.start()
 	return ..()

@@ -20,18 +20,19 @@
 		return 0
 	return 1
 
-/obj/machinery/computer/meteorhit(var/obj/O as obj)
+/obj/machinery/computer/meteorhit(obj/O as obj)
 	for(var/x in verbs)
 		verbs -= x
 	set_broken()
-	var/datum/effect/effect/system/smoke_spread/smoke = PoolOrNew(/datum/effect/effect/system/smoke_spread)
+	var/datum/effect/system/smoke_spread/smoke = PoolOrNew(/datum/effect/system/smoke_spread)
 	smoke.set_up(5, 0, src)
 	smoke.start()
 	return
 
 
 /obj/machinery/computer/emp_act(severity)
-	if(prob(20/severity)) set_broken()
+	if(prob(20 / severity))
+		set_broken()
 	..()
 
 
@@ -41,22 +42,22 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(25))
+			if(prob(25))
 				qdel(src)
 				return
-			if (prob(50))
+			if(prob(50))
 				for(var/x in verbs)
 					verbs -= x
 				set_broken()
 		if(3.0)
-			if (prob(25))
+			if(prob(25))
 				for(var/x in verbs)
 					verbs -= x
 				set_broken()
 		else
 	return
 
-/obj/machinery/computer/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/computer/bullet_act(obj/item/projectile/Proj)
 	if(prob(Proj.damage))
 		set_broken()
 	..()
@@ -105,9 +106,9 @@
 			var/obj/item/weapon/circuitboard/M = new circuit(A)
 			A.circuit = M
 			A.anchored = 1
-			for (var/obj/C in src)
+			for(var/obj/C in src)
 				C.loc = src.loc
-			if (src.stat & BROKEN)
+			if(src.stat & BROKEN)
 				user << "\blue The broken glass falls out."
 				new /obj/item/weapon/shard(src.loc)
 				A.state = 3
@@ -120,9 +121,3 @@
 	else
 		src.attack_hand(user)
 	return
-
-
-
-
-
-

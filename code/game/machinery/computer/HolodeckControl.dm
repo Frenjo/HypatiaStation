@@ -10,14 +10,13 @@
 	var/last_change = 0
 
 
-	attack_ai(var/mob/user as mob)
+	attack_ai(mob/user as mob)
 		return src.attack_hand(user)
 
-	attack_paw(var/mob/user as mob)
+	attack_paw(mob/user as mob)
 		return
 
-	attack_hand(var/mob/user as mob)
-
+	attack_hand(mob/user as mob)
 		if(..())
 			return
 		user.set_machine(src)
@@ -61,14 +60,13 @@
 		user << browse(dat, "window=computer;size=400x500")
 		onclose(user, "computer")
 
-
 		return
 
 
 	Topic(href, href_list)
 		if(..())
 			return
-		if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
+		if((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc))) || issilicon(usr))
 			usr.set_machine(src)
 
 			if(href_list["emptycourt"])
@@ -159,7 +157,7 @@
 
 
 
-/obj/machinery/computer/HolodeckControl/attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
+/obj/machinery/computer/HolodeckControl/attackby(obj/item/weapon/D as obj, mob/user as mob)
 //Warning, uncommenting this can have concequences. For example, deconstructing the computer may cause holographic eswords to never derez
 
 /*		if(istype(D, /obj/item/weapon/screwdriver))
@@ -212,7 +210,7 @@
 	emergencyShutdown()
 	..()
 
-/obj/machinery/computer/HolodeckControl/meteorhit(var/obj/O as obj)
+/obj/machinery/computer/HolodeckControl/meteorhit(obj/O as obj)
 	emergencyShutdown()
 	..()
 
@@ -252,13 +250,13 @@
 
 			for(var/turf/T in linkedholodeck)
 				if(prob(30))
-					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+					var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 					s.set_up(2, 1, T)
 					s.start()
 				T.ex_act(3)
 				T.hotspot_expose(1000,500,1)
 
-/obj/machinery/computer/HolodeckControl/proc/derez(var/obj/obj , var/silent = 1)
+/obj/machinery/computer/HolodeckControl/proc/derez(obj/obj, silent = 1)
 	holographic_items.Remove(obj)
 
 	if(obj == null)
@@ -275,15 +273,14 @@
 		visible_message("The [oldobj.name] fades away!")
 	qdel(obj)
 
-/obj/machinery/computer/HolodeckControl/proc/checkInteg(var/area/A)
+/obj/machinery/computer/HolodeckControl/proc/checkInteg(area/A)
 	for(var/turf/T in A)
 		if(istype(T, /turf/space))
 			return 0
 
 	return 1
 
-/obj/machinery/computer/HolodeckControl/proc/togglePower(var/toggleOn = 0)
-
+/obj/machinery/computer/HolodeckControl/proc/togglePower(toggleOn = 0)
 	if(toggleOn)
 		var/area/targetsource = locate(/area/holodeck/source_emptycourt)
 		holographic_items = targetsource.copy_contents_to(linkedholodeck)
@@ -293,7 +290,7 @@
 				if(L.name=="Atmospheric Test Start")
 					spawn(20)
 						var/turf/T = get_turf(L)
-						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+						var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 						s.set_up(2, 1, T)
 						s.start()
 						if(T)
@@ -309,8 +306,7 @@
 		active = 0
 
 
-/obj/machinery/computer/HolodeckControl/proc/loadProgram(var/area/A)
-
+/obj/machinery/computer/HolodeckControl/proc/loadProgram(area/A)
 	if(world.time < (last_change + 25))
 		if(world.time < (last_change + 15))//To prevent super-spam clicking, reduced process size and annoyance -Sieve
 			return
@@ -342,7 +338,7 @@
 			if(L.name == "Atmospheric Test Start")
 				spawn(20)
 					var/turf/T = get_turf(L)
-					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+					var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 					s.set_up(2, 1, T)
 					s.start()
 					if(T)

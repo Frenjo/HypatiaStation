@@ -623,7 +623,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 				SPAN_DANGER("Your [display_name] explodes!"),\
 				"You hear an explosion followed by a scream!")
 				explosion(get_turf(owner), -1, -1, 2, 3)
-				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+				var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
 				spark_system.set_up(5, 0, owner)
 				spark_system.attach(owner)
 				spark_system.start()
@@ -769,7 +769,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	if(is_malfunctioning())
 		owner.u_equip(c_hand)
 		owner.emote("me", 1, "drops what they were holding, their [hand_name] malfunctioning!")
-		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread
+		var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread
 		spark_system.set_up(5, 0, src)
 		spark_system.attach(src)
 		spark_system.start()

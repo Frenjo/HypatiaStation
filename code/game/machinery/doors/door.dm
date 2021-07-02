@@ -27,7 +27,7 @@
 	var/width = 1
 
 /obj/machinery/door/New()
-	. = ..()
+	..()
 	if(density)
 		layer = 3.1 //Above most items if closed
 		explosion_resistance = initial(explosion_resistance)
@@ -45,14 +45,12 @@
 			bound_height = width * world.icon_size
 
 	update_nearby_tiles(need_rebuild = 1)
-	return
 
 
 /obj/machinery/door/Destroy()
 	density = 0
 	update_nearby_tiles()
-	..()
-	return
+	return ..()
 
 //process()
 	//return
@@ -185,7 +183,7 @@
 				qdel(src)
 		if(3.0)
 			if(prob(80))
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 				s.set_up(2, 1, src)
 				s.start()
 	return

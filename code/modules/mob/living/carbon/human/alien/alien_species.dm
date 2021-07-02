@@ -3,14 +3,13 @@
 /datum/species/xenos
 	name = "Xenomorph"
 	language = "Hivemind"
-	unarmed_type = /datum/unarmed_attack/claws/strong
-	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
+	unarmed_types = list(/datum/unarmed_attack/claws/strong, /datum/unarmed_attack/bite/strong)
 	hud_type = /datum/hud_data/alien
 
 	eyes = "blank_eyes"
 
-	brute_mod = 0.5 // Hardened carapace.
-	burn_mod = 2    // Weak to fire.
+	brute_mod = 0.5	// Hardened carapace.
+	burn_mod = 2	// Weak to fire.
 
 	warning_low_pressure = 50
 	hazard_low_pressure = -1
@@ -34,12 +33,12 @@
 	poison_type = null
 
 	has_organ = list(
-		"heart" =         /datum/organ/internal/heart,
-		"lungs" =         /datum/organ/internal/lungs,
-		"brain" =         /datum/organ/internal/brain,
-		"plasma vessel" = /datum/organ/internal/xenos/plasmavessel,
-		"hive node" =     /datum/organ/internal/xenos/hivenode
-		)
+		"heart" =			/datum/organ/internal/heart,
+		"lungs" =			/datum/organ/internal/lungs,
+		"brain" =			/datum/organ/internal/brain,
+		"plasma vessel" =	/datum/organ/internal/xenos/plasmavessel,
+		"hive node" =		/datum/organ/internal/xenos/hivenode
+	)
 
 	bump_flag = ALIEN
 	swap_flags = ALLMOBS
@@ -50,11 +49,10 @@
 	var/weeds_heal_rate = 1     // Health regen on weeds.
 	var/weeds_plasma_rate = 5   // Plasma regen on weeds.
 
-/datum/species/xenos/hug(var/mob/living/carbon/human/H, var/mob/living/target)
-	H.visible_message("<span class='notice'>[H] caresses [target] with its scythe-like arm.</span>", \
-					"<span class='notice'>You caress [target] with your scythe-like arm.</span>")
+/datum/species/xenos/hug(mob/living/carbon/human/H, mob/living/target)
+	H.visible_message(SPAN_NOTICE("[H] caresses [target] with its scythe-like arm."), SPAN_NOTICE("You caress [target] with your scythe-like arm."))
 
-/datum/species/xenos/handle_post_spawn(var/mob/living/carbon/human/H)
+/datum/species/xenos/handle_post_spawn(mob/living/carbon/human/H)
 	if(H.mind)
 		H.mind.assigned_role = "Alien"
 		H.mind.special_role = "Alien"
@@ -65,7 +63,7 @@
 
 	return ..()
 
-/datum/species/xenos/handle_environment_special(var/mob/living/carbon/human/H)
+/datum/species/xenos/handle_environment_special(mob/living/carbon/human/H)
 	if(!H.loc)
 		return
 
@@ -81,11 +79,11 @@
 			H.adjustToxLoss(-weeds_heal_rate)
 		..()
 
-/datum/species/xenos/handle_login_special(var/mob/living/carbon/human/H)
+/datum/species/xenos/handle_login_special(mob/living/carbon/human/H)
 	H.AddInfectionImages()
 	..()
 
-/datum/species/xenos/handle_logout_special(var/mob/living/carbon/human/H)
+/datum/species/xenos/handle_logout_special(mob/living/carbon/human/H)
 	H.RemoveInfectionImages()
 	..()
 
@@ -100,14 +98,14 @@
 	deform =  'icons/mob/human_races/xenos/r_xenos_drone.dmi'
 
 	has_organ = list(
-		"heart" =         /datum/organ/internal/heart,
-		"lungs" =         /datum/organ/internal/lungs,
-		"brain" =         /datum/organ/internal/brain,
-		"plasma vessel" = /datum/organ/internal/xenos/plasmavessel/queen,
-		"acid gland" =    /datum/organ/internal/xenos/acidgland,
-		"hive node" =     /datum/organ/internal/xenos/hivenode,
-		"resin spinner" = /datum/organ/internal/xenos/resinspinner
-		)
+		"heart" =			/datum/organ/internal/heart,
+		"lungs" =			/datum/organ/internal/lungs,
+		"brain" =			/datum/organ/internal/brain,
+		"plasma vessel" =	/datum/organ/internal/xenos/plasmavessel/queen,
+		"acid gland" =		/datum/organ/internal/xenos/acidgland,
+		"hive node" =		/datum/organ/internal/xenos/hivenode,
+		"resin spinner" =	/datum/organ/internal/xenos/resinspinner
+	)
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/regurgitate,
@@ -116,9 +114,9 @@
 		/mob/living/carbon/human/proc/evolve,
 		/mob/living/carbon/human/proc/resin,
 		/mob/living/carbon/human/proc/corrosive_acid
-		)
+	)
 
-/datum/species/xenos/drone/handle_post_spawn(var/mob/living/carbon/human/H)
+/datum/species/xenos/drone/handle_post_spawn(mob/living/carbon/human/H)
 	var/mob/living/carbon/human/A = H
 	if(!istype(A))
 		return ..()
@@ -137,12 +135,12 @@
 	deform =  'icons/mob/human_races/xenos/r_xenos_hunter.dmi'
 
 	has_organ = list(
-		"heart" =         /datum/organ/internal/heart,
-		"lungs" =         /datum/organ/internal/lungs,
-		"brain" =         /datum/organ/internal/brain,
-		"plasma vessel" = /datum/organ/internal/xenos/plasmavessel/hunter,
-		"hive node" =     /datum/organ/internal/xenos/hivenode
-		)
+		"heart" =			/datum/organ/internal/heart,
+		"lungs" =			/datum/organ/internal/lungs,
+		"brain" =			/datum/organ/internal/brain,
+		"plasma vessel" =	/datum/organ/internal/xenos/plasmavessel/hunter,
+		"hive node" =		/datum/organ/internal/xenos/hivenode
+	)
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/tackle,
@@ -150,7 +148,7 @@
 		/mob/living/carbon/human/proc/leap,
 		/mob/living/carbon/human/proc/psychic_whisper,
 		/mob/living/carbon/human/proc/regurgitate
-		)
+	)
 
 /datum/species/xenos/sentinel
 	name = "Xenomorph Sentinel"
@@ -164,13 +162,13 @@
 	deform =  'icons/mob/human_races/xenos/r_xenos_sentinel.dmi'
 
 	has_organ = list(
-		"heart" =         /datum/organ/internal/heart,
-		"lungs" =         /datum/organ/internal/lungs,
-		"brain" =         /datum/organ/internal/brain,
-		"plasma vessel" = /datum/organ/internal/xenos/plasmavessel/sentinel,
-		"acid gland" =    /datum/organ/internal/xenos/acidgland,
-		"hive node" =     /datum/organ/internal/xenos/hivenode
-		)
+		"heart" =			/datum/organ/internal/heart,
+		"lungs" =			/datum/organ/internal/lungs,
+		"brain" =			/datum/organ/internal/brain,
+		"plasma vessel" =	/datum/organ/internal/xenos/plasmavessel/sentinel,
+		"acid gland" =		/datum/organ/internal/xenos/acidgland,
+		"hive node" =		/datum/organ/internal/xenos/hivenode
+	)
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/tackle,
@@ -178,7 +176,7 @@
 		/mob/living/carbon/human/proc/transfer_plasma,
 		/mob/living/carbon/human/proc/corrosive_acid,
 		/mob/living/carbon/human/proc/neurotoxin
-		)
+	)
 
 /datum/species/xenos/queen
 	name = "Xenomorph Queen"
@@ -192,15 +190,15 @@
 	deform =  'icons/mob/human_races/xenos/r_xenos_queen.dmi'
 
 	has_organ = list(
-		"heart" =         /datum/organ/internal/heart,
-		"lungs" =         /datum/organ/internal/lungs,
-		"brain" =         /datum/organ/internal/brain,
-		"egg sac" =       /datum/organ/internal/xenos/eggsac,
-		"plasma vessel" = /datum/organ/internal/xenos/plasmavessel/queen,
-		"acid gland" =    /datum/organ/internal/xenos/acidgland,
-		"hive node" =     /datum/organ/internal/xenos/hivenode,
-		"resin spinner" = /datum/organ/internal/xenos/resinspinner
-		)
+		"heart" =			/datum/organ/internal/heart,
+		"lungs" =			/datum/organ/internal/lungs,
+		"brain" =			/datum/organ/internal/brain,
+		"egg sac" =			/datum/organ/internal/xenos/eggsac,
+		"plasma vessel" =	/datum/organ/internal/xenos/plasmavessel/queen,
+		"acid gland" =		/datum/organ/internal/xenos/acidgland,
+		"hive node" =		/datum/organ/internal/xenos/hivenode,
+		"resin spinner" =	/datum/organ/internal/xenos/resinspinner
+	)
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/psychic_whisper,
@@ -211,15 +209,15 @@
 		/mob/living/carbon/human/proc/corrosive_acid,
 		/mob/living/carbon/human/proc/neurotoxin,
 		/mob/living/carbon/human/proc/resin
-		)
+	)
 
 	//maxHealth = 250
 	//health = 250
 
-/datum/species/xenos/queen/handle_login_special(var/mob/living/carbon/human/H)
+/datum/species/xenos/queen/handle_login_special(mob/living/carbon/human/H)
 	..()
 	// Make sure only one official queen exists at any point.
-	if(!alien_queen_exists(1,H))
+	if(!alien_queen_exists(1, H))
 		H.real_name = "alien queen ([alien_number])"
 		H.name = H.real_name
 	else
@@ -228,21 +226,21 @@
 
 /datum/hud_data/alien
 	icon = 'icons/mob/screen1_alien.dmi'
-	has_a_intent =  1
-	has_m_intent =  1
-	has_warnings =  1
-	has_hands =     1
-	has_drop =      1
-	has_throw =     1
-	has_resist =    1
-	has_pressure =  0
-	has_nutrition = 0
-	has_bodytemp =  0
-	has_internals = 0
+	has_a_intent =	1
+	has_m_intent =	1
+	has_warnings =	1
+	has_hands =		1
+	has_drop =		1
+	has_throw =		1
+	has_resist =	1
+	has_pressure =	0
+	has_nutrition =	0
+	has_bodytemp =	0
+	has_internals =	0
 
 	gear = list(
-		"o_clothing" =   list("loc" = ui_belt,      "slot" = slot_wear_suit, "state" = "equip",  "dir" = SOUTH),
-		"head" =         list("loc" = ui_id,        "slot" = slot_head,      "state" = "hair"),
-		"storage1" =     list("loc" = ui_storage1,  "slot" = slot_l_store,   "state" = "pocket"),
-		"storage2" =     list("loc" = ui_storage2,  "slot" = slot_r_store,   "state" = "pocket"),
-		)
+		"o_clothing" =	list("loc" = ui_belt,		"slot" = slot_wear_suit,	"state" = "equip",	"dir" = SOUTH),
+		"head" =		list("loc" = ui_id,			"slot" = slot_head,			"state" = "hair"),
+		"storage1" =	list("loc" = ui_storage1,	"slot" = slot_l_store,		"state" = "pocket"),
+		"storage2" =	list("loc" = ui_storage2,	"slot" = slot_r_store,		"state" = "pocket"),
+	)

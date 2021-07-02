@@ -48,12 +48,12 @@
 			return
 		if(2.0)
 			if(prob(50))
-				new /obj/effect/effect/water(src.loc)
+				new /obj/effect/water(src.loc)
 				qdel(src)
 				return
 		if(3.0)
 			if(prob(5))
-				new /obj/effect/effect/water(src.loc)
+				new /obj/effect/water(src.loc)
 				qdel(src)
 				return
 		else
@@ -61,7 +61,7 @@
 
 /obj/structure/reagent_dispensers/blob_act()
 	if(prob(50))
-		new /obj/effect/effect/water(src.loc)
+		new /obj/effect/water(src.loc)
 		qdel(src)
 
 

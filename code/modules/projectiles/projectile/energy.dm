@@ -18,7 +18,7 @@
 
 /obj/item/projectile/energy/electrode/on_hit(atom/target, blocked = 0)
 	if(!ismob(target) || blocked >= 2) //Fully blocked by mob or collided with dense object - burst into sparks!
-		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread
+		var/datum/effect/system/spark_spread/sparks = new /datum/effect/system/spark_spread
 		sparks.set_up(1, 1, src)
 		sparks.start()
 	..()

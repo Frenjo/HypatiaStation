@@ -57,8 +57,8 @@ var/list/robot_verbs_default = list(
 	var/modtype = "Default"
 	var/lower_mod = 0
 	var/jetpack = 0
-	var/datum/effect/effect/system/ion_trail_follow/ion_trail = null
-	var/datum/effect/effect/system/spark_spread/spark_system//So they can initialize sparks whenever/N
+	var/datum/effect/system/ion_trail_follow/ion_trail = null
+	var/datum/effect/system/spark_spread/spark_system //So they can initialize sparks whenever/N
 	var/jeton = 0
 	var/borgwires = 31 // 0b11111
 	var/killswitch = 0
@@ -74,8 +74,8 @@ var/list/robot_verbs_default = list(
 	var/braintype = "Cyborg"
 	var/pose
 
-/mob/living/silicon/robot/New(loc,var/syndie = 0, var/unfinished = 0)
-	spark_system = new /datum/effect/effect/system/spark_spread()
+/mob/living/silicon/robot/New(loc, syndie = 0, unfinished = 0)
+	spark_system = new /datum/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
@@ -112,7 +112,7 @@ var/list/robot_verbs_default = list(
 		hands.icon_state = "standard"
 		icon_state = "secborg"
 		modtype = "Security"
-	else if(istype(src, /mob/living/silicon/robot/drone))
+	else if(isdrone(src))
 		laws = new /datum/ai_laws/drone()
 		connected_ai = select_active_ai_with_fewest_borgs()
 		if(connected_ai)
@@ -139,10 +139,11 @@ var/list/robot_verbs_default = list(
 	initialize_components()
 	//if(!unfinished)
 	// Create all the robot parts.
-	for(var/V in components) if(V != "power cell")
-		var/datum/robot_component/C = components[V]
-		C.installed = 1
-		C.wrapped = new C.external_type
+	for(var/V in components)
+		if(V != "power cell")
+			var/datum/robot_component/C = components[V]
+			C.installed = 1
+			C.wrapped = new C.external_type
 
 	if(!cell)
 		cell = new /obj/item/weapon/cell(src)
@@ -789,7 +790,7 @@ var/list/robot_verbs_default = list(
 
 				flick("noise", flash)
 
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 				s.set_up(5, 1, src)
 				s.start()
 

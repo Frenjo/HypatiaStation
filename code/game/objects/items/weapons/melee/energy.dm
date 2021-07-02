@@ -60,4 +60,4 @@
 	w_class = 4.0//So you can't hide it in your pocket or some such.
 	flags = NOSHIELD | NOBLOODY
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	var/datum/effect/effect/system/spark_spread/spark_system
+	var/datum/effect/system/spark_spread/spark_system

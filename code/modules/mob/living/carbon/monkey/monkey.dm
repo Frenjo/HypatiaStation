@@ -318,20 +318,20 @@
 					M.powerlevel = 0
 
 				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>The [M.name] has shocked []!</B>", src), 1)
+					if((O.client && !O.blinded))
+						O.show_message(SPAN_DANGER("The [M.name] has shocked [src]!"),  1)
 
 				Weaken(power)
-				if (stuttering < power)
+				if(stuttering < power)
 					stuttering = power
 				Stun(power)
 
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 				s.set_up(5, 1, src)
 				s.start()
 
-				if (prob(stunprob) && M.powerlevel >= 8)
-					adjustFireLoss(M.powerlevel * rand(6,10))
+				if(prob(stunprob) && M.powerlevel >= 8)
+					adjustFireLoss(M.powerlevel * rand(6, 10))
 
 
 		updatehealth()
@@ -341,10 +341,10 @@
 /mob/living/carbon/monkey/Stat()
 	..()
 	statpanel("Status")
-	stat(null, text("Intent: []", a_intent))
-	stat(null, text("Move Mode: []", m_intent))
+	stat("Intent: ", "[a_intent]")
+	stat("Move Mode: ", "[m_intent]")
 	if(client && mind)
-		if (client.statpanel == "Status")
+		if(client.statpanel == "Status")
 			if(mind.changeling)
 				stat("Chemical Storage", mind.changeling.chem_charges)
 				stat("Genetic Damage Time", mind.changeling.geneticdamage)
@@ -357,7 +357,7 @@
 	return
 
 /mob/living/carbon/monkey/var/co2overloadtime = null
-/mob/living/carbon/monkey/var/temperature_resistance = T0C+75
+/mob/living/carbon/monkey/var/temperature_resistance = T0C + 75
 
 /mob/living/carbon/monkey/emp_act(severity)
 	if(wear_id) wear_id.emp_act(severity)

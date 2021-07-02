@@ -14,11 +14,11 @@
 			if (user.buckled)
 				user.buckled.unbuckle()
 
-			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+			var/datum/effect/system/spark_spread/sparks = new /datum/effect/system/spark_spread()
 			sparks.set_up(3, 0, get_turf(user))
 			sparks.start()
 			user.loc = pick(randomturfs)
-			sparks = new /datum/effect/effect/system/spark_spread()
+			sparks = new /datum/effect/system/spark_spread()
 			sparks.set_up(3, 0, get_turf(user))
 			sparks.start()
 
@@ -35,11 +35,11 @@
 					if(M.buckled)
 						M.buckled.unbuckle()
 
-					var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+					var/datum/effect/system/spark_spread/sparks = new /datum/effect/system/spark_spread()
 					sparks.set_up(3, 0, get_turf(M))
 					sparks.start()
 					M.loc = pick(randomturfs)
-					sparks = new /datum/effect/effect/system/spark_spread()
+					sparks = new /datum/effect/system/spark_spread()
 					sparks.set_up(3, 0, get_turf(M))
 					sparks.start()
 
@@ -54,12 +54,12 @@
 				if(randomturfs.len > 0)
 					M << "\red You are displaced by a strange force!"
 
-					var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+					var/datum/effect/system/spark_spread/sparks = new /datum/effect/system/spark_spread()
 					sparks.set_up(3, 0, get_turf(M))
 					sparks.start()
 					if(M.buckled)
 						M.buckled.unbuckle()
 					M.loc = pick(randomturfs)
-					sparks = new /datum/effect/effect/system/spark_spread()
+					sparks = new /datum/effect/system/spark_spread()
 					sparks.set_up(3, 0, get_turf(M))
 					sparks.start()
