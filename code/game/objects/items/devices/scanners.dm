@@ -235,7 +235,7 @@ REAGENT SCANNER
 	var/pressure = environment.return_pressure()
 	var/total_moles = environment.total_moles
 
-	user.show_message(SPAN_NOTICE("Results:"), 1)
+	user.show_message(SPAN_INFO_B("Results:"), 1)
 	if(abs(pressure - ONE_ATMOSPHERE) < 10)
 		user.show_message(SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"), 1)
 	else

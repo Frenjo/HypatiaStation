@@ -578,7 +578,7 @@ var/global/list/uneatable = list(
 		//no living humans, follow a ghost instead.
 
 /obj/singularity/narsie/proc/acquire(mob/food)
-	to_chat(target, SPAN_NOTICE("NAR-SIE HAS LOST INTEREST IN YOU"))
+	to_chat(target, SPAN_INFO_B("NAR-SIE HAS LOST INTEREST IN YOU"))
 	target = food
 	if(ishuman(target))
 		to_chat(target, SPAN_DANGER("NAR-SIE HUNGERS FOR YOUR SOUL"))

@@ -1119,7 +1119,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 				user.show_message(SPAN_INFO("Analyzing Results for [C]:"))
 				if(C.radiation)
-					user.show_message("\green Radiation Level: \black [C.radiation]")
+					user.show_message(SPAN_ALIUM("Radiation Level:") + "\black [C.radiation]")
 				else
 					user.show_message(SPAN_INFO("No radiation detected."))
 

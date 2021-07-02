@@ -121,7 +121,7 @@
 /obj/structure/closet/proc/toggle(mob/user as mob)
 	. = src.opened ? src.close() : src.open()
 	if(!.)
-		user << "<span class='notice'>It won't budge!</span>"
+		to_chat(user, SPAN_NOTICE("It won't budge!"))
 	return
 
 // this should probably use dump_contents()
@@ -240,11 +240,11 @@
 		return
 
 	if(!src.open())
-		user << "<span class='notice'>It won't budge!</span>"
+		to_chat(user, SPAN_NOTICE("It won't budge!"))
 		if(!lastbang)
 			lastbang = 1
 			for(var/mob/M in hearers(src, null))
-				M << text("<FONT size=[]>BANG, bang!</FONT>", max(0, 5 - get_dist(src, M)))
+				to_chat(M, "<FONT size=[max(0, 5 - get_dist(src, M))]>BANG, bang!</FONT>")
 			spawn(30)
 				lastbang = 0
 

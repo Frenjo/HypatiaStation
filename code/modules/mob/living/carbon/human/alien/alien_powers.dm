@@ -58,12 +58,12 @@
 	set category = "Abilities"
 
 	if(get_dist(src, M) <= 1)
-		src << "\green You need to be closer."
+		to_chat(src, SPAN_ALIUM("You need to be closer."))
 		return
 
 	var/datum/organ/internal/xenos/plasmavessel/I = M.internal_organs_by_name["plasma vessel"]
 	if(!istype(I))
-		src << "\green Their plasma vessel is missing."
+		to_chat(src, SPAN_ALIUM("Their plasma vessel is missing."))
 		return
 
 	var/amount = input("Amount:", "Transfer Plasma to [M]") as num
@@ -71,8 +71,8 @@
 		amount = abs(round(amount))
 		if(check_alien_ability(amount, 0, "plasma vessel"))
 			M.gain_plasma(amount)
-			M << "\green [src] has transfered [amount] plasma to you."
-			src << "\green You have transferred [amount] plasma to [M]"
+			to_chat(M, SPAN_ALIUM("[src] has transfered [amount] plasma to you."))
+			to_chat(src, SPAN_ALIUM("You have transferred [amount] plasma to [M]."))
 	return
 
 // Queen verbs.
@@ -92,7 +92,7 @@
 
 	if(check_alien_ability(75, 1, "egg sac"))
 		for(var/mob/O in viewers(src, null))
-			O.show_message(text("\green <B>[src] has laid an egg!</B>"), 1)
+			O.show_message(SPAN_RADIOACTIVE("[src] has laid an egg!"), 1)
 		new /obj/effect/alien/egg(loc)
 
 	return
@@ -104,13 +104,13 @@
 	set category = "Abilities"
 
 	if(alien_queen_exists())
-		src << "<span class='notice'>We already have an active queen.</span>"
+		to_chat(src, SPAN_NOTICE("We already have an active queen."))
 		return
 
 	if(check_alien_ability(500))
-		src << "\green You begin to evolve!"
+		to_chat(src, SPAN_ALIUM("You begin to evolve!"))
 		for(var/mob/O in viewers(src, null))
-			O.show_message(text("\green <B>[src] begins to twist and contort!</B>"), 1)
+			O.show_message(SPAN_RADIOACTIVE("[src] begins to twist and contort!"), 1)
 		src.set_species("Xenomorph Queen")
 
 	return
@@ -122,7 +122,7 @@
 
 	if(check_alien_ability(50, 1, "resin spinner"))
 		for(var/mob/O in viewers(src, null))
-			O.show_message(text("\green <B>[src] has planted some alien weeds!</B>"), 1)
+			O.show_message(SPAN_RADIOACTIVE("[src] has planted some alien weeds!"), 1)
 		new /obj/effect/alien/weeds/node(loc)
 	return
 
@@ -132,14 +132,14 @@
 	set category = "Abilities"
 
 	if(!O in oview(1))
-		src << "\green [O] is too far away."
+		to_chat(src, SPAN_ALIUM("[O] is too far away."))
 		return
 
 	// OBJ CHECK
 	if(isobj(O))
 		var/obj/I = O
 		if(I.unacidable)	//So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
-			src << "\green You cannot dissolve this object."
+			to_chat(src, SPAN_ALIUM("You cannot dissolve this object."))
 			return
 
 	// TURF CHECK
@@ -147,18 +147,18 @@
 		var/turf/T = O
 		// R WALL
 		if(istype(T, /turf/simulated/wall/r_wall))
-			src << "\green You cannot dissolve this object."
+			to_chat(src, SPAN_ALIUM("You cannot dissolve this object."))
 			return
 		// R FLOOR
 		if(istype(T, /turf/simulated/floor/engine))
-			src << "\green You cannot dissolve this object."
+			to_chat(src, SPAN_ALIUM("You cannot dissolve this object."))
 			return
 		else// Not a type we can acid.
 			return
 
 	if(check_alien_ability(200, 0, "acid gland"))
 		new /obj/effect/alien/acid(get_turf(O), O)
-		visible_message("\green <B>[src] vomits globs of vile stuff all over [O]. It begins to sizzle and melt under the bubbling mess of acid!</B>")
+		visible_message(SPAN_RADIOACTIVE("[src] vomits globs of vile stuff all over [O]. It begins to sizzle and melt under the bubbling mess of acid!"))
 
 	return
 
@@ -170,10 +170,10 @@
 	if(!check_alien_ability(50, 0, "acid gland"))
 		return
 
-	src << "\green You spit neurotoxin at [target]."
+	to_chat(src, SPAN_ALIUM("You spit neurotoxin at [target]."))
 	for(var/mob/O in oviewers())
-		if ((O.client && !( O.blinded )))
-			O << "\red [src] spits neurotoxin at [target]!"
+		if((O.client && !O.blinded))
+			to_chat(O, SPAN_WARNING("[src] spits neurotoxin at [target]!"))
 
 	//I'm not motivated enough to revise this. Prjectile code in general needs update.
 	// Maybe change this to use throw_at? ~ Z
@@ -204,16 +204,16 @@
 	set desc = "Secrete tough malleable resin."
 	set category = "Abilities"
 
-	var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in list("resin door","resin wall","resin membrane","resin nest") //would do it through typesof but then the player choice would have the type path and we don't want the internal workings to be exposed ICly - Urist
+	var/choice = input("Choose what you wish to shape.", "Resin building") as null | anything in list("resin door", "resin wall", "resin membrane", "resin nest") //would do it through typesof but then the player choice would have the type path and we don't want the internal workings to be exposed ICly - Urist
 	if(!choice)
 		return
 
 	if(!check_alien_ability(75, 1, "resin spinner"))
 		return
 
-	src << "\green You shape a [choice]."
+	to_chat(src, SPAN_ALIUM("You shape a [choice]."))
 	for(var/mob/O in viewers(src, null))
-		O.show_message(text("\red <B>[src] vomits up a thick purple substance and begins to shape it!</B>"), 1)
+		O.show_message(SPAN_DANGER("[src] vomits up a thick purple substance and begins to shape it!"), 1)
 	switch(choice)
 		if("resin door")
 			new /obj/structure/mineral_door/resin(loc)

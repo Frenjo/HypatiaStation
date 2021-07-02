@@ -131,7 +131,7 @@
 		if(timestamp)
 			timestamp.Cut()
 		timerecorded = 0
-		usr << "<span class='notice'>Memory cleared.</span>"
+		to_chat(usr, SPAN_NOTICE("Memory cleared."))
 		return
 
 
@@ -152,7 +152,7 @@
 		return
 	playing = 1
 	icon_state = "taperecorderplaying"
-	usr << "<span class='notice'>Playing started.</span>"
+	to_chat(usr, SPAN_NOTICE("Playing started."))
 	for(var/i = 1, timerecorded < 3600, sleep(10 * (playsleepseconds)))
 		if(playing == 0)
 			break

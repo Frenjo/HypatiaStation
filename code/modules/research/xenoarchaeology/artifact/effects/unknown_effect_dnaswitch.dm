@@ -4,24 +4,27 @@
 	effecttype = "dnaswitch"
 	effect_type = 5
 	var/severity
+	var/messages = list(
+		"You feel a little different.",
+		"You feel very strange.",
+		"Your stomach churns.",
+		"Your skin feels loose.",
+		"You feel a stabbing pain in your head.",
+		"You feel a tingling sensation in your chest.",
+		"Your entire body vibrates."
+	)
 
 /datum/artifact_effect/dnaswitch/New()
 	..()
 	if(effect == EFFECT_AURA)
-		severity = rand(5,30)
+		severity = rand(5, 30)
 	else
-		severity = rand(25,95)
+		severity = rand(25, 95)
 
-/datum/artifact_effect/dnaswitch/DoEffectTouch(var/mob/toucher)
+/datum/artifact_effect/dnaswitch/DoEffectTouch(mob/toucher)
 	var/weakness = GetAnomalySusceptibility(toucher)
 	if(ishuman(toucher) && prob(weakness * 100))
-		toucher << pick("\green You feel a little different.",\
-		"\green You feel very strange.",\
-		"\green Your stomach churns.",\
-		"\green Your skin feels loose.",\
-		"\green You feel a stabbing pain in your head.",\
-		"\green You feel a tingling sensation in your chest.",\
-		"\green Your entire body vibrates.")
+		to_chat(toucher, SPAN_ALIUM(pick(messages)))
 		if(prob(75))
 			scramble(1, toucher, weakness * severity)
 		else
@@ -34,13 +37,7 @@
 			var/weakness = GetAnomalySusceptibility(H)
 			if(prob(weakness * 100))
 				if(prob(30))
-					H << pick("\green You feel a little different.",\
-					"\green You feel very strange.",\
-					"\green Your stomach churns.",\
-					"\green Your skin feels loose.",\
-					"\green You feel a stabbing pain in your head.",\
-					"\green You feel a tingling sensation in your chest.",\
-					"\green Your entire body vibrates.")
+					to_chat(H, SPAN_ALIUM(pick(messages)))
 				if(prob(50))
 					scramble(1, H, weakness * severity)
 				else
@@ -52,13 +49,7 @@
 			var/weakness = GetAnomalySusceptibility(H)
 			if(prob(weakness * 100))
 				if(prob(75))
-					H << pick("\green You feel a little different.",\
-					"\green You feel very strange.",\
-					"\green Your stomach churns.",\
-					"\green Your skin feels loose.",\
-					"\green You feel a stabbing pain in your head.",\
-					"\green You feel a tingling sensation in your chest.",\
-					"\green Your entire body vibrates.")
+					to_chat(H, SPAN_ALIUM(pick(messages)))
 				if(prob(25))
 					if(prob(75))
 						scramble(1, H, weakness * severity)

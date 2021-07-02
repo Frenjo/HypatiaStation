@@ -105,7 +105,7 @@
 			var/obj/item/weapon/implant/I = locate(href_list["warn"])
 			if((I) && (I.imp_in))
 				var/mob/living/carbon/R = I.imp_in
-				R << "\green You hear a voice in your head saying: '[warning]'"
+				to_chat(R, SPAN_ALIUM("You hear a voice in your head saying: '[warning]'"))
 
 		src.add_fingerprint(usr)
 	src.updateUsrDialog()

@@ -55,7 +55,7 @@
 	if(survivors)
 		to_chat(world, SPAN_INFO("<B>The following survived the meteor storm</B>:[text]"))
 	else
-		to_chat(world, SPAN_NOTICE("Nobody survived the meteor storm!"))
+		to_chat(world, SPAN_INFO_B("Nobody survived the meteor storm!"))
 
 	feedback_set_details("round_end_result", "end - evacuation")
 	feedback_set("round_end_result", survivors)

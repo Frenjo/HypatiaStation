@@ -103,10 +103,10 @@
 		to_chat(usr, SPAN_INFO("Try as you might, you can not climb up into the scanner."))
 		return
 	if(src.occupant)
-		to_chat(usr, SPAN_NOTICE("The scanner is already occupied!"))
+		to_chat(usr, SPAN_INFO_B("The scanner is already occupied!"))
 		return
 	if(usr.abiotic())
-		usr << "\blue <B>Subject cannot have abiotic items on.</B>"
+		to_chat(usr, SPAN_INFO_B("Subject cannot have abiotic items on."))
 		return
 	usr.stop_pulling()
 	usr.client.perspective = EYE_PERSPECTIVE
@@ -134,10 +134,10 @@
 	if(!ismob(G.affecting))
 		return
 	if(src.occupant)
-		to_chat(user, SPAN_NOTICE("The scanner is already occupied!"))
+		to_chat(usr, SPAN_INFO_B("The scanner is already occupied!"))
 		return
 	if(G.affecting.abiotic())
-		to_chat(user, SPAN_NOTICE("Subject cannot have abiotic items on."))
+		to_chat(usr, SPAN_INFO_B("Subject cannot have abiotic items on."))
 		return
 	put_in(G.affecting)
 	src.add_fingerprint(user)

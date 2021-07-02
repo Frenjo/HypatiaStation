@@ -390,7 +390,7 @@ var/global/datum/controller/occupations/job_master
 		H.mind.store_memory(remembered_info)
 
 	spawn(0)
-		to_chat(H, SPAN_NOTICE("Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]"))
+		to_chat(H, SPAN_INFO_B("Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]."))
 
 	var/alt_title = null
 	if(H.mind)

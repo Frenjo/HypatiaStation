@@ -417,21 +417,21 @@
 /obj/mecha/attack_hand(mob/user as mob)
 	src.log_message("Attack by hand/paw. Attacker - [user].", 1)
 
-	if(istype(user, /mob/living/carbon/human))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(user))
 			if(!prob(src.deflect_chance))
 				src.take_damage(15)
 				src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
 				playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
-				user << "\red You slash at the armored suit!"
-				visible_message("\red The [user] slashes at [src.name]'s armor!")
+				to_chat(user, SPAN_WARNING("You slash at the armored suit!"))
+				visible_message(SPAN_WARNING("The [user] slashes at [src.name]'s armor!"))
 			else
 				src.log_append_to_last("Armor saved.")
 				playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
-				user << "\green Your claws had no effect!"
-				src.occupant_message("\blue The [user]'s claws are stopped by the armor.")
-				visible_message("\blue The [user] rebounds off [src.name]'s armor!")
+				to_chat(user, SPAN_ALIUM("Your claws had no effect!"))
+				src.occupant_message(SPAN_INFO("The [user]'s claws are stopped by the armor."))
+				visible_message(SPAN_INFO("The [user] rebounds off [src.name]'s armor!"))
 		else
 			user.visible_message("<font color='red'><b>[user] hits [src.name]. Nothing happens</b></font>","<font color='red'><b>You hit [src.name] with no visible effect.</b></font>")
 			src.log_append_to_last("Armor saved.")

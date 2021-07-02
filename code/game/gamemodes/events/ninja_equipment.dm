@@ -1433,7 +1433,7 @@ It is possible to destroy the net by the occupant or someone else.
 	hitby(AM as mob|obj)
 		..()
 		for(var/mob/O in viewers(src, null))
-			O.show_message(text("\red <B>[src] was hit by [AM].</B>"), 1)
+			O.show_message(SPAN_DANGER("[src] was hit by [AM]."), 1)
 		var/tforce = 0
 		if(ismob(AM))
 			tforce = 10
@@ -1447,24 +1447,24 @@ It is possible to destroy the net by the occupant or someone else.
 
 	attack_hand()
 		if(HULK in usr.mutations)
-			usr << text("\blue You easily destroy the energy net.")
+			to_chat(usr, SPAN_INFO("You easily destroy the energy net."))
 			for(var/mob/O in oviewers(src))
-				O.show_message(text("\red [] rips the energy net apart!", usr), 1)
-			health-=50
-		else if(istype(usr,/mob/living/carbon/human))
+				O.show_message(SPAN_WARNING("[usr] rips the energy net apart!"), 1)
+			health -= 50
+		else if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			if(H.species.can_shred(H))
-				H << text("\green You claw at the net.")
+				to_chat(H, SPAN_ALIUM("You claw at the net."))
 				for(var/mob/O in oviewers(src))
-					O.show_message(text("\red [] claws at the energy net!", H), 1)
+					O.show_message(SPAN_WARNING("[H] claws at the energy net!"), 1)
 
 				playsound(src, 'sound/weapons/slash.ogg', 80, 1)
 				health -= rand(10, 20)
 
 				if(health <= 0)
-					H << text("\green You slice the energy net to pieces.")
+					to_chat(H, SPAN_ALIUM("You slice the energy net to pieces."))
 					for(var/mob/O in oviewers(src))
-						O.show_message(text("\red [] slices the energy net apart!", H), 1)
+						O.show_message(SPAN_WARNING("[H] slices the energy net apart!"), 1)
 		healthcheck()
 		return
 

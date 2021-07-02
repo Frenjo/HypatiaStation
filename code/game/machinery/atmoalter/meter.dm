@@ -95,7 +95,7 @@
 	if(get_dist(usr, src) <= 3 || isAI(usr) || istype(usr, /mob/dead))
 		t += status()
 	else
-		to_chat(usr, SPAN_NOTICE("You are too far away."))
+		to_chat(usr, SPAN_INFO_B("You are too far away."))
 		return 1
 
 	usr << t

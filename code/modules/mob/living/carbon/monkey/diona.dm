@@ -204,12 +204,12 @@
 
 	if(donors.len == 5)
 		ready_evolve = 1
-		src << "\green You feel ready to move on to your next stage of growth."
+		to_chat(src, SPAN_ALIUM("You feel ready to move on to your next stage of growth."))
 	else if(donors.len == 3)
 		universal_understand = 1
-		src << "\green You feel your awareness expand, and realize you know how to understand the creatures around you."
+		to_chat(src, SPAN_ALIUM("You feel your awareness expand, and realize you know how to understand the creatures around you."))
 	else
-		src << "\green The blood seeps into your small form, and you draw out the echoes of memories and personality from it, working them into your budding mind."
+		to_chat(src, SPAN_ALIUM("The blood seeps into your small form, and you draw out the echoes of memories and personality from it, working them into your budding mind."))
 
 /mob/living/carbon/monkey/diona/say_understands(mob/other, datum/language/speaking = null)
 	if(ishuman(other) && !speaking)

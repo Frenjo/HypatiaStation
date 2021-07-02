@@ -123,7 +123,7 @@
 		return
 
 	if(src.victim)
-		to_chat(usr, SPAN_NOTICE("The table is already occupied!"))
+		to_chat(usr, SPAN_INFO_B("The table is already occupied!"))
 		return
 
 	take_victim(usr, usr)

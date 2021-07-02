@@ -310,7 +310,7 @@ var/global/list/frozen_items = list()
 				icon_state = "body_scanner_1"
 
 			to_chat(M, SPAN_INFO("You feel cool air surround you. You go numb as your senses turn inward."))
-			to_chat(M, SPAN_NOTICE("If you ghost, log out or close your client now, your character will shortly be permanently removed from the round."))
+			to_chat(M, SPAN_INFO_B("If you ghost, log out or close your client now, your character will shortly be permanently removed from the round."))
 			occupant = M
 			time_entered = world.time
 
@@ -346,7 +346,7 @@ var/global/list/frozen_items = list()
 		return
 
 	if(src.occupant)
-		to_chat(usr, SPAN_NOTICE("The cryo pod is in use."))
+		to_chat(usr, SPAN_INFO_B("The cryo pod is in use."))
 		return
 
 	for(var/mob/living/carbon/slime/M in range(1, usr))
@@ -361,7 +361,7 @@ var/global/list/frozen_items = list()
 			return
 
 		if(src.occupant)
-			to_chat(usr, SPAN_NOTICE("The cryo pod is in use."))
+			to_chat(usr, SPAN_INFO_B("The cryo pod is in use."))
 			return
 
 		usr.stop_pulling()
@@ -375,8 +375,8 @@ var/global/list/frozen_items = list()
 		else
 			icon_state = "body_scanner_1"
 
-		usr << "\blue You feel cool air surround you. You go numb as your senses turn inward."
-		usr << "\blue <b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>"
+		to_chat(usr, SPAN_INFO("You feel cool air surround you. You go numb as your senses turn inward."))
+		to_chat(usr, SPAN_INFO_B("If you ghost, log out or close your client now, your character will shortly be permanently removed from the round."))
 		occupant = usr
 		time_entered = world.time
 

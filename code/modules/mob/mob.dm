@@ -363,7 +363,7 @@ var/list/slot_equipment_priority = list(
 		to_chat(usr, SPAN_INFO("Respawn is disabled."))
 		return
 	if((stat != DEAD || !ticker))
-		to_chat(usr, SPAN_NOTICE("You must be dead to use this!"))
+		to_chat(usr, SPAN_INFO_B("You must be dead to use this!"))
 		return
 	if(ticker.mode.name == "meteor" || ticker.mode.name == "epidemic") //BS12 EDIT
 		to_chat(usr, SPAN_INFO("Respawn is disabled for this roundtype."))
@@ -373,7 +373,7 @@ var/list/slot_equipment_priority = list(
 		if(isobserver(src))
 			var/mob/dead/observer/G = src
 			if(G.has_enabled_antagHUD == 1 && config.antag_hud_restricted)
-				to_chat(usr, SPAN_NOTICE("Upon using the antagHUD you forfeighted the ability to join the round."))
+				to_chat(usr, SPAN_INFO_B("Upon using the antagHUD you forfeighted the ability to join the round."))
 				return
 		var/deathtimeminutes = round(deathtime / 600)
 		var/pluralcheck = "minute"
@@ -394,7 +394,7 @@ var/list/slot_equipment_priority = list(
 
 	log_game("[usr.name]/[usr.key] used abandon mob.")
 
-	to_chat(usr, SPAN_NOTICE("Make sure to play a different character, and please roleplay correctly!"))
+	to_chat(usr, SPAN_INFO_B("Make sure to play a different character, and please roleplay correctly!"))
 
 	if(!client)
 		log_game("[usr.key] AM failed due to disconnect.")

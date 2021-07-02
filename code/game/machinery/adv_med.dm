@@ -38,10 +38,10 @@
 	if(usr.stat != 0)
 		return
 	if(src.occupant)
-		to_chat(usr, SPAN_NOTICE("The scanner is already occupied!"))
+		to_chat(usr, SPAN_INFO_B("The scanner is already occupied!"))
 		return
 	if(usr.abiotic())
-		to_chat(usr, SPAN_NOTICE("Subject cannot have abiotic items on."))
+		to_chat(usr, SPAN_INFO_B("Subject cannot have abiotic items on."))
 		return
 
 	usr.pulling = null
@@ -75,10 +75,10 @@
 	if((!(istype(G, /obj/item/weapon/grab)) || !(ismob(G.affecting))))
 		return
 	if(src.occupant)
-		to_chat(user, SPAN_NOTICE("The scanner is already occupied!"))
+		to_chat(usr, SPAN_INFO_B("The scanner is already occupied!"))
 		return
 	if(G.affecting.abiotic())
-		to_chat(user, SPAN_NOTICE("Subject cannot have abiotic items on."))
+		to_chat(usr, SPAN_INFO_B("Subject cannot have abiotic items on."))
 		return
 	var/mob/M = G.affecting
 	if (M.client)

@@ -101,7 +101,7 @@
 		return
 
 	if(!(isrobot(user)))
-		to_chat(user, SPAN_NOTICE("Only non-organics may enter the recharger!"))
+		to_chat(user, SPAN_INFO_B("Only non-organics may enter the recharger!"))
 		return
 
 	var/mob/living/silicon/robot/R = user
@@ -109,10 +109,10 @@
 		//Whoever had it so that a borg with a dead cell can't enter this thing should be shot. --NEO
 		return
 	if(src.occupant)
-		to_chat(R, SPAN_NOTICE("The cell is already occupied!"))
+		to_chat(R, SPAN_INFO_B("The cell is already occupied!"))
 		return
 	if(!R.cell)
-		to_chat(R, SPAN_NOTICE("Without a powercell, you can't be recharged."))
+		to_chat(R, SPAN_INFO("Without a powercell, you can't be recharged."))
 		//Make sure they actually HAVE a cell, now that they can get in while powerless. --NEO
 		return
 		R.stop_pulling()
