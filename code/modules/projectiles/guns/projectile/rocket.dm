@@ -20,9 +20,9 @@
 /obj/item/weapon/gun/rocketlauncher/examine()
 	set src in view()
 	..()
-	if (!(usr in view(2)) && usr!=src.loc)
+	if(!(usr in view(2)) && usr != src.loc)
 		return
-	usr << "\blue [rockets.len] / [max_rockets] rockets."
+	to_chat(usr, SPAN_INFO("[rockets.len] / [max_rockets] rockets."))
 
 /obj/item/weapon/gun/rocketlauncher/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/ammo_casing/rocket))
@@ -30,10 +30,10 @@
 			user.drop_item()
 			I.loc = src
 			rockets += I
-			user << "\blue You put the rocket in [src]."
-			user << "\blue [rockets.len] / [max_rockets] rockets."
+			to_chat(user, SPAN_INFO("You put the rocket in [src]."))
+			to_chat(user, SPAN_INFO("[rockets.len] / [max_rockets] rockets."))
 		else
-			usr << "\red [src] cannot hold more rockets."
+			to_chat(usr, SPAN_WARNING("[src] cannot hold more rockets."))
 
 /obj/item/weapon/gun/rocketlauncher/can_fire()
 	return rockets.len
@@ -51,4 +51,4 @@
 		qdel(I)
 		return
 	else
-		usr << "\red [src] is empty."
+		to_chat(usr, SPAN_WARNING("[src] is empty."))

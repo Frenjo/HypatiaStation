@@ -99,7 +99,7 @@
 
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/attack_self(mob/living/user as mob)
 	if(!(locate(/obj/item/ammo_casing/shotgun) in src) && !loaded.len)
-		user << "<span class='notice'>\The [src] is empty.</span>"
+		to_chat(user, SPAN_NOTICE("\The [src] is empty."))
 		return
 
 	for(var/obj/item/ammo_casing/shotgun/shell in src)	//This feels like a hack.	//don't code at 3:30am kids!!
@@ -107,27 +107,27 @@
 			loaded -= shell
 		shell.loc = get_turf(src.loc)
 
-	user << "<span class='notice'>You break \the [src].</span>"
+	to_chat(user, SPAN_NOTICE("You break \the [src]."))
 	update_icon()
 
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel/attackby(obj/item/A as obj, mob/user as mob)
 	if(istype(A, /obj/item/ammo_casing) && !load_method)
 		var/obj/item/ammo_casing/AC = A
 		if(AC.caliber == caliber && (loaded.len < max_shells) && (contents.len < max_shells))	//forgive me father, for i have sinned
 			user.drop_item()
 			AC.loc = src
 			loaded += AC
-			user << "<span class='notice'>You load a shell into \the [src]!</span>"
+			to_chat(user, SPAN_NOTICE("You load a shell into \the [src]!"))
 	A.update_icon()
 	update_icon()
 
 	if(istype(A, /obj/item/weapon/circular_saw) || istype(A, /obj/item/weapon/melee/energy) || istype(A, /obj/item/weapon/pickaxe/plasmacutter))
-		user << "<span class='notice'>You begin to shorten the barrel of \the [src].</span>"
+		to_chat(user, SPAN_NOTICE("You begin to shorten the barrel of \the [src]."))
 		if(loaded.len)
 			afterattack(user, user)	//will this work?
 			afterattack(user, user)	//it will. we call it twice, for twice the FUN
 			playsound(user, fire_sound, 50, 1)
-			user.visible_message("<span class='danger'>The shotgun goes off!</span>", "<span class='danger'>The shotgun goes off in your face!</span>")
+			user.visible_message(SPAN_DANGER("The shotgun goes off!"), SPAN_DANGER("The shotgun goes off in your face!"))
 			return
 
 		if(do_after(user, 30))	//SHIT IS STEALTHY EYYYYY
@@ -138,4 +138,4 @@
 			slot_flags |= SLOT_BELT		//but you can wear it on your belt (poorly concealed under a trenchcoat, ideally)
 			name = "sawn-off shotgun"
 			desc = "Omar's coming!"
-			user << "<span class='warning'>You shorten the barrel of \the [src]!</span>"
+			to_chat(user, SPAN_WARNING("You shorten the barrel of \the [src]!"))

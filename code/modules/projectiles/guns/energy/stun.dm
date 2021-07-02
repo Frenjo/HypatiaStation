@@ -6,8 +6,8 @@
 	item_state = null	//so the human update icon uses the icon_state instead.
 	fire_sound = 'sound/weapons/Taser.ogg'
 	charge_cost = 100
-	projectile_type = "/obj/item/projectile/energy/electrode"
-	cell_type = "/obj/item/weapon/cell/crap"
+	projectile_type = /obj/item/projectile/energy/electrode
+	cell_type = /obj/item/weapon/cell/crap
 
 /obj/item/weapon/gun/energy/taser/cyborg
 	name = "taser gun"
@@ -15,8 +15,8 @@
 	icon_state = "taser"
 	fire_sound = 'sound/weapons/Taser.ogg'
 	charge_cost = 100
-	projectile_type = "/obj/item/projectile/energy/electrode"
-	cell_type = "/obj/item/weapon/cell/secborg"
+	projectile_type = /obj/item/projectile/energy/electrode
+	cell_type = /obj/item/weapon/cell/secborg
 	var/charge_tick = 0
 	var/recharge_time = 10 //Time it takes for shots to recharge (in ticks)
 
@@ -26,7 +26,7 @@
 
 /obj/item/weapon/gun/energy/taser/cyborg/Destroy()
 	processing_objects.Remove(src)
-	..()
+	return ..()
 
 /obj/item/weapon/gun/energy/taser/cyborg/process() //Every [recharge_time] ticks, recharge a shot for the cyborg
 	charge_tick++
@@ -55,8 +55,8 @@
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	origin_tech = "combat=3;materials=3;powerstorage=2"
 	charge_cost = 125
-	projectile_type = "/obj/item/projectile/energy/electrode"
-	cell_type = "/obj/item/weapon/cell"
+	projectile_type = /obj/item/projectile/energy/electrode
+	cell_type = /obj/item/weapon/cell
 
 /obj/item/weapon/gun/energy/disabler
 	name = "disabler"
@@ -65,8 +65,8 @@
 	fire_sound = 'sound/weapons/taser2.ogg'
 	origin_tech = "combat=3;materials=3;powerstorage=1"
 	charge_cost = 100
-	projectile_type = "/obj/item/projectile/energy/disabler"
-	cell_type = "/obj/item/weapon/cell"
+	projectile_type = /obj/item/projectile/energy/disabler
+	cell_type = /obj/item/weapon/cell
 
 /obj/item/weapon/gun/energy/crossbow
 	name = "mini energy-crossbow"
@@ -78,8 +78,8 @@
 	origin_tech = "combat=2;magnets=2;syndicate=5"
 	silenced = 1
 	fire_sound = 'sound/weapons/Genhit.ogg'
-	projectile_type = "/obj/item/projectile/energy/bolt"
-	cell_type = "/obj/item/weapon/cell/crap"
+	projectile_type = /obj/item/projectile/energy/bolt
+	cell_type = /obj/item/weapon/cell/crap
 	var/charge_tick = 0
 
 /obj/item/weapon/gun/energy/crossbow/New()
@@ -88,7 +88,7 @@
 
 /obj/item/weapon/gun/energy/crossbow/Destroy()
 	processing_objects.Remove(src)
-	..()
+	return ..()
 
 /obj/item/weapon/gun/energy/crossbow/process()
 	charge_tick++
@@ -109,4 +109,4 @@
 	w_class = 4.0
 	force = 10
 	m_amt = 200000
-	projectile_type = "/obj/item/projectile/energy/bolt/large"
+	projectile_type = /obj/item/projectile/energy/bolt/large

@@ -8,7 +8,7 @@
 	throwforce = 1
 	w_class = 1.0
 	var/caliber = ""							//Which kind of guns it can be loaded into
-	var/projectile_type = ""//The bullet type to create when New() is called
+	var/projectile_type = null//The bullet type to create when New() is called
 	var/obj/item/projectile/BB = null 			//The loaded bullet
 
 /obj/item/ammo_casing/New()
@@ -24,20 +24,20 @@
 		if(BB)
 			if(initial(BB.name) == "bullet")
 				var/tmp_label = ""
-				var/label_text = sanitize(input(user, "Inscribe some text into \the [initial(BB.name)]","Inscription",tmp_label))
+				var/label_text = sanitize(input(user, "Inscribe some text into \the [initial(BB.name)]", "Inscription", tmp_label))
 				if(length(label_text) > 20)
-					user << "\red The inscription can be at most 20 characters long."
+					to_chat(user, SPAN_WARNING("The inscription can be at most 20 characters long."))
 				else
 					if(label_text == "")
-						user << "\blue You scratch the inscription off of [initial(BB)]."
+						to_chat(user, SPAN_INFO("You scratch the inscription off of [initial(BB)]."))
 						BB.name = initial(BB.name)
 					else
-						user << "\blue You inscribe \"[label_text]\" into \the [initial(BB.name)]."
+						to_chat(user, SPAN_INFO("You inscribe \"[label_text]\" into \the [initial(BB.name)]."))
 						BB.name = "[initial(BB.name)] \"[label_text]\""
 			else
-				user << "\blue You can only inscribe a metal bullet."	//because inscribing beanbags is silly
+				to_chat(user, SPAN_INFO("You can only inscribe a metal bullet."))	//because inscribing beanbags is silly
 		else
-			user << "\blue There is no bullet in the casing to inscribe anything into."
+			to_chat(user, SPAN_INFO("There is no bullet in the casing to inscribe anything into."))
 
 //Boxes of ammo
 /obj/item/ammo_magazine

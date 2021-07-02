@@ -38,7 +38,7 @@
 
 /obj/item/weapon/spikethrower/Destroy()
 	processing_objects.Remove(src)
-	..()
+	return ..()
 
 /obj/item/weapon/spikethrower/process()
 	if(spikes < max_spikes && world.time > last_regen + spike_gen_time)
@@ -48,7 +48,7 @@
 
 /obj/item/weapon/spikethrower/examine()
 	..()
-	usr << "It has [spikes] [spikes == 1 ? "spike" : "spikes"] remaining."
+	to_chat(usr, "It has [spikes] [spikes == 1 ? "spike" : "spikes"] remaining.")
 
 /obj/item/weapon/spikethrower/update_icon()
 	icon_state = "spikethrower[spikes]"
@@ -60,16 +60,16 @@
 		//TODO: Make this compatible with targetting (prolly have to actually make it a gun subtype, ugh.)
 		//PreFire(A,user,params)
 	else
-		Fire(A,user,params)
+		Fire(A, user, params)
 
 /obj/item/weapon/spikethrower/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
 	if(M == user && user.zone_sel.selecting == "mouth")
-		M.visible_message("\red [user] attempts without success to fit [src] into their mouth.")
+		M.visible_message(SPAN_WARNING("[user] attempts without success to fit [src] into their mouth."))
 		return
 
 	if(spikes > 0)
 		if(user.a_intent == "hurt")
-			user.visible_message("\red <b> \The [user] fires \the [src] point blank at [M]!</b>")
+			user.visible_message(SPAN_DANGER("\The [user] fires \the [src] point blank at [M]!"))
 			Fire(M, user)
 			return
 		else if(target && M in target)
@@ -86,17 +86,17 @@
 	if(!istype(targloc) || !istype(curloc))
 		return
 
-	if(istype(user, /mob/living/carbon/human))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.species && H.species.name != "Vox")
-			user << "\red The weapon does not respond to you!"
+			to_chat(user, SPAN_WARNING("The weapon does not respond to you!"))
 			return
 	else
-		user << "\red The weapon does not respond to you!"
+		to_chat(user, SPAN_WARNING("The weapon does not respond to you!"))
 		return
 
 	if(spikes <= 0)
-		user << "\red The weapon has nothing to fire!"
+		to_chat(user, SPAN_WARNING("The weapon has nothing to fire!"))
 		return
 
 	if(!spike)
@@ -104,7 +104,7 @@
 		spike.add_fingerprint(user)
 		spikes--
 
-	user.visible_message("\red [user] fires [src]!", "\red You fire [src]!")
+	user.visible_message(SPAN_WARNING("[user] fires [src]!"), SPAN_WARNING("You fire [src]!"))
 	spike.loc = get_turf(src)
 	spike.throw_at(target, 10, fire_force)
 	spike = null
@@ -121,8 +121,8 @@
 	recoil = 1
 
 	force = 10
-	projectile_type = "/obj/item/projectile/energy/sonic"
-	cell_type = "/obj/item/weapon/cell/super"
+	projectile_type = /obj/item/projectile/energy/sonic
+	cell_type = /obj/item/weapon/cell/super
 	fire_delay = 40
 	fire_sound = 'sound/effects/basscannon.ogg'
 
@@ -135,7 +135,7 @@
 			if(H.species.name == "Vox Armalis")
 				..()
 				return
-		user << "\red \The [src] is far too large for you to pick up."
+		to_chat(user, SPAN_WARNING("\The [src] is far too large for you to pick up."))
 		return
 
 /obj/item/weapon/gun/energy/noisecannon/load_into_chamber() //Does not have ammo.

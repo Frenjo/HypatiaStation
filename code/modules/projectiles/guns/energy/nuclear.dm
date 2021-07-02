@@ -6,7 +6,7 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 
 	charge_cost = 100 //How much energy is needed to fire.
-	projectile_type = "/obj/item/projectile/energy/electrode"
+	projectile_type = /obj/item/projectile/energy/electrode
 	origin_tech = "combat=3;magnets=2"
 	modifystate = "energystun"
 
@@ -18,15 +18,15 @@
 			mode = 1
 			charge_cost = 100
 			fire_sound = 'sound/weapons/Laser.ogg'
-			user << "\red [src.name] is now set to kill."
-			projectile_type = "/obj/item/projectile/beam"
+			to_chat(user, SPAN_WARNING("[src.name] is now set to kill."))
+			projectile_type = /obj/item/projectile/beam
 			modifystate = "energykill"
 		if(1)
 			mode = 0
 			charge_cost = 100
 			fire_sound = 'sound/weapons/Taser.ogg'
-			user << "\red [src.name] is now set to stun."
-			projectile_type = "/obj/item/projectile/energy/electrode"
+			to_chat(user, SPAN_WARNING("[src.name] is now set to stun."))
+			projectile_type = /obj/item/projectile/energy/electrode
 			modifystate = "energystun"
 	update_icon()
 
@@ -44,7 +44,7 @@
 
 /obj/item/weapon/gun/energy/gun/nuclear/Destroy()
 	processing_objects.Remove(src)
-	..()
+	return ..()
 
 /obj/item/weapon/gun/energy/gun/nuclear/process()
 	charge_tick++
@@ -66,18 +66,18 @@
 		return 1 //No failure
 
 	if(prob(src.reliability))
-		for (var/mob/living/M in range(0,src)) //Only a minor failure, enjoy your radiation if you're in the same tile or carrying it
-			if (src in M.contents)
-				M << "\red Your gun feels pleasantly warm for a moment."
+		for(var/mob/living/M in range(0, src)) //Only a minor failure, enjoy your radiation if you're in the same tile or carrying it
+			if(src in M.contents)
+				to_chat(M, SPAN_WARNING("Your gun feels pleasantly warm for a moment."))
 			else
-				M << "\red You feel a warm sensation."
-			M.apply_effect(rand(3,120), IRRADIATE)
+				to_chat(M, SPAN_WARNING("You feel a warm sensation."))
+			M.apply_effect(rand(3, 120), IRRADIATE)
 		lightfail = 1
 	else
-		for (var/mob/living/M in range(rand(1,4),src)) //Big failure, TIME FOR RADIATION BITCHES
-			if (src in M.contents)
-				M << "\red Your gun's reactor overloads!"
-			M << "\red You feel a wave of heat wash over you."
+		for(var/mob/living/M in range(rand(1, 4), src)) //Big failure, TIME FOR RADIATION BITCHES
+			if(src in M.contents)
+				to_chat(M, SPAN_WARNING("Your gun's reactor overloads!"))
+			to_chat(M, SPAN_WARNING("You feel a wave of heat wash over you."))
 			M.apply_effect(300, IRRADIATE)
 		crit_fail = 1 //break the gun so it stops recharging
 		processing_objects.Remove(src)
@@ -98,20 +98,20 @@
 		return
 	if(lightfail)
 		overlays += "nucgun-medium"
-	else if((power_supply.charge/power_supply.maxcharge) <= 0.5)
+	else if((power_supply.charge / power_supply.maxcharge) <= 0.5)
 		overlays += "nucgun-light"
 	else
 		overlays += "nucgun-clean"
 
 /obj/item/weapon/gun/energy/gun/nuclear/proc/update_mode()
-	if (mode == 0)
+	if(mode == 0)
 		overlays += "nucgun-stun"
-	else if (mode == 1)
+	else if(mode == 1)
 		overlays += "nucgun-kill"
 
 /obj/item/weapon/gun/energy/gun/nuclear/emp_act(severity)
 	..()
-	reliability -= round(15/severity)
+	reliability -= round(15 / severity)
 
 /obj/item/weapon/gun/energy/gun/nuclear/update_icon()
 	overlays.Cut()

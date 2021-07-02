@@ -23,7 +23,7 @@ var/list/beam_master = list()
 	var/first = 1 //So we don't make the overlay in the same tile as the firer
 	spawn while(src) //Move until we hit something
 
-		if((!( current ) || loc == current)) //If we pass our target
+		if((!current || loc == current)) //If we pass our target
 			current = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z)
 		if((x == 1 || x == world.maxx || y == 1 || y == world.maxy))
 			src = null //Delete if it passes the world edge
@@ -45,7 +45,7 @@ var/list/beam_master = list()
 
 			//If the icon has not been added yet
 			if(!("[icon_state][target_dir]" in beam_master))
-				var/image/I = image(icon,icon_state,10,target_dir) //Generate it.
+				var/image/I = image(icon, icon_state, 10, target_dir) //Generate it.
 				beam_master["[icon_state][target_dir]"] = I //And cache it!
 
 			//Finally add the overlay
@@ -71,7 +71,7 @@ var/list/beam_master = list()
 
 /obj/item/projectile/beam/Destroy()
 	cleanup("\ref[src]")
-	..()
+	return ..()
 
 /obj/item/projectile/beam/proc/cleanup(reference) //Waits .3 seconds then removes the overlay.
 	src = null //we're getting deleted! this will keep the code running
@@ -125,8 +125,8 @@ var/list/beam_master = list()
 	damage_type = BURN
 	flag = "laser"
 
-/obj/item/projectile/beam/lastertag/blue/on_hit(var/atom/target, var/blocked = 0)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/lastertag/blue/on_hit(atom/target, blocked = 0)
+	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
 			M.Weaken(5)
@@ -140,8 +140,8 @@ var/list/beam_master = list()
 	damage_type = BURN
 	flag = "laser"
 
-/obj/item/projectile/beam/lastertag/red/on_hit(var/atom/target, var/blocked = 0)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/lastertag/red/on_hit(atom/target, blocked = 0)
+	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
 			M.Weaken(5)
@@ -155,10 +155,10 @@ var/list/beam_master = list()
 	damage_type = BURN
 	flag = "laser"
 
-/obj/item/projectile/beam/lastertag/omni/on_hit(var/atom/target, var/blocked = 0)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/lastertag/omni/on_hit(atom/target, blocked = 0)
+	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
-		if((istype(M.wear_suit, /obj/item/clothing/suit/bluetag))||(istype(M.wear_suit, /obj/item/clothing/suit/redtag)))
+		if((istype(M.wear_suit, /obj/item/clothing/suit/bluetag)) || (istype(M.wear_suit, /obj/item/clothing/suit/redtag)))
 			M.Weaken(5)
 	return 1
 

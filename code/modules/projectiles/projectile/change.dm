@@ -6,12 +6,12 @@
 	nodamage = 1
 	flag = "energy"
 
-/obj/item/projectile/change/on_hit(var/atom/change)
+/obj/item/projectile/change/on_hit(atom/change)
 	wabbajack(change)
 
 
 /obj/item/projectile/change/proc/wabbajack(mob/M as mob in living_mob_list)
-	if(istype(M, /mob/living) && M.stat != DEAD)
+	if(isliving(M) && M.stat != DEAD)
 		if(M.monkeyizing)
 			return
 		if(M.has_brain_worms())
@@ -23,9 +23,10 @@
 		M.overlays.Cut()
 		M.invisibility = 101
 
-		if(istype(M, /mob/living/silicon/robot))
+		if(isrobot(M))
 			var/mob/living/silicon/robot/Robot = M
-			if(Robot.mmi)	qdel(Robot.mmi)
+			if(Robot.mmi)
+				qdel(Robot.mmi)
 		else
 			for(var/obj/item/W in M)
 				if(istype(W, /obj/item/weapon/implant))	//TODO: Carn. give implants a dropped() or something
@@ -37,7 +38,7 @@
 
 		var/mob/living/new_mob
 
-		var/randomize = pick("monkey","robot","slime","xeno","human")
+		var/randomize = pick("monkey", "robot", "slime", "xeno", "human")
 		switch(randomize)
 			if("monkey")
 				new_mob = new /mob/living/carbon/monkey(M.loc)
@@ -51,11 +52,13 @@
 				Robot.mmi = new /obj/item/device/mmi(new_mob)
 				Robot.mmi.transfer_identity(M)	//Does not transfer key/client.
 			if("slime")
-				if(prob(50))		new_mob = new /mob/living/carbon/slime/adult(M.loc)
-				else				new_mob = new /mob/living/carbon/slime(M.loc)
+				if(prob(50))
+					new_mob = new /mob/living/carbon/slime/adult(M.loc)
+				else
+					new_mob = new /mob/living/carbon/slime(M.loc)
 				new_mob.universal_speak = 1
 			if("xeno")
-				var/alien_caste = pick("Hunter","Sentinel","Drone","Larva")
+				var/alien_caste = pick("Hunter", "Sentinel", "Drone", "Larva")
 				new_mob = create_new_xenomorph(alien_caste, M.loc)
 				new_mob.universal_speak = 1
 			if("human")
@@ -78,7 +81,7 @@
 			else
 				return
 
-		for (var/obj/effect/proc_holder/spell/S in M.spell_list)
+		for(var/obj/effect/proc_holder/spell/S in M.spell_list)
 			new_mob.spell_list += new S.type
 
 		new_mob.a_intent = "hurt"
@@ -87,7 +90,7 @@
 		else
 			new_mob.key = M.key
 
-		new_mob << "<B>Your form morphs into that of a [randomize].</B>"
+		to_chat(new_mob, "<B>Your form morphs into that of a [randomize].</B>")
 
 		qdel(M)
 		return new_mob

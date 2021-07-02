@@ -32,10 +32,10 @@
 	for(var/turf/target in targets)
 		spawn(0)
 			var/obj/effect/proc_holder/spell/targeted/projectile
-			if(istext(proj_type))
+			if(ispath(proj_type))
 				var/projectile_type = proj_type
 				projectile = new projectile_type(user)
-			if(istype(proj_type,/obj/effect/proc_holder/spell))
+			if(istype(proj_type, /obj/effect/proc_holder/spell))
 				projectile = new /obj/effect/proc_holder/spell/targeted/trigger(user)
 				projectile:linked_spells += proj_type
 			projectile.icon = proj_icon

@@ -7,12 +7,12 @@
 	w_class = 3.0
 	m_amt = 2000
 	origin_tech = "combat=3;magnets=2"
-	projectile_type = "/obj/item/projectile/beam"
+	projectile_type = /obj/item/projectile/beam
 
 /obj/item/weapon/gun/energy/laser/practice
 	name = "practice laser gun"
 	desc = "A modified version of the basic laser gun, this one fires less concentrated energy bolts designed for target practice."
-	projectile_type = "/obj/item/projectile/beam/practice"
+	projectile_type = /obj/item/projectile/beam/practice
 	clumsy_check = 0
 
 obj/item/weapon/gun/energy/laser/retro
@@ -33,7 +33,7 @@ obj/item/weapon/gun/energy/laser/retro
 
 /obj/item/weapon/gun/energy/laser/captain/Destroy()
 	processing_objects.Remove(src)
-	..()
+	return ..()
 
 /obj/item/weapon/gun/energy/laser/captain/process()
 	charge_tick++
@@ -63,7 +63,7 @@ obj/item/weapon/gun/energy/laser/retro
 	icon_state = "lasercannon"
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	origin_tech = "combat=4;materials=3;powerstorage=3"
-	projectile_type = "/obj/item/projectile/beam/heavylaser"
+	projectile_type = /obj/item/projectile/beam/heavylaser
 
 	fire_delay = 20
 
@@ -87,7 +87,7 @@ obj/item/weapon/gun/energy/laser/retro
 	icon_state = "xray"
 	fire_sound = 'sound/weapons/laser3.ogg'
 	origin_tech = "combat=5;materials=3;magnets=2;syndicate=2"
-	projectile_type = "/obj/item/projectile/beam/xray"
+	projectile_type = /obj/item/projectile/beam/xray
 	charge_cost = 50
 
 ////////////////////Laser Tag////////////////////
@@ -95,16 +95,16 @@ obj/item/weapon/gun/energy/laser/retro
 	name = "laser tag gun"
 	icon_state = "bluetag"
 	desc = "Standard issue weapon of the Imperial Guard"
-	projectile_type = "/obj/item/projectile/beam/lastertag/blue"
+	projectile_type = /obj/item/projectile/beam/lastertag/blue
 	origin_tech = "combat=1;magnets=2"
 	clumsy_check = 0
 	var/charge_tick = 0
 
-/obj/item/weapon/gun/energy/laser/bluetag/special_check(var/mob/living/carbon/human/M)
+/obj/item/weapon/gun/energy/laser/bluetag/special_check(mob/living/carbon/human/M)
 	if(ishuman(M))
 		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
 			return 1
-		M << "\red You need to be wearing your laser tag vest!"
+		to_chat(M, SPAN_WARNING("You need to be wearing your laser tag vest!"))
 	return 0
 
 /obj/item/weapon/gun/energy/laser/bluetag/New()
@@ -113,7 +113,7 @@ obj/item/weapon/gun/energy/laser/retro
 
 /obj/item/weapon/gun/energy/laser/bluetag/Destroy()
 	processing_objects.Remove(src)
-	..()
+	return ..()
 
 /obj/item/weapon/gun/energy/laser/bluetag/process()
 	charge_tick++
@@ -130,16 +130,16 @@ obj/item/weapon/gun/energy/laser/retro
 	name = "laser tag gun"
 	icon_state = "redtag"
 	desc = "Standard issue weapon of the Imperial Guard"
-	projectile_type = "/obj/item/projectile/beam/lastertag/red"
+	projectile_type = /obj/item/projectile/beam/lastertag/red
 	origin_tech = "combat=1;magnets=2"
 	clumsy_check = 0
 	var/charge_tick = 0
 
-/obj/item/weapon/gun/energy/laser/redtag/special_check(var/mob/living/carbon/human/M)
+/obj/item/weapon/gun/energy/laser/redtag/special_check(mob/living/carbon/human/M)
 	if(ishuman(M))
 		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
 			return 1
-		M << "\red You need to be wearing your laser tag vest!"
+		to_chat(M, SPAN_WARNING("You need to be wearing your laser tag vest!"))
 	return 0
 
 /obj/item/weapon/gun/energy/laser/redtag/New()
@@ -148,7 +148,7 @@ obj/item/weapon/gun/energy/laser/retro
 
 /obj/item/weapon/gun/energy/laser/redtag/Destroy()
 	processing_objects.Remove(src)
-	..()
+	return ..()
 
 /obj/item/weapon/gun/energy/laser/redtag/process()
 	charge_tick++

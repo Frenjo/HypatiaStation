@@ -29,31 +29,31 @@
 	set name = "Set valve pressure"
 	set category = "Object"
 	set src in range(0)
-	var/N = input("Percentage of tank used per shot:","[src]") as null|anything in possible_pressure_amounts
+	var/N = input("Percentage of tank used per shot:", "[src]") as null | anything in possible_pressure_amounts
 	if(N)
 		pressure_setting = N
-		usr << "You dial the pressure valve to [pressure_setting]%."
+		to_chat(usr, "You dial the pressure valve to [pressure_setting]%.")
 
 /obj/item/weapon/storage/pneumatic/verb/eject_tank() //Remove the tank.
 	set name = "Eject tank"
 	set category = "Object"
 	set src in range(0)
 	if(tank)
-		usr << "You twist the valve and pop the tank out of [src]."
+		to_chat(usr, "You twist the valve and pop the tank out of [src].")
 		tank.loc = usr.loc
 		tank = null
 		icon_state = "pneumatic"
 		item_state = "pneumatic"
 		usr.update_icons()
 	else
-		usr << "There's no tank in [src]."
+		to_chat(usr, "There's no tank in [src].")
 
 /obj/item/weapon/storage/pneumatic/attackby(obj/item/W as obj, mob/user as mob)
 	if(!tank && istype(W, /obj/item/weapon/tank))
 		user.drop_item()
 		tank = W
 		tank.loc = src.tank_container
-		user.visible_message("[user] jams [W] into [src]'s valve and twists it closed.","You jam [W] into [src]'s valve and twist it closed.")
+		user.visible_message("[user] jams [W] into [src]'s valve and twists it closed.", "You jam [W] into [src]'s valve and twist it closed.")
 		icon_state = "pneumatic-tank"
 		item_state = "pneumatic-tank"
 		user.update_icons()
@@ -65,11 +65,11 @@
 	..()
 	if(!(usr in view(2)) && usr != src.loc)
 		return
-	usr << "The valve is dialed to [pressure_setting]%."
+	to_chat(usr, "The valve is dialed to [pressure_setting]%.")
 	if(tank)
-		usr << "The tank dial reads [tank.air_contents.return_pressure()] kPa."
+		to_chat(usr, "The tank dial reads [tank.air_contents.return_pressure()] kPa.")
 	else
-		usr << "Nothing is attached to the tank valve!"
+		to_chat(usr, "Nothing is attached to the tank valve!")
 
 /obj/item/weapon/storage/pneumatic/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
 	if(istype(target, /obj/item/weapon/storage/backpack))
@@ -85,7 +85,7 @@
 		return
 
 	if(length(contents) == 0)
-		user << "There's nothing in [src] to fire!"
+		to_chat(user, "There's nothing in [src] to fire!")
 		return 0
 	else
 		spawn(0)
@@ -94,7 +94,7 @@
 /obj/item/weapon/storage/pneumatic/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
 	if(length(contents) > 0)
 		if(user.a_intent == "hurt")
-			user.visible_message("\red <b> \The [user] fires \the [src] point blank at [M]!</b>")
+			user.visible_message(SPAN_DANGER("\The [user] fires \the [src] point blank at [M]!"))
 			Fire(M, user)
 			return
 		else
@@ -103,11 +103,11 @@
 
 /obj/item/weapon/storage/pneumatic/proc/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
 	if(!tank)
-		user << "There is no gas tank in [src]!"
+		to_chat(user, "There is no gas tank in [src]!")
 		return 0
 
 	if(cooldown)
-		user << "The chamber hasn't built up enough pressure yet!"
+		to_chat(user, "The chamber hasn't built up enough pressure yet!")
 		return 0
 
 	add_fingerprint(user)
@@ -117,10 +117,10 @@
 	if(!istype(targloc) || !istype(curloc))
 		return
 
-	var/fire_pressure = (tank.air_contents.return_pressure()/100)*pressure_setting
+	var/fire_pressure = (tank.air_contents.return_pressure() / 100) * pressure_setting
 
 	if(fire_pressure < minimum_tank_pressure)
-		user << "There isn't enough gas in the tank to fire [src]."
+		to_chat(user, "There isn't enough gas in the tank to fire [src].")
 		return 0
 
 	var/obj/item/object = contents[1]
@@ -128,7 +128,7 @@
 	if(speed > 80) 
 		speed = 80 //damage cap.
 
-	user.visible_message("<span class='danger'>[user] fires [src] and launches [object] at [target]!</span>","<span class='danger'>You fire [src] and launch [object] at [target]!</span>")
+	user.visible_message(SPAN_DANGER("[user] fires [src] and launches [object] at [target]!"), SPAN_DANGER("You fire [src] and launch [object] at [target]!"))
 
 	src.remove_from_storage(object, user.loc)
 	object.throw_at(target, 10, speed)
@@ -140,4 +140,4 @@
 	cooldown = 1
 	spawn(cooldown_time)
 		cooldown = 0
-		user << "[src]'s gauge informs you it's ready to be fired again."
+		to_chat(user, "[src]'s gauge informs you it's ready to be fired again.")

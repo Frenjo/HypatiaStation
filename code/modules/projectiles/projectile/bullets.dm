@@ -8,8 +8,8 @@
 	embed = 1
 	sharp = 1
 
-/obj/item/projectile/bullet/on_hit(var/atom/target, var/blocked = 0)
-	if (..(target, blocked))
+/obj/item/projectile/bullet/on_hit(atom/target, blocked = 0)
+	if(..(target, blocked))
 		var/mob/living/L = target
 		shake_camera(L, 3, 2)
 

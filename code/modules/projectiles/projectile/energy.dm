@@ -16,7 +16,7 @@
 	damage_type = HALLOSS
 	//Damage will be handled on the MOB side, to prevent window shattering.
 
-/obj/item/projectile/energy/electrode/on_hit(var/atom/target, var/blocked = 0)
+/obj/item/projectile/energy/electrode/on_hit(atom/target, blocked = 0)
 	if(!ismob(target) || blocked >= 2) //Fully blocked by mob or collided with dense object - burst into sparks!
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread
 		sparks.set_up(1, 1, src)

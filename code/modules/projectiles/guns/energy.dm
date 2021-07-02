@@ -6,15 +6,14 @@
 
 	var/obj/item/weapon/cell/power_supply //What type of power cell this uses
 	var/charge_cost = 100 //How much energy is needed to fire.
-	var/cell_type = "/obj/item/weapon/cell"
-	var/projectile_type = "/obj/item/projectile/beam/practice"
+	var/cell_type = /obj/item/weapon/cell
+	var/projectile_type = /obj/item/projectile/beam/practice
 	var/modifystate
 
 /obj/item/weapon/gun/energy/emp_act(severity)
 	power_supply.use(round(power_supply.maxcharge / severity))
 	update_icon()
 	..()
-
 
 /obj/item/weapon/gun/energy/New()
 	..()
@@ -24,7 +23,6 @@
 		power_supply = new(src)
 	power_supply.give(power_supply.maxcharge)
 	return
-
 
 /obj/item/weapon/gun/energy/load_into_chamber()
 	if(in_chamber)

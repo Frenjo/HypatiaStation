@@ -37,7 +37,7 @@
 	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
 	var/nodamage = 0 //Determines if the projectile will skip any damage inflictions
 	var/flag = "bullet" //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb	//Cael - bio and rad are also valid
-	var/projectile_type = "/obj/item/projectile"
+	var/projectile_type = /obj/item/projectile
 	var/kill_count = 50 //This will de-increment every process(). When 0, it will delete the projectile.
 		//Effects
 	var/stun = 0
@@ -50,7 +50,7 @@
 	var/agony = 0
 	var/embed = 0 // whether or not the projectile can embed itself in the mob
 
-/obj/item/projectile/proc/on_hit(var/atom/target, var/blocked = 0)
+/obj/item/projectile/proc/on_hit(atom/target, blocked = 0)
 	if(blocked >= 2)
 		return 0//Full block
 	if(!isliving(target))
@@ -62,7 +62,7 @@
 	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony, blocked) // add in AGONY!
 	return 1
 
-/obj/item/projectile/proc/check_fire(var/mob/living/target as mob, var/mob/living/user as mob)  //Checks if you can hit them or not.
+/obj/item/projectile/proc/check_fire(mob/living/target as mob, mob/living/user as mob)  //Checks if you can hit them or not.
 	if(!istype(target) || !istype(user))
 		return 0
 
@@ -86,9 +86,9 @@
 	var/forcedodge = 0 // force the projectile to pass
 
 	bumped = 1
-	if(firer && istype(A, /mob))
+	if(firer && ismob(A))
 		var/mob/M = A
-		if(!istype(A, /mob/living))
+		if(!isliving(A))
 			loc = A.loc
 			return 0// nope.avi
 
@@ -97,19 +97,19 @@
 
 		if(istype(shot_from, /obj/item/weapon/gun))	//If you aim at someone beforehead, it'll hit more often.
 			var/obj/item/weapon/gun/daddy = shot_from //Kinda balanced by fact you need like 2 seconds to aim
-			if (daddy.target && original in daddy.target) //As opposed to no-delay pew pew
+			if(daddy.target && original in daddy.target) //As opposed to no-delay pew pew
 				miss_modifier += -30
-		def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + 15*distance)
+		def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + 15 * distance)
 
 		if(!def_zone)
-			visible_message("\blue \The [src] misses [M] narrowly!")
+			visible_message(SPAN_INFO("\The [src] misses [M] narrowly!"))
 			forcedodge = -1
 		else
 			if(silenced)
-				M << "\red You've been shot in the [parse_zone(def_zone)] by the [src.name]!"
+				to_chat(M, SPAN_WARNING("You've been shot in the [parse_zone(def_zone)] by the [src.name]!"))
 			else
-				visible_message("\red [A.name] is hit by the [src.name] in the [parse_zone(def_zone)]!")//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
-			if(istype(firer, /mob))
+				visible_message(SPAN_WARNING("[A.name] is hit by the [src.name] in the [parse_zone(def_zone)]!"))//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
+			if(ismob(firer))
 				M.attack_log += "\[[time_stamp()]\] <b>[firer]/[firer.ckey]</b> shot <b>[M]/[M.ckey]</b> with a <b>[src.type]</b>"
 				firer.attack_log += "\[[time_stamp()]\] <b>[firer]/[firer.ckey]</b> shot <b>[M]/[M.ckey]</b> with a <b>[src.type]</b>"
 				msg_admin_attack("[firer] ([firer.ckey]) shot [M] ([M.ckey]) with a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[firer.x];Y=[firer.y];Z=[firer.z]'>JMP</a>)") //BS12 EDIT ALG
@@ -122,13 +122,13 @@
 			forcedodge = A.bullet_act(src, def_zone) // searches for return value
 		if(forcedodge == -1) // the bullet passes through a dense object!
 			bumped = 0 // reset bumped variable!
-			if(istype(A, /turf))
+			if(isturf(A))
 				loc = A
 			else
 				loc = A.loc
 			permutated.Add(A)
 			return 0
-		if(istype(A, /turf))
+		if(isturf(A))
 			for(var/obj/O in A)
 				O.bullet_act(src)
 			for(var/mob/M in A)
@@ -138,8 +138,8 @@
 		qdel(src)
 	return 1
 
-/obj/item/projectile/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0))
+/obj/item/projectile/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	if(air_group || (height == 0))
 		return 1
 
 	if(istype(mover, /obj/item/projectile))
@@ -147,14 +147,13 @@
 	else
 		return 1
 
-
 /obj/item/projectile/process()
 	if(kill_count < 1)
 		qdel(src)
 	kill_count--
 
 	spawn while(src && src.loc)
-		if((!(current) || loc == current))
+		if((!current || loc == current))
 			current = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z)
 		if((x == 1 || x == world.maxx || y == 1 || y == world.maxy))
 			qdel(src)
@@ -182,7 +181,7 @@
 		return //cannot shoot yourself
 	if(istype(A, /obj/item/projectile))
 		return
-	if(istype(A, /mob/living))
+	if(isliving(A))
 		result = 2 //We hit someone, return 1!
 		return
 	result = 1
@@ -202,7 +201,7 @@
 		if(result)
 			return (result - 1)
 
-		if((!(target) || loc == target))
+		if((!target || loc == target))
 			target = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z) //Finding the target turf at map edge
 		step_towards(src, target)
 		var/mob/living/M = locate() in get_turf(src)
@@ -210,6 +209,6 @@
 		if(istype(M)) //If there is someting living...
 			return 1 //Return 1
 		else
-			M = locate() in get_step(src,target)
+			M = locate() in get_step(src, target)
 			if(istype(M))
 				return 1

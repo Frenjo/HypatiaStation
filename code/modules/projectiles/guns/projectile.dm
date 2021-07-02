@@ -17,7 +17,6 @@
 	var/load_method = SPEEDLOADER //0 = Single shells or quick loader, 1 = box, 2 = magazine
 	var/obj/item/ammo_magazine/empty_mag = null
 
-
 /obj/item/weapon/gun/projectile/New()
 	..()
 	for(var/i = 1, i <= max_shells, i++)
@@ -45,13 +44,14 @@
 		return 1
 	return 0
 
-/obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/weapon/gun/projectile/attackby(obj/item/A as obj, mob/user as mob)
 	var/num_loaded = 0
 	if(istype(A, /obj/item/ammo_magazine))
-		if((load_method == MAGAZINE) && loaded.len)	return
+		if((load_method == MAGAZINE) && loaded.len)
+			return
 		var/obj/item/ammo_magazine/AM = A
 		if(AM.stored_ammo.len <= 0)
-			user << "<span class='warning'>The magazine is empty!</span>"
+			to_chat(user, SPAN_WARNING("The magazine is empty!"))
 			return
 		for(var/obj/item/ammo_casing/AC in AM.stored_ammo)
 			if(loaded.len >= max_shells)
@@ -73,21 +73,21 @@
 			loaded += AC
 			num_loaded++
 	if(num_loaded)
-		user << "\blue You load [num_loaded] shell\s into the gun!"
+		to_chat(user, SPAN_INFO("You load [num_loaded] shell\s into the gun!"))
 	A.update_icon()
 	update_icon()
 	return
 
 /obj/item/weapon/gun/projectile/attack_self(mob/user as mob)
-	if (target)
+	if(target)
 		return ..()
-	if (loaded.len)
-		if (load_method == SPEEDLOADER)
+	if(loaded.len)
+		if(load_method == SPEEDLOADER)
 			var/obj/item/ammo_casing/AC = loaded[1]
 			loaded -= AC
 			AC.loc = get_turf(src) //Eject casing onto ground.
-			user << "\blue You unload shell from \the [src]!"
-		if (load_method == MAGAZINE)
+			to_chat(user, SPAN_INFO("You unload the shells from \the [src]!"))
+		if(load_method == MAGAZINE)
 			var/obj/item/ammo_magazine/AM = empty_mag
 			for (var/obj/item/ammo_casing/AC in loaded)
 				AM.stored_ammo += AC
@@ -96,13 +96,13 @@
 			empty_mag = null
 			update_icon()
 			AM.update_icon()
-			user << "\blue You unload magazine from \the [src]!"
+			to_chat(user, SPAN_INFO("You unload the magazine from \the [src]!"))
 	else
-		user << "\red Nothing loaded in \the [src]!"
+		to_chat(user, SPAN_WARNING("There is nothing loaded in \the [src]!"))
 
 /obj/item/weapon/gun/projectile/examine()
 	..()
-	usr << "Has [getAmmo()] round\s remaining."
+	to_chat(usr, "Has [getAmmo()] round\s remaining.")
 //		if(in_chamber && !loaded.len)
 //			usr << "However, it has a chambered round."
 //		if(in_chamber && loaded.len)
