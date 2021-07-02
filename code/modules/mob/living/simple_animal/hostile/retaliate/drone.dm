@@ -13,8 +13,8 @@
 	response_help = "pokes the"
 	response_disarm = "gently pushes aside the"
 	response_harm = "hits the"
-	speak = list("ALERT.","Hostile-ile-ile entities dee-twhoooo-wected.","Threat parameterszzzz- szzet.","Bring sub-sub-sub-systems uuuup to combat alert alpha-a-a.")
-	emote_see = list("beeps menacingly","whirrs threateningly","scans its immediate vicinity")
+	speak = list("ALERT.", "Hostile-ile-ile entities dee-twhoooo-wected.", "Threat parameterszzzz- szzet.", "Bring sub-sub-sub-systems uuuup to combat alert alpha-a-a.")
+	emote_see = list("beeps menacingly", "whirrs threateningly", "scans its immediate vicinity")
 	a_intent = "harm"
 	stop_automated_movement_when_pulled = 0
 	health = 300
@@ -58,7 +58,7 @@
 	ion_trail.set_up(src)
 	ion_trail.start()
 
-/mob/living/simple_animal/hostile/retaliate/malf_drone/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_animal/hostile/retaliate/malf_drone/Process_Spacemove(check_drift = 0)
 	return 1
 
 /mob/living/simple_animal/hostile/retaliate/malf_drone/ListTargets()
@@ -69,7 +69,6 @@
 
 //self repair systems have a chance to bring the drone back to life
 /mob/living/simple_animal/hostile/retaliate/malf_drone/Life()
-
 	//emps and lots of damage can temporarily shut us down
 	if(disabled > 0)
 		stat = UNCONSCIOUS
@@ -85,7 +84,7 @@
 
 	//repair a bit of damage
 	if(prob(1))
-		src.visible_message("\red \icon[src] [src] shudders and shakes as some of it's damaged systems come back online.")
+		src.visible_message(SPAN_WARNING("\icon[src] [src] shudders and shakes as some of it's damaged systems come back online."))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(3, 1, src)
 		s.start()
@@ -100,10 +99,10 @@
 	//sometimes our targetting sensors malfunction, and we attack anyone nearby
 	if(prob(disabled ? 0 : 1))
 		if(hostile_drone)
-			src.visible_message("\blue \icon[src] [src] retracts several targetting vanes, and dulls it's running lights.")
+			src.visible_message(SPAN_INFO("\icon[src] [src] retracts several targetting vanes, and dulls it's running lights."))
 			hostile_drone = 0
 		else
-			src.visible_message("\red \icon[src] [src] suddenly lights up, and additional targetting vanes slide into place.")
+			src.visible_message(SPAN_WARNING("\icon[src] [src] suddenly lights up, and additional targetting vanes slide into place."))
 			hostile_drone = 1
 
 	if(health / maxHealth > 0.9)
@@ -124,17 +123,17 @@
 		exploding = 0
 		if(!disabled)
 			if(prob(50))
-				src.visible_message("\blue \icon[src] [src] suddenly shuts down!")
+				src.visible_message(SPAN_INFO("\icon[src] [src] suddenly shuts down!"))
 			else
-				src.visible_message("\blue \icon[src] [src] suddenly lies still and quiet.")
+				src.visible_message(SPAN_INFO("\icon[src] [src] suddenly lies still and quiet."))
 			disabled = rand(150, 600)
-			walk(src,0)
+			walk(src, 0)
 
 	if(exploding && prob(20))
 		if(prob(50))
-			src.visible_message("\red \icon[src] [src] begins to spark and shake violenty!")
+			src.visible_message(SPAN_WARNING("\icon[src] [src] begins to spark and shake violenty!"))
 		else
-			src.visible_message("\red \icon[src] [src] sparks and shakes like it's about to explode!")
+			src.visible_message(SPAN_WARNING("\icon[src] [src] sparks and shakes like it's about to explode!"))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(3, 1, src)
 		s.start()
@@ -144,7 +143,7 @@
 		stat = UNCONSCIOUS
 		wander = 1
 		walk(src,0)
-		spawn(rand(50,150))
+		spawn(rand(50, 150))
 			if(!disabled && exploding)
 				explosion(get_turf(src), 0, 1, 4, 7)
 				//proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1)
@@ -215,7 +214,7 @@
 		var/spawnees = 0
 		var/num_boards = rand(1,4)
 		var/list/options = list(1,2,4,8,16,32,64,128,256, 512)
-		for(var/i=0, i<num_boards, i++)
+		for(var/i = 0, i < num_boards, i++)
 			var/chosen = pick(options)
 			options.Remove(options.Find(chosen))
 			spawnees |= chosen
@@ -223,54 +222,54 @@
 		if(spawnees & 1)
 			C = new(src.loc)
 			C.name = "Drone CPU motherboard"
-			C.origin_tech = "programming=[rand(3,6)]"
+			C.origin_tech = "programming=[rand(3, 6)]"
 
 		if(spawnees & 2)
 			C = new(src.loc)
 			C.name = "Drone neural interface"
-			C.origin_tech = "biotech=[rand(3,6)]"
+			C.origin_tech = "biotech=[rand(3, 6)]"
 
 		if(spawnees & 4)
 			C = new(src.loc)
 			C.name = "Drone suspension processor"
-			C.origin_tech = "magnets=[rand(3,6)]"
+			C.origin_tech = "magnets=[rand(3, 6)]"
 
 		if(spawnees & 8)
 			C = new(src.loc)
 			C.name = "Drone shielding controller"
-			C.origin_tech = "bluespace=[rand(3,6)]"
+			C.origin_tech = "bluespace=[rand(3, 6)]"
 
 		if(spawnees & 16)
 			C = new(src.loc)
 			C.name = "Drone power capacitor"
-			C.origin_tech = "powerstorage=[rand(3,6)]"
+			C.origin_tech = "powerstorage=[rand(3, 6)]"
 
 		if(spawnees & 32)
 			C = new(src.loc)
 			C.name = "Drone hull reinforcer"
-			C.origin_tech = "materials=[rand(3,6)]"
+			C.origin_tech = "materials=[rand(3, 6)]"
 
 		if(spawnees & 64)
 			C = new(src.loc)
 			C.name = "Drone auto-repair system"
-			C.origin_tech = "engineering=[rand(3,6)]"
+			C.origin_tech = "engineering=[rand(3, 6)]"
 
 		if(spawnees & 128)
 			C = new(src.loc)
 			C.name = "Drone plasma overcharge counter"
-			C.origin_tech = "plasma=[rand(3,6)]"
+			C.origin_tech = "plasma=[rand(3, 6)]"
 
 		if(spawnees & 256)
 			C = new(src.loc)
 			C.name = "Drone targetting circuitboard"
-			C.origin_tech = "combat=[rand(3,6)]"
+			C.origin_tech = "combat=[rand(3, 6)]"
 
 		if(spawnees & 512)
 			C = new(src.loc)
 			C.name = "Corrupted drone morality core"
-			C.origin_tech = "illegal=[rand(3,6)]"
+			C.origin_tech = "illegal=[rand(3, 6)]"
 
-	..()
+	return ..()
 
 /obj/item/projectile/beam/drone
 	damage = 15

@@ -19,17 +19,17 @@
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
-	IsShield()
-		return 1
+/obj/item/weapon/shield/riot/IsShield()
+	return 1
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(istype(W, /obj/item/weapon/melee/baton))
-			if(cooldown < world.time - 25)
-				user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
-				playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
-				cooldown = world.time
-		else
-			..()
+/obj/item/weapon/shield/riot/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/melee/baton))
+		if(cooldown < world.time - 25)
+			user.visible_message(SPAN_WARNING("[user] bashes [src] with [W]!"))
+			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
+			cooldown = world.time
+	else
+		..()
 
 /obj/item/weapon/shield/energy
 	name = "energy combat shield"
@@ -60,21 +60,21 @@
 	w_class = 2.0
 	origin_tech = "magnets=3;syndicate=4"
 
-
 /obj/item/weapon/cloaking_device/attack_self(mob/user as mob)
-	src.active = !( src.active )
-	if (src.active)
-		user << "\blue The cloaking device is now active."
-		src.icon_state = "shield1"
+	active = !active
+	if(active)
+		to_chat(user, SPAN_INFO("The cloaking device is now active."))
+		icon_state = "shield1"
 	else
-		user << "\blue The cloaking device is now inactive."
-		src.icon_state = "shield0"
-	src.add_fingerprint(user)
+		to_chat(user, SPAN_INFO("The cloaking device is now inactive."))
+		icon_state = "shield0"
+	add_fingerprint(user)
 	return
 
 /obj/item/weapon/cloaking_device/emp_act(severity)
 	active = 0
 	icon_state = "shield0"
 	if(ismob(loc))
-		loc:update_icons()
+		var/mob/M = loc
+		M.update_icons()
 	..()

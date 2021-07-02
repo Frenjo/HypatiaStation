@@ -68,7 +68,6 @@
 	return
 
 /mob/living/simple_animal/Life()
-
 	//Health
 	if(stat == DEAD)
 		if(health > 0)
@@ -193,9 +192,10 @@
 			new meat_type(src.loc)
 	..(icon_gib, 1)
 
-/mob/living/simple_animal/emote(var/act, var/type, var/desc)
+/mob/living/simple_animal/emote(act, type, desc)
 	if(act)
-		if(act == "scream")	act = "whimper" //ugly hack to stop animals screaming when crushed :P
+		if(act == "scream")
+			act = "whimper" //ugly hack to stop animals screaming when crushed :P
 		..(act, type, desc)
 
 /mob/living/simple_animal/attack_animal(mob/living/M as mob)
@@ -205,35 +205,34 @@
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 50, 1, 1)
 		for(var/mob/O in viewers(src, null))
-			O.show_message("\red <B>[M]</B> [M.attacktext] [src]!", 1)
+			O.show_message(SPAN_WARNING("<B>[M]</B> [M.attacktext] [src]!"), 1)
 		M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
 		src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>")
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		adjustBruteLoss(damage)
 
-/mob/living/simple_animal/bullet_act(var/obj/item/projectile/Proj)
-	if(!Proj)	return
+/mob/living/simple_animal/bullet_act(obj/item/projectile/Proj)
+	if(!Proj)
+		return
 	adjustBruteLoss(Proj.damage)
 	return 0
 
 /mob/living/simple_animal/attack_hand(mob/living/carbon/human/M as mob)
 	..()
-
 	switch(M.a_intent)
-
 		if("help")
-			if (health > 0)
+			if(health > 0)
 				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message("\blue [M] [response_help] [src]")
+					if((O.client && !O.blinded))
+						O.show_message(SPAN_INFO("[M] [response_help] [src]."))
 
 		if("grab")
 			if (M == src)
 				return
-			if (!(status_flags & CANPUSH))
+			if(!(status_flags & CANPUSH))
 				return
 
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab( M, M, src )
+			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, M, src)
 
 			M.put_in_active_hand(G)
 
@@ -243,40 +242,40 @@
 			LAssailant = M
 
 			for(var/mob/O in viewers(src, null))
-				if ((O.client && !( O.blinded )))
-					O.show_message(text("\red [] has grabbed [] passively!", M, src), 1)
+				if((O.client && !O.blinded))
+					O.show_message(SPAN_WARNING("[M] has grabbed [src] passively!"), 1)
 
 		if("hurt", "disarm")
 			adjustBruteLoss(harm_intent_damage)
 			for(var/mob/O in viewers(src, null))
-				if ((O.client && !( O.blinded )))
-					O.show_message("\red [M] [response_harm] [src]")
+				if((O.client && !O.blinded))
+					O.show_message(SPAN_WARNING("[M] [response_harm] [src]."))
 
 	return
 
 /mob/living/simple_animal/attack_slime(mob/living/carbon/slime/M as mob)
-	if (!ticker)
-		M << "You cannot attack people before the game has started."
+	if(!ticker)
+		to_chat(M, "You cannot attack people before the game has started.")
 		return
 
-	if(M.Victim) return // can't attack while eating!
+	if(M.Victim)
+		return // can't attack while eating!
 
-	visible_message("\red <B>The [M.name] glomps [src]!</B>")
+	visible_message(SPAN_DANGER("The [M.name] glomps [src]!"))
 
 	var/damage = rand(1, 3)
 
-	if(istype(src, /mob/living/carbon/slime/adult))
+	if(isslimeadult(src))
 		damage = rand(20, 40)
 	else
 		damage = rand(5, 35)
 
 	adjustBruteLoss(damage)
 
-
 	return
 
 
-/mob/living/simple_animal/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
+/mob/living/simple_animal/attackby(obj/item/O as obj, mob/user as mob)  //Marker -Agouri
 	if(istype(O, /obj/item/stack/medical))
 
 		if(stat != DEAD)
@@ -288,8 +287,8 @@
 					if(MED.amount <= 0)
 						qdel(MED)
 					for(var/mob/M in viewers(src, null))
-						if ((M.client && !( M.blinded )))
-							M.show_message("\blue [user] applies the [MED] on [src]")
+						if((M.client && !M.blinded))
+							M.show_message(SPAN_INFO("[user] applies the [MED] on [src]."))
 		else
 			user << "\blue this [src] is dead, medical items won't bring it back to life."
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
@@ -302,17 +301,17 @@
 	else
 		if(O.force)
 			var/damage = O.force
-			if (O.damtype == HALLOSS)
+			if(O.damtype == HALLOSS)
 				damage = 0
 			adjustBruteLoss(damage)
 			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
-					M.show_message("\red \b [src] has been attacked with the [O] by [user]. ")
+				if((M.client && !M.blinded))
+					M.show_message(SPAN_DANGER("[src] has been attacked with the [O] by [user]."))
 		else
-			usr << "\red This weapon is ineffective, it does no damage."
+			to_chat(usr, SPAN_WARNING("This weapon is ineffective, it does no damage."))
 			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
-					M.show_message("\red [user] gently taps [src] with the [O]. ")
+				if((M.client && !M.blinded))
+					M.show_message(SPAN_WARNING("[user] gently taps [src] with the [O]."))
 
 
 
@@ -321,13 +320,13 @@
 
 	tally = speed
 
-	return tally+config.animal_delay
+	return tally + config.animal_delay
 
 /mob/living/simple_animal/Stat()
 	..()
 
 	statpanel("Status")
-	stat(null, "Health: [round((health / maxHealth) * 100)]%")
+	stat("Health:", "[round((health / maxHealth) * 100)]%")
 
 /mob/living/simple_animal/proc/Die()
 	living_mob_list -= src
@@ -341,12 +340,12 @@
 	if(!blinded)
 		flick("flash", flash)
 	switch (severity)
-		if (1.0)
+		if(1.0)
 			adjustBruteLoss(500)
 			gib()
 			return
 
-		if (2.0)
+		if(2.0)
 			adjustBruteLoss(60)
 
 
@@ -357,15 +356,15 @@
 	health = Clamp(health - damage, 0, maxHealth)
 
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
-	if (isliving(target_mob))
+	if(isliving(target_mob))
 		var/mob/living/L = target_mob
 		if(!L.stat && L.health >= 0)
 			return (0)
-	if (istype(target_mob,/obj/mecha))
+	if(istype(target_mob, /obj/mecha))
 		var/obj/mecha/M = target_mob
 		if (M.occupant)
 			return (0)
-	if (istype(target_mob,/obj/machinery/bot))
+	if(istype(target_mob, /obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob
 		if(B.health > 0)
 			return (0)
@@ -376,11 +375,11 @@
 	if(!targeted_by && target_locked)
 		qdel(target_locked)
 	overlays = null
-	if (targeted_by && target_locked)
+	if(targeted_by && target_locked)
 		overlays += target_locked
 
 
-/mob/living/simple_animal/say(var/message)
+/mob/living/simple_animal/say(message)
 	if(stat)
 		return
 

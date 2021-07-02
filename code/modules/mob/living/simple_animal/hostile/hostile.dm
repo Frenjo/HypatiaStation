@@ -15,7 +15,6 @@
 	var/destroy_surroundings = 1
 
 /mob/living/simple_animal/hostile/proc/FindTarget()
-
 	var/atom/T = null
 	stop_automated_movement = 0
 	for(var/atom/A in ListTargets(10))
@@ -42,21 +41,21 @@
 
 		else if(istype(A, /obj/mecha)) // Our line of sight stuff was already done in ListTargets().
 			var/obj/mecha/M = A
-			if (M.occupant)
+			if(M.occupant)
 				stance = HOSTILE_STANCE_ATTACK
 				T = M
 				break
 
 		if(istype(A, /obj/machinery/bot))
 			var/obj/machinery/bot/B = A
-			if (B.health > 0)
+			if(B.health > 0)
 				stance = HOSTILE_STANCE_ATTACK
 				T = B
 				break
 	return T
 
 
-/mob/living/simple_animal/hostile/proc/Found(var/atom/A)
+/mob/living/simple_animal/hostile/proc/Found(atom/A)
 	return
 
 /mob/living/simple_animal/hostile/proc/MoveToTarget()
@@ -74,7 +73,6 @@
 			walk_to(src, target_mob, 1, move_to_delay)
 
 /mob/living/simple_animal/hostile/proc/AttackTarget()
-
 	stop_automated_movement = 1
 	if(!target_mob || SA_attackable(target_mob))
 		LoseTarget()
@@ -111,7 +109,7 @@
 	walk(src, 0)
 
 
-/mob/living/simple_animal/hostile/proc/ListTargets(var/dist = 7)
+/mob/living/simple_animal/hostile/proc/ListTargets(dist = 7)
 	var/list/L = hearers(src, dist)
 	L += mechas_list
 	return L
@@ -121,7 +119,6 @@
 	walk(src, 0)
 
 /mob/living/simple_animal/hostile/Life()
-
 	. = ..()
 	if(!.)
 		walk(src, 0)
@@ -146,7 +143,7 @@
 
 /mob/living/simple_animal/hostile/proc/OpenFire(target_mob)
 	var/target = target_mob
-	visible_message("\red <b>[src]</b> fires at [target]!", 1)
+	visible_message(SPAN_WARNING("<b>[src]</b> fires at [target]!"), 1)
 
 	var/tturf = get_turf(target)
 	if(rapid)
@@ -172,15 +169,16 @@
 	return
 
 
-/mob/living/simple_animal/hostile/proc/Shoot(var/target, var/start, var/user, var/bullet = 0)
+/mob/living/simple_animal/hostile/proc/Shoot(target, start, user, bullet = 0)
 	if(target == start)
 		return
 
 	var/obj/item/projectile/A = new projectiletype(user:loc)
 	playsound(user, projectilesound, 100, 1)
-	if(!A)	return
+	if(!A)
+		return
 
-	if (!istype(target, /turf))
+	if(!isturf(target))
 		qdel(A)
 		return
 	A.current = target
