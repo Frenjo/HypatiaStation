@@ -83,7 +83,7 @@
 		update_flag |= 4
 	else if(tank_pressure < ONE_ATMOSPHERE)
 		update_flag |= 8
-	else if(tank_pressure < 15*ONE_ATMOSPHERE)
+	else if(tank_pressure < 15 * ONE_ATMOSPHERE)
 		update_flag |= 16
 	else
 		update_flag |= 32
@@ -106,7 +106,7 @@ update_flag
 
 	if(src.destroyed)
 		src.overlays = 0
-		src.icon_state = text("[]-1", src.canister_color)
+		src.icon_state = "[src.canister_color]-1"
 
 	if(icon_state != "[canister_color]")
 		icon_state = "[canister_color]"
@@ -233,7 +233,7 @@ update_flag
 		src.add_fingerprint(user)
 		healthcheck()
 
-	if(istype(user, /mob/living/silicon/robot) && istype(W, /obj/item/weapon/tank/jetpack))
+	if(isrobot(user) && istype(W, /obj/item/weapon/tank/jetpack))
 		var/datum/gas_mixture/thejetpack = W:air_contents
 		var/env_pressure = thejetpack.return_pressure()
 		var/pressure_delta = min(10 * ONE_ATMOSPHERE - env_pressure, (air_contents.return_pressure() - env_pressure) / 2)

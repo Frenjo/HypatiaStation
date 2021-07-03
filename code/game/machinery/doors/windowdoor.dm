@@ -24,7 +24,6 @@
 
 /obj/machinery/door/window/New()
 	..()
-
 	if(src.req_access && src.req_access.len)
 		src.icon_state = "[src.icon_state]"
 		src.base_state = src.icon_state
@@ -33,7 +32,7 @@
 /obj/machinery/door/window/Destroy()
 	density = 0
 	playsound(src, "shatter", 70, 1)
-	..()
+	return ..()
 
 /obj/machinery/door/window/Bumped(atom/movable/AM as mob|obj)
 	if(!(ismob(AM)))
@@ -89,9 +88,9 @@
 		return 0
 	if(!src.operating) //in case of emag
 		src.operating = 1
-	flick(text("[]opening", src.base_state), src)
+	flick("[src.base_state]opening", src)
 	playsound(src, 'sound/machines/windowdoor.ogg', 100, 1)
-	src.icon_state = text("[]open", src.base_state)
+	src.icon_state = "[src.base_state]open"
 	sleep(10)
 
 	explosion_resistance = 0
@@ -107,7 +106,7 @@
 	if(src.operating)
 		return 0
 	src.operating = 1
-	flick(text("[]closing", src.base_state), src)
+	flick("[src.base_state]closing", src)
 	playsound(src, 'sound/machines/windowdoor.ogg', 100, 1)
 	src.icon_state = src.base_state
 
@@ -263,10 +262,9 @@
 			close()
 
 	else if(src.density)
-		flick(text("[]deny", src.base_state), src)
+		flick("[src.base_state]deny", src)
 
 	return
-
 
 
 /obj/machinery/door/window/brigdoor

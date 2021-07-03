@@ -8,7 +8,7 @@ client
 		//set src in world
 
 		if(!usr.client || !usr.client.holder)
-			usr << "\red You need to be an administrator to access this."
+			to_chat(usr, SPAN_WARNING("You need to be an administrator to access this."))
 			return
 
 		var/title = ""

@@ -128,9 +128,9 @@
 
 		for(var/mob/O in viewers(messagesource, null))
 			if(attack_verb.len)
-				O.show_message("\red <B>[M] has been [pick(attack_verb)] with [src][showname] </B>", 1)
+				O.show_message(SPAN_DANGER("[M] has been [pick(attack_verb)] with [src][showname]."), 1)
 			else
-				O.show_message("\red <B>[M] has been attacked with [src][showname] </B>", 1)
+				O.show_message(SPAN_DANGER("[M] has been attacked with [src][showname]."), 1)
 
 		if(!showname && user)
 			if(user.client)
@@ -138,7 +138,8 @@
 
 
 	if(ishuman(M))
-		return M:attacked_by(src, user, def_zone)
+		var/mob/living/carbon/human/H = M
+		return H.attacked_by(src, user, def_zone)
 	else
 		switch(damtype)
 			if("brute")

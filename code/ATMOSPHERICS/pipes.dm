@@ -193,7 +193,7 @@
 	else return 1
 
 /obj/machinery/atmospherics/pipe/simple/proc/burst()
-	src.visible_message("\red \bold [src] bursts!");
+	src.visible_message(SPAN_DANGER("[src] bursts!"));
 	playsound(src, 'sound/effects/bang.ogg', 25, 1)
 	var/datum/effect/system/smoke_spread/smoke = new
 	smoke.set_up(1,0, src.loc, 0)
@@ -1066,7 +1066,7 @@
 /obj/machinery/atmospherics/pipe/tank/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/analyzer) && get_dist(user, src) <= 1)
 		for(var/mob/O in viewers(user, null))
-			O << "\red [user] has used the analyzer on \icon[icon]"
+			to_chat(O, SPAN_WARNING("[user] has used the analyzer on \icon[icon]."))
 
 		var/pressure = parent.air.return_pressure()
 		var/total_moles = parent.air.total_moles

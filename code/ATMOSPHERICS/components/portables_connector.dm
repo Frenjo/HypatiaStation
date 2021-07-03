@@ -20,8 +20,36 @@
 
 
 /obj/machinery/atmospherics/portables_connector/New()
-	initialize_directions = dir
 	..()
+	initialize_directions = dir
+
+/obj/machinery/atmospherics/portables_connector/initialize()
+	..()
+	if(node)
+		return
+
+	var/node_connect = dir
+
+	for(var/obj/machinery/atmospherics/target in get_step(src,node_connect))
+		if(target.initialize_directions & get_dir(target, src))
+			node = target
+			break
+
+	update_icon()
+
+/obj/machinery/atmospherics/portables_connector/Destroy()
+	loc = null
+
+	if(connected_device)
+		connected_device.disconnect()
+
+	if(node)
+		node.disconnect(src)
+		qdel(network)
+
+	node = null
+
+	return ..()
 
 /obj/machinery/atmospherics/portables_connector/update_icon()
 	if(node)
@@ -61,32 +89,6 @@
 	new_network.normal_members += src
 
 	return null
-
-/obj/machinery/atmospherics/portables_connector/Destroy()
-	loc = null
-
-	if(connected_device)
-		connected_device.disconnect()
-
-	if(node)
-		node.disconnect(src)
-		qdel(network)
-
-	node = null
-
-	..()
-
-/obj/machinery/atmospherics/portables_connector/initialize()
-	if(node) return
-
-	var/node_connect = dir
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,node_connect))
-		if(target.initialize_directions & get_dir(target,src))
-			node = target
-			break
-
-	update_icon()
 
 /obj/machinery/atmospherics/portables_connector/build_network()
 	if(!network && node)
