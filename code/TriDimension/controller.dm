@@ -55,13 +55,16 @@
 		normal -= T
 		fast -= T
 
-		if(!T || !istype(T, /turf))
+		if(!T || !isturf(T))
 			continue
 
-		switch (I)
-			if(1)	slow += T
-			if(2)	normal += T
-			if(3)	fast += T
+		switch(I)
+			if(1)
+				slow += T
+			if(2)
+				normal += T
+			if(3)
+				fast += T
 
 		if(transfer > 0)
 			if(up)
@@ -104,7 +107,6 @@
 
 /atom/movable/Move() //Hackish
 	. = ..()
-
 	var/turf/controllerlocation = locate(1, 1, src.z)
 	for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
 		if(controller.up || controller.down)
@@ -122,7 +124,7 @@
 		var/turf/T = pick(L)
 		new_list = 0
 
-		if(!T || !istype(T, /turf))
+		if(!T || !isturf(T))
 			L -= T
 			continue
 
@@ -166,7 +168,7 @@
 					if(m.invisibility)
 						continue
 					// only add this tile to fastprocessing if there is a living mob, not a dead one
-					if(istype(m, /mob/living))
+					if(isliving(m))
 						new_list = 3
 					var/image/temp2 = image(m, dir = m.dir, layer = TURF_LAYER + 0.05 * m.layer)
 					temp2.color = rgb(127, 127, 127)

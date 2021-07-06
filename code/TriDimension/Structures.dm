@@ -132,7 +132,7 @@
 	return
 
 /obj/multiz/ladder/attack_hand(mob/M)
-	if(!target || !istype(target.loc, /turf))
+	if(!target || !isturf(target.loc))
 		to_chat(M, "The ladder is incomplete and can't be climbed.")
 	else
 		var/turf/T = target.loc

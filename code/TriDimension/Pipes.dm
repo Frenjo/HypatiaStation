@@ -72,7 +72,7 @@
 	else return 1
 
 /obj/machinery/atmospherics/pipe/zpipe/proc/burst()
-	src.visible_message("\red \bold [src] bursts!");
+	src.visible_message(SPAN_DANGER("[src] bursts!"))
 	playsound(src, 'sound/effects/bang.ogg', 25, 1)
 	var/datum/effect/system/smoke_spread/smoke = new
 	smoke.set_up(1, 0, src.loc, 0)
@@ -90,7 +90,7 @@
 		node1.disconnect(src)
 	if(node2)
 		node2.disconnect(src)
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/pipe/zpipe/pipeline_expansion()
 	return list(node1, node2)
@@ -127,7 +127,7 @@
 
 	for(var/direction in cardinal)
 		if(direction&initialize_directions)
-			if (!node1_dir)
+			if(!node1_dir)
 				node1_dir = direction
 
 	for(var/obj/machinery/atmospherics/target in get_step(src, node1_dir))
@@ -159,7 +159,7 @@
 	name = "downwards pipe"
 	desc = "A pipe segment to connect downwards."
 
-obj/machinery/atmospherics/pipe/zpipe/down/initialize()
+/obj/machinery/atmospherics/pipe/zpipe/down/initialize()
 	normalize_dir()
 	var/node1_dir
 
