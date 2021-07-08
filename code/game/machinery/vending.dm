@@ -5,8 +5,6 @@
 	var/price = 0
 	var/display_color = "blue"
 
-
-
 /obj/machinery/vending
 	name = "Vendomat"
 	desc = "A generic vending machine."

@@ -131,7 +131,7 @@ var/global/datum/controller/gameticker/ticker
 			//Deleting Startpoints but we need the ai point to AI-ize people later
 			if(S.name != "AI")
 				qdel(S)
-		to_chat(world, "<FONT color='blue'><B>Enjoy the game!</B></FONT>")
+		to_chat(world, SPAN_INFO_B("Enjoy the game!"))
 		world << sound('sound/AI/welcome.ogg') // Skie
 		//Holiday Round-start stuff	~Carn
 		Holiday_Game_Start()
@@ -308,7 +308,7 @@ var/global/datum/controller/gameticker/ticker
 		if(!mode.explosion_in_progress && mode_finished)
 			current_state = GAME_STATE_FINISHED
 
-			spawn
+			spawn()
 				declare_completion()
 
 			spawn(50)
@@ -355,7 +355,7 @@ var/global/datum/controller/gameticker/ticker
 			var/robolist = "<b>The AI's loyal minions were:</b> "
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
 				robolist += "[robo.name][robo.stat ?" (Deactivated) (Played by: [robo.key]), " : " (Played by: [robo.key]), "]"
-			world << "[robolist]"
+			to_chat(world, robolist)
 
 	for(var/mob/living/silicon/robot/robo in mob_list)
 		if(!robo.connected_ai)

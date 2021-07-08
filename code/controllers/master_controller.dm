@@ -53,7 +53,8 @@ var/global/pipe_processing_killed = 0
 	to_chat(world, SPAN_DANGER("Initializing objects."))
 	sleep(-1)
 	for(var/atom/movable/object in world)
-		object.initialize()
+		if(isnull(object.gcDestroyed))
+			object.initialize()
 
 	to_chat(world, SPAN_DANGER("Initializing pipe networks."))
 	sleep(-1)

@@ -77,7 +77,7 @@
 		ax += dx	// do step
 		ay += dy
 
-		var/turf/T = locate(round(ax, 0.5),round(ay, 0.5), S.z)
+		var/turf/T = locate(round(ax, 0.5), round(ay, 0.5), S.z)
 
 		if(T.x == 1 || T.x == world.maxx || T.y == 1 || T.y == world.maxy)		// not obscured if we reach the edge
 			break

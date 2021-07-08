@@ -180,9 +180,9 @@ nanoui is used to open and update nano browser uis
   */
 /datum/nanoui/proc/add_default_data(list/data)
 	data["ui"] = list(
-			"status" = status,
-			"user" = list("name" = user.name)
-		)	
+		"status" = status,
+		"user" = list("name" = user.name)
+	)	
 	return data
 
  /**

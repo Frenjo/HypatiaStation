@@ -32,7 +32,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		qdel(src)
 	if(newloc.density)
 		return 0
-	.=..()
+	. = ..()
 
 /obj/effect/water/Bump(atom/A)
 	if(reagents)
@@ -96,7 +96,7 @@ steam.start() -- spawns the effect
 		spawn(0)
 			if(holder)
 				src.location = get_turf(holder)
-			var/obj/effect/steam/steam = new /obj/effect/steam(src.location)
+			var/obj/effect/steam/steam = PoolOrNew(/obj/effect/steam, src.location)
 			var/direction
 			if(src.cardinals)
 				direction = pick(cardinal)
@@ -128,9 +128,10 @@ steam.start() -- spawns the effect
 	var/turf/T = src.loc
 	if(isturf(T))
 		T.hotspot_expose(1000,100)
+
+/obj/effect/sparks/initialize()
 	spawn(100)
 		qdel(src)
-	return
 
 /obj/effect/sparks/Destroy()
 	var/turf/T = src.loc
@@ -165,7 +166,7 @@ steam.start() -- spawns the effect
 		spawn(0)
 			if(holder)
 				src.location = get_turf(holder)
-			var/obj/effect/sparks/sparks = new /obj/effect/sparks(src.location)
+			var/obj/effect/sparks/sparks = PoolOrNew(/obj/effect/sparks, src.location)
 			src.total_sparks++
 			var/direction
 			if(src.cardinals)
@@ -202,6 +203,8 @@ steam.start() -- spawns the effect
 
 /obj/effect/smoke/New()
 	..()
+
+/obj/effect/smoke/initialize()
 	spawn(time_to_live)
 		qdel(src)
 
@@ -328,7 +331,7 @@ steam.start() -- spawns the effect
 		spawn(0)
 			if(holder)
 				src.location = get_turf(holder)
-			var/obj/effect/smoke/smoke = new smoke_type(src.location)
+			var/obj/effect/smoke/smoke = PoolOrNew(smoke_type, src.location)
 			src.total_smoke++
 			var/direction = src.direction
 			if(!direction)
@@ -338,7 +341,7 @@ steam.start() -- spawns the effect
 					direction = pick(alldirs)
 			for(i = 0, i < pick(0, 1, 1, 1, 2, 2, 2, 3), i++)
 				sleep(10)
-				step(smoke,direction)
+				step(smoke, direction)
 			spawn(smoke.time_to_live * 0.75 + rand(10, 30))
 				if(smoke)
 					qdel(smoke)
@@ -385,7 +388,7 @@ steam.start() -- spawns the effect
 				var/turf/T = get_turf(src.holder)
 				if(T != src.oldposition)
 					if(istype(T, /turf/space))
-						var/obj/effect/ion_trails/I = new /obj/effect/ion_trails(src.oldposition)
+						var/obj/effect/ion_trails/I = PoolOrNew(/obj/effect/ion_trails, src.oldposition)
 						src.oldposition = T
 						I.set_dir(src.holder.dir)
 						flick("ion_fade", I)
@@ -431,7 +434,7 @@ steam.start() -- spawns the effect
 			src.processing = 0
 			spawn(0)
 				if(src.number < 3)
-					var/obj/effect/steam/I = new /obj/effect/steam(src.oldposition)
+					var/obj/effect/steam/I = PoolOrNew(/obj/effect/steam, src.oldposition)
 					src.number++
 					src.oldposition = get_turf(holder)
 					I.set_dir(src.holder.dir)

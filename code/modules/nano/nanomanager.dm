@@ -27,9 +27,8 @@
   */
 /datum/nanomanager/proc/try_update_ui(mob/user, src_object, ui_key, datum/nanoui/ui, data)
 	if(isnull(ui)) // no ui has been passed, so we'll search for one
-	{
 		ui = get_open_ui(user, src_object, ui_key)
-	}
+
 	if(!isnull(ui))		
 		// The UI is already open so push the data to it
 		ui.push_data(data)
@@ -209,10 +208,10 @@
 
 /datum/nanomanager/proc/send_resources(client)
 	var/list/nano_asset_dirs = list(\
-		"nano/css/",\
-		"nano/images/",\
-		"nano/js/",\
-		"nano/templates/"\
+		"nano/css/",
+		"nano/images/",
+		"nano/js/",
+		"nano/templates/"
 	)
 	
 	var/list/files = null
@@ -221,4 +220,3 @@
 		for(var/file in files)
 			if(copytext(file, length(file)) != "/") // files which end in "/" are actually directories, which we want to ignore
 				client << browse_rsc(file(path + file))	// send the file to the client
-

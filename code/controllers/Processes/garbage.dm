@@ -10,10 +10,10 @@ var/list/delayed_garbage = list()
 
 /datum/controller/process/garbage_collector
 	var/garbage_collect = 1			// Whether or not to actually do work
-	var/total_dels 	= 0			// number of total del()'s
-	var/tick_dels 	= 0			// number of del()'s we've done this tick
+	var/total_dels	= 0			// number of total del()'s
+	var/tick_dels	= 0			// number of del()'s we've done this tick
 	var/soft_dels	= 0
-	var/hard_dels 	= 0			// number of hard dels in total
+	var/hard_dels	= 0			// number of hard dels in total
 	var/list/destroyed = list() // list of refID's of things that should be garbage collected
 								// refID's are associated with the time at which they time out and need to be manually del()
 								// we do this so we aren't constantly locating them and preventing them from being gc'd
@@ -102,7 +102,7 @@ var/list/delayed_garbage = list()
 /proc/qdel(datum/A)
 	if(!A)
 		return
-	if(istype(A, /list))
+	if(islist(A))
 		var/list/L = A
 		for(var/E in L)
 			qdel(E)
@@ -196,7 +196,8 @@ var/list/delayed_garbage = list()
 		things += thing
 	testing("Collected list of things in search for references to a [type]. ([things.len] Thing\s)")
 	for(var/datum/thing in things)
-		if(!usr.client.running_find_references) return
+		if(!usr.client.running_find_references)
+			return
 		for(var/varname in thing.vars)
 			var/variable = thing.vars[varname]
 			if(variable == src)

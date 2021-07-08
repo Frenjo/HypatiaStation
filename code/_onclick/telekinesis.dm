@@ -88,7 +88,7 @@ var/const/tk_maxrange = 15
 
 //stops TK grabs being equipped anywhere but into hands
 /obj/item/tk_grab/equipped(mob/user, slot)
-	if((slot == slot_l_hand) || (slot== slot_r_hand))
+	if(slot == slot_l_hand || slot == slot_r_hand)
 		return
 	qdel(src)
 	return
@@ -113,7 +113,8 @@ var/const/tk_maxrange = 15
 		return
 
 	var/d = get_dist(user, target)
-	if(focus) d = max(d,get_dist(user, focus)) // whichever is further
+	if(focus)
+		d = max(d, get_dist(user, focus)) // whichever is further
 	switch(d)
 		if(0)
 			;
@@ -168,7 +169,7 @@ var/const/tk_maxrange = 15
 /obj/item/tk_grab/proc/apply_focus_overlay()
 	if(!focus)
 		return
-	var/obj/effect/overlay/O = new /obj/effect/overlay(locate(focus.x, focus.y, focus.z))
+	var/obj/effect/overlay/O = PoolOrNew(/obj/effect/overlay, locate(focus.x, focus.y, focus.z))
 	O.name = "sparkles"
 	O.anchored = 1
 	O.density = 0
