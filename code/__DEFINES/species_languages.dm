@@ -21,8 +21,8 @@
 #define REQUIRE_LIGHT 65536
 
 //Language flags.
-#define WHITELISTED 1  	// Language is available if the speaker is whitelisted.
-#define RESTRICTED 2   	// Language can only be accquired by spawning or an admin.
-#define NONVERBAL 4    	// Language has a significant non-verbal component.
-#define SIGNLANG 8     	// Language is completely non-verbal. Speech is displayed through emotes for those who can understand.
+#define WHITELISTED 1	// Language is available if the speaker is whitelisted.
+#define RESTRICTED 2	// Language can only be accquired by spawning or an admin.
+#define NONVERBAL 4		// Language has a significant non-verbal component.
+#define SIGNLANG 8		// Language is completely non-verbal. Speech is displayed through emotes for those who can understand.
 #define HIVEMIND 16		// Broadcast to all mobs with this language.

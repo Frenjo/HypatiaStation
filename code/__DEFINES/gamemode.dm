@@ -3,7 +3,7 @@
 #define GAME_STATE_PLAYING		3
 #define GAME_STATE_FINISHED		4
 
-#define IS_MODE_COMPILED(MODE) (ispath(text2path("/datum/game_mode/"+(MODE))))
+#define IS_MODE_COMPILED(MODE) (ispath(text2path("/datum/game_mode/" + MODE)))
 
 //Security levels
 #define SEC_LEVEL_GREEN		0

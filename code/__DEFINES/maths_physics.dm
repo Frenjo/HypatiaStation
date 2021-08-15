@@ -22,7 +22,7 @@
 #define INFINITY			1.#INF
 
 // New lighting
-#define CLAMP01(x) 			(Clamp(x, 0, 1))
+#define CLAMP01(x)			(Clamp(x, 0, 1))
 #define CLAMP02(x, y, z) 	(x <= y ? y : (x >= z ? z : x))
 
 // XGM stuff

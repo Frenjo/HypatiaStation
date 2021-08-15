@@ -8,3 +8,6 @@
 #define IMPTRACK_HUD		7 // tracking implant
 #define SPECIALROLE_HUD 	8 // AntagHUD image
 #define STATUS_HUD_OOC		9 // STATUS_HUD without virus db check for someone being ill.
+
+#define APPEARANCE_UI_IGNORE_ALPHA	RESET_COLOR | RESET_TRANSFORM | NO_CLIENT_COLOR | RESET_ALPHA
+#define APPEARANCE_UI				RESET_COLOR | RESET_TRANSFORM | NO_CLIENT_COLOR

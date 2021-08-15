@@ -715,38 +715,6 @@ proc/anim(turf/location as turf, target as mob|obj, a_icon, a_icon_state as text
 
 	else return get_step(ref, base_dir)
 
-/proc/do_mob(mob/user, mob/target, time = 30) //This is quite an ugly solution but i refuse to use the old request system.
-	if(!user || !target) return 0
-	var/user_loc = user.loc
-	var/target_loc = target.loc
-	var/holding = user.get_active_hand()
-	sleep(time)
-	if(!user || !target) return 0
-	if(user.loc == user_loc && target.loc == target_loc && user.get_active_hand() == holding && !( user.stat ) && ( !user.stunned && !user.weakened && !user.paralysis && !user.lying))
-		return 1
-	else
-		return 0
-
-/proc/do_after(mob/user as mob, delay as num, numticks = 5, needhand = 1)
-	if(!user || isnull(user))
-		return 0
-	if(numticks == 0)
-		return 0
-
-	var/delayfraction = round(delay/numticks)
-	var/turf/T = get_turf(user)
-	var/holding = user.get_active_hand()
-
-	for(var/i = 0, i<numticks, i++)
-		sleep(delayfraction)
-
-		if(!user || user.stat || user.weakened || user.stunned || !(user.loc == T))
-			return 0
-		if(needhand && !(user.get_active_hand() == holding))	//Sometimes you don't want the user to have to keep their active hand
-			return 0
-
-	return 1
-
 //Takes: Anything that could possibly have variables and a varname to check.
 //Returns: 1 if found, 0 if not.
 /proc/hasvar(datum/A, varname)
@@ -1013,7 +981,7 @@ proc/DuplicateObject(obj/original, perfectcopy = 0 , sameloc = 0)
 					copiedobjs += newmobs
 
 					for(var/V in T.vars)
-						if(!(V in list("type","loc","locs","vars", "parent", "parent_type","verbs","ckey","key","x","y","z","contents", "luminosity")))
+						if(!(V in list("type", "loc", "locs", "vars", "parent", "parent_type", "verbs", "ckey", "key", "x", "y", "z", "contents", "luminosity")))
 							X.vars[V] = T.vars[V]
 
 					toupdate += X
@@ -1041,22 +1009,22 @@ proc/DuplicateObject(obj/original, perfectcopy = 0 , sameloc = 0)
 
 //chances are 1:value. anyprob(1) will always return true
 /proc/anyprob(value)
-	return (rand(1,value)==value)
+	return (rand(1, value) == value)
 
-/proc/view_or_range(distance = world.view , center = usr , type)
+/proc/view_or_range(distance = world.view, center = usr, type)
 	switch(type)
 		if("view")
-			. = view(distance,center)
+			. = view(distance, center)
 		if("range")
-			. = range(distance,center)
+			. = range(distance, center)
 	return
 
-/proc/oview_or_orange(distance = world.view , center = usr , type)
+/proc/oview_or_orange(distance = world.view, center = usr, type)
 	switch(type)
 		if("view")
-			. = oview(distance,center)
+			. = oview(distance, center)
 		if("range")
-			. = orange(distance,center)
+			. = orange(distance, center)
 	return
 
 /proc/get_mob_with_client_list()
@@ -1227,12 +1195,12 @@ proc/is_hot(obj/item/W as obj)
 	if(W.sharp)
 		return 1
 	return( \
-		W.sharp													  || \
-		istype(W, /obj/item/weapon/screwdriver)                   || \
-		istype(W, /obj/item/weapon/pen)                           || \
-		istype(W, /obj/item/weapon/weldingtool)					  || \
-		istype(W, /obj/item/weapon/lighter/zippo)				  || \
-		istype(W, /obj/item/weapon/match)            		      || \
+		W.sharp												|| \
+		istype(W, /obj/item/weapon/screwdriver)				|| \
+		istype(W, /obj/item/weapon/pen)						|| \
+		istype(W, /obj/item/weapon/weldingtool)				|| \
+		istype(W, /obj/item/weapon/lighter/zippo)			|| \
+		istype(W, /obj/item/weapon/match)					|| \
 		istype(W, /obj/item/clothing/mask/cigarette)
 	)
 
