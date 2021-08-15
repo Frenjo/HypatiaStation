@@ -2,10 +2,11 @@
 	var/active = 0
 	flags = NOBLOODY
 
-	suicide_act(mob/user)
-		viewers(user) << pick("\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>", \
-							"\red <b>[user] is falling on the [src.name]! It looks like \he's trying to commit suicide.</b>")
-		return (BRUTELOSS|FIRELOSS)
+/obj/item/weapon/melee/energy/suicide_act(mob/user)
+	viewers(user) << pick(SPAN_DANGER("[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku."), \
+						SPAN_DANGER("[user] is falling on the [src.name]! It looks like \he's trying to commit suicide."))
+	return (BRUTELOSS|FIRELOSS)
+
 
 /obj/item/weapon/melee/energy/axe
 	name = "energy axe"
@@ -22,9 +23,10 @@
 	sharp = 1
 	edge = 1
 
-	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] swings the [src.name] towards /his head! It looks like \he's trying to commit suicide.</b>"
-		return (BRUTELOSS|FIRELOSS)
+/obj/item/weapon/melee/energy/axe/suicide_act(mob/user)
+	viewers(user) << SPAN_DANGER("[user] swings the [src.name] towards /his head! It looks like \he's trying to commit suicide.")
+	return (BRUTELOSS|FIRELOSS)
+
 
 /obj/item/weapon/melee/energy/sword
 	color

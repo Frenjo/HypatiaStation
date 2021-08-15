@@ -9,17 +9,14 @@
 	var/obj/item/weapon/implant/imp = null
 
 /obj/item/weapon/implanter/proc/update()
-
-
-/obj/item/weapon/implanter/update()
-	if (src.imp)
+	if(src.imp)
 		src.icon_state = "implanter1"
 	else
 		src.icon_state = "implanter0"
 	return
 
 /obj/item/weapon/implanter/attack(mob/M as mob, mob/user as mob)
-	if(!istype(M, /mob/living/carbon))
+	if(!iscarbon(M))
 		return
 	if(user && src.imp)
 		for(var/mob/O in viewers(M, null))
@@ -52,6 +49,7 @@
 				update()
 	return
 
+
 /obj/item/weapon/implanter/loyalty
 	name = "implanter-loyalty"
 
@@ -60,6 +58,7 @@
 	..()
 	update()
 	return
+
 
 /obj/item/weapon/implanter/explosive
 	name = "implanter (E)"
@@ -70,6 +69,7 @@
 	update()
 	return
 
+
 /obj/item/weapon/implanter/adrenalin
 	name = "implanter-adrenalin"
 
@@ -78,6 +78,7 @@
 	..()
 	update()
 	return
+
 
 /obj/item/weapon/implanter/compressed
 	name = "implanter (C)"
@@ -102,10 +103,10 @@
 
 /obj/item/weapon/implanter/compressed/attack(mob/M as mob, mob/user as mob)
 	var/obj/item/weapon/implant/compressed/c = imp
-	if (!c)
+	if(!c)
 		return
-	if (c.scanned == null)
-		user << "Please scan an object with the implanter first."
+	if(c.scanned == null)
+		to_chat(user, "Please scan an object with the implanter first.")
 		return
 	..()
 
@@ -113,10 +114,10 @@
 	if(istype(A, /obj/item) && imp)
 		var/obj/item/weapon/implant/compressed/c = imp
 		if(c.scanned)
-			user << "\red Something is already scanned inside the implant!"
+			to_chat(user, SPAN_WARNING("Something is already scanned inside the implant!"))
 			return
 		c.scanned = A
-		if(istype(A.loc, /mob/living/carbon/human))
+		if(ishuman(A.loc))
 			var/mob/living/carbon/human/H = A.loc
 			H.u_equip(A)
 		else if(istype(A.loc, /obj/item/weapon/storage))

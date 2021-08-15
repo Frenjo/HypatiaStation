@@ -41,7 +41,7 @@
 /obj/item/target/attack_hand(mob/user as mob)
 	// taking pinned targets off!
 	var/obj/structure/target_stake/stake
-	for(var/obj/structure/target_stake/T in view(3,src))
+	for(var/obj/structure/target_stake/T in view(3, src))
 		if(T.pinned_target == src)
 			stake = T
 			break

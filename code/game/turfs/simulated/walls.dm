@@ -183,8 +183,8 @@
 		rotting = 1
 
 		var/number_rots = rand(2,3)
-		for(var/i=0, i<number_rots, i++)
-			var/obj/effect/overlay/O = new/obj/effect/overlay( src )
+		for(var/i = 0, i < number_rots, i++)
+			var/obj/effect/overlay/O = PoolOrNew(/obj/effect/overlay, src)
 			O.name = "Wallrot"
 			O.desc = "Ick..."
 			O.icon = 'icons/effects/wallrot.dmi'
@@ -198,7 +198,7 @@
 /turf/simulated/wall/proc/thermitemelt(mob/user as mob)
 	if(mineral == MATERIAL_DIAMOND)
 		return
-	var/obj/effect/overlay/O = new/obj/effect/overlay( src )
+	var/obj/effect/overlay/O = PoolOrNew(/obj/effect/overlay, src)
 	O.name = "Thermite"
 	O.desc = "Looks hot."
 	O.icon = 'icons/effects/fire.dmi'

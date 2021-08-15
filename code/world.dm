@@ -68,7 +68,7 @@
 
 	if(T == "ping")
 		var/x = 1
-		for (var/client/C)
+		for(var/client/C)
 			x++
 		return x
 
@@ -110,7 +110,7 @@
 
 /world/Reboot(reason)
 	spawn(0)
-		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
+		world << sound(pick('sound/AI/newroundsexy.ogg', 'sound/misc/apcdestroyed.ogg', 'sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
 
 	processScheduler.stop()
 

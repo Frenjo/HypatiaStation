@@ -23,7 +23,7 @@
 
 
 /obj/item/weapon/implantcase/exile
-	name = "Glass Case- 'Exile'"
+	name = "Glass Case - 'Exile'"
 	desc = "A case containing an exile implant."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantcase-r"

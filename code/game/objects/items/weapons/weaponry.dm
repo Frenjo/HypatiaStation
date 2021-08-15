@@ -14,6 +14,7 @@
 	viewers(user) << SPAN_DANGER("[user] is hitting \himself with the [src.name]! It looks like \he's trying to ban \himself from life.")
 	return (BRUTELOSS | FIRELOSS | TOXLOSS | OXYLOSS)
 
+
 /obj/item/weapon/nullrod
 	name = "null rod"
 	desc = "A rod of pure obsidian, its very presence disrupts and dampens the powers of paranormal phenomenae."
@@ -40,14 +41,14 @@
 		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return
 
-	if((CLUMSY in user.mutations) && prob(50))
+	if(CLUMSY in user.mutations && prob(50))
 		to_chat(user, SPAN_WARNING("The rod slips out of your hand and hits your head."))
 		user.take_organ_damage(10)
 		user.Paralyse(20)
 		return
 
-	if(M.stat !=2)
-		if((M.mind in ticker.mode.cult) && prob(33))
+	if(M.stat != DEAD)
+		if(M.mind in ticker.mode.cult && prob(33))
 			to_chat(M, SPAN_WARNING("The power of [src] clears your mind of the cult's influence!"))
 			to_chat(user, SPAN_WARNING("You wave [src] over [M]'s head and see their eyes become clear, their mind returning to normal."))
 			ticker.mode.remove_cultist(M.mind)
@@ -66,6 +67,7 @@
 	if(istype(A, /turf/simulated/floor))
 		to_chat(user, SPAN_INFO("You hit the floor with the [src]."))
 		call(/obj/effect/rune/proc/revealrunes)(src)
+
 
 /obj/item/weapon/sord
 	name = "\improper SORD"
@@ -87,6 +89,7 @@
 /obj/item/weapon/sord/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
 	return ..()
+
 
 /obj/item/weapon/claymore
 	name = "claymore"
@@ -113,6 +116,7 @@
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
 	return ..()
 
+
 /obj/item/weapon/katana
 	name = "katana"
 	desc = "Woefully underpowered in D20"
@@ -137,6 +141,7 @@
 /obj/item/weapon/katana/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
 	return ..()
+
 
 /obj/item/weapon/harpoon
 	name = "harpoon"
