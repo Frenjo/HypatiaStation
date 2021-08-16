@@ -1,6 +1,6 @@
 datum/preferences
 	//The mob should have a gender you want before running this proc. Will run fine without H
-	proc/randomize_appearance_for(var/mob/living/carbon/human/H)
+	proc/randomize_appearance_for(mob/living/carbon/human/H)
 		if(H)
 			if(H.gender == MALE)
 				gender = MALE
@@ -19,7 +19,7 @@ datum/preferences
 		if(H)
 			copy_to(H, 1)
 
-	proc/randomize_hair_color(var/target = "hair")
+	proc/randomize_hair_color(target = "hair")
 		if(prob(75) && target == "facial") // Chance to inherit hair color
 			r_facial = r_hair
 			g_facial = g_hair

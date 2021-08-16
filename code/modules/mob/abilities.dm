@@ -40,8 +40,8 @@ Creature-level abilities.
 	set name = "Project Thoughts"
 	set desc = "Project words into another individual's mind. May have adverse effects on non-Skrell."
 
-	if(!mob || !istype(mob,/mob/living) || mob.stat)
-		src << "\red You must be corporeal and alive to do that."
+	if(!mob || !isliving(mob) || mob.stat)
+		to_chat(src, SPAN_WARNING("You must be corporeal and alive to do that."))
 		return 0
 
 
@@ -49,13 +49,13 @@ Creature-level abilities.
 	for(var/mob/living/carbon/h in view(src))
 		creatures += h
 
-	var/mob/target = input("Who do you want to project your words to?") as null|anything in creatures
+	var/mob/target = input("Who do you want to project your words to?") as null | anything in creatures
 
-	if (isnull(target))
+	if(isnull(target))
 		return
 
-	mob.visible_message("\blue [mob.real_name] focuses intently on [target.real_name].",\
-					"\red You focus intently on [target.real_name].")
+	mob.visible_message(SPAN_INFO("[mob.real_name] focuses intently on [target.real_name]."), \
+						SPAN_WARNING("You focus intently on [target.real_name]."))
 
 	var/intensity = input("How intense do you want the projection to be?") in list(1, 2, 3)
 	var/say = input("What do you wish to say?")
@@ -63,29 +63,29 @@ Creature-level abilities.
 	if(target.get_species() == "Skrell")
 		switch(intensity)
 			if(1)
-				target.show_message("\blue You hear [mob.real_name]'s words in your mind: [say]")
+				target.show_message(SPAN_INFO("You hear [mob.real_name]'s words in your mind: [say]"))
 			if(2)
-				target.show_message("\blue You hear [mob.real_name]'s words in your mind: [say]")
+				target.show_message(SPAN_INFO("You hear [mob.real_name]'s words in your mind: [say]"))
 			if(3)
-				target.show_message("\blue \b You hear [mob.real_name]'s words in your mind: [say]")
+				target.show_message(SPAN_INFO_B("You hear [mob.real_name]'s words in your mind: [say]"))
 	else
 		switch(intensity)
 			if(1)
-				target.show_message("\red \b You feel an ache in your head.")
-				target.show_message("\blue You hear words in your mind: [say]")
+				target.show_message(SPAN_DANGER("You feel an ache in your head."))
+				target.show_message(SPAN_INFO("You hear words in your mind: [say]"))
 			if(2)
-				target.show_message("\red \b You feel a pressure between your eyes.")
-				target.show_message("\blue You hear words in your mind: [say]")
+				target.show_message(SPAN_DANGER("You feel a pressure between your eyes."))
+				target.show_message(SPAN_INFO("You hear words in your mind: [say]"))
 			if(3)
-				target.show_message("\red \b You feel a pressure between your eyes.")
-				target.show_message("\blue \b You hear words in your mind: [say]")
-				if(istype(target, /mob/living/carbon/human))
+				target.show_message(SPAN_DANGER("You feel a pressure between your eyes."))
+				target.show_message(SPAN_INFO_B("You hear words in your mind: [say]"))
+				if(ishuman(target))
 					var/mob/living/carbon/human/h = target
-					h.visible_message("\red \b [target.real_name]'s nose begins to bleed.",\
-						"\red \b Your nose begins to bleed...")
+					h.visible_message(SPAN_DANGER("[target.real_name]'s nose begins to bleed."), \
+										SPAN_DANGER("Your nose begins to bleed..."))
 					h.drip(3)
 
-	mob.show_message("\blue You project your words into [target.real_name]: [say]")
+	mob.show_message(SPAN_INFO("You project your words into [target.real_name]: [say]"))
 
 	for(var/mob/dead/observer/G in world)
 		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")

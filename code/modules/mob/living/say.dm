@@ -63,19 +63,6 @@ var/list/department_radio_keys = list(
 		if(dongle.translate_binary)
 			return 1
 
-/*
-// Now we can start processing languages to sound cool!
-/mob/living/proc/handleLanguage(msg, speaking)
-	if (speaking == "Obsedaian") // Handle the Obsedai Language
-		var/list/split_phrase = text2list(msg," ") //Split it up into words.
-		for(var/i = length(split_phrase), i <= 0, i--)
-			var/word = split_phrase[i] //Now we can do an operation per word
-			word = word + word // Double the word for testing
-			split_phrase[i] = word //Kick the word back into the list for later
-		return sanitize(list2text(split_phrase," ")) // Return our newly mangled language
-	else // We don't have any handling for this language, spit it back
-		return msg
-*/
 
 /mob/living/say(message, datum/language/speaking = null, verbage = "says", alt_name = "", italics = 0, message_range = world.view, list/used_radios = list())
 	if(stat)
@@ -124,7 +111,7 @@ var/list/department_radio_keys = list(
 	if(used_radios.len)
 		for(var/mob/living/M in hearers(5, src))
 			if(M != src)
-				M.show_message(SPAN_NOTICE("[src] talks into [used_radios.len ? used_radios[1] : "radio"]"))
+				M.show_message(SPAN_NOTICE("[src] talks into [used_radios.len ? used_radios[1] : "radio"]."))
 
 	for(var/mob/M in listening)
 		if(M.client)

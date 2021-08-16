@@ -43,7 +43,7 @@
 		var/mob/living/carbon/C = usr
 		C.toggle_throw_mode()
 	else
-		usr << "\red This mob type cannot throw items."
+		to_chat(usr, SPAN_WARNING("This mob type cannot throw items."))
 	return
 
 
@@ -51,11 +51,11 @@
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(!C.get_active_hand())
-			usr << "\red You have nothing to drop in your hand."
+			to_chat(usr, SPAN_WARNING("You have nothing to drop in your hand."))
 			return
 		drop_item()
 	else
-		usr << "\red This mob type cannot drop items."
+		to_chat(usr, SPAN_WARNING("This mob type cannot drop items."))
 	return
 
 //This gets called when you press the delete button.
@@ -63,15 +63,15 @@
 	set hidden = 1
 
 	if(!usr.pulling)
-		usr << "\blue You are not pulling anything."
+		to_chat(usr, SPAN_INFO("You are not pulling anything."))
 		return
 	usr.stop_pulling()
 
 /client/verb/swap_hand()
 	set hidden = 1
-	if(istype(mob, /mob/living/carbon))
+	if(iscarbon(mob))
 		mob:swap_hand()
-	if(istype(mob,/mob/living/silicon/robot))
+	if(isrobot(mob))
 		var/mob/living/silicon/robot/R = mob
 		R.cycle_modules()
 	return
@@ -87,9 +87,9 @@
 
 /client/verb/toggle_throw_mode()
 	set hidden = 1
-	if(!istype(mob, /mob/living/carbon))
+	if(!iscarbon(mob))
 		return
-	if (!mob.stat && isturf(mob.loc) && !mob.restrained())
+	if(!mob.stat && isturf(mob.loc) && !mob.restrained())
 		mob:toggle_throw_mode()
 	else
 		return
@@ -113,35 +113,35 @@
 
 
 /atom/movable/Move(NewLoc, direct)
-	if (direct & (direct - 1))
-		if (direct & 1)
-			if (direct & 4)
-				if (step(src, NORTH))
+	if(direct & (direct - 1))
+		if(direct & 1)
+			if(direct & 4)
+				if(step(src, NORTH))
 					step(src, EAST)
 				else
-					if (step(src, EAST))
+					if(step(src, EAST))
 						step(src, NORTH)
 			else
-				if (direct & 8)
-					if (step(src, NORTH))
+				if(direct & 8)
+					if(step(src, NORTH))
 						step(src, WEST)
 					else
-						if (step(src, WEST))
+						if(step(src, WEST))
 							step(src, NORTH)
 		else
-			if (direct & 2)
-				if (direct & 4)
-					if (step(src, SOUTH))
+			if(direct & 2)
+				if(direct & 4)
+					if(step(src, SOUTH))
 						step(src, EAST)
 					else
-						if (step(src, EAST))
+						if(step(src, EAST))
 							step(src, SOUTH)
 				else
-					if (direct & 8)
-						if (step(src, SOUTH))
+					if(direct & 8)
+						if(step(src, SOUTH))
 							step(src, WEST)
 						else
-							if (step(src, WEST))
+							if(step(src, WEST))
 								step(src, SOUTH)
 	else
 		. = ..()
@@ -151,42 +151,49 @@
 /client/proc/Move_object(direct)
 	if(mob && mob.control_object)
 		if(mob.control_object.density)
-			step(mob.control_object,direct)
+			step(mob.control_object, direct)
 			if(!mob.control_object)
 				return
 			mob.control_object.set_dir(direct)
 		else
-			mob.control_object.loc = get_step(mob.control_object,direct)
+			mob.control_object.loc = get_step(mob.control_object, direct)
 	return
 
 
 /client/Move(n, direct)
-
-	if(!mob) return
+	if(!mob)
+		return
 
 	// Ported some other code across here! -Frenjo
 	var/leftover = world.time - move_delay
-	if (leftover > 1) leftover = 0
+	if(leftover > 1)
+		leftover = 0
 
-	if(mob.control_object)	Move_object(direct)
+	if(mob.control_object)
+		Move_object(direct)
 
-	if(isobserver(mob))	return mob.Move(n,direct)
+	if(isobserver(mob))
+		return mob.Move(n, direct)
 
 	// Who thought having two separate statements was a good idea? -Frenjo
 	//if(moving) return 0
 	//if(world.time < move_delay)	return
-	if(moving || world.time < move_delay) return 0
+	if(moving || world.time < move_delay)
+		return 0
 
-	if(locate(/obj/effect/stop/, mob.loc))
+	if(locate(/obj/effect/stop, mob.loc))
 		for(var/obj/effect/stop/S in mob.loc)
 			if(S.victim == mob)
 				return
 
-	if(mob.stat==2)	return
+	if(mob.stat == 2)
+		return
 
-	if(isAI(mob)) return AIMove(n,direct,mob)
+	if(isAI(mob))
+		return AIMove(n, direct, mob)
 
-	if(mob.monkeyizing)	return//This is sota the goto stop mobs from moving var
+	if(mob.monkeyizing)
+		return//This is sota the goto stop mobs from moving var
 
 	if(isliving(mob))
 		var/mob/living/L = mob
@@ -200,12 +207,14 @@
 					if(s.zoom)
 						s.zoom()
 
-	if(Process_Grab()) return
+	if(Process_Grab())
+		return
 
 	if(mob.buckled)							//if we're buckled to something, tell it we moved.
 		return mob.buckled.relaymove(mob, direct)
 
-	if(!mob.canmove)	return
+	if(!mob.canmove)
+		return
 
 	//if(istype(mob.loc, /turf/space) || (mob.flags & NOGRAV))
 	//	if(!mob.Process_Spacemove(0))	return 0
@@ -214,7 +223,8 @@
 		mob.lastarea = get_area(mob.loc)
 
 	if((istype(mob.loc, /turf/space)) || (mob.lastarea.has_gravity == 0))
-		if(!mob.Process_Spacemove(0))	return 0
+		if(!mob.Process_Spacemove(0))
+			return 0
 
 
 	if(isobj(mob.loc) || ismob(mob.loc))//Inside an object, tell it we moved
@@ -222,18 +232,17 @@
 		return O.relaymove(mob, direct)
 
 	if(isturf(mob.loc))
-
 		if(mob.restrained())//Why being pulled while cuffed prevents you from moving
 			for(var/mob/M in range(mob, 1))
 				if(M.pulling == mob)
 					if(!M.restrained() && M.stat == CONSCIOUS && M.canmove && mob.Adjacent(M))
-						src << "\blue You're restrained! You can't move!"
+						to_chat(src, SPAN_INFO("You're restrained! You can't move!"))
 						return 0
 					else
 						M.stop_pulling()
 
 		if(mob.pinned.len)
-			src << "\blue You're pinned to a wall by [mob.pinned[1]]!"
+			to_chat(src, SPAN_INFO("You're pinned to a wall by [mob.pinned[1]]!"))
 			return 0
 
 		// Ported some other code here, see above. -Frenjo
@@ -244,14 +253,14 @@
 			if("run")
 				if(mob.drowsyness > 0)
 					move_delay += 6
-				move_delay += 1+config.run_speed
+				move_delay += 1 + config.run_speed
 			if("walk")
-				move_delay += 7+config.walk_speed
+				move_delay += 7 + config.walk_speed
 		move_delay += mob.movement_delay()
 
 		if(config.Tickcomp)
 			move_delay -= 1.3
-			var/tickcomp = ((1/(world.tick_lag))*1.3)
+			var/tickcomp = ((1 / world.tick_lag) * 1.3)
 			move_delay = move_delay + tickcomp
 
 
@@ -268,15 +277,15 @@
 					L -= mob
 					var/mob/M = L[1]
 					if(M)
-						if ((get_dist(mob, M) <= 1 || M.loc == mob.loc))
+						if((get_dist(mob, M) <= 1 || M.loc == mob.loc))
 							var/turf/T = mob.loc
 							. = ..()
-							if (isturf(M.loc))
+							if(isturf(M.loc))
 								var/diag = get_dir(mob, M)
-								if ((diag - 1) & diag)
+								if((diag - 1) & diag)
 								else
 									diag = null
-								if ((get_dist(mob, M) > 1 || diag))
+								if((get_dist(mob, M) > 1 || diag))
 									step(M, get_dir(M.loc, T))
 				else
 					for(var/mob/M in L)
@@ -284,10 +293,10 @@
 						if(mob != M)
 							M.animate_movement = 3
 					for(var/mob/M in L)
-						spawn( 0 )
+						spawn(0)
 							step(M, direct)
 							return
-						spawn( 1 )
+						spawn(1)
 							M.other_mobs = null
 							M.animate_movement = 2
 							return
@@ -310,7 +319,7 @@
 /client/proc/Process_Grab()
 	for(var/obj/item/weapon/grab/G in list(mob.l_hand, mob.r_hand))
 		if(G.state == GRAB_KILL) //no wandering across the station/asteroid while choking someone
-			mob.visible_message("<span class='warning'>[mob] lost \his tight grip on [G.affecting]'s neck!</span>")
+			mob.visible_message(SPAN_WARNING("[mob] lost \his tight grip on [G.affecting]'s neck!"))
 			G.hud.icon_state = "disarm/kill"
 			G.state = GRAB_NECK
 
@@ -390,13 +399,13 @@
 		if(istype(turf, /turf/space))
 			continue
 
-		if(istype(src, /mob/living/carbon/human/))  // Only humans can wear magboots, so we give them a chance to.
-			if((istype(turf, /turf/simulated/floor)) && (src.lastarea.has_gravity == 0) && !(istype(src:shoes, /obj/item/clothing/shoes/magboots) && (src:shoes:flags & NOSLIP)))
+		if(ishuman(src))	// Only humans can wear magboots, so we give them a chance to.
+			if((istype(turf, /turf/simulated/floor)) && src.lastarea.has_gravity == 0 && !(istype(src:shoes, /obj/item/clothing/shoes/magboots) && (src:shoes:flags & NOSLIP)))
 				continue
 
 
 		else
-			if((istype(turf, /turf/simulated/floor)) && (src.lastarea.has_gravity == 0)) // No one else gets a chance.
+			if((istype(turf, /turf/simulated/floor)) && src.lastarea.has_gravity == 0) // No one else gets a chance.
 				continue
 
 
@@ -418,7 +427,7 @@
 	//Due to a few issues only anchored and dense objects will now work.
 	if(!dense_object)
 		for(var/obj/O in oview(1, src))
-			if((O) && (O.density) && (O.anchored))
+			if(O && O.density && O.anchored)
 				dense_object++
 				break
 
@@ -430,7 +439,7 @@
 
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)))
-		src << "\blue <B>You slipped!</B>"
+		to_chat(src, SPAN_INFO_B("You slipped!"))
 		src.inertia_dir = src.last_move
 		step(src, src.inertia_dir)
 		return 0

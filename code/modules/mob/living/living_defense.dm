@@ -10,7 +10,7 @@
 	1 - halfblock
 	2 - fullblock
 */
-/mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/absorb_text = null, var/soften_text = null)
+/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee", absorb_text = null, soften_text = null)
 	var/armor = getarmor(def_zone, attack_flag)
 	var/absorb = 0
 	if(prob(armor))
@@ -21,25 +21,25 @@
 		if(absorb_text)
 			show_message("[absorb_text]")
 		else
-			show_message("\red Your armor absorbs the blow!")
+			show_message(SPAN_WARNING("Your armor absorbs the blow!"))
 		return 2
 	if(absorb == 1)
 		if(absorb_text)
 			show_message("[soften_text]",4)
 		else
-			show_message("\red Your armor softens the blow!")
+			show_message(SPAN_WARNING("Your armor softens the blow!"))
 		return 1
 	return 0
 
-/mob/living/proc/getarmor(var/def_zone, var/type)
+/mob/living/proc/getarmor(def_zone, type)
 	return 0
 
-/mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
+/mob/living/bullet_act(obj/item/projectile/P, def_zone)
 	var/obj/item/weapon/cloaking_device/C = locate(/obj/item/weapon/cloaking_device) in src
 	if(C && C.active)
-		C.attack_self(src)//Should shut it off
+		C.attack_self(src) //Should shut it off
 		update_icons()
-		src << "\blue Your [C.name] was disrupted!"
+		to_chat(src, SPAN_INFO("Your [C.name] was disrupted!"))
 		Stun(2)
 
 	flash_weak_pain()
@@ -47,27 +47,27 @@
 	if(istype(equipped(), /obj/item/device/assembly/signaler))
 		var/obj/item/device/assembly/signaler/signaler = equipped()
 		if(signaler.deadman && prob(80))
-			src.visible_message("\red [src] triggers their deadman's switch!")
+			src.visible_message(SPAN_WARNING("[src] triggers their deadman's switch!"))
 			signaler.signal()
 
 	var/absorb = run_armor_check(def_zone, P.flag)
 	if(absorb >= 2)
-		P.on_hit(src,2)
+		P.on_hit(src, 2)
 		return 2
 	if(!P.nodamage)
 		apply_damage(P.damage, P.damage_type, def_zone, absorb, 0, P, sharp = is_sharp(P), edge = has_edge(P))
 	P.on_hit(src, absorb)
 	return absorb
 
-/mob/living/hitby(atom/movable/AM as mob|obj,var/speed = 5)//Standardization and logging -Sieve
+/mob/living/hitby(atom/movable/AM as mob|obj, speed = 5) //Standardization and logging -Sieve
 	if(istype(AM, /obj))
 		var/obj/O = AM
-		var/zone = ran_zone("chest",75)//Hits a random part of the body, geared towards the chest
+		var/zone = ran_zone("chest", 75) //Hits a random part of the body, geared towards the chest
 		var/dtype = BRUTE
 		if(istype(O, /obj/item/weapon))
 			var/obj/item/weapon/W = O
 			dtype = W.damtype
-		src.visible_message("\red [src] has been hit by [O].")
+		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))
 		var/armor = run_armor_check(zone, "melee", "Your armor has protected your [zone].", "Your armor has softened hit to your [zone].")
 		if(armor < 2)
 			apply_damage(O.throwforce * (speed / 5), dtype, zone, armor, O, sharp = is_sharp(O), edge = has_edge(O))
@@ -76,7 +76,7 @@
 			return
 
 		var/client/assailant = directory[ckey(O.fingerprintslast)]
-		if(assailant && assailant.mob && istype(assailant.mob,/mob))
+		if(assailant && assailant.mob && ismob(assailant.mob))
 			var/mob/M = assailant.mob
 
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been hit with a thrown [O], last touched by [M.name] ([assailant.ckey])</font>")
@@ -84,7 +84,7 @@
 			if(!istype(src, /mob/living/simple_animal/mouse))
 				msg_admin_attack("[src.name] ([src.ckey]) was hit by a thrown [O], last touched by [M.name] ([assailant.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
 
-			// Begin BS12 momentum-transfer code.
+// Begin BS12 momentum-transfer code.
 
 			if(speed >= 20)
 				var/obj/item/weapon/W = O
@@ -92,35 +92,36 @@
 				var/dir = get_dir(M, src)
 
 				visible_message("\red [src] staggers under the impact!", "\red You stagger under the impact!")
-				src.throw_at(get_edge_target_turf(src,dir),1,momentum)
+				src.throw_at(get_edge_target_turf(src, dir), 1, momentum)
 
-				if(istype(W.loc,/mob/living) && W.sharp) //Projectile is embedded and suitable for pinning.
+				if(isliving(W.loc) && W.sharp) //Projectile is embedded and suitable for pinning.
 
-					if(!istype(src,/mob/living/carbon/human)) //Handles embedding for non-humans and simple_animals.
+					if(!ishuman(src)) //Handles embedding for non-humans and simple_animals.
 						O.loc = src
 						src.embedded += O
 
-					var/turf/T = near_wall(dir,2)
+					var/turf/T = near_wall(dir, 2)
 
 					if(T)
 						src.loc = T
-						visible_message("<span class='warning'>[src] is pinned to the wall by [O]!</span>","<span class='warning'>You are pinned to the wall by [O]!</span>")
+						visible_message(SPAN_WARNING("[src] is pinned to the wall by [O]!"), SPAN_WARNING("You are pinned to the wall by [O]!"))
 						src.anchored = 1
 						src.pinned += O
 
-/mob/living/proc/near_wall(var/direction,var/distance=1)
+/mob/living/proc/near_wall(direction, distance = 1)
 	var/turf/T = get_step(get_turf(src),direction)
 	var/turf/last_turf = src.loc
 	var/i = 1
 
-	while(i>0 && i<=distance)
+	while(i > 0 && i <= distance)
 		if(T.density) //Turf is a wall!
 			return last_turf
 		i++
 		last_turf = T
-		T = get_step(T,direction)
+		T = get_step(T, direction)
 
 	return 0
+
 // End BS12 momentum-transfer code.
 
 /mob/living/proc/IgniteMob()

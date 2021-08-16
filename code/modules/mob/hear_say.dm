@@ -39,7 +39,7 @@
 
 	if(sdisabilities & DEAF || ear_deaf)
 		if(speaker == src)
-			src << "<span class='warning'>You cannot hear yourself speak!</span>"
+			to_chat(src, SPAN_WARNING("You cannot hear yourself speak!"))
 		else
 			src << "<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him."
 	else
@@ -106,7 +106,7 @@
 
 	if(sdisabilities & DEAF || ear_deaf)
 		if(prob(20))
-			src << "<span class='warning'>You feel your headset vibrate but can hear nothing from it!</span>"
+			to_chat(src, SPAN_WARNING("You feel your headset vibrate but can hear nothing from it!"))
 	else if(track)
 		src << "[part_a][track][part_b][verbage], <span class=\"[style]\">\"[message]\"</span></span></span>"
 	else

@@ -23,9 +23,9 @@
 	var/stop_automated_movement_when_pulled = 1 //When set to 1 this stops the animal from moving when someone is pulling it.
 
 	//Interaction
-	var/response_help   = "tries to help"
+	var/response_help	= "tries to help"
 	var/response_disarm = "tries to disarm"
-	var/response_harm   = "tries to hurt"
+	var/response_harm	= "tries to hurt"
 	var/harm_intent_damage = 3
 
 	//Temperature effect
@@ -98,12 +98,12 @@
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
 				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
-					Move(get_step(src,pick(cardinal)))
+					Move(get_step(src, pick(cardinal)))
 					turns_since_move = 0
 
 	//Speaking
 	if(!client && speak_chance)
-		if(rand(0,200) < speak_chance)
+		if(rand(0, 200) < speak_chance)
 			if(speak && speak.len)
 				if((emote_hear && emote_hear.len) || (emote_see && emote_see.len))
 					var/length = speak.len
@@ -111,29 +111,29 @@
 						length += emote_hear.len
 					if(emote_see && emote_see.len)
 						length += emote_see.len
-					var/randomValue = rand(1,length)
+					var/randomValue = rand(1, length)
 					if(randomValue <= speak.len)
 						say(pick(speak))
 					else
 						randomValue -= speak.len
 						if(emote_see && randomValue <= emote_see.len)
-							emote(pick(emote_see),1)
+							emote(pick(emote_see), 1)
 						else
-							emote(pick(emote_hear),2)
+							emote(pick(emote_hear), 2)
 				else
 					say(pick(speak))
 			else
 				if(!(emote_hear && emote_hear.len) && (emote_see && emote_see.len))
-					emote(pick(emote_see),1)
+					emote(pick(emote_see), 1)
 				if((emote_hear && emote_hear.len) && !(emote_see && emote_see.len))
-					emote(pick(emote_hear),2)
+					emote(pick(emote_hear), 2)
 				if((emote_hear && emote_hear.len) && (emote_see && emote_see.len))
 					var/length = emote_hear.len + emote_see.len
-					var/pick = rand(1,length)
+					var/pick = rand(1, length)
 					if(pick <= emote_see.len)
-						emote(pick(emote_see),1)
+						emote(pick(emote_see), 1)
 					else
-						emote(pick(emote_hear),2)
+						emote(pick(emote_hear), 2)
 
 
 	//Atmos
@@ -290,7 +290,7 @@
 						if((M.client && !M.blinded))
 							M.show_message(SPAN_INFO("[user] applies the [MED] on [src]."))
 		else
-			user << "\blue this [src] is dead, medical items won't bring it back to life."
+			to_chat(user, SPAN_INFO("This [src] is dead, medical items won't bring it back to life."))
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
 		if(istype(O, /obj/item/weapon/kitchenknife) || istype(O, /obj/item/weapon/butch))
 			new meat_type (get_turf(src))
@@ -324,7 +324,6 @@
 
 /mob/living/simple_animal/Stat()
 	..()
-
 	statpanel("Status")
 	stat("Health:", "[round((health / maxHealth) * 100)]%")
 
@@ -359,16 +358,16 @@
 	if(isliving(target_mob))
 		var/mob/living/L = target_mob
 		if(!L.stat && L.health >= 0)
-			return (0)
+			return 0
 	if(istype(target_mob, /obj/mecha))
 		var/obj/mecha/M = target_mob
-		if (M.occupant)
-			return (0)
+		if(M.occupant)
+			return 0
 	if(istype(target_mob, /obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob
 		if(B.health > 0)
-			return (0)
-	return (1)
+			return 0
+	return 1
 
 //Call when target overlay should be added/removed
 /mob/living/simple_animal/update_targeted()
