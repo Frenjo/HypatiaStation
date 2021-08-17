@@ -193,16 +193,16 @@
 		return AIMove(n, direct, mob)
 
 	if(mob.monkeyizing)
-		return//This is sota the goto stop mobs from moving var
+		return	//This is sota the goto stop mobs from moving var
 
 	if(isliving(mob))
 		var/mob/living/L = mob
-		if(L.incorporeal_move)//Move though walls
+		if(L.incorporeal_move)	//Move though walls
 			Process_Incorpmove(direct)
 			return
 		if(mob.client)
 			if(mob.client.view != world.view)
-				if(locate(/obj/item/weapon/gun/energy/sniperrifle, mob.contents))		// If mob moves while zoomed in with sniper rifle, unzoom them.
+				if(locate(/obj/item/weapon/gun/energy/sniperrifle, mob.contents))	// If mob moves while zoomed in with sniper rifle, unzoom them.
 					var/obj/item/weapon/gun/energy/sniperrifle/s = locate() in mob
 					if(s.zoom)
 						s.zoom()
@@ -210,7 +210,7 @@
 	if(Process_Grab())
 		return
 
-	if(mob.buckled)							//if we're buckled to something, tell it we moved.
+	if(mob.buckled)	//if we're buckled to something, tell it we moved.
 		return mob.buckled.relaymove(mob, direct)
 
 	if(!mob.canmove)
@@ -222,17 +222,17 @@
 	if(!mob.lastarea)
 		mob.lastarea = get_area(mob.loc)
 
-	if((istype(mob.loc, /turf/space)) || (mob.lastarea.has_gravity == 0))
+	if(istype(mob.loc, /turf/space) || mob.lastarea.has_gravity == 0)
 		if(!mob.Process_Spacemove(0))
 			return 0
 
 
-	if(isobj(mob.loc) || ismob(mob.loc))//Inside an object, tell it we moved
+	if(isobj(mob.loc) || ismob(mob.loc))	//Inside an object, tell it we moved
 		var/atom/O = mob.loc
 		return O.relaymove(mob, direct)
 
 	if(isturf(mob.loc))
-		if(mob.restrained())//Why being pulled while cuffed prevents you from moving
+		if(mob.restrained())	//Why being pulled while cuffed prevents you from moving
 			for(var/mob/M in range(mob, 1))
 				if(M.pulling == mob)
 					if(!M.restrained() && M.stat == CONSCIOUS && M.canmove && mob.Adjacent(M))
@@ -246,7 +246,7 @@
 			return 0
 
 		// Ported some other code here, see above. -Frenjo
-		move_delay = world.time - leftover//set move delay
+		move_delay = world.time - leftover	//set move delay
 
 		mob.last_move_intent = world.time + 10
 		switch(mob.m_intent)
@@ -277,7 +277,7 @@
 					L -= mob
 					var/mob/M = L[1]
 					if(M)
-						if((get_dist(mob, M) <= 1 || M.loc == mob.loc))
+						if(get_dist(mob, M) <= 1 || M.loc == mob.loc)
 							var/turf/T = mob.loc
 							. = ..()
 							if(isturf(M.loc))
@@ -370,7 +370,8 @@
 						spawn(0)
 							anim(T, L, 'icons/mob/mob.dmi', , "shadow", , L.dir)
 						limit--
-						if(limit<=0)	break
+						if(limit <= 0)
+							break
 			else
 				spawn(0)
 					anim(mobloc, mob, 'icons/mob/mob.dmi', , "shadow", , L.dir)
@@ -400,12 +401,12 @@
 			continue
 
 		if(ishuman(src))	// Only humans can wear magboots, so we give them a chance to.
-			if((istype(turf, /turf/simulated/floor)) && src.lastarea.has_gravity == 0 && !(istype(src:shoes, /obj/item/clothing/shoes/magboots) && (src:shoes:flags & NOSLIP)))
+			if(istype(turf, /turf/simulated/floor) && src.lastarea.has_gravity == 0 && !(istype(src:shoes, /obj/item/clothing/shoes/magboots) && (src:shoes:flags & NOSLIP)))
 				continue
 
 
 		else
-			if((istype(turf, /turf/simulated/floor)) && src.lastarea.has_gravity == 0) // No one else gets a chance.
+			if(istype(turf, /turf/simulated/floor) && src.lastarea.has_gravity == 0) // No one else gets a chance.
 				continue
 
 

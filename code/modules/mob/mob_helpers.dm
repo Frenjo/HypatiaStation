@@ -2,7 +2,8 @@
 	return
 
 /proc/check_zone(zone)
-	if(!zone)	return "chest"
+	if(!zone)
+		return "chest"
 	switch(zone)
 		if("eyes")
 			zone = "head"
@@ -119,9 +120,9 @@
 	p = 1
 	while(p <= n)
 		if((copytext(te, p, p + 1) == " " || prob(pr)))
-			t = text("[][]", t, copytext(te, p, p + 1))
+			t = "[t][copytext(te, p, p + 1)]"
 		else
-			t = text("[]*", t)
+			t = "[t]*"
 		p++
 	return t
 
@@ -135,24 +136,25 @@ proc/slur(phrase)
 		newletter = copytext(phrase, (leng - counter) + 1, (leng - counter) + 2)
 		if(rand(1, 3) == 3)
 			if(lowertext(newletter) == "o")
-				newletter="u"
+				newletter = "u"
 			if(lowertext(newletter) == "s")
-				newletter="ch"
+				newletter = "ch"
 			if(lowertext(newletter) == "a")
-				newletter="ah"
+				newletter = "ah"
 			if(lowertext(newletter) == "c")
-				newletter="k"
+				newletter = "k"
 		switch(rand(1, 15))
 			if(1, 3, 5, 8)
-				newletter="[lowertext(newletter)]"
+				newletter = "[lowertext(newletter)]"
 			if(2, 4, 6, 15)
-				newletter="[uppertext(newletter)]"
+				newletter = "[uppertext(newletter)]"
 			if(7)
-				newletter+="'"
+				newletter += "'"
 			//if(9,10)	newletter="<b>[newletter]</b>"
 			//if(11,12)	newletter="<big>[newletter]</big>"
 			//if(13)	newletter="<small>[newletter]</small>"
-		newphrase += "[newletter]"; counter -= 1
+		newphrase += "[newletter]"
+		counter -= 1
 	return newphrase
 
 /proc/stutter(n)
@@ -163,18 +165,18 @@ proc/slur(phrase)
 	p = 1//1 is the start of any word
 	while(p <= n)//while P, which starts at 1 is less or equal to N which is the length.
 		var/n_letter = copytext(te, p, p + 1)//copies text from a certain distance. In this case, only one letter at a time.
-		if(prob(80) && (ckey(n_letter) in list("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z")))
+		if(prob(80) && (ckey(n_letter) in list("b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z")))
 			if(prob(10))
-				n_letter = text("[n_letter]-[n_letter]-[n_letter]-[n_letter]")//replaces the current letter with this instead.
+				n_letter = "[n_letter]-[n_letter]-[n_letter]-[n_letter]" //replaces the current letter with this instead.
 			else
 				if(prob(20))
-					n_letter = text("[n_letter]-[n_letter]-[n_letter]")
+					n_letter = "[n_letter]-[n_letter]-[n_letter]"
 				else
 					if(prob(5))
 						n_letter = null
 					else
-						n_letter = text("[n_letter]-[n_letter]")
-		t = text("[t][n_letter]")//since the above is ran through for each letter, the text just adds up back to the original word.
+						n_letter = "[n_letter]-[n_letter]"
+		t = "[t][n_letter]" //since the above is ran through for each letter, the text just adds up back to the original word.
 		p++//for each letter p is increased to find where the next letter will be.
 	return copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
 
@@ -189,7 +191,7 @@ proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 fo
 				letter = ""
 
 			for(var/j = 1, j <= rand(0, 2), j++)
-				letter += pick("#","@","*","&","%","$","/", "<", ">", ";","*","*","*","*","*","*","*")
+				letter += pick("#", "@", "*", "&", "%", "$", "/", "<", ">", ";", "*", "*", "*", "*", "*", "*", "*")
 
 		returntext += letter
 
@@ -214,12 +216,12 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 			n_letter = copytext(te, p, p + n_mod)
 		if(prob(50))
 			if(prob(30))
-				n_letter = text("[n_letter]-[n_letter]-[n_letter]")
+				n_letter = "[n_letter]-[n_letter]-[n_letter]"
 			else
-				n_letter = text("[n_letter]-[n_letter]")
+				n_letter = "[n_letter]-[n_letter]"
 		else
-			n_letter = text("[n_letter]")
-		t = text("[t][n_letter]")
+			n_letter = "[n_letter]"
+		t = "[t][n_letter]"
 		p = p + n_mod
 	return copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
 
@@ -239,7 +241,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 /proc/findname(msg)
 	for(var/mob/M in mob_list)
-		if (M.real_name == text("[msg]"))
+		if(M.real_name == msg)
 			return 1
 	return 0
 
@@ -248,13 +250,13 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	if(full_body && ((src.l_hand && !src.l_hand.abstract) || (src.r_hand && !src.r_hand.abstract) || (src.back || src.wear_mask)))
 		return 1
 
-	if((src.l_hand && !( src.l_hand.abstract )) || (src.r_hand && !( src.r_hand.abstract )))
+	if((src.l_hand && !src.l_hand.abstract) || (src.r_hand && !src.r_hand.abstract))
 		return 1
 
 	return 0
 
 //converts intent-strings into numbers and back
-var/list/intents = list("help","disarm","grab","hurt")
+var/list/intents = list("help", "disarm", "grab", "hurt")
 /proc/intent_numeric(argument)
 	if(istext(argument))
 		switch(argument)

@@ -48,7 +48,7 @@
 	..()
 
 //Used by throw code to hand over the mob, instead of throwing the grab. The grab is then deleted by the throw code.
-/obj/item/weapon/grab/proc/throww()
+/obj/item/weapon/grab/proc/thrown()
 	if(affecting)
 		if(affecting.buckled)
 			return null
@@ -222,10 +222,10 @@
 			var/mob/living/carbon/attacker = user
 			user.visible_message(SPAN_DANGER("[user] is attempting to devour [affecting]!"))
 			if(can_eat == 2)
-				if(!do_mob(user, affecting)||!do_after(user, 30))
+				if(!do_mob(user, affecting) || !do_after(user, 30))
 					return
 			else
-				if(!do_mob(user, affecting)||!do_after(user, 100))
+				if(!do_mob(user, affecting) || !do_after(user, 100))
 					return
 			user.visible_message(SPAN_DANGER("[user] devours [affecting]!"))
 			affecting.loc = user

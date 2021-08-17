@@ -6,7 +6,7 @@
 	else
 		living_mob_list += src
 
-/mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
+/mob/Destroy()	//This makes sure that mobs with clients/keys are not just deleted from the game.
 	mob_list -= src
 	dead_mob_list -= src
 	living_mob_list -= src
@@ -18,19 +18,19 @@
 	ghostize()
 	return ..()
 
-/mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+/mob/proc/show_message(msg, type, alt, alt_type)	//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
 	if(!client)
 		return
 
 	if(type)
-		if(type & 1 && (sdisabilities & BLIND || blinded || paralysis) )//Vision related
-			if(!(alt))
+		if(type & 1 && (sdisabilities & BLIND || blinded || paralysis))	//Vision related
+			if(!alt)
 				return
 			else
 				msg = alt
 				type = alt_type
-		if(type & 2 && (sdisabilities & DEAF || ear_deaf))//Hearing related
-			if(!( alt ))
+		if(type & 2 && (sdisabilities & DEAF || ear_deaf))	//Hearing related
+			if(!alt)
 				return
 			else
 				msg = alt
@@ -41,7 +41,7 @@
 	if(stat == UNCONSCIOUS || sleeping > 0)
 		to_chat(src, "<I>... You can almost hear someone talking ...</I>")
 	else
-		src << msg
+		to_chat(src, msg)
 	return
 
 // Show a message to all mobs in sight of this one
@@ -52,7 +52,7 @@
 /mob/visible_message(message, self_message, blind_message)
 	for(var/mob/M in viewers(src))
 		if(M.see_invisible < invisibility)
-			continue // Cannot view the invisible
+			continue	// Cannot view the invisible
 
 		var/msg = message
 		if(self_message && M == src)
@@ -178,7 +178,7 @@ var/list/slot_equipment_priority = list(
 		return 0
 
 	for(var/slot in slot_equipment_priority)
-		if(equip_to_slot_if_possible(W, slot, 0, 1, 1)) //del_on_fail = 0; disable_warning = 0; redraw_mob = 1
+		if(equip_to_slot_if_possible(W, slot, 0, 1, 1))	//del_on_fail = 0; disable_warning = 0; redraw_mob = 1
 			return 1
 
 	return 0
@@ -251,29 +251,29 @@ var/list/slot_equipment_priority = list(
 	return 1
 
 /mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
-	if((!(istype(l_hand, /obj/item/weapon/grab)) && !(istype(r_hand, /obj/item/weapon/grab))))
-		if(!(L))
+	if(!istype(l_hand, /obj/item/weapon/grab) && !istype(r_hand, /obj/item/weapon/grab))
+		if(!L)
 			return null
 		else
 			return L.container
 	else
-		if(!(L))
+		if(!L)
 			L = new /obj/effect/list_container/mobl(null)
 			L.container += src
 			L.master = src
 		if(istype(l_hand, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = l_hand
-			if(!(L.container.Find(G.affecting)))
+			if(!L.container.Find(G.affecting))
 				L.container += G.affecting
 				if(G.affecting)
 					G.affecting.ret_grab(L, 1)
 		if(istype(r_hand, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = r_hand
-			if(!(L.container.Find(G.affecting)))
+			if(!L.container.Find(G.affecting))
 				L.container += G.affecting
 				if(G.affecting)
 					G.affecting.ret_grab(L, 1)
-		if(!(flag))
+		if(!flag)
 			if(L.master == src)
 				var/list/temp = list()
 				temp += L.container
@@ -354,7 +354,7 @@ var/list/slot_equipment_priority = list(
 /mob/proc/update_flavor_text()
 	set src in usr
 	if(usr != src)
-		usr << "No."
+		to_chat(usr, "No.")
 	var/msg = input(usr, "Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.", "Flavor Text", html_decode(flavor_text)) as message | null
 
 	if(msg != null)
@@ -372,7 +372,7 @@ var/list/slot_equipment_priority = list(
 	if(flavor_text && flavor_text != "")
 		var/msg = replacetext(flavor_text, "\n", " ")
 		if(length(msg) <= 40)
-			return SPAN_INFO("[msg]")
+			return SPAN_INFO(msg)
 		else
 			return SPAN_INFO("[copytext(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>")
 
@@ -390,10 +390,10 @@ var/list/slot_equipment_priority = list(
 	if(!abandon_allowed)
 		to_chat(usr, SPAN_INFO("Respawn is disabled."))
 		return
-	if((stat != DEAD || !ticker))
+	if(stat != DEAD || !ticker)
 		to_chat(usr, SPAN_INFO_B("You must be dead to use this!"))
 		return
-	if(ticker.mode.name == "meteor" || ticker.mode.name == "epidemic") //BS12 EDIT
+	if(ticker.mode.name == "meteor" || ticker.mode.name == "epidemic")	//BS12 EDIT
 		to_chat(usr, SPAN_INFO("Respawn is disabled for this roundtype."))
 		return
 	else
@@ -656,7 +656,7 @@ var/list/slot_equipment_priority = list(
 /mob/proc/see(message)
 	if(!is_active())
 		return 0
-	src << message
+	to_chat(src, message)
 	return 1
 
 /mob/proc/show_viewers(message)

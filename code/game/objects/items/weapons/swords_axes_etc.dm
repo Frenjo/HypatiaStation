@@ -206,7 +206,7 @@
 	qdel(src)
 	return
 
-/obj/item/weapon/melee/energy/blade/proc/throww()
+/obj/item/weapon/melee/energy/blade/proc/thrown()
 	qdel(src)
 	return
 

@@ -26,12 +26,17 @@ var/global/list/global_map = null
 //5 - empty space
 
 //////////////
-var/list/paper_tag_whitelist = list("center","p","div","span","h1","h2","h3","h4","h5","h6","hr","pre",	\
-	"big","small","font","i","u","b","s","sub","sup","tt","br","hr","ol","ul","li","caption","col",	\
-	"table","td","th","tr")
-var/list/paper_blacklist = list("java","onblur","onchange","onclick","ondblclick","onfocus","onkeydown",	\
-	"onkeypress","onkeyup","onload","onmousedown","onmousemove","onmouseout","onmouseover",	\
-	"onmouseup","onreset","onselect","onsubmit","onunload")
+var/list/paper_tag_whitelist = list(
+	"center", "p", "div", "span", "h1", "h2", "h3", "h4", "h5", "h6", "hr", "pre", \
+	"big", "small", "font", "i", "u", "b", "s", "sub", "sup", "tt", "br", "hr", "ol", "ul", "li", "caption", "col", \
+	"table", "td", "th", "tr"
+)
+
+var/list/paper_blacklist = list(
+	"java", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", \
+	"onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", \
+	"onmouseup", "onreset", "onselect", "onsubmit", "onunload"
+)
 
 var/BLINDBLOCK = 0
 var/DEAFBLOCK = 0
@@ -83,8 +88,8 @@ var/game_year = (text2num(time2text(world.realtime, "YYYY")) + 544)
 
 var/datum/air_tunnel/air_tunnel1/SS13_airtunnel = null
 var/going = 1.0
-var/master_mode = "extended"//"extended"
-var/secret_force_mode = "secret" // if this is anything but "secret", the secret rotation will forceably choose this mode
+var/master_mode = "extended"		//"extended"
+var/secret_force_mode = "secret"	// if this is anything but "secret", the secret rotation will forceably choose this mode
 
 var/datum/engine_eject/engine_eject_control = null
 var/host = null

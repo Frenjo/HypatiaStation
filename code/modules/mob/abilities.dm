@@ -2,7 +2,7 @@
 Creature-level abilities.
 */
 
-/var/global/list/ability_verbs = list(	)
+/var/global/list/ability_verbs = list()
 
 /*
 
@@ -61,13 +61,7 @@ Creature-level abilities.
 	var/say = input("What do you wish to say?")
 
 	if(target.get_species() == "Skrell")
-		switch(intensity)
-			if(1)
-				target.show_message(SPAN_INFO("You hear [mob.real_name]'s words in your mind: [say]"))
-			if(2)
-				target.show_message(SPAN_INFO("You hear [mob.real_name]'s words in your mind: [say]"))
-			if(3)
-				target.show_message(SPAN_INFO_B("You hear [mob.real_name]'s words in your mind: [say]"))
+		target.show_message(SPAN_INFO("You hear [mob.real_name]'s words in your mind: [say]"))
 	else
 		switch(intensity)
 			if(1)
@@ -81,8 +75,10 @@ Creature-level abilities.
 				target.show_message(SPAN_INFO_B("You hear words in your mind: [say]"))
 				if(ishuman(target))
 					var/mob/living/carbon/human/h = target
-					h.visible_message(SPAN_DANGER("[target.real_name]'s nose begins to bleed."), \
-										SPAN_DANGER("Your nose begins to bleed..."))
+					h.visible_message(
+						SPAN_DANGER("[target.real_name]'s nose begins to bleed."), \
+						SPAN_DANGER("Your nose begins to bleed...") \
+					)
 					h.drip(3)
 
 	mob.show_message(SPAN_INFO("You project your words into [target.real_name]: [say]"))

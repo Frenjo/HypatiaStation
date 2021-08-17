@@ -24,14 +24,14 @@
 		if(prob(40))
 			for(var/mob/M in hearers(4, src))
 				if(M.client)
-					M.show_message(text("\red You hear something rumbling inside [src]'s stomach..."), 2)
+					M.show_message(SPAN_WARNING("You hear something rumbling inside [src]'s stomach..."), 2)
 			var/obj/item/I = user.get_active_hand()
 			if(I && I.force)
 				var/d = rand(round(I.force / 4), I.force)
-				if(istype(src, /mob/living/carbon/human))
+				if(ishuman(src))
 					var/mob/living/carbon/human/H = src
 					var/organ = H.get_organ("chest")
-					if (istype(organ, /datum/organ/external))
+					if(isorgan(organ))
 						var/datum/organ/external/temp = organ
 						if(temp.take_damage(d, 0))
 							H.UpdateDamageIcon()
@@ -40,7 +40,7 @@
 					src.take_organ_damage(d)
 				for(var/mob/M in viewers(user, null))
 					if(M.client)
-						M.show_message(text("\red <B>[user] attacks [src]'s stomach wall with the [I.name]!"), 2)
+						M.show_message(SPAN_DANGER("[user] attacks [src]'s stomach wall with the [I.name]!"), 2)
 				playsound(user.loc, 'sound/effects/attackblob.ogg', 50, 1)
 
 				if(prob(src.getBruteLoss() - 50))
@@ -56,11 +56,11 @@
 		M.loc = src.loc
 		for(var/mob/N in viewers(src, null))
 			if(N.client)
-				N.show_message(text("\red <B>[M] bursts out of [src]!</B>"), 2)
+				N.show_message(SPAN_DANGER("[M] bursts out of [src]!"), 2)
 	. = ..(null, 1)
 
 /mob/living/carbon/attack_hand(mob/M as mob)
-	if(!istype(M, /mob/living/carbon))
+	if(!iscarbon(M))
 		return
 
 	if(hasorgans(M))
@@ -68,7 +68,7 @@
 		if(M.hand)
 			temp = M:organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
-			M << "\red You can't use your [temp.display_name]"
+			to_chat(M, SPAN_WARNING("You can't use your [temp.display_name]!"))
 			return
 
 	for(var/datum/disease/D in viruses)
@@ -82,7 +82,7 @@
 	return
 
 /mob/living/carbon/attack_paw(mob/M as mob)
-	if(!istype(M, /mob/living/carbon))
+	if(!iscarbon(M))
 		return
 
 	for(var/datum/disease/D in viruses)
@@ -106,9 +106,9 @@
 	//src.adjustFireLoss(shock_damage) //burn_skin will do this for us
 	//src.updatehealth()
 	src.visible_message(
-		"\red [src] was shocked by the [source]!", \
-		"\red <B>You feel a powerful shock course through your body!</B>", \
-		"\red You hear a heavy electrical crack." \
+		SPAN_WARNING("[src] was shocked by the [source]!"), \
+		SPAN_DANGER("You feel a powerful shock course through your body!"), \
+		SPAN_WARNING("You hear a heavy electrical crack.") \
 	)
 //	if(src.stunned < shock_damage)	src.stunned = shock_damage
 	Stun(10)//This should work for now, more is really silly and makes you lay there forever
@@ -122,9 +122,9 @@
 	if(item_in_hand) //this segment checks if the item in your hand is twohanded.
 		if(istype(item_in_hand, /obj/item/weapon/twohanded))
 			if(item_in_hand:wielded == 1)
-				usr << "<span class='warning'>Your other hand is too busy holding the [item_in_hand.name]</span>"
+				to_chat(usr, SPAN_WARNING("Your other hand is too busy holding the [item_in_hand.name]."))
 				return
-	src.hand = !(src.hand)
+	src.hand = !src.hand
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
 		if(hand)	//This being 1 means the left hand is in use
 			hud_used.l_hand_hud_object.icon_state = "hand_active"
@@ -151,13 +151,13 @@
 		swap_hand()
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if (src.health >= config.health_threshold_crit)
-		if(src == M && istype(src, /mob/living/carbon/human))
+	if(src.health >= config.health_threshold_crit)
+		if(src == M && ishuman(src))
 			var/mob/living/carbon/human/H = src
-			src.visible_message( \
-				text("\blue [src] examines [].", src.gender==MALE ? "himself" : "herself"), \
-				"\blue You check yourself for injuries." \
-				)
+			src.visible_message(
+				SPAN_INFO("[src] examines [src.gender == MALE ? "himself" : "herself"]."), \
+				SPAN_INFO("You check yourself for injuries.") \
+			)
 
 			for(var/datum/organ/external/org in H.organs)
 				var/status = ""
@@ -190,8 +190,8 @@
 					status = "weirdly shapen."
 				if(status == "")
 					status = "OK"
-				src.show_message(text("\t []My [] is [].", status == "OK" ? "\blue " : "\red ", org.display_name, status), 1)
-			if((SKELETON in H.mutations) && (!H.w_uniform) && (!H.wear_suit))
+				src.show_message("\t [status == "OK" ? "\blue " : "\red "]My [org.display_name] is [status].", 1)
+			if((SKELETON in H.mutations) && !H.w_uniform && !H.wear_suit)
 				H.play_xylophone()
 		else
 			var/t_him = "it"
@@ -199,20 +199,20 @@
 				t_him = "him"
 			else if(src.gender == FEMALE)
 				t_him = "her"
-			if(istype(src,/mob/living/carbon/human) && src:w_uniform)
+			if(ishuman(src) && src:w_uniform)
 				var/mob/living/carbon/human/H = src
 				H.w_uniform.add_fingerprint(M)
-			src.sleeping = max(0,src.sleeping-5)
+			src.sleeping = max(0, src.sleeping - 5)
 			if(src.sleeping == 0)
 				src.resting = 0
 			AdjustParalysis(-3)
 			AdjustStunned(-3)
 			AdjustWeakened(-3)
 			playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			M.visible_message( \
-				"\blue [M] shakes [src] trying to wake [t_him] up!", \
-				"\blue You shake [src] trying to wake [t_him] up!", \
-				)
+			M.visible_message(
+				SPAN_INFO("[M] shakes [src] trying to wake [t_him] up!"), \
+				SPAN_INFO("You shake [src] trying to wake [t_him] up!"), \
+			)
 
 /mob/living/carbon/proc/eyecheck()
 	return 0
@@ -247,7 +247,7 @@
 //Throwing stuff
 
 /mob/living/carbon/proc/toggle_throw_mode()
-	if (src.in_throw_mode)
+	if(src.in_throw_mode)
 		throw_mode_off()
 	else
 		throw_mode_on()
@@ -275,9 +275,9 @@
 	if(!item)
 		return
 
-	if (istype(item, /obj/item/weapon/grab))
+	if(istype(item, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = item
-		item = G.throww() //throw the person instead of the grab
+		item = G.thrown() //throw the person instead of the grab
 		if(ismob(item))
 			var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 			var/turf/end_T = get_turf(target)
@@ -297,7 +297,7 @@
 	u_equip(item)
 	update_icons()
 
-	if(istype(usr, /mob/living/carbon)) //Check if a carbon mob is throwing. Modify/remove this line as required.
+	if(iscarbon(usr)) //Check if a carbon mob is throwing. Modify/remove this line as required.
 		item.loc = src.loc
 		if(src.client)
 			src.client.screen -= item
@@ -306,21 +306,19 @@
 
 	//actually throw it!
 	if(item)
-		src.visible_message("\red [src] has thrown [item].")
+		src.visible_message(SPAN_WARNING("[src] has thrown [item]."))
 
 		if(!src.lastarea)
 			src.lastarea = get_area(src.loc)
-		if((istype(src.loc, /turf/space)) || (src.lastarea.has_gravity == 0))
+		if(istype(src.loc, /turf/space) || src.lastarea.has_gravity == 0)
 			src.inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
-
 
 /*
 		if(istype(src.loc, /turf/space) || (src.flags & NOGRAV)) //they're in space, move em one space in the opposite direction
 			src.inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 */
-
 
 		item.throw_at(target, item.throw_range, item.throw_speed)
 
@@ -336,22 +334,23 @@
 	return 1
 
 /mob/living/carbon/restrained()
-	if (handcuffed)
+	if(handcuffed)
 		return 1
 	return
 
 /mob/living/carbon/u_equip(obj/item/W as obj)
-	if(!W)	return 0
+	if(!W)
+		return 0
 
-	else if (W == handcuffed)
+	else if(W == handcuffed)
 		handcuffed = null
 		update_inv_handcuffed()
 
-	else if (W == legcuffed)
+	else if(W == legcuffed)
 		legcuffed = null
 		update_inv_legcuffed()
 	else
-	 ..()
+		..()
 
 	return
 
@@ -425,8 +424,8 @@
 		return
 
 	if(B.controlling)
-		src << "\red <B>You withdraw your probosci, releasing control of [B.host_brain]</B>"
-		B.host_brain << "\red <B>Your vision swims as the alien parasite releases control of your body.</B>"
+		to_chat(src, SPAN_DANGER("You withdraw your probosci, releasing control of [B.host_brain]."))
+		to_chat(B.host_brain, SPAN_DANGER("Your vision swims as the alien parasite releases control of your body."))
 		B.ckey = ckey
 		B.controlling = 0
 	if(B.host_brain.ckey)
@@ -451,8 +450,8 @@
 		return
 
 	if(B.host_brain.ckey)
-		src << "\red <B>You send a punishing spike of psychic agony lancing into your host's brain.</B>"
-		B.host_brain << "\red <B><FONT size=3>Horrific, burning agony lances through you, ripping a soundless scream from your trapped mind!</FONT></B>"
+		to_chat(src, SPAN_DANGER("You send a punishing spike of psychic agony lancing into your host's brain."))
+		to_chat(B.host_brain, SPAN_DANGER("<FONT size=3>Horrific, burning agony lances through you, ripping a soundless scream from your trapped mind!</FONT>"))
 
 //Check for brain worms in head.
 /mob/proc/has_brain_worms()
@@ -474,8 +473,8 @@
 		return
 
 	if(B.chemicals >= 100)
-		src << "\red <B>Your host twitches and quivers as you rapdly excrete several larvae from your sluglike body.</B>"
-		visible_message("\red <B>[src] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!</B>")
+		to_chat(src, SPAN_DANGER("Your host twitches and quivers as you rapdly excrete several larvae from your sluglike body."))
+		visible_message(SPAN_DANGER("[src] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!"))
 		B.chemicals -= 100
 
 		new /obj/effect/decal/cleanable/vomit(get_turf(src))
@@ -483,7 +482,7 @@
 		new /mob/living/simple_animal/borer(get_turf(src))
 
 	else
-		src << "You do not have enough chemicals stored to reproduce."
+		to_chat(src, "You do not have enough chemicals stored to reproduce.")
 		return
 
 /mob/living/carbon/ui_toggle_internals()
@@ -492,12 +491,12 @@
 		if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
 			if(C.internal)
 				C.internal = null
-				C << "<span class='notice'>No longer running on internals.</span>"
+				to_chat(C, SPAN_NOTICE("No longer running on internals."))
 				if(C.internals)
 					C.internals.icon_state = "internal0"
 			else
 				if(!istype(C.wear_mask, /obj/item/clothing/mask))
-					C << "<span class='notice'>You are not wearing a mask.</span>"
+					to_chat(C, SPAN_NOTICE("You are not wearing a mask."))
 					return 1
 				else
 					var/list/nicename = null
@@ -508,8 +507,8 @@
 					if(ishuman(C))
 						var/mob/living/carbon/human/H = C
 						breathes = H.species.breath_type
-						nicename = list ("suit", "back", "belt", "right hand", "left hand", "left pocket", "right pocket")
-						tankcheck = list (H.s_store, C.back, H.belt, C.r_hand, C.l_hand, H.l_store, H.r_store)
+						nicename = list("suit", "back", "belt", "right hand", "left hand", "left pocket", "right pocket")
+						tankcheck = list(H.s_store, C.back, H.belt, C.r_hand, C.l_hand, H.l_store, H.r_store)
 					else
 						nicename = list("Right Hand", "Left Hand", "Back")
 						tankcheck = list(C.r_hand, C.l_hand, C.back)
@@ -522,7 +521,7 @@
 								continue					//in it, so we're going to believe the tank is what it says it is
 							switch(breathes)
 								//These tanks we're sure of their contents
-								if("nitrogen") 							//So we're a bit more picky about them.
+								if("nitrogen")							//So we're a bit more picky about them.
 									if(t.air_contents.gas["nitrogen"] && !t.air_contents.gas["oxygen"])
 										contents.Add(t.air_contents.gas["nitrogen"])
 									else
@@ -554,7 +553,7 @@
 					//Alright now we know the contents of the tanks so we have to pick the best one.
 					var/best = 0
 					var/bestcontents = 0
-					for(var/i=1, i <  contents.len + 1 , ++i)
+					for(var/i = 1, i < contents.len + 1, ++i)
 						if(!contents[i])
 							continue
 						if(contents[i] > bestcontents)
@@ -563,11 +562,11 @@
 
 					//We've determined the best container now we set it as our internals
 					if(best)
-						C << "<span class='notice'>You are now running on internals from [tankcheck[best]] on your [nicename[best]].</span>"
+						to_chat(C, SPAN_NOTICE("You are now running on internals from [tankcheck[best]] on your [nicename[best]]."))
 						C.internal = tankcheck[best]
 
 					if(C.internal)
 						if(C.internals)
 							C.internals.icon_state = "internal1"
 					else
-						C << "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ",breathes)] tank.</span>"
+						to_chat(C, SPAN_NOTICE("You don't have a[breathes == "oxygen" ? "n oxygen" : addtext(" ", breathes)] tank."))

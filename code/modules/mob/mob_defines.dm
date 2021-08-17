@@ -86,11 +86,11 @@
 	var/lastpuke = 0
 	var/unacidable = 0
 	var/small = 0
-	var/list/pinned = list()            // List of things pinning this creature to walls (see living_defense.dm)
-	var/list/embedded = list()          // Embedded items, since simple mobs don't have organs.
-	var/list/languages = list()         // For speaking/listening.
-	var/list/abilities = list()         // For species-derived or admin-given powers.
-	var/list/speak_emote = list("says") // Verbs used when speaking. Defaults to 'say' if speak_emote is null.
+	var/list/pinned = list()			// List of things pinning this creature to walls (see living_defense.dm)
+	var/list/embedded = list()			// Embedded items, since simple mobs don't have organs.
+	var/list/languages = list()			// For speaking/listening.
+	var/list/abilities = list()			// For species-derived or admin-given powers.
+	var/list/speak_emote = list("says")	// Verbs used when speaking. Defaults to 'say' if speak_emote is null.
 	var/emote_type = 1		// Define emote default type, 1 for seen emotes, 2 for heard emotes
 
 	var/name_archive //For admin things like possession
@@ -112,27 +112,27 @@
 	var/paralysis = 0.0
 	var/stunned = 0.0
 	var/weakened = 0.0
-	var/losebreath = 0.0//Carbon
-	var/intent = null//Living
+	var/losebreath = 0.0	//Carbon
+	var/intent = null		//Living
 	var/shakecamera = 0
-	var/a_intent = "help"//Living
-	var/m_int = null//Living
-	var/m_intent = "run"//Living
+	var/a_intent = "help"	//Living
+	var/m_int = null		//Living
+	var/m_intent = "run"	//Living
 	var/lastKnownIP = null
-	var/obj/structure/stool/bed/buckled = null//Living
-	var/obj/item/l_hand = null//Living
-	var/obj/item/r_hand = null//Living
-	var/obj/item/weapon/back = null//Human/Monkey
-	var/obj/item/weapon/tank/internal = null//Human/Monkey
-	var/obj/item/weapon/storage/s_active = null//Carbon
-	var/obj/item/clothing/mask/wear_mask = null//Carbon
+	var/obj/structure/stool/bed/buckled = null	//Living
+	var/obj/item/l_hand = null					//Living
+	var/obj/item/r_hand = null					//Living
+	var/obj/item/weapon/back = null				//Human/Monkey
+	var/obj/item/weapon/tank/internal = null	//Human/Monkey
+	var/obj/item/weapon/storage/s_active = null	//Carbon
+	var/obj/item/clothing/mask/wear_mask = null	//Carbon
 
-	var/seer = 0 //for cult//Carbon, probably Human
+	var/seer = 0 //for cult //Carbon, probably Human
 
 	var/datum/hud/hud_used = null
 
-	var/list/grabbed_by = list(  )
-	var/list/requests = list(  )
+	var/list/grabbed_by = list()
+	var/list/requests = list()
 
 	var/list/mapobjs = list()
 
@@ -144,15 +144,15 @@
 
 	var/music_lastplayed = "null"
 
-	var/job = null//Living
+	var/job = null	//Living
 
-	var/const/blindness = 1//Carbon
-	var/const/deafness = 2//Carbon
-	var/const/muteness = 4//Carbon
+	var/const/blindness = 1	//Carbon
+	var/const/deafness = 2	//Carbon
+	var/const/muteness = 4	//Carbon
 
 
-	var/datum/dna/dna = null//Carbon
-	var/radiation = 0.0//Carbon
+	var/datum/dna/dna = null	//Carbon
+	var/radiation = 0.0			//Carbon
 
 	var/list/mutations = list() //Carbon -- Doohl
 	//see: setup.dm for list of mutations
@@ -221,4 +221,4 @@
 
 	var/turf/listed_turf = null  //the current turf being examined in the stat panel
 
-	var/list/active_genes=list()
+	var/list/active_genes = list()

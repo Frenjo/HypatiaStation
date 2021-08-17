@@ -10,7 +10,7 @@
 	set name = "Say"
 	set category = "IC"
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "\red Speech is currently admin-disabled."
+		to_chat(usr, SPAN_WARNING("Speech is currently admin-disabled."))
 		return
 	usr.say(message)
 
@@ -19,7 +19,7 @@
 	set category = "IC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "\red Speech is currently admin-disabled."
+		to_chat(usr, SPAN_WARNING("Speech is currently admin-disabled."))
 		return
 
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
@@ -34,16 +34,16 @@
 	var/alt_name = ""
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "\red Speech is currently admin-disabled."
+		to_chat(usr, SPAN_WARNING("Speech is currently admin-disabled."))
 		return
 
 	if(!src.client.holder)
 		if(!dsay_allowed)
-			src << "\red Deadchat is globally muted"
+			to_chat(src, SPAN_WARNING("Deadchat is globally muted."))
 			return
 
 	if(client && !(client.prefs.toggles & CHAT_DEAD))
-		usr << "\red You have deadchat muted."
+		to_chat(usr, SPAN_WARNING("You have deadchat muted."))
 		return
 
 	if(mind && mind.name)
@@ -60,7 +60,7 @@
 		if(istype(M, /mob/new_player))
 			continue
 		if(M.client && M.client.holder && (M.client.holder.rights & R_ADMIN|R_MOD) && (M.client.prefs.toggles & CHAT_DEAD)) // Show the message to admins/mods with deadchat toggled on
-			M << rendered	//Admins can hear deadchat, if they choose to, no matter if they're blind/deaf or not.
+			to_chat(M, rendered)	//Admins can hear deadchat, if they choose to, no matter if they're blind/deaf or not.
 
 		else if(M.client && M.stat == DEAD && (M.client.prefs.toggles & CHAT_DEAD)) // Show the message to regular ghosts with deadchat toggled on.
 			M.show_message(rendered, 2) //Takes into account blindness and such.
@@ -79,7 +79,7 @@
 			return 0
 
 /mob/proc/say_understands(mob/other, datum/language/speaking = null)
-	if(src.stat == DEAD)		//Dead
+	if(src.stat == DEAD)	//Dead
 		return 1
 
 	//Universal speak makes everything understandable, for obvious reasons.

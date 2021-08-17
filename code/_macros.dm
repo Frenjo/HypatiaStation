@@ -1,54 +1,54 @@
 // Mob helpers
 // fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
-#define ishuman(A) 		istype(A, /mob/living/carbon/human)
+#define ishuman(A)		istype(A, /mob/living/carbon/human)
 
-#define ismonkey(A) 	istype(A, /mob/living/carbon/monkey)
+#define ismonkey(A)		istype(A, /mob/living/carbon/monkey)
 
-#define isbrain(A) 		istype(A, /mob/living/carbon/brain)
+#define isbrain(A)		istype(A, /mob/living/carbon/brain)
 
-#define isalien(A) 		istype(A, /mob/living/carbon/alien)
+#define isalien(A)		istype(A, /mob/living/carbon/alien)
 
-#define islarva(A) 		istype(A, /mob/living/carbon/alien/larva)
+#define islarva(A)		istype(A, /mob/living/carbon/alien/larva)
 
-#define isslime(A) 		istype(A, /mob/living/carbon/slime)
+#define isslime(A)		istype(A, /mob/living/carbon/slime)
 
-#define isslimeadult(A) istype(A, /mob/living/carbon/slime/adult)
+#define isslimeadult(A)	istype(A, /mob/living/carbon/slime/adult)
 
-#define isrobot(A) 		istype(A, /mob/living/silicon/robot)
+#define isrobot(A)		istype(A, /mob/living/silicon/robot)
 
-#define isdrone(A) 		istype(A, /mob/living/silicon/robot/drone)
+#define isdrone(A)		istype(A, /mob/living/silicon/robot/drone)
 
-#define isanimal(A) 	istype(A, /mob/living/simple_animal)
+#define isanimal(A)		istype(A, /mob/living/simple_animal)
 
-#define iscorgi(A) 		istype(A, /mob/living/simple_animal/corgi)
+#define iscorgi(A)		istype(A, /mob/living/simple_animal/corgi)
 
-#define iscrab(A) 		istype(A, /mob/living/simple_animal/crab)
+#define iscrab(A)		istype(A, /mob/living/simple_animal/crab)
 
-#define iscat(A) 		istype(A, /mob/living/simple_animal/cat)
+#define iscat(A)		istype(A, /mob/living/simple_animal/cat)
 
-#define ismouse(A) 		istype(A, /mob/living/simple_animal/mouse)
+#define ismouse(A)		istype(A, /mob/living/simple_animal/mouse)
 
-#define isnear(A) 		istype(A, /mob/living/simple_animal/hostile/bear)
+#define isnear(A)		istype(A, /mob/living/simple_animal/hostile/bear)
 
-#define iscarp(A) 		istype(A, /mob/living/simple_animal/hostile/carp)
+#define iscarp(A)		istype(A, /mob/living/simple_animal/hostile/carp)
 
-#define isclown(A) 		istype(A, /mob/living/simple_animal/hostile/retaliate/clown)
+#define isclown(A)		istype(A, /mob/living/simple_animal/hostile/retaliate/clown)
 
-#define isAI(A) 		istype(A, /mob/living/silicon/ai)
+#define isAI(A)			istype(A, /mob/living/silicon/ai)
 
-#define ispAI(A) 		istype(A, /mob/living/silicon/pai)
+#define ispAI(A)		istype(A, /mob/living/silicon/pai)
 
-#define iscarbon(A) 	istype(A, /mob/living/carbon)
+#define iscarbon(A)		istype(A, /mob/living/carbon)
 
-#define issilicon(A) 	istype(A, /mob/living/silicon)
+#define issilicon(A)	istype(A, /mob/living/silicon)
 
-#define isliving(A) 	istype(A, /mob/living)
+#define isliving(A)		istype(A, /mob/living)
 
 #define isobserver(A) 	istype(A, /mob/dead/observer)
 
-#define isorgan(A) 		istype(A, /datum/organ/external)
+#define isorgan(A)		istype(A, /datum/organ/external)
 
-#define hasorgans(A) 	ishuman(A)
+#define hasorgans(A)	ishuman(A)
 
 
 // Chat-related stuff

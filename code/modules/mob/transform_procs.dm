@@ -158,7 +158,7 @@
 	O.gender = gender
 	O.invisibility = 0
 
-	if(mind)		//TODO
+	if(mind)	//TODO
 		mind.transfer_to(O)
 		if(O.mind.assigned_role == "Cyborg")
 			O.mind.original = O
@@ -173,10 +173,10 @@
 		if(O.mind.role_alt_title == "Android")
 			O.mmi = new /obj/item/device/mmi/posibrain(O)
 		if(O.mind.role_alt_title == "Robot")
-			O.mmi = new /obj/item/device/mmi/posibrain(O) //Ravensdale wants a circuit based brain for another robot class, this is a placeholder.
+			O.mmi = new /obj/item/device/mmi/posibrain(O)	//Ravensdale wants a circuit based brain for another robot class, this is a placeholder.
 	else
 		O.mmi = new /obj/item/device/mmi(O)
-		O.mmi.transfer_identity(src)//Does not transfer key/client.
+		O.mmi.transfer_identity(src)	//Does not transfer key/client.
 
 	O.Namepick()
 
