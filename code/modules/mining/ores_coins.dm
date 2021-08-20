@@ -123,7 +123,7 @@
 
 /obj/item/weapon/coin/bananium
 	name = "bananium coin"
-	icon_state = "coin_clown"
+	icon_state = "coin_bananium"
 
 /obj/item/weapon/coin/adamantine
 	name = "adamantine coin"

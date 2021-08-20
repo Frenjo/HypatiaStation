@@ -420,7 +420,7 @@
 	blood_color = "#004400"
 	flesh_color = "#907E4A"
 
-	survival_kit = /obj/item/weapon/storage/box/survival/diona
+	survival_kit = /obj/item/weapon/storage/box/survival_diona
 
 /datum/species/diona/handle_post_spawn(mob/living/carbon/human/H)
 	if(!H)
@@ -536,7 +536,7 @@
 
 	reagent_tag = IS_PLASMAPERSON
 
-	survival_kit = /obj/item/weapon/storage/box/survival/plasmapeople
+	survival_kit = /obj/item/weapon/storage/box/survival_plasmapeople
 
 /datum/species/plasmapeople/handle_post_spawn(mob/living/carbon/human/H)
 	if(!H)

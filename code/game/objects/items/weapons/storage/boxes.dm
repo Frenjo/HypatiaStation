@@ -33,50 +33,42 @@
 
 /obj/item/weapon/storage/box/survival/New()
 	..()
-	contents = list()
-	sleep(1)
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency_oxygen(src)
 	new /obj/item/weapon/storage/pill_bottle/stokaline(src) // Stokaline pills as an emergency ration. -Frenjo
 	return
 
 // Engineering survival kit with a bigger oxygen tank.
-/obj/item/weapon/storage/box/survival/engineer
+/obj/item/weapon/storage/box/survival_engineer
 	name = "engineering survival kit"
 	desc = "An engineering issue survival kit for use in emergencies."
 
-/obj/item/weapon/storage/box/survival/engineer/New()
+/obj/item/weapon/storage/box/survival_engineer/New()
 	..()
-	contents = list()
-	sleep(1)
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency_oxygen/engi(src)
 	new /obj/item/weapon/storage/pill_bottle/stokaline(src) // Stokaline pills as an emergency ration. -Frenjo
 	return
 
 // Plasmapeople survival kit with only a breath mask and an emergency wearable plasma tank.
-/obj/item/weapon/storage/box/survival/plasmapeople
+/obj/item/weapon/storage/box/survival_plasmapeople
 	name = "plasmapeople survival kit"
 	desc = "A plasmaperson-issue survival kit for use in emergencies."
 
-/obj/item/weapon/storage/box/survival/plasmapeople/New()
+/obj/item/weapon/storage/box/survival_plasmapeople/New()
 	..()
-	contents = list()
-	sleep(1)
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency_plasma(src)
 	return
 
 // Diona survival kit with a flashlight, penlight and a flare.
 // TODO: Add batteries when flashlights get ported to run on batteries.
-/obj/item/weapon/storage/box/survival/diona
+/obj/item/weapon/storage/box/survival_diona
 	name = "diona survival kit"
 	desc = "A diona-issue survival kit for use in emergencies."
 
-/obj/item/weapon/storage/box/survival/diona/New()
+/obj/item/weapon/storage/box/survival_diona/New()
 	..()
-	contents = list()
-	sleep(1)
 	// I had no idea what to put in here so they get these items.
 	// Thanks Techhead from the Nebula SS13 discord for the idea of the flare!
 	new /obj/item/device/flashlight(src)

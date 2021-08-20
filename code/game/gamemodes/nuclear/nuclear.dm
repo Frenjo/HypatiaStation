@@ -225,7 +225,7 @@
 	synd_mob.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(synd_mob), slot_in_backpack)
 	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/pill/cyanide(synd_mob), slot_in_backpack)
 	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/c20r(synd_mob), slot_belt)
-	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival/engineer(synd_mob.back), slot_in_backpack)
+	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(synd_mob.back), slot_in_backpack)
 
 	var/obj/item/clothing/suit/space/rig/syndi/new_suit = new(synd_mob)
 	var/obj/item/clothing/head/helmet/space/rig/syndi/new_helmet = new(synd_mob)
