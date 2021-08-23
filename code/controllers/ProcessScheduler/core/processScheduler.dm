@@ -77,7 +77,7 @@ var/global/datum/controller/processScheduler/processScheduler
 
 	var/process
 	// Add all the processes we can find, except for the ticker
-	for(process in subtypesof(/datum/controller/process))
+	for(process in SUBTYPESOF(/datum/controller/process))
 		if(!(process in deferredSetupList))
 			addProcess(new process(src))
 

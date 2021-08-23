@@ -1,4 +1,11 @@
-var/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon","Zeta","Eta","Theta","Iota","Kappa","Lambda","Mu","Nu","Xi","Omicron","Pi","Rho","Sigma","Tau","Upsilon","Phi","Chi","Psi","Omega")
+var/list/possible_changeling_IDs = list(
+	"Alpha", "Beta", "Gamma", "Delta",
+	"Epsilon", "Zeta", "Eta", "Theta",
+	"Iota", "Kappa", "Lambda", "Mu",
+	"Nu", "Xi", "Omicron", "Pi",
+	"Rho", "Sigma", "Tau", "Upsilon",
+	"Phi", "Chi", "Psi", "Omega"
+)
 
 /datum/game_mode
 	var/list/datum/mind/changelings = list()
@@ -102,7 +109,7 @@ var/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon"
 	changeling.objectives += steal_objective
 
 
-	switch(rand(1,100))
+	switch(rand(1, 100))
 		if(1 to 80)
 			if(!(locate(/datum/objective/escape) in changeling.objectives))
 				var/datum/objective/escape/escape_objective = new
@@ -193,19 +200,19 @@ var/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon"
 					for(var/datum/objective/objective in changeling.objectives)
 						if(objective.check_completion())
 							text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='green'><B>Success!</B></font>"
-							feedback_add_details("changeling_objective","[objective.type]|SUCCESS")
+							feedback_add_details("changeling_objective", "[objective.type]|SUCCESS")
 						else
 							text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='red'>Fail.</font>"
-							feedback_add_details("changeling_objective","[objective.type]|FAIL")
+							feedback_add_details("changeling_objective", "[objective.type]|FAIL")
 							changelingwin = 0
 						count++
 				if(!config.objectives_disabled)
 					if(changelingwin)
 						text += "<br><font color='green'><B>The changeling was successful!</B></font>"
-						feedback_add_details("changeling_success","SUCCESS")
+						feedback_add_details("changeling_success", "SUCCESS")
 					else
 						text += "<br><font color='red'><B>The changeling has failed.</B></font>"
-						feedback_add_details("changeling_success","FAIL")
+						feedback_add_details("changeling_success", "FAIL")
 
 		to_chat(world, text)
 
@@ -242,7 +249,6 @@ var/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","Epsilon"
 /datum/changeling/proc/regenerate()
 	chem_charges = min(max(0, chem_charges + chem_recharge_rate), chem_storage)
 	geneticdamage = max(0, geneticdamage - 1)
-
 
 /datum/changeling/proc/GetDNA(dna_owner)
 	var/datum/dna/chosen_dna

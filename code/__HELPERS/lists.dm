@@ -462,4 +462,4 @@ proc/listclearnulls(list/list)
 	return "[c_tag]"
 
 
-#define subtypesof(prototype) (typesof(prototype) - prototype)
+#define SUBTYPESOF(prototype) (typesof(prototype) - prototype)

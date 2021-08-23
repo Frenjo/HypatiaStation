@@ -88,7 +88,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	if(return_name != null)
 		return return_name
 	else
-		for(var/R in subtypesof(/datum/reagent))
+		for(var/R in SUBTYPESOF(/datum/reagent))
 			temp_reagent = null
 			temp_reagent = new R()
 			if(temp_reagent.id == ID)

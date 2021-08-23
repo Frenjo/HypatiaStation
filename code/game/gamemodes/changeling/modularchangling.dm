@@ -1,13 +1,13 @@
 // READ: Don't use the apostrophe in name or desc. Causes script errors.
 
-var/list/powers = typesof(/datum/power/changeling) - /datum/power/changeling	//needed for the badmin verb for now
+var/list/powers = SUBTYPESOF(/datum/power/changeling) //needed for the badmin verb for now
 var/list/datum/power/changeling/powerinstances = list()
 
 /datum/power			//Could be used by other antags too
 	var/name = "Power"
 	var/desc = "Placeholder"
 	var/helptext = ""
-	var/isVerb = 1 	// Is it an active power, or passive?
+	var/isVerb = 1 // Is it an active power, or passive?
 	var/verbpath // Path to a verb that contains the effects.
 
 /datum/power/changeling
@@ -461,20 +461,17 @@ var/list/datum/power/changeling/powerinstances = list()
 		call(/datum/changeling/proc/EvolutionMenu)()
 
 
-
 /datum/changeling/proc/purchasePower(datum/mind/M, Pname, remake_verbs = 1)
 	if(!M || !M.changeling)
 		return
 
 	var/datum/power/changeling/Thepower = Pname
 
-
 	for(var/datum/power/changeling/P in powerinstances)
 		//world << "[P] - [Pname] = [P.name == Pname ? "True" : "False"]"
 		if(P.name == Pname)
 			Thepower = P
 			break
-
 
 	if(Thepower == null)
 		to_chat(M.current, "This is awkward.  Changeling power purchase failed, please report this bug to a coder!")
@@ -483,7 +480,6 @@ var/list/datum/power/changeling/powerinstances = list()
 	if(Thepower in purchasedpowers)
 		to_chat(M.current, "We have already evolved this ability!")
 		return
-
 
 	if(geneticpoints < Thepower.genomecost)
 		to_chat(M.current, "We cannot evolve this... yet.  We must acquire more DNA.")
@@ -497,4 +493,3 @@ var/list/datum/power/changeling/powerinstances = list()
 		call(M.current, Thepower.verbpath)()
 	else if(remake_verbs)
 		M.current.make_changeling()
-
