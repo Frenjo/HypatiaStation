@@ -2,7 +2,7 @@
 /obj/item/clothing/head/helmet/space/skrell
 	name = "Skrellian helmet"
 	desc = "Smoothly contoured and polished to a shine. Still looks like a fishbowl."
-	armor = list(melee = 20, bullet = 20, laser = 50,energy = 50, bomb = 50, bio = 100, rad = 100)
+	armor = list(melee = 20, bullet = 20, laser = 50, energy = 50, bomb = 50, bio = 100, rad = 100)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = list("Skrell", "Human")
 
@@ -19,9 +19,12 @@
 /obj/item/clothing/suit/space/skrell
 	name = "Skrellian hardsuit"
 	desc = "Seems like a wetsuit with reinforced plating seamlessly attached to it. Very chic."
-	armor = list(melee = 20, bullet = 20, laser = 50,energy = 50, bomb = 50, bio = 100, rad = 100)
-	allowed = list(/obj/item/device/flashlight, /obj/item/weapon/tank, /obj/item/weapon/storage/bag/ore, /obj/item/device/t_scanner, /obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	armor = list(melee = 20, bullet = 20, laser = 50, energy = 50, bomb = 50, bio = 100, rad = 100)
+	allowed = list(
+		/obj/item/device/flashlight, /obj/item/weapon/tank, /obj/item/weapon/storage/bag/ore,
+		/obj/item/device/t_scanner, /obj/item/weapon/pickaxe, /obj/item/weapon/rcd
+	)
+	heat_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = list("Skrell", "Human")
 
@@ -51,9 +54,12 @@
 	item_color = "soghun_helm_cheap"
 
 /obj/item/clothing/suit/space/soghun
-	armor = list(melee = 40, bullet = 30, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 50)
-	allowed = list(/obj/item/device/flashlight, /obj/item/weapon/tank, /obj/item/weapon/storage/bag/ore, /obj/item/device/t_scanner, /obj/item/weapon/pickaxe, /obj/item/weapon/rcd)
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 50)
+	allowed = list(
+		/obj/item/device/flashlight, /obj/item/weapon/tank, /obj/item/weapon/storage/bag/ore,
+		/obj/item/device/t_scanner, /obj/item/weapon/pickaxe, /obj/item/weapon/rcd
+	)
+	heat_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = list("Soghun")
 
@@ -83,16 +89,20 @@
 // Can't be equipped by any other species due to bone structure and vox cybernetics.
 /obj/item/clothing/suit/space/vox
 	w_class = 3
-	allowed = list(/obj/item/weapon/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/melee/baton, /obj/item/weapon/melee/energy/sword, /obj/item/weapon/handcuffs, /obj/item/weapon/tank)
+	allowed = list(
+		/obj/item/weapon/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing,
+		/obj/item/weapon/melee/baton, /obj/item/weapon/melee/energy/sword, /obj/item/weapon/handcuffs,
+		/obj/item/weapon/tank
+	)
 	slowdown = 2
-	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
+	heat_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = list("Vox", "Vox Armalis")
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/suit.dmi',
 		"Vox Armalis" = 'icons/mob/species/armalis/suit.dmi',
-		)
+	)
 
 /obj/item/clothing/head/helmet/space/vox
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
@@ -101,7 +111,7 @@
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/head.dmi',
 		"Vox Armalis" = 'icons/mob/species/armalis/head.dmi',
-		)
+	)
 
 /obj/item/clothing/head/helmet/space/vox/pressure
 	name = "alien helmet"
@@ -181,7 +191,7 @@
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/gloves.dmi',
 		"Vox Armalis" = 'icons/mob/species/armalis/gloves.dmi',
-		)
+	)
 
 /obj/item/clothing/shoes/magboots/vox
 	desc = "A pair of heavy, jagged armoured foot pieces, seemingly suitable for a velociraptor."
@@ -192,17 +202,17 @@
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/feet.dmi',
 		"Vox Armalis" = 'icons/mob/species/armalis/feet.dmi',
-		)
+	)
 
 /obj/item/clothing/shoes/magboots/vox/attack_self(mob/user)
 	if(src.magpulse)
 		src.flags &= ~NOSLIP
 		src.magpulse = 0
-		user << "You relax your deathgrip on the flooring."
+		to_chat(user, "You relax your deathgrip on the flooring.")
 	else
 		src.flags |= NOSLIP
 		src.magpulse = 1
-		user << "You dig your claws deeply into the flooring, bracing yourself."
+		to_chat(user, "You dig your claws deeply into the flooring, bracing yourself.")
 
 /obj/item/clothing/shoes/magboots/vox/examine()
 	set src in view()

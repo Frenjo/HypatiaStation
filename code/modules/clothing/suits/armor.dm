@@ -1,6 +1,9 @@
 
 /obj/item/clothing/suit/armor
-	allowed = list(/obj/item/weapon/gun/energy, /obj/item/weapon/reagent_containers/spray/pepper, /obj/item/weapon/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/melee/baton, /obj/item/weapon/handcuffs)
+	allowed = list(
+		/obj/item/weapon/gun/energy, /obj/item/weapon/reagent_containers/spray/pepper, /obj/item/weapon/gun/projectile,
+		/obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/melee/baton, /obj/item/weapon/handcuffs
+	)
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO
 
 	cold_protection = UPPER_TORSO | LOWER_TORSO
@@ -37,7 +40,7 @@
 	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
 	icon_state = "riot"
 	item_state = "swat_suit"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO | LEGS | FEET | ARMS | HANDS
+	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	slowdown = 1
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 	flags_inv = HIDEJUMPSUIT
@@ -70,9 +73,12 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
-	allowed = list(/obj/item/weapon/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/melee/baton, /obj/item/weapon/handcuffs, /obj/item/weapon/tank/emergency_oxygen)
+	allowed = list(
+		/obj/item/weapon/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing,
+		/obj/item/weapon/melee/baton, /obj/item/weapon/handcuffs, /obj/item/weapon/tank/emergency_oxygen
+	)
 	slowdown = 1
-	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 0, rad = 0)
+	armor = list(melee = 80, bullet = 60, laser = 50, energy = 25, bomb = 50, bio = 0, rad = 0)
 	flags_inv = HIDEGLOVES | HIDESHOES | HIDEJUMPSUIT
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
@@ -117,13 +123,13 @@
 	return 0
 
 /obj/item/clothing/suit/armor/reactive/attack_self(mob/user as mob)
-	src.active = !( src.active )
-	if (src.active)
-		user << "\blue The reactive armor is now active."
+	src.active = !src.active
+	if(src.active)
+		to_chat(user, SPAN_INFO("The reactive armor is now active."))
 		src.icon_state = "reactive"
 		src.item_state = "reactive"
 	else
-		user << "\blue The reactive armor is now inactive."
+		to_chat(user, SPAN_INFO("The reactive armor is now inactive."))
 		src.icon_state = "reactiveoff"
 		src.item_state = "reactiveoff"
 		src.add_fingerprint(user)
@@ -146,7 +152,10 @@
 	item_state = "centcom"
 	w_class = 4//bulky item
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
-	allowed = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/weapon/handcuffs, /obj/item/weapon/tank/emergency_oxygen)
+	allowed = list(
+		/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/weapon/handcuffs,
+		/obj/item/weapon/tank/emergency_oxygen
+	)
 	flags_inv = HIDEGLOVES | HIDESHOES | HIDEJUMPSUIT
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
@@ -197,32 +206,36 @@
 	set name = "Holster"
 	set category = "Object"
 	set src in usr
-	if(!istype(usr, /mob/living))
+	if(!isliving(usr))
 		return
 	if(usr.stat)
 		return
 
 	if(!holstered)
 		if(!istype(usr.get_active_hand(), /obj/item/weapon/gun))
-			usr << "\blue You need your gun equiped to holster it."
+			to_chat(usr, SPAN_INFO("You need your gun equipped to holster it."))
 			return
 		var/obj/item/weapon/gun/W = usr.get_active_hand()
-		if (!W.isHandgun())
-			usr << "\red This gun won't fit in \the belt!"
+		if(!W.isHandgun())
+			to_chat(usr, SPAN_WARNING("This gun won't fit in \the belt!"))
 			return
 		holstered = usr.get_active_hand()
 		usr.drop_item()
 		holstered.loc = src
-		usr.visible_message("\blue \The [usr] holsters \the [holstered].", "You holster \the [holstered].")
+		usr.visible_message(SPAN_INFO("\The [usr] holsters \the [holstered]."), "You holster \the [holstered].")
 	else
 		if(istype(usr.get_active_hand(), /obj) && istype(usr.get_inactive_hand(), /obj))
-			usr << "\red You need an empty hand to draw the gun!"
+			to_chat(usr, SPAN_WARNING("You need an empty hand to draw the gun!"))
 		else
 			if(usr.a_intent == "hurt")
-				usr.visible_message("\red \The [usr] draws \the [holstered], ready to shoot!", \
-				"\red You draw \the [holstered], ready to shoot!")
+				usr.visible_message(
+					SPAN_WARNING("\The [usr] draws \the [holstered], ready to shoot!"),
+					SPAN_WARNING("You draw \the [holstered], ready to shoot!")
+				)
 			else
-				usr.visible_message("\blue \The [usr] draws \the [holstered], pointing it at the ground.", \
-				"\blue You draw \the [holstered], pointing it at the ground.")
+				usr.visible_message(
+					SPAN_INFO("\The [usr] draws \the [holstered], pointing it at the ground."),
+					SPAN_INFO("You draw \the [holstered], pointing it at the ground.")
+				)
 			usr.put_in_hands(holstered)
 		holstered = null

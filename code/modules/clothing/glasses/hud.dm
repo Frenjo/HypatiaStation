@@ -5,16 +5,18 @@
 	origin_tech = "magnets=3;biotech=2"
 	var/list/icon/current = list() //the current hud icons
 
-/obj/item/clothing/glasses/hud/proc/process_hud(var/mob/M)
+/obj/item/clothing/glasses/hud/proc/process_hud(mob/M)
 	return
+
 
 /obj/item/clothing/glasses/hud/health
 	name = "Health Scanner HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
 	icon_state = "healthhud"
 
-/obj/item/clothing/glasses/hud/health/process_hud(var/mob/M)
+/obj/item/clothing/glasses/hud/health/process_hud(mob/M)
 	process_med_hud(M, 1)
+
 
 /obj/item/clothing/glasses/hud/security
 	name = "Security HUD"
@@ -30,5 +32,5 @@
 	vision_flags = SEE_MOBS
 	invisa_view = 2
 
-/obj/item/clothing/glasses/hud/security/process_hud(var/mob/M)
+/obj/item/clothing/glasses/hud/security/process_hud(mob/M)
 	process_sec_hud(M, 1)

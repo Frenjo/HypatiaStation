@@ -4,7 +4,7 @@
 
 //BS12: Species-restricted clothing check.
 /obj/item/clothing/mob_can_equip(M as mob, slot)
-	if(species_restricted && istype(M, /mob/living/carbon/human))
+	if(species_restricted && ishuman(M))
 		var/wearable = null
 		var/exclusive = null
 		var/mob/living/carbon/human/H = M
@@ -21,7 +21,7 @@
 					wearable = 1
 
 			if(!wearable && (slot != 15 && slot != 16)) //Pockets.
-				M << "\red Your species cannot wear [src]."
+				to_chat(M, SPAN_WARNING("Your species cannot wear [src]."))
 				return 0
 
 	return ..()
@@ -37,7 +37,7 @@
 	if(!user)
 		return
 
-	if(src.loc != user || !istype(user,/mob/living/carbon/human))
+	if(src.loc != user || !ishuman(user))
 		..()
 		return
 
@@ -50,10 +50,10 @@
 		return
 
 	var/obj/item/clothing/ears/O
-	if(slot_flags & SLOT_TWOEARS )
+	if(slot_flags & SLOT_TWOEARS)
 		O = (H.l_ear == src ? H.r_ear : H.l_ear)
 		user.u_equip(O)
-		if(!istype(src,/obj/item/clothing/ears/offear))
+		if(!istype(src, /obj/item/clothing/ears/offear))
 			qdel(O)
 			O = src
 	else
@@ -75,12 +75,12 @@
 	icon_state = "block"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
 
-	New(var/obj/O)
-		name = O.name
-		desc = O.desc
-		icon = O.icon
-		icon_state = O.icon_state
-		dir = O.dir
+/obj/item/clothing/ears/offear/New(obj/O)
+	name = O.name
+	desc = O.desc
+	icon = O.icon
+	icon_state = O.icon_state
+	dir = O.dir
 
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"
@@ -134,14 +134,14 @@ BLIND     // can't see anything
 	if(cell)
 		//why is this not part of the powercell code?
 		cell.charge -= 1000 / severity
-		if (cell.charge < 0)
+		if(cell.charge < 0)
 			cell.charge = 0
-		if(cell.reliability != 100 && prob(50/severity))
+		if(cell.reliability != 100 && prob(50 / severity))
 			cell.reliability -= 10 / severity
 	..()
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
-/obj/item/clothing/gloves/proc/Touch(var/atom/A, var/proximity)
+/obj/item/clothing/gloves/proc/Touch(atom/A, proximity)
 	return 0 // return 1 to cancel attack_hand()
 
 //Head
@@ -182,7 +182,7 @@ BLIND     // can't see anything
 	name = "suit"
 	var/fire_resist = T0C + 100
 	allowed = list(/obj/item/weapon/tank/emergency_oxygen)
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
@@ -190,7 +190,7 @@ BLIND     // can't see anything
 
 //Spacesuit
 //Note: Everything in modules/clothing/spacesuits should have the entire suit grouped together.
-//      Meaning the the suit is defined directly after the corrisponding helmet. Just like below!
+//		Meaning the the suit is defined directly after the corrisponding helmet. Just like below!
 /obj/item/clothing/head/helmet/space
 	name = "Space helmet"
 	icon_state = "space"
@@ -198,7 +198,7 @@ BLIND     // can't see anything
 	flags = HEADCOVERSEYES | BLOCKHAIR | HEADCOVERSMOUTH | STOPSPRESSUREDAMAGE
 	item_state = "space"
 	permeability_coefficient = 0.01
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 50)
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 100, rad = 50)
 	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
@@ -217,7 +217,7 @@ BLIND     // can't see anything
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	allowed = list(/obj/item/device/flashlight, /obj/item/weapon/tank/emergency_oxygen, /obj/item/device/suit_cooling_unit)
 	slowdown = 3
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 50)
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 100, rad = 50)
 	flags_inv = HIDEGLOVES | HIDESHOES | HIDEJUMPSUIT | HIDETAIL
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
@@ -231,7 +231,7 @@ BLIND     // can't see anything
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
 	permeability_coefficient = 0.90
 	slot_flags = SLOT_ICLOTHING
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	w_class = 3
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
 	var/sensor_mode = 0
@@ -253,7 +253,7 @@ BLIND     // can't see anything
 		hastie = I
 		hastie.on_attached(src, user)
 
-		if(istype(loc, /mob/living/carbon/human))
+		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
 			H.update_inv_w_uniform()
 
@@ -272,10 +272,10 @@ BLIND     // can't see anything
 /obj/item/clothing/under/MouseDrop(obj/over_object as obj)
 	if(ishuman(usr) || ismonkey(usr))
 		//makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
-		if(!(src.loc == usr))
+		if(src.loc != usr)
 			return
 
-		if(!(usr.restrained()) && !(usr.stat))
+		if(!usr.restrained() && !usr.stat)
 			switch(over_object.name)
 				if("r_hand")
 					usr.u_equip(src)
@@ -292,30 +292,30 @@ BLIND     // can't see anything
 	..()
 	switch(src.sensor_mode)
 		if(0)
-			usr << "Its sensors appear to be disabled."
+			to_chat(usr, "Its sensors appear to be disabled.")
 		if(1)
-			usr << "Its binary life sensors appear to be enabled."
+			to_chat(usr, "Its binary life sensors appear to be enabled.")
 		if(2)
-			usr << "Its vital tracker appears to be enabled."
+			to_chat(usr, "Its vital tracker appears to be enabled.")
 		if(3)
-			usr << "Its vital tracker and tracking beacon appear to be enabled."
+			to_chat(usr, "Its vital tracker and tracking beacon appear to be enabled.")
 	if(hastie)
-		usr << "\A [hastie] is clipped to it."
+		to_chat(usr, "\A [hastie] is clipped to it.")
 
 /obj/item/clothing/under/verb/toggle()
 	set name = "Toggle Suit Sensors"
 	set category = "Object"
 	set src in usr
 	var/mob/M = usr
-	if(istype(M, /mob/dead/))
+	if(istype(M, /mob/dead))
 		return
 	if(usr.stat)
 		return
 	if(has_sensor >= 2)
-		usr << "The controls are locked."
+		to_chat(usr, "The controls are locked.")
 		return 0
 	if(has_sensor <= 0)
-		usr << "This suit does not have any sensors."
+		to_chat(usr, "This suit does not have any sensors.")
 		return 0
 
 	var/list/modes = list("Off", "Binary sensors", "Vitals tracker", "Tracking beacon")
@@ -324,13 +324,13 @@ BLIND     // can't see anything
 
 	switch(sensor_mode)
 		if(0)
-			usr << "You disable your suit's remote sensing equipment."
+			to_chat(usr, "You disable your suit's remote sensing equipment.")
 		if(1)
-			usr << "Your suit will now report whether you are live or dead."
+			to_chat(usr, "Your suit will now report whether you are live or dead.")
 		if(2)
-			usr << "Your suit will now report your vital lifesigns."
+			to_chat(usr, "Your suit will now report your vital lifesigns.")
 		if(3)
-			usr << "Your suit will now report your vital lifesigns as well as your coordinate position."
+			to_chat(usr, "Your suit will now report your vital lifesigns as well as your coordinate position.")
 	..()
 
 /obj/item/clothing/under/proc/remove_accessory(mob/user as mob)
@@ -340,7 +340,7 @@ BLIND     // can't see anything
 	hastie.on_removed(user)
 	hastie = null
 
-	if(istype(loc, /mob/living/carbon/human))
+	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		H.update_inv_w_uniform()
 
@@ -348,7 +348,7 @@ BLIND     // can't see anything
 	set name = "Remove Accessory"
 	set category = "Object"
 	set src in usr
-	if(!istype(usr, /mob/living))
+	if(!isliving(usr))
 		return
 	if(usr.stat)
 		return

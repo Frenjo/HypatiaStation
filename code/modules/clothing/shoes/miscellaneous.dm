@@ -133,5 +133,5 @@
 	name = "swimming fins"
 	icon_state = "flipperfeet"
 	flags = NOSLIP
-	slowdown = SHOES_SLOWDOWN+1
+	slowdown = SHOES_SLOWDOWN + 1
 	species_restricted = null

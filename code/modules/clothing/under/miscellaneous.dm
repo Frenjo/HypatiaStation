@@ -80,7 +80,7 @@
 	icon_state = "black"
 	item_state = "bl_suit"
 	item_color = "black"
-	w_class = 4//bulky item
+	w_class = 4 //bulky item
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
@@ -96,7 +96,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
-	armor = list(melee = 100, bullet = 100, laser = 100,energy = 100, bomb = 100, bio = 100, rad = 100)
+	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 100, bio = 100, rad = 100)
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
@@ -385,7 +385,7 @@
 	flags_inv = HIDESHOES
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS
 
-/obj/item/clothing/under/plasmapeople/proc/Extinguish(var/mob/living/carbon/human/H)
+/obj/item/clothing/under/plasmapeople/proc/Extinguish(mob/living/carbon/human/H)
 	if(!istype(H))
 		return
 
@@ -395,6 +395,6 @@
 			//	return
 			//next_extinguish = world.time + extinguish_cooldown
 			//extinguishes_left--
-		H.visible_message("<span class='warning'>[H]'s suit automatically extinguishes them!</span>","<span class='warning'>Your suit automatically extinguishes you.</span>")
+		H.visible_message(SPAN_WARNING("[H]'s suit automatically extinguishes them!"), SPAN_WARNING("Your suit automatically extinguishes you."))
 		H.ExtinguishMob()
 		new /obj/effect/water(get_turf(H))

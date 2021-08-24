@@ -134,7 +134,6 @@
 /obj/item/clothing/glasses/welding/attack_self()
 	toggle()
 
-
 /obj/item/clothing/glasses/welding/verb/toggle()
 	set category = "Object"
 	set name = "Adjust welding goggles"
@@ -146,13 +145,13 @@
 			src.flags |= GLASSESCOVERSEYES
 			flags_inv |= HIDEEYES
 			icon_state = initial(icon_state)
-			usr << "You flip \the [src] down to protect your eyes."
+			to_chat(usr, "You flip \the [src] down to protect your eyes.")
 		else
 			src.up = !src.up
 			src.flags &= ~HEADCOVERSEYES
 			flags_inv &= ~HIDEEYES
 			icon_state = "[initial(icon_state)]up"
-			usr << "You push \the [src] up out of your face."
+			to_chat(usr, "You push \the [src] up out of your face.")
 
 		usr.update_inv_glasses()
 
@@ -168,7 +167,7 @@
 	desc = "Covers the eyes, preventing sight."
 	icon_state = "blindfold"
 	item_state = "blindfold"
-	//vision_flags = BLIND  	// This flag is only supposed to be used if it causes permanent blindness, not temporary because of glasses
+	//vision_flags = BLIND	// This flag is only supposed to be used if it causes permanent blindness, not temporary because of glasses
 
 /obj/item/clothing/glasses/sunglasses/prescription
 	name = "prescription sunglasses"
@@ -185,10 +184,10 @@
 	icon_state = "sunhud"
 	var/obj/item/clothing/glasses/hud/security/hud = null
 
-	New()
-		..()
-		src.hud = new/obj/item/clothing/glasses/hud/security(src)
-		return
+/obj/item/clothing/glasses/sunglasses/sechud/New()
+	..()
+	src.hud = new/obj/item/clothing/glasses/hud/security(src)
+	return
 
 /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	name = "tactical HUD"
@@ -211,9 +210,9 @@
 	overlay = global_hud.thermal
 
 /obj/item/clothing/glasses/thermal/emp_act(severity)
-	if(istype(src.loc, /mob/living/carbon/human))
+	if(ishuman(src.loc))
 		var/mob/living/carbon/human/M = src.loc
-		M << "\red The Optical Thermal Scanner overloads and blinds you!"
+		to_chat(M, SPAN_WARNING("The Optical Thermal Scanner overloads and blinds you!"))
 		if(M.glasses == src)
 			M.eye_blind = 3
 			M.eye_blurry = 5

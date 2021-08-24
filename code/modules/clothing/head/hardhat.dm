@@ -11,34 +11,28 @@
 	icon_action_button = "action_hardhat"
 	siemens_coefficient = 0.9
 
-	attack_self(mob/user)
-		if(!isturf(user.loc))
-			user << "You cannot turn the light on while in this [user.loc]" //To prevent some lighting anomalities.
-			return
-		on = !on
-		icon_state = "hardhat[on]_[item_color]"
-		item_state = "hardhat[on]_[item_color]"
+/obj/item/clothing/head/hardhat/attack_self(mob/user)
+	if(!isturf(user.loc))
+		to_chat(user, "You cannot turn the light on while in this [user.loc].") //To prevent some lighting anomalies.
+		return
+	on = !on
+	icon_state = "hardhat[on]_[item_color]"
+	item_state = "hardhat[on]_[item_color]"
 
-		//if(on)	user.SetLuminosity(user.luminosity + brightness_on)
-		//else	user.SetLuminosity(user.luminosity - brightness_on)
-		if(on)	user.set_light(user.luminosity + brightness_on)
-		else	user.set_light(user.luminosity - brightness_on)
+	if(on)
+		user.set_light(user.luminosity + brightness_on)
+	else
+		user.set_light(user.luminosity - brightness_on)
 
-	pickup(mob/user)
-		if(on)
-			//user.SetLuminosity(user.luminosity + brightness_on)
-			user.set_light(user.luminosity + brightness_on)
-//			user.UpdateLuminosity()	//TODO: Carn
-			//SetLuminosity(0)
-			set_light(0)
+/obj/item/clothing/head/hardhat/pickup(mob/user)
+	if(on)
+		user.set_light(user.luminosity + brightness_on)
+		set_light(0)
 
-	dropped(mob/user)
-		if(on)
-			//user.SetLuminosity(user.luminosity - brightness_on)
-			user.set_light(user.luminosity - brightness_on)
-//			user.UpdateLuminosity()
-			//SetLuminosity(brightness_on)
-			set_light(brightness_on)
+/obj/item/clothing/head/hardhat/dropped(mob/user)
+	if(on)
+		user.set_light(user.luminosity - brightness_on)
+		set_light(brightness_on)
 
 
 /obj/item/clothing/head/hardhat/orange
@@ -67,4 +61,3 @@
 	icon_state = "hardhat0_dblue"
 	item_state = "hardhat0_dblue"
 	item_color = "dblue"
-

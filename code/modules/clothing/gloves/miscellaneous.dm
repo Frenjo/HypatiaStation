@@ -9,12 +9,14 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
+
 /obj/item/clothing/gloves/cyborg
 	desc = "beep boop borp"
 	name = "cyborg gloves"
 	icon_state = "black"
 	item_state = "r_hands"
 	siemens_coefficient = 1.0
+
 
 /obj/item/clothing/gloves/swat
 	desc = "These tactical gloves are somewhat fire and impact-resistant."
@@ -29,6 +31,7 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
+
 /obj/item/clothing/gloves/combat //Combined effect of SWAT gloves and insulated gloves
 	desc = "These tactical gloves are somewhat fire and impact resistant."
 	name = "combat gloves"
@@ -41,6 +44,7 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
+
 /obj/item/clothing/gloves/latex
 	name = "latex gloves"
 	desc = "Sterile latex gloves."
@@ -50,8 +54,9 @@
 	permeability_coefficient = 0.01
 	item_color="white"
 
-	cmo
-		item_color = "medical"		//Exists for washing machines. Is not different from latex gloves in any way.
+/obj/item/clothing/gloves/latex/cmo
+	item_color = "medical"		//Exists for washing machines. Is not different from latex gloves in any way.
+
 
 /obj/item/clothing/gloves/botanic_leather
 	desc = "These leather gloves protect against thorns, barbs, prickles, spikes and other harmful objects of floral origin."
@@ -62,7 +67,6 @@
 	siemens_coefficient = 0.9
 
 // Plasmapeople clothing.
-
 /obj/item/clothing/gloves/plasmapeople
 	name = "envirosuit gloves"
 	desc = "A pair of gloves designed to prevent a Plasmaperson from combusting in a human-breathable atmosphere."

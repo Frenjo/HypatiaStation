@@ -15,7 +15,7 @@
 	item_state = "bluetag"
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO
-	allowed = list (/obj/item/weapon/gun/energy/laser/bluetag)
+	allowed = list(/obj/item/weapon/gun/energy/laser/bluetag)
 	siemens_coefficient = 3.0
 
 /obj/item/clothing/suit/redtag
@@ -25,7 +25,7 @@
 	item_state = "redtag"
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO
-	allowed = list (/obj/item/weapon/gun/energy/laser/redtag)
+	allowed = list(/obj/item/weapon/gun/energy/laser/redtag)
 	siemens_coefficient = 3.0
 
 /*
@@ -84,7 +84,7 @@
 	icon_state = "judge"
 	item_state = "judge"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
-	allowed = list(/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/spacecash)
+	allowed = list(/obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/spacecash)
 	flags_inv = HIDEJUMPSUIT
 
 
@@ -200,13 +200,13 @@
 	if(src.icon_state == "suitjacket_blue_open")
 		src.icon_state = "suitjacket_blue"
 		src.item_state = "suitjacket_blue"
-		usr << "You button up the suit jacket."
+		to_chat(usr, "You button up the suit jacket.")
 	else if(src.icon_state == "suitjacket_blue")
 		src.icon_state = "suitjacket_blue_open"
 		src.item_state = "suitjacket_blue_open"
-		usr << "You unbutton the suit jacket."
+		to_chat(usr, "You unbutton the suit jacket.")
 	else
-		usr << "You button-up some imaginary buttons on your [src]."
+		to_chat(usr, "You button-up some imaginary buttons on your [src].")
 		return
 	usr.update_inv_wear_suit()
 
@@ -218,14 +218,14 @@
 	desc = "Slightly old-fashioned sleepwear."
 	icon_state = "blue_pyjamas"
 	item_state = "blue_pyjamas"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	body_parts_covered = UPPER_TORSO | LOWER_TORSO | ARMS | LEGS
 
 /obj/item/clothing/under/redpyjamas
 	name = "red pyjamas"
 	desc = "Slightly old-fashioned sleepwear."
 	icon_state = "red_pyjamas"
 	item_state = "red_pyjamas"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	body_parts_covered = UPPER_TORSO | LOWER_TORSO | ARMS | LEGS
 
 //coats
 

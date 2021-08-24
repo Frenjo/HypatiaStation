@@ -40,13 +40,13 @@
 			src.flags |= (HEADCOVERSEYES | HEADCOVERSMOUTH)
 			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = initial(icon_state)
-			usr << "You flip the [src] down to protect your eyes."
+			to_chat(usr, "You flip the [src] down to protect your eyes.")
 		else
 			src.up = !src.up
 			src.flags &= ~(HEADCOVERSEYES | HEADCOVERSMOUTH)
 			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[initial(icon_state)]up"
-			usr << "You push the [src] up out of your face."
+			to_chat(usr, "You push the [src] up out of your face.")
 		usr.update_inv_head()	//so our mob-overlays update
 
 /*
@@ -68,7 +68,7 @@
 		return
 
 	var/turf/location = src.loc
-	if(istype(location, /mob/))
+	if(ishuman(location))
 		var/mob/living/carbon/human/M = location
 		if(M.l_hand == src || M.r_hand == src || M.head == src)
 			location = M.loc
@@ -77,9 +77,10 @@
 		location.hotspot_expose(700, 1)
 
 /obj/item/clothing/head/cakehat/attack_self(mob/user as mob)
-	if(status > 1)	return
-	src.onfire = !( src.onfire )
-	if (src.onfire)
+	if(status > 1)
+		return
+	src.onfire = !src.onfire
+	if(src.onfire)
 		src.force = 3
 		src.damtype = "fire"
 		src.icon_state = "cake1"
@@ -104,11 +105,11 @@
 	if(src.icon_state == "ushankadown")
 		src.icon_state = "ushankaup"
 		src.item_state = "ushankaup"
-		user << "You raise the ear flaps on the ushanka."
+		to_chat(user, "You raise the ear flaps on the ushanka.")
 	else
 		src.icon_state = "ushankadown"
 		src.item_state = "ushankadown"
-		user << "You lower the ear flaps on the ushanka."
+		to_chat(user, "You lower the ear flaps on the ushanka.")
 
 /*
  * Pumpkin head
@@ -116,7 +117,7 @@
 /obj/item/clothing/head/pumpkinhead
 	name = "carved pumpkin"
 	desc = "A jack o' lantern! Believed to ward off evil spirits."
-	icon_state = "hardhat0_pumpkin"//Could stand to be renamed
+	icon_state = "hardhat0_pumpkin" //Could stand to be renamed
 	item_state = "hardhat0_pumpkin"
 	item_color = "pumpkin"
 	flags = HEADCOVERSEYES | HEADCOVERSMOUTH | BLOCKHAIR
@@ -125,30 +126,28 @@
 	var/on = 0
 	w_class = 3
 
-	attack_self(mob/user)
-		if(!isturf(user.loc))
-			user << "You cannot turn the light on while in this [user.loc]" //To prevent some lighting anomalities.
-			return
-		on = !on
-		icon_state = "hardhat[on]_[item_color]"
-		item_state = "hardhat[on]_[item_color]"
+/obj/item/clothing/head/pumpkinhead/attack_self(mob/user)
+	if(!isturf(user.loc))
+		to_chat(user, "You cannot turn the light on while in this [user.loc].") //To prevent some lighting anomalies.
+		return
+	on = !on
+	icon_state = "hardhat[on]_[item_color]"
+	item_state = "hardhat[on]_[item_color]"
 
-		if(on)
-			user.set_light(user.luminosity + brightness_on)
-		else
-			user.set_light(user.luminosity - brightness_on)
+	if(on)
+		user.set_light(user.luminosity + brightness_on)
+	else
+		user.set_light(user.luminosity - brightness_on)
 
-	pickup(mob/user)
-		if(on)
-			user.set_light(user.luminosity + brightness_on)
-//			user.UpdateLuminosity()
-			set_light(0)
+/obj/item/clothing/head/pumpkinhead/pickup(mob/user)
+	if(on)
+		user.set_light(user.luminosity + brightness_on)
+		set_light(0)
 
-	dropped(mob/user)
-		if(on)
-			user.set_light(user.luminosity - brightness_on)
-//			user.UpdateLuminosity()
-			set_light(brightness_on)
+/obj/item/clothing/head/pumpkinhead/dropped(mob/user)
+	if(on)
+		user.set_light(user.luminosity - brightness_on)
+		set_light(brightness_on)
 
 /*
  * Kitty ears
@@ -161,14 +160,15 @@
 	var/icon/mob2
 	siemens_coefficient = 1.5
 
-	update_icon(var/mob/living/carbon/human/user)
-		if(!istype(user)) return
-		mob = new/icon("icon" = 'icons/mob/head.dmi', "icon_state" = "kitty")
-		mob2 = new/icon("icon" = 'icons/mob/head.dmi', "icon_state" = "kitty2")
-		mob.Blend(rgb(user.r_hair, user.g_hair, user.b_hair), ICON_ADD)
-		mob2.Blend(rgb(user.r_hair, user.g_hair, user.b_hair), ICON_ADD)
+/obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+	mob = new/icon("icon" = 'icons/mob/head.dmi', "icon_state" = "kitty")
+	mob2 = new/icon("icon" = 'icons/mob/head.dmi', "icon_state" = "kitty2")
+	mob.Blend(rgb(user.r_hair, user.g_hair, user.b_hair), ICON_ADD)
+	mob2.Blend(rgb(user.r_hair, user.g_hair, user.b_hair), ICON_ADD)
 
-		var/icon/earbit = new/icon("icon" = 'icons/mob/head.dmi', "icon_state" = "kittyinner")
-		var/icon/earbit2 = new/icon("icon" = 'icons/mob/head.dmi', "icon_state" = "kittyinner2")
-		mob.Blend(earbit, ICON_OVERLAY)
-		mob2.Blend(earbit2, ICON_OVERLAY)
+	var/icon/earbit = new/icon("icon" = 'icons/mob/head.dmi', "icon_state" = "kittyinner")
+	var/icon/earbit2 = new/icon("icon" = 'icons/mob/head.dmi', "icon_state" = "kittyinner2")
+	mob.Blend(earbit, ICON_OVERLAY)
+	mob2.Blend(earbit2, ICON_OVERLAY)

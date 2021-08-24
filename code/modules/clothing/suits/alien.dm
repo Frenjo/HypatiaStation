@@ -5,7 +5,7 @@
 	desc = "A traditional Soghun garment."
 	icon_state = "robe-soghun"
 	item_state = "robe-soghun"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
 
 /obj/item/clothing/suit/soghun/mantle
 	name = "hide mantle"
