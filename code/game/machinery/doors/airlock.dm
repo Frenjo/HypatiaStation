@@ -340,9 +340,6 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 				break
 
 /obj/machinery/door/airlock/Destroy()
-	//if(wires)
-	//	qdel(wires)
-	//	wires = null
 	return ..()
 
 /*

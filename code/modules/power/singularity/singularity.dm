@@ -230,21 +230,21 @@ var/global/list/uneatable = list(
 	if(defer_powernet_rebuild != 2)
 		defer_powernet_rebuild = 1
 	// Let's just make this one loop.
-	for(var/atom/X in orange(grav_pull,src))
+	for(var/atom/X in orange(grav_pull, src))
 		var/dist = get_dist(X, src)
 		// Movable atoms only
 		if(dist > consume_range && istype(X, /atom/movable))
 			if(is_type_in_list(X, uneatable))
 				continue
-			if(((X) &&(!X:anchored) && (!ishuman(X)))|| (src.current_size >= 9))
+			if(((X) && !X:anchored && !ishuman(X))|| src.current_size >= 9)
 				step_towards(X, src)
 			else if(ishuman(X))
 				var/mob/living/carbon/human/H = X
-				if(istype(H.shoes,/obj/item/clothing/shoes/magboots))
+				if(istype(H.shoes, /obj/item/clothing/shoes/magboots))
 					var/obj/item/clothing/shoes/magboots/M = H.shoes
 					if(M.magpulse)
 						continue
-				step_towards(H,src)
+				step_towards(H, src)
 		// Turf and movable atoms
 		else if(dist <= consume_range && (isturf(X) || istype(X, /atom/movable)))
 			consume(X)
@@ -262,7 +262,7 @@ var/global/list/uneatable = list(
 		if(ishuman(A))
 			var/mob/living/carbon/human/H = A
 			if(H.mind)
-				if((H.mind.assigned_role == "Station Engineer") || (H.mind.assigned_role == "Chief Engineer"))
+				if(H.mind.assigned_role == "Station Engineer" || H.mind.assigned_role == "Chief Engineer")
 					gain = 100
 
 				if(H.mind.assigned_role == "Clown")
@@ -270,7 +270,7 @@ var/global/list/uneatable = list(
 		spawn()
 			A:gib()
 		sleep(1)
-	else if(istype(A, /obj/))
+	else if(istype(A, /obj))
 		if(istype(A, /obj/item/weapon/storage/backpack/holding))
 			var/dist = max((current_size - 2), 1)
 			explosion(src.loc, (dist), (dist * 2), (dist * 4))
@@ -292,14 +292,15 @@ var/global/list/uneatable = list(
 			gain = 5000
 			has_eaten_supermatter_shard = 1
 
-		if((teleport_del) && (!istype(A, /obj/machinery)))//Going to see if it does not lag less to tele items over to Z 2
+		if(teleport_del && !istype(A, /obj/machinery)) //Going to see if it does not lag less to tele items over to Z 2
 			var/obj/O = A
 			O.x = 2
 			O.y = 2
 			O.z = 2
 		else
 			A.ex_act(1.0)
-			if(A) qdel(A)
+			if(A)
+				qdel(A)
 		gain = 2
 	else if(isturf(A))
 		var/turf/T = A

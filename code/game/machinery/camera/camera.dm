@@ -58,18 +58,16 @@
 	if(assembly)
 		qdel(assembly)
 		assembly = null
-	qdel(wires)
-	..()
+	return ..()
 
 /obj/machinery/camera/emp_act(severity)
 	if(!isEmpProof())
-		if(prob(100/severity))
+		if(prob(100 / severity))
 			icon_state = "[initial(icon_state)]emp"
 			var/list/previous_network = network
 			network = list()
 			cameranet.removeCamera(src)
 			stat |= EMPED
-			//SetLuminosity(0)
 			set_light(0)
 			triggerCameraAlarm()
 			spawn(900)
@@ -80,12 +78,12 @@
 				if(can_use())
 					cameranet.addCamera(src)
 			for(var/mob/O in mob_list)
-				if (istype(O.machine, /obj/machinery/computer/security))
+				if(istype(O.machine, /obj/machinery/computer/security))
 					var/obj/machinery/computer/security/S = O.machine
-					if (S.current == src)
+					if(S.current == src)
 						O.unset_machine()
 						O.reset_view(null)
-						O << "The screen bursts into static."
+						to_chat(O, "The screen bursts into static.")
 			..()
 
 
@@ -114,7 +112,7 @@
 
 	if(user.species.can_shred(user))
 		status = 0
-		visible_message("<span class='warning'>\The [user] slashes at [src]!</span>")
+		visible_message(SPAN_WARNING("\The [user] slashes at [src]!"))
 		playsound(src, 'sound/weapons/slash.ogg', 100, 1)
 		icon_state = "[initial(icon_state)]1"
 		add_hiddenprint(user)
@@ -126,8 +124,10 @@
 		//user << "<span class='notice'>You start to [panel_open ? "close" : "open"] the camera's panel.</span>"
 		//if(toggle_panel(user)) // No delay because no one likes screwdrivers trying to be hip and have a duration cooldown
 		panel_open = !panel_open
-		user.visible_message("<span class='warning'>[user] screws the camera's panel [panel_open ? "open" : "closed"]!</span>",
-		"<span class='notice'>You screw the camera's panel [panel_open ? "open" : "closed"].</span>")
+		user.visible_message(
+			SPAN_WARNING("[user] screws the camera's panel [panel_open ? "open" : "closed"]!"),
+			SPAN_NOTICE("You screw the camera's panel [panel_open ? "open" : "closed"].")
+		)
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 
 	else if((iswirecutter(W) || ismultitool(W)) && panel_open)

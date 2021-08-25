@@ -29,7 +29,6 @@
 	for(var/obj/machinery/M in machines)
 		if(M && !M.gcDestroyed)
 			if(M.process() == PROCESS_KILL)
-				//M.inMachineList = 0 We don't use this debugging function
 				machines.Remove(M)
 				continue
 
