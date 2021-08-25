@@ -42,7 +42,7 @@
 		return 1
 
 	//Calculate necessary moles to transfer using PV = nRT
-	if((air1.total_moles > 0) && (air1.temperature > 0))
+	if(air1.total_moles > 0 && air1.temperature > 0)
 		var/pressure_delta = min(target_pressure - output_starting_pressure, (input_starting_pressure - output_starting_pressure) / 2)
 		//Can not have a pressure delta that would cause output_pressure > input_pressure
 
@@ -99,7 +99,7 @@
 		set_frequency(frequency)
 
 /obj/machinery/atmospherics/binary/passive_gate/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
+	if(!signal.data["tag"] || signal.data["tag"] != id || signal.data["sigtype"] != "command")
 		return 0
 
 	if("power" in signal.data)
@@ -137,7 +137,8 @@
 	return
 
 /obj/machinery/atmospherics/binary/passive_gate/Topic(href, href_list)
-	if(..()) return
+	if(..())
+		return
 	if(href_list["power"])
 		on = !on
 	if(href_list["set_press"])
@@ -172,9 +173,10 @@
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 	to_chat(user, SPAN_INFO("You begin to unfasten \the [src]..."))
 	if(do_after(user, 40))
-		user.visible_message( \
-			"[user] unfastens \the [src].", \
-			SPAN_INFO("You have unfastened \the [src]."), \
-			"You hear a ratchet.")
+		user.visible_message(
+			"[user] unfastens \the [src].",
+			SPAN_INFO("You have unfastened \the [src]."),
+			"You hear a ratchet."
+		)
 		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)

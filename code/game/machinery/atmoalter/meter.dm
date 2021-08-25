@@ -14,7 +14,6 @@
 
 /obj/machinery/meter/New()
 	..()
-	src.target = locate(/obj/machinery/atmospherics/pipe) in loc
 	return 1
 
 /obj/machinery/meter/initialize()
@@ -70,7 +69,7 @@
 
 /obj/machinery/meter/proc/status()
 	var/t = ""
-	if (src.target)
+	if(src.target)
 		var/datum/gas_mixture/environment = target.return_air()
 		if(environment)
 			t += "The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.temperature,0.01)]&deg;K ([round(environment.temperature-T0C,0.01)]&deg;C)"
@@ -85,7 +84,7 @@
 
 	var/t = "A gas flow meter. "
 	t += status()
-	usr << t
+	to_chat(usr, t)
 
 /obj/machinery/meter/Click()
 	if(stat & (NOPOWER | BROKEN))
@@ -115,7 +114,6 @@
 // TURF METER - REPORTS A TILE'S AIR CONTENTS
 /obj/machinery/meter/turf/New()
 	..()
-	src.target = loc
 	return 1
 
 /obj/machinery/meter/turf/initialize()

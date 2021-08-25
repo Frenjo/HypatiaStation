@@ -170,11 +170,11 @@ update_flag
 			environment = loc.return_air()
 
 		var/env_pressure = environment.return_pressure()
-		var/pressure_delta = min(release_pressure - env_pressure, (air_contents.return_pressure() - env_pressure)/2)
+		var/pressure_delta = min(release_pressure - env_pressure, (air_contents.return_pressure() - env_pressure) / 2)
 		//Can not have a pressure delta that would cause environment pressure > tank pressure
 
 		var/transfer_moles = 0
-		if((air_contents.temperature > 0) && (pressure_delta > 0))
+		if(air_contents.temperature > 0 && pressure_delta > 0)
 			transfer_moles = pressure_delta * environment.volume / (air_contents.temperature * R_IDEAL_GAS_EQUATION)
 
 			//Actually transfer the gas
@@ -293,7 +293,7 @@ update_flag
 
 /obj/machinery/portable_atmospherics/canister/Topic(href, href_list)
 	//Do not use "if(..()) return" here, canisters will stop working in unpowered areas like space or on the derelict.
-	if(!istype(src.loc, /turf))
+	if(!isturf(src.loc))
 		return 0
 
 	if(href_list["toggle"])
@@ -319,15 +319,15 @@ update_flag
 	if(href_list["pressure_adj"])
 		var/diff = text2num(href_list["pressure_adj"])
 		if(diff > 0)
-			release_pressure = min(10 * ONE_ATMOSPHERE, release_pressure+diff)
+			release_pressure = min(10 * ONE_ATMOSPHERE, release_pressure + diff)
 		else
-			release_pressure = max(ONE_ATMOSPHERE / 10, release_pressure+diff)
+			release_pressure = max(ONE_ATMOSPHERE / 10, release_pressure + diff)
 
 	if(href_list["relabel"])
 		if(can_label)
 			// Edited these to be consistent with above changes.
 			// And add the new options. -Frenjo
-			var/list/colors = list(\
+			var/list/colors = list(
 				"\[N2O\]" = "redws2",
 				"\[N2\]" = "red",
 				"\[O2\]" = "bluews",
@@ -361,6 +361,7 @@ update_flag
 
 	return 1
 
+
 /obj/machinery/portable_atmospherics/canister/toxins/New()
 	..()
 	src.air_contents.adjust_gas("plasma", (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
@@ -384,7 +385,7 @@ update_flag
 //Dirty way to fill room with gas. However it is a bit easier to do than creating some floor/engine/n2o -rastaf0
 /obj/machinery/portable_atmospherics/canister/sleeping_agent/roomfiller/New()
 	..()
-	air_contents.gas["sleeping_agent"] = 9*4000
+	air_contents.gas["sleeping_agent"] = 9 * 4000
 	spawn(10)
 		var/turf/simulated/location = src.loc
 		if(istype(src.loc))

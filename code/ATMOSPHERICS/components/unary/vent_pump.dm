@@ -71,7 +71,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/Destroy()
 	unregister_radio(src, frequency)
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/unary/vent_pump/update_icon()
 	if(welded)
@@ -155,7 +155,7 @@
 		"tag" = src.id_tag,
 		"device" = "AVP",
 		"power" = on,
-		"direction" = pump_direction?("release"):("siphon"),
+		"direction" = pump_direction ? ("release") : ("siphon"),
 		"checks" = pressure_checks,
 		"internal" = internal_pressure_bound,
 		"external" = external_pressure_bound,
@@ -177,7 +177,7 @@
 		return
 
 	//log_admin("DEBUG \[[world.timeofday]\]: /obj/machinery/atmospherics/unary/vent_pump/receive_signal([signal.debug_print()])")
-	if(!signal.data["tag"] || (signal.data["tag"] != id_tag) || (signal.data["sigtype"]!="command"))
+	if(!signal.data["tag"] || signal.data["tag"] != id_tag || signal.data["sigtype"] != "command")
 		return 0
 
 	if(signal.data["purge"] != null)
@@ -270,11 +270,19 @@
 					return
 				playsound(src, 'sound/items/Welder2.ogg', 50, 1)
 				if(!welded)
-					user.visible_message("[user] welds the vent shut.", "You weld the vent shut.", "You hear welding.")
+					user.visible_message(
+						"[user] welds the vent shut.",
+						"You weld the vent shut.",
+						"You hear welding."
+					)
 					welded = 1
 					update_icon()
 				else
-					user.visible_message("[user] unwelds the vent.", "You unweld the vent.", "You hear welding.")
+					user.visible_message(
+						"[user] unwelds the vent.",
+						"You unweld the vent.",
+						"You hear welding."
+					)
 					welded = 0
 					update_icon()
 			else
@@ -287,7 +295,7 @@
 	set src in oview(1)
 	..()
 	if(welded)
-		usr << "It seems welded shut."
+		to_chat(usr, "It seems welded shut.")
 
 /obj/machinery/atmospherics/unary/vent_pump/power_change()
 	if(powered(power_channel))
@@ -318,10 +326,11 @@
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 	to_chat(user, SPAN_INFO("You begin to unfasten \the [src]..."))
 	if(do_after(user, 40))
-		user.visible_message( \
-			"[user] unfastens \the [src].", \
-			SPAN_INFO("You have unfastened \the [src]."), \
-			"You hear a ratchet.")
+		user.visible_message(
+			"[user] unfastens \the [src].",
+			SPAN_INFO("You have unfastened \the [src]."),
+			"You hear a ratchet."
+		)
 		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)
 

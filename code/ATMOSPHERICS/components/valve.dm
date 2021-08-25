@@ -73,15 +73,16 @@
 	node1 = null
 	node2 = null
 
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/valve/proc/open()
-	if(open) return 0
+	if(open)
+		return 0
 
 	open = 1
 	update_icon()
 
-	if(network_node1&&network_node2)
+	if(network_node1 && network_node2)
 		network_node1.merge(network_node2)
 		network_node2 = network_node1
 
@@ -156,7 +157,7 @@
 	var/node2_dir
 
 	for(var/direction in cardinal)
-		if(direction&initialize_directions)
+		if(direction & initialize_directions)
 			if(!node1_dir)
 				node1_dir = direction
 			else if(!node2_dir)
@@ -288,7 +289,7 @@
 		set_frequency(frequency)
 
 /obj/machinery/atmospherics/valve/digital/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || (signal.data["tag"] != id))
+	if(!signal.data["tag"] || signal.data["tag"] != id)
 		return 0
 
 	switch(signal.data["command"])
@@ -328,9 +329,10 @@
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 	to_chat(user, SPAN_INFO("You begin to unfasten \the [src]..."))
 	if(do_after(user, 40))
-		user.visible_message( \
-			"[user] unfastens \the [src].", \
-			SPAN_INFO("You have unfastened \the [src]."), \
-			"You hear a ratchet.")
+		user.visible_message(
+			"[user] unfastens \the [src].",
+			SPAN_INFO("You have unfastened \the [src]."),
+			"You hear a ratchet."
+		)
 		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)

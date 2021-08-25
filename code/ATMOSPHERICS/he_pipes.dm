@@ -32,12 +32,12 @@
 			else if(!node2_dir)
 				node2_dir = direction
 
-	for(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target in get_step(src,node1_dir))
-		if(target.initialize_directions_he & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target in get_step(src, node1_dir))
+		if(target.initialize_directions_he & get_dir(target, src))
 			node1 = target
 			break
-	for(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target in get_step(src,node2_dir))
-		if(target.initialize_directions_he & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target in get_step(src, node2_dir))
+		if(target.initialize_directions_he & get_dir(target, src))
 			node2 = target
 			break
 	update_icon()
@@ -49,7 +49,7 @@
 		..()
 	else
 		var/environment_temperature = 0
-		if(istype(loc, /turf/simulated/))
+		if(istype(loc, /turf/simulated))
 			if(loc:blocks_air)
 				environment_temperature = loc:temperature
 			else
@@ -57,13 +57,13 @@
 				environment_temperature = environment.temperature
 
 		// Ported this for heat exchange reasons, see big comment below. -Frenjo
-		else if(istype(loc, /turf/space/))
+		else if(istype(loc, /turf/space))
 			parent.radiate_heat_to_space(surface, 1)
 
 		else
 			environment_temperature = loc:temperature
 		var/datum/gas_mixture/pipe_air = return_air()
-		if(abs(environment_temperature-pipe_air.temperature) > minimum_temperature_difference)
+		if(abs(environment_temperature - pipe_air.temperature) > minimum_temperature_difference)
 			parent.temperature_interact(loc, volume, thermal_conductivity)
 
 		// Ported this more for debugging reasons than actual looks...
@@ -96,7 +96,7 @@
 
 // BubbleWrap
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/New()
-	.. ()
+	..()
 	switch(dir)
 		if(SOUTH)
 			initialize_directions = NORTH
@@ -126,12 +126,12 @@
 	// Ported this for heat exchange reasons, see big comment below. -Frenjo
 	color = "#404040" //we don't make use of the fancy overlay system for colours, use this to set the default.
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,initialize_directions))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, initialize_directions))
+		if(target.initialize_directions & get_dir(target, src))
 			node1 = target
 			break
-	for(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target in get_step(src,initialize_directions_he))
-		if(target.initialize_directions_he & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/target in get_step(src, initialize_directions_he))
+		if(target.initialize_directions_he & get_dir(target, src))
 			node2 = target
 			break
 
@@ -162,7 +162,7 @@
 	// Okay so I ported it and shit didn't blow up, that's nice, but old atmos code sucks.
 	// We have to multiply the effect because of the way things scaled over the years.
 	// 6.5 is halfway between 5 which was too little, and eight which was too much. -Frenjo
-	air.add_thermal_energy(heat_gain*6)
+	air.add_thermal_energy(heat_gain * 6)
 	// Turns out 6.5 was also too much, being able to run the SM on 32 shots with 1 N2 canister. -Frenjo
 
 	if(network)

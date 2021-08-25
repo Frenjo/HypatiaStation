@@ -16,7 +16,7 @@
 		temporarily_store_air()
 		qdel(air)
 
-	..()
+	return ..()
 
 /datum/pipeline/proc/process()//This use to be called called from the pipe networks
 	//Check to see if pressure is within acceptable limits
@@ -56,7 +56,6 @@
 
 	while(possible_expansions.len > 0)
 		for(var/obj/machinery/atmospherics/pipe/borderline in possible_expansions)
-
 			var/list/result = borderline.pipeline_expansion()
 			var/edge_check = result.len
 
@@ -93,7 +92,7 @@
 
 	for(var/obj/machinery/atmospherics/pipe/edge in edges)
 		for(var/obj/machinery/atmospherics/result in edge.pipeline_expansion())
-			if(!istype(result, /obj/machinery/atmospherics/pipe) && (result != reference))
+			if(!istype(result, /obj/machinery/atmospherics/pipe) && result != reference)
 				result.network_expand(new_network, edge)
 
 	return 1
@@ -143,7 +142,7 @@
 		var/turf/simulated/modeled_location = target
 
 		if(modeled_location.blocks_air)
-			if((modeled_location.heat_capacity > 0) && (partial_heat_capacity > 0))
+			if(modeled_location.heat_capacity > 0 && partial_heat_capacity > 0)
 				var/delta_temperature = air.temperature - modeled_location.temperature
 
 				var/heat = thermal_conductivity * delta_temperature * \
@@ -166,7 +165,7 @@
 			var/self_temperature_delta = 0
 			var/sharer_temperature_delta = 0
 
-			if((sharer_heat_capacity > 0) && (partial_heat_capacity > 0))
+			if(sharer_heat_capacity > 0 && partial_heat_capacity > 0)
 				var/heat = thermal_conductivity * delta_temperature * \
 					(partial_heat_capacity * sharer_heat_capacity / (partial_heat_capacity + sharer_heat_capacity))
 
@@ -183,7 +182,7 @@
 				modeled_location.air.temperature += sharer_temperature_delta
 
 	else
-		if((target.heat_capacity > 0) && (partial_heat_capacity > 0))
+		if(target.heat_capacity > 0 && partial_heat_capacity > 0)
 			var/delta_temperature = air.temperature - target.temperature
 
 			var/heat = thermal_conductivity * delta_temperature * \

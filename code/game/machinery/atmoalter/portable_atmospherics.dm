@@ -78,7 +78,7 @@
 
 /obj/machinery/portable_atmospherics/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	var/obj/icon = src
-	if((istype(W, /obj/item/weapon/tank) && !src.destroyed))
+	if(istype(W, /obj/item/weapon/tank) && !src.destroyed)
 		if(src.holding)
 			return
 		var/obj/item/weapon/tank/T = W

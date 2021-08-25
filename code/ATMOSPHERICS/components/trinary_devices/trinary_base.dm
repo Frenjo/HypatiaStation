@@ -70,7 +70,7 @@
 	node2 = null
 	node3 = null
 
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/trinary/initialize()
 	if(node1 && node2 && node3)

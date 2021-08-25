@@ -111,7 +111,7 @@ Thus, the two variables affect pump operation are set in New():
 		onclose(user, "atmo_pump")*/
 
 /obj/machinery/atmospherics/binary/volume_pump/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
+	if(!signal.data["tag"] || signal.data["tag"] != id || signal.data["sigtype"] != "command")
 		return 0
 
 	if("power" in signal.data)

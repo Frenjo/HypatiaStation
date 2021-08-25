@@ -17,14 +17,13 @@
 
 /obj/machinery/computer/area_atmos/initialize()
 	//So the scrubbers have time to spawn
-	spawn(10)
-		scanscrubbers()
+	scanscrubbers()
 
 /obj/machinery/computer/area_atmos/attack_ai(mob/user as mob)
-		return src.attack_hand(user)
+	return src.attack_hand(user)
 
 /obj/machinery/computer/area_atmos/attack_paw(mob/user as mob)
-		return
+	return
 
 /obj/machinery/computer/area_atmos/attack_hand(mob/user as mob)
 	if(..(user))
@@ -141,11 +140,13 @@
 	wow this is stupid, someone help me
 	*/
 	var/turf/T_src = get_turf(src)
-	if(!T_src.loc) return 0
+	if(!T_src.loc)
+		return 0
 	var/area/A_src = T_src.loc
 
 	var/turf/T_scrub = get_turf(scrubber)
-	if(!T_scrub.loc) return 0
+	if(!T_scrub.loc)
+		return 0
 	var/area/A_scrub = T_scrub.loc
 
 	if(A_scrub != A_src)

@@ -73,7 +73,7 @@ Thus, the two variables affect pump operation are set in New():
 		return 1
 
 	//Calculate necessary moles to transfer using PV=nRT
-	if((air1.total_moles > 0) && (air1.temperature > 0))
+	if(air1.total_moles > 0 && air1.temperature > 0)
 		var/pressure_delta = target_pressure - output_starting_pressure
 		var/transfer_moles = pressure_delta * air2.volume / (air1.temperature * R_IDEAL_GAS_EQUATION)
 
@@ -125,7 +125,7 @@ Thus, the two variables affect pump operation are set in New():
 		onclose(user, "atmo_pump")*/
 
 /obj/machinery/atmospherics/binary/pump/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
+	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"] != "command"))
 		return 0
 
 	if("power" in signal.data)
@@ -166,7 +166,8 @@ Thus, the two variables affect pump operation are set in New():
 	return
 
 /obj/machinery/atmospherics/binary/pump/Topic(href,href_list)
-	if(..()) return
+	if(..())
+		return
 	/*if(href_list["power"])
 		on = !on
 	if(href_list["set_press"])
@@ -220,11 +221,12 @@ Thus, the two variables affect pump operation are set in New():
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 	to_chat(user, SPAN_INFO("You begin to unfasten \the [src]..."))
 	if(do_after(user, 40))
-		user.visible_message( \
-			"[user] unfastens \the [src].", \
-			SPAN_INFO("You have unfastened \the [src]."), \
-			"You hear a ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
+		user.visible_message(
+			"[user] unfastens \the [src].",
+			SPAN_INFO("You have unfastened \the [src]."),
+			"You hear a ratchet."
+		)
+		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)
 
 // Porting this to NanoUI, it looks way better honestly. -Frenjo

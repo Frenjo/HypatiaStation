@@ -88,9 +88,9 @@
 	else //external -> output
 		var/pressure_delta = 10000
 
-		if(pressure_checks&1)
+		if(pressure_checks & 1)
 			pressure_delta = min(pressure_delta, (environment_pressure - external_pressure_bound))
-		if(pressure_checks&4)
+		if(pressure_checks & 4)
 			pressure_delta = min(pressure_delta, (output_pressure_max - air2.return_pressure()))
 
 		if(pressure_delta > 0)
@@ -125,7 +125,7 @@
 		"tag" = id,
 		"device" = "ADVP",
 		"power" = on,
-		"direction" = pump_direction?("release"):("siphon"),
+		"direction" = pump_direction ? ("release") : ("siphon"),
 		"checks" = pressure_checks,
 		"input" = input_pressure_min,
 		"output" = output_pressure_max,
@@ -142,7 +142,7 @@
 		set_frequency(frequency)
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
+	if(!signal.data["tag"] || signal.data["tag"] != id || signal.data["sigtype"] != "command")
 		return 0
 	if("power" in signal.data)
 		on = text2num(signal.data["power"])

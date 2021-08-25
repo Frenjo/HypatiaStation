@@ -57,7 +57,7 @@
 
 			var/transfer_moles = 0
 			if(air_contents.temperature > 0)
-				transfer_moles = pressure_delta*environment.volume/(air_contents.temperature * R_IDEAL_GAS_EQUATION)
+				transfer_moles = pressure_delta * environment.volume / (air_contents.temperature * R_IDEAL_GAS_EQUATION)
 
 				//Actually transfer the gas
 				var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
@@ -72,7 +72,7 @@
 
 			var/transfer_moles = 0
 			if(environment.temperature > 0)
-				transfer_moles = pressure_delta*air_contents.volume/(environment.temperature * R_IDEAL_GAS_EQUATION)
+				transfer_moles = pressure_delta * air_contents.volume / (environment.temperature * R_IDEAL_GAS_EQUATION)
 
 				//Actually transfer the gas
 				var/datum/gas_mixture/removed
@@ -126,7 +126,7 @@ Target Pressure: <A href='?src=\ref[src];pressure_adj=-1000'>-</A> <A href='?src
 	if(usr.stat || usr.restrained())
 		return
 
-	if(((get_dist(src, usr) <= 1) && isturf(src.loc)))
+	if((get_dist(src, usr) <= 1) && isturf(src.loc))
 		usr.set_machine(src)
 
 		if(href_list["power"])

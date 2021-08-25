@@ -8,7 +8,7 @@
 	layer = 2.4 //under wires with their 2.44
 	use_power = 0
 
-	var/alert_pressure = 80*ONE_ATMOSPHERE
+	var/alert_pressure = 80 * ONE_ATMOSPHERE
 	//minimum pressure before check_pressure(...) should be called
 
 /obj/machinery/atmospherics/pipe/proc/pipeline_expansion()
@@ -52,7 +52,6 @@
 	qdel(parent)
 	if(air_temporary)
 		loc.assume_air(air_temporary)
-
 	return ..()
 
 /obj/machinery/atmospherics/pipe/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -61,7 +60,7 @@
 	if(istype(src, /obj/machinery/atmospherics/pipe/vent))
 		return ..()
 
-	if(istype(W,/obj/item/device/pipe_painter))
+	if(istype(W, /obj/item/device/pipe_painter))
 		return 0
 
 	if(!istype(W, /obj/item/weapon/wrench))
@@ -73,7 +72,7 @@
 
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
+	if((int_air.return_pressure()-env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
 		to_chat(user, SPAN_WARNING("You cannot unwrench [src], it is too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
@@ -81,11 +80,12 @@
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 	to_chat(user, SPAN_INFO("You begin to unfasten \the [src]..."))
 	if(do_after(user, 40))
-		user.visible_message( \
-			"[user] unfastens \the [src].", \
-			SPAN_INFO("You have unfastened \the [src]."), \
-			"You hear a ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
+		user.visible_message(
+			"[user] unfastens \the [src].",
+			SPAN_INFO("You have unfastened \the [src]."),
+			"You hear a ratchet."
+		)
+		new /obj/item/pipe(loc, make_from = src)
 		for(var/obj/machinery/meter/meter in T)
 			if(meter.target == src)
 				new /obj/item/pipe_meter(T)
@@ -109,9 +109,9 @@
 	var/minimum_temperature_difference = 300
 	var/thermal_conductivity = 0 //WALL_HEAT_TRANSFER_COEFFICIENT No
 
-	var/maximum_pressure = 70*ONE_ATMOSPHERE
-	var/fatigue_pressure = 55*ONE_ATMOSPHERE
-	alert_pressure = 55*ONE_ATMOSPHERE
+	var/maximum_pressure = 70 * ONE_ATMOSPHERE
+	var/fatigue_pressure = 55 * ONE_ATMOSPHERE
+	alert_pressure = 55 * ONE_ATMOSPHERE
 
 	level = 1
 
@@ -196,7 +196,7 @@
 	src.visible_message(SPAN_DANGER("[src] bursts!"));
 	playsound(src, 'sound/effects/bang.ogg', 25, 1)
 	var/datum/effect/system/smoke_spread/smoke = new
-	smoke.set_up(1,0, src.loc, 0)
+	smoke.set_up(1, 0, src.loc, 0)
 	smoke.start()
 	src = null
 
@@ -211,8 +211,7 @@
 		node1.disconnect(src)
 	if(node2)
 		node2.disconnect(src)
-
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/pipe/simple/pipeline_expansion()
 	return list(node1, node2)
@@ -243,13 +242,13 @@
 	else
 		if(!node1 && !node2)
 			var/turf/T = get_turf(src)
-			new /obj/item/pipe(loc, make_from=src)
+			new /obj/item/pipe(loc, make_from = src)
 			for(var/obj/machinery/meter/meter in T)
 				if(meter.target == src)
 					new /obj/item/pipe_meter(T)
 					qdel(meter)
 			qdel(src)
-		var/have_node1 = node1 ? 1: 0
+		var/have_node1 = node1 ? 1 : 0
 		var/have_node2 = node2 ? 1 : 0
 		icon_state = "exposed[have_node1][have_node2][invisibility ? "-f" : "" ]"
 
@@ -259,18 +258,18 @@
 	var/node2_dir
 
 	for(var/direction in cardinal)
-		if(direction&initialize_directions)
+		if(direction & initialize_directions)
 			if(!node1_dir)
 				node1_dir = direction
 			else if(!node2_dir)
 				node2_dir = direction
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node1_dir))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node1_dir))
+		if(target.initialize_directions & get_dir(target, src))
 			node1 = target
 			break
-	for(var/obj/machinery/atmospherics/target in get_step(src,node2_dir))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node2_dir))
+		if(target.initialize_directions & get_dir(target, src))
 			node2 = target
 			break
 
@@ -303,11 +302,11 @@
 	icon_state = "intact"
 
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers
-	name="scrubbers pipe"
+	name = "scrubbers pipe"
 	color = COLOR_RED
 
 /obj/machinery/atmospherics/pipe/simple/visible/supply
-	name="air supply pipe"
+	name = "air supply pipe"
 	color = COLOR_BLUE
 
 /obj/machinery/atmospherics/pipe/simple/visible/yellow
@@ -333,11 +332,11 @@
 	alpha = 192		//set for the benefit of mapping - this is reset to opaque when the pipe is spawned in game
 
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers
-	name="scrubbers pipe"
+	name = "scrubbers pipe"
 	color = COLOR_RED
 
 /obj/machinery/atmospherics/pipe/simple/hidden/supply
-	name="air supply pipe"
+	name = "air supply pipe"
 	color = COLOR_BLUE
 
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow
@@ -363,9 +362,9 @@
 
 	minimum_temperature_difference = 10000
 	thermal_conductivity = 0
-	maximum_pressure = 1000*ONE_ATMOSPHERE
-	fatigue_pressure = 900*ONE_ATMOSPHERE
-	alert_pressure = 900*ONE_ATMOSPHERE
+	maximum_pressure = 1000 * ONE_ATMOSPHERE
+	fatigue_pressure = 900 * ONE_ATMOSPHERE
+	alert_pressure = 900 * ONE_ATMOSPHERE
 
 	level = 2
 
@@ -440,8 +439,7 @@
 		node2.disconnect(src)
 	if(node3)
 		node3.disconnect(src)
-
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/pipe/manifold/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
@@ -463,7 +461,7 @@
 	..()
 
 /obj/machinery/atmospherics/pipe/manifold/update_icon()
-	if(node1&&node2&&node3)
+	if(node1 && node2 && node3)
 		switch(pipe_color)
 			if("red")
 				color = COLOR_RED
@@ -483,7 +481,7 @@
 	else
 		var/connected = 0
 		var/unconnected = 0
-		var/connect_directions = (NORTH|SOUTH|EAST|WEST)&(~dir)
+		var/connect_directions = (NORTH|SOUTH|EAST|WEST) & (~dir)
 
 		if(node1)
 			connected |= get_dir(src, node1)
@@ -492,7 +490,7 @@
 		if(node3)
 			connected |= get_dir(src, node3)
 
-		unconnected = (~connected)&(connect_directions)
+		unconnected = (~connected) & (connect_directions)
 
 		icon_state = "manifold_[connected]_[unconnected]"
 
@@ -501,7 +499,7 @@
 	return
 
 /obj/machinery/atmospherics/pipe/manifold/initialize()
-	var/connect_directions = (NORTH|SOUTH|EAST|WEST)&(~dir)
+	var/connect_directions = (NORTH|SOUTH|EAST|WEST) & (~dir)
 
 	for(var/direction in cardinal)
 		if(direction&connect_directions)
@@ -513,7 +511,6 @@
 			if(node1)
 				break
 
-
 	for(var/direction in cardinal)
 		if(direction&connect_directions)
 			for(var/obj/machinery/atmospherics/target in get_step(src, direction))
@@ -523,7 +520,6 @@
 					break
 			if(node2)
 				break
-
 
 	for(var/direction in cardinal)
 		if(direction&connect_directions)
@@ -675,8 +671,7 @@
 		node3.disconnect(src)
 	if(node4)
 		node4.disconnect(src)
-
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/pipe/manifold4w/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
@@ -704,7 +699,7 @@
 
 /obj/machinery/atmospherics/pipe/manifold4w/update_icon()
 	overlays.Cut()
-	if(node1&&node2&&node3&&node4)
+	if(node1 && node2 && node3 && node4)
 		switch(pipe_color)
 			if("red")
 				color = COLOR_RED
@@ -727,36 +722,35 @@
 		var/icon/con = new/icon('icons/obj/atmospherics/pipe_manifold.dmi',"manifold4w_con") //Since 4-ways are supposed to be directionless, they need an overlay instead it seems.
 
 		if(node1)
-			overlays += new/image(con,dir=1)
+			overlays += new/image(con, dir = 1)
 		if(node2)
-			overlays += new/image(con,dir=2)
+			overlays += new/image(con, dir = 2)
 		if(node3)
-			overlays += new/image(con,dir=4)
+			overlays += new/image(con, dir = 4)
 		if(node4)
-			overlays += new/image(con,dir=8)
+			overlays += new/image(con, dir = 8)
 
 		if(!node1 && !node2 && !node3 && !node4)
 			src = null
 	return
 
 /obj/machinery/atmospherics/pipe/manifold4w/initialize()
-
-	for(var/obj/machinery/atmospherics/target in get_step(src,1))
+	for(var/obj/machinery/atmospherics/target in get_step(src, 1))
 		if(target.initialize_directions & 2)
 			node1 = target
 			break
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,2))
+	for(var/obj/machinery/atmospherics/target in get_step(src, 2))
 		if(target.initialize_directions & 1)
 			node2 = target
 			break
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,4))
+	for(var/obj/machinery/atmospherics/target in get_step(src, 4))
 		if(target.initialize_directions & 8)
 			node3 = target
 			break
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,8))
+	for(var/obj/machinery/atmospherics/target in get_step(src, 8))
 		if(target.initialize_directions & 4)
 			node4 = target
 			break
@@ -877,11 +871,11 @@
 		..()
 	else
 		. = PROCESS_KILL
+
 /obj/machinery/atmospherics/pipe/cap/Destroy()
 	if(node)
 		node.disconnect(src)
-
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/pipe/cap/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node)
@@ -948,6 +942,7 @@
 	else if (nodealert)
 		nodealert = 0
 */
+
 /obj/machinery/atmospherics/pipe/tank/carbon_dioxide
 	name = "Pressure Tank (Carbon Dioxide)"
 
@@ -956,7 +951,7 @@
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
 
-	air_temporary.adjust_gas("carbon_dioxide", (25*ONE_ATMOSPHERE)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
+	air_temporary.adjust_gas("carbon_dioxide", (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
 
 	..()
 
@@ -969,7 +964,7 @@
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
 
-	air_temporary.adjust_gas("plasma", (25*ONE_ATMOSPHERE)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
+	air_temporary.adjust_gas("plasma", (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
 
 	..()
 
@@ -982,7 +977,7 @@
 	air_temporary.volume = volume
 	air_temporary.temperature = T0C
 
-	air_temporary.adjust_gas("oxygen_agent_b", (25*ONE_ATMOSPHERE)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
+	air_temporary.adjust_gas("oxygen_agent_b", (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
 
 	..()
 
@@ -995,7 +990,7 @@
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
 
-	air_temporary.adjust_gas("oxygen", (25*ONE_ATMOSPHERE)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
+	air_temporary.adjust_gas("oxygen", (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
 
 	..()
 
@@ -1008,7 +1003,7 @@
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
 
-	air_temporary.adjust_gas("nitrogen", (25*ONE_ATMOSPHERE)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
+	air_temporary.adjust_gas("nitrogen", (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
 
 	..()
 
@@ -1021,16 +1016,17 @@
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
 
-	air_temporary.adjust_multi("oxygen",  (25*ONE_ATMOSPHERE*O2STANDARD)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature), \
-	                           "nitrogen",(25*ONE_ATMOSPHERE*N2STANDARD)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
+	air_temporary.adjust_multi(
+		"oxygen", (25 * ONE_ATMOSPHERE * O2STANDARD) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature),
+		"nitrogen", (25 * ONE_ATMOSPHERE * N2STANDARD) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature)
+	)
 
 	..()
 
 /obj/machinery/atmospherics/pipe/tank/Destroy()
 	if(node1)
 		node1.disconnect(src)
-
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/pipe/tank/pipeline_expansion()
 	return list(node1)
@@ -1047,8 +1043,8 @@
 /obj/machinery/atmospherics/pipe/tank/initialize()
 	var/connect_direction = dir
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,connect_direction))
-		if(target.initialize_directions & get_dir(target,src))
+	for(var/obj/machinery/atmospherics/target in get_step(src, connect_direction))
+		if(target.initialize_directions & get_dir(target, src))
 			node1 = target
 			break
 
@@ -1124,10 +1120,11 @@
 	else if (nodealert)
 		nodealert = 0
 */
+
 /obj/machinery/atmospherics/pipe/vent/Destroy()
 	if(node1)
 		node1.disconnect(src)
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/pipe/vent/pipeline_expansion()
 	return list(node1)

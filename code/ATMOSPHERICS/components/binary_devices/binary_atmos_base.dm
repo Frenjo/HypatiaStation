@@ -57,7 +57,7 @@
 	node1 = null
 	node2 = null
 
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/binary/initialize()
 	if(node1 && node2)

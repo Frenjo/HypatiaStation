@@ -30,7 +30,7 @@
 
 	var/node_connect = dir
 
-	for(var/obj/machinery/atmospherics/target in get_step(src,node_connect))
+	for(var/obj/machinery/atmospherics/target in get_step(src, node_connect))
 		if(target.initialize_directions & get_dir(target, src))
 			node = target
 			break
@@ -100,10 +100,10 @@
 /obj/machinery/atmospherics/portables_connector/return_network(obj/machinery/atmospherics/reference)
 	build_network()
 
-	if(reference==node)
+	if(reference == node)
 		return network
 
-	if(reference==connected_device)
+	if(reference == connected_device)
 		return network
 
 	return null
@@ -154,9 +154,10 @@
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 	to_chat(user, SPAN_INFO("You begin to unfasten \the [src]..."))
 	if(do_after(user, 40))
-		user.visible_message( \
-			"[user] unfastens \the [src].", \
-			SPAN_INFO("You have unfastened \the [src]."), \
-			"You hear a ratchet.")
+		user.visible_message(
+			"[user] unfastens \the [src].",
+			SPAN_INFO("You have unfastened \the [src]."),
+			"You hear a ratchet."
+		)
 		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)

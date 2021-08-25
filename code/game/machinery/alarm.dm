@@ -111,7 +111,7 @@
 	TLV["carbon dioxide"] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
 	TLV["plasma"] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
-	TLV["pressure"] =		list(0,ONE_ATMOSPHERE*0.10,ONE_ATMOSPHERE*1.40,ONE_ATMOSPHERE*1.60) /* kpa */
+	TLV["pressure"] =		list(0,ONE_ATMOSPHERE * 0.10, ONE_ATMOSPHERE * 1.40, ONE_ATMOSPHERE * 1.60) /* kpa */
 	TLV["temperature"] =	list(20, 40, 140, 160) // K
 	target_temperature = 90
 
@@ -126,8 +126,8 @@
 
 		buildstage = 0
 		wiresexposed = 1
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
-		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
+		pixel_x = (dir & 3) ? 0 : (dir == 4 ? -24 : 24)
+		pixel_y = (dir & 3) ? (dir == 1 ? -24 : 24) : 0
 		update_icon()
 		return
 
@@ -213,8 +213,10 @@
 
 				if(abs(environment.temperature - target_temperature) <= 0.5)
 					regulating_temperature = 0
-					visible_message("\The [src] clicks quietly as it stops [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
-					"You hear a click as a faint electronic humming stops.")
+					visible_message(
+						"\The [src] clicks quietly as it stops [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",
+						"You hear a click as a faint electronic humming stops."
+					)
 
 	var/old_level = danger_level
 	danger_level = overall_danger_level()
@@ -257,9 +259,9 @@
 	//	other_moles+=G.moles
 
 	var/pressure_dangerlevel = get_danger_level(environment_pressure, TLV["pressure"])
-	var/oxygen_dangerlevel = get_danger_level(environment.gas["oxygen"]*partial_pressure, TLV["oxygen"])
-	var/co2_dangerlevel = get_danger_level(environment.gas["carbon_dioxide"]*partial_pressure, TLV["carbon dioxide"])
-	var/plasma_dangerlevel = get_danger_level(environment.gas["plasma"]*partial_pressure, TLV["plasma"])
+	var/oxygen_dangerlevel = get_danger_level(environment.gas["oxygen"] * partial_pressure, TLV["oxygen"])
+	var/co2_dangerlevel = get_danger_level(environment.gas["carbon_dioxide"] * partial_pressure, TLV["carbon dioxide"])
+	var/plasma_dangerlevel = get_danger_level(environment.gas["plasma"] * partial_pressure, TLV["plasma"])
 	var/temperature_dangerlevel = get_danger_level(environment.temperature, TLV["temperature"])
 	//var/other_dangerlevel = get_danger_level(other_moles*partial_pressure, TLV["other"])
 
@@ -270,7 +272,7 @@
 		plasma_dangerlevel,
 		//other_dangerlevel,
 		temperature_dangerlevel
-		)
+	)
 
 /obj/machinery/alarm/proc/master_is_operating()
 	return alarm_area.master_air_alarm && !(alarm_area.master_air_alarm.stat & (NOPOWER | BROKEN))
@@ -349,7 +351,7 @@
 		var/list/I = alarm_area.air_vent_info[id_tag]
 		if(I && I["timestamp"] + AALARM_REPORT_TIMEOUT / 2 > world.time)
 			continue
-		send_signal(id_tag, list("status") )
+		send_signal(id_tag, list("status"))
 	for(var/id_tag in alarm_area.air_scrub_names)
 		var/list/I = alarm_area.air_scrub_info[id_tag]
 		if(I && I["timestamp"] + AALARM_REPORT_TIMEOUT / 2 > world.time)
@@ -384,33 +386,33 @@
 	switch(mode)
 		if(AALARM_MODE_SCRUBBING)
 			for(var/device_id in alarm_area.air_scrub_names)
-				send_signal(device_id, list("power"= 1, "co2_scrub"= 1, "scrubbing"= 1, "panic_siphon"= 0) )
+				send_signal(device_id, list("power" = 1, "co2_scrub" = 1, "scrubbing" = 1, "panic_siphon" = 0))
 			for(var/device_id in alarm_area.air_vent_names)
-				send_signal(device_id, list("power"= 1, "checks"= 1, "set_external_pressure"= target_pressure) )
+				send_signal(device_id, list("power" = 1, "checks" = 1, "set_external_pressure" = target_pressure))
 
 		if(AALARM_MODE_PANIC, AALARM_MODE_CYCLE)
 			for(var/device_id in alarm_area.air_scrub_names)
-				send_signal(device_id, list("power"= 1, "panic_siphon"= 1) )
+				send_signal(device_id, list("power" = 1, "panic_siphon" = 1))
 			for(var/device_id in alarm_area.air_vent_names)
-				send_signal(device_id, list("power"= 0) )
+				send_signal(device_id, list("power" = 0) )
 
 		if(AALARM_MODE_REPLACEMENT)
 			for(var/device_id in alarm_area.air_scrub_names)
-				send_signal(device_id, list("power"= 1, "panic_siphon"= 1) )
+				send_signal(device_id, list("power" = 1, "panic_siphon" = 1))
 			for(var/device_id in alarm_area.air_vent_names)
-				send_signal(device_id, list("power"= 1, "checks"= 1, "set_external_pressure"= target_pressure) )
+				send_signal(device_id, list("power" = 1, "checks" = 1, "set_external_pressure" = target_pressure))
 
 		if(AALARM_MODE_FILL)
 			for(var/device_id in alarm_area.air_scrub_names)
-				send_signal(device_id, list("power"= 0) )
+				send_signal(device_id, list("power" = 0))
 			for(var/device_id in alarm_area.air_vent_names)
-				send_signal(device_id, list("power"= 1, "checks"= 1, "set_external_pressure"= target_pressure) )
+				send_signal(device_id, list("power" = 1, "checks" = 1, "set_external_pressure" = target_pressure))
 
 		if(AALARM_MODE_OFF)
 			for(var/device_id in alarm_area.air_scrub_names)
-				send_signal(device_id, list("power"= 0) )
+				send_signal(device_id, list("power" = 0))
 			for(var/device_id in alarm_area.air_vent_names)
-				send_signal(device_id, list("power"= 0) )
+				send_signal(device_id, list("power" = 0))
 
 /obj/machinery/alarm/proc/apply_danger_level(new_danger_level)
 	if(alarm_area.atmosalert(new_danger_level))
@@ -657,7 +659,7 @@
 	if(buildstage != 2)
 		return
 
-	if((get_dist(src, user) > 1))
+	if(get_dist(src, user) > 1)
 		if(!issilicon(user))
 			user.machine = null
 			user << browse(null, "window=air_alarm")
@@ -941,7 +943,8 @@ table tr:first-child th:first-child { border: none;}
 				"oxygen"         = "O<sub>2</sub>",
 				"carbon dioxide" = "CO<sub>2</sub>",
 				"plasma"         = "Toxin",
-				"other"          = "Other",)
+				"other"          = "Other"
+			)
 
 			var/list/selected
 			for(var/g in gases)
@@ -969,7 +972,7 @@ table tr:first-child th:first-child { border: none;}
 	if(href_list["rcon"])
 		rcon_setting = text2num(href_list["rcon"])
 
-	if((get_dist(src, usr) > 1))
+	if(get_dist(src, usr) > 1)
 		if(!issilicon(usr))
 			usr.machine = null
 			usr << browse(null, "window=air_alarm")
@@ -982,7 +985,8 @@ table tr:first-child th:first-child { border: none;}
 	if(href_list["command"])
 		var/device_id = href_list["id_tag"]
 		switch(href_list["command"])
-			if( "power",
+			if(
+				"power",
 				"adjust_external_pressure",
 				"set_external_pressure",
 				"checks",
@@ -990,7 +994,8 @@ table tr:first-child th:first-child { border: none;}
 				"tox_scrub",
 				"n2o_scrub",
 				"panic_siphon",
-				"scrubbing")
+				"scrubbing"
+			)
 
 				send_signal(device_id, list(href_list["command"] = text2num(href_list["val"]) ) )
 
@@ -1127,7 +1132,7 @@ table tr:first-child th:first-child { border: none;}
 				update_icon()
 				return
 
-			if(wiresexposed && ((istype(W, /obj/item/device/multitool) || istype(W, /obj/item/weapon/wirecutters))))
+			if(wiresexposed && (istype(W, /obj/item/device/multitool) || istype(W, /obj/item/weapon/wirecutters)))
 				return attack_hand(user)
 
 			if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
