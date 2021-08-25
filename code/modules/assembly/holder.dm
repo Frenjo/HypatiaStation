@@ -30,11 +30,11 @@
 	return 1
 
 /obj/item/device/assembly_holder/attach(obj/item/device/D, obj/item/device/D2, mob/user)
-	if((!D) || (!D2))
+	if(!D || !D2)
 		return 0
-	if((!isassembly(D)) || (!isassembly(D2)))
+	if(!isassembly(D) || !isassembly(D2))
 		return 0
-	if((D:secured) || (D2:secured))
+	if(D:secured || D2:secured)
 		return 0
 	if(user)
 		user.remove_from_mob(D)
@@ -196,7 +196,7 @@
 		return 0
 	if(!secured)
 		visible_message("\icon[src] *beep* *beep*", "*beep* *beep*")
-	if((normal) && (a_right) && (a_left))
+	if(normal && a_right && a_left)
 		if(a_right != D)
 			a_right.pulsed(0)
 		if(a_left != D)

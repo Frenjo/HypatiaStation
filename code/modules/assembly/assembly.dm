@@ -20,9 +20,9 @@
 	var/wires = WIRE_RECEIVE | WIRE_PULSE
 
 	var/const/WIRE_RECEIVE = 1			//Allows Pulsed(0) to call Activate()
-	var/const/WIRE_PULSE = 2				//Allows Pulse(0) to act on the holder
-	var/const/WIRE_PULSE_SPECIAL = 4		//Allows Pulse(0) to act on the holders special assembly
-	var/const/WIRE_RADIO_RECEIVE = 8		//Allows Pulsed(1) to call Activate()
+	var/const/WIRE_PULSE = 2			//Allows Pulse(0) to act on the holder
+	var/const/WIRE_PULSE_SPECIAL = 4	//Allows Pulse(0) to act on the holders special assembly
+	var/const/WIRE_RADIO_RECEIVE = 8	//Allows Pulsed(1) to call Activate()
 	var/const/WIRE_RADIO_PULSE = 16		//Allows Pulse(1) to send a radio message
 
 //What the device does when turned on
@@ -57,7 +57,6 @@
 /obj/item/device/assembly/interact(mob/user as mob)
 	return
 
-
 /obj/item/device/assembly/process_cooldown()
 	cooldown--
 	if(cooldown <= 0)
@@ -66,14 +65,12 @@
 		process_cooldown()
 	return 1
 
-
 /obj/item/device/assembly/pulsed(radio = 0)
 	if(holder && (wires & WIRE_RECEIVE))
 		activate()
 	if(radio && (wires & WIRE_RADIO_RECEIVE))
 		activate()
 	return 1
-
 
 /obj/item/device/assembly/pulse(radio = 0)
 	if(holder && (wires & WIRE_PULSE))
@@ -84,7 +81,6 @@
 		//Not sure what goes here quite yet send signal?
 	return 1
 
-
 /obj/item/device/assembly/activate()
 	if(!secured || (cooldown > 0))
 		return 0
@@ -93,12 +89,10 @@
 		process_cooldown()
 	return 1
 
-
 /obj/item/device/assembly/toggle_secure()
 	secured = !secured
 	update_icon()
 	return secured
-
 
 /obj/item/device/assembly/attach_assembly(obj/item/device/assembly/A, mob/user)
 	holder = new/obj/item/device/assembly_holder(get_turf(src))
@@ -106,7 +100,6 @@
 		to_chat(user, SPAN_INFO("You attach \the [A] to \the [src]!"))
 		return 1
 	return 0
-
 
 /obj/item/device/assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(isassembly(W))
@@ -123,11 +116,9 @@
 	..()
 	return
 
-
 /obj/item/device/assembly/process()
 	processing_objects.Remove(src)
 	return
-
 
 /obj/item/device/assembly/examine()
 	set src in view()
@@ -139,14 +130,12 @@
 			to_chat(usr, "\The [src] can be attached!")
 	return
 
-
 /obj/item/device/assembly/attack_self(mob/user as mob)
 	if(!user)
 		return 0
 	user.set_machine(src)
 	interact(user)
 	return 1
-
 
 /obj/item/device/assembly/interact(mob/user as mob)
 	return //HTML MENU FOR WIRES GOES HERE
@@ -185,6 +174,4 @@
 		if(!H)	return 0
 		if(!H.IsAssemblyHolder())	return 0
 		//Remember to have it set its loc somewhere in here
-
-
 */
