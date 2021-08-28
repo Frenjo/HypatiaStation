@@ -12,7 +12,7 @@
 	active_areas += src
 	all_areas += src
 
-	if(lighting_use_dynamic)
+	if(dynamic_lighting)
 		luminosity = 0
 	else
 		luminosity = 1

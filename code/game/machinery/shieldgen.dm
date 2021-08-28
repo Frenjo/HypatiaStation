@@ -16,7 +16,7 @@
 	update_nearby_tiles(need_rebuild = 1)
 
 /obj/machinery/shield/Destroy()
-	opacity = 0
+	set_opacity(0)
 	density = 0
 	update_nearby_tiles()
 	..()
@@ -54,10 +54,10 @@
 		qdel(src)
 		return
 
-	opacity = 1
+	set_opacity(1)
 	spawn(20)
 		if(src)
-			opacity = 0
+			set_opacity(0)
 
 	..()
 
@@ -69,8 +69,8 @@
 		qdel(src)
 		return
 
-	opacity = 1
-	spawn(20) if(src) opacity = 0
+	set_opacity(1)
+	spawn(20) if(src) set_opacity(0)
 	return
 
 /obj/machinery/shield/bullet_act(obj/item/projectile/Proj)
@@ -80,10 +80,10 @@
 		visible_message("\blue The [src] dissipates!")
 		qdel(src)
 		return
-	opacity = 1
+	set_opacity(1)
 	spawn(20)
 		if(src)
-			opacity = 0
+			set_opacity(0)
 
 /obj/machinery/shield/ex_act(severity)
 	switch(severity)
@@ -132,10 +132,10 @@
 		return
 
 	//The shield becomes dense to absorb the blow.. purely asthetic.
-	opacity = 1
+	set_opacity(1)
 	spawn(20)
 		if(src)
-			opacity = 0
+			set_opacity(0)
 
 	..()
 	return

@@ -15,7 +15,7 @@
 
 /obj/structure/bush/New()
 	if(prob(20))
-		opacity = 1
+		set_opacity(1)
 
 /obj/structure/bush/Bumped(M as mob)
 	if(isanimal(M))

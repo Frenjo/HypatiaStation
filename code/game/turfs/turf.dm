@@ -22,8 +22,6 @@
 	var/icon_old = null
 	var/pathweight = 1
 
-	var/dynamic_lighting = 1
-
 /turf/New()
 	..()
 	for(var/atom/movable/AM as mob|obj in src)
@@ -216,8 +214,9 @@
 
 	var/old_opacity = opacity
 	var/old_dynamic_lighting = dynamic_lighting
-	var/list/old_affecting_lights = affecting_lights
+	var/old_affecting_lights = affecting_lights
 	var/old_lighting_overlay = lighting_overlay
+	var/old_corners = corners
 
 	if(connections)
 		connections.erase_all()
@@ -262,15 +261,19 @@
 		W.levelupdate()
 		. = W
 
-	lighting_overlay = old_lighting_overlay
-	affecting_lights = old_affecting_lights
-	if((old_opacity != opacity) || (dynamic_lighting != old_dynamic_lighting))
-		reconsider_lights()
-	if(dynamic_lighting != old_dynamic_lighting)
-		if(dynamic_lighting)
-			lighting_build_overlays()
-		else
-			lighting_clear_overlays()
+	recalc_atom_opacity()
+
+	if(lighting_overlays_initialised)
+		lighting_overlay = old_lighting_overlay
+		affecting_lights = old_affecting_lights
+		corners = old_corners
+		if(old_opacity != opacity || dynamic_lighting != old_dynamic_lighting)
+			reconsider_lights()
+		if(dynamic_lighting != old_dynamic_lighting)
+			if(dynamic_lighting)
+				lighting_build_overlay()
+			else
+				lighting_clear_overlay()
 
 /turf/proc/transport_properties_from(turf/other)
 	if(!istype(other, src.type))

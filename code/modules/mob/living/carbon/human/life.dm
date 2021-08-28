@@ -990,9 +990,8 @@
 			var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
 			if(isturf(loc)) //else, there's considered to be no light
 				var/turf/T = loc
-				var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-				if(L)
-					light_amount = min(10, L.lum_r + L.lum_g + L.lum_b) - 2 //hardcapped so it's not abused by having a ton of flashlights
+				if(T)
+					light_amount = T.get_lumcount(0.5) * 10 //hardcapped so it's not abused by having a ton of flashlights
 				else
 					light_amount = 1
 			nutrition += light_amount
@@ -1015,11 +1014,11 @@
 				if(L)
 					light_amount = L.lum_r + L.lum_g + L.lum_b //hardcapped so it's not abused by having a ton of flashlights
 				else
-					light_amount =  10
+					light_amount = 10
 			if(light_amount > 2) //if there's enough light, start dying
-				take_overall_damage(1,1)
+				take_overall_damage(1, 1)
 			else if(light_amount < 2) //heal in the dark
-				heal_overall_damage(1,1)
+				heal_overall_damage(1, 1)
 
 /*		//The fucking FAT mutation is the dumbest shit ever. It makes the code so difficult to work with
 		if(FAT in mutations)

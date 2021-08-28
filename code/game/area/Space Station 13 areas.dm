@@ -97,7 +97,7 @@ var/list/ghostteleportlocs = list()
 	icon_state = "dark128"
 	requires_power = 1
 	always_unpowered = 1
-	lighting_use_dynamic = 1
+	dynamic_lighting = 1
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
@@ -132,7 +132,7 @@ var/list/ghostteleportlocs = list()
 /area/admin
 	name = "\improper Admin room"
 	icon_state = "start"
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 //These are shuttle areas, they must contain two areas in a subgroup if you want to move a shuttle from one
 //place to another. Look at escape shuttle for example.
@@ -354,7 +354,7 @@ var/list/ghostteleportlocs = list()
 	name = "start area"
 	icon_state = "start"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	has_gravity = 1
 
 // === end remove
@@ -369,7 +369,7 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Centcom"
 	icon_state = "centcom"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/centcom/control
 	name = "\improper Centcom Control"
@@ -410,17 +410,17 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Syndicate Mothership"
 	icon_state = "syndie-ship"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/syndicate_mothership/control
 	name = "\improper Syndicate Control Room"
 	icon_state = "syndie-control"
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/syndicate_mothership/elite_squad
 	name = "\improper Syndicate Elite Squad"
 	icon_state = "syndie-elite"
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 //EXTRA
 /area/asteroid					// -- TLE
@@ -446,7 +446,7 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Thunderdome"
 	icon_state = "thunder"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/tdome/tdome1
 	name = "\improper Thunderdome (Team 1)"
@@ -517,7 +517,7 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Wizard's Den"
 	icon_state = "yellow"
 	requires_power = 0
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/vox_station/transit
 	name = "\improper Hyperspace"
@@ -621,7 +621,7 @@ var/list/ghostteleportlocs = list()
 /area/prison/solitary
 	name = "Prison Satellite Solitary Confinement"
 	icon_state = "brig"
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/prison/cell_block/A
 	name = "Prison Satellite Cell Block A"
@@ -924,7 +924,7 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Holodeck"
 	icon_state = "Holodeck"
 	//luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/holodeck/alphadeck
 	name = "\improper Holodeck Alpha"
@@ -1662,25 +1662,25 @@ var/list/ghostteleportlocs = list()
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/turret_protected/AIsatextFS
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/turret_protected/AIsatextAS
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/turret_protected/AIsatextAP
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 
 /area/turret_protected/NewAIMain
 	name = "\improper AI Main New"
@@ -1863,7 +1863,7 @@ var/list/ghostteleportlocs = list()
 	name = "Beach"
 	icon_state = "null"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	requires_power = 0
 	var/sound/mysound = null
 
@@ -1982,7 +1982,7 @@ var/list/the_station_areas = list (
 	name = "Keelin's private beach"
 	icon_state = "null"
 	luminosity = 1
-	lighting_use_dynamic = 0
+	dynamic_lighting = 0
 	requires_power = 0
 	var/sound/mysound = null
 
