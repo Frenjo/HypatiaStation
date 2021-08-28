@@ -548,9 +548,7 @@
 "kB" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/wood,/area/awaymission/southblock)
 "kC" = (/obj/structure/stool/bed/chair/comfy/brown,/turf/simulated/floor/wood,/area/awaymission/southblock)
 "kD" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp/green,/turf/simulated/floor/wood,/area/awaymission/southblock)
-"kE" = (/obj/structure/shuttle/engine/propulsion{icon_state = "propulsion_r"; tag = "icon-propulsion_r"},/obj/structure/shuttle/engine/propulsion,/turf/simulated/shuttle/plating,/area/awaymission/arrivalblock)
 "kF" = (/obj/structure/shuttle/engine/propulsion,/turf/simulated/shuttle/plating,/area/awaymission/arrivalblock)
-"kG" = (/obj/structure/shuttle/engine/propulsion{icon_state = "propulsion_l"; tag = "icon-propulsion_l"},/obj/structure/shuttle/engine/propulsion{icon_state = "burst_l"; tag = "icon-burst_l"},/obj/structure/shuttle/engine/propulsion{icon_state = "propulsion_l"; tag = "icon-propulsion_l"},/obj/structure/shuttle/engine/propulsion,/turf/simulated/shuttle/plating,/area/awaymission/arrivalblock)
 "kH" = (/obj/structure/shuttle/engine/propulsion{dir = 1; icon_state = "propulsion_l"; tag = "icon-propulsion_l (NORTH)"},/obj/structure/window/reinforced,/turf/simulated/floor/plating/airless,/area/awaymission/arrivalblock)
 "kI" = (/obj/structure/shuttle/engine/propulsion{dir = 1; icon_state = "propulsion_r"; tag = "icon-propulsion_r (NORTH)"},/obj/structure/window/reinforced,/turf/simulated/floor/plating/airless,/area/awaymission/arrivalblock)
 "kJ" = (/turf/simulated/shuttle/wall/corner/exterior/smoothwhite/ne,/area/awaymission/arrivalblock)
@@ -695,7 +693,7 @@ aagcgegegegegegchIiHipgCgCgCgCgCgCjtgCgCgCjujujcjcjvjcjcjcjcjwjcjcjcjxjyjzjzjzjz
 aagcgfgfgegfgfgchZhyhujDjEjFipjGhyjHhyhyhyhyhyjcjIjJjKjcjLjMjMjNjOjcjPjJjzjQjRjSjTjUjzjVjVjWjWjXjYjZaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aagcgegegegegegckakbiHhuiahykcjDhykdhyhyhyhyhyjckekfkgjckhkikjkkkljcjPkmjzjQknkokpjUjzjVjVjVjVjVkqjZaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aagckrkrkrkrkrgcgCksktkuksktgCgCgCgCgCjugCgCgCjcjcjcjcjcjcjckvjcjwjcjPjJjzkwkxkykzkAjzkBjVkCjVjVkDjZaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aagdkEkFkFkFkGgdaafOkHgUkIkJaagCkKkLkMhykNjEkOjckPjMkljckQjMjMkRkljcjPjJjzkSkTkUkTkVjzjVkqkDkWjVjYjZaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aagdkFkFkFkFkFgdaafOkHgUkIkJaagCkKkLkMhykNjEkOjckPjMkljckQjMjMkRkljcjPjJjzkSkTkUkTkVjzjVkqkDkWjVjYjZaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaagckXkYkZgcaagChyhyjEhyhyjEkOjclajPlbjclcjPjPjPldjcjPjJjzlelflglflhjzjVjVjXjVjVkqjZaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaagckXgekZgcaagChyjEhyjEhyhykOjckPkjklkvlcjPliljlkjcjPjJjzlllflglflmjzkqjYjVlnkCjYjZaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaagckXgfkZgcaagClohylphylqhykOjcjcjcjcjclrjPlsjPltjcjPjJjzlulflglflvjzjzjzjzjzlwlxlyaaaaaaaaaaaaaaaaaaaaaaaaaaaa
