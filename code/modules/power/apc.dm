@@ -324,7 +324,7 @@
 	if(terminal)
 		qdel(terminal)
 		terminal = null
-	..()
+	return ..()
 
 /obj/machinery/power/apc/proc/make_terminal()
 	// create a terminal object at the same position as original turf loc
