@@ -30,16 +30,16 @@
 	next_allowed_topic_time = world.time + TOPIC_SPAM_DELAY
 
 	//search the href for script injection
-	if(findtext(href,"<script", 1, 0))
-		world.log << "Attempted use of scripts within a topic call, by [src]"
-		message_admins("Attempted use of scripts within a topic call, by [src]")
+	if(findtext(href, "<script", 1, 0))
+		world.log << "Attempted use of scripts within a topic call, by [src]."
+		message_admins("Attempted use of scripts within a topic call, by [src].")
 		//del(usr)
 		return
 
 	//Admin PM
 	if(href_list["priv_msg"])
 		var/client/C = locate(href_list["priv_msg"])
-		if(ismob(C)) 		//Old stuff can feed-in mobs instead of clients
+		if(ismob(C))		//Old stuff can feed-in mobs instead of clients
 			var/mob/M = C
 			C = M.client
 		cmd_admin_pm(C, null)
