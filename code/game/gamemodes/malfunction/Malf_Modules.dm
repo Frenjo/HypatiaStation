@@ -132,7 +132,7 @@ rcd light flash thingy on matter drain
 					C.status = !C.status
 					camera.uses --
 					for(var/mob/V in viewers(src, null))
-						V.show_message(text(SPAN_INFO("You hear a quiet click.")))
+						V.show_message(SPAN_INFO("You hear a quiet click."))
 				else
 					to_chat(usr, "This camera is either active, or not repairable.")
 			else

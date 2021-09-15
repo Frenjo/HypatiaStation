@@ -146,9 +146,11 @@
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
 	area_uid = alarm_area.uid
-	if(name in list("north bump", "south bump", "east bump", "west bump",
-			"server north bump", "server south bump", "server east bump", "server west bump",
-			"freezer north bump", "freezer south bump", "freezer east bump", "freezer west bump"))
+	if(name in list(
+		"north bump", "south bump", "east bump", "west bump",
+		"server north bump", "server south bump", "server east bump", "server west bump",
+		"freezer north bump", "freezer south bump", "freezer east bump", "freezer west bump"
+	))
 		name = "[alarm_area.name] Air Alarm"
 
 	// breathable air according to human/Life()
@@ -673,7 +675,7 @@
 			return
 
 	if(wiresexposed && (!issilicon(user)))
-		var/t1 = text("<html><head><title>[alarm_area.name] Air Alarm Wires</title></head><body><B>Access Panel</B><br>\n")
+		var/t1 = "<html><head><title>[alarm_area.name] Air Alarm Wires</title></head><body><B>Access Panel</B><br>\n"
 		var/list/wirecolors = list(
 			"Orange" = 1,
 			"Dark red" = 2,
@@ -692,8 +694,8 @@
 				t1 += "<a href='?src=\ref[src];pulse=[wirecolors[wiredesc]]'>Pulse</a> "
 
 			t1 += "<br>"
-		t1 += text("<br>\n[(locked ? "The Air Alarm is locked." : "The Air Alarm is unlocked.")]<br>\n[((shorted || (stat & (NOPOWER|BROKEN))) ? "The Air Alarm is offline." : "The Air Alarm is working properly!")]<br>\n[(aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]")
-		t1 += text("<p><a href='?src=\ref[src];close2=1'>Close</a></p></body></html>")
+		t1 += "<br>\n[(locked ? "The Air Alarm is locked." : "The Air Alarm is unlocked.")]<br>\n[((shorted || (stat & (NOPOWER|BROKEN))) ? "The Air Alarm is offline." : "The Air Alarm is working properly!")]<br>\n[(aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]"
+		t1 += "<p><a href='?src=\ref[src];close2=1'>Close</a></p></body></html>"
 		user << browse(t1, "window=AAlarmwires")
 		onclose(user, "AAlarmwires")
 
@@ -704,7 +706,7 @@
 	return
 
 /obj/machinery/alarm/proc/return_text(mob/user)
-	if(!(issilicon(user)) && locked)
+	if(issilicon(user) && locked)
 		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr><i>(Swipe ID card to unlock interface)</i></body></html>"
 	else
 		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr>[return_controls()]</body></html>"
@@ -1423,13 +1425,13 @@ FIRE ALARM
 	if(ishuman(user) || issilicon(user))
 		A = A.loc
 		if(A.fire)
-			d1 = text("<A href='?src=\ref[];reset=1'>Reset - Lockdown</A>", src)
+			d1 = "<A href='?src=\ref[src];reset=1'>Reset - Lockdown</A>"
 		else
-			d1 = text("<A href='?src=\ref[];alarm=1'>Alarm - Lockdown</A>", src)
+			d1 = "<A href='?src=\ref[src];alarm=1'>Alarm - Lockdown</A>"
 		if(src.timing)
-			d2 = text("<A href='?src=\ref[];time=0'>Stop Time Lock</A>", src)
+			d2 = "<A href='?src=\ref[src];time=0'>Stop Time Lock</A>"
 		else
-			d2 = text("<A href='?src=\ref[];time=1'>Initiate Time Lock</A>", src)
+			d2 = "<A href='?src=\ref[src];time=1'>Initiate Time Lock</A>"
 		var/second = round(src.time) % 60
 		var/minute = (round(src.time) - second) / 60
 		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>Fire alarm</B> [d1]\n<HR>The current alert level is: [get_security_level()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
@@ -1438,16 +1440,16 @@ FIRE ALARM
 	else
 		A = A.loc
 		if(A.fire)
-			d1 = text("<A href='?src=\ref[];reset=1'>[]</A>", src, stars("Reset - Lockdown"))
+			d1 = "<A href='?src=\ref[src];reset=1'>[stars("Reset - Lockdown")]</A>"
 		else
-			d1 = text("<A href='?src=\ref[];alarm=1'>[]</A>", src, stars("Alarm - Lockdown"))
+			d1 = "<A href='?src=\ref[src];alarm=1'>[stars("Alarm - Lockdown")]</A>"
 		if(src.timing)
-			d2 = text("<A href='?src=\ref[];time=0'>[]</A>", src, stars("Stop Time Lock"))
+			d2 = "<A href='?src=\ref[src];time=0'>[stars("Stop Time Lock")]</A>"
 		else
-			d2 = text("<A href='?src=\ref[];time=1'>[]</A>", src, stars("Initiate Time Lock"))
+			d2 = "<A href='?src=\ref[src];time=1'>[stars("Initiate Time Lock")]</A>"
 		var/second = round(src.time) % 60
 		var/minute = (round(src.time) - second) / 60
-		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>[stars("Fire alarm")]</B> [d1]\n<HR><b>The current alert level is: [stars(get_security_level())]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? text("[]:", minute) : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
+		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>[stars("Fire alarm")]</B> [d1]\n<HR><b>The current alert level is: [stars(get_security_level())]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
 		user << browse(dat, "window=firealarm")
 		onclose(user, "firealarm")
 	return
@@ -1460,7 +1462,7 @@ FIRE ALARM
 	if(buildstage != 2)
 		return
 
-	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && isturf(src.loc))) || (issilicon(usr)))
+	if((usr.contents.Find(src) || (get_dist(src, usr) <= 1 && isturf(src.loc))) || issilicon(usr))
 		usr.set_machine(src)
 		if(href_list["reset"])
 			src.reset()
@@ -1618,36 +1620,36 @@ Code shamelessly copied from apc_frame
 	var/d2
 	if(ishuman(user) || issilicon(user))
 		if(A.party)
-			d1 = text("<A href='?src=\ref[];reset=1'>No Party :(</A>", src)
+			d1 = "<A href='?src=\ref[src];reset=1'>No Party :(</A>"
 		else
-			d1 = text("<A href='?src=\ref[];alarm=1'>PARTY!!!</A>", src)
+			d1 = "<A href='?src=\ref[src];alarm=1'>PARTY!!!</A>"
 		if(timing)
-			d2 = text("<A href='?src=\ref[];time=0'>Stop Time Lock</A>", src)
+			d2 = "<A href='?src=\ref[src];time=0'>Stop Time Lock</A>"
 		else
-			d2 = text("<A href='?src=\ref[];time=1'>Initiate Time Lock</A>", src)
+			d2 = "<A href='?src=\ref[src];time=1'>Initiate Time Lock</A>"
 		var/second = time % 60
 		var/minute = (time - second) / 60
-		var/dat = text("<HTML><HEAD></HEAD><BODY><TT><B>Party Button</B> []\n<HR>\nTimer System: []<BR>\nTime Left: [][] <A href='?src=\ref[];tp=-30'>-</A> <A href='?src=\ref[];tp=-1'>-</A> <A href='?src=\ref[];tp=1'>+</A> <A href='?src=\ref[];tp=30'>+</A>\n</TT></BODY></HTML>", d1, d2, (minute ? text("[]:", minute) : null), second, src, src, src, src)
+		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>Party Button</B> [d1]\n<HR>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
 		user << browse(dat, "window=partyalarm")
 		onclose(user, "partyalarm")
 	else
 		if(A.fire)
-			d1 = text("<A href='?src=\ref[];reset=1'>[]</A>", src, stars("No Party :("))
+			d1 = "<A href='?src=\ref[src];reset=1'>[stars("No Party :(")]</A>"
 		else
-			d1 = text("<A href='?src=\ref[];alarm=1'>[]</A>", src, stars("PARTY!!!"))
+			d1 = "<A href='?src=\ref[src];alarm=1'>[stars("PARTY!!!")]</A>"
 		if(timing)
-			d2 = text("<A href='?src=\ref[];time=0'>[]</A>", src, stars("Stop Time Lock"))
+			d2 = "<A href='?src=\ref[src];time=0'>[stars("Stop Time Lock")]</A>"
 		else
-			d2 = text("<A href='?src=\ref[];time=1'>[]</A>", src, stars("Initiate Time Lock"))
+			d2 = "<A href='?src=\ref[src];time=1'>[stars("Initiate Time Lock")]</A>"
 		var/second = time % 60
 		var/minute = (time - second) / 60
-		var/dat = text("<HTML><HEAD></HEAD><BODY><TT><B>[]</B> []\n<HR>\nTimer System: []<BR>\nTime Left: [][] <A href='?src=\ref[];tp=-30'>-</A> <A href='?src=\ref[];tp=-1'>-</A> <A href='?src=\ref[];tp=1'>+</A> <A href='?src=\ref[];tp=30'>+</A>\n</TT></BODY></HTML>", stars("Party Button"), d1, d2, (minute ? text("[]:", minute) : null), second, src, src, src, src)
+		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>[stars("Party Button")]</B> [d1]\n<HR>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
 		user << browse(dat, "window=partyalarm")
 		onclose(user, "partyalarm")
 	return
 
 /obj/machinery/partyalarm/proc/reset()
-	if(!(working))
+	if(!working)
 		return
 	var/area/A = get_area(src)
 	ASSERT(isarea(A))
@@ -1657,7 +1659,7 @@ Code shamelessly copied from apc_frame
 	return
 
 /obj/machinery/partyalarm/proc/alarm()
-	if(!(working))
+	if(!working)
 		return
 	var/area/A = get_area(src)
 	ASSERT(isarea(A))
@@ -1670,7 +1672,7 @@ Code shamelessly copied from apc_frame
 	..()
 	if(usr.stat || stat & (BROKEN|NOPOWER))
 		return
-	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && isturf(loc))) || issilicon(usr))
+	if((usr.contents.Find(src) || (get_dist(src, usr) <= 1 && isturf(loc))) || issilicon(usr))
 		usr.machine = src
 		if(href_list["reset"])
 			reset()

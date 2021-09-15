@@ -55,19 +55,19 @@
 /obj/machinery/ai_slipper/attack_hand(mob/user as mob)
 	if(stat & (NOPOWER|BROKEN))
 		return
-	if((get_dist(src, user) > 1))
+	if(get_dist(src, user) > 1)
 		if(!issilicon(user))
-			user << text("Too far away.")
+			to_chat(user, "Too far away.")
 			user.unset_machine()
 			user << browse(null, "window=ai_slipper")
 			return
 
 	user.set_machine(src)
 	var/loc = src.loc
-	if (isturf(loc))
+	if(isturf(loc))
 		loc = loc:loc
-	if (!isarea(loc))
-		user << text("Turret badly positioned - loc.loc is [].", loc)
+	if(!isarea(loc))
+		to_chat(user, "Turret badly positioned - loc.loc is [loc].")
 		return
 	var/area/area = loc
 	var/t = "<TT><B>AI Liquid Dispenser</B> ([area.name])<HR>"
@@ -75,8 +75,8 @@
 	if(src.locked && (!issilicon(user)))
 		t += "<I>(Swipe ID card to unlock control panel.)</I><BR>"
 	else
-		t += text("Dispenser [] - <A href='?src=\ref[];toggleOn=1'>[]?</a><br>\n", src.disabled?"deactivated":"activated", src, src.disabled?"Enable":"Disable")
-		t += text("Uses Left: [uses]. <A href='?src=\ref[src];toggleUse=1'>Activate the dispenser?</A><br>\n")
+		t += "Dispenser [src.disabled ? "deactivated" : "activated"] - <A href='?src=\ref[src];toggleOn=1'>[src.disabled ? "Enable" : "Disable"]?</a><br>\n"
+		t += "Uses Left: [uses]. <A href='?src=\ref[src];toggleUse=1'>Activate the dispenser?</A><br>\n"
 
 	user << browse(t, "window=computer;size=575x450")
 	onclose(user, "computer")
@@ -85,12 +85,12 @@
 /obj/machinery/ai_slipper/Topic(href, href_list)
 	..()
 	if(src.locked)
-		if (!issilicon(usr))
-			usr << "Control panel is locked!"
+		if(!issilicon(usr))
+			to_chat(usr, "Control panel is locked!")
 			return
 	if(href_list["toggleOn"])
 		src.disabled = !src.disabled
-		icon_state = src.disabled? "motion0":"motion3"
+		icon_state = src.disabled ? "motion0" : "motion3"
 	if(href_list["toggleUse"])
 		if(cooldown_on || disabled)
 			return
@@ -112,12 +112,11 @@
 		if(ticksleft > 1e5)
 			cooldown_time = world.timeofday + 10	// midnight rollover
 
-
 		cooldown_timeleft = (ticksleft / 10)
 		sleep(5)
-	if (uses <= 0)
+	if(uses <= 0)
 		return
-	if (uses >= 0)
+	if(uses >= 0)
 		cooldown_on = 0
 	src.power_change()
 	return

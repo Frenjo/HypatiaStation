@@ -24,7 +24,7 @@
 	set category = "Object"
 	set name = "Eject Body Scanner"
 
-	if(usr.stat != 0)
+	if(usr.stat != CONSCIOUS)
 		return
 	src.go_out()
 	add_fingerprint(usr)
@@ -35,7 +35,7 @@
 	set category = "Object"
 	set name = "Enter Body Scanner"
 
-	if(usr.stat != 0)
+	if(usr.stat != CONSCIOUS)
 		return
 	if(src.occupant)
 		to_chat(usr, SPAN_INFO_B("The scanner is already occupied!"))
@@ -72,7 +72,7 @@
 	return
 
 /obj/machinery/bodyscanner/attackby(obj/item/weapon/grab/G as obj, user as mob)
-	if((!(istype(G, /obj/item/weapon/grab)) || !(ismob(G.affecting))))
+	if(!istype(G, /obj/item/weapon/grab) || !ismob(G.affecting))
 		return
 	if(src.occupant)
 		to_chat(usr, SPAN_INFO_B("The scanner is already occupied!"))
@@ -81,7 +81,7 @@
 		to_chat(usr, SPAN_INFO_B("Subject cannot have abiotic items on."))
 		return
 	var/mob/M = G.affecting
-	if (M.client)
+	if(M.client)
 		M.client.perspective = EYE_PERSPECTIVE
 		M.client.eye = src
 	M.loc = src
@@ -105,7 +105,7 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if(prob(50))
 				for(var/atom/movable/A as mob|obj in src)
 					A.loc = src.loc
 					ex_act(severity)
@@ -113,7 +113,7 @@
 				qdel(src)
 				return
 		if(3.0)
-			if (prob(25))
+			if(prob(25))
 				for(var/atom/movable/A as mob|obj in src)
 					A.loc = src.loc
 					ex_act(severity)
@@ -135,7 +135,7 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if(prob(50))
 				qdel(src)
 				return
 		else
@@ -167,11 +167,9 @@
 	density = 0
 	anchored = 1
 
-/obj/machinery/body_scanconsole/New()
+/obj/machinery/body_scanconsole/initialize()
 	..()
-	spawn(5)
-		src.connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
-		return
+	src.connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
 	return
 
 /*
@@ -213,7 +211,7 @@
 	if(src.delete && src.temphtml) //Window in buffer but its just simple message, so nothing
 		src.delete = src.delete
 	else if(!src.delete && src.temphtml) //Window in buffer - its a menu, dont add clear message
-		dat = text("[]<BR><BR><A href='?src=\ref[];clear=1'>Main Menu</A>", src.temphtml, src)
+		dat = "[src.temphtml]<BR><BR><A href='?src=\ref[src];clear=1'>Main Menu</A>"
 	else
 		if(src.connected) //Is something connected?
 			var/mob/living/carbon/human/occupant = src.connected.occupant
@@ -230,21 +228,21 @@
 				if(!ishuman(occupant))
 					dat += "<font color='red'>This device can only scan human occupants.</FONT>"
 				else
-					dat += text("[]\tHealth %: [] ([])</FONT><BR>", (occupant.health > 50 ? "<font color='blue'>" : "<font color='red'>"), occupant.health, t1)
+					dat += "[(occupant.health > 50 ? "<font color='blue'>" : "<font color='red'>")]\tHealth %: [occupant.health] ([t1])</FONT><BR>"
 
 					if(occupant.virus2.len)
-						dat += text("<font color='red'>Viral pathogen detected in blood stream.</font><BR>")
+						dat += "<font color='red'>Viral pathogen detected in blood stream.</font><BR>"
 
-					dat += text("[]\t-Brute Damage %: []</FONT><BR>", (occupant.getBruteLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getBruteLoss())
-					dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (occupant.getOxyLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getOxyLoss())
-					dat += text("[]\t-Toxin Content %: []</FONT><BR>", (occupant.getToxLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getToxLoss())
-					dat += text("[]\t-Burn Severity %: []</FONT><BR><BR>", (occupant.getFireLoss() < 60 ? "<font color='blue'>" : "<font color='red'>"), occupant.getFireLoss())
+					dat += "[(occupant.getBruteLoss() < 60 ? "<font color='blue'>" : "<font color='red'>")]\t-Brute Damage %: [occupant.getBruteLoss()]</FONT><BR>"
+					dat += "[(occupant.getOxyLoss() < 60 ? "<font color='blue'>" : "<font color='red'>")]\t-Respiratory Damage %: [occupant.getOxyLoss()]</FONT><BR>"
+					dat += "[(occupant.getToxLoss() < 60 ? "<font color='blue'>" : "<font color='red'>")]\t-Toxin Content %: [occupant.getToxLoss()]</FONT><BR>"
+					dat += "[(occupant.getFireLoss() < 60 ? "<font color='blue'>" : "<font color='red'>")]\t-Burn Severity %: [occupant.getFireLoss()]</FONT><BR><BR>"
 
-					dat += text("[]\tRadiation Level %: []</FONT><BR>", (occupant.radiation < 10 ?"<font color='blue'>" : "<font color='red'>"), occupant.radiation)
-					dat += text("[]\tGenetic Tissue Damage %: []</FONT><BR>", (occupant.getCloneLoss() < 1 ?"<font color='blue'>" : "<font color='red'>"), occupant.getCloneLoss())
-					dat += text("[]\tApprox. Brain Damage %: []</FONT><BR>", (occupant.getBrainLoss() < 1 ?"<font color='blue'>" : "<font color='red'>"), occupant.getBrainLoss())
-					dat += text("Paralysis Summary %: [] ([] seconds left!)<BR>", occupant.paralysis, round(occupant.paralysis / 4))
-					dat += text("Body Temperature: [occupant.bodytemperature-T0C]&deg;C ([occupant.bodytemperature*1.8-459.67]&deg;F)<BR><HR>")
+					dat += "[(occupant.radiation < 10 ?"<font color='blue'>" : "<font color='red'>")]\tRadiation Level %: [occupant.radiation]</FONT><BR>"
+					dat += "[(occupant.getCloneLoss() < 1 ?"<font color='blue'>" : "<font color='red'>")]\tGenetic Tissue Damage %: [occupant.getCloneLoss()]</FONT><BR>"
+					dat += "[(occupant.getBrainLoss() < 1 ?"<font color='blue'>" : "<font color='red'>")]\tApprox. Brain Damage %: [occupant.getBrainLoss()]</FONT><BR>"
+					dat += "Paralysis Summary %: [occupant.paralysis] ([round(occupant.paralysis / 4)] seconds left!)<BR>"
+					dat += "Body Temperature: [occupant.bodytemperature-T0C]&deg;C ([occupant.bodytemperature*1.8-459.67]&deg;F)<BR><HR>"
 
 					if(occupant.has_brain_worms())
 						dat += "Large growth detected in frontal lobe, possibly cancerous. Surgical removal is recommended.<BR/>"
@@ -253,17 +251,17 @@
 						var/blood_volume = round(occupant.vessel.get_reagent_amount("blood"))
 						var/blood_percent =  blood_volume / 560
 						blood_percent *= 100
-						dat += text("[]\tBlood Level %: [] ([] units)</FONT><BR>", (blood_volume > 448 ?"<font color='blue'>" : "<font color='red'>"), blood_percent, blood_volume)
+						dat += "[(blood_volume > 448 ?"<font color='blue'>" : "<font color='red'>")]\tBlood Level %: [blood_percent] ([blood_volume] units)</FONT><BR>"
 					if(occupant.reagents)
-						dat += text("Inaprovaline units: [] units<BR>", occupant.reagents.get_reagent_amount("inaprovaline"))
-						dat += text("Soporific (Sleep Toxin): [] units<BR>", occupant.reagents.get_reagent_amount("stoxin"))
-						dat += text("[]\tDermaline: [] units</FONT><BR>", (occupant.reagents.get_reagent_amount("dermaline") < 30 ? "<font color='black'>" : "<font color='red'>"), occupant.reagents.get_reagent_amount("dermaline"))
-						dat += text("[]\tBicaridine: [] units<BR>", (occupant.reagents.get_reagent_amount("bicaridine") < 30 ? "<font color='black'>" : "<font color='red'>"), occupant.reagents.get_reagent_amount("bicaridine"))
-						dat += text("[]\tDexalin: [] units<BR>", (occupant.reagents.get_reagent_amount("dexalin") < 30 ? "<font color='black'>" : "<font color='red'>"), occupant.reagents.get_reagent_amount("dexalin"))
+						dat += "Inaprovaline units: [occupant.reagents.get_reagent_amount("inaprovaline")] units<BR>"
+						dat += "Soporific (Sleep Toxin): [occupant.reagents.get_reagent_amount("stoxin")] units<BR>"
+						dat += "[(occupant.reagents.get_reagent_amount("dermaline") < 30 ? "<font color='black'>" : "<font color='red'>")]\tDermaline: [occupant.reagents.get_reagent_amount("dermaline")] units</FONT><BR>"
+						dat += "[(occupant.reagents.get_reagent_amount("bicaridine") < 30 ? "<font color='black'>" : "<font color='red'>")]\tBicaridine: [occupant.reagents.get_reagent_amount("bicaridine")] units<BR>"
+						dat += "[(occupant.reagents.get_reagent_amount("dexalin") < 30 ? "<font color='black'>" : "<font color='red'>")]\tDexalin: [occupant.reagents.get_reagent_amount("dexalin")] units<BR>"
 
 					for(var/datum/disease/D in occupant.viruses)
 						if(!D.hidden[SCANNER])
-							dat += text("<font color='red'><B>Warning: [D.form] Detected</B>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]</FONT><BR>")
+							dat += "<font color='red'><B>Warning: [D.form] Detected</B>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]</FONT><BR>"
 
 					dat += "<HR><table border='1'>"
 					dat += "<tr>"
@@ -343,13 +341,13 @@
 						dat += "</tr>"
 					dat += "</table>"
 					if(occupant.sdisabilities & BLIND)
-						dat += text("<font color='red'>Cataracts detected.</font><BR>")
+						dat += "<font color='red'>Cataracts detected.</font><BR>"
 					if(occupant.sdisabilities & NEARSIGHTED)
-						dat += text("<font color='red'>Retinal misalignment detected.</font><BR>")
+						dat += "<font color='red'>Retinal misalignment detected.</font><BR>"
 			else
 				dat += "\The [src] is empty."
 		else
-			dat = "<font color='red'> Error: No Body Scanner connected.</font>"
-	dat += text("<BR><BR><A href='?src=\ref[];mach_close=scanconsole'>Close</A>", user)
+			dat = "<font color='red'>Error: No Body Scanner connected.</font>"
+	dat += "<BR><BR><A href='?src=\ref[user];mach_close=scanconsole'>Close</A>"
 	user << browse(dat, "window=scanconsole;size=430x600")
 	return

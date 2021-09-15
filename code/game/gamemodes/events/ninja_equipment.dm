@@ -531,7 +531,7 @@ ________________________________________________________________________________
 			if (!P.silent)
 				playsound(P.loc, 'sound/machines/twobeep.ogg', 50, 1)
 				for (var/mob/O in hearers(3, P.loc))
-					O.show_message(text("\icon[P] *[P.ttone]*"))
+					O.show_message("\icon[P] *[P.ttone]*")
 			P.overlays.Cut()
 			P.overlays += image('icons/obj/pda.dmi', "pda-r")
 
@@ -1337,13 +1337,16 @@ It is possible to destroy the net by the occupant or someone else.
 
 	proc
 		healthcheck()
-			if(health <=0)
+			if(health <= 0)
 				density = 0
 				if(affecting)
 					var/mob/living/carbon/M = affecting
 					M.anchored = 0
 					for(var/mob/O in viewers(src, 3))
-						O.show_message(text("[] was recovered from the energy net!", M.name), 1, text("You hear a grunt."), 2)
+						O.show_message(
+							"[M.name] was recovered from the energy net!", 1,
+							"You hear a grunt.", 2
+						)
 					if(!isnull(master))//As long as they still exist.
 						master << "\red <b>ERROR</b>: \black unable to initiate transport protocol. Procedure terminated."
 				qdel(src)
@@ -1392,7 +1395,10 @@ It is possible to destroy the net by the occupant or someone else.
 				qdel(src)//Wait for everything to finish, delete the net. Else it will stop everything once net is deleted, including the spawn(0).
 
 			for(var/mob/O in viewers(src, 3))
-				O.show_message(text("[] vanished!", M), 1, text("You hear sparks flying!"), 2)
+				O.show_message(
+					"[M] vanished!", 1,
+					"You hear sparks flying!", 2
+				)
 
 			if(!isnull(master))//As long as they still exist.
 				master << "\blue <b>SUCCESS</b>: \black transport procedure of \the [affecting] complete."

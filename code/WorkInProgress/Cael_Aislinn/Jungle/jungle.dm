@@ -32,28 +32,31 @@
 	icon_state = "x2"
 	var/obj/structure/ladder/my_ladder
 
-	New()
-		//pick a random temple to link to
-		var/list/waypoints = list()
-		for(var/obj/effect/landmark/temple/destination/T in landmarks_list)
-			waypoints.Add(T)
-			if(!T)
-				return
-			else continue
-		var/obj/effect/landmark/temple/destination/dest_temple = pick(waypoints)
-		dest_temple.init()
+/obj/effect/landmark/temple/New()
+	..()
+	//pick a random temple to link to
+	var/list/waypoints = list()
+	for(var/obj/effect/landmark/temple/destination/T in landmarks_list)
+		waypoints.Add(T)
+		if(!T)
+			return
+		else
+			continue
+	var/obj/effect/landmark/temple/destination/dest_temple = pick(waypoints)
+	dest_temple.init()
 
-		//connect this landmark to the other
-		my_ladder = new /obj/structure/ladder(src.loc)
-		my_ladder.id = dest_temple.my_ladder.id
-		dest_temple.my_ladder.up = my_ladder
+	//connect this landmark to the other
+	my_ladder = new /obj/structure/ladder(src.loc)
+	my_ladder.id = dest_temple.my_ladder.id
+	dest_temple.my_ladder.up = my_ladder
 
-		//delete the landmarks now that we're finished
-		qdel(dest_temple)
-		qdel(src)
+	//delete the landmarks now that we're finished
+	qdel(dest_temple)
+	qdel(src)
 
 /obj/effect/landmark/temple/destination/New()
 	//nothing
+	..()
 
 /obj/effect/landmark/temple/destination/proc/init()
 	my_ladder = new /obj/structure/ladder(src.loc)
@@ -62,23 +65,22 @@
 
 	//loop over the walls in the temple and make them a random pre-chosen mineral (null is a stand in for plasma, which the walls already are)
 	//treat plasma slightly differently because it's the default wall type
-	var/mineral = pick("uranium","sandstone","gold","iron","silver","diamond","clown","plasma")
+	var/mineral = pick(MATERIAL_URANIUM, MATERIAL_SANDSTONE, MATERIAL_GOLD, MATERIAL_METAL, MATERIAL_SILVER, MATERIAL_DIAMOND, MATERIAL_BANANIUM, MATERIAL_PLASMA)
 	//world << "init [mineral]"
 	var/area/my_area = get_area(src)
 	var/list/temple_turfs = get_area_turfs(my_area.type)
 
 	for(var/turf/simulated/floor/T in temple_turfs)
-
 		for(var/obj/effect/landmark/falsewall_spawner/F in T.contents)
 			var/obj/structure/temple_falsewall/fwall = new(F.loc)
 			fwall.mineral = mineral
-			if(mineral == "iron")
+			if(mineral == MATERIAL_METAL)
 				fwall.is_metal = 1
 			qdel(F)
 
 		for(var/obj/effect/landmark/door_spawner/D in T.contents)
 			var/spawn_type
-			if(mineral == "iron")
+			if(mineral == MATERIAL_METAL)
 				spawn_type = /obj/machinery/door/airlock/vault
 			else
 				spawn_type = text2path("/obj/machinery/door/airlock/[mineral]")
@@ -86,8 +88,8 @@
 			qdel(D)
 
 	for(var/turf/unsimulated/wall/T in temple_turfs)
-		if(mineral != "plasma")
-			T.icon_state = replacetext(T.icon_state, "plasma", mineral)
+		if(mineral != MATERIAL_PLASMA)
+			T.icon_state = replacetext(T.icon_state, MATERIAL_PLASMA, mineral)
 
 		/*for(var/obj/effect/landmark/falsewall_spawner/F in T.contents)
 			//world << "falsewall_spawner found in wall"
@@ -135,13 +137,13 @@
 
 
 /obj/machinery/jungle_controller/initialize()
-	world << "\red \b Setting up jungle, this may take a bleeding eternity..."
+	to_chat(world, SPAN_DANGER("Setting up jungle, this may take a bleeding eternity..."))
 
 	//crash dat shuttle
 	var/area/start_location = locate(/area/jungle/crash_ship_source)
 	var/area/clean_location = locate(/area/jungle/crash_ship_clean)
 	var/list/ship_locations = list(/area/jungle/crash_ship_one, /area/jungle/crash_ship_two, /area/jungle/crash_ship_three, /area/jungle/crash_ship_four)
-	var/area/end_location = locate( pick(ship_locations) )
+	var/area/end_location = locate(pick(ship_locations))
 	ship_locations -= end_location.type
 
 	start_location.move_contents_to(end_location)

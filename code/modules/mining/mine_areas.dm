@@ -2,19 +2,27 @@
 
 /area/mine
 	icon_state = "mining"
-	music = 'sound/ambience/song_game.ogg'
+	ambience = list(
+		'sound/ambience/song_game.ogg'
+	)
 
 /area/mine/explored
 	name = "Mine"
 	icon_state = "explored"
-	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
+	ambience = list(
+		'sound/ambience/ambimine.ogg',
+		'sound/ambience/song_game.ogg'
+	)
 	requires_power = 1
 	always_unpowered = 1
 
 /area/mine/unexplored
 	name = "Mine"
 	icon_state = "unexplored"
-	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
+	ambience = list(
+		'sound/ambience/ambimine.ogg',
+		'sound/ambience/song_game.ogg'
+	)
 
 /area/mine/lobby
 	name = "Mining Station"

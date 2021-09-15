@@ -8,7 +8,7 @@
 
 /obj/effect/landmark/New()
 	..()
-	tag = text("landmark*[]", name)
+	tag = "landmark*[name]"
 	invisibility = 101
 
 	switch(name)			//some of these are probably obsolete

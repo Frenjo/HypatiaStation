@@ -50,7 +50,6 @@
 
 #define hasorgans(A)	ishuman(A)
 
-
 // Chat-related stuff
 #define to_chat(target, message)	target << message
 
@@ -68,6 +67,8 @@
 #define SPAN_CAUTION(text)		SPAN("caution", text)
 #define SPAN_MODERATE(text)		SPAN("moderate", text)
 
-
 // GC/qdel stuff
 #define qdel_null(x) if(x) { qdel(x); x = null }
+
+// List-related macro that has to be here because it's used in __HELPERS.
+#define SUBTYPESOF(prototype) (typesof(prototype) - prototype)

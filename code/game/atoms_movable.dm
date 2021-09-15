@@ -59,7 +59,7 @@
 	src.move_speed = world.time - src.l_move_time
 	src.l_move_time = world.time
 	src.m_flag = 1
-	if((A != src.loc && A && A.z == src.z))
+	if(A != src.loc && A && A.z == src.z)
 		src.last_move = get_dir(A, src.loc)
 	return
 
@@ -69,7 +69,7 @@
 		src.throwing = 0
 
 	spawn(0)
-		if((A && yes))
+		if(A && yes)
 			A.last_bumped = world.time
 			A.Bumped(src)
 		return

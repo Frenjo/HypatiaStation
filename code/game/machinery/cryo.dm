@@ -22,9 +22,10 @@
 	T.contents += contents
 	if(beaker)
 		beaker.loc = get_step(loc, SOUTH) //Beaker is carefully ejected from the wreckage of the cryotube
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/unary/cryo_cell/initialize()
+	..()
 	if(node)
 		return
 	var/node_connect = dir
@@ -56,10 +57,8 @@
 	updateUsrDialog()
 	return 1
 
-
 /obj/machinery/atmospherics/unary/cryo_cell/allow_drop()
 	return 0
-
 
 /obj/machinery/atmospherics/unary/cryo_cell/relaymove(mob/user as mob)
 	if(user.stat)
@@ -81,7 +80,7 @@
   *
   * @return nothing
   */
-/obj/machinery/atmospherics/unary/cryo_cell/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
+/obj/machinery/atmospherics/unary/cryo_cell/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	if(user == occupant || user.stat)
 		return
 
@@ -131,7 +130,7 @@
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "cryo.tmpl", "Cryo Cell Control System", 520, 410)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -168,10 +167,10 @@
 	add_fingerprint(usr)
 	return 1 // update UIs attached to this object
 
-/obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/unary/cryo_cell/attackby(obj/item/weapon/G as obj, mob/user as mob)
 	if(istype(G, /obj/item/weapon/reagent_containers/glass))
 		if(beaker)
-			user << "\red A beaker is already loaded into the machine."
+			to_chat(user, SPAN_WARNING("A beaker is already loaded into the machine."))
 			return
 
 		beaker =  G
@@ -181,9 +180,9 @@
 	else if(istype(G, /obj/item/weapon/grab))
 		if(!ismob(G:affecting))
 			return
-		for(var/mob/living/carbon/slime/M in range(1,G:affecting))
+		for(var/mob/living/carbon/slime/M in range(1, G:affecting))
 			if(M.Victim == G:affecting)
-				usr << "[G:affecting:name] will not fit into the cryo because they have a slime latched onto their head."
+				to_chat(usr, "[G:affecting:name] will not fit into the cryo because they have a slime latched onto their head.")
 				return
 		var/mob/M = G:affecting
 		if(put_mob(M))
@@ -260,7 +259,7 @@
 		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.loc = get_step(loc, SOUTH)	//this doesn't account for walls or anything, but i don't forsee that being a problem.
 	if(occupant.bodytemperature < 261 && occupant.bodytemperature >= 70) //Patch by Aranclanos to stop people from taking burn damage after being ejected
-		occupant.bodytemperature = 261									  // Changed to 70 from 140 by Zuhayr due to reoccurance of bug.
+		occupant.bodytemperature = 261										// Changed to 70 from 140 by Zuhayr due to reoccurance of bug.
 //	occupant.metabslow = 0
 	occupant = null
 	update_icon()
@@ -268,16 +267,16 @@
 
 /obj/machinery/atmospherics/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob)
 	if(!istype(M))
-		usr << "\red <B>The cryo cell cannot handle such a lifeform!</B>"
+		to_chat(usr, SPAN_DANGER("The cryo cell cannot handle such a lifeform!"))
 		return
 	if(occupant)
-		usr << "\red <B>The cryo cell is already occupied!</B>"
+		to_chat(usr, SPAN_DANGER("The cryo cell is already occupied!"))
 		return
 	if(M.abiotic())
-		usr << "\red Subject may not have abiotic items on."
+		to_chat(usr, SPAN_WARNING("Subject may not have abiotic items on."))
 		return
 	if(!node)
-		usr << "\red The cell is not correctly connected to its pipe network!"
+		to_chat(usr, SPAN_WARNING("The cell is not correctly connected to its pipe network!"))
 		return
 	if(M.client)
 		M.client.perspective = EYE_PERSPECTIVE
@@ -286,7 +285,7 @@
 	M.loc = src
 	M.ExtinguishMob()
 	if(M.health > -100 && (M.health < 0 || M.sleeping))
-		M << "\blue <b>You feel a cold liquid surround you. Your skin starts to freeze up.</b>"
+		to_chat(M, SPAN_INFO_B("You feel a cold liquid surround you. Your skin starts to freeze up."))
 	occupant = M
 //	M.metabslow = 1
 	add_fingerprint(usr)
@@ -297,12 +296,13 @@
 	set name = "Eject occupant"
 	set category = "Object"
 	set src in oview(1)
+
 	if(usr == occupant)//If the user is inside the tube...
 		if(usr.stat == DEAD)//and he's not dead....
 			return
-		usr << "\blue Release sequence activated. This will take two minutes."
+		to_chat(usr, SPAN_INFO("Release sequence activated. This will take two minutes."))
 		sleep(1200)
-		if(!src || !usr || !occupant || (occupant != usr)) //Check if someone's released/replaced/bombed him already
+		if(!src || !usr || !occupant || occupant != usr) //Check if someone's released/replaced/bombed him already
 			return
 		go_out()//and release him from the eternal prison.
 	else
@@ -316,15 +316,14 @@
 	set name = "Move Inside"
 	set category = "Object"
 	set src in oview(1)
-	for(var/mob/living/carbon/slime/M in range(1,usr))
+	for(var/mob/living/carbon/slime/M in range(1, usr))
 		if(M.Victim == usr)
-			usr << "You're too busy getting your life sucked out of you."
+			to_chat(usr, "You're too busy getting your life sucked out of you.")
 			return
 	if(usr.stat != CONSCIOUS || stat & (NOPOWER | BROKEN))
 		return
 	put_mob(usr)
 	return
-
 
 
 /datum/data/function/proc/reset()

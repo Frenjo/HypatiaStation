@@ -976,67 +976,69 @@ var/list/sacrificed = list()
 							qdel(B)
 				qdel(src)
 
-//////////             Rune 24 (counting burningblood, which kinda doesnt work yet.)
+//////////				Rune 24 (counting burningblood, which kinda doesnt work yet.)
 
-		runestun(var/mob/living/T as mob)
-			if(istype(src,/obj/effect/rune))   ///When invoked as rune, flash and stun everyone around.
-				usr.say("Fuu ma[pick("'","`")]jin!")
-				for(var/mob/living/L in viewers(src))
+/obj/effect/rune/proc/runestun(mob/living/T as mob)
+	if(istype(src, /obj/effect/rune))	///When invoked as rune, flash and stun everyone around.
+		usr.say("Fuu ma[pick("'","`")]jin!")
 
-					if(iscarbon(L))
-						var/mob/living/carbon/C = L
-						flick("e_flash", C.flash)
-						if(C.stuttering < 1 && (!(HULK in C.mutations)))
-							C.stuttering = 1
-						C.Weaken(1)
-						C.Stun(1)
-						C.show_message("\red The rune explodes in a bright flash.", 3)
+		for(var/mob/living/L in viewers(src))
+			if(iscarbon(L))
+				var/mob/living/carbon/C = L
+				flick("e_flash", C.flash)
+				if(C.stuttering < 1 && !(HULK in C.mutations))
+					C.stuttering = 1
+				C.Weaken(1)
+				C.Stun(1)
+				C.show_message(SPAN_WARNING("The rune explodes in a bright flash."), 3)
 
-					else if(issilicon(L))
-						var/mob/living/silicon/S = L
-						S.Weaken(5)
-						S.show_message("\red BZZZT... The rune has exploded in a bright flash.", 3)
-				qdel(src)
-			else                        ///When invoked as talisman, stun and mute the target mob.
-				usr.say("Dream sign ''Evil sealing talisman'[pick("'","`")]!")
-				var/obj/item/weapon/nullrod/N = locate() in T
-				if(N)
-					for(var/mob/O in viewers(T, null))
-						O.show_message(text("\red <B>[] invokes a talisman at [], but they are unaffected!</B>", usr, T), 1)
-				else
-					for(var/mob/O in viewers(T, null))
-						O.show_message(text("\red <B>[] invokes a talisman at []</B>", usr, T), 1)
+			else if(issilicon(L))
+				var/mob/living/silicon/S = L
+				S.Weaken(5)
+				S.show_message(SPAN_WARNING("BZZZT... The rune has exploded in a bright flash."), 3)
+		qdel(src)
+	else						///When invoked as talisman, stun and mute the target mob.
+		usr.say("Dream sign ''Evil sealing talisman'[pick("'","`")]!")
+		var/obj/item/weapon/nullrod/N = locate() in T
+		if(N)
+			for(var/mob/O in viewers(T, null))
+				O.show_message(SPAN_DANGER("[usr] invokes a talisman at [T], but they are unaffected!"), 1)
+		else
+			for(var/mob/O in viewers(T, null))
+				O.show_message(SPAN_DANGER("[usr] invokes a talisman at [T]!"), 1)
 
-					if(issilicon(T))
-						T.Weaken(15)
+			if(issilicon(T))
+				T.Weaken(15)
 
-					else if(iscarbon(T))
-						var/mob/living/carbon/C = T
-						flick("e_flash", C.flash)
-						if (!(HULK in C.mutations))
-							C.silent += 15
-						C.Weaken(25)
-						C.Stun(25)
-				return
+			else if(iscarbon(T))
+				var/mob/living/carbon/C = T
+				flick("e_flash", C.flash)
+				if(!(HULK in C.mutations))
+					C.silent += 15
+				C.Weaken(25)
+				C.Stun(25)
+		return
 
 /////////////////////////////////////////TWENTY-FIFTH RUNE
 
-		armor()
-			var/mob/living/carbon/human/user = usr
-			if(istype(src,/obj/effect/rune))
-				usr.say("N'ath reth sh'yro eth d[pick("'","`")]raggathnor!")
-			else
-				usr.whisper("N'ath reth sh'yro eth d[pick("'","`")]raggathnor!")
-			usr.visible_message("\red The rune disappears with a flash of red light, and a set of armor appears on [usr]...", \
-			"\red You are blinded by the flash of red light! After you're able to see again, you see that you are now wearing a set of armor.")
+/obj/effect/rune/proc/armor()
+	var/mob/living/carbon/human/user = usr
+	if(istype(src, /obj/effect/rune))
+		usr.say("N'ath reth sh'yro eth d[pick("'","`")]raggathnor!")
+	else
+		usr.whisper("N'ath reth sh'yro eth d[pick("'","`")]raggathnor!")
+	usr.visible_message(
+		SPAN_WARNING("The rune disappears with a flash of red light, and a set of armor appears on [usr]..."),
+		SPAN_WARNING("You are blinded by the flash of red light! After you're able to see again, you see that you are now wearing a set of armor.")
+	)
 
-			user.equip_to_slot_or_del(new /obj/item/clothing/head/culthood/alt(user), slot_head)
-			user.equip_to_slot_or_del(new /obj/item/clothing/suit/cultrobes/alt(user), slot_wear_suit)
-			user.equip_to_slot_or_del(new /obj/item/clothing/shoes/cult(user), slot_shoes)
-			user.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/cultpack(user), slot_back)
-			//the above update their overlay icons cache but do not call update_icons()
-			//the below calls update_icons() at the end, which will update overlay icons by using the (now updated) cache
-			user.put_in_hands(new /obj/item/weapon/melee/cultblade(user))	//put in hands or on floor
+	user.equip_to_slot_or_del(new /obj/item/clothing/head/culthood/alt(user), slot_head)
+	user.equip_to_slot_or_del(new /obj/item/clothing/suit/cultrobes/alt(user), slot_wear_suit)
+	user.equip_to_slot_or_del(new /obj/item/clothing/shoes/cult(user), slot_shoes)
+	user.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/cultpack(user), slot_back)
+	//the above update their overlay icons cache but do not call update_icons()
+	//the below calls update_icons() at the end, which will update overlay icons by using the (now updated) cache
+	user.put_in_hands(new /obj/item/weapon/melee/cultblade(user))	//put in hands or on floor
 
-			qdel(src)
-			return
+	qdel(src)
+	return

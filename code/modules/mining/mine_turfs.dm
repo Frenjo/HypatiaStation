@@ -349,7 +349,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 // Re-added these because some away missions require them.
 /turf/simulated/mineral/bananium
 	icon_state = "rock_Bananium"
-	var/mineral_name = "Bananium"
+	var/mineral_name = MATERIAL_BANANIUM
 
 /turf/simulated/mineral/bananium/New()
 	if(!name_to_mineral)
@@ -363,7 +363,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 
 /turf/simulated/mineral/diamond
 	icon_state = "rock_Diamond"
-	var/mineral_name = "Diamond"
+	var/mineral_name = MATERIAL_DIAMOND
 
 /turf/simulated/mineral/diamond/New()
 	if(!name_to_mineral)
@@ -377,7 +377,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 
 /turf/simulated/mineral/silver
 	icon_state = "rock_Silver"
-	var/mineral_name = "Silver"
+	var/mineral_name = MATERIAL_SILVER
 
 /turf/simulated/mineral/silver/New()
 	if(!name_to_mineral)
@@ -391,7 +391,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 
 /turf/simulated/mineral/gold
 	icon_state = "rock_Gold"
-	var/mineral_name = "Gold"
+	var/mineral_name = MATERIAL_GOLD
 
 /turf/simulated/mineral/gold/New()
 	if(!name_to_mineral)
@@ -406,7 +406,17 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 
 /turf/simulated/mineral/random
 	name = "Mineral deposit"
-	var/mineralSpawnChanceList = list("Uranium" = 7, "Iron" = 40, "Diamond" = 3, "Gold" = 7, "Silver" = 7, "Plasma" = 25, "Clown" = 2, "Adamantine" = 1, "Mythril" = 1)
+	var/mineralSpawnChanceList = list(
+		MATERIAL_URANIUM = 7,
+		"Iron" = 40,
+		MATERIAL_DIAMOND = 3,
+		MATERIAL_GOLD = 7,
+		MATERIAL_SILVER = 7,
+		MATERIAL_PLASMA = 25,
+		MATERIAL_BANANIUM = 2,
+		MATERIAL_ADAMANTINE = 1,
+		MATERIAL_MYTHRIL = 1
+	)
 	var/mineralChance = 9 //means 9% chance of this plot changing to a mineral deposit
 
 /turf/simulated/mineral/random/New()
@@ -424,7 +434,17 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 
 /turf/simulated/mineral/random/high_chance
 	mineralChance = 24
-	mineralSpawnChanceList = list("Uranium" = 12, "Iron" = 30, "Diamond" = 4, "Gold" = 12, "Silver" = 12, "Plasma" = 25, "Clown" = 3, "Adamantine" = 2, "Mythril" = 2)
+	mineralSpawnChanceList = list(
+		MATERIAL_URANIUM = 12,
+		"Iron" = 30,
+		MATERIAL_DIAMOND = 4,
+		MATERIAL_GOLD = 12,
+		MATERIAL_SILVER = 12,
+		MATERIAL_PLASMA = 25,
+		MATERIAL_CLOWN = 3,
+		MATERIAL_ADAMANTINE = 2,
+		MATERIAL_MYTHRIL = 2
+	)
 
 
 /**********************Asteroid**************************/

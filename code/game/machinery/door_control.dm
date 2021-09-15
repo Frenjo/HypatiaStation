@@ -35,7 +35,7 @@
 	if(wires & 2)
 		return src.attack_hand(user)
 	else
-		user << "Error, no route to host."
+		to_chat(user, "Error, no route to host.")
 
 /obj/machinery/door_control/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
@@ -81,7 +81,7 @@
 		for(var/obj/machinery/door/airlock/D in range(range))
 			if(D.id_tag == src.id)
 				if(specialfunctions & OPEN)
-					if (D.density)
+					if(D.density)
 						spawn(0)
 							D.open()
 							return
@@ -113,13 +113,13 @@
 
 	else
 		for(var/obj/machinery/door/poddoor/M in world)
-			if (M.id == src.id)
-				if (M.density)
-					spawn( 0 )
+			if(M.id == src.id)
+				if(M.density)
+					spawn(0)
 						M.open()
 						return
 				else
-					spawn( 0 )
+					spawn(0)
 						M.close()
 						return
 
@@ -142,13 +142,11 @@
 	return src.attack_hand(user)
 
 /obj/machinery/driver_button/attackby(obj/item/weapon/W, mob/user as mob)
-
 	if(istype(W, /obj/item/device/detective_scanner))
 		return
 	return src.attack_hand(user)
 
 /obj/machinery/driver_button/attack_hand(mob/user as mob)
-
 	src.add_fingerprint(usr)
 	if(stat & (NOPOWER|BROKEN))
 		return
@@ -162,8 +160,8 @@
 	icon_state = "launcheract"
 
 	for(var/obj/machinery/door/poddoor/M in world)
-		if (M.id == src.id)
-			spawn( 0 )
+		if(M.id == src.id)
+			spawn(0)
 				M.open()
 				return
 
@@ -176,8 +174,8 @@
 	sleep(50)
 
 	for(var/obj/machinery/door/poddoor/M in world)
-		if (M.id == src.id)
-			spawn( 0 )
+		if(M.id == src.id)
+			spawn(0)
 				M.close()
 				return
 

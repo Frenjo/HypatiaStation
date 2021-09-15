@@ -24,8 +24,8 @@
 	var/list/original_atom
 
 /atom/Destroy()
-	. = ..()
 	density = 0
+	invisibility = 101
 	set_opacity(0)
 
 	if(reagents)
@@ -33,7 +33,7 @@
 		reagents = null
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
-	invisibility = 101
+	return ..()
 
 /atom/proc/throw_impact(atom/hit_atom, speed)
 	if(isliving(hit_atom))
@@ -269,17 +269,17 @@ its easier to just keep the beam vertical.
 			return 0
 		if(H.gloves)
 			if(src.fingerprintslast != H.key)
-				src.fingerprintshidden += text("\[[time_stamp()]\] (Wearing gloves). Real name: [], Key: []", H.real_name, H.key)
+				src.fingerprintshidden += "\[[time_stamp()]\] (Wearing gloves). Real name: [H.real_name], Key: [H.key]"
 				src.fingerprintslast = H.key
 			return 0
-		if(!(src.fingerprints))
+		if(!src.fingerprints)
 			if(src.fingerprintslast != H.key)
-				src.fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []", H.real_name, H.key)
+				src.fingerprintshidden += "\[[time_stamp()]\] Real name: [H.real_name], Key: [H.key]"
 				src.fingerprintslast = H.key
 			return 1
 	else
 		if(src.fingerprintslast != M.key)
-			src.fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []", M.real_name, M.key)
+			src.fingerprintshidden += "\[[time_stamp()]\] Real name: [M.real_name], Key: [M.key]"
 			src.fingerprintslast = M.key
 	return
 
@@ -306,7 +306,7 @@ its easier to just keep the beam vertical.
 			return 0		//Now, lets get to the dirty work.
 		//First, make sure their DNA makes sense.
 		var/mob/living/carbon/human/H = M
-		if(!istype(H.dna, /datum/dna) || !H.dna.uni_identity || (length(H.dna.uni_identity) != 32))
+		if(!istype(H.dna, /datum/dna) || !H.dna.uni_identity || length(H.dna.uni_identity) != 32)
 			if(!istype(H.dna, /datum/dna))
 				H.dna = new /datum/dna(null)
 				H.dna.real_name = H.real_name
@@ -315,7 +315,7 @@ its easier to just keep the beam vertical.
 		//Now, deal with gloves.
 		if(H.gloves && H.gloves != src)
 			if(fingerprintslast != H.key)
-				fingerprintshidden += text("\[[]\](Wearing gloves). Real name: [], Key: []", time_stamp(), H.real_name, H.key)
+				fingerprintshidden += "\[[time_stamp()]\](Wearing gloves). Real name: [H.real_name], Key: [H.key]"
 				fingerprintslast = H.key
 			H.gloves.add_fingerprint(M)
 
@@ -328,7 +328,7 @@ its easier to just keep the beam vertical.
 
 		//More adminstuffz
 		if(fingerprintslast != H.key)
-			fingerprintshidden += text("\[[]\]Real name: [], Key: []", time_stamp(), H.real_name, H.key)
+			fingerprintshidden += "\[[time_stamp()]\]Real name: [H.real_name], Key: [H.key]"
 			fingerprintslast = H.key
 
 		//Make the list if it does not exist.
@@ -378,7 +378,7 @@ its easier to just keep the beam vertical.
 	else
 		//Smudge up dem prints some
 		if(fingerprintslast != M.key)
-			fingerprintshidden += text("\[[]\]Real name: [], Key: []", time_stamp(), M.real_name, M.key)
+			fingerprintshidden += "\[[time_stamp()]\]Real name: [M.real_name], Key: [M.key]"
 			fingerprintslast = M.key
 
 	//Cleaning up shit.
@@ -407,7 +407,7 @@ its easier to just keep the beam vertical.
 	if(flags & NOBLOODY)
 		return 0
 	. = 1
-	if(!(ishuman(M)))
+	if(!ishuman(M))
 		return 0
 	if(!istype(M.dna, /datum/dna))
 		M.dna = new /datum/dna(null)

@@ -35,7 +35,7 @@ var/global/list/frozen_items = list()
 
 	var/dat
 
-	if (!( ticker ))
+	if(!ticker)
 		return
 
 	dat += "<hr/><br/><b>Cryogenic Oversight Control</b><br/>"
@@ -49,16 +49,13 @@ var/global/list/frozen_items = list()
 	onclose(user, "cryopod_console")
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
-
 	if(..())
 		return
 
 	var/mob/user = usr
-
 	src.add_fingerprint(user)
 
 	if(href_list["log"])
-
 		var/dat = "<b>Recently stored crewmembers</b><br/><hr/><br/>"
 		for(var/person in frozen_crew)
 			dat += "[person]<br/>"
@@ -67,36 +64,33 @@ var/global/list/frozen_items = list()
 		user << browse(dat, "window=cryolog")
 
 	else if(href_list["item"])
-
 		if(frozen_items.len == 0)
-			user << "\blue There is nothing to recover from storage."
+			to_chat(user, SPAN_INFO("There is nothing to recover from storage."))
 			return
 
-		var/obj/item/I = input(usr, "Please choose which object to retrieve.","Object recovery",null) as obj in frozen_items
-
+		var/obj/item/I = input(usr, "Please choose which object to retrieve.", "Object recovery", null) as obj in frozen_items
 		if(!I || frozen_items.len == 0)
-			user << "\blue There is nothing to recover from storage."
+			to_chat(user, SPAN_INFO("There is nothing to recover from storage."))
 			return
 
-		visible_message("\blue The console beeps happily as it disgorges \the [I].", 3)
+		visible_message(SPAN_INFO("The console beeps happily as it disgorges \the [I]."), 3)
 
 		I.loc = get_turf(src)
 		frozen_items -= I
 
 	else if(href_list["allitems"])
-
 		if(frozen_items.len == 0)
-			user << "\blue There is nothing to recover from storage."
+			to_chat(user, SPAN_INFO("There is nothing to recover from storage."))
 			return
 
-		visible_message("\blue The console beeps happily as it disgorges the desired objects.", 3)
+		visible_message(SPAN_INFO("The console beeps happily as it disgorges the desired objects."), 3)
 
 		for(var/obj/item/I in frozen_items)
 			I.loc = get_turf(src)
 			frozen_items -= I
 
 	else if(href_list["crew"])
-		user << "\red Functionality unavailable at this time."
+		to_chat(user, SPAN_WARNING("Functionality unavailable at this time."))
 
 	src.updateUsrDialog()
 	return
@@ -136,11 +130,11 @@ var/global/list/frozen_items = list()
 	density = 1
 	anchored = 1
 
-	var/mob/occupant = null      // Person waiting to be despawned.
-	var/orient_right = null      // Flips the sprite.
+	var/mob/occupant = null		// Person waiting to be despawned.
+	var/orient_right = null		// Flips the sprite.
 	//var/time_till_despawn = 9000 // 15 minutes-ish safe period before being despawned.
 	var/time_till_despawn = 3000 // Lowered this to 5 minutes for reasons. -Frenjo
-	var/time_entered = 0         // Used to keep track of the safe period.
+	var/time_entered = 0		// Used to keep track of the safe period.
 	var/obj/item/device/radio/intercom/announce //
 
 	// These items are preserved when the process() despawn proc occurs.
@@ -155,7 +149,7 @@ var/global/list/frozen_items = list()
 		/obj/item/clothing/suit,
 		/obj/item/clothing/shoes/magboots,
 		/obj/item/blueprints,
-		/obj/item/clothing/head/helmet/space/
+		/obj/item/clothing/head/helmet/space
 	)
 
 /obj/machinery/cryopod/right

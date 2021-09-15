@@ -2,8 +2,8 @@
 //Thanks to Kilakk for the admin-button portion of this code.
 
 var/list/response_team_members = list()
-var/global/send_emergency_team = 0 // Used for automagic response teams
-                                   // 'admin_emergency_team' for admin-spawned response teams
+var/global/send_emergency_team = 0	// Used for automagic response teams
+									// 'admin_emergency_team' for admin-spawned response teams
 var/ert_base_chance = 10 // Default base chance. Will be incremented by increment ERT chance.
 var/can_call_ert
 
@@ -39,7 +39,7 @@ var/can_call_ert
 	trigger_armed_response_team(1)
 
 
-client/verb/JoinResponseTeam()
+/client/verb/JoinResponseTeam()
 	set category = "IC"
 
 	if(isobserver(usr) || istype(usr, /mob/new_player))
@@ -78,7 +78,7 @@ client/verb/JoinResponseTeam()
 				return
 
 	else
-		usr << "You need to be an observer or new player to use this."
+		to_chat(usr, "You need to be an observer or new player to use this.")
 
 // returns a number of dead players in %
 proc/percentage_dead()
@@ -92,7 +92,8 @@ proc/percentage_dead()
 
 	if(total == 0)
 		return 0
-	else return round(100 * deadcount / total)
+	else
+		return round(100 * deadcount / total)
 
 // counts the number of antagonists in %
 proc/percentage_antagonists()
@@ -119,11 +120,11 @@ proc/increment_ert_chance()
 		if(get_security_level() == "red")
 			ert_base_chance += 3
 		if(get_security_level() == "delta")
-			ert_base_chance += 10           // Need those big guns
+			ert_base_chance += 10			// Need those big guns
 		sleep(600 * 3) // Minute * Number of Minutes
 
 
-proc/trigger_armed_response_team(force = 0)
+/proc/trigger_armed_response_team(force = 0)
 	if(!can_call_ert && !force)
 		return
 	if(send_emergency_team)
@@ -192,7 +193,7 @@ proc/trigger_armed_response_team(force = 0)
 		M.g_eyes = hex2num(copytext(new_eyes, 4, 6))
 		M.b_eyes = hex2num(copytext(new_eyes, 6, 8))
 
-	var/new_tone = input("Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation")  as text
+	var/new_tone = input("Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation") as text
 
 	if(!new_tone)
 		new_tone = 35
@@ -200,7 +201,7 @@ proc/trigger_armed_response_team(force = 0)
 	M.s_tone = -M.s_tone + 35
 
 	// hair
-	var/list/all_hairs = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair
+	var/list/all_hairs = SUBTYPESOF(/datum/sprite_accessory/hair)
 	var/list/hairs = list()
 
 	// loop through potential hairs
@@ -211,12 +212,12 @@ proc/trigger_armed_response_team(force = 0)
 
 //	var/new_style = input("Please select hair style", "Character Generation")  as null|anything in hairs
 //hair
-	var/new_hstyle = input(usr, "Select a hair style", "Grooming")  as null|anything in hair_styles_list
+	var/new_hstyle = input(usr, "Select a hair style", "Grooming") as null|anything in hair_styles_list
 	if(new_hstyle)
 		M.h_style = new_hstyle
 
 	// facial hair
-	var/new_fstyle = input(usr, "Select a facial hair style", "Grooming")  as null|anything in facial_hair_styles_list
+	var/new_fstyle = input(usr, "Select a facial hair style", "Grooming") as null|anything in facial_hair_styles_list
 	if(new_fstyle)
 		M.f_style = new_fstyle
 

@@ -43,20 +43,18 @@
 		return
 
 	if(M)
-		if (M.dna)
+		if(M.dna)
 			O.dna = M.dna.Clone()
 			M.dna = null
 
-		if (M.suiciding)
+		if(M.suiciding)
 			O.suiciding = M.suiciding
 			M.suiciding = null
-
 
 	for(var/datum/disease/D in M.viruses)
 		O.viruses += D
 		D.affected_mob = O
 		M.viruses -= D
-
 
 	for(var/obj/T in (M.contents-implants))
 		qdel(T)
@@ -71,7 +69,7 @@
 		O.loc = C
 		C.occupant = O
 		connected = null
-	O.real_name = text("monkey ([])",copytext(md5(M.real_name), 2, 6))
+	O.real_name = "monkey ([copytext(md5(M.real_name), 2, 6)])"
 	O.take_overall_damage(M.getBruteLoss() + 40, M.getFireLoss())
 	O.adjustToxLoss(M.getToxLoss() + 20)
 	O.adjustOxyLoss(M.getOxyLoss())

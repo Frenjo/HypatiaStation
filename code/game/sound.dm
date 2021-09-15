@@ -36,7 +36,7 @@ var/list/page_sound = list('sound/effects/pageturn1.ogg', 'sound/effects/pagetur
 					if(distance > 1)
 						continue
 
-					var/new_frequency = 32000 + (frequency - 32000)*0.125	//lower the frequency. very rudimentary
+					var/new_frequency = 32000 + (frequency - 32000) * 0.125	//lower the frequency. very rudimentary
 					var/new_volume = vol * 0.15								//muffle the sound, like we're hearing through contact
 					M.playsound_local(turf_source, soundin, new_volume, vary, new_frequency, falloff)
 				else
@@ -95,14 +95,23 @@ var/const/SURROUND_CAP = 255
 /proc/get_sfx(soundin)
 	if(istext(soundin))
 		switch(soundin)
-			if ("shatter") soundin = pick(shatter_sound)
-			if ("explosion") soundin = pick(explosion_sound)
-			if ("sparks") soundin = pick(spark_sound)
-			if ("rustle") soundin = pick(rustle_sound)
-			if ("punch") soundin = pick(punch_sound)
-			if ("clownstep") soundin = pick(clown_sound)
-			if ("swing_hit") soundin = pick(swing_hit_sound)
-			if ("hiss") soundin = pick(hiss_sound)
-			if ("pageturn") soundin = pick(page_sound)
+			if("shatter")
+				soundin = pick(shatter_sound)
+			if("explosion")
+				soundin = pick(explosion_sound)
+			if("sparks")
+				soundin = pick(spark_sound)
+			if("rustle")
+				soundin = pick(rustle_sound)
+			if("punch")
+				soundin = pick(punch_sound)
+			if("clownstep")
+				soundin = pick(clown_sound)
+			if("swing_hit")
+				soundin = pick(swing_hit_sound)
+			if("hiss")
+				soundin = pick(hiss_sound)
+			if("pageturn")
+				soundin = pick(page_sound)
 			//if ("gunshot") soundin = pick(gun_sound)
 	return soundin

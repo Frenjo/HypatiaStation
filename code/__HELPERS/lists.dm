@@ -460,6 +460,3 @@ proc/listclearnulls(list/list)
 
 /obj/machinery/camera/dd_SortValue()
 	return "[c_tag]"
-
-
-#define SUBTYPESOF(prototype) (typesof(prototype) - prototype)

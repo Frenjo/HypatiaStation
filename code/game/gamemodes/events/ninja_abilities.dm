@@ -206,7 +206,7 @@ Must right click on a mob to activate.*/
 				var/obj/effect/energy_net/E = new /obj/effect/energy_net(M.loc)
 				E.layer = M.layer + 1	//To have it appear one layer above the mob.
 				for(var/mob/O in viewers(U, 3))
-					O.show_message(text("\red [] caught [] with an energy net!", U, M), 1)
+					O.show_message(SPAN_WARNING("[U] caught [M] with an energy net!"), 1)
 				E.affecting = M
 				E.master = U
 				spawn(0)	//Parallel processing.
