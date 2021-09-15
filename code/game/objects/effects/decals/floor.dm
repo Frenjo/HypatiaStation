@@ -1,9 +1,11 @@
 /obj/effect/decal/floor
 	name = "floor decal"
 	icon = 'icons/turf/floor_decals.dmi'
+	layer = TURF_LAYER
 
 /obj/effect/decal/floor/initialize()
-	..()
+	. = ..()
+	loc.set_dir(src.dir)
 	loc.overlays += src
 	qdel(src)
 
@@ -32,6 +34,9 @@
 
 /obj/effect/decal/floor/siding/black/tri_border
 	icon_state = "siding_tri_border"
+
+/obj/effect/decal/floor/siding/black/corner
+	icon_state = "siding_corner"
 
 // Wood siding
 /obj/effect/decal/floor/siding/wood
