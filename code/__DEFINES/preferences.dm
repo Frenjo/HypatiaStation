@@ -44,4 +44,4 @@ var/list/be_special_flags = list(
 	"Ninja" = BE_NINJA,
 	"Raider" = BE_RAIDER,
 	"Diona" = BE_PLANT
-	)
+)
