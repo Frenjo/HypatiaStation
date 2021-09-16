@@ -890,10 +890,6 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Security Dormitories"
 	icon_state = "Sleep"
 
-/area/crew_quarters/sleeping/sec/old
-	name = "\improper Disused Security Dormitories"
-	icon_state = "Sleep"
-
 /area/crew_quarters/sleeping/bedrooms
 	name = "\improper Dormitory Bedroom"
 	icon_state = "Sleep"
@@ -974,6 +970,10 @@ var/list/ghostteleportlocs = list()
 /area/lawoffice
 	name = "\improper Law Office"
 	icon_state = "law"
+
+/area/vacantoffice
+	name = "\improper Vacant Office"
+	icon_state = "Sleep"
 
 // Holodeck
 /area/holodeck
