@@ -598,7 +598,7 @@ var/list/ghostteleportlocs = list()
 //PRISON
 /area/prison
 	name = "\improper Prison Satellite"
-	icon_state = "brig"
+	icon_state = "sec_prison"
 
 /area/prison/arrival_airlock
 	name = "\improper Prison Satellite Airlock"
@@ -665,20 +665,19 @@ var/list/ghostteleportlocs = list()
 
 /area/prison/solitary
 	name = "Prison Satellite Solitary Confinement"
-	icon_state = "brig"
-	dynamic_lighting = 0
+	icon_state = "sec_prison"
 
 /area/prison/cell_block/A
 	name = "Prison Satellite Cell Block A"
-	icon_state = "brig"
+	icon_state = "sec_prison"
 
 /area/prison/cell_block/B
 	name = "Prison Satellite Cell Block B"
-	icon_state = "brig"
+	icon_state = "sec_prison"
 
 /area/prison/cell_block/C
 	name = "Prison Satellite Cell Block C"
-	icon_state = "brig"
+	icon_state = "sec_prison"
 
 //STATION13
 
@@ -1353,10 +1352,6 @@ var/list/ghostteleportlocs = list()
 /area/security/brig
 	name = "\improper Brig"
 	icon_state = "brig"
-
-/area/security/prison
-	name = "\improper Disused Prison Wing"
-	icon_state = "sec_prison"
 
 /area/security/warden
 	name = "\improper Warden"
