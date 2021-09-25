@@ -943,7 +943,11 @@
 
 /obj/machinery/power/apc/proc/update()
 	if(operating && !shorted)
-		area.power_light = (lighting > 1)
+		//prevent unnecessary updates to emergency lighting
+		var/new_power_light = (lighting > 1)
+		if(area.power_light != new_power_light)
+			area.power_light = new_power_light
+			area.set_emergency_lighting(lighting == 1) //if lights go auto-off, emergency lights go on
 		area.power_equip = (equipment > 1)
 		area.power_environ = (environ > 1)
 	else

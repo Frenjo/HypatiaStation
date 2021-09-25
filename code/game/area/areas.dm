@@ -160,7 +160,7 @@
 	return
 
 /area/proc/updateicon()
-	if((fire || eject || party || destruct) && ((!requires_power) ? (!requires_power) : power_environ) && !istype(src, /area/space))
+	if((fire || eject || party || destruct) && ((!requires_power) ? (!requires_power) : power_environ))
 		if(fire && !eject && !party && !destruct)
 			icon_state = "blue"
 		else if(atmosalm && !fire && !eject && !party && !destruct)
@@ -226,6 +226,16 @@
 			used_light += amount
 		if(ENVIRON)
 			used_environ += amount
+
+/area/proc/set_lightswitch(new_switch)
+	if(lightswitch != new_switch)
+		lightswitch = new_switch
+		updateicon()
+		power_change()
+
+/area/proc/set_emergency_lighting(enable)
+	for(var/obj/machinery/light/M in src)
+		M.set_emergency_lighting(enable)
 
 /area/Entered(A)
 	var/musVolume = 25

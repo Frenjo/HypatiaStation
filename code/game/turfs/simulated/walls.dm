@@ -428,23 +428,23 @@
 		AH.try_build(src)
 		return
 
-	else if(istype(W, /obj/item/alarm_frame))
-		var/obj/item/alarm_frame/AH = W
+	else if(istype(W, /obj/item/frame/alarm))
+		var/obj/item/frame/alarm/AH = W
 		AH.try_build(src)
 		return
 
-	else if(istype(W, /obj/item/firealarm_frame))
-		var/obj/item/firealarm_frame/AH = W
+	else if(istype(W, /obj/item/frame/firealarm))
+		var/obj/item/frame/firealarm/AH = W
 		AH.try_build(src)
 		return
 
-	else if(istype(W, /obj/item/light_fixture_frame))
-		var/obj/item/light_fixture_frame/AH = W
+	else if(istype(W, /obj/item/frame/light_fixture))
+		var/obj/item/frame/light_fixture/AH = W
 		AH.try_build(src)
 		return
 
-	else if(istype(W, /obj/item/light_fixture_frame/small))
-		var/obj/item/light_fixture_frame/small/AH = W
+	else if(istype(W, /obj/item/frame/light_fixture/small))
+		var/obj/item/frame/light_fixture/small/AH = W
 		AH.try_build(src)
 		return
 

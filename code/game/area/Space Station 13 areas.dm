@@ -120,6 +120,9 @@ var/list/ghostteleportlocs = list()
 		'sound/music/traitor.ogg'
 	)
 
+/area/space/updateicon()
+	return
+
 /area/space/poweralert()
 	return
 
