@@ -298,8 +298,6 @@
 		name = "[area.name] APC"
 		stat |= MAINT
 		src.update_icon()
-		spawn(5)
-			src.update()
 
 /obj/machinery/power/apc/initialize()
 	..()
@@ -353,9 +351,6 @@
 	update_icon()
 
 	make_terminal()
-
-	spawn(5)
-		src.update()
 
 /obj/machinery/power/apc/examine()
 	set src in oview(1)
@@ -944,7 +939,7 @@
 /obj/machinery/power/apc/proc/update()
 	if(operating && !shorted)
 		//prevent unnecessary updates to emergency lighting
-		var/new_power_light = (lighting > 1)
+		var/new_power_light = (lighting >= 1)
 		if(area.power_light != new_power_light)
 			area.power_light = new_power_light
 			area.set_emergency_lighting(lighting == 1) //if lights go auto-off, emergency lights go on

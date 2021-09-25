@@ -601,7 +601,7 @@ var/global/list/light_type_cache = list()
 	brightness_power = 3
 	brightness_color = "#FFFFFF"
 	lighting_modes = list(
-		"emergency_lighting" = list(l_range = 3, l_power = 1, l_color = "#da0205"), 
+		"emergency_lighting" = list(l_range = 3, l_power = 1, l_color = "#d13e43"), 
 	)
 
 /obj/item/weapon/light/tube/large
@@ -624,7 +624,7 @@ var/global/list/light_type_cache = list()
 	brightness_power = 2
 	brightness_color = "#a0a080"
 	lighting_modes = list(
-		"emergency_lighting" = list(l_range = 4, l_power = 1, l_color = "#da0205"),
+		"emergency_lighting" = list(l_range = 4, l_power = 1, l_color = "#d13e43"),
 	)
 
 /obj/item/weapon/light/bulb/fire
@@ -639,8 +639,8 @@ var/global/list/light_type_cache = list()
 	brightness_power = 2
 
 /obj/item/weapon/light/bulb/red
-	color = "#da0205"
-	brightness_color = "#da0205"
+	color = "#d13e43"
+	brightness_color = "#d13e43"
 
 /obj/item/weapon/light/throw_impact(atom/hit_atom)
 	..()
