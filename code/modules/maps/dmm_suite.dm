@@ -53,10 +53,9 @@ dmm_suite{
 
 		*/
 
-	verb/load_map(dmm_file as file, z_offset as num, load_speed as num)
+	verb/load_map(dmm_file as file, z_offset as num)
 		// dmm_file: A .dmm file to load (Required).
 		// z_offset: A number representing the z-level on which to start loading the map (Optional).
-		// load_speed: How many tiles should be loaded per second, defaults to no pause (Optional)
 
 	verb/write_map(turf/t1 as turf, turf/t2 as turf, flags as num){
 		// t1: A turf representing one corner of a three dimensional grid (Required).
