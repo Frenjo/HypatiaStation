@@ -22,7 +22,7 @@
 
 	return 1
 
-/obj/machinery/door/window/New()
+/obj/machinery/door/window/initialize()
 	..()
 	if(src.req_access && src.req_access.len)
 		src.icon_state = "[src.icon_state]"
@@ -31,11 +31,10 @@
 
 /obj/machinery/door/window/Destroy()
 	density = 0
-	playsound(src, "shatter", 70, 1)
 	return ..()
 
 /obj/machinery/door/window/Bumped(atom/movable/AM as mob|obj)
-	if(!(ismob(AM)))
+	if(!ismob(AM))
 		var/obj/machinery/bot/bot = AM
 		if(istype(bot))
 			if(density && src.check_access(bot.botcard))
@@ -50,7 +49,7 @@
 					sleep(50)
 					close()
 		return
-	if(!(ticker))
+	if(!ticker)
 		return
 	if(src.operating)
 		return
@@ -145,6 +144,7 @@
 			ae.icon_state = "door_electronics_smoked"
 			operating = 0
 		src.density = 0
+		playsound(src, "shatter", 70, 1)
 		qdel(src)
 		return
 
@@ -172,7 +172,7 @@
 	return src.attack_hand(user)
 
 /obj/machinery/door/window/attack_hand(mob/user as mob)
-	if(istype(user,/mob/living/carbon/human))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
 			playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
@@ -188,7 +188,7 @@
 		return
 
 	//Emags and ninja swords? You may pass.
-	if(src.density && (istype(I, /obj/item/weapon/card/emag)||istype(I, /obj/item/weapon/melee/energy/blade)))
+	if(src.density && (istype(I, /obj/item/weapon/card/emag) || istype(I, /obj/item/weapon/melee/energy/blade)))
 		src.operating = -1
 		if(istype(I, /obj/item/weapon/melee/energy/blade))
 			var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
