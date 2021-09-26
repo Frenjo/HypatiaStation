@@ -38,7 +38,7 @@
 						soft = 1
 						//dont break here, since we still need to be sure that it isnt blocked
 
-				if(soft || (!blocked && !(areacheck.name == "Space")))
+				if(soft || (!blocked && !(istype(areacheck, /area/space))))
 					AM.Move(floorbelow)
 					if(!soft && ishuman(AM))
 						var/mob/living/carbon/human/H = AM

@@ -84,7 +84,7 @@ STI KALY - blind
 /datum/disease/wizarditis/proc/teleport()
 	var/list/theareas = new/list()
 	for(var/area/AR in orange(80, affected_mob))
-		if(theareas.Find(AR) || AR.name == "Space")
+		if(theareas.Find(AR) || istype(AR, /area/space))
 			continue
 		theareas += AR
 
@@ -97,7 +97,7 @@ STI KALY - blind
 	for(var/turf/T in get_area_turfs(thearea.type))
 		if(T.z != affected_mob.z)
 			continue
-		if(T.name == "space")
+		if(istype(T, /area/space))
 			continue
 		if(!T.density)
 			var/clear = 1

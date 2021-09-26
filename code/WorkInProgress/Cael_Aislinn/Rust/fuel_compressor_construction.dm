@@ -24,10 +24,10 @@
 	var/turf/loc = get_turf(usr)
 	var/area/A = loc.loc
 	if(!istype(loc, /turf/simulated/floor))
-		usr << "\red Compressor cannot be placed on this spot."
+		to_chat(usr, SPAN_WARNING("Compressor cannot be placed on this spot."))
 		return
-	if(A.requires_power == 0 || A.name == "Space")
-		usr << "\red Compressor cannot be placed in this area."
+	if(A.requires_power == 0 || istype(A, /area/space))
+		to_chat(usr, SPAN_WARNING("Compressor cannot be placed in this area."))
 		return
 	new /obj/machinery/rust_fuel_assembly_port(loc, ndir, 1)
 	qdel(src)
@@ -38,7 +38,7 @@
 
 	// offset 24 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
-	if (building)
+	if(building)
 		dir = ndir
 	else
 		has_electronics = 3
@@ -47,8 +47,8 @@
 		icon_state = "fuel_compressor1"
 
 	//20% easier to read than apc code
-	pixel_x = (dir & 3)? 0 : (dir == 4 ? 32 : -32)
-	pixel_y = (dir & 3)? (dir ==1 ? 32 : -32) : 0
+	pixel_x = (dir & 3) ? 0 : (dir == 4 ? 32 : -32)
+	pixel_y = (dir & 3) ? (dir == 1 ? 32 : -32) : 0
 
 /obj/machinery/rust_fuel_compressor/attackby(obj/item/W, mob/user)
 	if(issilicon(user) && get_dist(src, user) > 1)
@@ -59,9 +59,10 @@
 				playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 				user << "You begin removing the circuitboard" //lpeters - fixed grammar issues
 				if(do_after(user, 50))
-					user.visible_message(\
-						SPAN_WARNING("[user.name] has removed the circuitboard from [src.name]!"),\
-						SPAN_INFO("You remove the circuitboard board."))
+					user.visible_message(
+						SPAN_WARNING("[user.name] has removed the circuitboard from [src.name]!"),
+						SPAN_INFO("You remove the circuitboard board.")
+					)
 					has_electronics = 0
 					new /obj/item/weapon/module/rust_fuel_compressor(loc)
 					has_electronics &= ~1
@@ -113,9 +114,10 @@
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		if(do_after(user, 20) && C.amount >= 10)
 			C.use(10)
-			user.visible_message(\
-				SPAN_WARNING("[user.name] has added cables to the compressor frame!"),\
-				"You add cables to the port frame.")
+			user.visible_message(
+				SPAN_WARNING("[user.name] has added cables to the compressor frame!"),
+				"You add cables to the port frame."
+			)
 			has_electronics &= 2
 		return
 
@@ -124,9 +126,10 @@
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		if(do_after(user, 50))
 			new /obj/item/stack/cable_coil(loc,10)
-			user.visible_message(\
-				SPAN_WARNING("[user.name] cut the cabling inside the compressor."),\
-				"You cut the cabling inside the port.")
+			user.visible_message(
+				SPAN_WARNING("[user.name] cut the cabling inside the compressor."),
+				"You cut the cabling inside the port."
+			)
 			has_electronics &= ~2
 		return
 
@@ -150,11 +153,11 @@
 			if(!src || !WT.remove_fuel(3, user))
 				return
 			new /obj/item/rust_fuel_assembly_port_frame(loc)
-			user.visible_message(\
-				SPAN_WARNING("[src] has been cut away from the wall by [user.name]."),\
-				"You detached the compressor frame.",\
-				SPAN_WARNING("You hear welding."))
+			user.visible_message(
+				SPAN_WARNING("[src] has been cut away from the wall by [user.name]."),
+				"You detached the compressor frame.",
+				SPAN_WARNING("You hear welding.")
+			)
 			qdel(src)
 		return
-
 	..()

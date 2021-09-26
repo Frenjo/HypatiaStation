@@ -546,8 +546,7 @@ var/global/list/light_type_cache = list()
 // called when area power state changes
 /obj/machinery/light/power_change()
 	spawn(10)
-		var/area/A = src.loc.loc
-		seton(A.lightswitch && A.power_light)
+		seton(powered())
 
 // called when on fire
 /obj/machinery/light/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)

@@ -2,7 +2,7 @@
 
 /obj/machinery/computer/gravity_control_computer
 	name = "Gravity Generator Control"
-	desc = "A computer to control a local gravity generator.  Qualified personnel only."
+	desc = "A computer to control a local gravity generator. Qualified personnel only."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "airtunnel0e"
 	anchored = 1
@@ -10,7 +10,7 @@
 	var/obj/machinery/gravity_generator = null
 
 
-/obj/machinery/gravity_generator/
+/obj/machinery/gravity_generator
 	name = "Gravitational Generator"
 	desc = "A device which produces a gravaton field when set up."
 	icon = 'icons/obj/singularity.dmi'
@@ -48,7 +48,7 @@
 
 /obj/machinery/gravity_generator/proc/locatelocalareas()
 	for(var/area/A in range(src,effectiverange))
-		if(A.name == "Space")
+		if(istype(A, /area/space))
 			continue // No (de)gravitizing space.
 		//if(A.master && !( A.master in localareas) )
 		//	localareas += A.master

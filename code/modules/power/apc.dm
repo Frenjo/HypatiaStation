@@ -37,7 +37,14 @@
 // controls power to devices in that area
 // may be opened to change power cell
 // three different channels (lighting/equipment/environ) - may each be set to on, off, or auto
+#define POWERCHAN_OFF		0
+#define POWERCHAN_OFF_AUTO	1
+#define POWERCHAN_ON		2
+#define POWERCHAN_ON_AUTO	3
 
+//thresholds for channels going off automatically. ENVIRON channel stays on as long as possible, and doesn't have a threshold
+#define AUTO_THRESHOLD_LIGHTING		30
+#define AUTO_THRESHOLD_EQUIPMENT	15
 
 //NOTE: STUFF STOLEN FROM AIRLOCK.DM thx
 
@@ -55,9 +62,9 @@
 	var/cell_type = /obj/item/weapon/cell/apc
 	var/opened = 0 //0=closed, 1=opened, 2=cover removed
 	var/shorted = 0
-	var/lighting = 3
-	var/equipment = 3
-	var/environ = 3
+	var/lighting = POWERCHAN_ON_AUTO
+	var/equipment = POWERCHAN_ON_AUTO
+	var/environ = POWERCHAN_ON_AUTO
 	var/operating = 1
 	var/charging = 0
 	var/chargemode = 1
@@ -128,9 +135,9 @@
 	icon_state = "apc1"
 	opened = 1
 	shorted = 1
-	lighting = 0
-	equipment = 0
-	environ = 0
+	lighting = POWERCHAN_OFF
+	equipment = POWERCHAN_OFF
+	environ = POWERCHAN_OFF
 	operating = 0
 	chargemode = 0
 	locked = 0
@@ -162,9 +169,9 @@
 
 // These are for abandoned off-station places, IE the derelict or white ship.
 /obj/machinery/power/apc/abandoned
-	lighting = 0
-	equipment = 0
-	environ = 0
+	lighting = POWERCHAN_OFF
+	equipment = POWERCHAN_OFF
+	environ = POWERCHAN_OFF
 	operating = 0
 	chargemode = 0
 	locked = 0
@@ -200,9 +207,9 @@
 
 // These are switched fully on, but still unlocked.
 /obj/machinery/power/apc/away/on
-	lighting = 3
-	equipment = 3
-	environ = 3
+	lighting = POWERCHAN_ON_AUTO
+	equipment = POWERCHAN_ON_AUTO
+	environ = POWERCHAN_ON_AUTO
 
 /obj/machinery/power/apc/away/on/none
 	cell_type = null
@@ -230,9 +237,9 @@
 
 // These are switched fully off, but still unlocked.
 /obj/machinery/power/apc/away/off
-	lighting = 0
-	equipment = 0
-	environ = 0
+	lighting = POWERCHAN_OFF
+	equipment = POWERCHAN_OFF
+	environ = POWERCHAN_OFF
 
 /obj/machinery/power/apc/away/off/none
 	cell_type = null
@@ -286,8 +293,8 @@
 	src.tdir = dir		// to fix Vars bug
 	dir = SOUTH
 
-	pixel_x = (src.tdir & 3)? 0 : (src.tdir == 4 ? 24 : -24)
-	pixel_y = (src.tdir & 3)? (src.tdir ==1 ? 24 : -24) : 0
+	pixel_x = (src.tdir & 3) ? 0 : (src.tdir == 4 ? 24 : -24)
+	pixel_y = (src.tdir & 3) ? (src.tdir == 1 ? 24 : -24) : 0
 	if(building == 0)
 		init()
 	else
@@ -892,9 +899,9 @@
 				"powerLoad" = lastused_equip,
 				"status" = equipment,
 				"topicParams" = list(
-					"auto" = list("eqp" = 3),
-					"on"   = list("eqp" = 2),
-					"off"  = list("eqp" = 1)
+					"auto"	= list("eqp" = 3),
+					"on"	= list("eqp" = 2),
+					"off"	= list("eqp" = 1)
 				)
 			),
 			list(
@@ -902,9 +909,9 @@
 				"powerLoad" = lastused_light,
 				"status" = lighting,
 				"topicParams" = list(
-					"auto" = list("lgt" = 3),
-					"on"   = list("lgt" = 2),
-					"off"  = list("lgt" = 1)
+					"auto"	= list("lgt" = 3),
+					"on"	= list("lgt" = 2),
+					"off"	= list("lgt" = 1)
 				)
 			),
 			list(
@@ -912,9 +919,9 @@
 				"powerLoad" = lastused_environ,
 				"status" = environ,
 				"topicParams" = list(
-					"auto" = list("env" = 3),
-					"on"   = list("env" = 2),
-					"off"  = list("env" = 1)
+					"auto"	= list("env" = 3),
+					"on"	= list("env" = 2),
+					"off"	= list("env" = 1)
 				)
 			)
 		)
@@ -922,9 +929,9 @@
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "apc.tmpl", "[area.name] - APC", 520, data["siliconUser"] ? 465 : 440)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -939,66 +946,63 @@
 /obj/machinery/power/apc/proc/update()
 	if(operating && !shorted)
 		//prevent unnecessary updates to emergency lighting
-		var/new_power_light = (lighting >= 1)
+		var/new_power_light = (lighting >= POWERCHAN_ON)
 		if(area.power_light != new_power_light)
 			area.power_light = new_power_light
-			area.set_emergency_lighting(lighting == 1) //if lights go auto-off, emergency lights go on
-		area.power_equip = (equipment > 1)
-		area.power_environ = (environ > 1)
+			area.set_emergency_lighting(lighting == POWERCHAN_OFF_AUTO) //if lights go auto-off, emergency lights go on
+		area.power_equip = (equipment >= POWERCHAN_ON)
+		area.power_environ = (environ >= POWERCHAN_ON)
 	else
 		area.power_light = 0
 		area.power_equip = 0
 		area.power_environ = 0
 	area.power_change()
 
-/obj/machinery/power/apc/proc/isWireCut(var/wireIndex)
+/obj/machinery/power/apc/proc/isWireCut(wireIndex)
 	return wires.IsIndexCut(wireIndex)
 
-/obj/machinery/power/apc/proc/can_use(mob/user as mob, var/loud = 0) //used by attack_hand() and Topic()
-	if (user.stat)
-		user << "<span class='warning'>You must be conscious to use [src]!</span>"
+/obj/machinery/power/apc/proc/can_use(mob/user as mob, loud = 0) //used by attack_hand() and Topic()
+	if(user.stat)
+		to_chat(user, SPAN_WARNING("You must be conscious to use [src]!"))
 		return 0
 	if(!user.client)
 		return 0
-	if(!(istype(user, /mob/living/carbon/human) || \
-			issilicon(user) || \
-			istype(user, /mob/living/carbon/monkey) /*&& ticker && ticker.mode.name == "monkey"*/) )
-		user << "<span class='warning'>You don't have the dexterity to use [src]!</span>"
-
+	if(!(ishuman(user) || issilicon(user) || ismonkey(user) /*&& ticker && ticker.mode.name == "monkey"*/))
+		to_chat(user, SPAN_WARNING("You don't have the dexterity to use [src]!"))
 		return 0
 	if(user.restrained())
-		user << "<span class='warning'>You must have free hands to use [src].</span>"
+		to_chat(user, SPAN_WARNING("You must have free hands to use [src]."))
 		return 0
 	if(user.lying)
-		user << "<span class='warning'>You must stand to use [src]!</span>"
+		to_chat(user, SPAN_WARNING("You must stand to use [src]!"))
 		return 0
 	autoflag = 5
-	if (issilicon(user))
+	if(issilicon(user))
 		var/mob/living/silicon/ai/AI = user
 		var/mob/living/silicon/robot/robot = user
-		if (                                                             \
-			src.aidisabled ||                                            \
-			malfhack && istype(malfai) &&                                \
-			(                                                            \
-				(istype(AI) && (malfai!=AI && malfai != AI.parent)) ||   \
-				(istype(robot) && (robot in malfai.connected_robots))    \
-			)                                                            \
+		if(																	\
+			src.aidisabled ||												\
+			malfhack && istype(malfai) &&									\
+			(																\
+				(istype(AI) && (malfai!=AI && malfai != AI.parent)) ||		\
+				(istype(robot) && (robot in malfai.connected_robots))		\
+			)																\
 		)
 			if(!loud)
-				user << "<span class='danger'>\The [src] have AI control disabled!</span>"
+				to_chat(user, SPAN_DANGER("\The [src] have AI control disabled!"))
 			return 0
 	else
-		if ((!in_range(src, user) || !istype(src.loc, /turf)))
+		if(!in_range(src, user) || !isturf(src.loc))
 			return 0
 
 	var/mob/living/carbon/human/H = user
-	if (istype(H))
+	if(istype(H))
 		if(H.getBrainLoss() >= 60)
 			for(var/mob/M in viewers(src, null))
-				H.visible_message("<span class='danger'>[H] stares cluelessly at [src] and drools.</span>")
+				H.visible_message(SPAN_DANGER("[H] stares cluelessly at [src] and drools."))
 			return 0
 		else if(prob(H.getBrainLoss()))
-			user << "<span class='danger'>You momentarily forget how to use [src].</span>"
+			to_chat(user, SPAN_DANGER("You momentarily forget how to use [src]."))
 			return 0
 	return 1
 
@@ -1046,16 +1050,16 @@
 		update()
 
 	else if(href_list["overload"])
-		if(istype(usr, /mob/living/silicon))
+		if(issilicon(usr))
 			src.overload_lighting()
 
 	else if(href_list["malfhack"])
 		var/mob/living/silicon/ai/malfai = usr
 		if(get_malf_status(malfai) == 1)
 			if(malfai.malfhacking)
-				malfai << "You are already hacking an APC."
+				to_chat(malfai, "You are already hacking an APC.")
 				return 1
-			malfai << "Beginning override of APC systems. This takes some time, and you cannot perform other actions during the process."
+			to_chat(malfai, "Beginning override of APC systems. This takes some time, and you cannot perform other actions during the process.")
 			malfai.malfhack = src
 			malfai.malfhacking = 1
 			sleep(600)
@@ -1071,7 +1075,7 @@
 						src.malfai = usr:parent
 					else
 						src.malfai = usr
-					malfai << "Hack complete. The APC is now under your exclusive control."
+					to_chat(malfai, "Hack complete. The APC is now under your exclusive control.")
 					update_icon()
 
 	else if(href_list["occupyapc"])
@@ -1083,9 +1087,9 @@
 			malfvacate()
 
 	else if(href_list["toggleaccess"])
-		if(istype(usr, /mob/living/silicon))
-			if(emagged || (stat & (BROKEN|MAINT)))
-				usr << "The APC does not respond to the command."
+		if(issilicon(usr))
+			if(emagged || (stat & (BROKEN | MAINT)))
+				to_chat(usr, "The APC does not respond to the command.")
 			else
 				locked = !locked
 				update_icon()
@@ -1107,7 +1111,7 @@
 	if(!istype(malf))
 		return
 	if(istype(malf.loc, /obj/machinery/power/apc)) // Already in an APC
-		malf << "<span class='warning'>You must evacuate your current apc first.</span>"
+		to_chat(malf, SPAN_WARNING("You must evacuate your current apc first."))
 		return
 	if(isNotStationLevel(src.z))
 		return
@@ -1142,7 +1146,7 @@
 					if(A.stat != DEAD)
 						point.the_disk = A //The pinpointer tracks the AI back into its core.
 	else
-		src.occupant << "\red Primary core damaged, unable to return core processes."
+		to_chat(src.occupant, SPAN_WARNING("Primary core damaged, unable to return core processes."))
 		if(forced)
 			src.occupant.loc = src.loc
 			src.occupant.death()
@@ -1169,8 +1173,10 @@
 				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 				s.set_up(3, 1, src)
 				s.start()
-				visible_message("<span class='danger'>The [src.name] suddenly lets out a blast of smoke and some sparks!</span>", \
-								"<span class='danger'>You hear sizzling electronics.</span>")
+				visible_message(
+					SPAN_DANGER("The [src.name] suddenly lets out a blast of smoke and some sparks!"),
+					SPAN_DANGER("You hear sizzling electronics.")
+				)
 
 /obj/machinery/power/apc/surplus()
 	if(terminal)
@@ -1200,7 +1206,7 @@
 		return 0
 
 /obj/machinery/power/apc/process()
-	if(stat & (BROKEN|MAINT))
+	if(stat & (BROKEN | MAINT))
 		return
 	if(!area.requires_power)
 		return
@@ -1257,25 +1263,25 @@
 		else if(longtermpower > -10)
 			longtermpower -= 2
 
-		if(cell.charge >= 1250 || longtermpower > 0)              // Put most likely at the top so we don't check it last, effeciency 101
+		if(cell.percent() >= AUTO_THRESHOLD_LIGHTING || longtermpower > 0)			// Put most likely at the top so we don't check it last, effeciency 101
 			if(autoflag != 3)
 				equipment = autoset(equipment, 1)
 				lighting = autoset(lighting, 1)
 				environ = autoset(environ, 1)
 				autoflag = 3
 				area.poweralert(1, src)
-				if(cell.charge >= 4000)
+				if(cell.percent() >= 80)
 					area.poweralert(1, src)
 
-		else if(cell.charge < 1250 && cell.charge > 750 && longtermpower < 0)                       // <30%, turn off equipment
+		else if(cell.percent() < AUTO_THRESHOLD_LIGHTING && cell.percent() > AUTO_THRESHOLD_EQUIPMENT && longtermpower < 0)		// <30%, turn off lighting
 			if(autoflag != 2)
-				equipment = autoset(equipment, 2)
-				lighting = autoset(lighting, 1)
+				equipment = autoset(equipment, 1)
+				lighting = autoset(lighting, 2)
 				environ = autoset(environ, 1)
 				area.poweralert(0, src)
 				autoflag = 2
 
-		else if(cell.charge < 750 && cell.charge > 10)        // <15%, turn off lighting & equipment
+		else if(cell.percent() < AUTO_THRESHOLD_EQUIPMENT)	// <15%, turn off lighting & equipment
 			if((autoflag > 1 && longtermpower < 0) || (autoflag > 1 && longtermpower >= 0))
 				equipment = autoset(equipment, 2)
 				lighting = autoset(lighting, 2)
@@ -1283,7 +1289,7 @@
 				area.poweralert(0, src)
 				autoflag = 1
 
-		else if(cell.charge <= 0)                                   // zero charge, turn all off
+		else if(cell.charge <= 0)							// zero charge, turn all off
 			if(autoflag != 0)
 				equipment = autoset(equipment, 0)
 				lighting = autoset(lighting, 0)
@@ -1296,10 +1302,10 @@
 		if(src.attempt_charging())
 			if(excess > 0)		// check to make sure we have enough to charge
 				// Max charge is capped to % per second constant
-				var/ch = min(excess*CELLRATE, cell.maxcharge*CHARGELEVEL)
+				var/ch = min(excess * CELLRATE, cell.maxcharge * CHARGELEVEL)
 
-				ch = draw_power(ch/CELLRATE) // Removes the power we're taking from the grid
-				cell.give(ch*CELLRATE) // actually recharge the cell
+				ch = draw_power(ch / CELLRATE) // Removes the power we're taking from the grid
+				cell.give(ch * CELLRATE) // actually recharge the cell
 
 				lastused_charging = ch
 				lastused_total += ch // Sensors need this to stop reporting APC charging as "Other" load
@@ -1315,7 +1321,7 @@
 		//if we have excess power for long enough, think about re-enable charging.
 		if(chargemode)
 			if(!charging)
-				if(excess > cell.maxcharge*CHARGELEVEL)
+				if(excess > cell.maxcharge * CHARGELEVEL)
 					chargecount++
 				else
 					chargecount = 0
@@ -1343,27 +1349,26 @@
 		queue_icon_update()
 		update()
 
-	else if (last_ch != charging)
+	else if(last_ch != charging)
 		queue_icon_update()
 
 // val 0=off, 1=off(auto) 2=on 3=on(auto)
 // on 0=off, 1=on, 2=autooff
-/obj/machinery/power/apc/proc/autoset(val, on)
-	if(on == 0)
-		if(val == 2)			// if on, return off
-			return 0
-		else if(val == 3)		// if auto-on, return auto-off
-			return 1
+// defines a state machine, returns the new state
+/obj/machinery/power/apc/proc/autoset(cur_state, on)
+	switch(cur_state)
+		if(POWERCHAN_OFF) //autoset will never turn on a channel set to off
+		if(POWERCHAN_OFF_AUTO)
+			if(on == 1)
+				return POWERCHAN_ON_AUTO
+		if(POWERCHAN_ON)
+			if(on == 0)
+				return POWERCHAN_OFF
+		if(POWERCHAN_ON_AUTO)
+			if(on == 0 || on == 2)
+				return POWERCHAN_OFF_AUTO
 
-	else if(on == 1)
-		if(val == 1)			// if auto-off, return auto-on
-			return 3
-
-	else if(on == 2)
-		if(val == 3)			// if auto-on, return auto-off
-			return 1
-
-	return val
+	return cur_state //leave unchanged
 
 // damage and destruction acts
 /obj/machinery/power/apc/emp_act(severity)
@@ -1371,37 +1376,37 @@
 		cell.emp_act(severity)
 	if(occupant)
 		occupant.emp_act(severity)
-	lighting = 0
-	equipment = 0
-	environ = 0
+	lighting = POWERCHAN_OFF
+	equipment = POWERCHAN_OFF
+	environ = POWERCHAN_OFF
 	spawn(600)
-		equipment = 3
-		environ = 3
+		equipment = POWERCHAN_ON_AUTO
+		environ = POWERCHAN_ON_AUTO
 	..()
 
 /obj/machinery/power/apc/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			if (cell)
+			if(cell)
 				cell.ex_act(1.0) // more lags woohoo
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if(prob(50))
 				set_broken()
-				if (cell && prob(50))
+				if(cell && prob(50))
 					cell.ex_act(2.0)
 		if(3.0)
-			if (prob(25))
+			if(prob(25))
 				set_broken()
-				if (cell && prob(25))
+				if(cell && prob(25))
 					cell.ex_act(3.0)
 	return
 
 /obj/machinery/power/apc/blob_act()
-	if (prob(75))
+	if(prob(75))
 		set_broken()
-		if (cell && prob(5))
+		if(cell && prob(5))
 			cell.blob_act()
 
 /obj/machinery/power/apc/disconnect_terminal()
@@ -1435,7 +1440,7 @@
 
 /obj/machinery/power/apc/proc/setsubsystem(val)
 	if(cell && cell.charge > 0)
-		return (val==1) ? 0 : val
+		return (val == 1) ? 0 : val
 	else if(val == 3)
 		return 1
 	else

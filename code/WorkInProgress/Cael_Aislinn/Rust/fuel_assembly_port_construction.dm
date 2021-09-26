@@ -26,7 +26,7 @@
 	if (!istype(loc, /turf/simulated/floor))
 		usr << "\red Port cannot be placed on this spot."
 		return
-	if (A.requires_power == 0 || A.name == "Space")
+	if (A.requires_power == 0 || istype(A, /area/space))
 		usr << "\red Port cannot be placed in this area."
 		return
 	new /obj/machinery/rust_fuel_assembly_port(loc, ndir, 1)

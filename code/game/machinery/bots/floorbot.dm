@@ -282,8 +282,8 @@
 
 
 /obj/machinery/bot/floorbot/proc/repair(var/turf/target)
-	if(istype(target, /turf/space/))
-		if(target.loc.name == "Space")
+	if(istype(target, /turf/space))
+		if(istype(target.loc, /area/space))
 			return
 	else if(!istype(target, /turf/simulated/floor))
 		return

@@ -19,7 +19,7 @@
 	var/corpsepocket1 = null
 	var/corpsepocket2 = null
 	var/corpseback = null
-	var/corpseid = 0     //Just set to 1 if you want them to have an ID
+	var/corpseid = 0	//Just set to 1 if you want them to have an ID
 	var/corpseidjob = null // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
 	var/corpseidicon = null //For setting it to be a gold, silver, centcomm etc ID
@@ -27,6 +27,21 @@
 
 /obj/effect/landmark/corpse/initialize()
 	createCorpse()
+
+/obj/effect/landmark/corpse/Destroy()
+	corpseuniform = null
+	corpsesuit = null
+	corpseshoes = null
+	corpsegloves = null
+	corpseradio = null
+	corpseglasses = null
+	corpsemask = null
+	corpsehelmet = null
+	corpsebelt = null
+	corpsepocket1 = null
+	corpsepocket2 = null
+	corpseback = null
+	return ..()
 
 /obj/effect/landmark/corpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human(src.loc)
