@@ -55,7 +55,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		radio_controller.remove_object(src, frequency)
 		for(var/ch_name in channels)
 			radio_controller.remove_object(src, radiochannels[ch_name])
-	..()
+	return ..()
 
 /obj/item/device/radio/initialize()
 	if(freerange)
@@ -98,19 +98,19 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 				"}
 
 	for(var/ch_name in channels)
-		dat+=text_sec_channel(ch_name, channels[ch_name])
-	dat+={"[text_wires()]</TT></body></html>"}
+		dat += text_sec_channel(ch_name, channels[ch_name])
+	dat += {"[text_wires()]</TT></body></html>"}
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")
 	return
 
 /obj/item/device/radio/proc/text_wires()
-	if (b_stat)
+	if(b_stat)
 		return wires.GetInteractWindow()
 	return
 
 /obj/item/device/radio/proc/text_sec_channel(chan_name, chan_stat)
-	var/list = !!(chan_stat&FREQ_LISTENING)!=0
+	var/list = !!(chan_stat & FREQ_LISTENING) != 0
 	return {"
 			<B>[chan_name]</B><br>
 			Speaker: <A href='byond://?src=\ref[src];ch_name=[chan_name];listen=[!list]'>[list ? "Engaged" : "Disengaged"]</A><BR>
@@ -137,7 +137,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		var/mob/living/silicon/ai/A = locate(href_list["track2"])
 		if(A && target)
 			A:cameraFollow = target
-			A << text("Now tracking [] on camera.", target.name)
+			to_chat(A, "Now tracking [target.name] on camera.")
 			if(usr.machine == null)
 				usr.machine = usr
 
@@ -197,22 +197,24 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		return
 
 	var/mob/living/silicon/ai/A = new /mob/living/silicon/ai(src, null, null, 1)
-	Broadcast_Message(connection, A,
-						0, "*garbled automated announcement*", src,
-						message, from, "Automated Announcement", from, "synthesized voice",
-						4, 0, list(1), FREQUENCY_COMMON)
+	Broadcast_Message(
+		connection, A,
+		0, "*garbled automated announcement*", src,
+		message, from, "Automated Announcement", from, "synthesized voice",
+		4, 0, list(1), FREQUENCY_COMMON
+	)
 	qdel(A)
 	return
 
 /obj/item/device/radio/talk_into(mob/living/M as mob, message, channel, verbage = "says", datum/language/speaking = null)
 	if(!on)
 		return // the device has to be on
-	//  Fix for permacell radios, but kinda eh about actually fixing them.
+	// Fix for permacell radios, but kinda eh about actually fixing them.
 	if(!M || !message)
 		return
 
-	//  Uncommenting this. To the above comment:
-	// 	The permacell radios aren't suppose to be able to transmit, this isn't a bug and this "fix" is just making radio wires useless. -Giacom
+	// Uncommenting this. To the above comment:
+	// The permacell radios aren't suppose to be able to transmit, this isn't a bug and this "fix" is just making radio wires useless. -Giacom
 	if(wires.IsIndexCut(WIRE_TRANSMIT)) // The device has to have all its wires and shit intact
 		return
 
@@ -326,7 +328,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 				// so that they can be logged even AFTER the mob is deleted or something
 
 			  // Other tags:
-				"compression" = rand(45,50), // compressed radio signal
+				"compression" = rand(45, 50), // compressed radio signal
 				"message" = message, // the actual sent message
 				"connection" = connection, // the radio connection to use
 				"radio" = src, // stores the radio used for transmission
@@ -408,12 +410,14 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	  	// Send a mundane broadcast with limited targets:
 
 		//THIS IS TEMPORARY.
-		if(!connection)	return	//~Carn
+		if(!connection)
+			return	//~Carn
 
-		Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
-						  src, message, displayname, jobname, real_name, M.voice_name,
-		                  filter_type, signal.data["compression"], list(position.z), connection.frequency, verbage, speaking)
-
+		Broadcast_Message(
+			connection, M, voicemask, pick(M.speak_emote),
+			src, message, displayname, jobname, real_name, M.voice_name,
+			filter_type, signal.data["compression"], list(position.z), connection.frequency, verbage, speaking
+		)
 
 
 	else // OLD RADIO SYSTEMS: By Goons?
@@ -744,7 +748,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		if(keyslot.syndie)
 			src.syndie = 1
 
-	for (var/ch_name in src.channels)
+	for(var/ch_name in src.channels)
 		if(!radio_controller)
 			sleep(30) // Waiting for the radio_controller to be created.
 		if(!radio_controller)
@@ -794,7 +798,6 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")
 	return
-
 
 /obj/item/device/radio/proc/config(op)
 	if(radio_controller)

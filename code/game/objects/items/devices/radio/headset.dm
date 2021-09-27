@@ -27,11 +27,11 @@
 	recalculateChannels()
 
 /obj/item/device/radio/headset/Destroy()
-	qdel(keyslot1)
-	qdel(keyslot2)
 	keyslot1 = null
 	keyslot2 = null
-	..()
+	qdel(keyslot1)
+	qdel(keyslot2)
+	return ..()
 
 /obj/item/device/radio/headset/receive_range(freq, level)
 	if(ishuman(src.loc))
@@ -186,7 +186,7 @@
 /obj/item/device/radio/headset/attackby(obj/item/weapon/W as obj, mob/user as mob)
 //	..()
 	user.set_machine(src)
-	if(!(istype(W, /obj/item/weapon/screwdriver) || (istype(W, /obj/item/device/encryptionkey))))
+	if(!(istype(W, /obj/item/weapon/screwdriver) || istype(W, /obj/item/device/encryptionkey)))
 		return
 
 	if(istype(W, /obj/item/weapon/screwdriver))
@@ -268,7 +268,6 @@
 
 		if(keyslot2.syndie)
 			src.syndie = 1
-
 
 	for(var/ch_name in channels)
 		if(!radio_controller)

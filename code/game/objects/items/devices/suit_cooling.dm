@@ -164,7 +164,6 @@
 
 /obj/item/device/suit_cooling_unit/examine()
 	set src in view(1)
-
 	..()
 
 	if(on)

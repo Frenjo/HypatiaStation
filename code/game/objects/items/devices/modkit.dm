@@ -12,11 +12,11 @@
 	var/list/permitted_types = list(
 		/obj/item/clothing/head/helmet/space/rig,
 		/obj/item/clothing/suit/space/rig
-		)
+	)
 
 /obj/item/device/modkit/afterattack(obj/O, mob/user as mob)
 	if(!parts)
-		user << "<span class='warning'>This kit has no parts for this modification left.</span>"
+		to_chat(user, SPAN_WARNING("This kit has no parts for this modification left."))
 		user.drop_from_inventory(src)
 		qdel(src)
 		return
@@ -28,11 +28,14 @@
 	*/
 
 	if(!isturf(O.loc))
-		user << "<span class='warning'>[O] must be safely placed on the ground for modification.</span>"
+		to_chat(user, SPAN_WARNING("[O] must be safely placed on the ground for modification."))
 		return
 
 	playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
-	user.visible_message("\red [user] opens \the [src] and modifies \the [O].","\red You open \the [src] and modify \the [O].")
+	user.visible_message(
+		SPAN_WARNING("[user] opens \the [src] and modifies \the [O]."),
+		SPAN_WARNING("You open \the [src] and modify \the [O].")
+	)
 
 	var/obj/item/clothing/I = O
 	if(istype(I))
@@ -50,6 +53,6 @@
 
 /obj/item/device/modkit/examine()
 	..()
-	usr << "It looks as though it modifies hardsuits to fit the following users:"
+	to_chat(usr, "It looks as though it modifies hardsuits to fit the following users:")
 	for(var/species in target_species)
-		usr << "- [species]"
+		to_chat(usr, "- [species]")

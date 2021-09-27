@@ -1,4 +1,3 @@
-
 /obj/item/device/encryptionkey
 	name = "Standard Encrpytion Key"
 	desc = "An encyption key for a radio headset.  Has no special codes in it.  WHY DOES IT EXIST?  ASK NANOTRASEN."
@@ -16,7 +15,7 @@
 	icon_state = "cypherkey"
 	channels = list("Syndicate" = 1)
 	origin_tech = "syndicate=3"
-	syndie = 1//Signifies that it de-crypts Syndicate transmissions
+	syndie = 1 //Signifies that it de-crypts Syndicate transmissions
 
 /obj/item/device/encryptionkey/binary
 	icon_state = "cypherkey"

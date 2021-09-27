@@ -24,7 +24,7 @@
 /obj/item/device/powersink/Destroy()
 	processing_objects.Remove(src)
 	processing_power_items.Remove(src)
-	..()
+	return ..()
 
 /obj/item/device/powersink/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/screwdriver))
@@ -87,7 +87,7 @@
 			processing_objects.Add(src)
 			processing_power_items.Add(src)
 
-		if(2)  //This switch option wasn't originally included. It exists now. --NeoFite
+		if(2)	//This switch option wasn't originally included. It exists now. --NeoFite
 			to_chat(user, "You deactivate the device!")
 			for(var/mob/M in viewers(user))
 				if(M == user)
@@ -99,7 +99,7 @@
 			processing_objects.Remove(src)
 			processing_power_items.Remove(src)
 
-obj/item/device/powersink/pwr_drain()
+/obj/item/device/powersink/pwr_drain()
 	if(!attached)
 		return 0
 

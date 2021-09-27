@@ -134,7 +134,6 @@
 		to_chat(usr, SPAN_NOTICE("Memory cleared."))
 		return
 
-
 /obj/item/device/taperecorder/verb/playback_memory()
 	set name = "Playback Memory"
 	set category = "Object"

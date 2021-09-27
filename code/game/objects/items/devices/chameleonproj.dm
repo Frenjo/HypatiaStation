@@ -16,18 +16,14 @@
 	var/saved_icon_state = "cigbutt"
 	var/saved_overlays
 
-
 /obj/item/device/chameleon/dropped()
 	disrupt()
-
 
 /obj/item/device/chameleon/equipped()
 	disrupt()
 
-
 /obj/item/device/chameleon/attack_self()
 	toggle()
-
 
 /obj/item/device/chameleon/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
@@ -40,7 +36,6 @@
 			saved_icon = target.icon
 			saved_icon_state = target.icon_state
 			saved_overlays = target.overlays
-
 
 /obj/item/device/chameleon/proc/toggle()
 	if(!can_use || !saved_item)
@@ -71,7 +66,6 @@
 		spawn(8)
 			qdel(T)
 
-
 /obj/item/device/chameleon/proc/disrupt(delete_dummy = 1)
 	if(active_dummy)
 		var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread
@@ -84,7 +78,6 @@
 		active_dummy = null
 		can_use = 0
 		spawn(50) can_use = 1
-
 
 /obj/item/device/chameleon/proc/eject_all()
 	for(var/atom/movable/A in active_dummy)
@@ -102,7 +95,6 @@
 	var/can_move = 1
 	var/obj/item/device/chameleon/master = null
 
-
 /obj/effect/dummy/chameleon/proc/activate(obj/O, mob/M, new_icon, new_iconstate, new_overlays, obj/item/device/chameleon/C)
 	name = O.name
 	desc = O.desc
@@ -114,31 +106,26 @@
 	master = C
 	master.active_dummy = src
 
-
 /obj/effect/dummy/chameleon/attackby()
 	for(var/mob/M in src)
 		to_chat(M, SPAN_WARNING("Your chameleon-projector deactivates."))
 	master.disrupt()
-
 
 /obj/effect/dummy/chameleon/attack_hand()
 	for(var/mob/M in src)
 		to_chat(M, SPAN_WARNING("Your chameleon-projector deactivates."))
 	master.disrupt()
 
-
 /obj/effect/dummy/chameleon/ex_act()
 	for(var/mob/M in src)
 		to_chat(M, SPAN_WARNING("Your chameleon-projector deactivates."))
 	master.disrupt()
-
 
 /obj/effect/dummy/chameleon/bullet_act()
 	for(var/mob/M in src)
 		to_chat(M, SPAN_WARNING("Your chameleon-projector deactivates."))
 	..()
 	master.disrupt()
-
 
 /obj/effect/dummy/chameleon/relaymove(mob/user, direction)
 	if(istype(loc, /turf/space))
@@ -167,4 +154,4 @@
 
 /obj/effect/dummy/chameleon/Destroy()
 	master.disrupt(0)
-	..()
+	return ..()

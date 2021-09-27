@@ -38,7 +38,7 @@
 
 /obj/item/device/flashlight/attack_self(mob/user)
 	if(!isturf(user.loc))
-		user << "You cannot turn the light on while in this [user.loc]." //To prevent some lighting anomalities.
+		to_chat(user, "You cannot turn the light on while in this [user.loc].") //To prevent some lighting anomalies.
 		return 0
 	on = !on
 	update_brightness(user)
@@ -47,7 +47,6 @@
 /obj/item/device/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
 	if(on && user.zone_sel.selecting == "eyes")
-
 		if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
@@ -63,15 +62,21 @@
 		if(M == user)	//they're using it on themselves
 			if(!M.blinded)
 				flick("flash", M.flash)
-				M.visible_message(SPAN_NOTICE("[M] directs [src] to \his eyes."), \
-									SPAN_NOTICE("You wave the light in front of your eyes! Trippy!"))
+				M.visible_message(
+					SPAN_NOTICE("[M] directs [src] to \his eyes."),
+					SPAN_NOTICE("You wave the light in front of your eyes! Trippy!")
+				)
 			else
-				M.visible_message(SPAN_NOTICE("[M] directs [src] to \his eyes."), \
-									SPAN_NOTICE("You wave the light in front of your eyes."))
+				M.visible_message(
+					SPAN_NOTICE("[M] directs [src] to \his eyes."),
+					SPAN_NOTICE("You wave the light in front of your eyes.")
+					)
 			return
 
-		user.visible_message(SPAN_NOTICE("[user] directs [src] to [M]'s eyes."), \
-								SPAN_NOTICE("You direct [src] to [M]'s eyes."))
+		user.visible_message(
+			SPAN_NOTICE("[user] directs [src] to [M]'s eyes."),
+			SPAN_NOTICE("You direct [src] to [M]'s eyes.")
+		)
 
 		if(ishuman(M) || ismonkey(M))	//robots and aliens are unaffected
 			if(M.stat == DEAD || M.sdisabilities & BLIND)	//mob is dead or fully blind
@@ -146,8 +151,8 @@
 	var/produce_heat = 1500
 
 /obj/item/device/flashlight/flare/New()
-	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 	..()
+	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
 /obj/item/device/flashlight/flare/process()
 	var/turf/pos = get_turf(src)
@@ -181,7 +186,10 @@
 	. = ..()
 	// All good, turn it on.
 	if(.)
-		user.visible_message(SPAN_NOTICE("[user] activates the flare."), SPAN_NOTICE("You pull the cord on the flare, activating it!"))
+		user.visible_message(
+			SPAN_NOTICE("[user] activates the flare."),
+			SPAN_NOTICE("You pull the cord on the flare, activating it!")
+		)
 		src.force = on_damage
 		src.damtype = "fire"
 		processing_objects += src
@@ -201,6 +209,8 @@
 
 /obj/item/device/flashlight/slime/New()
 	set_light(brightness_on)
+
+/obj/item/device/flashlight/slime/initialize()
 	spawn(1) //Might be sloppy, but seems to be necessary to prevent further runtimes and make these work as intended... don't judge me!
 		update_brightness()
 		icon_state = initial(icon_state)

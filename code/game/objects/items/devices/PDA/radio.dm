@@ -43,16 +43,15 @@
 	var/control_freq = 1447
 
 // create a new QM cartridge, and register to receive bot control & beacon message
-/obj/item/radio/integrated/beepsky/New()
+/obj/item/radio/integrated/beepsky/initialize()
 	..()
-	spawn(5)
-		if(radio_controller)
-			radio_controller.add_object(src, control_freq, filter = RADIO_SECBOT)
+	if(radio_controller)
+		radio_controller.add_object(src, control_freq, filter = RADIO_SECBOT)
 
 /obj/item/radio/integrated/beepsky/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src, control_freq)
-	..()
+	return ..()
 
 	// receive radio signals
 	// can detect bot status signals
@@ -113,14 +112,13 @@
 	var/control_freq = 1447
 
 // create a new QM cartridge, and register to receive bot control & beacon message
-/obj/item/radio/integrated/mule/New()
+/obj/item/radio/integrated/mule/initialize()
 	..()
-	spawn(5)
-		if(radio_controller)
-			radio_controller.add_object(src, control_freq, filter = RADIO_MULEBOT)
-			radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
-			spawn(10)
-				post_signal(beacon_freq, "findbeacon", "delivery", s_filter = RADIO_NAVBEACONS)
+	if(radio_controller)
+		radio_controller.add_object(src, control_freq, filter = RADIO_MULEBOT)
+		radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
+		spawn(10)
+			post_signal(beacon_freq, "findbeacon", "delivery", s_filter = RADIO_NAVBEACONS)
 
 // receive radio signals
 // can detect bot status signals
@@ -222,7 +220,7 @@
 /obj/item/radio/integrated/signal/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src, frequency)
-	..()
+	return ..()
 
 /obj/item/radio/integrated/signal/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)

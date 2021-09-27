@@ -59,8 +59,8 @@
 	access_security = 1
 
 /obj/item/weapon/cartridge/security/initialize()
-	radio = new /obj/item/radio/integrated/beepsky(src)
 	..()
+	radio = new /obj/item/radio/integrated/beepsky(src)
 
 /obj/item/weapon/cartridge/detective
 	name = "D.E.T.E.C.T. Cartridge"
@@ -111,12 +111,12 @@
 	access_atmos = 1
 
 /obj/item/weapon/cartridge/signal/initialize()
-    radio = new /obj/item/radio/integrated/signal(src)
-    ..()
+	..()
+	radio = new /obj/item/radio/integrated/signal(src)
 
 /obj/item/weapon/cartridge/signal/Destroy()
 	qdel(radio)
-	..()
+	return ..()
 
 /obj/item/weapon/cartridge/quartermaster
 	name = "Space Parts & Space Vendors Cartridge"
@@ -125,8 +125,8 @@
 	access_quartermaster = 1
 
 /obj/item/weapon/cartridge/quartermaster/initialize()
-	radio = new /obj/item/radio/integrated/mule(src)
 	..()
+	radio = new /obj/item/radio/integrated/mule(src)
 
 /obj/item/weapon/cartridge/head
 	name = "Easy-Record DELUXE"
@@ -142,6 +142,7 @@
 	access_security = 1
 
 /obj/item/weapon/cartridge/hop/initialize()
+	..()
 	radio = new /obj/item/radio/integrated/mule(src)
 
 /obj/item/weapon/cartridge/hos
@@ -151,8 +152,8 @@
 	access_security = 1
 
 /obj/item/weapon/cartridge/hos/initialize()
-	radio = new /obj/item/radio/integrated/beepsky(src)
 	..()
+	radio = new /obj/item/radio/integrated/beepsky(src)
 
 /obj/item/weapon/cartridge/ce
 	name = "Power-On DELUXE"
@@ -176,8 +177,8 @@
 	access_atmos = 1
 
 /obj/item/weapon/cartridge/rd/initialize()
-	radio = new /obj/item/radio/integrated/signal(src)
 	..()
+	radio = new /obj/item/radio/integrated/signal(src)
 
 /obj/item/weapon/cartridge/captain
 	name = "Value-PAK Cartridge"
@@ -238,8 +239,6 @@
 	var/values[0]
 
 	/*		Signaler (Mode: 40)				*/
-
-
 	if(istype(radio, /obj/item/radio/integrated/signal) && (mode == 40))
 		var/obj/item/radio/integrated/signal/R = radio
 		values["signal_freq"] = format_frequency(R.frequency)
@@ -247,7 +246,6 @@
 
 
 	/*		Station Display (Mode: 42)			*/
-
 	if(mode == 42)
 		values["message1"] = message1 ? message1 : "(none)"
 		values["message2"] = message2 ? message2 : "(none)"
@@ -257,15 +255,15 @@
 	if(mode == 43 || mode == 433)
 		var/pMonData[0]
 		for(var/obj/machinery/power/monitor/pMon in world)
-			if(!(pMon.stat & (NOPOWER|BROKEN)))
-				pMonData[++pMonData.len] = list ("Name" = pMon.name, "ref" = "\ref[pMon]")
+			if(!(pMon.stat & (NOPOWER | BROKEN)))
+				pMonData[++pMonData.len] = list("Name" = pMon.name, "ref" = "\ref[pMon]")
 				if(isnull(powmonitor))
 					powmonitor = pMon
 
 		values["powermonitors"] = pMonData
 
 		values["poweravail"] = powmonitor.powernet.avail
-		values["powerload"] = num2text(powmonitor.powernet.viewload,10)
+		values["powerload"] = num2text(powmonitor.powernet.viewload, 10)
 
 		var/list/L = list()
 		for(var/obj/machinery/power/terminal/term in powmonitor.powernet.nodes)
@@ -273,20 +271,24 @@
 				var/obj/machinery/power/apc/A = term.master
 				L += A
 
-		var/list/Status = list(0, 0, 1, 1) // Status:  off, auto-off, on, auto-on
-		var/list/chg = list(0, 1, 1)	// Charging: nope, charging, full
+		var/list/Status = list(0, 0, 1, 1)	// Status:  off, auto-off, on, auto-on
+		var/list/chg = list(0, 1, 1)		// Charging: nope, charging, full
 		var/apcData[0]
 		for(var/obj/machinery/power/apc/A in L)
-			apcData[++apcData.len] = list("Name" = html_encode(A.area.name), "Equipment" = Status[A.equipment+1], "Lights" = Status[A.lighting+1], "Environment" = Status[A.environ+1], "CellPct" = A.cell ? round(A.cell.percent(),1) : -1, "CellStatus" = A.cell ? chg[A.charging+1] : 0)
+			apcData[++apcData.len] = list(
+				"Name" = html_encode(A.area.name),
+				"Equipment" = Status[A.equipment + 1],
+				"Lights" = Status[A.lighting + 1],
+				"Environment" = Status[A.environ + 1],
+				"CellPct" = A.cell ? round(A.cell.percent(), 1) : -1,
+				"CellStatus" = A.cell ? chg[A.charging + 1] : 0
+			)
 
 		values["apcs"] = apcData
 
 
-
-
-
 	/*		General Records (Mode: 44 / 441 / 45 / 451)	*/
-	if(mode == 44 || mode == 441 || mode == 45 || mode ==451)
+	if(mode == 44 || mode == 441 || mode == 45 || mode == 451)
 		if(istype(active1, /datum/data/record) && (active1 in data_core.general))
 			values["general"] = active1.fields
 			values["general_exists"] = 1
@@ -295,13 +297,11 @@
 			values["general_exists"] = 0
 
 
-
 	/*		Medical Records (Mode: 44 / 441)	*/
-
 	if(mode == 44 || mode == 441)
 		var/medData[0]
 		for(var/datum/data/record/R in sortRecord(data_core.general))
-			medData[++medData.len] = list(Name = R.fields["name"],"ref" = "\ref[R]")
+			medData[++medData.len] = list(Name = R.fields["name"], "ref" = "\ref[R]")
 		values["medical_records"] = medData
 
 		if(istype(active2, /datum/data/record) && (active2 in data_core.medical))
@@ -310,11 +310,11 @@
 		else
 			values["medical_exists"] = 0
 
-	/*		Security Records (Mode:45 / 451)	*/
 
+	/*		Security Records (Mode: 45 / 451)	*/
 	if(mode == 45 || mode == 451)
 		var/secData[0]
-		for (var/datum/data/record/R in sortRecord(data_core.general))
+		for(var/datum/data/record/R in sortRecord(data_core.general))
 			secData[++secData.len] = list(Name = R.fields["name"], "ref" = "\ref[R]")
 		values["security_records"] = secData
 
@@ -324,12 +324,12 @@
 		else
 			values["security_exists"] = 0
 
-	/*		Security Bot Control (Mode: 46)		*/
 
-	if(mode==46)
+	/*		Security Bot Control (Mode: 46)		*/
+	if(mode == 46)
 		var/botsData[0]
 		var/beepskyData[0]
-		if(istype(radio,/obj/item/radio/integrated/beepsky))
+		if(istype(radio, /obj/item/radio/integrated/beepsky))
 			var/obj/item/radio/integrated/beepsky/SC = radio
 			beepskyData["active"] = SC.active
 			if(SC.active && !isnull(SC.botstatus))
@@ -338,7 +338,7 @@
 				beepskyData["botstatus"] = list("loca" = loca_name, "mode" = SC.botstatus["mode"])
 			else
 				beepskyData["botstatus"] = list("loca" = null, "mode" = -1)
-			var/botsCount=0
+			var/botsCount = 0
 			if(SC.botlist && SC.botlist.len)
 				for(var/obj/machinery/bot/B in SC.botlist)
 					botsCount++
@@ -346,14 +346,14 @@
 						botsData[++botsData.len] = list("Name" = sanitize(B.name), "Location" = sanitize(B.loc.loc.name), "ref" = "\ref[B]")
 
 			if(!botsData.len)
-				botsData[++botsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref"= null)
+				botsData[++botsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref" = null)
 
 			beepskyData["bots"] = botsData
 			beepskyData["count"] = botsCount
 
 		else
 			beepskyData["active"] = 0
-			botsData[++botsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref"= null)
+			botsData[++botsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref" = null)
 			beepskyData["botstatus"] = list("loca" = null, "mode" = null)
 			beepskyData["bots"] = botsData
 			beepskyData["count"] = 0
@@ -362,93 +362,117 @@
 
 
 	/*		MULEBOT Control	(Mode: 48)		*/
-
-	if(mode==48)
+	if(mode == 48)
 		var/muleData[0]
 		var/mulebotsData[0]
-		if(istype(radio,/obj/item/radio/integrated/mule))
+		if(istype(radio, /obj/item/radio/integrated/mule))
 			var/obj/item/radio/integrated/mule/QC = radio
 			muleData["active"] = QC.active
 			if(QC.active && !isnull(QC.botstatus))
 				var/area/loca = QC.botstatus["loca"]
 				var/loca_name = sanitize(loca.name)
-				muleData["botstatus"] =  list("loca" = loca_name, "mode" = QC.botstatus["mode"],"home"=QC.botstatus["home"],"powr" = QC.botstatus["powr"],"retn" =QC.botstatus["retn"], "pick"=QC.botstatus["pick"], "load" = QC.botstatus["load"], "dest" = sanitize(QC.botstatus["dest"]))
-
+				muleData["botstatus"] = list(
+					"loca" = loca_name,
+					"mode" = QC.botstatus["mode"],
+					"home" = QC.botstatus["home"],
+					"powr" = QC.botstatus["powr"],
+					"retn" = QC.botstatus["retn"],
+					"pick" = QC.botstatus["pick"],
+					"load" = QC.botstatus["load"],
+					"dest" = sanitize(QC.botstatus["dest"])
+				)
 			else
-				muleData["botstatus"] = list("loca" = null, "mode" = -1,"home"=null,"powr" = null,"retn" =null, "pick"=null, "load" = null, "dest" = null)
+				muleData["botstatus"] = list(
+					"loca" = null,
+					"mode" = -1,
+					"home" = null,
+					"powr" = null,
+					"retn" = null,
+					"pick" = null,
+					"load" = null,
+					"dest" = null
+				)
 
-
-			var/mulebotsCount=0
+			var/mulebotsCount = 0
 			for(var/obj/machinery/bot/B in QC.botlist)
 				mulebotsCount++
 				if(B.loc)
 					mulebotsData[++mulebotsData.len] = list("Name" = sanitize(B.name), "Location" = sanitize(B.loc.loc.name), "ref" = "\ref[B]")
 
 			if(!mulebotsData.len)
-				mulebotsData[++mulebotsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref"= null)
+				mulebotsData[++mulebotsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref" = null)
 
 			muleData["bots"] = mulebotsData
 			muleData["count"] = mulebotsCount
 
 		else
-			muleData["botstatus"] =  list("loca" = null, "mode" = -1,"home"=null,"powr" = null,"retn" =null, "pick"=null, "load" = null, "dest" = null)
+			muleData["botstatus"] = list(
+				"loca" = null,
+				"mode" = -1,
+				"home" = null,
+				"powr" = null,
+				"retn" = null,
+				"pick" = null,
+				"load" = null,
+				"dest" = null
+			)
 			muleData["active"] = 0
-			mulebotsData[++mulebotsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref"= null)
+			mulebotsData[++mulebotsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref" = null)
 			muleData["bots"] = mulebotsData
 			muleData["count"] = 0
 
 		values["mulebot"] = muleData
 
 
-
 	/*	Supply Shuttle Requests Menu (Mode: 47)		*/
-
-	if(mode==47)
+	// Edited this to reflect 'shuttles' port. -Frenjo
+	if(mode == 47)
 		var/supplyData[0]
-		//supplyData["shuttle_moving"] = supply_shuttle.moving
-		//supplyData["shuttle_eta"] = supply_shuttle.eta
-		//supplyData["shuttle_loc"] = supply_shuttle.at_station ? "Station" : "Dock"
 
-		// Edited this to reflect 'shuttles' port. -Frenjo
 		var/datum/shuttle/ferry/supply/supply_shuttle = supply_controller.shuttle
-		if (supply_shuttle)
+		if(supply_shuttle)
 			supplyData["shuttle_moving"] = supply_shuttle.has_arrive_time()
 			supplyData["shuttle_eta"] = supply_shuttle.eta_minutes()
 			supplyData["shuttle_loc"] = supply_shuttle.at_station() ? "Station" : "Dock"
 
 		var/supplyOrderCount = 0
 		var/supplyOrderData[0]
-		//for(var/S in supply_shuttle.shoppinglist)
-		for(var/S in supply_controller.shoppinglist) // Edited this to reflect 'shuttles' port. -Frenjo
+		for(var/S in supply_controller.shoppinglist)
 			var/datum/supply_order/SO = S
-
-			supplyOrderData[++supplyOrderData.len] = list("Number" = SO.ordernum, "Name" = html_encode(SO.object.name), "ApprovedBy" = SO.orderedby, "Comment" = html_encode(SO.comment))
+			supplyOrderData[++supplyOrderData.len] = list(
+				"Number" = SO.ordernum,
+				"Name" = html_encode(SO.object.name),
+				"ApprovedBy" = SO.orderedby,
+				"Comment" = html_encode(SO.comment)
+			)
 		if(!supplyOrderData.len)
-			supplyOrderData[++supplyOrderData.len] = list("Number" = null, "Name" = null, "OrderedBy"=null)
+			supplyOrderData[++supplyOrderData.len] = list("Number" = null, "Name" = null, "OrderedBy" = null)
 
 		supplyData["approved"] = supplyOrderData
 		supplyData["approved_count"] = supplyOrderCount
 
 		var/requestCount = 0
 		var/requestData[0]
-		//for(var/S in supply_shuttle.requestlist)
-		for(var/S in supply_controller.requestlist) // Edited this to reflect 'shuttles' port. -Frenjo
+		for(var/S in supply_controller.requestlist)
 			var/datum/supply_order/SO = S
 			requestCount++
-			requestData[++requestData.len] = list("Number" = SO.ordernum, "Name" = html_encode(SO.object.name), "OrderedBy" = SO.orderedby, "Comment" = html_encode(SO.comment))
+			requestData[++requestData.len] = list(
+				"Number" = SO.ordernum,
+				"Name" = html_encode(SO.object.name),
+				"OrderedBy" = SO.orderedby,
+				"Comment" = html_encode(SO.comment)
+			)
 		if(!requestData.len)
 			requestData[++requestData.len] = list("Number" = null, "Name" = null, "orderedBy" = null, "Comment" = null)
 
 		supplyData["requests"] = requestData
 		supplyData["requests_count"] = requestCount
 
-
 		values["supply"] = supplyData
 
 
-
-	/* 	Janitor Supplies Locator  (Mode: 49)      */
-	if(mode==49)
+	/*	Janitor Supplies Locator (Mode: 49)	*/
+	if(mode == 49)
 		var/JaniData[0]
 		var/turf/cl = get_turf(src)
 
@@ -475,11 +499,11 @@
 			if(bl)
 				if(bl.z != cl.z)
 					continue
-				var/direction = get_dir(src,B)
-				BucketData[++BucketData.len] = list ("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "status" = B.reagents.total_volume/100)
+				var/direction = get_dir(src, B)
+				BucketData[++BucketData.len] = list ("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "status" = B.reagents.total_volume / 100)
 
 		if(!BucketData.len)
-			BucketData[++BucketData.len] = list("x" = 0, "y" = 0, dir=null, status = null)
+			BucketData[++BucketData.len] = list("x" = 0, "y" = 0, dir = null, status = null)
 
 		var/CbotData[0]
 		for(var/obj/machinery/bot/cleanbot/B in world)
@@ -492,7 +516,7 @@
 
 
 		if(!CbotData.len)
-			CbotData[++CbotData.len] = list("x" = 0, "y" = 0, dir=null, status = null)
+			CbotData[++CbotData.len] = list("x" = 0, "y" = 0, dir = null, status = null)
 		var/CartData[0]
 		for(var/obj/structure/janitorialcart/B in world)
 			var/turf/bl = get_turf(B)
@@ -500,12 +524,9 @@
 				if(bl.z != cl.z)
 					continue
 				var/direction = get_dir(src,B)
-				CartData[++CartData.len] = list("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "status" = B.reagents.total_volume/100)
+				CartData[++CartData.len] = list("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "status" = B.reagents.total_volume / 100)
 		if(!CartData.len)
-			CartData[++CartData.len] = list("x" = 0, "y" = 0, dir=null, status = null)
-
-
-
+			CartData[++CartData.len] = list("x" = 0, "y" = 0, dir = null, status = null)
 
 		JaniData["mops"] = MopData
 		JaniData["buckets"] = BucketData
@@ -515,20 +536,12 @@
 
 	return values
 
-
-
-
-
 /obj/item/weapon/cartridge/Topic(href, href_list)
 	..()
-
-	if (!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
+	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 		usr.unset_machine()
 		usr << browse(null, "window=pda")
 		return
-
-
-
 
 	switch(href_list["choice"])
 		if("Medical Records")
@@ -536,9 +549,9 @@
 			var/datum/data/record/M = locate(href_list["target"])
 			loc:mode = 441
 			mode = 441
-			if (R in data_core.general)
-				for (var/datum/data/record/E in data_core.medical)
-					if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
+			if(R in data_core.general)
+				for(var/datum/data/record/E in data_core.medical)
+					if(E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"])
 						M = E
 						break
 				active1 = R
@@ -549,16 +562,16 @@
 			var/datum/data/record/S = locate(href_list["target"])
 			loc:mode = 451
 			mode = 451
-			if (R in data_core.general)
-				for (var/datum/data/record/E in data_core.security)
-					if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
+			if(R in data_core.general)
+				for(var/datum/data/record/E in data_core.security)
+					if(E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"])
 						S = E
 						break
 				active1 = R
 				active3 = S
 
 		if("Send Signal")
-			spawn( 0 )
+			spawn(0)
 				radio:send_signal("ACTIVATE")
 				return
 
@@ -579,10 +592,10 @@
 				if("alert")
 					post_status("alert", href_list["alert"])
 				if("setmsg1")
-					message1 = input("Line 1", "Enter Message Text", message1) as text|null
+					message1 = input("Line 1", "Enter Message Text", message1) as text | null
 					updateSelfDialog()
 				if("setmsg2")
-					message2 = input("Line 2", "Enter Message Text", message2) as text|null
+					message2 = input("Line 2", "Enter Message Text", message2) as text | null
 					updateSelfDialog()
 				else
 					post_status(href_list["statdisp"])

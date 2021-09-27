@@ -306,11 +306,10 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/list/purchase_log = list()
 
 // The hidden uplink MUST be inside an obj/item's contents.
-/obj/item/device/uplink/hidden/New()
-	spawn(2)
-		if(!istype(src.loc, /obj/item))
-			qdel(src)
+/obj/item/device/uplink/hidden/initialize()
 	..()
+	if(!istype(src.loc, /obj/item))
+		qdel(src)
 
 // Toggles the uplink on and off. Normally this will bypass the item's normal functions and go to the uplink menu, if activated.
 /obj/item/device/uplink/hidden/proc/toggle()
@@ -346,7 +345,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)

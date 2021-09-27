@@ -37,7 +37,6 @@
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
 
-
 /obj/item/device/lightreplacer
 	name = "light replacer"
 	desc = "A device to automatically replace lights. Refill with working lightbulbs."
@@ -157,7 +156,6 @@
 	update_icon()
 
 //Can you use it?
-
 /obj/item/device/lightreplacer/proc/CanUse(mob/living/user)
 	src.add_fingerprint(user)
 	//Not sure what else to check for. Maybe if clumsy?

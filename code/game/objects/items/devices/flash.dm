@@ -10,9 +10,9 @@
 	flags = CONDUCT
 	origin_tech = "magnets=2;combat=1"
 
-	var/times_used = 0 //Number of times it's been used.
-	var/broken = 0     //Is the flash burnt out?
-	var/last_used = 0 //last world.time it was used.
+	var/times_used = 0	//Number of times it's been used.
+	var/broken = 0		//Is the flash burnt out?
+	var/last_used = 0	//last world.time it was used.
 
 /obj/item/device/flash/proc/clown_check(mob/user)
 	if(user && (CLUMSY in user.mutations) && prob(50))
@@ -36,8 +36,8 @@
 	if(!user || !M)
 		return	//sanity
 
-	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been flashed (attempt) with [src.name]  by [user.name] ([user.ckey])</font>")
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to flash [M.name] ([M.ckey])</font>")
+	M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been flashed (attempt) with [src.name]  by [user.name] ([user.ckey])</font>"
+	user.attack_log += "\[[time_stamp()]\] <font color='red'>Used the [src.name] to flash [M.name] ([M.ckey])</font>"
 	msg_admin_attack("[user.name] ([user.ckey]) Used the [src.name] to flash [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 	if(!clown_check(user))
@@ -116,7 +116,6 @@
 	else
 		user.visible_message(SPAN_NOTICE("[user] fails to blind [M] with the flash!"))
 	return
-
 
 /obj/item/device/flash/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
 	if(!user || !clown_check(user))

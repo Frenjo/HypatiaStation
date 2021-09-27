@@ -225,7 +225,7 @@
 								cur_acc[cur_note] = "#" // so shift is never required
 						else
 							cur_oct[cur_note] = ni
-					playnote(uppertext(copytext(note,1,2)) + cur_acc[cur_note] + cur_oct[cur_note])
+					playnote(uppertext(copytext(note, 1, 2)) + cur_acc[cur_note] + cur_oct[cur_note])
 				if(notes.len >= 2 && text2num(notes[2]))
 					sleep(song.tempo / text2num(notes[2]))
 				else
@@ -298,8 +298,9 @@
 		song = new()
 	else if(song)
 		if(href_list["repeat"]) //Changing this from a toggle to a number of repeats to avoid infinite loops.
-			if(playing) return //So that people cant keep adding to repeat. If the do it intentionally, it could result in the server crashing.
-			var/tempnum = input("How many times do you want to repeat this piece? (max:10)") as num|null
+			if(playing)
+				return //So that people cant keep adding to repeat. If the do it intentionally, it could result in the server crashing.
+			var/tempnum = input("How many times do you want to repeat this piece? (max: 10)") as num|null
 			if(tempnum > 10)
 				tempnum = 10
 			if(tempnum < 0)
@@ -330,7 +331,7 @@
 			var/num = round(text2num(href_list["deleteline"]))
 			if(num > song.lines.len || num < 1)
 				return
-			song.lines.Cut(num, num+1)
+			song.lines.Cut(num, num + 1)
 
 		else if(href_list["modifyline"])
 			var/num = round(text2num(href_list["modifyline"]), 1)
@@ -355,7 +356,7 @@
 		else if(href_list["import"])
 			var/t = ""
 			do
-				t = html_encode(input(usr, "Please paste the entire song, formatted:", text("[]", name), t)  as message)
+				t = html_encode(input(usr, "Please paste the entire song, formatted:", "[name]", t) as message)
 				if(!in_range(src, usr))
 					return
 
@@ -370,7 +371,7 @@
 				var/list/lines = text2list(t, "\n")
 				var/tempo = 5
 				if(copytext(lines[1], 1, 6) == "BPM: ")
-					tempo = 600 / text2num(copytext(lines[1],6))
+					tempo = 600 / text2num(copytext(lines[1], 6))
 					lines.Cut(1, 2)
 				if(lines.len > 50)
 					to_chat(usr, "Too many lines!")

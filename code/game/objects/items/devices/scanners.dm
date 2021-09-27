@@ -20,13 +20,11 @@ REAGENT SCANNER
 	origin_tech = "magnets=1;engineering=1"
 
 /obj/item/device/t_scanner/attack_self(mob/user)
-
 	on = !on
 	icon_state = "t-ray[on]"
 
 	if(on)
 		processing_objects.Add(src)
-
 
 /obj/item/device/t_scanner/process()
 	if(!on)
@@ -71,12 +69,11 @@ REAGENT SCANNER
 	origin_tech = "magnets=1;biotech=1"
 	var/mode = 1;
 
-
 /obj/item/device/healthanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
 	if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
-		user << text("\red You try to analyze the floor's vitals!")
+		to_chat(user, SPAN_WARNING("You try to analyze the floor's vitals!"))
 		for(var/mob/O in viewers(M, null))
-			O.show_message(text("\red [user] has analyzed the floor's vitals!"), 1)
+			O.show_message(SPAN_WARNING("[user] has analyzed the floor's vitals!"), 1)
 		user.show_message(text("\blue Analyzing Results for The floor:\n\t Overall Status: Healthy"), 1)
 		user.show_message(text("\blue \t Damage Specifics: [0]-[0]-[0]-[0]"), 1)
 		user.show_message("\blue Key: Suffocation/Toxin/Burns/Brute", 1)
@@ -85,7 +82,10 @@ REAGENT SCANNER
 	if(!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
 		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return
-	user.visible_message(SPAN_NOTICE("[user] has analyzed [M]'s vitals."), SPAN_NOTICE("You have analyzed [M]'s vitals."))
+	user.visible_message(
+		SPAN_NOTICE("[user] has analyzed [M]'s vitals."),
+		SPAN_NOTICE("You have analyzed [M]'s vitals.")
+	)
 
 	if(!iscarbon(M) || (ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
 		//these sensors are designed for organic life
@@ -147,7 +147,7 @@ REAGENT SCANNER
 		user.show_message(SPAN_WARNING("Subject appears to have been imperfectly cloned."))
 	for(var/datum/disease/D in M.viruses)
 		if(!D.hidden[SCANNER])
-			user.show_message(text("\red <b>Warning: [D.form] Detected</b>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]"))
+			user.show_message("\red <b>Warning: [D.form] Detected</b>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]")
 	if(M.reagents && M.reagents.get_reagent_amount("inaprovaline"))
 		user.show_message(SPAN_INFO("Bloodstream Analysis located [M.reagents:get_reagent_amount("inaprovaline")] units of rejuvenation chemicals."))
 	if(M.has_brain_worms())
@@ -164,7 +164,7 @@ REAGENT SCANNER
 			var/datum/organ/external/e = H.organs_by_name[name]
 			var/limb = e.display_name
 			if(e.status & ORGAN_BROKEN)
-				if(((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg")) && (!(e.status & ORGAN_SPLINTED)))
+				if((e.name == "l_arm" || e.name == "r_arm" || e.name == "l_leg" || e.name == "r_leg") && !(e.status & ORGAN_SPLINTED))
 					to_chat(user, SPAN_WARNING("Unsecured fracture in subject [limb]. Splinting recommended for transport."))
 			if(e.has_infected_wound())
 				to_chat(user, SPAN_WARNING("Infected wound detected in subject [limb]. Disinfection recommended."))
@@ -249,6 +249,7 @@ REAGENT SCANNER
 	src.add_fingerprint(user)
 	return
 
+
 /obj/item/device/mass_spectrometer
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
 	name = "mass-spectrometer"
@@ -321,6 +322,7 @@ REAGENT SCANNER
 	icon_state = "adv_spectrometer"
 	details = 1
 	origin_tech = "magnets=4;biotech=2"
+
 
 /obj/item/device/reagent_scanner
 	name = "reagent scanner"

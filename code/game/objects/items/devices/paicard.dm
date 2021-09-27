@@ -18,7 +18,7 @@
 	//Will stop people throwing friend pAIs into the singularity so they can respawn
 	if(!isnull(pai))
 		pai.death(0)
-	..()
+	return ..()
 
 /obj/item/device/paicard/attack_self(mob/user)
 	if(!in_range(src, user))
@@ -254,7 +254,7 @@
 		else
 			radio.wires |= t1
 	if(href_list["setlaws"])
-		var/newlaws = copytext(sanitize(input("Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.pai_laws) as message),1,MAX_MESSAGE_LEN)
+		var/newlaws = copytext(sanitize(input("Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.pai_laws) as message), 1, MAX_MESSAGE_LEN)
 		if(newlaws)
 			pai.pai_laws = newlaws
 			to_chat(pai, "Your supplemental directives have been updated. Your new directives are:")
@@ -301,10 +301,12 @@
 /obj/item/device/paicard/proc/alertUpdate()
 	var/turf/T = get_turf_or_move(src.loc)
 	for(var/mob/M in viewers(T))
-		M.show_message(SPAN_INFO("[src] flashes a message across its screen, \"Additional personalities available for download.\""), 3, SPAN_INFO("[src] bleeps electronically."), 2)
+		M.show_message(
+			SPAN_INFO("[src] flashes a message across its screen, \"Additional personalities available for download.\""), 3,
+			SPAN_INFO("[src] bleeps electronically."), 2
+		)
 
 /obj/item/device/paicard/emp_act(severity)
 	for(var/mob/M in src)
 		M.emp_act(severity)
 	..()
-

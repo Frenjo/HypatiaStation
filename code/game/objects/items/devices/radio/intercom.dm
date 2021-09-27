@@ -17,7 +17,7 @@
 
 /obj/item/device/radio/intercom/Destroy()
 	processing_objects -= src
-	..()
+	return ..()
 
 /obj/item/device/radio/intercom/attack_ai(mob/user as mob)
 	src.add_fingerprint(user)
@@ -50,26 +50,23 @@
 
 	return canhear_range
 
-
 /obj/item/device/radio/intercom/hear_talk(mob/M as mob, msg)
 	if(!src.anyai && !(M in src.ai))
 		return
 	..()
 
 /obj/item/device/radio/intercom/process()
-	if(((world.timeofday - last_tick) > 30) || ((world.timeofday - last_tick) < 0))
+	if((world.timeofday - last_tick) > 30 || (world.timeofday - last_tick) < 0)
 		last_tick = world.timeofday
 
 		if(!src.loc)
 			on = 0
 		else
 			var/area/A = src.loc.loc
-			//if(!A || !isarea(A) || !A.master)
 			if(!A || !isarea(A))
 				on = 0
 			else
-				//on = A.master.powered(EQUIP) // set "on" to the power status
-				on = A.powered(EQUIP)
+				on = A.powered(EQUIP) // set "on" to the power status
 
 		if(!on)
 			icon_state = "intercom-p"

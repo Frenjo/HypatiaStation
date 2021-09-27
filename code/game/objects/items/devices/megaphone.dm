@@ -29,7 +29,7 @@
 	if(!message)
 		return
 	message = capitalize(message)
-	if ((src.loc == user && usr.stat == CONSCIOUS))
+	if(src.loc == user && usr.stat == CONSCIOUS)
 		if(emagged)
 			if(insults)
 				for(var/mob/O in (viewers(user)))
