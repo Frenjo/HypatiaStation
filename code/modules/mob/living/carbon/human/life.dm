@@ -977,7 +977,7 @@
 				alien = species.reagent_tag
 				reagents.metabolize(src, alien)
 
-		if(!(species.name == "Plasmaperson")) // Plasmapeople aren't affected by plasmaloss.
+		if(!(species.name == "Plasmalin")) // Plasmalins aren't affected by plasmaloss.
 			var/total_plasmaloss = 0
 			for(var/obj/item/I in src)
 				if(I.contaminated)

@@ -435,7 +435,7 @@ var/global/datum/controller/occupations/job_master
 				H.equip_to_slot_or_del(new /obj/item/weapon/tank/nitrogen(src), slot_l_hand)
 				H.internal = H.l_hand
 			H.internals.icon_state = "internal1"
-		else if(H.species.name == "Plasmaperson")
+		else if(H.species.name == "Plasmalin")
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
 			if(!H.r_hand)
 				H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), slot_r_hand)

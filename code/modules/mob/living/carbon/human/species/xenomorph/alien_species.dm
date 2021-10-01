@@ -45,12 +45,15 @@
 	push_flags = ALLMOBS ^ ROBOT
 
 	var/alien_number = 0
-	var/caste_name = "creature" // Used to update alien name.
-	var/weeds_heal_rate = 1     // Health regen on weeds.
-	var/weeds_plasma_rate = 5   // Plasma regen on weeds.
+	var/caste_name = "creature"	// Used to update alien name.
+	var/weeds_heal_rate = 1		// Health regen on weeds.
+	var/weeds_plasma_rate = 5	// Plasma regen on weeds.
 
 /datum/species/xenos/hug(mob/living/carbon/human/H, mob/living/target)
-	H.visible_message(SPAN_NOTICE("[H] caresses [target] with its scythe-like arm."), SPAN_NOTICE("You caress [target] with your scythe-like arm."))
+	H.visible_message(
+		SPAN_NOTICE("[H] caresses [target] with its scythe-like arm."),
+		SPAN_NOTICE("You caress [target] with your scythe-like arm.")
+	)
 
 /datum/species/xenos/handle_post_spawn(mob/living/carbon/human/H)
 	if(H.mind)
@@ -94,8 +97,8 @@
 	slowdown = 2
 	tail = "xenos_drone_tail"
 
-	icobase = 'icons/mob/human_races/xenos/r_xenos_drone.dmi'
-	deform =  'icons/mob/human_races/xenos/r_xenos_drone.dmi'
+	icobase =	'icons/mob/human_races/xenos/r_xenos_drone.dmi'
+	deform =	'icons/mob/human_races/xenos/r_xenos_drone.dmi'
 
 	has_organ = list(
 		"heart" =			/datum/organ/internal/heart,
@@ -131,8 +134,8 @@
 	total_health = 150
 	tail = "xenos_hunter_tail"
 
-	icobase = 'icons/mob/human_races/xenos/r_xenos_hunter.dmi'
-	deform =  'icons/mob/human_races/xenos/r_xenos_hunter.dmi'
+	icobase =	'icons/mob/human_races/xenos/r_xenos_hunter.dmi'
+	deform =	'icons/mob/human_races/xenos/r_xenos_hunter.dmi'
 
 	has_organ = list(
 		"heart" =			/datum/organ/internal/heart,
@@ -158,8 +161,8 @@
 	total_health = 125
 	tail = "xenos_sentinel_tail"
 
-	icobase = 'icons/mob/human_races/xenos/r_xenos_sentinel.dmi'
-	deform =  'icons/mob/human_races/xenos/r_xenos_sentinel.dmi'
+	icobase =	'icons/mob/human_races/xenos/r_xenos_sentinel.dmi'
+	deform =	'icons/mob/human_races/xenos/r_xenos_sentinel.dmi'
 
 	has_organ = list(
 		"heart" =			/datum/organ/internal/heart,
@@ -186,8 +189,8 @@
 	slowdown = 5
 	tail = "xenos_queen_tail"
 
-	icobase = 'icons/mob/human_races/xenos/r_xenos_queen.dmi'
-	deform =  'icons/mob/human_races/xenos/r_xenos_queen.dmi'
+	icobase =	'icons/mob/human_races/xenos/r_xenos_queen.dmi'
+	deform =	'icons/mob/human_races/xenos/r_xenos_queen.dmi'
 
 	has_organ = list(
 		"heart" =			/datum/organ/internal/heart,

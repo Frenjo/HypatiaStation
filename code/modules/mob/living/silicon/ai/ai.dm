@@ -120,7 +120,7 @@ var/list/ai_verbs_default = list(
 	add_language("Skrellian", 0)
 	add_language("Rootspeak", 0)
 	add_language("Obsedaian", 0)
-	add_language("Plasmaperson", 0)
+	add_language("Plasmalin", 0)
 	add_language("Binary Audio Language", 1)
 	add_language("Tradeband", 1)
 	add_language("Gutter", 0)

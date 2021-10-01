@@ -88,9 +88,9 @@
 	key = "r"
 	flags = RESTRICTED
 
-/datum/language/plasmaperson
-	name = "Plasmaperson"
-	desc = "A rattling, clunky 'language' spoken natively by Plasmapeople."
+/datum/language/plasmalin
+	name = "Plasmalin"
+	desc = "A rattling, clunky 'language' spoken natively by Plasmalins."
 	speech_verb = "rattles"
 	colour = "vox"
 	key = "p"

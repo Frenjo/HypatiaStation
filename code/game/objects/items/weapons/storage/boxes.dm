@@ -50,12 +50,12 @@
 	new /obj/item/weapon/storage/pill_bottle/stokaline(src) // Stokaline pills as an emergency ration. -Frenjo
 	return
 
-// Plasmapeople survival kit with only a breath mask and an emergency wearable plasma tank.
-/obj/item/weapon/storage/box/survival_plasmapeople
-	name = "plasmapeople survival kit"
-	desc = "A plasmaperson-issue survival kit for use in emergencies."
+// Plasmalin survival kit with only a breath mask and an emergency wearable plasma tank.
+/obj/item/weapon/storage/box/survival_plasmalin
+	name = "plasmalin survival kit"
+	desc = "A plasmalin-issue survival kit for use in emergencies."
 
-/obj/item/weapon/storage/box/survival_plasmapeople/New()
+/obj/item/weapon/storage/box/survival_plasmalin/New()
 	..()
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency_plasma(src)

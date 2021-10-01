@@ -540,7 +540,7 @@
 									else
 										contents.Add(0)
 
-								// Plasmapeople breath this.
+								// Plasmalins breath this.
 								if("plasma")
 									if(t.air_contents.gas["plasma"] && !t.air_contents.gas["oxygen"])
 										contents.Add(t.air_contents.gas["plasma"])

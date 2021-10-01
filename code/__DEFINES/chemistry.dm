@@ -30,7 +30,7 @@
 #define IS_VOX			4
 #define IS_DIONA		5
 #define IS_OBSEDAI		6
-#define IS_PLASMAPERSON	7
+#define IS_PLASMALIN	7
 #define IS_XENOMORPH	8
 
 //feel free to add shit to lists below

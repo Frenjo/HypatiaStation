@@ -114,7 +114,7 @@
  */
 /obj/item/weapon/tank/plasma2
 	name = "wearable plasma tank"
-	desc = "A wearable tank containing dangerous plasma, unless you're a Plasmaperson that is. Warning: extremely flammable."
+	desc = "A wearable tank containing dangerous plasma, unless you're a Plasmalin that is. Warning: extremely flammable."
 	icon_state = "plasma2"
 	slot_flags = SLOT_BELT
 	distribute_pressure = ((ONE_ATMOSPHERE*O2STANDARD) - 5)

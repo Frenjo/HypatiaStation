@@ -370,7 +370,7 @@
 /datum/reagent/oxygen/on_mob_life(mob/living/M as mob, alien)
 	if(M.stat == DEAD)
 		return
-	if(alien && (alien == IS_VOX || alien == IS_PLASMAPERSON))
+	if(alien && (alien == IS_VOX || alien == IS_PLASMALIN))
 		M.adjustToxLoss(REAGENTS_METABOLISM)
 		holder.remove_reagent(src.id, REAGENTS_METABOLISM) //By default it slowly disappears.
 		return

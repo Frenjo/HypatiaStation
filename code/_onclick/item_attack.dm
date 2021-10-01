@@ -25,7 +25,7 @@
 	if(!istype(M)) // not sure if this is the right thing...
 		return
 	var/messagesource = M
-	if(can_operate(M))        //Checks if mob is lying down on table for surgery
+	if(can_operate(M))		//Checks if mob is lying down on table for surgery
 		if(do_surgery(M, user, src))
 			return
 	if(isbrain(M))
@@ -148,9 +148,9 @@
 				else
 					M.take_organ_damage(power)
 					if(prob(33)) // Added blood for whacking non-humans too
-						var/turf/location = M.loc
-						if(istype(location, /turf/simulated))
-							location:add_blood_floor(M)
+						if(istype(M.loc, /turf/simulated))
+							var/turf/simulated/location = M.loc
+							location.add_blood_floor(M)
 			if("fire")
 				if(!(COLD_RESISTANCE in M.mutations))
 					M.take_organ_damage(0, power)

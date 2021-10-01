@@ -72,10 +72,10 @@
 /datum/reagent/plasma/on_mob_life(mob/living/M as mob, alien)
 	if(!M)
 		M = holder.my_atom
-	if(alien && alien == IS_PLASMAPERSON)
+	if(alien && alien == IS_PLASMALIN)
 		M.adjustBruteLoss(-5)
 		M.adjustFireLoss(-5)
-	if(!alien || alien != IS_PLASMAPERSON)
+	if(!alien || alien != IS_PLASMALIN)
 		M.adjustToxLoss(toxpwr * REM)
 
 	if(holder.has_reagent("inaprovaline"))

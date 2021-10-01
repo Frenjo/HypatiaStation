@@ -374,18 +374,18 @@
 	item_color = "sundress"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO
 
-// Plasmapeople clothing.
-/obj/item/clothing/under/plasmapeople
+// Plasmalin clothing.
+/obj/item/clothing/under/plasmalin
 	name = "envirosuit"
-	desc = "A suit designed to prevent a Plasmaperson from combusting in a human-breathable atmosphere."
-	icon_state = "plasmaman"
-	item_state = "plasmaman"
-	item_color = "plasmaman"
-	species_restricted = list("Plasmaperson")
+	desc = "A suit designed to prevent a Plasmalin from combusting in a human-breathable atmosphere."
+	icon_state = "plasmalin"
+	item_state = "plasmalin"
+	item_color = "plasmalin"
+	species_restricted = list("Plasmalin")
 	flags_inv = HIDESHOES
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS
 
-/obj/item/clothing/under/plasmapeople/proc/Extinguish(mob/living/carbon/human/H)
+/obj/item/clothing/under/plasmalin/proc/Extinguish(mob/living/carbon/human/H)
 	if(!istype(H))
 		return
 
@@ -395,6 +395,9 @@
 			//	return
 			//next_extinguish = world.time + extinguish_cooldown
 			//extinguishes_left--
-		H.visible_message(SPAN_WARNING("[H]'s suit automatically extinguishes them!"), SPAN_WARNING("Your suit automatically extinguishes you."))
+		H.visible_message(
+			SPAN_WARNING("[H]'s suit automatically extinguishes them!"),
+			SPAN_WARNING("Your suit automatically extinguishes you.")
+		)
 		H.ExtinguishMob()
 		new /obj/effect/water(get_turf(H))

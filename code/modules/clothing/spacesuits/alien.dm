@@ -218,10 +218,10 @@
 	set src in view()
 	..()
 
-// Plasmapeople gear.
-/obj/item/clothing/head/helmet/space/plasmapeople
+// Plasmalin gear.
+/obj/item/clothing/head/helmet/space/plasmalin
 	name = "envirohelmet"
-	desc = "A space-capable helmet designed to prevent a Plasmaperson from combusting in a human-breathable atmosphere."
-	icon_state = "rig0-standard-plasmaperson"
-	item_state = "rig0-standard-plasmaperson"
-	species_restricted = list("Plasmaperson")
+	desc = "A space-capable helmet designed to prevent a Plasmalin from combusting in a human-breathable atmosphere."
+	icon_state = "rig0-standard-plasmalin"
+	item_state = "rig0-standard-plasmalin"
+	species_restricted = list("Plasmalin")

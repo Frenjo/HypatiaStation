@@ -18,7 +18,7 @@
 	..()
 	if(ishuman(affected_mob))
 		var/mob/living/carbon/human/H = affected_mob
-		if(H.species.flags & IS_PLANT || H.species.flags & IS_SYNTHETIC || H.species.name == "Vox" || H.species.name == "Vox Armalis" || H.species.name == "Plasmaperson")
+		if(H.species.flags & IS_PLANT || H.species.flags & IS_SYNTHETIC || H.species.name == "Vox" || H.species.name == "Vox Armalis" || H.species.name == "Plasmalin")
 			src.cure()
 
 	if(stage == 1)
