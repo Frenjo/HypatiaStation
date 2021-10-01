@@ -85,14 +85,12 @@ var/const/tk_maxrange = 15
 	qdel(src)
 	return
 
-
 //stops TK grabs being equipped anywhere but into hands
 /obj/item/tk_grab/equipped(mob/user, slot)
 	if(slot == slot_l_hand || slot == slot_r_hand)
 		return
 	qdel(src)
 	return
-
 
 /obj/item/tk_grab/attack_self(mob/user as mob)
 	if(focus)
@@ -138,7 +136,7 @@ var/const/tk_maxrange = 15
 		return // todo: something like attack_self not laden with assumptions inherent to attack_self
 
 
-	if(!istype(target, /turf) && istype(focus, /obj/item) && target.Adjacent(focus))
+	if(!isturf(target) && istype(focus, /obj/item) && target.Adjacent(focus))
 		var/obj/item/I = focus
 		var/resolved = target.attackby(I, user, user:get_organ_target())
 		if(!resolved && target && I)
@@ -153,7 +151,6 @@ var/const/tk_maxrange = 15
 /obj/item/tk_grab/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
 	return
 
-
 /obj/item/tk_grab/proc/focus_object(obj/target, mob/living/user)
 	if(!istype(target, /obj))
 		return//Cant throw non objects atm might let it do mobs later
@@ -164,7 +161,6 @@ var/const/tk_maxrange = 15
 	update_icon()
 	apply_focus_overlay()
 	return
-
 
 /obj/item/tk_grab/proc/apply_focus_overlay()
 	if(!focus)
@@ -181,7 +177,6 @@ var/const/tk_maxrange = 15
 	spawn(5)
 		qdel(O)
 	return
-
 
 /obj/item/tk_grab/update_icon()
 	overlays.Cut()
@@ -216,4 +211,3 @@ var/const/tk_maxrange = 15
 			var/Z = source:z
 
 */
-

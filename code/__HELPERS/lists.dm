@@ -224,9 +224,6 @@ proc/listclearnulls(list/list)
 		return (result + L.Copy(Li, 0))
 	return (result + R.Copy(Ri, 0))
 
-
-
-
 //Mergesort: Specifically for record datums in a list.
 /proc/sortRecord(list/datum/data/record/L, field = "name", order = 1)
 	if(isnull(L))
@@ -259,7 +256,6 @@ proc/listclearnulls(list/list)
 		if(Li <= L.len)
 			return (result + L.Copy(Li, 0))
 	return (result + R.Copy(Ri, 0))
-
 
 //Mergesort: any value in a list
 /proc/sortList(list/L)
@@ -335,10 +331,10 @@ proc/listclearnulls(list/list)
 	return (result + R.Copy(Ri, 0))
 
 // Macros to test for bits in a bitfield. Note, that this is for use with indexes, not bit-masks!
-#define  BITTEST(bitfield, index) ((bitfield)  &   (1 << (index)))
-#define   BITSET(bitfield, index)  (bitfield)  |=  (1 << (index))
-#define BITRESET(bitfield, index)  (bitfield)  &= ~(1 << (index))
-#define  BITFLIP(bitfield, index)  (bitfield)  ^=  (1 << (index))
+#define BITTEST(bitfield, index) ((bitfield) & (1 << (index)))
+#define BITSET(bitfield, index)  (bitfield) |= (1 << (index))
+#define BITRESET(bitfield, index)  (bitfield) &= ~(1 << (index))
+#define BITFLIP(bitfield, index)  (bitfield) ^= (1 << (index))
 
 //Converts a bitfield to a list of numbers (or words if a wordlist is provided)
 /proc/bitfield2list(bitfield = 0, list/wordlist)
@@ -397,7 +393,6 @@ proc/listclearnulls(list/list)
 	//world.log << "	output: [out.len]"
 	return reverselist(out)
 
-
 /proc/dd_sortedObjectList(list/L, cache = list())
 	if(L.len < 2)
 		return L
@@ -435,7 +430,7 @@ proc/listclearnulls(list/list)
 	var/Oval = O:dd_SortValue()
 
 	while(1)
-		var/mid = min+round((max - min) / 2)
+		var/mid = min + round((max - min) / 2)
 
 		if(mid == max)
 			L.Insert(mid, O)
@@ -450,7 +445,6 @@ proc/listclearnulls(list/list)
 			max = mid
 		else
 			min = mid + 1
-
 
 /datum/proc/dd_SortValue()
 	return "[src]"

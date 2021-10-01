@@ -4,7 +4,6 @@
 
 	var/obj/screen/using
 
-
 //Radio
 	using = new /obj/screen()
 	using.name = "radio"
@@ -16,7 +15,6 @@
 	src.adding += using
 
 //Module select
-
 	using = new /obj/screen()
 	using.name = "module1"
 	using.set_dir(SOUTHWEST)

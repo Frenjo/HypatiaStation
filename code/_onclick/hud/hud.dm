@@ -240,7 +240,6 @@ var/list/global_huds = list(
 			if(H.head)
 				H.head.screen_loc = null
 
-
 /datum/hud/proc/persistant_inventory_update()
 	if(!mymob)
 		return

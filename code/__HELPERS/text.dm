@@ -35,7 +35,7 @@
 	return t
 
 //Removes a few problematic characters
-/proc/sanitize_simple(t, list/repl_chars = list("\n"="#","\t"="#","�"="�"))
+/proc/sanitize_simple(t, list/repl_chars = list("\n" = "#", "\t" = "#", "�" = "�"))
 	for(var/char in repl_chars)
 		var/index = findtext(t, char)
 		while(index)
@@ -55,21 +55,27 @@
 //Runs byond's sanitization proc along-side strip_html_simple
 //I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' that html_encode() would cause
 /proc/adminscrub(t, limit = MAX_MESSAGE_LEN)
-	return copytext((html_encode(strip_html_simple(t))),1,limit)
-
+	return copytext((html_encode(strip_html_simple(t))), 1, limit)
 
 //Returns null if there is any bad text in the string
 /proc/reject_bad_text(text, max_length = 512)
-	if(length(text) > max_length)	return			//message too long
+	if(length(text) > max_length)
+		return			//message too long
 	var/non_whitespace = 0
-	for(var/i=1, i<=length(text), i++)
-		switch(text2ascii(text,i))
-			if(62,60,92,47)	return			//rejects the text if it contains these bad characters: <, >, \ or /
-			if(127 to 255)	return			//rejects weird letters like �
-			if(0 to 31)		return			//more weird stuff
-			if(32)			continue		//whitespace
-			else			non_whitespace = 1
-	if(non_whitespace)		return text		//only accepts the text if it has some non-spaces
+	for(var/i = 1, i <= length(text), i++)
+		switch(text2ascii(text, i))
+			if(62, 60, 92, 47)
+				return			//rejects the text if it contains these bad characters: <, >, \ or /
+			if(127 to 255)
+				return			//rejects weird letters like �
+			if(0 to 31)
+				return			//more weird stuff
+			if(32)
+				continue		//whitespace
+			else
+				non_whitespace = 1
+	if(non_whitespace)
+		return text		//only accepts the text if it has some non-spaces
 
 // Used to get a sanitized input.
 /proc/stripped_input(mob/user, message = "", title = "", default = "", max_length = MAX_MESSAGE_LEN)
@@ -85,78 +91,87 @@
 	var/last_char_group			= 0
 	var/t_out = ""
 
-	for(var/i=1, i<=length(t_in), i++)
-		var/ascii_char = text2ascii(t_in,i)
+	for(var/i = 1, i <= length(t_in), i++)
+		var/ascii_char = text2ascii(t_in, i)
 		switch(ascii_char)
-			// A  .. Z
+			// A .. Z
 			if(65 to 90)			//Uppercase Letters
 				t_out += ascii2text(ascii_char)
 				number_of_alphanumeric++
 				last_char_group = 4
 
-			// a  .. z
+			// a .. z
 			if(97 to 122)			//Lowercase Letters
-				if(last_char_group<2)		t_out += ascii2text(ascii_char-32)	//Force uppercase first character
-				else						t_out += ascii2text(ascii_char)
+				if(last_char_group < 2)
+					t_out += ascii2text(ascii_char-32)	//Force uppercase first character
+				else
+					t_out += ascii2text(ascii_char)
 				number_of_alphanumeric++
 				last_char_group = 4
 
-			// 0  .. 9
+			// 0 .. 9
 			if(48 to 57)			//Numbers
-				if(!last_char_group)		continue	//suppress at start of string
-				if(!allow_numbers)			continue
+				if(!last_char_group)
+					continue	//suppress at start of string
+				if(!allow_numbers)
+					continue
 				t_out += ascii2text(ascii_char)
 				number_of_alphanumeric++
 				last_char_group = 3
 
-			// '  -  .
+			// ' - .
 			if(39,45,46)			//Common name punctuation
 				if(!last_char_group) continue
 				t_out += ascii2text(ascii_char)
 				last_char_group = 2
 
-			// ~   |   @  :  #  $  %  &  *  +
-			if(126,124,64,58,35,36,37,38,42,43)			//Other symbols that we'll allow (mainly for AI)
-				if(!last_char_group)		continue	//suppress at start of string
-				if(!allow_numbers)			continue
+			// ~ | @ : # $ % & * +
+			if(126, 124, 64, 58, 35, 36, 37, 38, 42, 43)			//Other symbols that we'll allow (mainly for AI)
+				if(!last_char_group)
+					continue	//suppress at start of string
+				if(!allow_numbers)
+					continue
 				t_out += ascii2text(ascii_char)
 				last_char_group = 2
 
 			//Space
 			if(32)
-				if(last_char_group <= 1)	continue	//suppress double-spaces and spaces at start of string
+				if(last_char_group <= 1)
+					continue	//suppress double-spaces and spaces at start of string
 				t_out += ascii2text(ascii_char)
 				last_char_group = 1
 			else
 				return
 
-	if(number_of_alphanumeric < 2)	return		//protects against tiny names like "A" and also names like "' ' ' ' ' ' ' '"
+	if(number_of_alphanumeric < 2)
+		return		//protects against tiny names like "A" and also names like "' ' ' ' ' ' ' '"
 
 	if(last_char_group == 1)
-		t_out = copytext(t_out,1,length(t_out))	//removes the last character (in this case a space)
+		t_out = copytext(t_out, 1, length(t_out))	//removes the last character (in this case a space)
 
-	for(var/bad_name in list("space","floor","wall","r-wall","monkey","unknown","inactive ai"))	//prevents these common metagamey names
-		if(cmptext(t_out,bad_name))	return	//(not case sensitive)
+	for(var/bad_name in list("space", "floor", "wall", "r-wall", "monkey", "unknown", "inactive ai"))	//prevents these common metagamey names
+		if(cmptext(t_out, bad_name))
+			return	//(not case sensitive)
 
 	return t_out
 
 //checks text for html tags
 //if tag is not in whitelist (var/list/paper_tag_whitelist in global.dm)
 //relpaces < with &lt;
-proc/checkhtml(t)
-	t = sanitize_simple(t, list("&#"="."))
-	var/p = findtext(t,"<",1)
-	while (p)	//going through all the tags
+/proc/checkhtml(t)
+	t = sanitize_simple(t, list("&#" = "."))
+	var/p = findtext(t, "<", 1)
+	while(p)	//going through all the tags
 		var/start = p++
-		var/tag = copytext(t,p, p+1)
+		var/tag = copytext(t, p, p + 1)
 		if(tag != "/")
-			while (reject_bad_text(copytext(t, p, p+1), 1))
-				tag = copytext(t,start, p)
+			while(reject_bad_text(copytext(t, p, p + 1), 1))
+				tag = copytext(t, start, p)
 				p++
-			tag = copytext(t,start+1, p)
+			tag = copytext(t, start + 1, p)
 			if(!(tag in paper_tag_whitelist))	//if it's unkown tag, disarming it
-				t = copytext(t,1,start-1) + "&lt;" + copytext(t,start+1)
-		p = findtext(t,"<",p)
+				t = copytext(t, 1, start - 1) + "&lt;" + copytext(t, start + 1)
+		p = findtext(t, "<", p)
 	return t
 /*
  * Text searches
@@ -224,7 +239,6 @@ proc/checkhtml(t)
 	for(var/i = length(text), i > 0, i--)
 		if(text2ascii(text, i) > 32)
 			return copytext(text, 1, i + 1)
-
 	return ""
 
 //Returns a string with reserved characters and spaces before the first word and after the last word removed.
@@ -249,7 +263,7 @@ proc/checkhtml(t)
 	if(delta % 2)
 		new_message = " " + new_message
 		delta--
-	var/spaces = add_lspace("",delta/2-1)
+	var/spaces = add_lspace("", delta / 2 - 1)
 	return spaces + new_message + spaces
 
 //Limits the length of the text. Note: MAX_MESSAGE_LEN and MAX_NAME_LEN are widely used for this purpose
@@ -259,7 +273,6 @@ proc/checkhtml(t)
 		return message
 	return copytext(message, 1, length + 1)
 
-
 /proc/stringmerge(text, compare,replace = "*")
 //This proc fills in all spaces with the "replace" var (* by default) with whatever
 //is in the other string at the same spot (assuming it is not a replace char).
@@ -268,15 +281,15 @@ proc/checkhtml(t)
 	if(length(text) != length(compare))
 		return 0
 	for(var/i = 1, i < length(text), i++)
-		var/a = copytext(text,i,i+1)
-		var/b = copytext(compare,i,i+1)
+		var/a = copytext(text, i, i + 1)
+		var/b = copytext(compare, i, i + 1)
 //if it isn't both the same letter, or if they are both the replacement character
 //(no way to know what it was supposed to be)
 		if(a != b)
 			if(a == replace) //if A is the replacement char
-				newtext = copytext(newtext,1,i) + b + copytext(newtext, i+1)
+				newtext = copytext(newtext, 1, i) + b + copytext(newtext, i + 1)
 			else if(b == replace) //if B is the replacement char
-				newtext = copytext(newtext,1,i) + a + copytext(newtext, i+1)
+				newtext = copytext(newtext, 1, i) + a + copytext(newtext, i + 1)
 			else //The lists disagree, Uh-oh!
 				return 0
 	return newtext
@@ -288,7 +301,7 @@ proc/checkhtml(t)
 		return 0
 	var/count = 0
 	for(var/i = 1, i <= length(text), i++)
-		var/a = copytext(text,i,i+1)
+		var/a = copytext(text, i, i + 1)
 		if(a == character)
 			count++
 	return count

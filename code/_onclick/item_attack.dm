@@ -6,6 +6,7 @@
 // No comment
 /atom/proc/attackby(obj/item/W, mob/user)
 	return
+
 /atom/movable/attackby(obj/item/W, mob/user)
 	if(!(W.flags & NOBLUDGEON))
 		visible_message(SPAN_DANGER("[src] has been hit by [user] with [W]."))
@@ -14,12 +15,10 @@
 	if(istype(I) && ismob(user))
 		I.attack(src, user)
 
-
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
 /obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	return
-
 
 /obj/item/proc/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
 	if(!istype(M)) // not sure if this is the right thing...
@@ -119,7 +118,6 @@
 										step_away(slime, user)
 								slime.canmove = 1
 
-
 		var/showname = "."
 		if(user)
 			showname = " by [user]."
@@ -135,7 +133,6 @@
 		if(!showname && user)
 			if(user.client)
 				to_chat(user, SPAN_DANGER("You attack [M] with [src]."))
-
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M

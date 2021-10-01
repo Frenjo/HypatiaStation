@@ -317,7 +317,7 @@ icon
 		Higher value means brighter color
  */
 
-proc/ReadRGB(rgb)
+/proc/ReadRGB(rgb)
 	if(!rgb)
 		return
 
@@ -381,7 +381,7 @@ proc/ReadRGB(rgb)
 	if(usealpha)
 		. += alpha
 
-proc/ReadHSV(hsv)
+/proc/ReadHSV(hsv)
 	if(!hsv)
 		return
 
@@ -432,7 +432,7 @@ proc/ReadHSV(hsv)
 	if(usealpha)
 		. += alpha
 
-proc/HSVtoRGB(hsv)
+/proc/HSVtoRGB(hsv)
 	if(!hsv)
 		return "#000000"
 	var/list/HSV = ReadHSV(hsv)
@@ -469,7 +469,7 @@ proc/HSVtoRGB(hsv)
 
 	return (HSV.len > 3) ? rgb(r, g, b, HSV[4]) : rgb(r, g, b)
 
-proc/RGBtoHSV(rgb)
+/proc/RGBtoHSV(rgb)
 	if(!rgb)
 		return "#0000000"
 	var/list/RGB = ReadRGB(rgb)
@@ -508,7 +508,7 @@ proc/RGBtoHSV(rgb)
 
 	return hsv(hue, sat, val, (RGB.len>3 ? RGB[4] : null))
 
-proc/hsv(hue, sat, val, alpha)
+/proc/hsv(hue, sat, val, alpha)
 	if(hue < 0 || hue >= 1536)
 		hue %= 1536
 	if(hue < 0)
@@ -550,7 +550,7 @@ proc/hsv(hue, sat, val, alpha)
 
 	amount<0 or amount>1 are allowed
  */
-proc/BlendHSV(hsv1, hsv2, amount)
+/proc/BlendHSV(hsv1, hsv2, amount)
 	var/list/HSV1 = ReadHSV(hsv1)
 	var/list/HSV2 = ReadHSV(hsv2)
 
@@ -620,7 +620,7 @@ proc/BlendHSV(hsv1, hsv2, amount)
 
 	amount<0 or amount>1 are allowed
  */
-proc/BlendRGB(rgb1, rgb2, amount)
+/proc/BlendRGB(rgb1, rgb2, amount)
 	var/list/RGB1 = ReadRGB(rgb1)
 	var/list/RGB2 = ReadRGB(rgb2)
 
@@ -638,10 +638,10 @@ proc/BlendRGB(rgb1, rgb2, amount)
 
 	return isnull(alpha) ? rgb(r, g, b) : rgb(r, g, b, alpha)
 
-proc/BlendRGBasHSV(rgb1, rgb2, amount)
+/proc/BlendRGBasHSV(rgb1, rgb2, amount)
 	return HSVtoRGB(RGBtoHSV(rgb1), RGBtoHSV(rgb2), amount)
 
-proc/HueToAngle(hue)
+/proc/HueToAngle(hue)
 	// normalize hsv in case anything is screwy
 	if(hue < 0 || hue >= 1536)
 		hue %= 1536
@@ -651,7 +651,7 @@ proc/HueToAngle(hue)
 	hue -= hue >> 8
 	return hue / (1530 / 360)
 
-proc/AngleToHue(angle)
+/proc/AngleToHue(angle)
 	// normalize hsv in case anything is screwy
 	if(angle < 0 || angle >= 360)
 		angle -= 360 * round(angle / 360)
@@ -662,7 +662,7 @@ proc/AngleToHue(angle)
 
 
 // positive angle rotates forward through red->green->blue
-proc/RotateHue(hsv, angle)
+/proc/RotateHue(hsv, angle)
 	var/list/HSV = ReadHSV(hsv)
 
 	// normalize hsv in case anything is screwy
@@ -689,13 +689,13 @@ proc/RotateHue(hsv, angle)
 	return hsv(HSV[1], HSV[2], HSV[3], (HSV.len > 3 ? HSV[4] : null))
 
 // Convert an rgb color to grayscale
-proc/GrayScale(rgb)
+/proc/GrayScale(rgb)
 	var/list/RGB = ReadRGB(rgb)
 	var/gray = RGB[1]*0.3 + RGB[2]*0.59 + RGB[3]*0.11
 	return (RGB.len > 3) ? rgb(gray, gray, gray, RGB[4]) : rgb(gray, gray, gray)
 
 // Change grayscale color to black->tone->white range
-proc/ColorTone(rgb, tone)
+/proc/ColorTone(rgb, tone)
 	var/list/RGB = ReadRGB(rgb)
 	var/list/TONE = ReadRGB(tone)
 
@@ -713,125 +713,123 @@ Get flat icon by DarkCampainger. As it says on the tin, will return an icon with
 as a single icon. Useful for when you want to manipulate an icon via the above as overlays are not normally included.
 The _flatIcons list is a cache for generated icon files.
 */
+/proc/getFlatIcon(atom/A, dir) // 1 = use cache, 2 = override cache, 0 = ignore cache
+	// Layers will be a sorted list of icons/overlays, based on the order in which they are displayed
+	var/list/layers = list()
 
-proc
-	getFlatIcon(atom/A, dir) // 1 = use cache, 2 = override cache, 0 = ignore cache
-		// Layers will be a sorted list of icons/overlays, based on the order in which they are displayed
-		var/list/layers = list()
+	// Add the atom's icon itself
+	if(A.icon)
+		// Make a copy without pixel_x/y settings
+		var/image/copy = image(icon = A.icon, icon_state = A.icon_state, layer = A.layer, dir = A.dir)
+		layers[copy] = A.layer
 
-		// Add the atom's icon itself
-		if(A.icon)
-			// Make a copy without pixel_x/y settings
-			var/image/copy = image(icon = A.icon, icon_state = A.icon_state, layer = A.layer, dir = A.dir)
-			layers[copy] = A.layer
+	// dir defaults to A's dir
+	if(!dir)
+		dir = A.dir
 
-		// dir defaults to A's dir
-		if(!dir)
-			dir = A.dir
-
-		// Loop through the underlays, then overlays, sorting them into the layers list
-		var/list/process = A.underlays // Current list being processed
-		var/pSet = 0 // Which list is being processed: 0 = underlays, 1 = overlays
-		var/curIndex = 1 // index of 'current' in list being processed
-		var/current // Current overlay being sorted
-		var/currentLayer // Calculated layer that overlay appears on (special case for FLOAT_LAYER)
-		var/compare // The overlay 'add' is being compared against
-		var/cmpIndex // The index in the layers list of 'compare'
-		while(TRUE)
-			if(curIndex <= process.len)
-				current = process[curIndex]
-				if(!current)
-					continue
-				currentLayer = current:layer
-				if(currentLayer < 0) // Special case for FLY_LAYER
-					if(currentLayer <= -1000)
-						return 0
-					if(pSet == 0) // Underlay
-						currentLayer = A.layer + currentLayer / 1000
-					else // Overlay
-						currentLayer = A.layer + (1000 + currentLayer) / 1000
-
-				// Sort add into layers list
-				for(cmpIndex = 1, cmpIndex <= layers.len, cmpIndex++)
-					compare = layers[cmpIndex]
-					if(currentLayer < layers[compare]) // Associated value is the calculated layer
-						layers.Insert(cmpIndex, current)
-						layers[current] = currentLayer
-						break
-				if(cmpIndex > layers.len) // Reached end of list without inserting
-					layers[current] = currentLayer // Place at end
-
-				curIndex++
-
-			if(curIndex > process.len)
-				if(pSet == 0) // Switch to overlays
-					curIndex = 1
-					pSet = 1
-					process = A.overlays
-				else // All done
-					break
-
-		// We start with a blank canvas, otherwise some icon procs crash silently
-		var/icon/flat = icon('icons/effects/effects.dmi', "icon_state" = "nothing") // Final flattened icon
-		var/icon/add // Icon of overlay being added
-
-		// Current dimensions of flattened icon
-		var/flatX1 = 1
-		var/flatX2 = flat.Width()
-		var/flatY1 = 1
-		var/flatY2 = flat.Height()
-
-		// Dimensions of overlay being added
-		var/addX1
-		var/addX2
-		var/addY1
-		var/addY2
-
-		for(var/I in layers)
-			if(I:icon)
-				if(I:icon_state)
-					// Has icon and state set
-					add = icon(I:icon, I:icon_state)
-				else
-					if(A.icon_state in icon_states(I:icon))
-						// Inherits icon_state from atom
-						add = icon(I:icon, A.icon_state)
-					else
-						// Uses default state ("")
-						add = icon(I:icon)
-			else if(I:icon_state)
-				// Inherits icon from atom
-				add = icon(A.icon, I:icon_state)
-			else
-				// Unknown
+	// Loop through the underlays, then overlays, sorting them into the layers list
+	var/list/process = A.underlays // Current list being processed
+	var/pSet = 0 // Which list is being processed: 0 = underlays, 1 = overlays
+	var/curIndex = 1 // index of 'current' in list being processed
+	var/current // Current overlay being sorted
+	var/currentLayer // Calculated layer that overlay appears on (special case for FLOAT_LAYER)
+	var/compare // The overlay 'add' is being compared against
+	var/cmpIndex // The index in the layers list of 'compare'
+	while(TRUE)
+		if(curIndex <= process.len)
+			current = process[curIndex]
+			if(!current)
 				continue
+			currentLayer = current:layer
+			if(currentLayer < 0) // Special case for FLY_LAYER
+				if(currentLayer <= -1000)
+					return 0
+				if(pSet == 0) // Underlay
+					currentLayer = A.layer + currentLayer / 1000
+				else // Overlay
+					currentLayer = A.layer + (1000 + currentLayer) / 1000
 
-			// Find the new dimensions of the flat icon to fit the added overlay
-			addX1 = min(flatX1, I:pixel_x + 1)
-			addX2 = max(flatX2, I:pixel_x + add.Width())
-			addY1 = min(flatY1, I:pixel_y + 1)
-			addY2 = max(flatY2, I:pixel_y + add.Height())
+			// Sort add into layers list
+			for(cmpIndex = 1, cmpIndex <= layers.len, cmpIndex++)
+				compare = layers[cmpIndex]
+				if(currentLayer < layers[compare]) // Associated value is the calculated layer
+					layers.Insert(cmpIndex, current)
+					layers[current] = currentLayer
+					break
+			if(cmpIndex > layers.len) // Reached end of list without inserting
+				layers[current] = currentLayer // Place at end
 
-			if(addX1 != flatX1 || addX2 != flatX2 || addY1 != flatY1 || addY2 != flatY2)
-				// Resize the flattened icon so the new icon fits
-				flat.Crop(addX1 - flatX1 + 1, addY1 - flatY1 + 1, addX2 - flatX1 + 1, addY2 - flatY1 + 1)
-				flatX1 = addX1; flatX2 = addX2
-				flatY1 = addY1; flatY2 = addY2
+			curIndex++
 
-			// Blend the overlay into the flattened icon
-			flat.Blend(add, ICON_OVERLAY, I:pixel_x + 2 - flatX1, I:pixel_y + 2 - flatY1)
+		if(curIndex > process.len)
+			if(pSet == 0) // Switch to overlays
+				curIndex = 1
+				pSet = 1
+				process = A.overlays
+			else // All done
+				break
 
-		return flat
+	// We start with a blank canvas, otherwise some icon procs crash silently
+	var/icon/flat = icon('icons/effects/effects.dmi', "icon_state" = "nothing") // Final flattened icon
+	var/icon/add // Icon of overlay being added
 
-	getIconMask(atom/A)//By yours truly. Creates a dynamic mask for a mob/whatever. /N
-		var/icon/alpha_mask = new(A.icon, A.icon_state)//So we want the default icon and icon state of A.
-		for(var/I in A.overlays)//For every image in overlays. var/image/I will not work, don't try it.
-			if(I:layer > A.layer)
-				continue//If layer is greater than what we need, skip it.
-			var/icon/image_overlay = new(I:icon, I:icon_state)//Blend only works with icon objects.
-			//Also, icons cannot directly set icon_state. Slower than changing variables but whatever.
-			alpha_mask.Blend(image_overlay, ICON_OR)//OR so they are lumped together in a nice overlay.
-		return alpha_mask//And now return the mask.
+	// Current dimensions of flattened icon
+	var/flatX1 = 1
+	var/flatX2 = flat.Width()
+	var/flatY1 = 1
+	var/flatY2 = flat.Height()
+
+	// Dimensions of overlay being added
+	var/addX1
+	var/addX2
+	var/addY1
+	var/addY2
+
+	for(var/I in layers)
+		if(I:icon)
+			if(I:icon_state)
+				// Has icon and state set
+				add = icon(I:icon, I:icon_state)
+			else
+				if(A.icon_state in icon_states(I:icon))
+					// Inherits icon_state from atom
+					add = icon(I:icon, A.icon_state)
+				else
+					// Uses default state ("")
+					add = icon(I:icon)
+		else if(I:icon_state)
+			// Inherits icon from atom
+			add = icon(A.icon, I:icon_state)
+		else
+			// Unknown
+			continue
+
+		// Find the new dimensions of the flat icon to fit the added overlay
+		addX1 = min(flatX1, I:pixel_x + 1)
+		addX2 = max(flatX2, I:pixel_x + add.Width())
+		addY1 = min(flatY1, I:pixel_y + 1)
+		addY2 = max(flatY2, I:pixel_y + add.Height())
+
+		if(addX1 != flatX1 || addX2 != flatX2 || addY1 != flatY1 || addY2 != flatY2)
+			// Resize the flattened icon so the new icon fits
+			flat.Crop(addX1 - flatX1 + 1, addY1 - flatY1 + 1, addX2 - flatX1 + 1, addY2 - flatY1 + 1)
+			flatX1 = addX1; flatX2 = addX2
+			flatY1 = addY1; flatY2 = addY2
+
+		// Blend the overlay into the flattened icon
+		flat.Blend(add, ICON_OVERLAY, I:pixel_x + 2 - flatX1, I:pixel_y + 2 - flatY1)
+
+	return flat
+
+/proc/getIconMask(atom/A)//By yours truly. Creates a dynamic mask for a mob/whatever. /N
+	var/icon/alpha_mask = new(A.icon, A.icon_state)//So we want the default icon and icon state of A.
+	for(var/I in A.overlays)//For every image in overlays. var/image/I will not work, don't try it.
+		if(I:layer > A.layer)
+			continue//If layer is greater than what we need, skip it.
+		var/icon/image_overlay = new(I:icon, I:icon_state)//Blend only works with icon objects.
+		//Also, icons cannot directly set icon_state. Slower than changing variables but whatever.
+		alpha_mask.Blend(image_overlay, ICON_OR)//OR so they are lumped together in a nice overlay.
+	return alpha_mask//And now return the mask.
 
 /mob/proc/AddCamoOverlay(atom/A)//A is the atom which we are using as the overlay.
 	var/icon/opacity_icon = new(A.icon, A.icon_state)//Don't really care for overlays/underlays.
@@ -869,7 +867,7 @@ proc
 		composite.Blend(icon(I.icon, I.icon_state, I.dir, 1), ICON_OVERLAY)
 	return composite
 
-proc/adjust_brightness(color, value)
+/proc/adjust_brightness(color, value)
 	if(!color)
 		return "#FFFFFF"
 	if(!value)

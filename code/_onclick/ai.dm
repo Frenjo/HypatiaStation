@@ -23,7 +23,6 @@
 	else
 		A.move_camera_by_click()
 
-
 /mob/living/silicon/ai/ClickOn(atom/A, params)
 	if(world.time <= next_click)
 		return
@@ -71,6 +70,7 @@
 */
 /mob/living/silicon/ai/UnarmedAttack(atom/A)
 	A.attack_ai(src)
+
 /mob/living/silicon/ai/RangedAttack(atom/A)
 	A.attack_ai(src)
 
@@ -84,8 +84,10 @@
 */
 /mob/living/silicon/ai/ShiftClickOn(atom/A)
 	A.AIShiftClick(src)
+
 /mob/living/silicon/ai/CtrlClickOn(atom/A)
 	A.AICtrlClick(src)
+
 /mob/living/silicon/ai/AltClickOn(atom/A)
 	A.AIAltClick(src)
 
@@ -104,19 +106,17 @@
 		Topic("aiDisable=7", list("aiDisable"="7"), 1)
 	return
 
-
 /atom/proc/AICtrlClick()
 	return
 
 /obj/machinery/door/airlock/AICtrlClick() // Bolts doors
 	if(locked)
-		Topic("aiEnable=4", list("aiEnable"="4"), 1)// 1 meaning no window (consistency!)
+		Topic("aiEnable=4", list("aiEnable" = "4"), 1)// 1 meaning no window (consistency!)
 	else
-		Topic("aiDisable=4", list("aiDisable"="4"), 1)
+		Topic("aiDisable=4", list("aiDisable" = "4"), 1)
 
 /obj/machinery/power/apc/AICtrlClick() // turns off APCs.
-	Topic("breaker=1", list("breaker"="1"), 0) // 0 meaning no window (consistency! wait...)
-
+	Topic("breaker=1", list("breaker" = "1"), 0) // 0 meaning no window (consistency! wait...)
 
 /atom/proc/AIAltClick()
 	return
@@ -124,8 +124,8 @@
 /obj/machinery/door/airlock/AIAltClick() // Eletrifies doors.
 	if(!secondsElectrified)
 		// permenant shock
-		Topic("aiEnable=6", list("aiEnable"="6"), 1) // 1 meaning no window (consistency!)
+		Topic("aiEnable=6", list("aiEnable" = "6"), 1) // 1 meaning no window (consistency!)
 	else
 		// disable/6 is not in Topic; disable/5 disables both temporary and permenant shock
-		Topic("aiDisable=5", list("aiDisable"="5"), 1)
+		Topic("aiDisable=5", list("aiDisable" = "5"), 1)
 	return
