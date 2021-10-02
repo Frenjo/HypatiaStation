@@ -1,12 +1,12 @@
-var/list/beam_master = list()
+//var/list/beam_master = list()
 //Use: Caches beam state images and holds turfs that had these images overlaid.
 //Structure:
 //beam_master
-//    icon_states/dirs of beams
-//        image for that beam
-//    references for fired beams
-//        icon_states/dirs for each placed beam image
-//            turfs that have that icon_state/dir
+//	icon_states/dirs of beams
+//		image for that beam
+//	references for fired beams
+//		icon_states/dirs for each placed beam image
+//			turfs that have that icon_state/dir
 
 /obj/item/projectile/beam
 	name = "laser"
@@ -18,14 +18,17 @@ var/list/beam_master = list()
 	eyeblur = 4
 	var/frequency = 1
 
+// TODO: This is temporarily removed until I can sort out the hybrid pulse/beam mode switch idea.
+// Until then, beams will function just like bullets /tg/ style. -Frenjo
+/*
 /obj/item/projectile/beam/process()
 	var/reference = "\ref[src]" //So we do not have to recalculate it a ton
 	var/first = 1 //So we don't make the overlay in the same tile as the firer
 	spawn while(src) //Move until we hit something
 
-		if((!current || loc == current)) //If we pass our target
+		if(!current || loc == current) //If we pass our target
 			current = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z)
-		if((x == 1 || x == world.maxx || y == 1 || y == world.maxy))
+		if(x == 1 || x == world.maxx || y == 1 || y == world.maxy)
 			src = null //Delete if it passes the world edge
 			return
 		step_towards(src, current) //Move~
@@ -49,8 +52,7 @@ var/list/beam_master = list()
 				beam_master["[icon_state][target_dir]"] = I //And cache it!
 
 			//Finally add the overlay
-			if(src && src.loc)
-				src.loc.overlays += beam_master["[icon_state][target_dir]"]
+			src.loc.overlays += beam_master["[icon_state][target_dir]"]
 
 			//Add the turf to a list in the beam master so they can be cleaned up easily.
 			if(reference in beam_master)
@@ -82,6 +84,7 @@ var/list/beam_master = list()
 			for(var/turf/T in turfs)
 				T.overlays -= beam_master[laser_state]
 	return
+*/
 
 /obj/item/projectile/beam/practice
 	name = "laser"

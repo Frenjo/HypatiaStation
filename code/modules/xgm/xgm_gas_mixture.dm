@@ -291,7 +291,8 @@ datum/gas_mixture/proc/share_ratio(datum/gas_mixture/other, connecting_tiles, sh
 	var/ratio = sharing_lookup_table[6]
 
 	var/size = max(1, group_multiplier)
-	if(isnull(share_size)) share_size = max(1, other.group_multiplier)
+	if(isnull(share_size))
+		share_size = max(1, other.group_multiplier)
 
 	var/full_heat_capacity = heat_capacity() * size
 
@@ -371,23 +372,23 @@ datum/gas_mixture/proc/share_ratio(datum/gas_mixture/other, connecting_tiles, sh
 	return 1
 
 //Adds or removes thermal energy. Returns the actual thermal energy change, as in the case of removing energy we can't go below TCMB.
-/datum/gas_mixture/proc/add_thermal_energy(var/thermal_energy)
-	if (total_moles == 0)
+/datum/gas_mixture/proc/add_thermal_energy(thermal_energy)
+	if(total_moles == 0)
 		return 0
 
 	var/heat_capacity = heat_capacity()
-	if (thermal_energy < 0)
-		if (temperature < TCMB)
+	if(thermal_energy < 0)
+		if(temperature < TCMB)
 			return 0
-		var/thermal_energy_limit = -(temperature - TCMB)*heat_capacity	//ensure temperature does not go below TCMB
-		thermal_energy = max( thermal_energy, thermal_energy_limit )	//thermal_energy and thermal_energy_limit are negative here.
-	temperature += thermal_energy/heat_capacity
+		var/thermal_energy_limit = -(temperature - TCMB) * heat_capacity	//ensure temperature does not go below TCMB
+		thermal_energy = max(thermal_energy, thermal_energy_limit)	//thermal_energy and thermal_energy_limit are negative here.
+	temperature += thermal_energy / heat_capacity
 	return thermal_energy
 
-/datum/gas_mixture/proc/get_thermal_energy_change(var/new_temperature)
+/datum/gas_mixture/proc/get_thermal_energy_change(new_temperature)
 	//Purpose: Determining how much thermal energy is required
 	//Called by: Anyone. Machines that want to adjust the temperature of a gas mix.
 	//Inputs: None
 	//Outputs: The amount of energy required to get to the new temperature in J. A negative value means that energy needs to be removed.
 
-	return heat_capacity()*(new_temperature - temperature)
+	return heat_capacity() * (new_temperature - temperature)
