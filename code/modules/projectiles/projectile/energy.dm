@@ -23,14 +23,6 @@
 		sparks.start()
 	..()
 
-/obj/item/projectile/energy/disabler
-	name = "disabler"
-	icon_state = "bluespark"
-	nodamage = 1
-	weaken = 5
-	agony = 20
-	damage_type = HALLOSS
-
 /obj/item/projectile/energy/declone
 	name = "declone"
 	icon_state = "declone"

@@ -126,10 +126,10 @@
 	else
 		return 1
 
-/obj/item/projectile/beam/mindflayer
+/obj/item/projectile/energy/beam/mindflayer
 	name = "flayer ray"
 
-/obj/item/projectile/beam/mindflayer/on_hit(atom/target, blocked = 0)
+/obj/item/projectile/energy/beam/mindflayer/on_hit(atom/target, blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		M.adjustBrainLoss(20)

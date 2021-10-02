@@ -239,7 +239,8 @@
 
 /*
 	Alt click
-	Unused except for AI
+	Used for some AI things.
+	Used to toggle firing modes of energy weapons and emitters.
 */
 /mob/proc/AltClickOn(atom/A)
 	A.AltClick(src)
@@ -269,7 +270,7 @@
 	var/turf/T = get_turf(src)
 	var/turf/U = get_turf(A)
 
-	var/obj/item/projectile/beam/LE = new /obj/item/projectile/beam(loc)
+	var/obj/item/projectile/energy/beam/LE = new /obj/item/projectile/energy/beam(loc)
 	LE.icon = 'icons/effects/genetics.dmi'
 	LE.icon_state = "eyelasers"
 	playsound(usr.loc, 'sound/weapons/taser2.ogg', 75, 1)

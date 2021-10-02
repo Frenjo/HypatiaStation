@@ -82,7 +82,7 @@
 		if(isliving(user))
 			var/mob/living/M = user
 			if((CLUMSY in M.mutations) && prob(50))
-				to_chat(M, SPAN_DANGER("[src] blows up in your face."))
+				to_chat(M, SPAN_DANGER("\The [src] blows up in your face."))
 				M.take_organ_damage(0, 20)
 				M.drop_item()
 				qdel(src)
@@ -113,7 +113,7 @@
 
 	if(!ready_to_fire())
 		if(world.time % 3) //to prevent spam
-			to_chat(user, SPAN_WARNING("[src] is not ready to fire again!"))
+			to_chat(user, SPAN_WARNING("\The [src] is not ready to fire again!"))
 		return
 
 	if(!load_into_chamber()) //CHECK
@@ -138,7 +138,11 @@
 		playsound(user, fire_sound, 10, 1)
 	else
 		playsound(user, fire_sound, 50, 1)
-		user.visible_message(SPAN_WARNING("[user] fires [src][reflex ? " by reflex" : ""]!"), SPAN_WARNING("You fire [src][reflex ? "by reflex":""]!"), "You hear a [istype(in_chamber, /obj/item/projectile/beam) ? "laser blast" : "gunshot"]!")
+		user.visible_message(
+			SPAN_WARNING("[user] fires [src][reflex ? " by reflex" : ""]!"),
+			SPAN_WARNING("You fire [src][reflex ? "by reflex":""]!"),
+			"You hear a [istype(in_chamber, /obj/item/projectile/energy) ? "laser blast" : "gunshot"]!"
+		)
 
 	in_chamber.original = target
 	in_chamber.loc = get_turf(user)
@@ -207,7 +211,7 @@
 				playsound(user, fire_sound, 10, 1)
 			else
 				playsound(user, fire_sound, 50, 1)
-			if(istype(in_chamber, /obj/item/projectile/beam/lastertag))
+			if(istype(in_chamber, /obj/item/projectile/energy/beam/laser/tag))
 				user.show_message(SPAN_WARNING("You feel rather silly, trying to commit suicide with a toy."))
 				mouthshoot = 0
 				return

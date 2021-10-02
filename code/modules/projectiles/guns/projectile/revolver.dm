@@ -176,7 +176,7 @@
 					return
 				var/obj/item/projectile/P = new AC.projectile_type
 				playsound(user, fire_sound, 50, 1)
-				user.visible_message(SPAN_DANGER("[user.name] fires [src] at \his head!"), SPAN_DANGER("You fire [src] at your head!"), "You hear a [istype(in_chamber, /obj/item/projectile/beam) ? "laser blast" : "gunshot"]!")
+				user.visible_message(SPAN_DANGER("[user.name] fires [src] at \his head!"), SPAN_DANGER("You fire [src] at your head!"), "You hear a [istype(in_chamber, /obj/item/projectile/energy) ? "laser blast" : "gunshot"]!")
 				if(!P.nodamage)
 					user.apply_damage(300, BRUTE, affecting, sharp = 1) // You are dead, dead, dead.
 				return

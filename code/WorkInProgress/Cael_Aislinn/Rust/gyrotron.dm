@@ -1,6 +1,6 @@
 
 //high frequency photon (laser beam)
-/obj/item/projectile/beam/ehf_beam
+/obj/item/projectile/energy/beam/ehf_beam
 
 /obj/machinery/rust/gyrotron
 	icon = 'code/WorkInProgress/Cael_Aislinn/Rust/rust.dmi'
@@ -114,7 +114,7 @@
 			A.fired()
 */
 	proc/Emit()
-		var/obj/item/projectile/beam/emitter/A = new /obj/item/projectile/beam/emitter( src.loc )
+		var/obj/item/projectile/energy/beam/emitter/A = new /obj/item/projectile/energy/beam/emitter( src.loc )
 		A.frequency = frequency
 		A.damage = mega_energy * 500
 		//

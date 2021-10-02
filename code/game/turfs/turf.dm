@@ -37,7 +37,7 @@
 	return 0
 
 /turf/bullet_act(obj/item/projectile/Proj)
-	if(istype(Proj, /obj/item/projectile/beam/pulse))
+	if(istype(Proj, /obj/item/projectile/energy/beam/pulse))
 		src.ex_act(2)
 	..()
 	return 0

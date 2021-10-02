@@ -26,8 +26,8 @@
 		reagents.add_reagent("coolant",1000)
 
 /obj/structure/reagent_dispensers/coolanttank/bullet_act(var/obj/item/projectile/Proj)
-	if(istype(Proj ,/obj/item/projectile/beam)||istype(Proj,/obj/item/projectile/bullet))
-		if(!istype(Proj ,/obj/item/projectile/beam/lastertag) && !istype(Proj ,/obj/item/projectile/beam/practice) )
+	if(istype(Proj, /obj/item/projectile/energy) || istype(Proj, /obj/item/projectile/bullet))
+		if(!istype(Proj, /obj/item/projectile/energy/beam/laser/tag) && !istype(Proj, /obj/item/projectile/energy/beam/laser/practice))
 			explode()
 
 /obj/structure/reagent_dispensers/coolanttank/blob_act()

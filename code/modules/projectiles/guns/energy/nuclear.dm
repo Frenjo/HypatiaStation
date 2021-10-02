@@ -10,23 +10,19 @@
 	origin_tech = "combat=3;magnets=2"
 	modifystate = "energystun"
 
-	var/mode = 0 //0 = stun, 1 = kill
-
 /obj/item/weapon/gun/energy/gun/attack_self(mob/living/user as mob)
-	switch(mode)
-		if(0)
-			mode = 1
+	switch(gun_setting)
+		if(GUN_SETTING_STUN)
+			gun_setting = GUN_SETTING_KILL
 			charge_cost = 100
 			fire_sound = 'sound/weapons/Laser.ogg'
-			to_chat(user, SPAN_WARNING("[src.name] is now set to kill."))
-			projectile_type = /obj/item/projectile/beam
+			to_chat(user, SPAN_WARNING("\The [src.name] is now set to kill."))
 			modifystate = "energykill"
-		if(1)
-			mode = 0
+		if(GUN_SETTING_KILL)
+			gun_setting = GUN_SETTING_STUN
 			charge_cost = 100
 			fire_sound = 'sound/weapons/Taser.ogg'
-			to_chat(user, SPAN_WARNING("[src.name] is now set to stun."))
-			projectile_type = /obj/item/projectile/energy/electrode
+			to_chat(user, SPAN_WARNING("\The [src.name] is now set to stun."))
 			modifystate = "energystun"
 	update_icon()
 
@@ -104,9 +100,9 @@
 		overlays += "nucgun-clean"
 
 /obj/item/weapon/gun/energy/gun/nuclear/proc/update_mode()
-	if(mode == 0)
+	if(gun_setting == GUN_SETTING_STUN)
 		overlays += "nucgun-stun"
-	else if(mode == 1)
+	else if(gun_setting == GUN_SETTING_KILL)
 		overlays += "nucgun-kill"
 
 /obj/item/weapon/gun/energy/gun/nuclear/emp_act(severity)

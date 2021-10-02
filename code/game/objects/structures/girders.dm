@@ -8,7 +8,7 @@
 
 
 	bullet_act(var/obj/item/projectile/Proj)
-		if(istype(Proj, /obj/item/projectile/beam))
+		if(istype(Proj, /obj/item/projectile/energy))
 			health -= Proj.damage
 			..()
 			if(health <= 0)

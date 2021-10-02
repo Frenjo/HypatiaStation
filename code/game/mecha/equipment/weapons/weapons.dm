@@ -70,7 +70,7 @@
 	name = "CH-PS \"Immolator\" Laser"
 	icon_state = "mecha_laser"
 	energy_drain = 30
-	projectile = /obj/item/projectile/beam
+	projectile = /obj/item/projectile/energy/beam/laser
 	fire_sound = 'sound/weapons/Laser.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
@@ -78,7 +78,7 @@
 	name = "CH-LC \"Solaris\" Laser Cannon"
 	icon_state = "mecha_laser"
 	energy_drain = 60
-	projectile = /obj/item/projectile/beam/heavylaser
+	projectile = /obj/item/projectile/energy/beam/laser/heavy
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/ion
@@ -96,11 +96,11 @@
 	icon_state = "mecha_pulse"
 	energy_drain = 120
 	origin_tech = "materials=3;combat=6;powerstorage=4"
-	projectile = /obj/item/projectile/beam/pulse/heavy
+	projectile = /obj/item/projectile/energy/beam/pulse/heavy
 	fire_sound = 'sound/weapons/marauder.ogg'
 
 
-/obj/item/projectile/beam/pulse/heavy
+/obj/item/projectile/energy/beam/pulse/heavy
 	name = "heavy pulse laser"
 	icon_state = "pulse1_bl"
 	var/life = 20

@@ -1,4 +1,4 @@
-//var/list/beam_master = list()
+var/list/beam_master = list()
 //Use: Caches beam state images and holds turfs that had these images overlaid.
 //Structure:
 //beam_master
@@ -8,7 +8,7 @@
 //		icon_states/dirs for each placed beam image
 //			turfs that have that icon_state/dir
 
-/obj/item/projectile/beam
+/obj/item/projectile/energy/beam
 	name = "laser"
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
@@ -18,14 +18,10 @@
 	eyeblur = 4
 	var/frequency = 1
 
-// TODO: This is temporarily removed until I can sort out the hybrid pulse/beam mode switch idea.
-// Until then, beams will function just like bullets /tg/ style. -Frenjo
-/*
-/obj/item/projectile/beam/process()
+/obj/item/projectile/energy/beam/process()
 	var/reference = "\ref[src]" //So we do not have to recalculate it a ton
 	var/first = 1 //So we don't make the overlay in the same tile as the firer
 	spawn while(src) //Move until we hit something
-
 		if(!current || loc == current) //If we pass our target
 			current = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z)
 		if(x == 1 || x == world.maxx || y == 1 || y == world.maxy)
@@ -71,11 +67,11 @@
 	cleanup(reference)
 	return
 
-/obj/item/projectile/beam/Destroy()
+/obj/item/projectile/energy/beam/Destroy()
 	cleanup("\ref[src]")
 	return ..()
 
-/obj/item/projectile/beam/proc/cleanup(reference) //Waits .3 seconds then removes the overlay.
+/obj/item/projectile/energy/beam/proc/cleanup(reference) //Waits .3 seconds then removes the overlay.
 	src = null //we're getting deleted! this will keep the code running
 	spawn(3)
 		var/list/turf_master = beam_master[reference]
@@ -84,88 +80,91 @@
 			for(var/turf/T in turfs)
 				T.overlays -= beam_master[laser_state]
 	return
-*/
 
-/obj/item/projectile/beam/practice
-	name = "laser"
+/obj/item/projectile/energy/beam/laser
+	name = "laser beam"
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
-	damage = 0
+	damage = 40
 	damage_type = BURN
 	flag = "laser"
+	eyeblur = 4
+
+/obj/item/projectile/energy/beam/laser/practice
+	name = "laser"
+	damage = 0
 	eyeblur = 2
 
-/obj/item/projectile/beam/heavylaser
-	name = "heavy laser"
+/obj/item/projectile/energy/beam/laser/heavy
+	name = "heavy laser beam"
 	icon_state = "heavylaser"
 	damage = 40
 
-/obj/item/projectile/beam/xray
+/obj/item/projectile/energy/beam/laser/death
+	name = "death laser beam"
+	icon_state = "heavylaser"
+	damage = 60
+
+/obj/item/projectile/energy/beam/disabler
+	name = "disabler beam"
+	icon_state = "bluespark"
+	nodamage = 1
+	weaken = 5
+	agony = 20
+	damage_type = HALLOSS
+
+/obj/item/projectile/energy/beam/xray
 	name = "xray beam"
 	icon_state = "xray"
 	damage = 30
 
-/obj/item/projectile/beam/pulse
-	name = "pulse"
+/obj/item/projectile/energy/beam/pulse
+	name = "pulse beam"
 	icon_state = "u_laser"
 	damage = 50
 
-/obj/item/projectile/beam/deathlaser
-	name = "death laser"
-	icon_state = "heavylaser"
-	damage = 60
-
-/obj/item/projectile/beam/emitter
+/obj/item/projectile/energy/beam/emitter
 	name = "emitter beam"
 	icon_state = "emitter"
 	damage = 30
 
-/obj/item/projectile/beam/lastertag/blue
+/obj/item/projectile/energy/beam/laser/tag
 	name = "lasertag beam"
-	icon_state = "bluelaser"
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage = 0
 	damage_type = BURN
 	flag = "laser"
 
-/obj/item/projectile/beam/lastertag/blue/on_hit(atom/target, blocked = 0)
+/obj/item/projectile/energy/beam/laser/tag/blue
+	icon_state = "bluelaser"
+
+/obj/item/projectile/energy/beam/laser/tag/blue/on_hit(atom/target, blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
 			M.Weaken(5)
 	return 1
 
-/obj/item/projectile/beam/lastertag/red
-	name = "lasertag beam"
+/obj/item/projectile/energy/beam/laser/tag/red
 	icon_state = "laser"
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
-	damage = 0
-	damage_type = BURN
-	flag = "laser"
 
-/obj/item/projectile/beam/lastertag/red/on_hit(atom/target, blocked = 0)
+/obj/item/projectile/energy/beam/laser/tag/red/on_hit(atom/target, blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
 			M.Weaken(5)
 	return 1
 
-/obj/item/projectile/beam/lastertag/omni//A laser tag bolt that stuns EVERYONE
-	name = "lasertag beam"
+/obj/item/projectile/energy/beam/laser/tag/omni	//A laser tag bolt that stuns EVERYONE
 	icon_state = "omnilaser"
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
-	damage = 0
-	damage_type = BURN
-	flag = "laser"
 
-/obj/item/projectile/beam/lastertag/omni/on_hit(atom/target, blocked = 0)
+/obj/item/projectile/energy/beam/laser/tag/omni/on_hit(atom/target, blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
-		if((istype(M.wear_suit, /obj/item/clothing/suit/bluetag)) || (istype(M.wear_suit, /obj/item/clothing/suit/redtag)))
+		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag) || istype(M.wear_suit, /obj/item/clothing/suit/redtag))
 			M.Weaken(5)
 	return 1
 
-/obj/item/projectile/beam/sniper
+/obj/item/projectile/energy/beam/sniper
 	name = "sniper beam"
 	icon_state = "xray"
 	damage = 60

@@ -73,6 +73,7 @@
 /obj/item/weapon/gun/energy/staff/animate
 	name = "staff of animation"
 	desc = "An artefact that spits bolts of life-force which causes objects which are hit by it to animate and come to life! This magic doesn't affect machines."
+	gun_setting = GUN_SETTING_SPECIAL
 	projectile_type = /obj/item/projectile/animate
 	charge_cost = 100
 
@@ -83,6 +84,7 @@
 	item_state = "obj/item/gun.dmi"
 	fire_sound = 'sound/effects/stealthoff.ogg'
 	charge_cost = 100
+	gun_setting = GUN_SETTING_SPECIAL
 	projectile_type = /obj/item/projectile/energy/floramut
 	origin_tech = "materials=2;biotech=3;powerstorage=3"
 	modifystate = "floramut"
@@ -113,13 +115,13 @@
 		if(0)
 			mode = 1
 			charge_cost = 100
-			to_chat(user, SPAN_WARNING("The [src.name] is now set to increase yield."))
+			to_chat(user, SPAN_WARNING("\The [src.name] is now set to increase yield."))
 			projectile_type = /obj/item/projectile/energy/florayield
 			modifystate = "florayield"
 		if(1)
 			mode = 0
 			charge_cost = 100
-			to_chat(user, SPAN_WARNING("The [src.name] is now set to induce mutations."))
+			to_chat(user, SPAN_WARNING("\The [src.name] is now set to induce mutations."))
 			projectile_type = /obj/item/projectile/energy/floramut
 			modifystate = "floramut"
 	update_icon()
@@ -131,6 +133,7 @@
 	icon_state = "riotgun"
 	item_state = "c20r"
 	w_class = 4
+	gun_setting = GUN_SETTING_SPECIAL
 	projectile_type = /obj/item/projectile/meteor
 	charge_cost = 100
 	cell_type = /obj/item/weapon/cell/potato
@@ -141,7 +144,6 @@
 /obj/item/weapon/gun/energy/meteorgun/New()
 	..()
 	processing_objects.Add(src)
-
 
 /obj/item/weapon/gun/energy/meteorgun/Destroy()
 	processing_objects.Remove(src)
@@ -171,7 +173,8 @@
 	name = "mind flayer"
 	desc = "A prototype weapon recovered from the ruins of Research-Station Epsilon."
 	icon_state = "xray"
-	projectile_type = /obj/item/projectile/beam/mindflayer
+	gun_setting = GUN_SETTING_SPECIAL
+	projectile_type = /obj/item/projectile/energy/beam/mindflayer
 	fire_sound = 'sound/weapons/Laser.ogg'
 
 obj/item/weapon/gun/energy/staff/focus
@@ -180,6 +183,7 @@ obj/item/weapon/gun/energy/staff/focus
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "focus"
 	item_state = "focus"
+	gun_setting = GUN_SETTING_SPECIAL
 	projectile_type = /obj/item/projectile/forcebolt
 	/*
 	attack_self(mob/living/user as mob)
@@ -200,6 +204,7 @@ obj/item/weapon/gun/energy/staff/focus
 	fire_sound = 'sound/effects/stealthoff.ogg'
 	w_class = 3.0
 	origin_tech = "combat=5;plasmatech=4"
+	gun_setting = GUN_SETTING_SPECIAL
 	projectile_type = /obj/item/projectile/energy/plasma
 
 /obj/item/weapon/gun/energy/sniperrifle
@@ -209,7 +214,8 @@ obj/item/weapon/gun/energy/staff/focus
 	icon_state = "sniper"
 	fire_sound = 'sound/weapons/marauder.ogg'
 	origin_tech = "combat=6;materials=5;powerstorage=4"
-	projectile_type = /obj/item/projectile/beam/sniper
+	gun_setting = GUN_SETTING_SPECIAL
+	projectile_type = /obj/item/projectile/energy/beam/sniper
 	slot_flags = SLOT_BACK
 	charge_cost = 250
 	fire_delay = 35

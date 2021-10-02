@@ -48,3 +48,13 @@ var/list/TAGGERLOCATIONS = list(
 	"Chapel", "Theatre", "Bar", "Kitchen", "Hydroponics",
 	"Janitor Closet", "Genetics"
 )
+
+// Energy gun related modes and settings.
+#define GUN_MODE_PULSE 0
+#define GUN_MODE_BEAM 1
+
+#define GUN_SETTING_STUN 0
+#define GUN_SETTING_DISABLE 1
+#define GUN_SETTING_KILL 2
+#define GUN_SETTING_DESTROY 3
+#define GUN_SETTING_SPECIAL 4

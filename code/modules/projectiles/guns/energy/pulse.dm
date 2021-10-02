@@ -6,31 +6,27 @@
 	force = 10
 	fire_sound = 'sound/weapons/pulse.ogg'
 	charge_cost = 200
-	projectile_type = /obj/item/projectile/beam/pulse
+	gun_setting = GUN_SETTING_DESTROY
 	cell_type = /obj/item/weapon/cell/super
-	var/mode = 2
 	fire_delay = 25
 
 /obj/item/weapon/gun/energy/pulse_rifle/attack_self(mob/living/user as mob)
-	switch(mode)
-		if(2)
-			mode = 0
+	switch(gun_setting)
+		if(GUN_SETTING_DESTROY)
+			gun_setting = GUN_SETTING_STUN
 			charge_cost = 100
 			fire_sound = 'sound/weapons/Taser.ogg'
-			to_chat(user, SPAN_WARNING("[src.name] is now set to stun."))
-			projectile_type = /obj/item/projectile/energy/electrode
-		if(0)
-			mode = 1
+			to_chat(user, SPAN_WARNING("\The [src.name] is now set to stun."))
+		if(GUN_SETTING_STUN)
+			gun_setting = GUN_SETTING_KILL
 			charge_cost = 100
 			fire_sound = 'sound/weapons/Laser.ogg'
-			to_chat(user, SPAN_WARNING("[src.name] is now set to kill."))
-			projectile_type = /obj/item/projectile/beam
-		if(1)
-			mode = 2
+			to_chat(user, SPAN_WARNING("\The [src.name] is now set to kill."))
+		if(GUN_SETTING_KILL)
+			gun_setting = GUN_SETTING_DESTROY
 			charge_cost = 200
 			fire_sound = 'sound/weapons/pulse.ogg'
-			to_chat(user, SPAN_WARNING("[src.name] is now set to DESTROY."))
-			projectile_type = /obj/item/projectile/beam/pulse
+			to_chat(user, SPAN_WARNING("\The [src.name] is now set to DESTROY."))
 	return
 
 /obj/item/weapon/gun/energy/pulse_rifle/isHandgun()
@@ -43,7 +39,8 @@
 		var/mob/living/silicon/robot/R = src.loc
 		if(R && R.cell)
 			R.cell.use(charge_cost)
-			in_chamber = new/obj/item/projectile/beam(src)
+			projectile_from_settings()
+			in_chamber = new projectile_type(src)
 			return 1
 	return 0
 
@@ -53,7 +50,7 @@
 	cell_type = /obj/item/weapon/cell/infinite
 
 /obj/item/weapon/gun/energy/pulse_rifle/destroyer/attack_self(mob/living/user as mob)
-	to_chat(user, SPAN_WARNING("[src.name] has three settings, and they are all DESTROY."))
+	to_chat(user, SPAN_WARNING("\The [src.name] has three settings, and they are all DESTROY."))
 
 /obj/item/weapon/gun/energy/pulse_rifle/M1911
 	name = "m1911-P"

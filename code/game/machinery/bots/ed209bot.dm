@@ -799,11 +799,11 @@ Auto Patrol: []"},
 	lastfired = world.time
 	var/turf/T = loc
 	var/atom/U = (istype(target, /atom/movable) ? target.loc : target)
-	if ((!( U ) || !( T )))
+	if(!U || !T)
 		return
-	while(!( istype(U, /turf) ))
+	while(!isturf(U))
 		U = U.loc
-	if (!( istype(T, /turf) ))
+	if(!isturf(T))
 		return
 
 	//if(lastfired && world.time - lastfired < 100)
@@ -811,28 +811,28 @@ Auto Patrol: []"},
 
 	if(!projectile)
 		if(!lasercolor)
-			if (src.emagged == 2)
-				projectile = /obj/item/projectile/beam
+			if(src.emagged == 2)
+				projectile = /obj/item/projectile/energy/beam/laser
 			else
 				projectile = /obj/item/projectile/energy/electrode
 		else if(lasercolor == "b")
-			if (src.emagged == 2)
-				projectile = /obj/item/projectile/beam/lastertag/omni
+			if(src.emagged == 2)
+				projectile = /obj/item/projectile/energy/beam/laser/tag/omni
 			else
-				projectile = /obj/item/projectile/beam/lastertag/blue
+				projectile = /obj/item/projectile/energy/beam/laser/tag/blue
 		else if(lasercolor == "r")
-			if (src.emagged == 2)
-				projectile = /obj/item/projectile/beam/lastertag/omni
+			if(src.emagged == 2)
+				projectile = /obj/item/projectile/energy/beam/laser/tag/omni
 			else
-				projectile = /obj/item/projectile/beam/lastertag/red
+				projectile = /obj/item/projectile/energy/beam/laser/tag/red
 
-	if (!( istype(U, /turf) ))
+	if(!isturf(U))
 		return
-	var/obj/item/projectile/A = new projectile (loc)
+	var/obj/item/projectile/A = new projectile(loc)
 	A.current = U
 	A.yo = U.y - T.y
 	A.xo = U.x - T.x
-	spawn( 0 )
+	spawn(0)
 		A.process()
 		return
 	return
@@ -878,15 +878,17 @@ Auto Patrol: []"},
 	..()
 
 	if(istype(W, /obj/item/weapon/pen))
-		var/t = copytext(stripped_input(user, "Enter new robot name", src.name, src.created_name),1,MAX_NAME_LEN)
-		if(!t)	return
-		if(!in_range(src, usr) && src.loc != usr)	return
+		var/t = copytext(stripped_input(user, "Enter new robot name", src.name, src.created_name), 1, MAX_NAME_LEN)
+		if(!t)
+			return
+		if(!in_range(src, usr) && src.loc != usr)
+			return
 		created_name = t
 		return
 
 	switch(build_step)
-		if(0,1)
-			if( istype(W, /obj/item/robot_parts/l_leg) || istype(W, /obj/item/robot_parts/r_leg) )
+		if(0, 1)
+			if(istype(W, /obj/item/robot_parts/l_leg) || istype(W, /obj/item/robot_parts/r_leg))
 				user.drop_item()
 				qdel(W)
 				build_step++
@@ -900,11 +902,11 @@ Auto Patrol: []"},
 					icon_state = "ed209_legs"
 
 		if(2)
-			if( istype(W, /obj/item/clothing/suit/redtag) )
+			if(istype(W, /obj/item/clothing/suit/redtag))
 				lasercolor = "r"
-			else if( istype(W, /obj/item/clothing/suit/bluetag) )
+			else if(istype(W, /obj/item/clothing/suit/bluetag))
 				lasercolor = "b"
-			if( lasercolor || istype(W, /obj/item/clothing/suit/armor/vest) )
+			if(lasercolor || istype(W, /obj/item/clothing/suit/armor/vest))
 				user.drop_item()
 				qdel(W)
 				build_step++
@@ -914,14 +916,14 @@ Auto Patrol: []"},
 				icon_state = "[lasercolor]ed209_shell"
 
 		if(3)
-			if( istype(W, /obj/item/weapon/weldingtool) )
+			if(istype(W, /obj/item/weapon/weldingtool))
 				var/obj/item/weapon/weldingtool/WT = W
 				if(WT.remove_fuel(0,user))
 					build_step++
 					name = "shielded frame assembly"
 					user << "<span class='notice'>You welded the vest to [src].</span>"
 		if(4)
-			if( istype(W, /obj/item/clothing/head/helmet) )
+			if(istype(W, /obj/item/clothing/head/helmet))
 				user.drop_item()
 				qdel(W)
 				build_step++
@@ -931,7 +933,7 @@ Auto Patrol: []"},
 				icon_state = "[lasercolor]ed209_hat"
 
 		if(5)
-			if( isprox(W) )
+			if(isprox(W))
 				user.drop_item()
 				qdel(W)
 				build_step++
@@ -941,7 +943,7 @@ Auto Patrol: []"},
 				icon_state = "[lasercolor]ed209_prox"
 
 		if(6)
-			if( istype(W, /obj/item/stack/cable_coil) )
+			if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/coil = W
 				var/turf/T = get_turf(user)
 				user << "<span class='notice'>You start to wire [src]...</span>"
@@ -955,15 +957,15 @@ Auto Patrol: []"},
 		if(7)
 			switch(lasercolor)
 				if("b")
-					if( !istype(W, /obj/item/weapon/gun/energy/laser/bluetag) )
+					if(!istype(W, /obj/item/weapon/gun/energy/laser/bluetag))
 						return
 					name = "bluetag ED-209 assembly"
 				if("r")
-					if( !istype(W, /obj/item/weapon/gun/energy/laser/redtag) )
+					if(!istype(W, /obj/item/weapon/gun/energy/laser/redtag))
 						return
 					name = "redtag ED-209 assembly"
 				if("")
-					if( !istype(W, /obj/item/weapon/gun/energy/taser) )
+					if(!istype(W, /obj/item/weapon/gun/energy/taser))
 						return
 					name = "taser ED-209 assembly"
 				else
@@ -976,7 +978,7 @@ Auto Patrol: []"},
 			qdel(W)
 
 		if(8)
-			if( istype(W, /obj/item/weapon/screwdriver) )
+			if(istype(W, /obj/item/weapon/screwdriver))
 				playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 				var/turf/T = get_turf(user)
 				user << "<span class='notice'>Now attaching the gun to the frame...</span>"
@@ -987,20 +989,19 @@ Auto Patrol: []"},
 					user << "<span class='notice'>Taser gun attached.</span>"
 
 		if(9)
-			if( istype(W, /obj/item/weapon/cell) )
+			if(istype(W, /obj/item/weapon/cell))
 				build_step++
 				user << "<span class='notice'>You complete the ED-209.</span>"
 				var/turf/T = get_turf(src)
-				new /obj/machinery/bot/ed209(T,created_name,lasercolor)
+				new /obj/machinery/bot/ed209(T, created_name, lasercolor)
 				user.drop_item()
 				qdel(W)
 				user.drop_from_inventory(src)
 				qdel(src)
 
-
-/obj/machinery/bot/ed209/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/bot/ed209/bullet_act(obj/item/projectile/Proj)
 	if((src.lasercolor == "b") && (src.disabled == 0))
-		if(istype(Proj, /obj/item/projectile/beam/lastertag/red))
+		if(istype(Proj, /obj/item/projectile/energy/beam/laser/tag/red))
 			src.disabled = 1
 			qdel (Proj)
 			sleep(100)
@@ -1008,7 +1009,7 @@ Auto Patrol: []"},
 		else
 			..()
 	else if((src.lasercolor == "r") && (src.disabled == 0))
-		if(istype(Proj, /obj/item/projectile/beam/lastertag/blue))
+		if(istype(Proj, /obj/item/projectile/energy/beam/laser/tag/blue))
 			src.disabled = 1
 			qdel (Proj)
 			sleep(100)
@@ -1019,10 +1020,9 @@ Auto Patrol: []"},
 		..()
 
 /obj/machinery/bot/ed209/bluetag/New()//If desired, you spawn red and bluetag bots easily
-	new /obj/machinery/bot/ed209(get_turf(src),null,"b")
+	new /obj/machinery/bot/ed209(get_turf(src), null, "b")
 	qdel(src)
 
-
 /obj/machinery/bot/ed209/redtag/New()
-	new /obj/machinery/bot/ed209(get_turf(src),null,"r")
+	new /obj/machinery/bot/ed209(get_turf(src), null, "r")
 	qdel(src)

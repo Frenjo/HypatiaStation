@@ -71,9 +71,14 @@ should be listed in the changelog upon commit though. Thanks. -->
 	<h2 class='date'>02nd October 2021</h2>
 	<h3 class='author'>Frenjo updated:</h3>
 	<ul class='changes bgimages16'>
-		<li class='tweak'>Energy weapons, beams and emitters now fire projectiles more akin to bullets. They are no longer hitscan.</li>
 		<li class='bugfix'>Fixed an infinite loop caused by any sort of beam.</li>
 		<li class='bugfix'>Plasmalins now display their suits correctly in the character setup preview.</li>
+		<li class='rscadd'>Most energy weapons can now be alt-clicked to toggle firing modes, beam or pulse, alongside the regular stun, kill, disable and destroy settings.</li>
+		<li class='rscadd'>Hitscan beam shots use double the energy of a dodgeable pulse shot. However instant stun weapons cannot be toggled to beam mode.</li>
+		<li class='tweak'>Toggling fire modes or fire settings on energy weapons now displays properly formatted text. More of a bugfix than a tweak but it wasn't really broken.</li>
+		<li class='rscadd'>Emitters can now be toggled between beam or pulse mode with alt-click, beginning at beam by default. Emitters in pulse mode use half the energy per shot.</li>
+		<li class='tweak'>Many things that previously required a beam weapon will now only require an energy weapon, I have no idea about the extent of these changes so go nuts.</li>
+		<li class='experiment'>Ported some speculative fixes from /tg/ to improve performance by optimizing how energy beams are processed.</li>
 	</ul>
 </div>
 

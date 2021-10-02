@@ -61,10 +61,10 @@
  */
 //Captain's retro laser - Fires practice laser shots instead.
 obj/item/weapon/gun/energy/laser/retro/sc_retro
-	name ="retro laser"
+	name = "retro laser"
 	icon_state = "retro"
 	desc = "An older model of the basic lasergun, no longer used by NanoTrasen's security or military forces."
-	projectile_type = /obj/item/projectile/beam/practice
+	projectile_type = /obj/item/projectile/energy/beam/laser/practice
 	clumsy_check = 0 //No sense in having a harmless gun blow up in the clowns face
 
 //Syndicate silenced pistol. This definition is not necessary, it's just habit.

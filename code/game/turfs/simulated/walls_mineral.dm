@@ -115,7 +115,7 @@
 		PlasmaBurn(exposed_temperature)
 
 /turf/simulated/wall/mineral/plasma/bullet_act(obj/item/projectile/Proj)
-	if(istype(Proj, /obj/item/projectile/beam))
+	if(istype(Proj, /obj/item/projectile/energy))
 		PlasmaBurn(2500)
 	else if(istype(Proj, /obj/item/projectile/ion))
 		PlasmaBurn(500)

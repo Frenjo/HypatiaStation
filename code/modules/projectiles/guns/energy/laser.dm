@@ -7,15 +7,16 @@
 	w_class = 3.0
 	m_amt = 2000
 	origin_tech = "combat=3;magnets=2"
-	projectile_type = /obj/item/projectile/beam
+	gun_setting = GUN_SETTING_KILL
 
 /obj/item/weapon/gun/energy/laser/practice
 	name = "practice laser gun"
 	desc = "A modified version of the basic laser gun, this one fires less concentrated energy bolts designed for target practice."
-	projectile_type = /obj/item/projectile/beam/practice
+	gun_setting = GUN_SETTING_SPECIAL
+	projectile_type = /obj/item/projectile/energy/beam/laser/practice
 	clumsy_check = 0
 
-obj/item/weapon/gun/energy/laser/retro
+/obj/item/weapon/gun/energy/laser/retro
 	name ="retro laser"
 	icon_state = "retro"
 	desc = "An older model of the basic lasergun, no longer used by NanoTrasen's security or military forces. Nevertheless, it is still quite deadly and easy to maintain, making it a favorite amongst pirates and other outlaws."
@@ -53,7 +54,8 @@ obj/item/weapon/gun/energy/laser/retro
 		var/mob/living/silicon/robot/R = src.loc
 		if(R && R.cell)
 			R.cell.use(100)
-			in_chamber = new/obj/item/projectile/beam(src)
+			projectile_from_settings()
+			in_chamber = new projectile_type(src)
 			return 1
 	return 0
 
@@ -63,8 +65,8 @@ obj/item/weapon/gun/energy/laser/retro
 	icon_state = "lasercannon"
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	origin_tech = "combat=4;materials=3;powerstorage=3"
-	projectile_type = /obj/item/projectile/beam/heavylaser
-
+	gun_setting = GUN_SETTING_SPECIAL
+	projectile_type = /obj/item/projectile/energy/beam/laser/heavy
 	fire_delay = 20
 
 /obj/item/weapon/gun/energy/lasercannon/isHandgun()
@@ -77,7 +79,8 @@ obj/item/weapon/gun/energy/laser/retro
 		var/mob/living/silicon/robot/R = src.loc
 		if(R && R.cell)
 			R.cell.use(250)
-			in_chamber = new/obj/item/projectile/beam(src)
+			projectile_from_settings()
+			in_chamber = new projectile_type(src)
 			return 1
 	return 0
 
@@ -87,7 +90,8 @@ obj/item/weapon/gun/energy/laser/retro
 	icon_state = "xray"
 	fire_sound = 'sound/weapons/laser3.ogg'
 	origin_tech = "combat=5;materials=3;magnets=2;syndicate=2"
-	projectile_type = /obj/item/projectile/beam/xray
+	gun_setting = GUN_SETTING_SPECIAL
+	projectile_type = /obj/item/projectile/energy/beam/xray
 	charge_cost = 50
 
 ////////////////////Laser Tag////////////////////
@@ -95,7 +99,8 @@ obj/item/weapon/gun/energy/laser/retro
 	name = "laser tag gun"
 	icon_state = "bluetag"
 	desc = "Standard issue weapon of the Imperial Guard"
-	projectile_type = /obj/item/projectile/beam/lastertag/blue
+	gun_setting = GUN_SETTING_SPECIAL
+	projectile_type = /obj/item/projectile/energy/beam/laser/tag/blue
 	origin_tech = "combat=1;magnets=2"
 	clumsy_check = 0
 	var/charge_tick = 0
@@ -130,7 +135,8 @@ obj/item/weapon/gun/energy/laser/retro
 	name = "laser tag gun"
 	icon_state = "redtag"
 	desc = "Standard issue weapon of the Imperial Guard"
-	projectile_type = /obj/item/projectile/beam/lastertag/red
+	gun_setting = GUN_SETTING_SPECIAL
+	projectile_type = /obj/item/projectile/energy/beam/laser/tag/red
 	origin_tech = "combat=1;magnets=2"
 	clumsy_check = 0
 	var/charge_tick = 0
