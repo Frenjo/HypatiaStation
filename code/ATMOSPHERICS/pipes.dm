@@ -11,6 +11,12 @@
 	var/alert_pressure = 80 * ONE_ATMOSPHERE
 	//minimum pressure before check_pressure(...) should be called
 
+/obj/machinery/atmospherics/pipe/Destroy()
+	qdel(parent)
+	if(air_temporary)
+		loc.assume_air(air_temporary)
+	return ..()
+
 /obj/machinery/atmospherics/pipe/proc/pipeline_expansion()
 	return null
 
@@ -47,12 +53,6 @@
 		parent.build_pipeline(src)
 
 	return parent.return_network(reference)
-
-/obj/machinery/atmospherics/pipe/Destroy()
-	qdel(parent)
-	if(air_temporary)
-		loc.assume_air(air_temporary)
-	return ..()
 
 /obj/machinery/atmospherics/pipe/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(src, /obj/machinery/atmospherics/pipe/tank))
@@ -91,6 +91,7 @@
 				new /obj/item/pipe_meter(T)
 				qdel(meter)
 		qdel(src)
+
 
 /obj/machinery/atmospherics/pipe/simple
 	icon = 'icons/obj/pipes.dmi'
@@ -131,6 +132,42 @@
 			initialize_directions = SOUTH|EAST
 		if(SOUTHWEST)
 			initialize_directions = SOUTH|WEST
+
+/obj/machinery/atmospherics/pipe/simple/initialize()
+	normalize_dir()
+	var/node1_dir
+	var/node2_dir
+
+	for(var/direction in cardinal)
+		if(direction & initialize_directions)
+			if(!node1_dir)
+				node1_dir = direction
+			else if(!node2_dir)
+				node2_dir = direction
+
+	for(var/obj/machinery/atmospherics/target in get_step(src, node1_dir))
+		if(target.initialize_directions & get_dir(target, src))
+			node1 = target
+			break
+	for(var/obj/machinery/atmospherics/target in get_step(src, node2_dir))
+		if(target.initialize_directions & get_dir(target, src))
+			node2 = target
+			break
+
+	if(!node1 && !node2)
+		qdel(src)
+		return
+
+	var/turf/T = src.loc			// hide if turf is not intact
+	hide(T.intact)
+	update_icon()
+
+/obj/machinery/atmospherics/pipe/simple/Destroy()
+	if(node1)
+		node1.disconnect(src)
+	if(node2)
+		node2.disconnect(src)
+	return ..()
 
 /obj/machinery/atmospherics/pipe/simple/hide(i)
 	if(level == 1 && istype(loc, /turf/simulated))
@@ -206,13 +243,6 @@
 	else if(dir == 12)
 		dir = 4
 
-/obj/machinery/atmospherics/pipe/simple/Destroy()
-	if(node1)
-		node1.disconnect(src)
-	if(node2)
-		node2.disconnect(src)
-	return ..()
-
 /obj/machinery/atmospherics/pipe/simple/pipeline_expansion()
 	return list(node1, node2)
 
@@ -251,35 +281,6 @@
 		var/have_node1 = node1 ? 1 : 0
 		var/have_node2 = node2 ? 1 : 0
 		icon_state = "exposed[have_node1][have_node2][invisibility ? "-f" : "" ]"
-
-/obj/machinery/atmospherics/pipe/simple/initialize()
-	normalize_dir()
-	var/node1_dir
-	var/node2_dir
-
-	for(var/direction in cardinal)
-		if(direction & initialize_directions)
-			if(!node1_dir)
-				node1_dir = direction
-			else if(!node2_dir)
-				node2_dir = direction
-
-	for(var/obj/machinery/atmospherics/target in get_step(src, node1_dir))
-		if(target.initialize_directions & get_dir(target, src))
-			node1 = target
-			break
-	for(var/obj/machinery/atmospherics/target in get_step(src, node2_dir))
-		if(target.initialize_directions & get_dir(target, src))
-			node2 = target
-			break
-
-	if(!node1 && !node2)
-		qdel(src)
-		return
-
-	var/turf/T = src.loc			// hide if turf is not intact
-	hide(T.intact)
-	update_icon()
 
 /obj/machinery/atmospherics/pipe/simple/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
@@ -368,6 +369,7 @@
 
 	level = 2
 
+
 /obj/machinery/atmospherics/pipe/manifold
 	icon = 'icons/obj/atmospherics/pipe_manifold.dmi'
 
@@ -387,6 +389,7 @@
 	layer = 2.4 //under wires with their 2.44
 
 /obj/machinery/atmospherics/pipe/manifold/New()
+	..()
 	alpha = 255
 	switch(dir)
 		if(NORTH)
@@ -398,7 +401,51 @@
 		if(WEST)
 			initialize_directions = NORTH|EAST|SOUTH
 
-	..()
+/obj/machinery/atmospherics/pipe/manifold/initialize()
+	var/connect_directions = (NORTH|SOUTH|EAST|WEST) & (~dir)
+
+	for(var/direction in cardinal)
+		if(direction&connect_directions)
+			for(var/obj/machinery/atmospherics/target in get_step(src, direction))
+				if(target.initialize_directions & get_dir(target, src))
+					node1 = target
+					connect_directions &= ~direction
+					break
+			if(node1)
+				break
+
+	for(var/direction in cardinal)
+		if(direction&connect_directions)
+			for(var/obj/machinery/atmospherics/target in get_step(src, direction))
+				if(target.initialize_directions & get_dir(target, src))
+					node2 = target
+					connect_directions &= ~direction
+					break
+			if(node2)
+				break
+
+	for(var/direction in cardinal)
+		if(direction&connect_directions)
+			for(var/obj/machinery/atmospherics/target in get_step(src, direction))
+				if(target.initialize_directions & get_dir(target, src))
+					node3 = target
+					connect_directions &= ~direction
+					break
+			if(node3)
+				break
+
+	var/turf/T = src.loc			// hide if turf is not intact
+	hide(T.intact)
+	update_icon()
+
+/obj/machinery/atmospherics/pipe/manifold/Destroy()
+	if(node1)
+		node1.disconnect(src)
+	if(node2)
+		node2.disconnect(src)
+	if(node3)
+		node3.disconnect(src)
+	return ..()
 
 /obj/machinery/atmospherics/pipe/manifold/hide(i)
 	if(level == 1 && istype(loc, /turf/simulated))
@@ -432,14 +479,6 @@
 	else if (nodealert)
 		nodealert = 0
 */
-/obj/machinery/atmospherics/pipe/manifold/Destroy()
-	if(node1)
-		node1.disconnect(src)
-	if(node2)
-		node2.disconnect(src)
-	if(node3)
-		node3.disconnect(src)
-	return ..()
 
 /obj/machinery/atmospherics/pipe/manifold/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
@@ -497,43 +536,6 @@
 		if(!connected)
 			src = null
 	return
-
-/obj/machinery/atmospherics/pipe/manifold/initialize()
-	var/connect_directions = (NORTH|SOUTH|EAST|WEST) & (~dir)
-
-	for(var/direction in cardinal)
-		if(direction&connect_directions)
-			for(var/obj/machinery/atmospherics/target in get_step(src, direction))
-				if(target.initialize_directions & get_dir(target, src))
-					node1 = target
-					connect_directions &= ~direction
-					break
-			if(node1)
-				break
-
-	for(var/direction in cardinal)
-		if(direction&connect_directions)
-			for(var/obj/machinery/atmospherics/target in get_step(src, direction))
-				if(target.initialize_directions & get_dir(target, src))
-					node2 = target
-					connect_directions &= ~direction
-					break
-			if(node2)
-				break
-
-	for(var/direction in cardinal)
-		if(direction&connect_directions)
-			for(var/obj/machinery/atmospherics/target in get_step(src, direction))
-				if(target.initialize_directions & get_dir(target, src))
-					node3 = target
-					connect_directions &= ~direction
-					break
-			if(node3)
-				break
-
-	var/turf/T = src.loc			// hide if turf is not intact
-	hide(T.intact)
-	update_icon()
 
 /obj/machinery/atmospherics/pipe/manifold/visible
 	name = "grey pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
@@ -607,6 +609,7 @@
 
 	level = 2
 
+
 /obj/machinery/atmospherics/pipe/manifold4w
 	icon = 'icons/obj/atmospherics/pipe_manifold.dmi'
 
@@ -629,6 +632,42 @@
 /obj/machinery/atmospherics/pipe/manifold4w/New()
 	..()
 	alpha = 255
+
+/obj/machinery/atmospherics/pipe/manifold4w/initialize()
+	for(var/obj/machinery/atmospherics/target in get_step(src, 1))
+		if(target.initialize_directions & 2)
+			node1 = target
+			break
+
+	for(var/obj/machinery/atmospherics/target in get_step(src, 2))
+		if(target.initialize_directions & 1)
+			node2 = target
+			break
+
+	for(var/obj/machinery/atmospherics/target in get_step(src, 4))
+		if(target.initialize_directions & 8)
+			node3 = target
+			break
+
+	for(var/obj/machinery/atmospherics/target in get_step(src, 8))
+		if(target.initialize_directions & 4)
+			node4 = target
+			break
+
+	var/turf/T = src.loc			// hide if turf is not intact
+	hide(T.intact)
+	update_icon()
+
+/obj/machinery/atmospherics/pipe/manifold4w/Destroy()
+	if(node1)
+		node1.disconnect(src)
+	if(node2)
+		node2.disconnect(src)
+	if(node3)
+		node3.disconnect(src)
+	if(node4)
+		node4.disconnect(src)
+	return ..()
 
 /obj/machinery/atmospherics/pipe/manifold4w/hide(i)
 	if(level == 1 && istype(loc, /turf/simulated))
@@ -662,16 +701,6 @@
 	else if (nodealert)
 		nodealert = 0
 */
-/obj/machinery/atmospherics/pipe/manifold4w/Destroy()
-	if(node1)
-		node1.disconnect(src)
-	if(node2)
-		node2.disconnect(src)
-	if(node3)
-		node3.disconnect(src)
-	if(node4)
-		node4.disconnect(src)
-	return ..()
 
 /obj/machinery/atmospherics/pipe/manifold4w/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
@@ -733,31 +762,6 @@
 		if(!node1 && !node2 && !node3 && !node4)
 			src = null
 	return
-
-/obj/machinery/atmospherics/pipe/manifold4w/initialize()
-	for(var/obj/machinery/atmospherics/target in get_step(src, 1))
-		if(target.initialize_directions & 2)
-			node1 = target
-			break
-
-	for(var/obj/machinery/atmospherics/target in get_step(src, 2))
-		if(target.initialize_directions & 1)
-			node2 = target
-			break
-
-	for(var/obj/machinery/atmospherics/target in get_step(src, 4))
-		if(target.initialize_directions & 8)
-			node3 = target
-			break
-
-	for(var/obj/machinery/atmospherics/target in get_step(src, 8))
-		if(target.initialize_directions & 4)
-			node4 = target
-			break
-
-	var/turf/T = src.loc			// hide if turf is not intact
-	hide(T.intact)
-	update_icon()
 
 /obj/machinery/atmospherics/pipe/manifold4w/visible
 	name = "grey 4-way pipe manifold" // Added names to unnamed pipes to avoid confusion. -Frenjo
@@ -831,6 +835,7 @@
 
 	level = 2
 
+
 /obj/machinery/atmospherics/pipe/cap
 	name = "pipe endcap"
 	desc = "An endcap for pipes"
@@ -858,6 +863,21 @@
 		if(EAST)
 		 initialize_directions = WEST
 
+/obj/machinery/atmospherics/pipe/cap/initialize()
+	for(var/obj/machinery/atmospherics/target in get_step(src, dir))
+		if(target.initialize_directions & get_dir(target, src))
+			node = target
+			break
+
+	var/turf/T = src.loc			// hide if turf is not intact
+	hide(T.intact)
+	update_icon()
+
+/obj/machinery/atmospherics/pipe/cap/Destroy()
+	if(node)
+		node.disconnect(src)
+	return ..()
+
 /obj/machinery/atmospherics/pipe/cap/hide(i)
 	if(level == 1 && istype(loc, /turf/simulated))
 		invisibility = i ? 101 : 0
@@ -871,11 +891,6 @@
 		..()
 	else
 		. = PROCESS_KILL
-
-/obj/machinery/atmospherics/pipe/cap/Destroy()
-	if(node)
-		node.disconnect(src)
-	return ..()
 
 /obj/machinery/atmospherics/pipe/cap/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node)
@@ -892,16 +907,6 @@
 	icon_state = "cap[invisibility ? "-f" : ""]"
 	return
 
-/obj/machinery/atmospherics/pipe/cap/initialize()
-	for(var/obj/machinery/atmospherics/target in get_step(src, dir))
-		if(target.initialize_directions & get_dir(target, src))
-			node = target
-			break
-
-	var/turf/T = src.loc			// hide if turf is not intact
-	hide(T.intact)
-	update_icon()
-
 /obj/machinery/atmospherics/pipe/cap/visible
 	level = 2
 	icon_state = "cap"
@@ -909,6 +914,7 @@
 /obj/machinery/atmospherics/pipe/cap/hidden
 	level = 1
 	icon_state = "cap-f"
+
 
 /obj/machinery/atmospherics/pipe/tank
 	icon = 'icons/obj/atmospherics/pipe_tank.dmi'
@@ -929,6 +935,24 @@
 	initialize_directions = dir
 	..()
 
+/obj/machinery/atmospherics/pipe/tank/initialize()
+	var/connect_direction = dir
+
+	for(var/obj/machinery/atmospherics/target in get_step(src, connect_direction))
+		if(target.initialize_directions & get_dir(target, src))
+			node1 = target
+			break
+
+	update_icon()
+
+/obj/machinery/atmospherics/pipe/tank/Destroy()
+	if(node1)
+		node1.disconnect(src)
+	return ..()
+
+/obj/machinery/atmospherics/pipe/tank/pipeline_expansion()
+	return list(node1)
+
 /obj/machinery/atmospherics/pipe/tank/process()
 	if(!parent)
 		..()
@@ -942,6 +966,41 @@
 	else if (nodealert)
 		nodealert = 0
 */
+
+/obj/machinery/atmospherics/pipe/tank/update_icon()
+	if(node1)
+		icon_state = "intact"
+
+		dir = get_dir(src, node1)
+
+	else
+		icon_state = "exposed"
+
+/obj/machinery/atmospherics/pipe/tank/disconnect(obj/machinery/atmospherics/reference)
+	if(reference == node1)
+		if(istype(node1, /obj/machinery/atmospherics/pipe))
+			qdel(parent)
+		node1 = null
+
+	update_icon()
+	return null
+
+/obj/machinery/atmospherics/pipe/tank/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/device/analyzer) && get_dist(user, src) <= 1)
+		for(var/mob/O in viewers(user, null))
+			to_chat(O, SPAN_WARNING("[user] has used the analyzer on \icon[icon]."))
+
+		var/pressure = parent.air.return_pressure()
+		var/total_moles = parent.air.total_moles
+
+		to_chat(user, SPAN_INFO("Results of analysis of \icon[icon]"))
+		if(total_moles > 0)
+			to_chat(user, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
+			for(var/g in parent.air.gas)
+				to_chat(user, SPAN_INFO("[gas_data.name[g]]: [round((parent.air.gas[g] / total_moles) * 100)]%"))
+			to_chat(user, SPAN_INFO("Temperature: [round(parent.air.temperature - T0C)]&deg;C"))
+		else
+			to_chat(user, SPAN_INFO("Tank is empty!"))
 
 /obj/machinery/atmospherics/pipe/tank/carbon_dioxide
 	name = "Pressure Tank (Carbon Dioxide)"
@@ -1023,58 +1082,6 @@
 
 	..()
 
-/obj/machinery/atmospherics/pipe/tank/Destroy()
-	if(node1)
-		node1.disconnect(src)
-	return ..()
-
-/obj/machinery/atmospherics/pipe/tank/pipeline_expansion()
-	return list(node1)
-
-/obj/machinery/atmospherics/pipe/tank/update_icon()
-	if(node1)
-		icon_state = "intact"
-
-		dir = get_dir(src, node1)
-
-	else
-		icon_state = "exposed"
-
-/obj/machinery/atmospherics/pipe/tank/initialize()
-	var/connect_direction = dir
-
-	for(var/obj/machinery/atmospherics/target in get_step(src, connect_direction))
-		if(target.initialize_directions & get_dir(target, src))
-			node1 = target
-			break
-
-	update_icon()
-
-/obj/machinery/atmospherics/pipe/tank/disconnect(obj/machinery/atmospherics/reference)
-	if(reference == node1)
-		if(istype(node1, /obj/machinery/atmospherics/pipe))
-			qdel(parent)
-		node1 = null
-
-	update_icon()
-	return null
-
-/obj/machinery/atmospherics/pipe/tank/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/device/analyzer) && get_dist(user, src) <= 1)
-		for(var/mob/O in viewers(user, null))
-			to_chat(O, SPAN_WARNING("[user] has used the analyzer on \icon[icon]."))
-
-		var/pressure = parent.air.return_pressure()
-		var/total_moles = parent.air.total_moles
-
-		to_chat(user, SPAN_INFO("Results of analysis of \icon[icon]"))
-		if(total_moles > 0)
-			to_chat(user, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
-			for(var/g in parent.air.gas)
-				to_chat(user, SPAN_INFO("[gas_data.name[g]]: [round((parent.air.gas[g] / total_moles) * 100)]%"))
-			to_chat(user, SPAN_INFO("Temperature: [round(parent.air.temperature - T0C)]&deg;C"))
-		else
-			to_chat(user, SPAN_INFO("Tank is empty!"))
 
 /obj/machinery/atmospherics/pipe/vent
 	icon = 'icons/obj/atmospherics/pipe_vent.dmi'
@@ -1094,13 +1101,28 @@
 
 	var/obj/machinery/atmospherics/node1
 
+/obj/machinery/atmospherics/pipe/vent/high_volume
+	name = "Larger vent"
+	volume = 1000
+
 /obj/machinery/atmospherics/pipe/vent/New()
 	initialize_directions = dir
 	..()
 
-/obj/machinery/atmospherics/pipe/vent/high_volume
-	name = "Larger vent"
-	volume = 1000
+/obj/machinery/atmospherics/pipe/vent/initialize()
+	var/connect_direction = dir
+
+	for(var/obj/machinery/atmospherics/target in get_step(src, connect_direction))
+		if(target.initialize_directions & get_dir(target, src))
+			node1 = target
+			break
+
+	update_icon()
+
+/obj/machinery/atmospherics/pipe/vent/Destroy()
+	if(node1)
+		node1.disconnect(src)
+	return ..()
 
 /obj/machinery/atmospherics/pipe/vent/process()
 	if(!parent)
@@ -1121,11 +1143,6 @@
 		nodealert = 0
 */
 
-/obj/machinery/atmospherics/pipe/vent/Destroy()
-	if(node1)
-		node1.disconnect(src)
-	return ..()
-
 /obj/machinery/atmospherics/pipe/vent/pipeline_expansion()
 	return list(node1)
 
@@ -1135,16 +1152,6 @@
 		dir = get_dir(src, node1)
 	else
 		icon_state = "exposed"
-
-/obj/machinery/atmospherics/pipe/vent/initialize()
-	var/connect_direction = dir
-
-	for(var/obj/machinery/atmospherics/target in get_step(src, connect_direction))
-		if(target.initialize_directions & get_dir(target, src))
-			node1 = target
-			break
-
-	update_icon()
 
 /obj/machinery/atmospherics/pipe/vent/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)

@@ -18,7 +18,7 @@
 
 /datum/controller/process/machinery/proc/internal_process_pipenets()
 	for(var/datum/pipe_network/pipeNetwork in pipe_networks)
-		if(istype(pipeNetwork) && !isnull(pipeNetwork.gcDestroyed))
+		if(istype(pipeNetwork) && isnull(pipeNetwork.gcDestroyed))
 			pipeNetwork.process()
 			SCHECK
 			continue

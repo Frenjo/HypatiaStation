@@ -34,7 +34,7 @@ var/global/list/datum/pipe_network/pipe_networks = list()
 
 	update_network_gases()
 
-	if((normal_members.len > 0)||(line_members.len > 0))
+	if(normal_members.len > 0 || line_members.len > 0)
 		pipe_networks += src
 	else
 		qdel(src)
@@ -69,4 +69,4 @@ var/global/list/datum/pipe_network/pipe_networks = list()
 		gases += line_member.air
 
 /datum/pipe_network/proc/reconcile_air()
-	equalize_gases()
+	equalize_gases(gases)

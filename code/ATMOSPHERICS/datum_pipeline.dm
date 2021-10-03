@@ -188,6 +188,6 @@
 			var/heat = thermal_conductivity * delta_temperature * \
 				(partial_heat_capacity * target.heat_capacity / (partial_heat_capacity + target.heat_capacity))
 
-			air.temperature -= heat/total_heat_capacity
+			air.temperature -= heat / total_heat_capacity
 	if(network)
 		network.update = 1
