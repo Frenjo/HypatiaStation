@@ -1,6 +1,7 @@
 //Skrell space gear. Sleek like a wetsuit.
 /obj/item/clothing/head/helmet/space/skrell
 	name = "Skrellian helmet"
+	icon = 'icons/mob/species/skrell/helmet.dmi'
 	desc = "Smoothly contoured and polished to a shine. Still looks like a fishbowl."
 	armor = list(melee = 20, bullet = 20, laser = 50, energy = 50, bomb = 50, bio = 100, rad = 100)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
@@ -18,6 +19,7 @@
 
 /obj/item/clothing/suit/space/skrell
 	name = "Skrellian hardsuit"
+	icon = 'icons/mob/species/skrell/suit.dmi'
 	desc = "Seems like a wetsuit with reinforced plating seamlessly attached to it. Very chic."
 	armor = list(melee = 20, bullet = 20, laser = 50, energy = 50, bomb = 50, bio = 100, rad = 100)
 	allowed = list(
@@ -40,6 +42,7 @@
 
 //Soghun space gear. Huge and restrictive.
 /obj/item/clothing/head/helmet/space/soghun
+	icon = 'icons/mob/species/soghun/helmet.dmi'
 	armor = list(melee = 40, bullet = 30, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 50)
 	heat_protection = HEAD
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
@@ -54,6 +57,7 @@
 	item_color = "soghun_helm_cheap"
 
 /obj/item/clothing/suit/space/soghun
+	icon = 'icons/mob/species/soghun/suit.dmi'
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 50)
 	allowed = list(
 		/obj/item/device/flashlight, /obj/item/weapon/tank, /obj/item/weapon/storage/bag/ore,

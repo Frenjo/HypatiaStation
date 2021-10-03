@@ -104,6 +104,7 @@
 	icon_state = "clownspace_helmet"
 	item_state = "clownspace_helmet"
 
+
 /obj/item/clothing/suit/space/mime
 	name = "Mime's EVA Suit"
 	desc = "A pressure resistant spacesuit in the colours of the mime. ..."

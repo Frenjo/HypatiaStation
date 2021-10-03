@@ -3,7 +3,7 @@
 	name = "breath mask"
 	icon_state = "breath"
 	item_state = "breath"
-	flags = MASKCOVERSMOUTH | MASKINTERNALS
+	flags = MASKCOVERSMOUTH | AIRTIGHT
 	w_class = 2
 	gas_transfer_coefficient = 0.10
 	permeability_coefficient = 0.50
@@ -18,14 +18,14 @@
 		if(!src.hanging)
 			src.hanging = !src.hanging
 			gas_transfer_coefficient = 1 //gas is now escaping to the turf and vice versa
-			flags &= ~(MASKCOVERSMOUTH | MASKINTERNALS)
+			flags &= ~(MASKCOVERSMOUTH | AIRTIGHT)
 			icon_state = "breathdown"
 			to_chat(usr, "Your mask is now hanging on your neck.")
 
 		else
 			src.hanging = !src.hanging
 			gas_transfer_coefficient = 0.10
-			flags |= MASKCOVERSMOUTH | MASKINTERNALS
+			flags |= MASKCOVERSMOUTH | AIRTIGHT
 			icon_state = "breath"
 			to_chat(usr, "You pull the mask up to cover your face.")
 		usr.update_inv_wear_mask()

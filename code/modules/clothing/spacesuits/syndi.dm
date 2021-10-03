@@ -23,7 +23,6 @@
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0.8
 
-
 //Green syndicate space suit
 /obj/item/clothing/head/helmet/space/syndicate/green
 	name = "Green Space Helmet"
@@ -34,7 +33,6 @@
 	name = "Green Space Suit"
 	icon_state = "syndicate-green"
 	item_state = "syndicate-green"
-
 
 //Dark green syndicate space suit
 /obj/item/clothing/head/helmet/space/syndicate/green/dark
@@ -47,7 +45,6 @@
 	icon_state = "syndicate-green-dark"
 	item_state = "syndicate-green-dark"
 
-
 //Orange syndicate space suit
 /obj/item/clothing/head/helmet/space/syndicate/orange
 	name = "Orange Space Helmet"
@@ -58,7 +55,6 @@
 	name = "Orange Space Suit"
 	icon_state = "syndicate-orange"
 	item_state = "syndicate-orange"
-
 
 //Blue syndicate space suit
 /obj/item/clothing/head/helmet/space/syndicate/blue
@@ -71,7 +67,6 @@
 	icon_state = "syndicate-blue"
 	item_state = "syndicate-blue"
 
-
 //Black syndicate space suit
 /obj/item/clothing/head/helmet/space/syndicate/black
 	name = "Black Space Helmet"
@@ -82,7 +77,6 @@
 	name = "Black Space Suit"
 	icon_state = "syndicate-black"
 	item_state = "syndicate-black"
-
 
 //Black-green syndicate space suit
 /obj/item/clothing/head/helmet/space/syndicate/black/green
@@ -95,7 +89,6 @@
 	icon_state = "syndicate-black-green"
 	item_state = "syndicate-black-green"
 
-
 //Black-blue syndicate space suit
 /obj/item/clothing/head/helmet/space/syndicate/black/blue
 	name = "Black Space Helmet"
@@ -106,7 +99,6 @@
 	name = "Black and Blue Space Suit"
 	icon_state = "syndicate-black-blue"
 	item_state = "syndicate-black-blue"
-
 
 //Black medical syndicate space suit
 /obj/item/clothing/head/helmet/space/syndicate/black/med
@@ -119,7 +111,6 @@
 	icon_state = "syndicate-black-med"
 	item_state = "syndicate-black"
 
-
 //Black-orange syndicate space suit
 /obj/item/clothing/head/helmet/space/syndicate/black/orange
 	name = "Black Space Helmet"
@@ -131,7 +122,6 @@
 	icon_state = "syndicate-black-orange"
 	item_state = "syndicate-black"
 
-
 //Black-red syndicate space suit
 /obj/item/clothing/head/helmet/space/syndicate/black/red
 	name = "Black Space Helmet"
@@ -142,7 +132,6 @@
 	name = "Black and Red Space Suit"
 	icon_state = "syndicate-black-red"
 	item_state = "syndicate-black-red"
-
 
 //Black with yellow/red engineering syndicate space suit
 /obj/item/clothing/head/helmet/space/syndicate/black/engie

@@ -1,5 +1,8 @@
 //Soghun clothing.
 
+/obj/item/clothing/suit/soghun
+	icon = 'icons/mob/species/soghun/suit.dmi'
+
 /obj/item/clothing/suit/soghun/robe
 	name = "roughspun robes"
 	desc = "A traditional Soghun garment."

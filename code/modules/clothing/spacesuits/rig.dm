@@ -14,11 +14,9 @@
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
 	//Species-specific stuff.
-	species_restricted = list("exclude", "Soghun", "Tajaran", "Skrell", "Diona", "Vox")
+	species_restricted = list("exclude", "Soghun", "Tajaran", "Skrell", "Diona", "Vox", "Obsedai", "Plasmalin")
 	sprite_sheets = list(
-		"Soghun" = 'icons/mob/species/soghun/helmet.dmi',
-		"Tajaran" = 'icons/mob/species/tajara/helmet.dmi',
-		"Skrell" = 'icons/mob/species/skrell/helmet.dmi'
+		"Tajaran" = 'icons/mob/species/tajara/helmet.dmi'
 	)
 
 /obj/item/clothing/head/helmet/space/rig/attack_self(mob/user)
@@ -63,11 +61,9 @@
 	)
 	heat_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	species_restricted = list("exclude", "Soghun", "Tajaran", "Diona", "Vox")
+	species_restricted = list("exclude", "Soghun", "Tajaran", "Diona", "Vox", "Obsedai", "Plasmalin")
 	sprite_sheets = list(
-		"Soghun" = 'icons/mob/species/soghun/suit.dmi',
-		"Tajaran" = 'icons/mob/species/tajara/suit.dmi',
-		"Skrell" = 'icons/mob/species/skrell/suit.dmi'
+		"Tajaran" = 'icons/mob/species/tajara/suit.dmi'
 	)
 
 	//Breach thresholds, should ideally be inherited by most (if not all) hardsuits.
@@ -89,7 +85,6 @@
 
 /obj/item/clothing/suit/space/rig/equipped(mob/M)
 	..()
-
 	var/mob/living/carbon/human/H = M
 
 	if(!istype(H))
@@ -119,7 +114,6 @@
 
 /obj/item/clothing/suit/space/rig/dropped()
 	..()
-
 	var/mob/living/carbon/human/H
 
 	if(helmet)
@@ -209,15 +203,12 @@
 /obj/item/clothing/suit/space/rig/attackby(obj/item/W as obj, mob/user as mob)
 	if(!isliving(user))
 		return
-
 	if(user.a_intent == "help")
-
 		if(isliving(src.loc))
 			to_chat(user, "How do you propose to modify a hardsuit while it is being worn?")
 			return
 
 		var/target_zone = user.zone_sel.selecting
-
 		if(target_zone == "head")
 			//Installing a component into or modifying the contents of the helmet.
 			if(!attached_helmet)
@@ -311,6 +302,10 @@
 	name = "mining hardsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has reinforced plating."
 	item_state = "mining_hardsuit"
+	sprite_sheets = list(
+		"Soghun" = 'icons/mob/species/soghun/suit.dmi',
+		"Tajaran" = 'icons/mob/species/tajara/suit.dmi'
+	)
 
 //Syndicate rig
 /obj/item/clothing/head/helmet/space/rig/syndi
@@ -396,6 +391,10 @@
 		/obj/item/device/flashlight, /obj/item/weapon/tank, /obj/item/weapon/storage/firstaid,
 		/obj/item/device/healthanalyzer, /obj/item/stack/medical, /obj/item/device/suit_cooling_unit
 	)
+	sprite_sheets = list(
+		"Soghun" = 'icons/mob/species/soghun/suit.dmi',
+		"Tajaran" = 'icons/mob/species/tajara/suit.dmi'
+	)
 
 //Security
 /obj/item/clothing/head/helmet/space/rig/security
@@ -418,6 +417,10 @@
 		/obj/item/weapon/melee/baton, /obj/item/device/suit_cooling_unit
 	)
 	siemens_coefficient = 0.7
+	sprite_sheets = list(
+		"Soghun" = 'icons/mob/species/soghun/suit.dmi',
+		"Tajaran" = 'icons/mob/species/tajara/suit.dmi'
+	)
 
 //Atmospherics Rig (BS12)
 /obj/item/clothing/head/helmet/space/rig/atmos
@@ -436,3 +439,7 @@
 	item_state = "atmos_hardsuit"
 	armor = list(melee = 40, bullet = 0, laser = 0, energy = 0, bomb = 25, bio = 100, rad = 0)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	sprite_sheets = list(
+		"Soghun" = 'icons/mob/species/soghun/suit.dmi',
+		"Tajaran" = 'icons/mob/species/tajara/suit.dmi'
+	)

@@ -28,7 +28,7 @@
 
 #define USEDELAY		2		// 1 second extra delay on use (Can be used once every 2s)
 #define NODELAY			4		// 1 second attackby delay skipped (Can be used once every 0.2s). Most objects have a 1s attackby delay, which doesn't require a flag.
-#define MASKINTERNALS 	8		// mask allows internals
+#define AIRTIGHT		8		// mask allows internals
 #define NOSHIELD		16		// weapon not affected by shield
 #define CONDUCT			32		// conducts electricity (metal etc.)
 #define ON_BORDER		64		// item has priority to check when entering or leaving
