@@ -72,7 +72,6 @@
 			var/err = query.ErrorMsg()
 			log_game("SQL ERROR during death reporting. Error : \[[err]\]\n")
 
-
 /proc/sql_report_cyborg_death(mob/living/silicon/robot/H)
 	if(!sqllogging)
 		return

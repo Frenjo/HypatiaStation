@@ -7,6 +7,14 @@
 
 	charge_cost = 100 //How much energy is needed to fire.
 	projectile_type = /obj/item/projectile/energy/electrode
+	pulse_projectile_types = list(
+		GUN_SETTING_STUN = /obj/item/projectile/energy/electrode,
+		GUN_SETTING_KILL = /obj/item/projectile/energy/pulse/laser
+	)
+	beam_projectile_types = list(
+		GUN_SETTING_STUN = /obj/item/projectile/energy/electrode,
+		GUN_SETTING_KILL = /obj/item/projectile/energy/beam/laser
+	)
 	origin_tech = "combat=3;magnets=2"
 	modifystate = "energystun"
 

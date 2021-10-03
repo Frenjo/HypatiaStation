@@ -69,7 +69,7 @@
 
 	if(!aiming)
 		if(user && user.a_intent == "help") //regardless of what happens, refuse to shoot if help intent is on
-			to_chat(user, SPAN_WARNING("You refrain from firing your [src] as your intent is set to help."))
+			to_chat(user, SPAN_WARNING("You refrain from firing [src] as your intent is set to help."))
 		else
 			Fire(A, user, params) //Otherwise, fire normally.
 

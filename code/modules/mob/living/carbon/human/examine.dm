@@ -1,9 +1,10 @@
 /mob/living/carbon/human/examine()
 	set src in view()
 
-	if(!usr || !src)	return
-	if( usr.sdisabilities & BLIND || usr.blinded || usr.stat==UNCONSCIOUS )
-		usr << "<span class='notice'>Something is there but you can't see it.</span>"
+	if(!usr || !src)
+		return
+	if(usr.sdisabilities & BLIND || usr.blinded || usr.stat == UNCONSCIOUS)
+		to_chat(usr, SPAN_NOTICE("Something is there but you can't see it."))
 		return
 
 	var/skipgloves = 0
@@ -40,7 +41,7 @@
 
 	var/msg = "<span class='info'>*---------*\nThis is "
 
-	if( skipjumpsuit && skipface ) //big suits/masks/helmets make it hard to tell their gender
+	if(skipjumpsuit && skipface) //big suits/masks/helmets make it hard to tell their gender
 		t_He = "They"
 		t_his = "their"
 		t_him = "them"
@@ -65,7 +66,7 @@
 	if(w_uniform && !skipjumpsuit)
 		//Ties
 		var/tie_msg
-		if(istype(w_uniform,/obj/item/clothing/under))
+		if(istype(w_uniform, /obj/item/clothing/under))
 			var/obj/item/clothing/under/U = w_uniform
 			if(U.hastie)
 				tie_msg += " with \icon[U.hastie] \a [U.hastie]"
@@ -246,7 +247,7 @@
 		msg += "[t_He] [t_has] a stupid expression on [t_his] face.\n"
 
 	if(!(species.flags & IS_SYNTHETIC))
-		if((!species.has_organ["brain"] || has_brain()) && stat != DEAD)
+		if(!(species.has_organ["brain"] || has_brain()) && stat != DEAD)
 			msg += "<span class='deadsay'>[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.</span>\n"
 		else if(!client && brain_op_stage != 4 && stat != DEAD)
 			msg += "[t_He] [t_has] suddenly fallen asleep.\n"
@@ -434,10 +435,10 @@
 		else
 			perpname = src.name
 
-		for (var/datum/data/record/E in data_core.general)
-			if (E.fields["name"] == perpname)
-				for (var/datum/data/record/R in data_core.general)
-					if (R.fields["id"] == E.fields["id"])
+		for(var/datum/data/record/E in data_core.general)
+			if(E.fields["name"] == perpname)
+				for(var/datum/data/record/R in data_core.general)
+					if(R.fields["id"] == E.fields["id"])
 						medical = R.fields["p_stat"]
 
 		msg += "<span class = 'deptradio'>Physical status:</span> <a href='?src=\ref[src];medical=1'>\[[medical]\]</a>\n"
@@ -452,11 +453,11 @@
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
 		msg += "\n[t_He] is [pose]"
 
-	usr << msg
+	to_chat(usr, msg)
 
 //Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
 /proc/hasHUD(mob/M as mob, hudtype)
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		switch(hudtype)
 			if("security")
@@ -465,7 +466,7 @@
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
 			else
 				return 0
-	else if(istype(M, /mob/living/silicon/robot))
+	else if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		switch(hudtype)
 			if("security")

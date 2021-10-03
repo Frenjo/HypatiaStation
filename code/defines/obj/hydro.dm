@@ -1270,6 +1270,7 @@
 	throw_range = 3
 	plant_type = 1
 	seed = /obj/item/seeds/sunflowerseed
+
 /*
 /obj/item/weapon/grown/gibtomato
 	desc = "A plump tomato."
@@ -1311,13 +1312,13 @@
 	plant_type = 1
 	origin_tech = "combat=1"
 	seed = /obj/item/seeds/nettleseed
-	
-/obj/item/weapon/grown/nettle/New()
+
+//So potency can be set in the proc that creates these crops
+/obj/item/weapon/grown/nettle/initialize()
 	..()
-	spawn(5)	//So potency can be set in the proc that creates these crops
-		reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
-		reagents.add_reagent("sacid", round(potency, 1))
-		force = round((5 + potency / 5), 1)
+	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
+	reagents.add_reagent("sacid", round(potency, 1))
+	force = round((5 + potency / 5), 1)
 
 
 /obj/item/weapon/grown/deathnettle // -- Skie
@@ -1336,21 +1337,20 @@
 	origin_tech = "combat=3"
 	attack_verb = list("stung")
 
-/obj/item/weapon/grown/deathnettle/New()
+//So potency can be set in the proc that creates these crops
+/obj/item/weapon/grown/deathnettle/initialize()
 	..()
-	spawn(5)	//So potency can be set in the proc that creates these crops
-		reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
-		reagents.add_reagent("pacid", round(potency, 1))
-		force = round((5 + potency / 2.5), 1)
+	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
+	reagents.add_reagent("pacid", round(potency, 1))
+	force = round((5 + potency / 2.5), 1)
 
 /obj/item/weapon/grown/deathnettle/suicide_act(mob/user)
-	viewers(user) << "\red <b>[user] is eating some of the [src.name]! It looks like \he's trying to commit suicide.</b>"
+	to_chat(viewers(user), SPAN_DANGER("[user] is eating some of the [src.name]! It looks like \he's trying to commit suicide."))
 	return (BRUTELOSS|TOXLOSS)
 
 // *************************************
 // Pestkiller defines for hydroponics
 // *************************************
-
 /obj/item/pestkiller
 	name = "bottle of pestkiller"
 	icon = 'icons/obj/chemical.dmi'

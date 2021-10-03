@@ -390,7 +390,7 @@
 	hud_used.item_action_list = list()
 	for(var/obj/item/I in src)
 		if(I.icon_action_button)
-			var/obj/screen/item_action/A = new(hud_used)
+			var/obj/screen/item_action/A = new(hud_used, I)
 			//A.icon = 'icons/mob/screen1_action.dmi'
 			//A.icon_state = I.icon_action_button
 			A.icon = ui_style2icon(client.prefs.UI_style)
@@ -404,7 +404,6 @@
 				A.name = I.action_button_name
 			else
 				A.name = "Use [I.name]"
-			A.owner = I
 			hud_used.item_action_list += A
 			switch(num)
 				if(1)

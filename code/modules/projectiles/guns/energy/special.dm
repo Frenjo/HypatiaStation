@@ -8,7 +8,9 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	charge_cost = 100
-	projectile_type = /obj/item/projectile/ion
+	has_firemodes = 0
+	gun_setting = GUN_SETTING_SPECIAL
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/ion)
 
 /obj/item/weapon/gun/energy/ionrifle/emp_act(severity)
 	if(severity <= 2)
@@ -24,7 +26,9 @@
 	fire_sound = 'sound/weapons/pulse3.ogg'
 	origin_tech = "combat=5;materials=4;powerstorage=3"
 	charge_cost = 100
-	projectile_type = /obj/item/projectile/energy/declone
+	has_firemodes = 0
+	gun_setting = GUN_SETTING_SPECIAL
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/declone)
 
 /obj/item/weapon/gun/energy/staff
 	name = "staff of change"
@@ -37,7 +41,9 @@
 	slot_flags = SLOT_BACK
 	w_class = 4.0
 	charge_cost = 200
-	projectile_type = /obj/item/projectile/change
+	has_firemodes = 0
+	gun_setting = GUN_SETTING_SPECIAL
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/change)
 	origin_tech = null
 	clumsy_check = 0
 	var/charge_tick = 0
@@ -73,8 +79,9 @@
 /obj/item/weapon/gun/energy/staff/animate
 	name = "staff of animation"
 	desc = "An artefact that spits bolts of life-force which causes objects which are hit by it to animate and come to life! This magic doesn't affect machines."
+	has_firemodes = 0
 	gun_setting = GUN_SETTING_SPECIAL
-	projectile_type = /obj/item/projectile/animate
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/animate)
 	charge_cost = 100
 
 /obj/item/weapon/gun/energy/floragun
@@ -84,12 +91,16 @@
 	item_state = "obj/item/gun.dmi"
 	fire_sound = 'sound/effects/stealthoff.ogg'
 	charge_cost = 100
-	gun_setting = GUN_SETTING_SPECIAL
-	projectile_type = /obj/item/projectile/energy/floramut
+	gun_mode = GUN_MODE_PULSE
+	has_firemodes = 0
+	gun_setting = GUN_SETTING_KILL
+	pulse_projectile_types = list(
+		GUN_SETTING_KILL = /obj/item/projectile/energy/floramut,
+		GUN_SETTING_SPECIAL = /obj/item/projectile/energy/florayield
+	)
 	origin_tech = "materials=2;biotech=3;powerstorage=3"
 	modifystate = "floramut"
 	var/charge_tick = 0
-	var/mode = 0 //0 = mutate, 1 = yield boost
 
 /obj/item/weapon/gun/energy/floragun/New()
 	..()
@@ -111,18 +122,16 @@
 	return 1
 
 /obj/item/weapon/gun/energy/floragun/attack_self(mob/living/user as mob)
-	switch(mode)
-		if(0)
-			mode = 1
+	switch(gun_setting)
+		if(GUN_SETTING_KILL)
+			gun_setting = GUN_SETTING_SPECIAL
 			charge_cost = 100
 			to_chat(user, SPAN_WARNING("\The [src.name] is now set to increase yield."))
-			projectile_type = /obj/item/projectile/energy/florayield
 			modifystate = "florayield"
-		if(1)
-			mode = 0
+		if(GUN_SETTING_SPECIAL)
+			gun_setting = GUN_SETTING_KILL
 			charge_cost = 100
 			to_chat(user, SPAN_WARNING("\The [src.name] is now set to induce mutations."))
-			projectile_type = /obj/item/projectile/energy/floramut
 			modifystate = "floramut"
 	update_icon()
 	return
@@ -133,8 +142,9 @@
 	icon_state = "riotgun"
 	item_state = "c20r"
 	w_class = 4
+	has_firemodes = 0
 	gun_setting = GUN_SETTING_SPECIAL
-	projectile_type = /obj/item/projectile/meteor
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/meteor)
 	charge_cost = 100
 	cell_type = /obj/item/weapon/cell/potato
 	clumsy_check = 0 //Admin spawn only, might as well let clowns use it.
@@ -173,18 +183,21 @@
 	name = "mind flayer"
 	desc = "A prototype weapon recovered from the ruins of Research-Station Epsilon."
 	icon_state = "xray"
+	gun_mode = GUN_MODE_BEAM
+	has_firemodes = 0
 	gun_setting = GUN_SETTING_SPECIAL
-	projectile_type = /obj/item/projectile/energy/beam/mindflayer
+	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/mindflayer)
 	fire_sound = 'sound/weapons/Laser.ogg'
 
-obj/item/weapon/gun/energy/staff/focus
+/obj/item/weapon/gun/energy/staff/focus
 	name = "mental focus"
 	desc = "An artefact that channels the will of the user into destructive bolts of force. If you aren't careful with it, you might poke someone's brain out."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "focus"
 	item_state = "focus"
+	has_firemodes = 0
 	gun_setting = GUN_SETTING_SPECIAL
-	projectile_type = /obj/item/projectile/forcebolt
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/forcebolt)
 	/*
 	attack_self(mob/living/user as mob)
 		if(projectile_type == "/obj/item/projectile/forcebolt")
@@ -204,8 +217,9 @@ obj/item/weapon/gun/energy/staff/focus
 	fire_sound = 'sound/effects/stealthoff.ogg'
 	w_class = 3.0
 	origin_tech = "combat=5;plasmatech=4"
+	has_firemodes = 0
 	gun_setting = GUN_SETTING_SPECIAL
-	projectile_type = /obj/item/projectile/energy/plasma
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/plasma)
 
 /obj/item/weapon/gun/energy/sniperrifle
 	name = "L.W.A.P. Sniper Rifle"
@@ -215,7 +229,8 @@ obj/item/weapon/gun/energy/staff/focus
 	fire_sound = 'sound/weapons/marauder.ogg'
 	origin_tech = "combat=6;materials=5;powerstorage=4"
 	gun_setting = GUN_SETTING_SPECIAL
-	projectile_type = /obj/item/projectile/energy/beam/sniper
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/pulse/sniper)
+	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/sniper)
 	slot_flags = SLOT_BACK
 	charge_cost = 250
 	fire_delay = 35
@@ -230,7 +245,6 @@ This is called from
 modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
-
 /obj/item/weapon/gun/energy/sniperrifle/verb/zoom()
 	set category = "Object"
 	set name = "Use Sniper Scope"

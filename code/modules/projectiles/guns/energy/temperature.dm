@@ -8,7 +8,9 @@
 	charge_cost = 100
 	origin_tech = "combat=3;materials=4;powerstorage=3;magnets=2"
 
-	projectile_type = /obj/item/projectile/temp
+	has_firemodes = 0
+	gun_setting = GUN_SETTING_SPECIAL
+	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/temp)
 	cell_type = /obj/item/weapon/cell/crap
 
 /obj/item/weapon/gun/energy/temperature/New()

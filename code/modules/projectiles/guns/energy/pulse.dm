@@ -7,6 +7,16 @@
 	fire_sound = 'sound/weapons/pulse.ogg'
 	charge_cost = 200
 	gun_setting = GUN_SETTING_DESTROY
+	pulse_projectile_types = list(
+		GUN_SETTING_STUN = /obj/item/projectile/energy/electrode,
+		GUN_SETTING_KILL = /obj/item/projectile/energy/pulse/laser,
+		GUN_SETTING_DESTROY = /obj/item/projectile/energy/pulse/pulse
+	)
+	beam_projectile_types = list(
+		GUN_SETTING_STUN = /obj/item/projectile/energy/electrode,
+		GUN_SETTING_KILL = /obj/item/projectile/energy/beam/laser,
+		GUN_SETTING_DESTROY = /obj/item/projectile/energy/beam/pulse
+	)
 	cell_type = /obj/item/weapon/cell/super
 	fire_delay = 25
 
@@ -39,7 +49,7 @@
 		var/mob/living/silicon/robot/R = src.loc
 		if(R && R.cell)
 			R.cell.use(charge_cost)
-			projectile_from_settings()
+			projectile_from_setting()
 			in_chamber = new projectile_type(src)
 			return 1
 	return 0

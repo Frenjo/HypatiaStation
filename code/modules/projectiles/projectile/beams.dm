@@ -17,6 +17,7 @@ var/list/beam_master = list()
 	flag = "laser"
 	eyeblur = 4
 	var/frequency = 1
+	invisibility = 101
 
 /obj/item/projectile/energy/beam/process()
 	var/reference = "\ref[src]" //So we do not have to recalculate it a ton
@@ -105,6 +106,11 @@ var/list/beam_master = list()
 	icon_state = "heavylaser"
 	damage = 60
 
+/obj/item/projectile/energy/beam/laser/xray
+	name = "xray beam"
+	icon_state = "xray"
+	damage = 30
+
 /obj/item/projectile/energy/beam/disabler
 	name = "disabler beam"
 	icon_state = "bluespark"
@@ -112,11 +118,6 @@ var/list/beam_master = list()
 	weaken = 5
 	agony = 20
 	damage_type = HALLOSS
-
-/obj/item/projectile/energy/beam/xray
-	name = "xray beam"
-	icon_state = "xray"
-	damage = 30
 
 /obj/item/projectile/energy/beam/pulse
 	name = "pulse beam"

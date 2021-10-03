@@ -19,13 +19,13 @@
 
 
 /obj/effect/mark
-		var/mark = ""
-		icon = 'icons/misc/mark.dmi'
-		icon_state = "blank"
-		anchored = 1
-		layer = 99
-		mouse_opacity = 0
-		unacidable = 1//Just to be sure.
+	var/mark = ""
+	icon = 'icons/misc/mark.dmi'
+	icon_state = "blank"
+	anchored = 1
+	layer = 99
+	mouse_opacity = 0
+	unacidable = 1//Just to be sure.
 
 
 /obj/effect/beam
@@ -235,16 +235,16 @@ var/global/list/PDA_Manifest = list()
 		if(!department && !(name in heads))
 			misc[++misc.len] = list("name" = name, "rank" = rank, "active" = isactive)
 
-	PDA_Manifest = list(\
-		"heads" = heads,\
-		"sec" = sec,\
-		"eng" = eng,\
-		"med" = med,\
-		"sci" = sci,\
-		"civ" = civ,\
-		"bot" = bot,\
-		"misc" = misc\
-		)
+	PDA_Manifest = list(
+		"heads" = heads,
+		"sec" = sec,
+		"eng" = eng,
+		"med" = med,
+		"sci" = sci,
+		"civ" = civ,
+		"bot" = bot,
+		"misc" = misc
+	)
 	return PDA_Manifest
 
 

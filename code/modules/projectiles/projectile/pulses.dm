@@ -19,6 +19,11 @@
 	icon_state = "heavylaser"
 	damage = 40
 
+/obj/item/projectile/energy/pulse/laser/death
+	name = "death laser pulse"
+	icon_state = "heavylaser"
+	damage = 60
+
 /obj/item/projectile/energy/pulse/laser/xray
 	name = "xray pulse"
 	icon_state = "xray"
@@ -47,7 +52,7 @@
 	icon_state = "emitter"
 	damage = 30
 
-/obj/item/projectile/energy/pulse/lasertag/blue
+/obj/item/projectile/energy/pulse/laser/tag/blue
 	name = "lasertag pulse"
 	icon_state = "bluelaser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
@@ -55,14 +60,14 @@
 	damage_type = BURN
 	flag = "laser"
 
-/obj/item/projectile/energy/pulse/lasertag/blue/on_hit(atom/target, blocked = 0)
+/obj/item/projectile/energy/pulse/laser/tag/blue/on_hit(atom/target, blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
 			M.Weaken(5)
 	return 1
 
-/obj/item/projectile/energy/pulse/lasertag/red
+/obj/item/projectile/energy/pulse/laser/tag/red
 	name = "lasertag pulse"
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
@@ -70,14 +75,14 @@
 	damage_type = BURN
 	flag = "laser"
 
-/obj/item/projectile/energy/pulse/lasertag/red/on_hit(atom/target, blocked = 0)
+/obj/item/projectile/energy/pulse/laser/tag/red/on_hit(atom/target, blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
 			M.Weaken(5)
 	return 1
 
-/obj/item/projectile/energy/pulse/lasertag/omni//A laser tag bolt that stuns EVERYONE
+/obj/item/projectile/energy/pulse/laser/tag/omni//A laser tag bolt that stuns EVERYONE
 	name = "lasertag pulse"
 	icon_state = "omnilaser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
@@ -85,7 +90,7 @@
 	damage_type = BURN
 	flag = "laser"
 
-/obj/item/projectile/energy/pulse/lasertag/omni/on_hit(atom/target, blocked = 0)
+/obj/item/projectile/energy/pulse/laser/tag/omni/on_hit(atom/target, blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag) || istype(M.wear_suit, /obj/item/clothing/suit/redtag))

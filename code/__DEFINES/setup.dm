@@ -50,11 +50,11 @@ var/list/TAGGERLOCATIONS = list(
 )
 
 // Energy gun related modes and settings.
-#define GUN_MODE_PULSE 0
-#define GUN_MODE_BEAM 1
+#define GUN_MODE_PULSE "pulse"
+#define GUN_MODE_BEAM "beam"
 
-#define GUN_SETTING_STUN 0
-#define GUN_SETTING_DISABLE 1
-#define GUN_SETTING_KILL 2
-#define GUN_SETTING_DESTROY 3
-#define GUN_SETTING_SPECIAL 4
+#define GUN_SETTING_STUN "stun"
+#define GUN_SETTING_DISABLE "disable"
+#define GUN_SETTING_KILL "kill"
+#define GUN_SETTING_DESTROY "destroy"
+#define GUN_SETTING_SPECIAL "special"

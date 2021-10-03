@@ -121,7 +121,12 @@
 	recoil = 1
 
 	force = 10
-	projectile_type = /obj/item/projectile/energy/sonic
+
+	has_firemodes = 0
+	gun_setting = GUN_SETTING_SPECIAL
+	pulse_projectile_types = list(
+		GUN_SETTING_SPECIAL = /obj/item/projectile/energy/sonic
+	)
 	cell_type = /obj/item/weapon/cell/super
 	fire_delay = 40
 	fire_sound = 'sound/effects/basscannon.ogg'

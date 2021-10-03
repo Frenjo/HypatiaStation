@@ -52,12 +52,12 @@ default behaviour is:
 		if(isliving(AM))
 			var/mob/living/tmob = AM
 			for(var/mob/living/M in range(tmob, 1))
-				if(tmob.pinned.len || ((M.pulling == tmob && (tmob.restrained() && !(M.restrained()) && M.stat == CONSCIOUS)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)))
+				if(tmob.pinned.len || ((M.pulling == tmob && (tmob.restrained() && !M.restrained() && M.stat == CONSCIOUS)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)))
 					if(!(world.time % 5))
 						to_chat(src, SPAN_WARNING("[tmob] is restrained, you cannot push past."))
 					now_pushing = 0
 					return
-				if(tmob.pulling == M && (M.restrained() && !( tmob.restrained() ) && tmob.stat == CONSCIOUS))
+				if(tmob.pulling == M && (M.restrained() && !tmob.restrained() && tmob.stat == CONSCIOUS))
 					if(!(world.time % 5))
 						to_chat(src, SPAN_WARNING("[tmob] is restraining [M], you cannot push past."))
 					now_pushing = 0
