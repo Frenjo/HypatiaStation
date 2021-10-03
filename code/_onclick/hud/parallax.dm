@@ -51,7 +51,7 @@
 
 /datum/hud/proc/toggle_parallax_space()
 	var/space_mode = mymob.space_parallax.icon_state == "space" ? 1 : 0
-	mymob.space_parallax.icon_state = "[space_mode ? "bluespace" : "space"]"
+	mymob.space_parallax.icon_state = space_mode ? "bluespace" : "space"
 	mymob.space_parallax.overlays.Cut()
 
 	if(space_mode)

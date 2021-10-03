@@ -4,15 +4,15 @@
 */
 var/datum/global_hud/global_hud = new()
 var/list/global_huds = list(
-		global_hud.druggy,
-		global_hud.blurry,
-		global_hud.vimpaired,
-		global_hud.darkMask,
-		global_hud.nvg,
-		global_hud.scig,
-		global_hud.thermal,
-		global_hud.meson
-		)
+	global_hud.druggy,
+	global_hud.blurry,
+	global_hud.vimpaired,
+	global_hud.darkMask,
+	global_hud.nvg,
+	global_hud.scig,
+	global_hud.thermal,
+	global_hud.meson
+)
 
 /datum/hud/var/obj/screen/grab_intent
 /datum/hud/var/obj/screen/hurt_intent
@@ -46,7 +46,6 @@ var/list/global_huds = list(
 
 /datum/global_hud/New()
 	// Space parallax stuff
-	//var/star_count = 3500
 	var/star_count = PARALLAX_STAR_AMOUNT
 	var/bluespace_star_count = PARALLAX_BLUESPACE_STAR_AMOUNT
 
@@ -188,7 +187,6 @@ var/list/global_huds = list(
 	var/list/obj/screen/hotkeybuttons
 
 	var/list/obj/screen/item_action/item_action_list = list()	//Used for the item action ui buttons.
-
 
 /datum/hud/New(mob/owner)
 	mymob = owner

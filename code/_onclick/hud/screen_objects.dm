@@ -42,6 +42,10 @@
 /obj/screen/item_action
 	var/obj/item/owner
 
+/obj/screen/item_action/Destroy()
+	owner = null
+	return ..()
+
 /obj/screen/item_action/Click()
 	if(!usr || !owner)
 		return 1
@@ -353,7 +357,6 @@
 				return
 			usr.client.AllowTargetClick()
 			gun_click_time = world.time
-
 
 		if("Disallow Item Use")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
