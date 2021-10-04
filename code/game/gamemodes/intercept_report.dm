@@ -54,7 +54,6 @@
 		"Small Prick"
 	)
 
-
 /datum/intercept_text/proc/build(mode_type, datum/mind/correct_person)
 	switch(mode_type)
 		if("revolution")
@@ -81,7 +80,7 @@
 			src.text = ""
 			src.build_malf(correct_person)
 			return src.text
-		if("changeling","traitorchan")
+		if("changeling", "traitorchan")
 			src.text = ""
 			src.build_changeling(correct_person)
 			return src.text
@@ -113,9 +112,10 @@
 
 /datum/intercept_text/proc/get_suspect()
 	var/list/dudes = list()
-	for(var/mob/living/carbon/human/man in player_list) if(man.client && man.client.prefs.nanotrasen_relation == "Opposed")
-		dudes += man
-	for(var/i = 0, i < max(player_list.len/10,2), i++)
+	for(var/mob/living/carbon/human/man in player_list)
+		if(man.client && man.client.prefs.nanotrasen_relation == "Opposed")
+			dudes += man
+	for(var/i = 0, i < max(player_list.len / 10, 2), i++)
 		dudes += pick(player_list)
 	return pick(dudes)
 
@@ -143,14 +143,14 @@
 		src.text += "However, these could also belong to a current Cent. Com employee, so do not act on this without reason."
 
 
-
 /datum/intercept_text/proc/build_cult(datum/mind/correct_person)
 	var/name_1 = pick(src.org_names_1)
 	var/name_2 = pick(src.org_names_2)
 
 	var/prob_right_dude = rand(1, 100)
 	var/mob/living/carbon/human/H = get_suspect()
-	if(!H) return
+	if(!H)
+		return
 	var/traitor_job = H.mind.assigned_role
 
 	src.text += "<BR><BR>It has been brought to our attention that the [name_1] [name_2] have stumbled upon some dark secrets. They apparently want to spread the dangerous knowledge onto as many stations as they can."
@@ -160,7 +160,6 @@
 	src.text += "and instilled with the idea of the flimsiness of the real world, seeking to destroy it. "
 
 	src.text += "<BR>However, if this information is acted on without substantial evidence, those responsible will face severe repercussions."
-
 
 
 /datum/intercept_text/proc/build_rev(datum/mind/correct_person)
@@ -182,7 +181,6 @@
 	src.text += "<BR>However, if this information is acted on without substantial evidence, those responsible will face severe repercussions."
 
 
-
 /datum/intercept_text/proc/build_wizard(datum/mind/correct_person)
 	var/SWF_desc = pick(SWF_names)
 
@@ -191,17 +189,20 @@
 	src.text += "approach with EXTREME caution. Cent. Com also recommends that it would be wise to not inform the crew of this, due to their fearful nature."
 	src.text += "Known attributes include: Brown sandals, a large blue hat, a voluptous white beard, and an inclination to cast spells."
 
+
 /datum/intercept_text/proc/build_nuke(datum/mind/correct_person)
 	src.text += "<BR><BR>Cent. Com recently recieved a report of a plot to destroy one of our stations in your area. We believe the Nuclear Authentication Disc "
 	src.text += "that is standard issue aboard your vessel may be a target. We recommend removal of this object, and it's storage in a safe "
 	src.text += "environment. As this may cause panic among the crew, all efforts should be made to keep this information a secret from all but "
 	src.text += "the most trusted crew-members."
 
+
 /datum/intercept_text/proc/build_malf(datum/mind/correct_person)
 	var/a_name = pick(src.anomalies)
 	src.text += "<BR><BR>A [a_name] was recently picked up by a nearby stations sensors in your sector. If it came into contact with your ship or "
 	src.text += "electrical equipment, it may have had hazardarous and unpredictable effect. Closely observe any non carbon based life forms "
 	src.text += "for signs of unusual behaviour, but keep this information discreet at all times due to this possibly dangerous scenario."
+
 
 /datum/intercept_text/proc/build_changeling(datum/mind/correct_person)
 	var/cname = pick(src.changeling_names)

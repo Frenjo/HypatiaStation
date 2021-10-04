@@ -46,8 +46,7 @@ var/const/ASSISTANT			=(1<<13)
 var/const/MININGFOREMAN		=(1<<14)
 var/const/MAILMAN			=(1<<15) // Re-added mailman. -Frenjo
 
-var/list/assistant_occupations = list(
-)
+var/list/assistant_occupations = list()
 
 
 var/list/command_positions = list(
@@ -152,4 +151,3 @@ var/list/nonhuman_positions = list(
 			titles = J.alt_titles
 
 	return titles
-

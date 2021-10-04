@@ -1,23 +1,24 @@
 
-var/global/list/space_surprises = list(		/obj/item/clothing/mask/facehugger				=4,
-											/obj/item/weapon/pickaxe/silver					=4,
-											/obj/item/weapon/pickaxe/drill					=4,
-											/obj/item/weapon/pickaxe/jackhammer				=4,
-											//mob/living/simple_animal/hostile/carp			=3,
-											/obj/item/weapon/pickaxe/diamond				=3,
-											/obj/item/weapon/pickaxe/diamonddrill			=3,
-											/obj/item/weapon/pickaxe/gold					=3,
-											/obj/item/weapon/pickaxe/plasmacutter			=2,
-											/obj/structure/closet/syndicate/resources		=2,
-											/obj/item/weapon/melee/energy/sword/pirate		=1,
-											/obj/mecha/working/ripley/mining				=1
-											)
+var/global/list/space_surprises = list(
+	/obj/item/clothing/mask/facehugger				= 4,
+	/obj/item/weapon/pickaxe/silver					= 4,
+	/obj/item/weapon/pickaxe/drill					= 4,
+	/obj/item/weapon/pickaxe/jackhammer				= 4,
+	//mob/living/simple_animal/hostile/carp			= 3,
+	/obj/item/weapon/pickaxe/diamond				= 3,
+	/obj/item/weapon/pickaxe/diamonddrill			= 3,
+	/obj/item/weapon/pickaxe/gold					= 3,
+	/obj/item/weapon/pickaxe/plasmacutter			= 2,
+	/obj/structure/closet/syndicate/resources		= 2,
+	/obj/item/weapon/melee/energy/sword/pirate		= 1,
+	/obj/mecha/working/ripley/mining				= 1
+)
 
 var/global/list/spawned_surprises = list()
 
 var/global/max_secret_rooms = 3
 
-proc/spawn_room(atom/start_loc, x_size, y_size, wall, floor, clean = 0, name)
+/proc/spawn_room(atom/start_loc, x_size, y_size, wall, floor, clean = 0, name)
 	var/list/room_turfs = list("walls" = list(), "floors" = list())
 
 	//world << "Room spawned at [start_loc.x],[start_loc.y],[start_loc.z]"
@@ -56,7 +57,7 @@ proc/spawn_room(atom/start_loc, x_size, y_size, wall, floor, clean = 0, name)
 
 	return room_turfs
 
-proc/admin_spawn_room_at_pos()
+/proc/admin_spawn_room_at_pos()
 	var/wall
 	var/floor
 	var/x = input("X position", "X pos", usr.x)
@@ -82,7 +83,7 @@ proc/admin_spawn_room_at_pos()
 	return
 
 
-proc/make_mining_asteroid_secret(size = 5)
+/proc/make_mining_asteroid_secret(size = 5)
 	var/valid = 0
 	var/turf/T = null
 	var/sanity = 0
@@ -151,5 +152,3 @@ proc/make_mining_asteroid_secret(size = 5)
 			new surprise(T)
 
 	return 1
-
-

@@ -67,18 +67,22 @@
 	idtype = /obj/item/weapon/card/id/silver
 	req_admin_notify = 1
 	minimal_player_age = 10
-	access = list(access_security, access_sec_doors, access_brig, access_court, access_forensics_lockers,
-			            access_medical, access_engine, access_change_ids, access_ai_upload, access_eva, access_heads,
-			            access_all_personal_lockers, access_maint_tunnels, access_bar, access_janitor, access_construction, access_morgue,
-			            access_crematorium, access_kitchen, access_cargo, access_hydroponics, access_lawyer,
-			            access_theatre, access_chapel_office, access_library, access_research, access_heads_vault, access_clown, access_mime,
-			            access_hop, access_RC_announce, access_keycard_auth, access_gateway)
-	minimal_access = list(access_security, access_sec_doors, access_brig, access_court, access_forensics_lockers,
-			            access_medical, access_engine, access_change_ids, access_ai_upload, access_eva, access_heads,
-			            access_all_personal_lockers, access_maint_tunnels, access_bar, access_janitor, access_construction, access_morgue,
-			            access_crematorium, access_kitchen, access_cargo,  access_hydroponics, access_lawyer,
-			            access_theatre, access_chapel_office, access_library, access_research, access_heads_vault, access_clown, access_mime,
-			            access_hop, access_RC_announce, access_keycard_auth, access_gateway)
+	access = list(
+		access_security, access_sec_doors, access_brig, access_court, access_forensics_lockers,
+		access_medical, access_engine, access_change_ids, access_ai_upload, access_eva, access_heads,
+		access_all_personal_lockers, access_maint_tunnels, access_bar, access_janitor, access_construction, access_morgue,
+		access_crematorium, access_kitchen, access_cargo, access_hydroponics, access_lawyer,
+		access_theatre, access_chapel_office, access_library, access_research, access_heads_vault, access_clown, access_mime,
+		access_hop, access_RC_announce, access_keycard_auth, access_gateway
+	)
+	minimal_access = list(
+		access_security, access_sec_doors, access_brig, access_court, access_forensics_lockers,
+		access_medical, access_engine, access_change_ids, access_ai_upload, access_eva, access_heads,
+		access_all_personal_lockers, access_maint_tunnels, access_bar, access_janitor, access_construction, access_morgue,
+		access_crematorium, access_kitchen, access_cargo,  access_hydroponics, access_lawyer,
+		access_theatre, access_chapel_office, access_library, access_research, access_heads_vault, access_clown, access_mime,
+		access_hop, access_RC_announce, access_keycard_auth, access_gateway
+	)
 	alt_titles = list("Human Resources Director")
 
 /datum/job/hop/equip(mob/living/carbon/human/H)

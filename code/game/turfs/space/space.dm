@@ -57,7 +57,7 @@
 		im.blend_mode = BLEND_ADD
 		speedspace_cache["EW_[i]"] = im
 
-/turf/space/proc/toggle_transit(var/direction)
+/turf/space/proc/toggle_transit(direction)
 	overlays.Cut()
 
 	if(!direction)
@@ -68,13 +68,13 @@
 		if(!phase_shift_by_x)
 			phase_shift_by_x = get_cross_shift_list(15)
 		var/x_shift = phase_shift_by_x[src.x % (phase_shift_by_x.len - 1) + 1]
-		var/transit_state = ((direction & SOUTH ? world.maxy - src.y : src.y) + x_shift)%15
+		var/transit_state = ((direction & SOUTH ? world.maxy - src.y : src.y) + x_shift) % 15
 		overlays |= speedspace_cache["NS_[transit_state]"]
 	else if(direction & (EAST|WEST))
 		if(!phase_shift_by_y)
 			phase_shift_by_y = get_cross_shift_list(15)
 		var/y_shift = phase_shift_by_y[src.y % (phase_shift_by_y.len - 1) + 1]
-		var/transit_state = ((direction & WEST ? world.maxx - src.x : src.x) + y_shift)%15
+		var/transit_state = ((direction & WEST ? world.maxx - src.x : src.x) + y_shift) % 15
 		overlays |= speedspace_cache["EW_[transit_state]"]
 
 	for(var/atom/movable/AM in src)
@@ -82,7 +82,7 @@
 			AM.throw_at(get_step(src, reverse_direction(direction)), 5, 1)
 
 //generates a list used to randomize transit animations so they aren't in lockstep
-/turf/space/proc/get_cross_shift_list(var/size)
+/turf/space/proc/get_cross_shift_list(size)
 	var/list/result = list()
 
 	result += rand(0, 14)
@@ -99,11 +99,11 @@
 	return src.attack_hand(user)
 
 /turf/space/attack_hand(mob/user as mob)
-	if((user.restrained() || !( user.pulling )))
+	if(user.restrained() || !user.pulling)
 		return
 	if(user.pulling.anchored || !isturf(user.pulling.loc))
 		return
-	if((user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1))
+	if(user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1)
 		return
 	if(ismob(user.pulling))
 		var/mob/M = user.pulling
@@ -116,18 +116,18 @@
 	return
 
 /turf/space/attackby(obj/item/C as obj, mob/user as mob)
-	if (istype(C, /obj/item/stack/rods))
+	if(istype(C, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
 			return
 		var/obj/item/stack/rods/R = C
-		user << "\blue Constructing support lattice ..."
+		to_chat(user, SPAN_INFO("Constructing support lattice ..."))
 		playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 		ReplaceWithLattice()
 		R.use(1)
 		return
 
-	if (istype(C, /obj/item/stack/tile/plasteel))
+	if(istype(C, /obj/item/stack/tile/plasteel))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
 			var/obj/item/stack/tile/plasteel/S = C
@@ -137,7 +137,7 @@
 			S.use(1)
 			return
 		else
-			user << "\red The plating is going to need some support."
+			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
 	return
 
 
@@ -145,19 +145,21 @@
 
 /turf/space/Entered(atom/movable/A as mob|obj)
 	if(movement_disabled)
-		usr << "\red Movement is admin-disabled." //This is to identify lag problems
+		to_chat(usr, SPAN_WARNING("Movement is admin-disabled.")) //This is to identify lag problems
 		return
 	..()
-	if ((!(A) || src != A.loc))	return
+	if(!A || src != A.loc)
+		return
 
 	inertial_drift(A)
 
 	if(ticker && ticker.mode)
 		// Okay, so let's make it so that people can travel z levels but not nuke disks!
 		// if(ticker.mode.name == "nuclear emergency")	return
-		if(A.z > 6) return
-		if (A.x <= TRANSITIONEDGE || A.x >= (world.maxx - TRANSITIONEDGE - 1) || A.y <= TRANSITIONEDGE || A.y >= (world.maxy - TRANSITIONEDGE - 1))
-			if(istype(A, /obj/effect/meteor)||istype(A, /obj/effect/space_dust))
+		if(A.z > 6)
+			return
+		if(A.x <= TRANSITIONEDGE || A.x >= (world.maxx - TRANSITIONEDGE - 1) || A.y <= TRANSITIONEDGE || A.y >= (world.maxy - TRANSITIONEDGE - 1))
+			if(istype(A, /obj/effect/meteor) || istype(A, /obj/effect/space_dust))
 				qdel(A)
 				return
 
@@ -167,10 +169,10 @@
 
 			var/list/disk_search = A.search_contents_for(/obj/item/weapon/disk/nuclear)
 			if(!isemptylist(disk_search))
-				if(istype(A, /mob/living))
+				if(isliving(A))
 					var/mob/living/MM = A
 					if(MM.client && !MM.stat)
-						MM << "\red Something you are carrying is preventing you from leaving. Don't play stupid; you know exactly what it is."
+						to_chat(MM, SPAN_WARNING("Something you are carrying is preventing you from leaving. Don't play stupid; you know exactly what it is."))
 						if(MM.x <= TRANSITIONEDGE)
 							MM.inertia_dir = 4
 						else if(MM.x >= world.maxx -TRANSITIONEDGE)
@@ -219,7 +221,7 @@
 				A.x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
 			spawn(0)
-				if((A && A.loc))
+				if(A && A.loc)
 					A.loc.Entered(A)
 
 /turf/space/proc/Sandbox_Spacemove(atom/movable/A as mob|obj)
@@ -231,31 +233,33 @@
 	var/list/y_arr
 
 	if(src.x <= 1)
-		if(istype(A, /obj/effect/meteor)||istype(A, /obj/effect/space_dust))
+		if(istype(A, /obj/effect/meteor) || istype(A, /obj/effect/space_dust))
 			qdel(A)
 			return
 
 		var/list/cur_pos = src.get_global_map_pos()
-		if(!cur_pos) return
+		if(!cur_pos)
+			return
 		cur_x = cur_pos["x"]
 		cur_y = cur_pos["y"]
-		next_x = (--cur_x||global_map.len)
+		next_x = (--cur_x || global_map.len)
 		y_arr = global_map[next_x]
 		target_z = y_arr[cur_y]
 
 		if(target_z)
 			A.z = target_z
 			A.x = world.maxx - 2
-			spawn (0)
-				if ((A && A.loc))
+			spawn(0)
+				if(A && A.loc)
 					A.loc.Entered(A)
-	else if (src.x >= world.maxx)
+	else if(src.x >= world.maxx)
 		if(istype(A, /obj/effect/meteor))
 			qdel(A)
 			return
 
 		var/list/cur_pos = src.get_global_map_pos()
-		if(!cur_pos) return
+		if(!cur_pos)
+			return
 		cur_x = cur_pos["x"]
 		cur_y = cur_pos["y"]
 		next_x = (++cur_x > global_map.len ? 1 : cur_x)
@@ -265,34 +269,36 @@
 		if(target_z)
 			A.z = target_z
 			A.x = 3
-			spawn (0)
-				if ((A && A.loc))
+			spawn(0)
+				if(A && A.loc)
 					A.loc.Entered(A)
-	else if (src.y <= 1)
+	else if(src.y <= 1)
 		if(istype(A, /obj/effect/meteor))
 			qdel(A)
 			return
 		var/list/cur_pos = src.get_global_map_pos()
-		if(!cur_pos) return
+		if(!cur_pos)
+			return
 		cur_x = cur_pos["x"]
 		cur_y = cur_pos["y"]
 		y_arr = global_map[cur_x]
-		next_y = (--cur_y||y_arr.len)
+		next_y = (--cur_y || y_arr.len)
 		target_z = y_arr[next_y]
 
 		if(target_z)
 			A.z = target_z
 			A.y = world.maxy - 2
-			spawn (0)
-				if ((A && A.loc))
+			spawn(0)
+				if(A && A.loc)
 					A.loc.Entered(A)
 
-	else if (src.y >= world.maxy)
-		if(istype(A, /obj/effect/meteor)||istype(A, /obj/effect/space_dust))
+	else if(src.y >= world.maxy)
+		if(istype(A, /obj/effect/meteor) || istype(A, /obj/effect/space_dust))
 			qdel(A)
 			return
 		var/list/cur_pos = src.get_global_map_pos()
-		if(!cur_pos) return
+		if(!cur_pos)
+			return
 		cur_x = cur_pos["x"]
 		cur_y = cur_pos["y"]
 		y_arr = global_map[cur_x]
@@ -302,7 +308,7 @@
 		if(target_z)
 			A.z = target_z
 			A.y = 3
-			spawn (0)
-				if ((A && A.loc))
+			spawn(0)
+				if(A && A.loc)
 					A.loc.Entered(A)
 	return

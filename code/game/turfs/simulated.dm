@@ -79,7 +79,7 @@
 		switch(src.wet)
 			if(1)
 				if(ishuman(M)) // Added check since monkeys don't have shoes
-					if((M.m_intent == "run") && !(istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags & NOSLIP))
+					if(M.m_intent == "run" && !(istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags & NOSLIP))
 						M.stop_pulling()
 						step(M, M.dir)
 						to_chat(M, SPAN_INFO("You slipped on the wet floor!"))
@@ -101,7 +101,7 @@
 						M.inertia_dir = 0
 						return
 
-			if(2) //lube                //can cause infinite loops - needs work
+			if(2) //lube				//can cause infinite loops - needs work
 				if(!isslime(M))
 					M.stop_pulling()
 					step(M, M.dir)
@@ -119,7 +119,7 @@
 					M.Weaken(10)
 			if(3) // Ice
 				if(ishuman(M)) // Added check since monkeys don't have shoes
-					if((M.m_intent == "run") && !(istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags & NOSLIP) && prob(30))
+					if(M.m_intent == "run" && !(istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags & NOSLIP) && prob(30))
 						M.stop_pulling()
 						step(M, M.dir)
 						to_chat(M, SPAN_INFO("You slipped on the icy floor!"))

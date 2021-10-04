@@ -11,7 +11,6 @@
  *
  */
 
-
 /datum/game_mode
 	var/name = "invalid"
 	var/config_tag = null
@@ -78,16 +77,15 @@ Implants;
 /datum/game_mode/proc/announce() //to be calles when round starts
 	world << "<B>Notice</B>: [src] did not define announce()"
 
-
 ///can_start()
 ///Checks to see if the game can be setup and ran with the current number of players or whatnot.
 /datum/game_mode/proc/can_start()
 	var/playerC = 0
 	for(var/mob/new_player/player in player_list)
-		if((player.client)&&(player.ready))
+		if(player.client && player.ready)
 			playerC++
 
-	if(master_mode=="secret")
+	if(master_mode == "secret")
 		if(playerC >= required_players_secret)
 			return 1
 	else
@@ -95,12 +93,10 @@ Implants;
 			return 1
 	return 0
 
-
 ///pre_setup()
 ///Attempts to select players for special roles the mode might have.
 /datum/game_mode/proc/pre_setup()
 	return 1
-
 
 ///post_setup()
 ///Everyone should now be on the station and have their normal gear.  This is the place to give the special roles extra things
@@ -116,19 +112,16 @@ Implants;
 	feedback_set_details("server_ip", "[world.internet_address]:[world.port]")
 	return 1
 
-
 ///process()
 ///Called by the gameticker
 /datum/game_mode/proc/process()
 	return 0
-
 
 /datum/game_mode/proc/check_finished() //to be called by ticker
 	//if(emergency_shuttle.location==2 || station_was_nuked)
 	if(emergency_shuttle.returned() || station_was_nuked) // Updated to reflect 'shuttles' port. -Frenjo
 		return 1
 	return 0
-
 
 /datum/game_mode/proc/declare_completion()
 	var/clients = 0
@@ -143,7 +136,10 @@ Implants;
 	var/escaped_on_pod_5 = 0
 	var/escaped_on_shuttle = 0
 
-	var/list/area/escape_locations = list(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom, /area/shuttle/arrival/centcom)
+	var/list/area/escape_locations = list(
+		/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom,
+		/area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom, /area/shuttle/arrival/centcom
+	)
 
 	for(var/mob/M in player_list)
 		if(M.client)
@@ -200,44 +196,40 @@ Implants;
 
 	return 0
 
-
 /datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
 	return 0
-
 
 /datum/game_mode/proc/send_intercept()
 	var/intercepttext = "<FONT size = 3><B>Cent. Com. Update</B> Requested status information:</FONT><HR>"
 	intercepttext += "<B> In case you have misplaced your copy, attached is a list of personnel whom reliable sources&trade; suspect may be affiliated with the Syndicate:</B><br>"
 
 	var/list/suspects = list()
-	for(var/mob/living/carbon/human/man in player_list) if(man.client && man.mind)
-		// NT relation option
-		var/special_role = man.mind.special_role
-		if(special_role == "Wizard" || special_role == "Ninja" || special_role == "Syndicate" || special_role == "Vox Raider")
-			continue	//NT intelligence ruled out possiblity that those are too classy to pretend to be a crew.
-		if(man.client.prefs.nanotrasen_relation == "Opposed" && prob(50) || \
-		   man.client.prefs.nanotrasen_relation == "Skeptical" && prob(20))
-			suspects += man
-		// Antags
-		else if(special_role == "traitor" && prob(40) || \
-		   special_role == "Changeling" && prob(50) || \
-		   special_role == "Cultist" && prob(30) || \
-		   special_role == "Head Revolutionary" && prob(30))
-			suspects += man
+	for(var/mob/living/carbon/human/man in player_list)
+		if(man.client && man.mind)
+			// NT relation option
+			var/special_role = man.mind.special_role
+			if(special_role == "Wizard" || special_role == "Ninja" || special_role == "Syndicate" || special_role == "Vox Raider")
+				continue	//NT intelligence ruled out possiblity that those are too classy to pretend to be a crew.
+			if(man.client.prefs.nanotrasen_relation == "Opposed" && prob(50) || man.client.prefs.nanotrasen_relation == "Skeptical" && prob(20))
+				suspects += man
+			// Antags
+			else if(special_role == "traitor" && prob(40) || special_role == "Changeling" && prob(50) \
+			|| special_role == "Cultist" && prob(30) || special_role == "Head Revolutionary" && prob(30))
+				suspects += man
 
-			// If they're a traitor or likewise, give them extra TC in exchange.
-			var/obj/item/device/uplink/hidden/suplink = man.mind.find_syndicate_uplink()
-			if(suplink)
-				var/extra = 4
-				suplink.uses += extra
-				man << "\red We have received notice that enemy intelligence suspects you to be linked with us. We have thus invested significant resources to increase your uplink's capacity."
-			else
-				// Give them a warning!
-				man << "\red They are on to you!"
+				// If they're a traitor or likewise, give them extra TC in exchange.
+				var/obj/item/device/uplink/hidden/suplink = man.mind.find_syndicate_uplink()
+				if(suplink)
+					var/extra = 4
+					suplink.uses += extra
+					to_chat(man, SPAN_WARNING("We have received notice that enemy intelligence suspects you to be linked with us. We have thus invested significant resources to increase your uplink's capacity."))
+				else
+					// Give them a warning!
+					to_chat(man, SPAN_WARNING("They are on to you!"))
 
-		// Some poor people who were just in the wrong place at the wrong time..
-		else if(prob(10))
-			suspects += man
+			// Some poor people who were just in the wrong place at the wrong time..
+			else if(prob(10))
+				suspects += man
 	for(var/mob/M in suspects)
 		switch(rand(1, 100))
 			if(1 to 50)
@@ -271,18 +263,26 @@ Implants;
 
 	var/roletext
 	switch(role)
-		if(BE_CHANGELING)	roletext="changeling"
-		if(BE_TRAITOR)		roletext="traitor"
-		if(BE_OPERATIVE)	roletext="operative"
-		if(BE_WIZARD)		roletext="wizard"
-		if(BE_REV)			roletext="revolutionary"
-		if(BE_CULTIST)		roletext="cultist"
-		if(BE_NINJA)		roletext="ninja"
-		if(BE_RAIDER)		roletext="raider"
+		if(BE_CHANGELING)
+			roletext = "changeling"
+		if(BE_TRAITOR)
+			roletext = "traitor"
+		if(BE_OPERATIVE)
+			roletext = "operative"
+		if(BE_WIZARD)
+			roletext = "wizard"
+		if(BE_REV)
+			roletext = "revolutionary"
+		if(BE_CULTIST)
+			roletext = "cultist"
+		if(BE_NINJA)
+			roletext = "ninja"
+		if(BE_RAIDER)
+			roletext = "raider"
 
 	// Assemble a list of active players without jobbans.
 	for(var/mob/new_player/player in player_list)
-		if( player.client && player.ready )
+		if(player.client && player.ready)
 			if(!jobban_isbanned(player, "Syndicate") && !jobban_isbanned(player, roletext))
 				players += player
 
@@ -370,7 +370,7 @@ Implants;
 							//			Less if there are not enough valid players in the game entirely to make recommended_enemies.
 
 
-/datum/game_mode/proc/latespawn(var/mob)
+/datum/game_mode/proc/latespawn(mob)
 
 /*
 /datum/game_mode/proc/check_player_role_pref(var/role, var/mob/new_player/player)
@@ -413,7 +413,7 @@ Implants;
 //////////////////////////
 //Reports player logouts//
 //////////////////////////
-proc/display_roundstart_logout_report()
+/proc/display_roundstart_logout_report()
 	var/msg = "\blue <b>Roundstart logout report\n\n"
 	for(var/mob/living/L in mob_list)
 
@@ -467,7 +467,7 @@ proc/display_roundstart_logout_report()
 			M << msg
 
 
-proc/get_nt_opposed()
+/proc/get_nt_opposed()
 	var/list/dudes = list()
 	for(var/mob/living/carbon/human/man in player_list)
 		if(man.client)
@@ -475,5 +475,6 @@ proc/get_nt_opposed()
 				dudes += man
 			else if(man.client.prefs.nanotrasen_relation == "Skeptical" && prob(50))
 				dudes += man
-	if(dudes.len == 0) return null
+	if(dudes.len == 0)
+		return null
 	return pick(dudes)

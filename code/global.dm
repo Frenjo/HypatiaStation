@@ -27,14 +27,14 @@ var/global/list/global_map = null
 
 //////////////
 var/list/paper_tag_whitelist = list(
-	"center", "p", "div", "span", "h1", "h2", "h3", "h4", "h5", "h6", "hr", "pre", \
-	"big", "small", "font", "i", "u", "b", "s", "sub", "sup", "tt", "br", "hr", "ol", "ul", "li", "caption", "col", \
+	"center", "p", "div", "span", "h1", "h2", "h3", "h4", "h5", "h6", "hr", "pre",
+	"big", "small", "font", "i", "u", "b", "s", "sub", "sup", "tt", "br", "hr", "ol", "ul", "li", "caption", "col",
 	"table", "td", "th", "tr"
 )
 
 var/list/paper_blacklist = list(
-	"java", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown", \
-	"onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover", \
+	"java", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown",
+	"onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover",
 	"onmouseup", "onreset", "onselect", "onsubmit", "onunload"
 )
 
@@ -258,7 +258,7 @@ var/DBConnection/dbcon_old = new()	//Tgstation database (Old database) - See the
 	var/flagIndex = 1
 	for(var/flag = 1, flag < 16, flag += flag)
 		var/valid = 0
-		while (!valid)
+		while(!valid)
 			var/colorIndex = rand(1, 4)
 			if(apcwires[colorIndex] == 0)
 				valid = 1

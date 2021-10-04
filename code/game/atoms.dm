@@ -289,13 +289,13 @@ Maxdistance is the longest range the beam will persist before it gives up.
 			switch(stringpercent(fingerprints[full_print]))		//tells us how many stars are in the current prints.
 				if(28 to 32)
 					if(prob(1))
-						fingerprints[full_print] = full_print 		// You rolled a one buddy.
+						fingerprints[full_print] = full_print		// You rolled a one buddy.
 					else
 						fingerprints[full_print] = stars(full_print, rand(0, 40)) // 24 to 32
 
 				if(24 to 27)
 					if(prob(3))
-						fingerprints[full_print] = full_print     	//Sucks to be you.
+						fingerprints[full_print] = full_print		//Sucks to be you.
 					else
 						fingerprints[full_print] = stars(full_print, rand(15, 55)) // 20 to 29
 
@@ -313,7 +313,7 @@ Maxdistance is the longest range the beam will persist before it gives up.
 
 				if(0 to 15)
 					if(prob(5))
-						fingerprints[full_print] = stars(full_print, rand(0, 50)) 	// small chance you can smudge.
+						fingerprints[full_print] = stars(full_print, rand(0, 50))	// small chance you can smudge.
 					else
 						fingerprints[full_print] = full_print
 		else
@@ -339,12 +339,12 @@ Maxdistance is the longest range the beam will persist before it gives up.
 		A.fingerprintshidden = list()
 
 	//skytodo
-	//A.fingerprints |= fingerprints            //detective
-	//A.fingerprintshidden |= fingerprintshidden    //admin
+	//A.fingerprints |= fingerprints			//detective
+	//A.fingerprintshidden |= fingerprintshidden	//admin
 	if(fingerprints)
-		A.fingerprints |= fingerprints.Copy()            //detective
+		A.fingerprints |= fingerprints.Copy()			//detective
 	if(fingerprintshidden)
-		A.fingerprintshidden |= fingerprintshidden.Copy()    //admin	A.fingerprintslast = fingerprintslast
+		A.fingerprintshidden |= fingerprintshidden.Copy()	//admin	A.fingerprintslast = fingerprintslast
 
 
 //returns 1 if made bloody, returns 0 otherwise

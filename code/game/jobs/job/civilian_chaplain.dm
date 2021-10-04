@@ -29,7 +29,7 @@
 
 	spawn(0)
 		var/religion_name = "Christianity"
-		var/new_religion = copytext(sanitize(input(H, "You are the crew services officer. Would you like to change your religion? Default is Christianity, in SPACE.", "Name change", religion_name)),1,MAX_NAME_LEN)
+		var/new_religion = copytext(sanitize(input(H, "You are the crew services officer. Would you like to change your religion? Default is Christianity, in SPACE.", "Name change", religion_name)), 1, MAX_NAME_LEN)
 
 		if(!new_religion)
 			new_religion = religion_name
@@ -57,7 +57,11 @@
 			//	B.name = pick("Woodys Got Wood: The Aftermath", "War of the Cocks", "Sweet Bro and Hella Jef: Expanded Edition")
 			//	H.setBrainLoss(100) // starts off retarded as fuck
 			if("science")
-				B.name = pick("Principle of Relativity", "Quantum Enigma: Physics Encounters Consciousness", "Programming the Universe", "Quantum Physics and Theology", "String Theory for Dummies", "How To: Build Your Own Warp Drive", "The Mysteries of Bluespace", "Playing God: Collector's Edition")
+				B.name = pick( \
+					"Principle of Relativity", "Quantum Enigma: Physics Encounters Consciousness", \
+					"Programming the Universe", "Quantum Physics and Theology", "String Theory for Dummies", \
+					"How To: Build Your Own Warp Drive", "The Mysteries of Bluespace", "Playing God: Collector's Edition" \
+				)
 			else
 				B.name = "The Holy Book of [new_religion]"
 		feedback_set_details("religion_name","[new_religion]")
@@ -66,7 +70,7 @@
 		var/deity_name = "Space Jesus"
 		var/new_deity = copytext(sanitize(input(H, "Would you like to change your deity? Default is Space Jesus.", "Name change", deity_name)), 1, MAX_NAME_LEN)
 
-		if((length(new_deity) == 0) || (new_deity == "Space Jesus"))
+		if(length(new_deity) == 0 || new_deity == "Space Jesus")
 			new_deity = deity_name
 		B.deity_name = new_deity
 

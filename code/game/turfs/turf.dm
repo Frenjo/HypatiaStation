@@ -57,14 +57,14 @@
 
 	//First, check objects to block exit that are not on the border
 	for(var/obj/obstacle in mover.loc)
-		if(!(obstacle.flags & ON_BORDER) && (mover != obstacle) && (forget != obstacle))
+		if(!(obstacle.flags & ON_BORDER) && mover != obstacle && forget != obstacle)
 			if(!obstacle.CheckExit(mover, src))
 				mover.Bump(obstacle, 1)
 				return 0
 
 	//Now, check objects to block exit that are on the border
 	for(var/obj/border_obstacle in mover.loc)
-		if((border_obstacle.flags & ON_BORDER) && (mover != border_obstacle) && (forget != border_obstacle))
+		if((border_obstacle.flags & ON_BORDER) && mover != border_obstacle && forget != border_obstacle)
 			if(!border_obstacle.CheckExit(mover, src))
 				mover.Bump(border_obstacle, 1)
 				return 0
@@ -72,7 +72,7 @@
 	//Next, check objects to block entry that are on the border
 	for(var/obj/border_obstacle in src)
 		if(border_obstacle.flags & ON_BORDER)
-			if(!border_obstacle.CanPass(mover, mover.loc, 1, 0) && (forget != border_obstacle))
+			if(!border_obstacle.CanPass(mover, mover.loc, 1, 0) && forget != border_obstacle)
 				mover.Bump(border_obstacle, 1)
 				return 0
 
@@ -84,7 +84,7 @@
 	//Finally, check objects/mobs to block entry that are not on the border
 	for(var/atom/movable/obstacle in src)
 		if(!(obstacle.flags & ON_BORDER))
-			if(!obstacle.CanPass(mover, mover.loc, 1, 0) && (forget != obstacle))
+			if(!obstacle.CanPass(mover, mover.loc, 1, 0) && forget != obstacle)
 				mover.Bump(obstacle, 1)
 				return 0
 	return 1 //Nothing found to block so return success!
@@ -96,7 +96,7 @@
 	..()
 //vvvvv Infared beam stuff vvvvv
 
-	if((atom && atom.density && !(istype(atom, /obj/effect/beam))))
+	if(atom && atom.density && !istype(atom, /obj/effect/beam))
 		for(var/obj/effect/beam/i_beam/I in src)
 			spawn(0)
 				if(I)
@@ -160,13 +160,13 @@
 	if(!(A.last_move))
 		return
 
-	if((ismob(A) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy - 1)))
+	if(ismob(A) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy - 1))
 		var/mob/M = A
 		if(M.Process_Spacemove(1))
 			M.inertia_dir  = 0
 			return
 		spawn(5)
-			if((M && !(M.anchored) && !(M.pulledby) && (M.loc == src)))
+			if(M && !M.anchored && !M.pulledby && M.loc == src)
 				if(M.inertia_dir)
 					step(M, M.inertia_dir)
 					return

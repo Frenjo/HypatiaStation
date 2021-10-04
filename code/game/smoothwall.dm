@@ -118,7 +118,7 @@
 				shroom.pixel_x = 0
 				shroom.pixel_y = 0
 
-	..()
+	return ..()
 
 /*/turf/simulated/shuttle/wall/Del()
 

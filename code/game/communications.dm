@@ -210,7 +210,7 @@ var/global/datum/controller/radio/radio_controller
 			device.receive_signal(signal, TRANSMISSION_RADIO, frequency)
 //			N_f++
 	else
-		for (var/next_filter in devices)
+		for(var/next_filter in devices)
 //			var/list/obj/DDD = devices[next_filter]
 //			Nt+=DDD.len
 			for(var/obj/device in devices[next_filter])

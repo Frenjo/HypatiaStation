@@ -18,7 +18,7 @@
 
 /proc/setup_genetics()
 	if(prob(50))
-		// Currently unused.  Will revisit. - N3X
+		// Currently unused. Will revisit. - N3X
 		BLOCKADD = rand(-300, 300)
 	if(prob(75))
 		DIFFMUT = rand(0, 20)
@@ -68,14 +68,14 @@
 	//testing("Assigning DNA blocks:")
 
 	// Standard muts, imported from older code above.
-	BLINDBLOCK         = getAssignedBlock("BLIND",         numsToAssign)
-	DEAFBLOCK          = getAssignedBlock("DEAF",          numsToAssign)
-	HULKBLOCK          = getAssignedBlock("HULK",          numsToAssign, DNA_HARD_BOUNDS)
-	TELEBLOCK          = getAssignedBlock("TELE",          numsToAssign, DNA_HARD_BOUNDS)
-	FIREBLOCK          = getAssignedBlock("FIRE",          numsToAssign, DNA_HARDER_BOUNDS)
-	XRAYBLOCK          = getAssignedBlock("XRAY",          numsToAssign, DNA_HARDER_BOUNDS)
-	CLUMSYBLOCK        = getAssignedBlock("CLUMSY",        numsToAssign)
-	FAKEBLOCK          = getAssignedBlock("FAKE",          numsToAssign)
+	BLINDBLOCK			= getAssignedBlock("BLIND",			numsToAssign)
+	DEAFBLOCK			= getAssignedBlock("DEAF",			numsToAssign)
+	HULKBLOCK			= getAssignedBlock("HULK",			numsToAssign, DNA_HARD_BOUNDS)
+	TELEBLOCK			= getAssignedBlock("TELE",			numsToAssign, DNA_HARD_BOUNDS)
+	FIREBLOCK			= getAssignedBlock("FIRE",			numsToAssign, DNA_HARDER_BOUNDS)
+	XRAYBLOCK			= getAssignedBlock("XRAY",			numsToAssign, DNA_HARDER_BOUNDS)
+	CLUMSYBLOCK			= getAssignedBlock("CLUMSY",		numsToAssign)
+	FAKEBLOCK			= getAssignedBlock("FAKE",			numsToAssign)
 
 	// UNUSED!
 	//COUGHBLOCK         = getAssignedBlock("COUGH",         numsToAssign)

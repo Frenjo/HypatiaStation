@@ -8,8 +8,16 @@
 	spawn_positions = 1
 	supervisors = "the Head of Personnel and the Captain"
 	selection_color = "#8c7846"
-	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mint, access_mining, access_mining_station, access_RC_announce)
-	minimal_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mint, access_mining, access_mining_station, access_RC_announce)
+	access = list(
+		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot,
+		access_qm, access_mint, access_mining, access_mining_station,
+		access_RC_announce
+	)
+	minimal_access = list(
+		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot,
+		access_qm, access_mint, access_mining, access_mining_station,
+		access_RC_announce
+	)
 
 /datum/job/qm/equip(mob/living/carbon/human/H)
 	if(!H)

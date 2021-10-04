@@ -16,7 +16,7 @@ var/global/list/all_objectives = list()
 
 /datum/objective/Destroy()
 	all_objectives -= src
-	..()
+	return ..()
 
 /datum/objective/proc/check_completion()
 	return completed
@@ -24,14 +24,14 @@ var/global/list/all_objectives = list()
 /datum/objective/proc/find_target()
 	var/list/possible_targets = list()
 	for(var/datum/mind/possible_target in ticker.minds)
-		if(possible_target != owner && ishuman(possible_target.current) && (possible_target.current.stat != DEAD))
+		if(possible_target != owner && ishuman(possible_target.current) && possible_target.current.stat != DEAD)
 			possible_targets += possible_target
 	if(possible_targets.len > 0)
 		target = pick(possible_targets)
 
 /datum/objective/proc/find_target_by_role(role, role_type = 0)//Option sets either to check assigned role or special role. Default to assigned.
 	for(var/datum/mind/possible_target in ticker.minds)
-		if((possible_target != owner) && ishuman(possible_target.current) && ((role_type ? possible_target.special_role : possible_target.assigned_role) == role))
+		if(possible_target != owner && ishuman(possible_target.current) && (role_type ? possible_target.special_role : possible_target.assigned_role) == role)
 			target = possible_target
 			break
 
@@ -342,7 +342,8 @@ var/global/list/all_objectives = list()
 		if(player.mind)
 			if(player.stat != DEAD)
 				var/turf/T = get_turf(player)
-				if(!T)	continue
+				if(!T)
+					continue
 				switch(T.loc.type)
 					if(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom, /area/shuttle/arrival/centcom)
 						return 0
@@ -570,7 +571,7 @@ var/global/list/all_objectives = list()
 
 			for(var/obj/item/I in all_items) //Check for plasma tanks
 				if(istype(I, steal_target))
-					found_amount += (target_name == "28 moles of plasma (full tank)" ? (I:air_contents:gas["plasma"]) : (I:amount))
+					found_amount += (target_name == "28 moles of plasma (full tank)") ? I:air_contents:gas["plasma"] : I:amount
 			return found_amount >= target_amount
 
 		if("50 coins (in bag)")
@@ -699,7 +700,7 @@ var/global/list/all_objectives = list()
 	return target_amount
 
 /datum/objective/absorb/check_completion()
-	if(owner && owner.changeling && owner.changeling.absorbed_dna && (owner.changeling.absorbedcount >= target_amount))
+	if(owner && owner.changeling && owner.changeling.absorbed_dna && owner.changeling.absorbedcount >= target_amount)
 		return 1
 	else
 		return 0
@@ -779,7 +780,7 @@ var/global/list/all_objectives = list()
 	var/list/priority_targets = list()
 
 	for(var/datum/mind/possible_target in ticker.minds)
-		if(possible_target != owner && ishuman(possible_target.current) && (possible_target.current.stat != DEAD) && (possible_target.assigned_role != "MODE"))
+		if(possible_target != owner && ishuman(possible_target.current) && possible_target.current.stat != DEAD && possible_target.assigned_role != "MODE")
 			possible_targets += possible_target
 			for(var/role in roles)
 				if(possible_target.assigned_role == role)

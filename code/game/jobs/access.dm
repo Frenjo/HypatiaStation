@@ -169,20 +169,26 @@
 			return get_all_centcom_access()
 
 /proc/get_all_accesses()
-	return list(access_security, access_sec_doors, access_brig, access_armory, access_forensics_lockers, access_court,
-	            access_medical, access_genetics, access_morgue, access_rd,
-	            access_tox, access_tox_storage, access_chemistry, access_engine, access_engine_equip, access_maint_tunnels,
-	            access_external_airlocks, access_change_ids, access_ai_upload,
-	            access_teleporter, access_eva, access_heads, access_captain, access_all_personal_lockers,
-	            access_tech_storage, access_chapel_office, access_atmospherics, access_kitchen,
-	            access_bar, access_janitor, access_crematorium, access_robotics, access_cargo, access_construction,
-	            access_hydroponics, access_library, access_lawyer, access_virology, access_psychiatrist, access_cmo, access_qm, access_clown, access_mime, access_surgery,
-	            access_theatre, access_research, access_mining, access_mailsorting,
-	            access_heads_vault, access_mining_station, access_xenobiology, access_ce, access_hop, access_hos, access_RC_announce,
-	            access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch)
+	return list(
+		access_security, access_sec_doors, access_brig, access_armory, access_forensics_lockers, access_court,
+		access_medical, access_genetics, access_morgue, access_rd,
+		access_tox, access_tox_storage, access_chemistry, access_engine, access_engine_equip, access_maint_tunnels,
+		access_external_airlocks, access_change_ids, access_ai_upload,
+		access_teleporter, access_eva, access_heads, access_captain, access_all_personal_lockers,
+		access_tech_storage, access_chapel_office, access_atmospherics, access_kitchen,
+		access_bar, access_janitor, access_crematorium, access_robotics, access_cargo, access_construction,
+		access_hydroponics, access_library, access_lawyer, access_virology, access_psychiatrist, access_cmo, access_qm, access_clown, access_mime, access_surgery,
+		access_theatre, access_research, access_mining, access_mailsorting,
+		access_heads_vault, access_mining_station, access_xenobiology, access_ce, access_hop, access_hos, access_RC_announce,
+		access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch
+	)
 
 /proc/get_all_centcom_access()
-	return list(access_cent_general, access_cent_thunder, access_cent_specops, access_cent_medical, access_cent_living, access_cent_storage, access_cent_teleporter, access_cent_creed, access_cent_captain)
+	return list(
+		access_cent_general, access_cent_thunder, access_cent_specops,
+		access_cent_medical, access_cent_living, access_cent_storage,
+		access_cent_teleporter, access_cent_creed, access_cent_captain
+	)
 
 /proc/get_all_syndicate_access()
 	return list(access_syndicate)
@@ -198,11 +204,26 @@
 		if(3) //research
 			return list(access_research, access_tox, access_tox_storage, access_robotics, access_xenobiology, access_xenoarch, access_rd)
 		if(4) //engineering and maintenance
-			return list(access_construction, access_maint_tunnels, access_engine, access_engine_equip, access_external_airlocks, access_tech_storage, access_atmospherics, access_ce)
+			return list(
+				access_construction, access_maint_tunnels, access_engine,
+				access_engine_equip, access_external_airlocks, access_tech_storage,
+				access_atmospherics, access_ce
+			)
 		if(5) //command
-			return list(access_heads, access_RC_announce, access_keycard_auth, access_change_ids, access_ai_upload, access_teleporter, access_eva, access_tcomsat, access_gateway, access_all_personal_lockers, access_heads_vault, access_hop, access_captain)
+			return list(
+				access_heads, access_RC_announce, access_keycard_auth,
+				access_change_ids, access_ai_upload, access_teleporter,
+				access_eva, access_tcomsat, access_gateway, 
+				access_all_personal_lockers, access_heads_vault, access_hop,
+				access_captain
+			)
 		if(6) //station general
-			return list(access_kitchen,access_bar, access_hydroponics, access_janitor, access_chapel_office, access_crematorium, access_library, access_theatre, access_lawyer, access_clown, access_mime)
+			return list(
+				access_kitchen, access_bar, access_hydroponics,
+				access_janitor, access_chapel_office, access_crematorium,
+				access_library, access_theatre, access_lawyer,
+				access_clown, access_mime
+			)
 		if(7) //supply
 			return list(access_mailsorting, access_mining, access_mining_station, access_cargo, access_qm)
 
@@ -391,7 +412,11 @@
 	return all_jobs
 
 /proc/get_all_centcom_jobs()
-	return list("VIP Guest", "Custodian", "Thunderdome Overseer", "Intel Officer", "Medical Officer", "Death Commando", "Research Officer", "BlackOps Commander", "Supreme Commander")
+	return list(
+		"VIP Guest", "Custodian", "Thunderdome Overseer",
+		"Intel Officer", "Medical Officer", "Death Commando",
+		"Research Officer", "BlackOps Commander", "Supreme Commander"
+	)
 
 //gets the actual job rank (ignoring alt titles)
 //this is used solely for sechuds
@@ -419,7 +444,7 @@
 
 //gets the alt title, failing that the actual job rank
 //this is unused
-/obj/proc/sdsdsd()	//GetJobDisplayName
+/obj/proc/GetJobDisplayName()
 	if(!istype(src, /obj/item/device/pda) && !istype(src, /obj/item/weapon/card/id))
 		return
 
@@ -435,7 +460,7 @@
 
 	return "Unknown"
 
-proc/FindNameFromID(mob/living/carbon/human/H)
+/proc/FindNameFromID(mob/living/carbon/human/H)
 	ASSERT(istype(H))
 	var/obj/item/weapon/card/id/C = H.get_active_hand()
 	if(istype(C) || istype(C, /obj/item/device/pda))
@@ -464,7 +489,7 @@ proc/FindNameFromID(mob/living/carbon/human/H)
 		if(ID)
 			return ID.registered_name
 
-proc/get_all_job_icons() //For all existing HUD icons
+/proc/get_all_job_icons() //For all existing HUD icons
 	return joblist + list("Prisoner")
 
 /obj/proc/GetJobName() //Used in secHUD icon generation
