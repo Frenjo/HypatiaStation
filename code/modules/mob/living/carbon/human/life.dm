@@ -693,13 +693,13 @@
 				return 1	//godmode
 			switch(bodytemperature)
 				if(species.heat_level_1 to species.heat_level_2)
-					take_overall_damage(burn = HEAT_DAMAGE_LEVEL_1, BURN, used_weapon = "High Body Temperature")
+					take_overall_damage(burn = HEAT_DAMAGE_LEVEL_1, used_weapon = "High Body Temperature")
 					fire_alert = max(fire_alert, 2)
 				if(species.heat_level_2 to species.heat_level_3)
-					take_overall_damage(burn = HEAT_DAMAGE_LEVEL_2, BURN, used_weapon = "High Body Temperature")
+					take_overall_damage(burn = HEAT_DAMAGE_LEVEL_2, used_weapon = "High Body Temperature")
 					fire_alert = max(fire_alert, 2)
 				if(species.heat_level_3 to INFINITY)
-					take_overall_damage(burn = HEAT_DAMAGE_LEVEL_3, BURN, used_weapon = "High Body Temperature")
+					take_overall_damage(burn = HEAT_DAMAGE_LEVEL_3, used_weapon = "High Body Temperature")
 					fire_alert = max(fire_alert, 2)
 
 		else if(bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
@@ -709,13 +709,13 @@
 			if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 				switch(bodytemperature)
 					if(species.cold_level_2 to species.cold_level_1)
-						take_overall_damage(burn = COLD_DAMAGE_LEVEL_1, BURN, used_weapon = "Low Body Temperature")
+						take_overall_damage(burn = COLD_DAMAGE_LEVEL_1, used_weapon = "Low Body Temperature")
 						fire_alert = max(fire_alert, 1)
 					if(species.cold_level_3 to species.cold_level_2)
-						take_overall_damage(burn = COLD_DAMAGE_LEVEL_2, BURN, used_weapon = "Low Body Temperature")
+						take_overall_damage(burn = COLD_DAMAGE_LEVEL_2, used_weapon = "Low Body Temperature")
 						fire_alert = max(fire_alert, 1)
 					if(-INFINITY to species.cold_level_3)
-						take_overall_damage(burn = COLD_DAMAGE_LEVEL_3, BURN, used_weapon = "Low Body Temperature")
+						take_overall_damage(burn = COLD_DAMAGE_LEVEL_3, used_weapon = "Low Body Temperature")
 						fire_alert = max(fire_alert, 1)
 
 		// Account for massive pressure differences.  Done by Polymorph

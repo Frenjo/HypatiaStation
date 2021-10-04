@@ -37,15 +37,14 @@
 		else
 			trunk.linked = src	// link the pipe trunk to self
 
-		air_contents = new/datum/gas_mixture()
-		//gas.volume = 1.05 * CELLSTANDARD
+		air_contents = new/datum/gas_mixture(1.05 * MOLES_CELLSTANDARD)
 		update()
 
 /obj/machinery/disposal/Destroy()
 	eject()
 	if(trunk)
 		trunk.linked = null
-	..()
+	return ..()
 
 // attack by item places it in to disposal
 /obj/machinery/disposal/attackby(obj/item/I, mob/user)
@@ -414,15 +413,14 @@
 	if(wrapcheck == 1)
 		H.tomail = 1
 
-	air_contents = new()		// new empty gas resv.
-
 	sleep(10)
 	if(last_sound < world.time + 1)
 		playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, 0)
 		last_sound = world.time
 	sleep(5) // wait for animation to finish
 
-	H.init(src)	// copy the contents of disposer to holder
+	H.init(src, air_contents)	// copy the contents of disposer to holder
+	air_contents = new(1.05 * MOLES_CELLSTANDARD) // new empty gas resv.
 
 	H.start(src) // start the holder processing movement
 	flushing = 0
@@ -493,11 +491,11 @@
 /obj/structure/disposalholder/Destroy()
 	qdel(gas)
 	active = 0
-	..()
+	return ..()
 
 // initialize a holder from the contents of a disposal unit
-/obj/structure/disposalholder/proc/init(obj/machinery/disposal/D)
-	gas = D.air_contents// transfer gas resv. into holder object
+/obj/structure/disposalholder/proc/init(obj/machinery/disposal/D, datum/gas_mixture/flush_gas)
+	gas = flush_gas // transfer gas resv. into holder object
 
 	//Check for any living mobs trigger hasmob.
 	//hasmob effects whether the package goes to cargo or its tagged destination.
@@ -551,6 +549,10 @@
 /obj/structure/disposalholder/proc/move()
 	var/obj/structure/disposalpipe/last
 	while(active)
+		sleep(1)		// was 1
+		if(!loc)
+			return // check if we got GC'd
+
 		if(hasmob && prob(3))
 			for(var/mob/living/L in src)
 				// This is probably a terrible way to do this, but...
@@ -569,10 +571,13 @@
 			// find the fat guys
 			for(var/mob/living/carbon/human/H in src)
 				break
-		sleep(1)		// was 1
 		var/obj/structure/disposalpipe/curr = loc
 		last = curr
 		curr = curr.transfer(src)
+
+		if(!loc)
+			return //side effects
+
 		if(!curr)
 			last.expel(src, loc, dir)
 		//
