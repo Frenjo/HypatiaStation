@@ -235,7 +235,7 @@
 	var/datum/effect/system/smoke_spread/smoke = new
 	smoke.set_up(1, 0, src.loc, 0)
 	smoke.start()
-	src = null
+	qdel(src)
 
 /obj/machinery/atmospherics/pipe/simple/proc/normalize_dir()
 	if(dir == 3)

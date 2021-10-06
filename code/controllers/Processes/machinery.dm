@@ -7,7 +7,6 @@
 
 /datum/controller/process/machinery/doWork()
 	internal_sort()
-	internal_process_pipenets()
 	internal_process_machinery()
 	internal_process_powernets()
 
@@ -15,15 +14,6 @@
 	if(machinery_sort_required)
 		machinery_sort_required = 0
 		machines = dd_sortedObjectList(machines)
-
-/datum/controller/process/machinery/proc/internal_process_pipenets()
-	for(var/datum/pipe_network/pipeNetwork in pipe_networks)
-		if(istype(pipeNetwork) && isnull(pipeNetwork.gcDestroyed))
-			pipeNetwork.process()
-			SCHECK
-			continue
-
-		pipe_networks.Remove(pipeNetwork)
 
 /datum/controller/process/machinery/proc/internal_process_machinery()
 	for(var/obj/machinery/M in machines)
@@ -58,5 +48,4 @@
 	..()
 	stat(null, "[machines.len] machines")
 	stat(null, "[powernets.len] powernets")
-	stat(null, "[pipe_networks.len] pipenets")
 	stat(null, "[processing_power_items.len] power item\s")

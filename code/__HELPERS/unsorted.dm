@@ -1318,3 +1318,20 @@ var/mob/dview/dview_mob = new
 /proc/unregister_radio(source, frequency)
 	if(radio_controller)
 		radio_controller.remove_object(source, frequency)
+
+// Ported from Baystation12 on 27/11/2019. -Frenjo
+//Returns the amount of heat gained while in space due to thermal radiation (usually a negative value)
+//surface - the surface area in m^2
+//exposed_surface_ratio - the proportion of the surface that is exposed to sunlight
+//thermal_conductivity - a multipler on the heat transfer rate. See OPEN_HEAT_TRANSFER_COEFFICIENT and friends
+/proc/get_thermal_radiation(surface_temperature, surface, exposed_surface_ratio, thermal_conductivity)
+	//*** Gain heat from sunlight, then lose heat from radiation.
+
+	// We only get heat from the star on the exposed surface area.
+	// If the HE pipes gain more energy from AVERAGE_SOLAR_RADIATION than they can radiate, then they have a net heat increase.
+	. = AVERAGE_SOLAR_RADIATION * (exposed_surface_ratio * surface) * thermal_conductivity
+
+	// Previously, the temperature would enter equilibrium at 26C or 294K.
+	// Only would happen if both sides (all 2 square meters of surface area) were exposed to sunlight.  We now assume it aligned edge on.
+	// It currently should stabilise at 129.6K or -143.6C
+	. -= surface * STEFAN_BOLTZMANN_CONSTANT * thermal_conductivity * (surface_temperature - COSMIC_RADIATION_TEMPERATURE) ** 4
