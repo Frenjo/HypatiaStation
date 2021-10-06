@@ -1,11 +1,14 @@
 //Skrell space gear. Sleek like a wetsuit.
 /obj/item/clothing/head/helmet/space/skrell
 	name = "Skrellian helmet"
-	icon = 'icons/mob/species/skrell/helmet.dmi'
 	desc = "Smoothly contoured and polished to a shine. Still looks like a fishbowl."
 	armor = list(melee = 20, bullet = 20, laser = 50, energy = 50, bomb = 50, bio = 100, rad = 100)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	species_restricted = list("Skrell", "Human")
+	species_restricted = list("Human", "Skrell")
+	sprite_sheets = list(
+		"Human" = 'icons/mob/species/skrell/helmet.dmi',
+		"Skrell" = 'icons/mob/species/skrell/helmet.dmi'
+	)
 
 /obj/item/clothing/head/helmet/space/skrell/white
 	icon_state = "skrell_helmet_white"
@@ -19,7 +22,6 @@
 
 /obj/item/clothing/suit/space/skrell
 	name = "Skrellian hardsuit"
-	icon = 'icons/mob/species/skrell/suit.dmi'
 	desc = "Seems like a wetsuit with reinforced plating seamlessly attached to it. Very chic."
 	armor = list(melee = 20, bullet = 20, laser = 50, energy = 50, bomb = 50, bio = 100, rad = 100)
 	allowed = list(
@@ -28,7 +30,11 @@
 	)
 	heat_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	species_restricted = list("Skrell", "Human")
+	species_restricted = list("Human", "Skrell")
+	sprite_sheets = list(
+		"Human" = 'icons/mob/species/skrell/suit.dmi',
+		"Skrell" = 'icons/mob/species/skrell/suit.dmi'
+	)
 
 /obj/item/clothing/suit/space/skrell/white
 	icon_state = "skrell_suit_white"
@@ -42,12 +48,14 @@
 
 //Soghun space gear. Huge and restrictive.
 /obj/item/clothing/head/helmet/space/soghun
-	icon = 'icons/mob/species/soghun/helmet.dmi'
 	armor = list(melee = 40, bullet = 30, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 50)
 	heat_protection = HEAD
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	var/up = 0 //So Soghun helmets play nicely with the weldervision check.
 	species_restricted = list("Soghun")
+	sprite_sheets = list(
+		"Soghun" = 'icons/mob/species/soghun/helmet.dmi'
+	)
 
 /obj/item/clothing/head/helmet/space/soghun/helmet_cheap
 	name = "NT breacher helmet"
@@ -57,7 +65,6 @@
 	item_color = "soghun_helm_cheap"
 
 /obj/item/clothing/suit/space/soghun
-	icon = 'icons/mob/species/soghun/suit.dmi'
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 50)
 	allowed = list(
 		/obj/item/device/flashlight, /obj/item/weapon/tank, /obj/item/weapon/storage/bag/ore,
@@ -66,6 +73,9 @@
 	heat_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	species_restricted = list("Soghun")
+	sprite_sheets = list(
+		"Soghun" = 'icons/mob/species/soghun/suit.dmi'
+	)
 
 /obj/item/clothing/suit/space/soghun/rig_cheap
 	name = "NT breacher chassis"

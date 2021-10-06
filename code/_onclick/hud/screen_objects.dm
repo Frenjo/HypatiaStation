@@ -42,6 +42,10 @@
 /obj/screen/item_action
 	var/obj/item/owner
 
+/obj/screen/item_action/New(obj/item/O)
+	..()
+	owner = O
+
 /obj/screen/item_action/Destroy()
 	owner = null
 	return ..()

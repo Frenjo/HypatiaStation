@@ -75,7 +75,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	construction_state = 0
 	if(master)
 		master.part_scan()
-	..()
+	return ..()
 
 /obj/structure/particle_accelerator/end_cap
 	name = "Alpha Particle Generation Array"
@@ -92,8 +92,8 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	set category = "Object"
 	set src in oview(1)
 
-	if(src.anchored || usr:stat)
-		usr << "It is fastened to the floor!"
+	if(src.anchored || usr.stat)
+		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 270))
 	return 1
@@ -103,8 +103,8 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	set category = "Object"
 	set src in oview(1)
 
-	if(src.anchored || usr:stat)
-		usr << "It is fastened to the floor!"
+	if(src.anchored || usr.stat)
+		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 90))
 	return 1
@@ -112,13 +112,13 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 /obj/structure/particle_accelerator/examine()
 	switch(src.construction_state)
 		if(0)
-			src.desc = text("A [name], looks like it's not attached to the flooring")
+			src.desc = "A [name], looks like it's not attached to the flooring."
 		if(1)
-			src.desc = text("A [name], it is missing some cables")
+			src.desc = "A [name], it is missing some cables."
 		if(2)
-			src.desc = text("A [name], the panel is open")
+			src.desc = "A [name], the panel is open."
 		if(3)
-			src.desc = text("The [name] is assembled")
+			src.desc = "The [name] is assembled."
 			if(powered)
 				src.desc = src.desc_holder
 	..()
@@ -144,11 +144,11 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if(prob(50))
 				qdel(src)
 				return
 		if(3.0)
-			if (prob(25))
+			if(prob(25))
 				qdel(src)
 				return
 		else
@@ -166,15 +166,15 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 
 /obj/structure/particle_accelerator/update_icon()
 	switch(construction_state)
-		if(0,1)
-			icon_state="[reference]"
+		if(0, 1)
+			icon_state = "[reference]"
 		if(2)
-			icon_state="[reference]w"
+			icon_state = "[reference]w"
 		if(3)
 			if(powered)
-				icon_state="[reference]p[strength]"
+				icon_state = "[reference]p[strength]"
 			else
-				icon_state="[reference]c"
+				icon_state = "[reference]c"
 	return
 
 /obj/structure/particle_accelerator/proc/update_state()
@@ -182,8 +182,8 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 		master.update_state()
 		return 0
 
-/obj/structure/particle_accelerator/proc/report_ready(var/obj/O)
-	if(O && (O == master))
+/obj/structure/particle_accelerator/proc/report_ready(obj/O)
+	if(O && O == master)
 		if(construction_state >= 3)
 			return 1
 	return 0
@@ -193,15 +193,15 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 		return master
 	return 0
 
-/obj/structure/particle_accelerator/proc/connect_master(var/obj/O)
-	if(O && istype(O,/obj/machinery/particle_accelerator/control_box))
+/obj/structure/particle_accelerator/proc/connect_master(obj/O)
+	if(O && istype(O, /obj/machinery/particle_accelerator/control_box))
 		if(O.dir == src.dir)
 			master = O
 			return 1
 	return 0
 
-/obj/structure/particle_accelerator/proc/process_tool_hit(var/obj/O, var/mob/user)
-	if(!(O) || !(user))
+/obj/structure/particle_accelerator/proc/process_tool_hit(obj/O, mob/user)
+	if(!O || !user)
 		return 0
 	if(!ismob(user) || !isobj(O))
 		return 0
@@ -213,39 +213,51 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 			if(iswrench(O))
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				src.anchored = 1
-				user.visible_message("[user.name] secures the [src.name] to the floor.", \
-					"You secure the external bolts.")
+				user.visible_message(
+					"[user.name] secures the [src.name] to the floor.",
+					"You secure the external bolts."
+				)
 				temp_state++
 		if(1)
 			if(iswrench(O))
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				src.anchored = 0
-				user.visible_message("[user.name] detaches the [src.name] from the floor.", \
-					"You remove the external bolts.")
+				user.visible_message(
+					"[user.name] detaches the [src.name] from the floor.",
+					"You remove the external bolts."
+				)
 				temp_state--
 
 			if(iscoil(O))
 				var/obj/item/stack/cable_coil/C = O
 				if(C.amount >= 5)
 					playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-					user.visible_message("[user.name] adds wires to the [src.name].", \
-						"You add some wires.")
+					user.visible_message(
+						"[user.name] adds wires to the [src.name].",
+						"You add some wires."
+					)
 					C.use(5)
 					temp_state++
 		if(2)
 			if(iswirecutter(O))//TODO:Shock user if its on?
-				user.visible_message("[user.name] removes some wires from the [src.name].", \
-					"You remove some wires.")
+				user.visible_message(
+					"[user.name] removes some wires from the [src.name].",
+					"You remove some wires."
+				)
 				temp_state--
 
 			if(isscrewdriver(O))
-				user.visible_message("[user.name] closes the [src.name]'s access panel.", \
-					"You close the access panel.")
+				user.visible_message(
+					"[user.name] closes the [src.name]'s access panel.",
+					"You close the access panel."
+				)
 				temp_state++
 		if(3)
 			if(isscrewdriver(O))
-				user.visible_message("[user.name] opens the [src.name]'s access panel.", \
-					"You open the access panel.")
+				user.visible_message(
+					"[user.name] opens the [src.name]'s access panel.",
+					"You open the access panel."
+				)
 				temp_state--
 
 	if(temp_state == src.construction_state)//Nothing changed
@@ -280,8 +292,8 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	set category = "Object"
 	set src in oview(1)
 
-	if(src.anchored || usr:stat)
-		usr << "It is fastened to the floor!"
+	if(src.anchored || usr.stat)
+		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 270))
 	return 1
@@ -291,8 +303,8 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	set category = "Object"
 	set src in oview(1)
 
-	if(src.anchored || usr:stat)
-		usr << "It is fastened to the floor!"
+	if(src.anchored || usr.stat)
+		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 90))
 	return 1
@@ -303,13 +315,13 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 /obj/machinery/particle_accelerator/examine()
 	switch(src.construction_state)
 		if(0)
-			src.desc = text("A [name], looks like it's not attached to the flooring.")
+			src.desc = "A [name], looks like it's not attached to the flooring."
 		if(1)
-			src.desc = text("A [name], it is missing some cables.")
+			src.desc = "A [name], it is missing some cables."
 		if(2)
-			src.desc = text("A [name], the panel is open.")
+			src.desc = "A [name], the panel is open."
 		if(3)
-			src.desc = text("The [name] is assembled.")
+			src.desc = "The [name] is assembled."
 			if(powered)
 				src.desc = src.desc_holder
 	..()
@@ -328,11 +340,11 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if(prob(50))
 				qdel(src)
 				return
 		if(3.0)
-			if (prob(25))
+			if(prob(25))
 				qdel(src)
 				return
 		else
@@ -351,8 +363,8 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 /obj/machinery/particle_accelerator/proc/update_state()
 	return 0
 
-/obj/machinery/particle_accelerator/proc/process_tool_hit(var/obj/O, var/mob/user)
-	if(!(O) || !(user))
+/obj/machinery/particle_accelerator/proc/process_tool_hit(obj/O, mob/user)
+	if(!O || !user)
 		return 0
 	if(!ismob(user) || !isobj(O))
 		return 0
@@ -363,42 +375,54 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 			if(iswrench(O))
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				src.anchored = 1
-				user.visible_message("[user.name] secures the [src.name] to the floor.", \
-					"You secure the external bolts.")
+				user.visible_message(
+					"[user.name] secures the [src.name] to the floor.",
+					"You secure the external bolts."
+				)
 				temp_state++
 		if(1)
 			if(iswrench(O))
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				src.anchored = 0
-				user.visible_message("[user.name] detaches the [src.name] from the floor.", \
-					"You remove the external bolts.")
+				user.visible_message(
+					"[user.name] detaches the [src.name] from the floor.",
+					"You remove the external bolts."
+				)
 				temp_state--
 
 			if(iscoil(O))
 				var/obj/item/stack/cable_coil/C = O
 				if(C.amount >= 5)
 					playsound(src, 'sound/items/Deconstruct.ogg', 75, 1)
-					user.visible_message("[user.name] adds wires to the [src.name].", \
-						"You add some wires.")
+					user.visible_message(
+						"[user.name] adds wires to the [src.name].",
+						"You add some wires."
+					)
 					C.use(5)
 					temp_state++
 		if(2)
 			if(iswirecutter(O))//TODO:Shock user if its on?
 				playsound(src, 'sound/items/Deconstruct.ogg', 75, 1)
-				user.visible_message("[user.name] removes some wires from the [src.name].", \
-					"You remove some wires.")
+				user.visible_message(
+					"[user.name] removes some wires from the [src.name].",
+					"You remove some wires."
+				)
 				temp_state--
 
 			if(isscrewdriver(O))
 				playsound(src, 'sound/items/Screwdriver.ogg', 75, 1)
-				user.visible_message("[user.name] closes the [src.name]'s access panel.", \
-					"You close the access panel.")
+				user.visible_message(
+					"[user.name] closes the [src.name]'s access panel.",
+					"You close the access panel."
+				)
 				temp_state++
 		if(3)
 			if(isscrewdriver(O))
 				playsound(src, 'sound/items/Screwdriver.ogg', 75, 1)
-				user.visible_message("[user.name] opens the [src.name]'s access panel.", \
-					"You open the access panel.")
+				user.visible_message(
+					"[user.name] opens the [src.name]'s access panel.",
+					"You open the access panel."
+				)
 				temp_state--
 				active = 0
 

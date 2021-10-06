@@ -31,7 +31,7 @@
 /obj/machinery/particle_accelerator/control_box/Destroy()
 	if(active)
 		toggle_power()
-	..()
+	return ..()
 
 /obj/machinery/particle_accelerator/control_box/attack_hand(mob/user as mob)
 	if(construction_state >= 3)
@@ -81,12 +81,12 @@
 /obj/machinery/particle_accelerator/control_box/Topic(href, href_list)
 	..()
 	//Ignore input if we are broken, !silicon guy cant touch us, or nonai controlling from super far away
-	if(stat & (BROKEN|NOPOWER) || (get_dist(src, usr) > 1 && !istype(usr, /mob/living/silicon)) || (get_dist(src, usr) > 8 && !istype(usr, /mob/living/silicon/ai)))
+	if(stat & (BROKEN|NOPOWER) || (get_dist(src, usr) > 1 && !issilicon(usr)) || (get_dist(src, usr) > 8 && !isAI(usr)))
 		usr.unset_machine()
 		usr << browse(null, "window=pacontrol")
 		return
 
-	if( href_list["close"] )
+	if(href_list["close"])
 		usr << browse(null, "window=pacontrol")
 		usr.unset_machine()
 		return
@@ -115,7 +115,7 @@
 		part.strength = strength
 		part.update_icon()
 
-/obj/machinery/particle_accelerator/control_box/proc/add_strength(var/s)
+/obj/machinery/particle_accelerator/control_box/proc/add_strength(s)
 	if(assembled)
 		strength++
 		if(strength > strength_upper_limit)
@@ -126,7 +126,7 @@
 			investigate_log("increased to <font color='red'>[strength]</font> by [usr.key]","singulo")
 		strength_change()
 
-/obj/machinery/particle_accelerator/control_box/proc/remove_strength(var/s)
+/obj/machinery/particle_accelerator/control_box/proc/remove_strength(s)
 	if(assembled)
 		strength--
 		if(strength < 0)
@@ -149,7 +149,7 @@
 /obj/machinery/particle_accelerator/control_box/process()
 	if(src.active)
 		//a part is missing!
-		if( length(connected_parts) < 6 )
+		if(length(connected_parts) < 6)
 			investigate_log("lost a connected part; It <font color='red'>powered down</font>.","singulo")
 			src.toggle_power()
 			return
@@ -168,25 +168,25 @@
 	var/rdir = turn(dir,90)
 	var/odir = turn(dir,180)
 	var/turf/T = src.loc
-	T = get_step(T,rdir)
-	if(check_part(T,/obj/structure/particle_accelerator/fuel_chamber))
+	T = get_step(T, rdir)
+	if(check_part(T, /obj/structure/particle_accelerator/fuel_chamber))
 		tally++
-	T = get_step(T,odir)
-	if(check_part(T,/obj/structure/particle_accelerator/end_cap))
+	T = get_step(T, odir)
+	if(check_part(T, /obj/structure/particle_accelerator/end_cap))
 		tally++
-	T = get_step(T,dir)
-	T = get_step(T,dir)
-	if(check_part(T,/obj/structure/particle_accelerator/power_box))
+	T = get_step(T, dir)
+	T = get_step(T, dir)
+	if(check_part(T, /obj/structure/particle_accelerator/power_box))
 		tally++
-	T = get_step(T,dir)
-	if(check_part(T,/obj/structure/particle_accelerator/particle_emitter/center))
+	T = get_step(T, dir)
+	if(check_part(T, /obj/structure/particle_accelerator/particle_emitter/center))
 		tally++
-	T = get_step(T,ldir)
-	if(check_part(T,/obj/structure/particle_accelerator/particle_emitter/left))
+	T = get_step(T, ldir)
+	if(check_part(T, /obj/structure/particle_accelerator/particle_emitter/left))
 		tally++
-	T = get_step(T,rdir)
-	T = get_step(T,rdir)
-	if(check_part(T,/obj/structure/particle_accelerator/particle_emitter/right))
+	T = get_step(T, rdir)
+	T = get_step(T, rdir)
+	if(check_part(T, /obj/structure/particle_accelerator/particle_emitter/right))
 		tally++
 	if(tally >= 6)
 		assembled = 1
@@ -195,8 +195,8 @@
 		assembled = 0
 		return 0
 
-/obj/machinery/particle_accelerator/control_box/proc/check_part(var/turf/T, var/type)
-	if(!(T)||!(type))
+/obj/machinery/particle_accelerator/control_box/proc/check_part(turf/T, type)
+	if(!T || !type)
 		return 0
 	var/obj/structure/particle_accelerator/PA = locate(/obj/structure/particle_accelerator) in T
 	if(istype(PA, type))

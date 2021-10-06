@@ -80,7 +80,7 @@
 
 /obj/machinery/power/supermatter/Destroy()
 	qdel(radio)
-	. = ..()
+	return ..()
 
 /obj/machinery/power/supermatter/proc/explode()
 	explosion(get_turf(src), explosion_power, explosion_power * 2, explosion_power * 3, explosion_power * 4, 1)

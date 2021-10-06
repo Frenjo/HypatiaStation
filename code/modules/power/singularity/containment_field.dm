@@ -20,7 +20,7 @@
 		FG1.cleanup()
 	if(FG2 && !FG2.clean_up)
 		FG2.cleanup()
-	..()
+	return ..()
 
 /obj/machinery/containment_field/attack_hand(mob/user as mob)
 	if(get_dist(src, user) > 1)
@@ -29,10 +29,8 @@
 		shock(user)
 		return 1
 
-
 /obj/machinery/containment_field/blob_act()
 	return 0
-
 
 /obj/machinery/containment_field/ex_act(severity)
 	return 0
@@ -41,15 +39,13 @@
 	return 0
 
 /obj/machinery/containment_field/HasProximity(atom/movable/AM as mob|obj)
-	if(istype(AM,/mob/living/silicon) && prob(40))
+	if(issilicon(AM) && prob(40))
 		shock(AM)
 		return 1
-	if(istype(AM,/mob/living/carbon) && prob(50))
+	if(iscarbon(AM) && prob(50))
 		shock(AM)
 		return 1
 	return 0
-
-
 
 /obj/machinery/containment_field/proc/shock(mob/living/user as mob)
 	if(hasShocked)
@@ -66,9 +62,11 @@
 		var/shock_damage = min(rand(30, 40), rand(30, 40))
 		user.burn_skin(shock_damage)
 		user.updatehealth()
-		user.visible_message("\red [user.name] was shocked by the [src.name]!", \
-			"\red <B>You feel a powerful shock course through your body sending you flying!</B>", \
-			"\red You hear a heavy electrical crack")
+		user.visible_message(
+			SPAN_WARNING("[user.name] was shocked by the [src.name]!"),
+			SPAN_DANGER("You feel a powerful shock course through your body, sending you flying!"),
+			SPAN_WARNING("You hear a heavy electrical crack.")
+		)
 
 		var/stun = min(shock_damage, 15)
 		user.Stun(stun)
@@ -88,11 +86,13 @@
 		s.start()
 
 		hasShocked = 1
-		var/shock_damage = rand(15,30)
-		user.take_overall_damage(0,shock_damage)
-		user.visible_message("\red [user.name] was shocked by the [src.name]!", \
-			"\red <B>Energy pulse detected, system damaged!</B>", \
-			"\red You hear an electrical crack")
+		var/shock_damage = rand(15, 30)
+		user.take_overall_damage(0, shock_damage)
+		user.visible_message(
+			SPAN_WARNING("[user.name] was shocked by the [src.name]!"),
+			SPAN_DANGER("Energy pulse detected, system damaged!"),
+			SPAN_WARNING("You hear an electrical crack.")
+		)
 		if(prob(20))
 			user.Stun(2)
 
@@ -102,7 +102,7 @@
 
 	return
 
-/obj/machinery/containment_field/proc/set_master(var/master1,var/master2)
+/obj/machinery/containment_field/proc/set_master(master1, master2)
 	if(!master1 || !master2)
 		return 0
 	FG1 = master1

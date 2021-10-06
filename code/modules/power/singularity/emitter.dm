@@ -23,6 +23,19 @@
 
 	var/fire_mode = GUN_MODE_BEAM
 
+/obj/machinery/power/emitter/initialize()
+	..()
+	if(state == 2 && anchored)
+		connect_to_network()
+
+/obj/machinery/power/emitter/Destroy()
+	message_admins("Emitter deleted at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
+	log_game("Emitter deleted at ([x],[y],[z])")
+	investigate_log("<font color='red'>deleted</font> at ([x],[y],[z])","singulo")
+	return ..()
+
+/*
+// Pulse fire mode for emitters doesn't actually work yet, I'll re-enable this later. -Frenjo
 /obj/machinery/power/emitter/AltClick(mob/user)
 	if(!src.locked)
 		if(fire_mode == GUN_MODE_BEAM)
@@ -33,28 +46,18 @@
 	else
 		to_chat(user, SPAN_WARNING("The controls are locked!"))
 	return
+*/
 
 /obj/machinery/power/emitter/verb/rotate()
 	set name = "Rotate"
 	set category = "Object"
 	set src in oview(1)
 
-	if(src.anchored || usr:stat)
-		usr << "It is fastened to the floor!"
+	if(src.anchored || usr.stat)
+		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 90))
 	return 1
-
-/obj/machinery/power/emitter/New()
-	..()
-	if(state == 2 && anchored)
-		connect_to_network()
-
-/obj/machinery/power/emitter/Destroy()
-	message_admins("Emitter deleted at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
-	log_game("Emitter deleted at ([x],[y],[z])")
-	investigate_log("<font color='red'>deleted</font> at ([x],[y],[z])","singulo")
-	return ..()
 
 /obj/machinery/power/emitter/update_icon()
 	if(active && powernet && avail((fire_mode == GUN_MODE_BEAM) ? active_power_usage : active_power_usage / 2))
@@ -66,18 +69,18 @@
 	src.add_fingerprint(user)
 	if(state == 2)
 		if(!powernet)
-			user << "The emitter isn't connected to a wire."
+			to_chat(user, "The emitter isn't connected to a wire.")
 			return 1
 		if(!src.locked)
 			if(src.active == 1)
 				src.active = 0
-				user << "You turn off the [src]."
+				to_chat(user, "You turn off the [src].")
 				message_admins("Emitter turned off by [key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 				log_game("Emitter turned off by [user.ckey]([user]) in ([x],[y],[z])")
 				investigate_log("turned <font color='red'>off</font> by [user.key]","singulo")
 			else
 				src.active = 1
-				user << "You turn on the [src]."
+				to_chat(user, "You turn on the [src].")
 				src.shot_number = 0
 				src.fire_delay = 100
 				message_admins("Emitter turned on by [key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
@@ -85,11 +88,10 @@
 				investigate_log("turned <font color='green'>on</font> by [user.key]","singulo")
 			update_icon()
 		else
-			user << "\red The controls are locked!"
+			to_chat(user, SPAN_WARNING("The controls are locked!"))
 	else
-		user << "\red The [src] needs to be firmly secured to the floor first."
+		to_chat(user, SPAN_WARNING("The [src] needs to be firmly secured to the floor first."))
 		return 1
-
 
 /obj/machinery/power/emitter/emp_act(severity)	//Emitters are hardened but still might have issues
 //	add_load(1000)
@@ -166,7 +168,7 @@
 /obj/machinery/power/emitter/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/wrench))
 		if(active)
-			user << "Turn off the [src] first."
+			to_chat(user, "Turn off the [src] first.")
 			return
 		switch(state)
 			if(0)
@@ -188,17 +190,17 @@
 				)
 				src.anchored = 0
 			if(2)
-				user << "\red The [src.name] needs to be unwelded from the floor."
+				to_chat(user, SPAN_WARNING("The [src.name] needs to be unwelded from the floor."))
 		return
 
 	if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		if(active)
-			user << "Turn off the [src] first."
+			to_chat(user, "Turn off the [src] first.")
 			return
 		switch(state)
 			if(0)
-				user << "\red The [src.name] needs to be wrenched to the floor."
+				to_chat(user, SPAN_WARNING("The [src.name] needs to be wrenched to the floor."))
 			if(1)
 				if(WT.remove_fuel(0,user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
@@ -211,10 +213,10 @@
 						if(!src || !WT.isOn())
 							return
 						state = 2
-						user << "You weld the [src] to the floor."
+						to_chat(user, "You weld the [src] to the floor.")
 						connect_to_network()
 				else
-					user << "\red You need more welding fuel to complete this task."
+					to_chat(user, SPAN_WARNING("You need more welding fuel to complete this task."))
 			if(2)
 				if(WT.remove_fuel(0, user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
@@ -227,23 +229,23 @@
 						if(!src || !WT.isOn())
 							return
 						state = 1
-						user << "You cut the [src] free from the floor."
+						to_chat(user, "You cut the [src] free from the floor.")
 						disconnect_from_network()
 				else
-					user << "\red You need more welding fuel to complete this task."
+					to_chat(user, SPAN_WARNING("You need more welding fuel to complete this task."))
 		return
 
 	if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))
 		if(emagged)
-			user << "\red The lock seems to be broken"
+			to_chat(user, SPAN_WARNING("The lock seems to be broken."))
 			return
 		if(src.allowed(user))
 			if(active)
 				src.locked = !src.locked
-				user << "The controls are now [src.locked ? "locked." : "unlocked."]"
+				to_chat(user, "The controls are now [src.locked ? "locked" : "unlocked"].")
 			else
 				src.locked = 0 //just in case it somehow gets locked
-				user << "\red The controls can only be locked when the [src] is online"
+				to_chat(user, SPAN_WARNING("The controls can only be locked when the [src] is online."))
 		else
 			to_chat(user, SPAN_WARNING("Access denied."))
 		return
@@ -251,7 +253,10 @@
 	if(istype(W, /obj/item/weapon/card/emag) && !emagged)
 		locked = 0
 		emagged = 1
-		user.visible_message("[user.name] emags the [src.name].", "\red You short out the lock.")
+		user.visible_message(
+			"[user.name] emags the [src.name].",
+			SPAN_WARNING("You short out the lock.")
+		)
 		return
 
 	..()

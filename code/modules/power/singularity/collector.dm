@@ -22,7 +22,7 @@ var/global/list/rad_collectors = list()
 
 /obj/machinery/power/rad_collector/Destroy()
 	rad_collectors -= src
-	..()
+	return ..()
 
 /obj/machinery/power/rad_collector/process()
 	if(P)
@@ -30,32 +30,34 @@ var/global/list/rad_collectors = list()
 			investigate_log("<font color='red'>out of fuel</font>.","singulo")
 			eject()
 		else
-			P.air_contents.adjust_gas("plasma", -0.001*drainratio)
+			P.air_contents.adjust_gas("plasma", -0.001 * drainratio)
 	return
 
 /obj/machinery/power/rad_collector/attack_hand(mob/user as mob)
 	if(anchored)
 		if(!src.locked)
 			toggle_power()
-			user.visible_message("[user.name] turns the [src.name] [active? "on":"off"].", \
-			"You turn the [src.name] [active? "on":"off"].")
+			user.visible_message(
+				"[user.name] turns the [src.name] [active? "on":"off"].",
+				"You turn the [src.name] [active? "on":"off"]."
+			)
 			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [user.key]. [P?"Fuel: [round(P.air_contents.gas["plasma"]/0.29)]%":"<font color='red'>It is empty</font>"].","singulo")
 			return
 		else
-			user << "\red The controls are locked!"
+			to_chat(user, SPAN_WARNING("The controls are locked!"))
 			return
 	..()
 
 /obj/machinery/power/rad_collector/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/device/analyzer))
-		user << "\blue The [W.name] detects that [last_power]W were recently produced."
+		to_chat(user, SPAN_INFO("The [W.name] detects that [last_power]W were recently produced."))
 		return 1
 	else if(istype(W, /obj/item/weapon/tank/plasma))
 		if(!src.anchored)
-			user << "\red The [src] needs to be secured to the floor first."
+			to_chat(user, SPAN_WARNING("The [src] needs to be secured to the floor first."))
 			return 1
 		if(src.P)
-			user << "\red There's already a plasma tank loaded."
+			to_chat(user, SPAN_WARNING("There's already a plasma tank loaded."))
 			return 1
 		user.drop_item()
 		src.P = W
@@ -67,25 +69,27 @@ var/global/list/rad_collectors = list()
 			return 1
 	else if(istype(W, /obj/item/weapon/wrench))
 		if(P)
-			user << "\blue Remove the plasma tank first."
+			to_chat(user, SPAN_INFO("Remove the plasma tank first."))
 			return 1
 		playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 		src.anchored = !src.anchored
-		user.visible_message("[user.name] [anchored? "secures":"unsecures"] the [src.name].", \
-			"You [anchored? "secure":"undo"] the external bolts.", \
-			"You hear a ratchet")
+		user.visible_message(
+			"[user.name] [anchored ? "secures" : "unsecures"] the [src.name].",
+			"You [anchored ? "secure" : "undo"] the external bolts.",
+			"You hear a ratchet."
+		)
 		if(anchored)
 			connect_to_network()
 		else
 			disconnect_from_network()
 	else if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
-		if (src.allowed(user))
+		if(src.allowed(user))
 			if(active)
 				src.locked = !src.locked
-				user << "The controls are now [src.locked ? "locked." : "unlocked."]"
+				to_chat(user, "The controls are now [src.locked ? "locked" : "unlocked"].")
 			else
 				src.locked = 0 //just in case it somehow gets locked
-				user << "\red The controls can only be locked when the [src] is active"
+				to_chat(user, SPAN_WARNING("The controls can only be locked when the [src] is active."))
 		else
 			to_chat(user, SPAN_WARNING("Access denied."))
 			return 1
@@ -102,7 +106,7 @@ var/global/list/rad_collectors = list()
 /obj/machinery/power/rad_collector/proc/eject()
 	locked = 0
 	var/obj/item/weapon/tank/plasma/Z = src.P
-	if (!Z)
+	if(!Z)
 		return
 	Z.loc = get_turf(src)
 	Z.layer = initial(Z.layer)
@@ -112,10 +116,10 @@ var/global/list/rad_collectors = list()
 	else
 		update_icons()
 
-/obj/machinery/power/rad_collector/proc/receive_pulse(var/pulse_strength)
+/obj/machinery/power/rad_collector/proc/receive_pulse(pulse_strength)
 	if(P && active)
 		var/power_produced = 0
-		power_produced = P.air_contents.gas["plasma"]*pulse_strength*20
+		power_produced = P.air_contents.gas["plasma"] * pulse_strength * 20
 		add_avail(power_produced)
 		last_power = power_produced
 		return

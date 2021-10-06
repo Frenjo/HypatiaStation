@@ -26,7 +26,6 @@
 	movement_range = 15
 	energy = 15
 
-
 /obj/effect/accelerated_particle/New(loc, dir = 2)
 	src.loc = loc
 	src.set_dir(dir)
@@ -36,12 +35,11 @@
 		move(1)
 	return
 
-
 /obj/effect/accelerated_particle/Bump(atom/A)
 	if(A)
 		if(ismob(A))
 			toxmob(A)
-		if((istype(A, /obj/machinery/the_singularitygen)) || (istype(A, /obj/singularity)))
+		if(istype(A, /obj/machinery/the_singularitygen) || istype(A, /obj/singularity))
 			A:energy += energy
 		else if(istype(A, /obj/effect/rust_particle_catcher))
 			var/obj/effect/rust_particle_catcher/collided_catcher = A
@@ -59,17 +57,14 @@
 					qdel (src)
 	return
 
-
 /obj/effect/accelerated_particle/Bumped(atom/A)
 	if(ismob(A))
 		Bump(A)
 	return
 
-
 /obj/effect/accelerated_particle/ex_act(severity)
 	qdel(src)
 	return
-
 
 /obj/effect/accelerated_particle/proc/toxmob(mob/living/M)
 	var/radiation = (energy * 2)
@@ -83,7 +78,6 @@
 	M.updatehealth()
 	//M << "\red You feel odd."
 	return
-
 
 /obj/effect/accelerated_particle/proc/move(lag)
 	if(target)

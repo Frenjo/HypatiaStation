@@ -54,7 +54,7 @@ var/global/list/uneatable = list(
 
 /obj/singularity/Destroy()
 	processing_objects -= src
-	..()
+	return ..()
 
 /obj/singularity/attack_hand(mob/user as mob)
 	consume(user)
@@ -143,7 +143,7 @@ var/global/list/uneatable = list(
 			dissipate_track = 0
 			dissipate_strength = 5
 		if(5)
-			if((check_turfs_in(1, 2)) && (check_turfs_in(2, 2)) && (check_turfs_in(4, 2)) && (check_turfs_in(8, 2)))
+			if(check_turfs_in(1, 2) && check_turfs_in(2, 2) && check_turfs_in(4, 2) && check_turfs_in(8, 2))
 				current_size = 5
 				icon = 'icons/effects/160x160.dmi'
 				icon_state = "singularity_s5"
@@ -155,7 +155,7 @@ var/global/list/uneatable = list(
 				dissipate_track = 0
 				dissipate_strength = 20
 		if(7)
-			if((check_turfs_in(1, 3)) && (check_turfs_in(2, 3)) && (check_turfs_in(4, 3)) && (check_turfs_in(8, 3)))
+			if(check_turfs_in(1, 3) && check_turfs_in(2, 3) && check_turfs_in(4, 3) && check_turfs_in(8, 3))
 				current_size = 7
 				icon = 'icons/effects/224x224.dmi'
 				icon_state = "singularity_s7"
@@ -196,7 +196,7 @@ var/global/list/uneatable = list(
 	if(current_size == allowed_size)
 		investigate_log("<font color='red'>grew to size [current_size]</font>","singulo")
 		return 1
-	else if(current_size < (--temp_allowed_size))
+	else if(current_size < --temp_allowed_size)
 		expand(temp_allowed_size)
 	else
 		return 0
@@ -236,7 +236,7 @@ var/global/list/uneatable = list(
 		if(dist > consume_range && istype(X, /atom/movable))
 			if(is_type_in_list(X, uneatable))
 				continue
-			if(((X) && !X:anchored && !ishuman(X))|| src.current_size >= 9)
+			if((X && !X:anchored && !ishuman(X)) || src.current_size >= 9)
 				step_towards(X, src)
 			else if(ishuman(X))
 				var/mob/living/carbon/human/H = X
@@ -285,12 +285,12 @@ var/global/list/uneatable = list(
 			return//Quits here, the obj should be gone, hell we might be
 
 		// If it eats supermatter... Oh dear. -Frenjo
-		if(istype(A, /obj/machinery/power/supermatter))
-			gain = 10000
-			has_eaten_supermatter_crystal = 1
 		if(istype(A, /obj/machinery/power/supermatter/shard))
-			gain = 5000
+			gain = 10000
 			has_eaten_supermatter_shard = 1
+		else if(istype(A, /obj/machinery/power/supermatter))
+			gain = 5000
+			has_eaten_supermatter_crystal = 1
 
 		if(teleport_del && !istype(A, /obj/machinery)) //Going to see if it does not lag less to tele items over to Z 2
 			var/obj/O = A
@@ -370,20 +370,20 @@ var/global/list/uneatable = list(
 	var/dir2 = 0
 	var/dir3 = 0
 	switch(direction)
-		if(NORTH||SOUTH)
+		if(NORTH || SOUTH)
 			dir2 = 4
 			dir3 = 8
-		if(EAST||WEST)
+		if(EAST || WEST)
 			dir2 = 1
 			dir3 = 2
 	var/turf/T2 = T
 	for(var/j = 1 to steps)
-		T2 = get_step(T2,dir2)
+		T2 = get_step(T2, dir2)
 		if(!isturf(T2))
 			return 0
 		turfs.Add(T2)
 	for(var/k = 1 to steps)
-		T = get_step(T,dir3)
+		T = get_step(T, dir3)
 		if(!isturf(T))
 			return 0
 		turfs.Add(T)
@@ -394,11 +394,10 @@ var/global/list/uneatable = list(
 			return 0
 	return 1
 
-
-/obj/singularity/proc/can_move(var/turf/T)
+/obj/singularity/proc/can_move(turf/T)
 	if(!T)
 		return 0
-	if((locate(/obj/machinery/containment_field) in T)||(locate(/obj/machinery/shieldwall) in T))
+	if((locate(/obj/machinery/containment_field) in T) || (locate(/obj/machinery/shieldwall) in T))
 		return 0
 	else if(locate(/obj/machinery/field_generator) in T)
 		var/obj/machinery/field_generator/G = locate(/obj/machinery/field_generator) in T
@@ -409,7 +408,6 @@ var/global/list/uneatable = list(
 		if(S && S.active)
 			return 0
 	return 1
-
 
 /obj/singularity/proc/event()
 	var/numb = pick(1, 2, 3, 4, 5, 6)
@@ -423,7 +421,6 @@ var/global/list/uneatable = list(
 		else
 			return 0
 	return 1
-
 
 /obj/singularity/proc/toxmob()
 	var/toxrange = 10
@@ -440,7 +437,6 @@ var/global/list/uneatable = list(
 		M.apply_effect(toxdamage, TOX)
 	return
 
-
 /obj/singularity/proc/mezzer()
 	for(var/mob/living/carbon/M in oviewers(8, src))
 		if(isbrain(M)) //Ignore brains
@@ -455,14 +451,12 @@ var/global/list/uneatable = list(
 		to_chat(M, SPAN_WARNING("You look directly into The [src.name] and feel weak."))
 		M.apply_effect(3, STUN)
 		for(var/mob/O in viewers(M, null))
-			O.show_message(SPAN_DANGER("\red <B>[M] stares blankly at the [src]!</B>"), 1)
+			O.show_message(SPAN_DANGER("[M] stares blankly at the [src]!"), 1)
 	return
-
 
 /obj/singularity/proc/emp_area()
 	empulse(src, 8, 10)
 	return
-
 
 /obj/singularity/proc/pulse()
 	for(var/obj/machinery/power/rad_collector/R in rad_collectors)
