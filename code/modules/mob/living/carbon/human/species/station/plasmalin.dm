@@ -41,6 +41,7 @@
 		var/datum/gas_mixture/environment = H.loc.return_air()
 		if(environment.total_moles > 0)
 			// TODO: Make this loop through all gases checking for an XGM_GAS_OXIDIZER flag.
+			// Potentially won't actually do this because it's more authentic to /tg/ like this. -Frenjo
 			if(environment.gas["oxygen"] >= 1)
 				H.adjust_fire_stacks(1)
 				if(!H.on_fire && H.fire_stacks > 0)
@@ -50,7 +51,7 @@
 					)
 				H.IgniteMob()
 	else if(H.fire_stacks)
-		var/obj/item/clothing/under/plasmalin/P = H.w_uniform
 		if(istype(H.w_uniform, /obj/item/clothing/under/plasmalin))
+			var/obj/item/clothing/under/plasmalin/P = H.w_uniform
 			P.Extinguish(H)
 	H.update_fire()

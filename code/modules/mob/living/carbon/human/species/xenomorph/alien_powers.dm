@@ -21,20 +21,20 @@
 /mob/living/carbon/human/proc/check_alien_ability(cost, needs_foundation, needs_organ)
 	var/datum/organ/internal/xenos/plasmavessel/P = internal_organs_by_name["plasma vessel"]
 	if(!istype(P))
-		src << "<span class='danger'>Your plasma vessel has been removed!</span>"
+		to_chat(src, SPAN_DANGER("Your plasma vessel has been removed!"))
 		return
 
 	if(needs_organ)
 		var/datum/organ/internal/I = internal_organs_by_name[needs_organ]
 		if(!I)
-			src << "<span class='danger'>Your [needs_organ] has been removed!</span>"
+			to_chat(src, SPAN_DANGER("Your [needs_organ] has been removed!"))
 			return
 		else if(I.is_broken())
-			src << "<span class='danger'>Your [needs_organ] is too damaged to function!</span>"
+			to_chat(src, SPAN_DANGER("Your [needs_organ] is too damaged to function!"))
 			return
 
 	if(P.stored_plasma < cost)
-		src << "\red You don't have enough plasma stored to do that."
+		to_chat(src, SPAN_WARNING("You don't have enough plasma stored to do that."))
 		return 0
 
 	if(needs_foundation)
@@ -42,10 +42,10 @@
 		var/has_foundation
 		if(T)
 			//TODO: Work out the actual conditions this needs.
-			if(!(istype(T,/turf/space)))
+			if(!istype(T, /turf/space))
 				has_foundation = 1
 		if(!has_foundation)
-			src << "\red You need a solid foundation to do that on."
+			to_chat(src, SPAN_WARNING("You need a solid foundation to do that on."))
 			return 0
 
 	P.stored_plasma -= cost
@@ -82,12 +82,12 @@
 	set category = "Abilities"
 
 	if(!aliens_allowed)
-		src << "You begin to lay an egg, but hesitate. You suspect it isn't allowed."
+		to_chat(src, "You begin to lay an egg, but hesitate. You suspect it isn't allowed.")
 		verbs -= /mob/living/carbon/human/proc/lay_egg
 		return
 
 	if(locate(/obj/effect/alien/egg) in get_turf(src))
-		src << "There's already an egg here."
+		to_chat(src, "There's already an egg here.")
 		return
 
 	if(check_alien_ability(75, 1, "egg sac"))

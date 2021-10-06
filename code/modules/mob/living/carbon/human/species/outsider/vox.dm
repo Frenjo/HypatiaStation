@@ -3,7 +3,10 @@
 	icobase = 'icons/mob/human_races/r_vox.dmi'
 	deform = 'icons/mob/human_races/r_def_vox.dmi'
 	language = "Vox-Pidgin"
-	unarmed_types = list(/datum/unarmed_attack/claws/strong, /datum/unarmed_attack/bite/strong)
+	unarmed_types = list(
+		/datum/unarmed_attack/claws/strong,
+		/datum/unarmed_attack/bite/strong
+	)
 
 	warning_low_pressure = 50
 	hazard_low_pressure = 0
@@ -28,12 +31,12 @@
 	)
 
 	has_organ = list(
-		"heart" =		/datum/organ/internal/heart,
-		"lungs" =		/datum/organ/internal/lungs,
-		"liver" =		/datum/organ/internal/liver,
-		"kidneys" =		/datum/organ/internal/kidney,
-		"brain" =		/datum/organ/internal/brain,
-		"eyes" =		/datum/organ/internal/eyes
+		"heart" =	/datum/organ/internal/heart,
+		"lungs" =	/datum/organ/internal/lungs,
+		"liver" =	/datum/organ/internal/liver,
+		"kidneys" =	/datum/organ/internal/kidney,
+		"brain" =	/datum/organ/internal/brain,
+		"eyes" =	/datum/organ/internal/eyes
 	)
 
 /datum/species/vox/armalis
@@ -41,7 +44,10 @@
 	icobase = 'icons/mob/human_races/r_armalis.dmi'
 	deform = 'icons/mob/human_races/r_armalis.dmi'
 	language = "Vox-pidgin"
-	unarmed_types = list(/datum/unarmed_attack/claws/strong, /datum/unarmed_attack/bite/strong)
+	unarmed_types = list(
+		/datum/unarmed_attack/claws/strong,
+		/datum/unarmed_attack/bite/strong
+	)
 
 	warning_low_pressure = 50
 	hazard_low_pressure = 0
@@ -86,7 +92,7 @@
 	affected.implants += I
 	I.part = affected
 
-	if(ticker.mode && (istype(ticker.mode, /datum/game_mode/heist)))
+	if(ticker.mode && istype(ticker.mode, /datum/game_mode/heist))
 		var/datum/game_mode/heist/M = ticker.mode
 		M.cortical_stacks += I
 		M.raiders[H.mind] = I
