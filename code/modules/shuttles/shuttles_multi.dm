@@ -129,7 +129,6 @@
 			MS.last_departed = MS.origin
 			MS.at_origin = 0
 
-
 			MS.long_jump(MS.last_departed, MS.destinations[choice], MS.interim, MS.move_time)
 			MS.last_departed = MS.destinations[choice]
 			return

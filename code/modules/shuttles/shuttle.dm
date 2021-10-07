@@ -45,7 +45,7 @@
 		moving_status = SHUTTLE_INTRANSIT
 		move(departing, interim, direction)
 
-		for(var/mob/M in destination)
+		for(var/mob/M in interim)
 			if(M.hud_used)
 				M.hud_used.toggle_parallax_space()
 

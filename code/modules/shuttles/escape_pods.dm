@@ -31,8 +31,8 @@
 	data = list(
 		"docking_status" = docking_program.get_docking_status(),
 		"override_enabled" = docking_program.override_enabled,
-		"door_state" = 	docking_program.memory["door_status"]["state"],
-		"door_lock" = 	docking_program.memory["door_status"]["lock"],
+		"door_state" = docking_program.memory["door_status"]["state"],
+		"door_lock" = docking_program.memory["door_status"]["lock"],
 		"can_force" = pod.can_force() || (emergency_shuttle.departed && pod.can_launch()),	//allow players to manually launch ahead of time if the shuttle leaves
 		"is_armed" = pod.arming_controller.armed,
 	)

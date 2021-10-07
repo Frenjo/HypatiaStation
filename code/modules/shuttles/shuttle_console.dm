@@ -8,8 +8,8 @@
 	icon_state = "shuttle"
 	circuit = null
 
-	var/shuttle_tag  // Used to coordinate data in shuttle controller.
-	var/hacked = 0   // Has been emagged, no access restrictions.
+	var/shuttle_tag	// Used to coordinate data in shuttle controller.
+	var/hacked = 0	// Has been emagged, no access restrictions.
 
 /obj/machinery/computer/shuttle_control/attack_hand(user as mob)
 	if(..(user))
