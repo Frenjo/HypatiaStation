@@ -23,4 +23,4 @@
 
 /datum/controller/process/obj/statProcess()
 	..()
-	stat(null, "[processing_objects.len] objects")
+	stat(null, "[processing_objects.len] object\s")

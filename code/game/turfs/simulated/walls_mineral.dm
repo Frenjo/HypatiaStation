@@ -44,6 +44,7 @@
 	walltype = "sandstone"
 	mineral = MATERIAL_SANDSTONE
 
+
 /turf/simulated/wall/mineral/uranium
 	name = "uranium wall"
 	desc = "A wall with uranium plating. This is probably a bad idea."
@@ -51,30 +52,38 @@
 	walltype = "uranium"
 	mineral = MATERIAL_URANIUM
 
-/turf/simulated/wall/mineral/uranium/proc/radiate()
-	if(!active)
+// Mostly replaced but kept for posterity reasons.
+// Replaced by /turf/proc/process() and /turf/simulated/wall/proc/radiate().
+// Instead of only being triggered on bump, this now also happens every 3 seconds. -Frenjo
+/turf/simulated/wall/mineral/uranium/radiate(bumped)
+	if(bumped && !active)
 		if(world.time > last_event + 15)
 			active = 1
-			for(var/mob/living/L in range(3, src))
-				L.apply_effect(12, IRRADIATE, 0)
+			..()
 			for(var/turf/simulated/wall/mineral/uranium/T in range(3, src))
-				T.radiate()
+				T.radiate(bumped)
 			last_event = world.time
 			active = null
 			return
-	return
+		return
+	else
+		active = 1
+		..()
+		active = null
+		return
 
 /turf/simulated/wall/mineral/uranium/attack_hand(mob/user as mob)
-	radiate()
+	radiate(1)
 	..()
 
 /turf/simulated/wall/mineral/uranium/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	radiate()
+	radiate(1)
 	..()
 
 /turf/simulated/wall/mineral/uranium/Bumped(AM as mob|obj)
-	radiate()
+	radiate(1)
 	..()
+
 
 /turf/simulated/wall/mineral/plasma
 	name = "plasma wall"

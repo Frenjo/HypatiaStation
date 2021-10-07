@@ -26,7 +26,28 @@
 	for(var/obj/effect/E in src)
 		if(E.name == "Wallrot")
 			qdel(E)
-	..()
+	return ..()
+
+/turf/simulated/wall/process()
+	if(mineral == MATERIAL_URANIUM)
+		radiate()
+
+/turf/simulated/wall/proc/radiate(bumped)
+	for(var/mob/living/L in range(3, src))
+		L.apply_effect(12, IRRADIATE, 0)
+	/*
+	if(!active)
+		if(world.time > last_event + 15)
+			active = 1
+			for(var/mob/living/L in range(3, src))
+				L.apply_effect(12, IRRADIATE, 0)
+			for(var/turf/simulated/wall/mineral/uranium/T in range(3, src))
+				T.radiate()
+			last_event = world.time
+			active = null
+			return
+	return
+	*/
 
 /turf/simulated/wall/ChangeTurf(newtype)
 	for(var/obj/effect/E in src)

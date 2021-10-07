@@ -24,6 +24,7 @@
 
 /turf/New()
 	..()
+	processing_turfs.Add(src)
 	for(var/atom/movable/AM as mob|obj in src)
 		spawn(0)
 			src.Entered(AM)
@@ -32,6 +33,13 @@
 		luminosity = 0
 	else
 		luminosity = 1
+
+/turf/Destroy()
+	processing_turfs.Remove(src)
+	return ..()
+
+/turf/proc/process()
+	return PROCESS_KILL
 
 /turf/ex_act(severity)
 	return 0
@@ -400,6 +408,3 @@
 			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
 				L.Add(t)
 	return L
-
-/turf/proc/process()
-	return PROCESS_KILL

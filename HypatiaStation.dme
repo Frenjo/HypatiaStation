@@ -125,6 +125,7 @@
 #include "code\controllers\Processes\sun.dm"
 #include "code\controllers\Processes\supply.dm"
 #include "code\controllers\Processes\ticker.dm"
+#include "code\controllers\Processes\turf.dm"
 #include "code\controllers\Processes\vote.dm"
 #include "code\controllers\ProcessScheduler\core\process.dm"
 #include "code\controllers\ProcessScheduler\core\processScheduler.dm"
