@@ -379,7 +379,7 @@ var/global/list/light_type_cache = list()
 			broken()
 
 		else
-			user << "You hit the light!"
+			to_chat(user, "You hit the light!")
 
 	// attempt to stick weapon into light socket
 	else if(status == LIGHT_EMPTY)
@@ -394,7 +394,7 @@ var/global/list/light_type_cache = list()
 			qdel(src)
 			return
 
-		user << "You stick \the [W] into the light socket!"
+		to_chat(user, "You stick \the [W] into the light socket!")
 		if(powered() && (W.flags & CONDUCT))
 			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 			s.set_up(3, 1, src)
@@ -453,7 +453,7 @@ var/global/list/light_type_cache = list()
 	add_fingerprint(user)
 
 	if(status == LIGHT_EMPTY)
-		user << "There is no [get_fitting_name()] in this light."
+		to_chat(user, "There is no [get_fitting_name()] in this light.")
 		return
 
 	// make it burn hands if not wearing fire-insulated gloves
@@ -597,7 +597,7 @@ var/global/list/light_type_cache = list()
 	g_amt = 100
 
 	brightness_range = 6
-	brightness_power = 3
+	brightness_power = 2
 	brightness_color = "#FFFFFF"
 	lighting_modes = list(
 		"emergency_lighting" = list(l_range = 3, l_power = 1, l_color = "#d13e43"), 
@@ -609,7 +609,7 @@ var/global/list/light_type_cache = list()
 	broken_chance = 5
 
 	brightness_range = 8
-	brightness_power = 3
+	brightness_power = 2
 
 /obj/item/weapon/light/bulb
 	name = "light bulb"
@@ -646,7 +646,6 @@ var/global/list/light_type_cache = list()
 	shatter()
 
 // update the icon state and description of the light
-
 /obj/item/weapon/light/update_icon()
 	switch(status)
 		if(LIGHT_OK)
@@ -658,7 +657,6 @@ var/global/list/light_type_cache = list()
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
 			desc = "A broken [name]."
-
 
 /obj/item/weapon/light/New(atom/newloc, obj/machinery/light/fixture = null)
 	..()
@@ -674,7 +672,6 @@ var/global/list/light_type_cache = list()
 		brightness_color = fixture.brightness_color
 		lighting_modes = fixture.lighting_modes.Copy()
 	update_icon()
-
 
 // attack bulb/tube with object
 // if a syringe, can inject plasma to make it explode

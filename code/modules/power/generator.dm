@@ -15,11 +15,14 @@
 	var/lastgen = 0
 	var/lastgenlev = -1
 
-/obj/machinery/power/generator/New()
+/obj/machinery/power/generator/initialize()
 	..()
+	reconnect()
 
-	spawn(1)
-		reconnect()
+/obj/machinery/power/generator/Destroy()
+	circ1 = null
+	circ2 = null
+	return ..()
 
 //generators connect in dir and reverse_dir(dir) directions
 //mnemonic to determine circulator/generator directions: the cirulators orbit clockwise around the generator
@@ -31,8 +34,8 @@
 	circ2 = null
 	if(src.loc && anchored)
 		if(src.dir & (EAST|WEST))
-			circ1 = locate(/obj/machinery/atmospherics/binary/circulator) in get_step(src,EAST)
-			circ2 = locate(/obj/machinery/atmospherics/binary/circulator) in get_step(src,WEST)
+			circ1 = locate(/obj/machinery/atmospherics/binary/circulator) in get_step(src, EAST)
+			circ2 = locate(/obj/machinery/atmospherics/binary/circulator) in get_step(src, WEST)
 
 			if(circ1 && circ2)
 				if(circ1.dir != SOUTH || circ2.dir != NORTH)
@@ -40,8 +43,8 @@
 					circ2 = null
 
 		else if(src.dir & (NORTH|SOUTH))
-			circ1 = locate(/obj/machinery/atmospherics/binary/circulator) in get_step(src,NORTH)
-			circ2 = locate(/obj/machinery/atmospherics/binary/circulator) in get_step(src,SOUTH)
+			circ1 = locate(/obj/machinery/atmospherics/binary/circulator) in get_step(src, NORTH)
+			circ2 = locate(/obj/machinery/atmospherics/binary/circulator) in get_step(src, SOUTH)
 
 			if(circ1 && circ2 && (circ1.dir != EAST || circ2.dir != WEST))
 				circ1 = null
@@ -76,9 +79,9 @@
 
 		if(delta_temperature > 0 && air1_heat_capacity > 0 && air2_heat_capacity > 0)
 			var/efficiency = 0.65
-			var/energy_transfer = delta_temperature*air2_heat_capacity*air1_heat_capacity/(air2_heat_capacity+air1_heat_capacity)
-			var/heat = energy_transfer*(1-efficiency)
-			lastgen = energy_transfer*efficiency*0.05
+			var/energy_transfer = delta_temperature * air2_heat_capacity * air1_heat_capacity / (air2_heat_capacity + air1_heat_capacity)
+			var/heat = energy_transfer * (1 - efficiency)
+			lastgen = energy_transfer * efficiency * 0.05
 
 			if(air2.temperature > air1.temperature)
 				air2.temperature = air2.temperature - energy_transfer/air2_heat_capacity
@@ -114,13 +117,14 @@
 	add_avail(lastgen)
 
 /obj/machinery/power/generator/attack_ai(mob/user)
-	if(stat & (BROKEN|NOPOWER)) return
+	if(stat & (BROKEN|NOPOWER))
+		return
 	interact(user)
 
 /obj/machinery/power/generator/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
 		anchored = !anchored
-		user << "\blue You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."
+		to_chat(user, SPAN_INFO("You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."))
 
 		use_power = anchored
 		if(anchored) // Powernet connection stuff.
@@ -133,12 +137,12 @@
 
 /obj/machinery/power/generator/attack_hand(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN|NOPOWER) || !anchored) return
+	if(stat & (BROKEN|NOPOWER) || !anchored)
+		return
 	interact(user)
 
-
 /obj/machinery/power/generator/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) && (!istype(user, /mob/living/silicon/ai)))
+	if(get_dist(src, user) > 1 && !isAI(user))
 		user.unset_machine()
 		user << browse(null, "window=teg")
 		return
@@ -174,10 +178,9 @@
 	onclose(user, "teg")
 	return 1
 
-
 /obj/machinery/power/generator/Topic(href, href_list)
 	..()
-	if( href_list["close"] )
+	if(href_list["close"])
 		usr << browse(null, "window=teg")
 		usr.unset_machine()
 		return 0
@@ -185,18 +188,16 @@
 	updateDialog()
 	return 1
 
-
 /obj/machinery/power/generator/power_change()
 	..()
 	updateicon()
-
 
 /obj/machinery/power/generator/verb/rotate_clock()
 	set category = "Object"
 	set name = "Rotate Generator (Clockwise)"
 	set src in view(1)
 
-	if(usr.stat || usr.restrained()  || anchored)
+	if(usr.stat || usr.restrained() || anchored)
 		return
 
 	src.set_dir(turn(src.dir, 90))
@@ -206,7 +207,7 @@
 	set name = "Rotate Generator (Counterclockwise)"
 	set src in view(1)
 
-	if(usr.stat || usr.restrained()  || anchored)
+	if(usr.stat || usr.restrained() || anchored)
 		return
 
 	src.set_dir(turn(src.dir, -90))

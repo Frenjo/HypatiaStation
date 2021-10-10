@@ -9,62 +9,23 @@
 	density = 1
 	var/obj/machinery/gravity_generator = null
 
-
-/obj/machinery/gravity_generator
-	name = "Gravitational Generator"
-	desc = "A device which produces a gravaton field when set up."
-	icon = 'icons/obj/singularity.dmi'
-	icon_state = "TheSingGen"
-	anchored = 1
-	density = 1
-	use_power = 1
-	idle_power_usage = 200
-	active_power_usage = 1000
-	var/on = 1
-	var/list/localareas = list()
-	var/effectiverange = 25
-
-	// Borrows code from cloning computer
-/obj/machinery/computer/gravity_control_computer/New()
+// Borrows code from cloning computer
+/obj/machinery/computer/gravity_control_computer/initialize()
 	..()
-	spawn(5)
-		updatemodules()
-		return
-	return
-
-/obj/machinery/gravity_generator/New()
-	..()
-	spawn(5)
-		locatelocalareas()
-		return
-	return
-
-
+	updatemodules()
 
 /obj/machinery/computer/gravity_control_computer/proc/updatemodules()
 	src.gravity_generator = findgenerator()
 
-
-
-/obj/machinery/gravity_generator/proc/locatelocalareas()
-	for(var/area/A in range(src,effectiverange))
-		if(istype(A, /area/space))
-			continue // No (de)gravitizing space.
-		//if(A.master && !( A.master in localareas) )
-		//	localareas += A.master
-		if(!(A in localareas))
-			localareas += A
-
 /obj/machinery/computer/gravity_control_computer/proc/findgenerator()
 	var/obj/machinery/gravity_generator/foundgenerator = null
-	for(dir in list(NORTH,EAST,SOUTH,WEST))
+	for(dir in list(NORTH, EAST, SOUTH, WEST))
 		//world << "SEARCHING IN [dir]"
-		foundgenerator = locate(/obj/machinery/gravity_generator/, get_step(src, dir))
-		if (!isnull(foundgenerator))
+		foundgenerator = locate(/obj/machinery/gravity_generator, get_step(src, dir))
+		if(!isnull(foundgenerator))
 			//world << "FOUND"
 			break
 	return foundgenerator
-
 
 /obj/machinery/computer/gravity_control_computer/attack_paw(mob/user as mob)
 	return attack_hand(user)
@@ -113,13 +74,12 @@
 	user << browse(dat, "window=gravgen")
 	onclose(user, "gravgen")
 
-
 /obj/machinery/computer/gravity_control_computer/Topic(href, href_list)
 	set background = 1
 	..()
 
-	if ( (get_dist(src, usr) > 1 ))
-		if (!istype(usr, /mob/living/silicon))
+	if(get_dist(src, usr) > 1)
+		if(!issilicon(usr))
 			usr.unset_machine()
 			usr << browse(null, "window=air_alarm")
 			return
@@ -131,17 +91,41 @@
 			for(var/area/A in gravity_generator:localareas)
 				var/obj/machinery/gravity_generator/G
 				for(G in machines)
-					//if((A.master in G.localareas) && (G.on))
-					if((A in G.localareas) && (G.on))
+					if((A in G.localareas) && G.on)
 						break
 				if(!G)
 					A.gravitychange(0,A)
 
-
 		else
 			for(var/area/A in gravity_generator:localareas)
 				gravity_generator:on = 1
-				A.gravitychange(1,A)
+				A.gravitychange(1, A)
 
 		src.updateUsrDialog()
 		return
+
+
+/obj/machinery/gravity_generator
+	name = "Gravitational Generator"
+	desc = "A device which produces a graviton field when set up."
+	icon = 'icons/obj/singularity.dmi'
+	icon_state = "TheSingGen"
+	anchored = 1
+	density = 1
+	use_power = 1
+	idle_power_usage = 200
+	active_power_usage = 1000
+	var/on = 1
+	var/list/localareas = list()
+	var/effectiverange = 25
+
+/obj/machinery/gravity_generator/initialize()
+	..()
+	locatelocalareas()
+
+/obj/machinery/gravity_generator/proc/locatelocalareas()
+	for(var/area/A in range(src, effectiverange))
+		if(istype(A, /area/space))
+			continue // No (de)gravitizing space.
+		if(!(A in localareas))
+			localareas += A

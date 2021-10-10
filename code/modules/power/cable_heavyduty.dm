@@ -10,19 +10,18 @@
 	layer = 2.39 //Just below pipes, which are at 2.4
 
 /obj/structure/cable/heavyduty/attackby(obj/item/W, mob/user)
-
 	var/turf/T = src.loc
 	if(T.intact)
 		return
 
 	if(istype(W, /obj/item/weapon/wirecutters))
-		usr << "\blue These cables are too tough to be cut with those [W.name]."
+		to_chat(usr, SPAN_INFO("These cables are too tough to be cut with those [W.name]."))
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))
-		usr << "\blue You will need heavier cables to connect to these."
+		to_chat(usr, SPAN_INFO("You will need heavier cables to connect to these."))
 		return
 	else
 		..()
 
-/obj/structure/cable/heavyduty/cableColor(var/colorC)
+/obj/structure/cable/heavyduty/cableColor(colorC)
 	return

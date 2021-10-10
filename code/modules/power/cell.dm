@@ -15,37 +15,40 @@
 
 	if(charge < 0.01)
 		return
-	else if(charge/maxcharge >=0.995)
+	else if(charge / maxcharge >= 0.995)
 		overlays += image('icons/obj/power.dmi', "cell-o2")
 	else
 		overlays += image('icons/obj/power.dmi', "cell-o1")
 
 /obj/item/weapon/cell/proc/percent()		// return % charge of cell
-	return 100.0*charge/maxcharge
+	return 100.0 * charge / maxcharge
 
 /obj/item/weapon/cell/proc/fully_charged()
 	return (charge == maxcharge)
 
 // use power from a cell
-/obj/item/weapon/cell/proc/use(var/amount)
+/obj/item/weapon/cell/proc/use(amount)
 	if(rigged && amount > 0)
 		explode()
 		return 0
 
-	if(charge < amount)	return 0
+	if(charge < amount)
+		return 0
 	charge = (charge - amount)
 	return 1
 
 // recharge the cell
-/obj/item/weapon/cell/proc/give(var/amount)
+/obj/item/weapon/cell/proc/give(amount)
 	if(rigged && amount > 0)
 		explode()
 		return 0
 
-	if(maxcharge < amount)	return 0
+	if(maxcharge < amount)
+		return 0
 	//var/power_used = min(maxcharge-charge,amount)
-	var/amount_used = min(maxcharge-charge,amount)
-	if(crit_fail)	return 0
+	var/amount_used = min(maxcharge - charge, amount)
+	if(crit_fail)
+		return 0
 	if(!prob(reliability))
 		minor_fault++
 		if(prob(minor_fault))
@@ -61,11 +64,14 @@
 	set src in view(1)
 	if(usr /*&& !usr.stat*/)
 		if(maxcharge <= 2500)
-			usr << "[desc]\nThe manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%."
+			to_chat(usr, desc)
+			to_chat(usr, "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.")
+			to_chat(usr, "The charge meter reads [round(src.percent())]%.")
 		else
-			usr << "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%."
+			to_chat(usr, "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!")
+			to_chat(usr, "The charge meter reads [round(src.percent())]%.")
 	if(crit_fail)
-		usr << "\red This power cell seems to be faulty."
+		to_chat(usr, SPAN_WARNING("This power cell seems to be faulty."))
 
 /obj/item/weapon/cell/attack_self(mob/user as mob)
 	src.add_fingerprint(user)
@@ -82,9 +88,7 @@
 	..()
 	if(istype(W, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = W
-
-		user << "You inject the solution into the power cell."
-
+		to_chat(user, "You inject the solution into the power cell.")
 		if(S.reagents.has_reagent("plasma", 5))
 			rigged = 1
 
@@ -92,7 +96,6 @@
 			message_admins("LOG: [user.name] ([user.ckey]) injected a power cell with plasma, rigging it to explode.")
 
 		S.reagents.clear_reagents()
-
 
 /obj/item/weapon/cell/proc/explode()
 	var/turf/T = get_turf(src.loc)
@@ -105,8 +108,8 @@
 	if(charge == 0)
 		return
 	var/devastation_range = -1 //round(charge/11000)
-	var/heavy_impact_range = round(sqrt(charge)/60)
-	var/light_impact_range = round(sqrt(charge)/30)
+	var/heavy_impact_range = round(sqrt(charge) / 60)
+	var/light_impact_range = round(sqrt(charge) / 30)
 	var/flash_range = light_impact_range
 	if(light_impact_range == 0)
 		rigged = 0
@@ -132,27 +135,26 @@
 	charge -= 1000 / severity
 	if(charge < 0)
 		charge = 0
-	if(reliability != 100 && prob(50/severity))
+	if(reliability != 100 && prob(50 / severity))
 		reliability -= 10 / severity
 	..()
 
 /obj/item/weapon/cell/ex_act(severity)
-
 	switch(severity)
 		if(1.0)
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if(prob(50))
 				qdel(src)
 				return
-			if (prob(50))
+			if(prob(50))
 				corrupt()
 		if(3.0)
-			if (prob(25))
+			if(prob(25))
 				qdel(src)
 				return
-			if (prob(25))
+			if(prob(25))
 				corrupt()
 	return
 
@@ -176,15 +178,15 @@
 			return min(rand(20,80),rand(20,80))
 		if (100 to 250-1)
 			return min(rand(20,65),rand(20,65))*/
-		if (1000000 to INFINITY)
-			return min(rand(50,160),rand(50,160))
-		if (200000 to 1000000-1)
-			return min(rand(25,80),rand(25,80))
-		if (100000 to 200000-1)//Ave powernet
-			return min(rand(20,60),rand(20,60))
-		if (50000 to 100000-1)
-			return min(rand(15,40),rand(15,40))
-		if (1000 to 50000-1)
-			return min(rand(10,20),rand(10,20))
+		if(1000000 to INFINITY)
+			return min(rand(50, 160), rand(50, 160))
+		if(200000 to 1000000 - 1)
+			return min(rand(25, 80), rand(25, 80))
+		if(100000 to 200000 - 1)//Ave powernet
+			return min(rand(20, 60), rand(20, 60))
+		if(50000 to 100000 - 1)
+			return min(rand(15, 40), rand(15, 40))
+		if(1000 to 50000 - 1)
+			return min(rand(10, 20), rand(10, 20))
 		else
 			return 0

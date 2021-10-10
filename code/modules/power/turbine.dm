@@ -15,41 +15,17 @@
 	var/capacity = 1e6
 	var/comp_id = 0
 
-/obj/machinery/power/turbine/turbine
-	name = "gas turbine generator"
-	desc = "A gas turbine used for backup power generation."
-	icon = 'icons/obj/pipes.dmi'
-	icon_state = "turbine"
-	anchored = 1
-	density = 1
-	var/obj/machinery/power/turbine/compressor/compressor
-	var/turf/simulated/outturf
-	var/lastgen = 0
-
-/obj/machinery/computer/turbine_computer
-	name = "Gas turbine control computer"
-	desc = "A computer to remotely control a gas turbine"
-	icon = 'icons/obj/computer.dmi'
-	icon_state = "airtunnel0e"
-	circuit = /obj/item/weapon/circuitboard/turbine_control
-	anchored = 1
-	density = 1
-	var/obj/machinery/power/turbine/compressor/compressor
-	var/list/obj/machinery/door/poddoor/doors
-	var/id = 0
-	var/door_status = 0
-
 // the inlet stage of the gas turbine electricity generator
 /obj/machinery/power/turbine/compressor/New()
 	..()
-
 	gas_contained = new
 	inturf = get_step(src, dir)
 
-	spawn(5)
-		turbine = locate() in get_step(src, get_dir(inturf, src))
-		if(!turbine)
-			stat |= BROKEN
+/obj/machinery/power/turbine/compressor/initialize()
+	..()
+	turbine = locate() in get_step(src, get_dir(inturf, src))
+	if(!turbine)
+		stat |= BROKEN
 
 #define COMPFRICTION 5e5
 #define COMPSTARTERLOAD 2800
@@ -70,7 +46,7 @@
 	var/datum/gas_mixture/removed = inturf.remove_air(transfer_moles)
 	gas_contained.merge(removed)
 
-	rpm = max(0, rpm - (rpm*rpm)/COMPFRICTION)
+	rpm = max(0, rpm - (rpm * rpm) / COMPFRICTION)
 
 	if(starter && !(stat & NOPOWER))
 		use_power(2800)
@@ -90,15 +66,28 @@
 		overlays += image('icons/obj/pipes.dmi', "comp-o1", FLY_LAYER)
 	 //TODO: DEFERRED
 
+
+/obj/machinery/power/turbine/turbine
+	name = "gas turbine generator"
+	desc = "A gas turbine used for backup power generation."
+	icon = 'icons/obj/pipes.dmi'
+	icon_state = "turbine"
+	anchored = 1
+	density = 1
+	var/obj/machinery/power/turbine/compressor/compressor
+	var/turf/simulated/outturf
+	var/lastgen = 0
+
 /obj/machinery/power/turbine/turbine/New()
 	..()
 
 	outturf = get_step(src, dir)
 
-	spawn(5)
-		compressor = locate() in get_step(src, get_dir(outturf, src))
-		if(!compressor)
-			stat |= BROKEN
+/obj/machinery/power/turbine/turbine/initialize()
+	..()
+	compressor = locate() in get_step(src, get_dir(outturf, src))
+	if(!compressor)
+		stat |= BROKEN
 
 #define TURBPRES 9000000
 #define TURBGENQ 20000
@@ -135,7 +124,7 @@
 
 
 	for(var/mob/M in viewers(1, src))
-		if ((M.client && M.machine == src))
+		if((M.client && M.machine == src))
 			src.interact(M)
 	AutoUpdateAI(src)
 
@@ -169,23 +158,23 @@
 		return
 	if(usr.stat || usr.restrained())
 		return
-	if(!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		if(!istype(usr, /mob/living/silicon/ai))
-			usr << "\red You don't have the dexterity to do this!"
+	if(!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
+		if(!isAI(usr))
+			to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
 			return
 
-	if((usr.machine==src && ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
+	if((usr.machine == src && (get_dist(src, usr) <= 1 && isturf(src.loc))) || isAI(usr))
 		if(href_list["close"])
 			usr << browse(null, "window=turbine")
 			usr.machine = null
 			return
 
-		else if( href_list["str"] )
+		else if(href_list["str"])
 			compressor.starter = !compressor.starter
 
 		spawn(0)
 			for(var/mob/M in viewers(1, src))
-				if ((M.client && M.machine == src))
+				if(M.client && M.machine == src)
 					src.interact(M)
 
 	else
@@ -194,16 +183,25 @@
 
 	return
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/obj/machinery/computer/turbine_computer/New()
+/obj/machinery/computer/turbine_computer
+	name = "Gas turbine control computer"
+	desc = "A computer to remotely control a gas turbine"
+	icon = 'icons/obj/computer.dmi'
+	icon_state = "airtunnel0e"
+	circuit = /obj/item/weapon/circuitboard/turbine_control
+	anchored = 1
+	density = 1
+	var/obj/machinery/power/turbine/compressor/compressor
+	var/list/obj/machinery/door/poddoor/doors
+	var/id = 0
+	var/door_status = 0
+
+/obj/machinery/computer/turbine_computer/initialize()
 	..()
-	spawn(5)
-		//for(var/obj/machinery/compressor/C in machines)
-		for(var/obj/machinery/power/turbine/compressor/C in machines)
-			if(id == C.comp_id)
-				compressor = C
+	for(var/obj/machinery/power/turbine/compressor/C in machines)
+		if(id == C.comp_id)
+			compressor = C
 		doors = new /list()
 		for(var/obj/machinery/door/poddoor/P in machines)
 			if(P.id == id)
@@ -244,7 +242,7 @@
 	return
 */
 
-/obj/machinery/computer/turbine_computer/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/turbine_computer/attack_hand(mob/user as mob)
 	user.machine = src
 	ui_interact(user)
 	return
@@ -252,7 +250,7 @@
 /obj/machinery/computer/turbine_computer/Topic(href, href_list)
 	if(..())
 		return
-	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
+	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc))) || issilicon(usr))
 		usr.machine = src
 
 		// Edited this to reflect NanoUI port. -Frenjo
@@ -283,7 +281,7 @@
 	return
 
 // Porting this to NanoUI, it looks way better honestly. -Frenjo
-/obj/machinery/computer/turbine_computer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
+/obj/machinery/computer/turbine_computer/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	if(stat & BROKEN)
 		return
 
@@ -296,7 +294,7 @@
 
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "turbine_ctrl.tmpl", "Gas Turbine Control Computer", 420, 360)
 		ui.set_initial_data(data)
 		ui.open()

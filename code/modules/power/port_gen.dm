@@ -98,15 +98,10 @@ display round(lastgen) and plasmatank amount
 	var/max_sheets = 100
 	var/sheet_name = ""
 	var/sheet_path = /obj/item/stack/sheet/mineral/plasma
-	var/board_path = "/obj/item/weapon/circuitboard/pacman"
+	var/board_path = /obj/item/weapon/circuitboard/pacman
 	var/sheet_left = 0 // How much is left of the sheet
 	var/time_per_sheet = 40
 	var/heat = 0
-
-/obj/machinery/power/port_gen/pacman/initialize()
-	..()
-	if(anchored)
-		connect_to_network()
 
 /obj/machinery/power/port_gen/pacman/New()
 	..()
@@ -121,9 +116,14 @@ display round(lastgen) and plasmatank amount
 	sheet_name = sheet.name
 	RefreshParts()
 
+/obj/machinery/power/port_gen/pacman/initialize()
+	..()
+	if(anchored)
+		connect_to_network()
+
 /obj/machinery/power/port_gen/pacman/Destroy()
 	DropFuel()
-	..()
+	return ..()
 
 /obj/machinery/power/port_gen/pacman/RefreshParts()
 	var/temp_rating = 0
@@ -140,8 +140,9 @@ display round(lastgen) and plasmatank amount
 
 /obj/machinery/power/port_gen/pacman/examine()
 	..()
-	usr << "\blue The generator has [sheets] units of [sheet_name] fuel left, producing [power_gen] per cycle."
-	if(crit_fail) usr << "\red The generator seems to have broken down."
+	to_chat(usr, SPAN_INFO("The generator has [sheets] units of [sheet_name] fuel left, producing [power_gen] per cycle."))
+	if(crit_fail)
+		to_chat(usr, SPAN_WARNING("The generator seems to have broken down."))
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
 	if(sheets >= 1 / (time_per_sheet / power_output) - sheet_left)
@@ -165,64 +166,61 @@ display round(lastgen) and plasmatank amount
 	sheet_left -= temp
 	sheets -= round(needed_sheets)
 	needed_sheets -= round(needed_sheets)
-	if (sheet_left <= 0 && sheets > 0)
+	if(sheet_left <= 0 && sheets > 0)
 		sheet_left = 1 - needed_sheets
 		sheets--
 
 	var/lower_limit = 56 + power_output * 10
 	var/upper_limit = 76 + power_output * 10
 	var/bias = 0
-	if (power_output > 4)
+	if(power_output > 4)
 		upper_limit = 400
 		bias = power_output * 3
-	if (heat < lower_limit)
+	if(heat < lower_limit)
 		heat += 3
 	else
 		heat += rand(-7 + bias, 7 + bias)
-		if (heat < lower_limit)
+		if(heat < lower_limit)
 			heat = lower_limit
-		if (heat > upper_limit)
+		if(heat > upper_limit)
 			heat = upper_limit
 
-	if (heat > 300)
+	if(heat > 300)
 		overheat()
 		qdel(src)
 	return
 
 /obj/machinery/power/port_gen/pacman/handleInactive()
-
-	if (heat > 0)
+	if(heat > 0)
 		heat = max(heat - 2, 0)
 		src.updateDialog()
 
 /obj/machinery/power/port_gen/pacman/proc/overheat()
 	explosion(src.loc, 2, 5, 2, -1)
 
-/obj/machinery/power/port_gen/pacman/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/power/port_gen/pacman/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, sheet_path))
 		var/obj/item/stack/addstack = O
 		var/amount = min((max_sheets - sheets), addstack.amount)
 		if(amount < 1)
-			user << "\blue The [src.name] is full!"
+			to_chat(user, SPAN_INFO("The [src.name] is full!"))
 			return
-		user << "\blue You add [amount] sheets to the [src.name]."
+		to_chat(user, SPAN_INFO("You add [amount] sheets to the [src.name]."))
 		sheets += amount
 		addstack.use(amount)
 		updateUsrDialog()
 		return
-	else if (istype(O, /obj/item/weapon/card/emag))
+	else if(istype(O, /obj/item/weapon/card/emag))
 		emagged = 1
 		emp_act(1)
 	else if(!active)
-
 		if(istype(O, /obj/item/weapon/wrench))
-
 			if(!anchored)
 				connect_to_network()
-				user << "\blue You secure the generator to the floor."
+				to_chat(user, SPAN_INFO("You secure the generator to the floor."))
 			else
 				disconnect_from_network()
-				user << "\blue You unsecure the generator from the floor."
+				to_chat(user, SPAN_INFO("You unsecure the generator from the floor."))
 
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			anchored = !anchored
@@ -231,19 +229,19 @@ display round(lastgen) and plasmatank amount
 			open = !open
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			if(open)
-				user << "\blue You open the access panel."
+				to_chat(user, SPAN_INFO("You open the access panel."))
 			else
-				user << "\blue You close the access panel."
+				to_chat(user, SPAN_INFO("You close the access panel."))
+
 		else if(istype(O, /obj/item/weapon/crowbar) && open)
 			var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			for(var/obj/item/I in component_parts)
 				if(I.reliability < 100)
 					I.crit_fail = 1
 				I.loc = src.loc
-			while ( sheets > 0 )
+			while(sheets > 0)
 				var/obj/item/stack/sheet/G = new sheet_path(src.loc)
-
-				if ( sheets > 50 )
+				if(sheets > 50)
 					G.amount = 50
 				else
 					G.amount = sheets
@@ -256,19 +254,16 @@ display round(lastgen) and plasmatank amount
 
 /obj/machinery/power/port_gen/pacman/attack_hand(mob/user as mob)
 	..()
-	if (!anchored)
+	if(!anchored)
 		return
-	//interact(user) // Edited this to reflect NanoUI port. -Frenjo
 	usr.set_machine(src)
 	ui_interact(user)
 
 /obj/machinery/power/port_gen/pacman/attack_ai(mob/user as mob)
-	//interact(user) // Edited this to reflect NanoUI port. -Frenjo
 	usr.set_machine(src)
 	ui_interact(user)
 
 /obj/machinery/power/port_gen/pacman/attack_paw(mob/user as mob)
-	//interact(user) // Edited this to reflect NanoUI port. -Frenjo
 	usr.set_machine(src)
 	ui_interact(user)
 
@@ -309,7 +304,7 @@ display round(lastgen) and plasmatank amount
 				icon_state = "portgen1"
 				src.updateUsrDialog()
 		if(href_list["action"] == "disable")
-			if (active)
+			if(active)
 				active = 0
 				icon_state = "portgen0"
 				src.updateUsrDialog()
@@ -318,17 +313,13 @@ display round(lastgen) and plasmatank amount
 				DropFuel()
 				src.updateUsrDialog()
 		if(href_list["action"] == "lower_power")
-			if (power_output > 0) // Edited this so you can 'indirectly' switch it off. -Frenjo
+			if(power_output > 0) // Edited this so you can 'indirectly' switch it off. -Frenjo
 				power_output--
 				src.updateUsrDialog()
-		if (href_list["action"] == "higher_power")
-			if (power_output < 4 || emagged)
+		if(href_list["action"] == "higher_power")
+			if(power_output < 4 || emagged)
 				power_output++
 				src.updateUsrDialog()
-		// Commented this out to reflect NanoUI port. -Frenjo
-		//if (href_list["action"] == "close")
-		//	usr << browse(null, "window=port_gen")
-		//	usr.unset_machine()
 
 /obj/machinery/power/port_gen/pacman/super
 	name = "S.U.P.E.R.P.A.C.M.A.N.-type Portable Generator"
@@ -336,7 +327,7 @@ display round(lastgen) and plasmatank amount
 	sheet_path = /obj/item/stack/sheet/mineral/uranium
 	power_gen = 15000
 	time_per_sheet = 65
-	board_path = "/obj/item/weapon/circuitboard/pacman/super"
+	board_path = /obj/item/weapon/circuitboard/pacman/super
 	overheat()
 		explosion(src.loc, 3, 3, 3, -1)
 
@@ -346,13 +337,12 @@ display round(lastgen) and plasmatank amount
 	sheet_path = /obj/item/stack/sheet/mineral/diamond
 	power_gen = 40000
 	time_per_sheet = 80
-	board_path = "/obj/item/weapon/circuitboard/pacman/mrs"
+	board_path = /obj/item/weapon/circuitboard/pacman/mrs
 	overheat()
 		explosion(src.loc, 4, 4, 4, -1)
 
 // Porting this to NanoUI, it looks way better honestly. -Frenjo
-/obj/machinery/power/port_gen/pacman/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
-
+/obj/machinery/power/port_gen/pacman/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	if(stat & BROKEN)
 		return
 
@@ -368,7 +358,7 @@ display round(lastgen) and plasmatank amount
 
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "port_gen.tmpl", name, 540, 460)
 		ui.set_initial_data(data)
 		ui.open()

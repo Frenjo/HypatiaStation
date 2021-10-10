@@ -33,7 +33,7 @@
 /datum/powernet/proc/last_surplus()
 	return max(avail - load, 0)
 
-/datum/powernet/proc/draw_power(var/amount)
+/datum/powernet/proc/draw_power(amount)
 	var/draw = between(0, amount, avail - load)
 	load += draw
 	return draw
@@ -44,45 +44,45 @@
 //remove a cable from the current powernet
 //if the powernet is then empty, delete it
 //Warning : this proc DON'T check if the cable exists
-/datum/powernet/proc/remove_cable(var/obj/structure/cable/C)
+/datum/powernet/proc/remove_cable(obj/structure/cable/C)
 	cables -= C
 	C.powernet = null
-	if(is_empty())//the powernet is now empty...
-		qdel(src)///... delete it
+	if(is_empty())	//the powernet is now empty...
+		qdel(src)	///... delete it
 
 //add a cable to the current powernet
 //Warning : this proc DON'T check if the cable exists
-/datum/powernet/proc/add_cable(var/obj/structure/cable/C)
-	if(C.powernet)// if C already has a powernet...
+/datum/powernet/proc/add_cable(obj/structure/cable/C)
+	if(C.powernet)	// if C already has a powernet...
 		if(C.powernet == src)
 			return
 		else
-			C.powernet.remove_cable(C) //..remove it
+			C.powernet.remove_cable(C)	//..remove it
 	C.powernet = src
-	cables +=C
+	cables += C
 
 //remove a power machine from the current powernet
 //if the powernet is then empty, delete it
 //Warning : this proc DON'T check if the machine exists
-/datum/powernet/proc/remove_machine(var/obj/machinery/power/M)
-	nodes -=M
+/datum/powernet/proc/remove_machine(obj/machinery/power/M)
+	nodes -= M
 	M.powernet = null
-	if(is_empty())//the powernet is now empty...
-		qdel(src)///... delete it
+	if(is_empty())	//the powernet is now empty...
+		qdel(src)	///... delete it
 
 //add a power machine to the current powernet
 //Warning : this proc DON'T check if the machine exists
-/datum/powernet/proc/add_machine(var/obj/machinery/power/M)
-	if(M.powernet)// if M already has a powernet...
+/datum/powernet/proc/add_machine(obj/machinery/power/M)
+	if(M.powernet)	// if M already has a powernet...
 		if(M.powernet == src)
 			return
 		else
-			M.disconnect_from_network()//..remove it
+			M.disconnect_from_network()	//..remove it
 	M.powernet = src
 	nodes[M] = M
 
 // Triggers warning for certain amount of ticks
-/datum/powernet/proc/trigger_warning(var/duration_ticks = 20)
+/datum/powernet/proc/trigger_warning(duration_ticks = 20)
 	problem = max(duration_ticks, problem)
 
 //handles the power changes in the powernet
@@ -104,7 +104,7 @@
 		//very simple load balancing. If there was a net excess this tick then it must have been that some APCs used less than perapc, since perapc*numapc = avail
 		//Therefore we can raise the amount of power rationed out to APCs on the assumption that those APCs that used less than perapc will continue to do so.
 		//If that assumption fails, then some APCs will miss out on power next tick, however it will be rebalanced for the tick after.
-		if (netexcess >= 0)
+		if(netexcess >= 0)
 			perapc_excess += min(netexcess/numapc, (avail - perapc) - perapc_excess)
 		else
 			perapc_excess = 0
@@ -125,16 +125,16 @@
 
 /datum/powernet/proc/get_electrocute_damage()
 	switch(avail)
-		if (1000000 to INFINITY)
-			return min(rand(50,160),rand(50,160))
-		if (200000 to 1000000)
-			return min(rand(25,80),rand(25,80))
-		if (100000 to 200000)//Ave powernet
-			return min(rand(20,60),rand(20,60))
-		if (50000 to 100000)
-			return min(rand(15,40),rand(15,40))
-		if (1000 to 50000)
-			return min(rand(10,20),rand(10,20))
+		if(1000000 to INFINITY)
+			return min(rand(50, 160), rand(50, 160))
+		if(200000 to 1000000)
+			return min(rand(25, 80), rand(25, 80))
+		if(100000 to 200000)	//Ave powernet
+			return min(rand(20, 60), rand(20, 60))
+		if(50000 to 100000)
+			return min(rand(15, 40), rand(15, 40))
+		if(1000 to 50000)
+			return min(rand(10, 20), rand(10, 20))
 		else
 			return 0
 

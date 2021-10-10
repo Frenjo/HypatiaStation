@@ -1,14 +1,14 @@
-/turf/simulated/floor/engine/attack_paw(var/mob/user as mob)
+/turf/simulated/floor/engine/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/turf/simulated/floor/engine/attack_hand(var/mob/user as mob)
-	if ((!( user.canmove ) || user.restrained() || !( user.pulling )))
+/turf/simulated/floor/engine/attack_hand(mob/user as mob)
+	if(!user.canmove || user.restrained() || !user.pulling)
 		return
-	if (user.pulling.anchored)
+	if(user.pulling.anchored)
 		return
-	if ((user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1))
+	if(user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1)
 		return
-	if (ismob(user.pulling))
+	if(ismob(user.pulling))
 		var/mob/M = user.pulling
 		var/atom/movable/t = M.pulling
 		M.stop_pulling()
@@ -25,7 +25,7 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if(prob(50))
 				ChangeTurf(/turf/space)
 				qdel(src)
 				return
@@ -33,7 +33,7 @@
 	return
 
 /turf/simulated/floor/engine/blob_act()
-	if (prob(25))
+	if(prob(25))
 		ChangeTurf(/turf/space)
 		qdel(src)
 		return

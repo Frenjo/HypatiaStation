@@ -56,32 +56,30 @@
 	var/building_terminal = 0 //Suggestions about how to avoid clickspam building several terminals accepted!
 	var/obj/machinery/power/terminal/terminal = null
 
-/obj/machinery/power/smes/New()
+/obj/machinery/power/smes/initialize()
 	..()
-	spawn(5)
-		if(!powernet)
-			connect_to_network()
+	if(!powernet)
+		connect_to_network()
 
-		dir_loop:
-			for(var/d in cardinal)
-				var/turf/T = get_step(src, d)
-				for(var/obj/machinery/power/terminal/term in T)
-					if(term && term.dir == turn(d, 180))
-						terminal = term
-						break dir_loop
-		if(!terminal)
-			stat |= BROKEN
-			return
-		terminal.master = src
-		if(!terminal.powernet)
-			terminal.connect_to_network()
-		update_icon()
-	return
+	dir_loop:
+		for(var/d in cardinal)
+			var/turf/T = get_step(src, d)
+			for(var/obj/machinery/power/terminal/term in T)
+				if(term && term.dir == turn(d, 180))
+					terminal = term
+					break dir_loop
+	if(!terminal)
+		stat |= BROKEN
+		return
+	terminal.master = src
+	if(!terminal.powernet)
+		terminal.connect_to_network()
+	update_icon()
 
 /obj/machinery/power/smes/Destroy()
 	if(terminal)
 		disconnect_terminal()
-	..()
+	return ..()
 
 /obj/machinery/power/smes/update_icon()
 	overlays.Cut()
@@ -101,10 +99,10 @@
 	return
 
 /obj/machinery/power/smes/proc/chargedisplay()
-	return round(5.5*charge/(capacity ? capacity : 5e6))
+	return round(5.5 * charge / (capacity ? capacity : 5e6))
 
-/obj/machinery/power/smes/proc/input_power(var/percentage)
-	var/inputted_power = target_load * (percentage/100)
+/obj/machinery/power/smes/proc/input_power(percentage)
+	var/inputted_power = target_load * (percentage / 100)
 	inputted_power = between(0, inputted_power, target_load)
 	if(terminal && terminal.powernet)
 		inputted_power = terminal.powernet.draw_power(inputted_power)
@@ -129,7 +127,7 @@
 
 	//inputting
 	if(terminal && input_attempt)
-		var/target_load = min((capacity-charge)/SMESRATE, input_level)	// charge at set rate, limited to spare capacity
+		var/target_load = min((capacity - charge) / SMESRATE, input_level)	// charge at set rate, limited to spare capacity
 		var/actual_load = draw_power(target_load)						// add the load to the terminal side network
 		charge += actual_load * SMESRATE								// increase the charge
 
@@ -142,9 +140,9 @@
 
 	///outputting
 	if(outputting)
-		output_used = min(charge/SMESRATE, output_level)		//limit output to that stored
+		output_used = min(charge / SMESRATE, output_level)		//limit output to that stored
 
-		charge -= output_used*SMESRATE		// reduce the storage (may be recovered in /restore() if excessive)
+		charge -= output_used * SMESRATE		// reduce the storage (may be recovered in /restore() if excessive)
 
 		add_avail(output_used)				// add output to powernet (smes side)
 
@@ -171,7 +169,7 @@
 
 	excess = min(output_used, excess)				// clamp it to how much was actually output by this SMES last ptick
 
-	excess = min((capacity-charge)/SMESRATE, excess)	// for safety, also limit recharge by space capacity of SMES (shouldn't happen)
+	excess = min((capacity - charge) / SMESRATE, excess)	// for safety, also limit recharge by space capacity of SMES (shouldn't happen)
 
 	// now recharge this amount
 
@@ -190,25 +188,25 @@
 //Will return 1 on failure
 /obj/machinery/power/smes/proc/make_terminal(const/mob/user)
 	if(user.loc == loc)
-		user << "<span class='warning'>You must not be on the same tile as the [src].</span>"
+		to_chat(user, SPAN_WARNING("You must not be on the same tile as the [src]."))
 		return 1
 
 	//Direction the terminal will face to
 	var/tempDir = get_dir(user, src)
 	switch(tempDir)
-		if (NORTHEAST, SOUTHEAST)
+		if(NORTHEAST, SOUTHEAST)
 			tempDir = EAST
-		if (NORTHWEST, SOUTHWEST)
+		if(NORTHWEST, SOUTHWEST)
 			tempDir = WEST
 	var/turf/tempLoc = get_step(src, reverse_direction(tempDir))
-	if (istype(tempLoc, /turf/space))
-		user << "<span class='warning'>You can't build a terminal on space.</span>"
+	if(istype(tempLoc, /turf/space))
+		to_chat(user, SPAN_WARNING("You can't build a terminal on space."))
 		return 1
-	else if (istype(tempLoc))
+	else if(istype(tempLoc))
 		if(tempLoc.intact)
-			user << "<span class='warning'>You must remove the floor plating first.</span>"
+			to_chat(user, SPAN_WARNING("You must remove the floor plating first."))
 			return 1
-	user << "<span class='notice'>You start adding cable to the SMES.</span>"
+	to_chat(user, SPAN_NOTICE("You start adding cable to the SMES."))
 	if(do_after(user, 50))
 		terminal = new /obj/machinery/power/terminal(tempLoc)
 		terminal.set_dir(tempDir)
@@ -233,16 +231,16 @@
 	if(istype(W, /obj/item/weapon/screwdriver))
 		if(!open_hatch)
 			open_hatch = 1
-			user << "<span class='notice'>You open the maintenance hatch of [src].</span>"
+			to_chat(user, SPAN_NOTICE("You open the maintenance hatch of [src]."))
 		else
 			open_hatch = 0
-			user << "<span class='notice'>You close the maintenance hatch of [src].</span>"
+			to_chat(user, SPAN_NOTICE("You close the maintenance hatch of [src]."))
 	if(open_hatch)
 		if(istype(W, /obj/item/stack/cable_coil) && !terminal && !building_terminal)
 			building_terminal = 1
 			var/obj/item/stack/cable_coil/CC = W
 			if(CC.amount < 10)
-				user << "<span class='warning'>You need more cables.</span>"
+				to_chat(user, SPAN_WARNING("You need more cables."))
 				building_terminal = 0
 				return
 			if(make_terminal(user))
@@ -250,9 +248,10 @@
 				return
 			building_terminal = 0
 			CC.use(10)
-			user.visible_message(\
-					"<span class='notice'>[user.name] has added cables to the [src].</span>",\
-					"<span class='notice'>You added cables to the [src].</span>")
+			user.visible_message(
+				SPAN_NOTICE("[user.name] has added cables to the [src]."),
+				SPAN_NOTICE("You added cables to the [src].")
+			)
 			terminal.connect_to_network()
 			stat = 0
 
@@ -261,21 +260,22 @@
 			var/turf/tempTDir = terminal.loc
 			if(istype(tempTDir))
 				if(tempTDir.intact)
-					user << "<span class='warning'>You must remove the floor plating first.</span>"
+					to_chat(user, SPAN_WARNING("You must remove the floor plating first."))
 				else
-					user << "<span class='notice'>You begin to cut the cables...</span>"
+					to_chat(user, SPAN_NOTICE("You begin to cut the cables..."))
 					playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
 					if(do_after(user, 50))
-						if (prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
+						if(prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
 							var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 							s.set_up(5, 1, src)
 							s.start()
 							building_terminal = 0
 							return
-						new /obj/item/stack/cable_coil(loc,10)
-						user.visible_message(\
-							"<span class='notice'>[user.name] cut the cables and dismantled the power terminal.</span>",\
-							"<span class='notice'>You cut the cables and dismantle the power terminal.</span>")
+						new /obj/item/stack/cable_coil(loc, 10)
+						user.visible_message(
+							SPAN_NOTICE("[user.name] cut the cables and dismantled the power terminal."),
+							SPAN_NOTICE("You cut the cables and dismantle the power terminal.")
+						)
 						qdel(terminal)
 			building_terminal = 0
 
@@ -318,7 +318,7 @@
 
 	if(!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
 		if(!isAI(usr))
-			usr << "\red You don't have the dexterity to do this!"
+			to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
 			return
 
 	if(!isturf(src.loc) && !issilicon(usr))
@@ -360,7 +360,10 @@
 	if(src.z in config.station_levels)
 		if(prob(1)) //explosion
 			for(var/mob/M in viewers(src))
-				M.show_message("\red The [src.name] is making strange noises!", 3, "\red You hear sizzling electronics.", 2)
+				M.show_message(
+					SPAN_WARNING("The [src.name] is making strange noises!"), 3,
+					SPAN_WARNING("You hear sizzling electronics."), 2
+				)
 			sleep(10 * pick(4, 5, 6, 7, 10, 14))
 			var/datum/effect/system/smoke_spread/smoke = new /datum/effect/system/smoke_spread()
 			smoke.set_up(3, 0, src.loc)
@@ -391,7 +394,7 @@
 	output_level = rand(0, output_level_max)
 	input_level = rand(0, input_level_max)
 	charge -= 1e6/severity
-	if (charge < 0)
+	if(charge < 0)
 		charge = 0
 
 	update_icon()
@@ -400,7 +403,8 @@
 /obj/machinery/power/smes/magical
 	name = "magical power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit. Magically produces power."
-	process()
-		capacity = INFINITY
-		charge = INFINITY
-		..()
+	
+/obj/machinery/power/smes/magical/process()
+	capacity = INFINITY
+	charge = INFINITY
+	..()

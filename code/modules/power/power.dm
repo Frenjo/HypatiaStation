@@ -180,7 +180,7 @@
 // returns a list of all power-related objects (nodes, cable, junctions) in turf,
 // excluding source, that match the direction d
 // if unmarked==1, only return those with no powernet
-proc/power_list(turf/T, source, d, unmarked=0, cable_only = 0)
+/proc/power_list(turf/T, source, d, unmarked=0, cable_only = 0)
 	. = list()
 	var/fdir = (!d)? 0 : turn(d, 180)			// the opposite direction to d (or 0 if d==0)
 ///// Z-Level Stuff
@@ -295,7 +295,7 @@ proc/power_list(turf/T, source, d, unmarked=0, cable_only = 0)
 //source is an object caused electrocuting (airlock, grille, etc)
 //No animations will be performed by this proc.
 /proc/electrocute_mob(mob/living/carbon/M as mob, power_source, obj/source, siemens_coeff = 1.0)
-	if(istype(M.loc,/obj/mecha))
+	if(istype(M.loc, /obj/mecha))
 		return 0	//feckin mechs are dumb
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
