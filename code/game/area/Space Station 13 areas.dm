@@ -2059,7 +2059,7 @@ var/list/the_station_areas = list(
 	/area/shuttle/escape_pod5/station,
 	/area/shuttle/mining/station,
 	/area/shuttle/transport1/station,
-	// /area/shuttle/transport2/station,
+//	/area/shuttle/transport2/station,
 	/area/shuttle/prison/station,
 	/area/shuttle/administration/station,
 	/area/shuttle/specops/station,
