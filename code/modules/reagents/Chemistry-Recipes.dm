@@ -464,7 +464,7 @@
 /datum/chemical_reaction/napalm/on_reaction(datum/reagents/holder, created_volume)
 	var/turf/location = get_turf(holder.my_atom.loc)
 	for(var/turf/simulated/floor/target_tile in range(0, location))
-		target_tile.assume_gas("volatile_fuel", created_volume, 400 + T0C)
+		target_tile.assume_gas(GAS_VOLATILE_FUEL, created_volume, 400 + T0C)
 		spawn(0)
 			target_tile.hotspot_expose(700, 400)
 	holder.del_reagent("napalm")
@@ -1278,7 +1278,7 @@
 	sleep(50)
 	var/turf/location = get_turf(holder.my_atom.loc)
 	for(var/turf/simulated/floor/target_tile in range(0, location))
-		target_tile.assume_gas("plasma", 25, 1400)
+		target_tile.assume_gas(GAS_PLASMA, 25, 1400)
 		spawn(0)
 			target_tile.hotspot_expose(700, 400)
 

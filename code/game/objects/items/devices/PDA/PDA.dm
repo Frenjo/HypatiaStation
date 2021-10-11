@@ -434,11 +434,11 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			var/total_moles = environment.total_moles
 
 			if(total_moles)
-				var/o2_level = environment.gas["oxygen"] / total_moles
-				var/n2_level = environment.gas["nitrogen"] / total_moles
-				var/co2_level = environment.gas["carbon_dioxide"] / total_moles
-				var/plasma_level = environment.gas["plasma"] / total_moles
-				var/unknown_level =  1 - (o2_level + n2_level + co2_level + plasma_level)
+				var/o2_level = environment.gas[GAS_OXYGEN] / total_moles
+				var/n2_level = environment.gas[GAS_NITROGEN] / total_moles
+				var/co2_level = environment.gas[GAS_CARBON_DIOXIDE] / total_moles
+				var/plasma_level = environment.gas[GAS_PLASMA] / total_moles
+				var/unknown_level = 1 - (o2_level + n2_level + co2_level + plasma_level)
 				data["aircontents"] = list(
 					"pressure" = "[round(pressure, 0.1)]",
 					"nitrogen" = "[round(n2_level * 100, 0.1)]",
@@ -456,7 +456,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "pda.tmpl", title, 520, 400)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)

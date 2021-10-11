@@ -193,7 +193,7 @@
 	var/output = ""//"<B>[alarm_zone] Air [name]</B><HR>"
 
 	switch(current.screen)
-		if (AALARM_SCREEN_MAIN)
+		if(AALARM_SCREEN_MAIN)
 			if(current.alarm_area.atmosalm)
 				output += {"<a href='?src=\ref[src];alarm=\ref[current];atmos_reset=1'>Reset - Atmospheric Alarm</a><hr>"}
 			else
@@ -206,13 +206,13 @@
 <a href='?src=\ref[src];alarm=\ref[current];screen=[AALARM_SCREEN_SENSORS]'>Sensor Control</a><br>
 <HR>
 "}
-			if (current.mode==AALARM_MODE_PANIC)
+			if(current.mode == AALARM_MODE_PANIC)
 				output += "<font color='red'><B>PANIC SYPHON ACTIVE</B></font><br><A href='?src=\ref[src];alarm=\ref[current];mode=[AALARM_MODE_SCRUBBING]'>turn syphoning off</A>"
 			else
 				output += "<A href='?src=\ref[src];alarm=\ref[current];mode=[AALARM_MODE_PANIC]'><font color='red'><B>ACTIVATE PANIC SYPHON IN AREA</B></font></A>"
 
 			output += "<br><br>Atmospheric Lockdown: <a href='?src=\ref[src];alarm=\ref[current];atmos_unlock=[current.alarm_area.air_doors_activated]'>[current.alarm_area.air_doors_activated ? "<b>ENABLED</b>" : "Disabled"]</a>"
-		if (AALARM_SCREEN_VENT)
+		if(AALARM_SCREEN_VENT)
 			var/sensor_data = ""
 			if(current.alarm_area.air_vent_names.len)
 				for(var/id_tag in current.alarm_area.air_vent_names)
@@ -222,7 +222,7 @@
 					if(!data)
 						state = "<font color='red'> can not be found!</font>"
 						data = list("external" = 0) //for "0" instead of empty string
-					else if (data["timestamp"]+AALARM_REPORT_TIMEOUT < world.time)
+					else if(data["timestamp"]+AALARM_REPORT_TIMEOUT < world.time)
 						state = "<font color='red'> not responding!</font>"
 					sensor_data += {"
 <B>[long_name]</B>[state]<BR>
@@ -245,7 +245,7 @@
 <A href='?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=adjust_external_pressure;val=+1000'>+</A>
 <BR>
 "}
-					if (data["direction"] == "siphon")
+					if(data["direction"] == "siphon")
 						sensor_data += {"
 <B>Direction:</B>
 siphoning
@@ -255,7 +255,7 @@ siphoning
 			else
 				sensor_data = "No vents connected.<BR>"
 			output = {"<a href='?src=\ref[src];alarm=\ref[current];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br>[sensor_data]"}
-		if (AALARM_SCREEN_SCRUB)
+		if(AALARM_SCREEN_SCRUB)
 			var/sensor_data = ""
 			if(current.alarm_area.air_scrub_names.len)
 				for(var/id_tag in current.alarm_area.air_scrub_names)
@@ -296,23 +296,25 @@ Nitrous Oxide
 				sensor_data = "No scrubbers connected.<BR>"
 			output = {"<a href='?src=\ref[src];alarm=\ref[current];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br>[sensor_data]"}
 
-		if (AALARM_SCREEN_MODE)
+		if(AALARM_SCREEN_MODE)
 			output += {"
 <a href='?src=\ref[src];alarm=\ref[current];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br>
 <b>Air machinery mode for the area:</b><ul>"}
-			var/list/modes = list(AALARM_MODE_SCRUBBING   = "Filtering - Scrubs out contaminants",\
-					AALARM_MODE_REPLACEMENT = "<font color='blue'>Replace Air - Siphons out air while replacing</font>",\
-					AALARM_MODE_PANIC       = "<font color='red'>Panic - Siphons air out of the room</font>",\
-					AALARM_MODE_CYCLE       = "<font color='red'>Cycle - Siphons air before replacing</font>",\
-					AALARM_MODE_FILL        = "<font color='green'>Fill - Shuts off scrubbers and opens vents</font>",\
-					AALARM_MODE_OFF         = "<font color='blue'>Off - Shuts off vents and scrubbers</font>",)
-			for (var/m=1,m<=modes.len,m++)
-				if (current.mode==m)
+			var/list/modes = list(
+				AALARM_MODE_SCRUBBING	= "Filtering - Scrubs out contaminants",
+				AALARM_MODE_REPLACEMENT	= "<font color='blue'>Replace Air - Siphons out air while replacing</font>",
+				AALARM_MODE_PANIC		= "<font color='red'>Panic - Siphons air out of the room</font>",
+				AALARM_MODE_CYCLE		= "<font color='red'>Cycle - Siphons air before replacing</font>",
+				AALARM_MODE_FILL		= "<font color='green'>Fill - Shuts off scrubbers and opens vents</font>",
+				AALARM_MODE_OFF			= "<font color='blue'>Off - Shuts off vents and scrubbers</font>",
+			)
+			for(var/m = 1, m <= modes.len, m++)
+				if(current.mode == m)
 					output += {"<li><A href='?src=\ref[src];alarm=\ref[current];mode=[m]'><b>[modes[m]]</b></A> (selected)</li>"}
 				else
 					output += {"<li><A href='?src=\ref[src];alarm=\ref[current];mode=[m]'>[modes[m]]</A></li>"}
 			output += "</ul>"
-		if (AALARM_SCREEN_SENSORS)
+		if(AALARM_SCREEN_SENSORS)
 			output += {"
 <a href='?src=\ref[src];alarm=\ref[current];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br>
 <b>Alarm thresholds:</b><br>
@@ -330,13 +332,13 @@ table tr:first-child th:first-child { border: none;}
 <TR><th></th><th class=dl2>min2</th><th class=dl1>min1</th><th class=dl1>max1</th><th class=dl2>max2</th></TR>
 "}
 			var/list/gases = list(
-				"oxygen"         = "O<sub>2</sub>",
-				"carbon dioxide" = "CO<sub>2</sub>",
-				"plasma"         = "Toxin",
-				"other"          = "Other",
+				GAS_OXYGEN			= "O<sub>2</sub>",
+				GAS_CARBON_DIOXIDE	= "CO<sub>2</sub>",
+				GAS_PLASMA			= "Toxin",
+				"other"				= "Other",
 			)
 			var/list/tlv
-			for (var/g in gases)
+			for(var/g in gases)
 				output += "<TR><th>[gases[g]]</th>"
 				tlv = current.TLV[g]
 				for (var/i = 1, i <= 4, i++)
@@ -345,13 +347,13 @@ table tr:first-child th:first-child { border: none;}
 
 			tlv = current.TLV["pressure"]
 			output += "<TR><th>Pressure</th>"
-			for (var/i = 1, i <= 4, i++)
+			for(var/i = 1, i <= 4, i++)
 				output += "<td><A href='?src=\ref[src];alarm=\ref[current];command=set_threshold;env=pressure;var=[i]'>[tlv[i]>= 0?tlv[i]:"OFF"]</A></td>"
 			output += "</TR>"
 
 			tlv = current.TLV["temperature"]
 			output += "<TR><th>Temperature</th>"
-			for (var/i = 1, i <= 4, i++)
+			for(var/i = 1, i <= 4, i++)
 				output += "<td><A href='?src=\ref[src];alarm=\ref[current];command=set_threshold;env=temperature;var=[i]'>[tlv[i]>= 0?tlv[i]:"OFF"]</A></td>"
 			output += "</TR>"
 			output += "</table>"

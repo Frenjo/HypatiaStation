@@ -457,9 +457,8 @@
 
 //Check for brain worms in head.
 /mob/proc/has_brain_worms()
-
 	for(var/I in contents)
-		if(istype(I,/mob/living/simple_animal/borer))
+		if(istype(I, /mob/living/simple_animal/borer))
 			return I
 
 	return 0
@@ -503,7 +502,7 @@
 				else
 					var/list/nicename = null
 					var/list/tankcheck = null
-					var/breathes = "oxygen"    //default, we'll check later
+					var/breathes = GAS_OXYGEN	//default, we'll check later
 					var/list/contents = list()
 
 					if(ishuman(C))
@@ -523,29 +522,29 @@
 								continue					//in it, so we're going to believe the tank is what it says it is
 							switch(breathes)
 								//These tanks we're sure of their contents
-								if("nitrogen")							//So we're a bit more picky about them.
-									if(t.air_contents.gas["nitrogen"] && !t.air_contents.gas["oxygen"])
-										contents.Add(t.air_contents.gas["nitrogen"])
+								if(GAS_NITROGEN)							//So we're a bit more picky about them.
+									if(t.air_contents.gas[GAS_NITROGEN] && !t.air_contents.gas[GAS_OXYGEN])
+										contents.Add(t.air_contents.gas[GAS_NITROGEN])
 									else
 										contents.Add(0)
 
-								if("oxygen")
-									if(t.air_contents.gas["oxygen"] && !t.air_contents.gas["plasma"])
-										contents.Add(t.air_contents.gas["oxygen"])
+								if(GAS_OXYGEN)
+									if(t.air_contents.gas[GAS_OXYGEN] && !t.air_contents.gas[GAS_PLASMA])
+										contents.Add(t.air_contents.gas[GAS_OXYGEN])
 									else
 										contents.Add(0)
 
 								// No races breath this, but never know about downstream servers.
-								if("carbon dioxide")
-									if(t.air_contents.gas["carbon_dioxide"] && !t.air_contents.gas["plasma"])
-										contents.Add(t.air_contents.gas["carbon_dioxide"])
+								if(GAS_CARBON_DIOXIDE)
+									if(t.air_contents.gas[GAS_CARBON_DIOXIDE] && !t.air_contents.gas[GAS_PLASMA])
+										contents.Add(t.air_contents.gas[GAS_CARBON_DIOXIDE])
 									else
 										contents.Add(0)
 
 								// Plasmalins breath this.
-								if("plasma")
-									if(t.air_contents.gas["plasma"] && !t.air_contents.gas["oxygen"])
-										contents.Add(t.air_contents.gas["plasma"])
+								if(GAS_PLASMA)
+									if(t.air_contents.gas[GAS_PLASMA] && !t.air_contents.gas[GAS_OXYGEN])
+										contents.Add(t.air_contents.gas[GAS_PLASMA])
 									else
 										contents.Add(0)
 						else
@@ -571,4 +570,4 @@
 						if(C.internals)
 							C.internals.icon_state = "internal1"
 					else
-						to_chat(C, SPAN_NOTICE("You don't have a[breathes == "oxygen" ? "n oxygen" : addtext(" ", breathes)] tank."))
+						to_chat(C, SPAN_NOTICE("You don't have a[breathes == GAS_OXYGEN ? "n oxygen" : addtext(" ", breathes)] tank."))

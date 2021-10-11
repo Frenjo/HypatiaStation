@@ -81,27 +81,27 @@ Filter types:
 
 		switch(filter_type)
 			if(0) //removing hydrocarbons
-				filtered_out.gas["plasma"] = removed.gas["plasma"]
-				removed.gas["plasma"] = 0
+				filtered_out.gas[GAS_PLASMA] = removed.gas[GAS_PLASMA]
+				removed.gas[GAS_PLASMA] = 0
 
-				filtered_out.gas["oxygen_agent_b"] = removed.gas["oxygen_agent_b"]
-				removed.gas["oxygen_agent_b"] = 0
+				filtered_out.gas[GAS_OXYGEN_AGENT_B] = removed.gas[GAS_OXYGEN_AGENT_B]
+				removed.gas[GAS_OXYGEN_AGENT_B] = 0
 
 			if(1) //removing O2
-				filtered_out.gas["oxygen"] = removed.gas["oxygen"]
-				removed.gas["oxygen"] = 0
+				filtered_out.gas[GAS_OXYGEN] = removed.gas[GAS_OXYGEN]
+				removed.gas[GAS_OXYGEN] = 0
 
 			if(2) //removing N2
-				filtered_out.gas["nitrogen"] = removed.gas["nitrogen"]
-				removed.gas["nitrogen"] = 0
+				filtered_out.gas[GAS_NITROGEN] = removed.gas[GAS_NITROGEN]
+				removed.gas[GAS_NITROGEN] = 0
 
 			if(3) //removing CO2
-				filtered_out.gas["carbon_dioxide"] = removed.gas["carbon_dioxide"]
-				removed.gas["carbon_dioxide"] = 0
+				filtered_out.gas[GAS_CARBON_DIOXIDE] = removed.gas[GAS_CARBON_DIOXIDE]
+				removed.gas[GAS_CARBON_DIOXIDE] = 0
 
 			if(4)//removing N2O
-				filtered_out.gas["sleeping_agent"] = removed.gas["sleeping_agent"]
-				removed.gas["sleeping_agent"] = 0
+				filtered_out.gas[GAS_SLEEPING_AGENT] = removed.gas[GAS_SLEEPING_AGENT]
+				removed.gas[GAS_SLEEPING_AGENT] = 0
 
 			else
 				filtered_out = null
@@ -143,11 +143,12 @@ Filter types:
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 	to_chat(user, SPAN_INFO("You begin to unfasten \the [src]..."))
 	if(do_after(user, 40))
-		user.visible_message( \
-			"[user] unfastens \the [src].", \
-			SPAN_INFO("You have unfastened \the [src]."), \
-			"You hear a ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
+		user.visible_message(
+			"[user] unfastens \the [src].",
+			SPAN_INFO("You have unfastened \the [src]."),
+			"You hear a ratchet."
+		)
+		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)
 
 /obj/machinery/atmospherics/trinary/filter/attack_hand(user as mob) // -- TLE

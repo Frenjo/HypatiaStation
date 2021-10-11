@@ -103,7 +103,7 @@
 	var/datum/gas_mixture/environment = loc.return_air()
 
 	if(scrubbing)
-		if(environment.gas["plasma"] > 0.001 || environment.gas["carbon_dioxide"] > 0.001 || environment.gas["oxygen_agent_b"] > 0.001 || environment.gas["sleeping_agent"] > 0.001)
+		if(environment.gas[GAS_PLASMA] > 0.001 || environment.gas[GAS_CARBON_DIOXIDE] > 0.001 || environment.gas[GAS_OXYGEN_AGENT_B] > 0.001 || environment.gas[GAS_SLEEPING_AGENT] > 0.001)
 			var/transfer_moles = min(1, volume_rate / environment.volume) * environment.total_moles
 
 			//Take a gas sample
@@ -115,17 +115,17 @@
 			var/datum/gas_mixture/filtered_out = new
 			filtered_out.temperature = removed.temperature
 			if(scrub_Toxins)
-				filtered_out.gas["plasma"] = removed.gas["plasma"]
-				removed.gas["plasma"] = 0
+				filtered_out.gas[GAS_PLASMA] = removed.gas[GAS_PLASMA]
+				removed.gas[GAS_PLASMA] = 0
 			if(scrub_CO2)
-				filtered_out.gas["carbon_dioxide"] = removed.gas["carbon_dioxide"]
-				removed.gas["carbon_dioxide"] = 0
+				filtered_out.gas[GAS_CARBON_DIOXIDE] = removed.gas[GAS_CARBON_DIOXIDE]
+				removed.gas[GAS_CARBON_DIOXIDE] = 0
 			if(scrub_N2O)
-				filtered_out.gas["sleeping_agent"] = removed.gas["sleeping_agent"]
-				removed.gas["sleeping_agent"] = 0
-			if(removed.gas["oxygen_agent_b"])
-				filtered_out.gas["oxygen_agent_b"] = removed.gas["oxygen_agent_b"]
-				removed.gas["oxygen_agent_b"] = 0
+				filtered_out.gas[GAS_SLEEPING_AGENT] = removed.gas[GAS_SLEEPING_AGENT]
+				removed.gas[GAS_SLEEPING_AGENT] = 0
+			if(removed.gas[GAS_OXYGEN_AGENT_B])
+				filtered_out.gas[GAS_OXYGEN_AGENT_B] = removed.gas[GAS_OXYGEN_AGENT_B]
+				removed.gas[GAS_OXYGEN_AGENT_B] = 0
 
 			//Remix the resulting gases
 			air_contents.merge(filtered_out)

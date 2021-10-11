@@ -51,7 +51,7 @@
 
 	for(var/turf/simulated/floor/target in range(1, src))
 		if(!target.blocks_air)
-			target.assume_gas("sleeping_agent", 30)
+			target.assume_gas(GAS_SLEEPING_AGENT, 30)
 
 	spawn(0)
 		qdel(src)
@@ -59,7 +59,7 @@
 /obj/effect/mine/proc/triggerplasma(obj)
 	for(var/turf/simulated/floor/target in range(1, src))
 		if(!target.blocks_air)
-			target.assume_gas("plasma", 30)
+			target.assume_gas(GAS_PLASMA, 30)
 
 			target.hotspot_expose(1000, CELL_VOLUME)
 

@@ -111,17 +111,17 @@
 
 			filtered_out.temperature = removed.temperature
 
-			filtered_out.gas["plasma"] = removed.gas["plasma"]
-			removed.gas["plasma"] = 0
+			filtered_out.gas[GAS_PLASMA] = removed.gas[GAS_PLASMA]
+			removed.gas[GAS_PLASMA] = 0
 
-			filtered_out.gas["carbon_dioxide"] = removed.gas["carbon_dioxide"]
-			removed.gas["carbon_dioxide"] = 0
+			filtered_out.gas[GAS_CARBON_DIOXIDE] = removed.gas[GAS_CARBON_DIOXIDE]
+			removed.gas[GAS_CARBON_DIOXIDE] = 0
 
-			filtered_out.gas["sleeping_agent"] = removed.gas["sleeping_agent"]
-			removed.gas["sleeping_agent"] = 0
+			filtered_out.gas[GAS_SLEEPING_AGENT] = removed.gas[GAS_SLEEPING_AGENT]
+			removed.gas[GAS_SLEEPING_AGENT] = 0
 
-			filtered_out.gas["oxygen_agent_b"] = removed.gas["oxygen_agent_b"]
-			removed.gas["oxygen_agent_b"] = 0
+			filtered_out.gas[GAS_OXYGEN_AGENT_B] = removed.gas[GAS_OXYGEN_AGENT_B]
+			removed.gas[GAS_OXYGEN_AGENT_B] = 0
 
 			//Remix the resulting gases
 			air_contents.merge(filtered_out)

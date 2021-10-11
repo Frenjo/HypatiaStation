@@ -76,14 +76,14 @@
 	
 /turf/simulated/floor/engine/n20/New()
 	. = ..()
-	assume_gas("sleeping_agent", 2000)
+	assume_gas(GAS_SLEEPING_AGENT, 2000)
 
 // Added this for the atmos tanks. -Frenjo
 /turf/simulated/floor/engine/oxygen_agent_b
 
 /turf/simulated/floor/engine/oxygen_agent_b/New()
 	. = ..()
-	assume_gas("oxygen_agent_b", 2000)
+	assume_gas(GAS_OXYGEN_AGENT_B, 2000)
 
 /turf/simulated/floor/engine/vacuum
 	name = "vacuum floor"

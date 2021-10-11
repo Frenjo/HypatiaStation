@@ -1010,7 +1010,7 @@
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
 
-	air_temporary.adjust_gas("carbon_dioxide", (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
+	air_temporary.adjust_gas(GAS_CARBON_DIOXIDE, (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
 
 	..()
 
@@ -1023,7 +1023,7 @@
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
 
-	air_temporary.adjust_gas("plasma", (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
+	air_temporary.adjust_gas(GAS_PLASMA, (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
 
 	..()
 
@@ -1036,7 +1036,7 @@
 	air_temporary.volume = volume
 	air_temporary.temperature = T0C
 
-	air_temporary.adjust_gas("oxygen_agent_b", (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
+	air_temporary.adjust_gas(GAS_OXYGEN_AGENT_B, (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
 
 	..()
 
@@ -1049,7 +1049,7 @@
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
 
-	air_temporary.adjust_gas("oxygen", (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
+	air_temporary.adjust_gas(GAS_OXYGEN, (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
 
 	..()
 
@@ -1062,7 +1062,7 @@
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
 
-	air_temporary.adjust_gas("nitrogen", (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
+	air_temporary.adjust_gas(GAS_NITROGEN, (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
 
 	..()
 
@@ -1076,8 +1076,8 @@
 	air_temporary.temperature = T20C
 
 	air_temporary.adjust_multi(
-		"oxygen", (25 * ONE_ATMOSPHERE * O2STANDARD) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature),
-		"nitrogen", (25 * ONE_ATMOSPHERE * N2STANDARD) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature)
+		GAS_OXYGEN, (25 * ONE_ATMOSPHERE * O2STANDARD) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature),
+		GAS_NITROGEN, (25 * ONE_ATMOSPHERE * N2STANDARD) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature)
 	)
 
 	..()

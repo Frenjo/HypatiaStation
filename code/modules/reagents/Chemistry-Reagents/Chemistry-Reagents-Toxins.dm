@@ -92,11 +92,11 @@
 	if((!O) || (!volume))
 		return 0
 	var/turf/the_turf = get_turf(O)
-	the_turf.assume_gas("volatile_fuel", volume, T20C)
+	the_turf.assume_gas(GAS_VOLATILE_FUEL, volume, T20C)
 
 /datum/reagent/plasma/reaction_turf(turf/T, volume)
 	qdel(src)
-	T.assume_gas("volatile_fuel", volume, T20C)
+	T.assume_gas(GAS_VOLATILE_FUEL, volume, T20C)
 	return
 
 /datum/reagent/toxin/lexorin

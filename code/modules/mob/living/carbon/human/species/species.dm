@@ -34,9 +34,9 @@
 	var/death_sound
 	var/death_message = "seizes up and falls limp, their eyes dead and lifeless..."
 
-	var/breath_type = "oxygen"			// Non-oxygen gas inhaled, if any.
-	var/exhale_type = "carbon_dioxide"	// Non-carbon dioxide gas exhaled, if any.
-	var/poison_type = "plasma"			// Main toxic gas, usually plasma.
+	var/breath_type = GAS_OXYGEN			// Non-oxygen gas inhaled, if any.
+	var/exhale_type = GAS_CARBON_DIOXIDE	// Non-carbon dioxide gas exhaled, if any.
+	var/poison_type = GAS_PLASMA			// Main toxic gas, usually plasma.
 
 	var/total_health = 100	//Point at which the mob will enter crit.
 
@@ -155,8 +155,10 @@
 		if(FEMALE)
 			t_him = "her"
 
-	H.visible_message(SPAN_NOTICE("[H] hugs [target] to make [t_him] feel better!"), \
-					SPAN_NOTICE("You hug [target] to make [t_him] feel better!"))
+	H.visible_message(
+		SPAN_NOTICE("[H] hugs [target] to make [t_him] feel better!"),
+		SPAN_NOTICE("You hug [target] to make [t_him] feel better!")
+	)
 
 /datum/species/proc/add_inherent_verbs(mob/living/carbon/human/H)
 	if(inherent_verbs)

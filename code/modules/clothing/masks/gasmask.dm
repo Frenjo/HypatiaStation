@@ -10,7 +10,7 @@
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
 	var/gas_filter_strength = 1		//For gas mask filters
-	var/list/filtered_gases = list("plasma", "sleeping_agent", "oxygen_agent_b")
+	var/list/filtered_gases = list(GAS_PLASMA, GAS_SLEEPING_AGENT, GAS_OXYGEN_AGENT_B)
 
 /obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)
 	var/datum/gas_mixture/filtered = new

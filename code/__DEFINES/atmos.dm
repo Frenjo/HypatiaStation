@@ -94,3 +94,12 @@
 //Flags for zone sleeping
 #define ZONE_ACTIVE		1
 #define ZONE_SLEEPING	0
+
+// Gas ID defines
+#define GAS_OXYGEN "oxygen"
+#define GAS_NITROGEN "nitrogen"
+#define GAS_CARBON_DIOXIDE "carbon_dioxide"
+#define GAS_PLASMA "plasma"
+#define GAS_VOLATILE_FUEL "volatile_fuel"
+#define GAS_SLEEPING_AGENT "sleeping_agent"
+#define GAS_OXYGEN_AGENT_B "oxygen_agent_b"

@@ -287,7 +287,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 
 /obj/machinery/door/airlock/plasma/proc/PlasmaBurn(temperature)
 	for(var/turf/simulated/floor/target_tile in range(2, loc))
-		target_tile.assume_gas("plasma", 35, 400 + T0C)
+		target_tile.assume_gas(GAS_PLASMA, 35, 400 + T0C)
 		spawn(0)
 			target_tile.hotspot_expose(temperature, 400)
 	for(var/obj/structure/falsewall/plasma/F in range(3, src))//Hackish as fuck, but until temperature_expose works, there is nothing I can do -Sieve

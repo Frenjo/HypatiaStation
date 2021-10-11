@@ -364,28 +364,28 @@ update_flag
 
 /obj/machinery/portable_atmospherics/canister/toxins/New()
 	..()
-	src.air_contents.adjust_gas("plasma", (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
+	src.air_contents.adjust_gas(GAS_PLASMA, (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
 	src.update_icon()
 	return 1
 
 
 /obj/machinery/portable_atmospherics/canister/oxygen/New()
 	..()
-	src.air_contents.adjust_gas("oxygen", (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
+	src.air_contents.adjust_gas(GAS_OXYGEN, (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
 	src.update_icon()
 	return 1
 
 
 /obj/machinery/portable_atmospherics/canister/sleeping_agent/New()
 	..()
-	air_contents.adjust_gas("sleeping_agent", (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
+	air_contents.adjust_gas(GAS_SLEEPING_AGENT, (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
 	src.update_icon()
 	return 1
 
 //Dirty way to fill room with gas. However it is a bit easier to do than creating some floor/engine/n2o -rastaf0
 /obj/machinery/portable_atmospherics/canister/sleeping_agent/roomfiller/New()
 	..()
-	air_contents.gas["sleeping_agent"] = 9 * 4000
+	air_contents.gas[GAS_SLEEPING_AGENT] = 9 * 4000
 	spawn(10)
 		var/turf/simulated/location = src.loc
 		if(istype(src.loc))
@@ -398,21 +398,24 @@ update_flag
 
 /obj/machinery/portable_atmospherics/canister/nitrogen/New()
 	..()
-	src.air_contents.adjust_gas("nitrogen", (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
+	src.air_contents.adjust_gas(GAS_NITROGEN, (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
 	src.update_icon()
 	return 1
 
 
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide/New()
 	..()
-	src.air_contents.adjust_gas("carbon_dioxide", (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
+	src.air_contents.adjust_gas(GAS_CARBON_DIOXIDE, (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
 	src.update_icon()
 	return 1
 
 
 /obj/machinery/portable_atmospherics/canister/air/New()
 	..()
-	src.air_contents.adjust_multi("oxygen", (O2STANDARD * src.maximum_pressure * filled) * air_contents.volume/(R_IDEAL_GAS_EQUATION * air_contents.temperature), "nitrogen", (N2STANDARD * src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
+	src.air_contents.adjust_multi(
+		GAS_OXYGEN, (O2STANDARD * src.maximum_pressure * filled) * air_contents.volume/(R_IDEAL_GAS_EQUATION * air_contents.temperature),
+		GAS_NITROGEN, (N2STANDARD * src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
+	)
 	src.update_icon()
 	return 1
 
@@ -420,7 +423,7 @@ update_flag
 // Added this because I'm curious. -Frenjo
 /obj/machinery/portable_atmospherics/canister/oxygen_agent_b/New()
 	..()
-	air_contents.adjust_gas("oxygen_agent_b", (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
+	air_contents.adjust_gas(GAS_OXYGEN_AGENT_B, (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
 	src.update_icon()
 	return 1
 
@@ -429,7 +432,7 @@ update_flag
 /obj/machinery/portable_atmospherics/canister/oxygen_toxins/New()
 	..()
 	// This has a 75/25 plasma/oxygen mixture, used in the atmospheric tank. -Frenjo
-	src.air_contents.adjust_gas("oxygen", (src.maximum_pressure * filled / 0.25) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
-	src.air_contents.adjust_gas("plasma", (src.maximum_pressure * filled / 0.75) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
+	src.air_contents.adjust_gas(GAS_OXYGEN, (src.maximum_pressure * filled / 0.25) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
+	src.air_contents.adjust_gas(GAS_PLASMA, (src.maximum_pressure * filled / 0.75) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
 	src.update_icon()
 	return 1

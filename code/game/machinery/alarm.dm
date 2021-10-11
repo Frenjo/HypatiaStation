@@ -107,9 +107,9 @@
 /obj/machinery/alarm/server/New()
 	..()
 	req_access = list(access_rd, access_atmospherics, access_engine_equip)
-	TLV["oxygen"] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
-	TLV["carbon dioxide"] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
-	TLV["plasma"] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
+	TLV[GAS_OXYGEN] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
+	TLV[GAS_CARBON_DIOXIDE] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
+	TLV[GAS_PLASMA] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
 	TLV["pressure"] =		list(0,ONE_ATMOSPHERE * 0.10, ONE_ATMOSPHERE * 1.40, ONE_ATMOSPHERE * 1.60) /* kpa */
 	TLV["temperature"] =	list(20, 40, 140, 160) // K
@@ -154,9 +154,9 @@
 		name = "[alarm_area.name] Air Alarm"
 
 	// breathable air according to human/Life()
-	TLV["oxygen"] =			list(16, 19, 135, 140) // Partial pressure, kpa
-	TLV["carbon dioxide"] = list(-1.0, -1.0, 5, 10) // Partial pressure, kpa
-	TLV["plasma"] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
+	TLV[GAS_OXYGEN] =			list(16, 19, 135, 140) // Partial pressure, kpa
+	TLV[GAS_CARBON_DIOXIDE] = list(-1.0, -1.0, 5, 10) // Partial pressure, kpa
+	TLV[GAS_PLASMA] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
 	TLV["pressure"] =		list(ONE_ATMOSPHERE * 0.80, ONE_ATMOSPHERE * 0.90, ONE_ATMOSPHERE * 1.10, ONE_ATMOSPHERE * 1.20) /* kpa */
 	TLV["temperature"] =	list(T0C - 26, T0C, T0C + 40, T0C + 66) // K
@@ -179,8 +179,10 @@
 
 		if(!regulating_temperature)
 			regulating_temperature = 1
-			visible_message("\The [src] clicks as it starts [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
-			"You hear a click and a faint electronic hum.")
+			visible_message(
+				"\The [src] clicks as it starts [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",
+				"You hear a click and a faint electronic hum."
+			)
 
 		if(target_temperature > T0C + MAX_TEMPERATURE)
 			target_temperature = T0C + MAX_TEMPERATURE
@@ -261,9 +263,9 @@
 	//	other_moles+=G.moles
 
 	var/pressure_dangerlevel = get_danger_level(environment_pressure, TLV["pressure"])
-	var/oxygen_dangerlevel = get_danger_level(environment.gas["oxygen"] * partial_pressure, TLV["oxygen"])
-	var/co2_dangerlevel = get_danger_level(environment.gas["carbon_dioxide"] * partial_pressure, TLV["carbon dioxide"])
-	var/plasma_dangerlevel = get_danger_level(environment.gas["plasma"] * partial_pressure, TLV["plasma"])
+	var/oxygen_dangerlevel = get_danger_level(environment.gas[GAS_OXYGEN] * partial_pressure, TLV[GAS_OXYGEN])
+	var/co2_dangerlevel = get_danger_level(environment.gas[GAS_CARBON_DIOXIDE] * partial_pressure, TLV[GAS_CARBON_DIOXIDE])
+	var/plasma_dangerlevel = get_danger_level(environment.gas[GAS_PLASMA] * partial_pressure, TLV[GAS_PLASMA])
 	var/temperature_dangerlevel = get_danger_level(environment.temperature, TLV["temperature"])
 	//var/other_dangerlevel = get_danger_level(other_moles*partial_pressure, TLV["other"])
 
@@ -735,17 +737,17 @@
 	var/environment_pressure = environment.return_pressure()
 	var/pressure_dangerlevel = get_danger_level(environment_pressure, current_settings)
 
-	current_settings = TLV["oxygen"]
-	var/oxygen_dangerlevel = get_danger_level(environment.gas["oxygen"] * partial_pressure, current_settings)
-	var/oxygen_percent = round(environment.gas["oxygen"] / total * 100, 2)
+	current_settings = TLV[GAS_OXYGEN]
+	var/oxygen_dangerlevel = get_danger_level(environment.gas[GAS_OXYGEN] * partial_pressure, current_settings)
+	var/oxygen_percent = round(environment.gas[GAS_OXYGEN] / total * 100, 2)
 
-	current_settings = TLV["carbon dioxide"]
-	var/co2_dangerlevel = get_danger_level(environment.gas["carbon_dioxide"] * partial_pressure, current_settings)
-	var/co2_percent = round(environment.gas["carbon_dioxide"] / total * 100, 2)
+	current_settings = TLV[GAS_CARBON_DIOXIDE]
+	var/co2_dangerlevel = get_danger_level(environment.gas[GAS_CARBON_DIOXIDE] * partial_pressure, current_settings)
+	var/co2_percent = round(environment.gas[GAS_CARBON_DIOXIDE] / total * 100, 2)
 
-	current_settings = TLV["plasma"]
-	var/plasma_dangerlevel = get_danger_level(environment.gas["plasma"] * partial_pressure, current_settings)
-	var/plasma_percent = round(environment.gas["plasma"] / total * 100, 2)
+	current_settings = TLV[GAS_PLASMA]
+	var/plasma_dangerlevel = get_danger_level(environment.gas[GAS_PLASMA] * partial_pressure, current_settings)
+	var/plasma_percent = round(environment.gas[GAS_PLASMA] / total * 100, 2)
 
 	//current_settings = TLV["other"]
 	//var/other_moles = 0.0
@@ -912,11 +914,11 @@ Nitrous Oxide
 		if(AALARM_SCREEN_MODE)
 			output += "<a href='?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br><b>Air machinery mode for the area:</b><ul>"
 			var/list/modes = list(AALARM_MODE_SCRUBBING   = "Filtering - Scrubs out contaminants",\
-				AALARM_MODE_REPLACEMENT = "<font color='blue'>Replace Air - Siphons out air while replacing</font>",\
-				AALARM_MODE_PANIC       = "<font color='red'>Panic - Siphons air out of the room</font>",\
-				AALARM_MODE_CYCLE       = "<font color='red'>Cycle - Siphons air before replacing</font>",\
-				AALARM_MODE_FILL        = "<font color='green'>Fill - Shuts off scrubbers and opens vents</font>",\
-				AALARM_MODE_OFF         = "<font color='blue'>Off - Shuts off vents and scrubbers</font>",)
+				AALARM_MODE_REPLACEMENT	= "<font color='blue'>Replace Air - Siphons out air while replacing</font>",\
+				AALARM_MODE_PANIC		= "<font color='red'>Panic - Siphons air out of the room</font>",\
+				AALARM_MODE_CYCLE		= "<font color='red'>Cycle - Siphons air before replacing</font>",\
+				AALARM_MODE_FILL		= "<font color='green'>Fill - Shuts off scrubbers and opens vents</font>",\
+				AALARM_MODE_OFF			= "<font color='blue'>Off - Shuts off vents and scrubbers</font>",)
 			for(var/m = 1, m <= modes.len, m++)
 				if(mode == m)
 					output += "<li><A href='?src=\ref[src];mode=[m]'><b>[modes[m]]</b></A> (selected)</li>"
@@ -942,10 +944,10 @@ table tr:first-child th:first-child { border: none;}
 <TR><th></th><th class=dl2>min2</th><th class=dl1>min1</th><th class=dl1>max1</th><th class=dl2>max2</th></TR>
 "}
 			var/list/gases = list(
-				"oxygen"         = "O<sub>2</sub>",
-				"carbon dioxide" = "CO<sub>2</sub>",
-				"plasma"         = "Toxin",
-				"other"          = "Other"
+				GAS_OXYGEN			= "O<sub>2</sub>",
+				GAS_CARBON_DIOXIDE	= "CO<sub>2</sub>",
+				GAS_PLASMA			= "Toxin",
+				"other"				= "Other"
 			)
 
 			var/list/selected
@@ -999,7 +1001,7 @@ table tr:first-child th:first-child { border: none;}
 				"scrubbing"
 			)
 
-				send_signal(device_id, list(href_list["command"] = text2num(href_list["val"]) ) )
+				send_signal(device_id, list(href_list["command"] = text2num(href_list["val"])))
 
 			if("set_threshold")
 				var/env = href_list["env"]
