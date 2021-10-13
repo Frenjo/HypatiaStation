@@ -198,7 +198,12 @@
 	//Create gas mixture to hold data for passing
 	var/datum/gas_mixture/GM = new
 
-	GM.adjust_multi(GAS_OXYGEN, oxygen, GAS_CARBON_DIOXIDE, carbon_dioxide, GAS_NITROGEN, nitrogen, GAS_PLASMA, toxins)
+	GM.adjust_multi(
+		GAS_OXYGEN, oxygen,
+		GAS_CARBON_DIOXIDE, carbon_dioxide,
+		GAS_NITROGEN, nitrogen,
+		GAS_PLASMA, toxins
+	)
 
 	GM.temperature = temperature
 
@@ -209,10 +214,10 @@
 
 	var/sum = oxygen + carbon_dioxide + nitrogen + toxins
 	if(sum > 0)
-		GM.gas[GAS_OXYGEN] = (oxygen/sum)*amount
-		GM.gas[GAS_CARBON_DIOXIDE] = (carbon_dioxide/sum)*amount
-		GM.gas[GAS_NITROGEN] = (nitrogen/sum)*amount
-		GM.gas[GAS_PLASMA] = (toxins/sum)*amount
+		GM.gas[GAS_OXYGEN] = (oxygen / sum) * amount
+		GM.gas[GAS_CARBON_DIOXIDE] = (carbon_dioxide / sum) * amount
+		GM.gas[GAS_NITROGEN] = (nitrogen / sum) * amount
+		GM.gas[GAS_PLASMA] = (toxins / sum) * amount
 
 	GM.temperature = temperature
 	GM.update_values()
@@ -255,7 +260,12 @@
 /turf/proc/make_air()
 	air = new/datum/gas_mixture
 	air.temperature = temperature
-	air.adjust_multi(GAS_OXYGEN, oxygen, GAS_CARBON_DIOXIDE, carbon_dioxide, GAS_NITROGEN, nitrogen, GAS_PLASMA, toxins)
+	air.adjust_multi(
+		GAS_OXYGEN, oxygen,
+		GAS_CARBON_DIOXIDE, carbon_dioxide,
+		GAS_NITROGEN, nitrogen,
+		GAS_PLASMA, toxins
+	)
 	air.group_multiplier = 1
 	air.volume = CELL_VOLUME
 

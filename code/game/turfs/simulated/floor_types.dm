@@ -71,26 +71,78 @@
 	name = "engraved floor"
 	icon_state = "cult"
 
-
-/turf/simulated/floor/engine/n20
-	
-/turf/simulated/floor/engine/n20/New()
-	. = ..()
-	assume_gas(GAS_SLEEPING_AGENT, 2000)
-
-// Added this for the atmos tanks. -Frenjo
-/turf/simulated/floor/engine/oxygen_agent_b
-
-/turf/simulated/floor/engine/oxygen_agent_b/New()
-	. = ..()
-	assume_gas(GAS_OXYGEN_AGENT_B, 2000)
-
+// ATMOSPHERICS TANK FLOORS
+// Added these for the atmos tanks. -Frenjo
+// Vacuum
 /turf/simulated/floor/engine/vacuum
 	name = "vacuum floor"
 	icon_state = "engine"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
+
+// Oxygen
+/turf/simulated/floor/engine/oxygen
+	name = "o2 floor"
+	oxygen = 100000
+	nitrogen = 0
+
+// Nitrogen
+/turf/simulated/floor/engine/nitrogen
+	name = "n2 floor"
+	oxygen = 0
+	nitrogen = 100000
+
+// Air
+/turf/simulated/floor/engine/air
+	name = "air floor"
+	oxygen = 2644
+	nitrogen = 10580
+
+// Hydrogen
+/turf/simulated/floor/engine/hydrogen
+	name = "h2 floor"
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/engine/hydrogen/New()
+	..()
+	assume_gas(GAS_HYDROGEN, 70000)
+
+// Carbon Dioxide
+/turf/simulated/floor/engine/co2
+	name = "co2 floor"
+	oxygen = 0
+	nitrogen = 0
+	carbon_dioxide = 50000
+
+// Plasma
+/turf/simulated/floor/engine/plasma
+	name = "plasma floor"
+	oxygen = 0
+	nitrogen = 0
+	toxins = 70000
+
+// Oxygen Agent-B
+/turf/simulated/floor/engine/oxygen_agent_b
+	name = "o2a-b floor"
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/engine/oxygen_agent_b/New()
+	..()
+	assume_gas(GAS_OXYGEN_AGENT_B, 2000)
+
+// Nitrous Oxide
+/turf/simulated/floor/engine/n2o
+	name = "n2o floor"
+	oxygen = 0
+	nitrogen = 0
+
+/turf/simulated/floor/engine/n2o/New()
+	..()
+	assume_gas(GAS_SLEEPING_AGENT, 2000)
+// END ATMOSPHERICS TANK FLOORS
 
 /turf/simulated/floor/plating
 	name = "plating"

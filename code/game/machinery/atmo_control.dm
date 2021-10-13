@@ -1,3 +1,13 @@
+#define AIR_SENSOR_PRESSURE 1
+#define AIR_SENSOR_TEMPERATURE 2
+#define AIR_SENSOR_OXYGEN 4
+#define AIR_SENSOR_NITROGEN 8
+#define AIR_SENSOR_HYDROGEN 16
+#define AIR_SENSOR_CARBON_DIOXIDE 32
+#define AIR_SENSOR_PLASMA 64
+#define AIR_SENSOR_OXYGEN_AGENT_B 128
+#define AIR_SENSOR_SLEEPING_AGENT 256
+
 /obj/machinery/air_sensor
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "gsensor1"
@@ -10,68 +20,92 @@
 	var/frequency = 1439
 
 	var/on = 1
-	var/output = 3
+	var/output = (
+		AIR_SENSOR_PRESSURE | AIR_SENSOR_TEMPERATURE | AIR_SENSOR_OXYGEN | AIR_SENSOR_NITROGEN | AIR_SENSOR_HYDROGEN \
+		| AIR_SENSOR_CARBON_DIOXIDE | AIR_SENSOR_PLASMA | AIR_SENSOR_OXYGEN_AGENT_B | AIR_SENSOR_SLEEPING_AGENT \
+	)
 	//Flags:
 	// 1 for pressure
 	// 2 for temperature
 	// Output >= 4 includes gas composition
 	// 4 for oxygen concentration
-	// 8 for toxins concentration
-	// 16 for nitrogen concentration
+	// 8 for nitrogen concentration
+	// 16 for hydrogen concentration
 	// 32 for carbon dioxide concentration
+	// 64 for plasma concentration
+	// 128 for oxygen agent b concentration
+	// 256 for nitrous oxide concentration
 
 	var/datum/radio_frequency/radio_connection
 
-	update_icon()
+/obj/machinery/air_sensor/update_icon()
 		icon_state = "gsensor[on]"
 
-	process()
-		if(on)
-			var/datum/signal/signal = new
-			signal.transmission_method = 1 //radio signal
-			signal.data["tag"] = id_tag
-			signal.data["timestamp"] = world.time
+/obj/machinery/air_sensor/process()
+	if(on)
+		var/datum/signal/signal = new
+		signal.transmission_method = 1 //radio signal
+		signal.data["tag"] = id_tag
+		signal.data["timestamp"] = world.time
 
-			var/datum/gas_mixture/air_sample = return_air()
+		var/datum/gas_mixture/air_sample = return_air()
 
-			if(output&1)
-				signal.data["pressure"] = num2text(round(air_sample.return_pressure(),0.1),)
-			if(output&2)
-				signal.data["temperature"] = round(air_sample.temperature,0.1)
+		if(output & AIR_SENSOR_PRESSURE)
+			signal.data["pressure"] = num2text(round(air_sample.return_pressure(), 0.1))
+		if(output & AIR_SENSOR_TEMPERATURE)
+			signal.data["temperature"] = round(air_sample.temperature, 0.1)
 
-			if(output>4)
-				var/total_moles = air_sample.total_moles
-				if(total_moles > 0)
-					if(output&4)
-						signal.data["oxygen"] = round(100*air_sample.gas[GAS_OXYGEN]/total_moles,0.1)
-					if(output&8)
-						signal.data["toxins"] = round(100*air_sample.gas[GAS_PLASMA]/total_moles,0.1)
-					if(output&16)
-						signal.data["nitrogen"] = round(100*air_sample.gas[GAS_NITROGEN]/total_moles,0.1)
-					if(output&32)
-						signal.data["carbon_dioxide"] = round(100*air_sample.gas[GAS_CARBON_DIOXIDE]/total_moles,0.1)
-				else
-					signal.data["oxygen"] = 0
-					signal.data["toxins"] = 0
-					signal.data["nitrogen"] = 0
-					signal.data["carbon_dioxide"] = 0
-			signal.data["sigtype"]="status"
-			radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
+		if(output > 4)
+			var/total_moles = air_sample.total_moles
+			if(total_moles > 0)
+				if(output & AIR_SENSOR_OXYGEN)
+					signal.data[GAS_OXYGEN] = round(100 * air_sample.gas[GAS_OXYGEN] / total_moles, 0.1)
+				if(output & AIR_SENSOR_NITROGEN)
+					signal.data[GAS_NITROGEN] = round(100 * air_sample.gas[GAS_NITROGEN] / total_moles, 0.1)
+				if(output & AIR_SENSOR_HYDROGEN)
+					signal.data[GAS_HYDROGEN] = round(100 * air_sample.gas[GAS_HYDROGEN] / total_moles, 0.1)
+				if(output & AIR_SENSOR_CARBON_DIOXIDE)
+					signal.data[GAS_CARBON_DIOXIDE] = round(100 * air_sample.gas[GAS_CARBON_DIOXIDE] / total_moles, 0.1)
+				if(output & AIR_SENSOR_PLASMA)
+					signal.data[GAS_PLASMA] = round(100 * air_sample.gas[GAS_PLASMA] / total_moles, 0.1)
+				if(output & AIR_SENSOR_OXYGEN_AGENT_B)
+					signal.data[GAS_OXYGEN_AGENT_B] = round(100 * air_sample.gas[GAS_OXYGEN_AGENT_B] / total_moles, 0.1)
+				if(output & AIR_SENSOR_SLEEPING_AGENT)
+					signal.data[GAS_SLEEPING_AGENT] = round(100 * air_sample.gas[GAS_SLEEPING_AGENT] / total_moles, 0.1)
+			else
+				signal.data[GAS_OXYGEN] = 0
+				signal.data[GAS_NITROGEN] = 0
+				signal.data[GAS_HYDROGEN] = 0
+				signal.data[GAS_CARBON_DIOXIDE] = 0
+				signal.data[GAS_PLASMA] = 0
+				signal.data[GAS_OXYGEN_AGENT_B] = 0
+				signal.data[GAS_SLEEPING_AGENT] = 0
+		signal.data["sigtype"] = "status"
+		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
+/obj/machinery/air_sensor/proc/set_frequency(new_frequency)
+	radio_controller.remove_object(src, frequency)
+	frequency = new_frequency
+	radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
-	proc
-		set_frequency(new_frequency)
-			radio_controller.remove_object(src, frequency)
-			frequency = new_frequency
-			radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
-
-	initialize()
-		set_frequency(frequency)
+/obj/machinery/air_sensor/initialize()
+	..()
+	set_frequency(frequency)
 
 /obj/machinery/air_sensor/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src, frequency)
-	..()
+	return ..()
+
+#undef AIR_SENSOR_PRESSURE
+#undef AIR_SENSOR_TEMPERATURE
+#undef AIR_SENSOR_OXYGEN
+#undef AIR_SENSOR_NITROGEN
+#undef AIR_SENSOR_HYDROGEN
+#undef AIR_SENSOR_CARBON_DIOXIDE
+#undef AIR_SENSOR_PLASMA
+#undef AIR_SENSOR_OXYGEN_AGENT_B
+#undef AIR_SENSOR_SLEEPING_AGENT
 
 /obj/machinery/computer/general_air_control
 	icon = 'icons/obj/computer.dmi'
@@ -88,12 +122,12 @@
 /obj/machinery/computer/general_air_control/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src, frequency)
-	..()
+	return ..()
 
 /obj/machinery/computer/general_air_control/attack_hand(mob/user)
 	if(..(user))
 		return
-	user << browse(return_text(),"window=computer")
+	user << browse(return_text(), "window=computer")
 	user.set_machine(src)
 	onclose(user, "computer")
 
@@ -105,12 +139,12 @@
 	if(istype(I, /obj/item/weapon/screwdriver))
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
-			if (src.stat & BROKEN)
-				user << "\blue The broken glass falls out."
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				new /obj/item/weapon/shard( src.loc )
-				var/obj/item/weapon/circuitboard/air_management/M = new /obj/item/weapon/circuitboard/air_management( A )
-				for (var/obj/C in src)
+			if(src.stat & BROKEN)
+				to_chat(user, SPAN_INFO("The broken glass falls out."))
+				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
+				new /obj/item/weapon/shard(src.loc)
+				var/obj/item/weapon/circuitboard/air_management/M = new /obj/item/weapon/circuitboard/air_management(A)
+				for(var/obj/C in src)
 					C.loc = src.loc
 				M.frequency = src.frequency
 				A.circuit = M
@@ -120,9 +154,9 @@
 				qdel(src)
 			else
 				to_chat(user, SPAN_INFO("You disconnect the monitor."))
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/air_management/M = new /obj/item/weapon/circuitboard/air_management( A )
-				for (var/obj/C in src)
+				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
+				var/obj/item/weapon/circuitboard/air_management/M = new /obj/item/weapon/circuitboard/air_management(A)
+				for(var/obj/C in src)
 					C.loc = src.loc
 				M.frequency = src.frequency
 				A.circuit = M
@@ -135,10 +169,12 @@
 	return
 
 /obj/machinery/computer/general_air_control/receive_signal(datum/signal/signal)
-	if(!signal || signal.encryption) return
+	if(!signal || signal.encryption)
+		return
 
 	var/id_tag = signal.data["tag"]
-	if(!id_tag || !sensors.Find(id_tag)) return
+	if(!id_tag || !sensors.Find(id_tag))
+		return
 
 	sensor_information[id_tag] = signal.data
 
@@ -155,23 +191,34 @@
 					sensor_part += "   <B>Pressure:</B> [data["pressure"]] kPa<BR>"
 				if(data["temperature"])
 					sensor_part += "   <B>Temperature:</B> [data["temperature"]] K<BR>"
-				if(data["oxygen"]||data["toxins"]||data["nitrogen"]||data["carbon_dioxide"])
-					sensor_part += "   <B>Gas Composition :</B>"
-					if(data["oxygen"])
-						sensor_part += "[data["oxygen"]]% O2; "
-					if(data["nitrogen"])
-						sensor_part += "[data["nitrogen"]]% N; "
-					if(data["carbon_dioxide"])
-						sensor_part += "[data["carbon_dioxide"]]% CO2; "
-					if(data["toxins"])
-						sensor_part += "[data["toxins"]]% TX; "
+				if(data[GAS_OXYGEN] || data[GAS_NITROGEN] || data[GAS_HYDROGEN] || data[GAS_CARBON_DIOXIDE] \
+				|| data[GAS_PLASMA] || data[GAS_OXYGEN_AGENT_B] || data[GAS_SLEEPING_AGENT])
+					sensor_part += "   <B>Gas Composition: </B>"
+					if(data[GAS_OXYGEN])
+						sensor_part += "<BR>"
+						sensor_part += "[data[GAS_OXYGEN]]% O2;"
+					if(data[GAS_NITROGEN])
+						sensor_part += "<BR>"
+						sensor_part += "[data[GAS_NITROGEN]]% N;"
+					if(data[GAS_HYDROGEN])
+						sensor_part += "<BR>"
+						sensor_part += "[data[GAS_HYDROGEN]]% H2;"
+					if(data[GAS_CARBON_DIOXIDE])
+						sensor_part += "<BR>"
+						sensor_part += "[data[GAS_CARBON_DIOXIDE]]% CO2;"
+					if(data[GAS_PLASMA])
+						sensor_part += "<BR>"
+						sensor_part += "[data[GAS_PLASMA]]% TX;"
+					if(data[GAS_OXYGEN_AGENT_B])
+						sensor_part += "<BR>"
+						sensor_part += "[data[GAS_OXYGEN_AGENT_B]]% O2A-B;"
+					if(data[GAS_SLEEPING_AGENT])
+						sensor_part += "<BR>"
+						sensor_part += "[data[GAS_SLEEPING_AGENT]]% N2O;"
 				sensor_part += "<HR>"
-
 			else
 				sensor_part = "<FONT color='red'>[long_name] can not be found!</FONT><BR>"
-
 			sensor_data += sensor_part
-
 	else
 		sensor_data = "No sensors connected."
 
@@ -186,6 +233,7 @@
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/computer/general_air_control/initialize()
+	..()
 	set_frequency(frequency)
 
 /obj/machinery/computer/general_air_control/large_tank_control
@@ -199,7 +247,6 @@
 	var/list/output_info
 
 	var/pressure_setting = ONE_ATMOSPHERE * 45
-
 
 /obj/machinery/computer/general_air_control/large_tank_control/return_text()
 	var/output = ..()
@@ -234,7 +281,8 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 	return output
 
 /obj/machinery/computer/general_air_control/large_tank_control/receive_signal(datum/signal/signal)
-	if(!signal || signal.encryption) return
+	if(!signal || signal.encryption)
+		return
 
 	var/id_tag = signal.data["tag"]
 
@@ -251,7 +299,7 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 
 	if(href_list["adj_pressure"])
 		var/change = text2num(href_list["adj_pressure"])
-		pressure_setting = between(0, pressure_setting + change, 50*ONE_ATMOSPHERE)
+		pressure_setting = between(0, pressure_setting + change, 50 * ONE_ATMOSPHERE)
 		spawn(1)
 			src.updateUsrDialog()
 		return
@@ -281,7 +329,7 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 		output_info = null
 		signal.data = list ("tag" = output_tag, "set_internal_pressure" = "[pressure_setting]")
 
-	signal.data["sigtype"]="command"
+	signal.data["sigtype"] = "command"
 	radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
 	spawn(5)
@@ -303,12 +351,12 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 	if(istype(I, /obj/item/weapon/screwdriver))
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
-			if (src.stat & BROKEN)
-				user << "\blue The broken glass falls out."
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				new /obj/item/weapon/shard( src.loc )
-				var/obj/item/weapon/circuitboard/injector_control/M = new /obj/item/weapon/circuitboard/injector_control( A )
-				for (var/obj/C in src)
+			if(src.stat & BROKEN)
+				to_chat(user, SPAN_INFO("The broken glass falls out."))
+				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
+				new /obj/item/weapon/shard(src.loc)
+				var/obj/item/weapon/circuitboard/injector_control/M = new /obj/item/weapon/circuitboard/injector_control(A)
+				for(var/obj/C in src)
 					C.loc = src.loc
 				M.frequency = src.frequency
 				A.circuit = M
@@ -318,9 +366,9 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 				qdel(src)
 			else
 				to_chat(user, SPAN_INFO("You disconnect the monitor."))
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/injector_control/M = new /obj/item/weapon/circuitboard/injector_control( A )
-				for (var/obj/C in src)
+				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
+				var/obj/item/weapon/circuitboard/injector_control/M = new /obj/item/weapon/circuitboard/injector_control(A)
+				for(var/obj/C in src)
 					C.loc = src.loc
 				M.frequency = src.frequency
 				A.circuit = M
@@ -354,7 +402,7 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 		signal.data = list(
 			"tag" = device_tag,
 			"power" = injecting,
-			"sigtype"="command"
+			"sigtype" = "command"
 		)
 
 		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
@@ -408,7 +456,7 @@ Rate: [volume_rate] L/sec<BR>"}
 		signal.data = list(
 			"tag" = device_tag,
 			"status",
-			"sigtype"="command"
+			"sigtype" = "command"
 		)
 		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
@@ -426,7 +474,7 @@ Rate: [volume_rate] L/sec<BR>"}
 		signal.data = list(
 			"tag" = device_tag,
 			"power_toggle",
-			"sigtype"="command"
+			"sigtype" = "command"
 		)
 
 		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
@@ -441,7 +489,7 @@ Rate: [volume_rate] L/sec<BR>"}
 		signal.data = list(
 			"tag" = device_tag,
 			"inject",
-			"sigtype"="command"
+			"sigtype" = "command"
 		)
 
 		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)

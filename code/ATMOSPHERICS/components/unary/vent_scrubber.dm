@@ -103,7 +103,9 @@
 	var/datum/gas_mixture/environment = loc.return_air()
 
 	if(scrubbing)
-		if(environment.gas[GAS_PLASMA] > 0.001 || environment.gas[GAS_CARBON_DIOXIDE] > 0.001 || environment.gas[GAS_OXYGEN_AGENT_B] > 0.001 || environment.gas[GAS_SLEEPING_AGENT] > 0.001)
+		if(environment.gas[GAS_PLASMA] > 0.001 || environment.gas[GAS_CARBON_DIOXIDE] > 0.001 \
+		|| environment.gas[GAS_OXYGEN_AGENT_B] > 0.001 || environment.gas[GAS_SLEEPING_AGENT] > 0.001 \
+		|| environment.gas[GAS_HYDROGEN] > 0.001)
 			var/transfer_moles = min(1, volume_rate / environment.volume) * environment.total_moles
 
 			//Take a gas sample
@@ -126,6 +128,11 @@
 			if(removed.gas[GAS_OXYGEN_AGENT_B])
 				filtered_out.gas[GAS_OXYGEN_AGENT_B] = removed.gas[GAS_OXYGEN_AGENT_B]
 				removed.gas[GAS_OXYGEN_AGENT_B] = 0
+			// TODO: Set this up so you can manually toggle scrubbing of each individual gas.
+			// Temporary solution is to just always scrub hydrogen in the same way as Oxygen Agent-B. -Frenjo
+			if(removed.gas[GAS_HYDROGEN])
+				filtered_out.gas[GAS_HYDROGEN] = removed.gas[GAS_HYDROGEN]
+				removed.gas[GAS_HYDROGEN] = 0
 
 			//Remix the resulting gases
 			air_contents.merge(filtered_out)

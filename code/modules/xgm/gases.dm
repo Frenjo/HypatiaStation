@@ -14,6 +14,15 @@
 	specific_heat = 20	// J/(mol*K)
 	molar_mass = 0.028	// kg/mol
 
+/decl/xgm_gas/hydrogen
+	id = GAS_HYDROGEN
+	name = "Hydrogen"
+
+	specific_heat = 100	// J/(mol*K)
+	molar_mass = 0.002	// kg/mol
+
+	flags = XGM_GAS_FUEL
+
 /decl/xgm_gas/carbon_dioxide
 	id = GAS_CARBON_DIOXIDE
 	name = "Carbon Dioxide"
@@ -37,14 +46,12 @@
 
 	flags = XGM_GAS_FUEL | XGM_GAS_CONTAMINANT
 
-/decl/xgm_gas/volatile_fuel
-	id = GAS_VOLATILE_FUEL
-	name = "Volatile Fuel"
+/decl/xgm_gas/oxygen_agent_b
+	id = GAS_OXYGEN_AGENT_B
+	name = "Oxygen Agent-B"	//what is this?
 
-	specific_heat = 253	// J/(mol*K)	C8H18 gasoline. Isobaric, but good enough.
-	molar_mass = 0.114	// kg/mol.		same.
-
-	flags = XGM_GAS_FUEL
+	specific_heat = 300	// J/(mol*K)
+	molar_mass = 0.032	// kg/mol
 
 /decl/xgm_gas/sleeping_agent
 	id = GAS_SLEEPING_AGENT
@@ -56,9 +63,13 @@
 	tile_overlay = "sleeping_agent"
 	overlay_limit = 1
 
-/decl/xgm_gas/oxygen_agent_b
-	id = GAS_OXYGEN_AGENT_B
-	name = "Oxygen Agent-B"	//what is this?
+	flags = XGM_GAS_OXIDIZER
 
-	specific_heat = 300	// J/(mol*K)
-	molar_mass = 0.032	// kg/mol
+/decl/xgm_gas/volatile_fuel
+	id = GAS_VOLATILE_FUEL
+	name = "Volatile Fuel"
+
+	specific_heat = 253	// J/(mol*K)	C8H18 gasoline. Isobaric, but good enough.
+	molar_mass = 0.114	// kg/mol.		same.
+
+	flags = XGM_GAS_FUEL

@@ -1,7 +1,16 @@
+#define GAS_FILTER_NOTHING -1
+#define GAS_FILTER_OXYGEN 0
+#define GAS_FILTER_NITROGEN 1
+#define GAS_FILTER_HYDROGEN 2
+#define GAS_FILTER_CARBON_DIOXIDE 3
+#define GAS_FILTER_CARBON_MOLECULES 4
+#define GAS_FILTER_PLASMA 5
+#define GAS_FILTER_OXYGEN_AGENT_B 6
+#define GAS_FILTER_SLEEPING_AGENT 7
+
 /obj/machinery/atmospherics/trinary/filter
 	icon = 'icons/obj/atmospherics/filter.dmi'
 	icon_state = "intact_off"
-	//density = 1
 	density = 0 // Made filters and mixers not-dense so you can walk over them. -Frenjo
 
 	name = "Gas filter"
@@ -11,15 +20,18 @@
 
 	var/target_pressure = ONE_ATMOSPHERE
 
-	var/filter_type = 0
+	var/filter_type = GAS_FILTER_CARBON_MOLECULES
 /*
 Filter types:
 -1: Nothing
- 0: Carbon Molecules: Plasma Toxin, Oxygen Agent B
- 1: Oxygen: Oxygen ONLY
- 2: Nitrogen: Nitrogen ONLY
+ 0: Oxygen: Oxygen ONLY
+ 1: Nitrogen: Nitrogen ONLY
+ 2: Hydrogen: Hydrogen ONLY
  3: Carbon Dioxide: Carbon Dioxide ONLY
- 4: Sleeping Agent (N2O)
+ 4: Carbon Molecules: Plasma Toxin, Oxygen Agent B
+ 5: Plasma: Plasma ONLY
+ 6: Oxygen Agent B: Oxygen Agent B ONLY
+ 7: Sleeping Agent (N2O)
 */
 	var/frequency = 0
 	var/datum/radio_frequency/radio_connection
@@ -30,9 +42,6 @@ Filter types:
 	if(frequency)
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/atmospherics/trinary/filter/New()
-	..()
-
 /obj/machinery/atmospherics/trinary/filter/update_icon()
 	if(stat & NOPOWER)
 		icon_state = "intact_off"
@@ -41,7 +50,6 @@ Filter types:
 	else
 		icon_state = "intact_off"
 		on = 0
-
 	return
 
 /obj/machinery/atmospherics/trinary/filter/power_change()
@@ -62,15 +70,12 @@ Filter types:
 		return 1
 
 	//Calculate necessary moles to transfer using PV=nRT
-
 	var/pressure_delta = target_pressure - output_starting_pressure
 	var/transfer_moles
-
 	if(air1.temperature > 0)
 		transfer_moles = pressure_delta * air3.volume / (air1.temperature * R_IDEAL_GAS_EQUATION)
 
 	//Actually transfer the gas
-
 	if(transfer_moles > 0)
 		var/datum/gas_mixture/removed = air1.remove(transfer_moles)
 
@@ -80,32 +85,43 @@ Filter types:
 		filtered_out.temperature = removed.temperature
 
 		switch(filter_type)
-			if(0) //removing hydrocarbons
+			if(GAS_FILTER_OXYGEN) //removing O2
+				filtered_out.gas[GAS_OXYGEN] = removed.gas[GAS_OXYGEN]
+				removed.gas[GAS_OXYGEN] = 0
+
+			if(GAS_FILTER_NITROGEN) //removing N2
+				filtered_out.gas[GAS_NITROGEN] = removed.gas[GAS_NITROGEN]
+				removed.gas[GAS_NITROGEN] = 0
+			
+			if(GAS_FILTER_HYDROGEN) //removing H2
+				filtered_out.gas[GAS_HYDROGEN] = removed.gas[GAS_HYDROGEN]
+				removed.gas[GAS_HYDROGEN] = 0
+
+			if(GAS_FILTER_CARBON_DIOXIDE) //removing CO2
+				filtered_out.gas[GAS_CARBON_DIOXIDE] = removed.gas[GAS_CARBON_DIOXIDE]
+				removed.gas[GAS_CARBON_DIOXIDE] = 0
+			
+			if(GAS_FILTER_CARBON_MOLECULES) //removing hydrocarbons
 				filtered_out.gas[GAS_PLASMA] = removed.gas[GAS_PLASMA]
 				removed.gas[GAS_PLASMA] = 0
 
 				filtered_out.gas[GAS_OXYGEN_AGENT_B] = removed.gas[GAS_OXYGEN_AGENT_B]
 				removed.gas[GAS_OXYGEN_AGENT_B] = 0
+			
+			if(GAS_FILTER_PLASMA) //removing plasma
+				filtered_out.gas[GAS_PLASMA] = removed.gas[GAS_PLASMA]
+				removed.gas[GAS_PLASMA] = 0
+			
+			if(GAS_FILTER_OXYGEN_AGENT_B) //removing oxygen agent b
+				filtered_out.gas[GAS_OXYGEN_AGENT_B] = removed.gas[GAS_OXYGEN_AGENT_B]
+				removed.gas[GAS_OXYGEN_AGENT_B] = 0
 
-			if(1) //removing O2
-				filtered_out.gas[GAS_OXYGEN] = removed.gas[GAS_OXYGEN]
-				removed.gas[GAS_OXYGEN] = 0
-
-			if(2) //removing N2
-				filtered_out.gas[GAS_NITROGEN] = removed.gas[GAS_NITROGEN]
-				removed.gas[GAS_NITROGEN] = 0
-
-			if(3) //removing CO2
-				filtered_out.gas[GAS_CARBON_DIOXIDE] = removed.gas[GAS_CARBON_DIOXIDE]
-				removed.gas[GAS_CARBON_DIOXIDE] = 0
-
-			if(4)//removing N2O
+			if(GAS_FILTER_SLEEPING_AGENT) //removing N2O
 				filtered_out.gas[GAS_SLEEPING_AGENT] = removed.gas[GAS_SLEEPING_AGENT]
 				removed.gas[GAS_SLEEPING_AGENT] = 0
 
 			else
 				filtered_out = null
-
 
 		air2.merge(filtered_out)
 		air3.merge(removed)
@@ -122,8 +138,8 @@ Filter types:
 	return 1
 
 /obj/machinery/atmospherics/trinary/filter/initialize()
-	set_frequency(frequency)
 	..()
+	set_frequency(frequency)
 
 /obj/machinery/atmospherics/trinary/filter/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench))
@@ -159,50 +175,6 @@ Filter types:
 		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 
-	/*var/dat
-	var/current_filter_type
-	switch(filter_type)
-		if(0)
-			current_filter_type = "Carbon Molecules"
-		if(1)
-			current_filter_type = "Oxygen"
-		if(2)
-			current_filter_type = "Nitrogen"
-		if(3)
-			current_filter_type = "Carbon Dioxide"
-		if(4)
-			current_filter_type = "Nitrous Oxide"
-		if(-1)
-			current_filter_type = "Nothing"
-		else
-			current_filter_type = "ERROR - Report this bug to the admin, please!"
-
-	dat += {"
-			<b>Power: </b><a href='?src=\ref[src];power=1'>[on?"On":"Off"]</a><br>
-			<b>Filtering: </b>[current_filter_type]<br><HR>
-			<h4>Set Filter Type:</h4>
-			<A href='?src=\ref[src];filterset=0'>Carbon Molecules</A><BR>
-			<A href='?src=\ref[src];filterset=1'>Oxygen</A><BR>
-			<A href='?src=\ref[src];filterset=2'>Nitrogen</A><BR>
-			<A href='?src=\ref[src];filterset=3'>Carbon Dioxide</A><BR>
-			<A href='?src=\ref[src];filterset=4'>Nitrous Oxide</A><BR>
-			<A href='?src=\ref[src];filterset=-1'>Nothing</A><BR>
-			<HR><B>Desirable output pressure:</B>
-			[src.target_pressure]kPa | <a href='?src=\ref[src];set_press=1'>Change</a>
-			"}
-/*
-		user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD>[dat]","window=atmo_filter")
-		onclose(user, "atmo_filter")
-		return
-
-	if (src.temp)
-		dat = text("<TT>[]</TT><BR><BR><A href='?src=\ref[];temp=1'>Clear Screen</A>", src.temp, src)
-	//else
-	//	src.on != src.on
-*/
-	user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_filter")
-	onclose(user, "atmo_filter")*/
-
 	// Edited this to reflect NanoUI port. -Frenjo
 	usr.set_machine(src)
 	ui_interact(user)
@@ -213,15 +185,6 @@ obj/machinery/atmospherics/trinary/filter/Topic(href, href_list) // -- TLE
 		return
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
-	/*if(href_list["filterset"])
-		src.filter_type = text2num(href_list["filterset"])
-	if (href_list["temp"])
-		src.temp = null
-	if(href_list["set_press"])
-		var/new_pressure = input(usr,"Enter new output pressure (0-4500kPa)","Pressure control",src.target_pressure) as num
-		src.target_pressure = max(0, min(4500, new_pressure))
-	if(href_list["power"])
-		on=!on*/
 
 	// Edited this to reflect NanoUI port. -Frenjo
 	switch(href_list["power"])
@@ -254,17 +217,23 @@ obj/machinery/atmospherics/trinary/filter/Topic(href, href_list) // -- TLE
 
 	var/current_filter_type
 	switch(filter_type)
-		if(0)
+		if(GAS_FILTER_CARBON_MOLECULES)
 			current_filter_type = "Carbon Molecules"
-		if(1)
+		if(GAS_FILTER_OXYGEN)
 			current_filter_type = "Oxygen"
-		if(2)
+		if(GAS_FILTER_NITROGEN)
 			current_filter_type = "Nitrogen"
-		if(3)
+		if(GAS_FILTER_CARBON_DIOXIDE)
 			current_filter_type = "Carbon Dioxide"
-		if(4)
+		if(GAS_FILTER_PLASMA)
+			current_filter_type = "Plasma"
+		if(GAS_FILTER_OXYGEN_AGENT_B)
+			current_filter_type = "Oxygen Agent-B"
+		if(GAS_FILTER_SLEEPING_AGENT)
 			current_filter_type = "Nitrous Oxide"
-		if(-1)
+		if(GAS_FILTER_HYDROGEN)
+			current_filter_type = "Hydrogen"
+		if(GAS_FILTER_NOTHING)
 			current_filter_type = "Nothing"
 		else
 			current_filter_type = "ERROR - Report this bug to the admin, please!"
@@ -272,7 +241,7 @@ obj/machinery/atmospherics/trinary/filter/Topic(href, href_list) // -- TLE
 	var/data[0]
 	data["on"] = on
 	data["current_filter"] = current_filter_type
-	data["target_pressure"] = round(target_pressure, 0.1) // Need to fix this later so it doesn't output 101.3xxxxxxxx. -Frenjo
+	data["target_pressure"] = round(target_pressure, 0.01) // Need to fix this later so it doesn't output 101.3xxxxxxxx. -Frenjo
 
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
@@ -281,3 +250,13 @@ obj/machinery/atmospherics/trinary/filter/Topic(href, href_list) // -- TLE
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
+
+#undef GAS_FILTER_NOTHING
+#undef GAS_FILTER_OXYGEN
+#undef GAS_FILTER_NITROGEN
+#undef GAS_FILTER_HYDROGEN
+#undef GAS_FILTER_CARBON_DIOXIDE
+#undef GAS_FILTER_CARBON_MOLECULES
+#undef GAS_FILTER_PLASMA
+#undef GAS_FILTER_OXYGEN_AGENT_B
+#undef GAS_FILTER_SLEEPING_AGENT
