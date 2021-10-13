@@ -29,7 +29,7 @@ var/list/whitelist = list()
 	if(!text)
 		log_misc("Failed to load config/alienwhitelist.txt")
 	else
-		alien_whitelist = text2list(text, "\n")
+		alien_whitelist = splittext(text, "\n")
 
 //todo: admin aliens
 /proc/is_alien_whitelisted(mob/M, species)

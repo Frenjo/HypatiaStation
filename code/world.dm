@@ -168,7 +168,7 @@
 		if(!text)
 			error("Failed to load config/mods.txt")
 		else
-			var/list/lines = text2list(text, "\n")
+			var/list/lines = splittext(text, "\n")
 			for(var/line in lines)
 				if(!line)
 					continue
@@ -235,7 +235,7 @@
 		features += "hosted by <b>[config.hostedby]</b>"
 
 	if(features)
-		s += ": [list2text(features, ", ")]"
+		s += ": [jointext(features, ", ")]"
 
 	/* does this help? I do not know */
 	if(src.status != s)

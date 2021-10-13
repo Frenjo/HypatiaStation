@@ -23,11 +23,11 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		items = replacetext(ticker.mode.uplink_items, "\n", "")	// Getting the text string of items
 	else
 		items = item_data
-	ItemList = text2list(src.items, ";")	// Parsing the items text string
+	ItemList = splittext(src.items, ";")	// Parsing the items text string
 	uses = ticker.mode.uplink_uses
 	nanoui_items = generate_nanoui_items()
 	for(var/D in ItemList)
-		var/list/O = text2list(D, ":")
+		var/list/O = splittext(D, ":")
 		if(O.len > 0)
 			valid_items += O[1]
 
@@ -39,7 +39,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 /obj/item/device/uplink/proc/generate_nanoui_items()
 	var/items_nano[0]
 	for(var/D in ItemList)
-		var/list/O = text2list(D, ":")
+		var/list/O = splittext(D, ":")
 		if(O.len != 3)  //If it is not an actual item, make a break in the menu.
 			if(O.len == 1)  //If there is one item, it's probably a title
 				items_nano[++items_nano.len] = list("Category" = "[O[1]]", "items" = list())
@@ -76,7 +76,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/category_items = 1 //To prevent stupid :P
 
 	for(var/D in ItemList)
-		var/list/O = text2list(D, ":")
+		var/list/O = splittext(D, ":")
 		if(O.len != 3)	//If it is not an actual item, make a break in the menu.
 			if(O.len == 1)	//If there is one item, it's probably a title
 				dat += "<b>[O[1]]</b><br>"

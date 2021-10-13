@@ -271,13 +271,13 @@ nanoui is used to open and update nano browser uis
 
 	var/template_data_json = "{}" // An empty JSON object
 	if(templatel_data.len > 0)
-		template_data_json = list2json(templatel_data)
+		template_data_json = json_encode(templatel_data)
 
 	var/initial_data_json = "{}" // An empty JSON object
 	if(initial_data.len > 0)
-		initial_data_json = list2json(initial_data)
+		initial_data_json = json_encode(initial_data)
 
-	var/url_parameters_json = list2json(list("src" = "\ref[src]"))
+	var/url_parameters_json = json_encode(list("src" = "\ref[src]"))
 
 	return {"<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -378,7 +378,7 @@ nanoui is used to open and update nano browser uis
 
 	data = add_default_data(data)
 	//user << list2json(data) // used for debugging
-	user << output(list2params(list(list2json(data))), "[window_id].browser:receiveUpdateData")
+	user << output(list2params(list(json_encode(data))), "[window_id].browser:receiveUpdateData")
 
  /**
   * This Topic() proc is called whenever a user clicks on a link within a Nano UI

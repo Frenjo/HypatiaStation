@@ -988,17 +988,17 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	switch(input("Which list?") in list("Players", "Admins", "Mobs", "Living Mobs", "Dead Mobs", "Clients"))
 		if("Players")
-			to_chat(usr, list2text(player_list, ","))
+			to_chat(usr, jointext(player_list, ","))
 		if("Admins")
-			to_chat(usr, list2text(admins, ","))
+			to_chat(usr, jointext(admins, ","))
 		if("Mobs")
-			to_chat(usr, list2text(mob_list, ","))
+			to_chat(usr, jointext(mob_list, ","))
 		if("Living Mobs")
-			to_chat(usr, list2text(living_mob_list, ","))
+			to_chat(usr, jointext(living_mob_list, ","))
 		if("Dead Mobs")
-			to_chat(usr, list2text(dead_mob_list, ","))
+			to_chat(usr, jointext(dead_mob_list, ","))
 		if("Clients")
-			to_chat(usr, list2text(clients, ","))
+			to_chat(usr, jointext(clients, ","))
 
 
 // DNA2 - Admin Hax
