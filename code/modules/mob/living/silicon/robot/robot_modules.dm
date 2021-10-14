@@ -35,7 +35,7 @@
 	modules = null
 	emag = null
 	jetpack = null
-	..()
+	return ..()
 
 /obj/item/weapon/robot_module/proc/respawn_consumable(var/mob/living/silicon/robot/R)
 	return

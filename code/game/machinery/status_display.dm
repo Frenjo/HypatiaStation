@@ -41,16 +41,16 @@
 
 // new display
 // register for radio system
-/obj/machinery/status_display/New()
+// must wait for map loading to finish
+/obj/machinery/status_display/initialize()
 	..()
-	spawn(5)	// must wait for map loading to finish
-		if(radio_controller)
-			radio_controller.add_object(src, frequency)
+	if(radio_controller)
+		radio_controller.add_object(src, frequency)
 
 /obj/machinery/status_display/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src,frequency)
-	..()
+	return ..()
 
 // timed process
 /obj/machinery/status_display/process()

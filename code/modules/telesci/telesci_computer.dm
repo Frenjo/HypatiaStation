@@ -32,7 +32,7 @@
 
 /obj/machinery/computer/telescience/Destroy()
 	eject()
-	..()
+	return ..()
 
 /obj/machinery/computer/telescience/examine()
 	..()

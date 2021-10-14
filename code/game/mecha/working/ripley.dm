@@ -105,5 +105,4 @@
 		if(T)
 			T.Entered(A)
 		step_rand(A)
-	..()
-	return
+	return ..()

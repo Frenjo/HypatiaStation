@@ -66,4 +66,4 @@
 		affected_mob.real_name = original_dna["name"]
 
 		to_chat(affected_mob, SPAN_INFO("You feel more like yourself."))
-	..()
+	return ..()

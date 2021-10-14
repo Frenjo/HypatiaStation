@@ -193,7 +193,7 @@
 /obj/machinery/magnetic_module/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src, freq)
-	..()
+	return ..()
 
 
 /obj/machinery/magnetic_controller
@@ -405,4 +405,4 @@
 /obj/machinery/magnetic_controller/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src, frequency)
-	..()
+	return ..()

@@ -48,7 +48,7 @@
 /obj/item/weapon/implant/Destroy()
 	if(part)
 		part.implants.Remove(src)
-	..()
+	return ..()
 
 
 /obj/item/weapon/implant/tracking

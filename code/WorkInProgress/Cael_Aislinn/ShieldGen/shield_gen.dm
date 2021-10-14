@@ -33,19 +33,21 @@
 	active_power_usage = 100
 
 /obj/machinery/shield_gen/New()
-	spawn(10)
-		for(var/obj/machinery/shield_capacitor/possible_cap in range(1, src))
-			if(get_dir(possible_cap, src) == possible_cap.dir)
-				owned_capacitor = possible_cap
-				break
 	field = new/list()
 	..()
+
+/obj/machinery/shield_gen/initialize()
+	..()
+	for(var/obj/machinery/shield_capacitor/possible_cap in range(1, src))
+		if(get_dir(possible_cap, src) == possible_cap.dir)
+			owned_capacitor = possible_cap
+			break
 
 /obj/machinery/shield_gen/Destroy()
 	for(var/obj/effect/energy_field/D in field)
 		field.Remove(D)
 		D.loc = null
-	..()
+	return ..()
 
 /obj/machinery/shield_gen/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/card/id))

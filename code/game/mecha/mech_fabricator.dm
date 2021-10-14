@@ -189,8 +189,7 @@
 /obj/machinery/mecha_part_fabricator/Destroy()
 	for(var/atom/A in src)
 		qdel(A)
-	..()
-	return
+	return ..()
 
 /obj/machinery/mecha_part_fabricator/proc/operation_allowed(mob/M)
 	if(isrobot(M) || isAI(M))

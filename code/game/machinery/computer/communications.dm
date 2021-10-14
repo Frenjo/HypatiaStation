@@ -609,7 +609,7 @@
 	//captain_announce("The emergency shuttle has been called. It will arrive in [round(emergency_shuttle.estimate_arrival_time()/60)] minutes.") // Updated to reflect 'shuttles' port. -Frenjo
 	//world << sound('sound/AI/shuttlecalled.ogg')
 
-	..()
+	return ..()
 
 /obj/item/weapon/circuitboard/communications/Destroy()
 	for(var/obj/machinery/computer/communications/commconsole in world)
@@ -635,4 +635,4 @@
 	//captain_announce("The emergency shuttle has been called. It will arrive in [round(emergency_shuttle.estimate_arrival_time()/60)] minutes.") // Updated to reflect 'shuttles' port. -Frenjo
 	//world << sound('sound/AI/shuttlecalled.ogg')
 
-	..()
+	return ..()

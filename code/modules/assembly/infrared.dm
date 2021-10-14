@@ -251,5 +251,4 @@
 
 /obj/effect/beam/i_beam/Destroy()
 	qdel(next)
-	..()
-	return
+	return ..()

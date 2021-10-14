@@ -180,7 +180,7 @@ Attach to transfer valve and open. BOOM.
 		loc = null
 	air_master.active_hotspots.Remove(src)
 
-	..()
+	return ..()
 
 /obj/fire/proc/RemoveFire()
 	if(isturf(loc))

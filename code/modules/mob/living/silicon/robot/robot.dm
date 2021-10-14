@@ -195,7 +195,7 @@ var/list/robot_verbs_default = list(
 		mmi = null
 	if(connected_ai)
 		connected_ai.connected_robots -= src
-	..()
+	return ..()
 
 /mob/living/silicon/robot/proc/pick_module()
 	if(module)

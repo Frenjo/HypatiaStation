@@ -92,7 +92,7 @@
 
 /obj/effect/meteor/Destroy()
 	walk(src, 0) //this cancels the walk_towards() proc
-	..()
+	return ..()
 
 /obj/effect/meteor/Bump(atom/A)
 	spawn(0)

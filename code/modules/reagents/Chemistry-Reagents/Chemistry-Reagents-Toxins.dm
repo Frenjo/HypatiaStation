@@ -206,7 +206,7 @@
 	if(holder && ismob(holder.my_atom))
 		var/mob/M = holder.my_atom
 		M.status_flags &= ~FAKEDEATH
-	..()
+	return ..()
 
 
 /datum/reagent/toxin/mindbreaker

@@ -19,7 +19,7 @@
 	if(master)
 		master.vines -= src
 		master.growth_queue -= src
-	..()
+	return ..()
 
 /obj/effect/spacevine/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!W || !user || !W.type)
@@ -117,7 +117,7 @@
 
 /obj/effect/spacevine_controller/Destroy()
 	processing_objects.Remove(src)
-	..()
+	return ..()
 
 /obj/effect/spacevine_controller/proc/spawn_spacevine_piece(turf/location)
 	var/obj/effect/spacevine/SV = new(location)

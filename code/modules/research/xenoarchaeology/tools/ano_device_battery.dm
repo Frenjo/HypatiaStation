@@ -193,4 +193,4 @@
 
 /obj/item/weapon/anodevice/Destroy()
 	processing_objects.Remove(src)
-	..()
+	return ..()

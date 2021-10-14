@@ -31,7 +31,7 @@
 
 /obj/structure/inflatable/Destroy()
 	update_nearby_tiles()
-	..()
+	return ..()
 
 /obj/structure/inflatable/proc/update_nearby_tiles(need_rebuild) //Copypasta from airlock code
 	if(!air_master)

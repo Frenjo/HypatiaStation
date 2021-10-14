@@ -26,7 +26,7 @@
 		src.loc = null
 		A.update_icons()
 	processing_objects.Remove(src)
-	..()
+	return ..()
 
 /obj/item/weapon/holder/process()
 	if(!loc)

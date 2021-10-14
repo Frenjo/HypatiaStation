@@ -36,7 +36,7 @@
 	density = 0
 	update_nearby_tiles()
 	update_nearby_icons()
-	..()
+	return ..()
 
 /obj/structure/window/proc/take_damage(var/damage = 0,  var/sound_effect = 1)
 	var/initialhealth = src.health

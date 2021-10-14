@@ -18,7 +18,7 @@
 	var/turf/T = get_turf(src)
 	for(var/atom/movable/AM in contents)
 		AM.loc = T
-	..()
+	return ..()
 
 /obj/structure/bigDelivery/attack_hand(mob/user as mob)
 	if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
@@ -212,17 +212,16 @@
 
 	var/c_mode = 0
 
-/obj/machinery/disposal/deliveryChute/New()
+/obj/machinery/disposal/deliveryChute/initialize()
 	..()
-	spawn(5)
-		trunk = locate() in src.loc
-		if(trunk)
-			trunk.linked = src	// link the pipe trunk to self
+	trunk = locate() in src.loc
+	if(trunk)
+		trunk.linked = src	// link the pipe trunk to self
 
 /obj/machinery/disposal/deliveryChute/Destroy()
 	if(trunk)
 		trunk.linked = null
-	..()
+	return ..()
 
 /obj/machinery/disposal/deliveryChute/interact()
 	return

@@ -870,7 +870,7 @@ Status: []<BR>"},
 
 /obj/machinery/porta_turret_cover/Destroy()
 	Parent_Turret = null
-	..()
+	return ..()
 
 // The below code is pretty much just recoded from the initial turret object. It's necessary but uncommented because it's exactly the same!
 

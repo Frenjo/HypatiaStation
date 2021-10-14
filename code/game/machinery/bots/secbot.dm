@@ -73,19 +73,21 @@
 /obj/machinery/bot/secbot/New()
 	..()
 	src.icon_state = "secbot[src.on]"
-	spawn(3)
-		src.botcard = new /obj/item/weapon/card/id(src)
-		var/datum/job/detective/J = new/datum/job/detective
-		src.botcard.access = J.get_access()
-		if(radio_controller)
-			radio_controller.add_object(src, control_freq, filter = RADIO_SECBOT)
-			radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
 
-/obj/machinery/bot/mulebot/Destroy()
+/obj/machinery/bot/secbot/initialize()
+	..()
+	src.botcard = new /obj/item/weapon/card/id(src)
+	var/datum/job/detective/J = new/datum/job/detective
+	src.botcard.access = J.get_access()
+	if(radio_controller)
+		radio_controller.add_object(src, control_freq, filter = RADIO_SECBOT)
+		radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
+
+/obj/machinery/bot/secbot/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src, beacon_freq)
 		radio_controller.remove_object(src, control_freq)
-	..()
+	return ..()
 
 /obj/machinery/bot/secbot/turn_on()
 	..()

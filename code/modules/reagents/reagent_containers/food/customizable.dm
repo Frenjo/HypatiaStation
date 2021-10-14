@@ -119,7 +119,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/customizable/Destroy()
 	for(var/obj/item/O in ingredients)
 		qdel(O)
-	..()
+	return ..()
 
 /obj/item/weapon/reagent_containers/food/snacks/customizable/examine()
 	..()

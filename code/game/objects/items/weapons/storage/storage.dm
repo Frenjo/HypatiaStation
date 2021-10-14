@@ -28,7 +28,7 @@
 	close_all()
 	qdel(boxes)
 	qdel(closer)
-	..()
+	return ..()
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
 	if(ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist

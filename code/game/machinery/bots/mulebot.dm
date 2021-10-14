@@ -67,25 +67,27 @@
 	cell.charge = 2000
 	cell.maxcharge = 2000
 
-	spawn(5)	// must wait for map loading to finish
-		if(radio_controller)
-			radio_controller.add_object(src, control_freq, filter = RADIO_MULEBOT)
-			radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
-
-		var/count = 0
-		for(var/obj/machinery/bot/mulebot/other in world)
-			count++
-		if(!suffix)
-			suffix = "#[count]"
-		name = "Mulebot ([suffix])"
-
 	verbs -= /atom/movable/verb/pull
+
+// must wait for map loading to finish
+/obj/machinery/bot/mulebot/initialize()
+	..()
+	if(radio_controller)
+		radio_controller.add_object(src, control_freq, filter = RADIO_MULEBOT)
+		radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
+
+	var/count = 0
+	for(var/obj/machinery/bot/mulebot/other in world)
+		count++
+	if(!suffix)
+		suffix = "#[count]"
+	name = "Mulebot ([suffix])"
 
 /obj/machinery/bot/mulebot/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src, beacon_freq)
 		radio_controller.remove_object(src, control_freq)
-	..()
+	return ..()
 
 // attack by item
 // emag : lock/unlock,

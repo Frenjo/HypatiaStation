@@ -54,6 +54,7 @@ var/list/diseases = SUBTYPESOF(/datum/disease)
 
 /datum/disease/Destroy()
 	active_diseases.Remove(src)
+	return ..()
 
 /datum/disease/proc/stage_act()
 	age++

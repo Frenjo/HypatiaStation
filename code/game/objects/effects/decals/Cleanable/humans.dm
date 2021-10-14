@@ -19,11 +19,6 @@ var/global/list/image/splatter_cache=list()
 	var/list/datum/disease2/disease/virus2 = list()
 	var/amount = 5
 
-/obj/effect/decal/cleanable/blood/Destroy()
-	for(var/datum/disease/D in viruses)
-		D.cure(0)
-	return ..()
-
 /obj/effect/decal/cleanable/blood/New()
 	..()
 	update_icon()
@@ -40,6 +35,11 @@ var/global/list/image/splatter_cache=list()
 					qdel(B)
 	spawn(DRYING_TIME * (amount+1))
 		dry()
+
+/obj/effect/decal/cleanable/blood/Destroy()
+	for(var/datum/disease/D in viruses)
+		D.cure(0)
+	return ..()
 
 /obj/effect/decal/cleanable/blood/update_icon()
 	if(basecolor == "rainbow") basecolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"

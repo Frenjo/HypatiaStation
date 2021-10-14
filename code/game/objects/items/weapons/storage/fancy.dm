@@ -180,7 +180,7 @@
 
 /obj/item/weapon/storage/fancy/cigarettes/Destroy()
 	qdel(reagents)
-	..()
+	return ..()
 
 
 /obj/item/weapon/storage/fancy/cigarettes/update_icon()

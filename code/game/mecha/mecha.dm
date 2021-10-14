@@ -95,8 +95,7 @@
 /obj/mecha/Destroy()
 	src.go_out()
 	mechas_list -= src //global mech list
-	..()
-	return
+	return ..()
 
 ////////////////////////
 ////// Helpers /////////

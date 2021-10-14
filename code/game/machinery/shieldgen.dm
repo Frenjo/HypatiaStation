@@ -19,7 +19,7 @@
 	set_opacity(0)
 	density = 0
 	update_nearby_tiles()
-	..()
+	return ..()
 
 /obj/machinery/shield/CanPass(atom/movable/mover, turf/target, height, air_group)
 	if(!height || air_group)
@@ -162,7 +162,7 @@
 /obj/machinery/shieldgen/Destroy()
 	for(var/obj/machinery/shield/shield_tile in deployed_shields)
 		qdel(shield_tile)
-	..()
+	return ..()
 
 /obj/machinery/shieldgen/proc/shields_up()
 	if(active)
@@ -532,7 +532,7 @@
 	src.cleanup(2)
 	src.cleanup(4)
 	src.cleanup(8)
-	..()
+	return ..()
 
 /obj/machinery/shieldwallgen/bullet_act(obj/item/projectile/Proj)
 	storedpower -= Proj.damage

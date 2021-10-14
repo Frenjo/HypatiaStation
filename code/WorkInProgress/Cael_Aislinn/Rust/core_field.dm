@@ -434,4 +434,4 @@ Deuterium-tritium fusion: 4.5 x 10^7 K
 	RadiateAll()
 
 	processing_objects.Remove(src)
-	..()
+	return ..()

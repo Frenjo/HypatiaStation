@@ -25,8 +25,7 @@
 
 /obj/structure/stool/bed/Destroy()
 	unbuckle()
-	..()
-	return
+	return ..()
 
 /obj/structure/stool/bed/attack_paw(mob/user as mob)
 	return src.attack_hand(user)

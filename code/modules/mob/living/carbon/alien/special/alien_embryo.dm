@@ -23,7 +23,7 @@
 		affected_mob.status_flags &= ~(XENO_HOST)
 		spawn(0)
 			RemoveInfectionImages(affected_mob)
-	..()
+	return ..()
 
 /obj/item/alien_embryo/process()
 	if(!affected_mob)	return

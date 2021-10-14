@@ -510,7 +510,7 @@
 	for(var/obj/effect/E in src)
 		if(E.name == "Wallrot")
 			qdel(E)
-	..()
+	return ..()
 
 /turf/simulated/wall/ChangeTurf(newtype)
 	for(var/obj/effect/E in src)

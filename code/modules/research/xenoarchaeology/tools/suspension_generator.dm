@@ -312,7 +312,7 @@
 /obj/machinery/suspension_gen/Destroy()
 	//safety checks: clear the field and drop anything it's holding
 	deactivate()
-	..()
+	return ..()
 
 /obj/machinery/suspension_gen/verb/toggle()
 	set src in view(1)
@@ -334,4 +334,4 @@
 /obj/effect/suspension_field/Destroy()
 	for(var/obj/I in src)
 		I.loc = src.loc
-	..()
+	return ..()

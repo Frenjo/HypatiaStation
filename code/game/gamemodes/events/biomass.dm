@@ -18,7 +18,7 @@
 	if(master)
 		master.vines -= src
 		master.growth_queue -= src
-	..()
+	return ..()
 
 /obj/effect/biomass/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!W || !user || !W.type)
@@ -74,7 +74,7 @@
 
 /obj/effect/biomass_controller/Destroy()
 	processing_objects.Remove(src)
-	..()
+	return ..()
 
 /obj/effect/biomass_controller/proc/spawn_biomass_piece(turf/location)
 	var/obj/effect/biomass/BM = new(location)

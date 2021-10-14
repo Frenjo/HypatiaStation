@@ -63,15 +63,17 @@
 	..()
 	eyeobj.ai = src
 	eyeobj.name = "[src.name] (AI Eye)" // Give it a name
-	spawn(5)
-		eyeobj.loc = src.loc
+
+/mob/living/silicon/ai/initialize()
+	..()
+	eyeobj.loc = src.loc
 
 /mob/living/silicon/ai/Destroy()
 	if(eyeobj)
 		eyeobj.ai = null
 		qdel(eyeobj) // No AI, no Eye
 		eyeobj = null
-	..()
+	return ..()
 
 /atom/proc/move_camera_by_click()
 	if(istype(usr, /mob/living/silicon/ai))

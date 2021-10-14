@@ -164,7 +164,7 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/Destroy()
 	ai_list -= src
-	..()
+	return ..()
 
 /*
 	The AI Power supply is a dummy object used for powering the AI since only machinery should be using power.

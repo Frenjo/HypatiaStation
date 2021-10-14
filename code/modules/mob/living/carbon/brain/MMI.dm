@@ -28,7 +28,7 @@
 	if(brainmob)
 		qdel(brainmob)
 		brainmob = null
-	..()
+	return ..()
 
 /obj/item/device/mmi/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/brain) && !brainmob) //Time to stick a brain in it --NEO
