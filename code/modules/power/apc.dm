@@ -324,8 +324,10 @@
 	if(occupant)
 		malfvacate(1)
 	qdel(wires)
+	wires = null
 	if(cell)
 		qdel(cell)
+		cell = null
 	if(terminal)
 		qdel(terminal)
 		terminal = null

@@ -39,7 +39,6 @@ var/const/WIRE_BEACON_RX = 256	// beacon ping recv
 			holder.visible_message(SPAN_NOTICE("\icon[holder] You hear a radio crackle.</span>"))
 
 // HELPER PROCS
-
 /datum/wires/mulebot/proc/Motor1()
 	return !(wires_status & WIRE_MOTOR1)
 

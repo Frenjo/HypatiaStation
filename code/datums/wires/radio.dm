@@ -23,10 +23,8 @@ var/const/WIRE_TRANSMIT = 4
 		if(WIRE_SIGNAL)
 			R.listening = !R.listening && !IsIndexCut(WIRE_RECEIVE)
 			R.broadcasting = R.listening && !IsIndexCut(WIRE_TRANSMIT)
-
 		if(WIRE_RECEIVE)
 			R.listening = !R.listening && !IsIndexCut(WIRE_SIGNAL)
-
 		if(WIRE_TRANSMIT)
 			R.broadcasting = !R.broadcasting && !IsIndexCut(WIRE_SIGNAL)
 
@@ -36,9 +34,7 @@ var/const/WIRE_TRANSMIT = 4
 		if(WIRE_SIGNAL)
 			R.listening = mended && !IsIndexCut(WIRE_RECEIVE)
 			R.broadcasting = mended && !IsIndexCut(WIRE_TRANSMIT)
-
 		if(WIRE_RECEIVE)
 			R.listening = mended && !IsIndexCut(WIRE_SIGNAL)
-
 		if(WIRE_TRANSMIT)
 			R.broadcasting = mended && !IsIndexCut(WIRE_SIGNAL)
