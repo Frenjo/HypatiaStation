@@ -11,6 +11,14 @@
 	density = 0
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 
+/obj/machinery/sleep_console/initialize()
+	..()
+	if(orient == "RIGHT")
+		icon_state = "sleeperconsole-r"
+		src.connected = locate(/obj/machinery/sleeper, get_step(src, EAST))
+	else
+		src.connected = locate(/obj/machinery/sleeper, get_step(src, WEST))
+
 /obj/machinery/sleep_console/process()
 	if(stat & (NOPOWER|BROKEN))
 		return
@@ -28,14 +36,6 @@
 				return
 		else
 	return
-
-/obj/machinery/sleep_console/initialize()
-	..()
-	if(orient == "RIGHT")
-		icon_state = "sleeperconsole-r"
-		src.connected = locate(/obj/machinery/sleeper, get_step(src, EAST))
-	else
-		src.connected = locate(/obj/machinery/sleeper, get_step(src, WEST))
 
 /obj/machinery/sleep_console/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -132,12 +132,6 @@
 	return
 	// no change - sleeper works without power (you just can't inject more)
 
-
-
-
-
-
-
 /////////////////////////////////////////
 // THE SLEEPER ITSELF
 /////////////////////////////////////////
@@ -164,13 +158,11 @@
 /obj/machinery/sleeper/New()
 	..()
 	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
-	return
 
 /obj/machinery/sleeper/initialize()
 	..()
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
-	return
 
 /obj/machinery/sleeper/allow_drop()
 		return 0
