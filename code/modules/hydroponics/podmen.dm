@@ -65,7 +65,10 @@ Growing it to term with nothing injected will grab a ghost from the observers. *
 	parent = loc
 	var/found_player = 0
 
-	user.visible_message(SPAN_INFO("[user] carefully begins to open the pod..."), SPAN_INFO("You carefully begin to open the pod..."))
+	user.visible_message(
+		SPAN_INFO("[user] carefully begins to open the pod..."),
+		SPAN_INFO("You carefully begin to open the pod...")
+	)
 
 	//If a sample is injected (and revival is allowed) the plant will be controlled by the original donor.
 	if(source && source.stat == DEAD && source.client && source.ckey && config.revival_pod_plants)

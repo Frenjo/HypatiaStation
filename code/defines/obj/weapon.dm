@@ -26,30 +26,6 @@
 	w_class = 3.0
 
 
-/obj/item/weapon/bananapeel
-	name = "banana peel"
-	desc = "A peel from a banana."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "banana_peel"
-	item_state = "banana_peel"
-	w_class = 1.0
-	throwforce = 0
-	throw_speed = 4
-	throw_range = 20
-
-
-/obj/item/weapon/corncob
-	name = "corn cob"
-	desc = "A reminder of meals gone by."
-	icon = 'icons/obj/harvest.dmi'
-	icon_state = "corncob"
-	item_state = "corncob"
-	w_class = 1.0
-	throwforce = 0
-	throw_speed = 4
-	throw_range = 20
-
-
 /obj/item/weapon/soap
 	name = "soap"
 	desc = "A cheap bar of soap. Doesn't smell."
@@ -61,16 +37,13 @@
 	throw_speed = 4
 	throw_range = 20
 
-
 /obj/item/weapon/soap/nanotrasen
 	desc = "A NanoTrasen brand bar of soap. Smells of plasma."
 	icon_state = "soapnt"
 
-
 /obj/item/weapon/soap/deluxe
 	desc = "A deluxe Waffle Co. brand bar of soap. Smells of condoms."
 	icon_state = "soapdeluxe"
-
 
 /obj/item/weapon/soap/syndie
 	desc = "An untrustworthy bar of soap. Smells of fear."
@@ -482,60 +455,12 @@
 	origin_tech = "biotech=2"
 
 
-/obj/item/weapon/hatchet
-	name = "hatchet"
-	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "hatchet"
-	flags = CONDUCT
-	force = 12.0
-	sharp = 1
-	edge = 1
-	w_class = 2.0
-	throwforce = 15.0
-	throw_speed = 4
-	throw_range = 4
-	m_amt = 15000
-	origin_tech = "materials=2;combat=1"
-	attack_verb = list("chopped", "torn", "cut")
-
-/obj/item/weapon/hatchet/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
-	return ..()
-
-
 /obj/item/weapon/hatchet/soghunknife
 	name = "duelling knife"
 	desc = "A length of leather-bound wood studded with razor-sharp teeth. How crude."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "soghunknife"
 	attack_verb = list("ripped", "torn", "cut")
-
-
-/obj/item/weapon/scythe
-	icon_state = "scythe0"
-	name = "scythe"
-	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
-	force = 13.0
-	throwforce = 5.0
-	sharp = 1
-	edge = 1
-	throw_speed = 1
-	throw_range = 3
-	w_class = 4.0
-	flags = NOSHIELD
-	slot_flags = SLOT_BACK
-	origin_tech = "materials=2;combat=2"
-	attack_verb = list("chopped", "sliced", "cut", "reaped")
-
-/obj/item/weapon/scythe/afterattack(atom/A, mob/user as mob, proximity)
-	if(!proximity)
-		return
-	if(istype(A, /obj/effect/spacevine))
-		for(var/obj/effect/spacevine/B in orange(A,1))
-			if(prob(80))
-				qdel(B)
-		qdel(A)
 
 /*
 /obj/item/weapon/cigarpacket
