@@ -1,118 +1,3 @@
-/*
- * SeedBag
- */
-//uncomment when this is updated to match storage update
-/*
-/obj/item/weapon/seedbag
-	icon = 'icons/obj/hydroponics.dmi'
-	icon_state = "seedbag"
-	name = "Seed Bag"
-	desc = "A small satchel made for organizing seeds."
-	var/mode = 1;  //0 = pick one at a time, 1 = pick all on tile
-	var/capacity = 500; //the number of seeds it can carry.
-	flags = FPRINT | TABLEPASS
-	slot_flags = SLOT_BELT
-	w_class = 1
-	var/list/item_quants = list()
-
-/obj/item/weapon/seedbag/attack_self(mob/user as mob)
-	user.machine = src
-	interact(user)
-
-/obj/item/weapon/seedbag/verb/toggle_mode()
-	set name = "Switch Bagging Method"
-	set category = "Object"
-
-	mode = !mode
-	switch (mode)
-		if(1)
-			usr << "The bag now picks up all seeds in a tile at once."
-		if(0)
-			usr << "The bag now picks up one seed pouch at a time."
-
-/obj/item/seeds/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	..()
-	if (istype(O, /obj/item/weapon/seedbag))
-		var/obj/item/weapon/seedbag/S = O
-		if (S.mode == 1)
-			for (var/obj/item/seeds/G in locate(src.x,src.y,src.z))
-				if (S.contents.len < S.capacity)
-					S.contents += G;
-					if(S.item_quants[G.name])
-						S.item_quants[G.name]++
-					else
-						S.item_quants[G.name] = 1
-				else
-					user << "\blue The seed bag is full."
-					S.updateUsrDialog()
-					return
-			user << "\blue You pick up all the seeds."
-		else
-			if (S.contents.len < S.capacity)
-				S.contents += src;
-				if(S.item_quants[name])
-					S.item_quants[name]++
-				else
-					S.item_quants[name] = 1
-			else
-				user << "\blue The seed bag is full."
-		S.updateUsrDialog()
-	return
-
-/obj/item/weapon/seedbag/interact(mob/user as mob)
-
-	var/dat = "<TT><b>Select an item:</b><br>"
-
-	if (contents.len == 0)
-		dat += "<font color = 'red'>No seeds loaded!</font>"
-	else
-		for (var/O in item_quants)
-			if(item_quants[O] > 0)
-				var/N = item_quants[O]
-				dat += "<FONT color = 'blue'><B>[capitalize(O)]</B>:"
-				dat += " [N] </font>"
-				dat += "<a href='byond://?src=\ref[src];vend=[O]'>Vend</A>"
-				dat += "<br>"
-
-		dat += "<br><a href='byond://?src=\ref[src];unload=1'>Unload All</A>"
-		dat += "</TT>"
-	user << browse("<HEAD><TITLE>Seedbag Supplies</TITLE></HEAD><TT>[dat]</TT>", "window=seedbag")
-	onclose(user, "seedbag")
-	return
-
-/obj/item/weapon/seedbag/Topic(href, href_list)
-	if(..())
-		return
-
-	usr.machine = src
-	if ( href_list["vend"] )
-		var/N = href_list["vend"]
-
-		if(item_quants[N] <= 0) // Sanity check, there are probably ways to press the button when it shouldn't be possible.
-			return
-
-		item_quants[N] -= 1
-		for(var/obj/O in contents)
-			if(O.name == N)
-				O.loc = get_turf(src)
-				usr.put_in_hands(O)
-				break
-
-	else if ( href_list["unload"] )
-		item_quants.Cut()
-		for(var/obj/O in contents )
-			O.loc = get_turf(src)
-
-	src.updateUsrDialog()
-	return
-
-/obj/item/weapon/seedbag/updateUsrDialog()
-	var/list/nearby = range(1, src)
-	for(var/mob/M in nearby)
-		if ((M.client && M.machine == src))
-			src.attack_self(M)
-*/
-
 // **********************
 // Other harvested materials from plants (that are not food)
 // **********************
@@ -141,7 +26,22 @@
 	potency = newValue
 
 /*
- * Log
+ * Plastellium
+ */
+/obj/item/weapon/reagent_containers/food/snacks/grown/plastellium
+	seed = /obj/item/seeds/plastiseed
+	name = "clump of plastellium"
+	desc = "Hmm, needs some processing"
+	icon_state = "plastellium"
+	filling_color = "#C4C4C4"
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/plastellium/initialize()
+	..()
+	reagents.add_reagent("plasticide", 1 + round((potency / 10), 1))
+	bitesize = 1 + round(reagents.total_volume / 2, 1)
+
+/*
+ * Tower Cap
  */
 /obj/item/weapon/grown/log
 	name = "tower-cap log"
@@ -176,53 +76,20 @@
 		return
 
 /*
- * Sunflower
+ * Kudzu
  */
-/obj/item/weapon/grown/sunflower // FLOWER POWER!
-	name = "sunflower"
-	desc = "It's beautiful! A certain person might beat you to death if you trample these."
-	icon = 'icons/obj/harvest.dmi'
-	icon_state = "sunflower"
-	damtype = "fire"
-	force = 0
-	throwforce = 1
-	w_class = 1.0
-	throw_speed = 1
-	throw_range = 3
-	plant_type = 1
-	seed = /obj/item/seeds/sunflowerseed
-
-/obj/item/weapon/grown/sunflower/attack(mob/M as mob, mob/user as mob)
-	to_chat(M, "<font color='green'><b>[user] smacks you with a sunflower!</font><font color='yellow'><b>FLOWER POWER<b></font>")
-	to_chat(user, "<font color='green'>Your sunflower's </font><font color='yellow'><b>FLOWER POWER</b></font><font color='green'> strikes [M]</font>")
-
-/*
- * Gib Tomato
- */
-/*
-/obj/item/weapon/grown/gibtomato
-	desc = "A plump tomato."
-	icon = 'icons/obj/harvest.dmi'
-	name = "Gib Tomato"
-	icon_state = "gibtomato"
-	damtype = "fire"
-	force = 0
-	flags = TABLEPASS
-	throwforce = 1
-	w_class = 1.0
-	throw_speed = 1
-	throw_range = 3
-	plant_type = 1
-	seed = /obj/item/seeds/gibtomato
-	New()
-		..()
-
-/obj/item/weapon/grown/gibtomato/New()
+/obj/item/weapon/reagent_containers/food/snacks/grown/kudzupod
+	seed = /obj/item/seeds/kudzuseed
+	name = "kudzu pod"
+	desc = "<I>Pueraria Virallis</I>: An invasive species with vines that rapidly creep and wrap around whatever they contact."
+	icon_state = "kudzupod"
+	filling_color = "#59691B"
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/kudzupod/initialize()
 	..()
-	src.gibs = new /obj/effect/gibspawner/human(get_turf(src))
-	src.gibs.attach(src)
-	src.smoke.set_up(10, 0, usr.loc)
-*/
+	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
+	reagents.add_reagent("anti_toxin", 1 + round((potency / 25), 1))
+	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
 /*
  * Nettle
@@ -350,14 +217,80 @@
 	force = round((5 + potency / 2.5), 1)
 
 /*
- * Corncob
+ * Sugarcane
  */
-/obj/item/weapon/corncob/attackby(obj/item/weapon/W as obj, mob/user as mob)
+// This isn't a fruit or a vegetable, so I wasn't sure where to put it.
+// But I went off the idea that you don't usually just pick up sugarcane and start munching on it.
+// Therefore this is the best place by that logic. -Frenjo
+/obj/item/weapon/reagent_containers/food/snacks/grown/sugarcane
+	seed = /obj/item/seeds/sugarcaneseed
+	name = "sugarcane"
+	desc = "Sickly sweet."
+	icon_state = "sugarcane"
+	potency = 50
+	filling_color = "#C0C9AD"
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/sugarcane/initialize()
 	..()
-	if(istype(W, /obj/item/weapon/circular_saw) || istype(W, /obj/item/weapon/hatchet) \
-	|| istype(W, /obj/item/weapon/kitchen/utensil/knife) || istype(W, /obj/item/weapon/kitchenknife) \
-	|| istype(W, /obj/item/weapon/kitchenknife/ritual))
-		to_chat(user, SPAN_NOTICE("You use [W] to fashion a pipe out of the corn cob!"))
-		new /obj/item/clothing/mask/cigarette/pipe/cobpipe(user.loc)
-		qdel(src)
-		return
+	reagents.add_reagent("sugar", 4 + round((potency / 5), 1))
+
+// *************************************
+// Complex Grown Object Defines -
+// Putting these at the bottom so they don't clutter the list up. -Cheridan
+// *************************************
+
+/*
+ * "Cash" Money Tree
+ */
+//This object is just a transition object. All it does is make dosh and delete itself. -Cheridan
+/obj/item/weapon/reagent_containers/food/snacks/grown/money
+	seed = /obj/item/seeds/cashseed
+	name = "dosh"
+	desc = "Green and lush."
+	icon_state = "spawner"
+	potency = 10
+	
+/obj/item/weapon/reagent_containers/food/snacks/grown/money/New()
+	switch(rand(1, 100))//(potency) //It wants to use the default potency instead of the new, so it was always 10. Will try to come back to this later - Cheridan
+		if(0 to 10)
+			new /obj/item/weapon/spacecash/(src.loc)
+		if(11 to 20)
+			new /obj/item/weapon/spacecash/c10(src.loc)
+		if(21 to 30)
+			new /obj/item/weapon/spacecash/c20(src.loc)
+		if(31 to 40)
+			new /obj/item/weapon/spacecash/c50(src.loc)
+		if(41 to 50)
+			new /obj/item/weapon/spacecash/c100(src.loc)
+		if(51 to 60)
+			new /obj/item/weapon/spacecash/c200(src.loc)
+		if(61 to 80)
+			new /obj/item/weapon/spacecash/c500(src.loc)
+		else
+			new /obj/item/weapon/spacecash/c1000(src.loc)
+
+//Workaround to keep harvesting from working weirdly.
+/obj/item/weapon/reagent_containers/food/snacks/grown/money/initialize()
+	..()
+	qdel(src)
+
+/*
+ * Grass
+ */
+/*
+//This object is just a transition object. All it does is make a grass tile and delete itself.
+/obj/item/weapon/reagent_containers/food/snacks/grown/grass
+	seed = /obj/item/seeds/grassseed
+	name = "grass"
+	desc = "Green and lush."
+	icon_state = "spawner"
+	potency = 20
+
+/obj/item/weapon/reagent_containers/food/snacks/grown/grass/New()
+	new/obj/item/stack/tile/grass(src.loc)
+
+//Workaround to keep harvesting from working weirdly.
+/obj/item/weapon/reagent_containers/food/snacks/grown/grass/initialize()
+	..()
+	qdel(src)
+*/
