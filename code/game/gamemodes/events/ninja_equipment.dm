@@ -28,7 +28,7 @@ ________________________________________________________________________________
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	stored_research = new()//Stolen research initialize.
-	for(var/T in typesof(/datum/tech) - /datum/tech)//Store up on research.
+	for(var/T in SUBTYPESOF(/datum/tech))//Store up on research.
 		stored_research += new T(src)
 	var/reagent_amount//reagent initialize
 	for(var/reagent_id in reagent_list)

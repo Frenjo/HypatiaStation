@@ -78,3 +78,5 @@
 		density = 0
 		qdel(src)
 	return
+
+#undef NEST_RESIST_TIME

@@ -158,3 +158,7 @@ proc/setup_xenoarch()
 /obj/machinery/alarm/isolation
 	name = "Isolation room air control"
 	req_access = list(access_research)
+
+#undef XENOARCH_SPAWN_CHANCE
+#undef XENOARCH_SPREAD_CHANCE
+#undef ARTIFACT_SPAWN_CHANCE

@@ -2,12 +2,19 @@
 //
 // consists of light fixtures (/obj/machinery/light) and light tube/bulb items (/obj/item/weapon/light)
 
-
 // status values shared between lighting fixtures and items
 #define LIGHT_OK 0
 #define LIGHT_EMPTY 1
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
+
+// Fixture construction stage values.
+#define LIGHT_STAGE_ONE 1
+#define LIGHT_STAGE_TWO 2
+#define LIGHT_STAGE_THREE 3
+
+// Lighting modes.
+#define LIGHT_MODE_EMERGENCY "emergency_lighting"
 
 var/global/list/light_type_cache = list()
 /proc/get_light_type_instance(light_type)
@@ -23,7 +30,7 @@ var/global/list/light_type_cache = list()
 	icon_state = "tube-construct-stage1"
 	anchored = 1
 	layer = 5
-	var/stage = 1
+	var/stage = LIGHT_STAGE_ONE
 	var/fixture_type = /obj/machinery/light
 	var/sheets_refunded = 2
 	var/obj/machinery/light/newlight = null
@@ -34,16 +41,16 @@ var/global/list/light_type_cache = list()
 		fixture_type = fixture.type
 		fixture.transfer_fingerprints_to(src)
 		set_dir(fixture.dir)
-		stage = 2
+		stage = LIGHT_STAGE_TWO
 	update_icon()
 
 /obj/machinery/light_construct/update_icon()
 	switch(stage)
-		if(1)
+		if(LIGHT_STAGE_ONE)
 			icon_state = "tube-construct-stage1"
-		if(2)
+		if(LIGHT_STAGE_TWO)
 			icon_state = "tube-construct-stage2"
-		if(3)
+		if(LIGHT_STAGE_THREE)
 			icon_state = "tube-empty"
 
 /obj/machinery/light_construct/examine()
@@ -51,17 +58,17 @@ var/global/list/light_type_cache = list()
 	if(!(usr in view(2)))
 		return
 	switch(src.stage)
-		if(1)
+		if(LIGHT_STAGE_ONE)
 			to_chat(usr, "It's an empty frame.")
-		if(2)
+		if(LIGHT_STAGE_TWO)
 			to_chat(usr, "It's wired.")
-		if(3)
+		if(LIGHT_STAGE_THREE)
 			to_chat(usr, "The casing is closed.")
 
 /obj/machinery/light_construct/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 	if(istype(W, /obj/item/weapon/wrench))
-		if(src.stage == 1)
+		if(src.stage == LIGHT_STAGE_ONE)
 			playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 			to_chat(usr, "You begin deconstructing [src].")
 			if(!do_after(usr, 30))
@@ -74,18 +81,18 @@ var/global/list/light_type_cache = list()
 			)
 			playsound(src, 'sound/items/Deconstruct.ogg', 75, 1)
 			qdel(src)
-		if(src.stage == 2)
+		if(src.stage == LIGHT_STAGE_TWO)
 			to_chat(usr, "You have to remove the wires first.")
 			return
 
-		if(src.stage == 3)
+		if(src.stage == LIGHT_STAGE_THREE)
 			to_chat(usr, "You have to unscrew the case first.")
 			return
 
 	if(istype(W, /obj/item/weapon/wirecutters))
-		if(src.stage != 2)
+		if(src.stage != LIGHT_STAGE_TWO)
 			return
-		src.stage = 1
+		src.stage = LIGHT_STAGE_ONE
 		src.update_icon()
 		new /obj/item/stack/cable_coil(get_turf(src.loc), 1, "red")
 		user.visible_message(
@@ -97,12 +104,12 @@ var/global/list/light_type_cache = list()
 		return
 
 	if(istype(W, /obj/item/stack/cable_coil))
-		if(src.stage != 1)
+		if(src.stage != LIGHT_STAGE_ONE)
 			return
 		var/obj/item/stack/cable_coil/coil = W
 		coil.use(1)
 		src.update_icon()
-		src.stage = 2
+		src.stage = LIGHT_STAGE_TWO
 		user.visible_message(
 			"[user.name] adds wires to [src].",
 			"You add wires to [src]."
@@ -110,9 +117,9 @@ var/global/list/light_type_cache = list()
 		return
 
 	if(istype(W, /obj/item/weapon/screwdriver))
-		if(src.stage == 2)
+		if(src.stage == LIGHT_STAGE_TWO)
 			src.update_icon()
-			src.stage = 3
+			src.stage = LIGHT_STAGE_THREE
 			user.visible_message(
 				"[user.name] closes [src]'s casing.",
 				"You close [src]'s casing.",
@@ -134,17 +141,17 @@ var/global/list/light_type_cache = list()
 	icon_state = "bulb-construct-stage1"
 	anchored = 1
 	layer = 5
-	stage = 1
+	stage = LIGHT_STAGE_ONE
 	fixture_type = /obj/machinery/light/small
 	sheets_refunded = 1
 
 /obj/machinery/light_construct/small/update_icon()
 	switch(stage)
-		if(1)
+		if(LIGHT_STAGE_ONE)
 			icon_state = "bulb-construct-stage1"
-		if(2)
+		if(LIGHT_STAGE_TWO)
 			icon_state = "bulb-construct-stage2"
-		if(3)
+		if(LIGHT_STAGE_THREE)
 			icon_state = "bulb-empty"
 
 // the standard tube light fixture
@@ -277,11 +284,11 @@ var/global/list/light_type_cache = list()
 // attempt to set the light's emergency lighting
 /obj/machinery/light/proc/set_emergency_lighting(enable)
 	if(enable)
-		if("emergency_lighting" in lighting_modes)
-			set_mode("emergency_lighting")
+		if(LIGHT_MODE_EMERGENCY in lighting_modes)
+			set_mode(LIGHT_MODE_EMERGENCY)
 			power_channel = ENVIRON
 	else
-		if(current_mode == "emergency_lighting")
+		if(current_mode == LIGHT_MODE_EMERGENCY)
 			set_mode(null)
 			power_channel = initial(power_channel)
 
@@ -600,7 +607,7 @@ var/global/list/light_type_cache = list()
 	brightness_power = 2
 	brightness_color = "#FFFFFF"
 	lighting_modes = list(
-		"emergency_lighting" = list(l_range = 3, l_power = 1, l_color = "#d13e43"), 
+		LIGHT_MODE_EMERGENCY = list(l_range = 3, l_power = 1, l_color = "#d13e43"), 
 	)
 
 /obj/item/weapon/light/tube/large
@@ -623,7 +630,7 @@ var/global/list/light_type_cache = list()
 	brightness_power = 2
 	brightness_color = "#a0a080"
 	lighting_modes = list(
-		"emergency_lighting" = list(l_range = 4, l_power = 1, l_color = "#d13e43"),
+		LIGHT_MODE_EMERGENCY = list(l_range = 4, l_power = 1, l_color = "#d13e43"),
 	)
 
 /obj/item/weapon/light/bulb/fire
@@ -716,3 +723,14 @@ var/global/list/light_type_cache = list()
 		sharp = 1
 		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		update_icon()
+
+#undef LIGHT_MODE_EMERGENCY
+
+#undef LIGHT_STAGE_ONE
+#undef LIGHT_STAGE_TWO
+#undef LIGHT_STAGE_THREE
+
+#undef LIGHT_OK
+#undef LIGHT_EMPTY
+#undef LIGHT_BROKEN
+#undef LIGHT_BURNED

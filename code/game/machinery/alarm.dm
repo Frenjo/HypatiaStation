@@ -1608,3 +1608,23 @@ Just a object used in constructing fire alarms
 		usr << browse(null, "window=partyalarm")
 		return
 	return
+
+#undef MAX_TEMPERATURE
+#undef MIN_TEMPERATURE
+
+#undef MAX_ENERGY_CHANGE
+
+#undef RCON_NO
+#undef RCON_AUTO
+#undef RCON_YES
+
+#undef AALARM_MODE_REPLACEMENT
+#undef AALARM_MODE_CYCLE
+#undef AALARM_MODE_FILL
+#undef AALARM_MODE_OFF
+
+#undef AALARM_WIRE_IDSCAN
+#undef AALARM_WIRE_POWER
+#undef AALARM_WIRE_SYPHON
+#undef AALARM_WIRE_AI_CONTROL
+#undef AALARM_WIRE_AALARM

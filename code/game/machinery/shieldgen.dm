@@ -36,7 +36,6 @@
 
 	return 1
 
-
 /obj/machinery/shield/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W))
 		return
@@ -76,7 +75,7 @@
 /obj/machinery/shield/bullet_act(obj/item/projectile/Proj)
 	health -= Proj.damage
 	..()
-	if(health <=0)
+	if(health <= 0)
 		visible_message("\blue The [src] dissipates!")
 		qdel(src)
 		return
@@ -301,7 +300,6 @@
 			user << "\blue You secure the [src] to the floor!"
 			anchored = 1
 
-
 	else if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))
 		if(src.allowed(user))
 			src.locked = !src.locked
@@ -312,7 +310,6 @@
 	else
 		..()
 
-
 /obj/machinery/shieldgen/update_icon()
 	if(active)
 		src.icon_state = malfunction ? "shieldonbr":"shieldon"
@@ -320,8 +317,9 @@
 		src.icon_state = malfunction ? "shieldoffbr":"shieldoff"
 	return
 
+
 ////FIELD GEN START //shameless copypasta from fieldgen, powersink, and grille
-#define maxstoredpower 500
+#define SHIELD_GENERATOR_MAX_STORED_POWER 500
 /obj/machinery/shieldwallgen
 		name = "Shield Generator"
 		desc = "A shield generator."
@@ -354,7 +352,8 @@
 
 	var/obj/structure/cable/C = T.get_cable_node()
 	var/datum/powernet/PN
-	if(C)	PN = C.powernet		// find the powernet of the connected cable
+	if(C)
+		PN = C.powernet		// find the powernet of the connected cable
 
 	if(!PN)
 		power = 0
@@ -388,24 +387,29 @@
 		src.active = 0
 		icon_state = "Shield_Gen"
 
-		user.visible_message("[user] turned the shield generator off.", \
-			"You turn off the shield generator.", \
-			"You hear heavy droning fade out.")
-		for(var/dir in list(1,2,4,8)) src.cleanup(dir)
+		user.visible_message(
+			"[user] turned the shield generator off.",
+			"You turn off the shield generator.",
+			"You hear heavy droning fade out."
+		)
+		for(var/dir in list(1, 2, 4, 8))
+			src.cleanup(dir)
 	else
 		src.active = 1
 		icon_state = "Shield_Gen +a"
-		user.visible_message("[user] turned the shield generator on.", \
-			"You turn on the shield generator.", \
-			"You hear heavy droning.")
+		user.visible_message(
+			"[user] turned the shield generator on.",
+			"You turn on the shield generator.",
+			"You hear heavy droning."
+		)
 	src.add_fingerprint(user)
 
 /obj/machinery/shieldwallgen/process()
 	power()
 	if(power)
 		storedpower -= 50 //this way it can survive longer and survive at all
-	if(storedpower >= maxstoredpower)
-		storedpower = maxstoredpower
+	if(storedpower >= SHIELD_GENERATOR_MAX_STORED_POWER)
+		storedpower = SHIELD_GENERATOR_MAX_STORED_POWER
 	if(storedpower <= 0)
 		storedpower = 0
 //	if(shieldload >= maxshieldload) //there was a loop caused by specifics of process(), so this was needed.
@@ -426,8 +430,10 @@
 		src.active = 2
 	if(src.active >= 1)
 		if(src.power == 0)
-			src.visible_message("\red The [src.name] shuts down due to lack of power!", \
-				"You hear heavy droning fade out")
+			src.visible_message(
+				"\red The [src.name] shuts down due to lack of power!",
+				"You hear heavy droning fade out"
+			)
 			icon_state = "Shield_Gen"
 			src.active = 0
 			for(var/dir in list(1, 2, 4, 8))
@@ -470,13 +476,12 @@
 	T2 = src.loc
 
 	for(var/dist = 0, dist < steps, dist += 1) // creates each field tile
-		var/field_dir = get_dir(T2,get_step(T2, NSEW))
+		var/field_dir = get_dir(T2, get_step(T2, NSEW))
 		T = get_step(T2, NSEW)
 		T2 = T
 		var/obj/machinery/shieldwall/CF = new/obj/machinery/shieldwall/(src, G) //(ref to this gen, ref to connected gen)
 		CF.loc = T
 		CF.set_dir(field_dir)
-
 
 /obj/machinery/shieldwallgen/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/wrench))
@@ -585,7 +590,6 @@
 		else
 			gen_secondary.storedpower -=10
 
-
 /obj/machinery/shieldwall/bullet_act(obj/item/projectile/Proj)
 	if(needs_power)
 		var/obj/machinery/shieldwallgen/G
@@ -596,7 +600,6 @@
 		G.storedpower -= Proj.damage
 	..()
 	return
-
 
 /obj/machinery/shieldwall/ex_act(severity)
 	if(needs_power)
@@ -624,7 +627,6 @@
 				G.storedpower -= 20
 	return
 
-
 /obj/machinery/shieldwall/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || (height == 0))
 		return 1
@@ -636,3 +638,5 @@
 			return prob(10)
 		else
 			return !src.density
+
+#undef SHIELD_GENERATOR_MAX_STORED_POWER

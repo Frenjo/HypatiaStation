@@ -192,3 +192,8 @@ var/list/mechtoys = list(
 
 	shoppinglist.Cut()
 	return
+
+#undef SUPPLY_DOCKZ
+#undef SUPPLY_STATIONZ
+#undef SUPPLY_STATION_AREATYPE
+#undef SUPPLY_DOCK_AREATYPE

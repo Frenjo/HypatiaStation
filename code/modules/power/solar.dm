@@ -543,3 +543,5 @@ var/list/solars_list = list()
 	if(Limit)
 		return "[href]=-[Limit]'>-</A>" + rate + "[href]=[Limit]'>+</A>"
 	return rate
+
+#undef SOLARGENRATE

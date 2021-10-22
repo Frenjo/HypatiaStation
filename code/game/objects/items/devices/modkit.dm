@@ -56,3 +56,7 @@
 	to_chat(usr, "It looks as though it modifies hardsuits to fit the following users:")
 	for(var/species in target_species)
 		to_chat(usr, "- [species]")
+
+#undef MODKIT_HELMET
+#undef MODKIT_SUIT
+#undef MODKIT_FULL

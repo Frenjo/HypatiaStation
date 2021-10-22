@@ -408,3 +408,6 @@
 	capacity = INFINITY
 	charge = INFINITY
 	..()
+
+#undef SMESMAXCHARGELEVEL
+#undef SMESMAXOUTPUT

@@ -528,3 +528,14 @@
 			else
 				break
 	return
+
+#undef ORE_PROC_GOLD
+#undef ORE_PROC_SILVER
+#undef ORE_PROC_DIAMOND
+#undef ORE_PROC_GLASS
+#undef ORE_PROC_PLASMA
+#undef ORE_PROC_URANIUM
+#undef ORE_PROC_IRON
+#undef ORE_PROC_BANANIUM
+#undef ORE_PROC_ADAMANTINE
+#undef ORE_PROC_MYTHRIL

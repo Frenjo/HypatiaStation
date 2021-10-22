@@ -505,3 +505,6 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	name = "cortical stack"
 	desc = "A fist-sized mass of biocircuits and chips."
 	icon_state = "implant_evil"
+
+#undef MALFUNCTION_TEMPORARY
+#undef MALFUNCTION_PERMANENT

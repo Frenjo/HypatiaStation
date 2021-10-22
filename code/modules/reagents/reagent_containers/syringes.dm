@@ -462,3 +462,7 @@
 	reagents.add_reagent("anti_toxin", 8)
 	mode = SYRINGE_INJECT
 	update_icon()
+
+#undef SYRINGE_DRAW
+#undef SYRINGE_INJECT
+#undef SYRINGE_BROKEN

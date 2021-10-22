@@ -233,7 +233,7 @@ var/global/floorIsLava = 0
 				dat += "</b>"
 
 	usr << browse(dat, "window=player_notes;size=400x400")
-
+#undef PLAYER_NOTES_ENTRIES_PER_PAGE
 
 /datum/admins/proc/player_has_info(var/key as text)
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")

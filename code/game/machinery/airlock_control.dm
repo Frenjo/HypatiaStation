@@ -246,3 +246,5 @@
 /obj/machinery/access_button/airlock_exterior
 	frequency = 1379
 	command = "cycle_exterior"
+
+#undef AIRLOCK_CONTROL_RANGE

@@ -48,3 +48,5 @@
 			else
 				src << "<font color='red'>Error: admin_investigate: Href Logging is not on.</font>"
 				return
+
+#undef INVESTIGATE_DIR

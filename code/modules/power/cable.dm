@@ -858,3 +858,5 @@ obj/structure/cable/proc/cableColor(colorC)
 /obj/item/stack/cable_coil/random/New()
 	item_color = pick(COLOR_RED, COLOR_BLUE, COLOR_GREEN, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
 	..()
+
+#undef MAXCOIL

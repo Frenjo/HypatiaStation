@@ -115,3 +115,7 @@
 		if(istype(AC))
 			bullets += 1
 	return bullets
+
+#undef SPEEDLOADER
+#undef FROM_BOX
+#undef MAGAZINE

@@ -467,6 +467,7 @@ var/bomb_set
 				world.Reboot()
 				return
 	return
+#undef NUKERANGE
 
 /obj/item/weapon/disk/nuclear/Destroy()
 	if(blobstart.len > 0)

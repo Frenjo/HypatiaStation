@@ -104,7 +104,6 @@
 
 
 #define SCREWED 32
-
 /obj/machinery/singularity_beacon //not the best place for it but it's a hack job anyway -- Urist
 	name = "ominous beacon"
 	desc = "This looks suspicious..."
@@ -211,10 +210,7 @@
 				Deactivate()
 		return
 
-
 /obj/machinery/singularity_beacon/syndicate
 	icontype = "beaconsynd"
 	icon_state = "beaconsynd0"
-
 #undef SCREWED
-

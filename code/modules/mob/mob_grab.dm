@@ -236,3 +236,6 @@
 	loc = null
 	if(!destroying)
 		qdel(src)
+
+#undef UPGRADE_COOLDOWN
+#undef UPGRADE_KILL_TIMER

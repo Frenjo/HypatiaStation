@@ -299,3 +299,10 @@
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
+
+#undef COMPFRICTION
+#undef COMPSTARTERLOAD
+
+#undef TURBPRES
+#undef TURBGENQ
+#undef TURBGENG

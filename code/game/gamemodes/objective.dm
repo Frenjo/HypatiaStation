@@ -956,3 +956,4 @@ var/global/vox_kills = 0 //Used to check the Inviolate.
 	if(vox_kills > MAX_VOX_KILLS)
 		return 0
 	return 1
+#undef MAX_VOX_KILLS

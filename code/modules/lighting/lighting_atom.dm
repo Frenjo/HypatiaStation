@@ -19,7 +19,6 @@
 		light_color = l_color
 
 	update_light()
-
 #undef NONSENSICAL_VALUE
 
 /atom/proc/update_light()

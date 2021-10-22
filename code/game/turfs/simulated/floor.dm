@@ -597,10 +597,10 @@ turf/simulated/floor/proc/update_icon()
 				else
 					to_chat(user, SPAN_INFO("You need more welding fuel to complete this task."))
 
-#undef LIGHTFLOOR_ON_BIT
-
 #undef LIGHTFLOOR_STATE_OK
 #undef LIGHTFLOOR_STATE_FLICKER
 #undef LIGHTFLOOR_STATE_BREAKING
 #undef LIGHTFLOOR_STATE_BROKEN
 #undef LIGHTFLOOR_STATE_BITS
+
+#undef LIGHTFLOOR_ON_BIT

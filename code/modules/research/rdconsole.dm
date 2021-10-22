@@ -54,7 +54,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 /obj/machinery/computer/rdconsole/proc/CallTechName(var/ID) //A simple helper proc to find the name of a tech with a given ID.
 	var/datum/tech/check_tech
 	var/return_name = null
-	for(var/T in typesof(/datum/tech) - /datum/tech)
+	for(var/T in SUBTYPESOF(/datum/tech))
 		check_tech = null
 		check_tech = new T()
 		if(check_tech.id == ID)

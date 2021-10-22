@@ -17,10 +17,10 @@ Buildable meters
 #define PIPE_INSULATED_BENT		12
 #define PIPE_GAS_FILTER			13
 #define PIPE_GAS_MIXER			14
-#define PIPE_PASSIVE_GATE       15
-#define PIPE_VOLUME_PUMP        16
+#define PIPE_PASSIVE_GATE		15
+#define PIPE_VOLUME_PUMP		16
 #define PIPE_OUTLET_INJECT		17
-#define PIPE_HEAT_EXCHANGE      18
+#define PIPE_HEAT_EXCHANGE		18
 #define PIPE_MTVALVE			19
 #define PIPE_MANIFOLD4W			20
 #define PIPE_CAP				21
@@ -687,6 +687,7 @@ Buildable meters
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 	user << "\blue You have fastened the meter to the pipe"
 	qdel(src)
+
 //not sure why these are necessary
 #undef PIPE_SIMPLE_STRAIGHT
 #undef PIPE_SIMPLE_BENT
@@ -706,5 +707,9 @@ Buildable meters
 #undef PIPE_PASSIVE_GATE
 #undef PIPE_VOLUME_PUMP
 #undef PIPE_OUTLET_INJECT
+#undef PIPE_HEAT_EXCHANGE
 #undef PIPE_MTVALVE
-//#undef PIPE_MANIFOLD4W
+#undef PIPE_MANIFOLD4W
+#undef PIPE_CAP
+#undef PIPE_UP
+#undef PIPE_DOWN

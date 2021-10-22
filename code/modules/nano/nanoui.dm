@@ -413,3 +413,6 @@ nanoui is used to open and update nano browser uis
 	else
 		update_status(1) // Not updating UI, so lets check here if status has changed
 
+#undef STATUS_INTERACTIVE
+#undef STATUS_UPDATE
+#undef STATUS_DISABLED

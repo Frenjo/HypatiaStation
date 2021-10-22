@@ -1202,7 +1202,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimebork/on_reaction(datum/reagents/holder)
-	var/list/borks = typesof(/obj/item/weapon/reagent_containers/food/snacks) - /obj/item/weapon/reagent_containers/food/snacks
+	var/list/borks = SUBTYPESOF(/obj/item/weapon/reagent_containers/food/snacks)
 	// BORK BORK BORK
 
 	playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)

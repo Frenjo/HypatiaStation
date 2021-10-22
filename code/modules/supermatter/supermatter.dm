@@ -1,16 +1,16 @@
 
-#define NITROGEN_RETARDATION_FACTOR 4        //Higher == N2 slows reaction more
-//#define THERMAL_RELEASE_MODIFIER 10                //Higher == less heat released during reaction
+#define NITROGEN_RETARDATION_FACTOR 4		//Higher == N2 slows reaction more
+//#define THERMAL_RELEASE_MODIFIER 10				//Higher == less heat released during reaction
 #define THERMAL_RELEASE_MODIFIER 750
-#define PLASMA_RELEASE_MODIFIER 1500                //Higher == less plasma released by reaction
-#define OXYGEN_RELEASE_MODIFIER 750        //Higher == less oxygen released at high temperature/power
-#define REACTION_POWER_MODIFIER 1.1                //Higher == more overall power
+#define PLASMA_RELEASE_MODIFIER 1500				//Higher == less plasma released by reaction
+#define OXYGEN_RELEASE_MODIFIER 750			//Higher == less oxygen released at high temperature/power
+#define REACTION_POWER_MODIFIER 1.1					//Higher == more overall power
 
 //These would be what you would get at point blank, decreases with distance
 #define DETONATION_RADS 200
 #define DETONATION_HALLUCINATION 600
 
-#define WARNING_DELAY 30 		//seconds between warnings.
+#define WARNING_DELAY 30		//seconds between warnings.
 
 /obj/machinery/power/supermatter
 	name = "Supermatter"
@@ -43,16 +43,16 @@
 
 	var/explosion_power = 8
 
-	var/lastwarning = 0                        // Time in 1/10th of seconds since the last sent warning
+	var/lastwarning = 0							// Time in 1/10th of seconds since the last sent warning
 	var/power = 0
 
-	var/oxygen = 0				  // Moving this up here for easier debugging.
+	var/oxygen = 0					// Moving this up here for easier debugging.
 
 	//Temporary values so that we can optimize this
 	//How much the bullets damage should be multiplied by when it is added to the internal variables
 	var/config_bullet_energy = 2
 	//How much of the power is left after processing is finished?
-//        var/config_power_reduction_per_tick = 0.5
+//		var/config_power_reduction_per_tick = 0.5
 	//How much hallucination should it produce per unit of power?
 	var/config_hallucination_power = 0.1
 
@@ -234,9 +234,11 @@
 	to_chat(user, SPAN_WARNING("You attempt to interface with the control circuits but find they are not connected to your network. Maybe in a future firmware update."))
 
 /obj/machinery/power/supermatter/attack_hand(mob/user as mob)
-	user.visible_message(SPAN_WARNING("The [user] reaches out and touches \the [src], inducing a resonance... \his body starts to glow and bursts into flames before flashing into ash."),\
-						SPAN_DANGER("You reach out and touch \the [src]. Everything starts burning and all you can hear is ringing. Your last thought is \"That was not a wise decision.\""),\
-						SPAN_WARNING("You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat."))
+	user.visible_message(
+		SPAN_WARNING("The [user] reaches out and touches \the [src], inducing a resonance... \his body starts to glow and bursts into flames before flashing into ash."),
+		SPAN_DANGER("You reach out and touch \the [src]. Everything starts burning and all you can hear is ringing. Your last thought is \"That was not a wise decision.\""),
+		SPAN_WARNING("You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat.")
+	)
 
 	Consume(user)
 
@@ -247,11 +249,13 @@
 	return
 
 /obj/machinery/power/supermatter/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
-	user.visible_message(SPAN_WARNING("\The [user] touches \a [W] to \the [src] as a silence fills the room..."),\
-						//"<span class=\"danger\">You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span>\n<span class=\"notice\">\The [W] flashes into dust as you flinch away from \the [src].</span>"
-						// Not sure if this is a valid replacement for this? But I mean, it compiles so... -Frenjo
-						SPAN_DANGER("You touch \the [W] to \the [src] when everything suddenly goes silent.") + "\n" + SPAN_NOTICE("\The [W] flashes into dust as you flinch away from \the [src]."),\
-						SPAN_WARNING("Everything suddenly goes silent."))
+	user.visible_message(
+		SPAN_WARNING("\The [user] touches \a [W] to \the [src] as a silence fills the room..."),
+		//"<span class=\"danger\">You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span>\n<span class=\"notice\">\The [W] flashes into dust as you flinch away from \the [src].</span>"
+		// Not sure if this is a valid replacement for this? But I mean, it compiles so... -Frenjo
+		SPAN_DANGER("You touch \the [W] to \the [src] when everything suddenly goes silent.") + "\n" + SPAN_NOTICE("\The [W] flashes into dust as you flinch away from \the [src]."),
+		SPAN_WARNING("Everything suddenly goes silent.")
+	)
 
 	user.drop_from_inventory(W)
 	Consume(W)
@@ -259,13 +263,17 @@
 	user.apply_effect(150, IRRADIATE)
 
 /obj/machinery/power/supermatter/Bumped(atom/AM as mob|obj)
-	if(istype(AM, /mob/living))
-		AM.visible_message(SPAN_WARNING("\The [AM] slams into \the [src] inducing a resonance... \his body starts to glow and catch flame before flashing into ash."),\
-		SPAN_DANGER("You slam into \the [src] as your ears are filled with unearthly ringing. Your last thought is \"Oh, fuck.\""),\
-		SPAN_WARNING("You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat."))
+	if(isliving(AM))
+		AM.visible_message(
+			SPAN_WARNING("\The [AM] slams into \the [src] inducing a resonance... \his body starts to glow and catch flame before flashing into ash."),
+			SPAN_DANGER("You slam into \the [src] as your ears are filled with unearthly ringing. Your last thought is \"Oh, fuck.\""),
+			SPAN_WARNING("You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat.")
+		)
 	else
-		AM.visible_message(SPAN_WARNING("\The [AM] smacks into \the [src] and rapidly flashes to ash."),\
-		SPAN_WARNING("You hear a loud crack as you are washed with a wave of heat."))
+		AM.visible_message(
+			SPAN_WARNING("\The [AM] smacks into \the [src] and rapidly flashes to ash."),
+			SPAN_WARNING("You hear a loud crack as you are washed with a wave of heat.")
+		)
 
 	Consume(AM)
 
@@ -281,9 +289,22 @@
 	//Some poor sod got eaten, go ahead and irradiate people nearby.
 	for(var/mob/living/l in range(10))
 		if(l in view())
-			l.show_message(SPAN_WARNING("As \the [src] slowly stops resonating, you find your skin covered in new radiation burns."), 1,\
-						SPAN_WARNING("The unearthly ringing subsides and you notice you have new radiation burns."), 2)
+			l.show_message(
+				SPAN_WARNING("As \the [src] slowly stops resonating, you find your skin covered in new radiation burns."), 1,
+				SPAN_WARNING("The unearthly ringing subsides and you notice you have new radiation burns."), 2
+			)
 		else
 			l.show_message(SPAN_WARNING("You hear an uneartly ringing and notice your skin is covered in fresh radiation burns."), 2)
 		var/rads = 500 * sqrt(1 / (get_dist(l, src) + 1))
 		l.apply_effect(rads, IRRADIATE)
+
+#undef WARNING_DELAY
+
+#undef DETONATION_RADS
+#undef DETONATION_HALLUCINATION
+
+#undef NITROGEN_RETARDATION_FACTOR
+#undef THERMAL_RELEASE_MODIFIER
+#undef PLASMA_RELEASE_MODIFIER
+#undef OXYGEN_RELEASE_MODIFIER
+#undef REACTION_POWER_MODIFIER

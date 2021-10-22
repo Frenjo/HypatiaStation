@@ -172,3 +172,5 @@
 //This can be used by subtypes to do things when the shuttle arrives.
 /datum/shuttle/ferry/proc/arrived()
 	return	//do nothing for now
+
+#undef DOCK_ATTEMPT_TIMEOUT

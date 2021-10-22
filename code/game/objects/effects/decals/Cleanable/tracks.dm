@@ -159,3 +159,14 @@ var/global/list/image/fluidtrack_cache=list()
 	gender = PLURAL
 	random_icon_states = null
 	amount = 0
+
+#undef TRACKS_CRUSTIFY_TIME
+
+#undef TRACKS_COMING_NORTH
+#undef TRACKS_COMING_SOUTH
+#undef TRACKS_COMING_EAST
+#undef TRACKS_COMING_WEST
+#undef TRACKS_GOING_NORTH
+#undef TRACKS_GOING_SOUTH
+#undef TRACKS_GOING_EAST
+#undef TRACKS_GOING_WEST

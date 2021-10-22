@@ -342,6 +342,11 @@ var/specops_shuttle_timeleft = 0
 	updateUsrDialog()
 	return
 
+#undef SPECOPS_MOVETIME
+#undef SPECOPS_STATION_AREATYPE
+#undef SPECOPS_DOCK_AREATYPE
+#undef SPECOPS_RETURN_DELAY
+
 /*//Config stuff
 #define SPECOPS_MOVETIME 600	//Time to station is milliseconds. 60 seconds, enough time for everyone to be on the shuttle before it leaves.
 #define SPECOPS_STATION_AREATYPE "/area/shuttle/specops/station" //Type of the spec ops shuttle area for station

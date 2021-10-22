@@ -207,3 +207,5 @@ var/global/list/image/splatter_cache=list()
 /obj/effect/decal/cleanable/mucus/New()
 	spawn(DRYING_TIME * 2)
 		dry=1
+
+#undef DRYING_TIME

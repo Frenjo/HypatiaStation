@@ -451,3 +451,8 @@ log transactions
 	var/obj/item/weapon/spacecash/ewallet/E = new /obj/item/weapon/spacecash/ewallet(loc)
 	E.worth = sum
 	E.owner_name = authenticated_account.owner_name
+
+#undef NO_SCREEN
+#undef CHANGE_SECURITY_LEVEL
+#undef TRANSFER_FUNDS
+#undef VIEW_TRANSACTION_LOGS

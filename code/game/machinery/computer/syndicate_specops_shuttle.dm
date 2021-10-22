@@ -262,3 +262,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 	add_fingerprint(usr)
 	updateUsrDialog()
 	return
+
+#undef SYNDICATE_ELITE_MOVETIME
+#undef SYNDICATE_ELITE_STATION_AREATYPE
+#undef SYNDICATE_ELITE_DOCK_AREATYPE

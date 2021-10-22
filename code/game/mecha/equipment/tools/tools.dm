@@ -1221,6 +1221,9 @@
 			usr << "\red All of the passenger compartments are already occupied or locked!"
 		if(0)
 			usr << "\red \The [src] doesn't have a passenger compartment."
+
+#undef LOCKED
+#undef OCCUPIED
 // END PORT -Frenjo
 
 /obj/item/weapon/paintkit //Please don't use this for anything, it's a base type for custom mech paintjobs.

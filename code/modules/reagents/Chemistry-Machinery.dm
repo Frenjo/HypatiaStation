@@ -1,3 +1,6 @@
+#define MAX_PILL_SPRITE 20 //max icon state of the pill sprites
+#define MAX_BOTTLE_SPRITE 20 //max icon state of the bottle sprites
+
 /obj/machinery/chem_dispenser
 	name = "chem dispenser"
 	density = 1
@@ -476,7 +479,6 @@
 				var/obj/item/weapon/reagent_containers/food/condiment/P = new/obj/item/weapon/reagent_containers/food/condiment(src.loc)
 				reagents.trans_to(P, 50)
 		else if(href_list["change_pill"])
-			#define MAX_PILL_SPRITE 20 //max icon state of the pill sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_PILL_SPRITE)
 				dat += "<tr><td><a href=\"?src=\ref[src]&pill_sprite=[i]\"><img src=\"pill[i].png\" /></a></td></tr>"
@@ -484,7 +486,6 @@
 			usr << browse(dat, "window=chem_master")
 			return
 		else if(href_list["change_bottle"])
-			#define MAX_BOTTLE_SPRITE 20 //max icon state of the bottle sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_BOTTLE_SPRITE)
 				dat += "<tr><td><a href=\"?src=\ref[src]&bottle_sprite=[i]\"><img src=\"bottle[i].png\" /></a></td></tr>"
@@ -1224,3 +1225,6 @@
 		O.reagents.trans_to(beaker, amount)
 		if(!O.reagents.total_volume)
 			remove_object(O)
+
+#undef MAX_PILL_SPRITE
+#undef MAX_BOTTLE_SPRITE

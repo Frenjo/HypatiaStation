@@ -45,6 +45,10 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 #define MAX_FIELD_STR 1000
 #define MIN_FIELD_STR 1
 
+#define RUST_STATE_ZERO 0
+#define RUST_STATE_ONE 1
+#define RUST_STATE_TWO 2
+
 /obj/machinery/power/rust_core
 	name = "RUST Tokamak core"
 	desc = "Enormous solenoid for generating extremely high power electromagnetic fields"
@@ -63,7 +67,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 	var/cached_power_avail = 0
 	anchored = 0
 
-	var/state = 0
+	var/state = RUST_STATE_ZERO
 	var/locked = 1
 	var/remote_access_enabled = 1
 
@@ -76,25 +80,28 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 	//luminosity = max(luminosity,1)
 
 /obj/machinery/power/rust_core/attackby(obj/item/W, mob/user)
-
 	if(istype(W, /obj/item/weapon/wrench))
 		if(owned_field)
 			user << "Turn off [src] first."
 			return
 		switch(state)
-			if(0)
-				state = 1
+			if(RUST_STATE_ZERO)
+				state = RUST_STATE_ONE
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
-				user.visible_message("[user.name] secures [src.name] to the floor.", \
-					"You secure the external reinforcing bolts to the floor.", \
-					"You hear a ratchet")
+				user.visible_message(
+					"[user.name] secures [src.name] to the floor.",
+					"You secure the external reinforcing bolts to the floor.",
+					"You hear a ratchet"
+				)
 				src.anchored = 1
-			if(1)
-				state = 0
+			if(RUST_STATE_ONE)
+				state = RUST_STATE_ZERO
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
-				user.visible_message("[user.name] unsecures [src.name] reinforcing bolts from the floor.", \
-					"You undo the external reinforcing bolts.", \
-					"You hear a ratchet")
+				user.visible_message(
+					"[user.name] unsecures [src.name] reinforcing bolts from the floor.",
+					"You undo the external reinforcing bolts.",
+					"You hear a ratchet"
+				)
 				src.anchored = 0
 			if(2)
 				user << "\red The [src.name] needs to be unwelded from the floor."
@@ -106,30 +113,36 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 			user << "Turn off the [src] first."
 			return
 		switch(state)
-			if(0)
+			if(RUST_STATE_ZERO)
 				user << "\red The [src.name] needs to be wrenched to the floor."
-			if(1)
-				if (WT.remove_fuel(0,user))
+			if(RUST_STATE_ONE)
+				if(WT.remove_fuel(0, user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
-					user.visible_message("[user.name] starts to weld the [src.name] to the floor.", \
-						"You start to weld the [src] to the floor.", \
-						"You hear welding")
-					if (do_after(user,20))
-						if(!src || !WT.isOn()) return
-						state = 2
+					user.visible_message(
+						"[user.name] starts to weld the [src.name] to the floor.",
+						"You start to weld the [src] to the floor.",
+						"You hear welding"
+					)
+					if(do_after(user, 20))
+						if(!src || !WT.isOn())
+							return
+						state = RUST_STATE_TWO
 						user << "You weld the [src] to the floor."
 						connect_to_network()
 				else
 					user << "\red You need more welding fuel to complete this task."
-			if(2)
-				if (WT.remove_fuel(0,user))
+			if(RUST_STATE_TWO)
+				if(WT.remove_fuel(0, user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
-					user.visible_message("[user.name] starts to cut the [src.name] free from the floor.", \
-						"You start to cut the [src] free from the floor.", \
-						"You hear welding")
-					if (do_after(user,20))
-						if(!src || !WT.isOn()) return
-						state = 1
+					user.visible_message(
+						"[user.name] starts to cut the [src.name] free from the floor.",
+						"You start to cut the [src] free from the floor.",
+						"You hear welding"
+					)
+					if(do_after(user, 20))
+						if(!src || !WT.isOn())
+							return
+						state = RUST_STATE_ONE
 						user << "You cut the [src] free from the floor."
 						disconnect_from_network()
 				else
@@ -154,7 +167,10 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 	if(istype(W, /obj/item/weapon/card/emag) && !emagged)
 		locked = 0
 		emagged = 1
-		user.visible_message("[user.name] emags the [src.name].","\red You short out the lock.")
+		user.visible_message(
+			"[user.name] emags the [src.name].",
+			"\red You short out the lock."
+		)
 		return
 
 	..()
@@ -178,7 +194,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 		return
 
 	var/dat = ""
-	if(stat & NOPOWER || locked || state != 2)
+	if(stat & NOPOWER || locked || state != RUST_STATE_TWO)
 		dat += "<i>The console is dark and nonresponsive.</i>"
 	else
 		dat += "<b>RUST Tokamak pattern Electromagnetic Field Generator</b><br>"
@@ -235,7 +251,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 		if(!Startup())
 			Shutdown()
 
-	if( href_list["toggle_remote"] )
+	if(href_list["toggle_remote"])
 		remote_access_enabled = !remote_access_enabled
 
 	if(href_list["new_id_tag"])
@@ -274,13 +290,22 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 		light_range = 0
 		use_power = 1
 
-/obj/machinery/power/rust_core/proc/AddParticles(var/name, var/quantity = 1)
+/obj/machinery/power/rust_core/proc/AddParticles(name, quantity = 1)
 	if(owned_field)
 		owned_field.AddParticles(name, quantity)
 		return 1
 	return 0
 
-/obj/machinery/power/rust_core/bullet_act(var/obj/item/projectile/Proj)
+/obj/machinery/power/rust_core/bullet_act(obj/item/projectile/Proj)
 	if(owned_field)
 		return owned_field.bullet_act(Proj)
 	return 0
+
+#undef RUST_STATE_ZERO
+#undef RUST_STATE_ONE
+#undef RUST_STATE_TWO
+
+#undef MAX_FIELD_FREQ
+#undef MIN_FIELD_FREQ
+#undef MAX_FIELD_STR
+#undef MIN_FIELD_STR
