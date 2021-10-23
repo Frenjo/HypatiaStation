@@ -79,7 +79,7 @@
 		add_fingerprint(user)
 
 		//Special case for blood splatters, runes and gibs.
-		if (istype(A, /obj/effect/decal/cleanable/blood) || istype(A, /obj/effect/rune) || istype(A, /obj/effect/decal/cleanable/blood/gibs))
+		if (istype(A, /obj/effect/decal/cleanable/blood) || isrune(A) || istype(A, /obj/effect/decal/cleanable/blood/gibs))
 			if(!isnull(A.blood_DNA))
 				for(var/blood in A.blood_DNA)
 					user << "\blue Blood type: [A.blood_DNA[blood]]\nDNA: [blood]"

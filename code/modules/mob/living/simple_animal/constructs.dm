@@ -3,10 +3,10 @@
 	real_name = "Construct"
 	desc = ""
 	speak_emote = list("hisses")
-	emote_hear = list("wails","screeches")
-	response_help  = "thinks better of touching"
+	emote_hear = list("wails", "screeches")
+	response_help = "thinks better of touching"
 	response_disarm = "flails at"
-	response_harm   = "punches"
+	response_harm = "punches"
 	icon_dead = "shade_dead"
 	speed = -1
 	a_intent = "harm"
@@ -50,16 +50,16 @@
 /mob/living/simple_animal/construct/examine()
 	set src in oview()
 	var/msg = "<span cass='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n"
-	if (src.health < src.maxHealth)
+	if(src.health < src.maxHealth)
 		msg += "<span class='warning'>"
-		if (src.health >= src.maxHealth/2)
+		if(src.health >= src.maxHealth / 2)
 			msg += "It looks slightly dented.\n"
 		else
 			msg += "<B>It looks severely dented!</B>\n"
 		msg += "</span>"
 	msg += "*---------*</span>"
 
-	usr << msg
+	to_chat(usr, msg)
 	return
 
 /mob/living/simple_animal/construct/attack_animal(mob/living/M as mob)
@@ -73,30 +73,30 @@
 			if(M.attack_sound)
 				playsound(loc, M.attack_sound, 50, 1, 1)
 			for(var/mob/O in viewers(src, null))
-				O.show_message("<span class='attack'>\The <EM>[M]</EM> [M.attacktext] \the <EM>[src]</EM>!</span>", 1)
+				O.show_message(SPAN("attack", "\The <EM>[M]</EM> [M.attacktext] \the <EM>[src]</EM>!"), 1)
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>")
 
 			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 			adjustBruteLoss(damage)
 
-/mob/living/simple_animal/construct/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/construct/attackby(obj/item/O as obj, mob/user as mob)
 	if(O.force)
 		var/damage = O.force
-		if (O.damtype == HALLOSS)
+		if(O.damtype == HALLOSS)
 			damage = 0
 		adjustBruteLoss(damage)
 		for(var/mob/M in viewers(src, null))
-			if ((M.client && !( M.blinded )))
-				M.show_message("\red \b [src] has been attacked with [O] by [user]. ")
+			if(M.client && !M.blinded)
+				M.show_message(SPAN_DANGER("[src] has been attacked with [O] by [user]."))
 	else
-		usr << "\red This weapon is ineffective, it does no damage."
+		to_chat(usr, SPAN_WARNING("This weapon is ineffective, it does no damage."))
 		for(var/mob/M in viewers(src, null))
-			if ((M.client && !( M.blinded )))
-				M.show_message("\red [user] gently taps [src] with [O]. ")
+			if(M.client && !M.blinded)
+				M.show_message(SPAN_WARNING("[user] gently taps [src] with [O]."))
+
 
 /////////////////Juggernaut///////////////
-
 /mob/living/simple_animal/construct/armoured
 	name = "Juggernaut"
 	real_name = "Juggernaut"
@@ -106,7 +106,7 @@
 	icon_living = "behemoth"
 	maxHealth = 250
 	health = 250
-	response_harm   = "harmlessly punches"
+	response_harm = "harmlessly punches"
 	harm_intent_damage = 0
 	melee_damage_lower = 30
 	melee_damage_upper = 30
@@ -121,13 +121,15 @@
 	weakened = 0
 	..()
 
-/mob/living/simple_animal/construct/armoured/bullet_act(var/obj/item/projectile/P)
+/mob/living/simple_animal/construct/armoured/bullet_act(obj/item/projectile/P)
 	if(istype(P, /obj/item/projectile/energy))
-		var/reflectchance = 80 - round(P.damage/3)
+		var/reflectchance = 80 - round(P.damage / 3)
 		if(prob(reflectchance))
 			adjustBruteLoss(P.damage * 0.5)
-			visible_message("<span class='danger'>The [P.name] gets reflected by [src]'s shell!</span>", \
-							"<span class='userdanger'>The [P.name] gets reflected by [src]'s shell!</span>")
+			visible_message(
+				SPAN_DANGER("The [P.name] gets reflected by [src]'s shell!"),
+				SPAN("userdanger", "The [P.name] gets reflected by [src]'s shell!")
+			)
 
 			// Find a turf near or on the original location to bounce to
 			if(P.starting)
@@ -147,8 +149,8 @@
 
 	return (..(P))
 
-////////////////////////Wraith/////////////////////////////////////////////
 
+////////////////////////Wraith/////////////////////////////////////////////
 /mob/living/simple_animal/construct/wraith
 	name = "Wraith"
 	real_name = "Wraith"
@@ -166,8 +168,8 @@
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	construct_spells = list(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift)
 
-/////////////////////////////Artificer/////////////////////////
 
+/////////////////////////////Artificer/////////////////////////
 /mob/living/simple_animal/construct/builder
 	name = "Artificer"
 	real_name = "Artificer"
@@ -185,13 +187,15 @@
 	speed = 0
 	wall_smash = 1
 	attack_sound = 'sound/weapons/punch2.ogg'
-	construct_spells = list(/obj/effect/proc_holder/spell/aoe_turf/conjure/construct/lesser,
-							/obj/effect/proc_holder/spell/aoe_turf/conjure/wall,
-							/obj/effect/proc_holder/spell/aoe_turf/conjure/floor,
-							/obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone)
+	construct_spells = list(
+		/obj/effect/proc_holder/spell/aoe_turf/conjure/construct/lesser,
+		/obj/effect/proc_holder/spell/aoe_turf/conjure/wall,
+		/obj/effect/proc_holder/spell/aoe_turf/conjure/floor,
+		/obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone
+	)
+
 
 /////////////////////////////Behemoth/////////////////////////
-
 /mob/living/simple_animal/construct/behemoth
 	name = "Behemoth"
 	real_name = "Behemoth"
@@ -213,28 +217,28 @@
 	var/energy = 0
 	var/max_energy = 1000
 
-/mob/living/simple_animal/construct/behemoth/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/construct/behemoth/attackby(obj/item/O as obj, mob/user as mob)
 	if(O.force)
 		if(O.force >= 11)
 			var/damage = O.force
-			if (O.damtype == HALLOSS)
+			if(O.damtype == HALLOSS)
 				damage = 0
 			adjustBruteLoss(damage)
 			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
-					M.show_message("\red \b [src] has been attacked with [O] by [user]. ")
+				if(M.client && !M.blinded)
+					M.show_message(SPAN_DANGER("[src] has been attacked with [O] by [user]."))
 		else
 			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
-					M.show_message("\red \b [O] bounces harmlessly off of [src]. ")
+				if(M.client && !M.blinded)
+					M.show_message(SPAN_DANGER("[O] bounces harmlessly off of [src]."))
 	else
-		usr << "\red This weapon is ineffective, it does no damage."
+		to_chat(usr, SPAN_WARNING("This weapon is ineffective, it does no damage."))
 		for(var/mob/M in viewers(src, null))
-			if ((M.client && !( M.blinded )))
-				M.show_message("\red [user] gently taps [src] with [O]. ")
+			if(M.client && !M.blinded)
+				M.show_message(SPAN_DANGER("[user] gently taps [src] with [O]."))
+
 
 ////////////////Powers//////////////////
-
 /*
 /client/proc/summon_cultist()
 	set category = "Behemoth"
@@ -262,8 +266,8 @@
 			cultist.loc = usr.loc
 			usr.visible_message("/red [cultist] appears in a flash of red light as [usr] glows with power")*/
 
-////////////////////////Harvester////////////////////////////////
 
+////////////////////////Harvester////////////////////////////////
 /mob/living/simple_animal/construct/harvester
 	name = "Harvester"
 	real_name = "Harvester"

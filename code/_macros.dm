@@ -50,6 +50,10 @@
 
 #define hasorgans(A)	ishuman(A)
 
+// Cult-related checks.
+// This one line was typed out almost 30+ times so it justifies an entry here.
+#define isrune(A) istype(A, /obj/effect/rune)
+
 // Chat-related stuff
 #define to_chat(target, message)	target << message
 

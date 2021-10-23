@@ -17,7 +17,7 @@
 			if("armor")
 				call(/obj/effect/rune/proc/armor)()
 			if("emp")
-				call(/obj/effect/rune/proc/emp)(usr.loc,3)
+				call(/obj/effect/rune/proc/emp)(usr.loc, 3)
 			if("conceal")
 				call(/obj/effect/rune/proc/obscure)(2)
 			if("revealrunes")
@@ -52,11 +52,11 @@
 			call(/obj/effect/rune/proc/runestun)(T)
 			qdel(src)
 		else
-			..()   ///If its some other talisman, use the generic attack code, is this supposed to work this way?
+			..()	///If its some other talisman, use the generic attack code, is this supposed to work this way?
 	else
 		..()
 
-/obj/item/weapon/paper/talisman/proc/supply(var/key)
+/obj/item/weapon/paper/talisman/proc/supply(key)
 	if(!src.uses)
 		qdel(src)
 		return

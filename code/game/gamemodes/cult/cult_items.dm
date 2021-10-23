@@ -15,9 +15,9 @@
 	else
 		user.Paralyse(5)
 		to_chat(user, SPAN_WARNING("An unexplicable force powerfully repels the sword from [target]!"))
-		var/organ = ((user.hand ? "l_":"r_") + "arm")
+		var/organ = ((user.hand ? "l_" : "r_") + "arm")
 		var/datum/organ/external/affecting = user.get_organ(organ)
-		if(affecting.take_damage(rand(force/2, force))) //random amount of damage between half of the blade's force and the full force of the blade.
+		if(affecting.take_damage(rand(force / 2, force))) //random amount of damage between half of the blade's force and the full force of the blade.
 			user.UpdateDamageIcon()
 	return
 
@@ -32,7 +32,7 @@
 	desc = "A hood worn by the followers of Nar-Sie."
 	flags_inv = HIDEFACE
 	flags = HEADCOVERSEYES
-	armor = list(melee = 30, bullet = 10, laser = 5,energy = 5, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 30, bullet = 10, laser = 5, energy = 5, bomb = 0, bio = 0, rad = 0)
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
@@ -52,7 +52,7 @@
 	item_state = "cultrobes"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
 	allowed = list(/obj/item/weapon/tome, /obj/item/weapon/melee/cultblade)
-	armor = list(melee = 50, bullet = 30, laser = 50,energy = 20, bomb = 25, bio = 10, rad = 0)
+	armor = list(melee = 50, bullet = 30, laser = 50, energy = 20, bomb = 25, bio = 10, rad = 0)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0
 
@@ -63,7 +63,7 @@
 	desc = "A helm worn by the followers of Nar-Sie."
 	flags_inv = HIDEFACE
 	flags = HEADCOVERSEYES | HEADCOVERSMOUTH | BLOCKHAIR
-	armor = list(melee = 30, bullet = 30, laser = 30,energy = 20, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 30, bullet = 30, laser = 30, energy = 20, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/magusred
@@ -73,7 +73,7 @@
 	item_state = "magusred"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
 	allowed = list(/obj/item/weapon/tome, /obj/item/weapon/melee/cultblade)
-	armor = list(melee = 50, bullet = 30, laser = 50,energy = 20, bomb = 25, bio = 10, rad = 0)
+	armor = list(melee = 50, bullet = 30, laser = 50, energy = 20, bomb = 25, bio = 10, rad = 0)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 0
 
@@ -82,7 +82,7 @@
 	desc = "A space worthy helmet used by the followers of Nar-Sie"
 	icon_state = "cult_helmet"
 	item_state = "cult_helmet"
-	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/space/cult
@@ -91,7 +91,12 @@
 	item_state = "cult_armour"
 	desc = "A bulky suit of armour, bristling with spikes. It looks space proof."
 	w_class = 3
-	allowed = list(/obj/item/weapon/tome, /obj/item/weapon/melee/cultblade, /obj/item/weapon/tank/emergency_oxygen, /obj/item/device/suit_cooling_unit)
+	allowed = list(
+		/obj/item/weapon/tome,
+		/obj/item/weapon/melee/cultblade,
+		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/device/suit_cooling_unit
+	)
 	slowdown = 1
-	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
+	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0
