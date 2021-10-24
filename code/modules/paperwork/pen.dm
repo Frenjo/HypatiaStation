@@ -59,7 +59,7 @@
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
 	flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
-	origin_tech = "materials=2;syndicate=5"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_SYNDICATE = 5)
 
 
 /obj/item/weapon/pen/sleepypen/New()
@@ -86,7 +86,7 @@
  /obj/item/weapon/pen/paralysis
 	flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
-	origin_tech = "materials=2;syndicate=5"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_SYNDICATE = 5)
 
 
 /obj/item/weapon/pen/paralysis/attack(mob/M as mob, mob/user as mob)

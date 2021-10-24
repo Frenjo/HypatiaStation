@@ -137,7 +137,7 @@
 	desc = "So lubricated, you might slip through space-time."
 	icon_state = "bluespacetomato"
 	potency = 20
-	origin_tech = "bluespace=3"
+	origin_tech = list(RESEARCH_TECH_BLUESPACE = 3)
 	filling_color = "#91F8FF"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/bluespacetomato/initialize()

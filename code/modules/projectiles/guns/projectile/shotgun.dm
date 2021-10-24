@@ -9,7 +9,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = "shotgun"
-	origin_tech = "combat=4;materials=2"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 4, RESEARCH_TECH_MATERIALS = 2)
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	var/recentpump = 0 // to prevent spammage
 	var/pumped = 0
@@ -56,7 +56,7 @@
 	name = "combat shotgun"
 	icon_state = "cshotgun"
 	max_shells = 8
-	origin_tech = "combat=5;materials=2"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 5, RESEARCH_TECH_MATERIALS = 2)
 	ammo_type = /obj/item/ammo_casing/shotgun
 
 //this is largely hacky and bad :(	-Pete
@@ -71,7 +71,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = "shotgun"
-	origin_tech = "combat=3;materials=1"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MATERIALS = 1)
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/New()

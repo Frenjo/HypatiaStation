@@ -9,7 +9,7 @@
 	sharp = 0
 	throwforce = 7
 	w_class = 3
-	origin_tech = "combat=2"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 2)
 	attack_verb = list("beaten")
 	var/stunforce = 7
 	var/status = 0

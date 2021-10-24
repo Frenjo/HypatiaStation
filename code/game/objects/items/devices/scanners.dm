@@ -17,7 +17,7 @@ REAGENT SCANNER
 	w_class = 2
 	item_state = "electronic"
 	m_amt = 150
-	origin_tech = "magnets=1;engineering=1"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 1, RESEARCH_TECH_ENGINEERING = 1)
 
 /obj/item/device/t_scanner/attack_self(mob/user)
 	on = !on
@@ -66,7 +66,7 @@ REAGENT SCANNER
 	throw_speed = 5
 	throw_range = 10
 	m_amt = 200
-	origin_tech = "magnets=1;biotech=1"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 1, RESEARCH_TECH_BIOTECH = 1)
 	var/mode = 1;
 
 /obj/item/device/healthanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
@@ -217,7 +217,7 @@ REAGENT SCANNER
 	throw_range = 20
 	m_amt = 30
 	g_amt = 20
-	origin_tech = "magnets=1;engineering=1"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 1, RESEARCH_TECH_ENGINEERING = 1)
 
 /obj/item/device/analyzer/attack_self(mob/user as mob)
 	if(user.stat)
@@ -263,7 +263,7 @@ REAGENT SCANNER
 	throw_range = 20
 	m_amt = 30
 	g_amt = 20
-	origin_tech = "magnets=2;biotech=2"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_BIOTECH = 2)
 	var/details = 0
 	var/recent_fail = 0
 
@@ -321,7 +321,7 @@ REAGENT SCANNER
 	name = "advanced mass-spectrometer"
 	icon_state = "adv_spectrometer"
 	details = 1
-	origin_tech = "magnets=4;biotech=2"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_BIOTECH = 2)
 
 
 /obj/item/device/reagent_scanner
@@ -337,7 +337,7 @@ REAGENT SCANNER
 	throw_range = 20
 	m_amt = 30
 	g_amt = 20
-	origin_tech = "magnets=2;biotech=2"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_BIOTECH = 2)
 	var/details = 0
 	var/recent_fail = 0
 
@@ -380,4 +380,4 @@ REAGENT SCANNER
 	name = "advanced reagent scanner"
 	icon_state = "adv_spectrometer"
 	details = 1
-	origin_tech = "magnets=4;biotech=2"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_BIOTECH = 2)

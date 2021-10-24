@@ -11,7 +11,7 @@
 	throwforce = 2
 	throw_speed = 3
 	throw_range = 10
-	origin_tech = "magnets=1"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 1)
 
 	var/secured = 1
 	var/list/attached_overlays = null

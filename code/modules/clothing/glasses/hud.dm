@@ -2,7 +2,7 @@
 	name = "HUD"
 	desc = "A heads-up display that provides important info in (almost) real time."
 	flags = null //doesn't protect eyes because it's a monocle, duh
-	origin_tech = "magnets=3;biotech=2"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_BIOTECH = 2)
 	var/list/icon/current = list() //the current hud icons
 
 /obj/item/clothing/glasses/hud/proc/process_hud(mob/M)

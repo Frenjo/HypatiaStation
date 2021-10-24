@@ -1,7 +1,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon
 	name = "mecha weapon"
 	range = RANGED
-	origin_tech = "materials=3;combat=3"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_COMBAT = 3)
 	var/projectile //Type of projectile fired.
 	var/projectiles = 1 //Amount of projectiles loaded.
 	var/projectiles_per_shot = 1 //Amount of projectiles fired per single shot.
@@ -95,7 +95,7 @@
 	name = "eZ-13 mk2 Heavy pulse rifle"
 	icon_state = "mecha_pulse"
 	energy_drain = 120
-	origin_tech = "materials=3;combat=6;powerstorage=4"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_COMBAT = 6, RESEARCH_TECH_POWERSTORAGE = 4)
 	projectile = /obj/item/projectile/energy/beam/pulse/heavy
 	fire_sound = 'sound/weapons/marauder.ogg'
 

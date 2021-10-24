@@ -26,7 +26,6 @@
 	component_parts += new /obj/item/stack/cable_coil(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
 	RefreshParts()
-	src.initialize(); //Agouri
 
 /obj/machinery/r_n_d/server/Destroy()
 	griefProtection()
@@ -41,7 +40,8 @@
 	idle_power_usage /= max(1, tot_rating)
 
 /obj/machinery/r_n_d/server/initialize()
-	if(!files) files = new /datum/research(src)
+	if(!files)
+		files = new /datum/research(src)
 	var/list/temp_list
 	if(!id_with_upload.len)
 		temp_list = list()
@@ -77,20 +77,17 @@
 		produce_heat(operating_temperature)
 		delay = initial(delay)
 
-/obj/machinery/r_n_d/server/meteorhit(var/obj/O as obj)
+/obj/machinery/r_n_d/server/meteorhit(obj/O as obj)
 	griefProtection()
 	..()
-
 
 /obj/machinery/r_n_d/server/emp_act(severity)
 	griefProtection()
 	..()
 
-
 /obj/machinery/r_n_d/server/ex_act(severity)
 	griefProtection()
 	..()
-
 
 /obj/machinery/r_n_d/server/blob_act()
 	griefProtection()
@@ -112,11 +109,8 @@
 			var/datum/gas_mixture/env = L.return_air()
 			//if(env.temperature < (heat_amt+T0C))
 			if(env.temperature < new_temperature)
-
 				var/transfer_moles = 0.25 * env.total_moles
-
 				var/datum/gas_mixture/removed = env.remove(transfer_moles)
-
 				if(removed)
 					/*
 					var/heat_capacity = removed.heat_capacity()
@@ -129,22 +123,22 @@
 
 				env.merge(removed)
 
-/obj/machinery/r_n_d/server/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if (disabled)
+/obj/machinery/r_n_d/server/attackby(obj/item/O as obj, mob/user as mob)
+	if(disabled)
 		return
-	if (shocked)
-		shock(user,50)
-	if (istype(O, /obj/item/weapon/screwdriver))
-		if (!opened)
+	if(shocked)
+		shock(user, 50)
+	if(istype(O, /obj/item/weapon/screwdriver))
+		if(!opened)
 			opened = 1
 			icon_state = "server_o"
-			user << "You open the maintenance hatch of [src]."
+			to_chat(user, "You open the maintenance hatch of the [src.name].")
 		else
 			opened = 0
 			icon_state = "server"
-			user << "You close the maintenance hatch of [src]."
+			to_chat(user, "You close the maintenance hatch of the [src.name].")
 		return
-	if (opened)
+	if(opened)
 		if(istype(O, /obj/item/weapon/crowbar))
 			griefProtection()
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
@@ -159,10 +153,10 @@
 			return 1
 
 /obj/machinery/r_n_d/server/attack_hand(mob/user as mob)
-	if (disabled)
+	if(disabled)
 		return
-	if (shocked)
-		shock(user,50)
+	if(shocked)
+		shock(user, 50)
 	return
 
 
@@ -197,11 +191,15 @@
 	return PROCESS_KILL	//don't need process()
 
 
+#define RDSCONTROL_SCREEN_MAIN_MENU 0
+#define RDSCONTROL_SCREEN_ACCESS_MENU 1
+#define RDSCONTROL_SCREEN_DATA_MENU 2
+#define RDSCONTROL_SCREEN_TRANSFER_MENU 3
 /obj/machinery/computer/rdservercontrol
 	name = "R&D Server Controller"
 	icon_state = "rdcomp"
 	circuit = /obj/item/weapon/circuitboard/rdservercontrol
-	var/screen = 0
+	var/screen = RDSCONTROL_SCREEN_MAIN_MENU
 	var/obj/machinery/r_n_d/server/temp_server
 	var/list/servers = list()
 	var/list/consoles = list()
@@ -214,11 +212,11 @@
 	add_fingerprint(usr)
 	usr.set_machine(src)
 	if(!src.allowed(usr) && !emagged)
-		usr << "\red You do not have the required access level"
+		to_chat(usr, SPAN_WARNING("You do not have the required access level."))
 		return
 
 	if(href_list["main"])
-		screen = 0
+		screen = RDSCONTROL_SCREEN_MAIN_MENU
 
 	else if(href_list["access"] || href_list["data"] || href_list["transfer"])
 		temp_server = null
@@ -229,14 +227,14 @@
 				temp_server = S
 				break
 		if(href_list["access"])
-			screen = 1
+			screen = RDSCONTROL_SCREEN_ACCESS_MENU
 			for(var/obj/machinery/computer/rdconsole/C in machines)
 				if(C.sync)
 					consoles += C
 		else if(href_list["data"])
-			screen = 2
+			screen = RDSCONTROL_SCREEN_DATA_MENU
 		else if(href_list["transfer"])
-			screen = 3
+			screen = RDSCONTROL_SCREEN_TRANSFER_MENU
 			for(var/obj/machinery/r_n_d/server/S in machines)
 				if(S == src)
 					continue
@@ -285,19 +283,19 @@
 	var/dat = ""
 
 	switch(screen)
-		if(0) //Main Menu
+		if(RDSCONTROL_SCREEN_MAIN_MENU) //Main Menu
 			dat += "Connected Servers:<BR><BR>"
-
 			for(var/obj/machinery/r_n_d/server/S in machines)
 				if(istype(S, /obj/machinery/r_n_d/server/centcom) && !badmin)
 					continue
 				dat += "[S.name] || "
 				dat += "<A href='?src=\ref[src];access=[S.server_id]'> Access Rights</A> | "
 				dat += "<A href='?src=\ref[src];data=[S.server_id]'>Data Management</A>"
-				if(badmin) dat += " | <A href='?src=\ref[src];transfer=[S.server_id]'>Server-to-Server Transfer</A>"
+				if(badmin)
+					dat += " | <A href='?src=\ref[src];transfer=[S.server_id]'>Server-to-Server Transfer</A>"
 				dat += "<BR>"
 
-		if(1) //Access rights menu
+		if(RDSCONTROL_SCREEN_ACCESS_MENU) //Access rights menu
 			dat += "[temp_server.name] Access Rights<BR><BR>"
 			dat += "Consoles with Upload Access<BR>"
 			for(var/obj/machinery/computer/rdconsole/C in consoles)
@@ -317,7 +315,7 @@
 					dat += " (Add)</A><BR>"
 			dat += "<HR><A href='?src=\ref[src];main=1'>Main Menu</A>"
 
-		if(2) //Data Management menu
+		if(RDSCONTROL_SCREEN_DATA_MENU) //Data Management menu
 			dat += "[temp_server.name] Data ManagementP<BR><BR>"
 			dat += "Known Technologies<BR>"
 			for(var/datum/tech/T in temp_server.files.known_tech)
@@ -329,7 +327,7 @@
 				dat += "<A href='?src=\ref[src];reset_design=[D.id]'>(Delete)</A><BR>"
 			dat += "<HR><A href='?src=\ref[src];main=1'>Main Menu</A>"
 
-		if(3) //Server Data Transfer
+		if(RDSCONTROL_SCREEN_TRANSFER_MENU) //Server Data Transfer
 			dat += "[temp_server.name] Server to Server Transfer<BR><BR>"
 			dat += "Send Data to what server?<BR>"
 			for(var/obj/machinery/r_n_d/server/S in servers)
@@ -339,14 +337,19 @@
 	onclose(user, "server_control")
 	return
 
-/obj/machinery/computer/rdservercontrol/attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
+/obj/machinery/computer/rdservercontrol/attackby(obj/item/weapon/D as obj, mob/user as mob)
 	if(istype(D, /obj/item/weapon/card/emag) && !emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
-		user << "\blue You you disable the security protocols"
+		to_chat(user, SPAN_INFO("You you disable the security protocols."))
 
 	src.updateUsrDialog()
 	return ..()
+#undef RDSCONTROL_SCREEN_MAIN_MENU
+#undef RDSCONTROL_SCREEN_ACCESS_MENU
+#undef RDSCONTROL_SCREEN_DATA_MENU
+#undef RDSCONTROL_SCREEN_TRANSFER_MENU
+
 
 /obj/machinery/r_n_d/server/robotics
 	name = "Robotics R&D Server"

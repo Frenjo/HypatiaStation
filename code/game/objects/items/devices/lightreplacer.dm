@@ -47,7 +47,7 @@
 
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	origin_tech = "magnets=3;materials=2"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_MATERIALS = 2)
 
 	var/max_uses = 20
 	var/uses = 0

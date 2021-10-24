@@ -23,7 +23,6 @@ Note: Must be placed west/left of and R&D console to function.
 	var/bananium_amount = 0.0
 	var/adamantine_amount = 0.0
 
-
 /obj/machinery/r_n_d/protolathe/New()
 	..()
 	component_parts = list()
@@ -51,25 +50,25 @@ Note: Must be placed west/left of and R&D console to function.
 		T += M.rating
 	max_material_storage = T * 75000
 
-/obj/machinery/r_n_d/protolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if (shocked)
-		shock(user,50)
-	if (O.is_open_container())
+/obj/machinery/r_n_d/protolathe/attackby(obj/item/O as obj, mob/user as mob)
+	if(shocked)
+		shock(user, 50)
+	if(O.is_open_container())
 		return 1
-	if (istype(O, /obj/item/weapon/screwdriver))
-		if (!opened)
+	if(istype(O, /obj/item/weapon/screwdriver))
+		if(!opened)
 			opened = 1
 			if(linked_console)
 				linked_console.linked_lathe = null
 				linked_console = null
 			icon_state = "protolathe_t"
-			user << "You open the maintenance hatch of [src]."
+			to_chat(user, "You open the maintenance hatch of the [src.name].")
 		else
 			opened = 0
 			icon_state = "protolathe"
-			user << "You close the maintenance hatch of [src]."
+			to_chat(user, "You close the maintenance hatch of the [src.name].")
 		return
-	if (opened)
+	if(opened)
 		if(istype(O, /obj/item/weapon/crowbar))
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
@@ -111,25 +110,25 @@ Note: Must be placed west/left of and R&D console to function.
 			qdel(src)
 			return 1
 		else
-			user << "\red You can't load the [src.name] while it's opened."
+			to_chat(user, SPAN_WARNING("You can't load the [src.name] while it's opened."))
 			return 1
-	if (disabled)
+	if(disabled)
 		return
-	if (!linked_console)
-		user << "\The protolathe must be linked to an R&D console first!"
+	if(!linked_console)
+		to_chat(user, "The [src.name] must be linked to an R&D console first!")
 		return 1
-	if (busy)
-		user << "\red The protolathe is busy. Please wait for completion of previous operation."
+	if(busy)
+		to_chat(user, SPAN_WARNING("The [src.name] is busy. Please wait for completion of previous operation."))
 		return 1
-	if (!istype(O, /obj/item/stack/sheet))
-		user << "\red You cannot insert this item into the protolathe!"
+	if(!istype(O, /obj/item/stack/sheet))
+		to_chat(user, SPAN_WARNING("You cannot insert this item into the [src.name]!"))
 		return 1
-	if (stat)
+	if(stat)
 		return 1
-	if(istype(O,/obj/item/stack/sheet))
+	if(istype(O, /obj/item/stack/sheet))
 		var/obj/item/stack/sheet/S = O
-		if (TotalMaterials() + S.perunit > max_material_storage)
-			user << "\red The protolathe's material bin is full. Please remove material before adding more."
+		if(TotalMaterials() + S.perunit > max_material_storage)
+			to_chat(user, SPAN_WARNING("The [src.name]'s material bin is full. Please remove material before adding more."))
 			return 1
 
 	var/obj/item/stack/sheet/stack = O
@@ -142,8 +141,8 @@ Note: Must be placed west/left of and R&D console to function.
 		return
 	if(amount > stack.amount)
 		amount = stack.amount
-	if(max_material_storage - TotalMaterials() < (amount*stack.perunit))//Can't overfill
-		amount = min(stack.amount, round((max_material_storage-TotalMaterials())/stack.perunit))
+	if(max_material_storage - TotalMaterials() < (amount * stack.perunit))//Can't overfill
+		amount = min(stack.amount, round((max_material_storage - TotalMaterials()) / stack.perunit))
 
 	src.overlays += "protolathe_[stack.name]"
 	sleep(10)
@@ -151,11 +150,11 @@ Note: Must be placed west/left of and R&D console to function.
 
 	icon_state = "protolathe"
 	busy = 1
-	use_power(max(1000, (3750*amount/10)))
+	use_power(max(1000, (3750 * amount / 10)))
 	var/stacktype = stack.type
 	stack.use(amount)
-	if (do_after(user, 16))
-		user << "\blue You add [amount] sheets to the [src.name]."
+	if(do_after(user, 16))
+		to_chat(user, SPAN_INFO("You add [amount] sheets to the [src.name]."))
 		icon_state = "protolathe"
 		switch(stacktype)
 			if(/obj/item/stack/sheet/metal)

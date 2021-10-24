@@ -162,7 +162,7 @@
 	name = "Circuit board (Fire Alarm)"
 	build_path = "/obj/machinery/firealarm"
 	board_type = "wallmount"
-	origin_tech = "engineering=2"
+	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2)
 	frame_desc = "Requires 1 Scanning Module, 1 Capacitor, and 2 pieces of cable."
 	contain_parts = 0
 	req_components = list(
@@ -174,7 +174,7 @@
 	name = "Circuit board (Atmospheric Alarm)"
 	build_path = "/obj/machinery/alarm"
 	board_type = "wallmount"
-	origin_tech = "engineering=2;programming=2"
+	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
 	frame_desc = "Requires 1 Scanning Module, 1 Console Screen, and 2 pieces of cable."
 	contain_parts = 0
 	req_components = list(
@@ -187,7 +187,7 @@
 	name = "Circuit board (Intercom)"
 	build_path = "/obj/item/device/radio/intercom"
 	board_type = "wallmount"
-	origin_tech = "engineering=2"
+	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2)
 	frame_desc = "Requires 1 Console Screen, and 2 piece of cable."
 	contain_parts = 0
 	req_components = list(
@@ -200,7 +200,7 @@
 	name = "Circuit board (Requests Console)"
 	build_path = "/obj/machinery/requests_console"
 	board_type = "wallmount"
-	origin_tech = "engineering=2;programming=2"
+	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
 	frame_desc = "Requires 1 radio, 1 Console Screen, and 1 piece of cable."
 	contain_parts = 0
 	req_components = list(
@@ -213,7 +213,7 @@
 	name = "Circuit board (Status Display)"
 	build_path = "/obj/machinery/status_display"
 	board_type = "wallmount"
-	origin_tech = "engineering=2,programming=2"
+	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
 	frame_desc = "Requires 2 Console Screens, and 1 piece of cable."
 	contain_parts = 0
 	req_components = list(
@@ -224,7 +224,7 @@
 	name = "Circuit board (Light Switch)"
 	build_path = "/obj/machinery/light_switch"
 	board_type = "wallmount"
-	origin_tech = "engineering=2"
+	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2)
 	frame_desc = "Requires 2 pieces of cable."
 	contain_parts = 0
 	req_components = list(

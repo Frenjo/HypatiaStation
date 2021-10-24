@@ -3,7 +3,7 @@
 	desc = "A man portable anti-armor weapon designed to disable mechanical threats"
 	icon_state = "ionrifle"
 	fire_sound = 'sound/weapons/Laser.ogg'
-	origin_tech = "combat=2;magnets=4"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MAGNETS = 4)
 	w_class = 4.0
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
@@ -24,7 +24,7 @@
 	desc = "A gun that discharges high amounts of controlled radiation to slowly break a target into component elements."
 	icon_state = "decloner"
 	fire_sound = 'sound/weapons/pulse3.ogg'
-	origin_tech = "combat=5;materials=4;powerstorage=3"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 5, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_POWERSTORAGE = 3)
 	charge_cost = 100
 	has_firemodes = 0
 	gun_setting = GUN_SETTING_SPECIAL
@@ -98,7 +98,7 @@
 		GUN_SETTING_KILL = /obj/item/projectile/energy/floramut,
 		GUN_SETTING_SPECIAL = /obj/item/projectile/energy/florayield
 	)
-	origin_tech = "materials=2;biotech=3;powerstorage=3"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_BIOTECH = 3, RESEARCH_TECH_POWERSTORAGE = 3)
 	modifystate = "floramut"
 	var/charge_tick = 0
 
@@ -216,7 +216,7 @@
 	icon_state = "toxgun"
 	fire_sound = 'sound/effects/stealthoff.ogg'
 	w_class = 3.0
-	origin_tech = "combat=5;plasmatech=4"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 5, RESEARCH_TECH_PLASMATECH = 4)
 	has_firemodes = 0
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/plasma)
@@ -227,7 +227,7 @@
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "sniper"
 	fire_sound = 'sound/weapons/marauder.ogg'
-	origin_tech = "combat=6;materials=5;powerstorage=4"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 6, RESEARCH_TECH_MATERIALS = 5, RESEARCH_TECH_POWERSTORAGE = 4)
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/pulse/sniper)
 	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/sniper)

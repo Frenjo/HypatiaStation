@@ -20,7 +20,7 @@
 	g_amt = 5000
 	flags = CONDUCT
 	w_class = 2.0
-	origin_tech = "materials=1;biotech=1"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
 
 /*
  * Hemostat
@@ -34,7 +34,7 @@
 	g_amt = 2500
 	flags = CONDUCT
 	w_class = 2.0
-	origin_tech = "materials=1;biotech=1"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
 	attack_verb = list("attacked", "pinched")
 
 /*
@@ -49,7 +49,7 @@
 	g_amt = 2500
 	flags = CONDUCT
 	w_class = 2.0
-	origin_tech = "materials=1;biotech=1"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
 	attack_verb = list("burnt")
 
 /*
@@ -66,7 +66,7 @@
 	flags = CONDUCT
 	force = 15.0
 	w_class = 2.0
-	origin_tech = "materials=1;biotech=1"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
 	attack_verb = list("drilled")
 
 	suicide_act(mob/user)
@@ -92,7 +92,7 @@
 	throw_range = 5
 	m_amt = 10000
 	g_amt = 5000
-	origin_tech = "materials=1;biotech=1"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 	suicide_act(mob/user)
@@ -147,7 +147,7 @@
 	throw_range = 5
 	m_amt = 20000
 	g_amt = 10000
-	origin_tech = "materials=1;biotech=1"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharp = 1
 	edge = 1
@@ -167,7 +167,7 @@
 	icon_state = "fixovein"
 	force = 0
 	throwforce = 1.0
-	origin_tech = "materials=1;biotech=3"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 3)
 	w_class = 2.0
 	var/usage_amount = 10
 

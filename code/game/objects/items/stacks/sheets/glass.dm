@@ -16,7 +16,7 @@
 	singular_name = "glass sheet"
 	icon_state = "sheet-glass"
 	g_amt = 3750
-	origin_tech = "materials=1"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
 	var/created_window = /obj/structure/window/basic
 
 /obj/item/stack/sheet/glass/cyborg
@@ -134,7 +134,7 @@
 	icon_state = "sheet-rglass"
 	g_amt = 3750
 	m_amt = 1875
-	origin_tech = "materials=2"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 2)
 
 /obj/item/stack/sheet/rglass/cyborg
 	name = "reinforced glass"
@@ -335,7 +335,7 @@
 	singular_name = "plasma glass sheet"
 	icon_state = "sheet-plasmaglass"
 	g_amt = 7500
-	origin_tech = "materials=3;plasma=2"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_PLASMATECH = 2)
 	created_window = /obj/structure/window/plasmabasic
 
 /obj/item/stack/sheet/glass/plasmaglass/attack_self(mob/user as mob)
@@ -368,7 +368,7 @@
 	icon_state = "sheet-plasmarglass"
 	g_amt = 7500
 	m_amt = 1875
-	origin_tech = "materials=4;plasma=2"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_PLASMATECH = 2)
 	created_window = /obj/structure/window/plasmareinforced
 
 /obj/item/stack/sheet/glass/plasmarglass/attack_self(mob/user as mob)

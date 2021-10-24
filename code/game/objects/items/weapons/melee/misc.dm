@@ -8,7 +8,7 @@
 	force = 10
 	throwforce = 7
 	w_class = 3
-	origin_tech = "combat=4"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 4)
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 
 /obj/item/weapon/melee/chainofcommand/suicide_act(mob/user)

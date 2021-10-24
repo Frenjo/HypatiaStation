@@ -4,7 +4,7 @@
 	icon_state = "mousetrap"
 	m_amt = 100
 	w_amt = 10
-	origin_tech = "combat=1"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 1)
 	var/armed = 0
 
 /obj/item/device/assembly/mousetrap/examine()

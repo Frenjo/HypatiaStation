@@ -29,7 +29,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "drone"
 	slot_flags = SLOT_HEAD
-	origin_tech = "magnets=3;engineering=5"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_ENGINEERING = 5)
 
 //Actual picking-up event.
 /mob/living/silicon/robot/drone/attack_hand(mob/living/carbon/human/M as mob)

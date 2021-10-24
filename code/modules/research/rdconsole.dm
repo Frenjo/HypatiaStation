@@ -27,8 +27,6 @@ cause a ton of data to be lost, an admin can go send it back.
 - The second method is with Technology Disks and Design Disks. Each of these disks can hold a single technology or design datum in
 it's entirety. You can then take the disk to any R&D console and upload it's data to it. This method is a lot more secure (since it
 won't update every console in existence) but it's more of a hassle to do. Also, the disks can be stolen.
-
-
 */
 
 /obj/machinery/computer/rdconsole
@@ -51,7 +49,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	light_color = "#a97faa"
 
-/obj/machinery/computer/rdconsole/proc/CallTechName(var/ID) //A simple helper proc to find the name of a tech with a given ID.
+/obj/machinery/computer/rdconsole/proc/CallTechName(ID) //A simple helper proc to find the name of a tech with a given ID.
 	var/datum/tech/check_tech
 	var/return_name = null
 	for(var/T in SUBTYPESOF(/datum/tech))
@@ -99,7 +97,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	return return_name
 
 /obj/machinery/computer/rdconsole/proc/SyncRDevices() //Makes sure it is properly sync'ed up with the devices attached to it (if any).
-	for(var/obj/machinery/r_n_d/D in oview(3,src))
+	for(var/obj/machinery/r_n_d/D in oview(3, src))
 		if(D.linked_console != null || D.disabled || D.opened)
 			continue
 		if(istype(D, /obj/machinery/r_n_d/destructive_analyzer))
@@ -125,7 +123,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			C.files.AddDesign2Known(D)
 		C.files.RefreshResearch()
 
-
 /obj/machinery/computer/rdconsole/New()
 	..()
 	files = new /datum/research(src) //Setup the research data holder.
@@ -142,11 +139,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	griefProtection()
 */
 
-/obj/machinery/computer/rdconsole/attackby(var/obj/item/weapon/D as obj, var/mob/user as mob)
+/obj/machinery/computer/rdconsole/attackby(obj/item/weapon/D as obj, mob/user as mob)
 	//Loading a disk into it.
 	if(istype(D, /obj/item/weapon/disk))
 		if(t_disk || d_disk)
-			user << "A disk is already loaded into the machine."
+			to_chat(user, "A disk is already loaded into the machine.")
 			return
 
 		if(istype(D, /obj/item/weapon/disk/tech_disk))
@@ -154,16 +151,16 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		else if(istype(D, /obj/item/weapon/disk/design_disk))
 			d_disk = D
 		else
-			user << "\red Machine cannot accept disks in that format."
+			to_chat(user, SPAN_WARNING("Machine cannot accept disks in that format."))
 			return
 
 		user.drop_item()
 		D.loc = src
-		user << "\blue You add the disk to the machine!"
+		to_chat(user, SPAN_INFO("You add the disk to the machine!"))
 	else if(istype(D, /obj/item/weapon/card/emag) && !emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
-		user << "\blue You you disable the security protocols"
+		to_chat(user, SPAN_INFO("You you disable the security protocols."))
 	else
 		//The construction/deconstruction of the console code.
 		..()
@@ -183,7 +180,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(temp_screen <= 1.1 || (3 <= temp_screen && 4.9 >= temp_screen) || src.allowed(usr) || emagged) //Unless you are making something, you need access.
 			screen = temp_screen
 		else
-			usr << "Unauthorized Access."
+			to_chat(usr, "Unauthorized Access.")
 
 	else if(href_list["updt_tech"]) //Update the research holder with information from the technology disk.
 		screen = 0.0
@@ -234,7 +231,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["eject_item"]) //Eject the item inside the destructive analyzer.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				usr << "\red The destructive analyzer is busy at the moment."
+				to_chat(usr, SPAN_WARNING("The destructive analyzer is busy at the moment."))
 
 			else if(linked_destroy.loaded_item)
 				linked_destroy.loaded_item.loc = linked_destroy.loc
@@ -245,10 +242,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["deconstruct"]) //Deconstruct the item in the destructive analyzer and update the research holder.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				usr << "\red The destructive analyzer is busy at the moment."
+				to_chat(usr, SPAN_WARNING("The destructive analyzer is busy at the moment."))
 			else
 				var/choice = input("Proceeding will destroy loaded item.") in list("Proceed", "Cancel")
-				if(choice == "Cancel" || !linked_destroy) return
+				if(choice == "Cancel" || !linked_destroy)
+					return
 				linked_destroy.busy = 1
 				screen = 0.1
 				updateUsrDialog()
@@ -258,18 +256,18 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 						linked_destroy.busy = 0
 						if(!linked_destroy.hacked)
 							if(!linked_destroy.loaded_item)
-								usr <<"\red The destructive analyzer appears to be empty."
+								to_chat(usr, SPAN_WARNING("The destructive analyzer appears to be empty."))
 								screen = 1.0
 								return
 							if(linked_destroy.loaded_item.reliability >= 90)
-								var/list/temp_tech = linked_destroy.ConvertReqString2List(linked_destroy.loaded_item.origin_tech)
+								var/list/temp_tech = linked_destroy.loaded_item.origin_tech
 								for(var/T in temp_tech)
 									files.UpdateTech(T, temp_tech[T])
 							if(linked_destroy.loaded_item.reliability < 100 && linked_destroy.loaded_item.crit_fail)
 								files.UpdateDesign(linked_destroy.loaded_item.type)
 							if(linked_lathe) //Also sends salvaged materials to a linked protolathe, if any.
-								linked_lathe.m_amount += min((linked_lathe.max_material_storage - linked_lathe.TotalMaterials()), (linked_destroy.loaded_item.m_amt*linked_destroy.decon_mod))
-								linked_lathe.g_amount += min((linked_lathe.max_material_storage - linked_lathe.TotalMaterials()), (linked_destroy.loaded_item.g_amt*linked_destroy.decon_mod))
+								linked_lathe.m_amount += min((linked_lathe.max_material_storage - linked_lathe.TotalMaterials()), (linked_destroy.loaded_item.m_amt * linked_destroy.decon_mod))
+								linked_lathe.g_amount += min((linked_lathe.max_material_storage - linked_lathe.TotalMaterials()), (linked_destroy.loaded_item.g_amt * linked_destroy.decon_mod))
 							linked_destroy.loaded_item = null
 						for(var/obj/I in linked_destroy.contents)
 							for(var/mob/M in I.contents)
@@ -294,12 +292,12 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(src.allowed(usr))
 			screen = text2num(href_list["lock"])
 		else
-			usr << "Unauthorized Access."
+			to_chat(usr, "Unauthorized Access.")
 
 	else if(href_list["sync"]) //Sync the research holder with all the R&D consoles in the game that aren't sync protected.
 		screen = 0.0
 		if(!sync)
-			usr << "\red You must connect to the network first!"
+			to_chat(usr, SPAN_WARNING("You must connect to the network first!"))
 		else
 			griefProtection() //Putting this here because I dont trust the sync process
 			spawn(30)
@@ -352,30 +350,31 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 						for(var/M in being_built.materials)
 							switch(M)
 								if(MATERIAL_METAL)
-									linked_lathe.m_amount = max(0, (linked_lathe.m_amount-being_built.materials[M]))
+									linked_lathe.m_amount = max(0, (linked_lathe.m_amount - being_built.materials[M]))
 								if(MATERIAL_GLASS)
-									linked_lathe.g_amount = max(0, (linked_lathe.g_amount-being_built.materials[M]))
+									linked_lathe.g_amount = max(0, (linked_lathe.g_amount - being_built.materials[M]))
 								if(MATERIAL_GOLD)
-									linked_lathe.gold_amount = max(0, (linked_lathe.gold_amount-being_built.materials[M]))
+									linked_lathe.gold_amount = max(0, (linked_lathe.gold_amount - being_built.materials[M]))
 								if(MATERIAL_SILVER)
-									linked_lathe.silver_amount = max(0, (linked_lathe.silver_amount-being_built.materials[M]))
+									linked_lathe.silver_amount = max(0, (linked_lathe.silver_amount - being_built.materials[M]))
 								if(MATERIAL_PLASMA)
-									linked_lathe.plasma_amount = max(0, (linked_lathe.plasma_amount-being_built.materials[M]))
+									linked_lathe.plasma_amount = max(0, (linked_lathe.plasma_amount - being_built.materials[M]))
 								if(MATERIAL_URANIUM)
-									linked_lathe.uranium_amount = max(0, (linked_lathe.uranium_amount-being_built.materials[M]))
+									linked_lathe.uranium_amount = max(0, (linked_lathe.uranium_amount - being_built.materials[M]))
 								if(MATERIAL_DIAMOND)
-									linked_lathe.diamond_amount = max(0, (linked_lathe.diamond_amount-being_built.materials[M]))
+									linked_lathe.diamond_amount = max(0, (linked_lathe.diamond_amount - being_built.materials[M]))
 								if(MATERIAL_BANANIUM)
-									linked_lathe.bananium_amount = max(0, (linked_lathe.bananium_amount-being_built.materials[M]))
+									linked_lathe.bananium_amount = max(0, (linked_lathe.bananium_amount - being_built.materials[M]))
 								else
 									linked_lathe.reagents.remove_reagent(M, being_built.materials[M])
 
 						if(being_built.build_path)
 							var/obj/new_item = new being_built.build_path(src)
-							if( new_item.type == /obj/item/weapon/storage/backpack/holding )
-								new_item.investigate_log("built by [key]","singulo")
+							if(new_item.type == /obj/item/weapon/storage/backpack/holding)
+								new_item.investigate_log("built by [key]", "singulo")
 							new_item.reliability = being_built.reliability
-							if(linked_lathe.hacked) being_built.reliability = max((reliability / 2), 0)
+							if(linked_lathe.hacked)
+								being_built.reliability = max((reliability / 2), 0)
 							/*if(being_built.locked)
 								var/obj/item/weapon/storage/lockbox/L = new/obj/item/weapon/storage/lockbox(linked_lathe.loc)
 								new_item.loc = L
@@ -406,18 +405,19 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					for(var/M in being_built.materials)
 						switch(M)
 							if(MATERIAL_GLASS)
-								linked_imprinter.g_amount = max(0, (linked_imprinter.g_amount-being_built.materials[M]))
+								linked_imprinter.g_amount = max(0, (linked_imprinter.g_amount - being_built.materials[M]))
 							if(MATERIAL_GOLD)
-								linked_imprinter.gold_amount = max(0, (linked_imprinter.gold_amount-being_built.materials[M]))
+								linked_imprinter.gold_amount = max(0, (linked_imprinter.gold_amount - being_built.materials[M]))
 							if(MATERIAL_DIAMOND)
-								linked_imprinter.diamond_amount = max(0, (linked_imprinter.diamond_amount-being_built.materials[M]))
+								linked_imprinter.diamond_amount = max(0, (linked_imprinter.diamond_amount - being_built.materials[M]))
 							if(MATERIAL_URANIUM)
-								linked_imprinter.uranium_amount = max(0, (linked_imprinter.uranium_amount-being_built.materials[M]))
+								linked_imprinter.uranium_amount = max(0, (linked_imprinter.uranium_amount - being_built.materials[M]))
 							else
 								linked_imprinter.reagents.remove_reagent(M, being_built.materials[M])
 					var/obj/new_item = new being_built.build_path(src)
 					new_item.reliability = being_built.reliability
-					if(linked_imprinter.hacked) being_built.reliability = max((reliability / 2), 0)
+					if(linked_imprinter.hacked)
+						being_built.reliability = max((reliability / 2), 0)
 					new_item.loc = linked_imprinter.loc
 					linked_imprinter.busy = 0
 					screen = 4.1
@@ -492,7 +492,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			var/available_num_sheets = round(linked_imprinter.vars[res_amount]/sheet.perunit)
 			if(available_num_sheets > 0)
 				sheet.amount = min(available_num_sheets, desired_num_sheets)
-				linked_imprinter.vars[res_amount] = max(0, (linked_imprinter.vars[res_amount]-sheet.amount * sheet.perunit))
+				linked_imprinter.vars[res_amount] = max(0, (linked_imprinter.vars[res_amount] - sheet.amount * sheet.perunit))
 			else
 				qdel(sheet)
 
@@ -551,11 +551,12 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				screen = 4.0
 
 	switch(screen)
-
 		//////////////////////R&D CONSOLE SCREENS//////////////////
-		if(0.0) dat += "Updating Database...."
+		if(0.0)
+			dat += "Updating Database...."
 
-		if(0.1) dat += "Processing and Updating Database..."
+		if(0.1)
+			dat += "Processing and Updating Database..."
 
 		if(0.2)
 			dat += "SYSTEM LOCKED<BR><BR>"
@@ -587,7 +588,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A>"
 
 		if(1.2) //Technology Disk Menu
-
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
 			dat += "Disk Contents: (Technology Data Disk)<BR><BR>"
 			if(t_disk.stored == null)
@@ -619,11 +619,14 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				dat += "<A href='?src=\ref[src];menu=1.5'>Load Design to Disk</A> || "
 			else
 				dat += "Name: [d_disk.blueprint.name]<BR>"
-				dat += "Level: [between(0, (d_disk.blueprint.reliability + rand(-15,15)), 100)]<BR>"
+				dat += "Level: [between(0, (d_disk.blueprint.reliability + rand(-15, 15)), 100)]<BR>"
 				switch(d_disk.blueprint.build_type)
-					if(IMPRINTER) dat += "Lathe Type: Circuit Imprinter<BR>"
-					if(PROTOLATHE) dat += "Lathe Type: Proto-lathe<BR>"
-					if(AUTOLATHE) dat += "Lathe Type: Auto-lathe<BR>"
+					if(IMPRINTER)
+						dat += "Lathe Type: Circuit Imprinter<BR>"
+					if(PROTOLATHE)
+						dat += "Lathe Type: Proto-lathe<BR>"
+					if(AUTOLATHE)
+						dat += "Lathe Type: Auto-lathe<BR>"
 				dat += "Required Materials:<BR>"
 				for(var/M in d_disk.blueprint.materials)
 					dat += "* [M] x [d_disk.blueprint.materials[M]]<BR>"
@@ -685,7 +688,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Deconstruction Menu<HR>"
 			dat += "Name: [linked_destroy.loaded_item.name]<BR>"
 			dat += "Origin Tech:<BR>"
-			var/list/temp_tech = linked_destroy.ConvertReqString2List(linked_destroy.loaded_item.origin_tech)
+			var/list/temp_tech = linked_destroy.loaded_item.origin_tech
 			for(var/T in temp_tech)
 				dat += "* [CallTechName(T)] [temp_tech[T]]<BR>"
 			dat += "<HR><A href='?src=\ref[src];deconstruct=1'>Deconstruct Item</A> || "
@@ -712,21 +715,29 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					temp_dat += " [D.materials[M]] [CallMaterialName(M)]"
 					switch(M)
 						if(MATERIAL_GLASS)
-							if(D.materials[M] > linked_lathe.g_amount) check_materials = 0
+							if(D.materials[M] > linked_lathe.g_amount)
+								check_materials = 0
 						if(MATERIAL_METAL)
-							if(D.materials[M] > linked_lathe.m_amount) check_materials = 0
+							if(D.materials[M] > linked_lathe.m_amount)
+								check_materials = 0
 						if(MATERIAL_GOLD)
-							if(D.materials[M] > linked_lathe.gold_amount) check_materials = 0
+							if(D.materials[M] > linked_lathe.gold_amount)
+								check_materials = 0
 						if(MATERIAL_SILVER)
-							if(D.materials[M] > linked_lathe.silver_amount) check_materials = 0
+							if(D.materials[M] > linked_lathe.silver_amount)
+								check_materials = 0
 						if(MATERIAL_PLASMA)
-							if(D.materials[M] > linked_lathe.plasma_amount) check_materials = 0
+							if(D.materials[M] > linked_lathe.plasma_amount)
+								check_materials = 0
 						if(MATERIAL_URANIUM)
-							if(D.materials[M] > linked_lathe.uranium_amount) check_materials = 0
+							if(D.materials[M] > linked_lathe.uranium_amount)
+								check_materials = 0
 						if(MATERIAL_DIAMOND)
-							if(D.materials[M] > linked_lathe.diamond_amount) check_materials = 0
+							if(D.materials[M] > linked_lathe.diamond_amount)
+								check_materials = 0
 						if(MATERIAL_BANANIUM)
-							if(D.materials[M] > linked_lathe.bananium_amount) check_materials = 0
+							if(D.materials[M] > linked_lathe.bananium_amount)
+								check_materials = 0
 					if(check_materials && !linked_lathe.reagents.has_reagent(M, D.materials[M]))
 						check_materials = 0
 				if(check_materials)
@@ -741,58 +752,82 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			//Metal
 			dat += "* [linked_lathe.m_amount] cm<sup>3</sup> of Metal || "
 			dat += "Eject: "
-			if(linked_lathe.m_amount >= 3750) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_METAL];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_lathe.m_amount >= 18750) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_METAL];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_lathe.m_amount >= 3750) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_METAL];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+			if(linked_lathe.m_amount >= 3750)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_METAL];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+			if(linked_lathe.m_amount >= 18750)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_METAL];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+			if(linked_lathe.m_amount >= 3750)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_METAL];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			//Glass
 			dat += "* [linked_lathe.g_amount] cm<sup>3</sup> of Glass || "
 			dat += "Eject: "
-			if(linked_lathe.g_amount >= 3750) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_GLASS];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_lathe.g_amount >= 18750) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_GLASS];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_lathe.g_amount >= 3750) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_GLASS];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+			if(linked_lathe.g_amount >= 3750)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_GLASS];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+			if(linked_lathe.g_amount >= 18750)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_GLASS];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+			if(linked_lathe.g_amount >= 3750)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_GLASS];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			//Gold
 			dat += "* [linked_lathe.gold_amount] cm<sup>3</sup> of Gold || "
 			dat += "Eject: "
-			if(linked_lathe.gold_amount >= 2000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_GOLD];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_lathe.gold_amount >= 10000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_GOLD];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_lathe.gold_amount >= 2000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_GOLD];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+			if(linked_lathe.gold_amount >= 2000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_GOLD];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+			if(linked_lathe.gold_amount >= 10000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_GOLD];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+			if(linked_lathe.gold_amount >= 2000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_GOLD];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			//Silver
 			dat += "* [linked_lathe.silver_amount] cm<sup>3</sup> of Silver || "
 			dat += "Eject: "
-			if(linked_lathe.silver_amount >= 2000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_SILVER];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_lathe.silver_amount >= 10000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_SILVER];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_lathe.silver_amount >= 2000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_SILVER];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+			if(linked_lathe.silver_amount >= 2000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_SILVER];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+			if(linked_lathe.silver_amount >= 10000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_SILVER];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+			if(linked_lathe.silver_amount >= 2000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_SILVER];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			//Plasma
 			dat += "* [linked_lathe.plasma_amount] cm<sup>3</sup> of Solid Plasma || "
 			dat += "Eject: "
-			if(linked_lathe.plasma_amount >= 2000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_PLASMA];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_lathe.plasma_amount >= 10000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_PLASMA];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_lathe.plasma_amount >= 2000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_PLASMA];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+			if(linked_lathe.plasma_amount >= 2000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_PLASMA];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+			if(linked_lathe.plasma_amount >= 10000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_PLASMA];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+			if(linked_lathe.plasma_amount >= 2000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_PLASMA];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			//Uranium
 			dat += "* [linked_lathe.uranium_amount] cm<sup>3</sup> of Uranium || "
 			dat += "Eject: "
-			if(linked_lathe.uranium_amount >= 2000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_URANIUM];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_lathe.uranium_amount >= 10000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_URANIUM];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_lathe.uranium_amount >= 2000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_URANIUM];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+			if(linked_lathe.uranium_amount >= 2000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_URANIUM];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+			if(linked_lathe.uranium_amount >= 10000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_URANIUM];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+			if(linked_lathe.uranium_amount >= 2000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_URANIUM];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			//Diamond
 			dat += "* [linked_lathe.diamond_amount] cm<sup>3</sup> of Diamond || "
 			dat += "Eject: "
-			if(linked_lathe.diamond_amount >= 2000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_DIAMOND];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_lathe.diamond_amount >= 10000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_DIAMOND];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_lathe.diamond_amount >= 2000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_DIAMOND];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+			if(linked_lathe.diamond_amount >= 2000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_DIAMOND];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+			if(linked_lathe.diamond_amount >= 10000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_DIAMOND];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+			if(linked_lathe.diamond_amount >= 2000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_DIAMOND];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			//Bananium
 			dat += "* [linked_lathe.bananium_amount] cm<sup>3</sup> of Bananium || "
 			dat += "Eject: "
-			if(linked_lathe.bananium_amount >= 2000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_BANANIUM];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_lathe.bananium_amount >= 10000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_BANANIUM];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_lathe.bananium_amount >= 2000) dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_BANANIUM];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+			if(linked_lathe.bananium_amount >= 2000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_BANANIUM];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+			if(linked_lathe.bananium_amount >= 10000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_BANANIUM];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+			if(linked_lathe.bananium_amount >= 2000)
+				dat += "<A href='?src=\ref[src];lathe_ejectsheet=[MATERIAL_BANANIUM];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
 
 		if(3.3) //Protolathe Chemical Storage Submenu
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A> || "
@@ -825,16 +860,20 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					temp_dat += " [D.materials[M]] [CallMaterialName(M)]"
 					switch(M)
 						if(MATERIAL_GLASS)
-							if(D.materials[M] > linked_imprinter.g_amount) check_materials = 0
+							if(D.materials[M] > linked_imprinter.g_amount)
+								check_materials = 0
 						if(MATERIAL_GOLD)
-							if(D.materials[M] > linked_imprinter.gold_amount) check_materials = 0
+							if(D.materials[M] > linked_imprinter.gold_amount)
+								check_materials = 0
 						if(MATERIAL_DIAMOND)
-							if(D.materials[M] > linked_imprinter.diamond_amount) check_materials = 0
+							if(D.materials[M] > linked_imprinter.diamond_amount)
+								check_materials = 0
 						if(MATERIAL_URANIUM)
-							if(D.materials[M] > linked_imprinter.uranium_amount) check_materials = 0
+							if(D.materials[M] > linked_imprinter.uranium_amount)
+								check_materials = 0
 					if(check_materials && !linked_imprinter.reagents.has_reagent(M, D.materials[M]))
 						check_materials = 0
-				if (check_materials)
+				if(check_materials)
 					dat += "* <A href='?src=\ref[src];imprint=[D.id]'>[temp_dat]</A><BR>"
 				else
 					dat += "* [temp_dat]<BR>"
@@ -855,30 +894,42 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			//Glass
 			dat += "* [linked_imprinter.g_amount] cm<sup>3</sup> of Glass || "
 			dat += "Eject: "
-			if(linked_imprinter.g_amount >= 3750) dat += "<A href='?src=\ref[src];imprinter_ejectsheet=glass;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_imprinter.g_amount >= 18750) dat += "<A href='?src=\ref[src];imprinter_ejectsheet=glass;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_imprinter.g_amount >= 3750) dat += "<A href='?src=\ref[src];imprinter_ejectsheet=glass;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
+			if(linked_imprinter.g_amount >= 3750)
+				dat += "<A href='?src=\ref[src];imprinter_ejectsheet=glass;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
+			if(linked_imprinter.g_amount >= 18750)
+				dat += "<A href='?src=\ref[src];imprinter_ejectsheet=glass;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
+			if(linked_imprinter.g_amount >= 3750)
+				dat += "<A href='?src=\ref[src];imprinter_ejectsheet=glass;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			//Gold
 			dat += "* [linked_imprinter.gold_amount] cm<sup>3</sup> of Gold || "
 			dat += "Eject: "
-			if(linked_imprinter.gold_amount >= 2000) dat += "<A href='?src=\ref[src];imprinter_ejectsheet=gold;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_imprinter.gold_amount >= 10000) dat += "<A href='?src=\ref[src];imprinter_ejectsheet=gold;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_imprinter.gold_amount >= 2000) dat += "<A href='?src=\ref[src];imprinter_ejectsheet=gold;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
+			if(linked_imprinter.gold_amount >= 2000)
+				dat += "<A href='?src=\ref[src];imprinter_ejectsheet=gold;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
+			if(linked_imprinter.gold_amount >= 10000)
+				dat += "<A href='?src=\ref[src];imprinter_ejectsheet=gold;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
+			if(linked_imprinter.gold_amount >= 2000)
+				dat += "<A href='?src=\ref[src];imprinter_ejectsheet=gold;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			//Diamond
 			dat += "* [linked_imprinter.diamond_amount] cm<sup>3</sup> of Diamond || "
 			dat += "Eject: "
-			if(linked_imprinter.diamond_amount >= 2000) dat += "<A href='?src=\ref[src];imprinter_ejectsheet=diamond;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_imprinter.diamond_amount >= 10000) dat += "<A href='?src=\ref[src];imprinter_ejectsheet=diamond;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_imprinter.diamond_amount >= 2000) dat += "<A href='?src=\ref[src];imprinter_ejectsheet=diamond;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
+			if(linked_imprinter.diamond_amount >= 2000)
+				dat += "<A href='?src=\ref[src];imprinter_ejectsheet=diamond;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
+			if(linked_imprinter.diamond_amount >= 10000)
+				dat += "<A href='?src=\ref[src];imprinter_ejectsheet=diamond;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
+			if(linked_imprinter.diamond_amount >= 2000)
+				dat += "<A href='?src=\ref[src];imprinter_ejectsheet=diamond;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			//Uranium
 			dat += "* [linked_imprinter.uranium_amount] cm<sup>3</sup> of Uranium || "
 			dat += "Eject: "
-			if(linked_imprinter.uranium_amount >= 2000) dat += "<A href='?src=\ref[src];imprinter_ejectsheet=uranium;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_imprinter.uranium_amount >= 10000) dat += "<A href='?src=\ref[src];imprinter_ejectsheet=uranium;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_imprinter.uranium_amount >= 2000) dat += "<A href='?src=\ref[src];imprinter_ejectsheet=uranium;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
+			if(linked_imprinter.uranium_amount >= 2000)
+				dat += "<A href='?src=\ref[src];imprinter_ejectsheet=uranium;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
+			if(linked_imprinter.uranium_amount >= 10000)
+				dat += "<A href='?src=\ref[src];imprinter_ejectsheet=uranium;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
+			if(linked_imprinter.uranium_amount >= 2000)
+				dat += "<A href='?src=\ref[src];imprinter_ejectsheet=uranium;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
 
 	user << browse("<TITLE>Research and Development Console</TITLE><HR>[dat]", "window=rdconsole;size=575x400")
 	onclose(user, "rdconsole")

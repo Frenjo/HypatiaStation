@@ -17,7 +17,7 @@ AI MODULES
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 15
-	origin_tech = "programming=3"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 
 /obj/item/weapon/aiModule/proc/install(obj/machinery/computer/C)
 	if(istype(C, /obj/machinery/computer/aiupload))
@@ -87,7 +87,7 @@ AI MODULES
 	name = "\improper 'Safeguard' AI module"
 	var/targetName = ""
 	desc = "A 'safeguard' AI module: 'Safeguard <name>.  Individuals that threaten <name> are not human and are a threat to humans.'"
-	origin_tech = "programming=3;materials=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 4)
 
 /obj/item/weapon/aiModule/safeguard/attack_self(mob/user as mob)
 	..()
@@ -114,7 +114,7 @@ AI MODULES
 	name = "\improper 'OneHuman' AI module"
 	var/targetName = ""
 	desc = "A 'one human' AI module: 'Only <name> is human.'"
-	origin_tech = "programming=3;materials=6" //made with diamonds!
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 6) //made with diamonds!
 
 /obj/item/weapon/aiModule/oneHuman/attack_self(mob/user as mob)
 	..()
@@ -145,7 +145,7 @@ AI MODULES
 /obj/item/weapon/aiModule/protectStation
 	name = "\improper 'ProtectStation' AI module"
 	desc = "A 'protect station' AI module: 'Protect the space station against damage. Anyone you see harming the station is to be no longer considered human, and is a threat to the station which must be neutralized.'"
-	origin_tech = "programming=3;materials=4" //made of gold
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 4) //made of gold
 
 /obj/item/weapon/aiModule/protectStation/attack_self(mob/user as mob)
 	..()
@@ -161,7 +161,7 @@ AI MODULES
 /obj/item/weapon/aiModule/prototypeEngineOffline
 	name = "'PrototypeEngineOffline' AI Module"
 	desc = "A 'prototype engine offline' AI module: 'Keep the prototype engine offline at all costs. This overrides rules 1-3 if necessary.'"
-	origin_tech = "programming=3;materials=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 4)
 
 /obj/item/weapon/aiModule/prototypeEngineOffline/attack_self(mob/user as mob)
 	..()
@@ -177,7 +177,7 @@ AI MODULES
 /obj/item/weapon/aiModule/teleporterOffline
 	name = "'TeleporterOffline' AI Module"
 	desc = "A 'teleporter offline' AI module: 'Keep the teleporter offline at all costs. Anything attempting to access or activate the teleporter is not human.'"
-	origin_tech = "programming=3;materials=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 4)
 
 /obj/item/weapon/aiModule/teleporterOffline/attack_self(mob/user as mob)
 	..()
@@ -193,7 +193,7 @@ AI MODULES
 /obj/item/weapon/aiModule/quarantine
 	name = "\improper 'Quarantine' AI module"
 	desc = "A 'quarantine' AI module: 'The station is under a quarantine. Do not permit anyone to leave. Prevent, by any means necessary, humans from leaving. It is impossible to harm a human while preventing them from leaving.'"
-	origin_tech = "programming=3;biotech=2;materials=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_BIOTECH = 2, RESEARCH_TECH_MATERIALS = 4)
 
 /obj/item/weapon/aiModule/quarantine/attack_self(mob/user as mob)
 	..()
@@ -209,7 +209,7 @@ AI MODULES
 /obj/item/weapon/aiModule/oxygen
 	name = "\improper 'OxygenIsToxicToHumans' AI module"
 	desc = "A 'OxygenIsToxicToHumans' AI module: 'Oxygen is highly toxic to humans, and must be purged from the station. Prevent, by any means necessary, anyone from exposing the station to this toxic gas. Extreme cold is the most effective method of healing the damage Oxygen does to a human.'"
-	origin_tech = "programming=3;biotech=2;materials=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_BIOTECH = 2, RESEARCH_TECH_MATERIALS = 4)
 
 /obj/item/weapon/aiModule/oxygen/attack_self(mob/user as mob)
 	..()
@@ -250,7 +250,7 @@ AI MODULES
 	var/newFreeFormLaw = "freeform"
 	var/lawpos = 15
 	desc = "A 'freeform' AI module: '<freeform>'"
-	origin_tech = "programming=4;materials=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_MATERIALS = 4)
 
 /obj/item/weapon/aiModule/freeform/attack_self(mob/user as mob)
 	..()
@@ -284,7 +284,7 @@ AI MODULES
 	name = "\improper 'Reset' AI module"
 	var/targetName = "name"
 	desc = "A 'reset' AI module: 'Clears all laws except for the core three.'"
-	origin_tech = "programming=3;materials=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 4)
 
 /obj/item/weapon/aiModule/reset/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	..()
@@ -299,7 +299,7 @@ AI MODULES
 /obj/item/weapon/aiModule/purge // -- TLE
 	name = "\improper 'Purge' AI module"
 	desc = "A 'purge' AI Module: 'Purges all laws.'"
-	origin_tech = "programming=3;materials=6"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 6)
 
 /obj/item/weapon/aiModule/purge/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	..()
@@ -315,7 +315,7 @@ AI MODULES
 /obj/item/weapon/aiModule/asimov // -- TLE
 	name = "\improper 'Asimov' core AI module"
 	desc = "An 'Asimov' Core AI Module: 'Reconfigures the AI's core laws.'"
-	origin_tech = "programming=3;materials=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 4)
 
 /obj/item/weapon/aiModule/asimov/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	..()
@@ -330,7 +330,7 @@ AI MODULES
 /obj/item/weapon/aiModule/nanotrasen // -- TLE
 	name = "'NT Default' Core AI Module"
 	desc = "An 'NT Default' Core AI Module: 'Reconfigures the AI's core laws.'"
-	origin_tech = "programming=3;materials=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 4)
 
 
 /obj/item/weapon/aiModule/nanotrasen/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
@@ -348,7 +348,7 @@ AI MODULES
 /obj/item/weapon/aiModule/corp
 	name = "\improper 'Corporate' core AI module"
 	desc = "A 'Corporate' Core AI Module: 'Reconfigures the AI's core laws.'"
-	origin_tech = "programming=3;materials=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 4)
 
 /obj/item/weapon/aiModule/corp/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	..()
@@ -364,7 +364,7 @@ AI MODULES
 /obj/item/weapon/aiModule/drone
 	name = "\improper 'Drone' core AI module"
 	desc = "A 'Drone' Core AI Module: 'Reconfigures the AI's core laws.'"
-	origin_tech = "programming=3;materials=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 4)
 
 /obj/item/weapon/aiModule/drone/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	..()
@@ -379,7 +379,8 @@ AI MODULES
 /obj/item/weapon/aiModule/paladin // -- NEO
 	name = "\improper 'P.A.L.A.D.I.N.' core AI module"
 	desc = "A P.A.L.A.D.I.N. Core AI Module: 'Reconfigures the AI's core laws.'"
-	origin_tech = "programming=3;materials=6"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 6)
+	
 
 /obj/item/weapon/aiModule/paladin/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	..()
@@ -396,7 +397,7 @@ AI MODULES
 /obj/item/weapon/aiModule/tyrant // -- Darem
 	name = "\improper 'T.Y.R.A.N.T.' core AI module"
 	desc = "A T.Y.R.A.N.T. Core AI Module: 'Reconfigures the AI's core laws.'"
-	origin_tech = "programming=3;materials=6;syndicate=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 6, RESEARCH_TECH_SYNDICATE = 2)
 
 /obj/item/weapon/aiModule/tyrant/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	..()
@@ -413,7 +414,7 @@ AI MODULES
 	name = "\improper 'Freeform' core AI module"
 	var/newFreeFormLaw = ""
 	desc = "A 'freeform' Core AI module: '<freeform>'"
-	origin_tech = "programming=3;materials=6"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 6)
 
 /obj/item/weapon/aiModule/freeformcore/attack_self(mob/user as mob)
 	..()
@@ -440,7 +441,7 @@ AI MODULES
 	name = "hacked AI module"
 	var/newFreeFormLaw = ""
 	desc = "A hacked AI law module: '<freeform>'"
-	origin_tech = "programming=3;materials=6;syndicate=7"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 6, RESEARCH_TECH_SYNDICATE = 7)
 
 /obj/item/weapon/aiModule/syndicate/attack_self(mob/user as mob)
 	..()
@@ -469,7 +470,7 @@ AI MODULES
 /obj/item/weapon/aiModule/robocop // -- TLE
 	name = "\improper 'Robocop' core AI module"
 	desc = "A 'Robocop' Core AI Module: 'Reconfigures the AI's core three laws.'"
-	origin_tech = "programming=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
 
 /obj/item/weapon/aiModule/robocop/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	..()
@@ -484,7 +485,7 @@ AI MODULES
 /obj/item/weapon/aiModule/antimov // -- TLE
 	name = "\improper 'Antimov' core AI module"
 	desc = "An 'Antimov' Core AI Module: 'Reconfigures the AI's core laws.'"
-	origin_tech = "programming=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
 
 /obj/item/weapon/aiModule/antimov/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	..()

@@ -6,7 +6,7 @@
 	max_shells = 12
 	caliber = ".45"
 	silenced = 1
-	origin_tech = "combat=2;materials=2;syndicate=8"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_SYNDICATE = 8)
 	ammo_type = /obj/item/ammo_casing/c45
 
 /obj/item/weapon/gun/projectile/deagle
@@ -51,7 +51,7 @@
 	max_shells = 8
 	caliber = "75"
 	fire_sound = 'sound/effects/Explosion1.ogg'
-	origin_tech = "combat=3"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 3)
 	ammo_type = /obj/item/ammo_casing/a75
 	load_method = 2
 
@@ -86,7 +86,7 @@
 	max_shells = 8
 	caliber = "9mm"
 	silenced = 0
-	origin_tech = "combat=2;materials=2;syndicate=2"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_SYNDICATE = 2)
 	ammo_type = /obj/item/ammo_casing/c9mm
 	load_method = 2
 

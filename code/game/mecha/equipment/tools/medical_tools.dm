@@ -3,7 +3,7 @@
 	desc = "Mounted Sleeper. (Can be attached to: Medical Exosuits)"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_0"
-	origin_tech = "programming=2;biotech=3"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_BIOTECH = 3)
 	energy_drain = 20
 	range = MELEE
 	construction_cost = list(MATERIAL_METAL = 5000, MATERIAL_GLASS = 10000)
@@ -398,7 +398,10 @@
 	var/datum/global_iterator/mech_synth/synth
 	range = MELEE|RANGED
 	equip_cooldown = 10
-	origin_tech = "materials=3;biotech=4;magnets=4;programming=3"
+	origin_tech = list(
+		RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_BIOTECH = 4, RESEARCH_TECH_MAGNETS = 4,
+		RESEARCH_TECH_PROGRAMMING = 3
+	)
 	construction_time = 200
 	construction_cost = list(MATERIAL_METAL = 3000, MATERIAL_GLASS = 2000)
 

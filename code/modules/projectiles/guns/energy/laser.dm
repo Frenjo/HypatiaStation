@@ -6,7 +6,7 @@
 	fire_sound = 'sound/weapons/Laser.ogg'
 	w_class = 3.0
 	m_amt = 2000
-	origin_tech = "combat=3;magnets=2"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MAGNETS = 2)
 	gun_setting = GUN_SETTING_KILL
 	pulse_projectile_types = list(GUN_SETTING_KILL = /obj/item/projectile/energy/pulse/laser)
 	beam_projectile_types = list(GUN_SETTING_KILL = /obj/item/projectile/energy/beam/laser)
@@ -67,7 +67,7 @@
 	desc = "With the L.A.S.E.R. cannon, the lasing medium is enclosed in a tube lined with uranium-235 and subjected to high neutron flux in a nuclear reactor core. This incredible technology may help YOU achieve high excitation rates with small laser volumes!"
 	icon_state = "lasercannon"
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
-	origin_tech = "combat=4;materials=3;powerstorage=3"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 4, RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_POWERSTORAGE = 3)
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/pulse/laser/heavy)
 	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/laser/heavy)
@@ -93,7 +93,10 @@
 	desc = "A high-power laser gun capable of expelling concentrated xray blasts."
 	icon_state = "xray"
 	fire_sound = 'sound/weapons/laser3.ogg'
-	origin_tech = "combat=5;materials=3;magnets=2;syndicate=2"
+	origin_tech = list(
+		RESEARCH_TECH_COMBAT = 5, RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_MAGNETS = 2,
+		RESEARCH_TECH_SYNDICATE = 2
+	)
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/pulse/laser/xray)
 	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/laser/xray)
@@ -107,7 +110,7 @@
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/pulse/laser/tag/blue)
 	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/laser/tag/blue)
-	origin_tech = "combat=1;magnets=2"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 1, RESEARCH_TECH_MAGNETS = 2)
 	clumsy_check = 0
 	var/charge_tick = 0
 
@@ -144,7 +147,7 @@
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/pulse/laser/tag/red)
 	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/laser/tag/red)
-	origin_tech = "combat=1;magnets=2"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 1, RESEARCH_TECH_MAGNETS = 2)
 	clumsy_check = 0
 	var/charge_tick = 0
 

@@ -43,7 +43,7 @@
 	throw_speed = 4
 	throw_range = 4
 	m_amt = 15000
-	origin_tech = "materials=2;combat=1"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_COMBAT = 1)
 	attack_verb = list("chopped", "torn", "cut")
 
 /obj/item/weapon/hatchet/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
@@ -66,7 +66,7 @@
 	w_class = 4.0
 	flags = NOSHIELD
 	slot_flags = SLOT_BACK
-	origin_tech = "materials=2;combat=2"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_COMBAT = 2)
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 
 /obj/item/weapon/scythe/afterattack(atom/A, mob/user as mob, proximity)

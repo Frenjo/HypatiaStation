@@ -4,7 +4,7 @@
 	icon_state = "detective"
 	max_shells = 6
 	caliber = "38"
-	origin_tech = "combat=2;materials=2"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MATERIALS = 2)
 	ammo_type = /obj/item/ammo_casing/c38
 
 
@@ -97,7 +97,7 @@
 	name = "mateba"
 	desc = "When you absolutely, positively need a 10mm hole in the other guy. Uses .357 ammo."	//>10mm hole >.357
 	icon_state = "mateba"
-	origin_tech = "combat=2;materials=2"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MATERIALS = 2)
 
 // A gun to play Russian Roulette!
 // You can spin the chamber to randomize the position of the bullet.
@@ -105,7 +105,7 @@
 	name = "Russian Revolver"
 	desc = "A Russian made revolver. Uses .357 ammo. It has a single slot in it's chamber for a bullet."
 	max_shells = 6
-	origin_tech = "combat=2;materials=2"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MATERIALS = 2)
 
 /obj/item/weapon/gun/projectile/russian/New()
 	Spin()

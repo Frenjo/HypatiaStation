@@ -166,7 +166,7 @@ to destroy them and players will be able to make replacements.
 	name = "Circuit board (Destructive Analyzer)"
 	build_path = /obj/machinery/r_n_d/destructive_analyzer
 	board_type = "machine"
-	origin_tech = "magnets=2;engineering=2;programming=2"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
 	frame_desc = "Requires 1 Scanning Module, 1 Micro Manipulator, and 1 Micro-Laser."
 	req_components = list(
 							/obj/item/weapon/stock_parts/scanning_module = 1,
@@ -177,7 +177,7 @@ to destroy them and players will be able to make replacements.
 	name = "Circuit board (Autolathe)"
 	build_path = /obj/machinery/autolathe
 	board_type = "machine"
-	origin_tech = "engineering=2;programming=2"
+	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
 	frame_desc = "Requires 3 Matter Bins, 1 Micro Manipulator, and 1 Console Screen."
 	req_components = list(
 							/obj/item/weapon/stock_parts/matter_bin = 3,
@@ -188,7 +188,7 @@ to destroy them and players will be able to make replacements.
 	name = "Circuit board (Protolathe)"
 	build_path = /obj/machinery/r_n_d/protolathe
 	board_type = "machine"
-	origin_tech = "engineering=2;programming=2"
+	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
 	frame_desc = "Requires 2 Matter Bins, 2 Micro Manipulators, and 2 Beakers."
 	req_components = list(
 							/obj/item/weapon/stock_parts/matter_bin = 2,
@@ -200,7 +200,7 @@ to destroy them and players will be able to make replacements.
 	name = "Circuit board (Circuit Imprinter)"
 	build_path = /obj/machinery/r_n_d/circuit_imprinter
 	board_type = "machine"
-	origin_tech = "engineering=2;programming=2"
+	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
 	frame_desc = "Requires 1 Matter Bin, 1 Micro Manipulator, and 2 Beakers."
 	req_components = list(
 							/obj/item/weapon/stock_parts/matter_bin = 1,
@@ -211,7 +211,10 @@ to destroy them and players will be able to make replacements.
 	name = "Circuit Board (PACMAN-type Generator)"
 	build_path = /obj/machinery/power/port_gen/pacman
 	board_type = "machine"
-	origin_tech = "programming=3:powerstorage=3;plasmatech=3;engineering=3"
+	origin_tech = list(
+		RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_POWERSTORAGE = 3, RESEARCH_TECH_PLASMATECH = 3,
+		RESEARCH_TECH_ENGINEERING = 3
+	)
 	frame_desc = "Requires 1 Matter Bin, 1 Micro-Laser, 2 Pieces of Cable, and 1 Capacitor."
 	req_components = list(
 							/obj/item/weapon/stock_parts/matter_bin = 1,
@@ -222,18 +225,18 @@ to destroy them and players will be able to make replacements.
 /obj/item/weapon/circuitboard/pacman/super
 	name = "Circuit Board (SUPERPACMAN-type Generator)"
 	build_path = /obj/machinery/power/port_gen/pacman/super
-	origin_tech = "programming=3;powerstorage=4;engineering=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_POWERSTORAGE = 4, RESEARCH_TECH_ENGINEERING = 4)
 
 /obj/item/weapon/circuitboard/pacman/mrs
 	name = "Circuit Board (MRSPACMAN-type Generator)"
 	build_path = /obj/machinery/power/port_gen/pacman/mrs
-	origin_tech = "programming=3;powerstorage=5;engineering=5"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_POWERSTORAGE = 5, RESEARCH_TECH_ENGINEERING = 5)
 
 obj/item/weapon/circuitboard/rdserver
 	name = "Circuit Board (R&D Server)"
 	build_path = /obj/machinery/r_n_d/server
 	board_type = "machine"
-	origin_tech = "programming=3"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 	frame_desc = "Requires 2 pieces of cable, and 1 Scanning Module."
 	req_components = list(
 							/obj/item/stack/cable_coil = 2,
@@ -243,7 +246,7 @@ obj/item/weapon/circuitboard/rdserver
 	name = "Circuit board (Exosuit Fabricator)"
 	build_path = /obj/machinery/mecha_part_fabricator
 	board_type = "machine"
-	origin_tech = "programming=3;engineering=3"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_ENGINEERING = 3)
 	frame_desc = "Requires 2 Matter Bins, 1 Micro Manipulator, 1 Micro-Laser and 1 Console Screen."
 	req_components = list(
 							/obj/item/weapon/stock_parts/matter_bin = 2,
@@ -255,7 +258,7 @@ obj/item/weapon/circuitboard/rdserver
 	name = "Circuit board (Clone Pod)"
 	build_path = /obj/machinery/clonepod
 	board_type = "machine"
-	origin_tech = "programming=3;biotech=3"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_BIOTECH = 3)
 	frame_desc = "Requires 2 Manipulator, 2 Scanning Module, 2 pieces of cable and 1 Console Screen."
 	req_components = list(
 							/obj/item/stack/cable_coil = 2,
@@ -267,7 +270,7 @@ obj/item/weapon/circuitboard/rdserver
 	name = "Circuit board (Cloning Scanner)"
 	build_path = /obj/machinery/dna_scannernew
 	board_type = "machine"
-	origin_tech = "programming=2;biotech=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_BIOTECH = 2)
 	frame_desc = "Requires 1 Scanning module, 1 Micro Manipulator, 1 Micro-Laser, 2 pieces of cable and 1 Console Screen."
 	req_components = list(
 							/obj/item/weapon/stock_parts/scanning_module = 1,
@@ -283,7 +286,7 @@ obj/item/weapon/circuitboard/rdserver
 	name = "Circuit Board (Subspace Receiver)"
 	build_path = /obj/machinery/telecomms/receiver
 	board_type = "machine"
-	origin_tech = "programming=4;engineering=3;bluespace=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 3, RESEARCH_TECH_BLUESPACE = 2)
 	frame_desc = "Requires 1 Subspace Ansible, 1 Hyperwave Filter, 2 Micro Manipulators, and 1 Micro-Laser."
 	req_components = list(
 							/obj/item/weapon/stock_parts/subspace/ansible = 1,
@@ -295,7 +298,7 @@ obj/item/weapon/circuitboard/rdserver
 	name = "Circuit Board (Hub Mainframe)"
 	build_path = /obj/machinery/telecomms/hub
 	board_type = "machine"
-	origin_tech = "programming=4;engineering=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	frame_desc = "Requires 2 Micro Manipulators, 2 Cable Coil and 2 Hyperwave Filter."
 	req_components = list(
 							/obj/item/weapon/stock_parts/manipulator = 2,
@@ -306,7 +309,7 @@ obj/item/weapon/circuitboard/rdserver
 	name = "Circuit Board (Relay Mainframe)"
 	build_path = /obj/machinery/telecomms/relay
 	board_type = "machine"
-	origin_tech = "programming=3;engineering=4;bluespace=3"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_BLUESPACE = 3)
 	frame_desc = "Requires 2 Micro Manipulators, 2 Cable Coil and 2 Hyperwave Filters."
 	req_components = list(
 							/obj/item/weapon/stock_parts/manipulator = 2,
@@ -317,7 +320,7 @@ obj/item/weapon/circuitboard/rdserver
 	name = "Circuit Board (Bus Mainframe)"
 	build_path = /obj/machinery/telecomms/bus
 	board_type = "machine"
-	origin_tech = "programming=4;engineering=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	frame_desc = "Requires 2 Micro Manipulators, 1 Cable Coil and 1 Hyperwave Filter."
 	req_components = list(
 							/obj/item/weapon/stock_parts/manipulator = 2,
@@ -328,7 +331,7 @@ obj/item/weapon/circuitboard/rdserver
 	name = "Circuit Board (Processor Unit)"
 	build_path = /obj/machinery/telecomms/processor
 	board_type = "machine"
-	origin_tech = "programming=4;engineering=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	frame_desc = "Requires 3 Micro Manipulators, 1 Hyperwave Filter, 2 Treatment Disks, 1 Wavelength Analyzer, 2 Cable Coils and 1 Subspace Amplifier."
 	req_components = list(
 							/obj/item/weapon/stock_parts/manipulator = 3,
@@ -342,7 +345,7 @@ obj/item/weapon/circuitboard/rdserver
 	name = "Circuit Board (Telecommunication Server)"
 	build_path = /obj/machinery/telecomms/server
 	board_type = "machine"
-	origin_tech = "programming=4;engineering=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	frame_desc = "Requires 2 Micro Manipulators, 1 Cable Coil and 1 Hyperwave Filter."
 	req_components = list(
 							/obj/item/weapon/stock_parts/manipulator = 2,
@@ -353,7 +356,7 @@ obj/item/weapon/circuitboard/rdserver
 	name = "Circuit Board (Subspace Broadcaster)"
 	build_path = /obj/machinery/telecomms/broadcaster
 	board_type = "machine"
-	origin_tech = "programming=4;engineering=4;bluespace=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_BLUESPACE = 2)
 	frame_desc = "Requires 2 Micro Manipulators, 1 Cable Coil, 1 Hyperwave Filter, 1 Ansible Crystal and 2 High-Powered Micro-Lasers. "
 	req_components = list(
 							/obj/item/weapon/stock_parts/manipulator = 2,

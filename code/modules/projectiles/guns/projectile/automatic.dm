@@ -5,7 +5,7 @@
 	w_class = 3.0
 	max_shells = 18
 	caliber = "9mm"
-	origin_tech = "combat=4;materials=2"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 4, RESEARCH_TECH_MATERIALS = 2)
 	ammo_type = /obj/item/ammo_casing/c9mm
 	automatic = 1
 
@@ -21,7 +21,7 @@
 	w_class = 3.0
 	max_shells = 16
 	caliber = ".45"
-	origin_tech = "combat=5;materials=2;syndicate=8"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 5, RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_SYNDICATE = 8)
 	ammo_type = /obj/item/ammo_casing/c45
 
 /obj/item/weapon/gun/projectile/automatic/mini_uzi/isHandgun()
@@ -35,7 +35,7 @@
 	w_class = 3.0
 	max_shells = 20
 	caliber = "12mm"
-	origin_tech = "combat=5;materials=2;syndicate=8"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 5, RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_SYNDICATE = 8)
 	ammo_type = /obj/item/ammo_casing/a12mm
 	fire_sound = 'sound/weapons/Gunshot_smg.ogg'
 	load_method = 2
@@ -72,7 +72,7 @@
 	slot_flags = 0
 	max_shells = 50
 	caliber = "a762"
-	origin_tech = "combat=5;materials=1;syndicate=2"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 5, RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_SYNDICATE = 2)
 	ammo_type = /obj/item/ammo_casing/a762
 	fire_sound = 'sound/weapons/Gunshot_smg.ogg'
 	load_method = 2

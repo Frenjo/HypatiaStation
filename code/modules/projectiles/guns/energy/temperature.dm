@@ -6,7 +6,10 @@
 	var/temperature = T20C
 	var/current_temperature = T20C
 	charge_cost = 100
-	origin_tech = "combat=3;materials=4;powerstorage=3;magnets=2"
+	origin_tech = list(
+		RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_POWERSTORAGE = 3,
+		RESEARCH_TECH_MAGNETS = 2
+	)
 
 	has_firemodes = 0
 	gun_setting = GUN_SETTING_SPECIAL

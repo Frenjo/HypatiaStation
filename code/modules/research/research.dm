@@ -45,7 +45,6 @@ research holder datum.
 ***************************************************************/
 
 /datum/research								//Holder for all the existing, archived, and known tech. Individual to console.
-
 									//Datum/tech go here.
 	var/list/possible_tech = list()			//List of all tech in the game that players have access to (barring special events).
 	var/list/known_tech = list()				//List of locally known tech.
@@ -59,11 +58,9 @@ research holder datum.
 		possible_designs += new D(src)
 	RefreshResearch()
 
-
-
 //Checks to see if tech has all the required pre-reqs.
 //Input: datum/tech; Output: 0/1 (false/true)
-/datum/research/proc/TechHasReqs(var/datum/tech/T)
+/datum/research/proc/TechHasReqs(datum/tech/T)
 	if(T.req_tech.len == 0)
 		return 1
 	var/matches = 0
@@ -79,7 +76,7 @@ research holder datum.
 
 //Checks to see if design has all the required pre-reqs.
 //Input: datum/design; Output: 0/1 (false/true)
-/datum/research/proc/DesignHasReqs(var/datum/design/D)
+/datum/research/proc/DesignHasReqs(datum/design/D)
 	if(D.req_tech.len == 0)
 		return 1
 	var/matches = 0
@@ -110,9 +107,10 @@ research holder datum.
 	else
 		return 0
 */
+
 //Adds a tech to known_tech list. Checks to make sure there aren't duplicates and updates existing tech's levels if needed.
 //Input: datum/tech; Output: Null
-/datum/research/proc/AddTech2Known(var/datum/tech/T)
+/datum/research/proc/AddTech2Known(datum/tech/T)
 	for(var/datum/tech/known in known_tech)
 		if(T.id == known.id)
 			if(T.level > known.level)
@@ -121,7 +119,7 @@ research holder datum.
 	known_tech += T
 	return
 
-/datum/research/proc/AddDesign2Known(var/datum/design/D)
+/datum/research/proc/AddDesign2Known(datum/design/D)
 	for(var/datum/design/known in known_designs)
 		if(D.id == known.id)
 			if(D.reliability_mod > known.reliability_mod)
@@ -140,27 +138,26 @@ research holder datum.
 		if(DesignHasReqs(PD))
 			AddDesign2Known(PD)
 	for(var/datum/tech/T in known_tech)
-		T = between(1,T.level,20)
+		T = between(1, T.level, 20)
 	for(var/datum/design/D in known_designs)
 		D.CalcReliability(known_tech)
 	return
 
 //Refreshes the levels of a given tech.
 //Input: Tech's ID and Level; Output: null
-/datum/research/proc/UpdateTech(var/ID, var/level)
+/datum/research/proc/UpdateTech(ID, level)
 	for(var/datum/tech/KT in known_tech)
 		if(KT.id == ID)
-			if(KT.level <= level) KT.level = max((KT.level + 1), (level - 1))
+			if(KT.level <= level)
+				KT.level = max((KT.level + 1), (level - 1))
 	return
 
-/datum/research/proc/UpdateDesign(var/path)
+/datum/research/proc/UpdateDesign(path)
 	for(var/datum/design/KD in known_designs)
 		if(KD.build_path == path)
-			KD.reliability_mod += rand(1,2)
+			KD.reliability_mod += rand(1, 2)
 			break
 	return
-
-
 
 
 /***************************************************************
@@ -168,98 +165,90 @@ research holder datum.
 **	Includes all the various technoliges and what they make.  **
 ***************************************************************/
 
-datum/tech	//Datum of individual technologies.
+/datum/tech	//Datum of individual technologies.
 	var/name = "name"					//Name of the technology.
 	var/desc = "description"			//General description of what it does and what it makes.
 	var/id = "id"						//An easily referenced ID. Must be alphanumeric, lower-case, and no symbols.
 	var/level = 1						//A simple number scale of the research level. Level 0 = Secret tech.
 	var/list/req_tech = list()			//List of ids associated values of techs required to research this tech. "id" = #
 
-
 //Trunk Technologies (don't require any other techs and you start knowning them).
-
-datum/tech/materials
+/datum/tech/materials
 	name = "Materials Research"
 	desc = "Development of new and improved materials."
-	id = "materials"
+	id = RESEARCH_TECH_MATERIALS
 
-datum/tech/engineering
+/datum/tech/engineering
 	name = "Engineering Research"
 	desc = "Development of new and improved engineering parts and."
-	id = "engineering"
+	id = RESEARCH_TECH_ENGINEERING
 
-datum/tech/plasmatech
+/datum/tech/plasmatech
 	name = "Plasma Research"
 	desc = "Research into the mysterious substance colloqually known as 'plasma'."
-	id = "plasmatech"
+	id = RESEARCH_TECH_PLASMATECH
 
-datum/tech/powerstorage
+/datum/tech/powerstorage
 	name = "Power Manipulation Technology"
 	desc = "The various technologies behind the storage and generation of electicity."
-	id = "powerstorage"
+	id = RESEARCH_TECH_POWERSTORAGE
 
-datum/tech/bluespace
+/datum/tech/bluespace
 	name = "'Blue-space' Research"
 	desc = "Research into the sub-reality known as 'blue-space'"
-	id = "bluespace"
+	id = RESEARCH_TECH_BLUESPACE
 
-datum/tech/biotech
+/datum/tech/biotech
 	name = "Biological Technology"
 	desc = "Research into the deeper mysteries of life and organic substances."
-	id = "biotech"
+	id = RESEARCH_TECH_BIOTECH
 
-datum/tech/combat
+/datum/tech/combat
 	name = "Combat Systems Research"
 	desc = "The development of offensive and defensive systems."
-	id = "combat"
+	id = RESEARCH_TECH_COMBAT
 
-datum/tech/magnets
+/datum/tech/magnets
 	name = "Electromagnetic Spectrum Research"
 	desc = "Research into the electromagnetic spectrum. No clue how they actually work, though."
-	id = "magnets"
+	id = RESEARCH_TECH_MAGNETS
 
-datum/tech/programming
+/datum/tech/programming
 	name = "Data Theory Research"
 	desc = "The development of new computer and artificial intelligence and data storage systems."
-	id = "programming"
+	id = RESEARCH_TECH_PROGRAMMING
 
-datum/tech/syndicate
+/datum/tech/syndicate
 	name = "Illegal Technologies Research"
 	desc = "The study of technologies that violate standard NanoTrasen regulations."
-	id = "syndicate"
+	id = RESEARCH_TECH_SYNDICATE
 
 // Added this, hopefully it's fixed. -Frenjo
-datum/tech/arcane
+/datum/tech/arcane
 	name = "Arcane Research"
 	desc = "Research into the occult and arcane fields for use in practical science."
-	id = "arcane"
+	id = RESEARCH_TECH_ARCANE
 	level = 0
 
 /*
-datum/tech/arcane
-	name = "Arcane Research"
-	desc = "Research into the occult and arcane field for use in practical science"
-	id = "arcane"
-	level = 0 //It didn't become "secret" as advertised.
-
 //Branch Techs
-datum/tech/explosives
+/datum/tech/explosives
 	name = "Explosives Research"
 	desc = "The creation and application of explosive materials."
-	id = "explosives"
-	req_tech = list("materials" = 3)
+	id = RESEARCH_TECH_EXPLOSIVES
+	req_tech = list(RESEARCH_TECH_MATERIALS = 3)
 
-datum/tech/generators
+/datum/tech/generators
 	name = "Power Generation Technology"
 	desc = "Research into more powerful and more reliable sources."
-	id = "generators"
-	req_tech = list("powerstorage" = 2)
+	id = RESEARCH_TECH_GENERATORS
+	req_tech = list(RESEARCH_TECH_POWERSTORAGE = 2)
 
-datum/tech/robotics
+/datum/tech/robotics
 	name = "Robotics Technology"
 	desc = "The development of advanced automated, autonomous machines."
-	id = "robotics"
-	req_tech = list("materials" = 3, "programming" = 3)
+	id = RESEARCH_TECH_ROBOTICS
+	req_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_PROGRAMMING = 3)
 */
 
 

@@ -18,7 +18,7 @@
 	throw_range = 5
 	w_class = 3.0
 	flags = CONDUCT | NOSHIELD | NOBLOODY
-	origin_tech = "combat=3"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 3)
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	sharp = 1
 	edge = 1
@@ -39,7 +39,7 @@
 	throw_range = 5
 	w_class = 2.0
 	flags = NOSHIELD | NOBLOODY
-	origin_tech = "magnets=3;syndicate=4"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_SYNDICATE = 4)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = 1
 	edge = 1

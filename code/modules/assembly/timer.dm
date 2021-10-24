@@ -5,7 +5,7 @@
 	m_amt = 500
 	g_amt = 50
 	w_amt = 10
-	origin_tech = "magnets=1"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 1)
 
 	wires = WIRE_PULSE
 

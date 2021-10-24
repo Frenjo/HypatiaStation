@@ -24,7 +24,7 @@ Mineral Sheets
 	icon_state = "sheet-sandstone"
 	throw_speed = 4
 	throw_range = 5
-	origin_tech = "materials=1"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
 	sheettype = MATERIAL_SANDSTONE
 
 var/global/list/datum/stack_recipe/sandstone_recipes = list(
@@ -50,7 +50,7 @@ var/global/list/datum/stack_recipe/sandstone_recipes = list(
 	throwforce = 5
 	w_class = 3.0
 	throw_range = 3
-	origin_tech = "materials=6"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 6)
 	perunit = 3750
 	sheettype = MATERIAL_DIAMOND
 
@@ -75,7 +75,7 @@ var/global/list/datum/stack_recipe/diamond_recipes = list(
 	w_class = 3.0
 	throw_speed = 3
 	throw_range = 3
-	origin_tech = "materials=5"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 5)
 	perunit = 2000
 	sheettype = MATERIAL_URANIUM
 
@@ -100,7 +100,7 @@ var/global/list/datum/stack_recipe/uranium_recipes = list(
 	w_class = 3.0
 	throw_speed = 3
 	throw_range = 3
-	origin_tech = "plasmatech=2;materials=2"
+	origin_tech = list(RESEARCH_TECH_PLASMATECH = 2, RESEARCH_TECH_MATERIALS = 2)
 	perunit = 2000
 	sheettype = MATERIAL_PLASMA
 
@@ -122,7 +122,7 @@ var/global/list/datum/stack_recipe/plasma_recipes = list(
 	w_class = 3.0
 	throw_speed = 3
 	throw_range = 3
-	origin_tech = "materials=3"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 3)
 	perunit = 2000
 	sheettype = MATERIAL_PLASTIC
 
@@ -163,7 +163,7 @@ var/global/list/datum/stack_recipe/plastic_recipes = list(
 	w_class = 3.0
 	throw_speed = 3
 	throw_range = 3
-	origin_tech = "materials=4"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 4)
 	perunit = 2000
 	sheettype = MATERIAL_GOLD
 
@@ -188,7 +188,7 @@ var/global/list/datum/stack_recipe/gold_recipes = list(
 	w_class = 3.0
 	throw_speed = 3
 	throw_range = 3
-	origin_tech = "materials=3"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 3)
 	perunit = 2000
 	sheettype = MATERIAL_SILVER
 
@@ -213,7 +213,7 @@ var/global/list/datum/stack_recipe/silver_recipes = list(
 	w_class = 3.0
 	throw_speed = 3
 	throw_range = 3
-	origin_tech = "materials=4"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 4)
 	perunit = 2000
 	sheettype = MATERIAL_BANANIUM
 
@@ -236,7 +236,7 @@ var/global/list/datum/stack_recipe/silver_recipes = list(
 	w_class = 3.0
 	throw_speed = 3
 	throw_range = 3
-	origin_tech = "materials=5"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 5)
 	perunit = 1000
 	sheettype = MATERIAL_ENRICHED_URANIUM
 
@@ -251,7 +251,7 @@ var/global/list/datum/stack_recipe/silver_recipes = list(
 	w_class = 3.0
 	throw_speed = 3
 	throw_range = 3
-	origin_tech = "materials=4"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 4)
 	perunit = 2000
 	sheettype = MATERIAL_ADAMANTINE
 
@@ -266,6 +266,6 @@ var/global/list/datum/stack_recipe/silver_recipes = list(
 	w_class = 3.0
 	throw_speed = 3
 	throw_range = 3
-	origin_tech = "materials=4"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 4)
 	perunit = 2000
 	sheettype = MATERIAL_MYTHRIL

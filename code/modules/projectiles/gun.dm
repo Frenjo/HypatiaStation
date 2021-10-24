@@ -12,7 +12,7 @@
 	throw_speed = 4
 	throw_range = 5
 	force = 5.0
-	origin_tech = "combat=1"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 1)
 	attack_verb = list("struck", "hit", "bashed")
 
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'

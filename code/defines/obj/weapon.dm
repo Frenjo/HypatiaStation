@@ -133,7 +133,7 @@
 	flags = CONDUCT
 	throwforce = 0
 	w_class = 3.0
-	origin_tech = "materials=1"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
 	var/breakouttime = 300	//Deciseconds = 30s = 0.5 minute
 
 /obj/item/weapon/legcuffs/beartrap
@@ -246,7 +246,7 @@
 	throw_speed = 4
 	throw_range = 20
 	m_amt = 100
-	origin_tech = "magnets=2;syndicate=3"*/
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_SYNDICATE = 3)*/
 
 
 /obj/item/weapon/shard/shrapnel
@@ -289,7 +289,7 @@
 	throw_speed = 4
 	throw_range = 20
 	m_amt = 100
-	origin_tech = "magnets=1"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 1)
 
 
 /obj/item/weapon/staff
@@ -452,7 +452,7 @@
 	icon_state = "meat"
 	flags = CONDUCT
 	w_class = 1.0
-	origin_tech = "biotech=2"
+	origin_tech = list(RESEARCH_TECH_BIOTECH = 2)
 
 
 /obj/item/weapon/hatchet/soghunknife
@@ -504,7 +504,7 @@
 	name = "console screen"
 	desc = "Used in the construction of computers and other devices with a interactive console."
 	icon_state = "screen"
-	origin_tech = "materials=1"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
 	g_amt = 200
 
 
@@ -512,7 +512,7 @@
 	name = "capacitor"
 	desc = "A basic capacitor used in the construction of a variety of devices."
 	icon_state = "capacitor"
-	origin_tech = "powerstorage=1"
+	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 1)
 	m_amt = 50
 	g_amt = 50
 
@@ -521,7 +521,7 @@
 	name = "scanning module"
 	desc = "A compact, high resolution scanning module used in the construction of certain devices."
 	icon_state = "scan_module"
-	origin_tech = "magnets=1"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 1)
 	m_amt = 50
 	g_amt = 20
 
@@ -530,7 +530,7 @@
 	name = "micro-manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
 	icon_state = "micro_mani"
-	origin_tech = "materials=1;programming=1"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_PROGRAMMING = 1)
 	m_amt = 30
 
 
@@ -538,7 +538,7 @@
 	name = "micro-laser"
 	desc = "A tiny laser used in certain devices."
 	icon_state = "micro_laser"
-	origin_tech = "magnets=1"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 1)
 	m_amt = 10
 	g_amt = 20
 
@@ -547,7 +547,7 @@
 	name = "matter bin"
 	desc = "A container for hold compressed matter awaiting re-construction."
 	icon_state = "matter_bin"
-	origin_tech = "materials=1"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
 	m_amt = 80
 
 
@@ -556,7 +556,7 @@
 	name = "advanced capacitor"
 	desc = "An advanced capacitor used in the construction of a variety of devices."
 	icon_state = "adv_capacitor"
-	origin_tech = "powerstorage=3"
+	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 3)
 	rating = 2
 	m_amt = 50
 	g_amt = 50
@@ -566,7 +566,7 @@
 	name = "advanced scanning module"
 	desc = "A compact, high resolution scanning module used in the construction of certain devices."
 	icon_state = "adv_scan_module"
-	origin_tech = "magnets=3"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 3)
 	rating = 2
 	m_amt = 50
 	g_amt = 20
@@ -576,7 +576,7 @@
 	name = "nano-manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
 	icon_state = "nano_mani"
-	origin_tech = "materials=3,programming=2"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_PROGRAMMING = 2)
 	rating = 2
 	m_amt = 30
 
@@ -585,7 +585,7 @@
 	name = "high-power micro-laser"
 	desc = "A tiny laser used in certain devices."
 	icon_state = "high_micro_laser"
-	origin_tech = "magnets=3"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 3)
 	rating = 2
 	m_amt = 10
 	g_amt = 20
@@ -595,7 +595,7 @@
 	name = "advanced matter bin"
 	desc = "A container for hold compressed matter awaiting re-construction."
 	icon_state = "advanced_matter_bin"
-	origin_tech = "materials=3"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 3)
 	rating = 2
 	m_amt = 80
 
@@ -605,7 +605,7 @@
 	name = "super capacitor"
 	desc = "A super-high capacity capacitor used in the construction of a variety of devices."
 	icon_state = "super_capacitor"
-	origin_tech = "powerstorage=5;materials=4"
+	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 5, RESEARCH_TECH_MATERIALS = 4)
 	rating = 3
 	m_amt = 50
 	g_amt = 50
@@ -615,7 +615,7 @@
 	name = "phasic scanning module"
 	desc = "A compact, high resolution phasic scanning module used in the construction of certain devices."
 	icon_state = "phasic_scan_module"
-	origin_tech = "magnets=5"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 5)
 	rating = 3
 	m_amt = 50
 	g_amt = 20
@@ -625,7 +625,7 @@
 	name = "pico-manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
 	icon_state = "pico_mani"
-	origin_tech = "materials=5,programming=2"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 5, RESEARCH_TECH_PROGRAMMING = 2)
 	rating = 3
 	m_amt = 30
 
@@ -634,7 +634,7 @@
 	name = "ultra-high-power micro-laser"
 	icon_state = "ultra_high_micro_laser"
 	desc = "A tiny laser used in certain devices."
-	origin_tech = "magnets=5"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 5)
 	rating = 3
 	m_amt = 10
 	g_amt = 20
@@ -644,7 +644,7 @@
 	name = "super matter bin"
 	desc = "A container for hold compressed matter awaiting re-construction."
 	icon_state = "super_matter_bin"
-	origin_tech = "materials=5"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 5)
 	rating = 3
 	m_amt = 80
 
@@ -654,7 +654,7 @@
 	name = "hyper capacitor"
 	desc = "A hyper-high capacity capacitor used in the construction of a variety of devices."
 	icon_state = "hyper_capacitor"
-	origin_tech = "powerstorage=7;materials=4"
+	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 7, RESEARCH_TECH_MATERIALS = 4)
 	rating = 4
 	m_amt = 50
 	g_amt = 50
@@ -664,7 +664,7 @@
 	name = "hyper-phasic scanning module"
 	desc = "A compact, high resolution hyper-phasic scanning module used in the construction of certain devices."
 	icon_state = "hyper_phasic_scan_module"
-	origin_tech = "magnets=7"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 7)
 	rating = 4
 	m_amt = 50
 	g_amt = 20
@@ -674,7 +674,7 @@
 	name = "femto-manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
 	icon_state = "femto_mani"
-	origin_tech = "materials=7,programming=2"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 7, RESEARCH_TECH_PROGRAMMING = 2)
 	rating = 4
 	m_amt = 30
 
@@ -683,7 +683,7 @@
 	name = "hyper-ultra-high-power micro-laser"
 	icon_state = "hyper_ultra_high_micro_laser"
 	desc = "A tiny laser used in certain devices."
-	origin_tech = "magnets=7"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 7)
 	rating = 4
 	m_amt = 10
 	g_amt = 20
@@ -693,7 +693,7 @@
 	name = "hyper matter bin"
 	desc = "A container for hold compressed matter awaiting re-construction."
 	icon_state = "hyper_matter_bin"
-	origin_tech = "materials=7"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 7)
 	rating = 4
 	m_amt = 80
 
@@ -703,7 +703,10 @@
 	name = "subspace ansible"
 	icon_state = "subspace_ansible"
 	desc = "A compact module capable of sensing extradimensional activity."
-	origin_tech = "programming=3;magnets=5;materials=4;bluespace=2"
+	origin_tech = list(
+		RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MAGNETS = 5, RESEARCH_TECH_MATERIALS = 4,
+		RESEARCH_TECH_BLUESPACE = 2
+	)
 	m_amt = 30
 	g_amt = 10
 
@@ -712,7 +715,7 @@
 	name = "hyperwave filter"
 	icon_state = "hyperwave_filter"
 	desc = "A tiny device capable of filtering and converting super-intense radiowaves."
-	origin_tech = "programming=4;magnets=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_MAGNETS = 2)
 	m_amt = 30
 	g_amt = 10
 
@@ -721,7 +724,10 @@
 	name = "subspace amplifier"
 	icon_state = "subspace_amplifier"
 	desc = "A compact micro-machine capable of amplifying weak subspace transmissions."
-	origin_tech = "programming=3;magnets=4;materials=4;bluespace=2"
+	origin_tech = list(
+		RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_MATERIALS = 4,
+		RESEARCH_TECH_BLUESPACE = 2
+	)
 	m_amt = 30
 	g_amt = 10
 
@@ -730,7 +736,10 @@
 	name = "subspace treatment disk"
 	icon_state = "treatment_disk"
 	desc = "A compact micro-machine capable of stretching out hyper-compressed radio waves."
-	origin_tech = "programming=3;magnets=2;materials=5;bluespace=2"
+	origin_tech = list(
+		RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_MATERIALS = 5,
+		RESEARCH_TECH_BLUESPACE = 2
+	)
 	m_amt = 30
 	g_amt = 10
 
@@ -739,7 +748,10 @@
 	name = "subspace wavelength analyzer"
 	icon_state = "wavelength_analyzer"
 	desc = "A sophisticated analyzer capable of analyzing cryptic subspace wavelengths."
-	origin_tech = "programming=3;magnets=4;materials=4;bluespace=2"
+	origin_tech = list(
+		RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_MATERIALS = 4,
+		RESEARCH_TECH_BLUESPACE = 2
+	)
 	m_amt = 30
 	g_amt = 10
 
@@ -748,7 +760,7 @@
 	name = "ansible crystal"
 	icon_state = "ansible_crystal"
 	desc = "A crystal made from pure glass used to transmit laser databursts to subspace."
-	origin_tech = "magnets=4;materials=4;bluespace=2"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 2)
 	g_amt = 50
 
 
@@ -756,7 +768,7 @@
 	name = "subspace transmitter"
 	icon_state = "subspace_transmitter"
 	desc = "A large piece of equipment used to open a window into the subspace dimension."
-	origin_tech = "magnets=5;materials=5;bluespace=3"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 5, RESEARCH_TECH_MATERIALS = 5, RESEARCH_TECH_BLUESPACE = 3)
 	m_amt = 50
 
 
@@ -772,4 +784,8 @@
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "capacitor"
 	desc = "A debug item for research."
-	origin_tech = "materials=8;programming=8;magnets=8;powerstorage=8;bluespace=8;combat=8;biotech=8;syndicate=8"
+	origin_tech = list(
+		RESEARCH_TECH_MATERIALS = 8, RESEARCH_TECH_PROGRAMMING = 8, RESEARCH_TECH_MAGNETS = 8,
+		RESEARCH_TECH_POWERSTORAGE = 8, RESEARCH_TECH_BLUESPACE = 8, RESEARCH_TECH_COMBAT = 8,
+		RESEARCH_TECH_BIOTECH = 8, RESEARCH_TECH_SYNDICATE = 8
+	)

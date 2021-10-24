@@ -35,6 +35,7 @@
 #include "code\__DEFINES\preferences.dm"
 #include "code\__DEFINES\process_scheduler.dm"
 #include "code\__DEFINES\radio.dm"
+#include "code\__DEFINES\research.dm"
 #include "code\__DEFINES\setup.dm"
 #include "code\__DEFINES\shuttles.dm"
 #include "code\__DEFINES\species_languages.dm"

@@ -10,7 +10,7 @@
 	force = 5.0
 	flags = CONDUCT | USEDELAY
 	slot_flags = 0
-	origin_tech = "combat=8;materials=5"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 8, RESEARCH_TECH_MATERIALS = 5)
 	projectile = /obj/item/missile
 	var/missile_speed = 2
 	var/missile_range = 30

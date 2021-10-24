@@ -6,7 +6,7 @@
 	name = "Circuit board (Experimental hull shield generator)"
 	board_type = "machine"
 	build_path = /obj/machinery/shield_gen/external
-	origin_tech = "bluespace=4;plasmatech=3"
+	origin_tech = list(RESEARCH_TECH_BLUESPACE = 4, RESEARCH_TECH_PLASMATECH = 3)
 	frame_desc = "Requires 2 Pico Manipulators, 1 Subspace Transmitter, 5 Pieces of cable, 1 Subspace Crystal, 1 Subspace Amplifier and 1 Console Screen."
 	req_components = list(
 		/obj/item/weapon/stock_parts/manipulator/pico = 2,
@@ -21,7 +21,7 @@
 	name = "Circuit Design (Experimental hull shield generator)"
 	desc = "Allows for the construction of circuit boards used to build an experimental hull shield generator."
 	id = "shield_gen"
-	req_tech = list("bluespace" = 4, "plasmatech" = 3)
+	req_tech = list(RESEARCH_TECH_BLUESPACE = 4, RESEARCH_TECH_PLASMATECH = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_PLASMA = 10000, MATERIAL_DIAMOND = 5000, MATERIAL_GOLD = 10000)
 	build_path = /obj/machinery/shield_gen/external
@@ -33,7 +33,7 @@
 	name = "Circuit board (Experimental bubble shield generator)"
 	board_type = "machine"
 	build_path = /obj/machinery/shield_gen/external
-	origin_tech = "bluespace=4;plasmatech=3"
+	origin_tech = list(RESEARCH_TECH_BLUESPACE = 4, RESEARCH_TECH_PLASMATECH = 3)
 	frame_desc = "Requires 2 Pico Manipulators, 1 Subspace Transmitter, 5 Pieces of cable, 1 Subspace Crystal, 1 Subspace Amplifier and 1 Console Screen."
 	req_components = list(
 		/obj/item/weapon/stock_parts/manipulator/pico = 2,
@@ -48,7 +48,7 @@
 	name = "Circuit Design (Experimental bubble shield generator)"
 	desc = "Allows for the construction of circuit boards used to build an experimental shield generator."
 	id = "shield_gen"
-	req_tech = list("bluespace" = 4, "plasmatech" = 3)
+	req_tech = list(RESEARCH_TECH_BLUESPACE = 4, RESEARCH_TECH_PLASMATECH = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_PLASMA = 10000, MATERIAL_DIAMOND = 5000, MATERIAL_GOLD = 10000)
 	build_path = /obj/machinery/shield_gen/external
@@ -60,7 +60,7 @@
 	name = "Circuit board (Experimental shield capacitor)"
 	board_type = "machine"
 	build_path = /obj/machinery/shield_capacitor
-	origin_tech = "magnets=3;powerstorage=4"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_POWERSTORAGE = 4)
 	frame_desc = "Requires 2 Pico Manipulators, 1 Subspace Filter, 5 Pieces of cable, 1 Subspace Treatment disk, 1 Subspace Analyzer and 1 Console Screen."
 	req_components = list(
 		/obj/item/weapon/stock_parts/manipulator/pico = 2,
@@ -75,7 +75,7 @@
 	name = "Circuit Design (Experimental shield capacitor)"
 	desc = "Allows for the construction of circuit boards used to build an experimental shielding capacitor."
 	id = "shield_cap"
-	req_tech = list("magnets" = 3, "powerstorage" = 4)
+	req_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_POWERSTORAGE = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_PLASMA = 10000, MATERIAL_DIAMOND = 5000, MATERIAL_SILVER = 10000)
 	build_path = /obj/machinery/shield_gen/external

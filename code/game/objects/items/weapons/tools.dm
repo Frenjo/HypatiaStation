@@ -25,7 +25,7 @@
 	throwforce = 7.0
 	w_class = 2.0
 	m_amt = 150
-	origin_tech = "materials=1;engineering=1"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_ENGINEERING = 1)
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
 
@@ -105,7 +105,7 @@
 	throw_range = 9
 	w_class = 2.0
 	m_amt = 80
-	origin_tech = "materials=1;engineering=1"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_ENGINEERING = 1)
 	attack_verb = list("pinched", "nipped")
 	sharp = 1
 	edge = 1
@@ -149,7 +149,7 @@
 	g_amt = 30
 
 	//R&D tech level
-	origin_tech = "engineering=1"
+	origin_tech = list(RESEARCH_TECH_ENGINEERING = 1)
 
 	//Welding tool specific stuff
 	var/welding = 0 	//Whether or not the welding tool is off(0), on(1) or currently welding(2)
@@ -405,7 +405,7 @@
 	max_fuel = 40
 	m_amt = 70
 	g_amt = 60
-	origin_tech = "engineering=2"
+	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2)
 
 /obj/item/weapon/weldingtool/hugetank
 	name = "Upgraded Welding Tool"
@@ -413,7 +413,7 @@
 	w_class = 3.0
 	m_amt = 70
 	g_amt = 120
-	origin_tech = "engineering=3"
+	origin_tech = list(RESEARCH_TECH_ENGINEERING = 3)
 
 /obj/item/weapon/weldingtool/experimental
 	name = "Experimental Welding Tool"
@@ -421,7 +421,7 @@
 	w_class = 3.0
 	m_amt = 70
 	g_amt = 120
-	origin_tech = "engineering=4;plasma=3"
+	origin_tech = list(RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_PLASMATECH = 3)
 	var/last_gen = 0
 
 
@@ -448,7 +448,7 @@
 	item_state = "crowbar"
 	w_class = 2.0
 	m_amt = 50
-	origin_tech = "engineering=1"
+	origin_tech = list(RESEARCH_TECH_ENGINEERING = 1)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 
 /obj/item/weapon/crowbar/red

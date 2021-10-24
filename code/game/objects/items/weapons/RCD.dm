@@ -19,7 +19,7 @@ RCD
 	throw_range = 5
 	w_class = 3.0
 	m_amt = 50000
-	origin_tech = "engineering=4;materials=2"
+	origin_tech = list(RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_MATERIALS = 2)
 	var/datum/effect/system/spark_spread/spark_system
 	var/matter = 0
 	var/working = 0
@@ -202,6 +202,6 @@ RCD
 	opacity = 0
 	density = 0
 	anchored = 0.0
-	origin_tech = "materials=2"
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 2)
 	m_amt = 30000
 	g_amt = 15000

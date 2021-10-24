@@ -18,7 +18,7 @@
 	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."
 	m_amt = 50
 	g_amt = 20
-	origin_tech = "magnets=1;engineering=1"
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 1, RESEARCH_TECH_ENGINEERING = 1)
 	var/obj/machinery/telecomms/buffer // simple machine buffer for device linkage
 
 /obj/item/device/debugger/is_used_on(obj/O, mob/user)

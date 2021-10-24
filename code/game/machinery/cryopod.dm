@@ -98,7 +98,7 @@ var/global/list/frozen_items = list()
 /obj/item/weapon/circuitboard/cryopodcontrol
 	name = "Circuit board (Cryogenic Oversight Console)"
 	build_path = /obj/machinery/computer/cryopod
-	origin_tech = "programming=3"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 
 //Decorative structures to go alongside cryopods.
 /obj/structure/cryofeed

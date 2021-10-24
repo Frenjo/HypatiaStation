@@ -15,7 +15,7 @@
 		GUN_SETTING_STUN = /obj/item/projectile/energy/electrode,
 		GUN_SETTING_KILL = /obj/item/projectile/energy/beam/laser
 	)
-	origin_tech = "combat=3;magnets=2"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MAGNETS = 2)
 	modifystate = "energystun"
 
 /obj/item/weapon/gun/energy/gun/attack_self(mob/living/user as mob)
@@ -38,7 +38,7 @@
 	name = "Advanced Energy Gun"
 	desc = "An energy gun with an experimental miniaturized reactor."
 	icon_state = "nucgun"
-	origin_tech = "combat=3;materials=5;powerstorage=3"
+	origin_tech = list(RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MATERIALS = 5, RESEARCH_TECH_POWERSTORAGE = 3)
 	var/lightfail = 0
 	var/charge_tick = 0
 

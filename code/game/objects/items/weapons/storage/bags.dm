@@ -91,7 +91,7 @@
 	icon_state = "satchel_bspace"
 	storage_slots = INFINITY
 	max_combined_w_class = INFINITY
-	origin_tech = "bluespace=3"
+	origin_tech = list(RESEARCH_TECH_BLUESPACE = 3)
 	can_hold = list(/obj/item/weapon/ore)
 
 // -----------------------------

@@ -18,7 +18,7 @@
 	icon = 'icons/obj/module.dmi'
 	icon_state = "id_mod"
 	item_state = "electronic"
-	origin_tech = "programming=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 	var/id = null
 	var/frequency = null
 	var/build_path = null
@@ -33,7 +33,7 @@
 /obj/item/weapon/circuitboard/message_monitor
 	name = "Circuit board (Message Monitor)"
 	build_path = /obj/machinery/computer/message_monitor
-	origin_tech = "programming=3"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 
 /obj/item/weapon/circuitboard/security
 	name = "Circuit board (Security)"
@@ -45,18 +45,18 @@
 
 /obj/item/weapon/circuitboard/aicore
 	name = "Circuit board (AI core)"
-	origin_tech = "programming=4;biotech=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_BIOTECH = 2)
 	board_type = "other"
 
 /obj/item/weapon/circuitboard/aiupload
 	name = "Circuit board (AI Upload)"
 	build_path = /obj/machinery/computer/aiupload
-	origin_tech = "programming=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
 
 /obj/item/weapon/circuitboard/borgupload
 	name = "Circuit board (Cyborg Upload)"
 	build_path = /obj/machinery/computer/borgupload
-	origin_tech = "programming=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
 
 /obj/item/weapon/circuitboard/med_data
 	name = "Circuit board (Medical Records)"
@@ -65,17 +65,17 @@
 /obj/item/weapon/circuitboard/pandemic
 	name = "Circuit board (PanD.E.M.I.C. 2200)"
 	build_path = /obj/machinery/computer/pandemic
-	origin_tech = "programming=2;biotech=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_BIOTECH = 2)
 
 /obj/item/weapon/circuitboard/scan_consolenew
 	name = "Circuit board (DNA Machine)"
 	build_path = /obj/machinery/computer/scan_consolenew
-	origin_tech = "programming=2;biotech=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_BIOTECH = 2)
 
 /obj/item/weapon/circuitboard/communications
 	name = "Circuit board (Communications)"
 	build_path = /obj/machinery/computer/communications
-	origin_tech = "programming=2;magnets=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_MAGNETS = 2)
 
 /obj/item/weapon/circuitboard/card
 	name = "Circuit board (ID Computer)"
@@ -92,7 +92,7 @@
 /obj/item/weapon/circuitboard/teleporter
 	name = "Circuit board (Teleporter)"
 	build_path = /obj/machinery/computer/teleporter
-	origin_tech = "programming=2;bluespace=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_BLUESPACE = 2)
 
 /obj/item/weapon/circuitboard/secure_data
 	name = "Circuit board (Security Records)"
@@ -129,29 +129,29 @@
 /obj/item/weapon/circuitboard/robotics
 	name = "Circuit board (Robotics Control)"
 	build_path = /obj/machinery/computer/robotics
-	origin_tech = "programming=3"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 
 /obj/item/weapon/circuitboard/cloning
 	name = "Circuit board (Cloning)"
 	build_path = /obj/machinery/computer/cloning
-	origin_tech = "programming=3;biotech=3"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_BIOTECH = 3)
 
 /obj/item/weapon/circuitboard/arcade
 	name = "Circuit board (Arcade)"
 	build_path = /obj/machinery/computer/arcade
-	origin_tech = "programming=1"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 1)
 
 /obj/item/weapon/circuitboard/turbine_control
 	name = "Circuit board (Turbine control)"
 	build_path = /obj/machinery/computer/turbine_computer
 
 /obj/item/weapon/circuitboard/solar_control
-	name = "Circuit board (Solar Control)"  //name fixed 250810
+	name = "Circuit board (Solar Control)"	//name fixed 250810
 	build_path = /obj/machinery/power/solar_control
-	origin_tech = "programming=2;powerstorage=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_POWERSTORAGE = 2)
 
 /obj/item/weapon/circuitboard/powermonitor
-	name = "Circuit board (Power Monitor)"  //name fixed 250810
+	name = "Circuit board (Power Monitor)"	//name fixed 250810
 	build_path = /obj/machinery/power/monitor
 
 /obj/item/weapon/circuitboard/olddoor
@@ -185,43 +185,43 @@
 /obj/item/weapon/circuitboard/crew
 	name = "Circuit board (Crew monitoring computer)"
 	build_path = /obj/machinery/computer/crew
-	origin_tech = "programming=3;biotech=2;magnets=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_BIOTECH = 2, RESEARCH_TECH_MAGNETS = 2)
 
 /obj/item/weapon/circuitboard/mech_bay_power_console
 	name = "Circuit board (Mech Bay Power Control Console)"
 	build_path = /obj/machinery/computer/mech_bay_power_console
-	origin_tech = "programming=2;powerstorage=3"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 
 /obj/item/weapon/circuitboard/ordercomp
 	name = "Circuit board (Supply ordering console)"
 	build_path = /obj/machinery/computer/ordercomp
-	origin_tech = "programming=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 
 /obj/item/weapon/circuitboard/supplycomp
 	name = "Circuit board (Supply shuttle console)"
 	build_path = /obj/machinery/computer/supplycomp
-	origin_tech = "programming=3"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 	var/contraband_enabled = 0
 
 /obj/item/weapon/circuitboard/operating
 	name = "Circuit board (Operating Computer)"
 	build_path = /obj/machinery/computer/operating
-	origin_tech = "programming=2;biotech=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_BIOTECH = 2)
 
 /obj/item/weapon/circuitboard/comm_monitor
 	name = "Circuit board (Telecommunications Monitor)"
 	build_path = /obj/machinery/computer/telecomms/monitor
-	origin_tech = "programming=3"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 
 /obj/item/weapon/circuitboard/comm_server
 	name = "Circuit board (Telecommunications Server Monitor)"
 	build_path = /obj/machinery/computer/telecomms/server
-	origin_tech = "programming=3"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 
 /obj/item/weapon/circuitboard/comm_traffic
 	name = "Circuitboard (Telecommunications Traffic Control)"
 	build_path = /obj/machinery/computer/telecomms/traffic
-	origin_tech = "programming=3"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 
 /obj/item/weapon/circuitboard/curefab
 	name = "Circuit board (Cure fab)"
@@ -233,38 +233,38 @@
 /obj/item/weapon/circuitboard/mining_shuttle
 	name = "Circuit board (Mining Shuttle)"
 	build_path = /obj/machinery/computer/shuttle_control/mining
-	origin_tech = "programming=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 
 /obj/item/weapon/circuitboard/research_shuttle
 	name = "Circuit board (Research Shuttle)"
 	build_path = /obj/machinery/computer/shuttle_control/research
-	origin_tech = "programming=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 
 // Added engineering shuttle to make use of the 'Ruskie DJ Station'. -Frenjo
 /obj/item/weapon/circuitboard/engineering_shuttle
 	name = "Circuit board (Engineering Shuttle)"
 	build_path = /obj/machinery/computer/shuttle_control/engineering
-	origin_tech = "programming=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 
 /obj/item/weapon/circuitboard/HolodeckControl // Not going to let people get this, but it's just here for future
 	name = "Circuit board (Holodeck Control)"
 	build_path = /obj/machinery/computer/HolodeckControl
-	origin_tech = "programming=4"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
 
 /obj/item/weapon/circuitboard/aifixer
 	name = "Circuit board (AI Integrity Restorer)"
 	build_path = /obj/machinery/computer/aifixer
-	origin_tech = "programming=3;biotech=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_BIOTECH = 2)
 
 /obj/item/weapon/circuitboard/area_atmos
 	name = "Circuit board (Area Air Control)"
 	build_path = /obj/machinery/computer/area_atmos
-	origin_tech = "programming=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 
 /obj/item/weapon/circuitboard/prison_shuttle
 	name = "Circuit board (Prison Shuttle)"
 	build_path = /obj/machinery/computer/shuttle_control/prison
-	origin_tech = "programming=2"
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 
 
 /obj/item/weapon/circuitboard/supplycomp/attackby(obj/item/I as obj, mob/user as mob)
