@@ -1,3 +1,10 @@
+//SUPPLY PACKS
+//NOTE: only secure crate types use the access var (and are lockable)
+//NOTE: hidden packs only show up when the computer has been hacked.
+//ANOTHER NOTE: Contraband is obtainable through modified supplycomp circuitboards.
+//BIG NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
+//NEW NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
+
 var/decl/hierarchy/supply_pack/cargo_supply_pack_root = new()
 var/decl/hierarchy/supply_pack/cargo_supply_packs	// Non-category supply packs
 
