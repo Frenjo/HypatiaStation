@@ -10,7 +10,7 @@
 /area/bridge/meeting_room
 	name = "\improper Heads of Staff Meeting Room"
 	icon_state = "bridge"
-	ambience = null
+	ambience = list()
 
 /area/crew_quarters/captain
 	name = "\improper Captain's Office"
