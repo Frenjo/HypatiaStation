@@ -44,7 +44,7 @@
 
 /obj/mecha/combat/phazon/click_action(atom/target, mob/user)
 	if(phasing)
-		src.occupant_message("Unable to interact with objects while phasing")
+		src.occupant_message("Unable to interact with objects while phasing.")
 		return
 	else
 		return ..()

@@ -38,106 +38,97 @@
 	var/opened = 0
 	var/temp
 	var/list/part_sets = list( //set names must be unique
-	"Robot"=list(
-						/obj/item/robot_parts/robot_suit,
-						/obj/item/robot_parts/chest,
-						/obj/item/robot_parts/head,
-						/obj/item/robot_parts/l_arm,
-						/obj/item/robot_parts/r_arm,
-						/obj/item/robot_parts/l_leg,
-						/obj/item/robot_parts/r_leg,
-						/obj/item/robot_parts/robot_component/binary_communication_device,
-						/obj/item/robot_parts/robot_component/radio,
-						/obj/item/robot_parts/robot_component/actuator,
-						/obj/item/robot_parts/robot_component/diagnosis_unit,
-						/obj/item/robot_parts/robot_component/camera,
-						/obj/item/robot_parts/robot_component/armour
-					),
-	"Ripley"=list(
-						/obj/item/mecha_parts/chassis/ripley,
-						/obj/item/mecha_parts/part/ripley_torso,
-						/obj/item/mecha_parts/part/ripley_left_arm,
-						/obj/item/mecha_parts/part/ripley_right_arm,
-						/obj/item/mecha_parts/part/ripley_left_leg,
-						/obj/item/mecha_parts/part/ripley_right_leg
-					),
-	"Odysseus"=list(
-						/obj/item/mecha_parts/chassis/odysseus,
-						/obj/item/mecha_parts/part/odysseus_torso,
-						/obj/item/mecha_parts/part/odysseus_head,
-						/obj/item/mecha_parts/part/odysseus_left_arm,
-						/obj/item/mecha_parts/part/odysseus_right_arm,
-						/obj/item/mecha_parts/part/odysseus_left_leg,
-						/obj/item/mecha_parts/part/odysseus_right_leg
-					),
-
-	"Gygax"=list(
-						/obj/item/mecha_parts/chassis/gygax,
-						/obj/item/mecha_parts/part/gygax_torso,
-						/obj/item/mecha_parts/part/gygax_head,
-						/obj/item/mecha_parts/part/gygax_left_arm,
-						/obj/item/mecha_parts/part/gygax_right_arm,
-						/obj/item/mecha_parts/part/gygax_left_leg,
-						/obj/item/mecha_parts/part/gygax_right_leg,
-						/obj/item/mecha_parts/part/gygax_armour
-					),
-	"Durand"=list(
-						/obj/item/mecha_parts/chassis/durand,
-						/obj/item/mecha_parts/part/durand_torso,
-						/obj/item/mecha_parts/part/durand_head,
-						/obj/item/mecha_parts/part/durand_left_arm,
-						/obj/item/mecha_parts/part/durand_right_arm,
-						/obj/item/mecha_parts/part/durand_left_leg,
-						/obj/item/mecha_parts/part/durand_right_leg,
-						/obj/item/mecha_parts/part/durand_armour
-					),
-	"H.O.N.K"=list(
-						/obj/item/mecha_parts/chassis/honker,
-						/obj/item/mecha_parts/part/honker_torso,
-						/obj/item/mecha_parts/part/honker_head,
-						/obj/item/mecha_parts/part/honker_left_arm,
-						/obj/item/mecha_parts/part/honker_right_arm,
-						/obj/item/mecha_parts/part/honker_left_leg,
-						/obj/item/mecha_parts/part/honker_right_leg
-					),
-	"Exosuit Equipment"=list(
-						/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp,
-						/obj/item/mecha_parts/mecha_equipment/tool/drill,
-						/obj/item/mecha_parts/mecha_equipment/tool/extinguisher,
-						/obj/item/mecha_parts/mecha_equipment/tool/cable_layer,
-						/obj/item/mecha_parts/mecha_equipment/tool/passenger, // Ported this from NSS Eternal along with the hoverpod. -Frenjo
-						/obj/item/mecha_parts/mecha_equipment/tool/sleeper,
-						/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun,
-						/obj/item/mecha_parts/chassis/firefighter,
-						/obj/item/mecha_parts/mecha_equipment/repair_droid, // Re-enabled this. -Frenjo
-						/obj/item/mecha_parts/mecha_equipment/generator,
-						///obj/item/mecha_parts/mecha_equipment/jetpack, //TODO MECHA JETPACK SPRITE MISSING
-						/obj/item/mecha_parts/mecha_equipment/weapon/energy/taser,
-						/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg,
-						/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar/mousetrap_mortar,
-						/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar,
-						/obj/item/mecha_parts/mecha_equipment/weapon/honker
-					),
-
-	"Robotic Upgrade Modules" = list(
-						/obj/item/borg/upgrade/reset,
-						/obj/item/borg/upgrade/rename,
-						/obj/item/borg/upgrade/restart,
-						/obj/item/borg/upgrade/vtec,
-						/obj/item/borg/upgrade/tasercooler,
-						/obj/item/borg/upgrade/jetpack
-					),
-
-
-
-
-
-
-	"Misc"=list(/obj/item/mecha_parts/mecha_tracking)
+		"Robot" = list(
+			/obj/item/robot_parts/robot_suit,
+			/obj/item/robot_parts/chest,
+			/obj/item/robot_parts/head,
+			/obj/item/robot_parts/l_arm,
+			/obj/item/robot_parts/r_arm,
+			/obj/item/robot_parts/l_leg,
+			/obj/item/robot_parts/r_leg,
+			/obj/item/robot_parts/robot_component/binary_communication_device,
+			/obj/item/robot_parts/robot_component/radio,
+			/obj/item/robot_parts/robot_component/actuator,
+			/obj/item/robot_parts/robot_component/diagnosis_unit,
+			/obj/item/robot_parts/robot_component/camera,
+			/obj/item/robot_parts/robot_component/armour
+		),
+		"Ripley" = list(
+			/obj/item/mecha_parts/chassis/ripley,
+			/obj/item/mecha_parts/part/ripley_torso,
+			/obj/item/mecha_parts/part/ripley_left_arm,
+			/obj/item/mecha_parts/part/ripley_right_arm,
+			/obj/item/mecha_parts/part/ripley_left_leg,
+			/obj/item/mecha_parts/part/ripley_right_leg
+		),
+		"Odysseus" = list(
+			/obj/item/mecha_parts/chassis/odysseus,
+			/obj/item/mecha_parts/part/odysseus_torso,
+			/obj/item/mecha_parts/part/odysseus_head,
+			/obj/item/mecha_parts/part/odysseus_left_arm,
+			/obj/item/mecha_parts/part/odysseus_right_arm,
+			/obj/item/mecha_parts/part/odysseus_left_leg,
+			/obj/item/mecha_parts/part/odysseus_right_leg
+		),
+		"Gygax" = list(
+			/obj/item/mecha_parts/chassis/gygax,
+			/obj/item/mecha_parts/part/gygax_torso,
+			/obj/item/mecha_parts/part/gygax_head,
+			/obj/item/mecha_parts/part/gygax_left_arm,
+			/obj/item/mecha_parts/part/gygax_right_arm,
+			/obj/item/mecha_parts/part/gygax_left_leg,
+			/obj/item/mecha_parts/part/gygax_right_leg,
+			/obj/item/mecha_parts/part/gygax_armour
+		),
+		"Durand" = list(
+			/obj/item/mecha_parts/chassis/durand,
+			/obj/item/mecha_parts/part/durand_torso,
+			/obj/item/mecha_parts/part/durand_head,
+			/obj/item/mecha_parts/part/durand_left_arm,
+			/obj/item/mecha_parts/part/durand_right_arm,
+			/obj/item/mecha_parts/part/durand_left_leg,
+			/obj/item/mecha_parts/part/durand_right_leg,
+			/obj/item/mecha_parts/part/durand_armour
+		),
+		"H.O.N.K" = list(
+			/obj/item/mecha_parts/chassis/honker,
+			/obj/item/mecha_parts/part/honker_torso,
+			/obj/item/mecha_parts/part/honker_head,
+			/obj/item/mecha_parts/part/honker_left_arm,
+			/obj/item/mecha_parts/part/honker_right_arm,
+			/obj/item/mecha_parts/part/honker_left_leg,
+			/obj/item/mecha_parts/part/honker_right_leg
+		),
+		"Exosuit Equipment" = list(
+			/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp,
+			/obj/item/mecha_parts/mecha_equipment/tool/drill,
+			/obj/item/mecha_parts/mecha_equipment/tool/extinguisher,
+			/obj/item/mecha_parts/mecha_equipment/tool/cable_layer,
+			/obj/item/mecha_parts/mecha_equipment/tool/passenger, // Ported this from NSS Eternal along with the hoverpod. -Frenjo
+			/obj/item/mecha_parts/mecha_equipment/tool/sleeper,
+			/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun,
+			/obj/item/mecha_parts/chassis/firefighter,
+			/obj/item/mecha_parts/mecha_equipment/repair_droid, // Re-enabled this. -Frenjo
+			/obj/item/mecha_parts/mecha_equipment/generator,
+			///obj/item/mecha_parts/mecha_equipment/jetpack, //TODO MECHA JETPACK SPRITE MISSING
+			/obj/item/mecha_parts/mecha_equipment/weapon/energy/taser,
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg,
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar/mousetrap_mortar,
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar,
+			/obj/item/mecha_parts/mecha_equipment/weapon/honker
+		),
+		"Robotic Upgrade Modules" = list(
+			/obj/item/borg/upgrade/reset,
+			/obj/item/borg/upgrade/rename,
+			/obj/item/borg/upgrade/restart,
+			/obj/item/borg/upgrade/vtec,
+			/obj/item/borg/upgrade/tasercooler,
+			/obj/item/borg/upgrade/jetpack
+		),
+		"Misc" = list(
+			/obj/item/mecha_parts/mecha_tracking
+		)
 	)
-
-
-
 
 /obj/machinery/mecha_part_fabricator/New()
 	..()
@@ -167,23 +158,23 @@
 	var/T = 0
 	for(var/obj/item/weapon/stock_parts/matter_bin/M in component_parts)
 		T += M.rating
-	res_max_amount = (187500+(T * 37500))
+	res_max_amount = (187500 + (T * 37500))
 	T = 0
 	for(var/obj/item/weapon/stock_parts/micro_laser/Ma in component_parts)
 		T += Ma.rating
 	if(T >= 1)
 		T -= 1
 	var/diff
-	diff = round(initial(resource_coeff) - (initial(resource_coeff)*(T))/25,0.01)
+	diff = round(initial(resource_coeff) - (initial(resource_coeff) * (T)) / 25, 0.01)
 	if(resource_coeff!=diff)
 		resource_coeff = diff
 	T = 0
 	for(var/obj/item/weapon/stock_parts/manipulator/Ml in component_parts)
 		T += Ml.rating
-	if(T>= 1)
+	if(T >= 1)
 		T -= 1
-	diff = round(initial(time_coeff) - (initial(time_coeff)*(T))/25,0.01)
-	if(time_coeff!=diff)
+	diff = round(initial(time_coeff) - (initial(time_coeff) * (T)) / 25, 0.01)
+	if(time_coeff != diff)
 		time_coeff = diff
 
 /obj/machinery/mecha_part_fabricator/Destroy()
@@ -196,12 +187,12 @@
 		return 1
 	if(!istype(req_access) || !req_access.len)
 		return 1
-	else if(istype(M, /mob/living/carbon/human))
+	else if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/ID in list(H.get_active_hand(), H.wear_id, H.belt))
 			if(src.check_access(ID))
 				return 1
-	M << "<font color='red'>You don't have required permissions to use [src]</font>"
+	to_chat(M, "<font color='red'>You don't have required permissions to use [src].</font>")
 	return 0
 
 /obj/machinery/mecha_part_fabricator/check_access(obj/item/weapon/card/id/I)
@@ -238,17 +229,17 @@
 /obj/machinery/mecha_part_fabricator/proc/convert_part_set(set_name as text)
 	var/list/parts = part_sets[set_name]
 	if(istype(parts, /list))
-		for(var/i=1;i<=parts.len;i++)
+		for(var/i = 1; i <= parts.len; i++)
 			var/path = parts[i]
 			var/part = new path(src)
 			if(part)
 				parts[i] = part
 			//debug below
-			if(!istype(parts[i],/obj/item)) return 0
+			if(!istype(parts[i], /obj/item))
+				return 0
 	return
 
-
-/obj/machinery/mecha_part_fabricator/proc/add_part_set(set_name as text,parts=null)
+/obj/machinery/mecha_part_fabricator/proc/add_part_set(set_name as text, parts = null)
 	if(set_name in part_sets)//attempt to create duplicate set
 		return 0
 	if(isnull(parts))
@@ -258,8 +249,9 @@
 	convert_part_set(set_name)
 	return 1
 
-/obj/machinery/mecha_part_fabricator/proc/add_part_to_set(set_name as text,part)
-	if(!part) return 0
+/obj/machinery/mecha_part_fabricator/proc/add_part_to_set(set_name as text, part)
+	if(!part)
+		return 0
 	src.add_part_set(set_name)//if no "set_name" set exists, create
 	var/list/part_set = part_sets[set_name]
 	var/atom/apart
@@ -267,7 +259,8 @@
 		apart = new part(src)
 	else
 		apart = part
-	if(!istype(apart)) return 0
+	if(!istype(apart))
+		return 0
 	for(var/obj/O in part_set)
 		if(O.type == apart.type)
 			qdel(apart)
@@ -276,9 +269,9 @@
 	return 1
 
 /obj/machinery/mecha_part_fabricator/proc/remove_part_set(set_name as text)
-	for(var/i=1,i<=part_sets.len,i++)
-		if(part_sets[i]==set_name)
-			part_sets.Cut(i,++i)
+	for(var/i = 1, i <= part_sets.len, i++)
+		if(part_sets[i] == set_name)
+			part_sets.Cut(i, ++i)
 	return
 /*
 	proc/sanity_check()
@@ -311,20 +304,20 @@
 	if(istype(part_set))
 		for(var/obj/item/part in part_set)
 			var/resources_available = check_resources(part)
-			output += "<div class='part'>[output_part_info(part)]<br>\[[resources_available?"<a href='?src=\ref[src];part=\ref[part]'>Build</a> | ":null]<a href='?src=\ref[src];add_to_queue=\ref[part]'>Add to queue</a>\]\[<a href='?src=\ref[src];part_desc=\ref[part]'>?</a>\]</div>"
+			output += "<div class='part'>[output_part_info(part)]<br>\[[resources_available ? "<a href='?src=\ref[src];part=\ref[part]'>Build</a> | " : null]<a href='?src=\ref[src];add_to_queue=\ref[part]'>Add to queue</a>\]\[<a href='?src=\ref[src];part_desc=\ref[part]'>?</a>\]</div>"
 	return output
 
-/obj/machinery/mecha_part_fabricator/proc/output_part_info(var/obj/item/part)
-	var/output = "[part.name] (Cost: [output_part_cost(part)]) [get_construction_time_w_coeff(part)/10]sec"
+/obj/machinery/mecha_part_fabricator/proc/output_part_info(obj/item/part)
+	var/output = "[part.name] (Cost: [output_part_cost(part)]) [get_construction_time_w_coeff(part) / 10]sec"
 	return output
 
-/obj/machinery/mecha_part_fabricator/proc/output_part_cost(var/obj/item/part)
+/obj/machinery/mecha_part_fabricator/proc/output_part_cost(obj/item/part)
 	var/i = 0
 	var/output
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))//The most efficient way to go about this. Not all objects have these vars, but if they don't then they CANNOT be made by the mech fab. Doing it this way reduces a major amount of typecasting and switches, while cutting down maintenece for them as well -Sieve
 		for(var/c in part:construction_cost)//The check should ensure that anything without the var doesn't make it to this point
 			if(c in resources)
-				output += "[i?" | ":null][get_resource_cost_w_coeff(part,c)] [c]"
+				output += "[i ? " | " : null][get_resource_cost_w_coeff(part, c)] [c]"
 				i++
 		return output
 	else
@@ -340,29 +333,30 @@
 		output += "<br/>"
 	return output
 
-/obj/machinery/mecha_part_fabricator/proc/remove_resources(var/obj/item/part)
+/obj/machinery/mecha_part_fabricator/proc/remove_resources(obj/item/part)
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
 		for(var/resource in part:construction_cost)
 			if(resource in src.resources)
-				src.resources[resource] -= get_resource_cost_w_coeff(part,resource)
+				src.resources[resource] -= get_resource_cost_w_coeff(part, resource)
 	else
 		return
 
-/obj/machinery/mecha_part_fabricator/proc/check_resources(var/obj/item/part)
+/obj/machinery/mecha_part_fabricator/proc/check_resources(obj/item/part)
 //		if(istype(part, /obj/item/robot_parts) || istype(part, /obj/item/mecha_parts) || istype(part,/obj/item/borg/upgrade))
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
 		for(var/resource in part:construction_cost)
 			if(resource in src.resources)
-				if(src.resources[resource] < get_resource_cost_w_coeff(part,resource))
+				if(src.resources[resource] < get_resource_cost_w_coeff(part, resource))
 					return 0
 		return 1
 	else
 		return 0
 
-/obj/machinery/mecha_part_fabricator/proc/build_part(var/obj/item/part)
-	if(!part) return
+/obj/machinery/mecha_part_fabricator/proc/build_part(obj/item/part)
+	if(!part)
+		return
 	src.being_built = new part.type(src)
 	src.desc = "It's building [src.being_built]."
 	src.remove_resources(part)
@@ -374,14 +368,14 @@
 	src.overlays -= "fab-active"
 	src.desc = initial(src.desc)
 	if(being_built)
-		src.being_built.Move(get_step(src,SOUTH))
+		src.being_built.Move(get_step(src, SOUTH))
 		src.visible_message("\icon[src] <b>[src]</b> beeps, \"The following has been completed: [src.being_built] is built\".")
 		src.being_built = null
 	src.updateUsrDialog()
 	return 1
 
 /obj/machinery/mecha_part_fabricator/proc/update_queue_on_page()
-	send_byjax(usr,"mecha_fabricator.browser","queue",src.list_queue())
+	send_byjax(usr,"mecha_fabricator.browser", "queue", src.list_queue())
 	return
 
 /obj/machinery/mecha_part_fabricator/proc/add_part_set_to_queue(set_name)
@@ -400,9 +394,9 @@
 	return queue.len
 
 /obj/machinery/mecha_part_fabricator/proc/remove_from_queue(index)
-	if(!isnum(index) || !istype(queue) || (index<1 || index>queue.len))
+	if(!isnum(index) || !istype(queue) || (index < 1 || index > queue.len))
 		return 0
-	queue.Cut(index,++index)
+	queue.Cut(index, ++index)
 	return 1
 
 /obj/machinery/mecha_part_fabricator/proc/process_queue()
@@ -437,7 +431,7 @@
 		output += "<br>Nothing"
 	else
 		output += "<ol>"
-		for(var/i=1;i<=queue.len;i++)
+		for(var/i = 1; i <= queue.len; i++)
 			var/obj/item/part = listgetindex(src.queue, i)
 			if(istype(part))
 				if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
@@ -450,10 +444,11 @@
 	return output
 
 /obj/machinery/mecha_part_fabricator/proc/convert_designs()
-	if(!files) return
+	if(!files)
+		return
 	var/i = 0
 	for(var/datum/design/D in files.known_designs)
-		if(D.build_type&16)
+		if(D.build_type & 16)
 			if(D.category in part_sets)//Checks if it's a valid category
 				if(add_part_to_set(D.category, D.build_path))//Adds it to said category
 					i++
@@ -463,7 +458,8 @@
 	return i
 
 /obj/machinery/mecha_part_fabricator/proc/update_tech()
-	if(!files) return
+	if(!files)
+		return
 	var/output
 	for(var/datum/tech/T in files.known_tech)
 		if(T && T.level > 1)
@@ -475,24 +471,24 @@
 						pmat += Ml.rating
 					if(pmat >= 1)
 						pmat -= 1//So the equations don't have to be reworked, upgrading a single part from T1 to T2 is == to 1 tech level
-					diff = round(initial(resource_coeff) - (initial(resource_coeff)*(T.level+pmat))/25,0.01)
-					if(resource_coeff!=diff)
+					diff = round(initial(resource_coeff) - (initial(resource_coeff) * (T.level + pmat)) / 25, 0.01)
+					if(resource_coeff != diff)
 						resource_coeff = diff
-						output+="Production efficiency increased.<br>"
+						output += "Production efficiency increased.<br>"
 				if("programming")
 					var/ptime = 0
 					for(var/obj/item/weapon/stock_parts/manipulator/Ma in component_parts)
 						ptime += Ma.rating
 					if(ptime >= 2)
 						ptime -= 2
-					diff = round(initial(time_coeff) - (initial(time_coeff)*(T.level+ptime))/25,0.1)
-					if(time_coeff!=diff)
+					diff = round(initial(time_coeff) - (initial(time_coeff) * (T.level + ptime)) / 25, 0.1)
+					if(time_coeff != diff)
 						time_coeff = diff
-						output+="Production routines updated.<br>"
+						output += "Production routines updated.<br>"
 	return output
 
 
-/obj/machinery/mecha_part_fabricator/proc/sync(silent=null)
+/obj/machinery/mecha_part_fabricator/proc/sync(silent = null)
 /*		if(queue.len)
 			if(!silent)
 				temp = "Error.  Please clear processing queue before updating!"
@@ -529,17 +525,17 @@
 		src.visible_message("\icon[src] <b>[src]</b> beeps, \"Error! Couldn't connect to R&D server.\"")
 	return
 
-/obj/machinery/mecha_part_fabricator/proc/get_resource_cost_w_coeff(var/obj/item/part as obj,var/resource as text, var/roundto=1)
+/obj/machinery/mecha_part_fabricator/proc/get_resource_cost_w_coeff(obj/item/part as obj, resource as text, roundto = 1)
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
-		return round(part:construction_cost[resource]*resource_coeff, roundto)
+		return round(part:construction_cost[resource] * resource_coeff, roundto)
 	else
 		return 0
 
-/obj/machinery/mecha_part_fabricator/proc/get_construction_time_w_coeff(var/obj/item/part as obj, var/roundto=1)
+/obj/machinery/mecha_part_fabricator/proc/get_construction_time_w_coeff(obj/item/part as obj, roundto = 1)
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
-		return round(part:construction_time*time_coeff, roundto)
+		return round(part:construction_time * time_coeff, roundto)
 	else
 		return 0
 
@@ -551,7 +547,7 @@
 	if(!operation_allowed(user))
 		return
 	user.set_machine(src)
-	var/turf/exit = get_step(src,SOUTH)
+	var/turf/exit = get_step(src, SOUTH)
 	if(exit.density)
 		src.visible_message("\icon[src] <b>[src]</b> beeps, \"Error! Part outlet is obstructed\".")
 		return
@@ -604,14 +600,13 @@
 	onclose(user, "mecha_fabricator")
 	return
 
-
 /obj/machinery/mecha_part_fabricator/Topic(href, href_list)
 	..()
-	var/datum/topic_input/new_filter = new /datum/topic_input(href,href_list)
+	var/datum/topic_input/new_filter = new /datum/topic_input(href, href_list)
 	if(href_list["part_set"])
 		var/tpart_set = new_filter.getStr("part_set")
 		if(tpart_set)
-			if(tpart_set=="clear")
+			if(tpart_set == "clear")
 				src.part_set = null
 			else
 				src.part_set = tpart_set
@@ -650,8 +645,8 @@
 		var/index = new_filter.getNum("index")
 		var/new_index = index + new_filter.getNum("queue_move")
 		if(isnum(index) && isnum(new_index))
-			if(InRange(new_index,1,queue.len))
-				queue.Swap(index,new_index)
+			if(InRange(new_index, 1, queue.len))
+				queue.Swap(index, new_index)
 		return update_queue_on_page()
 	if(href_list["clear_queue"])
 		queue = list()
@@ -695,29 +690,28 @@
 			return 0
 	var/result = 0
 	var/obj/item/stack/sheet/res = new type(src)
-	var/total_amount = round(resources[mat_string]/res.perunit)
-	res.amount = min(total_amount,amount)
-	if(res.amount>0)
-		resources[mat_string] -= res.amount*res.perunit
+	var/total_amount = round(resources[mat_string] / res.perunit)
+	res.amount = min(total_amount, amount)
+	if(res.amount > 0)
+		resources[mat_string] -= res.amount * res.perunit
 		res.Move(src.loc)
 		result = res.amount
 	else
 		qdel(res)
 	return result
 
-
 /obj/machinery/mecha_part_fabricator/attackby(obj/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/screwdriver))
-		if (!opened)
+	if(istype(W, /obj/item/weapon/screwdriver))
+		if(!opened)
 			opened = 1
 			icon_state = "fab-o"
-			user << "You open the maintenance hatch of [src]."
+			to_chat(user, "You open the maintenance hatch of [src].")
 		else
 			opened = 0
 			icon_state = "fab-idle"
-			user << "You close the maintenance hatch of [src]."
+			to_chat(user, "You close the maintenance hatch of [src].")
 		return
-	if (opened)
+	if(opened)
 		if(istype(W, /obj/item/weapon/crowbar))
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
@@ -754,7 +748,7 @@
 			qdel(src)
 			return 1
 		else
-			user << "\red You can't load the [src.name] while it's opened."
+			to_chat(user, SPAN_WARNING("You can't load the [src.name] while it's opened."))
 			return 1
 
 	if(istype(W, /obj/item/weapon/card/emag))
@@ -782,7 +776,7 @@
 			return ..()
 
 	if(src.being_built)
-		user << "The fabricator is currently processing. Please wait until completion."
+		to_chat(user, "The fabricator is currently processing. Please wait until completion.")
 		return
 	var/obj/item/stack/sheet/stack = W
 	var/sname = "[stack.name]"
@@ -797,8 +791,8 @@
 				stack.use(1)
 				count++
 			src.overlays -= "fab-load-[material]"
-			user << "You insert [count] [sname] into the fabricator."
+			to_chat(user, "You insert [count] [sname] into the fabricator.")
 			src.updateUsrDialog()
 	else
-		user << "The fabricator cannot hold more [sname]."
+		to_chat(user, "The fabricator cannot hold more [sname].")
 	return

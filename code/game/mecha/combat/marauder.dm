@@ -79,7 +79,7 @@
 /obj/mecha/combat/marauder/relaymove(mob/user, direction)
 	if(user != src.occupant) //While not "realistic", this piece is player friendly.
 		user.loc = get_turf(src)
-		user << "You climb out from [src]"
+		to_chat(user, "You climb out from [src].")
 		return 0
 	if(!can_move)
 		return 0
@@ -90,7 +90,7 @@
 		return 0
 	if(connected_port)
 		if(world.time - last_message > 20)
-			src.occupant_message("Unable to move while connected to the air system port")
+			src.occupant_message("Unable to move while connected to the air system port.")
 			last_message = world.time
 		return 0
 	if(!thrusters && src.pr_inertial_movement.active())
@@ -125,13 +125,13 @@
 	set name = "Toggle thrusters"
 	set src = usr.loc
 	set popup_menu = 0
-	if(usr!=src.occupant)
+	if(usr != src.occupant)
 		return
 	if(src.occupant)
 		if(get_charge() > 0)
 			thrusters = !thrusters
 			src.log_message("Toggled thrusters.")
-			src.occupant_message("<font color='[src.thrusters?"blue":"red"]'>Thrusters [thrusters?"en":"dis"]abled.")
+			src.occupant_message("<font color='[src.thrusters ? "blue" : "red"]'>Thrusters [thrusters ? "en" : "dis"]abled.")
 	return
 
 /obj/mecha/combat/marauder/verb/smoke()
@@ -159,7 +159,7 @@
 	if(src.occupant.client)
 		src.zoom = !src.zoom
 		src.log_message("Toggled zoom mode.")
-		src.occupant_message("<font color='[src.zoom?"blue":"red"]'>Zoom mode [zoom?"en":"dis"]abled.</font>")
+		src.occupant_message("<font color='[src.zoom ? "blue" : "red"]'>Zoom mode [zoom ? "en" : "dis"]abled.</font>")
 		if(zoom)
 			src.occupant.client.view = 12
 			src.occupant << sound('sound/mecha/imag_enh.ogg', volume = 50)

@@ -18,14 +18,12 @@
 	reliability = 1000
 	var/salvageable = 1
 
-
-/obj/item/mecha_parts/mecha_equipment/proc/do_after_cooldown(target=1)
+/obj/item/mecha_parts/mecha_equipment/proc/do_after_cooldown(target = 1)
 	sleep(equip_cooldown)
 	set_ready_state(1)
 	if(target && chassis)
 		return 1
 	return 0
-
 
 /obj/item/mecha_parts/mecha_equipment/New()
 	..()
@@ -33,14 +31,14 @@
 
 /obj/item/mecha_parts/mecha_equipment/proc/update_chassis_page()
 	if(chassis)
-		send_byjax(chassis.occupant,"exosuit.browser","eq_list",chassis.get_equipment_list())
-		send_byjax(chassis.occupant,"exosuit.browser","equipment_menu",chassis.get_equipment_menu(),"dropdowns")
+		send_byjax(chassis.occupant, "exosuit.browser", "eq_list", chassis.get_equipment_list())
+		send_byjax(chassis.occupant, "exosuit.browser", "equipment_menu", chassis.get_equipment_menu(), "dropdowns")
 		return 1
 	return
 
 /obj/item/mecha_parts/mecha_equipment/proc/update_equip_info()
 	if(chassis)
-		send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",get_equip_info())
+		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 		return 1
 	return
 
@@ -52,30 +50,30 @@
 			chassis.selected = null
 		src.update_chassis_page()
 		chassis.occupant_message("<font color='red'>The [src] is destroyed!</font>")
-		chassis.log_append_to_last("[src] is destroyed.",1)
+		chassis.log_append_to_last("[src] is destroyed.", 1)
 		if(istype(src, /obj/item/mecha_parts/mecha_equipment/weapon))
-			chassis.occupant << sound('sound/mecha/weapdestr.ogg',volume=50)
+			chassis.occupant << sound('sound/mecha/weapdestr.ogg', volume = 50)
 		else
-			chassis.occupant << sound('sound/mecha/critdestr.ogg',volume=50)
+			chassis.occupant << sound('sound/mecha/critdestr.ogg', volume = 50)
 	spawn
 		qdel(src)
 	return
 
 /obj/item/mecha_parts/mecha_equipment/proc/critfail()
 	if(chassis)
-		log_message("Critical failure",1)
+		log_message("Critical failure", 1)
 	return
 
 /obj/item/mecha_parts/mecha_equipment/proc/get_equip_info()
-	if(!chassis) return
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[chassis.selected==src?"<b>":"<a href='?src=\ref[chassis];select_equip=\ref[src]'>"][src.name][chassis.selected==src?"</b>":"</a>"]"
+	if(!chassis)
+		return
+	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[chassis.selected == src ? "<b>" : "<a href='?src=\ref[chassis];select_equip=\ref[src]'>"][src.name][chassis.selected == src ? "</b>" : "</a>"]"
 
 /obj/item/mecha_parts/mecha_equipment/proc/is_ranged()//add a distance restricted equipment. Why not?
 	return range&RANGED
 
 /obj/item/mecha_parts/mecha_equipment/proc/is_melee()
 	return range&MELEE
-
 
 /obj/item/mecha_parts/mecha_equipment/proc/action_checks(atom/target)
 	if(!target)
@@ -109,7 +107,7 @@
 	src.update_chassis_page()
 	return
 
-/obj/item/mecha_parts/mecha_equipment/proc/detach(atom/moveto=null)
+/obj/item/mecha_parts/mecha_equipment/proc/detach(atom/moveto = null)
 	moveto = moveto || get_turf(chassis)
 	if(src.Move(moveto))
 		chassis.equipment -= src
@@ -121,17 +119,15 @@
 		set_ready_state(1)
 	return
 
-
-/obj/item/mecha_parts/mecha_equipment/Topic(href,href_list)
+/obj/item/mecha_parts/mecha_equipment/Topic(href, href_list)
 	if(href_list["detach"])
 		src.detach()
 	return
 
-
 /obj/item/mecha_parts/mecha_equipment/proc/set_ready_state(state)
 	equip_ready = state
 	if(chassis)
-		send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",src.get_equip_info())
+		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", src.get_equip_info())
 	return
 
 /obj/item/mecha_parts/mecha_equipment/proc/occupant_message(message)

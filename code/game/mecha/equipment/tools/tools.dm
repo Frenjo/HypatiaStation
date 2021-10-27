@@ -6,67 +6,72 @@
 	var/dam_force = 20
 	var/obj/mecha/working/ripley/cargo_holder
 
-	can_attach(obj/mecha/working/ripley/M as obj)
-		if(..())
-			if(istype(M))
-				return 1
-		return 0
+/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/can_attach(obj/mecha/working/ripley/M as obj)
+	if(..())
+		if(istype(M))
+			return 1
+	return 0
 
-	attach(obj/mecha/M as obj)
-		..()
-		cargo_holder = M
+/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/attach(obj/mecha/M as obj)
+	..()
+	cargo_holder = M
+	return
+
+/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/action(atom/target)
+	if(!action_checks(target))
 		return
+	if(!cargo_holder)
+		return
+	if(istype(target, /obj/structure/stool))
+		return
+	for(var/M in target.contents)
+		if(isliving(M))
+			return
 
-	action(atom/target)
-		if(!action_checks(target)) return
-		if(!cargo_holder) return
-		if(istype(target, /obj/structure/stool)) return
-		for(var/M in target.contents)
-			if(istype(M, /mob/living))
-				return
-
-		if(istype(target,/obj))
-			var/obj/O = target
-			if(!O.anchored)
-				if(cargo_holder.cargo.len < cargo_holder.cargo_capacity)
-					occupant_message("You lift [target] and start to load it into cargo compartment.")
-					chassis.visible_message("[chassis] lifts [target] and starts to load it into cargo compartment.")
-					set_ready_state(0)
-					chassis.use_power(energy_drain)
-					O.anchored = 1
-					var/T = chassis.loc
-					if(do_after_cooldown(target))
-						if(T == chassis.loc && src == chassis.selected)
-							cargo_holder.cargo += O
-							O.loc = chassis
-							O.anchored = 0
-							occupant_message("<font color='blue'>[target] succesfully loaded.</font>")
-							log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
-						else
-							occupant_message("<font color='red'>You must hold still while handling objects.</font>")
-							O.anchored = initial(O.anchored)
-				else
-					occupant_message("<font color='red'>Not enough room in cargo compartment.</font>")
+	if(isobj(target))
+		var/obj/O = target
+		if(!O.anchored)
+			if(cargo_holder.cargo.len < cargo_holder.cargo_capacity)
+				occupant_message("You lift [target] and start to load it into cargo compartment.")
+				chassis.visible_message("[chassis] lifts [target] and starts to load it into cargo compartment.")
+				set_ready_state(0)
+				chassis.use_power(energy_drain)
+				O.anchored = 1
+				var/T = chassis.loc
+				if(do_after_cooldown(target))
+					if(T == chassis.loc && src == chassis.selected)
+						cargo_holder.cargo += O
+						O.loc = chassis
+						O.anchored = 0
+						occupant_message("<font color='blue'>[target] succesfully loaded.</font>")
+						log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
+					else
+						occupant_message("<font color='red'>You must hold still while handling objects.</font>")
+						O.anchored = initial(O.anchored)
 			else
-				occupant_message("<font color='red'>[target] is firmly secured.</font>")
+				occupant_message("<font color='red'>Not enough room in cargo compartment.</font>")
+		else
+			occupant_message("<font color='red'>[target] is firmly secured.</font>")
 
-		else if(istype(target,/mob/living))
-			var/mob/living/M = target
-			if(M.stat>1) return
-			if(chassis.occupant.a_intent == "hurt")
-				M.take_overall_damage(dam_force)
-				M.adjustOxyLoss(round(dam_force/2))
-				M.updatehealth()
-				occupant_message("\red You squeeze [target] with [src.name]. Something cracks.")
-				chassis.visible_message("\red [chassis] squeezes [target].")
-			else
-				step_away(M,chassis)
-				occupant_message("You push [target] out of the way.")
-				chassis.visible_message("[chassis] pushes [target] out of the way.")
-			set_ready_state(0)
-			chassis.use_power(energy_drain)
-			do_after_cooldown()
-		return 1
+	else if(isliving(target))
+		var/mob/living/M = target
+		if(M.stat > 1)
+			return
+		if(chassis.occupant.a_intent == "hurt")
+			M.take_overall_damage(dam_force)
+			M.adjustOxyLoss(round(dam_force / 2))
+			M.updatehealth()
+			occupant_message(SPAN_WARNING("You squeeze [target] with [src.name]. Something cracks."))
+			chassis.visible_message(SPAN_WARNING("[chassis] squeezes [target]."))
+		else
+			step_away(M, chassis)
+			occupant_message("You push [target] out of the way.")
+			chassis.visible_message("[chassis] pushes [target] out of the way.")
+		set_ready_state(0)
+		chassis.use_power(energy_drain)
+		do_after_cooldown()
+	return 1
+
 
 /obj/item/mecha_parts/mecha_equipment/tool/drill
 	name = "Drill"
@@ -76,53 +81,56 @@
 	energy_drain = 10
 	force = 15
 
-	action(atom/target)
-		if(!action_checks(target)) return
-		if(isobj(target))
-			var/obj/target_obj = target
-			if(!target_obj.vars.Find("unacidable") || target_obj.unacidable)	return
-		set_ready_state(0)
-		chassis.use_power(energy_drain)
-		chassis.visible_message("<font color='red'><b>[chassis] starts to drill [target]</b></font>", "You hear the drill.")
-		occupant_message("<font color='red'><b>You start to drill [target]</b></font>")
-		var/T = chassis.loc
-		var/C = target.loc	//why are these backwards? we may never know -Pete
-		if(do_after_cooldown(target))
-			if(T == chassis.loc && src == chassis.selected)
-				if(istype(target, /turf/simulated/wall/r_wall))
-					occupant_message("<font color='red'>[target] is too durable to drill through.</font>")
-				else if(istype(target, /turf/simulated/mineral))
-					for(var/turf/simulated/mineral/M in range(chassis,1))
-						if(get_dir(chassis,M)&chassis.dir)
-							M.GetDrilled()
-					log_message("Drilled through [target]")
-					if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
-						var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
-						if(ore_box)
-							for(var/obj/item/weapon/ore/ore in range(chassis,1))
-								if(get_dir(chassis,ore)&chassis.dir)
-									ore.Move(ore_box)
-				else if(istype(target, /turf/simulated/floor/plating/airless/asteroid))
-					for(var/turf/simulated/floor/plating/airless/asteroid/M in range(chassis,1))
-						if(get_dir(chassis,M)&chassis.dir)
-							M.gets_dug()
-					log_message("Drilled through [target]")
-					if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
-						var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
-						if(ore_box)
-							for(var/obj/item/weapon/ore/ore in range(chassis,1))
-								if(get_dir(chassis,ore)&chassis.dir)
-									ore.Move(ore_box)
-				else if(target.loc == C)
-					log_message("Drilled through [target]")
-					target.ex_act(2)
-		return 1
+/obj/item/mecha_parts/mecha_equipment/tool/drill/action(atom/target)
+	if(!action_checks(target))
+		return
+	if(isobj(target))
+		var/obj/target_obj = target
+		if(!target_obj.vars.Find("unacidable") || target_obj.unacidable)
+			return
+	set_ready_state(0)
+	chassis.use_power(energy_drain)
+	chassis.visible_message("<font color='red'><b>[chassis] starts to drill [target]</b></font>", "You hear the drill.")
+	occupant_message("<font color='red'><b>You start to drill [target]</b></font>")
+	var/T = chassis.loc
+	var/C = target.loc	//why are these backwards? we may never know -Pete
+	if(do_after_cooldown(target))
+		if(T == chassis.loc && src == chassis.selected)
+			if(istype(target, /turf/simulated/wall/r_wall))
+				occupant_message("<font color='red'>[target] is too durable to drill through.</font>")
+			else if(istype(target, /turf/simulated/mineral))
+				for(var/turf/simulated/mineral/M in range(chassis, 1))
+					if(get_dir(chassis, M) & chassis.dir)
+						M.GetDrilled()
+				log_message("Drilled through [target]")
+				if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
+					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
+					if(ore_box)
+						for(var/obj/item/weapon/ore/ore in range(chassis, 1))
+							if(get_dir(chassis,ore)&chassis.dir)
+								ore.Move(ore_box)
+			else if(istype(target, /turf/simulated/floor/plating/airless/asteroid))
+				for(var/turf/simulated/floor/plating/airless/asteroid/M in range(chassis, 1))
+					if(get_dir(chassis, M) & chassis.dir)
+						M.gets_dug()
+				log_message("Drilled through [target]")
+				if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
+					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
+					if(ore_box)
+						for(var/obj/item/weapon/ore/ore in range(chassis, 1))
+							if(get_dir(chassis, ore) & chassis.dir)
+								ore.Move(ore_box)
+			else if(target.loc == C)
+				log_message("Drilled through [target]")
+				target.ex_act(2)
+	return 1
 
-	can_attach(obj/mecha/M as obj)
-		if(..())
-			if(istype(M, /obj/mecha/working) || istype(M, /obj/mecha/combat))
-				return 1
-		return 0
+/obj/item/mecha_parts/mecha_equipment/tool/drill/can_attach(obj/mecha/M as obj)
+	if(..())
+		if(istype(M, /obj/mecha/working) || istype(M, /obj/mecha/combat))
+			return 1
+	return 0
+
 
 /obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill
 	name = "Diamond Drill"
@@ -133,53 +141,56 @@
 	equip_cooldown = 20
 	force = 15
 
-	action(atom/target)
-		if(!action_checks(target)) return
-		if(isobj(target))
-			var/obj/target_obj = target
-			if(target_obj.unacidable)	return
-		set_ready_state(0)
-		chassis.use_power(energy_drain)
-		chassis.visible_message("<font color='red'><b>[chassis] starts to drill [target]</b></font>", "You hear the drill.")
-		occupant_message("<font color='red'><b>You start to drill [target]</b></font>")
-		var/T = chassis.loc
-		var/C = target.loc	//why are these backwards? we may never know -Pete
-		if(do_after_cooldown(target))
-			if(T == chassis.loc && src == chassis.selected)
-				if(istype(target, /turf/simulated/wall/r_wall))
-					if(do_after_cooldown(target))//To slow down how fast mechs can drill through the station
-						log_message("Drilled through [target]")
-						target.ex_act(3)
-				else if(istype(target, /turf/simulated/mineral))
-					for(var/turf/simulated/mineral/M in range(chassis,1))
-						if(get_dir(chassis,M)&chassis.dir)
-							M.GetDrilled()
+/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill/action(atom/target)
+	if(!action_checks(target))
+		return
+	if(isobj(target))
+		var/obj/target_obj = target
+		if(target_obj.unacidable)
+			return
+	set_ready_state(0)
+	chassis.use_power(energy_drain)
+	chassis.visible_message("<font color='red'><b>[chassis] starts to drill [target]</b></font>", "You hear the drill.")
+	occupant_message("<font color='red'><b>You start to drill [target]</b></font>")
+	var/T = chassis.loc
+	var/C = target.loc	//why are these backwards? we may never know -Pete
+	if(do_after_cooldown(target))
+		if(T == chassis.loc && src == chassis.selected)
+			if(istype(target, /turf/simulated/wall/r_wall))
+				if(do_after_cooldown(target))//To slow down how fast mechs can drill through the station
 					log_message("Drilled through [target]")
-					if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
-						var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
-						if(ore_box)
-							for(var/obj/item/weapon/ore/ore in range(chassis,1))
-								if(get_dir(chassis,ore)&chassis.dir)
-									ore.Move(ore_box)
-				else if(istype(target,/turf/simulated/floor/plating/airless/asteroid))
-					for(var/turf/simulated/floor/plating/airless/asteroid/M in range(target,1))
-						M.gets_dug()
-					log_message("Drilled through [target]")
-					if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
-						var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
-						if(ore_box)
-							for(var/obj/item/weapon/ore/ore in range(target,1))
+					target.ex_act(3)
+			else if(istype(target, /turf/simulated/mineral))
+				for(var/turf/simulated/mineral/M in range(chassis, 1))
+					if(get_dir(chassis, M) & chassis.dir)
+						M.GetDrilled()
+				log_message("Drilled through [target]")
+				if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
+					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
+					if(ore_box)
+						for(var/obj/item/weapon/ore/ore in range(chassis, 1))
+							if(get_dir(chassis, ore) & chassis.dir)
 								ore.Move(ore_box)
-				else if(target.loc == C)
-					log_message("Drilled through [target]")
-					target.ex_act(2)
-		return 1
+			else if(istype(target,/turf/simulated/floor/plating/airless/asteroid))
+				for(var/turf/simulated/floor/plating/airless/asteroid/M in range(target, 1))
+					M.gets_dug()
+				log_message("Drilled through [target]")
+				if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
+					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
+					if(ore_box)
+						for(var/obj/item/weapon/ore/ore in range(target, 1))
+							ore.Move(ore_box)
+			else if(target.loc == C)
+				log_message("Drilled through [target]")
+				target.ex_act(2)
+	return 1
 
-	can_attach(obj/mecha/M as obj)
-		if(..())
-			if(istype(M, /obj/mecha/working) || istype(M, /obj/mecha/combat))
-				return 1
-		return 0
+/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill/can_attach(obj/mecha/M as obj)
+	if(..())
+		if(istype(M, /obj/mecha/working) || istype(M, /obj/mecha/combat))
+			return 1
+	return 0
+
 
 /obj/item/mecha_parts/mecha_equipment/tool/extinguisher
 	name = "Extinguisher"
@@ -189,68 +200,70 @@
 	energy_drain = 0
 	range = MELEE|RANGED
 
-	New()
-		reagents = new/datum/reagents(200)
-		reagents.my_atom = src
-		reagents.add_reagent("water", 200)
-		..()
+/obj/item/mecha_parts/mecha_equipment/tool/extinguisher/New()
+	reagents = new/datum/reagents(200)
+	reagents.my_atom = src
+	reagents.add_reagent("water", 200)
+	..()
+	return
+
+/obj/item/mecha_parts/mecha_equipment/tool/extinguisher/action(atom/target) //copypasted from extinguisher. TODO: Rewrite from scratch.
+	if(!action_checks(target) || get_dist(chassis, target) > 3)
 		return
+	if(get_dist(chassis, target) > 2)
+		return
+	set_ready_state(0)
+	if(do_after_cooldown(target))
+		if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(chassis, target) <= 1)
+			var/obj/o = target
+			o.reagents.trans_to(src, 200)
+			occupant_message("\blue Extinguisher refilled")
+			playsound(chassis, 'sound/effects/refill.ogg', 50, 1, -6)
+		else
+			if(src.reagents.total_volume > 0)
+				playsound(chassis, 'sound/effects/extinguish.ogg', 75, 1, -3)
+				var/direction = get_dir(chassis,target)
+				var/turf/T = get_turf(target)
+				var/turf/T1 = get_step(T, turn(direction, 90))
+				var/turf/T2 = get_step(T, turn(direction, -90))
 
-	action(atom/target) //copypasted from extinguisher. TODO: Rewrite from scratch.
-		if(!action_checks(target) || get_dist(chassis, target)>3) return
-		if(get_dist(chassis, target)>2) return
-		set_ready_state(0)
-		if(do_after_cooldown(target))
-			if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(chassis,target) <= 1)
-				var/obj/o = target
-				o.reagents.trans_to(src, 200)
-				occupant_message("\blue Extinguisher refilled")
-				playsound(chassis, 'sound/effects/refill.ogg', 50, 1, -6)
-			else
-				if(src.reagents.total_volume > 0)
-					playsound(chassis, 'sound/effects/extinguish.ogg', 75, 1, -3)
-					var/direction = get_dir(chassis,target)
-					var/turf/T = get_turf(target)
-					var/turf/T1 = get_step(T,turn(direction, 90))
-					var/turf/T2 = get_step(T,turn(direction, -90))
-
-					var/list/the_targets = list(T,T1,T2)
-					spawn(0)
-						for(var/a=0, a<5, a++)
-							var/obj/effect/water/W = new /obj/effect/water(get_turf(chassis))
+				var/list/the_targets = list(T, T1, T2)
+				spawn(0)
+					for(var/a = 0, a < 5, a++)
+						var/obj/effect/water/W = new /obj/effect/water(get_turf(chassis))
+						if(!W)
+							return
+						var/turf/my_target = pick(the_targets)
+						var/datum/reagents/R = new/datum/reagents(5)
+						W.reagents = R
+						R.my_atom = W
+						src.reagents.trans_to(W, 1)
+						for(var/b = 0, b < 4, b++)
 							if(!W)
 								return
-							var/turf/my_target = pick(the_targets)
-							var/datum/reagents/R = new/datum/reagents(5)
-							W.reagents = R
-							R.my_atom = W
-							src.reagents.trans_to(W,1)
-							for(var/b=0, b<4, b++)
-								if(!W)
-									return
-								step_towards(W,my_target)
-								if(!W)
-									return
-								var/turf/W_turf = get_turf(W)
-								W.reagents.reaction(W_turf)
-								for(var/atom/atm in W_turf)
-									W.reagents.reaction(atm)
-								if(W.loc == my_target)
-									break
-								sleep(2)
-		return 1
+							step_towards(W, my_target)
+							if(!W)
+								return
+							var/turf/W_turf = get_turf(W)
+							W.reagents.reaction(W_turf)
+							for(var/atom/atm in W_turf)
+								W.reagents.reaction(atm)
+							if(W.loc == my_target)
+								break
+							sleep(2)
+	return 1
 
-	get_equip_info()
-		return "[..()] \[[src.reagents.total_volume]\]"
+/obj/item/mecha_parts/mecha_equipment/tool/extinguisher/get_equip_info()
+	return "[..()] \[[src.reagents.total_volume]\]"
 
-	on_reagent_change()
-		return
+/obj/item/mecha_parts/mecha_equipment/tool/extinguisher/on_reagent_change()
+	return
 
-	can_attach(obj/mecha/working/M as obj)
-		if(..())
-			if(istype(M))
-				return 1
-		return 0
+/obj/item/mecha_parts/mecha_equipment/tool/extinguisher/can_attach(obj/mecha/working/M as obj)
+	if(..())
+		if(istype(M))
+			return 1
+	return 0
 
 
 /obj/item/mecha_parts/mecha_equipment/tool/rcd
@@ -269,96 +282,100 @@
 	var/mode = 0 //0 - deconstruct, 1 - wall or floor, 2 - airlock.
 	var/disabled = 0 //malf
 
-	action(atom/target)
-		if(istype(target,/area/shuttle)||istype(target, /turf/space/transit))//>implying these are ever made -Sieve
-			disabled = 1
-		else
-			disabled = 0
-		if(!istype(target, /turf) && !istype(target, /obj/machinery/door/airlock))
-			target = get_turf(target)
-		if(!action_checks(target) || disabled || get_dist(chassis, target)>3) return
-		playsound(chassis, 'sound/machines/click.ogg', 50, 1)
-		//meh
+/obj/item/mecha_parts/mecha_equipment/tool/rcd/action(atom/target)
+	if(istype(target, /area/shuttle) || istype(target, /turf/space/transit))	//>implying these are ever made -Sieve
+		disabled = 1
+	else
+		disabled = 0
+	if(!isturf(target) && !istype(target, /obj/machinery/door/airlock))
+		target = get_turf(target)
+	if(!action_checks(target) || disabled || get_dist(chassis, target) > 3)
+		return
+	playsound(chassis, 'sound/machines/click.ogg', 50, 1)
+	//meh
+	switch(mode)
+		if(0)
+			if(istype(target, /turf/simulated/wall))
+				occupant_message("Deconstructing [target]...")
+				set_ready_state(0)
+				if(do_after_cooldown(target))
+					if(disabled)
+						return
+					chassis.spark_system.start()
+					target:ChangeTurf(/turf/simulated/floor/plating)
+					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
+					chassis.use_power(energy_drain)
+			else if(istype(target, /turf/simulated/floor))
+				occupant_message("Deconstructing [target]...")
+				set_ready_state(0)
+				if(do_after_cooldown(target))
+					if(disabled)
+						return
+					chassis.spark_system.start()
+					target:ChangeTurf(/turf/space)
+					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
+					chassis.use_power(energy_drain)
+			else if(istype(target, /obj/machinery/door/airlock))
+				occupant_message("Deconstructing [target]...")
+				set_ready_state(0)
+				if(do_after_cooldown(target))
+					if(disabled)
+						return
+					chassis.spark_system.start()
+					qdel(target)
+					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
+					chassis.use_power(energy_drain)
+		if(1)
+			if(istype(target, /turf/space))
+				occupant_message("Building Floor...")
+				set_ready_state(0)
+				if(do_after_cooldown(target))
+					if(disabled)
+						return
+					target:ChangeTurf(/turf/simulated/floor/plating)
+					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
+					chassis.spark_system.start()
+					chassis.use_power(energy_drain * 2)
+			else if(istype(target, /turf/simulated/floor))
+				occupant_message("Building Wall...")
+				set_ready_state(0)
+				if(do_after_cooldown(target))
+					if(disabled)
+						return
+					target:ChangeTurf(/turf/simulated/wall)
+					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
+					chassis.spark_system.start()
+					chassis.use_power(energy_drain * 2)
+		if(2)
+			if(istype(target, /turf/simulated/floor))
+				occupant_message("Building Airlock...")
+				set_ready_state(0)
+				if(do_after_cooldown(target))
+					if(disabled)
+						return
+					chassis.spark_system.start()
+					var/obj/machinery/door/airlock/T = new /obj/machinery/door/airlock(target)
+					T.autoclose = 1
+					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
+					playsound(target, 'sound/effects/sparks2.ogg', 50, 1)
+					chassis.use_power(energy_drain * 2)
+	return
+
+/obj/item/mecha_parts/mecha_equipment/tool/rcd/Topic(href,href_list)
+	..()
+	if(href_list["mode"])
+		mode = text2num(href_list["mode"])
 		switch(mode)
 			if(0)
-				if (istype(target, /turf/simulated/wall))
-					occupant_message("Deconstructing [target]...")
-					set_ready_state(0)
-					if(do_after_cooldown(target))
-						if(disabled) return
-						chassis.spark_system.start()
-						target:ChangeTurf(/turf/simulated/floor/plating)
-						playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
-						chassis.use_power(energy_drain)
-				else if (istype(target, /turf/simulated/floor))
-					occupant_message("Deconstructing [target]...")
-					set_ready_state(0)
-					if(do_after_cooldown(target))
-						if(disabled) return
-						chassis.spark_system.start()
-						target:ChangeTurf(/turf/space)
-						playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
-						chassis.use_power(energy_drain)
-				else if (istype(target, /obj/machinery/door/airlock))
-					occupant_message("Deconstructing [target]...")
-					set_ready_state(0)
-					if(do_after_cooldown(target))
-						if(disabled) return
-						chassis.spark_system.start()
-						qdel(target)
-						playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
-						chassis.use_power(energy_drain)
+				occupant_message("Switched RCD to Deconstruct.")
 			if(1)
-				if(istype(target, /turf/space))
-					occupant_message("Building Floor...")
-					set_ready_state(0)
-					if(do_after_cooldown(target))
-						if(disabled) return
-						target:ChangeTurf(/turf/simulated/floor/plating)
-						playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
-						chassis.spark_system.start()
-						chassis.use_power(energy_drain*2)
-				else if(istype(target, /turf/simulated/floor))
-					occupant_message("Building Wall...")
-					set_ready_state(0)
-					if(do_after_cooldown(target))
-						if(disabled) return
-						target:ChangeTurf(/turf/simulated/wall)
-						playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
-						chassis.spark_system.start()
-						chassis.use_power(energy_drain*2)
+				occupant_message("Switched RCD to Construct.")
 			if(2)
-				if(istype(target, /turf/simulated/floor))
-					occupant_message("Building Airlock...")
-					set_ready_state(0)
-					if(do_after_cooldown(target))
-						if(disabled) return
-						chassis.spark_system.start()
-						var/obj/machinery/door/airlock/T = new /obj/machinery/door/airlock(target)
-						T.autoclose = 1
-						playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
-						playsound(target, 'sound/effects/sparks2.ogg', 50, 1)
-						chassis.use_power(energy_drain*2)
-		return
+				occupant_message("Switched RCD to Construct Airlock.")
+	return
 
-
-	Topic(href,href_list)
-		..()
-		if(href_list["mode"])
-			mode = text2num(href_list["mode"])
-			switch(mode)
-				if(0)
-					occupant_message("Switched RCD to Deconstruct.")
-				if(1)
-					occupant_message("Switched RCD to Construct.")
-				if(2)
-					occupant_message("Switched RCD to Construct Airlock.")
-		return
-
-	get_equip_info()
-		return "[..()] \[<a href='?src=\ref[src];mode=0'>D</a>|<a href='?src=\ref[src];mode=1'>C</a>|<a href='?src=\ref[src];mode=2'>A</a>\]"
-
-
+/obj/item/mecha_parts/mecha_equipment/tool/rcd/get_equip_info()
+	return "[..()] \[<a href='?src=\ref[src];mode=0'>D</a>|<a href='?src=\ref[src];mode=1'>C</a>|<a href='?src=\ref[src];mode=2'>A</a>\]"
 
 
 /obj/item/mecha_parts/mecha_equipment/teleporter
@@ -370,15 +387,16 @@
 	energy_drain = 1000
 	range = RANGED
 
-	action(atom/target)
-		if(!action_checks(target) || src.loc.z == 2) return
-		var/turf/T = get_turf(target)
-		if(T)
-			set_ready_state(0)
-			chassis.use_power(energy_drain)
-			do_teleport(chassis, T, 4)
-			do_after_cooldown()
+/obj/item/mecha_parts/mecha_equipment/teleporter/action(atom/target)
+	if(!action_checks(target) || src.loc.z == 2)
 		return
+	var/turf/T = get_turf(target)
+	if(T)
+		set_ready_state(0)
+		chassis.use_power(energy_drain)
+		do_teleport(chassis, T, 4)
+		do_after_cooldown()
+	return
 
 
 /obj/item/mecha_parts/mecha_equipment/wormhole_generator
@@ -390,46 +408,48 @@
 	energy_drain = 300
 	range = RANGED
 
-
-	action(atom/target)
-		if(!action_checks(target) || src.loc.z == 2) return
-		var/list/theareas = list()
-		for(var/area/AR in orange(100, chassis))
-			if(AR in theareas) continue
-			theareas += AR
-		if(!theareas.len)
-			return
-		var/area/thearea = pick(theareas)
-		var/list/L = list()
-		var/turf/pos = get_turf(src)
-		for(var/turf/T in get_area_turfs(thearea.type))
-			if(!T.density && pos.z == T.z)
-				var/clear = 1
-				for(var/obj/O in T)
-					if(O.density)
-						clear = 0
-						break
-				if(clear)
-					L+=T
-		if(!L.len)
-			return
-		var/turf/target_turf = pick(L)
-		if(!target_turf)
-			return
-		chassis.use_power(energy_drain)
-		set_ready_state(0)
-		var/obj/effect/portal/P = new /obj/effect/portal(get_turf(target))
-		P.target = target_turf
-		P.creator = null
-		P.icon = 'icons/obj/objects.dmi'
-		P.failchance = 0
-		P.icon_state = "anom"
-		P.name = "wormhole"
-		do_after_cooldown()
-		qdel(src)
-		spawn(rand(150,300))
-			qdel(P)
+/obj/item/mecha_parts/mecha_equipment/wormhole_generator/action(atom/target)
+	if(!action_checks(target) || src.loc.z == 2)
 		return
+	var/list/theareas = list()
+	for(var/area/AR in orange(100, chassis))
+		if(AR in theareas)
+			continue
+		theareas += AR
+	if(!theareas.len)
+		return
+	var/area/thearea = pick(theareas)
+	var/list/L = list()
+	var/turf/pos = get_turf(src)
+	for(var/turf/T in get_area_turfs(thearea.type))
+		if(!T.density && pos.z == T.z)
+			var/clear = 1
+			for(var/obj/O in T)
+				if(O.density)
+					clear = 0
+					break
+			if(clear)
+				L += T
+	if(!L.len)
+		return
+	var/turf/target_turf = pick(L)
+	if(!target_turf)
+		return
+	chassis.use_power(energy_drain)
+	set_ready_state(0)
+	var/obj/effect/portal/P = new /obj/effect/portal(get_turf(target))
+	P.target = target_turf
+	P.creator = null
+	P.icon = 'icons/obj/objects.dmi'
+	P.failchance = 0
+	P.icon_state = "anom"
+	P.name = "wormhole"
+	do_after_cooldown()
+	qdel(src)
+	spawn(rand(150,300))
+		qdel(P)
+	return
+
 
 /obj/item/mecha_parts/mecha_equipment/gravcatapult
 	name = "Gravitational Catapult"
@@ -445,66 +465,67 @@
 	var/last_fired = 0  //Concept stolen from guns.
 	var/fire_delay = 10 //Used to prevent spam-brute against humans.
 
-	action(atom/movable/target)
+/obj/item/mecha_parts/mecha_equipment/gravcatapult/action(atom/movable/target)
+	if(world.time >= last_fired + fire_delay)
+		last_fired = world.time
+	else
+		if(world.time % 3)
+			occupant_message(SPAN_WARNING("[src] is not ready to fire again!"))
+		return 0
 
-		if(world.time >= last_fired + fire_delay)
-			last_fired = world.time
-		else
-			if (world.time % 3)
-				occupant_message("<span class='warning'>[src] is not ready to fire again!")
-			return 0
-
-		switch(mode)
-			if(1)
-				if(!action_checks(target) && !locked) return
-				if(!locked)
-					if(!istype(target) || target.anchored)
-						occupant_message("Unable to lock on [target]")
-						return
-					locked = target
-					occupant_message("Locked on [target]")
-					send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",src.get_equip_info())
+	switch(mode)
+		if(1)
+			if(!action_checks(target) && !locked)
+				return
+			if(!locked)
+				if(!istype(target) || target.anchored)
+					occupant_message("Unable to lock on [target].")
 					return
-				else if(target!=locked)
-					if(locked in view(chassis))
-						locked.throw_at(target, 14, 1.5)
-						locked = null
-						send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",src.get_equip_info())
-						set_ready_state(0)
-						chassis.use_power(energy_drain)
-						do_after_cooldown()
-					else
-						locked = null
-						occupant_message("Lock on [locked] disengaged.")
-						send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",src.get_equip_info())
-			if(2)
-				if(!action_checks(target)) return
-				var/list/atoms = list()
-				if(isturf(target))
-					atoms = range(target,3)
+				locked = target
+				occupant_message("Locked on [target].")
+				send_byjax(chassis.occupant, "exosuit.browser","\ref[src]",src.get_equip_info())
+				return
+			else if(target!=locked)
+				if(locked in view(chassis))
+					locked.throw_at(target, 14, 1.5)
+					locked = null
+					send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", src.get_equip_info())
+					set_ready_state(0)
+					chassis.use_power(energy_drain)
+					do_after_cooldown()
 				else
-					atoms = orange(target,3)
-				for(var/atom/movable/A in atoms)
-					if(A.anchored) continue
-					spawn(0)
-						var/iter = 5-get_dist(A,target)
-						for(var/i=0 to iter)
-							step_away(A,target)
-							sleep(2)
-				set_ready_state(0)
-				chassis.use_power(energy_drain)
-				do_after_cooldown()
-		return
+					locked = null
+					occupant_message("Lock on [locked] disengaged.")
+					send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", src.get_equip_info())
+		if(2)
+			if(!action_checks(target))
+				return
+			var/list/atoms = list()
+			if(isturf(target))
+				atoms = range(target, 3)
+			else
+				atoms = orange(target, 3)
+			for(var/atom/movable/A in atoms)
+				if(A.anchored) continue
+				spawn(0)
+					var/iter = 5 - get_dist(A, target)
+					for(var/i = 0 to iter)
+						step_away(A, target)
+						sleep(2)
+			set_ready_state(0)
+			chassis.use_power(energy_drain)
+			do_after_cooldown()
+	return
 
-	get_equip_info()
-		return "[..()] [mode==1?"([locked||"Nothing"])":null] \[<a href='?src=\ref[src];mode=1'>S</a>|<a href='?src=\ref[src];mode=2'>P</a>\]"
+/obj/item/mecha_parts/mecha_equipment/gravcatapult/get_equip_info()
+	return "[..()] [mode == 1 ? "([locked || "Nothing"])" : null] \[<a href='?src=\ref[src];mode=1'>S</a>|<a href='?src=\ref[src];mode=2'>P</a>\]"
 
-	Topic(href, href_list)
-		..()
-		if(href_list["mode"])
-			mode = text2num(href_list["mode"])
-			send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",src.get_equip_info())
-		return
+/obj/item/mecha_parts/mecha_equipment/gravcatapult/Topic(href, href_list)
+	..()
+	if(href_list["mode"])
+		mode = text2num(href_list["mode"])
+		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", src.get_equip_info())
+	return
 
 
 /obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster //what is that noise? A BAWWW from TK mutants.
