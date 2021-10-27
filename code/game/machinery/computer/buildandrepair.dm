@@ -87,7 +87,7 @@
 
 //obj/item/weapon/circuitboard/shield
 //	name = "Circuit board (Shield Control)"
-//	build_path = "/obj/machinery/computer/stationshield"
+//	build_path = /obj/machinery/computer/stationshield
 
 /obj/item/weapon/circuitboard/teleporter
 	name = "Circuit board (Teleporter)"

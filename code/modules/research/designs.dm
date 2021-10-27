@@ -49,7 +49,7 @@ other types of metals and chemistry for reagents).
 	var/reliability = 100				//Reliability of the device.
 	var/build_type = null				//Flag as to what kind machine the design is built in. See defines.
 	var/list/materials = list()			//List of materials. Format: "id" = amount.
-	var/build_path = ""					//The file path of the object that gets created
+	var/build_path = null					//The path of the object that gets created
 	var/locked = 0						//If true it will spawn inside a lockbox with currently sec access
 	var/category = null //Primarily used for Mech Fabricators, but can be used for anything
 
@@ -203,14 +203,14 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/circuitboard/air_management
 
 /* Uncomment if someone makes these buildable
-datum/design/general_alert
+/datum/design/general_alert
 	name = "Circuit Design (General Alert Console)"
 	desc = "Allows for the construction of circuit boards used to build a General Alert console."
 	id = "general_alert"
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = "/obj/item/weapon/circuitboard/general_alert"
+	build_path = /obj/item/weapon/circuitboard/general_alert
 */
 
 /datum/design/robocontrol
@@ -1571,7 +1571,7 @@ datum/design/general_alert
 	req_tech = list(RESEARCH_TECH_COMBAT = 4, RESEARCH_TECH_MATERIALS = 5, RESEARCH_TECH_ENGINEERING = 3, RESEARCH_TECH_BIOTECH = 4, RESEARCH_TECH_SYNDICATE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 5000, MATERIAL_GLASS = 1000, MATERIAL_URANIUM = 1000, MATERIAL_SILVER = 1000)
-	build_path = "/obj/item/weapon/gun/energy/crossbow/largecrossbow"
+	build_path = /obj/item/weapon/gun/energy/crossbow/largecrossbow
 */
 
 /datum/design/temp_gun
@@ -1897,7 +1897,6 @@ datum/design/general_alert
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
 	build_path = /obj/item/weapon/cartridge/janitor
 
-/*
 /datum/design/cart_clown
 	name = "Honkworks 5.0 Cartridge"
 	desc = "A data cartridge for portable microcomputers."
@@ -1905,7 +1904,8 @@ datum/design/general_alert
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = "/obj/item/weapon/cartridge/clown"
+	build_path = /obj/item/weapon/cartridge/clown
+
 /datum/design/cart_mime
 	name = "Gestur-O 1000 Cartridge"
 	desc = "A data cartridge for portable microcomputers."
@@ -1913,8 +1913,7 @@ datum/design/general_alert
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = "/obj/item/weapon/cartridge/mime"
-*/
+	build_path = /obj/item/weapon/cartridge/mime
 
 /datum/design/cart_toxins
 	name = "Signal Ace 2 Cartridge"
