@@ -1,6 +1,6 @@
 /obj/machinery/door/poddoor/shutters
 	name = "Shutters"
-	icon = 'icons/obj/doors/rapid_pdoor.dmi'
+	icon = 'icons/obj/doors/pod/poddoor_single.dmi'
 	icon_state = "shutter1"
 	power_channel = ENVIRON
 

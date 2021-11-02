@@ -4,7 +4,7 @@
 
 /obj/machinery/door/airlock/multi_tile/glass
 	name = "Glass Airlock"
-	icon = 'icons/obj/doors/Door2x1glass.dmi'
+	icon = 'icons/obj/doors/glass_2x1.dmi'
 	opacity = 0
 	glass = 1
 	assembly_type = "obj/structure/door_assembly/multi_tile"
