@@ -13,7 +13,6 @@
 	explosion_resistance = 5
 	air_properties_vary_with_direction = 1
 
-
 /obj/machinery/door/window/update_nearby_tiles(need_rebuild)
 	if(!air_master)
 		return 0
@@ -167,7 +166,6 @@
 	//..() //Does this really need to be here twice? The parent proc doesn't even do anything yet. - Nodrak
 	return
 
-
 /obj/machinery/door/window/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
@@ -263,7 +261,6 @@
 
 	else if(src.density)
 		flick("[src.base_state]deny", src)
-
 	return
 
 

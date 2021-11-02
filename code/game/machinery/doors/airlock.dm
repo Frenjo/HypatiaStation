@@ -293,14 +293,14 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 		target_tile.assume_gas(GAS_PLASMA, 35, 400 + T0C)
 		spawn(0)
 			target_tile.hotspot_expose(temperature, 400)
-	for(var/obj/structure/falsewall/plasma/F in range(3, src))//Hackish as fuck, but until temperature_expose works, there is nothing I can do -Sieve
+	for(var/obj/structure/falsewall/plasma/F in range(3, src))	//Hackish as fuck, but until temperature_expose works, there is nothing I can do -Sieve
 		var/turf/T = get_turf(F)
 		T.ChangeTurf(/turf/simulated/wall/mineral/plasma/)
 		qdel(F)
 	for(var/turf/simulated/wall/mineral/plasma/W in range(3, src))
-		W.ignite((temperature/4))//Added so that you can't set off a massive chain reaction with a small flame
+		W.ignite(temperature / 4)	//Added so that you can't set off a massive chain reaction with a small flame
 	for(var/obj/machinery/door/airlock/plasma/D in range(3, src))
-		D.ignite(temperature/4)
+		D.ignite(temperature / 4)
 	new/obj/structure/door_assembly(src.loc)
 	qdel(src)
 
@@ -429,8 +429,8 @@ About the new airlock wires panel:
 		if(AIRLOCK_WIRE_ELECTRIFY)
 			//one wire for electrifying the door. Sending a pulse through this electrifies the door for 30 seconds.
 			if(src.secondsElectrified == 0)
-				shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
-				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Electrified the [name] at [x] [y] [z]</font>")
+				shockedby += "\[[time_stamp()]\][usr](ckey:[usr.ckey])"
+				usr.attack_log += "\[[time_stamp()]\] <font color='red'>Electrified the [name] at [x] [y] [z]</font>"
 				src.secondsElectrified = 30
 				spawn(10)
 					//TODO: Move this into process() and make pulsing reset secondsElectrified to 30
@@ -500,8 +500,8 @@ About the new airlock wires panel:
 		if(AIRLOCK_WIRE_ELECTRIFY)
 			//Cutting this wire electrifies the door, so that the next person to touch the door without insulated gloves gets electrocuted.
 			if(src.secondsElectrified != -1)
-				shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
-				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Electrified the [name] at [x] [y] [z]</font>")
+				shockedby += "\[[time_stamp()]\][usr](ckey:[usr.ckey])"
+				usr.attack_log += "\[[time_stamp()]\] <font color='red'>Electrified the [name] at [x] [y] [z]</font>"
 				src.secondsElectrified = -1
 
 		if(AIRLOCK_WIRE_SAFETY)
@@ -574,10 +574,10 @@ About the new airlock wires panel:
 	return ((src.wires & wireFlag) == 0)
 
 /obj/machinery/door/airlock/proc/canAIControl()
-	return ((src.aiControlDisabled != 1) && (!src.isAllPowerCut()));
+	return (src.aiControlDisabled != 1 && !src.isAllPowerCut());
 
 /obj/machinery/door/airlock/proc/canAIHack()
-	return ((src.aiControlDisabled == 1) && (!hackProof) && (!src.isAllPowerCut()));
+	return (src.aiControlDisabled == 1 && !hackProof && !src.isAllPowerCut());
 
 /obj/machinery/door/airlock/proc/arePowerSystemsOn()
 	return (src.secondsMainPowerLost == 0 || src.secondsBackupPowerLost == 0)
@@ -609,13 +609,13 @@ About the new airlock wires panel:
 				sleep(10)
 				cont = 0
 				if(src.secondsMainPowerLost > 0)
-					if((!src.isWireCut(AIRLOCK_WIRE_MAIN_POWER1)) && (!src.isWireCut(AIRLOCK_WIRE_MAIN_POWER2)))
+					if(!src.isWireCut(AIRLOCK_WIRE_MAIN_POWER1) && !src.isWireCut(AIRLOCK_WIRE_MAIN_POWER2))
 						src.secondsMainPowerLost -= 1
 						src.updateDialog()
 					cont = 1
 
 				if(src.secondsBackupPowerLost>0)
-					if((!src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER1)) && (!src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER2)))
+					if(!src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER1) && !src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER2))
 						src.secondsBackupPowerLost -= 1
 						src.updateDialog()
 					cont = 1
@@ -656,7 +656,7 @@ About the new airlock wires panel:
 		overlays.Cut()
 	if(density)
 		// Makes the maintenance doors flash yellow if we have emergency maintenance access. -Frenjo
-		if(z in config.station_levels && maint_all_access && istype(src, /obj/machinery/door/airlock/maintenance))
+		if(isStationLevel(z) && maint_all_access && istype(src, /obj/machinery/door/airlock/maintenance))
 			if(lights && !locked)
 				icon_state = "door_maint_access"
 			else if(lights && locked)
@@ -688,7 +688,8 @@ About the new airlock wires panel:
 			else
 				flick("door_opening", src)
 		if("closing")
-			if(overlays) overlays.Cut()
+			if(overlays)
+				overlays.Cut()
 			if(p_open)
 				flick("o_door_closing", src)
 			else
@@ -697,7 +698,7 @@ About the new airlock wires panel:
 			flick("door_spark", src)
 		if("deny")
 			// Flick to deny even if the door has maint access. -Frenjo
-			if(z in config.station_levels && maint_all_access && istype(src, /obj/machinery/door/airlock/maintenance))
+			if(isStationLevel(z) && maint_all_access && istype(src, /obj/machinery/door/airlock/maintenance))
 				flick("door_maint_access_locked_deny", src)
 			else
 				flick("door_deny", src)
@@ -713,97 +714,97 @@ About the new airlock wires panel:
 
 	//Separate interface for the AI.
 	user.set_machine(src)
-	var/t1 = text("<B>Airlock Control</B><br>\n")
+	var/t1 = "<B>Airlock Control</B><br>\n"
 	if(src.secondsMainPowerLost > 0)
-		if((!src.isWireCut(AIRLOCK_WIRE_MAIN_POWER1)) && (!src.isWireCut(AIRLOCK_WIRE_MAIN_POWER2)))
-			t1 += text("Main power is offline for [] seconds.<br>\n", src.secondsMainPowerLost)
+		if(!src.isWireCut(AIRLOCK_WIRE_MAIN_POWER1) && !src.isWireCut(AIRLOCK_WIRE_MAIN_POWER2))
+			t1 += "Main power is offline for [src.secondsMainPowerLost] seconds.<br>\n"
 		else
-			t1 += text("Main power is offline indefinitely.<br>\n")
+			t1 += "Main power is offline indefinitely.<br>\n"
 	else
-		t1 += text("Main power is online.")
+		t1 += "Main power is online."
 
 	if(src.secondsBackupPowerLost > 0)
-		if((!src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER1)) && (!src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER2)))
-			t1 += text("Backup power is offline for [] seconds.<br>\n", src.secondsBackupPowerLost)
+		if(!src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER1) && !src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER2))
+			t1 += "Backup power is offline for [src.secondsBackupPowerLost] seconds.<br>\n"
 		else
-			t1 += text("Backup power is offline indefinitely.<br>\n")
+			t1 += "Backup power is offline indefinitely.<br>\n"
 	else if(src.secondsMainPowerLost > 0)
-		t1 += text("Backup power is online.")
+		t1 += "Backup power is online."
 	else
-		t1 += text("Backup power is offline, but will turn on if main power fails.")
+		t1 += "Backup power is offline, but will turn on if main power fails."
 	t1 += "<br>\n"
 
 	if(src.isWireCut(AIRLOCK_WIRE_IDSCAN))
-		t1 += text("IdScan wire is cut.<br>\n")
+		t1 += "IdScan wire is cut.<br>\n"
 	else if(src.aiDisabledIdScanner)
-		t1 += text("IdScan disabled. <A href='?src=\ref[];aiEnable=1'>Enable?</a><br>\n", src)
+		t1 += "IdScan disabled. <A href='?src=\ref[src];aiEnable=1'>Enable?</a><br>\n"
 	else
-		t1 += text("IdScan enabled. <A href='?src=\ref[];aiDisable=1'>Disable?</a><br>\n", src)
+		t1 += "IdScan enabled. <A href='?src=\ref[src];aiDisable=1'>Disable?</a><br>\n"
 
 	if(src.isWireCut(AIRLOCK_WIRE_MAIN_POWER1))
-		t1 += text("Main Power Input wire is cut.<br>\n")
+		t1 += "Main Power Input wire is cut.<br>\n"
 	if(src.isWireCut(AIRLOCK_WIRE_MAIN_POWER2))
-		t1 += text("Main Power Output wire is cut.<br>\n")
+		t1 += "Main Power Output wire is cut.<br>\n"
 	if(src.secondsMainPowerLost == 0)
-		t1 += text("<A href='?src=\ref[];aiDisable=2'>Temporarily disrupt main power?</a>.<br>\n", src)
+		t1 += "<A href='?src=\ref[src];aiDisable=2'>Temporarily disrupt main power?</a>.<br>\n"
 	if(src.secondsBackupPowerLost == 0)
-		t1 += text("<A href='?src=\ref[];aiDisable=3'>Temporarily disrupt backup power?</a>.<br>\n", src)
+		t1 += "<A href='?src=\ref[src];aiDisable=3'>Temporarily disrupt backup power?</a>.<br>\n"
 
 	if(src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER1))
-		t1 += text("Backup Power Input wire is cut.<br>\n")
+		t1 += "Backup Power Input wire is cut.<br>\n"
 	if(src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER2))
-		t1 += text("Backup Power Output wire is cut.<br>\n")
+		t1 += "Backup Power Output wire is cut.<br>\n"
 
 	if(src.isWireCut(AIRLOCK_WIRE_DOOR_BOLTS))
-		t1 += text("Door bolt drop wire is cut.<br>\n")
+		t1 += "Door bolt drop wire is cut.<br>\n"
 	else if(!src.locked)
-		t1 += text("Door bolts are up. <A href='?src=\ref[];aiDisable=4'>Drop them?</a><br>\n", src)
+		t1 += "Door bolts are up. <A href='?src=\ref[src];aiDisable=4'>Drop them?</a><br>\n"
 	else
-		t1 += text("Door bolts are down.")
+		t1 += "Door bolts are down."
 		if(src.arePowerSystemsOn())
-			t1 += text(" <A href='?src=\ref[];aiEnable=4'>Raise?</a><br>\n", src)
+			t1 += " <A href='?src=\ref[src];aiEnable=4'>Raise?</a><br>\n"
 		else
-			t1 += text(" Cannot raise door bolts due to power failure.<br>\n")
+			t1 += " Cannot raise door bolts due to power failure.<br>\n"
 
 	if(src.isWireCut(AIRLOCK_WIRE_LIGHT))
-		t1 += text("Door bolt lights wire is cut.<br>\n")
+		t1 += "Door bolt lights wire is cut.<br>\n"
 	else if(!src.lights)
-		t1 += text("Door lights are off. <A href='?src=\ref[];aiEnable=10'>Enable?</a><br>\n", src)
+		t1 += "Door lights are off. <A href='?src=\ref[src];aiEnable=10'>Enable?</a><br>\n"
 	else
-		t1 += text("Door lights are on. <A href='?src=\ref[];aiDisable=10'>Disable?</a><br>\n", src)
+		t1 += "Door lights are on. <A href='?src=\ref[src];aiDisable=10'>Disable?</a><br>\n"
 
 	if(src.isWireCut(AIRLOCK_WIRE_ELECTRIFY))
-		t1 += text("Electrification wire is cut.<br>\n")
-	if(src.secondsElectrified==-1)
-		t1 += text("Door is electrified indefinitely. <A href='?src=\ref[];aiDisable=5'>Un-electrify it?</a><br>\n", src)
-	else if(src.secondsElectrified>0)
-		t1 += text("Door is electrified temporarily ([] seconds). <A href='?src=\ref[];aiDisable=5'>Un-electrify it?</a><br>\n", src.secondsElectrified, src)
+		t1 += "Electrification wire is cut.<br>\n"
+	if(src.secondsElectrified == -1)
+		t1 += "Door is electrified indefinitely. <A href='?src=\ref[src];aiDisable=5'>Un-electrify it?</a><br>\n"
+	else if(src.secondsElectrified > 0)
+		t1 += "Door is electrified temporarily ([src.secondsElectrified] seconds). <A href='?src=\ref[src];aiDisable=5'>Un-electrify it?</a><br>\n"
 	else
-		t1 += text("Door is not electrified. <A href='?src=\ref[];aiEnable=5'>Electrify it for 30 seconds?</a> Or, <A href='?src=\ref[];aiEnable=6'>Electrify it indefinitely until someone cancels the electrification?</a><br>\n", src, src)
+		t1 += "Door is not electrified. <A href='?src=\ref[src];aiEnable=5'>Electrify it for 30 seconds?</a> Or, <A href='?src=\ref[src];aiEnable=6'>Electrify it indefinitely until someone cancels the electrification?</a><br>\n"
 
 	if(src.isWireCut(AIRLOCK_WIRE_SAFETY))
-		t1 += text("Door force sensors not responding.</a><br>\n")
+		t1 += "Door force sensors not responding.</a><br>\n"
 	else if(src.safe)
-		t1 += text("Door safeties operating normally.  <A href='?src=\ref[];aiDisable=8'> Override?</a><br>\n",src)
+		t1 += "Door safeties operating normally. <A href='?src=\ref[src];aiDisable=8'> Override?</a><br>\n"
 	else
-		t1 += text("Danger.  Door safeties disabled.  <A href='?src=\ref[];aiEnable=8'> Restore?</a><br>\n",src)
+		t1 += "Danger. Door safeties disabled. <A href='?src=\ref[src];aiEnable=8'> Restore?</a><br>\n"
 
 	if(src.isWireCut(AIRLOCK_WIRE_SPEED))
-		t1 += text("Door timing circuitry not responding.</a><br>\n")
+		t1 += "Door timing circuitry not responding.</a><br>\n"
 	else if(src.normalspeed)
-		t1 += text("Door timing circuitry operating normally.  <A href='?src=\ref[];aiDisable=9'> Override?</a><br>\n",src)
+		t1 += "Door timing circuitry operating normally. <A href='?src=\ref[src];aiDisable=9'> Override?</a><br>\n"
 	else
-		t1 += text("Warning.  Door timing circuitry operating abnormally.  <A href='?src=\ref[];aiEnable=9'> Restore?</a><br>\n",src)
+		t1 += "Warning.  Door timing circuitry operating abnormally. <A href='?src=\ref[src];aiEnable=9'> Restore?</a><br>\n"
 
 	if(src.welded)
-		t1 += text("Door appears to have been welded shut.<br>\n")
+		t1 += "Door appears to have been welded shut.<br>\n"
 	else if(!src.locked)
 		if(src.density)
-			t1 += text("<A href='?src=\ref[];aiEnable=7'>Open door</a><br>\n", src)
+			t1 += "<A href='?src=\ref[src];aiEnable=7'>Open door</a><br>\n"
 		else
-			t1 += text("<A href='?src=\ref[];aiDisable=7'>Close door</a><br>\n", src)
+			t1 += "<A href='?src=\ref[src];aiDisable=7'>Close door</a><br>\n"
 
-	t1 += text("<p><a href='?src=\ref[];close=1'>Close</a></p>\n", src)
+	t1 += "<p><a href='?src=\ref[src];close=1'>Close</a></p>\n"
 	user << browse(t1, "window=airlock")
 	onclose(user, "airlock")
 
@@ -900,7 +901,7 @@ About the new airlock wires panel:
 
 	if(src.p_open)
 		user.set_machine(src)
-		var/t1 = text("<B>Access Panel</B><br>\n")
+		var/t1 = "<B>Access Panel</B><br>\n"
 
 		//t1 += text("[]: ", airlockFeatureNames[airlockWireColorToIndex[9]])
 		var/list/wires = list(
@@ -931,9 +932,9 @@ About the new airlock wires panel:
 					t1 += "<a href='?src=\ref[src];signaler=[wires[wiredesc]]'>Attach signaler</a>"
 			t1 += "<br>"
 
-		t1 += text("<br>\n[]<br>\n[]<br>\n[]<br>\n[]<br>\n[]<br>\n[]", (src.locked ? "The door bolts have fallen!" : "The door bolts look up."), (src.lights ? "The door bolt lights are on." : "The door bolt lights are off!"), ((src.arePowerSystemsOn() && !(stat & NOPOWER)) ? "The test light is on." : "The test light is off!"), (src.aiControlDisabled==0 ? "The 'AI control allowed' light is on." : "The 'AI control allowed' light is off."),  (src.safe==0 ? "The 'Check Wiring' light is on." : "The 'Check Wiring' light is off."), (src.normalspeed==0 ? "The 'Check Timing Mechanism' light is on." : "The 'Check Timing Mechanism' light is off."))
+		t1 += "<br>\n[(src.locked ? "The door bolts have fallen!" : "The door bolts look up.")]<br>\n[(src.lights ? "The door bolt lights are on." : "The door bolt lights are off!")]<br>\n[((src.arePowerSystemsOn() && !(stat & NOPOWER)) ? "The test light is on." : "The test light is off!")]<br>\n[(src.aiControlDisabled == 0 ? "The 'AI control allowed' light is on." : "The 'AI control allowed' light is off.")]<br>\n[(src.safe == 0 ? "The 'Check Wiring' light is on." : "The 'Check Wiring' light is off.")]<br>\n[(src.normalspeed == 0 ? "The 'Check Timing Mechanism' light is on." : "The 'Check Timing Mechanism' light is off.")]"
 
-		t1 += text("<p><a href='?src=\ref[];close=1'>Close</a></p>\n", src)
+		t1 += "<p><a href='?src=\ref[src];close=1'>Close</a></p>\n"
 
 		user << browse(t1, "window=airlock")
 		onclose(user, "airlock")
@@ -1115,8 +1116,8 @@ About the new airlock wires panel:
 					else if(src.secondsElectrified != 0)
 						to_chat(usr, "The door is already electrified. You can't re-electrify it while it's already electrified.<br>\n")
 					else
-						shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
-						usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Electrified the [name] at [x] [y] [z]</font>")
+						shockedby += "\[[time_stamp()]\][usr](ckey:[usr.ckey])"
+						usr.attack_log += "\[[time_stamp()]\] <font color='red'>Electrified the [name] at [x] [y] [z]</font>"
 						src.secondsElectrified = 30
 						spawn(10)
 							while(src.secondsElectrified > 0)
@@ -1134,8 +1135,8 @@ About the new airlock wires panel:
 					else if(src.secondsElectrified != 0)
 						to_chat(usr, "The door is already electrified. You can't re-electrify it while it's already electrified.<br>\n")
 					else
-						shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
-						usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Electrified the [name] at [x] [y] [z]</font>")
+						shockedby += "\[[time_stamp()]\][usr](ckey:[usr.ckey])"
+						usr.attack_log += "\[[time_stamp()]\] <font color='red'>Electrified the [name] at [x] [y] [z]</font>"
 						src.secondsElectrified = -1
 				if(7)
 					//open door
@@ -1217,13 +1218,16 @@ About the new airlock wires panel:
 		cable.plugin(src, user)
 	else if(istype(C, /obj/item/weapon/crowbar) || istype(C, /obj/item/weapon/twohanded/fireaxe))
 		var/beingcrowbarred = null
-		if(istype(C, /obj/item/weapon/crowbar) )
+		if(istype(C, /obj/item/weapon/crowbar))
 			beingcrowbarred = 1 //derp, Agouri
 		else
 			beingcrowbarred = 0
 		if(beingcrowbarred && (operating == -1 || density && welded && operating != 1 && src.p_open && (!src.arePowerSystemsOn() || stat & NOPOWER) && !src.locked))
 			playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
-			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
+			user.visible_message(
+				"[user] removes the electronics from the airlock assembly.",
+				"You start to remove electronics from the airlock assembly."
+			)
 			if(do_after(user, 40))
 				to_chat(user, SPAN_INFO("You removed the airlock electronics!"))
 
@@ -1259,9 +1263,9 @@ About the new airlock wires panel:
 				qdel(src)
 				return
 		else if(arePowerSystemsOn() && !(stat & NOPOWER))
-			user << "\blue The airlock's motors resist your efforts to force it."
+			to_chat(user, SPAN_INFO("The airlock's motors resist your efforts to force it."))
 		else if(locked)
-			user << "\blue The airlock's bolts prevent it from being forced."
+			to_chat(user, SPAN_INFO("The airlock's bolts prevent it from being forced."))
 		else if( !welded && !operating )
 			if(density)
 				if(beingcrowbarred == 0) //being fireaxe'd
@@ -1270,7 +1274,7 @@ About the new airlock wires panel:
 						spawn(0)
 							open(1)
 					else
-						user << "\red You need to be wielding the Fire axe to do that."
+						to_chat(user, SPAN_WARNING("You need to be wielding the Fire axe to do that."))
 				else
 					spawn(0)
 						open(1)
@@ -1281,11 +1285,10 @@ About the new airlock wires panel:
 						spawn(0)
 							close(1)
 					else
-						user << "\red You need to be wielding the Fire axe to do that."
+						to_chat(user, SPAN_WARNING("You need to be wielding the Fire axe to do that."))
 				else
 					spawn(0)
 						close(1)
-
 	else
 		..()
 	return

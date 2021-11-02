@@ -24,9 +24,9 @@
 
 /obj/machinery/door/poddoor/attackby(obj/item/weapon/C as obj, mob/user as mob)
 	src.add_fingerprint(user)
-	if(!(istype(C, /obj/item/weapon/crowbar) || (istype(C, /obj/item/weapon/twohanded/fireaxe) && C:wielded == 1)))
+	if(!istype(C, /obj/item/weapon/crowbar || (istype(C, /obj/item/weapon/twohanded/fireaxe) && C:wielded == 1)))
 		return
-	if((src.density && (stat & NOPOWER) && !(src.operating)))
+	if(src.density && (stat & NOPOWER) && !src.operating)
 		spawn(0)
 			src.operating = 1
 			flick("pdoorc0", src)
@@ -47,7 +47,6 @@
 		src.operating = 1
 	flick("pdoorc0", src)
 	src.icon_state = "pdoor0"
-	//src.SetOpacity(0)
 	src.set_opacity(0)
 	sleep(10)
 	layer = initial(layer)
@@ -384,6 +383,7 @@
 		del f4
 		..()
 */
+
 /obj/machinery/door/poddoor/filler_object
 	name = ""
 	icon_state = ""

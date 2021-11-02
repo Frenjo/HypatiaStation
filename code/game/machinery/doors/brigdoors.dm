@@ -19,11 +19,11 @@
 	icon_state = "frame"
 	desc = "A remote control for a door."
 	req_access = list(access_brig)
-	anchored = 1.0    		// can't pick it up
-	density = 0       		// can walk through it.
-	var/id = null     		// id of door it controls.
+	anchored = 1.0			// can't pick it up
+	density = 0				// can walk through it.
+	var/id = null			// id of door it controls.
 	var/releasetime = 0		// when world.timeofday reaches it - release the prisoner
-	var/timing = 1    		// boolean, true/1 timer is on, false/0 means it's not timing
+	var/timing = 1			// boolean, true/1 timer is on, false/0 means it's not timing
 	var/picture_state		// icon_state of alert picture, if not displaying text/numbers
 	var/list/obj/machinery/targets = list()
 	var/timetoset = 0		// Used to set releasetime upon starting the timer
@@ -34,8 +34,8 @@
 /obj/machinery/door_timer/New()
 	..()
 
-	pixel_x = ((src.dir & 3)? (0) : (src.dir == 4 ? 32 : -32))
-	pixel_y = ((src.dir & 3)? (src.dir ==1 ? 24 : -32) : (0))
+	pixel_x = (src.dir & 3) ? 0 : (src.dir == 4 ? 32 : -32)
+	pixel_y = (src.dir & 3) ? (src.dir == 1 ? 24 : -32) : 0
 
 	spawn(20)
 		for(var/obj/machinery/door/window/brigdoor/M in machines)
@@ -56,21 +56,18 @@
 		return
 	return
 
-
 //Main door timer loop, if it's timing and time is >0 reduce time by 1.
 // if it's less than 0, open door, reset timer
 // update the door_timer window and the icon
 /obj/machinery/door_timer/process()
-
-	if(stat & (NOPOWER|BROKEN))	return
+	if(stat & (NOPOWER|BROKEN))
+		return
 	if(src.timing)
-
 		// poorly done midnight rollover
 		// (no seriously there's gotta be a better way to do this)
 		var/timeleft = timeleft()
 		if(timeleft > 1e5)
 			src.releasetime = 0
-
 
 		if(world.timeofday > src.releasetime)
 			src.timer_end() // open doors, reset timer, clear status screen
@@ -78,19 +75,16 @@
 
 		src.updateUsrDialog()
 		src.update_icon()
-
 	else
 		timer_end()
 
 	return
-
 
 // has the door power situation changed, if so update icon.
 /obj/machinery/door_timer/power_change()
 	..()
 	update_icon()
 	return
-
 
 // open/closedoor checks if door_timer has power, if so it checks if the
 // linked door is open/closed (by density) then opens it/closes it.
@@ -118,7 +112,6 @@
 		C.icon_state = C.icon_locked
 	return 1
 
-
 // Opens and unlocks doors, power check
 /obj/machinery/door_timer/proc/timer_end()
 	if(stat & (NOPOWER|BROKEN))
@@ -143,10 +136,9 @@
 
 	return 1
 
-
 // Check for releasetime timeleft
 /obj/machinery/door_timer/proc/timeleft()
-	. = (releasetime - world.timeofday)/10
+	. = (releasetime - world.timeofday) / 10
 	if(. < 0)
 		. = 0
 
@@ -162,7 +154,6 @@
 //Allows AIs to use door_timer, see human attack_hand function below
 /obj/machinery/door_timer/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
-
 
 //Allows humans to use door_timer
 //Opens dialog window when someone clicks on door timer
@@ -189,7 +180,7 @@
 	dat += " <b>Door [src.id] controls</b><br/>"
 
 	// Start/Stop timer
-	if (src.timing)
+	if(src.timing)
 		dat += "<a href='?src=\ref[src];timing=0'>Stop Timer and open door</a><br/>"
 	else
 		dat += "<a href='?src=\ref[src];timing=1'>Activate Timer and close door</a><br/>"
@@ -220,7 +211,6 @@
 	user << browse(dat, "window=computer;size=400x500")
 	onclose(user, "computer")
 	return
-
 
 //Function for using door_timer dialog input, checks if user has permission
 // href_list to
@@ -273,7 +263,6 @@
 
 	return
 
-
 //icon update function
 // if NOPOWER, display blank
 // if BROKEN, display blue screen of death icon AI uses
@@ -296,38 +285,34 @@
 		if(maptext)	maptext = ""
 	return
 
-
 // Adds an icon in case the screen is broken/off, stolen from status_display.dm
-/obj/machinery/door_timer/proc/set_picture(var/state)
+/obj/machinery/door_timer/proc/set_picture(state)
 	picture_state = state
 	overlays.Cut()
-	overlays += image('icons/obj/status_display.dmi', icon_state=picture_state)
-
+	overlays += image('icons/obj/status_display.dmi', icon_state = picture_state)
 
 //Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display
 // Stolen from status_display
-/obj/machinery/door_timer/proc/update_display(var/line1, var/line2)
+/obj/machinery/door_timer/proc/update_display(line1, line2)
 	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[line1]<br>[line2]</div>"}
 	if(maptext != new_text)
 		maptext = new_text
 
-
 //Actual string input to icon display for loop, with 5 pixel x offsets for each letter.
 //Stolen from status_display
-/obj/machinery/door_timer/proc/texticon(var/tn, var/px = 0, var/py = 0)
+/obj/machinery/door_timer/proc/texticon(tn, px = 0, py = 0)
 	var/image/I = image('icons/obj/status_display.dmi', "blank")
 	var/len = length(tn)
 
 	for(var/d = 1 to len)
-		var/char = copytext(tn, len-d+1, len-d+2)
+		var/char = copytext(tn, len - d + 1, len - d + 2)
 		if(char == " ")
 			continue
-		var/image/ID = image('icons/obj/status_display.dmi', icon_state=char)
-		ID.pixel_x = -(d-1)*5 + px
+		var/image/ID = image('icons/obj/status_display.dmi', icon_state = char)
+		ID.pixel_x = -(d - 1) * 5 + px
 		ID.pixel_y = py
 		I.overlays += ID
 	return I
-
 
 /obj/machinery/door_timer/cell_1
 	name = "Cell 1"
@@ -335,13 +320,11 @@
 	dir = 2
 	pixel_y = -32
 
-
 /obj/machinery/door_timer/cell_2
 	name = "Cell 2"
 	id = "Cell 2"
 	dir = 2
 	pixel_y = -32
-
 
 /obj/machinery/door_timer/cell_3
 	name = "Cell 3"
@@ -349,20 +332,17 @@
 	dir = 2
 	pixel_y = -32
 
-
 /obj/machinery/door_timer/cell_4
 	name = "Cell 4"
 	id = "Cell 4"
 	dir = 2
 	pixel_y = -32
 
-
 /obj/machinery/door_timer/cell_5
 	name = "Cell 5"
 	id = "Cell 5"
 	dir = 2
 	pixel_y = -32
-
 
 /obj/machinery/door_timer/cell_6
 	name = "Cell 6"

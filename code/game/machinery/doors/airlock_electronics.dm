@@ -23,7 +23,7 @@
 	if(H.getBrainLoss() >= 60)
 		return
 
-	var/t1 = text("<B>Access control</B><br>\n")
+	var/t1 = "<B>Access control</B><br>\n"
 
 	if(last_configurator)
 		t1 += "Operator: [last_configurator]<br>"
@@ -44,14 +44,14 @@
 		for(var/acc in accesses)
 			var/aname = get_access_desc(acc)
 
-			if (!conf_access || !conf_access.len || !(acc in conf_access))
+			if(!conf_access || !conf_access.len || !(acc in conf_access))
 				t1 += "<a href='?src=\ref[src];access=[acc]'>[aname]</a><br>"
 			else if(one_access)
 				t1 += "<a style='color: green' href='?src=\ref[src];access=[acc]'>[aname]</a><br>"
 			else
 				t1 += "<a style='color: red' href='?src=\ref[src];access=[acc]'>[aname]</a><br>"
 
-	t1 += text("<p><a href='?src=\ref[];close=1'>Close</a></p>\n", src)
+	t1 += "<p><a href='?src=\ref[src];close=1'>Close</a></p>\n"
 
 	user << browse(t1, "window=airlock_electronics")
 	onclose(user, "airlock")
@@ -65,7 +65,7 @@
 		return
 
 	if(href_list["login"])
-		if(istype(usr, /mob/living/silicon))
+		if(issilicon(usr))
 			src.locked = 0
 			src.last_configurator = usr.name
 		else
@@ -91,7 +91,7 @@
 
 	attack_self(usr)
 
-/obj/item/weapon/airlock_electronics/proc/toggle_access(var/acc)
+/obj/item/weapon/airlock_electronics/proc/toggle_access(acc)
 	if(acc == "all")
 		conf_access = null
 	else

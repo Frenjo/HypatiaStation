@@ -83,14 +83,12 @@
 		return
 	return
 
-
 /obj/machinery/door/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group)
 		return !block_air_zones
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return !opacity
 	return !density
-
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)
@@ -112,14 +110,11 @@
 	src.open()
 	return
 
-
 /obj/machinery/door/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
-
 /obj/machinery/door/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
-
 
 /obj/machinery/door/attack_hand(mob/user as mob)
 	return src.attackby(user, user)
@@ -128,7 +123,6 @@
 	if(requiresID() && !allowed(null))
 		return
 	..()
-
 /obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/device/detective_scanner))
 		return
@@ -155,12 +149,10 @@
 		flick("door_deny", src)
 	return
 
-
 /obj/machinery/door/blob_act()
 	if(prob(40))
 		qdel(src)
 	return
-
 
 /obj/machinery/door/emp_act(severity)
 	if(prob(20 / severity) && (istype(src, /obj/machinery/door/airlock) || istype(src, /obj/machinery/door/window)))
@@ -171,7 +163,6 @@
 			spawn(300)
 				secondsElectrified = 0
 	..()
-
 
 /obj/machinery/door/ex_act(severity)
 	switch(severity)
@@ -187,14 +178,12 @@
 				s.start()
 	return
 
-
 /obj/machinery/door/update_icon()
 	if(density)
 		icon_state = "door1"
 	else
 		icon_state = "door0"
 	return
-
 
 /obj/machinery/door/proc/do_animate(animation)
 	switch(animation)
@@ -212,7 +201,6 @@
 			flick("door_deny", src)
 	return
 
-
 /obj/machinery/door/proc/open()
 	if(!density)
 		return 1
@@ -225,7 +213,6 @@
 
 	do_animate("opening")
 	icon_state = "door0"
-	//src.SetOpacity(0)
 	src.set_opacity(0)
 	//sleep(10)
 	sleep(7) // Makes doors open slightly quicker. -Frenjo
@@ -233,7 +220,6 @@
 	src.density = 0
 	explosion_resistance = 0
 	update_icon()
-	//SetOpacity(0)
 	set_opacity(0)
 	update_nearby_tiles()
 
@@ -248,7 +234,6 @@
 			autoclose()
 
 	return 1
-
 
 /obj/machinery/door/proc/close()
 	if(density)
@@ -265,8 +250,7 @@
 	sleep(7) // Makes doors close slightly quicker. -Frenjo
 	update_icon()
 	if(visible && !glass)
-		//SetOpacity(1)	//caaaaarn!
-		set_opacity(1)
+		set_opacity(1)	//caaaaarn!
 	operating = 0
 	update_nearby_tiles()
 
