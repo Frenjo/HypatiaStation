@@ -46,7 +46,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	//world << "[src] ([src.id]) - [signal.debug_print()]"
 	var/send_count = 0
 
-	signal.data["slow"] += rand(0, round((100-integrity))) // apply some lag based on integrity
+	signal.data["slow"] += rand(0, round((100 - integrity))) // apply some lag based on integrity
 
 	// Apply some lag based on traffic rates
 	var/netlag = round(traffic / 50)
@@ -55,7 +55,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 // Loop through all linked machines and send the signal or copy.
 	for(var/obj/machinery/telecomms/machine in links)
-		if(filter && !istype( machine, filter ))
+		if(filter && !istype(machine, filter))
 			continue
 		if(!machine.on)
 			continue
@@ -67,33 +67,31 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		// If we're sending a copy, be sure to create the copy for EACH machine and paste the data
 		var/datum/signal/copy = new
 		if(copysig)
-
 			copy.transmission_method = 2
 			copy.frequency = signal.frequency
 			// Copy the main data contents! Workaround for some nasty bug where the actual array memory is copied and not its contents.
 			copy.data = list(
-
-			"mob" = signal.data["mob"],
-			"mobtype" = signal.data["mobtype"],
-			"realname" = signal.data["realname"],
-			"name" = signal.data["name"],
-			"job" = signal.data["job"],
-			"key" = signal.data["key"],
-			"vmessage" = signal.data["vmessage"],
-			"vname" = signal.data["vname"],
-			"vmask" = signal.data["vmask"],
-			"compression" = signal.data["compression"],
-			"message" = signal.data["message"],
-			"connection" = signal.data["connection"],
-			"radio" = signal.data["radio"],
-			"slow" = signal.data["slow"],
-			"traffic" = signal.data["traffic"],
-			"type" = signal.data["type"],
-			"server" = signal.data["server"],
-			"reject" = signal.data["reject"],
-			"level" = signal.data["level"],
-			"verbage" = signal.data["verbage"],
-			"language" = signal.data["language"]
+				"mob" = signal.data["mob"],
+				"mobtype" = signal.data["mobtype"],
+				"realname" = signal.data["realname"],
+				"name" = signal.data["name"],
+				"job" = signal.data["job"],
+				"key" = signal.data["key"],
+				"vmessage" = signal.data["vmessage"],
+				"vname" = signal.data["vname"],
+				"vmask" = signal.data["vmask"],
+				"compression" = signal.data["compression"],
+				"message" = signal.data["message"],
+				"connection" = signal.data["connection"],
+				"radio" = signal.data["radio"],
+				"slow" = signal.data["slow"],
+				"traffic" = signal.data["traffic"],
+				"type" = signal.data["type"],
+				"server" = signal.data["server"],
+				"reject" = signal.data["reject"],
+				"level" = signal.data["level"],
+				"verbage" = signal.data["verbage"],
+				"language" = signal.data["language"]
 			)
 
 			// Keep the "original" signal constant
@@ -113,7 +111,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 			machine.receive_information(copy, src)
 		else
 			machine.receive_information(signal, src)
-
 
 	if(send_count > 0 && is_freq_listening(signal))
 		traffic++
@@ -166,10 +163,10 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	return ..()
 
 // Used in auto linking
-/obj/machinery/telecomms/proc/add_link(var/obj/machinery/telecomms/T)
+/obj/machinery/telecomms/proc/add_link(obj/machinery/telecomms/T)
 	var/turf/position = get_turf(src)
 	var/turf/T_position = get_turf(T)
-	if((position.z == T_position.z) || (src.long_range_link && T.long_range_link))
+	if(position.z == T_position.z || (src.long_range_link && T.long_range_link))
 		for(var/x in autolinkers)
 			if(T.autolinkers.Find(x))
 				if(src != T)
@@ -206,7 +203,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	if(prob(100/severity))
 		if(!(stat & EMPED))
 			stat |= EMPED
-			var/duration = (300 * 10)/severity
+			var/duration = (300 * 10) / severity
 			spawn(rand(duration - 20, duration + 20)) // Takes a long time for the machines to reboot.
 				stat &= ~EMPED
 	..()
@@ -214,17 +211,17 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 /obj/machinery/telecomms/proc/checkheat()
 	// Checks heat from the environment and applies any integrity damage
 	var/datum/gas_mixture/environment = loc.return_air()
-	var/damage_chance = 0                           // Percent based chance of applying 1 integrity damage this tick
+	var/damage_chance = 0							// Percent based chance of applying 1 integrity damage this tick
 	switch(environment.temperature)
-		if((T0C + 40) to (T0C + 70))                // 40C-70C, minor overheat, 10% chance of taking damage
+		if((T0C + 40) to (T0C + 70))				// 40C-70C, minor overheat, 10% chance of taking damage
 			damage_chance = 10
 		if((T0C + 70) to (T0C + 130))				// 70C-130C, major overheat, 25% chance of taking damage
 			damage_chance = 25
-		if((T0C + 130) to (T0C + 200))              // 130C-200C, dangerous overheat, 50% chance of taking damage
+		if((T0C + 130) to (T0C + 200))				// 130C-200C, dangerous overheat, 50% chance of taking damage
 			damage_chance = 50
 		if((T0C + 200) to INFINITY)					// More than 200C, INFERNO. Takes damage every tick.
 			damage_chance = 100
-	if (damage_chance && prob(damage_chance))
+	if(damage_chance && prob(damage_chance))
 		integrity = between(0, integrity - 1, 100)
 
 	if(delay)
@@ -248,11 +245,8 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 			var/datum/gas_mixture/env = L.return_air()
 			//if(env.temperature < (heat_amt+T0C))
 			if(env.temperature < new_temperature)
-
 				var/transfer_moles = 0.25 * env.total_moles
-
 				var/datum/gas_mixture/removed = env.remove(transfer_moles)
-
 				if(removed)
 					/*
 					var/heat_capacity = removed.heat_capacity()
@@ -264,6 +258,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 					removed.add_thermal_energy(heat_produced)
 
 				env.merge(removed)
+
 /*
 	The receiver idles and receives messages from subspace-compatible radio equipment;
 	primarily headsets. They then just relay this information to all linked devices,
@@ -271,7 +266,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 	Link to Processor Units in case receiver can't send to bus units.
 */
-
 /obj/machinery/telecomms/receiver
 	name = "Subspace Receiver"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -288,7 +282,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	circuitboard = /obj/item/weapon/circuitboard/telecomms/receiver
 
 /obj/machinery/telecomms/receiver/receive_signal(datum/signal/signal)
-
 	if(!on) // has to be on to receive messages
 		return
 	if(!signal)
@@ -297,9 +290,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		return
 
 	if(signal.transmission_method == 2)
-
 		if(is_freq_listening(signal)) // detect subspace signals
-
 			//Remove the level and then start adding levels that it is being broadcasted in.
 			signal.data["level"] = list()
 
@@ -308,7 +299,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 				relay_information(signal, /obj/machinery/telecomms/bus) // Send it to a bus instead, if it's linked to one
 
 /obj/machinery/telecomms/receiver/proc/check_receive_level(datum/signal/signal)
-
 	if(signal.data["level"] != listening_level)
 		for(var/obj/machinery/telecomms/hub/H in links)
 			var/list/connected_levels = list()
@@ -330,7 +320,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	that information to be processed. Afterwards it gets the uncompressed information
 	from Servers/Buses and sends that back to the relay, to then be broadcasted.
 */
-
 /obj/machinery/telecomms/hub
 	name = "Telecommunication Hub"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -347,7 +336,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	circuitboard = /obj/item/weapon/circuitboard/telecomms/hub
 	long_range_link = 1
 	netspeed = 40
-
 
 /obj/machinery/telecomms/hub/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 	if(is_freq_listening(signal))
@@ -367,7 +355,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	The relay is needed in order to send information pass Z levels. It must be linked
 	with a HUB, the only other machine that can send/receive pass Z levels.
 */
-
 /obj/machinery/telecomms/relay
 	name = "Telecommunication Relay"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -388,13 +375,11 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	var/receiving = 1
 
 /obj/machinery/telecomms/relay/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
-
 	// Add our level and send it back
 	if(can_send(signal))
 		signal.data["level"] |= listening_level
 
 // Checks to see if it can send/receive.
-
 /obj/machinery/telecomms/relay/proc/can(datum/signal/signal)
 	if(!on)
 		return 0
@@ -412,6 +397,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		return 0
 	return receiving
 
+
 /*
 	The bus mainframe idles and waits for hubs to relay them signals. They act
 	as junctions for the network.
@@ -421,7 +407,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 	Link to a subspace hub if it can't send to a server.
 */
-
 /obj/machinery/telecomms/bus
 	name = "Bus Mainframe"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -440,16 +425,13 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	var/change_frequency = 0
 
 /obj/machinery/telecomms/bus/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
-
 	if(is_freq_listening(signal))
-
 		if(change_frequency)
 			signal.frequency = change_frequency
 
 		if(!istype(machine_from, /obj/machinery/telecomms/processor) && machine_from != src) // Signal must be ready (stupid assuming machine), let's send it
 			// send to one linked processor unit
 			var/send_to_processor = relay_information(signal, /obj/machinery/telecomms/processor)
-
 			if(send_to_processor)
 				return
 			// failed to send to a processor, relay information anyway
@@ -468,7 +450,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 				break
 
 
-
 /*
 	The processor is a very simple machine that decompresses subspace signals and
 	transfers them back to the original bus. It is essential in producing audible
@@ -476,7 +457,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 	Link to servers if bus is not present
 */
-
 /obj/machinery/telecomms/processor
 	name = "Processor Unit"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -494,20 +474,18 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	circuitboard = /obj/item/weapon/circuitboard/telecomms/processor
 	var/process_mode = 1 // 1 = Uncompress Signals, 0 = Compress Signals
 
-	receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
+/obj/machinery/telecomms/processor/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
+	if(is_freq_listening(signal))
+		if(process_mode)
+			signal.data["compression"] = 0 // uncompress subspace signal
+		else
+			signal.data["compression"] = 100 // even more compressed signal
 
-		if(is_freq_listening(signal))
-
-			if(process_mode)
-				signal.data["compression"] = 0 // uncompress subspace signal
-			else
-				signal.data["compression"] = 100 // even more compressed signal
-
-			if(istype(machine_from, /obj/machinery/telecomms/bus))
-				relay_direct_information(signal, machine_from) // send the signal back to the machine
-			else // no bus detected - send the signal to servers instead
-				signal.data["slow"] += rand(5, 10) // slow the signal down
-				relay_information(signal, /obj/machinery/telecomms/server)
+		if(istype(machine_from, /obj/machinery/telecomms/bus))
+			relay_direct_information(signal, machine_from) // send the signal back to the machine
+		else // no bus detected - send the signal to servers instead
+			signal.data["slow"] += rand(5, 10) // slow the signal down
+			relay_information(signal, /obj/machinery/telecomms/server)
 
 
 /*
@@ -516,8 +494,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 	Store a maximum of 100 logs and then deletes them.
 */
-
-
 /obj/machinery/telecomms/server
 	name = "Telecommunication Server"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -556,17 +532,13 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	server_radio = new()
 
 /obj/machinery/telecomms/server/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
-
 	if(signal.data["message"])
-
 		if(is_freq_listening(signal))
-
 			if(traffic > 0)
 				totaltraffic += traffic // add current traffic to total traffic
 
 			//Is this a test signal? Bypass logging
 			if(signal.data["type"] != 4)
-
 				// If signal has a message and appropriate frequency
 
 				update_logs()
@@ -606,7 +578,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 				signal.data["server"] = src
 
 				// Give the log a name
-				var/identifier = num2text( rand(-1000,1000) + world.time )
+				var/identifier = num2text(rand(-1000, 1000) + world.time)
 				log.name = "data packet ([md5(identifier)])"
 
 				if(Compiler && autoruncode)
@@ -616,8 +588,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 			if(!can_send)
 				relay_information(signal, /obj/machinery/telecomms/broadcaster)
 
-
-/obj/machinery/telecomms/server/proc/setcode(var/t)
+/obj/machinery/telecomms/server/proc/setcode(t)
 	if(t)
 		if(istext(t))
 			rawcode = t
@@ -636,7 +607,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 				logs--
 				break
 
-/obj/machinery/telecomms/server/proc/add_entry(var/content, var/input)
+/obj/machinery/telecomms/server/proc/add_entry(content, input)
 	var/datum/comm_log_entry/log = new
 	var/identifier = num2text( rand(-1000,1000) + world.time )
 	log.name = "[input] ([md5(identifier)])"
@@ -646,19 +617,9 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	update_logs()
 
 
-
-
 // Simple log entry datum
-
 /datum/comm_log_entry
 	var/parameters = list() // carbon-copy to signal.data[]
 	var/name = "data packet (#)"
 	var/garbage_collector = 1 // if set to 0, will not be garbage collected
 	var/input_type = "Speech File"
-
-
-
-
-
-
-

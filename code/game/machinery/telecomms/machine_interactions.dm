@@ -1,6 +1,5 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
-
 /*
 
 	All telecommunications interactions:
@@ -14,9 +13,7 @@
 	var/temp = "" // output message
 	var/construct_op = 0
 
-
 /obj/machinery/telecomms/attackby(obj/item/P as obj, mob/user as mob)
-
 	// Using a multitool lets you access the receiver's interface
 	if(istype(P, /obj/item/device/multitool))
 		attack_hand(user)
@@ -24,46 +21,46 @@
 	// REPAIRING: Use Nanopaste to repair 10-20 integrity points.
 	if(istype(P, /obj/item/stack/nanopaste))
 		var/obj/item/stack/nanopaste/T = P
-		if (integrity < 100)               								//Damaged, let's repair!
-			integrity = between(0, integrity + rand(10,20), 100)
+		if(integrity < 100)												//Damaged, let's repair!
+			integrity = between(0, integrity + rand(10, 20), 100)
 			T.use(1)
-			usr << "You apply the Nanopaste to [src], repairing some of the damage."
+			to_chat(usr, "You apply the Nanopaste to [src], repairing some of the damage.")
 		else
-			usr << "This machine is already in perfect condition."
+			to_chat(usr, "This machine is already in perfect condition.")
 		return
 
 	switch(construct_op)
 		if(0)
 			if(istype(P, /obj/item/weapon/screwdriver))
-				user << "You unfasten the bolts."
+				to_chat(user, "You unfasten the bolts.")
 				playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 				construct_op ++
 		if(1)
 			if(istype(P, /obj/item/weapon/screwdriver))
-				user << "You fasten the bolts."
+				to_chat(user, "You fasten the bolts.")
 				playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 				construct_op --
 			if(istype(P, /obj/item/weapon/wrench))
-				user << "You dislodge the external plating."
+				to_chat(user, "You dislodge the external plating.")
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				construct_op ++
 		if(2)
 			if(istype(P, /obj/item/weapon/wrench))
-				user << "You secure the external plating."
+				to_chat(user, "You secure the external plating.")
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				construct_op --
 			if(istype(P, /obj/item/weapon/wirecutters))
 				playsound(src, 'sound/items/Wirecutter.ogg', 50, 1)
-				user << "You remove the cables."
+				to_chat(user, "You remove the cables.")
 				construct_op ++
-				var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( user.loc )
+				var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil(user.loc)
 				A.amount = 5
 				stat |= BROKEN // the machine's been borked!
 		if(3)
 			if(istype(P, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/A = P
 				if(A.amount >= 5)
-					user << "You insert the cables."
+					to_chat(user, "You insert the cables.")
 					A.amount -= 5
 					if(A.amount <= 0)
 						user.drop_item()
@@ -71,17 +68,16 @@
 					construct_op --
 					stat &= ~BROKEN // the machine's not borked anymore!
 			if(istype(P, /obj/item/weapon/crowbar))
-				user << "You begin prying out the circuit board other components..."
+				to_chat(user, "You begin prying out the circuit board and other components...")
 				playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
-				if(do_after(user,60))
-					user << "You finish prying out the components."
+				if(do_after(user, 60))
+					to_chat(user, "You finish prying out the components.")
 
 					// Drop all the component stuff
 					if(contents.len > 0)
 						for(var/obj/x in src)
 							x.loc = user.loc
 					else
-
 						// If the machine wasn't made during runtime, probably doesn't have components:
 						// manually find the components and drop them!
 						var/newpath = circuitboard
@@ -103,12 +99,10 @@
 					F.loc = src.loc
 					qdel(src)
 
-
-/obj/machinery/telecomms/attack_ai(var/mob/user as mob)
+/obj/machinery/telecomms/attack_ai(mob/user as mob)
 	attack_hand(user)
 
-/obj/machinery/telecomms/attack_hand(var/mob/user as mob)
-
+/obj/machinery/telecomms/attack_hand(mob/user as mob)
 	// You need a multitool to use this, or be silicon
 	if(!issilicon(user))
 		// istype returns false if the value is null
@@ -179,10 +173,7 @@
 //
 // You are able to send/receive signals from the station's z level (changeable in the STATION_Z #define) if
 // the relay is on the telecomm satellite (changable in the TELECOMM_Z #define)
-
-
 /obj/machinery/telecomms/relay/proc/toggle_level()
-
 	var/turf/position = get_turf(src)
 
 	// Toggle on/off getting signals from the station or the current Z level
@@ -195,9 +186,7 @@
 	return 0
 
 // Returns a multitool from a user depending on their mobtype.
-
 /obj/machinery/telecomms/proc/get_multitool(mob/user as mob)
-
 	var/obj/item/device/multitool/P = null
 	// Let's double check
 	if(!issilicon(user) && istype(user.get_active_hand(), /obj/item/device/multitool))
@@ -212,7 +201,6 @@
 
 // Additional Options for certain machines. Use this when you want to add an option to a specific machine.
 // Example of how to use below.
-
 /obj/machinery/telecomms/proc/Options_Menu()
 	return ""
 
@@ -236,7 +224,6 @@
 */
 
 // RELAY
-
 /obj/machinery/telecomms/relay/Options_Menu()
 	var/dat = ""
 	if(src.z == TELECOMM_Z)
@@ -246,7 +233,6 @@
 	return dat
 
 /obj/machinery/telecomms/relay/Options_Topic(href, href_list)
-
 	if(href_list["receive"])
 		receiving = !receiving
 		temp = "<font color = #666633>-% Receiving mode changed. %-</font color>"
@@ -262,16 +248,14 @@
 		else
 			temp = "<font color = #666633>-% [src] could not lock it's signal onto the station. Two broadcasters or receivers required.</font color>"
 
-// BUS
 
+// BUS
 /obj/machinery/telecomms/bus/Options_Menu()
 	var/dat = "<br>Change Signal Frequency: <A href='?src=\ref[src];change_freq=1'>[change_frequency ? "YES ([change_frequency])" : "NO"]</a>"
 	return dat
 
 /obj/machinery/telecomms/bus/Options_Topic(href, href_list)
-
 	if(href_list["change_freq"])
-
 		var/newfreq = input(usr, "Specify a new frequency for new signals to change to. Enter null to turn off frequency changing. Decimals assigned automatically.", src, network) as null|num
 		if(canAccess(usr))
 			if(newfreq)
@@ -286,7 +270,6 @@
 
 
 /obj/machinery/telecomms/Topic(href, href_list)
-
 	if(!issilicon(usr))
 		if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
 			return
@@ -298,9 +281,7 @@
 
 	if(href_list["input"])
 		switch(href_list["input"])
-
 			if("toggle")
-
 				src.toggled = !src.toggled
 				temp = "<font color = #666633>-% [src] has been [src.toggled ? "activated" : "deactivated"].</font color>"
 				update_power()
@@ -320,18 +301,14 @@
 			if("network")
 				var/newnet = input(usr, "Specify the new network for this machine. This will break all current links.", src, network) as null|text
 				if(newnet && canAccess(usr))
-
 					if(length(newnet) > 15)
 						temp = "<font color = #666633>-% Too many characters in new network tag %-</font color>"
-
 					else
 						for(var/obj/machinery/telecomms/T in links)
 							T.links.Remove(src)
-
 						network = newnet
 						links = list()
 						temp = "<font color = #666633>-% New network tag assigned: \"[network]\" %-</font color>"
-
 
 			if("freq")
 				var/newfreq = input(usr, "Specify a new frequency to filter (GHz). Decimals assigned automatically.", src, network) as null|num
@@ -343,48 +320,36 @@
 						temp = "<font color = #666633>-% New frequency filter assigned: \"[newfreq] GHz\" %-</font color>"
 
 	if(href_list["delete"])
-
 		// changed the layout about to workaround a pesky runtime -- Doohl
-
 		var/x = text2num(href_list["delete"])
 		temp = "<font color = #666633>-% Removed frequency filter [x] %-</font color>"
 		freq_listening.Remove(x)
 
 	if(href_list["unlink"])
-
 		if(text2num(href_list["unlink"]) <= length(links))
 			var/obj/machinery/telecomms/T = links[text2num(href_list["unlink"])]
 			temp = "<font color = #666633>-% Removed \ref[T] [T.name] from linked entities. %-</font color>"
-
 			// Remove link entries from both T and src.
-
 			if(src in T.links)
 				T.links.Remove(src)
 			links.Remove(T)
 
 	if(href_list["link"])
-
 		if(P)
 			if(P.buffer && P.buffer != src)
 				if(!(src in P.buffer.links))
 					P.buffer.links.Add(src)
-
 				if(!(P.buffer in src.links))
 					src.links.Add(P.buffer)
-
 				temp = "<font color = #666633>-% Successfully linked with \ref[P.buffer] [P.buffer.name] %-</font color>"
-
 			else
 				temp = "<font color = #666633>-% Unable to acquire buffer %-</font color>"
 
 	if(href_list["buffer"])
-
 		P.buffer = src
 		temp = "<font color = #666633>-% Successfully stored \ref[P.buffer] [P.buffer.name] in buffer %-</font color>"
 
-
 	if(href_list["flush"])
-
 		temp = "<font color = #666633>-% Buffer successfully flushed. %-</font color>"
 		P.buffer = null
 
@@ -395,7 +360,7 @@
 
 	updateUsrDialog()
 
-/obj/machinery/telecomms/proc/canAccess(var/mob/user)
+/obj/machinery/telecomms/proc/canAccess(mob/user)
 	if(issilicon(user) || in_range(user, src))
 		return 1
 	return 0
