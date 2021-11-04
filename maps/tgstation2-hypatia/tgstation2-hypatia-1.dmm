@@ -7198,7 +7198,7 @@
 "xcE" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 9},/turf/simulated/wall,/area/crew_quarters/fitness)
 "xcK" = (/obj/machinery/alarm{name = "north bump"; pixel_y = 24},/turf/simulated/floor/plating,/area/maintenance/fpmaint)
 "xcP" = (/obj/machinery/portable_atmospherics/pump,/obj/effect/decal/floor/industrial/delivery,/turf/simulated/floor,/area/crew_quarters/locker)
-"xcZ" = (/obj/machinery/chem_master,/turf/simulated/floor{dir = 1; icon_state = "whiteyellow"},/area/medical/chemistry)
+"xcZ" = (/obj/machinery/chem_master,/obj/machinery/light{dir = 1; on = 1},/turf/simulated/floor{dir = 1; icon_state = "whiteyellow"},/area/medical/chemistry)
 "xdb" = (/obj/structure/grille,/obj/structure/window/reinforced,/turf/simulated/floor/plating,/area/maintenance/port)
 "xdl" = (/obj/structure/sink{dir = 8; pixel_x = -12; pixel_y = 2},/obj/structure/mirror{pixel_x = -28},/obj/machinery/light{dir = 1; on = 1},/turf/simulated/floor{icon_state = "freezerfloor"},/area/crew_quarters/toilet)
 "xdq" = (/turf/simulated/wall,/area/maintenance/fpmaint)
