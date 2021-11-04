@@ -299,6 +299,5 @@
 
 	return 1
 
-
 #undef SAVEFILE_VERSION_MAX
 #undef SAVEFILE_VERSION_MIN

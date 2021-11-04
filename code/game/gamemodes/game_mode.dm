@@ -10,7 +10,6 @@
  * 2. Conditions of finishing the round.
  *
  */
-
 /datum/game_mode
 	var/name = "invalid"
 	var/config_tag = null

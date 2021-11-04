@@ -109,7 +109,6 @@
 			qdel(src)
 	return
 
-
 /obj/effect/meteor/ex_act(severity)
 	if(severity < 4)
 		qdel(src)

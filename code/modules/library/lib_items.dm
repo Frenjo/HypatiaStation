@@ -6,7 +6,6 @@
  *		Barcode Scanner
  */
 
-
 /*
  * Bookcase
  */
@@ -106,6 +105,7 @@
 	new /obj/item/weapon/book/manual/engineering_singularity_safety(src)
 	new /obj/item/weapon/book/manual/evaguide(src)
 	update_icon()
+
 
 /obj/structure/bookcase/manuals/research_and_development
 	name = "R&D Manuals bookcase"

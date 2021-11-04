@@ -11,12 +11,11 @@
 /*
  * Borrowbook datum
  */
-datum/borrowbook // Datum used to keep track of who has borrowed what when and for how long.
+/datum/borrowbook // Datum used to keep track of who has borrowed what when and for how long.
 	var/bookname
 	var/mobname
 	var/getdate
 	var/duedate
-
 
 /*
  * Library Public Computer
@@ -108,7 +107,6 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	return
-
 
 /*
  * Library Computer
@@ -282,7 +280,6 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 					bibledelay = 1
 					spawn(60)
 						bibledelay = 0
-
 				else
 					for(var/mob/V in hearers(src))
 						V.show_message("<b>[src]</b>'s monitor flashes, \"Bible printer currently unavailable, please wait a moment.\"")
@@ -388,7 +385,6 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	src.updateUsrDialog()
 	return
 
-
 /*
  * Library Scanner
  */
@@ -439,7 +435,6 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	src.updateUsrDialog()
 	return
 
-
 /*
  * Book binder
  */
@@ -454,9 +449,12 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	if(istype(O, /obj/item/weapon/paper))
 		user.drop_item()
 		O.loc = src
-		user.visible_message("[user] loads some paper into [src].", "You load some paper into [src].")
+		user.visible_message(
+			"[user] loads some paper into [src].",
+			"You load some paper into [src]."
+		)
 		src.visible_message("[src] begins to hum as it warms up its printing drums.")
-		sleep(rand(200,400))
+		sleep(rand(200, 400))
 		src.visible_message("[src] whirs as it prints and binds a new book.")
 		var/obj/item/weapon/book/b = new(src.loc)
 		b.dat = O:info
