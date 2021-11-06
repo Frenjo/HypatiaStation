@@ -1,4 +1,3 @@
-
 /client/verb/who()
 	set name = "Who"
 	set category = "OOC"
@@ -40,7 +39,8 @@
 		msg += "[line]\n"
 
 	msg += "<b>Total Players: [length(Lines)]</b>"
-	src << msg
+	to_chat(src, msg)
+
 
 /client/verb/staffwho()
 	set category = "Admin"
@@ -60,7 +60,7 @@
 
 				if(isobserver(C.mob))
 					msg += " - Observing"
-				else if(istype(C.mob,/mob/new_player))
+				else if(istype(C.mob, /mob/new_player))
 					msg += " - Lobby"
 				else
 					msg += " - Playing"
@@ -75,7 +75,7 @@
 
 				if(isobserver(C.mob))
 					modmsg += " - Observing"
-				else if(istype(C.mob,/mob/new_player))
+				else if(istype(C.mob, /mob/new_player))
 					modmsg += " - Lobby"
 				else
 					modmsg += " - Playing"
@@ -84,7 +84,6 @@
 					modmsg += " (AFK)"
 				modmsg += "\n"
 				num_mods_online++
-
 	else
 		for(var/client/C in admins)
 			if(R_ADMIN & C.holder.rights || !(R_MOD & C.holder.rights))
@@ -96,4 +95,4 @@
 				num_mods_online++
 
 	msg = "<b>Current Admins ([num_admins_online]):</b>\n" + msg + "\n<b> Current Moderators([num_mods_online]):</b>\n" + modmsg
-	src << msg
+	to_chat(src, msg)

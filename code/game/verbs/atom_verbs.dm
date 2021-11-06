@@ -22,11 +22,11 @@
 		return
 
 	var/tile = get_turf(this)
-	if (!tile)
+	if(!tile)
 		return
 
 	var/P = new /obj/effect/decal/point(tile)
-	spawn (20)
+	spawn(20)
 		if(P)
 			qdel(P)
 		else

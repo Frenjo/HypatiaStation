@@ -1,4 +1,3 @@
-
 var/global/normal_ooc_colour = "#002eb8"
 
 /client/verb/ooc(msg as text)
@@ -6,35 +5,37 @@ var/global/normal_ooc_colour = "#002eb8"
 	set category = "OOC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "\red Speech is currently admin-disabled."
+		to_chat(usr, SPAN_WARNING("Speech is currently admin-disabled."))
 		return
 
-	if(!mob)	return
+	if(!mob)
+		return
 	if(IsGuestKey(key))
-		src << "Guests may not use OOC."
+		to_chat(src, "Guests may not use OOC.")
 		return
 
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
-	if(!msg)	return
+	if(!msg)
+		return
 
 	if(!(prefs.toggles & CHAT_OOC))
-		src << "\red You have OOC muted."
+		to_chat(src, SPAN_WARNING("You have OOC muted."))
 		return
 
 	if(!holder || holder.rank == "Donor") // This is ugly, but I Can't figure out any easy way without duplicating code to confirm the user is not a donor while being a holder using rights.
 		if(!ooc_allowed)
-			src << "\red OOC is globally muted"
+			to_chat(src, SPAN_WARNING("OOC is globally muted."))
 			return
-		if(!dooc_allowed && (mob.stat == DEAD))
-			usr << "\red OOC for dead mobs has been turned off."
+		if(!dooc_allowed && mob.stat == DEAD)
+			to_chat(usr, SPAN_WARNING("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_OOC)
-			src << "\red You cannot use OOC (muted)."
+			to_chat(src, SPAN_WARNING("You cannot use OOC (muted)."))
 			return
-		if(handle_spam_prevention(msg,MUTE_OOC))
+		if(handle_spam_prevention(msg, MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
-			src << "<B>Advertising other servers is not allowed.</B>"
+			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
@@ -63,9 +64,8 @@ var/global/normal_ooc_colour = "#002eb8"
 						display_name = "[holder.fakekey]/([src.key])"
 					else
 						display_name = holder.fakekey
-			//C << "<font color='[display_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
-			// Formatted OOC chat so it looks a bit better, the double : is eye cancer. -Frenjo
-			C << "<font color='[display_colour]'><span class='ooc'><span class='prefix'>(OOC)</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
+			// Formatted OOC chat so it looks a bit better, the double : was eye cancer. -Frenjo
+			to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>(OOC)</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
 
 			/*
 			if(holder)
@@ -96,35 +96,37 @@ var/global/normal_ooc_colour = "#002eb8"
 	set category = "OOC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "\red Speech is currently admin-disabled."
+		to_chat(usr, SPAN_WARNING("Speech is currently admin-disabled."))
 		return
 
-	if(!mob)	return
+	if(!mob)
+		return
 	if(IsGuestKey(key))
-		src << "Guests may not use OOC."
+		to_chat(src, "Guests may not use OOC.")
 		return
 
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
-	if(!msg)	return
+	if(!msg)
+		return
 
 	if(!(prefs.toggles & CHAT_LOOC))
-		src << "\red You have LOOC muted."
+		to_chat(src, SPAN_WARNING("You have LOOC muted."))
 		return
 
 	if(!holder)
 		if(!ooc_allowed)
-			src << "\red OOC is globally muted"
+			to_chat(src, SPAN_WARNING("OOC is globally muted."))
 			return
-		if(!dooc_allowed && (mob.stat == DEAD))
-			usr << "\red OOC for dead mobs has been turned off."
+		if(!dooc_allowed && mob.stat == DEAD)
+			to_chat(usr, SPAN_WARNING("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_OOC)
-			src << "\red You cannot use OOC (muted)."
+			to_chat(src, SPAN_WARNING("You cannot use OOC (muted)."))
 			return
-		if(handle_spam_prevention(msg,MUTE_OOC))
+		if(handle_spam_prevention(msg, MUTE_OOC))
 			return
 		if(findtext(msg, "byond://"))
-			src << "<B>Advertising other servers is not allowed.</B>"
+			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
@@ -136,7 +138,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		if(!M.client)
 			continue
 		var/client/C = M.client
-		if (C in admins)
+		if(C in admins)
 			continue //they are handled after that
 
 		if(C.prefs.toggles & CHAT_LOOC)
@@ -147,10 +149,10 @@ var/global/normal_ooc_colour = "#002eb8"
 						display_name = "[holder.fakekey]/([src.key])"
 					else
 						display_name = holder.fakekey
-			C << "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
+			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>(LOOC)</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
 	for(var/client/C in admins)
 		if(C.prefs.toggles & CHAT_LOOC)
 			var/prefix = "(R)LOOC"
-			if (C.mob in heard)
+			if(C.mob in heard)
 				prefix = "LOOC"
-			C << "<font color='#6699CC'><span class='ooc'><span class='prefix'>[prefix]:</span> <EM>[src.key]:</EM> <span class='message'>[msg]</span></span></font>"
+			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>[prefix]:</span> <EM>[src.key]:</EM> <span class='message'>[msg]</span></span></font>")
