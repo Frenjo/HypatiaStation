@@ -14,7 +14,6 @@
 	var/head_content = ""
 	var/content = ""
 
-
 /datum/browser/New(nuser, nwindow_id, ntitle = 0, nwidth = 0, nheight = 0, atom/nref = null)
 	user = nuser
 	window_id = nwindow_id
@@ -157,7 +156,7 @@
 	set name = ".windowclose"			// no autocomplete on cmd line
 
 	//world << "windowclose: [atomref]"
-	if(atomref!="null")				// if passed a real atomref
+	if(atomref != "null")			// if passed a real atomref
 		var/hsrc = locate(atomref)	// find the reffed atom
 		var/href = "close=1"
 		if(hsrc)

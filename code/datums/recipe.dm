@@ -39,7 +39,6 @@
 	var/result //example: = /obj/item/weapon/reagent_containers/food/snacks/donut/normal
 	var/time = 100 // 1/10 part of second
 
-
 /datum/recipe/proc/check_reagents(datum/reagents/avail_reagents) //1=precisely, 0=insufficiently, -1=superfluous
 	. = 1
 	for(var/r_r in reagents)
@@ -113,7 +112,7 @@
 		for(var/datum/recipe/recipe in possible_recipes)
 			var/N_i = (recipe.items) ? (recipe.items.len) : 0
 			var/N_r = (recipe.reagents) ? (recipe.reagents.len) : 0
-			if(N_i > i_count || (N_i== i_count && N_r > r_count ))
+			if(N_i > i_count || (N_i == i_count && N_r > r_count ))
 				r_count = N_r
 				i_count = N_i
 				. = recipe

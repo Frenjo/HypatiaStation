@@ -112,13 +112,12 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 
 /obj/effect/proc_holder/spell/New()
 	..()
-
 	charge_counter = charge_max
 
 /obj/effect/proc_holder/spell/Click()
-    if(cast_check())
-        choose_targets()
-    return 1
+	if(cast_check())
+		choose_targets()
+	return 1
 
 /obj/effect/proc_holder/spell/proc/choose_targets(mob/user = usr) //depends on subtype - /targeted or /aoe_turf
 	return
@@ -164,7 +163,7 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 		else if(isturf(target))
 			location = target
 		if(isliving(target) && message)
-			target << text("[message]")
+			to_chat(target, message)
 		if(sparks_spread)
 			var/datum/effect/system/spark_spread/sparks = new /datum/effect/system/spark_spread()
 			sparks.set_up(sparks_amt, 0, location) //no idea what the 0 is
@@ -193,7 +192,6 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 			charge_counter++
 		if("holdervar")
 			adjust_var(user, holder_var_type, -holder_var_amount)
-
 	return
 
 /obj/effect/proc_holder/spell/proc/adjust_var(mob/living/target = usr, type, amount) //handles the adjustment of the var when the spell is used. has some hardcoded types
@@ -265,7 +263,6 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 		return
 
 	perform(targets)
-
 	return
 
 /obj/effect/proc_holder/spell/aoe_turf/choose_targets(mob/user = usr)
@@ -280,5 +277,4 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 		return
 
 	perform(targets)
-
 	return

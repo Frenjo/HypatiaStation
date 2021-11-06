@@ -19,7 +19,6 @@
 //	return 1
 
 // calculate the sun's position given the time of day
-
 /datum/sun/proc/calc_position()
 /*	counter++
 	if(counter<50)		// count 50 pticks (50 seconds, roughly - about a 5deg change)
@@ -66,7 +65,6 @@
 			continue
 		if(S.control)
 			occlusion(S)
-
 
 // for a solar panel, trace towards sun to see if we're in shadow
 /datum/sun/proc/occlusion(obj/machinery/power/solar/S)

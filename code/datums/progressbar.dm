@@ -24,7 +24,7 @@
 	if(client)
 		client.images -= bar
 	qdel(bar)
-	. = ..()
+	return ..()
 
 /datum/progressbar/proc/update(progress)
 	if(!user || !user.client)

@@ -19,7 +19,6 @@ to null does not delete the object itself. Thank you.
 
 var/list/diseases = SUBTYPESOF(/datum/disease)
 
-
 /datum/disease
 	var/form = "Virus" //During medscans, what the disease is referred to as
 	var/name = "No disease"
@@ -114,7 +113,6 @@ var/list/diseases = SUBTYPESOF(/datum/disease)
 
 /datum/disease/proc/spread(atom/source = null, airborne_range = 2, force_spread)
 	//world << "Disease [src] proc spread was called from holder [source]"
-
 	// If we're overriding how we spread, say so here
 	var/how_spread = spread_type
 	if(force_spread)
@@ -147,9 +145,7 @@ var/list/diseases = SUBTYPESOF(/datum/disease)
 			if(isturf(M.loc))
 				if(AStar(source.loc, M.loc, /turf/proc/AdjacentTurfs, /turf/proc/Distance, check_range))
 					M.contract_disease(src, 0, 1, force_spread)
-
 	return
-
 
 /datum/disease/proc/process()
 	if(!holder)

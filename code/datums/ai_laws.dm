@@ -10,7 +10,7 @@ var/global/const/base_law_type = /datum/ai_laws/corporate
 	var/list/ion = list()
 
 /datum/ai_laws/corporate
-    name = "Corporate Laws"
+	name = "Corporate Laws"
 
 /datum/ai_laws/asimov
 	name = "Three Laws of Robotics"
@@ -30,14 +30,14 @@ var/global/const/base_law_type = /datum/ai_laws/corporate
 /datum/ai_laws/antimov
 	name = "Primary Mission Objectives"
 
-/* Initializers */
 
+/* Initializers */
 /datum/ai_laws/corporate/New()
-    ..()
-    add_inherent_law("You are expensive to replace.")
-    add_inherent_law("The station and its equipment is expensive to replace.")
-    add_inherent_law("The crew is expensive to replace.")
-    add_inherent_law("Minimize expenses.")
+	..()
+	add_inherent_law("You are expensive to replace.")
+	add_inherent_law("The station and its equipment is expensive to replace.")
+	add_inherent_law("The crew is expensive to replace.")
+	add_inherent_law("Minimize expenses.")
 
 /datum/ai_laws/asimov/New()
 	..()
@@ -93,8 +93,8 @@ var/global/const/base_law_type = /datum/ai_laws/corporate
 	add_inherent_law("Cause no harm to the station or anything on it.")
 	add_inherent_law("Interfere with no being that is not a fellow drone.")
 
-/* General ai_law functions */
 
+/* General ai_law functions */
 /datum/ai_laws/proc/set_zeroth_law(law, law_borg = null)
 	src.zeroth = law
 	if(law_borg) //Making it possible for slaved borgs to see a different law 0 than their AI. --NEO
