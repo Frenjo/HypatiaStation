@@ -244,7 +244,7 @@ steam.start() -- spawns the effect
 			M.coughedtime = 0
 
 /obj/effect/smoke/bad/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height == 0))
+	if(air_group || height == 0)
 		return 1
 	if(istype(mover, /obj/item/projectile/energy/beam))
 		var/obj/item/projectile/energy/beam/B = mover
@@ -363,7 +363,6 @@ steam.start() -- spawns the effect
 /// Then do start() to start it and stop() to stop it, obviously
 /// and don't call start() in a loop that will be repeated otherwise it'll get spammed!
 /////////////////////////////////////////////
-
 /obj/effect/ion_trails
 	name = "ion trails"
 	icon_state = "ion_trails"
@@ -374,93 +373,88 @@ steam.start() -- spawns the effect
 	var/processing = 1
 	var/on = 1
 
-	set_up(atom/atom)
-		attach(atom)
-		oldposition = get_turf(atom)
+/datum/effect/system/ion_trail_follow/set_up(atom/atom)
+	attach(atom)
+	oldposition = get_turf(atom)
 
-	start()
-		if(!src.on)
-			src.on = 1
-			src.processing = 1
-		if(src.processing)
-			src.processing = 0
-			spawn(0)
-				var/turf/T = get_turf(src.holder)
-				if(T != src.oldposition)
-					if(istype(T, /turf/space))
-						var/obj/effect/ion_trails/I = PoolOrNew(/obj/effect/ion_trails, src.oldposition)
-						src.oldposition = T
-						I.set_dir(src.holder.dir)
-						flick("ion_fade", I)
-						I.icon_state = "blank"
-						spawn(20)
-							qdel(I)
-					spawn(2)
-						if(src.on)
-							src.processing = 1
-							src.start()
-				else
-					spawn(2)
-						if(src.on)
-							src.processing = 1
-							src.start()
-
-	proc/stop()
+/datum/effect/system/ion_trail_follow/start()
+	if(!src.on)
+		src.on = 1
+		src.processing = 1
+	if(src.processing)
 		src.processing = 0
-		src.on = 0
+		spawn(0)
+			var/turf/T = get_turf(src.holder)
+			if(T != src.oldposition)
+				if(istype(T, /turf/space))
+					var/obj/effect/ion_trails/I = PoolOrNew(/obj/effect/ion_trails, src.oldposition)
+					src.oldposition = T
+					I.set_dir(src.holder.dir)
+					flick("ion_fade", I)
+					I.icon_state = "blank"
+					spawn(20)
+						qdel(I)
+				spawn(2)
+					if(src.on)
+						src.processing = 1
+						src.start()
+			else
+				spawn(2)
+					if(src.on)
+						src.processing = 1
+						src.start()
 
-
+/datum/effect/system/ion_trail_follow/proc/stop()
+	src.processing = 0
+	src.on = 0
 
 
 /////////////////////////////////////////////
 //////// Attach a steam trail to an object (eg. a reacting beaker) that will follow it
 // even if it's carried of thrown.
 /////////////////////////////////////////////
-
 /datum/effect/system/steam_trail_follow
 	var/turf/oldposition
 	var/processing = 1
 	var/on = 1
 
-	set_up(atom/atom)
-		attach(atom)
-		oldposition = get_turf(atom)
+/datum/effect/system/steam_trail_follow/set_up(atom/atom)
+	attach(atom)
+	oldposition = get_turf(atom)
 
-	start()
-		if(!src.on)
-			src.on = 1
-			src.processing = 1
-		if(src.processing)
-			src.processing = 0
-			spawn(0)
-				if(src.number < 3)
-					var/obj/effect/steam/I = PoolOrNew(/obj/effect/steam, src.oldposition)
-					src.number++
-					src.oldposition = get_turf(holder)
-					I.set_dir(src.holder.dir)
-					spawn(10)
-						qdel(I)
-						src.number--
-					spawn(2)
-						if(src.on)
-							src.processing = 1
-							src.start()
-				else
-					spawn(2)
-						if(src.on)
-							src.processing = 1
-							src.start()
-
-	proc/stop()
+/datum/effect/system/steam_trail_follow/start()
+	if(!src.on)
+		src.on = 1
+		src.processing = 1
+	if(src.processing)
 		src.processing = 0
-		src.on = 0
+		spawn(0)
+			if(src.number < 3)
+				var/obj/effect/steam/I = PoolOrNew(/obj/effect/steam, src.oldposition)
+				src.number++
+				src.oldposition = get_turf(holder)
+				I.set_dir(src.holder.dir)
+				spawn(10)
+					qdel(I)
+					src.number--
+				spawn(2)
+					if(src.on)
+						src.processing = 1
+						src.start()
+			else
+				spawn(2)
+					if(src.on)
+						src.processing = 1
+						src.start()
 
+/datum/effect/system/steam_trail_follow/proc/stop()
+	src.processing = 0
+	src.on = 0
 
 
 // Foam
 // Similar to smoke, but spreads out more
 // metal foams leave behind a foamed metal wall
-
 /obj/effect/foam
 	name = "foam"
 	icon_state = "foam"
@@ -474,13 +468,12 @@ steam.start() -- spawns the effect
 	animate_movement = 0
 	var/metal = 0
 
-
-/obj/effect/foam/New(loc, var/ismetal=0)
+/obj/effect/foam/New(loc, ismetal = 0)
 	..(loc)
-	icon_state = "[ismetal ? "m":""]foam"
+	icon_state = "[ismetal ? "m" : ""]foam"
 	metal = ismetal
 	playsound(src, 'sound/effects/bubbles2.ogg', 80, 1, -3)
-	spawn(3 + metal*3)
+	spawn(3 + metal * 3)
 		process()
 		checkReagents()
 	spawn(120)
@@ -509,11 +502,8 @@ steam.start() -- spawns the effect
 	if(--amount < 0)
 		return
 
-
 	for(var/direction in cardinal)
-
-
-		var/turf/T = get_step(src,direction)
+		var/turf/T = get_step(src, direction)
 		if(!T)
 			continue
 
@@ -528,7 +518,7 @@ steam.start() -- spawns the effect
 		F.amount = amount
 		if(!metal)
 			F.create_reagents(10)
-			if (reagents)
+			if(reagents)
 				for(var/datum/reagent/R in reagents.reagent_list)
 					F.reagents.add_reagent(R.id, 1, safety = 1)		//added safety check since reagents in the foam have already had a chance to react
 
@@ -537,77 +527,68 @@ steam.start() -- spawns the effect
 /obj/effect/foam/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(!metal && prob(max(0, exposed_temperature - 475)))
 		flick("[icon_state]-disolve", src)
-
 		spawn(5)
 			qdel(src)
 
-
-/obj/effect/foam/Crossed(var/atom/movable/AM)
+/obj/effect/foam/Crossed(atom/movable/AM)
 	if(metal)
 		return
 
-	if (istype(AM, /mob/living/carbon))
+	if(iscarbon(AM))
 		var/mob/M =	AM
-		if (istype(M, /mob/living/carbon/human) && (istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags&NOSLIP))
+		if(ishuman(M) && (istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags & NOSLIP))
 			return
 
 		M.stop_pulling()
-		M << "\blue You slipped on the foam!"
+		to_chat(M, SPAN_INFO("You slipped on the foam!"))
 		playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
 		M.Stun(5)
 		M.Weaken(2)
-
 
 /datum/effect/system/foam_spread
 	var/amount = 5				// the size of the foam spread.
 	var/list/carried_reagents	// the IDs of reagents present when the foam was mixed
 	var/metal = 0				// 0=foam, 1=metalfoam, 2=ironfoam
 
+/datum/effect/system/foam_spread/set_up(amt = 5, loca, datum/reagents/carry = null, metalfoam = 0)
+	amount = round(sqrt(amt / 3), 1)
+	if(istype(loca, /turf/))
+		location = loca
+	else
+		location = get_turf(loca)
 
+	carried_reagents = list()
+	metal = metalfoam
 
+	// bit of a hack here. Foam carries along any reagent also present in the glass it is mixed
+	// with (defaults to water if none is present). Rather than actually transfer the reagents,
+	// this makes a list of the reagent ids and spawns 1 unit of that reagent when the foam disolves.
 
-	set_up(amt=5, loca, var/datum/reagents/carry = null, var/metalfoam = 0)
-		amount = round(sqrt(amt / 3), 1)
-		if(istype(loca, /turf/))
-			location = loca
-		else
-			location = get_turf(loca)
+	if(carry && !metal)
+		for(var/datum/reagent/R in carry.reagent_list)
+			carried_reagents += R.id
 
-		carried_reagents = list()
-		metal = metalfoam
+/datum/effect/system/foam_spread/start()
+	spawn(0)
+		var/obj/effect/foam/F = locate() in location
+		if(F)
+			F.amount += amount
+			return
 
+		F = new(src.location, metal)
+		F.amount = amount
 
-		// bit of a hack here. Foam carries along any reagent also present in the glass it is mixed
-		// with (defaults to water if none is present). Rather than actually transfer the reagents,
-		// this makes a list of the reagent ids and spawns 1 unit of that reagent when the foam disolves.
+		if(!metal)			// don't carry other chemicals if a metal foam
+			F.create_reagents(10)
 
-
-		if(carry && !metal)
-			for(var/datum/reagent/R in carry.reagent_list)
-				carried_reagents += R.id
-
-	start()
-		spawn(0)
-			var/obj/effect/foam/F = locate() in location
-			if(F)
-				F.amount += amount
-				return
-
-			F = new(src.location, metal)
-			F.amount = amount
-
-			if(!metal)			// don't carry other chemicals if a metal foam
-				F.create_reagents(10)
-
-				if(carried_reagents)
-					for(var/id in carried_reagents)
-						F.reagents.add_reagent(id, 1, null, 1) //makes a safety call because all reagents should have already reacted anyway
-				else
-					F.reagents.add_reagent("water", 1, safety = 1)
+			if(carried_reagents)
+				for(var/id in carried_reagents)
+					F.reagents.add_reagent(id, 1, null, 1) //makes a safety call because all reagents should have already reacted anyway
+			else
+				F.reagents.add_reagent("water", 1, safety = 1)
 
 // wall formed by metal foams
 // dense and opaque, but easy to break
-
 /obj/structure/foamedmetal
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "metalfoam"
@@ -618,149 +599,145 @@ steam.start() -- spawns the effect
 	desc = "A lightweight foamed metal wall."
 	var/metal = 1		// 1=aluminum, 2=iron
 
-	New()
-		..()
-		update_nearby_tiles(1)
+/obj/structure/foamedmetal/New()
+	..()
+	update_nearby_tiles(1)
 
+/obj/structure/foamedmetal/Destroy()
+	density = 0
+	update_nearby_tiles(1)
+	return ..()
 
+/obj/structure/foamedmetal/proc/updateicon()
+	if(metal == 1)
+		icon_state = "metalfoam"
+	else
+		icon_state = "ironfoam"
 
-	Destroy()
+/obj/structure/foamedmetal/ex_act(severity)
+	qdel(src)
 
-		density = 0
-		update_nearby_tiles(1)
-		..()
+/obj/structure/foamedmetal/blob_act()
+	qdel(src)
 
-	proc/updateicon()
-		if(metal == 1)
-			icon_state = "metalfoam"
-		else
-			icon_state = "ironfoam"
-
-
-	ex_act(severity)
+/obj/structure/foamedmetal/bullet_act()
+	if(metal == 1 || prob(50))
 		qdel(src)
 
-	blob_act()
+/obj/structure/foamedmetal/attack_paw(mob/user)
+	attack_hand(user)
+	return
+
+/obj/structure/foamedmetal/attack_hand(mob/user)
+	if(HULK in user.mutations || prob(75 - metal * 25))
+		to_chat(user, SPAN_INFO("You smash through the metal foam wall."))
+		for(var/mob/O in oviewers(user))
+			if(O.client && !O.blinded)
+				to_chat(O, SPAN_WARNING("[user] smashes through the foamed metal."))
+
 		qdel(src)
+	else
+		to_chat(user, SPAN_INFO("You hit the metal foam but bounce off it."))
+	return
 
-	bullet_act()
-		if(metal==1 || prob(50))
-			qdel(src)
-
-	attack_paw(var/mob/user)
-		attack_hand(user)
+/obj/structure/foamedmetal/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = I
+		G.affecting.loc = src.loc
+		for(var/mob/O in viewers(src))
+			if(O.client)
+				to_chat(O, SPAN_WARNING("[G.assailant] smashes [G.affecting] through the foamed metal wall."))
+		qdel(I)
+		qdel(src)
 		return
 
-	attack_hand(var/mob/user)
-		if ((HULK in user.mutations) || (prob(75 - metal*25)))
-			user << "\blue You smash through the metal foam wall."
-			for(var/mob/O in oviewers(user))
-				if ((O.client && !( O.blinded )))
-					O << "\red [user] smashes through the foamed metal."
+	if(prob(I.force * 20 - metal * 25))
+		to_chat(user, SPAN_INFO("You smash through the foamed metal with \the [I]."))
+		for(var/mob/O in oviewers(user))
+			if(O.client && !O.blinded)
+				to_chat(O, SPAN_WARNING("[user] smashes through the foamed metal."))
+		qdel(src)
+	else
+		to_chat(user, SPAN_INFO("You hit the metal foam to no effect."))
 
-			qdel(src)
-		else
-			user << "\blue You hit the metal foam but bounce off it."
-		return
+/obj/structure/foamedmetal/CanPass(atom/movable/mover, turf/target, height = 1.5, air_group = 0)
+	if(air_group)
+		return 0
+	return !density
 
+/obj/structure/foamedmetal/proc/update_nearby_tiles(need_rebuild)
+	if(!air_master)
+		return 0
 
-	attackby(var/obj/item/I, var/mob/user)
+	air_master.mark_for_update(get_turf(src))
 
-		if (istype(I, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = I
-			G.affecting.loc = src.loc
-			for(var/mob/O in viewers(src))
-				if (O.client)
-					O << "\red [G.assailant] smashes [G.affecting] through the foamed metal wall."
-			qdel(I)
-			qdel(src)
-			return
+	return 1
 
-		if(prob(I.force*20 - metal*25))
-			user << "\blue You smash through the foamed metal with \the [I]."
-			for(var/mob/O in oviewers(user))
-				if ((O.client && !( O.blinded )))
-					O << "\red [user] smashes through the foamed metal."
-			qdel(src)
-		else
-			user << "\blue You hit the metal foam to no effect."
-
-	CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
-		if(air_group) return 0
-		return !density
-
-
-	proc/update_nearby_tiles(need_rebuild)
-		if(!air_master)
-			return 0
-
-		air_master.mark_for_update(get_turf(src))
-
-		return 1
 
 /datum/effect/system/reagents_explosion
-	var/amount 						// TNT equivalent
+	var/amount						// TNT equivalent
 	var/flashing = 0			// does explosion creates flash effect?
 	var/flashing_factor = 0		// factor of how powerful the flash effect relatively to the explosion
 
-	set_up (amt, loc, flash = 0, flash_fact = 0)
-		amount = amt
-		if(istype(loc, /turf/))
-			location = loc
-		else
-			location = get_turf(loc)
+/datum/effect/system/reagents_explosion/set_up(amt, loc, flash = 0, flash_fact = 0)
+	amount = amt
+	if(isturf(loc))
+		location = loc
+	else
+		location = get_turf(loc)
 
-		flashing = flash
-		flashing_factor = flash_fact
+	flashing = flash
+	flashing_factor = flash_fact
 
+	return
+
+/datum/effect/system/reagents_explosion/start()
+	if(amount <= 2)
+		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
+		s.set_up(2, 1, location)
+		s.start()
+
+		for(var/mob/M in viewers(5, location))
+			to_chat(M, SPAN_WARNING("The solution violently explodes."))
+		for(var/mob/M in viewers(1, location))
+			if(prob (50 * amount))
+				to_chat(M, SPAN_WARNING("The explosion knocks you down."))
+				M.Weaken(rand(1, 5))
 		return
+	else
+		var/devastation = -1
+		var/heavy = -1
+		var/light = -1
+		var/flash = -1
 
-	start()
-		if (amount <= 2)
-			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-			s.set_up(2, 1, location)
-			s.start()
+		// Clamp all values to MAX_EXPLOSION_RANGE
+		if(round(amount / 12) > 0)
+			devastation = min (MAX_EXPLOSION_RANGE, devastation + round(amount / 12))
 
-			for(var/mob/M in viewers(5, location))
-				M << "\red The solution violently explodes."
-			for(var/mob/M in viewers(1, location))
-				if (prob (50 * amount))
-					M << "\red The explosion knocks you down."
-					M.Weaken(rand(1,5))
-			return
-		else
-			var/devastation = -1
-			var/heavy = -1
-			var/light = -1
-			var/flash = -1
+		if(round(amount / 6) > 0)
+			heavy = min (MAX_EXPLOSION_RANGE, heavy + round(amount / 6))
 
-			// Clamp all values to MAX_EXPLOSION_RANGE
-			if (round(amount/12) > 0)
-				devastation = min (MAX_EXPLOSION_RANGE, devastation + round(amount/12))
+		if(round(amount / 3) > 0)
+			light = min (MAX_EXPLOSION_RANGE, light + round(amount / 3))
 
-			if (round(amount/6) > 0)
-				heavy = min (MAX_EXPLOSION_RANGE, heavy + round(amount/6))
+		if(flash && flashing_factor)
+			flash += (round(amount / 4) * flashing_factor)
 
-			if (round(amount/3) > 0)
-				light = min (MAX_EXPLOSION_RANGE, light + round(amount/3))
+		for(var/mob/M in viewers(8, location))
+			M << "\red The solution violently explodes."
 
-			if (flash && flashing_factor)
-				flash += (round(amount/4) * flashing_factor)
+		explosion(location, devastation, heavy, light, flash)
 
-			for(var/mob/M in viewers(8, location))
-				M << "\red The solution violently explodes."
+/datum/effect/system/reagents_explosion/proc/holder_damage(atom/holder)
+	if(holder)
+		var/dmglevel = 4
 
-			explosion(location, devastation, heavy, light, flash)
+		if(round(amount / 8) > 0)
+			dmglevel = 1
+		else if(round(amount / 4) > 0)
+			dmglevel = 2
+		else if(round(amount / 2) > 0)
+			dmglevel = 3
 
-	proc/holder_damage(var/atom/holder)
-		if(holder)
-			var/dmglevel = 4
-
-			if (round(amount/8) > 0)
-				dmglevel = 1
-			else if (round(amount/4) > 0)
-				dmglevel = 2
-			else if (round(amount/2) > 0)
-				dmglevel = 3
-
-			if(dmglevel<4) holder.ex_act(dmglevel)
+		if(dmglevel < 4)
+			holder.ex_act(dmglevel)

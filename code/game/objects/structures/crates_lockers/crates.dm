@@ -54,7 +54,7 @@
 	for(var/obj/O in get_turf(src))
 		if(itemcount >= storage_capacity)
 			break
-		if(O.density || O.anchored || istype(O,/obj/structure/closet))
+		if(O.density || O.anchored || istype(O, /obj/structure/closet))
 			continue
 		if(istype(O, /obj/structure/stool/bed)) //This is only necessary because of rollerbeds and swivel chairs.
 			var/obj/structure/stool/bed/B = O
@@ -78,26 +78,27 @@
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))
 		if(rigged)
-			user << "<span class='notice'>[src] is already rigged!</span>"
+			to_chat(user, SPAN_NOTICE("[src] is already rigged!"))
 			return
-		user  << "<span class='notice'>You rig [src].</span>"
+		to_chat(user, SPAN_NOTICE("You rig [src]."))
 		user.drop_item()
 		qdel(W)
 		rigged = 1
 		return
 	else if(istype(W, /obj/item/device/radio/electropack))
 		if(rigged)
-			user << "<span class='notice'>You attach [W] to [src].</span>"
+			to_chat(user, SPAN_NOTICE("You attach [W] to [src]."))
 			user.drop_item()
 			W.loc = src
 			return
 	else if(istype(W, /obj/item/weapon/wirecutters))
 		if(rigged)
-			user << "<span class='notice'>You cut away the wiring.</span>"
+			to_chat(user, SPAN_NOTICE("You cut away the wiring."))
 			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 			rigged = 0
 			return
-	else return attack_hand(user)
+	else
+		return attack_hand(user)
 
 /obj/structure/closet/crate/ex_act(severity)
 	switch(severity)
@@ -146,20 +147,20 @@
 
 /obj/structure/closet/crate/secure/proc/togglelock(mob/user as mob)
 	if(src.opened)
-		user << "<span class='notice'>Close the crate first.</span>"
+		to_chat(user, SPAN_NOTICE("Close the crate first."))
 		return
 	if(src.broken)
-		user << "<span class='warning'>The crate appears to be broken.</span>"
+		to_chat(user, SPAN_WARNING("The crate appears to be broken."))
 		return
 	if(src.allowed(user))
 		src.locked = !src.locked
 		for(var/mob/O in viewers(user, 3))
-			if((O.client && !(O.blinded)))
-				O << "<span class='notice'>The crate has been [locked ? null : "un"]locked by [user].</span>"
+			if(O.client && !O.blinded)
+				to_chat(O, SPAN_NOTICE("The crate has been [locked ? null : "un"]locked by [user]."))
 		overlays.Cut()
 		overlays += locked ? redlight : greenlight
 	else
-		user << "<span class='notice'>Access Denied</span>"
+		to_chat(user, SPAN_NOTICE("Access denied."))
 
 /obj/structure/closet/crate/secure/verb/verb_togglelock()
 	set src in oview(1) // One square distance
@@ -173,7 +174,7 @@
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else
-		usr << "<span class='warning'>This mob type can't use this verb.</span>"
+		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
 
 /obj/structure/closet/crate/secure/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
@@ -185,15 +186,16 @@
 /obj/structure/closet/crate/secure/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(is_type_in_list(W, list(/obj/item/weapon/packageWrap, /obj/item/stack/cable_coil, /obj/item/device/radio/electropack, /obj/item/weapon/wirecutters)))
 		return ..()
-	if(locked && (istype(W, /obj/item/weapon/card/emag)||istype(W, /obj/item/weapon/melee/energy/blade)))
+	if(locked && (istype(W, /obj/item/weapon/card/emag) || istype(W, /obj/item/weapon/melee/energy/blade)))
 		overlays.Cut()
 		overlays += emag
 		overlays += sparks
-		spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
+		spawn(6)
+			overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
 		playsound(src, "sparks", 60, 1)
 		src.locked = 0
 		src.broken = 1
-		user << "<span class='notice'>You unlock \the [src].</span>"
+		to_chat(user, SPAN_NOTICE("You unlock \the [src]."))
 		return
 	if(!opened)
 		src.togglelock(user)
@@ -224,18 +226,20 @@
 			src.req_access += pick(get_all_accesses())
 	..()
 
+
 /obj/structure/closet/crate/secure/bio
-        desc = "A specialized orange freezer, designed to biologically suspend \
+	desc = "A specialized orange freezer, designed to biologically suspend \
 the valuable stem cells used to clone people on board the station \
 inside the genetics lab. Designed to hold stem cells for very long \
 periods of time. There is some small print on top, \n \
 <B><FONT COLOR=RED>\"Warning: The contents of this Biological Suspension Unit (BSU) are incredibly valuable. Waste of these stem cells will result in termination and you will be expected to compensate.\"</B></FONT>"
-        name = "Biological Suspension Unit (BSU)"
-        icon = 'icons/obj/storage.dmi'
-        density = 1
-        icon_state = "bio"
-        icon_opened = "bioopen"
-        icon_closed = "bio"
+	name = "Biological Suspension Unit (BSU)"
+	icon = 'icons/obj/storage.dmi'
+	density = 1
+	icon_state = "bio"
+	icon_opened = "bioopen"
+	icon_closed = "bio"
+
 
 /obj/structure/closet/crate/plastic
 	name = "plastic crate"
@@ -244,12 +248,14 @@ periods of time. There is some small print on top, \n \
 	icon_opened = "plasticcrateopen"
 	icon_closed = "plasticcrate"
 
+
 /obj/structure/closet/crate/internals
 	desc = "A internals crate."
 	name = "Internals crate"
 	icon_state = "o2crate"
 	icon_opened = "o2crateopen"
 	icon_closed = "o2crate"
+
 
 /obj/structure/closet/crate/trashcart
 	desc = "A heavy, metal trashcart with wheels."
@@ -274,12 +280,14 @@ periods of time. There is some small print on top, \n \
 	icon_closed = "crate"
 */
 
+
 /obj/structure/closet/crate/medical
 	desc = "A medical crate."
 	name = "Medical crate"
 	icon_state = "medicalcrate"
 	icon_opened = "medicalcrateopen"
 	icon_closed = "medicalcrate"
+
 
 /obj/structure/closet/crate/rcd
 	desc = "A crate for the storage of the RCD."
@@ -294,6 +302,7 @@ periods of time. There is some small print on top, \n \
 	new /obj/item/weapon/rcd_ammo(src)
 	new /obj/item/weapon/rcd_ammo(src)
 	new /obj/item/weapon/rcd(src)
+
 
 /obj/structure/closet/crate/solar
 	name = "Solar Pack crate"
@@ -325,6 +334,7 @@ periods of time. There is some small print on top, \n \
 	new /obj/item/weapon/tracker_electronics(src)
 	new /obj/item/weapon/paper/solar(src)
 
+
 /obj/structure/closet/crate/freezer
 	desc = "A freezer."
 	name = "Freezer"
@@ -334,29 +344,32 @@ periods of time. There is some small print on top, \n \
 	var/target_temp = T0C - 40
 	var/cooling_power = 40
 
-	return_air()
-		var/datum/gas_mixture/gas = (..())
-		if(!gas)	return null
-		var/datum/gas_mixture/newgas = new/datum/gas_mixture()
-		newgas.copy_from(gas)
-		newgas.temperature = gas.temperature
-		if(newgas.temperature <= target_temp)	return
+/obj/structure/closet/crate/freezer/return_air()
+	var/datum/gas_mixture/gas = (..())
+	if(!gas)
+		return null
+	var/datum/gas_mixture/newgas = new/datum/gas_mixture()
+	newgas.copy_from(gas)
+	newgas.temperature = gas.temperature
+	if(newgas.temperature <= target_temp)
+		return
 
-		if((newgas.temperature - cooling_power) > target_temp)
-			newgas.temperature -= cooling_power
-		else
-			newgas.temperature = target_temp
-		return newgas
+	if((newgas.temperature - cooling_power) > target_temp)
+		newgas.temperature -= cooling_power
+	else
+		newgas.temperature = target_temp
+	return newgas
+
 
 /obj/structure/closet/crate/freezer/rations //Fpr use in the escape shuttle
 	desc = "A crate of emergency rations."
 	name = "Emergency Rations"
 
-
 /obj/structure/closet/crate/freezer/rations/New()
 	..()
 	new /obj/item/weapon/storage/box/donkpockets(src)
 	new /obj/item/weapon/storage/box/donkpockets(src)
+
 
 /obj/structure/closet/crate/bin
 	desc = "A large bin."
@@ -364,6 +377,7 @@ periods of time. There is some small print on top, \n \
 	icon_state = "largebin"
 	icon_opened = "largebinopen"
 	icon_closed = "largebin"
+
 
 /obj/structure/closet/crate/radiation
 	desc = "A crate with a radiation sign on it."
@@ -383,12 +397,14 @@ periods of time. There is some small print on top, \n \
 	new /obj/item/clothing/suit/radiation(src)
 	new /obj/item/clothing/head/radiation(src)
 
+
 /obj/structure/closet/crate/secure/weapon
 	desc = "A secure weapons crate."
 	name = "Weapons crate"
 	icon_state = "weaponcrate"
 	icon_opened = "weaponcrateopen"
 	icon_closed = "weaponcrate"
+
 
 /obj/structure/closet/crate/secure/plasma
 	desc = "A secure plasma crate."
@@ -397,6 +413,7 @@ periods of time. There is some small print on top, \n \
 	icon_opened = "plasmacrateopen"
 	icon_closed = "plasmacrate"
 
+
 /obj/structure/closet/crate/secure/gear
 	desc = "A secure gear crate."
 	name = "Gear crate"
@@ -404,12 +421,14 @@ periods of time. There is some small print on top, \n \
 	icon_opened = "secgearcrateopen"
 	icon_closed = "secgearcrate"
 
+
 /obj/structure/closet/crate/secure/hydrosec
 	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
 	name = "secure hydroponics crate"
 	icon_state = "hydrosecurecrate"
 	icon_opened = "hydrosecurecrateopen"
 	icon_closed = "hydrosecurecrate"
+
 
 /obj/structure/closet/crate/secure/bin
 	desc = "A secure bin."
@@ -421,6 +440,7 @@ periods of time. There is some small print on top, \n \
 	greenlight = "largebing"
 	sparks = "largebinsparks"
 	emag = "largebinemag"
+
 
 /obj/structure/closet/crate/large
 	name = "large crate"
@@ -447,6 +467,7 @@ periods of time. There is some small print on top, \n \
 					M.loc = src
 					break
 	return
+
 
 /obj/structure/closet/crate/secure/large
 	name = "large crate"
@@ -482,6 +503,7 @@ periods of time. There is some small print on top, \n \
 	icon_state = "largermetal"
 	icon_opened = "largermetalopen"
 	icon_closed = "largermetal"
+
 
 /obj/structure/closet/crate/hydroponics
 	name = "Hydroponics crate"

@@ -22,9 +22,9 @@
 
 /obj/effect/spider/attackby(obj/item/weapon/W, mob/user)
 	if(W.attack_verb.len)
-		visible_message("\red <B>\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]")
+		visible_message(SPAN_DANGER("\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]" : "")]."))
 	else
-		visible_message("\red <B>\The [src] have been attacked with \the [W][(user ? " by [user]." : ".")]")
+		visible_message(SPAN_DANGER("\The [src] have been attacked with \the [W][(user ? " by [user]" : "")]."))
 
 	var/damage = W.force / 4.0
 
@@ -61,7 +61,7 @@
 		icon_state = "stickyweb2"
 
 /obj/effect/spider/stickyweb/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height == 0))
+	if(air_group || height == 0)
 		return 1
 	if(istype(mover, /mob/living/simple_animal/hostile/giant_spider))
 		return 1
@@ -81,8 +81,8 @@
 	var/amount_grown = 0
 	
 /obj/effect/spider/eggcluster/New()
-	pixel_x = rand(3,-3)
-	pixel_y = rand(3,-3)
+	pixel_x = rand(3, -3)
+	pixel_y = rand(3, -3)
 	processing_objects.Add(src)
 
 /obj/effect/spider/eggcluster/process()

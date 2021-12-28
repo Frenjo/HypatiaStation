@@ -111,16 +111,16 @@
 	icon_state = "x"
 	var/btype = 0 // 0=radio, 1=prox, 2=time
 
-	timer
-		btype = 2
+/obj/effect/spawner/newbomb/timer
+	btype = 2
 
-		syndicate
+/obj/effect/spawner/newbomb/timer/syndicate
 
-	proximity
-		btype = 1
+/obj/effect/spawner/newbomb/proximity
+	btype = 1
 
-	radio
-		btype = 0
+/obj/effect/spawner/newbomb/radio
+	btype = 0
 
 
 /obj/effect/spawner/newbomb/New()
@@ -144,20 +144,17 @@
 
 	var/obj/item/device/assembly/S
 
-	switch (src.btype)
+	switch(src.btype)
 		// radio
-		if (0)
-
+		if(0)
 			S = new/obj/item/device/assembly/signaler(V)
 
 		// proximity
-		if (1)
-
+		if(1)
 			S = new/obj/item/device/assembly/prox_sensor(V)
 
 		// timer
-		if (2)
-
+		if(2)
 			S = new/obj/item/device/assembly/timer(V)
 
 

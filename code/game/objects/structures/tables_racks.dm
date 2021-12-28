@@ -49,23 +49,23 @@
 		if(flipped)
 			var/type = 0
 			var/tabledirs = 0
-			for(var/direction in list(turn(dir, 90), turn(dir, -90)) )
+			for(var/direction in list(turn(dir, 90), turn(dir, -90)))
 				var/obj/structure/table/T = locate(/obj/structure/table, get_step(src, direction))
-				if (T && T.flipped && T.dir == src.dir)
+				if(T && T.flipped && T.dir == src.dir)
 					type++
 					tabledirs |= direction
 			var/base = "table"
-			if (istype(src, /obj/structure/table/woodentable))
+			if(istype(src, /obj/structure/table/woodentable))
 				base = "wood"
-			if (istype(src, /obj/structure/table/reinforced))
+			if(istype(src, /obj/structure/table/reinforced))
 				base = "rtable"
 
 			icon_state = "[base]flip[type]"
-			if (type==1)
-				if (tabledirs & turn(dir,90))
-					icon_state = icon_state+"-"
-				if (tabledirs & turn(dir,-90))
-					icon_state = icon_state+"+"
+			if(type == 1)
+				if(tabledirs & turn(dir, 90))
+					icon_state = icon_state + "-"
+				if(tabledirs & turn(dir, -90))
+					icon_state = icon_state + "+"
 			return 1
 
 		var/dir_sum = 0
@@ -241,7 +241,7 @@
 	return
 
 /obj/structure/table/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height == 0))
+	if(air_group || height == 0)
 		return 1
 	if(istype(mover, /obj/item/projectile))
 		return (check_cover(mover, target))
@@ -273,10 +273,10 @@
 		if(prob(chance))
 			health -= P.damage / 2
 			if(health > 0)
-				visible_message("<span class='warning'>[P] hits \the [src]!</span>")
+				visible_message(SPAN_WARNING("[P] hits \the [src]!"))
 				return 0
 			else
-				visible_message("<span class='warning'>[src] breaks down!</span>")
+				visible_message(SPAN_WARNING("[src] breaks down!"))
 				qdel(src)
 				return 1
 	return 1
@@ -292,7 +292,7 @@
 	return 1
 
 /obj/structure/table/MouseDrop_T(obj/O as obj, mob/user as mob)
-	if((!(istype(O, /obj/item/weapon)) || user.get_active_hand() != O))
+	if(!istype(O, /obj/item/weapon) || user.get_active_hand() != O)
 		return
 	if(isrobot(user))
 		return
@@ -313,20 +313,20 @@
 					if(prob(15))
 						M.Weaken(5)
 					M.apply_damage(8, def_zone = "head")
-					visible_message("\red [G.assailant] slams [G.affecting]'s face against \the [src]!")
+					visible_message(SPAN_WARNING("[G.assailant] slams [G.affecting]'s face against \the [src]!"))
 					playsound(src, 'sound/weapons/tablehit1.ogg', 50, 1)
 				else
-					user << "\red You need a better grip to do that!"
+					to_chat(user, SPAN_WARNING("You need a better grip to do that!"))
 					return
 			else
 				G.affecting.loc = src.loc
 				G.affecting.Weaken(5)
-				visible_message("\red [G.assailant] puts [G.affecting] on \the [src].")
+				visible_message(SPAN_WARNING("[G.assailant] puts [G.affecting] on \the [src]."))
 			qdel(W)
 			return
 
 	if(istype(W, /obj/item/weapon/wrench))
-		user << "\blue Now disassembling table"
+		to_chat(user, SPAN_INFO("Now disassembling table."))
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		if(do_after(user,50))
 			qdel(src)
@@ -342,13 +342,16 @@
 		playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 		playsound(src, "sparks", 50, 1)
 		for(var/mob/O in viewers(user, 4))
-			O.show_message("\blue The [src] was sliced apart by [user]!", 1, "\red You hear [src] coming apart.", 2)
+			O.show_message(
+				SPAN_INFO("The [src] was sliced apart by [user]!"), 1,
+				SPAN_WARNING("You hear [src] coming apart."), 2
+			)
 		qdel(src)
 
 	user.drop_item(src)
 	return
 
-/obj/structure/table/proc/straight_table_check(var/direction)
+/obj/structure/table/proc/straight_table_check(direction)
 	var/obj/structure/table/T
 	for(var/angle in list(-90, 90))
 		T = locate() in get_step(src.loc, turn(direction, angle))
@@ -357,7 +360,7 @@
 	T = locate() in get_step(src.loc, direction)
 	if(!T || T.flipped)
 		return 1
-	if(istype(T, /obj/structure/table/reinforced/))
+	if(istype(T, /obj/structure/table/reinforced))
 		var/obj/structure/table/reinforced/R = T
 		if(R.status == 2)
 			return 0
@@ -373,17 +376,17 @@
 		return
 
 	if(!flip(get_cardinal_dir(usr, src)))
-		usr << "<span class='notice'>It won't budge.</span>"
+		to_chat(usr, SPAN_NOTICE("It won't budge."))
 		return
 
-	usr.visible_message("<span class='warning'>[usr] flips \the [src]!</span>")
+	usr.visible_message(SPAN_WARNING("[usr] flips \the [src]!"))
 
 	if(climbable)
 		structure_shaken()
 
 	return
 
-/obj/structure/table/proc/unflipping_check(var/direction)
+/obj/structure/table/proc/unflipping_check(direction)
 	for(var/mob/M in oview(src,0))
 		return 0
 
@@ -410,11 +413,11 @@
 		return
 
 	if(!unflipping_check())
-		usr << "<span class='notice'>It won't budge.</span>"
+		to_chat(usr, SPAN_NOTICE("It won't budge."))
 		return
 	unflip()
 
-/obj/structure/table/proc/flip(var/direction)
+/obj/structure/table/proc/flip(direction)
 	if(!straight_table_check(turn(direction, 90)) || !straight_table_check(turn(direction, -90)))
 		return 0
 
@@ -449,7 +452,7 @@
 	flipped = 0
 	flags &= ~ON_BORDER
 	for(var/D in list(turn(dir, 90), turn(dir, -90)))
-		var/obj/structure/table/T = locate() in get_step(src.loc,D)
+		var/obj/structure/table/T = locate() in get_step(src.loc, D)
 		if(T && T.flipped && T.dir == src.dir)
 			T.unflip()
 	update_icon()
@@ -466,6 +469,7 @@
 	icon_state = "wood_table"
 	parts = /obj/item/weapon/table_parts/wood
 	health = 50
+
 /*
  * Reinforced tables
  */
@@ -477,7 +481,7 @@
 	var/status = 2
 	parts = /obj/item/weapon/table_parts/reinforced
 
-/obj/structure/table/reinforced/flip(var/direction)
+/obj/structure/table/reinforced/flip(direction)
 	if(status == 2)
 		return 0
 	else
@@ -488,20 +492,20 @@
 		var/obj/item/weapon/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			if(src.status == 2)
-				user << "\blue Now weakening the reinforced table"
+				to_chat(user, SPAN_INFO("Now weakening the reinforced table."))
 				playsound(src, 'sound/items/Welder.ogg', 50, 1)
-				if (do_after(user, 50))
+				if(do_after(user, 50))
 					if(!src || !WT.isOn())
 						return
-					user << "\blue Table weakened"
+					to_chat(user, SPAN_INFO("Table weakened."))
 					src.status = 1
 			else
-				user << "\blue Now strengthening the reinforced table"
+				to_chat(user, SPAN_INFO("Now strengthening the reinforced table."))
 				playsound(src, 'sound/items/Welder.ogg', 50, 1)
-				if (do_after(user, 50))
+				if(do_after(user, 50))
 					if(!src || !WT.isOn())
 						return
-					user << "\blue Table strengthened"
+					to_chat(user, SPAN_INFO("Table strengthened."))
 					src.status = 2
 			return
 		return
@@ -525,8 +529,8 @@
 	breakable = 1
 	parts = /obj/item/weapon/rack_parts
 
-/obj/structure/rack/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height == 0))
+/obj/structure/rack/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	if(air_group || height == 0)
 		return 1
 	if(src.density == 0) //Because broken racks -Agouri |TODO: SPRITE!|
 		return 1
@@ -536,7 +540,7 @@
 		return 0
 
 /obj/structure/rack/MouseDrop_T(obj/O as obj, mob/user as mob)
-	if((!(istype(O, /obj/item/weapon)) || user.get_active_hand() != O))
+	if(!istype(O, /obj/item/weapon) || user.get_active_hand() != O)
 		return
 	if(isrobot(user))
 		return

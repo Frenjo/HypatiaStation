@@ -37,14 +37,13 @@
 				pixel_x = 32
 			if(WEST)
 				pixel_x = -32
-		icon_state = "glowshroom[rand(1,3)]"
+		icon_state = "glowshroom[rand(1, 3)]"
 	else //if on the floor, glowshroom on-floor sprite
 		icon_state = "glowshroomf"
 
 	processing_objects += src
 
-	//SetLuminosity(round(potency/10))
-	set_light(round(potency/10))
+	set_light(round(potency / 10))
 	lastTick = world.timeofday
 
 /obj/effect/glowshroom/Destroy()
@@ -81,7 +80,7 @@
 				for(var/obj/effect/glowshroom/shroom in newLoc)
 					shroomCount++
 				for(var/wallDir in cardinal)
-					var/turf/isWall = get_step(newLoc,wallDir)
+					var/turf/isWall = get_step(newLoc, wallDir)
 					if(isWall.density)
 						placeCount++
 				if(shroomCount >= placeCount)
@@ -117,7 +116,7 @@
 
 	var/list/dirList = list()
 
-	for(var/i = 1,i <= 16,i <<= 1)
+	for(var/i = 1, i <= 16, i <<= 1)
 		if(direction & i)
 			dirList += i
 

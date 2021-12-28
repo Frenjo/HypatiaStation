@@ -12,46 +12,42 @@
 
 /obj/structure/lamarr/ex_act(severity)
 	switch(severity)
-		if (1)
-			new /obj/item/weapon/shard( src.loc )
+		if(1)
+			new /obj/item/weapon/shard(src.loc)
 			Break()
 			qdel(src)
-		if (2)
-			if (prob(50))
+		if(2)
+			if(prob(50))
 				src.health -= 15
 				src.healthcheck()
-		if (3)
-			if (prob(50))
+		if(3)
+			if(prob(50))
 				src.health -= 5
 				src.healthcheck()
 
-
-/obj/structure/lamarr/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/lamarr/bullet_act(obj/item/projectile/Proj)
 	health -= Proj.damage
 	..()
 	src.healthcheck()
 	return
 
-
 /obj/structure/lamarr/blob_act()
-	if (prob(75))
-		new /obj/item/weapon/shard( src.loc )
+	if(prob(75))
+		new /obj/item/weapon/shard(src.loc)
 		Break()
 		qdel(src)
-
 
 /obj/structure/lamarr/meteorhit(obj/O as obj)
-		new /obj/item/weapon/shard( src.loc )
+		new /obj/item/weapon/shard(src.loc)
 		Break()
 		qdel(src)
 
-
 /obj/structure/lamarr/proc/healthcheck()
-	if (src.health <= 0)
-		if (!( src.destroyed ))
+	if(src.health <= 0)
+		if(!src.destroyed)
 			src.density = 0
 			src.destroyed = 1
-			new /obj/item/weapon/shard( src.loc )
+			new /obj/item/weapon/shard(src.loc)
 			playsound(src, "shatter", 70, 1)
 			Break()
 	else
@@ -65,7 +61,6 @@
 		src.icon_state = "labcage[src.occupied]"
 	return
 
-
 /obj/structure/lamarr/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	src.health -= W.force
 	src.healthcheck()
@@ -76,13 +71,13 @@
 	return src.attack_hand(user)
 
 /obj/structure/lamarr/attack_hand(mob/user as mob)
-	if (src.destroyed)
+	if(src.destroyed)
 		return
 	else
-		usr << text("\blue You kick the lab cage.")
+		to_chat(user, SPAN_INFO("You kick the lab cage."))
 		for(var/mob/O in oviewers())
-			if ((O.client && !( O.blinded )))
-				O << text("\red [] kicks the lab cage.", usr)
+			if(O.client && !O.blinded)
+				to_chat(O, SPAN_WARNING("[user] kicks the lab cage."))
 		src.health -= 2
 		healthcheck()
 		return

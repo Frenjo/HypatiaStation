@@ -87,20 +87,20 @@ obj/structure/ex_act(severity)
 /obj/structure/transit_tube/Bumped(mob/AM as mob|obj)
 	var/obj/structure/transit_tube/T = locate() in AM.loc
 	if(T)
-		AM << "<span class='warning'>The tube's support pylons block your way.</span>"
+		to_chat(AM, SPAN_WARNING("The tube's support pylons block your way."))
 		return ..()
 	else
 		AM.loc = src.loc
-		AM << "<span class='info'>You slip under the tube.</span>"
+		to_chat(AM, SPAN_INFO("You slip under the tube."))
 
 /obj/structure/transit_tube/station/New(loc)
 	..(loc)
 
 /obj/structure/transit_tube/station/Bumped(mob/AM as mob|obj)
-	if(!pod_moving && icon_state == "open" && istype(AM, /mob))
+	if(!pod_moving && icon_state == "open" && ismob(AM))
 		for(var/obj/structure/transit_tube_pod/pod in loc)
 			if(pod.contents.len)
-				AM << "<span class=The pod is already occupied.</span>"
+				to_chat(AM, SPAN_WARNING("The pod is already occupied."))
 				return
 			else if(!pod.moving && pod.dir in directions())
 				AM.loc = pod
@@ -314,7 +314,7 @@ obj/structure/ex_act(severity)
 /obj/structure/transit_tube_pod/return_air()
 	var/datum/gas_mixture/GM = new()
 	GM.copy_from(air_contents)
-	GM.temperature		= air_contents.temperature
+	GM.temperature = air_contents.temperature
 	return GM
 
 // For now, copying what I found in an unused FEA file (and almost identical in a

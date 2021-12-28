@@ -6,7 +6,7 @@
 	density = 1
 
 /obj/structure/largecrate/attack_hand(mob/user as mob)
-	user << "<span class='notice'>You need a crowbar to pry this open!</span>"
+	to_chat(user, SPAN_NOTICE("You need a crowbar to pry this open!"))
 	return
 
 /obj/structure/largecrate/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -15,15 +15,19 @@
 		var/turf/T = get_turf(src)
 		for(var/obj/O in contents)
 			O.loc = T
-		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
-							 "<span class='notice'>You pry open \the [src].</span>", \
-							 "<span class='notice'>You hear splitting wood.</span>")
+		user.visible_message(
+			SPAN_NOTICE("[user] pries \the [src] open."),
+			SPAN_NOTICE("You pry open \the [src]."),
+			SPAN_NOTICE("You hear splitting wood.")
+		)
 		qdel(src)
 	else
 		return attack_hand(user)
 
+
 /obj/structure/largecrate/mule
 	icon_state = "mulecrate"
+
 
 /obj/structure/largecrate/lisa
 	icon_state = "lisacrate"
@@ -32,6 +36,7 @@
 	if(istype(W, /obj/item/weapon/crowbar))
 		new /mob/living/simple_animal/corgi/Lisa(loc)
 	..()
+
 
 /obj/structure/largecrate/cow
 	name = "cow crate"
@@ -42,6 +47,7 @@
 		new /mob/living/simple_animal/cow(loc)
 	..()
 
+
 /obj/structure/largecrate/goat
 	name = "goat crate"
 	icon_state = "lisacrate"
@@ -50,6 +56,7 @@
 	if(istype(W, /obj/item/weapon/crowbar))
 		new /mob/living/simple_animal/hostile/retaliate/goat(loc)
 	..()
+
 
 /obj/structure/largecrate/chick
 	name = "chicken crate"
@@ -61,6 +68,7 @@
 		for(var/i = 0, i < num, i++)
 			new /mob/living/simple_animal/chick(loc)
 	..()
+
 
 // Ported hoverpod from NSS Eternal. -Frenjo
 /obj/structure/largecrate/hoverpod

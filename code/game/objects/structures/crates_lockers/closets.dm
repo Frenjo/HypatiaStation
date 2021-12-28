@@ -157,7 +157,7 @@
 
 /obj/structure/closet/attack_animal(mob/living/user as mob)
 	if(user.wall_smash)
-		visible_message("\red [user] destroys the [src]. ")
+		visible_message(SPAN_WARNING("[user] destroys the [src]."))
 		for(var/atom/movable/A as mob|obj in src)
 			A.loc = src.loc
 		qdel(src)
@@ -179,7 +179,7 @@
 /obj/structure/closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(src.opened)
 		if(istype(W, /obj/item/weapon/grab))
-			src.MouseDrop_T(W:affecting, user)      //act like they were dragged onto the closet
+			src.MouseDrop_T(W:affecting, user)		//act like they were dragged onto the closet
 		if(istype(W, /obj/item/tk_grab))
 			return 0
 		if(istype(W, /obj/item/weapon/weldingtool))
@@ -189,7 +189,10 @@
 				return
 			new /obj/item/stack/sheet/metal(src.loc)
 			for(var/mob/M in viewers(src))
-				M.show_message(SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [WT]."), 3, "You hear welding.", 2)
+				M.show_message(
+					SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [WT]."), 3,
+					"You hear welding.", 2
+				)
 			qdel(src)
 			return
 		if(isrobot(user))
@@ -207,7 +210,10 @@
 		src.welded = !src.welded
 		src.update_icon()
 		for(var/mob/M in viewers(src))
-			M.show_message(SPAN_WARNING("[src] has been [welded ? "welded shut" : "unwelded"] by [user.name]."), 3, "You hear welding.", 2)
+			M.show_message(
+				SPAN_WARNING("[src] has been [welded ? "welded shut" : "unwelded"] by [user.name]."), 3,
+				"You hear welding.", 2
+			)
 	else
 		src.attack_hand(user)
 	return
@@ -219,9 +225,9 @@
 		return
 	if(user.restrained() || user.stat || user.weakened || user.stunned || user.paralysis)
 		return
-	if((!(istype(O, /atom/movable)) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src)))
+	if(!istype(O, /atom/movable) || O.anchored || get_dist(user, src) > 1 || get_dist(user, O) > 1 || user.contents.Find(src))
 		return
-	if(user.loc==null) // just in case someone manages to get a closet into the blue light dimension, as unlikely as that seems
+	if(user.loc == null) // just in case someone manages to get a closet into the blue light dimension, as unlikely as that seems
 		return
 	if(!istype(user.loc, /turf)) // are you in a container/closet/pod/etc?
 		return
@@ -247,7 +253,6 @@
 				to_chat(M, "<FONT size=[max(0, 5 - get_dist(src, M))]>BANG, bang!</FONT>")
 			spawn(30)
 				lastbang = 0
-
 
 /obj/structure/closet/attack_paw(mob/user as mob)
 	return src.attack_hand(user)

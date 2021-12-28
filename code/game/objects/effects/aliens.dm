@@ -127,7 +127,7 @@
 	..()
 	return
 
-/obj/effect/alien/resin/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/effect/alien/resin/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group)
 		return 0
 	if(istype(mover) && mover.checkpass(PASSGLASS))
@@ -221,10 +221,10 @@ Alien plants should do something if theres a lot of poison
 		if(1.0)
 			qdel(src)
 		if(2.0)
-			if (prob(50))
+			if(prob(50))
 				qdel(src)
 		if(3.0)
-			if (prob(5))
+			if(prob(5))
 				qdel(src)
 	return
 

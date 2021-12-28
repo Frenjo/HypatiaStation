@@ -4,5 +4,5 @@
 	anchored = 1
 
 /obj/effect/sign/double/barsign/New()
-		var/list/valid_states = list("pinkflamingo", "magmasea", "limbo", "rustyaxe", "armokbar", "brokendrum", "meadbay", "thedamnwall", "thecavern", "cindikate", "theorchard", "thesaucyclown", "theclownshead", "whiskeyimplant", "carpecarp", "robustroadhouse", "greytide", "theredshirt")
-		src.icon_state = "[pick(valid_states)]"
+	var/list/valid_states = list("pinkflamingo", "magmasea", "limbo", "rustyaxe", "armokbar", "brokendrum", "meadbay", "thedamnwall", "thecavern", "cindikate", "theorchard", "thesaucyclown", "theclownshead", "whiskeyimplant", "carpecarp", "robustroadhouse", "greytide", "theredshirt")
+	src.icon_state = "[pick(valid_states)]"

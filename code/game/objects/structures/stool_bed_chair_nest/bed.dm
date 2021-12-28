@@ -55,41 +55,45 @@
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
 			if(buckled_mob != user)
-				buckled_mob.visible_message(\
-					"\blue [buckled_mob.name] was unbuckled by [user.name]!",\
-					"You were unbuckled from [src] by [user.name].",\
-					"You hear metal clanking")
+				buckled_mob.visible_message(
+					SPAN_INFO("[buckled_mob.name] was unbuckled by [user.name]!"),
+					"You were unbuckled from [src] by [user.name].",
+					"You hear metal clanking."
+				)
 			else
-				buckled_mob.visible_message(\
-					"\blue [buckled_mob.name] unbuckled \himself!",\
-					"You unbuckle yourself from [src].",\
-					"You hear metal clanking")
+				buckled_mob.visible_message(
+					SPAN_INFO("[buckled_mob.name] unbuckled \himself!"),
+					"You unbuckle yourself from [src].",
+					"You hear metal clanking."
+				)
 			unbuckle()
 			src.add_fingerprint(user)
 	return
 
 /obj/structure/stool/bed/proc/buckle_mob(mob/M as mob, mob/user as mob)
-	if (!ticker)
-		user << "You can't buckle anyone in before the game starts."
-	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || user.lying || user.stat || M.buckled || istype(user, /mob/living/silicon/pai) )
+	if(!ticker)
+		to_chat(user, "You can't buckle anyone in before the game starts.")
+	if(!ismob(M) || get_dist(src, user) > 1 || M.loc != src.loc || user.restrained() || user.lying || user.stat || M.buckled || ispAI(user))
 		return
 
-	if (istype(M, /mob/living/carbon/slime))
-		user << "The [M] is too squishy to buckle in."
+	if(isslime(M))
+		to_chat(user, "The [M] is too squishy to buckle in.")
 		return
 
 	unbuckle()
 
-	if (M == usr)
-		M.visible_message(\
-			"\blue [M.name] buckles in!",\
-			"You buckle yourself to [src].",\
-			"You hear metal clanking")
+	if(M == usr)
+		M.visible_message(
+			SPAN_INFO("[M.name] buckles in!"),
+			"You buckle yourself to [src].",
+			"You hear metal clanking."
+		)
 	else
-		M.visible_message(\
-			"\blue [M.name] is buckled in to [src] by [user.name]!",\
-			"You are buckled in to [src] by [user.name].",\
-			"You hear metal clanking")
+		M.visible_message(
+			SPAN_INFO("[M.name] is buckled in to [src] by [user.name]!"),
+			"You are buckled in to [src] by [user.name].",
+			"You hear metal clanking."
+		)
 	M.buckled = src
 	M.loc = src.loc
 	M.set_dir(src.dir)
@@ -114,10 +118,10 @@
 	icon_state = "folded"
 	w_class = 4.0 // Can't be put in backpacks. Oh well.
 
-	attack_self(mob/user)
-		var/obj/structure/stool/bed/roller/R = new /obj/structure/stool/bed/roller(user.loc)
-		R.add_fingerprint(user)
-		qdel(src)
+/obj/item/roller/attack_self(mob/user)
+	var/obj/structure/stool/bed/roller/R = new /obj/structure/stool/bed/roller(user.loc)
+	R.add_fingerprint(user)
+	qdel(src)
 
 /obj/structure/stool/bed/roller/Move()
 	..()
@@ -128,7 +132,7 @@
 			buckled_mob = null
 
 /obj/structure/stool/bed/roller/buckle_mob(mob/M as mob, mob/user as mob)
-	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || user.lying || user.stat || M.buckled || istype(usr, /mob/living/silicon/pai) )
+	if(!ismob(M) || get_dist(src, user) > 1 || M.loc != src.loc || user.restrained() || user.lying || user.stat || M.buckled || ispAI(user))
 		return
 	M.pixel_y = 6
 	density = 1
@@ -151,7 +155,7 @@
 
 /obj/structure/stool/bed/roller/MouseDrop(over_object, src_location, over_location)
 	..()
-	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
+	if(over_object == usr && (in_range(src, usr) || usr.contents.Find(src)))
 		if(!ishuman(usr))
 			return
 		if(buckled_mob)

@@ -10,27 +10,27 @@
 	var/list/oxytanks = list()	//sorry for the similar var names
 	var/list/platanks = list()
 
-
 /obj/structure/dispenser/oxygen
 	plasmatanks = 0
 
 /obj/structure/dispenser/plasma
 	oxygentanks = 0
 
-
 /obj/structure/dispenser/New()
 	update_icon()
-
 
 /obj/structure/dispenser/update_icon()
 	overlays.Cut()
 	switch(oxygentanks)
-		if(1 to 3)	overlays += "oxygen-[oxygentanks]"
-		if(4 to INFINITY) overlays += "oxygen-4"
+		if(1 to 3)
+			overlays += "oxygen-[oxygentanks]"
+		if(4 to INFINITY)
+			overlays += "oxygen-4"
 	switch(plasmatanks)
-		if(1 to 4)	overlays += "plasma-[plasmatanks]"
-		if(5 to INFINITY) overlays += "plasma-5"
-
+		if(1 to 4)
+			overlays += "plasma-[plasmatanks]"
+		if(5 to INFINITY)
+			overlays += "plasma-5"
 
 /obj/structure/dispenser/attack_hand(mob/user as mob)
 	user.set_machine(src)
@@ -41,7 +41,6 @@
 	onclose(user, "dispenser")
 	return
 
-
 /obj/structure/dispenser/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/tank/oxygen) || istype(I, /obj/item/weapon/tank/air) || istype(I, /obj/item/weapon/tank/anesthetic))
 		if(oxygentanks < 10)
@@ -49,9 +48,9 @@
 			I.loc = src
 			oxytanks.Add(I)
 			oxygentanks++
-			user << "<span class='notice'>You put [I] in [src].</span>"
+			to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
 		else
-			user << "<span class='notice'>[src] is full.</span>"
+			to_chat(user, SPAN_NOTICE("[src] is full."))
 		updateUsrDialog()
 		return
 	if(istype(I, /obj/item/weapon/tank/plasma))
@@ -60,17 +59,17 @@
 			I.loc = src
 			platanks.Add(I)
 			plasmatanks++
-			user << "<span class='notice'>You put [I] in [src].</span>"
+			to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
 		else
-			user << "<span class='notice'>[src] is full.</span>"
+			to_chat(user, SPAN_NOTICE("[src] is full."))
 		updateUsrDialog()
 		return
 	if(istype(I, /obj/item/weapon/wrench))
 		if(anchored)
-			user << "<span class='notice'>You lean down and unwrench [src].</span>"
+			to_chat(user, SPAN_NOTICE("You lean down and unwrench [src]."))
 			anchored = 0
 		else
-			user << "<span class='notice'>You wrench [src] into place.</span>"
+			to_chat(user, SPAN_NOTICE("You wrench [src] into place."))
 			anchored = 1
 		return
 
@@ -88,7 +87,7 @@
 				else
 					O = new /obj/item/weapon/tank/oxygen(loc)
 				O.loc = loc
-				usr << "<span class='notice'>You take [O] out of [src].</span>"
+				to_chat(usr, SPAN_NOTICE("You take [O] out of [src]."))
 				oxygentanks--
 				update_icon()
 		if(href_list["plasma"])
@@ -100,7 +99,7 @@
 				else
 					P = new /obj/item/weapon/tank/plasma(loc)
 				P.loc = loc
-				usr << "<span class='notice'>You take [P] out of [src].</span>"
+				to_chat(usr, SPAN_NOTICE("You take [P] out of [src]."))
 				plasmatanks--
 				update_icon()
 		add_fingerprint(usr)

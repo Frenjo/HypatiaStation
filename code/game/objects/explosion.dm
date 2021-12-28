@@ -10,7 +10,7 @@
 		return dy + (0.5 * dx)
 
 ///// Z-Level Stuff
-proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = 1)
+/proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1, z_transfer = 1)
 ///// Z-Level Stuff
 	//qdel(src)	//so we don't abort once src is deleted // Commented this out because it seems to be broken. -Frenjo
 	spawn(0)
@@ -121,12 +121,12 @@ proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impa
 				defer_powernet_rebuild = 0
 	return 1
 
-proc/secondaryexplosion(turf/epicenter, range)
+/proc/secondaryexplosion(turf/epicenter, range)
 	for(var/turf/tile in range(range, epicenter))
 		tile.ex_act(2)
 
 ///// Z-Level Stuff
-proc/explosion_z_transfer(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, up = 1, down = 1)
+/proc/explosion_z_transfer(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, up = 1, down = 1)
 	var/turf/controllerlocation = locate(1, 1, epicenter.z)
 	for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
 		if(controller.down)

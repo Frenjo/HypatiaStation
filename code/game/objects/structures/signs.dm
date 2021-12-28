@@ -25,7 +25,7 @@
 
 /obj/structure/sign/attackby(obj/item/tool as obj, mob/user as mob)	//deconstruction
 	if(istype(tool, /obj/item/weapon/screwdriver) && !istype(src, /obj/structure/sign/double))
-		user << "You unfasten the sign with your [tool]."
+		to_chat(user, "You unfasten the sign with your [tool].")
 		var/obj/item/sign/S = new(src.loc)
 		S.name = name
 		S.desc = desc
@@ -35,6 +35,7 @@
 		S.sign_state = icon_state
 		qdel(src)
 	else ..()
+
 
 /obj/item/sign
 	name = "sign"
@@ -46,7 +47,8 @@
 /obj/item/sign/attackby(obj/item/tool as obj, mob/user as mob)	//construction
 	if(istype(tool, /obj/item/weapon/screwdriver) && isturf(user.loc))
 		var/direction = input("In which direction?", "Select direction.") in list("North", "East", "South", "West", "Cancel")
-		if(direction == "Cancel") return
+		if(direction == "Cancel")
+			return
 		var/obj/structure/sign/S = new(user.loc)
 		switch(direction)
 			if("North")
@@ -57,13 +59,15 @@
 				S.pixel_y = -32
 			if("West")
 				S.pixel_x = -32
-			else return
+			else
+				return
 		S.name = name
 		S.desc = desc
 		S.icon_state = sign_state
-		user << "You fasten \the [S] with your [tool]."
+		to_chat(user, "You fasten \the [S] with your [tool].")
 		qdel(src)
-	else ..()
+	else
+		..()
 
 /obj/structure/sign/double/map
 	name = "station map"

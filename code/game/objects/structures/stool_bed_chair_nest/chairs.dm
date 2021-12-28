@@ -10,16 +10,17 @@
 	if(anchored)
 		src.verbs -= /atom/movable/verb/pull
 	..()
-	spawn(3)	//sorry. i don't think there's a better way to do this.
-		handle_rotation()
-	return
+
+/obj/structure/stool/bed/chair/initialize()
+	..()
+	handle_rotation()
 
 /obj/structure/stool/bed/chair/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/assembly/shock_kit))
 		var/obj/item/assembly/shock_kit/SK = W
 		if(!SK.status)
-			user << "<span class='notice'>[SK] is not ready to be attached!</span>"
+			to_chat(user, SPAN_NOTICE("[SK] is not ready to be attached!"))
 			return
 		user.drop_item()
 		var/obj/structure/stool/bed/chair/e_chair/E = new /obj/structure/stool/bed/chair/e_chair(src.loc)
@@ -55,7 +56,7 @@
 		handle_rotation()
 		return
 	else
-		if(istype(usr,/mob/living/simple_animal/mouse))
+		if(ismouse(usr))
 			return
 		if(!usr || !isturf(usr.loc))
 			return
@@ -67,7 +68,8 @@
 		return
 
 /obj/structure/stool/bed/chair/MouseDrop_T(mob/M as mob, mob/user as mob)
-	if(!istype(M)) return
+	if(!istype(M))
+		return
 	buckle_mob(M, user)
 	return
 

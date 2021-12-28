@@ -56,7 +56,7 @@
 		var/is_in_use = 0
 		var/list/nearby = viewers(1, src)
 		for(var/mob/M in nearby)
-			if((M.client && M.machine == src))
+			if(M.client && M.machine == src)
 				is_in_use = 1
 				src.attack_hand(M)
 		if(isAI(usr) || isrobot(usr))
@@ -80,7 +80,7 @@
 		var/list/nearby = viewers(1, src)
 		var/is_in_use = 0
 		for(var/mob/M in nearby)
-			if((M.client && M.machine == src))
+			if(M.client && M.machine == src)
 				is_in_use = 1
 				src.interact(M)
 		var/ai_in_use = AutoUpdateAI(src)

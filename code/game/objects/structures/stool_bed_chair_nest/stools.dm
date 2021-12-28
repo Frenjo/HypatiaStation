@@ -12,11 +12,11 @@
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
+			if(prob(50))
 				qdel(src)
 				return
 		if(3.0)
-			if (prob(5))
+			if(prob(5))
 				qdel(src)
 				return
 	return
@@ -34,14 +34,17 @@
 	return
 
 /obj/structure/stool/MouseDrop(atom/over_object)
-	if (istype(over_object, /mob/living/carbon/human))
+	if(ishuman(over_object))
 		var/mob/living/carbon/human/H = over_object
-		if (H==usr && !H.restrained() && !H.stat && in_range(src, over_object))
+		if(H == usr && !H.restrained() && !H.stat && in_range(src, over_object))
 			var/obj/item/weapon/stool/S = new/obj/item/weapon/stool()
 			S.origin = src
 			src.loc = S
 			H.put_in_hands(S)
-			H.visible_message("\red [H] grabs [src] from the floor!", "\red You grab [src] from the floor!")
+			H.visible_message(
+				SPAN_WARNING("[H] grabs [src] from the floor!"),
+				SPAN_WARNING("You grab [src] from the floor!")
+			)
 
 /obj/item/weapon/stool
 	name = "stool"
@@ -57,12 +60,15 @@
 	..()
 	origin.loc = get_turf(src)
 	user.u_equip(src)
-	user.visible_message("\blue [user] puts [src] down.", "\blue You put [src] down.")
+	user.visible_message(
+		SPAN_INFO("[user] puts [src] down."),
+		SPAN_INFO("You put [src] down.")
+	)
 	qdel(src)
 
 /obj/item/weapon/stool/attack(mob/M as mob, mob/user as mob)
-	if (prob(5) && istype(M,/mob/living))
-		user.visible_message("\red [user] breaks [src] over [M]'s back!.")
+	if(prob(5) && isliving(M))
+		user.visible_message(SPAN_WARNING("[user] breaks [src] over [M]'s back!"))
 		user.u_equip(src)
 		var/obj/item/stack/sheet/metal/m = new/obj/item/stack/sheet/metal
 		m.loc = get_turf(src)

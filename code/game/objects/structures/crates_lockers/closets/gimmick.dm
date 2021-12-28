@@ -81,9 +81,6 @@
 	icon_opened = "syndicateopen"
 	anchored = 1
 
-/obj/structure/closet/thunderdome/New()
-	..()
-
 /obj/structure/closet/thunderdome/tdred
 	name = "red-team Thunderdome closet"
 
@@ -134,29 +131,3 @@
 	new /obj/item/clothing/head/helmet/thunderdome(src)
 	new /obj/item/clothing/head/helmet/thunderdome(src)
 	new /obj/item/clothing/head/helmet/thunderdome(src)
-
-// Mailman's kinda a gimmick right? Couldn't figure else where to put this.
-// Ported from /obj/structure/closet/secure_closet/cargotech. -Frenjo
-/obj/structure/closet/secure_closet/mailman
-	name = "Mailman's Locker"
-	req_access = list(access_cargo)
-	icon_state = "securemailman1"
-	icon_closed = "securemailman"
-	icon_locked = "securemailman1"
-	icon_opened = "securemailmanopen"
-	icon_broken = "securemailmanbroken"
-	icon_off = "securemailmanoff"
-
-/obj/structure/closet/secure_closet/mailman/New()
-	..()
-	new /obj/item/clothing/under/rank/mailman(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/device/radio/headset/headset_cargo(src)
-	new /obj/item/clothing/gloves/blue(src)
-	new /obj/item/clothing/head/mailman(src)
-	new /obj/item/weapon/tank/air(src)
-	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/device/flashlight(src)
-	new /obj/item/clothing/suit/space/mailmanvoid(src)
-	new /obj/item/clothing/head/helmet/space/mailmanvoid(src)
-	new /obj/item/clothing/glasses/science(src)
