@@ -11,7 +11,7 @@
 	attack_verb = list("banned")
 
 /obj/item/weapon/banhammer/suicide_act(mob/user)
-	viewers(user) << SPAN_DANGER("[user] is hitting \himself with the [src.name]! It looks like \he's trying to ban \himself from life.")
+	user.visible_message(SPAN_DANGER("[user] is hitting \himself with the [src.name]! It looks like \he's trying to ban \himself from life."))
 	return (BRUTELOSS | FIRELOSS | TOXLOSS | OXYLOSS)
 
 
@@ -28,7 +28,7 @@
 	w_class = 1
 
 /obj/item/weapon/nullrod/suicide_act(mob/user)
-	viewers(user) << SPAN_DANGER("[user] is impaling \himself with the [src.name]! It looks like \he's trying to commit suicide.")
+	user.visible_message(SPAN_DANGER("[user] is impaling \himself with the [src.name]! It looks like \he's trying to commit suicide."))
 	return (BRUTELOSS | FIRELOSS)
 
 /obj/item/weapon/nullrod/attack(mob/M as mob, mob/living/user as mob) //Paste from old-code to decult with a null rod.
@@ -52,16 +52,13 @@
 			to_chat(M, SPAN_WARNING("The power of [src] clears your mind of the cult's influence!"))
 			to_chat(user, SPAN_WARNING("You wave [src] over [M]'s head and see their eyes become clear, their mind returning to normal."))
 			ticker.mode.remove_cultist(M.mind)
-			for(var/mob/O in viewers(M, null))
-				O.show_message(SPAN_WARNING("[user] waves [src] over [M]'s head."), 1)
+			M.visible_message(SPAN_WARNING("[user] waves [src] over [M]'s head."))
 		else if(prob(10))
 			to_chat(user, SPAN_WARNING("The rod slips in your hand."))
 			..()
 		else
 			to_chat(user, SPAN_WARNING("The rod appears to do nothing."))
-			for(var/mob/O in viewers(M, null))
-				O.show_message(SPAN_WARNING("[user] waves [src] over [M]'s head."), 1)
-			return
+			M.visible_message(SPAN_WARNING("[user] waves [src] over [M]'s head."))
 
 /obj/item/weapon/nullrod/afterattack(atom/A, mob/user as mob)
 	if(istype(A, /turf/simulated/floor))
@@ -83,7 +80,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/weapon/sord/suicide_act(mob/user)
-	viewers(user) << SPAN_DANGER("[user] is impaling \himself with the [src.name]! It looks like \he's trying to commit suicide.")
+	user.visible_message(SPAN_DANGER("[user] is impaling \himself with the [src.name]! It looks like \he's trying to commit suicide."))
 	return(BRUTELOSS)
 
 /obj/item/weapon/sord/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
@@ -109,7 +106,7 @@
 	return 1
 
 /obj/item/weapon/claymore/suicide_act(mob/user)
-	viewers(user) << SPAN_DANGER("[user] is falling on the [src.name]! It looks like \he's trying to commit suicide.")
+	user.visible_message(SPAN_DANGER("[user] is falling on the [src.name]! It looks like \he's trying to commit suicide."))
 	return(BRUTELOSS)
 
 /obj/item/weapon/claymore/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
@@ -132,7 +129,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/weapon/katana/suicide_act(mob/user)
-	viewers(user) << SPAN_DANGER("[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.")
+	user.visible_message(SPAN_DANGER("[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku."))
 	return(BRUTELOSS)
 
 /obj/item/weapon/katana/IsShield()
@@ -153,4 +150,4 @@
 	force = 20
 	throwforce = 15
 	w_class = 3
-	attack_verb = list("jabbed","stabbed","ripped")
+	attack_verb = list("jabbed", "stabbed", "ripped")

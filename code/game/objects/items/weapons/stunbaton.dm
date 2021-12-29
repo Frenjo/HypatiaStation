@@ -17,7 +17,7 @@
 	var/hitcost = 1000
 
 /obj/item/weapon/melee/baton/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is putting the live [name] in \his mouth! It looks like \he's trying to commit suicide.</span>")
+	user.visible_message(SPAN("suicide", "[user] is putting the live [name] in \his mouth! It looks like \he's trying to commit suicide."))
 	return (FIRELOSS)
 
 /obj/item/weapon/melee/baton/New()
@@ -25,14 +25,13 @@
 	update_icon()
 	return
 
-
 /obj/item/weapon/melee/baton/loaded/New() //this one starts with a cell pre-installed.
 	..()
 	bcell = new(src)
 	update_icon()
 	return
 
-/obj/item/weapon/melee/baton/proc/deductcharge(var/chrgdeductamt)
+/obj/item/weapon/melee/baton/proc/deductcharge(chrgdeductamt)
 	if(bcell)
 		if(bcell.use(chrgdeductamt))
 			return 1
@@ -53,9 +52,9 @@
 	set src in view(1)
 	..()
 	if(bcell)
-		usr <<"<span class='notice'>The baton is [round(bcell.percent())]% charged.</span>"
+		to_chat(usr, SPAN_NOTICE("The baton is [round(bcell.percent())]% charged."))
 	if(!bcell)
-		usr <<"<span class='warning'>The baton does not have a power source installed.</span>"
+		to_chat(usr, SPAN_WARNING("The baton does not have a power source installed."))
 
 /obj/item/weapon/melee/baton/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/cell))
@@ -63,17 +62,17 @@
 			user.drop_item()
 			W.loc = src
 			bcell = W
-			user << "<span class='notice'>You install a cell in [src].</span>"
+			to_chat(user, SPAN_NOTICE("You install a cell in [src]."))
 			update_icon()
 		else
-			user << "<span class='notice'>[src] already has a cell.</span>"
+			to_chat(user, SPAN_NOTICE("[src] already has a cell."))
 
 	else if(istype(W, /obj/item/weapon/screwdriver))
 		if(bcell)
 			bcell.updateicon()
 			bcell.loc = get_turf(src.loc)
 			bcell = null
-			user << "<span class='notice'>You remove the cell from the [src].</span>"
+			to_chat(user, SPAN_NOTICE("You remove the cell from the [src]."))
 			status = 0
 			update_icon()
 			return
@@ -83,17 +82,16 @@
 /obj/item/weapon/melee/baton/attack_self(mob/user)
 	if(bcell && bcell.charge > hitcost)
 		status = !status
-		user << "<span class='notice'>[src] is now [status ? "on" : "off"].</span>"
+		to_chat(user, SPAN_NOTICE("[src] is now [status ? "on" : "off"]."))
 		playsound(loc, "sparks", 75, 1, -1)
 		update_icon()
 	else
 		status = 0
 		if(!bcell)
-			user << "<span class='warning'>[src] does not have a power source!</span>"
+			to_chat(user, SPAN_WARNING("[src] does not have a power source!"))
 		else
-			user << "<span class='warning'>[src] is out of charge.</span>"
+			to_chat(user, SPAN_WARNING("[src] is out of charge."))
 	add_fingerprint(user)
-
 
 /obj/item/weapon/melee/baton/attack(mob/M, mob/user)
 	if(isrobot(M))
@@ -108,7 +106,7 @@
 		..()
 
 	if(!status)
-		L.visible_message("<span class='warning'>[L] has been prodded with [src] by [user]. Luckily it was off.</span>")
+		L.visible_message(SPAN_WARNING("[L] has been prodded with [src] by [user]. Luckily it was off."))
 		return
 
 	if(status)
@@ -119,7 +117,7 @@
 		L.Weaken(stunforce)
 		L.apply_effect(STUTTER, stunforce)
 
-		L.visible_message("<span class='danger'>[L] has been stunned with [src] by [user]!</span>")
+		L.visible_message(SPAN_DANGER("[L] has been stunned with [src] by [user]!"))
 		playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 
 		msg_admin_attack("[key_name(user)] stunned [key_name(L)] with the [src].")
@@ -134,9 +132,10 @@
 /obj/item/weapon/melee/baton/emp_act(severity)
 	if(bcell)
 		deductcharge(1000 / severity)
-		if(bcell.reliability != 100 && prob(50/severity))
+		if(bcell.reliability != 100 && prob(50 / severity))
 			bcell.reliability -= 10 / severity
 	..()
+
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/weapon/melee/baton/cattleprod

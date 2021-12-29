@@ -17,60 +17,61 @@ var/global/list/cached_icons = list()
 	flags = OPENCONTAINER
 	var/paint_type = ""
 
-	afterattack(turf/simulated/target, mob/user, proximity)
-		if(!proximity) return
-		if(istype(target) && reagents.total_volume > 5)
-			for(var/mob/O in viewers(user))
-				O.show_message("\red \The [target] has been splashed with something by [user]!", 1)
-			spawn(5)
-				reagents.reaction(target, TOUCH)
-				reagents.remove_any(5)
-		else
-			return ..()
+/obj/item/weapon/reagent_containers/glass/paint/afterattack(turf/simulated/target, mob/user, proximity)
+	if(!proximity)
+		return
+	if(istype(target) && reagents.total_volume > 5)
+		user.visible_message(SPAN_WARNING("\The [target] has been splashed with something by [user]!"))
+		spawn(5)
+			reagents.reaction(target, TOUCH)
+			reagents.remove_any(5)
+	else
+		return ..()
 
-	New()
-		if(paint_type == "remover")
-			name = "paint remover bucket"
-		else if(paint_type && length(paint_type) > 0)
-			name = paint_type + " " + name
-		..()
-		reagents.add_reagent("paint_[paint_type]", volume)
+/obj/item/weapon/reagent_containers/glass/paint/New()
+	if(paint_type == "remover")
+		name = "paint remover bucket"
+	else if(paint_type && length(paint_type) > 0)
+		name = paint_type + " " + name
+	..()
+	reagents.add_reagent("paint_[paint_type]", volume)
 
-	on_reagent_change() //Until we have a generic "paint", this will give new colours to all paints in the can
-		var/mixedcolor = mix_color_from_reagents(reagents.reagent_list)
-		for(var/datum/reagent/paint/P in reagents.reagent_list)
-			P.color = mixedcolor
+/obj/item/weapon/reagent_containers/glass/paint/on_reagent_change() //Until we have a generic "paint", this will give new colours to all paints in the can
+	var/mixedcolor = mix_color_from_reagents(reagents.reagent_list)
+	for(var/datum/reagent/paint/P in reagents.reagent_list)
+		P.color = mixedcolor
 
-	red
-		icon_state = "paint_red"
-		paint_type = "red"
+/obj/item/weapon/reagent_containers/glass/paint/red
+	icon_state = "paint_red"
+	paint_type = "red"
 
-	green
-		icon_state = "paint_green"
-		paint_type = "green"
+/obj/item/weapon/reagent_containers/glass/paint/green
+	icon_state = "paint_green"
+	paint_type = "green"
 
-	blue
-		icon_state = "paint_blue"
-		paint_type = "blue"
+/obj/item/weapon/reagent_containers/glass/paint/blue
+	icon_state = "paint_blue"
+	paint_type = "blue"
 
-	yellow
-		icon_state = "paint_yellow"
-		paint_type = "yellow"
+/obj/item/weapon/reagent_containers/glass/paint/yellow
+	icon_state = "paint_yellow"
+	paint_type = "yellow"
 
-	violet
-		icon_state = "paint_violet"
-		paint_type = "violet"
+/obj/item/weapon/reagent_containers/glass/paint/violet
+	icon_state = "paint_violet"
+	paint_type = "violet"
 
-	black
-		icon_state = "paint_black"
-		paint_type = "black"
+/obj/item/weapon/reagent_containers/glass/paint/black
+	icon_state = "paint_black"
+	paint_type = "black"
 
-	white
-		icon_state = "paint_white"
-		paint_type = "white"
+/obj/item/weapon/reagent_containers/glass/paint/white
+	icon_state = "paint_white"
+	paint_type = "white"
 
-	remover
-		paint_type = "remover"
+/obj/item/weapon/reagent_containers/glass/paint/remover
+	paint_type = "remover"
+
 /*
 /obj/item/weapon/paint
 	gender= PLURAL
@@ -173,70 +174,71 @@ var/global/list/cached_icons = list()
 		return
 */
 
-datum/reagent/paint
+/datum/reagent/paint
 	name = "Paint"
 	id = "paint_"
 	reagent_state = 2
 	color = "#808080"
 	description = "This paint will only adhere to floor tiles."
 
-	reaction_turf(var/turf/T, var/volume)
-		if(!istype(T) || istype(T, /turf/space))
-			return
-		var/ind = "[initial(T.icon)][color]"
-		if(!cached_icons[ind])
-			var/icon/overlay = new/icon(initial(T.icon))
-			overlay.Blend(color,ICON_MULTIPLY)
-			overlay.SetIntensity(1.4)
-			T.icon = overlay
-			cached_icons[ind] = T.icon
-		else
-			T.icon = cached_icons[ind]
+/datum/reagent/paint/reaction_turf(turf/T, volume)
+	if(!istype(T) || istype(T, /turf/space))
 		return
+	var/ind = "[initial(T.icon)][color]"
+	if(!cached_icons[ind])
+		var/icon/overlay = new/icon(initial(T.icon))
+		overlay.Blend(color, ICON_MULTIPLY)
+		overlay.SetIntensity(1.4)
+		T.icon = overlay
+		cached_icons[ind] = T.icon
+	else
+		T.icon = cached_icons[ind]
+	return
 
-	red
-		name = "Red Paint"
-		id = "paint_red"
-		color = "#FE191A"
+/datum/reagent/paint/red
+	name = "Red Paint"
+	id = "paint_red"
+	color = "#FE191A"
 
-	green
-		name = "Green Paint"
-		color = "#18A31A"
-		id = "paint_green"
+/datum/reagent/paint/green
+	name = "Green Paint"
+	color = "#18A31A"
+	id = "paint_green"
 
-	blue
-		name = "Blue Paint"
-		color = "#247CFF"
-		id = "paint_blue"
+/datum/reagent/paint/blue
+	name = "Blue Paint"
+	color = "#247CFF"
+	id = "paint_blue"
 
-	yellow
-		name = "Yellow Paint"
-		color = "#FDFE7D"
-		id = "paint_yellow"
+/datum/reagent/paint/yellow
+	name = "Yellow Paint"
+	color = "#FDFE7D"
+	id = "paint_yellow"
 
-	violet
-		name = "Violet Paint"
-		color = "#CC0099"
-		id = "paint_violet"
+/datum/reagent/paint/violet
+	name = "Violet Paint"
+	color = "#CC0099"
+	id = "paint_violet"
 
-	black
-		name = "Black Paint"
-		color = "#333333"
-		id = "paint_black"
+/datum/reagent/paint/black
+	name = "Black Paint"
+	color = "#333333"
+	id = "paint_black"
 
-	white
-		name = "White Paint"
-		color = "#F0F8FF"
-		id = "paint_white"
+/datum/reagent/paint/white
+	name = "White Paint"
+	color = "#F0F8FF"
+	id = "paint_white"
 
-datum/reagent/paint_remover
+
+/datum/reagent/paint_remover
 	name = "Paint Remover"
 	id = "paint_remover"
 	description = "Paint remover is used to remove floor paint from floor tiles."
 	reagent_state = 2
 	color = "#808080"
 
-	reaction_turf(var/turf/T, var/volume)
-		if(istype(T) && T.icon != initial(T.icon))
-			T.icon = initial(T.icon)
-		return
+/datum/reagent/paint_remover/reaction_turf(turf/T, volume)
+	if(istype(T) && T.icon != initial(T.icon))
+		T.icon = initial(T.icon)
+	return

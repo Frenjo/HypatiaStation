@@ -6,7 +6,6 @@
  *		Rack Parts
  */
 
-
 /*
  * Table Parts
  */
@@ -21,7 +20,7 @@
 			to_chat(user, SPAN_INFO("You reinforce the [name]."))
 			W:use(4)
 			qdel(src)
-		else if (W:amount < 4)
+		else if(W:amount < 4)
 			to_chat(user, SPAN_WARNING("You need at least four rods to do this."))
 
 /obj/item/weapon/table_parts/attack_self(mob/user as mob)

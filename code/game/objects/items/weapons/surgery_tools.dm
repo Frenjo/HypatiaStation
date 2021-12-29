@@ -6,6 +6,9 @@
  *		Surgical Drill
  *		Scalpel
  *		Circular Saw
+ *		Bone Gel
+ *		FixOVein
+ *		Bone Setter
  */
 
 /*
@@ -22,6 +25,7 @@
 	w_class = 2.0
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
 
+
 /*
  * Hemostat
  */
@@ -37,6 +41,7 @@
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
 	attack_verb = list("attacked", "pinched")
 
+
 /*
  * Cautery
  */
@@ -51,6 +56,7 @@
 	w_class = 2.0
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
 	attack_verb = list("burnt")
+
 
 /*
  * Surgical Drill
@@ -69,10 +75,14 @@
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
 	attack_verb = list("drilled")
 
-	suicide_act(mob/user)
-		viewers(user) << pick("\red <b>[user] is pressing the [src.name] to \his temple and activating it! It looks like \he's trying to commit suicide.</b>", \
-							"\red <b>[user] is pressing [src.name] to \his chest and activating it! It looks like \he's trying to commit suicide.</b>")
-		return (BRUTELOSS)
+/obj/item/weapon/surgicaldrill/suicide_act(mob/user)
+	user.visible_message(pick( \
+		SPAN_DANGER("[user] is pressing the [src.name] to \his temple and activating it! It looks like \he's trying to commit suicide."), \
+		SPAN_DANGER("[user] is pressing [src.name] to \his chest and activating it! It looks like \he's trying to commit suicide.") \
+		)
+	)
+	return (BRUTELOSS)
+
 
 /*
  * Scalpel
@@ -95,31 +105,35 @@
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-	suicide_act(mob/user)
-		viewers(user) << pick("\red <b>[user] is slitting \his wrists with the [src.name]! It looks like \he's trying to commit suicide.</b>", \
-							"\red <b>[user] is slitting \his throat with the [src.name]! It looks like \he's trying to commit suicide.</b>", \
-							"\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>")
-		return (BRUTELOSS)
+/obj/item/weapon/scalpel/suicide_act(mob/user)
+	user.visible_message(pick( \
+		SPAN_DANGER("[user] is slitting \his wrists with the [src.name]! It looks like \he's trying to commit suicide.</b>"), \
+		SPAN_DANGER("[user] is slitting \his throat with the [src.name]! It looks like \he's trying to commit suicide.</b>"), \
+		SPAN_DANGER("[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.") \
+		)
+	)
+	return (BRUTELOSS)
+
 
 /*
  * Researchable Scalpels
  */
 /obj/item/weapon/scalpel/laser1
 	name = "laser scalpel"
-	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks basic and could be improved."
+	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks basic and could be improved."
 	icon_state = "scalpel_laser1_on"
 	damtype = "fire"
 
 /obj/item/weapon/scalpel/laser2
 	name = "laser scalpel"
-	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks somewhat advanced."
+	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks somewhat advanced."
 	icon_state = "scalpel_laser2_on"
 	damtype = "fire"
 	force = 12.0
 
 /obj/item/weapon/scalpel/laser3
 	name = "laser scalpel"
-	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks to be the pinnacle of precision energy cutlery!"
+	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks to be the pinnacle of precision energy cutlery!"
 	icon_state = "scalpel_laser3_on"
 	damtype = "fire"
 	force = 15.0
@@ -129,6 +143,7 @@
 	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
 	icon_state = "scalpel_manager_on"
 	force = 7.5
+
 
 /*
  * Circular Saw
@@ -152,7 +167,11 @@
 	sharp = 1
 	edge = 1
 
+
 //misc, formerly from code/defines/weapons.dm
+/*
+ * Bone Gel
+ */
 /obj/item/weapon/bonegel
 	name = "bone gel"
 	icon = 'icons/obj/surgery.dmi'
@@ -161,6 +180,10 @@
 	w_class = 2.0
 	throwforce = 1.0
 
+
+/*
+ * FixOVein
+ */
 /obj/item/weapon/FixOVein
 	name = "FixOVein"
 	icon = 'icons/obj/surgery.dmi'
@@ -171,6 +194,10 @@
 	w_class = 2.0
 	var/usage_amount = 10
 
+
+/*
+ * Bone Setter
+ */
 /obj/item/weapon/bonesetter
 	name = "bone setter"
 	icon = 'icons/obj/surgery.dmi'

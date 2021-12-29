@@ -251,9 +251,8 @@
 					WD.ini_dir = NORTH
 		else
 			return 1
-
-
 	return 0
+
 
 /*
  * Glass shards - TODO: Move this into code/game/object/item/weapons
@@ -324,8 +323,6 @@
 	..()
 
 
-
-
 /*
  * Plasma Glass sheets
  */
@@ -343,20 +340,21 @@
 
 /obj/item/stack/sheet/glass/plasmaglass/attackby(obj/item/W, mob/user)
 	..()
-	if( istype(W, /obj/item/stack/rods) )
-		var/obj/item/stack/rods/V  = W
+	if(istype(W, /obj/item/stack/rods))
+		var/obj/item/stack/rods/V = W
 		var/obj/item/stack/sheet/glass/plasmarglass/RG = new (user.loc)
 		RG.add_fingerprint(user)
 		RG.add_to_stacks(user)
 		V.use(1)
 		var/obj/item/stack/sheet/glass/G = src
 		qdel(src)
-		var/replace = (user.get_inactive_hand()==G)
+		var/replace = (user.get_inactive_hand() == G)
 		G.use(1)
 		if (!G && !RG && replace)
 			user.put_in_hands(RG)
 	else
 		return ..()
+
 
 /*
  * Reinforced plasma glass sheets

@@ -98,7 +98,7 @@
  */
 /obj/item/toy/blink
 	name = "electronic blink toy game"
-	desc = "Blink.  Blink.  Blink. Ages 8 and up."
+	desc = "Blink. Blink. Blink. Ages 8 and up."
 	icon = 'icons/obj/radio.dmi'
 	icon_state = "beacon"
 	item_state = "signaler"
@@ -168,8 +168,10 @@
 		return
 	playsound(user, 'sound/weapons/Gunshot.ogg', 100, 1)
 	src.bullets--
-	for(var/mob/O in viewers(user, null))
-		O.show_message(SPAN_DANGER("[user] fires a cap gun at [target]!"), 1, SPAN_WARNING("You hear a gunshot."), 2)
+	user.visible_message(
+		message = SPAN_DANGER("[user] fires a cap gun at [target]!"),
+		blind_message = SPAN_WARNING("You hear a gunshot.")
+	)
 
 /obj/item/toy/ammo/gun
 	name = "ammo-caps"

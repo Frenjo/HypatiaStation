@@ -38,7 +38,7 @@
 /obj/item/weapon/twohanded/mob_can_equip(M as mob, slot)
 	//Cannot equip wielded items.
 	if(wielded)
-		M << "<span class='warning'>Unwield the [initial(name)] first!</span>"
+		to_chat(M, SPAN_WARNING("Unwield the [initial(name)] first!"))
 		return 0
 
 	return ..()
@@ -58,15 +58,15 @@
 	unwield()
 
 /obj/item/weapon/twohanded/attack_self(mob/user as mob)
-	if( istype(user,/mob/living/carbon/monkey) )
-		user << "<span class='warning'>It's too heavy for you to wield fully.</span>"
+	if(ismonkey(user))
+		to_chat(user, SPAN_WARNING("It's too heavy for you to wield fully."))
 		return
 
 	..()
 	if(wielded) //Trying to unwield it
 		unwield()
-		user << "<span class='notice'>You are now carrying the [name] with one hand.</span>"
-		if (src.unwieldsound)
+		to_chat(user, SPAN_NOTICE("You are now carrying the [name] with one hand."))
+		if(src.unwieldsound)
 			playsound(src, unwieldsound, 50, 1)
 
 		var/obj/item/weapon/twohanded/offhand/O = user.get_inactive_hand()
@@ -76,11 +76,11 @@
 
 	else //Trying to wield it
 		if(user.get_inactive_hand())
-			user << "<span class='warning'>You need your other hand to be empty</span>"
+			to_chat(user, SPAN_WARNING("You need your other hand to be empty."))
 			return
 		wield()
-		user << "<span class='notice'>You grab the [initial(name)] with both hands.</span>"
-		if (src.wieldsound)
+		to_chat(user, SPAN_WARNING("You grab the [initial(name)] with both hands."))
+		if(src.wieldsound)
 			playsound(src, wieldsound, 50, 1)
 
 		var/obj/item/weapon/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
@@ -95,11 +95,12 @@
 	icon_state = "offhand"
 	name = "offhand"
 
-	unwield()
-		qdel(src)
+/obj/item/weapon/twohanded/offhand/unwield()
+	qdel(src)
 
-	wield()
-		qdel(src)
+/obj/item/weapon/twohanded/offhand/wield()
+	qdel(src)
+
 
 /*
  * Fireaxe
@@ -122,18 +123,21 @@
 	return
 
 /obj/item/weapon/twohanded/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
-	if(!proximity) return
+	if(!proximity)
+		return
 	..()
-	if(A && wielded && (istype(A,/obj/structure/window) || istype(A,/obj/structure/grille))) //destroys windows and grilles in one hit
-		if(istype(A,/obj/structure/window)) //should just make a window.Break() proc but couldn't bother with it
+	if(A && wielded && (istype(A, /obj/structure/window) || istype(A, /obj/structure/grille))) //destroys windows and grilles in one hit
+		if(istype(A, /obj/structure/window)) //should just make a window.Break() proc but couldn't bother with it
 			var/obj/structure/window/W = A
 
-			new /obj/item/weapon/shard( W.loc )
-			if(W.reinf) new /obj/item/stack/rods( W.loc)
+			new /obj/item/weapon/shard(W.loc)
+			if(W.reinf)
+				new /obj/item/stack/rods(W.loc)
 
-			if (W.dir == SOUTHWEST)
-				new /obj/item/weapon/shard( W.loc )
-				if(W.reinf) new /obj/item/stack/rods( W.loc)
+			if(W.dir == SOUTHWEST)
+				new /obj/item/weapon/shard(W.loc)
+				if(W.reinf)
+					new /obj/item/stack/rods(W.loc)
 		qdel(A)
 
 
@@ -165,13 +169,13 @@
 
 /obj/item/weapon/twohanded/dualsaber/attack(target as mob, mob/living/user as mob)
 	..()
-	if((CLUMSY in user.mutations) && (wielded) &&prob(40))
-		user << "\red You twirl around a bit before losing your balance and impaling yourself on the [src]."
-		user.take_organ_damage(20,25)
+	if((CLUMSY in user.mutations) && wielded && prob(40))
+		to_chat(user, SPAN_WARNING("You twirl around a bit before losing your balance and impaling yourself on the [src]."))
+		user.take_organ_damage(20, 25)
 		return
-	if((wielded) && prob(50))
+	if(wielded && prob(50))
 		spawn(0)
-			for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2))
+			for(var/i in list(1, 2, 4, 8, 4, 2, 1, 2, 4, 8, 4, 2))
 				user.set_dir(i)
 				sleep(1)
 

@@ -84,9 +84,11 @@
 		istype(W, /obj/item/weapon/hatchet) )
 
 		//visible message on mobs is defined as visible_message(var/message, var/self_message, var/blind_message)
-		usr.visible_message(SPAN_INFO("\the [usr] starts cutting hair off \the [src]."), \
-							SPAN_INFO("You start cutting the hair off \the [src]."), \
-							"You hear the sound of a knife rubbing against flesh.")
+		usr.visible_message(
+			SPAN_INFO("\the [usr] starts cutting hair off \the [src]."),
+			SPAN_INFO("You start cutting the hair off \the [src]."),
+			"You hear the sound of a knife rubbing against flesh."
+		)
 
 		if(do_after(user, 50))
 			to_chat(usr, SPAN_INFO("You cut the hair from this [src.singular_name]."))
@@ -105,6 +107,7 @@
 
 
 //Step two - washing..... it's actually in washing machine code.
+
 
 //Step three - drying
 /obj/item/stack/sheet/wetleather/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)

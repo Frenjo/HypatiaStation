@@ -15,7 +15,7 @@ var/global/list/datum/stack_recipe/metal_recipes = list(
 	new/datum/stack_recipe("chair", /obj/structure/stool/bed/chair, one_per_turf = 1, on_floor = 1),
 	new/datum/stack_recipe("bed", /obj/structure/stool/bed, 2, one_per_turf = 1, on_floor = 1),
 	null,
-	new/datum/stack_recipe_list("office chairs",list(
+	new/datum/stack_recipe_list("office chairs", list(
 		new/datum/stack_recipe("dark office chair", /obj/structure/stool/bed/chair/office/dark, 5, one_per_turf = 1, on_floor = 1),
 		new/datum/stack_recipe("light office chair", /obj/structure/stool/bed/chair/office/light, 5, one_per_turf = 1, on_floor = 1),
 	), 5),
@@ -120,6 +120,7 @@ var/global/list/datum/stack_recipe/plasteel_recipes = list(
 	recipes = plasteel_recipes
 	return ..()
 
+
 /*
  * Wood
  */
@@ -151,6 +152,7 @@ var/global/list/datum/stack_recipe/wood_recipes = list(
 	recipes = wood_recipes
 	return ..()
 
+
 /*
  * Cloth
  */
@@ -160,6 +162,7 @@ var/global/list/datum/stack_recipe/wood_recipes = list(
 	singular_name = "cloth roll"
 	icon_state = "sheet-cloth"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2)
+
 
 /*
  * Cardboard

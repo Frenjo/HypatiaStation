@@ -30,7 +30,7 @@
 /obj/item/stack/examine()
 	set src in view(1)
 	..()
-	usr << "There are [src.amount] [src.singular_name]\s in the stack."
+	to_chat(usr, "There are [src.amount] [src.singular_name]\s in the stack.")
 	return
 
 /obj/item/stack/attack_self(mob/user as mob)
@@ -105,7 +105,7 @@
 /obj/item/stack/Topic(href, href_list)
 	..()
 
-	if((usr.restrained() || usr.stat || usr.get_active_hand() != src))
+	if(usr.restrained() || usr.stat || usr.get_active_hand() != src)
 		return
 
 	if(href_list["sublist"] && !href_list["make"])
@@ -238,7 +238,8 @@
 			spawn(0)
 				src.interact(usr)
 
-	else return ..()
+	else
+		return ..()
 
 /obj/item/stack/proc/copy_evidences(obj/item/stack/from as obj)
 	src.blood_DNA = from.blood_DNA
@@ -246,6 +247,7 @@
 	src.fingerprintshidden  = from.fingerprintshidden
 	src.fingerprintslast  = from.fingerprintslast
 	//TODO bloody overlay
+
 
 /*
  * Recipe datum
@@ -269,6 +271,7 @@
 	src.time = time
 	src.one_per_turf = one_per_turf
 	src.on_floor = on_floor
+
 
 /*
  * Recipe list datum

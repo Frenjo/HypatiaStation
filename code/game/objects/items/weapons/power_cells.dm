@@ -17,11 +17,12 @@
 	var/rigged = 0		// true if rigged to explode
 	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
 	var/construction_cost = list(MATERIAL_METAL = 750, MATERIAL_GLASS = 75)
-	var/construction_time=100
+	var/construction_time = 100
 
-	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is licking the electrodes of the [src.name]! It looks like \he's trying to commit suicide.</b>"
-		return (FIRELOSS)
+/obj/item/weapon/cell/suicide_act(mob/user)
+	user.visible_message(SPAN_DANGER("[user] is licking the electrodes of the [src.name]! It looks like \he's trying to commit suicide."))
+	return (FIRELOSS)
+
 
 /obj/item/weapon/cell/crap
 	name = "\improper NanoTrasen brand rechargable AA battery"
@@ -34,6 +35,7 @@
 	..()
 	charge = 0
 
+
 /obj/item/weapon/cell/secborg
 	name = "security borg rechargable D battery"
 	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 0)
@@ -44,6 +46,7 @@
 	..()
 	charge = 0
 
+
 /obj/item/weapon/cell/apc
 	name = "APC power cell"
 	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 1)
@@ -52,6 +55,7 @@
 
 /obj/item/weapon/cell/apc/empty/New()
 	..()
+
 
 /obj/item/weapon/cell/high
 	name = "high-capacity power cell"
@@ -63,6 +67,7 @@
 /obj/item/weapon/cell/high/empty/New()
 	..()
 	charge = 0
+
 
 /obj/item/weapon/cell/super
 	name = "super-capacity power cell"
@@ -76,6 +81,7 @@
 	..()
 	charge = 0
 
+
 /obj/item/weapon/cell/hyper
 	name = "hyper-capacity power cell"
 	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 6)
@@ -88,14 +94,16 @@
 	..()
 	charge = 0
 
+
 /obj/item/weapon/cell/infinite
 	name = "infinite-capacity power cell!"
 	icon_state = "icell"
 	origin_tech =  null
 	maxcharge = 30000
 	g_amt = 80
-	use()
-		return 1
+
+/obj/item/weapon/cell/infinite/use()
+	return 1
 
 /obj/item/weapon/cell/potato
 	name = "potato battery"

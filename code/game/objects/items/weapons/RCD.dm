@@ -4,6 +4,9 @@
 CONTAINS:
 RCD
 */
+#define MODE_FLOOR_AND_WALLS 1
+#define MODE_AIRLOCK 2
+#define MODE_DECONSTRUCT 3
 /obj/item/weapon/rcd
 	name = "rapid-construction-device (RCD)"
 	desc = "A device used to rapidly build walls/floor."
@@ -23,12 +26,12 @@ RCD
 	var/datum/effect/system/spark_spread/spark_system
 	var/matter = 0
 	var/working = 0
-	var/mode = 1
+	var/mode = MODE_FLOOR_AND_WALLS
 	var/canRwall = 0
 	var/disabled = 0
 
 /obj/item/weapon/rcd/New()
-	desc = "A RCD. It currently holds [matter]/30 matter-units."
+	desc = "An RCD. It currently holds [matter]/30 matter-units."
 	src.spark_system = new /datum/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -43,35 +46,35 @@ RCD
 	..()
 	if(istype(W, /obj/item/weapon/rcd_ammo))
 		if((matter + 10) > 30)
-			user << "<span class='notice'>The RCD cant hold any more matter-units.</span>"
+			to_chat(user, SPAN_NOTICE("The RCD cant hold any more matter-units."))
 			return
 		user.drop_item()
 		qdel(W)
 		matter += 10
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
-		user << "<span class='notice'>The RCD now holds [matter]/30 matter-units.</span>"
-		desc = "A RCD. It currently holds [matter]/30 matter-units."
+		to_chat(user, SPAN_NOTICE("The RCD now holds [matter]/30 matter-units."))
+		desc = "An RCD. It currently holds [matter]/30 matter-units."
 		return
 
 /obj/item/weapon/rcd/attack_self(mob/user)
 	//Change the mode
 	playsound(src, 'sound/effects/pop.ogg', 50, 0)
 	switch(mode)
-		if(1)
-			mode = 2
-			user << "<span class='notice'>Changed mode to 'Airlock'</span>"
+		if(MODE_FLOOR_AND_WALLS)
+			mode = MODE_AIRLOCK
+			to_chat(user, SPAN_NOTICE("Changed mode to 'Airlock'"))
 			if(prob(20))
 				src.spark_system.start()
 			return
-		if(2)
-			mode = 3
-			user << "<span class='notice'>Changed mode to 'Deconstruct'</span>"
+		if(MODE_AIRLOCK)
+			mode = MODE_DECONSTRUCT
+			to_chat(user, SPAN_NOTICE("Changed mode to 'Deconstruct'"))
 			if(prob(20))
 				src.spark_system.start()
 			return
-		if(3)
-			mode = 1
-			user << "<span class='notice'>Changed mode to 'Floor & Walls'</span>"
+		if(MODE_DECONSTRUCT)
+			mode = MODE_FLOOR_AND_WALLS
+			to_chat(user, SPAN_NOTICE("Changed mode to 'Floor & Walls'"))
 			if(prob(20))
 				src.spark_system.start()
 			return
@@ -84,16 +87,16 @@ RCD
 		return
 	if(disabled && !isrobot(user))
 		return 0
-	if(istype(A,/area/shuttle)||istype(A,/turf/space/transit))
+	if(istype(A, /area/shuttle) || istype(A, /turf/space/transit))
 		return 0
-	if(!(istype(A, /turf) || istype(A, /obj/machinery/door/airlock)))
+	if(!(isturf(A) || istype(A, /obj/machinery/door/airlock)))
 		return 0
 
 	switch(mode)
-		if(1)
+		if(MODE_FLOOR_AND_WALLS)
 			if(istype(A, /turf/space))
 				if(useResource(1, user))
-					user << "Building Floor..."
+					to_chat(user, "Building Floor...")
 					activate()
 					A:ChangeTurf(/turf/simulated/floor/plating/airless)
 					return 1
@@ -101,7 +104,7 @@ RCD
 
 			if(istype(A, /turf/simulated/floor))
 				if(checkResource(3, user))
-					user << "Building Wall ..."
+					to_chat(user, "Building Wall ...")
 					playsound(src, 'sound/machines/click.ogg', 50, 1)
 					if(do_after(user, 20))
 						if(!useResource(3, user))
@@ -111,27 +114,27 @@ RCD
 						return 1
 				return 0
 
-		if(2)
+		if(MODE_AIRLOCK)
 			if(istype(A, /turf/simulated/floor))
 				if(checkResource(10, user))
-					user << "Building Airlock..."
+					to_chat(user, "Building Airlock...")
 					playsound(src, 'sound/machines/click.ogg', 50, 1)
 					if(do_after(user, 50))
 						if(!useResource(10, user))
 							return 0
 						activate()
-						var/obj/machinery/door/airlock/T = new /obj/machinery/door/airlock( A )
+						var/obj/machinery/door/airlock/T = new /obj/machinery/door/airlock(A)
 						T.autoclose = 1
 						return 1
 					return 0
 				return 0
 
-		if(3)
+		if(MODE_DECONSTRUCT)
 			if(istype(A, /turf/simulated/wall))
 				if(istype(A, /turf/simulated/wall/r_wall) && !canRwall)
 					return 0
 				if(checkResource(5, user))
-					user << "Deconstructing Wall..."
+					to_chat(user, "Deconstructing Wall...")
 					playsound(src, 'sound/machines/click.ogg', 50, 1)
 					if(do_after(user, 40))
 						if(!useResource(5, user))
@@ -143,7 +146,7 @@ RCD
 
 			if(istype(A, /turf/simulated/floor))
 				if(checkResource(5, user))
-					user << "Deconstructing Floor..."
+					to_chat(user, "Deconstructing Floor...")
 					playsound(src, 'sound/machines/click.ogg', 50, 1)
 					if(do_after(user, 50))
 						if(!useResource(5, user))
@@ -155,7 +158,7 @@ RCD
 
 			if(istype(A, /obj/machinery/door/airlock))
 				if(checkResource(10, user))
-					user << "Deconstructing Airlock..."
+					to_chat(user, "Deconstructing Airlock...")
 					playsound(src, 'sound/machines/click.ogg', 50, 1)
 					if(do_after(user, 50))
 						if(!useResource(10, user))
@@ -166,24 +169,28 @@ RCD
 				return	0
 			return 0
 		else
-			user << "ERROR: RCD in MODE: [mode] attempted use by [user]. Send this text #coderbus or an admin."
+			to_chat(user, "ERROR: RCD in MODE: [mode] attempted use by [user]. Send this text #coderbus or an admin.")
 			return 0
+#undef MODE_FLOOR_AND_WALLS
+#undef MODE_AIRLOCK
+#undef MODE_DECONSTRUCT
 
-/obj/item/weapon/rcd/proc/useResource(var/amount, var/mob/user)
+/obj/item/weapon/rcd/proc/useResource(amount, mob/user)
 	if(matter < amount)
 		return 0
 	matter -= amount
-	desc = "A RCD. It currently holds [matter]/30 matter-units."
+	desc = "An RCD. It currently holds [matter]/30 matter-units."
 	return 1
 
-/obj/item/weapon/rcd/proc/checkResource(var/amount, var/mob/user)
+/obj/item/weapon/rcd/proc/checkResource(amount, mob/user)
 	return matter >= amount
-/obj/item/weapon/rcd/borg/useResource(var/amount, var/mob/user)
+
+/obj/item/weapon/rcd/borg/useResource(amount, mob/user)
 	if(!isrobot(user))
 		return 0
 	return user:cell:use(amount * 30)
 
-/obj/item/weapon/rcd/borg/checkResource(var/amount, var/mob/user)
+/obj/item/weapon/rcd/borg/checkResource(amount, mob/user)
 	if(!isrobot(user))
 		return 0
 	return user:cell:charge >= (amount * 30)
@@ -192,6 +199,7 @@ RCD
 	..()
 	desc = "A device used to rapidly build walls/floor."
 	canRwall = 1
+
 
 /obj/item/weapon/rcd_ammo
 	name = "compressed matter cartridge"

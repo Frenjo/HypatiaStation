@@ -5,13 +5,14 @@ Mineral Sheets
 		- Diamond
 		- Uranium
 		- Plasma
+		- Plastic
 		- Gold
 		- Silver
-		- Clown
+		- Bananium (Clown)
 	Others:
+		- Enriched Uranium
 		- Adamantine
 		- Mythril
-		- Enriched Uranium
 */
 
 /*
@@ -40,6 +41,7 @@ var/global/list/datum/stack_recipe/sandstone_recipes = list(
 	pixel_y = rand(0, 4) - 4
 	..()
 
+
 /*
  * Diamond
  */
@@ -63,6 +65,7 @@ var/global/list/datum/stack_recipe/diamond_recipes = list(
 	pixel_x = rand(0, 4) - 4
 	pixel_y = rand(0, 4) - 4
 	..()
+
 
 /*
  * Uranium
@@ -89,6 +92,7 @@ var/global/list/datum/stack_recipe/uranium_recipes = list(
 	pixel_y = rand(0, 4) - 4
 	..()
 
+
 /*
  * Plasma
  */
@@ -114,6 +118,9 @@ var/global/list/datum/stack_recipe/plasma_recipes = list(
 	pixel_y = rand(0, 4) - 4
 	..()
 
+/*
+ * Plastic
+ */
 /obj/item/stack/sheet/mineral/plastic
 	name = "Plastic"
 	icon_state = "sheet-plastic"
@@ -152,6 +159,7 @@ var/global/list/datum/stack_recipe/plastic_recipes = list(
 	pixel_y = rand(0, 4) - 4
 	..()
 
+
 /*
  * Gold
  */
@@ -176,6 +184,7 @@ var/global/list/datum/stack_recipe/gold_recipes = list(
 	pixel_x = rand(0, 4) - 4
 	pixel_y = rand(0, 4) - 4
 	..()
+
 
 /*
  * Silver
@@ -202,8 +211,9 @@ var/global/list/datum/stack_recipe/silver_recipes = list(
 	pixel_y = rand(0, 4) - 4
 	..()
 
+
 /*
- * Clown
+ * Bananium (Clown)
  */
 /obj/item/stack/sheet/mineral/bananium
 	name = "bananium"
@@ -224,7 +234,6 @@ var/global/list/datum/stack_recipe/silver_recipes = list(
 
 
 /****************************** Others ****************************/
-
 /*
  * Enriched Uranium
  */
@@ -240,6 +249,7 @@ var/global/list/datum/stack_recipe/silver_recipes = list(
 	perunit = 1000
 	sheettype = MATERIAL_ENRICHED_URANIUM
 
+
 /*
  * Adamantine
  */
@@ -254,6 +264,7 @@ var/global/list/datum/stack_recipe/silver_recipes = list(
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 4)
 	perunit = 2000
 	sheettype = MATERIAL_ADAMANTINE
+
 
 /*
  * Mythril

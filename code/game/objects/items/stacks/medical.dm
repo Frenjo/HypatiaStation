@@ -40,13 +40,12 @@
 
 	else
 
-		M.heal_organ_damage((src.heal_brute / 2), (src.heal_burn / 2))
-		user.visible_message( \
-			SPAN_INFO("[M] has been applied with [src] by [user]."), \
-			SPAN_INFO("You apply \the [src] to [M].") \
+		M.heal_organ_damage(src.heal_brute / 2, src.heal_burn / 2)
+		user.visible_message(
+			SPAN_INFO("[M] has been applied with [src] by [user]."),
+			SPAN_INFO("You apply \the [src] to [M].")
 		)
 		use(1)
-
 	M.updatehealth()
 
 
@@ -74,18 +73,24 @@
 					if(W.internal)
 						continue
 					if(W.current_stage <= W.max_bleeding_stage)
-						user.visible_message(SPAN_INFO("[user] bandages [W.desc] on [M]'s [affecting.display_name]."), \
-											SPAN_INFO("You bandage [W.desc] on [M]'s [affecting.display_name]."))
+						user.visible_message(
+							SPAN_INFO("[user] bandages [W.desc] on [M]'s [affecting.display_name]."),
+							SPAN_INFO("You bandage [W.desc] on [M]'s [affecting.display_name].")
+						)
 						//H.add_side_effect("Itch")
 					else if(istype(W, /datum/wound/bruise))
-						user.visible_message(SPAN_INFO("[user] places bruise patch over [W.desc] on [M]'s [affecting.display_name]."), \
-											SPAN_INFO("You place bruise patch over [W.desc] on [M]'s [affecting.display_name]."))
+						user.visible_message(
+							SPAN_INFO("[user] places bruise patch over [W.desc] on [M]'s [affecting.display_name]."),
+							SPAN_INFO("You place bruise patch over [W.desc] on [M]'s [affecting.display_name].")
+						)
 					else
-						user.visible_message(SPAN_INFO("[user] places bandaid over [W.desc] on [M]'s [affecting.display_name]."), \
-											SPAN_INFO("You place bandaid over [W.desc] on [M]'s [affecting.display_name]."))
+						user.visible_message(
+							SPAN_INFO("[user] places bandaid over [W.desc] on [M]'s [affecting.display_name]."),
+							SPAN_INFO("You place bandaid over [W.desc] on [M]'s [affecting.display_name].")
+						)
 				use(1)
 		else
-			if(can_operate(H))        //Checks if mob is lying down on table for surgery
+			if(can_operate(H))			//Checks if mob is lying down on table for surgery
 				if(do_surgery(H, user, src))
 					return
 			else
@@ -114,11 +119,13 @@
 				to_chat(user, SPAN_WARNING("The wounds on [M]'s [affecting.display_name] have already been salved."))
 				return 1
 			else
-				user.visible_message(SPAN_INFO("[user] salves wounds on [M]'s [affecting.display_name]."), \
-									SPAN_INFO("You salve wounds on [M]'s [affecting.display_name]."))
+				user.visible_message(
+					SPAN_INFO("[user] salves wounds on [M]'s [affecting.display_name]."),
+					SPAN_INFO("You salve wounds on [M]'s [affecting.display_name].")
+				)
 				use(1)
 		else
-			if(can_operate(H))        //Checks if mob is lying down on table for surgery
+			if(can_operate(H))			//Checks if mob is lying down on table for surgery
 				if(do_surgery(H, user, src))
 					return
 			else
@@ -168,19 +175,25 @@
 					if(W.internal)
 						continue
 					if(W.current_stage <= W.max_bleeding_stage)
-						user.visible_message(SPAN_INFO("[user] cleans [W.desc] on [M]'s [affecting.display_name] and seals edges with bioglue."), \
-											SPAN_INFO("You clean and seal [W.desc] on [M]'s [affecting.display_name]."))
+						user.visible_message(
+							SPAN_INFO("[user] cleans [W.desc] on [M]'s [affecting.display_name] and seals edges with bioglue."),
+							SPAN_INFO("You clean and seal [W.desc] on [M]'s [affecting.display_name].")
+						)
 						//H.add_side_effect("Itch")
 					else if(istype(W, /datum/wound/bruise))
-						user.visible_message(SPAN_INFO("[user] places medicine patch over [W.desc] on [M]'s [affecting.display_name]."), \
-											SPAN_INFO("You place medicine patch over [W.desc] on [M]'s [affecting.display_name]."))
+						user.visible_message(
+							SPAN_INFO("[user] places medicine patch over [W.desc] on [M]'s [affecting.display_name]."),
+							SPAN_INFO("You place medicine patch over [W.desc] on [M]'s [affecting.display_name].")
+						)
 					else
-						user.visible_message(SPAN_INFO("[user] smears some bioglue over [W.desc] on [M]'s [affecting.display_name]."), \
-											SPAN_INFO("You smear some bioglue over [W.desc] on [M]'s [affecting.display_name]."))
+						user.visible_message(
+							SPAN_INFO("[user] smears some bioglue over [W.desc] on [M]'s [affecting.display_name]."),
+							SPAN_INFO("You smear some bioglue over [W.desc] on [M]'s [affecting.display_name].")
+						)
 				affecting.heal_damage(heal_brute, 0)
 				use(1)
 		else
-			if(can_operate(H))        //Checks if mob is lying down on table for surgery
+			if(can_operate(H))			//Checks if mob is lying down on table for surgery
 				if(do_surgery(H, user, src))
 					return
 			else
@@ -208,12 +221,14 @@
 				to_chat(user, SPAN_WARNING("The wounds on [M]'s [affecting.display_name] have already been salved."))
 				return 1
 			else
-				user.visible_message(SPAN_INFO("[user] covers wounds on [M]'s [affecting.display_name] with regenerative membrane."), \
-									SPAN_INFO("You cover wounds on [M]'s [affecting.display_name] with regenerative membrane."))
+				user.visible_message(
+					SPAN_INFO("[user] covers wounds on [M]'s [affecting.display_name] with regenerative membrane."),
+					SPAN_INFO("You cover wounds on [M]'s [affecting.display_name] with regenerative membrane.")
+				)
 				affecting.heal_damage(0, heal_burn)
 				use(1)
 		else
-			if(can_operate(H))        //Checks if mob is lying down on table for surgery
+			if(can_operate(H))			//Checks if mob is lying down on table for surgery
 				if(do_surgery(H, user, src))
 					return
 			else
@@ -235,35 +250,47 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 		var/limb = affecting.display_name
-		if(!((affecting.name == "l_arm") || (affecting.name == "r_arm") || (affecting.name == "l_leg") || (affecting.name == "r_leg")))
+		if(!(affecting.name == "l_arm" || affecting.name == "r_arm" || affecting.name == "l_leg" || affecting.name == "r_leg"))
 			to_chat(user, SPAN_WARNING("You can't apply a splint there!"))
 			return
 		if(affecting.status & ORGAN_SPLINTED)
 			to_chat(user, SPAN_WARNING("[M]'s [limb] is already splinted!"))
 			return
 		if(M != user)
-			user.visible_message(SPAN_WARNING("[user] starts to apply \the [src] to [M]'s [limb]."), \
-								SPAN_WARNING("You start to apply \the [src] to [M]'s [limb]."), \
-								SPAN_WARNING("You hear something being wrapped."))
+			user.visible_message(
+				SPAN_WARNING("[user] starts to apply \the [src] to [M]'s [limb]."),
+				SPAN_WARNING("You start to apply \the [src] to [M]'s [limb]."),
+				SPAN_WARNING("You hear something being wrapped.")
+			)
 		else
 			if((!user.hand && affecting.name == "r_arm") || (user.hand && affecting.name == "l_arm"))
 				to_chat(user, SPAN_WARNING("You can't apply a splint to the arm you're using!"))
 				return
-			user.visible_message(SPAN_WARNING("[user] starts to apply \the [src] to their [limb]."), \
-								SPAN_WARNING("You start to apply \the [src] to your [limb]."), \
-								SPAN_WARNING("You hear something being wrapped."))
+			user.visible_message(
+				SPAN_WARNING("[user] starts to apply \the [src] to their [limb]."),
+				SPAN_WARNING("You start to apply \the [src] to your [limb]."),
+				SPAN_WARNING("You hear something being wrapped.")
+			)
 		if(do_after(user, 50))
 			if(M != user)
-				user.visible_message(SPAN_WARNING("[user] finishes applying \the [src] to [M]'s [limb]."), \
-									SPAN_WARNING("You finish applying \the [src] to [M]'s [limb]."), \
-									SPAN_WARNING("You hear something being wrapped."))
+				user.visible_message(
+					SPAN_WARNING("[user] finishes applying \the [src] to [M]'s [limb]."),
+					SPAN_WARNING("You finish applying \the [src] to [M]'s [limb]."),
+					SPAN_WARNING("You hear something being wrapped.")
+				)
 			else
 				if(prob(25))
-					user.visible_message(SPAN_WARNING("[user] successfully applies \the [src] to their [limb]."), \
-										SPAN_WARNING("You successfully apply \the [src] to your [limb]."), \
-										SPAN_WARNING("You hear something being wrapped."))
+					user.visible_message(
+						SPAN_WARNING("[user] successfully applies \the [src] to their [limb]."),
+						SPAN_WARNING("You successfully apply \the [src] to your [limb]."),
+						SPAN_WARNING("You hear something being wrapped.")
+					)
 				else
-					user.visible_message(SPAN_WARNING("[user] fumbles \the [src]."), SPAN_WARNING("You fumble \the [src]."), SPAN_WARNING("You hear something being wrapped."))
+					user.visible_message(
+						SPAN_WARNING("[user] fumbles \the [src]."),
+						SPAN_WARNING("You fumble \the [src]."),
+						SPAN_WARNING("You hear something being wrapped.")
+					)
 					return
 			affecting.status |= ORGAN_SPLINTED
 			use(1)

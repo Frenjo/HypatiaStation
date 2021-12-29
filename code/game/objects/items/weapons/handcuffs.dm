@@ -21,20 +21,19 @@
 			var/turf/p_loc = user.loc
 			var/turf/p_loc_m = C.loc
 			playsound(src, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
-			for(var/mob/O in viewers(user, null))
-				O.show_message("\red <B>[user] is trying to put handcuffs on [C]!</B>", 1)
+			user.visible_message(SPAN_DANGER("[user] is trying to put handcuffs on [C]!"))
 			spawn(30)
-				if(!C)	return
+				if(!C)
+					return
 				if(p_loc == user.loc && p_loc_m == C.loc)
 					C.handcuffed = new /obj/item/weapon/handcuffs(C)
 					C.update_inv_handcuffed()
-
 	else
-		if ((CLUMSY in usr.mutations) && prob(50))
-			usr << "\red Uh ... how do those things work?!"
-			if (istype(C, /mob/living/carbon/human))
+		if((CLUMSY in usr.mutations) && prob(50))
+			to_chat(user, SPAN_WARNING("Uh ... how do those things work?!"))
+			if(ishuman(C))
 				if(!C.handcuffed)
-					var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human(  )
+					var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human()
 					O.source = user
 					O.target = user
 					O.item = user.get_active_hand()
@@ -46,17 +45,16 @@
 						O.process()
 				return
 			return
-		if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-			usr << "\red You don't have the dexterity to do this!"
+		if(!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
+			to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
 			return
-		if (istype(C, /mob/living/carbon/human))
+		if(ishuman(C))
 			if(!C.handcuffed)
-
 				C.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed (attempt) by [user.name] ([user.ckey])</font>")
 				user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to handcuff [C.name] ([C.ckey])</font>")
 				msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(C)]")
 
-				var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human(  )
+				var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human()
 				O.source = user
 				O.target = C
 				O.item = user.get_active_hand()
@@ -64,18 +62,18 @@
 				O.t_loc = C.loc
 				O.place = "handcuff"
 				C.requests += O
-				spawn( 0 )
+				spawn(0)
 					if(istype(src, /obj/item/weapon/handcuffs/cable))
-						feedback_add_details("handcuffs","C")
+						feedback_add_details("handcuffs", "C")
 						playsound(src, 'sound/weapons/cablecuff.ogg', 30, 1, -2)
 					else
-						feedback_add_details("handcuffs","H")
+						feedback_add_details("handcuffs", "H")
 						playsound(src, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
 					O.process()
 			return
 		else
 			if(!C.handcuffed)
-				var/obj/effect/equip_e/monkey/O = new /obj/effect/equip_e/monkey(  )
+				var/obj/effect/equip_e/monkey/O = new /obj/effect/equip_e/monkey()
 				O.source = user
 				O.target = C
 				O.item = user.get_active_hand()
@@ -83,7 +81,7 @@
 				O.t_loc = C.loc
 				O.place = "handcuff"
 				C.requests += O
-				spawn( 0 )
+				spawn(0)
 					if(istype(src, /obj/item/weapon/handcuffs/cable))
 						playsound(src, 'sound/weapons/cablecuff.ogg', 30, 1, -2)
 					else
@@ -92,23 +90,32 @@
 			return
 	return
 
+
 var/last_chew = 0
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A)
-	if (A != src) return ..()
-	if (last_chew + 26 > world.time) return
+/mob/living/carbon/human/RestrainedClickOn(atom/A)
+	if(A != src)
+		return ..()
+	if(last_chew + 26 > world.time)
+		return
 
 	var/mob/living/carbon/human/H = A
-	if (!H.handcuffed) return
-	if (H.a_intent != "hurt") return
-	if (H.zone_sel.selecting != "mouth") return
-	if (H.wear_mask) return
-	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket)) return
+	if(!H.handcuffed)
+		return
+	if(H.a_intent != "hurt")
+		return
+	if(H.zone_sel.selecting != "mouth")
+		return
+	if(H.wear_mask)
+		return
+	if(istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket))
+		return
 
-	var/datum/organ/external/O = H.organs_by_name[H.hand?"l_hand":"r_hand"]
-	if (!O) return
+	var/datum/organ/external/O = H.organs_by_name[H.hand ? "l_hand" : "r_hand"]
+	if(!O)
+		return
 
-	var/s = "\red [H.name] chews on \his [O.display_name]!"
-	H.visible_message(s, "\red You chew on your [O.display_name]!")
+	var/s = SPAN_WARNING("[H.name] chews on \his [O.display_name]!")
+	H.visible_message(s, SPAN_WARNING("You chew on your [O.display_name]!"))
 	H.attack_log += text("\[[time_stamp()]\] <font color='red'>[s] ([H.ckey])</font>")
 	log_attack("[s] ([H.ckey])")
 
@@ -116,6 +123,7 @@ var/last_chew = 0
 		H:UpdateDamageIcon()
 
 	last_chew = world.time
+
 
 /obj/item/weapon/handcuffs/cable
 	name = "cable restraints"

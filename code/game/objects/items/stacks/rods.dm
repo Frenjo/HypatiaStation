@@ -36,15 +36,14 @@
 		return
 	..()
 
-
 /obj/item/stack/rods/attack_self(mob/user as mob)
 	src.add_fingerprint(user)
 
 	if(!isturf(user.loc))
 		return 0
 
-	if(locate(/obj/structure/grille, usr.loc))
-		for(var/obj/structure/grille/G in usr.loc)
+	if(locate(/obj/structure/grille, user.loc))
+		for(var/obj/structure/grille/G in user.loc)
 			if(G.destroyed)
 				G.health = 10
 				G.density = 1
@@ -57,11 +56,11 @@
 		if(amount < 2)
 			to_chat(user, SPAN_INFO("You need at least two rods to do this."))
 			return
-		to_chat(usr, SPAN_INFO("Assembling grille..."))
-		if(!do_after(usr, 10))
+		to_chat(user, SPAN_INFO("Assembling grille..."))
+		if(!do_after(user, 10))
 			return
-		var/obj/structure/grille/F = new /obj/structure/grille(usr.loc)
-		to_chat(usr, SPAN_INFO("You assemble a grille."))
-		F.add_fingerprint(usr)
+		var/obj/structure/grille/F = new /obj/structure/grille(user.loc)
+		to_chat(user, SPAN_INFO("You assemble a grille."))
+		F.add_fingerprint(user)
 		use(2)
 	return

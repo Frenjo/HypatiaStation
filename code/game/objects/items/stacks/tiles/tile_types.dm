@@ -22,6 +22,7 @@
 	max_amount = 60
 	origin_tech = list(RESEARCH_TECH_BIOTECH = 1)
 
+
 /*
  * Wood
  */
@@ -37,6 +38,7 @@
 	throw_range = 20
 	flags = CONDUCT
 	max_amount = 60
+
 
 /*
  * Carpets

@@ -1,5 +1,4 @@
 // WIRES
-
 /obj/item/weapon/wire/proc/update()
 	if(src.amount > 1)
 		src.icon_state = "spool_wire"
@@ -16,5 +15,3 @@
 	else
 		to_chat(user, SPAN_INFO("You are not using this to lay wire..."))
 	return
-
-

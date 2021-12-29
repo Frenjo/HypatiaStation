@@ -9,51 +9,54 @@
  * Banana Peals
  */
 /obj/item/weapon/bananapeel/Crossed(AM as mob|obj)
-	if (istype(AM, /mob/living/carbon))
-		var/mob/M =	AM
-		if (istype(M, /mob/living/carbon/human) && (isobj(M:shoes) && M:shoes.flags&NOSLIP))
-			return
-
-		M.stop_pulling()
-		M << "\blue You slipped on the [name]!"
-		playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
-		M.Stun(4)
-		M.Weaken(2)
-
-/*
- * Soap
- */
-/obj/item/weapon/soap/Crossed(AM as mob|obj) //EXACTLY the same as bananapeel for now, so it makes sense to put it in the same dm -- Urist
-	if(istype(AM, /mob/living/carbon))
+	if(iscarbon(AM))
 		var/mob/M =	AM
 		if(ishuman(M) && (isobj(M:shoes) && M:shoes.flags & NOSLIP))
 			return
 
 		M.stop_pulling()
-		M << "\blue You slipped on the [name]!"
+		to_chat(M, SPAN_INFO("You slipped on the [name]!"))
+		playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
+		M.Stun(4)
+		M.Weaken(2)
+
+
+/*
+ * Soap
+ */
+/obj/item/weapon/soap/Crossed(AM as mob|obj) //EXACTLY the same as bananapeel for now, so it makes sense to put it in the same dm -- Urist
+	if(iscarbon(AM))
+		var/mob/M =	AM
+		if(ishuman(M) && (isobj(M:shoes) && M:shoes.flags & NOSLIP))
+			return
+
+		M.stop_pulling()
+		to_chat(M, SPAN_INFO("You slipped on the [name]!"))
 		playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
 		M.Stun(3)
 		M.Weaken(2)
 
 /obj/item/weapon/soap/afterattack(atom/target, mob/user as mob, proximity)
-	if(!proximity) return
+	if(!proximity)
+		return
 	//I couldn't feasibly  fix the overlay bugs caused by cleaning items we are wearing.
 	//So this is a workaround. This also makes more sense from an IC standpoint. ~Carn
 	if(user.client && (target in user.client.screen))
-		user << "<span class='notice'>You need to take that [target.name] off before cleaning it.</span>"
-	else if(istype(target,/obj/effect/decal/cleanable))
-		user << "<span class='notice'>You scrub \the [target.name] out.</span>"
+		to_chat(user, SPAN_NOTICE("You need to take that [target.name] off before cleaning it."))
+	else if(istype(target, /obj/effect/decal/cleanable))
+		to_chat(user, SPAN_NOTICE("You scrub \the [target.name] out."))
 		qdel(target)
 	else
-		user << "<span class='notice'>You clean \the [target.name].</span>"
+		to_chat(user, SPAN_NOTICE("You clean \the [target.name]."))
 		target.clean_blood()
 	return
 
 /obj/item/weapon/soap/attack(mob/target as mob, mob/user as mob)
-	if(target && user && ishuman(target) && ishuman(user) && !target.stat && !user.stat && user.zone_sel &&user.zone_sel.selecting == "mouth" )
-		user.visible_message("\red \the [user] washes \the [target]'s mouth out with soap!")
+	if(target && user && ishuman(target) && ishuman(user) && !target.stat && !user.stat && user.zone_sel &&user.zone_sel.selecting == "mouth")
+		user.visible_message(SPAN_WARNING("\the [user] washes \the [target]'s mouth out with soap!"))
 		return
 	..()
+
 
 /*
  * Bike Horns

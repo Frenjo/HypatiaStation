@@ -1205,16 +1205,11 @@ var/global/list/common_tools = list(
 
 //check if mob is lying down on something we can operate him on.
 /proc/can_operate(mob/living/carbon/M)
-	var/turf/T = get_turf(M)
-	if(M.incapacitated())
-		if(locate(/obj/structure/table, T) && prob(66))
-			return 1
-		if(locate(/obj/structure/stool/bed/roller, T) && prob(75))
-			return 1
-	else if(M.resting)
-		if(locate(/obj/machinery/optable, T))
-			return 1
-	return 0
+	return (locate(/obj/machinery/optable, M.loc) && M.resting) || \
+		(locate(/obj/structure/stool/bed/roller, M.loc) && \
+		(M.buckled || M.lying || M.weakened || M.stunned || M.paralysis || M.sleeping || M.stat)) && prob(75) || \
+		(locate(/obj/structure/table/, M.loc) && \
+		(M.lying || M.weakened || M.stunned || M.paralysis || M.sleeping || M.stat) && prob(66))
 
 /proc/reverse_direction(dir)
 	switch(dir)
