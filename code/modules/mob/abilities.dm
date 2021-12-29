@@ -1,7 +1,6 @@
 /*
 Creature-level abilities.
 */
-
 /var/global/list/ability_verbs = list()
 
 /*
@@ -44,7 +43,6 @@ Creature-level abilities.
 		to_chat(src, SPAN_WARNING("You must be corporeal and alive to do that."))
 		return 0
 
-
 	var/list/creatures = list()
 	for(var/mob/living/carbon/h in view(src))
 		creatures += h
@@ -54,8 +52,10 @@ Creature-level abilities.
 	if(isnull(target))
 		return
 
-	mob.visible_message(SPAN_INFO("[mob.real_name] focuses intently on [target.real_name]."), \
-						SPAN_WARNING("You focus intently on [target.real_name]."))
+	mob.visible_message(
+		SPAN_INFO("[mob.real_name] focuses intently on [target.real_name]."),
+		SPAN_WARNING("You focus intently on [target.real_name].")
+	)
 
 	var/intensity = input("How intense do you want the projection to be?") in list(1, 2, 3)
 	var/say = input("What do you wish to say?")
@@ -76,8 +76,8 @@ Creature-level abilities.
 				if(ishuman(target))
 					var/mob/living/carbon/human/h = target
 					h.visible_message(
-						SPAN_DANGER("[target.real_name]'s nose begins to bleed."), \
-						SPAN_DANGER("Your nose begins to bleed...") \
+						SPAN_DANGER("[target.real_name]'s nose begins to bleed."),
+						SPAN_DANGER("Your nose begins to bleed...")
 					)
 					h.drip(3)
 

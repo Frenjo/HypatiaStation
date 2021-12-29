@@ -60,7 +60,8 @@
 
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
 
-	if(!T)	T = pick(latejoin)			//Safety in case we cannot find the body's position
+	if(!T)
+		T = pick(latejoin)			//Safety in case we cannot find the body's position
 	loc = T
 
 	if(!name)							//To prevent nameless ghosts
@@ -69,29 +70,29 @@
 	..()
 
 /mob/dead/observer/Topic(href, href_list)
-	if (href_list["track"])
+	if(href_list["track"])
 		var/mob/target = locate(href_list["track"]) in mob_list
 		if(target)
 			ManualFollow(target)
 
 /mob/dead/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/weapon/tome))
+	if(istype(W, /obj/item/weapon/tome))
 		var/mob/dead/M = src
 		if(src.invisibility != 0)
 			M.invisibility = 0
-			user.visible_message( \
-				"\red [user] drags ghost, [M], to our plan of reality!", \
-				"\red You drag [M] to our plan of reality!" \
+			user.visible_message(
+				SPAN_WARNING("[user] drags ghost, [M], to our plane of reality!"),
+				SPAN_WARNING("You drag [M] to our plane of reality!")
 			)
 		else
-			user.visible_message ( \
-				"\red [user] just tried to smash his book into that ghost!  It's not very effective", \
-				"\red You get the feeling that the ghost can't become any more visible." \
+			user.visible_message(
+				SPAN_WARNING("[user] just tried to smash his book into that ghost! It's not very effective."),
+				SPAN_WARNING("You get the feeling that the ghost can't become any more visible.")
 			)
 
-
-/mob/dead/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/mob/dead/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	return 1
+
 /*
 Transfer_mind is there to check if mob is being deleted/not going to have a body.
 Works together with spawning an observer, noted above.
@@ -99,27 +100,27 @@ Works together with spawning an observer, noted above.
 
 /mob/dead/observer/Life()
 	..()
-	if(!loc) return
-	if(!client) return 0
-
+	if(!loc)
+		return
+	if(!client)
+		return 0
 
 	if(client.images.len)
 		for(var/image/hud in client.images)
-			if(copytext(hud.icon_state,1,4) == "hud")
+			if(copytext(hud.icon_state, 1, 4) == "hud")
 				client.images.Remove(hud)
 
 	if(antagHUD)
 		var/list/target_list = list()
 		for(var/mob/living/target in oview(src, 14))
-			if(target.mind&&(target.mind.special_role||issilicon(target)) )
+			if(target.mind && (target.mind.special_role || issilicon(target)))
 				target_list += target
 		if(target_list.len)
 			assess_targets(target_list, src)
 	if(medHUD)
 		process_medHUD(src)
 
-
-/mob/dead/proc/process_medHUD(var/mob/M)
+/mob/dead/proc/process_medHUD(mob/M)
 	var/client/C = M.client
 	for(var/mob/living/carbon/human/patient in oview(M, 14))
 		C.images += patient.hud_list[HEALTH_HUD]
@@ -129,8 +130,6 @@ Works together with spawning an observer, noted above.
 	var/client/C = U.client
 	for(var/mob/living/carbon/human/target in target_list)
 		C.images += target.hud_list[SPECIALROLE_HUD]
-
-
 /*
 		else//If the silicon mob has no law datum, no inherent laws, or a law zero, add them to the hud.
 			var/mob/living/silicon/silicon_target = target
@@ -142,7 +141,7 @@ Works together with spawning an observer, noted above.
 */
 	return 1
 
-/mob/proc/ghostize(var/can_reenter_corpse = 1)
+/mob/proc/ghostize(can_reenter_corpse = 1)
 	if(key)
 		var/mob/dead/observer/ghost = new(src)	//Transfer safety to observer spawning proc.
 		ghost.can_reenter_corpse = can_reenter_corpse
@@ -163,13 +162,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(stat == DEAD)
 		ghostize(1)
 	else
-		var/response = alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost, you won't be able to play this round for another 30 minutes! You can't change your mind so choose wisely!)","Are you sure you want to ghost?","Ghost","Stay in body")
-		if(response != "Ghost")	return	//didn't want to ghost after-all
+		var/response = alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost, you won't be able to play this round for another 30 minutes! You can't change your mind so choose wisely!)", "Are you sure you want to ghost?", "Ghost", "Stay in body")
+		if(response != "Ghost")
+			return	//didn't want to ghost after-all
 		resting = 1
-		var/mob/dead/observer/ghost = ghostize(0)						//0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
-		ghost.timeofdeath = world.time // Because the living mob won't have a time of death and we want the respawn timer to work properly.
+		var/mob/dead/observer/ghost = ghostize(0)	//0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
+		ghost.timeofdeath = world.time	// Because the living mob won't have a time of death and we want the respawn timer to work properly.
 	return
-
 
 /mob/dead/observer/Move(NewLoc, direct)
 	dir = direct
@@ -194,15 +193,19 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/examine()
 	if(usr)
-		usr << desc
+		to_chat(usr, desc)
 
-/mob/dead/observer/can_use_hands()	return 0
-/mob/dead/observer/is_active()		return 0
+/mob/dead/observer/can_use_hands()
+	return 0
 
+/mob/dead/observer/is_active()	
+	return 0
+
+// Updated to reflect 'shuttles' port. -Frenjo
 /mob/dead/observer/Stat()
 	..()
 	statpanel("Status")
-	if (client.statpanel == "Status")
+	if(client.statpanel == "Status")
 		stat(null, "Station Time: [worldtime2text()]")
 		if(ticker)
 			if(ticker.mode)
@@ -210,31 +213,30 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				if(ticker.mode.name == "AI malfunction")
 					//world << "DEBUG: malf mode ticker test"
 					if(ticker.mode:malf_mode_declared)
-						stat(null, "Time left: [max(ticker.mode:AI_win_timeleft/(ticker.mode:apcs/3), 0)]")
+						stat(null, "Time left: [max(ticker.mode:AI_win_timeleft / (ticker.mode:apcs / 3), 0)]")
 		if(emergency_shuttle)
-			//if(emergency_shuttle.online && emergency_shuttle.location < 2)
-			if(emergency_shuttle.online() && emergency_shuttle.location() < 2) // Updated to reflect 'shuttles' port. -Frenjo
-				//var/timeleft = emergency_shuttle.timeleft()
-				var/timeleft = emergency_shuttle.estimate_arrival_time() // Updated to reflect 'shuttles' port. -Frenjo
-				if (timeleft)
+			if(emergency_shuttle.online() && emergency_shuttle.location() < 2)
+				var/timeleft = emergency_shuttle.estimate_arrival_time()
+				if(timeleft)
 					stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"
 	set name = "Re-enter Corpse"
-	if(!client)	return
-	if(!(mind && mind.current && can_reenter_corpse))
-		src << "<span class='warning'>You have no body.</span>"
+	if(!client)
 		return
-	if(mind.current.key && copytext(mind.current.key,1,2)!="@")	//makes sure we don't accidentally kick any clients
-		usr << "<span class='warning'>Another consciousness is in your body...It is resisting you.</span>"
+	if(!(mind && mind.current && can_reenter_corpse))
+		to_chat(src, SPAN_WARNING("You have no body."))
+		return
+	if(mind.current.key && copytext(mind.current.key, 1, 2) != "@")	//makes sure we don't accidentally kick any clients
+		to_chat(src, SPAN_WARNING("Another consciousness is in your body... It is resisting you."))
 		return
 	if(mind.current.ajourn && mind.current.stat != DEAD)	//check if the corpse is astral-journeying (it's client ghosted using a cultist rune).
 		var/obj/effect/rune/R = locate() in mind.current.loc	//whilst corpse is alive, we can only reenter the body if it's on the rune
 		if(!(R && R.word1 == cultwords["hell"] && R.word2 == cultwords["travel"] && R.word3 == cultwords["self"]))	//astral journeying rune
-			usr << "<span class='warning'>The astral cord that ties your body and your spirit has been severed. You are likely to wander the realm beyond until your body is finally dead and thus reunited with you.</span>"
+			to_chat(src, SPAN_WARNING("The astral cord that ties your body and your spirit has been severed. You are likely to wander the realm beyond until your body is finally dead and thus reunited with you."))
 			return
-	mind.current.ajourn=0
+	mind.current.ajourn = 0
 	mind.current.key = key
 	return 1
 
@@ -246,43 +248,44 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 	if(medHUD)
 		medHUD = 0
-		src << "\blue <B>Medical HUD Disabled</B>"
+		to_chat(src, SPAN_INFO_B("Medical HUD Disabled"))
 	else
 		medHUD = 1
-		src << "\blue <B>Medical HUD Enabled</B>"
+		to_chat(src, SPAN_INFO_B("Medical HUD Enabled"))
 
 /mob/dead/observer/verb/toggle_antagHUD()
 	set category = "Ghost"
 	set name = "Toggle AntagHUD"
 	set desc = "Toggles AntagHUD allowing you to see who is the antagonist"
 	if(!config.antag_hud_allowed && !client.holder)
-		src << "\red Admins have disabled this for this round."
+		to_chat(src, SPAN_WARNING("Admins have disabled this for this round."))
 		return
 	if(!client)
 		return
 	var/mob/dead/observer/M = src
 	if(jobban_isbanned(M, "AntagHUD"))
-		src << "\red <B>You have been banned from using this feature</B>"
+		to_chat(src, SPAN_DANGER("You have been banned from using this feature."))
 		return
 	if(config.antag_hud_restricted && !M.has_enabled_antagHUD &&!client.holder)
-		var/response = alert(src, "If you turn this on, you will not be able to take any part in the round.","Are you sure you want to turn this feature on?","Yes","No")
-		if(response == "No") return
+		var/response = alert(src, "If you turn this on, you will not be able to take any part in the round.", "Are you sure you want to turn this feature on?", "Yes", "No")
+		if(response == "No")
+			return
 		M.can_reenter_corpse = 0
 	if(!M.has_enabled_antagHUD && !client.holder)
 		M.has_enabled_antagHUD = 1
 	if(M.antagHUD)
 		M.antagHUD = 0
-		src << "\blue <B>AntagHUD Disabled</B>"
+		to_chat(src, SPAN_INFO_B("AntagHUD Disabled"))
 	else
 		M.antagHUD = 1
-		src << "\blue <B>AntagHUD Enabled</B>"
+		to_chat(src, SPAN_INFO_B("AntagHUD Enabled"))
 
 /mob/dead/observer/proc/dead_tele()
 	set category = "Ghost"
 	set name = "Teleport"
 	set desc= "Teleport to a location"
 	if(!istype(usr, /mob/dead/observer))
-		usr << "Not when you're not dead!"
+		to_chat(usr, "Not when you're not dead!")
 		return
 	usr.verbs -= /mob/dead/observer/proc/dead_tele
 	spawn(30)
@@ -290,14 +293,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/A
 	A = input("Area to jump to", "BOOYEA", A) as null|anything in ghostteleportlocs
 	var/area/thearea = ghostteleportlocs[A]
-	if(!thearea)	return
+	if(!thearea)
+		return
 
 	var/list/L = list()
 	for(var/turf/T in get_area_turfs(thearea.type))
-		L+=T
+		L += T
 
 	if(!L || !L.len)
-		usr << "No area available."
+		to_chat(usr, "No area available.")
 
 	usr.loc = pick(L)
 
@@ -312,12 +316,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	ManualFollow(target)
 
 // This is the ghost's follow verb with an argument
-/mob/dead/observer/proc/ManualFollow(var/atom/movable/target)
+/mob/dead/observer/proc/ManualFollow(atom/movable/target)
 	if(target && target != src)
 		if(following && following == target)
 			return
 		following = target
-		src << "\blue Now following [target]"
+		to_chat(src, SPAN_INFO("Now following [target]."))
 		spawn(0)
 			var/turf/pos = get_turf(src)
 			while(loc == pos && target && following == target && client)
@@ -331,22 +335,19 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				sleep(15)
 			following = null
 
-
 /mob/dead/observer/verb/jumptomob() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
 	set name = "Jump to Mob"
 	set desc = "Teleport to a mob"
 
 	if(istype(usr, /mob/dead/observer)) //Make sure they're an observer!
-
-
 		var/list/dest = list() //List of possible destinations (mobs)
 		var/target = null	   //Chosen target.
 
 		dest += getmobs() //Fill list, prompt user with list
 		target = input("Please, select a player!", "Jump to Mob", null, null) as null|anything in dest
 
-		if (!target)//Make sure we actually have a target
+		if(!target)//Make sure we actually have a target
 			return
 		else
 			var/mob/M = dest[target] //Destination mob
@@ -356,7 +357,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			if(T && isturf(T))	//Make sure the turf exists, then move the source to that destination.
 				A.loc = T
 			else
-				A << "This mob is not located in the game world."
+				to_chat(A, "This mob is not located in the game world.")
+
 /*
 /mob/dead/observer/verb/boo()
 	set category = "Ghost"
@@ -375,20 +377,21 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/memory()
 	set hidden = 1
-	src << "\red You are dead! You have no mind to store memory!"
+	to_chat(src, SPAN_WARNING("You are dead! You have no mind to store memory!"))
 
 /mob/dead/observer/add_memory()
 	set hidden = 1
-	src << "\red You are dead! You have no mind to store memory!"
+	to_chat(src, SPAN_WARNING("You are dead! You have no mind to store memory!"))
 
 /mob/dead/observer/verb/analyze_air()
 	set name = "Analyze Air"
 	set category = "Ghost"
 
-	if(!istype(usr, /mob/dead/observer)) return
+	if(!istype(usr, /mob/dead/observer))
+		return
 
 	// Shamelessly copied from the Gas Analyzers
-	if (!( istype(usr.loc, /turf) ))
+	if(!isturf(usr.loc))
 		return
 
 	var/datum/gas_mixture/environment = usr.loc.return_air()
@@ -396,23 +399,22 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/pressure = environment.return_pressure()
 	var/total_moles = environment.total_moles
 
-	src << "\blue <B>Results:</B>"
+	to_chat(src, SPAN_INFO_B("Results:"))
 	if(abs(pressure - ONE_ATMOSPHERE) < 10)
-		src << "\blue Pressure: [round(pressure,0.1)] kPa"
+		to_chat(src, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
 	else
-		src << "\red Pressure: [round(pressure,0.1)] kPa"
+		to_chat(src, SPAN_WARNING("Pressure: [round(pressure,0.1)] kPa"))
 	if(total_moles)
 		for(var/g in environment.gas)
-			src << "\blue [gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]% ([round(environment.gas[g], 0.01)] moles)"
-		src << "\blue Temperature: [round(environment.temperature-T0C,0.1)]&deg;C"
-		src << "\blue Heat Capacity: [round(environment.heat_capacity(),0.1)]"
-
+			to_chat(src, SPAN_INFO("[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]% ([round(environment.gas[g], 0.01)] moles)"))
+		to_chat(src, SPAN_INFO("Temperature: [round(environment.temperature - T0C, 0.1)]&deg;C"))
+		to_chat(src, SPAN_INFO("Heat Capacity: [round(environment.heat_capacity(), 0.1)]"))
 
 /mob/dead/observer/verb/toggle_darkness()
 	set name = "Toggle Darkness"
 	set category = "Ghost"
 
-	if (see_invisible == SEE_INVISIBLE_OBSERVER_NOLIGHTING)
+	if(see_invisible == SEE_INVISIBLE_OBSERVER_NOLIGHTING)
 		see_invisible = SEE_INVISIBLE_OBSERVER
 	else
 		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
@@ -422,23 +424,24 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 
 	if(config.disable_player_mice)
-		src << "<span class='warning'>Spawning as a mouse is currently disabled.</span>"
+		to_chat(src, SPAN_WARNING("Spawning as a mouse is currently disabled."))
 		return
 
 	var/mob/dead/observer/M = usr
 	if(config.antag_hud_restricted && M.has_enabled_antagHUD == 1)
-		src << "<span class='warning'>antagHUD restrictions prevent you from spawning in as a mouse.</span>"
+		to_chat(src, SPAN_WARNING("antagHUD restrictions prevent you from spawning in as a mouse."))
 		return
 
 	var/timedifference = world.time - client.time_died_as_mouse
 	if(client.time_died_as_mouse && timedifference <= mouse_respawn_time * 600)
 		var/timedifference_text
 		timedifference_text = time2text(mouse_respawn_time * 600 - timedifference,"mm:ss")
-		src << "<span class='warning'>You may only spawn again as a mouse more than [mouse_respawn_time] minutes after your death. You have [timedifference_text] left.</span>"
+		to_chat(src, SPAN_WARNING("You may only spawn again as a mouse more than [mouse_respawn_time] minutes after your death. You have [timedifference_text] left."))
 		return
 
-	var/response = alert(src, "Are you -sure- you want to become a mouse?","Are you sure you want to squeek?","Squeek!","Nope!")
-	if(response != "Squeek!") return  //Hit the wrong key...again.
+	var/response = alert(src, "Are you -sure- you want to become a mouse?", "Are you sure you want to squeek?", "Squeek!", "Nope!")
+	if(response != "Squeek!")
+		return	//Hit the wrong key...again.
 
 
 	//find a viable mouse candidate
@@ -452,13 +455,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		vent_found = pick(found_vents)
 		host = new /mob/living/simple_animal/mouse(vent_found.loc)
 	else
-		src << "<span class='warning'>Unable to find any unwelded vents to spawn mice at.</span>"
+		to_chat(src, SPAN_WARNING("Unable to find any unwelded vents to spawn mice at."))
 
 	if(host)
 		if(config.uneducated_mice)
 			host.universal_understand = 0
 		host.ckey = src.ckey
-		host << "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>"
+		to_chat(host, SPAN_INFO("You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent."))
 
 /mob/dead/observer/verb/view_manfiest()
 	set name = "View Crew Manifest"
@@ -472,19 +475,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 //Used for drawing on walls with blood puddles as a spooky ghost.
 /mob/dead/verb/bloody_doodle()
-
 	set category = "Ghost"
 	set name = "Write in blood"
 	set desc = "If the round is sufficiently spooky, write a short message in blood on the floor or a wall. Remember, no IC in OOC or OOC in IC."
 
-	if(!(config.cult_ghostwriter))
-		src << "\red That verb is not currently permitted."
+	if(!config.cult_ghostwriter)
+		to_chat(src, SPAN_WARNING("That verb is not currently permitted."))
 		return
 
-	if (!src.stat)
+	if(!src.stat)
 		return
 
-	if (usr != src)
+	if(usr != src)
 		return 0 //something is terribly wrong
 
 	var/ghosts_can_write
@@ -494,54 +496,53 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			ghosts_can_write = 1
 
 	if(!ghosts_can_write)
-		src << "\red The veil is not thin enough for you to do that."
+		to_chat(src, SPAN_WARNING("The veil is not thin enough for you to do that."))
 		return
 
 	var/list/choices = list()
-	for(var/obj/effect/decal/cleanable/blood/B in view(1,src))
+	for(var/obj/effect/decal/cleanable/blood/B in view(1, src))
 		if(B.amount > 0)
 			choices += B
 
 	if(!choices.len)
-		src << "<span class = 'warning'>There is no blood to use nearby.</span>"
+		to_chat(src, SPAN_WARNING("There is no blood to use nearby."))
 		return
 
 	var/obj/effect/decal/cleanable/blood/choice = input(src,"What blood would you like to use?") in null|choices
 
-	var/direction = input(src,"Which way?","Tile selection") as anything in list("Here","North","South","East","West")
+	var/direction = input(src, "Which way?", "Tile selection") as anything in list("Here", "North", "South", "East", "West")
 	var/turf/simulated/T = src.loc
-	if (direction != "Here")
-		T = get_step(T,text2dir(direction))
+	if(direction != "Here")
+		T = get_step(T, text2dir(direction))
 
-	if (!istype(T))
-		src << "<span class='warning'>You cannot doodle there.</span>"
+	if(!istype(T))
+		to_chat(src, SPAN_WARNING("You cannot doodle there."))
 		return
 
-	if(!choice || choice.amount == 0 || !(src.Adjacent(choice)))
+	if(!choice || choice.amount == 0 || !src.Adjacent(choice))
 		return
 
 	var/doodle_color = (choice.basecolor) ? choice.basecolor : "#A10808"
 
 	var/num_doodles = 0
-	for (var/obj/effect/decal/cleanable/blood/writing/W in T)
+	for(var/obj/effect/decal/cleanable/blood/writing/W in T)
 		num_doodles++
-	if (num_doodles > 4)
-		src << "<span class='warning'>There is no space to write on!</span>"
+	if(num_doodles > 4)
+		to_chat(src, SPAN_WARNING("There is no space to write on!"))
 		return
 
 	var/max_length = 50
 
-	var/message = stripped_input(src,"Write a message. It cannot be longer than [max_length] characters.","Blood writing", "")
+	var/message = stripped_input(src, "Write a message. It cannot be longer than [max_length] characters.", "Blood writing", "")
 
-	if (message)
-
-		if (length(message) > max_length)
+	if(message)
+		if(length(message) > max_length)
 			message += "-"
-			src << "<span class='warning'>You ran out of blood to write with!</span>"
+			to_chat(src, SPAN_WARNING("You ran out of blood to write with!"))
 
 		var/obj/effect/decal/cleanable/blood/writing/W = new(T)
 		W.basecolor = doodle_color
 		W.update_icon()
 		W.message = message
 		W.add_hiddenprint(src)
-		W.visible_message("\red Invisible fingers crudely paint something in blood on [T]...")
+		W.visible_message(SPAN_WARNING("Invisible fingers crudely paint something in blood on [T]..."))
