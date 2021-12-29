@@ -21,8 +21,7 @@
 		build_dust_cache()
 	toggle_transit() //add static dust
 
-	if(config)
-		update_starlight()
+	update_starlight()
 
 /turf/space/proc/update_starlight()
 	if(!config.starlight)

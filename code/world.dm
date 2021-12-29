@@ -1,3 +1,15 @@
+var/global/datum/global_init/init = new()
+
+/*
+	Pre-map initialization stuff should go here.
+*/
+/datum/global_init/New()
+	load_configuration()
+	callHook("global_init")
+
+	del(src)
+
+
 /world
 	mob = /mob/new_player
 	turf = /turf/space
@@ -19,7 +31,7 @@
 	if(byond_version < RECOMMENDED_VERSION)
 		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND."
 
-	load_configuration()
+	config.post_load()
 
 	if(config && config.server_name != null && config.server_suffix && world.port > 0)
 		// dumb and hardcoded but I don't care~
@@ -123,6 +135,10 @@
 	..(reason)
 
 
+/world/Del()
+	callHook("shutdown")
+	return ..()
+
 /hook/startup/proc/loadMode()
 	world.load_mode()
 	return 1
@@ -148,10 +164,10 @@
 	join_motd = file2text("config/motd.txt")
 
 
-/world/proc/load_configuration()
+/proc/load_configuration()
 	config = new /datum/configuration()
 	config.load("config/config.txt")
-	config.load("config/game_options.txt","game_options")
+	config.load("config/game_options.txt", "game_options")
 	config.loadsql("config/dbconfig.txt")
 	config.loadforumsql("config/forumdbconfig.txt")
 	// apply some settings from config..

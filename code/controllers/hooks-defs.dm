@@ -1,4 +1,10 @@
 /**
+ * Global init hook.
+ * Called in global_init.dm when the server is initialized.
+ */
+/hook/global_init
+
+/**
  * Startup hook.
  * Called in world.dm when the server starts.
  */
@@ -15,3 +21,9 @@
  * Called in gameticker.dm when a round ends.
  */
 /hook/roundend
+
+/**
+ * Shutdown hook.
+ * Called in world.dm when world/Del is called.
+ */
+/hook/shutdown
