@@ -7,18 +7,18 @@
 		'sound/ambience/ambisin4.ogg'
 	)
 
-/area/engine/engine_smes
+/area/engine/smes
 	name = "\improper Engineering SMES"
 	icon_state = "engine_smes"
 	requires_power = 0//This area only covers the batteries and they deal with their own power
 
-/area/engine/engine_smes/supermatter_smes
+/area/engine/smes/supermatter
 	name = "\improper Supermatter Engine SMES"
 
-/area/engine/engine_smes/thermoelectric_smes
+/area/engine/smes/thermoelectric
 	name = "\improper Thermoelectric Engine SMES"
 
-/area/engine/engine_smes/singularity_smes
+/area/engine/smes/singularity
 	name = "\improper Singularity Engine SMES"
 
 /area/engine/engineering
@@ -47,7 +47,7 @@
 	name = "\improper Supermatter Engine Room"
 	icon_state = "engine_sm"
 
-/area/engine/supermatter_engine/supermatter_monitoring
+/area/engine/supermatter_engine/monitoring
 	name = "\improper Supermatter Monitoring Room"
 	icon_state = "engine_control"
 
@@ -55,7 +55,7 @@
 	name = "\improper Singularity Engine Room"
 	icon_state = "engine_sing"
 
-/area/engine/singularity_engine/singularity_space
+/area/engine/singularity_engine/space
 	name = "\improper Singularity Engine Space"
 	icon_state = "engine_sing"
 	requires_power = 0

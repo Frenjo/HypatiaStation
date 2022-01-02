@@ -59,6 +59,10 @@
 	name = "\improper Incinerator"
 	icon_state = "disposal"
 
+/area/maintenance/incinerator/space
+	name = "\improper Incinerator Space"
+	requires_power = 0
+
 /area/maintenance/disposal
 	name = "Waste Disposal"
 	icon_state = "disposal"
