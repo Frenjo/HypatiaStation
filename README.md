@@ -41,7 +41,7 @@ Finally, to start the server, run Dream Daemon and enter the path to your compil
 
 ## Hint:
 
-The only required files (once compiled) are the HypatiaStation.dmb, HypatiaStation.rsc and the entirety of the config directory.  The rest are only required to compile the source code.  It is suggested to keep a working directory for the source code and a seperate directory for the executable and configuration files.
+The only required files (once compiled) are HypatiaStation.dmb, HypatiaStation.rsc and the entirety of the config directory.  The rest are only required to compile the source code.  It is suggested to keep a working directory for the source code and a seperate directory for the executable and configuration files.
 
 ---
 
