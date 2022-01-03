@@ -84,11 +84,11 @@ Included in the repo is an IRC bot capable of relaying adminhelps to a specified
 
 The code for HypatiaStation is licensed under the [GNU Affero General Public License v3](https://www.gnu.org/licenses/agpl.html), which can be found in [/LICENSE](/LICENSE). Relevant information can also be found in [/COPYING](/COPYING).
 
-Commits authored prior to 01/01/2022 00:00 GMT (DD-MM-YYYY) are licensed under the [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0.html), which can be found in full in [/docs/LICENSE-GPL3.txt](/docs/LICENSE-GPL3.txt). Other relevant information is contained in [/docs/COPYING-GPL3](/docs/COPYING-GPL3).
+Commits authored prior to 01/01/2022 (DD-MM-YYYY) at 00:00 GMT are licensed under the [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0.html), which can be found in full in [/docs/LICENSE-GPL3.txt](/docs/LICENSE-GPL3.txt). Other relevant information is contained in [/docs/COPYING-GPL3](/docs/COPYING-GPL3).
 
-Commits authored after 01/01/2022 00:00 GMT (DD-MM-YYYY) are assumed to be licensed under AGPLv3, unless otherwise specified.
+Commits authored after 01/01/2022 (DD-MM-YYYY) at 00:00 GMT are assumed to be licensed under AGPLv3, unless otherwise specified.
 
-If you wish to develop and host this codebase in a closed source manner you may use all commits prior to 01/01/2022 00:00 GMT (DD-MM-YYYY), which are licensed under GPLv3.  The major change here is that if you host a server using any code licensed under AGPLv3 you are required to provide full source code for your servers users as well including addons and modifications you have made.
+If you wish to develop and host this codebase in a closed source manner you may use all commits prior to 01/01/2022 (DD-MM-YYYY) at 00:00 GMT, which are licensed under GPLv3.  The major change here is that if you host a server using any code licensed under AGPLv3 you are required to provide full source code for your servers users as well including addons and modifications you have made.
 
 All assets including icons and sound are under a [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated.
 
