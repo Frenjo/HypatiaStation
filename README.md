@@ -1,6 +1,6 @@
 # HypatiaStation
 
-[Website](http://hypatiastation.net/) - [Code](https://github.com/HypatiaStation/HypatiaStation/)
+There isn't a website anymore... - [Code](https://github.com/Frenjo/HypatiaStation/)
 
 ---
 
@@ -41,7 +41,7 @@ Finally, to start the server, run Dream Daemon and enter the path to your compil
 
 ## Hint:
 
-The only required files (once compiled) are the HypatiaStation.dmb, HypatiaStation.rsc and the entirety of the config directory.  The rest are only required to compile the source code.  It is suggested to keep work directory for the source code and seperate directory for the executable and configuration files.
+The only required files (once compiled) are the HypatiaStation.dmb, HypatiaStation.rsc and the entirety of the config directory.  The rest are only required to compile the source code.  It is suggested to keep a working directory for the source code and a seperate directory for the executable and configuration files.
 
 ---
 
@@ -88,7 +88,7 @@ Commits authored prior to 01/01/2022 00:00 GMT (DD-MM-YYYY) are licensed under t
 
 Commits authored after 01/01/2022 00:00 GMT (DD-MM-YYYY) are assumed to be licensed under AGPLv3, unless otherwise specified.
 
-If you wish to develop and host this codebase in a closed source manner you may use all commits prior to 01/01/2022 00:00 GMT (DD-MM-YYYY), which are licensed under GPL v3.  The major change here is that if you host a server using any code licensed under AGPLv3 you are required to provide full source code for your servers users as well including addons and modifications you have made.
+If you wish to develop and host this codebase in a closed source manner you may use all commits prior to 01/01/2022 00:00 GMT (DD-MM-YYYY), which are licensed under GPLv3.  The major change here is that if you host a server using any code licensed under AGPLv3 you are required to provide full source code for your servers users as well including addons and modifications you have made.
 
 All assets including icons and sound are under a [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated.
 
