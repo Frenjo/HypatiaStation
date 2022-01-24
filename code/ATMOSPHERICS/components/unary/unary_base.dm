@@ -16,29 +16,6 @@
 
 	air_contents.volume = 200
 
-// Housekeeping and pipe network stuff below
-/obj/machinery/atmospherics/unary/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
-	if(reference == node)
-		network = new_network
-
-	if(new_network.normal_members.Find(src))
-		return 0
-
-	new_network.normal_members += src
-
-	return null
-
-/obj/machinery/atmospherics/unary/Destroy()
-	loc = null
-
-	if(node)
-		node.disconnect(src)
-		qdel(network)
-
-	node = null
-
-	return ..()
-
 /obj/machinery/atmospherics/unary/initialize()
 	if(node)
 		return
@@ -51,6 +28,29 @@
 			break
 
 	update_icon()
+
+/obj/machinery/atmospherics/unary/Destroy()
+	loc = null
+
+	if(node)
+		node.disconnect(src)
+		qdel(network)
+
+	node = null
+
+	return ..()
+
+// Housekeeping and pipe network stuff below
+/obj/machinery/atmospherics/unary/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
+	if(reference == node)
+		network = new_network
+
+	if(new_network.normal_members.Find(src))
+		return 0
+
+	new_network.normal_members += src
+
+	return null
 
 /obj/machinery/atmospherics/unary/build_network()
 	if(!network && node)

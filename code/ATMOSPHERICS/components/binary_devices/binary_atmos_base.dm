@@ -29,36 +29,6 @@
 	air1.volume = 200
 	air2.volume = 200
 
-// Housekeeping and pipe network stuff below
-/obj/machinery/atmospherics/binary/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
-	if(reference == node1)
-		network1 = new_network
-
-	else if(reference == node2)
-		network2 = new_network
-
-	if(new_network.normal_members.Find(src))
-		return 0
-
-	new_network.normal_members += src
-
-	return null
-
-/obj/machinery/atmospherics/binary/Destroy()
-	loc = null
-
-	if(node1)
-		node1.disconnect(src)
-		qdel(network1)
-	if(node2)
-		node2.disconnect(src)
-		qdel(network2)
-
-	node1 = null
-	node2 = null
-
-	return ..()
-
 /obj/machinery/atmospherics/binary/initialize()
 	if(node1 && node2)
 		return
@@ -77,6 +47,36 @@
 			break
 
 	update_icon()
+
+/obj/machinery/atmospherics/binary/Destroy()
+	loc = null
+
+	if(node1)
+		node1.disconnect(src)
+		qdel(network1)
+	if(node2)
+		node2.disconnect(src)
+		qdel(network2)
+
+	node1 = null
+	node2 = null
+
+	return ..()
+
+// Housekeeping and pipe network stuff below
+/obj/machinery/atmospherics/binary/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
+	if(reference == node1)
+		network1 = new_network
+
+	else if(reference == node2)
+		network2 = new_network
+
+	if(new_network.normal_members.Find(src))
+		return 0
+
+	new_network.normal_members += src
+
+	return null
 
 /obj/machinery/atmospherics/binary/build_network()
 	if(!network1 && node1)

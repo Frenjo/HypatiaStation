@@ -1,29 +1,21 @@
-/obj/machinery/atmospherics/portables_connector
+/obj/machinery/atmospherics/unary/portables_connector
 	icon = 'icons/obj/atmospherics/portables_connector.dmi'
 	icon_state = "intact"
 
 	name = "Connector Port"
 	desc = "For connecting portables devices related to atmospherics control."
 
-	dir = SOUTH
-	initialize_directions = SOUTH
-
 	var/obj/machinery/portable_atmospherics/connected_device
-
-	var/obj/machinery/atmospherics/node
-
-	var/datum/pipe_network/network
 
 	var/on = 0
 	use_power = 0
 	level = 0
 
 
-/obj/machinery/atmospherics/portables_connector/New()
+/obj/machinery/atmospherics/unary/portables_connector/New()
 	..()
-	initialize_directions = dir
 
-/obj/machinery/atmospherics/portables_connector/initialize()
+/obj/machinery/atmospherics/unary/portables_connector/initialize()
 	..()
 	if(node)
 		return
@@ -37,7 +29,7 @@
 
 	update_icon()
 
-/obj/machinery/atmospherics/portables_connector/Destroy()
+/obj/machinery/atmospherics/unary/portables_connector/Destroy()
 	loc = null
 
 	if(connected_device)
@@ -51,7 +43,7 @@
 
 	return ..()
 
-/obj/machinery/atmospherics/portables_connector/update_icon()
+/obj/machinery/atmospherics/unary/portables_connector/update_icon()
 	if(node)
 		icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]intact"
 		dir = get_dir(src, node)
@@ -60,14 +52,14 @@
 
 	return
 
-/obj/machinery/atmospherics/portables_connector/hide(i) //to make the little pipe section invisible, the icon changes.
+/obj/machinery/atmospherics/unary/portables_connector/hide(i) //to make the little pipe section invisible, the icon changes.
 	if(node)
 		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]intact"
 		dir = get_dir(src, node)
 	else
 		icon_state = "exposed"
 
-/obj/machinery/atmospherics/portables_connector/process()
+/obj/machinery/atmospherics/unary/portables_connector/process()
 	..()
 	if(!on)
 		return
@@ -78,26 +70,7 @@
 		network.update = 1
 	return 1
 
-// Housekeeping and pipe network stuff below
-/obj/machinery/atmospherics/portables_connector/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
-	if(reference == node)
-		network = new_network
-
-	if(new_network.normal_members.Find(src))
-		return 0
-
-	new_network.normal_members += src
-
-	return null
-
-/obj/machinery/atmospherics/portables_connector/build_network()
-	if(!network && node)
-		network = new /datum/pipe_network()
-		network.normal_members += src
-		network.build_network(node, src)
-
-
-/obj/machinery/atmospherics/portables_connector/return_network(obj/machinery/atmospherics/reference)
+/obj/machinery/atmospherics/unary/portables_connector/return_network(obj/machinery/atmospherics/reference)
 	build_network()
 
 	if(reference == node)
@@ -108,13 +81,7 @@
 
 	return null
 
-/obj/machinery/atmospherics/portables_connector/reassign_network(datum/pipe_network/old_network, datum/pipe_network/new_network)
-	if(network == old_network)
-		network = new_network
-
-	return 1
-
-/obj/machinery/atmospherics/portables_connector/return_network_air(datum/pipe_network/reference)
+/obj/machinery/atmospherics/unary/portables_connector/return_network_air(datum/pipe_network/reference)
 	var/list/results = list()
 
 	if(connected_device)
@@ -122,15 +89,7 @@
 
 	return results
 
-/obj/machinery/atmospherics/portables_connector/disconnect(obj/machinery/atmospherics/reference)
-	if(reference == node)
-		qdel(network)
-		node = null
-
-	return null
-
-
-/obj/machinery/atmospherics/portables_connector/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/atmospherics/unary/portables_connector/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
 	if(connected_device)

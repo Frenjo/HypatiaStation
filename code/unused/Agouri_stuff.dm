@@ -5,7 +5,7 @@
 	var/internal_tank_valve = ONE_ATMOSPHERE
 	var/obj/machinery/portable_atmospherics/canister/internal_tank
 	var/datum/gas_mixture/cabin_air
-	var/obj/machinery/atmospherics/portables_connector/connected_port = null
+	var/obj/machinery/atmospherics/unary/portables_connector/connected_port = null
 
 	var/datum/global_iterator/pr_int_temp_processor //normalizes internal air mixture temperature
 	var/datum/global_iterator/pr_give_air //moves air from tank to cabin
@@ -130,7 +130,7 @@
 			. = t_air.return_temperature()
 	return
 
-/obj/vehicle/airtight/proc/connect(obj/machinery/atmospherics/portables_connector/new_port)
+/obj/vehicle/airtight/proc/connect(obj/machinery/atmospherics/unary/portables_connector/new_port)
 	//Make sure not already connected to something else
 	if(connected_port || !new_port || new_port.connected_device)
 		return 0
@@ -209,7 +209,7 @@
 	//var/internal_tank_valve = ONE_ATMOSPHERE
 	//var/obj/machinery/portable_atmospherics/canister/internal_tank
 	//var/datum/gas_mixture/cabin_air
-	//var/obj/machinery/atmospherics/portables_connector/connected_port = null
+	//var/obj/machinery/atmospherics/unary/portables_connector/connected_port = null
 
 	var/obj/item/device/radio/radio = null
 

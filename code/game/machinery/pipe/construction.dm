@@ -61,13 +61,13 @@ Buildable meters
 			src.pipe_type = PIPE_INSULATED_STRAIGHT + is_bent
 		else if(istype(make_from, /obj/machinery/atmospherics/pipe/simple))
 			src.pipe_type = PIPE_SIMPLE_STRAIGHT + is_bent
-		else if(istype(make_from, /obj/machinery/atmospherics/portables_connector))
+		else if(istype(make_from, /obj/machinery/atmospherics/unary/portables_connector))
 			src.pipe_type = PIPE_CONNECTOR
 		else if(istype(make_from, /obj/machinery/atmospherics/pipe/manifold))
 			src.pipe_type = PIPE_MANIFOLD
 		else if(istype(make_from, /obj/machinery/atmospherics/unary/vent_pump))
 			src.pipe_type = PIPE_UVENT
-		else if(istype(make_from, /obj/machinery/atmospherics/valve))
+		else if(istype(make_from, /obj/machinery/atmospherics/binary/valve))
 			src.pipe_type = PIPE_MVALVE
 		else if(istype(make_from, /obj/machinery/atmospherics/binary/pump))
 			src.pipe_type = PIPE_PUMP
@@ -83,7 +83,7 @@ Buildable meters
 			src.pipe_type = PIPE_VOLUME_PUMP
 		else if(istype(make_from, /obj/machinery/atmospherics/unary/heat_exchanger))
 			src.pipe_type = PIPE_HEAT_EXCHANGE
-		else if(istype(make_from, /obj/machinery/atmospherics/tvalve))
+		else if(istype(make_from, /obj/machinery/atmospherics/trinary/tvalve))
 			src.pipe_type = PIPE_MTVALVE
 		else if(istype(make_from, /obj/machinery/atmospherics/pipe/manifold4w))
 			src.pipe_type = PIPE_MANIFOLD4W
@@ -336,7 +336,7 @@ Buildable meters
 				P.node2.build_network()
 
 		if(PIPE_CONNECTOR)		// connector
-			var/obj/machinery/atmospherics/portables_connector/C = new(src.loc)
+			var/obj/machinery/atmospherics/unary/portables_connector/C = new(src.loc)
 			C.set_dir(dir)
 			C.initialize_directions = pipe_dir
 			if(pipename)
@@ -434,7 +434,7 @@ Buildable meters
 
 
 		if(PIPE_MVALVE)		//manual valve
-			var/obj/machinery/atmospherics/valve/V = new(src.loc)
+			var/obj/machinery/atmospherics/binary/valve/V = new(src.loc)
 			V.set_dir(dir)
 			V.initialize_directions = pipe_dir
 			if(pipename)
@@ -542,7 +542,7 @@ Buildable meters
 				P.node2.build_network()
 
 		if(PIPE_MTVALVE)		//manual t-valve
-			var/obj/machinery/atmospherics/tvalve/V = new(src.loc)
+			var/obj/machinery/atmospherics/trinary/tvalve/V = new(src.loc)
 			V.set_dir(dir)
 			V.initialize_directions = pipe_dir
 			if(pipename)

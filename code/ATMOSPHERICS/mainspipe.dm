@@ -74,6 +74,19 @@
 	aux.volume = volume
 	aux.nodes.len = nodes.len
 
+/obj/machinery/atmospherics/mains_pipe/initialize()
+	..()
+	for(var/i = 1 to nodes.len)
+		var/obj/machinery/atmospherics/mains_pipe/node = nodes[i]
+		if(node)
+			supply.nodes[i] = node.supply
+			scrubbers.nodes[i] = node.scrubbers
+			aux.nodes[i] = node.aux
+
+/obj/machinery/atmospherics/mains_pipe/Destroy()
+	disconnect()
+	return ..()
+
 /obj/machinery/atmospherics/mains_pipe/hide(i)
 	if(level == 1 && istype(loc, /turf/simulated))
 		invisibility = i ? 101 : 0
@@ -105,19 +118,6 @@
 	for(var/obj/machinery/atmospherics/pipe/mains_component/node in nodes)
 		node.disconnect()
 
-/obj/machinery/atmospherics/mains_pipe/Destroy()
-	disconnect()
-	return ..()
-
-/obj/machinery/atmospherics/mains_pipe/initialize()
-	..()
-	for(var/i = 1 to nodes.len)
-		var/obj/machinery/atmospherics/mains_pipe/node = nodes[i]
-		if(node)
-			supply.nodes[i] = node.supply
-			scrubbers.nodes[i] = node.scrubbers
-			aux.nodes[i] = node.aux
-
 
 /obj/machinery/atmospherics/mains_pipe/simple
 	name = "mains pipe"
@@ -142,28 +142,6 @@
 			initialize_mains_directions = SOUTH|EAST
 		if(SOUTHWEST)
 			initialize_mains_directions = SOUTH|WEST
-
-/obj/machinery/atmospherics/mains_pipe/simple/proc/normalize_dir()
-	if(dir == 3)
-		dir = 1
-	else if(dir == 12)
-		dir = 4
-
-/obj/machinery/atmospherics/mains_pipe/simple/update_icon()
-	if(nodes[1] && nodes[2])
-		icon_state = "intact[invisibility ? "-f" : "" ]"
-
-		//var/node1_direction = get_dir(src, node1)
-		//var/node2_direction = get_dir(src, node2)
-
-		//dir = node1_direction|node2_direction
-
-	else
-		if(!nodes[1] && !nodes[2])
-			qdel(src) //TODO: silent deleting looks weird
-		var/have_node1 = nodes[1] ? 1 : 0
-		var/have_node2 = nodes[2] ? 1 : 0
-		icon_state = "exposed[have_node1][have_node2][invisibility ? "-f" : "" ]"
 
 /obj/machinery/atmospherics/mains_pipe/simple/initialize()
 	normalize_dir()
@@ -191,6 +169,28 @@
 	var/turf/T = src.loc			// hide if turf is not intact
 	hide(T.intact)
 	update_icon()
+
+/obj/machinery/atmospherics/mains_pipe/simple/proc/normalize_dir()
+	if(dir == 3)
+		dir = 1
+	else if(dir == 12)
+		dir = 4
+
+/obj/machinery/atmospherics/mains_pipe/simple/update_icon()
+	if(nodes[1] && nodes[2])
+		icon_state = "intact[invisibility ? "-f" : "" ]"
+
+		//var/node1_direction = get_dir(src, node1)
+		//var/node2_direction = get_dir(src, node2)
+
+		//dir = node1_direction|node2_direction
+
+	else
+		if(!nodes[1] && !nodes[2])
+			qdel(src) //TODO: silent deleting looks weird
+		var/have_node1 = nodes[1] ? 1 : 0
+		var/have_node2 = nodes[2] ? 1 : 0
+		icon_state = "exposed[have_node1][have_node2][invisibility ? "-f" : "" ]"
 
 /obj/machinery/atmospherics/mains_pipe/simple/hidden
 	level = 1
