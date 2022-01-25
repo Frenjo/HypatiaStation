@@ -20,3 +20,6 @@
 
 #define TICKS_IN_DAY	864000
 #define TICKS_IN_SECOND 10
+
+//some arbitrary defines to be used by self-pruning global lists. (see master_controller)
+#define PROCESS_KILL 26	//Used to trigger removal from a processing list
