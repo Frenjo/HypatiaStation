@@ -1,74 +1,74 @@
 /datum/configuration
-	var/server_name = null				// server name (for world name / status)
-	var/server_suffix = 0				// generate numeric suffix based on server port
+	var/server_name = null					// server name (for world name / status)
+	var/server_suffix = 0					// generate numeric suffix based on server port
 
-	var/nudge_script_path = "nudge.py"  // where the nudge.py script is located
+	var/nudge_script_path = "nudge.py"		// where the nudge.py script is located
 
-	var/log_ooc = 0						// log OOC channel
-	var/log_access = 0					// log login/logout
-	var/log_say = 0						// log client say
-	var/log_admin = 0					// log admin actions
-	var/log_debug = 1					// log debug output
-	var/log_game = 0					// log game events
-	var/log_vote = 0					// log voting
-	var/log_whisper = 0					// log client whisper
-	var/log_emote = 0					// log emotes
-	var/log_attack = 0					// log attack messages
-	var/log_adminchat = 0				// log admin chat messages
-	var/log_adminwarn = 0				// log warnings admins get about bomb construction and such
-	var/log_pda = 0						// log pda messages
-	var/log_hrefs = 0					// logs all links clicked in-game. Could be used for debugging and tracking down exploits
-	var/log_runtime = 0					// logs world.log to a file
-	var/log_world_output = 0			// log world.log << messages
-	var/sql_enabled = 1					// for sql switching
-	var/allow_admin_ooccolor = 0		// Allows admins with relevant permissions to have their own ooc colour
-	var/allow_vote_restart = 0 			// allow votes to restart
+	var/log_ooc = 0							// log OOC channel
+	var/log_access = 0						// log login/logout
+	var/log_say = 0							// log client say
+	var/log_admin = 0						// log admin actions
+	var/log_debug = 1						// log debug output
+	var/log_game = 0						// log game events
+	var/log_vote = 0						// log voting
+	var/log_whisper = 0						// log client whisper
+	var/log_emote = 0						// log emotes
+	var/log_attack = 0						// log attack messages
+	var/log_adminchat = 0					// log admin chat messages
+	var/log_adminwarn = 0					// log warnings admins get about bomb construction and such
+	var/log_pda = 0							// log pda messages
+	var/log_hrefs = 0						// logs all links clicked in-game. Could be used for debugging and tracking down exploits
+	var/log_runtime = 0						// logs world.log to a file
+	var/log_world_output = 0				// log world.log << messages
+	var/sql_enabled = 1						// for sql switching
+	var/allow_admin_ooccolor = 0			// Allows admins with relevant permissions to have their own ooc colour
+	var/allow_vote_restart = 0 				// allow votes to restart
 	var/ert_admin_call_only = 0
-	var/allow_vote_mode = 0				// allow votes to change mode
-	var/allow_admin_jump = 1			// allows admin jumping
-	var/allow_admin_spawning = 1		// allows admin item spawning
-	var/allow_admin_rev = 1				// allows admin revives
-	var/vote_delay = 6000				// minimum time between voting sessions (deciseconds, 10 minute default)
-	var/vote_period = 600				// length of voting period (deciseconds, default 1 minute)
-	var/vote_autotransfer_initial = 108000 // Length of time before the first autotransfer vote is called
-	var/vote_autotransfer_interval = 36000 // length of time before next sequential autotransfer vote
-	var/vote_autogamemode_timeleft = 100 //Length of time before round start when autogamemode vote is called (in seconds, default 100).
-	var/vote_no_default = 0				// vote does not default to nochange/norestart (tbi)
-	var/vote_no_dead = 0				// dead people can't vote (tbi)
-//	var/enable_authentication = 0		// goon authentication
-	var/del_new_on_log = 1				// del's new players if they log before they spawn in
-	var/feature_object_spell_system = 0 //spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
-	var/traitor_scaling = 0 			//if amount of traitors scales based on amount of players
+	var/allow_vote_mode = 0					// allow votes to change mode
+	var/allow_admin_jump = 1				// allows admin jumping
+	var/allow_admin_spawning = 1			// allows admin item spawning
+	var/allow_admin_rev = 1					// allows admin revives
+	var/vote_delay = 6000					// minimum time between voting sessions (deciseconds, 10 minute default)
+	var/vote_period = 600					// length of voting period (deciseconds, default 1 minute)
+	var/vote_autotransfer_initial = 108000	// Length of time before the first autotransfer vote is called
+	var/vote_autotransfer_interval = 36000	// length of time before next sequential autotransfer vote
+	var/vote_autogamemode_timeleft = 100	//Length of time before round start when autogamemode vote is called (in seconds, default 100).
+	var/vote_no_default = 0					// vote does not default to nochange/norestart (tbi)
+	var/vote_no_dead = 0					// dead people can't vote (tbi)
+//	var/enable_authentication = 0			// goon authentication
+	var/del_new_on_log = 1					// del's new players if they log before they spawn in
+	var/feature_object_spell_system = 0 	//spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
+	var/traitor_scaling = 0 				//if amount of traitors scales based on amount of players
 	var/objectives_disabled = 0 			//if objectives are disabled or not
-	var/protect_roles_from_antagonist = 0// If security and such can be traitor/cult/other
-	var/continous_rounds = 1			// Gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
-	var/allow_Metadata = 0				// Metadata is supported.
-	var/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
+	var/protect_roles_from_antagonist = 0	// If security and such can be traitor/cult/other
+	var/continous_rounds = 1				// Gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
+	var/allow_Metadata = 0					// Metadata is supported.
+	var/popup_admin_pm = 0					//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
 	var/Ticklag = 0.9
 	var/Tickcomp = 0
-	var/socket_talk	= 0					// use socket_talk to communicate with other processes
+	var/socket_talk	= 0						// use socket_talk to communicate with other processes
 	var/list/resource_urls = null
-	var/antag_hud_allowed = 0			// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
-	var/antag_hud_restricted = 0                    // Ghosts that turn on Antagovision cannot rejoin the round.
+	var/antag_hud_allowed = 0				// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
+	var/antag_hud_restricted = 0			// Ghosts that turn on Antagovision cannot rejoin the round.
 	var/list/mode_names = list()
-	var/list/modes = list()				// allowed modes
-	var/list/votable_modes = list()		// votable modes
-	var/list/probabilities = list()		// relative probability of each mode
+	var/list/modes = list()					// allowed modes
+	var/list/votable_modes = list()			// votable modes
+	var/list/probabilities = list()			// relative probability of each mode
 	var/humans_need_surnames = 0
-	var/allow_random_events = 0			// enables random events mid-round when set to 1
-	var/allow_ai = 1					// allow ai job
+	var/allow_random_events = 0				// enables random events mid-round when set to 1
+	var/allow_ai = 1						// allow ai job
 	var/hostedby = null
 	var/respawn = 1
 	var/guest_jobban = 1
 	var/usewhitelist = 0
-	var/kick_inactive = 0				//force disconnect for inactive players
+	var/kick_inactive = 0					//force disconnect for inactive players
 	var/load_jobs_from_txt = 0
 	var/ToRban = 0
-	var/automute_on = 0					//enables automuting/spam prevention
-	var/jobs_have_minimal_access = 0	//determines whether jobs use minimal access or expanded access.
+	var/automute_on = 0						//enables automuting/spam prevention
+	var/jobs_have_minimal_access = 0		//determines whether jobs use minimal access or expanded access.
 
-	var/cult_ghostwriter = 1               //Allows ghosts to write in blood in cult rounds...
-	var/cult_ghostwriter_req_cultists = 10 //...so long as this many cultists are active.
+	var/cult_ghostwriter = 1				//Allows ghosts to write in blood in cult rounds...
+	var/cult_ghostwriter_req_cultists = 10	//...so long as this many cultists are active.
 
 	var/max_maint_drones = 5				//This many drones can spawn,
 	var/allow_drone_spawn = 1				//assuming the admin allow them to.
@@ -77,7 +77,7 @@
 	var/starlight = 0
 
 	var/disable_player_mice = 0
-	var/uneducated_mice = 0 //Set to 1 to prevent newly-spawned mice from understanding human speech
+	var/uneducated_mice = 0					//Set to 1 to prevent newly-spawned mice from understanding human speech
 
 	var/usealienwhitelist = 0
 	var/limitalienplayers = 0
@@ -87,7 +87,7 @@
 	var/banappeals
 	var/wikiurl
 	var/forumurl
-	var/donateurl // Why is this even missing damnit Techy/Akai/Numbers! -- Marajin
+	var/donateurl							// Why is this even missing damnit Techy/Akai/Numbers! -- Marajin
 
 	//Alert level description
 	var/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
@@ -130,16 +130,16 @@
 	var/slime_delay = 0
 	var/animal_delay = 0
 
-	var/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
-	var/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
-	var/use_age_restriction_for_jobs = 0 //Do jobs use account age restrictions? --requires database
+	var/admin_legacy_system = 0				//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
+	var/ban_legacy_system = 0				//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
+	var/use_age_restriction_for_jobs = 0	//Do jobs use account age restrictions? --requires database
 
 	var/simultaneous_pm_warning_timeout = 100
 
 	var/use_recursive_explosions //Defines whether the server uses recursive or circular explosions.
 
-	var/assistant_maint = 0 //Do assistants get maint access?
-	var/gateway_delay = 18000 //How long the gateway takes before it activates. Default is half an hour.
+	var/assistant_maint = 0		//Do assistants get maint access?
+	var/gateway_delay = 18000	//How long the gateway takes before it activates. Default is half an hour.
 	var/ghost_interaction = 0
 
 	var/comms_password = ""
@@ -148,8 +148,8 @@
 	var/irc_bot_host = ""
 	var/main_irc = ""
 	var/admin_irc = ""
-	var/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
-	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
+	var/python_path = ""	//Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
+	var/use_lib_nudge = 0	//Use the C library nudge instead of the python nudge.
 
 	var/list/station_levels = list(1)				// Defines which Z-levels the station exists on.
 	var/list/admin_levels= list(2)					// Defines which Z-levels which are for admin functionality, for example including such areas as Central Command and the Syndicate Shuttle
@@ -164,7 +164,7 @@
 		var/datum/game_mode/M = new T()
 
 		if(M.config_tag)
-			if(!(M.config_tag in modes))		// ensure each mode is added only once
+			if(!(M.config_tag in modes))	// ensure each mode is added only once
 				log_misc("Adding game mode [M.name] ([M.config_tag]) to configuration.")
 				src.modes += M.config_tag
 				src.mode_names[M.config_tag] = M.name

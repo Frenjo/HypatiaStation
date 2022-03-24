@@ -43,7 +43,6 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 				shuttle.launch(src)
 
 //called when the shuttle has arrived.
-
 /datum/emergency_shuttle_controller/proc/shuttle_arrived()
 	if(!shuttle.location)	//at station
 		if(autopilot)
@@ -85,7 +84,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
 
 	evac = 1
-	captain_announce("An emergency evacuation shuttle has been called. It will arrive in approximately [round(estimate_arrival_time()/60)] minutes.")
+	captain_announce("An emergency evacuation shuttle has been called. It will arrive in approximately [round(estimate_arrival_time() / 60)] minutes.")
 	world << sound('sound/AI/shuttlecalled.ogg') // Updated to reflect 'shuttles' port. -Frenjo
 	for(var/area/A in world)
 		if(istype(A, /area/hallway))
@@ -104,7 +103,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	//reset the shuttle transit time if we need to
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
 
-	captain_announce("A crew transfer has been scheduled. The shuttle has been called. It will arrive in approximately [round(estimate_arrival_time()/60)] minutes.")
+	captain_announce("A crew transfer has been scheduled. The shuttle has been called. It will arrive in approximately [round(estimate_arrival_time() / 60)] minutes.")
 	world << sound('sound/AI/crewtransfer2.ogg') // Updated to reflect 'shuttles' port. -Frenjo
 
 //recalls the shuttle
@@ -160,7 +159,6 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	These procs are not really used by the controller itself, but are for other parts of the
 	game whose logic depends on the emergency shuttle.
 */
-
 //returns 1 if the shuttle is docked at the station and waiting to leave
 /datum/emergency_shuttle_controller/proc/waiting_to_leave()
 	if(shuttle.location)
@@ -181,7 +179,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 		eta = shuttle.arrive_time
 	else
 		//otherwise we need to estimate the arrival time using the scheduled launch time
-		eta = launch_time + shuttle.move_time*10 + shuttle.warmup_time*10
+		eta = launch_time + shuttle.move_time * 10 + shuttle.warmup_time * 10
 	return (eta - world.time) / 10
 
 //returns the time left until the shuttle launches, in seconds
@@ -212,7 +210,6 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 /datum/emergency_shuttle_controller/proc/going_to_centcom()
 	return (shuttle.direction && shuttle.moving_status != SHUTTLE_IDLE)
 
-
 /datum/emergency_shuttle_controller/proc/get_status_panel_eta()
 	if(online())
 		if(shuttle.has_arrive_time())
@@ -227,12 +224,12 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 			return "ETD-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]"
 
 	return ""
+
 /*
 	Some slapped-together star effects for maximum spess immershuns. Basically consists of a
 	spawner, an ender, and bgstar. Spawners create bgstars, bgstars shoot off into a direction
 	until they reach a starender.
 */
-
 /obj/effect/bgstar
 	name = "star"
 	var/speed = 10
@@ -255,7 +252,6 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 		step(src, direction)
 		for(var/obj/effect/starender/E in loc)
 			qdel(src)
-
 
 /obj/effect/starender
 	invisibility = 101

@@ -1,7 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-/var/const/access_security = 1 // Security equipment
-/var/const/access_brig = 2 // Brig timers and permabrig
+/var/const/access_security = 1				// Security equipment
+/var/const/access_brig = 2					// Brig timers and permabrig
 /var/const/access_armory = 3
 /var/const/access_forensics_lockers = 4
 /var/const/access_medical = 5
@@ -48,7 +48,7 @@
 /var/const/access_theatre = 46
 /var/const/access_research = 47
 /var/const/access_mining = 48
-/var/const/access_mining_office = 49 //not in use
+/var/const/access_mining_office = 49		//not in use
 /var/const/access_mailsorting = 50
 /var/const/access_mint = 51
 /var/const/access_mint_vault = 52
@@ -58,31 +58,31 @@
 /var/const/access_ce = 56
 /var/const/access_hop = 57
 /var/const/access_hos = 58
-/var/const/access_RC_announce = 59 //Request console announcements
-/var/const/access_keycard_auth = 60 //Used for events which require at least two people to confirm them
-/var/const/access_tcomsat = 61 // has access to the entire telecomms satellite / machinery
+/var/const/access_RC_announce = 59			//Request console announcements
+/var/const/access_keycard_auth = 60			//Used for events which require at least two people to confirm them
+/var/const/access_tcomsat = 61				// has access to the entire telecomms satellite / machinery
 /var/const/access_gateway = 62
-/var/const/access_sec_doors = 63 // Security front doors
-/var/const/access_psychiatrist = 64 // Psychiatrist's office
+/var/const/access_sec_doors = 63			// Security front doors
+/var/const/access_psychiatrist = 64			// Psychiatrist's office
 /var/const/access_xenoarch = 65
 
-	//BEGIN CENTCOM ACCESS
-	/*Should leave plenty of room if we need to add more access levels.
+//BEGIN CENTCOM ACCESS
+/*Should leave plenty of room if we need to add more access levels.
 /var/const/Mostly for admin fun times.*/
-/var/const/access_cent_general = 101//General facilities.
-/var/const/access_cent_thunder = 102//Thunderdome.
-/var/const/access_cent_specops = 103//Special Ops.
-/var/const/access_cent_medical = 104//Medical/Research
-/var/const/access_cent_living = 105//Living quarters.
-/var/const/access_cent_storage = 106//Generic storage areas.
-/var/const/access_cent_teleporter = 107//Teleporter.
-/var/const/access_cent_creed = 108//Creed's office.
-/var/const/access_cent_captain = 109//Captain's office/ID comp/AI.
+/var/const/access_cent_general = 101	//General facilities.
+/var/const/access_cent_thunder = 102	//Thunderdome.
+/var/const/access_cent_specops = 103	//Special Ops.
+/var/const/access_cent_medical = 104	//Medical/Research
+/var/const/access_cent_living = 105		//Living quarters.
+/var/const/access_cent_storage = 106	//Generic storage areas.
+/var/const/access_cent_teleporter = 107	//Teleporter.
+/var/const/access_cent_creed = 108		//Creed's office.
+/var/const/access_cent_captain = 109	//Captain's office/ID comp/AI.
 
-	//The Syndicate
-/var/const/access_syndicate = 150//General Syndicate Access
+//The Syndicate
+/var/const/access_syndicate = 150	//General Syndicate Access
 
-	//MONEY
+//MONEY
 /var/const/access_crate_cash = 200
 
 /obj/var/list/req_access = list()
@@ -128,7 +128,6 @@
 				return 1
 		return 0
 	return 1
-
 
 /obj/proc/check_access_list(list/L)
 	if(!src.req_access.len && !src.req_one_access.len)
@@ -246,7 +245,6 @@
 		if(7) //supply
 			return "Supply"
 
-
 /proc/get_access_desc(A)
 	switch(A)
 		if(access_cargo)
@@ -333,10 +331,10 @@
 			return "Chief Medical Officer"
 		if(access_qm)
 			return "Quartermaster"
-/*		if(access_clown)
+		if(access_clown)
 			return "HONK! Access"
 		if(access_mime)
-			return "Silent Access"*/
+			return "Silent Access"
 		if(access_surgery)
 			return "Surgery"
 		if(access_theatre)

@@ -43,3 +43,17 @@ var/list/liftable_structures = list(
 #define GUN_SETTING_KILL "kill"
 #define GUN_SETTING_DESTROY "destroy"
 #define GUN_SETTING_SPECIAL "special"
+
+var/list/mechtoys = list(
+	/obj/item/toy/prize/ripley,
+	/obj/item/toy/prize/fireripley,
+	/obj/item/toy/prize/deathripley,
+	/obj/item/toy/prize/gygax,
+	/obj/item/toy/prize/durand,
+	/obj/item/toy/prize/honk,
+	/obj/item/toy/prize/marauder,
+	/obj/item/toy/prize/seraph,
+	/obj/item/toy/prize/mauler,
+	/obj/item/toy/prize/odysseus,
+	/obj/item/toy/prize/phazon
+)

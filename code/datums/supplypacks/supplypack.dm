@@ -89,3 +89,10 @@ var/list/supply_methods_
 
 /decl/supply_method/randomised/setup_manifest(decl/hierarchy/supply_pack/sp)
 	return "Contains any [sp.num_contained] of:" + ..()
+
+// Supply order datum
+/datum/supply_order
+	var/ordernum
+	var/decl/hierarchy/supply_pack/object = null
+	var/orderedby = null
+	var/comment = null

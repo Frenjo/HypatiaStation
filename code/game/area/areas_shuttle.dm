@@ -243,7 +243,6 @@
 /area/shuttle/vox/station
 	name = "\improper Vox Skipjack"
 	icon_state = "yellow"
-	requires_power = 0
 
 // Engineering
 // Added engineering shuttle to make use of the 'Ruskie DJ Station'. -Frenjo
@@ -255,3 +254,12 @@
 
 /area/shuttle/engineering/outpost
 	icon_state = "shuttle"
+
+// Supply
+/area/shuttle/supply/station
+	name = "supply shuttle"
+	icon_state = "shuttle3"
+
+/area/shuttle/supply/centcom
+	name = "supply shuttle"
+	icon_state = "shuttle3"

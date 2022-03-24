@@ -37,6 +37,7 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
 	return 1
 
+
 /datum/job/cargo_tech
 	title = "Cargo Technician"
 	flag = CARGOTECH
@@ -64,6 +65,7 @@
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
 	return 1
+
 
 /datum/job/miningforeman
 	title = "Mining Foreman"
@@ -105,6 +107,7 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/bag/ore(H), slot_in_backpack)
 	return 1
 
+
 /datum/job/mining
 	title = "Shaft Miner"
 	flag = MINER
@@ -144,6 +147,7 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), slot_in_backpack)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/bag/ore(H), slot_in_backpack)
 	return 1
+
 
 // Re-adds mailman, how retro!
 // Ported this from cargo tech code.

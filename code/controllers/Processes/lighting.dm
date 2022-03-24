@@ -23,15 +23,15 @@
 	create_all_lighting_overlays()
 	lighting_overlays_initialised = TRUE
 
-	// Pre-process lighting once before the round starts. Wait 30 seconds so the away mission has time to load.
-	spawn(300)
+	// Pre-process lighting once before the round starts. Wait 45 seconds so the away mission has time to load.
+	spawn(45 SECONDS)
 		doWork(1)
 
 /datum/controller/process/lighting/doWork(roundstart)
 	// Counters
-	var/light_updates   = 0
-	var/corner_updates  = 0
-	var/overlay_updates = 0
+	var/light_updates	= 0
+	var/corner_updates	= 0
+	var/overlay_updates	= 0
 
 	lighting_update_lights_old = lighting_update_lights //We use a different list so any additions to the update lists during a delay from scheck() don't cause things to be cut from the list without being updated.
 	lighting_update_lights = list()

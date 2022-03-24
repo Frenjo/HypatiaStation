@@ -1,54 +1,8 @@
-// Ported 'shuttles' module from Heaven's Gate - NSS Eternal, 24/11/2019...
-// (THIS FILE IS TWEAKED A LOT RATHER THAN ACTUALLY PORTED DIRECTLY, BUT IS STILL LIKE 85 - 95% PORTED)
-// As part of the docking controller port, because rewriting that code is spaghetti.
-// And I ain't doing it. -Frenjo
-
-//Config stuff
-#define SUPPLY_DOCKZ	2		//Z-level of the Dock.
-#define SUPPLY_STATIONZ	1		//Z-level of the Station.
-#define SUPPLY_STATION_AREATYPE	"/area/supply/station"	//Type of the supply shuttle area for station
-#define SUPPLY_DOCK_AREATYPE	"/area/supply/dock"		//Type of the supply shuttle area for dock
-
 var/datum/controller/supply/supply_controller = new()
 
-var/list/mechtoys = list(
-	/obj/item/toy/prize/ripley,
-	/obj/item/toy/prize/fireripley,
-	/obj/item/toy/prize/deathripley,
-	/obj/item/toy/prize/gygax,
-	/obj/item/toy/prize/durand,
-	/obj/item/toy/prize/honk,
-	/obj/item/toy/prize/marauder,
-	/obj/item/toy/prize/seraph,
-	/obj/item/toy/prize/mauler,
-	/obj/item/toy/prize/odysseus,
-	/obj/item/toy/prize/phazon
-)
-
+// Supply manifest
 /obj/item/weapon/paper/manifest
 	name = "Supply Manifest"
-
-
-/area/supply/station
-	name = "supply shuttle"
-	icon_state = "shuttle3"
-	requires_power = 0
-
-/area/supply/dock
-	name = "supply shuttle"
-	icon_state = "shuttle3"
-	requires_power = 0
-
-//SUPPLY PACKS MOVED TO /code/defines/obj/supplypacks.dm
-
-// PLASTIC FLAPS AND SUPPLY COMPUTERS MOVED TO /code/game/machinery/computer/supply.dm -Frenjo
-
-/datum/supply_order
-	var/ordernum
-	var/decl/hierarchy/supply_pack/object = null
-	var/orderedby = null
-	var/comment = null
-
 
 /datum/controller/supply
 	var/processing = 1
@@ -192,8 +146,3 @@ var/list/mechtoys = list(
 
 	shoppinglist.Cut()
 	return
-
-#undef SUPPLY_DOCKZ
-#undef SUPPLY_STATIONZ
-#undef SUPPLY_STATION_AREATYPE
-#undef SUPPLY_DOCK_AREATYPE

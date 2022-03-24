@@ -58,7 +58,7 @@ var/global/datum/global_init/init = new()
 		processScheduler.setup()
 		master_controller.setup()
 
-	spawn(3000)		//so we aren't adding to the round-start lag
+	spawn(3000)	// Delay by 5 minutes (300 seconds/3000 deciseconds) so we aren't adding to the round-start lag.
 		if(config.ToRban)
 			ToRban_autoupdate()
 	return

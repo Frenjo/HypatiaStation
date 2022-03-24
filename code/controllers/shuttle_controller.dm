@@ -122,8 +122,8 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle = new/datum/shuttle/ferry/supply()
 	shuttle.location = 1
 	shuttle.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
-	shuttle.area_offsite = locate(/area/supply/dock)
-	shuttle.area_station = locate(/area/supply/station)
+	shuttle.area_offsite = locate(/area/shuttle/supply/centcom)
+	shuttle.area_station = locate(/area/shuttle/supply/station)
 	shuttle.docking_controller_tag = "supply_shuttle"
 	shuttle.dock_target_station = "cargo_bay"
 	shuttles["Supply"] = shuttle
