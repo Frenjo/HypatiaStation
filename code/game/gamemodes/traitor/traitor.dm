@@ -21,8 +21,8 @@
 	var/const/traitor_scaling_coeff = 5.0 //how much does the amount of players get divided by to determine traitors
 
 /datum/game_mode/traitor/announce()
-	to_chat(world, "<B>The current game mode is - Traitor!</B>")
-	to_chat(world, "<B>There is a syndicate traitor on the station. Do not let the traitor succeed!</B>")
+	to_world("<B>The current game mode is - Traitor!</B>")
+	to_world("<B>There is a syndicate traitor on the station. Do not let the traitor succeed!</B>")
 
 /datum/game_mode/traitor/pre_setup()
 	if(config.protect_roles_from_antagonist)

@@ -56,6 +56,7 @@
 
 // Chat-related stuff
 #define to_chat(target, message)	target << message
+#define to_world(message)			to_chat(world, message)
 
 #define SPAN(class, text)		"<span class='[class]'>[text]</span>"
 #define SPAN_INFO(text)			SPAN("info", text)

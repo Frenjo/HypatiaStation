@@ -12,7 +12,7 @@
 	var/finished = 0
 
 /datum/game_mode/ninja/announce()
-	to_chat(world, "<B>The current game mode is Ninja!</B>")
+	to_world("<B>The current game mode is Ninja!</B>")
 
 /datum/game_mode/ninja/can_start()
 	if(!..())

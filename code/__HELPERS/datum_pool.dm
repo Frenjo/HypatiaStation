@@ -57,7 +57,7 @@ var/global/list/GlobalPool = list()
 
 	if(length(GlobalPool[D.type]) > ATOM_POOL_COUNT)
 		#ifdef DEBUG_ATOM_POOL
-		to_chat(world, "DEBUG_DATUM_POOL: PlaceInPool([D.type]) exceeds [ATOM_POOL_COUNT]. Discarding.")
+		to_world("DEBUG_DATUM_POOL: PlaceInPool([D.type]) exceeds [ATOM_POOL_COUNT]. Discarding.")
 		#endif
 		qdel(D)
 		return

@@ -26,7 +26,7 @@ var/global/pipe_processing_killed = 0
 		job_master = new /datum/controller/occupations()
 		job_master.setup_occupations()
 		job_master.load_jobs("config/jobs.txt")
-		to_chat(world, SPAN_DANGER("Job setup complete."))
+		to_world(SPAN_DANGER("Job setup complete."))
 
 	if(!syndicate_code_phrase)
 		syndicate_code_phrase = generate_code_phrase()
@@ -50,18 +50,18 @@ var/global/pipe_processing_killed = 0
 		make_mining_asteroid_secret()
 
 /datum/controller/game_controller/proc/setup_objects()
-	to_chat(world, SPAN_DANGER("Initializing objects."))
+	to_world(SPAN_DANGER("Initializing objects."))
 	sleep(-1)
 	for(var/atom/movable/object in world)
 		if(isnull(object.gcDestroyed))
 			object.initialize()
 
-	to_chat(world, SPAN_DANGER("Initializing pipe networks."))
+	to_world(SPAN_DANGER("Initializing pipe networks."))
 	sleep(-1)
 	for(var/obj/machinery/atmospherics/machine in machines)
 		machine.build_network()
 
-	to_chat(world, SPAN_DANGER("Initializing atmos machinery."))
+	to_world(SPAN_DANGER("Initializing atmos machinery."))
 	sleep(-1)
 	for(var/obj/machinery/atmospherics/unary/U in machines)
 		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
@@ -72,8 +72,8 @@ var/global/pipe_processing_killed = 0
 			T.broadcast_status()
 
 	//Set up spawn points.
-	to_chat(world, SPAN_DANGER("Populating spawn points."))
+	to_world(SPAN_DANGER("Populating spawn points."))
 	populate_spawn_points()
 
-	to_chat(world, SPAN_DANGER("Initializations complete."))
+	to_world(SPAN_DANGER("Initializations complete."))
 	sleep(-1)

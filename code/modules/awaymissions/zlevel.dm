@@ -3,7 +3,7 @@
 		return
 
 	var/list/potentialRandomZlevels = list()
-	to_chat(world, SPAN_DANGER("Searching for away missions..."))
+	to_world(SPAN_DANGER("Searching for away missions..."))
 	var/list/Lines = file2list("maps/RandomZLevels/fileList.txt")
 	if(!Lines.len)
 		return
@@ -35,7 +35,7 @@
 		potentialRandomZlevels.Add(name)
 
 	if(potentialRandomZlevels.len)
-		to_chat(world, SPAN_DANGER("Loading away mission..."))
+		to_world(SPAN_DANGER("Loading away mission..."))
 
 		var/map = pick(potentialRandomZlevels)
 		var/file = file(map)
@@ -48,8 +48,8 @@
 				continue
 			awaydestinations.Add(L)
 
-		to_chat(world, SPAN_DANGER("Away mission loaded."))
+		to_world(SPAN_DANGER("Away mission loaded."))
 
 	else
-		to_chat(world, SPAN_DANGER("No away missions found."))
+		to_world(SPAN_DANGER("No away missions found."))
 		return

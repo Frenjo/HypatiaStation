@@ -50,8 +50,8 @@
 	var/acolytes_survived = 0
 
 /datum/game_mode/cult/announce()
-	to_chat(world, "<B>The current game mode is - Cult!</B>")
-	to_chat(world, "<B>Some crewmembers are attempting to start a cult!<BR>\nCultists - complete your objectives. Convert crewmembers to your cause by using the convert rune. Remember - there is no you, there is only the cult.<BR>\nPersonnel - Do not let the cult succeed in its mission. Brainwashing them with the chaplain's bible reverts them to whatever CentCom-allowed faith they had.</B>")
+	to_world("<B>The current game mode is - Cult!</B>")
+	to_world("<B>Some crewmembers are attempting to start a cult!<BR>\nCultists - complete your objectives. Convert crewmembers to your cause by using the convert rune. Remember - there is no you, there is only the cult.<BR>\nPersonnel - Do not let the cult succeed in its mission. Brainwashing them with the chaplain's bible reverts them to whatever CentCom-allowed faith they had.</B>")
 
 /datum/game_mode/cult/pre_setup()
 	if(!config.objectives_disabled)
@@ -272,11 +272,11 @@
 	if(!check_cult_victory())
 		feedback_set_details("round_end_result", "win - cult win")
 		feedback_set("round_end_result", acolytes_survived)
-		to_chat(world, SPAN_DANGER("<FONT size = 3>The cult wins! It has succeeded in serving its dark masters!"))
+		to_world(SPAN_DANGER("<FONT size = 3>The cult wins! It has succeeded in serving its dark masters!"))
 	else
 		feedback_set_details("round_end_result", "loss - staff stopped the cult")
 		feedback_set("round_end_result", acolytes_survived)
-		to_chat(world, SPAN_DANGER("<FONT size = 3>The staff managed to stop the cult!</FONT>"))
+		to_world(SPAN_DANGER("<FONT size = 3>The staff managed to stop the cult!</FONT>"))
 
 	var/text = "<b>Cultists escaped:</b> [acolytes_survived]"
 	if(!config.objectives_disabled)
@@ -312,7 +312,7 @@
 						feedback_add_details("cult_objective", "cult_narsie|FAIL")
 				text += "<br><B>Objective #[obj_count]</B>: [explanation]"
 
-	to_chat(world, text)
+	to_world(text)
 	..()
 	return 1
 
@@ -333,4 +333,4 @@
 				text += "body destroyed"
 			text += ")"
 
-		to_chat(world, text)
+		to_world(text)

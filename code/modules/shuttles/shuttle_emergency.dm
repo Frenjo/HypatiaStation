@@ -67,7 +67,7 @@
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
 		if(emergency_shuttle.autopilot)
 			emergency_shuttle.autopilot = 0
-			to_chat(world, SPAN_INFO_B("Alert: The shuttle autopilot has been overridden. Launch sequence initiated!"))
+			to_world(SPAN_INFO_B("Alert: The shuttle autopilot has been overridden. Launch sequence initiated!"))
 
 	..(user)
 
@@ -78,7 +78,7 @@
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
 		if(emergency_shuttle.autopilot)
 			emergency_shuttle.autopilot = 0
-			to_chat(world, SPAN_INFO_B("Alert: The shuttle autopilot has been overridden. Bluespace drive engaged!"))
+			to_world(SPAN_INFO_B("Alert: The shuttle autopilot has been overridden. Bluespace drive engaged!"))
 
 	..(user)
 
@@ -89,7 +89,7 @@
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
 		if(emergency_shuttle.autopilot)
 			emergency_shuttle.autopilot = 0
-			to_chat(world, SPAN_INFO_B("Alert: The shuttle autopilot has been overridden. Launch sequence aborted!"))
+			to_world(SPAN_INFO_B("Alert: The shuttle autopilot has been overridden. Launch sequence aborted!"))
 
 	..(user)
 
@@ -144,7 +144,7 @@
 	src.visible_message("[src] beeps as it scans [ident].")
 	authorized[dna_hash] = auth_name
 	if(req_authorizations - authorized.len)
-		to_chat(world, SPAN_INFO_B("Alert: [req_authorizations - authorized.len] authorization\s needed to override the shuttle autopilot."))
+		to_world(SPAN_INFO_B("Alert: [req_authorizations - authorized.len] authorization\s needed to override the shuttle autopilot."))
 	return 1
 
 /obj/machinery/computer/shuttle_control/emergency/attackby(obj/item/weapon/W as obj, mob/user as mob)

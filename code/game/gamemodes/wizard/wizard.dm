@@ -19,8 +19,8 @@
 	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 
 /datum/game_mode/wizard/announce()
-	to_chat(world, "<B>The current game mode is - Wizard!</B>")
-	to_chat(world, "<B>There is a \red SPACE WIZARD\black on the station. You can't let him achieve his objective!</B>")
+	to_world("<B>The current game mode is - Wizard!</B>")
+	to_world("<B>There is a \red SPACE WIZARD\black on the station. You can't let him achieve his objective!</B>")
 
 /datum/game_mode/wizard/can_start()//This could be better, will likely have to recode it later
 	if(!..())
@@ -203,7 +203,7 @@
 /datum/game_mode/wizard/declare_completion()
 	if(finished)
 		feedback_set_details("round_end_result", "loss - wizard killed")
-		to_chat(world, SPAN_DANGER("<FONT size = 3>The wizard[(wizards.len > 1) ? "s" : ""] has been killed by the crew! The Space Wizards Federation has been taught a lesson they will not soon forget!</FONT>"))
+		to_world(SPAN_DANGER("<FONT size = 3>The wizard[(wizards.len > 1) ? "s" : ""] has been killed by the crew! The Space Wizards Federation has been taught a lesson they will not soon forget!</FONT>"))
 	..()
 	return 1
 
@@ -244,7 +244,7 @@
 					text += "<br><font color='red'><B>The wizard has failed!</B></font>"
 					feedback_add_details("wizard_success", "FAIL")
 
-		to_chat(world, text)
+		to_world(text)
 	return 1
 
 //OTHER PROCS

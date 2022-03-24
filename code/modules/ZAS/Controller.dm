@@ -98,7 +98,7 @@ Class Procs:
 	set background = 1
 	#endif
 
-	to_chat(world, SPAN_DANGER("Processing Geometry..."))
+	to_world(SPAN_DANGER("Processing Geometry..."))
 	sleep(-1)
 
 	var/start_time = world.timeofday
@@ -165,7 +165,7 @@ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_
 		#ifdef ZASDBG
 		if(updated != updating.len)
 			tick_progress = "[updating.len - updated] tiles left unupdated."
-			to_chat(world, SPAN_WARNING("[tick_progress]"))
+			to_world(SPAN_WARNING("[tick_progress]"))
 			. = 0
 		#endif
 

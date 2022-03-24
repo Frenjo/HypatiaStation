@@ -450,13 +450,13 @@ var/bomb_set
 			if(ticker.mode.name == "nuclear emergency")
 				ticker.mode:nukes_left --
 			else
-				to_chat(world, "<B>The station was destoyed by the nuclear blast!</B>")
+				to_world("<B>The station was destoyed by the nuclear blast!</B>")
 
 			ticker.mode.station_was_nuked = (off_station < 2)	//offstation == 1 is a draw. the station becomes irradiated and needs to be evacuated.
 																//kinda shit but I couldn't  get permission to do what I wanted to do.
 
 			if(!ticker.mode.check_finished())//If the mode does not deal with the nuke going off so just reboot because everyone is stuck as is
-				to_chat(world, "<B>Resetting in 30 seconds!</B>")
+				to_world("<B>Resetting in 30 seconds!</B>")
 
 				feedback_set_details("end_error", "nuke - unhandled ending")
 

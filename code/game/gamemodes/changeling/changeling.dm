@@ -46,8 +46,8 @@ var/list/possible_changeling_IDs = list(
 	var/changeling_amount = 4
 
 /datum/game_mode/changeling/announce()
-	to_chat(world, "<B>The current game mode is - Changeling!</B>")
-	to_chat(world, "<B>There are alien changelings on the station. Do not let the changelings succeed!</B>")
+	to_world("<B>The current game mode is - Changeling!</B>")
+	to_world("<B>There are alien changelings on the station. Do not let the changelings succeed!</B>")
 
 /datum/game_mode/changeling/pre_setup()
 	if(config.protect_roles_from_antagonist)
@@ -214,7 +214,7 @@ var/list/possible_changeling_IDs = list(
 						text += "<br><font color='red'><B>The changeling has failed.</B></font>"
 						feedback_add_details("changeling_success", "FAIL")
 
-		to_chat(world, text)
+		to_world(text)
 
 	return 1
 

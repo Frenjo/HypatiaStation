@@ -494,7 +494,7 @@ var/global/list/uneatable = list(
 
 /obj/singularity/narsie/large/New()
 	..()
-	to_chat(world, "<font size='28' color='red'><b>NAR-SIE HAS RISEN</b></font>")
+	to_world("<font size='28' color='red'><b>NAR-SIE HAS RISEN</b></font>")
 	if(emergency_shuttle)
 		emergency_shuttle.call_evac() // Updated to reflect 'shuttles' port. -Frenjo
 		emergency_shuttle.launch_time = 0 // Cannot recall

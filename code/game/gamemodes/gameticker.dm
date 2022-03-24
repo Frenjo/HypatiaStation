@@ -42,8 +42,8 @@ var/global/datum/controller/gameticker/ticker
 	'sound/music/space_oddity.ogg') //Ground Control to Major Tom, this song is cool, what's going on?
 	do
 		pregame_timeleft = 180
-		to_chat(world, "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>")
-		to_chat(world, "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds.")
+		to_world("<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>")
+		to_world("Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds.")
 		while(current_state == GAME_STATE_PREGAME)
 			for(var/i = 0, i < 10, i++)
 				sleep(1)
@@ -71,7 +71,7 @@ var/global/datum/controller/gameticker/ticker
 		runnable_modes = config.get_runnable_modes()
 		if(runnable_modes.len == 0)
 			current_state = GAME_STATE_PREGAME
-			to_chat(world, "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby.")
+			to_world("<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby.")
 			return 0
 		if(secret_force_mode != "secret")
 			var/datum/game_mode/M = config.pick_mode(secret_force_mode)
@@ -86,7 +86,7 @@ var/global/datum/controller/gameticker/ticker
 	else
 		src.mode = config.pick_mode(master_mode)
 	if(!src.mode.can_start())
-		to_chat(world, "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
+		to_world("<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
 		qdel(mode)
 		current_state = GAME_STATE_PREGAME
 		job_master.reset_occupations()
@@ -98,7 +98,7 @@ var/global/datum/controller/gameticker/ticker
 	if(!can_continue)
 		qdel(mode)
 		current_state = GAME_STATE_PREGAME
-		to_chat(world, "<B>Error setting up [master_mode].</B> Reverting to pre-game lobby.")
+		to_world("<B>Error setting up [master_mode].</B> Reverting to pre-game lobby.")
 		job_master.reset_occupations()
 		return 0
 
@@ -107,8 +107,8 @@ var/global/datum/controller/gameticker/ticker
 		for(var/datum/game_mode/M in runnable_modes)
 			modes += M.name
 		modes = sortList(modes)
-		to_chat(world, "<B>The current game mode is - Secret!</B>")
-		to_chat(world, "<B>Possibilities:</B> [english_list(modes)]")
+		to_world("<B>The current game mode is - Secret!</B>")
+		to_world("<B>Possibilities:</B> [english_list(modes)]")
 	else
 		src.mode.announce()
 
@@ -131,7 +131,7 @@ var/global/datum/controller/gameticker/ticker
 			//Deleting Startpoints but we need the ai point to AI-ize people later
 			if(S.name != "AI")
 				qdel(S)
-		to_chat(world, SPAN_INFO_B("Enjoy the game!"))
+		to_world(SPAN_INFO_B("Enjoy the game!"))
 		world << sound('sound/AI/welcome.ogg') // Skie
 		//Holiday Round-start stuff	~Carn
 		Holiday_Game_Start()
@@ -312,11 +312,11 @@ var/global/datum/controller/gameticker/ticker
 			if(mode.station_was_nuked)
 				feedback_set_details("end_proper", "nuke")
 				if(!delay_end)
-					to_chat(world, SPAN_INFO_B("Rebooting due to destruction of station in [restart_timeout/10] seconds."))
+					to_world(SPAN_INFO_B("Rebooting due to destruction of station in [restart_timeout/10] seconds."))
 			else
 				feedback_set_details("end_proper", "proper completion")
 				if(!delay_end)
-					to_chat(world, SPAN_INFO_B("Restarting in [restart_timeout/10] seconds."))
+					to_world(SPAN_INFO_B("Restarting in [restart_timeout/10] seconds."))
 
 			if(blackbox)
 				blackbox.save_all_data_to_sql()
@@ -326,9 +326,9 @@ var/global/datum/controller/gameticker/ticker
 				if(!delay_end)
 					world.Reboot()
 				else
-					to_chat(world, SPAN_INFO_B("An admin has delayed the round end."))
+					to_world(SPAN_INFO_B("An admin has delayed the round end."))
 			else
-				to_chat(world, SPAN_INFO_B("An admin has delayed the round end."))
+				to_world(SPAN_INFO_B("An admin has delayed the round end."))
 
 	return 1
 
@@ -340,23 +340,23 @@ var/global/datum/controller/gameticker/ticker
 /datum/controller/gameticker/proc/declare_completion()
 	for(var/mob/living/silicon/ai/aiPlayer in mob_list)
 		if(aiPlayer.stat != DEAD)
-			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the game were:</b>")
+			to_world("<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the game were:</b>")
 		else
-			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>")
+			to_world("<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>")
 		aiPlayer.show_laws(1)
 
 		if(aiPlayer.connected_robots.len)
 			var/robolist = "<b>The AI's loyal minions were:</b> "
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
 				robolist += "[robo.name][robo.stat ?" (Deactivated) (Played by: [robo.key]), " : " (Played by: [robo.key]), "]"
-			to_chat(world, robolist)
+			to_world(robolist)
 
 	for(var/mob/living/silicon/robot/robo in mob_list)
 		if(!robo.connected_ai)
 			if(robo.stat != DEAD)
-				to_chat(world, "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less borg! Its laws were:</b>")
+				to_world("<b>[robo.name] (Played by: [robo.key]) survived as an AI-less borg! Its laws were:</b>")
 			else
-				to_chat(world, "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a cyborg without an AI. Its laws were:</b>")
+				to_world("<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a cyborg without an AI. Its laws were:</b>")
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				robo.laws.show_laws(world)

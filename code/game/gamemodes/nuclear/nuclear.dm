@@ -352,7 +352,7 @@
 				text += "body destroyed"
 			text += ")"
 
-		to_chat(world, text)
+		to_world(text)
 	return 1
 
 

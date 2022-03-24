@@ -25,7 +25,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 			// No more change mode votes after the game has started.
 			// 3 is GAME_STATE_PLAYING, but that #define is undefined for some reason
 			if(mode == "gamemode" && ticker.current_state >= 2)
-				to_chat(world, "<b>Voting aborted due to game start.</b>")
+				to_world("<b>Voting aborted due to game start.</b>")
 				src.reset()
 				return
 
@@ -108,7 +108,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 						else
 							factor = 1.4
 					choices["Initiate Crew Transfer"] = round(choices["Initiate Crew Transfer"] * factor)
-					to_chat(world, "<font color='purple'>Crew Transfer Factor: [factor]</font>")
+					to_world("<font color='purple'>Crew Transfer Factor: [factor]</font>")
 					greatest_votes = max(choices["Initiate Crew Transfer"], choices["Continue The Round"])
 
 
@@ -145,7 +145,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 		else
 			text += "<b>Vote Result: Inconclusive - No Votes!</b>"
 		log_vote(text)
-		to_chat(world, "<font color='purple'>[text]</font>")
+		to_world("<font color='purple'>[text]</font>")
 		return .
 
 	proc/result()
@@ -170,10 +170,10 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 		if(mode == "gamemode") //fire this even if the vote fails.
 			if(!going)
 				going = 1
-				to_chat(world, "<font color='red'><b>The round will start soon.</b></font>")
+				to_world("<font color='red'><b>The round will start soon.</b></font>")
 
 		if(restart)
-			to_chat(world, "World restarting due to vote...")
+			to_world("World restarting due to vote...")
 			feedback_set_details("end_error", "restart vote")
 			if(blackbox)
 				blackbox.save_all_data_to_sql()
@@ -242,7 +242,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 				text += "\n[question]"
 
 			log_vote(text)
-			to_chat(world, "<font color='purple'><b>[text]</b>\nType vote to place your votes.\nYou have [config.vote_period/10] seconds to vote.</font>")
+			to_world("<font color='purple'><b>[text]</b>\nType vote to place your votes.\nYou have [config.vote_period/10] seconds to vote.</font>")
 			switch(vote_type)
 				if("crew_transfer")
 					world << sound('sound/ambience/alarm4.ogg')
@@ -252,7 +252,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 					world << sound('sound/ambience/alarm4.ogg')
 			if(mode == "gamemode" && going)
 				going = 0
-				to_chat(world, "<font color='red'><b>Round start has been delayed.</b></font>")
+				to_world("<font color='red'><b>Round start has been delayed.</b></font>")
 		/*	if(mode == "crew_transfer" && ooc_allowed)
 				auto_muted = 1
 				ooc_allowed = !( ooc_allowed )

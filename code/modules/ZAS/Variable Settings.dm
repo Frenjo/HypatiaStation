@@ -173,7 +173,7 @@ var/global/vs_control/vsc = new
 		vars[ch] = vw
 	if(how == "Toggle")
 		newvar = (newvar ? "ON" : "OFF")
-	to_chat(world, SPAN_INFO_B("[key_name(user)] changed the setting [display_description] to [newvar]."))
+	to_world(SPAN_INFO_B("[key_name(user)] changed the setting [display_description] to [newvar]."))
 	if(ch in plc.settings)
 		ChangeSettingsDialog(user, plc.settings)
 	else
@@ -296,7 +296,7 @@ var/global/vs_control/vsc = new
 			connection_insulation = 0
 
 
-	to_chat(world, SPAN_INFO_B("[key_name(user)] changed the global plasma/ZAS settings to \"[def]\"."))
+	to_world(SPAN_INFO_B("[key_name(user)] changed the global plasma/ZAS settings to \"[def]\"."))
 
 /pl_control/var/list/settings = list()
 

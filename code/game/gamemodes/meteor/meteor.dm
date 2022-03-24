@@ -12,8 +12,8 @@
 	uplink_uses = 10
 
 /datum/game_mode/meteor/announce()
-	to_chat(world, "<B>The current game mode is - Meteor!</B>")
-	to_chat(world, "<B>The space station has been stuck in a major meteor shower. You must escape from the station or at least live.</B>")
+	to_world("<B>The current game mode is - Meteor!</B>")
+	to_world("<B>The space station has been stuck in a major meteor shower. You must escape from the station or at least live.</B>")
 
 /datum/game_mode/meteor/post_setup()
 	defer_powernet_rebuild = 2	//Might help with the lag
@@ -53,9 +53,9 @@
 			survivors++
 
 	if(survivors)
-		to_chat(world, SPAN_INFO("<B>The following survived the meteor storm</B>:[text]"))
+		to_world(SPAN_INFO("<B>The following survived the meteor storm</B>:[text]"))
 	else
-		to_chat(world, SPAN_INFO_B("Nobody survived the meteor storm!"))
+		to_world(SPAN_INFO_B("Nobody survived the meteor storm!"))
 
 	feedback_set_details("round_end_result", "end - evacuation")
 	feedback_set("round_end_result", survivors)

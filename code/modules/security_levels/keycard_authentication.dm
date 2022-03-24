@@ -162,8 +162,8 @@ var/global/maint_all_access = 0
 
 /proc/make_maint_all_access()
 	maint_all_access = 1
-	to_chat(world, "<font size=4 color='red'>Attention!</font>")
-	to_chat(world, "<font color='red'>The maintenance access requirement has been revoked on all maintenance airlocks.</font>")
+	to_world("<font size=4 color='red'>Attention!</font>")
+	to_world("<font color='red'>The maintenance access requirement has been revoked on all maintenance airlocks.</font>")
 
 	// Update all maintenance door icons so they start flashing immediately. -Frenjo
 	for(var/obj/machinery/door/airlock/maintenance/M in world)
@@ -172,8 +172,8 @@ var/global/maint_all_access = 0
 
 /proc/revoke_maint_all_access()
 	maint_all_access = 0
-	to_chat(world, "<font size=4 color='red'>Attention!</font>")
-	to_chat(world, "<font color='red'>The maintenance access requirement has been readded on all maintenance airlocks.</font>")
+	to_world("<font size=4 color='red'>Attention!</font>")
+	to_world("<font color='red'>The maintenance access requirement has been readded on all maintenance airlocks.</font>")
 
 	// Update all maintenance door icons so they stop flashing immediately. -Frenjo
 	for(var/obj/machinery/door/airlock/maintenance/M in world)
