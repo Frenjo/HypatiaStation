@@ -26,6 +26,7 @@
 	color = "#792300" // rgb: 121, 35, 0
 	toxpwr = 1
 
+
 /datum/reagent/toxin/mutagen
 	name = "Unstable mutagen"
 	id = "mutagen"
@@ -182,6 +183,7 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#003333" // rgb: 0, 51, 51
 	toxpwr = 2
+
 
 /datum/reagent/toxin/zombiepowder
 	name = "Zombie Powder"

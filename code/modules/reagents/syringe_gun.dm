@@ -8,21 +8,21 @@
 	throw_speed = 2
 	throw_range = 10
 	force = 4.0
-	var/list/syringes = new/list()
+	var/list/syringes = list()
 	var/max_syringes = 1
 	m_amt = 2000
 
 /obj/item/weapon/gun/syringe/examine()
 	set src in view()
 	..()
-	if (!(usr in view(2)) && usr != src.loc)
+	if(!(usr in view(2)) && usr != src.loc)
 		return
 	to_chat(usr, SPAN_INFO("[syringes.len] / [max_syringes] syringes."))
 
 /obj/item/weapon/gun/syringe/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = I
-		if(S.mode != 2)//SYRINGE_BROKEN in syringes.dm
+		if(S.mode != 2) //SYRINGE_BROKEN in syringes.dm
 			if(syringes.len < max_syringes)
 				user.drop_item()
 				I.loc = src
@@ -115,6 +115,7 @@
 				qdel(D)
 
 		return
+
 
 /obj/item/weapon/gun/syringe/rapidsyringe
 	name = "rapid syringe gun"

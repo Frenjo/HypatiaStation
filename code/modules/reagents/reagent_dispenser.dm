@@ -5,7 +5,7 @@
 	icon_state = "watertank"
 	density = 1
 	anchored = 0
-	pressure_resistance = 2*ONE_ATMOSPHERE
+	pressure_resistance = 2 * ONE_ATMOSPHERE
 
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10, 25, 50, 100)
@@ -103,17 +103,25 @@
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
 	if(rig)
-		usr.visible_message("[usr] begins to detach [rig] from \the [src].", "You begin to detach [rig] from \the [src].")
+		usr.visible_message(
+			"[usr] begins to detach [rig] from \the [src].",
+			"You begin to detach [rig] from \the [src]."
+		)
 		if(do_after(usr, 20))
-			usr.visible_message(SPAN_INFO("[usr] detaches [rig] from \the [src]."), SPAN_INFO("You detach [rig] from \the [src]."))
+			usr.visible_message(
+				SPAN_INFO("[usr] detaches [rig] from \the [src]."),
+				SPAN_INFO("You detach [rig] from \the [src].")
+			)
 			rig.loc = get_turf(usr)
 			rig = null
 			overlays = new/list()
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
-		user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
-			"You wrench [src]'s faucet [modded ? "closed" : "open"].")
+		user.visible_message(
+			"[user] wrenches [src]'s faucet [modded ? "closed" : "open"].",
+			"You wrench [src]'s faucet [modded ? "closed" : "open"]."
+		)
 		modded = modded ? 0 : 1
 		if(modded)
 			leak_fuel(amount_per_transfer_from_this)
@@ -121,9 +129,15 @@
 		if(rig)
 			to_chat(user, SPAN_WARNING("There is another device in the way."))
 			return ..()
-		user.visible_message("[user] begins rigging [W] to \the [src].", "You begin rigging [W] to \the [src].")
+		user.visible_message(
+			"[user] begins rigging [W] to \the [src].",
+			"You begin rigging [W] to \the [src]."
+		)
 		if(do_after(user, 20))
-			user.visible_message(SPAN_INFO("[user] rigs [W] to \the [src]."), SPAN_INFO("You rig [W] to \the [src]."))
+			user.visible_message(
+				SPAN_INFO("[user] rigs [W] to \the [src]."),
+				SPAN_INFO("You rig [W] to \the [src].")
+			)
 
 			var/obj/item/device/assembly_holder/H = W
 			if(istype(H.a_left, /obj/item/device/assembly/igniter) || istype(H.a_right, /obj/item/device/assembly/igniter))

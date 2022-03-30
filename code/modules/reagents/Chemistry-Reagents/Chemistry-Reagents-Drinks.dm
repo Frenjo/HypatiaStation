@@ -115,7 +115,7 @@
 	id = "grapesoda"
 	description = "Grapes made into a fine drank."
 	color = "#421C52" // rgb: 98, 57, 53
-	adj_drowsy 	= 	-3
+	adj_drowsy = -3
 
 
 /datum/reagent/drink/poisonberryjuice
@@ -205,7 +205,7 @@
 	name = "Hot Chocolate"
 	id = "hot_coco"
 	description = "Made with love! And cocoa beans."
-	nutriment_factor = 2 * FOOD_METABOLISM
+	nutriment_factor = 2 * FOOD_METABOLISM // Old/duplicate /datum/reagent/hot_coco had this set to 2 * REAGENTS_METABOLISM, not sure why this one is different. -Frenjo
 	color = "#403010" // rgb: 64, 48, 16
 	adj_temp = 5
 

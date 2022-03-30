@@ -57,7 +57,7 @@
 	var/total_transfered = 0
 	var/current_list_element = 1
 
-	current_list_element = rand(1,reagent_list.len)
+	current_list_element = rand(1, reagent_list.len)
 
 	while(total_transfered != amount)
 		if(total_transfered >= amount)
@@ -107,7 +107,7 @@
 	if(!target.reagents || src.total_volume <= 0)
 		return
 	var/datum/reagents/R = target.reagents
-	amount = min(min(amount, src.total_volume), R.maximum_volume-R.total_volume)
+	amount = min(min(amount, src.total_volume), R.maximum_volume - R.total_volume)
 	var/part = amount / src.total_volume
 	var/trans_data = null
 	for(var/datum/reagent/current_reagent in src.reagent_list)

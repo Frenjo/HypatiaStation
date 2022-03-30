@@ -863,7 +863,7 @@
 		M.contract_disease(new /datum/disease/xeno_transformation(0), 1)
 
 
-/datum/reagent/fluorosurfactant//foam precursor
+/datum/reagent/fluorosurfactant //foam precursor
 	name = "Fluorosurfactant"
 	id = "fluorosurfactant"
 	description = "A perfluoronated sulfonic acid that forms a foam when mixed with water."
@@ -871,7 +871,7 @@
 	color = "#9E6B38" // rgb: 158, 107, 56
 
 
-/datum/reagent/foaming_agent// Metal foaming agent. This is lithium hydride. Add other recipes (e.g. LiH + H2O -> LiOH + H2) eventually.
+/datum/reagent/foaming_agent // Metal foaming agent. This is lithium hydride. Add other recipes (e.g. LiH + H2O -> LiOH + H2) eventually.
 	name = "Foaming agent"
 	id = "foaming_agent"
 	description = "A agent that yields metallic foam when mixed with light metal and a strong acid."

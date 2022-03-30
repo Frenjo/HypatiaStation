@@ -2,19 +2,19 @@
 //so that it can continue working when the reagent is deleted while the proc is still active.
 
 /datum/reagent
-		var/name = "Reagent"
-		var/id = "reagent"
-		var/description = ""
-		var/datum/reagents/holder = null
-		var/reagent_state = REAGENT_SOLID
-		var/list/data = null
-		var/volume = 0
-		var/nutriment_factor = 0
-		var/custom_metabolism = REAGENTS_METABOLISM
-		var/overdose = 0
-		var/overdose_dam = 1
-		//var/list/viruses = list()
-		var/color = "#000000" // rgb: 0, 0, 0 (does not support alpha channels - yet!)
+	var/name = "Reagent"
+	var/id = "reagent"
+	var/description = ""
+	var/datum/reagents/holder = null
+	var/reagent_state = REAGENT_SOLID
+	var/list/data = null
+	var/volume = 0
+	var/nutriment_factor = 0
+	var/custom_metabolism = REAGENTS_METABOLISM
+	var/overdose = 0
+	var/overdose_dam = 1
+	//var/list/viruses = list()
+	var/color = "#000000" // rgb: 0, 0, 0 (does not support alpha channels - yet!)
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	..()
@@ -24,14 +24,14 @@
 	if(!isliving(M))
 		return 0
 	var/datum/reagent/self = src
-	qdel(src)										  //of the reagent to the mob on TOUCHING it.
+	qdel(src)											//of the reagent to the mob on TOUCHING it.
 
-	if(self.holder)		//for catching rare runtimes
+	if(self.holder)	//for catching rare runtimes
 		if(!istype(self.holder.my_atom, /obj/effect/smoke/chem))
 			// If the chemicals are in a smoke cloud, do not try to let the chemicals "penetrate" into the mob's system (balance station 13) -- Doohl
 			if(method == TOUCH)
 				var/chance = 1
-				var/block  = 0
+				var/block = 0
 
 				for(var/obj/item/clothing/C in M.get_equipped_items())
 					if(C.permeability_coefficient < chance)
@@ -67,7 +67,7 @@
 /datum/reagent/proc/on_mob_life(mob/living/M as mob, alien)
 	if(!isliving(M))
 		return //Noticed runtime errors from pacid trying to damage ghosts, this should fix. --NEO
-	if((overdose > 0) && (volume >= overdose))//Overdosing, wooo
+	if(overdose > 0 && volume >= overdose) //Overdosing, wooo
 		M.adjustToxLoss(overdose_dam)
 	holder.remove_reagent(src.id, custom_metabolism) //By default it slowly disappears.
 	return

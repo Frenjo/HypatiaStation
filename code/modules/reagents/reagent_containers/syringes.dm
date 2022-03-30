@@ -67,7 +67,6 @@
 
 	switch(mode)
 		if(SYRINGE_DRAW)
-
 			if(reagents.total_volume >= reagents.maximum_volume)
 				to_chat(user, SPAN_WARNING("The syringe is full."))
 				return

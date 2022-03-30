@@ -22,14 +22,6 @@
 	return
 
 
-/datum/chemical_reaction/methylphenidate
-	name = "Methylphenidate"
-	id = "methylphenidate"
-	result = "methylphenidate"
-	required_reagents = list("mindbreaker" = 1, "hydrogen" = 1)
-	result_amount = 3
-
-
 /datum/reagent/antidepressant/citalopram
 	name = "Citalopram"
 	id = "citalopram"
@@ -52,14 +44,6 @@
 			to_chat(M, SPAN_INFO("Your mind feels stable.. a little stable."))
 	..()
 	return
-
-
-/datum/chemical_reaction/citalopram
-	name = "Citalopram"
-	id = "citalopram"
-	result = "citalopram"
-	required_reagents = list("mindbreaker" = 1, "carbon" = 1)
-	result_amount = 3
 
 
 /datum/reagent/antidepressant/paroxetine
@@ -88,11 +72,3 @@
 				M.hallucination += 200
 	..()
 	return
-
-
-/datum/chemical_reaction/paroxetine
-	name = "Paroxetine"
-	id = "paroxetine"
-	result = "paroxetine"
-	required_reagents = list("mindbreaker" = 1, "oxygen" = 1, "inaprovaline" = 1)
-	result_amount = 3

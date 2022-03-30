@@ -150,11 +150,11 @@
 
 
 /datum/reagent/condensedcapsaicin
-			name = "Condensed Capsaicin"
-			id = "condensedcapsaicin"
-			description = "A chemical agent used for self-defense and in police work."
-			reagent_state = REAGENT_LIQUID
-			color = "#B31008" // rgb: 179, 16, 8
+	name = "Condensed Capsaicin"
+	id = "condensedcapsaicin"
+	description = "A chemical agent used for self-defense and in police work."
+	reagent_state = REAGENT_LIQUID
+	color = "#B31008" // rgb: 179, 16, 8
 
 /datum/reagent/condensedcapsaicin/reaction_mob(mob/living/M, method = TOUCH, volume)
 	if(!isliving(M))
@@ -288,22 +288,6 @@
 	return
 
 
-/datum/reagent/hot_coco
-	name = "Hot Chocolate"
-	id = "hot_coco"
-	description = "Made with love! And cocoa beans."
-	reagent_state = REAGENT_LIQUID
-	nutriment_factor = 2 * REAGENTS_METABOLISM
-	color = "#403010" // rgb: 64, 48, 16
-
-/datum/reagent/hot_coco/on_mob_life(mob/living/M as mob)
-	if(M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
-		M.bodytemperature = min(310, M.bodytemperature + (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
-	M.nutrition += nutriment_factor
-	..()
-	return
-
-
 /datum/reagent/psilocybin
 	name = "Psilocybin"
 	id = "psilocybin"
@@ -398,7 +382,7 @@
 	return
 
 /datum/reagent/cornoil/reaction_turf(turf/simulated/T, volume)
-	if (!istype(T))
+	if(!istype(T))
 		return
 	qdel(src)
 	if(volume >= 3)
@@ -502,6 +486,7 @@
 				if(!istype(T, /turf/space))
 					new /obj/effect/decal/cleanable/flour(T)
 */
+
 
 /datum/reagent/rice
 	name = "Rice"
