@@ -30,7 +30,7 @@
 #define BE_RAIDER		2048
 #define BE_PLANT		4096
 
-var/list/be_special_flags = list(
+/var/list/be_special_flags = list(
 	"Traitor" = BE_TRAITOR,
 	"Operative" = BE_OPERATIVE,
 	"Changeling" = BE_CHANGELING,
@@ -45,3 +45,8 @@ var/list/be_special_flags = list(
 	"Raider" = BE_RAIDER,
 	"Diona" = BE_PLANT
 )
+
+//Spawnpoints.
+/var/list/latejoin = list()
+/var/list/latejoin_gateway = list()
+/var/list/latejoin_cryo = list()

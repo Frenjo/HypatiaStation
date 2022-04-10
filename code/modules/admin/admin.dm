@@ -841,20 +841,21 @@ var/global/floorIsLava = 0
 	set desc="Delay the game start/end"
 	set name="Delay"
 
-	if(!check_rights(R_SERVER))	return
-	if (!ticker || ticker.current_state != GAME_STATE_PREGAME)
+	if(!check_rights(R_SERVER))
+		return
+	if(!ticker || ticker.current_state != GAME_STATE_PREGAME)
 		ticker.delay_end = !ticker.delay_end
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
 		message_admins("\blue [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
 		return //alert("Round end delayed", null, null, null, null, null)
-	going = !( going )
-	if (!( going ))
+	roundstart_progressing = !roundstart_progressing
+	if(!roundstart_progressing)
 		world << "<b>The game start has been delayed.</b>"
 		log_admin("[key_name(usr)] delayed the game.")
 	else
 		world << "<b>The game will start soon.</b>"
 		log_admin("[key_name(usr)] removed the delay.")
-	feedback_add_details("admin_verb","DELAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb", "DELAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/adjump()
 	set category = "Server"

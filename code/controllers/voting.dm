@@ -168,8 +168,8 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 						init_shift_change(null, 1)
 
 		if(mode == "gamemode") //fire this even if the vote fails.
-			if(!going)
-				going = 1
+			if(!roundstart_progressing)
+				roundstart_progressing = 1
 				to_world("<font color='red'><b>The round will start soon.</b></font>")
 
 		if(restart)
@@ -250,8 +250,8 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 					world << sound('sound/ambience/alarm4.ogg')
 				if("custom")
 					world << sound('sound/ambience/alarm4.ogg')
-			if(mode == "gamemode" && going)
-				going = 0
+			if(mode == "gamemode" && roundstart_progressing)
+				roundstart_progressing = 0
 				to_world("<font color='red'><b>Round start has been delayed.</b></font>")
 		/*	if(mode == "crew_transfer" && ooc_allowed)
 				auto_muted = 1

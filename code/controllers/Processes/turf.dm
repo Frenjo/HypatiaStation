@@ -1,3 +1,5 @@
+/var/global/list/processing_turfs = list()
+
 /datum/controller/process/turf/setup()
 	name = "turf"
 	schedule_interval = 3 SECONDS

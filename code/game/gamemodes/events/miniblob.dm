@@ -1,3 +1,5 @@
+/var/blobevent = 0
+
 /proc/mini_blob_event()
 	var/turf/T = pick(blobstart)
 	var/obj/effect/blob/core/bl = new /obj/effect/blob/core(T, 200)

@@ -3,84 +3,12 @@
 
 var/global/obj/effect/datacore/data_core = null
 
-var/global/list/active_areas = list()
-var/global/list/all_areas = list()
-var/global/list/machines = list()
-var/global/list/processing_objects = list()
-var/global/list/processing_power_items = list()
-var/global/list/processing_turfs = list()
-var/global/list/active_diseases = list()
-var/global/list/events = list()
-var/global/list/med_hud_users = list() //list of all entities using a medical HUD.
-var/global/list/sec_hud_users = list() //list of all entities using a security HUD.
-//items that ask to be called every cycle
-
-var/global/list/global_map = null
-//list/global_map = list(list(1,5),list(4,3))//an array of map Z levels.
-//Resulting sector map looks like
-//|_1_|_4_|
-//|_5_|_3_|
-//
-//1 - SS13
-//4 - Derelict
-//3 - AI satellite
-//5 - empty space
-
 //////////////
-var/list/paper_tag_whitelist = list(
-	"center", "p", "div", "span", "h1", "h2", "h3", "h4", "h5", "h6", "hr", "pre",
-	"big", "small", "font", "i", "u", "b", "s", "sub", "sup", "tt", "br", "hr", "ol", "ul", "li", "caption", "col",
-	"table", "td", "th", "tr"
-)
-
-var/list/paper_blacklist = list(
-	"java", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown",
-	"onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover",
-	"onmouseup", "onreset", "onselect", "onsubmit", "onunload"
-)
-
-var/BLINDBLOCK = 0
-var/DEAFBLOCK = 0
-var/HULKBLOCK = 0
-var/TELEBLOCK = 0
-var/FIREBLOCK = 0
-var/XRAYBLOCK = 0
-var/CLUMSYBLOCK = 0
-var/FAKEBLOCK = 0
-var/COUGHBLOCK = 0
-var/GLASSESBLOCK = 0
-var/EPILEPSYBLOCK = 0
-var/TWITCHBLOCK = 0
-var/NERVOUSBLOCK = 0
-var/MONKEYBLOCK = 27
-
-var/BLOCKADD = 0
-var/DIFFMUT = 0
-
-var/HEADACHEBLOCK = 0
-var/NOBREATHBLOCK = 0
-var/REMOTEVIEWBLOCK = 0
-var/REGENERATEBLOCK = 0
-var/INCREASERUNBLOCK = 0
-var/REMOTETALKBLOCK = 0
-var/MORPHBLOCK = 0
-var/BLENDBLOCK = 0
-var/HALLUCINATIONBLOCK = 0
-var/NOPRINTSBLOCK = 0
-var/SHOCKIMMUNITYBLOCK = 0
-var/SMALLSIZEBLOCK = 0
-
 var/skipupdate = 0
 ///////////////
-var/eventchance = 10 //% per 5 mins
 var/event = 0
-var/hadevent = 0
-var/blobevent = 0
 ///////////////
 
-var/diary = null
-var/diaryofmeanpeople = null
-var/href_logfile = null
 //var/station_name = "Hypatia Station"
 var/station_name = "NSS Hypatia" // Fixed this to be a proper name. -Frenjo
 var/game_version = "Hypatia"
@@ -88,7 +16,7 @@ var/changelog_hash = ""
 var/game_year = (text2num(time2text(world.realtime, "YYYY")) + 544)
 
 var/datum/air_tunnel/air_tunnel1/SS13_airtunnel = null
-var/going = 1.0
+var/roundstart_progressing = 1.0
 var/master_mode = "extended"		//"extended"
 var/secret_force_mode = "secret"	// if this is anything but "secret", the secret rotation will forceably choose this mode
 
@@ -117,8 +45,6 @@ var/list/shuttles = list()
 var/list/reg_dna = list()
 //	list/traitobj = list()
 
-var/mouse_respawn_time = 5 //Amount of time that must pass between a player dying as a mouse and repawning as a mouse. In minutes.
-
 var/shuttle_z = 2	//default
 var/airtunnel_start = 68 // default
 var/airtunnel_stop = 68 // default
@@ -126,11 +52,6 @@ var/airtunnel_bottom = 72 // default
 var/list/monkeystart = list()
 var/list/wizardstart = list()
 var/list/newplayer_start = list()
-
-//Spawnpoints.
-var/list/latejoin = list()
-var/list/latejoin_gateway = list()
-var/list/latejoin_cryo = list()
 
 var/list/prisonwarp = list()	//prisoners go to these
 var/list/holdingfacility = list()	//captured people go here
@@ -152,33 +73,20 @@ var/list/reverse_dir = list(2, 1, 3, 8, 10, 9, 11, 4, 6, 5, 7, 12, 14, 13, 15, 3
 
 var/datum/station_state/start_state = null
 var/datum/configuration/config = null
-var/datum/sun/sun = null
 
 var/list/combatlog = list()
 var/list/IClog = list()
 var/list/OOClog = list()
 var/list/adminlog = list()
 
-
-var/list/powernets = list()
-
-var/Debug = 0	// global debug switch
 var/Debug2 = 0
 
 var/datum/debug/debugobj
-
-var/datum/moduletypes/mods = new()
-
-var/wavesecret = 0
-var/gravity_is_on = 1
 
 var/shuttlecoming = 0
 
 var/join_motd = null
 var/forceblob = 0
-
-// nanomanager, the manager for Nano UIs
-var/datum/nanomanager/nanomanager = new()
 
 //airlockWireColorToIndex takes a number representing the wire color, e.g. the orange wire is always 1, the dark red wire is always 2, etc. It returns the index for whatever that wire does.
 //airlockIndexToWireColor does the opposite thing - it takes the index for what the wire does, for example AIRLOCK_WIRE_IDSCAN is 1, AIRLOCK_WIRE_POWER1 is 2, etc. It returns the wire color number.

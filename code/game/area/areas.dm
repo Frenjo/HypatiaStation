@@ -1,3 +1,6 @@
+/var/global/list/active_areas = list()
+/var/global/list/all_areas = list()
+
 // This bit is originally from Space Station 13 areas.dm. -Frenjo
 /*
 

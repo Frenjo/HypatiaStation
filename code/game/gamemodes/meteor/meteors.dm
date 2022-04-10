@@ -4,6 +4,8 @@
 /var/const/meteors_in_wave = 50
 /var/const/meteors_in_small_wave = 10
 
+/var/wavesecret = 0
+
 /proc/meteor_wave(number = meteors_in_wave)
 	if(!ticker || wavesecret)
 		return

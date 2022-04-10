@@ -1,3 +1,9 @@
+/var/list/paper_tag_whitelist = list(
+	"center", "p", "div", "span", "h1", "h2", "h3", "h4", "h5", "h6", "hr", "pre",
+	"big", "small", "font", "i", "u", "b", "s", "sub", "sup", "tt", "br", "hr", "ol", "ul", "li", "caption", "col",
+	"table", "td", "th", "tr"
+)
+
 /*
  * Holds procs designed to help with filtering text
  * Contains groups:

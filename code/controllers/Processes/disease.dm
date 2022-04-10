@@ -1,3 +1,5 @@
+/var/global/list/active_diseases = list()
+
 /datum/controller/process/disease/setup()
 	name = "disease"
 	schedule_interval = 2 SECONDS

@@ -1,4 +1,8 @@
-var/global/datum/global_init/init = new()
+/var/global/datum/global_init/init = new()
+
+/var/diary = null
+/var/diaryofmeanpeople = null
+/var/href_logfile = null
 
 /*
 	Pre-map initialization stuff should go here.

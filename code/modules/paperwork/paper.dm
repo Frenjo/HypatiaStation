@@ -1,3 +1,9 @@
+/var/list/paper_blacklist = list(
+	"java", "onblur", "onchange", "onclick", "ondblclick", "onfocus", "onkeydown",
+	"onkeypress", "onkeyup", "onload", "onmousedown", "onmousemove", "onmouseout", "onmouseover",
+	"onmouseup", "onreset", "onselect", "onsubmit", "onunload"
+)
+
 /*
  * Paper
  * also scraps of paper

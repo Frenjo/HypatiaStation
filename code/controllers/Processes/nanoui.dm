@@ -1,3 +1,6 @@
+// nanomanager, the manager for Nano UIs
+/var/datum/nanomanager/nanomanager = new()
+
 /datum/controller/process/nanoui/setup()
 	name = "nanoui"
 	schedule_interval = 2 SECONDS

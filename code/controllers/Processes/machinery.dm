@@ -1,5 +1,9 @@
 /var/global/machinery_sort_required = 0
 
+/var/global/list/machines = list()
+/var/global/list/processing_power_items = list()
+/var/list/powernets = list()
+
 /datum/controller/process/machinery/setup()
 	name = "machinery"
 	schedule_interval = 2 SECONDS

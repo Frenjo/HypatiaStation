@@ -1,3 +1,5 @@
+/var/hadevent = 0
+
 /proc/GameOver()
 	if(!hadevent)
 		hadevent = 1

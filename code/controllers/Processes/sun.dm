@@ -1,3 +1,5 @@
+/var/datum/sun/sun = null
+
 /datum/controller/process/sun/setup()
 	name = "sun"
 	schedule_interval = 2 SECONDS
