@@ -26,6 +26,7 @@
 	item_state = "syringe_kit"
 	foldable = /obj/item/stack/sheet/cardboard	//BubbleWrap
 
+
 // SURVIVAL KITS
 /obj/item/weapon/storage/box/survival
 	name = "survival kit"
@@ -37,6 +38,7 @@
 	new /obj/item/weapon/tank/emergency_oxygen(src)
 	new /obj/item/weapon/storage/pill_bottle/stokaline(src) // Stokaline pills as an emergency ration. -Frenjo
 	return
+
 
 // Engineering survival kit with a bigger oxygen tank.
 /obj/item/weapon/storage/box/survival_engineer
@@ -50,6 +52,7 @@
 	new /obj/item/weapon/storage/pill_bottle/stokaline(src) // Stokaline pills as an emergency ration. -Frenjo
 	return
 
+
 // Plasmalin survival kit with only a breath mask and an emergency wearable plasma tank.
 /obj/item/weapon/storage/box/survival_plasmalin
 	name = "plasmalin survival kit"
@@ -60,6 +63,7 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency_plasma(src)
 	return
+
 
 // Diona survival kit with a flashlight, penlight and a flare.
 // TODO: Add batteries when flashlights get ported to run on batteries.
@@ -74,6 +78,19 @@
 	new /obj/item/device/flashlight(src)
 	new /obj/item/device/flashlight/pen(src)
 	new /obj/item/device/flashlight/flare(src)
+	return
+
+
+// Machine survival kit containing (temporarily) a flashlight.
+// TODO: When Machines are converted to run off cells and need recharging, add a power cell, crowbar and screwdriver.
+// I honestly can't think what to put in these.
+/obj/item/weapon/storage/box/survival_machine
+	name = "machine survival kit"
+	desc = "A machine-issue survival kit for use in emergencies."
+
+/obj/item/weapon/storage/box/survival_machine/New()
+	..()
+	new /obj/item/device/flashlight(src)
 	return
 
 
