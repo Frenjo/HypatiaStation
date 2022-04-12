@@ -1,4 +1,3 @@
-
 //NASA Voidsuit
 /obj/item/clothing/head/helmet/space/nasavoid
 	name = "NASA Void Helmet"
@@ -25,6 +24,6 @@
 
 /obj/item/clothing/head/helmet/space/mailmanvoid
 	name = "Mailman's Void Helmet"
-	desc = "A pressure resistant voidsuit in the colours of the mailman, designed to allow them to traverse the disposal system safely."
+	desc = "A pressure resistant voidsuit helmet in the colours of the mailman, designed to allow them to traverse the disposal system safely."
 	icon_state = "mailspace_helmet"
 	item_state = "mailspace_helmet"

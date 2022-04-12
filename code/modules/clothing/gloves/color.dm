@@ -5,10 +5,10 @@
 	item_state = "ygloves"
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
-	item_color="yellow"
+	item_color = "yellow"
 
 
-/obj/item/clothing/gloves/fyellow								//Cheap Chinese Crap
+/obj/item/clothing/gloves/fyellow	//Cheap Chinese Crap
 	desc = "These gloves are cheap copies of the coveted gloves, no way this can end badly."
 	name = "budget insulated gloves"
 	icon_state = "yellow"
@@ -123,3 +123,14 @@
 
 /obj/item/clothing/gloves/brown/cargo
 	item_color = "cargo"	//Exists for washing machines. Is not different from brown gloves in any way.
+
+
+/obj/item/clothing/gloves/white
+	name = "white gloves"
+	desc = "These look pretty fancy."
+	icon_state = "latex"
+	item_state = "lgloves"
+	item_color = "mime"
+
+/obj/item/clothing/gloves/white/redcoat
+	item_color = "redcoat"	//Exists for washing machines. Is not different from white gloves in any way.

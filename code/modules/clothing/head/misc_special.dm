@@ -26,28 +26,21 @@
 	siemens_coefficient = 0.9
 	w_class = 3
 
-/obj/item/clothing/head/welding/attack_self()
-	toggle()
-
-/obj/item/clothing/head/welding/verb/toggle()
-	set category = "Object"
-	set name = "Adjust welding mask"
-	set src in usr
-
-	if(usr.canmove && !usr.stat && !usr.restrained())
-		if(src.up)
-			src.up = !src.up
-			src.flags |= (HEADCOVERSEYES | HEADCOVERSMOUTH)
+/obj/item/clothing/head/welding/attack_self(mob/user)
+	if(user.canmove && !user.stat && !user.restrained())
+		if(up)
+			up = !up
+			flags |= (HEADCOVERSEYES | HEADCOVERSMOUTH)
 			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = initial(icon_state)
-			to_chat(usr, "You flip the [src] down to protect your eyes.")
+			to_chat(user, "You flip the [src] down to protect your eyes.")
 		else
-			src.up = !src.up
-			src.flags &= ~(HEADCOVERSEYES | HEADCOVERSMOUTH)
+			up = !up
+			flags &= ~(HEADCOVERSEYES | HEADCOVERSMOUTH)
 			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[initial(icon_state)]up"
-			to_chat(usr, "You push the [src] up out of your face.")
-		usr.update_inv_head()	//so our mob-overlays update
+			to_chat(user, "You push the [src] up out of your face.")
+		user.update_inv_head()	//so our mob-overlays update
 
 /*
  * Cakehat
@@ -57,10 +50,10 @@
 	desc = "It's tasty looking!"
 	icon_state = "cake0"
 	flags = HEADCOVERSEYES
-	var/onfire = 0.0
+	var/onfire = 0
 	var/status = 0
-	var/fire_resist = T0C+1300	//this is the max temp it can stand before you start to cook. although it might not burn away, you take damage
-	var/processing = 0 //I dont think this is used anywhere.
+	var/fire_resist = T0C + 1300	//this is the max temp it can stand before you start to cook. although it might not burn away, you take damage
+	var/processing = 0				//I dont think this is used anywhere.
 
 /obj/item/clothing/head/cakehat/process()
 	if(!onfire)
@@ -73,22 +66,22 @@
 		if(M.l_hand == src || M.r_hand == src || M.head == src)
 			location = M.loc
 
-	if(istype(location, /turf))
+	if(isturf(location))
 		location.hotspot_expose(700, 1)
 
 /obj/item/clothing/head/cakehat/attack_self(mob/user as mob)
 	if(status > 1)
 		return
-	src.onfire = !src.onfire
-	if(src.onfire)
-		src.force = 3
-		src.damtype = "fire"
-		src.icon_state = "cake1"
+	onfire = !onfire
+	if(onfire)
+		force = 3
+		damtype = "fire"
+		icon_state = "cake1"
 		processing_objects.Add(src)
 	else
-		src.force = null
-		src.damtype = "brute"
-		src.icon_state = "cake0"
+		force = null
+		damtype = "brute"
+		icon_state = "cake0"
 	return
 
 /*
@@ -102,13 +95,13 @@
 	flags_inv = HIDEEARS
 
 /obj/item/clothing/head/ushanka/attack_self(mob/user as mob)
-	if(src.icon_state == "ushankadown")
-		src.icon_state = "ushankaup"
-		src.item_state = "ushankaup"
+	if(icon_state == "ushankadown")
+		icon_state = "ushankaup"
+		item_state = "ushankaup"
 		to_chat(user, "You raise the ear flaps on the ushanka.")
 	else
-		src.icon_state = "ushankadown"
-		src.item_state = "ushankadown"
+		icon_state = "ushankadown"
+		item_state = "ushankadown"
 		to_chat(user, "You lower the ear flaps on the ushanka.")
 
 /*

@@ -1,4 +1,3 @@
-
 /obj/item/clothing/glasses
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
@@ -19,12 +18,13 @@
 			active = 0
 			icon_state = "degoggles"
 			user.update_inv_glasses()
-			usr << "You deactivate the optical matrix on the [src]."
+			to_chat(user, "You deactivate the optical matrix on the [src].")
 		else
 			active = 1
 			icon_state = initial(icon_state)
 			user.update_inv_glasses()
-			usr << "You activate the optical matrix on the [src]."
+			to_chat(user, "You activate the optical matrix on the [src].")
+
 
 /obj/item/clothing/glasses/meson
 	name = "Optical Meson Scanner"
@@ -45,6 +45,7 @@
 	desc = "Optical Meson Scanner with prescription lenses."
 	prescription = 1
 
+
 /obj/item/clothing/glasses/science
 	name = "Science Goggles"
 	desc = "The goggles do nothing!"
@@ -56,6 +57,7 @@
 /obj/item/clothing/glasses/science/New()
 	..()
 	overlay = global_hud.scig
+
 
 /obj/item/clothing/glasses/night
 	name = "Night Vision Goggles"
@@ -69,17 +71,20 @@
 	..()
 	overlay = global_hud.nvg
 
+
 /obj/item/clothing/glasses/eyepatch
 	name = "eyepatch"
 	desc = "Yarr."
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
 
+
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
 	desc = "Such a dapper eyepiece!"
 	icon_state = "monocle"
 	item_state = "headset" // lol
+
 
 /obj/item/clothing/glasses/material
 	name = "Optical Material Scanner"
@@ -90,6 +95,7 @@
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_ENGINEERING = 3)
 	toggleable = 1
 	vision_flags = SEE_OBJS
+
 
 /obj/item/clothing/glasses/regular
 	name = "Prescription Glasses"
@@ -104,11 +110,13 @@
 	icon_state = "hipster_glasses"
 	item_state = "hipster_glasses"
 
+
 /obj/item/clothing/glasses/threedglasses
 	desc = "A long time ago, people used these glasses to makes images from screens threedimensional."
 	name = "3D glasses"
 	icon_state = "3d"
 	item_state = "3d"
+
 
 /obj/item/clothing/glasses/gglasses
 	name = "Green Glasses"
@@ -116,51 +124,13 @@
 	icon_state = "gglasses"
 	item_state = "gglasses"
 
+
 /obj/item/clothing/glasses/sunglasses
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."
 	name = "sunglasses"
 	icon_state = "sun"
 	item_state = "sunglasses"
 	darkness_view = -1
-
-/obj/item/clothing/glasses/welding
-	name = "welding goggles"
-	desc = "Protects the eyes from welders, approved by the mad scientist association."
-	icon_state = "welding-g"
-	item_state = "welding-g"
-	icon_action_button = "action_welding_g"
-	var/up = 0
-
-/obj/item/clothing/glasses/welding/attack_self()
-	toggle()
-
-/obj/item/clothing/glasses/welding/verb/toggle()
-	set category = "Object"
-	set name = "Adjust welding goggles"
-	set src in usr
-
-	if(usr.canmove && !usr.stat && !usr.restrained())
-		if(src.up)
-			src.up = !src.up
-			src.flags |= GLASSESCOVERSEYES
-			flags_inv |= HIDEEYES
-			icon_state = initial(icon_state)
-			to_chat(usr, "You flip \the [src] down to protect your eyes.")
-		else
-			src.up = !src.up
-			src.flags &= ~HEADCOVERSEYES
-			flags_inv &= ~HIDEEYES
-			icon_state = "[initial(icon_state)]up"
-			to_chat(usr, "You push \the [src] up out of your face.")
-
-		usr.update_inv_glasses()
-
-/obj/item/clothing/glasses/welding/superior
-	name = "superior welding goggles"
-	desc = "Welding goggles made from more expensive materials, strangely smells like potatoes."
-	icon_state = "rwelding-g"
-	item_state = "rwelding-g"
-	icon_action_button = "action_welding_g"
 
 /obj/item/clothing/glasses/sunglasses/blindfold
 	name = "blindfold"
@@ -186,13 +156,46 @@
 
 /obj/item/clothing/glasses/sunglasses/sechud/New()
 	..()
-	src.hud = new/obj/item/clothing/glasses/hud/security(src)
-	return
+	hud = new/obj/item/clothing/glasses/hud/security(src)
 
 /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	name = "tactical HUD"
 	desc = "Flash-resistant goggles with inbuilt combat and security information."
 	icon_state = "swatgoggles"
+
+
+/obj/item/clothing/glasses/welding
+	name = "welding goggles"
+	desc = "Protects the eyes from welders, approved by the mad scientist association."
+	icon_state = "welding-g"
+	item_state = "welding-g"
+	icon_action_button = "action_welding_g"
+	var/up = 0
+
+/obj/item/clothing/glasses/welding/attack_self(mob/user)
+	if(user.canmove && !user.stat && !user.restrained())
+		if(up)
+			up = !up
+			flags |= GLASSESCOVERSEYES
+			flags_inv |= HIDEEYES
+			icon_state = initial(icon_state)
+			to_chat(user, "You flip \the [src] down to protect your eyes.")
+		else
+			up = !up
+			flags &= ~HEADCOVERSEYES
+			flags_inv &= ~HIDEEYES
+			icon_state = "[initial(icon_state)]up"
+			to_chat(user, "You push \the [src] up out of your face.")
+
+		user.update_inv_glasses()
+
+/obj/item/clothing/glasses/welding/superior
+	name = "superior welding goggles"
+	desc = "Welding goggles made from more expensive materials, strangely smells like potatoes."
+	icon_state = "rwelding-g"
+	item_state = "rwelding-g"
+	icon_action_button = "action_welding_g"
+
 
 /obj/item/clothing/glasses/thermal
 	name = "Optical Thermal Scanner"

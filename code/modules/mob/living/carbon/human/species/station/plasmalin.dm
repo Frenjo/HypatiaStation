@@ -53,5 +53,5 @@
 	else if(H.fire_stacks)
 		if(istype(H.w_uniform, /obj/item/clothing/under/plasmalin))
 			var/obj/item/clothing/under/plasmalin/P = H.w_uniform
-			P.Extinguish(H)
+			P.extinguish(H)
 	H.update_fire()

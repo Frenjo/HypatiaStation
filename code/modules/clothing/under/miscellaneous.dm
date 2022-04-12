@@ -385,7 +385,7 @@
 	flags_inv = HIDESHOES
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS
 
-/obj/item/clothing/under/plasmalin/proc/Extinguish(mob/living/carbon/human/H)
+/obj/item/clothing/under/plasmalin/proc/extinguish(mob/living/carbon/human/H)
 	if(!istype(H))
 		return
 

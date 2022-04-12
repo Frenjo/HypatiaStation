@@ -2,7 +2,7 @@
  * Job related
  */
 
-//Botonist
+//Botanist
 /obj/item/clothing/suit/apron
 	name = "apron"
 	desc = "A basic blue apron."
@@ -133,7 +133,7 @@
 	icon_state = "suitjacket_blue_open"
 	item_state = "suitjacket_blue_open"
 	blood_overlay_type = "coat"
-	body_parts_covered = UPPER_TORSO|ARMS
+	body_parts_covered = UPPER_TORSO | ARMS
 
 /obj/item/clothing/suit/storage/lawyer/purpjacket
 	name = "Purple Suit Jacket"
@@ -141,7 +141,7 @@
 	icon_state = "suitjacket_purp"
 	item_state = "suitjacket_purp"
 	blood_overlay_type = "coat"
-	body_parts_covered = UPPER_TORSO|ARMS
+	body_parts_covered = UPPER_TORSO | ARMS
 
 //Internal Affairs
 /obj/item/clothing/suit/storage/internalaffairs
@@ -150,7 +150,7 @@
 	icon_state = "ia_jacket_open"
 	item_state = "ia_jacket"
 	blood_overlay_type = "coat"
-	body_parts_covered = UPPER_TORSO|ARMS
+	body_parts_covered = UPPER_TORSO | ARMS
 
 /obj/item/clothing/suit/storage/internalaffairs/verb/toggle()
 	set name = "Toggle Coat Buttons"

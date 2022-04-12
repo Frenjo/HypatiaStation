@@ -9,24 +9,20 @@
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/head/soft/dropped()
-	src.icon_state = "[item_color]soft"
-	src.flipped = 0
+	icon_state = "[item_color]soft"
+	flipped = 0
 	..()
 
-/obj/item/clothing/head/soft/verb/flip()
-	set category = "Object"
-	set name = "Flip cap"
-	set src in usr
-	if(usr.canmove && !usr.stat && !usr.restrained())
-		src.flipped = !src.flipped
-		if(src.flipped)
+/obj/item/clothing/head/soft/attack_self(mob/user)
+	if(user.canmove && !user.stat && !user.restrained())
+		flipped = !flipped
+		if(flipped)
 			icon_state = "[item_color]soft_flipped"
-			to_chat(usr, "You flip the hat backwards.")
+			to_chat(user, "You flip the hat backwards.")
 		else
 			icon_state = "[item_color]soft"
-			to_chat(usr, "You flip the hat back in normal position.")
-		usr.update_inv_head()	//so our mob-overlays update
-
+			to_chat(user, "You flip the hat back in normal position.")
+		user.update_inv_head()	//so our mob-overlays update
 
 /obj/item/clothing/head/soft/red
 	name = "red cap"

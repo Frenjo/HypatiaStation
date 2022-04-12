@@ -219,13 +219,13 @@
 	)
 
 /obj/item/clothing/shoes/magboots/vox/attack_self(mob/user)
-	if(src.magpulse)
-		src.flags &= ~NOSLIP
-		src.magpulse = 0
+	if(magpulse)
+		flags &= ~NOSLIP
+		magpulse = 0
 		to_chat(user, "You relax your deathgrip on the flooring.")
 	else
-		src.flags |= NOSLIP
-		src.magpulse = 1
+		flags |= NOSLIP
+		magpulse = 1
 		to_chat(user, "You dig your claws deeply into the flooring, bracing yourself.")
 
 /obj/item/clothing/shoes/magboots/vox/examine()

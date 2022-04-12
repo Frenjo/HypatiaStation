@@ -1,4 +1,3 @@
-
 //Hat Station 13
 
 /obj/item/clothing/head/collectable

@@ -21,7 +21,7 @@
 
 /obj/item/clothing/head/helmet/space/rig/attack_self(mob/user)
 	if(!isturf(user.loc))
-		user << "You cannot turn the light on while in this [user.loc]" //To prevent some lighting anomalities.
+		to_chat(user, "You cannot turn the light on while in this [user.loc].") //To prevent some lighting anomalies.
 		return
 	on = !on
 	icon_state = "rig[on]-[item_color]"

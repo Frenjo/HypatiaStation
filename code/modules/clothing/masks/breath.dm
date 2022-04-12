@@ -3,32 +3,29 @@
 	name = "breath mask"
 	icon_state = "breath"
 	item_state = "breath"
+	icon_action_button = "action_mask"
 	flags = MASKCOVERSMOUTH | AIRTIGHT
 	w_class = 2
 	gas_transfer_coefficient = 0.10
 	permeability_coefficient = 0.50
 	var/hanging = 0
 
-/obj/item/clothing/mask/breath/verb/toggle()
-	set category = "Object"
-	set name = "Adjust mask"
-	set src in usr
-
-	if(usr.canmove && !usr.stat && !usr.restrained())
-		if(!src.hanging)
-			src.hanging = !src.hanging
+/obj/item/clothing/mask/breath/attack_self(mob/user)
+	if(user.canmove && !user.stat && !user.restrained())
+		if(!hanging)
+			hanging = !hanging
 			gas_transfer_coefficient = 1 //gas is now escaping to the turf and vice versa
 			flags &= ~(MASKCOVERSMOUTH | AIRTIGHT)
 			icon_state = "breathdown"
-			to_chat(usr, "Your mask is now hanging on your neck.")
+			to_chat(user, "Your mask is now hanging on your neck.")
 
 		else
-			src.hanging = !src.hanging
+			hanging = !hanging
 			gas_transfer_coefficient = 0.10
 			flags |= MASKCOVERSMOUTH | AIRTIGHT
 			icon_state = "breath"
-			to_chat(usr, "You pull the mask up to cover your face.")
-		usr.update_inv_wear_mask()
+			to_chat(user, "You pull the mask up to cover your face.")
+		user.update_inv_wear_mask()
 
 /obj/item/clothing/mask/breath/medical
 	desc = "A close-fitting sterile mask that can be connected to an air supply."
@@ -49,12 +46,8 @@
 		"Vox Armalis" = 'icons/mob/species/armalis/mask.dmi',
 	)
 
-/obj/item/clothing/mask/breath/vox/toggle()
-	set category = "Object"
-	set name = "Adjust mask"
-	set src in usr
-
-	to_chat(usr, "You can't really adjust this mask - it's moulded to your beak!")
+/obj/item/clothing/mask/breath/vox/attack_self(mob/user)
+	to_chat(user, "You can't really adjust this mask - it's moulded to your beak!")
 
 /obj/item/clothing/mask/breath/vox/mob_can_equip(M as mob, slot)
 	var/mob/living/carbon/human/V = M

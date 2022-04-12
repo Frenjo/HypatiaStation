@@ -68,7 +68,7 @@
 	icon_state = "galoshes"
 	permeability_coefficient = 0.05
 	flags = NOSLIP
-	slowdown = SHOES_SLOWDOWN+1
+	slowdown = SHOES_SLOWDOWN + 1
 	species_restricted = null
 
 /obj/item/clothing/shoes/clown_shoes
@@ -76,7 +76,7 @@
 	name = "clown shoes"
 	icon_state = "clown"
 	item_state = "clown_shoes"
-	slowdown = SHOES_SLOWDOWN+1
+	slowdown = SHOES_SLOWDOWN + 1
 	item_color = "clown"
 	var/footstep = 1	//used for squeeks whilst walking
 	species_restricted = null

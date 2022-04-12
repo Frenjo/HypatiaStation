@@ -1,5 +1,4 @@
 //Soghun clothing.
-
 /obj/item/clothing/suit/soghun
 	species_restricted = list("exclude", "Vox", "Vox Armalis", "Obsedai")
 	sprite_sheets = list(

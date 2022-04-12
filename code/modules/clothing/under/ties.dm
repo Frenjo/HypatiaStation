@@ -96,7 +96,10 @@
 						else
 							sound_strength = "hear a weak"
 
-				user.visible_message("[user] places [src] against [M]'s [body_part] and listens attentively.", "You place [src] against [their] [body_part]. You [sound_strength] [sound].")
+				user.visible_message(
+					"[user] places [src] against [M]'s [body_part] and listens attentively.",
+					"You place [src] against [their] [body_part]. You [sound_strength] [sound]."
+				)
 				return
 	return ..(M, user)
 
@@ -229,7 +232,7 @@
 		to_chat(user, SPAN_WARNING("You need an empty hand to draw the [holstered]!"))
 	else
 		if(user.a_intent == "hurt")
-			usr.visible_message(
+			user.visible_message(
 				SPAN_WARNING("[user] draws the [holstered], ready to shoot!"),
 				SPAN_WARNING("You draw the [holstered], ready to shoot!")
 			)
@@ -352,7 +355,7 @@
 	hold.emp_act(severity)
 	..()
 
-/obj/item/clothing/tie/storage/hear_talk(mob/M, var/msg)
+/obj/item/clothing/tie/storage/hear_talk(mob/M, msg)
 	hold.hear_talk(M, msg)
 	..()
 

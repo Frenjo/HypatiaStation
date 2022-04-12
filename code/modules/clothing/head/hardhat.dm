@@ -34,7 +34,6 @@
 		user.set_light(user.luminosity - brightness_on)
 		set_light(brightness_on)
 
-
 /obj/item/clothing/head/hardhat/orange
 	icon_state = "hardhat0_orange"
 	item_state = "hardhat0_orange"
