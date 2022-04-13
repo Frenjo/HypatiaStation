@@ -4,7 +4,7 @@
 
 //Bluh shields
 
-var/static/list/scarySounds = list(
+/var/static/list/scarySounds = list(
 	'sound/weapons/thudswoosh.ogg', 'sound/weapons/Taser.ogg', 'sound/weapons/armbomb.ogg',
 	'sound/voice/hiss1.ogg', 'sound/voice/hiss2.ogg', 'sound/voice/hiss3.ogg', 'sound/voice/hiss4.ogg',
 	'sound/voice/hiss5.ogg', 'sound/voice/hiss6.ogg', 'sound/effects/Glassbr1.ogg', 'sound/effects/Glassbr2.ogg',
@@ -12,7 +12,7 @@ var/static/list/scarySounds = list(
 	'sound/effects/clownstep1.ogg', 'sound/effects/clownstep2.ogg'
 )
 
-var/list/liftable_structures = list(
+/var/list/liftable_structures = list(
 	/obj/machinery/autolathe,
 	/obj/machinery/constructable_frame,
 	/obj/machinery/hydroponics,
@@ -44,7 +44,7 @@ var/list/liftable_structures = list(
 #define GUN_SETTING_DESTROY "destroy"
 #define GUN_SETTING_SPECIAL "special"
 
-var/list/mechtoys = list(
+/var/list/mechtoys = list(
 	/obj/item/toy/prize/ripley,
 	/obj/item/toy/prize/fireripley,
 	/obj/item/toy/prize/deathripley,

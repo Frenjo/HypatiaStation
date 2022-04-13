@@ -1,4 +1,4 @@
-var/datum/controller/supply/supply_controller = new()
+/var/datum/controller/supply/supply_controller = new()
 
 // Supply manifest
 /obj/item/weapon/paper/manifest

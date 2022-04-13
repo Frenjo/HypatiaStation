@@ -17,10 +17,10 @@
 // central command channels, i.e deathsquid & response teams
 #define FREQUENCY_RESPONSETEAM	1345
 #define FREQUENCY_DEATHSQUAD	1341
-var/list/CENT_FREQS = list(FREQUENCY_RESPONSETEAM, FREQUENCY_DEATHSQUAD)
+/var/list/CENT_FREQS = list(FREQUENCY_RESPONSETEAM, FREQUENCY_DEATHSQUAD)
 
 //depenging helpers
-var/list/DEPT_FREQS = list(
+/var/list/DEPT_FREQS = list(
 	FREQUENCY_SCIENCE,
 	FREQUENCY_MEDICAL,
 	FREQUENCY_ENGINEERING,

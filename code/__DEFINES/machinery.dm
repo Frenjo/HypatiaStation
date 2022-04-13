@@ -30,7 +30,7 @@ var/global/defer_powernet_rebuild = 0		// true if net rebuild will be called man
 
 #define ENGINE_EJECT_Z	3
 
-var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accessed by preexisting terminals. AIs and new terminals can't use them.
+/var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accessed by preexisting terminals. AIs and new terminals can't use them.
 	"thunder",
 	"ERT",
 	"NUKE"
@@ -43,7 +43,7 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 // Reference list for disposal sort junctions. Set the sortType variable on disposal sort junctions to
 // the index of the sort department that you want. For example, sortType set to 2 will reroute all packages
 // tagged for the Cargo Bay.
-var/list/TAGGERLOCATIONS = list(
+/var/list/TAGGERLOCATIONS = list(
 	"Disposals", "Cargo Bay", "QM Office", "Engineering",
 	"CE Office", "Atmospherics", "Security", "HoS Office",
 	"Medbay", "CMO Office", "Chemistry", "Research",

@@ -1,4 +1,4 @@
-var/global/datum/controller/occupations/job_master
+/var/global/datum/controller/occupations/job_master
 
 #define GET_RANDOM_JOB 0
 #define BE_ASSISTANT 1

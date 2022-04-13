@@ -1,5 +1,3 @@
-
-
 /obj/vehicle
 	name = "Vehicle"
 	icon = 'icons/vehicles/vehicles.dmi'

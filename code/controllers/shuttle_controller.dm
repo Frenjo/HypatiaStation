@@ -2,7 +2,7 @@
 // As part of the docking controller port, because rewriting that code is spaghetti.
 // And I ain't doing it. -Frenjo
 
-var/global/datum/shuttle_controller/shuttle_controller
+/var/global/datum/shuttle_controller/shuttle_controller
 
 /datum/shuttle_controller
 	var/list/shuttles	//maps shuttle tags to shuttle datums, so that they can be looked up.

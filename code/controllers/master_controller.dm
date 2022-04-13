@@ -2,14 +2,14 @@
 //It ensures master_controller.process() is never doubled up by killing the MC (hence terminating any of its sleeping procs)
 //WIP, needs lots of work still
 
-var/global/datum/controller/game_controller/master_controller //Set in world.New()
+/var/global/datum/controller/game_controller/master_controller //Set in world.New()
 
-var/global/controller_iteration = 0
-var/global/last_tick_timeofday = world.timeofday
-var/global/last_tick_duration = 0
+/var/global/controller_iteration = 0
+/var/global/last_tick_timeofday = world.timeofday
+/var/global/last_tick_duration = 0
 
-var/global/air_processing_killed = 0
-var/global/pipe_processing_killed = 0
+/var/global/air_processing_killed = 0
+/var/global/pipe_processing_killed = 0
 
 /datum/controller/game_controller
 	var/rebuild_active_areas = 0

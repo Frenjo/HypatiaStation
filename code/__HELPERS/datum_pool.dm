@@ -6,7 +6,7 @@ Creation/Deletion is laggy, so let's reduce reuse and recycle!
 */
 #define ATOM_POOL_COUNT 100
 // "define DEBUG_ATOM_POOL 1
-var/global/list/GlobalPool = list()
+/var/global/list/GlobalPool = list()
 
 //You'll be using this proc 90% of the time.
 //It grabs a type from the pool if it can
