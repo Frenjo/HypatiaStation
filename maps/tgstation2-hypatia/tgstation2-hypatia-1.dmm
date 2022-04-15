@@ -2182,7 +2182,7 @@
 "hch" = (/obj/machinery/computer/shuttle_control/mining,/turf/simulated/shuttle/floor,/area/shuttle/mining/station)
 "hcz" = (/obj/machinery/light/small{dir = 1},/obj/machinery/embedded_controller/radio/airlock/docking_port{id_tag = "adminshuttle_dock_airlock"; pixel_x = -28; tag_airpump = "adminshuttle_dock_airlock_pump"; tag_chamber_sensor = "adminshuttle_dock_airlock_sensor"; tag_exterior_door = "adminshuttle_dock_airlock_exterior"; tag_interior_door = "adminshuttle_dock_airlock_interior"},/turf/simulated/floor/plating,/area/hallway/secondary/entry)
 "hcA" = (/turf/simulated/floor{dir = 1; icon_state = "escape"},/area/hallway/secondary/exit)
-"hcB" = (/obj/machinery/atmospherics/unary/vent_scrubber,/turf/simulated/floor{icon_state = "bar"},/area/crew_quarters/sleeping/sec)
+"hcB" = (/obj/machinery/atmospherics/unary/vent_scrubber{on = 1},/turf/simulated/floor{icon_state = "bar"},/area/crew_quarters/sleeping/sec)
 "hcQ" = (/obj/structure/stool/bed/chair{dir = 1},/turf/simulated/floor,/area/security/lobby)
 "hcU" = (/obj/structure/closet/secure_closet/personal/patient,/turf/simulated/floor{dir = 4; icon_state = "whitered"},/area/medical/sleeper)
 "hdm" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/turf/simulated/floor/wood,/area/crew_quarters/bar)
