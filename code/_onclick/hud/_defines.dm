@@ -15,7 +15,7 @@
 
 // Space parallax stuff
 #define UI_SPACE_PARALLAX "1:0,1:0"
-#define PARALLAX_STAR_AMOUNT 850
+#define PARALLAX_STAR_AMOUNT 849
 #define PARALLAX_BLUESPACE_STAR_AMOUNT 1000
 
 //Upper left action buttons, displayed when you pick up an item that has this enabled.

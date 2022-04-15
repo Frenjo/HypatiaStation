@@ -75,5 +75,9 @@
 	to_world(SPAN_DANGER("Populating spawn points."))
 	populate_spawn_points()
 
+	// Create the space parallax background.
+	to_world(SPAN_DANGER("Creating space parallax."))
+	create_parallax()
+
 	to_world(SPAN_DANGER("Initializations complete."))
 	sleep(-1)

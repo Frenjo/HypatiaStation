@@ -30,8 +30,6 @@ var/list/global_huds = list(
 	var/obj/screen/radstorm // Overlay for radiation effects from rad storms. -Frenjo
 	var/obj/screen/ionstorm // Overlay for ionic effects from ion storms. -Frenjo
 	var/obj/screen/electricalstorm // Overlay for electrical effects from electrical storms. -Frenjo
-	var/list/parallax_stars
-	var/list/parallax_bluespace_stars
 	var/obj/screen/thermal
 	var/obj/screen/meson
 
@@ -46,18 +44,6 @@ var/list/global_huds = list(
 	return screen
 
 /datum/global_hud/New()
-	// Space parallax stuff
-	var/star_count = PARALLAX_STAR_AMOUNT
-	var/bluespace_star_count = PARALLAX_BLUESPACE_STAR_AMOUNT
-
-	parallax_stars = list()
-	for(var/i = 0; i < star_count; i++)
-		parallax_stars += new /obj/screen/space_star()
-
-	parallax_bluespace_stars = list()
-	for(var/i = 0; i < bluespace_star_count; i++)
-		parallax_bluespace_stars += new /obj/screen/space_star/bluespace()
-
 	//420erryday psychedellic colours screen overlay for when you are high
 	druggy = new /obj/screen()
 	druggy.screen_loc = "WEST,SOUTH to EAST,NORTH"
@@ -297,7 +283,7 @@ var/list/global_huds = list(
 	else if(isobserver(mymob))
 		ghost_hud()
 
-	create_parallax()
+	apply_parallax()
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)
 /mob/verb/button_pressed_F12(full = 0 as null)

@@ -1,3 +1,16 @@
+/var/global/list/parallax_stars = list()
+/var/global/list/parallax_bluespace_stars = list()
+
+/proc/create_parallax()
+	var/star_count = PARALLAX_STAR_AMOUNT
+	var/bluespace_star_count = PARALLAX_BLUESPACE_STAR_AMOUNT
+
+	for(var/i = 0; i < star_count; i++)
+		global.parallax_stars += new /obj/screen/space_star()
+
+	for(var/i = 0; i < bluespace_star_count; i++)
+		global.parallax_bluespace_stars += new /obj/screen/space_star/bluespace()
+
 /obj/screen/parallax_master
 	screen_loc = UI_SPACE_PARALLAX
 	plane = SPACE_PARALLAX_PLANE
@@ -7,7 +20,7 @@
 
 /obj/screen/space_parallax
 	icon = 'icons/mob/screen1_full.dmi'
-	icon_state = "space"
+	icon_state = "space_blank"
 	name = "space"
 	screen_loc = UI_SPACE_PARALLAX
 	plane = SPACE_PARALLAX_PLANE
@@ -40,11 +53,11 @@
 	var/star_type = pick(prob(100); 0, prob(50); 1, prob(10); 2, prob(1); 3, prob(10); 4, prob(15); 5, prob(75); 6)
 	icon_state = "bstar[star_type]"
 
-/datum/hud/proc/create_parallax()
+/datum/hud/proc/apply_parallax()
 	// SPESS BACKGROUND
 	mymob.parallax_master = new /obj/screen/parallax_master()
 	mymob.space_parallax = new /obj/screen/space_parallax()
-	mymob.space_parallax.overlays |= global_hud.parallax_stars
+	mymob.space_parallax.overlays |= global.parallax_stars
 
 	mymob.client.screen |= mymob.parallax_master
 	mymob.client.screen |= mymob.space_parallax
@@ -55,6 +68,6 @@
 	mymob.space_parallax.overlays.Cut()
 
 	if(space_mode)
-		mymob.space_parallax.overlays |= global_hud.parallax_bluespace_stars
+		mymob.space_parallax.overlays |= global.parallax_bluespace_stars
 	else
-		mymob.space_parallax.overlays |= global_hud.parallax_stars
+		mymob.space_parallax.overlays |= global.parallax_stars
