@@ -1,6 +1,5 @@
 /decl/hierarchy/supply_pack/engineering
 	name = "Engineering"
-	hierarchy_type = /decl/hierarchy/supply_pack/engineering
 
 
 /decl/hierarchy/supply_pack/engineering/internals
@@ -209,7 +208,7 @@
 	containername = "Collector crate"
 
 
-/decl/hierarchy/supply_pack/engineering/PA
+/decl/hierarchy/supply_pack/engineering/particle_accelerator
 	name = "Particle Accelerator crate"
 	cost = 40
 	contains = list(

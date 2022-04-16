@@ -1,6 +1,5 @@
 /decl/hierarchy/supply_pack/medsci
 	name = "Medical / Science"
-	hierarchy_type = /decl/hierarchy/supply_pack/medsci
 
 
 /decl/hierarchy/supply_pack/medsci/stemcell

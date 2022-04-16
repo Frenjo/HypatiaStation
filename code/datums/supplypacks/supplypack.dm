@@ -10,7 +10,7 @@ var/decl/hierarchy/supply_pack/cargo_supply_packs	// Non-category supply packs
 
 /decl/hierarchy/supply_pack
 	name = "Supply Packs"
-	hierarchy_type = /decl/hierarchy/supply_pack
+
 	var/list/contains = list()
 	var/manifest = ""
 	var/amount = null
@@ -52,6 +52,7 @@ var/decl/hierarchy/supply_pack/cargo_supply_packs	// Non-category supply packs
 */
 
 var/list/supply_methods_
+
 /proc/get_supply_method(method_type)
 	if(!supply_methods_)
 		supply_methods_ = list()
@@ -77,7 +78,7 @@ var/list/supply_methods_
 			continue
 		. += "<li>[initial(A.name)]</li>"
 	. += "</ul>"
-	. = jointext(.,null)
+	. = jointext(., null)
 
 /decl/supply_method/randomised/spawn_contents(decl/hierarchy/supply_pack/sp, location)
 	if(!sp || !location)

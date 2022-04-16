@@ -1,6 +1,5 @@
 /decl/hierarchy/supply_pack/hydroponics
 	name = "Hydroponics"
-	hierarchy_type = /decl/hierarchy/supply_pack/hydroponics
 
 
 /decl/hierarchy/supply_pack/hydroponics/monkey
