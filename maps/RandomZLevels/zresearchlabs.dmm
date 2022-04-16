@@ -68,7 +68,7 @@
 "bp" = (/obj/structure/girder,/turf/simulated/floor{icon_state = "white"},/area/awaymission/labs/cave)
 "bq" = (/obj/effect/decal/cleanable/blood/tracks,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/plating,/area/awaymission/labs/cave)
 "br" = (/obj/effect/decal/cleanable/dirt,/obj/effect/critter/fleshmonster/fleshslime,/turf/simulated/floor{icon_state = "white"},/area/awaymission/labs/cave)
-"bs" = (/obj/structure/AIcore,/turf/simulated/floor{icon_state = "white"},/area/awaymission/labs/cave)
+"bs" = (/obj/structure/ai_core,/turf/simulated/floor{icon_state = "white"},/area/awaymission/labs/cave)
 "bt" = (/obj/structure/computerframe,/turf/simulated/floor{icon_state = "white"},/area/awaymission/labs/cave)
 "bu" = (/obj/machinery/constructable_frame/machine_frame,/turf/simulated/floor{icon_state = "white"},/area/awaymission/labs/cave)
 "bv" = (/turf/simulated/wall/impassable_rock,/area/awaymission/desert{lighting_use_dynamic = 1; luminosity = 1; name = "Desert"})

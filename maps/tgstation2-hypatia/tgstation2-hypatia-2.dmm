@@ -685,7 +685,7 @@
 "wh" = (/turf/unsimulated/floor{icon = 'icons/turf/snow.dmi'; icon_state = "snow"},/area/syndicate_mothership)
 "wi" = (/turf/simulated/shuttle/wall/corner/exterior/smoothinverted/sw,/area/shuttle/syndicate_elite/mothership)
 "wj" = (/turf/simulated/shuttle/wall/corner/exterior/smoothinverted/sw,/area/syndicate_station/start)
-"wk" = (/obj/structure/AIcore,/turf/simulated/shuttle/floor4,/area/shuttle/vox/station)
+"wk" = (/obj/structure/ai_core,/turf/simulated/shuttle/floor4,/area/shuttle/vox/station)
 "wl" = (/obj/structure/table,/obj/item/clothing/under/rainbow,/obj/item/clothing/glasses/sunglasses,/obj/item/clothing/head/collectable/petehat{pixel_y = 5},/turf/unsimulated/beach/sand,/area/beach)
 "wn" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/box/lights/mixed,/obj/item/device/flash,/obj/item/weapon/mop,/obj/item/weapon/reagent_containers/spray/cleaner,/obj/item/weapon/reagent_containers/spray/cleaner,/obj/item/weapon/reagent_containers/spray/plantbgone,/obj/item/weapon/reagent_containers/glass/rag,/turf/unsimulated/floor{dir = 1; icon_state = "vault"},/area/centcom/specops)
 "wp" = (/obj/machinery/vending/wallmed1{name = "Emergency NanoMed"; pixel_x = 30},/turf/simulated/shuttle/floor,/area/centcom/evac)

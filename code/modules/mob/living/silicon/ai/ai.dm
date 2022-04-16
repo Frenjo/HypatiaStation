@@ -127,7 +127,7 @@ var/list/ai_verbs_default = list(
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
-			new/obj/structure/AIcore/deactivated(loc)//New empty terminal.
+			new/obj/structure/ai_core/deactivated(loc)//New empty terminal.
 			qdel(src)//Delete AI.
 			return
 		else

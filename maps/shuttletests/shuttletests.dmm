@@ -378,7 +378,7 @@
 "hn" = (/obj/machinery/requests_console{department = "Arrival shuttle"; pixel_y = -30},/turf/simulated/shuttle/floor{icon_state = "floor2"},/area)
 "ho" = (/obj/structure/shuttle/engine/propulsion{icon_state = "burst_l"; dir = 8},/turf/space,/area)
 "hp" = (/obj/machinery/door/airlock/external{name = "Shuttle Airlock"; req_access_txt = "150"},/obj/machinery/door/poddoor{icon_state = "pdoor1"; id = "syndicate_elite"; name = "Front Hull Door"; opacity = 1},/turf/simulated/shuttle/plating,/area)
-"hq" = (/obj/structure/AIcore,/turf/simulated/shuttle/floor4,/area)
+"hq" = (/obj/structure/ai_core,/turf/simulated/shuttle/floor4,/area)
 "hr" = (/obj/item/weapon/spacecash/c200,/obj/item/weapon/spacecash/c50,/obj/structure/stool/bed/chair{dir = 1},/turf/simulated/shuttle/floor4,/area)
 "hs" = (/obj/structure/jungle_plant,/turf/simulated/shuttle/floor4,/area)
 "ht" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/obj/structure/grille,/obj/structure/window/reinforced{dir = 5; health = 1e+007},/turf/simulated/shuttle/plating,/area)

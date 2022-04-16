@@ -56,7 +56,7 @@
 			to_chat(H, "\red <b>ERROR</b>: \black Remote access channel disabled.")
 			return 0
 
-	if(istype(A, /obj/structure/AIcore/deactivated))
+	if(istype(A, /obj/structure/ai_core/deactivated))
 		if(suit.s_control)
 			A.add_fingerprint(H)
 			suit.transfer_ai("INACTIVE", "NINJASUIT", A, H)

@@ -1038,7 +1038,7 @@ datum
 				get_weight(var/job)
 					return 20
 			AI
-				steal_target = /obj/structure/AIcore
+				steal_target = /obj/structure/ai_core
 				explanation_text = "Steal a finished AI, either by intellicard or stealing the whole construct."
 				weight = 50
 
@@ -1068,7 +1068,7 @@ datum
 							if(istype(M.loc, /turf))
 								if(istype(get_area(M), /area/shuttle/escape))
 									return 1
-						for(var/obj/structure/AIcore/M in world)
+						for(var/obj/structure/ai_core/M in world)
 							if(istype(M.loc, /turf) && M.state == 4)
 								if(istype(get_area(M), /area/shuttle/escape))
 									return 1
