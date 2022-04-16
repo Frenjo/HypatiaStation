@@ -6,15 +6,15 @@
 
 /datum/controller/transfer_controller/New()
 	..()
-	timerbuffer = config.vote_autotransfer_initial
-	processing_objects += src
+	timerbuffer = global.config.vote_autotransfer_initial
+	global.processing_objects += src
 
 /datum/controller/transfer_controller/Destroy()
-	processing_objects -= src
+	global.processing_objects -= src
 	return ..()
 
 /datum/controller/transfer_controller/proc/process()
 	currenttick = currenttick + 1
 	if(world.time >= timerbuffer - 600)
-		vote.autotransfer()
-		timerbuffer = timerbuffer + config.vote_autotransfer_interval
+		global.vote.autotransfer()
+		timerbuffer = timerbuffer + global.config.vote_autotransfer_interval

@@ -26,13 +26,13 @@ var/list/delayed_garbage = list()
 	schedule_interval = 2 SECONDS
 	start_delay = 3
 
-	if(!garbage_collector)
-		garbage_collector = src
+	if(!global.garbage_collector)
+		global.garbage_collector = src
 
-	for(var/garbage in delayed_garbage)
+	for(var/garbage in global.delayed_garbage)
 		qdel(garbage)
-	delayed_garbage.Cut()
-	delayed_garbage = null
+	global.delayed_garbage.Cut()
+	global.delayed_garbage = null
 
 /datum/controller/process/garbage_collector/doWork()
 	if(!garbage_collect)
@@ -111,8 +111,8 @@ var/list/delayed_garbage = list()
 	if(!istype(A))
 		warning("qdel() passed object of type [A.type]. qdel() can only handle /datum types.")
 		del(A)
-		garbage_collector.total_dels++
-		garbage_collector.hard_dels++
+		global.garbage_collector.total_dels++
+		global.garbage_collector.hard_dels++
 	else if(isnull(A.gcDestroyed))
 		// Let our friend know they're about to get collected
 		. = !A.Destroy()
@@ -182,8 +182,8 @@ var/list/delayed_garbage = list()
 		return
 
 	// Remove this object from the list of things to be auto-deleted.
-	if(garbage_collector)
-		garbage_collector.destroyed -= "\ref[src]"
+	if(global.garbage_collector)
+		global.garbage_collector.destroyed -= "\ref[src]"
 
 	usr.client.running_find_references = type
 	testing("Beginning search for references to a [type].")
@@ -210,13 +210,13 @@ var/list/delayed_garbage = list()
 
 /client/verb/purge_all_destroyed_objects()
 	set category = "Debug"
-	if(garbage_collector)
-		while(garbage_collector.destroyed.len)
-			var/datum/o = locate(garbage_collector.destroyed[1])
+	if(global.garbage_collector)
+		while(global.garbage_collector.destroyed.len)
+			var/datum/o = locate(global.garbage_collector.destroyed[1])
 			if(istype(o) && o.gcDestroyed)
 				del(o)
-				garbage_collector.dels++
-			garbage_collector.destroyed.Cut(1, 2)
+				global.garbage_collector.dels++
+			global.garbage_collector.destroyed.Cut(1, 2)
 #endif
 
 #ifdef GC_DEBUG

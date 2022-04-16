@@ -16,8 +16,8 @@ var/global/datum/controller/process/ticker/tickerProcess
 	tickerProcess = src
 
 	spawn(0)
-		if(ticker)
-			ticker.pregame()
+		if(global.ticker)
+			global.ticker.pregame()
 
 /datum/controller/process/ticker/doWork()
 	var/currentTime = world.timeofday
@@ -29,7 +29,7 @@ var/global/datum/controller/process/ticker/tickerProcess
 
 	lastTickerTime = currentTime
 
-	ticker.process()
+	global.ticker.process()
 
 /datum/controller/process/ticker/proc/getLastTickerTimeDuration()
 	return lastTickerTimeDuration

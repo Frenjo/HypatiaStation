@@ -21,7 +21,7 @@
 
 	schedule_interval = world.tick_lag // run as fast as you possibly can
 	create_all_lighting_overlays()
-	lighting_overlays_initialised = TRUE
+	global.lighting_overlays_initialised = TRUE
 
 	// Pre-process lighting once before the round starts. Wait 45 seconds so the away mission has time to load.
 	spawn(45 SECONDS)
@@ -33,11 +33,11 @@
 	var/corner_updates	= 0
 	var/overlay_updates	= 0
 
-	lighting_update_lights_old = lighting_update_lights //We use a different list so any additions to the update lists during a delay from scheck() don't cause things to be cut from the list without being updated.
-	lighting_update_lights = list()
-	for(var/datum/light_source/L in lighting_update_lights_old)
+	global.lighting_update_lights_old = global.lighting_update_lights //We use a different list so any additions to the update lists during a delay from scheck() don't cause things to be cut from the list without being updated.
+	global.lighting_update_lights = list()
+	for(var/datum/light_source/L in global.lighting_update_lights_old)
 		if(light_updates >= MAX_LIGHT_UPDATES_PER_WORK && !roundstart)
-			lighting_update_lights += L
+			global.lighting_update_lights += L
 			continue // DON'T break, we're adding stuff back into the update queue.
 
 		if(L.check() || L.destroyed || L.force_update)
@@ -56,11 +56,11 @@
 
 		SCHECK
 
-	lighting_update_corners_old = lighting_update_corners //Same as above.
-	lighting_update_corners = list()
-	for(var/A in lighting_update_corners_old)
+	global.lighting_update_corners_old = global.lighting_update_corners //Same as above.
+	global.lighting_update_corners = list()
+	for(var/A in global.lighting_update_corners_old)
 		if(corner_updates >= MAX_CORNER_UPDATES_PER_WORK && !roundstart)
-			lighting_update_corners += A
+			global.lighting_update_corners += A
 			continue // DON'T break, we're adding stuff back into the update queue.
 
 		var/datum/lighting_corner/C = A
@@ -73,12 +73,12 @@
 
 		SCHECK
 
-	lighting_update_overlays_old = lighting_update_overlays //Same as above.
-	lighting_update_overlays = list()
+	global.lighting_update_overlays_old = global.lighting_update_overlays //Same as above.
+	global.lighting_update_overlays = list()
 
-	for(var/atom/movable/lighting_overlay/O in lighting_update_overlays_old)
+	for(var/atom/movable/lighting_overlay/O in global.lighting_update_overlays_old)
 		if(overlay_updates >= MAX_OVERLAY_UPDATES_PER_WORK && !roundstart)
-			lighting_update_overlays += O
+			global.lighting_update_overlays += O
 			continue // DON'T break, we're adding stuff back into the update queue.
 
 		O.update_overlay()

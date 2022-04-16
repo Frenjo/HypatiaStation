@@ -16,22 +16,22 @@
 
 /datum/controller/game_controller/New()
 	//There can be only one master_controller. Out with the old and in with the new.
-	if(master_controller != src)
+	if(global.master_controller != src)
 		log_debug("Rebuilding Master Controller")
-		if(istype(master_controller))
-			qdel(master_controller)
-		master_controller = src
+		if(istype(global.master_controller))
+			qdel(global.master_controller)
+		global.master_controller = src
 
-	if(!job_master)
-		job_master = new /datum/controller/occupations()
-		job_master.setup_occupations()
-		job_master.load_jobs("config/jobs.txt")
+	if(!global.job_master)
+		global.job_master = new /datum/controller/occupations()
+		global.job_master.setup_occupations()
+		global.job_master.load_jobs("config/jobs.txt")
 		to_world(SPAN_DANGER("Job setup complete."))
 
-	if(!syndicate_code_phrase)
-		syndicate_code_phrase = generate_code_phrase()
-	if(!syndicate_code_response)
-		syndicate_code_response	= generate_code_phrase()
+	if(!global.syndicate_code_phrase)
+		global.syndicate_code_phrase = generate_code_phrase()
+	if(!global.syndicate_code_response)
+		global.syndicate_code_response	= generate_code_phrase()
 
 /datum/controller/game_controller/proc/setup()
 	world.tick_lag = config.Ticklag
@@ -44,7 +44,7 @@
 	setup_factions()
 	setup_xenoarch()
 
-	transfer_controller = new
+	global.transfer_controller = new
 
 	for(var/i = 0, i < max_secret_rooms, i++)
 		make_mining_asteroid_secret()
@@ -58,12 +58,12 @@
 
 	to_world(SPAN_DANGER("Initializing pipe networks."))
 	sleep(-1)
-	for(var/obj/machinery/atmospherics/machine in machines)
+	for(var/obj/machinery/atmospherics/machine in global.machines)
 		machine.build_network()
 
 	to_world(SPAN_DANGER("Initializing atmos machinery."))
 	sleep(-1)
-	for(var/obj/machinery/atmospherics/unary/U in machines)
+	for(var/obj/machinery/atmospherics/unary/U in global.machines)
 		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
 			var/obj/machinery/atmospherics/unary/vent_pump/T = U
 			T.broadcast_status()

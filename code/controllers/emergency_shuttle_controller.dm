@@ -50,10 +50,10 @@
 
 			if(evac)
 				//captain_announce("The emergency shuttle has docked with the station. You have approximately [round(estimate_launch_time()/60,1)] minutes to board the Emergency Shuttle.")
-				captain_announce("The emergency shuttle has docked with the station. You have approximately [round(estimate_launch_time()/60,1)] minutes to board the emergency shuttle.")
+				captain_announce("The emergency shuttle has docked with the station. You have approximately [round(estimate_launch_time() / 60, 1)] minutes to board the emergency shuttle.")
 				world << sound('sound/AI/shuttledock.ogg') // Updated to reflect 'shuttles' port. -Frenjo
 			else
-				captain_announce("The scheduled crew transfer shuttle has docked with the station. It will depart in approximately [round(emergency_shuttle.estimate_launch_time()/60,1)] minutes.")
+				captain_announce("The scheduled crew transfer shuttle has docked with the station. It will depart in approximately [round(emergency_shuttle.estimate_launch_time() / 60, 1)] minutes.")
 				world << sound('sound/AI/shuttledock2.ogg') // Updated to reflect 'shuttles' port. -Frenjo
 
 		//arm the escape pods
@@ -63,7 +63,7 @@
 					pod.arming_controller.arm()
 
 //begins the launch countdown and sets the amount of time left until launch
-/datum/emergency_shuttle_controller/proc/set_launch_countdown(var/seconds)
+/datum/emergency_shuttle_controller/proc/set_launch_countdown(seconds)
 	wait_for_launch = 1
 	launch_time = world.time + seconds * 10
 

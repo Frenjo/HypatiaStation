@@ -5,11 +5,11 @@
 
 /datum/controller/process/mob/started()
 	..()
-	if(!mob_list)
-		mob_list = list()
+	if(!global.mob_list)
+		global.mob_list = list()
 
 /datum/controller/process/mob/doWork()
-	for(last_object in mob_list)
+	for(last_object in global.mob_list)
 		var/mob/M = last_object
 		if(isnull(M.gcDestroyed))
 			try
@@ -19,8 +19,8 @@
 			SCHECK
 		else
 			catchBadType(M)
-			mob_list -= M
+			global.mob_list -= M
 
 /datum/controller/process/mob/statProcess()
 	..()
-	stat(null, "[mob_list.len] mobs")
+	stat(null, "[global.mob_list.len] mobs")

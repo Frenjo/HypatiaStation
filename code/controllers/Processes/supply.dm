@@ -3,4 +3,4 @@
 	schedule_interval = 30 SECONDS
 
 /datum/controller/process/supply/doWork()
-	supply_controller.process()
+	global.supply_controller.process()

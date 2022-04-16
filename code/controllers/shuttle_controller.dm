@@ -206,24 +206,24 @@
 	process_shuttles += shuttle
 
 	// ERT Shuttle
-	var/datum/shuttle/ferry/multidock/specops/ERT = new()
-	ERT.location = 0
-	ERT.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
-	ERT.area_offsite = locate(/area/shuttle/specops/station)	//centcom is the home station, the Exodus is offsite
-	ERT.area_station = locate(/area/shuttle/specops/centcom)
-	ERT.docking_controller_tag = "specopsshuttle_port"
-	ERT.docking_controller_tag_station = "specopsshuttle_port"
-	ERT.docking_controller_tag_offsite = "specopsshuttle_fore"
-	ERT.dock_target_station = "specopsshuttle_dock_centcom"
-	ERT.dock_target_offsite = "specopsshuttle_dock_airlock"
-	shuttles["Special Operations"] = ERT
-	process_shuttles += ERT
+	var/datum/shuttle/ferry/multidock/specops/ert = new()
+	ert.location = 0
+	ert.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
+	ert.area_offsite = locate(/area/shuttle/specops/station)	//centcom is the home station, the Exodus is offsite
+	ert.area_station = locate(/area/shuttle/specops/centcom)
+	ert.docking_controller_tag = "specopsshuttle_port"
+	ert.docking_controller_tag_station = "specopsshuttle_port"
+	ert.docking_controller_tag_offsite = "specopsshuttle_fore"
+	ert.dock_target_station = "specopsshuttle_dock_centcom"
+	ert.dock_target_offsite = "specopsshuttle_dock_airlock"
+	shuttles["Special Operations"] = ert
+	process_shuttles += ert
 
 	//Vox Shuttle.
-	var/datum/shuttle/multi_shuttle/VS = new/datum/shuttle/multi_shuttle()
-	VS.origin = locate(/area/shuttle/vox/station)
+	var/datum/shuttle/multi_shuttle/vox_shuttle = new/datum/shuttle/multi_shuttle()
+	vox_shuttle.origin = locate(/area/shuttle/vox/station)
 
-	VS.destinations = list(
+	vox_shuttle.destinations = list(
 		"Fore Starboard Solars" = locate(/area/vox_station/northeast_solars),
 		"Fore Port Solars" = locate(/area/vox_station/northwest_solars),
 		"Aft Starboard Solars" = locate(/area/vox_station/southeast_solars),
@@ -231,19 +231,19 @@
 		"Mining asteroid" = locate(/area/vox_station/mining)
 		)
 
-	VS.announcer = "NSV Icarus"
-	VS.arrival_message = "Attention [station_name], we just tracked a small target bypassing our defensive perimeter. Can't fire on it without hitting the station - you've got incoming visitors, like it or not."
-	VS.departure_message = "Your guests are pulling away, [station_name] - moving too fast for us to draw a bead on them. Looks like they're heading out of the system at a rapid clip."
-	VS.interim = locate(/area/vox_station/transit)
+	vox_shuttle.announcer = "NSV Icarus"
+	vox_shuttle.arrival_message = "Attention [station_name], we just tracked a small target bypassing our defensive perimeter. Can't fire on it without hitting the station - you've got incoming visitors, like it or not."
+	vox_shuttle.departure_message = "Your guests are pulling away, [station_name] - moving too fast for us to draw a bead on them. Looks like they're heading out of the system at a rapid clip."
+	vox_shuttle.interim = locate(/area/vox_station/transit)
 
-	VS.warmup_time = 0
-	shuttles["Vox Skipjack"] = VS
+	vox_shuttle.warmup_time = 0
+	shuttles["Vox Skipjack"] = vox_shuttle
 
 	//Nuke Ops shuttle.
-	var/datum/shuttle/multi_shuttle/MS = new/datum/shuttle/multi_shuttle()
-	MS.origin = locate(/area/syndicate_station/start)
+	var/datum/shuttle/multi_shuttle/mercenary_shuttle = new/datum/shuttle/multi_shuttle()
+	mercenary_shuttle.origin = locate(/area/syndicate_station/start)
 
-	MS.destinations = list(
+	mercenary_shuttle.destinations = list(
 		"Northwest of the station" = locate(/area/syndicate_station/northwest),
 		"North of the station" = locate(/area/syndicate_station/north),
 		"Northeast of the station" = locate(/area/syndicate_station/northeast),
@@ -255,13 +255,13 @@
 		/*"Arrivals dock" = locate(/area/syndicate_station/arrivals_dock),*/
 		)
 
-	MS.announcer = "NSV Icarus"
-	MS.arrival_message = "Attention, [station_name], you have a large signature approaching the station - looks unarmed to surface scans. We're too far out to intercept - brace for visitors."
-	MS.departure_message = "Your visitors are on their way out of the system, [station_name], burning delta-v like it's nothing. Good riddance."
-	MS.interim = locate(/area/syndicate_station/transit)
+	mercenary_shuttle.announcer = "NSV Icarus"
+	mercenary_shuttle.arrival_message = "Attention, [station_name], you have a large signature approaching the station - looks unarmed to surface scans. We're too far out to intercept - brace for visitors."
+	mercenary_shuttle.departure_message = "Your visitors are on their way out of the system, [station_name], burning delta-v like it's nothing. Good riddance."
+	mercenary_shuttle.interim = locate(/area/syndicate_station/transit)
 
-	MS.warmup_time = 0
-	shuttles["Mercenary"] = MS
+	mercenary_shuttle.warmup_time = 0
+	shuttles["Mercenary"] = mercenary_shuttle
 
 //This is called by gameticker after all the machines and radio frequencies have been properly initialized
 /datum/shuttle_controller/proc/setup_shuttle_docks()

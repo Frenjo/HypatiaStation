@@ -15,15 +15,15 @@
 	internal_process_powernets()
 
 /datum/controller/process/machinery/proc/internal_sort()
-	if(machinery_sort_required)
-		machinery_sort_required = 0
-		machines = dd_sortedObjectList(machines)
+	if(global.machinery_sort_required)
+		global.machinery_sort_required = 0
+		global.machines = dd_sortedObjectList(global.machines)
 
 /datum/controller/process/machinery/proc/internal_process_machinery()
-	for(var/obj/machinery/M in machines)
+	for(var/obj/machinery/M in global.machines)
 		if(M && !M.gcDestroyed)
 			if(M.process() == PROCESS_KILL)
-				machines.Remove(M)
+				global.machines.Remove(M)
 				continue
 
 			if(M && M.use_power)
@@ -32,24 +32,24 @@
 		SCHECK
 
 /datum/controller/process/machinery/proc/internal_process_powernets()
-	for(var/datum/powernet/powerNetwork in powernets)
+	for(var/datum/powernet/powerNetwork in global.powernets)
 		if(istype(powerNetwork) && isnull(powerNetwork.gcDestroyed))
 			powerNetwork.reset()
 			SCHECK
 			continue
 
-		powernets.Remove(powerNetwork)
+		global.powernets.Remove(powerNetwork)
 
 	// This is necessary to ensure powersinks are always the first devices that drain power from powernet.
 	// Otherwise APCs or other stuff go first, resulting in bad things happening.
 	// Currently only used by powersinks. These items get priority processed before machinery
-	for(var/obj/item/I in processing_power_items)
+	for(var/obj/item/I in global.processing_power_items)
 		if(!I.pwr_drain()) // 0 = Process Kill, remove from processing list.
-			processing_power_items.Remove(I)
+			global.processing_power_items.Remove(I)
 		SCHECK
 
 /datum/controller/process/machinery/statProcess()
 	..()
-	stat(null, "[machines.len] machines")
-	stat(null, "[powernets.len] powernets")
-	stat(null, "[processing_power_items.len] power item\s")
+	stat(null, "[global.machines.len] machines")
+	stat(null, "[global.powernets.len] powernets")
+	stat(null, "[global.processing_power_items.len] power item\s")

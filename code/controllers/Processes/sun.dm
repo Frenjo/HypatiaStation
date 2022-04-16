@@ -3,7 +3,7 @@
 /datum/controller/process/sun/setup()
 	name = "sun"
 	schedule_interval = 2 SECONDS
-	sun = new
+	global.sun = new
 
 /datum/controller/process/sun/doWork()
-	sun.calc_position()
+	global.sun.calc_position()

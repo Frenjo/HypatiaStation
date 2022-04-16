@@ -71,7 +71,7 @@ var/global/datum/controller/processScheduler/processScheduler
 
 /datum/controller/processScheduler/proc/setup()
 	// There can be only one
-	if(processScheduler && (processScheduler != src))
+	if(global.processScheduler && (global.processScheduler != src))
 		del(src)
 		return 0
 
@@ -366,7 +366,7 @@ var/global/datum/controller/processScheduler/processScheduler
 		stat("Processes:", "Scheduler not running")
 		return
 	stat("Processes:", "[processes.len] (R [running.len] / Q [queued.len] / I [idle.len])")
-	stat(null, "[round(cpuAverage, 0.1)] CPU, [round(timeAllowance, 0.1)/10] TA")
+	stat(null, "[round(cpuAverage, 0.1)] CPU, [round(timeAllowance, 0.1) / 10] TA")
 	for(var/datum/controller/process/p in processes)
 		p.statProcess()
 

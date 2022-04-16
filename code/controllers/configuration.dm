@@ -218,7 +218,7 @@
 					config.jobs_have_minimal_access = 1
 
 				if("use_recursive_explosions")
-					use_recursive_explosions = 1
+					config.use_recursive_explosions = 1
 
 				if("log_ooc")
 					config.log_ooc = 1
@@ -316,7 +316,7 @@
 				if("allow_ai")
 					config.allow_ai = 1
 
-//				if ("authentication")
+//				if("authentication")
 //					config.enable_authentication = 1
 
 				if("norespawn")
@@ -353,7 +353,7 @@
 					config.guest_jobban = 1
 
 				if("guest_ban")
-					guests_allowed = 0
+					global.guests_allowed = 0
 
 				if("usewhitelist")
 					config.usewhitelist = 1
@@ -395,7 +395,7 @@
 					config.kick_inactive = 1
 
 				if("load_jobs_from_txt")
-					load_jobs_from_txt = 1
+					config.load_jobs_from_txt = 1
 
 				if("alert_red_upto")
 					config.alert_desc_red_upto = value
@@ -422,19 +422,19 @@
 					config.alert_desc_yellow_downto = value
 
 				if("forbid_singulo_possession")
-					forbid_singulo_possession = 1
+					config.forbid_singulo_possession = 1
 
 				if("popup_admin_pm")
 					config.popup_admin_pm = 1
 
 				if("allow_holidays")
-					Holiday = 1
+					global.Holiday = 1
 
 				if("use_irc_bot")
-					use_irc_bot = 1
+					config.use_irc_bot = 1
 
 				if("ticklag")
-					Ticklag = text2num(value)
+					config.Ticklag = text2num(value)
 
 				if("allow_antag_hud")
 					config.antag_hud_allowed = 1
@@ -442,26 +442,26 @@
 					config.antag_hud_restricted = 1
 
 				if("socket_talk")
-					socket_talk = text2num(value)
+					config.socket_talk = text2num(value)
 
 				if("tickcomp")
-					Tickcomp = 1
+					config.Tickcomp = 1
 
 				if("humans_need_surnames")
-					humans_need_surnames = 1
+					config.humans_need_surnames = 1
 
 				if("tor_ban")
-					ToRban = 1
+					config.ToRban = 1
 
 				if("automute_on")
-					automute_on = 1
+					config.automute_on = 1
 
 				if("usealienwhitelist")
-					usealienwhitelist = 1
+					config.usealienwhitelist = 1
 
 				if("alien_player_ratio")
-					limitalienplayers = 1
-					alien_to_human_ratio = text2num(value)
+					config.limitalienplayers = 1
+					config.alien_to_human_ratio = text2num(value)
 
 				if("assistant_maint")
 					config.assistant_maint = 1
@@ -546,16 +546,19 @@
 					config.health_threshold_softcrit = value
 				if("health_threshold_dead")
 					config.health_threshold_dead = value
+
 				if("revival_pod_plants")
 					config.revival_pod_plants = value
 				if("revival_cloning")
 					config.revival_cloning = value
 				if("revival_brain_life")
 					config.revival_brain_life = value
+
 				if("run_speed")
 					config.run_speed = value
 				if("walk_speed")
 					config.walk_speed = value
+
 				if("human_delay")
 					config.human_delay = value
 				if("robot_delay")
@@ -568,10 +571,12 @@
 					config.slime_delay = value
 				if("animal_delay")
 					config.animal_delay = value
+
 				if("organ_health_multiplier")
 					config.organ_health_multiplier = value / 100
 				if("organ_regeneration_multiplier")
 					config.organ_regeneration_multiplier = value / 100
+
 				if("bones_can_break")
 					config.bones_can_break = value
 				if("limbs_can_break")

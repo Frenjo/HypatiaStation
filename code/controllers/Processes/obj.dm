@@ -7,11 +7,11 @@
 
 /datum/controller/process/obj/started()
 	..()
-	if(!processing_objects)
-		processing_objects = list()
+	if(!global.processing_objects)
+		global.processing_objects = list()
 
 /datum/controller/process/obj/doWork()
-	for(last_object in processing_objects)
+	for(last_object in global.processing_objects)
 		var/datum/O = last_object
 		if(isnull(O.gcDestroyed))
 			try
@@ -21,8 +21,8 @@
 			SCHECK
 		else
 			catchBadType(O)
-			processing_objects -= O
+			global.processing_objects -= O
 
 /datum/controller/process/obj/statProcess()
 	..()
-	stat(null, "[processing_objects.len] object\s")
+	stat(null, "[global.processing_objects.len] object\s")

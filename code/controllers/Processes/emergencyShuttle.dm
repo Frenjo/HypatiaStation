@@ -2,8 +2,8 @@
 	name = "emergency shuttle"
 	schedule_interval = 2 SECONDS
 
-	if(!emergency_shuttle)
-		emergency_shuttle = new
+	if(!global.emergency_shuttle)
+		global.emergency_shuttle = new
 
 /datum/controller/process/emergencyShuttle/doWork()
-	emergency_shuttle.process()
+	global.emergency_shuttle.process()

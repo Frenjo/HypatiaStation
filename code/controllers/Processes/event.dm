@@ -6,11 +6,11 @@
 
 /datum/controller/process/event/doWork()
 	var/i = 1
-	while(i <= events.len)
-		var/datum/event/Event = events[i]
+	while(i <= global.events.len)
+		var/datum/event/Event = global.events[i]
 		if(Event)
 			Event.process()
 			i++
 			continue
-		events.Cut(i, i + 1)
+		global.events.Cut(i, i + 1)
 	checkEvent()
