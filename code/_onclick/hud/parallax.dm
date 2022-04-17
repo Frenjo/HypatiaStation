@@ -2,13 +2,10 @@
 /var/global/list/parallax_bluespace_stars = list()
 
 /proc/create_parallax()
-	var/star_count = PARALLAX_STAR_AMOUNT
-	var/bluespace_star_count = PARALLAX_BLUESPACE_STAR_AMOUNT
-
-	for(var/i = 0; i < star_count; i++)
+	for(var/i = 0; i < PARALLAX_STAR_AMOUNT; i++)
 		global.parallax_stars += new /obj/screen/space_star()
 
-	for(var/i = 0; i < bluespace_star_count; i++)
+	for(var/i = 0; i < PARALLAX_BLUESPACE_STAR_AMOUNT; i++)
 		global.parallax_bluespace_stars += new /obj/screen/space_star/bluespace()
 
 /obj/screen/parallax_master
