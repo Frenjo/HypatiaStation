@@ -1,4 +1,6 @@
-mob/living/carbon/proc/dream()
+/mob/living/carbon/var/dreaming = 0
+
+/mob/living/carbon/proc/dream()
 	dreaming = 1
 	var/list/dreams = list(
 		"an ID card", "a bottle", "a familiar face", "a crewmember", "a toolbox", "a security officer", "the captain",
@@ -13,7 +15,7 @@ mob/living/carbon/proc/dream()
 		"the virologist", "the roboticist", "the chef", "the bartender", "the chaplain", "the librarian", "a mouse", "an ert member",
 		"a beach", "the holodeck", "a smokey room", "a voice", "the cold", "a mouse", "an operating table", "the bar", "the rain", "a skrell",
 		"a soghun", "a tajaran", "the ai core", "the mining station", "the research station", "a beaker of strange liquid",
-		)
+	)
 	spawn(0)
 		for(var/i = rand(1, 4), i > 0, i--)
 			var/dream_image = pick(dreams)
@@ -26,8 +28,6 @@ mob/living/carbon/proc/dream()
 		dreaming = 0
 		return 1
 
-mob/living/carbon/proc/handle_dreams()
+/mob/living/carbon/proc/handle_dreams()
 	if(prob(5) && !dreaming)
 		dream()
-
-mob/living/carbon/var/dreaming = 0

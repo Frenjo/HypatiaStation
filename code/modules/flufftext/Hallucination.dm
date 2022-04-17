@@ -11,15 +11,15 @@ Gunshots/explosions/opening doors/less rare audio (done)
 
 */
 
-mob/living/carbon/var
-	image/halimage
-	image/halbody
-	obj/halitem
-	hal_screwyhud = 0 //1 - critical, 2 - dead, 3 - oxygen indicator, 4 - toxin indicator
-	handling_hal = 0
-	hal_crit = 0
+/mob/living/carbon
+	var/image/halimage
+	var/image/halbody
+	var/obj/halitem
+	var/hal_screwyhud = 0 //1 - critical, 2 - dead, 3 - oxygen indicator, 4 - toxin indicator
+	var/handling_hal = 0
+	var/hal_crit = 0
 
-mob/living/carbon/proc/handle_hallucinations()
+/mob/living/carbon/proc/handle_hallucinations()
 	if(handling_hal)
 		return
 	handling_hal = 1
@@ -244,6 +244,7 @@ proc/check_panel(mob/M)
 	density = 0
 	anchored = 1
 	opacity = 0
+
 	var/mob/living/carbon/human/my_target = null
 	var/weapon_name = null
 	var/obj/item/weap = null
@@ -289,7 +290,6 @@ proc/check_panel(mob/M)
 
 /obj/effect/fake_attacker/proc/updateimage()
 	//	del src.currentimage
-
 	if(src.dir == NORTH)
 		qdel(src.currentimage)
 		src.currentimage = new /image(up, src)
@@ -310,7 +310,7 @@ proc/check_panel(mob/M)
 		if(src.health < 0)
 			collapse()
 			continue
-		if(get_dist(src,my_target) > 1)
+		if(get_dist(src, my_target) > 1)
 			src.set_dir(get_dir(src, my_target))
 			step_towards(src, my_target)
 			updateimage()
@@ -349,21 +349,23 @@ proc/check_panel(mob/M)
 		qdel(O)
 	return
 
-var/list/non_fakeattack_weapons = list(/obj/item/weapon/gun/projectile, /obj/item/ammo_magazine/a357,\
-	/obj/item/weapon/gun/energy/crossbow, /obj/item/weapon/melee/energy/sword,\
-	/obj/item/weapon/storage/box/syndicate, /obj/item/weapon/storage/box/emps,\
-	/obj/item/weapon/cartridge/syndicate, /obj/item/clothing/under/chameleon,\
-	/obj/item/clothing/shoes/syndigaloshes, /obj/item/weapon/card/id/syndicate,\
-	/obj/item/clothing/mask/gas/voice, /obj/item/clothing/glasses/thermal,\
-	/obj/item/device/chameleon, /obj/item/weapon/card/emag,\
-	/obj/item/weapon/storage/toolbox/syndicate, /obj/item/weapon/aiModule,\
-	/obj/item/device/radio/headset/syndicate,	/obj/item/weapon/plastique,\
-	/obj/item/device/powersink, /obj/item/weapon/storage/box/syndie_kit,\
-	/obj/item/toy/syndicateballoon, /obj/item/weapon/gun/energy/laser/captain,\
-	/obj/item/weapon/hand_tele, /obj/item/weapon/rcd, /obj/item/weapon/tank/jetpack,\
-	/obj/item/clothing/under/rank/captain, /obj/item/device/aicard,\
-	/obj/item/clothing/shoes/magboots, /obj/item/blueprints, /obj/item/weapon/disk/nuclear,\
-	/obj/item/clothing/suit/space/nasavoid, /obj/item/weapon/tank)
+var/list/non_fakeattack_weapons = list(
+	/obj/item/weapon/gun/projectile, /obj/item/ammo_magazine/a357,
+	/obj/item/weapon/gun/energy/crossbow, /obj/item/weapon/melee/energy/sword,
+	/obj/item/weapon/storage/box/syndicate, /obj/item/weapon/storage/box/emps,
+	/obj/item/weapon/cartridge/syndicate, /obj/item/clothing/under/chameleon,
+	/obj/item/clothing/shoes/syndigaloshes, /obj/item/weapon/card/id/syndicate,
+	/obj/item/clothing/mask/gas/voice, /obj/item/clothing/glasses/thermal,
+	/obj/item/device/chameleon, /obj/item/weapon/card/emag,
+	/obj/item/weapon/storage/toolbox/syndicate, /obj/item/weapon/aiModule,
+	/obj/item/device/radio/headset/syndicate,	/obj/item/weapon/plastique,
+	/obj/item/device/powersink, /obj/item/weapon/storage/box/syndie_kit,
+	/obj/item/toy/syndicateballoon, /obj/item/weapon/gun/energy/laser/captain,
+	/obj/item/weapon/hand_tele, /obj/item/weapon/rcd, /obj/item/weapon/tank/jetpack,
+	/obj/item/clothing/under/rank/captain, /obj/item/device/aicard,
+	/obj/item/clothing/shoes/magboots, /obj/item/blueprints, /obj/item/weapon/disk/nuclear,
+	/obj/item/clothing/suit/space/nasavoid, /obj/item/weapon/tank
+)
 
 /proc/fake_attack(mob/living/target)
 //	var/list/possible_clones = new/list()
