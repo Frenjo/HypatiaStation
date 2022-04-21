@@ -1182,6 +1182,7 @@
 #include "code\modules\mob\new_player\poll.dm"
 #include "code\modules\mob\new_player\preferences_setup.dm"
 #include "code\modules\mob\new_player\skill.dm"
+#include "code\modules\mob\new_player\splashscreen.dm"
 #include "code\modules\mob\new_player\sprite_accessories.dm"
 #include "code\modules\nano\nanoexternal.dm"
 #include "code\modules\nano\nanomanager.dm"
