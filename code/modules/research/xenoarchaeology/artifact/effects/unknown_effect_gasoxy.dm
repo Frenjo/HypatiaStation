@@ -1,15 +1,16 @@
 /datum/artifact_effect/gasoxy
 	effecttype = "gasoxy"
+
 	var/max_pressure
 
 /datum/artifact_effect/gasoxy/New()
 	..()
 	effect = pick(EFFECT_TOUCH, EFFECT_AURA)
-	max_pressure = rand(115,1000)
-	effect_type = pick(6,7)
+	max_pressure = rand(115, 1000)
+	effect_type = pick(6, 7)
 
 
-/datum/artifact_effect/gasoxy/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/gasoxy/DoEffectTouch(mob/user)
 	if(holder)
 		var/turf/holder_loc = holder.loc
 		if(istype(holder_loc))

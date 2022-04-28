@@ -1,4 +1,3 @@
-
 /obj/structure/crystal
 	name = "large crystal"
 	icon = 'icons/obj/xenoarchaeology.dmi'
@@ -8,7 +7,7 @@
 /obj/structure/crystal/New()
 	..()
 
-	icon_state = pick("ano70","ano80")
+	icon_state = pick("ano70", "ano80")
 
 	desc = pick( \
 		"It shines faintly as it catches the light.", \
@@ -19,7 +18,7 @@
 	)
 
 /obj/structure/crystal/Destroy()
-	src.visible_message("\red<b>[src] shatters!</b>")
+	visible_message(SPAN_DANGER("[src] shatters!"))
 	if(prob(75))
 		new /obj/item/weapon/shard/plasma(src.loc)
 	if(prob(50))

@@ -1,48 +1,52 @@
-
 /obj/machinery/auto_cloner
 	name = "mysterious pod"
 	desc = "It's full of a viscous liquid, but appears dark and silent."
 	icon = 'icons/obj/cryogenics.dmi'
 	icon_state = "cellold0"
-	var/spawn_type
-	var/current_ticks_spawning = 0
-	var/ticks_required_to_spawn
 	density = 1
-	var/previous_power_state = 0
 
 	use_power = 1
 	active_power_usage = 2000
 	idle_power_usage = 1000
 
+	var/spawn_type
+	var/current_ticks_spawning = 0
+	var/ticks_required_to_spawn
+	var/previous_power_state = 0
+
+	var/list/nasties = list(
+		/mob/living/simple_animal/hostile/giant_spider/nurse,
+		/mob/living/simple_animal/hostile/alien,
+		/mob/living/simple_animal/hostile/bear,
+		/mob/living/simple_animal/hostile/creature,
+		/mob/living/simple_animal/hostile/panther,
+		/mob/living/simple_animal/hostile/snake
+	)
+
+	var/list/not_nasties = list(
+		/mob/living/simple_animal/cat,
+		/mob/living/simple_animal/corgi,
+		/mob/living/simple_animal/corgi/puppy,
+		/mob/living/simple_animal/chicken,
+		/mob/living/simple_animal/cow,
+		/mob/living/simple_animal/parrot,
+		/mob/living/simple_animal/slime,
+		/mob/living/simple_animal/crab,
+		/mob/living/simple_animal/mouse,
+		/mob/living/simple_animal/hostile/retaliate/goat,
+		/mob/living/carbon/monkey
+	)
+
 /obj/machinery/auto_cloner/New()
 	..()
 
-	ticks_required_to_spawn = rand(240,1440)
+	ticks_required_to_spawn = rand(240, 1440)
 
 	//33% chance to spawn nasties
 	if(prob(33))
-		spawn_type = pick( \
-			/mob/living/simple_animal/hostile/giant_spider/nurse, \
-			/mob/living/simple_animal/hostile/alien, \
-			/mob/living/simple_animal/hostile/bear, \
-			/mob/living/simple_animal/hostile/creature, \
-			/mob/living/simple_animal/hostile/panther, \
-			/mob/living/simple_animal/hostile/snake \
-		)
+		spawn_type = pick(nasties)
 	else
-		spawn_type = pick( \
-			/mob/living/simple_animal/cat, \
-			/mob/living/simple_animal/corgi, \
-			/mob/living/simple_animal/corgi/puppy, \
-			/mob/living/simple_animal/chicken, \
-			/mob/living/simple_animal/cow, \
-			/mob/living/simple_animal/parrot, \
-			/mob/living/simple_animal/slime, \
-			/mob/living/simple_animal/crab, \
-			/mob/living/simple_animal/mouse, \
-			/mob/living/simple_animal/hostile/retaliate/goat, \
-			/mob/living/carbon/monkey \
-		)
+		spawn_type = pick(not_nasties)
 
 //todo: how the hell is the asteroid permanently powered?
 /obj/machinery/auto_cloner/process()
@@ -50,18 +54,18 @@
 		if(!previous_power_state)
 			previous_power_state = 1
 			icon_state = "cellold1"
-			src.visible_message("\blue \icon[src] [src] suddenly comes to life!")
+			visible_message(SPAN_INFO("\icon[src] [src] suddenly comes to life!"))
 
 		//slowly grow a mob
 		current_ticks_spawning++
 		if(prob(5))
-			src.visible_message("\blue \icon[src] [src] [pick("gloops","glugs","whirrs","whooshes","hisses","purrs","hums","gushes")].")
+			visible_message(SPAN_INFO("\icon[src] [src] [pick("gloops", "glugs", "whirrs", "whooshes", "hisses", "purrs", "hums", "gushes")]."))
 
 		//if we've finished growing...
 		if(current_ticks_spawning >= ticks_required_to_spawn)
 			current_ticks_spawning = 0
 			use_power = 1
-			src.visible_message("\blue \icon[src] [src] pings!")
+			visible_message(SPAN_INFO("\icon[src] [src] pings!"))
 			icon_state = "cellold1"
 			desc = "It's full of a bubbling viscous liquid, and is lit by a mysterious glow."
 			if(spawn_type)
@@ -80,7 +84,7 @@
 		if(previous_power_state)
 			previous_power_state = 0
 			icon_state = "cellold0"
-			src.visible_message("\blue \icon[src] [src] suddenly shuts down.")
+			visible_message(SPAN_INFO("\icon[src] [src] suddenly shuts down."))
 
 		//cloned mob slowly breaks down
 		if(current_ticks_spawning > 0)

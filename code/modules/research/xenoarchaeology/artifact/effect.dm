@@ -1,4 +1,3 @@
-
 //override procs in children as necessary
 /datum/artifact_effect
 	var/effecttype = "unknown"		//purely used for admin checks ingame, not needed any more
@@ -24,8 +23,8 @@
 /datum/artifact_effect/New(atom/location)
 	..()
 	holder = location
-	effect = rand(0,MAX_EFFECT)
-	trigger = rand(0,MAX_TRIGGER)
+	effect = rand(0, MAX_EFFECT)
+	trigger = rand(0, MAX_TRIGGER)
 
 	//this will be replaced by the excavation code later, but it's here just in case
 	artifact_id = "[pick("kappa", "sigma", "antaeres", "beta", "omicron", "iota", "epsilon", "omega", "gamma", "delta", "tau", "alpha")]-[rand(100, 999)]"
@@ -58,13 +57,13 @@
 				A.icon_state = "ano[A.icon_num][activated]"
 			var/display_msg
 			if(activated)
-				display_msg = pick("momentarily glows brightly!","distorts slightly for a moment!","flickers slightly!","vibrates!","shimmers slightly for a moment!")
+				display_msg = pick("momentarily glows brightly!", "distorts slightly for a moment!", "flickers slightly!", "vibrates!", "shimmers slightly for a moment!")
 			else
-				display_msg = pick("grows dull!","fades in intensity!","suddenly becomes very still!","suddenly becomes very quiet!")
+				display_msg = pick("grows dull!", "fades in intensity!", "suddenly becomes very still!", "suddenly becomes very quiet!")
 			var/atom/toplevelholder = holder
 			while(!istype(toplevelholder.loc, /turf))
 				toplevelholder = toplevelholder.loc
-			toplevelholder.visible_message("\red \icon[toplevelholder] [toplevelholder] [display_msg]")
+			toplevelholder.visible_message(SPAN_WARNING("\icon[toplevelholder] [toplevelholder] [display_msg]"))
 
 /datum/artifact_effect/proc/DoEffectTouch(mob/user)
 /datum/artifact_effect/proc/DoEffectAura(atom/holder)
@@ -83,7 +82,7 @@
 			DoEffectPulse()
 
 //returns 0..1, with 1 being no protection and 0 being fully protected
-proc/GetAnomalySusceptibility(mob/living/carbon/human/H)
+/proc/GetAnomalySusceptibility(mob/living/carbon/human/H)
 	if(!H || !istype(H))
 		return 1
 

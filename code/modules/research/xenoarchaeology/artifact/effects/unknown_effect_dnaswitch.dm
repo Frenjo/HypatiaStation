@@ -1,8 +1,8 @@
-
 //todo
 /datum/artifact_effect/dnaswitch
 	effecttype = "dnaswitch"
 	effect_type = 5
+
 	var/severity
 	var/messages = list(
 		"You feel a little different.",

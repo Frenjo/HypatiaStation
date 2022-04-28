@@ -1,7 +1,5 @@
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Depth scanner - scans rock turfs / boulders and tells players if there is anything interesting inside, logs all finds + coordinates + times
-
 //also known as the x-ray diffractor
 /obj/item/device/depth_scanner
 	name = "depth analysis scanner"
@@ -11,6 +9,7 @@
 	item_state = "analyzer"
 	w_class = 1.0
 	slot_flags = SLOT_BELT
+
 	var/list/positive_locations = list()
 	var/datum/depth_scan/current
 
@@ -23,15 +22,14 @@
 	var/dissonance_spread = 1
 	var/material = "unknown"
 
-/obj/item/device/depth_scanner/proc/scan_atom(var/mob/user, var/atom/A)
-	user.visible_message("\blue [user] scans [A], the air around them humming gently.")
-	if(istype(A,/turf/simulated/mineral))
+/obj/item/device/depth_scanner/proc/scan_atom(mob/user, atom/A)
+	user.visible_message(SPAN_INFO("[user] scans [A], the air around them humming gently."))
+	if(istype(A, /turf/simulated/mineral))
 		var/turf/simulated/mineral/M = A
 		if((M.finds && M.finds.len) || M.artifact_find)
-
 			//create a new scanlog entry
 			var/datum/depth_scan/D = new()
-			D.coords = "[M.x].[rand(0,9)]:[M.y].[rand(0,9)]:[10 * M.z].[rand(0,9)]"
+			D.coords = "[M.x].[rand(0, 9)]:[M.y].[rand(0, 9)]:[10 * M.z].[rand(0, 9)]"
 			D.time = worldtime2text()
 			D.record_index = positive_locations.len + 1
 			D.material = M.mineral ? M.mineral.display_name : "Rock"
@@ -46,31 +44,31 @@
 			positive_locations.Add(D)
 
 			for(var/mob/L in range(src, 1))
-				L << "\blue \icon[src] [src] pings."
+				to_chat(L, SPAN_INFO("\icon[src] [src] pings."))
 
 	else if(istype(A,/obj/structure/boulder))
 		var/obj/structure/boulder/B = A
 		if(B.artifact_find)
 			//create a new scanlog entry
 			var/datum/depth_scan/D = new()
-			D.coords = "[10 * B.x].[rand(0,9)]:[10 * B.y].[rand(0,9)]:[10 * B.z].[rand(0,9)]"
+			D.coords = "[10 * B.x].[rand(0, 9)]:[10 * B.y].[rand(0, 9)]:[10 * B.z].[rand(0, 9)]"
 			D.time = worldtime2text()
 			D.record_index = positive_locations.len + 1
 
 			//these values are arbitrary
-			D.depth = rand(75,100)
-			D.clearance = rand(5,25)
-			D.dissonance_spread = rand(750,2500) / 100
+			D.depth = rand(75, 100)
+			D.clearance = rand(5, 25)
+			D.dissonance_spread = rand(750, 2500) / 100
 
 			positive_locations.Add(D)
 
 			for(var/mob/L in range(src, 1))
-				L << "\blue \icon[src] [src] pings [pick("madly","wildly","excitedly","crazily")]!."
+				to_chat(L, SPAN_INFO("\icon[src] [src] pings [pick("madly", "wildly", "excitedly", "crazily")]!."))
 
-/obj/item/device/depth_scanner/attack_self(var/mob/user as mob)
+/obj/item/device/depth_scanner/attack_self(mob/user as mob)
 	return src.interact(user)
 
-/obj/item/device/depth_scanner/interact(var/mob/user as mob)
+/obj/item/device/depth_scanner/interact(mob/user as mob)
 	var/dat = "<b>Co-ordinates with positive matches</b><br>"
 	dat += "<A href='?src=\ref[src];clear=0'>== Clear all ==</a><br>"
 	if(current)
@@ -93,7 +91,7 @@
 		dat += "<br>"
 	dat += "<hr>"
 	if(positive_locations.len)
-		for(var/index=1, index<=positive_locations.len, index++)
+		for(var/index = 1, index <= positive_locations.len, index++)
 			var/datum/depth_scan/D = positive_locations[index]
 			dat += "<A href='?src=\ref[src];select=[index]'>[D.time], coords: [D.coords]</a><br>"
 	else

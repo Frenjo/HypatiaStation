@@ -2,7 +2,7 @@
 #define XENOARCH_SPREAD_CHANCE 15
 #define ARTIFACT_SPAWN_CHANCE 20
 
-proc/setup_xenoarch()
+/proc/setup_xenoarch()
 	for(var/turf/simulated/mineral/M in block(locate(1, 1, 1), locate(world.maxx, world.maxy, world.maxz)))
 		if(!M.geologic_data)
 			M.geologic_data = new/datum/geosample(M)
@@ -38,7 +38,7 @@ proc/setup_xenoarch()
 				//sometimes a find will be close enough to the surface to show
 				var/datum/find/F = archeo_turf.finds[1]
 				if(F.excavation_required <= F.view_range)
-					archeo_turf.archaeo_overlay = "overlay_archaeo[rand(1,3)]"
+					archeo_turf.archaeo_overlay = "overlay_archaeo[rand(1, 3)]"
 					archeo_turf.overlays += archeo_turf.archaeo_overlay
 
 		//dont create artifact machinery in animal or plant digsites, or if we already have one
@@ -48,7 +48,6 @@ proc/setup_xenoarch()
 
 
 //---- Noticeboard
-
 /obj/structure/noticeboard/anomaly
 	notices = 5
 	icon_state = "nboard05"
@@ -90,8 +89,8 @@ proc/setup_xenoarch()
 	P.overlays = list("paper_stamped_rd")
 	src.contents += P
 
-//---- Bookcase
 
+//---- Bookcase
 /obj/structure/bookcase/manuals/xenoarchaeology
 	name = "Xenoarchaeology Manuals bookcase"
 
@@ -107,7 +106,6 @@ proc/setup_xenoarch()
 
 
 //---- Lockers and closets
-
 /obj/structure/closet/secure_closet/xenoarchaeologist
 	name = "Xenoarchaeologist's Locker" // Renamed to match other lockers. -Frenjo
 	//name = "Xenoarchaeologist Locker"
@@ -154,7 +152,6 @@ proc/setup_xenoarch()
 
 
 //---- Isolation room air alarms
-
 /obj/machinery/alarm/isolation
 	name = "Isolation room air control"
 	req_access = list(access_research)

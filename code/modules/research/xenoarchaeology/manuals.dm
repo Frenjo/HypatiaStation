@@ -1,4 +1,3 @@
-
 /obj/item/weapon/book/manual/excavation
 	name = "Out on the dig"
 	icon_state = "excavation"
@@ -111,6 +110,7 @@
 				</html>
 			"}
 
+
 /obj/item/weapon/book/manual/mass_spectrometry
 	name = "High power mass spectrometry, a comprehensive guide"
 	icon_state = "analysis"
@@ -181,6 +181,7 @@
 				</html>
 			"}
 
+
 /obj/item/weapon/book/manual/anomaly_spectroscopy
 	name = "Spectroscopy: Analysing the anomalies of the cosmos"
 	icon_state = "anomaly"
@@ -203,6 +204,7 @@
 				same! Why, look at the strides we're making in piercing the walls of bluespace or our steadily improving ability to clarify and stabilise subspace emissions; it's
 				certainly an exciting time to be alive. For the moment the Hydrolian hasn't seen two spatial anomalies alike but the day will come and it is soon, I can feel it.
 			"}
+
 
 /obj/item/weapon/book/manual/materials_chemistry_analysis
 	name = "Materials analysis and the chemical implications"
@@ -229,6 +231,7 @@
 				following the excavations at Paranol IV and consider how all of the scientific greats will come crawling back to basic paradigms of natural philosophy when they discover
 				a new element that defies classification. I defy you to classify it without reviving this once great field!
 			"}
+
 
 /obj/item/weapon/book/manual/anomaly_testing
 	name = "Anomalous materials and energies"
@@ -306,6 +309,7 @@
 				</body>
 				</html>
 			"}
+
 
 /obj/item/weapon/book/manual/stasis
 	name = "Cellular suspension, the new Cryogenics?"

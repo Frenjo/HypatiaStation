@@ -1,4 +1,3 @@
-
 /obj/mecha/working/hoverpod
 	name = "hover pod"
 	icon_state = "engineering_pod"
@@ -9,14 +8,14 @@
 /obj/mecha/working/hoverpod/dyndomove(direction)
 	if(!can_move)
 		return 0
-	if(src.pr_inertial_movement.active())
+	if(pr_inertial_movement.active())
 		return 0
 	if(!has_charge(step_energy_drain))
 		return 0
 	var/move_result = 0
 	if(hasInternalDamage(MECHA_INT_CONTROL_LOST))
 		move_result = mechsteprand()
-	else if(src.dir!=direction)
+	else if(src.dir != direction)
 		move_result = mechturn(direction)
 	else
 		move_result	= mechstep(direction)
@@ -39,16 +38,16 @@
 	return 1
 
 /obj/mecha/working/hoverpod/mechstep(direction)
-	var/result = step(src,direction)
+	var/result = step(src, direction)
 	if(result)
-		playsound(src,'sound/machines/hiss.ogg',40,1)
+		playsound(src, 'sound/machines/hiss.ogg', 40, 1)
 	return result
 
 
 /obj/mecha/working/hoverpod/mechsteprand()
 	var/result = step_rand(src)
 	if(result)
-		playsound(src,'sound/machines/hiss.ogg',40,1)
+		playsound(src, 'sound/machines/hiss.ogg', 40, 1)
 	return result
 
 /obj/effect/decal/mecha_wreckage/hoverpod

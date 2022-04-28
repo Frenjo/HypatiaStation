@@ -1,13 +1,12 @@
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // GPS Locater - locks into a radio frequency and tracks it
-
 /obj/item/device/beacon_locator
 	name = "locater device"
 	desc = "Used to scan and locate signals on a particular frequency according ."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "pinoff"	//pinonfar, pinonmedium, pinonclose, pinondirect, pinonnull
 	item_state = "electronic"
+
 	var/frequency = FREQUENCY_COMMON
 	var/scan_ticks = 0
 	var/obj/item/device/radio/target_radio
@@ -22,8 +21,8 @@
 
 /obj/item/device/beacon_locator/process()
 	if(target_radio)
-		dir = get_dir(src,target_radio)
-		switch(get_dist(src,target_radio))
+		dir = get_dir(src, target_radio)
+		switch(get_dist(src, target_radio))
 			if(0 to 3)
 				icon_state = "pinondirect"
 			if(4 to 10)
@@ -52,16 +51,16 @@
 						scan_ticks = 0
 						var/turf/T = get_turf(src)
 						if(target_radio)
-							T.visible_message("\icon[src] [src] [pick("chirps","chirrups","cheeps")] happily.")
+							T.visible_message("\icon[src] [src] [pick("chirps", "chirrups", "cheeps")] happily.")
 						else
-							T.visible_message("\icon[src] [src] [pick("chirps","chirrups","cheeps")] sadly.")
+							T.visible_message("\icon[src] [src] [pick("chirps", "chirrups", "cheeps")] sadly.")
 		else
 			icon_state = "pinoff"
 
-/obj/item/device/beacon_locator/attack_self(var/mob/user as mob)
+/obj/item/device/beacon_locator/attack_self(mob/user as mob)
 	return src.interact(user)
 
-/obj/item/device/beacon_locator/interact(var/mob/user as mob)
+/obj/item/device/beacon_locator/interact(mob/user as mob)
 	var/dat = "<b>Radio frequency tracker</b><br>"
 	dat += {"
 				<A href='byond://?src=\ref[src];reset_tracking=1'>Reset tracker</A><BR>
@@ -86,7 +85,7 @@
 		target_radio = null
 	else if(href_list["freq"])
 		var/new_frequency = (frequency + text2num(href_list["freq"]))
-		if (frequency < 1200 || frequency > 1600)
+		if(frequency < 1200 || frequency > 1600)
 			new_frequency = sanitize_frequency(new_frequency, 1499)
 		frequency = new_frequency
 

@@ -1,15 +1,16 @@
 /datum/artifact_effect/gassleeping
 	effecttype = "gassleeping"
+
 	var/max_pressure
 	var/target_percentage
 
 /datum/artifact_effect/gassleeping/New()
 	..()
 	effect = pick(EFFECT_TOUCH, EFFECT_AURA)
-	max_pressure = rand(115,1000)
-	effect_type = pick(6,7)
+	max_pressure = rand(115, 1000)
+	effect_type = pick(6, 7)
 
-/datum/artifact_effect/gassleeping/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/gassleeping/DoEffectTouch(mob/user)
 	if(holder)
 		var/turf/holder_loc = holder.loc
 		if(istype(holder_loc))

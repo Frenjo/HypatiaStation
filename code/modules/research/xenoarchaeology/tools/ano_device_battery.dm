@@ -1,8 +1,8 @@
-
 /obj/item/weapon/anobattery
 	name = "Anomaly power battery"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "anobattery0"
+
 	var/datum/artifact_effect/battery_effect
 	var/capacity = 200
 	var/stored_charge = 0
@@ -12,14 +12,16 @@
 	battery_effect = new()
 
 /obj/item/weapon/anobattery/proc/UpdateSprite()
-	var/p = (stored_charge/capacity)*100
+	var/p = (stored_charge/capacity) * 100
 	p = min(p, 100)
-	icon_state = "anobattery[round(p,25)]"
+	icon_state = "anobattery[round(p, 25)]"
+
 
 /obj/item/weapon/anodevice
 	name = "Anomaly power utilizer"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "anodev"
+
 	var/cooldown = 0
 	var/activated = 0
 	var/timing = 0
@@ -32,10 +34,10 @@
 	..()
 	processing_objects.Add(src)
 
-/obj/item/weapon/anodevice/attackby(var/obj/I as obj, var/mob/user as mob)
+/obj/item/weapon/anodevice/attackby(obj/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/anobattery))
 		if(!inserted_battery)
-			user << "\blue You insert the battery."
+			to_chat(user, SPAN_INFO("You insert the battery."))
 			user.drop_item()
 			I.loc = src
 			inserted_battery = I
@@ -43,10 +45,10 @@
 	else
 		return ..()
 
-/obj/item/weapon/anodevice/attack_self(var/mob/user as mob)
+/obj/item/weapon/anodevice/attack_self(mob/user as mob)
 	return src.interact(user)
 
-/obj/item/weapon/anodevice/interact(var/mob/user)
+/obj/item/weapon/anodevice/interact(mob/user)
 	user.set_machine(src)
 	var/dat = "<b>Anomalous Materials Energy Utiliser</b><br>"
 	if(inserted_battery)
@@ -93,7 +95,10 @@
 		cooldown -= 1
 		if(cooldown <= 0)
 			cooldown = 0
-			src.visible_message("\blue \icon[src] [src] chimes.", "\blue \icon[src] You hear something chime.")
+			visible_message(
+				SPAN_INFO("\icon[src] [src] chimes."),
+				SPAN_INFO("\icon[src] You hear something chime.")
+			)
 	else if(activated)
 		if(inserted_battery && inserted_battery.battery_effect)
 			//make sure the effect is active
@@ -129,7 +134,10 @@
 	if(activated)
 		activated = 0
 		timing = 0
-		src.visible_message("\blue \icon[src] [src] buzzes.", "\icon[src]\blue You hear something buzz.")
+		visible_message(
+			SPAN_INFO("\icon[src] [src] buzzes."),
+			SPAN_INFO("\icon[src] You hear something buzz.")
+		)
 
 		cooldown = archived_time / 2
 
@@ -137,7 +145,6 @@
 			inserted_battery.battery_effect.ToggleActivate(1)
 
 /obj/item/weapon/anodevice/Topic(href, href_list)
-
 	if(href_list["neg_changetime_max"])
 		time += -100
 		if(time > inserted_battery.capacity)
@@ -160,7 +167,7 @@
 		time += 100
 		if(time > inserted_battery.capacity)
 			time = inserted_battery.capacity
-		else if (time < 0)
+		else if(time < 0)
 			time = 0
 	if(href_list["startup"])
 		activated = 1
@@ -187,9 +194,9 @@
 	if(!inserted_battery)
 		icon_state = "anodev"
 		return
-	var/p = (inserted_battery.stored_charge/inserted_battery.capacity)*100
+	var/p = (inserted_battery.stored_charge/inserted_battery.capacity) * 100
 	p = min(p, 100)
-	icon_state = "anodev[round(p,25)]"
+	icon_state = "anodev[round(p, 25)]"
 
 /obj/item/weapon/anodevice/Destroy()
 	processing_objects.Remove(src)
