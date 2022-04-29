@@ -1,4 +1,4 @@
-var/global/list/obj/machinery/message_server/message_servers = list()
+/var/global/list/obj/machinery/message_server/message_servers = list()
 
 /datum/data_pda_msg
 	var/recipient = "Unspecified" //name of the person
@@ -82,7 +82,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 /obj/machinery/message_server/process()
 	//if(decryptkey == "password")
 	//	decryptkey = generateKey()
-	if(active && (stat & (BROKEN|NOPOWER)))
+	if(active && (stat & (BROKEN | NOPOWER)))
 		active = 0
 		return
 	update_icon()
@@ -102,13 +102,12 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	return
 
 /obj/machinery/message_server/update_icon()
-	if((stat & (BROKEN|NOPOWER)))
+	if((stat & (BROKEN | NOPOWER)))
 		icon_state = "server-nopower"
 	else if (!active)
 		icon_state = "server-off"
 	else
 		icon_state = "server-on"
-
 	return
 
 
@@ -169,7 +168,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	return list(variable, value, details)
 
 
-var/obj/machinery/blackbox_recorder/blackbox
+/var/obj/machinery/blackbox_recorder/blackbox
 
 /obj/machinery/blackbox_recorder
 	icon = 'icons/obj/stationobjs.dmi'
@@ -180,6 +179,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 100
+
 	var/list/messages = list()		//Stores messages of non-standard frequencies
 	var/list/messages_admin = list()
 
@@ -207,22 +207,22 @@ var/obj/machinery/blackbox_recorder/blackbox
 	var/turf/T = locate(1, 1, 2)
 	if(T)
 		blackbox = null
-		var/obj/machinery/blackbox_recorder/BR = new/obj/machinery/blackbox_recorder(T)
-		BR.msg_common = msg_common
-		BR.msg_science = msg_science
-		BR.msg_command = msg_command
-		BR.msg_medical = msg_medical
-		BR.msg_engineering = msg_engineering
-		BR.msg_security = msg_security
-		BR.msg_deathsquad = msg_deathsquad
-		BR.msg_syndicate = msg_syndicate
-		BR.msg_mining = msg_mining
-		BR.msg_cargo = msg_cargo
-		BR.feedback = feedback
-		BR.messages = messages
-		BR.messages_admin = messages_admin
-		if(blackbox != BR)
-			blackbox = BR
+		var/obj/machinery/blackbox_recorder/box = new/obj/machinery/blackbox_recorder(T)
+		box.msg_common = msg_common
+		box.msg_science = msg_science
+		box.msg_command = msg_command
+		box.msg_medical = msg_medical
+		box.msg_engineering = msg_engineering
+		box.msg_security = msg_security
+		box.msg_deathsquad = msg_deathsquad
+		box.msg_syndicate = msg_syndicate
+		box.msg_mining = msg_mining
+		box.msg_cargo = msg_cargo
+		box.feedback = feedback
+		box.messages = messages
+		box.messages_admin = messages_admin
+		if(blackbox != box)
+			blackbox = box
 	return ..()
 
 /obj/machinery/blackbox_recorder/proc/find_feedback_datum(variable)

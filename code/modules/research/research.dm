@@ -261,8 +261,9 @@ research holder datum.
 	w_class = 1.0
 	m_amt = 30
 	g_amt = 10
+
 	var/datum/tech/stored
 
 /obj/item/weapon/disk/tech_disk/New()
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
+	pixel_x = rand(-5.0, 5)
+	pixel_y = rand(-5.0, 5)

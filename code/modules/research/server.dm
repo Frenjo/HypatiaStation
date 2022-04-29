@@ -2,6 +2,11 @@
 	name = "R&D Server"
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "server"
+	idle_power_usage = 600
+	req_access = list(access_rd) //Only the R&D can change server settings.
+	light_color = "#a97faa"
+
+	var/delay = 10
 	var/datum/research/files
 	var/health = 100
 	var/list/id_with_upload = list()		//List of R&D consoles with upload to server access.
@@ -12,11 +17,6 @@
 	//var/heat_gen = 100
 	//var/heating_power = 40000
 	var/operating_temperature = 100 + T0C
-	idle_power_usage = 600
-	var/delay = 10
-	req_access = list(access_rd) //Only the R&D can change server settings.
-
-	light_color = "#a97faa"
 
 /obj/machinery/r_n_d/server/New()
 	..()
@@ -103,7 +103,7 @@
 		C.files.RefreshResearch()
 
 /obj/machinery/r_n_d/server/proc/produce_heat(/*heat_amt*/new_temperature)
-	if(!(stat & (NOPOWER|BROKEN))) //Blatently stolen from space heater.
+	if(!(stat & (NOPOWER | BROKEN))) //Blatently stolen from space heater.
 		var/turf/simulated/L = loc
 		if(istype(L))
 			var/datum/gas_mixture/env = L.return_air()
@@ -199,6 +199,7 @@
 	name = "R&D Server Controller"
 	icon_state = "rdcomp"
 	circuit = /obj/item/weapon/circuitboard/rdservercontrol
+
 	var/screen = RDSCONTROL_SCREEN_MAIN_MENU
 	var/obj/machinery/r_n_d/server/temp_server
 	var/list/servers = list()
@@ -277,7 +278,7 @@
 	return
 
 /obj/machinery/computer/rdservercontrol/attack_hand(mob/user as mob)
-	if(stat & (BROKEN|NOPOWER))
+	if(stat & (BROKEN | NOPOWER))
 		return
 	user.set_machine(src)
 	var/dat = ""
