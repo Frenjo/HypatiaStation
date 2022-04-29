@@ -1,4 +1,3 @@
-
 /datum/reagent/coolant
 	name = "Coolant"
 	id = "coolant"
@@ -14,18 +13,18 @@
 	result_amount = 3
 
 
-
 /obj/structure/reagent_dispensers/coolanttank
 	name = "coolant tank"
 	desc = "A tank of industrial coolant"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "coolanttank"
 	amount_per_transfer_from_this = 10
-	New()
-		..()
-		reagents.add_reagent("coolant",1000)
 
-/obj/structure/reagent_dispensers/coolanttank/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/reagent_dispensers/coolanttank/New()
+	..()
+	reagents.add_reagent("coolant", 1000)
+
+/obj/structure/reagent_dispensers/coolanttank/bullet_act(obj/item/projectile/Proj)
 	if(istype(Proj, /obj/item/projectile/energy) || istype(Proj, /obj/item/projectile/bullet))
 		if(!istype(Proj, /obj/item/projectile/energy/beam/laser/tag) && !istype(Proj, /obj/item/projectile/energy/beam/laser/practice))
 			explode()
@@ -47,9 +46,9 @@
 
 	var/datum/gas_mixture/env = src.loc.return_air()
 	if(env)
-		if (reagents.total_volume > 750)
+		if(reagents.total_volume > 750)
 			env.temperature = 0
-		else if (reagents.total_volume > 500)
+		else if(reagents.total_volume > 500)
 			env.temperature -= 100
 		else
 			env.temperature -= 50

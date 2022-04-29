@@ -13,11 +13,11 @@
 	var/dissonance_spread = 1		//proportion of the tile that is affected by this find
 									//used in conjunction with analysis machines to determine correct suspension field type
 
-/datum/find/New(var/digsite, var/exc_req)
+/datum/find/New(digsite, exc_req)
 	excavation_required = exc_req
 	find_type = get_random_find_type(digsite)
-	clearance_range = rand(2,6)
-	dissonance_spread = rand(1500,2500) / 100
+	clearance_range = rand(2, 6)
+	dissonance_spread = rand(1500, 2500) / 100
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Strange rocks
@@ -28,11 +28,12 @@
 	desc = "Seems to have some unusal strata evident throughout it."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "strange"
-	var/obj/item/weapon/inside
-	var/method = 0// 0 = fire, 1 = brush, 2 = pick
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 5)
 
-/obj/item/weapon/ore/strangerock/New(loc, var/inside_item_type = 0)
+	var/obj/item/weapon/inside
+	var/method = 0// 0 = fire, 1 = brush, 2 = pick
+
+/obj/item/weapon/ore/strangerock/New(loc, inside_item_type = 0)
 	..(loc)
 
 	//method = rand(0,2)
@@ -46,33 +47,33 @@
 		src.visible_message("The [src] crumbles away, leaving some dust and gravel behind.")*/
 
 /obj/item/weapon/ore/strangerock/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/weldingtool/))
+	if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/w = W
 		if(w.isOn())
 			if(w.get_fuel() >= 4 && !src.method)
 				if(inside)
 					inside.loc = get_turf(src)
 					for(var/mob/M in viewers(world.view, user))
-						M.show_message("<span class='info'>[src] burns away revealing [inside].</span>",1)
+						M.show_message(SPAN_INFO("[src] burns away revealing [inside]."), 1)
 				else
 					for(var/mob/M in viewers(world.view, user))
-						M.show_message("<span class='info'>[src] burns away into nothing.</span>",1)
+						M.show_message(SPAN_INFO("[src] burns away into nothing."), 1)
 				qdel(src)
 				w.remove_fuel(4)
 			else
 				for(var/mob/M in viewers(world.view, user))
-					M.show_message("<span class='info'>A few sparks fly off [src], but nothing else happens.</span>",1)
+					M.show_message(SPAN_INFO("A few sparks fly off [src], but nothing else happens."), 1)
 				w.remove_fuel(1)
 			return
 
-	else if(istype(W,/obj/item/device/core_sampler/))
+	else if(istype(W,/obj/item/device/core_sampler))
 		var/obj/item/device/core_sampler/S = W
 		S.sample_item(src, user)
 		return
 
 	..()
 	if(prob(33))
-		src.visible_message("<span class='warning'>[src] crumbles away, leaving some dust and gravel behind.</span>")
+		visible_message(SPAN_WARNING("[src] crumbles away, leaving some dust and gravel behind."))
 		qdel(src)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -84,14 +85,14 @@
 	icon_state = "ano01"
 	var/find_type = 0
 
-/obj/item/weapon/archaeological_find/New(loc, var/new_item_type)
+/obj/item/weapon/archaeological_find/New(loc, new_item_type)
 	if(new_item_type)
 		find_type = new_item_type
 	else
-		find_type = rand(1,34)	//update this when you add new find types
+		find_type = rand(1, 34)	//update this when you add new find types
 
 	var/item_type = "object"
-	icon_state = "unknown[rand(1,4)]"
+	icon_state = "unknown[rand(1, 4)]"
 	var/additional_desc = ""
 	var/obj/item/weapon/new_item
 	var/source_material = ""
@@ -100,8 +101,8 @@
 	var/material_descriptor = ""
 	var/apply_prefix = 1
 	if(prob(40))
-		material_descriptor = pick("rusted ","dusty ","archaic ","fragile ")
-	source_material = pick("cordite","quadrinium","steel","titanium","aluminium","ferritic-alloy","plasteel","duranium")
+		material_descriptor = pick("rusted ", "dusty ", "archaic ", "fragile ")
+	source_material = pick("cordite", "quadrinium", "steel", "titanium", "aluminium", "ferritic-alloy", "plasteel", "duranium")
 
 	var/talkative = 0
 	if(prob(5))
@@ -118,7 +119,7 @@
 			new_item.icon_state = "bowl"
 			apply_image_decorations = 1
 			if(prob(20))
-				additional_desc = "There appear to be [pick("dark","faintly glowing","pungent","bright")] [pick("red","purple","green","blue")] stains inside."
+				additional_desc = "There appear to be [pick("dark", "faintly glowing", "pungent", "bright")] [pick("red", "purple", "green", "blue")] stains inside."
 		if(2)
 			item_type = "urn"
 			new_item = new /obj/item/weapon/reagent_containers/glass(src.loc)
@@ -126,9 +127,9 @@
 			new_item.icon_state = "urn"
 			apply_image_decorations = 1
 			if(prob(20))
-				additional_desc = "It [pick("whispers faintly","makes a quiet roaring sound","whistles softly","thrums quietly","throbs")] if you put it to your ear."
+				additional_desc = "It [pick("whispers faintly", "makes a quiet roaring sound", "whistles softly", "thrums quietly", "throbs")] if you put it to your ear."
 		if(3)
-			item_type = "[pick("fork","spoon","knife")]"
+			item_type = "[pick("fork", "spoon", "knife")]"
 			if(prob(25))
 				new_item = new /obj/item/weapon/kitchen/utensil/fork(src.loc)
 			else if(prob(50))
@@ -141,9 +142,9 @@
 		if(4)
 			item_type = "statuette"
 			icon_state = "statuette"
-			additional_desc = "It depicts a [pick("small","ferocious","wild","pleasing","hulking")] \
-			[pick("alien figure","rodent-like creature","reptilian alien","primate","unidentifiable object")] \
-			[pick("performing unspeakable acts","posing heroically","in a fetal position","cheering","sobbing","making a plaintive gesture","making a rude gesture")]."
+			additional_desc = "It depicts a [pick("small", "ferocious", "wild", "pleasing", "hulking")] \
+			[pick("alien figure", "rodent-like creature", "reptilian alien", "primate", "unidentifiable object")] \
+			[pick("performing unspeakable acts", "posing heroically", "in a fetal position", "cheering", "sobbing", "making a plaintive gesture", "making a rude gesture")]."
 		if(5)
 			item_type = "instrument"
 			icon_state = "instrument"
@@ -154,11 +155,11 @@
 				"You wonder what it sounds like",\
 				"You wonder what kind of music was made with it")]."
 		if(6)
-			item_type = "[pick("bladed knife","serrated blade","sharp cutting implement")]"
+			item_type = "[pick("bladed knife", "serrated blade", "sharp cutting implement")]"
 			new_item = new /obj/item/weapon/kitchenknife(src.loc)
 			additional_desc = "[pick("It doesn't look safe.",\
 			"It looks wickedly jagged",\
-			"There appear to be [pick("dark red","dark purple","dark green","dark blue")] stains along the edges")]."
+			"There appear to be [pick("dark red", "dark purple", "dark green", "dark blue")] stains along the edges")]."
 		if(7)
 			//assuming there are 10 types of coins
 			var/chance = 10
@@ -175,16 +176,16 @@
 		if(8)
 			item_type = "handcuffs"
 			new_item = new /obj/item/weapon/handcuffs(src.loc)
-			additional_desc = "[pick("They appear to be for securing two things together","Looks kinky","Doesn't seem like a children's toy")]."
+			additional_desc = "[pick("They appear to be for securing two things together", "Looks kinky", "Doesn't seem like a children's toy")]."
 		if(9)
-			item_type = "[pick("wicked","evil","byzantine","dangerous")] looking [pick("device","contraption","thing","trap")]"
+			item_type = "[pick("wicked", "evil", "byzantine", "dangerous")] looking [pick("device", "contraption", "thing", "trap")]"
 			apply_prefix = 0
 			new_item = new /obj/item/weapon/legcuffs/beartrap(src.loc)
 			additional_desc = "[pick("It looks like it could take a limb off",\
 			"Could be some kind of animal trap",\
-			"There appear to be [pick("dark red","dark purple","dark green","dark blue")] stains along part of it")]."
+			"There appear to be [pick("dark red", "dark purple", "dark green", "dark blue")] stains along part of it")]."
 		if(10)
-			item_type = "[pick("cylinder","tank","chamber")]"
+			item_type = "[pick("cylinder", "tank", "chamber")]"
 			new_item = new /obj/item/weapon/lighter(src.loc)
 			additional_desc = "There is a tiny device attached."
 			if(prob(30))
@@ -197,15 +198,15 @@
 			if(prob(30))
 				apply_image_decorations = 1
 		if(12)
-			item_type = "[pick("cylinder","tank","chamber")]"
+			item_type = "[pick("cylinder", "tank", "chamber")]"
 			if(prob(25))
 				new_item = new /obj/item/weapon/tank/air(src.loc)
 			else if(prob(50))
 				new_item = new /obj/item/weapon/tank/anesthetic(src.loc)
 			else
 				new_item = new /obj/item/weapon/tank/plasma(src.loc)
-			icon_state = pick("oxygen","oxygen_fr","oxygen_f","plasma","anesthetic")
-			additional_desc = "It [pick("gloops","sloshes")] slightly when you shake it."
+			icon_state = pick("oxygen", "oxygen_fr", "oxygen_f", "plasma", "anesthetic")
+			additional_desc = "It [pick("gloops", "sloshes")] slightly when you shake it."
 		if(13)
 			item_type = "tool"
 			if(prob(25))
@@ -216,7 +217,7 @@
 				new_item = new /obj/item/weapon/screwdriver(src.loc)
 			additional_desc = "[pick("It doesn't look safe.",\
 			"You wonder what it was used for",\
-			"There appear to be [pick("dark red","dark purple","dark green","dark blue")] stains on it")]."
+			"There appear to be [pick("dark red", "dark purple", "dark green", "dark blue")] stains on it")]."
 		if(14)
 			apply_material_decorations = 0
 			var/list/possible_spawns = list()
@@ -234,7 +235,7 @@
 
 			var/new_type = pick(possible_spawns)
 			new_item = new new_type(src.loc)
-			new_item:amount = rand(5,45)
+			new_item:amount = rand(5, 45)
 		if(15)
 			if(prob(75))
 				new_item = new /obj/item/weapon/pen(src.loc)
@@ -256,7 +257,7 @@
 			else
 				item_type = "smooth red crystal"
 				icon_state = "ore"
-			additional_desc = pick("It shines faintly as it catches the light.","It appears to have a faint inner glow.","It seems to draw you inward as you look it at.","Something twinkles faintly as you look at it.","It's mesmerizing to behold.")
+			additional_desc = pick("It shines faintly as it catches the light.", "It appears to have a faint inner glow.", "It seems to draw you inward as you look it at.", "Something twinkles faintly as you look at it.", "It's mesmerizing to behold.")
 
 			apply_material_decorations = 0
 			if(prob(10))
@@ -270,7 +271,7 @@
 		if(18)
 			new_item = new /obj/item/device/radio/beacon(src.loc)
 			talkative = 0
-			new_item.icon_state = "unknown[rand(1,4)]"
+			new_item.icon_state = "unknown[rand(1, 4)]"
 			new_item.icon = 'icons/obj/xenoarchaeology.dmi'
 			new_item.desc = ""
 		if(19)
@@ -332,7 +333,7 @@
 			if(spawn_type)
 				var/obj/item/weapon/gun/energy/new_gun = new spawn_type(src.loc)
 				new_item = new_gun
-				new_item.icon_state = "egun[rand(1,6)]"
+				new_item.icon_state = "egun[rand(1, 6)]"
 				new_gun.desc = "This is an antique energy weapon, you're not sure if it will fire or not."
 
 				//5% chance to explode when first fired
@@ -352,7 +353,7 @@
 			//revolver
 			var/obj/item/weapon/gun/projectile/new_gun = new /obj/item/weapon/gun/projectile(src.loc)
 			new_item = new_gun
-			new_item.icon_state = "gun[rand(1,4)]"
+			new_item.icon_state = "gun[rand(1, 4)]"
 			new_item.icon = 'icons/obj/xenoarchaeology.dmi'
 
 			//33% chance to be able to reload the gun with human ammunition
@@ -360,9 +361,9 @@
 				new_gun.caliber = "999"
 
 			//33% chance to fill it with a random amount of bullets
-			new_gun.max_shells = rand(1,12)
+			new_gun.max_shells = rand(1, 12)
 			if(prob(33))
-				var/num_bullets = rand(1,new_gun.max_shells)
+				var/num_bullets = rand(1, new_gun.max_shells)
 				if(num_bullets < new_gun.loaded.len)
 					new_gun.loaded.Cut()
 					for(var/i = 1, i <= num_bullets, i++)
@@ -428,63 +429,66 @@
 			icon = 'icons/effects/blood.dmi'
 			icon_state = "remains"
 			additional_desc = pick("They appear almost human.",\
-			"They are contorted in a most gruesome way.",\
-			"They look almost peaceful.",\
-			"The bones are yellowing and old, but remarkably well preserved.",\
-			"The bones are scored by numerous burns and partially melted.",\
-			"The are battered and broken, in some cases less than splinters are left.",\
-			"The mouth is wide open in a death rictus, the victim would appear to have died screaming.")
+				"They are contorted in a most gruesome way.",\
+				"They look almost peaceful.",\
+				"The bones are yellowing and old, but remarkably well preserved.",\
+				"The bones are scored by numerous burns and partially melted.",\
+				"The are battered and broken, in some cases less than splinters are left.",\
+				"The mouth is wide open in a death rictus, the victim would appear to have died screaming."\
+			)
 			apply_image_decorations = 0
 			apply_material_decorations = 0
 		if(33)
 			//robot remains
 			apply_prefix = 0
-			item_type = "[pick("mechanical","robotic","cyborg")] [pick("remains","chassis","debris")]"
+			item_type = "[pick("mechanical", "robotic", "cyborg")] [pick("remains", "chassis", "debris")]"
 			icon = 'icons/effects/blood.dmi'
 			icon_state = "remainsrobot"
 			additional_desc = pick("Almost mistakeable for the remains of a modern cyborg.",\
-			"They are barely recognisable as anything other than a pile of waste metals.",\
-			"It looks like the battered remains of an ancient robot chassis.",\
-			"The chassis is rusting and old, but remarkably well preserved.",\
-			"The chassis is scored by numerous burns and partially melted.",\
-			"The chassis is battered and broken, in some cases only chunks of metal are left.",\
-			"A pile of wires and crap metal that looks vaguely robotic.")
+				"They are barely recognisable as anything other than a pile of waste metals.",\
+				"It looks like the battered remains of an ancient robot chassis.",\
+				"The chassis is rusting and old, but remarkably well preserved.",\
+				"The chassis is scored by numerous burns and partially melted.",\
+				"The chassis is battered and broken, in some cases only chunks of metal are left.",\
+				"A pile of wires and crap metal that looks vaguely robotic."\
+			)
 			apply_image_decorations = 0
 			apply_material_decorations = 0
 		if(34)
 			//xenos remains
 			apply_prefix = 0
-			item_type = "alien [pick("remains","skeleton")]"
+			item_type = "alien [pick("remains", "skeleton")]"
 			icon = 'icons/effects/blood.dmi'
 			icon_state = "remainsxeno"
 			additional_desc = pick("It looks vaguely reptilian, but with more teeth.",\
-			"They are faintly unsettling.",\
-			"There is a faint aura of unease about them.",\
-			"The bones are yellowing and old, but remarkably well preserved.",\
-			"The bones are scored by numerous burns and partially melted.",\
-			"The are battered and broken, in some cases less than splinters are left.",\
-			"This creature would have been twisted and monstrous when it was alive.",\
-			"It doesn't look human.")
+				"They are faintly unsettling.",\
+				"There is a faint aura of unease about them.",\
+				"The bones are yellowing and old, but remarkably well preserved.",\
+				"The bones are scored by numerous burns and partially melted.",\
+				"The are battered and broken, in some cases less than splinters are left.",\
+				"This creature would have been twisted and monstrous when it was alive.",\
+				"It doesn't look human."\
+			)
 			apply_image_decorations = 0
 			apply_material_decorations = 0
 
 	var/decorations = ""
 	if(apply_material_decorations)
-		source_material = pick("cordite","quadrinium","steel","titanium","aluminium","ferritic-alloy","plasteel","duranium")
-		desc = "A [material_descriptor ? "[material_descriptor] " : ""][item_type] made of [source_material], all craftsmanship is of [pick("the lowest","low","average","high","the highest")] quality."
+		source_material = pick("cordite", "quadrinium", "steel", "titanium", "aluminium", "ferritic-alloy", "plasteel", "duranium")
+		desc = "A [material_descriptor ? "[material_descriptor] " : ""][item_type] made of [source_material], all craftsmanship is of [pick("the lowest", "low", "average", "high", "the highest")] quality."
 
 		var/list/descriptors = list()
 		if(prob(30))
-			descriptors.Add("is encrusted with [pick("","synthetic ","multi-faceted ","uncut ","sparkling ") + pick("rubies","emeralds","diamonds","opals","lapiz lazuli")]")
+			descriptors.Add("is encrusted with [pick("", "synthetic ", "multi-faceted ", "uncut ", "sparkling ") + pick("rubies", "emeralds", "diamonds", "opals", "lapiz lazuli")]")
 		if(prob(30))
-			descriptors.Add("is studded with [pick("gold","silver","aluminium","titanium")]")
+			descriptors.Add("is studded with [pick("gold", "silver", "aluminium", "titanium")]")
 		if(prob(30))
-			descriptors.Add("is encircled with bands of [pick("quadrinium","cordite","ferritic-alloy","plasteel","duranium")]")
+			descriptors.Add("is encircled with bands of [pick("quadrinium", "cordite", "ferritic-alloy", "plasteel", "duranium")]")
 		if(prob(30))
-			descriptors.Add("menaces with spikes of [pick("solid plasma","uranium","white pearl","black steel")]")
+			descriptors.Add("menaces with spikes of [pick("solid plasma", "uranium", "white pearl", "black steel")]")
 		if(descriptors.len > 0)
 			decorations = "It "
-			for(var/index=1, index <= descriptors.len, index++)
+			for(var/index = 1, index <= descriptors.len, index++)
 				if(index > 1)
 					if(index == descriptors.len)
 						decorations += " and "
@@ -497,12 +501,12 @@
 
 	var/engravings = ""
 	if(apply_image_decorations)
-		engravings = "[pick("Engraved","Carved","Etched")] on the item is [pick("an image of","a frieze of","a depiction of")] \
-		[pick("an alien humanoid","an amorphic blob","a short, hairy being","a rodent-like creature","a robot","a primate","a reptilian alien","an unidentifiable object","a statue","a starship","unusual devices","a structure")] \
-		[pick("surrounded by","being held aloft by","being struck by","being examined by","communicating with")] \
-		[pick("alien humanoids","amorphic blobs","short, hairy beings","rodent-like creatures","robots","primates","reptilian aliens")]"
+		engravings = "[pick("Engraved", "Carved", "Etched")] on the item is [pick("an image of", "a frieze of", "a depiction of")] \
+		[pick("an alien humanoid", "an amorphic blob", "a short, hairy being", "a rodent-like creature", "a robot", "a primate", "a reptilian alien", "an unidentifiable object", "a statue", "a starship", "unusual devices", "a structure")] \
+		[pick("surrounded by", "being held aloft by", "being struck by", "being examined by", "communicating with")] \
+		[pick("alien humanoids", "amorphic blobs", "short, hairy beings", "rodent-like creatures", "robots", "primates", "reptilian aliens")]"
 		if(prob(50))
-			engravings += ", [pick("they seem to be enjoying themselves","they seem extremely angry","they look pensive","they are making gestures of supplication","the scene is one of subtle horror","the scene conveys a sense of desperation","the scene is completely bizarre")]"
+			engravings += ", [pick("they seem to be enjoying themselves", "they seem extremely angry", "they look pensive", "they are making gestures of supplication", "the scene is one of subtle horror", "the scene conveys a sense of desperation", "the scene is completely bizarre")]"
 		engravings += "."
 
 		if(desc)
@@ -510,7 +514,7 @@
 		desc += engravings
 
 	if(apply_prefix)
-		name = "[pick("Strange","Ancient","Alien","")] [item_type]"
+		name = "[pick("Strange", "Ancient", "Alien", "")] [item_type]"
 	else
 		name = item_type
 
@@ -518,14 +522,14 @@
 		desc += " "
 	desc += additional_desc
 	if(!desc)
-		desc = "This item is completely [pick("alien","bizarre")]."
+		desc = "This item is completely [pick("alien", "bizarre")]."
 
 	//icon and icon_state should have already been set
 	if(new_item)
 		new_item.name = name
 		new_item.desc = src.desc
 
-		if(talkative && istype(new_item,/obj/item/weapon))
+		if(talkative && istype(new_item, /obj/item/weapon))
 			new_item.listening_to_players = 1
 			if(prob(25))
 				new_item.speaking_to_players = 1

@@ -1,4 +1,3 @@
-
 #define ARCHAEO_BOWL 1
 #define ARCHAEO_URN 2
 #define ARCHAEO_CUTLERY 3

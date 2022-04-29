@@ -1,7 +1,6 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // fossils
-
 /obj/item/weapon/fossil
 	name = "Fossil"
 	icon = 'icons/obj/xenoarchaeology.dmi'
@@ -36,7 +35,7 @@
 	desc = "It's a fossilised, horned skull."
 
 /obj/item/weapon/fossil/skull/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/fossil/bone))
+	if(istype(W, /obj/item/weapon/fossil/bone))
 		var/obj/o = new /obj/skeleton(get_turf(src))
 		var/a = new /obj/item/weapon/fossil/bone
 		var/b = new src.type
@@ -56,37 +55,40 @@
 	var/plaque_contents = "Unnamed alien creature"
 
 /obj/skeleton/New()
-	src.breq = rand(6)+3
-	src.desc = "An incomplete skeleton, looks like it could use [src.breq-src.bnum] more bones."
+	breq = rand(6) + 3
+	desc = "An incomplete skeleton, looks like it could use [breq - bnum] more bones."
 
 /obj/skeleton/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/fossil/bone))
+	if(istype(W, /obj/item/weapon/fossil/bone))
 		if(!bstate)
 			bnum++
-			src.contents.Add(new/obj/item/weapon/fossil/bone)
+			contents.Add(new/obj/item/weapon/fossil/bone)
 			qdel(W)
-			if(bnum==breq)
+			if(bnum == breq)
 				usr = user
 				icon_state = "skel"
-				src.bstate = 1
-				src.density = 1
-				src.name = "alien skeleton display"
-				if(src.contents.Find(/obj/item/weapon/fossil/skull/horned))
-					src.desc = "A creature made of [src.contents.len-1] assorted bones and a horned skull. The plaque reads \'[plaque_contents]\'."
+				bstate = 1
+				density = 1
+				name = "alien skeleton display"
+				if(contents.Find(/obj/item/weapon/fossil/skull/horned))
+					desc = "A creature made of [contents.len - 1] assorted bones and a horned skull. The plaque reads \'[plaque_contents]\'."
 				else
-					src.desc = "A creature made of [src.contents.len-1] assorted bones and a skull. The plaque reads \'[plaque_contents]\'."
+					desc = "A creature made of [contents.len - 1] assorted bones and a skull. The plaque reads \'[plaque_contents]\'."
 			else
-				src.desc = "Incomplete skeleton, looks like it could use [src.breq-src.bnum] more bones."
-				user << "Looks like it could use [src.breq-src.bnum] more bones."
+				desc = "Incomplete skeleton, looks like it could use [breq - bnum] more bones."
+				to_chat(user, "Looks like it could use [breq - bnum] more bones.")
 		else
 			..()
-	else if(istype(W,/obj/item/weapon/pen))
-		plaque_contents = input("What would you like to write on the plaque:","Skeleton plaque","")
-		user.visible_message("[user] writes something on the base of [src].","You relabel the plaque on the base of \icon[src] [src].")
-		if(src.contents.Find(/obj/item/weapon/fossil/skull/horned))
-			src.desc = "A creature made of [src.contents.len-1] assorted bones and a horned skull. The plaque reads \'[plaque_contents]\'."
+	else if(istype(W, /obj/item/weapon/pen))
+		plaque_contents = input("What would you like to write on the plaque:", "Skeleton plaque", "")
+		user.visible_message(
+			"[user] writes something on the base of [src].",
+			"You relabel the plaque on the base of \icon[src] [src]."
+		)
+		if(contents.Find(/obj/item/weapon/fossil/skull/horned))
+			desc = "A creature made of [contents.len - 1] assorted bones and a horned skull. The plaque reads \'[plaque_contents]\'."
 		else
-			src.desc = "A creature made of [src.contents.len-1] assorted bones and a skull. The plaque reads \'[plaque_contents]\'."
+			desc = "A creature made of [contents.len - 1] assorted bones and a skull. The plaque reads \'[plaque_contents]\'."
 	else
 		..()
 
@@ -102,4 +104,4 @@
 	desc = "It's fossilised plant remains."
 
 /obj/item/weapon/fossil/plant/New()
-	icon_state = "plant[rand(1,4)]"
+	icon_state = "plant[rand(1, 4)]"

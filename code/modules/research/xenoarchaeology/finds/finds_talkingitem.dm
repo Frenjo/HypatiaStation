@@ -101,8 +101,8 @@
 		if(istype(M, /mob/new_player))
 			continue
 		if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
-			listening|=M
+			listening |= M
 
 	for(var/mob/M in listening)
-		M << "<b>[src]</b> reverberates, \blue\"[msg]\""
+		to_chat(M, "<b>[src]</b> reverberates, \blue\"[msg]\"")
 	lastsaid = world.timeofday + rand(300, 800)

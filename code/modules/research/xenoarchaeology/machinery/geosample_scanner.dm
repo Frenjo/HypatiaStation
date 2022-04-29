@@ -1,4 +1,3 @@
-
 /obj/machinery/radiocarbon_spectrometer
 	name = "Radiocarbon spectrometer"
 	desc = "A specialised, complex scanner for gleaning information on all manner of small things."
@@ -60,15 +59,15 @@
 	coolant_reagents_purity["coolant"] = 1
 	coolant_reagents_purity["adminordrazine"] = 2
 
-/obj/machinery/radiocarbon_spectrometer/attack_hand(var/mob/user as mob)
+/obj/machinery/radiocarbon_spectrometer/attack_hand(mob/user as mob)
 	ui_interact(user)
 
-/obj/machinery/radiocarbon_spectrometer/attackby(var/obj/I as obj, var/mob/user as mob)
+/obj/machinery/radiocarbon_spectrometer/attackby(obj/I as obj, mob/user as mob)
 	if(scanning)
-		user << "<span class='warning'>You can't do that while [src] is scanning!</span>"
+		to_chat(user, SPAN_WARNING("You can't do that while [src] is scanning!"))
 	else
 		if(istype(I, /obj/item/stack/nanopaste))
-			var/choice = alert("What do you want to do with the nanopaste?","Radiometric Scanner","Scan nanopaste","Fix seal integrity")
+			var/choice = alert("What do you want to do with the nanopaste?", "Radiometric Scanner", "Scan nanopaste", "Fix seal integrity")
 			if(choice == "Fix seal integrity")
 				var/obj/item/stack/nanopaste/N = I
 				var/amount_used = min(N.amount, 10 - scanner_seal_integrity / 10)
@@ -76,19 +75,19 @@
 				scanner_seal_integrity = round(scanner_seal_integrity + amount_used * 10)
 				return
 		if(istype(I, /obj/item/weapon/reagent_containers/glass))
-			var/choice = alert("What do you want to do with the container?","Radiometric Scanner","Add coolant","Empty coolant","Scan container")
+			var/choice = alert("What do you want to do with the container?", "Radiometric Scanner", "Add coolant", "Empty coolant", "Scan container")
 			if(choice == "Add coolant")
 				var/obj/item/weapon/reagent_containers/glass/G = I
 				var/amount_transferred = min(src.reagents.maximum_volume - src.reagents.total_volume, G.reagents.total_volume)
 				G.reagents.trans_to(src, amount_transferred)
-				user << "<span class='info'>You empty [amount_transferred]u of coolant into [src].</span>"
+				to_chat(user, SPAN_INFO("You empty [amount_transferred]u of coolant into [src]."))
 				update_coolant()
 				return
 			else if(choice == "Empty coolant")
 				var/obj/item/weapon/reagent_containers/glass/G = I
 				var/amount_transferred = min(G.reagents.maximum_volume - G.reagents.total_volume, src.reagents.total_volume)
 				src.reagents.trans_to(G, amount_transferred)
-				user << "<span class='info'>You remove [amount_transferred]u of coolant from [src].</span>"
+				to_chat(user, SPAN_INFO("You remove [amount_transferred]u of coolant from [src]."))
 				update_coolant()
 				return
 		user.drop_item()
@@ -100,8 +99,8 @@
 	fresh_coolant = 0
 	coolant_purity = 0
 	var/num_reagent_types = 0
-	for (var/datum/reagent/current_reagent in src.reagents.reagent_list)
-		if (!current_reagent)
+	for(var/datum/reagent/current_reagent in src.reagents.reagent_list)
+		if(!current_reagent)
 			continue
 		var/cur_purity = coolant_reagents_purity[current_reagent.id]
 		if(!cur_purity)
@@ -114,8 +113,7 @@
 	if(total_purity && fresh_coolant)
 		coolant_purity = total_purity / fresh_coolant
 
-/obj/machinery/radiocarbon_spectrometer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
-
+/obj/machinery/radiocarbon_spectrometer/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	if(user.stat)
 		return
 
@@ -147,9 +145,9 @@
 	
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)	
-	if (!ui)
+	if(!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "geoscanner.tmpl", "High Res Radiocarbon Spectrometer", 900, 825)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)		
@@ -231,16 +229,16 @@
 			//emergency stop if seal integrity reaches 0
 			if(scanner_seal_integrity <= 0 || (scanner_temperature >= 1273 && !rad_shield))
 				stop_scanning()
-				src.visible_message("\blue \icon[src] buzzes unhappily. It has failed mid-scan!", 2)
+				src.visible_message(SPAN_INFO("\icon[src] buzzes unhappily. It has failed mid-scan!"), 2)
 
 			if(prob(5))
-				src.visible_message("\blue \icon[src] [pick("whirrs","chuffs","clicks")][pick(" excitedly"," energetically"," busily")].", 2)
+				src.visible_message(SPAN_INFO("\icon[src] [pick("whirrs", "chuffs", "clicks")][pick(" excitedly", " energetically", " busily")]."), 2)
 	else
 		//gradually cool down over time
 		if(scanner_temperature > 0)
 			scanner_temperature = max(scanner_temperature - 5 - 10 * rand(), 0)
 		if(prob(0.75))
-			src.visible_message("\blue \icon[src] [pick("plinks","hisses")][pick(" quietly"," softly"," sadly"," plaintively")].", 2)
+			src.visible_message(SPAN_INFO("\icon[src] [pick("plinks", "hisses")][pick(" quietly", " softly", " sadly", " plaintively")]."), 2)
 	last_process_worldtime = world.time
 
 /obj/machinery/radiocarbon_spectrometer/proc/stop_scanning()
@@ -258,7 +256,7 @@
 		used_coolant = 0
 
 /obj/machinery/radiocarbon_spectrometer/proc/complete_scan()
-	src.visible_message("\blue \icon[src] makes an insistent chime.", 2)
+	src.visible_message(SPAN_INFO("\icon[src] makes an insistent chime."), 2)
 
 	if(scanned_item)
 		//create report
@@ -323,7 +321,7 @@
 		scanned_item = null
 
 /obj/machinery/radiocarbon_spectrometer/Topic(href, href_list)
-	if(stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER | BROKEN))
 		return 0 // don't update UIs attached to this object
 
 	if(href_list["scanItem"])
@@ -334,12 +332,12 @@
 				if(scanner_seal_integrity > 0)
 					scanner_progress = 0
 					scanning = 1
-					t_left_radspike = pick(5,10,15)
-					usr << "<span class='notice'>Scan initiated.</span>"
+					t_left_radspike = pick(5, 10, 15)
+					to_chat(usr, SPAN_NOTICE("Scan initiated."))
 				else
-					usr << "<span class='warning'>Could not initiate scan, seal requires replacing.</span>"
+					to_chat(usr, SPAN_WARNING("Could not initiate scan, seal requires replacing."))
 			else
-				usr << "<span class='warning'>Insert an item to scan.</span>"
+				to_chat(usr, SPAN_WARNING("Insert an item to scan."))
 
 	if(href_list["maserWavelength"])
 		maser_wavelength = max(min(maser_wavelength + 1000 * text2num(href_list["maserWavelength"]), 10000), 1)

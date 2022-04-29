@@ -1,4 +1,3 @@
-
 /obj/machinery/artifact_analyser
 	name = "Anomaly Analyser"
 	desc = "Studies the emissions of anomalous materials to discover their uses."
@@ -6,6 +5,7 @@
 	icon_state = "isolator"
 	anchored = 1
 	density = 1
+
 	var/scan_in_progress = 0
 	var/scan_num = 0
 	var/obj/scanned_obj
@@ -25,12 +25,12 @@
 	if(!owned_scanner)
 		owned_scanner = locate(/obj/machinery/artifact_scanpad) in orange(1, src)
 
-/obj/machinery/artifact_analyser/attack_hand(var/mob/user as mob)
+/obj/machinery/artifact_analyser/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
 	interact(user)
 
 /obj/machinery/artifact_analyser/interact(mob/user)
-	if(stat & (NOPOWER|BROKEN) || get_dist(src, user) > 1)
+	if(stat & (NOPOWER | BROKEN) || get_dist(src, user) > 1)
 		user.unset_machine(src)
 		return
 
@@ -72,7 +72,7 @@
 		else
 			results = get_scan_info(scanned_object)
 
-		src.visible_message("<b>[name]</b> states, \"Scanning complete.\"")
+		visible_message("<b>[name]</b> states, \"Scanning complete.\"")
 		var/obj/item/weapon/paper/P = new(src.loc)
 		P.name = "[src] report #[++report_num]"
 		P.info = "<b>[src] analysis report #[report_num]</b><br>"
@@ -106,18 +106,18 @@
 						A.being_used = 1
 
 				if(artifact_in_use)
-					src.visible_message("<b>[name]</b> states, \"Cannot harvest. Too much interference.\"")
+					visible_message("<b>[name]</b> states, \"Cannot harvest. Too much interference.\"")
 				else
 					scanned_object = O
 					scan_in_progress = 1
 					scan_completion_time = world.time + scan_duration
-					src.visible_message("<b>[name]</b> states, \"Scanning begun.\"")
+					visible_message("<b>[name]</b> states, \"Scanning begun.\"")
 				break
 			if(!scanned_object)
-				src.visible_message("<b>[name]</b> states, \"Unable to isolate scan target.\"")
+				visible_message("<b>[name]</b> states, \"Unable to isolate scan target.\"")
 	if(href_list["halt_scan"])
 		scan_in_progress = 0
-		src.visible_message("<b>[name]</b> states, \"Scanning halted.\"")
+		visible_message("<b>[name]</b> states, \"Scanning halted.\"")
 
 	if(href_list["close"])
 		usr.unset_machine(src)
@@ -127,7 +127,7 @@
 	updateDialog()
 
 //hardcoded responses, oh well
-/obj/machinery/artifact_analyser/proc/get_scan_info(var/obj/scanned_obj)
+/obj/machinery/artifact_analyser/proc/get_scan_info(obj/scanned_obj)
 	switch(scanned_obj.type)
 		if(/obj/machinery/auto_cloner)
 			return "Automated cloning pod - appears to rely on organic nanomachines with a self perpetuating \
@@ -203,7 +203,7 @@
 			//secondary:
 			if(A.secondary_effect && A.secondary_effect.activated)
 				//sciencey words go!
-				out += "<br><br>Warning, internal scans indicate ongoing [pick("subluminous","subcutaneous","superstructural")] activity operating \
+				out += "<br><br>Warning, internal scans indicate ongoing [pick("subluminous", "subcutaneous", "superstructural")] activity operating \
 				independantly from primary systems. Auxiliary activity involves "
 
 				//what kind of effect the artifact has

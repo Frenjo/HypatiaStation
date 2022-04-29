@@ -5,6 +5,7 @@
 	icon_state = "suspension2"
 	density = 1
 	req_access = list(access_research)
+
 	var/obj/item/weapon/cell/cell
 	var/obj/item/weapon/card/id/auth_card
 	var/locked = 1
@@ -22,7 +23,7 @@
 /obj/machinery/suspension_gen/process()
 	set background = 1
 
-	if (suspension_field)
+	if(suspension_field)
 		cell.charge -= power_use
 
 		var/turf/T = get_turf(suspension_field)
@@ -31,14 +32,14 @@
 				M.weakened = max(M.weakened, 3)
 				cell.charge -= power_use
 				if(prob(5))
-					M << "\blue [pick("You feel tingly.","You feel like floating.","It is hard to speak.","You can barely move.")]"
+					to_chat(M, SPAN_INFO("[pick("You feel tingly.", "You feel like floating.", "It is hard to speak.", "You can barely move.")]"))
 
 		if(field_type == "iron")
 			for(var/mob/living/silicon/M in T)
 				M.weakened = max(M.weakened, 3)
 				cell.charge -= power_use
 				if(prob(5))
-					M << "\blue [pick("You feel tingly.","You feel like floating.","It is hard to speak.","You can barely move.")]"
+					to_chat(M, SPAN_INFO("[pick("You feel tingly.", "You feel like floating.", "It is hard to speak.", "You can barely move.")]"))
 
 		for(var/obj/item/I in T)
 			if(!suspension_field.contents.len)
@@ -50,7 +51,7 @@
 			M.weakened = max(M.weakened, 3)
 			cell.charge -= power_use
 			if(prob(5))
-				M << "\blue [pick("You feel tingly.","You feel like floating.","It is hard to speak.","You can barely move.")]"
+				to_chat(M, SPAN_INFO("[pick("You feel tingly.", "You feel like floating.", "It is hard to speak.", "You can barely move.")]"))
 
 		if(cell.charge <= 0)
 			deactivate()
@@ -82,14 +83,14 @@
 	dat += "<hr>"
 	if(!locked)
 		dat += "<b>Select field mode</b><br>"
-		dat += "[field_type=="carbon"?"<b>":""			]<A href='?src=\ref[src];select_field=carbon'>Diffracted carbon dioxide laser</A></b><br>"
-		dat += "[field_type=="nitrogen"?"<b>":""		]<A href='?src=\ref[src];select_field=nitrogen'>Nitrogen tracer field</A></b><br>"
-		dat += "[field_type=="potassium"?"<b>":""		]<A href='?src=\ref[src];select_field=potassium'>Potassium refrigerant cloud</A></b><br>"
-		dat += "[field_type=="mercury"?"<b>":""	]<A href='?src=\ref[src];select_field=mercury'>Mercury dispersion wave</A></b><br>"
-		dat += "[field_type=="iron"?"<b>":""		]<A href='?src=\ref[src];select_field=iron'>Iron wafer conduction field</A></b><br>"
-		dat += "[field_type=="calcium"?"<b>":""	]<A href='?src=\ref[src];select_field=calcium'>Calcium binary deoxidiser</A></b><br>"
-		dat += "[field_type=="plasma"?"<b>":""	]<A href='?src=\ref[src];select_field=chlorine'>Chlorine diffusion emissions</A></b><br>"
-		dat += "[field_type=="plasma"?"<b>":""	]<A href='?src=\ref[src];select_field=plasma'>Plasma saturated field</A></b><br>"
+		dat += "[field_type== "carbon"?"<b>":""			]<A href='?src=\ref[src];select_field=carbon'>Diffracted carbon dioxide laser</A></b><br>"
+		dat += "[field_type== "nitrogen"?"<b>":""		]<A href='?src=\ref[src];select_field=nitrogen'>Nitrogen tracer field</A></b><br>"
+		dat += "[field_type== "potassium"?"<b>":""		]<A href='?src=\ref[src];select_field=potassium'>Potassium refrigerant cloud</A></b><br>"
+		dat += "[field_type== "mercury"?"<b>":""	]<A href='?src=\ref[src];select_field=mercury'>Mercury dispersion wave</A></b><br>"
+		dat += "[field_type== "iron"?"<b>":""		]<A href='?src=\ref[src];select_field=iron'>Iron wafer conduction field</A></b><br>"
+		dat += "[field_type== "calcium"?"<b>":""	]<A href='?src=\ref[src];select_field=calcium'>Calcium binary deoxidiser</A></b><br>"
+		dat += "[field_type== "plasma"?"<b>":""	]<A href='?src=\ref[src];select_field=chlorine'>Chlorine diffusion emissions</A></b><br>"
+		dat += "[field_type== "plasma"?"<b>":""	]<A href='?src=\ref[src];select_field=plasma'>Plasma saturated field</A></b><br>"
 	else
 		dat += "<br>"
 		dat += "<br>"
@@ -120,7 +121,7 @@
 				if(anchored)
 					activate()
 				else
-					usr << "<span class='warning'>You are unable to activate [src] until it is properly secured on the ground.</span>"
+					to_chat(usr, SPAN_WARNING("You are unable to activate [src] until it is properly secured on the ground."))
 		else
 			deactivate()
 	if(href_list["select_field"])
@@ -132,9 +133,9 @@
 			I.loc = src
 			auth_card = I
 			if(attempt_unlock(I))
-				usr << "<span class='info'>You insert [I], the console flashes \'<i>Access granted.</a>\'</span>"
+				to_chat(usr, SPAN_INFO("You insert [I], the console flashes \'<i>Access granted.</a>\'"))
 			else
-				usr << "<span class='warning'>You insert [I], the console flashes \'<i>Access denied.</a>\'</span>"
+				to_chat(usr, SPAN_WARNING("You insert [I], the console flashes \'<i>Access denied.</a>\'"))
 	else if(href_list["ejectcard"])
 		if(auth_card)
 			if(ishuman(usr))
@@ -163,17 +164,17 @@
 
 		icon_state = "suspension0"
 		cell = null
-		user << "<span class='info'>You remove the power cell</span>"
+		to_chat(user, SPAN_INFO("You remove the power cell"))
 
 /obj/machinery/suspension_gen/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/weapon/screwdriver))
 		if(!open)
 			if(screwed)
 				screwed = 0
 			else
 				screwed = 1
-			user << "<span class='info'>You [screwed ? "screw" : "unscrew"] the battery panel.</span>"
-	else if (istype(W, /obj/item/weapon/crowbar))
+			to_chat(user, SPAN_INFO("You [screwed ? "screw" : "unscrew"] the battery panel."))
+	else if(istype(W, /obj/item/weapon/crowbar))
 		if(!locked)
 			if(!screwed)
 				if(!suspension_field)
@@ -181,48 +182,48 @@
 						open = 0
 					else
 						open = 1
-					user << "<span class='info'>You crowbar the battery panel [open ? "open" : "in place"].</span>"
+					to_chat(user, SPAN_INFO("You crowbar the battery panel [open ? "open" : "in place"]."))
 					icon_state = "suspension[open ? (cell ? "1" : "0") : "2"]"
 				else
-					user << "<span class='warning'>[src]'s safety locks are engaged, shut it down first.</span>"
+					to_chat(user, SPAN_WARNING("[src]'s safety locks are engaged, shut it down first."))
 			else
-				user << "<span class='warning'>Unscrew [src]'s battery panel first.</span>"
+				to_chat(user, SPAN_WARNING("Unscrew [src]'s battery panel first."))
 		else
-			user << "<span class='warning'>[src]'s security locks are engaged.</span>"
-	else if (istype(W, /obj/item/weapon/wrench))
+			to_chat(user, SPAN_WARNING("[src]'s security locks are engaged."))
+	else if(istype(W, /obj/item/weapon/wrench))
 		if(!suspension_field)
 			if(anchored)
 				anchored = 0
 			else
 				anchored = 1
-			user << "<span class='info'>You wrench the stabilising legs [anchored ? "into place" : "up against the body"].</span>"
+			to_chat(user, SPAN_INFO("You wrench the stabilising legs [anchored ? "into place" : "up against the body"]."))
 			if(anchored)
 				desc = "It is resting securely on four stubby legs."
 			else
 				desc = "It has stubby legs bolted up against it's body for stabilising."
 		else
-			user << "<span class='warning'>You are unable to secure [src] while it is active!</span>"
-	else if (istype(W, /obj/item/weapon/cell))
+			to_chat(user, SPAN_WARNING("You are unable to secure [src] while it is active!"))
+	else if(istype(W, /obj/item/weapon/cell))
 		if(open)
 			if(cell)
-				user << "<span class='warning'>There is a power cell already installed.</span>"
+				to_chat(user, SPAN_WARNING("There is a power cell already installed."))
 			else
 				user.drop_item()
 				W.loc = src
 				cell = W
-				user << "<span class='info'>You insert the power cell.</span>"
+				to_chat(user, SPAN_INFO("You insert the power cell."))
 				icon_state = "suspension1"
 	else if(istype(W, /obj/item/weapon/card))
 		var/obj/item/weapon/card/I = W
 		if(!auth_card)
 			if(attempt_unlock(I))
-				user << "<span class='info'>You swipe [I], the console flashes \'<i>Access granted.</i>\'</span>"
+				to_chat(user, SPAN_INFO("You swipe [I], the console flashes \'<i>Access granted.</i>\'"))
 			else
-				user << "<span class='warning'>You swipe [I], console flashes \'<i>Access denied.</i>\'</span>"
+				to_chat(user, SPAN_WARNING("You swipe [I], console flashes \'<i>Access denied.</i>\'"))
 		else
-			user << "<span class='warning'>Remove [auth_card] first.</span>"
+			to_chat(user, SPAN_WARNING("Remove [auth_card] first."))
 
-/obj/machinery/suspension_gen/proc/attempt_unlock(var/obj/item/weapon/card/C)
+/obj/machinery/suspension_gen/proc/attempt_unlock(obj/item/weapon/card/C)
 	if(!open)
 		if(istype(C, /obj/item/weapon/card/emag) && cell.charge > 0)
 			//put sparks here
@@ -237,7 +238,7 @@
 //checks for whether the machine can be activated or not should already have occurred by this point
 /obj/machinery/suspension_gen/proc/activate()
 	//depending on the field type, we might pickup certain items
-	var/turf/T = get_turf(get_step(src,dir))
+	var/turf/T = get_turf(get_step(src, dir))
 	var/success = 0
 	var/collected = 0
 	switch(field_type)
@@ -245,7 +246,10 @@
 			success = 1
 			for(var/mob/living/carbon/C in T)
 				C.weakened += 5
-				C.visible_message("\blue \icon[C] [C] begins to float in the air!","You feel tingly and light, but it is difficult to move.")
+				C.visible_message(
+					SPAN_INFO("\icon[C] [C] begins to float in the air!"),
+					"You feel tingly and light, but it is difficult to move."
+				)
 		if("nitrogen")
 			success = 1
 			//
@@ -268,19 +272,25 @@
 			success = 1
 			for(var/mob/living/silicon/R in T)
 				R.weakened += 5
-				R.visible_message("\blue \icon[R] [R] begins to float in the air!","You feel tingly and light, but it is difficult to move.")
+				R.visible_message(
+					SPAN_INFO("\icon[R] [R] begins to float in the air!"),
+					"You feel tingly and light, but it is difficult to move."
+				)
 			//
 	//in case we have a bad field type
 	if(!success)
 		return
 
 	for(var/mob/living/simple_animal/C in T)
-		C.visible_message("\blue \icon[C] [C] begins to float in the air!","You feel tingly and light, but it is difficult to move.")
+		C.visible_message(
+			SPAN_INFO("\icon[C] [C] begins to float in the air!"),
+			"You feel tingly and light, but it is difficult to move."
+		)
 		C.weakened += 5
 
 	suspension_field = new(T)
 	suspension_field.field_type = field_type
-	src.visible_message("\blue \icon[src] [src] activates with a low hum.")
+	visible_message(SPAN_INFO("\icon[src] [src] activates with a low hum."))
 	icon_state = "suspension3"
 
 	for(var/obj/item/I in T)
@@ -290,9 +300,9 @@
 	if(collected)
 		suspension_field.icon_state = "energynet"
 		suspension_field.overlays += "shield2"
-		src.visible_message("\blue \icon[suspension_field] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"].")
+		visible_message(SPAN_INFO("\icon[suspension_field] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"]."))
 	else
-		if(istype(T,/turf/simulated/mineral) || istype(T,/turf/simulated/wall))
+		if(istype(T, /turf/simulated/mineral) || istype(T, /turf/simulated/wall))
 			suspension_field.icon_state = "shieldsparkles"
 		else
 			suspension_field.icon_state = "shield2"
@@ -302,10 +312,10 @@
 	var/turf/T = get_turf(suspension_field)
 
 	for(var/mob/M in T)
-		M << "<span class='info'>You no longer feel like floating.</span>"
+		to_chat(M, SPAN_INFO("You no longer feel like floating."))
 		M.weakened = min(M.weakened, 3)
 
-	src.visible_message("\blue \icon[src] [src] deactivates with a gentle shudder.")
+	visible_message(SPAN_INFO("\icon[src] [src] deactivates with a gentle shudder."))
 	qdel(suspension_field)
 	icon_state = "suspension2"
 
@@ -320,9 +330,10 @@
 	set category = "IC"
 
 	if(anchored)
-		usr << "\red You cannot rotate [src], it has been firmly fixed to the floor."
+		to_chat(usr, SPAN_WARNING("You cannot rotate [src], it has been firmly fixed to the floor."))
 	else
 		dir = turn(dir, 90)
+
 
 /obj/effect/suspension_field
 	name = "energy field"

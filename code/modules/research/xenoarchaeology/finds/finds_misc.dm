@@ -1,4 +1,3 @@
-
 /obj/item/weapon/shard/plasma
 	name = "plasma shard"
 	desc = "A shard of plasma glass. Considerably tougher then normal glass shards. Apparently not tough enough to be a window."
@@ -9,34 +8,33 @@
 	edge = 1
 
 /obj/item/weapon/shard/plasma/New()
-
-	src.icon_state = pick("plasmalarge", "plasmamedium", "plasmasmall")
-	switch(src.icon_state)
+	icon_state = pick("plasmalarge", "plasmamedium", "plasmasmall")
+	switch(icon_state)
 		if("plasmasmall")
-			src.pixel_x = rand(-12, 12)
-			src.pixel_y = rand(-12, 12)
+			pixel_x = rand(-12, 12)
+			pixel_y = rand(-12, 12)
 		if("plasmamedium")
-			src.pixel_x = rand(-8, 8)
-			src.pixel_y = rand(-8, 8)
+			pixel_x = rand(-8, 8)
+			pixel_y = rand(-8, 8)
 		if("plasmalarge")
-			src.pixel_x = rand(-5, 5)
-			src.pixel_y = rand(-5, 5)
+			pixel_x = rand(-5, 5)
+			pixel_y = rand(-5, 5)
 		else
 	return
 
 /obj/item/weapon/shard/plasma/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
-	if ( istype(W, /obj/item/weapon/weldingtool))
+	if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
-			var/obj/item/stack/sheet/glass/plasmaglass/NG = new (user.loc)
-			for (var/obj/item/stack/sheet/glass/plasmaglass/G in user.loc)
-				if(G==NG)
+			var/obj/item/stack/sheet/glass/plasmaglass/NG = new(user.loc)
+			for(var/obj/item/stack/sheet/glass/plasmaglass/G in user.loc)
+				if(G == NG)
 					continue
-				if(G.amount>=G.max_amount)
+				if(G.amount >= G.max_amount)
 					continue
 				G.attackby(NG, user)
-				usr << "You add the newly-formed plasma glass to the stack. It now contains [NG.amount] sheets."
+				to_chat(user, "You add the newly-formed plasma glass to the stack. It now contains [NG.amount] sheets.")
 			//SN del(src)
 			qdel(src)
 			return
