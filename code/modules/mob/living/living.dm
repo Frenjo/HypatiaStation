@@ -317,7 +317,7 @@ default behaviour is:
 			if(istype(G.gift, /obj/item/weapon/storage))
 				L += get_contents(G.gift)
 
-		for(var/obj/item/smallDelivery/D in Storage.return_inv()) //Check for package wrapped items
+		for(var/obj/item/small_delivery/D in Storage.return_inv()) //Check for package wrapped items
 			L += D.wrapped
 			if(istype(D.wrapped, /obj/item/weapon/storage)) //this should never happen
 				L += get_contents(D.wrapped)
@@ -334,7 +334,7 @@ default behaviour is:
 			if(istype(G.gift, /obj/item/weapon/storage))
 				L += get_contents(G.gift)
 
-		for(var/obj/item/smallDelivery/D in src.contents) //Check for package wrapped items
+		for(var/obj/item/small_delivery/D in src.contents) //Check for package wrapped items
 			L += D.wrapped
 			if(istype(D.wrapped, /obj/item/weapon/storage)) //this should never happen
 				L += get_contents(D.wrapped)
@@ -733,8 +733,8 @@ default behaviour is:
 					to_chat(usr, SPAN_WARNING("You successfully break out!"))
 					for(var/mob/O in viewers(L.loc))
 						O.show_message(SPAN_DANGER("\the [usr] successfully broke out of \the [SC]!"), 1)
-					if(istype(SC.loc, /obj/structure/bigDelivery)) //Do this to prevent contents from being opened into nullspace (read: bluespace)
-						var/obj/structure/bigDelivery/BD = SC.loc
+					if(istype(SC.loc, /obj/structure/big_delivery)) //Do this to prevent contents from being opened into nullspace (read: bluespace)
+						var/obj/structure/big_delivery/BD = SC.loc
 						BD.attack_hand(usr)
 					SC.open()
 				else
@@ -742,8 +742,8 @@ default behaviour is:
 					to_chat(usr, SPAN_WARNING("You successfully break out!"))
 					for(var/mob/O in viewers(L.loc))
 						O.show_message(SPAN_DANGER("\the [usr] successfully broke out of \the [C]!"), 1)
-					if(istype(C.loc, /obj/structure/bigDelivery)) //nullspace ect.. read the comment above
-						var/obj/structure/bigDelivery/BD = C.loc
+					if(istype(C.loc, /obj/structure/big_delivery)) //nullspace ect.. read the comment above
+						var/obj/structure/big_delivery/BD = C.loc
 						BD.attack_hand(usr)
 					C.open()
 

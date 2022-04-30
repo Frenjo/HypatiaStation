@@ -92,7 +92,7 @@
 		else
 			for(var/mob/O in viewers(user, 3))
 				O.show_message(SPAN_WARNING("The locker has been broken by [user] with an electromagnetic card!"), 1, "You hear a faint electrical spark.", 2)
-	else if(istype(W, /obj/item/weapon/packageWrap) || istype(W, /obj/item/weapon/weldingtool))
+	else if(istype(W, /obj/item/weapon/package_wrap) || istype(W, /obj/item/weapon/weldingtool))
 		return ..(W, user)
 	else
 		togglelock(user)

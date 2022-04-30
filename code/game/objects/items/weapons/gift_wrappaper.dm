@@ -139,7 +139,7 @@
 				to_chat(user, SPAN_INFO("You need more paper!"))
 				return
 			else
-				if(istype(W, /obj/item/smallDelivery) || istype(W, /obj/item/weapon/gift)) //No gift wrapping gifts!
+				if(istype(W, /obj/item/small_delivery) || istype(W, /obj/item/weapon/gift)) //No gift wrapping gifts!
 					return
 
 				src.amount -= a_used

@@ -1,17 +1,18 @@
-/obj/structure/bigDelivery
+/obj/structure/big_delivery
 	desc = "A big wrapped package."
 	name = "large parcel"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "deliverycloset"
-	var/obj/wrapped = null
 	density = 1
-	var/sortTag = 0
 	flags = NOBLUDGEON
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
-/obj/structure/bigDelivery/Destroy()
+	var/obj/wrapped = null
+	var/sortTag = 0
+
+/obj/structure/big_delivery/Destroy()
 	if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
-		wrapped.loc = (get_turf(loc))
+		wrapped.loc = get_turf(loc)
 		if(istype(wrapped, /obj/structure/closet))
 			var/obj/structure/closet/O = wrapped
 			O.welded = 0
@@ -20,18 +21,18 @@
 		AM.loc = T
 	return ..()
 
-/obj/structure/bigDelivery/attack_hand(mob/user as mob)
+/obj/structure/big_delivery/attack_hand(mob/user as mob)
 	if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
-		wrapped.loc = (get_turf(src.loc))
+		wrapped.loc = get_turf(src.loc)
 		if(istype(wrapped, /obj/structure/closet))
 			var/obj/structure/closet/O = wrapped
 			O.welded = 0
 	qdel(src)
 	return
 
-/obj/structure/bigDelivery/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/device/destTagger))
-		var/obj/item/device/destTagger/O = W
+/obj/structure/big_delivery/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/device/dest_tagger))
+		var/obj/item/device/dest_tagger/O = W
 
 		if(src.sortTag != O.currTag)
 			var/tag = uppertext(TAGGERLOCATIONS[O.currTag])
@@ -49,15 +50,17 @@
 		src.name = "[src.name] ([str])"
 	return
 
-/obj/item/smallDelivery
+
+/obj/item/small_delivery
 	desc = "A small wrapped package."
 	name = "small parcel"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "deliverycrateSmall"
+
 	var/obj/item/wrapped = null
 	var/sortTag = 0
 
-/obj/item/smallDelivery/attack_self(mob/user as mob)
+/obj/item/small_delivery/attack_self(mob/user as mob)
 	if(src.wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
 		wrapped.loc = user.loc
 		if(ishuman(user))
@@ -68,9 +71,9 @@
 	qdel(src)
 	return
 
-/obj/item/smallDelivery/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/device/destTagger))
-		var/obj/item/device/destTagger/O = W
+/obj/item/small_delivery/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/device/dest_tagger))
+		var/obj/item/device/dest_tagger/O = W
 
 		if(src.sortTag != O.currTag)
 			var/tag = uppertext(TAGGERLOCATIONS[O.currTag])
@@ -89,19 +92,20 @@
 	return
 
 
-/obj/item/weapon/packageWrap
+/obj/item/weapon/package_wrap
 	name = "package wrapper"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "deliveryPaper"
 	w_class = 3.0
+
 	var/amount = 25.0
 
-/obj/item/weapon/packageWrap/afterattack(obj/target as obj, mob/user as mob, proximity)
+/obj/item/weapon/package_wrap/afterattack(obj/target as obj, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	if(!istype(target))	//this really shouldn't be necessary (but it is).	-Pete
 		return
-	if(istype(target, /obj/item/smallDelivery) || istype(target, /obj/structure/bigDelivery) \
+	if(istype(target, /obj/item/small_delivery) || istype(target, /obj/structure/big_delivery) \
 	|| istype(target, /obj/item/weapon/gift) || istype(target, /obj/item/weapon/evidencebag))
 		return
 	if(target.anchored)
@@ -111,10 +115,10 @@
 
 	user.attack_log += text("\[[time_stamp()]\] <font color='blue'>Has used [src.name] on \ref[target]</font>")
 
-	if(istype(target, /obj/item) && !(istype(target, /obj/item/weapon/storage) && !istype(target,/obj/item/weapon/storage/box)))
+	if(istype(target, /obj/item) && !(istype(target, /obj/item/weapon/storage) && !istype(target, /obj/item/weapon/storage/box)))
 		var/obj/item/O = target
 		if(src.amount > 1)
-			var/obj/item/smallDelivery/P = new /obj/item/smallDelivery(get_turf(O.loc))	//Aaannd wrap it up!
+			var/obj/item/small_delivery/P = new /obj/item/small_delivery(get_turf(O.loc))	//Aaannd wrap it up!
 			if(!istype(O.loc, /turf))
 				if(user.client)
 					user.client.screen -= O
@@ -130,7 +134,7 @@
 	else if(istype(target, /obj/structure/closet/crate))
 		var/obj/structure/closet/crate/O = target
 		if(src.amount > 3 && !O.opened)
-			var/obj/structure/bigDelivery/P = new /obj/structure/bigDelivery(get_turf(O.loc))
+			var/obj/structure/big_delivery/P = new /obj/structure/big_delivery(get_turf(O.loc))
 			P.icon_state = "deliverycrate"
 			P.wrapped = O
 			O.loc = P
@@ -140,7 +144,7 @@
 	else if(istype(target, /obj/structure/closet))
 		var/obj/structure/closet/O = target
 		if(src.amount > 3 && !O.opened)
-			var/obj/structure/bigDelivery/P = new /obj/structure/bigDelivery(get_turf(O.loc))
+			var/obj/structure/big_delivery/P = new /obj/structure/big_delivery(get_turf(O.loc))
 			P.wrapped = O
 			O.welded = 1
 			O.loc = P
@@ -155,17 +159,22 @@
 		return
 	return
 
-/obj/item/weapon/packageWrap/examine()
+/obj/item/weapon/package_wrap/examine()
 	if(src in usr)
 		to_chat(usr, SPAN_INFO("There are [amount] units of package wrap left!"))
 	..()
 	return
 
 
-/obj/item/device/destTagger
+/obj/item/device/dest_tagger
 	name = "destination tagger"
 	desc = "Used to set the destination of properly wrapped packages."
 	icon_state = "dest_tagger"
+	w_class = 1
+	item_state = "electronic"
+	flags = CONDUCT
+	slot_flags = SLOT_BELT
+
 	var/currTag = 0
 	//The whole system for the sorttype var is determined based on the order of this list,
 	//disposals must always be 1, since anything that's untagged will automatically go to disposals, or sorttype = 1 --Superxpdude
@@ -173,12 +182,7 @@
 	//If you don't want to fuck up disposals, add to this list, and don't change the order.
 	//If you insist on changing the order, you'll have to change every sort junction to reflect the new order. --Pete
 
-	w_class = 1
-	item_state = "electronic"
-	flags = CONDUCT
-	slot_flags = SLOT_BELT
-
-/obj/item/device/destTagger/proc/openwindow(mob/user as mob)
+/obj/item/device/dest_tagger/proc/openwindow(mob/user as mob)
 	var/dat = "<tt><center><h1><b>TagMaster 2.2</b></h1></center>"
 
 	dat += "<table style='width:100%; padding:4px;'><tr>"
@@ -193,18 +197,19 @@
 	user << browse(dat, "window=destTagScreen;size=450x350")
 	onclose(user, "destTagScreen")
 
-/obj/item/device/destTagger/attack_self(mob/user as mob)
+/obj/item/device/dest_tagger/attack_self(mob/user as mob)
 	openwindow(user)
 	return
 
-/obj/item/device/destTagger/Topic(href, href_list)
+/obj/item/device/dest_tagger/Topic(href, href_list)
 	src.add_fingerprint(usr)
 	if(href_list["nextTag"])
 		var/n = text2num(href_list["nextTag"])
 		src.currTag = n
 	openwindow(usr)
 
-/obj/machinery/disposal/deliveryChute
+
+/obj/machinery/disposal/delivery_chute
 	name = "Delivery chute"
 	desc = "A chute for big and small packages alike!"
 	density = 1
@@ -212,24 +217,24 @@
 
 	var/c_mode = 0
 
-/obj/machinery/disposal/deliveryChute/initialize()
+/obj/machinery/disposal/delivery_chute/initialize()
 	..()
 	trunk = locate() in src.loc
 	if(trunk)
 		trunk.linked = src	// link the pipe trunk to self
 
-/obj/machinery/disposal/deliveryChute/Destroy()
+/obj/machinery/disposal/delivery_chute/Destroy()
 	if(trunk)
 		trunk.linked = null
 	return ..()
 
-/obj/machinery/disposal/deliveryChute/interact()
+/obj/machinery/disposal/delivery_chute/interact()
 	return
 
-/obj/machinery/disposal/deliveryChute/update()
+/obj/machinery/disposal/delivery_chute/update()
 	return
 
-/obj/machinery/disposal/deliveryChute/Bumped(atom/movable/AM) //Go straight into the chute
+/obj/machinery/disposal/delivery_chute/Bumped(atom/movable/AM) //Go straight into the chute
 	if(istype(AM, /obj/item/projectile) || istype(AM, /obj/effect))
 		return
 	switch(dir)
@@ -242,25 +247,25 @@
 		if(WEST)
 			if(AM.loc.x != src.loc.x - 1) return
 
-	if(istype(AM, /obj))
+	if(isobj(AM))
 		var/obj/O = AM
 		O.loc = src
-	else if(istype(AM, /mob))
+	else if(ismob(AM))
 		var/mob/M = AM
 		M.loc = src
 	src.flush()
 
-/obj/machinery/disposal/deliveryChute/flush()
+/obj/machinery/disposal/delivery_chute/flush()
 	flushing = 1
 	flick("intake-closing", src)
 	var/deliveryCheck = 0
 	var/obj/structure/disposalholder/H = new()	// virtual holder object which actually
 												// travels through the pipes.
-	for(var/obj/structure/bigDelivery/O in src)
+	for(var/obj/structure/big_delivery/O in src)
 		deliveryCheck = 1
 		if(O.sortTag == 0)
 			O.sortTag = 1
-	for(var/obj/item/smallDelivery/O in src)
+	for(var/obj/item/small_delivery/O in src)
 		deliveryCheck = 1
 		if(O.sortTag == 0)
 			O.sortTag = 1
@@ -284,7 +289,7 @@
 	update()
 	return
 
-/obj/machinery/disposal/deliveryChute/attackby(obj/item/I, mob/user)
+/obj/machinery/disposal/delivery_chute/attackby(obj/item/I, mob/user)
 	if(!I || !user)
 		return
 

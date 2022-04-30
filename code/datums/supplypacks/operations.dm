@@ -27,7 +27,7 @@
 		/obj/item/device/camera_film,
 		/obj/item/device/camera_film,
 		/obj/item/weapon/storage/photo_album,
-		/obj/item/weapon/packageWrap,
+		/obj/item/weapon/package_wrap,
 		/obj/item/weapon/reagent_containers/glass/paint/red,
 		/obj/item/weapon/reagent_containers/glass/paint/green,
 		/obj/item/weapon/reagent_containers/glass/paint/blue,

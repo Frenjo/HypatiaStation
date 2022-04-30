@@ -112,7 +112,7 @@
 	return pick( \
 		prob(3); /obj/random/powercell, \
 		prob(2); /obj/random/technology_scanner, \
-		prob(1); /obj/item/weapon/packageWrap, \
+		prob(1); /obj/item/weapon/package_wrap, \
 		prob(2); /obj/random/bomb_supply, \
 		prob(1); /obj/item/weapon/extinguisher, \
 		prob(1); /obj/item/clothing/gloves/fyellow, \

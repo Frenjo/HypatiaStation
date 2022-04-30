@@ -8,16 +8,17 @@
 	icon_state = "conpipe-s"
 	anchored = 0
 	density = 0
-	pressure_resistance = 5*ONE_ATMOSPHERE
+	pressure_resistance = 5 * ONE_ATMOSPHERE
 	m_amt = 1850
 	level = 2
+
 	var/ptype = 0
 	// 0=straight, 1=bent, 2=junction-j1, 3=junction-j2, 4=junction-y, 5=trunk, 6=disposal bin, 7=outlet, 8=inlet
 
 	var/dpdir = 0	// directions as disposalpipe
 	var/base_state = "pipe-s"
 
-	// update iconstate and dpdir due to dir and type
+// update iconstate and dpdir due to dir and type
 /obj/structure/disposalconstruct/proc/update()
 	var/flip = turn(dir, 180)
 	var/left = turn(dir, 90)
@@ -145,7 +146,7 @@
 		if(7)
 			return /obj/structure/disposaloutlet
 		if(8)
-			return /obj/machinery/disposal/deliveryChute
+			return /obj/machinery/disposal/delivery_chute
 		if(9, 10)
 			return /obj/structure/disposalpipe/sortjunction
 ///// Z-Level stuff
@@ -155,7 +156,6 @@
 			return /obj/structure/disposalpipe/down
 ///// Z-Level stuff
 	return
-
 
 // attackby item
 // wrench: (un)anchor
@@ -260,7 +260,7 @@
 						Trunk.linked = P
 
 					else if(ptype == 8) // Disposal outlet
-						var/obj/machinery/disposal/deliveryChute/P = new /obj/machinery/disposal/deliveryChute(src.loc)
+						var/obj/machinery/disposal/delivery_chute/P = new /obj/machinery/disposal/delivery_chute(src.loc)
 						src.transfer_fingerprints_to(P)
 						P.set_dir(dir)
 
