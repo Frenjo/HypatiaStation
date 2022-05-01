@@ -1,4 +1,4 @@
-var/list/department_radio_keys = list(
+/var/list/department_radio_keys = list(
 	  ":r" = "right ear",	"#r" = "right ear",		".r" = "right ear",
 	  ":l" = "left ear",	"#l" = "left ear",		".l" = "left ear",
 	  ":i" = "intercom",	"#i" = "intercom",		".i" = "intercom",
@@ -11,6 +11,7 @@ var/list/department_radio_keys = list(
 	  ":w" = "whisper",		"#w" = "whisper",		".w" = "whisper",
 	  ":t" = "Syndicate",	"#t" = "Syndicate",		".t" = "Syndicate",
 	  ":u" = "Supply",		"#u" = "Supply",		".u" = "Supply",
+	  ":d" = "Mining",		"#d" = "Mining",		".d" = "Mining",
 	  ":g" = "changeling",	"#g" = "changeling",	".g" = "changeling",
 
 	  ":R" = "right ear",	"#R" = "right ear",		".R" = "right ear",
@@ -25,6 +26,7 @@ var/list/department_radio_keys = list(
 	  ":W" = "whisper",		"#W" = "whisper",		".W" = "whisper",
 	  ":T" = "Syndicate",	"#T" = "Syndicate",		".T" = "Syndicate",
 	  ":U" = "Supply",		"#U" = "Supply",		".U" = "Supply",
+	  ":D" = "Mining",		"#D" = "Mining",		".D" = "Mining",
 	  ":G" = "changeling",	"#G" = "changeling",	".G" = "changeling",
 
 	  //kinda localization -- rastaf0
@@ -62,7 +64,6 @@ var/list/department_radio_keys = list(
 			return
 		if(dongle.translate_binary)
 			return 1
-
 
 /mob/living/say(message, datum/language/speaking = null, verbage = "says", alt_name = "", italics = 0, message_range = world.view, list/used_radios = list())
 	if(stat)
