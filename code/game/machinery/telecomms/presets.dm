@@ -79,7 +79,7 @@
 
 //Common and other radio frequencies for people to freely use
 /obj/machinery/telecomms/receiver/preset_right/New()
-	for(var/i = 1441, i < 1489, i += 2)
+	for(var/i = FREQUENCY_FREE_MINIMUM, i < FREQUENCY_FREE_MAXIMUM, i += 2)
 		freq_listening |= i
 	..()
 
@@ -123,7 +123,7 @@
 	autolinkers = list("processor4", "engineering", "common")
 
 /obj/machinery/telecomms/bus/preset_four/New()
-	for(var/i = 1441, i < 1489, i += 2)
+	for(var/i = FREQUENCY_FREE_MINIMUM, i < FREQUENCY_FREE_MAXIMUM, i += 2)
 		freq_listening |= i
 	..()
 
@@ -205,10 +205,10 @@
 	freq_listening = list()
 	autolinkers = list("common")
 
-//Common and other radio frequencies for people to freely use
-// 1441 to 1489
+// Common and other radio frequencies for people to freely use
+// By default, 1441 to 1489
 /obj/machinery/telecomms/server/presets/common/New()
-	for(var/i = 1441, i < 1489, i += 2)
+	for(var/i = FREQUENCY_FREE_MINIMUM, i < FREQUENCY_FREE_MAXIMUM, i += 2)
 		freq_listening |= i
 	..()
 

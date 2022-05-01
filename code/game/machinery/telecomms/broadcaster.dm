@@ -7,8 +7,8 @@
 	They receive their message from a server after the message has been logged.
 */
 
-var/list/recentmessages = list() // global list of recent messages broadcasted : used to circumvent massive radio spam
-var/message_delay = 0 // To make sure restarting the recentmessages list is kept in sync
+/var/list/recentmessages = list() // global list of recent messages broadcasted : used to circumvent massive radio spam
+/var/message_delay = 0 // To make sure restarting the recentmessages list is kept in sync
 
 /obj/machinery/telecomms/broadcaster
 	name = "Subspace Broadcaster"
@@ -101,11 +101,11 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		message_delay = 0
 	return ..()
 
+
 /*
 	Basically just an empty shell for receiving and broadcasting radio messages. Not
 	very flexible, but it gets the job done.
 */
-
 /obj/machinery/telecomms/allinone
 	name = "Telecommunications Mainframe"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -118,6 +118,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	machinetype = 6
 	//heatgen = 0
 	operating_temperature = null
+
 	var/intercept = 0 // if nonzero, broadcasts all messages to syndicate channel
 
 /obj/machinery/telecomms/allinone/receive_signal(datum/signal/signal)
@@ -216,7 +217,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		The frequency of the signal
 
 **/
-
 /proc/Broadcast_Message(datum/radio_frequency/connection, mob/M, vmask, vmessage, obj/item/device/radio/radio,
 						message, name, job, realname, vname, data, compression, list/level, freq,
 						verbage = "says", datum/language/speaking = null)
@@ -451,7 +451,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			for(var/mob/R in heard_gibberish)
 				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 1)
 
-
 /proc/Broadcast_SimpleMessage(source, frequency, text, data, mob/M, compression, level)
   /* ###### Prepare the radio connection ###### */
 	if(!M)
@@ -633,7 +632,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	var/datum/signal/signal = src.telecomms_process()
 	var/turf/position = get_turf(src)
 	return (position.z in signal.data["level"] && signal.data["done"])
-
 
 /atom/proc/telecomms_process()
 	// First, we want to generate a new radio signal

@@ -6,6 +6,7 @@
 /obj/machinery/computer/telecomms/server
 	name = "Telecommunications Server Monitor"
 	icon_state = "comm_logs"
+	req_access = list(access_tcomsat)
 
 	var/screen = SERVER_SCREEN_MAIN_MENU	// the screen number:
 	var/list/servers = list()				// the servers located by the computer
@@ -16,7 +17,6 @@
 
 	var/universal_translate = 0 // set to 1 if it can translate nonhuman speech
 
-	req_access = list(access_tcomsat)
 /obj/machinery/computer/telecomms/server/attack_hand(mob/user as mob)
 	if(stat & (BROKEN|NOPOWER))
 		return

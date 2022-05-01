@@ -1,25 +1,48 @@
-// Radio frequencies.
-#define FREQUENCY_COMMON 1459
+/*
+All frequencies in order:
+	SYNDICATE		- 121.3
+	DEATHSQUAD		- 134.1
+	RESPONSETEAM	- 134.5
+	SUPPLY			- 134.7
+	MINING			- 134.9
+	SCIENCE			- 135.1
+	COMMAND			- 135.3
+	MEDICAL			- 135.5
+	ENGINEERING		- 135.7
+	SECURITY		- 135.9
+	FREE_MINIMUM	- 144.1
+	AI				- 144.7
+	COMMON			- 145.9
+	FREE_MAXIMUM	- 148.9
+*/
 
-#define FREQUENCY_COMMAND	1353 //command, colored gold in chat window
+// Radio frequencies.
 #define FREQUENCY_SYNDICATE 1213
 
-// department channels
-#define FREQUENCY_SECURITY		1359
-#define FREQUENCY_ENGINEERING	1357
-#define FREQUENCY_SCIENCE		1351
-#define FREQUENCY_MEDICAL		1355
+// Central command channels, i.e deathsquid & response teams.
+#define FREQUENCY_DEATHSQUAD	1341
+#define FREQUENCY_RESPONSETEAM	1345
+/var/list/CENT_FREQS = list(FREQUENCY_RESPONSETEAM, FREQUENCY_DEATHSQUAD)
+
+// Department channels.
 #define FREQUENCY_SUPPLY		1347
 #define FREQUENCY_MINING		1349
+#define FREQUENCY_SCIENCE		1351
+#define FREQUENCY_COMMAND		1353 // Command, colored gold in chat window
+#define FREQUENCY_MEDICAL		1355
+#define FREQUENCY_ENGINEERING	1357
+#define FREQUENCY_SECURITY		1359
+
+// Free use channels.
+#define FREQUENCY_FREE_MINIMUM	1441 // Minimum free-use frequency.
 
 #define FREQUENCY_AI 1447
 
-// central command channels, i.e deathsquid & response teams
-#define FREQUENCY_RESPONSETEAM	1345
-#define FREQUENCY_DEATHSQUAD	1341
-/var/list/CENT_FREQS = list(FREQUENCY_RESPONSETEAM, FREQUENCY_DEATHSQUAD)
+#define FREQUENCY_COMMON 1459
 
-//depenging helpers
+#define FREQUENCY_FREE_MAXIMUM	1489 // Maximum free-use frequency.
+
+// Depenging helpers
 /var/list/DEPT_FREQS = list(
 	FREQUENCY_SCIENCE,
 	FREQUENCY_MEDICAL,

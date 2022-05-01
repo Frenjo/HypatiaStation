@@ -13,7 +13,7 @@
 	Look at radio.dm for the prequel to this code.
 */
 
-var/global/list/obj/machinery/telecomms/telecomms_list = list()
+/var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 /obj/machinery/telecomms
 	var/list/links = list() // list of machines this machine is linked to
@@ -38,6 +38,59 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	var/hide = 0				// Is it a hidden machine?
 	var/listening_level = 0	// 0 = auto set in New() - this is the z level that the machine is listening to.
 
+/obj/machinery/telecomms/New()
+	telecomms_list += src
+	..()
+
+	//Set the listening_level if there's none.
+	if(!listening_level)
+		//Defaults to our Z level!
+		var/turf/position = get_turf(src)
+		listening_level = position.z
+
+/obj/machinery/telecomms/initialize()
+	if(autolinkers.len)
+		// Links nearby machines
+		if(!long_range_link)
+			for(var/obj/machinery/telecomms/T in orange(20, src))
+				add_link(T)
+		else
+			for(var/obj/machinery/telecomms/T in telecomms_list)
+				add_link(T)
+
+/obj/machinery/telecomms/Destroy()
+	telecomms_list -= src
+	for(var/obj/machinery/telecomms/comm in telecomms_list)
+		comm.links -= src
+	links = list()
+	return ..()
+
+/obj/machinery/telecomms/update_icon()
+	if(on)
+		icon_state = initial(icon_state)
+	else
+		icon_state = "[initial(icon_state)]_off"
+
+/obj/machinery/telecomms/process()
+	update_power()
+
+	// Check heat and generate some
+	checkheat()
+
+	// Update the icon
+	update_icon()
+
+	if(traffic > 0)
+		traffic -= netspeed
+
+/obj/machinery/telecomms/emp_act(severity)
+	if(prob(100 / severity))
+		if(!(stat & EMPED))
+			stat |= EMPED
+			var/duration = (300 * 10) / severity
+			spawn(rand(duration - 20, duration + 20)) // Takes a long time for the machines to reboot.
+				stat &= ~EMPED
+	..()
 
 /obj/machinery/telecomms/proc/relay_information(datum/signal/signal, filter, copysig, amount = 20)
 	// relay signal to all linked machinery that are of type [filter]. If signal has been sent [amount] times, stop sending
@@ -134,34 +187,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	else
 		return 0
 
-
-/obj/machinery/telecomms/New()
-	telecomms_list += src
-	..()
-
-	//Set the listening_level if there's none.
-	if(!listening_level)
-		//Defaults to our Z level!
-		var/turf/position = get_turf(src)
-		listening_level = position.z
-
-/obj/machinery/telecomms/initialize()
-	if(autolinkers.len)
-		// Links nearby machines
-		if(!long_range_link)
-			for(var/obj/machinery/telecomms/T in orange(20, src))
-				add_link(T)
-		else
-			for(var/obj/machinery/telecomms/T in telecomms_list)
-				add_link(T)
-
-/obj/machinery/telecomms/Destroy()
-	telecomms_list -= src
-	for(var/obj/machinery/telecomms/comm in telecomms_list)
-		comm.links -= src
-	links = list()
-	return ..()
-
 // Used in auto linking
 /obj/machinery/telecomms/proc/add_link(obj/machinery/telecomms/T)
 	var/turf/position = get_turf(src)
@@ -172,12 +197,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 				if(src != T)
 					links |= T
 
-/obj/machinery/telecomms/update_icon()
-	if(on)
-		icon_state = initial(icon_state)
-	else
-		icon_state = "[initial(icon_state)]_off"
-
 /obj/machinery/telecomms/proc/update_power()
 	if(toggled)
 		if(stat & (BROKEN|NOPOWER|EMPED) || integrity <= 0) // if powered, on. if not powered, off. if too damaged, off
@@ -186,27 +205,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 			on = 1
 	else
 		on = 0
-
-/obj/machinery/telecomms/process()
-	update_power()
-
-	// Check heat and generate some
-	checkheat()
-
-	// Update the icon
-	update_icon()
-
-	if(traffic > 0)
-		traffic -= netspeed
-
-/obj/machinery/telecomms/emp_act(severity)
-	if(prob(100/severity))
-		if(!(stat & EMPED))
-			stat |= EMPED
-			var/duration = (300 * 10) / severity
-			spawn(rand(duration - 20, duration + 20)) // Takes a long time for the machines to reboot.
-				stat &= ~EMPED
-	..()
 
 /obj/machinery/telecomms/proc/checkheat()
 	// Checks heat from the environment and applies any integrity damage
@@ -258,6 +256,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 					removed.add_thermal_energy(heat_produced)
 
 				env.merge(removed)
+
 
 /*
 	The receiver idles and receives messages from subspace-compatible radio equipment;
@@ -371,6 +370,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	circuitboard = /obj/item/weapon/circuitboard/telecomms/relay
 	netspeed = 5
 	long_range_link = 1
+
 	var/broadcasting = 1
 	var/receiving = 1
 
@@ -422,6 +422,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	operating_temperature = 20 + T0C
 	circuitboard = /obj/item/weapon/circuitboard/telecomms/bus
 	netspeed = 40
+
 	var/change_frequency = 0
 
 /obj/machinery/telecomms/bus/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
@@ -472,6 +473,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	operating_temperature = 100 + T0C
 	delay = 5
 	circuitboard = /obj/item/weapon/circuitboard/telecomms/processor
+
 	var/process_mode = 1 // 1 = Uncompress Signals, 0 = Compress Signals
 
 /obj/machinery/telecomms/processor/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
@@ -508,6 +510,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	//heatgen = 50
 	operating_temperature = 50 + T0C
 	circuitboard = /obj/item/weapon/circuitboard/telecomms/server
+
 	var/list/log_entries = list()
 	var/list/stored_names = list()
 	var/list/TrafficActions = list()

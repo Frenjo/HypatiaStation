@@ -6,6 +6,7 @@
 /obj/machinery/computer/telecomms/traffic
 	name = "Telecommunications Traffic Control"
 	icon_state = "computer_generic"
+	req_access = list(access_tcomsat)
 
 	var/screen = TRAFFIC_SCREEN_MAIN_MENU	// the screen number:
 	var/list/servers = list()				// the servers located by the computer
@@ -17,49 +18,6 @@
 	var/network = "NULL"		// the network to probe
 	var/temp = ""				// temporary feedback messages
 	var/storedcode = ""			// code stored
-	req_access = list(access_tcomsat)
-
-/obj/machinery/computer/telecomms/traffic/proc/update_ide()
-	// loop if there's someone manning the keyboard
-	while(editingcode)
-		if(!editingcode.client)
-			editingcode = null
-			break
-
-		// For the typer, the input is enabled. Buffer the typed text
-		if(editingcode)
-			storedcode = "[winget(editingcode, "tcscode", "text")]"
-		if(editingcode) // double if's to work around a runtime error
-			winset(editingcode, "tcscode", "is-disabled=false")
-
-		// If the player's not manning the keyboard anymore, adjust everything
-		if((!(editingcode in range(1, src)) && !issilicon(editingcode)) || (editingcode.machine != src && !issilicon(editingcode)))
-			if(editingcode)
-				winshow(editingcode, "Telecomms IDE", 0) // hide the window!
-			editingcode = null
-			break
-
-		// For other people viewing the typer type code, the input is disabled and they can only view the code
-		// (this is put in place so that there's not any magical shenanigans with 50 people inputting different code all at once)
-		if(length(viewingcode))
-			// This piece of code is very important - it escapes quotation marks so string aren't cut off by the input element
-			var/showcode = replacetext(storedcode, "\\\"", "\\\\\"")
-			showcode = replacetext(storedcode, "\"", "\\\"")
-
-			for(var/mob/M in viewingcode)
-				if((M.machine == src && M in view(1, src)) || issilicon(M))
-					winset(M, "tcscode", "is-disabled=true")
-					winset(M, "tcscode", "text=\"[showcode]\"")
-				else
-					viewingcode.Remove(M)
-					winshow(M, "Telecomms IDE", 0) // hide the window!
-
-		sleep(5)
-
-	if(length(viewingcode) > 0)
-		editingcode = pick(viewingcode)
-		viewingcode.Remove(editingcode)
-		update_ide()
 
 /obj/machinery/computer/telecomms/traffic/attack_hand(mob/user as mob)
 	if(stat & (BROKEN|NOPOWER))
@@ -217,6 +175,48 @@
 		to_chat(user, SPAN_INFO("You disable the security protocols."))
 	src.updateUsrDialog()
 	return
+
+/obj/machinery/computer/telecomms/traffic/proc/update_ide()
+	// loop if there's someone manning the keyboard
+	while(editingcode)
+		if(!editingcode.client)
+			editingcode = null
+			break
+
+		// For the typer, the input is enabled. Buffer the typed text
+		if(editingcode)
+			storedcode = "[winget(editingcode, "tcscode", "text")]"
+		if(editingcode) // double if's to work around a runtime error
+			winset(editingcode, "tcscode", "is-disabled=false")
+
+		// If the player's not manning the keyboard anymore, adjust everything
+		if((!(editingcode in range(1, src)) && !issilicon(editingcode)) || (editingcode.machine != src && !issilicon(editingcode)))
+			if(editingcode)
+				winshow(editingcode, "Telecomms IDE", 0) // hide the window!
+			editingcode = null
+			break
+
+		// For other people viewing the typer type code, the input is disabled and they can only view the code
+		// (this is put in place so that there's not any magical shenanigans with 50 people inputting different code all at once)
+		if(length(viewingcode))
+			// This piece of code is very important - it escapes quotation marks so string aren't cut off by the input element
+			var/showcode = replacetext(storedcode, "\\\"", "\\\\\"")
+			showcode = replacetext(storedcode, "\"", "\\\"")
+
+			for(var/mob/M in viewingcode)
+				if((M.machine == src && M in view(1, src)) || issilicon(M))
+					winset(M, "tcscode", "is-disabled=true")
+					winset(M, "tcscode", "text=\"[showcode]\"")
+				else
+					viewingcode.Remove(M)
+					winshow(M, "Telecomms IDE", 0) // hide the window!
+
+		sleep(5)
+
+	if(length(viewingcode) > 0)
+		editingcode = pick(viewingcode)
+		viewingcode.Remove(editingcode)
+		update_ide()
 
 #undef TRAFFIC_SCREEN_MAIN_MENU
 #undef TRAFFIC_SCREEN_VIEWING_SERVER

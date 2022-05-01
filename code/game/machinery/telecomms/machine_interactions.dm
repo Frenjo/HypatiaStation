@@ -5,7 +5,6 @@
 	All telecommunications interactions:
 
 */
-
 #define STATION_Z 1
 #define TELECOMM_Z 3
 
@@ -168,6 +167,97 @@
 	user << browse(dat, "window=tcommachine;size=520x500;can_resize=0")
 	onclose(user, "dormitory")
 
+/obj/machinery/telecomms/Topic(href, href_list)
+	if(!issilicon(usr))
+		if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			return
+
+	if(stat & (BROKEN|NOPOWER))
+		return
+
+	var/obj/item/device/multitool/P = get_multitool(usr)
+
+	if(href_list["input"])
+		switch(href_list["input"])
+			if("toggle")
+				src.toggled = !src.toggled
+				temp = "<font color = #666633>-% [src] has been [src.toggled ? "activated" : "deactivated"].</font color>"
+				update_power()
+
+			/*
+			if("hide")
+				src.hide = !hide
+				temp = "<font color = #666633>-% Shadow Link has been [src.hide ? "activated" : "deactivated"].</font color>"
+			*/
+
+			if("id")
+				var/newid = copytext(reject_bad_text(input(usr, "Specify the new ID for this machine", src, id) as null|text),1,MAX_MESSAGE_LEN)
+				if(newid && canAccess(usr))
+					id = newid
+					temp = "<font color = #666633>-% New ID assigned: \"[id]\" %-</font color>"
+
+			if("network")
+				var/newnet = input(usr, "Specify the new network for this machine. This will break all current links.", src, network) as null|text
+				if(newnet && canAccess(usr))
+					if(length(newnet) > 15)
+						temp = "<font color = #666633>-% Too many characters in new network tag %-</font color>"
+					else
+						for(var/obj/machinery/telecomms/T in links)
+							T.links.Remove(src)
+						network = newnet
+						links = list()
+						temp = "<font color = #666633>-% New network tag assigned: \"[network]\" %-</font color>"
+
+			if("freq")
+				var/newfreq = input(usr, "Specify a new frequency to filter (GHz). Decimals assigned automatically.", src, network) as null|num
+				if(newfreq && canAccess(usr))
+					if(findtext(num2text(newfreq), "."))
+						newfreq *= 10 // shift the decimal one place
+					if(!(newfreq in freq_listening) && newfreq < 10000)
+						freq_listening.Add(newfreq)
+						temp = "<font color = #666633>-% New frequency filter assigned: \"[newfreq] GHz\" %-</font color>"
+
+	if(href_list["delete"])
+		// changed the layout about to workaround a pesky runtime -- Doohl
+		var/x = text2num(href_list["delete"])
+		temp = "<font color = #666633>-% Removed frequency filter [x] %-</font color>"
+		freq_listening.Remove(x)
+
+	if(href_list["unlink"])
+		if(text2num(href_list["unlink"]) <= length(links))
+			var/obj/machinery/telecomms/T = links[text2num(href_list["unlink"])]
+			temp = "<font color = #666633>-% Removed \ref[T] [T.name] from linked entities. %-</font color>"
+			// Remove link entries from both T and src.
+			if(src in T.links)
+				T.links.Remove(src)
+			links.Remove(T)
+
+	if(href_list["link"])
+		if(P)
+			if(P.buffer && P.buffer != src)
+				if(!(src in P.buffer.links))
+					P.buffer.links.Add(src)
+				if(!(P.buffer in src.links))
+					src.links.Add(P.buffer)
+				temp = "<font color = #666633>-% Successfully linked with \ref[P.buffer] [P.buffer.name] %-</font color>"
+			else
+				temp = "<font color = #666633>-% Unable to acquire buffer %-</font color>"
+
+	if(href_list["buffer"])
+		P.buffer = src
+		temp = "<font color = #666633>-% Successfully stored \ref[P.buffer] [P.buffer.name] in buffer %-</font color>"
+
+	if(href_list["flush"])
+		temp = "<font color = #666633>-% Buffer successfully flushed. %-</font color>"
+		P.buffer = null
+
+	src.Options_Topic(href, href_list)
+
+	usr.set_machine(src)
+	src.add_fingerprint(usr)
+
+	updateUsrDialog()
+
 
 // Off-Site Relays
 //
@@ -267,98 +357,6 @@
 			else
 				change_frequency = 0
 				temp = "<font color = #666633>-% Frequency changing deactivated %-</font color>"
-
-
-/obj/machinery/telecomms/Topic(href, href_list)
-	if(!issilicon(usr))
-		if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
-			return
-
-	if(stat & (BROKEN|NOPOWER))
-		return
-
-	var/obj/item/device/multitool/P = get_multitool(usr)
-
-	if(href_list["input"])
-		switch(href_list["input"])
-			if("toggle")
-				src.toggled = !src.toggled
-				temp = "<font color = #666633>-% [src] has been [src.toggled ? "activated" : "deactivated"].</font color>"
-				update_power()
-
-			/*
-			if("hide")
-				src.hide = !hide
-				temp = "<font color = #666633>-% Shadow Link has been [src.hide ? "activated" : "deactivated"].</font color>"
-			*/
-
-			if("id")
-				var/newid = copytext(reject_bad_text(input(usr, "Specify the new ID for this machine", src, id) as null|text),1,MAX_MESSAGE_LEN)
-				if(newid && canAccess(usr))
-					id = newid
-					temp = "<font color = #666633>-% New ID assigned: \"[id]\" %-</font color>"
-
-			if("network")
-				var/newnet = input(usr, "Specify the new network for this machine. This will break all current links.", src, network) as null|text
-				if(newnet && canAccess(usr))
-					if(length(newnet) > 15)
-						temp = "<font color = #666633>-% Too many characters in new network tag %-</font color>"
-					else
-						for(var/obj/machinery/telecomms/T in links)
-							T.links.Remove(src)
-						network = newnet
-						links = list()
-						temp = "<font color = #666633>-% New network tag assigned: \"[network]\" %-</font color>"
-
-			if("freq")
-				var/newfreq = input(usr, "Specify a new frequency to filter (GHz). Decimals assigned automatically.", src, network) as null|num
-				if(newfreq && canAccess(usr))
-					if(findtext(num2text(newfreq), "."))
-						newfreq *= 10 // shift the decimal one place
-					if(!(newfreq in freq_listening) && newfreq < 10000)
-						freq_listening.Add(newfreq)
-						temp = "<font color = #666633>-% New frequency filter assigned: \"[newfreq] GHz\" %-</font color>"
-
-	if(href_list["delete"])
-		// changed the layout about to workaround a pesky runtime -- Doohl
-		var/x = text2num(href_list["delete"])
-		temp = "<font color = #666633>-% Removed frequency filter [x] %-</font color>"
-		freq_listening.Remove(x)
-
-	if(href_list["unlink"])
-		if(text2num(href_list["unlink"]) <= length(links))
-			var/obj/machinery/telecomms/T = links[text2num(href_list["unlink"])]
-			temp = "<font color = #666633>-% Removed \ref[T] [T.name] from linked entities. %-</font color>"
-			// Remove link entries from both T and src.
-			if(src in T.links)
-				T.links.Remove(src)
-			links.Remove(T)
-
-	if(href_list["link"])
-		if(P)
-			if(P.buffer && P.buffer != src)
-				if(!(src in P.buffer.links))
-					P.buffer.links.Add(src)
-				if(!(P.buffer in src.links))
-					src.links.Add(P.buffer)
-				temp = "<font color = #666633>-% Successfully linked with \ref[P.buffer] [P.buffer.name] %-</font color>"
-			else
-				temp = "<font color = #666633>-% Unable to acquire buffer %-</font color>"
-
-	if(href_list["buffer"])
-		P.buffer = src
-		temp = "<font color = #666633>-% Successfully stored \ref[P.buffer] [P.buffer.name] in buffer %-</font color>"
-
-	if(href_list["flush"])
-		temp = "<font color = #666633>-% Buffer successfully flushed. %-</font color>"
-		P.buffer = null
-
-	src.Options_Topic(href, href_list)
-
-	usr.set_machine(src)
-	src.add_fingerprint(usr)
-
-	updateUsrDialog()
 
 /obj/machinery/telecomms/proc/canAccess(mob/user)
 	if(issilicon(user) || in_range(user, src))
