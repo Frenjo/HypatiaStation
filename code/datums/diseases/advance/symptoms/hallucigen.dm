@@ -14,7 +14,6 @@ Bonus
 
 //////////////////////////////////////
 */
-
 /datum/symptom/hallucigen
 	name = "Hallucigen"
 	stealth = -2

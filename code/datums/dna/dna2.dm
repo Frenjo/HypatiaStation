@@ -12,9 +12,9 @@
 
 // Define block bounds (off-low,off-high,on-low,on-high)
 // Used in setupgame.dm
-#define DNA_DEFAULT_BOUNDS list(1,2049,2050,4095)
-#define DNA_HARDER_BOUNDS  list(1,3049,3050,4095)
-#define DNA_HARD_BOUNDS    list(1,3490,3500,4095)
+#define DNA_DEFAULT_BOUNDS	list(1, 2049, 2050, 4095)
+#define DNA_HARDER_BOUNDS	list(1, 3049, 3050, 4095)
+#define DNA_HARD_BOUNDS		list(1, 3490, 3500, 4095)
 
 // UI Indices (can change to mutblock style, if desired)
 #define DNA_UI_HAIR_R		1
@@ -44,12 +44,12 @@
 //  This is to make some of the more OP superpowers a larger PITA to activate,
 //  and to tell our new DNA datum which values to set in order to turn something
 //  on or off.
-var/global/list/dna_activity_bounds[DNA_SE_LENGTH]
+/var/global/list/dna_activity_bounds[DNA_SE_LENGTH]
 
 // Used to determine what each block means (admin hax and species stuff on /vg/, mostly)
-var/global/list/assigned_blocks[DNA_SE_LENGTH]
+/var/global/list/assigned_blocks[DNA_SE_LENGTH]
 
-var/global/list/datum/dna/gene/dna_genes[0]
+/var/global/list/datum/dna/gene/dna_genes[0]
 
 /////////////////
 // GENE DEFINES
@@ -86,11 +86,11 @@ var/global/list/datum/dna/gene/dna_genes[0]
 // USE THIS WHEN COPYING STUFF OR YOU'LL GET CORRUPTION!
 /datum/dna/proc/Clone()
 	var/datum/dna/new_dna = new()
-	new_dna.unique_enzymes=unique_enzymes
-	new_dna.b_type=b_type
-	new_dna.mutantrace=mutantrace
-	new_dna.real_name=real_name
-	new_dna.species=species
+	new_dna.unique_enzymes = unique_enzymes
+	new_dna.b_type = b_type
+	new_dna.mutantrace = mutantrace
+	new_dna.real_name = real_name
+	new_dna.species = species
 	for(var/b = 1, b <= DNA_SE_LENGTH, b++)
 		new_dna.SE[b] = SE[b]
 		if(b <= DNA_UI_LENGTH)

@@ -14,7 +14,6 @@ Bonus
 
 //////////////////////////////////////
 */
-
 /datum/symptom/shivering
 	name = "Shivering"
 	stealth = 0

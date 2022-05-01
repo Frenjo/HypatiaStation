@@ -14,9 +14,7 @@ Bonus
 
 //////////////////////////////////////
 */
-
 /datum/symptom/damage_converter
-
 	name = "Toxic Compensation"
 	stealth = 1
 	resistance = -4
@@ -24,7 +22,7 @@ Bonus
 	transmittable = -2
 	level = 4
 
-/datum/symptom/damage_converter/Activate(var/datum/disease/advance/A)
+/datum/symptom/damage_converter/Activate(datum/disease/advance/A)
 	..()
 	if(prob(SYMPTOM_ACTIVATION_PROB))
 		var/mob/living/M = A.affected_mob
@@ -33,8 +31,7 @@ Bonus
 				Convert(M)
 	return
 
-/datum/symptom/damage_converter/proc/Convert(var/mob/living/M)
-
+/datum/symptom/damage_converter/proc/Convert(mob/living/M)
 	if(M.getFireLoss() < M.getMaxHealth() || M.getBruteLoss() < M.getMaxHealth())
 		var/get_damage = rand(1, 2)
 		M.adjustFireLoss(-get_damage)

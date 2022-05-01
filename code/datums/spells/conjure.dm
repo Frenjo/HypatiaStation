@@ -15,21 +15,20 @@
 	var/delay = 1//Go Go Gadget Inheritance
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/cast(list/targets)
-
 	for(var/turf/T in targets)
 		if(T.density && !summon_ignore_density)
 			targets -= T
 	playsound(src, 'sound/items/welder.ogg', 50, 1)
 
-	if(do_after(usr,delay))
-		for(var/i=0,i<summon_amt,i++)
+	if(do_after(usr, delay))
+		for(var/i = 0, i < summon_amt, i++)
 			if(!targets.len)
 				break
 			var/summoned_object_type = pick(summon_type)
 			var/spawn_place = pick(targets)
 			if(summon_ignore_prev_spawn_points)
 				targets -= spawn_place
-			if(ispath(summoned_object_type,/turf))
+			if(ispath(summoned_object_type, /turf))
 				var/turf/O = spawn_place
 				var/turf/N = summoned_object_type
 				O.ChangeTurf(N)
@@ -51,7 +50,6 @@
 			if("charges")
 				charge_counter++//Ditto, just for different spell types
 
-
 	return
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/summonEdSwarm //test purposes
@@ -61,7 +59,7 @@
 	summon_type = list(/obj/machinery/bot/ed209)
 	summon_amt = 10
 	range = 3
-	newVars = list("emagged" = 1,"name" = "Wizard's Justicebot")
+	newVars = list("emagged" = 1, "name" = "Wizard's Justicebot")
 
 
 //This was previously left in the old wizard code, not being included.
@@ -78,10 +76,9 @@
 	density = 1
 	unacidable = 1
 
-
-	bullet_act(var/obj/item/projectile/Proj, var/def_zone)
-		var/turf/T = get_turf(src.loc)
-		if(T)
-			for(var/mob/M in T)
-				Proj.on_hit(M,M.bullet_act(Proj, def_zone))
-		return
+/obj/effect/forcefield/bullet_act(obj/item/projectile/Proj, def_zone)
+	var/turf/T = get_turf(src.loc)
+	if(T)
+		for(var/mob/M in T)
+			Proj.on_hit(M, M.bullet_act(Proj, def_zone))
+	return

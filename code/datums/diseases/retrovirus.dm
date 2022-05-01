@@ -11,6 +11,7 @@
 	severity = "Severe"
 	permeability_mod = 0.4
 	stage_prob = 2
+
 	var/SE
 	var/UI
 	var/restcure = 0
@@ -101,6 +102,6 @@
 					return
 			if(prob(60))
 				if(prob(50))
-					scramble(1, affected_mob, rand(50,75))
+					scramble(1, affected_mob, rand(50, 75))
 				else
-					scramble(0, affected_mob, rand(50,75))
+					scramble(0, affected_mob, rand(50, 75))

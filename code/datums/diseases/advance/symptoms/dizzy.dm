@@ -14,7 +14,6 @@ Bonus
 
 //////////////////////////////////////
 */
-
 /datum/symptom/dizzy // Not the egg
 	name = "Dizziness"
 	stealth = 2

@@ -18,7 +18,6 @@ Bonus
 
 //////////////////////////////////////
 */
-
 /datum/symptom/vomit
 	name = "Vomiting"
 	stealth = -2
@@ -36,7 +35,6 @@ Bonus
 				to_chat(M, SPAN_NOTICE("[pick("You feel nauseous.", "You feel like you're going to throw up!")]"))
 			else
 				Vomit(M)
-
 	return
 
 /datum/symptom/vomit/proc/Vomit(mob/living/M)
@@ -48,6 +46,8 @@ Bonus
 	var/turf/pos = get_turf(M)
 	pos.add_vomit_floor(M)
 	playsound(pos, 'sound/effects/splat.ogg', 50, 1)
+
+
 /*
 //////////////////////////////////////
 
@@ -67,7 +67,6 @@ Bonus
 
 //////////////////////////////////////
 */
-
 /datum/symptom/vomit/blood
 	name = "Blood Vomiting"
 	stealth = -2

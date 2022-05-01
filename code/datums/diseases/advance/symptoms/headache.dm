@@ -15,7 +15,6 @@ BONUS
 
 //////////////////////////////////////
 */
-
 /datum/symptom/headache
 	name = "Headache"
 	stealth = -1

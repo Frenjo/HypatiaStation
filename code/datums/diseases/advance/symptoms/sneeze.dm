@@ -15,9 +15,7 @@ Bonus
 
 //////////////////////////////////////
 */
-
 /datum/symptom/sneeze
-
 	name = "Sneezing"
 	stealth = -2
 	resistance = 3
@@ -25,7 +23,7 @@ Bonus
 	transmittable = 4
 	level = 1
 
-/datum/symptom/sneeze/Activate(var/datum/disease/advance/A)
+/datum/symptom/sneeze/Activate(datum/disease/advance/A)
 	..()
 	if(prob(SYMPTOM_ACTIVATION_PROB))
 		var/mob/living/M = A.affected_mob

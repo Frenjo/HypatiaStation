@@ -14,9 +14,7 @@ Bonus
 
 //////////////////////////////////////
 */
-
 /datum/symptom/heal
-
 	name = "Toxic Filter"
 	stealth = 1
 	resistance = -4
@@ -24,7 +22,7 @@ Bonus
 	transmittable = -4
 	level = 6
 
-/datum/symptom/heal/Activate(var/datum/disease/advance/A)
+/datum/symptom/heal/Activate(datum/disease/advance/A)
 	..()
 	if(prob(SYMPTOM_ACTIVATION_PROB))
 		var/mob/living/M = A.affected_mob
@@ -33,8 +31,7 @@ Bonus
 				Heal(M)
 	return
 
-/datum/symptom/heal/proc/Heal(var/mob/living/M)
-
+/datum/symptom/heal/proc/Heal(mob/living/M)
 	var/get_damage = rand(1, 2)
 	M.adjustToxLoss(-get_damage)
 	return 1

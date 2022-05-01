@@ -14,9 +14,7 @@ BONUS
 
 //////////////////////////////////////
 */
-
 /datum/symptom/cough
-
 	name = "Cough"
 	stealth = -1
 	resistance = 3
@@ -24,7 +22,7 @@ BONUS
 	transmittable = 2
 	level = 1
 
-/datum/symptom/cough/Activate(var/datum/disease/advance/A)
+/datum/symptom/cough/Activate(datum/disease/advance/A)
 	..()
 	if(prob(SYMPTOM_ACTIVATION_PROB))
 		var/mob/living/M = A.affected_mob

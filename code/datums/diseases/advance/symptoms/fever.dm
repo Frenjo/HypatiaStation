@@ -14,7 +14,6 @@ Bonus
 
 //////////////////////////////////////
 */
-
 /datum/symptom/fever
 	name = "Fever"
 	stealth = 0

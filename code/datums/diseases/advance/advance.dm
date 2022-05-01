@@ -6,25 +6,23 @@
 	If you need help with creating new symptoms or expanding the advance disease, ask for Giacom on #coderbus.
 
 */
-
 #define RANDOM_STARTING_LEVEL 2
 
-var/list/archive_diseases = list()
+/var/list/archive_diseases = list()
 
 // The order goes from easy to cure to hard to cure.
-var/list/advance_cures = 	list(
-									"nutriment", "sugar", "orangejuice",
-									"spaceacillin", "kelotane", "ethanol",
-									"leporazine", "synaptizine", "lipozine",
-									MATERIAL_SILVER, MATERIAL_GOLD, MATERIAL_PLASMA
-								)
+var/list/advance_cures = list(
+	"nutriment", "sugar", "orangejuice",
+	"spaceacillin", "kelotane", "ethanol",
+	"leporazine", "synaptizine", "lipozine",
+	MATERIAL_SILVER, MATERIAL_GOLD, MATERIAL_PLASMA
+)
 
 /*
 
 	PROPERTIES
 
  */
-
 /datum/disease/advance
 	name = "Unknown" // We will always let our Virologist name our disease.
 	desc = "An engineered disease which can contain a multitude of symptoms."
@@ -40,12 +38,12 @@ var/list/advance_cures = 	list(
 	var/id = ""
 	var/processing = 0
 
+
 /*
 
 	OLD PROCS
 
  */
-
 /datum/disease/advance/New(process = 1, datum/disease/advance/D)
 	// Setup our dictionary if it hasn't already.
 	if(!dictionary_symptoms.len)
@@ -113,15 +111,15 @@ var/list/advance_cures = 	list(
 /datum/disease/advance/Copy(process = 0)
 	return new /datum/disease/advance(process, src, 1)
 
+
 /*
 
 	NEW PROCS
 
  */
-
 // Mix the symptoms of two diseases (the src and the argument)
 /datum/disease/advance/proc/Mix(datum/disease/advance/D)
-	if(!(src.IsSame(D)))
+	if(!src.IsSame(D))
 		var/list/possible_symptoms = shuffle(D.symptoms)
 		for(var/datum/symptom/S in possible_symptoms)
 			AddSymptom(new S.type)
@@ -178,7 +176,6 @@ var/list/advance_cures = 	list(
 
 //Generate disease properties based on the effects. Returns an associated list.
 /datum/disease/advance/proc/GenerateProperties()
-
 	if(!symptoms || !symptoms.len)
 		CRASH("We did not have any symptoms before generating properties.")
 		return
@@ -209,7 +206,6 @@ var/list/advance_cures = 	list(
 	else
 		CRASH("Our properties were empty or null!")
 
-
 // Assign the spread type and give it the correct description.
 /datum/disease/advance/proc/SetSpread(spread_id)
 	switch(spread_id)
@@ -226,7 +222,6 @@ var/list/advance_cures = 	list(
 
 	spread_type = spread_id
 	//world << "Setting spread type to [spread_id]/[spread]"
-
 
 /datum/disease/advance/proc/SetSeverity(level_sev)
 	switch(level_sev)
@@ -245,7 +240,6 @@ var/list/advance_cures = 	list(
 		else
 			severity = "Unknown"
 
-
 // Will generate a random cure, the less resistance the symptoms have, the harder the cure.
 /datum/disease/advance/proc/GenerateCure(list/properties = list())
 	if(properties && properties.len)
@@ -256,7 +250,6 @@ var/list/advance_cures = 	list(
 		// Get the cure name from the cure_id
 		var/datum/reagent/D = chemical_reagents_list[cure_id]
 		cure = D.name
-
 
 	return
 
@@ -292,7 +285,6 @@ var/list/advance_cures = 	list(
 	id = result
 	return result
 
-
 // Add a symptom, if it is over the limit (with a small chance to be able to go over)
 // we take a random symptom away and add the new one.
 /datum/disease/advance/proc/AddSymptom(datum/symptom/S)
@@ -311,12 +303,12 @@ var/list/advance_cures = 	list(
 	symptoms -= S
 	return
 
+
 /*
 
 	Static Procs
 
 */
-
 // Mix a list of advance diseases and return the mixed result.
 /proc/Advance_Mix(list/D_list)
 	//world << "Mixing!!!!"
@@ -382,7 +374,6 @@ var/list/advance_cures = 	list(
 	while(i > 0)
 
 	if(D.symptoms.len > 0)
-
 		var/new_name = input(user, "Name your new disease.", "New Name")
 		D.AssignName(new_name)
 		D.Refresh()

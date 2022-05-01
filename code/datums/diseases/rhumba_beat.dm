@@ -11,7 +11,6 @@
 
 /datum/disease/rhumba_beat/stage_act()
 	..()
-
 	// Moving this here instead of checking on every single stage should work, right?
 	// As a sidenote, what the fuck is this for, anyway? -Frenjo
 	if(affected_mob.ckey == "rosham")

@@ -29,7 +29,7 @@
 
 	return thearea
 
-/obj/effect/proc_holder/spell/targeted/area_teleport/cast(list/targets,area/thearea)
+/obj/effect/proc_holder/spell/targeted/area_teleport/cast(list/targets, area/thearea)
 	for(var/mob/living/target in targets)
 		var/list/L = list()
 		for(var/turf/T in get_area_turfs(thearea.type))
@@ -43,7 +43,7 @@
 					L+=T
 
 		if(!L.len)
-			usr <<"The spell matrix was unable to locate a suitable teleport destination for an unknown reason. Sorry."
+			to_chat(usr, "The spell matrix was unable to locate a suitable teleport destination for an unknown reason. Sorry.")
 			return
 
 		if(target && target.buckled)
@@ -72,7 +72,7 @@
 		switch(invocation_type)
 			if("shout")
 				usr.say("[invocation] [uppertext(chosenarea.name)]")
-				if(usr.gender==MALE)
+				if(usr.gender == MALE)
 					playsound(usr.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 100, 1)
 				else
 					playsound(usr.loc, pick('sound/misc/null.ogg','sound/misc/null.ogg'), 100, 1)

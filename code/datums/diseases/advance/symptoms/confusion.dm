@@ -14,7 +14,6 @@ Bonus
 
 //////////////////////////////////////
 */
-
 /datum/symptom/confusion
 	name = "Confusion"
 	stealth = 1

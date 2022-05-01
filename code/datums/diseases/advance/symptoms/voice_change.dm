@@ -14,7 +14,6 @@ Bonus
 
 //////////////////////////////////////
 */
-
 /datum/symptom/voice_change
 	name = "Voice Change"
 	stealth = -2

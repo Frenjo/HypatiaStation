@@ -17,7 +17,7 @@ to null does not delete the object itself. Thank you.
 
 */
 
-var/list/diseases = SUBTYPESOF(/datum/disease)
+/var/list/diseases = SUBTYPESOF(/datum/disease)
 
 /datum/disease
 	var/form = "Virus" //During medscans, what the disease is referred to as
@@ -50,6 +50,12 @@ var/list/diseases = SUBTYPESOF(/datum/disease)
 	var/stage_minimum_age = 0 // how old the disease must be to advance per stage
 	// if hidden[1] is true, then virus is hidden from medical scanners
 	// if hidden[2] is true, then virus is hidden from PANDEMIC machine
+
+/datum/disease/New(process = 1, datum/disease/D)//process = 1 - adding the object to global list. List is processed by master controller.
+	cure_list = list(cure_id) // to add more cures, add more vars to this list in the actual disease's New()
+	if(process)				 // Viruses in list are considered active.
+		active_diseases += src
+	initial_spread = spread
 
 /datum/disease/Destroy()
 	active_diseases.Remove(src)
@@ -186,13 +192,6 @@ var/list/diseases = SUBTYPESOF(/datum/disease)
 		affected_mob.viruses -= src		//remove the datum from the list
 	qdel(src)	//delete the datum to stop it processing
 	return
-
-
-/datum/disease/New(process = 1, datum/disease/D)//process = 1 - adding the object to global list. List is processed by master controller.
-	cure_list = list(cure_id) // to add more cures, add more vars to this list in the actual disease's New()
-	if(process)				 // Viruses in list are considered active.
-		active_diseases += src
-	initial_spread = spread
 
 /datum/disease/proc/IsSame(datum/disease/D)
 	if(istype(src, D.type))

@@ -51,7 +51,7 @@
 				qdel(animation)
 				qdel(holder)
 			else
-				flick("liquify",animation)
+				flick("liquify", animation)
 				target.loc = holder
 				target.client.eye = holder
 				var/datum/effect/system/steam_spread/steam = new /datum/effect/system/steam_spread()
@@ -82,9 +82,10 @@
 	name = "water"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
-	var/canmove = 1
 	density = 0
 	anchored = 1
+
+	var/canmove = 1
 
 /obj/effect/dummy/spell_jaunt/Destroy()
 	// Eject contents if deleted somehow

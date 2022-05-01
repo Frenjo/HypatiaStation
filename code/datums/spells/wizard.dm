@@ -27,6 +27,7 @@
 	amt_weakened = 5
 	amt_dam_fire = 10
 
+
 /obj/effect/proc_holder/spell/targeted/genetic/mutate
 	name = "Mutate"
 	desc = "This spell causes you to turn into a hulk and gain laser vision for a short while."
@@ -42,6 +43,7 @@
 
 	mutations = list(LASER, HULK)
 	duration = 300
+
 
 /obj/effect/proc_holder/spell/targeted/inflict_handler/disintegrate
 	name = "Disintegrate"
@@ -59,6 +61,7 @@
 	sparks_spread = 1
 	sparks_amt = 4
 
+
 /obj/effect/proc_holder/spell/targeted/smoke
 	name = "Smoke"
 	desc = "This spell spawns a cloud of choking smoke at your location and does not require wizard garb."
@@ -74,6 +77,7 @@
 	smoke_spread = 2
 	smoke_amt = 10
 
+
 /obj/effect/proc_holder/spell/targeted/emplosion/disable_tech
 	name = "Disable Tech"
 	desc = "This spell disables all weapons, cameras and most other technology in range."
@@ -86,6 +90,7 @@
 
 	emp_heavy = 6
 	emp_light = 10
+
 
 /obj/effect/proc_holder/spell/targeted/turf_teleport/blink
 	name = "Blink"
@@ -107,6 +112,7 @@
 
 	centcomm_cancast = 0 //prevent people from getting to centcomm
 
+
 /obj/effect/proc_holder/spell/targeted/area_teleport/teleport
 	name = "Teleport"
 	desc = "This spell teleports you to a type of area of your selection."
@@ -122,6 +128,7 @@
 	smoke_spread = 1
 	smoke_amt = 5
 
+
 /obj/effect/proc_holder/spell/aoe_turf/conjure/forcewall
 	name = "Forcewall"
 	desc = "This spell creates an unbreakable wall that lasts for 30 seconds and does not need wizard garb."
@@ -133,7 +140,7 @@
 	invocation_type = "whisper"
 	range = 0
 
-	summon_type = list("/obj/effect/forcefield")
+	summon_type = list(/obj/effect/forcefield)
 	summon_lifespan = 300
 
 
@@ -179,6 +186,7 @@
 
 	summon_type = list(/mob/living/simple_animal/hostile/creature)
 
+
 /obj/effect/proc_holder/spell/targeted/trigger/blind
 	name = "Blind"
 	desc = "This spell temporarily blinds a single person and does not require wizard garb."
@@ -200,6 +208,7 @@
 	disabilities = 1
 	duration = 300
 
+
 /obj/effect/proc_holder/spell/dumbfire/fireball
 	name = "Fireball"
 	desc = "This spell fires a fireball at a target and does not require wizard garb."
@@ -218,9 +227,8 @@
 	proj_lifespan = 200
 	proj_step_delay = 1
 
-/obj/effect/proc_holder/spell/turf/fireball/cast(var/turf/T)
+/obj/effect/proc_holder/spell/turf/fireball/cast(turf/T)
 	explosion(T, -1, 1, 2, 3)
-
 
 /obj/effect/proc_holder/spell/targeted/inflict_handler/fireball
 	amt_dam_brute = 20
@@ -231,10 +239,6 @@
 	ex_heavy = -1
 	ex_light = 2
 	ex_flash = 5
-
-
-
-
 
 
 //////////////////////////////Construct Spells/////////////////////////
@@ -255,6 +259,7 @@
 	summon_type = list(/turf/simulated/floor/engine/cult)
 	centcomm_cancast = 0 //Stop crashing the server by spawning turfs on transit tiles
 
+
 /obj/effect/proc_holder/spell/aoe_turf/conjure/wall
 	name = "Leser Construction"
 	desc = "This spell constructs a cult wall"
@@ -267,6 +272,7 @@
 	range = 0
 	summon_type = list(/turf/simulated/wall/cult)
 	centcomm_cancast = 0 //Stop crashing the server by spawning turfs on transit tiles
+
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/wall/reinforced
 	name = "Greater Construction"
@@ -282,6 +288,7 @@
 	delay = 50
 
 	summon_type = list(/turf/simulated/wall/r_wall)
+
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone
 	name = "Summon Soulstone"

@@ -11,6 +11,7 @@
 	invocation_type = "shout"
 	range = 7
 	selection_type = "range"
+
 	var/list/compatible_mobs = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 
 /obj/effect/proc_holder/spell/targeted/horsemask/cast(list/targets, mob/user = usr)
@@ -29,8 +30,10 @@
 		return
 
 	var/obj/item/clothing/mask/horsehead/magic/magichead = new /obj/item/clothing/mask/horsehead/magic
-	target.visible_message(	SPAN_DANGER("[target]'s face  lights up in fire, and after the event a horse's head takes its place!"), \
-							SPAN_DANGER("Your face burns up, and shortly after the fire you realise you have the face of a horse!"))
+	target.visible_message(
+		SPAN_DANGER("[target]'s face  lights up in fire, and after the event a horse's head takes its place!"),
+		SPAN_DANGER("Your face burns up, and shortly after the fire you realise you have the face of a horse!")
+	)
 	target.equip_to_slot(magichead, slot_wear_mask)
 
 	flick("e_flash", target.flash)

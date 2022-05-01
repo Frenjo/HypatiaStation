@@ -121,7 +121,6 @@
 		locked += L
 	return
 
-
 /proc/get_id_photo(mob/living/carbon/human/H)
 	var/icon/preview_icon = null
 

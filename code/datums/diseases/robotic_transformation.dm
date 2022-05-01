@@ -11,6 +11,7 @@
 	affected_species = list("Human")
 	desc = "This disease, actually acute nanomachine infection, converts the victim into a cyborg."
 	severity = "Major"
+
 	var/gibbed = 0
 
 /datum/disease/robotic_transformation/stage_act()
@@ -62,4 +63,3 @@
 					H.Robotize()
 				else
 					affected_mob.death(1)
-
