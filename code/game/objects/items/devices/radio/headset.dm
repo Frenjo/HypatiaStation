@@ -9,11 +9,12 @@
 	canhear_range = 0 // can't hear headsets from very far away
 
 	slot_flags = SLOT_EARS
+	maxf = 1489
+
 	var/translate_binary = 0
 	var/translate_hive = 0
 	var/obj/item/device/encryptionkey/keyslot1 = null
 	var/obj/item/device/encryptionkey/keyslot2 = null
-	maxf = 1489
 
 	var/ks1type = /obj/item/device/encryptionkey
 	var/ks2type = null
@@ -107,7 +108,7 @@
 
 /obj/item/device/radio/headset/heads/captain
 	name = "captain's headset"
-	desc = "The headset of the boss. Channels are as follows: :c - Command, :s - Security, :e - Engineering, :u - Supply, :m - Medical, :n - Science, :d - Mining."
+	desc = "The headset of the boss. Channels are as follows: :c - Command, :s - Security, :e - Engineering, :u - Supply, :m - Medical, :n - Science, :x - Mining."
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/captain
@@ -142,28 +143,28 @@
 
 /obj/item/device/radio/headset/heads/hop
 	name = "head of personnel's headset"
-	desc = "The headset of the guy who will one day be Captain. Channels are as follows: :c - Command, :u - Supply, :d - Mining."
+	desc = "The headset of the guy who will one day be Captain. Channels are as follows: :c - Command, :u - Supply, :x - Mining."
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hop
 
 /obj/item/device/radio/headset/headset_mine
 	name = "mining radio headset"
-	desc = "Headset used by miners. How useless. To access the mining channel, use :d."
+	desc = "Headset used by miners. How useless. To access the mining channel, use :x."
 	icon_state = "mine_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_mine
 
 /obj/item/device/radio/headset/headset_mineforeman
 	name = "mining foreman's radio headset"
-	desc = "Headset used by the Mining Foreman. How slightly less useless. To access the mining channel, use :d. For supply, use :u."
+	desc = "Headset used by the Mining Foreman. How slightly less useless. To access the mining channel, use :x. For supply, use :u."
 	icon_state = "mine_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_mineforeman
 
 /obj/item/device/radio/headset/headset_qm
 	name = "quartermaster's headset"
-	desc = "The headset of the man who controls your toilet paper supply. To access the mining channel, use :d. For supply, use :u."
+	desc = "The headset of the man who controls your toilet paper supply. To access the mining channel, use :x. For supply, use :u."
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/headset_qm
@@ -177,7 +178,7 @@
 
 /obj/item/device/radio/headset/ert
 	name = "CentCom Response Team headset"
-	desc = "The headset of the boss's boss. Channels are as follows: :h - Response Team :c - Command, :s - Security, :e - Engineering, :d - Mining, :u - Supply, :m - Medical, :n - Science."
+	desc = "The headset of the boss's boss. Channels are as follows: :h - Response Team :c - Command, :s - Security, :e - Engineering, :x - Mining, :u - Supply, :m - Medical, :n - Science."
 	icon_state = "com_headset"
 	item_state = "headset"
 	freerange = 1

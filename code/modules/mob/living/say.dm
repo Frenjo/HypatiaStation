@@ -11,7 +11,7 @@
 	  ":w" = "whisper",		"#w" = "whisper",		".w" = "whisper",
 	  ":t" = "Syndicate",	"#t" = "Syndicate",		".t" = "Syndicate",
 	  ":u" = "Supply",		"#u" = "Supply",		".u" = "Supply",
-	  ":d" = "Mining",		"#d" = "Mining",		".d" = "Mining",
+	  ":x" = "Mining",		"#x" = "Mining",		".x" = "Mining",
 	  ":g" = "changeling",	"#g" = "changeling",	".g" = "changeling",
 
 	  ":R" = "right ear",	"#R" = "right ear",		".R" = "right ear",
@@ -26,7 +26,7 @@
 	  ":W" = "whisper",		"#W" = "whisper",		".W" = "whisper",
 	  ":T" = "Syndicate",	"#T" = "Syndicate",		".T" = "Syndicate",
 	  ":U" = "Supply",		"#U" = "Supply",		".U" = "Supply",
-	  ":D" = "Mining",		"#D" = "Mining",		".D" = "Mining",
+	  ":X" = "Mining",		"#X" = "Mining",		".X" = "Mining",
 	  ":G" = "changeling",	"#G" = "changeling",	".G" = "changeling",
 
 	  //kinda localization -- rastaf0

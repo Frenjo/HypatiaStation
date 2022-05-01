@@ -197,7 +197,7 @@
 								if("Medical")
 									available_channels.Add(":m")
 								if("Mining")
-									available_channels.Add(":d")
+									available_channels.Add(":x")
 								if("Cargo")
 									available_channels.Add(":q")
 
