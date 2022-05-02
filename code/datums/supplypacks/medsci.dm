@@ -11,7 +11,7 @@
 	cost = 125
 	containertype = /obj/structure/closet/crate/secure/bio
 	containername = "Stem-Cell Long Term Storage Unit"
-	access = access_medical
+	access = ACCESS_MEDICAL
 
 
 /decl/hierarchy/supply_pack/medsci/medical
@@ -57,7 +57,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Virus sample crate"
-	access = access_cmo
+	access = ACCESS_CMO
 
 
 /decl/hierarchy/supply_pack/medsci/coolanttank
@@ -87,7 +87,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/plasma
 	containername = "Plasma assembly crate"
-	access = access_tox_storage
+	access = ACCESS_TOX_STORAGE
 
 
 /decl/hierarchy/supply_pack/medsci/surgery
@@ -108,7 +108,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Surgery crate"
-	access = access_medical
+	access = ACCESS_MEDICAL
 
 
 /decl/hierarchy/supply_pack/medsci/sterile

@@ -108,7 +108,7 @@
 //---- Lockers and closets
 /obj/structure/closet/secure_closet/xenoarchaeologist
 	name = "Xenoarchaeologist's Locker" // Renamed to match other lockers. -Frenjo
-	req_access = list(access_tox_storage)
+	req_access = list(ACCESS_TOX_STORAGE)
 	icon_state = "secureres1"
 	icon_closed = "secureres"
 	icon_locked = "secureres1"
@@ -153,7 +153,7 @@
 //---- Isolation room air alarms
 /obj/machinery/alarm/isolation
 	name = "Isolation room air control"
-	req_access = list(access_research)
+	req_access = list(ACCESS_RESEARCH)
 
 #undef XENOARCH_SPAWN_CHANCE
 #undef XENOARCH_SPREAD_CHANCE

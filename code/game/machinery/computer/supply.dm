@@ -61,7 +61,7 @@
 	name = "Supply shuttle console"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "supply"
-	req_access = list(access_cargo)
+	req_access = list(ACCESS_CARGO)
 	circuit = /obj/item/weapon/circuitboard/supplycomp
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink

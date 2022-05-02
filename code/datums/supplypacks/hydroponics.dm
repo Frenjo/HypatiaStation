@@ -58,7 +58,7 @@
 	cost = 15
 	containertype = /obj/structure/closet/crate/hydroponics
 	containername = "Hydroponics crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 
 
 //farm animals - useless and annoying, but potentially a good source of food
@@ -67,7 +67,7 @@
 	cost = 30
 	containertype = /obj/structure/largecrate/cow
 	containername = "Cow crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 
 
 /decl/hierarchy/supply_pack/hydroponics/goat
@@ -75,7 +75,7 @@
 	cost = 25
 	containertype = /obj/structure/largecrate/goat
 	containername = "Goat crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 
 
 /decl/hierarchy/supply_pack/hydroponics/chicken
@@ -83,7 +83,7 @@
 	cost = 20
 	containertype = /obj/structure/largecrate/chick
 	containername = "Chicken crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 
 
 /decl/hierarchy/supply_pack/hydroponics/seeds
@@ -110,7 +110,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/hydroponics
 	containername = "Seeds crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 
 
 /decl/hierarchy/supply_pack/hydroponics/weedcontrol
@@ -124,7 +124,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/hydrosec
 	containername = "Weed control crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 
 
 /decl/hierarchy/supply_pack/hydroponics/exoticseeds
@@ -148,7 +148,7 @@
 	cost = 15
 	containertype = /obj/structure/closet/crate/hydroponics
 	containername = "Exotic Seeds crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS
 
 
 /decl/hierarchy/supply_pack/hydroponics/watertank
@@ -173,4 +173,4 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/hydroponics
 	containername = "Beekeeping crate"
-	access = access_hydroponics
+	access = ACCESS_HYDROPONICS

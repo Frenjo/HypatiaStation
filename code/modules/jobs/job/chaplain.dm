@@ -8,8 +8,8 @@
 	spawn_positions = 1
 	supervisors = "the Head of Personnel"
 	selection_color = "#dddddd"
-	access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
-	minimal_access = list(access_morgue, access_chapel_office, access_crematorium)
+	access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_MAINT_TUNNELS)
+	minimal_access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM)
 	alt_titles = list("Counselor")
 
 /datum/job/chaplain/equip(mob/living/carbon/human/H)

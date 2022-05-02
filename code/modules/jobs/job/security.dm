@@ -10,16 +10,16 @@
 	idtype = /obj/item/weapon/card/id/silver
 	req_admin_notify = 1
 	access = list(
-		access_security, access_sec_doors, access_brig, access_armory, access_court,
-		access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
-		access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
-		access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway
+		ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT,
+		ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_ALL_PERSONAL_LOCKERS,
+		ACCESS_RESEARCH, ACCESS_ENGINE, ACCESS_MINING, ACCESS_MEDICAL, ACCESS_CONSTRUCTION, ACCESS_MAILSORTING,
+		ACCESS_HEADS, ACCESS_HOS, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_GATEWAY
 	)
 	minimal_access = list(
-		access_security, access_sec_doors, access_brig, access_armory, access_court,
-		access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
-		access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
-		access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway
+		ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT,
+		ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_ALL_PERSONAL_LOCKERS,
+		ACCESS_RESEARCH, ACCESS_ENGINE, ACCESS_MINING, ACCESS_MEDICAL, ACCESS_CONSTRUCTION, ACCESS_MAILSORTING,
+		ACCESS_HEADS, ACCESS_HOS, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_GATEWAY
 	)
 	minimal_player_age = 14
 	alt_titles = list("Security Commander")
@@ -70,8 +70,8 @@
 	spawn_positions = 2
 	supervisors = "the Head of Security"
 	selection_color = "#ffeeee"
-	access = list(access_security, access_sec_doors, access_brig, access_armory, access_court, access_maint_tunnels, access_morgue)
-	minimal_access = list(access_security, access_sec_doors, access_brig, access_armory, access_court, access_maint_tunnels)
+	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE)
+	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS)
 	minimal_player_age = 5
 
 /datum/job/warden/equip(mob/living/carbon/human/H)
@@ -113,8 +113,8 @@
 	spawn_positions = 1
 	supervisors = "the Head of Security"
 	selection_color = "#ffeeee"
-	access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels, access_court)
-	minimal_access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels, access_court)
+	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_COURT)
+	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_COURT)
 	alt_titles = list("Forensic Technician")
 	minimal_player_age = 3
 
@@ -166,8 +166,8 @@
 	spawn_positions = 5
 	supervisors = "the Head of Security"
 	selection_color = "#ffeeee"
-	access = list(access_security, access_sec_doors, access_brig, access_court, access_maint_tunnels, access_morgue)
-	minimal_access = list(access_security, access_sec_doors, access_brig, access_court, access_maint_tunnels)
+	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE)
+	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS)
 	minimal_player_age = 3
 
 /datum/job/officer/equip(mob/living/carbon/human/H)
@@ -207,8 +207,8 @@
 	spawn_positions = 1
 	supervisors = "the Warden and the Head of Security"
 	selection_color = "#ffeeee"
-	access = list(access_medical, access_chemistry, access_surgery, access_sec_doors, access_brig, access_court, access_maint_tunnels, access_morgue)
-	minimal_access = list(access_medical, access_sec_doors, access_brig, access_court, access_maint_tunnels)
+	access = list(ACCESS_MEDICAL, ACCESS_CHEMISTRY, ACCESS_SURGERY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE)
+	minimal_access = list(ACCESS_MEDICAL, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS)
 	minimal_player_age = 7
 
 /datum/job/secpara/equip(mob/living/carbon/human/H)

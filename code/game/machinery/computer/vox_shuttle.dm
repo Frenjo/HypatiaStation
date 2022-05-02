@@ -9,7 +9,7 @@ var/global/announce_vox_departure = 1 //Stealth systems - give an announcement o
 	name = "skipjack cloaking field terminal"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "syndishuttle"
-	req_access = list(access_syndicate)
+	req_access = list(ACCESS_SYNDICATE)
 
 /obj/machinery/computer/vox_stealth/attackby(obj/item/I as obj, mob/user as mob)
 	return attack_hand(user)
@@ -45,7 +45,7 @@ var/global/announce_vox_departure = 1 //Stealth systems - give an announcement o
 	name = "vox skipjack terminal"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "syndishuttle"
-	req_access = list(access_syndicate)
+	req_access = list(ACCESS_SYNDICATE)
 	var/area/curr_location
 	var/moving = 0
 	var/lastMove = 0

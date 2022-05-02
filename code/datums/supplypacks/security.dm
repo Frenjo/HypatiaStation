@@ -52,7 +52,7 @@
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Weapons crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 
 /decl/hierarchy/supply_pack/security/eweapons
@@ -69,7 +69,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Experimental weapons crate"
-	access = access_heads
+	access = ACCESS_HEADS
 
 
 /decl/hierarchy/supply_pack/security/armor
@@ -83,7 +83,7 @@
 	cost = 15
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Armor crate"
-	access = access_security
+	access = ACCESS_SECURITY
 
 
 /decl/hierarchy/supply_pack/security/riot
@@ -111,7 +111,7 @@
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Riot gear crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 
 /decl/hierarchy/supply_pack/security/loyalty
@@ -120,7 +120,7 @@
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Loyalty implant crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 
 /decl/hierarchy/supply_pack/security/ballistic
@@ -134,7 +134,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Ballistic gear crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 
 /decl/hierarchy/supply_pack/security/erifle
@@ -148,7 +148,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Energy marksman crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 
 /decl/hierarchy/supply_pack/security/shotgunammo
@@ -168,7 +168,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Shotgun shells"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 
 /decl/hierarchy/supply_pack/security/expenergy
@@ -182,7 +182,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Experimental energy gear crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 
 /decl/hierarchy/supply_pack/security/exparmor
@@ -196,7 +196,7 @@
 	cost = 35
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Experimental armor crate"
-	access = access_armory
+	access = ACCESS_ARMORY
 
 
 /decl/hierarchy/supply_pack/security/securitybarriers
@@ -223,7 +223,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Wall shield generators crate"
-	access = access_teleporter
+	access = ACCESS_TELEPORTER
 
 
 /decl/hierarchy/supply_pack/security/disablers
@@ -236,4 +236,4 @@
 	cost = 20 // This cost seems to be roughly similar to the taser crate except slightly less since they're only disablers.
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Disabler supply crate"
-	access = access_security
+	access = ACCESS_SECURITY

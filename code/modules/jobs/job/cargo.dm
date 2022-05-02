@@ -9,14 +9,14 @@
 	supervisors = "the Head of Personnel and the Captain"
 	selection_color = "#8c7846"
 	access = list(
-		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot,
-		access_qm, access_mint, access_mining, access_mining_station,
-		access_RC_announce
+		ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT,
+		ACCESS_QM, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION,
+		ACCESS_RC_ANNOUNCE
 	)
 	minimal_access = list(
-		access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot,
-		access_qm, access_mint, access_mining, access_mining_station,
-		access_RC_announce
+		ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT,
+		ACCESS_QM, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION,
+		ACCESS_RC_ANNOUNCE
 	)
 
 /datum/job/qm/equip(mob/living/carbon/human/H)
@@ -47,8 +47,8 @@
 	spawn_positions = 2
 	supervisors = "the Quartermaster"
 	selection_color = "#aa9682"
-	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mint, access_mining, access_mining_station)
-	minimal_access = list(access_maint_tunnels, access_cargo, access_cargo_bot, access_mailsorting)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_QM, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION)
+	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MAILSORTING)
 
 /datum/job/cargo_tech/equip(mob/living/carbon/human/H)
 	if(!H)
@@ -76,8 +76,8 @@
 	spawn_positions = 1
 	supervisors = "the Quartermaster"
 	selection_color = "#aa9682"
-	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mint, access_mining, access_mining_station)
-	minimal_access = list(access_mining, access_mint, access_mining_station, access_mailsorting)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_QM, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION)
+	minimal_access = list(ACCESS_MINING, ACCESS_MINT, ACCESS_MINING_STATION, ACCESS_MAILSORTING)
 	alt_titles = list("Head Miner")
 
 /datum/job/miningforeman/equip(mob/living/carbon/human/H)
@@ -117,8 +117,8 @@
 	spawn_positions = 3
 	supervisors = "the Mining Foreman and the Quartermaster"
 	selection_color = "#aa9682"
-	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mint, access_mining, access_mining_station)
-	minimal_access = list(access_mining, access_mint, access_mining_station, access_mailsorting)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_QM, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION)
+	minimal_access = list(ACCESS_MINING, ACCESS_MINT, ACCESS_MINING_STATION, ACCESS_MAILSORTING)
 	alt_titles = list("Prospector")
 
 /datum/job/mining/equip(mob/living/carbon/human/H)
@@ -162,8 +162,8 @@
 	spawn_positions = 1
 	supervisors = "the Head of Personnel and the Quartermaster"
 	selection_color = "#aa9682"
-	access = list(access_maint_tunnels, access_mailsorting, access_cargo)
-	minimal_access = list(access_maint_tunnels, access_cargo, access_mailsorting)
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO)
+	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_MAILSORTING)
 	alt_titles = list("Postman", "Delivery Technician") // Should probably change this to "Delivery Specialist", but "Cargo Technician" exists. -Frenjo
 
 /datum/job/mailman/equip(mob/living/carbon/human/H)

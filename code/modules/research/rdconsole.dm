@@ -34,7 +34,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	icon_state = "rdcomp"
 	circuit = /obj/item/weapon/circuitboard/rdconsole
 
-	req_access = list(access_research)	//Data and setting manipulation requires scientist access.
+	req_access = list(ACCESS_RESEARCH)	//Data and setting manipulation requires scientist access.
 
 	light_color = "#a97faa"
 
@@ -939,7 +939,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	name = "Robotics R&D Console"
 	id = 2
 	req_access = null
-	req_access = list(access_robotics)
+	req_access = list(ACCESS_ROBOTICS)
 
 /obj/machinery/computer/rdconsole/core
 	name = "Core R&D Console"

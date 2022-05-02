@@ -6,7 +6,7 @@
 	//icon_state = "aiupload"
 	icon_state = "accountsuplink" // Changed this so that it has a separate sprite which actually makes sense. -Frenjo
 	density = 1
-	req_one_access = list(access_hop, access_captain, access_cent_captain)
+	req_one_access = list(ACCESS_HOP, ACCESS_CAPTAIN, ACCESS_CENT_CAPTAIN)
 	var/receipt_num
 	var/machine_id = ""
 	var/obj/item/weapon/card/id/held_card
@@ -92,9 +92,9 @@
 			idcard.loc = src
 			held_card = idcard
 
-			if(access_cent_captain in idcard.access)
+			if(ACCESS_CENT_CAPTAIN in idcard.access)
 				access_level = 2
-			else if(access_hop in idcard.access || access_captain in idcard.access)
+			else if(ACCESS_HOP in idcard.access || ACCESS_CAPTAIN in idcard.access)
 				access_level = 1
 	else
 		..()
@@ -154,9 +154,9 @@
 						C.loc = src
 						held_card = C
 
-						if(access_cent_captain in C.access)
+						if(ACCESS_CENT_CAPTAIN in C.access)
 							access_level = 2
-						else if(access_hop in C.access || access_captain in C.access)
+						else if(ACCESS_HOP in C.access || ACCESS_CAPTAIN in C.access)
 							access_level = 1
 			if("view_account_detail")
 				var/index = text2num(href_list["account_index"])

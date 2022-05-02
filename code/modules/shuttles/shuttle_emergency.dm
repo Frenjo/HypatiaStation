@@ -137,7 +137,7 @@
 		src.visible_message("[src] buzzes. That ID has already been scanned.")
 		return 0
 
-	if(!(access_heads in access))
+	if(!(ACCESS_HEADS in access))
 		src.visible_message("[src] buzzes, rejecting [ident].")
 		return 0
 

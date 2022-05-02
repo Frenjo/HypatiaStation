@@ -68,20 +68,20 @@
 	req_admin_notify = 1
 	minimal_player_age = 10
 	access = list(
-		access_security, access_sec_doors, access_brig, access_court, access_forensics_lockers,
-		access_medical, access_engine, access_change_ids, access_ai_upload, access_eva, access_heads,
-		access_all_personal_lockers, access_maint_tunnels, access_bar, access_janitor, access_construction, access_morgue,
-		access_crematorium, access_kitchen, access_cargo, access_hydroponics, access_lawyer,
-		access_theatre, access_chapel_office, access_library, access_research, access_heads_vault, access_clown, access_mime,
-		access_hop, access_RC_announce, access_keycard_auth, access_gateway
+		ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_FORENSICS_LOCKERS,
+		ACCESS_MEDICAL, ACCESS_ENGINE, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD, ACCESS_EVA, ACCESS_HEADS,
+		ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_MAINT_TUNNELS, ACCESS_BAR, ACCESS_JANITOR, ACCESS_CONSTRUCTION, ACCESS_MORGUE,
+		ACCESS_CREMATORIUM, ACCESS_KITCHEN, ACCESS_CARGO, ACCESS_HYDROPONICS, ACCESS_LAWYER,
+		ACCESS_THEATRE, ACCESS_CHAPEL_OFFICE, ACCESS_LIBRARY, ACCESS_RESEARCH, ACCESS_HEADS_VAULT, ACCESS_CLOWN, ACCESS_MIME,
+		ACCESS_HOP, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_GATEWAY
 	)
 	minimal_access = list(
-		access_security, access_sec_doors, access_brig, access_court, access_forensics_lockers,
-		access_medical, access_engine, access_change_ids, access_ai_upload, access_eva, access_heads,
-		access_all_personal_lockers, access_maint_tunnels, access_bar, access_janitor, access_construction, access_morgue,
-		access_crematorium, access_kitchen, access_cargo,  access_hydroponics, access_lawyer,
-		access_theatre, access_chapel_office, access_library, access_research, access_heads_vault, access_clown, access_mime,
-		access_hop, access_RC_announce, access_keycard_auth, access_gateway
+		ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_FORENSICS_LOCKERS,
+		ACCESS_MEDICAL, ACCESS_ENGINE, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD, ACCESS_EVA, ACCESS_HEADS,
+		ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_MAINT_TUNNELS, ACCESS_BAR, ACCESS_JANITOR, ACCESS_CONSTRUCTION, ACCESS_MORGUE,
+		ACCESS_CREMATORIUM, ACCESS_KITCHEN, ACCESS_CARGO,  ACCESS_HYDROPONICS, ACCESS_LAWYER,
+		ACCESS_THEATRE, ACCESS_CHAPEL_OFFICE, ACCESS_LIBRARY, ACCESS_RESEARCH, ACCESS_HEADS_VAULT, ACCESS_CLOWN, ACCESS_MIME,
+		ACCESS_HOP, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_GATEWAY
 	)
 	alt_titles = list("Human Resources Director")
 

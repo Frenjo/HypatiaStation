@@ -6,7 +6,7 @@
 /obj/machinery/computer/telecomms/server
 	name = "Telecommunications Server Monitor"
 	icon_state = "comm_logs"
-	req_access = list(access_tcomsat)
+	req_access = list(ACCESS_TCOMSAT)
 
 	var/screen = SERVER_SCREEN_MAIN_MENU	// the screen number:
 	var/list/servers = list()				// the servers located by the computer

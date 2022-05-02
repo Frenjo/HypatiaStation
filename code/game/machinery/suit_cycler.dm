@@ -9,7 +9,7 @@
 	icon = 'icons/obj/suitstorage.dmi'
 	icon_state = "suitstorage000000100"
 
-	req_access = list(access_captain, access_heads)
+	req_access = list(ACCESS_CAPTAIN, ACCESS_HEADS)
 
 	var/active = 0			// PLEASE HOLD.
 	var/safeties = 1		// The cycler won't start with a living thing inside it unless safeties are off.
@@ -41,14 +41,14 @@
 /obj/machinery/suit_cycler/engineering
 	name = "Engineering suit cycler"
 	model_text = "Engineering"
-	req_access = list(access_construction)
+	req_access = list(ACCESS_CONSTRUCTION)
 	departments = list("Engineering", "Atmos")
 	species = list("Human", "Tajaran")
 
 /obj/machinery/suit_cycler/mining
 	name = "Mining suit cycler"
 	model_text = "Mining"
-	req_access = list(access_mining)
+	req_access = list(ACCESS_MINING)
 	departments = list("Mining")
 	species = list("Human", "Tajaran")
 	target_department = "Mining"
@@ -56,7 +56,7 @@
 /obj/machinery/suit_cycler/security
 	name = "Security suit cycler"
 	model_text = "Security"
-	req_access = list(access_security)
+	req_access = list(ACCESS_SECURITY)
 	departments = list("Security")
 	species = list("Human", "Soghun", "Tajaran")
 	target_department = "Security"

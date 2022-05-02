@@ -5,7 +5,7 @@
 	name = "syndicate shuttle terminal"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "syndishuttle"
-	req_access = list(access_syndicate)
+	req_access = list(ACCESS_SYNDICATE)
 	var/area/curr_location
 	var/moving = 0
 	var/lastMove = 0

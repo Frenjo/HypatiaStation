@@ -5,7 +5,7 @@
 	name = "Communications Console"
 	desc = "This can be used for various important functions. Still under developement."
 	icon_state = "comm"
-	req_access = list(access_heads)
+	req_access = list(ACCESS_HEADS)
 	circuit = /obj/item/weapon/circuitboard/communications
 	var/prints_intercept = 1
 	var/authenticated = 0
@@ -76,7 +76,7 @@
 				var/obj/item/device/pda/pda = I
 				I = pda.id
 			if(I && istype(I))
-				if(access_captain in I.access || access_heads in I.access) //Let heads change the alert level.
+				if(ACCESS_CAPTAIN in I.access || ACCESS_HEADS in I.access) //Let heads change the alert level.
 					var/old_level = security_level
 					if(!tmp_alertlevel) tmp_alertlevel = SEC_LEVEL_GREEN
 					if(tmp_alertlevel < SEC_LEVEL_GREEN) tmp_alertlevel = SEC_LEVEL_GREEN

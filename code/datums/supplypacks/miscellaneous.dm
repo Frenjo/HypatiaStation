@@ -81,7 +81,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Actor Costumes"
-	access = access_theatre
+	access = ACCESS_THEATRE
 	supply_method = /decl/supply_method/randomised
 
 

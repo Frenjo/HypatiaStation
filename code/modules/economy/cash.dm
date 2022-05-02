@@ -13,7 +13,7 @@
 	throw_range = 2
 	w_class = 1.0
 	var/access = list()
-	access = access_crate_cash
+	access = ACCESS_CRATE_CASH
 	var/worth = 0
 
 /obj/item/weapon/spacecash/c1

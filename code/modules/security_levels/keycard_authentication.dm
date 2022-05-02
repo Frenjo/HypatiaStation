@@ -35,7 +35,7 @@
 		return
 	if(istype(W, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/ID = W
-		if(access_keycard_auth in ID.access)
+		if(ACCESS_KEYCARD_AUTH in ID.access)
 			if(active == TRUE)
 				//This is not the device that made the initial request. It is the device confirming the request.
 				if(event_source)
@@ -181,6 +181,6 @@
 			M.update_icon()
 
 /obj/machinery/door/airlock/allowed(mob/M)
-	if((M.z in config.station_levels && maint_all_access) || src.check_access_list(list(access_maint_tunnels)))
+	if((M.z in config.station_levels && maint_all_access) || src.check_access_list(list(ACCESS_MAINT_TUNNELS)))
 		return 1
 	return ..(M)

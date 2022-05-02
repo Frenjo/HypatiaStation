@@ -176,7 +176,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Emitter crate"
-	access = access_ce
+	access = ACCESS_CE
 
 
 /decl/hierarchy/supply_pack/engineering/field_gen
@@ -187,7 +187,7 @@
 	)
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Field Generator crate"
-	access = access_ce
+	access = ACCESS_CE
 
 
 /decl/hierarchy/supply_pack/engineering/sing_gen
@@ -195,7 +195,7 @@
 	contains = list(/obj/machinery/the_singularitygen)
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Singularity Generator crate"
-	access = access_ce
+	access = ACCESS_CE
 
 
 /decl/hierarchy/supply_pack/engineering/collector
@@ -222,7 +222,7 @@
 	)
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Particle Accelerator crate"
-	access = access_ce
+	access = ACCESS_CE
 
 
 /decl/hierarchy/supply_pack/engineering/mecha_ripley
@@ -235,7 +235,7 @@
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure
 	containername = "APLU \"Ripley\" Circuit Crate"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 
 /decl/hierarchy/supply_pack/engineering/mecha_odysseus
@@ -247,7 +247,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure
 	containername = "\"Odysseus\" Circuit Crate"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 
 /decl/hierarchy/supply_pack/engineering/robotics
@@ -267,7 +267,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "Robotics assembly"
-	access = access_robotics
+	access = ACCESS_ROBOTICS
 
 
 /decl/hierarchy/supply_pack/engineering/rust_injector
@@ -276,7 +276,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/large
 	containername = "RUST injector crate"
-	access = access_engine
+	access = ACCESS_ENGINE
 
 
 /decl/hierarchy/supply_pack/engineering/rust_compressor
@@ -285,7 +285,7 @@
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure
 	containername = "RUST fuel compressor circuitry"
-	access = access_engine
+	access = ACCESS_ENGINE
 
 
 /decl/hierarchy/supply_pack/engineering/rust_assembly_port
@@ -294,7 +294,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure
 	containername = "RUST fuel assembly port circuitry"
-	access = access_engine
+	access = ACCESS_ENGINE
 
 
 /decl/hierarchy/supply_pack/engineering/rust_core
@@ -303,7 +303,7 @@
 	cost = 75
 	containertype = /obj/structure/closet/crate/secure/large
 	containername = "RUST tokamak crate"
-	access = access_engine
+	access = ACCESS_ENGINE
 
 
 /decl/hierarchy/supply_pack/engineering/shield_gen
@@ -312,7 +312,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Experimental bubble shield generator circuitry crate"
-	access = access_ce
+	access = ACCESS_CE
 
 
 /decl/hierarchy/supply_pack/engineering/shield_cap
@@ -321,7 +321,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Experimental bubble shield capacitor circuitry crate"
-	access = access_ce
+	access = ACCESS_CE
 
 
 /decl/hierarchy/supply_pack/engineering/smbig
@@ -330,7 +330,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/plasma
 	containername = "Supermatter crate (CAUTION)"
-	access = access_ce
+	access = ACCESS_CE
 
 
 /decl/hierarchy/supply_pack/engineering/smsmall
@@ -339,7 +339,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/plasma
 	containername = "Supermatter shard crate (CAUTION)"
-	access = access_ce
+	access = ACCESS_CE
 
 
 /decl/hierarchy/supply_pack/engineering/teg
@@ -348,7 +348,7 @@
 	cost = 75
 	containertype = /obj/structure/closet/crate/secure/large
 	containername = "Mk1 TEG crate"
-	access = access_engine
+	access = ACCESS_ENGINE
 
 
 /decl/hierarchy/supply_pack/engineering/circulator
@@ -357,7 +357,7 @@
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure/large
 	containername = "Atmospheric circulator crate"
-	access = access_engine
+	access = ACCESS_ENGINE
 
 
 /decl/hierarchy/supply_pack/engineering/air_dispenser
@@ -366,7 +366,7 @@
 	cost = 35
 	containertype = /obj/structure/closet/crate/secure/large
 	containername = "Pipe Dispenser Crate"
-	access = access_atmospherics
+	access = ACCESS_ATMOSPHERICS
 
 
 /decl/hierarchy/supply_pack/engineering/disposals_dispenser
@@ -375,4 +375,4 @@
 	cost = 35
 	containertype = /obj/structure/closet/crate/secure/large
 	containername = "Disposal Dispenser Crate"
-	access = access_atmospherics
+	access = ACCESS_ATMOSPHERICS

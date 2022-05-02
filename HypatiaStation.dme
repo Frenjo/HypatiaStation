@@ -16,6 +16,7 @@
 #include "code\names.dm"
 #include "code\planes+layers.dm"
 #include "code\world.dm"
+#include "code\__DEFINES\access.dm"
 #include "code\__DEFINES\admin.dm"
 #include "code\__DEFINES\atmos.dm"
 #include "code\__DEFINES\chemistry.dm"

@@ -32,7 +32,7 @@
 	anchored = 0
 	health = 50
 	maxhealth = 50
-	req_access = list(access_hydroponics)
+	req_access = list(ACCESS_HYDROPONICS)
 
 	var/Max_Fertilizers = 10
 
