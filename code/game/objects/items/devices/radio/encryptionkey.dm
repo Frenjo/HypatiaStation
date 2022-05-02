@@ -1,6 +1,6 @@
 /obj/item/device/encryptionkey
-	name = "Standard Encrpytion Key"
-	desc = "An encyption key for a radio headset.  Has no special codes in it. WHY DOES IT EXIST?  ASK NANOTRASEN."
+	name = "Standard Encryption Key"
+	desc = "An encyption key for a radio headset. Has no special codes in it. WHY DOES IT EXIST? ASK NANOTRASEN."
 	icon = 'icons/obj/radio.dmi'
 	icon_state = "cypherkey"
 	item_state = ""
@@ -93,9 +93,9 @@
 	desc = "An encyption key for a radio headset. Contains cypherkeys."
 	icon_state = "cap_cypherkey"
 	channels = list(
-		CHANNEL_SUPPLY = 0, CHANNEL_SERVICE = 0, CHANNEL_SCIENCE = 0,
-		CHANNEL_COMMAND = 1, CHANNEL_MEDICAL = 0, CHANNEL_ENGINEERING = 0,
-		CHANNEL_SECURITY = 1, CHANNEL_MINING = 0
+		CHANNEL_COMMAND = 1, CHANNEL_SECURITY = 1, CHANNEL_SUPPLY = 0,
+		CHANNEL_SERVICE = 0, CHANNEL_SCIENCE = 0, CHANNEL_MEDICAL = 0,
+		CHANNEL_ENGINEERING = 0, CHANNEL_MINING = 0
 	)
 
 /obj/item/device/encryptionkey/heads/rd
@@ -126,7 +126,7 @@
 	name = "Head of Personnel's Encryption Key"
 	desc = "An encyption key for a radio headset. Contains cypherkeys."
 	icon_state = "hop_cypherkey"
-	channels = list(CHANNEL_SUPPLY = 0, CHANNEL_SERVICE = 1, CHANNEL_COMMAND = 1, CHANNEL_MINING = 0)
+	channels = list(CHANNEL_COMMAND = 1, CHANNEL_SERVICE = 1, CHANNEL_SUPPLY = 0, CHANNEL_MINING = 0)
 
 // Mining
 /obj/item/device/encryptionkey/headset_mineforeman
