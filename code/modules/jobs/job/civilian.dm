@@ -1,8 +1,8 @@
 //Food
 /datum/job/bartender
 	title = "Bartender"
-	flag = BARTENDER
-	department_flag = CIVILIAN
+	flag = JOB_BARTENDER
+	department_flag = DEPARTMENT_CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -48,8 +48,8 @@
 
 /datum/job/chef
 	title = "Chef"
-	flag = CHEF
-	department_flag = CIVILIAN
+	flag = JOB_CHEF
+	department_flag = DEPARTMENT_CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -80,8 +80,8 @@
 
 /datum/job/hydro
 	title = "Botanist"
-	flag = BOTANIST
-	department_flag = CIVILIAN
+	flag = JOB_BOTANIST
+	department_flag = DEPARTMENT_CIVILIAN
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 2
@@ -116,8 +116,8 @@
 // Re-enabled clown and mime. -Frenjo
 /datum/job/clown
 	title = "Clown"
-	flag = CLOWN
-	department_flag = CIVILIAN
+	flag = JOB_CLOWN
+	department_flag = DEPARTMENT_CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -150,8 +150,8 @@
 
 /datum/job/mime
 	title = "Mime"
-	flag = MIME
-	department_flag = CIVILIAN
+	flag = JOB_MIME
+	department_flag = DEPARTMENT_CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -198,8 +198,8 @@
 
 /datum/job/janitor
 	title = "Janitor"
-	flag = JANITOR
-	department_flag = CIVILIAN
+	flag = JOB_JANITOR
+	department_flag = DEPARTMENT_CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -229,8 +229,8 @@
 //More or less assistants
 /datum/job/librarian
 	title = "Librarian"
-	flag = LIBRARIAN
-	department_flag = CIVILIAN
+	flag = JOB_LIBRARIAN
+	department_flag = DEPARTMENT_CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -261,8 +261,8 @@
 //var/global/lawyer = 0//Checks for another lawyer //This changed clothes on 2nd lawyer, both IA get the same dreds.
 /datum/job/lawyer
 	title = "Internal Affairs Agent"
-	flag = LAWYER
-	department_flag = CIVILIAN
+	flag = JOB_LAWYER
+	department_flag = DEPARTMENT_CIVILIAN
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2

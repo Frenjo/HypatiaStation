@@ -58,7 +58,7 @@ proc/assign_sec_to_department(var/mob/living/carbon/human/H)
 /datum/job/officer
 	title = "Security Officer"
 	flag = OFFICER
-	department_flag = ENGSEC
+	department_flag = DEPARTMENT_ENGSEC
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 5

@@ -1,8 +1,8 @@
 //Cargo. Note that this is in a separate file to prevent it loading in the preferences screen in the middle of the civilian jobs. Jobs are loaded in the preferences in order by file from beginning to end.
 /datum/job/qm
 	title = "Quartermaster"
-	flag = QUARTERMASTER
-	department_flag = CIVILIAN
+	flag = JOB_QUARTERMASTER
+	department_flag = DEPARTMENT_CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -40,8 +40,8 @@
 
 /datum/job/cargo_tech
 	title = "Cargo Technician"
-	flag = CARGOTECH
-	department_flag = CIVILIAN
+	flag = JOB_CARGOTECH
+	department_flag = DEPARTMENT_CIVILIAN
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 2
@@ -69,8 +69,8 @@
 
 /datum/job/miningforeman
 	title = "Mining Foreman"
-	flag = MININGFOREMAN
-	department_flag = CIVILIAN
+	flag = JOB_MININGFOREMAN
+	department_flag = DEPARTMENT_CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -110,8 +110,8 @@
 
 /datum/job/mining
 	title = "Shaft Miner"
-	flag = MINER
-	department_flag = CIVILIAN
+	flag = JOB_MINER
+	department_flag = DEPARTMENT_CIVILIAN
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
@@ -155,8 +155,8 @@
 // For convenience, since he should be coordinating deliveries with cargo techs. -Frenjo
 /datum/job/mailman
 	title = "Mailman"
-	flag = MAILMAN
-	department_flag = CIVILIAN
+	flag = JOB_MAILMAN
+	department_flag = DEPARTMENT_CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1

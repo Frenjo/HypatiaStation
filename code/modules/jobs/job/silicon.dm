@@ -1,7 +1,7 @@
 /datum/job/ai
 	title = "AI"
-	flag = AI
-	department_flag = ENGSEC
+	flag = JOB_AI
+	department_flag = DEPARTMENT_ENGSEC
 	faction = "Station"
 	total_positions = 0
 	spawn_positions = 1
@@ -18,8 +18,8 @@
 
 /datum/job/cyborg
 	title = "Cyborg"
-	flag = CYBORG
-	department_flag = ENGSEC
+	flag = JOB_CYBORG
+	department_flag = DEPARTMENT_ENGSEC
 	faction = "Station"
 	total_positions = 0
 	spawn_positions = 2

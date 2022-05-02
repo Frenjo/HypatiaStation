@@ -1,7 +1,7 @@
 /datum/job/captain
 	title = "Captain"
-	flag = CAPTAIN
-	department_flag = ENGSEC
+	flag = JOB_CAPTAIN
+	department_flag = DEPARTMENT_ENGSEC
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
@@ -57,8 +57,8 @@
 
 /datum/job/hop
 	title = "Head of Personnel"
-	flag = HOP
-	department_flag = CIVILIAN
+	flag = JOB_HOP
+	department_flag = DEPARTMENT_CIVILIAN
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1

@@ -20,7 +20,7 @@
 	new /obj/item/clothing/mask/gas(src)
 
 
-/obj/structure/closet/secure_closet/RD
+/obj/structure/closet/secure_closet/rd
 	name = "Research Director's Locker"
 	req_access = list(access_rd)
 	icon_state = "rdsecure1"
@@ -30,7 +30,7 @@
 	icon_broken = "rdsecurebroken"
 	icon_off = "rdsecureoff"
 
-/obj/structure/closet/secure_closet/RD/New()
+/obj/structure/closet/secure_closet/rd/New()
 	..()
 	new /obj/item/clothing/suit/bio_suit/scientist(src)
 	new /obj/item/clothing/head/bio_hood/scientist(src)

@@ -97,7 +97,7 @@
 	new /obj/item/weapon/storage/belt/medical(src)
 
 
-/obj/structure/closet/secure_closet/CMO
+/obj/structure/closet/secure_closet/cmo
 	name = "Chief Medical Officer's Locker"
 	req_access = list(access_cmo)
 	icon_state = "cmosecure1"
@@ -107,7 +107,7 @@
 	icon_broken = "cmosecurebroken"
 	icon_off = "cmosecureoff"
 
-/obj/structure/closet/secure_closet/CMO/New()
+/obj/structure/closet/secure_closet/cmo/New()
 	..()
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/medic(src)
