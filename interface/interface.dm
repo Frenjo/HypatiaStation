@@ -2,25 +2,25 @@
 /client/verb/wiki()
 	set name = "wiki"
 	set desc = "Visit the wiki."
-	set hidden = 1
-	if( config.wikiurl )
-		if(alert("This will open the wiki in your browser. Are you sure?",,"Yes","No")=="No")
+	set hidden = TRUE
+	if(config.wikiurl)
+		if(alert("This will open the wiki in your browser. Are you sure?", , "Yes", "No") == "No")
 			return
-		src << link(config.wikiurl)
+		to_chat(src, link(config.wikiurl))
 	else
-		src << "\red The wiki URL is not set in the server configuration."
+		to_chat(src, SPAN_WARNING("The wiki URL is not set in the server configuration."))
 	return
 
 /client/verb/forum()
 	set name = "forum"
 	set desc = "Visit the forum."
-	set hidden = 1
-	if( config.forumurl )
-		if(alert("This will open the forum in your browser. Are you sure?",,"Yes","No")=="No")
+	set hidden = TRUE
+	if(config.forumurl)
+		if(alert("This will open the forum in your browser. Are you sure?", , "Yes", "No") == "No")
 			return
-		src << link(config.forumurl)
+		to_chat(src, link(config.forumurl))
 	else
-		src << "\red The forum URL is not set in the server configuration."
+		to_chat(src, SPAN_WARNING("The forum URL is not set in the server configuration."))
 	return
 
 //rules and donate cloned from HypatiaStationOld --TwistedAkai
@@ -29,7 +29,7 @@
 /client/verb/rules() //This is better --Numbers
 	set name = "Rules"
 	set desc = "Show Server Rules."
-	set hidden = 1
+	set hidden = TRUE
 
 	var/rules = {"
 		<html><head>
@@ -47,13 +47,13 @@
 /client/verb/donate()
 	set name = "donate"
 	set desc = "Donate to the server."
-	set hidden = 1
-	if( config.donateurl )
-		if(alert("This will open the donation URL in your browser. Are you sure?",,"Yes","No")=="No")
+	set hidden = TRUE
+	if(config.donateurl)
+		if(alert("This will open the donation URL in your browser. Are you sure?", , "Yes", "No") == "No")
 			return
-		src << link(config.donateurl)
+		to_chat(src, link(config.donateurl))
 	else
-		src << "\red The donation URL is not set in the server configuration."
+		to_chat(src, SPAN_WARNING("The donation URL is not set in the server configuration."))
 	return
 
 /client/verb/hotkeys_help()
@@ -114,7 +114,7 @@ Admin:
 \tF8 = Invisimin
 </font>"}
 
-	src << hotkey_mode
-	src << other
+	to_chat(src, hotkey_mode)
+	to_chat(src, other)
 	if(holder)
-		src << admin
+		to_chat(src, admin)
