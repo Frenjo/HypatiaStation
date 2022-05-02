@@ -20,7 +20,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	var/broadcasting = 0
 	var/listening = 1
 	var/freerange = 0 // 0 - Sanitize frequencies, 1 - Full range
-	var/list/channels = list() //see communications.dm for full list. First channes is a "default" for :h
+	var/list/channels = list() //see __DEFINES/radio.dm for full list. First channes is a "default" for :h
 	var/subspace_transmission = 0
 	var/syndie = 0//Holder to see if it's a syndicate encrpyed radio
 	var/maxf = 1499
@@ -54,7 +54,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	if(radio_controller)
 		radio_controller.remove_object(src, frequency)
 		for(var/ch_name in channels)
-			radio_controller.remove_object(src, radiochannels[ch_name])
+			radio_controller.remove_object(src, global.radiochannels[ch_name])
 	return ..()
 
 /obj/item/device/radio/initialize()
@@ -69,7 +69,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	set_frequency(frequency)
 
 	for(var/ch_name in channels)
-		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections[ch_name] = radio_controller.add_object(src, global.radiochannels[ch_name],  RADIO_CHAT)
 
 /obj/item/device/radio/attack_self(mob/user as mob)
 	user.set_machine(src)
@@ -308,8 +308,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		if(subspace_transmission)
 			// First, we want to generate a new radio signal
 			var/datum/signal/signal = new
-			signal.transmission_method = 2 // 2 would be a subspace transmission.
-										   // transmission_method could probably be enumerated through #define. Would be neater.
+			signal.transmission_method = TRANSMISSION_SUBSPACE
 
 			// --- Finally, tag the actual signal with the appropriate values ---
 			signal.data = list(
@@ -366,7 +365,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 
 		var/datum/signal/signal = new
-		signal.transmission_method = 2
+		signal.transmission_method = TRANSMISSION_SUBSPACE
 
 
 		/* --- Try to send a normal subspace broadcast first */
@@ -699,7 +698,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	if(istype(W, /obj/item/weapon/screwdriver))
 		if(keyslot)
 			for(var/ch_name in channels)
-				radio_controller.remove_object(src, radiochannels[ch_name])
+				radio_controller.remove_object(src, global.radiochannels[ch_name])
 				secure_radio_connections[ch_name] = null
 
 			if(keyslot)
@@ -755,7 +754,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			src.name = "broken radio"
 			return
 
-		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections[ch_name] = radio_controller.add_object(src, global.radiochannels[ch_name],  RADIO_CHAT)
 
 	return
 
@@ -802,12 +801,12 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 /obj/item/device/radio/proc/config(op)
 	if(radio_controller)
 		for(var/ch_name in channels)
-			radio_controller.remove_object(src, radiochannels[ch_name])
+			radio_controller.remove_object(src, global.radiochannels[ch_name])
 	secure_radio_connections = new
 	channels = op
 	if(radio_controller)
 		for(var/ch_name in op)
-			secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+			secure_radio_connections[ch_name] = radio_controller.add_object(src, global.radiochannels[ch_name],  RADIO_CHAT)
 	return
 
 /obj/item/device/radio/off

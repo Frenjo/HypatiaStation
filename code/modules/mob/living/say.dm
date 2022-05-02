@@ -1,49 +1,62 @@
 /var/list/department_radio_keys = list(
-	  ":r" = "right ear",	"#r" = "right ear",		".r" = "right ear",
-	  ":l" = "left ear",	"#l" = "left ear",		".l" = "left ear",
-	  ":i" = "intercom",	"#i" = "intercom",		".i" = "intercom",
-	  ":h" = "department",	"#h" = "department",	".h" = "department",
-	  ":c" = "Command",		"#c" = "Command",		".c" = "Command",
-	  ":n" = "Science",		"#n" = "Science",		".n" = "Science",
-	  ":m" = "Medical",		"#m" = "Medical",		".m" = "Medical",
-	  ":e" = "Engineering", "#e" = "Engineering",	".e" = "Engineering",
-	  ":s" = "Security",	"#s" = "Security",		".s" = "Security",
-	  ":w" = "whisper",		"#w" = "whisper",		".w" = "whisper",
-	  ":t" = "Syndicate",	"#t" = "Syndicate",		".t" = "Syndicate",
-	  ":u" = "Supply",		"#u" = "Supply",		".u" = "Supply",
-	  ":x" = "Mining",		"#x" = "Mining",		".x" = "Mining",
-	  ":g" = "changeling",	"#g" = "changeling",	".g" = "changeling",
+	// Lowercase variants.
+	":w" = "whisper",			"#w" = "whisper",			".w" = "whisper",
+	":g" = "changeling",		"#g" = "changeling",		".g" = "changeling",
 
-	  ":R" = "right ear",	"#R" = "right ear",		".R" = "right ear",
-	  ":L" = "left ear",	"#L" = "left ear",		".L" = "left ear",
-	  ":I" = "intercom",	"#I" = "intercom",		".I" = "intercom",
-	  ":H" = "department",	"#H" = "department",	".H" = "department",
-	  ":C" = "Command",		"#C" = "Command",		".C" = "Command",
-	  ":N" = "Science",		"#N" = "Science",		".N" = "Science",
-	  ":M" = "Medical",		"#M" = "Medical",		".M" = "Medical",
-	  ":E" = "Engineering",	"#E" = "Engineering",	".E" = "Engineering",
-	  ":S" = "Security",	"#S" = "Security",		".S" = "Security",
-	  ":W" = "whisper",		"#W" = "whisper",		".W" = "whisper",
-	  ":T" = "Syndicate",	"#T" = "Syndicate",		".T" = "Syndicate",
-	  ":U" = "Supply",		"#U" = "Supply",		".U" = "Supply",
-	  ":X" = "Mining",		"#X" = "Mining",		".X" = "Mining",
-	  ":G" = "changeling",	"#G" = "changeling",	".G" = "changeling",
+	":r" = "right ear",			"#r" = "right ear",			".r" = "right ear",
+	":l" = "left ear",			"#l" = "left ear",			".l" = "left ear",
+	":i" = "intercom",			"#i" = "intercom",			".i" = "intercom",
+	":h" = "department",		"#h" = "department",		".h" = "department",
 
-	  //kinda localization -- rastaf0
-	  //same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
-	  ":�" = "right ear",	"#�" = "right ear",		".�" = "right ear",
-	  ":�" = "left ear",	"#�" = "left ear",		".�" = "left ear",
-	  ":�" = "intercom",	"#�" = "intercom",		".�" = "intercom",
-	  ":�" = "department",	"#�" = "department",	".�" = "department",
-	  ":�" = "Command",		"#�" = "Command",		".�" = "Command",
-	  ":�" = "Science",		"#�" = "Science",		".�" = "Science",
-	  ":�" = "Medical",		"#�" = "Medical",		".�" = "Medical",
-	  ":�" = "Engineering",	"#�" = "Engineering",	".�" = "Engineering",
-	  ":�" = "Security",	"#�" = "Security",		".�" = "Security",
-	  ":�" = "whisper",		"#�" = "whisper",		".�" = "whisper",
-	  ":�" = "Syndicate",	"#�" = "Syndicate",		".�" = "Syndicate",
-	  ":�" = "Supply",		"#�" = "Supply",		".�" = "Supply",
-	  ":�" = "changeling",	"#�" = "changeling",	".�" = "changeling"
+	":t" = CHANNEL_SYNDICATE,	"#t" = CHANNEL_SYNDICATE,	".t" = CHANNEL_SYNDICATE,
+	":u" = CHANNEL_SUPPLY,		"#u" = CHANNEL_SUPPLY,		".u" = CHANNEL_SUPPLY,
+	":v" = CHANNEL_SERVICE,		"#v" = CHANNEL_SERVICE,		".v" = CHANNEL_SERVICE,
+	":n" = CHANNEL_SCIENCE,		"#n" = CHANNEL_SCIENCE,		".n" = CHANNEL_SCIENCE,
+	":c" = CHANNEL_COMMAND,		"#c" = CHANNEL_COMMAND,		".c" = CHANNEL_COMMAND,
+	":m" = CHANNEL_MEDICAL,		"#m" = CHANNEL_MEDICAL,		".m" = CHANNEL_MEDICAL,
+	":e" = CHANNEL_ENGINEERING,	"#e" = CHANNEL_ENGINEERING,	".e" = CHANNEL_ENGINEERING,
+	":s" = CHANNEL_SECURITY,	"#s" = CHANNEL_SECURITY,	".s" = CHANNEL_SECURITY,
+	":x" = CHANNEL_MINING,		"#x" = CHANNEL_MINING,		".x" = CHANNEL_MINING,
+
+
+	// Uppercase variants.
+	":W" = "whisper",			"#W" = "whisper",			".W" = "whisper",
+	":G" = "changeling",		"#G" = "changeling",		".G" = "changeling",
+
+	":R" = "right ear",			"#R" = "right ear",			".R" = "right ear",
+	":L" = "left ear",			"#L" = "left ear",			".L" = "left ear",
+	":I" = "intercom",			"#I" = "intercom",			".I" = "intercom",
+	":H" = "department",		"#H" = "department",		".H" = "department",
+
+	":T" = CHANNEL_SYNDICATE,	"#T" = CHANNEL_SYNDICATE,	".T" = CHANNEL_SYNDICATE,
+	":U" = CHANNEL_SUPPLY,		"#U" = CHANNEL_SUPPLY,		".U" = CHANNEL_SUPPLY,
+	":V" = CHANNEL_SERVICE,		"#V" = CHANNEL_SERVICE,		".V" = CHANNEL_SERVICE,
+	":N" = CHANNEL_SCIENCE,		"#N" = CHANNEL_SCIENCE,		".N" = CHANNEL_SCIENCE,
+	":C" = CHANNEL_COMMAND,		"#C" = CHANNEL_COMMAND,		".C" = CHANNEL_COMMAND,
+	":M" = CHANNEL_MEDICAL,		"#M" = CHANNEL_MEDICAL,		".M" = CHANNEL_MEDICAL,
+	":E" = CHANNEL_ENGINEERING,	"#E" = CHANNEL_ENGINEERING,	".E" = CHANNEL_ENGINEERING,
+	":S" = CHANNEL_SECURITY,	"#S" = CHANNEL_SECURITY,	".S" = CHANNEL_SECURITY,
+	":X" = CHANNEL_MINING,		"#X" = CHANNEL_MINING,		".X" = CHANNEL_MINING,
+
+
+	// TODO: Fix this because I don't know russian keyboards. -Frenjo
+	//kinda localization -- rastaf0
+	//same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
+	":�" = "whisper",			"#�" = "whisper",			".�" = "whisper",
+	":�" = "changeling",		"#�" = "changeling",		".�" = "changeling",
+
+	":�" = "right ear",			"#�" = "right ear",			".�" = "right ear",
+	":�" = "left ear",			"#�" = "left ear",			".�" = "left ear",
+	":�" = "intercom",			"#�" = "intercom",			".�" = "intercom",
+	":�" = "department",		"#�" = "department",		".�" = "department",
+
+	":�" = CHANNEL_SYNDICATE,	"#�" = CHANNEL_SYNDICATE,	".�" = CHANNEL_SYNDICATE,
+	":�" = CHANNEL_SUPPLY,		"#�" = CHANNEL_SUPPLY,		".�" = CHANNEL_SUPPLY,
+	":�" = CHANNEL_SCIENCE,		"#�" = CHANNEL_SCIENCE,		".�" = CHANNEL_SCIENCE,
+	":�" = CHANNEL_COMMAND,		"#�" = CHANNEL_COMMAND,		".�" = CHANNEL_COMMAND,
+	":�" = CHANNEL_MEDICAL,		"#�" = CHANNEL_MEDICAL,		".�" = CHANNEL_MEDICAL,
+	":�" = CHANNEL_ENGINEERING,	"#�" = CHANNEL_ENGINEERING,	".�" = CHANNEL_ENGINEERING,
+	":�" = CHANNEL_SECURITY,	"#�" = CHANNEL_SECURITY,	".�" = CHANNEL_SECURITY
 )
 
 /mob/living/proc/binarycheck()

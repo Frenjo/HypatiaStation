@@ -14,12 +14,13 @@
 	"Chief Engineer",
 	"Station Engineer",
 	"Atmospheric Technician",
+	"Roboticist",	// Part of both science and engineering.
 )
 
 /var/list/medical_positions = list(
 	"Chief Medical Officer",
 	"Medical Doctor",
-	"Geneticist",	//Part of both medical and science
+	"Geneticist",	// Part of both medical and science.
 	"Psychiatrist",
 	"Chemist",
 	"Security Paramedic"
@@ -28,8 +29,8 @@
 /var/list/science_positions = list(
 	"Research Director",
 	"Scientist",
-	"Geneticist",	//Part of both medical and science
-	"Roboticist",
+	"Geneticist",	// Part of both medical and science.
+	"Roboticist",	// Part of both science and engineering.
 	"Xenobiologist"
 )
 
@@ -37,6 +38,7 @@
 /var/list/cargo_positions = list(
 	"Quartermaster",
 	"Cargo Technician",
+	"Mailman", // Re-added mailman. -Frenjo
 	"Mining Foreman",
 	"Shaft Miner",
 )
@@ -50,7 +52,6 @@
 	"Janitor",
 	"Librarian",
 	"Lawyer",
-	"Mailman", // Re-added mailman. -Frenjo
 	"Chaplain",
 	"Clown", // Re-enabled clown and mime. -Frenjo
 	"Mime",

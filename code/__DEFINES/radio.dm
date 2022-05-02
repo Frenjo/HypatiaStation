@@ -1,56 +1,118 @@
 /*
 All frequencies in order:
+	RADIO_MINIMUM	- 120.0
 	SYNDICATE		- 121.3
 	DEATHSQUAD		- 134.1
 	RESPONSETEAM	- 134.5
 	SUPPLY			- 134.7
-	MINING			- 134.9
+	SERVICE			- 134.9
 	SCIENCE			- 135.1
 	COMMAND			- 135.3
 	MEDICAL			- 135.5
 	ENGINEERING		- 135.7
 	SECURITY		- 135.9
+	MINING			- 136.1
 	FREE_MINIMUM	- 144.1
 	AI				- 144.7
 	COMMON			- 145.9
 	FREE_MAXIMUM	- 148.9
+	RADIO_MAXIMUM	- 160.0
 */
 
 // Radio frequencies.
-#define FREQUENCY_SYNDICATE 1213
+#define FREQUENCY_SYNDICATE		1213
 
-// Central command channels, i.e deathsquid & response teams.
+// Central command frequencies, i.e deathsquid & response teams.
 #define FREQUENCY_DEATHSQUAD	1341
 #define FREQUENCY_RESPONSETEAM	1345
 /var/list/CENT_FREQS = list(FREQUENCY_RESPONSETEAM, FREQUENCY_DEATHSQUAD)
 
-// Department channels.
+// Department frequencies.
 #define FREQUENCY_SUPPLY		1347
-#define FREQUENCY_MINING		1349
+#define FREQUENCY_SERVICE		1349
 #define FREQUENCY_SCIENCE		1351
 #define FREQUENCY_COMMAND		1353 // Command, colored gold in chat window
 #define FREQUENCY_MEDICAL		1355
 #define FREQUENCY_ENGINEERING	1357
 #define FREQUENCY_SECURITY		1359
+#define FREQUENCY_MINING		1361
 
-// Free use channels.
+// Free use frequencies.
 #define FREQUENCY_FREE_MINIMUM	1441 // Minimum free-use frequency.
 
-#define FREQUENCY_AI 1447
+#define FREQUENCY_AI_PRIVATE	1447
 
-#define FREQUENCY_COMMON 1459
+#define FREQUENCY_COMMON		1459
 
 #define FREQUENCY_FREE_MAXIMUM	1489 // Maximum free-use frequency.
 
 // Depenging helpers
 /var/list/DEPT_FREQS = list(
+	FREQUENCY_SYNDICATE,
+	FREQUENCY_DEATHSQUAD,
+	FREQUENCY_RESPONSETEAM,
+	FREQUENCY_SUPPLY,
+	FREQUENCY_SERVICE,
 	FREQUENCY_SCIENCE,
+	FREQUENCY_COMMAND,
 	FREQUENCY_MEDICAL,
 	FREQUENCY_ENGINEERING,
 	FREQUENCY_SECURITY,
-	FREQUENCY_SYNDICATE,
-	FREQUENCY_RESPONSETEAM,
-	FREQUENCY_DEATHSQUAD,
-	FREQUENCY_SUPPLY,
 	FREQUENCY_MINING
 )
+
+// Radio channel names.
+#define CHANNEL_SYNDICATE		"#unkn"
+
+// Central command channels, i.e deathsquid & response teams.
+#define CHANNEL_DEATHSQUAD		"Special Ops"
+#define CHANNEL_RESPONSETEAM	"Response Team"
+
+// Department channels.
+#define CHANNEL_SUPPLY			"Supply"
+#define CHANNEL_SERVICE			"Service"
+#define CHANNEL_SCIENCE			"Science"
+#define CHANNEL_COMMAND			"Command"
+#define CHANNEL_MEDICAL			"Medical"
+#define CHANNEL_ENGINEERING		"Engineering"
+#define CHANNEL_SECURITY		"Security"
+#define CHANNEL_MINING			"Mining"
+
+// Free use channels.
+#define CHANNEL_AI_PRIVATE		"AI Private"
+#define CHANNEL_COMMON			"Common"
+
+// Stuff moved from communications.dm.
+/var/list/radiochannels = list(
+	CHANNEL_SYNDICATE		= FREQUENCY_SYNDICATE,
+
+	CHANNEL_DEATHSQUAD		= FREQUENCY_DEATHSQUAD,
+	CHANNEL_RESPONSETEAM	= FREQUENCY_RESPONSETEAM,
+
+	CHANNEL_SUPPLY			= FREQUENCY_SUPPLY,
+	CHANNEL_SERVICE			= FREQUENCY_SERVICE,
+	CHANNEL_SCIENCE			= FREQUENCY_SCIENCE,
+	CHANNEL_COMMAND			= FREQUENCY_COMMAND,
+	CHANNEL_MEDICAL			= FREQUENCY_MEDICAL,
+	CHANNEL_ENGINEERING		= FREQUENCY_ENGINEERING,
+	CHANNEL_SECURITY		= FREQUENCY_SECURITY,
+	CHANNEL_MINING			= FREQUENCY_MINING,
+
+	CHANNEL_AI_PRIVATE		= FREQUENCY_AI_PRIVATE,
+	CHANNEL_COMMON			= FREQUENCY_COMMON
+)
+
+#define TRANSMISSION_WIRE	0
+#define TRANSMISSION_RADIO	1
+#define TRANSMISSION_SUBSPACE 2
+
+/* filters */
+var/const/RADIO_TO_AIRALARM = "1"
+var/const/RADIO_FROM_AIRALARM = "2"
+var/const/RADIO_CHAT = "3"
+var/const/RADIO_ATMOSIA = "4"
+var/const/RADIO_NAVBEACONS = "5"
+var/const/RADIO_AIRLOCK = "6"
+var/const/RADIO_SECBOT = "7"
+var/const/RADIO_MULEBOT = "8"
+var/const/RADIO_MAGNETS = "9"

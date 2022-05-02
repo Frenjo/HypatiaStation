@@ -108,7 +108,6 @@
 //---- Lockers and closets
 /obj/structure/closet/secure_closet/xenoarchaeologist
 	name = "Xenoarchaeologist's Locker" // Renamed to match other lockers. -Frenjo
-	//name = "Xenoarchaeologist Locker"
 	req_access = list(access_tox_storage)
 	icon_state = "secureres1"
 	icon_closed = "secureres"
@@ -123,7 +122,7 @@
 	new /obj/item/clothing/suit/storage/labcoat(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/glasses/science(src)
-	new /obj/item/device/radio/headset/headset_sci(src)
+	new /obj/item/device/radio/headset/headset_xenoarch(src)
 	new /obj/item/weapon/storage/belt/archaeology(src)
 	new /obj/item/weapon/storage/box/excavation(src)
 

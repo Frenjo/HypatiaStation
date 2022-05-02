@@ -97,35 +97,7 @@ On the map:
 1455 for AI access
 */
 
-var/list/radiochannels = list(
-	"Common" = FREQUENCY_COMMON,
-	"Science" = FREQUENCY_SCIENCE,
-	"Command" = FREQUENCY_COMMAND,
-	"Medical" = FREQUENCY_MEDICAL,
-	"Engineering" = FREQUENCY_ENGINEERING,
-	"Security" = FREQUENCY_SECURITY,
-	"Response Team" = FREQUENCY_RESPONSETEAM,
-	"Deathsquad" = FREQUENCY_DEATHSQUAD,
-	"Syndicate" = FREQUENCY_SYNDICATE,
-	"Supply" = FREQUENCY_SUPPLY,
-	"Mining" = FREQUENCY_MINING,
-)
-
-#define TRANSMISSION_WIRE	0
-#define TRANSMISSION_RADIO	1
-
-/* filters */
-var/const/RADIO_TO_AIRALARM = "1"
-var/const/RADIO_FROM_AIRALARM = "2"
-var/const/RADIO_CHAT = "3"
-var/const/RADIO_ATMOSIA = "4"
-var/const/RADIO_NAVBEACONS = "5"
-var/const/RADIO_AIRLOCK = "6"
-var/const/RADIO_SECBOT = "7"
-var/const/RADIO_MULEBOT = "8"
-var/const/RADIO_MAGNETS = "9"
-
-var/global/datum/controller/radio/radio_controller
+/var/global/datum/controller/radio/radio_controller
 
 /hook/startup/proc/createRadioController()
 	radio_controller = new /datum/controller/radio()
@@ -262,7 +234,7 @@ var/global/datum/controller/radio/radio_controller
 /datum/signal
 	var/obj/source
 
-	var/transmission_method = 0
+	var/transmission_method = TRANSMISSION_WIRE
 	//0 = wire
 	//1 = radio transmission
 	//2 = subspace transmission

@@ -46,7 +46,7 @@
 	network = "tcommsat"
 	autolinkers = list(
 		"hub", "relay", "c_relay", "s_relay", "m_relay", "r_relay", "science", "medical",
-		"supply", "mining", "common", "command", "engineering", "security",
+		"supply", "mining", "service", "common", "command", "engineering", "security",
 		"receiverA", "receiverB", "broadcasterA", "broadcasterB"
 	)
 
@@ -75,7 +75,7 @@
 	id = "Receiver B"
 	network = "tcommsat"
 	autolinkers = list("receiverB") // link to relay
-	freq_listening = list(FREQUENCY_COMMAND, FREQUENCY_ENGINEERING, FREQUENCY_SECURITY) //command, engineering, security
+	freq_listening = list(FREQUENCY_COMMAND, FREQUENCY_ENGINEERING, FREQUENCY_SECURITY, FREQUENCY_SERVICE) //command, engineering, security, service
 
 //Common and other radio frequencies for people to freely use
 /obj/machinery/telecomms/receiver/preset_right/New()
@@ -119,8 +119,8 @@
 /obj/machinery/telecomms/bus/preset_four
 	id = "Bus 4"
 	network = "tcommsat"
-	freq_listening = list(FREQUENCY_ENGINEERING)
-	autolinkers = list("processor4", "engineering", "common")
+	freq_listening = list(FREQUENCY_ENGINEERING, FREQUENCY_SERVICE)
+	autolinkers = list("processor4", "engineering", "common", "service")
 
 /obj/machinery/telecomms/bus/preset_four/New()
 	for(var/i = FREQUENCY_FREE_MINIMUM, i < FREQUENCY_FREE_MAXIMUM, i += 2)
@@ -198,6 +198,12 @@
 	id = "Mining Server"
 	freq_listening = list(FREQUENCY_MINING)
 	autolinkers = list("mining")
+
+// Service
+/obj/machinery/telecomms/server/presets/service
+	id = "Service Server"
+	freq_listening = list(FREQUENCY_SERVICE)
+	autolinkers = list("service")
 
 // Common
 /obj/machinery/telecomms/server/presets/common

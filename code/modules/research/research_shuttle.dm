@@ -111,7 +111,7 @@ proc/move_research_shuttle()
 			// EVEN MORE research shuttle airlock interaction.
 			// Shameless port from door access buttons. -Frenjo
 			var/datum/signal/signal = new
-			signal.transmission_method = 1
+			signal.transmission_method = TRANSMISSION_RADIO
 			if(research_shuttle_location == 0)
 				signal.data["tag"] = airlock_tag_station
 				signal.data["command"] = "cycle_interior"

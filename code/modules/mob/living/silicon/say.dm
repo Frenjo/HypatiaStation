@@ -126,7 +126,7 @@
 			return
 
 		else
-			if(message_mode && message_mode in radiochannels)
+			if(message_mode && message_mode in global.radiochannels)
 				switch(bot_type)
 					if(IS_AI)
 						src << "You don't have this function yet, I'm working on it"

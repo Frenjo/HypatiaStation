@@ -311,28 +311,35 @@
 		// --- Set the name of the channel ---
 		switch(display_freq)
 			if(FREQUENCY_SYNDICATE)
-				freq_text = "#unkn"
-			if(FREQUENCY_COMMAND)
-				freq_text = "Command"
-			if(FREQUENCY_SCIENCE)
-				freq_text = "Science"
-			if(FREQUENCY_MEDICAL)
-				freq_text = "Medical"
-			if(FREQUENCY_ENGINEERING)
-				freq_text = "Engineering"
-			if(FREQUENCY_SECURITY)
-				freq_text = "Security"
-			if(FREQUENCY_SUPPLY)
-				freq_text = "Supply"
-			if(FREQUENCY_MINING)
-				freq_text = "Mining"
+				freq_text = CHANNEL_SYNDICATE
+
 			if(FREQUENCY_DEATHSQUAD)
-				freq_text = "Special Ops"
+				freq_text = CHANNEL_DEATHSQUAD
 			if(FREQUENCY_RESPONSETEAM)
-				freq_text = "Response Team"
-			if(FREQUENCY_AI)
-				freq_text = "AI Private"
-		//There's probably a way to use the list var of channels in code\game\communications.dm to make the dept channels non-hardcoded, but I wasn't in an experimentive mood. --NEO
+				freq_text = CHANNEL_RESPONSETEAM
+
+			if(FREQUENCY_SUPPLY)
+				freq_text = CHANNEL_SUPPLY
+			if(FREQUENCY_SERVICE)
+				freq_text = CHANNEL_SERVICE
+			if(FREQUENCY_SCIENCE)
+				freq_text = CHANNEL_SCIENCE
+			if(FREQUENCY_COMMAND)
+				freq_text = CHANNEL_COMMAND
+			if(FREQUENCY_MEDICAL)
+				freq_text = CHANNEL_MEDICAL
+			if(FREQUENCY_ENGINEERING)
+				freq_text = CHANNEL_ENGINEERING
+			if(FREQUENCY_SECURITY)
+				freq_text = CHANNEL_SECURITY
+			if(FREQUENCY_MINING)
+				freq_text = CHANNEL_MINING
+
+			if(FREQUENCY_AI_PRIVATE)
+				freq_text = CHANNEL_AI_PRIVATE
+			if(FREQUENCY_COMMON)
+				freq_text = CHANNEL_COMMON
+		//There's probably a way to use the list var of channels in code\__DEFINES\radio.dm to make the dept channels non-hardcoded, but I wasn't in an experimentive mood. --NEO
 
 		// --- If the frequency has not been assigned a name, just use the frequency as the name ---
 		if(!freq_text)
@@ -345,41 +352,40 @@
 		var/part_b = "</span><b> \icon[radio]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 		var/part_c = "</span></span>"
 
+		// department radio formatting (poorly optimized, ugh)
 		// syndies!
 		if(display_freq == FREQUENCY_SYNDICATE)
 			part_a = "<span class='syndradio'><span class='name'>"
-
 		// centcomm channels (deathsquid and ert)
 		else if(display_freq in CENT_FREQS)
 			part_a = "<span class='centradio'><span class='name'>"
-
+		// cargo channel
+		else if(display_freq == FREQUENCY_SUPPLY)
+			part_a = "<span class='supradio'><span class='name'>"
+		// service channel
+		else if(display_freq == FREQUENCY_SERVICE)
+			part_a = "<span class='srvradio'><span class='name'>"
+		// science channel
+		else if(display_freq == FREQUENCY_SCIENCE)
+			part_a = "<span class='sciradio'><span class='name'>"
 		// command channel
 		else if(display_freq == FREQUENCY_COMMAND)
 			part_a = "<span class='comradio'><span class='name'>"
-
-		// AI private channel
-		else if(display_freq == FREQUENCY_AI)
-			part_a = "<span class='airadio'><span class='name'>"
-
-		// department radio formatting (poorly optimized, ugh)
-		else if(display_freq == FREQUENCY_SECURITY)
-			part_a = "<span class='secradio'><span class='name'>"
-
-		else if(display_freq == FREQUENCY_ENGINEERING)
-			part_a = "<span class='engradio'><span class='name'>"
-
-		else if(display_freq == FREQUENCY_SCIENCE)
-			part_a = "<span class='sciradio'><span class='name'>"
-
+		// medical channel
 		else if(display_freq == FREQUENCY_MEDICAL)
 			part_a = "<span class='medradio'><span class='name'>"
-
-		else if(display_freq == FREQUENCY_SUPPLY) // cargo
-			part_a = "<span class='supradio'><span class='name'>"
-		
-		else if(display_freq == FREQUENCY_MINING) // mining
+		// engineering channel
+		else if(display_freq == FREQUENCY_ENGINEERING)
+			part_a = "<span class='engradio'><span class='name'>"
+		// security channel
+		else if(display_freq == FREQUENCY_SECURITY)
+			part_a = "<span class='secradio'><span class='name'>"
+		// mining channel
+		else if(display_freq == FREQUENCY_MINING)
 			part_a = "<span class='minradio'><span class='name'>"
-
+		// AI private channel
+		else if(display_freq == FREQUENCY_AI_PRIVATE)
+			part_a = "<span class='airadio'><span class='name'>"
 		// If all else fails and it's a dept_freq, color me purple!
 		else if(display_freq in DEPT_FREQS)
 			part_a = "<span class='deptradio'><span class='name'>"

@@ -556,7 +556,7 @@ Auto Patrol: []"},
 
 	var/datum/signal/signal = new()
 	signal.source = src
-	signal.transmission_method = 1
+	signal.transmission_method = TRANSMISSION_RADIO
 	//for(var/key in keyval)
 	//	signal.data[key] = keyval[key]
 	signal.data = keyval
