@@ -13,6 +13,10 @@
 		dir = SOUTH
 		initialize_directions = SOUTH
 
+		alert_pressure = 55 * ONE_ATMOSPHERE
+
+		level = 1
+
 		var/obj/machinery/atmospherics/node1	//connection on the same Z
 		var/obj/machinery/atmospherics/node2	//connection on the other Z
 
@@ -21,9 +25,6 @@
 
 		var/maximum_pressure = 70 * ONE_ATMOSPHERE
 		var/fatigue_pressure = 55 * ONE_ATMOSPHERE
-		alert_pressure = 55 * ONE_ATMOSPHERE
-
-		level = 1
 
 /obj/machinery/atmospherics/pipe/zpipe/New()
 	..()
@@ -71,20 +72,6 @@
 
 	else return 1
 
-/obj/machinery/atmospherics/pipe/zpipe/proc/burst()
-	src.visible_message(SPAN_DANGER("[src] bursts!"))
-	playsound(src, 'sound/effects/bang.ogg', 25, 1)
-	var/datum/effect/system/smoke_spread/smoke = new
-	smoke.set_up(1, 0, src.loc, 0)
-	smoke.start()
-	qdel(src)
-
-/obj/machinery/atmospherics/pipe/zpipe/proc/normalize_dir()
-	if(dir == 3)
-		dir = 1
-	else if(dir == 12)
-		dir = 4
-
 /obj/machinery/atmospherics/pipe/zpipe/Destroy()
 	if(node1)
 		node1.disconnect(src)
@@ -110,6 +97,20 @@
 		node2 = null
 
 	return null
+
+/obj/machinery/atmospherics/pipe/zpipe/proc/burst()
+	src.visible_message(SPAN_DANGER("[src] bursts!"))
+	playsound(src, 'sound/effects/bang.ogg', 25, 1)
+	var/datum/effect/system/smoke_spread/smoke = new
+	smoke.set_up(1, 0, src.loc, 0)
+	smoke.start()
+	qdel(src)
+
+/obj/machinery/atmospherics/pipe/zpipe/proc/normalize_dir()
+	if(dir == 3)
+		dir = 1
+	else if(dir == 12)
+		dir = 4
 
 /////////////////////////
 // the elusive up pipe //
@@ -145,8 +146,7 @@
 						node2 = target
 						break
 
-
-	var/turf/T = src.loc			// hide if turf is not intact
+	var/turf/T = src.loc	// hide if turf is not intact
 	hide(T.intact)
 
 ///////////////////////
@@ -165,7 +165,7 @@
 
 	for(var/direction in cardinal)
 		if(direction&initialize_directions)
-			if (!node1_dir)
+			if(!node1_dir)
 				node1_dir = direction
 
 	for(var/obj/machinery/atmospherics/target in get_step(src, node1_dir))
@@ -183,6 +183,5 @@
 						node2 = target
 						break
 
-
-	var/turf/T = src.loc			// hide if turf is not intact
+	var/turf/T = src.loc	// hide if turf is not intact
 	hide(T.intact)

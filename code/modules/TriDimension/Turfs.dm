@@ -4,6 +4,7 @@
 	density = 0
 	icon_state = "black"
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
+
 	var/icon/darkoverlays = null
 	var/turf/floorbelow
 	var/list/overlay_references
@@ -13,35 +14,35 @@
 	getbelow()
 	return
 
-/turf/simulated/floor/open/Enter(atom/movable/AM)
+/turf/simulated/floor/open/Enter(atom/movable/enterer)
 	if(..()) //TODO make this check if gravity is active (future use) - Sukasa
 		spawn(1)
 			// only fall down in defined areas (read: areas with artificial gravitiy)
 			if(!floorbelow) //make sure that there is actually something below
 				if(!getbelow())
 					return
-			if(AM)
+			if(enterer)
 				var/area/areacheck = get_area(src)
-				var/blocked = 0
-				var/soft = 0
+				var/blocked = FALSE
+				var/soft = FALSE
 				for(var/atom/A in floorbelow.contents)
 					if(A.density)
-						blocked = 1
+						blocked = TRUE
 						break
-					if(istype(A, /obj/machinery/atmospherics/pipe/zpipe/up) && istype(AM, /obj/item/pipe))
-						blocked = 1
+					if(istype(A, /obj/machinery/atmospherics/pipe/zpipe/up) && istype(enterer, /obj/item/pipe))
+						blocked = TRUE
 						break
-					if(istype(A, /obj/structure/disposalpipe/up) && istype(AM, /obj/item/pipe))
-						blocked = 1
+					if(istype(A, /obj/structure/disposalpipe/up) && istype(enterer, /obj/item/pipe))
+						blocked = TRUE
 						break
 					if(istype(A, /obj/multiz/stairs))
-						soft = 1
+						soft = TRUE
 						//dont break here, since we still need to be sure that it isnt blocked
 
 				if(soft || (!blocked && !(istype(areacheck, /area/space))))
-					AM.Move(floorbelow)
-					if(!soft && ishuman(AM))
-						var/mob/living/carbon/human/H = AM
+					enterer.Move(floorbelow)
+					if(!soft && ishuman(enterer))
+						var/mob/living/carbon/human/H = enterer
 						var/damage = 5
 						H.apply_damage(min(rand(-damage, damage), 0), BRUTE, "head")
 						H.apply_damage(min(rand(-damage, damage), 0), BRUTE, "chest")
@@ -52,25 +53,6 @@
 						H:weakened = max(H:weakened, 2)
 						H:updatehealth()
 	return ..()
-
-/turf/proc/hasbelow()
-	var/turf/controllerlocation = locate(1, 1, z)
-	for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
-		if(controller.down)
-			return 1
-	return 0
-
-/turf/simulated/floor/open/proc/getbelow()
-	var/turf/controllerlocation = locate(1, 1, z)
-	for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
-		// check if there is something to draw below
-		if(!controller.down)
-			src.ChangeTurf(get_base_turf_by_area(src))
-			return 0
-		else
-			floorbelow = locate(src.x, src.y, controller.down_target)
-			return 1
-	return 1
 
 // override to make sure nothing is hidden
 /turf/simulated/floor/open/levelupdate()
@@ -120,3 +102,22 @@
 		else
 			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
 	return
+
+/turf/simulated/floor/open/proc/getbelow()
+	var/turf/controllerlocation = locate(1, 1, z)
+	for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
+		// check if there is something to draw below
+		if(!controller.down)
+			src.ChangeTurf(get_base_turf_by_area(src))
+			return 0
+		else
+			floorbelow = locate(src.x, src.y, controller.down_target)
+			return 1
+	return 1
+
+/turf/proc/hasbelow()
+	var/turf/controllerlocation = locate(1, 1, z)
+	for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
+		if(controller.down)
+			return 1
+	return 0

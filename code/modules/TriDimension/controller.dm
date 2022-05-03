@@ -1,10 +1,11 @@
 /obj/effect/landmark/zcontroller
 	name = "Z-Level Controller"
-	var/initialized = 0 // when set to 1, turfs will report to the controller
-	var/up = 0	// 1 allows  up movement
-	var/up_target = 0 // the Z-level that is above the current one
-	var/down = 0 // 1 allows down movement
-	var/down_target = 0 // the Z-level that is below the current one
+
+	var/initialized = FALSE	// when set to TRUE, turfs will report to the controller
+	var/up = FALSE			// TRUE allows up movement
+	var/up_target = 0		// the Z-level that is above the current one
+	var/down = FALSE		// TRUE allows down movement
+	var/down_target = 0		// the Z-level that is below the current one
 
 	var/list/slow = list()
 	var/list/normal = list()
@@ -25,7 +26,7 @@
 
 	processing_objects.Add(src)
 
-	initialized = 1
+	initialized = TRUE
 	return 1
 
 /obj/effect/landmark/zcontroller/Destroy()
@@ -81,38 +82,6 @@
 					temp += locate(T.x, T.y, down_target)
 					c_down.add(temp, I, transfer - 1)
 	return
-
-/turf
-	var/list/z_overlays = list()
-
-/turf/New()
-	..()
-
-	var/turf/controller = locate(1, 1, z)
-	for(var/obj/effect/landmark/zcontroller/c in controller)
-		if(c.initialized)
-			var/list/turf = list()
-			turf += src
-			c.add(turf, 3, 1)
-
-/turf/space/New()
-	..()
-
-	var/turf/controller = locate(1, 1, z)
-	for(var/obj/effect/landmark/zcontroller/c in controller)
-		if(c.initialized)
-			var/list/turf = list()
-			turf += src
-			c.add(turf, 3, 1)
-
-/atom/movable/Move() //Hackish
-	. = ..()
-	var/turf/controllerlocation = locate(1, 1, src.z)
-	for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
-		if(controller.up || controller.down)
-			var/list/temp = list()
-			temp += locate(src.x, src.y, src.z)
-			controller.add(temp, 3, 1)
 
 /obj/effect/landmark/zcontroller/proc/calc(list/L)
 	var/list/slowholder = list()
@@ -266,3 +235,34 @@
 	add(normalholder, 2, 0)
 	add(fastholder, 3, 0)
 	return
+
+// Overrides
+/turf
+	var/list/z_overlays = list()
+
+/turf/New()
+	..()
+	var/turf/controller = locate(1, 1, z)
+	for(var/obj/effect/landmark/zcontroller/c in controller)
+		if(c.initialized)
+			var/list/turf = list()
+			turf += src
+			c.add(turf, 3, 1)
+
+/turf/space/New()
+	..()
+	var/turf/controller = locate(1, 1, z)
+	for(var/obj/effect/landmark/zcontroller/c in controller)
+		if(c.initialized)
+			var/list/turf = list()
+			turf += src
+			c.add(turf, 3, 1)
+
+/atom/movable/Move() //Hackish
+	. = ..()
+	var/turf/controllerlocation = locate(1, 1, src.z)
+	for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
+		if(controller.up || controller.down)
+			var/list/temp = list()
+			temp += locate(src.x, src.y, src.z)
+			controller.add(temp, 3, 1)
