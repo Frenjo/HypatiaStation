@@ -248,7 +248,7 @@
 
 /obj/item/weapon/circuitboard/HolodeckControl // Not going to let people get this, but it's just here for future
 	name = "Circuit board (Holodeck Control)"
-	build_path = /obj/machinery/computer/HolodeckControl
+	build_path = /obj/machinery/computer/holodeck_control
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
 
 /obj/item/weapon/circuitboard/aifixer
