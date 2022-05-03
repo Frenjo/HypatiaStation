@@ -1,6 +1,7 @@
 /obj/effect/overlay
 	name = "overlay"
-	unacidable = 1
+	unacidable = TRUE
+
 	var/i_attached //Added for possible image attachments to objects. For hallucinations and the like.
 
 
@@ -8,6 +9,7 @@
 	name = "beam"
 	icon = 'icons/effects/beam.dmi'
 	icon_state = "b_beam"
+
 	var/tmp/atom/BeamSource
 
 /obj/effect/overlay/beam/New()
@@ -20,18 +22,18 @@
 	name = "Palm tree"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm1"
-	density = 1
+	density = TRUE
 	layer = 5
-	anchored = 1
+	anchored = TRUE
 
 
 /obj/effect/overlay/palmtree_l
 	name = "Palm tree"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm2"
-	density = 1
+	density = TRUE
 	layer = 5
-	anchored = 1
+	anchored = TRUE
 
 
 /obj/effect/overlay/coconut

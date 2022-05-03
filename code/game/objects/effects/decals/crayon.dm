@@ -3,7 +3,7 @@
 	desc = "A rune drawn in crayon."
 	icon = 'icons/obj/rune.dmi'
 	layer = 2.1
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/decal/cleanable/crayon/examine()
 	set src in view(2)

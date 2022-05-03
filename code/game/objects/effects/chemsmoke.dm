@@ -3,7 +3,7 @@
 /////////////////////////////////////////////
 /obj/effect/smoke/chem
 	icon = 'icons/effects/chemsmoke.dmi'
-	opacity = 0
+	opacity = FALSE
 	time_to_live = 300
 	pass_flags = PASSTABLE | PASSGRILLE | PASSGLASS		//PASSGLASS is fine here, it's just so the visual effect can "flow" around glass
 
@@ -17,6 +17,7 @@
 
 /datum/effect/system/smoke_spread/chem
 	smoke_type = /obj/effect/smoke/chem
+
 	var/obj/chemholder
 	var/range
 	var/list/targetTurfs

@@ -3,8 +3,9 @@
 	name = "web"
 	desc = "it's stringy and sticky"
 	icon = 'icons/effects/effects.dmi'
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
+
 	var/health = 15
 
 //similar to weeds, but only barfed out by nurses manually
@@ -78,6 +79,7 @@
 	name = "egg cluster"
 	desc = "They seem to pulse slightly with an inner life"
 	icon_state = "eggs"
+
 	var/amount_grown = 0
 	
 /obj/effect/spider/eggcluster/New()
@@ -98,12 +100,13 @@
 	name = "spiderling"
 	desc = "It never stays still for long."
 	icon_state = "spiderling"
-	anchored = 0
+	anchored = FALSE
 	layer = 2.7
 	health = 3
+
 	var/amount_grown = -1
 	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent
-	var/travelling_in_vent = 0
+	var/travelling_in_vent = FALSE
 	
 /obj/effect/spider/spiderling/New()
 	pixel_x = rand(6, -6)
@@ -131,7 +134,7 @@
 /obj/effect/spider/spiderling/process()
 	if(travelling_in_vent)
 		if(isturf(src.loc))
-			travelling_in_vent = 0
+			travelling_in_vent = FALSE
 			entry_vent = null
 	else if(entry_vent)
 		if(get_dist(src, entry_vent) <= 1)

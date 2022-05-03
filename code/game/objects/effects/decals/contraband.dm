@@ -12,6 +12,7 @@
 	name = "rolled-up poster"
 	desc = "The poster comes with its own automatic adhesive mechanism, for easy pinning to any vertical surface."
 	icon_state = "rolled_poster"
+
 	var/serial_number = 0
 
 
@@ -29,9 +30,10 @@
 	name = "poster"
 	desc = "A large piece of space-resistant printed paper. "
 	icon = 'icons/obj/contraband.dmi'
-	anchored = 1
+	anchored = TRUE
+
 	var/serial_number	//Will hold the value of src.loc if nobody initialises it
-	var/ruined = 0
+	var/ruined = FALSE
 
 /obj/structure/sign/poster/New(serial)
 	serial_number = serial
@@ -67,7 +69,7 @@
 				return
 			visible_message(SPAN_WARNING("[user] rips [src] in a single, decisive motion!"))
 			playsound(src, 'sound/items/poster_ripped.ogg', 100, 1)
-			ruined = 1
+			ruined = TRUE
 			icon_state = "poster_ripped"
 			name = "ripped poster"
 			desc = "You can't make out anything from the poster's original print. It's ruined."

@@ -1,20 +1,21 @@
 #define DRYING_TIME 5 * 60 * 10						//for 1 unit of depth in puddle (amount var)
 
-var/global/list/image/splatter_cache = list()
+/var/global/list/image/splatter_cache = list()
 
 /obj/effect/decal/cleanable/blood
 	name = "blood"
 	desc = "It's thick and gooey. Perhaps it's the chef's cooking?"
 	gender = PLURAL
-	density = 0
+	density = FALSE
 	anchored = 1
 	layer = 2
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mfloor1"
 	random_icon_states = list("mfloor1", "mfloor2", "mfloor3", "mfloor4", "mfloor5", "mfloor6", "mfloor7")
+	blood_DNA = list()
+
 	var/base_icon = 'icons/effects/blood.dmi'
 	var/list/viruses = list()
-	blood_DNA = list()
 	var/basecolor = "#A10808" // Color when wet.
 	var/list/datum/disease2/disease/virus2 = list()
 	var/amount = 5
@@ -30,7 +31,7 @@ var/global/list/image/splatter_cache = list()
 		if(src.loc && isturf(src.loc))
 			for(var/obj/effect/decal/cleanable/blood/B in src.loc)
 				if(B != src)
-					if (B.blood_DNA)
+					if(B.blood_DNA)
 						blood_DNA |= B.blood_DNA.Copy()
 					qdel(B)
 	spawn(DRYING_TIME * (amount + 1))
@@ -108,7 +109,7 @@ var/global/list/image/splatter_cache = list()
 	gender = PLURAL
 	icon = 'icons/effects/drip.dmi'
 	icon_state = "1"
-	random_icon_states = list("1","2","3","4","5")
+	random_icon_states = list("1", "2", "3", "4", "5")
 	amount = 0
 
 
@@ -116,8 +117,9 @@ var/global/list/image/splatter_cache = list()
 	icon_state = "tracks"
 	desc = "It looks like a writing in blood."
 	gender = NEUTER
-	random_icon_states = list("writing1","writing2","writing3","writing4","writing5")
+	random_icon_states = list("writing1", "writing2", "writing3", "writing4", "writing5")
 	amount = 0
+
 	var/message
 
 /obj/effect/decal/cleanable/blood/writing/New()
@@ -129,21 +131,22 @@ var/global/list/image/splatter_cache = list()
 	else
 		icon_state = "writing1"
 
-/obj/effect/decal/cleanable/blood/writing/examine()
+/obj/effect/decal/cleanable/blood/writing/examine(mob/user)
 	..()
-	usr << "It reads: <font color='[basecolor]'>\"[message]\"<font>"
+	to_chat(user, "It reads: <font color='[basecolor]'>\"[message]\"<font>")
 
 
 /obj/effect/decal/cleanable/blood/gibs
 	name = "gibs"
 	desc = "They look bloody and gruesome."
 	gender = PLURAL
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	layer = 2
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "gibbl5"
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6")
+
 	var/fleshcolor = "#FFFFFF"
 
 /obj/effect/decal/cleanable/blood/gibs/update_icon()
@@ -198,18 +201,18 @@ var/global/list/image/splatter_cache = list()
 	name = "mucus"
 	desc = "Disgusting mucus."
 	gender = PLURAL
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	layer = 2
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mucus"
 	random_icon_states = list("mucus")
 
 	var/list/datum/disease2/disease/virus2 = list()
-	var/dry = 0 // Keeps the lag down
+	var/dry = FALSE // Keeps the lag down
 
 /obj/effect/decal/cleanable/mucus/New()
 	spawn(DRYING_TIME * 2)
-		dry = 1
+		dry = TRUE
 
 #undef DRYING_TIME

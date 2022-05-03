@@ -1,9 +1,10 @@
 /* Simple object type, calls a proc when "stepped" on by something */
 /obj/effect/step_trigger
-	var/affect_ghosts = 0
-	var/stopper = 1 // stops throwers
 	invisibility = 101 // nope cant see this shit
-	anchored = 1
+	anchored = TRUE
+
+	var/affect_ghosts = FALSE
+	var/stopper = TRUE // stops throwers
 
 /obj/effect/step_trigger/proc/Trigger(atom/movable/A)
 	return 0
@@ -19,12 +20,12 @@
 
 /* Tosses things in a certain direction */
 /obj/effect/step_trigger/thrower
-	var/direction = SOUTH // the direction of throw
-	var/tiles = 3	// if 0: forever until atom hits a stopper
-	var/immobilize = 1 // if nonzero: prevents mobs from moving while they're being flung
-	var/speed = 1	// delay of movement
-	var/facedir = 0 // if 1: atom faces the direction of movement
-	var/nostop = 0 // if 1: will only be stopped by teleporters
+	var/direction = SOUTH	// the direction of throw
+	var/tiles = 3			// if 0: forever until atom hits a stopper
+	var/immobilize = TRUE	// if TRUE: prevents mobs from moving while they're being flung
+	var/speed = 1			// delay of movement
+	var/facedir = FALSE		// if TRUE: atom faces the direction of movement
+	var/nostop = FALSE		// if TRUE: will only be stopped by teleporters
 	var/list/affecting = list()
 
 /obj/effect/step_trigger/thrower/Trigger(atom/A)

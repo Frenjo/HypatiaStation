@@ -7,15 +7,16 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /obj/effect
 	name = "effect"
 	icon = 'icons/effects/effects.dmi'
-	mouse_opacity = 0
-	unacidable = 1//So effect are not targeted by alien acid.
+	mouse_opacity = FALSE
+	unacidable = TRUE	//So effect are not targeted by alien acid.
 
 /obj/effect/water
 	name = "water"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
+	mouse_opacity = FALSE
+
 	var/life = 15.0
-	mouse_opacity = 0
 
 /obj/effect/Destroy()
 	loc = null
@@ -45,7 +46,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	var/cardinals = 0
 	var/turf/location
 	var/atom/holder
-	var/setup = 0
+	var/setup = FALSE
 
 /datum/effect/system/proc/set_up(n = 3, c = 0, turf/loc)
 	if(n > 10)
@@ -53,7 +54,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	number = n
 	cardinals = c
 	location = loc
-	setup = 1
+	setup = TRUE
 
 /datum/effect/system/proc/attach(atom/atom)
 	holder = atom
@@ -80,7 +81,7 @@ steam.start() -- spawns the effect
 	name = "steam"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
-	density = 0
+	density = FALSE
 
 /datum/effect/system/steam_spread
 	set_up(n = 3, c = 0, turf/loc)
@@ -118,9 +119,10 @@ steam.start() -- spawns the effect
 /obj/effect/sparks
 	name = "sparks"
 	icon_state = "sparks"
+	anchored = TRUE
+	mouse_opacity = FALSE
+
 	var/amount = 6.0
-	anchored = 1.0
-	mouse_opacity = 0
 
 /obj/effect/sparks/New()
 	..()
@@ -175,7 +177,7 @@ steam.start() -- spawns the effect
 				direction = pick(alldirs)
 			for(i = 0, i < pick(1, 2, 3), i++)
 				sleep(5)
-				step(sparks,direction)
+				step(sparks, direction)
 			spawn(20)
 				if(sparks)
 					qdel(sparks)
@@ -190,9 +192,10 @@ steam.start() -- spawns the effect
 /obj/effect/smoke
 	name = "smoke"
 	icon_state = "smoke"
-	opacity = 1
-	anchored = 0.0
-	mouse_opacity = 0
+	opacity = TRUE
+	anchored = FALSE
+	mouse_opacity = FALSE
+
 	var/amount = 6.0
 	var/time_to_live = 100
 
@@ -200,9 +203,6 @@ steam.start() -- spawns the effect
 	icon = 'icons/effects/96x96.dmi'
 	pixel_x = -32
 	pixel_y = -32
-
-/obj/effect/smoke/New()
-	..()
 
 /obj/effect/smoke/initialize()
 	spawn(time_to_live)
@@ -255,8 +255,6 @@ steam.start() -- spawns the effect
 /////////////////////////////////////////////
 // Sleep smoke
 /////////////////////////////////////////////
-/obj/effect/smoke/sleepy
-
 /obj/effect/smoke/sleepy/Move()
 	..()
 	for(var/mob/living/carbon/M in get_turf(src))
@@ -366,12 +364,12 @@ steam.start() -- spawns the effect
 /obj/effect/ion_trails
 	name = "ion trails"
 	icon_state = "ion_trails"
-	anchored = 1.0
+	anchored = TRUE
 
 /datum/effect/system/ion_trail_follow
 	var/turf/oldposition
-	var/processing = 1
-	var/on = 1
+	var/processing = TRUE
+	var/on = TRUE
 
 /datum/effect/system/ion_trail_follow/set_up(atom/atom)
 	attach(atom)
@@ -379,10 +377,10 @@ steam.start() -- spawns the effect
 
 /datum/effect/system/ion_trail_follow/start()
 	if(!src.on)
-		src.on = 1
-		src.processing = 1
+		src.on = TRUE
+		src.processing = TRUE
 	if(src.processing)
-		src.processing = 0
+		src.processing = FALSE
 		spawn(0)
 			var/turf/T = get_turf(src.holder)
 			if(T != src.oldposition)
@@ -396,17 +394,17 @@ steam.start() -- spawns the effect
 						qdel(I)
 				spawn(2)
 					if(src.on)
-						src.processing = 1
+						src.processing = TRUE
 						src.start()
 			else
 				spawn(2)
 					if(src.on)
-						src.processing = 1
+						src.processing = TRUE
 						src.start()
 
 /datum/effect/system/ion_trail_follow/proc/stop()
-	src.processing = 0
-	src.on = 0
+	src.processing = FALSE
+	src.on = FALSE
 
 
 /////////////////////////////////////////////
@@ -415,8 +413,8 @@ steam.start() -- spawns the effect
 /////////////////////////////////////////////
 /datum/effect/system/steam_trail_follow
 	var/turf/oldposition
-	var/processing = 1
-	var/on = 1
+	var/processing = TRUE
+	var/on = TRUE
 
 /datum/effect/system/steam_trail_follow/set_up(atom/atom)
 	attach(atom)
@@ -424,10 +422,10 @@ steam.start() -- spawns the effect
 
 /datum/effect/system/steam_trail_follow/start()
 	if(!src.on)
-		src.on = 1
-		src.processing = 1
+		src.on = TRUE
+		src.processing = TRUE
 	if(src.processing)
-		src.processing = 0
+		src.processing = FALSE
 		spawn(0)
 			if(src.number < 3)
 				var/obj/effect/steam/I = PoolOrNew(/obj/effect/steam, src.oldposition)
@@ -439,17 +437,17 @@ steam.start() -- spawns the effect
 					src.number--
 				spawn(2)
 					if(src.on)
-						src.processing = 1
+						src.processing = TRUE
 						src.start()
 			else
 				spawn(2)
 					if(src.on)
-						src.processing = 1
+						src.processing = TRUE
 						src.start()
 
 /datum/effect/system/steam_trail_follow/proc/stop()
-	src.processing = 0
-	src.on = 0
+	src.processing = FALSE
+	src.on = FALSE
 
 
 // Foam
@@ -458,14 +456,15 @@ steam.start() -- spawns the effect
 /obj/effect/foam
 	name = "foam"
 	icon_state = "foam"
-	opacity = 0
-	anchored = 1
-	density = 0
+	opacity = FALSE
+	anchored = TRUE
+	density = FALSE
 	layer = OBJ_LAYER + 0.9
-	mouse_opacity = 0
+	mouse_opacity = FALSE
+	animate_movement = FALSE
+
 	var/amount = 3
 	var/expand = 1
-	animate_movement = 0
 	var/metal = 0
 
 /obj/effect/foam/New(loc, ismetal = 0)
@@ -592,11 +591,12 @@ steam.start() -- spawns the effect
 /obj/structure/foamedmetal
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "metalfoam"
-	density = 1
-	opacity = 1 	// changed in New()
-	anchored = 1
+	density = TRUE
+	opacity = TRUE	// changed in New()
+	anchored = TRUE
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
+
 	var/metal = 1		// 1=aluminum, 2=iron
 
 /obj/structure/foamedmetal/New()
@@ -604,7 +604,7 @@ steam.start() -- spawns the effect
 	update_nearby_tiles(1)
 
 /obj/structure/foamedmetal/Destroy()
-	density = 0
+	density = FALSE
 	update_nearby_tiles(1)
 	return ..()
 
@@ -668,14 +668,12 @@ steam.start() -- spawns the effect
 /obj/structure/foamedmetal/proc/update_nearby_tiles(need_rebuild)
 	if(!air_master)
 		return 0
-
 	air_master.mark_for_update(get_turf(src))
-
 	return 1
 
 
 /datum/effect/system/reagents_explosion
-	var/amount						// TNT equivalent
+	var/amount					// TNT equivalent
 	var/flashing = 0			// does explosion creates flash effect?
 	var/flashing_factor = 0		// factor of how powerful the flash effect relatively to the explosion
 

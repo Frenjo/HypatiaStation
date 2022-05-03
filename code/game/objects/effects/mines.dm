@@ -1,13 +1,14 @@
 /obj/effect/mine
 	name = "Mine"
 	desc = "I Better stay away from that thing."
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	layer = 3
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "uglymine"
+
 	var/triggerproc = "explode" //name of the proc thats called when the mine is triggered
-	var/triggered = 0
+	var/triggered = FALSE
 
 /obj/effect/mine/New()
 	icon_state = "uglyminearmed"
@@ -22,7 +23,7 @@
 	if(ishuman(M) || ismonkey(M))
 		for(var/mob/O in viewers(world.view, src.loc))
 			to_chat(O, "<font color='red'>[M] triggered the \icon[src] [src]</font>")
-		triggered = 1
+		triggered = TRUE
 		call(src, triggerproc)(M)
 
 /obj/effect/mine/proc/triggerrad(obj)
@@ -48,7 +49,6 @@
 /obj/effect/mine/proc/triggern2o(obj)
 	//example: n2o triggerproc
 	//note: im lazy
-
 	for(var/turf/simulated/floor/target in range(1, src))
 		if(!target.blocks_air)
 			target.assume_gas(GAS_SLEEPING_AGENT, 30)

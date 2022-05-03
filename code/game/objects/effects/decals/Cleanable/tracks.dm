@@ -14,14 +14,14 @@
 #define TRACKS_CRUSTIFY_TIME   50
 
 // color-dir-dry
-var/global/list/image/fluidtrack_cache = list()
+/var/global/list/image/fluidtrack_cache = list()
 
 /datum/fluidtrack
 	var/direction = 0
 	var/basecolor = "#A10808"
-	var/wet = 0
-	var/fresh = 1
-	var/crusty = 0
+	var/wet = FALSE
+	var/fresh = TRUE
+	var/crusty = FALSE
 	var/image/overlay
 
 /datum/fluidtrack/New(_direction, _color, _wet)
@@ -64,7 +64,7 @@ var/global/list/image/fluidtrack_cache = list()
 * @param bloodcolor Color of the blood when wet.
 */
 /obj/effect/decal/cleanable/blood/tracks/proc/AddTracks(list/DNA, comingdir, goingdir, bloodcolor = "#A10808")
-	var/updated = 0
+	var/updated = FALSE
 	// Shift our goingdir 4 spaces to the left so it's in the GOING bitblock.
 	var/realgoing = goingdir << 4
 
@@ -94,7 +94,7 @@ var/global/list/image/fluidtrack_cache = list()
 			stack.Add(track)
 			setdirs["[b]"] = stack.Find(track)
 			updatedtracks |= b
-			updated = 1
+			updated = TRUE
 
 		// GOING BIT (shift up 4)
 		b = b << 4
@@ -111,7 +111,7 @@ var/global/list/image/fluidtrack_cache = list()
 			stack.Add(track)
 			setdirs["[b]"] = stack.Find(track)
 			updatedtracks |= b
-			updated = 1
+			updated = TRUE
 
 	dirs |= comingdir | realgoing
 	blood_DNA |= DNA.Copy()
@@ -137,7 +137,7 @@ var/global/list/image/fluidtrack_cache = list()
 		var/image/I = image(icon, icon_state = state, dir = num2dir(truedir))
 		I.color = track.basecolor
 
-		track.fresh = 0
+		track.fresh = FALSE
 		track.overlay = I
 		stack[stack_idx] = track
 		overlays += I

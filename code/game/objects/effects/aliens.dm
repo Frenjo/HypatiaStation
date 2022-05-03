@@ -23,9 +23,10 @@
 	desc = "Looks like some kind of slimy growth."
 	icon_state = "resin"
 
-	density = 1
-	opacity = 1
-	anchored = 1
+	density = TRUE
+	opacity = TRUE
+	anchored = TRUE
+
 	var/health = 200
 	//var/mob/living/affecting = null
 
@@ -38,7 +39,7 @@
 	name = "resin membrane"
 	desc = "Purple slime just thin enough to let light pass through."
 	icon_state = "resinmembrane"
-	opacity = 0
+	opacity = FALSE
 	health = 120
 
 /obj/effect/alien/resin/New()
@@ -53,7 +54,7 @@
 
 /obj/effect/alien/resin/proc/healthcheck()
 	if(health <= 0)
-		density = 0
+		density = FALSE
 		qdel(src)
 	return
 
@@ -138,13 +139,14 @@
  * Weeds
  */
 #define NODERANGE 3
+
 /obj/effect/alien/weeds
 	name = "weeds"
 	desc = "Weird purple weeds."
 	icon_state = "weeds"
 
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	layer = 2
 
 	var/health = 15
@@ -157,6 +159,7 @@
 	layer = 3
 
 	light_range = NODERANGE
+
 	var/node_range = NODERANGE
 
 /obj/effect/alien/weeds/node/New()
@@ -178,7 +181,7 @@
 	return
 
 /obj/effect/alien/weeds/proc/Life()
-	set background = 1
+	set background = TRUE
 	var/turf/U = get_turf(src)
 /*
 	if (locate(/obj/movable, U))
@@ -263,8 +266,8 @@ Alien plants should do something if theres a lot of poison
 		return 0
 	return 1
 */
-#undef NODERANGE
 
+#undef NODERANGE
 
 /*
  * Acid
@@ -274,9 +277,9 @@ Alien plants should do something if theres a lot of poison
 	desc = "Burbling corrossive stuff. I wouldn't want to touch it."
 	icon_state = "acid"
 
-	density = 0
-	opacity = 0
-	anchored = 1
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
 
 	var/atom/target
 	var/ticks = 0
@@ -299,7 +302,6 @@ Alien plants should do something if theres a lot of poison
 	ticks += 1
 
 	if(ticks >= target_strength)
-
 		for(var/mob/O in hearers(src, null))
 			O.show_message(SPAN_RADIOACTIVE("[src.target] collapses under its own weight into a puddle of goop and undigested debris!"), 1)
 
@@ -326,21 +328,21 @@ Alien plants should do something if theres a lot of poison
 /*
  * Egg
  */
-/var/const //for the status var
-	BURST = 0
-	BURSTING = 1
-	GROWING = 2
-	GROWN = 3
+//for the status var
+#define BURST		0
+#define BURSTING	1
+#define GROWING		2
+#define GROWN		3
 
-	MIN_GROWTH_TIME = 1800 //time it takes to grow a hugger
-	MAX_GROWTH_TIME = 3000
+#define MIN_GROWTH_TIME 1800	//time it takes to grow a hugger
+#define MAX_GROWTH_TIME 3000
 
 /obj/effect/alien/egg
 	desc = "It looks like a weird egg"
 	name = "egg"
 	icon_state = "egg_growing"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 
 	var/health = 100
 	var/status = GROWING //can be GROWING, GROWN or BURST; all mutually exclusive
@@ -442,3 +444,11 @@ Alien plants should do something if theres a lot of poison
 			return
 
 		Burst(0)
+
+#undef BURST
+#undef BURSTING
+#undef GROWING
+#undef GROWN
+
+#undef MIN_GROWTH_TIME
+#undef MAX_GROWTH_TIME

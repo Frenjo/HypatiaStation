@@ -4,17 +4,17 @@
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "arrow"
 	layer = 16.0
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/decal/point/point()
 	set src in oview()
-	set hidden = 1
+	set hidden = TRUE
 	return
 
 // Used for spray that you spray at walls, tables, hydrovats etc
 /obj/effect/decal/spraystill
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	layer = 50
 
 //Used by spraybottles.

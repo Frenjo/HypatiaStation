@@ -2,12 +2,13 @@
 
 /obj/effect/glowshroom
 	name = "glowshroom"
-	anchored = 1
-	opacity = 0
-	density = 0
+	anchored = TRUE
+	opacity = FALSE
+	density = FALSE
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "glowshroomf"
 	layer = 2.1
+
 	var/endurance = 30
 	var/potency = 30
 	var/delay = 1200
@@ -24,9 +25,7 @@
 
 /obj/effect/glowshroom/New()
 	..()
-
 	dir = CalcDir()
-
 	if(!floor)
 		switch(dir) //offset to make it be on the wall rather than on the floor
 			if(NORTH)
@@ -97,8 +96,38 @@
 		if(prob(evolveChance)) //very low chance to evolve on its own
 			potency += rand(4, 6)
 
+/obj/effect/glowshroom/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	..()
+	endurance -= W.force
+	CheckEndurance()
+
+/obj/effect/glowshroom/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			qdel(src)
+			return
+		if(2.0)
+			if(prob(50))
+				qdel(src)
+				return
+		if(3.0)
+			if(prob(5))
+				qdel(src)
+				return
+		else
+	return
+
+/obj/effect/glowshroom/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	if(exposed_temperature > 300)
+		endurance -= 5
+		CheckEndurance()
+
+/obj/effect/glowshroom/proc/CheckEndurance()
+	if(endurance <= 0)
+		qdel(src)
+
 /obj/effect/glowshroom/proc/CalcDir(turf/location = loc)
-	set background = 1
+	set background = TRUE
 	var/direction = 16
 
 	for(var/wallDir in cardinal)
@@ -129,35 +158,3 @@
 
 	floor = 1
 	return 1
-
-/obj/effect/glowshroom/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	..()
-
-	endurance -= W.force
-
-	CheckEndurance()
-
-/obj/effect/glowshroom/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			qdel(src)
-			return
-		if(2.0)
-			if(prob(50))
-				qdel(src)
-				return
-		if(3.0)
-			if(prob(5))
-				qdel(src)
-				return
-		else
-	return
-
-/obj/effect/glowshroom/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(exposed_temperature > 300)
-		endurance -= 5
-		CheckEndurance()
-
-/obj/effect/glowshroom/proc/CheckEndurance()
-	if(endurance <= 0)
-		qdel(src)
