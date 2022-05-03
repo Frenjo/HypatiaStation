@@ -417,9 +417,14 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 						scan_data += "Fibers/Materials Found:<br>"
 						for(var/data in scanning.suit_fibers)
 							scan_data += "- [data]<br>"
-					if(istype(scanning, /obj/item/device/detective_scanner) || (istype(scanning, /obj/item/device/pda) && scanning:cartridge && scanning:cartridge.access_security))
+					if(istype(scanning, /obj/item/device/detective_scanner))
 						scan_data += "<br><b>Data transfered from \the [scanning] to Database.</b><br>"
 						add_data_scanner(scanning)
+					if(istype(scanning, /obj/item/device/pda))
+						var/obj/item/device/pda/scanning_pda = scanning
+						if(scanning_pda.cartridge && scanning_pda.cartridge.access_security)
+							scan_data += "<br><b>Data transfered from \the [scanning] to Database.</b><br>"
+							add_data_scanner(scanning)
 					else if(!scanning.fingerprints)
 						scan_data += "<br><b><a href='?src=\ref[src];operation=add'>Add to Database?</a></b><br>"
 			else
