@@ -353,7 +353,7 @@
 					config.guest_jobban = 1
 
 				if("guest_ban")
-					global.guests_allowed = 0
+					global.guests_allowed = FALSE
 
 				if("usewhitelist")
 					config.usewhitelist = 1

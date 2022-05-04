@@ -1462,13 +1462,13 @@
 
 		if(istype(head, /obj/item/clothing/head/welding) || istype(head, /obj/item/clothing/head/helmet/space/soghun))
 			var/obj/item/clothing/head/welding/O = head
-			if(!O.up && tinted_weldhelh)
+			if(!O.up && global.tinted_weldhelh)
 				client.screen += global_hud.darkMask
 				masked = 1
 
 		if(!masked && istype(glasses, /obj/item/clothing/glasses/welding))
 			var/obj/item/clothing/glasses/welding/O = glasses
-			if(!O.up && tinted_weldhelh)
+			if(!O.up && global.tinted_weldhelh)
 				client.screen += global_hud.darkMask
 
 		if(machine)

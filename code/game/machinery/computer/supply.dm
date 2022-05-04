@@ -196,7 +196,7 @@
 		supply_controller.ordernum++ // Edited this to reflect 'shuttles' port. -Frenjo
 		var/obj/item/weapon/paper/reqform = new /obj/item/weapon/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
-		reqform.info += "<h3>[station_name] Supply Requisition Form</h3><hr>"
+		reqform.info += "<h3>[global.station_name] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[supply_controller.ordernum]<br>" // Edited this to reflect 'shuttles' port. -Frenjo
 		reqform.info += "REQUESTED BY: [idname]<br>"
 		reqform.info += "RANK: [idrank]<br>"
@@ -367,7 +367,7 @@
 		supply_controller.ordernum++ // Edited this to reflect 'shuttles' port. -Frenjo
 		var/obj/item/weapon/paper/reqform = new /obj/item/weapon/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
-		reqform.info += "<h3>[station_name] Supply Requisition Form</h3><hr>"
+		reqform.info += "<h3>[global.station_name] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[supply_controller.ordernum]<br>" // Edited this to reflect 'shuttles' port. -Frenjo
 		reqform.info += "REQUESTED BY: [idname]<br>"
 		reqform.info += "RANK: [idrank]<br>"

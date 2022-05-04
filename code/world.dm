@@ -30,7 +30,7 @@
 	diaryofmeanpeople = file("data/logs/[date_string] Attack.log")
 	diary << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
 	diaryofmeanpeople << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
-	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
+	global.changelog_hash = md5('html/changelog.html')			//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)
 		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND."
@@ -97,10 +97,10 @@
 
 	else if(T == "status")
 		var/list/s = list()
-		s["version"] = game_version
-		s["mode"] = master_mode
-		s["respawn"] = config ? abandon_allowed : 0
-		s["enter"] = enter_allowed
+		s["version"] = global.game_version
+		s["mode"] = global.master_mode
+		s["respawn"] = config ? global.abandon_allowed : FALSE
+		s["enter"] = global.enter_allowed
 		s["vote"] = config.allow_vote_mode
 		s["ai"] = config.allow_ai
 		s["host"] = host ? host : null
@@ -151,8 +151,8 @@
 	var/list/Lines = file2list("data/mode.txt")
 	if(Lines.len)
 		if(Lines[1])
-			master_mode = Lines[1]
-			log_misc("Saved mode is '[master_mode]'")
+			global.master_mode = Lines[1]
+			log_misc("Saved mode is '[global.master_mode]'")
 
 /world/proc/save_mode(the_mode)
 	var/F = file("data/mode.txt")
@@ -165,7 +165,7 @@
 	return 1
 
 /world/proc/load_motd()
-	join_motd = file2text("config/motd.txt")
+	global.join_motd = file2text("config/motd.txt")
 
 
 /proc/load_configuration()
@@ -175,7 +175,7 @@
 	config.loadsql("config/dbconfig.txt")
 	config.loadforumsql("config/forumdbconfig.txt")
 	// apply some settings from config..
-	abandon_allowed = config.respawn
+	global.abandon_allowed = config.respawn
 
 
 /hook/startup/proc/loadMods()
@@ -219,15 +219,15 @@
 	var/list/features = list()
 
 	if(ticker)
-		if(master_mode)
-			features += master_mode
+		if(global.master_mode)
+			features += global.master_mode
 	else
 		features += "<b>STARTING</b>"
 
 	if(!enter_allowed)
 		features += "closed"
 
-	features += abandon_allowed ? "respawn" : "no respawn"
+	features += global.abandon_allowed ? "respawn" : "no respawn"
 
 	if(config && config.allow_vote_mode)
 		features += "vote"

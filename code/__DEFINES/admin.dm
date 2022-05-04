@@ -45,4 +45,4 @@
 
 #define R_HOST			65535
 
-/var/gravity_is_on = 1
+/var/global/gravity_is_on = TRUE

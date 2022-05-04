@@ -373,9 +373,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set category = "Server"
 	set name = "Toggle Aliens"
 
-	aliens_allowed = !aliens_allowed
-	log_admin("[key_name(src)] has turned aliens [aliens_allowed ? "on" : "off"].")
-	message_admins("[key_name_admin(src)] has turned aliens [aliens_allowed ? "on" : "off"].", 0)
+	global.aliens_allowed = !global.aliens_allowed
+	log_admin("[key_name(src)] has turned aliens [global.aliens_allowed ? "on" : "off"].")
+	message_admins("[key_name_admin(src)] has turned aliens [global.aliens_allowed ? "on" : "off"].", 0)
 	feedback_add_details("admin_verb", "TAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 

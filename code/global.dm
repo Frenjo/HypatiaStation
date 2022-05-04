@@ -1,7 +1,7 @@
 //#define TESTING
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-var/global/obj/effect/datacore/data_core = null
+/var/global/obj/effect/datacore/data_core = null
 
 //////////////
 var/skipupdate = 0
@@ -10,31 +10,31 @@ var/event = 0
 ///////////////
 
 //var/station_name = "Hypatia Station"
-var/station_name = "NSS Hypatia" // Fixed this to be a proper name. -Frenjo
-var/game_version = "Hypatia"
-var/changelog_hash = ""
-var/game_year = (text2num(time2text(world.realtime, "YYYY")) + 544)
+/var/global/station_name = "NSS Hypatia" // Fixed this to be a proper name. -Frenjo
+/var/global/game_version = "Hypatia"
+/var/global/changelog_hash = ""
+/var/global/game_year = (text2num(time2text(world.realtime, "YYYY")) + 544)
 
 var/datum/air_tunnel/air_tunnel1/SS13_airtunnel = null
-var/roundstart_progressing = 1.0
-var/master_mode = "extended"		//"extended"
-var/secret_force_mode = "secret"	// if this is anything but "secret", the secret rotation will forceably choose this mode
+/var/global/roundstart_progressing = TRUE
+/var/global/master_mode = "extended"		//"extended"
+/var/global/secret_force_mode = "secret"	// if this is anything but "secret", the secret rotation will forceably choose this mode
 
 var/datum/engine_eject/engine_eject_control = null
-var/host = null
-var/aliens_allowed = 0
-var/ooc_allowed = 1
-var/dsay_allowed = 1
-var/dooc_allowed = 1
-var/traitor_scaling = 1
+/var/global/host = null
+/var/global/aliens_allowed = FALSE
+/var/global/ooc_allowed = TRUE
+/var/global/dsay_allowed = TRUE
+/var/global/dooc_allowed = TRUE
+/var/global/traitor_scaling = TRUE
 //var/goonsay_allowed = 0
 var/dna_ident = 1
-var/abandon_allowed = 1
-var/enter_allowed = 1
-var/guests_allowed = 1
+/var/global/abandon_allowed = TRUE
+/var/global/enter_allowed = TRUE
+/var/global/guests_allowed = TRUE
 var/shuttle_frozen = 0
 var/shuttle_left = 0
-var/tinted_weldhelh = 1
+/var/global/tinted_weldhelh = TRUE
 
 var/list/jobMax = list()
 var/list/bombers = list()
@@ -85,7 +85,7 @@ var/datum/debug/debugobj
 
 var/shuttlecoming = 0
 
-var/join_motd = null
+/var/global/join_motd = null
 var/forceblob = 0
 
 //airlockWireColorToIndex takes a number representing the wire color, e.g. the orange wire is always 1, the dark red wire is always 2, etc. It returns the index for whatever that wire does.

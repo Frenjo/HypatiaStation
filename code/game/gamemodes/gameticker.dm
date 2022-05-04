@@ -48,7 +48,7 @@ var/global/datum/controller/gameticker/ticker
 			for(var/i = 0, i < 10, i++)
 				sleep(1)
 				vote.process()
-			if(roundstart_progressing)
+			if(global.roundstart_progressing)
 				pregame_timeleft--
 /*			if(pregame_timeleft == config.vote_autogamemode_timeleft)
 				if(!vote.time_remaining)
@@ -64,19 +64,19 @@ var/global/datum/controller/gameticker/ticker
 
 /datum/controller/gameticker/proc/setup()
 	//Create and announce mode
-	if(master_mode == "secret")
+	if(global.master_mode == "secret")
 		src.hide_mode = 1
 	var/list/datum/game_mode/runnable_modes
-	if(master_mode == "random" || master_mode == "secret")
+	if(global.master_mode == "random" || global.master_mode == "secret")
 		runnable_modes = config.get_runnable_modes()
 		if(runnable_modes.len == 0)
 			current_state = GAME_STATE_PREGAME
 			to_world("<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby.")
 			return 0
-		if(secret_force_mode != "secret")
-			var/datum/game_mode/M = config.pick_mode(secret_force_mode)
+		if(global.secret_force_mode != "secret")
+			var/datum/game_mode/M = config.pick_mode(global.secret_force_mode)
 			if(M.can_start())
-				src.mode = config.pick_mode(secret_force_mode)
+				src.mode = config.pick_mode(global.secret_force_mode)
 		job_master.reset_occupations()
 		if(!src.mode)
 			src.mode = pickweight(runnable_modes)
@@ -84,7 +84,7 @@ var/global/datum/controller/gameticker/ticker
 			var/mtype = src.mode.type
 			src.mode = new mtype
 	else
-		src.mode = config.pick_mode(master_mode)
+		src.mode = config.pick_mode(global.master_mode)
 	if(!src.mode.can_start())
 		to_world("<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
 		qdel(mode)
@@ -98,7 +98,7 @@ var/global/datum/controller/gameticker/ticker
 	if(!can_continue)
 		qdel(mode)
 		current_state = GAME_STATE_PREGAME
-		to_world("<B>Error setting up [master_mode].</B> Reverting to pre-game lobby.")
+		to_world("<B>Error setting up [global.master_mode].</B> Reverting to pre-game lobby.")
 		job_master.reset_occupations()
 		return 0
 

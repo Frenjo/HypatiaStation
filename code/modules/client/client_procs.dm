@@ -139,8 +139,8 @@
 		to_chat(src, SPAN_ALERT("[html_encode(custom_event_msg)]"))
 		to_chat(src, "<br>")
 
-	if((world.address == address || !address) && !host)
-		host = key
+	if((world.address == address || !address) && !global.host)
+		global.host = key
 		world.update_status()
 
 	if(holder)
@@ -151,7 +151,7 @@
 
 	send_resources()
 
-	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
+	if(prefs.lastchangelog != global.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 
 

@@ -84,7 +84,7 @@ Implants;
 		if(player.client && player.ready)
 			playerC++
 
-	if(master_mode == "secret")
+	if(global.master_mode == "secret")
 		if(playerC >= required_players_secret)
 			return 1
 	else

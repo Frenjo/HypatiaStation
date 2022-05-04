@@ -348,7 +348,7 @@ Alien plants should do something if theres a lot of poison
 	var/status = GROWING //can be GROWING, GROWN or BURST; all mutually exclusive
 
 /obj/effect/alien/egg/New()
-	if(aliens_allowed)
+	if(global.aliens_allowed)
 		..()
 		spawn(rand(MIN_GROWTH_TIME, MAX_GROWTH_TIME))
 			Grow()

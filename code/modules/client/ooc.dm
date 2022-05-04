@@ -23,10 +23,10 @@ var/global/normal_ooc_colour = "#002eb8"
 		return
 
 	if(!holder || holder.rank == "Donor") // This is ugly, but I Can't figure out any easy way without duplicating code to confirm the user is not a donor while being a holder using rights.
-		if(!ooc_allowed)
+		if(!global.ooc_allowed)
 			to_chat(src, SPAN_WARNING("OOC is globally muted."))
 			return
-		if(!dooc_allowed && mob.stat == DEAD)
+		if(!global.dooc_allowed && mob.stat == DEAD)
 			to_chat(usr, SPAN_WARNING("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_OOC)
@@ -114,10 +114,10 @@ var/global/normal_ooc_colour = "#002eb8"
 		return
 
 	if(!holder)
-		if(!ooc_allowed)
+		if(!global.ooc_allowed)
 			to_chat(src, SPAN_WARNING("OOC is globally muted."))
 			return
-		if(!dooc_allowed && mob.stat == DEAD)
+		if(!global.dooc_allowed && mob.stat == DEAD)
 			to_chat(usr, SPAN_WARNING("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_OOC)

@@ -549,7 +549,7 @@ var/global/floorIsLava = 0
 		<center><B>Game Panel</B></center><hr>\n
 		<A href='?src=\ref[src];c_mode=1'>Change Game Mode</A><br>
 		"}
-	if(master_mode == "secret")
+	if(global.master_mode == "secret")
 		dat += "<A href='?src=\ref[src];f_secret=1'>(Force Secret Mode)</A><br>"
 
 	dat += {"
@@ -718,8 +718,8 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Toggle dis bitch"
 	set name="Toggle OOC"
-	ooc_allowed = !( ooc_allowed )
-	if (ooc_allowed)
+	global.ooc_allowed = !( global.ooc_allowed )
+	if (global.ooc_allowed)
 		world << "<B>The OOC channel has been globally enabled!</B>"
 	else
 		world << "<B>The OOC channel has been globally disabled!</B>"
@@ -732,8 +732,8 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Globally Toggles DSAY"
 	set name="Toggle DSAY"
-	dsay_allowed = !( dsay_allowed )
-	if (dsay_allowed)
+	global.dsay_allowed = !( global.dsay_allowed )
+	if (global.dsay_allowed)
 		world << "<B>Deadchat has been globally enabled!</B>"
 	else
 		world << "<B>Deadchat has been globally disabled!</B>"
@@ -745,7 +745,7 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Toggle dis bitch"
 	set name="Toggle Dead OOC"
-	dooc_allowed = !( dooc_allowed )
+	global.dooc_allowed = !( global.dooc_allowed )
 
 	log_admin("[key_name(usr)] toggled OOC.")
 	message_admins("[key_name_admin(usr)] toggled Dead OOC.", 1)
@@ -755,9 +755,9 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Toggle traitor scaling"
 	set name="Toggle Traitor Scaling"
-	traitor_scaling = !traitor_scaling
-	log_admin("[key_name(usr)] toggled Traitor Scaling to [traitor_scaling].")
-	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [traitor_scaling ? "on" : "off"].", 1)
+	global.traitor_scaling = !global.traitor_scaling
+	log_admin("[key_name(usr)] toggled Traitor Scaling to [global.traitor_scaling].")
+	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [global.traitor_scaling ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TTS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/startnow()
@@ -781,8 +781,8 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="People can't enter"
 	set name="Toggle Entering"
-	enter_allowed = !( enter_allowed )
-	if (!( enter_allowed ))
+	global.enter_allowed = !( global.enter_allowed )
+	if (!( global.enter_allowed ))
 		world << "<B>New players may no longer enter the game.</B>"
 	else
 		world << "<B>New players may now enter the game.</B>"
@@ -808,13 +808,13 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Respawn basically"
 	set name="Toggle Respawn"
-	abandon_allowed = !( abandon_allowed )
-	if (abandon_allowed)
+	global.abandon_allowed = !( global.abandon_allowed )
+	if (global.abandon_allowed)
 		world << "<B>You may now respawn.</B>"
 	else
 		world << "<B>You may no longer respawn :(</B>"
-	message_admins("\blue [key_name_admin(usr)] toggled respawn to [abandon_allowed ? "On" : "Off"].", 1)
-	log_admin("[key_name(usr)] toggled respawn to [abandon_allowed ? "On" : "Off"].")
+	message_admins("\blue [key_name_admin(usr)] toggled respawn to [global.abandon_allowed ? "On" : "Off"].", 1)
+	log_admin("[key_name(usr)] toggled respawn to [global.abandon_allowed ? "On" : "Off"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -822,9 +822,9 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Toggle alien mobs"
 	set name="Toggle Aliens"
-	aliens_allowed = !aliens_allowed
-	log_admin("[key_name(usr)] toggled Aliens to [aliens_allowed].")
-	message_admins("[key_name_admin(usr)] toggled Aliens [aliens_allowed ? "on" : "off"].", 1)
+	global.aliens_allowed = !global.aliens_allowed
+	log_admin("[key_name(usr)] toggled Aliens to [global.aliens_allowed].")
+	message_admins("[key_name_admin(usr)] toggled Aliens [global.aliens_allowed ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_space_ninja()
@@ -848,8 +848,8 @@ var/global/floorIsLava = 0
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
 		message_admins("\blue [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
 		return //alert("Round end delayed", null, null, null, null, null)
-	roundstart_progressing = !roundstart_progressing
-	if(!roundstart_progressing)
+	global.roundstart_progressing = !global.roundstart_progressing
+	if(!global.roundstart_progressing)
 		world << "<b>The game start has been delayed.</b>"
 		log_admin("[key_name(usr)] delayed the game.")
 	else
@@ -1033,8 +1033,8 @@ var/global/floorIsLava = 0
 	set category = "Debug"
 	set desc="Reduces view range when wearing welding helmets"
 	set name="Toggle tinted welding helmes"
-	tinted_weldhelh = !( tinted_weldhelh )
-	if (tinted_weldhelh)
+	global.tinted_weldhelh = !( global.tinted_weldhelh )
+	if (global.tinted_weldhelh)
 		world << "<B>The tinted_weldhelh has been enabled!</B>"
 	else
 		world << "<B>The tinted_weldhelh has been disabled!</B>"
@@ -1046,13 +1046,13 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Guests can't enter"
 	set name="Toggle guests"
-	guests_allowed = !(guests_allowed)
-	if(!(guests_allowed))
+	global.guests_allowed = !(global.guests_allowed)
+	if(!(global.guests_allowed))
 		world << "<B>Guests may no longer enter the game.</B>"
 	else
 		world << "<B>Guests may now enter the game.</B>"
-	log_admin("[key_name(usr)] toggled guests game entering [guests_allowed?"":"dis"]allowed.")
-	message_admins("\blue [key_name_admin(usr)] toggled guests game entering [guests_allowed?"":"dis"]allowed.", 1)
+	log_admin("[key_name(usr)] toggled guests game entering [global.guests_allowed?"":"dis"]allowed.")
+	message_admins("\blue [key_name_admin(usr)] toggled guests game entering [global.guests_allowed?"":"dis"]allowed.", 1)
 	feedback_add_details("admin_verb", "TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/output_ai_laws()

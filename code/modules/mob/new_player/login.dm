@@ -3,8 +3,8 @@
 
 /mob/new_player/Login()
 	update_Login_details()	//handles setting lastKnownIP and computer_id for use by the ban systems as well as checking for multikeying
-	if(join_motd)
-		to_chat(src, "<div class=\"motd\">[join_motd]</div>")
+	if(global.join_motd)
+		to_chat(src, "<div class=\"motd\">[global.join_motd]</div>")
 
 	if(!mind)
 		mind = new /datum/mind(key)

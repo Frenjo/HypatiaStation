@@ -387,7 +387,7 @@ var/list/slot_equipment_priority = list(
 	set name = "Respawn"
 	set category = "OOC"
 
-	if(!abandon_allowed)
+	if(!global.abandon_allowed)
 		to_chat(usr, SPAN_INFO("Respawn is disabled."))
 		return
 	if(stat != DEAD || !ticker)
@@ -467,8 +467,8 @@ var/list/slot_equipment_priority = list(
 		'html/changelog.html'
 	)
 	src << browse('html/changelog.html', "window=changes;size=675x650")
-	if(prefs.lastchangelog != changelog_hash)
-		prefs.lastchangelog = changelog_hash
+	if(prefs.lastchangelog != global.changelog_hash)
+		prefs.lastchangelog = global.changelog_hash
 		prefs.save_preferences()
 		winset(src, "rpane.changelog", "background-color=none;font-style=;")
 

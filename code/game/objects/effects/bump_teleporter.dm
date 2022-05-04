@@ -1,4 +1,4 @@
-/var/list/obj/effect/bump_teleporter/BUMP_TELEPORTERS = list()
+/var/global/list/obj/effect/bump_teleporter/bump_teleporters = list()
 
 /obj/effect/bump_teleporter
 	name = "bump-teleporter"
@@ -14,10 +14,10 @@
 
 /obj/effect/bump_teleporter/New()
 	..()
-	BUMP_TELEPORTERS += src
+	global.bump_teleporters += src
 
 /obj/effect/bump_teleporter/Destroy()
-	BUMP_TELEPORTERS -= src
+	global.bump_teleporters -= src
 	return ..()
 
 /obj/effect/bump_teleporter/Bumped(atom/user)
@@ -29,7 +29,7 @@
 		//user.loc = src.loc	//Stop at teleporter location, there is nowhere to teleport to.
 		return
 
-	for(var/obj/effect/bump_teleporter/BT in BUMP_TELEPORTERS)
+	for(var/obj/effect/bump_teleporter/BT in global.bump_teleporters)
 		if(BT.id == src.id_target)
 			usr.loc = BT.loc	//Teleport to location with correct id.
 			return

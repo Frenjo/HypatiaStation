@@ -76,10 +76,10 @@
 			stat("Game Mode:", "Secret")
 		else
 			if(ticker.hide_mode == 0)
-				stat("Game Mode:", "[master_mode]") // Old setting for showing the game mode
+				stat("Game Mode:", "[global.master_mode]") // Old setting for showing the game mode
 
 		if(ticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[ticker.pregame_timeleft][roundstart_progressing ? "" : " (DELAYED)"]")
+			stat("Time To Start:", "[ticker.pregame_timeleft][global.roundstart_progressing ? "" : " (DELAYED)"]")
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
@@ -153,7 +153,7 @@
 		ViewManifest()
 
 	if(href_list["SelectedJob"])
-		if(!enter_allowed)
+		if(!global.enter_allowed)
 			to_chat(usr, SPAN_INFO("There is an administrative lock on entering the game!"))
 			return
 
@@ -280,7 +280,7 @@
 	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 		to_chat(usr, SPAN_WARNING("The round is either not ready, or has already finished..."))
 		return 0
-	if(!enter_allowed)
+	if(!global.enter_allowed)
 		to_chat(usr, SPAN_INFO("There is an administrative lock on entering the game!"))
 		return 0
 	if(!IsJobAvailable(rank))

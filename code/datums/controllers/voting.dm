@@ -91,10 +91,10 @@
 				if(choices["Continue Playing"] >= greatest_votes)
 					greatest_votes = choices["Continue Playing"]
 			else if(mode == "gamemode")
-				if(master_mode in choices)
-					choices[master_mode] += non_voters
-					if(choices[master_mode] >= greatest_votes)
-						greatest_votes = choices[master_mode]
+				if(global.master_mode in choices)
+					choices[global.master_mode] += non_voters
+					if(choices[global.master_mode] >= greatest_votes)
+						greatest_votes = choices[global.master_mode]
 			else if(mode == "crew_transfer")
 				var/factor = 0.5
 				switch(world.time / (10 * 60)) // minutes
@@ -168,8 +168,8 @@
 					init_shift_change(null, 1)
 
 	if(mode == "gamemode") //fire this even if the vote fails.
-		if(!roundstart_progressing)
-			roundstart_progressing = 1
+		if(!global.roundstart_progressing)
+			global.roundstart_progressing = TRUE
 			to_world("<font color='red'><b>The round will start soon.</b></font>")
 
 	if(restart)
@@ -251,7 +251,7 @@
 			if("custom")
 				world << sound('sound/ambience/alarm4.ogg')
 		if(mode == "gamemode" && global.roundstart_progressing)
-			global.roundstart_progressing = 0
+			global.roundstart_progressing = FALSE
 			to_world(SPAN_DANGER("Round start has been delayed."))
 	/*
 		if(mode == "crew_transfer" && ooc_allowed)

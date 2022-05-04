@@ -975,7 +975,7 @@
 			dat += {"<A href='?src=\ref[src];c_mode2=[mode]'>[config.mode_names[mode]]</A><br>"}
 		dat += {"<A href='?src=\ref[src];c_mode2=secret'>Secret</A><br>"}
 		dat += {"<A href='?src=\ref[src];c_mode2=random'>Random</A><br>"}
-		dat += {"Now: [master_mode]"}
+		dat += {"Now: [global.master_mode]"}
 		usr << browse(dat, "window=c_mode")
 
 	else if(href_list["f_secret"])
@@ -983,13 +983,13 @@
 
 		if(ticker && ticker.mode)
 			return alert(usr, "The game has already started.", null, null, null, null)
-		if(master_mode != "secret")
+		if(global.master_mode != "secret")
 			return alert(usr, "The game mode has to be secret!", null, null, null, null)
 		var/dat = {"<B>What game mode do you want to force secret to be? Use this if you want to change the game mode, but want the players to believe it's secret. This will only work if the current game mode is secret.</B><HR>"}
 		for(var/mode in config.modes)
 			dat += {"<A href='?src=\ref[src];f_secret2=[mode]'>[config.mode_names[mode]]</A><br>"}
 		dat += {"<A href='?src=\ref[src];f_secret2=secret'>Random (default)</A><br>"}
-		dat += {"Now: [secret_force_mode]"}
+		dat += {"Now: [global.secret_force_mode]"}
 		usr << browse(dat, "window=f_secret")
 
 	else if(href_list["c_mode2"])
@@ -997,12 +997,12 @@
 
 		if (ticker && ticker.mode)
 			return alert(usr, "The game has already started.", null, null, null, null)
-		master_mode = href_list["c_mode2"]
-		log_admin("[key_name(usr)] set the mode as [master_mode].")
-		message_admins("\blue [key_name_admin(usr)] set the mode as [master_mode].", 1)
-		world << "\blue <b>The mode is now: [master_mode]</b>"
+		global.master_mode = href_list["c_mode2"]
+		log_admin("[key_name(usr)] set the mode as [global.master_mode].")
+		message_admins("\blue [key_name_admin(usr)] set the mode as [global.master_mode].", 1)
+		world << "\blue <b>The mode is now: [global.master_mode]</b>"
 		Game() // updates the main game menu
-		world.save_mode(master_mode)
+		world.save_mode(global.master_mode)
 		.(href, list("c_mode"=1))
 
 	else if(href_list["f_secret2"])
@@ -1010,11 +1010,11 @@
 
 		if(ticker && ticker.mode)
 			return alert(usr, "The game has already started.", null, null, null, null)
-		if(master_mode != "secret")
+		if(global.master_mode != "secret")
 			return alert(usr, "The game mode has to be secret!", null, null, null, null)
-		secret_force_mode = href_list["f_secret2"]
-		log_admin("[key_name(usr)] set the forced secret mode as [secret_force_mode].")
-		message_admins("\blue [key_name_admin(usr)] set the forced secret mode as [secret_force_mode].", 1)
+		global.secret_force_mode = href_list["f_secret2"]
+		log_admin("[key_name(usr)] set the forced secret mode as [global.secret_force_mode].")
+		message_admins("\blue [key_name_admin(usr)] set the forced secret mode as [global.secret_force_mode].", 1)
 		Game() // updates the main game menu
 		.(href, list("f_secret"=1))
 
@@ -1804,12 +1804,12 @@
 				if(!(ticker && ticker.mode))
 					usr << "Please wait until the game starts!  Not sure how it will work otherwise."
 					return
-				gravity_is_on = !gravity_is_on
+				global.gravity_is_on = !global.gravity_is_on
 				for(var/area/A in world)
-					A.gravitychange(gravity_is_on,A)
+					A.gravitychange(global.gravity_is_on,A)
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","Grav")
-				if(gravity_is_on)
+				if(global.gravity_is_on)
 					log_admin("[key_name(usr)] toggled gravity on.", 1)
 					message_admins("\blue [key_name_admin(usr)] toggled gravity on.", 1)
 					command_alert("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.")
@@ -2013,18 +2013,18 @@
 			if("togglebombcap")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","BC")
-				switch(MAX_EXPLOSION_RANGE)
-					if(14)	MAX_EXPLOSION_RANGE = 16
-					if(16)	MAX_EXPLOSION_RANGE = 20
-					if(20)	MAX_EXPLOSION_RANGE = 28
-					if(28)	MAX_EXPLOSION_RANGE = 56
-					if(56)	MAX_EXPLOSION_RANGE = 128
-					if(128)	MAX_EXPLOSION_RANGE = 14
-				var/range_dev = MAX_EXPLOSION_RANGE *0.25
-				var/range_high = MAX_EXPLOSION_RANGE *0.5
-				var/range_low = MAX_EXPLOSION_RANGE
+				switch(global.max_explosion_range)
+					if(14)	global.max_explosion_range = 16
+					if(16)	global.max_explosion_range = 20
+					if(20)	global.max_explosion_range = 28
+					if(28)	global.max_explosion_range = 56
+					if(56)	global.max_explosion_range = 128
+					if(128)	global.max_explosion_range = 14
+				var/range_dev = global.max_explosion_range *0.25
+				var/range_high = global.max_explosion_range *0.5
+				var/range_low = global.max_explosion_range
 				message_admins("\red <b> [key_name_admin(usr)] changed the bomb cap to [range_dev], [range_high], [range_low]</b>", 1)
-				log_admin("[key_name_admin(usr)] changed the bomb cap to [MAX_EXPLOSION_RANGE]")
+				log_admin("[key_name_admin(usr)] changed the bomb cap to [global.max_explosion_range]")
 
 			if("flicklights")
 				feedback_inc("admin_secrets_fun_used",1)
@@ -2129,7 +2129,7 @@
 			if("aliens")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","AL")
-				if(aliens_allowed)
+				if(global.aliens_allowed)
 					new /datum/event/alien_infestation
 					message_admins("[key_name_admin(usr)] has spawned aliens", 1)
 			if("spiders")
