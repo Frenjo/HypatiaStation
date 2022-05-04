@@ -105,9 +105,9 @@
 
 /obj/structure/filingcabinet/security/proc/populate()
 	if(virgin)
-		for(var/datum/data/record/G in data_core.general)
+		for(var/datum/data/record/G in global.data_core.general)
 			var/datum/data/record/S
-			for(var/datum/data/record/R in data_core.security)
+			for(var/datum/data/record/R in global.data_core.security)
 				if((R.fields["name"] == G.fields["name"] || R.fields["id"] == G.fields["id"]))
 					S = R
 					break
@@ -141,9 +141,9 @@
 
 /obj/structure/filingcabinet/medical/proc/populate()
 	if(virgin)
-		for(var/datum/data/record/G in data_core.general)
+		for(var/datum/data/record/G in global.data_core.general)
 			var/datum/data/record/M
-			for(var/datum/data/record/R in data_core.medical)
+			for(var/datum/data/record/R in global.data_core.medical)
 				if((R.fields["name"] == G.fields["name"] || R.fields["id"] == G.fields["id"]))
 					M = R
 					break

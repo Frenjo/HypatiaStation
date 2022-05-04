@@ -2,7 +2,7 @@
 	set category = "Debug"
 	set name = "Show Air Report"
 
-	if(!master_controller || !air_master)
+	if(!global.master_controller || !air_master)
 		alert(usr, "Master_controller or air_master not found.", "Air Report")
 		return
 
@@ -17,7 +17,7 @@
 	var/inactive_on_main_station = 0
 	for(var/zone/zone in air_master.zones)
 		var/turf/simulated/turf = locate() in zone.contents
-		if(turf && turf.z in config.station_levels)
+		if(turf && isStationLevel(turf.z))
 			if(zone.needs_update)
 				active_on_main_station++
 			else

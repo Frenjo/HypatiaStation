@@ -357,7 +357,7 @@
 	return 1
 
 /obj/machinery/power/smes/proc/ion_act()
-	if(src.z in config.station_levels)
+	if(isStationLevel(src.z))
 		if(prob(1)) //explosion
 			for(var/mob/M in viewers(src))
 				M.show_message(

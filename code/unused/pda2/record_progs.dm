@@ -24,7 +24,7 @@
 			if(0)
 				dat += "<h4>Security Record List</h4>"
 
-				for (var/datum/data/record/R in data_core.general)
+				for (var/datum/data/record/R in global.data_core.general)
 					dat += "<a href='byond://?src=\ref[src];select_rec=\ref[R]'>[R.fields["id"]]: [R.fields["name"]]<br>"
 
 				dat += "<br>"
@@ -35,7 +35,7 @@
 
 				dat += "<a href='byond://?src=\ref[src];mode=0'>Back</a><br>"
 
-				if (istype(src.active1, /datum/data/record) && data_core.general.Find(src.active1))
+				if (istype(src.active1, /datum/data/record) && global.data_core.general.Find(src.active1))
 					dat += "Name: [src.active1.fields["name"]] ID: [src.active1.fields["id"]]<br>"
 					dat += "Sex: [src.active1.fields["sex"]]<br>"
 					dat += "Age: [src.active1.fields["age"]]<br>"
@@ -48,7 +48,7 @@
 				dat += "<br>"
 
 				dat += "<h4>Security Data</h4>"
-				if (istype(src.active2, /datum/data/record) && data_core.security.Find(src.active2))
+				if (istype(src.active2, /datum/data/record) && global.data_core.security.Find(src.active2))
 					dat += "Criminal Status: [src.active2.fields["criminal"]]<br>"
 
 					dat += "Minor Crimes: [src.active2.fields["mi_crim"]]<br>"
@@ -78,8 +78,8 @@
 			var/datum/data/record/R = locate(href_list["select_rec"])
 			var/datum/data/record/S = locate(href_list["select_rec"])
 
-			if (data_core.general.Find(R))
-				for (var/datum/data/record/E in data_core.security)
+			if (global.data_core.general.Find(R))
+				for (var/datum/data/record/E in global.data_core.security)
 					if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 						S = E
 						break
@@ -107,7 +107,7 @@
 			if(0)
 
 				dat += "<h4>Medical Record List</h4>"
-				for (var/datum/data/record/R in data_core.general)
+				for (var/datum/data/record/R in global.data_core.general)
 					dat += "<a href='byond://?src=\ref[src];select_rec=\ref[R]'>[R.fields["id"]]: [R.fields["name"]]<br>"
 				dat += "<br>"
 
@@ -117,7 +117,7 @@
 
 				dat += "<a href='byond://?src=\ref[src];mode=0'>Back</a><br>"
 
-				if (istype(src.active1, /datum/data/record) && data_core.general.Find(src.active1))
+				if (istype(src.active1, /datum/data/record) && global.data_core.general.Find(src.active1))
 					dat += "Name: [src.active1.fields["name"]] ID: [src.active1.fields["id"]]<br>"
 					dat += "Sex: [src.active1.fields["sex"]]<br>"
 					dat += "Age: [src.active1.fields["age"]]<br>"
@@ -130,7 +130,7 @@
 				dat += "<br>"
 
 				dat += "<h4>Medical Data</h4>"
-				if (istype(src.active2, /datum/data/record) && data_core.medical.Find(src.active2))
+				if (istype(src.active2, /datum/data/record) && global.data_core.medical.Find(src.active2))
 					dat += "Blood Type: [src.active2.fields["b_type"]]<br><br>"
 
 					dat += "Minor Disabilities: [src.active2.fields["mi_dis"]]<br>"
@@ -165,8 +165,8 @@
 			var/datum/data/record/R = locate(href_list["select_rec"])
 			var/datum/data/record/M = locate(href_list["select_rec"])
 
-			if (data_core.general.Find(R))
-				for (var/datum/data/record/E in data_core.medical)
+			if (global.data_core.general.Find(R))
+				for (var/datum/data/record/E in global.data_core.medical)
 					if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 						M = E
 						break

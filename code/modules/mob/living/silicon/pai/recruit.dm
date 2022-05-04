@@ -2,7 +2,7 @@
 
 // Recruiting observers to play as pAIs
 
-var/datum/paiController/paiController			// Global handler for pAI candidates
+/var/global/datum/paiController/paiController			// Global handler for pAI candidates
 
 /datum/paiCandidate
 	var/name
@@ -14,7 +14,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 
 
 /hook/startup/proc/paiControllerSetup()
-	paiController = new /datum/paiController()
+	global.paiController = new /datum/paiController()
 	return 1
 
 
@@ -224,7 +224,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 /datum/paiController/proc/findPAI(var/obj/item/device/paicard/p, var/mob/user)
 	requestRecruits()
 	var/list/available = list()
-	for(var/datum/paiCandidate/c in paiController.pai_candidates)
+	for(var/datum/paiCandidate/c in global.paiController.pai_candidates)
 		if(c.ready)
 			var/found = 0
 			for(var/mob/dead/observer/o in player_list)
@@ -350,7 +350,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 				asked.Remove(O.key)
 		if(O.client)
 			var/hasSubmitted = 0
-			for(var/datum/paiCandidate/c in paiController.pai_candidates)
+			for(var/datum/paiCandidate/c in global.paiController.pai_candidates)
 				if(c.key == O.key)
 					hasSubmitted = 1
 			if(!hasSubmitted && (O.client.prefs.be_special & BE_PAI))

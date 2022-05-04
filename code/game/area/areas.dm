@@ -79,7 +79,7 @@ var/list/teleportlocs = list()
 		if(teleportlocs.Find(AR.name))
 			continue
 		var/turf/picked = pick(get_area_turfs(AR.type))
-		if(picked.z in config.station_levels)
+		if(isStationLevel(picked.z))
 			teleportlocs += AR.name
 			teleportlocs[AR.name] = AR
 
@@ -97,7 +97,7 @@ var/list/ghostteleportlocs = list()
 			ghostteleportlocs += AR.name
 			ghostteleportlocs[AR.name] = AR
 		var/turf/picked = pick(get_area_turfs(AR.type))
-		if(picked.z in config.player_levels)
+		if(isPlayerLevel(picked.z))
 			ghostteleportlocs += AR.name
 			ghostteleportlocs[AR.name] = AR
 

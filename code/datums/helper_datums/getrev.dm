@@ -4,7 +4,7 @@
  *
  */
 
-var/global/datum/getrev/revdata = new("config/svndir.txt")
+/var/global/datum/getrev/revdata = new("config/svndir.txt")
 
 //Oh yeah, I'm an OOP fag, lalala
 /datum/getrev

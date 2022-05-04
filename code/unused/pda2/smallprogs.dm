@@ -18,7 +18,7 @@
 		dat += "<h4>Crew Manifest</h4>"
 		dat += "Entries cannot be modified from this terminal.<br><br>"
 
-		for (var/datum/data/record/t in data_core.general)
+		for (var/datum/data/record/t in global.data_core.general)
 			dat += "[t.fields["name"]] - [t.fields["rank"]]<br>"
 		dat += "<br>"
 

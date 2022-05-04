@@ -1,4 +1,5 @@
 /var/global/datum/global_init/init = new()
+/var/global/datum/configuration/config = null
 
 /var/diary = null
 /var/diaryofmeanpeople = null
@@ -25,23 +26,23 @@
 /world/New()
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
-	href_logfile = file("data/logs/[date_string] hrefs.htm")
-	diary = file("data/logs/[date_string].log")
-	diaryofmeanpeople = file("data/logs/[date_string] Attack.log")
-	diary << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
-	diaryofmeanpeople << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
+	global.href_logfile = file("data/logs/[date_string] hrefs.htm")
+	global.diary = file("data/logs/[date_string].log")
+	global.diaryofmeanpeople = file("data/logs/[date_string] Attack.log")
+	global.diary << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
+	global.diaryofmeanpeople << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
 	global.changelog_hash = md5('html/changelog.html')			//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)
 		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND."
 
-	config.post_load()
+	global.config.post_load()
 
-	if(config && config.server_name != null && config.server_suffix && world.port > 0)
+	if(global.config && global.config.server_name != null && global.config.server_suffix && world.port > 0)
 		// dumb and hardcoded but I don't care~
-		config.server_name += " #[(world.port % 1000) / 100]"
+		global.config.server_name += " #[(world.port % 1000) / 100]"
 
-	if(config && config.log_runtime)
+	if(global.config && global.config.log_runtime)
 		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
 	callHook("startup")
@@ -53,17 +54,17 @@
 
 	. = ..()
 
-	sleep_offline = 1
+	sleep_offline = TRUE
 
-	processScheduler = new
-	master_controller = new /datum/controller/game_controller()
+	global.processScheduler = new
+	global.master_controller = new /datum/controller/game_controller()
 	spawn(1)
-		processScheduler.deferSetupFor(/datum/controller/process/ticker)
-		processScheduler.setup()
-		master_controller.setup()
+		global.processScheduler.deferSetupFor(/datum/controller/process/ticker)
+		global.processScheduler.setup()
+		global.master_controller.setup()
 
 	spawn(3000)	// Delay by 5 minutes (300 seconds/3000 deciseconds) so we aren't adding to the round-start lag.
-		if(config.ToRban)
+		if(global.config.ToRban)
 			ToRban_autoupdate()
 	return
 #undef RECOMMENDED_VERSION
@@ -80,7 +81,7 @@
 //		..()
 
 /world/Topic(T, addr, master, key)
-	diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
+	global.diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
 
 	if(T == "ping")
 		var/x = 1
@@ -90,7 +91,7 @@
 
 	else if(T == "players")
 		var/n = 0
-		for(var/mob/M in player_list)
+		for(var/mob/M in global.player_list)
 			if(M.client)
 				n++
 		return n
@@ -99,16 +100,16 @@
 		var/list/s = list()
 		s["version"] = global.game_version
 		s["mode"] = global.master_mode
-		s["respawn"] = config ? global.abandon_allowed : FALSE
+		s["respawn"] = global.config ? global.abandon_allowed : FALSE
 		s["enter"] = global.enter_allowed
-		s["vote"] = config.allow_vote_mode
-		s["ai"] = config.allow_ai
+		s["vote"] = global.config.allow_vote_mode
+		s["ai"] = global.config.allow_ai
 		s["host"] = host ? host : null
 		s["players"] = list()
 		var/n = 0
 		var/admins = 0
 
-		for(var/client/C in clients)
+		for(var/client/C in global.clients)
 			if(C.holder)
 				if(C.holder.fakekey)
 					continue	//so stealthmins aren't revealed by the hub
@@ -117,8 +118,8 @@
 			n++
 		s["players"] = n
 
-		if(revdata)
-			s["revision"] = revdata.revision
+		if(global.revdata)
+			s["revision"] = global.revdata.revision
 		s["admins"] = admins
 
 		return list2params(s)
@@ -128,11 +129,11 @@
 	spawn(0)
 		world << sound(pick('sound/AI/newroundsexy.ogg', 'sound/misc/apcdestroyed.ogg', 'sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
 
-	processScheduler.stop()
+	global.processScheduler.stop()
 
-	for(var/client/C in clients)
-		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
-			C << link("byond://[config.server]")
+	for(var/client/C in global.clients)
+		if(global.config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
+			C << link("byond://[global.config.server]")
 		else
 			C << link("byond://[world.address]:[world.port]")
 
@@ -169,13 +170,13 @@
 
 
 /proc/load_configuration()
-	config = new /datum/configuration()
-	config.load("config/config.txt")
-	config.load("config/game_options.txt", "game_options")
-	config.loadsql("config/dbconfig.txt")
-	config.loadforumsql("config/forumdbconfig.txt")
+	global.config = new /datum/configuration()
+	global.config.load("config/config.txt")
+	global.config.load("config/game_options.txt", "game_options")
+	global.config.loadsql("config/dbconfig.txt")
+	global.config.loadforumsql("config/forumdbconfig.txt")
 	// apply some settings from config..
-	global.abandon_allowed = config.respawn
+	global.abandon_allowed = global.config.respawn
 
 
 /hook/startup/proc/loadMods()
@@ -183,7 +184,7 @@
 	return 1
 
 /world/proc/load_mods()
-	if(config.admin_legacy_system)
+	if(global.config.admin_legacy_system)
 		var/text = file2text("config/moderators.txt")
 		if(!text)
 			error("Failed to load config/mods.txt")
@@ -205,8 +206,8 @@
 /world/proc/update_status()
 	var/s = ""
 
-	if(config && config.server_name)
-		s += "<b>[config.server_name]</b> &#8212; "
+	if(global.config && global.config.server_name)
+		s += "<b>[global.config.server_name]</b> &#8212; "
 
 	s += "<b>[station_name()]</b>";
 	s += " ("
@@ -218,25 +219,25 @@
 
 	var/list/features = list()
 
-	if(ticker)
+	if(global.ticker)
 		if(global.master_mode)
 			features += global.master_mode
 	else
 		features += "<b>STARTING</b>"
 
-	if(!enter_allowed)
+	if(!global.enter_allowed)
 		features += "closed"
 
 	features += global.abandon_allowed ? "respawn" : "no respawn"
 
-	if(config && config.allow_vote_mode)
+	if(global.config && global.config.allow_vote_mode)
 		features += "vote"
 
-	if(config && config.allow_ai)
+	if(global.config && global.config.allow_ai)
 		features += "AI allowed"
 
 	var/n = 0
-	for(var/mob/M in player_list)
+	for(var/mob/M in global.player_list)
 		if(M.client)
 			n++
 
@@ -251,8 +252,8 @@
 		features += "hosted by <b>[host]</b>"
 	*/
 
-	if(!host && config && config.hostedby)
-		features += "hosted by <b>[config.hostedby]</b>"
+	if(!host && global.config && global.config.hostedby)
+		features += "hosted by <b>[global.config.hostedby]</b>"
 
 	if(features)
 		s += ": [jointext(features, ", ")]"
@@ -263,8 +264,8 @@
 
 
 #define FAILED_DB_CONNECTION_CUTOFF 5
-var/failed_db_connections = 0
-var/failed_old_db_connections = 0
+/var/global/failed_db_connections = 0
+/var/global/failed_old_db_connections = 0
 
 /hook/startup/proc/connectDB()
 	if(!setup_database_connection())
@@ -273,12 +274,12 @@ var/failed_old_db_connections = 0
 		world.log << "Feedback database connection established."
 	return 1
 
-proc/setup_database_connection()
-	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
+/proc/setup_database_connection()
+	if(global.failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
 
-	if(!dbcon)
-		dbcon = new()
+	if(!global.dbcon)
+		global.dbcon = new()
 
 	var/user = sqlfdbklogin
 	var/pass = sqlfdbkpass
@@ -286,19 +287,19 @@ proc/setup_database_connection()
 	var/address = sqladdress
 	var/port = sqlport
 
-	dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
-	. = dbcon.IsConnected()
+	global.dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
+	. = global.dbcon.IsConnected()
 	if(.)
-		failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
+		global.failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
-		failed_db_connections++		//If it failed, increase the failed connections counter.
+		global.failed_db_connections++		//If it failed, increase the failed connections counter.
 		world.log << dbcon.ErrorMsg()
 
 	return .
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
-proc/establish_db_connection()
-	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
+/proc/establish_db_connection()
+	if(global.failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 
 	if(!dbcon || !dbcon.IsConnected())
@@ -315,12 +316,12 @@ proc/establish_db_connection()
 	return 1
 
 //These two procs are for the old database, while it's being phased out. See the tgstation.sql file in the SQL folder for more information.
-proc/setup_old_database_connection()
-	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
+/proc/setup_old_database_connection()
+	if(global.failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
 
-	if(!dbcon_old)
-		dbcon_old = new()
+	if(!global.dbcon_old)
+		global.dbcon_old = new()
 
 	var/user = sqllogin
 	var/pass = sqlpass
@@ -328,22 +329,22 @@ proc/setup_old_database_connection()
 	var/address = sqladdress
 	var/port = sqlport
 
-	dbcon_old.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
-	. = dbcon_old.IsConnected()
+	global.dbcon_old.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
+	. = global.dbcon_old.IsConnected()
 	if(.)
-		failed_old_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
+		global.failed_old_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
-		failed_old_db_connections++		//If it failed, increase the failed connections counter.
+		global.failed_old_db_connections++		//If it failed, increase the failed connections counter.
 		world.log << dbcon.ErrorMsg()
 
 	return .
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
-proc/establish_old_db_connection()
-	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)
+/proc/establish_old_db_connection()
+	if(global.failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 
-	if(!dbcon_old || !dbcon_old.IsConnected())
+	if(!global.dbcon_old || !global.dbcon_old.IsConnected())
 		return setup_old_database_connection()
 	else
 		return 1

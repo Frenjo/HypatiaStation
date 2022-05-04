@@ -259,7 +259,7 @@
 /obj/machinery/power/apc/proc/set_broken()
 	if(malfai && operating)
 		if(ticker.mode.config_tag == "malfunction")
-			if(src.z in config.station_levels) //if (is_type_in_list(get_area(src), the_station_areas))
+			if(isStationLevel(src.z)) //if (is_type_in_list(get_area(src), the_station_areas))
 				ticker.mode:apcs--
 	stat |= BROKEN
 	operating = 0
@@ -272,7 +272,7 @@
 	operating = !operating
 	if(malfai)
 		if(ticker.mode.config_tag == "malfunction")
-			if(src.z in config.station_levels) //if (is_type_in_list(get_area(src), the_station_areas))
+			if(isStationLevel(src.z)) //if (is_type_in_list(get_area(src), the_station_areas))
 				operating ? ticker.mode:apcs++ : ticker.mode:apcs--
 
 	src.update()

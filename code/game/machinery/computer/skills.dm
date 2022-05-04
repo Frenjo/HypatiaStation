@@ -71,9 +71,9 @@
 <th><A href='?src=\ref[src];choice=Sorting;sort=rank'>Rank</A></th>
 <th><A href='?src=\ref[src];choice=Sorting;sort=fingerprint'>Fingerprints</A></th>
 </tr>"}
-					if(!isnull(data_core.general))
-						for(var/datum/data/record/R in sortRecord(data_core.general, sortBy, order))
-							for(var/datum/data/record/E in data_core.security)
+					if(!isnull(global.data_core.general))
+						for(var/datum/data/record/R in sortRecord(global.data_core.general, sortBy, order))
+							for(var/datum/data/record/E in global.data_core.security)
 							var/background
 							dat += text("<tr style=[]><td><A href='?src=\ref[];choice=Browse Record;d_rec=\ref[]'>[]</a></td>", background, src, R, R.fields["name"])
 							dat += text("<td>[]</td>", R.fields["id"])
@@ -87,7 +87,7 @@
 					dat += "<BR><A href='?src=\ref[src];choice=Delete All Records'>Delete All Records</A><BR><BR><A href='?src=\ref[src];choice=Return'>Back</A>"
 				if(3.0)
 					dat += "<CENTER><B>Employment Record</B></CENTER><BR>"
-					if ((istype(active1, /datum/data/record) && data_core.general.Find(active1)))
+					if ((istype(active1, /datum/data/record) && global.data_core.general.Find(active1)))
 						var/icon/front = new(active1.fields["photo"], dir = SOUTH)
 						var/icon/side = new(active1.fields["photo"], dir = WEST)
 						user << browse_rsc(front, "front.png")
@@ -153,7 +153,7 @@ What a mess.*/
 /obj/machinery/computer/skills/Topic(href, href_list)
 	if(..())
 		return
-	if (!( data_core.general.Find(active1) ))
+	if (!( global.data_core.general.Find(active1) ))
 		active1 = null
 	if ((usr.contents.Find(src) || (in_range(src, usr) && isturf(loc))) || (istype(usr, /mob/living/silicon)))
 		usr.set_machine(src)
@@ -225,7 +225,7 @@ What a mess.*/
 				var/list/components = splittext(t1, " ")
 				if(components.len > 5)
 					return //Lets not let them search too greedily.
-				for(var/datum/data/record/R in data_core.general)
+				for(var/datum/data/record/R in global.data_core.general)
 					var/temptext = R.fields["name"] + " " + R.fields["id"] + " " + R.fields["fingerprint"] + " " + R.fields["rank"]
 					for(var/i = 1, i<=components.len, i++)
 						if(findtext(temptext,components[i]))
@@ -233,7 +233,7 @@ What a mess.*/
 							prelist[1] = R
 							Perp += prelist
 				for(var/i = 1, i<=Perp.len, i+=2)
-					for(var/datum/data/record/E in data_core.security)
+					for(var/datum/data/record/E in global.data_core.security)
 						var/datum/data/record/R = Perp[i]
 						if ((E.fields["name"] == R.fields["name"] && E.fields["id"] == R.fields["id"]))
 							Perp[i+1] = E
@@ -246,10 +246,10 @@ What a mess.*/
 
 			if ("Browse Record")
 				var/datum/data/record/R = locate(href_list["d_rec"])
-				if (!( data_core.general.Find(R) ))
+				if (!( global.data_core.general.Find(R) ))
 					temp = "Record Not Found!"
 				else
-					for(var/datum/data/record/E in data_core.security)
+					for(var/datum/data/record/E in global.data_core.security)
 					active1 = R
 					screen = 3
 
@@ -275,7 +275,7 @@ What a mess.*/
 					sleep(50)
 					var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( loc )
 					P.info = "<CENTER><B>Employment Record</B></CENTER><BR>"
-					if ((istype(active1, /datum/data/record) && data_core.general.Find(active1)))
+					if ((istype(active1, /datum/data/record) && global.data_core.general.Find(active1)))
 						P.info += text("Name: [] ID: []<BR>\nSex: []<BR>\nAge: []<BR>\nFingerprint: []<BR>\nPhysical Status: []<BR>\nMental Status: []<BR>\nEmployment/Skills Summary:[]<BR>", active1.fields["name"], active1.fields["id"], active1.fields["sex"], active1.fields["age"], active1.fields["fingerprint"], active1.fields["p_stat"], active1.fields["m_stat"], active1.fields["notes"])
 					else
 						P.info += "<B>General Record Lost!</B><BR>"
@@ -292,7 +292,7 @@ What a mess.*/
 			if ("Purge All Records")
 				if(PDA_Manifest.len)
 					PDA_Manifest.Cut()
-				for(var/datum/data/record/R in data_core.security)
+				for(var/datum/data/record/R in global.data_core.security)
 					qdel(R)
 				temp = "All Employment records deleted."
 
@@ -317,7 +317,7 @@ What a mess.*/
 				G.fields["p_stat"] = "Active"
 				G.fields["m_stat"] = "Stable"
 				G.fields["species"] = "Human"
-				data_core.general += G
+				global.data_core.general += G
 				active1 = G
 
 //FIELD FUNCTIONS
@@ -388,7 +388,7 @@ What a mess.*/
 						if (active1)
 							if(PDA_Manifest.len)
 								PDA_Manifest.Cut()
-							for(var/datum/data/record/R in data_core.medical)
+							for(var/datum/data/record/R in global.data_core.medical)
 								if ((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
 									qdel(R)
 								else
@@ -405,7 +405,7 @@ What a mess.*/
 		..(severity)
 		return
 
-	for(var/datum/data/record/R in data_core.security)
+	for(var/datum/data/record/R in global.data_core.security)
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)

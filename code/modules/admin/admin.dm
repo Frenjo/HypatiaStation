@@ -755,9 +755,9 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Toggle traitor scaling"
 	set name="Toggle Traitor Scaling"
-	global.traitor_scaling = !global.traitor_scaling
-	log_admin("[key_name(usr)] toggled Traitor Scaling to [global.traitor_scaling].")
-	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [global.traitor_scaling ? "on" : "off"].", 1)
+	global.config.traitor_scaling = !global.config.traitor_scaling
+	log_admin("[key_name(usr)] toggled Traitor Scaling to [global.config.traitor_scaling].")
+	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [global.config.traitor_scaling ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TTS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/startnow()

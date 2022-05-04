@@ -130,7 +130,7 @@
 	process_shuttles += shuttle
 
 	//supply_shuttle = shuttle
-	supply_controller.shuttle = shuttle
+	global.supply_controller.shuttle = shuttle
 
 	// Admin shuttles.
 	shuttle = new()

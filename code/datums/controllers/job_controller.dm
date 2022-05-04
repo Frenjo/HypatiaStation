@@ -29,7 +29,7 @@
 	return 1
 
 /datum/controller/occupations/proc/debug(text)
-	if(!Debug2)
+	if(!global.debug2)
 		return 0
 	job_debug.Add(text)
 	return 1

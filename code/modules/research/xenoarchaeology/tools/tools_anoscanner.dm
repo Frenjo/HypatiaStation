@@ -35,8 +35,8 @@
 	last_scan_time = world.time
 	nearest_artifact_distance = -1
 	var/turf/cur_turf = get_turf(src)
-	if(master_controller) //Sanity check due to runtimes ~Z
-		for(var/turf/simulated/mineral/T in master_controller.artifact_spawning_turfs)
+	if(global.master_controller) //Sanity check due to runtimes ~Z
+		for(var/turf/simulated/mineral/T in global.master_controller.artifact_spawning_turfs)
 			if(T.artifact_find)
 				if(T.z == cur_turf.z)
 					var/cur_dist = get_dist(cur_turf, T) * 2
@@ -44,5 +44,5 @@
 						nearest_artifact_distance = cur_dist + rand() * 2 - 1
 						nearest_artifact_id = T.artifact_find.artifact_id
 			else
-				master_controller.artifact_spawning_turfs.Remove(T)
+				global.master_controller.artifact_spawning_turfs.Remove(T)
 	cur_turf.visible_message(SPAN_INFO("[src] clicks."))

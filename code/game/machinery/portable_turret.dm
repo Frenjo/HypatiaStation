@@ -587,7 +587,7 @@ Status: []<BR>"},
 			threatcount += 2
 
 	if (src.check_records) // if the turret can check the records, check if they are set to *Arrest* on records
-		for (var/datum/data/record/E in data_core.general)
+		for (var/datum/data/record/E in global.data_core.general)
 
 			var/perpname = perp.name
 			if (perp.wear_id)
@@ -596,7 +596,7 @@ Status: []<BR>"},
 					perpname = id.registered_name
 
 			if (E.fields["name"] == perpname)
-				for (var/datum/data/record/R in data_core.security)
+				for (var/datum/data/record/R in global.data_core.security)
 					if ((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "*Arrest*"))
 						threatcount = 4
 						break

@@ -31,7 +31,7 @@
 			return
 
 		if(!at_station())	//at centcom
-			supply_controller.buy() // Edited this to reflect 'shuttles' port. -Frenjo
+			global.supply_controller.buy() // Edited this to reflect 'shuttles' port. -Frenjo
 
 		//We pretend it's a long_jump by making the shuttle stay at centcom for the "in-transit" period.
 		var/area/away_area = get_location_area(away_location)
@@ -42,7 +42,7 @@
 			move(origin, away_area)
 
 		//wait ETA here.
-		arrive_time = world.time + supply_controller.movetime // Edited this to reflect 'shuttles' port. -Frenjo
+		arrive_time = world.time + global.supply_controller.movetime // Edited this to reflect 'shuttles' port. -Frenjo
 		while(world.time <= arrive_time)
 			sleep(5)
 
@@ -56,14 +56,14 @@
 		moving_status = SHUTTLE_IDLE
 
 		if(!at_station())	//at centcom
-			supply_controller.sell() // Edited this to reflect 'shuttles' port. -Frenjo
+			global.supply_controller.sell() // Edited this to reflect 'shuttles' port. -Frenjo
 
 // returns 1 if the supply shuttle should be prevented from moving because it contains forbidden atoms
 /datum/shuttle/ferry/supply/proc/forbidden_atoms_check()
 	if(!at_station())
 		return 0	//if badmins want to send mobs or a nuke on the supply shuttle from centcom we don't care
 
-	return supply_controller.forbidden_atoms_check(get_location_area()) // Edited this to reflect 'shuttles' port. -Frenjo
+	return global.supply_controller.forbidden_atoms_check(get_location_area()) // Edited this to reflect 'shuttles' port. -Frenjo
 
 /datum/shuttle/ferry/supply/proc/at_station()
 	return(!location)

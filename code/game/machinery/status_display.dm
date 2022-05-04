@@ -118,7 +118,7 @@
 			//if(supply_shuttle.moving)
 				//line2 = get_supply_shuttle_timer()
 			// Edited this to reflect 'shuttles' port. -Frenjo
-			var/datum/shuttle/ferry/supply/supply_shuttle = supply_controller.shuttle
+			var/datum/shuttle/ferry/supply/supply_shuttle = global.supply_controller.shuttle
 			if(supply_shuttle.has_arrive_time())
 				line2 = get_supply_shuttle_timer()
 
@@ -190,7 +190,7 @@
 	//if(supply_shuttle.moving)
 		//var/timeleft = round((supply_shuttle.eta_timeofday - world.timeofday) / 10,1)
 	// Edited this to reflect 'shuttles' port. -Frenjo
-	var/datum/shuttle/ferry/supply/supply_shuttle = supply_controller.shuttle
+	var/datum/shuttle/ferry/supply/supply_shuttle = global.supply_controller.shuttle
 	if(supply_shuttle.has_arrive_time())
 		var/timeleft = round((supply_shuttle.arrive_time - world.time) / 10, 1)
 

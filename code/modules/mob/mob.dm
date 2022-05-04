@@ -744,8 +744,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 			stat("CPU:", "[world.cpu]")
 			stat("Instances:", "[world.contents.len]")
 		if(statpanel("Processes"))
-			if(processScheduler)
-				processScheduler.statProcesses()
+			if(global.processScheduler)
+				global.processScheduler.statProcesses()
 
 	if(listed_turf && client)
 		if(get_dist(listed_turf, src) > 1)

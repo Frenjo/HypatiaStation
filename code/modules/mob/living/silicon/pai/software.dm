@@ -236,10 +236,10 @@
 				if(record)
 					var/datum/data/record/R = record
 					var/datum/data/record/M = record
-					if (!( data_core.general.Find(R) ))
+					if (!( global.data_core.general.Find(R) ))
 						src.temp = "Unable to locate requested medical record. Record may have been deleted, or never have existed."
 					else
-						for(var/datum/data/record/E in data_core.medical)
+						for(var/datum/data/record/E in global.data_core.medical)
 							if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 								M = E
 						src.medicalActive1 = R
@@ -250,10 +250,10 @@
 				if(record)
 					var/datum/data/record/R = record
 					var/datum/data/record/M = record
-					if (!( data_core.general.Find(R) ))
+					if (!( global.data_core.general.Find(R) ))
 						src.temp = "Unable to locate requested security record. Record may have been deleted, or never have existed."
 					else
-						for(var/datum/data/record/E in data_core.security)
+						for(var/datum/data/record/E in global.data_core.security)
 							if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 								M = E
 						src.securityActive1 = R
@@ -444,8 +444,8 @@
 /mob/living/silicon/pai/proc/softwareManifest()
 	var/dat = ""
 	dat += "<h2>Crew Manifest</h2><hr>"
-	if(data_core)
-		dat += data_core.get_manifest(0) // make it monochrome
+	if(global.data_core)
+		dat += global.data_core.get_manifest(0) // make it monochrome
 	dat += "<br>"
 	return dat
 
@@ -454,18 +454,18 @@
 	var/dat = ""
 	if(src.subscreen == 0)
 		dat += "<h2>Medical Records</h2><HR>"
-		if(!isnull(data_core.general))
-			for(var/datum/data/record/R in sortRecord(data_core.general))
+		if(!isnull(global.data_core.general))
+			for(var/datum/data/record/R in sortRecord(global.data_core.general))
 				dat += text("<A href='?src=\ref[];med_rec=\ref[];software=medicalrecord;sub=1'>[]: []<BR>", src, R, R.fields["id"], R.fields["name"])
 		//dat += text("<HR><A href='?src=\ref[];screen=0;softFunction=medical records'>Back</A>", src)
 	if(src.subscreen == 1)
 		dat += "<CENTER><B>Medical Record</B></CENTER><BR>"
-		if((istype(src.medicalActive1, /datum/data/record) && data_core.general.Find(src.medicalActive1)))
+		if((istype(src.medicalActive1, /datum/data/record) && global.data_core.general.Find(src.medicalActive1)))
 			dat += text("Name: []<BR>\nID: []<BR>\nSex: []<BR>\nAge: []<BR>\nFingerprint: []<BR>\nPhysical Status: []<BR>\nMental Status: []<BR>",
 			 src.medicalActive1.fields["name"], src.medicalActive1.fields["id"], src.medicalActive1.fields["sex"], src.medicalActive1.fields["age"], src.medicalActive1.fields["fingerprint"], src.medicalActive1.fields["p_stat"], src.medicalActive1.fields["m_stat"])
 		else
 			dat += "<pre>Requested medical record not found.</pre><BR>"
-		if((istype(src.medicalActive2, /datum/data/record) && data_core.medical.Find(src.medicalActive2)))
+		if((istype(src.medicalActive2, /datum/data/record) && global.data_core.medical.Find(src.medicalActive2)))
 			dat += text("<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: <A href='?src=\ref[];field=b_type'>[]</A><BR>\nDNA: <A href='?src=\ref[];field=b_dna'>[]</A><BR>\n<BR>\nMinor Disabilities: <A href='?src=\ref[];field=mi_dis'>[]</A><BR>\nDetails: <A href='?src=\ref[];field=mi_dis_d'>[]</A><BR>\n<BR>\nMajor Disabilities: <A href='?src=\ref[];field=ma_dis'>[]</A><BR>\nDetails: <A href='?src=\ref[];field=ma_dis_d'>[]</A><BR>\n<BR>\nAllergies: <A href='?src=\ref[];field=alg'>[]</A><BR>\nDetails: <A href='?src=\ref[];field=alg_d'>[]</A><BR>\n<BR>\nCurrent Diseases: <A href='?src=\ref[];field=cdi'>[]</A> (per disease info placed in log/comment section)<BR>\nDetails: <A href='?src=\ref[];field=cdi_d'>[]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='?src=\ref[];field=notes'>[]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", src, src.medicalActive2.fields["b_type"], src, src.medicalActive2.fields["b_dna"], src, src.medicalActive2.fields["mi_dis"], src, src.medicalActive2.fields["mi_dis_d"], src, src.medicalActive2.fields["ma_dis"], src, src.medicalActive2.fields["ma_dis_d"], src, src.medicalActive2.fields["alg"], src, src.medicalActive2.fields["alg_d"], src, src.medicalActive2.fields["cdi"], src, src.medicalActive2.fields["cdi_d"], src, src.medicalActive2.fields["notes"])
 		else
 			dat += "<pre>Requested medical record not found.</pre><BR>"
@@ -477,16 +477,16 @@
 	var/dat = ""
 	if(src.subscreen == 0)
 		dat += "<h2>Security Records</h2><HR>"
-		if(!isnull(data_core.general))
-			for(var/datum/data/record/R in sortRecord(data_core.general))
+		if(!isnull(global.data_core.general))
+			for(var/datum/data/record/R in sortRecord(global.data_core.general))
 				dat += text("Name: <A href='?src=\ref[];field=name'>[]</A><BR>\nID: <A href='?src=\ref[];field=id'>[]</A><BR>\nSex: <A href='?src=\ref[];field=sex'>[]</A><BR>\nAge: <A href='?src=\ref[];field=age'>[]</A><BR>\nRank: <A href='?src=\ref[];field=rank'>[]</A><BR>\nFingerprint: <A href='?src=\ref[];field=fingerprint'>[]</A><BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", src, src.securityActive1.fields["name"], src, src.securityActive1.fields["id"], src, src.securityActive1.fields["sex"], src, src.securityActive1.fields["age"], src, src.securityActive1.fields["rank"], src, src.securityActive1.fields["fingerprint"], src.securityActive1.fields["p_stat"], src.securityActive1.fields["m_stat"])
 	if(src.subscreen == 1)
 		dat += "<h3>Security Record</h3>"
-		if((istype(src.securityActive1, /datum/data/record) && data_core.general.Find(src.securityActive1)))
+		if((istype(src.securityActive1, /datum/data/record) && global.data_core.general.Find(src.securityActive1)))
 			dat += text("Name: <A href='?src=\ref[];field=name'>[]</A> ID: <A href='?src=\ref[];field=id'>[]</A><BR>\nSex: <A href='?src=\ref[];field=sex'>[]</A><BR>\nAge: <A href='?src=\ref[];field=age'>[]</A><BR>\nRank: <A href='?src=\ref[];field=rank'>[]</A><BR>\nFingerprint: <A href='?src=\ref[];field=fingerprint'>[]</A><BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", src, src.securityActive1.fields["name"], src, src.securityActive1.fields["id"], src, src.securityActive1.fields["sex"], src, src.securityActive1.fields["age"], src, src.securityActive1.fields["rank"], src, src.securityActive1.fields["fingerprint"], src.securityActive1.fields["p_stat"], src.securityActive1.fields["m_stat"])
 		else
 			dat += "<pre>Requested security record not found,</pre><BR>"
-		if((istype(src.securityActive2, /datum/data/record) && data_core.security.Find(src.securityActive2)))
+		if((istype(src.securityActive2, /datum/data/record) && global.data_core.security.Find(src.securityActive2)))
 			dat += text("<BR>\nSecurity Data<BR>\nCriminal Status: []<BR>\n<BR>\nMinor Crimes: <A href='?src=\ref[];field=mi_crim'>[]</A><BR>\nDetails: <A href='?src=\ref[];field=mi_crim_d'>[]</A><BR>\n<BR>\nMajor Crimes: <A href='?src=\ref[];field=ma_crim'>[]</A><BR>\nDetails: <A href='?src=\ref[];field=ma_crim_d'>[]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='?src=\ref[];field=notes'>[]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", src.securityActive2.fields["criminal"], src, src.securityActive2.fields["mi_crim"], src, src.securityActive2.fields["mi_crim_d"], src, src.securityActive2.fields["ma_crim"], src, src.securityActive2.fields["ma_crim_d"], src, src.securityActive2.fields["notes"])
 		else
 			dat += "<pre>Requested security record not found,</pre><BR>"

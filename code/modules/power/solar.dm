@@ -103,14 +103,14 @@ var/list/solars_list = list()
 
 //calculates the fraction of the sunlight that the panel recieves
 /obj/machinery/power/solar/proc/update_solar_exposure()
-	if(!sun)
+	if(!global.sun)
 		return
 	if(obscured)
 		sunfrac = 0
 		return
 
 	//find the smaller angle between the direction the panel is facing and the direction of the sun (the sign is not important here)
-	var/p_angle = min(abs(adir - sun.angle), 360 - abs(adir - sun.angle))
+	var/p_angle = min(abs(adir - global.sun.angle), 360 - abs(adir - global.sun.angle))
 
 	if(p_angle > 90)			// if facing more than 90deg from sun, zero output
 		sunfrac = 0
@@ -122,7 +122,7 @@ var/list/solars_list = list()
 /obj/machinery/power/solar/process()//TODO: remove/add this from machines to save on processing as needed ~Carn PRIORITY
 	if(stat & BROKEN)
 		return
-	if(!sun || !control) //if there's no sun or the panel is not linked to a solar control computer, no need to proceed
+	if(!global.sun || !control) //if there's no sun or the panel is not linked to a solar control computer, no need to proceed
 		return
 
 	if(adir != ndir)
@@ -185,8 +185,8 @@ var/list/solars_list = list()
 	var/turf/T = null
 
 	for(var/i = 1 to 20)		// 20 steps is enough
-		ax += sun.dx	// do step
-		ay += sun.dy
+		ax += global.sun.dx	// do step
+		ay += global.sun.dy
 
 		T = locate(round(ax, 0.5), round(ay, 0.5), z)
 
@@ -346,7 +346,7 @@ var/list/solars_list = list()
 				cdir = targetdir	//...the current direction is the targetted one (and rotates panels to it)
 		if(2) // auto-tracking
 			if(connected_tracker)
-				connected_tracker.set_angle(sun.angle)
+				connected_tracker.set_angle(global.sun.angle)
 
 	set_panels(cdir)
 	updateDialog()
@@ -478,7 +478,7 @@ var/list/solars_list = list()
 		track = text2num(href_list["track"])
 		if(track == 2)
 			if(connected_tracker)
-				connected_tracker.set_angle(sun.angle)
+				connected_tracker.set_angle(global.sun.angle)
 				set_panels(cdir)
 		else if(track == 1) //begin manual tracking
 			src.targetdir = src.cdir
@@ -489,7 +489,7 @@ var/list/solars_list = list()
 	if(href_list["search_connected"])
 		src.search_for_connected()
 		if(connected_tracker && track == 2)
-			connected_tracker.set_angle(sun.angle)
+			connected_tracker.set_angle(global.sun.angle)
 		src.set_panels(cdir)
 
 	interact(usr)

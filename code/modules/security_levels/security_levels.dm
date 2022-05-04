@@ -33,13 +33,13 @@
 					CC.post_status("alert", "default")
 
 				for(var/obj/machinery/firealarm/FA in machines)
-					if(FA.z in config.contact_levels)
+					if(isContactLevel(FA.z))
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_green")
 
 				// Hopefully this works. -Frenjo
 				for(var/turf/simulated/floor/bluegrid/BG in world)
-					if(BG.z in config.contact_levels)
+					if(isContactLevel(BG.z))
 						BG.icon_state = "bcircuit"
 				for(var/area/A in world)
 					if(istype(A, /area/hallway))
@@ -62,13 +62,13 @@
 					CC.post_status("alert", "yellowalert")
 
 				for(var/obj/machinery/firealarm/FA in machines)
-					if(FA.z in config.contact_levels)
+					if(isContactLevel(FA.z))
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_yellow")
 
 				// Hopefully this works. -Frenjo
 				for(var/turf/simulated/floor/bluegrid/BG in world)
-					if(BG.z in config.contact_levels)
+					if(isContactLevel(BG.z))
 						BG.icon_state = "bcircuit"
 
 				for(var/area/A in world)
@@ -93,13 +93,13 @@
 					CC.post_status("alert", "bluealert")
 
 				for(var/obj/machinery/firealarm/FA in machines)
-					if(FA.z in config.contact_levels)
+					if(isContactLevel(FA.z))
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_blue")
 
 				// Hopefully this works. -Frenjo
 				for(var/turf/simulated/floor/bluegrid/BG in world)
-					if(BG.z in config.contact_levels)
+					if(isContactLevel(BG.z))
 						BG.icon_state = "bcircuit"
 				for(var/area/A in world)
 					if(istype(A, /area/hallway))
@@ -123,13 +123,13 @@
 					CC.post_status("alert", "redalert")
 
 				for(var/obj/machinery/firealarm/FA in machines)
-					if(FA.z in config.contact_levels)
+					if(isContactLevel(FA.z))
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_red")
 
 				// Hopefully this works. -Frenjo
 				for(var/turf/simulated/floor/bluegrid/BG in world)
-					if(BG.z in config.contact_levels)
+					if(isContactLevel(BG.z))
 						BG.icon_state = "rcircuit"
 				for(var/area/A in world)
 					if(istype(A, /area/hallway))
@@ -148,13 +148,13 @@
 					CC.post_status("alert", "delta")
 
 				for(var/obj/machinery/firealarm/FA in machines)
-					if(FA.z in config.contact_levels)
+					if(isContactLevel(FA.z))
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_delta")
 
 				// Hopefully this works. -Frenjo
 				for(var/turf/simulated/floor/bluegrid/BG in world)
-					if(BG.z in config.contact_levels)
+					if(isContactLevel(BG.z))
 						BG.icon_state = "rcircuit_flash"
 				for(var/area/A in world)
 					if(istype(A, /area/hallway))

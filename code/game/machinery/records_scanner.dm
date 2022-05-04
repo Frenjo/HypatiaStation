@@ -78,7 +78,7 @@ obj/machinery/scanner/attack_hand(mob/living/carbon/human/user)
 	print.info = text
 	print.stamped = 1
 
-	for(var/datum/data/record/test in data_core.general)
+	for(var/datum/data/record/test in global.data_core.general)
 		if (test.fields["name"] == mname)
 			return
 
@@ -134,9 +134,9 @@ obj/machinery/scanner/attack_hand(mob/living/carbon/human/user)
 	L.fields["image"] = getFlatIcon(user,0)//What the person looks like. Naked, in this case.
 	//End locked reporting
 
-	data_core.general += G
-	data_core.medical += M
-	data_core.security += S
-	data_core.locked += L
+	global.data_core.general += G
+	global.data_core.medical += M
+	global.data_core.security += S
+	global.data_core.locked += L
 
 

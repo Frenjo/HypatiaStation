@@ -1,5 +1,7 @@
+/var/global/obj/effect/datacore/data_core = null
+
 /hook/startup/proc/createDatacore()
-	data_core = new /obj/effect/datacore()
+	global.data_core = new /obj/effect/datacore()
 	return 1
 
 /obj/effect/datacore/proc/manifest()
@@ -14,7 +16,7 @@
 	var/datum/data/record/foundrecord
 	var/real_title = assignment
 
-	for(var/datum/data/record/t in data_core.general)
+	for(var/datum/data/record/t in global.data_core.general)
 		if(t)
 			if(t.fields["name"] == name)
 				foundrecord = t

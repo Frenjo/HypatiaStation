@@ -1,4 +1,4 @@
-/var/datum/sun/sun = null
+/var/global/datum/sun/sun = null
 
 /datum/controller/process/sun/setup()
 	name = "sun"

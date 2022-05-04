@@ -85,7 +85,7 @@
 
 	if(botEmagChance)
 		for(var/obj/machinery/bot/bot in world)
-			if(!(bot.z in config.station_levels))
+			if(isNotStationLevel(bot.z))
 				continue
 			if(prob(botEmagChance))
 				bot.Emag()

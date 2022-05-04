@@ -1,8 +1,6 @@
 //#define TESTING
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-/var/global/obj/effect/datacore/data_core = null
-
 //////////////
 var/skipupdate = 0
 ///////////////
@@ -26,7 +24,6 @@ var/datum/engine_eject/engine_eject_control = null
 /var/global/ooc_allowed = TRUE
 /var/global/dsay_allowed = TRUE
 /var/global/dooc_allowed = TRUE
-/var/global/traitor_scaling = TRUE
 //var/goonsay_allowed = 0
 var/dna_ident = 1
 /var/global/abandon_allowed = TRUE
@@ -72,14 +69,13 @@ var/list/alldirs = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAS
 var/list/reverse_dir = list(2, 1, 3, 8, 10, 9, 11, 4, 6, 5, 7, 12, 14, 13, 15, 32, 34, 33, 35, 40, 42, 41, 43, 36, 38, 37, 39, 44, 46, 45, 47, 16, 18, 17, 19, 24, 26, 25, 27, 20, 22, 21, 23, 28, 30, 29, 31, 48, 50, 49, 51, 56, 58, 57, 59, 52, 54, 53, 55, 60, 62, 61, 63)
 
 var/datum/station_state/start_state = null
-var/datum/configuration/config = null
 
 var/list/combatlog = list()
 var/list/IClog = list()
 var/list/OOClog = list()
 var/list/adminlog = list()
 
-var/Debug2 = 0
+/var/global/debug2 = FALSE
 
 var/datum/debug/debugobj
 
