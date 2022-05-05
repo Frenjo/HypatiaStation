@@ -34,14 +34,14 @@
 	wizard.assigned_role = "MODE" //So they aren't chosen for other jobs.
 	wizard.special_role = "Wizard"
 	wizard.original = wizard.current
-	if(wizardstart.len == 0)
+	if(global.wizardstart.len == 0)
 		to_chat(wizard.current, SPAN_DANGER("A starting location for you could not be found, please report this bug!"))
 		return 0
 	return 1
 
 /datum/game_mode/wizard/pre_setup()
 	for(var/datum/mind/wizard in wizards)
-		wizard.current.loc = pick(wizardstart)
+		wizard.current.loc = pick(global.wizardstart)
 	return 1
 
 /datum/game_mode/wizard/post_setup()
@@ -107,8 +107,8 @@
 
 /datum/game_mode/proc/name_wizard(mob/living/carbon/human/wizard_mob)
 	//Allows the wizard to choose a custom name or go with a random one. Spawn 0 so it does not lag the round starting.
-	var/wizard_name_first = pick(wizard_first)
-	var/wizard_name_second = pick(wizard_second)
+	var/wizard_name_first = pick(global.wizard_first)
+	var/wizard_name_second = pick(global.wizard_second)
 	var/randomname = "[wizard_name_first] [wizard_name_second]"
 	spawn(0)
 		var/newname = copytext(sanitize(input(wizard_mob, "You are the Space Wizard. Would you like to change your name to something else?", \

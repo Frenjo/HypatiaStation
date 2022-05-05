@@ -502,7 +502,7 @@ What a mess.*/
 						if ((istype(active1, /datum/data/record) && L.Find(rank)))
 							temp = "<h5>Rank:</h5>"
 							temp += "<ul>"
-							for(var/rank in joblist)
+							for(var/rank in global.joblist)
 								temp += "<li><a href='?src=\ref[src];choice=Change Rank;rank=[rank]'>[rank]</a></li>"
 							temp += "</ul>"
 						else
@@ -521,7 +521,7 @@ What a mess.*/
 					if("Change Rank")
 						if(active1)
 							active1.fields["rank"] = href_list["rank"]
-							if(href_list["rank"] in joblist)
+							if(href_list["rank"] in global.joblist)
 								active1.fields["real_rank"] = href_list["real_rank"]
 
 					if("Change Criminal Status")
@@ -569,7 +569,7 @@ What a mess.*/
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)
-					R.fields["name"] = "[pick(pick(first_names_male), pick(first_names_female))] [pick(last_names)]"
+					R.fields["name"] = "[pick(pick(global.first_names_male), pick(global.first_names_female))] [pick(global.last_names)]"
 				if(2)
 					R.fields["sex"]	= pick("Male", "Female")
 				if(3)

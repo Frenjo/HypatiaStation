@@ -1272,11 +1272,11 @@ ________________________________________________________________________________
 		var/chance = rand(1,100)
 		switch(chance)
 			if(1 to 50)//High chance of a regular name.
-				voice = "[rand(0,1)==1?pick(first_names_female):pick(first_names_male)] [pick(last_names)]"
+				voice = "[rand(0,1)==1?pick(global.first_names_female):pick(global.first_names_male)] [pick(global.last_names)]"
 			if(51 to 80)//Smaller chance of a clown name.
-				voice = "[pick(clown_names)]"
+				voice = "[pick(global.clown_names)]"
 			if(81 to 90)//Small chance of a wizard name.
-				voice = "[pick(wizard_first)] [pick(wizard_second)]"
+				voice = "[pick(global.wizard_first)] [pick(global.wizard_second)]"
 			if(91 to 100)//Small chance of an existing crew name.
 				var/names[] = new()
 				for(var/mob/living/carbon/human/M in player_list)
@@ -1381,7 +1381,7 @@ It is possible to destroy the net by the occupant or someone else.
 				playsound(M.loc, 'sound/effects/sparks4.ogg', 50, 1)
 				anim(M.loc,M,'icons/mob/mob.dmi',,"phaseout",,M.dir)
 
-			M.loc = pick(holdingfacility)//Throw mob in to the holding facility.
+			M.loc = pick(global.holdingfacility)//Throw mob in to the holding facility.
 			M << "\red You appear in a strange place!"
 
 			spawn(0)

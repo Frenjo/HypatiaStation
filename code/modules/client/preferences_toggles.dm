@@ -151,7 +151,7 @@
 	set name = "Toggle SpecialRole Candidacy"
 	set category = "Preferences"
 	set desc = "Toggles which special roles you would like to be a candidate for, during events."
-	var/role_flag = be_special_flags[role]
+	var/role_flag = global.be_special_flags[role]
 	if(!role_flag)
 		return
 	prefs.be_special ^= role_flag

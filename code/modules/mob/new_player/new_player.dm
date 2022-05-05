@@ -42,11 +42,11 @@
 	if(!IsGuestKey(src.key))
 		establish_db_connection()
 
-		if(dbcon.IsConnected())
+		if(global.dbcon.IsConnected())
 			var/isadmin = 0
 			if(src.client && src.client.holder)
 				isadmin = 1
-			var/DBQuery/query = dbcon.NewQuery("SELECT id FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM erro_poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM erro_poll_textreply WHERE ckey = \"[ckey]\")")
+			var/DBQuery/query = global.dbcon.NewQuery("SELECT id FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM erro_poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM erro_poll_textreply WHERE ckey = \"[ckey]\")")
 			query.Execute()
 			var/newpoll = 0
 			while(query.NextRow())
@@ -166,12 +166,12 @@
 
 	if(href_list["privacy_poll"])
 		establish_db_connection()
-		if(!dbcon.IsConnected())
+		if(!global.dbcon.IsConnected())
 			return
 		var/voted = 0
 
 		//First check if the person has not voted yet.
-		var/DBQuery/query = dbcon.NewQuery("SELECT * FROM erro_privacy WHERE ckey='[src.ckey]'")
+		var/DBQuery/query = global.dbcon.NewQuery("SELECT * FROM erro_privacy WHERE ckey='[src.ckey]'")
 		query.Execute()
 		while(query.NextRow())
 			voted = 1
@@ -197,7 +197,7 @@
 
 		if(!voted)
 			var/sql = "INSERT INTO erro_privacy VALUES (null, Now(), '[src.ckey]', '[option]')"
-			var/DBQuery/query_insert = dbcon.NewQuery(sql)
+			var/DBQuery/query_insert = global.dbcon.NewQuery(sql)
 			query_insert.Execute()
 			usr << "<b>Thank you for your vote!</b>"
 			usr << browse(null,"window=privacypoll")
@@ -375,7 +375,7 @@
 
 	var/datum/species/chosen_species
 	if(client.prefs.species)
-		chosen_species = all_species[client.prefs.species]
+		chosen_species = global.all_species[client.prefs.species]
 	if(chosen_species)
 		if(is_alien_whitelisted(src, client.prefs.species) || !config.usealienwhitelist || !(chosen_species.flags & IS_WHITELISTED) || (client.holder.rights & R_ADMIN) )// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
 			new_character = new(loc, client.prefs.species)
@@ -387,7 +387,7 @@
 
 	var/datum/language/chosen_language
 	if(client.prefs.language)
-		chosen_language = all_languages["[client.prefs.language]"]
+		chosen_language = global.all_languages["[client.prefs.language]"]
 	if(chosen_language)
 		if(is_alien_whitelisted(src, client.prefs.language) || !config.usealienwhitelist || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 			new_character.add_language("[client.prefs.language]")
@@ -404,7 +404,7 @@
 	if(mind)
 		mind.active = 0					//we wish to transfer the key manually
 		if(mind.assigned_role == "Clown")				//give them a clownname if they are a clown
-			new_character.real_name = pick(clown_names)	//I hate this being here of all places but unfortunately dna is based on real_name!
+			new_character.real_name = pick(global.clown_names)	//I hate this being here of all places but unfortunately dna is based on real_name!
 			new_character.rename_self("clown")
 		mind.original = new_character
 		mind.transfer_to(new_character)					//won't transfer key since the mind is not active

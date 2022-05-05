@@ -346,10 +346,10 @@
 		rank = src:rank
 		assignment = src:assignment
 
-	if(rank in joblist)
+	if(rank in global.joblist)
 		return rank
 
-	if(assignment in joblist)
+	if(assignment in global.joblist)
 		return assignment
 
 	return "Unknown"
@@ -402,7 +402,7 @@
 			return ID.registered_name
 
 /proc/get_all_job_icons() //For all existing HUD icons
-	return joblist + list("Prisoner")
+	return global.joblist + list("Prisoner")
 
 /obj/proc/GetJobName() //Used in secHUD icon generation
 	if(!istype(src, /obj/item/device/pda) && !istype(src, /obj/item/weapon/card/id))

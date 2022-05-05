@@ -4,18 +4,16 @@
 /var/const/meteors_in_wave = 50
 /var/const/meteors_in_small_wave = 10
 
-/var/wavesecret = 0
-
 /proc/meteor_wave(number = meteors_in_wave)
-	if(!ticker || wavesecret)
+	if(!ticker || global.wavesecret)
 		return
 
-	wavesecret = 1
+	global.wavesecret = TRUE
 	for(var/i = 0 to number)
 		spawn(rand(10, 100))
 			spawn_meteor()
 	spawn(meteor_wave_delay)
-		wavesecret = 0
+		global.wavesecret = FALSE
 
 /proc/spawn_meteors(number = meteors_in_small_wave)
 	for(var/i = 0; i < number; i++)

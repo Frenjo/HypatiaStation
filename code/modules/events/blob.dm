@@ -11,7 +11,7 @@
 
 
 /datum/event/blob/start()
-	var/turf/T = pick(blobstart)
+	var/turf/T = pick(global.blobstart)
 	if(!T)
 		kill()
 		return

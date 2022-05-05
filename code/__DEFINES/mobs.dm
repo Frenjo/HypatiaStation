@@ -69,6 +69,3 @@
 
 #define INCAPACITATION_DEFAULT	(INCAPACITATION_RESTRAINED | INCAPACITATION_BUCKLED_FULLY)
 #define INCAPACITATION_ALL		(INCAPACITATION_RESTRAINED | INCAPACITATION_BUCKLED_PARTIALLY | INCAPACITATION_BUCKLED_FULLY)
-
-/var/global/list/med_hud_users = list() //list of all entities using a medical HUD.
-/var/global/list/sec_hud_users = list() //list of all entities using a security HUD.

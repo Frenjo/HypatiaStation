@@ -39,9 +39,9 @@
 
 /proc/random_name(gender, species = "Human")
 	if(gender == FEMALE)
-		return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+		return capitalize(pick(global.first_names_female)) + " " + capitalize(pick(global.last_names))
 	else
-		return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+		return capitalize(pick(global.first_names_male)) + " " + capitalize(pick(global.last_names))
 
 /proc/random_skin_tone()
 	switch(pick(60;"caucasian", 15;"afroamerican", 10;"african", 10;"latino", 5;"albino"))

@@ -470,8 +470,8 @@ var/bomb_set
 #undef NUKERANGE
 
 /obj/item/weapon/disk/nuclear/Destroy()
-	if(blobstart.len > 0)
-		var/obj/D = new /obj/item/weapon/disk/nuclear(pick(blobstart))
+	if(global.blobstart.len > 0)
+		var/obj/D = new /obj/item/weapon/disk/nuclear(pick(global.blobstart))
 		message_admins("[src] has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
 		log_game("[src] has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
 	return ..()

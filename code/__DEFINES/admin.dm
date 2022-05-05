@@ -44,5 +44,3 @@
 #define R_MAXPERMISSION	32768
 
 #define R_HOST			65535
-
-/var/global/gravity_is_on = TRUE

@@ -1070,7 +1070,7 @@
 			usr << "This cannot be used on instances of type /mob/living/silicon/ai"
 			return
 
-		var/turf/prison_cell = pick(prisonwarp)
+		var/turf/prison_cell = pick(global.prisonwarp)
 		if(!prison_cell)	return
 
 		var/obj/structure/closet/secure_closet/brig/locker = new /obj/structure/closet/secure_closet/brig(prison_cell)
@@ -1124,7 +1124,7 @@
 
 		M.Paralyse(5)
 		sleep(5)
-		M.loc = pick(tdome1)
+		M.loc = pick(global.tdome1)
 		spawn(50)
 			M << "\blue You have been sent to the Thunderdome."
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 1)")
@@ -1153,7 +1153,7 @@
 
 		M.Paralyse(5)
 		sleep(5)
-		M.loc = pick(tdome2)
+		M.loc = pick(global.tdome2)
 		spawn(50)
 			M << "\blue You have been sent to the Thunderdome."
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 2)")
@@ -1175,7 +1175,7 @@
 
 		M.Paralyse(5)
 		sleep(5)
-		M.loc = pick(tdomeadmin)
+		M.loc = pick(global.tdomeadmin)
 		spawn(50)
 			M << "\blue You have been sent to the Thunderdome."
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Admin.)")
@@ -1208,7 +1208,7 @@
 			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), slot_shoes)
 		M.Paralyse(5)
 		sleep(5)
-		M.loc = pick(tdomeobserve)
+		M.loc = pick(global.tdomeobserve)
 		spawn(50)
 			M << "\blue You have been sent to the Thunderdome."
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Observer.)")
@@ -2109,7 +2109,7 @@
 				feedback_add_details("admin_secrets_fun_used","GA")
 				command_alert("Gravitational anomalies detected on the station. There is no additional data.", "Anomaly Alert")
 				world << sound('sound/AI/granomalies.ogg')
-				var/turf/T = pick(blobstart)
+				var/turf/T = pick(global.blobstart)
 				var/obj/effect/bhole/bh = new /obj/effect/bhole( T.loc, 30 )
 				spawn(rand(100, 600))
 					qdel(bh)
@@ -2369,17 +2369,17 @@
 				message_admins("[usr.key] has changed the security level to [level].")
 			if("list_bombers")
 				var/dat = "<B>Bombing List<HR>"
-				for(var/l in bombers)
+				for(var/l in global.bombers)
 					dat += text("[l]<BR>")
 				usr << browse(dat, "window=bombers")
 			if("list_signalers")
-				var/dat = "<B>Showing last [length(lastsignalers)] signalers.</B><HR>"
-				for(var/sig in lastsignalers)
+				var/dat = "<B>Showing last [length(global.lastsignalers)] signalers.</B><HR>"
+				for(var/sig in global.lastsignalers)
 					dat += "[sig]<BR>"
 				usr << browse(dat, "window=lastsignalers;size=800x500")
 			if("list_lawchanges")
-				var/dat = "<B>Showing last [length(lawchanges)] law changes.</B><HR>"
-				for(var/sig in lawchanges)
+				var/dat = "<B>Showing last [length(global.lawchanges)] law changes.</B><HR>"
+				for(var/sig in global.lawchanges)
 					dat += "[sig]<BR>"
 				usr << browse(dat, "window=lawchanges;size=800x500")
 			if("list_job_debug")
@@ -2443,9 +2443,9 @@
 		switch(href_list["secretscoder"])
 			if("spawn_objects")
 				var/dat = "<B>Admin Log<HR></B>"
-				for(var/l in admin_log)
+				for(var/l in global.admin_log)
 					dat += "<li>[l]</li>"
-				if(!admin_log.len)
+				if(!global.admin_log.len)
 					dat += "No-one has done anything this round!"
 				usr << browse(dat, "window=admin_log")
 			if("maint_access_brig")

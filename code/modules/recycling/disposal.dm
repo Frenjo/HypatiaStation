@@ -1071,7 +1071,7 @@
 //a three-way junction that sorts objects
 /obj/structure/disposalpipe/sortjunction
 	icon_state = "pipe-j1s"
-	var/sortType = 0	//Look at the list called TAGGERLOCATIONS in setup.dm
+	var/sortType = 0	//Look at the list called tagger_locations in _global_vars/lists/objects.dm
 	var/posdir = 0
 	var/negdir = 0
 	var/sortdir = 0
@@ -1079,7 +1079,7 @@
 /obj/structure/disposalpipe/sortjunction/proc/updatedesc()
 	desc = "An underfloor disposal pipe with a package sorting mechanism."
 	if(sortType > 0)
-		var/tag = uppertext(TAGGERLOCATIONS[sortType])
+		var/tag = uppertext(global.tagger_locations[sortType])
 		desc += "\nIt's tagged with [tag]"
 
 /obj/structure/disposalpipe/sortjunction/proc/updatedir()
@@ -1111,7 +1111,7 @@
 		if(O.currTag > 0)// Tag set
 			sortType = O.currTag
 			playsound(src, 'sound/machines/twobeep.ogg', 100, 1)
-			var/tag = uppertext(TAGGERLOCATIONS[O.currTag])
+			var/tag = uppertext(global.tagger_locations[O.currTag])
 			to_chat(user, SPAN_INFO("Changed filter to [tag]."))
 			updatedesc()
 

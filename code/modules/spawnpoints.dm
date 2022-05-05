@@ -21,12 +21,14 @@ var/list/spawntypes = list()
 	turfs = latejoin
 
 
-/*/datum/spawnpoint/gateway
+/*
+/datum/spawnpoint/gateway
 	display_name = "Gateway"
 	msg = "has completed translation from offsite gateway"
 /datum/spawnpoint/gateway/New()
 	..()
-	turfs = latejoin_gateway*/
+	turfs = global.latejoin_gateway
+*/
 
 
 /datum/spawnpoint/cryo
@@ -35,4 +37,4 @@ var/list/spawntypes = list()
 
 /datum/spawnpoint/cryo/New()
 	..()
-	turfs = latejoin_cryo
+	turfs = global.latejoin_cryo

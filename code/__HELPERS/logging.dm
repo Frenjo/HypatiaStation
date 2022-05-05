@@ -19,7 +19,7 @@
 	world.log << "## TESTING: [msg][log_end]"
 
 /proc/log_admin(text)
-	admin_log.Add(text)
+	global.admin_log.Add(text)
 	if(global.config.log_admin)
 		global.diary << "\[[time_stamp()]]ADMIN: [text][log_end]"
 

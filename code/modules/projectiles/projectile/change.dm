@@ -62,21 +62,21 @@
 				new_mob = create_new_xenomorph(alien_caste, M.loc)
 				new_mob.universal_speak = 1
 			if("human")
-				new_mob = new /mob/living/carbon/human(M.loc, pick(all_species))
+				new_mob = new /mob/living/carbon/human(M.loc, pick(global.all_species))
 				if(M.gender == MALE)
 					new_mob.gender = MALE
-					new_mob.name = pick(first_names_male)
+					new_mob.name = pick(global.first_names_male)
 				else
 					new_mob.gender = FEMALE
-					new_mob.name = pick(first_names_female)
-				new_mob.name += " [pick(last_names)]"
+					new_mob.name = pick(global.first_names_female)
+				new_mob.name += " [pick(global.last_names)]"
 				new_mob.real_name = new_mob.name
 
 				var/datum/preferences/A = new()	//Randomize appearance for the human
 				A.randomize_appearance_for(new_mob)
 
 				var/mob/living/carbon/human/H = new_mob
-				var/newspecies = pick(all_species)
+				var/newspecies = pick(global.all_species)
 				H.set_species(newspecies)
 			else
 				return

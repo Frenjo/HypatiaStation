@@ -84,7 +84,7 @@
 		mode = 1
 
 	charge_tick = 0 //Prevents wasted chems/cell charge if you're cycling through modes.
-	var/datum/reagent/R = chemical_reagents_list[reagent_ids[mode]]
+	var/datum/reagent/R = global.chemical_reagents_list[reagent_ids[mode]]
 	to_chat(user, SPAN_INFO("Synthesizer is now producing '[R.name]'."))
 	return
 

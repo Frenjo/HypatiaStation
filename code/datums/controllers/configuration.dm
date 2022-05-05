@@ -611,23 +611,23 @@
 
 		switch(name)
 			if("address")
-				sqladdress = value
+				global.sqladdress = value
 			if("port")
-				sqlport = value
+				global.sqlport = value
 			if("database")
-				sqldb = value
+				global.sqldb = value
 			if("login")
-				sqllogin = value
+				global.sqllogin = value
 			if("password")
-				sqlpass = value
+				global.sqlpass = value
 			if("feedback_database")
-				sqlfdbkdb = value
+				global.sqlfdbkdb = value
 			if("feedback_login")
-				sqlfdbklogin = value
+				global.sqlfdbklogin = value
 			if("feedback_password")
-				sqlfdbkpass = value
+				global.sqlfdbkpass = value
 			if("enable_stat_tracking")
-				sqllogging = 1
+				global.sqllogging = TRUE
 			else
 				log_misc("Unknown setting in configuration: '[name]'")
 
@@ -657,19 +657,19 @@
 
 		switch(name)
 			if("address")
-				forumsqladdress = value
+				global.forumsqladdress = value
 			if("port")
-				forumsqlport = value
+				global.forumsqlport = value
 			if("database")
-				forumsqldb = value
+				global.forumsqldb = value
 			if("login")
-				forumsqllogin = value
+				global.forumsqllogin = value
 			if("password")
-				forumsqlpass = value
+				global.forumsqlpass = value
 			if("activatedgroup")
-				forum_activated_group = value
+				global.forum_activated_group = value
 			if("authenticatedgroup")
-				forum_authenticated_group = value
+				global.forum_authenticated_group = value
 			else
 				log_misc("Unknown setting in configuration: '[name]'")
 

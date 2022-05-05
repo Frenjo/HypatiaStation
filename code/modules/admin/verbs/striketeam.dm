@@ -102,7 +102,7 @@ var/global/sent_strike_team = 0
 	var/mob/living/carbon/human/new_commando = new(spawn_location.loc)
 	var/commando_leader_rank = pick("Lieutenant", "Captain", "Major")
 	var/commando_rank = pick("Corporal", "Sergeant", "Staff Sergeant", "Sergeant 1st Class", "Master Sergeant", "Sergeant Major")
-	var/commando_name = pick(last_names)
+	var/commando_name = pick(global.last_names)
 
 	new_commando.gender = pick(MALE, FEMALE)
 

@@ -109,7 +109,7 @@
 		header += "<hr>"
 
 		var/jobs_all = ""
-		var/list/alljobs = (istype(src,/obj/machinery/computer/card/centcom)? get_all_centcom_jobs() : joblist) + "Custom"
+		var/list/alljobs = (istype(src,/obj/machinery/computer/card/centcom)? get_all_centcom_jobs() : global.joblist) + "Custom"
 		for(var/job in alljobs)
 			jobs_all += "<a href='?src=\ref[src];choice=assign;assign_target=[job]'>[replacetext(job, " ", "&nbsp")]</a> " //make sure there isn't a line break in the middle of a job
 

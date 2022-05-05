@@ -354,7 +354,7 @@
 		return
 
 	if(href_list["role_edit"])
-		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in joblist
+		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in global.joblist
 		if(!new_role)
 			return
 		assigned_role = new_role
@@ -709,7 +709,7 @@
 					to_chat(current, "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>")
 					log_admin("[key_name_admin(usr)] has wizard'ed [current].")
 			if("lair")
-				current.loc = pick(wizardstart)
+				current.loc = pick(global.wizardstart)
 			if("dressup")
 				ticker.mode.equip_wizard(current)
 			if("name")
@@ -1104,11 +1104,11 @@
 		special_role = "Wizard"
 		assigned_role = "MODE"
 		//ticker.mode.learn_basic_spells(current)
-		if(!wizardstart.len)
+		if(!global.wizardstart.len)
 			current.loc = pick(latejoin)
 			to_chat(current, "HOT INSERTION, GO GO GO!")
 		else
-			current.loc = pick(wizardstart)
+			current.loc = pick(global.wizardstart)
 
 		ticker.mode.equip_wizard(current)
 		for(var/obj/item/weapon/spellbook/S in current.contents)

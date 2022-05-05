@@ -950,11 +950,11 @@ var/const/MAX_SAVE_SLOTS = 20
 				if("language")
 					var/languages_available
 					var/list/new_languages = list("None")
-					var/datum/species/S = all_species[species]
+					var/datum/species/S = global.all_species[species]
 
 					if(config.usealienwhitelist)
-						for(var/L in all_languages)
-							var/datum/language/lang = all_languages[L]
+						for(var/L in global.all_languages)
+							var/datum/language/lang = global.all_languages[L]
 							if((!(lang.flags & RESTRICTED)) && (is_alien_whitelisted(user, L) || (!(lang.flags & WHITELISTED)) || (S && (L in S.secondary_langs))))
 								new_languages += lang
 								languages_available = 1
@@ -962,8 +962,8 @@ var/const/MAX_SAVE_SLOTS = 20
 						if(!(languages_available))
 							alert(user, "There are not currently any available secondary languages.")
 					else
-						for(var/L in all_languages)
-							var/datum/language/lang = all_languages[L]
+						for(var/L in global.all_languages)
+							var/datum/language/lang = global.all_languages[L]
 							if(!(lang.flags & RESTRICTED))
 								new_languages += lang.name
 
@@ -1275,9 +1275,9 @@ var/const/MAX_SAVE_SLOTS = 20
 		var/firstspace = findtext(real_name, " ")
 		var/name_length = length(real_name)
 		if(!firstspace)	//we need a surname
-			real_name += " [pick(last_names)]"
+			real_name += " [pick(global.last_names)]"
 		else if(firstspace == name_length)
-			real_name += "[pick(last_names)]"
+			real_name += "[pick(global.last_names)]"
 
 	character.real_name = real_name
 	character.name = character.real_name

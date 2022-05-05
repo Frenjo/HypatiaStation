@@ -379,4 +379,4 @@
 	ResetSE()
 
 	unique_enzymes = md5(character.real_name)
-	reg_dna[unique_enzymes] = character.real_name
+	global.reg_dna[unique_enzymes] = character.real_name

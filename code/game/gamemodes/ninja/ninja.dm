@@ -27,18 +27,18 @@
 	ninja.special_role = "Ninja"
 	ninja.original = ninja.current
 
-	/*if(ninjastart.len == 0)
+	/*if(global.ninjastart.len == 0)
 		ninja.current << "<B>\red A proper starting location for you could not be found, please report this bug!</B>"
 		ninja.current << "<B>\red Attempting to place at a carpspawn.</B>"*/
 
 	//Until such a time as people want to place ninja spawn points, carpspawn will do fine.
 	for(var/obj/effect/landmark/L in landmarks_list)
 		if(L.name == "carpspawn")
-			ninjastart.Add(L)
-	if(ninjastart.len == 0 && latejoin.len > 0)
+			global.ninjastart.Add(L)
+	if(global.ninjastart.len == 0 && global.latejoin.len > 0)
 		to_chat(ninja.current, SPAN_DANGER("No spawnable locations could be found. Defaulting to latejoin."))
 		return 1
-	else if(ninjastart.len == 0)
+	else if(global.ninjastart.len == 0)
 		to_chat(ninja.current, SPAN_DANGER("No spawnable locations could be found. Aborting."))
 		return 0
 
@@ -47,7 +47,7 @@
 /datum/game_mode/ninja/pre_setup()
 	for(var/datum/mind/ninja in ninjas)
 		ninja.current << browse(null, "window=playersetup")
-		ninja.current = create_space_ninja(pick(ninjastart.len ? ninjastart : latejoin))
+		ninja.current = create_space_ninja(pick(global.ninjastart.len ? global.ninjastart : global.latejoin))
 		ninja.current.ckey = ninja.key
 	return 1
 

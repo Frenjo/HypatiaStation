@@ -1,9 +1,8 @@
 /var/global/datum/global_init/init = new()
-/var/global/datum/configuration/config = null
 
-/var/diary = null
-/var/diaryofmeanpeople = null
-/var/href_logfile = null
+/var/global/diary = null
+/var/global/diaryofmeanpeople = null
+/var/global/href_logfile = null
 
 /*
 	Pre-map initialization stuff should go here.
@@ -281,11 +280,11 @@
 	if(!global.dbcon)
 		global.dbcon = new()
 
-	var/user = sqlfdbklogin
-	var/pass = sqlfdbkpass
-	var/db = sqlfdbkdb
-	var/address = sqladdress
-	var/port = sqlport
+	var/user = global.sqlfdbklogin
+	var/pass = global.sqlfdbkpass
+	var/db = global.sqlfdbkdb
+	var/address = global.sqladdress
+	var/port = global.sqlport
 
 	global.dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
 	. = global.dbcon.IsConnected()
@@ -293,7 +292,7 @@
 		global.failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
 		global.failed_db_connections++		//If it failed, increase the failed connections counter.
-		world.log << dbcon.ErrorMsg()
+		world.log << global.dbcon.ErrorMsg()
 
 	return .
 
@@ -302,7 +301,7 @@
 	if(global.failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 
-	if(!dbcon || !dbcon.IsConnected())
+	if(!global.dbcon || !global.dbcon.IsConnected())
 		return setup_database_connection()
 	else
 		return 1
@@ -323,11 +322,11 @@
 	if(!global.dbcon_old)
 		global.dbcon_old = new()
 
-	var/user = sqllogin
-	var/pass = sqlpass
-	var/db = sqldb
-	var/address = sqladdress
-	var/port = sqlport
+	var/user = global.sqllogin
+	var/pass = global.sqlpass
+	var/db = global.sqldb
+	var/address = global.sqladdress
+	var/port = global.sqlport
 
 	global.dbcon_old.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
 	. = global.dbcon_old.IsConnected()
@@ -335,7 +334,7 @@
 		global.failed_old_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
 		global.failed_old_db_connections++		//If it failed, increase the failed connections counter.
-		world.log << dbcon.ErrorMsg()
+		world.log << global.dbcon.ErrorMsg()
 
 	return .
 
