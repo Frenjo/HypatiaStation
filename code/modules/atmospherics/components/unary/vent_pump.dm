@@ -1,5 +1,14 @@
 #define SIPHONING 0
 #define RELEASING 1
+
+#define PRESSURE_CHECK_NULL		0
+#define PRESSURE_CHECK_EXTERNAL	1
+#define PRESSURE_CHECK_INTERNAL	2
+#define PRESSURE_CHECK_BOTH		3
+//1: Do not pass external_pressure_bound
+//2: Do not pass internal_pressure_bound
+//3: Do not pass either
+
 /obj/machinery/atmospherics/unary/vent_pump
 	icon = 'icons/obj/atmospherics/vent_pump.dmi'
 	icon_state = "off"
@@ -20,12 +29,9 @@
 	var/external_pressure_bound = ONE_ATMOSPHERE
 	var/internal_pressure_bound = 0
 
-	var/pressure_checks = 1
-	//1: Do not pass external_pressure_bound
-	//2: Do not pass internal_pressure_bound
-	//3: Do not pass either
+	var/pressure_checks = PRESSURE_CHECK_EXTERNAL
 
-	var/welded = 0 // Added for aliens -- TLE
+	var/welded = FALSE // Added for aliens -- TLE
 
 	var/frequency = 1439
 	var/datum/radio_frequency/radio_connection
@@ -88,9 +94,9 @@
 	if(pump_direction) //internal -> external
 		var/pressure_delta = 10000
 
-		if(pressure_checks & 1)
+		if(pressure_checks & PRESSURE_CHECK_EXTERNAL)
 			pressure_delta = min(pressure_delta, (external_pressure_bound - environment_pressure))
-		if(pressure_checks & 2)
+		if(pressure_checks & PRESSURE_CHECK_INTERNAL)
 			pressure_delta = min(pressure_delta, (air_contents.return_pressure() - internal_pressure_bound))
 
 		if(pressure_delta > 0.5)
@@ -106,9 +112,9 @@
 
 	else //external -> internal
 		var/pressure_delta = 10000
-		if(pressure_checks & 1)
+		if(pressure_checks & PRESSURE_CHECK_EXTERNAL)
 			pressure_delta = min(pressure_delta, (environment_pressure - external_pressure_bound))
-		if(pressure_checks & 2)
+		if(pressure_checks & PRESSURE_CHECK_INTERNAL)
 			pressure_delta = min(pressure_delta, (internal_pressure_bound - air_contents.return_pressure()))
 
 		if(pressure_delta > 0.5)
@@ -164,11 +170,11 @@
 		return 0
 
 	if(signal.data["purge"] != null)
-		pressure_checks &= ~1
+		pressure_checks &= ~PRESSURE_CHECK_EXTERNAL
 		pump_direction = SIPHONING
 
 	if(signal.data["stabalize"] != null)
-		pressure_checks |= 1
+		pressure_checks |= PRESSURE_CHECK_EXTERNAL
 		pump_direction = RELEASING
 
 	if(signal.data["power"] != null)
@@ -181,7 +187,7 @@
 		pressure_checks = text2num(signal.data["checks"])
 
 	if(signal.data["checks_toggle"] != null)
-		pressure_checks = (pressure_checks ? 0 : 3)
+		pressure_checks = (pressure_checks ? PRESSURE_CHECK_NULL : PRESSURE_CHECK_BOTH)
 
 	if(signal.data["direction"] != null)
 		pump_direction = text2num(signal.data["direction"])
@@ -258,7 +264,7 @@
 						"You weld the vent shut.",
 						"You hear welding."
 					)
-					welded = 1
+					welded = TRUE
 					update_icon()
 				else
 					user.visible_message(
@@ -266,7 +272,7 @@
 						"You unweld the vent.",
 						"You hear welding."
 					)
-					welded = 0
+					welded = FALSE
 					update_icon()
 			else
 				to_chat(user, SPAN_INFO("The welding tool needs to be on to start this task."))
@@ -375,5 +381,10 @@
 	name = "Large Air Vent (Siphon/On)"
 	on = TRUE
 	icon_state = "in"
+#undef PRESSURE_CHECK_NULL
+#undef PRESSURE_CHECK_EXTERNAL
+#undef PRESSURE_CHECK_INTERNAL
+#undef PRESSURE_CHECK_BOTH
+
 #undef SIPHONING
 #undef RELEASING
