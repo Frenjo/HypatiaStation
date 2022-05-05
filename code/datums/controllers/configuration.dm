@@ -1,162 +1,180 @@
-/datum/configuration
-	var/server_name = null					// server name (for world name / status)
-	var/server_suffix = 0					// generate numeric suffix based on server port
+/**
+  * Configuration
+  *
+  * In a gentle way, you can shake the world. ~ Mahatma Gandhi
+  *
+  * The configuration object sets and globally stores configurable values after loading them from their associated files.
+  *
+  * Most of this is set up in configuration /New().
+  */
+/configuration
+	var/static/server_name = null					// server name (for world name / status)
+	var/static/server_suffix = 0					// generate numeric suffix based on server port
 
-	var/nudge_script_path = "nudge.py"		// where the nudge.py script is located
+	var/static/nudge_script_path = "nudge.py"		// where the nudge.py script is located
 
-	var/log_ooc = 0							// log OOC channel
-	var/log_access = 0						// log login/logout
-	var/log_say = 0							// log client say
-	var/log_admin = 0						// log admin actions
-	var/log_debug = 1						// log debug output
-	var/log_game = 0						// log game events
-	var/log_vote = 0						// log voting
-	var/log_whisper = 0						// log client whisper
-	var/log_emote = 0						// log emotes
-	var/log_attack = 0						// log attack messages
-	var/log_adminchat = 0					// log admin chat messages
-	var/log_adminwarn = 0					// log warnings admins get about bomb construction and such
-	var/log_pda = 0							// log pda messages
-	var/log_hrefs = 0						// logs all links clicked in-game. Could be used for debugging and tracking down exploits
-	var/log_runtime = 0						// logs world.log to a file
-	var/log_world_output = 0				// log world.log << messages
-	var/sql_enabled = 1						// for sql switching
-	var/allow_admin_ooccolor = 0			// Allows admins with relevant permissions to have their own ooc colour
-	var/allow_vote_restart = 0 				// allow votes to restart
-	var/ert_admin_call_only = 0
-	var/allow_vote_mode = 0					// allow votes to change mode
-	var/allow_admin_jump = 1				// allows admin jumping
-	var/allow_admin_spawning = 1			// allows admin item spawning
-	var/allow_admin_rev = 1					// allows admin revives
-	var/vote_delay = 6000					// minimum time between voting sessions (deciseconds, 10 minute default)
-	var/vote_period = 600					// length of voting period (deciseconds, default 1 minute)
-	var/vote_autotransfer_initial = 108000	// Length of time before the first autotransfer vote is called
-	var/vote_autotransfer_interval = 36000	// length of time before next sequential autotransfer vote
-	var/vote_autogamemode_timeleft = 100	//Length of time before round start when autogamemode vote is called (in seconds, default 100).
-	var/vote_no_default = 0					// vote does not default to nochange/norestart (tbi)
-	var/vote_no_dead = 0					// dead people can't vote (tbi)
-//	var/enable_authentication = 0			// goon authentication
-	var/del_new_on_log = 1					// del's new players if they log before they spawn in
-	var/feature_object_spell_system = 0 	//spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
-	var/traitor_scaling = FALSE				//if amount of traitors scales based on amount of players
-	var/objectives_disabled = 0 			//if objectives are disabled or not
-	var/protect_roles_from_antagonist = 0	// If security and such can be traitor/cult/other
-	var/continous_rounds = 1				// Gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
-	var/allow_Metadata = 0					// Metadata is supported.
-	var/popup_admin_pm = 0					//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
-	var/Ticklag = 0.9
-	var/Tickcomp = 0
-	var/socket_talk	= 0						// use socket_talk to communicate with other processes
-	var/list/resource_urls = null
-	var/antag_hud_allowed = 0				// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
-	var/antag_hud_restricted = 0			// Ghosts that turn on Antagovision cannot rejoin the round.
-	var/list/mode_names = list()
-	var/list/modes = list()					// allowed modes
-	var/list/votable_modes = list()			// votable modes
-	var/list/probabilities = list()			// relative probability of each mode
-	var/humans_need_surnames = 0
-	var/allow_random_events = 0				// enables random events mid-round when set to 1
-	var/allow_ai = 1						// allow ai job
-	var/hostedby = null
-	var/respawn = 1
-	var/guest_jobban = 1
-	var/usewhitelist = 0
-	var/kick_inactive = 0					//force disconnect for inactive players
-	var/load_jobs_from_txt = 0
-	var/ToRban = 0
-	var/automute_on = 0						//enables automuting/spam prevention
-	var/jobs_have_minimal_access = 0		//determines whether jobs use minimal access or expanded access.
+	var/static/log_ooc = 0							// log OOC channel
+	var/static/log_access = 0						// log login/logout
+	var/static/log_say = 0							// log client say
+	var/static/log_admin = 0						// log admin actions
+	var/static/log_debug = 1						// log debug output
+	var/static/log_game = 0							// log game events
+	var/static/log_vote = 0							// log voting
+	var/static/log_whisper = 0						// log client whisper
+	var/static/log_emote = 0						// log emotes
+	var/static/log_attack = 0						// log attack messages
+	var/static/log_adminchat = 0					// log admin chat messages
+	var/static/log_adminwarn = 0					// log warnings admins get about bomb construction and such
+	var/static/log_pda = 0							// log pda messages
+	var/static/log_hrefs = 0						// logs all links clicked in-game. Could be used for debugging and tracking down exploits
+	var/static/log_runtime = 0						// logs world.log to a file
+	var/static/log_world_output = 0					// log world.log << messages
+	var/static/sql_enabled = 1						// for sql switching
+	var/static/allow_admin_ooccolor = 0				// Allows admins with relevant permissions to have their own ooc colour
+	var/static/allow_vote_restart = 0 				// allow votes to restart
+	var/static/ert_admin_call_only = 0
+	var/static/allow_vote_mode = 0					// allow votes to change mode
+	var/static/allow_admin_jump = 1					// allows admin jumping
+	var/static/allow_admin_spawning = 1				// allows admin item spawning
+	var/static/allow_admin_rev = 1					// allows admin revives
+	var/static/vote_delay = 6000					// minimum time between voting sessions (deciseconds, 10 minute default)
+	var/static/vote_period = 600					// length of voting period (deciseconds, default 1 minute)
+	var/static/vote_autotransfer_initial = 108000	// Length of time before the first autotransfer vote is called
+	var/static/vote_autotransfer_interval = 36000	// length of time before next sequential autotransfer vote
+	var/static/vote_autogamemode_timeleft = 100		//Length of time before round start when autogamemode vote is called (in seconds, default 100).
+	var/static/vote_no_default = 0					// vote does not default to nochange/norestart (tbi)
+	var/static/vote_no_dead = 0						// dead people can't vote (tbi)
+//	var/static/enable_authentication = 0			// goon authentication
+	var/static/del_new_on_log = 1					// del's new players if they log before they spawn in
+	var/static/feature_object_spell_system = 0 		//spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
+	var/static/traitor_scaling = FALSE				//if amount of traitors scales based on amount of players
+	var/static/objectives_disabled = 0 				//if objectives are disabled or not
+	var/static/protect_roles_from_antagonist = 0	// If security and such can be traitor/cult/other
+	var/static/continous_rounds = 1					// Gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
+	var/static/allow_Metadata = 0					// Metadata is supported.
+	var/static/popup_admin_pm = 0					//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
+	var/static/Ticklag = 0.9
+	var/static/Tickcomp = 0
+	var/static/socket_talk	= 0						// use socket_talk to communicate with other processes
+	var/static/list/resource_urls = null
+	var/static/antag_hud_allowed = 0				// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
+	var/static/antag_hud_restricted = 0				// Ghosts that turn on Antagovision cannot rejoin the round.
+	var/static/list/mode_names = list()
+	var/static/list/modes = list()					// allowed modes
+	var/static/list/votable_modes = list()			// votable modes
+	var/static/list/probabilities = list()			// relative probability of each mode
+	var/static/humans_need_surnames = 0
+	var/static/allow_random_events = 0				// enables random events mid-round when set to 1
+	var/static/allow_ai = 1							// allow ai job
+	var/static/hostedby = null
+	var/static/respawn = 1
+	var/static/guest_jobban = 1
+	var/static/usewhitelist = 0
+	var/static/kick_inactive = 0					//force disconnect for inactive players
+	var/static/load_jobs_from_txt = 0
+	var/static/ToRban = 0
+	var/static/automute_on = 0						//enables automuting/spam prevention
+	var/static/jobs_have_minimal_access = 0			//determines whether jobs use minimal access or expanded access.
 
-	var/cult_ghostwriter = 1				//Allows ghosts to write in blood in cult rounds...
-	var/cult_ghostwriter_req_cultists = 10	//...so long as this many cultists are active.
+	var/static/cult_ghostwriter = 1					//Allows ghosts to write in blood in cult rounds...
+	var/static/cult_ghostwriter_req_cultists = 10	//...so long as this many cultists are active.
 
-	var/max_maint_drones = 5				//This many drones can spawn,
-	var/allow_drone_spawn = 1				//assuming the admin allow them to.
-	var/drone_build_time = 1200				//A drone will become available every X ticks since last drone spawn. Default is 2 minutes.
+	var/static/max_maint_drones = 5			//This many drones can spawn,
+	var/static/allow_drone_spawn = 1		//assuming the admin allow them to.
+	var/static/drone_build_time = 1200		//A drone will become available every X ticks since last drone spawn. Default is 2 minutes.
 
-	var/starlight = 0
+	var/static/starlight = 0
 
-	var/disable_player_mice = 0
-	var/uneducated_mice = 0					//Set to 1 to prevent newly-spawned mice from understanding human speech
+	var/static/disable_player_mice = 0
+	var/static/uneducated_mice = 0		//Set to 1 to prevent newly-spawned mice from understanding human speech
 
-	var/usealienwhitelist = 0
-	var/limitalienplayers = 0
-	var/alien_to_human_ratio = 0.5
+	var/static/usealienwhitelist = 0
+	var/static/limitalienplayers = 0
+	var/static/alien_to_human_ratio = 0.5
 
-	var/server
-	var/banappeals
-	var/wikiurl
-	var/forumurl
-	var/donateurl							// Why is this even missing damnit Techy/Akai/Numbers! -- Marajin
+	var/static/server
+	var/static/banappeals
+	var/static/wikiurl
+	var/static/forumurl
+	var/static/donateurl	// Why is this even missing damnit Techy/Akai/Numbers! -- Marajin
 
 	//Alert level description
-	var/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
-	var/alert_desc_yellow_upto = "There is a security alert in progress. Security staff may have weapons visible, however privacy laws remain fully enforced."
-	var/alert_desc_yellow_downto = "The possible threat has passed. Security staff may continue to have their weapons visible, however they may no longer conduct random searches."
-	var/alert_desc_blue_upto = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
-	var/alert_desc_blue_downto = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
-	var/alert_desc_red_upto = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
-	var/alert_desc_red_downto = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
-	var/alert_desc_delta = "The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
+	var/static/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
+	var/static/alert_desc_yellow_upto = "There is a security alert in progress. Security staff may have weapons visible, however privacy laws remain fully enforced."
+	var/static/alert_desc_yellow_downto = "The possible threat has passed. Security staff may continue to have their weapons visible, however they may no longer conduct random searches."
+	var/static/alert_desc_blue_upto = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
+	var/static/alert_desc_blue_downto = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
+	var/static/alert_desc_red_upto = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
+	var/static/alert_desc_red_downto = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
+	var/static/alert_desc_delta = "The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
 
-	var/forbid_singulo_possession = 0
+	var/static/forbid_singulo_possession = 0
 
 	//game_options.txt configs
 
-	var/health_threshold_softcrit = 0
-	var/health_threshold_crit = 0
-	var/health_threshold_dead = -100
+	var/static/health_threshold_softcrit = 0
+	var/static/health_threshold_crit = 0
+	var/static/health_threshold_dead = -100
 
-	var/organ_health_multiplier = 1
-	var/organ_regeneration_multiplier = 1
+	var/static/organ_health_multiplier = 1
+	var/static/organ_regeneration_multiplier = 1
 
-	var/bones_can_break = 0
-	var/limbs_can_break = 0
+	var/static/bones_can_break = 0
+	var/static/limbs_can_break = 0
 
-	var/revival_pod_plants = 1
-	var/revival_cloning = 1
-	var/revival_brain_life = -1
+	var/static/revival_pod_plants = 1
+	var/static/revival_cloning = 1
+	var/static/revival_brain_life = -1
 
 	//Used for modifying movement speed for mobs.
 	//Unversal modifiers
-	var/run_speed = 0
-	var/walk_speed = 0
+	var/static/run_speed = 0
+	var/static/walk_speed = 0
 
 	//Mob specific modifiers. NOTE: These will affect different mob types in different ways
-	var/human_delay = 0
-	var/robot_delay = 0
-	var/monkey_delay = 0
-	var/alien_delay = 0
-	var/slime_delay = 0
-	var/animal_delay = 0
+	var/static/human_delay = 0
+	var/static/robot_delay = 0
+	var/static/monkey_delay = 0
+	var/static/alien_delay = 0
+	var/static/slime_delay = 0
+	var/static/animal_delay = 0
 
-	var/admin_legacy_system = 0				//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
-	var/ban_legacy_system = 0				//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
-	var/use_age_restriction_for_jobs = 0	//Do jobs use account age restrictions? --requires database
+	var/static/admin_legacy_system = 0			//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
+	var/static/ban_legacy_system = 0			//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
+	var/static/use_age_restriction_for_jobs = 0	//Do jobs use account age restrictions? --requires database
 
-	var/simultaneous_pm_warning_timeout = 100
+	var/static/simultaneous_pm_warning_timeout = 100
 
-	var/use_recursive_explosions //Defines whether the server uses recursive or circular explosions.
+	var/static/use_recursive_explosions	//Defines whether the server uses recursive or circular explosions.
 
-	var/assistant_maint = 0		//Do assistants get maint access?
-	var/gateway_delay = 18000	//How long the gateway takes before it activates. Default is half an hour.
-	var/ghost_interaction = 0
+	var/static/assistant_maint = 0		//Do assistants get maint access?
+	var/static/gateway_delay = 18000	//How long the gateway takes before it activates. Default is half an hour.
+	var/static/ghost_interaction = 0
 
-	var/comms_password = ""
+	var/static/comms_password = ""
 
-	var/use_irc_bot = 0
-	var/irc_bot_host = ""
-	var/main_irc = ""
-	var/admin_irc = ""
-	var/python_path = ""	//Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
-	var/use_lib_nudge = 0	//Use the C library nudge instead of the python nudge.
+	var/static/use_irc_bot = 0
+	var/static/irc_bot_host = ""
+	var/static/main_irc = ""
+	var/static/admin_irc = ""
+	var/static/python_path = ""		//Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
+	var/static/use_lib_nudge = 0	//Use the C library nudge instead of the python nudge.
 
-	var/list/station_levels = list(1)				// Defines which Z-levels the station exists on.
-	var/list/admin_levels= list(2)					// Defines which Z-levels which are for admin functionality, for example including such areas as Central Command and the Syndicate Shuttle
-	var/list/contact_levels = list(1, 5)			// Defines which Z-levels which, for example, a Code Red announcement may affect
-	var/list/player_levels = list(1, 3, 4, 5, 6)	// Defines all Z-levels a character can typically reach
+	var/static/list/station_levels = list(1)			// Defines which Z-levels the station exists on.
+	var/static/list/admin_levels= list(2)				// Defines which Z-levels which are for admin functionality, for example including such areas as Central Command and the Syndicate Shuttle
+	var/static/list/contact_levels = list(1, 5)			// Defines which Z-levels which, for example, a Code Red announcement may affect
+	var/static/list/player_levels = list(1, 3, 4, 5, 6)	// Defines all Z-levels a character can typically reach
 
-/datum/configuration/New()
+/configuration/New()
+	load_gamemodes()
+	load("config/config.txt")
+	load("config/game_options.txt", "game_options")
+	loadsql("config/dbconfig.txt")
+	loadforumsql("config/forumdbconfig.txt")
+	// apply some settings from config..
+	global.abandon_allowed = respawn
+
+/configuration/proc/load_gamemodes()
 	var/list/L = SUBTYPESOF(/datum/game_mode)
 	for(var/T in L)
 		// I wish I didn't have to instance the game modes in order to look up
@@ -174,7 +192,7 @@
 		qdel(M)
 	src.votable_modes += "secret"
 
-/datum/configuration/proc/load(filename, type = "config") //the type can also be game_options, in which case it uses a different switch. not making it separate to not copypaste code - Urist
+/configuration/proc/load(filename, type = "config") //the type can also be game_options, in which case it uses a different switch. not making it separate to not copypaste code - Urist
 	var/list/Lines = file2list(filename)
 
 	for(var/t in Lines)
@@ -203,175 +221,175 @@
 		if(type == "config")
 			switch(name)
 				if("resource_urls")
-					config.resource_urls = splittext(value, " ")
+					resource_urls = splittext(value, " ")
 
 				if("admin_legacy_system")
-					config.admin_legacy_system = 1
+					admin_legacy_system = 1
 
 				if("ban_legacy_system")
-					config.ban_legacy_system = 1
+					ban_legacy_system = 1
 
 				if("use_age_restriction_for_jobs")
-					config.use_age_restriction_for_jobs = 1
+					use_age_restriction_for_jobs = 1
 
 				if("jobs_have_minimal_access")
-					config.jobs_have_minimal_access = 1
+					jobs_have_minimal_access = 1
 
 				if("use_recursive_explosions")
-					config.use_recursive_explosions = 1
+					use_recursive_explosions = 1
 
 				if("log_ooc")
-					config.log_ooc = 1
+					log_ooc = 1
 
 				if("log_access")
-					config.log_access = 1
+					log_access = 1
 
 				if("sql_enabled")
-					config.sql_enabled = text2num(value)
+					sql_enabled = text2num(value)
 
 				if("log_say")
-					config.log_say = 1
+					log_say = 1
 
 				if("log_admin")
-					config.log_admin = 1
+					log_admin = 1
 
 				if("log_debug")
-					config.log_debug = text2num(value)
+					log_debug = text2num(value)
 
 				if("log_game")
-					config.log_game = 1
+					log_game = 1
 
 				if("log_vote")
-					config.log_vote = 1
+					log_vote = 1
 
 				if("log_whisper")
-					config.log_whisper = 1
+					log_whisper = 1
 
 				if("log_attack")
-					config.log_attack = 1
+					log_attack = 1
 
 				if("log_emote")
-					config.log_emote = 1
+					log_emote = 1
 
 				if("log_adminchat")
-					config.log_adminchat = 1
+					log_adminchat = 1
 
 				if("log_adminwarn")
-					config.log_adminwarn = 1
+					log_adminwarn = 1
 
 				if("log_pda")
-					config.log_pda = 1
+					log_pda = 1
 				
 				if("log_world_output")
-					config.log_world_output = 1
+					log_world_output = 1
 
 				if("log_hrefs")
-					config.log_hrefs = 1
+					log_hrefs = 1
 
 				if("log_runtime")
-					config.log_runtime = 1
+					log_runtime = 1
 
 				if("allow_admin_ooccolor")
-					config.allow_admin_ooccolor = 1
+					allow_admin_ooccolor = 1
 
 				if("allow_vote_restart")
-					config.allow_vote_restart = 1
+					allow_vote_restart = 1
 
 				if("allow_vote_mode")
-					config.allow_vote_mode = 1
+					allow_vote_mode = 1
 
 				if("allow_admin_jump")
-					config.allow_admin_jump = 1
+					allow_admin_jump = 1
 
 				if("allow_admin_rev")
-					config.allow_admin_rev = 1
+					allow_admin_rev = 1
 
 				if("allow_admin_spawning")
-					config.allow_admin_spawning = 1
+					allow_admin_spawning = 1
 
 				if("no_dead_vote")
-					config.vote_no_dead = 1
+					vote_no_dead = 1
 
 				if("default_no_vote")
-					config.vote_no_default = 1
+					vote_no_default = 1
 
 				if("vote_delay")
-					config.vote_delay = text2num(value)
+					vote_delay = text2num(value)
 
 				if("vote_period")
-					config.vote_period = text2num(value)
+					vote_period = text2num(value)
 
 				if("vote_autotransfer_initial")
-					config.vote_autotransfer_initial = text2num(value)
+					vote_autotransfer_initial = text2num(value)
 
 				if("vote_autotransfer_interval")
-					config.vote_autotransfer_interval = text2num(value)
+					vote_autotransfer_interval = text2num(value)
 
 				if("vote_autogamemode_timeleft")
-					config.vote_autogamemode_timeleft = text2num(value)
+					vote_autogamemode_timeleft = text2num(value)
 
 				if("ert_admin_only")
-					config.ert_admin_call_only = 1
+					ert_admin_call_only = 1
 
 				if("allow_ai")
-					config.allow_ai = 1
+					allow_ai = 1
 
 //				if("authentication")
-//					config.enable_authentication = 1
+//					enable_authentication = 1
 
 				if("norespawn")
-					config.respawn = 0
+					respawn = 0
 
 				if("servername")
-					config.server_name = value
+					server_name = value
 
 				if("serversuffix")
-					config.server_suffix = 1
+					server_suffix = 1
 
 				if("nudge_script_path")
-					config.nudge_script_path = value
+					nudge_script_path = value
 
 				if("hostedby")
-					config.hostedby = value
+					hostedby = value
 
 				if("server")
-					config.server = value
+					server = value
 
 				if("banappeals")
-					config.banappeals = value
+					banappeals = value
 
 				if("wikiurl")
-					config.wikiurl = value
+					wikiurl = value
 
 				if("forumurl")
-					config.forumurl = value
+					forumurl = value
 
 				if("donateurl") // Why is this even missing damnit Techy/Akai/Numbers! -- Marajin
-					config.donateurl = value
+					donateurl = value
 
 				if("guest_jobban")
-					config.guest_jobban = 1
+					guest_jobban = 1
 
 				if("guest_ban")
 					global.guests_allowed = FALSE
 
 				if("usewhitelist")
-					config.usewhitelist = 1
+					usewhitelist = 1
 
 				if("feature_object_spell_system")
-					config.feature_object_spell_system = 1
+					feature_object_spell_system = 1
 
 				if("allow_metadata")
-					config.allow_Metadata = 1
+					allow_Metadata = 1
 
 				if("traitor_scaling")
-					config.traitor_scaling = TRUE
+					traitor_scaling = TRUE
 
 				if("objectives_disabled")
-					config.objectives_disabled = 1
+					objectives_disabled = 1
 
 				if("protect_roles_from_antagonist")
-					config.protect_roles_from_antagonist = 1
+					protect_roles_from_antagonist = 1
 
 				if("probability")
 					var/prob_pos = findtext(value, " ")
@@ -381,155 +399,155 @@
 					if(prob_pos)
 						prob_name = lowertext(copytext(value, 1, prob_pos))
 						prob_value = copytext(value, prob_pos + 1)
-						if(prob_name in config.modes)
-							config.probabilities[prob_name] = text2num(prob_value)
+						if(prob_name in modes)
+							probabilities[prob_name] = text2num(prob_value)
 						else
 							log_misc("Unknown game mode probability configuration definition: [prob_name].")
 					else
 						log_misc("Incorrect probability configuration definition: [prob_name]  [prob_value].")
 
 				if("allow_random_events")
-					config.allow_random_events = 1
+					allow_random_events = 1
 
 				if("kick_inactive")
-					config.kick_inactive = 1
+					kick_inactive = 1
 
 				if("load_jobs_from_txt")
-					config.load_jobs_from_txt = 1
+					load_jobs_from_txt = 1
 
 				if("alert_red_upto")
-					config.alert_desc_red_upto = value
+					alert_desc_red_upto = value
 
 				if("alert_red_downto")
-					config.alert_desc_red_downto = value
+					alert_desc_red_downto = value
 
 				if("alert_blue_downto")
-					config.alert_desc_blue_downto = value
+					alert_desc_blue_downto = value
 
 				if("alert_blue_upto")
-					config.alert_desc_blue_upto = value
+					alert_desc_blue_upto = value
 
 				if("alert_green")
-					config.alert_desc_green = value
+					alert_desc_green = value
 
 				if("alert_delta")
-					config.alert_desc_delta = value
+					alert_desc_delta = value
 
 				if("alert_yellow_upto")
-					config.alert_desc_yellow_upto = value
+					alert_desc_yellow_upto = value
 
 				if("alert_yellow_downto")
-					config.alert_desc_yellow_downto = value
+					alert_desc_yellow_downto = value
 
 				if("forbid_singulo_possession")
-					config.forbid_singulo_possession = 1
+					forbid_singulo_possession = 1
 
 				if("popup_admin_pm")
-					config.popup_admin_pm = 1
+					popup_admin_pm = 1
 
 				if("allow_holidays")
 					global.Holiday = 1
 
 				if("use_irc_bot")
-					config.use_irc_bot = 1
+					use_irc_bot = 1
 
 				if("ticklag")
-					config.Ticklag = text2num(value)
+					Ticklag = text2num(value)
 
 				if("allow_antag_hud")
-					config.antag_hud_allowed = 1
+					antag_hud_allowed = 1
 				if("antag_hud_restricted")
-					config.antag_hud_restricted = 1
+					antag_hud_restricted = 1
 
 				if("socket_talk")
-					config.socket_talk = text2num(value)
+					socket_talk = text2num(value)
 
 				if("tickcomp")
-					config.Tickcomp = 1
+					Tickcomp = 1
 
 				if("humans_need_surnames")
-					config.humans_need_surnames = 1
+					humans_need_surnames = 1
 
 				if("tor_ban")
-					config.ToRban = 1
+					ToRban = 1
 
 				if("automute_on")
-					config.automute_on = 1
+					automute_on = 1
 
 				if("usealienwhitelist")
-					config.usealienwhitelist = 1
+					usealienwhitelist = 1
 
 				if("alien_player_ratio")
-					config.limitalienplayers = 1
-					config.alien_to_human_ratio = text2num(value)
+					limitalienplayers = 1
+					alien_to_human_ratio = text2num(value)
 
 				if("assistant_maint")
-					config.assistant_maint = 1
+					assistant_maint = 1
 
 				if("gateway_delay")
-					config.gateway_delay = text2num(value)
+					gateway_delay = text2num(value)
 
 				if("continuous_rounds")
-					config.continous_rounds = 1
+					continous_rounds = 1
 
 				if("ghost_interaction")
-					config.ghost_interaction = 1
+					ghost_interaction = 1
 
 				if("disable_player_mice")
-					config.disable_player_mice = 1
+					disable_player_mice = 1
 
 				if("uneducated_mice")
-					config.uneducated_mice = 1
+					uneducated_mice = 1
 
 				if("comms_password")
-					config.comms_password = value
+					comms_password = value
 
 				if("irc_bot_host")
-					config.irc_bot_host = value
+					irc_bot_host = value
 
 				if("main_irc")
-					config.main_irc = value
+					main_irc = value
 
 				if("admin_irc")
-					config.admin_irc = value
+					admin_irc = value
 
 				if("python_path")
 					if(value)
-						config.python_path = value
+						python_path = value
 
 				if("use_lib_nudge")
-					config.use_lib_nudge = 1
+					use_lib_nudge = 1
 
 				if("allow_cult_ghostwriter")
-					config.cult_ghostwriter = 1
+					cult_ghostwriter = 1
 
 				if("req_cult_ghostwriter")
-					config.cult_ghostwriter_req_cultists = text2num(value)
+					cult_ghostwriter_req_cultists = text2num(value)
 
 				if("allow_drone_spawn")
-					config.allow_drone_spawn = text2num(value)
+					allow_drone_spawn = text2num(value)
 
 				if("drone_build_time")
-					config.drone_build_time = text2num(value)
+					drone_build_time = text2num(value)
 
 				if("max_maint_drones")
-					config.max_maint_drones = text2num(value)
+					max_maint_drones = text2num(value)
 
 				if("starlight")
 					value = text2num(value)
-					config.starlight = value >= 0 ? value : 0
+					starlight = value >= 0 ? value : 0
 				
 				if("station_levels")
-					config.station_levels = text2numlist(value, ";")
+					station_levels = text2numlist(value, ";")
 				
 				if("admin_levels")
-					config.admin_levels = text2numlist(value, ";")
+					admin_levels = text2numlist(value, ";")
 
 				if("contact_levels")
-					config.contact_levels = text2numlist(value, ";")
+					contact_levels = text2numlist(value, ";")
 
 				if("player_levels")
-					config.player_levels = text2numlist(value, ";")
+					player_levels = text2numlist(value, ";")
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
@@ -541,50 +559,50 @@
 
 			switch(name)
 				if("health_threshold_crit")
-					config.health_threshold_crit = value
+					health_threshold_crit = value
 				if("health_threshold_softcrit")
-					config.health_threshold_softcrit = value
+					health_threshold_softcrit = value
 				if("health_threshold_dead")
-					config.health_threshold_dead = value
+					health_threshold_dead = value
 
 				if("revival_pod_plants")
-					config.revival_pod_plants = value
+					revival_pod_plants = value
 				if("revival_cloning")
-					config.revival_cloning = value
+					revival_cloning = value
 				if("revival_brain_life")
-					config.revival_brain_life = value
+					revival_brain_life = value
 
 				if("run_speed")
-					config.run_speed = value
+					run_speed = value
 				if("walk_speed")
-					config.walk_speed = value
+					walk_speed = value
 
 				if("human_delay")
-					config.human_delay = value
+					human_delay = value
 				if("robot_delay")
-					config.robot_delay = value
+					robot_delay = value
 				if("monkey_delay")
-					config.monkey_delay = value
+					monkey_delay = value
 				if("alien_delay")
-					config.alien_delay = value
+					alien_delay = value
 				if("slime_delay")
-					config.slime_delay = value
+					slime_delay = value
 				if("animal_delay")
-					config.animal_delay = value
+					animal_delay = value
 
 				if("organ_health_multiplier")
-					config.organ_health_multiplier = value / 100
+					organ_health_multiplier = value / 100
 				if("organ_regeneration_multiplier")
-					config.organ_regeneration_multiplier = value / 100
+					organ_regeneration_multiplier = value / 100
 
 				if("bones_can_break")
-					config.bones_can_break = value
+					bones_can_break = value
 				if("limbs_can_break")
-					config.limbs_can_break = value
+					limbs_can_break = value
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
 
-/datum/configuration/proc/loadsql(filename)  // -- TLE
+/configuration/proc/loadsql(filename)  // -- TLE
 	var/list/Lines = file2list(filename)
 	for(var/t in Lines)
 		if(!t)
@@ -631,7 +649,7 @@
 			else
 				log_misc("Unknown setting in configuration: '[name]'")
 
-/datum/configuration/proc/loadforumsql(filename)  // -- TLE
+/configuration/proc/loadforumsql(filename)  // -- TLE
 	var/list/Lines = file2list(filename)
 	for(var/t in Lines)
 		if(!t)	continue
@@ -673,7 +691,7 @@
 			else
 				log_misc("Unknown setting in configuration: '[name]'")
 
-/datum/configuration/proc/pick_mode(mode_name)
+/configuration/proc/pick_mode(mode_name)
 	// I wish I didn't have to instance the game modes in order to look up
 	// their information, but it is the only way (at least that I know of).
 	for(var/T in SUBTYPESOF(/datum/game_mode))
@@ -683,7 +701,7 @@
 		qdel(M)
 	return new /datum/game_mode/extended()
 
-/datum/configuration/proc/get_runnable_modes()
+/configuration/proc/get_runnable_modes()
 	var/list/datum/game_mode/runnable_modes = new
 	for(var/T in SUBTYPESOF(/datum/game_mode))
 		var/datum/game_mode/M = new T()
@@ -699,10 +717,10 @@
 			//world << "DEBUG: runnable_mode\[[runnable_modes.len]\] = [M.config_tag]"
 	return runnable_modes
 
-/datum/configuration/proc/post_load()
-	//apply a default value to config.python_path, if needed
-	if(!config.python_path)
+/configuration/proc/post_load()
+	//apply a default value to python_path, if needed
+	if(!python_path)
 		if(world.system_type == UNIX)
-			config.python_path = "/usr/bin/env python2"
+			python_path = "/usr/bin/env python2"
 		else //probably windows, if not this should work anyway
-			config.python_path = "python"
+			python_path = "python"

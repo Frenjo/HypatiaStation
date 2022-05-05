@@ -1,4 +1,8 @@
-/var/global/datum/configuration/config = null
+/var/global/configuration/config
+
+/var/global/diary = null
+/var/global/diaryofmeanpeople = null
+/var/global/href_logfile = null
 
 /var/global/station_name = "NSS Hypatia"
 /var/global/game_version = "Hypatia"

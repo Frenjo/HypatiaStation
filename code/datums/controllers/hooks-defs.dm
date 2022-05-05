@@ -1,6 +1,6 @@
 /**
  * Global init hook.
- * Called in global_init.dm when the server is initialized.
+ * Called in _global_init.dm when the server is initialized.
  */
 /hook/global_init
 

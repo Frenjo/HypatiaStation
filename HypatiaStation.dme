@@ -10,9 +10,9 @@
 #define DEBUG
 // END_PREFERENCES
 // BEGIN_INCLUDE
+#include "code\_global_init.dm"
 #include "code\_macros.dm"
 #include "code\global.dm"
-#include "code\hub.dm"
 #include "code\planes+layers.dm"
 #include "code\world.dm"
 #include "code\__DEFINES\access.dm"
@@ -45,6 +45,7 @@
 #include "code\__HELPERS\AStar.dm"
 #include "code\__HELPERS\captain_announce.dm"
 #include "code\__HELPERS\command_alert.dm"
+#include "code\__HELPERS\database.dm"
 #include "code\__HELPERS\datum_pool.dm"
 #include "code\__HELPERS\files.dm"
 #include "code\__HELPERS\game.dm"
@@ -237,6 +238,7 @@
 #include "code\game\skincmd.dm"
 #include "code\game\smoothwall.dm"
 #include "code\game\sound.dm"
+#include "code\game\world.dm"
 #include "code\game\area\areas.dm"
 #include "code\game\area\areas_ai.dm"
 #include "code\game\area\areas_cargo.dm"
