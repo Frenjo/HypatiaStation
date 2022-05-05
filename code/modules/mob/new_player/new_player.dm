@@ -307,7 +307,7 @@
 		character.loc = pick(S.turfs)
 		join_message = S.msg
 	else
-		character.loc = pick(latejoin)
+		character.loc = pick(global.latejoin)
 		join_message = "has arrived on the station"
 
 	character.lastarea = get_area(loc)

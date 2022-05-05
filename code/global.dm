@@ -25,16 +25,6 @@ var/airtunnel_stop = 68 // default
 var/airtunnel_bottom = 72 // default
 
 //list/traitors = list()	//traitor list
-// reverse_dir[dir] = reverse of dir
-var/list/reverse_dir = list(
-	2, 1, 3, 8, 10, 9, 11, 4, 6, 5, 7,
-	12, 14, 13, 15, 32, 34, 33, 35, 40,
-	42, 41, 43, 36, 38, 37, 39, 44, 46,
-	45, 47, 16, 18, 17, 19, 24, 26, 25,
-	27, 20, 22, 21, 23, 28, 30, 29, 31,
-	48, 50, 49, 51, 56, 58, 57, 59, 52,
-	54, 53, 55, 60, 62, 61, 63
-)
 
 var/datum/debug/debugobj
 
@@ -61,20 +51,6 @@ var/list/AAlarmWireColorToFlag = RandomAAlarmWires()
 var/list/AAlarmIndexToFlag
 var/list/AAlarmIndexToWireColor
 var/list/AAlarmWireColorToIndex
-
-//Don't set this very much higher then 1024 unless you like inviting people in to dos your server with message spam
-#define MAX_MESSAGE_LEN			1024
-#define MAX_PAPER_MESSAGE_LEN	3072
-#define MAX_BOOK_MESSAGE_LEN	9216
-#define MAX_NAME_LEN			26
-
-//away missions
-var/list/awaydestinations = list()	//a list of landmarks that the warpgate can take you to
-
-// For FTP requests. (i.e. downloading runtime logs.)
-// However it'd be ok to use for accessing attack logs and such too, which are even laggier.
-var/fileaccess_timer = 0
-var/custom_event_msg = null
 
 // TODO: Replace
 /proc/RandomAPCWires()

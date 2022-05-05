@@ -1,5 +1,5 @@
 /proc/createRandomZlevel()
-	if(awaydestinations.len)	//crude, but it saves another var!
+	if(global.awaydestinations.len)	//crude, but it saves another var!
 		return
 
 	var/list/potentialRandomZlevels = list()
@@ -46,7 +46,7 @@
 		for(var/obj/effect/landmark/L in landmarks_list)
 			if(L.name != "awaystart")
 				continue
-			awaydestinations.Add(L)
+			global.awaydestinations.Add(L)
 
 		to_world(SPAN_DANGER("Away mission loaded."))
 

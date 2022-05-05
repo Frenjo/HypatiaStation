@@ -1105,7 +1105,7 @@
 		assigned_role = "MODE"
 		//ticker.mode.learn_basic_spells(current)
 		if(!global.wizardstart.len)
-			current.loc = pick(latejoin)
+			current.loc = pick(global.latejoin)
 			to_chat(current, "HOT INSERTION, GO GO GO!")
 		else
 			current.loc = pick(global.wizardstart)

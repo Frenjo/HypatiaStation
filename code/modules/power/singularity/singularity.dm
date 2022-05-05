@@ -227,8 +227,8 @@ var/global/list/uneatable = list(
 
 /obj/singularity/proc/eat()
 	set background = 1
-	if(defer_powernet_rebuild != 2)
-		defer_powernet_rebuild = 1
+	if(global.defer_powernet_rebuild != 2)
+		global.defer_powernet_rebuild = 1
 	// Let's just make this one loop.
 	for(var/atom/X in orange(grav_pull, src))
 		var/dist = get_dist(X, src)
@@ -249,8 +249,8 @@ var/global/list/uneatable = list(
 		else if(dist <= consume_range && (isturf(X) || istype(X, /atom/movable)))
 			consume(X)
 
-	if(defer_powernet_rebuild != 2)
-		defer_powernet_rebuild = 0
+	if(global.defer_powernet_rebuild != 2)
+		global.defer_powernet_rebuild = 0
 	return
 
 /obj/singularity/proc/consume(atom/A)
@@ -319,7 +319,7 @@ var/global/list/uneatable = list(
 	if(!move_self)
 		return 0
 
-	var/movement_dir = pick(alldirs - last_failed_movement)
+	var/movement_dir = pick(global.alldirs - last_failed_movement)
 
 	if(force_move)
 		movement_dir = force_move
@@ -587,11 +587,11 @@ var/global/list/uneatable = list(
 
 /obj/singularity/narsie/wizard/eat()
 	set background = 1
-	if(defer_powernet_rebuild != 2)
-		defer_powernet_rebuild = 1
+	if(global.defer_powernet_rebuild != 2)
+		global.defer_powernet_rebuild = 1
 	for(var/atom/X in orange(consume_range, src))
 		if(isturf(X) || istype(X, /atom/movable))
 			consume(X)
-	if(defer_powernet_rebuild != 2)
-		defer_powernet_rebuild = 0
+	if(global.defer_powernet_rebuild != 2)
+		global.defer_powernet_rebuild = 0
 	return

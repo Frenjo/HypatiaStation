@@ -115,7 +115,7 @@
 
 		if(istype(unsim, /turf/simulated))
 			var/turf/simulated/sim = unsim
-			sim.open_directions |= reverse_dir[d]
+			sim.open_directions |= global.reverse_dir[d]
 
 			if(air_master.has_valid_zone(sim))
 				//Might have assigned a zone, since this happens for each direction.

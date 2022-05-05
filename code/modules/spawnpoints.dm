@@ -18,7 +18,7 @@ var/list/spawntypes = list()
 
 /datum/spawnpoint/arrivals/New()
 	..()
-	turfs = latejoin
+	turfs = global.latejoin
 
 
 /*

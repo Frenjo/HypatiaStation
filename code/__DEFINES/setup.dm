@@ -34,16 +34,6 @@
 	/obj/machinery/portable_atmospherics/canister
 )
 
-// Energy gun related modes and settings.
-#define GUN_MODE_PULSE "pulse"
-#define GUN_MODE_BEAM "beam"
-
-#define GUN_SETTING_STUN "stun"
-#define GUN_SETTING_DISABLE "disable"
-#define GUN_SETTING_KILL "kill"
-#define GUN_SETTING_DESTROY "destroy"
-#define GUN_SETTING_SPECIAL "special"
-
 /var/list/mechtoys = list(
 	/obj/item/toy/prize/ripley,
 	/obj/item/toy/prize/fireripley,

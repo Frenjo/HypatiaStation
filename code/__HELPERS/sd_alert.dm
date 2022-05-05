@@ -96,14 +96,14 @@ Version 1 changes (from version 0):
 	var/response
 	var/list/validation
 
-/sd_alert/Destroy()
-	target << browse(null, "window=\ref[src]")
-	return ..()
-
 /sd_alert/New(who, tag)
 	..()
 	target = who
 	src.tag = tag
+
+/sd_alert/Destroy()
+	target << browse(null, "window=\ref[src]")
+	return ..()
 
 /sd_alert/Topic(href, params[])
 	if(usr.client != target)

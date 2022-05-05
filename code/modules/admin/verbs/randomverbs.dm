@@ -350,7 +350,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		//check if they were a monkey
 		if(findtext(G_found.real_name,"monkey"))
 			if(alert("This character appears to have been a monkey. Would you like to respawn them as such?",,"Yes","No")=="Yes")
-				var/mob/living/carbon/monkey/new_monkey = new(pick(latejoin))
+				var/mob/living/carbon/monkey/new_monkey = new(pick(global.latejoin))
 				G_found.mind.transfer_to(new_monkey)	//be careful when doing stuff like this! I've already checked the mind isn't in use
 				new_monkey.key = G_found.key
 				new_monkey << "You have been fully respawned. Enjoy the game."
@@ -359,7 +359,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 
 	//Ok, it's not a monkey. So, spawn a human.
-	var/mob/living/carbon/human/new_character = new(pick(latejoin))//The mob being spawned.
+	var/mob/living/carbon/human/new_character = new(pick(global.latejoin))//The mob being spawned.
 
 	var/datum/data/record/record_found			//Referenced to later to either randomize or not randomize the character.
 	if(G_found.mind && !G_found.mind.active)	//mind isn't currently in use by someone/something

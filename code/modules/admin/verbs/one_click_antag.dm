@@ -386,7 +386,7 @@ client/proc/one_click_antag()
 	if(!G_found || !G_found.key)	return
 
 	//First we spawn a dude.
-	var/mob/living/carbon/human/new_character = new(pick(latejoin))//The mob being spawned.
+	var/mob/living/carbon/human/new_character = new(pick(global.latejoin))//The mob being spawned.
 
 	new_character.gender = pick(MALE,FEMALE)
 

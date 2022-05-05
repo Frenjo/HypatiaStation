@@ -170,3 +170,13 @@
 
 #define PRESSURE_SUIT_REDUCTION_COEFFICIENT 0.8 //This is how much (percentual) a suit with the flag STOPSPRESSUREDMAGE reduces pressure.
 #define PRESSURE_HEAD_REDUCTION_COEFFICIENT 0.4 //This is how much (percentual) a helmet/hat with the flag STOPSPRESSUREDMAGE reduces pressure.
+
+// Energy gun related modes and settings.
+#define GUN_MODE_PULSE	"pulse"
+#define GUN_MODE_BEAM	"beam"
+
+#define GUN_SETTING_STUN	"stun"
+#define GUN_SETTING_DISABLE	"disable"
+#define GUN_SETTING_KILL	"kill"
+#define GUN_SETTING_DESTROY	"destroy"
+#define GUN_SETTING_SPECIAL	"special"
