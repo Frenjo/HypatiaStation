@@ -111,7 +111,7 @@
 			return
 		else
 			if(message_mode)
-				if(message_mode in (global.radiochannels | "department"))
+				if(message_mode in (global.radio_channels | "department"))
 					if(l_ear && istype(l_ear, /obj/item/device/radio))
 						l_ear.talk_into(src,message, message_mode, verbage, speaking)
 						used_radios += l_ear

@@ -79,16 +79,17 @@
 	set name = "Radio report"
 
 	var/filters = list(
-		"1" = "RADIO_TO_AIRALARM",
-		"2" = "RADIO_FROM_AIRALARM",
-		"3" = "RADIO_CHAT",
-		"4" = "RADIO_ATMOSIA",
-		"5" = "RADIO_NAVBEACONS",
-		"6" = "RADIO_AIRLOCK",
-		"7" = "RADIO_SECBOT",
-		"8" = "RADIO_MULEBOT",
+		RADIO_TO_AIRALARM = "RADIO_TO_AIRALARM",
+		RADIO_FROM_AIRALARM = "RADIO_FROM_AIRALARM",
+		RADIO_CHAT = "RADIO_CHAT",
+		RADIO_ATMOSIA = "RADIO_ATMOSIA",
+		RADIO_NAVBEACONS = "RADIO_NAVBEACONS",
+		RADIO_AIRLOCK = "RADIO_AIRLOCK",
+		RADIO_SECBOT = "RADIO_SECBOT",
+		RADIO_MULEBOT = "RADIO_MULEBOT",
+		RADIO_MAGNETS = "RADIO_MAGNETS",
 		"_default" = "NO_FILTER"
-		)
+	)
 
 	var/output = "<b>Radio Report</b><hr>"
 	for(var/fq in radio_controller.frequencies)

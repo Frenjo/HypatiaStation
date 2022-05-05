@@ -222,7 +222,7 @@
 	if(istype(W, /obj/item/weapon/screwdriver))
 		if(keyslot1 || keyslot2)
 			for(var/ch_name in channels)
-				radio_controller.remove_object(src, global.radiochannels[ch_name])
+				radio_controller.remove_object(src, global.radio_channels[ch_name])
 				secure_radio_connections[ch_name] = null
 
 			if(keyslot1)
@@ -306,6 +306,6 @@
 			src.name = "broken radio headset"
 			return
 
-		secure_radio_connections[ch_name] = radio_controller.add_object(src, global.radiochannels[ch_name], RADIO_CHAT)
+		secure_radio_connections[ch_name] = radio_controller.add_object(src, global.radio_channels[ch_name], RADIO_CHAT)
 
 	return

@@ -54,7 +54,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	if(radio_controller)
 		radio_controller.remove_object(src, frequency)
 		for(var/ch_name in channels)
-			radio_controller.remove_object(src, global.radiochannels[ch_name])
+			radio_controller.remove_object(src, global.radio_channels[ch_name])
 	return ..()
 
 /obj/item/device/radio/initialize()
@@ -69,7 +69,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	set_frequency(frequency)
 
 	for(var/ch_name in channels)
-		secure_radio_connections[ch_name] = radio_controller.add_object(src, global.radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections[ch_name] = radio_controller.add_object(src, global.radio_channels[ch_name],  RADIO_CHAT)
 
 /obj/item/device/radio/attack_self(mob/user as mob)
 	user.set_machine(src)
@@ -511,7 +511,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 				part_a = "<span class='syndradio'><span class='name'>"
 			else if(display_freq == FREQUENCY_COMMAND)
 				part_a = "<span class='comradio'><span class='name'>"
-			else if(display_freq in DEPT_FREQS)
+			else if(display_freq in global.dept_freqs)
 				part_a = "<span class='deptradio'><span class='name'>"
 
 			var/quotedmsg = M.say_quote(message)
@@ -698,7 +698,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	if(istype(W, /obj/item/weapon/screwdriver))
 		if(keyslot)
 			for(var/ch_name in channels)
-				radio_controller.remove_object(src, global.radiochannels[ch_name])
+				radio_controller.remove_object(src, global.radio_channels[ch_name])
 				secure_radio_connections[ch_name] = null
 
 			if(keyslot)
@@ -754,7 +754,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			src.name = "broken radio"
 			return
 
-		secure_radio_connections[ch_name] = radio_controller.add_object(src, global.radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections[ch_name] = radio_controller.add_object(src, global.radio_channels[ch_name],  RADIO_CHAT)
 
 	return
 
@@ -801,12 +801,12 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 /obj/item/device/radio/proc/config(op)
 	if(radio_controller)
 		for(var/ch_name in channels)
-			radio_controller.remove_object(src, global.radiochannels[ch_name])
+			radio_controller.remove_object(src, global.radio_channels[ch_name])
 	secure_radio_connections = new
 	channels = op
 	if(radio_controller)
 		for(var/ch_name in op)
-			secure_radio_connections[ch_name] = radio_controller.add_object(src, global.radiochannels[ch_name],  RADIO_CHAT)
+			secure_radio_connections[ch_name] = radio_controller.add_object(src, global.radio_channels[ch_name],  RADIO_CHAT)
 	return
 
 /obj/item/device/radio/off

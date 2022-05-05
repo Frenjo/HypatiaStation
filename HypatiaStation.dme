@@ -75,6 +75,7 @@
 #include "code\_global_vars\lists\names.dm"
 #include "code\_global_vars\lists\objects.dm"
 #include "code\_global_vars\lists\preferences.dm"
+#include "code\_global_vars\lists\radio.dm"
 #include "code\_global_vars\lists\species_languages.dm"
 #include "code\_onclick\adjacent.dm"
 #include "code\_onclick\ai.dm"
