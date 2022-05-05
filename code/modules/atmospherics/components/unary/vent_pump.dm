@@ -1,18 +1,21 @@
+#define SIPHONING 0
+#define RELEASING 1
 /obj/machinery/atmospherics/unary/vent_pump
 	icon = 'icons/obj/atmospherics/vent_pump.dmi'
 	icon_state = "off"
 
-	name = "Air Vent"
+	name = "Air Vent (Off)"
 	desc = "Has a valve and pump attached to it"
 	use_power = 1
 
-	var/area/initial_loc
 	level = 1
+
+	var/area/initial_loc
 	var/area_uid
 	var/id_tag = null
 
-	var/on = 0
-	var/pump_direction = 1 //0 = siphoning, 1 = releasing
+	var/on = FALSE
+	var/pump_direction = RELEASING
 
 	var/external_pressure_bound = ONE_ATMOSPHERE
 	var/internal_pressure_bound = 0
@@ -29,26 +32,6 @@
 
 	var/radio_filter_out
 	var/radio_filter_in
-
-/obj/machinery/atmospherics/unary/vent_pump/on
-	on = 1
-	icon_state = "out"
-
-/obj/machinery/atmospherics/unary/vent_pump/siphon
-	pump_direction = 0
-	icon_state = "off"
-
-/obj/machinery/atmospherics/unary/vent_pump/siphon/on
-	on = 1
-	icon_state = "in"
-
-/obj/machinery/atmospherics/unary/vent_pump/high_volume
-	name = "Large Air Vent"
-	power_channel = EQUIP
-
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/New()
-	..()
-	air_contents.volume = 1000
 
 /obj/machinery/atmospherics/unary/vent_pump/New()
 	..()
@@ -92,7 +75,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(!node)
-		on = 0
+		on = FALSE
 	//broadcast_status() // from now air alarm/control computer should request update purposely --rastaf0
 	if(!on)
 		return 0
@@ -182,11 +165,11 @@
 
 	if(signal.data["purge"] != null)
 		pressure_checks &= ~1
-		pump_direction = 0
+		pump_direction = SIPHONING
 
 	if(signal.data["stabalize"] != null)
 		pressure_checks |= 1
-		pump_direction = 1
+		pump_direction = RELEASING
 
 	if(signal.data["power"] != null)
 		on = text2num(signal.data["power"])
@@ -257,7 +240,7 @@
 			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
 	else
 		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
-		on = 0
+		on = FALSE
 	return
 
 /obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user)
@@ -348,3 +331,49 @@
 			ML.handle_ventcrawl(src)
 			return
 	..()*/
+
+// Switched on variant.
+/obj/machinery/atmospherics/unary/vent_pump/on
+	name = "Air Vent (On)"
+	on = TRUE
+	icon_state = "out"
+
+// Siphon variant.
+/obj/machinery/atmospherics/unary/vent_pump/siphon
+	name = "Air Vent (Siphon/Off)"
+	pump_direction = SIPHONING
+	icon_state = "off"
+
+// Switched on siphon variant.
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on
+	name = "Air Vent (Siphon/On)"
+	on = TRUE
+	icon_state = "in"
+
+// Large variant.
+/obj/machinery/atmospherics/unary/vent_pump/high_volume
+	name = "Large Air Vent (Off)"
+	power_channel = EQUIP
+
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/New()
+	..()
+	air_contents.volume = 1000
+
+// Large switched on variant.
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/on
+	name = "Large Air Vent (On)"
+	on = TRUE
+	icon_state = "out"
+
+// Large siphon variant.
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/siphon
+	name = "Large Air Vent (Siphon/Off)"
+	pump_direction = SIPHONING
+
+// Large switched on siphon variant.
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/siphon/on
+	name = "Large Air Vent (Siphon/On)"
+	on = TRUE
+	icon_state = "in"
+#undef SIPHONING
+#undef RELEASING
