@@ -1,3 +1,4 @@
+# ignore misc BYOND files
 *.log
 *.int
 *.rsc
@@ -5,6 +6,11 @@
 *.lk
 *.dll
 *.db
+data/
+
+# ignore config, but not subdirs
+!config/*/
+config/*
+
+# ignore map loader debug logs
 maploader_debug.txt
-data/investigate/singulo.html
-data/investigate/wires.html
