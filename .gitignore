@@ -9,8 +9,8 @@
 data/
 
 # ignore config, but not subdirs
-!config/*/
 config/*
+!config/*/
 
 # ignore map loader debug logs
 maploader_debug.txt
