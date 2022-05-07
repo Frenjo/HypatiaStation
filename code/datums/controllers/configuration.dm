@@ -178,6 +178,32 @@
 	var/static/slime_delay = 0
 	var/static/animal_delay = 0
 
+	// ----- MYSQL CONFIGURATION STUFF -----
+	// Basic configuration.
+	var/static/sqladdress = "localhost"
+	var/static/sqlport = "3306"
+	var/static/sqldb = "tgstation"
+	var/static/sqllogin = "root"
+	var/static/sqlpass = ""
+
+	// Feedback configuration.
+	var/static/sqlfdbkdb = "test"
+	var/static/sqlfdbklogin = "root"
+	var/static/sqlfdbkpass = ""
+	var/static/sqllogging = FALSE // Should we log deaths, population stats, etc?
+
+	// ----- FORUM MYSQL CONFIGURATION -----
+	// (for use with forum account/key authentication)
+	// These are all default values that will load should the forumdbconfig.txt
+	// file fail to read for whatever reason.
+	var/static/forumsqladdress = "localhost"
+	var/static/forumsqlport = "3306"
+	var/static/forumsqldb = "tgstation"
+	var/static/forumsqllogin = "root"
+	var/static/forumsqlpass = ""
+	var/static/forum_activated_group = "2"
+	var/static/forum_authenticated_group = "10"
+
 /configuration/New()
 	load_gamemodes()
 	load_config()
@@ -532,24 +558,27 @@
 	for(var/option in config_file)
 		var/value = config_file[option]
 		switch(option)
+			// Basic configuration.
 			if("address")
-				global.sqladdress = value
+				sqladdress = value
 			if("port")
-				global.sqlport = value
+				sqlport = value
 			if("database")
-				global.sqldb = value
+				sqldb = value
 			if("login")
-				global.sqllogin = value
+				sqllogin = value
 			if("password")
-				global.sqlpass = value
+				sqlpass = value
+			
+			// Feedback configuration.
 			if("feedback_database")
-				global.sqlfdbkdb = value
+				sqlfdbkdb = value
 			if("feedback_login")
-				global.sqlfdbklogin = value
+				sqlfdbklogin = value
 			if("feedback_password")
-				global.sqlfdbkpass = value
+				sqlfdbkpass = value
 			if("enable_stat_tracking")
-				global.sqllogging = TRUE
+				sqllogging = TRUE
 			else
 				log_misc("Unknown setting in config/dbconfig.txt: '[option]'")
 
@@ -560,19 +589,19 @@
 		var/value = config_file[option]
 		switch(option)
 			if("address")
-				global.forumsqladdress = value
+				forumsqladdress = value
 			if("port")
-				global.forumsqlport = value
+				forumsqlport = value
 			if("database")
-				global.forumsqldb = value
+				forumsqldb = value
 			if("login")
-				global.forumsqllogin = value
+				forumsqllogin = value
 			if("password")
-				global.forumsqlpass = value
+				forumsqlpass = value
 			if("activatedgroup")
-				global.forum_activated_group = value
+				forum_activated_group = value
 			if("authenticatedgroup")
-				global.forum_authenticated_group = value
+				forum_authenticated_group = value
 			else
 				log_misc("Unknown setting in config/forumdbconfig.txt: '[option]'")
 

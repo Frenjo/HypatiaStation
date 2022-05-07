@@ -6,11 +6,11 @@
 	if(!global.dbcon)
 		global.dbcon = new()
 
-	var/user = global.sqlfdbklogin
-	var/pass = global.sqlfdbkpass
-	var/db = global.sqlfdbkdb
-	var/address = global.sqladdress
-	var/port = global.sqlport
+	var/user = global.config.sqlfdbklogin
+	var/pass = global.config.sqlfdbkpass
+	var/db = global.config.sqlfdbkdb
+	var/address = global.config.sqladdress
+	var/port = global.config.sqlport
 
 	global.dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
 	. = global.dbcon.IsConnected()
@@ -40,11 +40,11 @@
 	if(!global.dbcon_old)
 		global.dbcon_old = new()
 
-	var/user = global.sqllogin
-	var/pass = global.sqlpass
-	var/db = global.sqldb
-	var/address = global.sqladdress
-	var/port = global.sqlport
+	var/user = global.config.sqllogin
+	var/pass = global.config.sqlpass
+	var/db = global.config.sqldb
+	var/address = global.config.sqladdress
+	var/port = global.config.sqlport
 
 	global.dbcon_old.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
 	. = global.dbcon_old.IsConnected()
