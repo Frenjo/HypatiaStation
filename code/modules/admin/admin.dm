@@ -808,13 +808,13 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Respawn basically"
 	set name="Toggle Respawn"
-	global.abandon_allowed = !( global.abandon_allowed )
-	if (global.abandon_allowed)
+	global.config.respawn = !( global.config.respawn )
+	if (global.config.respawn)
 		world << "<B>You may now respawn.</B>"
 	else
 		world << "<B>You may no longer respawn :(</B>"
-	message_admins("\blue [key_name_admin(usr)] toggled respawn to [global.abandon_allowed ? "On" : "Off"].", 1)
-	log_admin("[key_name(usr)] toggled respawn to [global.abandon_allowed ? "On" : "Off"].")
+	message_admins("\blue [key_name_admin(usr)] toggled respawn to [global.config.respawn ? "On" : "Off"].", 1)
+	log_admin("[key_name(usr)] toggled respawn to [global.config.respawn ? "On" : "Off"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

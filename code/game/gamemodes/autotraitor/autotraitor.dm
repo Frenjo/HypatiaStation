@@ -63,7 +63,7 @@
 
 /datum/game_mode/traitor/autotraitor/post_setup()
 	..()
-	global.abandon_allowed = TRUE
+	global.config.respawn = TRUE
 	traitorcheckloop()
 
 /datum/game_mode/traitor/autotraitor/proc/traitorcheckloop()

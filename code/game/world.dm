@@ -99,7 +99,7 @@
 		var/list/s = list()
 		s["version"] = global.game_version
 		s["mode"] = global.master_mode
-		s["respawn"] = global.config ? global.abandon_allowed : FALSE
+		s["respawn"] = global.config ? global.config.respawn : FALSE
 		s["enter"] = global.enter_allowed
 		s["vote"] = global.config.allow_vote_mode
 		s["ai"] = global.config.allow_ai
@@ -198,7 +198,7 @@
 	if(!global.enter_allowed)
 		features += "closed"
 
-	features += global.abandon_allowed ? "respawn" : "no respawn"
+	features += global.config.respawn ? "respawn" : "no respawn"
 
 	if(global.config && global.config.allow_vote_mode)
 		features += "vote"

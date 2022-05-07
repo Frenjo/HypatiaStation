@@ -14,7 +14,6 @@
 /var/global/ooc_allowed = TRUE
 /var/global/dsay_allowed = TRUE
 /var/global/dooc_allowed = TRUE
-/var/global/abandon_allowed = TRUE
 /var/global/enter_allowed = TRUE
 /var/global/guests_allowed = TRUE
 /var/global/tinted_weldhelh = TRUE

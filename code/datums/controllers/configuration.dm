@@ -184,8 +184,6 @@
 	load_game_options()
 	load_sql()
 	load_forum_sql()
-	// apply some settings from config..
-	global.abandon_allowed = respawn
 
 // This does what /proc/load(filename, type) used to do, except it returns the result as a list...
 // So it can be used in other functions for the different config files. -Frenjo

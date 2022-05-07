@@ -387,7 +387,7 @@ var/list/slot_equipment_priority = list(
 	set name = "Respawn"
 	set category = "OOC"
 
-	if(!global.abandon_allowed)
+	if(!global.config.respawn)
 		to_chat(usr, SPAN_INFO("Respawn is disabled."))
 		return
 	if(stat != DEAD || !ticker)
