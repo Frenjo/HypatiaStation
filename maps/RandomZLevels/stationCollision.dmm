@@ -254,7 +254,7 @@
 "eT" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/table,/obj/item/weapon/book/manual/research_and_development,/turf/simulated/floor{icon_state = "showroomfloor"},/area/awaymission/research)
 "eU" = (/obj/structure/window/reinforced{dir = 8},/obj/effect/decal/remains/human,/obj/item/clothing/suit/storage/labcoat,/turf/simulated/floor{icon_state = "showroomfloor"},/area/awaymission/research)
 "eV" = (/obj/machinery/door/window/eastleft{name = "Windoor"},/obj/machinery/door/window/westleft{name = "Windoor"},/turf/simulated/floor{icon_state = "showroomfloor"},/area/awaymission/research)
-"eW" = (/obj/machinery/atmospherics/unary/vent_pump{dir = 1; external_pressure_bound = 120; icon_state = "in"; initialize_directions = 1; internal_pressure_bound = 4000; on = 1; pressure_checks = 2; pump_direction = 0},/turf/simulated/floor{icon_state = "showroomfloor"},/area/awaymission/research)
+"eW" = (/obj/machinery/atmospherics/unary/vent_pump/siphon/on{dir = 1; external_pressure_bound = 120; internal_pressure_bound = 4000; pressure_checks = 2},/turf/simulated/floor{icon_state = "showroomfloor"},/area/awaymission/research)
 "eX" = (/obj/machinery/r_n_d/server{stat = 1},/turf/simulated/floor{icon_state = "showroomfloor"},/area/awaymission/research)
 "eY" = (/obj/machinery/power/emitter{anchored = 1; dir = 1; state = 2},/turf/simulated/floor{icon_state = "dark"},/area/awaymission/research)
 "eZ" = (/turf/simulated/floor{dir = 4; icon_state = "bluecorner"},/area/awaymission/northblock)
