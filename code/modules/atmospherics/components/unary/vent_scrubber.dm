@@ -1,8 +1,10 @@
+#define SIPHONING 0
+#define SCRUBBING 1
 /obj/machinery/atmospherics/unary/vent_scrubber
 	icon = 'icons/obj/atmospherics/vent_scrubber.dmi'
 	icon_state = "off"
 
-	name = "Air Scrubber"
+	name = "Air Scrubber (Off)"
 	desc = "Has a valve and pump attached to it"
 	use_power = 1
 
@@ -13,14 +15,14 @@
 	var/frequency = 1439
 	var/datum/radio_frequency/radio_connection
 
-	var/on = 0
-	var/scrubbing = 1 //0 = siphoning, 1 = scrubbing
-	var/scrub_CO2 = 1
-	var/scrub_Toxins = 0
-	var/scrub_N2O = 0
+	var/on = FALSE
+	var/scrubbing = SCRUBBING //0 = siphoning, 1 = scrubbing
+	var/scrub_CO2 = TRUE
+	var/scrub_Toxins = FALSE
+	var/scrub_N2O = FALSE
 
 	var/volume_rate = 120
-	var/panic = 0 //is this scrubber panicked?
+	var/panic = FALSE //is this scrubber panicked?
 
 	var/area_uid
 	var/radio_filter_out
@@ -34,8 +36,19 @@
 		id_tag = num2text(uid)
 	..()
 
+/obj/machinery/atmospherics/unary/vent_scrubber/initialize()
+	..()
+	radio_filter_in = frequency == initial(frequency) ? (RADIO_FROM_AIRALARM) : null
+	radio_filter_out = frequency == initial(frequency) ? (RADIO_TO_AIRALARM) : null
+	if(frequency)
+		set_frequency(frequency)
+		src.broadcast_status()
+
 /obj/machinery/atmospherics/unary/vent_scrubber/Destroy()
 	unregister_radio(src, frequency)
+	if(initial_loc)
+		initial_loc.air_scrub_info -= id_tag
+		initial_loc.air_scrub_names -= id_tag
 	return ..()
 
 /obj/machinery/atmospherics/unary/vent_scrubber/update_icon()
@@ -82,20 +95,12 @@
 
 	return 1
 
-/obj/machinery/atmospherics/unary/vent_scrubber/initialize()
-	..()
-	radio_filter_in = frequency == initial(frequency) ? (RADIO_FROM_AIRALARM) : null
-	radio_filter_out = frequency == initial(frequency) ? (RADIO_TO_AIRALARM) : null
-	if(frequency)
-		set_frequency(frequency)
-		src.broadcast_status()
-
 /obj/machinery/atmospherics/unary/vent_scrubber/process()
 	..()
-	if(stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER | BROKEN))
 		return
 	if(!node)
-		on = 0
+		on = FALSE
 	//broadcast_status()
 	if(!on)
 		return 0
@@ -184,20 +189,20 @@
 	if(signal.data["panic_siphon"]) //must be before if("scrubbing" thing
 		panic = text2num(signal.data["panic_siphon"] != null)
 		if(panic)
-			on = 1
-			scrubbing = 0
+			on = TRUE
+			scrubbing = SIPHONING
 			volume_rate = 2000
 		else
-			scrubbing = 1
+			scrubbing = SCRUBBING
 			volume_rate = initial(volume_rate)
 	if(signal.data["toggle_panic_siphon"] != null)
 		panic = !panic
 		if(panic)
-			on = 1
-			scrubbing = 0
+			on = TRUE
+			scrubbing = SIPHONING
 			volume_rate = 2000
 		else
-			scrubbing = 1
+			scrubbing = SCRUBBING
 			volume_rate = initial(volume_rate)
 
 	if(signal.data["scrubbing"] != null)
@@ -270,8 +275,22 @@
 		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)
 
-/obj/machinery/atmospherics/unary/vent_scrubber/Destroy()
-	if(initial_loc)
-		initial_loc.air_scrub_info -= id_tag
-		initial_loc.air_scrub_names -= id_tag
-	return ..()
+// Switched on variant.
+/obj/machinery/atmospherics/unary/vent_scrubber/on
+	name = "Air Scrubber (On)"
+	on = TRUE
+	icon_state = "on"
+
+// Siphon variant.
+/obj/machinery/atmospherics/unary/vent_scrubber/siphon
+	name = "Air Scrubber (Siphon/Off)"
+	scrubbing = SIPHONING
+	icon_state = "off"
+
+// Switched on siphon variant.
+/obj/machinery/atmospherics/unary/vent_scrubber/siphon/on
+	name = "Air Scrubber (Siphon/On)"
+	on = TRUE
+	icon_state = "in"
+#undef SIPHONING
+#undef SCRUBBING
