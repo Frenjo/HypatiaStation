@@ -22,3 +22,6 @@
 	"Chapel", "Theatre", "Bar", "Kitchen", "Hydroponics",
 	"Janitor Closet", "Genetics"
 )
+
+/var/global/list/light_type_cache = list()
+/var/global/list/solars_list = list()

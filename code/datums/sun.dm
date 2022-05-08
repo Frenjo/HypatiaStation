@@ -81,8 +81,8 @@
 			break
 
 		if(T.density)			// if we hit a solid turf, panel is obscured
-			S.obscured = 1
+			S.obscured = TRUE
 			return
 
-	S.obscured = 0		// if hit the edge or stepped 20 times, not obscured
+	S.obscured = FALSE	// if hit the edge or stepped 20 times, not obscured
 	S.update_solar_exposure()
