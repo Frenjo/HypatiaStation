@@ -1,13 +1,14 @@
 /obj/machinery/portable_atmospherics
 	name = "atmoalter"
-	use_power = 0
+	use_power = FALSE
+
 	var/datum/gas_mixture/air_contents = new
 
 	var/obj/machinery/atmospherics/unary/portables_connector/connected_port
 	var/obj/item/weapon/tank/holding
 
 	var/volume = 0
-	var/destroyed = 0
+	var/destroyed = FALSE
 
 	var/maximum_pressure = 90 * ONE_ATMOSPHERE
 

@@ -11,11 +11,12 @@ Pipelines + Other Objects -> Pipe network
 */
 
 /obj/machinery/atmospherics
-	auto_init = 0
-	anchored = 1
+	auto_init = FALSE
+	anchored = TRUE
 	idle_power_usage = 0
 	active_power_usage = 0
 	power_channel = ENVIRON
+
 	var/nodealert = 0
 
 	var/initialize_directions = 0

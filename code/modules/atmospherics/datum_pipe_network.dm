@@ -1,5 +1,3 @@
-var/global/list/datum/pipe_network/pipe_networks = list()
-
 /datum/pipe_network
 	var/list/datum/gas_mixture/gases = list() //All of the gas_mixtures continuously connected in this network
 
@@ -7,7 +5,7 @@ var/global/list/datum/pipe_network/pipe_networks = list()
 	var/list/datum/pipeline/line_members = list()
 	//membership roster to go through for updates and what not
 
-	var/update = 1
+	var/update = TRUE
 	//var/datum/gas_mixture/air_transient = null
 
 /datum/pipe_network/New()
@@ -17,7 +15,7 @@ var/global/list/datum/pipe_network/pipe_networks = list()
 /datum/pipe_network/proc/process()
 	//Equalize gases amongst pipe if called for
 	if(update)
-		update = 0
+		update = FALSE
 		reconcile_air() //equalize_gases(gases)
 
 	//Give pipelines their process call for pressure checking and what not. Have to remove pressure checks for the time being as pipes dont radiate heat - Mport
@@ -35,7 +33,7 @@ var/global/list/datum/pipe_network/pipe_networks = list()
 	update_network_gases()
 
 	if(normal_members.len > 0 || line_members.len > 0)
-		pipe_networks += src
+		global.pipe_networks += src
 	else
 		qdel(src)
 

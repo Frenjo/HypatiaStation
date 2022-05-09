@@ -3,10 +3,11 @@
 	icon = 'icons/obj/pipes/heat.dmi'
 	icon_state = "intact"
 	level = 2
-	var/initialize_directions_he
 
 	minimum_temperature_difference = 20
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
+
+	var/initialize_directions_he
 
 	var/surface = 2 //surface area in m^2
 	var/icon_temperature = T20C //stop small changes in temperature causing an icon refresh

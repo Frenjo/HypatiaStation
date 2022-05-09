@@ -3,13 +3,13 @@
 
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "psiphon:0"
-	density = 1
-
-	var/on = 0
-	var/direction_out = 0 //0 = siphoning, 1 = releasing
-	var/target_pressure = 100
+	density = TRUE
 
 	volume = 1000
+
+	var/on = FALSE
+	var/direction_out = 0 //0 = siphoning, 1 = releasing
+	var/target_pressure = 100
 
 /obj/machinery/portable_atmospherics/pump/update_icon()
 	src.overlays = 0

@@ -25,3 +25,5 @@
 
 /var/global/list/light_type_cache = list()
 /var/global/list/solars_list = list()
+
+/var/global/list/datum/pipe_network/pipe_networks = list()

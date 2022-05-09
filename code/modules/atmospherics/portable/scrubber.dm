@@ -3,74 +3,12 @@
 
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "pscrubber:0"
-	density = 1
-
-	var/on = 0
-	var/volume_rate = 800
+	density = TRUE
 
 	volume = 750
 
-/obj/machinery/portable_atmospherics/scrubber/emp_act(severity)
-	if(stat & (BROKEN | NOPOWER))
-		..(severity)
-		return
-
-	if(prob(50 / severity))
-		on = !on
-		update_icon()
-
-	..(severity)
-
-/obj/machinery/portable_atmospherics/scrubber/huge
-	name = "Huge Air Scrubber"
-	icon_state = "scrubber:0"
-	anchored = 1
-	volume = 50000
-	volume_rate = 5000
-
-	var/global/gid = 1
-	var/id = 0
-	
-/obj/machinery/portable_atmospherics/scrubber/huge/New()
-	..()
-	id = gid
-	gid++
-	name = "[name] (ID [id])"
-
-/obj/machinery/portable_atmospherics/scrubber/huge/attack_hand(mob/user as mob)
-	to_chat(usr, SPAN_INFO("You can't directly interact with this machine. Use the area atmos computer."))
-
-/obj/machinery/portable_atmospherics/scrubber/huge/update_icon()
-	src.overlays = 0
-
-	if(on)
-		icon_state = "scrubber:1"
-	else
-		icon_state = "scrubber:0"
-
-/obj/machinery/portable_atmospherics/scrubber/huge/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
-		if(on)
-			to_chat(user, SPAN_INFO("Turn it off first!"))
-			return
-
-		anchored = !anchored
-		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
-		to_chat(user, SPAN_INFO("You [anchored ? "wrench" : "unwrench"] \the [src]."))
-
-		return
-	..()
-
-
-/obj/machinery/portable_atmospherics/scrubber/huge/stationary
-	name = "Stationary Air Scrubber"
-
-/obj/machinery/portable_atmospherics/scrubber/huge/stationary/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
-		to_chat(user, SPAN_INFO("The bolts are too tight for you to unscrew!"))
-		return
-	..()
-
+	var/on = FALSE
+	var/volume_rate = 800
 
 /obj/machinery/portable_atmospherics/scrubber/update_icon()
 	src.overlays = 0
@@ -197,3 +135,65 @@ Power regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?src=\
 		usr << browse(null, "window=scrubber")
 		return
 	return
+
+/obj/machinery/portable_atmospherics/scrubber/emp_act(severity)
+	if(stat & (BROKEN | NOPOWER))
+		..(severity)
+		return
+
+	if(prob(50 / severity))
+		on = !on
+		update_icon()
+
+	..(severity)
+
+
+/obj/machinery/portable_atmospherics/scrubber/huge
+	name = "Huge Air Scrubber"
+	icon_state = "scrubber:0"
+	anchored = TRUE
+	volume = 50000
+	volume_rate = 5000
+
+	var/global/gid = 1
+	var/id = 0
+	
+/obj/machinery/portable_atmospherics/scrubber/huge/New()
+	..()
+	id = gid
+	gid++
+	name = "[name] (ID [id])"
+
+/obj/machinery/portable_atmospherics/scrubber/huge/attack_hand(mob/user as mob)
+	to_chat(usr, SPAN_INFO("You can't directly interact with this machine. Use the area atmos computer."))
+
+/obj/machinery/portable_atmospherics/scrubber/huge/update_icon()
+	src.overlays = 0
+
+	if(on)
+		icon_state = "scrubber:1"
+	else
+		icon_state = "scrubber:0"
+
+/obj/machinery/portable_atmospherics/scrubber/huge/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/wrench))
+		if(on)
+			to_chat(user, SPAN_INFO("Turn it off first!"))
+			return
+
+		anchored = !anchored
+		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
+		to_chat(user, SPAN_INFO("You [anchored ? "wrench" : "unwrench"] \the [src]."))
+
+		return
+	..()
+
+
+/obj/machinery/portable_atmospherics/scrubber/huge/stationary
+	name = "Stationary Air Scrubber"
+
+/obj/machinery/portable_atmospherics/scrubber/huge/stationary/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/wrench))
+		to_chat(user, SPAN_INFO("The bolts are too tight for you to unscrew!"))
+		return
+	..()

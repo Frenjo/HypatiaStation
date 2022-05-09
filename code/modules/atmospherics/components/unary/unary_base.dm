@@ -58,7 +58,6 @@
 		network.normal_members += src
 		network.build_network(node, src)
 
-
 /obj/machinery/atmospherics/unary/return_network(obj/machinery/atmospherics/reference)
 	build_network()
 

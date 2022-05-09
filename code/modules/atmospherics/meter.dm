@@ -3,14 +3,15 @@
 	desc = "It measures something."
 	icon = 'icons/obj/meter.dmi'
 	icon_state = "meterX"
-	var/obj/machinery/atmospherics/pipe/target = null
-	anchored = 1.0
+	anchored = TRUE
 	power_channel = ENVIRON
-	var/frequency = 0
-	var/id
-	use_power = 1
+	use_power = TRUE
 	idle_power_usage = 2
 	active_power_usage = 5
+
+	var/obj/machinery/atmospherics/pipe/target = null
+	var/frequency = 0
+	var/id
 
 /obj/machinery/meter/initialize()
 	if(!target)
@@ -63,18 +64,6 @@
 		)
 		radio_connection.post_signal(src, signal)
 
-/obj/machinery/meter/proc/status()
-	var/t = ""
-	if(src.target)
-		var/datum/gas_mixture/environment = target.return_air()
-		if(environment)
-			t += "The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.temperature,0.01)]&deg;K ([round(environment.temperature-T0C,0.01)]&deg;C)"
-		else
-			t += "The sensor error light is blinking."
-	else
-		t += "The connect error light is blinking."
-	return t
-
 /obj/machinery/meter/examine()
 	set src in view(3)
 
@@ -93,7 +82,7 @@
 		to_chat(usr, SPAN_INFO_B("You are too far away."))
 		return 1
 
-	usr << t
+	to_chat(usr, t)
 	return 1
 
 /obj/machinery/meter/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -102,9 +91,25 @@
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 	to_chat(user, SPAN_INFO("You begin to unfasten \the [src]..."))
 	if(do_after(user, 40))
-		user.visible_message("[user] unfastens \the [src].", SPAN_INFO("You have unfastened \the [src]."), "You hear a ratchet.")
+		user.visible_message(
+			"[user] unfastens \the [src].",
+			SPAN_INFO("You have unfastened \the [src]."),
+			"You hear a ratchet."
+		)
 		new /obj/item/pipe_meter(src.loc)
 		qdel(src)
+
+/obj/machinery/meter/proc/status()
+	var/t = ""
+	if(src.target)
+		var/datum/gas_mixture/environment = target.return_air()
+		if(environment)
+			t += "The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.temperature,0.01)]&deg;K ([round(environment.temperature-T0C,0.01)]&deg;C)"
+		else
+			t += "The sensor error light is blinking."
+	else
+		t += "The connect error light is blinking."
+	return t
 
 
 // TURF METER - REPORTS A TILE'S AIR CONTENTS
