@@ -5,6 +5,12 @@
 	icon_state = "doorctrl0"
 	desc = "A remote control-switch for a door."
 	power_channel = ENVIRON
+
+	anchored = TRUE
+	use_power = TRUE
+	idle_power_usage = 2
+	active_power_usage = 4
+
 	var/id = null
 	var/range = 10
 	var/normaldoorcontrol = 0
@@ -19,17 +25,12 @@
 
 	*/
 
-	var/exposedwires = 0
+	var/exposedwires = FALSE
 	var/wires = 3
 	/*
 	Bitflag,	1=checkID
 				2=Network Access
 	*/
-
-	anchored = 1.0
-	use_power = 1
-	idle_power_usage = 2
-	active_power_usage = 4
 
 /obj/machinery/door_control/attack_ai(mob/user as mob)
 	if(wires & 2)
@@ -65,12 +66,12 @@
 
 /obj/machinery/door_control/attack_hand(mob/user as mob)
 	src.add_fingerprint(usr)
-	if(stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER | BROKEN))
 		return
 
 	if(!allowed(user) && (wires & 1))
 		to_chat(user, SPAN_WARNING("Access denied."))
-		flick("doorctrl-denied",src)
+		flick("doorctrl-denied", src)
 		return
 
 	use_power(5)
@@ -135,6 +136,20 @@
 	else
 		icon_state = "doorctrl0"
 
+
+/obj/machinery/driver_button
+	name = "mass driver button"
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "launcherbtt"
+	desc = "A remote control switch for a mass driver."
+	anchored = TRUE
+	use_power = TRUE
+	idle_power_usage = 2
+	active_power_usage = 4
+
+	var/id = null
+	var/active = FALSE
+
 /obj/machinery/driver_button/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
@@ -148,7 +163,7 @@
 
 /obj/machinery/driver_button/attack_hand(mob/user as mob)
 	src.add_fingerprint(usr)
-	if(stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER | BROKEN))
 		return
 	if(active)
 		return
@@ -156,7 +171,7 @@
 
 	use_power(5)
 
-	active = 1
+	active = TRUE
 	icon_state = "launcheract"
 
 	for(var/obj/machinery/door/poddoor/M in world)
@@ -180,6 +195,5 @@
 				return
 
 	icon_state = "launcherbtt"
-	active = 0
-
+	active = FALSE
 	return

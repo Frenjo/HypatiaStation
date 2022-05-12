@@ -1,11 +1,11 @@
 /* Morgue stuff
  * Contains:
  *		Morgue
- *		Morgue trays
- *		Creamatorium
- *		Creamatorium trays
+ *		Morgue Trays
+ *		Crematorium
+ *		Crematorium Trays
+ *		Crematorium Switches
  */
-
 
 /*
  * Morgue
@@ -16,9 +16,10 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "morgue1"
 	dir = EAST
-	density = 1
+	density = TRUE
+	anchored = TRUE
+
 	var/obj/structure/m_tray/connected = null
-	anchored = 1.0
 
 /obj/structure/morgue/proc/update()
 	if(src.connected)
@@ -122,20 +123,20 @@
 		qdel(src.connected)
 	return
 
-
 /*
- * Morgue tray
+ * Morgue Tray
  */
 /obj/structure/m_tray
 	name = "morgue tray"
 	desc = "Apply corpse before closing."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "morguet"
-	density = 1
+	density = TRUE
 	layer = 2.0
+	anchored = TRUE
+	throwpass = TRUE
+
 	var/obj/structure/morgue/connected = null
-	anchored = 1
-	throwpass = 1
 
 /obj/structure/m_tray/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
@@ -168,7 +169,6 @@
 				to_chat(B, SPAN_WARNING("[user] stuffs [O] into [src]!"))
 	return
 
-
 /*
  * Crematorium
  */
@@ -177,18 +177,19 @@
 	desc = "A human incinerator. Works well on barbeque nights."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "crema1"
-	density = 1
+	density = TRUE
+	anchored = TRUE
+
 	var/obj/structure/c_tray/connected = null
-	anchored = 1.0
-	var/cremating = 0
+	var/cremating = FALSE
 	var/id = 1
-	var/locked = 0
+	var/locked = FALSE
 
 /obj/structure/crematorium/proc/update()
 	if(src.connected)
 		src.icon_state = "crema0"
 	else
-		if (src.contents.len)
+		if(src.contents.len)
 			src.icon_state = "crema2"
 		else
 			src.icon_state = "crema1"
@@ -313,8 +314,8 @@
 		for(var/mob/M in viewers(src))
 			M.show_message(SPAN_WARNING("You hear a roar as the crematorium activates."), 1)
 
-		cremating = 1
-		locked = 1
+		cremating = TRUE
+		locked = TRUE
 
 		for(var/mob/living/M in contents)
 			if(M.stat != DEAD)
@@ -332,25 +333,25 @@
 
 		new /obj/effect/decal/cleanable/ash(src)
 		sleep(30)
-		cremating = 0
-		locked = 0
+		cremating = FALSE
+		locked = FALSE
 		playsound(src, 'sound/machines/ding.ogg', 50, 1)
 	return
 
-
 /*
- * Crematorium tray
+ * Crematorium Tray
  */
 /obj/structure/c_tray
 	name = "crematorium tray"
 	desc = "Apply body before burning."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "cremat"
-	density = 1
+	density = TRUE
 	layer = 2.0
+	anchored = TRUE
+	throwpass = TRUE
+
 	var/obj/structure/crematorium/connected = null
-	anchored = 1
-	throwpass = 1
 
 /obj/structure/c_tray/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
@@ -383,6 +384,22 @@
 				to_chat(B, SPAN_WARNING("[user] stuffs [O] into [src]!"))
 			//Foreach goto(99)
 	return
+
+/*
+ * Crematorium Switch
+ */
+/obj/machinery/crema_switch
+	desc = "Burn baby burn!"
+	name = "crematorium igniter"
+	icon = 'icons/obj/power.dmi'
+	icon_state = "crema_switch"
+	anchored = TRUE
+	req_access = list(ACCESS_CREMATORIUM)
+
+	var/on = FALSE
+	var/area/area = null
+	var/otherarea = null
+	var/id = 1
 
 /obj/machinery/crema_switch/attack_hand(mob/user as mob)
 	if(src.allowed(user))

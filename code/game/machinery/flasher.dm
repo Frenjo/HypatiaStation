@@ -5,22 +5,23 @@
 	desc = "A wall-mounted flashbulb device."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "mflash1"
+	anchored = TRUE
+
 	var/id = null
 	var/range = 2 //this is roughly the size of brig cell
-	var/disable = 0
+	var/disable = FALSE
 	var/last_flash = 0 //Don't want it getting spammed like regular flashes
 	var/strength = 10 //How weakened targets are when flashed.
 	var/base_state = "mflash"
-	anchored = 1
 
 /obj/machinery/flasher/portable //Portable version of the flasher. Only flashes when anchored
 	name = "portable flasher"
 	desc = "A portable flashing device. Wrench to activate and deactivate. Cannot detect slow movements."
 	icon_state = "pflash1"
 	strength = 8
-	anchored = 0
+	anchored = FALSE
 	base_state = "pflash"
-	density = 1
+	density = TRUE
 
 /*
 /obj/machinery/flasher/New()
@@ -91,7 +92,7 @@
 
 
 /obj/machinery/flasher/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(stat & (BROKEN | NOPOWER))
 		..(severity)
 		return
 	if(prob(75 / severity))
@@ -120,6 +121,20 @@
 			user.show_message(SPAN_WARNING("[src] is now secured."))
 			src.overlays += "[base_state]-s"
 
+/obj/machinery/flasher_button
+	name = "flasher button"
+	desc = "A remote control switch for a mounted flasher."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "launcherbtt"
+
+	anchored = TRUE
+	use_power = TRUE
+	idle_power_usage = 2
+	active_power_usage = 4
+
+	var/id = null
+	var/active = FALSE
+
 /obj/machinery/flasher_button/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
@@ -130,14 +145,14 @@
 	return src.attack_hand(user)
 
 /obj/machinery/flasher_button/attack_hand(mob/user as mob)
-	if(stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER | BROKEN))
 		return
 	if(active)
 		return
 
 	use_power(5)
 
-	active = 1
+	active = TRUE
 	icon_state = "launcheract"
 
 	for(var/obj/machinery/flasher/M in world)
@@ -148,6 +163,5 @@
 	sleep(50)
 
 	icon_state = "launcherbtt"
-	active = 0
-
+	active = FALSE
 	return
