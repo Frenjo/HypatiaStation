@@ -15,7 +15,7 @@
 
 	name = "Air Vent (Off)"
 	desc = "Has a valve and pump attached to it"
-	use_power = 1
+	use_power = TRUE
 
 	level = 1
 
@@ -108,7 +108,7 @@
 				loc.assume_air(removed)
 
 				if(network)
-					network.update = 1
+					network.update = TRUE
 
 	else //external -> internal
 		var/pressure_delta = 10000
@@ -128,7 +128,7 @@
 				air_contents.merge(removed)
 
 				if(network)
-					network.update = 1
+					network.update = TRUE
 	return 1
 
 /obj/machinery/atmospherics/unary/vent_pump/proc/broadcast_status()

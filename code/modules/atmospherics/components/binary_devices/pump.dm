@@ -82,9 +82,9 @@ Thus, the two variables affect pump operation are set in New():
 		air2.merge(removed)
 
 		if(network1)
-			network1.update = 1
+			network1.update = TRUE
 		if(network2)
-			network2.update = 1
+			network2.update = TRUE
 
 	return 1
 

@@ -79,13 +79,13 @@
 		air3.merge(removed2)
 
 	if(network1 && transfer_moles1)
-		network1.update = 1
+		network1.update = TRUE
 
 	if(network2 && transfer_moles2)
-		network2.update = 1
+		network2.update = TRUE
 
 	if(network3)
-		network3.update = 1
+		network3.update = TRUE
 
 	return 1
 

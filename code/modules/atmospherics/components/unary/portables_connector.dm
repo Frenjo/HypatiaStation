@@ -5,11 +5,12 @@
 	name = "Connector Port"
 	desc = "For connecting portables devices related to atmospherics control."
 
+	use_power = FALSE
+	level = 0
+
 	var/obj/machinery/portable_atmospherics/connected_device
 
-	var/on = 0
-	use_power = 0
-	level = 0
+	var/on = FALSE
 
 
 /obj/machinery/atmospherics/unary/portables_connector/New()
@@ -64,10 +65,10 @@
 	if(!on)
 		return
 	if(!connected_device)
-		on = 0
+		on = FALSE
 		return
 	if(network)
-		network.update = 1
+		network.update = TRUE
 	return 1
 
 /obj/machinery/atmospherics/unary/portables_connector/return_network(obj/machinery/atmospherics/reference)

@@ -53,10 +53,10 @@
 		air2.merge(removed)
 
 		if(network1)
-			network1.update = 1
+			network1.update = TRUE
 
 		if(network2)
-			network2.update = 1
+			network2.update = TRUE
 
 	//Radio remote control
 /obj/machinery/atmospherics/binary/passive_gate/proc/set_frequency(new_frequency)

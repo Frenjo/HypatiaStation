@@ -9,7 +9,7 @@
 	dir = SOUTH
 	initialize_directions = SOUTH
 
-	var/on = 0
+	var/on = FALSE
 
 	var/oxygen_content = 10
 
@@ -19,7 +19,7 @@
 	else
 		icon_state = "exposed_off"
 
-		on = 0
+		on = FALSE
 
 	return
 
@@ -44,6 +44,6 @@
 		air_contents.adjust_gas(GAS_OXYGEN, added_oxygen)
 
 		if(network)
-			network.update = 1
+			network.update = TRUE
 
 	return 1

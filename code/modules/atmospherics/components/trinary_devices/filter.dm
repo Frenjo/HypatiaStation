@@ -127,13 +127,13 @@ Filter types:
 		air3.merge(removed)
 
 	if(network2)
-		network2.update = 1
+		network2.update = TRUE
 
 	if(network3)
-		network3.update = 1
+		network3.update = TRUE
 
 	if(network1)
-		network1.update = 1
+		network1.update = TRUE
 
 	return 1
 

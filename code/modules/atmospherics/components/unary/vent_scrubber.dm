@@ -6,7 +6,7 @@
 
 	name = "Air Scrubber (Off)"
 	desc = "Has a valve and pump attached to it"
-	use_power = 1
+	use_power = TRUE
 
 	level = 1
 
@@ -145,7 +145,7 @@
 			loc.assume_air(removed)
 
 			if(network)
-				network.update = 1
+				network.update = TRUE
 
 	else //Just siphoning all air
 		if(air_contents.return_pressure() >= 50 * ONE_ATMOSPHERE)
@@ -158,7 +158,7 @@
 		air_contents.merge(removed)
 
 		if(network)
-			network.update = 1
+			network.update = TRUE
 
 	return 1
 

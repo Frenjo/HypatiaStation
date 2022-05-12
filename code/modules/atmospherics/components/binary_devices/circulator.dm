@@ -41,7 +41,7 @@
 
 				//Update the gas networks.
 				if(network1)
-					network1.update = 1
+					network1.update = TRUE
 
 				last_worldtime_transfer = world.time
 		else

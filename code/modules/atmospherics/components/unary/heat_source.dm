@@ -8,7 +8,7 @@
 	name = "Heat Reservoir"
 	desc = "Heats gas when connected to pipe network"
 
-	var/on = 0
+	var/on = FALSE
 
 	var/current_temperature = T20C
 	var/current_heat_capacity = 50000 //totally random
@@ -19,7 +19,7 @@
 	else
 		icon_state = "exposed"
 
-		on = 0
+		on = FALSE
 
 	return
 
@@ -38,5 +38,5 @@
 	//todo: have current temperature affected. require power to bring up current temperature again
 
 	if(abs(old_temperature - air_contents.temperature) > 1)
-		network.update = 1
+		network.update = TRUE
 	return 1

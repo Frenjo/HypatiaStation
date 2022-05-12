@@ -56,11 +56,11 @@
 
 	if(network)
 		if(abs(old_temperature - air_contents.temperature) > 1)
-			network.update = 1
+			network.update = TRUE
 
 	if(partner.network)
 		if(abs(other_old_temperature-partner.air_contents.temperature) > 1)
-			partner.network.update = 1
+			partner.network.update = TRUE
 
 	return 1
 
@@ -82,9 +82,10 @@
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 	to_chat(user, SPAN_INFO("You begin to unfasten \the [src]..."))
 	if(do_after(user, 40))
-		user.visible_message( \
-			"[user] unfastens \the [src].", \
-			SPAN_INFO("You have unfastened \the [src]."), \
-			"You hear a ratchet.")
+		user.visible_message(
+			"[user] unfastens \the [src].",
+			SPAN_INFO("You have unfastened \the [src]."),
+			"You hear a ratchet."
+		)
 		new /obj/item/pipe(loc, make_from=src)
 		qdel(src)

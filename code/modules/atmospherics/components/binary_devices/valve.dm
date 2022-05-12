@@ -118,9 +118,9 @@
 		network2 = network1
 
 	if(network1)
-		network1.update = 1
+		network1.update = TRUE
 	else if(network2)
-		network2.update = 1
+		network2.update = TRUE
 
 	return 1
 

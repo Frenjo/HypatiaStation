@@ -83,7 +83,7 @@
 				loc.assume_air(removed)
 
 				if(network1)
-					network1.update = 1
+					network1.update = TRUE
 
 	else //external -> output
 		var/pressure_delta = 10000
@@ -102,7 +102,7 @@
 				air2.merge(removed)
 
 				if(network2)
-					network2.update = 1
+					network2.update = TRUE
 
 	return 1
 

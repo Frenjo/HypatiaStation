@@ -132,7 +132,7 @@
 		//turf_air already modified by equalize_gases()
 
 	if(network)
-		network.update = 1
+		network.update = TRUE
 
 /datum/pipeline/proc/temperature_interact(turf/target, share_volume, thermal_conductivity)
 	var/total_heat_capacity = air.heat_capacity()
@@ -190,7 +190,7 @@
 
 			air.temperature -= heat / total_heat_capacity
 	if(network)
-		network.update = 1
+		network.update = TRUE
 
 // Ported from Baystation12 on 27/11/2019. -Frenjo
 //surface must be the surface area in m^2
@@ -203,4 +203,4 @@
 	air.add_thermal_energy(heat_gain)
 
 	if(network)
-		network.update = 1
+		network.update = TRUE
