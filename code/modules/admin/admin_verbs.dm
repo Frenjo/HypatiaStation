@@ -489,7 +489,7 @@ var/list/admin_verbs_donor = list(
 	var/datum/preferences/D
 	var/client/C = directory[warned_ckey]
 	if(C)	D = C.prefs
-	else	D = preferences_datums[warned_ckey]
+	else	D = global.preferences_datums[warned_ckey]
 
 	if(!D)
 		src << "<font color='red'>Error: warn(): No such ckey found.</font>"

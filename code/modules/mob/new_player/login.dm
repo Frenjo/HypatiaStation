@@ -12,7 +12,7 @@
 		mind.current = src
 
 	loc = null
-	client.screen += splashscreen
+	client.screen += global.splashscreen
 	my_client = client
 
 	sight |= SEE_TURFS

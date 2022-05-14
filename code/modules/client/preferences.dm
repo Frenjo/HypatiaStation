@@ -1,26 +1,5 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
-var/list/preferences_datums = list()
-
-var/global/list/special_roles = list( //keep synced with the defines BE_* in setup.dm --rastaf
-//some autodetection here.
-	"traitor" = IS_MODE_COMPILED("traitor"),			// 0
-	"operative" = IS_MODE_COMPILED("nuclear"),			// 1
-	"changeling" = IS_MODE_COMPILED("changeling"),		// 2
-	"wizard" = IS_MODE_COMPILED("wizard"),				// 3
-	"malf AI" = IS_MODE_COMPILED("malfunction"),		// 4
-	"revolutionary" = IS_MODE_COMPILED("revolution"),	// 5
-	"alien candidate" = 1, //always show				// 6
-	"pAI candidate" = 1, // -- TLE						// 7
-	"cultist" = IS_MODE_COMPILED("cult"),				// 8
-	"infested monkey" = IS_MODE_COMPILED("monkey"),		// 9
-	"ninja" = "true",									// 10
-	//"vox raider" = IS_MODE_COMPILED("heist"),			// 11
-	"diona" = 1,										// 12
-)
-
-var/const/MAX_SAVE_SLOTS = 20
-
 /datum/preferences
 	//doohickeys for savefiles
 	var/path
@@ -44,7 +23,7 @@ var/const/MAX_SAVE_SLOTS = 20
 
 	//character preferences
 	var/real_name						//our character's name
-	var/be_random_name = 0				//whether we are a random name every round
+	var/be_random_name = FALSE			//whether we are a random name every round
 	var/gender = MALE					//gender of character (well duh)
 	var/age = 30						//age of character
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
@@ -69,12 +48,12 @@ var/const/MAX_SAVE_SLOTS = 20
 	var/species = "Human"
 	var/language = "None"				//Secondary language
 
-		//Mob preview
+	//Mob preview
 	var/icon/preview_icon = null
 	var/icon/preview_icon_front = null
 	var/icon/preview_icon_side = null
 
-		//Jobs, uses bitflags
+	//Jobs, uses bitflags
 	var/job_civilian_high = 0
 	var/job_civilian_med = 0
 	var/job_civilian_low = 0
@@ -110,7 +89,7 @@ var/const/MAX_SAVE_SLOTS = 20
 
 	var/uplinklocation = "PDA"
 
-		// OOC Metadata:
+	// OOC Metadata:
 	var/metadata = ""
 	var/slot_name = ""
 
@@ -129,17 +108,17 @@ var/const/MAX_SAVE_SLOTS = 20
 	alternate_option = 1
 
 /datum/preferences/proc/ZeroSkills(forced = 0)
-	for(var/V in SKILLS)
-		for(var/datum/skill/S in SKILLS[V])
-			if(!skills.Find(S.ID) || forced)
-				skills[S.ID] = SKILL_NONE
+	for(var/V in global.all_skills)
+		for(var/datum/skill/S in global.all_skills[V])
+			if(!skills.Find(S.id) || forced)
+				skills[S.id] = SKILL_NONE
 
 /datum/preferences/proc/CalculateSkillPoints()
 	used_skillpoints = 0
-	for(var/V in SKILLS)
-		for(var/datum/skill/S in SKILLS[V])
+	for(var/V in global.all_skills)
+		for(var/datum/skill/S in global.all_skills[V])
 			var/multiplier = 1
-			switch(skills[S.ID])
+			switch(skills[S.id])
 				if(SKILL_NONE)
 					used_skillpoints += 0 * multiplier
 				if(SKILL_BASIC)
@@ -184,9 +163,6 @@ var/const/MAX_SAVE_SLOTS = 20
 			return "God"
 
 /datum/preferences/proc/SetSkills(mob/user)
-	if(SKILLS == null)
-		setup_skills()
-
 	if(skills.len == 0)
 		ZeroSkills()
 
@@ -195,11 +171,11 @@ var/const/MAX_SAVE_SLOTS = 20
 	HTML += "Current skill level: <b>[GetSkillClass(used_skillpoints)]</b> ([used_skillpoints])<br>"
 	HTML += "<a href=\"byond://?src=\ref[user];preference=skills;preconfigured=1;\">Use preconfigured skillset</a><br>"
 	HTML += "<table>"
-	for(var/V in SKILLS)
+	for(var/V in global.all_skills)
 		HTML += "<tr><th colspan = 5><b>[V]</b>"
 		HTML += "</th></tr>"
-		for(var/datum/skill/S in SKILLS[V])
-			var/level = skills[S.ID]
+		for(var/datum/skill/S in global.all_skills[V])
+			var/level = skills[S.id]
 			HTML += "<tr style='text-align:left;'>"
 			HTML += "<th><a href='byond://?src=\ref[user];preference=skills;skillinfo=\ref[S]'>[S.name]</a></th>"
 			HTML += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_NONE]'><font color=[(level == SKILL_NONE) ? "red" : "black"]>\[Untrained\]</font></a></th>"
@@ -391,8 +367,8 @@ var/const/MAX_SAVE_SLOTS = 20
 		src.be_special = 0
 	else
 		var/n = 0
-		for(var/i in special_roles)
-			if(special_roles[i]) //if mode is available on the server
+		for(var/i in global.special_roles)
+			if(global.special_roles[i]) //if mode is available on the server
 				if(jobban_isbanned(user, i))
 					dat += "<b>Be [i]:</b> <font color=red><b> \[BANNED]</b></font><br>"
 				else if(i == "pai candidate")
@@ -757,20 +733,20 @@ var/const/MAX_SAVE_SLOTS = 20
 		else if(href_list["setskill"])
 			var/datum/skill/S = locate(href_list["setskill"])
 			var/value = text2num(href_list["newvalue"])
-			skills[S.ID] = value
+			skills[S.id] = value
 			CalculateSkillPoints()
 			SetSkills(user)
 		else if(href_list["preconfigured"])
-			var/selected = input(user, "Select a skillset", "Skillset") as null | anything in SKILL_PRE
+			var/selected = input(user, "Select a skillset", "Skillset") as null | anything in global.skill_presets
 			if(!selected)
 				return
 
 			ZeroSkills(1)
-			for(var/V in SKILL_PRE[selected])
+			for(var/V in global.skill_presets[selected])
 				if(V == "field")
-					skill_specialization = SKILL_PRE[selected]["field"]
+					skill_specialization = global.skill_presets[selected]["field"]
 					continue
-				skills[V] = SKILL_PRE[selected][V]
+				skills[V] = global.skill_presets[selected][V]
 			CalculateSkillPoints()
 
 			SetSkills(user)

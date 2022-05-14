@@ -1,19 +1,20 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
 /mob/new_player
-	var/ready = 0
-	var/spawning = 0//Referenced when you want to delete the new_player later on in the code.
-	var/totalPlayers = 0		 //Player counts for the Lobby tab
-	var/totalPlayersReady = 0
-	universal_speak = 1
+	universal_speak = TRUE
 
 	invisibility = 101
 
-	density = 0
-	stat = 2
-	canmove = 0
+	density = FALSE
+	stat = DEAD
+	canmove = FALSE
 
-	anchored = 1	//  don't get pushed around
+	anchored = TRUE	// don't get pushed around
+
+	var/ready = FALSE
+	var/spawning = FALSE		//Referenced when you want to delete the new_player later on in the code.
+	var/totalPlayers = 0		//Player counts for the Lobby tab
+	var/totalPlayersReady = 0
 
 /mob/new_player/New()
 	mob_list += src
@@ -84,9 +85,10 @@
 			totalPlayers = 0
 			totalPlayersReady = 0
 			for(var/mob/new_player/player in player_list)
-				stat("[player.key]", (player.ready) ? ("(Playing)") : (null))
+				stat("[player.key]", player.ready ? "(Playing)" : null)
 				totalPlayers++
-				if(player.ready)totalPlayersReady++
+				if(player.ready)
+					totalPlayersReady++
 
 /mob/new_player/Topic(href, href_list[])
 	if(!client)
@@ -100,7 +102,7 @@
 		if(!ticker || ticker.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
 			ready = !ready
 		else
-			ready = 0
+			ready = FALSE
 
 	if(href_list["refresh"])
 		src << browse(null, "window=playersetup") //closes the player setup window
@@ -112,7 +114,7 @@
 				return 1
 			var/mob/dead/observer/observer = new()
 
-			spawning = 1
+			spawning = TRUE
 			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
 
 			observer.started_as_observer = 1
@@ -130,8 +132,8 @@
 				client.prefs.real_name = random_name(client.prefs.gender)
 			observer.real_name = client.prefs.real_name
 			observer.name = observer.real_name
-			if(!client.holder && !config.antag_hud_allowed)				// For new ghosts we remove the verb from even showing up if it's not allowed.
-				observer.verbs -= /mob/dead/observer/verb/toggle_antagHUD		// Poor guys, don't know what they are missing!
+			if(!client.holder && !config.antag_hud_allowed)					// For new ghosts we remove the verb from even showing up if it's not allowed.
+				observer.verbs -= /mob/dead/observer/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
 			observer.key = key
 			qdel(src)
 
@@ -168,13 +170,13 @@
 		establish_db_connection()
 		if(!global.dbcon.IsConnected())
 			return
-		var/voted = 0
+		var/voted = FALSE
 
 		//First check if the person has not voted yet.
 		var/DBQuery/query = global.dbcon.NewQuery("SELECT * FROM erro_privacy WHERE ckey='[src.ckey]'")
 		query.Execute()
 		while(query.NextRow())
-			voted = 1
+			voted = TRUE
 			break
 
 		//This is a safety switch, so only valid options pass through
@@ -287,7 +289,7 @@
 		src << alert("[rank] is not available. Please try another.")
 		return 0
 
-	spawning = 1
+	spawning = TRUE
 	close_spawn_windows()
 
 	job_master.assign_role(src, rank, 1)
@@ -368,7 +370,7 @@
 	src << browse(dat, "window=latechoices;size=300x640;can_close=1")
 
 /mob/new_player/proc/create_character()
-	spawning = 1
+	spawning = TRUE
 	close_spawn_windows()
 
 	var/mob/living/carbon/human/new_character

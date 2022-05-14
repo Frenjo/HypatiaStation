@@ -1,9 +1,9 @@
 /mob/new_player/Logout()
-	ready = 0
+	ready = FALSE
 
 	// see login.dm
 	if(my_client)
-		my_client.screen -= splashscreen
+		my_client.screen -= global.splashscreen
 		my_client = null
 
 	..()

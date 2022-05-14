@@ -1,3 +1,22 @@
+/var/global/list/preferences_datums = list()
+
+/var/global/list/special_roles = list(
+//some autodetection here.
+	"traitor" = IS_MODE_COMPILED("traitor"),			// 0
+	"operative" = IS_MODE_COMPILED("nuclear"),			// 1
+	"changeling" = IS_MODE_COMPILED("changeling"),		// 2
+	"wizard" = IS_MODE_COMPILED("wizard"),				// 3
+	"malf AI" = IS_MODE_COMPILED("malfunction"),		// 4
+	"revolutionary" = IS_MODE_COMPILED("revolution"),	// 5
+	"alien candidate" = TRUE, //always show				// 6
+	"pAI candidate" = TRUE, // -- TLE					// 7
+	"cultist" = IS_MODE_COMPILED("cult"),				// 8
+	"infested monkey" = IS_MODE_COMPILED("monkey"),		// 9
+	"ninja" = TRUE,										// 10
+	//"vox raider" = IS_MODE_COMPILED("heist"),			// 11
+	"diona" = TRUE,										// 12
+)
+
 //Preferences stuff
 	//Hairstyles
 /var/global/list/hair_styles_list = list()			//stores /datum/sprite_accessory/hair indexed by name

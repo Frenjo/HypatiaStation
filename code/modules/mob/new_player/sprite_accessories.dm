@@ -31,7 +31,7 @@
 	var/list/species_allowed = list("Human")
 
 	// Whether or not the accessory can be affected by colouration
-	var/do_colouration = 1
+	var/do_colouration = TRUE
 
 
 /*

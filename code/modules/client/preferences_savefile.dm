@@ -11,8 +11,8 @@
 //if a file was updated, return 1
 /datum/preferences/proc/savefile_update()
 	if(savefile_version < 8)	//lazily delete everything + additional files so they can be saved in the new format
-		for(var/ckey in preferences_datums)
-			var/datum/preferences/D = preferences_datums[ckey]
+		for(var/ckey in global.preferences_datums)
+			var/datum/preferences/D = global.preferences_datums[ckey]
 			if(D == src)
 				var/delpath = "data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/"
 				if(delpath && fexists(delpath))
@@ -185,7 +185,7 @@
 		nanotrasen_relation = initial(nanotrasen_relation)
 	if(!real_name)
 		real_name = random_name(gender)
-	be_random_name	= sanitize_integer(be_random_name, 0, 1, initial(be_random_name))
+	be_random_name	= sanitize_integer(be_random_name, FALSE, TRUE, initial(be_random_name))
 	gender			= sanitize_gender(gender)
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	r_hair			= sanitize_integer(r_hair, 0, 255, initial(r_hair))

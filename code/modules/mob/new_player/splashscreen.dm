@@ -1,4 +1,4 @@
-/var/obj/effect/splashscreen = new /obj/effect/splashscreen()
+/var/global/obj/effect/splashscreen = new /obj/effect/splashscreen()
 
 /obj/effect/splashscreen
 	name = "Space Station 13"

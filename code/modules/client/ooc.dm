@@ -1,5 +1,3 @@
-var/global/normal_ooc_colour = "#002eb8"
-
 /client/verb/ooc(msg as text)
 	set name = "OOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
 	set category = "OOC"
@@ -42,7 +40,7 @@ var/global/normal_ooc_colour = "#002eb8"
 
 	log_ooc("[mob.name]/[key] : [msg]")
 
-	var/display_colour = normal_ooc_colour
+	var/display_colour = global.normal_ooc_colour
 	if(holder && !holder.fakekey)
 		display_colour = "#0099cc"	//light blue
 		if(holder.rights & R_MOD && !(holder.rights & R_ADMIN))
@@ -87,7 +85,7 @@ var/global/normal_ooc_colour = "#002eb8"
 	set name = "Set Player OOC Colour"
 	set desc = "Set to yellow for eye burning goodness."
 	set category = "Fun"
-	normal_ooc_colour = newColor
+	global.normal_ooc_colour = newColor
 
 
 /client/verb/looc(msg as text)
