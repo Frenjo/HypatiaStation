@@ -1,8 +1,4 @@
-
 //The advanced pea-green monochrome lcd of tomorrow.
-
-var/global/list/obj/item/device/pda/PDAs = list()
-
 /obj/item/device/pda
 	name = "PDA"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
@@ -22,258 +18,47 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	var/ui_tick = 0
 
 	//Secondary variables
-	var/scanmode = 0 //1 is medical scanner, 2 is forensics, 3 is reagent scanner.
-	var/fon = 0 //Is the flashlight function on?
-	var/f_lum = 2 //Luminosity for the flashlight function
-	var/silent = 0 //To beep or not to beep, that is the question
-	var/toff = 0 //If 1, messenger disabled
-	var/tnote[0]  //Current Texts
-	var/last_text //No text spamming
-	var/last_honk //Also no honk spamming that's bad too
-	var/ttone = "beep" //The ringtone!
-	var/lock_code = "" // Lockcode to unlock uplink
-	var/honkamt = 0 //How many honks left when infected with honk.exe
-	var/mimeamt = 0 //How many silence left when infected with mime.exe
-	var/note = "Congratulations, your station has chosen the Thinktronic 5230 Personal Data Assistant!" //Current note in the notepad function
+	var/scanmode = 0	//1 is medical scanner, 2 is forensics, 3 is reagent scanner.
+	var/fon = 0			//Is the flashlight function on?
+	var/f_lum = 2		//Luminosity for the flashlight function
+	var/silent = FALSE	//To beep or not to beep, that is the question
+	var/toff = FALSE	//If 1, messenger disabled
+	var/tnote[0]		//Current Texts
+	var/last_text		//No text spamming
+	var/last_honk		//Also no honk spamming that's bad too
+	var/ttone = "beep"	//The ringtone!
+	var/lock_code = ""	// Lockcode to unlock uplink
+	var/honkamt = 0		//How many honks left when infected with honk.exe
+	var/mimeamt = 0		//How many silence left when infected with mime.exe
+	var/note = "Congratulations, your station has chosen the Thinktronic 5230 Personal Data Assistant!"	//Current note in the notepad function
 	var/notehtml = ""
-	var/cart = "" //A place to stick cartridge menu information
-	var/detonate = 1 // Can the PDA be blown up?
-	var/hidden = 0 // Is the PDA hidden from the PDA list?
-	var/active_conversation = null // New variable that allows us to only view a single conversation.
+	var/cart = ""		//A place to stick cartridge menu information
+	var/detonate = TRUE	// Can the PDA be blown up?
+	var/hidden = FALSE	// Is the PDA hidden from the PDA list?
+	var/active_conversation = null		// New variable that allows us to only view a single conversation.
 	var/list/conversations = list()		// For keeping up with who we have PDA messsages from.
-	var/newmessage = 0			//To remove hackish overlay check
+	var/newmessage = FALSE				//To remove hackish overlay check
 
-	var/list/cartmodes = list(40, 42, 43, 433, 44, 441, 45, 451, 46, 48, 47, 49) // If you add more cartridge modes add them to this list as well.
-	var/list/no_auto_update = list(1, 40, 43, 44, 441, 45, 451)			// These modes we turn off autoupdate
-	var/list/update_every_five = list(3, 41, 433, 46, 47, 48, 49)				// These we update every 5 ticks
+	var/list/cartmodes = list(40, 42, 43, 433, 44, 441, 45, 451, 46, 48, 47, 49)	// If you add more cartridge modes add them to this list as well.
+	var/list/no_auto_update = list(1, 40, 43, 44, 441, 45, 451)						// These modes we turn off autoupdate
+	var/list/update_every_five = list(3, 41, 433, 46, 47, 48, 49)					// These we update every 5 ticks
 
-	var/obj/item/weapon/card/id/id = null //Making it possible to slot an ID card into the PDA so it can function as both.
-	var/ownjob = null //related to above
+	var/obj/item/weapon/card/id/id = null	//Making it possible to slot an ID card into the PDA so it can function as both.
+	var/ownjob = null						//related to above
 
 	var/obj/item/device/paicard/pai = null	// A slot for a personal AI device
-
-/obj/item/device/pda/medical
-	default_cartridge = /obj/item/weapon/cartridge/medical
-	icon_state = "pda-m"
-
-/obj/item/device/pda/viro
-	default_cartridge = /obj/item/weapon/cartridge/medical
-	icon_state = "pda-v"
-
-/obj/item/device/pda/engineering
-	default_cartridge = /obj/item/weapon/cartridge/engineering
-	icon_state = "pda-e"
-
-/obj/item/device/pda/security
-	default_cartridge = /obj/item/weapon/cartridge/security
-	icon_state = "pda-s"
-
-/obj/item/device/pda/detective
-	default_cartridge = /obj/item/weapon/cartridge/detective
-	icon_state = "pda-det"
-
-/obj/item/device/pda/warden
-	default_cartridge = /obj/item/weapon/cartridge/security
-	icon_state = "pda-warden"
-
-/obj/item/device/pda/janitor
-	default_cartridge = /obj/item/weapon/cartridge/janitor
-	icon_state = "pda-j"
-	ttone = "slip"
-
-/obj/item/device/pda/toxins
-	default_cartridge = /obj/item/weapon/cartridge/signal/toxins
-	icon_state = "pda-tox"
-	ttone = "boom"
-
-/obj/item/device/pda/clown
-	default_cartridge = /obj/item/weapon/cartridge/clown
-	icon_state = "pda-clown"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. The surface is coated with polytetrafluoroethylene and banana drippings."
-	ttone = "honk"
-
-/obj/item/device/pda/mime
-	default_cartridge = /obj/item/weapon/cartridge/mime
-	icon_state = "pda-mime"
-	silent = 1
-	ttone = "silence"
-
-/obj/item/device/pda/heads
-	default_cartridge = /obj/item/weapon/cartridge/head
-	icon_state = "pda-h"
-
-/obj/item/device/pda/heads/hop
-	default_cartridge = /obj/item/weapon/cartridge/hop
-	icon_state = "pda-hop"
-
-/obj/item/device/pda/heads/hos
-	default_cartridge = /obj/item/weapon/cartridge/hos
-	icon_state = "pda-hos"
-
-/obj/item/device/pda/heads/ce
-	default_cartridge = /obj/item/weapon/cartridge/ce
-	icon_state = "pda-ce"
-
-/obj/item/device/pda/heads/cmo
-	default_cartridge = /obj/item/weapon/cartridge/cmo
-	icon_state = "pda-cmo"
-
-/obj/item/device/pda/heads/rd
-	default_cartridge = /obj/item/weapon/cartridge/rd
-	icon_state = "pda-rd"
-
-/obj/item/device/pda/captain
-	default_cartridge = /obj/item/weapon/cartridge/captain
-	icon_state = "pda-c"
-	detonate = 0
-	//toff = 1
-
-/obj/item/device/pda/cargo
-	default_cartridge = /obj/item/weapon/cartridge/quartermaster
-	icon_state = "pda-cargo"
-
-/obj/item/device/pda/quartermaster
-	default_cartridge = /obj/item/weapon/cartridge/quartermaster
-	icon_state = "pda-q"
-
-/obj/item/device/pda/shaftminer
-	icon_state = "pda-miner"
-
-/obj/item/device/pda/syndicate
-	default_cartridge = /obj/item/weapon/cartridge/syndicate
-	icon_state = "pda-syn"
-	name = "Military PDA"
-	owner = "John Doe"
-	hidden = 1
-
-/obj/item/device/pda/chaplain
-	icon_state = "pda-holy"
-	ttone = "holy"
-
-/obj/item/device/pda/lawyer
-	default_cartridge = /obj/item/weapon/cartridge/lawyer
-	icon_state = "pda-lawyer"
-	ttone = "..."
-
-/obj/item/device/pda/botanist
-	//default_cartridge = /obj/item/weapon/cartridge/botanist
-	icon_state = "pda-hydro"
-
-/obj/item/device/pda/roboticist
-	icon_state = "pda-robot"
-
-/obj/item/device/pda/librarian
-	icon_state = "pda-libb"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. This is model is a WGW-11 series e-reader."
-	note = "Congratulations, your station has chosen the Thinktronic 5290 WGW-11 Series E-reader and Personal Data Assistant!"
-	silent = 1 //Quiet in the library!
-
-/obj/item/device/pda/clear
-	icon_state = "pda-transp"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. This is model is a special edition with a transparent case."
-	note = "Congratulations, you have chosen the Thinktronic 5230 Personal Data Assistant Deluxe Special Max Turbo Limited Edition!"
-
-/obj/item/device/pda/chef
-	icon_state = "pda-chef"
-
-/obj/item/device/pda/bar
-	icon_state = "pda-bar"
-
-/obj/item/device/pda/atmos
-	default_cartridge = /obj/item/weapon/cartridge/atmos
-	icon_state = "pda-atmo"
-
-/obj/item/device/pda/chemist
-	default_cartridge = /obj/item/weapon/cartridge/chemistry
-	icon_state = "pda-chem"
-
-/obj/item/device/pda/geneticist
-	default_cartridge = /obj/item/weapon/cartridge/medical
-	icon_state = "pda-gene"
-
-// Mailman gets his own special PDA. -Frenjo
-/obj/item/device/pda/mailman
-	default_cartridge = /obj/item/weapon/cartridge/quartermaster
-	icon_state = "pda-mail"
-
-// Special AI/pAI PDAs that cannot explode.
-/obj/item/device/pda/ai
-	icon_state = "NONE"
-	ttone = "data"
-	detonate = 0
-
-/obj/item/device/pda/ai/proc/set_name_and_job(newname as text, newjob as text)
-	owner = newname
-	ownjob = newjob
-	name = newname + " (" + ownjob + ")"
-
-//AI verb and proc for sending PDA messages.
-/obj/item/device/pda/ai/verb/cmd_send_pdamesg()
-	set category = "AI IM"
-	set name = "Send Message"
-	set src in usr
-	if(usr.stat == DEAD)
-		to_chat(usr, "You can't send PDA messages because you are dead!")
-		return
-	var/list/plist = available_pdas()
-	if(plist)
-		var/c = input(usr, "Please select a PDA") as null | anything in sortList(plist)
-		if(!c) // if the user hasn't selected a PDA file we can't send a message
-			return
-		var/selected = plist[c]
-		create_message(usr, selected)
-
-/obj/item/device/pda/ai/verb/cmd_toggle_pda_receiver()
-	set category = "AI IM"
-	set name = "Toggle Sender/Receiver"
-	set src in usr
-	if(usr.stat == DEAD)
-		to_chat(usr, "You can't do that because you are dead!")
-		return
-	toff = !toff
-	to_chat(usr, SPAN_NOTICE("PDA sender/receiver toggled [(toff ? "Off" : "On")]!"))
-
-/obj/item/device/pda/ai/verb/cmd_toggle_pda_silent()
-	set category = "AI IM"
-	set name = "Toggle Ringer"
-	set src in usr
-	if(usr.stat == DEAD)
-		to_chat(usr, "You can't do that because you are dead!")
-		return
-	silent = !silent
-	to_chat(usr, SPAN_NOTICE("PDA ringer toggled [(silent ? "Off" : "On")]!"))
-
-/obj/item/device/pda/ai/verb/cmd_show_message_log()
-	set category = "AI IM"
-	set name = "Show Message Log"
-	set src in usr
-	if(usr.stat == DEAD)
-		to_chat(usr, "You can't do that because you are dead!")
-		return
-	var/HTML = "<html><head><title>AI PDA Message Log</title></head><body>"
-	for(var/index in tnote)
-		if(index["sent"])
-			HTML += addtext("<i><b>&rarr; To <a href='byond://?src=\ref[src];choice=Message;target=", index["src"], "'>", index["owner"], "</a>:</b></i><br>", index["message"], "<br>")
-		else
-			HTML += addtext("<i><b>&larr; From <a href='byond://?src=\ref[src];choice=Message;target=", index["target"], "'>", index["owner"], "</a>:</b></i><br>", index["message"], "<br>")
-	HTML += "</body></html>"
-	usr << browse(HTML, "window=log;size=400x444;border=1;can_resize=1;can_close=1;can_minimize=0")
-
-/obj/item/device/pda/ai/can_use()
-	return 1
-
-/obj/item/device/pda/ai/attack_self(mob/user as mob)
-	if(honkamt > 0 && prob(60))//For clown virus.
-		honkamt--
-		playsound(loc, 'sound/items/bikehorn.ogg', 30, 1)
-	return
-
-/obj/item/device/pda/ai/pai
-	ttone = "assist"
 
 /*
  *	The Actual PDA
  */
+/obj/item/device/pda/New()
+	..()
+	global.pda_list += src
+	global.pda_list = sortAtom(global.pda_list)
+	if(default_cartridge)
+		cartridge = new default_cartridge(src)
+	new /obj/item/weapon/pen(src)
+
 /obj/item/device/pda/pickup(mob/user)
 	if(fon)
 		set_light(0)
@@ -283,14 +68,6 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if(fon)
 		user.set_light(user.luminosity - f_lum)
 		set_light(f_lum)
-
-/obj/item/device/pda/New()
-	..()
-	PDAs += src
-	PDAs = sortAtom(PDAs)
-	if(default_cartridge)
-		cartridge = new default_cartridge(src)
-	new /obj/item/weapon/pen(src)
 
 /obj/item/device/pda/proc/can_use()
 	if(!ismob(loc))
@@ -319,13 +96,12 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		return attack_self(M)
 	return
 
-
 /obj/item/device/pda/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	ui_tick++
 	var/datum/nanoui/old_ui = nanomanager.get_open_ui(user, src, "main")
-	var/auto_update = 1
+	var/auto_update = TRUE
 	if(mode in no_auto_update)
-		auto_update = 0
+		auto_update = FALSE
 	if(old_ui && (mode == lastmode && ui_tick % 5 && mode in update_every_five))
 		return
 
@@ -335,23 +111,22 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	var/data[0] // This is the data that will be sent to the PDA
 
-
 	data["owner"] = owner					// Who is your daddy...
 	data["ownjob"] = ownjob					// ...and what does he do?
 
 	data["mode"] = mode					// The current view
 	data["scanmode"] = scanmode				// Scanners
 	data["fon"] = fon					// Flashlight on?
-	data["pai"] = (isnull(pai) ? 0 : 1)			// pAI inserted?
+	data["pai"] = (isnull(pai) ? FALSE : TRUE)			// pAI inserted?
 	data["note"] = note					// current pda notes
 	data["silent"] = silent					// does the pda make noise when it receives a message?
 	data["toff"] = toff					// is the messenger function turned off?
 	data["active_conversation"] = active_conversation	// Which conversation are we following right now?
 
-	data["idInserted"] = (id ? 1 : 0)
+	data["idInserted"] = (id ? TRUE : FALSE)
 	data["idLink"] = (id ? text("[id.registered_name], [id.assignment]") : "--------")
 
-	data["cart_loaded"] = cartridge ? 1:0
+	data["cart_loaded"] = cartridge ? TRUE : FALSE
 	if(cartridge)
 		var/cartdata[0]
 
@@ -396,7 +171,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		var/convopdas[0]
 		var/pdas[0]
 		var/count = 0
-		for(var/obj/item/device/pda/P in PDAs)
+		for(var/obj/item/device/pda/P in global.pda_list)
 			if(!P.owner || P.toff || P == src || P.hidden)
 				continue
 			if(conversations.Find("\ref[P]"))
@@ -678,7 +453,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 					if(!P.toff && cartridge.charges > 0)
 						cartridge.charges--
 						U.show_message(SPAN_INFO("Virus sent!"), 1)
-						P.silent = 1
+						P.silent = TRUE
 						P.ttone = "silence"
 				else
 					to_chat(U, "PDA not found.")
@@ -781,7 +556,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	if(mode == 2 || mode == 21)//To clear message overlays.
 		overlays.Cut()
-		newmessage = 0
+		newmessage = FALSE
 
 	if(honkamt > 0 && prob(60))//For clown virus.
 		honkamt--
@@ -952,7 +727,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		log_pda("[usr] (PDA: [src.name]) sent \"[t]\" to [P.name]")
 		P.overlays.Cut()
 		P.overlays += image('icons/obj/pda.dmi', "pda-r")
-		P.newmessage = 1
+		P.newmessage = TRUE
 	else
 		to_chat(U, SPAN_NOTICE("ERROR: Messaging server is not responding."))
 
@@ -1185,7 +960,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	return
 
 /obj/item/device/pda/Destroy()
-	PDAs -= src
+	global.pda_list -= src
 	if(src.id && prob(90)) //IDs are kept in 90% of the cases
 		src.id.loc = get_turf(src.loc)
 	return ..()
@@ -1215,7 +990,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		to_chat(usr, "Turn on your receiver in order to send messages.")
 		return
 
-	for(var/obj/item/device/pda/P in PDAs)
+	for(var/obj/item/device/pda/P in global.pda_list)
 		if(!P.owner)
 			continue
 		else if(P.hidden)

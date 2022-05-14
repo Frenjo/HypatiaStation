@@ -3,9 +3,10 @@
 	desc = "An electronic radio system of nanotrasen origin."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "power_mod"
+
 	var/obj/item/device/pda/hostpda = null
 
-	var/on = 0 //Are we currently active??
+	var/on = FALSE //Are we currently active??
 	var/menu_message = ""
 
 /obj/item/radio/integrated/New()

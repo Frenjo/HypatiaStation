@@ -27,3 +27,6 @@
 /var/global/list/solars_list = list()
 
 /var/global/list/datum/pipe_network/pipe_networks = list()
+
+/var/global/list/obj/item/device/pda/pda_list = list()
+/var/global/list/pda_chatrooms = list()

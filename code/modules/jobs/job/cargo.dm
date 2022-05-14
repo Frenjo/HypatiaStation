@@ -26,7 +26,7 @@
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_qm(H), slot_l_ear)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/cargo(H), slot_w_uniform)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/quartermaster(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/device/pda/cargo/quartermaster(H), slot_belt)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), slot_gloves)
 	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), slot_glasses)
 	H.equip_to_slot_or_del(new /obj/item/weapon/clipboard(H), slot_l_hand)
@@ -173,7 +173,7 @@
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_cargo(H), slot_l_ear)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/mailman(H), slot_w_uniform) // Mailman needs the distinctive uniform! -Frenjo
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/mailman(H), slot_belt) // Mailman gets his own PDA now too! -Frenjo
+	H.equip_to_slot_or_del(new /obj/item/device/pda/cargo/mailman(H), slot_belt) // Mailman gets his own PDA now too! -Frenjo
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/blue(H), slot_gloves)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/mailman(H), slot_head) // And the distinctive hat too! -Frenjo
 	

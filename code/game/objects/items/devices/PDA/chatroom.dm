@@ -1,5 +1,3 @@
-var/list/chatrooms = list()
-
 /datum/chatroom
 	var/name = "Generic Chatroom"
 	var/list/logged_in = list()

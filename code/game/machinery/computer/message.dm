@@ -406,10 +406,10 @@
 					if("Recepient")
 						//Get out list of viable PDAs
 						var/list/obj/item/device/pda/sendPDAs = list()
-						for(var/obj/item/device/pda/P in PDAs)
+						for(var/obj/item/device/pda/P in global.pda_list)
 							if(!P.owner || P.toff || P.hidden) continue
 							sendPDAs += P
-						if(PDAs && PDAs.len > 0)
+						if(global.pda_list && global.pda_list.len > 0)
 							customrecepient = input(usr, "Select a PDA from the list.") as null|anything in sortAtom(sendPDAs)
 						else
 							customrecepient = null
@@ -438,7 +438,7 @@
 							return src.attack_hand(usr)
 
 						var/obj/item/device/pda/PDARec = null
-						for (var/obj/item/device/pda/P in PDAs)
+						for (var/obj/item/device/pda/P in global.pda_list)
 							if (!P.owner || P.toff || P.hidden)
 								continue
 							if(P.owner == customsender)

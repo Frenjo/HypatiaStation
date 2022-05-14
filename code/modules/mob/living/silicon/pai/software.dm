@@ -660,7 +660,7 @@
 	[(pda.silent) ? "<font color='red'> \[Off\]</font>" : "<font color='green'> \[On\]</font>"]</a><br><br>"}
 	dat += "<ul>"
 	if(!pda.toff)
-		for (var/obj/item/device/pda/P in sortAtom(PDAs))
+		for (var/obj/item/device/pda/P in sortAtom(global.pda_list))
 			if (!P.owner||P.toff||P == src.pda)	continue
 			dat += "<li><a href='byond://?src=\ref[src];software=pdamessage;target=\ref[P]'>[P]</a>"
 			dat += "</li>"
