@@ -14,8 +14,6 @@
 /var/list/lighting_update_corners_old	= list()	// List of lighting corners  currently being updated.
 /var/list/lighting_update_overlays_old	= list()	// List of lighting overlays currently being updated.
 
-/datum/controller/process/lighting
-
 /datum/controller/process/lighting/setup()
 	name = "lighting"
 

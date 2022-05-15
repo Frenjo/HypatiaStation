@@ -1,16 +1,16 @@
-/var/list/datum/lighting_corner/all_lighting_corners = list()
-/var/datum/lighting_corner/dummy/dummy_lighting_corner = new
+/var/global/list/datum/lighting_corner/all_lighting_corners = list()
+/var/global/datum/lighting_corner/dummy/dummy_lighting_corner = new
 // Because we can control each corner of every lighting overlay.
 // And corners get shared between multiple turfs (unless you're on the corners of the map, then 1 corner doesn't).
 // For the record: these should never ever ever be deleted, even if the turf doesn't have dynamic lighting.
 
 // This list is what the code that assigns corners listens to, the order in this list is the order in which corners are added to the /turf/corners list.
-/var/list/LIGHTING_CORNER_DIAGONAL = list(NORTHEAST, SOUTHEAST, SOUTHWEST, NORTHWEST)
+/var/global/list/lighting_corner_diagonal = list(NORTHEAST, SOUTHEAST, SOUTHWEST, NORTHWEST)
 
 /datum/lighting_corner
 	var/list/turf/masters					= list()
-	var/list/datum/light_source/affecting	= list() // Light sources affecting us.
-	var/active								= FALSE  // TRUE if one of our masters has dynamic lighting.
+	var/list/datum/light_source/affecting	= list()	// Light sources affecting us.
+	var/active								= FALSE		// TRUE if one of our masters has dynamic lighting.
 
 	var/x = 0
 	var/y = 0
@@ -22,17 +22,17 @@
 
 	var/needs_update = FALSE
 
-	var/cache_r  = LIGHTING_SOFT_THRESHOLD
-	var/cache_g  = LIGHTING_SOFT_THRESHOLD
-	var/cache_b  = LIGHTING_SOFT_THRESHOLD
-	var/cache_mx = 0
+	var/cache_r		= LIGHTING_SOFT_THRESHOLD
+	var/cache_g		= LIGHTING_SOFT_THRESHOLD
+	var/cache_b		= LIGHTING_SOFT_THRESHOLD
+	var/cache_mx	= 0
 
 	var/update_gen = 0
 
 /datum/lighting_corner/New(turf/new_turf, diagonal)
 	. = ..()
 
-	all_lighting_corners += src
+	global.all_lighting_corners += src
 
 	masters[new_turf] = turn(diagonal, 180)
 	z = new_turf.z
@@ -56,7 +56,7 @@
 			T.corners = list(null, null, null, null)
 
 		masters[T] = diagonal
-		i = LIGHTING_CORNER_DIAGONAL.Find(turn(diagonal, 180))
+		i = global.lighting_corner_diagonal.Find(turn(diagonal, 180))
 		T.corners[i] = src
 
 	// Now the horizontal one.
@@ -66,7 +66,7 @@
 			T.corners = list(null, null, null, null)
 
 		masters[T] = ((T.x > x) ? EAST : WEST) | ((T.y > y) ? NORTH : SOUTH) // Get the dir based on coordinates.
-		i = LIGHTING_CORNER_DIAGONAL.Find(turn(masters[T], 180))
+		i = global.lighting_corner_diagonal.Find(turn(masters[T], 180))
 		T.corners[i] = src
 
 	// And finally the vertical one.
@@ -76,7 +76,7 @@
 			T.corners = list(null, null, null, null)
 
 		masters[T] = ((T.x > x) ? EAST : WEST) | ((T.y > y) ? NORTH : SOUTH) // Get the dir based on coordinates.
-		i = LIGHTING_CORNER_DIAGONAL.Find(turn(masters[T], 180))
+		i = global.lighting_corner_diagonal.Find(turn(masters[T], 180))
 		T.corners[i] = src
 
 	update_active()
@@ -88,7 +88,7 @@
 			active = TRUE
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
-/datum/lighting_corner/proc/update_lumcount(var/delta_r, var/delta_g, var/delta_b)
+/datum/lighting_corner/proc/update_lumcount(delta_r, delta_g, delta_b)
 	lum_r += delta_r
 	lum_g += delta_g
 	lum_b += delta_b

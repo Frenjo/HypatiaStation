@@ -1,15 +1,16 @@
-var/list/all_lighting_overlays = list() // Global list of lighting overlays.
+/var/global/list/all_lighting_overlays = list() // Global list of lighting overlays.
+
 /atom/movable/lighting_overlay
 	name = ""
 	mouse_opacity = 0
-	simulated = 0
-	anchored = 1
+	simulated = FALSE
+	anchored = TRUE
 	icon = LIGHTING_ICON
 	layer = LIGHTING_LAYER
 	invisibility = INVISIBILITY_LIGHTING
 	color = LIGHTING_BASE_MATRIX
 	icon_state = "light1"
-	auto_init = 0 // doesn't need special init
+	auto_init = FALSE // doesn't need special init
 	blend_mode = BLEND_MULTIPLY
 
 	var/lum_r = 0
@@ -52,10 +53,10 @@ var/list/all_lighting_overlays = list() // Global list of lighting overlays.
 
 	// See LIGHTING_CORNER_DIAGONAL in lighting_corner.dm for why these values are what they are.
 	// No I seriously cannot think of a more efficient method, fuck off Comic.
-	var/datum/lighting_corner/cr = T.corners[3] || dummy_lighting_corner
-	var/datum/lighting_corner/cg = T.corners[2] || dummy_lighting_corner
-	var/datum/lighting_corner/cb = T.corners[4] || dummy_lighting_corner
-	var/datum/lighting_corner/ca = T.corners[1] || dummy_lighting_corner
+	var/datum/lighting_corner/cr = T.corners[3] || global.dummy_lighting_corner
+	var/datum/lighting_corner/cg = T.corners[2] || global.dummy_lighting_corner
+	var/datum/lighting_corner/cb = T.corners[4] || global.dummy_lighting_corner
+	var/datum/lighting_corner/ca = T.corners[1] || global.dummy_lighting_corner
 
 	var/max = max(cr.cache_mx, cg.cache_mx, cb.cache_mx, ca.cache_mx)
 

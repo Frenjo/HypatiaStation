@@ -1,6 +1,6 @@
 /turf
-	var/dynamic_lighting = TRUE
 	luminosity = 1
+	var/dynamic_lighting = TRUE
 
 	var/tmp/lighting_corners_initialised = FALSE
 
@@ -99,4 +99,4 @@
 		if(corners[i]) // Already have a corner on this direction.
 			continue
 
-		corners[i] = new /datum/lighting_corner(src, LIGHTING_CORNER_DIAGONAL[i])
+		corners[i] = new /datum/lighting_corner(src, global.lighting_corner_diagonal[i])
