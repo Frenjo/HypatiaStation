@@ -83,13 +83,12 @@ steam.start() -- spawns the effect
 	icon_state = "extinguish"
 	density = FALSE
 
-/datum/effect/system/steam_spread
-	set_up(n = 3, c = 0, turf/loc)
-		if(n > 10)
-			n = 10
-		number = n
-		cardinals = c
-		location = loc
+/datum/effect/system/steam_spread/set_up(n = 3, c = 0, turf/loc)
+	if(n > 10)
+		n = 10
+	number = n
+	cardinals = c
+	location = loc
 
 /datum/effect/system/steam_spread/start()
 	var/i = 0
@@ -150,15 +149,15 @@ steam.start() -- spawns the effect
 /datum/effect/system/spark_spread
 	var/total_sparks = 0 // To stop it being spammed and lagging!
 
-	set_up(n = 3, c = 0, loca)
-		if(n > 10)
-			n = 10
-		number = n
-		cardinals = c
-		if(isturf(loca))
-			location = loca
-		else
-			location = get_turf(loca)
+/datum/effect/system/spark_spread/set_up(n = 3, c = 0, loca)
+	if(n > 10)
+		n = 10
+	number = n
+	cardinals = c
+	if(isturf(loca))
+		location = loca
+	else
+		location = get_turf(loca)
 
 /datum/effect/system/spark_spread/start()
 	var/i = 0

@@ -352,7 +352,7 @@
 			for(var/client/C in group)
 				C.screen -= O
 
-datum/projectile_data
+/datum/projectile_data
 	var/src_x
 	var/src_y
 	var/time
@@ -362,8 +362,7 @@ datum/projectile_data
 	var/dest_x
 	var/dest_y
 
-/datum/projectile_data/New(src_x, src_y, time, distance, \
-						   power_x, power_y, dest_x, dest_y)
+/datum/projectile_data/New(src_x, src_y, time, distance, power_x, power_y, dest_x, dest_y)
 	src.src_x = src_x
 	src.src_y = src_y
 	src.time = time

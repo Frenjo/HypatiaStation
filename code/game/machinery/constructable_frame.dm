@@ -13,147 +13,146 @@
 	var/list/req_component_names = null
 	var/state = 1
 
-	proc/update_desc()
-		var/D
-		if(req_components)
-			D = "Requires "
-			var/first = 1
-			for(var/I in req_components)
-				if(req_components[I] > 0)
-					D += "[first?"":", "][num2text(req_components[I])] [req_component_names[I]]"
-					first = 0
-			if(first) // nothing needs to be added, then
-				D += "nothing"
-			D += "."
-		desc = D
+/obj/machinery/constructable_frame/proc/update_desc()
+	var/D
+	if(req_components)
+		D = "Requires "
+		var/first = 1
+		for(var/I in req_components)
+			if(req_components[I] > 0)
+				D += "[first?"":", "][num2text(req_components[I])] [req_component_names[I]]"
+				first = 0
+		if(first) // nothing needs to be added, then
+			D += "nothing"
+		D += "."
+	desc = D
 
-/obj/machinery/constructable_frame/machine_frame
-	attackby(obj/item/P as obj, mob/user as mob)
-		if(P.crit_fail)
-			user << "\red This part is faulty, you cannot add this to the machine!"
-			return
-		switch(state)
-			if(1)
-				if(istype(P, /obj/item/stack/cable_coil))
-					var/obj/item/stack/cable_coil/C = P
-					if(C.amount >= 5)
-						playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-						user << "\blue You start to add cables to the frame."
-						if(do_after(user, 20))
-							if(C)
-								C.use(5)
-								user << "\blue You add cables to the frame."
-								state = 2
-								icon_state = "box_1"
-				else
-					if(istype(P, /obj/item/weapon/wrench))
-						playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
-						user << "\blue You dismantle the frame"
-						new /obj/item/stack/sheet/metal(src.loc, 5)
-						qdel(src)
-			if(2)
-				if(istype(P, /obj/item/weapon/circuitboard))
-					var/obj/item/weapon/circuitboard/B = P
-					if(B.board_type == "machine")
-						playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-						user << "\blue You add the circuit board to the frame."
-						circuit = P
-						user.drop_item()
-						P.loc = src
-						icon_state = "box_2"
-						state = 3
-						components = list()
-						req_components = circuit.req_components.Copy()
-						for(var/A in circuit.req_components)
-							req_components[A] = circuit.req_components[A]
-						req_component_names = circuit.req_components.Copy()
-						for(var/A in req_components)
-							var/cp = A
-							var/obj/ct = new cp() // have to quickly instantiate it get name
-							req_component_names[A] = ct.name
-						if(circuit.frame_desc)
-							desc = circuit.frame_desc
-						else
-							update_desc()
-						user << desc
+/obj/machinery/constructable_frame/machine_frame/attackby(obj/item/P as obj, mob/user as mob)
+	if(P.crit_fail)
+		user << "\red This part is faulty, you cannot add this to the machine!"
+		return
+	switch(state)
+		if(1)
+			if(istype(P, /obj/item/stack/cable_coil))
+				var/obj/item/stack/cable_coil/C = P
+				if(C.amount >= 5)
+					playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
+					user << "\blue You start to add cables to the frame."
+					if(do_after(user, 20))
+						if(C)
+							C.use(5)
+							user << "\blue You add cables to the frame."
+							state = 2
+							icon_state = "box_1"
+			else
+				if(istype(P, /obj/item/weapon/wrench))
+					playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
+					user << "\blue You dismantle the frame"
+					new /obj/item/stack/sheet/metal(src.loc, 5)
+					qdel(src)
+		if(2)
+			if(istype(P, /obj/item/weapon/circuitboard))
+				var/obj/item/weapon/circuitboard/B = P
+				if(B.board_type == "machine")
+					playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
+					user << "\blue You add the circuit board to the frame."
+					circuit = P
+					user.drop_item()
+					P.loc = src
+					icon_state = "box_2"
+					state = 3
+					components = list()
+					req_components = circuit.req_components.Copy()
+					for(var/A in circuit.req_components)
+						req_components[A] = circuit.req_components[A]
+					req_component_names = circuit.req_components.Copy()
+					for(var/A in req_components)
+						var/cp = A
+						var/obj/ct = new cp() // have to quickly instantiate it get name
+						req_component_names[A] = ct.name
+					if(circuit.frame_desc)
+						desc = circuit.frame_desc
 					else
-						user << "\red This frame does not accept circuit boards of this type!"
+						update_desc()
+					user << desc
 				else
-					if(istype(P, /obj/item/weapon/wirecutters))
-						playsound(src, 'sound/items/Wirecutter.ogg', 50, 1)
-						user << "\blue You remove the cables."
-						state = 1
-						icon_state = "box_0"
-						var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil(src.loc)
-						A.amount = 5
+					user << "\red This frame does not accept circuit boards of this type!"
+			else
+				if(istype(P, /obj/item/weapon/wirecutters))
+					playsound(src, 'sound/items/Wirecutter.ogg', 50, 1)
+					user << "\blue You remove the cables."
+					state = 1
+					icon_state = "box_0"
+					var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil(src.loc)
+					A.amount = 5
 
-			if(3)
-				if(istype(P, /obj/item/weapon/crowbar))
-					playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
-					state = 2
-					circuit.loc = src.loc
-					circuit = null
-					if(components.len == 0)
-						user << "\blue You remove the circuit board."
-					else
-						user << "\blue You remove the circuit board and other components."
-						for(var/obj/item/weapon/W in components)
-							W.loc = src.loc
-					desc = initial(desc)
-					req_components = null
-					components = null
-					icon_state = "box_1"
+		if(3)
+			if(istype(P, /obj/item/weapon/crowbar))
+				playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
+				state = 2
+				circuit.loc = src.loc
+				circuit = null
+				if(components.len == 0)
+					user << "\blue You remove the circuit board."
 				else
-					if(istype(P, /obj/item/weapon/screwdriver))
-						var/component_check = 1
-						for(var/R in req_components)
-							if(req_components[R] > 0)
-								component_check = 0
-								break
-						if(component_check)
-							playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-							var/obj/machinery/new_machine = new src.circuit.build_path(src.loc)
-							for(var/obj/O in new_machine.component_parts)
-								qdel(O)
-							new_machine.component_parts = list()
-							for(var/obj/O in src)
-								if(circuit.contain_parts) // things like disposal don't want their parts in them
-									O.loc = new_machine
-								else
-									O.loc = null
-								new_machine.component_parts += O
-							if(circuit.contain_parts)
-								circuit.loc = new_machine
+					user << "\blue You remove the circuit board and other components."
+					for(var/obj/item/weapon/W in components)
+						W.loc = src.loc
+				desc = initial(desc)
+				req_components = null
+				components = null
+				icon_state = "box_1"
+			else
+				if(istype(P, /obj/item/weapon/screwdriver))
+					var/component_check = 1
+					for(var/R in req_components)
+						if(req_components[R] > 0)
+							component_check = 0
+							break
+					if(component_check)
+						playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
+						var/obj/machinery/new_machine = new src.circuit.build_path(src.loc)
+						for(var/obj/O in new_machine.component_parts)
+							qdel(O)
+						new_machine.component_parts = list()
+						for(var/obj/O in src)
+							if(circuit.contain_parts) // things like disposal don't want their parts in them
+								O.loc = new_machine
 							else
-								circuit.loc = null
-							new_machine.RefreshParts()
-							qdel(src)
-					else
-						if(istype(P, /obj/item/weapon))
-							for(var/I in req_components)
-								if(istype(P, I) && (req_components[I] > 0))
-									playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-									if(istype(P, /obj/item/stack/cable_coil))
-										var/obj/item/stack/cable_coil/CP = P
-										if(CP.amount > 1)
-											var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
-											var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src)
-											CC.amount = camt
-											CC.update_icon()
-											CP.use(camt)
-											components += CC
-											req_components[I] -= camt
-											update_desc()
-											break
-									user.drop_item()
-									P.loc = src
-									components += P
-									req_components[I]--
-									update_desc()
-									break
-							user << desc
-							if(P && P.loc != src && !istype(P, /obj/item/stack/cable_coil))
-								user << "\red You cannot add that component to the machine!"
+								O.loc = null
+							new_machine.component_parts += O
+						if(circuit.contain_parts)
+							circuit.loc = new_machine
+						else
+							circuit.loc = null
+						new_machine.RefreshParts()
+						qdel(src)
+				else
+					if(istype(P, /obj/item/weapon))
+						for(var/I in req_components)
+							if(istype(P, I) && (req_components[I] > 0))
+								playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
+								if(istype(P, /obj/item/stack/cable_coil))
+									var/obj/item/stack/cable_coil/CP = P
+									if(CP.amount > 1)
+										var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
+										var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src)
+										CC.amount = camt
+										CC.update_icon()
+										CP.use(camt)
+										components += CC
+										req_components[I] -= camt
+										update_desc()
+										break
+								user.drop_item()
+								P.loc = src
+								components += P
+								req_components[I]--
+								update_desc()
+								break
+						user << desc
+						if(P && P.loc != src && !istype(P, /obj/item/stack/cable_coil))
+							user << "\red You cannot add that component to the machine!"
 
 
 //Machine Frame Circuit Boards
@@ -232,7 +231,7 @@ to destroy them and players will be able to make replacements.
 	build_path = /obj/machinery/power/port_gen/pacman/mrs
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_POWERSTORAGE = 5, RESEARCH_TECH_ENGINEERING = 5)
 
-obj/item/weapon/circuitboard/rdserver
+/obj/item/weapon/circuitboard/rdserver
 	name = "Circuit Board (R&D Server)"
 	build_path = /obj/machinery/r_n_d/server
 	board_type = "machine"
