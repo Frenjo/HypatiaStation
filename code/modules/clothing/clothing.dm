@@ -331,7 +331,6 @@ BLIND     // can't see anything
 			to_chat(usr, "Your suit will now report your vital lifesigns.")
 		if(3)
 			to_chat(usr, "Your suit will now report your vital lifesigns as well as your coordinate position.")
-	..()
 
 /obj/item/clothing/under/proc/remove_accessory(mob/user as mob)
 	if(!hastie)

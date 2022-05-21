@@ -550,7 +550,6 @@ obj/structure/cable/proc/cableColor(colorC)
 		src.use(15)
 	else
 		to_chat(usr, SPAN_INFO("You cannot do that."))
-	..()
 
 // Items usable on a cable coil:
 //	- Wirecutters: cut them duh!

@@ -203,17 +203,17 @@ Allow admins to set players to be able to respawn/bypass 30 min wait, without th
 Ccomp's first proc.
 */
 
-/client/proc/get_ghosts(var/notify = 0,var/what = 2)
+/client/proc/get_ghosts(var/notify = 0, var/what = 2)
 	// what = 1, return ghosts ass list.
 	// what = 2, return mob list
 
 	var/list/mobs = list()
 	var/list/ghosts = list()
-	var/list/sortmob = sortAtom(mob_list)                           // get the mob list.
-	/var/any=0
+	var/list/sortmob = sortAtom(mob_list)	// get the mob list.
+	var/any = FALSE
 	for(var/mob/dead/observer/M in sortmob)
-		mobs.Add(M)                                             //filter it where it's only ghosts
-		any = 1                                                 //if no ghosts show up, any will just be 0
+		mobs.Add(M)					//filter it where it's only ghosts
+		any = TRUE					//if no ghosts show up, any will just be 0
 	if(!any)
 		if(notify)
 			src << "There doesn't appear to be any ghosts for you to select."
@@ -221,8 +221,8 @@ Ccomp's first proc.
 
 	for(var/mob/M in mobs)
 		var/name = M.name
-		ghosts[name] = M                                        //get the name of the mob for the popup list
-	if(what==1)
+		ghosts[name] = M			//get the name of the mob for the popup list
+	if(what == 1)
 		return ghosts
 	else
 		return mobs

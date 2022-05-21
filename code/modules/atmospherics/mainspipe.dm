@@ -93,7 +93,6 @@
 	update_icon()
 
 /obj/machinery/atmospherics/mains_pipe/proc/burst()
-	..()
 	for(var/obj/machinery/atmospherics/pipe/mains_component/pipe in contents)
 		burst()
 
