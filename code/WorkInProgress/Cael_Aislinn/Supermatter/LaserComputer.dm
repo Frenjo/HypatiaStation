@@ -7,15 +7,15 @@
 	var/id
 	//var/advanced = 0
 
-/obj/machinery/computer/lasercon
-	New()
-		spawn(1)
-			for(var/obj/machinery/zero_point_emitter/las in world)
-				if(las.id == src.id)
-					lasers += las
-	process()
-		..()
-		updateDialog()
+/obj/machinery/computer/lasercon/New()
+	spawn(1)
+		for(var/obj/machinery/zero_point_emitter/las in world)
+			if(las.id == src.id)
+				lasers += las
+
+/obj/machinery/computer/lasercon/process()
+	..()
+	updateDialog()
 
 	// Edited/ported this code to work with the attack_hand verb. -Frenjo
 	/*interact(mob/user)

@@ -199,7 +199,7 @@ By design, d1 is the smallest direction and d2 is the highest
 				qdel(src)
 	return
 
-obj/structure/cable/proc/cableColor(colorC)
+/obj/structure/cable/proc/cableColor(colorC)
 	var/color_n = "#DD0000"
 	if(colorC)
 		color_n = colorC

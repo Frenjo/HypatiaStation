@@ -235,7 +235,7 @@ VOX HEIST ROUNDTYPE
 
 	..()
 
-datum/game_mode/proc/auto_declare_completion_heist()
+/datum/game_mode/proc/auto_declare_completion_heist()
 	if(raiders.len)
 		var/check_return = 0
 		if(ticker && istype(ticker.mode, /datum/game_mode/heist))

@@ -7,8 +7,9 @@
 	var/percent_depleted = 1
 	layer = 3.1
 	//
-	New()
-		rod_quantities = new/list
+
+/obj/item/weapon/fuel_assembly/New()
+	rod_quantities = new/list
 
 //these can be abstracted away for now
 /*

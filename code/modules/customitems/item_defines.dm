@@ -246,11 +246,11 @@
 	icon_state = "purplecomb"
 	item_state = "purplecomb"
 
-	attack_self(mob/user)
-		if(user.r_hand == src || user.l_hand == src)
-			for(var/mob/O in viewers(user, null))
-				O.show_message(text("\red [] uses [] to comb their hair with incredible style and sophistication. What a guy.", user, src), 1)
-		return
+/obj/item/weapon/fluff/cado_keppel_1/attack_self(mob/user)
+	if(user.r_hand == src || user.l_hand == src)
+		for(var/mob/O in viewers(user, null))
+			O.show_message(text("\red [] uses [] to comb their hair with incredible style and sophistication. What a guy.", user, src), 1)
+	return
 
 /obj/item/weapon/fluff/hugo_cinderbacth_1 //thatoneguy: Hugo Cinderbatch
 	name = "Old Cane"
@@ -325,25 +325,27 @@
 /obj/item/weapon/storage/pill_bottle/fluff/listermedbottle //compactninja: Lister Black
 	name = "Pill bottle (anti-depressants)"
 	desc = "Contains pills used to deal with depression. They appear to be prescribed to Lister Black"
-	New()
-		..()
-		new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
-		new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
-		new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
-		new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
-		new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
-		new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
-		new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
+
+/obj/item/weapon/storage/pill_bottle/fluff/listermedbottle/New()
+	..()
+	new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
+	new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
+	new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
+	new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
+	new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
+	new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
+	new /obj/item/weapon/reagent_containers/pill/fluff/listermed( src )
 
 /obj/item/weapon/reagent_containers/pill/fluff/listermed
 	name = "anti-depressant pill"
 	desc = "Used to deal with depression."
 	icon_state = "pill9"
-	New()
-		..()
-		reagents.add_reagent("stoxin", 5)
-		reagents.add_reagent("sugar", 10)
-		reagents.add_reagent("ethanol", 5)
+
+/obj/item/weapon/reagent_containers/pill/fluff/listermed/New()
+	..()
+	reagents.add_reagent("stoxin", 5)
+	reagents.add_reagent("sugar", 10)
+	reagents.add_reagent("ethanol", 5)
 
 /obj/item/clothing/mask/fluff/electriccig //CubeJackal: Barry Sharke
 	name = "Electronic cigarette"
@@ -934,24 +936,25 @@
 	icon_state = "nashi_belt"
 	item_state = "fluff_rbelt"
 
-	New()
-		..()
-		new /obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 14, "Bicaridine")
-		new /obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 15, "Dermaline")
-		new /obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 16, "Dylovene")
-		new /obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 17, "Dexalin Plus")
-		new /obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 18, "Tricordrazine")
-		new /obj/item/weapon/reagent_containers/syringe/(src)
-		new /obj/item/device/healthanalyzer(src)
+/obj/item/weapon/storage/belt/medical/fluff/nashi_belt/New()
+	..()
+	new /obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 14, "Bicaridine")
+	new /obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 15, "Dermaline")
+	new /obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 16, "Dylovene")
+	new /obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 17, "Dexalin Plus")
+	new /obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 18, "Tricordrazine")
+	new /obj/item/weapon/reagent_containers/syringe/(src)
+	new /obj/item/device/healthanalyzer(src)
 
 /obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle
 	icon = 'icons/obj/chemical.dmi'
 	//Starting them with lids on them.  Safety first!
-	New(loc, var/color, var/labeled)
-		..()
-		name = "[labeled] bottle"
-		desc = "A small bottle.  Contains [labeled]"
-		icon_state = "bottle[color]"
+
+/obj/item/weapon/reagent_containers/glass/bottle/fluff/nashi_bottle/New(loc, var/color, var/labeled)
+	..()
+	name = "[labeled] bottle"
+	desc = "A small bottle.  Contains [labeled]"
+	icon_state = "bottle[color]"
 
 /obj/item/weapon/reagent_containers/food/drinks/flask/fluff/yuri_kornienkovich_flask
 	name = "Yuri's Flask"

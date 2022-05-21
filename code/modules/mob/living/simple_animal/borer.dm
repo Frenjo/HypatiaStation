@@ -310,7 +310,7 @@
 
 		detatch()
 
-mob/living/simple_animal/borer/proc/detatch()
+/mob/living/simple_animal/borer/proc/detatch()
 	if(!host)
 		return
 
@@ -418,7 +418,7 @@ mob/living/simple_animal/borer/proc/detatch()
 		return
 
 //Procs for grabbing players.
-mob/living/simple_animal/borer/proc/request_player()
+/mob/living/simple_animal/borer/proc/request_player()
 	for(var/mob/dead/observer/O in player_list)
 		if(jobban_isbanned(O, "Syndicate"))
 			continue

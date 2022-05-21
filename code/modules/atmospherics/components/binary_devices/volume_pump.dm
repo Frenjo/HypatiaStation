@@ -212,7 +212,7 @@ Thus, the two variables affect pump operation are set in New():
 		qdel(src)
 
 // Porting this to NanoUI, it looks way better honestly. -Frenjo
-obj/machinery/atmospherics/binary/volume_pump/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
+/obj/machinery/atmospherics/binary/volume_pump/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	if(stat & BROKEN)
 		return
 

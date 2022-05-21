@@ -202,9 +202,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 2
-	New()
-		block = HULKBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/hulkmut/New()
+	block = HULKBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antihulk
 	name = "DNA-Injector (Anti-Hulk)"
@@ -212,9 +213,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 2
-	New()
-		block = HULKBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antihulk/New()
+	block = HULKBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/xraymut
 	name = "DNA-Injector (Xray)"
@@ -222,9 +224,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 8
-	New()
-		block = XRAYBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/xraymut/New()
+	block = XRAYBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antixray
 	name = "DNA-Injector (Anti-Xray)"
@@ -232,9 +235,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 8
-	New()
-		block = XRAYBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antixray/New()
+	block = XRAYBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/firemut
 	name = "DNA-Injector (Fire)"
@@ -242,9 +246,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 10
-	New()
-		block = FIREBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/firemut/New()
+	block = FIREBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antifire
 	name = "DNA-Injector (Anti-Fire)"
@@ -252,9 +257,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 10
-	New()
-		block = FIREBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antifire/New()
+	block = FIREBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/telemut
 	name = "DNA-Injector (Tele.)"
@@ -262,9 +268,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 12
-	New()
-		block = TELEBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/telemut/New()
+	block = TELEBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antitele
 	name = "DNA-Injector (Anti-Tele.)"
@@ -272,9 +279,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 12
-	New()
-		block = TELEBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antitele/New()
+	block = TELEBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/nobreath
 	name = "DNA-Injector (No Breath)"
@@ -282,9 +290,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 2
-	New()
-		block = NOBREATHBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/nobreath/New()
+	block = NOBREATHBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antinobreath
 	name = "DNA-Injector (Anti-No Breath)"
@@ -292,9 +301,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 2
-	New()
-		block = NOBREATHBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antinobreath/New()
+	block = NOBREATHBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/remoteview
 	name = "DNA-Injector (Remote View)"
@@ -302,9 +312,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 2
-	New()
-		block = REMOTEVIEWBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/remoteview/New()
+	block = REMOTEVIEWBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antiremoteview
 	name = "DNA-Injector (Anti-Remote View)"
@@ -312,9 +323,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 2
-	New()
-		block = REMOTEVIEWBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antiremoteview/New()
+	block = REMOTEVIEWBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/regenerate
 	name = "DNA-Injector (Regeneration)"
@@ -322,9 +334,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 2
-	New()
-		block = REGENERATEBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/regenerate/New()
+	block = REGENERATEBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antiregenerate
 	name = "DNA-Injector (Anti-Regeneration)"
@@ -332,9 +345,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 2
-	New()
-		block = REGENERATEBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antiregenerate/New()
+	block = REGENERATEBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/runfast
 	name = "DNA-Injector (Increase Run)"
@@ -342,9 +356,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 2
-	New()
-		block = INCREASERUNBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/runfast/New()
+	block = INCREASERUNBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antirunfast
 	name = "DNA-Injector (Anti-Increase Run)"
@@ -352,9 +367,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 2
-	New()
-		block = INCREASERUNBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antirunfast/New()
+	block = INCREASERUNBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/morph
 	name = "DNA-Injector (Morph)"
@@ -362,9 +378,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 2
-	New()
-		block = MORPHBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/morph/New()
+	block = MORPHBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antimorph
 	name = "DNA-Injector (Anti-Morph)"
@@ -372,9 +389,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 2
-	New()
-		block = MORPHBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antimorph/New()
+	block = MORPHBLOCK
+	..()
 
 /* No COLDBLOCK on bay
 /obj/item/weapon/dnainjector/cold
@@ -404,9 +422,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 2
-	New()
-		block = NOPRINTSBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/noprints/New()
+	block = NOPRINTSBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antinoprints
 	name = "DNA-Injector (Anti-No Prints)"
@@ -414,9 +433,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 2
-	New()
-		block = NOPRINTSBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antinoprints/New()
+	block = NOPRINTSBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/insulation
 	name = "DNA-Injector (Shock Immunity)"
@@ -424,9 +444,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 2
-	New()
-		block = SHOCKIMMUNITYBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/insulation/New()
+	block = SHOCKIMMUNITYBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antiinsulation
 	name = "DNA-Injector (Anti-Shock Immunity)"
@@ -434,9 +455,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 2
-	New()
-		block = SHOCKIMMUNITYBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antiinsulation/New()
+	block = SHOCKIMMUNITYBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/midgit
 	name = "DNA-Injector (Small Size)"
@@ -444,9 +466,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 2
-	New()
-		block = SMALLSIZEBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/midgit/New()
+	block = SMALLSIZEBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antimidgit
 	name = "DNA-Injector (Anti-Small Size)"
@@ -454,9 +477,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 2
-	New()
-		block = SMALLSIZEBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antimidgit/New()
+	block = SMALLSIZEBLOCK
+	..()
 
 /////////////////////////////////////
 /obj/item/weapon/dnainjector/antiglasses
@@ -465,9 +489,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 1
-	New()
-		block = GLASSESBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antiglasses/New()
+	block = GLASSESBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/glassesmut
 	name = "DNA-Injector (Glasses)"
@@ -475,9 +500,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 1
-	New()
-		block = GLASSESBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/glassesmut/New()
+	block = GLASSESBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/epimut
 	name = "DNA-Injector (Epi.)"
@@ -485,9 +511,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 3
-	New()
-		block = HEADACHEBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/epimut/New()
+	block = HEADACHEBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antiepi
 	name = "DNA-Injector (Anti-Epi.)"
@@ -495,9 +522,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 3
-	New()
-		block = HEADACHEBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antiepi/New()
+	block = HEADACHEBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/anticough
 	name = "DNA-Injector (Anti-Cough)"
@@ -505,9 +533,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 5
-	New()
-		block = COUGHBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/anticough/New()
+	block = COUGHBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/coughmut
 	name = "DNA-Injector (Cough)"
@@ -515,9 +544,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 5
-	New()
-		block = COUGHBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/coughmut/New()
+	block = COUGHBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/clumsymut
 	name = "DNA-Injector (Clumsy)"
@@ -525,9 +555,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 6
-	New()
-		block = CLUMSYBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/clumsymut/New()
+	block = CLUMSYBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/anticlumsy
 	name = "DNA-Injector (Anti-Clumy)"
@@ -535,9 +566,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 6
-	New()
-		block = CLUMSYBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/anticlumsy/New()
+	block = CLUMSYBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antitour
 	name = "DNA-Injector (Anti-Tour.)"
@@ -545,9 +577,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 7
-	New()
-		block = TWITCHBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antitour/New()
+	block = TWITCHBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/tourmut
 	name = "DNA-Injector (Tour.)"
@@ -555,9 +588,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 7
-	New()
-		block = TWITCHBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/tourmut/New()
+	block = TWITCHBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/stuttmut
 	name = "DNA-Injector (Stutt.)"
@@ -565,9 +599,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 9
-	New()
-		block = NERVOUSBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/stuttmut/New()
+	block = NERVOUSBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antistutt
 	name = "DNA-Injector (Anti-Stutt.)"
@@ -575,9 +610,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 9
-	New()
-		block = NERVOUSBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antistutt/New()
+	block = NERVOUSBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/blindmut
 	name = "DNA-Injector (Blind)"
@@ -585,9 +621,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 11
-	New()
-		block = BLINDBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/blindmut/New()
+	block = BLINDBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antiblind
 	name = "DNA-Injector (Anti-Blind)"
@@ -595,9 +632,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 11
-	New()
-		block = BLINDBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antiblind/New()
+	block = BLINDBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/deafmut
 	name = "DNA-Injector (Deaf)"
@@ -605,9 +643,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 13
-	New()
-		block = DEAFBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/deafmut/New()
+	block = DEAFBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antideaf
 	name = "DNA-Injector (Anti-Deaf)"
@@ -615,9 +654,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 13
-	New()
-		block = DEAFBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antideaf/New()
+	block = DEAFBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/hallucination
 	name = "DNA-Injector (Halluctination)"
@@ -625,9 +665,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 2
-	New()
-		block = HALLUCINATIONBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/hallucination/New()
+	block = HALLUCINATIONBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/antihallucination
 	name = "DNA-Injector (Anti-Hallucination)"
@@ -635,9 +676,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 2
-	New()
-		block = HALLUCINATIONBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/antihallucination/New()
+	block = HALLUCINATIONBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/h2m
 	name = "DNA-Injector (Human > Monkey)"
@@ -645,9 +687,10 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 14
-	New()
-		block = MONKEYBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/h2m/New()
+	block = MONKEYBLOCK
+	..()
 
 /obj/item/weapon/dnainjector/m2h
 	name = "DNA-Injector (Monkey > Human)"
@@ -655,6 +698,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 	//block = 14
-	New()
-		block = MONKEYBLOCK
-		..()
+
+/obj/item/weapon/dnainjector/m2h/New()
+	block = MONKEYBLOCK
+	..()

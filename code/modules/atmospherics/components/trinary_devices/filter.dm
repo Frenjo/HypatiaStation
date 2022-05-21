@@ -180,7 +180,7 @@ Filter types:
 	ui_interact(user)
 	return
 
-obj/machinery/atmospherics/trinary/filter/Topic(href, href_list) // -- TLE
+/obj/machinery/atmospherics/trinary/filter/Topic(href, href_list) // -- TLE
 	if(..())
 		return
 	usr.set_machine(src)

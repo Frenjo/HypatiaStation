@@ -1,6 +1,6 @@
 var/list/name_to_mineral
 
-proc/SetupMinerals()
+/proc/SetupMinerals()
 	name_to_mineral = list()
 	for(var/type in SUBTYPESOF(/mineral))
 		var/mineral/new_mineral = new type

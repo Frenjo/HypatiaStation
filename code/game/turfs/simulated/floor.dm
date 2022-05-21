@@ -125,7 +125,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 /turf/simulated/floor/blob_act()
 	return
 
-turf/simulated/floor/proc/update_icon()
+/turf/simulated/floor/proc/update_icon()
 	if(lava)
 		return
 	else if(is_plasteel_floor())

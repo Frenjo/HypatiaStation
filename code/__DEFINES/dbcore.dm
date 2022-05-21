@@ -85,10 +85,10 @@ var/DB_PORT = 3306 // This is the port your MySQL server is running on (3306 is 
 	//return Connect("[dbi?"[dbi]":"dbi:mysql:[database_name]:[DB_SERVER]:[DB_PORT]"]",user,password)
 	return Connect("[dbi ? "[dbi]" : "dbi:mysql:[database_name]:[global.config.sqladdress]:[global.config.sqlport]"]", user, password)
 
-DBConnection/proc/NewQuery(sql_query, cursor_handler = src.default_cursor)
+/DBConnection/proc/NewQuery(sql_query, cursor_handler = src.default_cursor)
 	return new/DBQuery(sql_query, src, cursor_handler)
 
-DBQuery/New(sql_query, DBConnection/connection_handler, cursor_handler)
+/DBQuery/New(sql_query, DBConnection/connection_handler, cursor_handler)
 	if(sql_query)
 		src.sql = sql_query
 	if(connection_handler)
@@ -99,7 +99,7 @@ DBQuery/New(sql_query, DBConnection/connection_handler, cursor_handler)
 	return ..()
 
 
-DBQuery
+/DBQuery
 	var/sql // The sql query being executed.
 	var/default_cursor
 	var/list/columns //list of DB Columns populated by Columns()
@@ -109,31 +109,31 @@ DBQuery
 	var/DBConnection/db_connection
 	var/_db_query
 
-DBQuery/proc/Connect(DBConnection/connection_handler)
+/DBQuery/proc/Connect(DBConnection/connection_handler)
 	src.db_connection = connection_handler
 
-DBQuery/proc/Execute(sql_query = src.sql, cursor_handler = default_cursor)
+/DBQuery/proc/Execute(sql_query = src.sql, cursor_handler = default_cursor)
 	Close()
 	return _dm_db_execute(_db_query, sql_query, db_connection._db_con, cursor_handler, null)
 
-DBQuery/proc/NextRow()
+/DBQuery/proc/NextRow()
 	return _dm_db_next_row(_db_query, item, conversions)
 
-DBQuery/proc/RowsAffected()
+/DBQuery/proc/RowsAffected()
 	return _dm_db_rows_affected(_db_query)
 
-DBQuery/proc/RowCount()
+/DBQuery/proc/RowCount()
 	return _dm_db_row_count(_db_query)
 
-DBQuery/proc/ErrorMsg()
+/DBQuery/proc/ErrorMsg()
 	return _dm_db_error_msg(_db_query)
 
-DBQuery/proc/Columns()
+/DBQuery/proc/Columns()
 	if(!columns)
 		columns = _dm_db_columns(_db_query, /DBColumn)
 	return columns
 
-DBQuery/proc/GetRowData()
+/DBQuery/proc/GetRowData()
 	var/list/columns = Columns()
 	var/list/results
 	if(columns.len)
@@ -144,16 +144,16 @@ DBQuery/proc/GetRowData()
 			results[C] = src.item[(cur_col.position + 1)]
 	return results
 
-DBQuery/proc/Close()
+/DBQuery/proc/Close()
 	item.len = 0
 	columns = null
 	conversions = null
 	return _dm_db_close(_db_query)
 
-DBQuery/proc/Quote(str)
+/DBQuery/proc/Quote(str)
 	return db_connection.Quote(str)
 
-DBQuery/proc/SetConversion(column,conversion)
+/DBQuery/proc/SetConversion(column,conversion)
 	if(istext(column))
 		column = columns.Find(column)
 	if(!conversions)
@@ -163,7 +163,7 @@ DBQuery/proc/SetConversion(column,conversion)
 	conversions[column] = conversion
 
 
-DBColumn
+/DBColumn
 	var/name
 	var/table
 	var/position //1-based index into item data
@@ -172,7 +172,7 @@ DBColumn
 	var/length
 	var/max_length
 
-DBColumn/New(name_handler, table_handler, position_handler, type_handler, flag_handler, length_handler, max_length_handler)
+/DBColumn/New(name_handler, table_handler, position_handler, type_handler, flag_handler, length_handler, max_length_handler)
 	src.name = name_handler
 	src.table = table_handler
 	src.position = position_handler
@@ -183,7 +183,7 @@ DBColumn/New(name_handler, table_handler, position_handler, type_handler, flag_h
 	return ..()
 
 
-DBColumn/proc/SqlTypeName(type_handler = src.sql_type)
+/DBColumn/proc/SqlTypeName(type_handler = src.sql_type)
 	switch(type_handler)
 		if(TINYINT)
 			return "TINYINT"

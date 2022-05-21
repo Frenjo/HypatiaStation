@@ -9,7 +9,7 @@ datum/fusion_reaction
 
 /datum/controller/game_controller/var/list/fusion_reactions
 
-proc/get_fusion_reaction(var/primary_reactant, var/secondary_reactant)
+/proc/get_fusion_reaction(var/primary_reactant, var/secondary_reactant)
 	if(!global.master_controller.fusion_reactions)
 		populate_fusion_reactions()
 	if(global.master_controller.fusion_reactions.Find(primary_reactant))
@@ -17,7 +17,7 @@ proc/get_fusion_reaction(var/primary_reactant, var/secondary_reactant)
 		if(secondary_reactions.Find(secondary_reactant))
 			return global.master_controller.fusion_reactions[primary_reactant][secondary_reactant]
 
-proc/populate_fusion_reactions()
+/proc/populate_fusion_reactions()
 	if(!global.master_controller.fusion_reactions)
 		global.master_controller.fusion_reactions = list()
 		for(var/cur_reaction_type in SUBTYPESOF(/datum/fusion_reaction))

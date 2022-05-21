@@ -261,7 +261,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 					return D
 	return res
 
-proc/blood_incompatible(donor, receiver)
+/proc/blood_incompatible(donor, receiver)
 	if(!donor || !receiver)
 		return 0
 
