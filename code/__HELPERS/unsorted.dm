@@ -8,11 +8,9 @@
 /proc/invertHTML(HTMLstring)
 	if(!istext(HTMLstring))
 		CRASH("Given non-text argument!")
-		return
 	else
 		if(length(HTMLstring) != 7)
 			CRASH("Given non-HTML argument!")
-			return
 	var/textr = copytext(HTMLstring, 2, 4)
 	var/textg = copytext(HTMLstring, 4, 6)
 	var/textb = copytext(HTMLstring, 6, 8)
@@ -29,7 +27,6 @@
 	if(length(textb) < 2)
 		textr = "0[textb]"
 	return "#[textr][textg][textb]"
-	return
 
 //Returns the middle-most value
 /proc/dd_range(low, high, num)
@@ -1156,8 +1153,6 @@ var/global/list/common_tools = list(
 			return 3500
 		else
 			return 0
-
-	return 0
 
 //Whether or not the given item counts as sharp in terms of dealing damage
 /proc/is_sharp(obj/O as obj)

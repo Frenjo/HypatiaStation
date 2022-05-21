@@ -115,7 +115,7 @@
 		to_chat(R, SPAN_INFO("Without a powercell, you can't be recharged."))
 		//Make sure they actually HAVE a cell, now that they can get in while powerless. --NEO
 		return
-		R.stop_pulling()
+	R.stop_pulling()
 	if(R.client)
 		R.client.perspective = EYE_PERSPECTIVE
 		R.client.eye = src

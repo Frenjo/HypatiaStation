@@ -52,7 +52,7 @@
 				if(loaded.len)
 					to_chat(user, SPAN_NOTICE("You can't modify it!"))
 					return
-					caliber = "357"
+				caliber = "357"
 				desc = "The barrel and chamber assembly seems to have been modified."
 				to_chat(user, SPAN_WARNING("You reinforce the barrel of [src]! Now it will fire .357 rounds."))
 		else if(caliber == "357")

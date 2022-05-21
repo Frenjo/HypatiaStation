@@ -71,8 +71,6 @@
 			update_icon()
 			return
 
-		return
-
 	..()
 
 /obj/item/clothing/gloves/update_icon()

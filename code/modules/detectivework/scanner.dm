@@ -146,7 +146,6 @@
 		)
 		flick("forensic2", src)
 		return 0
-	return
 
 /obj/item/device/detective_scanner/proc/add_data(atom/A as mob|obj|turf|area)
 	//I love associative lists.

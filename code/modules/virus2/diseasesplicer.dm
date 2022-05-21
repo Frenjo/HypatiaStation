@@ -32,9 +32,7 @@
 	return src.attack_hand(user)
 
 /obj/machinery/computer/diseasesplicer/attack_paw(var/mob/user as mob)
-
 	return src.attack_hand(user)
-	return
 
 /obj/machinery/computer/diseasesplicer/attack_hand(var/mob/user as mob)
 	if(..())

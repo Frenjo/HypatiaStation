@@ -15,9 +15,7 @@
 	return src.attack_hand(user)
 
 /obj/machinery/computer/drone_control/attack_paw(mob/user as mob)
-
 	return src.attack_hand(user)
-	return
 
 /obj/machinery/computer/drone_control/attack_hand(mob/user as mob)
 	if(..())

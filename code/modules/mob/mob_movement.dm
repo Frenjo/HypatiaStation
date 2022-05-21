@@ -9,7 +9,6 @@
 		return (!mover.density || !density || lying)
 	else
 		return (!mover.density || !density || lying)
-	return
 
 
 /client/North()

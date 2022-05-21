@@ -123,7 +123,6 @@
 			return "health0"
 		else
 			return "health-100"
-	return "0"
 
 /proc/do_mob(mob/user, mob/target, time = 30, uninterruptible = 0, progress = 1)
 	if(!user || !target)

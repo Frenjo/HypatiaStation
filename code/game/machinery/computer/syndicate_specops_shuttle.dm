@@ -63,7 +63,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 		usr << "\red The Syndicate Elite shuttle is unable to leave."
 		return
 
-		sleep(600)
+	sleep(600)
 /*
 	//Begin Marauder launchpad.
 	spawn(0)//So it parallel processes it.
@@ -130,7 +130,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 					spawn(0)
 						M.close()
 						*/
-		elite_squad.readyreset()//Reset firealarm after the team launched.
+	elite_squad.readyreset()//Reset firealarm after the team launched.
 	//End Marauder launchpad.
 /*
 	var/obj/explosionmarker = locate("Syndicate Breach Area")

@@ -75,8 +75,8 @@
 			to_chat(user, SPAN_WARNING("[src] is full."))
 			return
 
-			var/trans = target.reagents.trans_to(src, target:amount_per_transfer_from_this)
-			to_chat(user, SPAN_INFO("You fill [src] with [trans] units of the contents of [target]."))
+		var/trans = target.reagents.trans_to(src, target:amount_per_transfer_from_this)
+		to_chat(user, SPAN_INFO("You fill [src] with [trans] units of the contents of [target]."))
 	if(canopened == 0)
 		to_chat(user, SPAN_NOTICE("You need to open the drink!"))
 

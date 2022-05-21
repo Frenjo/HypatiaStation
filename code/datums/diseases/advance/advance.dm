@@ -178,7 +178,6 @@ var/list/advance_cures = list(
 /datum/disease/advance/proc/GenerateProperties()
 	if(!symptoms || !symptoms.len)
 		CRASH("We did not have any symptoms before generating properties.")
-		return
 
 	var/list/properties = list("resistance" = 1, "stealth" = 1, "stage_rate" = 1, "transmittable" = 1, "severity" = 1)
 

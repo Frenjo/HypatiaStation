@@ -495,7 +495,6 @@
 
 	else
 		return attack_hand(user)
-	return
 
 /turf/simulated/wall/meteorhit(obj/M as obj)
 	if(prob(15) && !rotting)
