@@ -72,7 +72,7 @@
 			user.visible_message(SPAN_DANGER("\The [user] fires \the [src] point blank at [M]!"))
 			Fire(M, user)
 			return
-		else if(target && M in target)
+		else if(target && (M in target))
 			Fire(M, user)
 			return
 	else

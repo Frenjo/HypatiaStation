@@ -94,7 +94,7 @@
 
 			if(ACCESS_CENT_CAPTAIN in idcard.access)
 				access_level = 2
-			else if(ACCESS_HOP in idcard.access || ACCESS_CAPTAIN in idcard.access)
+			else if((ACCESS_HOP in idcard.access) || (ACCESS_CAPTAIN in idcard.access))
 				access_level = 1
 	else
 		..()
@@ -156,7 +156,7 @@
 
 						if(ACCESS_CENT_CAPTAIN in C.access)
 							access_level = 2
-						else if(ACCESS_HOP in C.access || ACCESS_CAPTAIN in C.access)
+						else if((ACCESS_HOP in C.access) || (ACCESS_CAPTAIN in C.access))
 							access_level = 1
 			if("view_account_detail")
 				var/index = text2num(href_list["account_index"])

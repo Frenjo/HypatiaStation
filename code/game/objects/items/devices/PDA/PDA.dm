@@ -102,7 +102,7 @@
 	var/auto_update = TRUE
 	if(mode in no_auto_update)
 		auto_update = FALSE
-	if(old_ui && (mode == lastmode && ui_tick % 5 && mode in update_every_five))
+	if(old_ui && (mode == lastmode && ui_tick % 5 && (mode in update_every_five)))
 		return
 
 	lastmode = mode

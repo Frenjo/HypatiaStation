@@ -76,7 +76,7 @@
 				var/obj/item/device/pda/pda = I
 				I = pda.id
 			if(I && istype(I))
-				if(ACCESS_CAPTAIN in I.access || ACCESS_HEADS in I.access) //Let heads change the alert level.
+				if((ACCESS_CAPTAIN in I.access) || (ACCESS_HEADS in I.access)) //Let heads change the alert level.
 					var/old_level = security_level
 					if(!tmp_alertlevel) tmp_alertlevel = SEC_LEVEL_GREEN
 					if(tmp_alertlevel < SEC_LEVEL_GREEN) tmp_alertlevel = SEC_LEVEL_GREEN

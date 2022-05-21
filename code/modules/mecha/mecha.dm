@@ -1012,7 +1012,7 @@
 	return
 
 /obj/mecha/proc/moved_inside(mob/living/carbon/human/H as mob)
-	if(H && H.client && H in range(1))
+	if(H && H.client && (H in range(1)))
 		H.reset_view(src)
 		/*
 		H.client.perspective = EYE_PERSPECTIVE
@@ -1061,7 +1061,7 @@
 	return 0
 
 /obj/mecha/proc/mmi_moved_inside(obj/item/device/mmi/mmi_as_oc as obj, mob/user as mob)
-	if(mmi_as_oc && user in range(1))
+	if(mmi_as_oc && (user in range(1)))
 		if(!mmi_as_oc.brainmob || !mmi_as_oc.brainmob.client)
 			user << "Consciousness matrix not detected."
 			return 0

@@ -238,7 +238,7 @@
 			in_chamber.damage *= 1.3
 			Fire(M, user)
 			return
-		else if(target && M in target)
+		else if(target && (M in target))
 			Fire(M, user) ///Otherwise, shoot!
 			return
 	else

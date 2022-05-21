@@ -798,7 +798,7 @@
 	if(issilicon(usr))		//How does AI know what plant is?
 		return
 	if(harvest)
-		if(!user in range(1,src))
+		if(!(user in range(1,src)))
 			return
 		myseed.harvest()
 	else if(dead)

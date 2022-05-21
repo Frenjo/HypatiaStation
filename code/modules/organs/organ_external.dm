@@ -651,14 +651,14 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 ****************************************************/
 
 /datum/organ/external/proc/release_restraints()
-	if(owner.handcuffed && body_part in list(ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT))
+	if(owner.handcuffed && (body_part in list(ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT)))
 		owner.visible_message(\
 			"\The [owner.handcuffed.name] falls off of [owner.name].",\
 			"\The [owner.handcuffed.name] falls off you.")
 
 		owner.drop_from_inventory(owner.handcuffed)
 
-	if(owner.legcuffed && body_part in list(FOOT_LEFT, FOOT_RIGHT, LEG_LEFT, LEG_RIGHT))
+	if(owner.legcuffed && (body_part in list(FOOT_LEFT, FOOT_RIGHT, LEG_LEFT, LEG_RIGHT)))
 		owner.visible_message(\
 			"\The [owner.legcuffed.name] falls off of [owner.name].",\
 			"\The [owner.legcuffed.name] falls off you.")

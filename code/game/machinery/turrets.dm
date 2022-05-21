@@ -148,7 +148,7 @@
 	return
 
 /obj/machinery/turret/proc/check_target(atom/movable/T as mob|obj)
-	if(T && T in protected_area.turretTargets)
+	if(T && (T in protected_area.turretTargets))
 		var/area/area_T = get_area(T)
 		if(!area_T || (area_T.type != protected_area.type))
 			protected_area.Exited(T)
@@ -592,12 +592,12 @@
 	var/target = null
 	if(scan_for["human"])
 		for(var/mob/living/carbon/human/M in oview(scan_range, src))
-			if(M.stat || M.lying || M in exclude)
+			if(M.stat || M.lying || (M in exclude))
 				continue
 			pos_targets += M
 	if(scan_for["cyborg"])
 		for(var/mob/living/silicon/M in oview(scan_range, src))
-			if(M.stat || M.lying || M in exclude)
+			if(M.stat || M.lying || (M in exclude))
 				continue
 			pos_targets += M
 	if(scan_for["mecha"])
@@ -607,7 +607,7 @@
 			pos_targets += M
 	if(scan_for["alien"])
 		for(var/mob/living/carbon/alien/M in oview(scan_range, src))
-			if(M.stat || M.lying || M in exclude)
+			if(M.stat || M.lying || (M in exclude))
 				continue
 			pos_targets += M
 	if(pos_targets.len)

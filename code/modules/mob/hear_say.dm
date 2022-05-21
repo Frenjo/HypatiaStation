@@ -34,7 +34,7 @@
 		if(speaker_name != speaker.real_name && speaker.real_name)
 			speaker_name = "[speaker.real_name] ([speaker_name])"
 		track = "(<a href='byond://?src=\ref[src];track=\ref[speaker]'>follow</a>) "
-		if(client.prefs.toggles & CHAT_GHOSTEARS && speaker in view(src))
+		if(client.prefs.toggles & CHAT_GHOSTEARS && (speaker in view(src)))
 			message = "<b>[message]</b>"
 
 	if(sdisabilities & DEAF || ear_deaf)

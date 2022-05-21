@@ -315,7 +315,7 @@
 			out += sections[i]+"<br>"
 
 
-	if((src in ticker.mode.head_revolutionaries || src in ticker.mode.traitors || src in ticker.mode.syndicates) && ishuman(current))
+	if(((src in ticker.mode.head_revolutionaries) || (src in ticker.mode.traitors) || (src in ticker.mode.syndicates)) && ishuman(current))
 		text = "Uplink: <a href='?src=\ref[src];common=uplink'>give</a>"
 		var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink()
 		var/crystals

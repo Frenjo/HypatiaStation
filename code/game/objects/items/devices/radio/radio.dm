@@ -401,7 +401,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 		sleep(rand(10, 25)) // wait a little...
 
-		if(signal.data["done"] && position.z in signal.data["level"])
+		if(signal.data["done"] && (position.z in signal.data["level"]))
 			// we're done here.
 			return
 

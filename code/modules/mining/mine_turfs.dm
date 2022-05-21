@@ -426,7 +426,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 		if(!name_to_mineral)
 			SetupMinerals()
 
-		if(mineral_name && mineral_name in name_to_mineral)
+		if(mineral_name && (mineral_name in name_to_mineral))
 			mineral = name_to_mineral[mineral_name]
 			UpdateMineral()
 

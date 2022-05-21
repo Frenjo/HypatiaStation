@@ -206,11 +206,11 @@
 				hear += C.mob
 
 		else if(!(C.mob in hear))
-			if(C.mob.loc && C.mob.loc in (hear | objects))
+			if(C.mob.loc && (C.mob.loc in (hear | objects)))
 				hear += C.mob
-			else if(C.mob.loc.loc && C.mob.loc.loc in (hear | objects))  
+			else if(C.mob.loc.loc && (C.mob.loc.loc in (hear | objects)))  
 				hear += C.mob
-			else if(C.mob.loc.loc.loc && C.mob.loc.loc.loc in (hear | objects))   //Going a little deeper
+			else if(C.mob.loc.loc.loc && (C.mob.loc.loc.loc in (hear | objects)))   //Going a little deeper
 				hear += C.mob
 
 	return hear

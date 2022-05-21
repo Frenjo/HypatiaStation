@@ -107,7 +107,7 @@
 /datum/global_iterator/mech_bay_recharger/process(obj/machinery/mech_bay_recharge_port/port, obj/mecha/mecha)
 	if(!port)
 		return 0
-	if(mecha && mecha in port.recharge_floor)
+	if(mecha && (mecha in port.recharge_floor))
 		if(!mecha.cell)
 			return
 		var/delta = min(max_charge, mecha.cell.maxcharge - mecha.cell.charge)

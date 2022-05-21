@@ -339,7 +339,7 @@
 
 /datum/reagent/sprinkles/on_mob_life(mob/living/M as mob)
 	M.nutrition += nutriment_factor
-	if(ishuman(M) && M.job in list("Security Officer", "Head of Security", "Detective", "Warden"))
+	if(ishuman(M) && (M.job in list("Security Officer", "Head of Security", "Detective", "Warden")))
 		if(!M)
 			M = holder.my_atom
 		M.heal_organ_damage(1, 1)

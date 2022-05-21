@@ -131,7 +131,7 @@
 	set desc = "Drench an object in acid, destroying it over time."
 	set category = "Abilities"
 
-	if(!O in oview(1))
+	if(!(O in oview(1)))
 		to_chat(src, SPAN_ALIUM("[O] is too far away."))
 		return
 
