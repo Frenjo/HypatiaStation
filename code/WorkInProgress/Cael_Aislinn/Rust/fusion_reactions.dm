@@ -1,5 +1,5 @@
 
-datum/fusion_reaction
+/datum/fusion_reaction
 	var/primary_reactant = ""
 	var/secondary_reactant = ""
 	var/energy_consumption = 0
@@ -43,7 +43,7 @@ datum/fusion_reaction
 
 //Primary Production Reactions
 
-datum/fusion_reaction/tritium_deuterium
+/datum/fusion_reaction/tritium_deuterium
 	primary_reactant = "Tritium"
 	secondary_reactant = "Deuterium"
 	energy_consumption = 1
@@ -52,7 +52,7 @@ datum/fusion_reaction/tritium_deuterium
 
 //Secondary Production Reactions
 
-datum/fusion_reaction/deuterium_deuterium
+/datum/fusion_reaction/deuterium_deuterium
 	primary_reactant = "Deuterium"
 	secondary_reactant = "Deuterium"
 	energy_consumption = 1
@@ -60,7 +60,7 @@ datum/fusion_reaction/deuterium_deuterium
 	radiation = 1
 	products = list("Obdurium" = 2)
 
-datum/fusion_reaction/tritium_tritium
+/datum/fusion_reaction/tritium_tritium
 	primary_reactant = "Tritium"
 	secondary_reactant = "Tritium"
 	energy_consumption = 1
@@ -70,14 +70,14 @@ datum/fusion_reaction/tritium_tritium
 
 //Cleanup Reactions
 
-datum/fusion_reaction/rodinium6_obdurium
+/datum/fusion_reaction/rodinium6_obdurium
 	primary_reactant = "Rodinium-6"
 	secondary_reactant = "Obdurium"
 	energy_consumption = 1
 	energy_production = 2
 	radiation = 2
 
-datum/fusion_reaction/rodinium6_solonium
+/datum/fusion_reaction/rodinium6_solonium
 	primary_reactant = "Rodinium-6"
 	secondary_reactant = "Solonium"
 	energy_consumption = 1
@@ -86,7 +86,7 @@ datum/fusion_reaction/rodinium6_solonium
 
 //Breeder Reactions
 
-datum/fusion_reaction/dilithium_obdurium
+/datum/fusion_reaction/dilithium_obdurium
 	primary_reactant = "Dilithium"
 	secondary_reactant = "Obdurium"
 	energy_consumption = 1
@@ -94,7 +94,7 @@ datum/fusion_reaction/dilithium_obdurium
 	radiation = 3
 	products = list("Deuterium" = 1, "Dilithium" = 1)
 
-datum/fusion_reaction/dilithium_solonium
+/datum/fusion_reaction/dilithium_solonium
 	primary_reactant = "Dilithium"
 	secondary_reactant = "Solonium"
 	energy_consumption = 1
@@ -104,7 +104,7 @@ datum/fusion_reaction/dilithium_solonium
 
 //Breeder Inhibitor Reactions
 
-datum/fusion_reaction/stravium7_dilithium
+/datum/fusion_reaction/stravium7_dilithium
 	primary_reactant = "Stravium-7"
 	secondary_reactant = "Dilithium"
 	energy_consumption = 2
@@ -113,7 +113,7 @@ datum/fusion_reaction/stravium7_dilithium
 
 //Enhanced Breeder Reactions
 
-datum/fusion_reaction/trilithium_obdurium
+/datum/fusion_reaction/trilithium_obdurium
 	primary_reactant = "Trilithium"
 	secondary_reactant = "Obdurium"
 	energy_consumption = 1
@@ -121,7 +121,7 @@ datum/fusion_reaction/trilithium_obdurium
 	radiation = 5
 	products = list("Dilithium" = 1, "Trilithium" = 1, "Deuterium" = 1)
 
-datum/fusion_reaction/trilithium_solonium
+/datum/fusion_reaction/trilithium_solonium
 	primary_reactant = "Trilithium"
 	secondary_reactant = "Solonium"
 	energy_consumption = 1
@@ -131,28 +131,28 @@ datum/fusion_reaction/trilithium_solonium
 
 //Control Reactions
 
-datum/fusion_reaction/pergium_deuterium
+/datum/fusion_reaction/pergium_deuterium
 	primary_reactant = "Pergium"
 	secondary_reactant = "Deuterium"
 	energy_consumption = 5
 	energy_production = 0
 	radiation = 5
 
-datum/fusion_reaction/pergium_tritium
+/datum/fusion_reaction/pergium_tritium
 	primary_reactant = "Pergium"
 	secondary_reactant = "Tritium"
 	energy_consumption = 5
 	energy_production = 0
 	radiation = 5
 
-datum/fusion_reaction/pergium_obdurium
+/datum/fusion_reaction/pergium_obdurium
 	primary_reactant = "Pergium"
 	secondary_reactant = "Obdurium"
 	energy_consumption = 5
 	energy_production = 0
 	radiation = 5
 
-datum/fusion_reaction/pergium_solonium
+/datum/fusion_reaction/pergium_solonium
 	primary_reactant = "Pergium"
 	secondary_reactant = "Solonium"
 	energy_consumption = 5

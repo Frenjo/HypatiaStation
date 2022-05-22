@@ -9,30 +9,31 @@
 	var/line
 	var/column
 
-	New(v, l=0, c=0)
-		value=v
-		line=l
-		column=c
+/token/New(v, l = 0, c = 0)
+	value = v
+	line = l
+	column = c
 
-	string
-	symbol
-	word
-	keyword
-	number
-		New()
-			.=..()
-			if(!isnum(value))
-				value=text2num(value)
-				ASSERT(!isnull(value))
-	accessor
-		var/object
-		var/member
+/token/string
+/token/symbol
+/token/word
+/token/keyword
 
-		New(object, member, l=0, c=0)
-			src.object=object
-			src.member=member
-			src.value="[object].[member]" //for debugging only
-			src.line=l
-			src.column=c
+/token/number/New()
+	. = ..()
+	if(!isnum(value))
+		value=text2num(value)
+		ASSERT(!isnull(value))
 
-	end
+/token/accessor
+	var/object
+	var/member
+
+/token/accessor/New(object, member, l = 0, c = 0)
+	src.object = object
+	src.member = member
+	src.value = "[object].[member]" //for debugging only
+	src.line = l
+	src.column = c
+
+/token/end

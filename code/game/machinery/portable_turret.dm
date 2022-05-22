@@ -8,7 +8,6 @@
 
 */
 
-
 /obj/machinery/porta_turret
 	name = "turret"
 	icon = 'icons/obj/turrets.dmi'
@@ -57,130 +56,129 @@
 
 	var/datum/effect/system/spark_spread/spark_system // the spark system, used for generating... sparks?
 
-	New()
-		..()
-		icon_state = "[lasercolor]grey_target_prism"
-		// Sets up a spark system
-		spark_system = new /datum/effect/system/spark_spread
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		sleep(10)
-		if(!installation)// if for some reason the turret has no gun (ie, admin spawned) it resorts to basic taser shots
-			projectile = /obj/item/projectile/energy/electrode	//holder for the projectile, here it is being set
-			eprojectile = /obj/item/projectile/energy/beam/laser	//holder for the projectile when emagged, if it is different
-			reqpower = 200
-			sound = 1
-			iconholder = 1
-		else
-			var/obj/item/weapon/gun/energy/E = installation	//All energy-based weapons are applicable
-			switch(E.type)
-				if(/obj/item/weapon/gun/energy/laser/bluetag)
-					projectile = /obj/item/projectile/energy/beam/laser/tag/blue
-					eprojectile = /obj/item/projectile/energy/beam/laser/tag/omni//This bolt will stun ERRYONE with a vest
-					iconholder = null
-					reqpower = 100
-					lasercolor = "b"
-					req_access = list(ACCESS_MAINT_TUNNELS)
-					check_records = 0
-					criminals = 0
-					auth_weapons = 1
-					stun_all = 0
-					check_anomalies = 0
-					shot_delay = 30
+/obj/machinery/porta_turret/New()
+	..()
+	icon_state = "[lasercolor]grey_target_prism"
+	// Sets up a spark system
+	spark_system = new /datum/effect/system/spark_spread
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+	sleep(10)
+	if(!installation)// if for some reason the turret has no gun (ie, admin spawned) it resorts to basic taser shots
+		projectile = /obj/item/projectile/energy/electrode	//holder for the projectile, here it is being set
+		eprojectile = /obj/item/projectile/energy/beam/laser	//holder for the projectile when emagged, if it is different
+		reqpower = 200
+		sound = 1
+		iconholder = 1
+	else
+		var/obj/item/weapon/gun/energy/E = installation	//All energy-based weapons are applicable
+		switch(E.type)
+			if(/obj/item/weapon/gun/energy/laser/bluetag)
+				projectile = /obj/item/projectile/energy/beam/laser/tag/blue
+				eprojectile = /obj/item/projectile/energy/beam/laser/tag/omni//This bolt will stun ERRYONE with a vest
+				iconholder = null
+				reqpower = 100
+				lasercolor = "b"
+				req_access = list(ACCESS_MAINT_TUNNELS)
+				check_records = 0
+				criminals = 0
+				auth_weapons = 1
+				stun_all = 0
+				check_anomalies = 0
+				shot_delay = 30
 
-				if(/obj/item/weapon/gun/energy/laser/redtag)
-					projectile = /obj/item/projectile/energy/beam/laser/tag/red
-					eprojectile = /obj/item/projectile/energy/beam/laser/tag/omni
-					iconholder = null
-					reqpower = 100
-					lasercolor = "r"
-					req_access = list(ACCESS_MAINT_TUNNELS)
-					check_records = 0
-					criminals = 0
-					auth_weapons = 1
-					stun_all = 0
-					check_anomalies = 0
-					shot_delay = 30
+			if(/obj/item/weapon/gun/energy/laser/redtag)
+				projectile = /obj/item/projectile/energy/beam/laser/tag/red
+				eprojectile = /obj/item/projectile/energy/beam/laser/tag/omni
+				iconholder = null
+				reqpower = 100
+				lasercolor = "r"
+				req_access = list(ACCESS_MAINT_TUNNELS)
+				check_records = 0
+				criminals = 0
+				auth_weapons = 1
+				stun_all = 0
+				check_anomalies = 0
+				shot_delay = 30
 
-				if(/obj/item/weapon/gun/energy/laser/practice)
-					projectile = /obj/item/projectile/energy/beam/laser/practice
-					eprojectile = /obj/item/projectile/energy/beam/laser
-					iconholder = null
-					reqpower = 100
+			if(/obj/item/weapon/gun/energy/laser/practice)
+				projectile = /obj/item/projectile/energy/beam/laser/practice
+				eprojectile = /obj/item/projectile/energy/beam/laser
+				iconholder = null
+				reqpower = 100
 
-				if(/obj/item/weapon/gun/energy/pulse_rifle)
-					projectile = /obj/item/projectile/energy/beam/pulse
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 700
+			if(/obj/item/weapon/gun/energy/pulse_rifle)
+				projectile = /obj/item/projectile/energy/beam/pulse
+				eprojectile = projectile
+				iconholder = null
+				reqpower = 700
 
-				if(/obj/item/weapon/gun/energy/staff)
-					projectile = /obj/item/projectile/change
-					eprojectile = projectile
-					iconholder = 1
-					reqpower = 700
+			if(/obj/item/weapon/gun/energy/staff)
+				projectile = /obj/item/projectile/change
+				eprojectile = projectile
+				iconholder = 1
+				reqpower = 700
 
-				if(/obj/item/weapon/gun/energy/ionrifle)
-					projectile = /obj/item/projectile/ion
-					eprojectile = projectile
-					iconholder = 1
-					reqpower = 700
+			if(/obj/item/weapon/gun/energy/ionrifle)
+				projectile = /obj/item/projectile/ion
+				eprojectile = projectile
+				iconholder = 1
+				reqpower = 700
 
-				if(/obj/item/weapon/gun/energy/taser)
-					projectile = /obj/item/projectile/energy/electrode
-					eprojectile = projectile
-					iconholder = 1
-					reqpower = 200
+			if(/obj/item/weapon/gun/energy/taser)
+				projectile = /obj/item/projectile/energy/electrode
+				eprojectile = projectile
+				iconholder = 1
+				reqpower = 200
 
-				if(/obj/item/weapon/gun/energy/stunrevolver)
-					projectile = /obj/item/projectile/energy/electrode
-					eprojectile = projectile
-					iconholder = 1
-					reqpower = 200
+			if(/obj/item/weapon/gun/energy/stunrevolver)
+				projectile = /obj/item/projectile/energy/electrode
+				eprojectile = projectile
+				iconholder = 1
+				reqpower = 200
 
-				if(/obj/item/weapon/gun/energy/lasercannon)
-					projectile = /obj/item/projectile/energy/beam/laser/heavy
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 600
+			if(/obj/item/weapon/gun/energy/lasercannon)
+				projectile = /obj/item/projectile/energy/beam/laser/heavy
+				eprojectile = projectile
+				iconholder = null
+				reqpower = 600
 
-				if(/obj/item/weapon/gun/energy/decloner)
-					projectile = /obj/item/projectile/energy/declone
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 600
+			if(/obj/item/weapon/gun/energy/decloner)
+				projectile = /obj/item/projectile/energy/declone
+				eprojectile = projectile
+				iconholder = null
+				reqpower = 600
 
-				if(/obj/item/weapon/gun/energy/crossbow/largecrossbow)
-					projectile = /obj/item/projectile/energy/bolt/large
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 125
+			if(/obj/item/weapon/gun/energy/crossbow/largecrossbow)
+				projectile = /obj/item/projectile/energy/bolt/large
+				eprojectile = projectile
+				iconholder = null
+				reqpower = 125
 
-				if(/obj/item/weapon/gun/energy/crossbow)
-					projectile = /obj/item/projectile/energy/bolt
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 50
+			if(/obj/item/weapon/gun/energy/crossbow)
+				projectile = /obj/item/projectile/energy/bolt
+				eprojectile = projectile
+				iconholder = null
+				reqpower = 50
 
-				if(/obj/item/weapon/gun/energy/laser)
-					projectile = /obj/item/projectile/energy/beam/laser
-					eprojectile = projectile
-					iconholder = null
-					reqpower = 500
+			if(/obj/item/weapon/gun/energy/laser)
+				projectile = /obj/item/projectile/energy/beam/laser
+				eprojectile = projectile
+				iconholder = null
+				reqpower = 500
 
-				else // Energy gun shots
-					projectile = /obj/item/projectile/energy/electrode	// if it hasn't been emagged, it uses normal taser shots
-					eprojectile = /obj/item/projectile/energy/beam/laser	//If it has, going to kill mode
-					iconholder = 1
-					egun = 1
-					reqpower = 200
+			else // Energy gun shots
+				projectile = /obj/item/projectile/energy/electrode	// if it hasn't been emagged, it uses normal taser shots
+				eprojectile = /obj/item/projectile/energy/beam/laser	//If it has, going to kill mode
+				iconholder = 1
+				egun = 1
+				reqpower = 200
 
-	Destroy()
-		// deletes its own cover with it
-		qdel(cover)
-		cover = null
-		..()
-
+/obj/machinery/porta_turret/Destroy()
+	// deletes its own cover with it
+	qdel(cover)
+	cover = null
+	..()
 
 /obj/machinery/porta_turret/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -257,7 +255,6 @@ Status: []<BR>"},
 			stun_all = !stun_all
 	updateUsrDialog()
 
-
 /obj/machinery/porta_turret/power_change()
 	if(!anchored)
 		icon_state = "turretCover"
@@ -280,7 +277,6 @@ Status: []<BR>"},
 			spawn(rand(0, 15))
 				src.icon_state = "[lasercolor]grey_target_prism"
 				stat |= NOPOWER
-
 
 /obj/machinery/porta_turret/attackby(obj/item/W as obj, mob/user as mob)
 	if(stat & BROKEN)
@@ -356,8 +352,6 @@ Status: []<BR>"},
 					attacked = 0
 		..()
 
-
-
 /obj/machinery/porta_turret/bullet_act(var/obj/item/projectile/Proj)
 	if(on)
 		if(!attacked && !emagged)
@@ -416,7 +410,6 @@ Status: []<BR>"},
 	src.spark_system.start() // creates some sparks because they look cool
 	src.density = 1
 	qdel(cover) // deletes the cover - no need on keeping it there!
-
 
 /obj/machinery/porta_turret/process()
 	// the main machinery process
@@ -511,37 +504,39 @@ Status: []<BR>"},
 		else
 			spawn() popDown()
 
-/obj/machinery/porta_turret/proc
-	popUp() // pops the turret up
-		if(disabled)
-			return
-		if(raising || raised) return
-		if(stat & BROKEN) return
-		invisibility=0
-		raising=1
-		flick("popup",cover)
-		sleep(5)
-		sleep(5)
-		raising=0
-		cover.icon_state="openTurretCover"
-		raised=1
-		layer=4
+/obj/machinery/porta_turret/proc/popUp() // pops the turret up
+	if(disabled)
+		return
+	if(raising || raised)
+		return
+	if(stat & BROKEN)
+		return
+	invisibility = 0
+	raising = 1
+	flick("popup", cover)
+	sleep(5)
+	sleep(5)
+	raising = 0
+	cover.icon_state = "openTurretCover"
+	raised = 1
+	layer = 4
 
-	popDown() // pops the turret down
-		if(disabled)
-			return
-		if(raising || !raised) return
-		if(stat & BROKEN) return
-		layer=3
-		raising=1
-		flick("popdown",cover)
-		sleep(10)
-		raising=0
-		cover.icon_state="turretCover"
-		raised=0
-		invisibility=2
-		icon_state="[lasercolor]grey_target_prism"
-
+/obj/machinery/porta_turret/proc/popDown() // pops the turret down
+	if(disabled)
+		return
+	if(raising || !raised)
+		return
+	if(stat & BROKEN)
+		return
+	layer = 3
+	raising = 1
+	flick("popdown", cover)
+	sleep(10)
+	raising = 0
+	cover.icon_state = "turretCover"
+	raised = 0
+	invisibility = 2
+	icon_state = "[lasercolor]grey_target_prism"
 
 /obj/machinery/porta_turret/proc/assess_perp(mob/living/carbon/human/perp as mob)
 	var/threatcount = 0 // the integer returned
@@ -1038,11 +1033,9 @@ Status: []<BR>"},
 		..()
 
 
-
-
 /obj/machinery/porta_turret/stationary
 	emagged = 1
 
-	New()
-		installation = new/obj/item/weapon/gun/energy/laser(src.loc)
-		..()
+/obj/machinery/porta_turret/stationary/New()
+	installation = new/obj/item/weapon/gun/energy/laser(src.loc)
+	..()

@@ -6,7 +6,11 @@
 	Represents a unary operator in the AST. Unary operators take a single operand (referred to as x below) and return a value.
 */
 /node/expression/operator/unary
-	precedence=OOP_UNARY
+	precedence = OOP_UNARY
+
+/node/expression/operator/unary/New(node/expression/exp)
+	src.exp = exp
+	return ..()
 
 /*
 	Class: LogicalNot
@@ -16,8 +20,8 @@
 	!true = false and !false = true
 */
 //
-	LogicalNot
-		name="logical not"
+/node/expression/operator/unary/LogicalNot
+	name = "logical not"
 
 /*
 	Class: BitwiseNot
@@ -27,25 +31,21 @@
 	~10 (decimal 2) = 01 (decimal 1).
 */
 //
-	BitwiseNot
-		name="bitwise not"
+/node/expression/operator/unary/BitwiseNot
+	name = "bitwise not"
 
 /*
 	Class: Minus
 	Returns -x.
 */
 //
-	Minus
-		name="minus"
+/node/expression/operator/unary/Minus
+	name = "minus"
 
 /*
 	Class: group
 	A special unary operator representing a value in parentheses.
 */
 //
-	group
-		precedence=OOP_GROUP
-
-	New(node/expression/exp)
-		src.exp=exp
-		return ..()
+/node/expression/operator/unary/group
+	precedence = OOP_GROUP

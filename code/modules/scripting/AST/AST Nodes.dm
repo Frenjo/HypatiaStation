@@ -12,8 +12,6 @@
 	Articles:
 	- <http://en.wikipedia.org/wiki/Abstract_syntax_tree>
 */
-var
-	const
 /*
 	Constants: Operator Precedence
 	OOP_OR				- Logical or
@@ -27,37 +25,34 @@ var
 	OOP_UNARY			- Unary Operators
 	OOP_GROUP			- Parentheses
 */
-		OOP_OR      = 							1   //||
-		OOP_AND     = OOP_OR			+ 1   	//&&
-		OOP_BIT     = OOP_AND			+ 1   //&, |
-		OOP_EQUAL   = OOP_BIT			+ 1   //==, !=
-		OOP_COMPARE = OOP_EQUAL		+ 1   //>, <, >=, <=
-		OOP_ADD     = OOP_COMPARE	+ 1 	//+, -
-		OOP_MULTIPLY= OOP_ADD			+ 1   //*, /, %
-		OOP_POW     = OOP_MULTIPLY+ 1		//^
-		OOP_UNARY   = OOP_POW			+ 1   //!
-		OOP_GROUP   = OOP_UNARY		+ 1   //()
+/var/global/const/OOP_OR		=				1		//||
+/var/global/const/OOP_AND		= OOP_OR		+ 1		//&&
+/var/global/const/OOP_BIT		= OOP_AND		+ 1		//&, |
+/var/global/const/OOP_EQUAL		= OOP_BIT		+ 1		//==, !=
+/var/global/const/OOP_COMPARE	= OOP_EQUAL		+ 1		//>, <, >=, <=
+/var/global/const/OOP_ADD		= OOP_COMPARE	+ 1		//+, -
+/var/global/const/OOP_MULTIPLY	= OOP_ADD		+ 1		//*, /, %
+/var/global/const/OOP_POW		= OOP_MULTIPLY	+ 1		//^
+/var/global/const/OOP_UNARY		= OOP_POW		+ 1		//!
+/var/global/const/OOP_GROUP		= OOP_UNARY		+ 1		//()
 
 /*
 	Class: node
 */
-/node
-	proc
-		ToString()
-			return "[src.type]"
+/node/proc/ToString()
+	return "[src.type]"
 /*
 	Class: identifier
 */
 /node/identifier
-	var
-		id_name
+	var/id_name
 
-	New(id)
-		.=..()
-		src.id_name=id
+/node/identifier/New(id)
+	. = ..()
+	src.id_name = id
 
-	ToString()
-		return id_name
+/node/identifier/ToString()
+	return id_name
 
 /*
 	Class: expression
@@ -68,72 +63,65 @@ var
 	See <Binary Operators> and <Unary Operators> for subtypes.
 */
 /node/expression/operator
-	var
-		node/expression/exp
-		tmp
-			name
-			precedence
+	var/node/expression/exp
+	var/tmp/name
+	var/tmp/precedence
 
-	New()
-		.=..()
-		if(!src.name) src.name="[src.type]"
+/node/expression/operator/New()
+	. = ..()
+	if(!src.name)
+		src.name = "[src.type]"
 
-	ToString()
-		return "operator: [name]"
+/node/expression/operator/ToString()
+	return "operator: [name]"
 
 /*
 	Class: FunctionCall
 */
 /node/expression/FunctionCall
 	//Function calls can also be expressions or statements.
-	var
-		func_name
-		node/identifier/object
-		list/parameters=new
+	var/func_name
+	var/node/identifier/object
+	var/list/parameters = new
 
 /*
 	Class: literal
 */
 /node/expression/value/literal
-	var
-		value
+	var/value
 
-	New(value)
-		.=..()
-		src.value=value
+/node/expression/value/literal/New(value)
+	. = ..()
+	src.value = value
 
-	ToString()
-		return src.value
+/node/expression/value/literal/ToString()
+	return src.value
 
 /*
 	Class: variable
 */
 /node/expression/value/variable
-	var
-		node
-			object		//Either a node/identifier or another node/expression/value/variable which points to the object
-		node/identifier
-			id
+	var/node/object		//Either a node/identifier or another node/expression/value/variable which points to the object
+	var/node/identifier/id
 
+/node/expression/value/variable/New(ident)
+	. = ..()
+	id = ident
+	if(istext(id))
+		id = new(id)
 
-	New(ident)
-		.=..()
-		id=ident
-		if(istext(id))id=new(id)
-
-	ToString()
-		return src.id.ToString()
+/node/expression/value/variable/ToString()
+	return src.id.ToString()
 
 /*
 	Class: reference
 */
 /node/expression/value/reference
-	var
-		datum/value
+	var/datum/value
 
-	New(value)
-		.=..()
-		src.value=value
+/node/expression/value/reference/New(value)
+	. = ..()
+	src.value = value
 
-	ToString()
-		return "ref: [src.value] ([src.value.type])"
+/node/expression/value/reference/ToString()
+	return "ref: [src.value] ([src.value.type])"

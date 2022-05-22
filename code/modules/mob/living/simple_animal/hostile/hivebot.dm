@@ -43,7 +43,6 @@
 	health = 80
 	ranged = 1
 
-
 /mob/living/simple_animal/hostile/hivebot/Die()
 	..()
 	visible_message("<b>[src]</b> blows apart!")
@@ -54,7 +53,8 @@
 	qdel(src)
 	return
 
-/mob/living/simple_animal/hostile/hivebot/tele//this still needs work
+
+/mob/living/simple_animal/hostile/hivebot/tele	//this still needs work
 	name = "Beacon"
 	desc = "Some odd beacon thing"
 	icon = 'icons/mob/hivebot.dmi'
@@ -65,43 +65,39 @@
 	status_flags = 0
 	anchored = 1
 	stop_automated_movement = 1
+
 	var/bot_type = "norm"
 	var/bot_amt = 10
 	var/spawn_delay = 600
 	var/turn_on = 0
 	var/auto_spawn = 1
-	proc
-		warpbots()
 
+/mob/living/simple_animal/hostile/hivebot/tele/New()
+	..()
+	var/datum/effect/system/smoke_spread/smoke = new /datum/effect/system/smoke_spread()
+	smoke.set_up(5, 0, src.loc)
+	smoke.start()
+	visible_message("\red <B>The [src] warps in!</B>")
+	playsound(src, 'sound/effects/EMPulse.ogg', 25, 1)
 
-	New()
-		..()
-		var/datum/effect/system/smoke_spread/smoke = new /datum/effect/system/smoke_spread()
-		smoke.set_up(5, 0, src.loc)
-		smoke.start()
-		visible_message("\red <B>The [src] warps in!</B>")
-		playsound(src, 'sound/effects/EMPulse.ogg', 25, 1)
+/mob/living/simple_animal/hostile/hivebot/tele/Life()
+	..()
+	if(stat == CONSCIOUS)
+		if(prob(2))//Might be a bit low, will mess with it likely
+			warpbots()
 
-	warpbots()
-		icon_state = "def_radar"
-		visible_message("\red The [src] turns on!")
-		while(bot_amt > 0)
-			bot_amt--
-			switch(bot_type)
-				if("norm")
-					new /mob/living/simple_animal/hostile/hivebot(get_turf(src))
-				if("range")
-					new /mob/living/simple_animal/hostile/hivebot/range(get_turf(src))
-				if("rapid")
-					new /mob/living/simple_animal/hostile/hivebot/rapid(get_turf(src))
-		spawn(100)
-			qdel(src)
-		return
-
-
-	Life()
-		..()
-		if(stat == CONSCIOUS)
-			if(prob(2))//Might be a bit low, will mess with it likely
-				warpbots()
-
+/mob/living/simple_animal/hostile/hivebot/tele/proc/warpbots()
+	icon_state = "def_radar"
+	visible_message("\red The [src] turns on!")
+	while(bot_amt > 0)
+		bot_amt--
+		switch(bot_type)
+			if("norm")
+				new /mob/living/simple_animal/hostile/hivebot(get_turf(src))
+			if("range")
+				new /mob/living/simple_animal/hostile/hivebot/range(get_turf(src))
+			if("rapid")
+				new /mob/living/simple_animal/hostile/hivebot/rapid(get_turf(src))
+	spawn(100)
+		qdel(src)
+	return
