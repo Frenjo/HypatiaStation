@@ -6,69 +6,66 @@
 	icon_state = "jetpack"
 	w_class = 4.0
 	item_state = "jetpack"
-	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
+	distribute_pressure = ONE_ATMOSPHERE * O2STANDARD
+	icon_action_button = "action_jetpack"
+
 	var/datum/effect/system/ion_trail_follow/ion_trail
 	var/on = 0.0
 	var/stabilization_on = 0
-	var/volume_rate = 500              //Needed for borg jetpack transfer
-	icon_action_button = "action_jetpack"
+	var/volume_rate = 500				//Needed for borg jetpack transfer
 
-	New()
-		..()
-		src.ion_trail = new /datum/effect/system/ion_trail_follow()
-		src.ion_trail.set_up(src)
-		return
+/obj/item/weapon/tank/jetpack/New()
+	..()
+	src.ion_trail = new /datum/effect/system/ion_trail_follow()
+	src.ion_trail.set_up(src)
+	return
 
+/obj/item/weapon/tank/jetpack/examine()
+	set src in usr
+	..()
+	if(air_contents.gas[GAS_OXYGEN] < 10)
+		usr << text("\red <B>The meter on the [src.name] indicates you are almost out of air!</B>")
+		playsound(usr, 'sound/effects/alert.ogg', 50, 1)
+	return
 
-	examine()
-		set src in usr
-		..()
-		if(air_contents.gas[GAS_OXYGEN] < 10)
-			usr << text("\red <B>The meter on the [src.name] indicates you are almost out of air!</B>")
-			playsound(usr, 'sound/effects/alert.ogg', 50, 1)
-		return
+/obj/item/weapon/tank/jetpack/verb/toggle_rockets()
+	set name = "Toggle Jetpack Stabilization"
+	set category = "Object"
+	src.stabilization_on = !( src.stabilization_on )
+	usr << "You toggle the stabilization [stabilization_on? "on":"off"]."
+	return
 
+/obj/item/weapon/tank/jetpack/verb/toggle()
+	set name = "Toggle Jetpack"
+	set category = "Object"
+	on = !on
+	if(on)
+		icon_state = "[icon_state]-on"
+//		item_state = "[item_state]-on"
+		ion_trail.start()
+	else
+		icon_state = initial(icon_state)
+//		item_state = initial(item_state)
+		ion_trail.stop()
+	return
 
-	verb/toggle_rockets()
-		set name = "Toggle Jetpack Stabilization"
-		set category = "Object"
-		src.stabilization_on = !( src.stabilization_on )
-		usr << "You toggle the stabilization [stabilization_on? "on":"off"]."
-		return
+/obj/item/weapon/tank/jetpack/proc/allow_thrust(num, mob/living/user as mob)
+	if(!(src.on))
+		return 0
+	if((num < 0.005 || src.air_contents.total_moles < num))
+		src.ion_trail.stop()
+		return 0
 
+	var/datum/gas_mixture/G = src.air_contents.remove(num)
 
-	verb/toggle()
-		set name = "Toggle Jetpack"
-		set category = "Object"
-		on = !on
-		if(on)
-			icon_state = "[icon_state]-on"
-//			item_state = "[item_state]-on"
-			ion_trail.start()
-		else
-			icon_state = initial(icon_state)
-//			item_state = initial(item_state)
-			ion_trail.stop()
-		return
+	if(G.total_moles >= 0.005)
+		return 1
 
+	qdel(G)
+	return
 
-	proc/allow_thrust(num, mob/living/user as mob)
-		if(!(src.on))
-			return 0
-		if((num < 0.005 || src.air_contents.total_moles < num))
-			src.ion_trail.stop()
-			return 0
-
-		var/datum/gas_mixture/G = src.air_contents.remove(num)
-
-		if(G.total_moles >= 0.005)
-			return 1
-
-		qdel(G)
-		return
-
-	ui_action_click()
-		toggle()
+/obj/item/weapon/tank/jetpack/ui_action_click()
+	toggle()
 
 
 /obj/item/weapon/tank/jetpack/void
@@ -77,10 +74,11 @@
 	icon_state = "jetpack-void"
 	item_state =  "jetpack-void"
 
-	New()
-		..()
-		air_contents.adjust_gas(GAS_OXYGEN, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
-		return
+/obj/item/weapon/tank/jetpack/void/New()
+	..()
+	air_contents.adjust_gas(GAS_OXYGEN, (6 * ONE_ATMOSPHERE) * volume / (R_IDEAL_GAS_EQUATION * T20C))
+	return
+
 
 /obj/item/weapon/tank/jetpack/oxygen
 	name = "Jetpack (Oxygen)"
@@ -88,10 +86,11 @@
 	icon_state = "jetpack"
 	item_state = "jetpack"
 
-	New()
-		..()
-		air_contents.adjust_gas(GAS_OXYGEN, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
-		return
+/obj/item/weapon/tank/jetpack/oxygen/New()
+	..()
+	air_contents.adjust_gas(GAS_OXYGEN, (6 * ONE_ATMOSPHERE) * volume / (R_IDEAL_GAS_EQUATION * T20C))
+	return
+
 
 /obj/item/weapon/tank/jetpack/carbondioxide
 	name = "Jetpack (Carbon Dioxide)"
@@ -100,18 +99,18 @@
 	icon_state = "jetpack-black"
 	item_state =  "jetpack-black"
 
-	New()
-		..()
-		src.ion_trail = new /datum/effect/system/ion_trail_follow()
-		src.ion_trail.set_up(src)
-		//src.air_contents.carbon_dioxide = (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
-		air_contents.adjust_gas(GAS_CARBON_DIOXIDE, (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
-		return
+/obj/item/weapon/tank/jetpack/carbondioxide/New()
+	..()
+	src.ion_trail = new /datum/effect/system/ion_trail_follow()
+	src.ion_trail.set_up(src)
+	//src.air_contents.carbon_dioxide = (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
+	air_contents.adjust_gas(GAS_CARBON_DIOXIDE, (6 * ONE_ATMOSPHERE) * volume / (R_IDEAL_GAS_EQUATION * T20C))
+	return
 
-	examine()
-		set src in usr
-		..()
-		if(air_contents.gas[GAS_CARBON_DIOXIDE] < 10)
-			usr << text("\red <B>The meter on the [src.name] indicates you are almost out of air!</B>")
-			playsound(usr, 'sound/effects/alert.ogg', 50, 1)
-		return
+/obj/item/weapon/tank/jetpack/carbondioxide/examine()
+	set src in usr
+	..()
+	if(air_contents.gas[GAS_CARBON_DIOXIDE] < 10)
+		usr << text("\red <B>The meter on the [src.name] indicates you are almost out of air!</B>")
+		playsound(usr, 'sound/effects/alert.ogg', 50, 1)
+	return

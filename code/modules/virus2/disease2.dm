@@ -197,7 +197,7 @@ var/global/list/virusDB = list()
 	virusDB["[uniqueID]"] = v
 	return 1
 
-proc/virus2_lesser_infection()
+/proc/virus2_lesser_infection()
 	var/list/candidates = list()	//list of candidate keys
 
 	for(var/mob/living/carbon/human/G in player_list)
@@ -211,7 +211,7 @@ proc/virus2_lesser_infection()
 
 	infect_mob_random_lesser(candidates[1])
 
-proc/virus2_greater_infection()
+/proc/virus2_greater_infection()
 	var/list/candidates = list()	//list of candidate keys
 
 	for(var/mob/living/carbon/human/G in player_list)
