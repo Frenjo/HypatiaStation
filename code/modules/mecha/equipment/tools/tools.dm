@@ -3,6 +3,7 @@
 	icon_state = "mecha_clamp"
 	equip_cooldown = 15
 	energy_drain = 10
+
 	var/dam_force = 20
 	var/obj/mecha/working/ripley/cargo_holder
 
@@ -537,46 +538,48 @@
 	energy_drain = 50
 	range = 0
 	construction_cost = list(MATERIAL_METAL = 20000, MATERIAL_SILVER = 5000)
+
 	var/deflect_coeff = 1.15
 	var/damage_coeff = 0.8
 
-	can_attach(obj/mecha/M as obj)
-		if(..())
-			if(!istype(M, /obj/mecha/combat/honker))
-				if(!M.proc_res["dynattackby"])
-					return 1
-		return 0
+/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/can_attach(obj/mecha/M as obj)
+	if(..())
+		if(!istype(M, /obj/mecha/combat/honker))
+			if(!M.proc_res["dynattackby"])
+				return 1
+	return 0
 
-	attach(obj/mecha/M as obj)
-		..()
-		chassis.proc_res["dynattackby"] = src
+/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/attach(obj/mecha/M as obj)
+	..()
+	chassis.proc_res["dynattackby"] = src
+	return
+
+/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/detach()
+	chassis.proc_res["dynattackby"] = null
+	..()
+	return
+
+/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/get_equip_info()
+	if(!chassis)
 		return
+	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name]"
 
-	detach()
-		chassis.proc_res["dynattackby"] = null
-		..()
-		return
-
-	get_equip_info()
-		if(!chassis) return
-		return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name]"
-
-	proc/dynattackby(obj/item/weapon/W as obj, mob/user as mob)
-		if(!action_checks(user))
-			return chassis.dynattackby(W,user)
-		chassis.log_message("Attacked by [W]. Attacker - [user]")
-		if(prob(chassis.deflect_chance*deflect_coeff))
-			user << "\red The [W] bounces off [chassis] armor."
-			chassis.log_append_to_last("Armor saved.")
-		else
-			chassis.occupant_message("<font color='red'><b>[user] hits [chassis] with [W].</b></font>")
-			user.visible_message("<font color='red'><b>[user] hits [chassis] with [W].</b></font>", "<font color='red'><b>You hit [src] with [W].</b></font>")
-			chassis.take_damage(round(W.force*damage_coeff),W.damtype)
-			chassis.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
-		set_ready_state(0)
-		chassis.use_power(energy_drain)
-		do_after_cooldown()
-		return
+/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/proc/dynattackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(!action_checks(user))
+		return chassis.dynattackby(W,user)
+	chassis.log_message("Attacked by [W]. Attacker - [user]")
+	if(prob(chassis.deflect_chance * deflect_coeff))
+		user << "\red The [W] bounces off [chassis] armor."
+		chassis.log_append_to_last("Armor saved.")
+	else
+		chassis.occupant_message("<font color='red'><b>[user] hits [chassis] with [W].</b></font>")
+		user.visible_message("<font color='red'><b>[user] hits [chassis] with [W].</b></font>", "<font color='red'><b>You hit [src] with [W].</b></font>")
+		chassis.take_damage(round(W.force * damage_coeff), W.damtype)
+		chassis.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
+	set_ready_state(0)
+	chassis.use_power(energy_drain)
+	do_after_cooldown()
+	return
 
 
 /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster
@@ -588,67 +591,69 @@
 	energy_drain = 50
 	range = 0
 	construction_cost = list(MATERIAL_METAL = 20000, MATERIAL_GOLD = 5000)
+
 	var/deflect_coeff = 1.15
 	var/damage_coeff = 0.8
 
-	can_attach(obj/mecha/M as obj)
-		if(..())
-			if(!istype(M, /obj/mecha/combat/honker))
-				if(!M.proc_res["dynbulletdamage"] && !M.proc_res["dynhitby"])
-					return 1
-		return 0
+/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/can_attach(obj/mecha/M as obj)
+	if(..())
+		if(!istype(M, /obj/mecha/combat/honker))
+			if(!M.proc_res["dynbulletdamage"] && !M.proc_res["dynhitby"])
+				return 1
+	return 0
 
-	attach(obj/mecha/M as obj)
-		..()
-		chassis.proc_res["dynbulletdamage"] = src
-		chassis.proc_res["dynhitby"] = src
+/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/attach(obj/mecha/M as obj)
+	..()
+	chassis.proc_res["dynbulletdamage"] = src
+	chassis.proc_res["dynhitby"] = src
+	return
+
+/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/detach()
+	chassis.proc_res["dynbulletdamage"] = null
+	chassis.proc_res["dynhitby"] = null
+	..()
+	return
+
+/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/get_equip_info()
+	if(!chassis)
 		return
+	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name]"
 
-	detach()
-		chassis.proc_res["dynbulletdamage"] = null
-		chassis.proc_res["dynhitby"] = null
-		..()
-		return
+/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/proc/dynbulletdamage(obj/item/projectile/Proj)
+	if(!action_checks(src))
+		return chassis.dynbulletdamage(Proj)
+	if(prob(chassis.deflect_chance * deflect_coeff))
+		chassis.occupant_message("\blue The armor deflects incoming projectile.")
+		chassis.visible_message("The [chassis.name] armor deflects the projectile")
+		chassis.log_append_to_last("Armor saved.")
+	else
+		chassis.take_damage(round(Proj.damage * src.damage_coeff), Proj.flag)
+		chassis.check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
+		Proj.on_hit(chassis)
+	set_ready_state(0)
+	chassis.use_power(energy_drain)
+	do_after_cooldown()
+	return
 
-	get_equip_info()
-		if(!chassis) return
-		return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name]"
-
-	proc/dynbulletdamage(var/obj/item/projectile/Proj)
-		if(!action_checks(src))
-			return chassis.dynbulletdamage(Proj)
-		if(prob(chassis.deflect_chance*deflect_coeff))
-			chassis.occupant_message("\blue The armor deflects incoming projectile.")
-			chassis.visible_message("The [chassis.name] armor deflects the projectile")
-			chassis.log_append_to_last("Armor saved.")
-		else
-			chassis.take_damage(round(Proj.damage*src.damage_coeff),Proj.flag)
-			chassis.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
-			Proj.on_hit(chassis)
-		set_ready_state(0)
-		chassis.use_power(energy_drain)
-		do_after_cooldown()
-		return
-
-	proc/dynhitby(atom/movable/A)
-		if(!action_checks(A))
-			return chassis.dynhitby(A)
-		if(prob(chassis.deflect_chance*deflect_coeff) || istype(A, /mob/living) || istype(A, /obj/item/mecha_parts/mecha_tracking))
-			chassis.occupant_message("\blue The [A] bounces off the armor.")
-			chassis.visible_message("The [A] bounces off the [chassis] armor")
-			chassis.log_append_to_last("Armor saved.")
-			if(istype(A, /mob/living))
-				var/mob/living/M = A
-				M.take_organ_damage(10)
-		else if(istype(A, /obj))
-			var/obj/O = A
-			if(O.throwforce)
-				chassis.take_damage(round(O.throwforce*damage_coeff))
-				chassis.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
-		set_ready_state(0)
-		chassis.use_power(energy_drain)
-		do_after_cooldown()
-		return
+/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/proc/dynhitby(atom/movable/A)
+	if(!action_checks(A))
+		return chassis.dynhitby(A)
+	if(prob(chassis.deflect_chance * deflect_coeff) || istype(A, /mob/living) || istype(A, /obj/item/mecha_parts/mecha_tracking))
+		chassis.occupant_message("\blue The [A] bounces off the armor.")
+		chassis.visible_message("The [A] bounces off the [chassis] armor")
+		chassis.log_append_to_last("Armor saved.")
+		if(istype(A, /mob/living))
+			var/mob/living/M = A
+			M.take_organ_damage(10)
+	else if(istype(A, /obj))
+		var/obj/O = A
+		if(O.throwforce)
+			chassis.take_damage(round(O.throwforce * damage_coeff))
+			chassis.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
+	set_ready_state(0)
+	chassis.use_power(energy_drain)
+	do_after_cooldown()
+	return
 
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid
@@ -660,85 +665,84 @@
 	energy_drain = 100
 	range = 0
 	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_GOLD = 1000, MATERIAL_SILVER = 2000, MATERIAL_GLASS = 5000)
+
 	var/health_boost = 2
 	var/datum/global_iterator/pr_repair_droid
 	var/icon/droid_overlay
-	var/list/repairable_damage = list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH)
+	var/list/repairable_damage = list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH)
 
-	New()
-		..()
-		pr_repair_droid = new /datum/global_iterator/mecha_repair_droid(list(src),0)
-		pr_repair_droid.set_delay(equip_cooldown)
+/obj/item/mecha_parts/mecha_equipment/repair_droid/New()
+	..()
+	pr_repair_droid = new /datum/global_iterator/mecha_repair_droid(list(src), 0)
+	pr_repair_droid.set_delay(equip_cooldown)
+	return
+
+/obj/item/mecha_parts/mecha_equipment/repair_droid/attach(obj/mecha/M as obj)
+	..()
+	droid_overlay = new(src.icon, icon_state = "repair_droid")
+	M.overlays += droid_overlay
+	return
+
+/obj/item/mecha_parts/mecha_equipment/repair_droid/destroy()
+	chassis.overlays -= droid_overlay
+	..()
+	return
+
+/obj/item/mecha_parts/mecha_equipment/repair_droid/detach()
+	chassis.overlays -= droid_overlay
+	pr_repair_droid.stop()
+	..()
+	return
+
+/obj/item/mecha_parts/mecha_equipment/repair_droid/get_equip_info()
+	if(!chassis)
 		return
+	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] - <a href='?src=\ref[src];toggle_repairs=1'>[pr_repair_droid.active()?"Dea":"A"]ctivate</a>"
 
-	attach(obj/mecha/M as obj)
-		..()
-		droid_overlay = new(src.icon, icon_state = "repair_droid")
-		M.overlays += droid_overlay
-		return
 
-	destroy()
+/obj/item/mecha_parts/mecha_equipment/repair_droid/Topic(href, href_list)
+	..()
+	if(href_list["toggle_repairs"])
 		chassis.overlays -= droid_overlay
-		..()
+		if(pr_repair_droid.toggle())
+			droid_overlay = new(src.icon, icon_state = "repair_droid_a")
+			log_message("Activated.")
+		else
+			droid_overlay = new(src.icon, icon_state = "repair_droid")
+			log_message("Deactivated.")
+			set_ready_state(1)
+		chassis.overlays += droid_overlay
+		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", src.get_equip_info())
+	return
+
+/datum/global_iterator/mecha_repair_droid/process(obj/item/mecha_parts/mecha_equipment/repair_droid/RD as obj)
+	if(!RD.chassis)
+		stop()
+		RD.set_ready_state(1)
 		return
-
-	detach()
-		chassis.overlays -= droid_overlay
-		pr_repair_droid.stop()
-		..()
-		return
-
-	get_equip_info()
-		if(!chassis) return
-		return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] - <a href='?src=\ref[src];toggle_repairs=1'>[pr_repair_droid.active()?"Dea":"A"]ctivate</a>"
-
-
-	Topic(href, href_list)
-		..()
-		if(href_list["toggle_repairs"])
-			chassis.overlays -= droid_overlay
-			if(pr_repair_droid.toggle())
-				droid_overlay = new(src.icon, icon_state = "repair_droid_a")
-				log_message("Activated.")
-			else
-				droid_overlay = new(src.icon, icon_state = "repair_droid")
-				log_message("Deactivated.")
-				set_ready_state(1)
-			chassis.overlays += droid_overlay
-			send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",src.get_equip_info())
-		return
-
-
-/datum/global_iterator/mecha_repair_droid
-
-	process(var/obj/item/mecha_parts/mecha_equipment/repair_droid/RD as obj)
-		if(!RD.chassis)
+	var/health_boost = RD.health_boost
+	var/repaired = 0
+	if(RD.chassis.hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
+		health_boost *= -2
+	else if(RD.chassis.hasInternalDamage() && prob(15))
+		for(var/int_dam_flag in RD.repairable_damage)
+			if(RD.chassis.hasInternalDamage(int_dam_flag))
+				RD.chassis.clearInternalDamage(int_dam_flag)
+				repaired = 1
+				break
+	if(health_boost<0 || RD.chassis.health < initial(RD.chassis.health))
+		RD.chassis.health += min(health_boost, initial(RD.chassis.health) - RD.chassis.health)
+		repaired = 1
+	if(repaired)
+		if(RD.chassis.use_power(RD.energy_drain))
+			RD.set_ready_state(0)
+		else
 			stop()
 			RD.set_ready_state(1)
 			return
-		var/health_boost = RD.health_boost
-		var/repaired = 0
-		if(RD.chassis.hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
-			health_boost *= -2
-		else if(RD.chassis.hasInternalDamage() && prob(15))
-			for(var/int_dam_flag in RD.repairable_damage)
-				if(RD.chassis.hasInternalDamage(int_dam_flag))
-					RD.chassis.clearInternalDamage(int_dam_flag)
-					repaired = 1
-					break
-		if(health_boost<0 || RD.chassis.health < initial(RD.chassis.health))
-			RD.chassis.health += min(health_boost, initial(RD.chassis.health)-RD.chassis.health)
-			repaired = 1
-		if(repaired)
-			if(RD.chassis.use_power(RD.energy_drain))
-				RD.set_ready_state(0)
-			else
-				stop()
-				RD.set_ready_state(1)
-				return
-		else
-			RD.set_ready_state(1)
-		return
+	else
+		RD.set_ready_state(1)
+	return
 
 
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay
@@ -750,110 +754,111 @@
 	energy_drain = 0
 	range = 0
 	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_GOLD = 2000, MATERIAL_SILVER = 3000, MATERIAL_GLASS = 2000)
+
 	var/datum/global_iterator/pr_energy_relay
 	var/coeff = 100
-	var/list/use_channels = list(EQUIP,ENVIRON,LIGHT)
+	var/list/use_channels = list(EQUIP, ENVIRON, LIGHT)
 
-	New()
-		..()
-		pr_energy_relay = new /datum/global_iterator/mecha_energy_relay(list(src),0)
-		pr_energy_relay.set_delay(equip_cooldown)
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/New()
+	..()
+	pr_energy_relay = new /datum/global_iterator/mecha_energy_relay(list(src), 0)
+	pr_energy_relay.set_delay(equip_cooldown)
+	return
+
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/detach()
+	pr_energy_relay.stop()
+//	chassis.proc_res["dynusepower"] = null
+	chassis.proc_res["dyngetcharge"] = null
+	..()
+	return
+
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/attach(obj/mecha/M)
+	..()
+	chassis.proc_res["dyngetcharge"] = src
+//	chassis.proc_res["dynusepower"] = src
+	return
+
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/can_attach(obj/mecha/M)
+	if(..())
+		if(!M.proc_res["dyngetcharge"])// && !M.proc_res["dynusepower"])
+			return 1
+	return 0
+
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/proc/dyngetcharge()
+	if(equip_ready) //disabled
+		return chassis.dyngetcharge()
+	var/area/A = get_area(chassis)
+	var/pow_chan = get_power_channel(A)
+	var/charge = 0
+	if(pow_chan)
+		charge = 1000 //making magic
+	else
+		return chassis.dyngetcharge()
+	return charge
+
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/proc/get_power_channel(area/A)
+	var/pow_chan
+	if(A)
+		for(var/c in use_channels)
+			//if(A.master && A.master.powered(c))
+			if(A.powered(c))
+				pow_chan = c
+				break
+	return pow_chan
+
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/Topic(href, href_list)
+	..()
+	if(href_list["toggle_relay"])
+		if(pr_energy_relay.toggle())
+			set_ready_state(0)
+			log_message("Activated.")
+		else
+			set_ready_state(1)
+			log_message("Deactivated.")
+	return
+
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/get_equip_info()
+	if(!chassis)
 		return
+	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] - <a href='?src=\ref[src];toggle_relay=1'>[pr_energy_relay.active() ? "Dea" : "A"]ctivate</a>"
 
-	detach()
-		pr_energy_relay.stop()
-//		chassis.proc_res["dynusepower"] = null
-		chassis.proc_res["dyngetcharge"] = null
-		..()
-		return
-
-	attach(obj/mecha/M)
-		..()
-		chassis.proc_res["dyngetcharge"] = src
-//		chassis.proc_res["dynusepower"] = src
-		return
-
-	can_attach(obj/mecha/M)
-		if(..())
-			if(!M.proc_res["dyngetcharge"])// && !M.proc_res["dynusepower"])
-				return 1
-		return 0
-
-	proc/dyngetcharge()
-		if(equip_ready) //disabled
-			return chassis.dyngetcharge()
+/*
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/proc/dynusepower(amount)
+	if(!equip_ready) //enabled
 		var/area/A = get_area(chassis)
 		var/pow_chan = get_power_channel(A)
-		var/charge = 0
 		if(pow_chan)
-			charge = 1000 //making magic
-		else
-			return chassis.dyngetcharge()
-		return charge
+			A.master.use_power(amount * coeff, pow_chan)
+			return 1
+	return chassis.dynusepower(amount)
+*/
 
-	proc/get_power_channel(var/area/A)
-		var/pow_chan
+/datum/global_iterator/mecha_energy_relay/process(obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/ER)
+	if(!ER.chassis || ER.chassis.hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
+		stop()
+		ER.set_ready_state(1)
+		return
+	var/cur_charge = ER.chassis.get_charge()
+	if(isnull(cur_charge) || !ER.chassis.cell)
+		stop()
+		ER.set_ready_state(1)
+		ER.occupant_message("No powercell detected.")
+		return
+	if(cur_charge < ER.chassis.cell.maxcharge)
+		var/area/A = get_area(ER.chassis)
 		if(A)
-			for(var/c in use_channels)
-				//if(A.master && A.master.powered(c))
+			var/pow_chan
+			for(var/c in list(EQUIP, ENVIRON, LIGHT))
+				//if(A.master.powered(c))
 				if(A.powered(c))
 					pow_chan = c
 					break
-		return pow_chan
-
-	Topic(href, href_list)
-		..()
-		if(href_list["toggle_relay"])
-			if(pr_energy_relay.toggle())
-				set_ready_state(0)
-				log_message("Activated.")
-			else
-				set_ready_state(1)
-				log_message("Deactivated.")
-		return
-
-	get_equip_info()
-		if(!chassis) return
-		return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] - <a href='?src=\ref[src];toggle_relay=1'>[pr_energy_relay.active()?"Dea":"A"]ctivate</a>"
-
-/*	proc/dynusepower(amount)
-		if(!equip_ready) //enabled
-			var/area/A = get_area(chassis)
-			var/pow_chan = get_power_channel(A)
 			if(pow_chan)
-				A.master.use_power(amount*coeff, pow_chan)
-				return 1
-		return chassis.dynusepower(amount)*/
-
-/datum/global_iterator/mecha_energy_relay
-
-	process(var/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/ER)
-		if(!ER.chassis || ER.chassis.hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
-			stop()
-			ER.set_ready_state(1)
-			return
-		var/cur_charge = ER.chassis.get_charge()
-		if(isnull(cur_charge) || !ER.chassis.cell)
-			stop()
-			ER.set_ready_state(1)
-			ER.occupant_message("No powercell detected.")
-			return
-		if(cur_charge<ER.chassis.cell.maxcharge)
-			var/area/A = get_area(ER.chassis)
-			if(A)
-				var/pow_chan
-				for(var/c in list(EQUIP,ENVIRON,LIGHT))
-					//if(A.master.powered(c))
-					if(A.powered(c))
-						pow_chan = c
-						break
-				if(pow_chan)
-					var/delta = min(12, ER.chassis.cell.maxcharge-cur_charge)
-					ER.chassis.give_power(delta)
-					//A.master.use_power(delta*ER.coeff, pow_chan)
-					A.use_power(delta*ER.coeff, pow_chan)
-		return
-
+				var/delta = min(12, ER.chassis.cell.maxcharge - cur_charge)
+				ER.chassis.give_power(delta)
+				//A.master.use_power(delta*ER.coeff, pow_chan)
+				A.use_power(delta * ER.coeff, pow_chan)
+	return
 
 
 /obj/item/mecha_parts/mecha_equipment/generator
@@ -865,6 +870,8 @@
 	energy_drain = 0
 	range = MELEE
 	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_SILVER = 500, MATERIAL_GLASS = 1000)
+	reliability = 1000
+
 	var/datum/global_iterator/pr_mech_generator
 	var/coeff = 100
 	var/obj/item/stack/sheet/fuel
@@ -872,126 +879,122 @@
 	var/fuel_per_cycle_idle = 100
 	var/fuel_per_cycle_active = 500
 	var/power_per_cycle = 20
-	reliability = 1000
 
-	New()
-		..()
-		init()
-		return
+/obj/item/mecha_parts/mecha_equipment/generator/New()
+	..()
+	init()
+	return
 
-	proc/init()
-		fuel = new /obj/item/stack/sheet/mineral/plasma(src)
-		fuel.amount = 0
-		pr_mech_generator = new /datum/global_iterator/mecha_generator(list(src),0)
-		pr_mech_generator.set_delay(equip_cooldown)
-		return
+/obj/item/mecha_parts/mecha_equipment/generator/proc/init()
+	fuel = new /obj/item/stack/sheet/mineral/plasma(src)
+	fuel.amount = 0
+	pr_mech_generator = new /datum/global_iterator/mecha_generator(list(src), 0)
+	pr_mech_generator.set_delay(equip_cooldown)
+	return
 
-	detach()
-		pr_mech_generator.stop()
-		..()
-		return
+/obj/item/mecha_parts/mecha_equipment/generator/detach()
+	pr_mech_generator.stop()
+	..()
+	return
 
+/obj/item/mecha_parts/mecha_equipment/generator/Topic(href, href_list)
+	..()
+	if(href_list["toggle"])
+		if(pr_mech_generator.toggle())
+			set_ready_state(0)
+			log_message("Activated.")
+		else
+			set_ready_state(1)
+			log_message("Deactivated.")
+	return
 
-	Topic(href, href_list)
-		..()
-		if(href_list["toggle"])
-			if(pr_mech_generator.toggle())
-				set_ready_state(0)
-				log_message("Activated.")
-			else
-				set_ready_state(1)
-				log_message("Deactivated.")
-		return
+/obj/item/mecha_parts/mecha_equipment/generator/get_equip_info()
+	var/output = ..()
+	if(output)
+		return "[output] \[[fuel]: [round(fuel.amount * fuel.perunit, 0.1)] cm<sup>3</sup>\] - <a href='?src=\ref[src];toggle=1'>[pr_mech_generator.active() ? "Dea" : "A"]ctivate</a>"
+	return
 
-	get_equip_info()
-		var/output = ..()
-		if(output)
-			return "[output] \[[fuel]: [round(fuel.amount*fuel.perunit,0.1)] cm<sup>3</sup>\] - <a href='?src=\ref[src];toggle=1'>[pr_mech_generator.active()?"Dea":"A"]ctivate</a>"
-		return
-
-	action(target)
-		if(chassis)
-			var/result = load_fuel(target)
-			var/message
-			if(isnull(result))
-				message = "<font color='red'>[fuel] traces in target minimal. [target] cannot be used as fuel.</font>"
-			else if(!result)
-				message = "Unit is full."
-			else
-				message = "[result] unit\s of [fuel] successfully loaded."
-				send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",src.get_equip_info())
-			occupant_message(message)
-		return
-
-	proc/load_fuel(var/obj/item/stack/sheet/P)
-		if(P.type == fuel.type && P.amount)
-			var/to_load = max(max_fuel - fuel.amount*fuel.perunit,0)
-			if(to_load)
-				var/units = min(max(round(to_load / P.perunit),1),P.amount)
-				if(units)
-					fuel.amount += units
-					P.use(units)
-					return units
-			else
-				return 0
-		return
-
-	attackby(weapon,mob/user)
-		var/result = load_fuel(weapon)
+/obj/item/mecha_parts/mecha_equipment/generator/action(target)
+	if(chassis)
+		var/result = load_fuel(target)
+		var/message
 		if(isnull(result))
-			user.visible_message("[user] tries to shove [weapon] into [src]. What a dumb-ass.","<font color='red'>[fuel] traces minimal. [weapon] cannot be used as fuel.</font>")
+			message = "<font color='red'>[fuel] traces in target minimal. [target] cannot be used as fuel.</font>"
 		else if(!result)
-			user << "Unit is full."
+			message = "Unit is full."
 		else
-			user.visible_message("[user] loads [src] with [fuel].","[result] unit\s of [fuel] successfully loaded.")
-		return
+			message = "[result] unit\s of [fuel] successfully loaded."
+			send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",src.get_equip_info())
+		occupant_message(message)
+	return
 
-	critfail()
-		..()
-		var/turf/simulated/T = get_turf(src)
-		if(!T)
-			return
-		var/datum/gas_mixture/GM = new
-		if(prob(10))
-			T.assume_gas(GAS_PLASMA, 100, 1500+T0C)
-			T.visible_message("The [src] suddenly disgorges a cloud of heated plasma.")
-			destroy()
+/obj/item/mecha_parts/mecha_equipment/generator/proc/load_fuel(var/obj/item/stack/sheet/P)
+	if(P.type == fuel.type && P.amount)
+		var/to_load = max(max_fuel - fuel.amount * fuel.perunit, 0)
+		if(to_load)
+			var/units = min(max(round(to_load / P.perunit), 1), P.amount)
+			if(units)
+				fuel.amount += units
+				P.use(units)
+				return units
 		else
-			T.assume_gas(GAS_PLASMA, 5, istype(T) ? T.air.temperature : T20C)
-			T.visible_message("The [src] suddenly disgorges a cloud of plasma.")
-		T.assume_air(GM)
+			return 0
+	return
+
+/obj/item/mecha_parts/mecha_equipment/generator/attackby(weapon,mob/user)
+	var/result = load_fuel(weapon)
+	if(isnull(result))
+		user.visible_message("[user] tries to shove [weapon] into [src]. What a dumb-ass.", "<font color='red'>[fuel] traces minimal. [weapon] cannot be used as fuel.</font>")
+	else if(!result)
+		user << "Unit is full."
+	else
+		user.visible_message("[user] loads [src] with [fuel].", "[result] unit\s of [fuel] successfully loaded.")
+	return
+
+/obj/item/mecha_parts/mecha_equipment/generator/critfail()
+	..()
+	var/turf/simulated/T = get_turf(src)
+	if(!T)
 		return
+	var/datum/gas_mixture/GM = new
+	if(prob(10))
+		T.assume_gas(GAS_PLASMA, 100, 1500 + T0C)
+		T.visible_message("The [src] suddenly disgorges a cloud of heated plasma.")
+		destroy()
+	else
+		T.assume_gas(GAS_PLASMA, 5, istype(T) ? T.air.temperature : T20C)
+		T.visible_message("The [src] suddenly disgorges a cloud of plasma.")
+	T.assume_air(GM)
+	return
 
-/datum/global_iterator/mecha_generator
-
-	process(var/obj/item/mecha_parts/mecha_equipment/generator/EG)
-		if(!EG.chassis)
-			stop()
-			EG.set_ready_state(1)
-			return 0
-		if(EG.fuel.amount<=0)
-			stop()
-			EG.log_message("Deactivated - no fuel.")
-			EG.set_ready_state(1)
-			return 0
-		if(anyprob(EG.reliability))
-			EG.critfail()
-			stop()
-			return 0
-		var/cur_charge = EG.chassis.get_charge()
-		if(isnull(cur_charge))
-			EG.set_ready_state(1)
-			EG.occupant_message("No powercell detected.")
-			EG.log_message("Deactivated.")
-			stop()
-			return 0
-		var/use_fuel = EG.fuel_per_cycle_idle
-		if(cur_charge<EG.chassis.cell.maxcharge)
-			use_fuel = EG.fuel_per_cycle_active
-			EG.chassis.give_power(EG.power_per_cycle)
-		EG.fuel.amount -= min(use_fuel/EG.fuel.perunit,EG.fuel.amount)
-		EG.update_equip_info()
-		return 1
+/datum/global_iterator/mecha_generator/process(obj/item/mecha_parts/mecha_equipment/generator/EG)
+	if(!EG.chassis)
+		stop()
+		EG.set_ready_state(1)
+		return 0
+	if(EG.fuel.amount <= 0)
+		stop()
+		EG.log_message("Deactivated - no fuel.")
+		EG.set_ready_state(1)
+		return 0
+	if(anyprob(EG.reliability))
+		EG.critfail()
+		stop()
+		return 0
+	var/cur_charge = EG.chassis.get_charge()
+	if(isnull(cur_charge))
+		EG.set_ready_state(1)
+		EG.occupant_message("No powercell detected.")
+		EG.log_message("Deactivated.")
+		stop()
+		return 0
+	var/use_fuel = EG.fuel_per_cycle_idle
+	if(cur_charge < EG.chassis.cell.maxcharge)
+		use_fuel = EG.fuel_per_cycle_active
+		EG.chassis.give_power(EG.power_per_cycle)
+	EG.fuel.amount -= min(use_fuel / EG.fuel.perunit, EG.fuel.amount)
+	EG.update_equip_info()
+	return 1
 
 
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear
@@ -1004,29 +1007,28 @@
 	fuel_per_cycle_idle = 10
 	fuel_per_cycle_active = 30
 	power_per_cycle = 50
-	var/rad_per_cycle = 0.3
 	reliability = 1000
 
-	init()
-		fuel = new /obj/item/stack/sheet/mineral/uranium(src)
-		fuel.amount = 0
-		pr_mech_generator = new /datum/global_iterator/mecha_generator/nuclear(list(src),0)
-		pr_mech_generator.set_delay(equip_cooldown)
-		return
+	var/rad_per_cycle = 0.3
 
-	critfail()
-		return
+/obj/item/mecha_parts/mecha_equipment/generator/nuclear/init()
+	fuel = new /obj/item/stack/sheet/mineral/uranium(src)
+	fuel.amount = 0
+	pr_mech_generator = new /datum/global_iterator/mecha_generator/nuclear(list(src), 0)
+	pr_mech_generator.set_delay(equip_cooldown)
+	return
 
-/datum/global_iterator/mecha_generator/nuclear
+/obj/item/mecha_parts/mecha_equipment/generator/nuclear/critfail()
+	return
 
-	process(var/obj/item/mecha_parts/mecha_equipment/generator/nuclear/EG)
-		if(..())
-			for(var/mob/living/carbon/M in view(EG.chassis))
-				if(istype(M,/mob/living/carbon/human))
-					M.apply_effect((EG.rad_per_cycle*3),IRRADIATE,0)
-				else
-					M.radiation += EG.rad_per_cycle
-		return 1
+/datum/global_iterator/mecha_generator/nuclear/process(obj/item/mecha_parts/mecha_equipment/generator/nuclear/EG)
+	if(..())
+		for(var/mob/living/carbon/M in view(EG.chassis))
+			if(istype(M, /mob/living/carbon/human))
+				M.apply_effect((EG.rad_per_cycle * 3), IRRADIATE, 0)
+			else
+				M.radiation += EG.rad_per_cycle
+	return 1
 
 
 
@@ -1036,65 +1038,69 @@
 	icon_state = "mecha_clamp"
 	equip_cooldown = 15
 	energy_drain = 0
+
 	var/dam_force = 0
 	var/obj/mecha/working/ripley/cargo_holder
 
-	can_attach(obj/mecha/working/ripley/M as obj)
-		if(..())
-			if(istype(M))
-				return 1
-		return 0
+/obj/item/mecha_parts/mecha_equipment/tool/safety_clamp/can_attach(obj/mecha/working/ripley/M as obj)
+	if(..())
+		if(istype(M))
+			return 1
+	return 0
 
-	attach(obj/mecha/M as obj)
-		..()
-		cargo_holder = M
+/obj/item/mecha_parts/mecha_equipment/tool/safety_clamp/attach(obj/mecha/M as obj)
+	..()
+	cargo_holder = M
+	return
+
+/obj/item/mecha_parts/mecha_equipment/tool/safety_clamp/action(atom/target)
+	if(!action_checks(target))
 		return
-
-	action(atom/target)
-		if(!action_checks(target)) return
-		if(!cargo_holder) return
-		if(istype(target,/obj))
-			var/obj/O = target
-			if(!O.anchored)
-				if(cargo_holder.cargo.len < cargo_holder.cargo_capacity)
-					chassis.occupant_message("You lift [target] and start to load it into cargo compartment.")
-					chassis.visible_message("[chassis] lifts [target] and starts to load it into cargo compartment.")
-					set_ready_state(0)
-					chassis.use_power(energy_drain)
-					O.anchored = 1
-					var/T = chassis.loc
-					if(do_after_cooldown(target))
-						if(T == chassis.loc && src == chassis.selected)
-							cargo_holder.cargo += O
-							O.loc = chassis
-							O.anchored = 0
-							chassis.occupant_message("<font color='blue'>[target] succesfully loaded.</font>")
-							chassis.log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
-						else
-							chassis.occupant_message("<font color='red'>You must hold still while handling objects.</font>")
-							O.anchored = initial(O.anchored)
-				else
-					chassis.occupant_message("<font color='red'>Not enough room in cargo compartment.</font>")
+	if(!cargo_holder)
+		return
+	if(istype(target, /obj))
+		var/obj/O = target
+		if(!O.anchored)
+			if(cargo_holder.cargo.len < cargo_holder.cargo_capacity)
+				chassis.occupant_message("You lift [target] and start to load it into cargo compartment.")
+				chassis.visible_message("[chassis] lifts [target] and starts to load it into cargo compartment.")
+				set_ready_state(0)
+				chassis.use_power(energy_drain)
+				O.anchored = 1
+				var/T = chassis.loc
+				if(do_after_cooldown(target))
+					if(T == chassis.loc && src == chassis.selected)
+						cargo_holder.cargo += O
+						O.loc = chassis
+						O.anchored = 0
+						chassis.occupant_message("<font color='blue'>[target] succesfully loaded.</font>")
+						chassis.log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
+					else
+						chassis.occupant_message("<font color='red'>You must hold still while handling objects.</font>")
+						O.anchored = initial(O.anchored)
 			else
-				chassis.occupant_message("<font color='red'>[target] is firmly secured.</font>")
+				chassis.occupant_message("<font color='red'>Not enough room in cargo compartment.</font>")
+		else
+			chassis.occupant_message("<font color='red'>[target] is firmly secured.</font>")
 
-		else if(istype(target,/mob/living))
-			var/mob/living/M = target
-			if(M.stat>1) return
-			if(chassis.occupant.a_intent == "hurt")
-				chassis.occupant_message("\red You obliterate [target] with [src.name], leaving blood and guts everywhere.")
-				chassis.visible_message("\red [chassis] destroys [target] in an unholy fury.")
-			if(chassis.occupant.a_intent == "disarm")
-				chassis.occupant_message("\red You tear [target]'s limbs off with [src.name].")
-				chassis.visible_message("\red [chassis] rips [target]'s arms off.")
-			else
-				step_away(M,chassis)
-				chassis.occupant_message("You smash into [target], sending them flying.")
-				chassis.visible_message("[chassis] tosses [target] like a piece of paper.")
-			set_ready_state(0)
-			chassis.use_power(energy_drain)
-			do_after_cooldown()
-		return 1
+	else if(istype(target, /mob/living))
+		var/mob/living/M = target
+		if(M.stat > 1)
+			return
+		if(chassis.occupant.a_intent == "hurt")
+			chassis.occupant_message("\red You obliterate [target] with [src.name], leaving blood and guts everywhere.")
+			chassis.visible_message("\red [chassis] destroys [target] in an unholy fury.")
+		if(chassis.occupant.a_intent == "disarm")
+			chassis.occupant_message("\red You tear [target]'s limbs off with [src.name].")
+			chassis.visible_message("\red [chassis] rips [target]'s arms off.")
+		else
+			step_away(M,chassis)
+			chassis.occupant_message("You smash into [target], sending them flying.")
+			chassis.visible_message("[chassis] tosses [target] like a piece of paper.")
+		set_ready_state(0)
+		chassis.use_power(energy_drain)
+		do_after_cooldown()
+	return 1
 
 // Ported the passenger compartment from NSS Eternal along with the hoverpod. -Frenjo
 /obj/item/mecha_parts/mecha_equipment/tool/passenger
@@ -1107,9 +1113,10 @@
 	construction_cost = list(MATERIAL_METAL = 5000, MATERIAL_GLASS = 5000)
 	reliability = 1000
 	equip_cooldown = 20
+	salvageable = 0
+
 	var/mob/living/carbon/occupant = null
 	var/door_locked = 1
-	salvageable = 0
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/allow_drop()
 	return 0
@@ -1126,7 +1133,7 @@
 	if(chassis)
 		chassis.visible_message("\blue [user] starts to climb into [chassis].")
 
-	if(do_after(user, 40, needhand=0))
+	if(do_after(user, 40, needhand = 0))
 		if(!src.occupant)
 			user.forceMove(src)
 			occupant = user
@@ -1166,7 +1173,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/attach()
 	..()
-	if (chassis)
+	if(chassis)
 		chassis.verbs |= /obj/mecha/proc/move_inside_passenger
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/detach()
@@ -1176,7 +1183,7 @@
 
 	var/obj/mecha/M = chassis
 	..()
-	if (M && !(locate(/obj/item/mecha_parts/mecha_equipment/tool/passenger) in M))
+	if(M && !(locate(/obj/item/mecha_parts/mecha_equipment/tool/passenger) in M))
 		M.verbs -= /obj/mecha/proc/move_inside_passenger
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/get_equip_info()
@@ -1184,10 +1191,10 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/Topic(href,href_list)
 	..()
-	if (href_list["toggle_lock"])
+	if(href_list["toggle_lock"])
 		door_locked = !door_locked
 		occupant_message("Passenger compartment hatch [door_locked? "locked" : "unlocked"].")
-		if (chassis)
+		if(chassis)
 			chassis.visible_message("The hatch on \the [chassis] [door_locked? "locks" : "unlocks"].", "You hear something latching.")
 
 
@@ -1236,7 +1243,7 @@
 		return
 
 	//didn't find anything
-	switch (feedback)
+	switch(feedback)
 		if(OCCUPIED)
 			usr << "\red The passenger compartment is already occupied!"
 		if(LOCKED)
@@ -1256,8 +1263,8 @@
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "royce_kit"
 
-	var/new_name = "mech"    //What is the variant called?
-	var/new_desc = "A mech." //How is the new mech described?
-	var/new_icon = "ripley"  //What base icon will the new mech use?
-	var/removable = null     //Can the kit be removed?
+	var/new_name = "mech"		//What is the variant called?
+	var/new_desc = "A mech."	//How is the new mech described?
+	var/new_icon = "ripley"		//What base icon will the new mech use?
+	var/removable = null		//Can the kit be removed?
 	var/list/allowed_types = list() //Types of mech that the kit will work on.
