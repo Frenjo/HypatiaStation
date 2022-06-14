@@ -129,9 +129,6 @@
 	shuttles["Supply"] = shuttle
 	process_shuttles += shuttle
 
-	//supply_shuttle = shuttle
-	global.supply_controller.shuttle = shuttle
-
 	// Admin shuttles.
 	shuttle = new()
 	shuttle.location = 1
