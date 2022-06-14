@@ -1,4 +1,4 @@
-/var/datum/controller/vote/vote = new()
+/var/global/datum/controller/vote/vote // Set in /datum/controller/process/vote/setup()
 
 /var/global/list/round_voters = list() //Keeps track of the individuals voting for a given round, for use in forcedrafting.
 
@@ -42,7 +42,7 @@
 		else
 			for(var/client/C in voting)
 				if(C)
-					C << browse(vote.interface(C), "window=vote;can_close=0")
+					C << browse(global.vote.interface(C), "window=vote;can_close=0")
 
 			voting.Cut()
 
@@ -376,5 +376,5 @@
 	set category = "OOC"
 	set name = "Vote"
 
-	if(vote)
-		src << browse(vote.interface(client), "window=vote;can_close=0")
+	if(global.vote)
+		src << browse(global.vote.interface(client), "window=vote;can_close=0")

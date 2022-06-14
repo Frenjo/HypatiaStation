@@ -1,9 +1,12 @@
 // nanomanager, the manager for Nano UIs
-/var/datum/nanomanager/nanomanager = new()
+/var/datum/nanomanager/nanomanager
 
 /datum/controller/process/nanoui/setup()
 	name = "nanoui"
 	schedule_interval = 2 SECONDS
+
+	if(!global.nanomanager)
+		global.nanomanager = new /datum/nanomanager()
 
 /datum/controller/process/nanoui/doWork()
 	for(last_object in global.nanomanager.processing_uis)

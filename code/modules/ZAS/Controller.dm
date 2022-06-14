@@ -1,4 +1,4 @@
-var/datum/controller/air_system/air_master
+/var/global/datum/controller/air_system/air_master // Set in /datum/controller/process/air/setup()
 
 var/tick_multiplier = 2
 

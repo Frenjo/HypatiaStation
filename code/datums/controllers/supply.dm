@@ -1,4 +1,4 @@
-/var/global/datum/controller/supply/supply_controller = new()
+/var/global/datum/controller/supply/supply_controller // Set in /datum/controller/process/supply/setup()
 
 // Supply manifest
 /obj/item/weapon/paper/manifest

@@ -3,7 +3,7 @@
 	schedule_interval = 2 SECONDS
 
 	if(!global.shuttle_controller)
-		global.shuttle_controller = new
+		global.shuttle_controller = new /datum/controller/shuttle()
 
 /datum/controller/process/shuttle/doWork()
 	global.shuttle_controller.process()

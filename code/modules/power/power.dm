@@ -223,9 +223,9 @@
 
 // rebuild all power networks from scratch - only called at world creation or by the admin verb
 /proc/makepowernets()
-	for(var/datum/powernet/PN in powernets)
+	for(var/datum/powernet/PN in global.powernets)
 		qdel(PN)
-	powernets.Cut()
+	global.powernets.Cut()
 
 	for(var/obj/structure/cable/PC in cable_list)
 		if(!PC.powernet)

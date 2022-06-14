@@ -48,8 +48,8 @@
 
 	sleep_offline = TRUE
 
-	global.processScheduler = new
-	global.master_controller = new /datum/controller/game_controller()
+	global.processScheduler = new /datum/controller/processScheduler()
+	global.master_controller = new /datum/controller/master()
 	spawn(1)
 		global.processScheduler.deferSetupFor(/datum/controller/process/ticker)
 		global.processScheduler.setup()

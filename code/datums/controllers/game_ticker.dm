@@ -1,6 +1,6 @@
-var/global/datum/controller/gameticker/ticker
+/var/global/datum/controller/game_ticker/ticker // Set in /datum/controller/process/ticker/setup()
 
-/datum/controller/gameticker
+/datum/controller/game_ticker
 	var/const/restart_timeout = 600
 	var/current_state = GAME_STATE_PREGAME
 
@@ -11,18 +11,18 @@ var/global/datum/controller/gameticker/ticker
 
 	var/login_music			// music played in pregame lobby
 
-	var/list/datum/mind/minds = list()//The people in the game. Used for objective tracking.
+	var/list/datum/mind/minds = list()	//The people in the game. Used for objective tracking.
 
 	var/Bible_icon_state	// icon_state the chaplain has chosen for his bible
 	var/Bible_item_state	// item_state the chaplain has chosen for his bible
 	var/Bible_name			// name of the bible
 	var/Bible_deity_name
 
-	var/random_players = 0 	// if set to nonzero, ALL players who latejoin or declare-ready join will have random appearances/genders
+	var/random_players = 0	// if set to nonzero, ALL players who latejoin or declare-ready join will have random appearances/genders
 
-	var/list/syndicate_coalition = list() // list of traitor-compatible factions
-	var/list/factions = list()			  // list of all factions
-	var/list/availablefactions = list()	  // list of factions with openings
+	var/list/syndicate_coalition = list()	// list of traitor-compatible factions
+	var/list/factions = list()				// list of all factions
+	var/list/availablefactions = list()		// list of factions with openings
 
 	var/pregame_timeleft = 0
 
@@ -30,7 +30,11 @@ var/global/datum/controller/gameticker/ticker
 
 	var/triai = 0//Global holder for Triumvirate
 
-/datum/controller/gameticker/proc/pregame()
+	//station_explosion used to be a variable for every mob's hud. Which was a waste!
+	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
+	var/obj/screen/cinematic = null
+
+/datum/controller/game_ticker/proc/pregame()
 	login_music = pick(\
 	/*'sound/music/halloween/skeletons.ogg',\
 	'sound/music/halloween/halloween.ogg',\
@@ -47,7 +51,7 @@ var/global/datum/controller/gameticker/ticker
 		while(current_state == GAME_STATE_PREGAME)
 			for(var/i = 0, i < 10, i++)
 				sleep(1)
-				vote.process()
+				global.vote.process()
 			if(global.roundstart_progressing)
 				pregame_timeleft--
 /*			if(pregame_timeleft == config.vote_autogamemode_timeleft)
@@ -62,7 +66,7 @@ var/global/datum/controller/gameticker/ticker
 	while(!setup())
 
 
-/datum/controller/gameticker/proc/setup()
+/datum/controller/game_ticker/proc/setup()
 	//Create and announce mode
 	if(global.master_mode == "secret")
 		src.hide_mode = 1
@@ -157,13 +161,8 @@ var/global/datum/controller/gameticker/ticker
 
 	return 1
 
-/datum/controller/gameticker
-	//station_explosion used to be a variable for every mob's hud. Which was a waste!
-	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
-	var/obj/screen/cinematic = null
-
 //Plus it provides an easy way to make cinematics for other events. Just use this as a template :)
-/datum/controller/gameticker/proc/station_explosion_cinematic(station_missed = 0, override = null)
+/datum/controller/game_ticker/proc/station_explosion_cinematic(station_missed = 0, override = null)
 	if(cinematic)
 		return	//already a cinematic in progress!
 
@@ -261,7 +260,7 @@ var/global/datum/controller/gameticker/ticker
 		qdel(temp_buckle)	//release everybody
 	return
 
-/datum/controller/gameticker/proc/create_characters()
+/datum/controller/game_ticker/proc/create_characters()
 	for(var/mob/new_player/player in player_list)
 		if(player.ready && player.mind)
 			if(player.mind.assigned_role == "AI")
@@ -273,12 +272,12 @@ var/global/datum/controller/gameticker/ticker
 				player.create_character()
 				qdel(player)
 
-/datum/controller/gameticker/proc/collect_minds()
+/datum/controller/game_ticker/proc/collect_minds()
 	for(var/mob/living/player in player_list)
 		if(player.mind)
 			ticker.minds += player.mind
 
-/datum/controller/gameticker/proc/equip_characters()
+/datum/controller/game_ticker/proc/equip_characters()
 	var/captainless = 1
 	for(var/mob/living/carbon/human/player in player_list)
 		if(player && player.mind && player.mind.assigned_role)
@@ -292,7 +291,7 @@ var/global/datum/controller/gameticker/ticker
 			if(!istype(M, /mob/new_player))
 				to_chat(M, "Captainship not forced on anyone.")
 
-/datum/controller/gameticker/proc/process()
+/datum/controller/game_ticker/proc/process()
 	if(current_state != GAME_STATE_PLAYING)
 		return 0
 
@@ -332,12 +331,12 @@ var/global/datum/controller/gameticker/ticker
 
 	return 1
 
-/datum/controller/gameticker/proc/getfactionbyname(name)
+/datum/controller/game_ticker/proc/getfactionbyname(name)
 	for(var/datum/faction/F in factions)
 		if(F.name == name)
 			return F
 
-/datum/controller/gameticker/proc/declare_completion()
+/datum/controller/game_ticker/proc/declare_completion()
 	for(var/mob/living/silicon/ai/aiPlayer in mob_list)
 		if(aiPlayer.stat != DEAD)
 			to_world("<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the game were:</b>")

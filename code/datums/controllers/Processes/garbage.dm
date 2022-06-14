@@ -5,10 +5,10 @@
 #define GC_COLLECTION_TIMEOUT (30 SECONDS)
 #define GC_FORCE_DEL_PER_RUN 30
 
-var/datum/controller/process/garbage_collector/garbage_collector
-var/list/delayed_garbage = list()
+/var/global/datum/controller/process/garbage/garbage_collector
+/var/global/list/delayed_garbage = list()
 
-/datum/controller/process/garbage_collector
+/datum/controller/process/garbage
 	var/garbage_collect = 1			// Whether or not to actually do work
 	var/total_dels	= 0			// number of total del()'s
 	var/tick_dels	= 0			// number of del()'s we've done this tick
@@ -21,7 +21,7 @@ var/list/delayed_garbage = list()
 	var/list/logging = list()	// list of all types that have failed to GC associated with the number of times that's happened.
 								// the types are stored as strings
 
-/datum/controller/process/garbage_collector/setup()
+/datum/controller/process/garbage/setup()
 	name = "garbage"
 	schedule_interval = 2 SECONDS
 	start_delay = 3
@@ -34,7 +34,7 @@ var/list/delayed_garbage = list()
 	global.delayed_garbage.Cut()
 	global.delayed_garbage = null
 
-/datum/controller/process/garbage_collector/doWork()
+/datum/controller/process/garbage/doWork()
 	if(!garbage_collect)
 		return
 
@@ -82,7 +82,7 @@ var/list/delayed_garbage = list()
 #undef GC_COLLECTION_TIMEOUT
 //#undef GC_COLLECTIONS_PER_TICK
 
-/datum/controller/process/garbage_collector/proc/AddTrash(datum/A)
+/datum/controller/process/garbage/proc/AddTrash(datum/A)
 	if(!istype(A) || !isnull(A.gcDestroyed))
 		return
 	#ifdef GC_DEBUG
@@ -92,7 +92,7 @@ var/list/delayed_garbage = list()
 	destroyed -= "\ref[A]" // Removing any previous references that were GC'd so that the current object will be at the end of the list.
 	destroyed["\ref[A]"] = world.time
 
-/datum/controller/process/garbage_collector/statProcess()
+/datum/controller/process/garbage/statProcess()
 	..()
 	stat(null, "[garbage_collect ? "On" : "Off"], [destroyed.len] queued")
 	stat(null, "Dels: [total_dels], [soft_dels] soft, [hard_dels] hard, [tick_dels] last run")
@@ -129,10 +129,10 @@ var/list/delayed_garbage = list()
 	if(IsPooled(src))
 		PlaceInPool(src)
 	else
-		if(garbage_collector)
-			garbage_collector.AddTrash(src)
+		if(global.garbage_collector)
+			global.garbage_collector.AddTrash(src)
 		else
-			delayed_garbage |= src
+			global.delayed_garbage |= src
 
 /icon/finalize_qdel()
 	del(src)

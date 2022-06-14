@@ -12,7 +12,6 @@
 	qdel(src)
 	switch(controller)
 		if("Supply Shuttle")
-			//supply_shuttle.process()
 			global.supply_controller.process() // Edited this to reflect 'shuttles' port. -Frenjo
 			feedback_add_details("admin_verb", "RSupply")
 	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")

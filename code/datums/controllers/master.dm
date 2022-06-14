@@ -2,7 +2,7 @@
 //It ensures master_controller.process() is never doubled up by killing the MC (hence terminating any of its sleeping procs)
 //WIP, needs lots of work still
 
-/var/global/datum/controller/game_controller/master_controller //Set in world.New()
+/var/global/datum/controller/master/master_controller //Set in world.New()
 
 /var/global/controller_iteration = 0
 /var/global/last_tick_timeofday = world.timeofday
@@ -11,10 +11,10 @@
 /var/global/air_processing_killed = 0
 /var/global/pipe_processing_killed = 0
 
-/datum/controller/game_controller
+/datum/controller/master
 	var/rebuild_active_areas = 0
 
-/datum/controller/game_controller/New()
+/datum/controller/master/New()
 	//There can be only one master_controller. Out with the old and in with the new.
 	if(global.master_controller != src)
 		log_debug("Rebuilding Master Controller")
@@ -33,7 +33,7 @@
 	if(!global.syndicate_code_response)
 		global.syndicate_code_response	= generate_code_phrase()
 
-/datum/controller/game_controller/proc/setup()
+/datum/controller/master/proc/setup()
 	world.tick_lag = config.Ticklag
 
 	spawn(20)
@@ -44,12 +44,12 @@
 	setup_factions()
 	setup_xenoarch()
 
-	global.transfer_controller = new
+	global.transfer_controller = new /datum/controller/transfer()
 
 	for(var/i = 0, i < max_secret_rooms, i++)
 		make_mining_asteroid_secret()
 
-/datum/controller/game_controller/proc/setup_objects()
+/datum/controller/master/proc/setup_objects()
 	to_world(SPAN_DANGER("Initializing objects."))
 	sleep(-1)
 	for(var/atom/movable/object in world)

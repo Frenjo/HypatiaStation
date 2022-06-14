@@ -6,9 +6,9 @@
 
 // Controls the emergency shuttle
 
-/var/global/datum/emergency_shuttle_controller/emergency_shuttle
+/var/global/datum/controller/emergency_shuttle/emergency_shuttle // Set in /datum/controller/process/emergency_shuttle/setup()
 
-/datum/emergency_shuttle_controller
+/datum/controller/emergency_shuttle
 	var/datum/shuttle/ferry/emergency/shuttle
 	var/list/escape_pods
 
@@ -26,7 +26,7 @@
 	var/datum/announcement/priority/emergency_shuttle_called = new(0, new_sound = sound('sound/AI/shuttlecalled.ogg'))
 	var/datum/announcement/priority/emergency_shuttle_recalled = new(0, new_sound = sound('sound/AI/shuttlerecalled.ogg'))*/
 
-/datum/emergency_shuttle_controller/proc/process()
+/datum/controller/emergency_shuttle/proc/process()
 	if(wait_for_launch)
 		if(auto_recall && world.time >= auto_recall_time)
 			recall()
@@ -43,7 +43,7 @@
 				shuttle.launch(src)
 
 //called when the shuttle has arrived.
-/datum/emergency_shuttle_controller/proc/shuttle_arrived()
+/datum/controller/emergency_shuttle/proc/shuttle_arrived()
 	if(!shuttle.location)	//at station
 		if(autopilot)
 			set_launch_countdown(SHUTTLE_LEAVETIME)	//get ready to return
@@ -63,15 +63,15 @@
 					pod.arming_controller.arm()
 
 //begins the launch countdown and sets the amount of time left until launch
-/datum/emergency_shuttle_controller/proc/set_launch_countdown(seconds)
+/datum/controller/emergency_shuttle/proc/set_launch_countdown(seconds)
 	wait_for_launch = 1
 	launch_time = world.time + seconds * 10
 
-/datum/emergency_shuttle_controller/proc/stop_launch_countdown()
+/datum/controller/emergency_shuttle/proc/stop_launch_countdown()
 	wait_for_launch = 0
 
 //calls the shuttle for an emergency evacuation
-/datum/emergency_shuttle_controller/proc/call_evac()
+/datum/controller/emergency_shuttle/proc/call_evac()
 	if(!can_call())
 		return
 
@@ -91,7 +91,7 @@
 			A.readyalert()
 
 //calls the shuttle for a routine crew transfer
-/datum/emergency_shuttle_controller/proc/call_transfer()
+/datum/controller/emergency_shuttle/proc/call_transfer()
 	if(!can_call())
 		return
 
@@ -107,7 +107,7 @@
 	world << sound('sound/AI/crewtransfer2.ogg') // Updated to reflect 'shuttles' port. -Frenjo
 
 //recalls the shuttle
-/datum/emergency_shuttle_controller/proc/recall()
+/datum/controller/emergency_shuttle/proc/recall()
 	if(!can_recall())
 		return
 
@@ -126,7 +126,7 @@
 		captain_announce("The scheduled crew transfer has been cancelled.")
 		world << sound('sound/AI/shuttlerecall2.ogg') // Updated to reflect 'shuttles' port. -Frenjo
 
-/datum/emergency_shuttle_controller/proc/can_call()
+/datum/controller/emergency_shuttle/proc/can_call()
 	if(deny_shuttle)
 		return 0
 	if(shuttle.moving_status != SHUTTLE_IDLE || !shuttle.location)	//must be idle at centcom
@@ -138,7 +138,7 @@
 //this only returns 0 if it would absolutely make no sense to recall
 //e.g. the shuttle is already at the station or wasn't called to begin with
 //other reasons for the shuttle not being recallable should be handled elsewhere
-/datum/emergency_shuttle_controller/proc/can_recall()
+/datum/controller/emergency_shuttle/proc/can_recall()
 	if(shuttle.moving_status == SHUTTLE_INTRANSIT)	//if the shuttle is already in transit then it's too late
 		return 0
 	if(!shuttle.location)	//already at the station.
@@ -147,7 +147,7 @@
 		return 0
 	return 1
 
-/datum/emergency_shuttle_controller/proc/get_shuttle_prep_time()
+/datum/controller/emergency_shuttle/proc/get_shuttle_prep_time()
 	// During mutiny rounds, the shuttle takes twice as long.
 	//if(ticker && istype(ticker.mode,/datum/game_mode/mutiny))
 	//	return SHUTTLE_PREPTIME * 3		//15 minutes
@@ -160,19 +160,19 @@
 	game whose logic depends on the emergency shuttle.
 */
 //returns 1 if the shuttle is docked at the station and waiting to leave
-/datum/emergency_shuttle_controller/proc/waiting_to_leave()
+/datum/controller/emergency_shuttle/proc/waiting_to_leave()
 	if(shuttle.location)
 		return 0	//not at station
 	return (wait_for_launch || shuttle.moving_status != SHUTTLE_INTRANSIT)
 
 //so we don't have emergency_shuttle.shuttle.location everywhere
-/datum/emergency_shuttle_controller/proc/location()
+/datum/controller/emergency_shuttle/proc/location()
 	if(!shuttle)
 		return 1 	//if we dont have a shuttle datum, just act like it's at centcom
 	return shuttle.location
 
 //returns the time left until the shuttle arrives at it's destination, in seconds
-/datum/emergency_shuttle_controller/proc/estimate_arrival_time()
+/datum/controller/emergency_shuttle/proc/estimate_arrival_time()
 	var/eta
 	if(shuttle.has_arrive_time())
 		//we are in transition and can get an accurate ETA
@@ -183,19 +183,19 @@
 	return (eta - world.time) / 10
 
 //returns the time left until the shuttle launches, in seconds
-/datum/emergency_shuttle_controller/proc/estimate_launch_time()
+/datum/controller/emergency_shuttle/proc/estimate_launch_time()
 	return (launch_time - world.time) / 10
 
-/datum/emergency_shuttle_controller/proc/has_eta()
+/datum/controller/emergency_shuttle/proc/has_eta()
 	return (wait_for_launch || shuttle.moving_status != SHUTTLE_IDLE)
 
 //returns 1 if the shuttle has gone to the station and come back at least once,
 //used for game completion checking purposes
-/datum/emergency_shuttle_controller/proc/returned()
+/datum/controller/emergency_shuttle/proc/returned()
 	return (departed && shuttle.moving_status == SHUTTLE_IDLE && shuttle.location)	//we've gone to the station at least once, no longer in transit and are idle back at centcom
 
 //returns 1 if the shuttle is not idle at centcom
-/datum/emergency_shuttle_controller/proc/online()
+/datum/controller/emergency_shuttle/proc/online()
 	if(!shuttle.location)	//not at centcom
 		return 1
 	if(wait_for_launch || shuttle.moving_status != SHUTTLE_IDLE)
@@ -203,14 +203,14 @@
 	return 0
 
 //returns 1 if the shuttle is currently in transit (or just leaving) to the station
-/datum/emergency_shuttle_controller/proc/going_to_station()
+/datum/controller/emergency_shuttle/proc/going_to_station()
 	return (!shuttle.direction && shuttle.moving_status != SHUTTLE_IDLE)
 
 //returns 1 if the shuttle is currently in transit (or just leaving) to centcom
-/datum/emergency_shuttle_controller/proc/going_to_centcom()
+/datum/controller/emergency_shuttle/proc/going_to_centcom()
 	return (shuttle.direction && shuttle.moving_status != SHUTTLE_IDLE)
 
-/datum/emergency_shuttle_controller/proc/get_status_panel_eta()
+/datum/controller/emergency_shuttle/proc/get_status_panel_eta()
 	if(online())
 		if(shuttle.has_arrive_time())
 			var/timeleft = emergency_shuttle.estimate_arrival_time()

@@ -7,7 +7,7 @@
 	var/radiation = 0
 	var/list/products = list()
 
-/datum/controller/game_controller/var/list/fusion_reactions
+/datum/controller/master/var/list/fusion_reactions
 
 /proc/get_fusion_reaction(var/primary_reactant, var/secondary_reactant)
 	if(!global.master_controller.fusion_reactions)

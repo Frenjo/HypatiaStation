@@ -1,4 +1,4 @@
-var/global/datum/controller/process/ticker/tickerProcess
+/var/global/datum/controller/process/ticker/ticker_process
 
 /datum/controller/process/ticker
 	var/lastTickerTimeDuration
@@ -10,10 +10,10 @@ var/global/datum/controller/process/ticker/tickerProcess
 
 	lastTickerTime = world.timeofday
 
-	if(!ticker)
-		ticker = new
+	if(!global.ticker)
+		global.ticker = new /datum/controller/game_ticker()
 
-	tickerProcess = src
+	global.ticker_process = src
 
 	spawn(0)
 		if(global.ticker)

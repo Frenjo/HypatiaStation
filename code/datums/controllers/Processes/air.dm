@@ -4,7 +4,7 @@
 	start_delay = 4
 
 	if(!global.air_master)
-		global.air_master = new
+		global.air_master = new /datum/controller/air_system()
 		global.air_master.Setup()
 
 /datum/controller/process/air/doWork()

@@ -2,19 +2,19 @@
 // As part of the docking controller port, because rewriting that code is spaghetti.
 // And I ain't doing it. -Frenjo
 
-/var/global/datum/shuttle_controller/shuttle_controller
+/var/global/datum/controller/shuttle/shuttle_controller // Set in /datum/controller/process/shuttle/setup()
 
-/datum/shuttle_controller
+/datum/controller/shuttle
 	var/list/shuttles	//maps shuttle tags to shuttle datums, so that they can be looked up.
 	var/list/process_shuttles	//simple list of shuttles, for processing
 
-/datum/shuttle_controller/proc/process()
+/datum/controller/shuttle/proc/process()
 	//process ferry shuttles
 	for(var/datum/shuttle/ferry/shuttle in process_shuttles)
 		if(shuttle.process_state)
 			shuttle.process()
 
-/datum/shuttle_controller/New()
+/datum/controller/shuttle/New()
 	shuttles = list()
 	process_shuttles = list()
 
@@ -264,7 +264,7 @@
 	shuttles["Mercenary"] = mercenary_shuttle
 
 //This is called by gameticker after all the machines and radio frequencies have been properly initialized
-/datum/shuttle_controller/proc/setup_shuttle_docks()
+/datum/controller/shuttle/proc/setup_shuttle_docks()
 	var/datum/shuttle/shuttle
 	var/datum/shuttle/ferry/multidock/multidock
 	var/list/dock_controller_map = list()	//so we only have to iterate once through each list

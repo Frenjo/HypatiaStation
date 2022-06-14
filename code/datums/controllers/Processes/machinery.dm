@@ -2,7 +2,7 @@
 
 /var/global/list/machines = list()
 /var/global/list/processing_power_items = list()
-/var/list/powernets = list()
+/var/global/list/powernets = list()
 
 /datum/controller/process/machinery/setup()
 	name = "machinery"

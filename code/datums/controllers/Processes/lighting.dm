@@ -4,15 +4,15 @@
 #define MAX_CORNER_UPDATES_PER_WORK		1000
 #define MAX_OVERLAY_UPDATES_PER_WORK	2000
 
-/var/lighting_overlays_initialised = FALSE
+/var/global/lighting_overlays_initialised = FALSE
 
-/var/list/lighting_update_lights	= list()	// List of lighting sources  queued for update.
-/var/list/lighting_update_corners	= list()	// List of lighting corners  queued for update.
-/var/list/lighting_update_overlays	= list()	// List of lighting overlays queued for update.
+/var/global/list/lighting_update_lights		= list()	// List of lighting sources  queued for update.
+/var/global/list/lighting_update_corners	= list()	// List of lighting corners  queued for update.
+/var/global/list/lighting_update_overlays	= list()	// List of lighting overlays queued for update.
 
-/var/list/lighting_update_lights_old	= list()	// List of lighting sources  currently being updated.
-/var/list/lighting_update_corners_old	= list()	// List of lighting corners  currently being updated.
-/var/list/lighting_update_overlays_old	= list()	// List of lighting overlays currently being updated.
+/var/global/list/lighting_update_lights_old		= list()	// List of lighting sources  currently being updated.
+/var/global/list/lighting_update_corners_old	= list()	// List of lighting corners  currently being updated.
+/var/global/list/lighting_update_overlays_old	= list()	// List of lighting overlays currently being updated.
 
 /datum/controller/process/lighting/setup()
 	name = "lighting"
