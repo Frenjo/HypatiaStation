@@ -28,12 +28,13 @@ Growing it to term with nothing injected will grab a ghost from the observers. *
 
 /obj/item/seeds/replicapod/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/reagent_containers))
+		var/obj/item/weapon/reagent_containers/container = W
 		to_chat(user, "You inject the contents of the syringe into the seeds.")
 
 		var/datum/reagent/blood/B
 
 		//Find a blood sample to inject.
-		for(var/datum/reagent/R in W:reagents.reagent_list)
+		for(var/datum/reagent/R in container.reagents.reagent_list)
 			if(istype(R, /datum/reagent/blood))
 				B = R
 				break
@@ -56,7 +57,7 @@ Growing it to term with nothing injected will grab a ghost from the observers. *
 			realName = source.real_name
 			ckey = source.ckey
 
-		W:reagents.clear_reagents()
+		container.reagents.clear_reagents()
 		return
 
 	return ..()

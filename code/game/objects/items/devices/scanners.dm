@@ -134,10 +134,10 @@ REAGENT SCANNER
 		OX = fake_oxy > 50 ? "\red Severe oxygen deprivation detected\blue" : "Subject bloodstream oxygen level normal"
 	user.show_message("[OX] | [TX] | [BU] | [BR]")
 	if(iscarbon(M))
-		if(M:reagents.total_volume > 0)
+		var/mob/living/carbon/C = M
+		if(C.reagents.total_volume > 0)
 			user.show_message(SPAN_WARNING("Warning: Unknown substance detected in subject's blood."))
-		if(M:virus2.len)
-			var/mob/living/carbon/C = M
+		if(C.virus2.len)
 			for(var/ID in C.virus2)
 				if(ID in virusDB)
 					var/datum/data/record/V = virusDB[ID]
@@ -178,8 +178,8 @@ REAGENT SCANNER
 			for(var/datum/wound/W in e.wounds) if(W.internal)
 				user.show_message(SPAN_WARNING("Internal bleeding detected. Advanced scanner required for location."), 1)
 				break
-		if(M:vessel)
-			var/blood_volume = round(M:vessel.get_reagent_amount("blood"))
+		if(H.vessel)
+			var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
 			var/blood_percent =  blood_volume / 560
 			blood_percent *= 100
 			if(blood_volume <= 500)

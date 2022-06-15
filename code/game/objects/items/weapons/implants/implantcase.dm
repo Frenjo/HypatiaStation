@@ -42,23 +42,24 @@
 				I.reagents.trans_to(src.imp, 5)
 				to_chat(user, SPAN_INFO("You inject 5 units of the solution. The syringe now contains [I.reagents.total_volume] units."))
 	else if(istype(I, /obj/item/weapon/implanter))
-		if(I:imp)
-			if(src.imp || I:imp.implanted)
+		var/obj/item/weapon/implanter/implanter = I
+		if(implanter.imp)
+			if(src.imp || implanter.imp.implanted)
 				return
-			I:imp.loc = src
-			src.imp = I:imp
-			I:imp = null
+			implanter.imp.loc = src
+			src.imp = implanter.imp
+			implanter.imp = null
 			src.update()
-			I:update()
+			implanter.update()
 		else
 			if(src.imp)
-				if(I:imp)
+				if(implanter.imp)
 					return
-				src.imp.loc = I
-				I:imp = src.imp
+				src.imp.loc = implanter
+				implanter.imp = src.imp
 				src.imp = null
 				update()
-			I:update()
+			implanter.update()
 	return
 
 

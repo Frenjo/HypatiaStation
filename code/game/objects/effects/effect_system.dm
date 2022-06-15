@@ -534,8 +534,10 @@ steam.start() -- spawns the effect
 
 	if(iscarbon(AM))
 		var/mob/M =	AM
-		if(ishuman(M) && (istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags & NOSLIP))
-			return
+		if(ishuman(M))
+			var/mob/living/carbon/human/human = M
+			if(istype(human.shoes, /obj/item/clothing/shoes) && (human.shoes.flags & NOSLIP))
+				return
 
 		M.stop_pulling()
 		to_chat(M, SPAN_INFO("You slipped on the foam!"))

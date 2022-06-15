@@ -650,7 +650,8 @@
 			loc_temp =  M.return_temperature()
 		else if(istype(get_turf(src), /turf/space))
 		else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-			loc_temp = loc:air_contents.temperature
+			var/obj/machinery/atmospherics/unary/cryo_cell/cell = loc
+			loc_temp = cell.air_contents.temperature
 		else
 			loc_temp = environment.temperature
 

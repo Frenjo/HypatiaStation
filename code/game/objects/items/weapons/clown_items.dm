@@ -11,8 +11,10 @@
 /obj/item/weapon/bananapeel/Crossed(AM as mob|obj)
 	if(iscarbon(AM))
 		var/mob/M =	AM
-		if(ishuman(M) && (isobj(M:shoes) && M:shoes.flags & NOSLIP))
-			return
+		if(ishuman(M))
+			var/mob/living/carbon/human/human = M
+			if(isobj(human.shoes) && (human.shoes.flags & NOSLIP))
+				return
 
 		M.stop_pulling()
 		to_chat(M, SPAN_INFO("You slipped on the [name]!"))
@@ -27,8 +29,10 @@
 /obj/item/weapon/soap/Crossed(AM as mob|obj) //EXACTLY the same as bananapeel for now, so it makes sense to put it in the same dm -- Urist
 	if(iscarbon(AM))
 		var/mob/M =	AM
-		if(ishuman(M) && (isobj(M:shoes) && M:shoes.flags & NOSLIP))
-			return
+		if(ishuman(M))
+			var/mob/living/carbon/human/human = M
+			if(isobj(human.shoes) && (human.shoes.flags & NOSLIP))
+				return
 
 		M.stop_pulling()
 		to_chat(M, SPAN_INFO("You slipped on the [name]!"))

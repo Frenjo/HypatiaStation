@@ -537,28 +537,29 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_w_uniform(update_icons = 1)
 	if(w_uniform && istype(w_uniform, /obj/item/clothing/under))
-		w_uniform.screen_loc = ui_iclothing
-		var/t_color = w_uniform.item_color
+		var/obj/item/clothing/under/uniform = w_uniform
+		uniform.screen_loc = ui_iclothing
+		var/t_color = uniform.item_color
 		if(!t_color)
 			t_color = icon_state
 
 		var/image/standing = image("icon_state" = "[t_color]_s")
 
-		if(w_uniform.icon_override)
-			standing.icon = w_uniform.icon_override
-		else if(w_uniform.sprite_sheets && w_uniform.sprite_sheets[species.name])
-			standing.icon = w_uniform.sprite_sheets[species.name]
+		if(uniform.icon_override)
+			standing.icon = uniform.icon_override
+		else if(uniform.sprite_sheets && uniform.sprite_sheets[species.name])
+			standing.icon = uniform.sprite_sheets[species.name]
 		else
 			standing.icon = 'icons/mob/uniform.dmi'
 
-		if(w_uniform.blood_DNA)
+		if(uniform.blood_DNA)
 			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "uniformblood")
-			bloodsies.color = w_uniform.blood_color
+			bloodsies.color = uniform.blood_color
 			standing.overlays += bloodsies
 
-		if(w_uniform:hastie)	//WE CHECKED THE TYPE ABOVE. THIS REALLY SHOULD BE FINE.
-			var/tie_color = w_uniform:hastie.item_color
-			if(!tie_color) tie_color = w_uniform:hastie.icon_state
+		if(uniform.hastie)
+			var/tie_color = uniform.hastie.item_color
+			if(!tie_color) tie_color = uniform.hastie.icon_state
 			standing.overlays	+= image("icon" = 'icons/mob/ties.dmi', "icon_state" = "[tie_color]")
 
 		overlays_standing[UNIFORM_LAYER] = standing

@@ -79,15 +79,16 @@
 		switch(src.wet)
 			if(1)
 				if(ishuman(M)) // Added check since monkeys don't have shoes
-					if(M.m_intent == "run" && !(istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags & NOSLIP))
-						M.stop_pulling()
-						step(M, M.dir)
-						to_chat(M, SPAN_INFO("You slipped on the wet floor!"))
+					var/mob/living/carbon/human/human = M
+					if(human.m_intent == "run" && !(istype(human.shoes, /obj/item/clothing/shoes) && (human.shoes.flags & NOSLIP)))
+						human.stop_pulling()
+						step(human, human.dir)
+						to_chat(human, SPAN_INFO("You slipped on the wet floor!"))
 						playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
-						M.Stun(5)
-						M.Weaken(3)
+						human.Stun(5)
+						human.Weaken(3)
 					else
-						M.inertia_dir = 0
+						human.inertia_dir = 0
 						return
 				else if(!isslime(M))
 					if(M.m_intent == "run")
@@ -119,13 +120,14 @@
 					M.Weaken(10)
 			if(3) // Ice
 				if(ishuman(M)) // Added check since monkeys don't have shoes
-					if(M.m_intent == "run" && !(istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags & NOSLIP) && prob(30))
-						M.stop_pulling()
-						step(M, M.dir)
-						to_chat(M, SPAN_INFO("You slipped on the icy floor!"))
+					var/mob/living/carbon/human/human = M
+					if(human.m_intent == "run" && !(istype(human.shoes, /obj/item/clothing/shoes) && (human.shoes.flags & NOSLIP)) && prob(30))
+						human.stop_pulling()
+						step(human, human.dir)
+						to_chat(human, SPAN_INFO("You slipped on the icy floor!"))
 						playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
-						M.Stun(4)
-						M.Weaken(3)
+						human.Stun(4)
+						human.Weaken(3)
 					else
 						M.inertia_dir = 0
 						return

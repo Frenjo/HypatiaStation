@@ -119,8 +119,10 @@
 /obj/item/weapon/reagent_containers/food/snacks/grown/bluetomato/Crossed(AM as mob|obj)
 	if(iscarbon(AM))
 		var/mob/M =	AM
-		if(ishuman(M) && (isobj(M:shoes) && M:shoes.flags & NOSLIP))
-			return
+		if(ishuman(M))
+			var/mob/living/carbon/human/human = M
+			if(isobj(human.shoes) && (human.shoes.flags & NOSLIP))
+				return
 
 		M.stop_pulling()
 		to_chat(M, SPAN_INFO("You slipped on the [name]!"))

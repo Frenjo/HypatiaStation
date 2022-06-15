@@ -385,19 +385,18 @@ var/list/ghostteleportlocs = list()
 			thunk(M)
 
 /area/proc/thunk(mob)
-	if(ishuman(mob))  // Only humans can wear magboots, so we give them a chance to.
-		if((istype(mob:shoes, /obj/item/clothing/shoes/magboots) && (mob:shoes.flags & NOSLIP)))
-			return
-
 	if(istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.
 		return
 
-	if(ishuman(mob) && mob:m_intent == "run") // Only clumbsy humans can fall on their asses.
-		mob:AdjustStunned(5)
-		mob:AdjustWeakened(5)
-
-	else if(ishuman(mob))
-		mob:AdjustStunned(2)
-		mob:AdjustWeakened(2)
+	if(ishuman(mob)) // Only humans can wear magboots, so we give them a chance to.
+		var/mob/living/carbon/human/human = mob
+		if(istype(human.shoes, /obj/item/clothing/shoes/magboots) && (human.shoes.flags & NOSLIP))
+			return
+		if(human.m_intent == "run") // Only clumsy humans can fall on their asses.
+			human.AdjustStunned(5)
+			human.AdjustWeakened(5)
+		else
+			human.AdjustStunned(2)
+			human.AdjustWeakened(2)
 	
 	to_chat(mob, "Gravity!")

@@ -360,7 +360,7 @@ default behaviour is:
 
 /mob/living/proc/get_organ_target()
 	var/mob/shooter = src
-	var/t = shooter:zone_sel.selecting
+	var/t = shooter.zone_sel.selecting
 	if((t in list("eyes", "mouth")))
 		t = "head"
 	var/datum/organ/external/def_zone = ran_zone(t)
@@ -555,10 +555,10 @@ default behaviour is:
 								if(istype(location, /turf/simulated))
 									location.add_blood(M)
 									if(ishuman(M))
-										var/mob/living/carbon/H = M
-										var/blood_volume = round(H:vessel.get_reagent_amount("blood"))
+										var/mob/living/carbon/human/H = M
+										var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
 										if(blood_volume > 0)
-											H:vessel.remove_reagent("blood",1)
+											H.vessel.remove_reagent("blood",1)
 
 
 						step(pulling, get_dir(pulling.loc, T))

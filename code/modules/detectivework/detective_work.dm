@@ -470,12 +470,14 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 				var/list/data = D.stored[atom]
 				add_data_master(atom, data[1], data[2], data[3], data[4])
 		D.stored = list()
-	else if(istype(W, /obj/item/device/pda) && W:cartridge && W:cartridge.access_security)
-		if(W:cartridge.stored_data)
-			for(var/atom in W:cartridge.stored_data)
-				var/list/data = W:cartridge.stored_data[atom]
-				add_data_master(atom, data[1], data[2], data[3], data[4])
-		W:cartridge.stored_data = list()
+	else if(istype(W, /obj/item/device/pda))
+		var/obj/item/device/pda/pda = W
+		if(pda.cartridge && pda.cartridge.access_security)
+			if(pda.cartridge.stored_data)
+				for(var/atom in pda.cartridge.stored_data)
+					var/list/data = pda.cartridge.stored_data[atom]
+					add_data_master(atom, data[1], data[2], data[3], data[4])
+			pda.cartridge.stored_data = list()
 	return
 
 /obj/machinery/computer/forensic_scanning/proc/add_data(atom/scanned_atom)

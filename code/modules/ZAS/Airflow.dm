@@ -159,14 +159,16 @@ Contains helper procs for airflow, handled in /connection_group.
 	if(airflow_dest == loc)
 		step_away(src, loc)
 	if(ismob(src))
-		if(src:status_flags & GODMODE)
+		var/mob/mob = src
+		if(mob.status_flags & GODMODE)
 			return
-		if(ishuman(src))
-			if(src:buckled)
+		if(ishuman(mob))
+			var/mob/living/carbon/human/human = mob
+			if(human.buckled)
 				return
-			if(src:shoes)
-				if(istype(src:shoes, /obj/item/clothing/shoes/magboots))
-					if(src:shoes.flags & NOSLIP)
+			if(human.shoes)
+				if(istype(human.shoes, /obj/item/clothing/shoes/magboots))
+					if(human.shoes.flags & NOSLIP)
 						return
 		to_chat(src, SPAN_WARNING("You are pushed away by airflow!"))
 		last_airflow = world.time

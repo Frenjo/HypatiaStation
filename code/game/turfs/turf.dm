@@ -120,9 +120,10 @@
 
 	var/loopsanity = 100
 	if(ismob(M))
-		if(!M:lastarea)
-			M:lastarea = get_area(M.loc)
-		if(M:lastarea.has_gravity == 0)
+		var/mob/mob = M
+		if(!mob.lastarea)
+			mob.lastarea = get_area(M.loc)
+		if(mob.lastarea.has_gravity == 0)
 			inertial_drift(M)
 
 	/*
