@@ -1,4 +1,4 @@
-var/global/dmm_suite/maploader = new
+/var/global/dmm_suite/maploader = new /dmm_suite()
 
 /dmm_suite
 	/*

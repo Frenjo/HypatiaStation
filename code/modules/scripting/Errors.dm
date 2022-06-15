@@ -6,127 +6,142 @@
 	An error scanning or parsing the source code.
 */
 /scriptError
-	var
 /*
 	Var: message
 	A message describing the problem.
 */
-		message
-	New(msg=null)
-		if(msg)message=msg
+	var/message
 
-	BadToken
-		message="Unexpected token: "
-		var/token/token
-		New(token/t)
-			token=t
-			if(t&&t.line) message="[t.line]: [message]"
-			if(istype(t))message+="[t.value]"
-			else message+="[t]"
+/scriptError/New(msg = null)
+	if(msg)
+		message = msg
 
-	InvalidID
-		parent_type=/scriptError/BadToken
-		message="Invalid identifier name: "
+/scriptError/BadToken
+	message = "Unexpected token: "
+	var/token/token
 
-	ReservedWord
-		parent_type=/scriptError/BadToken
-		message="Identifer using reserved word: "
+/scriptError/BadToken/New(token/t)
+	token = t
+	if(t && t.line)
+		message = "[t.line]: [message]"
+	if(istype(t))
+		message += "[t.value]"
+	else
+		message += "[t]"
 
-	BadNumber
-		parent_type=/scriptError/BadToken
-		message = "Bad number: "
+/scriptError/InvalidID
+	parent_type = /scriptError/BadToken
+	message = "Invalid identifier name: "
 
-	BadReturn
-		var/token/token
-		message = "Unexpected return statement outside of a function."
-		New(token/t)
-			src.token=t
+/scriptError/ReservedWord
+	parent_type = /scriptError/BadToken
+	message = "Identifer using reserved word: "
 
-	EndOfFile
-		message = "Unexpected end of file."
+/scriptError/BadNumber
+	parent_type = /scriptError/BadToken
+	message = "Bad number: "
 
-	ExpectedToken
-		message="Expected: '"
-		New(id, token/T)
-			if(T && T.line) message="[T.line]: [message]"
-			message+="[id]'. "
-			if(T)message+="Found '[T.value]'."
+/scriptError/BadReturn
+	var/token/token
+	message = "Unexpected return statement outside of a function."
+
+/scriptError/BadReturn/New(token/t)
+	src.token = t
+
+/scriptError/EndOfFile
+	message = "Unexpected end of file."
+
+/scriptError/ExpectedToken
+	message = "Expected: '"
+
+/scriptError/ExpectedToken/New(id, token/T)
+	if(T && T.line)
+		message = "[T.line]: [message]"
+	message += "[id]'. "
+	if(T)
+		message += "Found '[T.value]'."
 
 
-	UnterminatedComment
-		message="Unterminated multi-line comment statement: expected */"
+/scriptError/UnterminatedComment
+	message = "Unterminated multi-line comment statement: expected */"
 
-	DuplicateFunction
-		New(name, token/t)
-			message="Function '[name]' defined twice."
+/scriptError/DuplicateFunction/New(name, token/t)
+	message = "Function '[name]' defined twice."
 
 /*
 	Class: runtimeError
 	An error thrown by the interpreter in running the script.
 */
 /runtimeError
-	var
-		name
+	var/name
 /*
 	Var: message
 	A basic description as to what went wrong.
 */
-		message
-		stack/stack
+	var/message
+	var/stack/stack
 
-	proc
 /*
 	Proc: ToString
 	Returns a description of the error suitable for showing to the user.
 */
-		ToString()
-			. = "[name]: [message]"
-			if(!stack.Top()) return
-			.+="\nStack:"
-			while(stack.Top())
-				var/node/statement/FunctionCall/stmt=stack.Pop()
-				. += "\n\t [stmt.func_name]()"
+/runtimeError/proc/ToString()
+	. = "[name]: [message]"
+	if(!stack.Top())
+		return
+	. += "\nStack:"
+	while(stack.Top())
+		var/node/statement/FunctionCall/stmt = stack.Pop()
+		. += "\n\t [stmt.func_name]()"
 
-	TypeMismatch
-		name="TypeMismatchError"
-		New(op, a, b)
-			message="Type mismatch: '[a]' [op] '[b]'"
+/runtimeError/TypeMismatch
+	name = "TypeMismatchError"
 
-	UnexpectedReturn
-		name="UnexpectedReturnError"
-		message="Unexpected return statement."
+/runtimeError/TypeMismatch/New(op, a, b)
+	message = "Type mismatch: '[a]' [op] '[b]'"
 
-	UnknownInstruction
-		name="UnknownInstructionError"
-		message="Unknown instruction type. This may be due to incompatible compiler and interpreter versions or a lack of implementation."
 
-	UndefinedVariable
-		name="UndefinedVariableError"
-		New(variable)
-			message="Variable '[variable]' has not been declared."
+/runtimeError/UnexpectedReturn
+	name = "UnexpectedReturnError"
+	message = "Unexpected return statement."
 
-	UndefinedFunction
-		name="UndefinedFunctionError"
-		New(function)
-			message="Function '[function]()' has not been defined."
+/runtimeError/UnknownInstruction
+	name = "UnknownInstructionError"
+	message = "Unknown instruction type. This may be due to incompatible compiler and interpreter versions or a lack of implementation."
 
-	DuplicateVariableDeclaration
-		name="DuplicateVariableError"
-		New(variable)
-			message="Variable '[variable]' was already declared."
+/runtimeError/UndefinedVariable
+	name = "UndefinedVariableError"
 
-	IterationLimitReached
-		name="MaxIterationError"
-		message="A loop has reached its maximum number of iterations."
+/runtimeError/UndefinedVariable/New(variable)
+	message = "Variable '[variable]' has not been declared."
 
-	RecursionLimitReached
-		name="MaxRecursionError"
-		message="The maximum amount of recursion has been reached."
 
-	DivisionByZero
-		name="DivideByZeroError"
-		message="Division by zero attempted."
+/runtimeError/UndefinedFunction
+	name = "UndefinedFunctionError"
 
-	MaxCPU
-		name="MaxComputationalUse"
-		message="Maximum amount of computational cycles reached (>= 1000)."
+/runtimeError/UndefinedFunction/New(function)
+	message = "Function '[function]()' has not been defined."
+
+
+/runtimeError/DuplicateVariableDeclaration
+	name = "DuplicateVariableError"
+
+/runtimeError/DuplicateVariableDeclaration/New(variable)
+	message = "Variable '[variable]' was already declared."
+
+
+/runtimeError/IterationLimitReached
+	name = "MaxIterationError"
+	message = "A loop has reached its maximum number of iterations."
+
+/runtimeError/RecursionLimitReached
+	name = "MaxRecursionError"
+	message = "The maximum amount of recursion has been reached."
+
+/runtimeError/DivisionByZero
+	name = "DivideByZeroError"
+	message = "Division by zero attempted."
+
+/runtimeError/MaxCPU
+	name = "MaxComputationalUse"
+	message = "Maximum amount of computational cycles reached (>= 1000)."
