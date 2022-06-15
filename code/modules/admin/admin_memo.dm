@@ -1,11 +1,11 @@
 #define MEMOFILE "data/memo.sav"	//where the memos are saved
-#define ENABLE_MEMOS 1				//using a define because screw making a config variable for it. This is more efficient and purty.
+/var/const/enable_memos = 1			//using a constant variable because screw making a config variable for it. This is more efficient and purty.
 
 //switch verb so we don't spam up the verb lists with like, 3 verbs for this feature.
 /client/proc/admin_memo(task in list("write","show","delete"))
 	set name = "Memo"
 	set category = "Server"
-	if(!ENABLE_MEMOS)		return
+	if(!enable_memos)		return
 	if(!check_rights(0))	return
 	switch(task)
 		if("write")		admin_memo_write()
@@ -31,7 +31,7 @@
 
 //show all memos
 /client/proc/admin_memo_show()
-	if(ENABLE_MEMOS)
+	if(enable_memos)
 		var/savefile/F = new(MEMOFILE)
 		if(F)
 			for(var/ckey in F.dir)
@@ -51,4 +51,3 @@
 			src << "<b>Removed Memo created by [ckey].</b>"
 
 #undef MEMOFILE
-#undef ENABLE_MEMOS

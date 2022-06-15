@@ -49,9 +49,9 @@
 	if(..())	//I hate this "return 1 to indicate they are not allowed to use the controller" crap, but not sure how else to do it without being able to call machinery/Topic() directly.
 		return 1
 
-	if("manual_arm")
+	if(href_list["manual_arm"])
 		pod.arming_controller.arm()
-	if("force_launch")
+	if(href_list["force_launch"])
 		if(pod.can_force())
 			pod.force_launch(src)
 		else if(emergency_shuttle.departed && pod.can_launch())	//allow players to manually launch ahead of time if the shuttle leaves
