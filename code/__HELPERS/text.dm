@@ -40,18 +40,9 @@
 			index = findtext(t, char)
 	return t
 
-//Removes a few problematic characters
-/proc/sanitize_simple(t, list/repl_chars = list("\n" = "#", "\t" = "#", "�" = "�"))
-	for(var/char in repl_chars)
-		var/index = findtext(t, char)
-		while(index)
-			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index + 1)
-			index = findtext(t, char)
-	return t
-
-//Runs byond's sanitization proc along-side sanitize_simple
-/proc/sanitize(t, list/repl_chars = null)
-	return html_encode(sanitize_simple(t, repl_chars))
+//Runs byond's sanitization proc along-side replace_characters
+/proc/sanitize(t, list/repl_chars = list("\n" = "#", "\t" = "#", "�" = "�"))
+	return html_encode(replace_characters(t, repl_chars))
 
 //Runs sanitize and strip_html_simple
 //I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' after sanitize() calls byond's html_encode()
@@ -165,7 +156,7 @@
 //if tag is not in whitelist (var/list/paper_tag_whitelist in global.dm)
 //relpaces < with &lt;
 /proc/checkhtml(t)
-	t = sanitize_simple(t, list("&#" = "."))
+	t = replace_characters(t, list("&#" = "."))
 	var/p = findtext(t, "<", 1)
 	while(p)	//going through all the tags
 		var/start = p++
@@ -215,9 +206,16 @@
 /*
  * Text modification
  */
+
+//Removes a few problematic characters
+/proc/replace_characters(t, list/repl_chars)
+	for(var/char in repl_chars)
+		t = replacetext(t, char, repl_chars[char])
+	return t
+
 //Adds 'u' number of zeros ahead of the text 't'
 /proc/add_zero(t, u)
-	while (length(t) < u)
+	while(length(t) < u)
 		t = "0[t]"
 	return t
 
