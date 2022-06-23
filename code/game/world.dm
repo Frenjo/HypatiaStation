@@ -16,11 +16,6 @@
   * 
   */
 /world/New()
-	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
-	if(debug_server)
-		call(debug_server, "auxtools_init")()
-		enable_debugging()
-
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	global.href_logfile = file("data/logs/[date_string] hrefs.htm")
@@ -67,11 +62,8 @@
 #undef RECOMMENDED_VERSION
 
 /world/Del()
-	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
-	if(debug_server)
-		call(debug_server, "auxtools_shutdown")()
-
 	callHook("shutdown")
+	global.debugger.shutdown_debugger()
 	return ..()
 
 /world/Reboot(reason)
