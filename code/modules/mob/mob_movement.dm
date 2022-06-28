@@ -257,7 +257,7 @@
 				move_delay += 7 + config.walk_speed
 		move_delay += mob.movement_delay()
 
-		if(config.Tickcomp)
+		if(global.config.tickcomp)
 			move_delay -= 1.3
 			var/tickcomp = ((1 / world.tick_lag) * 1.3)
 			move_delay = move_delay + tickcomp

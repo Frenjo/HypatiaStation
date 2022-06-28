@@ -15,8 +15,8 @@
 	var/static/hostedby = null
 
 	// Tick.
-	var/static/Ticklag = 0.9
-	var/static/Tickcomp = FALSE
+	var/static/ticklag = 0.9
+	var/static/tickcomp = FALSE
 
 	// URLs.
 	var/static/server
@@ -246,9 +246,9 @@
 			
 			// Tick.
 			if("ticklag")
-				Ticklag = text2num(value)
+				ticklag = text2num(value)
 			if("tickcomp")
-				Tickcomp = TRUE
+				tickcomp = TRUE
 
 			// URLs
 			if("server")

@@ -8,11 +8,8 @@
 /var/global/last_tick_timeofday = world.timeofday
 /var/global/last_tick_duration = 0
 
-/var/global/air_processing_killed = 0
-/var/global/pipe_processing_killed = 0
-
-/datum/controller/master
-	var/rebuild_active_areas = 0
+/var/global/air_processing_killed = FALSE
+/var/global/pipe_processing_killed = FALSE
 
 /datum/controller/master/New()
 	//There can be only one master_controller. Out with the old and in with the new.
@@ -34,7 +31,7 @@
 		global.syndicate_code_response	= generate_code_phrase()
 
 /datum/controller/master/proc/setup()
-	world.tick_lag = config.Ticklag
+	world.tick_lag = global.config.ticklag
 
 	spawn(20)
 		createRandomZlevel()
