@@ -314,7 +314,7 @@
 								unknown_body++
 						if(unknown_body)
 							imp += "Unknown body present:"
-						if(!AN && !open && !infected & !imp)
+						if(!AN && !open && !infected && !imp)
 							AN = "None:"
 						if(!(e.status & ORGAN_DESTROYED))
 							dat += "<td>[e.display_name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][open][infected][imp][internal_bleeding][lung_ruptured]</td>"

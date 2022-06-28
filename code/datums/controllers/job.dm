@@ -87,7 +87,7 @@
 		if(!job.player_old_enough(player.client))
 			debug("FOC player not old enough, Player: [player]")
 			continue
-		if(flag && (!player.client.prefs.be_special & flag))
+		if(flag && !(player.client.prefs.be_special & flag))
 			debug("FOC flag failed, Player: [player], Flag: [flag], ")
 			continue
 		if(player.client.prefs.GetJobDepartment(job, level) & job.flag)

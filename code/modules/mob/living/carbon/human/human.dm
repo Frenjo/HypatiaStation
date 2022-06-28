@@ -1165,7 +1165,7 @@
 
 	spawn(0)
 		update_icons()
-		if(!species.flags & NO_BLOOD)
+		if(!(species.flags & NO_BLOOD))
 			vessel.add_reagent("blood", 560 - vessel.total_volume)
 	
 	mob_bump_flag = species.bump_flag

@@ -476,7 +476,7 @@
 		return
 
 	switch(target_species)
-		if("Human" || "Skrell")
+		if("Human", "Skrell")
 			if(helmet)
 				helmet.species_restricted = list("exclude", "Soghun", "Tajaran", "Diona", "Vox")
 			if(suit)
