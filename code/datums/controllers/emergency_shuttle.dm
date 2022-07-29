@@ -13,14 +13,14 @@
 	var/list/escape_pods
 
 	var/launch_time			//the time at which the shuttle will be launched
-	var/auto_recall = 0		//if set, the shuttle will be auto-recalled
+	var/auto_recall = FALSE	//if true, the shuttle will be auto-recalled
 	var/auto_recall_time	//the time at which the shuttle will be auto-recalled
-	var/evac = 0			//1 = emergency evacuation, 0 = crew transfer
+	var/evac = FALSE		//true = emergency evacuation, false = crew transfer
 	var/wait_for_launch = 0	//if the shuttle is waiting to launch
-	var/autopilot = 1		//set to 0 to disable the shuttle automatically launching
+	var/autopilot = TRUE		//set to false to disable the shuttle automatically launching
 
-	var/deny_shuttle = 0	//allows admins to prevent the shuttle from being called
-	var/departed = 0		//if the shuttle has left the station at least once
+	var/deny_shuttle = FALSE	//allows admins to prevent the shuttle from being called
+	var/departed = FALSE		//if the shuttle has left the station at least once
 
 	/*var/datum/announcement/priority/emergency_shuttle_docked = new(0, new_sound = sound('sound/AI/shuttledock.ogg'))
 	var/datum/announcement/priority/emergency_shuttle_called = new(0, new_sound = sound('sound/AI/shuttlecalled.ogg'))
@@ -76,14 +76,14 @@
 		return
 
 	//set the launch timer
-	autopilot = 1
+	autopilot = TRUE
 	set_launch_countdown(get_shuttle_prep_time())
 	auto_recall_time = rand(world.time + 300, launch_time - 300)
 
 	//reset the shuttle transit time if we need to
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
 
-	evac = 1
+	evac = TRUE
 	captain_announce("An emergency evacuation shuttle has been called. It will arrive in approximately [round(estimate_arrival_time() / 60)] minutes.")
 	world << sound('sound/AI/shuttlecalled.ogg') // Updated to reflect 'shuttles' port. -Frenjo
 	for(var/area/A in world)
@@ -96,7 +96,7 @@
 		return
 
 	//set the launch timer
-	autopilot = 1
+	autopilot = TRUE
 	set_launch_countdown(get_shuttle_prep_time())
 	auto_recall_time = rand(world.time + 300, launch_time - 300)
 
@@ -121,7 +121,7 @@
 		for(var/area/A in world)
 			if(istype(A, /area/hallway))
 				A.readyreset()
-		evac = 0
+		evac = FALSE
 	else
 		captain_announce("The scheduled crew transfer has been cancelled.")
 		world << sound('sound/AI/shuttlerecall2.ogg') // Updated to reflect 'shuttles' port. -Frenjo

@@ -76,7 +76,7 @@
 		if(ticker.hide_mode)
 			stat("Game Mode:", "Secret")
 		else
-			if(ticker.hide_mode == 0)
+			if(!ticker.hide_mode)
 				stat("Game Mode:", "[global.master_mode]") // Old setting for showing the game mode
 
 		if(ticker.current_state == GAME_STATE_PREGAME)

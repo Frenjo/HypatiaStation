@@ -4,7 +4,7 @@
 	var/const/restart_timeout = 600
 	var/current_state = GAME_STATE_PREGAME
 
-	var/hide_mode = 0
+	var/hide_mode = FALSE
 	var/datum/game_mode/mode = null
 	var/event_time = null
 	var/event = 0
@@ -18,7 +18,7 @@
 	var/Bible_name			// name of the bible
 	var/Bible_deity_name
 
-	var/random_players = 0	// if set to nonzero, ALL players who latejoin or declare-ready join will have random appearances/genders
+	var/random_players = FALSE	// if set to true, ALL players who latejoin or declare-ready join will have random appearances/genders
 
 	var/list/syndicate_coalition = list()	// list of traitor-compatible factions
 	var/list/factions = list()				// list of all factions
@@ -26,7 +26,7 @@
 
 	var/pregame_timeleft = 0
 
-	var/delay_end = 0	//if set to nonzero, the round will not restart on it's own
+	var/delay_end = FALSE	//if set to true, the round will not restart on it's own
 
 	var/triai = 0//Global holder for Triumvirate
 
@@ -69,7 +69,7 @@
 /datum/controller/game_ticker/proc/setup()
 	//Create and announce mode
 	if(global.master_mode == "secret")
-		src.hide_mode = 1
+		src.hide_mode = TRUE
 	var/list/datum/game_mode/runnable_modes
 	if(global.master_mode == "random" || global.master_mode == "secret")
 		runnable_modes = config.get_runnable_modes()

@@ -1,4 +1,4 @@
-/var/global/machinery_sort_required = 0
+/var/global/machinery_sort_required = FALSE
 
 /var/global/list/machines = list()
 /var/global/list/processing_power_items = list()
@@ -16,7 +16,7 @@
 
 /datum/controller/process/machinery/proc/internal_sort()
 	if(global.machinery_sort_required)
-		global.machinery_sort_required = 0
+		global.machinery_sort_required = FALSE
 		global.machines = dd_sortedObjectList(global.machines)
 
 /datum/controller/process/machinery/proc/internal_process_machinery()

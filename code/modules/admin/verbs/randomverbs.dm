@@ -813,7 +813,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		var/choice = input("The shuttle will just return if you call it. Call anyway?") in list("Confirm", "Cancel")
 		if(choice == "Confirm")
 			//emergency_shuttle.fake_recall = rand(300,500)
-			emergency_shuttle.auto_recall = 1 // Updated to reflect 'shuttles' port. -Frenjo
+			emergency_shuttle.auto_recall = TRUE // Updated to reflect 'shuttles' port. -Frenjo
 		else
 			return
 
@@ -883,7 +883,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	if(ticker.random_players)
-		ticker.random_players = 0
+		ticker.random_players = FALSE
 		message_admins("Admin [key_name_admin(usr)] has disabled \"Everyone is Special\" mode.", 1)
 		usr << "Disabled."
 		return
@@ -901,7 +901,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	usr << "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>."
 
-	ticker.random_players = 1
+	ticker.random_players = TRUE
 	feedback_add_details("admin_verb","MER") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 

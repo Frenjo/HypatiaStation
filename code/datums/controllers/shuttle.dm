@@ -21,7 +21,7 @@
 	var/datum/shuttle/ferry/shuttle
 
 	// Arrivals shuttle
-	shuttle = new/datum/shuttle/ferry/escape_pod()
+	shuttle = new /datum/shuttle/ferry/escape_pod()
 	shuttle.location = 0
 	shuttle.warmup_time = 0
 	shuttle.area_station = locate(/area/shuttle/arrival/station)
@@ -36,7 +36,7 @@
 	process_shuttles += shuttle
 
 	// Escape shuttle and pods
-	shuttle = new/datum/shuttle/ferry/emergency()
+	shuttle = new /datum/shuttle/ferry/emergency()
 	shuttle.location = 1
 	shuttle.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	shuttle.area_offsite = locate(/area/shuttle/escape/centcom)
@@ -50,7 +50,7 @@
 	shuttles["Escape"] = shuttle
 	process_shuttles += shuttle
 
-	shuttle = new/datum/shuttle/ferry/escape_pod()
+	shuttle = new /datum/shuttle/ferry/escape_pod()
 	shuttle.location = 0
 	shuttle.warmup_time = 0
 	shuttle.area_station = locate(/area/shuttle/escape_pod1/station)
@@ -64,7 +64,7 @@
 	process_shuttles += shuttle
 	shuttles["Escape Pod 1"] = shuttle
 
-	shuttle = new/datum/shuttle/ferry/escape_pod()
+	shuttle = new /datum/shuttle/ferry/escape_pod()
 	shuttle.location = 0
 	shuttle.warmup_time = 0
 	shuttle.area_station = locate(/area/shuttle/escape_pod2/station)
@@ -78,7 +78,7 @@
 	process_shuttles += shuttle
 	shuttles["Escape Pod 2"] = shuttle
 
-	shuttle = new/datum/shuttle/ferry/escape_pod()
+	shuttle = new /datum/shuttle/ferry/escape_pod()
 	shuttle.location = 0
 	shuttle.warmup_time = 0
 	shuttle.area_station = locate(/area/shuttle/escape_pod3/station)
@@ -94,7 +94,7 @@
 
 	//There is no pod 4, apparently.
 
-	shuttle = new/datum/shuttle/ferry/escape_pod()
+	shuttle = new /datum/shuttle/ferry/escape_pod()
 	shuttle.location = 0
 	shuttle.warmup_time = 0
 	shuttle.area_station = locate(/area/shuttle/escape_pod5/station)
@@ -119,7 +119,7 @@
 	)
 
 	// Supply shuttle
-	shuttle = new/datum/shuttle/ferry/supply()
+	shuttle = new /datum/shuttle/ferry/supply()
 	shuttle.location = 1
 	shuttle.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	shuttle.area_offsite = locate(/area/shuttle/supply/centcom)
@@ -217,7 +217,7 @@
 	process_shuttles += ert
 
 	//Vox Shuttle.
-	var/datum/shuttle/multi_shuttle/vox_shuttle = new/datum/shuttle/multi_shuttle()
+	var/datum/shuttle/multi_shuttle/vox_shuttle = new /datum/shuttle/multi_shuttle()
 	vox_shuttle.origin = locate(/area/shuttle/vox/station)
 
 	vox_shuttle.destinations = list(
@@ -237,7 +237,7 @@
 	shuttles["Vox Skipjack"] = vox_shuttle
 
 	//Nuke Ops shuttle.
-	var/datum/shuttle/multi_shuttle/mercenary_shuttle = new/datum/shuttle/multi_shuttle()
+	var/datum/shuttle/multi_shuttle/mercenary_shuttle = new /datum/shuttle/multi_shuttle()
 	mercenary_shuttle.origin = locate(/area/syndicate_station/start)
 
 	mercenary_shuttle.destinations = list(

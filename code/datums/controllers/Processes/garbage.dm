@@ -9,7 +9,7 @@
 /var/global/list/delayed_garbage = list()
 
 /datum/controller/process/garbage
-	var/garbage_collect = 1			// Whether or not to actually do work
+	var/garbage_collect = TRUE	// Whether or not to actually do work
 	var/total_dels	= 0			// number of total del()'s
 	var/tick_dels	= 0			// number of del()'s we've done this tick
 	var/soft_dels	= 0

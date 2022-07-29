@@ -36,7 +36,7 @@
 	var/tmp/scheduler_sleep_interval
 
 	// Controls whether the scheduler is running or not
-	var/tmp/isRunning = 0
+	var/tmp/isRunning = FALSE
 
 	// Setup for these processes will be deferred until all the other processes are set up.
 	var/tmp/list/deferredSetupList = new
@@ -85,7 +85,7 @@
 		addProcess(new process(src))
 
 /datum/controller/processScheduler/proc/start()
-	isRunning = 1
+	isRunning = TRUE
 	// tick_lag will have been set by now, so re-initialize these
 	scheduler_sleep_interval = world.tick_lag
 	timeAllowance = world.tick_lag * 0.5
@@ -109,7 +109,7 @@
 		sleep(scheduler_sleep_interval)
 
 /datum/controller/processScheduler/proc/stop()
-	isRunning = 0
+	isRunning = FALSE
 
 /datum/controller/processScheduler/proc/checkRunningProcesses()
 	for(var/datum/controller/process/p in running)

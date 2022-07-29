@@ -117,7 +117,7 @@ Class Procs:
 		dd_insertObjectList(machines, src)
 	else
 		machines += src
-		machinery_sort_required = 1
+		machinery_sort_required = TRUE
 
 /obj/machinery/Destroy()
 	machines -= src

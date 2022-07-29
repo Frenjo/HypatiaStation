@@ -29,7 +29,7 @@
 	..(origin, destination)
 
 	if(origin == area_station)	//leaving the station
-		emergency_shuttle.departed = 1
+		emergency_shuttle.departed = TRUE
 
 		if(emergency_shuttle.evac)
 			captain_announce("The emergency shuttle has left the station. Estimate [round(emergency_shuttle.estimate_arrival_time() / 60, 1)] minutes until the shuttle docks at Central Command.")
@@ -66,7 +66,7 @@
 
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
 		if(emergency_shuttle.autopilot)
-			emergency_shuttle.autopilot = 0
+			emergency_shuttle.autopilot = FALSE
 			to_world(SPAN_INFO_B("Alert: The shuttle autopilot has been overridden. Launch sequence initiated!"))
 
 	..(user)
@@ -77,7 +77,7 @@
 
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
 		if(emergency_shuttle.autopilot)
-			emergency_shuttle.autopilot = 0
+			emergency_shuttle.autopilot = FALSE
 			to_world(SPAN_INFO_B("Alert: The shuttle autopilot has been overridden. Bluespace drive engaged!"))
 
 	..(user)
@@ -88,7 +88,7 @@
 
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
 		if(emergency_shuttle.autopilot)
-			emergency_shuttle.autopilot = 0
+			emergency_shuttle.autopilot = FALSE
 			to_world(SPAN_INFO_B("Alert: The shuttle autopilot has been overridden. Launch sequence aborted!"))
 
 	..(user)

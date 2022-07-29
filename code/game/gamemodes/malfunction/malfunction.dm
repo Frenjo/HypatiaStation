@@ -68,7 +68,7 @@
 */
 	if(emergency_shuttle)
 		//emergency_shuttle.always_fake_recall = 1
-		emergency_shuttle.auto_recall = 1 // Updated to reflect 'shuttles' port. -Frenjo
+		emergency_shuttle.auto_recall = TRUE // Updated to reflect 'shuttles' port. -Frenjo
 	spawn (rand(waittime_l, waittime_h))
 		send_intercept()
 	..()
@@ -139,7 +139,7 @@
 		if(config.continous_rounds)
 			if(emergency_shuttle)
 				//emergency_shuttle.always_fake_recall = 0
-				emergency_shuttle.auto_recall = 1 // Updated to reflect 'shuttles' port. -Frenjo
+				emergency_shuttle.auto_recall = TRUE // Updated to reflect 'shuttles' port. -Frenjo
 			malf_mode_declared = 0
 		else
 			return 1

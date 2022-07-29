@@ -531,7 +531,7 @@
 		if(ticker.mode.name == "revolution" || ticker.mode.name == "AI malfunction" || ticker.mode.name == "sandbox")
 			//New version pretends to call the shuttle but cause the shuttle to return after a random duration.
 			//emergency_shuttle.fake_recall = rand(300,500)
-			emergency_shuttle.auto_recall = 1 // Updated to reflect 'shuttles' port. -Frenjo
+			emergency_shuttle.auto_recall = TRUE // Updated to reflect 'shuttles' port. -Frenjo
 
 		if(ticker.mode.name == "blob" || ticker.mode.name == "epidemic")
 			user << "Under directive 7-10, [station_name()] is quarantined until further notice."
