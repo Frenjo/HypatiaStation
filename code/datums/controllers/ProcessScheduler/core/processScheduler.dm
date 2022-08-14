@@ -209,7 +209,7 @@
 	spawn(0)
 		process.process()
 
-/datum/controller/processScheduler/proc/processStarted(var/datum/controller/process/process)
+/datum/controller/processScheduler/proc/processStarted(datum/controller/process/process)
 	setRunningProcessState(process)
 	recordStart(process)
 

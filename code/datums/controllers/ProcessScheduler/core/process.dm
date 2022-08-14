@@ -42,7 +42,7 @@
 	// If the process scheduler sees that the process has finished, it will wait until
 	// this amount of time has elapsed from the start of the previous run to start the
 	// process running again.
-	var/tmp/schedule_interval = PROCESS_DEFAULT_SCHEDULE_INTERVAL // run every 50 ticks
+	var/tmp/schedule_interval = PROCESS_DEFAULT_SCHEDULE_INTERVAL
 
 	// Process sleep interval
 	// This controls how often the process will yield (call sleep(0)) while it is running.
@@ -50,13 +50,13 @@
 	// processes to execute concurrently.
 	var/tmp/sleep_interval
 
-	// hang_warning_time - this is the time (in 1/10 seconds) after which the server will begin to show "maybe hung" in the context window
+	// hang_warning_time - this is the time (in deciseconds) after which the server will begin to show "maybe hung" in the context window
 	var/tmp/hang_warning_time = PROCESS_DEFAULT_HANG_WARNING_TIME
 
-	// hang_alert_time - After this much time(in 1/10 seconds), the server will send an admin debug message saying the process may be hung
+	// hang_alert_time - After this much time(in deciseconds), the server will send an admin debug message saying the process may be hung
 	var/tmp/hang_alert_time = PROCESS_DEFAULT_HANG_ALERT_TIME
 
-	// hang_restart_time - After this much time(in 1/10 seconds), the server will automatically kill and restart the process.
+	// hang_restart_time - After this much time(in deciseconds), the server will automatically kill and restart the process.
 	var/tmp/hang_restart_time = PROCESS_DEFAULT_HANG_RESTART_TIME
 
 	// How many times in the current run has the process deferred work till the next tick?
