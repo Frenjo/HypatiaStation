@@ -5,11 +5,11 @@ TOILET
 /obj/item/weapon/storage/toilet
 	name = "toilet"
 	w_class = 4.0
-	anchored = 1.0
-	density = 0.0
+	anchored = TRUE
+	density = FALSE.0
 	var/status = 0.0
 	var/clogged = 0.0
-	anchored = 1.0
+	anchored = TRUE
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "toilet"
 	item_state = "syringe_kit"
@@ -61,7 +61,7 @@ TOILET
 		for(var/mob/O in viewers(user, null))
 			if ((O.client && !( O.blinded )))
 				O << text("\blue [] is seated on the toilet by []!", M, user)
-	M.anchored = 1
+	M.anchored = TRUE
 	M.buckled = src
 	M.loc = src.loc
 	src.add_fingerprint(user)
@@ -79,7 +79,7 @@ TOILET
 					if ((O.client && !( O.blinded )))
 						O << text("\blue [] zips up.", M)
 //			world << "[M] is no longer buckled to [src]"
-			M.anchored = 0
+			M.anchored = FALSE
 			M.buckled = null
 			src.add_fingerprint(user)
 	if((src.clogged < 1) || (src.contents.len < 7) || (user.loc != src.loc))

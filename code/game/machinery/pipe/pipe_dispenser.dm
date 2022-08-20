@@ -2,8 +2,8 @@
 	name = "Pipe Dispenser"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/unwrenched = 0
 	var/wait = 0
 
@@ -94,7 +94,7 @@
 					"[user] unfastens \the [src].", \
 					SPAN_INFO("You have unfastened \the [src]. Now it can be pulled somewhere else."), \
 					"You hear a ratchet.")
-				src.anchored = 0
+				src.anchored = FALSE
 				src.stat |= MAINT
 				src.unwrenched = 1
 				if (usr.machine==src)
@@ -107,7 +107,7 @@
 					"[user] fastens \the [src].", \
 					"\blue You have fastened \the [src]. Now it can dispense pipes.", \
 					"You hear a ratchet.")
-				src.anchored = 1
+				src.anchored = TRUE
 				src.stat &= ~MAINT
 				src.unwrenched = 0
 				power_change()
@@ -118,8 +118,8 @@
 	name = "Disposal Pipe Dispenser"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 
 /*
 //Allow you to push disposal pipes into it (for those with density 1)
@@ -193,13 +193,13 @@ Nah
 					C.ptype = 5
 				if(5)
 					C.ptype = 6
-					C.density = 1
+					C.density = TRUE
 				if(6)
 					C.ptype = 7
-					C.density = 1
+					C.density = TRUE
 				if(7)
 					C.ptype = 8
-					C.density = 1
+					C.density = TRUE
 ///// Z-Level stuff
 				if(21)
 					C.ptype = 11
@@ -215,9 +215,9 @@ Nah
 
 // adding a pipe dispensers that spawn unhooked from the ground
 /obj/machinery/pipedispenser/orderable
-	anchored = 0
+	anchored = FALSE
 	unwrenched = 1
 
 /obj/machinery/pipedispenser/disposal/orderable
-	anchored = 0
+	anchored = FALSE
 	unwrenched = 1

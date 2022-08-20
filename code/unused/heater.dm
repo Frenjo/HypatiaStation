@@ -191,7 +191,7 @@
 					con.connected = null
 			else
 				if (con && !con.connected)
-					src.anchored = 1
+					src.anchored = TRUE
 					src.c_status = 3
 					user.show_message("\blue You have connected the heater.", 1)
 					con.connected = src

@@ -56,11 +56,11 @@
 	if((!first && (secured && (isturf(loc) || (holder && isturf(holder.loc))))))
 		var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam((holder ? holder.loc : loc))
 		I.master = src
-		I.density = 1
+		I.density = TRUE
 		I.set_dir(dir)
 		step(I, I.dir)
 		if(I)
-			I.density = 0
+			I.density = FALSE
 			first = I
 			I.vis_spread(visible)
 			spawn(0)
@@ -159,7 +159,7 @@
 	var/limit = null
 	var/visible = 0.0
 	var/left = null
-	anchored = 1.0
+	anchored = TRUE
 
 /obj/effect/beam/i_beam/proc/hit()
 	//world << "beam \ref[src]: hit"
@@ -202,7 +202,7 @@
 	//world << "now [src.left] left"
 	var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam(loc)
 	I.master = master
-	I.density = 1
+	I.density = TRUE
 	I.set_dir(dir)
 	//world << "created new beam \ref[I] at [I.x] [I.y] [I.z]"
 	step(I, I.dir)
@@ -211,7 +211,7 @@
 		//world << "step worked, now at [I.x] [I.y] [I.z]"
 		if(!next)
 			//world << "no next"
-			I.density = 0
+			I.density = FALSE
 			//world << "spreading"
 			I.vis_spread(visible)
 			next = I

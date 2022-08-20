@@ -45,8 +45,8 @@
 	name = "Egg"
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "egg"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 	New()
 		..()
@@ -55,5 +55,5 @@
 			for(var/mob/M in src)
 				M.loc = src.loc
 				icon_state = "egg_hatched"
-				density = 0
+				density = FALSE
 		return

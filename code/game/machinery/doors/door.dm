@@ -5,9 +5,9 @@
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/interior.dmi'
 	icon_state = "door1"
-	anchored = 1
-	opacity = 1
-	density = 1
+	anchored = TRUE
+	opacity = TRUE
+	density = TRUE
 	layer = 2.7
 
 	var/secondsElectrified = 0
@@ -47,7 +47,7 @@
 	update_nearby_tiles(need_rebuild = 1)
 
 /obj/machinery/door/Destroy()
-	density = 0
+	density = FALSE
 	update_nearby_tiles()
 	return ..()
 
@@ -217,7 +217,7 @@
 	//sleep(10)
 	sleep(7) // Makes doors open slightly quicker. -Frenjo
 	src.layer = 2.7
-	src.density = 0
+	src.density = FALSE
 	explosion_resistance = 0
 	update_icon()
 	set_opacity(0)
@@ -243,7 +243,7 @@
 	operating = 1
 
 	do_animate("closing")
-	src.density = 1
+	src.density = TRUE
 	explosion_resistance = initial(explosion_resistance)
 	src.layer = 3.1
 	//sleep(10)

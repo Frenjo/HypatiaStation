@@ -20,8 +20,8 @@
 	desc = "A heavy duty industrial laser"
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "emitter"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 	use_power = 0
 	idle_power_usage = 0

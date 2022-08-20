@@ -10,8 +10,8 @@
 	var/message = "";
 	var/processing = 0
 	var/newtoxins = 0
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 
 /obj/machinery/mineral/gasextractor/New()
 	..()

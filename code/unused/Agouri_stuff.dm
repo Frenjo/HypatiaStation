@@ -179,8 +179,8 @@
 /obj/vehicle
 	name = "Vehicle"
 	icon = 'icons/vehicles/vehicles.dmi'
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	unacidable = 1 //To avoid the pilot-deleting shit that came with mechas
 	layer = MOB_LAYER
 	//var/can_move = 1
@@ -544,7 +544,7 @@
 	else W.icon_state = "floor"
 
 	if (!explode)
-		W.opacity = 1
+		W.opacity = TRUE
 		W.sd_SetOpacity(0)
 		//This is probably gonna make lighting go a bit wonky in bombed areas, but sd_SetOpacity was the primary reason bombs have been so laggy. --NEO
 	W.levelupdate()
@@ -560,7 +560,7 @@
 	W.dir = old_dir
 	if(prior_icon) W.icon_state = prior_icon
 	else W.icon_state = "plating"
-	W.opacity = 1
+	W.opacity = TRUE
 	W.sd_SetOpacity(0)
 	W.levelupdate()
 	return W
@@ -647,7 +647,7 @@
 	var/old_icon = icon_state
 	var/turf/simulated/wall/S = new /turf/simulated/wall( locate(src.x, src.y, src.z) )
 	S.icon_old = old_icon
-	S.opacity = 0
+	S.opacity = FALSE
 	S.sd_NewOpacity(1)
 	return S
 
@@ -655,7 +655,7 @@
 	var/old_icon = icon_state
 	var/turf/simulated/wall/r_wall/S = new /turf/simulated/wall/r_wall( locate(src.x, src.y, src.z) )
 	S.icon_old = old_icon
-	S.opacity = 0
+	S.opacity = FALSE
 	S.sd_NewOpacity(1)
 	return S
 
@@ -787,8 +787,8 @@
 			O.desc = "Looks hot."
 			O.icon = 'icons/effects/fire.dmi'
 			O.icon_state = "2"
-			O.anchored = 1
-			O.density = 1
+			O.anchored = TRUE
+			O.density = TRUE
 			O.layer = 5
 			var/turf/simulated/floor/F = ReplaceWithPlating()
 			F.burn_tile()
@@ -823,8 +823,8 @@
 			O.desc = "Looks hot."
 			O.icon = 'icons/effects/fire.dmi'
 			O.icon_state = "2"
-			O.anchored = 1
-			O.density = 1
+			O.anchored = TRUE
+			O.density = TRUE
 			O.layer = 5
 			var/turf/simulated/floor/F = ReplaceWithPlating()
 			F.burn_tile()
@@ -939,8 +939,8 @@
 			O.desc = "Looks hot."
 			O.icon = 'icons/effects/fire.dmi'
 			O.icon_state = "2"
-			O.anchored = 1
-			O.density = 1
+			O.anchored = TRUE
+			O.density = TRUE
 			O.layer = 5
 			var/turf/simulated/floor/F = ReplaceWithPlating()
 			F.burn_tile()
@@ -982,8 +982,8 @@
 			O.desc = "Looks hot."
 			O.icon = 'icons/effects/fire.dmi'
 			O.icon_state = "2"
-			O.anchored = 1
-			O.density = 1
+			O.anchored = TRUE
+			O.density = TRUE
 			O.layer = 5
 			var/turf/simulated/floor/F = ReplaceWithPlating()
 			F.burn_tile()

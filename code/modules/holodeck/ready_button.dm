@@ -5,7 +5,7 @@
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "auth_off"
 
-	anchored = 1.0
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 6

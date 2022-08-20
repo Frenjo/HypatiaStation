@@ -84,7 +84,7 @@
 	for(var/turf/t in dimTurfs)
 		if(!t.dim)
 			t.dim = image('icons/effects/cameravis.dmi', t, "dim", TURF_LAYER)
-			t.dim.mouse_opacity = 0
+			t.dim.mouse_opacity = FALSE
 
 		dim += t.dim
 
@@ -193,7 +193,7 @@
 		if(!(t in visibleTurfs))
 			if(!t.dim)
 				t.dim = image('icons/effects/cameravis.dmi', t, "dim", 15)
-				t.dim.mouse_opacity = 0
+				t.dim.mouse_opacity = FALSE
 
 			dim += t.dim
 			images_added += t.dim

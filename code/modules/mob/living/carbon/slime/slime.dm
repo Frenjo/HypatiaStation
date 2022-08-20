@@ -327,7 +327,7 @@
 						SStun = 0
 
 				Victim = null
-				anchored = 0
+				anchored = FALSE
 				step_away(src,M)
 
 			return
@@ -359,7 +359,7 @@
 						SStun = 0
 
 				Victim = null
-				anchored = 0
+				anchored = FALSE
 				step_away(src, M)
 
 			return
@@ -412,7 +412,7 @@
 					damage += 5
 					if(Victim)
 						Victim = null
-						anchored = 0
+						anchored = FALSE
 						if(prob(80) && !client)
 							Discipline++
 					spawn(0)
@@ -741,7 +741,7 @@
 
 
 /obj/effect/golemrune
-	anchored = 1
+	anchored = TRUE
 	desc = "a strange rune used to create golems. It glows when spirits are nearby."
 	name = "rune"
 	icon = 'icons/obj/rune.dmi'

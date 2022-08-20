@@ -11,8 +11,8 @@
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "generic"
 	layer = 2.9
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/active = 1 //No sales pitches if off!
 	var/vend_ready = 1 //Are we ready to vend?? Is it time??
 	var/vend_delay = 10 //How long does it take to vend?
@@ -789,7 +789,7 @@
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
 	req_access = list(ACCESS_MEDICAL)
-	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
+	density = FALSE //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/stack/medical/bruise_pack = 2, /obj/item/stack/medical/ointment = 2, /obj/item/weapon/reagent_containers/hypospray/autoinjector = 4, /obj/item/device/healthanalyzer = 1)
 	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4, /obj/item/weapon/reagent_containers/syringe/antiviral = 4, /obj/item/weapon/reagent_containers/pill/tox = 1)
 
@@ -799,7 +799,7 @@
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
 	req_access = list(ACCESS_MEDICAL)
-	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
+	density = FALSE //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5, /obj/item/weapon/reagent_containers/syringe/antitoxin = 3, /obj/item/stack/medical/bruise_pack = 3,
 					/obj/item/stack/medical/ointment = 3, /obj/item/device/healthanalyzer = 3)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3)

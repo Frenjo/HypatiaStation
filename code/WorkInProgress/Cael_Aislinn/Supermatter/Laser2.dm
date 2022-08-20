@@ -10,7 +10,7 @@
 	var/power = 500
 	icon = 'icons/obj/engine.dmi'
 	icon_state = "laser"
-	anchored = 1
+	anchored = TRUE
 	var/id
 	var/on = 0
 	var/freq = 50000
@@ -53,7 +53,7 @@
 	var/freq = 50000
 	var/phase = 0
 	var/phase_variance = 0
-	anchored = 1
+	anchored = TRUE
 
 /obj/beam/e_beam/New()
 	sd_SetLuminosity(1, 1, 4)

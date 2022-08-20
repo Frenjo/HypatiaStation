@@ -104,7 +104,7 @@
 /obj/machinery/power/solar/blob_act()
 	if(prob(75))
 		broken()
-		src.density = 0
+		src.density = FALSE
 
 //set the control of the panel to a given computer if closer than SOLAR_MAX_DIST
 /obj/machinery/power/solar/proc/set_control(obj/machinery/power/solar_control/SC)
@@ -123,7 +123,7 @@
 	if(!S)
 		S = new /obj/item/solar_assembly(src)
 		S.glass_type = /obj/item/stack/sheet/glass
-		S.anchored = 1
+		S.anchored = TRUE
 	S.loc = src
 	if(S.glass_type == /obj/item/stack/sheet/rglass)	//if the panel is in reinforced glass
 		health *= 2										//this need to be placed here, because panels already on the map don't have an assembly linked to

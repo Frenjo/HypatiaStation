@@ -22,8 +22,8 @@
 	icon = 'icons/turf/shuttle.dmi'
 	name = "door"
 	icon_state = "door1"
-	opacity = 1
-	density = 1
+	opacity = TRUE
+	density = TRUE
 
 // Play a sound for the shuttle doors because they don't already. -Frenjo
 /obj/machinery/door/unpowered/shuttle/open()

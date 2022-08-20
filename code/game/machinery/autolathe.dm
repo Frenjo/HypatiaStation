@@ -68,7 +68,7 @@ var/global/list/autolathe_recipes_hidden = list( \
 	name = "\improper Autolathe"
 	desc = "It produces items using metal and glass."
 	icon_state = "autolathe"
-	density = 1
+	density = TRUE
 
 	var/m_amount = 0.0
 	var/max_m_amount = 150000.0
@@ -79,7 +79,7 @@ var/global/list/autolathe_recipes_hidden = list( \
 	var/operating = 0.0
 	var/panel_open = 0
 
-	anchored = 1.0
+	anchored = TRUE
 
 	var/list/L = list()
 	var/list/LL = list()

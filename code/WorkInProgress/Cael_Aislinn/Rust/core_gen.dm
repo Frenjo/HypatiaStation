@@ -54,7 +54,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 	desc = "Enormous solenoid for generating extremely high power electromagnetic fields"
 	icon = 'code/WorkInProgress/Cael_Aislinn/Rust/rust.dmi'
 	icon_state = "core0"
-	density = 1
+	density = TRUE
 	var/obj/effect/rust_em_field/owned_field
 	var/field_strength = 1//0.01
 	var/field_frequency = 1
@@ -65,7 +65,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 	idle_power_usage = 50
 	active_power_usage = 500	//multiplied by field strength
 	var/cached_power_avail = 0
-	anchored = 0
+	anchored = FALSE
 
 	var/state = RUST_STATE_ZERO
 	var/locked = 1
@@ -93,7 +93,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 					"You secure the external reinforcing bolts to the floor.",
 					"You hear a ratchet"
 				)
-				src.anchored = 1
+				src.anchored = TRUE
 			if(RUST_STATE_ONE)
 				state = RUST_STATE_ZERO
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
@@ -102,7 +102,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 					"You undo the external reinforcing bolts.",
 					"You hear a ratchet"
 				)
-				src.anchored = 0
+				src.anchored = FALSE
 			if(2)
 				user << "\red The [src.name] needs to be unwelded from the floor."
 		return

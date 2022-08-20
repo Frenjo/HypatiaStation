@@ -27,7 +27,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "unknown"
 	layer = 10
-	mouse_opacity = 0
+	mouse_opacity = FALSE
 	luminosity = 0
 	var/lightswitch = 1
 
@@ -183,7 +183,7 @@ var/list/ghostteleportlocs = list()
 	if(!fire)
 		fire = 1
 		updateicon()
-		mouse_opacity = 0
+		mouse_opacity = FALSE
 		for(var/obj/machinery/door/firedoor/D in all_doors)
 			if(!D.blocked)
 				if(D.operating)
@@ -203,7 +203,7 @@ var/list/ghostteleportlocs = list()
 /area/proc/firereset()
 	if(fire)
 		fire = 0
-		mouse_opacity = 0
+		mouse_opacity = FALSE
 		updateicon()
 		for(var/obj/machinery/door/firedoor/D in all_doors)
 			if(!D.blocked)
@@ -235,13 +235,13 @@ var/list/ghostteleportlocs = list()
 	if(!(party))
 		party = 1
 		updateicon()
-		mouse_opacity = 0
+		mouse_opacity = FALSE
 	return
 
 /area/proc/partyreset()
 	if(party)
 		party = 0
-		mouse_opacity = 0
+		mouse_opacity = FALSE
 		updateicon()
 		for(var/obj/machinery/door/firedoor/D in src)
 			if(!D.blocked)

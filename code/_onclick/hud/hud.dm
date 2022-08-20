@@ -39,7 +39,7 @@ var/list/global_huds = list(
 	screen.icon = 'icons/obj/hud_full.dmi'
 	screen.icon_state = icon_state
 	screen.layer = 17
-	screen.mouse_opacity = 0
+	screen.mouse_opacity = FALSE
 
 	return screen
 
@@ -49,14 +49,14 @@ var/list/global_huds = list(
 	druggy.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	druggy.icon_state = "druggy"
 	druggy.layer = 17
-	druggy.mouse_opacity = 0
+	druggy.mouse_opacity = FALSE
 
 	//that white blurry effect you get when you eyes are damaged
 	blurry = new /obj/screen()
 	blurry.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	blurry.icon_state = "blurry"
 	blurry.layer = 17
-	blurry.mouse_opacity = 0
+	blurry.mouse_opacity = FALSE
 
 	nvg = setup_overlay("nvg_hud")
 	scig = setup_overlay("scig_hud")
@@ -73,7 +73,7 @@ var/list/global_huds = list(
 	radstorm.alpha = 65
 	radstorm.layer = 17
 	radstorm.blend_mode = BLEND_SUBTRACT
-	radstorm.mouse_opacity = 0
+	radstorm.mouse_opacity = FALSE
 
 	// Overlay for ionic effects from ion storms. -Frenjo
 	ionstorm = new /obj/screen()
@@ -85,7 +85,7 @@ var/list/global_huds = list(
 	ionstorm.alpha = 65
 	ionstorm.layer = 17
 	ionstorm.blend_mode = BLEND_SUBTRACT
-	ionstorm.mouse_opacity = 0
+	ionstorm.mouse_opacity = FALSE
 
 	// Overlay for electrical effects from electrical storms. -Frenjo
 	electricalstorm = new /obj/screen()
@@ -96,7 +96,7 @@ var/list/global_huds = list(
 	electricalstorm.alpha = 65
 	electricalstorm.layer = 17
 	electricalstorm.blend_mode = BLEND_SUBTRACT
-	electricalstorm.mouse_opacity = 0
+	electricalstorm.mouse_opacity = FALSE
 
 	var/obj/screen/O
 	var/i
@@ -134,18 +134,18 @@ var/list/global_huds = list(
 		O = vimpaired[i]
 		O.icon_state = "dither50"
 		O.layer = 17
-		O.mouse_opacity = 0
+		O.mouse_opacity = FALSE
 
 		O = darkMask[i]
 		O.icon_state = "dither50"
 		O.layer = 17
-		O.mouse_opacity = 0
+		O.mouse_opacity = FALSE
 
 	for(i = 5, i <= 8, i++)
 		O = darkMask[i]
 		O.icon_state = "black"
 		O.layer = 17
-		O.mouse_opacity = 0
+		O.mouse_opacity = FALSE
 
 /*
 	The hud datum

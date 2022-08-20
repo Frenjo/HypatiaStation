@@ -97,9 +97,9 @@
 			if(active)
 				return
 			src.active = 1
-			src.anchored = 1
+			src.anchored = TRUE
 		deactivate()
 			if(!active)
 				return
 			src.active = 0
-			src.anchored = 0
+			src.anchored = FALSE

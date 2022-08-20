@@ -16,9 +16,9 @@
 	name = "Mecha"
 	desc = "Exosuit"
 	icon = 'icons/mecha/mecha.dmi'
-	density = 1 //Dense. To raise the heat.
-	opacity = 1 ///opaque. Menacing.
-	anchored = 1 //no pulling around.
+	density = TRUE //Dense. To raise the heat.
+	opacity = TRUE ///opaque. Menacing.
+	anchored = TRUE //no pulling around.
 	unacidable = 1 //and no deleting hoomans inside
 	layer = MOB_LAYER //icon draw layer
 	infra_luminosity = 15 //byond implementation is bugged.
@@ -333,10 +333,10 @@
 	if(istype(obstacle, /obj))
 		var/obj/O = obstacle
 		if(istype(O, /obj/effect/portal)) //derpfix
-			src.anchored = 0
+			src.anchored = FALSE
 			O.Crossed(src)
 			spawn(0)//countering portal teleport spawn(0), hurr
-				src.anchored = 1
+				src.anchored = TRUE
 		else if(!O.anchored)
 			step(obstacle, src.dir)
 		else //I have no idea why I disabled this
@@ -1637,7 +1637,7 @@
 		O.canmove = 1
 		O.name = AI.name
 		O.real_name = AI.real_name
-		O.anchored = 1
+		O.anchored = TRUE
 		O.aiRestorePowerRoutine = 0
 		O.control_disabled = 1 // Can't control things remotely if you're stuck in a card!
 		O.laws = AI.laws

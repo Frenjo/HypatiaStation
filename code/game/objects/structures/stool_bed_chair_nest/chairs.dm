@@ -106,7 +106,7 @@
 	icon_state = "comfychair_teal"
 
 /obj/structure/stool/bed/chair/office
-	anchored = 0
+	anchored = FALSE
 
 /obj/structure/stool/bed/chair/comfy/black
 	icon_state = "comfychair_black"

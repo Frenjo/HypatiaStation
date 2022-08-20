@@ -4,8 +4,8 @@
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "ed2090"
 	layer = 5.0
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
 //	weight = 1.0E7
 	req_one_access = list(ACCESS_SECURITY, ACCESS_FORENSICS_LOCKERS)
 	health = 100
@@ -98,7 +98,7 @@
 	..()
 	src.target = null
 	src.oldtarget_name = null
-	src.anchored = 0
+	src.anchored = FALSE
 	src.mode = SECBOT_IDLE
 	walk_to(src,0)
 	src.icon_state = "[lasercolor]ed209[src.on]"
@@ -205,7 +205,7 @@ Auto Patrol: []"},
 		src.target = null
 		if(user) src.oldtarget_name = user.name
 		src.last_found = world.time
-		src.anchored = 0
+		src.anchored = FALSE
 		src.emagged = 2
 		src.on = 1
 		src.icon_state = "[lasercolor]ed209[src.on]"
@@ -286,7 +286,7 @@ Auto Patrol: []"},
 					visible_message("\red <B>[src.target] has been stunned by [src]!</B>")
 
 					mode = SECBOT_PREP_ARREST
-					src.anchored = 1
+					src.anchored = TRUE
 					src.target_lastloc = M.loc
 					return
 
@@ -304,11 +304,11 @@ Auto Patrol: []"},
 				return
 			if (!target)
 				mode = SECBOT_IDLE
-				src.anchored = 0
+				src.anchored = FALSE
 				return
 			// see if he got away
 			if ((get_dist(src, src.target) > 1) || ((src.target:loc != src.target_lastloc) && src.target:weakened < 2))
-				src.anchored = 0
+				src.anchored = FALSE
 				mode = SECBOT_HUNT
 				return
 
@@ -329,7 +329,7 @@ Auto Patrol: []"},
 
 							mode = SECBOT_IDLE
 							src.target = null
-							src.anchored = 0
+							src.anchored = FALSE
 							src.last_found = world.time
 							src.frustration = 0
 
@@ -339,7 +339,7 @@ Auto Patrol: []"},
 			else
 				mode = SECBOT_IDLE
 				src.target = null
-				src.anchored = 0
+				src.anchored = FALSE
 				src.last_found = world.time
 				src.frustration = 0
 
@@ -348,7 +348,7 @@ Auto Patrol: []"},
 				mode = SECBOT_IDLE
 				return
 			if (!target || src.target.handcuffed)
-				src.anchored = 0
+				src.anchored = FALSE
 				mode = SECBOT_IDLE
 				return
 
@@ -616,7 +616,7 @@ Auto Patrol: []"},
 /obj/machinery/bot/ed209/proc/look_for_perp()
 	if(src.disabled)
 		return
-	src.anchored = 0
+	src.anchored = FALSE
 	src.threatlevel = 0
 	for (var/mob/living/carbon/C in view(12,src)) //Let's find us a criminal
 		if ((C.stat) || (C.handcuffed))
@@ -845,7 +845,7 @@ Auto Patrol: []"},
 		pulse2.icon = 'icons/effects/effects.dmi'
 		pulse2.icon_state = "empdisable"
 		pulse2.name = "emp sparks"
-		pulse2.anchored = 1
+		pulse2.anchored = TRUE
 		pulse2.set_dir(pick(cardinal))
 		spawn(10)
 			qdel(pulse2)

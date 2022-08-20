@@ -100,7 +100,7 @@
 			W = new created_window(user.loc, 0)
 			W.set_dir(dir_to_set)
 			W.ini_dir = W.dir
-			W.anchored = 0
+			W.anchored = FALSE
 			src.use(1)
 
 		if("Full Window")
@@ -119,7 +119,7 @@
 			W = new created_window(user.loc, 0)
 			W.set_dir(SOUTHWEST)
 			W.ini_dir = SOUTHWEST
-			W.anchored = 0
+			W.anchored = FALSE
 			src.use(2)
 	return 0
 
@@ -193,7 +193,7 @@
 			W.state = 0
 			W.set_dir(dir_to_set)
 			W.ini_dir = W.dir
-			W.anchored = 0
+			W.anchored = FALSE
 			src.use(1)
 
 		if("Full Window")
@@ -212,7 +212,7 @@
 			W.state = 0
 			W.set_dir(SOUTHWEST)
 			W.ini_dir = SOUTHWEST
-			W.anchored = 0
+			W.anchored = FALSE
 			src.use(2)
 
 		if("Windoor")
@@ -234,7 +234,7 @@
 			var/obj/structure/windoor_assembly/WD
 			WD = new /obj/structure/windoor_assembly(user.loc)
 			WD.state = "01"
-			WD.anchored = 0
+			WD.anchored = FALSE
 			src.use(5)
 			switch(user.dir)
 				if(SOUTH)

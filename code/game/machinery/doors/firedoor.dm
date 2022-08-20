@@ -4,8 +4,8 @@
 	icon = 'icons/obj/doors/engineering/hazard.dmi'
 	icon_state = "door_open"
 	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_ENGINE_EQUIP)
-	opacity = 0
-	density = 0
+	opacity = FALSE
+	density = FALSE
 	layer = 3.5 // Sets layer to higher than most other things for mapping reasons.
 
 	//These are frequenly used with windows, so make sure zones can pass. 

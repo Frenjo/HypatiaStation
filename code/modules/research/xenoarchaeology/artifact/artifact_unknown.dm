@@ -3,7 +3,7 @@
 	desc = "A large alien device."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "ano00"
-	density = 1
+	density = TRUE
 
 	var/icon_num = 0
 	var/datum/artifact_effect/my_effect

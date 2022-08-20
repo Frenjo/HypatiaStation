@@ -8,7 +8,7 @@
 	visible = 0.0
 	use_power = 0
 	flags = ON_BORDER
-	opacity = 0
+	opacity = FALSE
 	var/obj/item/weapon/airlock_electronics/electronics = null
 	explosion_resistance = 5
 	air_properties_vary_with_direction = 1
@@ -29,7 +29,7 @@
 	return
 
 /obj/machinery/door/window/Destroy()
-	density = 0
+	density = FALSE
 	return ..()
 
 /obj/machinery/door/window/Bumped(atom/movable/AM as mob|obj)
@@ -92,7 +92,7 @@
 	sleep(10)
 
 	explosion_resistance = 0
-	src.density = 0
+	src.density = FALSE
 //	src.sd_SetOpacity(0)	//TODO: why is this here? Opaque windoors? ~Carn
 	update_nearby_tiles()
 
@@ -108,7 +108,7 @@
 	playsound(src, 'sound/machines/windowdoor.ogg', 100, 1)
 	src.icon_state = src.base_state
 
-	src.density = 1
+	src.density = TRUE
 	explosion_resistance = initial(explosion_resistance)
 //	if(src.visible)
 //		SetOpacity(1)	//TODO: why is this here? Opaque windoors? ~Carn
@@ -142,7 +142,7 @@
 		if(operating == -1)
 			ae.icon_state = "door_electronics_smoked"
 			operating = 0
-		src.density = 0
+		src.density = FALSE
 		playsound(src, "shatter", 70, 1)
 		qdel(src)
 		return

@@ -1,6 +1,6 @@
 /obj/structure/cult
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	icon = 'icons/obj/cult.dmi'
 
 /obj/structure/cult/talisman
@@ -40,9 +40,9 @@
 	desc = "You're pretty sure that abyss is staring back"
 	icon = 'icons/obj/cult.dmi'
 	icon_state = "hole"
-	density = 1
+	density = TRUE
 	unacidable = 1
-	anchored = 1.0
+	anchored = TRUE
 
 /obj/effect/gateway/Bumped(mob/M as mob|obj)
 	spawn(0)

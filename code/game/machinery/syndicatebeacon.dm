@@ -11,8 +11,8 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "syndbeacon"
 
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 	var/temptext = ""
 	var/selfdestructing = 0
@@ -108,8 +108,8 @@
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "beacon"
 
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	layer = MOB_LAYER - 0.1 //so people can't hide it and it's REALLY OBVIOUS
 	stat = 0
 
@@ -162,7 +162,7 @@
 
 		if(stat & SCREWED)
 			stat &= ~SCREWED
-			anchored = 0
+			anchored = FALSE
 			user << "\blue You unscrew the beacon from the floor."
 			attached = null
 			return
@@ -174,7 +174,7 @@
 				user << "This device must be placed over an exposed cable."
 				return
 			stat |= SCREWED
-			anchored = 1
+			anchored = TRUE
 			user << "\blue You screw the beacon to the floor and attach the cable."
 			return
 	..()

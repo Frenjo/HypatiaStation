@@ -2,7 +2,7 @@
 //currently the same code as cold_sink but anticipating process() changes
 	icon = 'icons/obj/atmospherics/cold_sink.dmi'
 	icon_state = "intact_off"
-	density = 1
+	density = TRUE
 	use_power = 1
 
 	name = "Heat Reservoir"

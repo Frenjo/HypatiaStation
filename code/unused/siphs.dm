@@ -101,11 +101,11 @@
 
 	if (istype(W, /obj/item/weapon/screwdriver))
 		if (src.c_status)
-			src.anchored = 1
+			src.anchored = TRUE
 			src.c_status = 0
 		else
 			if (locate(/obj/machinery/connector, src.loc))
-				src.anchored = 1
+				src.anchored = TRUE
 				src.c_status = 3
 	else
 		if (istype(W, /obj/item/weapon/wrench))
@@ -223,11 +223,11 @@
 
 	if (istype(W, /obj/item/weapon/screwdriver))
 		if (src.c_status)
-			src.anchored = 1
+			src.anchored = TRUE
 			src.c_status = 0
 		else
 			if (locate(/obj/machinery/connector, src.loc))
-				src.anchored = 1
+				src.anchored = TRUE
 				src.c_status = 3
 	else
 		if (istype(W, /obj/item/weapon/wrench))
@@ -488,14 +488,14 @@
 		if (istype(W, /obj/item/weapon/screwdriver))
 			var/obj/machinery/connector/con = locate(/obj/machinery/connector, src.loc)
 			if (src.c_status)
-				src.anchored = 0
+				src.anchored = FALSE
 				src.c_status = 0
 				user.show_message("\blue You have disconnected the siphon.")
 				if(con)
 					con.connected = null
 			else
 				if (con && !con.connected)
-					src.anchored = 1
+					src.anchored = TRUE
 					src.c_status = 3
 					user.show_message("\blue You have connected the siphon.")
 					con.connected = src

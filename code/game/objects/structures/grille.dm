@@ -3,8 +3,8 @@
 	name = "grille"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "grille"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	flags = CONDUCT
 	pressure_resistance = 5*ONE_ATMOSPHERE
 	layer = 2.9
@@ -148,7 +148,7 @@
 				WD = new/obj/structure/window/basic(loc) //normal window
 			WD.set_dir(dir_to_set)
 			WD.ini_dir = dir_to_set
-			WD.anchored = 0
+			WD.anchored = FALSE
 			WD.state = 0
 			var/obj/item/stack/ST = W
 			ST.use(1)
@@ -175,7 +175,7 @@
 	if(health <= 0)
 		if(!destroyed)
 			icon_state = "brokengrille"
-			density = 0
+			density = FALSE
 			destroyed = 1
 			new /obj/item/stack/rods(loc)
 

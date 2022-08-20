@@ -1,7 +1,7 @@
 /obj/effect/pressure_plate
 	name = "pressure plate"
 	desc = "A pressure plate that triggers a trap or a few of them."
-	density = 0
+	density = FALSE
 	var/list/connected_traps_names = list() //mappers, edit this when you place pressure plates on the map. don't forget to make the connected traps have an UNIQUE name
 	var/list/connected_traps = list() //actual references to the connected traps. leave empty, it is generated at runtime from connected_traps_names
 	var/trigger_type = "mob and obj" //can be "mob", "obj" or "mob and obj", the only moveable types
@@ -34,7 +34,7 @@
 /obj/effect/trap //has three subtypes - /aoe, /area (ie affects an entire area), /single (only the victim is affected)
 	name = "trap"
 	desc = "It's a trap!"
-	density = 0
+	density = FALSE
 	var/uses = 1 //how many times it can be triggered
 	var/trigger_type = "mob and obj" //can be "mob", "obj" or "mob and obj", the only moveable types. can also be "none" to not be triggered by entering its square (needs to have a pressure plate attached in that case)
 	var/target_type = "mob" //if it targets mobs, turfs or objs

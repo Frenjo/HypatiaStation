@@ -1,4 +1,4 @@
-"a" = (/turf/unsimulated/beach/sand{density = 1; opacity = 1},/area/awaymission/beach)
+"a" = (/turf/unsimulated/beach/sand{density = TRUE; opacity = TRUE},/area/awaymission/beach)
 "b" = (/obj/machinery/gateway{dir = 9},/turf/unsimulated/beach/sand,/area/awaymission/beach)
 "c" = (/obj/machinery/gateway{dir = 1},/turf/unsimulated/beach/sand,/area/awaymission/beach)
 "d" = (/obj/machinery/gateway{dir = 5},/turf/unsimulated/beach/sand,/area/awaymission/beach)
@@ -39,9 +39,9 @@
 "M" = (/obj/effect/overlay/coconut,/turf/unsimulated/beach/sand,/area/awaymission/beach)
 "N" = (/mob/living/simple_animal/crab/Coffee,/turf/unsimulated/beach/sand,/area/awaymission/beach)
 "O" = (/obj/structure/stool/bed/chair,/turf/unsimulated/beach/sand,/area/awaymission/beach)
-"P" = (/turf/unsimulated/beach/coastline{density = 1; opacity = 1},/area/awaymission/beach)
+"P" = (/turf/unsimulated/beach/coastline{density = TRUE; opacity = TRUE},/area/awaymission/beach)
 "Q" = (/turf/unsimulated/beach/coastline,/area/awaymission/beach)
-"R" = (/turf/unsimulated/beach/water{density = 1; opacity = 1},/area/awaymission/beach)
+"R" = (/turf/unsimulated/beach/water{density = TRUE; opacity = TRUE},/area/awaymission/beach)
 "S" = (/turf/unsimulated/beach/water,/area/awaymission/beach)
 
 (1,1,1) = {"

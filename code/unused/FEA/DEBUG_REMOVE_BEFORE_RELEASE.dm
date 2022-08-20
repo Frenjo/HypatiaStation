@@ -448,7 +448,7 @@ turf/simulated
 obj/indicator
 	icon = 'icons/Testing/air_meter.dmi'
 	var/measure = "temperature"
-	anchored = 1
+	anchored = TRUE
 
 	process()
 		icon_state = measurement()

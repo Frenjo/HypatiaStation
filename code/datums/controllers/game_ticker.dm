@@ -171,7 +171,7 @@
 	cinematic.icon = 'icons/effects/station_explosion.dmi'
 	cinematic.icon_state = "station_intact"
 	cinematic.layer = 20
-	cinematic.mouse_opacity = 0
+	cinematic.mouse_opacity = FALSE
 	cinematic.screen_loc = "1,0"
 
 	var/obj/structure/stool/bed/temp_buckle = new(src)

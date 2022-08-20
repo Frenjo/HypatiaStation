@@ -13,7 +13,7 @@
 	plane = SPACE_PARALLAX_PLANE
 	blend_mode = BLEND_MULTIPLY
 	appearance_flags = PLANE_MASTER
-	mouse_opacity = 0
+	mouse_opacity = FALSE
 
 /obj/screen/space_parallax
 	icon = 'icons/mob/screen1_full.dmi'

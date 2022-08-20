@@ -24,8 +24,8 @@
 		B.icon_state = "blspell"
 		B.icon = 'icons/obj/wizard.dmi'
 		B.name = "spell"
-		B.anchored = 1
-		B.density = 0
+		B.anchored = TRUE
+		B.density = FALSE
 		B.layer = 4
 		M.canmove = 0
 		spawn(5)
@@ -58,8 +58,8 @@
 			A.icon_state = "magicm"
 			A.icon = 'icons/obj/wizard.dmi'
 			A.name = "a magic missile"
-			A.anchored = 0
-			A.density = 0
+			A.anchored = FALSE
+			A.density = FALSE
 			A.layer = 4
 			var/i
 			for(i=0, i<20, i++)
@@ -69,8 +69,8 @@
 				B.icon_state = "magicmd"
 				B.icon = 'icons/obj/wizard.dmi'
 				B.name = "trail"
-				B.anchored = 1
-				B.density = 0
+				B.anchored = TRUE
+				B.density = FALSE
 				B.layer = 3
 				spawn(5)
 					del(B)
@@ -131,9 +131,9 @@
 	name = "FORCEWALL"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "m_shield"
-	anchored = 1.0
-	opacity = 0
-	density = 1
+	anchored = TRUE
+	opacity = FALSE
+	density = TRUE
 	unacidable = 1
 
 
@@ -214,8 +214,8 @@
 	A.icon_state = "fireball"
 	A.icon = 'icons/obj/wizard.dmi'
 	A.name = "a fireball"
-	A.anchored = 0
-	A.density = 0
+	A.anchored = FALSE
+	A.density = FALSE
 	A.luminosity = 3
 
 	step_to(A, T, 0)
@@ -412,8 +412,8 @@
 		var/obj/effect/dummy/spell_jaunt/holder = new /obj/effect/dummy/spell_jaunt( mobloc )
 		var/atom/movable/overlay/animation = new /atom/movable/overlay( mobloc )
 		animation.name = "water"
-		animation.density = 0
-		animation.anchored = 1
+		animation.density = FALSE
+		animation.anchored = TRUE
 		animation.icon = 'icons/mob/mob.dmi'
 		animation.icon_state = "liquify"
 		animation.layer = 5
@@ -449,8 +449,8 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
 	var/canmove = 1
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 
 /obj/effect/dummy/spell_jaunt/relaymove(var/mob/user, direction)
 	if (!src.canmove) return

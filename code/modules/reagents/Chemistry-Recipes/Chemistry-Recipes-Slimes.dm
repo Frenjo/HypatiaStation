@@ -565,7 +565,7 @@
 						blueeffect.icon = 'icons/effects/effects.dmi'
 						blueeffect.icon_state = "shieldsparkles"
 						blueeffect.layer = 17
-						blueeffect.mouse_opacity = 0
+						blueeffect.mouse_opacity = FALSE
 						M.client.screen += blueeffect
 						sleep(20)
 						M.client.screen -= blueeffect

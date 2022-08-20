@@ -30,8 +30,8 @@
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "floorbot0"
 	layer = 5.0
-	density = 0
-	anchored = 0
+	density = FALSE
+	anchored = FALSE
 	health = 25
 	maxhealth = 25
 	//weight = 1.0E7
@@ -263,7 +263,7 @@
 			repair(src.target)
 		else if(emagged == 2 && istype(src.target,/turf/simulated/floor))
 			var/turf/simulated/floor/F = src.target
-			src.anchored = 1
+			src.anchored = TRUE
 			src.repairing = 1
 			if(prob(90))
 				F.break_tile_to_plating()
@@ -272,7 +272,7 @@
 			visible_message("\red [src] makes an excited booping sound.")
 			spawn(50)
 				src.amount ++
-				src.anchored = 0
+				src.anchored = FALSE
 				src.repairing = 0
 				src.target = null
 		src.path = new()
@@ -289,7 +289,7 @@
 		return
 	if(src.amount <= 0)
 		return
-	src.anchored = 1
+	src.anchored = TRUE
 	src.icon_state = "floorbot-c"
 	if(istype(target, /turf/space/))
 		visible_message("\red [src] begins to repair the hole")
@@ -300,7 +300,7 @@
 			src.repairing = 0
 			src.amount -= 1
 			src.updateicon()
-			src.anchored = 0
+			src.anchored = FALSE
 			src.target = null
 	else
 		visible_message("\red [src] begins to improve the floor.")
@@ -310,7 +310,7 @@
 			src.repairing = 0
 			src.amount -= 1
 			src.updateicon()
-			src.anchored = 0
+			src.anchored = FALSE
 			src.target = null
 
 /obj/machinery/bot/floorbot/proc/eattile(var/obj/item/stack/tile/plasteel/T)

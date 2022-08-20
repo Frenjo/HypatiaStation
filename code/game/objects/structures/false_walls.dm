@@ -4,7 +4,7 @@
 /obj/structure/falsewall
 	name = "wall"
 	desc = "A huge chunk of metal used to seperate rooms."
-	anchored = 1
+	anchored = TRUE
 	icon = 'icons/turf/walls.dmi'
 	var/mineral = MATERIAL_METAL
 	var/opening = 0
@@ -61,14 +61,14 @@
 		icon_state = "[mineral]fwall_open"
 		flick("[mineral]fwall_opening", src)
 		sleep(15)
-		src.density = 0
+		src.density = FALSE
 		set_opacity(0)
 		opening = 0
 	else
 		opening = 1
 		flick("[mineral]fwall_closing", src)
 		icon_state = "[mineral]0"
-		density = 1
+		density = TRUE
 		sleep(15)
 		set_opacity(1)
 		src.relativewall()
@@ -164,9 +164,9 @@
 	desc = "A huge chunk of reinforced metal used to seperate rooms."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "r_wall"
-	density = 1
-	opacity = 1
-	anchored = 1
+	density = TRUE
+	opacity = TRUE
+	anchored = TRUE
 	var/mineral = MATERIAL_METAL
 	var/opening = 0
 
@@ -185,14 +185,14 @@
 		icon_state = "frwall_open"
 		flick("frwall_opening", src)
 		sleep(15)
-		density = 0
+		density = FALSE
 		set_opacity(0)
 		opening = 0
 	else
 		opening = 1
 		icon_state = "r_wall"
 		flick("frwall_closing", src)
-		density = 1
+		density = TRUE
 		sleep(15)
 		set_opacity(1)
 		relativewall()

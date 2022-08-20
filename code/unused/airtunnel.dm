@@ -7,7 +7,7 @@
 	var/a_type = 0.0
 	var/obj/machinery/door/d1 = null
 	var/obj/machinery/door/d2 = null
-	anchored = 1.0
+	anchored = TRUE
 	req_access = list(access_brig)
 	use_power = 1
 	idle_power_usage = 2

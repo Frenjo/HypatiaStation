@@ -19,13 +19,13 @@ What are the archived variables for?
 	plmaster.icon = 'icons/effects/tile_effects.dmi'
 	plmaster.icon_state = "plasma"
 	plmaster.layer = FLY_LAYER
-	plmaster.mouse_opacity = 0
+	plmaster.mouse_opacity = FALSE
 
 	slmaster = new /obj/effect/overlay()
 	slmaster.icon = 'icons/effects/tile_effects.dmi'
 	slmaster.icon_state = "sleeping_agent"
 	slmaster.layer = FLY_LAYER
-	slmaster.mouse_opacity = 0
+	slmaster.mouse_opacity = FALSE
 	return 1
 
 /datum/gas/sleeping_agent/specific_heat = 40 //These are used for the "Trace Gases" stuff, but is buggy.

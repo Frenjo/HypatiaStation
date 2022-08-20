@@ -8,8 +8,8 @@
 	icon = 'code/WorkInProgress/Cael_Aislinn/ShieldGen/shielding.dmi'
 	icon_state = "capacitor"
 	var/active = 1
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/stored_charge = 0
 	var/time_since_fail = 100
 	var/max_charge = 5e6

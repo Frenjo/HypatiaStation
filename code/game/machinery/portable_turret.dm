@@ -12,10 +12,10 @@
 	name = "turret"
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "grey_target_prism"
-	anchored = 1
+	anchored = TRUE
 	layer = 3
 	invisibility = INVISIBILITY_LEVEL_TWO		// the turret is invisible if it's inside its cover
-	density = 1
+	density = TRUE
 	use_power = 1			// this turret uses and requires power
 	idle_power_usage = 50	// when inactive, this turret takes up constant 50 Equipment power
 	active_power_usage = 300// when active, this turret takes up constant 300 Equipment power
@@ -318,14 +318,14 @@ Status: []<BR>"},
 		// This code handles moving the turret around. After all, it's a portable turret!
 
 		if(!anchored)
-			anchored = 1
+			anchored = TRUE
 			invisibility = INVISIBILITY_LEVEL_TWO
 			icon_state = "[lasercolor]grey_target_prism"
 			user << "You secure the exterior bolts on the turret."
 			cover=new/obj/machinery/porta_turret_cover(src.loc) // create a new turret. While this is handled in process(), this is to workaround a bug where the turret becomes invisible for a split second
 			cover.Parent_Turret = src // make the cover's parent src
 		else
-			anchored = 0
+			anchored = FALSE
 			user << "You unsecure the exterior bolts on the turret."
 			icon_state = "turretCover"
 			invisibility = 0
@@ -403,12 +403,12 @@ Status: []<BR>"},
 
 /obj/machinery/porta_turret/proc/die() // called when the turret dies, ie, health <= 0
 	src.health = 0
-	src.density = 0
+	src.density = FALSE
 	src.stat |= BROKEN // enables the BROKEN bit
 	src.icon_state = "[lasercolor]destroyed_target_prism"
 	invisibility = 0
 	src.spark_system.start() // creates some sparks because they look cool
-	src.density = 1
+	src.density = TRUE
 	qdel(cover) // deletes the cover - no need on keeping it there!
 
 /obj/machinery/porta_turret/process()
@@ -685,7 +685,7 @@ Status: []<BR>"},
 			if(istype(W, /obj/item/weapon/wrench) && !anchored)
 				playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 				user << "\blue You secure the external bolts."
-				anchored = 1
+				anchored = TRUE
 				build_step = 1
 				return
 
@@ -710,7 +710,7 @@ Status: []<BR>"},
 			else if(istype(W, /obj/item/weapon/wrench))
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				user << "You unfasten the external bolts."
-				anchored = 0
+				anchored = FALSE
 				build_step = 0
 				return
 
@@ -858,9 +858,9 @@ Status: []<BR>"},
 	name = "turret"
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "turretCover"
-	anchored = 1
+	anchored = TRUE
 	layer = 3.5
-	density = 0
+	density = FALSE
 	var/obj/machinery/porta_turret/Parent_Turret = null
 
 /obj/machinery/porta_turret_cover/Destroy()
@@ -1001,12 +1001,12 @@ Status: []<BR>"},
 		if(Parent_Turret.raised) return
 
 		if(!Parent_Turret.anchored)
-			Parent_Turret.anchored = 1
+			Parent_Turret.anchored = TRUE
 			Parent_Turret.invisibility = INVISIBILITY_LEVEL_TWO
 			Parent_Turret.icon_state = "grey_target_prism"
 			user << "You secure the exterior bolts on the turret."
 		else
-			Parent_Turret.anchored = 0
+			Parent_Turret.anchored = FALSE
 			user << "You unsecure the exterior bolts on the turret."
 			Parent_Turret.icon_state = "turretCover"
 			Parent_Turret.invisibility = 0

@@ -235,7 +235,7 @@ periods of time. There is some small print on top, \n \
 <B><FONT COLOR=RED>\"Warning: The contents of this Biological Suspension Unit (BSU) are incredibly valuable. Waste of these stem cells will result in termination and you will be expected to compensate.\"</B></FONT>"
 	name = "Biological Suspension Unit (BSU)"
 	icon = 'icons/obj/storage.dmi'
-	density = 1
+	density = TRUE
 	icon_state = "bio"
 	icon_opened = "bioopen"
 	icon_closed = "bio"

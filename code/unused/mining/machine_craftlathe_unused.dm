@@ -43,8 +43,8 @@ proc/check_craftlathe_recipe(var/list/param_recipe)
 /obj/machinery/autolathe2
 	name = "Craft lathe"
 	icon_state = "autolathe"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/datum/craftlathe_item/selected = null
 	var/datum/craftlathe_item/make = null
 	var/list/datum/craftlathe_item/craft_contents = list()

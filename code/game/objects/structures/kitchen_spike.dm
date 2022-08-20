@@ -9,8 +9,8 @@
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "spike"
 	desc = "A spike for collecting meat from animals"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/meat = 0
 	var/occupied = 0
 	var/meattype = MEAT_TYPE_NOTHING

@@ -6,8 +6,8 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 /obj/effect/proc_holder/spell
 	name = "Spell"
 	desc = "A wizard spell"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 
 	var/school = "evocation" //not relevant at now, but may be important later if there are changes to how spells work. the ones I used for now will probably be changed... maybe spell presets? lacking flexibility but with some other benefit?
 
@@ -150,8 +150,8 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 			var/obj/effect/overlay/spell = new /obj/effect/overlay(location)
 			spell.icon = overlay_icon
 			spell.icon_state = overlay_icon_state
-			spell.anchored = 1
-			spell.density = 0
+			spell.anchored = TRUE
+			spell.density = FALSE
 			spawn(overlay_lifespan)
 				qdel(spell)
 

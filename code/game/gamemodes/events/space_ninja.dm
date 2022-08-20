@@ -830,8 +830,8 @@ BYOND fixed the verb bugs so this is no longer necessary. I prefer verb panels.
 	name = "Clear Hologram"
 	desc = "Stops projecting the current holographic image."
 	panel = "AI Ninja Equip"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 
 
 /obj/effect/proc_holder/ai_holo_clear/Click()
@@ -846,8 +846,8 @@ BYOND fixed the verb bugs so this is no longer necessary. I prefer verb panels.
 	name = "Instructions"
 	desc = "Displays a list of helpful information."
 	panel = "AI Ninja Equip"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 
 /obj/effect/proc_holder/ai_instruction/Click()
 	loc << "The menu you are seeing will contain other commands if they become available.\nRight click a nearby turf to display an AI Hologram. It will only be visible to you and your host. You can move it freely using normal movement keys--it will disappear if placed too far away."
@@ -856,8 +856,8 @@ BYOND fixed the verb bugs so this is no longer necessary. I prefer verb panels.
 	name = "Hack SpiderOS"
 	desc = "Hack directly into the Black Widow(tm) neuro-interface."
 	panel = "AI Ninja Equip"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 
 /obj/effect/proc_holder/ai_hack_ninja/Click()//When you click on it.
 	var/obj/item/clothing/suit/space/space_ninja/S = loc.loc
@@ -868,8 +868,8 @@ BYOND fixed the verb bugs so this is no longer necessary. I prefer verb panels.
 	name = "Relinquish Control"
 	desc = "Return control to the user."
 	panel = "AI Ninja Equip"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 
 /obj/effect/proc_holder/ai_return_control/Click()
 	var/mob/living/silicon/ai/A = loc
@@ -1005,7 +1005,7 @@ mob/verb/remove_object_panel()
 	var/obj/effect/energy_net/E = new /obj/effect/energy_net(loc)
 	E.layer = layer+1//To have it appear one layer above the mob.
 	stunned = 10//So they are stunned initially but conscious.
-	anchored = 1//Anchors them so they can't move.
+	anchored = TRUE//Anchors them so they can't move.
 	E.affecting = src
 	spawn(0)//Parallel processing.
 		E.process(src)

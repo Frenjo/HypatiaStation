@@ -4,9 +4,9 @@
 	name = "Heat Regulator"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "freezer_0"
-	density = 1
+	density = TRUE
 
-	anchored = 1.0
+	anchored = TRUE
 
 	current_heat_capacity = 1000
 

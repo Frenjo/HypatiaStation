@@ -56,8 +56,8 @@
 /obj/machinery/red_injector
 	name = "Red Team Flag Injector"
 	desc = "Insert flag here"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/score = 0
 	var/operating = 0
 	icon = 'flags.dmi'
@@ -98,8 +98,8 @@
 /obj/machinery/green_injector
 	name = "Green Team Flag Injector"
 	desc = "Insert flag here"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/operating = 0
 	var/score = 0
 	icon = 'flags.dmi'

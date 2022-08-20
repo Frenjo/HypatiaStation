@@ -84,8 +84,8 @@ Attach to transfer valve and open. BOOM.
 /obj/fire
 	//Icon for fire on turfs.
 
-	anchored = 1
-	mouse_opacity = 0
+	anchored = TRUE
+	mouse_opacity = FALSE
 
 	blend_mode = BLEND_ADD
 

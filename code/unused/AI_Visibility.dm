@@ -23,7 +23,7 @@
 /mob/aiEye
 	var/list/visibleCameraChunks = list()
 	var/mob/ai = null
-	density = 0
+	density = FALSE
 
 /datum/camerachunk/proc/add(mob/aiEye/ai)
 	ai.visibleCameraChunks += src
@@ -107,7 +107,7 @@
 		if(!(t in visibleTurfs))
 			if(!t.dim)
 				t.dim = image('icons/effects/cameravis.dmi', t, "dim", 15)
-				t.mouse_opacity = 0
+				t.mouse_opacity = FALSE
 
 			dim += t.dim
 			for(var/mob/aiEye/m in seenby)

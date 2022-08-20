@@ -5,8 +5,8 @@
 	desc = "It is a heavy duty industrial laser."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "emitter"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	req_access = list(ACCESS_ENGINE_EQUIP)
 
 	use_power = 0
@@ -179,7 +179,7 @@
 					"You secure the external reinforcing bolts to the floor.",
 					"You hear a ratchet"
 				)
-				src.anchored = 1
+				src.anchored = TRUE
 			if(1)
 				state = 0
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
@@ -188,7 +188,7 @@
 					"You undo the external reinforcing bolts.",
 					"You hear a ratchet"
 				)
-				src.anchored = 0
+				src.anchored = FALSE
 			if(2)
 				to_chat(user, SPAN_WARNING("The [src.name] needs to be unwelded from the floor."))
 		return

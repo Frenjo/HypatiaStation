@@ -47,8 +47,8 @@
 
 //This is the icon for fire on turfs, also helps for nurturing small fires until they are full tile
 /obj/effect/hotspot
-	anchored = 1
-	mouse_opacity = 0
+	anchored = TRUE
+	mouse_opacity = FALSE
 	unacidable = 1//So you can't melt fire with acid.
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "1"

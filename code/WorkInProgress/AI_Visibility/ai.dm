@@ -2,7 +2,7 @@
 /mob/aiEye
 	var/list/visibleCameraChunks = list()
 	var/mob/ai = null
-	density = 0
+	density = FALSE
 
 /mob/living/silicon/ai/var/mob/aiEye/eyeobj = new()
 

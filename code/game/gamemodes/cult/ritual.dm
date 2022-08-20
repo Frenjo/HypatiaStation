@@ -24,7 +24,7 @@ var/engwords = list(
 
 /obj/effect/rune
 	desc = ""
-	anchored = 1
+	anchored = TRUE
 	icon = 'icons/obj/rune.dmi'
 	icon_state = "1"
 	var/visibility = 0

@@ -12,9 +12,9 @@ RCD
 	desc = "A device used to rapidly build walls/floor."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "rcd"
-	opacity = 0
-	density = 0
-	anchored = 0.0
+	opacity = FALSE
+	density = FALSE
+	anchored = FALSE
 	flags = CONDUCT
 	force = 10.0
 	throwforce = 10.0
@@ -207,9 +207,9 @@ RCD
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "rcd"
 	item_state = "rcdammo"
-	opacity = 0
-	density = 0
-	anchored = 0.0
+	opacity = FALSE
+	density = FALSE
+	anchored = FALSE
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2)
 	m_amt = 30000
 	g_amt = 15000

@@ -1,8 +1,8 @@
 /obj/structure/signpost
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "signpost"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 /obj/structure/signpost/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	return attack_hand(user)
@@ -22,9 +22,9 @@
 	var/mark = ""
 	icon = 'icons/misc/mark.dmi'
 	icon_state = "blank"
-	anchored = 1
+	anchored = TRUE
 	layer = 99
-	mouse_opacity = 0
+	mouse_opacity = FALSE
 	unacidable = 1//Just to be sure.
 
 
@@ -39,7 +39,7 @@
 	name = "begin"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "begin"
-	anchored = 1.0
+	anchored = TRUE
 	unacidable = 1
 
 /*
@@ -269,7 +269,7 @@ var/global/list/PDA_Manifest = list()
 /obj/effect/projection
 	name = "Projection"
 	desc = "This looks like a projection of something."
-	anchored = 1.0
+	anchored = TRUE
 
 
 /obj/effect/shut_controller
@@ -283,8 +283,8 @@ var/global/list/PDA_Manifest = list()
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "showcase_1"
 	desc = "A stand with the empty body of a cyborg bolted to it."
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	unacidable = 1//temporary until I decide whether the borg can be removed. -veyveyr
 
 
@@ -296,8 +296,8 @@ var/global/list/PDA_Manifest = list()
 	icon_state = "ball"
 	name = "beach ball"
 	item_state = "beachball"
-	density = 0
-	anchored = 0
+	density = FALSE
+	anchored = FALSE
 	w_class = 1.0
 	force = 0.0
 	throwforce = 0.0

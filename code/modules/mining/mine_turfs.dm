@@ -10,8 +10,8 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 	icon_state = "rock"
 	oxygen = 0
 	nitrogen = 0
-	opacity = 1
-	density = 1
+	opacity = TRUE
+	density = TRUE
 	blocks_air = 1
 	temperature = T0C
 	var/mineral/mineral

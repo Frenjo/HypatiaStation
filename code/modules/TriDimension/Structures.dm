@@ -4,9 +4,9 @@
 // Base
 /obj/multiz
 	icon = 'icons/obj/structures.dmi'
-	density = 0
-	opacity = 0
-	anchored = 1
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
 
 /obj/multiz/CanPass(obj/mover, turf/source, height, airflow)
 	return airflow || !density
@@ -236,7 +236,7 @@
 				S.connected = src
 				src.connected = S
 				src.icon_state = "ramptop"
-				src.density = 1
+				src.density = TRUE
 				var/turf/controllerlocation = locate(1, 1, src.z)
 				for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
 					if(controller.up)

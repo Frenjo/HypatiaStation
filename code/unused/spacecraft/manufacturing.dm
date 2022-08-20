@@ -11,7 +11,7 @@
 /obj/deploycrate
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "deploycrate"
-	density = 1
+	density = TRUE
 	var/payload
 
 /obj/deploycrate/attack_hand(mob/user as mob)
@@ -29,8 +29,8 @@
 /obj/machinery/nanosprayer
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sprayer"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/payload
 	var/hacked = 0
 	var/temp = 100
@@ -145,7 +145,7 @@ obj/machinery/nanosprayer/Topic(href, href_list)
 	if(href_list["minus"])
 		usr_density -= 1
 		if(usr_density < 1)
-			usr_density = 1
+			usr_density = TRUE
 	if(href_list["start"])
 		if(state == 0)
 			state = 1
@@ -169,8 +169,8 @@ obj/machinery/nanosprayer/Topic(href, href_list)
 /obj/machinery/smelter
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sprayer"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/locked = 0
 	var/closed = 0
 	var/state = 0 // 0 - Idle, 1 - Smelt, 2 - Cool, 3 - Clean
@@ -227,16 +227,16 @@ obj/machinery/smelter/Topic(href, href_list)
 /obj/machinery/slaggrinder
 	icon = 'icons/obj/mining.dmi'
 
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 
 
 /obj/machinery/adminmachine
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sprayer"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 	var/gameticker
 	var/gameworld

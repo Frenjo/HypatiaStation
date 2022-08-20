@@ -2,8 +2,8 @@
 //gimmicky hack to collect particles and direct them into the field
 /obj/effect/rust_particle_catcher
 	icon = 'icons/effects/effects.dmi'
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	layer = 4
 	var/obj/effect/rust_em_field/parent
 	var/mysize = 0
@@ -33,11 +33,11 @@
 
 /obj/effect/rust_particle_catcher/proc/UpdateSize()
 	if(parent.size >= mysize)
-		density = 1
+		density = TRUE
 		//invisibility = 0
 		name = "collector [mysize] ON"
 	else
-		density = 0
+		density = FALSE
 		//invisibility = 101
 		name = "collector [mysize] OFF"
 

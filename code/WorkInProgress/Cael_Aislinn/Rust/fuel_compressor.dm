@@ -6,7 +6,7 @@ var/const/max_assembly_amount = 300
 	name = "Fuel Compressor"
 	var/list/new_assembly_quantities = list("Deuterium" = 150,"Tritium" = 150,"Rodinium-6" = 0,"Stravium-7" = 0, "Pergium" = 0, "Dilithium" = 0)
 	var/compressed_matter = 0
-	anchored = 1
+	anchored = TRUE
 	layer = 2.9
 
 	var/opened = 1 //0=closed, 1=opened

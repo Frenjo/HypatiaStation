@@ -2,7 +2,7 @@
 	name = "station intercom"
 	desc = "Talk through this."
 	icon_state = "intercom"
-	anchored = 1
+	anchored = TRUE
 	w_class = 4.0
 	canhear_range = 2
 	flags = CONDUCT | NOBLOODY

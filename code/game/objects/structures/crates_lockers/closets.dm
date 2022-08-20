@@ -3,7 +3,7 @@
 	desc = "It's a basic storage unit."
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "closed"
-	density = 1
+	density = TRUE
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/opened = 0
@@ -69,7 +69,7 @@
 		playsound(src, 'sound/items/zip.ogg', 15, 1, -3)
 	else
 		playsound(src, 'sound/machines/click.ogg', 15, 1, -3)
-	density = 0
+	density = FALSE
 	return 1
 
 /obj/structure/closet/proc/close()
@@ -115,7 +115,7 @@
 		playsound(src, 'sound/items/zip.ogg', 15, 1, -3)
 	else
 		playsound(src, 'sound/machines/click.ogg', 15, 1, -3)
-	density = 1
+	density = TRUE
 	return 1
 
 /obj/structure/closet/proc/toggle(mob/user as mob)

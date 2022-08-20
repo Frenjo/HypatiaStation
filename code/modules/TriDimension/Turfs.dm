@@ -1,7 +1,7 @@
 /turf/simulated/floor/open
 	name = "open space"
 	intact = 0
-	density = 0
+	density = FALSE
 	icon_state = "black"
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
 

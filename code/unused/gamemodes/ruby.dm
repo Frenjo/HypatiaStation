@@ -117,13 +117,13 @@
 		usr.sight |= SEE_MOBS
 		usr.sight |= SEE_OBJS
 		usr.sight |= SEE_TURFS
-		//usr.density = 0
+		//usr.density = FALSE
 		usr.incorporeal_move = 1
 	else
 		usr.sight &= ~SEE_MOBS
 		usr.sight &= ~SEE_TURFS
 		usr.sight &= ~SEE_OBJS
-		usr.density = 1
+		usr.density = TRUE
 		usr.incorporeal_move = 0
 		src.verbs -= /client/proc/planar_shift
 		spawn(300) src.verbs += /client/proc/planar_shift

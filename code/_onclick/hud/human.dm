@@ -303,7 +303,7 @@
 	mymob.blind.icon_state = "blackimageoverlay"
 	mymob.blind.name = " "
 	mymob.blind.screen_loc = "1,1"
-	mymob.blind.mouse_opacity = 0
+	mymob.blind.mouse_opacity = FALSE
 	mymob.blind.invisibility = 101 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 	hud_elements |= mymob.blind
 
@@ -312,7 +312,7 @@
 	mymob.damageoverlay.icon_state = "oxydamageoverlay0"
 	mymob.damageoverlay.name = "dmg"
 	mymob.damageoverlay.screen_loc = "1,1"
-	mymob.damageoverlay.mouse_opacity = 0
+	mymob.damageoverlay.mouse_opacity = FALSE
 	mymob.damageoverlay.layer = 18.1 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 	hud_elements |= mymob.damageoverlay
 
@@ -321,7 +321,7 @@
 	mymob.flash.icon_state = "blank"
 	mymob.flash.name = "flash"
 	mymob.flash.screen_loc = "1,1 to 15,15"
-	mymob.flash.mouse_opacity = 0
+	mymob.flash.mouse_opacity = FALSE
 	mymob.flash.layer = 17
 	hud_elements |= mymob.flash
 

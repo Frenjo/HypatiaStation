@@ -3,9 +3,9 @@
 		desc = "An energy shield used to contain hull breaches."
 		icon = 'icons/effects/effects.dmi'
 		icon_state = "shield-old"
-		density = 1
-		opacity = 0
-		anchored = 1
+		density = TRUE
+		opacity = FALSE
+		anchored = TRUE
 		unacidable = 1
 		var/const/max_health = 200
 		var/health = max_health //The shield can only take so much beating (prevents perma-prisons)
@@ -17,7 +17,7 @@
 
 /obj/machinery/shield/Destroy()
 	set_opacity(0)
-	density = 0
+	density = FALSE
 	update_nearby_tiles()
 	return ..()
 
@@ -145,9 +145,9 @@
 		desc = "Used to seal minor hull breaches."
 		icon = 'icons/obj/objects.dmi'
 		icon_state = "shieldoff"
-		density = 1
-		opacity = 0
-		anchored = 0
+		density = TRUE
+		opacity = FALSE
+		anchored = FALSE
 		pressure_resistance = 2*ONE_ATMOSPHERE
 		req_access = list(ACCESS_ENGINE)
 		var/const/max_health = 100
@@ -293,12 +293,12 @@
 			if(active)
 				user << "\blue The [src] shuts off!"
 				src.shields_down()
-			anchored = 0
+			anchored = FALSE
 		else
 			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
 			playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 			user << "\blue You secure the [src] to the floor!"
-			anchored = 1
+			anchored = TRUE
 
 	else if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))
 		if(src.allowed(user))
@@ -325,8 +325,8 @@
 		desc = "A shield generator."
 		icon = 'icons/obj/stationobjs.dmi'
 		icon_state = "Shield_Gen"
-		anchored = 0
-		density = 1
+		anchored = FALSE
+		density = TRUE
 		req_access = list(ACCESS_TELEPORTER)
 		var/active = 0
 		var/power = 0
@@ -493,14 +493,14 @@
 			state = 1
 			playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 			user << "You secure the external reinforcing bolts to the floor."
-			src.anchored = 1
+			src.anchored = TRUE
 			return
 
 		else if(state == 1)
 			state = 0
 			playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 			user << "You undo the external reinforcing bolts."
-			src.anchored = 0
+			src.anchored = FALSE
 			return
 
 	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
@@ -551,8 +551,8 @@
 		desc = "An energy shield."
 		icon = 'icons/effects/effects.dmi'
 		icon_state = "shieldwall"
-		anchored = 1
-		density = 1
+		anchored = TRUE
+		density = TRUE
 		unacidable = 1
 		//luminosity = 3
 		light_range = 3

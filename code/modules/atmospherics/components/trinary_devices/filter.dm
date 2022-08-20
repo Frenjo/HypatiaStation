@@ -11,7 +11,7 @@
 /obj/machinery/atmospherics/trinary/filter
 	icon = 'icons/obj/atmospherics/filter.dmi'
 	icon_state = "intact_off"
-	density = 0 // Made filters and mixers not-dense so you can walk over them. -Frenjo
+	density = FALSE // Made filters and mixers not-dense so you can walk over them. -Frenjo
 
 	name = "Gas filter"
 

@@ -441,7 +441,7 @@
 						SStun = 0
 
 				victim = null
-				anchored = 0
+				anchored = FALSE
 				step_away(src,M)
 
 			return
@@ -473,7 +473,7 @@
 						SStun = 0
 
 				victim = null
-				anchored = 0
+				anchored = FALSE
 				step_away(src,M)
 
 			return
@@ -527,7 +527,7 @@
 					damage += 5
 					if(victim)
 						victim = null
-						anchored = 0
+						anchored = FALSE
 						if(prob(80) && !client)
 							Discipline++
 					spawn(0)
@@ -619,7 +619,7 @@
 
 				if(victim)
 					victim = null
-					anchored = 0
+					anchored = FALSE
 					if(prob(80) && !client)
 						Discipline++
 						if(!istype(src, /mob/living/carbon/metroid))

@@ -35,7 +35,7 @@
 	var/list/original_atom
 
 /atom/Destroy()
-	density = 0
+	density = FALSE
 	invisibility = 101
 	set_opacity(0)
 

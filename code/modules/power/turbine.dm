@@ -4,8 +4,8 @@
 	desc = "The compressor stage of a gas turbine generator."
 	icon = 'icons/obj/pipes.dmi'
 	icon_state = "compressor"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/obj/machinery/power/turbine/turbine/turbine
 	var/datum/gas_mixture/gas_contained
 	var/turf/simulated/inturf
@@ -72,8 +72,8 @@
 	desc = "A gas turbine used for backup power generation."
 	icon = 'icons/obj/pipes.dmi'
 	icon_state = "turbine"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/obj/machinery/power/turbine/compressor/compressor
 	var/turf/simulated/outturf
 	var/lastgen = 0
@@ -190,8 +190,8 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "airtunnel0e"
 	circuit = /obj/item/weapon/circuitboard/turbine_control
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/obj/machinery/power/turbine/compressor/compressor
 	var/list/obj/machinery/door/poddoor/doors
 	var/id = 0
@@ -223,7 +223,7 @@
 				A.circuit = M
 				A.state = 3
 				A.icon_state = "3"
-				A.anchored = 1
+				A.anchored = TRUE
 				qdel(src)
 			else
 				user << "\blue You disconnect the monitor."
@@ -235,7 +235,7 @@
 				A.circuit = M
 				A.state = 4
 				A.icon_state = "4"
-				A.anchored = 1
+				A.anchored = TRUE
 				qdel(src)
 	else
 		src.attack_hand(user)

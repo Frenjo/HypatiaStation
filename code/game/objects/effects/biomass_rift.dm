@@ -2,9 +2,9 @@
 /obj/effect/biomass
 	icon = 'icons/obj/biomass.dmi'
 	icon_state = "stage1"
-	opacity = 0
-	density = 0
-	anchored = 1
+	opacity = FALSE
+	density = FALSE
+	anchored = TRUE
 	layer = 20 //DEBUG
 	var/health = 10
 	var/stage = 1

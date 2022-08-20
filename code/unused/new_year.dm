@@ -4,9 +4,9 @@
 	desc = "This is a fir. Real fir on dammit spess station. You smell pine-needles."
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "new-year-tree"
-	anchored = 1
-	opacity = 1
-	density = 1
+	anchored = TRUE
+	opacity = TRUE
+	density = TRUE
 	layer = 5
 	pixel_x = -64
 	//pixel_y = -64

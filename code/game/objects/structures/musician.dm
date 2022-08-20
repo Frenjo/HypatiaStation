@@ -9,8 +9,8 @@
 	name = "space minimoog"
 	icon = 'icons/obj/musician.dmi'
 	icon_state = "minimoog"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/datum/song/song
 	var/playing = 0
 	var/help = 0
@@ -419,7 +419,7 @@
 					"[user] loosens \the [src]'s casters.", \
 					"\blue You have loosened \the [src]. Now it can be pulled somewhere else.", \
 					"You hear a ratchet.")
-				src.anchored = 0
+				src.anchored = FALSE
 		else
 			playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 			user << "\blue You begin to tighten \the [src] to the floor..."
@@ -428,6 +428,6 @@
 					"[user] tightens \the [src]'s casters.", \
 					"\blue You have tightened \the [src]'s casters. Now it can be played again.", \
 					"You hear a ratchet.")
-				src.anchored = 1
+				src.anchored = TRUE
 	else
 		..()

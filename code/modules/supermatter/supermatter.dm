@@ -17,8 +17,8 @@
 	desc = "A strangely translucent and iridescent crystal. \red You get headaches just from looking at it."
 	icon = 'icons/obj/engine.dmi'
 	icon_state = "darkmatter"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	//luminosity = 4
 	light_range = 4
 

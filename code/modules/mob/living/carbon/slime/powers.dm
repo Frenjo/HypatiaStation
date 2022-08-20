@@ -43,7 +43,7 @@
 	Victim = M
 	src.loc = M.loc
 	canmove = 0
-	anchored = 1
+	anchored = TRUE
 	var/lastnut = nutrition
 	//if(M.client) M << "\red You legs become paralyzed!"
 	if(isslimeadult(src))
@@ -126,7 +126,7 @@
 			icon_state = "[colour] baby slime"
 
 	canmove = 1
-	anchored = 0
+	anchored = FALSE
 
 	if(M)
 		if(M.health <= -70)

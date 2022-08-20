@@ -6,7 +6,7 @@
 	icon_state = "rail"
 	dir = 2
 	var/id = null    //this is needed for switches to work Set to the same on the whole length of the track
-	anchored = 1
+	anchored = TRUE
 
 /**********************Rail intersection**************************/
 
@@ -162,8 +162,8 @@
 	icon_state = "miningcar"
 	var/direction = "S"  //S = south, N = north, E = east, W = west. Determines whichw ay it'll look first
 	var/moving = 0;
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/speed = 0
 	var/slowing = 0
 	var/atom/movable/load = null //what it's carrying

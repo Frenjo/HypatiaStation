@@ -6,9 +6,9 @@
 	//luminosity = 3
 	light_range = 3
 	desc = "Some blob creature thingy"
-	density = 1
-	opacity = 0
-	anchored = 1
+	density = TRUE
+	opacity = FALSE
+	anchored = TRUE
 	var/active = 1
 	var/health = 30
 	var/brute_resist = 4

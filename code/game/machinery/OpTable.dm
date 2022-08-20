@@ -3,8 +3,8 @@
 	desc = "Used for advanced medical procedures."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 1
 	active_power_usage = 5
@@ -34,7 +34,7 @@
 				return
 		if(3.0)
 			if(prob(25))
-				src.density = 0
+				src.density = FALSE
 		else
 	return
 
@@ -46,7 +46,7 @@
 	if((HULK in usr.mutations))
 		to_chat(usr, SPAN_INFO("You destroy the operating table."))
 		visible_message(SPAN_WARNING("[usr] destroys the operating table!"))
-		src.density = 0
+		src.density = FALSE
 		qdel(src)
 	if(!(locate(/obj/machinery/optable, user.loc)))
 		step(user, get_dir(user, src))
@@ -59,7 +59,7 @@
 	if(HULK in usr.mutations)
 		to_chat(usr, SPAN_INFO("You destroy the table."))
 		visible_message(SPAN_WARNING("[usr] destroys the operating table!"))
-		src.density = 0
+		src.density = FALSE
 		qdel(src)
 	return
 

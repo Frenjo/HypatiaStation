@@ -5,7 +5,7 @@
 	icon = 'icons/obj/computer.dmi'
 	//icon_state = "aiupload"
 	icon_state = "accountsuplink" // Changed this so that it has a separate sprite which actually makes sense. -Frenjo
-	density = 1
+	density = TRUE
 	req_one_access = list(ACCESS_HOP, ACCESS_CAPTAIN, ACCESS_CENT_CAPTAIN)
 	var/receipt_num
 	var/machine_id = ""

@@ -37,7 +37,7 @@
 	icon_closed = "bodybag_closed"
 	icon_opened = "bodybag_open"
 	var/item_path = /obj/item/bodybag
-	density = 0
+	density = FALSE
 
 /obj/structure/closet/body_bag/attackby(W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/pen))
@@ -63,7 +63,7 @@
 
 /obj/structure/closet/body_bag/close()
 	if(..())
-		density = 0
+		density = FALSE
 		return 1
 	return 0
 

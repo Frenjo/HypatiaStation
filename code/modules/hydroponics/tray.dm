@@ -4,8 +4,8 @@
 	name = "hydroponics tray"
 	icon = 'icons/obj/hydroponics.dmi'
 	icon_state = "hydrotray3"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/waterlevel = 100 // The amount of water in the tray (max 100)
 	var/nutrilevel = 10 // The amount of nutrient in the tray (max 10)
 	var/pestlevel = 0 // The amount of pests in the tray (max 10)
@@ -943,7 +943,7 @@
 	name = "soil"
 	icon = 'icons/obj/hydroponics.dmi'
 	icon_state = "soil"
-	density = 0
+	density = FALSE
 	use_power = 0
 
 /obj/machinery/hydroponics/soil/updateicon() // Same as normal but with the overlays removed - Cheridan.

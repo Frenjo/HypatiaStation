@@ -6,8 +6,8 @@
 	icon = 'code/WorkInProgress/Cael_Aislinn/Rust/rust.dmi'
 	icon_state = "emitter-off"
 	name = "Gyrotron"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	layer = 4
 	//
 	req_access = list(ACCESS_ENGINE)

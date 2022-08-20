@@ -7,8 +7,8 @@
 	desc = "I definitely cant get past those. No way."
 	icon = 'icons/obj/stationobjs.dmi' //Change this.
 	icon_state = "plasticflaps"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	layer = 4
 	explosion_resistance = 5
 
@@ -105,8 +105,8 @@
 	icon = 'icons/misc/mark.dmi'
 	name = "X"
 	invisibility = 101
-	anchored = 1
-	opacity = 0
+	anchored = TRUE
+	opacity = FALSE
 */
 
 /obj/machinery/computer/ordercomp/attack_hand(mob/user as mob)

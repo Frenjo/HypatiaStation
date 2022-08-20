@@ -3,7 +3,7 @@
 	desc = "Stepping on this is good."
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
-	anchored = 1.0
+	anchored = TRUE
 	unacidable = 1
 	invisibility = 101
 

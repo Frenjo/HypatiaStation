@@ -130,63 +130,63 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 /obj/machinery/door/airlock/glass
 	name = "Glass Airlock"
 	icon = 'icons/obj/doors/glass.dmi'
-	opacity = 0
+	opacity = FALSE
 	glass = 1
 
 /obj/machinery/door/airlock/centcom
 	name = "Airlock"
 	icon = 'icons/obj/doors/ele.dmi'
-	opacity = 0
+	opacity = FALSE
 
 /obj/machinery/door/airlock/vault
 	name = "Vault"
 	icon = 'icons/obj/doors/vault.dmi'
-	opacity = 1
+	opacity = TRUE
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity //Until somebody makes better sprites.
 
 /obj/machinery/door/airlock/freezer
 	name = "Freezer Airlock"
 	icon = 'icons/obj/doors/freezer.dmi'
-	opacity = 1
+	opacity = TRUE
 	assembly_type = /obj/structure/door_assembly/door_assembly_fre
 
 /obj/machinery/door/airlock/hatch
 	name = "Airtight Hatch"
 	icon = 'icons/obj/doors/ele_hatch.dmi'
-	opacity = 1
+	opacity = TRUE
 	assembly_type = /obj/structure/door_assembly/door_assembly_hatch
 
 /obj/machinery/door/airlock/maintenance_hatch
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/engineering/maintenance_hatch.dmi'
-	opacity = 1
+	opacity = TRUE
 	assembly_type = /obj/structure/door_assembly/door_assembly_mhatch
 
 /obj/machinery/door/airlock/glass_command
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/command_glass.dmi'
-	opacity = 0
+	opacity = FALSE
 	assembly_type = /obj/structure/door_assembly/door_assembly_com
 	glass = 1
 
 /obj/machinery/door/airlock/glass_engineering
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/engineering/engineering_glass.dmi'
-	opacity = 0
+	opacity = FALSE
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
 	glass = 1
 
 /obj/machinery/door/airlock/glass_security
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/security/security_glass.dmi'
-	opacity = 0
+	opacity = FALSE
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
 	glass = 1
 
 /obj/machinery/door/airlock/glass_medical
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/medsci/medical_glass.dmi'
-	opacity = 0
+	opacity = FALSE
 	assembly_type = /obj/structure/door_assembly/door_assembly_med
 	glass = 1
 
@@ -208,7 +208,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 /obj/machinery/door/airlock/glass_research
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/medsci/research_glass.dmi'
-	opacity = 0
+	opacity = FALSE
 	assembly_type = /obj/structure/door_assembly/door_assembly_research
 	glass = 1
 	heat_proof = 1
@@ -223,20 +223,20 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	name = "Airlock"
 	icon = 'icons/obj/doors/medsci/medsci_glass.dmi'
 	//assembly_type = /obj/structure/door_assembly/door_assembly_research
-	opacity = 0
+	opacity = FALSE
 	glass = 1
 
 /obj/machinery/door/airlock/glass_mining
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/mining_glass.dmi'
-	opacity = 0
+	opacity = FALSE
 	assembly_type = /obj/structure/door_assembly/door_assembly_min
 	glass = 1
 
 /obj/machinery/door/airlock/glass_atmos
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/engineering/atmos_glass.dmi'
-	opacity = 0
+	opacity = FALSE
 	assembly_type = /obj/structure/door_assembly/door_assembly_atmo
 	glass = 1
 
@@ -322,7 +322,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 /obj/machinery/door/airlock/glass_science
 	name = "Glass Airlocks"
 	icon = 'icons/obj/doors/medsci/science_glass.dmi'
-	opacity = 0
+	opacity = FALSE
 	assembly_type = /obj/structure/door_assembly/door_assembly_science
 	glass = 1
 
@@ -1232,7 +1232,7 @@ About the new airlock wires panel:
 				to_chat(user, SPAN_INFO("You removed the airlock electronics!"))
 
 				var/obj/structure/door_assembly/da = new assembly_type(src.loc)
-				da.anchored = 1
+				da.anchored = TRUE
 				if(mineral)
 					da.glass = mineral
 				//else if(glass)

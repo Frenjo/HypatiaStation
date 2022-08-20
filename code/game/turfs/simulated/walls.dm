@@ -13,8 +13,8 @@
 
 	var/max_temperature = 1800 //K, walls will take damage if they're next to a fire hotter than this
 
-	opacity = 1
-	density = 1
+	opacity = TRUE
+	density = TRUE
 	blocks_air = 1
 
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
@@ -211,10 +211,10 @@
 			O.icon = 'icons/effects/wallrot.dmi'
 			O.pixel_x += rand(-10, 10)
 			O.pixel_y += rand(-10, 10)
-			O.anchored = 1
-			O.density = 1
+			O.anchored = TRUE
+			O.density = TRUE
 			O.layer = 5
-			O.mouse_opacity = 0
+			O.mouse_opacity = FALSE
 
 /turf/simulated/wall/proc/thermitemelt(mob/user as mob)
 	if(mineral == MATERIAL_DIAMOND)
@@ -224,8 +224,8 @@
 	O.desc = "Looks hot."
 	O.icon = 'icons/effects/fire.dmi'
 	O.icon_state = "2"
-	O.anchored = 1
-	O.density = 1
+	O.anchored = TRUE
+	O.density = TRUE
 	O.layer = 5
 
 	src.ChangeTurf(/turf/simulated/floor/plating)

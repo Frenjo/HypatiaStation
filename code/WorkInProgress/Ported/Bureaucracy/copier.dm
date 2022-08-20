@@ -4,8 +4,8 @@
 	name = "Copy Machine"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "copier_o"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/num_copies = 1		// number of copies selected, will be maintained between jobs
 	var/copying = 0			// are we copying
 	var/job_num_copies = 0	// number of copies remaining

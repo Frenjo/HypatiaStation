@@ -5,8 +5,8 @@
 	desc = "A super-powerful laser"
 	icon = 'icons/obj/engine.dmi'
 	icon_state = "laser"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	req_access = list(ACCESS_ENGINE)
 
 	use_power = 1
@@ -128,14 +128,14 @@
 				user.visible_message("[user.name] secures [src.name] to the floor.", \
 					"You secure the external reinforcing bolts to the floor.", \
 					"You hear a ratchet")
-				src.anchored = 1
+				src.anchored = TRUE
 			if(1)
 				state = 0
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				user.visible_message("[user.name] unsecures [src.name] reinforcing bolts from the floor.", \
 					"You undo the external reinforcing bolts.", \
 					"You hear a ratchet")
-				src.anchored = 0
+				src.anchored = FALSE
 			if(2)
 				user << "\red The [src.name] needs to be unwelded from the floor."
 		return

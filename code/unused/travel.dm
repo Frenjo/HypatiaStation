@@ -3,8 +3,8 @@
 	name = "travel thingie"
 	desc = "it is used for travel idunno"
 	icon = 'travel.dmi'
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 	//note - didn't use a single loc list just because it's easier to edit via adminmagics if this is done this way
 	var/list/z_connect = list() //the z position of the tiles it connects to

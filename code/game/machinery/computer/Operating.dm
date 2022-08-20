@@ -2,8 +2,8 @@
 
 /obj/machinery/computer/operating
 	name = "Operating Computer"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	icon_state = "operating"
 	circuit = /obj/item/weapon/circuitboard/operating
 	var/mob/living/carbon/human/victim = null

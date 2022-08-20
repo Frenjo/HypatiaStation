@@ -167,7 +167,7 @@
 	name = "Critter Crate"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "critter"
-	density = 1
+	density = TRUE
 	icon_opened = "critteropen"
 	icon_closed = "critter"
 

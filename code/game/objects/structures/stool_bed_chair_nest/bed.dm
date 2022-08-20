@@ -109,7 +109,7 @@
 	name = "roller bed"
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "down"
-	anchored = 0
+	anchored = FALSE
 
 /obj/item/roller
 	name = "roller bed"
@@ -135,7 +135,7 @@
 	if(!ismob(M) || get_dist(src, user) > 1 || M.loc != src.loc || user.restrained() || user.lying || user.stat || M.buckled || ispAI(user))
 		return
 	M.pixel_y = 6
-	density = 1
+	density = TRUE
 	icon_state = "up"
 	..()
 	return
@@ -148,7 +148,7 @@
 			buckled_mob.buckled = null
 			buckled_mob.update_canmove()
 			buckled_mob = null
-	density = 0
+	density = FALSE
 	icon_state = "down"
 	..()
 	return

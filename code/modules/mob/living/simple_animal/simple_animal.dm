@@ -75,7 +75,7 @@
 			dead_mob_list -= src
 			living_mob_list += src
 			stat = CONSCIOUS
-			density = 1
+			density = TRUE
 		return 0
 
 
@@ -332,7 +332,7 @@
 	dead_mob_list += src
 	icon_state = icon_dead
 	stat = DEAD
-	density = 0
+	density = FALSE
 	return
 
 /mob/living/simple_animal/ex_act(severity)

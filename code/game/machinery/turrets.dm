@@ -43,10 +43,10 @@
 	icon_state = "grey_target_prism"
 	var/raised = 0
 	var/enabled = 1
-	anchored = 1
+	anchored = TRUE
 	layer = 3
 	invisibility = INVISIBILITY_LEVEL_TWO
-	density = 1
+	density = TRUE
 	var/lasers = 0
 	var/lasertype = 1
 		// 1 = lasers
@@ -108,9 +108,9 @@
 	name = "pop-up turret cover"
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "turretCover"
-	anchored = 1
+	anchored = TRUE
 	layer = 3.5
-	density = 0
+	density = FALSE
 	var/obj/machinery/turret/host = null
 
 /obj/machinery/turret/proc/isPopping()
@@ -326,7 +326,7 @@
 
 /obj/machinery/turret/proc/die()
 	src.health = 0
-	src.density = 0
+	src.density = FALSE
 	src.stat |= BROKEN
 	src.icon_state = "destroyed_target_prism"
 	if(cover != null)
@@ -340,8 +340,8 @@
 	name = "Turret deactivation control"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "motion3"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	var/enabled = 1
 	var/lethal = 0
 	var/locked = 1
@@ -488,8 +488,8 @@
 
 /obj/structure/turret/gun_turret
 	name = "Gun Turret"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/cooldown = 20
 	var/projectiles = 100
 	var/projectiles_per_shot = 2

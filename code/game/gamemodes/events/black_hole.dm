@@ -3,10 +3,10 @@
 	icon = 'icons/obj/objects.dmi'
 	desc = "FUCK FUCK FUCK AAAHHH"
 	icon_state = "bhole3"
-	opacity = 1
+	opacity = TRUE
 	unacidable = 1
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 
 /obj/effect/bhole/New()
 	spawn(4)
@@ -48,9 +48,9 @@
 
 		//MOVEMENT
 		if(prob(50))
-			src.anchored = 0
+			src.anchored = FALSE
 			step(src, pick(global.alldirs))
-			src.anchored = 1
+			src.anchored = TRUE
 
 /obj/effect/bhole/proc/grav(r, ex_act_force, pull_chance, turf_removal_chance)
 	if(!isturf(loc))	//blackhole cannot be contained inside anything. Weird stuff might happen

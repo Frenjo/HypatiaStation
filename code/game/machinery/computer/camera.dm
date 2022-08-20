@@ -97,7 +97,7 @@
 				CF.circuit = CB
 				CF.state = 3
 				CF.icon_state = "3"
-				CF.anchored = 1
+				CF.anchored = TRUE
 				qdel(src)
 			else
 				to_chat(user, SPAN_INFO("You disconnect the monitor."))
@@ -109,7 +109,7 @@
 				CF.circuit = CB
 				CF.state = 4
 				CF.icon_state = "4"
-				CF.anchored = 1
+				CF.anchored = TRUE
 				qdel(src)
 	else
 		attack_hand(user)
@@ -168,7 +168,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "telescreen"
 	network = list("thunder")
-	density = 0
+	density = FALSE
 
 /obj/machinery/computer/security/telescreen/update_icon()
 	icon_state = initial(icon_state)

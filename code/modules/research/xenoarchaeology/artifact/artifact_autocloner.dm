@@ -3,7 +3,7 @@
 	desc = "It's full of a viscous liquid, but appears dark and silent."
 	icon = 'icons/obj/cryogenics.dmi'
 	icon_state = "cellold0"
-	density = 1
+	density = TRUE
 
 	use_power = 1
 	active_power_usage = 2000

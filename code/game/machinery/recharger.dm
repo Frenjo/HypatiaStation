@@ -4,7 +4,7 @@
 	name = "recharger"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "recharger0"
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 4
 	//active_power_usage = 250

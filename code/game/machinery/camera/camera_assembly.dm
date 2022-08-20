@@ -4,7 +4,7 @@
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "cameracase"
 	w_class = 2
-	anchored = 0
+	anchored = FALSE
 
 	m_amt = 700
 	g_amt = 300
@@ -33,7 +33,7 @@
 			if(iswrench(W) && isturf(src.loc))
 				playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 				user << "You wrench the assembly into place."
-				anchored = 1
+				anchored = TRUE
 				state = 1
 				update_icon()
 				auto_turn()
@@ -44,14 +44,14 @@
 			if(iswelder(W))
 				if(weld(W, user))
 					user << "You weld the assembly securely into place."
-					anchored = 1
+					anchored = TRUE
 					state = 2
 				return
 
 			else if(iswrench(W))
 				playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 				user << "You unattach the assembly from it's place."
-				anchored = 0
+				anchored = FALSE
 				update_icon()
 				state = 0
 				return
@@ -71,7 +71,7 @@
 				if(weld(W, user))
 					user << "You unweld the assembly from it's place."
 					state = 1
-					anchored = 1
+					anchored = TRUE
 				return
 
 		if(3)

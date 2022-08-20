@@ -1,7 +1,7 @@
 /obj/structure/girder
 	icon_state = "girder"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	layer = 2
 
 	var/state = 0
@@ -213,7 +213,7 @@
 
 /obj/structure/girder/displaced
 	icon_state = "displaced"
-	anchored = 0
+	anchored = FALSE
 	health = 50
 
 /obj/structure/girder/reinforced
@@ -225,8 +225,8 @@
 /obj/structure/cultgirder
 	icon = 'icons/obj/cult.dmi'
 	icon_state = "cultgirder"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	layer = 2
 	var/health = 250
 

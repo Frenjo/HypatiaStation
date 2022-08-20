@@ -6,8 +6,8 @@
 	name = "\improper Central Atmospherics Computer"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer_generic"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/atmoscontrol
 	var/obj/machinery/alarm/current
 	var/overridden = 0 //not set yet, can't think of a good way to do it

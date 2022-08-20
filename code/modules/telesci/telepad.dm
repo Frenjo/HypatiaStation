@@ -4,7 +4,7 @@
 	desc = "A bluespace telepad used for teleporting objects to and from a location."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "pad-idle"
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 200
 	active_power_usage = 5000
@@ -15,7 +15,7 @@
 	desc = "A telepad used by the Rapid Crate Sender."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "pad-idle"
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 20
 	active_power_usage = 500
@@ -23,13 +23,13 @@
 
 /obj/machinery/telepad_cargo/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))
-		anchored = 0
+		anchored = FALSE
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		if(anchored)
-			anchored = 0
+			anchored = FALSE
 			to_chat(user, SPAN_CAUTION("The [src] can now be moved."))
 		else if(!anchored)
-			anchored = 1
+			anchored = TRUE
 			to_chat(user, SPAN_CAUTION("The [src] is now secured."))
 	if(istype(W, /obj/item/weapon/screwdriver))
 		if(stage == 0)

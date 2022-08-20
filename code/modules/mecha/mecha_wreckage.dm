@@ -7,9 +7,9 @@
 	name = "Exosuit wreckage"
 	desc = "Remains of some unfortunate mecha. Completely unrepairable."
 	icon = 'icons/mecha/mecha.dmi'
-	density = 1
-	anchored = 0
-	opacity = 0
+	density = TRUE
+	anchored = FALSE
+	opacity = FALSE
 	var/list/welder_salvage = list(
 		/obj/item/stack/sheet/plasteel,
 		/obj/item/stack/sheet/metal,

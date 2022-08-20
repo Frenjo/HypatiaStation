@@ -16,7 +16,7 @@
 	src.g_dither.icon = ui_style
 	src.g_dither.icon_state = "dither12g"
 	src.g_dither.layer = 18
-	src.g_dither.mouse_opacity = 0
+	src.g_dither.mouse_opacity = FALSE
 
 	src.alien_view = new /obj/screen(src)
 	src.alien_view.screen_loc = "WEST,SOUTH to EAST,NORTH"
@@ -24,7 +24,7 @@
 	src.alien_view.icon = ui_style
 	src.alien_view.icon_state = "alien"
 	src.alien_view.layer = 18
-	src.alien_view.mouse_opacity = 0
+	src.alien_view.mouse_opacity = FALSE
 
 	src.blurry = new /obj/screen( src )
 	src.blurry.screen_loc = "WEST,SOUTH to EAST,NORTH"
@@ -32,7 +32,7 @@
 	src.blurry.icon = ui_style
 	src.blurry.icon_state = "blurry"
 	src.blurry.layer = 17
-	src.blurry.mouse_opacity = 0
+	src.blurry.mouse_opacity = FALSE
 
 	src.druggy = new /obj/screen( src )
 	src.druggy.screen_loc = "WEST,SOUTH to EAST,NORTH"
@@ -40,7 +40,7 @@
 	src.druggy.icon = ui_style
 	src.druggy.icon_state = "druggy"
 	src.druggy.layer = 17
-	src.druggy.mouse_opacity = 0
+	src.druggy.mouse_opacity = FALSE
 
 	var/obj/screen/using
 
@@ -187,7 +187,7 @@
 	using.icon_state = "dither50"
 	using.screen_loc = "1,1 to 5,15"
 	using.layer = 17
-	using.mouse_opacity = 0
+	using.mouse_opacity = FALSE
 	src.vimpaired += using
 	using = new /obj/screen( src )
 	using.name = null
@@ -195,7 +195,7 @@
 	using.icon_state = "dither50"
 	using.screen_loc = "5,1 to 10,5"
 	using.layer = 17
-	using.mouse_opacity = 0
+	using.mouse_opacity = FALSE
 	src.vimpaired += using
 	using = new /obj/screen( src )
 	using.name = null
@@ -203,7 +203,7 @@
 	using.icon_state = "dither50"
 	using.screen_loc = "6,11 to 10,15"
 	using.layer = 17
-	using.mouse_opacity = 0
+	using.mouse_opacity = FALSE
 	src.vimpaired += using
 	using = new /obj/screen( src )
 	using.name = null
@@ -211,7 +211,7 @@
 	using.icon_state = "dither50"
 	using.screen_loc = "11,1 to 15,15"
 	using.layer = 17
-	using.mouse_opacity = 0
+	using.mouse_opacity = FALSE
 	src.vimpaired += using
 
 	mymob.throw_icon = new /obj/screen(null)
@@ -274,7 +274,7 @@
 	mymob.blind.name = " "
 	mymob.blind.screen_loc = "1,1 to 15,15"
 	mymob.blind.layer = 0
-	mymob.blind.mouse_opacity = 0
+	mymob.blind.mouse_opacity = FALSE
 
 	mymob.flash = new /obj/screen( null )
 	mymob.flash.icon = ui_style

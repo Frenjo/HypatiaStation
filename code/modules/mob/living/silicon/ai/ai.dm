@@ -30,8 +30,8 @@ var/list/ai_verbs_default = list(
 	name = "AI"
 	icon = 'icons/mob/AI.dmi'//
 	icon_state = "ai"
-	anchored = 1 // -- TLE
-	density = 1
+	anchored = TRUE // -- TLE
+	density = TRUE
 	status_flags = CANSTUN|CANPARALYSE
 	var/list/network = list("SS13")
 	var/obj/machinery/camera/current = null
@@ -84,9 +84,9 @@ var/list/ai_verbs_default = list(
 
 	real_name = pickedName
 	name = real_name
-	anchored = 1
+	anchored = TRUE
 	canmove = 0
-	density = 1
+	density = TRUE
 	loc = loc
 
 	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
@@ -691,7 +691,7 @@ var/list/ai_verbs_default = list(
 				user.visible_message("\blue \The [user] decides not to unbolt \the [src].")
 				return
 			user.visible_message("\blue \The [user] finishes unfastening \the [src]!")
-			anchored = 0
+			anchored = FALSE
 			return
 		else
 			user.visible_message("\blue \The [user] starts to bolt \the [src] to the plating...")
@@ -699,7 +699,7 @@ var/list/ai_verbs_default = list(
 				user.visible_message("\blue \The [user] decides not to bolt \the [src].")
 				return
 			user.visible_message("\blue \The [user] finishes fastening down \the [src]!")
-			anchored = 1
+			anchored = TRUE
 			return
 	else
 		return ..()

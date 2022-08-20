@@ -62,8 +62,8 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	desc = "Part of a Particle Accelerator."
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
 	icon_state = "none"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	var/obj/machinery/particle_accelerator/control_box/master = null
 	var/construction_state = 0
 	var/reference = null
@@ -212,7 +212,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 		if(0)
 			if(iswrench(O))
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
-				src.anchored = 1
+				src.anchored = TRUE
 				user.visible_message(
 					"[user.name] secures the [src.name] to the floor.",
 					"You secure the external bolts."
@@ -221,7 +221,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 		if(1)
 			if(iswrench(O))
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
-				src.anchored = 0
+				src.anchored = FALSE
 				user.visible_message(
 					"[user.name] detaches the [src.name] from the floor.",
 					"You remove the external bolts."
@@ -274,8 +274,8 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	desc = "Part of a Particle Accelerator."
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
 	icon_state = "none"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	use_power = 0
 	idle_power_usage = 0
 	active_power_usage = 0
@@ -373,7 +373,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 		if(0)
 			if(iswrench(O))
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
-				src.anchored = 1
+				src.anchored = TRUE
 				user.visible_message(
 					"[user.name] secures the [src.name] to the floor.",
 					"You secure the external bolts."
@@ -382,7 +382,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 		if(1)
 			if(iswrench(O))
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
-				src.anchored = 0
+				src.anchored = FALSE
 				user.visible_message(
 					"[user.name] detaches the [src.name] from the floor.",
 					"You remove the external bolts."

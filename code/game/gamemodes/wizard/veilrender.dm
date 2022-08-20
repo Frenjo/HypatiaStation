@@ -23,9 +23,9 @@
 	desc = "You should run now"
 	icon = 'icons/obj/biomass.dmi'
 	icon_state = "rift"
-	density = 1
+	density = TRUE
 	unacidable = 1
-	anchored = 1.0
+	anchored = TRUE
 
 /obj/effect/rend/New()
 	spawn(50)

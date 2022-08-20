@@ -4,10 +4,10 @@
 	name = "Fuel Assembly Port"
 	icon = 'code/WorkInProgress/Cael_Aislinn/Rust/rust.dmi'
 	icon_state = "port2"
-	density = 0
+	density = FALSE
 	var/obj/item/weapon/fuel_assembly/cur_assembly
 	var/busy = 0
-	anchored = 1
+	anchored = TRUE
 
 	var/opened = 1 //0=closed, 1=opened
 	var/has_electronics = 0 // 0 - none, bit 1 - circuitboard, bit 2 - wires

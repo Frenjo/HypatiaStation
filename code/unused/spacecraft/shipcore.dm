@@ -3,7 +3,7 @@
 /obj/machinery/shipcore
 	icon = 'craft.dmi'
 	icon_state = "core"
-	density = 1
+	density = TRUE
 
 	var/width = 6
 	var/height = 8
@@ -18,7 +18,7 @@
 		turfs = list()
 		components = list()
 
-		src.anchored = 1
+		src.anchored = TRUE
 
 		var/obj/ship_builder/L = new(locate(src.x, src.y, src.z))
 		L.dir = WEST
@@ -80,7 +80,7 @@
 
 
 	proc/MoveShip(var/turf/Center) // Center - The new position of the ship's core
-		src.anchored = 0
+		src.anchored = FALSE
 		var/turf/lowerleft = locate(Center.x - (src.width/2), Center.y - (src.height/2), Center.z)
 		var/turf/upperright = locate(Center.x + (src.width/2), Center.y + (src.height/2), Center.z)
 
@@ -211,8 +211,8 @@ obj/machinery/ship_component
 obj/machinery/ship_component/thruster
 	name = "thruster"
 	icon_state = "thruster"
-	density = 1
-	opacity = 1
+	density = TRUE
+	opacity = TRUE
 
 	var/cooldown = 600 // In 1/10th seconds
 	var/lastused
@@ -246,8 +246,8 @@ obj/machinery/ship_component/thruster
 obj/machinery/ship_component/engine
 	name = "engine"
 	icon_state = "engine"
-	density = 1
-	opacity = 1
+	density = TRUE
+	opacity = TRUE
 
 	var/charge = 1000
 	var/capacity = 1000
@@ -262,8 +262,8 @@ obj/machinery/ship_component/engine
 obj/machinery/ship_component/control_panel
 	name = "control panel"
 	icon_state = "controlpanel"
-	density = 1
-	opacity = 0
+	density = TRUE
+	opacity = FALSE
 
 	attack_hand(user as mob)
 		var/dat
@@ -301,8 +301,8 @@ obj/machinery/ship_component/control_panel
 /obj/ship_builder
 	icon = 'craft.dmi'
 	icon_state = "builder"
-	density = 0
-	opacity = 0
+	density = FALSE
+	opacity = FALSE
 
 	var/obj/machinery/shipcore/core
 	var/distance = 0
@@ -340,9 +340,9 @@ obj/machinery/ship_component/control_panel
 			if(active)
 				return
 			src.active = 1
-			src.anchored = 1
+			src.anchored = TRUE
 		deactivate()
 			if(!active)
 				return
 			src.active = 0
-			src.anchored = 0
+			src.anchored = FALSE

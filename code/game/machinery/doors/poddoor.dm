@@ -33,7 +33,7 @@
 			src.icon_state = "pdoor0"
 			src.set_opacity(0)
 			sleep(15)
-			src.density = 0
+			src.density = FALSE
 			src.operating = 0
 			return
 	return
@@ -50,7 +50,7 @@
 	src.set_opacity(0)
 	sleep(10)
 	layer = initial(layer)
-	src.density = 0
+	src.density = FALSE
 	update_nearby_tiles()
 
 	if(operating == 1) //emag again
@@ -67,7 +67,7 @@
 	layer = 3.3
 	flick("pdoorc1", src)
 	src.icon_state = "pdoor1"
-	src.density = 1
+	src.density = TRUE
 	src.set_opacity(initial(opacity))
 	update_nearby_tiles()
 
@@ -90,9 +90,9 @@
 	f2.SetOpacity(0)
 
 	sleep(10)
-	src.density = 0
-	f1.density = 0
-	f2.density = 0
+	src.density = FALSE
+	f1.density = FALSE
+	f2.density = FALSE
 
 	update_nearby_tiles()
 
@@ -110,9 +110,9 @@
 	flick("pdoorc1", src)
 	src.icon_state = "pdoor1"
 
-	src.density = 1
-	f1.density = 1
-	f2.density = 1
+	src.density = TRUE
+	f1.density = TRUE
+	f2.density = TRUE
 
 	sleep(10)
 	src.SetOpacity(initial(opacity))
@@ -134,16 +134,16 @@
 	flick("pdoorc0", src)
 	src.icon_state = "pdoor0"
 	sleep(10)
-	src.density = 0
+	src.density = FALSE
 	src.sd_SetOpacity(0)
 
-	f1.density = 0
+	f1.density = FALSE
 	f1.sd_SetOpacity(0)
-	f2.density = 0
+	f2.density = FALSE
 	f2.sd_SetOpacity(0)
-	f3.density = 0
+	f3.density = FALSE
 	f3.sd_SetOpacity(0)
-	f4.density = 0
+	f4.density = FALSE
 	f4.sd_SetOpacity(0)
 
 	update_nearby_tiles()
@@ -161,15 +161,15 @@
 	src.operating = 1
 	flick("pdoorc1", src)
 	src.icon_state = "pdoor1"
-	src.density = 1
+	src.density = TRUE
 
-	f1.density = 1
+	f1.density = TRUE
 	f1.sd_SetOpacity(1)
-	f2.density = 1
+	f2.density = TRUE
 	f2.sd_SetOpacity(1)
-	f3.density = 1
+	f3.density = TRUE
 	f3.sd_SetOpacity(1)
-	f4.density = 1
+	f4.density = TRUE
 	f4.sd_SetOpacity(1)
 
 	if (src.visible)
@@ -190,12 +190,12 @@
 	flick("pdoorc0", src)
 	src.icon_state = "pdoor0"
 	sleep(10)
-	src.density = 0
+	src.density = FALSE
 	src.sd_SetOpacity(0)
 
-	f1.density = 0
+	f1.density = FALSE
 	f1.sd_SetOpacity(0)
-	f2.density = 0
+	f2.density = FALSE
 	f2.sd_SetOpacity(0)
 
 	update_nearby_tiles()
@@ -213,11 +213,11 @@
 	src.operating = 1
 	flick("pdoorc1", src)
 	src.icon_state = "pdoor1"
-	src.density = 1
+	src.density = TRUE
 
-	f1.density = 1
+	f1.density = TRUE
 	f1.sd_SetOpacity(1)
-	f2.density = 1
+	f2.density = TRUE
 	f2.sd_SetOpacity(1)
 
 	if (src.visible)
@@ -238,16 +238,16 @@
 	flick("pdoorc0", src)
 	src.icon_state = "pdoor0"
 	sleep(10)
-	src.density = 0
+	src.density = FALSE
 	src.sd_SetOpacity(0)
 
-	f1.density = 0
+	f1.density = FALSE
 	f1.sd_SetOpacity(0)
-	f2.density = 0
+	f2.density = FALSE
 	f2.sd_SetOpacity(0)
-	f3.density = 0
+	f3.density = FALSE
 	f3.sd_SetOpacity(0)
-	f4.density = 0
+	f4.density = FALSE
 	f4.sd_SetOpacity(0)
 
 	update_nearby_tiles()
@@ -265,15 +265,15 @@
 	src.operating = 1
 	flick("pdoorc1", src)
 	src.icon_state = "pdoor1"
-	src.density = 1
+	src.density = TRUE
 
-	f1.density = 1
+	f1.density = TRUE
 	f1.sd_SetOpacity(1)
-	f2.density = 1
+	f2.density = TRUE
 	f2.sd_SetOpacity(1)
-	f3.density = 1
+	f3.density = TRUE
 	f3.sd_SetOpacity(1)
-	f4.density = 1
+	f4.density = TRUE
 	f4.sd_SetOpacity(1)
 
 	if (src.visible)

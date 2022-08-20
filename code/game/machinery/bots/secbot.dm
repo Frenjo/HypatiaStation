@@ -4,8 +4,8 @@
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "secbot0"
 	layer = 5.0
-	density = 0
-	anchored = 0
+	density = FALSE
+	anchored = FALSE
 	health = 25
 	maxhealth = 25
 	fire_dam_coeff = 0.7
@@ -98,7 +98,7 @@
 	..()
 	src.target = null
 	src.oldtarget_name = null
-	src.anchored = 0
+	src.anchored = FALSE
 	src.mode = SECBOT_IDLE
 	walk_to(src,0)
 	src.icon_state = "secbot[src.on]"
@@ -192,7 +192,7 @@ Auto Patrol: []"},
 		src.target = null
 		if(user) src.oldtarget_name = user.name
 		src.last_found = world.time
-		src.anchored = 0
+		src.anchored = FALSE
 		src.emagged = 2
 		src.on = 1
 		src.icon_state = "secbot[src.on]"
@@ -246,7 +246,7 @@ Auto Patrol: []"},
 						visible_message(SPAN_DANGER("[src.target] has been stunned by [src]!"))
 
 						mode = SECBOT_PREP_ARREST
-						src.anchored = 1
+						src.anchored = TRUE
 						src.target_lastloc = M.loc
 						return
 
@@ -280,7 +280,7 @@ Auto Patrol: []"},
 		if(SECBOT_PREP_ARREST)		// preparing to arrest target
 			// see if he got away
 			if((get_dist(src, src.target) > 1) || ((src.target:loc != src.target_lastloc) && src.target:weakened < 2))
-				src.anchored = 0
+				src.anchored = FALSE
 				mode = SECBOT_HUNT
 				return
 
@@ -304,7 +304,7 @@ Auto Patrol: []"},
 
 							mode = SECBOT_IDLE
 							src.target = null
-							src.anchored = 0
+							src.anchored = FALSE
 							src.last_found = world.time
 							src.frustration = 0
 
@@ -316,19 +316,19 @@ Auto Patrol: []"},
 			else
 				mode = SECBOT_IDLE
 				src.target = null
-				src.anchored = 0
+				src.anchored = FALSE
 				src.last_found = world.time
 				src.frustration = 0
 
 		if(SECBOT_ARREST)		// arresting
 			if(!target || !iscarbon(target))
-				src.anchored = 0
+				src.anchored = FALSE
 				mode = SECBOT_IDLE
 				return
 			else
 				var/mob/living/carbon/C = target
 				if(!C.handcuffed)
-					src.anchored = 0
+					src.anchored = FALSE
 					mode = SECBOT_IDLE
 					return
 
@@ -590,7 +590,7 @@ Auto Patrol: []"},
 // look for a criminal in view of the bot
 
 /obj/machinery/bot/secbot/proc/look_for_perp()
-	src.anchored = 0
+	src.anchored = FALSE
 	for(var/mob/living/M in view(7, src)) //Let's find us a criminal
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M

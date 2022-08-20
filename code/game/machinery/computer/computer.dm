@@ -1,8 +1,8 @@
 /obj/machinery/computer
 	name = "computer"
 	icon = 'icons/obj/computer.dmi'
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 300
 	active_power_usage = 300
@@ -68,7 +68,7 @@
 		for(var/x in verbs)
 			verbs -= x
 		set_broken()
-		density = 0
+		density = FALSE
 
 /obj/machinery/computer/update_icon()
 	..()
@@ -105,7 +105,7 @@
 			var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
 			var/obj/item/weapon/circuitboard/M = new circuit(A)
 			A.circuit = M
-			A.anchored = 1
+			A.anchored = TRUE
 			for(var/obj/C in src)
 				C.loc = src.loc
 			if(src.stat & BROKEN)

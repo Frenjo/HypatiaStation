@@ -11,8 +11,8 @@
 	var/icon_state_on = "switch-dbl-down"
 	var/icon_state_off = "switch-dbl-up"
 	flags = FPRINT
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	var/on = 0  //up is off, down is on
 	var/busy = 0 //set to 1 when you start pulling
 

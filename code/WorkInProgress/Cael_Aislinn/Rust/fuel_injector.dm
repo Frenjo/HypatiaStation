@@ -4,8 +4,8 @@
 	icon = 'code/WorkInProgress/Cael_Aislinn/Rust/rust.dmi'
 	icon_state = "injector0"
 
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
 	var/state = 0
 	var/locked = 0
 	req_access = list(ACCESS_ENGINE)
@@ -45,14 +45,14 @@
 				user.visible_message("[user.name] secures [src.name] to the floor.", \
 					"You secure the external reinforcing bolts to the floor.", \
 					"You hear a ratchet")
-				src.anchored = 1
+				src.anchored = TRUE
 			if(1)
 				state = 0
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				user.visible_message("[user.name] unsecures [src.name] reinforcing bolts from the floor.", \
 					"You undo the external reinforcing bolts.", \
 					"You hear a ratchet")
-				src.anchored = 0
+				src.anchored = FALSE
 			if(2)
 				user << "\red The [src.name] needs to be unwelded from the floor."
 		return

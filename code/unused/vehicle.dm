@@ -2,9 +2,9 @@
 	name = "Vehicle Pod"
 	icon = 'escapepod.dmi'
 	icon_state = "podfire"
-	density = 1
+	density = TRUE
 	flags = FPRINT
-	anchored = 1.0
+	anchored = TRUE
 	var/speed = 10.0
 	var/maximum_speed = 10.0
 	var/can_rotate = 1

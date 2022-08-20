@@ -5,8 +5,8 @@
 	name = "laser beam"
 	icon = 'icons/effects/beam.dmi'
 	icon_state = "full"
-	density = 0
-	mouse_opacity = 0
+	density = FALSE
+	mouse_opacity = FALSE
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	flags = TABLEPASS
 	var/wavelength 		// the (vaccuum) wavelength of the beam

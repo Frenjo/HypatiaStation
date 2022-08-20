@@ -15,8 +15,8 @@
 	desc = "A square piece of metal standing on four metal legs. It can not move."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "table"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	layer = 2.8
 	throwpass = 1	//You can throw objects over this, despite it's density.")
 	climbable = 1
@@ -523,8 +523,8 @@
 	desc = "Different from the Middle Ages version."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "rack"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	throwpass = 1	//You can throw objects over this, despite it's density.
 	breakable = 1
 	parts = /obj/item/weapon/rack_parts

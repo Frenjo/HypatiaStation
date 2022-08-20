@@ -167,8 +167,8 @@
 		return
 	var/obj/effect/overlay/O = PoolOrNew(/obj/effect/overlay, locate(focus.x, focus.y, focus.z))
 	O.name = "sparkles"
-	O.anchored = 1
-	O.density = 0
+	O.anchored = TRUE
+	O.density = FALSE
 	O.layer = FLY_LAYER
 	O.set_dir(pick(cardinal))
 	O.icon = 'icons/effects/effects.dmi'

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "wm_0"
 	var/wall_offset = 24
-	density = 0
+	density = FALSE
 
 /obj/machinery/constructable_frame/wallmount_frame/New()
 	spawn(1)

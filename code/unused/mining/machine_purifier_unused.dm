@@ -9,8 +9,8 @@
 	var/obj/machinery/mineral/output = null
 	var/processed = 0
 	var/processing = 0
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 
 /obj/machinery/mineral/purifier/attack_hand(user as mob)
 

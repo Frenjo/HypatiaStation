@@ -9,8 +9,8 @@
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "medibot0"
 	layer = 5.0
-	density = 0
-	anchored = 0
+	density = FALSE
+	anchored = FALSE
 	health = 20
 	maxhealth = 20
 	req_access =list(ACCESS_MEDICAL)
@@ -228,7 +228,7 @@
 		if(user) src.oldpatient = user
 		src.currently_healing = 0
 		src.last_found = world.time
-		src.anchored = 0
+		src.anchored = FALSE
 		src.emagged = 2
 		src.on = 1
 		src.icon_state = "medibot[src.on]"

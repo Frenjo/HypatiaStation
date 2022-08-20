@@ -36,7 +36,7 @@
 					to_chat(user, "No exposed cable here to attach to.")
 					return
 				else
-					anchored = 1
+					anchored = TRUE
 					mode = 1
 					to_chat(user, "You attach the device to the cable.")
 					for(var/mob/M in viewers(user))
@@ -51,7 +51,7 @@
 			if(mode == 2)
 				processing_objects.Remove(src) // Now the power sink actually stops draining the station's power if you unhook it. --NeoFite
 				processing_power_items.Remove(src)
-			anchored = 0
+			anchored = FALSE
 			mode = 0
 			to_chat(user, "You detach the device from the cable.")
 			for(var/mob/M in viewers(user))

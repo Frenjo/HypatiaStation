@@ -13,8 +13,8 @@
 
 	name = "Windoor Assembly"
 	icon_state = "l_windoor_assembly01"
-	anchored = 0
-	density = 0
+	anchored = FALSE
+	density = FALSE
 	dir = NORTH
 
 	var/ini_dir
@@ -31,7 +31,7 @@
 	update_nearby_tiles(need_rebuild = 1)
 
 /obj/structure/windoor_assembly/Destroy()
-	density = 0
+	density = FALSE
 	update_nearby_tiles()
 	return ..()
 
@@ -93,7 +93,7 @@
 					if(!src)
 						return
 					to_chat(user, SPAN_INFO("You've secured the windoor assembly!"))
-					src.anchored = 1
+					src.anchored = TRUE
 					if(src.secure)
 						src.name = "Secure Anchored Windoor Assembly"
 					else
@@ -111,7 +111,7 @@
 					if(!src)
 						return
 					to_chat(user, SPAN_INFO("You've unsecured the windoor assembly!"))
-					src.anchored = 0
+					src.anchored = FALSE
 					if(src.secure)
 						src.name = "Secure Windoor Assembly"
 					else
@@ -234,7 +234,7 @@
 					if(!src)
 						return
 
-					density = 1 //Shouldn't matter but just incase
+					density = TRUE //Shouldn't matter but just incase
 					to_chat(user, SPAN_INFO("You finish the windoor!"))
 
 					if(secure)
@@ -246,7 +246,7 @@
 							windoor.icon_state = "rightsecureopen"
 							windoor.base_state = "rightsecure"
 						windoor.set_dir(src.dir)
-						windoor.density = 0
+						windoor.density = FALSE
 
 						if(src.electronics.one_access)
 							windoor.req_access = null
@@ -264,7 +264,7 @@
 							windoor.icon_state = "rightopen"
 							windoor.base_state = "right"
 						windoor.set_dir(src.dir)
-						windoor.density = 0
+						windoor.density = FALSE
 
 						if(src.electronics.one_access)
 							windoor.req_access = null

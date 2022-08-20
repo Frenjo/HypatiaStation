@@ -15,8 +15,8 @@
 	name = "production machine console"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "console"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/obj/machinery/mineral/processing_unit/machine = null
 	var/machinedir = EAST
 
@@ -226,8 +226,8 @@
 	name = "furnace"
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "furnace"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	light_range = 3						//Big fire with window, yeah it puts out a little light.
 	var/obj/machinery/mineral/input = null
 	var/obj/machinery/mineral/output = null

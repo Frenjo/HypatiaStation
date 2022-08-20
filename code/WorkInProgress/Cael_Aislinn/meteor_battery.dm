@@ -8,7 +8,7 @@
 	icon_state = "missile"
 	var/turf/target
 	var/tracking = 0
-	density = 1
+	density = TRUE
 	desc = "It's sparking and shaking slightly."
 
 /obj/item/projectile/missile/process(var/turf/newtarget)
@@ -43,10 +43,10 @@
 	icon_state = "turret0"
 	var/raised = 0
 	var/enabled = 1
-	anchored = 1
+	anchored = TRUE
 	layer = 3
 	invisibility = 2
-	density = 1
+	density = TRUE
 	var/health = 18
 	var/id = ""
 	var/obj/machinery/turretcover/cover = null
@@ -237,7 +237,7 @@
 
 /obj/machinery/meteor_battery/proc/die()
 	src.health = 0
-	src.density = 0
+	src.density = FALSE
 	src.stat |= BROKEN
 	src.icon_state = "broke"
 	if (cover!=null)

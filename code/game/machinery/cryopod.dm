@@ -106,7 +106,7 @@ var/global/list/frozen_items = list()
 	desc = "A bewildering tangle of machinery and pipes."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cryo_rear"
-	anchored = 1
+	anchored = TRUE
 
 	var/orient_right = null //Flips the sprite.
 
@@ -127,8 +127,8 @@ var/global/list/frozen_items = list()
 	desc = "A man-sized pod for entering suspended animation."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "body_scanner_0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 	var/mob/occupant = null		// Person waiting to be despawned.
 	var/orient_right = null		// Flips the sprite.

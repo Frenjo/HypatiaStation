@@ -3,7 +3,7 @@
 	desc = "A giant, alien drill mounted on long treads."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "gigadrill"
-	density = 1
+	density = TRUE
 	layer = 3.1		//to go over ores
 
 	var/active = 0
@@ -26,10 +26,10 @@
 			var/turf/simulated/mineral/M = A
 			drilling_turf = get_turf(src)
 			visible_message(SPAN_DANGER("[src] begins to drill into [M]!"))
-			anchored = 1
+			anchored = TRUE
 			spawn(drill_time)
 				if(get_turf(src) == drilling_turf && active)
 					M.GetDrilled()
 					src.loc = M
 				drilling_turf = null
-				anchored = 0
+				anchored = FALSE

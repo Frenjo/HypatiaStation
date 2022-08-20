@@ -13,9 +13,9 @@
 	name = "bookcase"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "book-0"
-	anchored = 1
-	density = 1
-	opacity = 1
+	anchored = TRUE
+	density = TRUE
+	opacity = TRUE
 
 /obj/structure/bookcase/initialize()
 	for(var/obj/item/I in loc)

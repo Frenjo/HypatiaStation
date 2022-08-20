@@ -8,7 +8,7 @@
 	icon_state = "conveyor0"
 	name = "conveyor belt"
 	desc = "A conveyor belt."
-	anchored = 1
+	anchored = TRUE
 	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
 	var/operable = 1	// true if can operate (no broken segments in this belt run)
 	var/basedir			// this is the default (forward) direction, set by the map dir
@@ -206,7 +206,7 @@
 	icon_state = "diverter0"
 	name = "diverter"
 	desc = "A diverter arm for a conveyor belt."
-	anchored = 1
+	anchored = TRUE
 	layer = FLY_LAYER
 	var/obj/machinery/conveyor/conv // the conveyor this diverter works on
 	var/deployed = 0	// true if diverter arm is extended
@@ -338,7 +338,7 @@
 	var/id = "" 				// must match conveyor IDs to control them
 
 	var/list/conveyors		// the list of converyors that are controlled by this switch
-	anchored = 1
+	anchored = TRUE
 
 
 

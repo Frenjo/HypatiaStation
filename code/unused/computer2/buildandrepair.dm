@@ -9,8 +9,8 @@
 	var/created_name = null //If defined, result computer will have this name.
 
 /obj/computer2frame
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
 	name = "Computer-frame"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "0"
@@ -27,7 +27,7 @@
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 				if(do_after(user, 20))
 					user << "\blue You wrench the frame into place."
-					src.anchored = 1
+					src.anchored = TRUE
 					src.state = 1
 			if(istype(P, /obj/item/weapon/weldingtool))
 				playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
@@ -40,7 +40,7 @@
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 				if(do_after(user, 20))
 					user << "\blue You unfasten the frame."
-					src.anchored = 0
+					src.anchored = FALSE
 					src.state = 0
 			if(istype(P, /obj/item/weapon/motherboard) && !mainboard)
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)

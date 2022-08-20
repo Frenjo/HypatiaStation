@@ -21,8 +21,8 @@
 			var/obj/effect/dummy/spell_jaunt/holder = new /obj/effect/dummy/spell_jaunt(mobloc)
 			var/atom/movable/overlay/animation = new /atom/movable/overlay(mobloc)
 			animation.name = "water"
-			animation.density = 0
-			animation.anchored = 1
+			animation.density = FALSE
+			animation.anchored = TRUE
 			animation.icon = 'icons/mob/mob.dmi'
 			animation.icon_state = "liquify"
 			animation.layer = 5
@@ -82,8 +82,8 @@
 	name = "water"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 
 	var/canmove = 1
 

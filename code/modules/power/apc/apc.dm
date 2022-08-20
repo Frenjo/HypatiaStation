@@ -7,7 +7,7 @@
 	name = "area power controller"
 	desc = "A control terminal for the area electrical systems."
 	icon_state = "apc0"
-	anchored = 1
+	anchored = TRUE
 	use_power = 0
 	req_access = list(ACCESS_ENGINE_EQUIP)
 	powernet = 0		// set so that APCs aren't found as powernet nodes //Hackish, Horrible, was like this before I changed it :(

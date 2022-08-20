@@ -30,7 +30,7 @@
 				A.circuit = M
 				A.state = 3
 				A.icon_state = "3"
-				A.anchored = 1
+				A.anchored = TRUE
 				del(src)
 			else
 				user << "\blue You disconnect the monitor."
@@ -41,7 +41,7 @@
 				A.circuit = M
 				A.state = 4
 				A.icon_state = "4"
-				A.anchored = 1
+				A.anchored = TRUE
 				del(src)*/
 	if(istype(I,/obj/item/weapon/virusdish))
 		var/mob/living/carbon/c = user

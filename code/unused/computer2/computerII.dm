@@ -4,8 +4,8 @@
 	desc = "A computer workstation."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "aiupload"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	req_access = list() //This doesn't determine PROGRAM req access, just the access needed to install/delete programs.
 	var/base_icon_state = "aiupload" //Assembly creates a new computer2 and not a child typepath, so initial doesn't work!!
 	var/datum/radio_frequency/radio_connection
@@ -324,7 +324,7 @@
 			A.mainboard.created_name = src.name
 
 
-			A.anchored = 1
+			A.anchored = TRUE
 			del(src)
 
 	else

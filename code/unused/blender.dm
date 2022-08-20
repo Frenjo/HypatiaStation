@@ -14,8 +14,8 @@ the blender or the processor: Processor items are solid objects and Blender resu
 	desc = "A kitchen appliance used to blend stuff."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "blender_e"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 50

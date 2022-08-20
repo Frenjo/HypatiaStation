@@ -40,8 +40,8 @@
 	name = "Robotic Fabricator"
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "fab-idle"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/metal_amount = 0
 	var/operating = 0
 	var/area/currentShuttleArea = null

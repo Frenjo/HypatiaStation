@@ -123,8 +123,8 @@
 	icon = 'code/WorkInProgress/Susan/biocraps.dmi'
 	icon_state = "flesh"
 
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	var/health = 15
 	var/obj/effect/alien/weeds/node/linked_node = null
 
@@ -356,7 +356,7 @@ Alien plants should do something if theres a lot of poison
 		del(src)
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = FALSE
 		var/T = null
 		for(var/mob/living/C in view(src.seekrange,src))//TODO: mess with this
 			if (src.target)

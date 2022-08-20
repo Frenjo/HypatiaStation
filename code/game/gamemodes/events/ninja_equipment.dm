@@ -713,7 +713,7 @@ ________________________________________________________________________________
 		if(!hologram)//If there is not already a hologram.
 			hologram = new(T)//Spawn a blank effect at the location.
 			hologram.invisibility = 101//So that it doesn't show up, ever. This also means one could attach a number of images to a single obj and display them differently to differnet people.
-			hologram.anchored = 1//So it cannot be dragged by space wind and the like.
+			hologram.anchored = TRUE//So it cannot be dragged by space wind and the like.
 			hologram.set_dir(get_dir(T, affecting.loc))
 			var/image/I = image(AI.holo_icon, hologram)//Attach an image to object.
 			hologram.i_attached = I//To attach the image in order to later reference.
@@ -1325,10 +1325,10 @@ It is possible to destroy the net by the occupant or someone else.
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "energynet"
 
-	density = 1//Can't pass through.
-	opacity = 0//Can see through.
-	mouse_opacity = 1//So you can hit it with stuff.
-	anchored = 1//Can't drag/grab the trapped mob.
+	density = TRUE//Can't pass through.
+	opacity = FALSE//Can see through.
+	mouse_opacity = TRUE//So you can hit it with stuff.
+	anchored = TRUE//Can't drag/grab the trapped mob.
 
 	var/health = 25//How much health it has.
 	var/mob/living/affecting = null//Who it is currently affecting, if anyone.
@@ -1336,10 +1336,10 @@ It is possible to destroy the net by the occupant or someone else.
 
 /obj/effect/energy_net/proc/healthcheck()
 	if(health <= 0)
-		density = 0
+		density = FALSE
 		if(affecting)
 			var/mob/living/carbon/M = affecting
-			M.anchored = 0
+			M.anchored = FALSE
 			for(var/mob/O in viewers(src, 3))
 				O.show_message(
 					"[M.name] was recovered from the energy net!", 1,
@@ -1367,7 +1367,7 @@ It is possible to destroy the net by the occupant or someone else.
 	if(!isnull(src))//As long as both net and person exist.
 		//No need to check for countdown here since while() broke, it's implicit that it finished.
 
-		density = 0//Make the net pass-through.
+		density = FALSE//Make the net pass-through.
 		invisibility = 101//Make the net invisible so all the animations can play out.
 		health = INFINITY//Make the net invincible so that an explosion/something else won't kill it while, spawn() is running.
 		for(var/obj/item/W in M)

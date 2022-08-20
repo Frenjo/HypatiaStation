@@ -45,8 +45,8 @@
 
 /obj/machinery/mech_bay_recharge_port
 	name = "Mech Bay Power Port"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	icon = 'icons/mecha/mech_bay.dmi'
 	icon_state = "recharge_port"
 	var/turf/simulated/floor/mech_bay_recharge_floor/recharge_floor
@@ -124,8 +124,8 @@
 
 /obj/machinery/computer/mech_bay_power_console
 	name = "Mech Bay Power Control Console"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "recharge_comp"
 	circuit = /obj/item/weapon/circuitboard/mech_bay_power_console

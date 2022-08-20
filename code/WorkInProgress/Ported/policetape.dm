@@ -12,8 +12,8 @@
 /obj/item/tape
 	name = "tape"
 	icon = 'icons/policetape.dmi'
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/icon_base
 
 /obj/item/taperoll/police
@@ -125,9 +125,9 @@
 /obj/item/tape/attack_hand(mob/user as mob)
 	if (user.a_intent == "help" && src.allowed(user))
 		user.show_viewers("\blue [user] lifts [src], allowing passage.")
-		src.density = 0
+		src.density = FALSE
 		spawn(200)
-			src.density = 1
+			src.density = TRUE
 	else
 		breaktape(null, user)
 

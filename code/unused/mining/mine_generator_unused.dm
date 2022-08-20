@@ -3,7 +3,7 @@
 //this item is intended to give the effect of entering the mine, so that light gradually fades
 /obj/effect/mine_generator
 	name = "Random mine generator"
-	anchored = 1
+	anchored = TRUE
 	unacidable = 1
 	var/turf/last_loc
 	var/turf/target_loc

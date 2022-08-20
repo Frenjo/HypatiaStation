@@ -2,7 +2,7 @@
 "ab" = (/turf/simulated/wall/r_wall,/area/awaymission/academy/headmaster)
 "ac" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 5; health = 1e+007},/turf/simulated/floor/plating,/area/awaymission/academy/headmaster)
 "ad" = (/obj/structure/filingcabinet/filingcabinet,/turf/simulated/floor/carpet,/area/awaymission/academy/headmaster)
-"ae" = (/obj/structure/computerframe{anchored = 1},/turf/simulated/floor/carpet,/area/awaymission/academy/headmaster)
+"ae" = (/obj/structure/computerframe{anchored = TRUE},/turf/simulated/floor/carpet,/area/awaymission/academy/headmaster)
 "af" = (/obj/structure/table/reinforced,/obj/item/weapon/pen/red,/turf/simulated/floor/carpet,/area/awaymission/academy/headmaster)
 "ag" = (/obj/structure/table/reinforced,/obj/item/weapon/folder/blue,/turf/simulated/floor/carpet,/area/awaymission/academy/headmaster)
 "ah" = (/turf/simulated/floor/carpet,/area/awaymission/academy/headmaster)

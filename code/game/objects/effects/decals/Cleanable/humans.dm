@@ -7,7 +7,7 @@
 	desc = "It's thick and gooey. Perhaps it's the chef's cooking?"
 	gender = PLURAL
 	density = FALSE
-	anchored = 1
+	anchored = TRUE
 	layer = 2
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mfloor1"
