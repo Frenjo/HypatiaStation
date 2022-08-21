@@ -629,7 +629,7 @@
 	if(href_list["process_queue"])
 		spawn(-1)
 			if(processing_queue || being_built)
-				return 0
+				return
 			processing_queue = 1
 			process_queue()
 			processing_queue = 0

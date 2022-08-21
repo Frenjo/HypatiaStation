@@ -59,9 +59,9 @@
 		if(B)
 			dat = "Blood sample inserted."
 			var/code = ""
-			for(var/V in ANTIGENS)
+			for(var/V in antigen_list)
 				if(text2num(V) & B.data["antibodies"])
-					code += ANTIGENS[V]
+					code += antigen_list[V]
 			dat += "<BR>Antibodies: [code]"
 			dat += "<BR><A href='?src=\ref[src];antibody=1'>Begin antibody production</a>"
 		else

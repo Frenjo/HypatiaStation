@@ -200,26 +200,27 @@
 			return
 
 	else if(istype(G, /obj/item/weapon/grab))
-		if(!ismob(G:affecting))
+		var/obj/item/weapon/grab/grab = G
+		if(!ismob(grab.affecting))
 			return
 
 		if(src.occupant)
 			to_chat(user, SPAN_INFO_B("The sleeper is already occupied!"))
 			return
 
-		for(var/mob/living/carbon/slime/M in range(1, G:affecting))
-			if(M.Victim == G:affecting)
-				to_chat(usr, "[G:affecting.name] will not fit into the sleeper because they have a slime latched onto their head.")
+		for(var/mob/living/carbon/slime/M in range(1, grab.affecting))
+			if(M.Victim == grab.affecting)
+				to_chat(usr, "[grab.affecting.name] will not fit into the sleeper because they have a slime latched onto their head.")
 				return
 
-		visible_message("[user] starts putting [G:affecting:name] into the sleeper.", 3)
+		visible_message("[user] starts putting [grab.affecting.name] into the sleeper.", 3)
 		if(do_after(user, 20))
 			if(src.occupant)
 				to_chat(user, SPAN_INFO_B("The sleeper is already occupied!"))
 				return
-			if(!G || !G:affecting)
+			if(!G || !grab.affecting)
 				return
-			var/mob/M = G:affecting
+			var/mob/M = grab.affecting
 			if(M.client)
 				M.client.perspective = EYE_PERSPECTIVE
 				M.client.eye = src
@@ -286,8 +287,8 @@
 	M.Paralyse(1)
 	M.Weaken(1)
 	M.Stun(1)
-	if(M:reagents.get_reagent_amount("inaprovaline") < 5)
-		M:reagents.add_reagent("inaprovaline", 5)
+	if(M.reagents.get_reagent_amount("inaprovaline") < 5)
+		M.reagents.add_reagent("inaprovaline", 5)
 	return
 
 /obj/machinery/sleeper/proc/toggle_filter()

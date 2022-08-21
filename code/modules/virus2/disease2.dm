@@ -27,8 +27,8 @@
 		effects += holder
 	uniqueID = rand(0, 10000)
 	infectionchance = rand(60, 90)
-	antigen |= text2num(pick(ANTIGENS))
-	antigen |= text2num(pick(ANTIGENS))
+	antigen |= text2num(pick(antigen_list))
+	antigen |= text2num(pick(antigen_list))
 	spreadtype = prob(70) ? "Airborne" : "Contact"
 
 	if(global.all_species.len)
@@ -113,8 +113,8 @@
 	var/datum/disease2/effectholder/holder = pick(effects)
 	holder.majormutate()
 	if (prob(5))
-		antigen = text2num(pick(ANTIGENS))
-		antigen |= text2num(pick(ANTIGENS))
+		antigen = text2num(pick(antigen_list))
+		antigen |= text2num(pick(antigen_list))
 	if (prob(5) && global.all_species.len)
 		affected_species = get_infectable_species()
 

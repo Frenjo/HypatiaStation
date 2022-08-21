@@ -109,7 +109,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 				walk(src, 0)
 				spawn(1)
 					qdel(src)
-				return 0
+				return
 	return
 
 /obj/effect/space_dust/Bumped(atom/A)

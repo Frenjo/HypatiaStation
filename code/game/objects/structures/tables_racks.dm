@@ -66,7 +66,7 @@
 					icon_state = icon_state + "-"
 				if(tabledirs & turn(dir, -90))
 					icon_state = icon_state + "+"
-			return 1
+			return
 
 		var/dir_sum = 0
 		for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))

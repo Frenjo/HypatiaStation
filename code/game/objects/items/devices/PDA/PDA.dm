@@ -836,8 +836,9 @@
 			to_chat(user, SPAN_NOTICE("You slide \the [C] into \the [src]."))
 	return
 
-/obj/item/device/pda/attack(mob/living/C as mob, mob/living/user as mob)
-	if(iscarbon(C))
+/obj/item/device/pda/attack(mob/living/M as mob, mob/living/user as mob)
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
 		switch(scanmode)
 			if(1)
 				for(var/mob/O in viewers(C, null))
@@ -865,22 +866,23 @@
 						user.show_message(SPAN_WARNING("<b>Warning: [D.form] Detected</b>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]"))
 
 			if(2)
-				if(!istype(C:dna, /datum/dna))
+				if(!istype(C.dna, /datum/dna))
 					to_chat(user, SPAN_INFO("No fingerprints found on [C]."))
-				else if(!ismonkey(C))
-					if(!isnull(C:gloves))
+				else if(ishuman(C))
+					var/mob/living/carbon/human/H = C
+					if(!isnull(H.gloves))
 						to_chat(user, SPAN_INFO("No fingerprints found on [C]."))
 				else
-					to_chat(user, SPAN_INFO("[C]'s Fingerprints: [md5(C:dna.uni_identity)]"))
-				if(!(C:blood_DNA))
+					to_chat(user, SPAN_INFO("[C]'s Fingerprints: [md5(C.dna.uni_identity)]"))
+				if(!(C.blood_DNA))
 					to_chat(user, SPAN_INFO("No blood found on [C]."))
-					if(C:blood_DNA)
-						qdel(C:blood_DNA)
+					if(C.blood_DNA)
+						qdel(C.blood_DNA)
 				else
 					to_chat(user, SPAN_INFO("Blood found on [C]. Analysing..."))
 					spawn(15)
-						for(var/blood in C:blood_DNA)
-							to_chat(user, SPAN_INFO("Blood type: [C:blood_DNA[blood]]\nDNA: [blood]"))
+						for(var/blood in C.blood_DNA)
+							to_chat(user, SPAN_INFO("Blood type: [C.blood_DNA[blood]]\nDNA: [blood]"))
 
 			if(4)
 				for(var/mob/O in viewers(C, null))
@@ -968,8 +970,10 @@
 /obj/item/device/pda/clown/Crossed(AM as mob|obj) //Clown PDA is slippery.
 	if(iscarbon(AM))
 		var/mob/M =	AM
-		if((ishuman(M) && (istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags & NOSLIP)) || M.m_intent == "walk")
-			return
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if((istype(H.shoes, /obj/item/clothing/shoes) && H.shoes.flags & NOSLIP) || M.m_intent == "walk")
+				return
 
 		if(ishuman(M) && M.real_name != src.owner && istype(src.cartridge, /obj/item/weapon/cartridge/clown))
 			if(src.cartridge.charges < 5)

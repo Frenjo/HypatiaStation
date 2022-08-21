@@ -117,25 +117,26 @@
 				to_chat(user, "Added a freeform law.")
 
 			if(istype(object, /obj/item/device/mmi) || istype(object, /obj/item/device/mmi/posibrain))
-				if(!object:brainmob)
-					to_chat(user, SPAN_WARNING("Sticking an empty [object] into the frame would sort of defeat the purpose."))
+				var/obj/item/device/mmi/mmi = object
+				if(!mmi.brainmob)
+					to_chat(user, SPAN_WARNING("Sticking an empty [mmi] into the frame would sort of defeat the purpose."))
 					return
-				if(object:brainmob.stat == DEAD)
-					to_chat(user, SPAN_WARNING("Sticking a dead [object] into the frame would sort of defeat the purpose."))
-					return
-
-				if(jobban_isbanned(object:brainmob, "AI"))
-					to_chat(user, SPAN_WARNING("This [object] does not seem to fit."))
+				if(mmi.brainmob.stat == DEAD)
+					to_chat(user, SPAN_WARNING("Sticking a dead [mmi] into the frame would sort of defeat the purpose."))
 					return
 
-				if(object:brainmob.mind)
-					ticker.mode.remove_cultist(object:brainmob.mind, 1)
-					ticker.mode.remove_revolutionary(object:brainmob.mind, 1)
+				if(jobban_isbanned(mmi.brainmob, "AI"))
+					to_chat(user, SPAN_WARNING("This [mmi] does not seem to fit."))
+					return
+
+				if(mmi.brainmob.mind)
+					ticker.mode.remove_cultist(mmi.brainmob.mind, 1)
+					ticker.mode.remove_revolutionary(mmi.brainmob.mind, 1)
 
 				user.drop_item()
-				object.loc = src
-				brain = object
-				to_chat(user, "Added [object].")
+				mmi.loc = src
+				brain = mmi
+				to_chat(user, "Added [mmi].")
 				icon_state = "3b"
 
 			if(istype(object, /obj/item/weapon/crowbar) && brain)

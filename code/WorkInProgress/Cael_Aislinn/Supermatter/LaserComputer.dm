@@ -2,16 +2,16 @@
 //Used to control the lasers
 /obj/machinery/computer/lasercon
 	name = "Laser control computer"
-	var/list/lasers = new/list
 	icon_state = "atmos"
+
+	var/list/lasers = list()
 	var/id
 	//var/advanced = 0
 
-/obj/machinery/computer/lasercon/New()
-	spawn(1)
-		for(var/obj/machinery/zero_point_emitter/las in world)
-			if(las.id == src.id)
-				lasers += las
+/obj/machinery/computer/lasercon/initialize()
+	for(var/obj/machinery/zero_point_emitter/laser in world)
+		if(laser.id == id)
+			lasers += laser
 
 /obj/machinery/computer/lasercon/process()
 	..()
@@ -189,20 +189,20 @@
 */
 
 // Porting this to NanoUI, it looks way better honestly. -Frenjo
-/obj/machinery/computer/lasercon/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
-
+/obj/machinery/computer/lasercon/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	if(stat & BROKEN)
 		return
 
+	var/obj/machinery/zero_point_emitter/laser = lasers[1]
 	var/data[0]
-	data["laser_status"] = lasers[1].active
-	data["laser_energy"] = round(lasers[1].energy, 0.0001)
-	data["laser_frequency"] = lasers[1].frequency
+	data["laser_status"] = laser.active
+	data["laser_energy"] = round(laser.energy, 0.0001)
+	data["laser_frequency"] = laser.frequency
 	data["laser_number"] = lasers.len
 
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if (!ui)
+	if(!ui)
 		ui = new(user, src, ui_key, "laser_ctrl.tmpl", "Zero-Point Laser Status Monitor", 480, 360)
 		ui.set_initial_data(data)
 		ui.open()
