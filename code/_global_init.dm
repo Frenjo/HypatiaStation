@@ -4,7 +4,7 @@
 	Pre-map initialization stuff should go here.
 */
 /datum/global_init/New()
-	global.debugger = new /datum/debugger()
+	global.debugger = new /debugger()
 	global.config = new /configuration()
 
 	callHook("global_init")
