@@ -177,20 +177,25 @@
 
 /obj/item/device/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
 	if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
-		user << text("\red You try to analyze the floor's vitals!")
+		user << "\red You try to analyze the floor's vitals!"
 		for(var/mob/O in viewers(M, null))
-			O.show_message(text("\red [user] has analyzed the floor's vitals!"), 1)
-		user.show_message(text("\blue Analyzing Results for The floor:\n\t Overall Status: Healthy"), 1)
-		user.show_message(text("\blue \t Damage Specifics: [0]-[0]-[0]-[0]"), 1)
+			O.show_message("\red [user] has analyzed the floor's vitals!", 1)
+		user.show_message("\blue Analyzing Results for The floor:\n\t Overall Status: Healthy", 1)
+		user.show_message("\blue \t Damage Specifics: [0]-[0]-[0]-[0]", 1)
 		user.show_message("\blue Key: Suffocation/Toxin/Burns/Brute", 1)
 		user.show_message("\blue Body Temperature: ???", 1)
 		return
 	if(!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
 		user << "\red You don't have the dexterity to do this!"
 		return
-	if(!isrobot(M) && !(ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
+	if(!isrobot(M))
 		user << "\red You can't analyze non-robotic things!"
 		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(!(H.species.flags & IS_SYNTHETIC))
+			to_chat(user, SPAN_WARNING("You can't analyze non-robotic things!"))
+			return
 
 	user.visible_message("<span class='notice'> [user] has analyzed [M]'s components.","<span class='notice'> You have analyzed [M]'s components.")
 	var/BU = M.getFireLoss() > 50 	? 	"<b>[M.getFireLoss()]</b>" 		: M.getFireLoss()
@@ -219,8 +224,10 @@
 		if(H.emagged && prob(5))
 			user.show_message("\red \t ERROR: INTERNAL SYSTEMS COMPROMISED",1)
 
-	if(ishuman(M) && (M:species.flags & IS_SYNTHETIC))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
+		if(!(H.species.flags & IS_SYNTHETIC))
+			return
 		var/list/damaged = H.get_damaged_organs(1, 1)
 		user.show_message("\blue Localized Damage, Brute/Electronics:",1)
 		if(length(damaged) > 0)

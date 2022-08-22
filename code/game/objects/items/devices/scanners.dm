@@ -74,8 +74,8 @@ REAGENT SCANNER
 		to_chat(user, SPAN_WARNING("You try to analyze the floor's vitals!"))
 		for(var/mob/O in viewers(M, null))
 			O.show_message(SPAN_WARNING("[user] has analyzed the floor's vitals!"), 1)
-		user.show_message(text("\blue Analyzing Results for The floor:\n\t Overall Status: Healthy"), 1)
-		user.show_message(text("\blue \t Damage Specifics: [0]-[0]-[0]-[0]"), 1)
+		user.show_message("\blue Analyzing Results for The floor:\n\t Overall Status: Healthy", 1)
+		user.show_message("\blue \t Damage Specifics: [0]-[0]-[0]-[0]", 1)
 		user.show_message("\blue Key: Suffocation/Toxin/Burns/Brute", 1)
 		user.show_message("\blue Body Temperature: ???", 1)
 		return
@@ -87,15 +87,16 @@ REAGENT SCANNER
 		SPAN_NOTICE("You have analyzed [M]'s vitals.")
 	)
 
-	if(!iscarbon(M) || (ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
+	if(!iscarbon(M))
 		//these sensors are designed for organic life
-		user.show_message("\blue Analyzing Results for ERROR:\n\t Overall Status: ERROR")
-		user.show_message("\t Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>", 1)
-		user.show_message("\t Damage Specifics: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>")
-		user.show_message("\blue Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)", 1)
-		user.show_message("\red <b>Warning: Blood Level ERROR: --% --cl.\blue Type: ERROR")
-		user.show_message("\blue Subject's pulse: <font color='red'>-- bpm.</font>")
+		output_error(user, M)
 		return
+	
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.species.flags & IS_SYNTHETIC)
+			output_error(user, H)
+			return
 
 	var/fake_oxy = max(rand(1, 40), M.getOxyLoss(), (300 - (M.getToxLoss() + M.getFireLoss() + M.getBruteLoss())))
 	var/OX = M.getOxyLoss() > 50 ? "<b>[M.getOxyLoss()]</b>" : M.getOxyLoss()
@@ -203,6 +204,13 @@ REAGENT SCANNER
 		if(0)
 			to_chat(usr, "The scanner no longer shows limb damage.")
 
+/obj/item/device/healthanalyzer/proc/output_error(mob/living/user, mob/living/target)
+	user.show_message("\blue Analyzing Results for ERROR:\n\t Overall Status: ERROR")
+	user.show_message("\t Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>", 1)
+	user.show_message("\t Damage Specifics: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>")
+	user.show_message("\blue Body Temperature: [target.bodytemperature-T0C]&deg;C ([target.bodytemperature*1.8-459.67]&deg;F)", 1)
+	user.show_message("\red <b>Warning: Blood Level ERROR: --% --cl.\blue Type: ERROR")
+	user.show_message("\blue Subject's pulse: <font color='red'>-- bpm.</font>")
 
 /obj/item/device/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."

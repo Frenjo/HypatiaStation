@@ -564,35 +564,35 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 	a_boost = rand(1, 7)
 
 //This proc prevents the suit from being taken off.
-/obj/item/clothing/suit/space/space_ninja/proc/lock_suit(mob/living/carbon/U, X = 0)
+/obj/item/clothing/suit/space/space_ninja/proc/lock_suit(mob/living/carbon/human/H, X = 0)
 	if(X)//If you want to check for icons.
-		icon_state = U.gender == FEMALE ? "s-ninjanf" : "s-ninjan"
-		U:gloves.icon_state = "s-ninjan"
-		U:gloves.item_state = "s-ninjan"
+		icon_state = H.gender == FEMALE ? "s-ninjanf" : "s-ninjan"
+		H.gloves.icon_state = "s-ninjan"
+		H.gloves.item_state = "s-ninjan"
 	else
-		if(U.mind.special_role != "Ninja")
-			to_chat(U, SPAN_WARNING("<B>f�TaL ��RRoR</B>: 382200-*#00C�DE <B>RED</B>\nUNAU�HORIZED US� DET�C���eD\nCoMM�NCING SUB-R0U�IN3 13...\nT�RMInATING U-U-US�R..."))
-			U.gib()
+		if(H.mind.special_role != "Ninja")
+			to_chat(H, SPAN_WARNING("<B>f�TaL ��RRoR</B>: 382200-*#00C�DE <B>RED</B>\nUNAU�HORIZED US� DET�C���eD\nCoMM�NCING SUB-R0U�IN3 13...\nT�RMInATING U-U-US�R..."))
+			H.gib()
 			return 0
-		if(!istype(U:head, /obj/item/clothing/head/helmet/space/space_ninja))
-			to_chat(U, SPAN_WARNING("<B>ERROR</B>: 100113 \black UNABLE TO LOCATE HEAD GEAR\nABORTING..."))
+		if(!istype(H.head, /obj/item/clothing/head/helmet/space/space_ninja))
+			to_chat(H, SPAN_WARNING("<B>ERROR</B>: 100113 \black UNABLE TO LOCATE HEAD GEAR\nABORTING..."))
 			return 0
-		if(!istype(U:shoes, /obj/item/clothing/shoes/space_ninja))
-			to_chat(U, SPAN_WARNING("<B>ERROR</B>: 122011 \black UNABLE TO LOCATE FOOT GEAR\nABORTING..."))
+		if(!istype(H.shoes, /obj/item/clothing/shoes/space_ninja))
+			to_chat(H, SPAN_WARNING("<B>ERROR</B>: 122011 \black UNABLE TO LOCATE FOOT GEAR\nABORTING..."))
 			return 0
-		if(!istype(U:gloves, /obj/item/clothing/gloves/space_ninja))
-			to_chat(U, SPAN_WARNING("<B>ERROR</B>: 110223 \black UNABLE TO LOCATE HAND GEAR\nABORTING..."))
+		if(!istype(H.gloves, /obj/item/clothing/gloves/space_ninja))
+			to_chat(H, SPAN_WARNING("<B>ERROR</B>: 110223 \black UNABLE TO LOCATE HAND GEAR\nABORTING..."))
 			return 0
 
-		affecting = U
+		affecting = H
 		canremove = 0
 		slowdown = 0
-		n_hood = U:head
+		n_hood = H.head
 		n_hood.canremove = 0
-		n_shoes = U:shoes
+		n_shoes = H.shoes
 		n_shoes.canremove = 0
 		n_shoes.slowdown--
-		n_gloves = U:gloves
+		n_gloves = H.gloves
 		n_gloves.canremove = 0
 
 	return 1

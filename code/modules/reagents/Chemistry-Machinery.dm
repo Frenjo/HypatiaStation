@@ -14,12 +14,14 @@
 	var/max_energy = 100
 	var/amount = 30
 	var/accept_glass = 0
-	var/beaker = null
+	var/obj/item/weapon/reagent_containers/beaker = null
 	var/recharged = 0
 	var/hackedcheck = 0
-	var/list/dispensable_reagents = list("hydrogen", "lithium", "carbon", "nitrogen", "oxygen", "fluorine",
-										"sodium", "aluminum", "silicon", "phosphorus", "sulfur", "chlorine", "potassium", "iron",
-										"copper", "mercury", "radium", "water", "ethanol", "sugar", "sacid", "tungsten")
+	var/list/dispensable_reagents = list(
+		"hydrogen", "lithium", "carbon", "nitrogen", "oxygen", "fluorine",
+		"sodium", "aluminum", "silicon", "phosphorus", "sulfur", "chlorine", "potassium", "iron",
+		"copper", "mercury", "radium", "water", "ethanol", "sugar", "sacid", "tungsten"
+	)
 	var/list/broken_requirements = list()
 	var/broken_on_spawn = 0
 
@@ -119,10 +121,10 @@
 	data["maxEnergy"] = max_energy
 	data["isBeakerLoaded"] = beaker ? 1 : 0
 	data["glass"] = accept_glass
-	var beakerContents[0]
-	var beakerCurrentVolume = 0
-	if(beaker && beaker:reagents && beaker:reagents.reagent_list.len)
-		for(var/datum/reagent/R in beaker:reagents.reagent_list)
+	var/beakerContents[0]
+	var/beakerCurrentVolume = 0
+	if(beaker && beaker.reagents && beaker.reagents.reagent_list.len)
+		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beakerContents.Add(list(list("name" = R.name, "volume" = R.volume))) // list in a list because Byond merges the first list...
 			beakerCurrentVolume += R.volume
 	data["beakerContents"] = beakerContents
@@ -145,7 +147,7 @@
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "chem_dispenser.tmpl", ui_title, 380, 650)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)

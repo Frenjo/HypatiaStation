@@ -913,34 +913,43 @@
 				to_chat(user, SPAN_INFO("No significant chemical agents found in [A]."))
 
 		if(5)
-			if(istype(A, /obj/item/weapon/tank) || istype(A, /obj/machinery/portable_atmospherics))
+			if(istype(A, /obj/item/weapon/tank) || istype(A, /obj/machinery/portable_atmospherics) || istype(A, /obj/machinery/atmospherics/pipe/tank))
 				var/obj/icon = A
-				for(var/mob/O in viewers(user, null))
-					to_chat(O, SPAN_WARNING("[user] has used [src] on \icon[icon] [A]."))
-				var/pressure = A:air_contents.return_pressure()
-
-				var/total_moles = A:air_contents.total_moles
-
+				user.visible_message(SPAN_WARNING("[user] has used [src] on \icon[icon] [A]."))
 				to_chat(user, SPAN_INFO("Results of analysis of \icon[icon]:"))
+
+			if(istype(A, /obj/item/weapon/tank))
+				var/obj/item/weapon/tank/T = A
+				var/pressure = T.air_contents.return_pressure()
+				var/total_moles = T.air_contents.total_moles
+
 				if(total_moles > 0)
 					to_chat(user, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
-					for(var/g in A:air_contents.gas)
-						to_chat(user, SPAN_INFO("[gas_data.name[g]]: [round((A:air_contents.gas[g] / total_moles) * 100)]%"))
-					to_chat(user, SPAN_INFO("Temperature: [round(A:air_contents.temperature-T0C)]&deg;C"))
+					for(var/g in T.air_contents.gas)
+						to_chat(user, SPAN_INFO("[gas_data.name[g]]: [round((T.air_contents.gas[g] / total_moles) * 100)]%"))
+					to_chat(user, SPAN_INFO("Temperature: [round(T.air_contents.temperature-T0C)]&deg;C"))
+				else
+					to_chat(user, SPAN_INFO("Tank is empty!"))
+				
+			if(istype(A, /obj/machinery/portable_atmospherics))
+				var/obj/machinery/portable_atmospherics/P = A
+				var/pressure = P.air_contents.return_pressure()
+				var/total_moles = P.air_contents.total_moles
+
+				if(total_moles > 0)
+					to_chat(user, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
+					for(var/g in P.air_contents.gas)
+						to_chat(user, SPAN_INFO("[gas_data.name[g]]: [round((P.air_contents.gas[g] / total_moles) * 100)]%"))
+					to_chat(user, SPAN_INFO("Temperature: [round(P.air_contents.temperature-T0C)]&deg;C"))
 				else
 					to_chat(user, SPAN_INFO("Tank is empty!"))
 
 			if(istype(A, /obj/machinery/atmospherics/pipe/tank))
-				var/obj/icon = A
-				for(var/mob/O in viewers(user, null))
-					to_chat(O, SPAN_WARNING("[user] has used [src] on \icon[icon] [A]."))
-
 				var/obj/machinery/atmospherics/pipe/tank/T = A
 				var/pressure = T.parent.air.return_pressure()
 				var/total_moles = T.parent.air.total_moles
 
-				to_chat(user, SPAN_INFO("Results of analysis of \icon[icon]:"))
-				if(total_moles>0)
+				if(total_moles > 0)
 					to_chat(user, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
 					for(var/g in T.parent.air.gas)
 						to_chat(user, SPAN_INFO("[gas_data.name[g]]: [round((T.parent.air.gas[g] / total_moles) * 100)]%"))
@@ -948,9 +957,11 @@
 				else
 					to_chat(user, SPAN_INFO("Tank is empty!"))
 
-	if(!scanmode && istype(A, /obj/item/weapon/paper) && owner)
-		note = A:info
-		to_chat(user, SPAN_INFO("Paper scanned.")) //concept of scanning paper copyright brainoblivion 2009
+	if(!scanmode && owner)
+		if(istype(A, /obj/item/weapon/paper))
+			var/obj/item/weapon/paper/P = A
+			note = P.info
+			to_chat(user, SPAN_INFO("Paper scanned.")) //concept of scanning paper copyright brainoblivion 2009
 
 /obj/item/device/pda/proc/explode() //This needs tuning. //Sure did.
 	if(!src.detonate)
@@ -966,24 +977,6 @@
 	if(src.id && prob(90)) //IDs are kept in 90% of the cases
 		src.id.loc = get_turf(src.loc)
 	return ..()
-
-/obj/item/device/pda/clown/Crossed(AM as mob|obj) //Clown PDA is slippery.
-	if(iscarbon(AM))
-		var/mob/M =	AM
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if((istype(H.shoes, /obj/item/clothing/shoes) && H.shoes.flags & NOSLIP) || M.m_intent == "walk")
-				return
-
-		if(ishuman(M) && M.real_name != src.owner && istype(src.cartridge, /obj/item/weapon/cartridge/clown))
-			if(src.cartridge.charges < 5)
-				src.cartridge.charges++
-
-		M.stop_pulling()
-		to_chat(M, SPAN_INFO("You slipped on the PDA!"))
-		playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
-		M.Stun(8)
-		M.Weaken(5)
 
 /obj/item/device/pda/proc/available_pdas()
 	var/list/names = list()

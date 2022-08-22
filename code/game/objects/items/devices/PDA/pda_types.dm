@@ -45,6 +45,23 @@
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. The surface is coated with polytetrafluoroethylene and banana drippings."
 	ttone = "honk"
 
+/obj/item/device/pda/clown/Crossed(crosser as mob|obj) //Clown PDA is slippery.
+	if(iscarbon(crosser))
+		var/mob/living/carbon/M = crosser
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if((istype(H.shoes, /obj/item/clothing/shoes) && H.shoes.flags & NOSLIP) || M.m_intent == "walk")
+				return
+			if(M.real_name != src.owner && istype(src.cartridge, /obj/item/weapon/cartridge/clown))
+				if(src.cartridge.charges < 5)
+					src.cartridge.charges++
+
+		M.stop_pulling()
+		to_chat(M, SPAN_INFO("You slipped on the PDA!"))
+		playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
+		M.Stun(8)
+		M.Weaken(5)
+
 /obj/item/device/pda/mime
 	default_cartridge = /obj/item/weapon/cartridge/mime
 	icon_state = "pda-mime"
