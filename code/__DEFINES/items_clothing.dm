@@ -1,4 +1,4 @@
-#define HUMAN_STRIP_DELAY 40 //takes 40ds = 4s to strip someone.
+#define HUMAN_STRIP_DELAY (4 SECONDS) // How long it takes, in deciseconds, to strip someone. Default is 4 seconds.
 
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up
 

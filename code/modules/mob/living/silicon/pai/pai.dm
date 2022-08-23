@@ -53,7 +53,7 @@
 
 
 /mob/living/silicon/pai/New(var/obj/item/device/paicard)
-	canmove = 0
+	canmove = FALSE
 	src.loc = paicard
 	card = paicard
 	sradio = new(src)

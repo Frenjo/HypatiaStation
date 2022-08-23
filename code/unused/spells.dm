@@ -27,10 +27,10 @@
 		B.anchored = TRUE
 		B.density = FALSE
 		B.layer = 4
-		M.canmove = 0
+		M.canmove = FALSE
 		spawn(5)
 			del(B)
-			M.canmove = 1
+			M.canmove = TRUE
 		M << text("\blue Your eyes cry out in pain!")
 		M.disabilities |= NEARSIGHTED
 		spawn(300)
@@ -429,7 +429,7 @@
 		animation.loc = mobloc
 		steam.location = mobloc
 		steam.start()
-		H.canmove = 0
+		H.canmove = FALSE
 		sleep(20)
 		flick("reappear",animation)
 		sleep(5)
@@ -439,7 +439,7 @@
 				if(T)
 					if(H.Move(T))
 						break
-		H.canmove = 1
+		H.canmove = TRUE
 		H.client.eye = H
 		del(animation)
 		del(holder)
@@ -448,7 +448,7 @@
 	name = "water"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "nothing"
-	var/canmove = 1
+	var/canmove = TRUE
 	density = FALSE
 	anchored = TRUE
 
@@ -475,8 +475,8 @@
 		if(SOUTHWEST)
 			src.y--
 			src.x--
-	src.canmove = 0
-	spawn(2) src.canmove = 1
+	src.canmove = FALSE
+	spawn(2) src.canmove = TRUE
 
 /obj/effect/dummy/spell_jaunt/ex_act(blah)
 	return

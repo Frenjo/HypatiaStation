@@ -341,7 +341,7 @@ datum
 					M << "\red Your flesh rapidly mutates!"
 					if(M.monkeyizing)	return
 					M.monkeyizing = 1
-					M.canmove = 0
+					M.canmove = FALSE
 					M.icon = null
 					M.overlays.Cut()
 					M.invisibility = 101

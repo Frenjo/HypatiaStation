@@ -136,20 +136,20 @@
 	..(message, speaking, verbage, alt_name, italics, message_range, used_radios)
 
 /mob/living/carbon/human/say_understands(mob/other, datum/language/speaking = null)
-	if(has_brain_worms()) //Brain worms translate everything. Even mice and alien speak.
-		return 1
+	if(has_brain_worms()) // Brain worms translate everything. Even mice and alien speak.
+		return TRUE
 
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if(!speaking)
 		if(istype(other, /mob/living/carbon/monkey/diona))
-			if(other.languages.len >= 2)			//They've sucked down some blood and can speak common now.
-				return 1
+			if(other.languages.len >= 2) // They've sucked down some blood and can speak common now.
+				return TRUE
 		if(issilicon(other))
-			return 1
+			return TRUE
 		if(isbrain(other))
-			return 1
+			return TRUE
 		if(isslime(other))
-			return 1
+			return TRUE
 
 	//This is already covered by mob/say_understands()
 	//if (istype(other, /mob/living/simple_animal))

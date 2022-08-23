@@ -408,7 +408,7 @@
 					continue
 				H.drop_from_inventory(W)
 			M.monkeyizing = 1
-			M.canmove = 0
+			M.canmove = FALSE
 			M.icon = null
 			M.invisibility = 101
 			var/atom/movable/overlay/animation = new( M.loc )
@@ -481,7 +481,7 @@
 			for(var/obj/item/W in (Mo.contents-implants))
 				Mo.drop_from_inventory(W)
 			M.monkeyizing = 1
-			M.canmove = 0
+			M.canmove = FALSE
 			M.icon = null
 			M.invisibility = 101
 			var/atom/movable/overlay/animation = new( M.loc )

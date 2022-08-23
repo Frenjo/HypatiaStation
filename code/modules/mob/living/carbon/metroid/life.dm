@@ -363,9 +363,9 @@
 		handle_targets()
 			if(Tempstun)
 				if(!victim) // not while they're eating!
-					canmove = 0
+					canmove = FALSE
 			else
-				canmove = 1
+				canmove = TRUE
 
 			if(attacked > 50) attacked = 50
 

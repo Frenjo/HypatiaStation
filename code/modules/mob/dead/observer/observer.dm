@@ -8,7 +8,7 @@
 	layer = 4
 	stat = DEAD
 	density = FALSE
-	canmove = 0
+	canmove = FALSE
 	blinded = 0
 	anchored = TRUE	//  don't get pushed around
 	invisibility = INVISIBILITY_OBSERVER

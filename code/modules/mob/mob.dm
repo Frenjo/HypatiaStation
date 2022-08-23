@@ -790,20 +790,20 @@ note dizziness decrements automatically in the mob's Life() proc.
 /mob/proc/update_canmove()
 	if(buckled)
 		anchored = TRUE
-		canmove = 0
+		canmove = FALSE
 		if(istype(buckled, /obj/structure/stool/bed/chair))
 			lying = 0
 		else
 			lying = 1
 	else if(stat || weakened || paralysis || resting || sleeping || (status_flags & FAKEDEATH))
 		lying = 1
-		canmove = 0
+		canmove = FALSE
 	else if(stunned)
 //		lying = 0
-		canmove = 0
+		canmove = FALSE
 	else if(captured)
 		anchored = TRUE
-		canmove = 0
+		canmove = FALSE
 		lying = 0
 	else
 		lying = !can_stand
@@ -818,7 +818,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	for(var/obj/item/weapon/grab/G in grabbed_by)
 		if(G.state >= GRAB_AGGRESSIVE)
-			canmove = 0
+			canmove = FALSE
 			break
 
 	//Temporarily moved here from the various life() procs

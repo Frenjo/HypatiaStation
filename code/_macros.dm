@@ -54,6 +54,10 @@
 // This one line was typed out almost 30+ times so it justifies an entry here.
 #define isrune(A) istype(A, /obj/effect/rune)
 
+// MMI check.
+// Same as above, this one line was typed out many times so it's justified.
+#define isMMI(A) istype(A, /obj/item/device/mmi)
+
 // Chat-related stuff
 #define to_chat(target, message)	target << message
 #define to_world(message)			to_chat(world, message)

@@ -3,7 +3,7 @@
 /mob/proc/gib(anim = "gibbed-m", do_gibs)
 	death(1)
 	monkeyizing = 1
-	canmove = 0
+	canmove = FALSE
 	icon = null
 	invisibility = 101
 	update_canmove()
@@ -33,7 +33,7 @@
 	death(1)
 	var/atom/movable/overlay/animation = null
 	monkeyizing = 1
-	canmove = 0
+	canmove = FALSE
 	icon = null
 	invisibility = 101
 

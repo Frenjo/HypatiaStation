@@ -79,13 +79,13 @@
 
 						spawn(0)
 							if(slime)
-								slime.canmove = 0
+								slime.canmove = FALSE
 								step_away(slime, user)
 								if(prob(25 + power))
 									sleep(2)
 									if(slime && user)
 										step_away(slime, user)
-								slime.canmove = 1
+								slime.canmove = TRUE
 
 				else
 					if(prob(10 + power * 2))
@@ -111,12 +111,12 @@
 						spawn(0)
 							if(slime && user)
 								step_away(slime, user)
-								slime.canmove = 0
+								slime.canmove = FALSE
 								if(prob(25 + power * 4))
 									sleep(2)
 									if(slime && user)
 										step_away(slime, user)
-								slime.canmove = 1
+								slime.canmove = TRUE
 
 		var/showname = "."
 		if(user)

@@ -70,7 +70,7 @@
 		if("Summon")
 			for(var/mob/living/simple_animal/shade/A in src)
 				A.status_flags &= ~GODMODE
-				A.canmove = 1
+				A.canmove = TRUE
 				to_chat(A, "<b>You have been released from your prison, but you are still bound to [U.name]'s will. Help them suceed in their goals at all costs.</b>")
 				A.loc = U.loc
 				A.cancel_camera()
@@ -121,7 +121,7 @@
 							var/mob/living/simple_animal/shade/S = new /mob/living/simple_animal/shade(T.loc)
 							S.loc = C //put shade in stone
 							S.status_flags |= GODMODE //So they won't die inside the stone somehow
-							S.canmove = 0//Can't move out of the soul stone
+							S.canmove = FALSE//Can't move out of the soul stone
 							S.name = "Shade of [T.real_name]"
 							S.real_name = "Shade of [T.real_name]"
 							if(T.client)
@@ -148,7 +148,7 @@
 					else
 						T.loc = C //put shade in stone
 						T.status_flags |= GODMODE
-						T.canmove = 0
+						T.canmove = FALSE
 						T.health = T.maxHealth
 						C.icon_state = "soulstone2"
 						to_chat(T, "Your soul has been recaptured by the soul stone, its arcane energies are reknitting your ethereal form.")

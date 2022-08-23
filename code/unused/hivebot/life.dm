@@ -62,8 +62,8 @@
 				src.stat = 1
 
 		update_canmove()
-			if(paralysis || stunned || weakened || buckled) canmove = 0
-			else canmove = 1
+			if(paralysis || stunned || weakened || buckled) canmove = FALSE
+			else canmove = TRUE
 
 
 		handle_regular_status_updates()

@@ -13,14 +13,14 @@
 #define IS_PAI 3
 
 /mob/living/silicon/say_understands(other, datum/language/speaking = null)
-	//These only pertain to common. Languages are handled by mob/say_understands()
+	// These only pertain to common. Languages are handled by mob/say_understands()
 	if(!speaking)
 		if(ishuman(other))
-			return 1
+			return TRUE
 		if(issilicon(other))
-			return 1
+			return TRUE
 		if(isbrain(other))
-			return 1
+			return TRUE
 	return ..()
 
 /mob/living/silicon/say(message)

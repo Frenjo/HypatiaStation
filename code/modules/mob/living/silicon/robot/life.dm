@@ -322,8 +322,8 @@
 
 /mob/living/silicon/robot/update_canmove()
 	if(paralysis || stunned || weakened || buckled || lockcharge)
-		canmove = 0
+		canmove = FALSE
 	else
-		canmove = 1
+		canmove = TRUE
 
 	return canmove

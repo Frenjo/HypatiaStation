@@ -2,7 +2,7 @@
 	if(src.mainframe)
 		src.mainframe.return_to(src)
 	src.stat = 2
-	src.canmove = 0
+	src.canmove = FALSE
 
 	if(src.blind)
 		src.blind.layer = 0

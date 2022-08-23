@@ -7,7 +7,7 @@
 		drop_from_inventory(W)
 	regenerate_icons()
 	monkeyizing = 1
-	canmove = 0
+	canmove = FALSE
 	stunned = 1
 	icon = null
 	invisibility = 101
@@ -70,7 +70,7 @@
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
 	monkeyizing = 1
-	canmove = 0
+	canmove = FALSE
 	icon = null
 	invisibility = 101
 	return ..()
@@ -142,7 +142,7 @@
 		drop_from_inventory(W)
 	regenerate_icons()
 	monkeyizing = 1
-	canmove = 0
+	canmove = FALSE
 	icon = null
 	invisibility = 101
 	for(var/t in organs)
@@ -192,7 +192,7 @@
 		drop_from_inventory(W)
 	regenerate_icons()
 	monkeyizing = 1
-	canmove = 0
+	canmove = FALSE
 	icon = null
 	invisibility = 101
 	for(var/t in organs)
@@ -216,7 +216,7 @@
 		drop_from_inventory(W)
 	regenerate_icons()
 	monkeyizing = 1
-	canmove = 0
+	canmove = FALSE
 	icon = null
 	invisibility = 101
 	for(var/t in organs)
@@ -252,7 +252,7 @@
 		drop_from_inventory(W)
 	regenerate_icons()
 	monkeyizing = 1
-	canmove = 0
+	canmove = FALSE
 	icon = null
 	invisibility = 101
 	for(var/t in organs)	//this really should not be necessary
@@ -282,7 +282,7 @@
 
 	regenerate_icons()
 	monkeyizing = 1
-	canmove = 0
+	canmove = FALSE
 	icon = null
 	invisibility = 101
 

@@ -184,8 +184,8 @@
 			return null
 
 		update_canmove()
-			if(paralysis || stunned || weakened || buckled || (changeling && changeling.changeling_fakedeath)) canmove = 0
-			else canmove = 1
+			if(paralysis || stunned || weakened || buckled || (changeling && changeling.changeling_fakedeath)) canmove = FALSE
+			else canmove = TRUE
 
 		handle_breath(datum/gas_mixture/breath)
 			if(src.nodamage)

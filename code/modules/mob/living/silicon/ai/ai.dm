@@ -85,7 +85,7 @@ var/list/ai_verbs_default = list(
 	real_name = pickedName
 	name = real_name
 	anchored = TRUE
-	canmove = 0
+	canmove = FALSE
 	density = TRUE
 	loc = loc
 

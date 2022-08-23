@@ -232,7 +232,7 @@
 		implants += W
 
 	C.monkeyizing = 1
-	C.canmove = 0
+	C.canmove = FALSE
 	C.icon = null
 	C.overlays.Cut()
 	C.invisibility = 101
@@ -308,7 +308,7 @@
 		implants += I
 
 	C.monkeyizing = 1
-	C.canmove = 0
+	C.canmove = FALSE
 	C.icon = null
 	C.overlays.Cut()
 	C.invisibility = 101

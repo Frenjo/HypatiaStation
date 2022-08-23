@@ -42,7 +42,7 @@
 /mob/living/carbon/slime/proc/Feedon(mob/living/carbon/M)
 	Victim = M
 	src.loc = M.loc
-	canmove = 0
+	canmove = FALSE
 	anchored = TRUE
 	var/lastnut = nutrition
 	//if(M.client) M << "\red You legs become paralyzed!"
@@ -52,8 +52,8 @@
 		icon_state = "[colour] baby slime eat"
 
 	while(Victim && M.health > -70 && stat != DEAD)
-		// M.canmove = 0
-		canmove = 0
+		// M.canmove = FALSE
+		canmove = FALSE
 
 		if(M in view(1, src))
 			loc = M.loc
@@ -125,12 +125,12 @@
 		else
 			icon_state = "[colour] baby slime"
 
-	canmove = 1
+	canmove = TRUE
 	anchored = FALSE
 
 	if(M)
 		if(M.health <= -70)
-			M.canmove = 0
+			M.canmove = FALSE
 			if(!client)
 				if(Victim && !rabid && !attacked)
 					if(Victim.LAssailant && Victim.LAssailant != Victim)
@@ -145,7 +145,7 @@
 			if(client)
 				src << "<i>This subject does not have a strong enough life energy anymore...</i>"
 		else
-			M.canmove = 1
+			M.canmove = TRUE
 
 			if(client)
 				src << "<i>I have stopped feeding...</i>"

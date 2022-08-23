@@ -1077,7 +1077,7 @@
 	*/
 		occupant = brainmob
 		brainmob.loc = src //should allow relaymove
-		brainmob.canmove = 1
+		brainmob.canmove = TRUE
 		mmi_as_oc.loc = src
 		mmi_as_oc.mecha = src
 		src.verbs -= /obj/mecha/verb/eject
@@ -1169,7 +1169,7 @@
 			if(mmi.brainmob)
 				occupant.loc = mmi
 			mmi.mecha = null
-			src.occupant.canmove = 0
+			src.occupant.canmove = FALSE
 			src.verbs += /obj/mecha/verb/eject
 		src.occupant = null
 		src.icon_state = src.reset_icon() + "-open"
@@ -1634,7 +1634,7 @@
 		var/mob/living/silicon/ai/O = new /mob/living/silicon/ai(src)
 		var/cur_occupant = src.occupant
 		O.invisibility = 0
-		O.canmove = 1
+		O.canmove = TRUE
 		O.name = AI.name
 		O.real_name = AI.real_name
 		O.anchored = TRUE

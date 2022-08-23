@@ -35,7 +35,7 @@
 				sleep(jaunt_duration)
 				mobloc = get_turf(target.loc)
 				animation.loc = mobloc
-				target.canmove = 0
+				target.canmove = FALSE
 				sleep(20)
 				animation.set_dir(target.dir)
 				flick("phase_shift2", animation)
@@ -46,7 +46,7 @@
 						if(T)
 							if(target.Move(T))
 								break
-				target.canmove = 1
+				target.canmove = TRUE
 				target.client.eye = target
 				qdel(animation)
 				qdel(holder)
@@ -62,7 +62,7 @@
 				animation.loc = mobloc
 				steam.location = mobloc
 				steam.start()
-				target.canmove = 0
+				target.canmove = FALSE
 				sleep(20)
 				flick("reappear", animation)
 				sleep(5)
@@ -72,7 +72,7 @@
 						if(T)
 							if(target.Move(T))
 								break
-				target.canmove = 1
+				target.canmove = TRUE
 				target.client.eye = target
 				qdel(animation)
 				qdel(holder)
@@ -85,7 +85,7 @@
 	density = FALSE
 	anchored = TRUE
 
-	var/canmove = 1
+	var/canmove = TRUE
 
 /obj/effect/dummy/spell_jaunt/Destroy()
 	// Eject contents if deleted somehow
@@ -101,9 +101,9 @@
 		loc = newLoc
 	else
 		to_chat(user, SPAN_WARNING("Some strange aura is blocking the way!"))
-	src.canmove = 0
+	src.canmove = FALSE
 	spawn(2)
-		src.canmove = 1
+		src.canmove = TRUE
 
 /obj/effect/dummy/spell_jaunt/ex_act(blah)
 	return

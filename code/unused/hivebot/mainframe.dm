@@ -41,7 +41,7 @@
 
 /mob/living/silicon/hive_mainframe/death(gibbed)
 	src.stat = 2
-	src.canmove = 0
+	src.canmove = FALSE
 	if(src.blind)
 		src.blind.layer = 0
 	src.sight |= SEE_TURFS
