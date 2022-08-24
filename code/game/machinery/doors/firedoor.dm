@@ -1,7 +1,7 @@
 /obj/machinery/door/firedoor
 	name = "\improper Emergency Shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
-	icon = 'icons/obj/doors/engineering/hazard.dmi'
+	icon = 'icons/obj/doors/emergency/hazard.dmi'
 	icon_state = "door_open"
 	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_ENGINE_EQUIP)
 	opacity = FALSE
@@ -262,5 +262,5 @@
 */
 
 /obj/machinery/door/firedoor/multi_tile
-	icon = 'icons/obj/doors/engineering/hazard_2x1.dmi'
+	icon = 'icons/obj/doors/emergency/hazard_2x1.dmi'
 	width = 2
