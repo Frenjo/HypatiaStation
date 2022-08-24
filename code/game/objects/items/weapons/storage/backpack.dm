@@ -6,6 +6,7 @@
 /obj/item/weapon/storage/backpack
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
+	icon = 'icons/obj/storage/backpack.dmi'
 	icon_state = "backpack"
 	item_state = "backpack"
 	w_class = 4.0
@@ -132,6 +133,7 @@
 /obj/item/weapon/storage/backpack/satchel
 	name = "leather satchel"
 	desc = "It's a very fancy satchel made with fine leather."
+	icon = 'icons/obj/storage/satchel.dmi'
 	icon_state = "satchel"
 
 /obj/item/weapon/storage/backpack/satchel/withwallet

@@ -12,6 +12,10 @@
 // -----------------------------
 /obj/item/weapon/storage/secure
 	name = "secstorage"
+	w_class = 3.0
+	max_w_class = 2
+	max_combined_w_class = 14
+
 	var/icon_locking = "secureb"
 	var/icon_sparking = "securespark"
 	var/icon_opened = "secure0"
@@ -23,9 +27,6 @@
 	var/l_hacking = 0
 	var/emagged = 0
 	var/open = 0
-	w_class = 3.0
-	max_w_class = 2
-	max_combined_w_class = 14
 
 /obj/item/weapon/storage/secure/examine()
 	set src in oview(1)
@@ -39,10 +40,10 @@
 	if(locked)
 		if((istype(W, /obj/item/weapon/card/emag)||istype(W, /obj/item/weapon/melee/energy/blade)) && (!src.emagged))
 			emagged = 1
-			src.overlays += image('icons/obj/storage.dmi', icon_sparking)
+			src.overlays += image(src.icon, icon_sparking)
 			sleep(6)
 			src.overlays = null
-			overlays += image('icons/obj/storage.dmi', icon_locking)
+			overlays += image(src.icon, icon_locking)
 			locked = 0
 			if(istype(W, /obj/item/weapon/melee/energy/blade))
 				var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
@@ -117,7 +118,7 @@
 			else if ((src.code == src.l_code) && (src.emagged == 0) && (src.l_set == 1))
 				src.locked = 0
 				src.overlays = null
-				overlays += image('icons/obj/storage.dmi', icon_opened)
+				overlays += image(src.icon, icon_opened)
 				src.code = null
 			else
 				src.code = "ERROR"
@@ -143,7 +144,7 @@
 // -----------------------------
 /obj/item/weapon/storage/secure/briefcase
 	name = "secure briefcase"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage/briefcase.dmi'
 	icon_state = "secure"
 	item_state = "sec-case"
 	desc = "A large briefcase with a digital locking system."
@@ -211,7 +212,7 @@
 // -----------------------------
 /obj/item/weapon/storage/secure/safe
 	name = "secure safe"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage/safe.dmi'
 	icon_state = "safe"
 	icon_opened = "safe0"
 	icon_locking = "safeb"

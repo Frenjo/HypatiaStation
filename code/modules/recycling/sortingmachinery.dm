@@ -1,7 +1,7 @@
 /obj/structure/big_delivery
 	desc = "A big wrapped package."
 	name = "large parcel"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage/delivery.dmi'
 	icon_state = "deliverycloset"
 	density = TRUE
 	flags = NOBLUDGEON
@@ -54,7 +54,7 @@
 /obj/item/small_delivery
 	desc = "A small wrapped package."
 	name = "small parcel"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage/delivery.dmi'
 	icon_state = "deliverycrateSmall"
 
 	var/obj/item/wrapped = null

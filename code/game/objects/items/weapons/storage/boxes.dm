@@ -22,6 +22,7 @@
 /obj/item/weapon/storage/box
 	name = "box"
 	desc = "It's just an ordinary box."
+	icon = 'icons/obj/storage/box.dmi'
 	icon_state = "box"
 	item_state = "syringe_kit"
 	foldable = /obj/item/stack/sheet/cardboard	//BubbleWrap
@@ -98,6 +99,7 @@
 /obj/item/weapon/storage/box/gloves
 	name = "box of latex gloves"
 	desc = "Contains white gloves."
+	icon_state = "latex"
 
 /obj/item/weapon/storage/box/gloves/New()
 	..()
@@ -128,8 +130,7 @@
 
 /obj/item/weapon/storage/box/syringes
 	name = "box of syringes"
-	desc = "A box full of syringes."
-	desc = "A biohazard alert warning is printed on the box"
+	desc = "A box full of syringes. A biohazard warning is printed on it."
 	icon_state = "syringe"
 
 /obj/item/weapon/storage/box/syringes/New()
@@ -367,7 +368,7 @@
 
 /obj/item/weapon/storage/box/monkeycubes/New()
 	..()
-	if(src.type == /obj/item/weapon/storage/box/monkeycubes)
+	if(istype(src, /obj/item/weapon/storage/box/monkeycubes))
 		for(var/i = 1; i <= 5; i++)
 			new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped(src)
 
@@ -533,7 +534,6 @@
 
 /obj/item/weapon/storage/box/lights
 	name = "box of replacement bulbs"
-	icon = 'icons/obj/storage.dmi'
 	icon_state = "light"
 	desc = "This box is shaped on the inside so that only light tubes and bulbs fit."
 	item_state = "syringe_kit"
@@ -574,8 +574,8 @@
 // Adds a circuit storage box since there's an unused sprite for it. -Frenjo
 /obj/item/weapon/storage/box/circuits
 	name = "circuit storage box"
-	icon_state = "circuit"
 	desc = "This box appears to be shaped to hold circuit boards."
+	icon_state = "circuit"
 	foldable = /obj/item/stack/sheet/cardboard //BubbleWrap
 	storage_slots = 5
 	can_hold = list(/obj/item/weapon/circuitboard, /obj/item/weapon/module)

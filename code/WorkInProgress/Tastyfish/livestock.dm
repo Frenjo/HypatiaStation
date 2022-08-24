@@ -165,7 +165,7 @@
 /obj/structure/closet/critter
 	desc = "\improper Critter crate."
 	name = "Critter Crate"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage/crate.dmi'
 	icon_state = "critter"
 	density = TRUE
 	icon_opened = "critteropen"

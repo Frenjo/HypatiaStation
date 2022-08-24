@@ -68,11 +68,12 @@
 	buf.dna.SetSEValueRange(MONKEYBLOCK, 0xDAC, 0xFFF)
 
 /obj/item/cloning/charge
-    name = "Short-Term Biological Suspension Unit (SBSU)"
-    //desc = "PLACEHOLDER"
-    var/charges = 1
-    icon = 'icons/obj/storage.dmi'
-    icon_state = "stem-charge"
+	name = "Short-Term Biological Suspension Unit (SBSU)"
+	//desc = "PLACEHOLDER"
+	icon = 'icons/obj/storage/storage.dmi'
+	icon_state = "stem-charge"
+
+	var/charges = 1
 
 //Find a dead mob with a brain and client.
 /proc/find_dead_player(find_key)

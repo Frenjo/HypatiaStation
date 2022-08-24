@@ -3,12 +3,13 @@
 /obj/structure/closet/crate
 	name = "crate"
 	desc = "A rectangular steel crate."
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage/crate.dmi'
 	icon_state = "crate"
 	icon_opened = "crateopen"
 	icon_closed = "crate"
 	climbable = 1
 //	mouse_drag_pointer = MOUSE_ACTIVE_POINTER	//???
+
 	var/rigged = 0
 
 /obj/structure/closet/crate/can_open()
@@ -126,6 +127,7 @@
 	icon_state = "securecrate"
 	icon_opened = "securecrateopen"
 	icon_closed = "securecrate"
+
 	var/redlight = "securecrater"
 	var/greenlight = "securecrateg"
 	var/sparks = "securecratesparks"
@@ -234,7 +236,6 @@ inside the genetics lab. Designed to hold stem cells for very long \
 periods of time. There is some small print on top, \n \
 <B><FONT COLOR=RED>\"Warning: The contents of this Biological Suspension Unit (BSU) are incredibly valuable. Waste of these stem cells will result in termination and you will be expected to compensate.\"</B></FONT>"
 	name = "Biological Suspension Unit (BSU)"
-	icon = 'icons/obj/storage.dmi'
 	density = TRUE
 	icon_state = "bio"
 	icon_opened = "bioopen"
@@ -445,7 +446,6 @@ periods of time. There is some small print on top, \n \
 /obj/structure/closet/crate/large
 	name = "large crate"
 	desc = "A hefty metal crate."
-	icon = 'icons/obj/storage.dmi'
 	icon_state = "largemetal"
 	icon_opened = "largemetalopen"
 	icon_closed = "largemetal"
@@ -472,7 +472,6 @@ periods of time. There is some small print on top, \n \
 /obj/structure/closet/crate/secure/large
 	name = "large crate"
 	desc = "A hefty metal crate with an electronic locking system."
-	icon = 'icons/obj/storage.dmi'
 	icon_state = "largemetal"
 	icon_opened = "largemetalopen"
 	icon_closed = "largemetal"

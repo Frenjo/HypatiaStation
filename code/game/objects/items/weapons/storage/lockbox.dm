@@ -2,6 +2,7 @@
 /obj/item/weapon/storage/lockbox
 	name = "lockbox"
 	desc = "A locked box."
+	icon = 'icons/obj/storage/lockbox.dmi'
 	icon_state = "lockbox+l"
 	item_state = "syringe_kit"
 	w_class = 4
@@ -9,6 +10,7 @@
 	max_combined_w_class = 14 //The sum of the w_classes of all the items in this storage item.
 	storage_slots = 4
 	req_access = list(ACCESS_ARMORY)
+	
 	var/locked = 1
 	var/broken = 0
 	var/icon_locked = "lockbox+l"

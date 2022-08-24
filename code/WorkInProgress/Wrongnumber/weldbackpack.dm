@@ -2,9 +2,10 @@
 	name = "Welding kit"
 	desc = "A heavy-duty, portable welding fluid carrier."
 	slot_flags = SLOT_BACK
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage/backpack.dmi'
 	icon_state = "welderpack"
 	w_class = 4.0
+
 	var/max_fuel = 350
 
 /obj/item/weapon/weldpack/New()

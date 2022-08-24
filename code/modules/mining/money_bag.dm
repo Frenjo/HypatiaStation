@@ -1,7 +1,7 @@
 /*****************************Money bag********************************/
 
 /obj/item/weapon/moneybag
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage/storage.dmi'
 	name = "Money bag"
 	icon_state = "moneybag"
 	flags = CONDUCT

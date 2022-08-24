@@ -90,7 +90,7 @@
 /obj/random/toolbox
 	name = "Random Toolbox"
 	desc = "This is a random toolbox."
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage/toolbox.dmi'
 	icon_state = "red"
 
 /obj/random/toolbox/item_to_spawn()

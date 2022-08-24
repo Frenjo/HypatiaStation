@@ -259,7 +259,7 @@
 // -----------------------------
 
 /obj/item/weapon/storage/bag/cash
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage/storage.dmi'
 	icon_state = "cashbag"
 	name = "cash bag"
 	desc = "A bag for carrying lots of cash. It's got a big dollar sign printed on the front."

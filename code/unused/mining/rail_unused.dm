@@ -158,12 +158,13 @@
 
 /obj/machinery/rail_car
 	name = "Rail car"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage/crate.dmi'
 	icon_state = "miningcar"
-	var/direction = "S"  //S = south, N = north, E = east, W = west. Determines whichw ay it'll look first
-	var/moving = 0;
 	anchored = TRUE
 	density = TRUE
+
+	var/direction = "S"  //S = south, N = north, E = east, W = west. Determines whichw ay it'll look first
+	var/moving = 0;
 	var/speed = 0
 	var/slowing = 0
 	var/atom/movable/load = null //what it's carrying
