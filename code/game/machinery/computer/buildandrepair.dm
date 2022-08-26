@@ -143,7 +143,7 @@
 
 /obj/item/weapon/circuitboard/turbine_control
 	name = "Circuit board (Turbine control)"
-	build_path = /obj/machinery/computer/turbine_computer
+	build_path = /obj/machinery/computer/turbine_control
 
 /obj/item/weapon/circuitboard/solar_control
 	name = "Circuit board (Solar Control)"	//name fixed 250810
