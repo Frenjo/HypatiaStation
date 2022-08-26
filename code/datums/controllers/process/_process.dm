@@ -5,7 +5,7 @@
 	 * State vars
 	 */
 	// Main controller ref
-	var/tmp/datum/controller/processScheduler/main
+	var/tmp/datum/controller/process_scheduler/main
 
 	// TRUE if process is not running or queued
 	var/tmp/idle = TRUE
@@ -91,7 +91,7 @@
 	// Number of deciseconds to delay before starting the process
 	var/start_delay = 0
 
-/datum/controller/process/New(datum/controller/processScheduler/scheduler)
+/datum/controller/process/New(datum/controller/process_scheduler/scheduler)
 	..()
 	main = scheduler
 	previousStatus = "idle"

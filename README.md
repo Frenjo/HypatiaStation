@@ -9,9 +9,9 @@ The simplest way to obtain the code is using the github .zip feature.
 
 Click [here](https://github.com/Frenjo/HypatiaStation/archive/master.zip) to get the latest code as a .zip file, then unzip it to wherever you want.
 
-The more complicated and easier to update method is using git.  You'll need to download git or some client from [here](http://git-scm.com/).  When that's installed, right click in any folder and click on "Git Bash".  When that opens, type in:
+The more complicated and easier to update method is using git. You'll need to download git or some client from [here](http://git-scm.com/). When that's installed, right click in any folder and click on "Git Bash". When that opens, type in:
 
-    git clone https://github.com/Frenjo/HypatiaStation.git
+	git clone https://github.com/Frenjo/HypatiaStation.git
 
 (hint: hold down ctrl and press insert to paste into git bash)
 
@@ -19,21 +19,21 @@ This will take a while to download, but it provides an easier method for updatin
 
 ### INSTALLATION
 
-First-time installation should be fairly straightforward.  First, you'll need BYOND installed.  You can get it from [here](http://www.byond.com/).
+First-time installation should be fairly straightforward. First, you'll need BYOND installed. You can get it from [here](http://www.byond.com/).
 
-This is a sourcecode-only release, so the next step is to compile the server files.  Open HypatiaStation.dme by double-clicking it, open the Build menu, and click compile.  This'll take a little while, and if everything's done right you'll get a message like this:
+This is a sourcecode-only release, so the next step is to compile the server files. Open HypatiaStation.dme by double-clicking it, open the Build menu, and click compile. This'll take a little while, and if everything's done right you'll get a message like this:
 
-    saving HypatiaStation.dmb (DEBUG mode)
-    
-    HypatiaStation.dmb - 0 errors, 0 warnings
+	saving HypatiaStation.dmb (DEBUG mode)
+
+	HypatiaStation.dmb - 0 errors, 0 warnings
 
 If you see any errors or warnings, something has gone wrong - possibly a corrupt download or the files extracted wrong, or a code issue on the main repo.  Ask on IRC.
 
-Once that's done, open up the config folder.  You'll want to edit config.txt to set the probabilities for different gamemodes in Secret and to set your server location so that all your players don't get disconnected at the end of each round.  It's recommended you don't turn on the gamemodes with probability 0, as they have various issues and aren't currently being tested, so they may have unknown and bizarre bugs.
+Once that's done, open up the config folder. You'll want to edit config.txt to set the probabilities for different gamemodes in Secret and to set your server location so that all your players don't get disconnected at the end of each round.  It's recommended you don't turn on the gamemodes with probability 0, as they have various issues and aren't currently being tested, so they may have unknown and bizarre bugs.
 
-You'll also want to edit admins.txt to remove the default admins and add your own.  "Host" is the highest level of access, and the other recommended admin levels for now are "Game Admin" and "Moderator".  The format is:
+You'll also want to edit admins.txt to remove the default admins and add your own. "Host" is the highest level of access, and the other recommended admin levels for now are "Game Admin" and "Moderator". The format is:
 
-    byondkey - Rank
+	byondkey - Rank
 
 where the BYOND key must be in lowercase and the admin rank must be properly capitalised.  There are a bunch more admin ranks, but these two should be enough for most servers, assuming you have trustworthy admins.
 
@@ -54,7 +54,7 @@ If you used the zip method, you'll need to download the zip file again and unzip
 
 If you used the git method, you simply need to type this in to git bash:
 
-    git pull
+	git pull
 
 When this completes, copy over your /data and /config folders again, just in case.
 
@@ -84,13 +84,15 @@ Included in the repo is an IRC bot capable of relaying adminhelps to a specified
 
 The code for HypatiaStation is licensed under the [GNU Affero General Public License v3](https://www.gnu.org/licenses/agpl.html), which can be found in [/LICENSE](/LICENSE). Relevant information can also be found in [/COPYING](/COPYING).
 
-Commits authored prior to 01/01/2022 (DD-MM-YYYY) at 00:00 GMT are licensed under the [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0.html), which can be found in full in [/docs/LICENSE-GPL3.txt](/docs/LICENSE-GPL3.txt). Other relevant information is contained in [/docs/COPYING-GPL3](/docs/COPYING-GPL3).
+This codebase uses a heavily modified version of the [GoonStation ProcessScheduler](https://github.com/goonstation/ProcessScheduler) which is available under the [Creative Commons 4.0 BY-NC License](https://creativecommons.org/licenses/by-nc/4.0/) and the [GNU Affero General Public License v3](https://www.gnu.org/licenses/agpl.html). For the purposes of this repository, it is licensed under AGPLv3 which can be found in [/LICENSE](/LICENSE).
+
+Commits authored prior to 01/01/2022 (DD-MM-YYYY) at 00:00 GMT are licensed under the [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0.html), which can be found in full in [/docs/LICENSE-GPL3.txt](/docs/LICENSE-GPL3.txt). Other relevant information is contained in [/docs/COPYING-GPL3](/docs/COPYING-GPL3). This does not apply to commits authored prior to this date (or individual subfolders) which contain their own licensing information.
 
 Commits authored after 01/01/2022 (DD-MM-YYYY) at 00:00 GMT are assumed to be licensed under AGPLv3, unless otherwise specified.
 
 If you wish to develop and host this codebase in a closed source manner you may use all commits prior to 01/01/2022 (DD-MM-YYYY) at 00:00 GMT, which are licensed under GPLv3.  The major change here is that if you host a server using any code licensed under AGPLv3 you are required to provide full source code to your server's users as well, including additions and modifications you have made.
 
-All assets including icons and sound are under a [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated.
+All assets including icons and sound are under the [Creative Commons 3.0 BY-SA License](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated.
 
 ---
 

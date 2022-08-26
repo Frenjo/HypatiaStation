@@ -48,11 +48,11 @@
 
 	sleep_offline = TRUE
 
-	global.processScheduler = new /datum/controller/processScheduler()
+	global.process_scheduler = new /datum/controller/process_scheduler()
 	global.master_controller = new /datum/controller/master()
 	spawn(1)
-		global.processScheduler.deferSetupFor(/datum/controller/process/ticker)
-		global.processScheduler.setup()
+		global.process_scheduler.deferSetupFor(/datum/controller/process/ticker)
+		global.process_scheduler.setup()
 		global.master_controller.setup()
 
 	spawn(3000)	// Delay by 5 minutes (300 seconds/3000 deciseconds) so we aren't adding to the round-start lag.
@@ -70,7 +70,7 @@
 	spawn(0)
 		world << sound(pick('sound/AI/newroundsexy.ogg', 'sound/misc/apcdestroyed.ogg', 'sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
 
-	global.processScheduler.stop()
+	global.process_scheduler.stop()
 
 	for(var/client/C in global.clients)
 		if(global.config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
