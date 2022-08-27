@@ -10,7 +10,7 @@
   * * Post-loads the configuration files.
   * * Sets up the hub visibility variables.
   * * Loads admins and moderators.
-  * * Activates the processScheduler and master_controller, starting the game loop that causes everything else to begin setting up and processing.
+  * * Activates the process_scheduler and master_controller, starting the game loop that causes everything else to begin setting up and processing.
   * 
   * Nothing happens until something moves. ~ Albert Einstein
   * 

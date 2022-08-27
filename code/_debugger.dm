@@ -2,7 +2,7 @@
 
 // This datum is used to initialise the auxtools debugger during global_init.
 /debugger
-	var/debug_server
+	var/debug_server = null
 
 /debugger/New()
 	debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")

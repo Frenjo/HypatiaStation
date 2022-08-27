@@ -23,36 +23,36 @@
 #define SLOT_LEGS		16384
 
 //FLAGS BITMASK
-#define STOPSPRESSUREDAMAGE 1	//This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage. Note that the flag 1 was previous used as ONBACK, so it is possible for some code to use (flags & 1) when checking if something can be put on your back. Replace this code with (inv_flags & SLOT_BACK) if you see it anywhere
-								//To successfully stop you taking all pressure damage you must have both a suit and head item with this flag.
+#define STOPSPRESSUREDAMAGE (1 << 1)	//This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
+										//To successfully stop you taking all pressure damage you must have both a suit and head item with this flag.
 
-#define USEDELAY		2		// 1 second extra delay on use (Can be used once every 2s)
-#define NODELAY			4		// 1 second attackby delay skipped (Can be used once every 0.2s). Most objects have a 1s attackby delay, which doesn't require a flag.
-#define AIRTIGHT		8		// mask allows internals
-#define NOSHIELD		16		// weapon not affected by shield
-#define CONDUCT			32		// conducts electricity (metal etc.)
-#define ON_BORDER		64		// item has priority to check when entering or leaving
-#define NOBLUDGEON		128		// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
-#define NOBLOODY		512		// used to items if they don't want to get a blood overlay
+#define USEDELAY	(1 << 2)	// 1 second extra delay on use (Can be used once every 2s)
+#define NODELAY		(1 << 3)	// 1 second attackby delay skipped (Can be used once every 0.2s). Most objects have a 1s attackby delay, which doesn't require a flag.
+#define AIRTIGHT	(1 << 4)	// mask allows internals
+#define NOSHIELD	(1 << 5)	// weapon not affected by shield
+#define CONDUCT		(1 << 6)	// conducts electricity (metal etc.)
+#define ON_BORDER	(1 << 7)	// item has priority to check when entering or leaving
+#define NOBLUDGEON	(1 << 8)	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
+#define NOBLOODY	(1 << 9)	// used to items if they don't want to get a blood overlay
 
-#define GLASSESCOVERSEYES	128
-#define MASKCOVERSEYES		128		// get rid of some of the other retardation in these flags
-#define HEADCOVERSEYES		128		// feel free to realloc these numbers for other purposes
-#define MASKCOVERSMOUTH		512		// on other items, these are just for mask/head
-#define HEADCOVERSMOUTH		512
+#define GLASSESCOVERSEYES	(1 << 10)
+#define MASKCOVERSEYES		(1 << 10)	// get rid of some of the other retardation in these flags
+#define HEADCOVERSEYES		(1 << 10)	// feel free to realloc these numbers for other purposes
+#define MASKCOVERSMOUTH		(1 << 11)	// on other items, these are just for mask/head
+#define HEADCOVERSMOUTH		(1 << 11)
 
-#define NOSLIP		256 		//prevents from slipping on wet floors, in space etc
+#define NOSLIP	(1 << 12)	//prevents from slipping on wet floors, in space etc
 
-#define OPENCONTAINER	4096	// is an open container for chemistry purposes
+#define OPENCONTAINER	(1 << 13)	// is an open container for chemistry purposes
 
-#define BLOCK_GAS_SMOKE_EFFECT	2048	// blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY! (NOTE: flag shared with ONESIZEFITSALL)
-#define ONESIZEFITSALL			2048
-#define PLASMAGUARD				4096	//Does not get contaminated by plasma.
+#define BLOCK_GAS_SMOKE_EFFECT	(1 << 13)	// blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY!
+#define ONESIZEFITSALL			(1 << 14)
+#define PLASMAGUARD				(1 << 15)	//Does not get contaminated by plasma.
 
-#define	NOREACT 4096					//Reagents dont' react inside this container.
+#define	NOREACT (1 << 16)	//Reagents dont' react inside this container.
 
-#define BLOCKHEADHAIR	4				// temporarily removes the user's hair overlay. Leaves facial hair.
-#define BLOCKHAIR		8192			// temporarily removes the user's hair, facial and otherwise.
+#define BLOCKHEADHAIR	(1 << 17)	// temporarily removes the user's hair overlay. Leaves facial hair.
+#define BLOCKHAIR		(1 << 18)	// temporarily removes the user's hair, facial and otherwise.
 
 //flags for pass_flags
 #define PASSTABLE	1

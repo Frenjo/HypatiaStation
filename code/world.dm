@@ -1,11 +1,12 @@
 /**
   * World
   *
-  * Two possibilities exist: either we are alone in the Universe or we are not. Both are equally terrifying. ~ Arthur C. Clarke
-  *
   * The byond world object stores some basic byond level config, and has a few hub specific procs for managing hub visiblity.
   *
-  * The world /New() is the root of where a round itself begins, try looking in game/world.dm.
+  * The /world/New() is the root of where a round itself begins, try looking in game/world.dm.
+  * 
+  * Two possibilities exist: either we are alone in the Universe or we are not. Both are equally terrifying. ~ Arthur C. Clarke
+  * 
   */
 /world
 	mob = /mob/new_player
@@ -17,6 +18,7 @@
 	hub = "Exadv1.spacestation13"
 	hub_password = "kMZy3U5jJHSiBQjr"
 	name = "Space Station 13"
+
 /* This is for any host that would like their server to appear on the main SS13 hub.
 To use it, simply replace the password above, with the password found below, and it should work.
 If not, let us know on the main tgstation IRC channel of irc.rizon.net #tgstation13 we can help you there.
