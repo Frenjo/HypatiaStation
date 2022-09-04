@@ -12,7 +12,7 @@
 /var/global/pipe_processing_killed = FALSE
 
 /datum/controller/master/New()
-	//There can be only one master_controller. Out with the old and in with the new.
+	// There can be only one master_controller. Out with the old and in with the new.
 	if(global.master_controller != src)
 		log_debug("Rebuilding Master Controller")
 		if(istype(global.master_controller))
@@ -68,7 +68,7 @@
 			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
 			T.broadcast_status()
 
-	//Set up spawn points.
+	// Set up spawn points.
 	to_world(SPAN_DANGER("Populating spawn points."))
 	populate_spawn_points()
 

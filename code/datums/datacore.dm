@@ -1,21 +1,222 @@
-/var/global/obj/effect/datacore/data_core = null
+/var/global/datum/datacore/data_core = null
+/var/global/list/pda_manifest = list()
 
-/hook/startup/proc/createDatacore()
-	global.data_core = new /obj/effect/datacore()
-	return 1
+/hook/startup/proc/create_datacore()
+	global.data_core = new /datum/datacore()
 
-/obj/effect/datacore/proc/manifest()
-	spawn()
-		for(var/mob/living/carbon/human/H in player_list)
-			manifest_inject(H)
-		return
+/datum/datacore
+	var/list/medical = list()
+	var/list/general = list()
+	var/list/security = list()
+	var/list/locked = list() // This list tracks characters spawned in the world and cannot be modified in-game. Currently referenced by respawn_character().
 
-/obj/effect/datacore/proc/manifest_modify(name, assignment)
-	if(PDA_Manifest.len)
-		PDA_Manifest.Cut()
+/datum/datacore/proc/get_manifest(monochrome, OOC)
+	var/list/heads = list()
+	var/list/sec = list()
+	var/list/eng = list()
+	var/list/med = list()
+	var/list/sci = list()
+	var/list/civ = list()
+	var/list/bot = list()
+	var/list/misc = list()
+	var/list/isactive = list()
+	var/dat = {"
+	<head><style>
+		.manifest {border-collapse:collapse;}
+		.manifest td, th {border:1px solid [monochrome?"black":"#DEF; background-color:white; color:black"]; padding:.25em}
+		.manifest th {height: 2em; [monochrome?"border-top-width: 3px":"background-color: #48C; color:white"]}
+		.manifest tr.head th { [monochrome?"border-top-width: 1px":"background-color: #488;"] }
+		.manifest td:first-child {text-align:right}
+		.manifest tr.alt td {[monochrome?"border-top-width: 2px":"background-color: #DEF"]}
+	</style></head>
+	<table class="manifest" width='350px'>
+	<tr class='head'><th>Name</th><th>Rank</th><th>Activity</th></tr>
+	"}
+	var/even = FALSE
+
+	// sort mobs
+	for(var/datum/data/record/t in global.data_core.general)
+		var/name = t.fields["name"]
+		var/rank = t.fields["rank"]
+		var/real_rank = t.fields["real_rank"]
+		if(OOC)
+			var/active = FALSE
+			for(var/mob/M in player_list)
+				if(M.real_name == name && M.client && M.client.inactivity <= 10 * 60 * 10)
+					active = TRUE
+					break
+			isactive[name] = active ? "Active" : "Inactive"
+		else
+			isactive[name] = t.fields["p_stat"]
+			//world << "[name]: [rank]"
+			//cael - to prevent multiple appearances of a player/job combination, add a continue after each line
+		var/department = FALSE
+		if(real_rank in command_positions)
+			heads[name] = rank
+			department = TRUE
+		if(real_rank in security_positions)
+			sec[name] = rank
+			department = TRUE
+		if(real_rank in engineering_positions)
+			eng[name] = rank
+			department = TRUE
+		if(real_rank in medical_positions)
+			med[name] = rank
+			department = TRUE
+		if(real_rank in science_positions)
+			sci[name] = rank
+			department = TRUE
+		if(real_rank in civilian_positions)
+			civ[name] = rank
+			department = TRUE
+		if(real_rank in nonhuman_positions)
+			bot[name] = rank
+			department = TRUE
+		if(!department && !(name in heads))
+			misc[name] = rank
+
+	var/name
+	if(heads.len > 0)
+		dat += "<tr><th colspan=3>Heads</th></tr>"
+		for(name in heads)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[heads[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	if(sec.len > 0)
+		dat += "<tr><th colspan=3>Security</th></tr>"
+		for(name in sec)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[sec[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	if(eng.len > 0)
+		dat += "<tr><th colspan=3>Engineering</th></tr>"
+		for(name in eng)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[eng[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	if(med.len > 0)
+		dat += "<tr><th colspan=3>Medical</th></tr>"
+		for(name in med)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[med[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	if(sci.len > 0)
+		dat += "<tr><th colspan=3>Science</th></tr>"
+		for(name in sci)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[sci[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	if(civ.len > 0)
+		dat += "<tr><th colspan=3>Civilian</th></tr>"
+		for(name in civ)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[civ[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	// in case somebody is insane and added them to the manifest, why not
+	if(bot.len > 0)
+		dat += "<tr><th colspan=3>Silicon</th></tr>"
+		for(name in bot)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[bot[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	// misc guys
+	if(misc.len > 0)
+		dat += "<tr><th colspan=3>Miscellaneous</th></tr>"
+		for(name in misc)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[misc[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+
+	dat += "</table>"
+	dat = replacetext(dat, "\n", "") // so it can be placed on paper correctly
+	dat = replacetext(dat, "\t", "")
+	return dat
+
+/*
+We can't just insert in HTML into the NanoUI so we need the raw data to play with.
+Instead of creating this list over and over when someone leaves their PDA open to the page
+we'll only update it when it changes. The pda_manifest global list is zeroed out upon any change
+using /datum/datacore/proc/manifest_inject(), or manifest_insert()
+*/
+/datum/datacore/proc/get_manifest_json()
+	if(global.pda_manifest.len)
+		return global.pda_manifest
+
+	var/list/heads = list()
+	var/list/sec = list()
+	var/list/eng = list()
+	var/list/med = list()
+	var/list/sci = list()
+	var/list/civ = list()
+	var/list/bot = list()
+	var/list/misc = list()
+
+	for(var/datum/data/record/t in global.data_core.general)
+		var/name = sanitize(t.fields["name"])
+		var/rank = sanitize(t.fields["rank"])
+		var/real_rank = t.fields["real_rank"]
+		var/isactive = t.fields["p_stat"]
+		var/department = 0
+		var/depthead = 0			// Department Heads will be placed at the top of their lists.
+		if(real_rank in command_positions)
+			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
+			department = 1
+			depthead = 1
+			if(rank == "Captain" && heads.len != 1)
+				heads.Swap(1, heads.len)
+
+		if(real_rank in security_positions)
+			sec[++sec.len] = list("name" = name, "rank" = rank, "active" = isactive)
+			department = 1
+			if(depthead && sec.len != 1)
+				sec.Swap(1, sec.len)
+
+		if(real_rank in engineering_positions)
+			eng[++eng.len] = list("name" = name, "rank" = rank, "active" = isactive)
+			department = 1
+			if(depthead && eng.len != 1)
+				eng.Swap(1, eng.len)
+
+		if(real_rank in medical_positions)
+			med[++med.len] = list("name" = name, "rank" = rank, "active" = isactive)
+			department = 1
+			if(depthead && med.len != 1)
+				med.Swap(1, med.len)
+
+		if(real_rank in science_positions)
+			sci[++sci.len] = list("name" = name, "rank" = rank, "active" = isactive)
+			department = 1
+			if(depthead && sci.len != 1)
+				sci.Swap(1, sci.len)
+
+		if(real_rank in civilian_positions)
+			civ[++civ.len] = list("name" = name, "rank" = rank, "active" = isactive)
+			department = 1
+			if(depthead && civ.len != 1)
+				civ.Swap(1, civ.len)
+
+		if(real_rank in nonhuman_positions)
+			bot[++bot.len] = list("name" = name, "rank" = rank, "active" = isactive)
+			department = 1
+
+		if(!department && !(name in heads))
+			misc[++misc.len] = list("name" = name, "rank" = rank, "active" = isactive)
+
+	global.pda_manifest = list(
+		"heads" = heads,
+		"sec" = sec,
+		"eng" = eng,
+		"med" = med,
+		"sci" = sci,
+		"civ" = civ,
+		"bot" = bot,
+		"misc" = misc
+	)
+	return global.pda_manifest
+
+/datum/datacore/proc/manifest()
+	for(var/mob/living/carbon/human/H in player_list)
+		manifest_inject(H)
+	return
+
+/datum/datacore/proc/manifest_modify(name, assignment)
+	if(global.pda_manifest.len)
+		global.pda_manifest.Cut()
+
 	var/datum/data/record/foundrecord
 	var/real_title = assignment
-
 	for(var/datum/data/record/t in global.data_core.general)
 		if(t)
 			if(t.fields["name"] == name)
@@ -23,7 +224,6 @@
 				break
 
 	var/list/all_jobs = get_job_datums()
-
 	for(var/datum/job/J in all_jobs)
 		var/list/alttitles = get_alternate_titles(J.title)
 		if(!J)
@@ -36,9 +236,9 @@
 		foundrecord.fields["rank"] = assignment
 		foundrecord.fields["real_rank"] = real_title
 
-/obj/effect/datacore/proc/manifest_inject(mob/living/carbon/human/H)
-	if(PDA_Manifest.len)
-		PDA_Manifest.Cut()
+/datum/datacore/proc/manifest_inject(mob/living/carbon/human/H)
+	if(global.pda_manifest.len)
+		global.pda_manifest.Cut()
 
 	if(H.mind && (H.mind.assigned_role != "MODE"))
 		var/assignment

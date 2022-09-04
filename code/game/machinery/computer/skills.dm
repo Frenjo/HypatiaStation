@@ -290,8 +290,8 @@ What a mess.*/
 				temp += "<a href='?src=\ref[src];choice=Clear Screen'>No</a>"
 
 			if ("Purge All Records")
-				if(PDA_Manifest.len)
-					PDA_Manifest.Cut()
+				if(global.pda_manifest.len)
+					global.pda_manifest.Cut()
 				for(var/datum/data/record/R in global.data_core.security)
 					qdel(R)
 				temp = "All Employment records deleted."
@@ -304,8 +304,8 @@ What a mess.*/
 //RECORD CREATE
 			if ("New Record (General)")
 
-				if(PDA_Manifest.len)
-					PDA_Manifest.Cut()
+				if(global.pda_manifest.len)
+					global.pda_manifest.Cut()
 				var/datum/data/record/G = new /datum/data/record()
 				G.fields["name"] = "New Record"
 				G.fields["id"] = text("[]", add_zero(num2hex(rand(1, 1.6777215E7)), 6))
@@ -378,16 +378,16 @@ What a mess.*/
 				switch(href_list["choice"])
 					if ("Change Rank")
 						if (active1)
-							if(PDA_Manifest.len)
-								PDA_Manifest.Cut()
+							if(global.pda_manifest.len)
+								global.pda_manifest.Cut()
 							active1.fields["rank"] = href_list["rank"]
 							if(href_list["rank"] in global.joblist)
 								active1.fields["real_rank"] = href_list["real_rank"]
 
 					if ("Delete Record (ALL) Execute")
 						if (active1)
-							if(PDA_Manifest.len)
-								PDA_Manifest.Cut()
+							if(global.pda_manifest.len)
+								global.pda_manifest.Cut()
 							for(var/datum/data/record/R in global.data_core.medical)
 								if ((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
 									qdel(R)

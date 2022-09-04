@@ -231,8 +231,8 @@ var/global/list/frozen_items = list()
 					current_mode.possible_traitors.Remove(occupant)
 
 			// Delete them from datacore.
-			if(PDA_Manifest.len)
-				PDA_Manifest.Cut()
+			if(global.pda_manifest.len)
+				global.pda_manifest.Cut()
 			for(var/datum/data/record/R in global.data_core.medical)
 				if((R.fields["name"] == occupant.real_name))
 					qdel(R)
