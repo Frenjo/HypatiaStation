@@ -19,7 +19,7 @@
 		playsound(src.loc, src.use_sound, 50, 1, -5)
 	..()
 
-/obj/item/weapon/storage/backpack/equipped(var/mob/user, var/slot)
+/obj/item/weapon/storage/backpack/equipped(mob/user, slot)
 	if(slot == slot_back && src.use_sound)
 		playsound(src.loc, src.use_sound, 50, 1, -5)
 	..(user, slot)
@@ -136,7 +136,6 @@
 	icon = 'icons/obj/storage/satchel.dmi'
 	icon_state = "satchel"
 
-/obj/item/weapon/storage/backpack/satchel/withwallet
 /obj/item/weapon/storage/backpack/satchel/withwallet/New()
 	..()
 	new /obj/item/weapon/storage/wallet/random(src)

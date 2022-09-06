@@ -13,26 +13,39 @@
 	name = "first-aid kit"
 	desc = "It's an emergency medical kit for those serious boo-boos."
 	icon = 'icons/obj/storage/firstaid.dmi'
-	icon_state = "firstaid"
+	icon_state = "regular"
 	throw_speed = 2
 	throw_range = 8
 
-	var/empty = 0
+	var/list/possible_icon_states = null
+	var/empty = FALSE
 
+/obj/item/weapon/storage/firstaid/New()
+	..()
+	if(possible_icon_states)
+		icon_state = pick(possible_icon_states)
+	if(empty)
+		return
+
+/obj/item/weapon/storage/firstaid/regular/New()
+	..()
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
 
 /obj/item/weapon/storage/firstaid/fire
 	name = "fire first-aid kit"
 	desc = "It's an emergency medical kit for when the toxins lab <i>-spontaneously-</i> burns down."
-	icon_state = "ointment"
+	icon_state = "fire"
 	item_state = "firstaid-ointment"
+	possible_icon_states = list("fire", "fire2")
 
 /obj/item/weapon/storage/firstaid/fire/New()
 	..()
-	if(empty)
-		return
-
-	icon_state = pick("ointment","firefirstaid")
-
 	new /obj/item/device/healthanalyzer(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
 	new /obj/item/stack/medical/ointment(src)
@@ -40,37 +53,16 @@
 	new /obj/item/stack/medical/ointment(src)
 	new /obj/item/weapon/reagent_containers/pill/kelotane(src)
 	new /obj/item/weapon/reagent_containers/pill/kelotane(src) //Replaced ointment with these since they actually work --Errorage
-	return
-
-/obj/item/weapon/storage/firstaid/regular
-	icon_state = "firstaid"
-
-/obj/item/weapon/storage/firstaid/regular/New()
-	..()
-	if(empty)
-		return
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/bruise_pack(src)
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/device/healthanalyzer(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
-	return
 
 /obj/item/weapon/storage/firstaid/toxin
 	name = "toxin first aid kit"
 	desc = "Used to treat when you have a high amount of toxins in your body."
-	icon_state = "antitoxin"
+	icon_state = "toxin"
 	item_state = "firstaid-toxin"
+	possible_icon_states = list("toxin", "toxin2", "toxin3", "toxin4")
 
 /obj/item/weapon/storage/firstaid/toxin/New()
 	..()
-	if(empty)
-		return
-
-	icon_state = pick("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3")
-
 	new /obj/item/weapon/reagent_containers/syringe/antitoxin(src)
 	new /obj/item/weapon/reagent_containers/syringe/antitoxin(src)
 	new /obj/item/weapon/reagent_containers/syringe/antitoxin(src)
@@ -78,18 +70,15 @@
 	new /obj/item/weapon/reagent_containers/pill/antitox(src)
 	new /obj/item/weapon/reagent_containers/pill/antitox(src)
 	new /obj/item/device/healthanalyzer(src)
-	return
 
 /obj/item/weapon/storage/firstaid/o2
 	name = "oxygen deprivation first aid kit"
 	desc = "A box full of oxygen goodies."
-	icon_state = "o2"
+	icon_state = "oxygen"
 	item_state = "firstaid-o2"
 
 /obj/item/weapon/storage/firstaid/o2/New()
 	..()
-	if(empty)
-		return
 	new /obj/item/weapon/reagent_containers/pill/dexalin(src)
 	new /obj/item/weapon/reagent_containers/pill/dexalin(src)
 	new /obj/item/weapon/reagent_containers/pill/dexalin(src)
@@ -97,18 +86,15 @@
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
 	new /obj/item/weapon/reagent_containers/syringe/inaprovaline(src)
 	new /obj/item/device/healthanalyzer(src)
-	return
 
 /obj/item/weapon/storage/firstaid/adv
 	name = "advanced first-aid kit"
 	desc = "Contains advanced medical treatments."
-	icon_state = "advfirstaid"
+	icon_state = "advanced"
 	item_state = "firstaid-advanced"
 
 /obj/item/weapon/storage/firstaid/adv/New()
 	..()
-	if(empty)
-		return
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
@@ -116,22 +102,17 @@
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/splint(src)
-	return
 
 // Added radiation first aid kit since there was an unused sprite for it. -Frenjo
 /obj/item/weapon/storage/firstaid/radiation
 	name = "radiation first aid kit"
 	desc = "Used to treat high amounts of radiation."
-	icon_state = "radfirstaid"
+	icon_state = "radiation"
 	item_state = "firstaid-radiation"
+	possible_icon_states = list("radiation", "radiation2", "radiation3")
 
 /obj/item/weapon/storage/firstaid/radiation/New()
 	..()
-	if(empty)
-		return
-
-	icon_state = pick("radfirstaid", "radfirstaid2","radfirstaid3")
-
 	new /obj/item/device/healthanalyzer(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector(src)
 	new /obj/item/weapon/reagent_containers/syringe/antitoxin(src)
@@ -139,20 +120,16 @@
 	new /obj/item/weapon/reagent_containers/pill/antitox(src)
 	new /obj/item/weapon/reagent_containers/pill/hyronalin(src)
 	new /obj/item/weapon/reagent_containers/pill/arithracaridine(src)
-	return
 
 // Added a purple first aid kit containing surgery stuff, and redid sprite. -Frenjo
 /obj/item/weapon/storage/firstaid/purple
 	name = "surgical first aid kit"
 	desc = "Used to carry around surgical tools with you, so it's not really a first aid kit."
-	icon_state = "purplefirstaid"
+	icon_state = "purple"
 	item_state = "firstaid-purple"
 
 /obj/item/weapon/storage/firstaid/purple/New()
 	..()
-	if(empty)
-		return
-
 	new /obj/item/weapon/scalpel(src)
 	new /obj/item/weapon/circular_saw(src)
 	new /obj/item/weapon/hemostat(src)
@@ -160,11 +137,11 @@
 	new /obj/item/weapon/bonesetter(src)
 	new /obj/item/weapon/bonegel(src)
 	new /obj/item/weapon/FixOVein(src)
-	return
 
 /*
  * Pill Bottles
  */
+
 /obj/item/weapon/storage/pill_bottle
 	name = "pill bottle"
 	desc = "It's an airtight container for storing medication."
@@ -234,15 +211,6 @@
 	new /obj/item/weapon/reagent_containers/pill/tramadol(src)
 	new /obj/item/weapon/reagent_containers/pill/tramadol(src)
 
-/obj/item/weapon/storage/pill_bottle/dice
-	name = "pack of dice"
-	desc = "It's a small container with dice inside."
-
-/obj/item/weapon/storage/pill_bottle/dice/New()
-	..()
-	new /obj/item/weapon/dice(src)
-	new /obj/item/weapon/dice/d20(src)
-
 // Added this to go with the radiation first aid kit. -Frenjo
 /obj/item/weapon/storage/pill_bottle/hyronalin
 	name = "Hyronalin pills"
@@ -272,3 +240,12 @@
 	new /obj/item/weapon/reagent_containers/pill/stokaline(src)
 	new /obj/item/weapon/reagent_containers/pill/stokaline(src)
 	new /obj/item/weapon/reagent_containers/pill/stokaline(src)
+
+/obj/item/weapon/storage/pill_bottle/dice
+	name = "pack of dice"
+	desc = "It's a small container with dice inside."
+
+/obj/item/weapon/storage/pill_bottle/dice/New()
+	..()
+	new /obj/item/weapon/dice(src)
+	new /obj/item/weapon/dice/d20(src)
