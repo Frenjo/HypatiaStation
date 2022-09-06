@@ -2,7 +2,9 @@
 	var/debug_file = file("maploader_debug.txt")
 	var/list/borked_paths = list()
 
-/dmm_suite/load_map(dmm_file as file, z_offset as num, y_offset as num, x_offset as num)
+// dmm_file: A .dmm file to load (Required).
+// z_offset: A number representing the z-level on which to start loading the map (Optional).
+/dmm_suite/proc/load_map(dmm_file as file, z_offset as num, y_offset as num, x_offset as num)
 	if(!z_offset)
 		z_offset = world.maxz + 1
 

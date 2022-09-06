@@ -21,8 +21,12 @@
 		"U","V","W","X","Y",
 		"Z"
 	)
-		
-/dmm_suite/save_map(turf/t1 as turf, turf/t2 as turf, map_name as text, flags as num)
+
+// t1: A turf representing one corner of a three dimensional grid (Required).
+// t2: Another turf representing the other corner of the same grid (Required).
+// map_name: A valid name for the map to be saved, such as "castle" (Required).
+// flags: Any, or a combination, of several bit flags (Optional, see documentation).
+/dmm_suite/proc/save_map(turf/t1 as turf, turf/t2 as turf, map_name as text, flags as num)
 	//Check for illegal characters in file name... in a cheap way.
 	if(!((ckeyEx(map_name) == map_name) && ckeyEx(map_name)))
 		CRASH("Invalid text supplied to proc save_map, invalid characters or empty string.")
@@ -38,7 +42,10 @@
 	saved_map << file_text
 	return saved_map
 
-/dmm_suite/write_map(turf/t1 as turf, turf/t2 as turf, flags as num)
+// t1: A turf representing one corner of a three dimensional grid (Required).
+// t2: Another turf representing the other corner of the same grid (Required).
+// flags: Any, or a combination, of several bit flags (Optional, see documentation).
+/dmm_suite/proc/write_map(turf/t1 as turf, turf/t2 as turf, flags as num)
 	//Check for valid turfs.
 	if(!isturf(t1) || !isturf(t2))
 		CRASH("Invalid arguments supplied to proc write_map, arguments were not turfs.")
