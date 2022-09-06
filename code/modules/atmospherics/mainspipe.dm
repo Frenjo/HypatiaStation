@@ -3,8 +3,8 @@
 
 // internal pipe, don't actually place or use these
 /obj/machinery/atmospherics/pipe/mains_component
-	var/obj/machinery/atmospherics/mains_pipe/parent_pipe
-	var/list/obj/machinery/atmospherics/pipe/mains_component/nodes = new()
+	var/obj/machinery/atmospherics/mains_pipe/parent_pipe = null
+	var/list/nodes = list()
 
 /obj/machinery/atmospherics/pipe/mains_component/New(loc)
 	..(loc)
@@ -12,9 +12,7 @@
 
 /obj/machinery/atmospherics/pipe/mains_component/check_pressure(pressure)
 	var/datum/gas_mixture/environment = loc.loc.return_air()
-
 	var/pressure_difference = pressure - environment.return_pressure()
-
 	if(pressure_difference > parent_pipe.maximum_pressure)
 		mains_burst()
 
@@ -40,16 +38,13 @@
 /obj/machinery/atmospherics/mains_pipe
 	icon = 'icons/obj/atmospherics/mainspipe.dmi'
 	layer = 2.4 //under wires with their 2.5
-
 	force = 20
 
 	var/volume = 0
 
-	var/alert_pressure = 80 * ONE_ATMOSPHERE
-
 	var/initialize_mains_directions = 0
 
-	var/list/obj/machinery/atmospherics/mains_pipe/nodes = new()
+	var/list/nodes = list()
 	var/obj/machinery/atmospherics/pipe/mains_component/supply
 	var/obj/machinery/atmospherics/pipe/mains_component/scrubbers
 	var/obj/machinery/atmospherics/pipe/mains_component/aux
@@ -59,18 +54,20 @@
 
 	var/maximum_pressure = 70 * ONE_ATMOSPHERE
 	var/fatigue_pressure = 55 * ONE_ATMOSPHERE
-	alert_pressure = 55 * ONE_ATMOSPHERE
+	var/alert_pressure = 55 * ONE_ATMOSPHERE
 
 /obj/machinery/atmospherics/mains_pipe/New()
 	..()
 
-	supply = new(src)
+	supply = new /obj/machinery/atmospherics/pipe/mains_component(src)
 	supply.volume = volume
 	supply.nodes.len = nodes.len
-	scrubbers = new(src)
+
+	scrubbers = new /obj/machinery/atmospherics/pipe/mains_component(src)
 	scrubbers.volume = volume
 	scrubbers.nodes.len = nodes.len
-	aux = new(src)
+
+	aux = new /obj/machinery/atmospherics/pipe/mains_component(src)
 	aux.volume = volume
 	aux.nodes.len = nodes.len
 
@@ -98,9 +95,7 @@
 
 /obj/machinery/atmospherics/mains_pipe/proc/check_pressure(pressure)
 	var/datum/gas_mixture/environment = loc.return_air()
-
 	var/pressure_difference = pressure - environment.return_pressure()
-
 	if(pressure_difference > maximum_pressure)
 		burst()
 
@@ -121,7 +116,6 @@
 /obj/machinery/atmospherics/mains_pipe/simple
 	name = "mains pipe"
 	desc = "A one meter section of 3-line mains pipe"
-
 	dir = SOUTH
 	initialize_mains_directions = SOUTH|NORTH
 
@@ -144,9 +138,9 @@
 
 /obj/machinery/atmospherics/mains_pipe/simple/initialize()
 	normalize_dir()
+
 	var/node1_dir
 	var/node2_dir
-
 	for(var/direction in cardinal)
 		if(direction&initialize_mains_directions)
 			if(!node1_dir)
@@ -203,7 +197,6 @@
 /obj/machinery/atmospherics/mains_pipe/manifold
 	name = "mains manifold pipe"
 	desc = "A manifold composed of mains pipes"
-
 	dir = SOUTH
 	initialize_mains_directions = EAST|NORTH|WEST
 	volume = 105
@@ -267,7 +260,6 @@
 /obj/machinery/atmospherics/mains_pipe/manifold4w
 	name = "mains 4-way manifold pipe"
 	desc = "A manifold composed of mains pipes"
-
 	dir = SOUTH
 	initialize_mains_directions = EAST|NORTH|WEST|SOUTH
 	volume = 105
@@ -330,13 +322,9 @@
 	initialize_directions = dir // actually have a normal connection too
 
 /obj/machinery/atmospherics/mains_pipe/split/initialize()
-	var/node1_dir
-	var/node2_dir
-	var/node3_dir
-
-	node1_dir = turn(dir, 90)
-	node2_dir = turn(dir, -90)
-	node3_dir = dir
+	var/node1_dir = turn(dir, 90)
+	var/node2_dir = turn(dir, -90)
+	var/node3_dir = dir
 
 	for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, node1_dir))
 		if(target.initialize_mains_directions & get_dir(target, src))
@@ -438,13 +426,11 @@
 	initialize_directions = cardinal & ~dir // actually have a normal connection too
 
 /obj/machinery/atmospherics/mains_pipe/split3/initialize()
-	var/node1_dir
+	var/node1_dir = dir
 	var/supply_node_dir
 	var/scrubbers_node_dir
-	var/aux_node_dir
+	var/aux_node_dir = turn(dir, 180)
 
-	node1_dir = dir
-	aux_node_dir = turn(dir, 180)
 	if(dir & (NORTH|SOUTH))
 		supply_node_dir = EAST
 		scrubbers_node_dir = WEST
@@ -497,9 +483,7 @@
 	icon_state = "split-t[invisibility ? "-f" : "" ]"
 
 /obj/machinery/atmospherics/mains_pipe/split3/return_network(obj/machinery/atmospherics/reference)
-	var/obj/machinery/atmospherics/A
-
-	A = supply_node.return_network(reference)
+	var/obj/machinery/atmospherics/A = supply_node.return_network(reference)
 	if(!A)
 		A = scrubbers_node.return_network(reference)
 	if(!A)
@@ -519,7 +503,6 @@
 /obj/machinery/atmospherics/mains_pipe/cap
 	name = "mains pipe cap"
 	desc = "A cap for the end of a mains pipe"
-
 	dir = SOUTH
 	initialize_directions = SOUTH
 	volume = 35
@@ -555,14 +538,12 @@
 
 /obj/machinery/atmospherics/mains_pipe/valve
 	icon_state = "mvalve0"
-
 	name = "mains shutoff valve"
 	desc = "A mains pipe valve"
-
-	var/open = 1
-
 	dir = SOUTH
 	initialize_mains_directions = SOUTH|NORTH
+
+	var/open = TRUE
 
 /obj/machinery/atmospherics/mains_pipe/valve/New()
 	nodes.len = 2
@@ -586,9 +567,9 @@
 
 /obj/machinery/atmospherics/mains_pipe/valve/initialize()
 	normalize_dir()
+
 	var/node1_dir
 	var/node2_dir
-
 	for(var/direction in cardinal)
 		if(direction & initialize_mains_directions)
 			if(!node1_dir)
@@ -618,20 +599,20 @@
 
 /obj/machinery/atmospherics/mains_pipe/valve/proc/open()
 	if(open)
-		return 0
+		return FALSE
 
-	open = 1
+	open = TRUE
 	update_icon()
 
 	initialize()
 
-	return 1
+	return TRUE
 
 /obj/machinery/atmospherics/mains_pipe/valve/proc/close()
 	if(!open)
-		return 0
+		return FALSE
 
-	open = 0
+	open = FALSE
 	update_icon()
 
 	for(var/obj/machinery/atmospherics/pipe/mains_component/node in src)
@@ -639,7 +620,7 @@
 			o.disconnect(node)
 			o.build_network()
 
-	return 1
+	return TRUE
 
 /obj/machinery/atmospherics/mains_pipe/valve/attack_ai(mob/user as mob)
 	return

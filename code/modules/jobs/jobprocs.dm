@@ -30,6 +30,7 @@
 	icon_state = "empty"
 	name = "invisible wall"
 	desc = "You have a bad feeling about this."
+
 	var/timeleft = 300
 	var/last_process = 0
 
@@ -56,9 +57,9 @@
 	var/mob/living/carbon/human/H = usr
 
 	if(H.miming)
-		H.miming = 0
+		H.miming = FALSE
 	else
 		to_chat(usr, "You'll have to wait if you want to atone for your sins.")
 		spawn(3000)
-			H.miming = 1
+			H.miming = TRUE
 	return

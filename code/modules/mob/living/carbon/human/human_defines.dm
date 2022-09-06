@@ -1,4 +1,8 @@
 /mob/living/carbon/human
+	mob_bump_flag = HUMAN
+	mob_push_flags = ALLMOBS
+	mob_swap_flags = ALLMOBS
+
 	//Hair colour and style
 	var/r_hair = 0
 	var/g_hair = 0
@@ -60,7 +64,7 @@
 
 	var/speech_problem_flag = 0
 
-	var/miming = null //Toggle for the mime's abilities.
+	var/miming = FALSE //Toggle for the mime's abilities.
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 
 	var/failed_last_breath = 0 //This is used to determine if the mob failed a breath. If they did fail a brath, they will attempt to breathe each tick, otherwise just once per 4 ticks.
@@ -72,7 +76,3 @@
 
 	var/mob/remoteview_target = null
 	var/hand_blood_color
-
-	mob_bump_flag = HUMAN
-	mob_push_flags = ALLMOBS
-	mob_swap_flags = ALLMOBS

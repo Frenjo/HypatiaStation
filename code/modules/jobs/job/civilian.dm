@@ -191,7 +191,7 @@
 	H.verbs += /client/proc/mimewall
 	H.mind.special_verbs += /client/proc/mimespeak
 	H.mind.special_verbs += /client/proc/mimewall
-	H.miming = 1
+	H.miming = TRUE
 
 	return 1
 

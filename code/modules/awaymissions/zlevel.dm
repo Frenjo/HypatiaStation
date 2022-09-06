@@ -2,12 +2,14 @@
 	if(global.awaydestinations.len)	//crude, but it saves another var!
 		return
 
-	var/list/potentialRandomZlevels = list()
+	var/list/possible_z_levels = list()
 	to_world(SPAN_DANGER("Searching for away missions..."))
-	var/list/Lines = file2list("maps/RandomZLevels/fileList.txt")
-	if(!Lines.len)
+
+	var/list/mission_list = file2list("maps/RandomZLevels/fileList.txt")
+	if(!mission_list.len)
 		return
-	for(var/t in Lines)
+
+	for(var/t in mission_list)
 		if(!t)
 			continue
 
@@ -31,13 +33,12 @@
 
 		if(!name)
 			continue
+		possible_z_levels.Add(name)
 
-		potentialRandomZlevels.Add(name)
-
-	if(potentialRandomZlevels.len)
+	if(possible_z_levels.len)
 		to_world(SPAN_DANGER("Loading away mission..."))
 
-		var/map = pick(potentialRandomZlevels)
+		var/map = pick(possible_z_levels)
 		var/file = file(map)
 		if(isfile(file))
 			global.maploader.load_map(file)

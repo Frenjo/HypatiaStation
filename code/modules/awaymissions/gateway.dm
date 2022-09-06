@@ -5,7 +5,8 @@
 	icon_state = "off"
 	density = TRUE
 	anchored = TRUE
-	var/active = 0
+
+	var/active = FALSE
 
 /obj/machinery/gateway/initialize()
 	update_icon()
@@ -23,17 +24,17 @@
 /obj/machinery/gateway/centerstation
 	density = TRUE
 	icon_state = "offcenter"
-	use_power = 1
+	use_power = TRUE
 
 	//warping vars
 	var/list/linked = list()
-	var/ready = 0				//have we got all the parts for a gateway?
+	var/ready = FALSE			//have we got all the parts for a gateway?
 	var/wait = 0				//this just grabs world.time at world start
 	var/obj/machinery/gateway/centeraway/awaygate = null
 
 /obj/machinery/gateway/centerstation/initialize()
 	update_icon()
-	wait = world.time + config.gateway_delay	//+ thirty minutes default
+	wait = world.time + global.config.gateway_delay	//+ thirty minutes default
 	awaygate = locate(/obj/machinery/gateway/centeraway)
 
 /obj/machinery/gateway/centerstation/update_icon()
@@ -44,7 +45,8 @@
 
 /obj/machinery/gateway/centerstation/process()
 	if(stat & (NOPOWER))
-		if(active) toggleoff()
+		if(active)
+			toggleoff()
 		return
 
 	if(active)
@@ -62,12 +64,12 @@
 			continue
 
 		//this is only done if we fail to find a part
-		ready = 0
+		ready = FALSE
 		toggleoff()
 		break
 
 	if(linked.len == 8)
-		ready = 1
+		ready = TRUE
 
 /obj/machinery/gateway/centerstation/proc/toggleon(mob/user as mob)
 	if(!ready)
@@ -84,16 +86,16 @@
 		return
 
 	for(var/obj/machinery/gateway/G in linked)
-		G.active = 1
+		G.active = TRUE
 		G.update_icon()
-	active = 1
+	active = TRUE
 	update_icon()
 
 /obj/machinery/gateway/centerstation/proc/toggleoff()
 	for(var/obj/machinery/gateway/G in linked)
-		G.active = 0
+		G.active = FALSE
 		G.update_icon()
-	active = 0
+	active = FALSE
 	update_icon()
 
 /obj/machinery/gateway/centerstation/attack_hand(mob/user as mob)
@@ -135,10 +137,11 @@
 /obj/machinery/gateway/centeraway
 	density = TRUE
 	icon_state = "offcenter"
-	use_power = 0
-	var/calibrated = 1
+	use_power = FALSE
+
+	var/calibrated = TRUE
 	var/list/linked = list()	//a list of the connected gateway chunks
-	var/ready = 0
+	var/ready = FALSE
 	var/obj/machinery/gateway/centeraway/stationgate = null
 
 /obj/machinery/gateway/centeraway/initialize()
@@ -163,12 +166,12 @@
 			continue
 
 		//this is only done if we fail to find a part
-		ready = 0
+		ready = FALSE
 		toggleoff()
 		break
 
 	if(linked.len == 8)
-		ready = 1
+		ready = TRUE
 
 /obj/machinery/gateway/centeraway/proc/toggleon(mob/user as mob)
 	if(!ready)
@@ -180,16 +183,16 @@
 		return
 
 	for(var/obj/machinery/gateway/G in linked)
-		G.active = 1
+		G.active = TRUE
 		G.update_icon()
-	active = 1
+	active = TRUE
 	update_icon()
 
 /obj/machinery/gateway/centeraway/proc/toggleoff()
 	for(var/obj/machinery/gateway/G in linked)
-		G.active = 0
+		G.active = FALSE
 		G.update_icon()
-	active = 0
+	active = FALSE
 	update_icon()
 
 /obj/machinery/gateway/centeraway/attack_hand(mob/user as mob)
@@ -222,5 +225,5 @@
 			return
 		else
 			to_chat(user, "\blue <b>Recalibration successful!</b>: \black This gate's systems have been fine tuned. Travel to this gate will now be on target.")
-			calibrated = 1
+			calibrated = TRUE
 			return

@@ -8,7 +8,7 @@
 	supervisors = "NanoTrasen Officials and Space Law"
 	selection_color = "#ccccff"
 	idtype = /obj/item/weapon/card/id/gold
-	req_admin_notify = 1
+	req_admin_notify = TRUE
 	access = list() 			//See get_access()
 	minimal_access = list() 	//See get_access()
 	minimal_player_age = 14
@@ -65,7 +65,7 @@
 	supervisors = "the Captain"
 	selection_color = "#ddddff"
 	idtype = /obj/item/weapon/card/id/silver
-	req_admin_notify = 1
+	req_admin_notify = TRUE
 	minimal_player_age = 10
 	access = list(
 		ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_FORENSICS_LOCKERS,

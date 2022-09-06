@@ -731,7 +731,7 @@
 		var/obj/item/weedkiller/myWKiller = O
 		user.u_equip(O)
 		toxic += myWKiller.toxicity
-		weedlevel -= myWKiller.WeedKillStr
+		weedlevel -= myWKiller.strength
 		if(weedlevel < 0) // Make sure it won't go overoboard
 			weedlevel = 0
 		if(toxic > 100) // Make sure it won't go overoboard
@@ -753,7 +753,7 @@
 		var/obj/item/pestkiller/myPKiller = O
 		user.u_equip(O)
 		toxic += myPKiller.toxicity
-		pestlevel -= myPKiller.PestKillStr
+		pestlevel -= myPKiller.strength
 		if(pestlevel < 0) // Make sure it won't go overoboard
 			pestlevel = 0
 		if(toxic > 100) // Make sure it won't go overoboard

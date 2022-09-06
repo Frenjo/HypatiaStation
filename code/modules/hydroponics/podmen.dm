@@ -19,10 +19,12 @@ Growing it to term with nothing injected will grab a ghost from the observers. *
 	potency = 30
 	plant_type = 0
 	growthstages = 6
+	gender = MALE
+
 	var/ckey = null
 	var/realName = null
 	var/mob/living/carbon/human/source //Donor of blood, if any.
-	gender = MALE
+
 	var/obj/machinery/hydroponics/parent = null
 	var/found_player = 0
 

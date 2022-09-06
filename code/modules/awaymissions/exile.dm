@@ -4,10 +4,9 @@
 	name = "implanter-exile"
 
 /obj/item/weapon/implanter/exile/New()
-	src.imp = new /obj/item/weapon/implant/exile(src)
 	..()
+	src.imp = new /obj/item/weapon/implant/exile(src)
 	update()
-	return
 
 
 /obj/item/weapon/implant/exile
@@ -29,9 +28,8 @@
 	icon_state = "implantcase-r"
 
 /obj/item/weapon/implantcase/exile/New()
-	src.imp = new /obj/item/weapon/implant/exile(src)
 	..()
-	return
+	src.imp = new /obj/item/weapon/implant/exile(src)
 
 
 /obj/structure/closet/secure_closet/exile

@@ -7,7 +7,7 @@
 	spawn_positions = 1
 	selection_color = "#ccffcc"
 	supervisors = "your laws"
-	req_admin_notify = 1
+	req_admin_notify = TRUE
 	minimal_player_age = 7
 
 /datum/job/ai/equip(mob/living/carbon/human/H)

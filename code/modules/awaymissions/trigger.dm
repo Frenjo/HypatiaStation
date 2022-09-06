@@ -1,6 +1,6 @@
 /obj/effect/step_trigger/message
 	var/message	//the message to give to the mob
-	var/once = 1
+	var/once = TRUE
 
 /obj/effect/step_trigger/message/Trigger(mob/M as mob)
 	if(M.client)
@@ -12,10 +12,10 @@
 	var/locationx
 	var/locationy
 	var/uses = 1	//0 for infinite uses
-	var/entersparks = 0
-	var/exitsparks = 0
-	var/entersmoke = 0
-	var/exitsmoke = 0
+	var/entersparks = FALSE
+	var/exitsparks = FALSE
+	var/entersmoke = FALSE
+	var/exitsmoke = FALSE
 
 /obj/effect/step_trigger/teleport_fancy/Trigger(mob/M as mob)
 	var/dest = locate(locationx, locationy, z)

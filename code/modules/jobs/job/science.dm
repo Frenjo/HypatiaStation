@@ -8,7 +8,7 @@
 	supervisors = "the Captain"
 	selection_color = "#ffddff"
 	idtype = /obj/item/weapon/card/id/silver
-	req_admin_notify = 1
+	req_admin_notify = TRUE
 	access = list(
 		ACCESS_RD, ACCESS_HEADS, ACCESS_TOX, ACCESS_GENETICS, ACCESS_MORGUE,
 		ACCESS_TOX_STORAGE, ACCESS_TELEPORTER, ACCESS_SEC_DOORS,

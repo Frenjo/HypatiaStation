@@ -1,14 +1,14 @@
-
 /obj/machinery/artillerycontrol
-	var/reload = 180
 	name = "bluespace artillery control"
 	icon_state = "control_boxp1"
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
 	density = TRUE
 	anchored = TRUE
 
+	var/reload = 180 // This seems to be measured in machinery process ticks but I'm not sure? -Frenjo
+
 /obj/machinery/artillerycontrol/process()
-	if(src.reload < 180)
+	if(src.reload < initial(reload))
 		src.reload++
 
 /obj/machinery/artillerycontrol/attack_hand(mob/user as mob)
@@ -20,7 +20,6 @@
 	dat += "Deployment of weapon authorized by <br>NanoTrasen Naval Command<br><br>Remember, friendly fire is grounds for termination of your contract and life.<HR>"
 	user << browse(dat, "window=scroll")
 	onclose(user, "scroll")
-	return
 
 /obj/machinery/artillerycontrol/Topic(href, href_list)
 	..()
@@ -32,7 +31,7 @@
 		var/area/thearea = teleportlocs[A]
 		if(usr.stat || usr.restrained())
 			return
-		if(src.reload < 180)
+		if(src.reload < initial(reload))
 			return
 
 		if((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc))) || (issilicon(usr)))

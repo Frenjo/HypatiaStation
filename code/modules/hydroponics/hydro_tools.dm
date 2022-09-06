@@ -93,8 +93,9 @@
 	w_class = 2.0
 	throw_speed = 2
 	throw_range = 10
+
 	var/toxicity = 4
-	var/WeedKillStr = 2
+	var/strength = 2
 
 /obj/item/weapon/weedspray/suicide_act(mob/user)
 	viewers(user) << "\red <b>[user] is huffing the [src.name]! It looks like \he's trying to commit suicide.</b>"
@@ -115,8 +116,9 @@
 	w_class = 2.0
 	throw_speed = 2
 	throw_range = 10
+
 	var/toxicity = 4
-	var/PestKillStr = 2
+	var/strength = 2
 
 /obj/item/weapon/pestspray/suicide_act(mob/user)
 	viewers(user) << "\red <b>[user] is huffing the [src.name]! It looks like \he's trying to commit suicide.</b>"
@@ -130,8 +132,9 @@
 	name = "bottle of pestkiller"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
+
 	var/toxicity = 0
-	var/PestKillStr = 0
+	var/strength = 0
 
 /obj/item/pestkiller/New()
 	src.pixel_x = rand(-5.0, 5)
@@ -143,11 +146,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 	toxicity = 4
-	PestKillStr = 2
-
-/obj/item/pestkiller/carbaryl/New()
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
+	strength = 2
 
 // Lindane
 /obj/item/pestkiller/lindane
@@ -155,11 +154,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle18"
 	toxicity = 6
-	PestKillStr = 4
-
-/obj/item/pestkiller/lindane/New()
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
+	strength = 4
 
 // Phosmet
 /obj/item/pestkiller/phosmet
@@ -167,11 +162,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle15"
 	toxicity = 8
-	PestKillStr = 7
-
-/obj/item/pestkiller/phosmet/New()
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
+	strength = 7
 
 /*
  * Weedkiller
@@ -181,8 +172,9 @@
 	name = "bottle of weedkiller"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
+
 	var/toxicity = 0
-	var/WeedKillStr = 0
+	var/strength = 0
 
 // Triclopyr
 /obj/item/weedkiller/triclopyr
@@ -190,7 +182,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 	toxicity = 4
-	WeedKillStr = 2
+	strength = 2
 
 // Lindane
 /obj/item/weedkiller/lindane
@@ -198,7 +190,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle18"
 	toxicity = 6
-	WeedKillStr = 4
+	strength = 4
 
 // D24
 /obj/item/weedkiller/D24
@@ -206,7 +198,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle15"
 	toxicity = 8
-	WeedKillStr = 7
+	strength = 7
 
 /*
  * Nutrient
@@ -217,6 +209,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 	w_class = 1.0
+
 	var/mutmod = 0
 	var/yieldmod = 0
 
@@ -231,10 +224,6 @@
 	icon_state = "bottle16"
 	mutmod = 1
 	yieldmod = 1
-	
-/obj/item/nutrient/ez/New()
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
 
 // Left 4 Zed
 /obj/item/nutrient/l4z
@@ -243,10 +232,6 @@
 	icon_state = "bottle18"
 	mutmod = 2
 	yieldmod = 0
-	
-/obj/item/nutrient/l4z/New()
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
 
 // Robust Harvest
 /obj/item/nutrient/rh
@@ -255,10 +240,6 @@
 	icon_state = "bottle15"
 	mutmod = 0
 	yieldmod = 2
-	
-/obj/item/nutrient/rh/New()
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
 
 /*
  * Banana Peel

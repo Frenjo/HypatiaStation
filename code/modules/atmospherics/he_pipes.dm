@@ -20,11 +20,10 @@
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/initialize()
 	color = "#404040" //we don't make use of the fancy overlay system for colours, use this to set the default.
-
 	normalize_dir()
+
 	var/node1_dir
 	var/node2_dir
-
 	for(var/direction in cardinal)
 		if(direction&initialize_directions_he)
 			if(!node1_dir)
