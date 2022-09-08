@@ -107,12 +107,6 @@
 	var/static/disable_player_mice = FALSE
 	var/static/uneducated_mice = FALSE				//Set to 1 to prevent newly-spawned mice from understanding human speech
 
-	// Levels.
-	var/static/list/station_levels = list(1)			// Defines which Z-levels the station exists on.
-	var/static/list/admin_levels = list(2)				// Defines which Z-levels which are for admin functionality, for example including such areas as Central Command and the Syndicate Shuttle
-	var/static/list/contact_levels = list(1, 5)			// Defines which Z-levels which, for example, a Code Red announcement may affect
-	var/static/list/player_levels = list(1, 3, 4, 5, 6)	// Defines all Z-levels a character can typically reach
-
 	// Alert level descriptions.
 	var/static/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
 	var/static/alert_desc_yellow_upto = "There is a security alert in progress. Security staff may have weapons visible, however privacy laws remain fully enforced."
@@ -417,16 +411,6 @@
 				disable_player_mice = TRUE
 			if("uneducated_mice")
 				uneducated_mice = TRUE
-
-			// Levels.
-			if("station_levels")
-				station_levels = text2numlist(value, ";")
-			if("admin_levels")
-				admin_levels = text2numlist(value, ";")
-			if("contact_levels")
-				contact_levels = text2numlist(value, ";")
-			if("player_levels")
-				player_levels = text2numlist(value, ";")
 			
 			// Alert level descriptions.
 			if("alert_green")

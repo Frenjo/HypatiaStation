@@ -44,25 +44,25 @@
 	return heard
 
 /proc/isStationLevel(level)
-	return level in global.config.station_levels
+	return level in global.current_map.station_levels
 
 /proc/isNotStationLevel(level)
 	return !isStationLevel(level)
 
 /proc/isPlayerLevel(level)
-	return level in global.config.player_levels
+	return level in global.current_map.player_levels
 
 /proc/isNotPlayerLevel(level)
 	return !isPlayerLevel(level)
 
 /proc/isAdminLevel(level)
-	return level in global.config.admin_levels
+	return level in global.current_map.admin_levels
 
 /proc/isNotAdminLevel(level)
 	return !isAdminLevel(level)
 
 /proc/isContactLevel(level)
-	return level in global.config.contact_levels
+	return level in global.current_map.contact_levels
 
 /proc/isNotContactLevel(level)
 	return !isContactLevel(level)

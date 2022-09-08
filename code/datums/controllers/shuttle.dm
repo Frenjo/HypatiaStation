@@ -229,8 +229,8 @@
 		)
 
 	vox_shuttle.announcer = "NSV Icarus"
-	vox_shuttle.arrival_message = "Attention [global.station_name], we just tracked a small target bypassing our defensive perimeter. Can't fire on it without hitting the station - you've got incoming visitors, like it or not."
-	vox_shuttle.departure_message = "Your guests are pulling away, [global.station_name] - moving too fast for us to draw a bead on them. Looks like they're heading out of the system at a rapid clip."
+	vox_shuttle.arrival_message = "Attention [global.current_map.station_name], we just tracked a small target bypassing our defensive perimeter. Can't fire on it without hitting the station - you've got incoming visitors, like it or not."
+	vox_shuttle.departure_message = "Your guests are pulling away, [global.current_map.station_name] - moving too fast for us to draw a bead on them. Looks like they're heading out of the system at a rapid clip."
 	vox_shuttle.interim = locate(/area/vox_station/transit)
 
 	vox_shuttle.warmup_time = 0
@@ -253,8 +253,8 @@
 		)
 
 	mercenary_shuttle.announcer = "NSV Icarus"
-	mercenary_shuttle.arrival_message = "Attention, [global.station_name], you have a large signature approaching the station - looks unarmed to surface scans. We're too far out to intercept - brace for visitors."
-	mercenary_shuttle.departure_message = "Your visitors are on their way out of the system, [global.station_name], burning delta-v like it's nothing. Good riddance."
+	mercenary_shuttle.arrival_message = "Attention, [global.current_map.station_name], you have a large signature approaching the station - looks unarmed to surface scans. We're too far out to intercept - brace for visitors."
+	mercenary_shuttle.departure_message = "Your visitors are on their way out of the system, [global.current_map.station_name], burning delta-v like it's nothing. Good riddance."
 	mercenary_shuttle.interim = locate(/area/syndicate_station/transit)
 
 	mercenary_shuttle.warmup_time = 0

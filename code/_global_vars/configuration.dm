@@ -4,7 +4,6 @@
 /var/global/diaryofmeanpeople = null
 /var/global/href_logfile = null
 
-/var/global/station_name = "NSS Hypatia"
 /var/global/game_version = "Hypatia"
 /var/global/changelog_hash = ""
 /var/global/game_year = (text2num(time2text(world.realtime, "YYYY")) + 544)

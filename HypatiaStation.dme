@@ -1585,10 +1585,6 @@
 #include "maps\RandomZLevels\spacebattle.dm"
 #include "maps\RandomZLevels\stationCollision.dm"
 #include "maps\RandomZLevels\wildwest.dm"
-#include "maps\tgstation2-hypatia\tgstation2-hypatia-1.dmm"
-#include "maps\tgstation2-hypatia\tgstation2-hypatia-2.dmm"
-#include "maps\tgstation2-hypatia\tgstation2-hypatia-3.dmm"
-#include "maps\tgstation2-hypatia\tgstation2-hypatia-4.dmm"
-#include "maps\tgstation2-hypatia\tgstation2-hypatia-5.dmm"
-#include "maps\tgstation2-hypatia\tgstation2-hypatia-6.dmm"
+#include "maps\tgstation2-hypatia\_hypatia.dm"
+#include "maps\~datum\map.dm"
 // END_INCLUDE

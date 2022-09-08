@@ -396,7 +396,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 		if(1)
 			directive += "The Spider Clan must not be linked to this operation. Remain hidden and covert when possible."
 		if(2)
-			directive += "[global.station_name] is financed by an enemy of the Spider Clan. Cause as much structural damage as desired."
+			directive += "[global.current_map.station_name] is financed by an enemy of the Spider Clan. Cause as much structural damage as desired."
 		if(3)
 			directive += "A wealthy animal rights activist has made a request we cannot refuse. Prioritize saving animal lives whenever possible."
 		if(4)
@@ -404,7 +404,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 		if(5)
 			directive += "We are currently negotiating with NanoTrasen Central Command. Prioritize saving human lives over ending them."
 		if(6)
-			directive += "We are engaged in a legal dispute over [global.station_name]. If a laywer is present on board, force their cooperation in the matter."
+			directive += "We are engaged in a legal dispute over [global.current_map.station_name]. If a laywer is present on board, force their cooperation in the matter."
 		if(7)
 			directive += "A financial backer has made an offer we cannot refuse. Implicate Syndicate involvement in the operation."
 		if(8)
