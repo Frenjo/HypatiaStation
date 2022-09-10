@@ -1082,7 +1082,7 @@
 			M.u_equip(I)
 			if(I)
 				I.loc = locker
-				I.layer = initial(I.layer)
+				I.reset_plane_and_layer()
 				I.dropped(M)
 		M.update_icons()
 
@@ -1119,7 +1119,7 @@
 			M.u_equip(I)
 			if(I)
 				I.loc = M.loc
-				I.layer = initial(I.layer)
+				I.reset_plane_and_layer()
 				I.dropped(M)
 
 		M.Paralyse(5)
@@ -1148,7 +1148,7 @@
 			M.u_equip(I)
 			if(I)
 				I.loc = M.loc
-				I.layer = initial(I.layer)
+				I.reset_plane_and_layer()
 				I.dropped(M)
 
 		M.Paralyse(5)
@@ -1199,7 +1199,7 @@
 			M.u_equip(I)
 			if(I)
 				I.loc = M.loc
-				I.layer = initial(I.layer)
+				I.reset_plane_and_layer()
 				I.dropped(M)
 
 		if(istype(M, /mob/living/carbon/human))
@@ -1921,7 +1921,7 @@
 							if (W)
 								W.loc = H.loc
 								W.dropped(H)
-								W.layer = initial(W.layer)
+								W.reset_plane_and_layer()
 						//teleport person to cell
 						H.loc = pick(prisonwarp)
 						H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), slot_w_uniform)

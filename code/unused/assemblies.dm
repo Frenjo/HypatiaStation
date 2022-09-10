@@ -220,7 +220,7 @@
 		W.loc = R
 		R.part1 = W
 		R.part2 = W
-		W.layer = initial(W.layer)
+		W.reset_plane_and_layer()
 		if (user.client)
 			user.client.screen -= W
 		if (user.r_hand == W)
@@ -231,7 +231,7 @@
 			user.l_hand = R
 		W.master = R
 		src.master = R
-		src.layer = initial(src.layer)
+		src.reset_plane_and_layer()
 		user.u_equip(src)
 		if (user.client)
 			user.client.screen -= src
@@ -247,7 +247,7 @@
 		var/obj/item/assembly/time_ignite/R = new /obj/item/assembly/time_ignite( user )
 		W.loc = R
 		R.part1 = W
-		W.layer = initial(W.layer)
+		W.reset_plane_and_layer()
 		if (user.client)
 			user.client.screen -= W
 		if (user.r_hand == W)
@@ -258,7 +258,7 @@
 			user.l_hand = R
 		W.master = R
 		src.master = R
-		src.layer = initial(src.layer)
+		src.reset_plane_and_layer()
 		user.u_equip(src)
 		if (user.client)
 			user.client.screen -= src

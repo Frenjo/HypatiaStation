@@ -74,8 +74,7 @@
 
 	icon = initial(base_type.icon)
 	icon_state = initial(base_type.icon_state)
-	plane = initial(base_type.plane)
-	layer = initial(base_type.layer)
+	copy_initial_plane_and_layer(base_type)
 
 /turf/simulated/shuttle/wall/corner/exterior/proc/reset_overlay()
 	if(corner_overlay)

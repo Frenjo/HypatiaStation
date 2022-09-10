@@ -311,7 +311,7 @@
 		if(ismob(new_location))
 			W.layer = 20
 		else
-			W.layer = initial(W.layer)
+			W.reset_plane_and_layer()
 		W.loc = new_location
 	else
 		W.loc = get_turf(src)

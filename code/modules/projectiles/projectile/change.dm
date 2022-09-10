@@ -32,7 +32,7 @@
 				if(istype(W, /obj/item/weapon/implant))	//TODO: Carn. give implants a dropped() or something
 					qdel(W)
 					continue
-				W.layer = initial(W.layer)
+				W.reset_plane_and_layer()
 				W.loc = M.loc
 				W.dropped(M)
 

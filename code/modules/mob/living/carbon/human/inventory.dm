@@ -190,7 +190,7 @@
 			W.loc = loc
 			W.dropped(src)
 			//if(W)
-				//W.layer = initial(W.layer)
+				//W.reset_plane_and_layer()
 	update_action_buttons()
 	return 1
 
@@ -660,7 +660,7 @@ It can still be worn/put on as normal.
 					o.status &= ~ORGAN_SPLINTED
 					if (W)
 						W.loc = target.loc
-						W.layer = initial(W.layer)
+						W.reset_plane_and_layer()
 						W.add_fingerprint(source)
 		if("CPR")
 			if ((target.health > config.health_threshold_dead && target.health < config.health_threshold_crit))
@@ -719,7 +719,7 @@ It can still be worn/put on as normal.
 				target.client.screen -= W
 			if (W)
 				W.loc = target.loc
-				W.layer = initial(W.layer)
+				W.reset_plane_and_layer()
 				W.dropped(target)
 			W.add_fingerprint(source)
 			if(slot_to_process == slot_l_store) //pockets! Needs to process the other one too. Snowflake code, wooo! It's not like anyone will rewrite this anytime soon. If I'm wrong then... CONGRATULATIONS! ;)

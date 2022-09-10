@@ -23,7 +23,7 @@ LINEN BINS
 	if(layer == initial(layer))
 		layer = 5
 	else
-		layer = initial(layer)
+		reset_plane_and_layer()
 	add_fingerprint(user)
 	return
 

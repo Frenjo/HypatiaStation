@@ -3,18 +3,13 @@
 	desc = "Why it no open!!!"
 	icon = 'icons/obj/doors/pod/poddoor_single.dmi'
 	icon_state = "pdoor1"
-	var/id = 1.0
+	layer = 3
+	open_layer = 3
+	closed_layer = 3.3
 	dir = 1
 	explosion_resistance = 25
-	layer = 3.0 // Sets layer to higher than most other things for mapping reasons, 3.0 is below windows (3.2) but above grilles (2.9).
 
-/obj/machinery/door/poddoor/New()
-	. = ..()
-	if(density)
-		layer = 3.3		//to override door.New() proc
-	else
-		layer = initial(layer)
-	return
+	var/id = 1.0
 
 /obj/machinery/door/poddoor/Bumped(atom/AM)
 	if(!density)
@@ -49,7 +44,7 @@
 	src.icon_state = "pdoor0"
 	src.set_opacity(0)
 	sleep(10)
-	layer = initial(layer)
+	reset_plane_and_layer()
 	src.density = FALSE
 	update_nearby_tiles()
 
@@ -64,7 +59,7 @@
 	if(src.operating)
 		return
 	src.operating = 1
-	layer = 3.3
+	layer = closed_layer
 	flick("pdoorc1", src)
 	src.icon_state = "pdoor1"
 	src.density = TRUE

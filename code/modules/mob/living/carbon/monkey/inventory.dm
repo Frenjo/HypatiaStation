@@ -87,7 +87,7 @@
 				if (W)
 					W.loc = target.loc
 					W.dropped(target)
-					W.layer = initial(W.layer)
+					W.reset_plane_and_layer()
 				W.add_fingerprint(source)
 			else
 				if (istype(item, /obj/item/clothing/mask))
@@ -104,7 +104,7 @@
 					target.client.screen -= W
 				if (W)
 					W.loc = target.loc
-					W.layer = initial(W.layer)
+					W.reset_plane_and_layer()
 					W.dropped(target)
 				W.add_fingerprint(source)
 			else
@@ -124,7 +124,7 @@
 					target.client.screen -= W
 				if (W)
 					W.loc = target.loc
-					W.layer = initial(W.layer)
+					W.reset_plane_and_layer()
 					W.dropped(target)
 				W.add_fingerprint(source)
 			else
@@ -145,7 +145,7 @@
 				if (W)
 					W.loc = target.loc
 					W.dropped(target)
-					W.layer = initial(W.layer)
+					W.reset_plane_and_layer()
 				W.add_fingerprint(source)
 			else
 				if ((istype(item, /obj/item) && item.slot_flags & SLOT_BACK ))
@@ -163,7 +163,7 @@
 				if (W)
 					W.loc = target.loc
 					W.dropped(target)
-					W.layer = initial(W.layer)
+					W.reset_plane_and_layer()
 				W.add_fingerprint(source)
 			else
 				if (istype(item, /obj/item/weapon/handcuffs))

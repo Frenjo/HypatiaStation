@@ -327,7 +327,7 @@
 		if(W)
 			W.loc = C.loc
 			W.dropped(C)
-			W.layer = initial(W.layer)
+			W.reset_plane_and_layer()
 
 	var/mob/living/carbon/human/O = new /mob/living/carbon/human(src)
 	if(C.dna.GetUIState(DNA_UI_GENDER))

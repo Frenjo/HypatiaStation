@@ -389,7 +389,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 				var/obj/item/device/uplink/radio/R = src
 				R.loc = T
 				T.loc = usr
-				// R.layer = initial(R.layer)
+				// R.reset_plane_and_layer()
 				R.layer = 0
 				if (usr.client)
 					usr.client.screen -= R
@@ -451,7 +451,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		var/mob/L = src.loc
 		R.loc = T
 		T.loc = L
-		// R.layer = initial(R.layer)
+		// R.reset_plane_and_layer()
 		R.layer = 0
 		if (istype(L))
 			if (L.client)

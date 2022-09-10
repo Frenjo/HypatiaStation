@@ -3,10 +3,10 @@
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
 	icon = 'icons/obj/doors/emergency/hazard.dmi'
 	icon_state = "door_open"
+	layer = 2
 	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_ENGINE_EQUIP)
 	opacity = FALSE
 	density = FALSE
-	layer = 3.5 // Sets layer to higher than most other things for mapping reasons.
 
 	//These are frequenly used with windows, so make sure zones can pass. 
 	//Generally if a firedoor is at a place where there should be a zone boundery then there will be a regular door underneath it.
@@ -20,7 +20,6 @@
 
 /obj/machinery/door/firedoor/New()
 	. = ..()
-	layer = 2.7 // Sets layer back to default for actual gameplay.
 	for(var/obj/machinery/door/firedoor/F in loc)
 		if(F != src)
 			spawn(1)

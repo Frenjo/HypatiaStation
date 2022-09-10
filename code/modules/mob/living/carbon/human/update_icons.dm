@@ -576,7 +576,7 @@ var/global/list/damage_icon_parts = list()
 				if(thing)																		//
 					thing.loc = loc																//
 					thing.dropped(src)															//
-					thing.layer = initial(thing.layer)
+					thing.reset_plane_and_layer()
 	if(update_icons)
 		update_icons()
 

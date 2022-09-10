@@ -29,7 +29,7 @@
 				W.loc = source.loc
 				dropped(source)
 				if(W)
-					W.layer = initial(W.layer)
+					W.reset_plane_and_layer()
 		if(source.legcuffed)
 			var/obj/item/weapon/W = source.legcuffed
 			source.legcuffed = null
@@ -40,7 +40,7 @@
 				W.loc = source.loc
 				dropped(source)
 				if(W)
-					W.layer = initial(W.layer)
+					W.reset_plane_and_layer()
 	return
 
 /obj/item/weapon/implant/freedom/implanted(mob/living/carbon/source)

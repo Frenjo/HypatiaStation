@@ -90,7 +90,7 @@
 		return 1
 	else
 		W.loc = get_turf(src)
-		W.layer = initial(W.layer)
+		W.reset_plane_and_layer()
 		W.dropped()
 		return 0
 
@@ -106,7 +106,7 @@
 		u_equip(W)
 		if(!(W && W.loc))
 			return 1 // self destroying objects (tk, grabs)
-		W.layer = initial(W.layer)
+		W.reset_plane_and_layer()
 		W.loc = loc
 
 		var/turf/T = get_turf(loc)
@@ -123,7 +123,7 @@
 	if(l_hand)
 		if(client)
 			client.screen -= l_hand
-		l_hand.layer = initial(l_hand.layer)
+		l_hand.reset_plane_and_layer()
 
 		if(Target)
 			l_hand.loc = Target.loc
@@ -145,7 +145,7 @@
 	if(r_hand)
 		if(client)
 			client.screen -= r_hand
-		r_hand.layer = initial(r_hand.layer)
+		r_hand.reset_plane_and_layer()
 
 		if(Target)
 			r_hand.loc = Target.loc
@@ -172,7 +172,7 @@
 //TODO: phase out this proc
 /mob/proc/before_take_item(obj/item/W)	//TODO: what is this?
 	W.loc = null
-	W.layer = initial(W.layer)
+	W.reset_plane_and_layer()
 	u_equip(W)
 	update_icons()
 	return
@@ -197,7 +197,7 @@
 	src.u_equip(O)
 	if(src.client)
 		src.client.screen -= O
-	O.layer = initial(O.layer)
+	O.reset_plane_and_layer()
 	O.screen_loc = null
 	return 1
 

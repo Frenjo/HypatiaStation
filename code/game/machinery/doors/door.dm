@@ -5,10 +5,13 @@
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/interior.dmi'
 	icon_state = "door1"
+	layer = 2.7
+	var/open_layer = 2.7
+	var/closed_layer = 3.1
+
 	anchored = TRUE
 	opacity = TRUE
 	density = TRUE
-	layer = 2.7
 
 	var/secondsElectrified = 0
 	var/visible = 1
@@ -29,11 +32,11 @@
 /obj/machinery/door/New()
 	..()
 	if(density)
-		layer = 3.1 //Above most items if closed
+		layer = closed_layer // Above most items if closed.
 		explosion_resistance = initial(explosion_resistance)
 		update_heat_protection(get_turf(src))
 	else
-		layer = 2.7 //Under all objects if opened. 2.7 due to tables being at 2.6
+		layer = open_layer // Under all objects if opened.
 		explosion_resistance = 0
 
 	if(width > 1)
@@ -216,7 +219,7 @@
 	src.set_opacity(0)
 	//sleep(10)
 	sleep(7) // Makes doors open slightly quicker. -Frenjo
-	src.layer = 2.7
+	src.layer = open_layer
 	src.density = FALSE
 	explosion_resistance = 0
 	update_icon()
@@ -245,7 +248,7 @@
 	do_animate("closing")
 	src.density = TRUE
 	explosion_resistance = initial(explosion_resistance)
-	src.layer = 3.1
+	src.layer = closed_layer
 	//sleep(10)
 	sleep(7) // Makes doors close slightly quicker. -Frenjo
 	update_icon()

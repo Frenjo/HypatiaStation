@@ -295,7 +295,7 @@
 	if(!item)
 		return //Grab processing has a chance of returning null
 
-	item.layer = initial(item.layer)
+	item.reset_plane_and_layer()
 	u_equip(item)
 	update_icons()
 
