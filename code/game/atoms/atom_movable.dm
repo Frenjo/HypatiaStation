@@ -1,6 +1,7 @@
 /atom/movable
 	layer = 3
 	glide_size = 4
+
 	var/last_move = null
 	var/anchored = FALSE
 	// var/elevation = 2    - not used anywhere
@@ -10,10 +11,10 @@
 	var/throwing = 0
 	var/throw_speed = 2
 	var/throw_range = 7
-	var/moved_recently = 0
+	var/moved_recently = FALSE
 	var/mob/pulledby = null
 
-	var/auto_init = 1
+	var/auto_init = TRUE
 
 /atom/movable/New()
 	..()
@@ -131,7 +132,7 @@
 	var/area/a = get_area(src.loc)
 	if(dist_x > dist_y)
 		var/error = dist_x / 2 - dist_y
-		while(src && target &&((((src.x < target.x && dx == EAST) || (src.x > target.x && dx == WEST)) && dist_travelled < range) || (a && a.has_gravity == 0)  || istype(src.loc, /turf/space)) && src.throwing && isturf(src.loc))
+		while(src && target &&((((src.x < target.x && dx == EAST) || (src.x > target.x && dx == WEST)) && dist_travelled < range) || (a && !a.has_gravity) || istype(src.loc, /turf/space)) && src.throwing && isturf(src.loc))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dy)
@@ -160,7 +161,7 @@
 			a = get_area(src.loc)
 	else
 		var/error = dist_y / 2 - dist_x
-		while(src && target &&((((src.y < target.y && dy == NORTH) || (src.y > target.y && dy == SOUTH)) && dist_travelled < range) || (a.has_gravity == 0)  || istype(src.loc, /turf/space)) && src.throwing && isturf(src.loc))
+		while(src && target &&((((src.y < target.y && dy == NORTH) || (src.y > target.y && dy == SOUTH)) && dist_travelled < range) || !a.has_gravity || istype(src.loc, /turf/space)) && src.throwing && isturf(src.loc))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dx)

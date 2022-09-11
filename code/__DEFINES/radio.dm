@@ -1,4 +1,42 @@
 /*
+### TODO: Update this comment to match the definitions below and figure out what changed. -Frenjo ###
+
+Frequency range: 1200 to 1600
+Radiochat range: 1441 to 1489 (most devices refuse to be tune to other frequency, even during mapmaking)
+
+Radio:
+1459 - standard radio chat
+1351 - Science
+1353 - Command
+1355 - Medical
+1357 - Engineering
+1359 - Security
+1441 - death squad
+1443 - Confession Intercom
+1347 - Cargo techs
+1349 - Mining
+
+Devices:
+1451 - tracking implant
+1457 - RSD default
+
+On the map:
+1311 for prison shuttle console (in fact, it is not used)
+1435 for status displays
+1437 for atmospherics/fire alerts
+1439 for engine components
+1439 for air pumps, air scrubbers, atmo control
+1441 for atmospherics - supply tanks
+1443 for atmospherics - distribution loop/mixed air tank
+1445 for bot nav beacons
+1447 for mulebot, secbot and ed209 control
+1449 for airlock controls, electropack, magnets
+1451 for toxin lab access
+1453 for engineering access
+1455 for AI access
+*/
+
+/*
 All frequencies in order:
 	RADIO_MINIMUM	- 120.0
 	SYNDICATE		- 121.3

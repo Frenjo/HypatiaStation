@@ -26,7 +26,7 @@
 		M.monkeyizing = 1
 		M.canmove = FALSE
 		M.icon = null
-		M.invisibility = 101
+		M.invisibility = INVISIBILITY_MAXIMUM
 		var/atom/movable/overlay/animation = new(M.loc)
 		animation.icon_state = "blank"
 		animation.icon = 'icons/mob/mob.dmi'
@@ -98,7 +98,7 @@
 		M.monkeyizing = 1
 		M.canmove = FALSE
 		M.icon = null
-		M.invisibility = 101
+		M.invisibility = INVISIBILITY_MAXIMUM
 		var/atom/movable/overlay/animation = new(M.loc)
 		animation.icon_state = "blank"
 		animation.icon = 'icons/mob/mob.dmi'

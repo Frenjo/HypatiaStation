@@ -2,4 +2,4 @@
 /area/awaymission/listeningpost
 	name = "\improper Listening Post"
 	icon_state = "away"
-	requires_power = 0
+	requires_power = FALSE

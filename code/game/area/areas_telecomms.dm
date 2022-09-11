@@ -65,8 +65,8 @@
 
 // Added these due to map editing. -Frenjo
 /area/tcommsat/solar
-	requires_power = 1
-	always_unpowered = 1
+	requires_power = TRUE
+	always_unpowered = TRUE
 
 /area/tcommsat/solar/port
 	name = "\improper Telecommunications Port Solar Array"

@@ -3,7 +3,7 @@
 /mob/new_player
 	universal_speak = TRUE
 
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 	density = FALSE
 	stat = DEAD

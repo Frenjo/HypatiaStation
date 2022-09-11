@@ -77,12 +77,12 @@
 			if(src:aiRestorePowerRoutine == 2)
 				src << "Alert cancelled. Power has been restored without our assistance."
 				src:aiRestorePowerRoutine = 0
-				src.blind.invisibility = 101 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
+				src.blind.invisibility = INVISIBILITY_MAXIMUM // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 				return
 			else if(src:aiRestorePowerRoutine == 3)
 				src << "Alert cancelled. Power has been restored."
 				src:aiRestorePowerRoutine = 0
-				src.blind.invisibility = 101 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
+				src.blind.invisibility = INVISIBILITY_MAXIMUM // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 				return
 		else
 
@@ -116,7 +116,7 @@
 							if(!istype(T, /turf/space))
 								src << "Alert cancelled. Power has been restored without our assistance."
 								src:aiRestorePowerRoutine = 0
-								src.blind.invisibility = 101 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
+								src.blind.invisibility = INVISIBILITY_MAXIMUM // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 								return
 						src << "Fault confirmed: missing external power. Shutting down main control system to save power."
 						sleep(20)
@@ -162,7 +162,7 @@
 									src << "Alert cancelled. Power has been restored without our assistance."
 									src:aiRestorePowerRoutine = 0
 									// Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
-									src.blind.invisibility = 101 //This, too, is a fix to issue 603
+									src.blind.invisibility = INVISIBILITY_MAXIMUM //This, too, is a fix to issue 603
 									return
 							switch(PRP)
 								if(1)

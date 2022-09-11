@@ -1288,11 +1288,11 @@ var/mob/dview/dview_mob = new
 	dview_mob.loc = null
 
 /mob/dview
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	density = FALSE
 
 	anchored = TRUE
-	simulated = 0
+	simulated = FALSE
 
 	see_in_dark = 1e6
 

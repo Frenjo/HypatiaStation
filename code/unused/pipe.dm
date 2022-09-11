@@ -339,7 +339,7 @@ var/linenums = 0
 		is += "-b"
 
 	if ((src.level == 1 && isturf(src.loc) && T.intact))
-		src.invisibility = 101
+		src.invisibility = INVISIBILITY_MAXIMUM
 		is += "-f"
 
 	else

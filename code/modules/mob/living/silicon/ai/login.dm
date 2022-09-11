@@ -1,4 +1,4 @@
-/mob/living/silicon/ai/Login()	//ThisIsDumb(TM) TODO: tidy this up ¬_¬ ~Carn
+/mob/living/silicon/ai/Login()	//ThisIsDumb(TM) TODO: tidy this up ï¿½_ï¿½ ~Carn
 	..()
 	for(var/obj/effect/rune/rune in world)
 		var/image/blood = image(loc = rune)
@@ -14,7 +14,7 @@
 	blind.icon_state = "black"
 	blind.name = " "
 	blind.screen_loc = "1,1 to 15,15"
-	blind.invisibility = 101 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
+	blind.invisibility = INVISIBILITY_MAXIMUM // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 	client.screen.Add( blind, flash )
 
 	if(stat != DEAD)

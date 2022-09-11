@@ -111,7 +111,7 @@
 							for(var/obj/item/W in T)
 								T.drop_from_inventory(W)
 							new /obj/effect/decal/remains/human(T.loc) //Spawns a skeleton
-							T.invisibility = 101
+							T.invisibility = INVISIBILITY_MAXIMUM
 							var/atom/movable/overlay/animation = new /atom/movable/overlay(T.loc)
 							animation.icon_state = "blank"
 							animation.icon = 'icons/mob/mob.dmi'

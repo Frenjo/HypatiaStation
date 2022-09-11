@@ -13,7 +13,7 @@
 				O.show_message("<b>The [name]</b> seizes up and falls limp...", 1) //ded -- Urist
 
 	update_canmove()
-	if(blind)	blind.invisibility = 101 //blind.layer = 0
+	if(blind)	blind.invisibility = INVISIBILITY_MAXIMUM //blind.layer = 0
 
 	ticker.mode.check_win()
 

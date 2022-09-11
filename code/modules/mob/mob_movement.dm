@@ -221,7 +221,7 @@
 	if(!mob.lastarea)
 		mob.lastarea = get_area(mob.loc)
 
-	if(istype(mob.loc, /turf/space) || mob.lastarea.has_gravity == 0)
+	if(istype(mob.loc, /turf/space) || !mob.lastarea.has_gravity)
 		if(!mob.Process_Spacemove(0))
 			return 0
 
@@ -400,12 +400,12 @@
 			continue
 
 		if(ishuman(src))	// Only humans can wear magboots, so we give them a chance to.
-			if(istype(turf, /turf/simulated/floor) && src.lastarea.has_gravity == 0 && !(istype(src:shoes, /obj/item/clothing/shoes/magboots) && (src:shoes:flags & NOSLIP)))
+			if(istype(turf, /turf/simulated/floor) && !src.lastarea.has_gravity && !(istype(src:shoes, /obj/item/clothing/shoes/magboots) && (src:shoes:flags & NOSLIP)))
 				continue
 
 
 		else
-			if(istype(turf, /turf/simulated/floor) && src.lastarea.has_gravity == 0) // No one else gets a chance.
+			if(istype(turf, /turf/simulated/floor) && !src.lastarea.has_gravity) // No one else gets a chance.
 				continue
 
 

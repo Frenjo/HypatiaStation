@@ -134,7 +134,7 @@
 			for(var/mob/M in A)
 				M.bullet_act(src, def_zone)
 		density = FALSE
-		invisibility = 101
+		invisibility = INVISIBILITY_MAXIMUM
 		qdel(src)
 	return 1
 
@@ -169,7 +169,7 @@
 	return
 
 /obj/item/projectile/test //Used to see if you can hit them.
-	invisibility = 101 //Nope!  Can't see me!
+	invisibility = INVISIBILITY_MAXIMUM //Nope!  Can't see me!
 	yo = null
 	xo = null
 	var/target = null

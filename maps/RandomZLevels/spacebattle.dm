@@ -2,7 +2,7 @@
 /area/awaymission/spacebattle
 	name = "\improper Space Battle"
 	icon_state = "away"
-	requires_power = 0
+	requires_power = FALSE
 
 /area/awaymission/spacebattle/cruiser
 	name = "\improper NanoTrasen Cruiser"

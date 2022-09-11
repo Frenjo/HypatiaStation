@@ -40,6 +40,6 @@
 	icon_state = "auxstorage"
 
 /area/storage/testroom
-	requires_power = 0
+	requires_power = FALSE
 	name = "\improper Test Room"
 	icon_state = "storage"

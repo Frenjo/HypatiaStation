@@ -17,7 +17,7 @@ var/list/beam_master = list()
 	flag = "laser"
 	eyeblur = 4
 	var/frequency = 1
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/item/projectile/energy/beam/process()
 	var/reference = "\ref[src]" //So we do not have to recalculate it a ton

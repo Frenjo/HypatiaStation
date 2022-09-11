@@ -4,7 +4,7 @@
 
 // Base
 /area/shuttle
-	requires_power = 0
+	requires_power = FALSE
 
 // Arrival
 /area/shuttle/arrival
@@ -151,12 +151,12 @@
 /area/shuttle/alien/base
 	icon_state = "shuttle"
 	name = "\improper Alien Shuttle Base"
-	requires_power = 1
+	requires_power = TRUE
 
 /area/shuttle/alien/mine
 	icon_state = "shuttle"
 	name = "\improper Alien Shuttle Mine"
-	requires_power = 1
+	requires_power = TRUE
 
 // Prison
 /area/shuttle/prison

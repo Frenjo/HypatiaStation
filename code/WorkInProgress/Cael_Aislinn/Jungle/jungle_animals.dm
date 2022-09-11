@@ -4,7 +4,7 @@
 	icon_state = "x3"
 	var/spawn_type
 	var/mob/living/spawned_animal
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/effect/landmark/animal_spawner/New()
 	if(!spawn_type)

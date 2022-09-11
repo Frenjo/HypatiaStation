@@ -6,7 +6,7 @@
 /area/prison/arrival_airlock
 	name = "\improper Prison Satellite Airlock"
 	icon_state = "green"
-	requires_power = 0
+	requires_power = FALSE
 
 /area/prison/control
 	name = "\improper Prison Satellite Security Checkpoint"
@@ -55,8 +55,8 @@
 /area/prison/solar
 	name = "\improper Prison Satellite Solar Array"
 	icon_state = "storage"
-	requires_power = 1
-	always_unpowered = 1
+	requires_power = TRUE
+	always_unpowered = TRUE
 
 /area/prison/podbay
 	name = "\improper Prison Satellite Podbay"

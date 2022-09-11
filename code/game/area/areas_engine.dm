@@ -10,7 +10,7 @@
 /area/engine/smes
 	name = "\improper Engineering SMES"
 	icon_state = "engine_smes"
-	requires_power = 0//This area only covers the batteries and they deal with their own power
+	requires_power = FALSE//This area only covers the batteries and they deal with their own power
 
 /area/engine/smes/supermatter
 	name = "\improper Supermatter Engine SMES"
@@ -58,7 +58,7 @@
 /area/engine/singularity_engine/space
 	name = "\improper Singularity Engine Space"
 	icon_state = "engine_sing"
-	requires_power = 0
+	requires_power = FALSE
 
 /area/engine/thermoelectric_engine
 	name = "\improper Thermoelectric Engine Room"
@@ -66,8 +66,8 @@
 
 //Solars
 /area/solar
-	requires_power = 1
-	always_unpowered = 1
+	requires_power = TRUE
+	always_unpowered = TRUE
 
 /area/solar/auxport
 	name = "\improper Fore Port Solar Array"

@@ -4,7 +4,7 @@
 	icon_state = "null"
 	luminosity = 1
 	dynamic_lighting = 0
-	requires_power = 0
+	requires_power = FALSE
 	var/sound/mysound = null
 
 /area/awaymission/beach/New()

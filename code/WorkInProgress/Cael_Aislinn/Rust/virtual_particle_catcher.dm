@@ -8,7 +8,7 @@
 	var/obj/effect/rust_em_field/parent
 	var/mysize = 0
 
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 /*/obj/effect/rust_particle_catcher/New()
 	for(var/obj/machinery/rust/em_field/field in range(6))
@@ -38,7 +38,7 @@
 		name = "collector [mysize] ON"
 	else
 		density = FALSE
-		//invisibility = 101
+		//invisibility = INVISIBILITY_MAXIMUM
 		name = "collector [mysize] OFF"
 
 /obj/effect/rust_particle_catcher/bullet_act(var/obj/item/projectile/Proj)

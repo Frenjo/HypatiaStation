@@ -29,7 +29,7 @@
 	if(!istype(loc, /turf/simulated/floor))
 		to_chat(usr, SPAN_WARNING("\The [src] cannot be placed on this spot."))
 		return
-	if(A.requires_power == 0 || istype(A, /area/space))
+	if(!A.requires_power || istype(A, /area/space))
 		to_chat(usr, SPAN_WARNING("\The [src] cannot be placed in this area."))
 		return
 

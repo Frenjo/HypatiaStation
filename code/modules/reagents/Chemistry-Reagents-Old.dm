@@ -344,7 +344,7 @@ datum
 					M.canmove = FALSE
 					M.icon = null
 					M.overlays.Cut()
-					M.invisibility = 101
+					M.invisibility = INVISIBILITY_MAXIMUM
 					for(var/obj/item/W in M)
 						if(istype(W, /obj/item/weapon/implant))	//TODO: Carn. give implants a dropped() or something
 							del(W)

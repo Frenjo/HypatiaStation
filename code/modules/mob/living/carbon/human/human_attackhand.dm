@@ -1,8 +1,4 @@
 /mob/living/carbon/human/attack_hand(mob/living/carbon/human/M as mob)
-	if(isturf(loc) && istype(loc.loc, /area/start))
-		to_chat(M, "No attacking people at spawn, you jackass.")
-		return
-
 	var/datum/organ/external/temp = M:organs_by_name["r_hand"]
 	if(M.hand)
 		temp = M:organs_by_name["l_hand"]

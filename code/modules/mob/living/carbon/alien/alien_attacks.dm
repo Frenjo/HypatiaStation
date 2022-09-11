@@ -34,10 +34,6 @@
 	if (!ticker)
 		M << "You cannot attack people before the game has started."
 		return
-
-	if (isturf(loc) && istype(loc.loc, /area/start))
-		M << "No attacking people at spawn, you jackass."
-		return
 	..()
 
 	switch(M.a_intent)
@@ -86,10 +82,6 @@
 /mob/living/carbon/alien/attack_hand(mob/living/carbon/human/M as mob)
 	if (!ticker)
 		M << "You cannot attack people before the game has started."
-		return
-
-	if (isturf(loc) && istype(loc.loc, /area/start))
-		M << "No attacking people at spawn, you jackass."
 		return
 
 	..()

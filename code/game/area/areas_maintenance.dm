@@ -61,7 +61,7 @@
 
 /area/maintenance/incinerator/space
 	name = "\improper Incinerator Space"
-	requires_power = 0
+	requires_power = FALSE
 
 /area/maintenance/disposal
 	name = "Waste Disposal"

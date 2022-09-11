@@ -478,7 +478,7 @@
 // contents will be items flushed by the disposal
 // this allows the gas flushed to be tracked
 /obj/structure/disposalholder
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	dir = 0
 
 	var/datum/gas_mixture/gas = null	// gas used to flush, will appear at exit point
@@ -792,7 +792,7 @@
 				var/obj/structure/disposalpipe/broken/P = new(src.loc)
 				P.set_dir(D)
 
-	src.invisibility = 101	// make invisible (since we won't delete the pipe immediately)
+	src.invisibility = INVISIBILITY_MAXIMUM	// make invisible (since we won't delete the pipe immediately)
 	var/obj/structure/disposalholder/H = locate() in src
 	if(H)
 		// holder was present

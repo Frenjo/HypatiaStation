@@ -712,7 +712,7 @@ ________________________________________________________________________________
 	if(s_initialized && affecting && affecting.client && isturf(affecting.loc))//If the host exists and they are playing, and their location is a turf.
 		if(!hologram)//If there is not already a hologram.
 			hologram = new(T)//Spawn a blank effect at the location.
-			hologram.invisibility = 101//So that it doesn't show up, ever. This also means one could attach a number of images to a single obj and display them differently to differnet people.
+			hologram.invisibility = INVISIBILITY_MAXIMUM//So that it doesn't show up, ever. This also means one could attach a number of images to a single obj and display them differently to differnet people.
 			hologram.anchored = TRUE//So it cannot be dragged by space wind and the like.
 			hologram.set_dir(get_dir(T, affecting.loc))
 			var/image/I = image(AI.holo_icon, hologram)//Attach an image to object.
@@ -1368,7 +1368,7 @@ It is possible to destroy the net by the occupant or someone else.
 		//No need to check for countdown here since while() broke, it's implicit that it finished.
 
 		density = FALSE//Make the net pass-through.
-		invisibility = 101//Make the net invisible so all the animations can play out.
+		invisibility = INVISIBILITY_MAXIMUM//Make the net invisible so all the animations can play out.
 		health = INFINITY//Make the net invincible so that an explosion/something else won't kill it while, spawn() is running.
 		for(var/obj/item/W in M)
 			if(istype(M,/mob/living/carbon/human))

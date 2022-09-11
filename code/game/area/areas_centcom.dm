@@ -2,7 +2,7 @@
 /area/centcom
 	name = "\improper Centcom"
 	icon_state = "centcom"
-	requires_power = 0
+	requires_power = FALSE
 	dynamic_lighting = 0
 
 /area/centcom/control
@@ -43,7 +43,7 @@
 /area/tdome
 	name = "\improper Thunderdome"
 	icon_state = "thunder"
-	requires_power = 0
+	requires_power = FALSE
 	dynamic_lighting = 0
 
 /area/tdome/tdome1

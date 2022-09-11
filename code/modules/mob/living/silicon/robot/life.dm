@@ -266,7 +266,7 @@
 		if(src.blinded)
 			src.blind.invisibility = 0 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 		else
-			src.blind.invisibility = 101 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
+			src.blind.invisibility = INVISIBILITY_MAXIMUM // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 			if(src.disabilities & NEARSIGHTED)
 				src.client.screen += global_hud.vimpaired
 

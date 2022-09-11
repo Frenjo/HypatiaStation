@@ -131,7 +131,7 @@
 						break
 					sleep(2)
 
-		if((istype(usr.loc, /turf/space)) || (usr.lastarea.has_gravity == 0))
+		if(istype(usr.loc, /turf/space) || !usr.lastarea.has_gravity)
 			user.inertia_dir = get_dir(target, user)
 			step(user, user.inertia_dir)
 	else

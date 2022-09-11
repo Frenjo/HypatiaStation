@@ -123,7 +123,7 @@
 		var/mob/mob = M
 		if(!mob.lastarea)
 			mob.lastarea = get_area(M.loc)
-		if(mob.lastarea.has_gravity == 0)
+		if(!mob.lastarea.has_gravity)
 			inertial_drift(M)
 
 	/*

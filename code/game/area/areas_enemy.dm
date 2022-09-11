@@ -2,7 +2,7 @@
 /area/syndicate_mothership
 	name = "\improper Syndicate Mothership"
 	icon_state = "syndie-ship"
-	requires_power = 0
+	requires_power = FALSE
 	dynamic_lighting = 0
 
 /area/syndicate_mothership/control
@@ -21,7 +21,7 @@
 /area/syndicate_station
 	name = "\improper Syndicate Station"
 	icon_state = "yellow"
-	requires_power = 0
+	requires_power = FALSE
 
 /area/syndicate_station/start
 	name = "\improper Syndicate Forward Operating Base"
@@ -68,36 +68,36 @@
 /area/wizard_station
 	name = "\improper Wizard's Den"
 	icon_state = "yellow"
-	requires_power = 0
+	requires_power = FALSE
 	dynamic_lighting = 0
 
 /area/vox_station/transit
 	name = "\improper Hyperspace"
 	icon_state = "shuttle"
-	requires_power = 0
+	requires_power = FALSE
 	base_turf = /turf/space/transit/north
 
 /area/vox_station/southwest_solars
 	name = "\improper Aft Port Solars"
 	icon_state = "southwest"
-	requires_power = 0
+	requires_power = FALSE
 
 /area/vox_station/northwest_solars
 	name = "\improper Fore Port Solars"
 	icon_state = "northwest"
-	requires_power = 0
+	requires_power = FALSE
 
 /area/vox_station/northeast_solars
 	name = "\improper Fore Starboard Solars"
 	icon_state = "northeast"
-	requires_power = 0
+	requires_power = FALSE
 
 /area/vox_station/southeast_solars
 	name = "\improper Aft Starboard Solars"
 	icon_state = "southeast"
-	requires_power = 0
+	requires_power = FALSE
 
 /area/vox_station/mining
 	name = "\improper Nearby mining asteroid"
 	icon_state = "north"
-	requires_power = 0
+	requires_power = FALSE

@@ -13,8 +13,8 @@
 		'sound/ambience/ambimine.ogg',
 		'sound/ambience/song_game.ogg'
 	)
-	requires_power = 1
-	always_unpowered = 1
+	requires_power = TRUE
+	always_unpowered = TRUE
 
 /area/mine/unexplored
 	name = "Mine"

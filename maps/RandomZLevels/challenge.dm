@@ -7,12 +7,12 @@
 /area/awaymission/challenge/main
 	name = "\improper Danger Room"
 	icon_state = "away1"
-	requires_power = 0
+	requires_power = FALSE
 
 /area/awaymission/challenge/end
 	name = "Administration"
 	icon_state = "away2"
-	requires_power = 0
+	requires_power = FALSE
 
 
 /obj/machinery/power/emitter/energycannon

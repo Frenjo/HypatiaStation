@@ -4,7 +4,7 @@
 	name = "bump-teleporter"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
-	invisibility = 101 		//nope, can't see this
+	invisibility = INVISIBILITY_MAXIMUM 		//nope, can't see this
 	anchored = TRUE
 	density = TRUE
 	opacity = FALSE

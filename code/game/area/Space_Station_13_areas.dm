@@ -3,8 +3,8 @@
 /area/space
 	name = "Space"
 	icon_state = "dark128"
-	requires_power = 1
-	always_unpowered = 1
+	requires_power = TRUE
+	always_unpowered = TRUE
 	dynamic_lighting = 1
 	power_light = 0
 	power_equip = 0
@@ -38,16 +38,8 @@
 /area/space/destructalert()
 	return
 
-// Starting/Menu
-/area/start				// will be unused once kurper gets his login interface patch done
-	name = "start area"
-	icon_state = "start"
-	requires_power = 0
-	dynamic_lighting = 0
-	has_gravity = 1
-
 /area/arrival
-	requires_power = 0
+	requires_power = FALSE
 
 /area/arrival/start
 	name = "\improper Arrival Area"
@@ -69,7 +61,7 @@
 	icon_state = "null"
 	luminosity = 1
 	dynamic_lighting = 0
-	requires_power = 0
+	requires_power = FALSE
 	var/sound/mysound = null
 
 /area/beach/New()

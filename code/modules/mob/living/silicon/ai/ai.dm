@@ -176,7 +176,7 @@ var/list/ai_verbs_default = list(
 	use_power = 2
 	power_channel = EQUIP
 	var/mob/living/silicon/ai/powered_ai = null
-	invisibility = 100
+	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/machinery/ai_powersupply/New(var/mob/living/silicon/ai/ai=null)
 	powered_ai = ai

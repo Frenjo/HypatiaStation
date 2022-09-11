@@ -490,7 +490,7 @@
 				if ((src.blinded))
 					src.blind.invisibility = 0
 				else
-					src.blind.invisibility = 101
+					src.blind.invisibility = INVISIBILITY_MAXIMUM
 
 					if (src.disabilities & 1)
 						src.client.screen += src.hud_used.vimpaired

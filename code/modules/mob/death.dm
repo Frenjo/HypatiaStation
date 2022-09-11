@@ -5,7 +5,7 @@
 	monkeyizing = 1
 	canmove = FALSE
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	update_canmove()
 	dead_mob_list -= src
 
@@ -35,7 +35,7 @@
 	monkeyizing = 1
 	canmove = FALSE
 	icon = null
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 	animation = new(loc)
 	animation.icon_state = "blank"

@@ -86,11 +86,11 @@
 		var/turf/T = M.loc
 		if(isturf(T))
 			if(!M.moved_recently && M.last_move)
-				M.moved_recently = 1
+				M.moved_recently = TRUE
 				step(M, M.last_move)
 				sleep(50)
 				if(M)
-					M.moved_recently = 0
+					M.moved_recently = FALSE
 		to_chat(M, SPAN_DANGER("You feel a sharp shock!"))
 		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 		s.set_up(3, 1, M)

@@ -5,7 +5,7 @@
 	icon_state = "x2"
 	anchored = TRUE
 	unacidable = 1
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/effect/admin_log_trap/HasEntered(AM as mob|obj)
 	if(istype(AM,/mob))

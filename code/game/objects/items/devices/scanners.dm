@@ -44,7 +44,7 @@ REAGENT SCANNER
 					if(O)
 						var/turf/U = O.loc
 						if(U.intact)
-							O.invisibility = 101
+							O.invisibility = INVISIBILITY_MAXIMUM
 
 		var/mob/living/M = locate() in T
 		if(M && M.invisibility == 2)

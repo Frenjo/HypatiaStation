@@ -1,7 +1,7 @@
 /**********************Spaceship builder area definitions**************************/
 
 /area/shipbuilder
-	requires_power = 0
+	requires_power = FALSE
 	luminosity = 1
 	sd_lighting = 0
 

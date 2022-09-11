@@ -9,7 +9,7 @@
 	anchored = TRUE
 	layer = 4.1		//just above mobs
 	density = FALSE
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	var/strength = 0
 	var/ticks_recovering = 10
 
@@ -30,7 +30,7 @@
 	//if we take too much damage, drop out - the generator will bring us back up if we have enough power
 	ticks_recovering = min(ticks_recovering + 2, 10)
 	if(strength < 1)
-		invisibility = 101
+		invisibility = INVISIBILITY_MAXIMUM
 		density = FALSE
 		ticks_recovering = 10
 		strength = 0
@@ -46,7 +46,7 @@
 		invisibility = 0
 		density = TRUE
 	else if(strength < 1)
-		invisibility = 101
+		invisibility = INVISIBILITY_MAXIMUM
 		density = FALSE
 
 /obj/effect/energy_field/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)

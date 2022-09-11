@@ -351,12 +351,12 @@
 			theareas[AR.name] = AR
 */
 
-	A = input("Area to jump to", "BOOYEA", A) in teleportlocs
+	A = input("Area to jump to", "BOOYEA", A) in global.teleportlocs
 
 	spawn(600)
 		usr.verbs += /mob/proc/teleport
 
-	var/area/thearea = teleportlocs[A]
+	var/area/thearea = global.teleportlocs[A]
 
 	usr.say("SCYAR NILA [uppertext(A)]")
 

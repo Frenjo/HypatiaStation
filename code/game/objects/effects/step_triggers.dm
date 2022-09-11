@@ -1,6 +1,6 @@
 /* Simple object type, calls a proc when "stepped" on by something */
 /obj/effect/step_trigger
-	invisibility = 101 // nope cant see this shit
+	invisibility = INVISIBILITY_MAXIMUM // nope cant see this shit
 	anchored = TRUE
 
 	var/affect_ghosts = FALSE

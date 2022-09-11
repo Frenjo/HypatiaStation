@@ -5,7 +5,7 @@
 	unacidable = TRUE	//Just to be sure.
 
 /obj/effect/manifest/New()
-	src.invisibility = 101
+	src.invisibility = INVISIBILITY_MAXIMUM
 	return
 
 /obj/effect/manifest/proc/manifest()

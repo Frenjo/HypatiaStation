@@ -11,6 +11,7 @@
 
 /atom
 	layer = 2
+
 	var/level = 2
 	var/flags
 	var/list/fingerprints
@@ -22,7 +23,7 @@
 	var/pass_flags = 0
 	var/throwpass = 0
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
-	var/simulated = 1 //filter for actions - used by lighting overlays
+	var/simulated = TRUE //filter for actions - used by lighting overlays
 
 	///Chemistry.
 	var/datum/reagents/reagents = null
@@ -36,7 +37,7 @@
 
 /atom/Destroy()
 	density = FALSE
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	set_opacity(0)
 
 	if(reagents)

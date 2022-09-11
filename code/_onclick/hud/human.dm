@@ -304,7 +304,7 @@
 	mymob.blind.name = " "
 	mymob.blind.screen_loc = "1,1"
 	mymob.blind.mouse_opacity = FALSE
-	mymob.blind.invisibility = 101 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
+	mymob.blind.invisibility = INVISIBILITY_MAXIMUM // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 	hud_elements |= mymob.blind
 
 	mymob.damageoverlay = new /obj/screen()

@@ -254,10 +254,10 @@
 			qdel(src)
 
 /obj/effect/starender
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/effect/starspawner
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	var/spawndir = SOUTH
 	var/spawning = 0
 

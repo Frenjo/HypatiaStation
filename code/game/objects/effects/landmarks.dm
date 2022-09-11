@@ -10,7 +10,7 @@
 /obj/effect/landmark/New()
 	..()
 	tag = "landmark*[name]"
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 
 	switch(name)	//some of these are probably obsolete
 		if("shuttle")
@@ -121,7 +121,7 @@
 /obj/effect/landmark/start/New()
 	..()
 	tag = "start*[name]"
-	invisibility = 101
+	invisibility = INVISIBILITY_MAXIMUM
 	return 1
 
 

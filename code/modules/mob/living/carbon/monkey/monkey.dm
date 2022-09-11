@@ -181,10 +181,6 @@
 		M << "You cannot attack people before the game has started."
 		return
 
-	if (isturf(loc) && istype(loc.loc, /area/start))
-		M << "No attacking people at spawn, you jackass."
-		return
-
 	if(M.gloves && istype(M.gloves,/obj/item/clothing/gloves))
 		var/obj/item/clothing/gloves/G = M.gloves
 		if(G.cell)
