@@ -2,10 +2,12 @@
 /var/global/list/all_areas = list()
 
 /*
+ * Area
+ *
  * This file is a mass merge of area.dm, areas.dm and lighting_area.dm.
- * 
+ *
  * This folder contains a list of definitions for all the areas in your station.
- * 
+ *
  * Areas are organised into files by category or descriptor, and the format for adding new areas is as follows:
  *	/area/CATEGORY/OR/DESCRIPTOR/NAME	(you can make as many subdivisions as you want)
  *		name = "NICE NAME"			(not required but makes things really nice)
@@ -14,7 +16,6 @@
  *		requires_power = FALSE		(defaults to TRUE)
  *
  * I love places that make you realise how tiny you and your problems are. ~ Anonymous
- * 
 */
 /area
 	name = "Unknown"

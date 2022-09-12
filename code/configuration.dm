@@ -1,13 +1,12 @@
-/**
-  * Configuration
-  *
-  * The configuration object sets and globally stores configurable values after loading them from their associated files.
-  *
-  * Most of this is set up in /configuration/New().
-  * 
-  * In a gentle way, you can shake the world. ~ Mahatma Gandhi
-  * 
-  */
+/*
+ * Configuration
+ *
+ * The configuration object sets and globally stores configurable values after loading them from their associated files.
+ *
+ * Most of this is set up in /configuration/New().
+ *
+ * In a gentle way, you can shake the world. ~ Mahatma Gandhi
+*/
 /configuration
 	// ----- CONFIG.TXT STUFF -----
 	// Server information.

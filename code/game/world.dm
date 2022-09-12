@@ -1,20 +1,19 @@
 #define RECOMMENDED_VERSION 514
 
-/**
-  * World Creation
-  *
-  * Here is where a round itself is actually begun and setup, lots of important config changes happen here:
-  * * Sets up some log files.
-  * * Calculates the changelog hash.
-  * * Checks if the recommended BYOND version is running.
-  * * Post-loads the configuration files.
-  * * Sets up the hub visibility variables.
-  * * Loads admins and moderators.
-  * * Activates the process_scheduler and master_controller, starting the game loop that causes everything else to begin setting up and processing.
-  * 
-  * Nothing happens until something moves. ~ Albert Einstein
-  * 
-  */
+/*
+ * World Creation
+ *
+ * Here is where a round itself is actually set up and started, lots of important things happen here:
+ *	Sets up some log files.
+ *	Calculates the changelog hash.
+ *	Checks if the recommended BYOND version is running.
+ *	Post-loads the configuration files.
+ *	Sets up the hub visibility variables.
+ *	Loads admins and moderators.
+ *	Activates the process_scheduler and master_controller, starting the game loop that causes everything else to begin setting up and processing.
+ *
+ * Nothing happens until something moves. ~ Albert Einstein
+*/
 /world/New()
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
@@ -55,7 +54,7 @@
 		global.process_scheduler.setup()
 		global.master_controller.setup()
 
-	spawn(3000)	// Delay by 5 minutes (300 seconds/3000 deciseconds) so we aren't adding to the round-start lag.
+	spawn(5 MINUTES) // Delay by 5 minutes (300 seconds/3000 deciseconds) so we aren't adding to the round-start lag.
 		if(global.config.ToRban)
 			ToRban_autoupdate()
 	return

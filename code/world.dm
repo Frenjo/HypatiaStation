@@ -1,13 +1,12 @@
-/**
-  * World
-  *
-  * The byond world object stores some basic byond level config, and has a few hub specific procs for managing hub visiblity.
-  *
-  * The /world/New() is the root of where a round itself begins, try looking in game/world.dm.
-  * 
-  * Two possibilities exist: either we are alone in the Universe or we are not. Both are equally terrifying. ~ Arthur C. Clarke
-  * 
-  */
+/*
+ * World
+ *
+ * The BYOND world object stores some basic BYOND-level config, and has a few hub specific procs for managing hub visiblity.
+ *
+ * The /world/New() is the root of where a round itself begins, try looking in game/world.dm.
+ *
+ * Two possibilities exist: either we are alone in the Universe or we are not. Both are equally terrifying. ~ Arthur C. Clarke
+*/
 /world
 	mob = /mob/new_player
 	turf = /turf/space

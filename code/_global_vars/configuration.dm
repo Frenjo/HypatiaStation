@@ -1,8 +1,9 @@
-/var/global/configuration/config
+/var/global/configuration/config = null // Set in /datum/global_init/New()
 
+// These are set in /world/New()
+/var/global/href_logfile = null
 /var/global/diary = null
 /var/global/diaryofmeanpeople = null
-/var/global/href_logfile = null
 
 /var/global/game_version = "Hypatia"
 /var/global/changelog_hash = ""
