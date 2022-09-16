@@ -81,12 +81,11 @@
 				C << "<font color='[normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[src.key]:</EM> <span class='message'>[msg]</span></span></font>"
 			*/
 
-/client/proc/set_ooc(newColor as color)
+/client/proc/set_ooc(new_colour)
 	set name = "Set Player OOC Colour"
 	set desc = "Set to yellow for eye burning goodness."
 	set category = "Fun"
-	global.normal_ooc_colour = newColor
-
+	global.normal_ooc_colour = new_colour
 
 /client/verb/looc(msg as text)
 	set name = "LOOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite

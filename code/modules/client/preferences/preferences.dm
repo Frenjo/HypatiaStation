@@ -46,7 +46,7 @@
 	var/g_eyes = 0						//Eye color
 	var/b_eyes = 0						//Eye color
 	var/species = "Human"
-	var/language = "None"				//Secondary language
+	var/secondary_language = "None"		//Secondary language
 
 	//Mob preview
 	var/icon/preview_icon = null
@@ -66,8 +66,8 @@
 	var/job_engsec_med = 0
 	var/job_engsec_low = 0
 
-	//Keeps track of preferrence for not getting any wanted jobs
-	var/alternate_option = 1
+	//Keeps track of preference for not getting any wanted jobs
+	var/alternate_option = BE_ASSISTANT
 
 	var/used_skillpoints = 0
 	var/skill_specialization = null
@@ -105,7 +105,6 @@
 	randomize_appearance_for()
 	age = rand(25, 35)
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
-	alternate_option = 1
 
 /datum/preferences/proc/ZeroSkills(forced = 0)
 	for(var/V in global.all_skills)
@@ -166,32 +165,32 @@
 	if(skills.len == 0)
 		ZeroSkills()
 
-	var/HTML = "<body>"
-	HTML += "<b>Select your Skills</b><br>"
-	HTML += "Current skill level: <b>[GetSkillClass(used_skillpoints)]</b> ([used_skillpoints])<br>"
-	HTML += "<a href=\"byond://?src=\ref[user];preference=skills;preconfigured=1;\">Use preconfigured skillset</a><br>"
-	HTML += "<table>"
+	var/dat = "<body>"
+	dat += "<b>Select your Skills</b><br>"
+	dat += "Current skill level: <b>[GetSkillClass(used_skillpoints)]</b> ([used_skillpoints])<br>"
+	dat += "<a href=\"byond://?src=\ref[user];preference=skills;preconfigured=1;\">Use preconfigured skillset</a><br>"
+	dat += "<table>"
 	for(var/V in global.all_skills)
-		HTML += "<tr><th colspan = 5><b>[V]</b>"
-		HTML += "</th></tr>"
+		dat += "<tr><th colspan = 5><b>[V]</b>"
+		dat += "</th></tr>"
 		for(var/datum/skill/S in global.all_skills[V])
 			var/level = skills[S.id]
-			HTML += "<tr style='text-align:left;'>"
-			HTML += "<th><a href='byond://?src=\ref[user];preference=skills;skillinfo=\ref[S]'>[S.name]</a></th>"
-			HTML += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_NONE]'><font color=[(level == SKILL_NONE) ? "red" : "black"]>\[Untrained\]</font></a></th>"
+			dat += "<tr style='text-align:left;'>"
+			dat += "<th><a href='byond://?src=\ref[user];preference=skills;skillinfo=\ref[S]'>[S.name]</a></th>"
+			dat += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_NONE]'><font color=[(level == SKILL_NONE) ? "red" : "black"]>\[Untrained\]</font></a></th>"
 			// secondary skills don't have an amateur level
 			if(S.secondary)
-				HTML += "<th></th>"
+				dat += "<th></th>"
 			else
-				HTML += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_BASIC]'><font color=[(level == SKILL_BASIC) ? "red" : "black"]>\[Amateur\]</font></a></th>"
-			HTML += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_ADEPT]'><font color=[(level == SKILL_ADEPT) ? "red" : "black"]>\[Trained\]</font></a></th>"
-			HTML += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_EXPERT]'><font color=[(level == SKILL_EXPERT) ? "red" : "black"]>\[Professional\]</font></a></th>"
-			HTML += "</tr>"
-	HTML += "</table>"
-	HTML += "<a href=\"byond://?src=\ref[user];preference=skills;cancel=1;\">\[Done\]</a>"
+				dat += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_BASIC]'><font color=[(level == SKILL_BASIC) ? "red" : "black"]>\[Amateur\]</font></a></th>"
+			dat += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_ADEPT]'><font color=[(level == SKILL_ADEPT) ? "red" : "black"]>\[Trained\]</font></a></th>"
+			dat += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_EXPERT]'><font color=[(level == SKILL_EXPERT) ? "red" : "black"]>\[Professional\]</font></a></th>"
+			dat += "</tr>"
+	dat += "</table>"
+	dat += "<a href=\"byond://?src=\ref[user];preference=skills;cancel=1;\">\[Done\]</a>"
 
 	user << browse(null, "window=preferences")
-	user << browse(HTML, "window=show_skills;size=600x800")
+	user << browse(dat, "window=show_skills;size=600x800")
 	return
 
 /datum/preferences/proc/ShowChoices(mob/user)
@@ -246,7 +245,7 @@
 	dat += "(<a href='?_src_=prefs;preference=all;task=random'>&reg;</A>)"
 	dat += "<br>"
 	dat += "Species: <a href='byond://?src=\ref[user];preference=species;task=input'>[species]</a><br>"
-	dat += "Secondary Language:<br><a href='byond://?src=\ref[user];preference=language;task=input'>[language]</a><br>"
+	dat += "Secondary Language:<br><a href='byond://?src=\ref[user];preference=language;task=input'>[secondary_language]</a><br>"
 	dat += "Blood Type: <a href='byond://?src=\ref[user];preference=b_type;task=input'>[b_type]</a><br>"
 	dat += "Skin Tone: <a href='?_src_=prefs;preference=s_tone;task=input'>[-s_tone + 35]/220<br></a>"
 	//dat += "Skin pattern: <a href='byond://?src=\ref[user];preference=skin_style;task=input'>Adjust</a><br>"
@@ -943,7 +942,7 @@
 							if(!(lang.flags & RESTRICTED))
 								new_languages += lang.name
 
-					language = input("Please select a secondary language", "Character Generation", null) in new_languages
+					secondary_language = input("Please select a secondary language", "Character Generation", null) in new_languages
 
 				if("metadata")
 					var/new_metadata = input(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference", metadata) as message | null

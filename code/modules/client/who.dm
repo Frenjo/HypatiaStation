@@ -4,7 +4,7 @@
 
 	var/msg = "<b>Current Players:</b>\n"
 
-	var/list/Lines = list()
+	var/list/lines = list()
 
 	if(holder)
 		for(var/client/C in global.clients)
@@ -27,24 +27,24 @@
 			if(is_special_character(C.mob))
 				entry += " - <b><font color='red'>Antagonist</font></b>"
 			entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
-			Lines += entry
+			lines += entry
 	else
 		for(var/client/C in global.clients)
 			if(C.holder && C.holder.fakekey)
-				Lines += C.holder.fakekey
+				lines += C.holder.fakekey
 			else
-				Lines += C.key
+				lines += C.key
 
-	for(var/line in sortList(Lines))
+	for(var/line in sortList(lines))
 		msg += "[line]\n"
 
-	msg += "<b>Total Players: [length(Lines)]</b>"
+	msg += "<b>Total Players: [length(lines)]</b>"
 	to_chat(src, msg)
 
 
 /client/verb/staffwho()
-	set category = "Admin"
 	set name = "Staffwho"
+	set category = "Admin"
 
 	var/msg = ""
 	var/modmsg = ""

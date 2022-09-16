@@ -8,7 +8,6 @@
 	prefs.save_preferences()
 	feedback_add_details("admin_verb", "TGE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 /client/verb/toggle_ghost_sight()
 	set name = "Show/Hide GhostSight"
 	set category = "Preferences"
@@ -18,7 +17,6 @@
 	prefs.save_preferences()
 	feedback_add_details("admin_verb", "TGS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 /client/verb/toggle_ghost_radio()
 	set name = "Enable/Disable GhostRadio"
 	set category = "Preferences"
@@ -27,7 +25,6 @@
 	to_chat(src, "As a ghost, you will now [(prefs.toggles & CHAT_GHOSTRADIO) ? "hear all radio chat in the world" : "only hear from nearby speakers"].")
 	prefs.save_preferences()
 	feedback_add_details("admin_verb", "TGR")
-
 
 /client/proc/toggle_hear_radio()
 	set name = "Show/Hide RadioChatter"
@@ -40,7 +37,6 @@
 	to_chat(usr, "You will [(prefs.toggles & CHAT_RADIO) ? "now" : "no longer"] see radio chatter from radios or speakers.")
 	feedback_add_details("admin_verb", "THR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 /client/proc/toggleadminhelpsound()
 	set name = "Hear/Silence Adminhelps"
 	set category = "Preferences"
@@ -51,7 +47,6 @@
 	prefs.save_preferences()
 	to_chat(usr, "You will [(prefs.toggles & SOUND_ADMINHELP) ? "now" : "no longer"] hear a sound when adminhelps arrive.")
 	feedback_add_details("admin_verb", "AHS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 
 /client/verb/deadchat() // Deadchat toggle is usable by anyone.
 	set name = "Show/Hide Deadchat"
@@ -67,7 +62,6 @@
 
 	feedback_add_details("admin_verb", "TDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 /client/proc/toggleprayers()
 	set name = "Show/Hide Prayers"
 	set category = "Preferences"
@@ -76,7 +70,6 @@
 	prefs.save_preferences()
 	to_chat(src, "You will [(prefs.toggles & CHAT_PRAYER) ? "now" : "no longer"] see prayerchat.")
 	feedback_add_details("admin_verb", "TP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 
 /client/verb/toggletitlemusic()
 	set name = "Hear/Silence LobbyMusic"
@@ -94,7 +87,6 @@
 			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jamsz
 	feedback_add_details("admin_verb", "TLobby") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 /client/verb/togglemidis()
 	set name = "Hear/Silence Midis"
 	set category = "Preferences"
@@ -110,7 +102,6 @@
 		to_chat(src, "You will no longer hear sounds uploaded by admins; any currently playing midis have been disabled.")
 	feedback_add_details("admin_verb", "TMidi") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 /client/verb/listen_ooc()
 	set name = "Show/Hide OOC"
 	set category = "Preferences"
@@ -119,7 +110,6 @@
 	prefs.save_preferences()
 	to_chat(src, "You will [(prefs.toggles & CHAT_OOC) ? "now" : "no longer"] see messages on the OOC channel.")
 	feedback_add_details("admin_verb", "TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 
 /client/verb/listen_looc()
 	set name = "Show/Hide LOOC"
@@ -130,7 +120,6 @@
 
 	to_chat(src, "You will [(prefs.toggles & CHAT_LOOC) ? "now" : "no longer"] see messages on the LOOC channel.")
 	feedback_add_details("admin_verb", "TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 
 /client/verb/toggle_soundscape() //All new ambience should be added here so it works with this verb until someone better at things comes up with a fix that isn't awful
 	set name = "Hear/Silence Ambience"
@@ -158,7 +147,6 @@
 	prefs.save_preferences()
 	to_chat(src, "You will [(prefs.be_special & role_flag) ? "now" : "no longer"] be considered for [role] events (where possible).")
 	feedback_add_details("admin_verb", "TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 
 /client/verb/change_ui()
 	set name = "Change UI"

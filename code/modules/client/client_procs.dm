@@ -90,7 +90,6 @@
 	fileaccess_timer = world.time + FTPDELAY	*/
 	return 1
 
-
 	///////////
 	//CONNECT//
 	///////////
@@ -153,7 +152,6 @@
 
 	if(prefs.lastchangelog != global.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
-
 
 	//////////////
 	//DISCONNECT//
@@ -232,14 +230,12 @@
 #undef UPLOAD_LIMIT
 #undef MIN_CLIENT_VERSION
 
-
 //checks if a client is afk
 //3000 frames = 5 minutes
 /client/proc/is_afk(duration = 3000)
 	if(inactivity > duration)
 		return inactivity
 	return 0
-
 
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
 /client/proc/send_resources()
