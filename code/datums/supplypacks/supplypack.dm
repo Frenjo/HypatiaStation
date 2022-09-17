@@ -5,8 +5,8 @@
 //BIG NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NEW NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-var/decl/hierarchy/supply_pack/cargo_supply_pack_root = new()
-var/decl/hierarchy/supply_pack/cargo_supply_packs	// Non-category supply packs
+/var/global/decl/hierarchy/supply_pack/cargo_supply_pack_root = new()
+/var/global/decl/hierarchy/supply_pack/cargo_supply_packs	// Non-category supply packs
 
 /decl/hierarchy/supply_pack
 	name = "Supply Packs"
@@ -28,8 +28,9 @@ var/decl/hierarchy/supply_pack/cargo_supply_packs	// Non-category supply packs
 	if(is_category())
 		return	// Don't init the manifest for category entries
 
-	if(!cargo_supply_packs) cargo_supply_packs = list()
-	dd_insertObjectList(cargo_supply_packs, src)	// Add all non-category supply packs to the list
+	if(!global.cargo_supply_packs)
+		global.cargo_supply_packs = list()
+	dd_insertObjectList(global.cargo_supply_packs, src)	// Add all non-category supply packs to the list
 
 	if(!num_contained)
 		for(var/entry in contains)

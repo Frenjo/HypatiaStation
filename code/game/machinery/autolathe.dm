@@ -1,74 +1,78 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
+/var/global/list/autolathe_recipes = list(
+	/*screwdriver removed*/
+	new /obj/item/weapon/reagent_containers/glass/bucket(),
+	new /obj/item/weapon/crowbar(),
+	new /obj/item/device/flashlight(),
+	new /obj/item/weapon/extinguisher(),
+	new /obj/item/device/multitool(),
+	new /obj/item/device/t_scanner(),
+	new /obj/item/weapon/weldingtool(),
+	new /obj/item/weapon/screwdriver(),
+	new /obj/item/weapon/wirecutters(),
+	new /obj/item/weapon/wrench(),
+	new /obj/item/clothing/head/welding(),
+	new /obj/item/weapon/stock_part/console_screen(),
+	new /obj/item/weapon/airlock_electronics(),
+	new /obj/item/weapon/airalarm_electronics(),
+	new /obj/item/weapon/firealarm_electronics(),
+	new /obj/item/weapon/module/power_control(),
+	new /obj/item/stack/sheet/metal(),
+	new /obj/item/stack/sheet/glass(),
+	new /obj/item/stack/sheet/rglass(),
+	new /obj/item/stack/rods(),
+	new /obj/item/weapon/rcd_ammo(),
+	new /obj/item/weapon/kitchenknife(),
+	new /obj/item/weapon/scalpel(),
+	new /obj/item/weapon/circular_saw(),
+	new /obj/item/weapon/surgicaldrill(),
+	new /obj/item/weapon/retractor(),
+	new /obj/item/weapon/cautery(),
+	new /obj/item/weapon/hemostat(),
+	new /obj/item/weapon/reagent_containers/glass/beaker(),
+	new /obj/item/weapon/reagent_containers/glass/beaker/large(),
+	new /obj/item/weapon/reagent_containers/glass/beaker/vial(),
+	new /obj/item/weapon/reagent_containers/syringe(),
+	new /obj/item/ammo_casing/shotgun/blank(),
+	new /obj/item/ammo_casing/shotgun/beanbag(),
+	new /obj/item/ammo_magazine/c45r(),
+	new /obj/item/device/taperecorder(),
+	new /obj/item/device/assembly/igniter(),
+	new /obj/item/device/assembly/signaler(),
+	new /obj/item/device/radio/headset(),
+	new /obj/item/device/radio/off(),
+	new /obj/item/device/assembly/infra(),
+	new /obj/item/device/assembly/timer(),
+	new /obj/item/device/assembly/prox_sensor(),
+	new /obj/item/weapon/light/tube(),
+	new /obj/item/weapon/light/bulb(),
+	new /obj/item/ashtray/glass(),
+	new /obj/item/weapon/camera_assembly()
+)
 
-var/global/list/autolathe_recipes = list( \
-		/* screwdriver removed*/ \
-		new /obj/item/weapon/reagent_containers/glass/bucket(), \
-		new /obj/item/weapon/crowbar(), \
-		new /obj/item/device/flashlight(), \
-		new /obj/item/weapon/extinguisher(), \
-		new /obj/item/device/multitool(), \
-		new /obj/item/device/t_scanner(), \
-		new /obj/item/weapon/weldingtool(), \
-		new /obj/item/weapon/screwdriver(), \
-		new /obj/item/weapon/wirecutters(), \
-		new /obj/item/weapon/wrench(), \
-		new /obj/item/clothing/head/welding(), \
-		new /obj/item/weapon/stock_parts/console_screen(), \
-		new /obj/item/weapon/airlock_electronics(), \
-		new /obj/item/weapon/airalarm_electronics(), \
-		new /obj/item/weapon/firealarm_electronics(), \
-		new /obj/item/weapon/module/power_control(), \
-		new /obj/item/stack/sheet/metal(), \
-		new /obj/item/stack/sheet/glass(), \
-		new /obj/item/stack/sheet/rglass(), \
-		new /obj/item/stack/rods(), \
-		new /obj/item/weapon/rcd_ammo(), \
-		new /obj/item/weapon/kitchenknife(), \
-		new /obj/item/weapon/scalpel(), \
-		new /obj/item/weapon/circular_saw(), \
-		new /obj/item/weapon/surgicaldrill(),\
-		new /obj/item/weapon/retractor(),\
-		new /obj/item/weapon/cautery(),\
-		new /obj/item/weapon/hemostat(),\
-		new /obj/item/weapon/reagent_containers/glass/beaker(), \
-		new /obj/item/weapon/reagent_containers/glass/beaker/large(), \
-		new /obj/item/weapon/reagent_containers/glass/beaker/vial(), \
-		new /obj/item/weapon/reagent_containers/syringe(), \
-		new /obj/item/ammo_casing/shotgun/blank(), \
-		new /obj/item/ammo_casing/shotgun/beanbag(), \
-		new /obj/item/ammo_magazine/c45r(), \
-		new /obj/item/device/taperecorder(), \
-		new /obj/item/device/assembly/igniter(), \
-		new /obj/item/device/assembly/signaler(), \
-		new /obj/item/device/radio/headset(), \
-		new /obj/item/device/radio/off(), \
-		new /obj/item/device/assembly/infra(), \
-		new /obj/item/device/assembly/timer(), \
-		new /obj/item/device/assembly/prox_sensor(), \
-		new /obj/item/weapon/light/tube(), \
-		new /obj/item/weapon/light/bulb(), \
-		new /obj/item/ashtray/glass(), \
-		new /obj/item/weapon/camera_assembly(), \
-	)
-
-var/global/list/autolathe_recipes_hidden = list( \
-		new /obj/item/weapon/flamethrower/full(), \
-		new /obj/item/weapon/rcd(), \
-		new /obj/item/device/radio/electropack(), \
-		new /obj/item/weapon/weldingtool/largetank(), \
-		new /obj/item/weapon/handcuffs(), \
-		new /obj/item/ammo_magazine/a357(), \
-		new /obj/item/ammo_magazine/c45m(), \
-		new /obj/item/ammo_casing/shotgun(), \
-		new /obj/item/ammo_casing/shotgun/dart(), \
-		/* new /obj/item/weapon/shield/riot(), */ \
-	)
+/var/global/list/autolathe_recipes_hidden = list(
+	new /obj/item/weapon/flamethrower/full(),
+	new /obj/item/weapon/rcd(),
+	new /obj/item/device/radio/electropack(),
+	new /obj/item/weapon/weldingtool/largetank(),
+	new /obj/item/weapon/handcuffs(),
+	new /obj/item/ammo_magazine/a357(),
+	new /obj/item/ammo_magazine/c45m(),
+	new /obj/item/ammo_casing/shotgun(),
+	new /obj/item/ammo_casing/shotgun/dart()
+	/* new /obj/item/weapon/shield/riot()*/
+)
 
 /obj/machinery/autolathe
 	name = "\improper Autolathe"
 	desc = "It produces items using metal and glass."
 	icon_state = "autolathe"
 	density = TRUE
+	anchored = TRUE
+
+	use_power = 1
+	idle_power_usage = 10
+	active_power_usage = 100
 
 	var/m_amount = 0.0
 	var/max_m_amount = 150000.0
@@ -79,8 +83,6 @@ var/global/list/autolathe_recipes_hidden = list( \
 	var/operating = 0.0
 	var/panel_open = 0
 
-	anchored = TRUE
-
 	var/list/L = list()
 	var/list/LL = list()
 
@@ -90,9 +92,6 @@ var/global/list/autolathe_recipes_hidden = list( \
 
 	var/datum/wires/autolathe/wires = null
 
-	use_power = 1
-	idle_power_usage = 10
-	active_power_usage = 100
 	var/busy = 0
 
 /obj/machinery/autolathe/proc/wires_win(mob/user as mob)
@@ -330,7 +329,7 @@ var/global/list/autolathe_recipes_hidden = list( \
 /obj/machinery/autolathe/RefreshParts()
 	..()
 	var/tot_rating = 0
-	for(var/obj/item/weapon/stock_parts/matter_bin/MB in component_parts)
+	for(var/obj/item/weapon/stock_part/matter_bin/MB in component_parts)
 		tot_rating += MB.rating
 	tot_rating *= 25000
 	max_m_amount = tot_rating * 2
@@ -343,12 +342,12 @@ var/global/list/autolathe_recipes_hidden = list( \
 
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/autolathe(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	component_parts += new /obj/item/weapon/stock_part/matter_bin(src)
+	component_parts += new /obj/item/weapon/stock_part/matter_bin(src)
+	component_parts += new /obj/item/weapon/stock_part/matter_bin(src)
+	component_parts += new /obj/item/weapon/stock_part/manipulator(src)
+	component_parts += new /obj/item/weapon/stock_part/console_screen(src)
 	RefreshParts()
 
-	src.L = autolathe_recipes
-	src.LL = autolathe_recipes_hidden
+	src.L = global.autolathe_recipes
+	src.LL = global.autolathe_recipes_hidden

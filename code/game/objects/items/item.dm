@@ -1,6 +1,10 @@
 /obj/item
 	name = "item"
 	icon = 'icons/obj/items.dmi'
+	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
+	pass_flags = PASSTABLE
+	pressure_resistance = 5
+
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/abstract = 0
 	var/item_state = null
@@ -11,8 +15,6 @@
 	var/hitsound = null
 	var/w_class = 3.0
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
-	pass_flags = PASSTABLE
-	pressure_resistance = 5
 //	causeerrorheresoifixthis
 	var/obj/item/master = null
 
@@ -151,7 +153,6 @@
 	add_fingerprint(user)
 	user.put_in_active_hand(src)
 	return
-
 
 /obj/item/attack_paw(mob/user as mob)
 	if(istype(src.loc, /obj/item/weapon/storage))
@@ -438,7 +439,6 @@
 
 		//END MONKEY
 
-
 /obj/item/verb/verb_pickup()
 	set src in oview(1)
 	set category = "Object"
@@ -470,7 +470,6 @@
 	usr.UnarmedAttack(src)
 	return
 
-
 //This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in screen1_action.dmi
 //The default action is attack_self().
 //Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
@@ -478,10 +477,8 @@
 	if(src in usr)
 		attack_self(usr)
 
-
 /obj/item/proc/IsShield()
 	return 0
-
 
 /obj/item/proc/eyestab(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	var/mob/living/carbon/human/H = M
@@ -555,7 +552,6 @@
 	M.eye_blurry += rand(3, 4)
 	return
 
-
 /obj/item/clean_blood()
 	. = ..()
 	if(blood_overlay)
@@ -563,7 +559,6 @@
 	if(istype(src, /obj/item/clothing/gloves))
 		var/obj/item/clothing/gloves/G = src
 		G.transfer_blood = 0
-
 
 /obj/item/add_blood(mob/living/carbon/human/M as mob)
 	if(!..())
@@ -588,7 +583,6 @@
 	blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 	return 1 //we applied blood to the item
 
-
 /obj/item/proc/generate_blood_overlay()
 	if(blood_overlay)
 		return
@@ -602,11 +596,9 @@
 		if(A.type == type && !A.blood_overlay)
 			A.blood_overlay = image(I)
 
-
 /obj/item/proc/showoff(mob/user)
 	for(var/mob/M in view(user))
 		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];lookitem=\ref[src]>Take a closer look.</a>", 1)
-
 
 /mob/living/carbon/verb/showoff()
 	set name = "Show Held Item"
@@ -615,7 +607,6 @@
 	var/obj/item/I = get_active_hand()
 	if(I && !I.abstract)
 		I.showoff(src)
-
 
 /obj/item/proc/pwr_drain()
 	return 0 // Process Kill

@@ -450,7 +450,7 @@
 "iH" = (/obj/machinery/recharge_station,/obj/effect/decal/cleanable/cobweb2,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor{temperature = 393.15},/area/awaymission/labs/researchdivision)
 "iI" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 5; health = 1e+007},/turf/simulated/floor,/area/awaymission/labs/researchdivision)
 "iJ" = (/obj/structure/rack,/turf/simulated/floor,/area/awaymission/labs/researchdivision)
-"iK" = (/obj/item/weapon/stock_parts/console_screen,/obj/structure/table,/obj/item/weapon/stock_parts/console_screen,/obj/item/weapon/stock_parts/console_screen,/obj/item/weapon/stock_parts/matter_bin,/obj/item/weapon/stock_parts/matter_bin,/turf/simulated/floor{icon_state = "white"},/area/awaymission/labs/researchdivision)
+"iK" = (/obj/item/weapon/stock_part/console_screen,/obj/structure/table,/obj/item/weapon/stock_part/console_screen,/obj/item/weapon/stock_part/console_screen,/obj/item/weapon/stock_part/matter_bin,/obj/item/weapon/stock_part/matter_bin,/turf/simulated/floor{icon_state = "white"},/area/awaymission/labs/researchdivision)
 "iL" = (/obj/structure/table/reinforced,/obj/item/metroid_core,/obj/item/weapon/camera_assembly{pixel_x = 2; pixel_y = 8},/obj/machinery/atmospherics/unary/vent_pump{dir = 8; frequency = 1379; id_tag = "mining_maineast_pump"; on = 1},/turf/simulated/floor{icon_state = "white"},/area/awaymission/labs/researchdivision)
 "iM" = (/obj/machinery/door/airlock/maintenance_hatch,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/plating,/area/awaymission/labs/solars)
 "iN" = (/obj/structure/stool/bed/chair{dir = 1},/turf/simulated/floor{icon_state = "wood"},/area/awaymission/labs/militarydivision)

@@ -71,7 +71,7 @@
 	can_breach = 1
 
 	//Component/device holders.
-	var/obj/item/weapon/stock_parts/gloves = null		// Basic capacitor allows insulation, upgrades allow shock gloves etc.
+	var/obj/item/weapon/stock_part/gloves = null		// Basic capacitor allows insulation, upgrades allow shock gloves etc.
 
 	var/attached_boots = 1								// Can't wear boots if some are attached
 	var/obj/item/clothing/shoes/magboots/boots = null	// Deployable boots, if any.

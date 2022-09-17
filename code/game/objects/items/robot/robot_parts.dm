@@ -277,7 +277,7 @@
 			W.loc = src
 			src.flash1 = W
 			user << "\blue You insert the flash into the eye socket!"
-	else if(istype(W, /obj/item/weapon/stock_parts/manipulator))
+	else if(istype(W, /obj/item/weapon/stock_part/manipulator))
 		user << "\blue You install some manipulators and modify the head, creating a functional spider-bot!"
 		new /mob/living/simple_animal/spiderbot(get_turf(loc))
 		user.drop_item()

@@ -58,10 +58,10 @@
 	if(broken_on_spawn)
 		var/amount = pick(1, 2, 2, 3, 4)
 		var/list/options = list()
-		options[/obj/item/weapon/stock_parts/capacitor/adv] = "Add an advanced capacitor to fix it."
-		options[/obj/item/weapon/stock_parts/console_screen] = "Replace the console screen to fix it."
-		options[/obj/item/weapon/stock_parts/manipulator/pico] = "Upgrade to a pico manipulator to fix it."
-		options[/obj/item/weapon/stock_parts/matter_bin/adv] = "Give it an advanced matter bin to fix it."
+		options[/obj/item/weapon/stock_part/capacitor/adv] = "Add an advanced capacitor to fix it."
+		options[/obj/item/weapon/stock_part/console_screen] = "Replace the console screen to fix it."
+		options[/obj/item/weapon/stock_part/manipulator/pico] = "Upgrade to a pico manipulator to fix it."
+		options[/obj/item/weapon/stock_part/matter_bin/adv] = "Give it an advanced matter bin to fix it."
 		options[/obj/item/stack/sheet/mineral/diamond] = "Line up a cut diamond with the nozzle to fix it."
 		options[/obj/item/stack/sheet/mineral/uranium] = "Position a uranium sheet inside to fix it."
 		options[/obj/item/stack/sheet/mineral/plasma] = "Enter a block of plasma to fix it."

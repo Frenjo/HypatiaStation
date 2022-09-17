@@ -13,7 +13,7 @@
 		/obj/item/weapon/airalarm_electronics,
 		/obj/item/weapon/airlock_electronics,
 		/obj/item/weapon/module/power_control,
-		/obj/item/weapon/stock_parts,
+		/obj/item/weapon/stock_part,
 		/obj/item/frame/light_fixture,
 		/obj/item/apc_frame,
 		/obj/item/frame/alarm,

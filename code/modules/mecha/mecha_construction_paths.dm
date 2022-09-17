@@ -471,7 +471,7 @@
 		),
 		//8
 		list(
-			"key" = /obj/item/weapon/stock_parts/capacitor/adv,
+			"key" = /obj/item/weapon/stock_part/capacitor/adv,
 			"backkey" = /obj/item/weapon/screwdriver,
 			"desc" = "Advanced scanner module is secured."
 		),
@@ -483,7 +483,7 @@
 		),
 		//10
 		list(
-			"key" = /obj/item/weapon/stock_parts/scanning_module/adv,
+			"key" = /obj/item/weapon/stock_part/scanning_module/adv,
 			"backkey" = /obj/item/weapon/screwdriver,
 			"desc" = "Targeting module is secured."
 		),
@@ -714,7 +714,7 @@
 					"[user] removes the advanced scanner module from [holder].",
 					"You remove the advanced scanner module from [holder]."
 				)
-				new /obj/item/weapon/stock_parts/scanning_module/adv(get_turf(holder))
+				new /obj/item/weapon/stock_part/scanning_module/adv(get_turf(holder))
 				holder.icon_state = "gygax10"
 		if(8)
 			if(diff == FORWARD)
@@ -742,7 +742,7 @@
 					"[user] removes the advanced capacitor from [holder].",
 					"You remove the advanced capacitor from [holder]."
 				)
-				new /obj/item/weapon/stock_parts/capacitor/adv(get_turf(holder))
+				new /obj/item/weapon/stock_part/capacitor/adv(get_turf(holder))
 				holder.icon_state = "gygax12"
 		if(6)
 			if(diff == FORWARD)
@@ -1357,7 +1357,7 @@
 		),
 		//8
 		list(
-			"key" = /obj/item/weapon/stock_parts/capacitor/adv,
+			"key" = /obj/item/weapon/stock_part/capacitor/adv,
 			"backkey" = /obj/item/weapon/screwdriver,
 			"desc" = "Advanced scanner module is secured."
 		),
@@ -1369,7 +1369,7 @@
 		),
 		//10
 		list(
-			"key" = /obj/item/weapon/stock_parts/scanning_module/adv,
+			"key" = /obj/item/weapon/stock_part/scanning_module/adv,
 			"backkey" = /obj/item/weapon/screwdriver,
 			"desc" = "Targeting module is secured."
 		),
@@ -1600,7 +1600,7 @@
 					"[user] removes the advanced scanner module from [holder].",
 					"You remove the advanced scanner module from [holder]."
 				)
-				new /obj/item/weapon/stock_parts/scanning_module/adv(get_turf(holder))
+				new /obj/item/weapon/stock_part/scanning_module/adv(get_turf(holder))
 				holder.icon_state = "durand10"
 		if(8)
 			if(diff == FORWARD)
@@ -1628,7 +1628,7 @@
 					"[user] removes the advanced capacitor from [holder].",
 					"You remove the advanced capacitor from [holder]."
 				)
-				new /obj/item/weapon/stock_parts/capacitor/adv(get_turf(holder))
+				new /obj/item/weapon/stock_part/capacitor/adv(get_turf(holder))
 				holder.icon_state = "durand12"
 		if(6)
 			if(diff == FORWARD)

@@ -27,10 +27,10 @@ Note: Must be placed west/left of and R&D console to function.
 	..()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/protolathe(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
+	component_parts += new /obj/item/weapon/stock_part/matter_bin(src)
+	component_parts += new /obj/item/weapon/stock_part/matter_bin(src)
+	component_parts += new /obj/item/weapon/stock_part/manipulator(src)
+	component_parts += new /obj/item/weapon/stock_part/manipulator(src)
 	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
 	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
 	RefreshParts()
@@ -46,7 +46,7 @@ Note: Must be placed west/left of and R&D console to function.
 	reagents = R
 	R.my_atom = src
 	T = 0
-	for(var/obj/item/weapon/stock_parts/matter_bin/M in component_parts)
+	for(var/obj/item/weapon/stock_part/matter_bin/M in component_parts)
 		T += M.rating
 	max_material_storage = T * 75000
 

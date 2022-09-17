@@ -168,9 +168,9 @@ to destroy them and players will be able to make replacements.
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
 	frame_desc = "Requires 1 Scanning Module, 1 Micro Manipulator, and 1 Micro-Laser."
 	req_components = list(
-							/obj/item/weapon/stock_parts/scanning_module = 1,
-							/obj/item/weapon/stock_parts/manipulator = 1,
-							/obj/item/weapon/stock_parts/micro_laser = 1)
+							/obj/item/weapon/stock_part/scanning_module = 1,
+							/obj/item/weapon/stock_part/manipulator = 1,
+							/obj/item/weapon/stock_part/micro_laser = 1)
 
 /obj/item/weapon/circuitboard/autolathe
 	name = "Circuit board (Autolathe)"
@@ -179,9 +179,9 @@ to destroy them and players will be able to make replacements.
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
 	frame_desc = "Requires 3 Matter Bins, 1 Micro Manipulator, and 1 Console Screen."
 	req_components = list(
-							/obj/item/weapon/stock_parts/matter_bin = 3,
-							/obj/item/weapon/stock_parts/manipulator = 1,
-							/obj/item/weapon/stock_parts/console_screen = 1)
+							/obj/item/weapon/stock_part/matter_bin = 3,
+							/obj/item/weapon/stock_part/manipulator = 1,
+							/obj/item/weapon/stock_part/console_screen = 1)
 
 /obj/item/weapon/circuitboard/protolathe
 	name = "Circuit board (Protolathe)"
@@ -190,8 +190,8 @@ to destroy them and players will be able to make replacements.
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
 	frame_desc = "Requires 2 Matter Bins, 2 Micro Manipulators, and 2 Beakers."
 	req_components = list(
-							/obj/item/weapon/stock_parts/matter_bin = 2,
-							/obj/item/weapon/stock_parts/manipulator = 2,
+							/obj/item/weapon/stock_part/matter_bin = 2,
+							/obj/item/weapon/stock_part/manipulator = 2,
 							/obj/item/weapon/reagent_containers/glass/beaker = 2)
 
 
@@ -202,8 +202,8 @@ to destroy them and players will be able to make replacements.
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
 	frame_desc = "Requires 1 Matter Bin, 1 Micro Manipulator, and 2 Beakers."
 	req_components = list(
-							/obj/item/weapon/stock_parts/matter_bin = 1,
-							/obj/item/weapon/stock_parts/manipulator = 1,
+							/obj/item/weapon/stock_part/matter_bin = 1,
+							/obj/item/weapon/stock_part/manipulator = 1,
 							/obj/item/weapon/reagent_containers/glass/beaker = 2)
 
 /obj/item/weapon/circuitboard/pacman
@@ -216,10 +216,10 @@ to destroy them and players will be able to make replacements.
 	)
 	frame_desc = "Requires 1 Matter Bin, 1 Micro-Laser, 2 Pieces of Cable, and 1 Capacitor."
 	req_components = list(
-							/obj/item/weapon/stock_parts/matter_bin = 1,
-							/obj/item/weapon/stock_parts/micro_laser = 1,
+							/obj/item/weapon/stock_part/matter_bin = 1,
+							/obj/item/weapon/stock_part/micro_laser = 1,
 							/obj/item/stack/cable_coil = 2,
-							/obj/item/weapon/stock_parts/capacitor = 1)
+							/obj/item/weapon/stock_part/capacitor = 1)
 
 /obj/item/weapon/circuitboard/pacman/super
 	name = "Circuit Board (SUPERPACMAN-type Generator)"
@@ -239,7 +239,7 @@ to destroy them and players will be able to make replacements.
 	frame_desc = "Requires 2 pieces of cable, and 1 Scanning Module."
 	req_components = list(
 							/obj/item/stack/cable_coil = 2,
-							/obj/item/weapon/stock_parts/scanning_module = 1)
+							/obj/item/weapon/stock_part/scanning_module = 1)
 
 /obj/item/weapon/circuitboard/mechfab
 	name = "Circuit board (Exosuit Fabricator)"
@@ -248,10 +248,10 @@ to destroy them and players will be able to make replacements.
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_ENGINEERING = 3)
 	frame_desc = "Requires 2 Matter Bins, 1 Micro Manipulator, 1 Micro-Laser and 1 Console Screen."
 	req_components = list(
-							/obj/item/weapon/stock_parts/matter_bin = 2,
-							/obj/item/weapon/stock_parts/manipulator = 1,
-							/obj/item/weapon/stock_parts/micro_laser = 1,
-							/obj/item/weapon/stock_parts/console_screen = 1)
+							/obj/item/weapon/stock_part/matter_bin = 2,
+							/obj/item/weapon/stock_part/manipulator = 1,
+							/obj/item/weapon/stock_part/micro_laser = 1,
+							/obj/item/weapon/stock_part/console_screen = 1)
 
 /obj/item/weapon/circuitboard/clonepod
 	name = "Circuit board (Clone Pod)"
@@ -261,9 +261,9 @@ to destroy them and players will be able to make replacements.
 	frame_desc = "Requires 2 Manipulator, 2 Scanning Module, 2 pieces of cable and 1 Console Screen."
 	req_components = list(
 							/obj/item/stack/cable_coil = 2,
-							/obj/item/weapon/stock_parts/scanning_module = 2,
-							/obj/item/weapon/stock_parts/manipulator = 2,
-							/obj/item/weapon/stock_parts/console_screen = 1)
+							/obj/item/weapon/stock_part/scanning_module = 2,
+							/obj/item/weapon/stock_part/manipulator = 2,
+							/obj/item/weapon/stock_part/console_screen = 1)
 
 /obj/item/weapon/circuitboard/clonescanner
 	name = "Circuit board (Cloning Scanner)"
@@ -272,10 +272,10 @@ to destroy them and players will be able to make replacements.
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_BIOTECH = 2)
 	frame_desc = "Requires 1 Scanning module, 1 Micro Manipulator, 1 Micro-Laser, 2 pieces of cable and 1 Console Screen."
 	req_components = list(
-							/obj/item/weapon/stock_parts/scanning_module = 1,
-							/obj/item/weapon/stock_parts/manipulator = 1,
-							/obj/item/weapon/stock_parts/micro_laser = 1,
-							/obj/item/weapon/stock_parts/console_screen = 1,
+							/obj/item/weapon/stock_part/scanning_module = 1,
+							/obj/item/weapon/stock_part/manipulator = 1,
+							/obj/item/weapon/stock_part/micro_laser = 1,
+							/obj/item/weapon/stock_part/console_screen = 1,
 							/obj/item/stack/cable_coil = 2,)
 
 
@@ -288,10 +288,10 @@ to destroy them and players will be able to make replacements.
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 3, RESEARCH_TECH_BLUESPACE = 2)
 	frame_desc = "Requires 1 Subspace Ansible, 1 Hyperwave Filter, 2 Micro Manipulators, and 1 Micro-Laser."
 	req_components = list(
-							/obj/item/weapon/stock_parts/subspace/ansible = 1,
-							/obj/item/weapon/stock_parts/subspace/filter = 1,
-							/obj/item/weapon/stock_parts/manipulator = 2,
-							/obj/item/weapon/stock_parts/micro_laser = 1)
+							/obj/item/weapon/stock_part/subspace/ansible = 1,
+							/obj/item/weapon/stock_part/subspace/filter = 1,
+							/obj/item/weapon/stock_part/manipulator = 2,
+							/obj/item/weapon/stock_part/micro_laser = 1)
 
 /obj/item/weapon/circuitboard/telecomms/hub
 	name = "Circuit Board (Hub Mainframe)"
@@ -300,9 +300,9 @@ to destroy them and players will be able to make replacements.
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	frame_desc = "Requires 2 Micro Manipulators, 2 Cable Coil and 2 Hyperwave Filter."
 	req_components = list(
-							/obj/item/weapon/stock_parts/manipulator = 2,
+							/obj/item/weapon/stock_part/manipulator = 2,
 							/obj/item/stack/cable_coil = 2,
-							/obj/item/weapon/stock_parts/subspace/filter = 2)
+							/obj/item/weapon/stock_part/subspace/filter = 2)
 
 /obj/item/weapon/circuitboard/telecomms/relay
 	name = "Circuit Board (Relay Mainframe)"
@@ -311,9 +311,9 @@ to destroy them and players will be able to make replacements.
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_BLUESPACE = 3)
 	frame_desc = "Requires 2 Micro Manipulators, 2 Cable Coil and 2 Hyperwave Filters."
 	req_components = list(
-							/obj/item/weapon/stock_parts/manipulator = 2,
+							/obj/item/weapon/stock_part/manipulator = 2,
 							/obj/item/stack/cable_coil = 2,
-							/obj/item/weapon/stock_parts/subspace/filter = 2)
+							/obj/item/weapon/stock_part/subspace/filter = 2)
 
 /obj/item/weapon/circuitboard/telecomms/bus
 	name = "Circuit Board (Bus Mainframe)"
@@ -322,9 +322,9 @@ to destroy them and players will be able to make replacements.
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	frame_desc = "Requires 2 Micro Manipulators, 1 Cable Coil and 1 Hyperwave Filter."
 	req_components = list(
-							/obj/item/weapon/stock_parts/manipulator = 2,
+							/obj/item/weapon/stock_part/manipulator = 2,
 							/obj/item/stack/cable_coil = 1,
-							/obj/item/weapon/stock_parts/subspace/filter = 1)
+							/obj/item/weapon/stock_part/subspace/filter = 1)
 
 /obj/item/weapon/circuitboard/telecomms/processor
 	name = "Circuit Board (Processor Unit)"
@@ -333,12 +333,12 @@ to destroy them and players will be able to make replacements.
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	frame_desc = "Requires 3 Micro Manipulators, 1 Hyperwave Filter, 2 Treatment Disks, 1 Wavelength Analyzer, 2 Cable Coils and 1 Subspace Amplifier."
 	req_components = list(
-							/obj/item/weapon/stock_parts/manipulator = 3,
-							/obj/item/weapon/stock_parts/subspace/filter = 1,
-							/obj/item/weapon/stock_parts/subspace/treatment = 2,
-							/obj/item/weapon/stock_parts/subspace/analyzer = 1,
+							/obj/item/weapon/stock_part/manipulator = 3,
+							/obj/item/weapon/stock_part/subspace/filter = 1,
+							/obj/item/weapon/stock_part/subspace/treatment = 2,
+							/obj/item/weapon/stock_part/subspace/analyzer = 1,
 							/obj/item/stack/cable_coil = 2,
-							/obj/item/weapon/stock_parts/subspace/amplifier = 1)
+							/obj/item/weapon/stock_part/subspace/amplifier = 1)
 
 /obj/item/weapon/circuitboard/telecomms/server
 	name = "Circuit Board (Telecommunication Server)"
@@ -347,9 +347,9 @@ to destroy them and players will be able to make replacements.
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	frame_desc = "Requires 2 Micro Manipulators, 1 Cable Coil and 1 Hyperwave Filter."
 	req_components = list(
-							/obj/item/weapon/stock_parts/manipulator = 2,
+							/obj/item/weapon/stock_part/manipulator = 2,
 							/obj/item/stack/cable_coil = 1,
-							/obj/item/weapon/stock_parts/subspace/filter = 1)
+							/obj/item/weapon/stock_part/subspace/filter = 1)
 
 /obj/item/weapon/circuitboard/telecomms/broadcaster
 	name = "Circuit Board (Subspace Broadcaster)"
@@ -358,11 +358,11 @@ to destroy them and players will be able to make replacements.
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_BLUESPACE = 2)
 	frame_desc = "Requires 2 Micro Manipulators, 1 Cable Coil, 1 Hyperwave Filter, 1 Ansible Crystal and 2 High-Powered Micro-Lasers. "
 	req_components = list(
-							/obj/item/weapon/stock_parts/manipulator = 2,
+							/obj/item/weapon/stock_part/manipulator = 2,
 							/obj/item/stack/cable_coil = 1,
-							/obj/item/weapon/stock_parts/subspace/filter = 1,
-							/obj/item/weapon/stock_parts/subspace/crystal = 1,
-							/obj/item/weapon/stock_parts/micro_laser/high = 2)
+							/obj/item/weapon/stock_part/subspace/filter = 1,
+							/obj/item/weapon/stock_part/subspace/crystal = 1,
+							/obj/item/weapon/stock_part/micro_laser/high = 2)
 
 
 

@@ -1,4 +1,6 @@
 /obj
+	animate_movement = 2
+
 	//var/datum/module/mod		//not used
 	var/m_amt = 0	// metal
 	var/g_amt = 0	// glass
@@ -7,7 +9,6 @@
 	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
 	var/crit_fail = 0
 	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
-	animate_movement = 2
 	var/throwforce = 1
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 	var/sharp = 0	// whether this object cuts

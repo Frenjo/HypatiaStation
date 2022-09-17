@@ -106,11 +106,11 @@ display round(lastgen) and plasmatank amount
 /obj/machinery/power/port_gen/pacman/New()
 	..()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
+	component_parts += new /obj/item/weapon/stock_part/matter_bin(src)
+	component_parts += new /obj/item/weapon/stock_part/micro_laser(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
+	component_parts += new /obj/item/weapon/stock_part/capacitor(src)
 	component_parts += new board_path(src)
 	var/obj/sheet = new sheet_path(null)
 	sheet_name = sheet.name
@@ -128,10 +128,10 @@ display round(lastgen) and plasmatank amount
 /obj/machinery/power/port_gen/pacman/RefreshParts()
 	var/temp_rating = 0
 	var/temp_reliability = 0
-	for(var/obj/item/weapon/stock_parts/SP in component_parts)
-		if(istype(SP, /obj/item/weapon/stock_parts/matter_bin))
+	for(var/obj/item/weapon/stock_part/SP in component_parts)
+		if(istype(SP, /obj/item/weapon/stock_part/matter_bin))
 			max_sheets = SP.rating * SP.rating * 50
-		else if(istype(SP, /obj/item/weapon/stock_parts/micro_laser) || istype(SP, /obj/item/weapon/stock_parts/capacitor))
+		else if(istype(SP, /obj/item/weapon/stock_part/micro_laser) || istype(SP, /obj/item/weapon/stock_part/capacitor))
 			temp_rating += SP.rating
 	for(var/obj/item/weapon/CP in component_parts)
 		temp_reliability += CP.reliability

@@ -166,8 +166,8 @@
 	frame_desc = "Requires 1 Scanning Module, 1 Capacitor, and 2 pieces of cable."
 	contain_parts = 0
 	req_components = list(
-							"/obj/item/weapon/stock_parts/scanning_module" = 1,
-							"/obj/item/weapon/stock_parts/capacitor" = 1,
+							"/obj/item/weapon/stock_part/scanning_module" = 1,
+							"/obj/item/weapon/stock_part/capacitor" = 1,
 							"/obj/item/weapon/cable_coil" = 2)
 
 /obj/item/weapon/circuitboard/alarm
@@ -178,8 +178,8 @@
 	frame_desc = "Requires 1 Scanning Module, 1 Console Screen, and 2 pieces of cable."
 	contain_parts = 0
 	req_components = list(
-							"/obj/item/weapon/stock_parts/scanning_module" = 1,
-							"/obj/item/weapon/stock_parts/console_screen" = 1,
+							"/obj/item/weapon/stock_part/scanning_module" = 1,
+							"/obj/item/weapon/stock_part/console_screen" = 1,
 							"/obj/item/weapon/cable_coil" = 2)
 
 /* oh right, not a machine :(
@@ -191,7 +191,7 @@
 	frame_desc = "Requires 1 Console Screen, and 2 piece of cable."
 	contain_parts = 0
 	req_components = list(
-							"/obj/item/weapon/stock_parts/console_screen" = 1,
+							"/obj/item/weapon/stock_part/console_screen" = 1,
 							"/obj/item/weapon/cable_coil" = 2)
 */
 
@@ -205,7 +205,7 @@
 	contain_parts = 0
 	req_components = list(
 							"/obj/item/device/radio" = 1,
-							"/obj/item/weapon/stock_parts/console_screen" = 1
+							"/obj/item/weapon/stock_part/console_screen" = 1
 							"/obj/item/weapon/cable_coil" = 1)
 */
 
@@ -217,7 +217,7 @@
 	frame_desc = "Requires 2 Console Screens, and 1 piece of cable."
 	contain_parts = 0
 	req_components = list(
-							"/obj/item/weapon/stock_parts/console_screen" = 2,
+							"/obj/item/weapon/stock_part/console_screen" = 2,
 							"/obj/item/weapon/cable_coil" = 1)
 
 /obj/item/weapon/circuitboard/light_switch

@@ -1,61 +1,6 @@
-// Moved plastic flaps and supply computer from /code/game/supplyshuttle.dm
+// Moved supply computer from /code/game/supplyshuttle.dm
 // (Also ported a bunch more Heaven's Gate - Eternal code to here)
 // Well technically it was from /code/game/supplyshuttle_old.dm but I haven't finished the new one yet. -Frenjo
-
-/obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
-	name = "\improper plastic flaps"
-	desc = "I definitely cant get past those. No way."
-	icon = 'icons/obj/stationobjs.dmi' //Change this.
-	icon_state = "plasticflaps"
-	density = FALSE
-	anchored = TRUE
-	layer = 4
-	explosion_resistance = 5
-
-	light_color = "#b88b2e"
-
-/obj/structure/plasticflaps/CanPass(atom/A, turf/T)
-	if(istype(A) && A.checkpass(PASSGLASS))
-		return prob(60)
-
-	var/obj/structure/stool/bed/B = A
-	if(istype(A, /obj/structure/stool/bed) && B.buckled_mob)//if it's a bed/chair and someone is buckled, it will not pass
-		return 0
-
-	else if(isliving(A)) // You Shall Not Pass!
-		var/mob/living/M = A
-		if(!M.lying && !ismonkey(M) && !isslime(M) && !ismouse(M) && !isdrone(M))  //If your not laying down, or a small creature, no pass.
-			return 0
-	return ..()
-
-/obj/structure/plasticflaps/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(prob(50))
-				qdel(src)
-		if(3)
-			if(prob(5))
-				qdel(src)
-
-/obj/structure/plasticflaps/mining //A specific type for mining that doesn't allow airflow because of them damn crates
-	name = "\improper Airtight plastic flaps"
-	desc = "Heavy duty, airtight, plastic flaps."
-
-/obj/structure/plasticflaps/mining/New() //set the turf below the flaps to block air
-	..()
-	var/turf/T = get_turf(loc)
-	if(T)
-		T.blocks_air = 1
-
-/obj/structure/plasticflaps/mining/Destroy() //lazy hack to set the turf to allow air to pass if it's a simulated floor
-	var/turf/T = get_turf(loc)
-	if(T)
-		if(istype(T, /turf/simulated/floor))
-			T.blocks_air = 0
-	return ..()
-
 
 /obj/machinery/computer/supplycomp
 	name = "Supply shuttle console"
@@ -71,14 +16,13 @@
 
 /obj/machinery/computer/supplycomp/initialize()
 	..()
-	current_category = cargo_supply_pack_root
+	current_category = global.cargo_supply_pack_root
 
 /obj/machinery/computer/supplycomp/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
 /obj/machinery/computer/supplycomp/attack_paw(mob/user as mob)
 	return attack_hand(user)
-
 
 /obj/machinery/computer/ordercomp
 	name = "Supply ordering console"
@@ -91,7 +35,7 @@
 
 /obj/machinery/computer/ordercomp/initialize()
 	..()
-	current_category = cargo_supply_pack_root
+	current_category = global.cargo_supply_pack_root
 
 /obj/machinery/computer/ordercomp/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -140,7 +84,7 @@
 
 	if(href_list["order"])
 		if(href_list["order"] == "categories")
-			current_category = cargo_supply_pack_root
+			current_category = global.cargo_supply_pack_root
 		else
 			var/decl/hierarchy/supply_pack/requested_category = locate(href_list["order"]) in current_category.children
 			if(!requested_category || !requested_category.is_category())
@@ -149,7 +93,7 @@
 
 		temp = list()
 		temp += "<b>Supply points: [global.supply_controller.points]</b><BR>"
-		if(current_category == cargo_supply_pack_root)
+		if(current_category == global.cargo_supply_pack_root)
 			temp += "<A href='?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
 			temp += "<b>Select a category</b><BR><BR>"
 			for(var/decl/hierarchy/supply_pack/sp in current_category.children)
@@ -311,7 +255,7 @@
 		if(supply_shuttle.has_arrive_time()) // Edited this to reflect 'shuttles' port. -Frenjo
 			return
 		if(href_list["order"] == "categories")
-			current_category = cargo_supply_pack_root
+			current_category = global.cargo_supply_pack_root
 		else
 			var/decl/hierarchy/supply_pack/requested_category = locate(href_list["order"]) in current_category.children
 			if(!requested_category || !requested_category.is_category())
@@ -320,7 +264,7 @@
 
 		temp = list()
 		temp += "<b>Supply points: [global.supply_controller.points]</b><BR>"
-		if(current_category == cargo_supply_pack_root)
+		if(current_category == global.cargo_supply_pack_root)
 			temp += "<A href='?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
 			temp += "<b>Select a category</b><BR><BR>"
 			for(var/decl/hierarchy/supply_pack/sp in current_category.children)

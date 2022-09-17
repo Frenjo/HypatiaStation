@@ -903,7 +903,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_POWERSTORAGE = 1)
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/stock_parts/capacitor
+	build_path = /obj/item/weapon/stock_part/capacitor
 
 /datum/design/basic_sensor
 	name = "Basic Sensor Module"
@@ -912,7 +912,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MAGNETS = 1)
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 20)
-	build_path = /obj/item/weapon/stock_parts/scanning_module
+	build_path = /obj/item/weapon/stock_part/scanning_module
 
 /datum/design/micro_mani
 	name = "Micro Manipulator"
@@ -921,7 +921,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_PROGRAMMING = 1)
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MATERIAL_METAL = 30)
-	build_path = /obj/item/weapon/stock_parts/manipulator
+	build_path = /obj/item/weapon/stock_part/manipulator
 
 /datum/design/basic_micro_laser
 	name = "Basic Micro-Laser"
@@ -930,7 +930,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MAGNETS = 1)
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MATERIAL_METAL = 10, MATERIAL_GLASS = 20)
-	build_path = /obj/item/weapon/stock_parts/micro_laser
+	build_path = /obj/item/weapon/stock_part/micro_laser
 
 /datum/design/basic_matter_bin
 	name = "Basic Matter Bin"
@@ -939,7 +939,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MATERIALS = 1)
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MATERIAL_METAL = 80)
-	build_path = /obj/item/weapon/stock_parts/matter_bin
+	build_path = /obj/item/weapon/stock_part/matter_bin
 
 /datum/design/adv_capacitor
 	name = "Advanced Capacitor"
@@ -948,7 +948,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/stock_parts/capacitor/adv
+	build_path = /obj/item/weapon/stock_part/capacitor/adv
 
 /datum/design/adv_sensor
 	name = "Advanced Sensor Module"
@@ -957,7 +957,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MAGNETS = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 20)
-	build_path = /obj/item/weapon/stock_parts/scanning_module/adv
+	build_path = /obj/item/weapon/stock_part/scanning_module/adv
 
 /datum/design/nano_mani
 	name = "Nano Manipulator"
@@ -966,7 +966,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_PROGRAMMING = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 30)
-	build_path = /obj/item/weapon/stock_parts/manipulator/nano
+	build_path = /obj/item/weapon/stock_part/manipulator/nano
 
 /datum/design/high_micro_laser
 	name = "High-Power Micro-Laser"
@@ -975,7 +975,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MAGNETS = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 10, MATERIAL_GLASS = 20)
-	build_path = /obj/item/weapon/stock_parts/micro_laser/high
+	build_path = /obj/item/weapon/stock_part/micro_laser/high
 
 /datum/design/adv_matter_bin
 	name = "Advanced Matter Bin"
@@ -984,7 +984,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MATERIALS = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 80)
-	build_path = /obj/item/weapon/stock_parts/matter_bin/adv
+	build_path = /obj/item/weapon/stock_part/matter_bin/adv
 
 /datum/design/super_capacitor
 	name = "Super Capacitor"
@@ -994,7 +994,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	reliability_base = 71
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50, MATERIAL_GOLD = 20)
-	build_path = /obj/item/weapon/stock_parts/capacitor/super
+	build_path = /obj/item/weapon/stock_part/capacitor/super
 
 /datum/design/phasic_sensor
 	name = "Phasic Sensor Module"
@@ -1004,7 +1004,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 20, MATERIAL_SILVER = 10)
 	reliability_base = 72
-	build_path = /obj/item/weapon/stock_parts/scanning_module/phasic
+	build_path = /obj/item/weapon/stock_part/scanning_module/phasic
 
 /datum/design/pico_mani
 	name = "Pico Manipulator"
@@ -1014,7 +1014,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 30)
 	reliability_base = 73
-	build_path = /obj/item/weapon/stock_parts/manipulator/pico
+	build_path = /obj/item/weapon/stock_part/manipulator/pico
 
 /datum/design/ultra_micro_laser
 	name = "Ultra-High-Power Micro-Laser"
@@ -1024,7 +1024,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 10, MATERIAL_GLASS = 20, MATERIAL_URANIUM = 10)
 	reliability_base = 70
-	build_path = /obj/item/weapon/stock_parts/micro_laser/ultra
+	build_path = /obj/item/weapon/stock_part/micro_laser/ultra
 
 /datum/design/super_matter_bin
 	name = "Super Matter Bin"
@@ -1034,7 +1034,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 80)
 	reliability_base = 75
-	build_path = /obj/item/weapon/stock_parts/matter_bin/super
+	build_path = /obj/item/weapon/stock_part/matter_bin/super
 
 // Rating 4 -Frenjo.
 /datum/design/hyper_capacitor
@@ -1045,7 +1045,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	reliability_base = 71
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50, MATERIAL_GOLD = 20, MATERIAL_SILVER = 20)
-	build_path = /obj/item/weapon/stock_parts/capacitor/hyper
+	build_path = /obj/item/weapon/stock_part/capacitor/hyper
 
 /datum/design/hyperphasic_sensor
 	name = "Hyper-Phasic Sensor Module"
@@ -1055,7 +1055,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 20, MATERIAL_GOLD = 10, MATERIAL_SILVER = 10)
 	reliability_base = 72
-	build_path = /obj/item/weapon/stock_parts/scanning_module/hyperphasic
+	build_path = /obj/item/weapon/stock_part/scanning_module/hyperphasic
 
 /datum/design/femto_mani
 	name = "Femto Manipulator"
@@ -1065,7 +1065,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 30)
 	reliability_base = 73
-	build_path = /obj/item/weapon/stock_parts/manipulator/femto
+	build_path = /obj/item/weapon/stock_part/manipulator/femto
 
 /datum/design/hyper_ultra_micro_laser
 	name = "Hyper-Ultra-High-Power Micro-Laser"
@@ -1075,7 +1075,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 10, MATERIAL_GLASS = 20, MATERIAL_URANIUM = 10, MATERIAL_PLASMA = 10)
 	reliability_base = 70
-	build_path = /obj/item/weapon/stock_parts/micro_laser/hyperultra
+	build_path = /obj/item/weapon/stock_part/micro_laser/hyperultra
 
 /datum/design/hyper_matter_bin
 	name = "Hyper Matter Bin"
@@ -1085,7 +1085,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 80)
 	reliability_base = 75
-	build_path = /obj/item/weapon/stock_parts/matter_bin/hyper
+	build_path = /obj/item/weapon/stock_part/matter_bin/hyper
 
 
 ////////////////////////////////////////
@@ -1098,7 +1098,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 80, MATERIAL_SILVER = 20)
-	build_path = /obj/item/weapon/stock_parts/subspace/ansible
+	build_path = /obj/item/weapon/stock_part/subspace/ansible
 
 /datum/design/hyperwave_filter
 	name = "Hyperwave Filter"
@@ -1107,7 +1107,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MAGNETS = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 40, MATERIAL_SILVER = 10)
-	build_path = /obj/item/weapon/stock_parts/subspace/filter
+	build_path = /obj/item/weapon/stock_part/subspace/filter
 
 /datum/design/subspace_amplifier
 	name = "Subspace Amplifier"
@@ -1116,7 +1116,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 10, MATERIAL_GOLD = 30, MATERIAL_URANIUM = 15)
-	build_path = /obj/item/weapon/stock_parts/subspace/amplifier
+	build_path = /obj/item/weapon/stock_part/subspace/amplifier
 
 /datum/design/subspace_treatment
 	name = "Subspace Treatment Disk"
@@ -1125,7 +1125,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 10, MATERIAL_SILVER = 20)
-	build_path = /obj/item/weapon/stock_parts/subspace/treatment
+	build_path = /obj/item/weapon/stock_part/subspace/treatment
 
 /datum/design/subspace_analyzer
 	name = "Subspace Analyzer"
@@ -1134,7 +1134,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 10, MATERIAL_GOLD = 15)
-	build_path = /obj/item/weapon/stock_parts/subspace/analyzer
+	build_path = /obj/item/weapon/stock_part/subspace/analyzer
 
 /datum/design/subspace_crystal
 	name = "Ansible Crystal"
@@ -1143,7 +1143,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_GLASS = 1000, MATERIAL_SILVER = 20, MATERIAL_GOLD = 20)
-	build_path = /obj/item/weapon/stock_parts/subspace/crystal
+	build_path = /obj/item/weapon/stock_part/subspace/crystal
 
 /datum/design/subspace_transmitter
 	name = "Subspace Transmitter"
@@ -1152,7 +1152,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MAGNETS = 5, RESEARCH_TECH_MATERIALS = 5, RESEARCH_TECH_BLUESPACE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_GLASS = 100, MATERIAL_SILVER = 10, MATERIAL_URANIUM = 15)
-	build_path = /obj/item/weapon/stock_parts/subspace/transmitter
+	build_path = /obj/item/weapon/stock_part/subspace/transmitter
 
 
 ////////////////////////////////////////

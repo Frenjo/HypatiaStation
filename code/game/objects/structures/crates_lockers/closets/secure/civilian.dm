@@ -1,4 +1,3 @@
-
 /obj/structure/closet/secure_closet/chef_personal
 	name = "Chef's Locker"
 	req_access = list(ACCESS_KITCHEN)

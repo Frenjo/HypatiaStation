@@ -22,7 +22,7 @@
 	..()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/rdserver(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
+	component_parts += new /obj/item/weapon/stock_part/scanning_module(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
 	RefreshParts()
@@ -33,7 +33,7 @@
 
 /obj/machinery/r_n_d/server/RefreshParts()
 	var/tot_rating = 0
-	for(var/obj/item/weapon/stock_parts/SP in src)
+	for(var/obj/item/weapon/stock_part/SP in src)
 		tot_rating += SP.rating
 	//heat_gen /= max(1, tot_rating)
 	operating_temperature /= max(1, tot_rating)
