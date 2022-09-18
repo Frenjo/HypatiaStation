@@ -14,7 +14,7 @@
 /var/global/list/lighting_update_corners_old	= list()	// List of lighting corners  currently being updated.
 /var/global/list/lighting_update_overlays_old	= list()	// List of lighting overlays currently being updated.
 
-/datum/controller/process/lighting/setup()
+/datum/process/lighting/setup()
 	name = "lighting"
 
 	schedule_interval = world.tick_lag // run as fast as you possibly can
@@ -25,7 +25,7 @@
 	spawn(45 SECONDS)
 		doWork(1)
 
-/datum/controller/process/lighting/doWork(roundstart)
+/datum/process/lighting/doWork(roundstart)
 	// Counters
 	var/light_updates	= 0
 	var/corner_updates	= 0

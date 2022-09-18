@@ -5,10 +5,11 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 // Controls the emergency shuttle
-
-/var/global/datum/controller/emergency_shuttle/emergency_shuttle // Set in /datum/controller/process/emergency_shuttle/setup()
+/var/global/datum/controller/emergency_shuttle/emergency_shuttle // Set in /datum/process/emergency_shuttle/setup()
 
 /datum/controller/emergency_shuttle
+	name = "Emergency Shuttle"
+
 	var/datum/shuttle/ferry/emergency/shuttle
 	var/list/escape_pods
 
@@ -26,7 +27,7 @@
 	var/datum/announcement/priority/emergency_shuttle_called = new(0, new_sound = sound('sound/AI/shuttlecalled.ogg'))
 	var/datum/announcement/priority/emergency_shuttle_recalled = new(0, new_sound = sound('sound/AI/shuttlerecalled.ogg'))*/
 
-/datum/controller/emergency_shuttle/proc/process()
+/datum/controller/emergency_shuttle/process()
 	if(wait_for_launch)
 		if(auto_recall && world.time >= auto_recall_time)
 			recall()

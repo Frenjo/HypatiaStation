@@ -1,15 +1,15 @@
-/datum/controller/process/air/setup()
+/datum/process/air/setup()
 	name = "air"
 	schedule_interval = 2 SECONDS
 	start_delay = 4
 
 	if(!global.air_master)
 		global.air_master = new /datum/controller/air_system()
-		global.air_master.Setup()
+		global.air_master.setup()
 
-/datum/controller/process/air/doWork()
+/datum/process/air/doWork()
 	if(!global.air_processing_killed)
-		if(!global.air_master.Tick()) //Runtimed.
+		if(!global.air_master.process()) //Runtimed.
 			global.air_master.failed_ticks++
 
 			if(global.air_master.failed_ticks > 5)

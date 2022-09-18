@@ -1,6 +1,6 @@
 // Process
 
-/datum/controller/process
+/datum/process
 	/**
 	 * State vars
 	 */
@@ -91,7 +91,7 @@
 	// Number of deciseconds to delay before starting the process
 	var/start_delay = 0
 
-/datum/controller/process/New(datum/controller/process_scheduler/scheduler)
+/datum/process/New(datum/controller/process_scheduler/scheduler)
 	..()
 	main = scheduler
 	previousStatus = "idle"
@@ -105,7 +105,7 @@
 	last_task = 0
 	last_object = null
 
-/datum/controller/process/proc/started()
+/datum/process/proc/started()
 	// Initialize run_start so we can detect hung processes.
 	run_start = TimeOfGame
 
@@ -117,48 +117,48 @@
 
 	onStart()
 
-/datum/controller/process/proc/finished()
+/datum/process/proc/finished()
 	ticks++
 	idle()
 	main.processFinished(src)
 
 	onFinish()
 
-/datum/controller/process/proc/doWork()
+/datum/process/proc/doWork()
 
-/datum/controller/process/proc/setup()
+/datum/process/proc/setup()
 
-/datum/controller/process/proc/process()
+/datum/process/proc/process()
 	started()
 	doWork()
 	finished()
 
-/datum/controller/process/proc/running()
+/datum/process/proc/running()
 	idle = FALSE
 	queued = FALSE
 	running = TRUE
 	hung = FALSE
 	setStatus(PROCESS_STATUS_RUNNING)
 
-/datum/controller/process/proc/idle()
+/datum/process/proc/idle()
 	queued = FALSE
 	running = FALSE
 	idle = TRUE
 	hung = FALSE
 	setStatus(PROCESS_STATUS_IDLE)
 
-/datum/controller/process/proc/queued()
+/datum/process/proc/queued()
 	idle = FALSE
 	running = FALSE
 	queued = TRUE
 	hung = FALSE
 	setStatus(PROCESS_STATUS_QUEUED)
 
-/datum/controller/process/proc/hung()
+/datum/process/proc/hung()
 	hung = TRUE
 	setStatus(PROCESS_STATUS_HUNG)
 
-/datum/controller/process/proc/handleHung()
+/datum/process/proc/handleHung()
 	var/datum/lastObj = last_object
 	var/lastObjType = "null"
 	if(istype(lastObj))
@@ -170,7 +170,7 @@
 
 	main.restartProcess(src.name)
 
-/datum/controller/process/proc/kill()
+/datum/process/proc/kill()
 	if(!killed)
 		var/msg = "[name] process was killed at tick #[ticks]."
 		log_debug(msg)
@@ -184,7 +184,7 @@
 		del(src)
 
 // Do not call this directly - use SHECK or SCHECK_EVERY
-/datum/controller/process/proc/sleepCheck(tickId = 0)
+/datum/process/proc/sleepCheck(tickId = 0)
 	calls_since_last_scheck = 0
 	if(killed)
 		// The kill proc is the only place where killed is set.
@@ -207,7 +207,7 @@
 			sleep(0)
 			last_slept = TimeOfTick
 
-/datum/controller/process/proc/update()
+/datum/process/proc/update()
 	// Clear delta
 	if(previousStatus != status)
 		setStatus(status)
@@ -224,16 +224,16 @@
 	else if(elapsedTime > hang_warning_time)
 		setStatus(PROCESS_STATUS_MAYBE_HUNG)
 
-/datum/controller/process/proc/getElapsedTime()
+/datum/process/proc/getElapsedTime()
 	return TimeOfGame - run_start
 
-/datum/controller/process/proc/tickDetail()
+/datum/process/proc/tickDetail()
 	return
 
-/datum/controller/process/proc/getContext()
+/datum/process/proc/getContext()
 	return "<tr><td>[name]</td><td>[main.averageRunTime(src)]</td><td>[main.last_run_time[src]]</td><td>[main.highest_run_time[src]]</td><td>[ticks]</td></tr>\n"
 
-/datum/controller/process/proc/getContextData()
+/datum/process/proc/getContextData()
 	return list(
 	"name" = name,
 	"averageRunTime" = main.averageRunTime(src),
@@ -245,10 +245,10 @@
 	"disabled" = disabled
 	)
 
-/datum/controller/process/proc/getStatus()
+/datum/process/proc/getStatus()
 	return status
 
-/datum/controller/process/proc/getStatusText(s = 0)
+/datum/process/proc/getStatusText(s = 0)
 	if(!s)
 		s = status
 	switch(s)
@@ -267,21 +267,21 @@
 		else
 			return "UNKNOWN"
 
-/datum/controller/process/proc/getPreviousStatus()
+/datum/process/proc/getPreviousStatus()
 	return previousStatus
 
-/datum/controller/process/proc/getPreviousStatusText()
+/datum/process/proc/getPreviousStatusText()
 	return getStatusText(previousStatus)
 
-/datum/controller/process/proc/setStatus(newStatus)
+/datum/process/proc/setStatus(newStatus)
 	previousStatus = status
 	status = newStatus
 
-/datum/controller/process/proc/setLastTask(task, object)
+/datum/process/proc/setLastTask(task, object)
 	last_task = task
 	last_object = object
 
-/datum/controller/process/proc/_copyStateFrom(datum/controller/process/target)
+/datum/process/proc/_copyStateFrom(datum/process/target)
 	main = target.main
 	name = target.name
 	schedule_interval = target.schedule_interval
@@ -294,39 +294,39 @@
 	last_object = target.last_object
 	copyStateFrom(target)
 
-/datum/controller/process/proc/copyStateFrom(datum/controller/process/target)
+/datum/process/proc/copyStateFrom(datum/process/target)
 
-/datum/controller/process/proc/onKill()
+/datum/process/proc/onKill()
 
-/datum/controller/process/proc/onStart()
+/datum/process/proc/onStart()
 
-/datum/controller/process/proc/onFinish()
+/datum/process/proc/onFinish()
 
-/datum/controller/process/proc/disable()
+/datum/process/proc/disable()
 	disabled = 1
 
-/datum/controller/process/proc/enable()
+/datum/process/proc/enable()
 	disabled = 0
 
-/datum/controller/process/proc/getAverageRunTime()
+/datum/process/proc/getAverageRunTime()
 	return main.averageRunTime(src)
 
-/datum/controller/process/proc/getLastRunTime()
+/datum/process/proc/getLastRunTime()
 	return main.getProcessLastRunTime(src)
 
-/datum/controller/process/proc/getHighestRunTime()
+/datum/process/proc/getHighestRunTime()
 	return main.getProcessHighestRunTime(src)
 
-/datum/controller/process/proc/getTicks()
+/datum/process/proc/getTicks()
 	return ticks
 
-/datum/controller/process/proc/statProcess()
+/datum/process/proc/statProcess()
 	var/averageRunTime = round(getAverageRunTime(), 0.1) / 10
 	var/lastRunTime = round(getLastRunTime(), 0.1) / 10
 	var/highestRunTime = round(getHighestRunTime(), 0.1) / 10
 	stat("[name]", "T#[getTicks()] | AR [averageRunTime] | LR [lastRunTime] | HR [highestRunTime] | D [cpu_defer_count]")
 
-/datum/controller/process/proc/catchException(exception/e, thrower)
+/datum/process/proc/catchException(exception/e, thrower)
 	if(istype(e)) // Real runtimes go to the real error handler
 		// There are two newlines here, because handling desc sucks
 		e.desc = "  Caught by process: [name]\n\n" + e.desc
@@ -356,7 +356,7 @@
 		spawn(6000)
 			exceptions[eid] = 0
 
-/datum/controller/process/proc/catchBadType(datum/caught)
+/datum/process/proc/catchBadType(datum/caught)
 	if(isnull(caught) || !istype(caught) || !isnull(caught.gcDestroyed))
 		return // Only bother with types we can identify and that don't belong
 	catchException("Type [caught.type] does not belong in process' queue")

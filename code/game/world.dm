@@ -50,7 +50,7 @@
 	global.process_scheduler = new /datum/controller/process_scheduler()
 	global.master_controller = new /datum/controller/master()
 	spawn(1)
-		global.process_scheduler.deferSetupFor(/datum/controller/process/ticker)
+		global.process_scheduler.deferSetupFor(/datum/process/ticker)
 		global.process_scheduler.setup()
 		global.master_controller.setup()
 

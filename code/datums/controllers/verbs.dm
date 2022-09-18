@@ -53,7 +53,7 @@
 			debug_variables(global.config)
 			feedback_add_details("admin_verb", "DConf")
 		if("pAI")
-			debug_variables(global.paiController)
+			debug_variables(global.pAI_controller)
 			feedback_add_details("admin_verb", "DpAI")
 		if("Cameras")
 			debug_variables(global.cameranet)

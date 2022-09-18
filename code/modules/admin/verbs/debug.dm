@@ -213,9 +213,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	pai.real_name = pai.name
 	pai.key = choice.key
 	card.setPersonality(pai)
-	for(var/datum/paiCandidate/candidate in global.paiController.pai_candidates)
+	for(var/datum/pAI_candidate/candidate in global.pAI_controller.pAI_candidates)
 		if(candidate.key == choice.key)
-			global.paiController.pai_candidates.Remove(candidate)
+			global.pAI_controller.pAI_candidates.Remove(candidate)
 	feedback_add_details("admin_verb", "MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_alienize(mob/M in mob_list)

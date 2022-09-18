@@ -11,7 +11,11 @@
 /var/global/air_processing_killed = FALSE
 /var/global/pipe_processing_killed = FALSE
 
+/datum/controller/master
+	name = "Master"
+
 /datum/controller/master/New()
+	..()
 	// There can be only one master_controller. Out with the old and in with the new.
 	if(global.master_controller != src)
 		log_debug("Rebuilding Master Controller")
@@ -30,10 +34,10 @@
 	if(!global.syndicate_code_response)
 		global.syndicate_code_response	= generate_code_phrase()
 
-/datum/controller/master/proc/setup()
+/datum/controller/master/setup()
 	world.tick_lag = global.config.ticklag
 
-	spawn(20)
+	spawn(2 SECONDS)
 		createRandomZlevel()
 
 	setup_objects()

@@ -1,6 +1,8 @@
 /var/global/datum/controller/transfer/transfer_controller // Set in /datum/controller/master/setup()
 
 /datum/controller/transfer
+	name = "Transfer"
+
 	var/timerbuffer = 0 //buffer for time check
 	var/currenttick = 0
 
@@ -13,7 +15,7 @@
 	global.processing_objects -= src
 	return ..()
 
-/datum/controller/transfer/proc/process()
+/datum/controller/transfer/process()
 	currenttick = currenttick + 1
 	if(world.time >= timerbuffer - 600)
 		global.vote.autotransfer()

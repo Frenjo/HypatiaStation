@@ -1,8 +1,10 @@
-/var/global/datum/controller/vote/vote // Set in /datum/controller/process/vote/setup()
+/var/global/datum/controller/vote/vote // Set in /datum/process/vote/setup()
 
 /var/global/list/round_voters = list() //Keeps track of the individuals voting for a given round, for use in forcedrafting.
 
 /datum/controller/vote
+	name = "Vote"
+
 	var/initiator = null
 	var/started_time = null
 	var/time_remaining = 0
@@ -15,12 +17,13 @@
 	var/auto_muted = 0
 
 /datum/controller/vote/New()
+	..()
 	if(global.vote != src)
 		if(istype(global.vote))
 			qdel(global.vote)
 		global.vote = src
 
-/datum/controller/vote/proc/process()	//called by master_controller
+/datum/controller/vote/process()	//called by master_controller
 	if(mode)
 		// No more change mode votes after the game has started.
 		// 3 is GAME_STATE_PLAYING, but that #define is undefined for some reason

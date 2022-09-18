@@ -1,10 +1,12 @@
-/var/global/datum/controller/supply/supply_controller // Set in /datum/controller/process/supply/setup()
+/var/global/datum/controller/supply/supply_controller // Set in /datum/process/supply/setup()
 
 // Supply manifest
 /obj/item/weapon/paper/manifest
 	name = "Supply Manifest"
 
 /datum/controller/supply
+	name = "Supply Shuttle"
+
 	var/processing = 1
 	var/processing_interval = 300
 	var/iteration = 0
@@ -23,10 +25,11 @@
 	var/datum/shuttle/ferry/supply/shuttle
 
 /datum/controller/supply/New()
+	..()
 	ordernum = rand(1, 9000)
 
 //Supply shuttle ticker - handles supply point regenertion and shuttle travelling between centcomm and the station
-/datum/controller/supply/proc/process()
+/datum/controller/supply/process()
 	points += points_per_process
 
 //To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.

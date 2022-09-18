@@ -1,9 +1,9 @@
 #define INACTIVITY_KICK	(10 MINUTES)	//10 minutes in ticks (approx.)
-/datum/controller/process/inactivity/setup()
+/datum/process/inactivity/setup()
 	name = "inactivity"
 	schedule_interval = INACTIVITY_KICK
 
-/datum/controller/process/inactivity/doWork()
+/datum/process/inactivity/doWork()
 	if(config.kick_inactive)
 		for(var/client/C in global.clients)
 			if(C.is_afk(INACTIVITY_KICK))

@@ -1,8 +1,3 @@
-/var/global/datum/controller/radio/radio_controller
-
-/hook/startup/proc/create_radio_controller()
-	global.radio_controller = new /datum/controller/radio()
-
 /*
  * Radio Controller
  *
@@ -33,8 +28,15 @@
  *		returns:
  *			Reference to frequency object. Use it if you need to send and do not need to listen.
 */
+/var/global/datum/controller/radio/radio_controller
+
+/hook/startup/proc/create_radio_controller()
+	global.radio_controller = new /datum/controller/radio()
+
 /datum/controller/radio
-	var/list/datum/radio_frequency/frequencies = list()
+	name = "Radio"
+
+	var/list/frequencies = list()
 
 /datum/controller/radio/proc/add_object(obj/device as obj, new_frequency as num, filter = null as text|null)
 	var/f_text = num2text(new_frequency)

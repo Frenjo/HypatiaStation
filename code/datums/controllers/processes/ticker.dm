@@ -1,10 +1,10 @@
-/var/global/datum/controller/process/ticker/ticker_process
+/var/global/datum/process/ticker/ticker_process
 
-/datum/controller/process/ticker
+/datum/process/ticker
 	var/lastTickerTimeDuration
 	var/lastTickerTime
 
-/datum/controller/process/ticker/setup()
+/datum/process/ticker/setup()
 	name = "ticker"
 	schedule_interval = 2 SECONDS
 
@@ -19,7 +19,7 @@
 		if(global.ticker)
 			global.ticker.pregame()
 
-/datum/controller/process/ticker/doWork()
+/datum/process/ticker/doWork()
 	var/currentTime = world.timeofday
 
 	if(currentTime < lastTickerTime) // check for midnight rollover
@@ -31,5 +31,5 @@
 
 	global.ticker.process()
 
-/datum/controller/process/ticker/proc/getLastTickerTimeDuration()
+/datum/process/ticker/proc/getLastTickerTimeDuration()
 	return lastTickerTimeDuration

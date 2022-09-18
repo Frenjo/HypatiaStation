@@ -1,10 +1,10 @@
 /var/global/list/events = list()
 
-/datum/controller/process/event/setup()
+/datum/process/event/setup()
 	name = "event"
 	schedule_interval = 2 SECONDS
 
-/datum/controller/process/event/doWork()
+/datum/process/event/doWork()
 	var/i = 1
 	while(i <= global.events.len)
 		var/datum/event/Event = global.events[i]

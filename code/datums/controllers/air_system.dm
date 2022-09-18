@@ -1,9 +1,4 @@
-/var/global/datum/controller/air_system/air_master // Set in /datum/controller/process/air/setup()
-
-var/tick_multiplier = 2
-
 /*
-
 Overview:
 	The air controller does everything. There are tons of procs in here.
 
@@ -19,7 +14,6 @@ Class Vars:
 	next_id - The next UID to be applied to a zone. Mostly useful for debugging purposes as zones do not need UIDs to function.
 
 Class Procs:
-
 	mark_for_update(turf/T)
 		Adds the turf to the update list. When updated, update_air_properties() will be called.
 		When stuff changes that might affect airflow, call this. It's basically the only thing you need.
@@ -62,37 +56,40 @@ Class Procs:
 
 	remove_edge(connection_edge/edge)
 		Called when an edge is erased. Removes it from processing.
-
 */
+/var/global/datum/controller/air_system/air_master // Set in /datum/process/air/setup()
+/var/global/air_tick_multiplier = 2
 
+/datum/controller/air_system
+	name = "Air"
 
-//Geometry lists
-/datum/controller/air_system/var/list/zones = list()
-/datum/controller/air_system/var/list/edges = list()
+	// Geometry lists
+	var/list/zones = list()
+	var/list/edges = list()
 
-//Geometry updates lists
-/datum/controller/air_system/var/list/tiles_to_update = list()
-/datum/controller/air_system/var/list/zones_to_update = list()
-/datum/controller/air_system/var/list/active_fire_zones = list()
-/datum/controller/air_system/var/list/active_hotspots = list()
-/datum/controller/air_system/var/list/active_edges = list()
+	// Geometry updates lists
+	var/list/tiles_to_update = list()
+	var/list/zones_to_update = list()
+	var/list/active_fire_zones = list()
+	var/list/active_hotspots = list()
+	var/list/active_edges = list()
 
-/datum/controller/air_system/var/active_zones = 0
+	var/active_zones = 0
 
-/datum/controller/air_system/var/current_cycle = 0
-/datum/controller/air_system/var/update_delay = 5 //How long between check should it try to process atmos again.
-/datum/controller/air_system/var/failed_ticks = 0 //How many ticks have runtimed?
+	var/current_cycle = 0
+	var/update_delay = 0.5 SECONDS	// How long between check should it try to process atmos again.
+	var/failed_ticks = 0			// How many ticks have runtimed?
 
-/datum/controller/air_system/var/tick_progress = 0
+	var/tick_progress = 0
 
-/datum/controller/air_system/var/next_id = 1 //Used to keep track of zone UIDs.
+	var/next_id = 1	// Used to keep track of zone UIDs.
 
-/datum/controller/air_system/proc/Setup()
-	//Purpose: Call this at the start to setup air groups geometry
-	//    (Warning: Very processor intensive but only must be done once per round)
-	//Called by: Gameticker/Master controller
-	//Inputs: None.
-	//Outputs: None.
+/datum/controller/air_system/setup()
+	// Purpose: Call this at the start to setup air groups geometry
+	//	(Warning: Very processor intensive but only must be done once per round)
+	// Called by: Air process.
+	// Inputs: None.
+	// Outputs: None.
 
 	#ifndef ZASDBG
 	set background = 1
@@ -121,21 +118,20 @@ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_
 //	spawn Start()
 
 /datum/controller/air_system/proc/Start()
-	//Purpose: This is kicked off by the master controller, and controls the processing of all atmosphere.
-	//Called by: Master controller
-	//Inputs: None.
-	//Outputs: None.
+	// Purpose: This is kicked off by the master controller, and controls the processing of all atmosphere.
+	// Called by: Master controller.
+	// Inputs: None.
+	// Outputs: None.
 
 	#ifndef ZASDBG
 	set background = 1
 	#endif
 
 	while(1)
-		Tick()
-		sleep(max(5, update_delay * tick_multiplier))
+		process()
+		sleep(max(5, update_delay * global.air_tick_multiplier))
 
-
-/datum/controller/air_system/proc/Tick()
+/datum/controller/air_system/process()
 	. = 1 //Set the default return value, for runtime detection.
 
 	current_cycle++

@@ -1,6 +1,8 @@
-/var/global/datum/controller/game_ticker/ticker // Set in /datum/controller/process/ticker/setup()
+/var/global/datum/controller/game_ticker/ticker // Set in /datum/process/ticker/setup()
 
 /datum/controller/game_ticker
+	name = "Ticker"
+
 	var/const/restart_timeout = 600
 	var/current_state = GAME_STATE_PREGAME
 
@@ -71,8 +73,7 @@
 				current_state = GAME_STATE_SETTING_UP
 	while(!setup())
 
-
-/datum/controller/game_ticker/proc/setup()
+/datum/controller/game_ticker/setup()
 	//Create and announce mode
 	if(global.master_mode == "secret")
 		src.hide_mode = TRUE
@@ -297,7 +298,7 @@
 			if(!istype(M, /mob/new_player))
 				to_chat(M, "Captainship not forced on anyone.")
 
-/datum/controller/game_ticker/proc/process()
+/datum/controller/game_ticker/process()
 	if(current_state != GAME_STATE_PLAYING)
 		return 0
 

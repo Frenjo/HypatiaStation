@@ -5,11 +5,13 @@
 #define RETURN_TO_LOBBY 2
 
 /datum/controller/occupations
-	//List of all jobs
+	name = "Jobs"
+
+	// List of all jobs
 	var/list/occupations = list()
-	//Players who need jobs
+	// Players who need jobs
 	var/list/unassigned = list()
-	//Debug info
+	// Debug info
 	var/list/job_debug = list()
 
 /datum/controller/occupations/proc/setup_occupations(faction = "Station")

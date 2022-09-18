@@ -1,4 +1,4 @@
-/datum/controller/process/supply/setup()
+/datum/process/supply/setup()
 	name = "supply"
 	schedule_interval = 30 SECONDS
 
@@ -6,5 +6,5 @@
 		global.supply_controller = new /datum/controller/supply()
 		global.supply_controller.shuttle = global.shuttles["Supply"]
 
-/datum/controller/process/supply/doWork()
+/datum/process/supply/doWork()
 	global.supply_controller.process()

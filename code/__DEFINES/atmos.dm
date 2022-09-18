@@ -104,3 +104,8 @@
 #define GAS_OXYGEN_AGENT_B "oxygen_agent_b"
 #define GAS_SLEEPING_AGENT "sleeping_agent"
 #define GAS_VOLATILE_FUEL "volatile_fuel"
+
+// ZAS defines
+#define AIR_BLOCKED		1
+#define ZONE_BLOCKED	2
+#define BLOCKED			3

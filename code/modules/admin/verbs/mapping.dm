@@ -283,7 +283,7 @@ var/list/debug_verbs = list(
 			zone.c_invalidate()
 		qdel(old_air)
 		air_master = new
-		air_master.Setup()
+		air_master.setup()
 		spawn()
 			air_master.Start()
 

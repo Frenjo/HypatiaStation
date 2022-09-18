@@ -4,22 +4,22 @@
 /var/global/list/processing_power_items = list()
 /var/global/list/powernets = list()
 
-/datum/controller/process/machinery/setup()
+/datum/process/machinery/setup()
 	name = "machinery"
 	schedule_interval = 2 SECONDS
 	start_delay = 12
 
-/datum/controller/process/machinery/doWork()
+/datum/process/machinery/doWork()
 	internal_sort()
 	internal_process_machinery()
 	internal_process_powernets()
 
-/datum/controller/process/machinery/proc/internal_sort()
+/datum/process/machinery/proc/internal_sort()
 	if(global.machinery_sort_required)
 		global.machinery_sort_required = FALSE
 		global.machines = dd_sortedObjectList(global.machines)
 
-/datum/controller/process/machinery/proc/internal_process_machinery()
+/datum/process/machinery/proc/internal_process_machinery()
 	for(var/obj/machinery/M in global.machines)
 		if(M && !M.gcDestroyed)
 			if(M.process() == PROCESS_KILL)
@@ -31,7 +31,7 @@
 
 		SCHECK
 
-/datum/controller/process/machinery/proc/internal_process_powernets()
+/datum/process/machinery/proc/internal_process_powernets()
 	for(var/datum/powernet/powerNetwork in global.powernets)
 		if(istype(powerNetwork) && isnull(powerNetwork.gcDestroyed))
 			powerNetwork.reset()
@@ -48,7 +48,7 @@
 			global.processing_power_items.Remove(I)
 		SCHECK
 
-/datum/controller/process/machinery/statProcess()
+/datum/process/machinery/statProcess()
 	..()
 	stat(null, "[global.machines.len] machines")
 	stat(null, "[global.powernets.len] powernets")

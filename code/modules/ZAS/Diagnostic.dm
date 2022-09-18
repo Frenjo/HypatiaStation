@@ -2,7 +2,7 @@
 	set category = "Debug"
 	set name = "Process Atmos"
 
-	var/result = air_master.Tick()
+	var/result = air_master.process()
 	if(result)
 		src << "Sucessfully Processed."
 

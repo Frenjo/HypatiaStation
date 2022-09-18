@@ -1,10 +1,9 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
 // Recruiting observers to play as pAIs
+/var/global/datum/controller/pai/pAI_controller	// Global handler for pAI candidates
 
-/var/global/datum/paiController/paiController			// Global handler for pAI candidates
-
-/datum/paiCandidate
+/datum/pAI_candidate
 	var/name
 	var/key
 	var/description
@@ -12,25 +11,23 @@
 	var/comments
 	var/ready = 0
 
-
-/hook/startup/proc/paiControllerSetup()
-	global.paiController = new /datum/paiController()
+/hook/startup/proc/setup_pAI_controller()
+	global.pAI_controller = new /datum/controller/pai()
 	return 1
 
-
-/datum/paiController
-	var/list/pai_candidates = list()
+/datum/controller/pai
+	var/list/pAI_candidates = list()
 	var/list/asked = list()
 
 	var/askDelay = 10 * 60 * 1	// One minute [ms * sec * min]
 
-/datum/paiController/Topic(href, href_list[])
+/datum/controller/pai/Topic(href, href_list[])
 	if(href_list["download"])
-		var/datum/paiCandidate/candidate = locate(href_list["candidate"])
+		var/datum/pAI_candidate/candidate = locate(href_list["candidate"])
 		var/obj/item/device/paicard/card = locate(href_list["device"])
 		if(card.pai)
 			return
-		if(istype(card, /obj/item/device/paicard) && istype(candidate, /datum/paiCandidate))
+		if(istype(card, /obj/item/device/paicard) && istype(candidate, /datum/pAI_candidate))
 			var/mob/living/silicon/pai/pai = new(card)
 			if(!candidate.name)
 				pai.name = pick(global.ninja_names)
@@ -45,11 +42,11 @@
 			ticker.mode.update_cult_icons_removed(card.pai.mind)
 			ticker.mode.update_rev_icons_removed(card.pai.mind)
 
-			pai_candidates -= candidate
+			pAI_candidates -= candidate
 			usr << browse(null, "window=findPai")
 
 	if(href_list["new"])
-		var/datum/paiCandidate/candidate = locate(href_list["candidate"])
+		var/datum/pAI_candidate/candidate = locate(href_list["candidate"])
 		var/option = href_list["option"]
 		var/t = ""
 
@@ -92,20 +89,19 @@
 							p.alertUpdate()
 				usr << browse(null, "window=paiRecruit")
 				return
-		recruitWindow(usr)
+		recruit_window(usr)
 
-/datum/paiController/proc/recruitWindow(var/mob/M as mob)
-	var/datum/paiCandidate/candidate
-	for(var/datum/paiCandidate/c in pai_candidates)
+/datum/controller/pai/proc/recruit_window(mob/M as mob)
+	var/datum/pAI_candidate/candidate
+	for(var/datum/pAI_candidate/c in pAI_candidates)
 		if(!istype(c) || !istype(M))
 			break
 		if(c.key == M.key)
 			candidate = c
 	if(!candidate)
-		candidate = new /datum/paiCandidate()
+		candidate = new /datum/pAI_candidate()
 		candidate.key = M.key
-		pai_candidates.Add(candidate)
-
+		pAI_candidates.Add(candidate)
 
 	var/dat = ""
 	dat += {"
@@ -221,10 +217,10 @@
 
 	M << browse(dat, "window=paiRecruit;size=580x580;")
 
-/datum/paiController/proc/findPAI(var/obj/item/device/paicard/p, var/mob/user)
-	requestRecruits()
+/datum/controller/pai/proc/find_pAI(obj/item/device/paicard/p, mob/user)
+	request_recruits()
 	var/list/available = list()
-	for(var/datum/paiCandidate/c in global.paiController.pai_candidates)
+	for(var/datum/pAI_candidate/c in global.pAI_controller.pAI_candidates)
 		if(c.ready)
 			var/found = 0
 			for(var/mob/dead/observer/o in player_list)
@@ -303,7 +299,7 @@
 		"}
 	dat += "<p>Displaying available AI personalities from central database... If there are no entries, or if a suitable entry is not listed, check again later as more personalities may be added.</p>"
 
-	for(var/datum/paiCandidate/c in available)
+	for(var/datum/pAI_candidate/c in available)
 		dat += {"
 					<table class="desc">
 						<tr class="d0">
@@ -337,7 +333,7 @@
 
 	user << browse(dat, "window=findPai")
 
-/datum/paiController/proc/requestRecruits()
+/datum/controller/pai/proc/request_recruits()
 	for(var/mob/dead/observer/O in player_list)
 		if(O.has_enabled_antagHUD == 1 && config.antag_hud_restricted)
 			continue
@@ -350,13 +346,13 @@
 				asked.Remove(O.key)
 		if(O.client)
 			var/hasSubmitted = 0
-			for(var/datum/paiCandidate/c in global.paiController.pai_candidates)
+			for(var/datum/pAI_candidate/c in global.pAI_controller.pAI_candidates)
 				if(c.key == O.key)
 					hasSubmitted = 1
 			if(!hasSubmitted && (O.client.prefs.be_special & BE_PAI))
 				question(O.client)
 
-/datum/paiController/proc/question(var/client/C)
+/datum/controller/pai/proc/question(client/C)
 	spawn(0)
 		if(!C)
 			return
@@ -366,7 +362,7 @@
 		if(!C)
 			return		//handle logouts that happen whilst the alert is waiting for a response.
 		if(response == "Yes")
-			recruitWindow(C.mob)
+			recruit_window(C.mob)
 		else if (response == "Never for this round")
 			var/warning = alert(C, "Are you sure? This action will be undoable and you will need to wait until next round.", "You sure?", "Yes", "No")
 			if(warning == "Yes")

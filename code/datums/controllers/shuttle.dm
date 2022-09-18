@@ -2,19 +2,16 @@
 // As part of the docking controller port, because rewriting that code is spaghetti.
 // And I ain't doing it. -Frenjo
 
-/var/global/datum/controller/shuttle/shuttle_controller // Set in /datum/controller/process/shuttle/setup()
+/var/global/datum/controller/shuttle/shuttle_controller // Set in /datum/process/shuttle/setup()
 
 /datum/controller/shuttle
+	name = "Shuttle"
+
 	var/list/shuttles	//maps shuttle tags to shuttle datums, so that they can be looked up.
 	var/list/process_shuttles	//simple list of shuttles, for processing
 
-/datum/controller/shuttle/proc/process()
-	//process ferry shuttles
-	for(var/datum/shuttle/ferry/shuttle in process_shuttles)
-		if(shuttle.process_state)
-			shuttle.process()
-
 /datum/controller/shuttle/New()
+	..()
 	shuttles = list()
 	process_shuttles = list()
 
@@ -226,7 +223,7 @@
 		"Aft Starboard Solars" = locate(/area/vox_station/southeast_solars),
 		"Aft Port Solars" = locate(/area/vox_station/southwest_solars),
 		"Mining asteroid" = locate(/area/vox_station/mining)
-		)
+	)
 
 	vox_shuttle.announcer = "NSV Icarus"
 	vox_shuttle.arrival_message = "Attention [global.current_map.station_name], we just tracked a small target bypassing our defensive perimeter. Can't fire on it without hitting the station - you've got incoming visitors, like it or not."
@@ -250,7 +247,7 @@
 		"Telecomms Satellite" = locate(/area/syndicate_station/commssat),
 		"Mining Asteroid" = locate(/area/syndicate_station/mining),
 		/*"Arrivals dock" = locate(/area/syndicate_station/arrivals_dock),*/
-		)
+	)
 
 	mercenary_shuttle.announcer = "NSV Icarus"
 	mercenary_shuttle.arrival_message = "Attention, [global.current_map.station_name], you have a large signature approaching the station - looks unarmed to surface scans. We're too far out to intercept - brace for visitors."
@@ -259,6 +256,12 @@
 
 	mercenary_shuttle.warmup_time = 0
 	shuttles["Mercenary"] = mercenary_shuttle
+
+/datum/controller/shuttle/process()
+	//process ferry shuttles
+	for(var/datum/shuttle/ferry/shuttle in process_shuttles)
+		if(shuttle.process_state)
+			shuttle.process()
 
 //This is called by gameticker after all the machines and radio frequencies have been properly initialized
 /datum/controller/shuttle/proc/setup_shuttle_docks()
