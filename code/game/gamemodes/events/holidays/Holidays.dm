@@ -1,5 +1,4 @@
 //Uncommenting ALLOW_HOLIDAYS in config.txt will enable Holidays
-var/global/Holiday = null
 
 /var/eventchance = 10 //% per 5 mins
 
@@ -14,185 +13,183 @@ var/global/Holiday = null
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //																							~Carn
 
-/hook/startup/proc/updateHoliday()
-	Get_Holiday()
+/hook/startup/proc/update_holiday()
+	get_holiday()
 	return 1
 
 //sets up the Holiday global variable. Shouldbe called on game configuration or something.
-/proc/Get_Holiday()
-	if(!Holiday)
-		return		// Holiday stuff was not enabled in the config!
+/proc/get_holiday()
+	if(!global.config.allow_holidays)
+		return	// Holiday stuff was not enabled in the config!
 
-	Holiday = null				// reset our switch now so we can recycle it as our Holiday name
-
-	var/YY	=	text2num(time2text(world.timeofday, "YY")) 	// get the current year
-	var/MM	=	text2num(time2text(world.timeofday, "MM")) 	// get the current month
-	var/DD	=	text2num(time2text(world.timeofday, "DD")) 	// get the current day
+	var/YY	=	text2num(time2text(world.timeofday, "YY"))	// get the current year
+	var/MM	=	text2num(time2text(world.timeofday, "MM"))	// get the current month
+	var/DD	=	text2num(time2text(world.timeofday, "DD"))	// get the current day
 
 	//Main switch. If any of these are too dumb/inappropriate, or you have better ones, feel free to change whatever
 	switch(MM)
 		if(1)	//Jan
 			switch(DD)
 				if(1)
-					Holiday = "New Year's Day"
+					global.config.holiday_name = "New Year's Day"
 
 		if(2)	//Feb
 			switch(DD)
 				if(2)
-					Holiday = "Groundhog Day"
+					global.config.holiday_name = "Groundhog Day"
 				if(14)
-					Holiday = "Valentine's Day"
+					global.config.holiday_name = "Valentine's Day"
 				if(17)
-					Holiday = "Random Acts of Kindness Day"
+					global.config.holiday_name = "Random Acts of Kindness Day"
 
 		if(3)	//Mar
 			switch(DD)
 				if(14)
-					Holiday = "Pi Day"
+					global.config.holiday_name = "Pi Day"
 				if(17)
-					Holiday = "St. Patrick's Day"
+					global.config.holiday_name = "St. Patrick's Day"
 				if(27)
 					if(YY == 16)
-						Holiday = "Easter"
+						global.config.holiday_name = "Easter"
 				if(31)
 					if(YY == 13)
-						Holiday = "Easter"
+						global.config.holiday_name = "Easter"
 
 		if(4)	//Apr
 			switch(DD)
 				if(1)
-					Holiday = "April Fool's Day"
+					global.config.holiday_name = "April Fool's Day"
 					if(YY == 18 && prob(50))
-						Holiday = "Easter"
+						global.config.holiday_name = "Easter"
 				if(5)
 					if(YY == 15)
-						Holiday = "Easter"
+						global.config.holiday_name = "Easter"
 				if(16)
 					if(YY == 17)
-						Holiday = "Easter"
+						global.config.holiday_name = "Easter"
 				if(20)
-					Holiday = "Four-Twenty"
+					global.config.holiday_name = "Four-Twenty"
 					if(YY == 14 && prob(50))
-						Holiday = "Easter"
+						global.config.holiday_name = "Easter"
 				if(22)
-					Holiday = "Earth Day"
+					global.config.holiday_name = "Earth Day"
 
 		if(5)	//May
 			switch(DD)
 				if(1)
-					Holiday = "Labour Day"
+					global.config.holiday_name = "Labour Day"
 				if(4)
-					Holiday = "FireFighter's Day"
+					global.config.holiday_name = "FireFighter's Day"
 				if(12)
-					Holiday = "Owl and Pussycat Day"	//what a dumb day of observence...but we -do- have costumes already :3
+					global.config.holiday_name = "Owl and Pussycat Day"	//what a dumb day of observence...but we -do- have costumes already :3
 
 		if(6)	//Jun
 
 		if(7)	//Jul
 			switch(DD)
 				if(1)
-					Holiday = "Doctor's Day"
+					global.config.holiday_name = "Doctor's Day"
 				if(2)
-					Holiday = "UFO Day"
+					global.config.holiday_name = "UFO Day"
 				if(8)
-					Holiday = "Writer's Day"
+					global.config.holiday_name = "Writer's Day"
 				if(30)
-					Holiday = "Friendship Day"
+					global.config.holiday_name = "Friendship Day"
 
 		if(8)	//Aug
 			switch(DD)
 				if(5)
-					Holiday = "Beer Day"
+					global.config.holiday_name = "Beer Day"
 
 		if(9)	//Sep
 			switch(DD)
 				if(19)
-					Holiday = "Talk-Like-a-Pirate Day"
+					global.config.holiday_name = "Talk-Like-a-Pirate Day"
 				if(28)
-					Holiday = "Stupid-Questions Day"
+					global.config.holiday_name = "Stupid-Questions Day"
 
 		if(10)	//Oct
 			switch(DD)
 				if(4)
-					Holiday = "Animal's Day"
+					global.config.holiday_name = "Animal's Day"
 				if(7)
-					Holiday = "Smiling Day"
+					global.config.holiday_name = "Smiling Day"
 				if(16)
-					Holiday = "Boss' Day"
+					global.config.holiday_name = "Boss' Day"
 				if(31)
-					Holiday = "Halloween"
+					global.config.holiday_name = "Halloween"
 
 		if(11)	//Nov
 			switch(DD)
 				if(1)
-					Holiday = "Vegan Day"
+					global.config.holiday_name = "Vegan Day"
 				if(13)
-					Holiday = "Kindness Day"
+					global.config.holiday_name = "Kindness Day"
 				if(19)
-					Holiday = "Flowers Day"
+					global.config.holiday_name = "Flowers Day"
 				if(21)
-					Holiday = "Saying-'Hello' Day"
+					global.config.holiday_name = "Saying-'Hello' Day"
 
 		if(12)	//Dec
 			switch(DD)
 				if(10)
-					Holiday = "Human-Rights Day"
+					global.config.holiday_name = "Human-Rights Day"
 				if(14)
-					Holiday = "Monkey Day"
+					global.config.holiday_name = "Monkey Day"
 				if(21)
 					if(YY == 12)
-						Holiday = "End of the World"
+						global.config.holiday_name = "End of the World"
 				if(22)
-					Holiday = "Orgasming Day"		//lol. These all actually exist
+					global.config.holiday_name = "Orgasming Day"		//lol. These all actually exist
 				if(24)
-					Holiday = "Christmas Eve"
+					global.config.holiday_name = "Christmas Eve"
 				if(25)
-					Holiday = "Christmas"
+					global.config.holiday_name = "Christmas"
 				if(26)
-					Holiday = "Boxing Day"
+					global.config.holiday_name = "Boxing Day"
 				if(31)
-					Holiday = "New Year's Eve"
+					global.config.holiday_name = "New Year's Eve"
 
-	if(!Holiday)
+	if(!global.config.holiday_name)
 		//Friday the 13th
 		if(DD == 13)
 			if(time2text(world.timeofday, "DDD") == "Fri")
-				Holiday = "Friday the 13th"
+				global.config.holiday_name = "Friday the 13th"
 
 //Allows GA and GM to set the Holiday variable
-/client/proc/Set_Holiday(T as text|null)
-	set name = ".Set Holiday"
+/client/proc/set_holiday(T as text|null)
+	set name = "Set Holiday"
 	set category = "Fun"
 	set desc = "Force-set the Holiday variable to make the game think it's a certain day."
 	if(!check_rights(R_SERVER))
 		return
 
-	Holiday = T
+	global.config.holiday_name = T
 	//get a new station name
 	global.current_map.station_name = null
 	station_name()
 	//update our hub status
 	world.update_status()
-	Holiday_Game_Start()
+	holiday_game_start()
 
-	message_admins("\blue ADMIN: Event: [key_name(src)] force-set Holiday to \"[Holiday]\"")
-	log_admin("[key_name(src)] force-set Holiday to \"[Holiday]\"")
+	message_admins("\blue ADMIN: Event: [key_name(src)] force-set Holiday to \"[global.config.holiday_name]\"")
+	log_admin("[key_name(src)] force-set Holiday to \"[global.config.holiday_name]\"")
 
 //Run at the  start of a round
-/proc/Holiday_Game_Start()
-	if(Holiday)
+/proc/holiday_game_start()
+	if(global.config.holiday_name)
 		to_world("<font color='blue'>and...</font>")
-		to_world("<h4>Happy [Holiday] Everybody!</h4>")
-		switch(Holiday)			//special holidays
+		to_world("<h4>Happy [global.config.holiday_name] Everybody!</h4>")
+		switch(global.config.holiday_name)	//special holidays
 			if("Easter")
 				//do easter stuff
 			if("Christmas Eve", "Christmas")
-				Christmas_Game_Start()
+				christmas_game_start()
 	return
 
 //Nested in the random events loop. Will be triggered every 2 minutes
-/proc/Holiday_Random_Event()
-	switch(Holiday)			//special holidays
+/proc/holiday_random_event()
+	switch(global.config.holiday_name)	//special holidays
 
 		if("", null)			//no Holiday today! Back to work!
 			return
@@ -217,8 +214,8 @@ var/global/Holiday = null
 			message_admins("\blue DEBUG: Event: Egg spawned at [Egg.loc] ([Egg.x],[Egg.y],[Egg.z])")*/
 		if("End of the World")
 			if(prob(eventchance))
-				GameOver()
+				game_over_event()
 
 		if("Christmas", "Christmas Eve")
 			if(prob(eventchance))
-				ChristmasEvent()
+				christmas_event()

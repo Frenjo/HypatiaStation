@@ -9,7 +9,14 @@
 	var/event_time = null
 	var/event = 0
 
-	var/login_music			// music played in pregame lobby
+	var/login_music						// The music file played in the pregame lobby.
+	var/possible_login_music = list(	// The list of all possible login music files to play.
+		'sound/music/space.ogg',
+		'sound/music/traitor.ogg',
+		'sound/music/title2.ogg',
+		'sound/music/clouds.s3m',
+		'sound/music/space_oddity.ogg'	// Ground Control to Major Tom, this song is cool, what's going on?
+	)
 
 	var/list/datum/mind/minds = list()	//The people in the game. Used for objective tracking.
 
@@ -35,15 +42,14 @@
 	var/obj/screen/cinematic = null
 
 /datum/controller/game_ticker/proc/pregame()
-	login_music = pick(\
-	/*'sound/music/halloween/skeletons.ogg',\
-	'sound/music/halloween/halloween.ogg',\
-	'sound/music/halloween/ghosts.ogg'*/
-	'sound/music/space.ogg',\
-	'sound/music/traitor.ogg',\
-	'sound/music/title2.ogg',\
-	'sound/music/clouds.s3m',\
-	'sound/music/space_oddity.ogg') //Ground Control to Major Tom, this song is cool, what's going on?
+	if(global.config.holiday_name == "Halloween")
+		possible_login_music += list(
+			'sound/music/halloween/skeletons.ogg',
+			'sound/music/halloween/halloween.ogg',
+			'sound/music/halloween/ghosts.ogg'
+		)
+	login_music = pick(possible_login_music)
+
 	do
 		pregame_timeleft = 180
 		to_world("<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>")
@@ -138,7 +144,7 @@
 		to_world(SPAN_INFO_B("Enjoy the game!"))
 		world << sound('sound/AI/welcome.ogg') // Skie
 		//Holiday Round-start stuff	~Carn
-		Holiday_Game_Start()
+		holiday_game_start()
 
 	//start_events() //handles random events and space dust.
 	//new random event system is handled from the MC.

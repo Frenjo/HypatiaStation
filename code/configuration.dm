@@ -84,6 +84,8 @@
 	var/static/antag_hud_allowed = FALSE				// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
 	var/static/antag_hud_restricted = FALSE				// Ghosts that turn on Antagovision cannot rejoin the round.
 	var/static/allow_random_events = FALSE				// enables random events mid-round when set to 1
+	var/static/allow_holidays = FALSE					// Whether or not the holiday system is enabled.
+	var/static/holiday_name = null						// If the holiday system is active, the name of the current holiday.
 
 	// Voting.
 	var/static/allow_vote_restart = FALSE			// allow votes to restart
@@ -370,7 +372,7 @@
 			if("allow_random_events")
 				allow_random_events = TRUE
 			if("allow_holidays")
-				global.Holiday = TRUE
+				allow_holidays = TRUE
 			
 			// Voting.
 			if("allow_vote_restart")
