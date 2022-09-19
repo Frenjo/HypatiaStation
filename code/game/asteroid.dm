@@ -1,22 +1,19 @@
-
-var/global/list/space_surprises = list(
-	/obj/item/clothing/mask/facehugger				= 4,
-	/obj/item/weapon/pickaxe/silver					= 4,
-	/obj/item/weapon/pickaxe/drill					= 4,
-	/obj/item/weapon/pickaxe/jackhammer				= 4,
-	//mob/living/simple_animal/hostile/carp			= 3,
-	/obj/item/weapon/pickaxe/diamond				= 3,
-	/obj/item/weapon/pickaxe/diamonddrill			= 3,
-	/obj/item/weapon/pickaxe/gold					= 3,
-	/obj/item/weapon/pickaxe/plasmacutter			= 2,
-	/obj/structure/closet/syndicate/resources		= 2,
-	/obj/item/weapon/melee/energy/sword/pirate		= 1,
-	/obj/mecha/working/ripley/mining				= 1
+/var/global/list/space_surprises = list(
+	/obj/item/clothing/mask/facehugger			= 4,
+	/obj/item/weapon/pickaxe/silver				= 4,
+	/obj/item/weapon/pickaxe/drill				= 4,
+	/obj/item/weapon/pickaxe/jackhammer			= 4,
+	//mob/living/simple_animal/hostile/carp		= 3,
+	/obj/item/weapon/pickaxe/diamond			= 3,
+	/obj/item/weapon/pickaxe/diamonddrill		= 3,
+	/obj/item/weapon/pickaxe/gold				= 3,
+	/obj/item/weapon/pickaxe/plasmacutter		= 2,
+	/obj/structure/closet/syndicate/resources	= 2,
+	/obj/item/weapon/melee/energy/sword/pirate	= 1,
+	/obj/mecha/working/ripley/mining			= 1
 )
-
-var/global/list/spawned_surprises = list()
-
-var/global/max_secret_rooms = 3
+/var/global/list/spawned_surprises = list()
+/var/global/max_secret_rooms = 3
 
 /proc/spawn_room(atom/start_loc, x_size, y_size, wall, floor, clean = 0, name)
 	var/list/room_turfs = list("walls" = list(), "floors" = list())
@@ -40,7 +37,6 @@ var/global/max_secret_rooms = 3
 				A.name = name
 			else
 				A.name = "Artifact Room #[start_loc.x][start_loc.y][start_loc.z]"
-
 
 			if(x == 0 || x == x_size - 1 || y == 0 || y == y_size - 1)
 				if(wall == /obj/effect/alien/resin)
@@ -81,7 +77,6 @@ var/global/max_secret_rooms = 3
 	if(x && y && z && wall && floor && x_len && y_len)
 		spawn_room(locate(x, y, z), x_len, y_len, wall, floor, clean)
 	return
-
 
 /proc/make_mining_asteroid_secret(size = 5)
 	var/valid = 0
@@ -139,8 +134,8 @@ var/global/max_secret_rooms = 3
 			var/surprise = null
 			valid = 0
 			while(!valid)
-				surprise = pickweight(space_surprises)
-				if(surprise in spawned_surprises)
+				surprise = pickweight(global.space_surprises)
+				if(surprise in global.spawned_surprises)
 					if(prob(20))
 						valid++
 					else
@@ -148,7 +143,7 @@ var/global/max_secret_rooms = 3
 				else
 					valid++
 
-			spawned_surprises.Add(surprise)
+			global.spawned_surprises.Add(surprise)
 			new surprise(T)
 
 	return 1

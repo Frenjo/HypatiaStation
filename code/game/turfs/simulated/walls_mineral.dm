@@ -2,6 +2,7 @@
 	name = "mineral wall"
 	desc = "This shouldn't exist"
 	icon_state = ""
+
 	var/last_event = 0
 	var/active = null
 
@@ -44,7 +45,6 @@
 	walltype = "sandstone"
 	mineral = MATERIAL_SANDSTONE
 
-
 /turf/simulated/wall/mineral/uranium
 	name = "uranium wall"
 	desc = "A wall with uranium plating. This is probably a bad idea."
@@ -83,7 +83,6 @@
 /turf/simulated/wall/mineral/uranium/Bumped(AM as mob|obj)
 	radiate(1)
 	..()
-
 
 /turf/simulated/wall/mineral/plasma
 	name = "plasma wall"

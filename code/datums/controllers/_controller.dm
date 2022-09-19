@@ -3,7 +3,5 @@
 	var/name = ""	// The controller's name.
 
 /datum/controller/proc/setup()
-	return
 
 /datum/controller/proc/process()
-	return

@@ -2,6 +2,14 @@
 	name = "wall"
 	desc = "A huge chunk of metal used to seperate rooms."
 	icon = 'icons/turf/walls.dmi'
+
+	opacity = TRUE
+	density = TRUE
+	blocks_air = 1
+
+	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
+	heat_capacity = 312500 //a little over 5 cm thick, 312500 for 1m by 2.5m by 0.25m plasteel wall
+
 	var/mineral = MATERIAL_METAL
 	var/rotting = 0
 
@@ -12,13 +20,6 @@
 	var/global/damage_overlays[8]
 
 	var/max_temperature = 1800 //K, walls will take damage if they're next to a fire hotter than this
-
-	opacity = TRUE
-	density = TRUE
-	blocks_air = 1
-
-	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
-	heat_capacity = 312500 //a little over 5 cm thick, 312500 for 1m by 2.5m by 0.25m plasteel wall
 
 	var/walltype = MATERIAL_METAL
 

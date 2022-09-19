@@ -7,7 +7,7 @@
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
 //	heat_capacity = 700000 No.
 
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 	luminosity = 1
 
 	plane = SPACE_PLANE

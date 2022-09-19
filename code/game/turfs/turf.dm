@@ -30,9 +30,9 @@
 			src.Entered(AM)
 			return
 	if(dynamic_lighting)
-		luminosity = FALSE
+		luminosity = 0
 	else
-		luminosity = TRUE
+		luminosity = 1
 
 /turf/Destroy()
 	processing_turfs.Remove(src)

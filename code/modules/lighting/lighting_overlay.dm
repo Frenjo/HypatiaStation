@@ -26,7 +26,7 @@
 
 	var/turf/T = loc //If this runtimes atleast we'll know what's creating overlays outside of turfs.
 	T.lighting_overlay = src
-	T.luminosity = FALSE
+	T.luminosity = 0
 	if(no_update)
 		return
 	update_overlay()
@@ -70,7 +70,7 @@
 	var/lum = max > LIGHTING_SOFT_THRESHOLD
 
 	if(lum)
-		luminosity = TRUE
+		luminosity = 1
 		animate(src, color = new_matrix, time = 5)
 	else
 		animate(src, color = new_matrix, time = 5)
@@ -84,6 +84,6 @@
 	var/turf/T = loc
 	if(istype(T))
 		T.lighting_overlay = null
-		T.luminosity = TRUE
+		T.luminosity = 1
 
 	return ..()

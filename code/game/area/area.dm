@@ -23,7 +23,7 @@
 	icon_state = "unknown"
 	layer = 10
 	mouse_opacity = FALSE
-	luminosity = TRUE
+	luminosity = 1
 	level = null
 
 	var/static/static_uid = 0
@@ -81,9 +81,9 @@
 	all_areas += src
 
 	if(dynamic_lighting)
-		luminosity = FALSE
+		luminosity = 0
 	else
-		luminosity = TRUE
+		luminosity = 1
 
 	..()
 

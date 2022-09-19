@@ -47,7 +47,7 @@
 
 	global.transfer_controller = new /datum/controller/transfer()
 
-	for(var/i = 0, i < max_secret_rooms, i++)
+	for(var/i = 0, i < global.max_secret_rooms, i++)
 		make_mining_asteroid_secret()
 
 /datum/controller/master/proc/setup_objects()

@@ -1,5 +1,5 @@
 /turf
-	luminosity = TRUE
+	luminosity = 1
 
 	var/dynamic_lighting = TRUE
 
