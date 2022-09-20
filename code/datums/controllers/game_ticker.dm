@@ -1,4 +1,7 @@
-/var/global/datum/controller/game_ticker/ticker // Set in /datum/process/ticker/setup()
+/*
+ * Game Ticker
+ */
+GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/process/ticker/setup()
 
 /datum/controller/game_ticker
 	name = "Ticker"

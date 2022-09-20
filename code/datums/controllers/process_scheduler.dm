@@ -1,5 +1,8 @@
-// Singleton instance of process_scheduler, set in /world/New().
-/var/global/datum/controller/process_scheduler/process_scheduler
+/*
+ * Process Scheduler
+ */
+// Singleton instance of the process scheduler.
+GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Set in world/New()
 
 /datum/controller/process_scheduler
 	name = "Process Scheduler"

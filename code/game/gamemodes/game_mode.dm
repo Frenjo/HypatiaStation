@@ -297,7 +297,7 @@ Implants;
 
 	// If we don't have enough antags, draft people who voted for the round.
 	if(candidates.len < recommended_enemies)
-		for(var/key in round_voters)
+		for(var/key in global.vote.round_voters)
 			for(var/mob/new_player/player in players)
 				if(player.ckey == key)
 					log_debug("[player.key] voted for this round, so we are drafting them.")

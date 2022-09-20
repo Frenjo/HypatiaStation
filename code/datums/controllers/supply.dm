@@ -1,8 +1,7 @@
-/var/global/datum/controller/supply/supply_controller // Set in /datum/process/supply/setup()
-
-// Supply manifest
-/obj/item/weapon/paper/manifest
-	name = "Supply Manifest"
+/*
+ * Supply Controller
+ */
+GLOBAL_BYOND_TYPED(supply_controller, /datum/controller/supply) // Set in /datum/process/supply/setup()
 
 /datum/controller/supply
 	name = "Supply Shuttle"
@@ -149,3 +148,7 @@
 
 	shoppinglist.Cut()
 	return
+
+// Supply manifest
+/obj/item/weapon/paper/manifest
+	name = "Supply Manifest"

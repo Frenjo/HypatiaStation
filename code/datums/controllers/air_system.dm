@@ -57,11 +57,12 @@ Class Procs:
 	remove_edge(connection_edge/edge)
 		Called when an edge is erased. Removes it from processing.
 */
-/var/global/datum/controller/air_system/air_master // Set in /datum/process/air/setup()
-/var/global/air_tick_multiplier = 2
+GLOBAL_BYOND_TYPED(air_master, /datum/controller/air_system) // Set in /datum/process/air/setup()
 
 /datum/controller/air_system
 	name = "Air"
+
+	var/static/tick_multiplier = 2
 
 	// Geometry lists
 	var/list/zones = list()
@@ -129,7 +130,7 @@ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_
 
 	while(1)
 		process()
-		sleep(max(5, update_delay * global.air_tick_multiplier))
+		sleep(max(5, update_delay * global.air_master.tick_multiplier))
 
 /datum/controller/air_system/process()
 	. = 1 //Set the default return value, for runtime detection.

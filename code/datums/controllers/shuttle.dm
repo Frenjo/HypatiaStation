@@ -2,7 +2,10 @@
 // As part of the docking controller port, because rewriting that code is spaghetti.
 // And I ain't doing it. -Frenjo
 
-/var/global/datum/controller/shuttle/shuttle_controller // Set in /datum/process/shuttle/setup()
+/*
+ * Shuttle Controller
+ */
+GLOBAL_BYOND_TYPED(shuttle_controller, /datum/controller/shuttle) // Set in /datum/process/shuttle/setup()
 
 /datum/controller/shuttle
 	name = "Shuttle"

@@ -1,11 +1,15 @@
+//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
+
 // Ported 'shuttles' module from Heaven's Gate - NSS Eternal, 22/11/2019...
 // As part of the docking controller port, because rewriting that code is spaghetti.
 // And I ain't doing it. -Frenjo
 
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
+/*
+ * Emergency Shuttle Controller
+ * TODO: This should be renamed to something like "evacuation controller" because it controls more than just the emergency shuttle now.
+ */
 // Controls the emergency shuttle
-/var/global/datum/controller/emergency_shuttle/emergency_shuttle // Set in /datum/process/emergency_shuttle/setup()
+GLOBAL_BYOND_TYPED(emergency_shuttle, /datum/controller/emergency_shuttle) // Set in /datum/process/emergency_shuttle/setup()
 
 /datum/controller/emergency_shuttle
 	name = "Emergency Shuttle"

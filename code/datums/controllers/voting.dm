@@ -1,9 +1,9 @@
-/var/global/datum/controller/vote/vote // Set in /datum/process/vote/setup()
-
-/var/global/list/round_voters = list() //Keeps track of the individuals voting for a given round, for use in forcedrafting.
+GLOBAL_BYOND_TYPED(vote, /datum/controller/vote) // Set in /datum/process/vote/setup()
 
 /datum/controller/vote
 	name = "Vote"
+
+	var/static/list/round_voters = list() // Keeps track of the individuals voting for a given round, for use in forcedrafting.
 
 	var/initiator = null
 	var/started_time = null

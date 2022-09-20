@@ -1,4 +1,11 @@
-/var/global/datum/controller/transfer/transfer_controller // Set in /datum/controller/master/setup()
+/*
+ * Transfer Controller
+ */
+GLOBAL_BYOND_TYPED(transfer_controller, /datum/controller/transfer)
+
+/hook/roundstart/proc/create_transfer_controller()
+	global.transfer_controller = new /datum/controller/transfer()
+	return 1
 
 /datum/controller/transfer
 	name = "Transfer"
@@ -16,7 +23,7 @@
 	return ..()
 
 /datum/controller/transfer/process()
-	currenttick = currenttick + 1
+	currenttick++
 	if(world.time >= timerbuffer - 600)
 		global.vote.autotransfer()
 		timerbuffer = timerbuffer + global.config.vote_autotransfer_interval

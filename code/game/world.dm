@@ -10,7 +10,8 @@
  *	Post-loads the configuration files.
  *	Sets up the hub visibility variables.
  *	Loads admins and moderators.
- *	Activates the process_scheduler and master_controller, starting the game loop that causes everything else to begin setting up and processing.
+ *	Sets up the global_variables controller.
+ *	Activates the master_controller and process_scheduler, starting the game loop that causes everything else to begin setting up and processing.
  *
  * Nothing happens until something moves. ~ Albert Einstein
 */
@@ -47,8 +48,9 @@
 
 	sleep_offline = TRUE
 
-	global.process_scheduler = new /datum/controller/process_scheduler()
+	global.GLOBL = new /datum/controller/global_variables()
 	global.master_controller = new /datum/controller/master()
+	global.process_scheduler = new /datum/controller/process_scheduler()
 	spawn(1)
 		global.process_scheduler.deferSetupFor(/datum/process/ticker)
 		global.process_scheduler.setup()

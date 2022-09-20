@@ -1,15 +1,14 @@
-//simplified MC that is designed to fail when procs 'break'. When it fails it's just replaced with a new one.
-//It ensures master_controller.process() is never doubled up by killing the MC (hence terminating any of its sleeping procs)
-//WIP, needs lots of work still
-
-/var/global/datum/controller/master/master_controller //Set in /world/New()
+/*
+ * Master Controller
+ */
+GLOBAL_BYOND_TYPED(master_controller, /datum/controller/master) // Set in world/New()
 
 /var/global/controller_iteration = 0
 /var/global/last_tick_timeofday = world.timeofday
 /var/global/last_tick_duration = 0
 
-/var/global/air_processing_killed = FALSE
-/var/global/pipe_processing_killed = FALSE
+GLOBAL_BYOND_INIT(air_processing_killed, FALSE)
+GLOBAL_BYOND_INIT(pipe_processing_killed, FALSE)
 
 /datum/controller/master
 	name = "Master"
@@ -45,10 +44,13 @@
 	setup_factions()
 	setup_xenoarch()
 
-	global.transfer_controller = new /datum/controller/transfer()
-
 	for(var/i = 0, i < global.max_secret_rooms, i++)
 		make_mining_asteroid_secret()
+
+/datum/controller/master/proc/stat_controllers()
+	stat("Controllers:", GLOBL.controllers.len)
+	for(var/datum/controller/controller in GLOBL.controllers)
+		controller.stat_controller()
 
 /datum/controller/master/proc/setup_objects()
 	to_world(SPAN_DANGER("Initializing objects."))

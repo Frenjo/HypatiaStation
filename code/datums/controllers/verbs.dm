@@ -1,6 +1,6 @@
-//TODO: rewrite and standardise all controller datums to the datum/controller type
-//TODO: allow all controllers to be deleted for clean restarts (see WIP master controller stuff) - MC done - lighting done
-
+/*
+ * Controller Verbs
+ */
 /client/proc/restart_controller(controller in list("Supply Shuttle"))
 	set category = "Debug"
 	set name = "Restart Controller"
@@ -17,7 +17,11 @@
 	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
 	return
 
-/client/proc/debug_controller(controller in list("Master", "Ticker", "Air", "Jobs", "Sun", "Radio", "Supply Shuttle", "Emergency Shuttle", "Configuration", "pAI", "Cameras", "Transfer Controller"))
+/client/proc/debug_controller(controller in list(
+	"Master", "Ticker", "Air", "Jobs", "Sun", "Radio", "Supply Shuttle",
+	"Emergency Shuttle", "Configuration", "pAI", "Cameras", "Transfer",
+	"Global Variables"
+))
 	set category = "Debug"
 	set name = "Debug Controller"
 	set desc = "Debug the various periodic loop controllers for the game (be careful!)"
@@ -58,8 +62,11 @@
 		if("Cameras")
 			debug_variables(global.cameranet)
 			feedback_add_details("admin_verb", "DCameras")
-		if("Transfer Controller")
+		if("Transfer")
 			debug_variables(global.transfer_controller)
 			feedback_add_details("admin_verb", "DAutovoter")
+		if("Global Variables")
+			debug_variables(global.GLOBL)
+			feedback_add_details("admin_verb", "DGlobals")
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
 	return
