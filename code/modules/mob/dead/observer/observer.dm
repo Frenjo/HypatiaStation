@@ -238,8 +238,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(!(R && R.word1 == cultwords["hell"] && R.word2 == cultwords["travel"] && R.word3 == cultwords["self"]))	//astral journeying rune
 			to_chat(src, SPAN_WARNING("The astral cord that ties your body and your spirit has been severed. You are likely to wander the realm beyond until your body is finally dead and thus reunited with you."))
 			return
+
 	mind.current.ajourn = 0
 	mind.current.key = key
+
+	// Ensures that the space parallax state updates if the ghost is in a different area to the body.
+	var/area/mind_area = get_area(mind.current)
+	if(get_area(src) != mind_area)
+		client.set_parallax_space(mind_area.has_bluespace_parallax)
+
 	return 1
 
 /mob/dead/observer/verb/toggle_medHUD()

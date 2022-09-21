@@ -283,8 +283,6 @@ var/list/global_huds = list(
 	else if(isobserver(mymob))
 		ghost_hud()
 
-	apply_parallax()
-
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)
 /mob/verb/button_pressed_F12(full = 0 as null)
 	set name = "F12"

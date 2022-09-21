@@ -45,19 +45,11 @@
 		moving_status = SHUTTLE_INTRANSIT
 		move(departing, interim, direction)
 
-		for(var/mob/M in interim)
-			if(M.hud_used)
-				M.hud_used.toggle_parallax_space()
-
 		while(world.time < arrive_time)
 			sleep(5)
 
 		move(interim, destination, direction)
 		moving_status = SHUTTLE_IDLE
-
-		for(var/mob/M in destination)
-			if(M.hud_used)
-				M.hud_used.toggle_parallax_space()
 
 /datum/shuttle/proc/dock()
 	if(!docking_controller)

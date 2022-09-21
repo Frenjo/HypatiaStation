@@ -22,6 +22,7 @@
 
 /area/shuttle/arrival/transit
 	icon_state = "shuttle"
+	has_bluespace_parallax = TRUE
 	base_turf = /turf/space/transit/west
 // End of new stuff.
 
@@ -45,6 +46,7 @@
 /area/shuttle/escape/transit // the area to pass through for 3 minute transit
 	name = "\improper Emergency Shuttle Transit"
 	icon_state = "shuttle"
+	has_bluespace_parallax = TRUE
 	base_turf = /turf/space/transit/north
 
 // Escape Pod 1
@@ -64,6 +66,7 @@
 
 /area/shuttle/escape_pod1/transit
 	icon_state = "shuttle"
+	has_bluespace_parallax = TRUE
 	base_turf = /turf/space/transit/north
 
 // Escape Pod 2
@@ -83,6 +86,7 @@
 
 /area/shuttle/escape_pod2/transit
 	icon_state = "shuttle"
+	has_bluespace_parallax = TRUE
 	base_turf = /turf/space/transit/north
 
 // Escape Pod 3
@@ -102,6 +106,7 @@
 
 /area/shuttle/escape_pod3/transit
 	icon_state = "shuttle"
+	has_bluespace_parallax = TRUE
 	base_turf = /turf/space/transit/east
 
 // Escape Pod 5
@@ -121,6 +126,7 @@
 
 /area/shuttle/escape_pod5/transit
 	icon_state = "shuttle"
+	has_bluespace_parallax = TRUE
 	base_turf = /turf/space/transit/west
 
 // Mining

@@ -3,36 +3,39 @@
 
 /proc/create_parallax()
 	for(var/i = 0; i < PARALLAX_STAR_AMOUNT; i++)
-		global.parallax_stars += new /obj/screen/space_star()
+		global.parallax_stars += new /obj/space_star()
 
 	for(var/i = 0; i < PARALLAX_BLUESPACE_STAR_AMOUNT; i++)
-		global.parallax_bluespace_stars += new /obj/screen/space_star/bluespace()
+		global.parallax_bluespace_stars += new /obj/space_star/bluespace()
 
-/obj/screen/parallax_master
+/obj/parallax_master
 	screen_loc = UI_SPACE_PARALLAX
 	plane = SPACE_PARALLAX_PLANE
 	blend_mode = BLEND_MULTIPLY
 	appearance_flags = PLANE_MASTER
-	mouse_opacity = FALSE
+	mouse_opacity = 0
+	simulated = FALSE
 
-/obj/screen/space_parallax
+/obj/space_parallax
+	name = "space"
 	icon = 'icons/mob/screen1_full.dmi'
 	icon_state = "space_blank"
-	name = "space"
 	screen_loc = UI_SPACE_PARALLAX
 	plane = SPACE_PARALLAX_PLANE
 	blend_mode = BLEND_ADD
+	simulated = FALSE
 
-/obj/screen/space_star
+/obj/space_star
+	name = "star"
 	icon = 'icons/turf/stars.dmi'
 	icon_state = "star0"
-	name = "star"
 	plane = SPACE_PARALLAX_PLANE
 	blend_mode = BLEND_ADD
 	appearance_flags = KEEP_APART
+	simulated = FALSE
 
-/obj/screen/space_star/New()
-	// At a close look, only 2 tiles contain red stars(9,10), lots more contain blue(6,7,8), and white are everywhere(1,2,3,4,5).
+/obj/space_star/New()
+	// At a close look, only 2 tiles contain red stars(9,10), 3 contain blue(6,7,8), and 5 have white(1,2,3,4,5).
 	// Let's try to keep that consistent by probability.
 	// There's also a slightly higher chance for non-animated white stars(3,4) to break up the twinkle a bit.
 	// Along with the default single white star(0) if nothing else is chosen just to fill space.
@@ -41,30 +44,49 @@
 	pixel_x = rand(-50, 530)
 	pixel_y = rand(-50, 530)
 
-/obj/screen/space_star/bluespace
+/obj/space_star/bluespace
 	icon_state = "bstar0"
 	plane = SPACE_DUST_PLANE
 
-/obj/screen/space_star/bluespace/New()
+/obj/space_star/bluespace/New()
 	..()
 	var/star_type = pick(prob(100); 0, prob(50); 1, prob(10); 2, prob(1); 3, prob(10); 4, prob(15); 5, prob(75); 6)
 	icon_state = "bstar[star_type]"
 
-/datum/hud/proc/apply_parallax()
+/client/proc/apply_parallax()
 	// SPESS BACKGROUND
-	mymob.parallax_master = new /obj/screen/parallax_master()
-	mymob.space_parallax = new /obj/screen/space_parallax()
-	mymob.space_parallax.overlays |= global.parallax_stars
+	if(!parallax_master && !space_parallax)
+		parallax_master = new /obj/parallax_master()
+		space_parallax = new /obj/space_parallax()
+	
+	space_parallax.overlays |= global.parallax_stars
+	screen |= parallax_master
+	screen |= space_parallax
 
-	mymob.client.screen |= mymob.parallax_master
-	mymob.client.screen |= mymob.space_parallax
+/client/proc/set_parallax_space(bluespace)
+	space_parallax.icon_state = bluespace ? "bluespace" : "space_blank"
+	space_parallax.overlays.Cut()
 
-/datum/hud/proc/toggle_parallax_space()
-	var/space_mode = mymob.space_parallax.icon_state == "space" ? 1 : 0
-	mymob.space_parallax.icon_state = space_mode ? "bluespace" : "space"
-	mymob.space_parallax.overlays.Cut()
-
-	if(space_mode)
-		mymob.space_parallax.overlays |= global.parallax_bluespace_stars
+	if(bluespace)
+		space_parallax.overlays |= global.parallax_bluespace_stars
 	else
-		mymob.space_parallax.overlays |= global.parallax_stars
+		space_parallax.overlays |= global.parallax_stars
+
+/client
+	var/obj/parallax_master
+	var/obj/space_parallax
+
+/mob/Move()
+	. = ..()
+	if(. && client)
+		var/area/new_area = get_area(src)
+		client.set_parallax_space(new_area.has_bluespace_parallax)
+
+/mob/forceMove()
+	. = ..()
+	if(. && client)
+		var/area/new_area = get_area(src)
+		client.set_parallax_space(new_area.has_bluespace_parallax)
+
+/area
+	var/has_bluespace_parallax = FALSE
