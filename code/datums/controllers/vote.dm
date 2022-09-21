@@ -90,7 +90,7 @@ GLOBAL_BYOND_TYPED(vote, /datum/controller/vote) // Set in /datum/process/vote/s
 			greatest_votes = votes
 	//default-vote for everyone who didn't vote
 	if(!global.config.vote_no_default && choices.len)
-		var/non_voters = (global.clients.len - total_votes)
+		var/non_voters = (GLOBL.clients.len - total_votes)
 		if(non_voters > 0)
 			if(mode == "restart")
 				choices["Continue Playing"] += non_voters

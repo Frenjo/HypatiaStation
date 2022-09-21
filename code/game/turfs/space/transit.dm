@@ -7,7 +7,7 @@
 
 /turf/space/transit/New()
 	. = ..()
-	toggle_transit(global.reverse_dir[pushdirection])
+	toggle_transit(GLOBL.reverse_dir[pushdirection])
 
 /turf/space/transit/north // moving to the north
 	pushdirection = SOUTH  // south because the space tile is scrolling south

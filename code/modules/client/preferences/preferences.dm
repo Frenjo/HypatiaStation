@@ -107,15 +107,15 @@
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
 /datum/preferences/proc/ZeroSkills(forced = 0)
-	for(var/V in global.all_skills)
-		for(var/datum/skill/S in global.all_skills[V])
+	for(var/V in GLOBL.all_skills)
+		for(var/datum/skill/S in GLOBL.all_skills[V])
 			if(!skills.Find(S.id) || forced)
 				skills[S.id] = SKILL_NONE
 
 /datum/preferences/proc/CalculateSkillPoints()
 	used_skillpoints = 0
-	for(var/V in global.all_skills)
-		for(var/datum/skill/S in global.all_skills[V])
+	for(var/V in GLOBL.all_skills)
+		for(var/datum/skill/S in GLOBL.all_skills[V])
 			var/multiplier = 1
 			switch(skills[S.id])
 				if(SKILL_NONE)
@@ -170,10 +170,10 @@
 	dat += "Current skill level: <b>[GetSkillClass(used_skillpoints)]</b> ([used_skillpoints])<br>"
 	dat += "<a href=\"byond://?src=\ref[user];preference=skills;preconfigured=1;\">Use preconfigured skillset</a><br>"
 	dat += "<table>"
-	for(var/V in global.all_skills)
+	for(var/V in GLOBL.all_skills)
 		dat += "<tr><th colspan = 5><b>[V]</b>"
 		dat += "</th></tr>"
-		for(var/datum/skill/S in global.all_skills[V])
+		for(var/datum/skill/S in GLOBL.all_skills[V])
 			var/level = skills[S.id]
 			dat += "<tr style='text-align:left;'>"
 			dat += "<th><a href='byond://?src=\ref[user];preference=skills;skillinfo=\ref[S]'>[S.name]</a></th>"
@@ -736,16 +736,16 @@
 			CalculateSkillPoints()
 			SetSkills(user)
 		else if(href_list["preconfigured"])
-			var/selected = input(user, "Select a skillset", "Skillset") as null | anything in global.skill_presets
+			var/selected = input(user, "Select a skillset", "Skillset") as null | anything in GLOBL.skill_presets
 			if(!selected)
 				return
 
 			ZeroSkills(1)
-			for(var/V in global.skill_presets[selected])
+			for(var/V in GLOBL.skill_presets[selected])
 				if(V == "field")
-					skill_specialization = global.skill_presets[selected]["field"]
+					skill_specialization = GLOBL.skill_presets[selected]["field"]
 					continue
-				skills[V] = global.skill_presets[selected][V]
+				skills[V] = GLOBL.skill_presets[selected][V]
 			CalculateSkillPoints()
 
 			SetSkills(user)
@@ -866,14 +866,14 @@
 					var/whitelisted = 0
 
 					if(config.usealienwhitelist) //If we're using the whitelist, make sure to check it!
-						for(var/S in whitelisted_species)
+						for(var/S in GLOBL.whitelisted_species)
 							if(is_alien_whitelisted(user, S))
 								new_species += S
 								whitelisted = 1
 						if(!whitelisted)
 							alert(user, "You cannot change your species as you need to be whitelisted. If you wish to be whitelisted contact an admin in-game, on the forums, or on IRC.")
 					else //Not using the whitelist? Aliens for everyone!
-						new_species = whitelisted_species
+						new_species = GLOBL.whitelisted_species
 
 					species = input("Please select a species", "Character Generation", null) in new_species
 
@@ -925,11 +925,11 @@
 				if("language")
 					var/languages_available
 					var/list/new_languages = list("None")
-					var/datum/species/S = global.all_species[species]
+					var/datum/species/S = GLOBL.all_species[species]
 
 					if(config.usealienwhitelist)
-						for(var/L in global.all_languages)
-							var/datum/language/lang = global.all_languages[L]
+						for(var/L in GLOBL.all_languages)
+							var/datum/language/lang = GLOBL.all_languages[L]
 							if((!(lang.flags & RESTRICTED)) && (is_alien_whitelisted(user, L) || (!(lang.flags & WHITELISTED)) || (S && (L in S.secondary_langs))))
 								new_languages += lang
 								languages_available = 1
@@ -937,8 +937,8 @@
 						if(!(languages_available))
 							alert(user, "There are not currently any available secondary languages.")
 					else
-						for(var/L in global.all_languages)
-							var/datum/language/lang = global.all_languages[L]
+						for(var/L in GLOBL.all_languages)
+							var/datum/language/lang = GLOBL.all_languages[L]
 							if(!(lang.flags & RESTRICTED))
 								new_languages += lang.name
 
@@ -1250,9 +1250,9 @@
 		var/firstspace = findtext(real_name, " ")
 		var/name_length = length(real_name)
 		if(!firstspace)	//we need a surname
-			real_name += " [pick(global.last_names)]"
+			real_name += " [pick(GLOBL.last_names)]"
 		else if(firstspace == name_length)
-			real_name += "[pick(global.last_names)]"
+			real_name += "[pick(GLOBL.last_names)]"
 
 	character.real_name = real_name
 	character.name = character.real_name

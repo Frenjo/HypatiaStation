@@ -71,9 +71,9 @@
 
 		//var/lighting_controller_was_processing = lighting_controller.processing	//Pause the lighting updates for a bit
 		//lighting_controller.processing = 0
-		var/powernet_rebuild_was_deferred_already = global.defer_powernet_rebuild
-		if(global.defer_powernet_rebuild != 2)
-			global.defer_powernet_rebuild = 1
+		var/powernet_rebuild_was_deferred_already = GLOBL.defer_powernet_rebuild
+		if(GLOBL.defer_powernet_rebuild != 2)
+			GLOBL.defer_powernet_rebuild = 1
 
 		if(heavy_impact_range > 1)
 			var/datum/effect/system/explosion/E = new/datum/effect/system/explosion()
@@ -117,8 +117,8 @@
 
 		//if(!lighting_controller.processing)	lighting_controller.processing = lighting_controller_was_processing
 		if(!powernet_rebuild_was_deferred_already)
-			if(global.defer_powernet_rebuild != 2)
-				global.defer_powernet_rebuild = 0
+			if(GLOBL.defer_powernet_rebuild != 2)
+				GLOBL.defer_powernet_rebuild = 0
 	return 1
 
 /proc/secondaryexplosion(turf/epicenter, range)

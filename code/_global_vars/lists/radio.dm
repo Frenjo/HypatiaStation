@@ -1,8 +1,8 @@
 // Central command frequencies, i.e deathsquid & response teams.
-/var/global/list/cent_freqs = list(FREQUENCY_RESPONSETEAM, FREQUENCY_DEATHSQUAD)
+GLOBAL_GLOBL_LIST_INIT(cent_freqs, list(FREQUENCY_RESPONSETEAM, FREQUENCY_DEATHSQUAD))
 
 // Depenging helpers
-/var/global/list/dept_freqs = list(
+GLOBAL_GLOBL_LIST_INIT(dept_freqs, list(
 	FREQUENCY_SYNDICATE,
 
 	FREQUENCY_DEATHSQUAD,
@@ -16,9 +16,9 @@
 	FREQUENCY_ENGINEERING,
 	FREQUENCY_SECURITY,
 	FREQUENCY_MINING
-)
+))
 
-/var/global/list/radio_channels = list(
+GLOBAL_GLOBL_LIST_INIT(radio_channels, list(
 	CHANNEL_SYNDICATE		= FREQUENCY_SYNDICATE,
 
 	CHANNEL_DEATHSQUAD		= FREQUENCY_DEATHSQUAD,
@@ -35,4 +35,4 @@
 
 	CHANNEL_AI_PRIVATE		= FREQUENCY_AI_PRIVATE,
 	CHANNEL_COMMON			= FREQUENCY_COMMON
-)
+))

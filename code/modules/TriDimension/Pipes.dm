@@ -126,7 +126,7 @@
 	normalize_dir()
 	var/node1_dir
 
-	for(var/direction in cardinal)
+	for(var/direction in GLOBL.cardinal)
 		if(direction&initialize_directions)
 			if(!node1_dir)
 				node1_dir = direction
@@ -163,7 +163,7 @@
 	normalize_dir()
 	var/node1_dir
 
-	for(var/direction in cardinal)
+	for(var/direction in GLOBL.cardinal)
 		if(direction&initialize_directions)
 			if(!node1_dir)
 				node1_dir = direction

@@ -409,7 +409,7 @@ What a mess.*/
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)
-					R.fields["name"] = "[pick(pick(global.first_names_male), pick(global.first_names_female))] [pick(global.last_names)]"
+					R.fields["name"] = "[pick(pick(GLOBL.first_names_male), pick(GLOBL.first_names_female))] [pick(GLOBL.last_names)]"
 				if(2)
 					R.fields["sex"]	= pick("Male", "Female")
 				if(3)

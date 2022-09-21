@@ -72,11 +72,11 @@ var/list/ai_verbs_default = list(
 	src.verbs -= ai_verbs_default
 
 /mob/living/silicon/ai/New(loc, var/datum/ai_laws/L, var/obj/item/device/mmi/B, var/safety = 0)
-	var/list/possibleNames = global.ai_names
+	var/list/possibleNames = GLOBL.ai_names
 
 	var/pickedName = null
 	while(!pickedName)
-		pickedName = pick(global.ai_names)
+		pickedName = pick(GLOBL.ai_names)
 		for (var/mob/living/silicon/ai/A in mob_list)
 			if (A.real_name == pickedName && possibleNames.len > 1) //fixing the theoretically possible infinite loop
 				possibleNames -= pickedName
@@ -535,7 +535,7 @@ var/list/ai_verbs_default = list(
 		if(!C.can_use())
 			continue
 
-		var/list/tempnetwork = difflist(C.network, global.restricted_camera_networks, 1)
+		var/list/tempnetwork = difflist(C.network, GLOBL.restricted_camera_networks, 1)
 		if(tempnetwork.len)
 			for(var/i in tempnetwork)
 				cameralist[i] = i

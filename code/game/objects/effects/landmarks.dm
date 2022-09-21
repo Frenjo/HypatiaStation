@@ -29,32 +29,32 @@
 			return
 
 		if("monkey")
-			global.monkeystart += loc
+			GLOBL.monkeystart += loc
 			delete_me = TRUE
 			return
 
 		if("start")
-			global.newplayer_start += loc
+			GLOBL.newplayer_start += loc
 			delete_me = TRUE
 			return
 
 		if("wizard")
-			global.wizardstart += loc
+			GLOBL.wizardstart += loc
 			delete_me = TRUE
 			return
 
 		if("JoinLate")
-			global.latejoin += loc
+			GLOBL.latejoin += loc
 			delete_me = TRUE
 			return
 
 		if("JoinLateGateway")
-			global.latejoin_gateway += loc
+			GLOBL.latejoin_gateway += loc
 			delete_me = TRUE
 			return
 
 		if("JoinLateCryo")
-			global.latejoin_cryo += loc
+			GLOBL.latejoin_cryo += loc
 			delete_me = TRUE
 			return
 
@@ -68,13 +68,13 @@
 		if("Holding Facility")
 			global.holdingfacility += loc
 		if("tdome1")
-			global.tdome1	+= loc
+			GLOBL.tdome1	+= loc
 		if("tdome2")
-			global.tdome2 += loc
+			GLOBL.tdome2 += loc
 		if("tdomeadmin")
-			global.tdomeadmin	+= loc
+			GLOBL.tdomeadmin	+= loc
 		if("tdomeobserve")
-			global.tdomeobserve += loc
+			GLOBL.tdomeobserve += loc
 		//not prisoners
 		if("prisonsecuritywarp")
 			global.prisonsecuritywarp += loc
@@ -82,7 +82,7 @@
 			return
 
 		if("blobstart")
-			global.blobstart += loc
+			GLOBL.blobstart += loc
 			delete_me = TRUE
 			return
 
@@ -92,11 +92,11 @@
 			return
 
 		if("ninjastart")
-			global.ninjastart += loc
+			GLOBL.ninjastart += loc
 			delete_me = TRUE
 			return
 
-	global.landmarks_list += src
+	GLOBL.landmarks_list += src
 	return 1
 
 /obj/effect/landmark/initialize()
@@ -105,7 +105,7 @@
 		qdel(src)
 
 /obj/effect/landmark/Destroy()
-	global.landmarks_list -= src
+	GLOBL.landmarks_list -= src
 	return ..()
 
 /obj/effect/landmark/proc/delete()

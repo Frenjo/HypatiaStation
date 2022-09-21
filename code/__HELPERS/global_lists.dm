@@ -56,11 +56,11 @@
 	paths = SUBTYPESOF(/datum/language)
 	for(var/T in paths)
 		var/datum/language/L = new T()
-		global.all_languages[L.name] = L
+		GLOBL.all_languages[L.name] = L
 
-	for(var/language_name in global.all_languages)
-		var/datum/language/L = global.all_languages[language_name]
-		global.language_keys[":[lowertext(L.key)]"] = L
+	for(var/language_name in GLOBL.all_languages)
+		var/datum/language/L = GLOBL.all_languages[language_name]
+		GLOBL.language_keys[":[lowertext(L.key)]"] = L
 
 	// Species - Initialise all /datum/species into a list.
 	var/rkey = 0
@@ -69,19 +69,19 @@
 		rkey++
 		var/datum/species/S = new T()
 		S.race_key = rkey //Used in mob icon caching.
-		global.all_species[S.name] = S
+		GLOBL.all_species[S.name] = S
 
 		if(S.flags & IS_WHITELISTED)
-			whitelisted_species += S.name
+			GLOBL.whitelisted_species += S.name
 	
 	// Skills - Initialise all /datum/skill into a list, indexed by field.
 	paths = SUBTYPESOF(/datum/skill)
 	for(var/T in paths)
 		var/datum/skill/S = new T()
 		if(S.id != "none")
-			if(!global.all_skills.Find(S.field))
-				global.all_skills[S.field] = list()
-			var/list/field_list = global.all_skills[S.field]
+			if(!GLOBL.all_skills.Find(S.field))
+				GLOBL.all_skills[S.field] = list()
+			var/list/field_list = GLOBL.all_skills[S.field]
 			field_list += S
 
 	return 1

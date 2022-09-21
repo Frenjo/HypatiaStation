@@ -357,7 +357,7 @@
 		if(display_freq == FREQUENCY_SYNDICATE)
 			part_a = "<span class='syndradio'><span class='name'>"
 		// centcomm channels (deathsquid and ert)
-		else if(display_freq in global.cent_freqs)
+		else if(display_freq in GLOBL.cent_freqs)
 			part_a = "<span class='centradio'><span class='name'>"
 		// cargo channel
 		else if(display_freq == FREQUENCY_SUPPLY)
@@ -387,7 +387,7 @@
 		else if(display_freq == FREQUENCY_AI_PRIVATE)
 			part_a = "<span class='airadio'><span class='name'>"
 		// If all else fails and it's a dept_freq, color me purple!
-		else if(display_freq in global.dept_freqs)
+		else if(display_freq in GLOBL.dept_freqs)
 			part_a = "<span class='deptradio'><span class='name'>"
 
 		// --- Filter the message; place it in quotes apply a verb ---
@@ -575,7 +575,7 @@
 			part_a = "<span class='syndradio'><span class='name'>"
 		else if(display_freq == FREQUENCY_COMMAND)
 			part_a = "<span class='comradio'><span class='name'>"
-		else if(display_freq in global.dept_freqs)
+		else if(display_freq in GLOBL.dept_freqs)
 			part_a = "<span class='deptradio'><span class='name'>"
 
 		// --- This following recording is intended for research and feedback in the use of department radio channels ---

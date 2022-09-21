@@ -350,7 +350,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		//check if they were a monkey
 		if(findtext(G_found.real_name,"monkey"))
 			if(alert("This character appears to have been a monkey. Would you like to respawn them as such?",,"Yes","No")=="Yes")
-				var/mob/living/carbon/monkey/new_monkey = new(pick(global.latejoin))
+				var/mob/living/carbon/monkey/new_monkey = new(pick(GLOBL.latejoin))
 				G_found.mind.transfer_to(new_monkey)	//be careful when doing stuff like this! I've already checked the mind isn't in use
 				new_monkey.key = G_found.key
 				new_monkey << "You have been fully respawned. Enjoy the game."
@@ -359,7 +359,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 
 	//Ok, it's not a monkey. So, spawn a human.
-	var/mob/living/carbon/human/new_character = new(pick(global.latejoin))//The mob being spawned.
+	var/mob/living/carbon/human/new_character = new(pick(GLOBL.latejoin))//The mob being spawned.
 
 	var/datum/data/record/record_found			//Referenced to later to either randomize or not randomize the character.
 	if(G_found.mind && !G_found.mind.active)	//mind isn't currently in use by someone/something
@@ -384,9 +384,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!new_character.real_name)
 		if(new_character.gender == MALE)
-			new_character.real_name = capitalize(pick(global.first_names_male)) + " " + capitalize(pick(global.last_names))
+			new_character.real_name = capitalize(pick(GLOBL.first_names_male)) + " " + capitalize(pick(GLOBL.last_names))
 		else
-			new_character.real_name = capitalize(pick(global.first_names_female)) + " " + capitalize(pick(global.last_names))
+			new_character.real_name = capitalize(pick(GLOBL.first_names_female)) + " " + capitalize(pick(GLOBL.last_names))
 	new_character.name = new_character.real_name
 
 	if(G_found.mind && !G_found.mind.active)
@@ -428,7 +428,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			job_master.equip_rank(new_character, new_character.mind.assigned_role, 1)
 			ticker.mode.equip_traitor(new_character)
 		if("Wizard")
-			new_character.loc = pick(global.wizardstart)
+			new_character.loc = pick(GLOBL.wizardstart)
 			//ticker.mode.learn_basic_spells(new_character)
 			ticker.mode.equip_wizard(new_character)
 		if("Syndicate")
@@ -440,16 +440,16 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			new_character.equip_space_ninja()
 			new_character.internal = new_character.s_store
 			new_character.internals.icon_state = "internal1"
-			if(global.ninjastart.len == 0)
+			if(GLOBL.ninjastart.len == 0)
 				new_character << "<B>\red A proper starting location for you could not be found, please report this bug!</B>"
 				new_character << "<B>\red Attempting to place at a carpspawn.</B>"
-				for(var/obj/effect/landmark/L in landmarks_list)
+				for(var/obj/effect/landmark/L in GLOBL.landmarks_list)
 					if(L.name == "carpspawn")
-						global.ninjastart.Add(L)
-				if(global.ninjastart.len == 0 && global.latejoin.len > 0)
+						GLOBL.ninjastart.Add(L)
+				if(GLOBL.ninjastart.len == 0 && GLOBL.latejoin.len > 0)
 					new_character << "<B>\red Still no spawneable locations could be found. Defaulting to latejoin.</B>"
-					new_character.loc = pick(global.latejoin)
-				else if (ninjastart.len == 0)
+					new_character.loc = pick(GLOBL.latejoin)
+				else if(GLOBL.ninjastart.len == 0)
 					new_character << "<B>\red Still no spawneable locations could be found. Aborting.</B>"
 
 		if("Death Commando")//Leaves them at late-join spawn.

@@ -192,7 +192,7 @@
 				break //only capture one mob at a time.
 
 /obj/effect/spacevine/proc/spread()
-	var/direction = pick(cardinal)
+	var/direction = pick(GLOBL.cardinal)
 	var/step = get_step(src, direction)
 	if(istype(step, /turf/simulated/floor))
 		var/turf/simulated/floor/F = step

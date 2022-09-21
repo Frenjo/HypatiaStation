@@ -56,18 +56,18 @@
 				name = body.real_name
 			else
 				if(gender == MALE)
-					name = capitalize(pick(global.first_names_male)) + " " + capitalize(pick(global.last_names))
+					name = capitalize(pick(GLOBL.first_names_male)) + " " + capitalize(pick(GLOBL.last_names))
 				else
-					name = capitalize(pick(global.first_names_female)) + " " + capitalize(pick(global.last_names))
+					name = capitalize(pick(GLOBL.first_names_female)) + " " + capitalize(pick(GLOBL.last_names))
 
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
 
 	if(!T)
-		T = pick(global.latejoin)			//Safety in case we cannot find the body's position
+		T = pick(GLOBL.latejoin)			//Safety in case we cannot find the body's position
 	loc = T
 
 	if(!name)							//To prevent nameless ghosts
-		name = capitalize(pick(global.first_names_male)) + " " + capitalize(pick(global.last_names))
+		name = capitalize(pick(GLOBL.first_names_male)) + " " + capitalize(pick(GLOBL.last_names))
 	real_name = name
 	..()
 

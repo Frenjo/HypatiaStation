@@ -318,7 +318,7 @@
 //This proc is used to update the icons of nearby windows. It should not be confused with update_nearby_tiles(), which is an atmos proc!
 /obj/structure/window/proc/update_nearby_icons()
 	update_icon()
-	for(var/direction in cardinal)
+	for(var/direction in GLOBL.cardinal)
 		for(var/obj/structure/window/W in get_step(src, direction))
 			W.update_icon()
 

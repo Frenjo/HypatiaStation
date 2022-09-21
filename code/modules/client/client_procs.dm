@@ -113,13 +113,13 @@
 
 	to_chat(src, SPAN_WARNING("If the title screen is black, resources are still downloading. Please be patient until the title screen appears."))
 
-	clients += src
-	directory[ckey] = src
+	GLOBL.clients += src
+	GLOBL.directory[ckey] = src
 
 	//Admin Authorisation
 	holder = admin_datums[ckey]
 	if(holder)
-		admins += src
+		GLOBL.admins += src
 		holder.owner = src
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
@@ -159,9 +159,9 @@
 /client/Del()
 	if(holder)
 		holder.owner = null
-		admins -= src
-	directory -= ckey
-	clients -= src
+		GLOBL.admins -= src
+	GLOBL.directory -= ckey
+	GLOBL.clients -= src
 	return ..()
 
 

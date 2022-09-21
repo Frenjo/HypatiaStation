@@ -190,7 +190,7 @@ Buildable meters
 
 /obj/item/pipe/Move()
 	..()
-	if((pipe_type in list (PIPE_SIMPLE_BENT, PIPE_HE_BENT, PIPE_INSULATED_BENT)) && (src.dir in cardinal))
+	if((pipe_type in list (PIPE_SIMPLE_BENT, PIPE_HE_BENT, PIPE_INSULATED_BENT)) && (src.dir in GLOBL.cardinal))
 		src.set_dir(src.dir|turn(src.dir, 90))
 	else if(pipe_type in list (PIPE_SIMPLE_STRAIGHT, PIPE_HE_STRAIGHT, PIPE_INSULATED_STRAIGHT, PIPE_MVALVE))
 		if(dir == 2)

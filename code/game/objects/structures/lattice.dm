@@ -20,14 +20,14 @@
 	icon = 'icons/obj/smoothlattice.dmi'
 	icon_state = "latticeblank"
 	updateOverlays()
-	for(var/dir in cardinal)
+	for(var/dir in GLOBL.cardinal)
 		var/obj/structure/lattice/L
 		if(locate(/obj/structure/lattice, get_step(src, dir)))
 			L = locate(/obj/structure/lattice, get_step(src, dir))
 			L.updateOverlays()
 
 /obj/structure/lattice/Destroy()
-	for(var/dir in cardinal)
+	for(var/dir in GLOBL.cardinal)
 		var/obj/structure/lattice/L
 		if(locate(/obj/structure/lattice, get_step(src, dir)))
 			L = locate(/obj/structure/lattice, get_step(src, dir))
@@ -73,7 +73,7 @@
 
 		var/dir_sum = 0
 
-		for(var/direction in cardinal)
+		for(var/direction in GLOBL.cardinal)
 			if(locate(/obj/structure/lattice, get_step(src, direction)))
 				dir_sum += direction
 			else

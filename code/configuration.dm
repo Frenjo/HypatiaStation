@@ -7,6 +7,8 @@
  *
  * In a gentle way, you can shake the world. ~ Mahatma Gandhi
 */
+/var/global/configuration/config // Set in /datum/global_init/New()
+
 /configuration
 	// ----- CONFIG.TXT STUFF -----
 	// Server information.

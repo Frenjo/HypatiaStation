@@ -27,7 +27,7 @@ GLOBAL_BYOND_TYPED(pAI_controller, /datum/controller/pai)	// Global handler for 
 		if(istype(card, /obj/item/device/paicard) && istype(candidate, /datum/pAI_candidate))
 			var/mob/living/silicon/pai/pai = new(card)
 			if(!candidate.name)
-				pai.name = pick(global.ninja_names)
+				pai.name = pick(GLOBL.ninja_names)
 			else
 				pai.name = candidate.name
 			pai.real_name = pai.name

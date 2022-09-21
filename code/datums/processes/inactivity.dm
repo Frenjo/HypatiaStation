@@ -6,7 +6,7 @@
 
 /datum/process/inactivity/doWork()
 	if(config.kick_inactive)
-		for(var/client/C in global.clients)
+		for(var/client/C in GLOBL.clients)
 			if(C.is_afk(INACTIVITY_KICK))
 				if(!istype(C.mob, /mob/dead))
 					log_access("AFK: [key_name(C)]")

@@ -487,7 +487,7 @@ var/list/admin_verbs_donor = list(
 		return
 
 	var/datum/preferences/D
-	var/client/C = directory[warned_ckey]
+	var/client/C = GLOBL.directory[warned_ckey]
 	if(C)	D = C.prefs
 	else	D = global.preferences_datums[warned_ckey]
 

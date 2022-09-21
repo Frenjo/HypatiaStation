@@ -11,7 +11,7 @@
 	endWhen 		= 6
 	oneShot			= 0
 
-	for(var/obj/effect/landmark/newEpicentre in landmarks_list)
+	for(var/obj/effect/landmark/newEpicentre in GLOBL.landmarks_list)
 		if(newEpicentre.name == "lightsout" && !(newEpicentre in epicentreList))
 			possibleEpicentres += newEpicentre
 

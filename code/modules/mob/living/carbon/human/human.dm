@@ -1149,7 +1149,7 @@
 		if(species.language)
 			remove_language(species.language)
 
-	species = global.all_species[new_species]
+	species = GLOBL.all_species[new_species]
 
 	if(force_organs || !organs || !organs.len)
 		species.create_organs(src)

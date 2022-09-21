@@ -133,7 +133,7 @@
 		message_admins("[key_name_admin(user)] emagged drone [key_name_admin(src)].  Laws overridden.")
 		log_game("[key_name(user)] emagged drone [key_name(src)].  Laws overridden.")
 		var/time = time2text(world.realtime,"hh:mm:ss")
-		global.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
+		GLOBL.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
 
 		emagged = 1
 		lawupdate = 0

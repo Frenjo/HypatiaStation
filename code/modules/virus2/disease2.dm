@@ -31,14 +31,14 @@
 	antigen |= text2num(pick(antigen_list))
 	spreadtype = prob(70) ? "Airborne" : "Contact"
 
-	if(global.all_species.len)
+	if(GLOBL.all_species.len)
 		affected_species = get_infectable_species()
 
 /proc/get_infectable_species()
 	var/list/meat = list()
 	var/list/res = list()
-	for (var/specie in global.all_species)
-		var/datum/species/S = global.all_species[specie]
+	for (var/specie in GLOBL.all_species)
+		var/datum/species/S = GLOBL.all_species[specie]
 		if(!(S.flags & IS_SYNTHETIC))
 			meat += S.name
 	if(meat.len)
@@ -115,7 +115,7 @@
 	if (prob(5))
 		antigen = text2num(pick(antigen_list))
 		antigen |= text2num(pick(antigen_list))
-	if (prob(5) && global.all_species.len)
+	if (prob(5) && GLOBL.all_species.len)
 		affected_species = get_infectable_species()
 
 /datum/disease2/disease/proc/getcopy()

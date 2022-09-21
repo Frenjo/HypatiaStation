@@ -95,7 +95,7 @@ var/list/adminhelp_ignored_words = list("unknown", "the", "a", "an", "of", "monk
 
 	//send this msg to all admins
 	var/admin_number_afk = 0
-	for(var/client/X in admins)
+	for(var/client/X in GLOBL.admins)
 		if((R_ADMIN|R_MOD) & X.holder.rights)
 			if(X.is_afk())
 				admin_number_afk++
@@ -106,7 +106,7 @@ var/list/adminhelp_ignored_words = list("unknown", "the", "a", "an", "of", "monk
 	//show it to the person adminhelping too
 	to_chat(src, "<font color='blue'>PM to-<b>Admins</b>: [original_msg]</font>")
 
-	var/admin_number_present = admins.len - admin_number_afk
+	var/admin_number_present = GLOBL.admins.len - admin_number_afk
 	log_admin("HELP: [key_name(src)]: [original_msg] - heard by [admin_number_present] non-AFK admins.")
 	if(admin_number_present <= 0)
 		if(!admin_number_afk)

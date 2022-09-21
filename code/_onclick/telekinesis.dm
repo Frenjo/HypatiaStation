@@ -170,7 +170,7 @@
 	O.anchored = TRUE
 	O.density = FALSE
 	O.layer = FLY_LAYER
-	O.set_dir(pick(cardinal))
+	O.set_dir(pick(GLOBL.cardinal))
 	O.icon = 'icons/effects/effects.dmi'
 	O.icon_state = "nothing"
 	flick("empdisable", O)

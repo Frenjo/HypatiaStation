@@ -35,7 +35,7 @@
 		var/obj/item/device/dest_tagger/O = W
 
 		if(src.sortTag != O.currTag)
-			var/tag = uppertext(global.tagger_locations[O.currTag])
+			var/tag = uppertext(GLOBL.tagger_locations[O.currTag])
 			to_chat(user, SPAN_INFO("*[tag]*"))
 			src.sortTag = O.currTag
 			playsound(src, 'sound/machines/twobeep.ogg', 100, 1)
@@ -76,7 +76,7 @@
 		var/obj/item/device/dest_tagger/O = W
 
 		if(src.sortTag != O.currTag)
-			var/tag = uppertext(global.tagger_locations[O.currTag])
+			var/tag = uppertext(GLOBL.tagger_locations[O.currTag])
 			to_chat(user, SPAN_INFO("*[tag]*"))
 			src.sortTag = O.currTag
 			playsound(src, 'sound/machines/twobeep.ogg', 100, 1)
@@ -186,13 +186,13 @@
 	var/dat = "<tt><center><h1><b>TagMaster 2.2</b></h1></center>"
 
 	dat += "<table style='width:100%; padding:4px;'><tr>"
-	for (var/i = 1, i <= global.tagger_locations.len, i++)
-		dat += "<td><a href='?src=\ref[src];nextTag=[i]'>[global.tagger_locations[i]]</a></td>"
+	for (var/i = 1, i <= GLOBL.tagger_locations.len, i++)
+		dat += "<td><a href='?src=\ref[src];nextTag=[i]'>[GLOBL.tagger_locations[i]]</a></td>"
 
 		if (i % 4 == 0)
 			dat += "</tr><tr>"
 
-	dat += "</tr></table><br>Current Selection: [currTag ? global.tagger_locations[currTag] : "None"]</tt>"
+	dat += "</tr></table><br>Current Selection: [currTag ? GLOBL.tagger_locations[currTag] : "None"]</tt>"
 
 	user << browse(dat, "window=destTagScreen;size=450x350")
 	onclose(user, "destTagScreen")

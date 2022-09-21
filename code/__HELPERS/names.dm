@@ -193,9 +193,9 @@
 						if(names.len&&prob(70))
 							code_phrase += pick(names)
 						else
-							code_phrase += pick(pick(global.first_names_male,global.first_names_female))
+							code_phrase += pick(pick(GLOBL.first_names_male, GLOBL.first_names_female))
 							code_phrase += " "
-							code_phrase += pick(global.last_names)
+							code_phrase += pick(GLOBL.last_names)
 					if(2)
 						code_phrase += pick(global.joblist)//Returns a job.
 				safety -= 1
@@ -211,9 +211,9 @@
 					if(1)
 						code_phrase += pick(nouns)
 					if(2)
-						code_phrase += pick(global.adjectives)
+						code_phrase += pick(GLOBL.adjectives)
 					if(3)
-						code_phrase += pick(global.verbs)
+						code_phrase += pick(GLOBL.verbs)
 		if(words==1)
 			code_phrase += "."
 		else

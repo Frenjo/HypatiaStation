@@ -386,16 +386,16 @@
 	if(!G_found || !G_found.key)	return
 
 	//First we spawn a dude.
-	var/mob/living/carbon/human/new_character = new(pick(global.latejoin))//The mob being spawned.
+	var/mob/living/carbon/human/new_character = new(pick(GLOBL.latejoin))//The mob being spawned.
 
 	new_character.gender = pick(MALE,FEMALE)
 
 	var/datum/preferences/A = new()
 	A.randomize_appearance_for(new_character)
 	if(new_character.gender == MALE)
-		new_character.real_name = "[pick(global.first_names_male)] [pick(global.last_names)]"
+		new_character.real_name = "[pick(GLOBL.first_names_male)] [pick(GLOBL.last_names)]"
 	else
-		new_character.real_name = "[pick(global.first_names_female)] [pick(global.last_names)]"
+		new_character.real_name = "[pick(GLOBL.first_names_female)] [pick(GLOBL.last_names)]"
 	new_character.name = new_character.real_name
 	new_character.age = rand(17,45)
 
@@ -408,7 +408,7 @@
 	var/mob/living/carbon/human/new_syndicate_commando = new(spawn_location.loc)
 	var/syndicate_commando_leader_rank = pick("Lieutenant", "Captain", "Major")
 	var/syndicate_commando_rank = pick("Corporal", "Sergeant", "Staff Sergeant", "Sergeant 1st Class", "Master Sergeant", "Sergeant Major")
-	var/syndicate_commando_name = pick(last_names)
+	var/syndicate_commando_name = pick(GLOBL.last_names)
 
 	new_syndicate_commando.gender = pick(MALE, FEMALE)
 

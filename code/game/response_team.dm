@@ -56,7 +56,7 @@ var/can_call_ert
 		if(response_team_members.len > 5)
 			to_chat(usr, "The emergency response team is already full!")
 
-		for(var/obj/effect/landmark/L in landmarks_list)
+		for(var/obj/effect/landmark/L in GLOBL.landmarks_list)
 			if(L.name == "Commando")
 				L.name = null//Reserving the place.
 				var/new_name = input(usr, "Pick a name", "Name") as null|text

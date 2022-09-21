@@ -1,5 +1,5 @@
 /proc/createRandomZlevel()
-	if(global.awaydestinations.len)	//crude, but it saves another var!
+	if(GLOBL.awaydestinations.len)	//crude, but it saves another var!
 		return
 
 	var/list/possible_z_levels = list()
@@ -44,10 +44,10 @@
 			global.maploader.load_map(file)
 			world.log << "away mission loaded: [map]"
 
-		for(var/obj/effect/landmark/L in landmarks_list)
+		for(var/obj/effect/landmark/L in GLOBL.landmarks_list)
 			if(L.name != "awaystart")
 				continue
-			global.awaydestinations.Add(L)
+			GLOBL.awaydestinations.Add(L)
 
 		to_world(SPAN_DANGER("Away mission loaded."))
 

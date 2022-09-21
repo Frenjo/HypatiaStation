@@ -78,7 +78,7 @@
 				var/placeCount = 1
 				for(var/obj/effect/glowshroom/shroom in newLoc)
 					shroomCount++
-				for(var/wallDir in cardinal)
+				for(var/wallDir in GLOBL.cardinal)
 					var/turf/isWall = get_step(newLoc, wallDir)
 					if(isWall.density)
 						placeCount++
@@ -130,7 +130,7 @@
 	set background = TRUE
 	var/direction = 16
 
-	for(var/wallDir in cardinal)
+	for(var/wallDir in GLOBL.cardinal)
 		var/turf/newTurf = get_step(location, wallDir)
 		if(newTurf.density)
 			direction |= wallDir

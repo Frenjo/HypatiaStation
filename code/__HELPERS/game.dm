@@ -195,7 +195,7 @@
 	for(var/obj/O in range)				//Get a list of objects in hearing range.  We'll check to see if any clients have their "eye" set to the object 
 		objects += O
 
-	for(var/client/C in clients)
+	for(var/client/C in GLOBL.clients)
 		if(!istype(C) || !C.eye)
 			continue   			//I have no idea when this client check would be needed, but if this runtimes people won't hear anything
 							//So kinda paranoid about runtime avoidance.
@@ -344,7 +344,7 @@
 
 /proc/Show2Group4Delay(obj/O, list/group, delay=0)
 	if(!isobj(O))	return
-	if(!group)	group = clients
+	if(!group)	group = GLOBL.clients
 	for(var/client/C in group)
 		C.screen += O
 	if(delay)

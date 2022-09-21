@@ -21,7 +21,7 @@
 		return
 
 	var/ndir = get_dir(on_wall, usr)
-	if(!(ndir in cardinal))
+	if(!(ndir in GLOBL.cardinal))
 		return
 
 	var/turf/loc = get_turf(usr)

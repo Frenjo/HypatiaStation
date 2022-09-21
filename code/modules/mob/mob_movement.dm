@@ -301,7 +301,7 @@
 							return
 
 		else if(mob.confused)
-			step(mob, pick(cardinal))
+			step(mob, pick(GLOBL.cardinal))
 		else
 			. = ..()
 

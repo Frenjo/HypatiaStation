@@ -74,7 +74,7 @@
 			if(src.loc != user)
 				return 1
 
-			var/list/directions = new/list(cardinal)
+			var/list/directions = new/list(GLOBL.cardinal)
 			var/i = 0
 			for(var/obj/structure/window/win in user.loc)
 				i++
@@ -82,7 +82,7 @@
 					to_chat(user, SPAN_WARNING("There are too many windows in this location."))
 					return 1
 				directions -= win.dir
-				if(!(win.ini_dir in cardinal))
+				if(!(win.ini_dir in GLOBL.cardinal))
 					to_chat(user, SPAN_WARNING("Can't let you do that."))
 					return 1
 
@@ -165,7 +165,7 @@
 			if(src.loc != user)
 				return 1
 
-			var/list/directions = new/list(cardinal)
+			var/list/directions = new/list(GLOBL.cardinal)
 			var/i = 0
 			for(var/obj/structure/window/win in user.loc)
 				i++
@@ -173,7 +173,7 @@
 					to_chat(user, SPAN_WARNING("There are too many windows in this location."))
 					return 1
 				directions -= win.dir
-				if(!(win.ini_dir in cardinal))
+				if(!(win.ini_dir in GLOBL.cardinal))
 					to_chat(user, SPAN_WARNING("Can't let you do that."))
 					return 1
 

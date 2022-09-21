@@ -73,7 +73,7 @@
 
 	global.process_scheduler.stop()
 
-	for(var/client/C in global.clients)
+	for(var/client/C in GLOBL.clients)
 		if(global.config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[global.config.server]")
 		else
@@ -110,7 +110,7 @@
 		var/n = 0
 		var/admins = 0
 
-		for(var/client/C in global.clients)
+		for(var/client/C in GLOBL.clients)
 			if(C.holder)
 				if(C.holder.fakekey)
 					continue	//so stealthmins aren't revealed by the hub
@@ -172,7 +172,7 @@
 				var/rights = admin_ranks["Moderator"]
 				var/ckey = copytext(line, 1, length(line) + 1)
 				var/datum/admins/D = new /datum/admins("Moderator", rights, ckey)
-				D.associate(directory[ckey])
+				D.associate(GLOBL.directory[ckey])
 
 // Hub status updates.
 /world/proc/update_status()

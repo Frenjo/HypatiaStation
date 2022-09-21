@@ -179,7 +179,7 @@
 			else
 				D = new /datum/admins(new_rank, rights, adm_ckey)
 
-			var/client/C = directory[adm_ckey]						//find the client with the specified ckey (if they are logged in)
+			var/client/C = GLOBL.directory[adm_ckey]				//find the client with the specified ckey (if they are logged in)
 			D.associate(C)											//link up with the client and add verbs
 
 			message_admins("[key_name_admin(usr)] edited the admin rank of [adm_ckey] to [new_rank]")
@@ -1115,7 +1115,7 @@
 
 		M.Paralyse(5)
 		sleep(5)
-		M.loc = pick(global.tdome1)
+		M.loc = pick(GLOBL.tdome1)
 		spawn(50)
 			M << "\blue You have been sent to the Thunderdome."
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 1)")
@@ -1144,7 +1144,7 @@
 
 		M.Paralyse(5)
 		sleep(5)
-		M.loc = pick(global.tdome2)
+		M.loc = pick(GLOBL.tdome2)
 		spawn(50)
 			M << "\blue You have been sent to the Thunderdome."
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 2)")
@@ -1166,7 +1166,7 @@
 
 		M.Paralyse(5)
 		sleep(5)
-		M.loc = pick(global.tdomeadmin)
+		M.loc = pick(GLOBL.tdomeadmin)
 		spawn(50)
 			M << "\blue You have been sent to the Thunderdome."
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Admin.)")
@@ -1199,7 +1199,7 @@
 			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), slot_shoes)
 		M.Paralyse(5)
 		sleep(5)
-		M.loc = pick(global.tdomeobserve)
+		M.loc = pick(GLOBL.tdomeobserve)
 		spawn(50)
 			M << "\blue You have been sent to the Thunderdome."
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Observer.)")
@@ -2100,7 +2100,7 @@
 				feedback_add_details("admin_secrets_fun_used","GA")
 				command_alert("Gravitational anomalies detected on the station. There is no additional data.", "Anomaly Alert")
 				world << sound('sound/AI/granomalies.ogg')
-				var/turf/T = pick(global.blobstart)
+				var/turf/T = pick(GLOBL.blobstart)
 				var/obj/effect/bhole/bh = new /obj/effect/bhole( T.loc, 30 )
 				spawn(rand(100, 600))
 					qdel(bh)
@@ -2360,17 +2360,17 @@
 				message_admins("[usr.key] has changed the security level to [level].")
 			if("list_bombers")
 				var/dat = "<B>Bombing List<HR>"
-				for(var/l in global.bombers)
+				for(var/l in GLOBL.bombers)
 					dat += text("[l]<BR>")
 				usr << browse(dat, "window=bombers")
 			if("list_signalers")
-				var/dat = "<B>Showing last [length(global.lastsignalers)] signalers.</B><HR>"
-				for(var/sig in global.lastsignalers)
+				var/dat = "<B>Showing last [length(GLOBL.lastsignalers)] signalers.</B><HR>"
+				for(var/sig in GLOBL.lastsignalers)
 					dat += "[sig]<BR>"
 				usr << browse(dat, "window=lastsignalers;size=800x500")
 			if("list_lawchanges")
-				var/dat = "<B>Showing last [length(global.lawchanges)] law changes.</B><HR>"
-				for(var/sig in global.lawchanges)
+				var/dat = "<B>Showing last [length(GLOBL.lawchanges)] law changes.</B><HR>"
+				for(var/sig in GLOBL.lawchanges)
 					dat += "[sig]<BR>"
 				usr << browse(dat, "window=lawchanges;size=800x500")
 			if("list_job_debug")
@@ -2434,9 +2434,9 @@
 		switch(href_list["secretscoder"])
 			if("spawn_objects")
 				var/dat = "<B>Admin Log<HR></B>"
-				for(var/l in global.admin_log)
+				for(var/l in GLOBL.admin_log)
 					dat += "<li>[l]</li>"
-				if(!global.admin_log.len)
+				if(!GLOBL.admin_log.len)
 					dat += "No-one has done anything this round!"
 				usr << browse(dat, "window=admin_log")
 			if("maint_access_brig")

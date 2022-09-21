@@ -178,10 +178,10 @@
 	HTML += "<b>Select your Skills</b><br>"
 	HTML += "Current skill level: <b>[M.GetSkillClass(M.used_skillpoints)]</b> ([M.used_skillpoints])<br>"
 	HTML += "<table>"
-	for(var/V in global.all_skills)
+	for(var/V in GLOBL.all_skills)
 		HTML += "<tr><th colspan = 5><b>[V]</b>"
 		HTML += "</th></tr>"
-		for(var/datum/skill/S in global.all_skills[V])
+		for(var/datum/skill/S in GLOBL.all_skills[V])
 			var/level = M.skills[S.id]
 			HTML += "<tr style='text-align:left;'>"
 			HTML += "<th>[S.name]</th>"

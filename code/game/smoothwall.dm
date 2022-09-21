@@ -110,7 +110,7 @@
 		for(var/obj/structure/falsewall/W in range(temploc, 1))
 			W.relativewall()
 
-	for(var/direction in cardinal)
+	for(var/direction in GLOBL.cardinal)
 		for(var/obj/effect/glowshroom/shroom in get_step(src, direction))
 			if(!shroom.floor) //shrooms drop to the floor
 				shroom.floor = 1

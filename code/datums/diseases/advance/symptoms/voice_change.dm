@@ -35,10 +35,10 @@ Bonus
 					var/random_name = ""
 					switch(H.gender)
 						if(MALE)
-							random_name = pick(global.first_names_male)
+							random_name = pick(GLOBL.first_names_male)
 						else
-							random_name = pick(global.first_names_female)
-					random_name += " [pick(global.last_names)]"
+							random_name = pick(GLOBL.first_names_female)
+					random_name += " [pick(GLOBL.last_names)]"
 					H.SetSpecialVoice(random_name)
 
 	return

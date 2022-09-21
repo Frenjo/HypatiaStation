@@ -1,5 +1,5 @@
-//Languages/species/whitelist.
-/var/global/list/all_species[0]
-/var/global/list/all_languages[0]
-/var/global/list/language_keys[0]					//table of say codes for all languages
-/var/global/list/whitelisted_species = list("Human")
+// Languages/species/whitelist.
+GLOBAL_GLOBL_LIST_NEW(all_species)
+GLOBAL_GLOBL_LIST_NEW(all_languages)
+GLOBAL_GLOBL_LIST_NEW(language_keys)	// Table of say codes for all languages.
+GLOBAL_GLOBL_LIST_INIT(whitelisted_species, list("Human"))

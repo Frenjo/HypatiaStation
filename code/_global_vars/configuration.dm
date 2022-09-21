@@ -1,5 +1,3 @@
-/var/global/configuration/config = null // Set in /datum/global_init/New()
-
 // These are set in /world/New()
 /var/global/href_logfile = null
 /var/global/diary = null

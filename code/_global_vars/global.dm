@@ -16,7 +16,6 @@ var/shuttle_frozen = 0
 var/shuttle_left = 0
 
 var/list/jobMax = list()
-var/list/shuttles = list()
 //list/traitobj = list()
 
 var/shuttle_z = 2	//default

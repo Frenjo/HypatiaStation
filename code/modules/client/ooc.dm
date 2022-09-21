@@ -53,7 +53,7 @@
 			else
 				display_colour = "#b82e00"	//orange
 
-	for(var/client/C in clients)
+	for(var/client/C in GLOBL.clients)
 		if(C.prefs.toggles & CHAT_OOC)
 			var/display_name = src.key
 			if(holder)
@@ -135,7 +135,7 @@
 		if(!M.client)
 			continue
 		var/client/C = M.client
-		if(C in admins)
+		if(C in GLOBL.admins)
 			continue //they are handled after that
 
 		if(C.prefs.toggles & CHAT_LOOC)
@@ -147,7 +147,7 @@
 					else
 						display_name = holder.fakekey
 			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>(LOOC)</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
-	for(var/client/C in admins)
+	for(var/client/C in GLOBL.admins)
 		if(C.prefs.toggles & CHAT_LOOC)
 			var/prefix = "(R)LOOC"
 			if(C.mob in heard)

@@ -56,7 +56,7 @@
 	linked = list()	//clear the list
 	var/turf/T = loc
 
-	for(var/i in global.alldirs)
+	for(var/i in GLOBL.alldirs)
 		T = get_step(loc, i)
 		var/obj/machinery/gateway/G = locate(/obj/machinery/gateway) in T
 		if(G)
@@ -120,7 +120,7 @@
 		M.set_dir(SOUTH)
 		return
 	else
-		var/obj/effect/landmark/dest = pick(global.awaydestinations)
+		var/obj/effect/landmark/dest = pick(GLOBL.awaydestinations)
 		if(dest)
 			M.loc = dest.loc
 			M.set_dir(SOUTH)
@@ -158,7 +158,7 @@
 	linked = list()	//clear the list
 	var/turf/T = loc
 
-	for(var/i in global.alldirs)
+	for(var/i in GLOBL.alldirs)
 		T = get_step(loc, i)
 		var/obj/machinery/gateway/G = locate(/obj/machinery/gateway) in T
 		if(G)

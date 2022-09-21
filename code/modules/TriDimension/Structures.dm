@@ -227,7 +227,7 @@
 
 /obj/multiz/stairs/initialize()
 	..()
-	for(var/dir in cardinal)
+	for(var/dir in GLOBL.cardinal)
 		var/turf/T = get_step(src.loc, dir)
 		for(var/obj/multiz/stairs/S in T)
 			if(S && S.icon_state == "rampbottom" && !S.connected)

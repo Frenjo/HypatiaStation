@@ -990,7 +990,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("Players")
 			to_chat(usr, jointext(player_list, ","))
 		if("Admins")
-			to_chat(usr, jointext(admins, ","))
+			to_chat(usr, jointext(GLOBL.admins, ","))
 		if("Mobs")
 			to_chat(usr, jointext(mob_list, ","))
 		if("Living Mobs")
@@ -998,7 +998,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("Dead Mobs")
 			to_chat(usr, jointext(dead_mob_list, ","))
 		if("Clients")
-			to_chat(usr, jointext(clients, ","))
+			to_chat(usr, jointext(GLOBL.clients, ","))
 
 
 // DNA2 - Admin Hax

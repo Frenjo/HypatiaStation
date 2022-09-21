@@ -382,7 +382,7 @@ var/list/sacrificed = list()
 			chose_name = 1
 			break
 	if(!chose_name)
-		D.real_name = "[pick(global.first_names_male)] [pick(global.last_names)]"
+		D.real_name = "[pick(GLOBL.first_names_male)] [pick(GLOBL.last_names)]"
 	D.universal_speak = 1
 	D.status_flags &= ~GODMODE
 	D.s_tone = 35

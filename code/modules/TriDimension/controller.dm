@@ -222,11 +222,11 @@
 			normalholder += T
 		if(new_list == 3)
 			fastholder += T
-			for(var/d in cardinal)
+			for(var/d in GLOBL.cardinal)
 				var/turf/mT = get_step(T, d)
 				if(!(mT in fastholder))
 					fastholder += mT
-				for(var/f in cardinal)
+				for(var/f in GLOBL.cardinal)
 					var/turf/nT = get_step(mT, f)
 					if(!(nT in fastholder))
 						fastholder += nT

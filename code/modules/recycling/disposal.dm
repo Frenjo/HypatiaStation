@@ -787,7 +787,7 @@
 // remains : set to leave broken pipe pieces in place
 /obj/structure/disposalpipe/proc/broken(remains = 0)
 	if(remains)
-		for(var/D in cardinal)
+		for(var/D in GLOBL.cardinal)
 			if(D & dpdir)
 				var/obj/structure/disposalpipe/broken/P = new(src.loc)
 				P.set_dir(D)
@@ -1079,7 +1079,7 @@
 /obj/structure/disposalpipe/sortjunction/proc/updatedesc()
 	desc = "An underfloor disposal pipe with a package sorting mechanism."
 	if(sortType > 0)
-		var/tag = uppertext(global.tagger_locations[sortType])
+		var/tag = uppertext(GLOBL.tagger_locations[sortType])
 		desc += "\nIt's tagged with [tag]"
 
 /obj/structure/disposalpipe/sortjunction/proc/updatedir()
@@ -1111,7 +1111,7 @@
 		if(O.currTag > 0)// Tag set
 			sortType = O.currTag
 			playsound(src, 'sound/machines/twobeep.ogg', 100, 1)
-			var/tag = uppertext(global.tagger_locations[O.currTag])
+			var/tag = uppertext(GLOBL.tagger_locations[O.currTag])
 			to_chat(user, SPAN_INFO("Changed filter to [tag]."))
 			updatedesc()
 
@@ -1426,7 +1426,7 @@
 	if(direction)
 		dirs = list(direction, turn(direction, -45), turn(direction, 45))
 	else
-		dirs = global.alldirs.Copy()
+		dirs = GLOBL.alldirs.Copy()
 
 	src.streak(dirs)
 
@@ -1435,6 +1435,6 @@
 	if(direction)
 		dirs = list(direction, turn(direction, -45), turn(direction, 45))
 	else
-		dirs = global.alldirs.Copy()
+		dirs = GLOBL.alldirs.Copy()
 
 	src.streak(dirs)

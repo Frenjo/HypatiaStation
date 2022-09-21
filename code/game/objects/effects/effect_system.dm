@@ -99,9 +99,9 @@ steam.start() -- spawns the effect
 			var/obj/effect/steam/steam = PoolOrNew(/obj/effect/steam, src.location)
 			var/direction
 			if(src.cardinals)
-				direction = pick(global.cardinal)
+				direction = pick(GLOBL.cardinal)
 			else
-				direction = pick(global.alldirs)
+				direction = pick(GLOBL.alldirs)
 			for(i = 0, i < pick(1, 2, 3), i++)
 				sleep(5)
 				step(steam, direction)
@@ -171,9 +171,9 @@ steam.start() -- spawns the effect
 			src.total_sparks++
 			var/direction
 			if(src.cardinals)
-				direction = pick(global.cardinal)
+				direction = pick(GLOBL.cardinal)
 			else
-				direction = pick(global.alldirs)
+				direction = pick(GLOBL.alldirs)
 			for(i = 0, i < pick(1, 2, 3), i++)
 				sleep(5)
 				step(sparks, direction)
@@ -333,9 +333,9 @@ steam.start() -- spawns the effect
 			var/direction = src.direction
 			if(!direction)
 				if(src.cardinals)
-					direction = pick(global.cardinal)
+					direction = pick(GLOBL.cardinal)
 				else
-					direction = pick(global.alldirs)
+					direction = pick(GLOBL.alldirs)
 			for(i = 0, i < pick(0, 1, 1, 1, 2, 2, 2, 3), i++)
 				sleep(10)
 				step(smoke, direction)
@@ -500,7 +500,7 @@ steam.start() -- spawns the effect
 	if(--amount < 0)
 		return
 
-	for(var/direction in cardinal)
+	for(var/direction in GLOBL.cardinal)
 		var/turf/T = get_step(src, direction)
 		if(!T)
 			continue

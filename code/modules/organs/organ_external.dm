@@ -638,7 +638,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 			"You hear a terrible sound of ripping tendons and flesh.")
 
 			//Throw organs around
-			var/lol = pick(cardinal)
+			var/lol = pick(GLOBL.cardinal)
 			step(organ, lol)
 
 			owner.update_body(1)

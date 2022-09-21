@@ -19,7 +19,7 @@
 	world.log << "## TESTING: [msg][log_end]"
 
 /proc/log_admin(text)
-	global.admin_log.Add(text)
+	GLOBL.admin_log.Add(text)
 	if(global.config.log_admin)
 		global.diary << "\[[time_stamp()]]ADMIN: [text][log_end]"
 
@@ -27,7 +27,7 @@
 	if(global.config.log_debug)
 		global.diary << "\[[time_stamp()]]DEBUG: [text][log_end]"
 
-	for(var/client/C in admins)
+	for(var/client/C in GLOBL.admins)
 		if(C.prefs.toggles & CHAT_DEBUGLOGS)
 			to_chat(C, "DEBUG: [text]")
 

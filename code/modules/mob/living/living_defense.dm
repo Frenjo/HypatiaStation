@@ -75,7 +75,7 @@
 		if(!O.fingerprintslast)
 			return
 
-		var/client/assailant = directory[ckey(O.fingerprintslast)]
+		var/client/assailant = GLOBL.directory[ckey(O.fingerprintslast)]
 		if(assailant && assailant.mob && ismob(assailant.mob))
 			var/mob/M = assailant.mob
 

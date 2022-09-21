@@ -130,7 +130,7 @@ Attach to transfer valve and open. BOOM.
 		A.fire_act(air_contents, air_contents.temperature, air_contents.volume)
 
 	//spread
-	for(var/direction in cardinal)
+	for(var/direction in GLOBL.cardinal)
 		var/turf/simulated/enemy_tile = get_step(my_tile, direction)
 
 		if(istype(enemy_tile))
@@ -164,7 +164,7 @@ Attach to transfer valve and open. BOOM.
 	if(!isturf(loc))
 		qdel(src)
 
-	dir = pick(cardinal)
+	dir = pick(GLOBL.cardinal)
 	var/datum/gas_mixture/air_contents = loc.return_air()
 	color = heat2color(air_contents.temperature)
 	set_light(3, 1, color)

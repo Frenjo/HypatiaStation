@@ -115,7 +115,7 @@
 							dir_sum += 128
 
 		var/table_type = 0 //stand_alone table
-		if((dir_sum % 16) in cardinal)
+		if((dir_sum % 16) in GLOBL.cardinal)
 			table_type = 1 //endtable
 			dir_sum %= 16
 		if((dir_sum % 16) in list(3,12))

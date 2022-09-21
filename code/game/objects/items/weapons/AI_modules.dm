@@ -77,7 +77,7 @@ AI MODULES
 /obj/item/weapon/aiModule/proc/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	target << "[sender] has uploaded a change to the laws you must follow, using a [name]. From now on: "
 	var/time = time2text(world.realtime,"hh:mm:ss")
-	global.lawchanges.Add("[time] <B>:</B> [sender.name]([sender.key]) used [src.name] on [target.name]([target.key])")
+	GLOBL.lawchanges.Add("[time] <B>:</B> [sender.name]([sender.key]) used [src.name] on [target.name]([target.key])")
 
 
 /******************** Modules ********************/
@@ -106,7 +106,7 @@ AI MODULES
 	var/law = text("Safeguard []. Individuals that threaten [] are not human and are a threat to humans.'", targetName, targetName)
 	target << law
 	target.add_supplied_law(4, law)
-	global.lawchanges.Add("The law specified [targetName]")
+	GLOBL.lawchanges.Add("The law specified [targetName]")
 
 
 /******************** OneHuman ********************/
@@ -134,11 +134,11 @@ AI MODULES
 	if(!is_special_character(target)) // Makes sure the AI isn't a traitor before changing their law 0. --NeoFite
 		target << law
 		target.set_zeroth_law(law)
-		global.lawchanges.Add("The law specified [targetName]")
+		GLOBL.lawchanges.Add("The law specified [targetName]")
 	else
 		target << "[sender.real_name] attempted to modify your zeroth law." // And lets them know that someone tried. --NeoFite
 		target << "It would be in your best interest to play along with [sender.real_name] that [law]"
-		global.lawchanges.Add("The law specified [targetName], but the AI's existing law 0 cannot be overriden.")
+		GLOBL.lawchanges.Add("The law specified [targetName], but the AI's existing law 0 cannot be overriden.")
 
 
 /******************** ProtectStation ********************/
@@ -270,7 +270,7 @@ AI MODULES
 	if(!lawpos || lawpos < 15)
 		lawpos = 15
 	target.add_supplied_law(lawpos, law)
-	global.lawchanges.Add("The law was '[newFreeFormLaw]'")
+	GLOBL.lawchanges.Add("The law was '[newFreeFormLaw]'")
 
 /obj/item/weapon/aiModule/freeform/install(obj/machinery/computer/C)
 	if(!newFreeFormLaw)
@@ -427,7 +427,7 @@ AI MODULES
 	..()
 	var/law = "[newFreeFormLaw]"
 	target.add_inherent_law(law)
-	global.lawchanges.Add("The law is '[newFreeFormLaw]'")
+	GLOBL.lawchanges.Add("The law is '[newFreeFormLaw]'")
 
 /obj/item/weapon/aiModule/freeformcore/install(obj/machinery/computer/C)
 	if(!newFreeFormLaw)
@@ -453,8 +453,8 @@ AI MODULES
 /obj/item/weapon/aiModule/syndicate/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 //	..()    //We don't want this module reporting to the AI who dun it. --NEO
 	var/time = time2text(world.realtime,"hh:mm:ss")
-	global.lawchanges.Add("[time] <B>:</B> [sender.name]([sender.key]) used [src.name] on [target.name]([target.key])")
-	global.lawchanges.Add("The law is '[newFreeFormLaw]'")
+	GLOBL.lawchanges.Add("[time] <B>:</B> [sender.name]([sender.key]) used [src.name] on [target.name]([target.key])")
+	GLOBL.lawchanges.Add("The law is '[newFreeFormLaw]'")
 	target << "\red BZZZZT"
 	var/law = "[newFreeFormLaw]"
 	target.add_ion_law(law)

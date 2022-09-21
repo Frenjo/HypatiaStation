@@ -57,9 +57,9 @@
 
 	if(href_list["setarea"])
 		//Probably should consider using another list, but this one will do.
-		var/t_area = input("Select the area to ping.", "Set Target Area", null) as null | anything in global.tagger_locations
+		var/t_area = input("Select the area to ping.", "Set Target Area", null) as null | anything in GLOBL.tagger_locations
 
-		if(!t_area || global.tagger_locations[t_area])
+		if(!t_area || GLOBL.tagger_locations[t_area])
 			return
 
 		drone_call_area = t_area

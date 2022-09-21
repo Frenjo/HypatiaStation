@@ -87,13 +87,13 @@
 /obj/machinery/camera/New()
 	..()
 	cameranet.cameras += src //Camera must be added to global list of all cameras no matter what...
-	var/list/open_networks = difflist(network, global.restricted_camera_networks) //...but if all of camera's networks are restricted, it only works for specific camera consoles.
+	var/list/open_networks = difflist(network, GLOBL.restricted_camera_networks) //...but if all of camera's networks are restricted, it only works for specific camera consoles.
 	if(open_networks.len) //If there is at least one open network, chunk is available for AI usage.
 		cameranet.addCamera(src)
 
 /obj/machinery/camera/Destroy()
 	cameranet.cameras -= src
-	var/list/open_networks = difflist(network, global.restricted_camera_networks)
+	var/list/open_networks = difflist(network, GLOBL.restricted_camera_networks)
 	if(open_networks.len)
 		cameranet.removeCamera(src)
 	return ..()

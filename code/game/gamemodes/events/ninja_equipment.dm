@@ -1272,11 +1272,11 @@ ________________________________________________________________________________
 		var/chance = rand(1,100)
 		switch(chance)
 			if(1 to 50)//High chance of a regular name.
-				voice = "[rand(0,1)==1?pick(global.first_names_female):pick(global.first_names_male)] [pick(global.last_names)]"
+				voice = "[rand(0, 1) == 1 ? pick(GLOBL.first_names_female) : pick(GLOBL.first_names_male)] [pick(GLOBL.last_names)]"
 			if(51 to 80)//Smaller chance of a clown name.
-				voice = "[pick(global.clown_names)]"
+				voice = "[pick(GLOBL.clown_names)]"
 			if(81 to 90)//Small chance of a wizard name.
-				voice = "[pick(global.wizard_first)] [pick(global.wizard_second)]"
+				voice = "[pick(GLOBL.wizard_first)] [pick(GLOBL.wizard_second)]"
 			if(91 to 100)//Small chance of an existing crew name.
 				var/names[] = new()
 				for(var/mob/living/carbon/human/M in player_list)

@@ -31,7 +31,7 @@
 	A.all_doors.Add(src)
 	areas_added = list(A)
 
-	for(var/direction in cardinal)
+	for(var/direction in GLOBL.cardinal)
 		A = get_area(get_step(src, direction))
 		if(istype(A) && !(A in areas_added))
 			A.all_doors.Add(src)

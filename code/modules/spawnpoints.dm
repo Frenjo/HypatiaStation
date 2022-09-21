@@ -11,15 +11,13 @@ var/list/spawntypes = list()
 	var/list/turfs		//List of turfs to spawn on.
 	var/display_name	//Name used in preference setup.
 
-
 /datum/spawnpoint/arrivals
 	display_name = "Arrivals Shuttle"
 	msg = "has arrived on the station"
 
 /datum/spawnpoint/arrivals/New()
 	..()
-	turfs = global.latejoin
-
+	turfs = GLOBL.latejoin
 
 /*
 /datum/spawnpoint/gateway
@@ -30,11 +28,10 @@ var/list/spawntypes = list()
 	turfs = global.latejoin_gateway
 */
 
-
 /datum/spawnpoint/cryo
 	display_name = "Cryogenic Storage"
 	msg = "has completed cryogenic revival"
 
 /datum/spawnpoint/cryo/New()
 	..()
-	turfs = global.latejoin_cryo
+	turfs = GLOBL.latejoin_cryo

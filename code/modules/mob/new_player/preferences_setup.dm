@@ -184,7 +184,7 @@
 		g = "f"
 
 	var/icon/icobase
-	var/datum/species/current_species = global.all_species[species]
+	var/datum/species/current_species = GLOBL.all_species[species]
 
 	if(current_species)
 		icobase = current_species.icobase
