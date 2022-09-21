@@ -122,8 +122,7 @@
 		if("callshuttle2")
 			if(src.authenticated)
 				call_shuttle_proc(usr)
-				//if(emergency_shuttle.online)
-				if(emergency_shuttle.online()) // Updated to reflect 'shuttles' port. -Frenjo
+				if(global.emergency_controller.online())
 					post_status("alert", "evacalert") // Use the new custom evac alert screen. -Frenjo
 					//post_status("shuttle")
 			src.state = STATE_DEFAULT
@@ -134,8 +133,7 @@
 		if("crewtransfer2")
 			if(src.authenticated)
 				init_shift_change(usr)
-				//if(emergency_shuttle.online)
-				if(emergency_shuttle.online()) // Updated to reflect 'shuttles' port. -Frenjo
+				if(global.emergency_controller.online())
 					post_status("shuttle")
 		if("cancelshuttle")
 			src.state = STATE_DEFAULT
@@ -303,10 +301,8 @@
 
 	user.set_machine(src)
 	var/dat = "<head><title>Communications Console</title></head><body>"
-	//if (emergency_shuttle.online && emergency_shuttle.location==0)
-	if (emergency_shuttle.online() && emergency_shuttle.location()==0) // Updated to reflect 'shuttles' port. -Frenjo
-		//var/timeleft = emergency_shuttle.timeleft()
-		var/timeleft = emergency_shuttle.estimate_arrival_time() // Updated to reflect 'shuttles' port. -Frenjo.
+	if(global.emergency_controller.online() && !global.emergency_controller.location())
+		var/timeleft = global.emergency_controller.estimate_arrival_time()
 		dat += "<B>Emergency shuttle</B>\n<BR>\nETA: [timeleft / 60 % 60]:[add_zero(num2text(timeleft % 60), 2)]<BR>"
 
 	if (issilicon(user))
@@ -330,10 +326,8 @@
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=RestoreBackup'>Restore Backup Routing Data</A> \]"
 
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=changeseclevel'>Change alert level</A> \]"
-				//if(emergency_shuttle.location==0)
-				if(emergency_shuttle.location()) // Updated to reflect 'shuttles' port. -Frenjo.
-					//if (emergency_shuttle.online)
-					if (emergency_shuttle.online()) // Updated to reflect 'shuttles' port. -Frenjo.
+				if(!global.emergency_controller.location())
+					if(global.emergency_controller.online())
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=cancelshuttle'>Cancel Shuttle Call</A> \]"
 					else
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=callshuttle'>Call Emergency Shuttle</A> \]"
@@ -407,8 +401,7 @@
 	var/dat = ""
 	switch(src.aistate)
 		if(STATE_DEFAULT)
-			//if(emergency_shuttle.location==0 && !emergency_shuttle.online)
-			if(emergency_shuttle.location()==0 && !emergency_shuttle.online()) // Updated to reflect 'shuttles' port. -Frenjo
+			if(global.emergency_controller.location() && !global.emergency_controller.online())
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-callshuttle'>Call Emergency Shuttle</A> \]"
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-crewtransfer'>Initiate Crew Transfer</A> \]"
 			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-messagelist'>Message List</A> \]"
@@ -464,8 +457,7 @@
 */
 
 /proc/call_shuttle_proc(mob/user)
-	//if ((!( ticker ) || emergency_shuttle.location))
-	if((!ticker || emergency_shuttle.location())) // Updated to reflect 'shuttles' port. -Frenjo
+	if(!ticker || !global.emergency_controller.location())
 		return
 
 	if(sent_strike_team == 1)
@@ -476,13 +468,11 @@
 		user << "The emergency shuttle is refueling. Please wait another [round((6000 - world.time) / 600)] minutes before trying again."
 		return
 
-	//if(emergency_shuttle.direction == -1)
-	if(emergency_shuttle.going_to_centcom()) // Updated to reflect 'shuttles' port. -Frenjo
+	if(global.emergency_controller.going_to_centcom())
 		user << "The emergency shuttle may not be called while returning to CentCom."
 		return
 
-	//if(emergency_shuttle.online)
-	if(emergency_shuttle.online()) // Updated to reflect 'shuttles' port. -Frenjo.
+	if(global.emergency_controller.online())
 		user << "The emergency shuttle is already on its way."
 		return
 
@@ -490,33 +480,27 @@
 		user << "Under directive 7-10, [station_name()] is quarantined until further notice."
 		return
 
-	//emergency_shuttle.incall()
-	emergency_shuttle.call_evac() // Updated to reflect 'shuttles' port. -Frenjo
+	global.emergency_controller.call_evac()
 	log_game("[key_name(user)] has called the shuttle.")
 	message_admins("[key_name_admin(user)] has called the shuttle.", 1)
-	//captain_announce("The emergency shuttle has been called. It will arrive in [round(emergency_shuttle.timeleft()/60)] minutes.")
-	//captain_announce("The emergency shuttle has been called. It will arrive in [round(emergency_shuttle.estimate_arrival_time()/60)] minutes.") // Updated to reflect 'shuttles' port. -Frenjo
 
 	return
 
 /proc/init_shift_change(mob/user, force = 0)
-	//if ((!( ticker ) || emergency_shuttle.location))
-	if((!ticker || emergency_shuttle.location())) // Updated to reflect 'shuttles' port. -Frenjo
+	if(!ticker || !global.emergency_controller.location())
 		return
 
-	//if(emergency_shuttle.direction == -1)
-	if(emergency_shuttle.going_to_centcom()) // Updated to reflect 'shuttles' port. -Frenjo
+	if(global.emergency_controller.going_to_centcom())
 		user << "The shuttle may not be called while returning to CentCom."
 		return
 
-	//if(emergency_shuttle.online)
-	if(emergency_shuttle.online()) // Updated to reflect 'shuttles' port. -Frenjo.
+	if(global.emergency_controller.online())
 		user << "The shuttle is already on its way."
 		return
 
 	// if force is 0, some things may stop the shuttle call
 	if(!force)
-		if(emergency_shuttle.deny_shuttle)
+		if(global.emergency_controller.deny_shuttle)
 			user << "Centcom does not currently have a shuttle available in your sector. Please try again later."
 			return
 
@@ -529,35 +513,29 @@
 			return
 
 		if(ticker.mode.name == "revolution" || ticker.mode.name == "AI malfunction" || ticker.mode.name == "sandbox")
-			//New version pretends to call the shuttle but cause the shuttle to return after a random duration.
-			//emergency_shuttle.fake_recall = rand(300,500)
-			emergency_shuttle.auto_recall = TRUE // Updated to reflect 'shuttles' port. -Frenjo
+			// New version pretends to call the shuttle but cause the shuttle to return after a random duration.
+			global.emergency_controller.auto_recall = TRUE
 
 		if(ticker.mode.name == "blob" || ticker.mode.name == "epidemic")
 			user << "Under directive 7-10, [station_name()] is quarantined until further notice."
 			return
 
-	//emergency_shuttle.shuttlealert(1)
-	//emergency_shuttle.incall()
-	emergency_shuttle.call_transfer() // Updated to reflect 'shuttles' port. -Frenjo
+	global.emergency_controller.call_transfer()
 	log_game("[key_name(user)] has called the shuttle.")
 	message_admins("[key_name_admin(user)] has called the shuttle.", 1)
-	//captain_announce("A crew transfer has been initiated. The shuttle has been called. It will arrive in [round(emergency_shuttle.timeleft()/60)] minutes.")
-	captain_announce("A crew transfer has been initiated. The shuttle has been called. It will arrive in [round(emergency_shuttle.estimate_arrival_time()/60)] minutes.") // Updated to reflect 'shuttles' port. -Frenjo
+	captain_announce("A crew transfer has been initiated. The shuttle has been called. It will arrive in [round(global.emergency_controller.estimate_arrival_time() / 60)] minutes.")
 	world << sound('sound/AI/crewtransfer2.ogg')
 
 	return
 
 /proc/cancel_call_proc(mob/user)
-	//if ((!( ticker ) || emergency_shuttle.location || emergency_shuttle.direction == 0 || emergency_shuttle.timeleft() < 300))
-	if((!ticker || !emergency_shuttle.can_recall())) // Updated to reflect 'shuttles' port. -Frenjo
+	if(!ticker || !global.emergency_controller.can_recall())
 		return
 	if((ticker.mode.name == "blob")||(ticker.mode.name == "meteor"))
 		return
 
-	//if(emergency_shuttle.direction != -1 && emergency_shuttle.online) //check that shuttle isn't already heading to centcomm
-	if(!emergency_shuttle.going_to_centcom() && emergency_shuttle.online()) // Updated to reflect 'shuttles' port. -Frenjo
-		emergency_shuttle.recall()
+	if(!global.emergency_controller.going_to_centcom() && global.emergency_controller.online()) //check that shuttle isn't already heading to centcomm
+		global.emergency_controller.recall()
 		log_game("[key_name(user)] has recalled the shuttle.")
 		message_admins("[key_name_admin(user)] has recalled the shuttle.", 1)
 	return
@@ -601,13 +579,9 @@
 	if(ticker.mode.name == "revolution" || ticker.mode.name == "AI malfunction" || sent_strike_team)
 		return ..()
 
-	//emergency_shuttle.incall(2)
-	emergency_shuttle.call_evac() // Updated to reflect 'shuttles' port. -Frenjo
+	global.emergency_controller.call_evac()
 	log_game("All the AIs, comm consoles and boards are destroyed. Shuttle called.")
 	message_admins("All the AIs, comm consoles and boards are destroyed. Shuttle called.", 1)
-	//captain_announce("The emergency shuttle has been called. It will arrive in [round(emergency_shuttle.timeleft()/60)] minutes.")
-	//captain_announce("The emergency shuttle has been called. It will arrive in [round(emergency_shuttle.estimate_arrival_time()/60)] minutes.") // Updated to reflect 'shuttles' port. -Frenjo
-	//world << sound('sound/AI/shuttlecalled.ogg')
 
 	return ..()
 
@@ -627,12 +601,8 @@
 	if(ticker.mode.name == "revolution" || ticker.mode.name == "AI malfunction" || sent_strike_team)
 		return ..()
 
-	//emergency_shuttle.incall(2)
-	emergency_shuttle.call_evac() // Updated to reflect 'shuttles' port. -Frenjo
+	global.emergency_controller.call_evac()
 	log_game("All the AIs, comm consoles and boards are destroyed. Shuttle called.")
 	message_admins("All the AIs, comm consoles and boards are destroyed. Shuttle called.", 1)
-	//captain_announce("The emergency shuttle has been called. It will arrive in [round(emergency_shuttle.timeleft()/60)] minutes.")
-	//captain_announce("The emergency shuttle has been called. It will arrive in [round(emergency_shuttle.estimate_arrival_time()/60)] minutes.") // Updated to reflect 'shuttles' port. -Frenjo
-	//world << sound('sound/AI/shuttlecalled.ogg')
 
 	return ..()

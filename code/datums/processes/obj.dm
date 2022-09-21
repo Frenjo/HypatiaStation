@@ -1,7 +1,7 @@
 /var/global/list/processing_objects = list()
 
-/datum/process/obj/setup()
-	name = "obj"
+/datum/process/obj
+	name = "Obj"
 	schedule_interval = 2 SECONDS
 	start_delay = 8
 

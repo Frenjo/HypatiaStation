@@ -1,3 +1,6 @@
+/*
+ * Vote Controller
+ */
 GLOBAL_BYOND_TYPED(vote, /datum/controller/vote) // Set in /datum/process/vote/setup()
 
 /datum/controller/vote

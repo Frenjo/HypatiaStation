@@ -35,12 +35,8 @@ var/global/sent_syndicate_strike_team = 0
 
 	sent_syndicate_strike_team = 1
 
-	//if (emergency_shuttle.direction == 1 && emergency_shuttle.online() == 1)
-	//	emergency_shuttle.recall()
-
-	// Updated to reflect 'shuttles' port. -Frenjo
-	if (emergency_shuttle.can_recall() && emergency_shuttle.online() == 1)
-		emergency_shuttle.recall()
+	if(global.emergency_controller.can_recall() && global.emergency_controller.online())
+		global.emergency_controller.recall()
 
 	var/syndicate_commando_number = syndicate_commandos_possible //for selecting a leader
 	var/syndicate_leader_selected = 0 //when the leader is chosen. The last person spawned.

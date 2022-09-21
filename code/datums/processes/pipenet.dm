@@ -1,5 +1,5 @@
-/datum/process/pipenet/setup()
-	name = "pipenet"
+/datum/process/pipenet
+	name = "PipeNet"
 	schedule_interval = 2 SECONDS
 
 /datum/process/pipenet/doWork()

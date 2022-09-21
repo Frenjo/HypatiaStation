@@ -1,5 +1,5 @@
-/datum/process/mob/setup()
-	name = "mob"
+/datum/process/mob
+	name = "Mob"
 	schedule_interval = 2 SECONDS
 	start_delay = 16
 

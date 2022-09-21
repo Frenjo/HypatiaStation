@@ -1,8 +1,9 @@
-/datum/process/air/setup()
-	name = "air"
+/datum/process/air
+	name = "Air"
 	schedule_interval = 2 SECONDS
 	start_delay = 4
 
+/datum/process/air/setup()
 	if(!global.air_master)
 		global.air_master = new /datum/controller/air_system()
 		global.air_master.setup()

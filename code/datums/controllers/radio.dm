@@ -28,10 +28,7 @@
  *		returns:
  *			Reference to frequency object. Use it if you need to send and do not need to listen.
 */
-GLOBAL_BYOND_TYPED(radio_controller, /datum/controller/radio)
-
-/hook/startup/proc/create_radio_controller()
-	global.radio_controller = new /datum/controller/radio()
+GLOBAL_BYOND_TYPED(radio_controller, /datum/controller/radio) // Set in world/New()
 
 /datum/controller/radio
 	name = "Radio"

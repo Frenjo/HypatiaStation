@@ -1,13 +1,13 @@
 /var/global/datum/process/ticker/ticker_process
 
 /datum/process/ticker
+	name = "Ticker"
+	schedule_interval = 2 SECONDS
+
 	var/lastTickerTimeDuration
 	var/lastTickerTime
 
 /datum/process/ticker/setup()
-	name = "ticker"
-	schedule_interval = 2 SECONDS
-
 	lastTickerTime = world.timeofday
 
 	if(!global.ticker)

@@ -1,7 +1,7 @@
 /var/global/list/processing_turfs = list()
 
-/datum/process/turf/setup()
-	name = "turf"
+/datum/process/turf
+	name = "Turf"
 	schedule_interval = 3 SECONDS
 
 /datum/process/turf/doWork()

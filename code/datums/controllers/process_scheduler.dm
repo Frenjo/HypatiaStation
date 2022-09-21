@@ -1,7 +1,6 @@
 /*
  * Process Scheduler
  */
-// Singleton instance of the process scheduler.
 GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Set in world/New()
 
 /datum/controller/process_scheduler

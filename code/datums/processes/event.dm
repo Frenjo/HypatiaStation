@@ -1,7 +1,7 @@
 /var/global/list/events = list()
 
-/datum/process/event/setup()
-	name = "event"
+/datum/process/event
+	name = "Event"
 	schedule_interval = 2 SECONDS
 
 /datum/process/event/doWork()

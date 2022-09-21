@@ -210,32 +210,23 @@
 
 		switch(href_list["call_shuttle"])
 			if("1")
-				//if ((!( ticker ) || emergency_shuttle.location))
-				if ((!( ticker ) || emergency_shuttle.location())) // Updated to reflect 'shuttles' port. -Frenjo
+				if(!ticker || !global.emergency_controller.location())
 					return
-				//emergency_shuttle.incall()
-				emergency_shuttle.call_evac() // Updated to reflect 'shuttles' port. -Frenjo
-				//captain_announce("The emergency shuttle has been called. It will arrive in [round(emergency_shuttle.timeleft()/60)] minutes.")
-				captain_announce("The emergency shuttle has been called. It will arrive in [round(emergency_shuttle.estimate_arrival_time()/60)] minutes.") // Updated to reflect 'shuttles' port. -Frenjo
+				global.emergency_controller.call_evac()
+				captain_announce("The emergency shuttle has been called. It will arrive in [round(global.emergency_controller.estimate_arrival_time() / 60)] minutes.")
 				log_admin("[key_name(usr)] called the Emergency Shuttle")
 				message_admins("\blue [key_name_admin(usr)] called the Emergency Shuttle to the station", 1)
 
 			if("2")
-				//if ((!( ticker ) || emergency_shuttle.location || emergency_shuttle.direction == 0))
-				if ((!( ticker ) || emergency_shuttle.location())) // Updated to reflect 'shuttles' port. -Frenjo
+				if(!ticker || !global.emergency_controller.location())
 					return
-				//switch(emergency_shuttle.direction)
-				if(emergency_shuttle.can_call()) // Updated to reflect 'shuttles' port. -Frenjo
-					//if(-1)
-						//emergency_shuttle.incall()
-					emergency_shuttle.call_evac() // Updated to reflect 'shuttles' port. -Frenjo
-						//captain_announce("The emergency shuttle has been called. It will arrive in [round(emergency_shuttle.timeleft()/60)] minutes.")
-					captain_announce("The emergency shuttle has been called. It will arrive in [round(emergency_shuttle.estimate_arrival_time()/60)] minutes.")
+				if(global.emergency_controller.can_call())
+					global.emergency_controller.call_evac()
+					captain_announce("The emergency shuttle has been called. It will arrive in [round(global.emergency_controller.estimate_arrival_time() / 60)] minutes.")
 					log_admin("[key_name(usr)] called the Emergency Shuttle")
 					message_admins("\blue [key_name_admin(usr)] called the Emergency Shuttle to the station", 1)
-					//if(1)
-				else // Updated to reflect 'shuttles' port. -Frenjo
-					emergency_shuttle.recall()
+				else
+					global.emergency_controller.recall()
 					log_admin("[key_name(usr)] sent the Emergency Shuttle back")
 					message_admins("\blue [key_name_admin(usr)] sent the Emergency Shuttle back", 1)
 

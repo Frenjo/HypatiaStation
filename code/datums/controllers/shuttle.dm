@@ -109,8 +109,8 @@ GLOBAL_BYOND_TYPED(shuttle_controller, /datum/controller/shuttle) // Set in /dat
 	shuttles["Escape Pod 5"] = shuttle
 
 	//give the emergency shuttle controller it's shuttles
-	emergency_shuttle.shuttle = shuttles["Escape"]
-	emergency_shuttle.escape_pods = list(
+	global.emergency_controller.shuttle = shuttles["Escape"]
+	global.emergency_controller.escape_pods = list(
 		shuttles["Escape Pod 1"],
 		shuttles["Escape Pod 2"],
 		shuttles["Escape Pod 3"],
@@ -288,7 +288,7 @@ GLOBAL_BYOND_TYPED(shuttle_controller, /datum/controller/shuttle) // Set in /dat
 	//escape pod arming controllers
 	var/datum/shuttle/ferry/escape_pod/pod
 	var/list/pod_controller_map = list()
-	for(var/datum/shuttle/ferry/escape_pod/P in emergency_shuttle.escape_pods)
+	for(var/datum/shuttle/ferry/escape_pod/P in global.emergency_controller.escape_pods)
 		if(P.dock_target_station)
 			pod_controller_map[P.dock_target_station] = P
 

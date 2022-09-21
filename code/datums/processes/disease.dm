@@ -1,7 +1,7 @@
 /var/global/list/active_diseases = list()
 
-/datum/process/disease/setup()
-	name = "disease"
+/datum/process/disease
+	name = "Disease"
 	schedule_interval = 2 SECONDS
 
 /datum/process/disease/doWork()

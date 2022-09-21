@@ -5,14 +5,13 @@
 // And I ain't doing it. -Frenjo
 
 /*
- * Emergency Shuttle Controller
- * TODO: This should be renamed to something like "evacuation controller" because it controls more than just the emergency shuttle now.
+ * Emergency Controller
  */
 // Controls the emergency shuttle
-GLOBAL_BYOND_TYPED(emergency_shuttle, /datum/controller/emergency_shuttle) // Set in /datum/process/emergency_shuttle/setup()
+GLOBAL_BYOND_TYPED(emergency_controller, /datum/controller/emergency) // Set in /datum/process/emergency/setup()
 
-/datum/controller/emergency_shuttle
-	name = "Emergency Shuttle"
+/datum/controller/emergency
+	name = "Emergency"
 
 	var/datum/shuttle/ferry/emergency/shuttle
 	var/list/escape_pods
@@ -31,7 +30,7 @@ GLOBAL_BYOND_TYPED(emergency_shuttle, /datum/controller/emergency_shuttle) // Se
 	var/datum/announcement/priority/emergency_shuttle_called = new(0, new_sound = sound('sound/AI/shuttlecalled.ogg'))
 	var/datum/announcement/priority/emergency_shuttle_recalled = new(0, new_sound = sound('sound/AI/shuttlerecalled.ogg'))*/
 
-/datum/controller/emergency_shuttle/process()
+/datum/controller/emergency/process()
 	if(wait_for_launch)
 		if(auto_recall && world.time >= auto_recall_time)
 			recall()
@@ -48,18 +47,17 @@ GLOBAL_BYOND_TYPED(emergency_shuttle, /datum/controller/emergency_shuttle) // Se
 				shuttle.launch(src)
 
 //called when the shuttle has arrived.
-/datum/controller/emergency_shuttle/proc/shuttle_arrived()
+/datum/controller/emergency/proc/shuttle_arrived()
 	if(!shuttle.location)	//at station
 		if(autopilot)
 			set_launch_countdown(SHUTTLE_LEAVETIME)	//get ready to return
 
 			if(evac)
-				//captain_announce("The emergency shuttle has docked with the station. You have approximately [round(estimate_launch_time()/60,1)] minutes to board the Emergency Shuttle.")
 				captain_announce("The emergency shuttle has docked with the station. You have approximately [round(estimate_launch_time() / 60, 1)] minutes to board the emergency shuttle.")
-				world << sound('sound/AI/shuttledock.ogg') // Updated to reflect 'shuttles' port. -Frenjo
+				world << sound('sound/AI/shuttledock.ogg')
 			else
-				captain_announce("The scheduled crew transfer shuttle has docked with the station. It will depart in approximately [round(emergency_shuttle.estimate_launch_time() / 60, 1)] minutes.")
-				world << sound('sound/AI/shuttledock2.ogg') // Updated to reflect 'shuttles' port. -Frenjo
+				captain_announce("The scheduled crew transfer shuttle has docked with the station. It will depart in approximately [round(estimate_launch_time() / 60, 1)] minutes.")
+				world << sound('sound/AI/shuttledock2.ogg')
 
 		//arm the escape pods
 		if(evac)
@@ -68,15 +66,15 @@ GLOBAL_BYOND_TYPED(emergency_shuttle, /datum/controller/emergency_shuttle) // Se
 					pod.arming_controller.arm()
 
 //begins the launch countdown and sets the amount of time left until launch
-/datum/controller/emergency_shuttle/proc/set_launch_countdown(seconds)
+/datum/controller/emergency/proc/set_launch_countdown(seconds)
 	wait_for_launch = 1
 	launch_time = world.time + seconds * 10
 
-/datum/controller/emergency_shuttle/proc/stop_launch_countdown()
+/datum/controller/emergency/proc/stop_launch_countdown()
 	wait_for_launch = 0
 
 //calls the shuttle for an emergency evacuation
-/datum/controller/emergency_shuttle/proc/call_evac()
+/datum/controller/emergency/proc/call_evac()
 	if(!can_call())
 		return
 
@@ -90,13 +88,13 @@ GLOBAL_BYOND_TYPED(emergency_shuttle, /datum/controller/emergency_shuttle) // Se
 
 	evac = TRUE
 	captain_announce("An emergency evacuation shuttle has been called. It will arrive in approximately [round(estimate_arrival_time() / 60)] minutes.")
-	world << sound('sound/AI/shuttlecalled.ogg') // Updated to reflect 'shuttles' port. -Frenjo
+	world << sound('sound/AI/shuttlecalled.ogg')
 	for(var/area/A in world)
 		if(istype(A, /area/hallway))
 			A.readyalert()
 
 //calls the shuttle for a routine crew transfer
-/datum/controller/emergency_shuttle/proc/call_transfer()
+/datum/controller/emergency/proc/call_transfer()
 	if(!can_call())
 		return
 
@@ -109,10 +107,10 @@ GLOBAL_BYOND_TYPED(emergency_shuttle, /datum/controller/emergency_shuttle) // Se
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
 
 	captain_announce("A crew transfer has been scheduled. The shuttle has been called. It will arrive in approximately [round(estimate_arrival_time() / 60)] minutes.")
-	world << sound('sound/AI/crewtransfer2.ogg') // Updated to reflect 'shuttles' port. -Frenjo
+	world << sound('sound/AI/crewtransfer2.ogg')
 
 //recalls the shuttle
-/datum/controller/emergency_shuttle/proc/recall()
+/datum/controller/emergency/proc/recall()
 	if(!can_recall())
 		return
 
@@ -121,7 +119,7 @@ GLOBAL_BYOND_TYPED(emergency_shuttle, /datum/controller/emergency_shuttle) // Se
 
 	if(evac)
 		captain_announce("The emergency shuttle has been recalled.")
-		world << sound('sound/AI/shuttlerecalled.ogg') // Updated to reflect 'shuttles' port. -Frenjo
+		world << sound('sound/AI/shuttlerecalled.ogg')
 
 		for(var/area/A in world)
 			if(istype(A, /area/hallway))
@@ -129,9 +127,9 @@ GLOBAL_BYOND_TYPED(emergency_shuttle, /datum/controller/emergency_shuttle) // Se
 		evac = FALSE
 	else
 		captain_announce("The scheduled crew transfer has been cancelled.")
-		world << sound('sound/AI/shuttlerecall2.ogg') // Updated to reflect 'shuttles' port. -Frenjo
+		world << sound('sound/AI/shuttlerecall2.ogg')
 
-/datum/controller/emergency_shuttle/proc/can_call()
+/datum/controller/emergency/proc/can_call()
 	if(deny_shuttle)
 		return 0
 	if(shuttle.moving_status != SHUTTLE_IDLE || !shuttle.location)	//must be idle at centcom
@@ -143,7 +141,7 @@ GLOBAL_BYOND_TYPED(emergency_shuttle, /datum/controller/emergency_shuttle) // Se
 //this only returns 0 if it would absolutely make no sense to recall
 //e.g. the shuttle is already at the station or wasn't called to begin with
 //other reasons for the shuttle not being recallable should be handled elsewhere
-/datum/controller/emergency_shuttle/proc/can_recall()
+/datum/controller/emergency/proc/can_recall()
 	if(shuttle.moving_status == SHUTTLE_INTRANSIT)	//if the shuttle is already in transit then it's too late
 		return 0
 	if(!shuttle.location)	//already at the station.
@@ -152,7 +150,7 @@ GLOBAL_BYOND_TYPED(emergency_shuttle, /datum/controller/emergency_shuttle) // Se
 		return 0
 	return 1
 
-/datum/controller/emergency_shuttle/proc/get_shuttle_prep_time()
+/datum/controller/emergency/proc/get_shuttle_prep_time()
 	// During mutiny rounds, the shuttle takes twice as long.
 	//if(ticker && istype(ticker.mode,/datum/game_mode/mutiny))
 	//	return SHUTTLE_PREPTIME * 3		//15 minutes
@@ -161,23 +159,23 @@ GLOBAL_BYOND_TYPED(emergency_shuttle, /datum/controller/emergency_shuttle) // Se
 
 
 /*
-	These procs are not really used by the controller itself, but are for other parts of the
-	game whose logic depends on the emergency shuttle.
-*/
+ * These procs are not really used by the controller itself, but are for other parts of the
+ * game whose logic depends on the emergency shuttle.
+ */
 //returns 1 if the shuttle is docked at the station and waiting to leave
-/datum/controller/emergency_shuttle/proc/waiting_to_leave()
+/datum/controller/emergency/proc/waiting_to_leave()
 	if(shuttle.location)
 		return 0	//not at station
 	return (wait_for_launch || shuttle.moving_status != SHUTTLE_INTRANSIT)
 
-//so we don't have emergency_shuttle.shuttle.location everywhere
-/datum/controller/emergency_shuttle/proc/location()
+//so we don't have emergency_controller.shuttle.location everywhere
+/datum/controller/emergency/proc/location()
 	if(!shuttle)
-		return 1 	//if we dont have a shuttle datum, just act like it's at centcom
+		return 1	//if we dont have a shuttle datum, just act like it's at centcom
 	return shuttle.location
 
 //returns the time left until the shuttle arrives at it's destination, in seconds
-/datum/controller/emergency_shuttle/proc/estimate_arrival_time()
+/datum/controller/emergency/proc/estimate_arrival_time()
 	var/eta
 	if(shuttle.has_arrive_time())
 		//we are in transition and can get an accurate ETA
@@ -188,19 +186,19 @@ GLOBAL_BYOND_TYPED(emergency_shuttle, /datum/controller/emergency_shuttle) // Se
 	return (eta - world.time) / 10
 
 //returns the time left until the shuttle launches, in seconds
-/datum/controller/emergency_shuttle/proc/estimate_launch_time()
+/datum/controller/emergency/proc/estimate_launch_time()
 	return (launch_time - world.time) / 10
 
-/datum/controller/emergency_shuttle/proc/has_eta()
+/datum/controller/emergency/proc/has_eta()
 	return (wait_for_launch || shuttle.moving_status != SHUTTLE_IDLE)
 
 //returns 1 if the shuttle has gone to the station and come back at least once,
 //used for game completion checking purposes
-/datum/controller/emergency_shuttle/proc/returned()
+/datum/controller/emergency/proc/returned()
 	return (departed && shuttle.moving_status == SHUTTLE_IDLE && shuttle.location)	//we've gone to the station at least once, no longer in transit and are idle back at centcom
 
 //returns 1 if the shuttle is not idle at centcom
-/datum/controller/emergency_shuttle/proc/online()
+/datum/controller/emergency/proc/online()
 	if(!shuttle.location)	//not at centcom
 		return 1
 	if(wait_for_launch || shuttle.moving_status != SHUTTLE_IDLE)
@@ -208,33 +206,33 @@ GLOBAL_BYOND_TYPED(emergency_shuttle, /datum/controller/emergency_shuttle) // Se
 	return 0
 
 //returns 1 if the shuttle is currently in transit (or just leaving) to the station
-/datum/controller/emergency_shuttle/proc/going_to_station()
+/datum/controller/emergency/proc/going_to_station()
 	return (!shuttle.direction && shuttle.moving_status != SHUTTLE_IDLE)
 
 //returns 1 if the shuttle is currently in transit (or just leaving) to centcom
-/datum/controller/emergency_shuttle/proc/going_to_centcom()
+/datum/controller/emergency/proc/going_to_centcom()
 	return (shuttle.direction && shuttle.moving_status != SHUTTLE_IDLE)
 
-/datum/controller/emergency_shuttle/proc/get_status_panel_eta()
+/datum/controller/emergency/proc/get_status_panel_eta()
 	if(online())
 		if(shuttle.has_arrive_time())
-			var/timeleft = emergency_shuttle.estimate_arrival_time()
+			var/timeleft = estimate_arrival_time()
 			return "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]"
 
 		if(waiting_to_leave())
 			if(shuttle.moving_status == SHUTTLE_WARMUP)
 				return "Departing..."
 
-			var/timeleft = emergency_shuttle.estimate_launch_time()
+			var/timeleft = estimate_launch_time()
 			return "ETD-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]"
 
 	return ""
 
 /*
-	Some slapped-together star effects for maximum spess immershuns. Basically consists of a
-	spawner, an ender, and bgstar. Spawners create bgstars, bgstars shoot off into a direction
-	until they reach a starender.
-*/
+ * Some slapped-together star effects for maximum spess immershuns. Basically consists of a
+ * spawner, an ender, and bgstar. Spawners create bgstars, bgstars shoot off into a direction
+ * until they reach a starender.
+ */
 /obj/effect/bgstar
 	name = "star"
 	var/speed = 10

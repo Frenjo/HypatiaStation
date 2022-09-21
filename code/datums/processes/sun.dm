@@ -1,9 +1,10 @@
 /var/global/datum/sun/sun
 
-/datum/process/sun/setup()
-	name = "sun"
+/datum/process/sun
+	name = "Sun"
 	schedule_interval = 2 SECONDS
 
+/datum/process/sun/setup()
 	if(!global.sun)
 		global.sun = new /datum/sun()
 

@@ -51,7 +51,7 @@
 			debug_variables(global.supply_controller) // Edited this to reflect 'shuttles' port. -Frenjo
 			feedback_add_details("admin_verb", "DSupply")
 		if("Emergency Shuttle")
-			debug_variables(global.emergency_shuttle)
+			debug_variables(global.emergency_controller)
 			feedback_add_details("admin_verb", "DEmergency")
 		if("Configuration")
 			debug_variables(global.config)

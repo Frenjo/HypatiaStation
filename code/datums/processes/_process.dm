@@ -34,7 +34,7 @@
 	 * Config vars
 	 */
 	// Process name
-	var/name
+	var/name = "process"
 
 	// Process schedule interval
 	// This controls how often the process would run under ideal conditions.
@@ -95,8 +95,6 @@
 	main = scheduler
 	previousStatus = "idle"
 	idle()
-	name = "process"
-	schedule_interval = 50
 	sleep_interval = world.tick_lag / PROCESS_DEFAULT_SLEEP_INTERVAL
 	last_slept = 0
 	run_start = 0

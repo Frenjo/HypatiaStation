@@ -68,7 +68,7 @@
 
 /datum/game_mode/traitor/autotraitor/proc/traitorcheckloop()
 	spawn(9000)
-		if(emergency_shuttle.departed)
+		if(global.emergency_controller.departed)
 			return
 		//message_admins("Performing AutoTraitor Check")
 		var/playercount = 0
@@ -143,7 +143,7 @@
 
 /datum/game_mode/traitor/autotraitor/latespawn(mob/living/carbon/human/character)
 	..()
-	if(emergency_shuttle.departed)
+	if(global.emergency_controller.departed)
 		return
 	//message_admins("Late Join Check")
 	if((character.client && character.client.prefs.be_special & BE_TRAITOR) && !jobban_isbanned(character, "Syndicate"))

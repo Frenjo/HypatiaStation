@@ -35,12 +35,10 @@
 		callshuttle = 0
 
 	if(callshuttle == 3) //if all three conditions are met
-		//emergency_shuttle.incall(2)
-		emergency_shuttle.call_evac() // Updated to reflect 'shuttles' port. -Frenjo
+		global.emergency_controller.call_evac()
 		log_game("All the AIs, comm consoles and boards are destroyed. Shuttle called.")
 		message_admins("All the AIs, comm consoles and boards are destroyed. Shuttle called.", 1)
-		//captain_announce("The emergency shuttle has been called. It will arrive in [round(emergency_shuttle.timeleft()/60)] minutes.")
-		captain_announce("The emergency shuttle has been called. It will arrive in [round(emergency_shuttle.estimate_arrival_time()/60)] minutes.") // Updated to reflect 'shuttles' port. -Frenjo
+		captain_announce("The emergency shuttle has been called. It will arrive in [round(global.emergency_controller.estimate_arrival_time() / 60)] minutes.")
 		world << sound('sound/AI/shuttlecalled.ogg')
 
 	if(explosive)

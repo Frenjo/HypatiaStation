@@ -9,7 +9,7 @@ GLOBAL_GLOBL_LIST_NEW(controllers)
 
 /datum/controller/New()
 	..()
-	GLOBL.controllers[src] = name
+	GLOBL.controllers += src
 
 /datum/controller/Destroy()
 	GLOBL.controllers -= src

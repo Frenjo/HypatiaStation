@@ -307,8 +307,7 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 
 	mode.process()
 
-	//var/mode_finished = mode.check_finished() || (emergency_shuttle.location == 2 && emergency_shuttle.alert == 1)
-	var/mode_finished = mode.check_finished() || (emergency_shuttle.returned() && emergency_shuttle.evac) // Updated this to reflect 'shuttles' port. -Frenjo
+	var/mode_finished = mode.check_finished() || (global.emergency_controller.returned() && global.emergency_controller.evac)
 	if(!mode.explosion_in_progress && mode_finished)
 		current_state = GAME_STATE_FINISHED
 

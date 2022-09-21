@@ -77,8 +77,9 @@
 		if(0)				//blank
 			remove_display()
 		if(1)				//emergency shuttle timer
-			if(emergency_shuttle.online())
-				/*var/line1
+			if(global.emergency_controller.online())
+				/*
+				var/line1
 				var/line2 = get_shuttle_timer()
 				if(emergency_shuttle.location == 1)
 					line1 = "-ETD-"
@@ -86,7 +87,8 @@
 					line1 = "-ETA-"
 				if(length(line2) > CHARS_PER_LINE)
 					line2 = "Error!"
-				update_display(line1, line2)*/
+				update_display(line1, line2)
+				*/
 				set_picture("evacalert") // Edited this to make use of the evac alert setup. -Frenjo
 			else
 				remove_display()
@@ -174,13 +176,11 @@
 		maptext = new_text
 
 /obj/machinery/status_display/proc/get_shuttle_timer()
-	//var/timeleft = emergency_shuttle.timeleft()
-	// Updated to reflect 'shuttles' port. -Frenjo
 	var/timeleft
-	if(emergency_shuttle.has_eta())
-		timeleft = emergency_shuttle.estimate_arrival_time()
+	if(global.emergency_controller.has_eta())
+		timeleft = global.emergency_controller.estimate_arrival_time()
 	else
-		timeleft = emergency_shuttle.estimate_launch_time()
+		timeleft = global.emergency_controller.estimate_launch_time()
 
 	if(timeleft)
 		return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"

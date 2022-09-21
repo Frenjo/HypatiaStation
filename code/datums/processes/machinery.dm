@@ -4,8 +4,8 @@
 /var/global/list/processing_power_items = list()
 /var/global/list/powernets = list()
 
-/datum/process/machinery/setup()
-	name = "machinery"
+/datum/process/machinery
+	name = "Machinery"
 	schedule_interval = 2 SECONDS
 	start_delay = 12
 

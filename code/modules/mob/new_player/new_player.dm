@@ -344,15 +344,15 @@
 	var/dat = "<html><body><center>"
 	dat += "Round Duration: [round(hours)]h [round(mins)]m<br>"
 
-	if(emergency_shuttle) //In case Nanotrasen decides reposess CentComm's shuttles.
+	if(global.emergency_controller) //In case Nanotrasen decides reposess CentComm's shuttles.
 		//Shuttle is going to centcomm, not recalled
-		if(emergency_shuttle.going_to_centcom()) // Updated to reflect 'shuttles' port. -Frenjo
+		if(global.emergency_controller.going_to_centcom())
 			dat += "<font color='red'><b>The station has been evacuated.</b></font><br>"
 		// Emergency shuttle is past the point of no recall
-		if(emergency_shuttle.online()) // Updated to reflect 'shuttles' port. -Frenjo
-			if(emergency_shuttle.evac) // Updated to reflect 'shuttles' port. -Frenjo
+		if(global.emergency_controller.online())
+			if(global.emergency_controller.evac)
 				dat += "<font color='red'>The station is currently undergoing evacuation procedures.</font><br>"
-			else // Updated to reflect 'shuttles' port. -Frenjo
+			else
 				// Crew transfer initiated
 				dat += "<font color='red'>The station is currently undergoing crew transfer procedures.</font><br>"
 

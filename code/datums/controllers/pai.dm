@@ -6,7 +6,7 @@
 // Recruiting observers to play as pAIs
 GLOBAL_BYOND_TYPED(pAI_controller, /datum/controller/pai)	// Global handler for pAI candidates
 
-/hook/roundstart/proc/setup_pAI_controller()
+/hook/roundstart/proc/create_pai_controller()
 	global.pAI_controller = new /datum/controller/pai()
 	return 1
 

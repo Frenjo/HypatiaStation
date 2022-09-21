@@ -27,6 +27,10 @@ GLOBAL_BYOND_INIT(pipe_processing_killed, FALSE)
 		global.job_master.setup_occupations()
 		global.job_master.load_jobs("config/jobs.txt")
 		to_world(SPAN_DANGER("Job setup complete."))
+	
+	if(!global.radio_controller)
+		global.radio_controller = new /datum/controller/radio()
+		to_world(SPAN_DANGER("Radio setup complete."))
 
 	if(!global.syndicate_code_phrase)
 		global.syndicate_code_phrase = generate_code_phrase()

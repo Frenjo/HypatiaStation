@@ -56,20 +56,14 @@
 	if(global.ticker && global.ticker.mode && global.ticker.mode.name == "AI malfunction")
 		if(global.ticker.mode:malf_mode_declared)
 			stat(null, "Time left: [max(global.ticker.mode:AI_win_timeleft / (global.ticker.mode:apcs / 3), 0)]")
-	/*if(emergency_shuttle)
-		if(emergency_shuttle.online && emergency_shuttle.location < 2)
-			var/timeleft = emergency_shuttle.timeleft()
-			if (timeleft)
-				stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")*/
-	// Edited to reflect 'shuttles' port. -Frenjo
-	if(global.emergency_shuttle)
+	if(global.emergency_controller)
 		var/timeleft
-		if(global.emergency_shuttle.online())
-			if(global.emergency_shuttle.has_eta())
-				timeleft = global.emergency_shuttle.estimate_arrival_time()
+		if(global.emergency_controller.online())
+			if(global.emergency_controller.has_eta())
+				timeleft = global.emergency_controller.estimate_arrival_time()
 				stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 			else
-				timeleft = global.emergency_shuttle.estimate_launch_time()
+				timeleft = global.emergency_controller.estimate_launch_time()
 				stat(null, "ETD-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 
 	if(client.statpanel == "Status")

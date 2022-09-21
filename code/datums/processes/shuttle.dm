@@ -1,7 +1,8 @@
-/datum/process/shuttle/setup()
-	name = "shuttle"
+/datum/process/shuttle
+	name = "Shuttle"
 	schedule_interval = 2 SECONDS
 
+/datum/process/shuttle/setup()
 	if(!global.shuttle_controller)
 		global.shuttle_controller = new /datum/controller/shuttle()
 

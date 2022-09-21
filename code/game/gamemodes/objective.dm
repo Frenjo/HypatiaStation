@@ -288,8 +288,7 @@ var/global/list/all_objectives = list()
 /datum/objective/hijack/check_completion()
 	if(!owner.current || owner.current.stat)
 		return 0
-	//if(emergency_shuttle.location<2)
-	if(emergency_shuttle.returned())// Updated to reflect 'shuttles' port. -Frenjo
+	if(!global.emergency_controller.returned())
 		return 0
 	if(issilicon(owner.current))
 		return 0
@@ -311,8 +310,7 @@ var/global/list/all_objectives = list()
 /datum/objective/block/check_completion()
 	if(!issilicon(owner.current))
 		return 0
-	//if(emergency_shuttle.location<2)
-	if(emergency_shuttle.returned())// Updated to reflect 'shuttles' port. -Frenjo
+	if(!global.emergency_controller.returned())
 		return 0
 	if(!owner.current)
 		return 0
@@ -332,8 +330,7 @@ var/global/list/all_objectives = list()
 	explanation_text = "Do not allow anyone to escape the station.  Only allow the shuttle to be called when everyone is dead and your story is the only one left."
 
 /datum/objective/silence/check_completion()
-	//if(emergency_shuttle.location<2)
-	if(emergency_shuttle.returned())// Updated to reflect 'shuttles' port. -Frenjo
+	if(!global.emergency_controller.returned())
 		return 0
 
 	for(var/mob/living/player in player_list)
@@ -359,8 +356,7 @@ var/global/list/all_objectives = list()
 		return 0
 	if(isbrain(owner.current))
 		return 0
-	//if(emergency_shuttle.location<2)
-	if(emergency_shuttle.returned())// Updated to reflect 'shuttles' port. -Frenjo
+	if(!global.emergency_controller.returned())
 		return 0
 	if(!owner.current || owner.current.stat == DEAD)
 		return 0

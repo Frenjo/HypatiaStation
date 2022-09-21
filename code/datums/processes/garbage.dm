@@ -9,6 +9,10 @@
 /var/global/list/delayed_garbage = list()
 
 /datum/process/garbage
+	name = "Garbage"
+	schedule_interval = 2 SECONDS
+	start_delay = 3
+
 	var/garbage_collect = TRUE	// Whether or not to actually do work
 	var/total_dels	= 0			// number of total del()'s
 	var/tick_dels	= 0			// number of del()'s we've done this tick
@@ -22,10 +26,6 @@
 								// the types are stored as strings
 
 /datum/process/garbage/setup()
-	name = "garbage"
-	schedule_interval = 2 SECONDS
-	start_delay = 3
-
 	if(!global.garbage_collector)
 		global.garbage_collector = src
 
