@@ -6,6 +6,8 @@ GLOBAL_GLOBL_LIST_NEW(controllers)
 /datum/controller
 	// The controller's name.
 	var/name
+	// The clickable stat() panel button object.
+	var/obj/clickable_stat/stat_click
 
 /datum/controller/New()
 	..()
@@ -20,4 +22,6 @@ GLOBAL_GLOBL_LIST_NEW(controllers)
 /datum/controller/proc/process()
 
 /datum/controller/proc/stat_controller()
-	stat(name)
+	if(!stat_click)
+		stat_click = new /obj/clickable_stat(null, name, src)
+	stat(stat_click)
