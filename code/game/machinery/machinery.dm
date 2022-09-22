@@ -92,10 +92,10 @@ Class Procs:
 
 	Compiled by Aygar
 */
-
 /obj/machinery
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
+
 	var/stat = 0
 	var/emagged = 0
 	var/use_power = 1

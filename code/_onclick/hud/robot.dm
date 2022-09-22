@@ -10,7 +10,7 @@
 	using.set_dir(SOUTHWEST)
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "radio"
-	using.screen_loc = ui_movi
+	using.screen_loc = UI_MOVI
 	using.layer = 20
 	src.adding += using
 
@@ -20,7 +20,7 @@
 	using.set_dir(SOUTHWEST)
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "inv1"
-	using.screen_loc = ui_inv1
+	using.screen_loc = UI_INV1
 	using.layer = 20
 	src.adding += using
 	mymob:inv1 = using
@@ -30,7 +30,7 @@
 	using.set_dir(SOUTHWEST)
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "inv2"
-	using.screen_loc = ui_inv2
+	using.screen_loc = UI_INV2
 	using.layer = 20
 	src.adding += using
 	mymob:inv2 = using
@@ -40,7 +40,7 @@
 	using.set_dir(SOUTHWEST)
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "inv3"
-	using.screen_loc = ui_inv3
+	using.screen_loc = UI_INV3
 	using.layer = 20
 	src.adding += using
 	mymob:inv3 = using
@@ -53,7 +53,7 @@
 	using.set_dir(SOUTHWEST)
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = (mymob.a_intent == "hurt" ? "harm" : mymob.a_intent)
-	using.screen_loc = ui_acti
+	using.screen_loc = UI_ACTI
 	using.layer = 20
 	src.adding += using
 	action_intent = using
@@ -64,28 +64,28 @@
 	robot.cells.icon = 'icons/mob/screen1_robot.dmi'
 	robot.cells.icon_state = "charge-empty"
 	robot.cells.name = "cell"
-	robot.cells.screen_loc = ui_toxin
+	robot.cells.screen_loc = UI_TOXIN
 
 //Health
 	mymob.healths = new /obj/screen()
 	mymob.healths.icon = 'icons/mob/screen1_robot.dmi'
 	mymob.healths.icon_state = "health0"
 	mymob.healths.name = "health"
-	mymob.healths.screen_loc = ui_borg_health
+	mymob.healths.screen_loc = UI_BORG_HEALTH
 
 //Installed Module
 	mymob.hands = new /obj/screen()
 	mymob.hands.icon = 'icons/mob/screen1_robot.dmi'
 	mymob.hands.icon_state = "nomod"
 	mymob.hands.name = "module"
-	mymob.hands.screen_loc = ui_borg_module
+	mymob.hands.screen_loc = UI_BORG_MODULE
 
 //Module Panel
 	using = new /obj/screen()
 	using.name = "panel"
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "panel"
-	using.screen_loc = ui_borg_panel
+	using.screen_loc = UI_BORG_PANEL
 	using.layer = 19
 	src.adding += using
 
@@ -94,32 +94,32 @@
 	mymob.throw_icon.icon = 'icons/mob/screen1_robot.dmi'
 	mymob.throw_icon.icon_state = "store"
 	mymob.throw_icon.name = "store"
-	mymob.throw_icon.screen_loc = ui_borg_store
+	mymob.throw_icon.screen_loc = UI_BORG_STORE
 
 //Temp
 	mymob.bodytemp = new /obj/screen()
 	mymob.bodytemp.icon_state = "temp0"
 	mymob.bodytemp.name = "body temperature"
-	mymob.bodytemp.screen_loc = ui_temp
+	mymob.bodytemp.screen_loc = UI_TEMP
 
 
 	mymob.oxygen = new /obj/screen()
 	mymob.oxygen.icon = 'icons/mob/screen1_robot.dmi'
 	mymob.oxygen.icon_state = "oxy0"
 	mymob.oxygen.name = "oxygen"
-	mymob.oxygen.screen_loc = ui_oxygen
+	mymob.oxygen.screen_loc = UI_OXYGEN
 
 	mymob.fire = new /obj/screen()
 	mymob.fire.icon = 'icons/mob/screen1_robot.dmi'
 	mymob.fire.icon_state = "fire0"
 	mymob.fire.name = "fire"
-	mymob.fire.screen_loc = ui_fire
+	mymob.fire.screen_loc = UI_FIRE
 
 	mymob.pullin = new /obj/screen()
 	mymob.pullin.icon = 'icons/mob/screen1_robot.dmi'
 	mymob.pullin.icon_state = "pull0"
 	mymob.pullin.name = "pull"
-	mymob.pullin.screen_loc = ui_borg_pull
+	mymob.pullin.screen_loc = UI_BORG_PULL
 
 	mymob.blind = new /obj/screen()
 	mymob.blind.icon = 'icons/mob/screen1_full.dmi'

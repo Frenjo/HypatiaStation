@@ -38,19 +38,19 @@ Gunshots/explosions/opening doors/less rare audio (done)
 				//src << "Traitor Items"
 				if(!halitem)
 					halitem = new
-					var/list/slots_free = list(ui_lhand, ui_rhand)
+					var/list/slots_free = list(UI_LHAND, UI_RHAND)
 					if(l_hand)
-						slots_free -= ui_lhand
+						slots_free -= UI_LHAND
 					if(r_hand)
-						slots_free -= ui_rhand
+						slots_free -= UI_RHAND
 					if(ishuman(src))
 						var/mob/living/carbon/human/H = src
 						if(!H.belt)
-							slots_free += ui_belt
+							slots_free += UI_BELT
 						if(!H.l_store)
-							slots_free += ui_storage1
+							slots_free += UI_STORAGE1
 						if(!H.r_store)
-							slots_free += ui_storage2
+							slots_free += UI_STORAGE2
 					if(slots_free.len)
 						halitem.screen_loc = pick(slots_free)
 						halitem.layer = 50

@@ -188,23 +188,23 @@ var/list/global_huds = list(
 		var/mob/living/carbon/human/H = mymob
 		if(inventory_shown && hud_shown)
 			if(H.shoes)
-				H.shoes.screen_loc = ui_shoes
+				H.shoes.screen_loc = UI_SHOES
 			if(H.gloves)
-				H.gloves.screen_loc = ui_gloves
+				H.gloves.screen_loc = UI_GLOVES
 			if(H.l_ear)
-				H.l_ear.screen_loc = ui_l_ear
+				H.l_ear.screen_loc = UI_L_EAR
 			if(H.r_ear)
-				H.r_ear.screen_loc = ui_r_ear
+				H.r_ear.screen_loc = UI_R_EAR
 			if(H.glasses)
-				H.glasses.screen_loc = ui_glasses
+				H.glasses.screen_loc = UI_GLASSES
 			if(H.w_uniform)
-				H.w_uniform.screen_loc = ui_iclothing
+				H.w_uniform.screen_loc = UI_ICLOTHING
 			if(H.wear_suit)
-				H.wear_suit.screen_loc = ui_oclothing
+				H.wear_suit.screen_loc = UI_OCLOTHING
 			if(H.wear_mask)
-				H.wear_mask.screen_loc = ui_mask
+				H.wear_mask.screen_loc = UI_MASK
 			if(H.head)
-				H.head.screen_loc = ui_head
+				H.head.screen_loc = UI_HEAD
 		else
 			if(H.shoes)
 				H.shoes.screen_loc = null
@@ -233,17 +233,17 @@ var/list/global_huds = list(
 		var/mob/living/carbon/human/H = mymob
 		if(hud_shown)
 			if(H.s_store)
-				H.s_store.screen_loc = ui_sstore1
+				H.s_store.screen_loc = UI_SSTORE1
 			if(H.wear_id)
-				H.wear_id.screen_loc = ui_id
+				H.wear_id.screen_loc = UI_ID
 			if(H.belt)
-				H.belt.screen_loc = ui_belt
+				H.belt.screen_loc = UI_BELT
 			if(H.back)
-				H.back.screen_loc = ui_back
+				H.back.screen_loc = UI_BACK
 			if(H.l_store)
-				H.l_store.screen_loc = ui_storage1
+				H.l_store.screen_loc = UI_STORAGE1
 			if(H.r_store)
-				H.r_store.screen_loc = ui_storage2
+				H.r_store.screen_loc = UI_STORAGE2
 		else
 			if(H.s_store)
 				H.s_store.screen_loc = null
@@ -312,7 +312,7 @@ var/list/global_huds = list(
 					src.client.screen += src.hud_used.l_hand_hud_object	//we want the hands to be visible
 					src.client.screen += src.hud_used.r_hand_hud_object	//we want the hands to be visible
 					src.client.screen += src.hud_used.action_intent		//we want the intent swticher visible
-					src.hud_used.action_intent.screen_loc = ui_acti_alt	//move this to the alternative position, where zone_select usually is.
+					src.hud_used.action_intent.screen_loc = UI_ACTI_ALT	//move this to the alternative position, where zone_select usually is.
 				else
 					src.client.screen -= src.healths
 					src.client.screen -= src.internals
@@ -336,7 +336,7 @@ var/list/global_huds = list(
 				if(src.gun_setting_icon)
 					src.client.screen |= src.gun_setting_icon
 
-				src.hud_used.action_intent.screen_loc = ui_acti //Restore intent selection to the original position
+				src.hud_used.action_intent.screen_loc = UI_ACTI //Restore intent selection to the original position
 				src.client.screen += src.zone_sel				//This one is a special snowflake
 
 			hud_used.hidden_inventory_update()

@@ -10,7 +10,7 @@
 	using.set_dir(SOUTHWEST)
 	using.icon = ui_style
 	using.icon_state = (mymob.a_intent == "hurt" ? "harm" : mymob.a_intent)
-	using.screen_loc = ui_acti
+	using.screen_loc = UI_ACTI
 	using.layer = 20
 	src.adding += using
 	action_intent = using
@@ -24,7 +24,7 @@
 	using = new /obj/screen(src)
 	using.name = "help"
 	using.icon = ico
-	using.screen_loc = ui_acti
+	using.screen_loc = UI_ACTI
 	using.layer = 21
 	src.adding += using
 	help_intent = using
@@ -35,7 +35,7 @@
 	using = new /obj/screen(src)
 	using.name = "disarm"
 	using.icon = ico
-	using.screen_loc = ui_acti
+	using.screen_loc = UI_ACTI
 	using.layer = 21
 	src.adding += using
 	disarm_intent = using
@@ -46,7 +46,7 @@
 	using = new /obj/screen(src)
 	using.name = "grab"
 	using.icon = ico
-	using.screen_loc = ui_acti
+	using.screen_loc = UI_ACTI
 	using.layer = 21
 	src.adding += using
 	grab_intent = using
@@ -57,7 +57,7 @@
 	using = new /obj/screen(src)
 	using.name = "harm"
 	using.icon = ico
-	using.screen_loc = ui_acti
+	using.screen_loc = UI_ACTI
 	using.layer = 21
 	src.adding += using
 	hurt_intent = using
@@ -69,7 +69,7 @@
 	using.set_dir(SOUTHWEST)
 	using.icon = ui_style
 	using.icon_state = (mymob.m_intent == "run" ? "running" : "walking")
-	using.screen_loc = ui_movi
+	using.screen_loc = UI_MOVI
 	using.layer = 20
 	src.adding += using
 	move_intent = using
@@ -78,7 +78,7 @@
 	using.name = "drop"
 	using.icon = ui_style
 	using.icon_state = "act_drop"
-	using.screen_loc = ui_drop_throw
+	using.screen_loc = UI_DROP_THROW
 	using.layer = 19
 	src.adding += using
 
@@ -89,7 +89,7 @@
 	inv_box.icon_state = "hand_inactive"
 	if(mymob && !mymob.hand)	//This being 0 or null means the right hand is in use
 		inv_box.icon_state = "hand_active"
-	inv_box.screen_loc = ui_rhand
+	inv_box.screen_loc = UI_RHAND
 	inv_box.slot_id = slot_r_hand
 	inv_box.layer = 19
 	src.r_hand_hud_object = inv_box
@@ -102,7 +102,7 @@
 	inv_box.icon_state = "hand_inactive"
 	if(mymob && mymob.hand)	//This being 1 means the left hand is in use
 		inv_box.icon_state = "hand_active"
-	inv_box.screen_loc = ui_lhand
+	inv_box.screen_loc = UI_LHAND
 	inv_box.slot_id = slot_l_hand
 	inv_box.layer = 19
 	src.l_hand_hud_object = inv_box
@@ -113,7 +113,7 @@
 	using.set_dir(SOUTH)
 	using.icon = ui_style
 	using.icon_state = "hand1"
-	using.screen_loc = ui_swaphand1
+	using.screen_loc = UI_SWAPHAND1
 	using.layer = 19
 	src.adding += using
 
@@ -122,7 +122,7 @@
 	using.set_dir(SOUTH)
 	using.icon = ui_style
 	using.icon_state = "hand2"
-	using.screen_loc = ui_swaphand2
+	using.screen_loc = UI_SWAPHAND2
 	using.layer = 19
 	src.adding += using
 
@@ -131,7 +131,7 @@
 	inv_box.set_dir(NORTH)
 	inv_box.icon = ui_style
 	inv_box.icon_state = "equip"
-	inv_box.screen_loc = ui_monkey_mask
+	inv_box.screen_loc = UI_MONKEY_MASK
 	inv_box.slot_id = slot_wear_mask
 	inv_box.layer = 19
 	src.adding += inv_box
@@ -141,7 +141,7 @@
 	inv_box.set_dir(NORTHEAST)
 	inv_box.icon = ui_style
 	inv_box.icon_state = "equip"
-	inv_box.screen_loc = ui_back
+	inv_box.screen_loc = UI_BACK
 	inv_box.slot_id = slot_back
 	inv_box.layer = 19
 	src.adding += inv_box
@@ -150,55 +150,55 @@
 	mymob.throw_icon.icon = ui_style
 	mymob.throw_icon.icon_state = "act_throw_off"
 	mymob.throw_icon.name = "throw"
-	mymob.throw_icon.screen_loc = ui_drop_throw
+	mymob.throw_icon.screen_loc = UI_DROP_THROW
 
 	mymob.oxygen = new /obj/screen()
 	mymob.oxygen.icon = ui_style
 	mymob.oxygen.icon_state = "oxy0"
 	mymob.oxygen.name = "oxygen"
-	mymob.oxygen.screen_loc = ui_oxygen
+	mymob.oxygen.screen_loc = UI_OXYGEN
 
 	mymob.pressure = new /obj/screen()
 	mymob.pressure.icon = ui_style
 	mymob.pressure.icon_state = "pressure0"
 	mymob.pressure.name = "pressure"
-	mymob.pressure.screen_loc = ui_pressure
+	mymob.pressure.screen_loc = UI_PRESSURE
 
 	mymob.toxin = new /obj/screen()
 	mymob.toxin.icon = ui_style
 	mymob.toxin.icon_state = "tox0"
 	mymob.toxin.name = "toxin"
-	mymob.toxin.screen_loc = ui_toxin
+	mymob.toxin.screen_loc = UI_TOXIN
 
 	mymob.internals = new /obj/screen()
 	mymob.internals.icon = ui_style
 	mymob.internals.icon_state = "internal0"
 	mymob.internals.name = "internal"
-	mymob.internals.screen_loc = ui_internal
+	mymob.internals.screen_loc = UI_INTERNAL
 
 	mymob.fire = new /obj/screen()
 	mymob.fire.icon = ui_style
 	mymob.fire.icon_state = "fire0"
 	mymob.fire.name = "fire"
-	mymob.fire.screen_loc = ui_fire
+	mymob.fire.screen_loc = UI_FIRE
 
 	mymob.bodytemp = new /obj/screen()
 	mymob.bodytemp.icon = ui_style
 	mymob.bodytemp.icon_state = "temp1"
 	mymob.bodytemp.name = "body temperature"
-	mymob.bodytemp.screen_loc = ui_temp
+	mymob.bodytemp.screen_loc = UI_TEMP
 
 	mymob.healths = new /obj/screen()
 	mymob.healths.icon = ui_style
 	mymob.healths.icon_state = "health0"
 	mymob.healths.name = "health"
-	mymob.healths.screen_loc = ui_health
+	mymob.healths.screen_loc = UI_HEALTH
 
 	mymob.pullin = new /obj/screen()
 	mymob.pullin.icon = ui_style
 	mymob.pullin.icon_state = "pull0"
 	mymob.pullin.name = "pull"
-	mymob.pullin.screen_loc = ui_pull_resist
+	mymob.pullin.screen_loc = UI_PULL_RESIST
 
 	mymob.blind = new /obj/screen()
 	mymob.blind.icon = 'icons/mob/screen1_full.dmi'

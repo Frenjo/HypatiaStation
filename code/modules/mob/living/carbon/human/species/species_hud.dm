@@ -16,19 +16,19 @@
 	// to be drawn for the mob. This is fairly delicate, try to avoid messing with it
 	// unless you know exactly what it does.
 	var/list/gear = list(
-		"i_clothing" =		list("loc" = ui_iclothing,	"slot" = slot_w_uniform,	"state" = "center",		"toggle" = 1,	"dir" = SOUTH),
-		"o_clothing" =		list("loc" = ui_oclothing,	"slot" = slot_wear_suit,	"state" = "equip",		"toggle" = 1,	"dir" = SOUTH),
-		"mask" =			list("loc" = ui_mask,		"slot" = slot_wear_mask,	"state" = "equip",		"toggle" = 1,	"dir" = NORTH),
-		"gloves" =			list("loc" = ui_gloves,		"slot" = slot_gloves,		"state" = "gloves",		"toggle" = 1),
-		"eyes" =			list("loc" = ui_glasses,	"slot" = slot_glasses,		"state" = "glasses",	"toggle" = 1),
-		"l_ear" =			list("loc" = ui_l_ear,		"slot" = slot_l_ear,		"state" = "ears",		"toggle" = 1),
-		"r_ear" =			list("loc" = ui_r_ear,		"slot" = slot_r_ear,		"state" = "ears",		"toggle" = 1),
-		"head" =			list("loc" = ui_head,		"slot" = slot_head,			"state" = "hair",		"toggle" = 1),
-		"shoes" =			list("loc" = ui_shoes,		"slot" = slot_shoes,		"state" = "shoes",		"toggle" = 1),
-		"suit storage" =	list("loc" = ui_sstore1,	"slot" = slot_s_store,		"state" = "belt",		"dir" = 8),
-		"back" =			list("loc" = ui_back,		"slot" = slot_back,			"state" = "back",		"dir" = NORTH),
-		"id" =				list("loc" = ui_id,			"slot" = slot_wear_id,		"state" = "id",			"dir" = NORTH),
-		"storage1" =		list("loc" = ui_storage1,	"slot" = slot_l_store,		"state" = "pocket"),
-		"storage2" =		list("loc" = ui_storage2,	"slot" = slot_r_store,		"state" = "pocket"),
-		"belt" =			list("loc" = ui_belt, 		"slot" = slot_belt,			"state" = "belt")
+		"i_clothing" =		list("loc" = UI_ICLOTHING,	"slot" = slot_w_uniform,	"state" = "center",		"toggle" = 1,	"dir" = SOUTH),
+		"o_clothing" =		list("loc" = UI_OCLOTHING,	"slot" = slot_wear_suit,	"state" = "equip",		"toggle" = 1,	"dir" = SOUTH),
+		"mask" =			list("loc" = UI_MASK,		"slot" = slot_wear_mask,	"state" = "equip",		"toggle" = 1,	"dir" = NORTH),
+		"gloves" =			list("loc" = UI_GLOVES,		"slot" = slot_gloves,		"state" = "gloves",		"toggle" = 1),
+		"eyes" =			list("loc" = UI_GLASSES,	"slot" = slot_glasses,		"state" = "glasses",	"toggle" = 1),
+		"l_ear" =			list("loc" = UI_L_EAR,		"slot" = slot_l_ear,		"state" = "ears",		"toggle" = 1),
+		"r_ear" =			list("loc" = UI_R_EAR,		"slot" = slot_r_ear,		"state" = "ears",		"toggle" = 1),
+		"head" =			list("loc" = UI_HEAD,		"slot" = slot_head,			"state" = "hair",		"toggle" = 1),
+		"shoes" =			list("loc" = UI_SHOES,		"slot" = slot_shoes,		"state" = "shoes",		"toggle" = 1),
+		"suit storage" =	list("loc" = UI_SSTORE1,	"slot" = slot_s_store,		"state" = "belt",		"dir" = 8),
+		"back" =			list("loc" = UI_BACK,		"slot" = slot_back,			"state" = "back",		"dir" = NORTH),
+		"id" =				list("loc" = UI_ID,			"slot" = slot_wear_id,		"state" = "id",			"dir" = NORTH),
+		"storage1" =		list("loc" = UI_STORAGE1,	"slot" = slot_l_store,		"state" = "pocket"),
+		"storage2" =		list("loc" = UI_STORAGE2,	"slot" = slot_r_store,		"state" = "pocket"),
+		"belt" =			list("loc" = UI_BELT, 		"slot" = slot_belt,			"state" = "belt")
 	)

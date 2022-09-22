@@ -53,6 +53,11 @@ GLOBAL_BYOND_INIT(pipe_processing_killed, FALSE)
 		controller.stat_controller()
 
 /datum/controller/master/proc/setup_objects()
+	to_world(SPAN_DANGER("Initialising areas."))
+	sleep(-1)
+	for(var/area/area in world)
+		area.initialize()
+
 	to_world(SPAN_DANGER("Initializing objects."))
 	sleep(-1)
 	for(var/atom/movable/object in world)

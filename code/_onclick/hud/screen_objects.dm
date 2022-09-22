@@ -111,28 +111,28 @@
 /obj/screen/gun/move
 	name = "Allow Walking"
 	icon_state = "no_walk0"
-	screen_loc = ui_gun2
+	screen_loc = UI_GUN2
 
 /obj/screen/gun/run
 	name = "Allow Running"
 	icon_state = "no_run0"
-	screen_loc = ui_gun3
+	screen_loc = UI_GUN3
 
 /obj/screen/gun/item
 	name = "Allow Item Use"
 	icon_state = "no_item0"
-	screen_loc = ui_gun1
+	screen_loc = UI_GUN1
 
 /obj/screen/gun/mode
 	name = "Toggle Gun Mode"
 	icon_state = "gun0"
-	screen_loc = ui_gun_select
+	screen_loc = UI_GUN_SELECT
 	//dir = 1
 
 /obj/screen/zone_sel
 	name = "damage zone"
 	icon_state = "zone_sel"
-	screen_loc = ui_zonesel
+	screen_loc = UI_ZONESEL
 	var/selecting = "chest"
 
 /obj/screen/zone_sel/Click(location, control,params)

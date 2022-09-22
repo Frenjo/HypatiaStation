@@ -1,6 +1,3 @@
-/var/global/list/active_areas = list()
-/var/global/list/all_areas = list()
-
 /*
  * Area
  *
@@ -77,8 +74,6 @@
 /area/New()
 	icon_state = ""
 	uid = ++static_uid
-	active_areas += src
-	all_areas += src
 
 	if(dynamic_lighting)
 		luminosity = 0
@@ -86,9 +81,12 @@
 		luminosity = 1
 
 	..()
+	// If the game is already underway initialize will no longer be called for us.
+	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
+		initialize()
 
 /area/proc/initialize()
-	if(!requires_power || !(locate(/obj/machinery/power/apc) in apc))
+	if(!requires_power || isnull(apc))
 		power_light = 0			//rastaf0
 		power_equip = 0			//rastaf0
 		power_environ = 0		//rastaf0

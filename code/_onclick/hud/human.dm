@@ -45,7 +45,7 @@
 		using.name = "toggle"
 		using.icon = ui_style
 		using.icon_state = "other"
-		using.screen_loc = ui_inventory
+		using.screen_loc = UI_INVENTORY
 		using.layer = 20
 		using.color = ui_color
 		using.alpha = ui_alpha
@@ -58,7 +58,7 @@
 		using.set_dir(SOUTHWEST)
 		using.icon = ui_style
 		using.icon_state = "intent_"+mymob.a_intent
-		using.screen_loc = ui_acti
+		using.screen_loc = UI_ACTI
 		using.color = ui_color
 		using.alpha = ui_alpha
 		using.layer = 20
@@ -76,7 +76,7 @@
 		using = new /obj/screen(src)
 		using.name = "help"
 		using.icon = ico
-		using.screen_loc = ui_acti
+		using.screen_loc = UI_ACTI
 		using.alpha = ui_alpha
 		using.layer = 21
 		src.adding += using
@@ -88,7 +88,7 @@
 		using = new /obj/screen(src)
 		using.name = "disarm"
 		using.icon = ico
-		using.screen_loc = ui_acti
+		using.screen_loc = UI_ACTI
 		using.alpha = ui_alpha
 		using.layer = 21
 		src.adding += using
@@ -100,7 +100,7 @@
 		using = new /obj/screen(src)
 		using.name = "grab"
 		using.icon = ico
-		using.screen_loc = ui_acti
+		using.screen_loc = UI_ACTI
 		using.alpha = ui_alpha
 		using.layer = 21
 		src.adding += using
@@ -112,7 +112,7 @@
 		using = new /obj/screen(src)
 		using.name = "harm"
 		using.icon = ico
-		using.screen_loc = ui_acti
+		using.screen_loc = UI_ACTI
 		using.alpha = ui_alpha
 		using.layer = 21
 		src.adding += using
@@ -125,7 +125,7 @@
 		using.set_dir(SOUTHWEST)
 		using.icon = ui_style
 		using.icon_state = (mymob.m_intent == "run" ? "running" : "walking")
-		using.screen_loc = ui_movi
+		using.screen_loc = UI_MOVI
 		using.layer = 20
 		using.color = ui_color
 		using.alpha = ui_alpha
@@ -137,7 +137,7 @@
 		using.name = "drop"
 		using.icon = ui_style
 		using.icon_state = "act_drop"
-		using.screen_loc = ui_drop_throw
+		using.screen_loc = UI_DROP_THROW
 		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
@@ -148,7 +148,7 @@
 		using.name = "equip"
 		using.icon = ui_style
 		using.icon_state = "act_equip"
-		using.screen_loc = ui_equip
+		using.screen_loc = UI_EQUIP
 		using.layer = 20
 		using.color = ui_color
 		using.alpha = ui_alpha
@@ -161,7 +161,7 @@
 		inv_box.icon_state = "hand_inactive"
 		if(mymob && !mymob.hand)	//This being 0 or null means the right hand is in use
 			inv_box.icon_state = "hand_active"
-		inv_box.screen_loc = ui_rhand
+		inv_box.screen_loc = UI_RHAND
 		inv_box.slot_id = slot_r_hand
 		inv_box.layer = 19
 		inv_box.color = ui_color
@@ -177,7 +177,7 @@
 		inv_box.icon_state = "hand_inactive"
 		if(mymob && mymob.hand)	//This being 1 means the left hand is in use
 			inv_box.icon_state = "hand_active"
-		inv_box.screen_loc = ui_lhand
+		inv_box.screen_loc = UI_LHAND
 		inv_box.slot_id = slot_l_hand
 		inv_box.layer = 19
 		inv_box.color = ui_color
@@ -190,7 +190,7 @@
 		using.set_dir(SOUTH)
 		using.icon = ui_style
 		using.icon_state = "hand1"
-		using.screen_loc = ui_swaphand1
+		using.screen_loc = UI_SWAPHAND1
 		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
@@ -201,7 +201,7 @@
 		using.set_dir(SOUTH)
 		using.icon = ui_style
 		using.icon_state = "hand2"
-		using.screen_loc = ui_swaphand2
+		using.screen_loc = UI_SWAPHAND2
 		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
@@ -212,7 +212,7 @@
 		using.name = "resist"
 		using.icon = ui_style
 		using.icon_state = "act_resist"
-		using.screen_loc = ui_pull_resist
+		using.screen_loc = UI_PULL_RESIST
 		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
@@ -223,7 +223,7 @@
 		mymob.throw_icon.icon = ui_style
 		mymob.throw_icon.icon_state = "act_throw_off"
 		mymob.throw_icon.name = "throw"
-		mymob.throw_icon.screen_loc = ui_drop_throw
+		mymob.throw_icon.screen_loc = UI_DROP_THROW
 		mymob.throw_icon.color = ui_color
 		mymob.throw_icon.alpha = ui_alpha
 		src.hotkeybuttons += mymob.throw_icon
@@ -233,7 +233,7 @@
 		mymob.pullin.icon = ui_style
 		mymob.pullin.icon_state = "pull0"
 		mymob.pullin.name = "pull"
-		mymob.pullin.screen_loc = ui_pull_resist
+		mymob.pullin.screen_loc = UI_PULL_RESIST
 		src.hotkeybuttons += mymob.pullin
 		hud_elements |= mymob.pullin
 
@@ -242,7 +242,7 @@
 		mymob.internals.icon = ui_style
 		mymob.internals.icon_state = "internal0"
 		mymob.internals.name = "internal"
-		mymob.internals.screen_loc = ui_internal
+		mymob.internals.screen_loc = UI_INTERNAL
 		hud_elements |= mymob.internals
 
 	if(hud_data.has_warnings)
@@ -250,28 +250,28 @@
 		mymob.oxygen.icon = ui_style
 		mymob.oxygen.icon_state = "oxy0"
 		mymob.oxygen.name = "oxygen"
-		mymob.oxygen.screen_loc = ui_oxygen
+		mymob.oxygen.screen_loc = UI_OXYGEN
 		hud_elements |= mymob.oxygen
 
 		mymob.toxin = new /obj/screen()
 		mymob.toxin.icon = ui_style
 		mymob.toxin.icon_state = "tox0"
 		mymob.toxin.name = "toxin"
-		mymob.toxin.screen_loc = ui_toxin
+		mymob.toxin.screen_loc = UI_TOXIN
 		hud_elements |= mymob.toxin
 
 		mymob.fire = new /obj/screen()
 		mymob.fire.icon = ui_style
 		mymob.fire.icon_state = "fire0"
 		mymob.fire.name = "fire"
-		mymob.fire.screen_loc = ui_fire
+		mymob.fire.screen_loc = UI_FIRE
 		hud_elements |= mymob.fire
 
 		mymob.healths = new /obj/screen()
 		mymob.healths.icon = ui_style
 		mymob.healths.icon_state = "health0"
 		mymob.healths.name = "health"
-		mymob.healths.screen_loc = ui_health
+		mymob.healths.screen_loc = UI_HEALTH
 		hud_elements |= mymob.healths
 
 	if(hud_data.has_pressure)
@@ -279,7 +279,7 @@
 		mymob.pressure.icon = ui_style
 		mymob.pressure.icon_state = "pressure0"
 		mymob.pressure.name = "pressure"
-		mymob.pressure.screen_loc = ui_pressure
+		mymob.pressure.screen_loc = UI_PRESSURE
 		hud_elements |= mymob.pressure
 
 	if(hud_data.has_bodytemp)
@@ -287,7 +287,7 @@
 		mymob.bodytemp.icon = ui_style
 		mymob.bodytemp.icon_state = "temp1"
 		mymob.bodytemp.name = "body temperature"
-		mymob.bodytemp.screen_loc = ui_temp
+		mymob.bodytemp.screen_loc = UI_TEMP
 		hud_elements |= mymob.bodytemp
 
 	if(hud_data.has_nutrition)
@@ -295,7 +295,7 @@
 		mymob.nutrition_icon.icon = ui_style
 		mymob.nutrition_icon.icon_state = "nutrition0"
 		mymob.nutrition_icon.name = "nutrition"
-		mymob.nutrition_icon.screen_loc = ui_nutrition
+		mymob.nutrition_icon.screen_loc = UI_NUTRITION
 		hud_elements |= mymob.nutrition_icon
 
 	mymob.blind = new /obj/screen()
@@ -407,15 +407,15 @@
 			hud_used.item_action_list += A
 			switch(num)
 				if(1)
-					A.screen_loc = ui_action_slot1
+					A.screen_loc = UI_ACTION_SLOT1
 				if(2)
-					A.screen_loc = ui_action_slot2
+					A.screen_loc = UI_ACTION_SLOT2
 				if(3)
-					A.screen_loc = ui_action_slot3
+					A.screen_loc = UI_ACTION_SLOT3
 				if(4)
-					A.screen_loc = ui_action_slot4
+					A.screen_loc = UI_ACTION_SLOT4
 				if(5)
-					A.screen_loc = ui_action_slot5
+					A.screen_loc = UI_ACTION_SLOT5
 					break //5 slots available, so no more can be added.
 			num++
 	src.client.screen += src.hud_used.item_action_list

@@ -1,4 +1,4 @@
-/var/global/list/global_map = null
+GLOBAL_GLOBL_LIST_INIT(global_map, null)
 //list/global_map = list(list(1,5),list(4,3))//an array of map Z levels.
 //Resulting sector map looks like
 //|_1_|_4_|
@@ -394,13 +394,13 @@ Maxdistance is the longest range the beam will persist before it gives up.
 
 
 /atom/proc/get_global_map_pos()
-	if(!islist(global_map) || isemptylist(global_map))
+	if(!islist(GLOBL.global_map) || isemptylist(GLOBL.global_map))
 		return
 	var/cur_x = null
 	var/cur_y = null
 	var/list/y_arr = null
-	for(cur_x = 1, cur_x <= global_map.len, cur_x++)
-		y_arr = global_map[cur_x]
+	for(cur_x = 1, cur_x <= GLOBL.global_map.len, cur_x++)
+		y_arr = GLOBL.global_map[cur_x]
 		cur_y = y_arr.Find(src.z)
 		if(cur_y)
 			break

@@ -538,7 +538,7 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/update_inv_w_uniform(update_icons = 1)
 	if(w_uniform && istype(w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/uniform = w_uniform
-		uniform.screen_loc = ui_iclothing
+		uniform.screen_loc = UI_ICLOTHING
 		var/t_color = uniform.item_color
 		if(!t_color)
 			t_color = icon_state
@@ -582,7 +582,7 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_wear_id(update_icons = 1)
 	if(wear_id)
-		wear_id.screen_loc = ui_id	//TODO
+		wear_id.screen_loc = UI_ID	//TODO
 		if(w_uniform && w_uniform:displays_id)
 			overlays_standing[ID_LAYER]	= image("icon" = 'icons/mob/mob.dmi', "icon_state" = "id")
 		else
@@ -614,7 +614,7 @@ var/global/list/damage_icon_parts = list()
 			var/image/bloodsies	= image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhands")
 			bloodsies.color = gloves.blood_color
 			standing.overlays	+= bloodsies
-		gloves.screen_loc = ui_gloves
+		gloves.screen_loc = UI_GLOVES
 
 		overlays_standing[GLOVES_LAYER] = standing
 
@@ -701,7 +701,7 @@ var/global/list/damage_icon_parts = list()
 		if(!t_state)
 			t_state = s_store.icon_state
 		overlays_standing[SUIT_STORE_LAYER] = image("icon" = 'icons/mob/belt_mirror.dmi', "icon_state" = "[t_state]")
-		s_store.screen_loc = ui_sstore1		//TODO
+		s_store.screen_loc = UI_SSTORE1		//TODO
 	else
 		overlays_standing[SUIT_STORE_LAYER] = null
 	if(update_icons)
@@ -709,7 +709,7 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_head(update_icons = 1)
 	if(head)
-		head.screen_loc = ui_head		//TODO
+		head.screen_loc = UI_HEAD		//TODO
 
 		var/image/standing
 		if(istype(head, /obj/item/clothing/head/kitty))
@@ -737,7 +737,7 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_belt(update_icons = 1)
 	if(belt)
-		belt.screen_loc = ui_belt	//TODO
+		belt.screen_loc = UI_BELT	//TODO
 		var/t_state = belt.item_state
 		if(!t_state)
 			t_state = belt.icon_state
@@ -756,7 +756,7 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_wear_suit(update_icons = 1)
 	if(wear_suit && istype(wear_suit, /obj/item/clothing/suit))	//TODO check this
-		wear_suit.screen_loc = ui_oclothing	//TODO
+		wear_suit.screen_loc = UI_OCLOTHING	//TODO
 
 		var/image/standing
 		if(wear_suit.icon_override)
@@ -791,15 +791,15 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_pockets( update_icons = 1)
 	if(l_store)
-		l_store.screen_loc = ui_storage1	//TODO
+		l_store.screen_loc = UI_STORAGE1	//TODO
 	if(r_store)
-		r_store.screen_loc = ui_storage2	//TODO
+		r_store.screen_loc = UI_STORAGE2	//TODO
 	if(update_icons)
 		update_icons()
 
 /mob/living/carbon/human/update_inv_wear_mask(update_icons = 1)
 	if(wear_mask && (istype(wear_mask, /obj/item/clothing/mask) || istype(wear_mask, /obj/item/clothing/tie)) && !(head && head.flags_inv & HIDEMASK))
-		wear_mask.screen_loc = ui_mask	//TODO
+		wear_mask.screen_loc = UI_MASK	//TODO
 
 		var/image/standing
 		if(wear_mask.icon_override)
@@ -824,7 +824,7 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_back(update_icons = 1)
 	if(back)
-		back.screen_loc = ui_back	//TODO
+		back.screen_loc = UI_BACK	//TODO
 
 		if(back.icon_override)
 			overlays_standing[BACK_LAYER] = image("icon" = back.icon_override, "icon_state" = "[back.icon_state]")
@@ -870,7 +870,7 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_r_hand(update_icons = 1)
 	if(r_hand)
-		r_hand.screen_loc = ui_rhand	//TODO
+		r_hand.screen_loc = UI_RHAND	//TODO
 		var/t_state = r_hand.item_state
 		if(!t_state)
 			t_state = r_hand.icon_state
@@ -894,7 +894,7 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_l_hand(update_icons = 1)
 	if(l_hand)
-		l_hand.screen_loc = ui_lhand	//TODO
+		l_hand.screen_loc = UI_LHAND	//TODO
 		var/t_state = l_hand.item_state
 		if(!t_state)
 			t_state = l_hand.icon_state

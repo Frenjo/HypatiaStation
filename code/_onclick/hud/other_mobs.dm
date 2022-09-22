@@ -19,13 +19,13 @@
 	blobpwrdisplay = new /obj/screen()
 	blobpwrdisplay.name = "blob power"
 	blobpwrdisplay.icon_state = "block"
-	blobpwrdisplay.screen_loc = ui_health
+	blobpwrdisplay.screen_loc = UI_HEALTH
 	blobpwrdisplay.layer = 20
 
 	blobhealthdisplay = new /obj/screen()
 	blobhealthdisplay.name = "blob health"
 	blobhealthdisplay.icon_state = "block"
-	blobhealthdisplay.screen_loc = ui_internal
+	blobhealthdisplay.screen_loc = UI_INTERNAL
 	blobhealthdisplay.layer = 20
 
 	mymob.client.screen = null
