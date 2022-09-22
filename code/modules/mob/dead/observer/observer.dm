@@ -245,7 +245,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	// Ensures that the space parallax state updates if the ghost is in a different area to the body.
 	var/area/mind_area = get_area(mind.current)
 	if(get_area(src) != mind_area)
-		client.set_parallax_space(mind_area.has_bluespace_parallax)
+		client.set_parallax_space(mind_area.parallax_type)
 
 	return 1
 

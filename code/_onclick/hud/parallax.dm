@@ -1,12 +1,12 @@
-/var/global/list/parallax_stars = list()
-/var/global/list/parallax_bluespace_stars = list()
+GLOBAL_GLOBL_LIST_NEW(parallax_stars)
+GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 
 /proc/create_parallax()
 	for(var/i = 0; i < PARALLAX_STAR_AMOUNT; i++)
-		global.parallax_stars += new /obj/space_star()
+		GLOBL.parallax_stars += new /obj/space_star()
 
 	for(var/i = 0; i < PARALLAX_BLUESPACE_STAR_AMOUNT; i++)
-		global.parallax_bluespace_stars += new /obj/space_star/bluespace()
+		GLOBL.parallax_bluespace_stars += new /obj/space_star/bluespace()
 
 /obj/parallax_master
 	screen_loc = UI_SPACE_PARALLAX
@@ -59,18 +59,18 @@
 		parallax_master = new /obj/parallax_master()
 		space_parallax = new /obj/space_parallax()
 	
-	space_parallax.overlays |= global.parallax_stars
-	screen |= parallax_master
-	screen |= space_parallax
+	space_parallax.overlays |= GLOBL.parallax_stars
+	screen |= list(parallax_master, space_parallax)
 
-/client/proc/set_parallax_space(bluespace)
-	space_parallax.icon_state = bluespace ? "bluespace" : "space_blank"
+/client/proc/set_parallax_space(parallax_type)
+	var/is_bluespace = (type == PARALLAX_BLUESPACE)
+	space_parallax.icon_state = is_bluespace ? "bluespace" : "space_blank"
 	space_parallax.overlays.Cut()
 
-	if(bluespace)
-		space_parallax.overlays |= global.parallax_bluespace_stars
+	if(is_bluespace)
+		space_parallax.overlays |= GLOBL.parallax_bluespace_stars
 	else
-		space_parallax.overlays |= global.parallax_stars
+		space_parallax.overlays |= GLOBL.parallax_stars
 
 /client
 	var/obj/parallax_master
@@ -80,13 +80,13 @@
 	. = ..()
 	if(. && client)
 		var/area/new_area = get_area(src)
-		client.set_parallax_space(new_area.has_bluespace_parallax)
+		client.set_parallax_space(new_area.parallax_type)
 
 /mob/forceMove()
 	. = ..()
 	if(. && client)
 		var/area/new_area = get_area(src)
-		client.set_parallax_space(new_area.has_bluespace_parallax)
+		client.set_parallax_space(new_area.parallax_type)
 
 /area
-	var/has_bluespace_parallax = FALSE
+	var/parallax_type = PARALLAX_SPACE

@@ -17,6 +17,8 @@
 #define UI_SPACE_PARALLAX "1:0,1:0"
 #define PARALLAX_STAR_AMOUNT 849
 #define PARALLAX_BLUESPACE_STAR_AMOUNT 1000
+#define PARALLAX_SPACE 0
+#define PARALLAX_BLUESPACE 1
 
 //Upper left action buttons, displayed when you pick up an item that has this enabled.
 #define ui_action_slot1 "1:6,14:26"
