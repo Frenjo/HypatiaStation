@@ -112,11 +112,11 @@
 
 /datum/intercept_text/proc/get_suspect()
 	var/list/dudes = list()
-	for(var/mob/living/carbon/human/man in player_list)
+	for(var/mob/living/carbon/human/man in GLOBL.player_list)
 		if(man.client && man.client.prefs.nanotrasen_relation == "Opposed")
 			dudes += man
-	for(var/i = 0, i < max(player_list.len / 10, 2), i++)
-		dudes += pick(player_list)
+	for(var/i = 0, i < max(GLOBL.player_list.len / 10, 2), i++)
+		dudes += pick(GLOBL.player_list)
 	return pick(dudes)
 
 /datum/intercept_text/proc/build_traitor(datum/mind/correct_person)

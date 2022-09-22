@@ -20,7 +20,7 @@ var/list/page_sound = list('sound/effects/pageturn1.ogg', 'sound/effects/pagetur
 	var/turf/turf_source = get_turf(source)
 
  	// Looping through the player list has the added bonus of working for mobs inside containers
-	for(var/P in player_list)
+	for(var/P in GLOBL.player_list)
 		var/mob/M = P
 		if(!M || !M.client)
 			continue

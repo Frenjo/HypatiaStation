@@ -543,7 +543,7 @@ var/list/admin_verbs_donor = list(
 	message_admins("\blue [ckey] creating an admin explosion at [epicenter.loc].")
 	feedback_add_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/give_spell(mob/T as mob in mob_list) // -- Urist
+/client/proc/give_spell(mob/T as mob in GLOBL.mob_list) // -- Urist
 	set category = "Fun"
 	set name = "Give Spell"
 	set desc = "Gives a spell to a mob."
@@ -554,7 +554,7 @@ var/list/admin_verbs_donor = list(
 	log_admin("[key_name(usr)] gave [key_name(T)] the spell [S].")
 	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] the spell [S].", 1)
 
-/client/proc/give_disease(mob/T as mob in mob_list) // -- Giacom
+/client/proc/give_disease(mob/T as mob in GLOBL.mob_list) // -- Giacom
 	set category = "Fun"
 	set name = "Give Disease"
 	set desc = "Gives a Disease to a mob."
@@ -775,7 +775,7 @@ var/list/admin_verbs_donor = list(
 		usr << "You now won't get debug log messages"
 
 
-/client/proc/man_up(mob/T as mob in mob_list)
+/client/proc/man_up(mob/T as mob in GLOBL.mob_list)
 	set category = "Fun"
 	set name = "Man Up"
 	set desc = "Tells mob to man up and deal with it."
@@ -791,7 +791,7 @@ var/list/admin_verbs_donor = list(
 	set name = "Man Up Global"
 	set desc = "Tells everyone to man up and deal with it."
 
-	for (var/mob/T as mob in mob_list)
+	for (var/mob/T as mob in GLOBL.mob_list)
 		T << "<br><center><span class='notice'><b><font size=4>Man up.<br> Deal with it.</font></b><br>Move on.</span></center><br>"
 		T << 'sound/voice/ManUp1.ogg'
 

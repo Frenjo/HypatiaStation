@@ -92,7 +92,7 @@
 	listening |= src
 
 	//ghosts
-	for(var/mob/M in dead_mob_list)	//does this include players who joined as observers as well?
+	for(var/mob/M in GLOBL.dead_mob_list)	//does this include players who joined as observers as well?
 		if(!(M.client))
 			continue
 		if(M.stat == DEAD && M.client && (M.client.prefs.toggles & CHAT_GHOSTEARS))

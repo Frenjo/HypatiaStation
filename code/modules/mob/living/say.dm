@@ -106,7 +106,7 @@
 				hearturfs += O.locs[1]
 				objects |= O
 
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOBL.player_list)
 			if(M.stat == DEAD && M.client && (M.client.prefs.toggles & CHAT_GHOSTEARS))
 				listening |= M
 				continue

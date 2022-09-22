@@ -97,10 +97,10 @@ GLOBAL_BYOND_TYPED(vote, /datum/controller/vote) // Set in /datum/process/vote/s
 				if(choices["Continue Playing"] >= greatest_votes)
 					greatest_votes = choices["Continue Playing"]
 			else if(mode == "gamemode")
-				if(global.master_mode in choices)
-					choices[global.master_mode] += non_voters
-					if(choices[global.master_mode] >= greatest_votes)
-						greatest_votes = choices[global.master_mode]
+				if(global.ticker.master_mode in choices)
+					choices[global.ticker.master_mode] += non_voters
+					if(choices[global.ticker.master_mode] >= greatest_votes)
+						greatest_votes = choices[global.ticker.master_mode]
 			else if(mode == "crew_transfer")
 				var/factor = 0.5
 				switch(world.time / (10 * 60)) // minutes
@@ -163,19 +163,19 @@ GLOBAL_BYOND_TYPED(vote, /datum/controller/vote) // Set in /datum/process/vote/s
 				if(. == "Restart Round")
 					restart = 1
 			if("gamemode")
-				if(global.master_mode != .)
+				if(global.ticker.master_mode != .)
 					world.save_mode(.)
 					if(ticker && ticker.mode)
 						restart = 1
 					else
-						global.master_mode = .
+						global.ticker.master_mode = .
 			if("crew_transfer")
 				if(. == "Initiate Crew Transfer")
 					init_shift_change(null, 1)
 
 	if(mode == "gamemode") //fire this even if the vote fails.
-		if(!global.roundstart_progressing)
-			global.roundstart_progressing = TRUE
+		if(!global.ticker.roundstart_progressing)
+			global.ticker.roundstart_progressing = TRUE
 			to_world("<font color='red'><b>The round will start soon.</b></font>")
 
 	if(restart)
@@ -256,8 +256,8 @@ GLOBAL_BYOND_TYPED(vote, /datum/controller/vote) // Set in /datum/process/vote/s
 				world << sound('sound/ambience/alarm4.ogg')
 			if("custom")
 				world << sound('sound/ambience/alarm4.ogg')
-		if(mode == "gamemode" && global.roundstart_progressing)
-			global.roundstart_progressing = FALSE
+		if(mode == "gamemode" && global.ticker.roundstart_progressing)
+			global.ticker.roundstart_progressing = FALSE
 			to_world(SPAN_DANGER("Round start has been delayed."))
 	/*
 		if(mode == "crew_transfer" && ooc_allowed)

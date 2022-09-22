@@ -2,7 +2,7 @@
 	if(!global.config.sqllogging)
 		return
 	var/playercount = 0
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOBL.player_list)
 		if(M.client)
 			playercount += 1
 	establish_db_connection()

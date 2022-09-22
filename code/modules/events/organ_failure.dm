@@ -12,7 +12,7 @@
 
 /datum/event/organ_failure/start()
 	var/list/candidates = list()	//list of candidate keys
-	for(var/mob/living/carbon/human/G in player_list)
+	for(var/mob/living/carbon/human/G in GLOBL.player_list)
 		if(G.mind && G.mind.current && G.mind.current.stat != DEAD && G.health > 70)
 			candidates += G
 	if(!candidates.len)

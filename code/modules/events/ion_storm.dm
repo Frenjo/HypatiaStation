@@ -13,7 +13,7 @@
 	command_alert("The station has entered an ion storm.  Monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
 /datum/event/ionstorm/start()
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
@@ -69,7 +69,7 @@
 		target.add_ion_law(law)
 
 /datum/event/ionstorm/tick()
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
@@ -93,5 +93,5 @@
 /datum/event/ionstorm/end()
 	command_alert("The station has passed the ion storm. Monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
 		H.client.screen.Remove(global_hud.ionstorm)

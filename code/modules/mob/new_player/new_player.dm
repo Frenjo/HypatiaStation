@@ -17,7 +17,7 @@
 	var/totalPlayersReady = 0
 
 /mob/new_player/New()
-	mob_list += src
+	GLOBL.mob_list += src
 
 /mob/new_player/verb/new_player_panel()
 	set src = usr
@@ -77,14 +77,14 @@
 			stat("Game Mode:", "Secret")
 		else
 			if(!ticker.hide_mode)
-				stat("Game Mode:", "[global.master_mode]") // Old setting for showing the game mode
+				stat("Game Mode:", "[global.ticker.master_mode]") // Old setting for showing the game mode
 
 		if(ticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[ticker.pregame_timeleft][global.roundstart_progressing ? "" : " (DELAYED)"]")
+			stat("Time To Start:", "[ticker.pregame_timeleft][global.ticker.roundstart_progressing ? "" : " (DELAYED)"]")
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
-			for(var/mob/new_player/player in player_list)
+			for(var/mob/new_player/player in GLOBL.player_list)
 				stat("[player.key]", player.ready ? "(Playing)" : null)
 				totalPlayers++
 				if(player.ready)
@@ -361,7 +361,7 @@
 		if(job && IsJobAvailable(job.title))
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOBL.player_list)
 				if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
 					active++
 			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"

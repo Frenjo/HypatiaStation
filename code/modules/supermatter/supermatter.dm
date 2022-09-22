@@ -124,7 +124,7 @@
 				lastwarning = world.timeofday
 
 		if(damage > explosion_point)
-			for(var/mob/living/mob in living_mob_list)
+			for(var/mob/living/mob in GLOBL.living_mob_list)
 				if(loc.z == mob.loc.z)
 					if(ishuman(mob))
 						//Hilariously enough, running into a closet should make you get hit the hardest.

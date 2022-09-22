@@ -37,20 +37,46 @@
 	paths = SUBTYPESOF(/datum/surgery_step)
 	for(var/T in paths)
 		var/datum/surgery_step/S = new T()
-		global.surgery_steps += S
+		GLOBL.surgery_steps += S
 	sort_surgeries()
+
+	// Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id.
+	paths = SUBTYPESOF(/datum/reagent)
+	for(var/path in paths)
+		var/datum/reagent/D = new path()
+		GLOBL.chemical_reagents_list[D.id] = D
+	
+	// Chemical Reactions - Initialises all /datum/chemical_reaction into a list.
+	// It is filtered into multiple lists within a list.
+	// For example:
+	// chemical_reaction_list["plasma"] is a list of all reactions relating to plasma
+	paths = SUBTYPESOF(/datum/chemical_reaction)
+	for(var/path in paths)
+		var/datum/chemical_reaction/D = new path()
+		var/list/reaction_ids = list()
+
+		if(D.required_reagents && D.required_reagents.len)
+			for(var/reaction in D.required_reagents)
+				reaction_ids += reaction
+
+		// Create filters based on each reagent id in the required reagents list
+		for(var/id in reaction_ids)
+			if(!GLOBL.chemical_reactions_list[id])
+				GLOBL.chemical_reactions_list[id] = list()
+			GLOBL.chemical_reactions_list[id] += D
+			break // Don't bother adding ourselves to other reagent ids, it is redundant.
 
 	// Medical side effects. List all effects by their names
 	paths = SUBTYPESOF(/datum/medical_effect)
 	for(var/T in paths)
 		var/datum/medical_effect/M = new T()
-		global.side_effects[M.name] = T
+		GLOBL.side_effects[M.name] = T
 
 	//List of job. I can't believe this was calculated multiple times per tick!
 	paths = typesof(/datum/job) - list(/datum/job, /datum/job/ai, /datum/job/cyborg)
 	for(var/T in paths)
 		var/datum/job/J = new T()
-		global.joblist[J.title] = J
+		GLOBL.joblist[J.title] = J
 
 	// Languages - Initialise all /datum/language and language keys into lists.
 	paths = SUBTYPESOF(/datum/language)

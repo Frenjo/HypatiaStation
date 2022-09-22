@@ -73,7 +73,7 @@
 
 /mob/dead/observer/Topic(href, href_list)
 	if(href_list["track"])
-		var/mob/target = locate(href_list["track"]) in mob_list
+		var/mob/target = locate(href_list["track"]) in GLOBL.mob_list
 		if(target)
 			ManualFollow(target)
 

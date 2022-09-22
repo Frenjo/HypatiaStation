@@ -4,7 +4,7 @@
 GLOBAL_BYOND_TYPED(supply_controller, /datum/controller/supply) // Set in /datum/process/supply/setup()
 
 /datum/controller/supply
-	name = "Supply Shuttle"
+	name = "Supply"
 
 	var/processing = 1
 	var/processing_interval = 300

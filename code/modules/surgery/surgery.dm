@@ -79,7 +79,7 @@
 		return 0
 	if(user.a_intent == "harm")	//check for Hippocratic Oath
 		return 0
-	for(var/datum/surgery_step/S in surgery_steps)
+	for(var/datum/surgery_step/S in GLOBL.surgery_steps)
 		//check if tool is right or close enough and if this step is possible
 		if(S.tool_quality(tool) && S.can_use(user, M, user.zone_sel.selecting, tool) && S.is_valid_mutantrace(M))
 			S.begin_step(user, M, user.zone_sel.selecting, tool)		//start on it
@@ -92,7 +92,7 @@
 	return 0
 
 /proc/sort_surgeries()
-	var/gap = surgery_steps.len
+	var/gap = GLOBL.surgery_steps.len
 	var/swapped = 1
 	while(gap > 1 || swapped)
 		swapped = 0
@@ -100,11 +100,11 @@
 			gap = round(gap / 1.247330950103979)
 		if(gap < 1)
 			gap = 1
-		for(var/i = 1; gap + i <= surgery_steps.len; i++)
-			var/datum/surgery_step/l = surgery_steps[i]		//Fucking hate
-			var/datum/surgery_step/r = surgery_steps[gap + i]	//how lists work here
+		for(var/i = 1; gap + i <= GLOBL.surgery_steps.len; i++)
+			var/datum/surgery_step/l = GLOBL.surgery_steps[i]		//Fucking hate
+			var/datum/surgery_step/r = GLOBL.surgery_steps[gap + i]	//how lists work here
 			if(l.priority < r.priority)
-				surgery_steps.Swap(i, gap + i)
+				GLOBL.surgery_steps.Swap(i, gap + i)
 				swapped = 1
 
 /datum/surgery_status

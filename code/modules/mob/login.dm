@@ -5,7 +5,7 @@
 	computer_id	= client.computer_id
 	log_access("Login: [key_name(src)] from [lastKnownIP ? lastKnownIP : "localhost"]-[computer_id] || BYOND v[client.byond_version]")
 	if(global.config.log_access)
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOBL.player_list)
 			if(M == src)
 				continue
 			if(M.key && (M.key != key))
@@ -27,7 +27,7 @@
 						log_access("Notice: [key_name(src)] has the same [matches] as [key_name(M)] (no longer logged in).")
 
 /mob/Login()
-	player_list |= src
+	GLOBL.player_list |= src
 	update_Login_details()
 	world.update_status()
 

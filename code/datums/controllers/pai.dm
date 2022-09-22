@@ -220,7 +220,7 @@ GLOBAL_BYOND_TYPED(pAI_controller, /datum/controller/pai)	// Global handler for 
 	for(var/datum/pAI_candidate/c in global.pAI_controller.pAI_candidates)
 		if(c.ready)
 			var/found = 0
-			for(var/mob/dead/observer/o in player_list)
+			for(var/mob/dead/observer/o in GLOBL.player_list)
 				if(o.key == c.key)
 					found = 1
 			if(found)
@@ -331,7 +331,7 @@ GLOBAL_BYOND_TYPED(pAI_controller, /datum/controller/pai)	// Global handler for 
 	user << browse(dat, "window=findPai")
 
 /datum/controller/pai/proc/request_recruits()
-	for(var/mob/dead/observer/O in player_list)
+	for(var/mob/dead/observer/O in GLOBL.player_list)
 		if(O.has_enabled_antagHUD == 1 && config.antag_hud_restricted)
 			continue
 		if(jobban_isbanned(O, "pAI"))

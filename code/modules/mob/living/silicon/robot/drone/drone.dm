@@ -238,7 +238,7 @@
 
 //Reboot procs.
 /mob/living/silicon/robot/drone/proc/request_player()
-	for(var/mob/dead/observer/O in player_list)
+	for(var/mob/dead/observer/O in GLOBL.player_list)
 		if(jobban_isbanned(O, "Maintenance Drone"))
 			continue
 		if(O.client)

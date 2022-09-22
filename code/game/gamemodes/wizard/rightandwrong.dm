@@ -3,7 +3,7 @@
 /mob/proc/rightandwrong()
 	to_chat(usr, "<B>You summoned guns!</B>")
 	message_admins("[key_name_admin(usr, 1)] summoned guns!")
-	for(var/mob/living/carbon/human/H in player_list)
+	for(var/mob/living/carbon/human/H in GLOBL.player_list)
 		if(H.stat == DEAD || !H.client)
 			continue
 		if(is_special_character(H))

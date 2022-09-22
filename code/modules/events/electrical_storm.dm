@@ -19,7 +19,7 @@
 	command_alert("An electrical storm has been detected in your area, please repair potential electronic overloads.", "Electrical Storm Alert")
 
 /datum/event/electrical_storm/start()
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
 		if(!H)
 			continue
 
@@ -78,7 +78,7 @@
 				apc.overload_lighting()
 			sleep(4)
 
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
 		if(!H)
 			continue
 
@@ -100,7 +100,7 @@
 /datum/event/electrical_storm/end()
 	command_alert("The station has passed the electrical storm.", "Electrical Storm Alert")
 
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
 		if(!H)
 			continue
 

@@ -2,7 +2,7 @@
 	..("gibbed-r")
 	robogibs(loc, viruses)
 
-	dead_mob_list -= src
+	GLOBL.dead_mob_list -= src
 
 /mob/living/silicon/dust()
 	..("dust-r", /obj/effect/decal/remains/robot)

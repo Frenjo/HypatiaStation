@@ -572,7 +572,7 @@
 		if(isturf(commboard.loc) || istype(commboard.loc, /obj/item/weapon/storage))
 			return ..()
 
-	for(var/mob/living/silicon/ai/shuttlecaller in player_list)
+	for(var/mob/living/silicon/ai/shuttlecaller in GLOBL.player_list)
 		if(!shuttlecaller.stat && shuttlecaller.client && isturf(shuttlecaller.loc))
 			return ..()
 
@@ -594,7 +594,7 @@
 		if((isturf(commboard.loc) || istype(commboard.loc, /obj/item/weapon/storage)) && commboard != src)
 			return ..()
 
-	for(var/mob/living/silicon/ai/shuttlecaller in player_list)
+	for(var/mob/living/silicon/ai/shuttlecaller in GLOBL.player_list)
 		if(!shuttlecaller.stat && shuttlecaller.client && isturf(shuttlecaller.loc))
 			return ..()
 

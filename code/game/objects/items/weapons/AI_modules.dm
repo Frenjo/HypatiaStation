@@ -44,7 +44,7 @@ AI MODULES
 			src.transmitInstructions(comp.current, usr)
 			comp.current << "These are your laws now:"
 			comp.current.show_laws()
-			for(var/mob/living/silicon/robot/R in mob_list)
+			for(var/mob/living/silicon/robot/R in GLOBL.mob_list)
 				if(R.lawupdate && (R.connected_ai == comp.current))
 					R << "These are your laws now:"
 					R.show_laws()

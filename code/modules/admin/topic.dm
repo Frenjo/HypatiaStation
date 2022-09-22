@@ -98,7 +98,7 @@
 
 		var/mob/playermob
 
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOBL.player_list)
 			if(M.ckey == banckey)
 				playermob = M
 				break
@@ -966,7 +966,7 @@
 			dat += {"<A href='?src=\ref[src];c_mode2=[mode]'>[config.mode_names[mode]]</A><br>"}
 		dat += {"<A href='?src=\ref[src];c_mode2=secret'>Secret</A><br>"}
 		dat += {"<A href='?src=\ref[src];c_mode2=random'>Random</A><br>"}
-		dat += {"Now: [global.master_mode]"}
+		dat += {"Now: [global.ticker.master_mode]"}
 		usr << browse(dat, "window=c_mode")
 
 	else if(href_list["f_secret"])
@@ -974,13 +974,13 @@
 
 		if(ticker && ticker.mode)
 			return alert(usr, "The game has already started.", null, null, null, null)
-		if(global.master_mode != "secret")
+		if(global.ticker.master_mode != "secret")
 			return alert(usr, "The game mode has to be secret!", null, null, null, null)
 		var/dat = {"<B>What game mode do you want to force secret to be? Use this if you want to change the game mode, but want the players to believe it's secret. This will only work if the current game mode is secret.</B><HR>"}
 		for(var/mode in config.modes)
 			dat += {"<A href='?src=\ref[src];f_secret2=[mode]'>[config.mode_names[mode]]</A><br>"}
 		dat += {"<A href='?src=\ref[src];f_secret2=secret'>Random (default)</A><br>"}
-		dat += {"Now: [global.secret_force_mode]"}
+		dat += {"Now: [global.ticker.secret_force_mode]"}
 		usr << browse(dat, "window=f_secret")
 
 	else if(href_list["c_mode2"])
@@ -988,12 +988,12 @@
 
 		if (ticker && ticker.mode)
 			return alert(usr, "The game has already started.", null, null, null, null)
-		global.master_mode = href_list["c_mode2"]
-		log_admin("[key_name(usr)] set the mode as [global.master_mode].")
-		message_admins("\blue [key_name_admin(usr)] set the mode as [global.master_mode].", 1)
-		world << "\blue <b>The mode is now: [global.master_mode]</b>"
+		global.ticker.master_mode = href_list["c_mode2"]
+		log_admin("[key_name(usr)] set the mode as [global.ticker.master_mode].")
+		message_admins("\blue [key_name_admin(usr)] set the mode as [global.ticker.master_mode].", 1)
+		world << "\blue <b>The mode is now: [global.ticker.master_mode]</b>"
 		Game() // updates the main game menu
-		world.save_mode(global.master_mode)
+		world.save_mode(global.ticker.master_mode)
 		.(href, list("c_mode"=1))
 
 	else if(href_list["f_secret2"])
@@ -1001,11 +1001,11 @@
 
 		if(ticker && ticker.mode)
 			return alert(usr, "The game has already started.", null, null, null, null)
-		if(global.master_mode != "secret")
+		if(global.ticker.master_mode != "secret")
 			return alert(usr, "The game mode has to be secret!", null, null, null, null)
-		global.secret_force_mode = href_list["f_secret2"]
-		log_admin("[key_name(usr)] set the forced secret mode as [global.secret_force_mode].")
-		message_admins("\blue [key_name_admin(usr)] set the forced secret mode as [global.secret_force_mode].", 1)
+		global.ticker.secret_force_mode = href_list["f_secret2"]
+		log_admin("[key_name(usr)] set the forced secret mode as [global.ticker.secret_force_mode].")
+		message_admins("\blue [key_name_admin(usr)] set the forced secret mode as [global.ticker.secret_force_mode].", 1)
 		Game() // updates the main game menu
 		.(href, list("f_secret"=1))
 
@@ -1061,7 +1061,7 @@
 			usr << "This cannot be used on instances of type /mob/living/silicon/ai"
 			return
 
-		var/turf/prison_cell = pick(global.prisonwarp)
+		var/turf/prison_cell = pick(GLOBL.prisonwarp)
 		if(!prison_cell)	return
 
 		var/obj/structure/closet/secure_closet/brig/locker = new /obj/structure/closet/secure_closet/brig(prison_cell)
@@ -1772,14 +1772,14 @@
 			if("monkey")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","M")
-				for(var/mob/living/carbon/human/H in mob_list)
+				for(var/mob/living/carbon/human/H in GLOBL.mob_list)
 					spawn(0)
 						H.monkeyize()
 				ok = 1
 			if("corgi")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","M")
-				for(var/mob/living/carbon/human/H in mob_list)
+				for(var/mob/living/carbon/human/H in GLOBL.mob_list)
 					spawn(0)
 						H.corgize()
 				ok = 1
@@ -1931,7 +1931,7 @@
 					return
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","TA([objective])")
-				for(var/mob/living/carbon/human/H in player_list)
+				for(var/mob/living/carbon/human/H in GLOBL.player_list)
 					if(H.stat == DEAD || !H.client || !H.mind)
 						continue
 					if(is_special_character(H)) continue
@@ -1945,7 +1945,7 @@
 					ticker.mode.greet_traitor(H.mind)
 					//ticker.mode.forge_traitor_objectives(H.mind)
 					ticker.mode.finalize_traitor(H.mind)
-				for(var/mob/living/silicon/A in player_list)
+				for(var/mob/living/silicon/A in GLOBL.player_list)
 					ticker.mode.traitors += A.mind
 					A.mind.special_role = "traitor"
 					var/datum/objective/new_objective = new
@@ -2022,7 +2022,7 @@
 				feedback_add_details("admin_secrets_fun_used","FL")
 				while(!usr.stat)
 //knock yourself out to stop the ghosts
-					for(var/mob/M in player_list)
+					for(var/mob/M in GLOBL.player_list)
 						if(M.stat != DEAD && prob(25))
 							var/area/AffectedArea = get_area(M)
 							if(AffectedArea.name != "Space" && AffectedArea.name != "Engine Walls" && AffectedArea.name != "Chemical Lab Test Chamber" && AffectedArea.name != "Escape Shuttle" && AffectedArea.name != "Arrival Area" && AffectedArea.name != "Arrival Shuttle" && AffectedArea.name != "start area" && AffectedArea.name != "Engine Combustion Chamber")
@@ -2045,7 +2045,7 @@
 									if(prob(25) && !W.anchored)
 										step_rand(W)
 					sleep(rand(100,1000))
-				for(var/mob/M in player_list)
+				for(var/mob/M in GLOBL.player_list)
 					if(M.stat != DEAD)
 						M.show_message(text("\blue The chilling wind suddenly stops..."), 1)
 /*				if("shockwave")
@@ -2184,7 +2184,7 @@
 			if("friendai")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","FA")
-				for(var/mob/aiEye/aE in mob_list)
+				for(var/mob/aiEye/aE in GLOBL.mob_list)
 					aE.icon_state = "ai_friend"
 				for(var/obj/machinery/M in machines)
 					if(istype(M, /obj/machinery/ai_status_display))
@@ -2225,7 +2225,7 @@
 				spawn(0)
 					for(var/i = 0, i < length, i++) // 180 = 3 minutes
 						if(damage)
-							for(var/mob/living/carbon/L in living_mob_list)
+							for(var/mob/living/carbon/L in GLOBL.living_mob_list)
 								if(istype(L.loc, /turf/simulated/floor)) // Are they on LAVA?!
 									var/turf/simulated/floor/F = L.loc
 									if(F.lava)
@@ -2262,7 +2262,7 @@
 			if("retardify")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","RET")
-				for(var/mob/living/carbon/human/H in player_list)
+				for(var/mob/living/carbon/human/H in GLOBL.player_list)
 					H << "\red <B>You suddenly feel stupid.</B>"
 					H.setBrainLoss(60)
 				message_admins("[key_name_admin(usr)] made everybody retarded")
@@ -2297,7 +2297,7 @@
 			if("dorf")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","DF")
-				for(var/mob/living/carbon/human/B in mob_list)
+				for(var/mob/living/carbon/human/B in GLOBL.mob_list)
 					B.f_style = "Dward Beard"
 					B.update_hair()
 				message_admins("[key_name_admin(usr)] activated dorf mode")
@@ -2394,7 +2394,7 @@
 			if("manifest")
 				var/dat = "<B>Showing Crew Manifest.</B><HR>"
 				dat += "<table cellspacing=5><tr><th>Name</th><th>Position</th></tr>"
-				for(var/mob/living/carbon/human/H in mob_list)
+				for(var/mob/living/carbon/human/H in GLOBL.mob_list)
 					if(H.ckey)
 						dat += text("<tr><td>[]</td><td>[]</td></tr>", H.name, H.get_assignment())
 				dat += "</table>"
@@ -2404,7 +2404,7 @@
 			if("DNA")
 				var/dat = "<B>Showing DNA from blood.</B><HR>"
 				dat += "<table cellspacing=5><tr><th>Name</th><th>DNA</th><th>Blood Type</th></tr>"
-				for(var/mob/living/carbon/human/H in mob_list)
+				for(var/mob/living/carbon/human/H in GLOBL.mob_list)
 					if(H.dna && H.ckey)
 						dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.b_type]</td></tr>"
 				dat += "</table>"
@@ -2412,7 +2412,7 @@
 			if("fingerprints")
 				var/dat = "<B>Showing Fingerprints.</B><HR>"
 				dat += "<table cellspacing=5><tr><th>Name</th><th>Fingerprints</th></tr>"
-				for(var/mob/living/carbon/human/H in mob_list)
+				for(var/mob/living/carbon/human/H in GLOBL.mob_list)
 					if(H.ckey)
 						if(H.dna && H.dna.uni_identity)
 							dat += "<tr><td>[H]</td><td>[md5(H.dna.uni_identity)]</td></tr>"

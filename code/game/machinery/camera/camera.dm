@@ -74,7 +74,7 @@
 				cancelCameraAlarm()
 				if(can_use())
 					cameranet.addCamera(src)
-			for(var/mob/O in mob_list)
+			for(var/mob/O in GLOBL.mob_list)
 				if(istype(O.machine, /obj/machinery/computer/security))
 					var/obj/machinery/computer/security/S = O.machine
 					if(S.current == src)
@@ -153,7 +153,7 @@
 			itemname = P.name
 			info = P.notehtml
 		to_chat(U, "You hold \a [itemname] up to the camera...")
-		for(var/mob/living/silicon/ai/O in living_mob_list)
+		for(var/mob/living/silicon/ai/O in GLOBL.living_mob_list)
 			if(!O.client)
 				continue
 			if(U.name == "Unknown")
@@ -161,7 +161,7 @@
 			else
 				to_chat(O, "<b><a href='byond://?src=\ref[O];track2=\ref[O];track=\ref[U]'>[U]</a></b> holds \a [itemname] up to one of your cameras...")
 			O << browse("<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>", "window=[itemname]")
-		for(var/mob/O in player_list)
+		for(var/mob/O in GLOBL.player_list)
 			if(istype(O.machine, /obj/machinery/computer/security))
 				var/obj/machinery/computer/security/S = O.machine
 				if(S.current == src)
@@ -206,7 +206,7 @@
 	// now disconnect anyone using the camera
 	//Apparently, this will disconnect anyone even if the camera was re-activated.
 	//I guess that doesn't matter since they can't use it anyway?
-	for(var/mob/O in player_list)
+	for(var/mob/O in GLOBL.player_list)
 		if(istype(O.machine, /obj/machinery/computer/security))
 			var/obj/machinery/computer/security/S = O.machine
 			if(S.current == src)
@@ -216,12 +216,12 @@
 
 /obj/machinery/camera/proc/triggerCameraAlarm()
 	alarm_on = 1
-	for(var/mob/living/silicon/S in mob_list)
+	for(var/mob/living/silicon/S in GLOBL.mob_list)
 		S.triggerAlarm("Camera", get_area(src), list(src), src)
 
 /obj/machinery/camera/proc/cancelCameraAlarm()
 	alarm_on = 0
-	for(var/mob/living/silicon/S in mob_list)
+	for(var/mob/living/silicon/S in GLOBL.mob_list)
 		S.cancelAlarm("Camera", get_area(src), src)
 
 /obj/machinery/camera/proc/can_use()

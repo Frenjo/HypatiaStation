@@ -8,7 +8,7 @@
 
 	log_admin("[key_name(src)] played sound [S]")
 	message_admins("[key_name_admin(src)] played sound [S]", 1)
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOBL.player_list)
 		if(M.client.prefs.toggles & SOUND_MIDI)
 			M << uploaded_sound
 

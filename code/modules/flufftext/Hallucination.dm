@@ -372,7 +372,7 @@ var/list/non_fakeattack_weapons = list(
 	var/mob/living/carbon/human/clone = null
 	var/clone_weapon = null
 
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
 		if(H.stat || H.lying)
 			continue
 //		possible_clones += H

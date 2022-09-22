@@ -10,38 +10,6 @@
 
 /datum/reagents/New(maximum = 100)
 	maximum_volume = maximum
-	//I dislike having these here but map-objects are initialised before world/New() is called. >_>
-	if(!global.chemical_reagents_list)
-		//Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
-		var/paths = SUBTYPESOF(/datum/reagent)
-		global.chemical_reagents_list = list()
-		for(var/path in paths)
-			var/datum/reagent/D = new path()
-			global.chemical_reagents_list[D.id] = D
-
-	if(!global.chemical_reactions_list)
-		//Chemical Reactions - Initialises all /datum/chemical_reaction into a list
-		// It is filtered into multiple lists within a list.
-		// For example:
-		// chemical_reaction_list["plasma"] is a list of all reactions relating to plasma
-		var/paths = SUBTYPESOF(/datum/chemical_reaction)
-		global.chemical_reactions_list = list()
-
-		for(var/path in paths)
-			var/datum/chemical_reaction/D = new path()
-			var/list/reaction_ids = list()
-
-			if(D.required_reagents && D.required_reagents.len)
-				for(var/reaction in D.required_reagents)
-					reaction_ids += reaction
-
-			// Create filters based on each reagent id in the required reagents list
-			for(var/id in reaction_ids)
-				if(!global.chemical_reactions_list[id])
-					global.chemical_reactions_list[id] = list()
-				global.chemical_reactions_list[id] += D
-				break // Don't bother adding ourselves to other reagent ids, it is redundant.
-
 
 /datum/reagents/Destroy()
 	..()
@@ -295,7 +263,7 @@
 	do
 		reaction_occured = 0
 		for(var/datum/reagent/R in reagent_list) // Usually a small list
-			for(var/reaction in global.chemical_reactions_list[R.id]) // Was a big list but now it should be smaller since we filtered it with our reagent id
+			for(var/reaction in GLOBL.chemical_reactions_list[R.id]) // Was a big list but now it should be smaller since we filtered it with our reagent id
 				if(!reaction)
 					continue
 
@@ -525,7 +493,7 @@
 				handle_reactions()
 			return 0
 
-	var/datum/reagent/D = global.chemical_reagents_list[reagent]
+	var/datum/reagent/D = GLOBL.chemical_reagents_list[reagent]
 	if(D)
 		var/datum/reagent/R = new D.type()
 		reagent_list += R

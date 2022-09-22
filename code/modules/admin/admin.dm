@@ -23,7 +23,7 @@ var/global/floorIsLava = 0
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
-/datum/admins/proc/show_player_panel(var/mob/M in mob_list)
+/datum/admins/proc/show_player_panel(var/mob/M in GLOBL.mob_list)
 	set category = "Admin"
 	set name = "Show Player Panel"
 	set desc="Edit player (respawn, ban, heal, etc)"
@@ -549,7 +549,7 @@ var/global/floorIsLava = 0
 		<center><B>Game Panel</B></center><hr>\n
 		<A href='?src=\ref[src];c_mode=1'>Change Game Mode</A><br>
 		"}
-	if(global.master_mode == "secret")
+	if(global.ticker.master_mode == "secret")
 		dat += "<A href='?src=\ref[src];f_secret=1'>(Force Secret Mode)</A><br>"
 
 	dat += {"
@@ -848,8 +848,8 @@ var/global/floorIsLava = 0
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
 		message_admins("\blue [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
 		return //alert("Round end delayed", null, null, null, null, null)
-	global.roundstart_progressing = !global.roundstart_progressing
-	if(!global.roundstart_progressing)
+	global.ticker.roundstart_progressing = !global.ticker.roundstart_progressing
+	if(!global.ticker.roundstart_progressing)
 		world << "<b>The game start has been delayed.</b>"
 		log_admin("[key_name(usr)] delayed the game.")
 	else
@@ -899,7 +899,7 @@ var/global/floorIsLava = 0
 
 	world.Reboot()
 
-/datum/admins/proc/unprison(var/mob/M in mob_list)
+/datum/admins/proc/unprison(var/mob/M in GLOBL.mob_list)
 	set category = "Admin"
 	set name = "Unprison"
 	if (M.z == 2)
@@ -1013,7 +1013,7 @@ var/global/floorIsLava = 0
 	feedback_add_details("admin_verb", "SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/datum/admins/proc/show_traitor_panel(mob/M in mob_list)
+/datum/admins/proc/show_traitor_panel(mob/M in GLOBL.mob_list)
 	set category = "Admin"
 	set desc = "Edit mobs's memory and role"
 	set name = "Show Traitor Panel"
@@ -1057,7 +1057,7 @@ var/global/floorIsLava = 0
 
 /datum/admins/proc/output_ai_laws()
 	var/ai_number = 0
-	for(var/mob/living/silicon/S in mob_list)
+	for(var/mob/living/silicon/S in GLOBL.mob_list)
 		ai_number++
 		if(isAI(S))
 			usr << "<b>AI [key_name(S, usr)]'s laws:</b>"
@@ -1103,7 +1103,7 @@ var/global/floorIsLava = 0
 		H.regenerate_icons()
 
 
-/client/proc/cmd_mob_weaken(mob/living/carbon/human/M in mob_list)  // Copy Pasta from the old code, sadly :(
+/client/proc/cmd_mob_weaken(mob/living/carbon/human/M in GLOBL.mob_list)  // Copy Pasta from the old code, sadly :(
     set category = "Admin"
     set name = "Weaken"
     set desc = "Anti griffin', weaken!"
@@ -1114,7 +1114,7 @@ var/global/floorIsLava = 0
     message_admins("\blue [key_name(usr)] weakened [key_name(M)].",1)
     return
 
-/client/proc/cmd_mob_unweaken(mob/living/carbon/human/M in mob_list)  // Copy Pasta from the old code, sadly :(
+/client/proc/cmd_mob_unweaken(mob/living/carbon/human/M in GLOBL.mob_list)  // Copy Pasta from the old code, sadly :(
     set category = "Admin"
     set name = "Unweaken"
     set desc = "No griffin' let's get out."

@@ -12,6 +12,7 @@
 	tag = "landmark*[name]"
 	invisibility = INVISIBILITY_MAXIMUM
 
+	// TODO: Clean this up later because it's a nightmarish mess.
 	switch(name)	//some of these are probably obsolete
 		if("shuttle")
 			shuttle_z = z
@@ -60,13 +61,13 @@
 
 		//prisoners
 		if("prisonwarp")
-			global.prisonwarp += loc
+			GLOBL.prisonwarp += loc
 			delete_me = TRUE
 			return
 	//	if("mazewarp")
 	//		mazewarp += loc
 		if("Holding Facility")
-			global.holdingfacility += loc
+			GLOBL.holdingfacility += loc
 		if("tdome1")
 			GLOBL.tdome1	+= loc
 		if("tdome2")
@@ -77,7 +78,7 @@
 			GLOBL.tdomeobserve += loc
 		//not prisoners
 		if("prisonsecuritywarp")
-			global.prisonsecuritywarp += loc
+			GLOBL.prisonsecuritywarp += loc
 			delete_me = TRUE
 			return
 
@@ -87,7 +88,7 @@
 			return
 
 		if("xeno_spawn")
-			global.xeno_spawn += loc
+			GLOBL.xeno_spawn += loc
 			delete_me = TRUE
 			return
 
@@ -97,7 +98,7 @@
 			return
 
 	GLOBL.landmarks_list += src
-	return 1
+	return
 
 /obj/effect/landmark/initialize()
 	..()

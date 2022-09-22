@@ -3,10 +3,6 @@
  */
 GLOBAL_BYOND_TYPED(master_controller, /datum/controller/master) // Set in world/New()
 
-/var/global/controller_iteration = 0
-/var/global/last_tick_timeofday = world.timeofday
-/var/global/last_tick_duration = 0
-
 GLOBAL_BYOND_INIT(air_processing_killed, FALSE)
 GLOBAL_BYOND_INIT(pipe_processing_killed, FALSE)
 

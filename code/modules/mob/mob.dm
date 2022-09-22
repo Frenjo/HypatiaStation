@@ -1,15 +1,15 @@
 /mob/New()
 	..()
-	mob_list += src
+	GLOBL.mob_list += src
 	if(stat == DEAD)
-		dead_mob_list += src
+		GLOBL.dead_mob_list += src
 	else
-		living_mob_list += src
+		GLOBL.living_mob_list += src
 
 /mob/Destroy()	//This makes sure that mobs with clients/keys are not just deleted from the game.
-	mob_list -= src
-	dead_mob_list -= src
-	living_mob_list -= src
+	GLOBL.mob_list -= src
+	GLOBL.dead_mob_list -= src
+	GLOBL.living_mob_list -= src
 	qdel(hud_used)
 	if(mind && mind.current == src)
 		spellremove(src)
@@ -68,7 +68,7 @@
 		M.show_message(message, 1, blind_message, 2)
 
 /mob/proc/findname(msg)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOBL.mob_list)
 		if(M.real_name == msg)
 			return M
 	return 0
@@ -524,7 +524,7 @@ var/list/slot_equipment_priority = list(
 			creatures[name] = O
 
 
-	for(var/mob/M in sortAtom(mob_list))
+	for(var/mob/M in sortAtom(GLOBL.mob_list))
 		var/name = M.name
 		if(names.Find(name))
 			namecounts[name]++

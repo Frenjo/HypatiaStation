@@ -6,6 +6,6 @@
 
 	command += "<br><span class='alert'>[html_encode(text)]</span><br>"
 	command += "<br>"
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOBL.player_list)
 		if(!istype(M, /mob/new_player))
 			to_chat(M, command)

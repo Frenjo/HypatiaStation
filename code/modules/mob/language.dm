@@ -14,7 +14,7 @@
 /datum/language/proc/broadcast(var/mob/living/speaker, var/message, var/speaker_mask)
 	log_say("[key_name(speaker)] : ([name]) [message]")
 
-	for(var/mob/player in player_list)
+	for(var/mob/player in GLOBL.player_list)
 		var/understood = 0
 		if(istype(player, /mob/dead))
 			understood = 1
@@ -160,11 +160,11 @@
 	var/message_start = "<i><span class='game say'>[name], <span class='name'>[speaker.name]</span>"
 	var/message_body = "<span class='message'>[speaker.say_quote(message)], \"[message]\"</span></span></i>"
 
-	for (var/mob/M in dead_mob_list)
+	for (var/mob/M in GLOBL.dead_mob_list)
 		if(!istype(M, /mob/new_player) && !istype(M, /mob/living/carbon/brain)) //No meta-evesdropping
 			M.show_message("[message_start] [message_body]", 2)
 
-	for (var/mob/living/S in living_mob_list)
+	for (var/mob/living/S in GLOBL.living_mob_list)
 		if(drone_only && !istype(S, /mob/living/silicon/robot/drone))
 			continue
 		if(istype(S, /mob/living/silicon/ai))

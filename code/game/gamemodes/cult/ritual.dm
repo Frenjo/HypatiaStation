@@ -68,7 +68,7 @@ var/engwords = list(
 	..()
 	var/image/blood = image(loc = src)
 	blood.override = 1
-	for(var/mob/living/silicon/ai/AI in player_list)
+	for(var/mob/living/silicon/ai/AI in GLOBL.player_list)
 		AI.client.images += blood
 
 /obj/effect/rune/examine()

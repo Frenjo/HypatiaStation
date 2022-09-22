@@ -549,7 +549,7 @@ var/global/list/uneatable = list(
 		acquire(pick(cultists))
 		return
 		//If there was living cultists, it picks one to follow.
-	for(var/mob/living/carbon/human/food in living_mob_list)
+	for(var/mob/living/carbon/human/food in GLOBL.living_mob_list)
 		if(food.stat)
 			continue
 		var/turf/pos = get_turf(food)
@@ -560,7 +560,7 @@ var/global/list/uneatable = list(
 		acquire(pick(cultists))
 		return
 		//no living cultists, pick a living human instead.
-	for(var/mob/dead/observer/ghost in player_list)
+	for(var/mob/dead/observer/ghost in GLOBL.player_list)
 		if(!ghost.client)
 			continue
 		var/turf/pos = get_turf(ghost)

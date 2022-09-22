@@ -16,7 +16,7 @@
 	my_client = client
 
 	sight |= SEE_TURFS
-	player_list |= src
+	GLOBL.player_list |= src
 
 	new_player_panel()
 	spawn(40)

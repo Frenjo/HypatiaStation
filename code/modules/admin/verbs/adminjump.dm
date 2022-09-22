@@ -34,7 +34,7 @@
 		alert("Admin jumping disabled")
 	return
 
-/client/proc/jumptomob(mob/M in mob_list)
+/client/proc/jumptomob(mob/M in GLOBL.mob_list)
 	set category = "Admin"
 	set name = "Jump to Mob"
 
@@ -88,7 +88,7 @@
 
 	if(config.allow_admin_jump)
 		var/list/keys = list()
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOBL.player_list)
 			keys += M.client
 		var/selection = input("Please, select a player!", "Admin Jumping", null, null) as null | anything in sortKey(keys)
 		if(!selection)
@@ -103,7 +103,7 @@
 		alert("Admin jumping disabled")
 
 
-/client/proc/Getmob(mob/M in mob_list)
+/client/proc/Getmob(mob/M in GLOBL.mob_list)
 	set category = "Admin"
 	set name = "Get Mob"
 	set desc = "Mob to teleport"
@@ -132,7 +132,7 @@
 
 	if(config.allow_admin_jump)
 		var/list/keys = list()
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOBL.player_list)
 			keys += M.client
 		var/selection = input("Please, select a player!", "Admin Jumping", null, null) as null | anything in sortKey(keys)
 		if(!selection)

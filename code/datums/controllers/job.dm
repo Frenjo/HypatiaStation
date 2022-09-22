@@ -127,7 +127,7 @@ GLOBAL_BYOND_TYPED(job_master, /datum/controller/occupations) // Set in /datum/c
 			break
 
 /datum/controller/occupations/proc/reset_occupations()
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOBL.player_list)
 		if((player) && (player.mind))
 			player.mind.assigned_role = null
 			player.mind.special_role = null
@@ -247,7 +247,7 @@ GLOBAL_BYOND_TYPED(job_master, /datum/controller/occupations) // Set in /datum/c
 				A.spawn_positions = 3
 
 	//Get the players who are ready
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOBL.player_list)
 		if(player.ready && player.mind && !player.mind.assigned_role)
 			unassigned += player
 
@@ -557,7 +557,7 @@ GLOBAL_BYOND_TYPED(job_master, /datum/controller/occupations) // Set in /datum/c
 		var/level4 = 0 //never
 		var/level5 = 0 //banned
 		var/level6 = 0 //account too young
-		for(var/mob/new_player/player in player_list)
+		for(var/mob/new_player/player in GLOBL.player_list)
 			if(!(player.ready && player.mind && !player.mind.assigned_role))
 				continue //This player is not ready
 			if(jobban_isbanned(player, job.title))

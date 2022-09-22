@@ -154,7 +154,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	feedback_add_details("admin_verb", "ASL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/cmd_admin_robotize(mob/M in mob_list)
+/client/proc/cmd_admin_robotize(mob/M in GLOBL.mob_list)
 	set category = "Fun"
 	set name = "Make Robot"
 
@@ -170,7 +170,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("Invalid mob")
 
 
-/client/proc/cmd_admin_animalize(mob/M in mob_list)
+/client/proc/cmd_admin_animalize(mob/M in GLOBL.mob_list)
 	set category = "Fun"
 	set name = "Make Simple Animal"
 
@@ -191,13 +191,13 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		M.Animalize()
 
 
-/client/proc/makepAI(turf/T in mob_list)
+/client/proc/makepAI(turf/T in GLOBL.mob_list)
 	set category = "Fun"
 	set name = "Make pAI"
 	set desc = "Specify a location to spawn a pAI device, then specify a key to play that pAI"
 
 	var/list/available = list()
-	for(var/mob/C in mob_list)
+	for(var/mob/C in GLOBL.mob_list)
 		if(C.key)
 			available.Add(C)
 	var/mob/choice = input("Choose a player to play the pAI", "Spawn pAI") in available
@@ -218,7 +218,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			global.pAI_controller.pAI_candidates.Remove(candidate)
 	feedback_add_details("admin_verb", "MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_alienize(mob/M in mob_list)
+/client/proc/cmd_admin_alienize(mob/M in GLOBL.mob_list)
 	set category = "Fun"
 	set name = "Make Alien"
 
@@ -235,7 +235,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	else
 		alert("Invalid mob")
 
-/client/proc/cmd_admin_slimeize(mob/M in mob_list)
+/client/proc/cmd_admin_slimeize(mob/M in GLOBL.mob_list)
 	set category = "Fun"
 	set name = "Make slime"
 
@@ -379,7 +379,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	feedback_add_details("admin_verb", "TAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/cmd_admin_grantfullaccess(mob/M in mob_list)
+/client/proc/cmd_admin_grantfullaccess(mob/M in GLOBL.mob_list)
 	set category = "Admin"
 	set name = "Grant Full Access"
 
@@ -411,7 +411,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	message_admins(SPAN_INFO("[key_name_admin(usr)] has granted [M.key] full access."), 1)
 
 
-/client/proc/cmd_assume_direct_control(mob/M in mob_list)
+/client/proc/cmd_assume_direct_control(mob/M in GLOBL.mob_list)
 	set category = "Admin"
 	set name = "Assume direct control"
 	set desc = "Direct intervention"
@@ -533,7 +533,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		world << "* [areatype]"
 
 
-/client/proc/cmd_admin_dress(mob/living/carbon/human/M in mob_list)
+/client/proc/cmd_admin_dress(mob/living/carbon/human/M in GLOBL.mob_list)
 	set category = "Fun"
 	set name = "Select equipment"
 
@@ -988,15 +988,15 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	switch(input("Which list?") in list("Players", "Admins", "Mobs", "Living Mobs", "Dead Mobs", "Clients"))
 		if("Players")
-			to_chat(usr, jointext(player_list, ","))
+			to_chat(usr, jointext(GLOBL.player_list, ","))
 		if("Admins")
 			to_chat(usr, jointext(GLOBL.admins, ","))
 		if("Mobs")
-			to_chat(usr, jointext(mob_list, ","))
+			to_chat(usr, jointext(GLOBL.mob_list, ","))
 		if("Living Mobs")
-			to_chat(usr, jointext(living_mob_list, ","))
+			to_chat(usr, jointext(GLOBL.living_mob_list, ","))
 		if("Dead Mobs")
-			to_chat(usr, jointext(dead_mob_list, ","))
+			to_chat(usr, jointext(GLOBL.dead_mob_list, ","))
 		if("Clients")
 			to_chat(usr, jointext(GLOBL.clients, ","))
 

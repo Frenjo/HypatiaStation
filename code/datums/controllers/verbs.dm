@@ -1,7 +1,7 @@
 /*
  * Controller Verbs
  */
-/client/proc/restart_controller(controller in list("Supply Shuttle"))
+/client/proc/restart_controller(controller in list("Supply"))
 	set category = "Debug"
 	set name = "Restart Controller"
 	set desc = "Restart one of the various periodic loop controllers for the game (be careful!)"
@@ -11,8 +11,8 @@
 	usr = null
 	qdel(src)
 	switch(controller)
-		if("Supply Shuttle")
-			global.supply_controller.process() // Edited this to reflect 'shuttles' port. -Frenjo
+		if("Supply")
+			global.supply_controller.process()
 			feedback_add_details("admin_verb", "RSupply")
 	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
 	return

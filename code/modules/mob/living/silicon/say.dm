@@ -90,7 +90,7 @@
 			if(D.client && istype(D, src.type))
 				D << "<b>[src]</b> transmits, \"[message]\""
 
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOBL.player_list)
 			if(istype(M, /mob/new_player))
 				continue
 			else if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)

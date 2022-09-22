@@ -354,7 +354,7 @@
 		return
 
 	if(href_list["role_edit"])
-		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in global.joblist
+		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in GLOBL.joblist
 		if(!new_role)
 			return
 		assigned_role = new_role

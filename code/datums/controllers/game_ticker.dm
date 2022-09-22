@@ -9,6 +9,13 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 	var/const/restart_timeout = 600
 	var/current_state = GAME_STATE_PREGAME
 
+	// Whether or not the lobby timer is counting down.
+	var/static/roundstart_progressing = TRUE
+	// "extended"
+	var/static/master_mode = "extended"
+	// If this is anything but "secret", the secret rotation will forceably choose this mode.
+	var/static/secret_force_mode = "secret"
+
 	var/hide_mode = FALSE
 	var/datum/game_mode/mode = null
 	var/event_time = null
@@ -63,7 +70,7 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 			for(var/i = 0, i < 10, i++)
 				sleep(1)
 				global.vote.process()
-			if(global.roundstart_progressing)
+			if(roundstart_progressing)
 				pregame_timeleft--
 /*			if(pregame_timeleft == config.vote_autogamemode_timeleft)
 				if(!vote.time_remaining)
@@ -78,19 +85,19 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 
 /datum/controller/game_ticker/setup()
 	//Create and announce mode
-	if(global.master_mode == "secret")
+	if(master_mode == "secret")
 		src.hide_mode = TRUE
 	var/list/datum/game_mode/runnable_modes
-	if(global.master_mode == "random" || global.master_mode == "secret")
+	if(master_mode == "random" || master_mode == "secret")
 		runnable_modes = config.get_runnable_modes()
 		if(runnable_modes.len == 0)
 			current_state = GAME_STATE_PREGAME
 			to_world("<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby.")
 			return 0
-		if(global.secret_force_mode != "secret")
-			var/datum/game_mode/M = config.pick_mode(global.secret_force_mode)
+		if(secret_force_mode != "secret")
+			var/datum/game_mode/M = config.pick_mode(secret_force_mode)
 			if(M.can_start())
-				src.mode = config.pick_mode(global.secret_force_mode)
+				src.mode = config.pick_mode(secret_force_mode)
 		job_master.reset_occupations()
 		if(!src.mode)
 			src.mode = pickweight(runnable_modes)
@@ -98,7 +105,7 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 			var/mtype = src.mode.type
 			src.mode = new mtype
 	else
-		src.mode = config.pick_mode(global.master_mode)
+		src.mode = config.pick_mode(master_mode)
 	if(!src.mode.can_start())
 		to_world("<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
 		qdel(mode)
@@ -112,7 +119,7 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 	if(!can_continue)
 		qdel(mode)
 		current_state = GAME_STATE_PREGAME
-		to_world("<B>Error setting up [global.master_mode].</B> Reverting to pre-game lobby.")
+		to_world("<B>Error setting up [master_mode].</B> Reverting to pre-game lobby.")
 		job_master.reset_occupations()
 		return 0
 
@@ -187,12 +194,12 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 	var/obj/structure/stool/bed/temp_buckle = new(src)
 	//Incredibly hackish. It creates a bed within the gameticker (lol) to stop mobs running around
 	if(station_missed)
-		for(var/mob/living/M in living_mob_list)
+		for(var/mob/living/M in GLOBL.living_mob_list)
 			M.buckled = temp_buckle				//buckles the mob so it can't do anything
 			if(M.client)
 				M.client.screen += cinematic	//show every client the cinematic
 	else	//nuke kills everyone on z-level 1 to prevent "hurr-durr I survived"
-		for(var/mob/living/M in living_mob_list)
+		for(var/mob/living/M in GLOBL.living_mob_list)
 			M.buckled = temp_buckle
 			if(M.client)
 				M.client.screen += cinematic
@@ -257,7 +264,7 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 					flick("station_explode_fade_red", cinematic)
 					world << sound('sound/effects/explosionfar.ogg')
 					cinematic.icon_state = "summary_selfdes"
-			for(var/mob/living/M in living_mob_list)
+			for(var/mob/living/M in GLOBL.living_mob_list)
 				if(isStationLevel(M.loc.z))
 					M.death()//No mercy
 	//If its actually the end of the round, wait for it to end.
@@ -271,7 +278,7 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 	return
 
 /datum/controller/game_ticker/proc/create_characters()
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOBL.player_list)
 		if(player.ready && player.mind)
 			if(player.mind.assigned_role == "AI")
 				player.close_spawn_windows()
@@ -283,13 +290,13 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 				qdel(player)
 
 /datum/controller/game_ticker/proc/collect_minds()
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOBL.player_list)
 		if(player.mind)
 			ticker.minds += player.mind
 
 /datum/controller/game_ticker/proc/equip_characters()
 	var/captainless = 1
-	for(var/mob/living/carbon/human/player in player_list)
+	for(var/mob/living/carbon/human/player in GLOBL.player_list)
 		if(player && player.mind && player.mind.assigned_role)
 			if(player.mind.assigned_role == "Captain")
 				captainless = 0
@@ -297,7 +304,7 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 				job_master.equip_rank(player, player.mind.assigned_role, 0)
 				EquipCustomItems(player)
 	if(captainless)
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOBL.player_list)
 			if(!istype(M, /mob/new_player))
 				to_chat(M, "Captainship not forced on anyone.")
 
@@ -346,7 +353,7 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 			return F
 
 /datum/controller/game_ticker/proc/declare_completion()
-	for(var/mob/living/silicon/ai/aiPlayer in mob_list)
+	for(var/mob/living/silicon/ai/aiPlayer in GLOBL.mob_list)
 		if(aiPlayer.stat != DEAD)
 			to_world("<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the game were:</b>")
 		else
@@ -359,7 +366,7 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 				robolist += "[robo.name][robo.stat ?" (Deactivated) (Played by: [robo.key]), " : " (Played by: [robo.key]), "]"
 			to_world(robolist)
 
-	for(var/mob/living/silicon/robot/robo in mob_list)
+	for(var/mob/living/silicon/robot/robo in GLOBL.mob_list)
 		if(!robo.connected_ai)
 			if(robo.stat != DEAD)
 				to_world("<b>[robo.name] (Played by: [robo.key]) survived as an AI-less borg! Its laws were:</b>")

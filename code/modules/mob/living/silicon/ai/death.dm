@@ -24,7 +24,7 @@
 			break
 		callshuttle++
 
-	for(var/mob/living/silicon/ai/shuttlecaller in player_list)
+	for(var/mob/living/silicon/ai/shuttlecaller in GLOBL.player_list)
 		if(shuttlecaller.z == 2)
 			continue
 		if(!shuttlecaller.stat && shuttlecaller.client && istype(shuttlecaller.loc,/turf))

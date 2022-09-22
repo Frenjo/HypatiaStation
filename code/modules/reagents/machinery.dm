@@ -138,7 +138,7 @@
 
 	var chemicals[0]
 	for(var/re in dispensable_reagents)
-		var/datum/reagent/temp = global.chemical_reagents_list[re]
+		var/datum/reagent/temp = GLOBL.chemical_reagents_list[re]
 		if(temp)
 			chemicals.Add(list(list("title" = temp.name, "id" = temp.id, "commands" = list("dispense" = temp.id)))) // list in a list because Byond merges the first list...
 	data["chemicals"] = chemicals

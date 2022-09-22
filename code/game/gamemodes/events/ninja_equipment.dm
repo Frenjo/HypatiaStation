@@ -1058,7 +1058,7 @@ ________________________________________________________________________________
 			U << "\blue Hacking \the [A]..."
 			spawn(0)
 				var/turf/location = get_turf(U)
-				for(var/mob/living/silicon/ai/AI in player_list)
+				for(var/mob/living/silicon/ai/AI in GLOBL.player_list)
 					AI << "\red <b>Network Alert: Hacking attempt detected[location?" in [location]":". Unable to pinpoint location"]</b>."
 			if(A:files&&A:files.known_tech.len)
 				for(var/datum/tech/current_data in S.stored_research)
@@ -1279,7 +1279,7 @@ ________________________________________________________________________________
 				voice = "[pick(GLOBL.wizard_first)] [pick(GLOBL.wizard_second)]"
 			if(91 to 100)//Small chance of an existing crew name.
 				var/names[] = new()
-				for(var/mob/living/carbon/human/M in player_list)
+				for(var/mob/living/carbon/human/M in GLOBL.player_list)
 					if(M==U||!M.client||!M.real_name)	continue
 					names.Add(M.real_name)
 				voice = !names.len ? "Cuban Pete" : pick(names)
@@ -1380,7 +1380,7 @@ It is possible to destroy the net by the occupant or someone else.
 			playsound(M.loc, 'sound/effects/sparks4.ogg', 50, 1)
 			anim(M.loc,M,'icons/mob/mob.dmi',,"phaseout",,M.dir)
 
-		M.loc = pick(global.holdingfacility)//Throw mob in to the holding facility.
+		M.loc = pick(GLOBL.holdingfacility)//Throw mob in to the holding facility.
 		M << "\red You appear in a strange place!"
 
 		spawn(0)

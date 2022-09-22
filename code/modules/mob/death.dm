@@ -7,7 +7,7 @@
 	icon = null
 	invisibility = INVISIBILITY_MAXIMUM
 	update_canmove()
-	dead_mob_list -= src
+	GLOBL.dead_mob_list -= src
 
 	var/atom/movable/overlay/animation = null
 	animation = new(loc)
@@ -45,7 +45,7 @@
 	flick(anim, animation)
 	new remains(loc)
 
-	dead_mob_list -= src
+	GLOBL.dead_mob_list -= src
 	spawn(15)
 		if(animation)
 			qdel(animation)
@@ -85,9 +85,9 @@
 	timeofdeath = world.time
 	if(mind)
 		mind.store_memory("Time of death: [worldtime2text()]", 0)
-	living_mob_list -= src
+	GLOBL.living_mob_list -= src
 
-	dead_mob_list |= src
+	GLOBL.dead_mob_list |= src
 
 	updateicon()
 

@@ -39,7 +39,7 @@
 	var/mob/living/silicon/malfAI = null
 	var/datum/mind/themind = null
 
-	for(var/mob/living/silicon/ai/ai in player_list)
+	for(var/mob/living/silicon/ai/ai in GLOBL.player_list)
 		if(ai.client)
 			AIs += ai
 
@@ -63,7 +63,7 @@
 	var/list/mob/living/carbon/human/candidates = list()
 	var/mob/living/carbon/human/H = null
 
-	for(var/mob/living/carbon/human/applicant in player_list)
+	for(var/mob/living/carbon/human/applicant in GLOBL.player_list)
 		if(applicant.client.prefs.be_special & BE_TRAITOR)
 			if(!applicant.stat)
 				if(applicant.mind)
@@ -95,7 +95,7 @@
 	var/list/mob/living/carbon/human/candidates = list()
 	var/mob/living/carbon/human/H = null
 
-	for(var/mob/living/carbon/human/applicant in player_list)
+	for(var/mob/living/carbon/human/applicant in GLOBL.player_list)
 		if(applicant.client.prefs.be_special & BE_CHANGELING)
 			if(!applicant.stat)
 				if(applicant.mind)
@@ -125,7 +125,7 @@
 	var/list/mob/living/carbon/human/candidates = list()
 	var/mob/living/carbon/human/H = null
 
-	for(var/mob/living/carbon/human/applicant in player_list)
+	for(var/mob/living/carbon/human/applicant in GLOBL.player_list)
 		if(applicant.client.prefs.be_special & BE_REV)
 			if(applicant.stat == CONSCIOUS)
 				if(applicant.mind)
@@ -150,7 +150,7 @@
 	var/mob/dead/observer/theghost = null
 	var/time_passed = world.time
 
-	for(var/mob/dead/observer/G in player_list)
+	for(var/mob/dead/observer/G in GLOBL.player_list)
 		if(!jobban_isbanned(G, "wizard") && !jobban_isbanned(G, "Syndicate"))
 			spawn(0)
 				switch(alert(G, "Do you wish to be considered for the position of Space Wizard Foundation 'diplomat'?","Please answer in 30 seconds!","Yes","No"))
@@ -190,7 +190,7 @@
 	var/list/mob/living/carbon/human/candidates = list()
 	var/mob/living/carbon/human/H = null
 
-	for(var/mob/living/carbon/human/applicant in player_list)
+	for(var/mob/living/carbon/human/applicant in GLOBL.player_list)
 		if(applicant.client.prefs.be_special & BE_CULTIST)
 			if(applicant.stat == CONSCIOUS)
 				if(applicant.mind)
@@ -220,7 +220,7 @@
 	var/mob/dead/observer/theghost = null
 	var/time_passed = world.time
 
-	for(var/mob/dead/observer/G in player_list)
+	for(var/mob/dead/observer/G in GLOBL.player_list)
 		if(!jobban_isbanned(G, "operative") && !jobban_isbanned(G, "Syndicate"))
 			spawn(0)
 				switch(alert(G,"Do you wish to be considered for a nuke team being sent in?","Please answer in 30 seconds!","Yes","No"))
@@ -325,7 +325,7 @@
 	var/syndicate_leader_selected = 0 //when the leader is chosen. The last person spawned.
 
 	//Generates a list of commandos from active ghosts. Then the user picks which characters to respawn as the commandos.
-	for(var/mob/dead/observer/G in player_list)
+	for(var/mob/dead/observer/G in GLOBL.player_list)
 		spawn(0)
 			switch(alert(G,"Do you wish to be considered for an elite syndicate strike team being sent in?","Please answer in 30 seconds!","Yes","No"))
 				if("Yes")
@@ -442,7 +442,7 @@
 	var/leader_chosen = 0 //when the leader is chosen. The last person spawned.
 
 	//Generates a list of candidates from active ghosts.
-	for(var/mob/dead/observer/G in player_list)
+	for(var/mob/dead/observer/G in GLOBL.player_list)
 		spawn(0)
 			switch(alert(G,"Do you wish to be considered for a vox raiding party arriving on the station?","Please answer in 30 seconds!","Yes","No"))
 				if("Yes")

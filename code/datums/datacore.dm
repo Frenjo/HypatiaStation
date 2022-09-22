@@ -41,7 +41,7 @@
 		var/real_rank = t.fields["real_rank"]
 		if(OOC)
 			var/active = FALSE
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOBL.player_list)
 				if(M.real_name == name && M.client && M.client.inactivity <= 10 * 60 * 10)
 					active = TRUE
 					break
@@ -207,7 +207,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 	return global.pda_manifest
 
 /datum/datacore/proc/manifest()
-	for(var/mob/living/carbon/human/H in player_list)
+	for(var/mob/living/carbon/human/H in GLOBL.player_list)
 		manifest_inject(H)
 	return
 

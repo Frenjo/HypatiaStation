@@ -72,8 +72,8 @@
 	if(stat == DEAD)
 		if(health > 0)
 			icon_state = icon_living
-			dead_mob_list -= src
-			living_mob_list += src
+			GLOBL.dead_mob_list -= src
+			GLOBL.living_mob_list += src
 			stat = CONSCIOUS
 			density = TRUE
 		return 0
@@ -328,8 +328,8 @@
 	stat("Health:", "[round((health / maxHealth) * 100)]%")
 
 /mob/living/simple_animal/proc/Die()
-	living_mob_list -= src
-	dead_mob_list += src
+	GLOBL.living_mob_list -= src
+	GLOBL.dead_mob_list += src
 	icon_state = icon_dead
 	stat = DEAD
 	density = FALSE

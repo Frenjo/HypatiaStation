@@ -74,7 +74,7 @@
 		var/playercount = 0
 		var/traitorcount = 0
 		var/possible_traitors[0]
-		for(var/mob/living/player in mob_list)
+		for(var/mob/living/player in GLOBL.mob_list)
 			if(player.client && player.stat != DEAD)
 				playercount += 1
 			if(player.client && player.mind && player.mind.special_role && player.stat != DEAD)
@@ -151,7 +151,7 @@
 		//message_admins("Checking number of players")
 		var/playercount = 0
 		var/traitorcount = 0
-		for(var/mob/living/player in mob_list)
+		for(var/mob/living/player in GLOBL.mob_list)
 			if(player.client && player.stat != DEAD)
 				playercount += 1
 			if(player.client && player.mind && player.mind.special_role && player.stat != DEAD)

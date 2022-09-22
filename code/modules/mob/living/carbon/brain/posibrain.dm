@@ -30,7 +30,7 @@
 	src.brainmob.stat = 0
 	src.brainmob.silent = 0
 	src.brainmob.brain_op_stage = 4.0
-	dead_mob_list -= src.brainmob
+	GLOBL.dead_mob_list -= src.brainmob
 
 	..()
 
@@ -45,7 +45,7 @@
 			reset_search()
 
 /obj/item/device/mmi/posibrain/proc/request_player()
-	for(var/mob/dead/observer/O in player_list)
+	for(var/mob/dead/observer/O in GLOBL.player_list)
 		if(O.has_enabled_antagHUD == 1 && config.antag_hud_restricted)
 			continue
 		if(jobban_isbanned(O, "pAI"))

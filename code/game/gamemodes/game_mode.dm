@@ -80,11 +80,11 @@ Implants;
 ///Checks to see if the game can be setup and ran with the current number of players or whatnot.
 /datum/game_mode/proc/can_start()
 	var/playerC = 0
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOBL.player_list)
 		if(player.client && player.ready)
 			playerC++
 
-	if(global.master_mode == "secret")
+	if(global.ticker.master_mode == "secret")
 		if(playerC >= required_players_secret)
 			return 1
 	else
@@ -139,7 +139,7 @@ Implants;
 		/area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom, /area/shuttle/arrival/centcom
 	)
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOBL.player_list)
 		if(M.client)
 			clients++
 			if(ishuman(M))
@@ -202,7 +202,7 @@ Implants;
 	intercepttext += "<B> In case you have misplaced your copy, attached is a list of personnel whom reliable sources&trade; suspect may be affiliated with the Syndicate:</B><br>"
 
 	var/list/suspects = list()
-	for(var/mob/living/carbon/human/man in player_list)
+	for(var/mob/living/carbon/human/man in GLOBL.player_list)
 		if(man.client && man.mind)
 			// NT relation option
 			var/special_role = man.mind.special_role
@@ -279,7 +279,7 @@ Implants;
 			roletext = "raider"
 
 	// Assemble a list of active players without jobbans.
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOBL.player_list)
 		if(player.client && player.ready)
 			if(!jobban_isbanned(player, "Syndicate") && !jobban_isbanned(player, roletext))
 				players += player
@@ -379,7 +379,7 @@ Implants;
 
 /datum/game_mode/proc/num_players()
 	. = 0
-	for(var/mob/new_player/P in player_list)
+	for(var/mob/new_player/P in GLOBL.player_list)
 		if(P.client && P.ready)
 			. ++
 
@@ -389,7 +389,7 @@ Implants;
 ///////////////////////////////////
 /datum/game_mode/proc/get_living_heads()
 	var/list/heads = list()
-	for(var/mob/living/carbon/human/player in mob_list)
+	for(var/mob/living/carbon/human/player in GLOBL.mob_list)
 		if(player.stat!=2 && player.mind && (player.mind.assigned_role in command_positions))
 			heads += player.mind
 	return heads
@@ -400,7 +400,7 @@ Implants;
 ////////////////////////////
 /datum/game_mode/proc/get_all_heads()
 	var/list/heads = list()
-	for(var/mob/player in mob_list)
+	for(var/mob/player in GLOBL.mob_list)
 		if(player.mind && (player.mind.assigned_role in command_positions))
 			heads += player.mind
 	return heads
@@ -413,7 +413,7 @@ Implants;
 //////////////////////////
 /proc/display_roundstart_logout_report()
 	var/msg = "\blue <b>Roundstart logout report\n\n"
-	for(var/mob/living/L in mob_list)
+	for(var/mob/living/L in GLOBL.mob_list)
 
 		if(L.ckey)
 			var/found = 0
@@ -441,7 +441,7 @@ Implants;
 					continue //Dead
 
 			continue //Happy connected client
-		for(var/mob/dead/observer/D in mob_list)
+		for(var/mob/dead/observer/D in GLOBL.mob_list)
 			if(D.mind && (D.mind.original == L || D.mind.current == L))
 				if(L.stat == DEAD)
 					if(L.suiciding)	//Suicider
@@ -460,14 +460,14 @@ Implants;
 
 
 
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOBL.mob_list)
 		if(M.client && M.client.holder)
 			M << msg
 
 
 /proc/get_nt_opposed()
 	var/list/dudes = list()
-	for(var/mob/living/carbon/human/man in player_list)
+	for(var/mob/living/carbon/human/man in GLOBL.player_list)
 		if(man.client)
 			if(man.client.prefs.nanotrasen_relation == "Opposed")
 				dudes += man

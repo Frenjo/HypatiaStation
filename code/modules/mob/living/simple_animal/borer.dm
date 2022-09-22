@@ -15,7 +15,7 @@
 		src << "You whisper silently, \"[message]\""
 		B.host << "The captive mind of [src] whispers, \"[message]\""
 
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOBL.player_list)
 			if(istype(M, /mob/new_player))
 				continue
 			else if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
@@ -128,7 +128,7 @@
 	src << "You drop words into [host]'s mind: \"[message]\""
 	host << "Your own thoughts speak: \"[message]\""
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOBL.player_list)
 		if(istype(M, /mob/new_player))
 			continue
 		else if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
@@ -154,7 +154,7 @@
 	if(!message)
 		return
 
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOBL.mob_list)
 		if(M.mind && (istype(M, /mob/living/simple_animal/borer) || isobserver(M)))
 			M << "<i>Cortical link, <b>[truename]:</b> [copytext(message, 2)]</i>"
 
@@ -417,7 +417,7 @@
 
 //Procs for grabbing players.
 /mob/living/simple_animal/borer/proc/request_player()
-	for(var/mob/dead/observer/O in player_list)
+	for(var/mob/dead/observer/O in GLOBL.player_list)
 		if(jobban_isbanned(O, "Syndicate"))
 			continue
 		if(O.client)

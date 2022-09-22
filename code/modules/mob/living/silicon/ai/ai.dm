@@ -77,7 +77,7 @@ var/list/ai_verbs_default = list(
 	var/pickedName = null
 	while(!pickedName)
 		pickedName = pick(GLOBL.ai_names)
-		for (var/mob/living/silicon/ai/A in mob_list)
+		for (var/mob/living/silicon/ai/A in GLOBL.mob_list)
 			if (A.real_name == pickedName && possibleNames.len > 1) //fixing the theoretically possible infinite loop
 				possibleNames -= pickedName
 				pickedName = null
@@ -401,7 +401,7 @@ var/list/ai_verbs_default = list(
 		statelaws()
 
 	if(href_list["track"])
-		var/mob/target = locate(href_list["track"]) in mob_list
+		var/mob/target = locate(href_list["track"]) in GLOBL.mob_list
 		/*
 		var/mob/living/silicon/ai/A = locate(href_list["track2"]) in mob_list
 		if(A && target)
@@ -412,8 +412,8 @@ var/list/ai_verbs_default = list(
 		return
 
 	else if(href_list["faketrack"])
-		var/mob/target = locate(href_list["track"]) in mob_list
-		var/mob/living/silicon/ai/A = locate(href_list["track2"]) in mob_list
+		var/mob/target = locate(href_list["track"]) in GLOBL.mob_list
+		var/mob/living/silicon/ai/A = locate(href_list["track2"]) in GLOBL.mob_list
 		if(A && target)
 
 			A.cameraFollow = target

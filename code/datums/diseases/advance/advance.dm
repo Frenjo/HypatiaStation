@@ -247,7 +247,7 @@ var/list/advance_cures = list(
 		cure_id = advance_cures[res]
 
 		// Get the cure name from the cure_id
-		var/datum/reagent/D = global.chemical_reagents_list[cure_id]
+		var/datum/reagent/D = GLOBL.chemical_reagents_list[cure_id]
 		cure = D.name
 
 	return
@@ -380,7 +380,7 @@ var/list/advance_cures = list(
 		for(var/datum/disease/advance/AD in active_diseases)
 			AD.Refresh()
 
-		for(var/mob/living/carbon/human/H in shuffle(living_mob_list))
+		for(var/mob/living/carbon/human/H in shuffle(GLOBL.living_mob_list))
 			if(H.z != 1)
 				continue
 			if(!H.has_disease(D))

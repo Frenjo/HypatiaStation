@@ -7,7 +7,7 @@ the HUD updates properly! */
 	if(!can_process_hud(M))
 		return
 
-	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, global.med_hud_users)
+	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, GLOBL.med_hud_users)
 	for(var/mob/living/carbon/human/patient in P.Mob.in_view(P.Turf))
 		if(P.Mob.see_invisible < patient.invisibility)
 			continue
@@ -28,7 +28,7 @@ the HUD updates properly! */
 /proc/process_sec_hud(mob/M, advanced_mode, mob/Alt)
 	if(!can_process_hud(M))
 		return
-	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, global.sec_hud_users)
+	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, GLOBL.sec_hud_users)
 	for(var/mob/living/carbon/human/perp in P.Mob.in_view(P.Turf))
 		if(P.Mob.see_invisible < perp.invisibility)
 			continue
@@ -68,15 +68,15 @@ the HUD updates properly! */
 		for(var/image/hud in client.images)
 			if(copytext(hud.icon_state, 1, 4) == "hud")
 				client.images -= hud
-	global.med_hud_users -= src
-	global.sec_hud_users -= src
+	GLOBL.med_hud_users -= src
+	GLOBL.sec_hud_users -= src
 
 /mob/proc/in_view(turf/T)
 	return view(T)
 
 /mob/aiEye/in_view(turf/T)
 	var/list/viewed = new
-	for(var/mob/living/carbon/human/H in mob_list)
+	for(var/mob/living/carbon/human/H in GLOBL.mob_list)
 		if(get_dist(H, T) <= 7)
 			viewed += H
 	return viewed

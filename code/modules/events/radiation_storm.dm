@@ -15,7 +15,7 @@
 	command_alert("The station has entered the radiation belt. Please remain in a sheltered area until we have passed the radiation belt.", "Anomaly Alert")
 
 /datum/event/radiation_storm/tick()
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
@@ -38,7 +38,7 @@
 					randmutg(H) // Applies good mutation
 					domutcheck(H, null, MUTCHK_FORCED)
 
-	for(var/mob/living/carbon/monkey/M in living_mob_list)
+	for(var/mob/living/carbon/monkey/M in GLOBL.living_mob_list)
 		var/turf/T = get_turf(M)
 		if(!T)
 			continue
@@ -51,7 +51,7 @@
 /datum/event/radiation_storm/end()
 	command_alert("The station has passed the radiation belt. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
 
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
 		H.client.screen.Remove(global_hud.radstorm)
 
 	spawn(150)

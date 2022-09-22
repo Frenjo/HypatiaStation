@@ -153,7 +153,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 	else
 
 		var/list/candidates = list()	//list of candidate keys
-		for(var/mob/dead/observer/G in player_list)
+		for(var/mob/dead/observer/G in GLOBL.player_list)
 			if(G.client && !G.client.holder && !G.client.is_afk() && G.client.prefs.be_special & BE_NINJA)
 				if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 					candidates += G
@@ -172,7 +172,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 
 
 	if(!candidate_mob)
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOBL.player_list)
 			if((M.key == ninja_key || M.ckey == ninja_key) && M.client)
 				candidate_mob = M
 				break
@@ -219,7 +219,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 		//Xenos and deathsquads take precedence over everything else.
 
 		//Unless the xenos are hiding in a locker somewhere, this'll find em.
-		for(var/mob/living/carbon/human/xeno in player_list)
+		for(var/mob/living/carbon/human/xeno in GLOBL.player_list)
 			if(istype(xeno.species,/datum/species/xenos))
 				xeno_list += xeno
 
@@ -436,7 +436,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 
 //=======//CURRENT PLAYER VERB//=======//
 
-/client/proc/cmd_admin_ninjafy(mob/M in player_list)
+/client/proc/cmd_admin_ninjafy(mob/M in GLOBL.player_list)
 	set category = null
 	set name = "Make Space Ninja"
 

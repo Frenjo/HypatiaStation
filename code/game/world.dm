@@ -92,7 +92,7 @@
 
 	else if(T == "players")
 		var/n = 0
-		for(var/mob/M in global.player_list)
+		for(var/mob/M in GLOBL.player_list)
 			if(M.client)
 				n++
 		return n
@@ -100,7 +100,7 @@
 	else if(T == "status")
 		var/list/s = list()
 		s["version"] = global.game_version
-		s["mode"] = global.master_mode
+		s["mode"] = global.ticker.master_mode
 		s["respawn"] = global.config ? global.config.respawn : FALSE
 		s["enter"] = global.enter_allowed
 		s["vote"] = global.config.allow_vote_mode
@@ -134,8 +134,8 @@
 	var/list/Lines = file2list("data/mode.txt")
 	if(Lines.len)
 		if(Lines[1])
-			global.master_mode = Lines[1]
-			log_misc("Saved mode is '[global.master_mode]'")
+			global.ticker.master_mode = Lines[1]
+			log_misc("Saved mode is '[global.ticker.master_mode]'")
 
 /world/proc/save_mode(the_mode)
 	var/F = file("data/mode.txt")
@@ -192,8 +192,8 @@
 	var/list/features = list()
 
 	if(global.ticker)
-		if(global.master_mode)
-			features += global.master_mode
+		if(global.ticker.master_mode)
+			features += global.ticker.master_mode
 	else
 		features += "<b>STARTING</b>"
 
@@ -209,7 +209,7 @@
 		features += "AI allowed"
 
 	var/n = 0
-	for(var/mob/M in global.player_list)
+	for(var/mob/M in GLOBL.player_list)
 		if(M.client)
 			n++
 
