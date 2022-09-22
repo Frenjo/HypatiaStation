@@ -1,3 +1,8 @@
+/obj/machinery/power/apc/power_change()
+	// Override because the APC shouldn't be receiving the NOPOWER flag.
+	// An APC with the NOPOWER flag fails Topic() checks, thereby locking up the NanoUI.
+	return
+
 /obj/machinery/power/apc/connect_to_network()
 	//Override because the APC does not directly connect to the network; it goes through a terminal.
 	//The terminal is what the power computer looks for anyway.
