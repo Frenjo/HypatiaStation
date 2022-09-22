@@ -21,7 +21,7 @@ GLOBAL_BYOND_TYPED(job_master, /datum/controller/occupations) // Set in /datum/c
 	occupations = list()
 	var/list/all_jobs = typesof(/datum/job)
 	if(!all_jobs.len)
-		to_world(SPAN_DANGER("Error setting up jobs, no job datums found"))
+		to_world(SPAN_DANGER("Error setting up jobs, no job datums found!"))
 		return 0
 	for(var/J in all_jobs)
 		var/datum/job/job = new J()
@@ -349,7 +349,7 @@ GLOBAL_BYOND_TYPED(job_master, /datum/controller/occupations) // Set in /datum/c
 	if(job)
 		job.equip(H)
 	else
-		H << "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator."
+		to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
 
 	H.job = rank
 

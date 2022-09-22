@@ -327,11 +327,11 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 			if(mode.station_was_nuked)
 				feedback_set_details("end_proper", "nuke")
 				if(!delay_end)
-					to_world(SPAN_INFO_B("Rebooting due to destruction of station in [restart_timeout/10] seconds."))
+					to_world(SPAN_INFO_B("Rebooting due to destruction of station in [restart_timeout / 10] seconds."))
 			else
 				feedback_set_details("end_proper", "proper completion")
 				if(!delay_end)
-					to_world(SPAN_INFO_B("Restarting in [restart_timeout/10] seconds."))
+					to_world(SPAN_INFO_B("Restarting in [restart_timeout / 10] seconds."))
 
 			if(blackbox)
 				blackbox.save_all_data_to_sql()

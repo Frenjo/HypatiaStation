@@ -96,7 +96,7 @@ GLOBAL_BYOND_TYPED(air_master, /datum/controller/air_system) // Set in /datum/pr
 	set background = 1
 	#endif
 
-	to_world(SPAN_DANGER("Processing Geometry..."))
+	to_world(SPAN_DANGER("Processing geometry..."))
 	sleep(-1)
 
 	var/start_time = world.timeofday
@@ -107,12 +107,12 @@ GLOBAL_BYOND_TYPED(air_master, /datum/controller/air_system) // Set in /datum/pr
 		simulated_turf_count++
 		S.update_air_properties()
 
-	world << {"<span class='danger'>Geometry initialized in [round(0.1 * (world.timeofday - start_time), 0.1)] seconds.</b></span>
+	world << {"<span class='danger'>Geometry initialised in [round(0.1 * (world.timeofday - start_time), 0.1)] seconds.</b></span>
 <span class='info'>
 Total Simulated Turfs: [simulated_turf_count]
 Total Zones: [zones.len]
 Total Edges: [edges.len]
-Total Active Edges: [active_edges.len ? "<span class='danger'>[active_edges.len]</span>" : "None"]
+Total Active Edges: [active_edges.len ? SPAN_DANGER(active_edges.len) : "None"]
 Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_count]</font>
 </span>"}
 

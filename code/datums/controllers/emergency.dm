@@ -154,9 +154,7 @@ GLOBAL_BYOND_TYPED(emergency_controller, /datum/controller/emergency) // Set in 
 	// During mutiny rounds, the shuttle takes twice as long.
 	//if(ticker && istype(ticker.mode,/datum/game_mode/mutiny))
 	//	return SHUTTLE_PREPTIME * 3		//15 minutes
-
 	return SHUTTLE_PREPTIME
-
 
 /*
  * These procs are not really used by the controller itself, but are for other parts of the

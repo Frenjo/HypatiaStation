@@ -20,7 +20,7 @@
 /client/proc/debug_controller(controller in list("Configuration", "Cameras"))
 	set category = "Debug"
 	set name = "Debug Controller"
-	set desc = "Debug the various periodic loop controllers for the game (be careful!)"
+	set desc = "Debug one of the various periodic loop controllers for the game (be careful!)"
 
 	if(!holder)
 		return
