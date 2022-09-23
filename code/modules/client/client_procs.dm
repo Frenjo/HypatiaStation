@@ -46,8 +46,8 @@
 		return
 
 	//Logs all hrefs
-	if(config && config.log_hrefs && global.href_logfile)
-		global.href_logfile << "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>"
+	if(config && config.log_hrefs && GLOBL.href_logfile)
+		GLOBL.href_logfile << "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>"
 
 	switch(href_list["_src_"])
 		if("holder")
@@ -123,10 +123,10 @@
 		holder.owner = src
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
-	prefs = global.preferences_datums[ckey]
+	prefs = GLOBL.preferences_datums[ckey]
 	if(!prefs)
 		prefs = new /datum/preferences(src)
-		global.preferences_datums[ckey] = prefs
+		GLOBL.preferences_datums[ckey] = prefs
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
@@ -138,8 +138,8 @@
 		to_chat(src, SPAN_ALERT("[html_encode(global.custom_event_msg)]"))
 		to_chat(src, "<br>")
 
-	if((world.address == address || !address) && !global.host)
-		global.host = key
+	if((world.address == address || !address) && !GLOBL.host)
+		GLOBL.host = key
 		world.update_status()
 
 	if(holder)
@@ -150,7 +150,7 @@
 
 	send_resources()
 
-	if(prefs.lastchangelog != global.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
+	if(prefs.lastchangelog != GLOBL.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 
 	//////////////

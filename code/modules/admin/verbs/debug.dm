@@ -5,12 +5,12 @@
 	if(!check_rights(R_DEBUG))
 		return
 
-	if(global.debug2)
-		global.debug2 = FALSE
+	if(GLOBL.debug2)
+		GLOBL.debug2 = FALSE
 		message_admins("[key_name(src)] toggled debugging off.")
 		log_admin("[key_name(src)] toggled debugging off.")
 	else
-		global.debug2 = TRUE
+		GLOBL.debug2 = TRUE
 		message_admins("[key_name(src)] toggled debugging on.")
 		log_admin("[key_name(src)] toggled debugging on.")
 
@@ -373,9 +373,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set category = "Server"
 	set name = "Toggle Aliens"
 
-	global.aliens_allowed = !global.aliens_allowed
-	log_admin("[key_name(src)] has turned aliens [global.aliens_allowed ? "on" : "off"].")
-	message_admins("[key_name_admin(src)] has turned aliens [global.aliens_allowed ? "on" : "off"].", 0)
+	GLOBL.aliens_allowed = !GLOBL.aliens_allowed
+	log_admin("[key_name(src)] has turned aliens [GLOBL.aliens_allowed ? "on" : "off"].")
+	message_admins("[key_name_admin(src)] has turned aliens [GLOBL.aliens_allowed ? "on" : "off"].", 0)
 	feedback_add_details("admin_verb", "TAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 

@@ -1,8 +1,9 @@
-/var/global/datum/datacore/data_core = null
-/var/global/list/pda_manifest = list()
+GLOBAL_GLOBL_TYPED(data_core, /datum/datacore)
+GLOBAL_GLOBL_LIST_NEW(pda_manifest)
 
 /hook/startup/proc/create_datacore()
-	global.data_core = new /datum/datacore()
+	GLOBL.data_core = new /datum/datacore()
+	return 1
 
 /datum/datacore
 	var/list/medical = list()
@@ -35,7 +36,7 @@
 	var/even = FALSE
 
 	// sort mobs
-	for(var/datum/data/record/t in global.data_core.general)
+	for(var/datum/data/record/t in GLOBL.data_core.general)
 		var/name = t.fields["name"]
 		var/rank = t.fields["rank"]
 		var/real_rank = t.fields["real_rank"]
@@ -131,8 +132,8 @@ we'll only update it when it changes. The pda_manifest global list is zeroed out
 using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 */
 /datum/datacore/proc/get_manifest_json()
-	if(global.pda_manifest.len)
-		return global.pda_manifest
+	if(GLOBL.pda_manifest.len)
+		return GLOBL.pda_manifest
 
 	var/list/heads = list()
 	var/list/sec = list()
@@ -143,7 +144,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 	var/list/bot = list()
 	var/list/misc = list()
 
-	for(var/datum/data/record/t in global.data_core.general)
+	for(var/datum/data/record/t in GLOBL.data_core.general)
 		var/name = sanitize(t.fields["name"])
 		var/rank = sanitize(t.fields["rank"])
 		var/real_rank = t.fields["real_rank"]
@@ -194,7 +195,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		if(!department && !(name in heads))
 			misc[++misc.len] = list("name" = name, "rank" = rank, "active" = isactive)
 
-	global.pda_manifest = list(
+	GLOBL.pda_manifest = list(
 		"heads" = heads,
 		"sec" = sec,
 		"eng" = eng,
@@ -204,7 +205,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		"bot" = bot,
 		"misc" = misc
 	)
-	return global.pda_manifest
+	return GLOBL.pda_manifest
 
 /datum/datacore/proc/manifest()
 	for(var/mob/living/carbon/human/H in GLOBL.player_list)
@@ -212,12 +213,12 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 	return
 
 /datum/datacore/proc/manifest_modify(name, assignment)
-	if(global.pda_manifest.len)
-		global.pda_manifest.Cut()
+	if(GLOBL.pda_manifest.len)
+		GLOBL.pda_manifest.Cut()
 
 	var/datum/data/record/foundrecord
 	var/real_title = assignment
-	for(var/datum/data/record/t in global.data_core.general)
+	for(var/datum/data/record/t in GLOBL.data_core.general)
 		if(t)
 			if(t.fields["name"] == name)
 				foundrecord = t
@@ -237,8 +238,8 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		foundrecord.fields["real_rank"] = real_title
 
 /datum/datacore/proc/manifest_inject(mob/living/carbon/human/H)
-	if(global.pda_manifest.len)
-		global.pda_manifest.Cut()
+	if(GLOBL.pda_manifest.len)
+		GLOBL.pda_manifest.Cut()
 
 	if(H.mind && (H.mind.assigned_role != "MODE"))
 		var/assignment
@@ -368,13 +369,13 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 
 	eyes_s.Blend(rgb(H.r_eyes, H.g_eyes, H.b_eyes), ICON_ADD)
 
-	var/datum/sprite_accessory/hair_style = hair_styles_list[H.h_style]
+	var/datum/sprite_accessory/hair_style = GLOBL.hair_styles_list[H.h_style]
 	if(hair_style)
 		var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 		hair_s.Blend(rgb(H.r_hair, H.g_hair, H.b_hair), ICON_ADD)
 		eyes_s.Blend(hair_s, ICON_OVERLAY)
 
-	var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[H.f_style]
+	var/datum/sprite_accessory/facial_hair_style = GLOBL.facial_hair_styles_list[H.f_style]
 	if(facial_hair_style)
 		var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 		facial_s.Blend(rgb(H.r_facial, H.g_facial, H.b_facial), ICON_ADD)

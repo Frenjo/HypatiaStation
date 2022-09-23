@@ -4,7 +4,7 @@
 		return ..()
 
 	//Guest Checking
-	if(!global.guests_allowed && IsGuestKey(key))
+	if(!global.config.guests_allowed && IsGuestKey(key))
 		log_access("Failed Login: [key] - Guests not allowed")
 		message_admins("\blue Failed Login: [key] - Guests not allowed")
 		return list("reason"="guest", "desc"="\nReason: Guests not allowed. Please sign in with a byond account.")

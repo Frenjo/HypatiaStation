@@ -11,8 +11,8 @@
 //if a file was updated, return 1
 /datum/preferences/proc/savefile_update()
 	if(savefile_version < 8)	//lazily delete everything + additional files so they can be saved in the new format
-		for(var/ckey in global.preferences_datums)
-			var/datum/preferences/D = global.preferences_datums[ckey]
+		for(var/ckey in GLOBL.preferences_datums)
+			var/datum/preferences/D = GLOBL.preferences_datums[ckey]
 			if(D == src)
 				var/delpath = "data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/"
 				if(delpath && fexists(delpath))
@@ -198,13 +198,13 @@
 	r_skin			= sanitize_integer(r_skin, 0, 255, initial(r_skin))
 	g_skin			= sanitize_integer(g_skin, 0, 255, initial(g_skin))
 	b_skin			= sanitize_integer(b_skin, 0, 255, initial(b_skin))
-	h_style			= sanitize_inlist(h_style, hair_styles_list, initial(h_style))
-	f_style			= sanitize_inlist(f_style, facial_hair_styles_list, initial(f_style))
+	h_style			= sanitize_inlist(h_style, GLOBL.hair_styles_list, initial(h_style))
+	f_style			= sanitize_inlist(f_style, GLOBL.facial_hair_styles_list, initial(f_style))
 	r_eyes			= sanitize_integer(r_eyes, 0, 255, initial(r_eyes))
 	g_eyes			= sanitize_integer(g_eyes, 0, 255, initial(g_eyes))
 	b_eyes			= sanitize_integer(b_eyes, 0, 255, initial(b_eyes))
-	underwear		= sanitize_integer(underwear, 1, underwear_m.len, initial(underwear))
-	backbag			= sanitize_integer(backbag, 1, backbaglist.len, initial(backbag))
+	underwear		= sanitize_integer(underwear, 1, GLOBL.underwear_m.len, initial(underwear))
+	backbag			= sanitize_integer(backbag, 1, GLOBL.backbaglist.len, initial(backbag))
 	b_type			= sanitize_text(b_type, initial(b_type))
 
 	alternate_option = sanitize_integer(alternate_option, 0, 2, initial(alternate_option))

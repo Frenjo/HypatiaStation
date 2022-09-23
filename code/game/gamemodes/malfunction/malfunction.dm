@@ -196,7 +196,7 @@
 		sleep(10)
 		world << i
 	sleep(10)
-	global.enter_allowed = FALSE
+	GLOBL.enter_allowed = FALSE
 	if(ticker)
 		ticker.station_explosion_cinematic(0, null)
 		if(ticker.mode)

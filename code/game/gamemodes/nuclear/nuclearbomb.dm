@@ -427,7 +427,7 @@ var/bomb_set
 		ticker.mode.explosion_in_progress = 1
 	sleep(100)
 
-	global.enter_allowed = FALSE
+	GLOBL.enter_allowed = FALSE
 
 	var/off_station = 0
 	var/turf/bomb_location = get_turf(src)

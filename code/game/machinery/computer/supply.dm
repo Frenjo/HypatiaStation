@@ -8,6 +8,7 @@
 	icon_state = "supply"
 	req_access = list(ACCESS_CARGO)
 	circuit = /obj/item/weapon/circuitboard/supplycomp
+
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/hacked = 0
@@ -16,7 +17,7 @@
 
 /obj/machinery/computer/supplycomp/initialize()
 	..()
-	current_category = global.cargo_supply_pack_root
+	current_category = GLOBL.cargo_supply_pack_root
 
 /obj/machinery/computer/supplycomp/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -29,13 +30,14 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "request"
 	circuit = /obj/item/weapon/circuitboard/ordercomp
+
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/decl/hierarchy/supply_pack/current_category
 
 /obj/machinery/computer/ordercomp/initialize()
 	..()
-	current_category = global.cargo_supply_pack_root
+	current_category = GLOBL.cargo_supply_pack_root
 
 /obj/machinery/computer/ordercomp/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -84,7 +86,7 @@
 
 	if(href_list["order"])
 		if(href_list["order"] == "categories")
-			current_category = global.cargo_supply_pack_root
+			current_category = GLOBL.cargo_supply_pack_root
 		else
 			var/decl/hierarchy/supply_pack/requested_category = locate(href_list["order"]) in current_category.children
 			if(!requested_category || !requested_category.is_category())
@@ -93,7 +95,7 @@
 
 		temp = list()
 		temp += "<b>Supply points: [global.supply_controller.points]</b><BR>"
-		if(current_category == global.cargo_supply_pack_root)
+		if(current_category == GLOBL.cargo_supply_pack_root)
 			temp += "<A href='?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
 			temp += "<b>Select a category</b><BR><BR>"
 			for(var/decl/hierarchy/supply_pack/sp in current_category.children)
@@ -255,7 +257,7 @@
 		if(supply_shuttle.has_arrive_time()) // Edited this to reflect 'shuttles' port. -Frenjo
 			return
 		if(href_list["order"] == "categories")
-			current_category = global.cargo_supply_pack_root
+			current_category = GLOBL.cargo_supply_pack_root
 		else
 			var/decl/hierarchy/supply_pack/requested_category = locate(href_list["order"]) in current_category.children
 			if(!requested_category || !requested_category.is_category())
@@ -264,7 +266,7 @@
 
 		temp = list()
 		temp += "<b>Supply points: [global.supply_controller.points]</b><BR>"
-		if(current_category == global.cargo_supply_pack_root)
+		if(current_category == GLOBL.cargo_supply_pack_root)
 			temp += "<A href='?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
 			temp += "<b>Select a category</b><BR><BR>"
 			for(var/decl/hierarchy/supply_pack/sp in current_category.children)

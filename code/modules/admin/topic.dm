@@ -2004,18 +2004,18 @@
 			if("togglebombcap")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","BC")
-				switch(global.max_explosion_range)
-					if(14)	global.max_explosion_range = 16
-					if(16)	global.max_explosion_range = 20
-					if(20)	global.max_explosion_range = 28
-					if(28)	global.max_explosion_range = 56
-					if(56)	global.max_explosion_range = 128
-					if(128)	global.max_explosion_range = 14
-				var/range_dev = global.max_explosion_range *0.25
-				var/range_high = global.max_explosion_range *0.5
-				var/range_low = global.max_explosion_range
+				switch(GLOBL.max_explosion_range)
+					if(14)	GLOBL.max_explosion_range = 16
+					if(16)	GLOBL.max_explosion_range = 20
+					if(20)	GLOBL.max_explosion_range = 28
+					if(28)	GLOBL.max_explosion_range = 56
+					if(56)	GLOBL.max_explosion_range = 128
+					if(128)	GLOBL.max_explosion_range = 14
+				var/range_dev = GLOBL.max_explosion_range *0.25
+				var/range_high = GLOBL.max_explosion_range *0.5
+				var/range_low = GLOBL.max_explosion_range
 				message_admins("\red <b> [key_name_admin(usr)] changed the bomb cap to [range_dev], [range_high], [range_low]</b>", 1)
-				log_admin("[key_name_admin(usr)] changed the bomb cap to [global.max_explosion_range]")
+				log_admin("[key_name_admin(usr)] changed the bomb cap to [GLOBL.max_explosion_range]")
 
 			if("flicklights")
 				feedback_inc("admin_secrets_fun_used",1)
@@ -2120,7 +2120,7 @@
 			if("aliens")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","AL")
-				if(global.aliens_allowed)
+				if(GLOBL.aliens_allowed)
 					new /datum/event/alien_infestation
 					message_admins("[key_name_admin(usr)] has spawned aliens", 1)
 			if("spiders")

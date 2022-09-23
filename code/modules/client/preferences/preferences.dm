@@ -315,11 +315,11 @@
 		dat += "<br><br>"
 
 	if(gender == MALE)
-		dat += "Underwear: <a href ='?_src_=prefs;preference=underwear;task=input'><b>[underwear_m[underwear]]</b></a><br>"
+		dat += "Underwear: <a href ='?_src_=prefs;preference=underwear;task=input'><b>[GLOBL.underwear_m[underwear]]</b></a><br>"
 	else
-		dat += "Underwear: <a href ='?_src_=prefs;preference=underwear;task=input'><b>[underwear_f[underwear]]</b></a><br>"
+		dat += "Underwear: <a href ='?_src_=prefs;preference=underwear;task=input'><b>[GLOBL.underwear_f[underwear]]</b></a><br>"
 
-	dat += "Backpack Type:<br><a href ='?_src_=prefs;preference=bag;task=input'><b>[backbaglist[backbag]]</b></a><br>"
+	dat += "Backpack Type:<br><a href ='?_src_=prefs;preference=bag;task=input'><b>[GLOBL.backbaglist[backbag]]</b></a><br>"
 
 	dat += "NanoTrasen Relation:<br><a href ='?_src_=prefs;preference=nt_relation;task=input'><b>[nanotrasen_relation]</b></a><br>"
 
@@ -829,7 +829,7 @@
 				if("f_style")
 					f_style = random_facial_hair_style(gender, species)
 				if("underwear")
-					underwear = rand(1, underwear_m.len)
+					underwear = rand(1, GLOBL.underwear_m.len)
 					ShowChoices(user)
 				if("eyes")
 					r_eyes = rand(0, 255)
@@ -880,26 +880,26 @@
 					if(prev_species != species)
 						//grab one of the valid hair styles for the newly chosen species
 						var/list/valid_hairstyles = list()
-						for(var/hairstyle in hair_styles_list)
-							var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
+						for(var/hairstyle in GLOBL.hair_styles_list)
+							var/datum/sprite_accessory/S = GLOBL.hair_styles_list[hairstyle]
 							if(gender == MALE && S.gender == FEMALE)
 								continue
 							if(gender == FEMALE && S.gender == MALE)
 								continue
 							if(!(species in S.species_allowed))
 								continue
-							valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
+							valid_hairstyles[hairstyle] = GLOBL.hair_styles_list[hairstyle]
 
 						if(valid_hairstyles.len)
 							h_style = pick(valid_hairstyles)
 						else
 							//this shouldn't happen
-							h_style = hair_styles_list["Bald"]
+							h_style = GLOBL.hair_styles_list["Bald"]
 
 						//grab one of the valid facial hair styles for the newly chosen species
 						var/list/valid_facialhairstyles = list()
-						for(var/facialhairstyle in facial_hair_styles_list)
-							var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
+						for(var/facialhairstyle in GLOBL.facial_hair_styles_list)
+							var/datum/sprite_accessory/S = GLOBL.facial_hair_styles_list[facialhairstyle]
 							if(gender == MALE && S.gender == FEMALE)
 								continue
 							if(gender == FEMALE && S.gender == MALE)
@@ -907,13 +907,13 @@
 							if(!(species in S.species_allowed))
 								continue
 
-							valid_facialhairstyles[facialhairstyle] = facial_hair_styles_list[facialhairstyle]
+							valid_facialhairstyles[facialhairstyle] = GLOBL.facial_hair_styles_list[facialhairstyle]
 
 						if(valid_facialhairstyles.len)
 							f_style = pick(valid_facialhairstyles)
 						else
 							//this shouldn't happen
-							f_style = facial_hair_styles_list["Shaved"]
+							f_style = GLOBL.facial_hair_styles_list["Shaved"]
 
 						//reset hair colour and skin colour
 						r_hair = 0//hex2num(copytext(new_hair, 2, 4))
@@ -964,12 +964,12 @@
 
 				if("h_style")
 					var/list/valid_hairstyles = list()
-					for(var/hairstyle in hair_styles_list)
-						var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
+					for(var/hairstyle in GLOBL.hair_styles_list)
+						var/datum/sprite_accessory/S = GLOBL.hair_styles_list[hairstyle]
 						if(!(species in S.species_allowed))
 							continue
 
-						valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
+						valid_hairstyles[hairstyle] = GLOBL.hair_styles_list[hairstyle]
 
 					var/new_h_style = input(user, "Choose your character's hair style:", "Character Preference") as null | anything in valid_hairstyles
 					if(new_h_style)
@@ -984,8 +984,8 @@
 
 				if("f_style")
 					var/list/valid_facialhairstyles = list()
-					for(var/facialhairstyle in facial_hair_styles_list)
-						var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
+					for(var/facialhairstyle in GLOBL.facial_hair_styles_list)
+						var/datum/sprite_accessory/S = GLOBL.facial_hair_styles_list[facialhairstyle]
 						if(gender == MALE && S.gender == FEMALE)
 							continue
 						if(gender == FEMALE && S.gender == MALE)
@@ -993,7 +993,7 @@
 						if(!(species in S.species_allowed))
 							continue
 
-						valid_facialhairstyles[facialhairstyle] = facial_hair_styles_list[facialhairstyle]
+						valid_facialhairstyles[facialhairstyle] = GLOBL.facial_hair_styles_list[facialhairstyle]
 
 					var/new_f_style = input(user, "Choose your character's facial-hair style:", "Character Preference") as null | anything in valid_facialhairstyles
 					if(new_f_style)
@@ -1002,9 +1002,9 @@
 				if("underwear")
 					var/list/underwear_options
 					if(gender == MALE)
-						underwear_options = underwear_m
+						underwear_options = GLOBL.underwear_m
 					else
-						underwear_options = underwear_f
+						underwear_options = GLOBL.underwear_f
 
 					var/new_underwear = input(user, "Choose your character's underwear:", "Character Preference") as null | anything in underwear_options
 					if(new_underwear)
@@ -1039,9 +1039,9 @@
 						ooccolor = new_ooccolor
 
 				if("bag")
-					var/new_backbag = input(user, "Choose your character's style of bag:", "Character Preference") as null | anything in backbaglist
+					var/new_backbag = input(user, "Choose your character's style of bag:", "Character Preference") as null | anything in GLOBL.backbaglist
 					if(new_backbag)
-						backbag = backbaglist.Find(new_backbag)
+						backbag = GLOBL.backbaglist.Find(new_backbag)
 
 				if("nt_relation")
 					var/new_relation = input(user, "Choose your relation to NT. Note that this represents what others can find out about your character by researching your background, not what your character actually thinks.", "Character Preference") as null | anything in list("Loyal", "Supportive", "Neutral", "Skeptical", "Opposed")
@@ -1313,7 +1313,7 @@
 		else
 			continue
 
-	if(underwear > underwear_m.len || underwear < 1)
+	if(underwear > GLOBL.underwear_m.len || underwear < 1)
 		underwear = 0 //I'm sure this is 100% unnecessary, but I'm paranoid... sue me. //HAH NOW NO MORE MAGIC CLONING UNDIES
 	character.underwear = underwear
 

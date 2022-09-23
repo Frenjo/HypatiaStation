@@ -12,7 +12,7 @@
 	randomize_hair_color("facial")
 	randomize_eyes_color()
 	randomize_skin_color()
-	underwear = rand(1,underwear_m.len)
+	underwear = rand(1, GLOBL.underwear_m.len)
 	backbag = 2
 	age = rand(AGE_MIN,AGE_MAX)
 	if(H)
@@ -230,13 +230,13 @@
 	if((current_species && (current_species.flags & HAS_EYE_COLOR)))
 		eyes_s.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
 
-	var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
+	var/datum/sprite_accessory/hair_style = GLOBL.hair_styles_list[h_style]
 	if(hair_style)
 		var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 		hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
 		eyes_s.Blend(hair_s, ICON_OVERLAY)
 
-	var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
+	var/datum/sprite_accessory/facial_hair_style = GLOBL.facial_hair_styles_list[f_style]
 	if(facial_hair_style)
 		var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 		facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)

@@ -3,7 +3,7 @@
 
 	// see login.dm
 	if(my_client)
-		my_client.screen -= global.splashscreen
+		my_client.screen -= GLOBL.splashscreen
 		my_client = null
 
 	..()

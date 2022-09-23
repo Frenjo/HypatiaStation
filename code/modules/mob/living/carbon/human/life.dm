@@ -1463,13 +1463,13 @@
 
 		if(istype(head, /obj/item/clothing/head/welding) || istype(head, /obj/item/clothing/head/helmet/space/soghun))
 			var/obj/item/clothing/head/welding/O = head
-			if(!O.up && global.tinted_weldhelh)
+			if(!O.up && GLOBL.tinted_weldhelh)
 				client.screen += global_hud.darkMask
 				masked = 1
 
 		if(!masked && istype(glasses, /obj/item/clothing/glasses/welding))
 			var/obj/item/clothing/glasses/welding/O = glasses
-			if(!O.up && global.tinted_weldhelh)
+			if(!O.up && GLOBL.tinted_weldhelh)
 				client.screen += global_hud.darkMask
 
 		if(machine)
@@ -1759,9 +1759,9 @@
 			if(I)
 				perpname = I.registered_name
 
-		for(var/datum/data/record/E in global.data_core.general)
+		for(var/datum/data/record/E in GLOBL.data_core.general)
 			if(E.fields["name"] == perpname)
-				for(var/datum/data/record/R in global.data_core.security)
+				for(var/datum/data/record/R in GLOBL.data_core.security)
 					if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "*Arrest*"))
 						holder.icon_state = "hudwanted"
 						break

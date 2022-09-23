@@ -120,12 +120,12 @@
 	// FIXME:  Species-specific defaults pls
 	if(!character.h_style)
 		character.h_style = "Skinhead"
-	var/hair = hair_styles_list.Find(character.h_style)
+	var/hair = GLOBL.hair_styles_list.Find(character.h_style)
 
 	// Facial Hair
 	if(!character.f_style)
 		character.f_style = "Shaved"
-	var/beard	= facial_hair_styles_list.Find(character.f_style)
+	var/beard	= GLOBL.facial_hair_styles_list.Find(character.f_style)
 
 	SetUIValueRange(DNA_UI_HAIR_R,	character.r_hair,	255,	1)
 	SetUIValueRange(DNA_UI_HAIR_G,	character.g_hair,	255,	1)
@@ -147,8 +147,8 @@
 
 	SetUIState(DNA_UI_GENDER, character.gender != MALE, 1)
 
-	SetUIValueRange(DNA_UI_HAIR_STYLE,	hair,	hair_styles_list.len,			1)
-	SetUIValueRange(DNA_UI_BEARD_STYLE,	beard,	facial_hair_styles_list.len,	1)
+	SetUIValueRange(DNA_UI_HAIR_STYLE,	hair,	GLOBL.hair_styles_list.len,			1)
+	SetUIValueRange(DNA_UI_BEARD_STYLE,	beard,	GLOBL.facial_hair_styles_list.len,	1)
 
 	UpdateUI()
 

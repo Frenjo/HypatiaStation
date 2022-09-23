@@ -58,7 +58,7 @@
 		return
 
 	if(!src.client.holder)
-		if(!global.dsay_allowed)
+		if(!GLOBL.dsay_allowed)
 			to_chat(src, SPAN_WARNING("Deadchat is globally muted."))
 			return
 

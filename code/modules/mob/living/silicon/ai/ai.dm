@@ -597,7 +597,7 @@ var/list/ai_verbs_default = list(
 	if(alert("Would you like to select a hologram based on a crew member or switch to unique avatar?", , "Crew Member", "Unique") == "Crew Member")
 		var/personnel_list[] = list()
 
-		for(var/datum/data/record/t in global.data_core.locked)//Look in data core locked.
+		for(var/datum/data/record/t in GLOBL.data_core.locked)//Look in data core locked.
 			personnel_list["[t.fields["name"]]: [t.fields["rank"]]"] = t.fields["image"]//Pull names, rank, and image.
 
 		if(personnel_list.len)

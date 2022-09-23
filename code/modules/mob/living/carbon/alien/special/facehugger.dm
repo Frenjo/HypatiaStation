@@ -48,7 +48,7 @@ var/const/MAX_ACTIVE_TIME = 400
 	Attach(M)
 
 /obj/item/clothing/mask/facehugger/New()
-	if(global.aliens_allowed)
+	if(GLOBL.aliens_allowed)
 		..()
 	else
 		qdel(src)

@@ -1,4 +1,4 @@
-/var/global/list/preferences_datums = list()
+GLOBAL_GLOBL_LIST_NEW(preferences_datums)
 
 /var/global/list/special_roles = list(
 //some autodetection here.
@@ -19,18 +19,19 @@
 
 //Preferences stuff
 	//Hairstyles
-/var/global/list/hair_styles_list = list()			//stores /datum/sprite_accessory/hair indexed by name
-/var/global/list/hair_styles_male_list = list()
-/var/global/list/hair_styles_female_list = list()
-/var/global/list/facial_hair_styles_list = list()	//stores /datum/sprite_accessory/facial_hair indexed by name
-/var/global/list/facial_hair_styles_male_list = list()
-/var/global/list/facial_hair_styles_female_list = list()
-/var/global/list/skin_styles_female_list = list()		//unused
+GLOBAL_GLOBL_LIST_NEW(hair_styles_list)					//stores /datum/sprite_accessory/hair indexed by name
+GLOBAL_GLOBL_LIST_NEW(hair_styles_male_list)
+GLOBAL_GLOBL_LIST_NEW(hair_styles_female_list)
+GLOBAL_GLOBL_LIST_NEW(facial_hair_styles_list)			//stores /datum/sprite_accessory/facial_hair indexed by name
+GLOBAL_GLOBL_LIST_NEW(facial_hair_styles_male_list)
+GLOBAL_GLOBL_LIST_NEW(facial_hair_styles_female_list)
+GLOBAL_GLOBL_LIST_NEW(skin_styles_female_list)			//unused
 	//Underwear
-/var/global/list/underwear_m = list("White", "Grey", "Green", "Blue", "Black", "Mankini", "None") //Curse whoever made male/female underwear diffrent colours
-/var/global/list/underwear_f = list("Red", "White", "Yellow", "Blue", "Black", "Thong", "None")
+// Curse whoever made male/female underwear diffrent colours
+GLOBAL_GLOBL_LIST_INIT(underwear_m, list("White", "Grey", "Green", "Blue", "Black", "Mankini", "None"))
+GLOBAL_GLOBL_LIST_INIT(underwear_f, list("Red", "White", "Yellow", "Blue", "Black", "Thong", "None"))
 	//Backpacks
-/var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt")
+GLOBAL_GLOBL_LIST_INIT(backbaglist, list("Nothing", "Backpack", "Satchel", "Satchel Alt"))
 
 /var/global/list/be_special_flags = list(
 	"Traitor" = BE_TRAITOR,

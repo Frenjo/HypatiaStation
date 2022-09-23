@@ -489,7 +489,7 @@ var/list/admin_verbs_donor = list(
 	var/datum/preferences/D
 	var/client/C = GLOBL.directory[warned_ckey]
 	if(C)	D = C.prefs
-	else	D = global.preferences_datums[warned_ckey]
+	else	D = GLOBL.preferences_datums[warned_ckey]
 
 	if(!D)
 		src << "<font color='red'>Error: warn(): No such ckey found.</font>"
@@ -696,12 +696,12 @@ var/list/admin_verbs_donor = list(
 		M.s_tone =  -M.s_tone + 35
 
 	// hair
-	var/new_hstyle = input(usr, "Select a hair style", "Grooming")  as null|anything in hair_styles_list
+	var/new_hstyle = input(usr, "Select a hair style", "Grooming")  as null|anything in GLOBL.hair_styles_list
 	if(new_hstyle)
 		M.h_style = new_hstyle
 
 	// facial hair
-	var/new_fstyle = input(usr, "Select a facial hair style", "Grooming")  as null|anything in facial_hair_styles_list
+	var/new_fstyle = input(usr, "Select a facial hair style", "Grooming")  as null|anything in GLOBL.facial_hair_styles_list
 	if(new_fstyle)
 		M.f_style = new_fstyle
 

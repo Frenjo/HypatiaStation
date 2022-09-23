@@ -21,11 +21,11 @@
 /proc/log_admin(text)
 	GLOBL.admin_log.Add(text)
 	if(global.config.log_admin)
-		global.diary << "\[[time_stamp()]]ADMIN: [text][log_end]"
+		GLOBL.diary << "\[[time_stamp()]]ADMIN: [text][log_end]"
 
 /proc/log_debug(text)
 	if(global.config.log_debug)
-		global.diary << "\[[time_stamp()]]DEBUG: [text][log_end]"
+		GLOBL.diary << "\[[time_stamp()]]DEBUG: [text][log_end]"
 
 	for(var/client/C in GLOBL.admins)
 		if(C.prefs.toggles & CHAT_DEBUGLOGS)
@@ -33,52 +33,52 @@
 
 /proc/log_game(text)
 	if(global.config.log_game)
-		global.diary << "\[[time_stamp()]]GAME: [text][log_end]"
+		GLOBL.diary << "\[[time_stamp()]]GAME: [text][log_end]"
 
 /proc/log_vote(text)
 	if(global.config.log_vote)
-		global.diary << "\[[time_stamp()]]VOTE: [text][log_end]"
+		GLOBL.diary << "\[[time_stamp()]]VOTE: [text][log_end]"
 
 /proc/log_access(text)
 	if(global.config.log_access)
-		global.diary << "\[[time_stamp()]]ACCESS: [text][log_end]"
+		GLOBL.diary << "\[[time_stamp()]]ACCESS: [text][log_end]"
 
 /proc/log_say(text)
 	if(global.config.log_say)
-		global.diary << "\[[time_stamp()]]SAY: [text][log_end]"
+		GLOBL.diary << "\[[time_stamp()]]SAY: [text][log_end]"
 
 /proc/log_ooc(text)
 	if(global.config.log_ooc)
-		global.diary << "\[[time_stamp()]]OOC: [text][log_end]"
+		GLOBL.diary << "\[[time_stamp()]]OOC: [text][log_end]"
 
 /proc/log_whisper(text)
 	if(global.config.log_whisper)
-		global.diary << "\[[time_stamp()]]WHISPER: [text][log_end]"
+		GLOBL.diary << "\[[time_stamp()]]WHISPER: [text][log_end]"
 
 /proc/log_emote(text)
 	if(global.config.log_emote)
-		global.diary << "\[[time_stamp()]]EMOTE: [text][log_end]"
+		GLOBL.diary << "\[[time_stamp()]]EMOTE: [text][log_end]"
 
 /proc/log_attack(text)
 	if(global.config.log_attack)
-		global.diary << "\[[time_stamp()]]ATTACK: [text][log_end]" //Seperate attack logs? Why?  FOR THE GLORY OF SATAN!
+		GLOBL.diary << "\[[time_stamp()]]ATTACK: [text][log_end]" //Seperate attack logs? Why?  FOR THE GLORY OF SATAN!
 
 /proc/log_adminsay(text)
 	if(global.config.log_adminchat)
-		global.diary << "\[[time_stamp()]]ADMINSAY: [text][log_end]"
+		GLOBL.diary << "\[[time_stamp()]]ADMINSAY: [text][log_end]"
 
 /proc/log_adminwarn(text)
 	if(global.config.log_adminwarn)
-		global.diary << "\[[time_stamp()]]ADMINWARN: [text][log_end]"
+		GLOBL.diary << "\[[time_stamp()]]ADMINWARN: [text][log_end]"
 
 /proc/log_pda(text)
 	if(global.config.log_pda)
-		global.diary << "\[[time_stamp()]]PDA: [text][log_end]"
+		GLOBL.diary << "\[[time_stamp()]]PDA: [text][log_end]"
 
 /proc/log_to_dd(text)
 	world.log << text //this comes before the config check because it can't possibly runtime
 	if(global.config.log_world_output)
-		global.diary << "\[[time_stamp()]]DD_OUTPUT: [text][log_end]"
+		GLOBL.diary << "\[[time_stamp()]]DD_OUTPUT: [text][log_end]"
 
 /proc/log_misc(text)
-	global.diary << "\[[time_stamp()]]MISC: [text][log_end]" 
+	GLOBL.diary << "\[[time_stamp()]]MISC: [text][log_end]" 

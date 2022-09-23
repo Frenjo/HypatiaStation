@@ -155,7 +155,7 @@
 		ViewManifest()
 
 	if(href_list["SelectedJob"])
-		if(!global.enter_allowed)
+		if(!GLOBL.enter_allowed)
 			to_chat(usr, SPAN_INFO("There is an administrative lock on entering the game!"))
 			return
 
@@ -282,7 +282,7 @@
 	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 		to_chat(usr, SPAN_WARNING("The round is either not ready, or has already finished..."))
 		return 0
-	if(!global.enter_allowed)
+	if(!GLOBL.enter_allowed)
 		to_chat(usr, SPAN_INFO("There is an administrative lock on entering the game!"))
 		return 0
 	if(!IsJobAvailable(rank))
@@ -319,7 +319,7 @@
 	//ticker.mode.latespawn(character)
 
 	if(character.mind.assigned_role != "Cyborg")
-		global.data_core.manifest_inject(character)
+		GLOBL.data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 		AnnounceArrival(character, rank, join_message)
 
@@ -430,7 +430,7 @@
 /mob/new_player/proc/ViewManifest()
 	var/dat = "<html><body>"
 	dat += "<h4>Crew Manifest</h4>"
-	dat += global.data_core.get_manifest(OOC = 1)
+	dat += GLOBL.data_core.get_manifest(OOC = 1)
 
 	src << browse(dat, "window=manifest;size=370x420;can_close=1")
 

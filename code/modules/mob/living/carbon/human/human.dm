@@ -451,9 +451,9 @@
 				perpname = name
 
 			if(perpname)
-				for(var/datum/data/record/E in global.data_core.general)
+				for(var/datum/data/record/E in GLOBL.data_core.general)
 					if(E.fields["name"] == perpname)
-						for(var/datum/data/record/R in global.data_core.security)
+						for(var/datum/data/record/R in GLOBL.data_core.security)
 							if(R.fields["id"] == E.fields["id"])
 
 								var/setcriminal = input(usr, "Specify a new criminal status for this person.", "Security HUD", R.fields["criminal"]) in list("None", "*Arrest*", "Incarcerated", "Parolled", "Released", "Cancel")
@@ -488,9 +488,9 @@
 					perpname = tempPda.owner
 			else
 				perpname = src.name
-			for(var/datum/data/record/E in global.data_core.general)
+			for(var/datum/data/record/E in GLOBL.data_core.general)
 				if(E.fields["name"] == perpname)
-					for(var/datum/data/record/R in global.data_core.security)
+					for(var/datum/data/record/R in GLOBL.data_core.security)
 						if(R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr, "security"))
 								to_chat(usr, "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]")
@@ -518,9 +518,9 @@
 					perpname = tempPda.owner
 			else
 				perpname = src.name
-			for(var/datum/data/record/E in global.data_core.general)
+			for(var/datum/data/record/E in GLOBL.data_core.general)
 				if(E.fields["name"] == perpname)
-					for(var/datum/data/record/R in global.data_core.security)
+					for(var/datum/data/record/R in GLOBL.data_core.security)
 						if(R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr, "security"))
 								read = 1
@@ -546,9 +546,9 @@
 					perpname = tempPda.owner
 			else
 				perpname = src.name
-			for(var/datum/data/record/E in global.data_core.general)
+			for(var/datum/data/record/E in GLOBL.data_core.general)
 				if(E.fields["name"] == perpname)
-					for(var/datum/data/record/R in global.data_core.security)
+					for(var/datum/data/record/R in GLOBL.data_core.security)
 						if(R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr, "security"))
 								var/t1 = copytext(sanitize(input("Add Comment:", "Sec. records", null, null) as message), 1, MAX_MESSAGE_LEN)
@@ -559,10 +559,10 @@
 									counter++
 								if(ishuman(usr))
 									var/mob/living/carbon/human/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [global.game_year]<BR>[t1]")
+									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]")
 								if(isrobot(usr))
 									var/mob/living/silicon/robot/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [global.game_year]<BR>[t1]")
+									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]")
 
 	if(href_list["medical"])
 		if(hasHUD(usr, "medical"))
@@ -578,9 +578,9 @@
 			else
 				perpname = src.name
 
-			for(var/datum/data/record/E in global.data_core.general)
+			for(var/datum/data/record/E in GLOBL.data_core.general)
 				if(E.fields["name"] == perpname)
-					for(var/datum/data/record/R in global.data_core.general)
+					for(var/datum/data/record/R in GLOBL.data_core.general)
 						if(R.fields["id"] == E.fields["id"])
 
 							var/setmedical = input(usr, "Specify a new medical status for this person.", "Medical HUD", R.fields["p_stat"]) in list("*SSD*", "*Deceased*", "Physically Unfit", "Active", "Disabled", "Cancel")
@@ -589,8 +589,8 @@
 								if(setmedical != "Cancel")
 									R.fields["p_stat"] = setmedical
 									modified = 1
-									if(global.pda_manifest.len)
-										global.pda_manifest.Cut()
+									if(GLOBL.pda_manifest.len)
+										GLOBL.pda_manifest.Cut()
 
 									spawn()
 										if(ishuman(usr))
@@ -616,9 +616,9 @@
 					perpname = tempPda.owner
 			else
 				perpname = src.name
-			for(var/datum/data/record/E in global.data_core.general)
+			for(var/datum/data/record/E in GLOBL.data_core.general)
 				if(E.fields["name"] == perpname)
-					for(var/datum/data/record/R in global.data_core.medical)
+					for(var/datum/data/record/R in GLOBL.data_core.medical)
 						if(R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr, "medical"))
 								to_chat(usr, "<b>Name:</b> [R.fields["name"]]	<b>Blood Type:</b> [R.fields["b_type"]]")
@@ -647,9 +647,9 @@
 					perpname = tempPda.owner
 			else
 				perpname = src.name
-			for(var/datum/data/record/E in global.data_core.general)
+			for(var/datum/data/record/E in GLOBL.data_core.general)
 				if(E.fields["name"] == perpname)
-					for(var/datum/data/record/R in global.data_core.medical)
+					for(var/datum/data/record/R in GLOBL.data_core.medical)
 						if(R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr, "medical"))
 								read = 1
@@ -675,9 +675,9 @@
 					perpname = tempPda.owner
 			else
 				perpname = src.name
-			for(var/datum/data/record/E in global.data_core.general)
+			for(var/datum/data/record/E in GLOBL.data_core.general)
 				if(E.fields["name"] == perpname)
-					for(var/datum/data/record/R in global.data_core.medical)
+					for(var/datum/data/record/R in GLOBL.data_core.medical)
 						if(R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr, "medical"))
 								var/t1 = copytext(sanitize(input("Add Comment:", "Med. records", null, null)  as message), 1, MAX_MESSAGE_LEN)
@@ -688,10 +688,10 @@
 									counter++
 								if(ishuman(usr))
 									var/mob/living/carbon/human/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [global.game_year]<BR>[t1]")
+									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]")
 								if(isrobot(usr))
 									var/mob/living/silicon/robot/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [global.game_year]<BR>[t1]")
+									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]")
 
 	if(href_list["lookitem"])
 		var/obj/item/I = locate(href_list["lookitem"])

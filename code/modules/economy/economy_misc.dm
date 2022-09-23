@@ -106,7 +106,7 @@ var/global/economy_init = 0
 	create_department_account("Vendor")
 	vendor_account = department_accounts["Vendor"]
 
-	current_date_string = "[num2text(rand(1, 31))] [pick("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")], [global.game_year]"
+	current_date_string = "[num2text(rand(1, 31))] [pick("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")], [GLOBL.game_year]"
 
 	economy_init = 1
 	return 1

@@ -711,13 +711,13 @@ steam.start() -- spawns the effect
 
 		// Clamp all values to MAX_EXPLOSION_RANGE
 		if(round(amount / 12) > 0)
-			devastation = min (global.max_explosion_range, devastation + round(amount / 12))
+			devastation = min (GLOBL.max_explosion_range, devastation + round(amount / 12))
 
 		if(round(amount / 6) > 0)
-			heavy = min (global.max_explosion_range, heavy + round(amount / 6))
+			heavy = min (GLOBL.max_explosion_range, heavy + round(amount / 6))
 
 		if(round(amount / 3) > 0)
-			light = min (global.max_explosion_range, light + round(amount / 3))
+			light = min (GLOBL.max_explosion_range, light + round(amount / 3))
 
 		if(flash && flashing_factor)
 			flash += (round(amount / 4) * flashing_factor)

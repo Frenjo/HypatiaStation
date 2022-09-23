@@ -34,7 +34,7 @@ GLOBAL_BYOND_TYPED(job_master, /datum/controller/occupations) // Set in /datum/c
 	return 1
 
 /datum/controller/occupations/proc/debug(text)
-	if(!global.debug2)
+	if(!GLOBL.debug2)
 		return 0
 	job_debug.Add(text)
 	return 1

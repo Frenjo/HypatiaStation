@@ -1021,7 +1021,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	..()
 	//Add (facial) hair.
 	if(H.f_style)
-		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[H.f_style]
+		var/datum/sprite_accessory/facial_hair_style = GLOBL.facial_hair_styles_list[H.f_style]
 		if(facial_hair_style)
 			var/icon/facial = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
@@ -1030,7 +1030,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 			overlays.Add(facial) // icon.Blend(facial, ICON_OVERLAY)
 
 	if(H.h_style && !(H.head && (H.head.flags & BLOCKHEADHAIR)))
-		var/datum/sprite_accessory/hair_style = hair_styles_list[H.h_style]
+		var/datum/sprite_accessory/hair_style = GLOBL.hair_styles_list[H.h_style]
 		if(hair_style)
 			var/icon/hair = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration)

@@ -18,12 +18,12 @@
 /world/New()
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
-	global.href_logfile = file("data/logs/[date_string] hrefs.htm")
-	global.diary = file("data/logs/[date_string].log")
-	global.diaryofmeanpeople = file("data/logs/[date_string] Attack.log")
-	global.diary << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
-	global.diaryofmeanpeople << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
-	global.changelog_hash = md5('html/changelog.html')			//used for telling if the changelog has changed recently
+	GLOBL.href_logfile = file("data/logs/[date_string] hrefs.htm")
+	GLOBL.diary = file("data/logs/[date_string].log")
+	GLOBL.diaryofmeanpeople = file("data/logs/[date_string] Attack.log")
+	GLOBL.diary << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
+	GLOBL.diaryofmeanpeople << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
+	GLOBL.changelog_hash = md5('html/changelog.html')			//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)
 		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND."
@@ -48,7 +48,6 @@
 
 	sleep_offline = TRUE
 
-	global.GLOBL = new /datum/controller/global_variables()
 	global.master_controller = new /datum/controller/master()
 	global.process_scheduler = new /datum/controller/process_scheduler()
 	spawn(1)
@@ -82,7 +81,7 @@
 	..(reason)
 
 /world/Topic(T, addr, master, key)
-	global.diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
+	GLOBL.diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
 
 	if(T == "ping")
 		var/x = 1
@@ -99,10 +98,10 @@
 
 	else if(T == "status")
 		var/list/s = list()
-		s["version"] = global.game_version
+		s["version"] = GLOBL.game_version
 		s["mode"] = global.ticker.master_mode
 		s["respawn"] = global.config ? global.config.respawn : FALSE
-		s["enter"] = global.enter_allowed
+		s["enter"] = GLOBL.enter_allowed
 		s["vote"] = global.config.allow_vote_mode
 		s["ai"] = global.config.allow_ai
 		s["host"] = host ? host : null
@@ -148,7 +147,7 @@
 	return 1
 
 /world/proc/load_motd()
-	global.join_motd = file2text("config/motd.txt")
+	GLOBL.join_motd = file2text("config/motd.txt")
 
 // Moderator loading.
 /hook/startup/proc/loadMods()
@@ -197,7 +196,7 @@
 	else
 		features += "<b>STARTING</b>"
 
-	if(!global.enter_allowed)
+	if(!GLOBL.enter_allowed)
 		features += "closed"
 
 	features += global.config.respawn ? "respawn" : "no respawn"

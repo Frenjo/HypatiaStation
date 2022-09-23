@@ -101,6 +101,7 @@
 	var/static/vote_autogamemode_timeleft = 100		//Length of time before round start when autogamemode vote is called (in seconds, default 100).
 
 	// Whitelists.
+	var/static/guests_allowed = TRUE
 	var/static/guest_jobban = TRUE
 	var/static/usewhitelist = FALSE
 	var/static/usealienwhitelist = FALSE
@@ -398,7 +399,7 @@
 
 			// Whitelists.
 			if("guest_ban")
-				global.guests_allowed = FALSE
+				guests_allowed = FALSE
 			if("guest_jobban")
 				guest_jobban = TRUE
 			if("usewhitelist")

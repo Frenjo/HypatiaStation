@@ -55,8 +55,8 @@
 
 		dat += "<h4>Crew Manifest</h4>"
 		dat += "Entries cannot be modified from this terminal.<br><br>"
-		if(global.data_core)
-			dat += global.data_core.get_manifest(0) // make it monochrome
+		if(GLOBL.data_core)
+			dat += GLOBL.data_core.get_manifest(0) // make it monochrome
 		dat += "<br>"
 		dat += "<a href='?src=\ref[src];choice=print'>Print</a><br>"
 		dat += "<br>"
@@ -200,7 +200,7 @@
 	switch(href_list["choice"])
 		if("modify")
 			if(modify)
-				global.data_core.manifest_modify(modify.registered_name, modify.assignment)
+				GLOBL.data_core.manifest_modify(modify.registered_name, modify.assignment)
 				modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
 				if(ishuman(usr))
 					modify.loc = usr.loc
@@ -309,8 +309,8 @@
 
 				var/t1 = "<h4>Crew Manifest</h4>"
 				t1 += "<br>"
-				if(global.data_core)
-					t1 += global.data_core.get_manifest(0) // make it monochrome
+				if(GLOBL.data_core)
+					t1 += GLOBL.data_core.get_manifest(0) // make it monochrome
 
 				P.info = t1
 				P.name = "paper- 'Crew Manifest'"

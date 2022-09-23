@@ -718,8 +718,8 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Toggle dis bitch"
 	set name="Toggle OOC"
-	global.ooc_allowed = !( global.ooc_allowed )
-	if (global.ooc_allowed)
+	GLOBL.ooc_allowed = !GLOBL.ooc_allowed
+	if(GLOBL.ooc_allowed)
 		world << "<B>The OOC channel has been globally enabled!</B>"
 	else
 		world << "<B>The OOC channel has been globally disabled!</B>"
@@ -732,8 +732,8 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Globally Toggles DSAY"
 	set name="Toggle DSAY"
-	global.dsay_allowed = !( global.dsay_allowed )
-	if (global.dsay_allowed)
+	GLOBL.dsay_allowed = !GLOBL.dsay_allowed
+	if(GLOBL.dsay_allowed)
 		world << "<B>Deadchat has been globally enabled!</B>"
 	else
 		world << "<B>Deadchat has been globally disabled!</B>"
@@ -745,7 +745,7 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Toggle dis bitch"
 	set name="Toggle Dead OOC"
-	global.dooc_allowed = !( global.dooc_allowed )
+	GLOBL.dooc_allowed = !GLOBL.dooc_allowed
 
 	log_admin("[key_name(usr)] toggled OOC.")
 	message_admins("[key_name_admin(usr)] toggled Dead OOC.", 1)
@@ -781,8 +781,8 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="People can't enter"
 	set name="Toggle Entering"
-	global.enter_allowed = !( global.enter_allowed )
-	if (!( global.enter_allowed ))
+	GLOBL.enter_allowed = !GLOBL.enter_allowed
+	if(!GLOBL.enter_allowed)
 		world << "<B>New players may no longer enter the game.</B>"
 	else
 		world << "<B>New players may now enter the game.</B>"
@@ -822,9 +822,9 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Toggle alien mobs"
 	set name="Toggle Aliens"
-	global.aliens_allowed = !global.aliens_allowed
-	log_admin("[key_name(usr)] toggled Aliens to [global.aliens_allowed].")
-	message_admins("[key_name_admin(usr)] toggled Aliens [global.aliens_allowed ? "on" : "off"].", 1)
+	GLOBL.aliens_allowed = !GLOBL.aliens_allowed
+	log_admin("[key_name(usr)] toggled Aliens to [GLOBL.aliens_allowed].")
+	message_admins("[key_name_admin(usr)] toggled Aliens [GLOBL.aliens_allowed ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_space_ninja()
@@ -1033,8 +1033,8 @@ var/global/floorIsLava = 0
 	set category = "Debug"
 	set desc="Reduces view range when wearing welding helmets"
 	set name="Toggle tinted welding helmes"
-	global.tinted_weldhelh = !( global.tinted_weldhelh )
-	if (global.tinted_weldhelh)
+	GLOBL.tinted_weldhelh = !GLOBL.tinted_weldhelh
+	if(GLOBL.tinted_weldhelh)
 		world << "<B>The tinted_weldhelh has been enabled!</B>"
 	else
 		world << "<B>The tinted_weldhelh has been disabled!</B>"
@@ -1046,13 +1046,13 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Guests can't enter"
 	set name="Toggle guests"
-	global.guests_allowed = !(global.guests_allowed)
-	if(!(global.guests_allowed))
+	global.config.guests_allowed = !global.config.guests_allowed
+	if(!global.config.guests_allowed)
 		world << "<B>Guests may no longer enter the game.</B>"
 	else
 		world << "<B>Guests may now enter the game.</B>"
-	log_admin("[key_name(usr)] toggled guests game entering [global.guests_allowed?"":"dis"]allowed.")
-	message_admins("\blue [key_name_admin(usr)] toggled guests game entering [global.guests_allowed?"":"dis"]allowed.", 1)
+	log_admin("[key_name(usr)] toggled guests game entering [global.config.guests_allowed ? "" : "dis"]allowed.")
+	message_admins("\blue [key_name_admin(usr)] toggled guests game entering [global.config.guests_allowed ? "" : "dis"]allowed.", 1)
 	feedback_add_details("admin_verb", "TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/output_ai_laws()
