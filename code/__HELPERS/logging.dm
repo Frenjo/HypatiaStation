@@ -20,11 +20,11 @@
 
 /proc/log_admin(text)
 	GLOBL.admin_log.Add(text)
-	if(global.config.log_admin)
+	if(CONFIG_GET(log_admin))
 		GLOBL.diary << "\[[time_stamp()]]ADMIN: [text][log_end]"
 
 /proc/log_debug(text)
-	if(global.config.log_debug)
+	if(CONFIG_GET(log_debug))
 		GLOBL.diary << "\[[time_stamp()]]DEBUG: [text][log_end]"
 
 	for(var/client/C in GLOBL.admins)
@@ -32,52 +32,52 @@
 			to_chat(C, "DEBUG: [text]")
 
 /proc/log_game(text)
-	if(global.config.log_game)
+	if(CONFIG_GET(log_game))
 		GLOBL.diary << "\[[time_stamp()]]GAME: [text][log_end]"
 
 /proc/log_vote(text)
-	if(global.config.log_vote)
+	if(CONFIG_GET(log_vote))
 		GLOBL.diary << "\[[time_stamp()]]VOTE: [text][log_end]"
 
 /proc/log_access(text)
-	if(global.config.log_access)
+	if(CONFIG_GET(log_access))
 		GLOBL.diary << "\[[time_stamp()]]ACCESS: [text][log_end]"
 
 /proc/log_say(text)
-	if(global.config.log_say)
+	if(CONFIG_GET(log_say))
 		GLOBL.diary << "\[[time_stamp()]]SAY: [text][log_end]"
 
 /proc/log_ooc(text)
-	if(global.config.log_ooc)
+	if(CONFIG_GET(log_ooc))
 		GLOBL.diary << "\[[time_stamp()]]OOC: [text][log_end]"
 
 /proc/log_whisper(text)
-	if(global.config.log_whisper)
+	if(CONFIG_GET(log_whisper))
 		GLOBL.diary << "\[[time_stamp()]]WHISPER: [text][log_end]"
 
 /proc/log_emote(text)
-	if(global.config.log_emote)
+	if(CONFIG_GET(log_emote))
 		GLOBL.diary << "\[[time_stamp()]]EMOTE: [text][log_end]"
 
 /proc/log_attack(text)
-	if(global.config.log_attack)
+	if(CONFIG_GET(log_attack))
 		GLOBL.diary << "\[[time_stamp()]]ATTACK: [text][log_end]" //Seperate attack logs? Why?  FOR THE GLORY OF SATAN!
 
 /proc/log_adminsay(text)
-	if(global.config.log_adminchat)
+	if(CONFIG_GET(log_adminchat))
 		GLOBL.diary << "\[[time_stamp()]]ADMINSAY: [text][log_end]"
 
 /proc/log_adminwarn(text)
-	if(global.config.log_adminwarn)
+	if(CONFIG_GET(log_adminwarn))
 		GLOBL.diary << "\[[time_stamp()]]ADMINWARN: [text][log_end]"
 
 /proc/log_pda(text)
-	if(global.config.log_pda)
+	if(CONFIG_GET(log_pda))
 		GLOBL.diary << "\[[time_stamp()]]PDA: [text][log_end]"
 
 /proc/log_to_dd(text)
 	world.log << text //this comes before the config check because it can't possibly runtime
-	if(global.config.log_world_output)
+	if(CONFIG_GET(log_world_output))
 		GLOBL.diary << "\[[time_stamp()]]DD_OUTPUT: [text][log_end]"
 
 /proc/log_misc(text)

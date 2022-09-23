@@ -92,7 +92,7 @@
 	if (bodytemperature >= 330.23) // 135 F
 		return -1	// metroids become supercharged at high temperatures
 
-	return tally+config.slime_delay
+	return tally + CONFIG_GET(slime_delay)
 
 
 /mob/living/carbon/metroid/Bump(atom/movable/AM as mob|obj, yes)

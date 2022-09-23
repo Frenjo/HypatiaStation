@@ -235,7 +235,7 @@
 	dat += "<b>Ghost sight:</b> <a href='?_src_=prefs;preference=ghost_sight'><b>[(toggles & CHAT_GHOSTSIGHT) ? "All Emotes" : "Nearest Creatures"]</b></a><br>"
 	dat += "<b>Ghost radio:</b> <a href='?_src_=prefs;preference=ghost_radio'><b>[(toggles & CHAT_GHOSTRADIO) ? "All Chatter" : "Nearest Speakers"]</b></a><br>"
 
-	if(config.allow_Metadata)
+	if(CONFIG_GET(allow_Metadata))
 		dat += "<b>OOC Notes:</b> <a href='?_src_=prefs;preference=metadata;task=input'> Edit </a><br>"
 
 	dat += "<br><b>Occupation Choices</b><br>"
@@ -865,7 +865,7 @@
 					var/prev_species = species
 					var/whitelisted = 0
 
-					if(config.usealienwhitelist) //If we're using the whitelist, make sure to check it!
+					if(CONFIG_GET(usealienwhitelist)) //If we're using the whitelist, make sure to check it!
 						for(var/S in GLOBL.whitelisted_species)
 							if(is_alien_whitelisted(user, S))
 								new_species += S
@@ -927,7 +927,7 @@
 					var/list/new_languages = list("None")
 					var/datum/species/S = GLOBL.all_species[species]
 
-					if(config.usealienwhitelist)
+					if(CONFIG_GET(usealienwhitelist))
 						for(var/L in GLOBL.all_languages)
 							var/datum/language/lang = GLOBL.all_languages[L]
 							if((!(lang.flags & RESTRICTED)) && (is_alien_whitelisted(user, L) || (!(lang.flags & WHITELISTED)) || (S && (L in S.secondary_langs))))
@@ -1246,7 +1246,7 @@
 	if(be_random_name)
 		real_name = random_name(gender)
 
-	if(config.humans_need_surnames)
+	if(CONFIG_GET(humans_need_surnames))
 		var/firstspace = findtext(real_name, " ")
 		var/name_length = length(real_name)
 		if(!firstspace)	//we need a surname

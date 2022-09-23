@@ -151,7 +151,7 @@
 	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
 		if(stat == DEAD)
 			user << "\red You swipe your ID card through [src], attempting to reboot it."
-			if(!config.allow_drone_spawn || emagged || health < -35) //It's dead, Dave.
+			if(!CONFIG_GET(allow_drone_spawn) || emagged || health < -35) //It's dead, Dave.
 				user << "\red The interface is fried, and a distressing burned smell wafts from the robot's interior. You're not rebooting this one."
 				return
 
@@ -159,7 +159,7 @@
 			for(var/mob/living/silicon/robot/drone/D in world)
 				if(D.key && D.client)
 					drones++
-			if(drones < config.max_maint_drones)
+			if(drones < CONFIG_GET(max_maint_drones))
 				request_player()
 			return
 

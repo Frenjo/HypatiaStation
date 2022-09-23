@@ -151,7 +151,7 @@
 		swap_hand()
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if(src.health >= config.health_threshold_crit)
+	if(src.health >= CONFIG_GET(health_threshold_crit))
 		if(src == M && ishuman(src))
 			var/mob/living/carbon/human/H = src
 			src.visible_message(

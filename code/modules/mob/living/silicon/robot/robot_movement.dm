@@ -15,7 +15,7 @@
 	if(module_active && istype(module_active,/obj/item/borg/combat/mobility))
 		tally-=3
 
-	return tally+config.robot_delay
+	return tally + CONFIG_GET(robot_delay)
 
 /mob/living/silicon/robot/Move()
 	..()

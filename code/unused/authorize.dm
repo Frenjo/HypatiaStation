@@ -5,7 +5,7 @@
 	if (src.authenticating)
 		return
 
-	if (!config.enable_authentication)
+	if (!CONFIG_GET(enable_authentication))
 		src.authenticated = 1
 		return
 
@@ -65,7 +65,7 @@
 		src << "\blue[auth_motd]"
 		return
 
-	if (config.enable_authentication)	//so that this verb isn't used when its goon only
+	if (CONFIG_GET(enable_authentication))	//so that this verb isn't used when its goon only
 		if(src.authenticated && src.authenticated != 1)
 			src.goon = src.authenticated
 			src.verbs -= /client/proc/goonauth

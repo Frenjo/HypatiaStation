@@ -19,7 +19,7 @@
 				src.malfhack = null
 
 
-		if(src.health <= config.health_threshold_dead)
+		if(src.health <= CONFIG_GET(health_threshold_dead))
 			death()
 			return
 

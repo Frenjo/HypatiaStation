@@ -42,7 +42,7 @@ datum/controller/game_controller
 				world << "\red \b Job setup complete"
 				job_master.LoadJobs("config/jobs.txt")
 
-		world.tick_lag = config.Ticklag
+		world.tick_lag = CONFIG_GET(Ticklag)
 
 		createRandomZlevel()
 

@@ -46,7 +46,7 @@
 		return
 
 	//Logs all hrefs
-	if(config && config.log_hrefs && GLOBL.href_logfile)
+	if(CONFIG && CONFIG_GET(log_hrefs) && GLOBL.href_logfile)
 		GLOBL.href_logfile << "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>"
 
 	switch(href_list["_src_"])
@@ -62,7 +62,7 @@
 	..()	//redirect to hsrc.Topic()
 
 /client/proc/handle_spam_prevention(message, mute_type)
-	if(config.automute_on && !holder && src.last_message == message)
+	if(CONFIG_GET(automute_on) && !holder && src.last_message == message)
 		src.last_message_count++
 		if(src.last_message_count >= SPAM_TRIGGER_AUTOMUTE)
 			to_chat(src, SPAN_WARNING("You have exceeded the spam filter limit for identical messages. An auto-mute was applied."))
@@ -107,9 +107,9 @@
 		return
 
 	// Change the way they should download resources.
-	if(config.resource_urls)
-		src.preload_rsc = pick(config.resource_urls)
-	else src.preload_rsc = 1 // If config.resource_urls is not set, preload like normal.
+	if(CONFIG_GET(resource_urls))
+		src.preload_rsc = pick(CONFIG_GET(resource_urls))
+	else src.preload_rsc = 1 // If CONFIG_GET(resource_urls) is not set, preload like normal.
 
 	to_chat(src, SPAN_WARNING("If the title screen is black, resources are still downloading. Please be patient until the title screen appears."))
 

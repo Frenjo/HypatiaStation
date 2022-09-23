@@ -132,7 +132,7 @@
 				client.prefs.real_name = random_name(client.prefs.gender)
 			observer.real_name = client.prefs.real_name
 			observer.name = observer.real_name
-			if(!client.holder && !config.antag_hud_allowed)					// For new ghosts we remove the verb from even showing up if it's not allowed.
+			if(!client.holder && !CONFIG_GET(antag_hud_allowed))			// For new ghosts we remove the verb from even showing up if it's not allowed.
 				observer.verbs -= /mob/dead/observer/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
 			observer.key = key
 			qdel(src)
@@ -145,7 +145,7 @@
 			return
 
 		if(client.prefs.species != "Human")
-			if(!is_alien_whitelisted(src, client.prefs.species) && config.usealienwhitelist)
+			if(!is_alien_whitelisted(src, client.prefs.species) && CONFIG_GET(usealienwhitelist))
 				src << alert("You are currently not whitelisted to play [client.prefs.species].")
 				return 0
 
@@ -159,7 +159,7 @@
 			to_chat(usr, SPAN_INFO("There is an administrative lock on entering the game!"))
 			return
 
-		if(!is_alien_whitelisted(src, client.prefs.species) && config.usealienwhitelist)
+		if(!is_alien_whitelisted(src, client.prefs.species) && CONFIG_GET(usealienwhitelist))
 			src << alert("You are currently not whitelisted to play [client.prefs.species].")
 			return 0
 
@@ -379,7 +379,7 @@
 	if(client.prefs.species)
 		chosen_species = GLOBL.all_species[client.prefs.species]
 	if(chosen_species)
-		if(is_alien_whitelisted(src, client.prefs.species) || !config.usealienwhitelist || !(chosen_species.flags & IS_WHITELISTED) || (client.holder.rights & R_ADMIN) )// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
+		if(is_alien_whitelisted(src, client.prefs.species) || !CONFIG_GET(usealienwhitelist) || !(chosen_species.flags & IS_WHITELISTED) || (client.holder.rights & R_ADMIN))// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
 			new_character = new(loc, client.prefs.species)
 
 		if(!new_character)
@@ -391,7 +391,7 @@
 	if(client.prefs.secondary_language)
 		chosen_language = GLOBL.all_languages["[client.prefs.secondary_language]"]
 	if(chosen_language)
-		if(is_alien_whitelisted(src, client.prefs.secondary_language) || !config.usealienwhitelist || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
+		if(is_alien_whitelisted(src, client.prefs.secondary_language) || !CONFIG_GET(usealienwhitelist) || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 			new_character.add_language("[client.prefs.secondary_language]")
 
 	if(ticker.random_players)

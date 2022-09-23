@@ -43,7 +43,7 @@ var/scheduledEvent = null
 //unused, see proc/dynamic_event()
 /*
 /proc/spawnEvent()
-	if(!config.allow_random_events)
+	if(!CONFIG_GET(allow_random_events))
 		return
 
 	var/Type = pick(potentialRandomEvents)

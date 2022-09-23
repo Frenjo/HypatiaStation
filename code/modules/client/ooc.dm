@@ -48,7 +48,7 @@
 		if(holder.rights & R_DEBUG && !(holder.rights & R_ADMIN))
 			display_colour = "#1b521f"	//dark green
 		else if(holder.rights & R_ADMIN)
-			if(config.allow_admin_ooccolor)
+			if(CONFIG_GET(allow_admin_ooccolor))
 				display_colour = src.prefs.ooccolor
 			else
 				display_colour = "#b82e00"	//orange
@@ -69,7 +69,7 @@
 			if(holder)
 				if(!holder.fakekey || C.holder)
 					if(holder.rights & R_ADMIN)
-						C << "<font color=[config.allow_admin_ooccolor ? src.prefs.ooccolor :"#b82e00" ]><b><span class='prefix'>OOC:</span> <EM>[key][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></b></font>"
+						C << "<font color=[CONFIG_GET(allow_admin_ooccolor) ? src.prefs.ooccolor :"#b82e00" ]><b><span class='prefix'>OOC:</span> <EM>[key][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></b></font>"
 					else if(holder.rights & R_MOD)
 						C << "<font color=#184880><b><span class='prefix'>OOC:</span> <EM>[src.key][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></b></font>"
 					else

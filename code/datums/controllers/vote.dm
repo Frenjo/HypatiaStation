@@ -37,7 +37,7 @@ GLOBAL_BYOND_TYPED(vote, /datum/controller/vote) // Set in /datum/process/vote/s
 
 		// Calculate how much time is remaining by comparing current time, to time of vote start,
 		// plus vote duration
-		time_remaining = round((started_time + global.config.vote_period - world.time) / 10)
+		time_remaining = round((started_time + CONFIG_GET(vote_period) - world.time) / 10)
 
 		if(time_remaining < 0)
 			result()
@@ -89,7 +89,7 @@ GLOBAL_BYOND_TYPED(vote, /datum/controller/vote) // Set in /datum/process/vote/s
 		if(votes > greatest_votes)
 			greatest_votes = votes
 	//default-vote for everyone who didn't vote
-	if(!global.config.vote_no_default && choices.len)
+	if(!CONFIG_GET(vote_no_default) && choices.len)
 		var/non_voters = (GLOBL.clients.len - total_votes)
 		if(non_voters > 0)
 			if(mode == "restart")
@@ -191,7 +191,7 @@ GLOBAL_BYOND_TYPED(vote, /datum/controller/vote) // Set in /datum/process/vote/s
 
 /datum/controller/vote/proc/submit_vote(ckey, vote)
 	if(mode)
-		if(global.config.vote_no_dead && usr.stat == DEAD && !usr.client.holder)
+		if(CONFIG_GET(vote_no_dead) && usr.stat == DEAD && !usr.client.holder)
 			return 0
 		if(current_votes[ckey])
 			choices[choices[current_votes[ckey]]]--
@@ -205,7 +205,7 @@ GLOBAL_BYOND_TYPED(vote, /datum/controller/vote) // Set in /datum/process/vote/s
 /datum/controller/vote/proc/initiate_vote(vote_type, initiator_key)
 	if(!mode)
 		if(started_time != null && !check_rights(R_ADMIN))
-			var/next_allowed_time = (started_time + global.config.vote_delay)
+			var/next_allowed_time = (started_time + CONFIG_GET(vote_delay))
 			if(next_allowed_time > world.time)
 				return 0
 
@@ -216,7 +216,7 @@ GLOBAL_BYOND_TYPED(vote, /datum/controller/vote) // Set in /datum/process/vote/s
 			if("gamemode")
 				if(global.ticker.current_state >= 2)
 					return 0
-				choices.Add(global.config.votable_modes)
+				choices.Add(CONFIG_GET(votable_modes))
 			if("crew_transfer")
 				if(check_rights(R_ADMIN | R_MOD, 0))
 					question = "End the shift?"
@@ -248,7 +248,7 @@ GLOBAL_BYOND_TYPED(vote, /datum/controller/vote) // Set in /datum/process/vote/s
 			text += "\n[question]"
 
 		log_vote(text)
-		to_world("<font color='purple'><b>[text]</b>\nType vote to place your votes.\nYou have [global.config.vote_period / 10] seconds to vote.</font>")
+		to_world("<font color='purple'><b>[text]</b>\nType vote to place your votes.\nYou have [CONFIG_GET(vote_period) / 10] seconds to vote.</font>")
 		switch(vote_type)
 			if("crew_transfer")
 				world << sound('sound/ambience/alarm4.ogg')
@@ -280,7 +280,7 @@ GLOBAL_BYOND_TYPED(vote, /datum/controller/vote) // Set in /datum/process/vote/s
 			message_admins("OOC has been toggled off automatically.")
 	*/
 
-		time_remaining = round(global.config.vote_period / 10)
+		time_remaining = round(CONFIG_GET(vote_period) / 10)
 		return 1
 	return 0
 
@@ -317,25 +317,25 @@ GLOBAL_BYOND_TYPED(vote, /datum/controller/vote) // Set in /datum/process/vote/s
 	else
 		. += "<h2>Start a vote:</h2><hr><ul><li>"
 		//restart
-		if(trialmin || global.config.allow_vote_restart)
+		if(trialmin || CONFIG_GET(allow_vote_restart))
 			. += "<a href='?src=\ref[src];vote=restart'>Restart</a>"
 		else
 			. += "<font color='grey'>Restart (Disallowed)</font>"
 		. += "</li><li>"
-		if(trialmin || global.config.allow_vote_restart)
+		if(trialmin || CONFIG_GET(allow_vote_restart))
 			. += "<a href='?src=\ref[src];vote=crew_transfer'>Crew Transfer</a>"
 		else
 			. += "<font color='grey'>Crew Transfer (Disallowed)</font>"
 		if(trialmin)
-			. += "\t(<a href='?src=\ref[src];vote=toggle_restart'>[global.config.allow_vote_restart?"Allowed":"Disallowed"]</a>)"
+			. += "\t(<a href='?src=\ref[src];vote=toggle_restart'>[CONFIG_GET(allow_vote_restart) ? "Allowed" : "Disallowed"]</a>)"
 		. += "</li><li>"
 		//gamemode
-		if(trialmin || global.config.allow_vote_mode)
+		if(trialmin || CONFIG_GET(allow_vote_mode))
 			. += "<a href='?src=\ref[src];vote=gamemode'>GameMode</a>"
 		else
 			. += "<font color='grey'>GameMode (Disallowed)</font>"
 		if(trialmin)
-			. += "\t(<a href='?src=\ref[src];vote=toggle_gamemode'>[global.config.allow_vote_mode?"Allowed":"Disallowed"]</a>)"
+			. += "\t(<a href='?src=\ref[src];vote=toggle_gamemode'>[CONFIG_GET(allow_vote_mode) ? "Allowed" : "Disallowed"]</a>)"
 
 		. += "</li>"
 		//custom
@@ -358,18 +358,18 @@ GLOBAL_BYOND_TYPED(vote, /datum/controller/vote) // Set in /datum/process/vote/s
 				reset()
 		if("toggle_restart")
 			if(usr.client.holder)
-				global.config.allow_vote_restart = !global.config.allow_vote_restart
+				CONFIG_SET(allow_vote_restart, !CONFIG_GET(allow_vote_restart))
 		if("toggle_gamemode")
 			if(usr.client.holder)
-				global.config.allow_vote_mode = !global.config.allow_vote_mode
+				CONFIG_SET(allow_vote_mode, !CONFIG_GET(allow_vote_mode))
 		if("restart")
-			if(global.config.allow_vote_restart || usr.client.holder)
+			if(CONFIG_GET(allow_vote_restart) || usr.client.holder)
 				initiate_vote("restart", usr.key)
 		if("gamemode")
-			if(global.config.allow_vote_mode || usr.client.holder)
+			if(CONFIG_GET(allow_vote_mode) || usr.client.holder)
 				initiate_vote("gamemode", usr.key)
 		if("crew_transfer")
-			if(global.config.allow_vote_restart || usr.client.holder)
+			if(CONFIG_GET(allow_vote_restart) || usr.client.holder)
 				initiate_vote("crew_transfer", usr.key)
 		if("custom")
 			if(usr.client.holder)

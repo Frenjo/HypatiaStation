@@ -9,6 +9,10 @@
 */
 /var/global/configuration/config // Set in /datum/global_init/New()
 
+#define CONFIG global.config
+#define CONFIG_GET(X) global.config.X
+#define CONFIG_SET(X, V) global.config.X = V
+
 /configuration
 	// ----- CONFIG.TXT STUFF -----
 	// Server information.

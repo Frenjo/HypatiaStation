@@ -24,11 +24,11 @@
 	update_starlight()
 
 /turf/space/proc/update_starlight()
-	if(!config.starlight)
+	if(!CONFIG_GET(starlight))
 		return
 
 	if(locate(/turf/simulated) in orange(src, 1))
-		set_light(config.starlight)
+		set_light(CONFIG_GET(starlight))
 	else
 		set_light(0)
 

@@ -88,7 +88,7 @@
 
 /obj/item/weapon/paper/attack_self(mob/living/user as mob)
 	examine()
-	if(rigged && (global.config.holiday_name == "April Fool's Day"))
+	if(rigged && (CONFIG_GET(holiday_name) == "April Fool's Day"))
 		if(spam_flag == 0)
 			spam_flag = 1
 			playsound(loc, 'sound/items/bikehorn.ogg', 50, 1)

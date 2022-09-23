@@ -50,7 +50,7 @@ var/list/possible_changeling_IDs = list(
 	to_world("<B>There are alien changelings on the station. Do not let the changelings succeed!</B>")
 
 /datum/game_mode/changeling/pre_setup()
-	if(config.protect_roles_from_antagonist)
+	if(CONFIG_GET(protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
 	var/list/datum/mind/possible_changelings = get_players_for_role(BE_CHANGELING)
@@ -78,7 +78,7 @@ var/list/possible_changeling_IDs = list(
 	for(var/datum/mind/changeling in changelings)
 		grant_changeling_powers(changeling.current)
 		changeling.special_role = "Changeling"
-		if(!config.objectives_disabled)
+		if(!CONFIG_GET(objectives_disabled))
 			forge_changeling_objectives(changeling)
 		greet_changeling(changeling)
 
@@ -127,10 +127,10 @@ var/list/possible_changeling_IDs = list(
 		to_chat(changeling.current, SPAN_DANGER("You are a changeling!"))
 	to_chat(changeling.current, SPAN_DANGER("Use say \":g message\" to communicate with your fellow changelings. Remember: you get all of their absorbed DNA if you absorb them."))
 
-	if(config.objectives_disabled)
+	if(CONFIG_GET(objectives_disabled))
 		to_chat(changeling.current, "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>")
 
-	if(!config.objectives_disabled)
+	if(!CONFIG_GET(objectives_disabled))
 		to_chat(changeling.current, "<B>You must complete the following tasks:</B>")
 
 	if(changeling.current.mind)
@@ -138,7 +138,7 @@ var/list/possible_changeling_IDs = list(
 			to_chat(changeling.current, "You have evolved beyond your clownish nature, allowing you to wield weapons without harming yourself.")
 			changeling.current.mutations.Remove(CLUMSY)
 
-	if(!config.objectives_disabled)
+	if(!CONFIG_GET(objectives_disabled))
 		var/obj_count = 1
 		for(var/datum/objective/objective in changeling.objectives)
 			to_chat(changeling.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
@@ -194,7 +194,7 @@ var/list/possible_changeling_IDs = list(
 			//Removed sanity if(changeling) because we -want- a runtime to inform us that the changelings list is incorrect and needs to be fixed.
 			text += "<br><b>Changeling ID:</b> [changeling.changeling.changelingID]."
 			text += "<br><b>Genomes Absorbed:</b> [changeling.changeling.absorbedcount]"
-			if(!config.objectives_disabled)
+			if(!CONFIG_GET(objectives_disabled))
 				if(changeling.objectives.len)
 					var/count = 1
 					for(var/datum/objective/objective in changeling.objectives)
@@ -206,7 +206,7 @@ var/list/possible_changeling_IDs = list(
 							feedback_add_details("changeling_objective", "[objective.type]|FAIL")
 							changelingwin = 0
 						count++
-				if(!config.objectives_disabled)
+				if(!CONFIG_GET(objectives_disabled))
 					if(changelingwin)
 						text += "<br><font color='green'><B>The changeling was successful!</B></font>"
 						feedback_add_details("changeling_success", "SUCCESS")

@@ -50,12 +50,12 @@
 		if("update")
 			ToRban_update()
 		if("toggle")
-			if(config)
-				if(config.ToRban)
-					config.ToRban = 0
+			if(CONFIG)
+				if(CONFIG_GET(ToRban))
+					CONFIG_SET(ToRban, FALSE)
 					message_admins("<font color='red'>ToR banning disabled.</font>")
 				else
-					config.ToRban = 1
+					CONFIG_SET(ToRban, TRUE)
 					message_admins("<font colot='green'>ToR banning enabled.</font>")
 		if("show")
 			var/savefile/F = new(TORFILE)

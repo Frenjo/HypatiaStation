@@ -34,7 +34,7 @@ GLOBAL_BYOND_INIT(pipe_processing_killed, FALSE)
 		global.syndicate_code_response	= generate_code_phrase()
 
 /datum/controller/master/setup()
-	world.tick_lag = global.config.ticklag
+	world.tick_lag = CONFIG_GET(ticklag)
 
 	spawn(2 SECONDS)
 		createRandomZlevel()

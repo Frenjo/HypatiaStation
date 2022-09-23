@@ -5,7 +5,7 @@
 	schedule_interval = INACTIVITY_KICK
 
 /datum/process/inactivity/doWork()
-	if(config.kick_inactive)
+	if(CONFIG_GET(kick_inactive))
 		for(var/client/C in GLOBL.clients)
 			if(C.is_afk(INACTIVITY_KICK))
 				if(!istype(C.mob, /mob/dead))

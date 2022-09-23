@@ -67,7 +67,7 @@ VOX HEIST ROUNDTYPE
 			continue
 
 	//Generate objectives for the group.
-	if(!config.objectives_disabled)
+	if(!CONFIG_GET(objectives_disabled))
 		raid_objectives = forge_vox_objectives()
 
 	var/index = 1
@@ -162,7 +162,7 @@ VOX HEIST ROUNDTYPE
 	raider.current << "\blue Use :V to voxtalk, :H to talk on your encrypted channel, and don't forget to turn on your nitrogen internals!"
 	raider.current << "\red IF YOU HAVE NOT PLAYED A VOX BEFORE, REVIEW THIS THREAD: http://baystation12.net/forums/viewtopic.php?f=6&t=8657."
 	var/obj_count = 1
-	if(!config.objectives_disabled)
+	if(!CONFIG_GET(objectives_disabled))
 		for(var/datum/objective/objective in raider.objectives)
 			raider.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
 			obj_count++

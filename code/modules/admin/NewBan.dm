@@ -10,8 +10,8 @@ var/savefile/Banlist
 
 	. = list()
 	var/appeal
-	if(config && config.banappeals)
-		appeal = "\nFor more information on your ban, or to appeal, head to <a href='[config.banappeals]'>[config.banappeals]</a>"
+	if(CONFIG && CONFIG_GET(banappeals))
+		appeal = "\nFor more information on your ban, or to appeal, head to <a href='[CONFIG_GET(banappeals)]'>[CONFIG_GET(banappeals)]</a>"
 	Banlist.cd = "/base"
 	if( "[ckey][id]" in Banlist.dir )
 		Banlist.cd = "[ckey][id]"

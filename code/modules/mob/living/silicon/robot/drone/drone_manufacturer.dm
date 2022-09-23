@@ -17,7 +17,7 @@
 
 /obj/machinery/drone_fabricator/New()
 	..()
-	produce_drones = config.allow_drone_spawn
+	produce_drones = CONFIG_GET(allow_drone_spawn)
 
 /obj/machinery/drone_fabricator/power_change()
 	if (powered())
@@ -38,14 +38,14 @@
 
 	icon_state = "drone_fab_active"
 	var/elapsed = world.time - time_last_drone
-	drone_progress = round((elapsed/config.drone_build_time)*100)
+	drone_progress = round((elapsed / CONFIG_GET(drone_build_time)) * 100)
 
 	if(drone_progress >= 100)
 		visible_message("\The [src] voices a strident beep, indicating a drone chassis is prepared.")
 
 /obj/machinery/drone_fabricator/examine()
 	..()
-	if(produce_drones && drone_progress >= 100 && istype(usr,/mob/dead) && config.allow_drone_spawn && count_drones() < config.max_maint_drones)
+	if(produce_drones && drone_progress >= 100 && istype(usr,/mob/dead) && CONFIG_GET(allow_drone_spawn) && count_drones() < CONFIG_GET(max_maint_drones))
 		usr << "<BR><B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>"
 
 /obj/machinery/drone_fabricator/proc/count_drones()
@@ -59,7 +59,7 @@
 	if(stat & NOPOWER)
 		return
 
-	if(!produce_drones || !config.allow_drone_spawn || count_drones() >= config.max_maint_drones)
+	if(!produce_drones || !CONFIG_GET(allow_drone_spawn) || count_drones() >= CONFIG_GET(max_maint_drones))
 		return
 
 	if(!player || !istype(player.mob,/mob/dead))
@@ -79,7 +79,7 @@
 	set name = "Join As Drone"
 	set desc = "If there is a powered, enabled fabricator in the game world with a prepared chassis, join as a maintenance drone."
 
-	if(!(config.allow_drone_spawn))
+	if(!CONFIG_GET(allow_drone_spawn))
 		src << "\red That verb is not currently permitted."
 		return
 
@@ -92,7 +92,7 @@
 	var/deathtime = world.time - src.timeofdeath
 	if(istype(src,/mob/dead/observer))
 		var/mob/dead/observer/G = src
-		if(G.has_enabled_antagHUD == 1 && config.antag_hud_restricted)
+		if(G.has_enabled_antagHUD == 1 && CONFIG_GET(antag_hud_restricted))
 			usr << "\blue <B>Upon using the antagHUD you forfeighted the ability to join the round.</B>"
 			return
 
@@ -114,7 +114,7 @@
 	for(var/obj/machinery/drone_fabricator/DF in world)
 		if(DF.stat & NOPOWER || !DF.produce_drones)
 			continue
-		if(DF.count_drones() >= config.max_maint_drones)
+		if(DF.count_drones() >= CONFIG_GET(max_maint_drones))
 			src << "\red There are too many active drones in the world for you to spawn."
 			return
 

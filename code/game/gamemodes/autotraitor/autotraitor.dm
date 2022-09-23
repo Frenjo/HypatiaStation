@@ -13,7 +13,7 @@
 	to_world("<B>Game mode is AutoTraitor. Traitors will be added to the round automagically as needed.</B>")
 
 /datum/game_mode/traitor/autotraitor/pre_setup()
-	if(config.protect_roles_from_antagonist)
+	if(CONFIG_GET(protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
 	possible_traitors = get_players_for_role(BE_TRAITOR)
@@ -38,7 +38,7 @@
 	if(!possible_traitors.len)
 		return 0
 
-	if(config.traitor_scaling)
+	if(CONFIG_GET(traitor_scaling))
 		num_traitors = max_traitors - 1 + prob(traitor_prob)
 		log_game("Number of traitors: [num_traitors]")
 		message_admins("Players counted: [num_players]  Number of traitors chosen: [num_traitors]")
@@ -63,7 +63,7 @@
 
 /datum/game_mode/traitor/autotraitor/post_setup()
 	..()
-	global.config.respawn = TRUE
+	CONFIG_SET(respawn, TRUE)
 	traitorcheckloop()
 
 /datum/game_mode/traitor/autotraitor/proc/traitorcheckloop()
@@ -113,7 +113,7 @@
 				var/mob/living/newtraitor = pick(possible_traitors)
 				//message_admins("[newtraitor.real_name] is the new Traitor.")
 
-				if(!config.objectives_disabled)
+				if(!CONFIG_GET(objectives_disabled))
 					forge_traitor_objectives(newtraitor.mind)
 
 				if(issilicon(newtraitor))
@@ -128,7 +128,7 @@
 				BITSET(newtraitor.hud_updateflag, SPECIALROLE_HUD)
 				var/obj_count = 1
 				to_chat(newtraitor, SPAN_INFO("Your current objectives:"))
-				if(!config.objectives_disabled)
+				if(!CONFIG_GET(objectives_disabled))
 					for(var/datum/objective/objective in newtraitor.mind.objectives)
 						to_chat(newtraitor, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 						obj_count++
@@ -180,7 +180,7 @@
 				traitors += character.mind
 				to_chat(character, SPAN_DANGER("You are the traitor."))
 				character.mind.special_role = "traitor"
-				if(config.objectives_disabled)
+				if(CONFIG_GET(objectives_disabled))
 					to_chat(character, "<i>You have been selected this round as an antagonist - <font color=blue>Within the rules,</font> try to act as an opposing force to the crew - This can be via corporate payoff, personal motives, or maybe just being a dick. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonist.</i></b>")
 				else
 					var/obj_count = 1

@@ -476,7 +476,7 @@ default behaviour is:
 	set category = "OOC"
 	set src in view()
 
-	if(config.allow_Metadata)
+	if(CONFIG_GET(allow_Metadata))
 		if(client)
 			to_chat(usr, "[src]'s Metainfo:<br>[client.prefs.metadata]")
 		else

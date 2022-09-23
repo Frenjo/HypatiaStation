@@ -46,7 +46,7 @@
 
 /datum/game_mode/wizard/post_setup()
 	for(var/datum/mind/wizard in wizards)
-		if(!config.objectives_disabled)
+		if(!CONFIG_GET(objectives_disabled))
 			forge_wizard_objectives(wizard)
 		//learn_basic_spells(wizard.current)
 		equip_wizard(wizard.current)
@@ -128,7 +128,7 @@
 	if(you_are)
 		to_chat(wizard.current, SPAN_DANGER("You are the Space Wizard!"))
 	to_chat(wizard.current, "<B>The Space Wizards Federation has given you the following tasks:</B>")
-	if(!config.objectives_disabled)
+	if(!CONFIG_GET(objectives_disabled))
 		var/obj_count = 1
 		for(var/datum/objective/objective in wizard.objectives)
 			to_chat(wizard.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
@@ -141,7 +141,7 @@
 /*/datum/game_mode/proc/learn_basic_spells(mob/living/carbon/human/wizard_mob)
 	if (!istype(wizard_mob))
 		return
-	if(!config.feature_object_spell_system)
+	if(!CONFIG_GET(feature_object_spell_system))
 		wizard_mob.verbs += /client/proc/jaunt
 		wizard_mob.mind.special_verbs += /client/proc/jaunt
 	else
@@ -183,7 +183,7 @@
 	return 1
 
 /datum/game_mode/wizard/check_finished()
-	if(config.continous_rounds)
+	if(CONFIG_GET(continous_rounds))
 		return ..()
 
 	var/wizards_alive = 0
@@ -226,7 +226,7 @@
 
 			var/count = 1
 			var/wizardwin = 1
-			if(!config.objectives_disabled)
+			if(!CONFIG_GET(objectives_disabled))
 				for(var/datum/objective/objective in wizard.objectives)
 					if(objective.check_completion())
 						text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='green'><B>Success!</B></font>"

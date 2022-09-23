@@ -202,7 +202,7 @@ GLOBAL_BYOND_TYPED(job_master, /datum/controller/occupations) // Set in /datum/c
 	var/datum/job/job = get_job("AI")
 	if(!job)
 		return 0
-	if((job.title == "AI") && (config) && (!config.allow_ai))
+	if(job.title == "AI" && CONFIG && !CONFIG_GET(allow_ai))
 		return 0
 
 	for(var/i = job.total_positions, i > 0, i--)
@@ -513,7 +513,7 @@ GLOBAL_BYOND_TYPED(job_master, /datum/controller/occupations) // Set in /datum/c
 	return 1
 
 /datum/controller/occupations/proc/load_jobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
-	if(!config.load_jobs_from_txt)
+	if(!CONFIG_GET(load_jobs_from_txt))
 		return 0
 
 	var/list/jobEntries = file2list(jobsfile)

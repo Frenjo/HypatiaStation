@@ -332,7 +332,7 @@ GLOBAL_BYOND_TYPED(pAI_controller, /datum/controller/pai)	// Global handler for 
 
 /datum/controller/pai/proc/request_recruits()
 	for(var/mob/dead/observer/O in GLOBL.player_list)
-		if(O.has_enabled_antagHUD == 1 && config.antag_hud_restricted)
+		if(O.has_enabled_antagHUD == 1 && CONFIG_GET(antag_hud_restricted))
 			continue
 		if(jobban_isbanned(O, "pAI"))
 			continue

@@ -153,7 +153,7 @@
 			revoke_maint_all_access()
 			feedback_inc("alert_keycard_auth_maintRevoke", 1)
 		if("Emergency Response Team")
-			if(!config.ert_admin_call_only)
+			if(!CONFIG_GET(ert_admin_call_only))
 				trigger_armed_response_team(1)
 				feedback_inc("alert_keycard_auth_ert", 1)
 

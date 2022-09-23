@@ -91,7 +91,7 @@
 
 	//If limb took enough damage, try to cut or tear it off
 	if(body_part != UPPER_TORSO && body_part != LOWER_TORSO) //as hilarious as it is, getting hit on the chest too much shouldn't effectively gib you.
-		if(config.limbs_can_break && brute_dam >= max_damage * config.organ_health_multiplier)
+		if(CONFIG_GET(limbs_can_break) && brute_dam >= max_damage * CONFIG_GET(organ_health_multiplier))
 			if((edge && prob(5 * brute)) || (brute > 20 && prob(2 * brute)))
 				droplimb(1)
 				return
@@ -110,7 +110,7 @@
 
 	var/can_cut = (prob(brute * 2) || sharp) && !(status & ORGAN_ROBOT)
 	// If the limbs can break, make sure we don't exceed the maximum damage a limb can take before breaking
-	if((brute_dam + burn_dam + brute + burn) < max_damage || !config.limbs_can_break)
+	if((brute_dam + burn_dam + brute + burn) < max_damage || !CONFIG_GET(limbs_can_break))
 		if(brute)
 			if(can_cut)
 				createwound(CUT, brute)
@@ -121,7 +121,7 @@
 	else
 		//If we can't inflict the full amount of damage, spread the damage in other ways
 		//How much damage can we actually cause?
-		var/can_inflict = max_damage * config.organ_health_multiplier - (brute_dam + burn_dam)
+		var/can_inflict = max_damage * CONFIG_GET(organ_health_multiplier) - (brute_dam + burn_dam)
 		if(can_inflict)
 			if(brute > 0)
 				//Inflict all burte damage we can
@@ -327,7 +327,7 @@ This function completely restores a damaged organ to perfect condition.
 
 	//Dismemberment
 	if(status & ORGAN_DESTROYED)
-		if(!destspawn && config.limbs_can_break)
+		if(!destspawn && CONFIG_GET(limbs_can_break))
 			droplimb()
 		return
 	if(parent)
@@ -337,7 +337,7 @@ This function completely restores a damaged organ to perfect condition.
 			return
 
 	//Bone fracurtes
-	if(config.bones_can_break && brute_dam > min_broken_damage * config.organ_health_multiplier && !(status & ORGAN_ROBOT))
+	if(CONFIG_GET(bones_can_break) && brute_dam > min_broken_damage * CONFIG_GET(organ_health_multiplier) && !(status & ORGAN_ROBOT))
 		src.fracture()
 	if(!(status & ORGAN_BROKEN))
 		perma_injury = 0
@@ -458,7 +458,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 		//we only update wounds once in [wound_update_accuracy] ticks so have to emulate realtime
 		heal_amt = heal_amt * wound_update_accuracy
 		//configurable regen speed woo, no-regen hardcore or instaheal hugbox, choose your destiny
-		heal_amt = heal_amt * config.organ_regeneration_multiplier
+		heal_amt = heal_amt * CONFIG_GET(organ_regeneration_multiplier)
 		// amount of healing is spread over all the wounds
 		heal_amt = heal_amt / (wounds.len + 1)
 		// making it look prettier on scanners

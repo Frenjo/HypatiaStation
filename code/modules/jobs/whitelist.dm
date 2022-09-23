@@ -3,7 +3,7 @@
 /var/list/whitelist = list()
 
 /hook/startup/proc/loadWhitelist()
-	if(config.usewhitelist)
+	if(CONFIG_GET(usewhitelist))
 		load_whitelist()
 	return 1
 
@@ -20,7 +20,7 @@
 /var/list/alien_whitelist = list()
 
 /hook/startup/proc/loadAlienWhitelist()
-	if(config.usealienwhitelist)
+	if(CONFIG_GET(usealienwhitelist))
 		load_alienwhitelist()
 	return 1
 
@@ -33,7 +33,7 @@
 
 //todo: admin aliens
 /proc/is_alien_whitelisted(mob/M, species)
-	if(!config.usealienwhitelist)
+	if(!CONFIG_GET(usealienwhitelist))
 		return 1
 	if(species == "human" || species == "Human")
 		return 1

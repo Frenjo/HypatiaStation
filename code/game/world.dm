@@ -30,11 +30,11 @@
 
 	global.config.post_load()
 
-	if(global.config && global.config.server_name != null && global.config.server_suffix && world.port > 0)
+	if(CONFIG && CONFIG_GET(server_name) != null && CONFIG_GET(server_suffix) && world.port > 0)
 		// dumb and hardcoded but I don't care~
-		global.config.server_name += " #[(world.port % 1000) / 100]"
+		CONFIG_GET(server_name) += " #[(world.port % 1000) / 100]"
 
-	if(global.config && global.config.log_runtime)
+	if(CONFIG && CONFIG_GET(log_runtime))
 		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
 	callHook("startup")
@@ -56,7 +56,7 @@
 		global.master_controller.setup()
 
 	spawn(5 MINUTES) // Delay by 5 minutes (300 seconds/3000 deciseconds) so we aren't adding to the round-start lag.
-		if(global.config.ToRban)
+		if(CONFIG_GET(ToRban))
 			ToRban_autoupdate()
 	return
 #undef RECOMMENDED_VERSION
@@ -73,8 +73,8 @@
 	global.process_scheduler.stop()
 
 	for(var/client/C in GLOBL.clients)
-		if(global.config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
-			C << link("byond://[global.config.server]")
+		if(CONFIG_GET(server))	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
+			C << link("byond://[CONFIG_GET(server)]")
 		else
 			C << link("byond://[world.address]:[world.port]")
 
@@ -100,10 +100,10 @@
 		var/list/s = list()
 		s["version"] = GLOBL.game_version
 		s["mode"] = global.ticker.master_mode
-		s["respawn"] = global.config ? global.config.respawn : FALSE
+		s["respawn"] = CONFIG ? CONFIG_GET(respawn) : FALSE
 		s["enter"] = GLOBL.enter_allowed
-		s["vote"] = global.config.allow_vote_mode
-		s["ai"] = global.config.allow_ai
+		s["vote"] = CONFIG_GET(allow_vote_mode)
+		s["ai"] = CONFIG_GET(allow_ai)
 		s["host"] = host ? host : null
 		s["players"] = list()
 		var/n = 0
@@ -155,7 +155,7 @@
 	return 1
 
 /world/proc/load_mods()
-	if(global.config.admin_legacy_system)
+	if(CONFIG_GET(admin_legacy_system))
 		var/text = file2text("config/moderators.txt")
 		if(!text)
 			error("Failed to load config/mods.txt")
@@ -177,8 +177,8 @@
 /world/proc/update_status()
 	var/s = ""
 
-	if(global.config && global.config.server_name)
-		s += "<b>[global.config.server_name]</b> &#8212; "
+	if(CONFIG && CONFIG_GET(server_name))
+		s += "<b>[CONFIG_GET(server_name)]</b> &#8212; "
 
 	s += "<b>[station_name()]</b>";
 	s += " ("
@@ -199,12 +199,12 @@
 	if(!GLOBL.enter_allowed)
 		features += "closed"
 
-	features += global.config.respawn ? "respawn" : "no respawn"
+	features += CONFIG_GET(respawn) ? "respawn" : "no respawn"
 
-	if(global.config && global.config.allow_vote_mode)
+	if(CONFIG && CONFIG_GET(allow_vote_mode))
 		features += "vote"
 
-	if(global.config && global.config.allow_ai)
+	if(CONFIG && CONFIG_GET(allow_ai))
 		features += "AI allowed"
 
 	var/n = 0
@@ -223,8 +223,8 @@
 		features += "hosted by <b>[host]</b>"
 	*/
 
-	if(!host && global.config && global.config.hostedby)
-		features += "hosted by <b>[global.config.hostedby]</b>"
+	if(!host && CONFIG && CONFIG_GET(hostedby))
+		features += "hosted by <b>[CONFIG_GET(hostedby)]</b>"
 
 	if(features)
 		s += ": [jointext(features, ", ")]"

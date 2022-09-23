@@ -7,7 +7,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(allow_admin_jump))
 		usr.forceMove(pick(get_area_turfs(A)))
 
 		log_admin("[key_name(usr)] jumped to [A]")
@@ -25,7 +25,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(allow_admin_jump))
 		log_admin("[key_name(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
 		message_admins("[key_name_admin(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]", 1)
 		usr.forceMove(T)
@@ -42,7 +42,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(allow_admin_jump))
 		log_admin("[key_name(usr)] jumped to [key_name(M)]")
 		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", 1)
 		if(src.mob)
@@ -65,7 +65,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(allow_admin_jump))
 		if(src.mob)
 			var/mob/A = src.mob
 			A.x = tx
@@ -86,7 +86,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(allow_admin_jump))
 		var/list/keys = list()
 		for(var/mob/M in GLOBL.player_list)
 			keys += M.client
@@ -112,7 +112,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(allow_admin_jump))
 		log_admin("[key_name(usr)] teleported [key_name(M)]")
 		message_admins("[key_name_admin(usr)] teleported [key_name_admin(M)]", 1)
 		M.forceMove(get_turf(usr))
@@ -130,7 +130,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(allow_admin_jump))
 		var/list/keys = list()
 		for(var/mob/M in GLOBL.player_list)
 			keys += M.client
@@ -160,7 +160,7 @@
 
 	var/area/A = input(usr, "Pick an area.", "Pick an area") in return_sorted_areas()
 	if(A)
-		if(config.allow_admin_jump)
+		if(CONFIG_GET(allow_admin_jump))
 			M.forceMove(pick(get_area_turfs(A)))
 			feedback_add_details("admin_verb", "SMOB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

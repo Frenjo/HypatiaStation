@@ -39,7 +39,7 @@
 			src << browse(F,"window=investigate[subject];size=800x300")
 
 		if("hrefs")				//persistant logs and stuff
-			if(config && config.log_hrefs)
+			if(CONFIG && CONFIG_GET(log_hrefs))
 				if(GLOBL.href_logfile)
 					src << browse(GLOBL.href_logfile,"window=investigate[subject];size=800x300")
 				else

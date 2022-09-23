@@ -53,7 +53,7 @@ datum/controller/game_controller/New()
 	if(artifact_spawn)				artifact_spawning_turfs = artifact_spawn
 
 datum/controller/game_controller/proc/setup()
-	world.tick_lag = config.Ticklag
+	world.tick_lag = CONFIG_GET(Ticklag)
 
 	createRandomZlevel()
 	setup_objects()

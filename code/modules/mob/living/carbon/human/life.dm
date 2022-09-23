@@ -327,7 +327,7 @@
 	var/datum/gas_mixture/breath
 
 	// HACK NEED CHANGING LATER
-	if(health < global.config.health_threshold_crit)
+	if(health < CONFIG_GET(health_threshold_crit))
 		losebreath++
 
 	if(losebreath > 0) //Suffocating so do not take a breath
@@ -434,7 +434,7 @@
 			oxygen_alert = max(oxygen_alert, 1)
 			return 0
 
-		if(health > global.config.health_threshold_crit)
+		if(health > CONFIG_GET(health_threshold_crit))
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 			failed_last_breath = 1
 		else
@@ -1083,7 +1083,7 @@
 			handle_organs()	//Optimized.
 			handle_blood()
 
-		if(health <= global.config.health_threshold_dead || (species.has_organ["brain"] && !has_brain()))
+		if(health <= CONFIG_GET(health_threshold_dead) || (species.has_organ["brain"] && !has_brain()))
 			death()
 			blinded = 1
 			silent = 0
@@ -1093,7 +1093,7 @@
 		analgesic = max(0, analgesic - 1)
 
 		//UNCONSCIOUS. NO-ONE IS HOME
-		if((getOxyLoss() > 50) || (global.config.health_threshold_crit > health))
+		if((getOxyLoss() > 50) || (CONFIG_GET(health_threshold_crit) > health))
 			Paralyse(3)
 
 			/* Done by handle_breath()
@@ -1593,12 +1593,12 @@
 	if(analgesic || (species && species.flags & NO_PAIN))
 		return // analgesic avoids all traumatic shock temporarily
 
-	if(health < global.config.health_threshold_softcrit)// health 0 makes you immediately collapse
+	if(health < CONFIG_GET(health_threshold_softcrit))// health 0 makes you immediately collapse
 		shock_stage = max(shock_stage, 61)
 
 	if(traumatic_shock >= 80)
 		shock_stage += 1
-	else if(health < global.config.health_threshold_softcrit)
+	else if(health < CONFIG_GET(health_threshold_softcrit))
 		shock_stage = max(shock_stage, 61)
 	else
 		shock_stage = min(shock_stage, 160)

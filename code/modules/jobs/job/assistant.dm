@@ -26,7 +26,7 @@
 	return 1
 
 /datum/job/assistant/get_access()
-	if(config.assistant_maint)
+	if(CONFIG_GET(assistant_maint))
 		return list(ACCESS_MAINT_TUNNELS)
 	else
 		return list()

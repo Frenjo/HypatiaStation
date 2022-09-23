@@ -90,7 +90,7 @@ var/global/datum/tension/tension_master
 	proc/process()
 		score += get_num_players()*PLAYER_WEIGHT
 
-		if(config.Tensioner_Active)
+		if(CONFIG_GET(Tensioner_Active))
 			if(world.time > MIN_ROUND_TIME)
 				round1++
 				if(!supress && !cooldown)
@@ -286,7 +286,7 @@ var/global/datum/tension/tension_master
 				supress = 0
 
 		else if (href_list["ToggleStatus"])
-			config.Tensioner_Active = !config.Tensioner_Active
+			CONFIG_SET(Tensioner_Active, !CONFIG_GET(Tensioner_Active))
 
 
 	proc/makeMalfAImode()
@@ -329,7 +329,7 @@ var/global/datum/tension/tension_master
 
 		var/datum/game_mode/traitor/temp = new
 
-		if(config.protect_roles_from_antagonist)
+		if(CONFIG_GET(protect_roles_from_antagonist))
 			temp.restricted_jobs += temp.protected_jobs
 
 		var/list/mob/living/carbon/human/candidates = list()
@@ -366,7 +366,7 @@ var/global/datum/tension/tension_master
 	proc/makeChanglings()
 
 		var/datum/game_mode/changeling/temp = new
-		if(config.protect_roles_from_antagonist)
+		if(CONFIG_GET(protect_roles_from_antagonist))
 			temp.restricted_jobs += temp.protected_jobs
 
 		var/list/mob/living/carbon/human/candidates = list()
@@ -402,7 +402,7 @@ var/global/datum/tension/tension_master
 	proc/makeRevs()
 
 		var/datum/game_mode/revolution/temp = new
-		if(config.protect_roles_from_antagonist)
+		if(CONFIG_GET(protect_roles_from_antagonist))
 			temp.restricted_jobs += temp.protected_jobs
 
 		var/list/mob/living/carbon/human/candidates = list()
@@ -472,7 +472,7 @@ var/global/datum/tension/tension_master
 	proc/makeCult()
 
 		var/datum/game_mode/cult/temp = new
-		if(config.protect_roles_from_antagonist)
+		if(CONFIG_GET(protect_roles_from_antagonist))
 			temp.restricted_jobs += temp.protected_jobs
 
 		var/list/mob/living/carbon/human/candidates = list()

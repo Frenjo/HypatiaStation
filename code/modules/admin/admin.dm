@@ -755,9 +755,9 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Toggle traitor scaling"
 	set name="Toggle Traitor Scaling"
-	global.config.traitor_scaling = !global.config.traitor_scaling
-	log_admin("[key_name(usr)] toggled Traitor Scaling to [global.config.traitor_scaling].")
-	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [global.config.traitor_scaling ? "on" : "off"].", 1)
+	CONFIG_SET(traitor_scaling, !CONFIG_GET(traitor_scaling))
+	log_admin("[key_name(usr)] toggled Traitor Scaling to [CONFIG_GET(traitor_scaling)].")
+	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [CONFIG_GET(traitor_scaling) ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TTS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/startnow()
@@ -795,8 +795,8 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="People can't be AI"
 	set name="Toggle AI"
-	config.allow_ai = !( config.allow_ai )
-	if (!( config.allow_ai ))
+	CONFIG_SET(allow_ai, !CONFIG_GET(allow_ai))
+	if(!CONFIG_GET(allow_ai))
 		world << "<B>The AI job is no longer chooseable.</B>"
 	else
 		world << "<B>The AI job is chooseable now.</B>"
@@ -808,13 +808,13 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Respawn basically"
 	set name="Toggle Respawn"
-	global.config.respawn = !( global.config.respawn )
-	if (global.config.respawn)
+	CONFIG_SET(respawn, !CONFIG_GET(respawn))
+	if(CONFIG_GET(respawn))
 		world << "<B>You may now respawn.</B>"
 	else
 		world << "<B>You may no longer respawn :(</B>"
-	message_admins("\blue [key_name_admin(usr)] toggled respawn to [global.config.respawn ? "On" : "Off"].", 1)
-	log_admin("[key_name(usr)] toggled respawn to [global.config.respawn ? "On" : "Off"].")
+	message_admins("\blue [key_name_admin(usr)] toggled respawn to [CONFIG_GET(respawn) ? "On" : "Off"].", 1)
+	log_admin("[key_name(usr)] toggled respawn to [CONFIG_GET(respawn) ? "On" : "Off"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -861,24 +861,24 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Toggle admin jumping"
 	set name="Toggle Jump"
-	config.allow_admin_jump = !(config.allow_admin_jump)
-	message_admins("\blue Toggled admin jumping to [config.allow_admin_jump].")
+	CONFIG_SET(allow_admin_jump, !CONFIG_GET(allow_admin_jump))
+	message_admins("\blue Toggled admin jumping to [CONFIG_GET(allow_admin_jump)].")
 	feedback_add_details("admin_verb","TJ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/adspawn()
 	set category = "Server"
 	set desc="Toggle admin spawning"
 	set name="Toggle Spawn"
-	config.allow_admin_spawning = !(config.allow_admin_spawning)
-	message_admins("\blue Toggled admin item spawning to [config.allow_admin_spawning].")
+	CONFIG_SET(allow_admin_spawning, !CONFIG_GET(allow_admin_spawning))
+	message_admins("\blue Toggled admin item spawning to [CONFIG_GET(allow_admin_spawning)].")
 	feedback_add_details("admin_verb","TAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/adrev()
 	set category = "Server"
 	set desc="Toggle admin revives"
 	set name="Toggle Revive"
-	config.allow_admin_rev = !(config.allow_admin_rev)
-	message_admins("\blue Toggled reviving to [config.allow_admin_rev].")
+	CONFIG_SET(allow_admin_rev, !CONFIG_GET(allow_admin_rev))
+	message_admins("\blue Toggled reviving to [CONFIG_GET(allow_admin_rev)].")
 	feedback_add_details("admin_verb","TAR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/immreboot()
@@ -903,7 +903,7 @@ var/global/floorIsLava = 0
 	set category = "Admin"
 	set name = "Unprison"
 	if (M.z == 2)
-		if (config.allow_admin_jump)
+		if(CONFIG_GET(allow_admin_jump))
 			M.loc = pick(GLOBL.latejoin)
 			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", 1)
 			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
@@ -1046,13 +1046,13 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Guests can't enter"
 	set name="Toggle guests"
-	global.config.guests_allowed = !global.config.guests_allowed
-	if(!global.config.guests_allowed)
+	CONFIG_SET(guests_allowed, !CONFIG_GET(guests_allowed))
+	if(!CONFIG_GET(guests_allowed))
 		world << "<B>Guests may no longer enter the game.</B>"
 	else
 		world << "<B>Guests may now enter the game.</B>"
-	log_admin("[key_name(usr)] toggled guests game entering [global.config.guests_allowed ? "" : "dis"]allowed.")
-	message_admins("\blue [key_name_admin(usr)] toggled guests game entering [global.config.guests_allowed ? "" : "dis"]allowed.", 1)
+	log_admin("[key_name(usr)] toggled guests game entering [CONFIG_GET(guests_allowed) ? "" : "dis"]allowed.")
+	message_admins("\blue [key_name_admin(usr)] toggled guests game entering [CONFIG_GET(guests_allowed) ? "" : "dis"]allowed.", 1)
 	feedback_add_details("admin_verb", "TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/output_ai_laws()

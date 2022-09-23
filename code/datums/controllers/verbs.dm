@@ -26,7 +26,7 @@
 		return
 	switch(controller)
 		if("Configuration")
-			debug_variables(global.config)
+			debug_variables(CONFIG)
 			feedback_add_details("admin_verb", "DConf")
 		if("Cameras")
 			debug_variables(global.cameranet)

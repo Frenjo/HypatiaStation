@@ -15,7 +15,7 @@ GLOBAL_BYOND_TYPED(transfer_controller, /datum/controller/transfer)
 
 /datum/controller/transfer/New()
 	..()
-	timerbuffer = global.config.vote_autotransfer_initial
+	timerbuffer = CONFIG_GET(vote_autotransfer_initial)
 	global.processing_objects += src
 
 /datum/controller/transfer/Destroy()
@@ -26,4 +26,4 @@ GLOBAL_BYOND_TYPED(transfer_controller, /datum/controller/transfer)
 	currenttick++
 	if(world.time >= timerbuffer - 600)
 		global.vote.autotransfer()
-		timerbuffer = timerbuffer + global.config.vote_autotransfer_interval
+		timerbuffer = timerbuffer + CONFIG_GET(vote_autotransfer_interval)

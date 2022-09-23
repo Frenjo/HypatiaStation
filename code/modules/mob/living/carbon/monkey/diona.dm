@@ -133,7 +133,7 @@
 	set name = "Evolve"
 	set desc = "Grow to a more complex form."
 
-	if(!is_alien_whitelisted(src, "Diona") && config.usealienwhitelist)
+	if(!is_alien_whitelisted(src, "Diona") && CONFIG_GET(usealienwhitelist))
 		src << alert("You are currently not whitelisted to play as a full diona.")
 		return 0
 

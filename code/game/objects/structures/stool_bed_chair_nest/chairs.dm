@@ -51,7 +51,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(config.ghost_interaction)
+	if(CONFIG_GET(ghost_interaction))
 		src.set_dir(turn(src.dir, 90))
 		handle_rotation()
 		return

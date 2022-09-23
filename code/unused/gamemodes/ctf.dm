@@ -10,7 +10,7 @@
 
 /datum/game_mode/ctf/pre_setup()
 
-	config.allow_ai = 0
+	CONFIG_SET(allow_ai, FALSE)
 	var/list/mobs = list()
 	var/total_mobs
 	for(var/mob/living/carbon/human/M in world)

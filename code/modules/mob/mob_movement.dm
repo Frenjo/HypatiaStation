@@ -252,12 +252,12 @@
 			if("run")
 				if(mob.drowsyness > 0)
 					move_delay += 6
-				move_delay += 1 + config.run_speed
+				move_delay += 1 + CONFIG_GET(run_speed)
 			if("walk")
-				move_delay += 7 + config.walk_speed
+				move_delay += 7 + CONFIG_GET(walk_speed)
 		move_delay += mob.movement_delay()
 
-		if(global.config.tickcomp)
+		if(CONFIG_GET(tickcomp))
 			move_delay -= 1.3
 			var/tickcomp = ((1 / world.tick_lag) * 1.3)
 			move_delay = move_delay + tickcomp

@@ -651,7 +651,7 @@
 					special_role = null
 					var/datum/game_mode/cult/cult = ticker.mode
 					if(istype(cult))
-						if(!config.objectives_disabled)
+						if(!CONFIG_GET(objectives_disabled))
 							cult.memoize_cult_objectives(src)
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a cultist!</font>"))
 					memory = ""
@@ -666,7 +666,7 @@
 					to_chat(current, "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>")
 					var/datum/game_mode/cult/cult = ticker.mode
 					if(istype(cult))
-						if(!config.objectives_disabled)
+						if(!CONFIG_GET(objectives_disabled))
 							cult.memoize_cult_objectives(src)
 					log_admin("[key_name_admin(usr)] has cult'ed [current].")
 			if("tome")
@@ -698,7 +698,7 @@
 				if(src in ticker.mode.wizards)
 					ticker.mode.wizards -= src
 					special_role = null
-					current.spellremove(current, config.feature_object_spell_system ? "object": "verb")
+					current.spellremove(current, CONFIG_GET(feature_object_spell_system) ? "object": "verb")
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a wizard!</font>"))
 					log_admin("[key_name_admin(usr)] has de-wizard'ed [current].")
 			if("wizard")
@@ -716,7 +716,7 @@
 			if("name")
 				ticker.mode.name_wizard(current)
 			if("autoobjectives")
-				if(!config.objectives_disabled)
+				if(!CONFIG_GET(objectives_disabled))
 					ticker.mode.forge_wizard_objectives(src)
 					to_chat(usr, SPAN_INFO("The objectives for wizard [key] have been generated. You can edit them and anounce manually."))
 
@@ -739,11 +739,11 @@
 					ticker.mode.grant_changeling_powers(current)
 					special_role = "Changeling"
 					to_chat(current, SPAN_DANGER("Your powers are awoken. A flash of memory returns to us... we are a changeling!"))
-					if(config.objectives_disabled)
+					if(CONFIG_GET(objectives_disabled))
 						to_chat(current, "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>")
 					log_admin("[key_name_admin(usr)] has changeling'ed [current].")
 			if("autoobjectives")
-				if(!config.objectives_disabled)
+				if(!CONFIG_GET(objectives_disabled))
 					ticker.mode.forge_changeling_objectives(src)
 				to_chat(usr, SPAN_INFO("The objectives for changeling [key] have been generated. You can edit them and anounce manually."))
 
@@ -779,7 +779,7 @@
 						current.real_name = "[syndicate_name()] Operative #[ticker.mode.syndicates.len-1]"
 					special_role = "Syndicate"
 					to_chat(current, SPAN_INFO("You are a [syndicate_name()] agent!"))
-					if(config.objectives_disabled)
+					if(CONFIG_GET(objectives_disabled))
 						to_chat(current, "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>")
 					else
 						ticker.mode.forge_syndicate_objectives(src)
@@ -833,7 +833,7 @@
 					special_role = "traitor"
 					to_chat(current, SPAN_DANGER("You are a traitor!"))
 					log_admin("[key_name_admin(usr)] has traitor'ed [current].")
-					if(config.objectives_disabled)
+					if(CONFIG_GET(objectives_disabled))
 						to_chat(current, "<i>You have been turned into an antagonist - <font color=blue>Within the rules,</font> try to act as an opposing force to the crew- This can be via corporate payoff, personal motives, or maybe just being a dick. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonist.</i></b>")
 					if(issilicon(current))
 						var/mob/living/silicon/A = current
@@ -841,7 +841,7 @@
 						A.show_laws()
 
 			if("autoobjectives")
-				if(!config.objectives_disabled)
+				if(!CONFIG_GET(objectives_disabled))
 					ticker.mode.forge_traitor_objectives(src)
 					to_chat(usr, SPAN_INFO("The objectives for traitor [key] have been generated. You can edit them and anounce manually."))
 
@@ -1055,7 +1055,7 @@
 	if(!(src in ticker.mode.traitors))
 		ticker.mode.traitors += src
 		special_role = "traitor"
-		if(!config.objectives_disabled)
+		if(!CONFIG_GET(objectives_disabled))
 			ticker.mode.forge_traitor_objectives(src)
 		ticker.mode.finalize_traitor(src)
 		ticker.mode.greet_traitor(src)
@@ -1095,7 +1095,7 @@
 		ticker.mode.changelings += src
 		ticker.mode.grant_changeling_powers(current)
 		special_role = "Changeling"
-		if(!config.objectives_disabled)
+		if(!CONFIG_GET(objectives_disabled))
 			ticker.mode.forge_changeling_objectives(src)
 		ticker.mode.greet_changeling(src)
 

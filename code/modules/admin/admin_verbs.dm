@@ -414,7 +414,7 @@ var/list/admin_verbs_donor = list(
 	set name = "Display Job bans"
 	set category = "Admin"
 	if(holder)
-		if(config.ban_legacy_system)
+		if(CONFIG_GET(ban_legacy_system))
 			holder.Jobbans()
 		else
 			holder.DB_ban_panel()
@@ -425,7 +425,7 @@ var/list/admin_verbs_donor = list(
 	set name = "Unban Panel"
 	set category = "Admin"
 	if(holder)
-		if(config.ban_legacy_system)
+		if(CONFIG_GET(ban_legacy_system))
 			holder.unbanpanel()
 		else
 			holder.DB_ban_panel()
@@ -628,12 +628,12 @@ var/list/admin_verbs_donor = list(
 	set name = "Toggle href logging"
 	set category = "Server"
 	if(!holder)	return
-	if(config)
-		if(config.log_hrefs)
-			config.log_hrefs = 0
+	if(CONFIG)
+		if(CONFIG_GET(log_hrefs))
+			CONFIG_SET(log_hrefs, FALSE)
 			src << "<b>Stopped logging hrefs</b>"
 		else
-			config.log_hrefs = 1
+			CONFIG_SET(log_hrefs, TRUE)
 			src << "<b>Started logging hrefs</b>"
 
 /client/proc/check_ai_laws()
@@ -753,13 +753,13 @@ var/list/admin_verbs_donor = list(
 	set name = "Toggle ghost writers"
 	set category = "Server"
 	if(!holder)	return
-	if(config)
-		if(config.cult_ghostwriter)
-			config.cult_ghostwriter = 0
+	if(CONFIG)
+		if(CONFIG_GET(cult_ghostwriter))
+			CONFIG_SET(cult_ghostwriter, FALSE)
 			src << "<b>Disallowed ghost writers.</b>"
 			message_admins("Admin [key_name_admin(usr)] has disabled ghost writers.", 1)
 		else
-			config.cult_ghostwriter = 1
+			CONFIG_SET(cult_ghostwriter, TRUE)
 			src << "<b>Enabled ghost writers.</b>"
 			message_admins("Admin [key_name_admin(usr)] has enabled ghost writers.", 1)
 

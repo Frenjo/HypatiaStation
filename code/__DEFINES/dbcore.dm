@@ -56,7 +56,7 @@ var/DB_PORT = 3306 // This is the port your MySQL server is running on (3306 is 
 	_db_con = _dm_db_new_con()
 
 /DBConnection/proc/Connect(dbi_handler = src.dbi, user_handler = src.user, password_handler = src.password, cursor_handler)
-	if(!global.config.sqllogging)
+	if(!CONFIG_GET(sqllogging))
 		return 0
 	if(!src)
 		return 0
@@ -69,7 +69,7 @@ var/DB_PORT = 3306 // This is the port your MySQL server is running on (3306 is 
 	return _dm_db_close(_db_con)
 
 /DBConnection/proc/IsConnected()
-	if(!global.config.sqllogging)
+	if(!CONFIG_GET(sqllogging))
 		return 0
 	var/success = _dm_db_is_connected(_db_con)
 	return success
@@ -83,7 +83,7 @@ var/DB_PORT = 3306 // This is the port your MySQL server is running on (3306 is 
 /DBConnection/proc/SelectDB(database_name, dbi)
 	if(IsConnected()) Disconnect()
 	//return Connect("[dbi?"[dbi]":"dbi:mysql:[database_name]:[DB_SERVER]:[DB_PORT]"]",user,password)
-	return Connect("[dbi ? "[dbi]" : "dbi:mysql:[database_name]:[global.config.sqladdress]:[global.config.sqlport]"]", user, password)
+	return Connect("[dbi ? "[dbi]" : "dbi:mysql:[database_name]:[CONFIG_GET(sqladdress)]:[CONFIG_GET(sqlport)]"]", user, password)
 
 /DBConnection/proc/NewQuery(sql_query, cursor_handler = src.default_cursor)
 	return new/DBQuery(sql_query, src, cursor_handler)

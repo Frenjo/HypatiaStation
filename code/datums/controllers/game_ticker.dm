@@ -54,7 +54,7 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 	var/obj/screen/cinematic = null
 
 /datum/controller/game_ticker/proc/pregame()
-	if(global.config.holiday_name == "Halloween")
+	if(CONFIG_GET(holiday_name) == "Halloween")
 		possible_login_music += list(
 			'sound/music/halloween/skeletons.ogg',
 			'sound/music/halloween/halloween.ogg',
@@ -89,15 +89,15 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 		src.hide_mode = TRUE
 	var/list/datum/game_mode/runnable_modes
 	if(master_mode == "random" || master_mode == "secret")
-		runnable_modes = config.get_runnable_modes()
+		runnable_modes = CONFIG_GET(get_runnable_modes())
 		if(runnable_modes.len == 0)
 			current_state = GAME_STATE_PREGAME
 			to_world("<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby.")
 			return 0
 		if(secret_force_mode != "secret")
-			var/datum/game_mode/M = config.pick_mode(secret_force_mode)
+			var/datum/game_mode/M = global.config.pick_mode(secret_force_mode)
 			if(M.can_start())
-				src.mode = config.pick_mode(secret_force_mode)
+				src.mode = global.config.pick_mode(secret_force_mode)
 		job_master.reset_occupations()
 		if(!src.mode)
 			src.mode = pickweight(runnable_modes)
@@ -105,7 +105,7 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 			var/mtype = src.mode.type
 			src.mode = new mtype
 	else
-		src.mode = config.pick_mode(master_mode)
+		src.mode = global.config.pick_mode(master_mode)
 	if(!src.mode.can_start())
 		to_world("<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
 		qdel(mode)
@@ -172,7 +172,7 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 	for(var/obj/multiz/ladder/L in world)
 		L.connect() //Lazy hackfix for ladders. TODO: move this to an actual controller. ~ Z
 
-	if(config.sql_enabled)
+	if(CONFIG_GET(sql_enabled))
 		spawn(3000)
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
 

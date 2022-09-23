@@ -54,7 +54,7 @@
 	to_world("<B>Some crewmembers are attempting to start a cult!<BR>\nCultists - complete your objectives. Convert crewmembers to your cause by using the convert rune. Remember - there is no you, there is only the cult.<BR>\nPersonnel - Do not let the cult succeed in its mission. Brainwashing them with the chaplain's bible reverts them to whatever CentCom-allowed faith they had.</B>")
 
 /datum/game_mode/cult/pre_setup()
-	if(!config.objectives_disabled)
+	if(!CONFIG_GET(objectives_disabled))
 		if(prob(50))
 			objectives += "survive"
 			objectives += "sacrifice"
@@ -62,7 +62,7 @@
 			objectives += "eldergod"
 			objectives += "sacrifice"
 
-	if(config.protect_roles_from_antagonist)
+	if(CONFIG_GET(protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
 	var/list/cultists_possible = get_players_for_role(BE_CULTIST)
@@ -98,7 +98,7 @@
 		grant_runeword(cult_mind.current)
 		update_cult_icons_added(cult_mind)
 		to_chat(cult_mind.current, SPAN_INFO("You are a member of the cult!"))
-		if(!config.objectives_disabled)
+		if(!CONFIG_GET(objectives_disabled))
 			memoize_cult_objectives(cult_mind)
 		else
 			to_chat(cult_mind.current, "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>")
@@ -178,7 +178,7 @@
 /datum/game_mode/cult/add_cultist(datum/mind/cult_mind) //INHERIT
 	if(!..(cult_mind))
 		return
-	if(!config.objectives_disabled)
+	if(!CONFIG_GET(objectives_disabled))
 		memoize_cult_objectives(cult_mind)
 
 /datum/game_mode/proc/remove_cultist(datum/mind/cult_mind, show_message = 1)
@@ -267,7 +267,7 @@
 		return 1
 
 /datum/game_mode/cult/declare_completion()
-	if(config.objectives_disabled)
+	if(CONFIG_GET(objectives_disabled))
 		return 1
 	if(!check_cult_victory())
 		feedback_set_details("round_end_result", "win - cult win")
@@ -279,7 +279,7 @@
 		to_world(SPAN_DANGER("<FONT size = 3>The staff managed to stop the cult!</FONT>"))
 
 	var/text = "<b>Cultists escaped:</b> [acolytes_survived]"
-	if(!config.objectives_disabled)
+	if(!CONFIG_GET(objectives_disabled))
 		if(objectives.len)
 			text += "<br><b>The cultists' objectives were:</b>"
 			for(var/obj_count = 1, obj_count <= objectives.len, obj_count++)
