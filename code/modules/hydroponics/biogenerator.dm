@@ -194,7 +194,7 @@
 		if("tbelt")
 			new/obj/item/weapon/storage/belt/utility(src.loc)
 		if("satchel")
-			new/obj/item/weapon/storage/backpack/satchel(src.loc)
+			new/obj/item/weapon/storage/satchel(src.loc)
 		if("cashbag")
 			new/obj/item/weapon/storage/bag/cash(src.loc)
 		if("monkey")

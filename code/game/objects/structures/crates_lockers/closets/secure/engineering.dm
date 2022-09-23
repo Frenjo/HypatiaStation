@@ -13,7 +13,7 @@
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/industrial(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel_eng(src)
+		new /obj/item/weapon/storage/satchel/eng(src)
 	if(prob(70))
 		new /obj/item/clothing/tie/storage/brown_vest(src)
 	else
@@ -102,7 +102,7 @@
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/industrial(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel_eng(src)
+		new /obj/item/weapon/storage/satchel/eng(src)
 	if(prob(70))
 		new /obj/item/clothing/tie/storage/brown_vest(src)
 	else
@@ -132,7 +132,7 @@
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/industrial(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel_eng(src)
+		new /obj/item/weapon/storage/satchel/eng(src)
 	if(prob(70))
 		new /obj/item/clothing/tie/storage/brown_vest(src)
 	else

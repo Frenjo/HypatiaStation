@@ -9,7 +9,7 @@
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel_norm(src)
+		new /obj/item/weapon/storage/satchel/norm(src)
 	new /obj/item/device/radio/headset(src)
 
 
@@ -50,7 +50,7 @@
 	// Not really the best way to do this, but it's better than "contents = list()"!
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
-	new /obj/item/weapon/storage/backpack/satchel/withwallet(src)
+	new /obj/item/weapon/storage/satchel/withwallet(src)
 	new /obj/item/device/radio/headset(src)
 
 /obj/structure/closet/secure_closet/personal/attackby(obj/item/weapon/W as obj, mob/user as mob)

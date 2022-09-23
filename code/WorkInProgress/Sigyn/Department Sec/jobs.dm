@@ -69,7 +69,7 @@ proc/assign_sec_to_department(var/mob/living/carbon/human/H)
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		if(H.backbag == 2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(H), slot_back)
-		if(H.backbag == 3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_sec(H), slot_back)
+		if(H.backbag == 3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel_sec(H), slot_back)
 		assign_sec_to_department(H)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), slot_shoes)
 		H.equip_to_slot_or_del(new /obj/item/device/pda/security(H), slot_belt)

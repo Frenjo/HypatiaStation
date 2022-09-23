@@ -13,7 +13,7 @@
 		if(prob(50))
 			new /obj/item/weapon/storage/backpack/captain(src)
 		else
-			new /obj/item/weapon/storage/backpack/satchel_cap(src)
+			new /obj/item/weapon/storage/satchel_cap(src)
 		new /obj/item/clothing/suit/captunic(src)
 		new /obj/item/clothing/head/helmet/cap(src)
 		new /obj/item/clothing/under/rank/captain(src)
@@ -67,7 +67,7 @@
 
 	New()
 		sleep(2)
-		new /obj/item/weapon/storage/backpack/satchel_sec(src)
+		new /obj/item/weapon/storage/satchel_sec(src)
 		new /obj/item/weapon/cartridge/hos(src)
 		new /obj/item/device/radio/headset/heads/hos(src)
 		new /obj/item/weapon/storage/lockbox/loyalty(src)
@@ -94,7 +94,7 @@
 
 	New()
 		sleep(2)
-		new /obj/item/weapon/storage/backpack/satchel_sec(src)
+		new /obj/item/weapon/storage/satchel_sec(src)
 		new /obj/item/clothing/under/rank/advisor(src)
 		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/clothing/glasses/sunglasses(src)
@@ -119,7 +119,7 @@
 
 	New()
 		sleep(2)
-		new /obj/item/weapon/storage/backpack/satchel_sec(src)
+		new /obj/item/weapon/storage/satchel_sec(src)
 		new /obj/item/device/radio/headset/headset_sec(src)
 		new /obj/item/weapon/storage/belt/security(src)
 		new /obj/item/device/flash(src)

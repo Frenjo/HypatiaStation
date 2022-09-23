@@ -2,7 +2,6 @@
 /*
  * Backpack
  */
-
 /obj/item/weapon/storage/backpack
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
@@ -34,7 +33,6 @@
 /*
  * Backpack Types
  */
-
 /obj/item/weapon/storage/backpack/holding
 	name = "bag of holding"
 	desc = "A backpack that opens into a localized pocket of Blue Space."
@@ -125,71 +123,3 @@
 	desc = "It's a tough backpack for the daily grind of station life."
 	icon_state = "engiepack"
 	item_state = "engiepack"
-
-/*
- * Satchel Types
- */
-
-/obj/item/weapon/storage/backpack/satchel
-	name = "leather satchel"
-	desc = "It's a very fancy satchel made with fine leather."
-	icon = 'icons/obj/storage/satchel.dmi'
-	icon_state = "satchel"
-
-/obj/item/weapon/storage/backpack/satchel/withwallet/New()
-	..()
-	new /obj/item/weapon/storage/wallet/random(src)
-
-/obj/item/weapon/storage/backpack/satchel_norm
-	name = "satchel"
-	desc = "A trendy looking satchel."
-	icon_state = "satchel-norm"
-
-/obj/item/weapon/storage/backpack/satchel_eng
-	name = "industrial satchel"
-	desc = "A tough satchel with extra pockets."
-	icon_state = "satchel-eng"
-	item_state = "engiepack"
-
-/obj/item/weapon/storage/backpack/satchel_med
-	name = "medical satchel"
-	desc = "A sterile satchel used in medical departments."
-	icon_state = "satchel-med"
-	item_state = "medicalpack"
-
-/obj/item/weapon/storage/backpack/satchel_vir
-	name = "virologist satchel"
-	desc = "A sterile satchel with virologist colours."
-	icon_state = "satchel-vir"
-
-/obj/item/weapon/storage/backpack/satchel_chem
-	name = "chemist satchel"
-	desc = "A sterile satchel with chemist colours."
-	icon_state = "satchel-chem"
-
-/obj/item/weapon/storage/backpack/satchel_gen
-	name = "geneticist satchel"
-	desc = "A sterile satchel with geneticist colours."
-	icon_state = "satchel-gen"
-
-/obj/item/weapon/storage/backpack/satchel_tox
-	name = "scientist satchel"
-	desc = "Useful for holding research materials."
-	icon_state = "satchel-tox"
-
-/obj/item/weapon/storage/backpack/satchel_sec
-	name = "security satchel"
-	desc = "A robust satchel for security related needs."
-	icon_state = "satchel-sec"
-	item_state = "securitypack"
-
-/obj/item/weapon/storage/backpack/satchel_hyd
-	name = "hydroponics satchel"
-	desc = "A green satchel for plant related work."
-	icon_state = "satchel_hyd"
-
-/obj/item/weapon/storage/backpack/satchel_cap
-	name = "captain's satchel"
-	desc = "An exclusive satchel for NanoTrasen officers."
-	icon_state = "satchel-cap"
-	item_state = "captainpack"

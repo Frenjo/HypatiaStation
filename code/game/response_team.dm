@@ -292,7 +292,7 @@ var/can_call_ert
 	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), slot_shoes)
 	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), slot_gloves)
 	equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(src), slot_glasses)
-	equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(src), slot_back)
+	equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(src), slot_back)
 /*
 
 	//Old ERT Uniform

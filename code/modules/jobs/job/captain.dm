@@ -21,9 +21,9 @@
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/captain(H), slot_back)
 		if(3)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_cap(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/cap(H), slot_back)
 		if(4)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), slot_back)
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(H), slot_l_ear)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
@@ -93,9 +93,9 @@
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
 		if(3)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/norm(H), slot_back)
 		if(4)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), slot_back)
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/hop(H), slot_l_ear)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)

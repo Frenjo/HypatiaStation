@@ -30,9 +30,9 @@
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/medic(H), slot_back)
 		if(3)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_med(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/med(H), slot_back)
 		if(4)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), slot_back)
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/cmo(H), slot_l_ear)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chief_medical_officer(H), slot_w_uniform)
@@ -70,9 +70,9 @@
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/medic(H), slot_back)
 		if(3)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_med(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/med(H), slot_back)
 		if(4)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), slot_back)
 
 	if(H.mind.role_alt_title)
 		switch(H.mind.role_alt_title)
@@ -137,7 +137,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat/chemist(H), slot_wear_suit)
 
 	if(H.backbag == 3)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_chem(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/chem(H), slot_back)
 	else if(H.backbag == 1)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), slot_r_hand)
 	else
@@ -169,7 +169,7 @@
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), slot_s_store)
 
 	if(H.backbag == 3)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_gen(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/gen(H), slot_back)
 	else if(H.backbag == 1)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), slot_r_hand)
 	else
@@ -203,7 +203,7 @@
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), slot_s_store)
 
 	if(H.backbag == 3)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_vir(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/vir(H), slot_back)
 	if(H.backbag == 1)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), slot_r_hand)
 	else
@@ -232,9 +232,9 @@
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/medic(H), slot_back)
 		if(3)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel_med(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/med(H), slot_back)
 		if(4)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), slot_back)
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_med(H), slot_l_ear)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), slot_w_uniform)

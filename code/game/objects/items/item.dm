@@ -403,9 +403,9 @@
 					return 0
 				return 1
 			if(slot_in_backpack)
-				if(H.back && istype(H.back, /obj/item/weapon/storage/backpack))
-					var/obj/item/weapon/storage/backpack/B = H.back
-					if(B.contents.len < B.storage_slots && w_class <= B.max_w_class)
+				if(H.back && (istype(H.back, /obj/item/weapon/storage/backpack) || istype(H.back, /obj/item/weapon/storage/satchel)))
+					var/obj/item/weapon/storage/store = H.back
+					if(store.contents.len < store.storage_slots && w_class <= store.max_w_class)
 						return 1
 				return 0
 		return 0 //Unsupported slot
