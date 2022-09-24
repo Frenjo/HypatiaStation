@@ -1,33 +1,33 @@
 // CENTCOM
 /area/centcom
-	name = "\improper Centcom"
+	name = "\improper CentCom"
 	icon_state = "centcom"
 	requires_power = FALSE
 	dynamic_lighting = 0
 
 /area/centcom/control
-	name = "\improper Centcom Control"
+	name = "\improper CentCom Control"
 
 /area/centcom/evac
-	name = "\improper Centcom Emergency Shuttle"
+	name = "\improper CentCom Emergency Shuttle"
 
 /area/centcom/suppy
-	name = "\improper Centcom Supply Shuttle"
+	name = "\improper CentCom Supply Shuttle"
 
 /area/centcom/ferry
-	name = "\improper Centcom Transport Shuttle"
+	name = "\improper CentCom Transport Shuttle"
 
 /area/centcom/shuttle
-	name = "\improper Centcom Administration Shuttle"
+	name = "\improper CentCom Administration Shuttle"
 
 /area/centcom/test
-	name = "\improper Centcom Testing Facility"
+	name = "\improper CentCom Testing Facility"
 
 /area/centcom/living
-	name = "\improper Centcom Living Quarters"
+	name = "\improper CentCom Living Quarters"
 
 /area/centcom/specops
-	name = "\improper Centcom Special Ops"
+	name = "\improper CentCom Special Ops"
 
 /area/centcom/creed
 	name = "Creed's Office"

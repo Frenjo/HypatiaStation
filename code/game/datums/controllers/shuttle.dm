@@ -138,7 +138,7 @@ GLOBAL_BYOND_TYPED(shuttle_controller, /datum/controller/shuttle) // Set in /dat
 	shuttle.docking_controller_tag = "centcom_shuttle"
 	shuttle.dock_target_station = "centcomshuttle_dock_airlock"
 	shuttle.dock_target_offsite = "centcomshuttle_bay"
-	shuttles["Centcom"] = shuttle
+	shuttles["CentCom"] = shuttle
 	process_shuttles += shuttle
 
 	shuttle = new()

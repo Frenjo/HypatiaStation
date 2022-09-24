@@ -40,7 +40,7 @@
 	icon_state = "shuttle2"
 
 /area/shuttle/escape/centcom
-	name = "\improper Emergency Shuttle Centcom"
+	name = "\improper Emergency Shuttle CentCom"
 	icon_state = "shuttle"
 
 /area/shuttle/escape/transit // the area to pass through for 3 minute transit
@@ -147,7 +147,7 @@
 // Transport
 /area/shuttle/transport1/centcom
 	icon_state = "shuttle"
-	name = "\improper Transport Shuttle Centcom"
+	name = "\improper Transport Shuttle CentCom"
 
 /area/shuttle/transport1/station
 	icon_state = "shuttle"
@@ -194,7 +194,7 @@
 
 // Administration
 /area/shuttle/administration/centcom
-	name = "\improper Administration Shuttle Centcom"
+	name = "\improper Administration Shuttle CentCom"
 	icon_state = "shuttlered"
 	base_turf = /turf/unsimulated/floor
 

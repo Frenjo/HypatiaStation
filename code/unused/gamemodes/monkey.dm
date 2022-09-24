@@ -54,7 +54,7 @@
 		for (var/datum/mind/monkey in initial_monkeys)
 			var/mob/living/carbon/human/H = monkey.current
 			var/mob/living/carbon/monkey/new_monkey = H.monkeyize()
-			new_monkey << "<B>Your goal is to capture the entire human civilization and your first target is Centcom. Hijack the shuttle without humans aboard!</B>"
+			new_monkey << "<B>Your goal is to capture the entire human civilization and your first target is CentCom. Hijack the shuttle without humans aboard!</B>"
 
 		for (var/mob/living/carbon/monkey/rabid_monkey in mob_list)
 			if (!(rabid_monkey.mind in initial_monkeys) && (!isturf(rabid_monkey.loc) || rabid_monkey.z!=1))

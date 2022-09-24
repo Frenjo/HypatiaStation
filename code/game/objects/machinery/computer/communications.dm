@@ -461,7 +461,7 @@
 		return
 
 	if(sent_strike_team == 1)
-		user << "Centcom will not allow the shuttle to be called. Consider all contracts terminated."
+		user << "CentCom will not allow the shuttle to be called. Consider all contracts terminated."
 		return
 
 	if(world.time < 6000) // Ten minute grace period to let the game get going without lolmetagaming. -- TLE
@@ -501,11 +501,11 @@
 	// if force is 0, some things may stop the shuttle call
 	if(!force)
 		if(global.emergency_controller.deny_shuttle)
-			user << "Centcom does not currently have a shuttle available in your sector. Please try again later."
+			user << "CentCom does not currently have a shuttle available in your sector. Please try again later."
 			return
 
 		if(sent_strike_team == 1)
-			user << "Centcom will not allow the shuttle to be called. Consider all contracts terminated."
+			user << "CentCom will not allow the shuttle to be called. Consider all contracts terminated."
 			return
 
 		if(world.time < 135000) // cant call the transfer until 15:45

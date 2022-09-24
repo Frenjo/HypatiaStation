@@ -1488,7 +1488,7 @@
 
 		src.owner << "You sent [input] to [H] via a secure channel."
 		log_admin("[src.owner] replied to [key_name(H)]'s CentCom message with the message [input].")
-		message_admins("[src.owner] replied to [key_name(H)]'s Centcom message with: \"[input]\"")
+		message_admins("[src.owner] replied to [key_name(H)]'s CentCom message with: \"[input]\"")
 		H << "You hear something crackle in your headset for a moment before a voice speaks.  \"Please stand by for a message from Central Command.  Message as follows. <b>\"[input]\"</b>  Message ends.\""
 
 	else if(href_list["SyndicateReply"])
@@ -1984,7 +1984,7 @@
 				feedback_inc("admin_secrets_fun_used", 1)
 				feedback_add_details("admin_secrets_fun_used", "ShA")
 			if("moveferry")
-				var/datum/shuttle/ferry/centcom_ferry = shuttle_controller.shuttles["Centcom"]
+				var/datum/shuttle/ferry/centcom_ferry = shuttle_controller.shuttles["CentCom"]
 				if(!centcom_ferry.can_launch())
 					return
 				message_admins(SPAN_INFO("[key_name_admin(usr)] moved the centcom ferry"), 1)

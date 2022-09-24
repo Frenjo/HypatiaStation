@@ -1014,7 +1014,7 @@
 "Gw" = (/obj/machinery/door/airlock/centcom{name = "Commander Quarters"; opacity = TRUE; req_access = list(109)},/turf/unsimulated/floor{icon_state = "bar"},/area/centcom/living)
 "Gy" = (/obj/item/weapon/crowbar,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 1},/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/syndicate_station/start)
 "GC" = (/turf/unsimulated/floor{icon_state = "dark"},/area/centcom/control)
-"GE" = (/obj/machinery/computer/shuttle_control{name = "centcom shuttle control console"; shuttle_tag = "Centcom"},/obj/machinery/light/small,/turf/simulated/shuttle/floor,/area/shuttle/transport1/centcom)
+"GE" = (/obj/machinery/computer/shuttle_control{name = "centcom shuttle control console"; shuttle_tag = "CentCom"},/obj/machinery/light/small,/turf/simulated/shuttle/floor,/area/shuttle/transport1/centcom)
 "GF" = (/obj/item/device/radio/intercom{broadcasting = 1; dir = 1; frequency = 1443; listening = 0; name = "Spec Ops Intercom"; pixel_y = 28},/obj/machinery/door/window/southleft{name = "AI Core Door"; req_access = list(109)},/turf/unsimulated/floor{icon_state = "floor"},/area/centcom/control)
 "GG" = (/obj/structure/artilleryplaceholder{icon_state = "3"},/turf/space,/area/space)
 "GH" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/turf/unsimulated/floor,/area/centcom/ferry)

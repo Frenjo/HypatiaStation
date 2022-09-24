@@ -27,9 +27,9 @@
 	toggled = 0
 	autolinkers = list("r_relay")
 
-// Centcom
+// CentCom
 /obj/machinery/telecomms/relay/preset/centcom
-	id = "Centcom Relay"
+	id = "CentCom Relay"
 	hide = 1
 	toggled = 1
 	//anchored = TRUE
@@ -50,7 +50,7 @@
 		"receiverA", "receiverB", "broadcasterA", "broadcasterB"
 	)
 
-// Centcom
+// CentCom
 /obj/machinery/telecomms/hub/preset_cent
 	id = "CentCom Hub"
 	network = "tcommsat"
@@ -83,7 +83,7 @@
 		freq_listening |= i
 	..()
 
-// Centcom
+// CentCom
 /obj/machinery/telecomms/receiver/preset_cent
 	id = "CentCom Receiver"
 	network = "tcommsat"
@@ -127,7 +127,7 @@
 		freq_listening |= i
 	..()
 
-// Centcom
+// CentCom
 /obj/machinery/telecomms/bus/preset_cent
 	id = "CentCom Bus"
 	network = "tcommsat"
@@ -162,7 +162,7 @@
 	network = "tcommsat"
 	autolinkers = list("processor4")
 
-// Centcom
+// CentCom
 /obj/machinery/telecomms/processor/preset_cent
 	id = "CentCom Processor"
 	network = "tcommsat"
@@ -236,7 +236,7 @@
 	freq_listening = list(FREQUENCY_SECURITY)
 	autolinkers = list("security")
 
-// Centcom
+// CentCom
 /obj/machinery/telecomms/server/presets/centcom
 	id = "CentCom Server"
 	freq_listening = list(FREQUENCY_RESPONSETEAM, FREQUENCY_DEATHSQUAD)
@@ -258,7 +258,7 @@
 	network = "tcommsat"
 	autolinkers = list("broadcasterB")
 
-// Centcom
+// CentCom
 /obj/machinery/telecomms/broadcaster/preset_cent
 	id = "CentCom Broadcaster"
 	network = "tcommsat"
