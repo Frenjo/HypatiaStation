@@ -19,7 +19,6 @@
 	if(List && List.len)
 		return List[1]
 
-
 //more specialised stuff
 /proc/sanitize_gender(gender, neuter = 0, plural = 0, default = "male")
 	switch(gender)
@@ -37,7 +36,7 @@
 				return default
 	return default
 
-/proc/sanitize_hexcolor(color, default="#000000")
+/proc/sanitize_hexcolor(color, default = "#000000")
 	if(!istext(color))
 		return default
 	var/len = length(color)

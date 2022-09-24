@@ -103,14 +103,14 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 		//The current admin system uses SQL
 
 		establish_db_connection()
-		if(!global.dbcon.IsConnected())
+		if(!GLOBL.dbcon.IsConnected())
 			error("Failed to connect to database in load_admins(). Reverting to legacy system.")
 			log_misc("Failed to connect to database in load_admins(). Reverting to legacy system.")
 			CONFIG_SET(admin_legacy_system, TRUE)
 			load_admins()
 			return
 
-		var/DBQuery/query = global.dbcon.NewQuery("SELECT ckey, rank, level, flags FROM erro_admin")
+		var/DBQuery/query = GLOBL.dbcon.NewQuery("SELECT ckey, rank, level, flags FROM erro_admin")
 		query.Execute()
 		while(query.NextRow())
 			var/ckey = query.item[1]

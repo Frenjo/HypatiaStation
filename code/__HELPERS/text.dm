@@ -1,8 +1,8 @@
-/var/list/paper_tag_whitelist = list(
+GLOBAL_GLOBL_LIST_INIT(paper_tag_whitelist, list(
 	"center", "p", "div", "span", "h1", "h2", "h3", "h4", "h5", "h6", "hr", "pre",
 	"big", "small", "font", "i", "u", "b", "s", "sub", "sup", "tt", "br", "hr", "ol", "ul", "li", "caption", "col",
 	"table", "td", "th", "tr"
-)
+))
 
 /*
  * Holds procs designed to help with filtering text
@@ -14,11 +14,9 @@
  *			Misc
  */
 
-
 /*
  * SQL sanitization
  */
-
 // Run all strings to be used in an SQL query through this proc first to properly escape out injection attempts.
 /proc/sanitizeSQL(t as text)
 	var/sanitized_text = replacetext(t, "'", "\\'")
@@ -28,7 +26,6 @@
 /*
  * Text sanitization
  */
-
 //Simply removes < and > and limits the length of the message
 /proc/strip_html_simple(t, limit = MAX_MESSAGE_LEN)
 	var/list/strip_chars = list("<",">")
@@ -166,14 +163,14 @@
 				tag = copytext(t, start, p)
 				p++
 			tag = copytext(t, start + 1, p)
-			if(!(tag in paper_tag_whitelist))	//if it's unkown tag, disarming it
+			if(!(tag in GLOBL.paper_tag_whitelist))	//if it's unkown tag, disarming it
 				t = copytext(t, 1, start - 1) + "&lt;" + copytext(t, start + 1)
 		p = findtext(t, "<", p)
 	return t
+
 /*
  * Text searches
  */
-
 //Checks the beginning of a string for a specified sub-string
 //Returns the position of the substring or 0 if it was not found
 /proc/dd_hasprefix(text, prefix)
@@ -206,7 +203,6 @@
 /*
  * Text modification
  */
-
 //Removes a few problematic characters
 /proc/replace_characters(t, list/repl_chars)
 	for(var/char in repl_chars)

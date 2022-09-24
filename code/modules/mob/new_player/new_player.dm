@@ -43,11 +43,11 @@
 	if(!IsGuestKey(src.key))
 		establish_db_connection()
 
-		if(global.dbcon.IsConnected())
+		if(GLOBL.dbcon.IsConnected())
 			var/isadmin = 0
 			if(src.client && src.client.holder)
 				isadmin = 1
-			var/DBQuery/query = global.dbcon.NewQuery("SELECT id FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM erro_poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM erro_poll_textreply WHERE ckey = \"[ckey]\")")
+			var/DBQuery/query = GLOBL.dbcon.NewQuery("SELECT id FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM erro_poll_vote WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM erro_poll_textreply WHERE ckey = \"[ckey]\")")
 			query.Execute()
 			var/newpoll = 0
 			while(query.NextRow())
@@ -168,12 +168,12 @@
 
 	if(href_list["privacy_poll"])
 		establish_db_connection()
-		if(!global.dbcon.IsConnected())
+		if(!GLOBL.dbcon.IsConnected())
 			return
 		var/voted = FALSE
 
 		//First check if the person has not voted yet.
-		var/DBQuery/query = global.dbcon.NewQuery("SELECT * FROM erro_privacy WHERE ckey='[src.ckey]'")
+		var/DBQuery/query = GLOBL.dbcon.NewQuery("SELECT * FROM erro_privacy WHERE ckey='[src.ckey]'")
 		query.Execute()
 		while(query.NextRow())
 			voted = TRUE
@@ -199,7 +199,7 @@
 
 		if(!voted)
 			var/sql = "INSERT INTO erro_privacy VALUES (null, Now(), '[src.ckey]', '[option]')"
-			var/DBQuery/query_insert = global.dbcon.NewQuery(sql)
+			var/DBQuery/query_insert = GLOBL.dbcon.NewQuery(sql)
 			query_insert.Execute()
 			usr << "<b>Thank you for your vote!</b>"
 			usr << browse(null,"window=privacypoll")

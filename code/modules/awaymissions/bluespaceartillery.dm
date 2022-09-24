@@ -27,8 +27,8 @@
 		return
 	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc))) || (issilicon(usr)))
 		var/A
-		A = input("Area to jump bombard", "Open Fire", A) in global.teleportlocs
-		var/area/thearea = global.teleportlocs[A]
+		A = input("Area to jump bombard", "Open Fire", A) in GLOBL.teleportlocs
+		var/area/thearea = GLOBL.teleportlocs[A]
 		if(usr.stat || usr.restrained())
 			return
 		if(src.reload < initial(reload))

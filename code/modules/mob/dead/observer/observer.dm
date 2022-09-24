@@ -300,8 +300,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	spawn(30)
 		usr.verbs += /mob/dead/observer/proc/dead_tele
 	var/A
-	A = input("Area to jump to", "BOOYEA", A) as null|anything in global.ghostteleportlocs
-	var/area/thearea = global.ghostteleportlocs[A]
+	A = input("Area to jump to", "BOOYEA", A) as null|anything in GLOBL.ghostteleportlocs
+	var/area/thearea = GLOBL.ghostteleportlocs[A]
 	if(!thearea)
 		return
 

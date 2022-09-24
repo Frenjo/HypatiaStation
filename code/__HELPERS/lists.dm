@@ -8,7 +8,6 @@
 /*
  * Misc
  */
-
 //Returns a list in plain english as a string
 /proc/english_list(list/input, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "")
 	var/total = input.len
@@ -147,7 +146,6 @@
 /*
  * Sorting
  */
-
 //Reverses the order of items in the list
 /proc/reverselist(list/L)
 	var/list/output = list()

@@ -1,10 +1,10 @@
 #define FAILED_DB_CONNECTION_CUTOFF 5
 /proc/setup_database_connection()
-	if(global.failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
+	if(GLOBL.failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
 
-	if(!global.dbcon)
-		global.dbcon = new()
+	if(!GLOBL.dbcon)
+		GLOBL.dbcon = new /DBConnection()
 
 	var/user = CONFIG_GET(sqlfdbklogin)
 	var/pass = CONFIG_GET(sqlfdbkpass)
@@ -12,33 +12,33 @@
 	var/address = CONFIG_GET(sqladdress)
 	var/port = CONFIG_GET(sqlport)
 
-	global.dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
-	. = global.dbcon.IsConnected()
+	GLOBL.dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
+	. = GLOBL.dbcon.IsConnected()
 	if(.)
-		global.failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
+		GLOBL.failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
-		global.failed_db_connections++		//If it failed, increase the failed connections counter.
-		world.log << global.dbcon.ErrorMsg()
+		GLOBL.failed_db_connections++		//If it failed, increase the failed connections counter.
+		world.log << GLOBL.dbcon.ErrorMsg()
 
 	return .
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
 /proc/establish_db_connection()
-	if(global.failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
+	if(GLOBL.failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 
-	if(!global.dbcon || !global.dbcon.IsConnected())
+	if(!GLOBL.dbcon || !GLOBL.dbcon.IsConnected())
 		return setup_database_connection()
 	else
 		return 1
 
 //These two procs are for the old database, while it's being phased out. See the tgstation.sql file in the SQL folder for more information.
 /proc/setup_old_database_connection()
-	if(global.failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
+	if(GLOBL.failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
 
-	if(!global.dbcon_old)
-		global.dbcon_old = new()
+	if(!GLOBL.dbcon_old)
+		GLOBL.dbcon_old = new /DBConnection()
 
 	var/user = CONFIG_GET(sqllogin)
 	var/pass = CONFIG_GET(sqlpass)
@@ -46,22 +46,22 @@
 	var/address = CONFIG_GET(sqladdress)
 	var/port = CONFIG_GET(sqlport)
 
-	global.dbcon_old.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
-	. = global.dbcon_old.IsConnected()
+	GLOBL.dbcon_old.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
+	. = GLOBL.dbcon_old.IsConnected()
 	if(.)
-		global.failed_old_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
+		GLOBL.failed_old_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
-		global.failed_old_db_connections++		//If it failed, increase the failed connections counter.
-		world.log << global.dbcon.ErrorMsg()
+		GLOBL.failed_old_db_connections++		//If it failed, increase the failed connections counter.
+		world.log << GLOBL.dbcon.ErrorMsg()
 
 	return .
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
 /proc/establish_old_db_connection()
-	if(global.failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)
+	if(GLOBL.failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 
-	if(!global.dbcon_old || !global.dbcon_old.IsConnected())
+	if(!GLOBL.dbcon_old || !GLOBL.dbcon_old.IsConnected())
 		return setup_old_database_connection()
 	else
 		return 1

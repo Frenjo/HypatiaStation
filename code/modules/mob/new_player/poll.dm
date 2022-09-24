@@ -1,10 +1,10 @@
 /mob/new_player/proc/handle_privacy_poll()
 	establish_db_connection()
-	if(!global.dbcon.IsConnected())
+	if(!GLOBL.dbcon.IsConnected())
 		return
 	var/voted = 0
 
-	var/DBQuery/query = global.dbcon.NewQuery("SELECT * FROM erro_privacy WHERE ckey='[src.ckey]'")
+	var/DBQuery/query = GLOBL.dbcon.NewQuery("SELECT * FROM erro_privacy WHERE ckey='[src.ckey]'")
 	query.Execute()
 	while(query.NextRow())
 		voted = 1
@@ -47,12 +47,12 @@
 
 /mob/new_player/proc/handle_player_polling()
 	establish_db_connection()
-	if(global.dbcon.IsConnected())
+	if(GLOBL.dbcon.IsConnected())
 		var/isadmin = 0
 		if(src.client && src.client.holder)
 			isadmin = 1
 
-		var/DBQuery/select_query = global.dbcon.NewQuery("SELECT id, question FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime")
+		var/DBQuery/select_query = GLOBL.dbcon.NewQuery("SELECT id, question FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime")
 		select_query.Execute()
 
 		var/output = "<div align='center'><B>Player polls</B>"
@@ -81,9 +81,9 @@
 /mob/new_player/proc/poll_player(var/pollid = -1)
 	if(pollid == -1) return
 	establish_db_connection()
-	if(dbcon.IsConnected())
+	if(GLOBL.dbcon.IsConnected())
 
-		var/DBQuery/select_query = global.dbcon.NewQuery("SELECT starttime, endtime, question, polltype, multiplechoiceoptions FROM erro_poll_question WHERE id = [pollid]")
+		var/DBQuery/select_query = GLOBL.dbcon.NewQuery("SELECT starttime, endtime, question, polltype, multiplechoiceoptions FROM erro_poll_question WHERE id = [pollid]")
 		select_query.Execute()
 
 		var/pollstarttime = ""
@@ -108,7 +108,7 @@
 		switch(polltype)
 			//Polls that have enumerated options
 			if("OPTION")
-				var/DBQuery/voted_query = global.dbcon.NewQuery("SELECT optionid FROM erro_poll_vote WHERE pollid = [pollid] AND ckey = '[usr.ckey]'")
+				var/DBQuery/voted_query = GLOBL.dbcon.NewQuery("SELECT optionid FROM erro_poll_vote WHERE pollid = [pollid] AND ckey = '[usr.ckey]'")
 				voted_query.Execute()
 
 				var/voted = 0
@@ -120,7 +120,7 @@
 
 				var/list/datum/polloption/options = list()
 
-				var/DBQuery/options_query = global.dbcon.NewQuery("SELECT id, text FROM erro_poll_option WHERE pollid = [pollid]")
+				var/DBQuery/options_query = GLOBL.dbcon.NewQuery("SELECT id, text FROM erro_poll_option WHERE pollid = [pollid]")
 				options_query.Execute()
 				while(options_query.NextRow())
 					var/datum/polloption/PO = new()
@@ -161,7 +161,7 @@
 
 			//Polls with a text input
 			if("TEXT")
-				var/DBQuery/voted_query = global.dbcon.NewQuery("SELECT replytext FROM erro_poll_textreply WHERE pollid = [pollid] AND ckey = '[usr.ckey]'")
+				var/DBQuery/voted_query = GLOBL.dbcon.NewQuery("SELECT replytext FROM erro_poll_textreply WHERE pollid = [pollid] AND ckey = '[usr.ckey]'")
 				voted_query.Execute()
 
 				var/voted = 0
@@ -203,7 +203,7 @@
 
 			//Polls with a text input
 			if("NUMVAL")
-				var/DBQuery/voted_query = global.dbcon.NewQuery("SELECT o.text, v.rating FROM erro_poll_option o, erro_poll_vote v WHERE o.pollid = [pollid] AND v.ckey = '[usr.ckey]' AND o.id = v.optionid")
+				var/DBQuery/voted_query = GLOBL.dbcon.NewQuery("SELECT o.text, v.rating FROM erro_poll_option o, erro_poll_vote v WHERE o.pollid = [pollid] AND v.ckey = '[usr.ckey]' AND o.id = v.optionid")
 				voted_query.Execute()
 
 				var/output = "<div align='center'><B>Player poll</B>"
@@ -229,7 +229,7 @@
 					var/minid = 999999
 					var/maxid = 0
 
-					var/DBQuery/option_query = global.dbcon.NewQuery("SELECT id, text, minval, maxval, descmin, descmid, descmax FROM erro_poll_option WHERE pollid = [pollid]")
+					var/DBQuery/option_query = GLOBL.dbcon.NewQuery("SELECT id, text, minval, maxval, descmin, descmid, descmax FROM erro_poll_option WHERE pollid = [pollid]")
 					option_query.Execute()
 					while(option_query.NextRow())
 						var/optionid = text2num(option_query.item[1])
@@ -272,7 +272,7 @@
 
 				src << browse(output,"window=playerpoll;size=500x500")
 			if("MULTICHOICE")
-				var/DBQuery/voted_query = global.dbcon.NewQuery("SELECT optionid FROM erro_poll_vote WHERE pollid = [pollid] AND ckey = '[usr.ckey]'")
+				var/DBQuery/voted_query = GLOBL.dbcon.NewQuery("SELECT optionid FROM erro_poll_vote WHERE pollid = [pollid] AND ckey = '[usr.ckey]'")
 				voted_query.Execute()
 
 				var/list/votedfor = list()
@@ -285,7 +285,7 @@
 				var/maxoptionid = 0
 				var/minoptionid = 0
 
-				var/DBQuery/options_query = global.dbcon.NewQuery("SELECT id, text FROM erro_poll_option WHERE pollid = [pollid]")
+				var/DBQuery/options_query = GLOBL.dbcon.NewQuery("SELECT id, text FROM erro_poll_option WHERE pollid = [pollid]")
 				options_query.Execute()
 				while(options_query.NextRow())
 					var/datum/polloption/PO = new()
@@ -342,9 +342,9 @@
 	if(!isnum(pollid) || !isnum(optionid))
 		return
 	establish_db_connection()
-	if(global.dbcon.IsConnected())
+	if(GLOBL.dbcon.IsConnected())
 
-		var/DBQuery/select_query = global.dbcon.NewQuery("SELECT starttime, endtime, question, polltype, multiplechoiceoptions FROM erro_poll_question WHERE id = [pollid] AND Now() BETWEEN starttime AND endtime")
+		var/DBQuery/select_query = GLOBL.dbcon.NewQuery("SELECT starttime, endtime, question, polltype, multiplechoiceoptions FROM erro_poll_question WHERE id = [pollid] AND Now() BETWEEN starttime AND endtime")
 		select_query.Execute()
 
 		var/validpoll = 0
@@ -362,7 +362,7 @@
 			usr << "\red Poll is not valid."
 			return
 
-		var/DBQuery/select_query2 = global.dbcon.NewQuery("SELECT id FROM erro_poll_option WHERE id = [optionid] AND pollid = [pollid]")
+		var/DBQuery/select_query2 = GLOBL.dbcon.NewQuery("SELECT id FROM erro_poll_option WHERE id = [optionid] AND pollid = [pollid]")
 		select_query2.Execute()
 
 		var/validoption = 0
@@ -377,7 +377,7 @@
 
 		var/alreadyvoted = 0
 
-		var/DBQuery/voted_query = global.dbcon.NewQuery("SELECT id FROM erro_poll_vote WHERE pollid = [pollid] AND ckey = '[usr.ckey]'")
+		var/DBQuery/voted_query = GLOBL.dbcon.NewQuery("SELECT id FROM erro_poll_vote WHERE pollid = [pollid] AND ckey = '[usr.ckey]'")
 		voted_query.Execute()
 
 		while(voted_query.NextRow())
@@ -398,7 +398,7 @@
 			adminrank = usr.client.holder.rank
 
 
-		var/DBQuery/insert_query = global.dbcon.NewQuery("INSERT INTO erro_poll_vote (id ,datetime ,pollid ,optionid ,ckey ,ip ,adminrank) VALUES (null, Now(), [pollid], [optionid], '[usr.ckey]', '[usr.client.address]', '[adminrank]')")
+		var/DBQuery/insert_query = GLOBL.dbcon.NewQuery("INSERT INTO erro_poll_vote (id ,datetime ,pollid ,optionid ,ckey ,ip ,adminrank) VALUES (null, Now(), [pollid], [optionid], '[usr.ckey]', '[usr.client.address]', '[adminrank]')")
 		insert_query.Execute()
 
 		usr << "\blue Vote successful."
@@ -412,9 +412,9 @@
 	if(!isnum(pollid) || !istext(replytext))
 		return
 	establish_db_connection()
-	if(global.dbcon.IsConnected())
+	if(GLOBL.dbcon.IsConnected())
 
-		var/DBQuery/select_query = global.dbcon.NewQuery("SELECT starttime, endtime, question, polltype FROM erro_poll_question WHERE id = [pollid] AND Now() BETWEEN starttime AND endtime")
+		var/DBQuery/select_query = GLOBL.dbcon.NewQuery("SELECT starttime, endtime, question, polltype FROM erro_poll_question WHERE id = [pollid] AND Now() BETWEEN starttime AND endtime")
 		select_query.Execute()
 
 		var/validpoll = 0
@@ -431,7 +431,7 @@
 
 		var/alreadyvoted = 0
 
-		var/DBQuery/voted_query = global.dbcon.NewQuery("SELECT id FROM erro_poll_textreply WHERE pollid = [pollid] AND ckey = '[usr.ckey]'")
+		var/DBQuery/voted_query = GLOBL.dbcon.NewQuery("SELECT id FROM erro_poll_textreply WHERE pollid = [pollid] AND ckey = '[usr.ckey]'")
 		voted_query.Execute()
 
 		while(voted_query.NextRow())
@@ -456,7 +456,7 @@
 			usr << "The text you entered was blank, contained illegal characters or was too long. Please correct the text and submit again."
 			return
 
-		var/DBQuery/insert_query = global.dbcon.NewQuery("INSERT INTO erro_poll_textreply (id ,datetime ,pollid ,ckey ,ip ,replytext ,adminrank) VALUES (null, Now(), [pollid], '[usr.ckey]', '[usr.client.address]', '[replytext]', '[adminrank]')")
+		var/DBQuery/insert_query = GLOBL.dbcon.NewQuery("INSERT INTO erro_poll_textreply (id ,datetime ,pollid ,ckey ,ip ,replytext ,adminrank) VALUES (null, Now(), [pollid], '[usr.ckey]', '[usr.client.address]', '[replytext]', '[adminrank]')")
 		insert_query.Execute()
 
 		usr << "\blue Feedback logging successful."
@@ -470,9 +470,9 @@
 	if(!isnum(pollid) || !isnum(optionid))
 		return
 	establish_db_connection()
-	if(global.dbcon.IsConnected())
+	if(GLOBL.dbcon.IsConnected())
 
-		var/DBQuery/select_query = global.dbcon.NewQuery("SELECT starttime, endtime, question, polltype FROM erro_poll_question WHERE id = [pollid] AND Now() BETWEEN starttime AND endtime")
+		var/DBQuery/select_query = GLOBL.dbcon.NewQuery("SELECT starttime, endtime, question, polltype FROM erro_poll_question WHERE id = [pollid] AND Now() BETWEEN starttime AND endtime")
 		select_query.Execute()
 
 		var/validpoll = 0
@@ -487,7 +487,7 @@
 			usr << "\red Poll is not valid."
 			return
 
-		var/DBQuery/select_query2 = global.dbcon.NewQuery("SELECT id FROM erro_poll_option WHERE id = [optionid] AND pollid = [pollid]")
+		var/DBQuery/select_query2 = GLOBL.dbcon.NewQuery("SELECT id FROM erro_poll_option WHERE id = [optionid] AND pollid = [pollid]")
 		select_query2.Execute()
 
 		var/validoption = 0
@@ -502,7 +502,7 @@
 
 		var/alreadyvoted = 0
 
-		var/DBQuery/voted_query = global.dbcon.NewQuery("SELECT id FROM erro_poll_vote WHERE optionid = [optionid] AND ckey = '[usr.ckey]'")
+		var/DBQuery/voted_query = GLOBL.dbcon.NewQuery("SELECT id FROM erro_poll_vote WHERE optionid = [optionid] AND ckey = '[usr.ckey]'")
 		voted_query.Execute()
 
 		while(voted_query.NextRow())
@@ -518,7 +518,7 @@
 			adminrank = usr.client.holder.rank
 
 
-		var/DBQuery/insert_query = global.dbcon.NewQuery("INSERT INTO erro_poll_vote (id ,datetime ,pollid ,optionid ,ckey ,ip ,adminrank, rating) VALUES (null, Now(), [pollid], [optionid], '[usr.ckey]', '[usr.client.address]', '[adminrank]', [(isnull(rating)) ? "null" : rating])")
+		var/DBQuery/insert_query = GLOBL.dbcon.NewQuery("INSERT INTO erro_poll_vote (id ,datetime ,pollid ,optionid ,ckey ,ip ,adminrank, rating) VALUES (null, Now(), [pollid], [optionid], '[usr.ckey]', '[usr.client.address]', '[adminrank]', [(isnull(rating)) ? "null" : rating])")
 		insert_query.Execute()
 
 		usr << "\blue Vote successful."

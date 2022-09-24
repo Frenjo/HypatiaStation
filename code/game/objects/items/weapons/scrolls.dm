@@ -40,8 +40,8 @@
 /obj/item/weapon/teleportation_scroll/proc/teleportscroll(mob/user)
 	var/A
 
-	A = input(user, "Area to jump to", "BOOYEA", A) in global.teleportlocs
-	var/area/thearea = global.teleportlocs[A]
+	A = input(user, "Area to jump to", "BOOYEA", A) in GLOBL.teleportlocs
+	var/area/thearea = GLOBL.teleportlocs[A]
 
 	if(user.stat || user.restrained())
 		return
