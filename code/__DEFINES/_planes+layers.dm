@@ -25,6 +25,11 @@
 #define SPACE_PLANE_ABOVE_PARALLAX -95
 
 /*
+ * Obscurity
+ */
+#define OBSCURITY_PLANE 2
+
+/*
  * Helper Functions
 */
 /atom/proc/reset_plane_and_layer()
