@@ -3,10 +3,6 @@
  */
 GLOBAL_BYOND_TYPED(job_master, /datum/controller/occupations) // Set in /datum/controller/master/New()
 
-#define GET_RANDOM_JOB 0
-#define BE_ASSISTANT 1
-#define RETURN_TO_LOBBY 2
-
 /datum/controller/occupations
 	name = "Jobs"
 

@@ -1,4 +1,4 @@
-//Preference toggles
+// Preference Toggles
 #define SOUND_ADMINHELP	1
 #define SOUND_MIDI		2
 #define SOUND_AMBIENCE	4
@@ -16,6 +16,7 @@
 
 #define TOGGLES_DEFAULT (SOUND_ADMINHELP | SOUND_MIDI | SOUND_AMBIENCE | SOUND_LOBBY | CHAT_OOC | CHAT_DEAD | CHAT_GHOSTEARS | CHAT_GHOSTSIGHT | CHAT_PRAYER | CHAT_RADIO | CHAT_ATTACKLOGS | CHAT_LOOC)
 
+// Special Roles
 #define BE_TRAITOR		1
 #define BE_OPERATIVE	2
 #define BE_CHANGELING	4
@@ -32,6 +33,12 @@
 
 #define MAX_SAVE_SLOTS 20
 
+// Job Preferences
+#define GET_RANDOM_JOB 0
+#define BE_ASSISTANT 1
+#define RETURN_TO_LOBBY 2
+
+// Skill Levels
 #define SKILL_NONE		0
 #define SKILL_BASIC		1
 #define SKILL_ADEPT		2
