@@ -10,6 +10,10 @@
 	..(loc)
 	parent_pipe = loc
 
+/obj/machinery/atmospherics/pipe/mains_component/Destroy()
+	parent_pipe = null
+	return ..()
+
 /obj/machinery/atmospherics/pipe/mains_component/check_pressure(pressure)
 	var/datum/gas_mixture/environment = loc.loc.return_air()
 	var/pressure_difference = pressure - environment.return_pressure()
@@ -82,6 +86,12 @@
 
 /obj/machinery/atmospherics/mains_pipe/Destroy()
 	disconnect()
+	if(supply)
+		qdel(supply)
+	if(scrubbers)
+		qdel(scrubbers)
+	if(aux)
+		qdel(aux)
 	return ..()
 
 /obj/machinery/atmospherics/mains_pipe/hide(i)
