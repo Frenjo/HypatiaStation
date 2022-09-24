@@ -27,11 +27,11 @@ GLOBAL_BYOND_TYPED(supply_controller, /datum/controller/supply) // Set in /datum
 	..()
 	ordernum = rand(1, 9000)
 
-//Supply shuttle ticker - handles supply point regenertion and shuttle travelling between centcomm and the station
+//Supply shuttle ticker - handles supply point regenertion and shuttle travelling between centcom and the station
 /datum/controller/supply/process()
 	points += points_per_process
 
-//To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
+//To stop things being sent to centcom which should not be sent to centcom. Recursively checks for these types.
 /datum/controller/supply/proc/forbidden_atoms_check(atom/A)
 	if(isliving(A))
 		return 1

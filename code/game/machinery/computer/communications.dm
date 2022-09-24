@@ -16,7 +16,7 @@
 	var/state = STATE_DEFAULT
 	var/aistate = STATE_DEFAULT
 	var/message_cooldown = 0
-	var/centcomm_message_cooldown = 0
+	var/centcom_message_cooldown = 0
 	var/tmp_alertlevel = 0
 	var/const/STATE_DEFAULT = 1
 	var/const/STATE_CALLSHUTTLE = 2
@@ -188,27 +188,27 @@
 			stat_msg2 = input("Line 2", "Enter Message Text", stat_msg2) as text|null
 			src.updateDialog()
 
-		// OMG CENTCOMM LETTERHEAD
-		if("MessageCentcomm")
+		// OMG CENTCOM LETTERHEAD
+		if("MessageCentCom")
 			if(src.authenticated==2)
-				if(centcomm_message_cooldown)
+				if(centcom_message_cooldown)
 					usr << "\red Arrays recycling.  Please stand by."
 					return
-				var/input = stripped_input(usr, "Please choose a message to transmit to Centcomm via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "")
+				var/input = stripped_input(usr, "Please choose a message to transmit to CentCom via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "")
 				if(!input || !(usr in view(1,src)))
 					return
-				Centcomm_announce(input, usr)
+				centcom_announce(input, usr)
 				usr << "\blue Message transmitted."
-				log_say("[key_name(usr)] has made an IA Centcomm announcement: [input]")
-				centcomm_message_cooldown = 1
+				log_say("[key_name(usr)] has made an IA CentCom announcement: [input]")
+				centcom_message_cooldown = 1
 				spawn(300)//10 minute cooldown
-					centcomm_message_cooldown = 0
+					centcom_message_cooldown = 0
 
 
 		// OMG SYNDICATE ...LETTERHEAD
 		if("MessageSyndicate")
 			if((src.authenticated==2) && (src.emagged))
-				if(centcomm_message_cooldown)
+				if(centcom_message_cooldown)
 					usr << "\red Arrays recycling.  Please stand by."
 					return
 				var/input = stripped_input(usr, "Please choose a message to transmit to \[ABNORMAL ROUTING CORDINATES\] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination. Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "")
@@ -217,9 +217,9 @@
 				Syndicate_announce(input, usr)
 				usr << "\blue Message transmitted."
 				log_say("[key_name(usr)] has made a Syndicate announcement: [input]")
-				centcomm_message_cooldown = 1
+				centcom_message_cooldown = 1
 				spawn(300)//10 minute cooldown
-					centcomm_message_cooldown = 0
+					centcom_message_cooldown = 0
 
 		if("RestoreBackup")
 			usr << "Backup routing data restored!"
@@ -320,7 +320,7 @@
 				if (src.authenticated==2)
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=announce'>Make An Announcement</A> \]"
 					if(src.emagged == 0)
-						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=MessageCentcomm'>Send an emergency message to Centcomm</A> \]"
+						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=MessageCentCom'>Send an emergency message to CentCom</A> \]"
 					else
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=MessageSyndicate'>Send an emergency message to \[UNKNOWN\]</A> \]"
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=RestoreBackup'>Restore Backup Routing Data</A> \]"
@@ -534,7 +534,7 @@
 	if((ticker.mode.name == "blob")||(ticker.mode.name == "meteor"))
 		return
 
-	if(!global.emergency_controller.going_to_centcom() && global.emergency_controller.online()) //check that shuttle isn't already heading to centcomm
+	if(!global.emergency_controller.going_to_centcom() && global.emergency_controller.online()) //check that shuttle isn't already heading to centcom
 		global.emergency_controller.recall()
 		log_game("[key_name(user)] has recalled the shuttle.")
 		message_admins("[key_name_admin(user)] has recalled the shuttle.", 1)

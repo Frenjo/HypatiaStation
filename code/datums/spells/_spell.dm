@@ -38,14 +38,14 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 	var/smoke_amt = 0 //cropped at 10
 
 	var/critfailchance = 0
-	var/centcomm_cancast = 1 //Whether or not the spell should be allowed on z2
+	var/centcom_cancast = 1 //Whether or not the spell should be allowed on z2
 
 /obj/effect/proc_holder/spell/proc/cast_check(skipcharge = 0, mob/user = usr) //checks if the spell can be cast based on its settings; skipcharge is used when an additional cast_check is called inside the spell
 	if(!(src in usr.spell_list))
 		to_chat(usr, SPAN_WARNING("You shouldn't have this spell! Something's wrong."))
 		return 0
 
-	if(usr.z == 2 && !centcomm_cancast) //Certain spells are not allowed on the centcomm zlevel
+	if(usr.z == 2 && !centcom_cancast) //Certain spells are not allowed on the centcom zlevel
 		return 0
 
 	if(!skipcharge)

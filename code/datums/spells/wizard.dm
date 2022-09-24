@@ -110,7 +110,7 @@
 	inner_tele_radius = 0
 	outer_tele_radius = 6
 
-	centcomm_cancast = 0 //prevent people from getting to centcomm
+	centcom_cancast = 0 //prevent people from getting to centcom
 
 
 /obj/effect/proc_holder/spell/targeted/area_teleport/teleport
@@ -257,7 +257,7 @@
 	invocation_type = "none"
 	range = 0
 	summon_type = list(/turf/simulated/floor/engine/cult)
-	centcomm_cancast = 0 //Stop crashing the server by spawning turfs on transit tiles
+	centcom_cancast = 0 //Stop crashing the server by spawning turfs on transit tiles
 
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/wall
@@ -271,7 +271,7 @@
 	invocation_type = "none"
 	range = 0
 	summon_type = list(/turf/simulated/wall/cult)
-	centcomm_cancast = 0 //Stop crashing the server by spawning turfs on transit tiles
+	centcom_cancast = 0 //Stop crashing the server by spawning turfs on transit tiles
 
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/wall/reinforced
@@ -284,7 +284,7 @@
 	invocation = "none"
 	invocation_type = "none"
 	range = 0
-	centcomm_cancast = 0 //Stop crashing the server by spawning turfs on transit tiles
+	centcom_cancast = 0 //Stop crashing the server by spawning turfs on transit tiles
 	delay = 50
 
 	summon_type = list(/turf/simulated/wall/r_wall)
@@ -331,4 +331,4 @@
 	include_user = 1
 	phaseshift = 1
 	jaunt_duration = 50 //in deciseconds
-	centcomm_cancast = 0 //Stop people from getting to centcomm
+	centcom_cancast = 0 //Stop people from getting to centcom

@@ -52,13 +52,13 @@
 
 // Centcom
 /obj/machinery/telecomms/hub/preset_cent
-	id = "CentComm Hub"
+	id = "CentCom Hub"
 	network = "tcommsat"
 	//heatgen = 0
 	operating_temperature = null
 	autolinkers = list(
 		"hub_cent", "c_relay", "s_relay", "m_relay", "r_relay",
-		"centcomm", "receiverCent", "broadcasterCent"
+		"centcom", "receiverCent", "broadcasterCent"
 	)
 
 
@@ -85,7 +85,7 @@
 
 // Centcom
 /obj/machinery/telecomms/receiver/preset_cent
-	id = "CentComm Receiver"
+	id = "CentCom Receiver"
 	network = "tcommsat"
 	//heatgen = 0
 	operating_temperature = null
@@ -129,12 +129,12 @@
 
 // Centcom
 /obj/machinery/telecomms/bus/preset_cent
-	id = "CentComm Bus"
+	id = "CentCom Bus"
 	network = "tcommsat"
 	freq_listening = list(FREQUENCY_RESPONSETEAM, FREQUENCY_DEATHSQUAD)
 	//heatgen = 0
 	operating_temperature = null
-	autolinkers = list("processorCent", "centcomm")
+	autolinkers = list("processorCent", "centcom")
 
 
 // --- Processors ---
@@ -164,7 +164,7 @@
 
 // Centcom
 /obj/machinery/telecomms/processor/preset_cent
-	id = "CentComm Processor"
+	id = "CentCom Processor"
 	network = "tcommsat"
 	//heatgen = 0
 	operating_temperature = null
@@ -237,12 +237,12 @@
 	autolinkers = list("security")
 
 // Centcom
-/obj/machinery/telecomms/server/presets/centcomm
-	id = "CentComm Server"
+/obj/machinery/telecomms/server/presets/centcom
+	id = "CentCom Server"
 	freq_listening = list(FREQUENCY_RESPONSETEAM, FREQUENCY_DEATHSQUAD)
 	//heatgen = 0
 	operating_temperature = null
-	autolinkers = list("centcomm")
+	autolinkers = list("centcom")
 
 
 // --- Broadcasters ---
@@ -260,7 +260,7 @@
 
 // Centcom
 /obj/machinery/telecomms/broadcaster/preset_cent
-	id = "CentComm Broadcaster"
+	id = "CentCom Broadcaster"
 	network = "tcommsat"
 	//heatgen = 0
 	operating_temperature = null

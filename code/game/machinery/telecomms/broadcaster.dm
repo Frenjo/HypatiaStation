@@ -356,7 +356,7 @@
 		// syndies!
 		if(display_freq == FREQUENCY_SYNDICATE)
 			part_a = "<span class='syndradio'><span class='name'>"
-		// centcomm channels (deathsquid and ert)
+		// centcom channels (deathsquid and ert)
 		else if(display_freq in GLOBL.cent_freqs)
 			part_a = "<span class='centradio'><span class='name'>"
 		// cargo channel

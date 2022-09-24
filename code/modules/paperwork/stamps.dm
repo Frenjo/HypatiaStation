@@ -58,10 +58,10 @@
 	icon_state = "stamp-intaff"
 	item_color = "intaff"
 
-/obj/item/weapon/stamp/centcomm
-	name = "centcomm rubber stamp"
+/obj/item/weapon/stamp/centcom
+	name = "centcom rubber stamp"
 	icon_state = "stamp-cent"
-	item_color = "centcomm"
+	item_color = "centcom"
 
 
 /obj/item/weapon/stamp/attack_paw(mob/user as mob)

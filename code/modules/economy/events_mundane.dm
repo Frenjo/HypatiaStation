@@ -160,7 +160,7 @@
 		"'Here kitty kitty' no longer preferred tajaran retrieval technique.", \
 		"Man travels 7000 light years to retrieve lost hankie, 'It was my favourite'.", \
 		"New bowling lane that shoots mini-meteors at bowlers very popular.", \
-		"[pick("Soghun", "Spacer")] gets tattoo of Tau Ceti on chest '[pick("CentComm", "star", "starship", "asteroid")] tickles most'.", \
+		"[pick("Soghun", "Spacer")] gets tattoo of Tau Ceti on chest '[pick("CentCom", "star", "starship", "asteroid")] tickles most'.", \
 		"Skrell marries computer; wedding attended by 100 modems.", \
 		"Chef reports successfully using harmonica as cheese grater.", \
 		"NanoTrasen invents handkerchief that says 'Bless you' after sneeze.", \

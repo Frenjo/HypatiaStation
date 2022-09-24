@@ -27,7 +27,7 @@
 ///////////////////////////
 /datum/game_mode/anti_revolution/announce()
 	world << "<B>The current game mode is - Anti-Revolution!</B>"
-	world << "<B>Looks like CentComm has given a few new orders..</B>"
+	world << "<B>Looks like CentCom has given a few new orders..</B>"
 
 ///////////////////////////////////////////////////////////////////////////////
 //Gets the round setup, cancelling if there's not enough players at the start//
@@ -99,7 +99,7 @@
 /datum/game_mode/proc/greet_head(var/datum/mind/head_mind, var/you_are=1)
 	var/obj_count = 1
 	if (you_are)
-		head_mind.current << "\blue It looks like this shift CentComm has some special orders for you.. check your objectives."
+		head_mind.current << "\blue It looks like this shift CentCom has some special orders for you.. check your objectives."
 		head_mind.current << "\blue Note that you can ignore these objectives, but resisting NT's orders probably means demotion or worse."
 	for(var/datum/objective/objective in head_mind.objectives)
 		head_mind.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
@@ -157,7 +157,7 @@
 	if(finished == 2)
 		world << "\red <FONT size = 3><B> The heads of staff were relieved of their posts! The crew wins!</B></FONT>"
 	else if(finished == 1)
-		world << "\red <FONT size = 3><B> The heads of staff managed to meet the goals set for them by CentComm!</B></FONT>"
+		world << "\red <FONT size = 3><B> The heads of staff managed to meet the goals set for them by CentCom!</B></FONT>"
 
 
 

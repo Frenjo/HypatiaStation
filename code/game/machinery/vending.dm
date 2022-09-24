@@ -217,7 +217,7 @@
 			src.vend(src.currently_vending, usr)
 			currently_vending = null
 	else
-		to_chat(usr, "\icon[src]<span class='warning'>Unable to access vendor account. Please record the machine ID and call CentComm Support.</span>")
+		to_chat(usr, "\icon[src]<span class='warning'>Unable to access vendor account. Please record the machine ID and call CentCom Support.</span>")
 
 /obj/machinery/vending/attack_paw(mob/user as mob)
 	return attack_hand(user)
