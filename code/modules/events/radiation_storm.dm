@@ -22,16 +22,15 @@
 		if(isNotStationLevel(T.z))
 			continue
 		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew_quarters))
-			H.client.screen.Remove(global_hud.radstorm)
+			H.client.screen.Remove(GLOBL.global_hud.radstorm)
 			continue
 
 		if(istype(H,/mob/living/carbon/human))
-			H.client.screen.Remove(global_hud.radstorm)
-			H.client.screen += global_hud.radstorm
-			H.apply_effect((rand(15, 35)), IRRADIATE, 0)
+			H.client.screen |= GLOBL.global_hud.radstorm
+			H.apply_effect(rand(15, 35), IRRADIATE, 0)
 			if(prob(5))
-				H.apply_effect((rand(40, 70)), IRRADIATE, 0)
-				if (prob(75))
+				H.apply_effect(rand(40, 70), IRRADIATE, 0)
+				if(prob(75))
 					randmutb(H) // Applies bad mutation
 					domutcheck(H, null, MUTCHK_FORCED)
 				else
@@ -52,7 +51,7 @@
 	command_alert("The station has passed the radiation belt. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
 
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
-		H.client.screen.Remove(global_hud.radstorm)
+		H.client.screen.Remove(GLOBL.global_hud.radstorm)
 
 	spawn(150)
 	revoke_maint_all_access()

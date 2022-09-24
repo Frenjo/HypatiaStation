@@ -252,7 +252,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(usr.stat || !ishuman(usr))
 		to_chat(usr, "You are unable to focus down the scope of the rifle.")
 		return
-	if(!zoom && (global_hud.darkMask[1] in usr.client.screen))
+	if(!zoom && (GLOBL.global_hud.darkMask[1] in usr.client.screen))
 		to_chat(usr, "Your welding equipment gets in the way of you looking down the scope.")
 		return
 	if(!zoom && usr.get_active_hand() != src)

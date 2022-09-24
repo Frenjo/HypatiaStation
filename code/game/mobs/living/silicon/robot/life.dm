@@ -260,7 +260,7 @@
 //	if (src.oxygen) src.oxygen.icon_state = "oxy[src.oxygen_alert ? 1 : 0]"
 //	if (src.fire) src.fire.icon_state = "fire[src.fire_alert ? 1 : 0]"
 
-	client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired)
+	client.screen.Remove(GLOBL.global_hud.blurry, GLOBL.global_hud.druggy, GLOBL.global_hud.vimpaired)
 
 	if((src.blind && src.stat != DEAD))
 		if(src.blinded)
@@ -268,13 +268,13 @@
 		else
 			src.blind.invisibility = INVISIBILITY_MAXIMUM // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 			if(src.disabilities & NEARSIGHTED)
-				src.client.screen += global_hud.vimpaired
+				src.client.screen += GLOBL.global_hud.vimpaired
 
 			if(src.eye_blurry)
-				src.client.screen += global_hud.blurry
+				src.client.screen += GLOBL.global_hud.blurry
 
 			if(src.druggy)
-				src.client.screen += global_hud.druggy
+				src.client.screen += GLOBL.global_hud.druggy
 
 	if(src.stat != DEAD)
 		if(src.machine)

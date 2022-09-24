@@ -2,18 +2,18 @@
 	The global hud:
 	Uses the same visual objects for all players.
 */
-/var/datum/global_hud/global_hud = new()
+GLOBAL_GLOBL_NEW(global_hud, /datum/global_hud)
 
-var/list/global_huds = list(
-	global_hud.druggy,
-	global_hud.blurry,
-	global_hud.vimpaired,
-	global_hud.darkMask,
-	global_hud.nvg,
-	global_hud.scig,
-	global_hud.thermal,
-	global_hud.meson
-)
+GLOBAL_GLOBL_LIST_INIT(global_huds, list(
+	GLOBL.global_hud.druggy,
+	GLOBL.global_hud.blurry,
+	GLOBL.global_hud.vimpaired,
+	GLOBL.global_hud.darkMask,
+	GLOBL.global_hud.nvg,
+	GLOBL.global_hud.scig,
+	GLOBL.global_hud.thermal,
+	GLOBL.global_hud.meson
+))
 
 /datum/hud/var/obj/screen/grab_intent
 /datum/hud/var/obj/screen/hurt_intent
@@ -26,12 +26,17 @@ var/list/global_huds = list(
 	var/list/vimpaired
 	var/list/darkMask
 	var/obj/screen/nvg
-	var/obj/screen/scig // Overlay for purple effects from science goggles. -Frenjo
-	var/obj/screen/radstorm // Overlay for radiation effects from rad storms. -Frenjo
-	var/obj/screen/ionstorm // Overlay for ionic effects from ion storms. -Frenjo
-	var/obj/screen/electricalstorm // Overlay for electrical effects from electrical storms. -Frenjo
+	// Overlay for purple effects from science goggles.
+	var/obj/screen/scig
 	var/obj/screen/thermal
 	var/obj/screen/meson
+
+	// Overlay for radiation effects from rad storms.
+	var/obj/screen/radstorm
+	// Overlay for ionic effects from ion storms.
+	var/obj/screen/ionstorm
+	// Overlay for electrical effects from electrical storms.
+	var/obj/screen/electricalstorm
 
 /datum/global_hud/proc/setup_overlay(icon_state)
 	var/obj/screen/screen = new /obj/screen()
@@ -59,11 +64,12 @@ var/list/global_huds = list(
 	blurry.mouse_opacity = FALSE
 
 	nvg = setup_overlay("nvg_hud")
+	// Overlay for purple effects from science goggles.
 	scig = setup_overlay("scig_hud")
 	thermal = setup_overlay("thermal_hud")
 	meson = setup_overlay("meson_hud")
 
-	// Overlay for radiation effects from rad storms. -Frenjo
+	// Overlay for radiation effects from rad storms.
 	radstorm = new /obj/screen()
 	radstorm.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	radstorm.icon = 'icons/effects/effects.dmi'
@@ -75,7 +81,7 @@ var/list/global_huds = list(
 	radstorm.blend_mode = BLEND_SUBTRACT
 	radstorm.mouse_opacity = FALSE
 
-	// Overlay for ionic effects from ion storms. -Frenjo
+	// Overlay for ionic effects from ion storms.
 	ionstorm = new /obj/screen()
 	ionstorm.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	ionstorm.icon = 'icons/effects/effects.dmi'
@@ -87,7 +93,7 @@ var/list/global_huds = list(
 	ionstorm.blend_mode = BLEND_SUBTRACT
 	ionstorm.mouse_opacity = FALSE
 
-	// Overlay for electrical effects from electrical storms. -Frenjo
+	// Overlay for electrical effects from electrical storms.
 	electricalstorm = new /obj/screen()
 	electricalstorm.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	electricalstorm.icon = 'icons/effects/effects.dmi'

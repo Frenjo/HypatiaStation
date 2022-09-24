@@ -231,7 +231,7 @@
 	if(pullin)
 		pullin.icon_state = "pull[pulling ? 1 : 0]"
 	if(client)
-		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired)
+		client.screen.Remove(GLOBL.global_hud.blurry, GLOBL.global_hud.druggy, GLOBL.global_hud.vimpaired)
 
 	if((blind && stat != DEAD))
 		if((blinded))
@@ -240,13 +240,13 @@
 			blind.invisibility = INVISIBILITY_MAXIMUM // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 
 			if(disabilities & NEARSIGHTED)
-				client.screen += global_hud.vimpaired
+				client.screen += GLOBL.global_hud.vimpaired
 
 			if(eye_blurry)
-				client.screen += global_hud.blurry
+				client.screen += GLOBL.global_hud.blurry
 
 			if(druggy)
-				client.screen += global_hud.druggy
+				client.screen += GLOBL.global_hud.druggy
 
 	if(stat != DEAD)
 		if(machine)

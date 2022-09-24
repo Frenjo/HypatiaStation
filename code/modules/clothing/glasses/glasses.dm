@@ -38,7 +38,7 @@
 
 /obj/item/clothing/glasses/meson/New()
 	..()
-	overlay = global_hud.meson
+	overlay = GLOBL.global_hud.meson
 
 /obj/item/clothing/glasses/meson/prescription
 	name = "prescription mesons"
@@ -56,7 +56,7 @@
 
 /obj/item/clothing/glasses/science/New()
 	..()
-	overlay = global_hud.scig
+	overlay = GLOBL.global_hud.scig
 
 
 /obj/item/clothing/glasses/night
@@ -69,7 +69,7 @@
 
 /obj/item/clothing/glasses/night/New()
 	..()
-	overlay = global_hud.nvg
+	overlay = GLOBL.global_hud.nvg
 
 
 /obj/item/clothing/glasses/eyepatch
@@ -210,7 +210,7 @@
 
 /obj/item/clothing/glasses/thermal/New()
 	..()
-	overlay = global_hud.thermal
+	overlay = GLOBL.global_hud.thermal
 
 /obj/item/clothing/glasses/thermal/emp_act(severity)
 	if(ishuman(src.loc))

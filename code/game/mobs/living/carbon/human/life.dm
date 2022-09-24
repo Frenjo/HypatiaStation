@@ -1222,8 +1222,11 @@
 		if(copytext(hud.icon_state, 1, 4) == "hud") //ugly, but icon comparison is worse, I believe
 			client.images.Remove(hud)
 
-	// Add scigoggle overlay to end of this. -Frenjo
-	client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.scig, global_hud.thermal, global_hud.meson)
+	client.screen.Remove( \
+		GLOBL.global_hud.blurry, GLOBL.global_hud.druggy, GLOBL.global_hud.vimpaired, \
+		GLOBL.global_hud.darkMask, GLOBL.global_hud.nvg, GLOBL.global_hud.scig, \
+		GLOBL.global_hud.thermal, GLOBL.global_hud.meson \
+	)
 
 	update_action_buttons()
 
@@ -1450,27 +1453,27 @@
 			if(glasses)					//to every /obj/item
 				var/obj/item/clothing/glasses/G = glasses
 				if(!G.prescription)
-					client.screen += global_hud.vimpaired
+					client.screen += GLOBL.global_hud.vimpaired
 			else
-				client.screen += global_hud.vimpaired
+				client.screen += GLOBL.global_hud.vimpaired
 
 		if(eye_blurry)
-			client.screen += global_hud.blurry
+			client.screen += GLOBL.global_hud.blurry
 		if(druggy)
-			client.screen += global_hud.druggy
+			client.screen += GLOBL.global_hud.druggy
 
 		var/masked = 0
 
 		if(istype(head, /obj/item/clothing/head/welding) || istype(head, /obj/item/clothing/head/helmet/space/soghun))
 			var/obj/item/clothing/head/welding/O = head
 			if(!O.up && GLOBL.tinted_weldhelh)
-				client.screen += global_hud.darkMask
+				client.screen += GLOBL.global_hud.darkMask
 				masked = 1
 
 		if(!masked && istype(glasses, /obj/item/clothing/glasses/welding))
 			var/obj/item/clothing/glasses/welding/O = glasses
 			if(!O.up && GLOBL.tinted_weldhelh)
-				client.screen += global_hud.darkMask
+				client.screen += GLOBL.global_hud.darkMask
 
 		if(machine)
 			if(!machine.check_eye(src))
