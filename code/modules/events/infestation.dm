@@ -16,13 +16,14 @@
 /datum/event/infestation
 	announceWhen = 10
 	endWhen = 11
+
 	var/location
 	var/locstring
 	var/vermin
 	var/vermstring
 
 /datum/event/infestation/start()
-	location = rand(0,9)
+	location = rand(0, 9)
 	var/list/turf/simulated/floor/turfs = list()
 	var/spawn_area_type
 	switch(location)
@@ -94,14 +95,12 @@
 			turfs.Remove(T)
 			num--
 
-
 			if(vermin == VERM_SPIDERS)
 				var/obj/effect/spider/spiderling/S = new(T)
 				S.amount_grown = -1
 			else
 				var/spawn_type = pick(spawn_types)
 				new spawn_type(T)
-
 
 /datum/event/infestation/announce()
 	command_alert("Bioscans indicate that [vermstring] have been breeding in [locstring]. Clear them out, before this starts to affect productivity.", "Vermin infestation")

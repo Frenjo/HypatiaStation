@@ -1,10 +1,10 @@
 /datum/event	//NOTE: Times are measured in master controller ticks!
-	var/startWhen		= 0	//When in the lifetime to call start().
-	var/announceWhen	= 0	//When in the lifetime to call announce().
-	var/endWhen			= 0	//When in the lifetime the event should end.
-	var/oneShot			= 0	//If true, then the event removes itself from the list of potential events on creation.
+	var/startWhen = 0		// When in the lifetime to call start().
+	var/announceWhen = 0	// When in the lifetime to call announce().
+	var/endWhen = 0			// When in the lifetime the event should end.
+	var/oneShot = FALSE		// If true, then the event removes itself from the list of potential events on creation.
 
-	var/activeFor		= 0	//How long the event has existed. You don't need to change this.
+	var/activeFor = 0		// How long the event has existed. You don't need to change this.
 
 //Called first before processing.
 //Allows you to setup your event, such as randomly
@@ -41,8 +41,6 @@
 /datum/event/proc/end()
 	return
 
-
-
 //Do not override this proc, instead use the appropiate procs.
 //This proc will handle the calls to the appropiate procs.
 /datum/event/proc/process()
@@ -65,13 +63,11 @@
 
 	activeFor++
 
-
 //Garbage collects the event by removing it from the global events list,
 //which should be the only place it's referenced.
 //Called when start(), announce() and end() has all been called.
 /datum/event/proc/kill()
 	events.Remove(src)
-
 
 //Adds the event to the global events list, and removes it from the list
 //of potential events.

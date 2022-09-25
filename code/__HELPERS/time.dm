@@ -1,6 +1,12 @@
 #define TimeOfGame (get_game_time())
 #define TimeOfTick (world.tick_usage * 0.01 * world.tick_lag)
 
+GLOBAL_GLOBL_LIST_INIT(months, list(
+	"January", "February", "March", "April",
+	"May", "June", "July", "August",
+	"September", "October", "November", "December"
+))
+
 /proc/get_game_time()
 	var/global/time_offset = 0
 	var/global/last_time = 0

@@ -53,7 +53,6 @@
 
 				sleep(sleep_duration)						//have a well deserved nap!
 
-
 //maybe this proc can even be used as an admin tool for teleporting players without ruining immulsions?
 /proc/create_wormhole(turf/enter as turf, turf/exit as turf)
 	var/obj/effect/portal/P = new /obj/effect/portal(enter)

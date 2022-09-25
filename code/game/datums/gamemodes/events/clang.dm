@@ -6,7 +6,6 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 
 --NEOFite
 */
-
 /obj/effect/immovablerod
 	name = "Immovable Rod"
 	desc = "What the fuck is that?"

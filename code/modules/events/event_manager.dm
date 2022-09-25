@@ -6,14 +6,12 @@ GLOBAL_GLOBL_INIT(eventTimeLower, 12000)	//20 minutes
 GLOBAL_GLOBL_INIT(eventTimeUpper, 24000)	//40 minutes
 GLOBAL_GLOBL_INIT(scheduledEvent, null)
 
-
 //Currently unused. Needs an admin panel for messing with events.
 /*/proc/addPotentialEvent(var/type)
 	potentialRandomEvents |= type
 
 /proc/removePotentialEvent(var/type)
 	potentialRandomEvents -= type*/
-
 
 /proc/checkEvent()
 	if(!GLOBL.scheduledEvent)

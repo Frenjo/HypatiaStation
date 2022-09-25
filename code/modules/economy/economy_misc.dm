@@ -96,17 +96,17 @@ var/global/economy_init = 0
 
 	for(var/loc_type in SUBTYPESOF(/datum/trade_destination))
 		var/datum/trade_destination/D = new loc_type
-		weighted_randomevent_locations[D] = D.viable_random_events.len
-		weighted_mundaneevent_locations[D] = D.viable_mundane_events.len
+		GLOBL.weighted_randomevent_locations[D] = D.viable_random_events.len
+		GLOBL.weighted_mundaneevent_locations[D] = D.viable_mundane_events.len
 
 	create_station_account()
 
-	for(var/department in station_departments)
+	for(var/department in GLOBL.station_departments)
 		create_department_account(department)
 	create_department_account("Vendor")
 	vendor_account = department_accounts["Vendor"]
 
-	current_date_string = "[num2text(rand(1, 31))] [pick("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")], [GLOBL.game_year]"
+	current_date_string = "[num2text(rand(1, 31))] [pick(GLOBL.months)], [GLOBL.game_year]"
 
 	economy_init = 1
 	return 1

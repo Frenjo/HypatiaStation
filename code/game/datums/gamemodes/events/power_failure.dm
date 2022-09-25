@@ -1,5 +1,4 @@
-
-/proc/power_failure(announce = 1)
+/proc/power_failure(announce = TRUE)
 	if(announce)
 		command_alert("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.", "Critical Power Failure")
 		for(var/mob/M in GLOBL.player_list)
@@ -33,7 +32,7 @@
 
 			C.cell.charge = 0
 
-/proc/power_restore(announce = 1)
+/proc/power_restore(announce = TRUE)
 	if(announce)
 		command_alert("Power has been restored to [station_name()]. We apologize for the inconvenience.", "Power Systems Nominal")
 		for(var/mob/M in GLOBL.player_list)
@@ -64,7 +63,7 @@
 			A.power_change()
 	*/
 
-/proc/power_restore_quick(announce = 1)
+/proc/power_restore_quick(announce = TRUE)
 	if(announce)
 		command_alert("All SMESs on [station_name()] have been recharged. We apologize for the inconvenience.", "Power Systems Nominal")
 		for(var/mob/M in GLOBL.player_list)

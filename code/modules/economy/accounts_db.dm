@@ -1,4 +1,3 @@
-
 /obj/machinery/account_database
 	name = "Accounts uplink console"
 	desc = "Access transaction logs, account data and all kinds of other financial records."
@@ -7,6 +6,7 @@
 	icon_state = "accountsuplink" // Changed this so that it has a separate sprite which actually makes sense. -Frenjo
 	density = TRUE
 	req_one_access = list(ACCESS_HOP, ACCESS_CAPTAIN, ACCESS_CENT_CAPTAIN)
+
 	var/receipt_num
 	var/machine_id = ""
 	var/obj/item/weapon/card/id/held_card

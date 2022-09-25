@@ -8,6 +8,7 @@
 	density = FALSE
 	layer = 5
 	pass_flags = PASSTABLE | PASSGRILLE
+
 	var/energy = 0
 	var/obj/effect/biomass_controller/master = null
 
@@ -168,7 +169,6 @@
 
 /obj/effect/biomass/fire_act(null, temp, volume) //hotspots kill biomass
 	qdel(src)
-
 
 /proc/biomass_infestation()
 	spawn() //to stop the secrets panel hanging

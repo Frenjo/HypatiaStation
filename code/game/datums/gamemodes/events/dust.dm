@@ -6,7 +6,6 @@ Commonish random event that causes small clumps of "space dust" to hit the stati
 No command report on the common version of this event.
 The "dust" will damage the hull of the station causin minor hull breaches.
 */
-
 /proc/dust_swarm(strength = "weak")
 	var/numbers = 1
 	switch(strength)
@@ -28,7 +27,6 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 		 	new/obj/effect/space_dust/super()
 	return
 
-
 /obj/effect/space_dust
 	name = "Space Dust"
 	desc = "Dust in space."
@@ -36,6 +34,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 	icon_state = "space_dust"
 	density = TRUE
 	anchored = TRUE
+
 	var/strength = 2 //ex_act severity number
 	var/life = 2 //how many things we hit before qdel(src)
 
@@ -50,7 +49,6 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 /obj/effect/space_dust/super
 	strength = 1
 	life = 40
-
 
 /obj/effect/space_dust/New()
 	..()

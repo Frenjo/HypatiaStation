@@ -22,6 +22,7 @@ log transactions
 	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 10
+
 	var/datum/money_account/authenticated_account
 	var/number_incorrect_tries = 0
 	var/previous_account_number = 0

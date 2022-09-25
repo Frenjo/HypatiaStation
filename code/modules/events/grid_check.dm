@@ -1,5 +1,5 @@
 /datum/event/grid_check	//NOTE: Times are measured in master controller ticks!
-	announceWhen		= 5
+	announceWhen = 5
 
 /datum/event/grid_check/setup()
 	endWhen = rand(30, 120)

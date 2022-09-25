@@ -4,11 +4,9 @@
 
 	var/obj/effect/blob/core/Blob
 
-
 /datum/event/blob/announce()
 	command_alert("Confirmed outbreak of level 7 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert")
 	world << sound('sound/AI/outbreak7.ogg')
-
 
 /datum/event/blob/start()
 	var/turf/T = pick(GLOBL.blobstart)
@@ -18,7 +16,6 @@
 	Blob = new /obj/effect/blob/core(T, 120)
 	for(var/i = 1; i < rand(3, 4), i++)
 		Blob.process()
-
 
 /datum/event/blob/tick()
 	if(!Blob)

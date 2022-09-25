@@ -1,4 +1,9 @@
 /datum/event/electrical_storm
+	startWhen = 1
+	announceWhen = 1
+	endWhen = 6
+	oneShot = FALSE
+
 	var/lightsoutAmount	= 1
 	var/lightsoutRange	= 20
 
@@ -6,11 +11,6 @@
 	var/list/possibleEpicentres = list()
 
 /datum/event/electrical_storm/setup()
-	startWhen 		= 1
-	announceWhen	= 1
-	endWhen 		= 6
-	oneShot			= 0
-
 	for(var/obj/effect/landmark/newEpicentre in GLOBL.landmarks_list)
 		if(newEpicentre.name == "lightsout" && !(newEpicentre in epicentreList))
 			possibleEpicentres += newEpicentre

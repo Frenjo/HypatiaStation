@@ -8,6 +8,7 @@
 	density = FALSE
 	layer = 5
 	pass_flags = PASSTABLE | PASSGRILLE
+
 	var/energy = 0
 	var/obj/effect/spacevine_controller/master = null
 	var/mob/living/buckled_mob
@@ -60,10 +61,8 @@
 		//Plant-b-gone damage is handled in its entry in chemistry-reagents.dm
 	..()
 
-
 /obj/effect/spacevine/attack_hand(mob/user as mob)
 	manual_unbuckle(user)
-
 
 /obj/effect/spacevine/attack_paw(mob/user as mob)
 	manual_unbuckle(user)
@@ -232,7 +231,6 @@
 		src.density = TRUE
 	spawn(src.waittime)
 		if (src.growth < 20) src.Life()
-
 */
 
 /obj/effect/spacevine/ex_act(severity)

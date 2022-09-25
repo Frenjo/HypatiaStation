@@ -20,7 +20,7 @@
 			sleep(2400)
 			*/
 
-var/list/event_last_fired = list()
+GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 
 //Always triggers an event when called, dynamically chooses events based on job population
 /proc/spawn_dynamic_event()
@@ -88,15 +88,15 @@ var/list/event_last_fired = list()
 		if(!GLOBL.sent_ninja_to_station && GLOBL.toggle_space_ninja)
 			possibleEvents[/datum/event/space_ninja] = max(active_with_role["Security"], 5)
 
-	for(var/event_type in event_last_fired) if(possibleEvents[event_type])
-		var/time_passed = world.time - event_last_fired[event_type]
+	for(var/event_type in GLOBL.event_last_fired) if(possibleEvents[event_type])
+		var/time_passed = world.time - GLOBL.event_last_fired[event_type]
 		var/full_recharge_after = 60 * 60 * 10 * 3 // 3 hours
 		var/weight_modifier = max(0, (full_recharge_after - time_passed) / 300)
 
 		possibleEvents[event_type] = max(possibleEvents[event_type] - weight_modifier, 0)
 
 	var/picked_event = pickweight(possibleEvents)
-	event_last_fired[picked_event] = world.time
+	GLOBL.event_last_fired[picked_event] = world.time
 
 	// Debug code below here, very useful for testing so don't delete please.
 	var/debug_message = "Firing random event. "

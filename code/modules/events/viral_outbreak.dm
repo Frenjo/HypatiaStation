@@ -1,4 +1,3 @@
-
 /datum/event/viral_outbreak
 	var/severity = 1
 

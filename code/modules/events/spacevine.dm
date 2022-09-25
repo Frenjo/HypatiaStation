@@ -1,7 +1,7 @@
-GLOBAL_GLOBL_INIT(spacevines_spawned, 0)
+GLOBAL_GLOBL_INIT(spacevines_spawned, FALSE)
 
 /datum/event/spacevine
-	oneShot			= 1
+	oneShot = TRUE
 
 /datum/event/spacevine/start()
 	//biomass is basically just a resprited version of space vines
@@ -9,4 +9,4 @@ GLOBAL_GLOBL_INIT(spacevines_spawned, 0)
 		spacevine_infestation()
 	else
 		biomass_infestation()
-	GLOBL.spacevines_spawned = 1
+	GLOBL.spacevines_spawned = TRUE

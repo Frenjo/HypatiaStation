@@ -1,10 +1,8 @@
 /datum/event/radiation_storm
-
-/datum/event/radiation_storm/setup()
-	startWhen 		= 15
-	announceWhen	= 1
-	endWhen 		= 35
-	oneShot			= 0
+	startWhen = 15
+	announceWhen = 1
+	endWhen = 35
+	oneShot = FALSE
 
 /datum/event/radiation_storm/announce()
 	world << sound('sound/AI/radiation.ogg')
@@ -25,7 +23,7 @@
 			H.client.screen.Remove(GLOBL.global_hud.radstorm)
 			continue
 
-		if(istype(H,/mob/living/carbon/human))
+		if(ishuman(H))
 			H.client.screen |= GLOBL.global_hud.radstorm
 			H.apply_effect(rand(15, 35), IRRADIATE, 0)
 			if(prob(5))
