@@ -1,11 +1,11 @@
 //STRIKE TEAMS
 //Thanks to Kilakk for the admin-button portion of this code.
 
-var/list/response_team_members = list()
-var/global/send_emergency_team = 0	// Used for automagic response teams
-									// 'admin_emergency_team' for admin-spawned response teams
-var/ert_base_chance = 10 // Default base chance. Will be incremented by increment ERT chance.
-var/can_call_ert
+GLOBAL_GLOBL_LIST_NEW(response_team_members)
+GLOBAL_GLOBL_INIT(send_emergency_team, FALSE)	// Used for automagic response teams
+												// 'admin_emergency_team' for admin-spawned response teams
+GLOBAL_GLOBL_INIT(ert_base_chance, 10)	// Default base chance. Will be incremented by increment ERT chance.
+GLOBAL_GLOBL(can_call_ert)
 
 /client/proc/response_team()
 	set name = "Dispatch Emergency Response Team"
@@ -21,7 +21,7 @@ var/can_call_ert
 	if(ticker.current_state == 1)
 		to_chat(usr, SPAN_WARNING("The round hasn't started yet!"))
 		return
-	if(send_emergency_team)
+	if(GLOBL.send_emergency_team)
 		to_chat(usr, SPAN_WARNING("Central Command has already dispatched an emergency response team!"))
 		return
 	if(alert("Do you want to dispatch an Emergency Response Team?", , "Yes", "No") != "Yes")
@@ -30,7 +30,7 @@ var/can_call_ert
 		switch(alert("The station is not in red alert. Do you still want to dispatch a response team?", , "Yes", "No"))
 			if("No")
 				return
-	if(send_emergency_team)
+	if(GLOBL.send_emergency_team)
 		to_chat(usr, SPAN_WARNING("Looks like somebody beat you to it!"))
 		return
 
@@ -43,7 +43,7 @@ var/can_call_ert
 	set category = "IC"
 
 	if(isobserver(usr) || istype(usr, /mob/new_player))
-		if(!send_emergency_team)
+		if(!GLOBL.send_emergency_team)
 			to_chat(usr, "No emergency response team is currently being sent.")
 			return
 	/*	if(admin_emergency_team)
@@ -53,7 +53,7 @@ var/can_call_ert
 			to_chat(usr, "<font color=red><b>You are jobbanned from the emergency reponse team!")
 			return
 
-		if(response_team_members.len > 5)
+		if(GLOBL.response_team_members.len > 5)
 			to_chat(usr, "The emergency response team is already full!")
 
 		for(var/obj/effect/landmark/L in GLOBL.landmarks_list)
@@ -63,7 +63,7 @@ var/can_call_ert
 				if(!new_name)//Somebody changed his mind, place is available again.
 					L.name = "Commando"
 					return
-				var/leader_selected = isemptylist(response_team_members)
+				var/leader_selected = isemptylist(GLOBL.response_team_members)
 				var/mob/living/carbon/human/new_commando = create_response_team(L.loc, leader_selected, new_name)
 				qdel(L)
 				new_commando.mind.key = usr.key
@@ -112,25 +112,25 @@ var/can_call_ert
 // Increments the ERT chance automatically, so that the later it is in the round,
 // the more likely an ERT is to be able to be called.
 /proc/increment_ert_chance()
-	while(send_emergency_team == 0) // There is no ERT at the time.
+	while(!GLOBL.send_emergency_team) // There is no ERT at the time.
 		if(get_security_level() == "green")
-			ert_base_chance += 1
+			GLOBL.ert_base_chance += 1
 		if(get_security_level() == "blue")
-			ert_base_chance += 2
+			GLOBL.ert_base_chance += 2
 		if(get_security_level() == "red")
-			ert_base_chance += 3
+			GLOBL.ert_base_chance += 3
 		if(get_security_level() == "delta")
-			ert_base_chance += 10			// Need those big guns
-		sleep(600 * 3) // Minute * Number of Minutes
+			GLOBL.ert_base_chance += 10		// Need those big guns
+		sleep(3 MINUTES)
 
 
 /proc/trigger_armed_response_team(force = 0)
-	if(!can_call_ert && !force)
+	if(!GLOBL.can_call_ert && !force)
 		return
-	if(send_emergency_team)
+	if(GLOBL.send_emergency_team)
 		return
 
-	var/send_team_chance = ert_base_chance // Is incremented by increment_ert_chance.
+	var/send_team_chance = GLOBL.ert_base_chance // Is incremented by increment_ert_chance.
 	send_team_chance += 2 * percentage_dead() // the more people are dead, the higher the chance
 	send_team_chance += percentage_antagonists() // the more antagonists, the higher the chance
 	send_team_chance = min(send_team_chance, 100)
@@ -141,16 +141,16 @@ var/can_call_ert
 	// there's only a certain chance a team will be sent
 	if(!prob(send_team_chance))
 		command_alert("It would appear that an emergency response team was requested for [station_name()]. Unfortunately, we were unable to send one at this time.", "Central Command")
-		can_call_ert = 0 // Only one call per round, ladies.
+		GLOBL.can_call_ert = FALSE // Only one call per round, ladies.
 		return
 
 	command_alert("It would appear that an emergency response team was requested for [station_name()]. We will prepare and send one as soon as possible.", "Central Command")
 
-	can_call_ert = 0 // Only one call per round, gentleman.
-	send_emergency_team = 1
+	GLOBL.can_call_ert = FALSE // Only one call per round, gentleman.
+	GLOBL.send_emergency_team = TRUE
 
-	sleep(600 * 5)
-	send_emergency_team = 0 // Can no longer join the ERT.
+	sleep(5 MINUTES)
+	GLOBL.send_emergency_team = FALSE // Can no longer join the ERT.
 
 /*	var/area/security/nuke_storage/nukeloc = locate()//To find the nuke in the vault
 	var/obj/machinery/nuclearbomb/nuke = locate() in nukeloc
@@ -171,7 +171,7 @@ var/can_call_ert
 	//return
 
 	var/mob/living/carbon/human/M = new(null)
-	response_team_members |= M
+	GLOBL.response_team_members |= M
 
 	//todo: god damn this.
 	//make it a panel, like in character creation

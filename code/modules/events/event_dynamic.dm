@@ -50,7 +50,7 @@ var/list/event_last_fired = list()
 
 	possibleEvents[/datum/event/pda_spam] = max(min(25, GLOBL.player_list.len) * 4, 200)
 	possibleEvents[/datum/event/money_lotto] = max(min(5, GLOBL.player_list.len), 50)
-	if(account_hack_attempted)
+	if(GLOBL.account_hack_attempted)
 		possibleEvents[/datum/event/money_hacker] = max(min(25, GLOBL.player_list.len) * 4, 200)
 
 	possibleEvents[/datum/event/carp_migration] = 20 + 10 * active_with_role["Engineer"]
@@ -65,7 +65,7 @@ var/list/event_last_fired = list()
 	possibleEvents[/datum/event/electrical_storm] = 15 * active_with_role["Janitor"] + 5 * active_with_role["Engineer"]
 	possibleEvents[/datum/event/wallrot] = 30 * active_with_role["Engineer"] + 50 * active_with_role["Botanist"]
 
-	if(!spacevines_spawned)
+	if(!GLOBL.spacevines_spawned)
 		possibleEvents[/datum/event/spacevine] = 10 + 5 * active_with_role["Engineer"]
 	if(minutes_passed >= 30) // Give engineers time to set up engine
 		possibleEvents[/datum/event/meteor_wave] = 10 * active_with_role["Engineer"]
@@ -81,11 +81,11 @@ var/list/event_last_fired = list()
 
 	possibleEvents[/datum/event/prison_break] = active_with_role["Security"] * 50
 	if(active_with_role["Security"] > 0)
-		if(!sent_spiders_to_station)
+		if(!GLOBL.sent_spiders_to_station)
 			possibleEvents[/datum/event/spider_infestation] = max(active_with_role["Security"], 5) + 5
-		if(GLOBL.aliens_allowed && !sent_aliens_to_station)
+		if(GLOBL.aliens_allowed && !GLOBL.sent_aliens_to_station)
 			possibleEvents[/datum/event/alien_infestation] = max(active_with_role["Security"], 5) + 2.5
-		if(!sent_ninja_to_station && toggle_space_ninja)
+		if(!GLOBL.sent_ninja_to_station && GLOBL.toggle_space_ninja)
 			possibleEvents[/datum/event/space_ninja] = max(active_with_role["Security"], 5)
 
 	for(var/event_type in event_last_fired) if(possibleEvents[event_type])
@@ -202,7 +202,7 @@ var/list/event_last_fired = list()
 		if(M.mind.assigned_role in list("Chief Medical Officer", "Medical Doctor"))
 			active_with_role["Medical"]++
 
-		if(M.mind.assigned_role in security_positions)
+		if(M.mind.assigned_role in GLOBL.security_positions)
 			active_with_role["Security"]++
 		
 		// Engineering, Medical and Security cyborgs.

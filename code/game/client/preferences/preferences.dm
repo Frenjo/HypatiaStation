@@ -433,7 +433,7 @@
 		if((job_civilian_low & JOB_ASSISTANT) && rank != "Assistant")
 			HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
 			continue
-		if((rank in command_positions) || rank == "AI")//Bold head jobs
+		if((rank in GLOBL.command_positions) || rank == "AI")//Bold head jobs
 			HTML += "<b>[rank]</b>"
 		else
 			HTML += "[rank]"

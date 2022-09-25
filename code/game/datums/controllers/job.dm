@@ -105,7 +105,7 @@ GLOBAL_BYOND_TYPED(job_master, /datum/controller/occupations) // Set in /datum/c
 		if(istype(job, get_job("Assistant"))) // We don't want to give him assistant, that's boring!
 			continue
 
-		if(job in command_positions) //If you want a command position, select it!
+		if(job in GLOBL.command_positions) //If you want a command position, select it!
 			continue
 
 		if(jobban_isbanned(player, job.title))
@@ -134,7 +134,7 @@ GLOBAL_BYOND_TYPED(job_master, /datum/controller/occupations) // Set in /datum/c
 //This proc is called before the level loop of DivideOccupations() and will try to select a head, ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check
 /datum/controller/occupations/proc/fill_head_position()
 	for(var/level = 1 to 3)
-		for(var/command_position in command_positions)
+		for(var/command_position in GLOBL.command_positions)
 			var/datum/job/job = get_job(command_position)
 			if(!job)
 				continue
@@ -182,7 +182,7 @@ GLOBAL_BYOND_TYPED(job_master, /datum/controller/occupations) // Set in /datum/c
 
 //This proc is called at the start of the level loop of DivideOccupations() and will cause head jobs to be checked before any other jobs of the same level
 /datum/controller/occupations/proc/check_head_positions(level)
-	for(var/command_position in command_positions)
+	for(var/command_position in GLOBL.command_positions)
 		var/datum/job/job = get_job(command_position)
 		if(!job)
 			continue

@@ -1,8 +1,8 @@
-/var/hadevent = 0
+GLOBAL_GLOBL_INIT(hadevent, 0)
 
 /proc/game_over_event()
-	if(!hadevent)
-		hadevent = 1
+	if(!GLOBL.hadevent)
+		GLOBL.hadevent = 1
 		message_admins("The apocalypse has begun! (this holiday event can be disabled by toggling events off within 60 seconds)")
 		spawn(600)
 			if(!CONFIG_GET(allow_random_events))

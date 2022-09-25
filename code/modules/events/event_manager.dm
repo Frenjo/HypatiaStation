@@ -1,10 +1,10 @@
-var/list/allEvents = SUBTYPESOF(/datum/event)
-var/list/potentialRandomEvents = SUBTYPESOF(/datum/event)
+GLOBAL_GLOBL_LIST_INIT(allEvents, SUBTYPESOF(/datum/event))
+GLOBAL_GLOBL_LIST_INIT(potentialRandomEvents, SUBTYPESOF(/datum/event))
 //var/list/potentialRandomEvents = typesof(/datum/event) - /datum/event - /datum/event/spider_infestation - /datum/event/alien_infestation
 
-var/eventTimeLower = 12000	//20 minutes
-var/eventTimeUpper = 24000	//40 minutes
-var/scheduledEvent = null
+GLOBAL_GLOBL_INIT(eventTimeLower, 12000)	//20 minutes
+GLOBAL_GLOBL_INIT(eventTimeUpper, 24000)	//40 minutes
+GLOBAL_GLOBL_INIT(scheduledEvent, null)
 
 
 //Currently unused. Needs an admin panel for messing with events.
@@ -16,7 +16,7 @@ var/scheduledEvent = null
 
 
 /proc/checkEvent()
-	if(!scheduledEvent)
+	if(!GLOBL.scheduledEvent)
 		//more players = more time between events, less players = less time between events
 		var/playercount_modifier = 1
 		switch(GLOBL.player_list.len)
@@ -30,14 +30,14 @@ var/scheduledEvent = null
 				playercount_modifier = 0.9
 			if(36 to 100000)
 				playercount_modifier = 0.8
-		var/next_event_delay = rand(eventTimeLower, eventTimeUpper) * playercount_modifier
-		scheduledEvent = world.timeofday + next_event_delay
+		var/next_event_delay = rand(GLOBL.eventTimeLower, GLOBL.eventTimeUpper) * playercount_modifier
+		GLOBL.scheduledEvent = world.timeofday + next_event_delay
 		log_debug("Next event in [next_event_delay/600] minutes.")
 
-	else if(world.timeofday > scheduledEvent)
+	else if(world.timeofday > GLOBL.scheduledEvent)
 		spawn_dynamic_event()
 
-		scheduledEvent = null
+		GLOBL.scheduledEvent = null
 		checkEvent()
 
 //unused, see proc/dynamic_event()
@@ -55,7 +55,7 @@ var/scheduledEvent = null
 	new Type
 */
 
-/client/proc/forceEvent(var/type in allEvents)
+/client/proc/forceEvent(var/type in GLOBL.allEvents)
 	set name = "Trigger Event (Debug Only)"
 	set category = "Debug"
 

@@ -831,9 +831,9 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Toggle space ninjas spawning."
 	set name="Toggle Space Ninjas"
-	toggle_space_ninja = !toggle_space_ninja
-	log_admin("[key_name(usr)] toggled Space Ninjas to [toggle_space_ninja].")
-	message_admins("[key_name_admin(usr)] toggled Space Ninjas [toggle_space_ninja ? "on" : "off"].", 1)
+	GLOBL.toggle_space_ninja = !GLOBL.toggle_space_ninja
+	log_admin("[key_name(usr)] toggled Space Ninjas to [GLOBL.toggle_space_ninja].")
+	message_admins("[key_name_admin(usr)] toggled Space Ninjas [GLOBL.toggle_space_ninja ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TSN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/delay()

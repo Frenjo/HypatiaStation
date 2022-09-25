@@ -1,6 +1,6 @@
 //Uncommenting ALLOW_HOLIDAYS in config.txt will enable Holidays
 
-/var/eventchance = 10 //% per 5 mins
+GLOBAL_GLOBL_INIT(eventchance, 10)	//% per 5 mins
 
 //Just thinking ahead! Here's the foundations to a more robust Holiday event system.
 //It's easy as hell to add stuff. Just set Holiday to something using the switch (or something else)
@@ -213,9 +213,9 @@
 
 			message_admins("\blue DEBUG: Event: Egg spawned at [Egg.loc] ([Egg.x],[Egg.y],[Egg.z])")*/
 		if("End of the World")
-			if(prob(eventchance))
+			if(prob(GLOBL.eventchance))
 				game_over_event()
 
 		if("Christmas", "Christmas Eve")
-			if(prob(eventchance))
+			if(prob(GLOBL.eventchance))
 				christmas_event()

@@ -1,4 +1,4 @@
-/var/global/list/space_surprises = list(
+GLOBAL_GLOBL_LIST_INIT(space_surprises, list(
 	/obj/item/clothing/mask/facehugger			= 4,
 	/obj/item/weapon/pickaxe/silver				= 4,
 	/obj/item/weapon/pickaxe/drill				= 4,
@@ -11,9 +11,9 @@
 	/obj/structure/closet/syndicate/resources	= 2,
 	/obj/item/weapon/melee/energy/sword/pirate	= 1,
 	/obj/mecha/working/ripley/mining			= 1
-)
-/var/global/list/spawned_surprises = list()
-/var/global/max_secret_rooms = 3
+))
+GLOBAL_GLOBL_LIST_NEW(spawned_surprises)
+GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 
 /proc/spawn_room(atom/start_loc, x_size, y_size, wall, floor, clean = 0, name)
 	var/list/room_turfs = list("walls" = list(), "floors" = list())
@@ -134,8 +134,8 @@
 			var/surprise = null
 			valid = 0
 			while(!valid)
-				surprise = pickweight(global.space_surprises)
-				if(surprise in global.spawned_surprises)
+				surprise = pickweight(GLOBL.space_surprises)
+				if(surprise in GLOBL.spawned_surprises)
 					if(prob(20))
 						valid++
 					else
@@ -143,7 +143,7 @@
 				else
 					valid++
 
-			global.spawned_surprises.Add(surprise)
+			GLOBL.spawned_surprises.Add(surprise)
 			new surprise(T)
 
 	return 1

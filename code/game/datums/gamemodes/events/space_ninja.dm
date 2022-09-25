@@ -90,16 +90,16 @@ I decided to scrap round-specific objectives since keeping track of them would r
 When I already created about 4 new objectives, this doesn't seem terribly important or needed.
 */
 
-/var/global/toggle_space_ninja = 0//If ninjas can spawn or not.
-/var/global/sent_ninja_to_station = 0//If a ninja is already on the station.
+GLOBAL_GLOBL_INIT(toggle_space_ninja, 0)	//If ninjas can spawn or not.
+GLOBAL_GLOBL_INIT(sent_ninja_to_station, 0)	//If a ninja is already on the station.
 
-var/ninja_selection_id = 1
-var/ninja_selection_active = 0
-var/ninja_confirmed_selection = 0
+GLOBAL_GLOBL_INIT(ninja_selection_id, 1)
+GLOBAL_GLOBL_INIT(ninja_selection_active, 0)
+GLOBAL_GLOBL_INIT(ninja_confirmed_selection, 0)
 
 /proc/space_ninja_arrival(var/assign_key = null, var/assign_mission = null)
 
-	if(ninja_selection_active)
+	if(GLOBL.ninja_selection_active)
 		usr << "\red Ninja selection already in progress. Please wait until it ends."
 		return
 
@@ -181,29 +181,29 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 		usr << "\red The randomly chosen mob was not found in the second check."
 		return
 
-	ninja_selection_active = 1
-	ninja_selection_id++
-	var/this_selection_id = ninja_selection_id
+	GLOBL.ninja_selection_active = 1
+	GLOBL.ninja_selection_id++
+	var/this_selection_id = GLOBL.ninja_selection_id
 
 	spawn(1)
 		if(alert(candidate_mob, "You have been selected to play as a space ninja. Would you like to play as this role? (You have 30 seconds to accept - You will spawn in 30 seconds if you accept)",,"Yes","No")!="Yes")
 			usr << "\red The selected candidate for space ninja declined."
 			return
 
-		ninja_confirmed_selection = this_selection_id
+		GLOBL.ninja_confirmed_selection = this_selection_id
 
 	spawn(300)
-		if(!ninja_selection_active || (this_selection_id != ninja_selection_id ))
-			ninja_selection_active = 0
+		if(!GLOBL.ninja_selection_active || (this_selection_id != GLOBL.ninja_selection_id ))
+			GLOBL.ninja_selection_active = 0
 			candidate_mob << "\red Sorry, you were too late. You only had 30 seconds to accept."
 			return
 
-		if(ninja_confirmed_selection != ninja_selection_id)
-			ninja_selection_active = 0
+		if(GLOBL.ninja_confirmed_selection != GLOBL.ninja_selection_id)
+			GLOBL.ninja_selection_active = 0
 			usr << "\red The ninja did not accept the role in time."
 			return
 
-		ninja_selection_active = 0
+		GLOBL.ninja_selection_active = 0
 
 		//The ninja will be created on the right spawn point or at late join.
 		var/mob/living/carbon/human/new_ninja = create_space_ninja(pick(GLOBL.ninjastart.len ? GLOBL.ninjastart : GLOBL.latejoin))
@@ -382,7 +382,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 				new_ninja << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
 				obj_count++
 
-		sent_ninja_to_station = 1//And we're done.
+		GLOBL.sent_ninja_to_station = 1//And we're done.
 		return new_ninja//Return the ninja in case we need to reference them later.
 
 /*
@@ -443,7 +443,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
-	if(!toggle_space_ninja)
+	if(!GLOBL.toggle_space_ninja)
 		alert("Space Ninjas spawning is disabled.")
 		return
 
@@ -477,7 +477,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 	if(!ticker.mode)
 		alert("The game hasn't started yet!")
 		return
-	if(!toggle_space_ninja)
+	if(!GLOBL.toggle_space_ninja)
 		alert("Space Ninjas spawning is disabled.")
 		return
 	if(alert("Are you sure you want to send in a space ninja?", , "Yes", "No") == "No")

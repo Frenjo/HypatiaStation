@@ -1,4 +1,4 @@
-/var/global/spacevines_spawned = 0
+GLOBAL_GLOBL_INIT(spacevines_spawned, 0)
 
 /datum/event/spacevine
 	oneShot			= 1
@@ -9,4 +9,4 @@
 		spacevine_infestation()
 	else
 		biomass_infestation()
-	spacevines_spawned = 1
+	GLOBL.spacevines_spawned = 1

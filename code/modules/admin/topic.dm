@@ -384,8 +384,8 @@
 //Regular jobs
 	//Command (Blue)
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		jobs += "<tr align='center' bgcolor='ccccff'><th colspan='[length(command_positions)]'><a href='?src=\ref[src];jobban3=commanddept;jobban4=\ref[M]'>Command Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in command_positions)
+		jobs += "<tr align='center' bgcolor='ccccff'><th colspan='[length(GLOBL.command_positions)]'><a href='?src=\ref[src];jobban3=commanddept;jobban4=\ref[M]'>Command Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in GLOBL.command_positions)
 			if(!jobPos)	continue
 			var/datum/job/job = job_master.get_job(jobPos)
 			if(!job) continue
@@ -405,8 +405,8 @@
 	//Security (Red)
 		counter = 0
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		jobs += "<tr bgcolor='ffddf0'><th colspan='[length(security_positions)]'><a href='?src=\ref[src];jobban3=securitydept;jobban4=\ref[M]'>Security Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in security_positions)
+		jobs += "<tr bgcolor='ffddf0'><th colspan='[length(GLOBL.security_positions)]'><a href='?src=\ref[src];jobban3=securitydept;jobban4=\ref[M]'>Security Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in GLOBL.security_positions)
 			if(!jobPos)	continue
 			var/datum/job/job = job_master.get_job(jobPos)
 			if(!job) continue
@@ -426,8 +426,8 @@
 	//Engineering (Yellow)
 		counter = 0
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		jobs += "<tr bgcolor='fff5cc'><th colspan='[length(engineering_positions)]'><a href='?src=\ref[src];jobban3=engineeringdept;jobban4=\ref[M]'>Engineering Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in engineering_positions)
+		jobs += "<tr bgcolor='fff5cc'><th colspan='[length(GLOBL.engineering_positions)]'><a href='?src=\ref[src];jobban3=engineeringdept;jobban4=\ref[M]'>Engineering Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in GLOBL.engineering_positions)
 			if(!jobPos)	continue
 			var/datum/job/job = job_master.get_job(jobPos)
 			if(!job) continue
@@ -447,8 +447,8 @@
 	//Medical (White)
 		counter = 0
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		jobs += "<tr bgcolor='ffeef0'><th colspan='[length(medical_positions)]'><a href='?src=\ref[src];jobban3=medicaldept;jobban4=\ref[M]'>Medical Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in medical_positions)
+		jobs += "<tr bgcolor='ffeef0'><th colspan='[length(GLOBL.medical_positions)]'><a href='?src=\ref[src];jobban3=medicaldept;jobban4=\ref[M]'>Medical Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in GLOBL.medical_positions)
 			if(!jobPos)	continue
 			var/datum/job/job = job_master.get_job(jobPos)
 			if(!job) continue
@@ -468,8 +468,8 @@
 	//Science (Purple)
 		counter = 0
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		jobs += "<tr bgcolor='e79fff'><th colspan='[length(science_positions)]'><a href='?src=\ref[src];jobban3=sciencedept;jobban4=\ref[M]'>Science Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in science_positions)
+		jobs += "<tr bgcolor='e79fff'><th colspan='[length(GLOBL.science_positions)]'><a href='?src=\ref[src];jobban3=sciencedept;jobban4=\ref[M]'>Science Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in GLOBL.science_positions)
 			if(!jobPos)	continue
 			var/datum/job/job = job_master.get_job(jobPos)
 			if(!job) continue
@@ -489,8 +489,8 @@
 	//Cargo (Brown)
 		counter = 0
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		jobs += "<tr bgcolor='8c7846'><th colspan='[length(civilian_positions)]'><a href='?src=\ref[src];jobban3=cargodept;jobban4=\ref[M]'>Cargo Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in cargo_positions)
+		jobs += "<tr bgcolor='8c7846'><th colspan='[length(GLOBL.civilian_positions)]'><a href='?src=\ref[src];jobban3=cargodept;jobban4=\ref[M]'>Cargo Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in GLOBL.cargo_positions)
 			if(!jobPos)	continue
 			var/datum/job/job = job_master.get_job(jobPos)
 			if(!job) continue
@@ -509,8 +509,8 @@
 	//Civilian (Grey)
 		counter = 0
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		jobs += "<tr bgcolor='dddddd'><th colspan='[length(civilian_positions)]'><a href='?src=\ref[src];jobban3=civiliandept;jobban4=\ref[M]'>Civilian Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in civilian_positions)
+		jobs += "<tr bgcolor='dddddd'><th colspan='[length(GLOBL.civilian_positions)]'><a href='?src=\ref[src];jobban3=civiliandept;jobban4=\ref[M]'>Civilian Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in GLOBL.civilian_positions)
 			if(!jobPos)	continue
 			var/datum/job/job = job_master.get_job(jobPos)
 			if(!job) continue
@@ -536,8 +536,8 @@
 	//Non-Human (Green)
 		counter = 0
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		jobs += "<tr bgcolor='ccffcc'><th colspan='[length(nonhuman_positions)+1]'><a href='?src=\ref[src];jobban3=nonhumandept;jobban4=\ref[M]'>Non-human Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in nonhuman_positions)
+		jobs += "<tr bgcolor='ccffcc'><th colspan='[length(GLOBL.nonhuman_positions)+1]'><a href='?src=\ref[src];jobban3=nonhumandept;jobban4=\ref[M]'>Non-human Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in GLOBL.nonhuman_positions)
 			if(!jobPos)	continue
 			var/datum/job/job = job_master.get_job(jobPos)
 			if(!job) continue
@@ -676,50 +676,50 @@
 		var/list/joblist = list()
 		switch(href_list["jobban3"])
 			if("commanddept")
-				for(var/jobPos in command_positions)
+				for(var/jobPos in GLOBL.command_positions)
 					if(!jobPos)	continue
 					var/datum/job/temp = job_master.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("securitydept")
-				for(var/jobPos in security_positions)
+				for(var/jobPos in GLOBL.security_positions)
 					if(!jobPos)	continue
 					var/datum/job/temp = job_master.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("engineeringdept")
-				for(var/jobPos in engineering_positions)
+				for(var/jobPos in GLOBL.engineering_positions)
 					if(!jobPos)	continue
 					var/datum/job/temp = job_master.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("medicaldept")
-				for(var/jobPos in medical_positions)
+				for(var/jobPos in GLOBL.medical_positions)
 					if(!jobPos)	continue
 					var/datum/job/temp = job_master.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("sciencedept")
-				for(var/jobPos in science_positions)
+				for(var/jobPos in GLOBL.science_positions)
 					if(!jobPos)	continue
 					var/datum/job/temp = job_master.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("cargodept")
-				for(var/jobPos in cargo_positions)
+				for(var/jobPos in GLOBL.cargo_positions)
 					if(!jobPos) continue
 					var/datum/job/temp = job_master.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("civiliandept")
-				for(var/jobPos in civilian_positions)
+				for(var/jobPos in GLOBL.civilian_positions)
 					if(!jobPos)	continue
 					var/datum/job/temp = job_master.get_job(jobPos)
 					if(!temp) continue
 					joblist += temp.title
 			if("nonhumandept")
 				joblist += "pAI"
-				for(var/jobPos in nonhuman_positions)
+				for(var/jobPos in GLOBL.nonhuman_positions)
 					if(!jobPos)	continue
 					var/datum/job/temp = job_master.get_job(jobPos)
 					if(!temp) continue
@@ -2140,7 +2140,7 @@
 			if("spaceninja")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","SN")
-				if(toggle_space_ninja)
+				if(GLOBL.toggle_space_ninja)
 					if(space_ninja_arrival())//If the ninja is actually spawned. They may not be depending on a few factors.
 						message_admins("[key_name_admin(usr)] has sent in a space ninja", 1)
 			if("carp")

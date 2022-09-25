@@ -49,7 +49,7 @@
 
 	var/head_check = 0
 	for(var/mob/new_player/player in GLOBL.player_list)
-		if(player.mind.assigned_role in command_positions)
+		if(player.mind.assigned_role in GLOBL.command_positions)
 			head_check = 1
 			break
 
@@ -184,7 +184,7 @@
 //Deals with converting players to the revolution//
 ///////////////////////////////////////////////////
 /datum/game_mode/proc/add_revolutionary(datum/mind/rev_mind)
-	if(rev_mind.assigned_role in command_positions)
+	if(rev_mind.assigned_role in GLOBL.command_positions)
 		return 0
 	var/mob/living/carbon/human/H = rev_mind.current//Check to see if the potential rev is implanted
 	for(var/obj/item/weapon/implant/loyalty/L in H)//Checking that there is a loyalty implant in the contents
@@ -429,5 +429,5 @@
 /proc/is_convertable_to_rev(datum/mind/mind)
 	return istype(mind) && \
 		ishuman(mind.current) && \
-		!(mind.assigned_role in command_positions) && \
+		!(mind.assigned_role in GLOBL.command_positions) && \
 		!(mind.assigned_role in list("Security Officer", "Detective", "Warden"))

@@ -52,25 +52,25 @@ GLOBAL_GLOBL_LIST_NEW(pda_manifest)
 			//world << "[name]: [rank]"
 			//cael - to prevent multiple appearances of a player/job combination, add a continue after each line
 		var/department = FALSE
-		if(real_rank in command_positions)
+		if(real_rank in GLOBL.command_positions)
 			heads[name] = rank
 			department = TRUE
-		if(real_rank in security_positions)
+		if(real_rank in GLOBL.security_positions)
 			sec[name] = rank
 			department = TRUE
-		if(real_rank in engineering_positions)
+		if(real_rank in GLOBL.engineering_positions)
 			eng[name] = rank
 			department = TRUE
-		if(real_rank in medical_positions)
+		if(real_rank in GLOBL.medical_positions)
 			med[name] = rank
 			department = TRUE
-		if(real_rank in science_positions)
+		if(real_rank in GLOBL.science_positions)
 			sci[name] = rank
 			department = TRUE
-		if(real_rank in civilian_positions)
+		if(real_rank in GLOBL.civilian_positions)
 			civ[name] = rank
 			department = TRUE
-		if(real_rank in nonhuman_positions)
+		if(real_rank in GLOBL.nonhuman_positions)
 			bot[name] = rank
 			department = TRUE
 		if(!department && !(name in heads))
@@ -151,44 +151,44 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		var/isactive = t.fields["p_stat"]
 		var/department = 0
 		var/depthead = 0			// Department Heads will be placed at the top of their lists.
-		if(real_rank in command_positions)
+		if(real_rank in GLOBL.command_positions)
 			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			depthead = 1
 			if(rank == "Captain" && heads.len != 1)
 				heads.Swap(1, heads.len)
 
-		if(real_rank in security_positions)
+		if(real_rank in GLOBL.security_positions)
 			sec[++sec.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && sec.len != 1)
 				sec.Swap(1, sec.len)
 
-		if(real_rank in engineering_positions)
+		if(real_rank in GLOBL.engineering_positions)
 			eng[++eng.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && eng.len != 1)
 				eng.Swap(1, eng.len)
 
-		if(real_rank in medical_positions)
+		if(real_rank in GLOBL.medical_positions)
 			med[++med.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && med.len != 1)
 				med.Swap(1, med.len)
 
-		if(real_rank in science_positions)
+		if(real_rank in GLOBL.science_positions)
 			sci[++sci.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && sci.len != 1)
 				sci.Swap(1, sci.len)
 
-		if(real_rank in civilian_positions)
+		if(real_rank in GLOBL.civilian_positions)
 			civ[++civ.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && civ.len != 1)
 				civ.Swap(1, civ.len)
 
-		if(real_rank in nonhuman_positions)
+		if(real_rank in GLOBL.nonhuman_positions)
 			bot[++bot.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 

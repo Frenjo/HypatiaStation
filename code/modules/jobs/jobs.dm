@@ -1,6 +1,6 @@
-/var/list/assistant_occupations = list()
+GLOBAL_GLOBL_LIST_NEW(assistant_occupations)
 
-/var/list/command_positions = list(
+GLOBAL_GLOBL_LIST_INIT(command_positions, list(
 	"Captain",
 	"Head of Personnel",
 	"Head of Security",
@@ -8,43 +8,43 @@
 	"Research Director",
 	"Chief Medical Officer",
 	"Quartermaster"
-)
+))
 
-/var/list/engineering_positions = list(
+GLOBAL_GLOBL_LIST_INIT(engineering_positions, list(
 	"Chief Engineer",
 	"Station Engineer",
 	"Atmospheric Technician",
 	"Roboticist",	// Part of both science and engineering.
-)
+))
 
-/var/list/medical_positions = list(
+GLOBAL_GLOBL_LIST_INIT(medical_positions, list(
 	"Chief Medical Officer",
 	"Medical Doctor",
 	"Geneticist",	// Part of both medical and science.
 	"Psychiatrist",
 	"Chemist",
 	"Security Paramedic"
-)
+))
 
-/var/list/science_positions = list(
+GLOBAL_GLOBL_LIST_INIT(science_positions, list(
 	"Research Director",
 	"Scientist",
 	"Geneticist",	// Part of both medical and science.
 	"Roboticist",	// Part of both science and engineering.
 	"Xenobiologist"
-)
+))
 
 //Hypatia Edit
-/var/list/cargo_positions = list(
+GLOBAL_GLOBL_LIST_INIT(cargo_positions, list(
 	"Quartermaster",
 	"Cargo Technician",
 	"Mailman", // Re-added mailman. -Frenjo
 	"Mining Foreman",
 	"Shaft Miner",
-)
+))
 
 //BS12 EDIT
-/var/list/civilian_positions = list(
+GLOBAL_GLOBL_LIST_INIT(civilian_positions, list(
 	"Head of Personnel",
 	"Bartender",
 	"Botanist",
@@ -56,24 +56,24 @@
 	"Clown", // Re-enabled clown and mime. -Frenjo
 	"Mime",
 	"Assistant"
-)
+))
 
-/var/list/security_positions = list(
+GLOBAL_GLOBL_LIST_INIT(security_positions, list(
 	"Head of Security",
 	"Warden",
 	"Detective",
 	"Security Officer",
 	"Security Paramedic"
-)
+))
 
-/var/list/nonhuman_positions = list(
+GLOBAL_GLOBL_LIST_INIT(nonhuman_positions, list(
 	"AI",
 	"Cyborg",
 	"pAI"
-)
+))
 
 /proc/guest_jobbans(job)
-	return ((job in command_positions) || (job in nonhuman_positions) || (job in security_positions))
+	return ((job in GLOBL.command_positions) || (job in GLOBL.nonhuman_positions) || (job in GLOBL.security_positions))
 
 /proc/get_job_datums()
 	var/list/occupations = list()

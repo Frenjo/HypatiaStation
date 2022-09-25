@@ -1,4 +1,4 @@
-/var/blobevent = 0
+GLOBAL_GLOBL_INIT(blobevent, 0)
 
 /proc/mini_blob_event()
 	var/turf/T = pick(GLOBL.blobstart)
@@ -7,11 +7,11 @@
 		bl.Life()
 		bl.Life()
 		bl.Life()
-	blobevent = 1
+	GLOBL.blobevent = 1
 	spawn(0)
 		dotheblobbaby()
 	spawn(3000)
-		blobevent = 0
+		GLOBL.blobevent = 0
 	spawn(rand(1000, 2000)) //Delayed announcements to keep the crew on their toes.
 		command_alert("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert")
 		for(var/mob/M in GLOBL.player_list)
@@ -19,7 +19,7 @@
 				M << sound('sound/AI/outbreak5.ogg')
 
 /proc/dotheblobbaby()
-	if(blobevent)
+	if(GLOBL.blobevent)
 		if(blob_cores.len)
 			for(var/i = 1 to 5)
 				sleep(-1)

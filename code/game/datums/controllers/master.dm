@@ -44,7 +44,7 @@ GLOBAL_BYOND_INIT(pipe_processing_killed, FALSE)
 	setup_factions()
 	setup_xenoarch()
 
-	for(var/i = 0, i < global.max_secret_rooms, i++)
+	for(var/i = 0, i < GLOBL.max_secret_rooms, i++)
 		make_mining_asteroid_secret()
 
 /datum/controller/master/proc/stat_controllers()
