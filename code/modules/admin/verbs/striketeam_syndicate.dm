@@ -1,7 +1,7 @@
 //STRIKE TEAMS
 
 var/const/syndicate_commandos_possible = 6 //if more Commandos are needed in the future
-var/global/sent_syndicate_strike_team = 0
+GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 /client/proc/syndicate_strike_team()
 	set category = "Fun"
 	set name = "Spawn Syndicate Strike Team"
@@ -15,7 +15,7 @@ var/global/sent_syndicate_strike_team = 0
 //	if(world.time < 6000)
 //		alert("Not so fast, buddy. Wait a few minutes until the game gets going. There are [(6000-world.time)/10] seconds remaining.")
 //		return
-	if(sent_syndicate_strike_team == 1)
+	if(GLOBL.sent_syndicate_strike_team)
 		alert("The Syndicate are already sending a team, Mr. Dumbass.")
 		return
 	if(alert("Do you want to send in the Syndicate Strike Team? Once enabled, this is irreversible.",,"Yes","No")=="No")
@@ -29,11 +29,11 @@ var/global/sent_syndicate_strike_team = 0
 			if(alert("Error, no mission set. Do you want to exit the setup process?",,"Yes","No")=="Yes")
 				return
 
-	if(sent_syndicate_strike_team)
+	if(GLOBL.sent_syndicate_strike_team)
 		src << "Looks like someone beat you to it."
 		return
 
-	sent_syndicate_strike_team = 1
+	GLOBL.sent_syndicate_strike_team = 1
 
 	if(global.emergency_controller.can_recall() && global.emergency_controller.online())
 		global.emergency_controller.recall()

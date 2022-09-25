@@ -168,7 +168,7 @@
 				if(copytext(line, 1, 2) == ";")
 					continue
 
-				var/rights = admin_ranks["Moderator"]
+				var/rights = GLOBL.admin_ranks["Moderator"]
 				var/ckey = copytext(line, 1, length(line) + 1)
 				var/datum/admins/D = new /datum/admins("Moderator", rights, ckey)
 				D.associate(GLOBL.directory[ckey])

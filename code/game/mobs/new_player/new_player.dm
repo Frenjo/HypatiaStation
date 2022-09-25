@@ -303,7 +303,7 @@
 	var/datum/spawnpoint/S
 
 	if(spawning_at)
-		S = spawntypes[spawning_at]
+		S = GLOBL.spawntypes[spawning_at]
 
 	if(S && istype(S))
 		character.loc = pick(S.turfs)

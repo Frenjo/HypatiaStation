@@ -250,7 +250,7 @@ REAGENT SCANNER
 		user.show_message(SPAN_WARNING("Pressure: [round(pressure, 0.1)] kPa"), 1)
 	if(total_moles)
 		for(var/g in environment.gas)
-			user.show_message(SPAN_INFO("[gas_data.name[g]]: [round((environment.gas[g] / total_moles)*100)]%"), 1)
+			user.show_message(SPAN_INFO("[GLOBL.gas_data.name[g]]: [round((environment.gas[g] / total_moles)*100)]%"), 1)
 
 		user.show_message(SPAN_INFO("Temperature: [round(environment.temperature-T0C)]&deg;C"), 1)
 

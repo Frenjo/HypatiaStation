@@ -1,7 +1,7 @@
 
 
 //This is a list of words which are ignored by the parser when comparing message contents for names. MUST BE IN LOWER CASE!
-var/list/adminhelp_ignored_words = list("unknown", "the", "a", "an", "of", "monkey", "alien", "as")
+GLOBAL_GLOBL_LIST_INIT(adminhelp_ignored_words, list("unknown", "the", "a", "an", "of", "monkey", "alien", "as"))
 
 /client/verb/adminhelp(msg as text)
 	set category = "Admin"
@@ -69,7 +69,7 @@ var/list/adminhelp_ignored_words = list("unknown", "the", "a", "an", "of", "monk
 	for(var/original_word in msglist)
 		var/word = ckey(original_word)
 		if(word)
-			if(!(word in adminhelp_ignored_words))
+			if(!(word in GLOBL.adminhelp_ignored_words))
 				if(word == "ai")
 					ai_found = 1
 				else

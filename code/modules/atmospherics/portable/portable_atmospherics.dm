@@ -119,7 +119,7 @@
 			if(total_moles > 0)
 				to_chat(user, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
 				for(var/g in air_contents.gas)
-					to_chat(user, SPAN_INFO("[gas_data.name[g]]: [round((air_contents.gas[g] / total_moles) * 100)]%"))
+					to_chat(user, SPAN_INFO("[GLOBL.gas_data.name[g]]: [round((air_contents.gas[g] / total_moles) * 100)]%"))
 
 				to_chat(user, SPAN_INFO("Temperature: [round(air_contents.temperature - T0C)]&deg;C"))
 			else

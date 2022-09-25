@@ -73,7 +73,7 @@
 #define effect_update(BYOND)			\
 	if(!needs_update)					\
 	{									\
-		global.lighting_update_lights += src;	\
+		GLOBL.lighting_update_lights += src;	\
 		needs_update = TRUE;			\
 	}
 

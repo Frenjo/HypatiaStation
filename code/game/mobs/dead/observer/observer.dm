@@ -415,7 +415,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, SPAN_WARNING("Pressure: [round(pressure,0.1)] kPa"))
 	if(total_moles)
 		for(var/g in environment.gas)
-			to_chat(src, SPAN_INFO("[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]% ([round(environment.gas[g], 0.01)] moles)"))
+			to_chat(src, SPAN_INFO("[GLOBL.gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]% ([round(environment.gas[g], 0.01)] moles)"))
 		to_chat(src, SPAN_INFO("Temperature: [round(environment.temperature - T0C, 0.1)]&deg;C"))
 		to_chat(src, SPAN_INFO("Heat Capacity: [round(environment.heat_capacity(), 0.1)]"))
 

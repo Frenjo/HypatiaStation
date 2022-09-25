@@ -1,10 +1,9 @@
-var/list/spawntypes = list()
+GLOBAL_GLOBL_LIST_NEW(spawntypes)
 
 /proc/populate_spawn_points()
-	spawntypes = list()
 	for(var/type in SUBTYPESOF(/datum/spawnpoint))
 		var/datum/spawnpoint/S = new type()
-		spawntypes[S.display_name] = S
+		GLOBL.spawntypes[S.display_name] = S
 
 /datum/spawnpoint
 	var/msg				//Message to display on the arrivals computer.

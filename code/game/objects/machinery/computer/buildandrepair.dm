@@ -90,7 +90,7 @@
 		if(!shuttlecaller.stat && shuttlecaller.client && isturf(shuttlecaller.loc))
 			return ..()
 
-	if(global.ticker.mode.name == "revolution" || global.ticker.mode.name == "AI malfunction" || global.sent_strike_team)
+	if(global.ticker.mode.name == "revolution" || global.ticker.mode.name == "AI malfunction" || GLOBL.sent_strike_team)
 		return ..()
 
 	global.emergency_controller.call_evac()

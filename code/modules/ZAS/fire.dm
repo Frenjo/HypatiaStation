@@ -201,9 +201,9 @@ Attach to transfer valve and open. BOOM.
 		var/total_oxidizers = 0
 
 		for(var/g in gas)
-			if(gas_data.flags[g] & XGM_GAS_FUEL)
+			if(GLOBL.gas_data.flags[g] & XGM_GAS_FUEL)
 				total_fuel += gas[g]
-			if(gas_data.flags[g] & XGM_GAS_OXIDIZER)
+			if(GLOBL.gas_data.flags[g] & XGM_GAS_OXIDIZER)
 				total_oxidizers += gas[g]
 
 		if(liquid)
@@ -253,7 +253,7 @@ Attach to transfer valve and open. BOOM.
 /datum/gas_mixture/proc/check_recombustability(obj/effect/decal/cleanable/liquid_fuel/liquid)
 	. = 0
 	for(var/g in gas)
-		if(gas_data.flags[g] & XGM_GAS_OXIDIZER && gas[g] >= 0.1)
+		if(GLOBL.gas_data.flags[g] & XGM_GAS_OXIDIZER && gas[g] >= 0.1)
 			. = 1
 			break
 
@@ -265,14 +265,14 @@ Attach to transfer valve and open. BOOM.
 
 	. = 0
 	for(var/g in gas)
-		if(gas_data.flags[g] & XGM_GAS_FUEL && gas[g] >= 0.1)
+		if(GLOBL.gas_data.flags[g] & XGM_GAS_FUEL && gas[g] >= 0.1)
 			. = 1
 			break
 
 /datum/gas_mixture/proc/check_combustability(obj/effect/decal/cleanable/liquid_fuel/liquid)
 	. = 0
 	for(var/g in gas)
-		if(gas_data.flags[g] & XGM_GAS_OXIDIZER && QUANTIZE(gas[g] * vsc.fire_consuption_rate) >= 0.1)
+		if(GLOBL.gas_data.flags[g] & XGM_GAS_OXIDIZER && QUANTIZE(gas[g] * vsc.fire_consuption_rate) >= 0.1)
 			. = 1
 			break
 
@@ -284,7 +284,7 @@ Attach to transfer valve and open. BOOM.
 
 	. = 0
 	for(var/g in gas)
-		if(gas_data.flags[g] & XGM_GAS_FUEL && QUANTIZE(gas[g] * vsc.fire_consuption_rate) >= 0.1)
+		if(GLOBL.gas_data.flags[g] & XGM_GAS_FUEL && QUANTIZE(gas[g] * vsc.fire_consuption_rate) >= 0.1)
 			. = 1
 			break
 
@@ -295,9 +295,9 @@ Attach to transfer valve and open. BOOM.
 	if(force || check_recombustability(liquid))
 		if(isnull(total_fuel))
 			for(var/g in gas)
-				if(gas_data.flags[g] & XGM_GAS_FUEL)
+				if(GLOBL.gas_data.flags[g] & XGM_GAS_FUEL)
 					total_fuel += gas[g]
-				if(gas_data.flags[g] & XGM_GAS_OXIDIZER)
+				if(GLOBL.gas_data.flags[g] & XGM_GAS_OXIDIZER)
 					total_oxidizers += gas[g]
 			if(liquid)
 				total_fuel += liquid.amount

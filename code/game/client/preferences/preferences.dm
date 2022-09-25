@@ -1149,10 +1149,10 @@
 
 				if("spawnpoint")
 					var/list/spawnkeys = list()
-					for(var/S in spawntypes)
+					for(var/S in GLOBL.spawntypes)
 						spawnkeys += S
 					var/choice = input(user, "Where would you like to spawn when latejoining?") as null | anything in spawnkeys
-					if(!choice || !spawntypes[choice])
+					if(!choice || !GLOBL.spawntypes[choice])
 						spawnpoint = "Arrivals Shuttle"
 						return
 					spawnpoint = choice

@@ -457,7 +457,7 @@
 	if(!global.ticker || !global.emergency_controller.location())
 		return
 
-	if(global.sent_strike_team)
+	if(GLOBL.sent_strike_team)
 		to_chat(user, "CentCom will not allow the shuttle to be called. Consider all contracts terminated.")
 		return
 
@@ -501,7 +501,7 @@
 			to_chat(user, "CentCom does not currently have a shuttle available in your sector. Please try again later.")
 			return
 
-		if(global.sent_strike_team)
+		if(GLOBL.sent_strike_team)
 			to_chat(user, "CentCom will not allow the shuttle to be called. Consider all contracts terminated.")
 			return
 
@@ -572,7 +572,7 @@
 		if(!shuttlecaller.stat && shuttlecaller.client && isturf(shuttlecaller.loc))
 			return ..()
 
-	if(global.ticker.mode.name == "revolution" || global.ticker.mode.name == "AI malfunction" || global.sent_strike_team)
+	if(global.ticker.mode.name == "revolution" || global.ticker.mode.name == "AI malfunction" || GLOBL.sent_strike_team)
 		return ..()
 
 	global.emergency_controller.call_evac()

@@ -382,7 +382,7 @@
 	var/pressure = environment.return_pressure()
 	var/adjusted_pressure = calculate_affecting_pressure(pressure)
 
-	if(adjusted_pressure < WARNING_HIGH_PRESSURE && adjusted_pressure > WARNING_LOW_PRESSURE && abs(environment.temperature - 293.15) < 20 && abs(bodytemperature - 310.14) < 0.5 && environment.gas[GAS_PLASMA] < gas_data.overlay_limit[GAS_PLASMA])
+	if(adjusted_pressure < WARNING_HIGH_PRESSURE && adjusted_pressure > WARNING_LOW_PRESSURE && abs(environment.temperature - 293.15) < 20 && abs(bodytemperature - 310.14) < 0.5 && environment.gas[GAS_PLASMA] < GLOBL.gas_data.overlay_limit[GAS_PLASMA])
 		return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
 	var/environment_heat_capacity = environment.heat_capacity()

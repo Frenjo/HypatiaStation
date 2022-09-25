@@ -119,7 +119,7 @@
 		if(task == "add")
 			var/new_ckey = ckey(input(usr,"New admin's ckey","Admin ckey", null) as text|null)
 			if(!new_ckey)	return
-			if(new_ckey in admin_datums)
+			if(new_ckey in GLOBL.admin_datums)
 				usr << "<font color='red'>Error: Topic 'editrights': [new_ckey] is already an admin</font>"
 				return
 			adm_ckey = new_ckey
@@ -130,12 +130,12 @@
 				usr << "<font color='red'>Error: Topic 'editrights': No valid ckey</font>"
 				return
 
-		var/datum/admins/D = admin_datums[adm_ckey]
+		var/datum/admins/D = GLOBL.admin_datums[adm_ckey]
 
 		if(task == "remove")
 			if(alert("Are you sure you want to remove [adm_ckey]?","Message","Yes","Cancel") == "Yes")
 				if(!D)	return
-				admin_datums -= adm_ckey
+				GLOBL.admin_datums -= adm_ckey
 				D.disassociate()
 
 				message_admins("[key_name_admin(usr)] removed [adm_ckey] from the admins list")
@@ -144,8 +144,8 @@
 
 		else if(task == "rank")
 			var/new_rank
-			if(admin_ranks.len)
-				new_rank = input("Please select a rank", "New rank", null, null) as null|anything in (admin_ranks|"*New Rank*")
+			if(GLOBL.admin_ranks.len)
+				new_rank = input("Please select a rank", "New rank", null, null) as null|anything in (GLOBL.admin_ranks|"*New Rank*")
 			else
 				new_rank = input("Please select a rank", "New rank", null, null) as null|anything in list("Game Master","Game Admin", "Trial Admin", "Admin Observer","*New Rank*")
 
@@ -162,15 +162,15 @@
 						usr << "<font color='red'>Error: Topic 'editrights': Invalid rank</font>"
 						return
 					if(CONFIG_GET(admin_legacy_system))
-						if(admin_ranks.len)
-							if(new_rank in admin_ranks)
-								rights = admin_ranks[new_rank]		//we typed a rank which already exists, use its rights
+						if(GLOBL.admin_ranks.len)
+							if(new_rank in GLOBL.admin_ranks)
+								rights = GLOBL.admin_ranks[new_rank]		//we typed a rank which already exists, use its rights
 							else
-								admin_ranks[new_rank] = 0			//add the new rank to admin_ranks
+								GLOBL.admin_ranks[new_rank] = 0			//add the new rank to admin_ranks
 				else
 					if(CONFIG_GET(admin_legacy_system))
 						new_rank = ckeyEx(new_rank)
-						rights = admin_ranks[new_rank]				//we input an existing rank, use its rights
+						rights = GLOBL.admin_ranks[new_rank]				//we input an existing rank, use its rights
 
 			if(D)
 				D.disassociate()								//remove adminverbs and unlink from client

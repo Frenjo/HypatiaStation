@@ -320,7 +320,7 @@ ________________________________________________________________________________
 
 				if (total_moles)
 					for(var/g in environment.gas)
-						dat += "<li>[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%</li>"
+						dat += "<li>[GLOBL.gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%</li>"
 					dat += "</ul>"
 					dat += "Temperature: [round(environment.temperature-T0C)]&deg;C"
 		if(2)

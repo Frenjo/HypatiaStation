@@ -1,4 +1,4 @@
-/var/global/dmm_suite/maploader = new /dmm_suite()
+GLOBAL_GLOBL_NEW(maploader, /dmm_suite)
 
 /*
 	dmm_suite version 1.0

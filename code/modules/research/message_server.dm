@@ -1,4 +1,4 @@
-/var/global/list/obj/machinery/message_server/message_servers = list()
+GLOBAL_GLOBL_LIST_NEW(message_servers)
 
 /datum/data_pda_msg
 	var/recipient = "Unspecified" //name of the person
@@ -61,14 +61,14 @@
 	var/decryptkey = "password"
 
 /obj/machinery/message_server/New()
-	message_servers += src
+	GLOBL.message_servers += src
 	decryptkey = GenerateKey()
 	send_pda_message("System Administrator", "system", "This is an automated message. The messaging system is functioning correctly.")
 	..()
 	return
 
 /obj/machinery/message_server/Destroy()
-	message_servers -= src
+	GLOBL.message_servers -= src
 	return ..()
 
 /obj/machinery/message_server/proc/GenerateKey()

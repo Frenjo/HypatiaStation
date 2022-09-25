@@ -573,7 +573,7 @@
 
 		if(total_moles)
 			for(var/g in environment.gas)
-				dat += "[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%<br>"
+				dat += "[GLOBL.gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%<br>"
 		dat += "Temperature: [round(environment.temperature-T0C)]&deg;C<br>"
 	dat += "<br><a href='byond://?src=\ref[src];software=atmosensor;sub=0'>Refresh Reading</a>"
 	dat += "<br>"

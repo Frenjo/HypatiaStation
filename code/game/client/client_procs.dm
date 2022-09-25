@@ -117,7 +117,7 @@
 	GLOBL.directory[ckey] = src
 
 	//Admin Authorisation
-	holder = admin_datums[ckey]
+	holder = GLOBL.admin_datums[ckey]
 	if(holder)
 		GLOBL.admins += src
 		holder.owner = src

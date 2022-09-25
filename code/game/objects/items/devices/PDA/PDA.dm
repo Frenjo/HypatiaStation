@@ -476,8 +476,8 @@
 			// check if telecomms I/O route FREQUENCY_COMMON (1459) is stable
 			//var/telecomms_intact = telecomms_process(P.owner, owner, t)
 			var/obj/machinery/message_server/useMS = null
-			if(message_servers)
-				for(var/obj/machinery/message_server/MS in message_servers)
+			if(GLOBL.message_servers)
+				for(var/obj/machinery/message_server/MS in GLOBL.message_servers)
 				//PDAs are now dependant on the Message Server.
 					if(MS.active)
 						useMS = MS
@@ -658,8 +658,8 @@
 	// check if telecomms I/O route FREQUENCY_COMMON (1459) is stable
 	//var/telecomms_intact = telecomms_process(P.owner, owner, t)
 	var/obj/machinery/message_server/useMS = null
-	if(message_servers)
-		for(var/obj/machinery/message_server/MS in message_servers)
+	if(GLOBL.message_servers)
+		for(var/obj/machinery/message_server/MS in GLOBL.message_servers)
 		//PDAs are now dependant on the Message Server.
 			if(MS.active)
 				useMS = MS
@@ -926,7 +926,7 @@
 				if(total_moles > 0)
 					to_chat(user, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
 					for(var/g in T.air_contents.gas)
-						to_chat(user, SPAN_INFO("[gas_data.name[g]]: [round((T.air_contents.gas[g] / total_moles) * 100)]%"))
+						to_chat(user, SPAN_INFO("[GLOBL.gas_data.name[g]]: [round((T.air_contents.gas[g] / total_moles) * 100)]%"))
 					to_chat(user, SPAN_INFO("Temperature: [round(T.air_contents.temperature-T0C)]&deg;C"))
 				else
 					to_chat(user, SPAN_INFO("Tank is empty!"))
@@ -939,7 +939,7 @@
 				if(total_moles > 0)
 					to_chat(user, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
 					for(var/g in P.air_contents.gas)
-						to_chat(user, SPAN_INFO("[gas_data.name[g]]: [round((P.air_contents.gas[g] / total_moles) * 100)]%"))
+						to_chat(user, SPAN_INFO("[GLOBL.gas_data.name[g]]: [round((P.air_contents.gas[g] / total_moles) * 100)]%"))
 					to_chat(user, SPAN_INFO("Temperature: [round(P.air_contents.temperature-T0C)]&deg;C"))
 				else
 					to_chat(user, SPAN_INFO("Tank is empty!"))
@@ -952,7 +952,7 @@
 				if(total_moles > 0)
 					to_chat(user, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
 					for(var/g in T.parent.air.gas)
-						to_chat(user, SPAN_INFO("[gas_data.name[g]]: [round((T.parent.air.gas[g] / total_moles) * 100)]%"))
+						to_chat(user, SPAN_INFO("[GLOBL.gas_data.name[g]]: [round((T.parent.air.gas[g] / total_moles) * 100)]%"))
 					to_chat(user, SPAN_INFO("Temperature: [round(T.parent.air.temperature-T0C)]&deg;C"))
 				else
 					to_chat(user, SPAN_INFO("Tank is empty!"))

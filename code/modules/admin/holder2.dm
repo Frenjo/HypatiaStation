@@ -1,4 +1,4 @@
-var/list/admin_datums = list()
+GLOBAL_GLOBL_LIST_NEW(admin_datums)
 
 /datum/admins
 	var/rank			= "Temporary Admin"
@@ -21,7 +21,7 @@ var/list/admin_datums = list()
 	admincaster_signature = "NanoTrasen Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
 	rank = initial_rank
 	rights = initial_rights
-	admin_datums[ckey] = src
+	GLOBL.admin_datums[ckey] = src
 
 /datum/admins/proc/associate(client/C)
 	if(istype(C))
@@ -82,7 +82,7 @@ you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 
 
 /client/proc/deadmin()
-	admin_datums -= ckey
+	GLOBL.admin_datums -= ckey
 	if(holder)
 		holder.disassociate()
 		qdel(holder)

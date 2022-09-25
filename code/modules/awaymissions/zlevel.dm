@@ -41,7 +41,7 @@
 		var/map = pick(possible_z_levels)
 		var/file = file(map)
 		if(isfile(file))
-			global.maploader.load_map(file)
+			GLOBL.maploader.load_map(file)
 			world.log << "away mission loaded: [map]"
 
 		for(var/obj/effect/landmark/L in GLOBL.landmarks_list)

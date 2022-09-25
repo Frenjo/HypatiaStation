@@ -1,8 +1,8 @@
 var/list/forbidden_varedit_object_types = list(
-										/datum/admins,						//Admins editing their own admin-power object? Yup, sounds like a good idea.
-										/obj/machinery/blackbox_recorder,	//Prevents people messing with feedback gathering
-										/datum/feedback_variable			//Prevents people messing with feedback gathering
-									)
+	/datum/admins,						//Admins editing their own admin-power object? Yup, sounds like a good idea.
+	/obj/machinery/blackbox_recorder,	//Prevents people messing with feedback gathering
+	/datum/feedback_variable			//Prevents people messing with feedback gathering
+)
 
 /*
 /client/proc/cmd_modify_object_variables(obj/O as obj|mob|turf|area in world)

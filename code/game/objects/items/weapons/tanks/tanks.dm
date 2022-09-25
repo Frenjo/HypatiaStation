@@ -98,7 +98,7 @@
 		if(total_moles > 0)
 			user << "\blue Pressure: [round(pressure,0.1)] kPa"
 			for(var/g in air_contents.gas)
-				user << "\blue [gas_data.name[g]]: [(round(air_contents.gas[g] / total_moles) * 100)]%"
+				user << "\blue [GLOBL.gas_data.name[g]]: [(round(air_contents.gas[g] / total_moles) * 100)]%"
 			user << "\blue Temperature: [round(air_contents.temperature-T0C)]&deg;C"
 		else
 			user << "\blue Tank is empty!"
