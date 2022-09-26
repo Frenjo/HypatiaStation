@@ -32,7 +32,7 @@
 
 /obj/item/weapon/anodevice/New()
 	..()
-	processing_objects.Add(src)
+	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/anodevice/attackby(obj/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/anobattery))
@@ -199,5 +199,5 @@
 	icon_state = "anodev[round(p, 25)]"
 
 /obj/item/weapon/anodevice/Destroy()
-	processing_objects.Remove(src)
+	GLOBL.processing_objects.Remove(src)
 	return ..()

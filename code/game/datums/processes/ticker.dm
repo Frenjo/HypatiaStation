@@ -1,4 +1,4 @@
-/var/global/datum/process/ticker/ticker_process
+GLOBAL_BYOND_TYPED(ticker_process, /datum/process/ticker)
 
 /datum/process/ticker
 	name = "Ticker"

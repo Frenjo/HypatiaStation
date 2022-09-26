@@ -744,7 +744,7 @@
 
 /obj/effect/golemrune/New()
 	..()
-	processing_objects.Add(src)
+	GLOBL.processing_objects.Add(src)
 
 /obj/effect/golemrune/process()
 	var/mob/dead/observer/ghost

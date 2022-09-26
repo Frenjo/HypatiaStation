@@ -132,10 +132,10 @@
 
 	. = ..()	//calls mob.Login()
 
-	if(global.custom_event_msg && global.custom_event_msg != "")
+	if(GLOBL.custom_event_msg && GLOBL.custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
 		to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
-		to_chat(src, SPAN_ALERT("[html_encode(global.custom_event_msg)]"))
+		to_chat(src, SPAN_ALERT("[html_encode(GLOBL.custom_event_msg)]"))
 		to_chat(src, "<br>")
 
 	if((world.address == address || !address) && !GLOBL.host)

@@ -516,7 +516,7 @@
 		W.lit = 1
 		W.damtype = "burn"
 		W.icon_state = "match_lit"
-		processing_objects.Add(W)
+		GLOBL.processing_objects.Add(W)
 	W.update_icon()
 	return
 

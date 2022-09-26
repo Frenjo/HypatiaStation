@@ -45,15 +45,15 @@ var/global/list/uneatable = list(
 		spawn(temp)
 			qdel(src)
 	..()
-	processing_objects += src
-	for(var/obj/machinery/singularity_beacon/singubeacon in machines)
+	GLOBL.processing_objects += src
+	for(var/obj/machinery/singularity_beacon/singubeacon in GLOBL.machines)
 		if(singubeacon.active)
 			target = singubeacon
 			break
 	return
 
 /obj/singularity/Destroy()
-	processing_objects -= src
+	GLOBL.processing_objects -= src
 	return ..()
 
 /obj/singularity/attack_hand(mob/user as mob)
@@ -514,8 +514,8 @@ var/global/list/uneatable = list(
 		A:gib()
 	else if(istype(A, /obj))
 		var/obj/O = A
-		machines -= O
-		processing_objects -= O
+		GLOBL.machines -= O
+		GLOBL.processing_objects -= O
 		O.loc = null
 	else if(isturf(A))
 		var/turf/T = A

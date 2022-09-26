@@ -475,7 +475,7 @@ steam.start() -- spawns the effect
 		process()
 		checkReagents()
 	spawn(120)
-		processing_objects.Remove(src)
+		GLOBL.processing_objects.Remove(src)
 		sleep(30)
 
 		if(metal)

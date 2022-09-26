@@ -13,10 +13,10 @@
 
 /obj/item/device/radio/intercom/New()
 	..()
-	processing_objects += src
+	GLOBL.processing_objects += src
 
 /obj/item/device/radio/intercom/Destroy()
-	processing_objects -= src
+	GLOBL.processing_objects -= src
 	return ..()
 
 /obj/item/device/radio/intercom/attack_ai(mob/user as mob)

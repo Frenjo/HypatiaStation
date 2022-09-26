@@ -1,4 +1,4 @@
-/var/global/list/events = list()
+GLOBAL_GLOBL_LIST_NEW(events)
 
 /datum/process/event
 	name = "Event"
@@ -6,11 +6,11 @@
 
 /datum/process/event/doWork()
 	var/i = 1
-	while(i <= global.events.len)
-		var/datum/event/Event = global.events[i]
+	while(i <= GLOBL.events.len)
+		var/datum/event/Event = GLOBL.events[i]
 		if(Event)
 			Event.process()
 			i++
 			continue
-		global.events.Cut(i, i + 1)
+		GLOBL.events.Cut(i, i + 1)
 	checkEvent()

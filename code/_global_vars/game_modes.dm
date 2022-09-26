@@ -1,4 +1,4 @@
 var/datum/station_state/start_state = null
 
-/var/global/wavesecret = FALSE
-/var/global/gravity_is_on = TRUE
+GLOBAL_GLOBL_INIT(wavesecret, FALSE)
+GLOBAL_GLOBL_INIT(gravity_is_on, TRUE)

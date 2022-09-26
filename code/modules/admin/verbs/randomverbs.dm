@@ -548,7 +548,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 	if(!customname)
 		customname = "NanoTrasen Update"
-	for (var/obj/machinery/computer/communications/C in machines)
+	for (var/obj/machinery/computer/communications/C in GLOBL.machines)
 		if(! (C.stat & (BROKEN|NOPOWER) ) )
 			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( C.loc )
 			P.name = "'[command_name()] Update.'"

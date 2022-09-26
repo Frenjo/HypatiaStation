@@ -9,12 +9,12 @@
 /obj/effect/blob/node/New(loc, h = 100)
 	blobs += src
 	blob_nodes += src
-	processing_objects.Add(src)
+	GLOBL.processing_objects.Add(src)
 	..(loc, h)
 
 /obj/effect/blob/node/Destroy()
 	blob_nodes -= src
-	processing_objects.Remove(src)
+	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/effect/blob/node/update_icon()

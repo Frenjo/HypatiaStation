@@ -71,10 +71,10 @@
 		qdel(src)
 
 	spawn_biomass_piece(src.loc)
-	processing_objects.Add(src)
+	GLOBL.processing_objects.Add(src)
 
 /obj/effect/biomass_controller/Destroy()
-	processing_objects.Remove(src)
+	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/effect/biomass_controller/proc/spawn_biomass_piece(turf/location)

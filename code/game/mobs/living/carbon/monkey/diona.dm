@@ -17,7 +17,7 @@
 
 /obj/item/weapon/holder/New()
 	..()
-	processing_objects.Add(src)
+	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/holder/Destroy()
 	//Hopefully this will stop the icon from remaining on human mobs.
@@ -25,7 +25,7 @@
 		var/mob/living/A = src.loc
 		src.loc = null
 		A.update_icons()
-	processing_objects.Remove(src)
+	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/item/weapon/holder/process()

@@ -19,7 +19,7 @@ GLOBAL_GLOBL_INIT(sent_aliens_to_station, FALSE)
 
 /datum/event/alien_infestation/start()
 	var/list/vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
+	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in GLOBL.machines)
 		if(!temp_vent.welded && temp_vent.network && isStationLevel(temp_vent.loc.z))
 			if(temp_vent.network.normal_members.len > 50)	//Stops Aliens getting stuck in small networks. See: Security, Virology
 				vents += temp_vent

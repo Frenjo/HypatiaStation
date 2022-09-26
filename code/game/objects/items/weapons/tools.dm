@@ -175,7 +175,7 @@
 
 /obj/item/weapon/weldingtool/Destroy()
 	if(welding)
-		processing_objects -= src
+		GLOBL.processing_objects -= src
 	return ..()
 
 /obj/item/weapon/weldingtool/examine()
@@ -228,7 +228,7 @@
 				src.damtype = "brute"
 				src.icon_state = "welder"
 				src.welding = 0
-			processing_objects.Remove(src)
+			GLOBL.processing_objects.Remove(src)
 			return
 		//Welders left on now use up fuel, but lets not have them run out quite that fast
 		if(WELDING_TOOL_ON)
@@ -317,7 +317,7 @@
 			src.force = 15
 			src.damtype = "fire"
 			src.icon_state = "welder1"
-			processing_objects.Add(src)
+			GLOBL.processing_objects.Add(src)
 		else
 			to_chat(usr, SPAN_INFO("Need more fuel!"))
 			src.welding = WELDING_TOOL_OFF
@@ -348,7 +348,7 @@
 			src.force = 15
 			src.damtype = "fire"
 			src.icon_state = "welder1"
-			processing_objects.Add(src)
+			GLOBL.processing_objects.Add(src)
 		else
 			to_chat(usr, SPAN_INFO("Need more fuel!"))
 			src.welding = WELDING_TOOL_OFF

@@ -1,4 +1,4 @@
-/var/global/list/processing_objects = list()
+GLOBAL_GLOBL_LIST_NEW(processing_objects)
 
 /datum/process/obj
 	name = "Obj"
@@ -7,11 +7,11 @@
 
 /datum/process/obj/started()
 	..()
-	if(!global.processing_objects)
-		global.processing_objects = list()
+	if(!GLOBL.processing_objects)
+		GLOBL.processing_objects = list()
 
 /datum/process/obj/doWork()
-	for(last_object in global.processing_objects)
+	for(last_object in GLOBL.processing_objects)
 		var/datum/O = last_object
 		if(isnull(O.gcDestroyed))
 			try
@@ -21,8 +21,8 @@
 			SCHECK
 		else
 			catchBadType(O)
-			global.processing_objects -= O
+			GLOBL.processing_objects -= O
 
 /datum/process/obj/statProcess()
 	..()
-	stat(null, "[global.processing_objects.len] object\s")
+	stat(null, "[GLOBL.processing_objects.len] object\s")

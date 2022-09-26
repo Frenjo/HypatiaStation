@@ -169,7 +169,7 @@ rcd light flash thingy on matter drain
 						C.upgradeMotion()
 						upgraded = 1
 						// Add it to machines that process
-						machines |= C
+						GLOBL.machines |= C
 
 					if(upgraded)
 						UC.uses --

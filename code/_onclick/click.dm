@@ -180,7 +180,7 @@
 				next_move += 2
 			if(5 to 7)
 				next_move += 5
-			if(8 to tk_maxrange)
+			if(8 to TK_MAXRANGE)
 				next_move += 10
 			else
 				return

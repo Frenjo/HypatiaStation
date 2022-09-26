@@ -1,4 +1,4 @@
-/var/global/const/base_law_type = /datum/ai_laws/corporate
+#define BASE_LAW_TYPE /datum/ai_laws/corporate
 
 /datum/ai_laws
 	var/name = "Unknown Laws"

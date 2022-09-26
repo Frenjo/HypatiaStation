@@ -113,14 +113,14 @@ Class Procs:
 
 /obj/machinery/New()
 	..()
-	if(!machinery_sort_required && ticker)
-		dd_insertObjectList(machines, src)
+	if(!GLOBL.machinery_sort_required && ticker)
+		dd_insertObjectList(GLOBL.machines, src)
 	else
-		machines += src
-		machinery_sort_required = TRUE
+		GLOBL.machines += src
+		GLOBL.machinery_sort_required = TRUE
 
 /obj/machinery/Destroy()
-	machines -= src
+	GLOBL.machines -= src
 	if(component_parts)
 		for(var/atom/A in component_parts)
 			if(A.loc == src) // If the components are inside the machine, delete them.

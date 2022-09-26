@@ -13,10 +13,10 @@
 
 /obj/item/device/beacon_locator/New()
 	..()
-	processing_objects.Add(src)
+	GLOBL.processing_objects.Add(src)
 
 /obj/item/device/beacon_locator/Destroy()
-	processing_objects.Remove(src)
+	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/item/device/beacon_locator/process()
@@ -38,7 +38,7 @@
 			if(prob(scan_ticks * 10))
 				spawn(0)
 					set background = 1
-					if(processing_objects.Find(src))
+					if(GLOBL.processing_objects.Find(src))
 						//scan radios in the world to try and find one
 						var/cur_dist = 999
 						for(var/obj/item/device/radio/beacon/R in world)

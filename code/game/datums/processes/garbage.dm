@@ -5,8 +5,8 @@
 #define GC_COLLECTION_TIMEOUT (30 SECONDS)
 #define GC_FORCE_DEL_PER_RUN 30
 
-/var/global/datum/process/garbage/garbage_collector
-/var/global/list/delayed_garbage = list()
+GLOBAL_BYOND_TYPED(garbage_collector, /datum/process/garbage)
+GLOBAL_BYOND_LIST_NEW(delayed_garbage)
 
 /datum/process/garbage
 	name = "Garbage"

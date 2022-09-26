@@ -32,7 +32,7 @@
 				if(CC)
 					CC.post_status("alert", "default")
 
-				for(var/obj/machinery/firealarm/FA in machines)
+				for(var/obj/machinery/firealarm/FA in GLOBL.machines)
 					if(isContactLevel(FA.z))
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_green")
@@ -61,7 +61,7 @@
 				if(CC)
 					CC.post_status("alert", "yellowalert")
 
-				for(var/obj/machinery/firealarm/FA in machines)
+				for(var/obj/machinery/firealarm/FA in GLOBL.machines)
 					if(isContactLevel(FA.z))
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_yellow")
@@ -92,7 +92,7 @@
 				if(CC)
 					CC.post_status("alert", "bluealert")
 
-				for(var/obj/machinery/firealarm/FA in machines)
+				for(var/obj/machinery/firealarm/FA in GLOBL.machines)
 					if(isContactLevel(FA.z))
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_blue")
@@ -122,7 +122,7 @@
 				if(CC)
 					CC.post_status("alert", "redalert")
 
-				for(var/obj/machinery/firealarm/FA in machines)
+				for(var/obj/machinery/firealarm/FA in GLOBL.machines)
 					if(isContactLevel(FA.z))
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_red")
@@ -147,7 +147,7 @@
 				if(CC)
 					CC.post_status("alert", "delta")
 
-				for(var/obj/machinery/firealarm/FA in machines)
+				for(var/obj/machinery/firealarm/FA in GLOBL.machines)
 					if(isContactLevel(FA.z))
 						FA.overlays = list()
 						FA.overlays += image('icons/obj/monitors.dmi', "overlay_delta")

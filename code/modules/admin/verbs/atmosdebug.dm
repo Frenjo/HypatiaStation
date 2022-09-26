@@ -34,7 +34,7 @@
 
 	feedback_add_details("admin_verb", "CPOW") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-	for(var/datum/powernet/PN in global.powernets)
+	for(var/datum/powernet/PN in GLOBL.powernets)
 		if(!PN.nodes || !PN.nodes.len)
 			if(PN.cables && (PN.cables.len > 1))
 				var/obj/structure/cable/C = PN.cables[1]

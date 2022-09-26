@@ -111,7 +111,7 @@
 
 /mob/living/simple_animal/hostile/proc/ListTargets(dist = 7)
 	var/list/L = hearers(src, dist)
-	L += mechas_list
+	L += GLOBL.mechas_list
 	return L
 
 /mob/living/simple_animal/hostile/Die()

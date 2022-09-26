@@ -53,8 +53,8 @@
  */
 /obj/item/device/pda/New()
 	..()
-	global.pda_list += src
-	global.pda_list = sortAtom(global.pda_list)
+	GLOBL.pda_list += src
+	GLOBL.pda_list = sortAtom(GLOBL.pda_list)
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)
 	new /obj/item/weapon/pen(src)
@@ -171,7 +171,7 @@
 		var/convopdas[0]
 		var/pdas[0]
 		var/count = 0
-		for(var/obj/item/device/pda/P in global.pda_list)
+		for(var/obj/item/device/pda/P in GLOBL.pda_list)
 			if(!P.owner || P.toff || P == src || P.hidden)
 				continue
 			if(conversations.Find("\ref[P]"))
@@ -973,7 +973,7 @@
 	return
 
 /obj/item/device/pda/Destroy()
-	global.pda_list -= src
+	GLOBL.pda_list -= src
 	if(src.id && prob(90)) //IDs are kept in 90% of the cases
 		src.id.loc = get_turf(src.loc)
 	return ..()
@@ -987,7 +987,7 @@
 		to_chat(usr, "Turn on your receiver in order to send messages.")
 		return
 
-	for(var/obj/item/device/pda/P in global.pda_list)
+	for(var/obj/item/device/pda/P in GLOBL.pda_list)
 		if(!P.owner)
 			continue
 		else if(P.hidden)

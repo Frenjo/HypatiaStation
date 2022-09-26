@@ -35,7 +35,7 @@
 	if(current)
 		dat += specific()
 	else
-		for(var/obj/machinery/alarm/alarm in machines)
+		for(var/obj/machinery/alarm/alarm in GLOBL.machines)
 			dat += "<a href='?src=\ref[src]&alarm=\ref[alarm]'>"
 			switch(max(alarm.danger_level, alarm.alarm_area.atmosalm))
 				if (0)

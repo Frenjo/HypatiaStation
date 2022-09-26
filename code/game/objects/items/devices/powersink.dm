@@ -22,8 +22,8 @@
 	var/obj/structure/cable/attached		// the attached cable
 
 /obj/item/device/powersink/Destroy()
-	processing_objects.Remove(src)
-	processing_power_items.Remove(src)
+	GLOBL.processing_objects.Remove(src)
+	GLOBL.processing_power_items.Remove(src)
 	return ..()
 
 /obj/item/device/powersink/attackby(obj/item/I, mob/user)
@@ -49,8 +49,8 @@
 				return
 		else
 			if(mode == 2)
-				processing_objects.Remove(src) // Now the power sink actually stops draining the station's power if you unhook it. --NeoFite
-				processing_power_items.Remove(src)
+				GLOBL.processing_objects.Remove(src) // Now the power sink actually stops draining the station's power if you unhook it. --NeoFite
+				GLOBL.processing_power_items.Remove(src)
 			anchored = FALSE
 			mode = 0
 			to_chat(user, "You detach the device from the cable.")
@@ -84,8 +84,8 @@
 				to_chat(M, "[user] activates the power sink!")
 			mode = 2
 			icon_state = "powersink1"
-			processing_objects.Add(src)
-			processing_power_items.Add(src)
+			GLOBL.processing_objects.Add(src)
+			GLOBL.processing_power_items.Add(src)
 
 		if(2)	//This switch option wasn't originally included. It exists now. --NeoFite
 			to_chat(user, "You deactivate the device!")
@@ -96,8 +96,8 @@
 			mode = 1
 			set_light(0)
 			icon_state = "powersink0"
-			processing_objects.Remove(src)
-			processing_power_items.Remove(src)
+			GLOBL.processing_objects.Remove(src)
+			GLOBL.processing_power_items.Remove(src)
 
 /obj/item/device/powersink/pwr_drain()
 	if(!attached)

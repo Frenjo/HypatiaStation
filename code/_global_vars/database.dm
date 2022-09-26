@@ -1,4 +1,3 @@
-
 // Database connections
 // A connection is established on world creation. Ideally, the connection dies when the server restarts (After feedback logging.).
 GLOBAL_GLOBL_NEW(dbcon, /DBConnection)		//Feedback database (New database)

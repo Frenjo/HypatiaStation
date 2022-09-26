@@ -70,7 +70,7 @@
 
 /mob/living/silicon/robot/proc/laws_sanity_check()
 	if (!laws)
-		laws = new base_law_type
+		laws = new BASE_LAW_TYPE()
 
 /mob/living/silicon/robot/proc/set_zeroth_law(var/law)
 	laws_sanity_check()

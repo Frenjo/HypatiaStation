@@ -97,7 +97,7 @@ var/list/ai_verbs_default = list(
 		if(istype(L, /datum/ai_laws))
 			laws = L
 	else
-		laws = new base_law_type
+		laws = new BASE_LAW_TYPE()
 
 	aiPDA = new/obj/item/device/pda/ai(src)
 	aiPDA.owner = name
@@ -313,7 +313,7 @@ var/list/ai_verbs_default = list(
 
 	// hack to display shuttle timer
 	if(global.emergency_controller.online())
-		var/obj/machinery/computer/communications/C = locate() in machines
+		var/obj/machinery/computer/communications/C = locate() in GLOBL.machines
 		if(C)
 			C.post_status("shuttle")
 
@@ -574,7 +574,7 @@ var/list/ai_verbs_default = list(
 		return
 	var/list/ai_emotions = list("Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Sad", "BSOD", "Blank", "Problems?", "Awesome", "Facepalm", "Friend Computer")
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
-	for(var/obj/machinery/M in machines) //change status
+	for(var/obj/machinery/M in GLOBL.machines) //change status
 		if(istype(M, /obj/machinery/ai_status_display))
 			var/obj/machinery/ai_status_display/AISD = M
 			AISD.emotion = emote

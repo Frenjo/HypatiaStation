@@ -44,10 +44,10 @@
 
 /obj/item/weapon/gun/energy/gun/nuclear/New()
 	..()
-	processing_objects.Add(src)
+	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/gun/energy/gun/nuclear/Destroy()
-	processing_objects.Remove(src)
+	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/item/weapon/gun/energy/gun/nuclear/process()
@@ -84,7 +84,7 @@
 			to_chat(M, SPAN_WARNING("You feel a wave of heat wash over you."))
 			M.apply_effect(300, IRRADIATE)
 		crit_fail = 1 //break the gun so it stops recharging
-		processing_objects.Remove(src)
+		GLOBL.processing_objects.Remove(src)
 		update_icon()
 	return 0
 

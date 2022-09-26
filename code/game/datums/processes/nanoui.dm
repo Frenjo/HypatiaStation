@@ -1,5 +1,5 @@
 // nanomanager, the manager for Nano UIs
-/var/datum/nanomanager/nanomanager
+GLOBAL_BYOND_TYPED(nanomanager, /datum/nanomanager)
 
 /datum/process/nanoui
 	name = "NanoUI"

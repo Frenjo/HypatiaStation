@@ -1520,7 +1520,7 @@
 
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
-		for(var/obj/machinery/faxmachine/F in machines)
+		for(var/obj/machinery/faxmachine/F in GLOBL.machines)
 			if(! (F.stat & (BROKEN|NOPOWER) ) )
 
 				// animate! it's alive!
@@ -1795,12 +1795,12 @@
 				if(!(ticker && ticker.mode))
 					usr << "Please wait until the game starts!  Not sure how it will work otherwise."
 					return
-				global.gravity_is_on = !global.gravity_is_on
+				GLOBL.gravity_is_on = !GLOBL.gravity_is_on
 				for(var/area/A in world)
-					A.gravitychange(global.gravity_is_on,A)
+					A.gravitychange(GLOBL.gravity_is_on,A)
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","Grav")
-				if(global.gravity_is_on)
+				if(GLOBL.gravity_is_on)
 					log_admin("[key_name(usr)] toggled gravity on.", 1)
 					message_admins("\blue [key_name_admin(usr)] toggled gravity on.", 1)
 					command_alert("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.")
@@ -2186,7 +2186,7 @@
 				feedback_add_details("admin_secrets_fun_used","FA")
 				for(var/mob/aiEye/aE in GLOBL.mob_list)
 					aE.icon_state = "ai_friend"
-				for(var/obj/machinery/M in machines)
+				for(var/obj/machinery/M in GLOBL.machines)
 					if(istype(M, /obj/machinery/ai_status_display))
 						var/obj/machinery/ai_status_display/A = M
 						A.emotion = "Friend Computer"

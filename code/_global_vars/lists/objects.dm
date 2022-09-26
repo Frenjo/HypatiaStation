@@ -1,8 +1,8 @@
-/var/global/list/cable_list = list()				//Index for all cables, so that powernets don't have to look through the entire world all the time
-/var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
+GLOBAL_GLOBL_LIST_NEW(cable_list)	//Index for all cables, so that powernets don't have to look through the entire world all the time
+GLOBAL_GLOBL_LIST_NEW(mechas_list)	//list of all mechs. Used by hostile mobs target tracking.
 
 // Posters
-/var/global/list/datum/poster/poster_designs = SUBTYPESOF(/datum/poster)
+GLOBAL_GLOBL_LIST_INIT(poster_designs, SUBTYPESOF(/datum/poster))
 
 // These networks can only be accessed by preexisting terminals. AIs and new terminals can't use them.
 GLOBAL_GLOBL_LIST_INIT(restricted_camera_networks, list(
@@ -23,10 +23,8 @@ GLOBAL_GLOBL_LIST_INIT(tagger_locations, list(
 	"Janitor Closet", "Genetics"
 ))
 
-/var/global/list/light_type_cache = list()
-/var/global/list/solars_list = list()
+GLOBAL_GLOBL_LIST_NEW(light_type_cache)
+GLOBAL_GLOBL_LIST_NEW(solars_list)
 
-/var/global/list/datum/pipe_network/pipe_networks = list()
-
-/var/global/list/obj/item/device/pda/pda_list = list()
-/var/global/list/pda_chatrooms = list()
+GLOBAL_GLOBL_LIST_NEW(pda_list)
+GLOBAL_GLOBL_LIST_NEW(pda_chatrooms)

@@ -21,10 +21,10 @@
 
 /obj/item/weapon/gun/energy/taser/cyborg/New()
 	..()
-	processing_objects.Add(src)
+	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/gun/energy/taser/cyborg/Destroy()
-	processing_objects.Remove(src)
+	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/item/weapon/gun/energy/taser/cyborg/process() //Every [recharge_time] ticks, recharge a shot for the cyborg
@@ -97,10 +97,10 @@
 
 /obj/item/weapon/gun/energy/crossbow/New()
 	..()
-	processing_objects.Add(src)
+	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/gun/energy/crossbow/Destroy()
-	processing_objects.Remove(src)
+	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/item/weapon/gun/energy/crossbow/process()

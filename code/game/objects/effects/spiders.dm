@@ -85,7 +85,7 @@
 /obj/effect/spider/eggcluster/New()
 	pixel_x = rand(3, -3)
 	pixel_y = rand(3, -3)
-	processing_objects.Add(src)
+	GLOBL.processing_objects.Add(src)
 
 /obj/effect/spider/eggcluster/process()
 	amount_grown += rand(0, 2)
@@ -111,7 +111,7 @@
 /obj/effect/spider/spiderling/New()
 	pixel_x = rand(6, -6)
 	pixel_y = rand(6, -6)
-	processing_objects.Add(src)
+	GLOBL.processing_objects.Add(src)
 	//50% chance to grow up
 	if(prob(50))
 		amount_grown = 1

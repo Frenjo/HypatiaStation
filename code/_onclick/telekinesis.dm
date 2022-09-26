@@ -3,7 +3,6 @@
 
 	This needs more thinking out, but I might as well.
 */
-/var/const/tk_maxrange = 15
 
 /*
 	Telekinetic attack:
@@ -121,7 +120,7 @@
 				user.next_move += 2
 		if(5 to 7)
 			user.next_move += 5
-		if(8 to tk_maxrange)
+		if(8 to TK_MAXRANGE)
 			user.next_move += 10
 		else
 			to_chat(user, SPAN_INFO("Your mind won't reach that far."))

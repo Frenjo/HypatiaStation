@@ -24,7 +24,7 @@
 
 /turf/New()
 	..()
-	processing_turfs.Add(src)
+	GLOBL.processing_turfs.Add(src)
 	for(var/atom/movable/AM as mob|obj in src)
 		spawn(0)
 			src.Entered(AM)
@@ -35,7 +35,7 @@
 		luminosity = 1
 
 /turf/Destroy()
-	processing_turfs.Remove(src)
+	GLOBL.processing_turfs.Remove(src)
 	return ..()
 
 /turf/proc/process()

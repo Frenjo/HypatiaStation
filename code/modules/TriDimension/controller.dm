@@ -24,13 +24,13 @@
 	normal_time = world.time + 600
 	fast_time = world.time + 10
 
-	processing_objects.Add(src)
+	GLOBL.processing_objects.Add(src)
 
 	initialized = TRUE
 	return 1
 
 /obj/effect/landmark/zcontroller/Destroy()
-	processing_objects.Remove(src)
+	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/effect/landmark/zcontroller/process()

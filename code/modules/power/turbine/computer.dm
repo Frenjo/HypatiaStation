@@ -14,11 +14,11 @@
 
 /obj/machinery/computer/turbine_control/initialize()
 	..()
-	for(var/obj/machinery/compressor/C in machines)
+	for(var/obj/machinery/compressor/C in GLOBL.machines)
 		if(id == C.comp_id)
 			compressor = C
 		doors = new /list()
-		for(var/obj/machinery/door/poddoor/P in machines)
+		for(var/obj/machinery/door/poddoor/P in GLOBL.machines)
 			if(P.id == id)
 				doors += P
 

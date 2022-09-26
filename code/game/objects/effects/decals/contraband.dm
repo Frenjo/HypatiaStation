@@ -18,7 +18,7 @@
 
 /obj/item/weapon/contraband/poster/New(turf/loc, given_serial = 0)
 	if(given_serial == 0)
-		serial_number = rand(1, poster_designs.len)
+		serial_number = rand(1, GLOBL.poster_designs.len)
 	else
 		serial_number = given_serial
 	name += " - No. [serial_number]"
@@ -39,9 +39,9 @@
 	serial_number = serial
 
 	if(serial_number == loc)
-		serial_number = rand(1, poster_designs.len)	//This is for the mappers that want individual posters without having to use rolled posters.
+		serial_number = rand(1, GLOBL.poster_designs.len)	//This is for the mappers that want individual posters without having to use rolled posters.
 
-	var/designtype = poster_designs[serial_number]
+	var/designtype = GLOBL.poster_designs[serial_number]
 	var/datum/poster/design = new designtype
 	name += " - [design.name]"
 	desc += " [design.desc]"

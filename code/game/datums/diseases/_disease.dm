@@ -54,11 +54,11 @@ to null does not delete the object itself. Thank you.
 /datum/disease/New(process = 1, datum/disease/D)//process = 1 - adding the object to global list. List is processed by master controller.
 	cure_list = list(cure_id) // to add more cures, add more vars to this list in the actual disease's New()
 	if(process)				 // Viruses in list are considered active.
-		active_diseases += src
+		GLOBL.active_diseases += src
 	initial_spread = spread
 
 /datum/disease/Destroy()
-	active_diseases.Remove(src)
+	GLOBL.active_diseases.Remove(src)
 	return ..()
 
 /datum/disease/proc/stage_act()
@@ -155,7 +155,7 @@ to null does not delete the object itself. Thank you.
 
 /datum/disease/proc/process()
 	if(!holder)
-		active_diseases -= src
+		GLOBL.active_diseases -= src
 		return
 	if(prob(65))
 		spread(holder)

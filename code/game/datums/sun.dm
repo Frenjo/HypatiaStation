@@ -9,7 +9,7 @@
 	var/lastAngleUpdate
 
 /datum/sun/New()
-	solars = solars_list
+	solars = GLOBL.solars_list
 	rate = rand(750, 1250) / 1000			// 75.0% - 125.0% of standard rotation
 	if(prob(50))
 		rate = -rate
@@ -33,9 +33,9 @@
 	*/
 
 	if(lastAngleUpdate != angle)
-		for(var/obj/machinery/power/tracker/T in solars_list)
+		for(var/obj/machinery/power/tracker/T in GLOBL.solars_list)
 			if(!T.powernet)
-				solars_list.Remove(T)
+				GLOBL.solars_list.Remove(T)
 				continue
 			T.set_angle(angle)
 	lastAngleUpdate = angle
@@ -59,9 +59,9 @@
 		dx = s/abs(s)
 		dy = c / abs(s)
 
-	for(var/obj/machinery/power/solar/S in solars_list)
+	for(var/obj/machinery/power/solar/S in GLOBL.solars_list)
 		if(!S.powernet)
-			solars_list.Remove(S)
+			GLOBL.solars_list.Remove(S)
 			continue
 		if(S.control)
 			occlusion(S)

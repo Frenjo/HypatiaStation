@@ -1,8 +1,8 @@
-/var/global/machinery_sort_required = FALSE
+GLOBAL_GLOBL_INIT(machinery_sort_required, FALSE)
 
-/var/global/list/machines = list()
-/var/global/list/processing_power_items = list()
-/var/global/list/powernets = list()
+GLOBAL_GLOBL_LIST_NEW(machines)
+GLOBAL_GLOBL_LIST_NEW(processing_power_items)
+GLOBAL_GLOBL_LIST_NEW(powernets)
 
 /datum/process/machinery
 	name = "Machinery"
@@ -15,15 +15,15 @@
 	internal_process_powernets()
 
 /datum/process/machinery/proc/internal_sort()
-	if(global.machinery_sort_required)
-		global.machinery_sort_required = FALSE
-		global.machines = dd_sortedObjectList(global.machines)
+	if(GLOBL.machinery_sort_required)
+		GLOBL.machinery_sort_required = FALSE
+		GLOBL.machines = dd_sortedObjectList(GLOBL.machines)
 
 /datum/process/machinery/proc/internal_process_machinery()
-	for(var/obj/machinery/M in global.machines)
+	for(var/obj/machinery/M in GLOBL.machines)
 		if(M && !M.gcDestroyed)
 			if(M.process() == PROCESS_KILL)
-				global.machines.Remove(M)
+				GLOBL.machines.Remove(M)
 				continue
 
 			if(M && M.use_power)
@@ -32,24 +32,24 @@
 		SCHECK
 
 /datum/process/machinery/proc/internal_process_powernets()
-	for(var/datum/powernet/powerNetwork in global.powernets)
+	for(var/datum/powernet/powerNetwork in GLOBL.powernets)
 		if(istype(powerNetwork) && isnull(powerNetwork.gcDestroyed))
 			powerNetwork.reset()
 			SCHECK
 			continue
 
-		global.powernets.Remove(powerNetwork)
+		GLOBL.powernets.Remove(powerNetwork)
 
 	// This is necessary to ensure powersinks are always the first devices that drain power from powernet.
 	// Otherwise APCs or other stuff go first, resulting in bad things happening.
 	// Currently only used by powersinks. These items get priority processed before machinery
-	for(var/obj/item/I in global.processing_power_items)
+	for(var/obj/item/I in GLOBL.processing_power_items)
 		if(!I.pwr_drain()) // 0 = Process Kill, remove from processing list.
-			global.processing_power_items.Remove(I)
+			GLOBL.processing_power_items.Remove(I)
 		SCHECK
 
 /datum/process/machinery/statProcess()
 	..()
-	stat(null, "[global.machines.len] machines")
-	stat(null, "[global.powernets.len] powernets")
-	stat(null, "[global.processing_power_items.len] power item\s")
+	stat(null, "[GLOBL.machines.len] machines")
+	stat(null, "[GLOBL.powernets.len] powernets")
+	stat(null, "[GLOBL.processing_power_items.len] power item\s")

@@ -136,11 +136,11 @@
 	feedback_add_details("admin_verb", "TAmbi") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 //be special
-/client/verb/toggle_be_special(role in be_special_flags)
+/client/verb/toggle_be_special(role in GLOBL.be_special_flags)
 	set name = "Toggle SpecialRole Candidacy"
 	set category = "Preferences"
 	set desc = "Toggles which special roles you would like to be a candidate for, during events."
-	var/role_flag = global.be_special_flags[role]
+	var/role_flag = GLOBL.be_special_flags[role]
 	if(!role_flag)
 		return
 	prefs.be_special ^= role_flag

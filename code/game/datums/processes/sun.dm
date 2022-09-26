@@ -1,4 +1,4 @@
-/var/global/datum/sun/sun
+GLOBAL_BYOND_TYPED(sun, /datum/sun)
 
 /datum/process/sun
 	name = "Sun"

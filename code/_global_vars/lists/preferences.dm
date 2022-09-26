@@ -1,6 +1,6 @@
 GLOBAL_GLOBL_LIST_NEW(preferences_datums)
 
-/var/global/list/special_roles = list(
+GLOBAL_GLOBL_LIST_INIT(special_roles, list(
 //some autodetection here.
 	"traitor" = IS_MODE_COMPILED("traitor"),			// 0
 	"operative" = IS_MODE_COMPILED("nuclear"),			// 1
@@ -15,7 +15,7 @@ GLOBAL_GLOBL_LIST_NEW(preferences_datums)
 	"ninja" = TRUE,										// 10
 	//"vox raider" = IS_MODE_COMPILED("heist"),			// 11
 	"diona" = TRUE,										// 12
-)
+))
 
 //Preferences stuff
 	//Hairstyles
@@ -33,7 +33,7 @@ GLOBAL_GLOBL_LIST_INIT(underwear_f, list("Red", "White", "Yellow", "Blue", "Blac
 	//Backpacks
 GLOBAL_GLOBL_LIST_INIT(backbaglist, list("Nothing", "Backpack", "Satchel", "Satchel Alt"))
 
-/var/global/list/be_special_flags = list(
+GLOBAL_GLOBL_LIST_INIT(be_special_flags, list(
 	"Traitor" = BE_TRAITOR,
 	"Operative" = BE_OPERATIVE,
 	"Changeling" = BE_CHANGELING,
@@ -47,4 +47,4 @@ GLOBAL_GLOBL_LIST_INIT(backbaglist, list("Nothing", "Backpack", "Satchel", "Satc
 	"Ninja" = BE_NINJA,
 	"Raider" = BE_RAIDER,
 	"Diona" = BE_PLANT
-)
+))

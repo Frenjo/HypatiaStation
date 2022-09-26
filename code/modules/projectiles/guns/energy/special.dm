@@ -50,10 +50,10 @@
 
 /obj/item/weapon/gun/energy/staff/New()
 	..()
-	processing_objects.Add(src)
+	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/gun/energy/staff/Destroy()
-	processing_objects.Remove(src)
+	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/item/weapon/gun/energy/staff/process()
@@ -104,10 +104,10 @@
 
 /obj/item/weapon/gun/energy/floragun/New()
 	..()
-	processing_objects.Add(src)
+	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/gun/energy/floragun/Destroy()
-	processing_objects.Remove(src)
+	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/item/weapon/gun/energy/floragun/process()
@@ -153,10 +153,10 @@
 
 /obj/item/weapon/gun/energy/meteorgun/New()
 	..()
-	processing_objects.Add(src)
+	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/gun/energy/meteorgun/Destroy()
-	processing_objects.Remove(src)
+	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/item/weapon/gun/energy/meteorgun/process()

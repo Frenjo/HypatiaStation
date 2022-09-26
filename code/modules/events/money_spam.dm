@@ -74,7 +74,7 @@
 			// /obj/machinery/message_server/proc/send_pda_message(var/recipient = "",var/sender = "",var/message = "")
 			var/obj/item/device/pda/P
 			var/list/viables = list()
-			for(var/obj/item/device/pda/check_pda in sortAtom(global.pda_list))
+			for(var/obj/item/device/pda/check_pda in sortAtom(GLOBL.pda_list))
 				if(!check_pda.owner||check_pda.toff||check_pda == src||check_pda.hidden)
 					continue
 				viables.Add(check_pda)

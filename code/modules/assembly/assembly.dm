@@ -111,7 +111,7 @@
 	return
 
 /obj/item/device/assembly/process()
-	processing_objects.Remove(src)
+	GLOBL.processing_objects.Remove(src)
 	return
 
 /obj/item/device/assembly/examine()

@@ -11,7 +11,7 @@
 	command_alert("Rampant brand intelligence has been detected aboard [station_name()], please stand-by.", "Machine Learning Alert")
 
 /datum/event/brand_intelligence/start()
-	for(var/obj/machinery/vending/V in machines)
+	for(var/obj/machinery/vending/V in GLOBL.machines)
 		if(isNotStationLevel(V.z))
 			continue
 		vendingMachines.Add(V)

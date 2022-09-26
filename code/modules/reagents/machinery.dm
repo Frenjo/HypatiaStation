@@ -721,7 +721,7 @@
 		if(archive_diseases[id])
 			var/datum/disease/advance/A = archive_diseases[id]
 			A.AssignName(new_name)
-			for(var/datum/disease/advance/AD in active_diseases)
+			for(var/datum/disease/advance/AD in GLOBL.active_diseases)
 				AD.Refresh()
 		src.updateUsrDialog()
 

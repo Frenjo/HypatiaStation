@@ -27,11 +27,11 @@
 /obj/item/device/assembly/prox_sensor/toggle_secure()
 	secured = !secured
 	if(secured)
-		processing_objects.Add(src)
+		GLOBL.processing_objects.Add(src)
 	else
 		scanning = 0
 		timing = 0
-		processing_objects.Remove(src)
+		GLOBL.processing_objects.Remove(src)
 	update_icon()
 	return secured
 

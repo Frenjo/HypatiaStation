@@ -366,8 +366,8 @@
 		src.be_special = 0
 	else
 		var/n = 0
-		for(var/i in global.special_roles)
-			if(global.special_roles[i]) //if mode is available on the server
+		for(var/i in GLOBL.special_roles)
+			if(GLOBL.special_roles[i]) //if mode is available on the server
 				if(jobban_isbanned(user, i))
 					dat += "<b>Be [i]:</b> <font color=red><b> \[BANNED]</b></font><br>"
 				else if(i == "pai candidate")

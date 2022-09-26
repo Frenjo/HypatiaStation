@@ -83,7 +83,7 @@
 
 /obj/machinery/atmospherics/trinary/tvalve/process()
 	..()
-	machines.Remove(src)
+	GLOBL.machines.Remove(src)
 
 /*	if(open && (!node1 || !node2))
 		close()

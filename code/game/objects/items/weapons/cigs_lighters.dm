@@ -53,7 +53,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "cigoff"
 	name = "burnt match"
 	desc = "A match. This one has seen better days."
-	processing_objects.Remove(src)
+	GLOBL.processing_objects.Remove(src)
 
 //////////////////
 //FINE SMOKABLES//
@@ -155,7 +155,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		item_state = icon_on
 		var/turf/T = get_turf(src)
 		T.visible_message(flavor_text)
-		processing_objects.Add(src)
+		GLOBL.processing_objects.Add(src)
 
 
 /obj/item/clothing/mask/cigarette/process()
@@ -194,7 +194,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		M << "<span class='notice'>Your [name] goes out.</span>"
 		M.u_equip(src)	//un-equip it so the overlays can update
 		M.update_inv_wear_mask(0)
-	processing_objects.Remove(src)
+	GLOBL.processing_objects.Remove(src)
 	qdel(src)
 
 ////////////
@@ -297,7 +297,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		item_state = icon_on
 		var/turf/T = get_turf(src)
 		T.visible_message(flavor_text)
-		processing_objects.Add(src)
+		GLOBL.processing_objects.Add(src)
 
 /obj/item/clothing/mask/cigarette/pipe/process()
 	var/turf/location = get_turf(src)
@@ -311,7 +311,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			icon_state = icon_off
 			item_state = icon_off
 			M.update_inv_wear_mask(0)
-		processing_objects.Remove(src)
+		GLOBL.processing_objects.Remove(src)
 		return
 	if(location)
 		location.hotspot_expose(700, 5)
@@ -323,7 +323,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		lit = 0
 		icon_state = icon_off
 		item_state = icon_off
-		processing_objects.Remove(src)
+		GLOBL.processing_objects.Remove(src)
 		return
 	if(smoketime <= 0)
 		user << "<span class='notice'>You refill the pipe with tobacco.</span>"
@@ -415,7 +415,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 			//user.SetLuminosity(user.luminosity + 2)
 			user.set_light(user.luminosity + 2)
-			processing_objects.Add(src)
+			GLOBL.processing_objects.Add(src)
 		else
 			lit = 0
 			icon_state = icon_off
@@ -427,7 +427,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 			//user.SetLuminosity(user.luminosity - 2)
 			user.set_light(user.luminosity - 2)
-			processing_objects.Remove(src)
+			GLOBL.processing_objects.Remove(src)
 	else
 		return ..()
 	return

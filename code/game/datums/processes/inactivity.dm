@@ -1,5 +1,4 @@
 #define INACTIVITY_KICK	(10 MINUTES)
-
 /datum/process/inactivity
 	name = "Inactivity"
 	schedule_interval = INACTIVITY_KICK
@@ -14,5 +13,4 @@
 					qdel(C)
 
 			SCHECK
-
 #undef INACTIVITY_KICK

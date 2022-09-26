@@ -66,12 +66,12 @@ GLOBAL_BYOND_INIT(pipe_processing_killed, FALSE)
 
 	to_world(SPAN_DANGER("Initialising pipe networks."))
 	sleep(-1)
-	for(var/obj/machinery/atmospherics/machine in global.machines)
+	for(var/obj/machinery/atmospherics/machine in GLOBL.machines)
 		machine.build_network()
 
 	to_world(SPAN_DANGER("Initialising atmos machinery."))
 	sleep(-1)
-	for(var/obj/machinery/atmospherics/unary/U in global.machines)
+	for(var/obj/machinery/atmospherics/unary/U in GLOBL.machines)
 		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
 			var/obj/machinery/atmospherics/unary/vent_pump/T = U
 			T.broadcast_status()

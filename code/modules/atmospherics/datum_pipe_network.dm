@@ -33,7 +33,7 @@
 	update_network_gases()
 
 	if(normal_members.len > 0 || line_members.len > 0)
-		global.pipe_networks += src
+		GLOBL.pipe_networks += src
 	else
 		qdel(src)
 

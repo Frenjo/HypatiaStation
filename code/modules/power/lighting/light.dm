@@ -1,8 +1,8 @@
 /proc/get_light_type_instance(light_type)
-	. = global.light_type_cache[light_type]
+	. = GLOBL.light_type_cache[light_type]
 	if(!.)
 		. = new light_type
-		global.light_type_cache[light_type] = .
+		GLOBL.light_type_cache[light_type] = .
 
 // the standard tube light fixture
 /obj/machinery/light
