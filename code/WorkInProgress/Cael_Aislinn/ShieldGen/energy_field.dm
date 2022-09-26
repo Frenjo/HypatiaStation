@@ -7,6 +7,7 @@
 	icon = 'code/WorkInProgress/Cael_Aislinn/ShieldGen/shielding.dmi'
 	icon_state = "shieldsparkles"
 	anchored = TRUE
+	plane = UNLIT_EFFECTS_PLANE
 	layer = 4.1		//just above mobs
 	density = FALSE
 	invisibility = INVISIBILITY_MAXIMUM

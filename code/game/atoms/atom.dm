@@ -10,6 +10,7 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 //5 - empty space
 
 /atom
+	plane = GAME_PLANE
 	layer = 2
 
 	var/level = 2

@@ -81,7 +81,7 @@
 		overlays -= corner_overlay
 	else
 		corner_overlay = image(icon = 'icons/turf/shuttle.dmi', icon_state = corner_overlay_state, layer = src.layer, dir = src.dir)
-		corner_overlay.plane = 0
+		corner_overlay.plane = GAME_PLANE
 	overlays += corner_overlay
 
 // Predefined Shuttle Exterior Corners

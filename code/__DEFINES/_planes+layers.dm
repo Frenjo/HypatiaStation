@@ -25,9 +25,20 @@
 #define SPACE_PLANE_ABOVE_PARALLAX -95
 
 /*
+ * Game
+ */
+#define GAME_PLANE 0
+
+/*
  * Obscurity
  */
 #define OBSCURITY_PLANE 2
+
+/*
+ * Lighting/Effects
+ */
+#define LIGHTING_PLANE 15
+#define UNLIT_EFFECTS_PLANE 16
 
 /*
  * Helper Functions

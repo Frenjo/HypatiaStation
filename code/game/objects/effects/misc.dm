@@ -11,6 +11,7 @@
 	icon = 'icons/misc/mark.dmi'
 	icon_state = "blank"
 	anchored = TRUE
+	plane = UNLIT_EFFECTS_PLANE
 	layer = 99
 	mouse_opacity = FALSE
 	unacidable = 1 //Just to be sure.

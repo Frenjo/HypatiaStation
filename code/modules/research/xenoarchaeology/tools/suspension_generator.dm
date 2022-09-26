@@ -289,6 +289,7 @@
 		C.weakened += 5
 
 	suspension_field = new(T)
+	suspension_field.plane = UNLIT_EFFECTS_PLANE
 	suspension_field.field_type = field_type
 	visible_message(SPAN_INFO("\icon[src] [src] activates with a low hum."))
 	icon_state = "suspension3"

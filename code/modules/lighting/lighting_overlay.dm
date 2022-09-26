@@ -6,7 +6,7 @@ GLOBAL_GLOBL_LIST_NEW(all_lighting_overlays) // Global list of lighting overlays
 	simulated = FALSE
 	anchored = TRUE
 	icon = LIGHTING_ICON
-	layer = LIGHTING_LAYER
+	plane = LIGHTING_PLANE
 	invisibility = INVISIBILITY_LIGHTING
 	color = LIGHTING_BASE_MATRIX
 	icon_state = "light1"
