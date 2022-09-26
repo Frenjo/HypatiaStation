@@ -94,7 +94,7 @@ Contains helper procs for airflow, handled in /connection_group.
 	if(ismob(src))
 		if(src:status_flags & GODMODE)
 			return
-		if(istype(src, /mob/living/carbon/human))
+		if(ishuman(src))
 			if(src:buckled)
 				return
 			if(src:shoes)

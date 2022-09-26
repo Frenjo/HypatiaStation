@@ -150,7 +150,7 @@
 	var/totalslabs = 3
 	var/obj/item/weapon/reagent_containers/food/snacks/meat/allmeat[totalslabs]
 
-	if( istype(src.occupant, /mob/living/carbon/human/) )
+	if(ishuman(src.occupant))
 		var/sourcename = src.occupant.real_name
 		var/sourcejob = src.occupant.job
 		var/sourcenutriment = src.occupant.nutrition / 15

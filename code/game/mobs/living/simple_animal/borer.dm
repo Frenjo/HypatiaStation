@@ -370,7 +370,7 @@
 		src << "You cannot infest someone who is already infested!"
 		return
 
-	if(istype(M,/mob/living/carbon/human))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.check_head_coverage())
 			src << "You cannot get through that host's protective gear."

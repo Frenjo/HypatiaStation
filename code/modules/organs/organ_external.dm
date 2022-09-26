@@ -80,7 +80,7 @@
 		var/brmod = 0.66
 		var/bumod = 0.66
 
-		if(istype(owner,/mob/living/carbon/human))
+		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 			if(H.species && H.species.flags & IS_SYNTHETIC)
 				brmod = H.species.brute_mod

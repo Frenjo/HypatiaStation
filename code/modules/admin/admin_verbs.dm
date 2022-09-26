@@ -659,7 +659,7 @@ var/list/admin_verbs_donor = list(
 
 	if(!check_rights(R_FUN))	return
 
-	if(!istype(M, /mob/living/carbon/human))
+	if(!ishuman(M))
 		usr << "\red You can only do this to humans!"
 		return
 	switch(alert("Are you sure you wish to edit this mob's appearance? Skrell, Soghun, Vox and Tajaran can result in unintended consequences.",,"Yes","No"))

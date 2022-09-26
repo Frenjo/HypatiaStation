@@ -89,7 +89,7 @@
 	badness = 2
 
 /datum/disease2/effect/monkey/activate(var/mob/living/carbon/mob, var/multiplier)
-	if(istype(mob,/mob/living/carbon/human))
+	if(ishuman(mob))
 		var/mob/living/carbon/human/h = mob
 		h.monkeyize()
 
@@ -132,7 +132,7 @@
 	stage = 4
 
 /datum/disease2/effect/organs/activate(var/mob/living/carbon/mob, var/multiplier)
-	if(istype(mob, /mob/living/carbon/human))
+	if(ishuman(mob))
 		var/mob/living/carbon/human/H = mob
 		var/organ = pick(list("r_arm","l_arm","r_leg","r_leg"))
 		var/datum/organ/external/E = H.organs_by_name[organ]
@@ -145,7 +145,7 @@
 	mob.adjustToxLoss(15 * multiplier)
 
 /datum/disease2/effect/organs/deactivate(var/mob/living/carbon/mob, var/multiplier)
-	if(istype(mob, /mob/living/carbon/human))
+	if(ishuman(mob))
 		var/mob/living/carbon/human/H = mob
 		for(var/datum/organ/external/E in H.organs)
 			E.status &= ~ORGAN_DEAD
@@ -159,7 +159,7 @@
 	stage = 4
 
 /datum/disease2/effect/immortal/activate(var/mob/living/carbon/mob, var/multiplier)
-	if(istype(mob, /mob/living/carbon/human))
+	if(ishuman(mob))
 		var/mob/living/carbon/human/H = mob
 		for(var/datum/organ/external/E in H.organs)
 			if (E.status & ORGAN_BROKEN && prob(30))
@@ -168,7 +168,7 @@
 	mob.apply_damages(heal_amt, heal_amt, heal_amt, heal_amt)
 
 /datum/disease2/effect/immortal/deactivate(var/mob/living/carbon/mob, var/multiplier)
-	if(istype(mob, /mob/living/carbon/human))
+	if(ishuman(mob))
 		var/mob/living/carbon/human/H = mob
 		H << "<span class='notice'>You suddenly feel hurt and old...</span>"
 		H.age += 8
@@ -182,13 +182,13 @@
 	stage = 4
 
 /datum/disease2/effect/bones/activate(var/mob/living/carbon/mob, var/multiplier)
-	if(istype(mob, /mob/living/carbon/human))
+	if(ishuman(mob))
 		var/mob/living/carbon/human/H = mob
 		for (var/datum/organ/external/E in H.organs)
 			E.min_broken_damage = max(5, E.min_broken_damage - 30)
 
 /datum/disease2/effect/bones/deactivate(var/mob/living/carbon/mob, var/multiplier)
-	if(istype(mob, /mob/living/carbon/human))
+	if(ishuman(mob))
 		var/mob/living/carbon/human/H = mob
 		for (var/datum/organ/external/E in H.organs)
 			E.min_broken_damage = initial(E.min_broken_damage)
@@ -227,7 +227,7 @@
 	stage = 3
 
 /datum/disease2/effect/mind/activate(var/mob/living/carbon/mob, var/multiplier)
-	if(istype(mob, /mob/living/carbon/human))
+	if(ishuman(mob))
 		var/mob/living/carbon/human/H = mob
 		var/datum/organ/internal/brain/B = H.internal_organs["brain"]
 		if (B.damage < B.min_broken_damage)
@@ -349,7 +349,7 @@
 	stage = 2
 
 /datum/disease2/effect/hair/activate(var/mob/living/carbon/mob,var/multiplier)
-	if(istype(mob, /mob/living/carbon/human))
+	if(ishuman(mob))
 		var/mob/living/carbon/human/H = mob
 		if(H.species.name == "Human" && !(H.h_style == "Bald") && !(H.h_style == "Balding Hair"))
 			H << "<span class='danger'>Your hair starts to fall out in clumps...</span>"

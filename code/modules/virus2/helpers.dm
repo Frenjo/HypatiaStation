@@ -4,7 +4,7 @@
 	if(!istype(M))
 		return 0
 
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		if(vector == "Airborne")
 			if(M.internal)	//not breathing infected air helps greatly
 				score = 30
@@ -78,7 +78,7 @@
 		if(!(chimp.greaterform in disease.affected_species))
 			return
 
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		var/mob/living/carbon/human/chump = M
 		if (!(chump.species.name in disease.affected_species))
 			return
