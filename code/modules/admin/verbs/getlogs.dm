@@ -35,7 +35,6 @@
 	to_chat(target, "<font color='red'>You have been granted access to runtime logs. Please use them responsibly or risk being banned.</font>")
 	return
 
-
 //This proc allows download of runtime logs saved within the data/logs/ folder by dreamdeamon.
 //It works similarly to show-server-log.
 /client/proc/getruntimelog()
@@ -54,7 +53,6 @@
 	to_chat(src, run(file(path)))
 	to_chat(src, "Attempting to send file, this may take a fair few minutes if the file is very large.")
 	return
-
 
 //This proc allows download of past server logs saved within the data/logs/ folder.
 //It works similarly to show-server-log.
@@ -75,7 +73,6 @@
 	to_chat(src, "Attempting to send file, this may take a fair few minutes if the file is very large.")
 	return
 
-
 //Other log stuff put here for the sake of organisation
 
 //Shows today's server log
@@ -92,7 +89,6 @@
 		return
 	feedback_add_details("admin_verb", "VTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
-
 
 //Shows today's attack log
 /datum/admins/proc/view_atk_log()

@@ -16,7 +16,6 @@
 
 	feedback_add_details("admin_verb", "DG2") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 /* 21st Sept 2010
 Updated by Skie -- Still not perfect but better!
 Stuff you can't do:
@@ -130,7 +129,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		to_chat(usr, "<font color='blue'>[procname] returned: [returnval ? returnval : "null"]</font>")
 		feedback_add_details("admin_verb", "APC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 /client/proc/Cell()
 	set category = "Debug"
 	set name = "Cell"
@@ -169,7 +167,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	else
 		alert("Invalid mob")
 
-
 /client/proc/cmd_admin_animalize(mob/M in GLOBL.mob_list)
 	set category = "Fun"
 	set name = "Make Simple Animal"
@@ -189,7 +186,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(src)] has animalized [M.key].")
 	spawn(10)
 		M.Animalize()
-
 
 /client/proc/makepAI(turf/T in GLOBL.mob_list)
 	set category = "Fun"
@@ -359,7 +355,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem].", 0)
 	feedback_add_details("admin_verb", "DELA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 /client/proc/cmd_debug_make_powernets()
 	set category = "Debug"
 	set name = "Make Powernets"
@@ -367,7 +362,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(src)] has remade the powernet. makepowernets() called.")
 	message_admins("[key_name_admin(src)] has remade the powernets. makepowernets() called.", 0)
 	feedback_add_details("admin_verb", "MPWN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 
 /client/proc/cmd_debug_tog_aliens()
 	set category = "Server"
@@ -377,7 +371,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(src)] has turned aliens [GLOBL.aliens_allowed ? "on" : "off"].")
 	message_admins("[key_name_admin(src)] has turned aliens [GLOBL.aliens_allowed ? "on" : "off"].", 0)
 	feedback_add_details("admin_verb", "TAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 
 /client/proc/cmd_admin_grantfullaccess(mob/M in GLOBL.mob_list)
 	set category = "Admin"
@@ -410,7 +403,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(src)] has granted [M.key] full access.")
 	message_admins(SPAN_INFO("[key_name_admin(usr)] has granted [M.key] full access."), 1)
 
-
 /client/proc/cmd_assume_direct_control(mob/M in GLOBL.mob_list)
 	set category = "Admin"
 	set name = "Assume direct control"
@@ -432,7 +424,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		qdel(adminmob)
 	feedback_add_details("admin_verb", "ADC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 /client/proc/cmd_switch_radio()
 	set category = "Debug"
 	set name = "Switch Radio Mode"
@@ -442,7 +433,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(src)] has turned the experimental radio system [GLOBAL_RADIO_TYPE ? "on" : "off"].")
 	message_admins("[key_name_admin(src)] has turned the experimental radio system [GLOBAL_RADIO_TYPE ? "on" : "off"].", 0)
 	feedback_add_details("admin_verb","SRM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 
 /client/proc/cmd_admin_areatest()
 	set category = "Mapping"
@@ -532,7 +522,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	for(var/areatype in areas_without_camera)
 		world << "* [areatype]"
 
-
 /client/proc/cmd_admin_dress(mob/living/carbon/human/M in GLOBL.mob_list)
 	set category = "Fun"
 	set name = "Select equipment"
@@ -566,7 +555,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		"nanotrasen representative",
 		"nanotrasen officer",
 		"nanotrasen captain"
-		)
+	)
 
 	var/dresscode = input("Select dress for [M]", "Robust quick dress shop") as null | anything in dresspacks
 	if(isnull(dresscode))
@@ -930,7 +919,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	message_admins(SPAN_INFO("[key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode].."), 1)
 	return
 
-
 /client/proc/startSinglo()
 	set category = "Debug"
 	set name = "Start Singularity"
@@ -999,7 +987,6 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			to_chat(usr, jointext(GLOBL.dead_mob_list, ","))
 		if("Clients")
 			to_chat(usr, jointext(GLOBL.clients, ","))
-
 
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(mob/M, block)

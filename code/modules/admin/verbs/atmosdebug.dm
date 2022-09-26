@@ -23,7 +23,6 @@
 		if(!pipe.node1 || !pipe.node2)
 			to_chat(usr, "Unconnected [pipe.name] located at [pipe.x], [pipe.y], [pipe.z] ([get_area(pipe.loc)])")
 
-
 /client/proc/powerdebug()
 	set category = "Mapping"
 	set name = "Check Power"

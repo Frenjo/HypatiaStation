@@ -12,7 +12,6 @@
 	cmd_admin_pm(M.client, null)
 	feedback_add_details("admin_verb", "APMM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 //shows a list of clients we could send PMs to, then forwards our choice to cmd_admin_pm
 /client/proc/cmd_admin_pm_panel()
 	set category = "Admin"
@@ -35,7 +34,6 @@
 	var/target = input(src, "To whom shall we send a message?", "Admin PM", null) in sorted | null
 	cmd_admin_pm(targets[target],null)
 	feedback_add_details("admin_verb", "APM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 
 //takes input from cmd_admin_pm_context, cmd_admin_pm_panel or /client/Topic and sends them a PM.
 //Fetching a message if needed. src is the sender and C is the target client

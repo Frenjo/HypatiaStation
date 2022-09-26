@@ -1,6 +1,5 @@
-
 /datum/admins/proc/player_panel_new()//The new one
-	if (!usr.client.holder)
+	if(!usr.client.holder)
 		return
 	var/dat = "<html><head><title>Admin Player Panel</title></head>"
 

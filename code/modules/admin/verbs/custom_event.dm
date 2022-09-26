@@ -24,7 +24,6 @@
 	to_world(SPAN_ALERT("[html_encode(GLOBL.custom_event_msg)]"))
 	to_world("<br>")
 
-
 // normal verb for players to view info
 /client/verb/cmd_view_custom_event()
 	set category = "OOC"

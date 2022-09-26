@@ -16,7 +16,6 @@
 	else
 		alert("Admin jumping disabled")
 
-
 /client/proc/jumptoturf(turf/T in world)
 	set name = "Jump to Turf"
 	set category = "Admin"
@@ -56,7 +55,6 @@
 	else
 		alert("Admin jumping disabled")
 
-
 /client/proc/jumptocoord(tx as num, ty as num, tz as num)
 	set category = "Admin"
 	set name = "Jump to Coordinate"
@@ -76,7 +74,6 @@
 
 	else
 		alert("Admin jumping disabled")
-
 
 /client/proc/jumptokey()
 	set category = "Admin"
@@ -102,7 +99,6 @@
 	else
 		alert("Admin jumping disabled")
 
-
 /client/proc/Getmob(mob/M in GLOBL.mob_list)
 	set category = "Admin"
 	set name = "Get Mob"
@@ -119,7 +115,6 @@
 		feedback_add_details("admin_verb", "GM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
 		alert("Admin jumping disabled")
-
 
 /client/proc/Getkey()
 	set category = "Admin"
@@ -148,7 +143,6 @@
 			feedback_add_details("admin_verb", "GK") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
 		alert("Admin jumping disabled")
-
 
 /client/proc/sendmob(mob/M in sortmobs())
 	set category = "Admin"

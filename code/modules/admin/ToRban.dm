@@ -4,10 +4,10 @@
 #define TORFILE "data/ToR_ban.bdb"
 #define TOR_UPDATE_INTERVAL 216000	//~6 hours
 
-/proc/ToRban_isbanned(var/ip_address)
+/proc/ToRban_isbanned(ip_address)
 	var/savefile/F = new(TORFILE)
 	if(F)
-		if( ip_address in F.dir )
+		if(ip_address in F.dir)
 			return 1
 	return 0
 
@@ -30,10 +30,12 @@
 			fdel(TORFILE)
 			var/savefile/F = new(TORFILE)
 			for( var/line in rawlist )
-				if(!line)	continue
-				if( copytext(line,1,12) == "ExitAddress" )
-					var/cleaned = copytext(line,13,length(line)-19)
-					if(!cleaned)	continue
+				if(!line)
+					continue
+				if(copytext(line, 1, 12) == "ExitAddress")
+					var/cleaned = copytext(line, 13, length(line) - 19)
+					if(!cleaned)
+						continue
 					F[cleaned] << 1
 			F["last_update"] << world.realtime
 			log_misc("ToR data updated!")
@@ -42,10 +44,11 @@
 		log_misc("ToR data update aborted: no data.")
 		return
 
-/client/proc/ToRban(task in list("update","toggle","show","remove","remove all","find"))
+/client/proc/ToRban(task in list("update", "toggle", "show", "remove", "remove all", "find"))
 	set name = "ToRban"
 	set category = "Server"
-	if(!holder)	return
+	if(!holder)
+		return
 	switch(task)
 		if("update")
 			ToRban_update()
@@ -60,8 +63,8 @@
 		if("show")
 			var/savefile/F = new(TORFILE)
 			var/dat
-			if( length(F.dir) )
-				for( var/i=1, i<=length(F.dir), i++ )
+			if(length(F.dir))
+				for(var/i = 1, i <= length(F.dir), i++)
 					dat += "<tr><td>#[i]</td><td> [F.dir[i]]</td></tr>"
 				dat = "<table width='100%'>[dat]</table>"
 			else
@@ -69,14 +72,14 @@
 			src << browse(dat,"window=ToRban_show")
 		if("remove")
 			var/savefile/F = new(TORFILE)
-			var/choice = input(src,"Please select an IP address to remove from the ToR banlist:","Remove ToR ban",null) as null|anything in F.dir
+			var/choice = input(src,"Please select an IP address to remove from the ToR banlist:", "Remove ToR ban", null) as null | anything in F.dir
 			if(choice)
 				F.dir.Remove(choice)
 				src << "<b>Address removed</b>"
 		if("remove all")
-			src << "<b>[TORFILE] was [fdel(TORFILE)?"":"not "]removed.</b>"
+			src << "<b>[TORFILE] was [fdel(TORFILE) ? "" : "not "]removed.</b>"
 		if("find")
-			var/input = input(src,"Please input an IP address to search for:","Find ToR ban",null) as null|text
+			var/input = input(src,"Please input an IP address to search for:", "Find ToR ban", null) as null | text
 			if(input)
 				if(ToRban_isbanned(input))
 					src << "<font color='green'><b>Address is a known ToR address</b></font>"

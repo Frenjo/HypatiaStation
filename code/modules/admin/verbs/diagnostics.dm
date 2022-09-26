@@ -41,7 +41,6 @@
 
 	usr << browse(output,"window=airreport")
 
-
 /client/proc/fix_next_move()
 	set category = "Debug"
 	set name = "Unfreeze Everyone"
@@ -72,7 +71,6 @@
 	message_admins("world.time = [world.time]", 1)
 	feedback_add_details("admin_verb", "UFE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
-
 
 /client/proc/radio_report()
 	set category = "Debug"
@@ -113,7 +111,6 @@
 	usr << browse(output,"window=radioreport")
 	feedback_add_details("admin_verb", "RR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 /client/proc/reload_admins()
 	set name = "Reload Admins"
 	set category = "Debug"
@@ -124,7 +121,6 @@
 	message_admins("[usr] manually reloaded admins")
 	load_admins()
 	feedback_add_details("admin_verb", "RLDA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 
 //todo:
 /client/proc/jump_to_dead_group()
@@ -147,7 +143,6 @@
 	feedback_add_details("admin_verb","JDAG") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 	*/
-
 
 /client/proc/kill_airgroup()
 	set name = "Kill Local Airgroup"
@@ -172,7 +167,6 @@
 	feedback_add_details("admin_verb", "KLAG") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	*/
 
-
 /client/proc/print_jobban_old()
 	set name = "Print Jobban Log"
 	set desc = "This spams all the active jobban entries for the current round to standard output."
@@ -181,7 +175,6 @@
 	to_chat(usr, "<b>Jobbans active in this round.</b>")
 	for(var/t in jobban_keylist)
 		to_chat(usr, "[t]")
-
 
 /client/proc/print_jobban_old_filter()
 	set name = "Search Jobban Log"

@@ -16,7 +16,6 @@
 
 	feedback_add_details("admin_verb", "M") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 /client/proc/cmd_mod_say(msg as text)
 	set category = "Special Verbs"
 	set name = "Msay"
@@ -34,5 +33,5 @@
 	if(check_rights(R_ADMIN, 0))
 		color = "adminmod"
 	for(var/client/C in GLOBL.admins)
-		if((R_ADMIN|R_MOD) & C.holder.rights)
+		if((R_ADMIN | R_MOD) & C.holder.rights)
 			to_chat(C, "<span class='[color]'><span class='prefix'>MOD:</span> <EM>[key_name(src,1)]</EM> (<A HREF='?src=\ref[C.holder];adminplayerobservejump=\ref[mob]'>JMP</A>): <span class='message'>[msg]</span></span>")

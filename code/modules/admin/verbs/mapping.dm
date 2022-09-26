@@ -18,7 +18,6 @@
 //- Check for any misplaced or stacked piece of wire
 //- Identify how hard it is to break into the area and where the weak points are
 //- Check if the area has too much empty space. If so, make it smaller and replace the rest with maintenance tunnels.
-
 GLOBAL_GLOBL_INIT(camera_range_display_status, 0)
 GLOBAL_GLOBL_INIT(intercom_range_display_status, 0)
 
@@ -30,7 +29,6 @@ GLOBAL_GLOBL_INIT(intercom_range_display_status, 0)
 	src.pixel_x = -224
 	src.pixel_y = -224
 
-
 /obj/effect/debugging/marker
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "yellow"
@@ -38,13 +36,11 @@ GLOBAL_GLOBL_INIT(intercom_range_display_status, 0)
 /obj/effect/debugging/marker/Move()
 	return 0
 
-
 /client/proc/do_not_use_these()
 	set category = "Mapping"
 	set name = "-None of these are for ingame use!!"
 
 	return
-
 
 /client/proc/camera_view()
 	set category = "Mapping"
@@ -62,7 +58,6 @@ GLOBAL_GLOBL_INIT(intercom_range_display_status, 0)
 		for(var/obj/machinery/camera/C in cameranet.cameras)
 			new/obj/effect/debugging/camera_range(C.loc)
 	feedback_add_details("admin_verb", "mCRD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 
 /client/proc/sec_camera_report()
 	set category = "Mapping"
@@ -124,7 +119,6 @@ GLOBAL_GLOBL_INIT(intercom_range_display_status, 0)
 					qdel(F)
 	feedback_add_details("admin_verb", "mIRD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 var/list/debug_verbs = list(
 	/client/proc/do_not_use_these,
 	/client/proc/camera_view,
@@ -161,8 +155,7 @@ var/list/debug_verbs = list(
 	/client/proc/hide_debug_verbs,
 	/client/proc/testZAScolors,
 	/client/proc/testZAScolors_remove
-	)
-
+)
 
 /client/proc/enable_debug_verbs()
 	set category = "Debug"
@@ -175,7 +168,6 @@ var/list/debug_verbs = list(
 
 	feedback_add_details("admin_verb", "mDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 /client/proc/hide_debug_verbs()
 	set category = "Debug"
 	set name = "Hide Debug verbs"
@@ -186,7 +178,6 @@ var/list/debug_verbs = list(
 	verbs -= debug_verbs
 
 	feedback_add_details("admin_verb", "hDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 
 /client/var/list/testZAScolors_turfs = list()
 /client/var/list/testZAScolors_zones = list()
@@ -207,7 +198,6 @@ var/list/debug_verbs = list(
 		if(connected in testZAScolors_zones)
 			continue
 		recurse_zone(connected, recurse_level + 1)
-
 
 /client/proc/testZAScolors()
 	set category = "ZAS"
@@ -259,7 +249,6 @@ var/list/debug_verbs = list(
 		images += image(red, T, "zasdebug", TURF_LAYER)
 		testZAScolors_turfs += T
 
-
 /client/proc/testZAScolors_remove()
 	set category = "ZAS"
 	set name = "Remove ZAS connection colors"
@@ -271,7 +260,6 @@ var/list/debug_verbs = list(
 		for(var/image/i in images)
 			if(i.icon_state == "zasdebug")
 				images.Remove(i)
-
 
 /client/proc/rebootAirMaster()
 	set category = "ZAS"
@@ -286,7 +274,6 @@ var/list/debug_verbs = list(
 		air_master.setup()
 		spawn()
 			air_master.Start()
-
 
 /client/proc/count_objects_on_z_level()
 	set category = "Mapping"
@@ -336,7 +323,6 @@ var/list/debug_verbs = list(
 	world << "There are [count] objects of type [type_path] on z-level [num_level]"
 	feedback_add_details("admin_verb", "mOBJZ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 /client/proc/count_objects_all()
 	set category = "Mapping"
 	set name = "Count Objects All"
@@ -366,7 +352,6 @@ var/list/debug_verbs = list(
 	world << "There are [count] objects of type [type_path] in the game world"
 	feedback_add_details("admin_verb", "mOBJ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 var/global/prevent_airgroup_regroup = 0
 /client/proc/break_all_air_groups()
 	set category = "Mapping"
@@ -379,7 +364,6 @@ var/global/prevent_airgroup_regroup = 0
 		AG.suspend_group_processing()
 	message_admins("[src.ckey] used 'Break All Airgroups'")*/
 
-
 /client/proc/regroup_all_air_groups()
 	set category = "Mapping"
 	set name = "Regroup All Airgroups Attempt"
@@ -391,7 +375,6 @@ var/global/prevent_airgroup_regroup = 0
 		AG.check_regroup()
 	message_admins("[src.ckey] used 'Regroup All Airgroups Attempt'")*/
 
-
 /client/proc/kill_pipe_processing()
 	set category = "Mapping"
 	set name = "Kill pipe processing"
@@ -402,7 +385,6 @@ var/global/prevent_airgroup_regroup = 0
 	else
 		message_admins("[src.ckey] used 'kill pipe processing', restoring all pipe processing.")
 
-
 /client/proc/kill_air_processing()
 	set category = "Mapping"
 	set name = "Kill air processing"
@@ -412,7 +394,6 @@ var/global/prevent_airgroup_regroup = 0
 		message_admins("[src.ckey] used 'kill air processing', stopping all air processing.")
 	else
 		message_admins("[src.ckey] used 'kill air processing', restoring all air processing.")
-
 
 //This proc is intended to detect lag problems relating to communication procs
 var/global/say_disabled = 0
@@ -425,7 +406,6 @@ var/global/say_disabled = 0
 		message_admins("[src.ckey] used 'Disable all communication verbs', killing all communication methods.")
 	else
 		message_admins("[src.ckey] used 'Disable all communication verbs', restoring all communication methods.")
-
 
 //This proc is intended to detect lag problems relating to movement
 var/global/movement_disabled = 0
