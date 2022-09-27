@@ -16,6 +16,10 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 	mouse_opacity = 0
 	simulated = FALSE
 
+/obj/parallax_master/bluespace
+	plane = SPACE_DUST_PLANE
+	blend_mode = BLEND_ADD
+
 /obj/space_parallax
 	name = "space"
 	icon = 'icons/mob/screen1_full.dmi'
@@ -53,28 +57,32 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 	var/star_type = pick(prob(100); 0, prob(50); 1, prob(10); 2, prob(1); 3, prob(10); 4, prob(15); 5, prob(75); 6)
 	icon_state = "bstar[star_type]"
 
+/client
+	var/obj/parallax_master/parallax_master
+	var/obj/parallax_master/bluespace/bluespace_master
+	var/obj/space_parallax/space_parallax
+
 /client/proc/apply_parallax()
 	// SPESS BACKGROUND
-	if(!parallax_master && !space_parallax)
+	if(!parallax_master && !bluespace_master && !space_parallax)
 		parallax_master = new /obj/parallax_master()
+		bluespace_master = new /obj/parallax_master/bluespace()
 		space_parallax = new /obj/space_parallax()
 	
 	space_parallax.overlays |= GLOBL.parallax_stars
 	screen |= list(parallax_master, space_parallax)
 
 /client/proc/set_parallax_space(parallax_type)
-	var/is_bluespace = (type == PARALLAX_BLUESPACE)
+	var/is_bluespace = (parallax_type == PARALLAX_BLUESPACE)
 	space_parallax.icon_state = is_bluespace ? "bluespace" : "space_blank"
 	space_parallax.overlays.Cut()
 
 	if(is_bluespace)
 		space_parallax.overlays |= GLOBL.parallax_bluespace_stars
+		screen |= bluespace_master
 	else
 		space_parallax.overlays |= GLOBL.parallax_stars
-
-/client
-	var/obj/parallax_master
-	var/obj/space_parallax
+		screen -= bluespace_master
 
 /mob/Move()
 	. = ..()

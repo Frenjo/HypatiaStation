@@ -1,5 +1,7 @@
 /*
 	From stddef.dm, planes & layers built into BYOND:
+		FLOAT_PLANE = -32767
+		------
 		FLOAT_LAYER = -1
 		AREA_LAYER = 1
 		TURF_LAYER = 2
@@ -9,11 +11,6 @@
 		EFFECTS_LAYER = 5000
 		TOPDOWN_LAYER = 10000
 		BACKGROUND_LAYER = 20000
-		EFFECTS_LAYER = 5000
-		TOPDOWN_LAYER = 10000
-		BACKGROUND_LAYER = 20000
-		------
-		FLOAT_PLANE = -32767
 */
 
 /*
