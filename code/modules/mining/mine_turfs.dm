@@ -1,8 +1,8 @@
-/**********************Mineral deposits**************************/
-
-
+/*
+ * Mineral Deposits
+ */
 /datum/controller/master/var/list/artifact_spawning_turfs = list()
-var/list/artifact_spawn = list() // Runtime fix for geometry loading before controller is instantiated.
+GLOBAL_GLOBL_LIST_NEW(artifact_spawn) // Runtime fix for geometry loading before controller is instantiated.
 
 /turf/simulated/mineral //wall piece
 	name = "Rock"
@@ -14,6 +14,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 	density = TRUE
 	blocks_air = 1
 	temperature = T0C
+
 	var/mineral/mineral
 	var/mined_ore = 0
 	var/last_act = 0
@@ -27,7 +28,6 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 	var/obj/item/weapon/last_find
 	var/datum/artifact_find/artifact_find
 
-
 /turf/simulated/mineral/New()
 	. = ..()
 
@@ -35,21 +35,21 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 
 	spawn(1)
 		var/turf/T
-		if((istype(get_step(src, NORTH), /turf/simulated/floor)) || (istype(get_step(src, NORTH), /turf/space)) || (istype(get_step(src, NORTH), /turf/simulated/shuttle/floor)))
+		if(istype(get_step(src, NORTH), /turf/simulated/floor) || istype(get_step(src, NORTH), /turf/space) || istype(get_step(src, NORTH), /turf/simulated/shuttle/floor))
 			T = get_step(src, NORTH)
-			if (T)
+			if(T)
 				T.overlays += image('icons/turf/walls.dmi', "rock_side_s")
-		if((istype(get_step(src, SOUTH), /turf/simulated/floor)) || (istype(get_step(src, SOUTH), /turf/space)) || (istype(get_step(src, SOUTH), /turf/simulated/shuttle/floor)))
+		if(istype(get_step(src, SOUTH), /turf/simulated/floor) || istype(get_step(src, SOUTH), /turf/space) || istype(get_step(src, SOUTH), /turf/simulated/shuttle/floor))
 			T = get_step(src, SOUTH)
-			if (T)
+			if(T)
 				T.overlays += image('icons/turf/walls.dmi', "rock_side_n", layer = 6)
-		if((istype(get_step(src, EAST), /turf/simulated/floor)) || (istype(get_step(src, EAST), /turf/space)) || (istype(get_step(src, EAST), /turf/simulated/shuttle/floor)))
+		if(istype(get_step(src, EAST), /turf/simulated/floor) || istype(get_step(src, EAST), /turf/space) || istype(get_step(src, EAST), /turf/simulated/shuttle/floor))
 			T = get_step(src, EAST)
-			if (T)
+			if(T)
 				T.overlays += image('icons/turf/walls.dmi', "rock_side_w", layer = 6)
-		if((istype(get_step(src, WEST), /turf/simulated/floor)) || (istype(get_step(src, WEST), /turf/space)) || (istype(get_step(src, WEST), /turf/simulated/shuttle/floor)))
+		if(istype(get_step(src, WEST), /turf/simulated/floor) || istype(get_step(src, WEST), /turf/space) || istype(get_step(src, WEST), /turf/simulated/shuttle/floor))
 			T = get_step(src, WEST)
-			if (T)
+			if(T)
 				T.overlays += image('icons/turf/walls.dmi', "rock_side_e", layer = 6)
 
 /turf/simulated/mineral/ex_act(severity)
@@ -66,9 +66,9 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 	. = ..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		if((istype(H.l_hand, /obj/item/weapon/pickaxe)) && (!H.hand))
+		if(istype(H.l_hand, /obj/item/weapon/pickaxe) && !H.hand)
 			attackby(H.l_hand, H)
-		else if((istype(H.r_hand, /obj/item/weapon/pickaxe)) && H.hand)
+		else if(istype(H.r_hand, /obj/item/weapon/pickaxe) && H.hand)
 			attackby(H.r_hand, H)
 
 	else if(isrobot(AM))
@@ -91,7 +91,6 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 					target_turf.UpdateMineral()
 					target_turf.MineralSpread()
 
-
 /turf/simulated/mineral/proc/UpdateMineral()
 	if(!mineral)
 		name = "\improper Rock"
@@ -99,7 +98,6 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 		return
 	name = "\improper [mineral.display_name] deposit"
 	icon_state = "rock_[mineral.name]"
-
 
 	//Not even going to touch this pile of spaghetti
 /turf/simulated/mineral/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -120,9 +118,12 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 
 	if(istype(W, /obj/item/device/measuring_tape))
 		var/obj/item/device/measuring_tape/P = W
-		user.visible_message(SPAN_INFO("[user] extends [P] towards [src]."), SPAN_INFO("You extend [P] towards [src]."))
+		user.visible_message(
+			SPAN_INFO("[user] extends [P] towards [src]."),
+			SPAN_INFO("You extend [P] towards [src].")
+		)
 		if(do_after(user, 25))
-			to_chat(user, SPAN_INFO("\icon[P] [src] has been excavated to a depth of [2*excavation_level]cm."))
+			to_chat(user, SPAN_INFO("\icon[P] [src] has been excavated to a depth of [2 * excavation_level]cm."))
 		return
 
 	if(istype(W, /obj/item/weapon/pickaxe))
@@ -352,11 +353,11 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 	var/mineral_name = MATERIAL_BANANIUM
 
 /turf/simulated/mineral/bananium/New()
-	if(!name_to_mineral)
+	if(!GLOBL.name_to_mineral)
 		SetupMinerals()
 
-	if(mineral_name in name_to_mineral)
-		mineral = name_to_mineral[mineral_name]
+	if(mineral_name in GLOBL.name_to_mineral)
+		mineral = GLOBL.name_to_mineral[mineral_name]
 		UpdateMineral()
 
 	. = ..()
@@ -366,11 +367,11 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 	var/mineral_name = MATERIAL_DIAMOND
 
 /turf/simulated/mineral/diamond/New()
-	if(!name_to_mineral)
+	if(!GLOBL.name_to_mineral)
 		SetupMinerals()
 
-	if(mineral_name in name_to_mineral)
-		mineral = name_to_mineral[mineral_name]
+	if(mineral_name in GLOBL.name_to_mineral)
+		mineral = GLOBL.name_to_mineral[mineral_name]
 		UpdateMineral()
 
 	. = ..()
@@ -380,11 +381,11 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 	var/mineral_name = MATERIAL_SILVER
 
 /turf/simulated/mineral/silver/New()
-	if(!name_to_mineral)
+	if(!GLOBL.name_to_mineral)
 		SetupMinerals()
 
-	if(mineral_name in name_to_mineral)
-		mineral = name_to_mineral[mineral_name]
+	if(mineral_name in GLOBL.name_to_mineral)
+		mineral = GLOBL.name_to_mineral[mineral_name]
 		UpdateMineral()
 
 	. = ..()
@@ -394,11 +395,11 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 	var/mineral_name = MATERIAL_GOLD
 
 /turf/simulated/mineral/gold/New()
-	if(!name_to_mineral)
+	if(!GLOBL.name_to_mineral)
 		SetupMinerals()
 
-	if(mineral_name in name_to_mineral)
-		mineral = name_to_mineral[mineral_name]
+	if(mineral_name in GLOBL.name_to_mineral)
+		mineral = GLOBL.name_to_mineral[mineral_name]
 		UpdateMineral()
 
 	. = ..()
@@ -407,48 +408,44 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 /turf/simulated/mineral/random
 	name = "Mineral deposit"
 	var/mineralSpawnChanceList = list(
-		MATERIAL_URANIUM = 7,
+		MATERIAL_URANIUM = 5,
 		"Iron" = 40,
-		MATERIAL_DIAMOND = 3,
-		MATERIAL_GOLD = 7,
-		MATERIAL_SILVER = 7,
+		MATERIAL_DIAMOND = 1,
+		MATERIAL_GOLD = 5,
+		MATERIAL_SILVER = 5,
 		MATERIAL_PLASMA = 25,
-		MATERIAL_BANANIUM = 2,
-		MATERIAL_ADAMANTINE = 1,
-		MATERIAL_MYTHRIL = 1
+		MATERIAL_BANANIUM = 1
 	)
-	var/mineralChance = 9 //means 9% chance of this plot changing to a mineral deposit
+	var/mineralChance = 10 // Means 10% chance of this plot changing to a mineral deposit.
 
 /turf/simulated/mineral/random/New()
 	if(prob(mineralChance) && !mineral)
 		var/mineral_name = pickweight(mineralSpawnChanceList) //temp mineral name
 
-		if(!name_to_mineral)
+		if(!GLOBL.name_to_mineral)
 			SetupMinerals()
 
-		if(mineral_name && (mineral_name in name_to_mineral))
-			mineral = name_to_mineral[mineral_name]
+		if(mineral_name && (mineral_name in GLOBL.name_to_mineral))
+			mineral = GLOBL.name_to_mineral[mineral_name]
 			UpdateMineral()
 
 	. = ..()
 
 /turf/simulated/mineral/random/high_chance
-	mineralChance = 24
+	mineralChance = 25
 	mineralSpawnChanceList = list(
-		MATERIAL_URANIUM = 12,
+		MATERIAL_URANIUM = 10,
 		"Iron" = 30,
-		MATERIAL_DIAMOND = 4,
-		MATERIAL_GOLD = 12,
-		MATERIAL_SILVER = 12,
+		MATERIAL_DIAMOND = 2,
+		MATERIAL_GOLD = 10,
+		MATERIAL_SILVER = 10,
 		MATERIAL_PLASMA = 25,
-		MATERIAL_CLOWN = 3,
-		MATERIAL_ADAMANTINE = 2,
-		MATERIAL_MYTHRIL = 2
+		MATERIAL_BANANIUM = 2
 	)
 
-
-/**********************Asteroid**************************/
-
+/*
+ * Asteroid
+ */
 /turf/simulated/floor/plating/airless/asteroid //floor piece
 	name = "Asteroid"
 	icon = 'icons/turf/floors.dmi'
@@ -457,7 +454,7 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 	nitrogen = 0
 	temperature = TCMB
 	icon_plating = "asteroid"
-	var/dug = 0       //0 = has not yet been dug, 1 = has already been dug
+	var/dug = 0	//0 = has not yet been dug, 1 = has already been dug
 
 /turf/simulated/floor/plating/airless/asteroid/New()
 	var/proper_name = name
@@ -486,9 +483,9 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 	if(!W || !user)
 		return 0
 
-	if((istype(W, /obj/item/weapon/shovel)))
+	if(istype(W, /obj/item/weapon/shovel))
 		var/turf/T = user.loc
-		if(!(isturf(T)))
+		if(!isturf(T))
 			return
 
 		if(dug)
@@ -503,9 +500,9 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 			to_chat(user, SPAN_INFO("You dug a hole."))
 			gets_dug()
 
-	if((istype(W, /obj/item/weapon/pickaxe/drill)))
+	if(istype(W, /obj/item/weapon/pickaxe/drill))
 		var/turf/T = user.loc
-		if(!(isturf(T)))
+		if(!isturf(T))
 			return
 
 		if(dug)
@@ -520,9 +517,9 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 			to_chat(user, SPAN_INFO("You dug a hole."))
 			gets_dug()
 
-	if((istype(W, /obj/item/weapon/pickaxe/diamonddrill)) || (istype(W, /obj/item/weapon/pickaxe/borgdrill)))
+	if(istype(W, /obj/item/weapon/pickaxe/diamonddrill) || istype(W, /obj/item/weapon/pickaxe/borgdrill))
 		var/turf/T = user.loc
-		if(!(istype(T, /turf)))
+		if(!istype(T, /turf))
 			return
 
 		if(dug)
@@ -551,11 +548,8 @@ var/list/artifact_spawn = list() // Runtime fix for geometry loading before cont
 /turf/simulated/floor/plating/airless/asteroid/proc/gets_dug()
 	if(dug)
 		return
-	new/obj/item/weapon/ore/glass(src)
-	new/obj/item/weapon/ore/glass(src)
-	new/obj/item/weapon/ore/glass(src)
-	new/obj/item/weapon/ore/glass(src)
-	new/obj/item/weapon/ore/glass(src)
+	for(var/i = 0; i < 5; i++)
+		new /obj/item/weapon/ore/glass(src)
 	dug = 1
 	icon_plating = "asteroid_dug"
 	icon_state = "asteroid_dug"

@@ -43,8 +43,8 @@
 
 		//dont create artifact machinery in animal or plant digsites, or if we already have one
 		if(!M.artifact_find && digsite != 1 && digsite != 2 && prob(ARTIFACT_SPAWN_CHANCE))
-			M.artifact_find = new()
-			artifact_spawn.Add(src)
+			M.artifact_find = new /datum/artifact_find()
+			GLOBL.artifact_spawn.Add(src)
 
 
 //---- Noticeboard

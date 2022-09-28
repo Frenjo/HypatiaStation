@@ -1,30 +1,26 @@
-/**********************Unloading unit**************************/
-
+/*
+ * Unloading Unit
+ */
 /obj/machinery/mineral/unloading_machine
 	name = "unloading machine"
-	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "unloader"
-	density = TRUE
-	anchored = TRUE
+
 	var/obj/machinery/mineral/input = null
 	var/obj/machinery/mineral/output = null
 
-/obj/machinery/mineral/unloading_machine/New()
+/obj/machinery/mineral/unloading_machine/initialize()
 	..()
-	spawn(5)
-		for(var/dir in GLOBL.cardinal)
-			src.input = locate(/obj/machinery/mineral/input, get_step(src, dir))
-			if(src.input)
-				break
-		for(var/dir in GLOBL.cardinal)
-			src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
-			if(src.output)
-				break
-		return
-	return
+	for(var/dir in GLOBL.cardinal)
+		input = locate(/obj/machinery/mineral/input, get_step(src, dir))
+		if(input)
+			break
+	for(var/dir in GLOBL.cardinal)
+		output = locate(/obj/machinery/mineral/output, get_step(src, dir))
+		if(output)
+			break
 
 /obj/machinery/mineral/unloading_machine/process()
-	if(src.output && src.input)
+	if(output && input)
 		if(locate(/obj/structure/ore_box, input.loc))
 			var/obj/structure/ore_box/BOX = locate(/obj/structure/ore_box, input.loc)
 			var/i = 0
@@ -38,7 +34,7 @@
 			var/obj/item/O
 			for(var/i = 0; i < 10; i++)
 				O = locate(/obj/item, input.loc)
-				if (O)
+				if(O)
 					O.loc = src.output.loc
 				else
 					return

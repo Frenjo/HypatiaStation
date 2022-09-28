@@ -4,10 +4,11 @@
 	icon_state = "securecrate"
 	icon_opened = "securecrateopen"
 	icon_closed = "securecrate"
+	locked = TRUE
+
 	var/code = null
 	var/lastattempt = null
 	var/attempts = 3
-	locked = 1
 	var/min = 1
 	var/max = 10
 

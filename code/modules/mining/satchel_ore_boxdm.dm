@@ -6,6 +6,7 @@
 	name = "Ore Box"
 	desc = "A heavy box used for storing ore."
 	density = TRUE
+
 	var/amt_gold = 0
 	var/amt_silver = 0
 	var/amt_diamond = 0
@@ -14,8 +15,6 @@
 	var/amt_phoron = 0
 	var/amt_uranium = 0
 	var/amt_bananium = 0
-	var/amt_adamantine = 0
-	var/amt_mythril = 0
 	var/amt_strange = 0
 	var/last_update = 0
 
@@ -39,8 +38,6 @@
 	var/amt_plasma = 0
 	var/amt_uranium = 0
 	var/amt_clown = 0
-	var/amt_adamantine = 0
-	var/amt_mythril = 0
 	var/amt_strange = 0
 
 	for(var/obj/item/weapon/ore/C in contents)
@@ -60,10 +57,6 @@
 			amt_uranium++;
 		if(istype(C, /obj/item/weapon/ore/bananium))
 			amt_bananium++;
-		if(istype(C, /obj/item/weapon/ore/adamantine))
-			amt_adamantine++;
-		if(istype(C, /obj/item/weapon/ore/mythril))
-			amt_mythril++;
 		if(istype(C, /obj/item/weapon/ore/strangerock))
 			amt_strange++;
 
@@ -84,10 +77,6 @@
 		dat += text("Uranium ore: [amt_uranium]<br>")
 	if(amt_clown)
 		dat += text("Bananium ore: [amt_bananium]<br>")
-	if(amt_adamantine)
-		dat += text("Adamantine ore: [amt_adamantine]<br>")
-	if(amt_mythril)
-		dat += text("Mythril ore: [amt_mythril]<br>")
 	if(amt_strange)
 		dat += text("Strange rocks: [amt_strange]<br>")
 
@@ -107,4 +96,3 @@
 		to_chat(usr, SPAN_INFO("You empty the box."))
 	src.updateUsrDialog()
 	return
-

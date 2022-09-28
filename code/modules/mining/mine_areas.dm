@@ -1,5 +1,6 @@
-/**********************Mine areas**************************/
-
+/*
+ * Mine Areas
+ */
 /area/mine
 	icon_state = "mining"
 	ambience = list(

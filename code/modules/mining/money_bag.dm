@@ -1,5 +1,6 @@
-/*****************************Money bag********************************/
-
+/*
+ * Money Bag
+ */
 /obj/item/weapon/moneybag
 	icon = 'icons/obj/storage/storage.dmi'
 	name = "Money bag"
@@ -16,7 +17,7 @@
 	var/amt_iron = 0
 	var/amt_plasma = 0
 	var/amt_uranium = 0
-	var/amt_clown = 0
+	var/amt_bananium = 0
 	var/amt_adamantine = 0
 	var/amt_mythril = 0
 
@@ -34,7 +35,7 @@
 		if(istype(C, /obj/item/weapon/coin/uranium))
 			amt_uranium++
 		if(istype(C, /obj/item/weapon/coin/bananium))
-			amt_clown++
+			amt_bananium++
 		if(istype(C, /obj/item/weapon/coin/adamantine))
 			amt_adamantine++
 		if(istype(C, /obj/item/weapon/coin/mythril))
@@ -53,8 +54,8 @@
 		dat += text("Plasma coins: [amt_plasma] <A href='?src=\ref[src];remove=[MATERIAL_PLASMA]'>Remove one</A><br>")
 	if(amt_uranium)
 		dat += text("Uranium coins: [amt_uranium] <A href='?src=\ref[src];remove=[MATERIAL_URANIUM]'>Remove one</A><br>")
-	if(amt_clown)
-		dat += text("Bananium coins: [amt_clown] <A href='?src=\ref[src];remove=[MATERIAL_BANANIUM]'>Remove one</A><br>")
+	if(amt_bananium)
+		dat += text("Bananium coins: [amt_bananium] <A href='?src=\ref[src];remove=[MATERIAL_BANANIUM]'>Remove one</A><br>")
 	if(amt_adamantine)
 		dat += text("Adamantine coins: [amt_adamantine] <A href='?src=\ref[src];remove=[MATERIAL_ADAMANTINE]'>Remove one</A><br>")
 	if(amt_mythril)
@@ -71,7 +72,7 @@
 	if(istype(W, /obj/item/weapon/moneybag))
 		var/obj/item/weapon/moneybag/C = W
 		for(var/obj/O in C.contents)
-			contents += O;
+			contents += O
 		to_chat(user, SPAN_INFO("You empty the [C.name] into the bag."))
 	return
 
@@ -82,34 +83,34 @@
 	src.add_fingerprint(usr)
 
 	if(href_list["remove"])
-		var/obj/item/weapon/coin/COIN
+		var/obj/item/weapon/coin/coin
 		switch(href_list["remove"])
 			if(MATERIAL_GOLD)
-				COIN = locate(/obj/item/weapon/coin/gold, src.contents)
+				coin = locate(/obj/item/weapon/coin/gold, src.contents)
 			if(MATERIAL_SILVER)
-				COIN = locate(/obj/item/weapon/coin/silver, src.contents)
+				coin = locate(/obj/item/weapon/coin/silver, src.contents)
 			if(MATERIAL_METAL)
-				COIN = locate(/obj/item/weapon/coin/iron, src.contents)
+				coin = locate(/obj/item/weapon/coin/iron, src.contents)
 			if(MATERIAL_DIAMOND)
-				COIN = locate(/obj/item/weapon/coin/diamond, src.contents)
+				coin = locate(/obj/item/weapon/coin/diamond, src.contents)
 			if(MATERIAL_PLASMA)
-				COIN = locate(/obj/item/weapon/coin/plasma, src.contents)
+				coin = locate(/obj/item/weapon/coin/plasma, src.contents)
 			if(MATERIAL_URANIUM)
-				COIN = locate(/obj/item/weapon/coin/uranium, src.contents)
+				coin = locate(/obj/item/weapon/coin/uranium, src.contents)
 			if(MATERIAL_BANANIUM)
-				COIN = locate(/obj/item/weapon/coin/bananium, src.contents)
+				coin = locate(/obj/item/weapon/coin/bananium, src.contents)
 			if(MATERIAL_ADAMANTINE)
-				COIN = locate(/obj/item/weapon/coin/adamantine, src.contents)
+				coin = locate(/obj/item/weapon/coin/adamantine, src.contents)
 			if(MATERIAL_MYTHRIL)
-				COIN = locate(/obj/item/weapon/coin/mythril, src.contents)
-		if(!COIN)
+				coin = locate(/obj/item/weapon/coin/mythril, src.contents)
+		if(!coin)
 			return
-		COIN.loc = src.loc
+		coin.loc = src.loc
 	return
 
-
-/obj/item/weapon/moneybag/vault
-
+/*
+ * Vault Money Bag
+ */
 /obj/item/weapon/moneybag/vault/New()
 	..()
 	new /obj/item/weapon/coin/silver(src)

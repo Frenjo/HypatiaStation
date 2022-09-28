@@ -1,5 +1,6 @@
-/**********************Light************************/
-
+/*
+ * Light
+ */
 //this item is intended to give the effect of entering the mine, so that light gradually fades
 /obj/effect/light_emitter
 	name = "Light-emtter"
@@ -7,8 +8,9 @@
 	unacidable = 1
 	light_range = 8
 
-/**********************Miner Lockers**************************/
-
+/*
+ * Miner Lockers
+ */
 /obj/structure/closet/secure_closet/miner
 	name = "miner's equipment"
 	icon_state = "miningsec1"
@@ -21,7 +23,6 @@
 
 /obj/structure/closet/secure_closet/miner/New()
 	..()
-
 	if(prob(50))
 		new /obj/item/weapon/storage/backpack/industrial(src)
 	else
@@ -38,20 +39,23 @@
 	new /obj/item/weapon/pickaxe(src)
 	new /obj/item/clothing/glasses/meson(src)
 
-/**********************Shuttle Computer**************************/
-
+/*
+ * Shuttle Computer
+ */
 // MOVED TO /obj/machinery/computer/shuttle_control/mining
 
-/******************************Lantern*******************************/
-
+/*
+ * Lantern
+ */
 /obj/item/device/flashlight/lantern
 	name = "lantern"
 	icon_state = "lantern"
 	desc = "A mining lantern."
 	brightness_on = 6			// luminosity when on
 
-/*****************************Pickaxe********************************/
-
+/*
+ * Pickaxe
+ */
 /obj/item/weapon/pickaxe
 	name = "pickaxe"
 	icon = 'icons/obj/items.dmi'
@@ -63,14 +67,16 @@
 	item_state = "pickaxe"
 	w_class = 4.0
 	m_amt = 3750 //one sheet, but where can you make them?
-	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_ENGINEERING = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
-	var/drill_sound = 'sound/weapons/Genhit.ogg'
-	var/drill_verb = "picking"
 	sharp = 1
 
 	var/excavation_amount = 100
+
+	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
+
+	var/drill_sound = 'sound/weapons/Genhit.ogg'
+	var/drill_verb = "picking"
 
 /obj/item/weapon/pickaxe/hammer
 	name = "sledgehammer"
@@ -147,8 +153,9 @@
 	desc = ""
 	drill_verb = "drilling"
 
-/*****************************Shovel********************************/
-
+/*
+ * Shovel
+ */
 /obj/item/weapon/shovel
 	name = "shovel"
 	desc = "A large tool for digging and moving dirt."
@@ -173,8 +180,11 @@
 	throwforce = 7.0
 	w_class = 2.0
 
-/**********************Mining car (Crate like thing, not the rail car)**************************/
-
+/*
+ * Mining Car
+ * 
+ * (Crate-like thing, not the rail car.)
+ */
 /obj/structure/closet/crate/miningcar
 	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
 	name = "Mining car (not for rails)"

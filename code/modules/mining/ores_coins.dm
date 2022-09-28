@@ -1,71 +1,63 @@
-/**********************Mineral ores**************************/
-
+/*
+ * Mineral Ores
+ */
 /obj/item/weapon/ore
-	name = "Rock"
+	name = "rock"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "ore2"
+
 	var/datum/geosample/geologic_data
 
 /obj/item/weapon/ore/uranium
-	name = "Uranium ore"
-	icon_state = "Uranium ore"
+	name = "uranium ore"
+	icon_state = "uranium_ore"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 5)
 
 /obj/item/weapon/ore/iron
-	name = "Iron ore"
-	icon_state = "Iron ore"
+	name = "iron ore"
+	icon_state = "iron_ore"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
 
 /obj/item/weapon/ore/glass
-	name = "Sand"
-	icon_state = "Glass ore"
+	name = "sand"
+	icon_state = "glass_ore"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
 
 /obj/item/weapon/ore/glass/attack_self(mob/living/user as mob) //It's magic I ain't gonna explain how instant conversion with no tool works. -- Urist
 	var/location = get_turf(user)
-	for(var/obj/item/weapon/ore/glass/sandToConvert in location)
+	for(var/obj/item/weapon/ore/glass/sand in location)
 		new /obj/item/stack/sheet/mineral/sandstone(location)
-		qdel(sandToConvert)
+		qdel(sand)
 	new /obj/item/stack/sheet/mineral/sandstone(location)
 	qdel(src)
 
 /obj/item/weapon/ore/plasma
-	name = "Plasma ore"
-	icon_state = "Plasma ore"
+	name = "plasma ore"
+	icon_state = "plasma_ore"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2)
 
 /obj/item/weapon/ore/silver
-	name = "Silver ore"
-	icon_state = "Silver ore"
+	name = "silver ore"
+	icon_state = "silver_ore"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 3)
 
 /obj/item/weapon/ore/gold
-	name = "Gold ore"
-	icon_state = "Gold ore"
+	name = "gold ore"
+	icon_state = "gold_ore"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 4)
 
 /obj/item/weapon/ore/diamond
-	name = "Diamond ore"
-	icon_state = "Diamond ore"
+	name = "diamond ore"
+	icon_state = "diamond_ore"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 6)
 
 /obj/item/weapon/ore/bananium
-	name = "Bananium ore"
-	icon_state = "Bananium ore"
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 4)
-
-/obj/item/weapon/ore/adamantine
-	name = "Adamantine ore"
-	icon_state = "Adamantine ore"
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 4)
-
-/obj/item/weapon/ore/mythril
-	name = "Mythril ore"
-	icon_state = "Mythril ore"
+	name = "bananium ore"
+	icon_state = "bananium_ore"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 4)
 
 /obj/item/weapon/ore/slag
-	name = "Slag"
+	name = "slag"
 	desc = "Completely useless"
 	icon_state = "slag"
 
@@ -80,17 +72,19 @@
 	else
 		return ..()
 
-/*****************************Coin********************************/
-
+/*
+ * Coins
+ */
 /obj/item/weapon/coin
 	icon = 'icons/obj/items.dmi'
-	name = "Coin"
+	name = "coin"
 	icon_state = "coin"
 	flags = CONDUCT
 	force = 0.0
 	throwforce = 0.0
 	w_class = 1.0
-	var/string_attached
+
+	var/string_attached = FALSE
 	var/sides = 2
 
 /obj/item/weapon/coin/New()
@@ -146,7 +140,7 @@
 			return
 
 		overlays += image('icons/obj/items.dmi', "coin_string_overlay")
-		string_attached = 1
+		string_attached = TRUE
 		to_chat(user, SPAN_INFO("You attach a string to the coin."))
 		CC.use(1)
 
@@ -159,7 +153,7 @@
 		CC.amount = 1
 		CC.update_icon()
 		overlays = list()
-		string_attached = null
+		string_attached = FALSE
 		to_chat(user, SPAN_INFO("You detach the string from the coin."))
 	else ..()
 
@@ -170,5 +164,7 @@
 		comment = "tails"
 	else if(result == 2)
 		comment = "heads"
-	user.visible_message(SPAN_NOTICE("[user] has thrown \the [src]. It lands on [comment]!"), \
-						 SPAN_NOTICE("You throw \the [src]. It lands on [comment]!"))
+	user.visible_message(
+		SPAN_NOTICE("[user] has thrown \the [src]. It lands on [comment]!"),
+		SPAN_NOTICE("You throw \the [src]. It lands on [comment]!")
+	)

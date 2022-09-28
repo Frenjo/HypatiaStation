@@ -1,12 +1,12 @@
-var/list/name_to_mineral
+GLOBAL_GLOBL_LIST(name_to_mineral)
 
 /proc/SetupMinerals()
-	name_to_mineral = list()
+	GLOBL.name_to_mineral = list()
 	for(var/type in SUBTYPESOF(/mineral))
 		var/mineral/new_mineral = new type
 		if(!new_mineral.name)
 			continue
-		name_to_mineral[new_mineral.name] = new_mineral
+		GLOBL.name_to_mineral[new_mineral.name] = new_mineral
 	return 1
 
 /mineral
@@ -31,7 +31,7 @@ var/list/name_to_mineral
 /mineral/uranium
 	name = "Uranium"
 	result_amount = 5
-	spread_chance = 13
+	spread_chance = 10
 	ore = /obj/item/weapon/ore/uranium
 
 /mineral/iron
@@ -43,19 +43,19 @@ var/list/name_to_mineral
 /mineral/diamond
 	name = "Diamond"
 	result_amount = 5
-	spread_chance = 13
+	spread_chance = 10
 	ore = /obj/item/weapon/ore/diamond
 
 /mineral/gold
 	name = "Gold"
 	result_amount = 5
-	spread_chance = 13
+	spread_chance = 10
 	ore = /obj/item/weapon/ore/gold
 
 /mineral/silver
 	name = "Silver"
 	result_amount = 5
-	spread_chance = 13
+	spread_chance = 10
 	ore = /obj/item/weapon/ore/silver
 
 /mineral/plasma
@@ -69,15 +69,3 @@ var/list/name_to_mineral
 	result_amount = 3
 	spread_chance = 1
 	ore = /obj/item/weapon/ore/bananium
-
-/mineral/adamantine
-	name = "Adamantine"
-	result_amount = 2
-	spread_chance = 1
-	ore = /obj/item/weapon/ore/adamantine
-
-/mineral/mythril
-	name = "Mythril"
-	result_amount = 2
-	spread_chance = 1
-	ore = /obj/item/weapon/ore/mythril
