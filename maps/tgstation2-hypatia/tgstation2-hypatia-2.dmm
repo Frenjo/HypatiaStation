@@ -433,7 +433,7 @@
 "ok" = (/obj/machinery/atmospherics/pipe/simple/visible{dir = 9},/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/shuttle/escape/centcom)
 "ol" = (/obj/structure/closet/secure_closet/medical2{pixel_x = 5},/turf/unsimulated/floor{icon_state = "white"},/area/centcom/test)
 "om" = (/obj/machinery/door/airlock/centcom{name = "Armory Special Operations"; opacity = TRUE; req_access = list(103)},/turf/unsimulated/floor{dir = 8; icon_state = "vault"},/area/centcom/specops)
-"oo" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/box/flashbangs,/obj/item/device/flash,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/clothing/glasses/sunglasses/sechud,/obj/item/device/aicard,/obj/item/weapon/pinpointer/advpinpointer,/obj/item/device/megaphone,/turf/unsimulated/floor{icon_state = "blue"},/area/centcom/specops)
+"oo" = (/obj/structure/table/reinforced,/obj/item/weapon/storage/box/flashbangs,/obj/item/device/flash,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/clothing/glasses/sunglasses/sechud,/obj/item/device/aicard,/obj/item/weapon/pinpointer/advpinpointer,/obj/item/device/megaphone,/obj/effect/decal/floor/coloured/blue,/turf/unsimulated/floor{icon_state = "dark"},/area/centcom/specops)
 "op" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/obj/structure/grille,/turf/simulated/shuttle/plating,/area/shuttle/escape/centcom)
 "or" = (/turf/unsimulated/wall,/area/centcom/control)
 "os" = (/obj/structure/shuttle/engine/propulsion{icon_state = "propulsion_l"},/turf/simulated/floor/plating/airless,/area/syndicate_station/start)

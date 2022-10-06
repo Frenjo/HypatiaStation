@@ -11,3 +11,36 @@
 
 /obj/effect/decal/floor/coloured/red/full
 	icon_state = "redfull"
+
+// Light Red
+/obj/effect/decal/floor/coloured/light_red
+	name = "light red floor decal"
+	icon_state = "whitered"
+
+/obj/effect/decal/floor/coloured/light_red/corner
+	icon_state = "whiteredcorner"
+
+/obj/effect/decal/floor/coloured/light_red/full
+	icon_state = "whiteredfull"
+
+// Blue
+/obj/effect/decal/floor/coloured/blue
+	name = "blue floor decal"
+	icon_state = "blue"
+
+/obj/effect/decal/floor/coloured/blue/corner
+	icon_state = "bluecorner"
+
+/obj/effect/decal/floor/coloured/blue/full
+	icon_state = "bluefull"
+
+// Light Blue
+/obj/effect/decal/floor/coloured/light_blue
+	name = "light blue floor decal"
+	icon_state = "whiteblue"
+
+/obj/effect/decal/floor/coloured/light_blue/corner
+	icon_state = "whitebluecorner"
+
+/obj/effect/decal/floor/coloured/light_blue/full
+	icon_state = "whitebluefull"
