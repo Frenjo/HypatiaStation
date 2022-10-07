@@ -1,3 +1,6 @@
+[core]
+	ignorecase = false
+
 [merge "merge-dmm"]
 	name = mapmerge driver
 	driver = ./mapmerge.sh %O %A %B
