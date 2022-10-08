@@ -66,3 +66,25 @@
 
 /obj/effect/decal/floor/coloured/light_green/full
 	icon_state = "whitegreenfull"
+
+// Yellow
+/obj/effect/decal/floor/coloured/yellow
+	name = "yellow floor decal"
+	icon_state = "yellow"
+
+/obj/effect/decal/floor/coloured/yellow/corner
+	icon_state = "yellowcorner"
+
+/obj/effect/decal/floor/coloured/yellow/full
+	icon_state = "yellowfull"
+
+// Light Yellow
+/obj/effect/decal/floor/coloured/light_yellow
+	name = "light yellow floor decal"
+	icon_state = "whiteyellow"
+
+/obj/effect/decal/floor/coloured/light_yellow/corner
+	icon_state = "whiteyellowcorner"
+
+/obj/effect/decal/floor/coloured/light_yellow/full
+	icon_state = "whiteyellowfull"
