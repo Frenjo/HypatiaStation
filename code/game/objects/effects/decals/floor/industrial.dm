@@ -10,9 +10,26 @@
 	name = "bot marking"
 	icon_state = "bot"
 
+/obj/effect/decal/floor/industrial/bot/c
+	icon_state = "botc"
+
+/obj/effect/decal/floor/industrial/bot/vault
+	icon_state = "botv"
+
 /obj/effect/decal/floor/industrial/loadingarea
 	name = "loading area"
 	icon_state = "loadingarea"
+
+/obj/effect/decal/floor/industrial/loadingarea/vault
+	icon_state = "loadingareav"
+
+/obj/effect/decal/floor/industrial/vault
+	name = "vault marking left"
+	icon_state = "vault_left"
+
+/obj/effect/decal/floor/industrial/vault/right
+	name = "vault marking right"
+	icon_state = "vault_right"
 
 // Warning stripes
 /obj/effect/decal/floor/industrial/warning

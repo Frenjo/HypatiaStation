@@ -88,3 +88,58 @@
 
 /obj/effect/decal/floor/coloured/light_yellow/full
 	icon_state = "whiteyellowfull"
+
+// Neutral
+/obj/effect/decal/floor/coloured/neutral
+	name = "neutral floor decal"
+	icon_state = "neutral"
+
+/obj/effect/decal/floor/coloured/neutral/corner
+	icon_state = "neutralcorner"
+
+/obj/effect/decal/floor/coloured/neutral/full
+	icon_state = "neutralfull"
+
+// "Orange"
+/obj/effect/decal/floor/coloured/orange
+	name = "\"orange\" floor decal"
+	icon_state = "orange"
+
+/obj/effect/decal/floor/coloured/orange/corner
+	icon_state = "orangecorner"
+
+/obj/effect/decal/floor/coloured/orange/full
+	icon_state = "orangefull"
+
+// Purple
+/obj/effect/decal/floor/coloured/purple
+	name = "purple floor decal"
+	icon_state = "purple"
+
+/obj/effect/decal/floor/coloured/purple/corner
+	icon_state = "purplecorner"
+
+/obj/effect/decal/floor/coloured/purple/full
+	icon_state = "purplefull"
+
+// Light Purple
+/obj/effect/decal/floor/coloured/light_purple
+	name = "light purple floor decal"
+	icon_state = "whitepurple"
+
+/obj/effect/decal/floor/coloured/light_purple/corner
+	icon_state = "whitepurplecorner"
+
+/obj/effect/decal/floor/coloured/light_purple/full
+	icon_state = "whitepurplefull"
+
+// Brown
+/obj/effect/decal/floor/coloured/brown
+	name = "brown floor decal"
+	icon_state = "brown"
+
+/obj/effect/decal/floor/coloured/brown/corner
+	icon_state = "browncorner"
+
+/obj/effect/decal/floor/coloured/brown/full
+	icon_state = "brownfull"
