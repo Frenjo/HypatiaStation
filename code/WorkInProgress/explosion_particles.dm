@@ -6,15 +6,10 @@
 	anchored = TRUE
 	mouse_opacity = FALSE
 
-/obj/effect/expl_particles/New()
+/obj/effect/expl_particles/initialize()
 	..()
 	spawn(15)
-		src.loc = null
-	return
-
-/obj/effect/expl_particles/Move()
-	..()
-	return
+		qdel(src)
 
 /datum/effect/system/expl_particles/set_up(n = 10, loca)
 	number = n
@@ -43,11 +38,10 @@
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/explosion/New()
+/obj/effect/explosion/initialize()
 	..()
-	spawn (10)
-		src.loc = null
-	return
+	spawn(10)
+		qdel(src)
 
 /datum/effect/system/explosion/set_up(loca)
 	if(isturf(loca))
