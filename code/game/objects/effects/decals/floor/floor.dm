@@ -5,9 +5,10 @@
 
 /obj/effect/decal/floor/initialize()
 	. = ..()
-	loc.set_dir(src.dir)
-	loc.overlays += src
-	qdel(src)
+	spawn(10)
+		loc.set_dir(src.dir)
+		loc.overlays += src
+		qdel(src)
 
 // Chapel floor pattern
 /obj/effect/decal/floor/chapel
