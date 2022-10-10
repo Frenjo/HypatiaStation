@@ -39,11 +39,6 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	var/datum/radio_frequency/radio_connection
 	var/list/datum/radio_frequency/secure_radio_connections = new
 
-/obj/item/device/radio/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
-	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
-
 /obj/item/device/radio/New()
 	..()
 	wires = new(src)
@@ -66,7 +61,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		//world.log << "[src] ([type]) has a frequency of [frequency], sanitizing."
 		frequency = sanitize_frequency(frequency, maxf)
 
-	set_frequency(frequency)
+	radio_connection = register_radio(src, frequency, frequency, RADIO_CHAT)
 
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = radio_controller.add_object(src, GLOBL.radio_channels[ch_name],  RADIO_CHAT)
@@ -151,7 +146,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		var/new_frequency = (frequency + text2num(href_list["freq"]))
 		if(!freerange || (frequency < 1200 || frequency > 1600))
 			new_frequency = sanitize_frequency(new_frequency, maxf)
-		set_frequency(new_frequency)
+		radio_connection = register_radio(src, new_frequency, new_frequency, RADIO_CHAT)
 		if(hidden_uplink)
 			if(hidden_uplink.check_trigger(usr, frequency, traitor_frequency))
 				usr << browse(null, "window=radio")
@@ -219,7 +214,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		return
 
 	if(!radio_connection)
-		set_frequency(frequency)
+		radio_connection = register_radio(src, frequency, frequency, RADIO_CHAT)
 
 	if(GLOBAL_RADIO_TYPE == 1) // NEW RADIO SYSTEMS: By Doohl
 

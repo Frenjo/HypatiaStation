@@ -192,8 +192,11 @@
 
 /obj/machinery/atmospherics/binary/valve/digital/initialize()
 	..()
-	if(frequency)
-		set_frequency(frequency)
+	radio_connection = register_radio(src, frequency, frequency, RADIO_ATMOSIA)
+
+/obj/machinery/atmospherics/binary/valve/digital/Destroy()
+	unregister_radio(src, frequency)
+	return ..()
 
 /obj/machinery/atmospherics/binary/valve/digital/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -203,13 +206,6 @@
 		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 	..()
-
-//Radio remote control
-/obj/machinery/atmospherics/binary/valve/digital/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
-	frequency = new_frequency
-	if(frequency)
-		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/binary/valve/digital/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || signal.data["tag"] != id)

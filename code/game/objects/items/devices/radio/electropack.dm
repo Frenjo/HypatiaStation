@@ -47,7 +47,7 @@
 		usr.set_machine(src)
 		if(href_list["freq"])
 			var/new_frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
-			set_frequency(new_frequency)
+			radio_connection = register_radio(src, new_frequency, new_frequency, RADIO_CHAT)
 		else
 			if(href_list["code"])
 				code += text2num(href_list["code"])

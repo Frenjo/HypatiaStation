@@ -216,17 +216,12 @@
 	if(src.frequency < 1441 || src.frequency > 1489)
 		src.frequency = sanitize_frequency(src.frequency)
 
-	set_frequency(frequency)
+	radio_connection = register_radio(src, frequency, frequency, null)
 
 /obj/item/radio/integrated/signal/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src, frequency)
 	return ..()
-
-/obj/item/radio/integrated/signal/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
-	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency)
 
 /obj/item/radio/integrated/signal/proc/send_signal(message="ACTIVATE")
 	if(last_transmission && world.time < (last_transmission + 5))

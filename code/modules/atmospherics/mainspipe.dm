@@ -657,6 +657,14 @@
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
+/obj/machinery/atmospherics/mains_pipe/valve/digital/initialize()
+	..()
+	radio_connection = register_radio(src, frequency, frequency, RADIO_ATMOSIA)
+
+/obj/machinery/atmospherics/mains_pipe/valve/digital/Destroy()
+	unregister_radio(src, frequency)
+	return ..()
+
 /obj/machinery/atmospherics/mains_pipe/valve/digital/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
 
@@ -665,18 +673,6 @@
 		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 	..()
-
-//Radio remote control
-/obj/machinery/atmospherics/mains_pipe/valve/digital/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
-	frequency = new_frequency
-	if(frequency)
-		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
-
-/obj/machinery/atmospherics/mains_pipe/valve/digital/initialize()
-	..()
-	if(frequency)
-		set_frequency(frequency)
 
 /obj/machinery/atmospherics/mains_pipe/valve/digital/update_icon(animation)
 	var/turf/simulated/floor = loc

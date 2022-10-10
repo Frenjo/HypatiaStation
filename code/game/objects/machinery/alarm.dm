@@ -135,7 +135,7 @@
 
 /obj/machinery/alarm/initialize()
 	..()
-	set_frequency(frequency)
+	radio_connection = register_radio(src, frequency, frequency, RADIO_TO_AIRALARM)
 	if(!master_is_operating())
 		elect_master()
 
@@ -361,11 +361,6 @@
 		if(I && I["timestamp"] + AALARM_REPORT_TIMEOUT / 2 > world.time)
 			continue
 		send_signal(id_tag, list("status"))
-
-/obj/machinery/alarm/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
-	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, RADIO_TO_AIRALARM)
 
 /obj/machinery/alarm/proc/send_signal(target, list/command)//sends signal 'command' to 'target'. Returns 0 if no radio connection, 1 otherwise
 	if(!radio_connection)

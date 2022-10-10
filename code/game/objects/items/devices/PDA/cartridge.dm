@@ -410,7 +410,7 @@
 
 		if("Signal Frequency")
 			var/new_frequency = sanitize_frequency(radio:frequency + text2num(href_list["sfreq"]))
-			radio:set_frequency(new_frequency)
+			radio:radio_connection = register_radio(radio, new_frequency, new_frequency, null)
 
 		if("Signal Code")
 			radio:code += text2num(href_list["scode"])

@@ -111,8 +111,11 @@
 
 /obj/machinery/atmospherics/trinary/tvalve/digital/initialize()
 	..()
-	if(frequency)
-		set_frequency(frequency)
+	radio_connection = register_radio(src, frequency, frequency, RADIO_ATMOSIA)
+
+/obj/machinery/atmospherics/trinary/tvalve/digital/Destroy()
+	unregister_radio(src, frequency)
+	return ..()
 
 /obj/machinery/atmospherics/trinary/tvalve/digital/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -122,13 +125,6 @@
 		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 	..()
-
-//Radio remote control
-/obj/machinery/atmospherics/trinary/tvalve/digital/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
-	frequency = new_frequency
-	if(frequency)
-		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/trinary/tvalve/digital/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || signal.data["tag"] != id)
@@ -235,8 +231,11 @@
 
 /obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/initialize()
 	..()
-	if(frequency)
-		set_frequency(frequency)
+	radio_connection = register_radio(src, frequency, frequency, RADIO_ATMOSIA)
+
+/obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/Destroy()
+	unregister_radio(src, frequency)
+	return ..()
 
 /obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -246,13 +245,6 @@
 		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 	..()
-
-//Radio remote control -eh?
-/obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
-	frequency = new_frequency
-	if(frequency)
-		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || signal.data["tag"] != id)

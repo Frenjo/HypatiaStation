@@ -33,8 +33,11 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/volume_pump/initialize()
 	..()
-	if(frequency)
-		set_frequency(frequency)
+	radio_connection = register_radio(src, frequency, frequency, RADIO_ATMOSIA)
+
+/obj/machinery/atmospherics/binary/volume_pump/Destroy()
+	unregister_radio(src, frequency)
+	return ..()
 
 /obj/machinery/atmospherics/binary/volume_pump/update_icon()
 	if(stat & NOPOWER)
@@ -74,12 +77,6 @@ Thus, the two variables affect pump operation are set in New():
 		network2.update = TRUE
 
 	return 1
-
-/obj/machinery/atmospherics/binary/volume_pump/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
-	frequency = new_frequency
-	if(frequency)
-		radio_connection = radio_controller.add_object(src, frequency)
 
 /obj/machinery/atmospherics/binary/volume_pump/proc/broadcast_status()
 	if(!radio_connection)
@@ -135,7 +132,6 @@ Thus, the two variables affect pump operation are set in New():
 	spawn(2)
 		broadcast_status()
 	update_icon()
-
 
 /obj/machinery/atmospherics/binary/volume_pump/attack_hand(user as mob)
 	if(..())

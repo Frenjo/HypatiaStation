@@ -3,26 +3,22 @@
 // Ported this from an old Heaven's Gate - Eternal github I found, 22/11/2019. -Frenjo
 
 /obj/machinery/embedded_controller
-	var/datum/computer/file/embedded_program/program	//the currently executing program
-
 	name = "Embedded Controller"
 	anchored = TRUE
 
 	use_power = 1
 	idle_power_usage = 10
 
-	var/on = 1
+	var/datum/computer/file/embedded_program/program	//the currently executing program
 
-/obj/machinery/embedded_controller/radio/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, frequency)
-	return ..()
+	var/on = 1
 
 /obj/machinery/embedded_controller/proc/post_signal(datum/signal/signal, comm_line)
 	return 0
 
 /obj/machinery/embedded_controller/receive_signal(datum/signal/signal, receive_method, receive_param)
-	if(!signal || signal.encryption) return
+	if(!signal || signal.encryption)
+		return
 
 	if(program)
 		program.receive_signal(signal, receive_method, receive_param)
@@ -38,7 +34,6 @@
 	src.ui_interact(user)
 
 /obj/machinery/embedded_controller/attack_hand(mob/user as mob)
-
 	if(!user.IsAdvancedToolUser())
 		return 0
 
@@ -46,6 +41,7 @@
 
 /obj/machinery/embedded_controller/ui_interact()
 	return
+
 
 /obj/machinery/embedded_controller/radio
 	icon = 'icons/obj/airlock_machines.dmi'
@@ -62,7 +58,12 @@
 	unacidable = 1
 
 /obj/machinery/embedded_controller/radio/initialize()
-	set_frequency(frequency)
+	..()
+	radio_connection = register_radio(src, frequency, frequency, radio_filter)
+
+/obj/machinery/embedded_controller/radio/Destroy()
+	unregister_radio(src, frequency)
+	return ..()
 
 /obj/machinery/embedded_controller/radio/update_icon()
 	if(on && program)
@@ -73,15 +74,10 @@
 	else
 		icon_state = "airlock_control_off"
 
-/obj/machinery/embedded_controller/radio/post_signal(datum/signal/signal, var/filter = null)
+/obj/machinery/embedded_controller/radio/post_signal(datum/signal/signal, filter = null)
 	signal.transmission_method = TRANSMISSION_RADIO
 	if(radio_connection)
 		//use_power(radio_power_use)	//neat idea, but causes way too much lag.
 		return radio_connection.post_signal(src, signal, filter)
 	else
 		qdel(signal)
-
-/obj/machinery/embedded_controller/radio/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
-	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, radio_filter)

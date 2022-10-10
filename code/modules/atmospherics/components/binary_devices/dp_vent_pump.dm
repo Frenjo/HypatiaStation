@@ -34,6 +34,14 @@
 	air1.volume = 1000
 	air2.volume = 1000
 
+/obj/machinery/atmospherics/binary/dp_vent_pump/initialize()
+	..()
+	radio_connection = register_radio(src, frequency, frequency, RADIO_ATMOSIA)
+
+/obj/machinery/atmospherics/binary/dp_vent_pump/Destroy()
+	unregister_radio(src, frequency)
+	return ..()
+
 /obj/machinery/atmospherics/binary/dp_vent_pump/update_icon()
 	if(on)
 		if(pump_direction)
@@ -106,13 +114,6 @@
 
 	return 1
 
-	//Radio remote control
-/obj/machinery/atmospherics/binary/dp_vent_pump/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
-	frequency = new_frequency
-	if(frequency)
-		radio_connection = radio_controller.add_object(src, frequency, filter = RADIO_ATMOSIA)
-
 /obj/machinery/atmospherics/binary/dp_vent_pump/proc/broadcast_status()
 	if(!radio_connection)
 		return 0
@@ -135,11 +136,6 @@
 	radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
 	return 1
-
-/obj/machinery/atmospherics/binary/dp_vent_pump/initialize()
-	..()
-	if(frequency)
-		set_frequency(frequency)
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || signal.data["tag"] != id || signal.data["sigtype"] != "command")

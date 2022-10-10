@@ -44,8 +44,11 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/pump/initialize()
 	..()
-	if(frequency)
-		set_frequency(frequency)
+	radio_connection = register_radio(src, frequency, frequency, RADIO_ATMOSIA)
+
+/obj/machinery/atmospherics/binary/pump/Destroy()
+	unregister_radio(src, frequency)
+	return ..()
 
 /obj/machinery/atmospherics/binary/pump/update_icon()
 	if(stat & NOPOWER)
@@ -87,13 +90,6 @@ Thus, the two variables affect pump operation are set in New():
 			network2.update = TRUE
 
 	return 1
-
-//Radio remote control
-/obj/machinery/atmospherics/binary/pump/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
-	frequency = new_frequency
-	if(frequency)
-		radio_connection = radio_controller.add_object(src, frequency, filter = RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/binary/pump/proc/broadcast_status()
 	if(!radio_connection)
@@ -150,7 +146,6 @@ Thus, the two variables affect pump operation are set in New():
 		broadcast_status()
 	update_icon()
 	return
-
 
 /obj/machinery/atmospherics/binary/pump/attack_hand(user as mob)
 	if(..())

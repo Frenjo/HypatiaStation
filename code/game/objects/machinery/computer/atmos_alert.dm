@@ -6,6 +6,7 @@
 	desc = "Used to access the station's atmospheric sensors."
 	circuit = /obj/item/weapon/circuitboard/atmos_alert
 	icon_state = "alert:0"
+
 	var/list/priority_alarms = list()
 	var/list/minor_alarms = list()
 	var/receive_frequency = 1437
@@ -15,7 +16,11 @@
 
 /obj/machinery/computer/atmos_alert/initialize()
 	..()
-	set_frequency(receive_frequency)
+	radio_connection = register_radio(src, receive_frequency, receive_frequency, RADIO_ATMOSIA)
+
+/obj/machinery/computer/atmos_alert/Destroy()
+	unregister_radio(src, receive_frequency)
+	return ..()
 
 /obj/machinery/computer/atmos_alert/receive_signal(datum/signal/signal)
 	if(!signal || signal.encryption) return
@@ -33,13 +38,6 @@
 		minor_alarms += zone
 	update_icon()
 	return
-
-
-/obj/machinery/computer/atmos_alert/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, receive_frequency)
-	receive_frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, receive_frequency, RADIO_ATMOSIA)
-
 
 /obj/machinery/computer/atmos_alert/attack_hand(mob/user)
 	if(..(user))

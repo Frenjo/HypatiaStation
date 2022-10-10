@@ -1496,7 +1496,7 @@
 		var/new_frequency = (radio.frequency + new_filter.getNum("rfreq"))
 		if(!radio.freerange || (radio.frequency < 1200 || radio.frequency > 1600))
 			new_frequency = sanitize_frequency(new_frequency)
-		radio.set_frequency(new_frequency)
+		radio.radio_connection = register_radio(radio, new_frequency, new_frequency, RADIO_CHAT)
 		send_byjax(src.occupant, "exosuit.browser", "rfreq", "[format_frequency(radio.frequency)]")
 		return
 	if(href_list["port_disconnect"])

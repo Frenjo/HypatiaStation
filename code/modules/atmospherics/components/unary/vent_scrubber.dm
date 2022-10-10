@@ -38,11 +38,10 @@
 
 /obj/machinery/atmospherics/unary/vent_scrubber/initialize()
 	..()
-	radio_filter_in = frequency == initial(frequency) ? (RADIO_FROM_AIRALARM) : null
-	radio_filter_out = frequency == initial(frequency) ? (RADIO_TO_AIRALARM) : null
-	if(frequency)
-		set_frequency(frequency)
-		src.broadcast_status()
+	radio_filter_in = frequency == initial(frequency) ? RADIO_FROM_AIRALARM : null
+	radio_filter_out = frequency == initial(frequency) ? RADIO_TO_AIRALARM : null
+	radio_connection = register_radio(src, frequency, frequency, radio_filter_in)
+	broadcast_status()
 
 /obj/machinery/atmospherics/unary/vent_scrubber/Destroy()
 	unregister_radio(src, frequency)
@@ -60,11 +59,6 @@
 	else
 		icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
 	return
-
-/obj/machinery/atmospherics/unary/vent_scrubber/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
-	frequency = new_frequency
-	radio_connection = radio_controller.add_object(src, frequency, radio_filter_in)
 
 /obj/machinery/atmospherics/unary/vent_scrubber/proc/broadcast_status()
 	if(!radio_connection)

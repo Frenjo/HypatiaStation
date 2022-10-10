@@ -14,6 +14,14 @@
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
+/obj/machinery/atmospherics/binary/passive_gate/initialize()
+	..()
+	radio_connection = register_radio(src, frequency, frequency, RADIO_ATMOSIA)
+
+/obj/machinery/atmospherics/binary/passive_gate/Destroy()
+	unregister_radio(src, frequency)
+	return ..()
+
 /obj/machinery/atmospherics/binary/passive_gate/update_icon()
 	if(stat & NOPOWER)
 		icon_state = "intact_off"
@@ -58,13 +66,6 @@
 		if(network2)
 			network2.update = TRUE
 
-	//Radio remote control
-/obj/machinery/atmospherics/binary/passive_gate/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
-	frequency = new_frequency
-	if(frequency)
-		radio_connection = radio_controller.add_object(src, frequency, filter = RADIO_ATMOSIA)
-
 /obj/machinery/atmospherics/binary/passive_gate/proc/broadcast_status()
 	if(!radio_connection)
 		return 0
@@ -92,11 +93,6 @@
 
 	user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_pump")
 	onclose(user, "atmo_pump")
-
-/obj/machinery/atmospherics/binary/passive_gate/initialize()
-	..()
-	if(frequency)
-		set_frequency(frequency)
 
 /obj/machinery/atmospherics/binary/passive_gate/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || signal.data["tag"] != id || signal.data["sigtype"] != "command")

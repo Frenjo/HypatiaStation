@@ -36,11 +36,13 @@ Filter types:
 	var/frequency = 0
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/atmospherics/trinary/filter/proc/set_frequency(new_frequency)
-	radio_controller.remove_object(src, frequency)
-	frequency = new_frequency
-	if(frequency)
-		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
+/obj/machinery/atmospherics/trinary/filter/initialize()
+	..()
+	radio_connection = register_radio(src, frequency, frequency, RADIO_ATMOSIA)
+
+/obj/machinery/atmospherics/trinary/filter/Destroy()
+	unregister_radio(src, frequency)
+	return ..()
 
 /obj/machinery/atmospherics/trinary/filter/update_icon()
 	if(stat & NOPOWER)
@@ -136,10 +138,6 @@ Filter types:
 		network1.update = TRUE
 
 	return 1
-
-/obj/machinery/atmospherics/trinary/filter/initialize()
-	..()
-	set_frequency(frequency)
 
 /obj/machinery/atmospherics/trinary/filter/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench))

@@ -148,7 +148,7 @@
 				if(new_frequency < 1441 || new_frequency > 1599)
 					new_frequency = sanitize_frequency(new_frequency)
 				else
-					radio.set_frequency(new_frequency)
+					radio.radio_connection = register_radio(radio, new_frequency, new_frequency, RADIO_CHAT)
 			else if (href_list["talk"])
 				radio.broadcasting = text2num(href_list["talk"])
 			else if (href_list["listen"])
@@ -192,7 +192,7 @@
 				var/new_frequency = (sradio.frequency + text2num(href_list["freq"]))
 				if(new_frequency < 1200 || new_frequency > 1600)
 					new_frequency = sanitize_frequency(new_frequency)
-				sradio.set_frequency(new_frequency)
+				sradio.radio_connection = register_radio(sradio, new_frequency, new_frequency, null)
 
 			if(href_list["code"])
 
