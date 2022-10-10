@@ -273,9 +273,7 @@ nanoui is used to open and update nano browser uis
 	if(templatel_data.len > 0)
 		template_data_json = json_encode(templatel_data)
 
-	var/initial_data_json = "{}" // An empty JSON object
-	if(initial_data.len > 0)
-		initial_data_json = json_encode(initial_data)
+	var/initial_data_json = replacetext(replacetext(json_encode(initial_data), "&#34;", "&amp;#34;"), "'", "&#39;")
 
 	var/url_parameters_json = json_encode(list("src" = "\ref[src]"))
 
