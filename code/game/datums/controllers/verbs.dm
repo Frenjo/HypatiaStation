@@ -28,8 +28,5 @@
 		if("Configuration")
 			debug_variables(CONFIG)
 			feedback_add_details("admin_verb", "DConf")
-		if("Cameras")
-			debug_variables(global.cameranet)
-			feedback_add_details("admin_verb", "DCameras")
 	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
 	return

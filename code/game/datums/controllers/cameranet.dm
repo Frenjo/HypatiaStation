@@ -1,10 +1,17 @@
-// CAMERA NET
-//
-// The datum containing all the chunks.
+/*
+ * CAMERA NET
+ * 
+ * The controller datum containing all the chunks.
+ */
+GLOBAL_BYOND_TYPED(cameranet, /datum/controller/cameranet)
 
-var/datum/cameranet/cameranet = new()
+/hook/roundstart/proc/create_camera_networks()
+	global.cameranet = new /datum/controller/cameranet()
+	return 1
 
-/datum/cameranet
+/datum/controller/cameranet
+	name = "Cameras"
+
 	// The cameras on the map, no matter if they work or not. Updated in obj/machinery/camera.dm by New() and Del().
 	var/list/cameras = list()
 	// The chunks of the map, mapping the areas that the cameras can see.
@@ -12,7 +19,7 @@ var/datum/cameranet/cameranet = new()
 	var/ready = 0
 
 // Checks if a chunk has been Generated in x, y, z.
-/datum/cameranet/proc/chunkGenerated(x, y, z)
+/datum/controller/cameranet/proc/chunkGenerated(x, y, z)
 	x &= ~0xf
 	y &= ~0xf
 	var/key = "[x],[y],[z]"
@@ -20,7 +27,7 @@ var/datum/cameranet/cameranet = new()
 
 // Returns the chunk in the x, y, z.
 // If there is no chunk, it creates a new chunk and returns that.
-/datum/cameranet/proc/getCameraChunk(x, y, z)
+/datum/controller/cameranet/proc/getCameraChunk(x, y, z)
 	x &= ~0xf
 	y &= ~0xf
 	var/key = "[x],[y],[z]"
@@ -30,8 +37,7 @@ var/datum/cameranet/cameranet = new()
 	return chunks[key]
 
 // Updates what the aiEye can see. It is recommended you use this when the aiEye moves or it's location is set.
-
-/datum/cameranet/proc/visibility(mob/aiEye/ai)
+/datum/controller/cameranet/proc/visibility(mob/aiEye/ai)
 	// 0xf = 15
 	var/x1 = max(0, ai.x - 16) & ~0xf
 	var/y1 = max(0, ai.y - 16) & ~0xf
@@ -56,14 +62,12 @@ var/datum/cameranet/cameranet = new()
 		c.add(ai)
 
 // Updates the chunks that the turf is located in. Use this when obstacles are destroyed or	when doors open.
-
-/datum/cameranet/proc/updateVisibility(atom/A, var/opacity_check = 1)
-
+/datum/controller/cameranet/proc/updateVisibility(atom/A, opacity_check = 1)
 	if(!ticker || (opacity_check && !A.opacity))
 		return
 	majorChunkChange(A, 2)
 
-/datum/cameranet/proc/updateChunk(x, y, z)
+/datum/controller/cameranet/proc/updateChunk(x, y, z)
 	// 0xf = 15
 	if(!chunkGenerated(x, y, z))
 		return
@@ -71,20 +75,17 @@ var/datum/cameranet/cameranet = new()
 	chunk.hasChanged()
 
 // Removes a camera from a chunk.
-
-/datum/cameranet/proc/removeCamera(obj/machinery/camera/c)
+/datum/controller/cameranet/proc/removeCamera(obj/machinery/camera/c)
 	if(c.can_use())
 		majorChunkChange(c, 0)
 
 // Add a camera to a chunk.
-
-/datum/cameranet/proc/addCamera(obj/machinery/camera/c)
+/datum/controller/cameranet/proc/addCamera(obj/machinery/camera/c)
 	if(c.can_use())
 		majorChunkChange(c, 1)
 
 // Used for Cyborg cameras. Since portable cameras can be in ANY chunk.
-
-/datum/cameranet/proc/updatePortableCamera(obj/machinery/camera/c)
+/datum/controller/cameranet/proc/updatePortableCamera(obj/machinery/camera/c)
 	if(c.can_use())
 		majorChunkChange(c, 1)
 	//else
@@ -95,8 +96,7 @@ var/datum/cameranet/cameranet = new()
 // It will also add the atom to the cameras list if you set the choice to 1.
 // Setting the choice to 0 will remove the camera from the chunks.
 // If you want to update the chunks around an object, without adding/removing a camera, use choice 2.
-
-/datum/cameranet/proc/majorChunkChange(atom/c, var/choice)
+/datum/controller/cameranet/proc/majorChunkChange(atom/c, choice)
 	// 0xf = 15
 	if(!c)
 		return
@@ -123,8 +123,7 @@ var/datum/cameranet/cameranet = new()
 					chunk.hasChanged()
 
 // Will check if a mob is on a viewable turf. Returns 1 if it is, otherwise returns 0.
-
-/datum/cameranet/proc/checkCameraVis(mob/living/target as mob)
+/datum/controller/cameranet/proc/checkCameraVis(mob/living/target as mob)
 
 	// 0xf = 15
 	var/turf/position = get_turf(target)
@@ -135,7 +134,6 @@ var/datum/cameranet/cameranet = new()
 		if(chunk.visibleTurfs[position])
 			return 1
 	return 0
-
 
 // Debug verb for VVing the chunk that the turf is in.
 /*
