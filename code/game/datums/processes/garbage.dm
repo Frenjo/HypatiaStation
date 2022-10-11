@@ -1,3 +1,6 @@
+/*
+ * Garbage Collector Process
+ */
 // The time a datum was destroyed by the GC, or null if it hasn't been
 /datum/var/gcDestroyed
 

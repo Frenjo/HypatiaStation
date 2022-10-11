@@ -1,3 +1,6 @@
+/*
+ * Emergency Process
+ */
 /datum/process/emergency
 	name = "Emergency"
 	schedule_interval = 2 SECONDS

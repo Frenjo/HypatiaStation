@@ -1,3 +1,6 @@
+/*
+ * Lighting Process
+ */
 // Solves problems with lighting updates lagging shit
 // Max constraints on number of updates per doWork():
 #define MAX_LIGHT_UPDATES_PER_WORK		100

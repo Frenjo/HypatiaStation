@@ -1,3 +1,6 @@
+/*
+ * Disease Process
+ */
 GLOBAL_GLOBL_LIST_NEW(active_diseases)
 
 /datum/process/disease

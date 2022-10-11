@@ -1,3 +1,6 @@
+/*
+ * Voting Process
+ */
 /datum/process/vote
 	name = "Vote"
 	schedule_interval = 1 SECOND

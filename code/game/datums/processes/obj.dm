@@ -1,3 +1,6 @@
+/*
+ * Object Process
+ */
 GLOBAL_GLOBL_LIST_NEW(processing_objects)
 
 /datum/process/obj

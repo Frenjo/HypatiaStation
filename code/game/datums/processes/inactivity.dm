@@ -1,4 +1,7 @@
-#define INACTIVITY_KICK	(10 MINUTES)
+/*
+ * Inactivity Process
+ */
+#define INACTIVITY_KICK (10 MINUTES)
 /datum/process/inactivity
 	name = "Inactivity"
 	schedule_interval = INACTIVITY_KICK

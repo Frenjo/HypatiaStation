@@ -299,6 +299,7 @@
 #include "code\game\datums\processes\sun.dm"
 #include "code\game\datums\processes\supply.dm"
 #include "code\game\datums\processes\ticker.dm"
+#include "code\game\datums\processes\transfer.dm"
 #include "code\game\datums\processes\turf.dm"
 #include "code\game\datums\processes\vote.dm"
 #include "code\game\datums\spells\_spell.dm"

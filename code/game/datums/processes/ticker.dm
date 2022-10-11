@@ -1,4 +1,7 @@
-GLOBAL_BYOND_TYPED(ticker_process, /datum/process/ticker)
+/*
+ * Game Ticker Process
+ */
+GLOBAL_BYOND_TYPED(ticker_process, /datum/process/ticker) // Set in /datum/process/ticker/setup().
 
 /datum/process/ticker
 	name = "Ticker"

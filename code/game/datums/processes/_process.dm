@@ -1,4 +1,6 @@
-// Process
+/*
+ * Base Process Datum
+ */
 /datum/process
 	/**
 	 * State vars

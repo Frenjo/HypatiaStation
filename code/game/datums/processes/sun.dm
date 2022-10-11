@@ -1,3 +1,6 @@
+/*
+ * Sun Process
+ */
 GLOBAL_BYOND_TYPED(sun, /datum/sun)
 
 /datum/process/sun

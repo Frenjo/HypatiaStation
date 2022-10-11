@@ -1,3 +1,6 @@
+/*
+ * Mob Process
+ */
 /datum/process/mob
 	name = "Mob"
 	schedule_interval = 2 SECONDS

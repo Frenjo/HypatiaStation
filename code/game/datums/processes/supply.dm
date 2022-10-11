@@ -1,3 +1,6 @@
+/*
+ * Supply Process
+ */
 /datum/process/supply
 	name = "Supply"
 	schedule_interval = 30 SECONDS

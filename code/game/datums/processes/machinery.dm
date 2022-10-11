@@ -1,3 +1,6 @@
+/*
+ * Machinery Process
+ */
 GLOBAL_GLOBL_INIT(machinery_sort_required, FALSE)
 
 GLOBAL_GLOBL_LIST_NEW(machines)

@@ -1,3 +1,6 @@
+/*
+ * Pipe Network Process
+ */
 GLOBAL_GLOBL_LIST_NEW(pipe_networks)
 
 /datum/process/pipenet

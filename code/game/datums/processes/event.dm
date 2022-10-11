@@ -1,3 +1,6 @@
+/*
+ * Events Process
+ */
 GLOBAL_GLOBL_LIST_NEW(events)
 
 /datum/process/event

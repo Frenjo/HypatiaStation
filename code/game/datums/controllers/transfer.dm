@@ -16,11 +16,6 @@ GLOBAL_BYOND_TYPED(transfer_controller, /datum/controller/transfer)
 /datum/controller/transfer/New()
 	..()
 	timerbuffer = CONFIG_GET(vote_autotransfer_initial)
-	GLOBL.processing_objects += src
-
-/datum/controller/transfer/Destroy()
-	GLOBL.processing_objects -= src
-	return ..()
 
 /datum/controller/transfer/process()
 	currenttick++

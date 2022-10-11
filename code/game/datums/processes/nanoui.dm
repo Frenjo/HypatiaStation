@@ -1,3 +1,6 @@
+/*
+ * NanoUI Process
+ */
 // nanomanager, the manager for Nano UIs
 GLOBAL_BYOND_TYPED(nanomanager, /datum/nanomanager)
 
