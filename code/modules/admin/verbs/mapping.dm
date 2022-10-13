@@ -272,8 +272,6 @@ var/list/debug_verbs = list(
 		qdel(old_air)
 		air_master = new
 		air_master.setup()
-		spawn()
-			air_master.Start()
 
 /client/proc/count_objects_on_z_level()
 	set category = "Mapping"

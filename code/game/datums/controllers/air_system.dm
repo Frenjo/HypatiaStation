@@ -116,22 +116,6 @@ Total Active Edges: [active_edges.len ? SPAN_DANGER(active_edges.len) : "None"]
 Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_count]</font>
 </span>"}
 
-//	spawn Start()
-
-/datum/controller/air_system/proc/Start()
-	// Purpose: This is kicked off by the master controller, and controls the processing of all atmosphere.
-	// Called by: Master controller.
-	// Inputs: None.
-	// Outputs: None.
-
-	#ifndef ZASDBG
-	set background = 1
-	#endif
-
-	while(1)
-		process()
-		sleep(max(5, update_delay * global.air_master.tick_multiplier))
-
 /datum/controller/air_system/process()
 	. = 1 //Set the default return value, for runtime detection.
 

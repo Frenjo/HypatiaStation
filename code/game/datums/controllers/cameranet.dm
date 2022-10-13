@@ -5,7 +5,7 @@
  */
 GLOBAL_BYOND_TYPED(cameranet, /datum/controller/cameranet)
 
-/hook/roundstart/proc/create_camera_networks()
+/hook/startup/proc/create_camera_networks()
 	global.cameranet = new /datum/controller/cameranet()
 	return 1
 

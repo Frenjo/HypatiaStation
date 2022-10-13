@@ -1,9 +1,7 @@
 #define BORG_CAMERA_BUFFER 30
 
 //UPDATE TRIGGERS, when the chunk (and the surrounding chunks) should update.
-
 // TURFS
-
 /turf
 	var/image/obscured
 
@@ -20,7 +18,6 @@
 	return ..()
 
 // STRUCTURES
-
 /obj/structure/New()
 	..()
 	if(ticker)
@@ -32,7 +29,6 @@
 	return ..()
 
 // EFFECTS
-
 /obj/effect/New()
 	..()
 	if(ticker)
@@ -44,7 +40,6 @@
 	return ..()
 
 // DOORS
-
 // Simply updates the visibility of the area when it opens/closes/destroyed.
 /obj/machinery/door/update_nearby_tiles(need_rebuild)
 	. = ..(need_rebuild)
@@ -55,7 +50,6 @@
 
 
 // ROBOT MOVEMENT
-
 // Update the portable camera everytime the Robot moves.
 // This might be laggy, comment it out if there are problems.
 /mob/living/silicon/robot/var/updating = 0
@@ -73,9 +67,7 @@
 					updating = 0
 
 // CAMERA
-
 // An addition to deactivate which removes/adds the camera from the chunk list based on if it works or not.
-
 /obj/machinery/camera/deactivate(user as mob, choice = 1)
 	..(user, choice)
 	if(src.can_use())
@@ -84,7 +76,7 @@
 		src.set_light(0)
 		cameranet.removeCamera(src)
 
-/obj/machinery/camera/New()
+/obj/machinery/camera/initialize()
 	..()
 	cameranet.cameras += src //Camera must be added to global list of all cameras no matter what...
 	var/list/open_networks = difflist(network, GLOBL.restricted_camera_networks) //...but if all of camera's networks are restricted, it only works for specific camera consoles.
