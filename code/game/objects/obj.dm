@@ -18,12 +18,6 @@
 	var/damtype = "brute"
 	var/force = 0
 
-/obj/item/proc/is_used_on(obj/O, mob/user)
-
-/obj/proc/process()
-	GLOBL.processing_objects.Remove(src)
-	return 0
-
 /obj/assume_air(datum/gas_mixture/giver)
 	if(loc)
 		return loc.assume_air(giver)
@@ -41,6 +35,12 @@
 		return loc.return_air()
 	else
 		return null
+
+/obj/item/proc/is_used_on(obj/O, mob/user)
+	return
+
+/obj/proc/process()
+	return PROCESS_KILL
 
 /obj/proc/handle_internal_lifeform(mob/lifeform_inside_me, breath_request)
 	//Return: (NONSTANDARD)
