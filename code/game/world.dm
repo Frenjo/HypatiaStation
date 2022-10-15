@@ -16,6 +16,8 @@
  * Nothing happens until something moves. ~ Albert Einstein
 */
 /world/New()
+	name = "Space Station 13 - [GLOBL.game_version]: [GLOBL.current_map.station_name]"
+
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	GLOBL.href_logfile = file("data/logs/[date_string] hrefs.htm")
