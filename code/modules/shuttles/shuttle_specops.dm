@@ -81,7 +81,7 @@
 		launch_mauraders()
 		for(var/turf/T in get_area_turfs(destination))
 			var/mob/M = locate(/mob) in T
-			to_chat(M, SPAN_WARNING("You have arrived at [global.current_map.station_name]. Commence operation!"))
+			to_chat(M, SPAN_WARNING("You have arrived at [GLOBL.current_map.station_name]. Commence operation!"))
 
 	reset_time = world.time + specops_return_delay	//set the timeout
 

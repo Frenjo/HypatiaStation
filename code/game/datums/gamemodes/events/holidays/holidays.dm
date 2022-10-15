@@ -166,7 +166,7 @@ GLOBAL_GLOBL_INIT(eventchance, 10)	//% per 5 mins
 
 	CONFIG_SET(holiday_name, T)
 	//get a new station name
-	global.current_map.station_name = null
+	GLOBL.current_map.station_name = null
 	station_name()
 	//update our hub status
 	world.update_status()

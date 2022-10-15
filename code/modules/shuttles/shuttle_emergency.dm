@@ -177,7 +177,7 @@
 			if(shuttle.in_use)
 				shuttle_status = "Busy."
 			else if(!shuttle.location)
-				shuttle_status = "Standing-by at [global.current_map.station_name]."
+				shuttle_status = "Standing-by at [GLOBL.current_map.station_name]."
 			else
 				shuttle_status = "Standing-by at Central Command."
 		if(WAIT_LAUNCH, FORCE_LAUNCH)

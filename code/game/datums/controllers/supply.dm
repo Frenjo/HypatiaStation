@@ -129,7 +129,7 @@ GLOBAL_BYOND_TYPED(supply_controller, /datum/controller/supply) // Set in /datum
 		var/obj/item/weapon/paper/manifest/slip = new /obj/item/weapon/paper/manifest(A)
 		slip.info = "<h3>[command_name()] Shipping Manifest</h3><hr><br>"
 		slip.info +="Order #[SO.ordernum]<br>"
-		slip.info +="Destination: [global.current_map.station_name]<br>"
+		slip.info +="Destination: [GLOBL.current_map.station_name]<br>"
 		slip.info +="[shoppinglist.len] PACKAGES IN THIS SHIPMENT<br>"
 		slip.info +="CONTENTS:<br><ul>"
 
