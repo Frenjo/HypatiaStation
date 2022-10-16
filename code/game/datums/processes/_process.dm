@@ -302,10 +302,10 @@
 /datum/process/proc/onFinish()
 
 /datum/process/proc/disable()
-	disabled = 1
+	disabled = TRUE
 
 /datum/process/proc/enable()
-	disabled = 0
+	disabled = FALSE
 
 /datum/process/proc/getAverageRunTime()
 	return main.averageRunTime(src)

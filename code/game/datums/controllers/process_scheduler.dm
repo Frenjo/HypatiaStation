@@ -7,34 +7,34 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 	name = "Process Scheduler"
 
 	// Processes known by the scheduler
-	var/tmp/list/processes = new
+	var/tmp/list/processes = list()
 
 	// Processes that are currently running
-	var/tmp/list/running = new
+	var/tmp/list/running = list()
 
 	// Processes that are idle
-	var/tmp/list/idle = new
+	var/tmp/list/idle = list()
 
 	// Processes that are queued to run
-	var/tmp/list/queued = new
+	var/tmp/list/queued = list()
 
 	// Process name -> process object map
-	var/tmp/list/nameToProcessMap = new
+	var/tmp/list/nameToProcessMap = list()
 
 	// Process last queued times (world time)
-	var/tmp/list/last_queued = new
+	var/tmp/list/last_queued = list()
 
 	// Process last start times (real time)
-	var/tmp/list/last_start = new
+	var/tmp/list/last_start = list()
 
 	// Process last run durations
-	var/tmp/list/last_run_time = new
+	var/tmp/list/last_run_time = list()
 
 	// Per process list of the last 20 durations
-	var/tmp/list/last_twenty_run_times = new
+	var/tmp/list/last_twenty_run_times = list()
 
 	// Process highest run time
-	var/tmp/list/highest_run_time = new
+	var/tmp/list/highest_run_time = list()
 
 	// How long to sleep between runs (set to tick_lag in New)
 	var/tmp/scheduler_sleep_interval
@@ -43,7 +43,7 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 	var/tmp/isRunning = FALSE
 
 	// Setup for these processes will be deferred until all the other processes are set up.
-	var/tmp/list/deferredSetupList = new
+	var/tmp/list/deferredSetupList = list()
 
 	var/tmp/currentTick = 0
 
@@ -54,10 +54,8 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 	var/tmp/timeAllowanceMax = 0
 
 /datum/controller/process_scheduler/New()
-	..()
-	// When the process scheduler is first new'd, tick_lag may be wrong, so these
-	//  get re-initialized when the process scheduler is started.
-	// (These are kept here for any processes that decide to process before round start)
+	. = ..()
+	// world.tick_lag is set by this point, so there's no need to reset these later.
 	scheduler_sleep_interval = world.tick_lag
 	timeAllowance = world.tick_lag * 0.5
 	timeAllowanceMax = world.tick_lag
@@ -80,7 +78,7 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 		return 0
 
 	var/process
-	// Add all the processes we can find, except for the ticker
+	// Add all the processes we can find, except those deferred until later.
 	for(process in SUBTYPESOF(/datum/process))
 		if(!(process in deferredSetupList))
 			addProcess(new process(src))
@@ -90,10 +88,6 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 
 /datum/controller/process_scheduler/proc/start()
 	isRunning = TRUE
-	// tick_lag will have been set by now, so re-initialize these
-	scheduler_sleep_interval = world.tick_lag
-	timeAllowance = world.tick_lag * 0.5
-	timeAllowanceMax = world.tick_lag
 	updateStartDelays()
 	spawn(0)
 		process()
@@ -102,7 +96,8 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 	updateCurrentTickData()
 
 	for(var/i = world.tick_lag, i < world.tick_lag * 50, i += world.tick_lag)
-		spawn(i) updateCurrentTickData()
+		spawn(i)
+			updateCurrentTickData()
 	while(isRunning)
 		// Hopefully spawning this for 50 ticks in the future will make it the first thing in the queue.
 		spawn(world.tick_lag * 50)
@@ -149,6 +144,9 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 		runProcess(p)
 
 /datum/controller/process_scheduler/proc/addProcess(datum/process/process)
+	// Report that we're initialising a process.
+	to_world(SPAN_DANGER("Initialising [process.name] process."))
+
 	processes.Add(process)
 	process.idle()
 	idle.Add(process)
@@ -172,6 +170,9 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 
 	// Save process in the name -> process map
 	nameToProcessMap[process.name] = process
+
+	// Wait until setup is done.
+	sleep(-1)
 
 /datum/controller/process_scheduler/proc/replaceProcess(datum/process/oldProcess, datum/process/newProcess)
 	processes.Remove(oldProcess)
@@ -307,7 +308,7 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 	return highest_run_time[process]
 
 /datum/controller/process_scheduler/proc/getStatusData()
-	var/list/data = new
+	var/list/data = list()
 
 	for(var/datum/process/p in processes)
 		data.len++

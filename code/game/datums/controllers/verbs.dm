@@ -17,7 +17,7 @@
 	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
 	return
 
-/client/proc/debug_controller(controller in list("Configuration", "Cameras"))
+/client/proc/debug_controller(controller in list("Configuration"))
 	set category = "Debug"
 	set name = "Debug Controller"
 	set desc = "Debug one of the various periodic loop controllers for the game (be careful!)"

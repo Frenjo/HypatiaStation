@@ -1,7 +1,15 @@
 /var/global/datum/global_init/global_init = new /datum/global_init()
 
 /*
- * Pre-map initialization stuff should go here.
+ * Global Initialisation
+ * 
+ * Pre-map initialisation stuff should go here:
+ *	Enables the SpacemanDMM debugger.
+ *	Loads the configuration files.
+ *	Sets up the global_variables controller.
+ *	Calls the global_init hook.
+ *
+ * The beginning is always today. ~ Mary Shelley
 */
 /datum/global_init/New()
 	global.debugger = new /debugger()

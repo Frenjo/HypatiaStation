@@ -34,18 +34,16 @@ GLOBAL_BYOND_INIT(pipe_processing_killed, FALSE)
 		GLOBL.syndicate_code_response	= generate_code_phrase()
 
 /datum/controller/master/setup()
-	world.tick_lag = CONFIG_GET(ticklag)
-
-	spawn(2 SECONDS)
-		createRandomZlevel()
+	// Load an away mission and set up the mining asteroid's secrets.
+	createRandomZlevel()
+	for(var/i = 0, i < GLOBL.max_secret_rooms, i++)
+		make_mining_asteroid_secret()
+	sleep(-1)
 
 	setup_objects()
 	setup_genetics()
 	setup_factions()
 	setup_xenoarch()
-
-	for(var/i = 0, i < GLOBL.max_secret_rooms, i++)
-		make_mining_asteroid_secret()
 
 /datum/controller/master/proc/stat_controllers()
 	stat("Controllers:", GLOBL.controllers.len)

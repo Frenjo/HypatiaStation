@@ -4,19 +4,21 @@
  * World Creation
  *
  * Here is where a round itself is actually set up and started, lots of important things happen here:
+ *	Sets the game window's title bar text to include the game version and current map's station name.
+ *	Sets the world's tick_lag value from the configuration.
  *	Sets up some log files.
  *	Calculates the changelog hash.
  *	Checks if the recommended BYOND version is running.
  *	Post-loads the configuration files.
  *	Sets up the hub visibility variables.
  *	Loads admins and moderators.
- *	Sets up the global_variables controller.
  *	Activates the master_controller and process_scheduler, starting the game loop that causes everything else to begin setting up and processing.
  *
  * Nothing happens until something moves. ~ Albert Einstein
 */
 /world/New()
 	name = "Space Station 13 - [GLOBL.game_version]: [GLOBL.current_map.station_name]"
+	tick_lag = CONFIG_GET(ticklag)
 
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
@@ -40,9 +42,6 @@
 		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
 	callHook("startup")
-	//Emergency Fix
-	load_mods()
-	//end-emergency fix
 
 	src.update_status()
 
