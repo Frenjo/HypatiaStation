@@ -9,8 +9,10 @@ GLOBAL_BYOND_INIT(pipe_processing_killed, FALSE)
 /datum/controller/master
 	name = "Master"
 
+	var/initialised = FALSE
+
 /datum/controller/master/New()
-	..()
+	. = ..()
 	// There can be only one master_controller. Out with the old and in with the new.
 	if(global.master_controller != src)
 		log_debug("Rebuilding Master Controller")
@@ -34,16 +36,14 @@ GLOBAL_BYOND_INIT(pipe_processing_killed, FALSE)
 		GLOBL.syndicate_code_response	= generate_code_phrase()
 
 /datum/controller/master/setup()
-	// Load an away mission and set up the mining asteroid's secrets.
-	createRandomZlevel()
-	for(var/i = 0, i < GLOBL.max_secret_rooms, i++)
-		make_mining_asteroid_secret()
-	sleep(-1)
-
 	setup_objects()
 	setup_genetics()
 	setup_factions()
 	setup_xenoarch()
+	sleep(-1)
+
+	to_world(SPAN_DANGER("Initialisations complete."))
+	initialised = TRUE
 
 /datum/controller/master/proc/stat_controllers()
 	stat("Controllers:", GLOBL.controllers.len)
@@ -52,23 +52,22 @@ GLOBAL_BYOND_INIT(pipe_processing_killed, FALSE)
 
 /datum/controller/master/proc/setup_objects()
 	to_world(SPAN_DANGER("Initialising areas."))
-	sleep(-1)
 	for(var/area/area in world)
 		area.initialize()
+	sleep(-1)
 
 	to_world(SPAN_DANGER("Initialising objects."))
-	sleep(-1)
 	for(var/atom/movable/object in world)
 		if(isnull(object.gcDestroyed))
 			object.initialize()
+	sleep(-1)
 
 	to_world(SPAN_DANGER("Initialising pipe networks."))
-	sleep(-1)
 	for(var/obj/machinery/atmospherics/machine in GLOBL.machines)
 		machine.build_network()
+	sleep(-1)
 
 	to_world(SPAN_DANGER("Initialising atmos machinery."))
-	sleep(-1)
 	for(var/obj/machinery/atmospherics/unary/U in GLOBL.machines)
 		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
 			var/obj/machinery/atmospherics/unary/vent_pump/T = U
@@ -76,14 +75,14 @@ GLOBAL_BYOND_INIT(pipe_processing_killed, FALSE)
 		else if(istype(U, /obj/machinery/atmospherics/unary/vent_scrubber))
 			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
 			T.broadcast_status()
+	sleep(-1)
 
 	// Set up spawn points.
 	to_world(SPAN_DANGER("Populating spawn points."))
 	populate_spawn_points()
+	sleep(-1)
 
 	// Create the space parallax background.
 	to_world(SPAN_DANGER("Creating space parallax."))
 	create_parallax()
-
-	to_world(SPAN_DANGER("Initialisations complete."))
 	sleep(-1)

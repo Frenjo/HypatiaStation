@@ -19,6 +19,10 @@ GLOBAL_BYOND_TYPED(ticker_process, /datum/process/ticker) // Set in /datum/proce
 	global.ticker_process = src
 
 	spawn(0)
+		// This seems really, really wrong but I don't want to rearrange the entire initialisation order just yet.
+		// It's going to be one of those "temporary fixes" they find is still in the code two decades later.
+		while(!global.master_controller.initialised)
+			sleep(1)
 		if(global.ticker)
 			global.ticker.pregame()
 

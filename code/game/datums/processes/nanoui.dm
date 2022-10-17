@@ -4,13 +4,13 @@
 // nanomanager, the manager for Nano UIs
 GLOBAL_BYOND_TYPED(nanomanager, /datum/nanomanager)
 
+/hook/startup/proc/create_nanomanager()
+	global.nanomanager = new /datum/nanomanager()
+	return 1
+
 /datum/process/nanoui
 	name = "NanoUI"
 	schedule_interval = 2 SECONDS
-
-/datum/process/nanoui/setup()
-	if(!global.nanomanager)
-		global.nanomanager = new /datum/nanomanager()
 
 /datum/process/nanoui/doWork()
 	for(last_object in global.nanomanager.processing_uis)

@@ -47,6 +47,12 @@
 
 	. = ..()
 
+	// Load an away mission and set up the mining asteroid's secrets.
+	createRandomZlevel()
+	for(var/i = 0, i < GLOBL.max_secret_rooms, i++)
+		make_mining_asteroid_secret()
+	sleep(-1)
+
 	sleep_offline = TRUE
 
 	global.master_controller = new /datum/controller/master()
