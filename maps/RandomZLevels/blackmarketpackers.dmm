@@ -70,7 +70,6 @@
 "bt" = (/turf/simulated/floor/plating/airless{icon_state = "panelscorched"; tag = "icon-panelscorched"},/area/awaymission/BMPship1)
 "bu" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/obj/item/clothing/glasses/regular/hipster,/turf/simulated/floor/plating/airless,/area/awaymission/BMPship1)
 "bv" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; tag = ""},/turf/simulated/floor/plating/airless,/area/awaymission/BMPship1)
-"bw" = (/obj/machinery/door/unpowered/shuttle,/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; tag = ""},/turf/simulated,/area/awaymission/BMPship1)
 "bx" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; tag = ""},/obj/effect/decal/floor/industrial/warning/border{dir = 8},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
 "by" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/turf/simulated/floor/plating,/area/awaymission/BMPship1)
 "bz" = (/obj/structure/closet/crate/freezer,/obj/item/weapon/reagent_containers/food/drinks/cans/beer,/obj/item/weapon/reagent_containers/food/drinks/cans/beer,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
@@ -386,7 +385,7 @@
 "hG" = (/turf/simulated/floor/plating/airless,/area/awaymission)
 "hH" = (/turf/simulated/floor/plating/airless{icon_state = "platingdmg1"; tag = "icon-platingdmg1"},/area/awaymission)
 "hI" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/plating/airless,/area/awaymission)
-"hJ" = (/turf/simulated/floor/plating{icon_state = "platingdmg3"; tag = "icon-platingdmg3"},/area/awaymission)
+"hJ" = (/turf/simulated/floor/plating/airless{icon_state = "platingdmg3"; tag = "icon-platingdmg3"},/area/awaymission)
 "hK" = (/obj/item/apc_frame,/turf/simulated/floor/plating/airless,/area/awaymission)
 "hL" = (/obj/structure/ore_box,/obj/machinery/light/small{dir = 1},/turf/simulated/floor/plating/airless,/area/awaymission)
 "hM" = (/obj/item/stack/cable_coil{amount = 5},/turf/simulated/floor/plating/airless,/area/awaymission)
@@ -397,12 +396,11 @@
 "hS" = (/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor,/area/awaymission/BMPship1)
 "hT" = (/obj/effect/decal/remains/human,/obj/item/clothing/head/helmet/space/syndicate/green/dark,/obj/effect/gibspawner/generic,/turf/simulated/floor/plating/airless/asteroid,/area/awaymission)
 "hU" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/grille,/obj/item/weapon/shard{icon_state = "small"},/turf/simulated/floor/engine,/area/awaymission/BMPship3)
-"hV" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated,/area/awaymission/BMPship3)
-"hW" = (/obj/effect/gibspawner/robot,/turf/simulated,/area/awaymission/BMPship3)
+"hW" = (/obj/effect/gibspawner/robot,/turf/simulated/floor/plating/airless,/area/awaymission/BMPship3)
 "hX" = (/turf/simulated/floor/plating/airless{icon_state = "platingdmg2"; tag = "icon-platingdmg2"},/area/awaymission)
 "hY" = (/obj/effect/decal/mecha_wreckage/ripley,/turf/simulated/floor/plating/airless,/area/awaymission)
 "hZ" = (/obj/effect/landmark{name = "awaystart"},/turf/simulated/floor/plating/airless/asteroid,/area/awaymission)
-"ia" = (/obj/effect/landmark{name = "awaystart"},/turf/simulated/floor/plating{icon_state = "platingdmg3"; tag = "icon-platingdmg3"},/area/awaymission)
+"ia" = (/obj/effect/landmark{name = "awaystart"},/turf/simulated/floor/plating/airless{icon_state = "platingdmg3"; tag = "icon-platingdmg3"},/area/awaymission)
 "ib" = (/obj/effect/landmark{name = "awaystart"},/turf/simulated/floor/plating/airless,/area/awaymission)
 "ic" = (/obj/structure/stool/bed,/turf/simulated/floor,/area/awaymission/BMPship1)
 "id" = (/obj/structure/stool/bed,/obj/item/weapon/bedsheet,/obj/item/weapon/storage/wallet/random,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor,/area/awaymission/BMPship1)
@@ -499,7 +497,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaravawawawawawawawawawaxawawawayazaAaBayayawawaDaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaraaaraEaFaGaHaIaJaKaLaMaNaOaPaQaRaSaTaUaUaUaUaUaUaVaDaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeafafagafafafafafafafahaaaaaaaaaaaaaraWaXaGaGaYaGaGaGaZaGaGbabbbcbcbdbcbcbebfbgbcbhbiaOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabjbkblbmbnbobpbobpbobqbraaaaaaaaaaarbsaXaGbtaGaGaGaFaGbubvbvbwbxbybcbzbcbcbAbBbCbDbcbiaOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacababacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabjbkblbmbnbobpbobpbobqbraaaaaaaaaaarbsaXaGbtaGaGaGaFaGbubvbvikbxbybcbzbcbcbAbBbCbDbcbiaOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacabababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaobEbFbmbGaqaqaqaqaqaqbHaaaaaaaravaEaGbtaXaGbtaGaGaGaYaGaGaGbIbbbJbcbcbcbcbKbLbMbcbcbNaOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasbObEbmaqbPbPbQbPbPbRbSaaaaaaavbTbsbtaGbUbVaGaGaGbWbXbUbWbXaObbbYbZcacacbcacacacabyccaOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcecfcgchcicjcjcjcjcjckcjcjcjckclawawawawazcmcmcmaBawawawawbTcncocpcqcococrcsctcucvcwaOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -519,7 +517,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacaaaaaraaaaaaaagZhahbgAgRcKcJhccJcJcJcJhdcJhehdcKcJhccJcJcJhccJcJcJcJhccJcJcTawazhfaBazhgaBawayazhhaBclfsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahihihiacaaaraahjaraahkafafhlhmhncjcjcjcjcjcjcjhohphqhrcjcjcjcjcjcjcjcjcjcjcjcjcjbTdodododohsdnhthuhvhsdnhwaOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahihihihiacaaaaaaaaaahxajhycghzhAhBhCgyhDgAhEhihihihihFacachGhHachIhGachJhKhLhMhNaOhOdobcdodohPililililhRhSaOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahihihihihTaaaaaaaaaahUakakhVgQgNgQhBhWgQhBhihihihihihihEachXhYhGhZiaibibhGhGhGhGbahtdodoicdoiddoicdododoieaOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahihihihihTaaaaaaaaaahUakakapgQgNgQhBhWgQhBhihihihihihihEachXhYhGhZiaibibhGhGhGhGbahtdodoicdoiddoicdododoieaOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahiacifaaaaaaaaaaigajakbSgAgAhBgyhBgAhBhEhihihihEhihihiacihacibibibibhGhGiiijikilililililimdododoaBawawbTaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacaaaaaaaainacaeafafioafiphihBhEhihihihihihihihihihihihHhXibibhZibhGiqhGhGbIdodoirisdoicdoicdoitiuivaOaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacachihihihihihihihihihihihihihihihihihihihEachXhGhGhJiwiwiwixaOiyizdobcdododododobIiAiBfsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
