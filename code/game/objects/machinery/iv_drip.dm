@@ -67,7 +67,7 @@
 
 
 /obj/machinery/iv_drip/process()
-	set background = 1
+	set background = BACKGROUND_ENABLED
 
 	if(src.attached)
 

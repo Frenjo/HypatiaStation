@@ -170,7 +170,7 @@ GLOBAL_BYOND_LIST_NEW(delayed_garbage)
 /atom/verb/find_references()
 	set category = "Debug"
 	set name = "Find References"
-	set background = 1
+	set background = BACKGROUND_ENABLED
 	set src in world
 
 	if(!usr || !usr.client)

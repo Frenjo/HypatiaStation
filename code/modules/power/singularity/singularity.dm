@@ -226,7 +226,7 @@ var/global/list/uneatable = list(
 	return 1
 
 /obj/singularity/proc/eat()
-	set background = 1
+	set background = BACKGROUND_ENABLED
 	if(GLOBL.defer_powernet_rebuild != 2)
 		GLOBL.defer_powernet_rebuild = 1
 	// Let's just make this one loop.
@@ -586,7 +586,7 @@ var/global/list/uneatable = list(
 	grav_pull = 0
 
 /obj/singularity/narsie/wizard/eat()
-	set background = 1
+	set background = BACKGROUND_ENABLED
 	if(GLOBL.defer_powernet_rebuild != 2)
 		GLOBL.defer_powernet_rebuild = 1
 	for(var/atom/X in orange(consume_range, src))

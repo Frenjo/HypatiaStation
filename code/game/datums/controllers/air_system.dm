@@ -93,11 +93,10 @@ GLOBAL_BYOND_TYPED(air_master, /datum/controller/air_system) // Set in /datum/pr
 	// Outputs: None.
 
 	#ifndef ZASDBG
-	set background = 1
+	set background = BACKGROUND_ENABLED
 	#endif
 
 	to_world(SPAN_DANGER("Processing geometry..."))
-	sleep(-1)
 
 	var/start_time = world.timeofday
 
@@ -106,6 +105,7 @@ GLOBAL_BYOND_TYPED(air_master, /datum/controller/air_system) // Set in /datum/pr
 	for(var/turf/simulated/S in world)
 		simulated_turf_count++
 		S.update_air_properties()
+		CHECK_TICK
 
 	world << {"<span class='danger'>Geometry initialised in [round(0.1 * (world.timeofday - start_time), 0.1)] seconds.</b></span>
 <span class='info'>
@@ -141,7 +141,7 @@ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_
 			T.overlays -= mark
 			updated++
 			#endif
-			//sleep(1)
+			CHECK_TICK
 
 		#ifdef ZASDBG
 		if(updated != updating.len)
@@ -156,6 +156,7 @@ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_
 
 	for(var/connection_edge/edge in active_edges)
 		edge.tick()
+		CHECK_TICK
 
 	//Process fire zones.
 	if(.)
@@ -163,6 +164,7 @@ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_
 
 	for(var/zone/Z in active_fire_zones)
 		Z.process_fire()
+		CHECK_TICK
 
 	//Process hotspots.
 	if(.)
@@ -170,6 +172,7 @@ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_
 
 	for(var/obj/fire/fire in active_hotspots)
 		fire.process()
+		CHECK_TICK
 
 	//Process zones.
 	if(.)
@@ -182,6 +185,7 @@ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_
 		for(var/zone/zone in updating)
 			zone.tick()
 			zone.needs_update = 0
+			CHECK_TICK
 
 	if(.)
 		tick_progress = "success"

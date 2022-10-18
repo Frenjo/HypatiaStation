@@ -153,7 +153,7 @@
 	return
 
 /obj/effect/alien/flesh/weeds/proc/Life()
-	set background = 1
+	set background = BACKGROUND_ENABLED
 	var/turf/U = get_turf(src)
 /*
 	if (locate(/obj/movable, U))

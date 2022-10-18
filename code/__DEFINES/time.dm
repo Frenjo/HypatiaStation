@@ -9,3 +9,5 @@
 
 #define DAY * 864000
 #define DAYS * 864000
+
+#define DS2TICKS(DS) ((DS) / world.tick_lag) // Converts deciseconds to ticks.

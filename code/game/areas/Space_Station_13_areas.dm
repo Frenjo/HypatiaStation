@@ -91,7 +91,7 @@
 			Obj << mysound
 
 /area/beach/proc/process()
-	set background = 1
+	set background = BACKGROUND_ENABLED
 
 	var/sound/S = null
 	var/sound_delay = 0

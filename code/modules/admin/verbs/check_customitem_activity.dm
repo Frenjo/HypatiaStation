@@ -24,7 +24,7 @@ GLOBAL_GLOBL_INIT(inactive_keys, "None<br>")
 	usr << browse(dat, "window=inactive_customitems;size=600x480")
 
 /proc/populate_inactive_customitems_list(client/C)
-	set background = 1
+	set background = BACKGROUND_ENABLED
 
 	if(GLOBL.checked_for_inactives)
 		return

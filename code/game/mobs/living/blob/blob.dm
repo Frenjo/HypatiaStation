@@ -27,7 +27,7 @@
 
 /mob/living/blob/Life()
 	set invisibility = 0
-	set background = 1
+	set background = BACKGROUND_ENABLED
 
 	clamp_values()
 	UpdateDamage()

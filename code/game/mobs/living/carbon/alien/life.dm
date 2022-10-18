@@ -1,7 +1,7 @@
 // Alien larva are quite simple.
 /mob/living/carbon/alien/Life()
 	set invisibility = 0
-	set background = 1
+	set background = BACKGROUND_ENABLED
 
 	if (monkeyizing)
 		return

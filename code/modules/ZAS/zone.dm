@@ -119,6 +119,7 @@ Class Procs:
 		//T.dbg(invalid_zone)
 		T.needs_air_update = 0 //Reset the marker so that it will be added to the list.
 		air_master.mark_for_update(T)
+		CHECK_TICK
 
 /zone/proc/add_tile_air(datum/gas_mixture/tile_air)
 	//air.volume += CELL_VOLUME
@@ -132,10 +133,12 @@ Class Procs:
 	if(air.check_tile_graphic())
 		for(var/turf/simulated/T in contents)
 			T.set_graphic(air.graphic)
+			CHECK_TICK
 
 	for(var/connection_edge/E in edges)
 		if(E.sleeping)
 			E.recheck()
+			CHECK_TICK
 
 /zone/proc/dbg_data(mob/M)
 	to_chat(M, name)

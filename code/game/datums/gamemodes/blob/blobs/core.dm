@@ -47,7 +47,7 @@
 
 /*
 /obj/effect/blob/core/Pulse(pulse = 0, origin_dir = 0)//Todo: Fix spaceblob expand
-	set background = 1
+	set background = BACKGROUND_ENABLED
 	if(pulse > 20)	return
 	//Looking for another blob to pulse
 	var/list/dirs = list(1,2,4,8)

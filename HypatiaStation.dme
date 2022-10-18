@@ -44,6 +44,7 @@
 #include "code\__DEFINES\shuttles.dm"
 #include "code\__DEFINES\species_languages.dm"
 #include "code\__DEFINES\text.dm"
+#include "code\__DEFINES\tick.dm"
 #include "code\__DEFINES\time.dm"
 #include "code\__DEFINES\turfs.dm"
 #include "code\__HELPERS\AStar.dm"

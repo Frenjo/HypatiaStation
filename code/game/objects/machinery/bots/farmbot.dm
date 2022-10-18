@@ -223,7 +223,7 @@
 	return
 
 /obj/machinery/bot/farmbot/process()
-	set background = 1
+	set background = BACKGROUND_ENABLED
 
 	if(!src.on)
 		return

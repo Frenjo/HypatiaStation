@@ -414,7 +414,7 @@ Status: []<BR>"},
 /obj/machinery/porta_turret/process()
 	// the main machinery process
 
-	set background = 1
+	set background = BACKGROUND_ENABLED
 
 	if(src.cover==null && anchored) // if it has no cover and is anchored
 		if (stat & BROKEN) // if the turret is borked

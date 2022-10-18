@@ -51,7 +51,7 @@
 
 //this should only need to be called once
 /datum/geosample/proc/UpdateTurf(turf/simulated/mineral/container)
-	set background = 1
+	set background = BACKGROUND_ENABLED
 	if(!container || !istype(container))
 		return
 
