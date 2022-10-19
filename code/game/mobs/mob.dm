@@ -678,8 +678,7 @@ below 100 is not dizzy
 	dizziness = min(1000, dizziness + amount)	// store what will be new value
 													// clamped to max 1000
 	if(dizziness > 100 && !is_dizzy)
-		spawn(0)
-			dizzy_process()
+		dizzy_process()
 
 
 /*
@@ -688,6 +687,7 @@ spawned from make_dizzy(), will terminate automatically when dizziness gets <100
 note dizziness decrements automatically in the mob's Life() proc.
 */
 /mob/proc/dizzy_process()
+	set waitfor = FALSE
 	is_dizzy = 1
 	while(dizziness > 100)
 		if(client)
@@ -710,12 +710,12 @@ note dizziness decrements automatically in the mob's Life() proc.
 	jitteriness = min(1000, jitteriness + amount)	// store what will be new value
 													// clamped to max 1000
 	if(jitteriness > 100 && !is_jittery)
-		spawn(0)
-			jittery_process()
+		jittery_process()
 
 
 // Typo from the oriignal coder here, below lies the jitteriness process. So make of his code what you will, the previous comment here was just a copypaste of the above.
 /mob/proc/jittery_process()
+	set waitfor = FALSE
 	var/old_x = pixel_x
 	var/old_y = pixel_y
 	is_jittery = 1

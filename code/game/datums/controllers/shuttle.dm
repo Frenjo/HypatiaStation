@@ -334,3 +334,4 @@ GLOBAL_BYOND_TYPED(shuttle_controller, /datum/controller/shuttle) // Set in /dat
 	for(var/shuttle_tag in shuttles)
 		shuttle = shuttles[shuttle_tag]
 		shuttle.dock()
+		CHECK_TICK

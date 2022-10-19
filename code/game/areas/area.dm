@@ -302,6 +302,7 @@
 /area/proc/set_emergency_lighting(enable)
 	for(var/obj/machinery/light/M in src)
 		M.set_emergency_lighting(enable)
+		CHECK_TICK
 
 /area/Entered(A)
 	var/musVolume = 25

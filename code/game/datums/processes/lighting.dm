@@ -25,11 +25,12 @@ GLOBAL_GLOBL_LIST_NEW(lighting_update_overlays_old)	// List of lighting overlays
 	create_all_lighting_overlays()
 	GLOBL.lighting_overlays_initialised = TRUE
 
-	// Pre-process lighting once before the round starts. Wait 45 seconds so the away mission has time to load.
-	spawn(45 SECONDS)
-		doWork(1)
+	doWork(TRUE)
 
-/datum/process/lighting/doWork(roundstart)
+/datum/process/lighting/doWork(roundstart = FALSE)
+	if(roundstart)
+		set waitfor = FALSE
+
 	// Counters
 	var/light_updates	= 0
 	var/corner_updates	= 0

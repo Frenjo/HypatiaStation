@@ -318,8 +318,7 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 	if(!mode.explosion_in_progress && mode_finished)
 		current_state = GAME_STATE_FINISHED
 
-		spawn()
-			declare_completion()
+		declare_completion()
 
 		spawn(50)
 			callHook("roundend")
@@ -353,6 +352,7 @@ GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/proce
 			return F
 
 /datum/controller/game_ticker/proc/declare_completion()
+	set waitfor = FALSE
 	for(var/mob/living/silicon/ai/aiPlayer in GLOBL.mob_list)
 		if(aiPlayer.stat != DEAD)
 			to_world("<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the game were:</b>")

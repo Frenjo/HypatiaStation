@@ -203,6 +203,7 @@
 	for(var/obj/machinery/conveyor/C in conveyors)
 		C.operating = position
 		C.setmove()
+		CHECK_TICK
 
 // attack with hand, switch position
 /obj/machinery/conveyor_switch/attack_hand(mob/user)
@@ -229,6 +230,7 @@
 		if(S.id == src.id)
 			S.position = position
 			S.update()
+		CHECK_TICK
 
 
 /obj/machinery/conveyor_switch/oneway
@@ -251,3 +253,4 @@
 		if(S.id == src.id)
 			S.position = position
 			S.update()
+		CHECK_TICK
