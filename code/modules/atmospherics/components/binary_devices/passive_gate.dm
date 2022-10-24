@@ -16,7 +16,7 @@
 
 /obj/machinery/atmospherics/binary/passive_gate/initialize()
 	..()
-	radio_connection = register_radio(src, frequency, frequency, RADIO_ATMOSIA)
+	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/binary/passive_gate/Destroy()
 	unregister_radio(src, frequency)

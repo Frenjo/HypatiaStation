@@ -208,7 +208,7 @@
 	var/radio_freq = FREQUENCY_SYNDICATE
 
 	var/obj/item/device/radio/R = new /obj/item/device/radio/headset/syndicate(synd_mob)
-	R.radio_connection = register_radio(R, radio_freq, radio_freq, RADIO_CHAT)
+	R.radio_connection = register_radio(R, null, radio_freq, RADIO_CHAT)
 	synd_mob.equip_to_slot_or_del(R, slot_l_ear)
 
 	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(synd_mob), slot_w_uniform)

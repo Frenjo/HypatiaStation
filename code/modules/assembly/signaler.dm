@@ -21,7 +21,7 @@
 
 /obj/item/device/assembly/signaler/initialize()
 	..()
-	radio_connection = register_radio(src, frequency, frequency, RADIO_CHAT)
+	radio_connection = register_radio(src, null, frequency, RADIO_CHAT)
 
 /obj/item/device/assembly/signaler/activate()
 	if(cooldown > 0)
@@ -164,7 +164,5 @@ Code:
 	usr.visible_message(SPAN_WARNING("[usr] moves their finger over [src]'s signal button..."))
 
 /obj/item/device/assembly/signaler/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, frequency)
-	frequency = 0
+	unregister_radio(src, frequency)
 	return ..()

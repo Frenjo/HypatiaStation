@@ -56,12 +56,10 @@
 
 	src.locked = 0 // Start unlocked so roboticist can set them to patrol.
 
-	if(radio_controller)
-		radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
+	register_radio(src, null, beacon_freq, RADIO_NAVBEACONS)
 
 /obj/machinery/bot/cleanbot/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, beacon_freq)
+	unregister_radio(src, beacon_freq)
 	return ..()
 
 /obj/machinery/bot/cleanbot/turn_on()

@@ -44,12 +44,10 @@
 // must wait for map loading to finish
 /obj/machinery/status_display/initialize()
 	..()
-	if(radio_controller)
-		radio_controller.add_object(src, frequency)
+	register_radio(src, null, frequency, null)
 
 /obj/machinery/status_display/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src,frequency)
+	unregister_radio(src, frequency)
 	return ..()
 
 // timed process

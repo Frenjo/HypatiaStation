@@ -659,7 +659,7 @@
 
 /obj/machinery/atmospherics/mains_pipe/valve/digital/initialize()
 	..()
-	radio_connection = register_radio(src, frequency, frequency, RADIO_ATMOSIA)
+	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/mains_pipe/valve/digital/Destroy()
 	unregister_radio(src, frequency)

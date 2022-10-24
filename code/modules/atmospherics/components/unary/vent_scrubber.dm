@@ -40,7 +40,7 @@
 	..()
 	radio_filter_in = frequency == initial(frequency) ? RADIO_FROM_AIRALARM : null
 	radio_filter_out = frequency == initial(frequency) ? RADIO_TO_AIRALARM : null
-	radio_connection = register_radio(src, frequency, frequency, radio_filter_in)
+	radio_connection = register_radio(src, null, frequency, radio_filter_in)
 	broadcast_status()
 
 /obj/machinery/atmospherics/unary/vent_scrubber/Destroy()

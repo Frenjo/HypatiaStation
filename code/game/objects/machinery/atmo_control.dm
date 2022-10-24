@@ -85,7 +85,7 @@
 
 /obj/machinery/air_sensor/initialize()
 	..()
-	radio_connection = register_radio(src, frequency, frequency, RADIO_ATMOSIA)
+	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/air_sensor/Destroy()
 	unregister_radio(src, frequency)
@@ -115,7 +115,7 @@
 
 /obj/machinery/computer/general_air_control/initialize()
 	..()
-	radio_connection = register_radio(src, frequency, frequency, RADIO_ATMOSIA)
+	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/computer/general_air_control/Destroy()
 	unregister_radio(src, frequency)

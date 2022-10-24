@@ -93,7 +93,7 @@
 
 /obj/machinery/door/airlock/initialize()
 	..()
-	radio_connection = register_radio(src, frequency, frequency, RADIO_AIRLOCK)
+	radio_connection = register_radio(src, null, frequency, RADIO_AIRLOCK)
 
 	update_icon()
 
@@ -160,7 +160,7 @@
 
 /obj/machinery/airlock_sensor/initialize()
 	..()
-	radio_connection = register_radio(src, frequency, frequency, RADIO_AIRLOCK)
+	radio_connection = register_radio(src, null, frequency, RADIO_AIRLOCK)
 
 /obj/machinery/airlock_sensor/Destroy()
 	unregister_radio(src, frequency)
@@ -212,8 +212,7 @@
 
 /obj/machinery/access_button/initialize()
 	..()
-	if(frequency)
-		radio_connection = register_radio(src, frequency, frequency, RADIO_AIRLOCK)
+	radio_connection = register_radio(src, null, frequency, RADIO_AIRLOCK)
 
 /obj/machinery/access_button/Destroy()
 	unregister_radio(src, frequency)

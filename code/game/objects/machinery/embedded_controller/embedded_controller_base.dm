@@ -59,7 +59,7 @@
 
 /obj/machinery/embedded_controller/radio/initialize()
 	..()
-	radio_connection = register_radio(src, frequency, frequency, radio_filter)
+	radio_connection = register_radio(src, null, frequency, radio_filter)
 
 /obj/machinery/embedded_controller/radio/Destroy()
 	unregister_radio(src, frequency)

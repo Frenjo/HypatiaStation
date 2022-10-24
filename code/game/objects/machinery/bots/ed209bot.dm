@@ -74,9 +74,8 @@
 		var/datum/job/detective/J = new/datum/job/detective
 		src.botcard.access = J.get_access()
 
-		if(radio_controller)
-			radio_controller.add_object(src, control_freq, filter = RADIO_SECBOT)
-			radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
+		register_radio(src, null, control_freq, RADIO_SECBOT)
+		register_radio(src, null, beacon_freq, RADIO_NAVBEACONS)
 		if(lasercolor)
 			shot_delay = 6//Longer shot delay because JESUS CHRIST
 			check_records = 0//Don't actively target people set to arrest

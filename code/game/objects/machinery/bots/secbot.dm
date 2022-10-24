@@ -79,14 +79,13 @@
 	src.botcard = new /obj/item/weapon/card/id(src)
 	var/datum/job/detective/J = new/datum/job/detective
 	src.botcard.access = J.get_access()
-	if(radio_controller)
-		radio_controller.add_object(src, control_freq, filter = RADIO_SECBOT)
-		radio_controller.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
+
+	register_radio(src, null, control_freq, RADIO_SECBOT)
+	register_radio(src, null, beacon_freq, RADIO_NAVBEACONS)
 
 /obj/machinery/bot/secbot/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, beacon_freq)
-		radio_controller.remove_object(src, control_freq)
+	unregister_radio(src, beacon_freq)
+	unregister_radio(src, control_freq)
 	return ..()
 
 /obj/machinery/bot/secbot/turn_on()

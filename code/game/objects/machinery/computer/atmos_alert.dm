@@ -16,7 +16,7 @@
 
 /obj/machinery/computer/atmos_alert/initialize()
 	..()
-	radio_connection = register_radio(src, receive_frequency, receive_frequency, RADIO_ATMOSIA)
+	radio_connection = register_radio(src, null, receive_frequency, RADIO_ATMOSIA)
 
 /obj/machinery/computer/atmos_alert/Destroy()
 	unregister_radio(src, receive_frequency)

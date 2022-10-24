@@ -29,12 +29,10 @@
 // must wait for map loading to finish
 /obj/machinery/navbeacon/initialize()
 	..()
-	if(radio_controller)
-		radio_controller.add_object(src, freq, RADIO_NAVBEACONS)
+	register_radio(src, null, freq, RADIO_NAVBEACONS)
 
 /obj/machinery/navbeacon/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, freq)
+	unregister_radio(src, freq)
 	return ..()
 
 // set the transponder codes assoc list from codes_txt

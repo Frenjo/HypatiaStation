@@ -124,7 +124,7 @@ GLOBAL_GLOBL_INIT(sent_strike_team, 0)
 /mob/living/carbon/human/proc/equip_death_commando(leader_selected = 0)
 
 	var/obj/item/device/radio/R = new /obj/item/device/radio/headset(src)
-	R.radio_connection = register_radio(R, FREQUENCY_DEATHSQUAD, FREQUENCY_DEATHSQUAD, RADIO_CHAT)
+	R.radio_connection = register_radio(R, null, FREQUENCY_DEATHSQUAD, RADIO_CHAT)
 	equip_to_slot_or_del(R, slot_l_ear)
 	if (leader_selected == 0)
 		equip_to_slot_or_del(new /obj/item/clothing/under/color/green(src), slot_w_uniform)

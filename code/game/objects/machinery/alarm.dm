@@ -135,7 +135,7 @@
 
 /obj/machinery/alarm/initialize()
 	..()
-	radio_connection = register_radio(src, frequency, frequency, RADIO_TO_AIRALARM)
+	radio_connection = register_radio(src, null, frequency, RADIO_TO_AIRALARM)
 	if(!master_is_operating())
 		elect_master()
 

@@ -192,7 +192,7 @@
 
 /obj/machinery/atmospherics/binary/valve/digital/initialize()
 	..()
-	radio_connection = register_radio(src, frequency, frequency, RADIO_ATMOSIA)
+	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/binary/valve/digital/Destroy()
 	unregister_radio(src, frequency)

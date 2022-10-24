@@ -111,7 +111,7 @@
 
 /obj/machinery/atmospherics/trinary/tvalve/digital/initialize()
 	..()
-	radio_connection = register_radio(src, frequency, frequency, RADIO_ATMOSIA)
+	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/trinary/tvalve/digital/Destroy()
 	unregister_radio(src, frequency)
@@ -231,7 +231,7 @@
 
 /obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/initialize()
 	..()
-	radio_connection = register_radio(src, frequency, frequency, RADIO_ATMOSIA)
+	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/Destroy()
 	unregister_radio(src, frequency)

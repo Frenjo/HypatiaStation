@@ -29,21 +29,21 @@
 	var/max_dist = 20 // absolute value of center_x,y cannot exceed this integer
 
 /obj/machinery/magnetic_module/New()
-	..()
+	. = ..()
 	var/turf/T = loc
 	hide(T.intact)
 	center = T
 
+/obj/machinery/magnetic_module/initialize()
+	..()
 	spawn(10)	// must wait for map loading to finish
-		if(radio_controller)
-			radio_controller.add_object(src, freq, RADIO_MAGNETS)
+		register_radio(src, null, freq, RADIO_MAGNETS)
 
 	spawn()
 		magnetic_process()
 
 /obj/machinery/magnetic_module/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, freq)
+	unregister_radio(src, freq)
 	return ..()
 
 // update the invisibility and icon
@@ -214,23 +214,22 @@
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/magnetic_controller/New()
-	..()
+	. = ..()
 
 	if(autolink)
 		for(var/obj/machinery/magnetic_module/M in world)
 			if(M.freq == frequency && M.code == code)
 				magnets.Add(M)
-
-	spawn(45)	// must wait for map loading to finish
-		if(radio_controller)
-			radio_connection = radio_controller.add_object(src, frequency, RADIO_MAGNETS)
-
+	
 	if(path) // check for default path
 		filter_path() // renders rpath
 
+/obj/machinery/magnetic_controller/initialize()
+	..()
+	radio_connection = register_radio(src, null, frequency, RADIO_MAGNETS)
+
 /obj/machinery/magnetic_controller/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, frequency)
+	unregister_radio(src, frequency)
 	return ..()
 
 /obj/machinery/magnetic_controller/process()
