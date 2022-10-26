@@ -1,5 +1,3 @@
-#define PI 3.1415
-
 #define R_IDEAL_GAS_EQUATION	8.31 	//kPa*L/(K*mol)
 #define ONE_ATMOSPHERE			101.325	//kPa
 
@@ -13,22 +11,10 @@
 
 #define RADIATOR_EXPOSED_SURFACE_AREA_RATIO 0.04 // (3 cm + 100 cm * sin(3deg))/(2*(3+100 cm)). Unitless ratio.
 
-#define T0C 273.15					// 0degC
-#define T20C 293.15					// 20degC
-#define TCMB 2.7					// -270.3degC
+#define T0C 273.15	// 0degC
+#define T20C 293.15	// 20degC
+#define TCMB 2.7	// -270.3degC
 
 #define SPEED_OF_LIGHT		3e8 //not exact but hey!
 #define SPEED_OF_LIGHT_SQ	9e+16
 #define INFINITY			1.#INF
-
-// New lighting
-#define CLAMP01(x)			(Clamp(x, 0, 1))
-#define CLAMP02(x, y, z)	(x <= y ? y : (x >= z ? z : x))
-
-// XGM stuff
-#define QUANTIZE(variable)	(round(variable, 0.0001))
-
-#define SIMPLE_SIGN(X)	((X) < 0 ? -1 : 1)
-#define SIGN(X)			((X) ? SIMPLE_SIGN(X) : 0)
-
-#define CEILING(x, y) (-round(-(x) / (y)) * (y))

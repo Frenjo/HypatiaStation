@@ -58,7 +58,7 @@
 // Same as above, this one line was typed out many times so it's justified.
 #define isMMI(x) istype(x, /obj/item/device/mmi)
 
-// Chat-related stuff
+// Chat-related.
 #define to_chat(target, message)	target << message
 #define to_world(message)			to_chat(world, message)
 
@@ -76,8 +76,11 @@
 #define SPAN_CAUTION(text)		SPAN("caution", text)
 #define SPAN_MODERATE(text)		SPAN("moderate", text)
 
-// GC/qdel stuff
+// GC/qdel.
 #define qdel_null(x) if(x) { qdel(x); x = null }
 
 // List-related macro that has to be here because it's used in __HELPERS.
 #define SUBTYPESOF(prototype) (typesof(prototype) - prototype)
+
+// Bitflags.
+#define BITFLAG(X) (1 << X)

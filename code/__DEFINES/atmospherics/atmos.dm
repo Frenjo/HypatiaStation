@@ -74,11 +74,6 @@
 #define PLASMA_MINIMUM_OXYGEN_PLASMA_RATIO	20
 #define PLASMA_OXYGEN_FULLBURN				10
 
-//XGM gas flags
-#define XGM_GAS_FUEL		1
-#define XGM_GAS_OXIDIZER	2
-#define XGM_GAS_CONTAMINANT	4
-
 #define TANK_LEAK_PRESSURE		(30. * ONE_ATMOSPHERE)	// Tank starts leaking
 #define TANK_RUPTURE_PRESSURE	(40. * ONE_ATMOSPHERE) // Tank spills all contents into atmosphere
 
@@ -90,22 +85,3 @@
 #define HEATPIPERATE 8					//heat-exch pipe insulation
 
 #define FLOWFRAC 0.99				// fraction of gas transfered per process
-
-//Flags for zone sleeping
-#define ZONE_ACTIVE		1
-#define ZONE_SLEEPING	0
-
-// Gas ID defines
-#define GAS_OXYGEN "oxygen"
-#define GAS_NITROGEN "nitrogen"
-#define GAS_HYDROGEN "hydrogen"
-#define GAS_CARBON_DIOXIDE "carbon_dioxide"
-#define GAS_PLASMA "plasma"
-#define GAS_OXYGEN_AGENT_B "oxygen_agent_b"
-#define GAS_SLEEPING_AGENT "sleeping_agent"
-#define GAS_VOLATILE_FUEL "volatile_fuel"
-
-// ZAS defines
-#define AIR_BLOCKED		1
-#define ZONE_BLOCKED	2
-#define BLOCKED			3
