@@ -2,12 +2,12 @@
 // Part of the food code. Nutriment is used instead of the old "heal_amt" code. Also is where all the food
 // 	condiments, additives, and such go.
 /datum/reagent/nutriment
-			name = "Nutriment"
-			id = "nutriment"
-			description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
-			reagent_state = REAGENT_SOLID
-			nutriment_factor = 15 * REAGENTS_METABOLISM
-			color = "#664330" // rgb: 102, 67, 48
+	name = "Nutriment"
+	id = "nutriment"
+	description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
+	reagent_state = REAGENT_SOLID
+	nutriment_factor = 15 * REAGENTS_METABOLISM
+	color = "#664330" // rgb: 102, 67, 48
 
 /datum/reagent/nutriment/on_mob_life(mob/living/M as mob)
 	if(!M)
@@ -126,9 +126,9 @@
 /datum/reagent/capsaicin/on_mob_life(mob/living/M as mob)
 	if(!M)
 		M = holder.my_atom
-	if(!data)
-		data = 1
-	switch(data)
+	if(!data["special"])
+		data["special"] = 1
+	switch(data["special"])
 		if(1 to 15)
 			M.bodytemperature += 5 * TEMPERATURE_DAMAGE_COEFFICIENT
 			if(holder.has_reagent("frostoil"))
@@ -144,7 +144,7 @@
 			if(isslime(M))
 				M.bodytemperature += rand(15, 20)
 	holder.remove_reagent(src.id, FOOD_METABOLISM)
-	data++
+	data["special"]++
 	..()
 	return
 
@@ -228,9 +228,9 @@
 /datum/reagent/frostoil/on_mob_life(mob/living/M as mob)
 	if(!M)
 		M = holder.my_atom
-	if(!data)
-		data = 1
-	switch(data)
+	if(!data["special"])
+		data["special"] = 1
+	switch(data["special"])
 		if(1 to 15)
 			M.bodytemperature -= 5 * TEMPERATURE_DAMAGE_COEFFICIENT
 			if(holder.has_reagent("capsaicin"))
@@ -247,7 +247,7 @@
 				M.emote("shiver")
 			if(isslime(M))
 				M.bodytemperature -= rand(15, 20)
-	data++
+	data["special"]++
 	holder.remove_reagent(src.id, FOOD_METABOLISM)
 	..()
 	return
@@ -299,9 +299,9 @@
 	if(!M)
 		M = holder.my_atom
 	M.druggy = max(M.druggy, 30)
-	if(!data)
-		data = 1
-	switch(data)
+	if(!data["special"])
+		data["special"] = 1
+	switch(data["special"])
 		if(1 to 5)
 			if(!M.stuttering)
 				M.stuttering = 1
@@ -325,7 +325,7 @@
 			if(prob(30))
 				M.emote(pick("twitch", "giggle"))
 	holder.remove_reagent(src.id, 0.2)
-	data++
+	data["special"]++
 	..()
 	return
 

@@ -84,15 +84,15 @@
 	..()
 	M.eye_blurry = max(M.eye_blurry - 1, 0)
 	M.eye_blind = max(M.eye_blind - 1, 0)
-	if(!data)
-		data = 1
-	switch(data)
+	if(!data["special"])
+		data["special"] = 1
+	switch(data["special"])
 		if(1 to 20)
 			//nothing
 		if(21 to INFINITY)
-			if(prob(data - 10))
+			if(prob(data["special"] - 10))
 				M.disabilities &= ~NEARSIGHTED
-	data++
+	data["special"]++
 	return
 
 
@@ -416,9 +416,9 @@
 /datum/reagent/drink/cold/milkshake/on_mob_life(mob/living/M as mob)
 	if(!M)
 		M = holder.my_atom
-	if(!data)
-		data = 1
-	switch(data)
+	if(!data["special"])
+		data["special"] = 1
+	switch(data["special"])
 		if(1 to 15)
 			M.bodytemperature -= 5 * TEMPERATURE_DAMAGE_COEFFICIENT
 			if(holder.has_reagent("capsaicin"))
@@ -435,7 +435,7 @@
 				M.emote("shiver")
 			if(isslime(M))
 				M.bodytemperature -= rand(15, 20)
-	data++
+	data["special"]++
 	holder.remove_reagent(src.id, FOOD_METABOLISM)
 	..()
 	return

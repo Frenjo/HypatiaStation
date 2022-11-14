@@ -1,6 +1,6 @@
 // Reagent declarations
 /datum/reagent/blood
-	data = new/list("donor" = null, "viruses" = null, "blood_DNA" = null, "blood_type" = null, "resistances" = null, "trace_chem" = null, "antibodies" = null)
+	data = list("donor" = null, "viruses" = null, "blood_DNA" = null, "blood_type" = null, "resistances" = null, "trace_chem" = null, "antibodies" = null)
 	name = "Blood"
 	id = "blood"
 	reagent_state = REAGENT_LIQUID

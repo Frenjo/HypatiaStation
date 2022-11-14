@@ -7,7 +7,7 @@
 	var/description = ""
 	var/datum/reagents/holder = null
 	var/reagent_state = REAGENT_SOLID
-	var/list/data = null
+	var/list/data = list()
 	var/volume = 0
 	var/nutriment_factor = 0
 	var/custom_metabolism = REAGENTS_METABOLISM

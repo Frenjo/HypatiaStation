@@ -231,9 +231,9 @@
 /datum/reagent/toxin/stoxin/on_mob_life(mob/living/M as mob)
 	if(!M)
 		M = holder.my_atom
-	if(!data)
-		data = 1
-	switch(data)
+	if(!data["special"])
+		data["special"] = 1
+	switch(data["special"])
 		if(1 to 12)
 			if(prob(5))
 				M.emote("yawn")
@@ -246,7 +246,7 @@
 		if(50 to INFINITY)
 			M.Weaken(20)
 			M.drowsyness  = max(M.drowsyness, 30)
-	data++
+	data["special"]++
 	..()
 	return
 
@@ -329,13 +329,13 @@
 /datum/reagent/srejuvenate/on_mob_life(mob/living/M as mob)
 	if(!M)
 		M = holder.my_atom
-	if(!data)
-		data = 1
-	data++
+	if(!data["special"])
+		data["special"] = 1
+	data["special"]++
 	if(M.losebreath >= 10)
 		M.losebreath = max(10, M.losebreath - 10)
 	holder.remove_reagent(src.id, 0.2)
-	switch(data)
+	switch(data["special"])
 		if(1 to 15)
 			M.eye_blurry = max(M.eye_blurry, 10)
 		if(15 to 25)
@@ -478,10 +478,10 @@
 /datum/reagent/rezadone/on_mob_life(mob/living/M as mob)
 	if(!M)
 		M = holder.my_atom
-	if(!data)
-		data = 1
-	data++
-	switch(data)
+	if(!data["special"])
+		data["special"] = 1
+	data["special"]++
+	switch(data["special"])
 		if(1 to 15)
 			M.adjustCloneLoss(-1)
 			M.heal_organ_damage(1, 1)

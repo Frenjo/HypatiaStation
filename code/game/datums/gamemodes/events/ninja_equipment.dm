@@ -1055,22 +1055,26 @@ ________________________________________________________________________________
 
 		if("RESEARCH")
 			var/obj/machinery/A = target
-			U << "\blue Hacking \the [A]..."
+			to_chat(U, SPAN_INFO("Hacking \the [A]..."))
 			spawn(0)
 				var/turf/location = get_turf(U)
-				for(var/mob/living/silicon/ai/AI in GLOBL.player_list)
-					AI << "\red <b>Network Alert: Hacking attempt detected[location?" in [location]":". Unable to pinpoint location"]</b>."
-			if(A:files&&A:files.known_tech.len)
-				for(var/datum/tech/current_data in S.stored_research)
-					U << "\blue Checking \the [current_data.name] database."
-					if(do_after(U, S.s_delay)&&G.candrain&&!isnull(A))
-						for(var/datum/tech/analyzing_data in A:files.known_tech)
-							if(current_data.id==analyzing_data.id)
-								if(analyzing_data.level>current_data.level)
-									U << "\blue Database: \black <b>UPDATED</b>."
-									current_data.level = analyzing_data.level
-								break//Move on to next.
-					else	break//Otherwise, quit processing.
+				for(var/mob/living/silicon/ai/ai in GLOBL.player_list)
+					to_chat(ai, SPAN_DANGER("Network Alert: Hacking attempt detected[location ? " in [location]" : ". Unable to pinpoint location"]."))
+			// These colons really need to be removed but I honestly don't feel like entirely rewriting this section right now.
+			if(A:files && istype(A:files, /datum/research))
+				var/datum/research/files = A:files
+				if(files.known_tech.len)
+					for(var/datum/tech/current_data in S.stored_research)
+						to_chat(U, SPAN_INFO("Checking \the [current_data.name] database."))
+						if(do_after(U, S.s_delay) && G.candrain && !isnull(A))
+							for(var/datum/tech/analyzing_data in files.known_tech)
+								if(current_data.id == analyzing_data.id)
+									if(analyzing_data.level > current_data.level)
+										to_chat(U, "\blue Database: \black <b>UPDATED</b>.")
+										current_data.level = analyzing_data.level
+									break //Move on to next.
+						else
+							break //Otherwise, quit processing.
 			U << "\blue Data analyzed. Process finished."
 
 		if("WIRE")

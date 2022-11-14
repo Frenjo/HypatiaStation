@@ -288,10 +288,10 @@
 /datum/reagent/toxin/chloralhydrate/on_mob_life(mob/living/M as mob)
 	if(!M)
 		M = holder.my_atom
-	if(!data)
-		data = 1
-	data++
-	switch(data)
+	if(!data["special"])
+		data["special"] = 1
+	data["special"]++
+	switch(data["special"])
 		if(1)
 			M.confused += 2
 			M.drowsyness += 2
@@ -357,9 +357,9 @@
 /datum/reagent/toxin/beer2/on_mob_life(mob/living/M as mob)
 	if(!M)
 		M = holder.my_atom
-	if(!data)
-		data = 1
-	switch(data)
+	if(!data["special"])
+		data["special"] = 1
+	switch(data["special"])
 		if(1)
 			M.confused += 2
 			M.drowsyness += 2
@@ -367,8 +367,8 @@
 			M.sleeping += 1
 		if(51 to INFINITY)
 			M.sleeping += 1
-			M.adjustToxLoss((data - 50) * REM)
-	data++
+			M.adjustToxLoss((data["special"] - 50) * REM)
+	data["special"]++
 	..()
 	return
 

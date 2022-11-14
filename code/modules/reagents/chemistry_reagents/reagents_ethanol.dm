@@ -33,16 +33,16 @@
 	if(adj_sleepy)
 		M.sleeping = max(0, M.sleeping + adj_sleepy)
 
-	if(!src.data || (!isnum(src.data) && src.data.len))
-		data = 1   //if it doesn't exist we set it.  if it's a list we're going to set it to 1 as well.  This is to
-	src.data += boozepwr						//avoid a runtime error associated with drinking blood mixed in drinks (demon's blood).
+	if(!src.data["special"] || (!isnum(src.data["special"]) && src.data.len))
+		data["special"] = 1				//if it doesn't exist we set it. if it's a list we're going to set it to 1 as well. This is to
+	src.data["special"] += boozepwr		//avoid a runtime error associated with drinking blood mixed in drinks (demon's blood).
 
-	var/d = data
+	var/d = data["special"]
 
 	// make all the beverages work together
 	for(var/datum/reagent/ethanol/A in holder.reagent_list)
-		if(isnum(A.data))
-			d += A.data
+		if(isnum(A.data["special"]))
+			d += A.data["special"]
 
 	M.dizziness += dizzy_adj
 	if(d >= slur_start && d < pass_out)
@@ -290,10 +290,10 @@
 	if(!M)
 		M = holder.my_atom
 	M.druggy = max(M.druggy, 50)
-	if(!data)
-		data = 1
-	data++
-	switch(data)
+	if(!data["special"])
+		data["special"] = 1
+	data["special"]++
+	switch(data["special"])
 		if(1 to 25)
 			if(!M.stuttering)
 				M.stuttering = 1
@@ -861,15 +861,15 @@
 	boozepwr = 4
 
 /datum/reagent/ethanol/silencer/on_mob_life(mob/living/M as mob)
-	if(!data)
-		data = 1
-	data++
+	if(!data["special"])
+		data["special"] = 1
+	data["special"]++
 	M.dizziness += 10
-	if(data >= 55 && data <115)
+	if(data["special"] >= 55 && data["special"] <115)
 		if(!M.stuttering)
 			M.stuttering = 1
 		M.stuttering += 10
-	else if(data >= 115 && prob(33))
+	else if(data["special"] >= 115 && prob(33))
 		M.confused = max(M.confused + 15, 15)
 	..()
 	return
@@ -902,10 +902,10 @@
 	if(!M.stuttering)
 		M.stuttering = 1
 	M.stuttering += 3
-	if(!data)
-		data = 1
-	data++
-	switch(data)
+	if(!data["special"])
+		data["special"] = 1
+	data["special"]++
+	switch(data["special"])
 		if(51 to 200)
 			M.sleeping += 1
 		if(201 to INFINITY)
@@ -923,11 +923,11 @@
 	color = "#664300" // rgb: 102, 67, 0
 
 /datum/reagent/gargle_blaster/on_mob_life(mob/living/M as mob)
-	if(!data)
-		data = 1
-	data++
+	if(!data["special"])
+		data["special"] = 1
+	data["special"]++
 	M.dizziness += 6
-	switch(data)
+	switch(data["special"])
 		if(15 to 45)
 			M.stuttering = max(M.stuttering + 3, 0)
 		if(45 to 55)
@@ -951,11 +951,11 @@
 	if(!M)
 		M = holder.my_atom
 	M.weakened = max(M.weakened, 3)
-	if(!data)
-		data = 1
-	data++
+	if(!data["special"])
+		data["special"] = 1
+	data["special"]++
 	M.dizziness += 6
-	switch(data)
+	switch(data["special"])
 		if(15 to 45)
 			M.stuttering = max(M.stuttering + 3, 0)
 		if(45 to 55)
@@ -979,10 +979,10 @@
 	if(!M)
 		M = holder.my_atom
 	M.druggy = max(M.druggy, 50)
-	if(!data)
-		data = 1
-	data++
-	switch(data)
+	if(!data["special"])
+		data["special"] = 1
+	data["special"]++
+	switch(data["special"])
 		if(1 to 5)
 			if(!M.stuttering)
 				M.stuttering = 1
