@@ -1,5 +1,5 @@
 /obj/machinery/power/apc/proc/get_malf_status(mob/user)
-	if(ticker && ticker.mode && (user.mind in ticker.mode.malf_ai) && isAI(user))
+	if(global.CTgame_ticker && global.CTgame_ticker.mode && (user.mind in global.CTgame_ticker.mode.malf_ai) && isAI(user))
 		if(src.malfai == (user:parent ? user:parent : user))
 			if(src.occupant == user)
 				return 3 // 3 = User is shunted in this APC
@@ -46,7 +46,7 @@
 		qdel(src.occupant)
 		if(seclevel2num(get_security_level()) == SEC_LEVEL_DELTA)
 			for(var/obj/item/weapon/pinpointer/point in world)
-				for(var/datum/mind/AI_mind in ticker.mode.malf_ai)
+				for(var/datum/mind/AI_mind in global.CTgame_ticker.mode.malf_ai)
 					var/mob/living/silicon/ai/A = AI_mind.current // the current mob the mind owns
 					if(A.stat != DEAD)
 						point.the_disk = A //The pinpointer tracks the AI back into its core.

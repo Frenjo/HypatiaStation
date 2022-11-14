@@ -423,8 +423,8 @@ var/bomb_set
 	if(!src.lighthack)
 		src.icon_state = "nuclearbomb3"
 	playsound(src,'sound/machines/Alarm.ogg', 100, 0, 5)
-	if(ticker && ticker.mode)
-		ticker.mode.explosion_in_progress = 1
+	if(global.CTgame_ticker && global.CTgame_ticker.mode)
+		global.CTgame_ticker.mode.explosion_in_progress = 1
 	sleep(100)
 
 	GLOBL.enter_allowed = FALSE
@@ -437,24 +437,24 @@ var/bomb_set
 	else
 		off_station = 2
 
-	if(ticker)
-		if(ticker.mode && ticker.mode.name == "nuclear emergency")
+	if(global.CTgame_ticker)
+		if(global.CTgame_ticker.mode && global.CTgame_ticker.mode.name == "nuclear emergency")
 			var/obj/machinery/computer/shuttle_control/multi/syndicate/syndie_location = locate(/obj/machinery/computer/shuttle_control/multi/syndicate)
 			if(syndie_location)
-				ticker.mode:syndies_didnt_escape = (syndie_location.z > 1 ? 0 : 1)	//muskets will make me change this, but it will do for now
-			ticker.mode:nuke_off_station = off_station
-		ticker.station_explosion_cinematic(off_station,null)
-		if(ticker.mode)
-			ticker.mode.explosion_in_progress = 0
-			if(ticker.mode.name == "nuclear emergency")
-				ticker.mode:nukes_left --
+				global.CTgame_ticker.mode:syndies_didnt_escape = (syndie_location.z > 1 ? 0 : 1)	//muskets will make me change this, but it will do for now
+			global.CTgame_ticker.mode:nuke_off_station = off_station
+		global.CTgame_ticker.station_explosion_cinematic(off_station,null)
+		if(global.CTgame_ticker.mode)
+			global.CTgame_ticker.mode.explosion_in_progress = 0
+			if(global.CTgame_ticker.mode.name == "nuclear emergency")
+				global.CTgame_ticker.mode:nukes_left --
 			else
 				to_world("<B>The station was destoyed by the nuclear blast!</B>")
 
-			ticker.mode.station_was_nuked = (off_station < 2)	//offstation == 1 is a draw. the station becomes irradiated and needs to be evacuated.
+			global.CTgame_ticker.mode.station_was_nuked = (off_station < 2)	//offstation == 1 is a draw. the station becomes irradiated and needs to be evacuated.
 																//kinda shit but I couldn't  get permission to do what I wanted to do.
 
-			if(!ticker.mode.check_finished())//If the mode does not deal with the nuke going off so just reboot because everyone is stuck as is
+			if(!global.CTgame_ticker.mode.check_finished())//If the mode does not deal with the nuke going off so just reboot because everyone is stuck as is
 				to_world("<B>Resetting in 30 seconds!</B>")
 
 				feedback_set_details("end_error", "nuke - unhandled ending")

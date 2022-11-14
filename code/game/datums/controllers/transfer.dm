@@ -1,10 +1,8 @@
 /*
  * Transfer Controller
  */
-GLOBAL_BYOND_TYPED(transfer_controller, /datum/controller/transfer)
-
 /hook/roundstart/proc/create_transfer_controller()
-	global.transfer_controller = new /datum/controller/transfer()
+	global.CTtransfer = new /datum/controller/transfer()
 	return 1
 
 CONTROLLER_DEF(transfer)
@@ -20,5 +18,5 @@ CONTROLLER_DEF(transfer)
 /datum/controller/transfer/process()
 	currenttick++
 	if(world.time >= timerbuffer - 600)
-		global.vote.autotransfer()
+		global.CTvote.autotransfer()
 		timerbuffer = timerbuffer + CONFIG_GET(vote_autotransfer_interval)

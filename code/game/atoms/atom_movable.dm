@@ -19,7 +19,7 @@
 /atom/movable/New()
 	..()
 	// If the game is already underway initialize will no longer be called for us.
-	if(auto_init && ticker && ticker.current_state == GAME_STATE_PLAYING)
+	if(auto_init && global.CTgame_ticker && global.CTgame_ticker.current_state == GAME_STATE_PLAYING)
 		initialize()
 
 /atom/movable/proc/initialize()

@@ -101,7 +101,7 @@
 /obj/item/weapon/dnainjector/attack(mob/M as mob, mob/user as mob)
 	if (!istype(M, /mob))
 		return
-	if(!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
+	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
 		user << "\red You don't have the dexterity to do this!"
 		return
 

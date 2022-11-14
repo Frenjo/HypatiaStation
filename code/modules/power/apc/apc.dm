@@ -94,9 +94,9 @@
 
 /obj/machinery/power/apc/Destroy()
 	if(malfai && operating)
-		if(ticker.mode.config_tag == "malfunction")
+		if(global.CTgame_ticker.mode.config_tag == "malfunction")
 			if(isStationLevel(src.z)) //if (is_type_in_list(get_area(src), the_station_areas))
-				ticker.mode:apcs--
+				global.CTgame_ticker.mode:apcs--
 
 	area.apc -= src
 	area.power_light = 0
@@ -203,9 +203,9 @@
 					malfai.malfhack = null
 					malfai.malfhacking = 0
 					locked = 1
-					if(ticker.mode.config_tag == "malfunction")
+					if(global.CTgame_ticker.mode.config_tag == "malfunction")
 						if(isStationLevel(src.z)) //if (is_type_in_list(get_area(src), the_station_areas))
-							ticker.mode:apcs++
+							global.CTgame_ticker.mode:apcs++
 					if(usr:parent)
 						src.malfai = usr:parent
 					else

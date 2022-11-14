@@ -6,4 +6,4 @@ PROCESS_DEF(transfer)
 	schedule_interval = 2 SECONDS
 
 /datum/process/transfer/doWork()
-	global.transfer_controller.process()
+	global.CTtransfer.process()

@@ -2,12 +2,12 @@
 	set category = "Debug"
 	set name = "Show Air Report"
 
-	if(!global.master_controller || !air_master)
+	if(!global.CTmaster || !global.CTair_system)
 		alert(usr, "Master_controller or air_master not found.", "Air Report")
 		return
 
-	var/active_groups = air_master.active_zones
-	var/inactive_groups = air_master.zones.len - active_groups
+	var/active_groups = global.CTair_system.active_zones
+	var/inactive_groups = global.CTair_system.zones.len - active_groups
 
 	var/hotspots = 0
 	for(var/obj/fire/hotspot in world)
@@ -15,7 +15,7 @@
 
 	var/active_on_main_station = 0
 	var/inactive_on_main_station = 0
-	for(var/zone/zone in air_master.zones)
+	for(var/zone/zone in global.CTair_system.zones)
 		var/turf/simulated/turf = locate() in zone.contents
 		if(turf && isStationLevel(turf.z))
 			if(zone.needs_update)
@@ -25,8 +25,8 @@
 
 	var/output = {"<B>AIR SYSTEMS REPORT</B><HR>
 <B>General Processing Data</B><BR>
-	Cycle: [air_master.current_cycle]<br>
-	Groups: [air_master.zones.len]<BR>
+	Cycle: [global.CTair_system.current_cycle]<br>
+	Groups: [global.CTair_system.zones.len]<BR>
 ---- <I>Active:</I> [active_groups]<BR>
 ---- <I>Inactive:</I> [inactive_groups]<BR><br>
 ---- <I>Active on station:</i> [active_on_main_station]<br>
@@ -36,7 +36,7 @@
 	Hotspot Processing: [hotspots]<BR>
 <br>
 <B>Geometry Processing Data</B><BR>
-	Tile Update: [air_master.tiles_to_update.len]<BR>
+	Tile Update: [global.CTair_system.tiles_to_update.len]<BR>
 "}
 
 	usr << browse(output,"window=airreport")
@@ -90,9 +90,9 @@
 	)
 
 	var/output = "<b>Radio Report</b><hr>"
-	for(var/fq in radio_controller.frequencies)
+	for(var/fq in global.CTradio.frequencies)
 		output += "<b>Freq: [fq]</b><br>"
-		var/datum/radio_frequency/fqs = radio_controller.frequencies[fq]
+		var/datum/radio_frequency/fqs = global.CTradio.frequencies[fq]
 		if(!fqs)
 			output += "&nbsp;&nbsp;<b>ERROR</b><br>"
 			continue

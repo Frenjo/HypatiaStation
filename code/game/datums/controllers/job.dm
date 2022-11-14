@@ -1,8 +1,6 @@
 /*
  * Job "Occupations" Controller
  */
-GLOBAL_BYOND_TYPED(job_master, /datum/controller/occupations) // Set in /datum/controller/master/New()
-
 CONTROLLER_DEF(occupations)
 	name = "Jobs"
 
@@ -204,7 +202,7 @@ CONTROLLER_DEF(occupations)
 	for(var/i = job.total_positions, i > 0, i--)
 		for(var/level = 1 to 3)
 			var/list/candidates = list()
-			if(ticker.mode.name == "AI malfunction")//Make sure they want to malf if its malf
+			if(global.CTgame_ticker.mode.name == "AI malfunction")//Make sure they want to malf if its malf
 				candidates = find_occupation_candidates(job, level, BE_MALF)
 			else
 				candidates = find_occupation_candidates(job, level)
@@ -214,7 +212,7 @@ CONTROLLER_DEF(occupations)
 					ai_selected++
 					break
 		//Malf NEEDS an AI so force one if we didn't get a player who wanted it
-		if((ticker.mode.name == "AI malfunction") && (!ai_selected))
+		if((global.CTgame_ticker.mode.name == "AI malfunction") && (!ai_selected))
 			unassigned = shuffle(unassigned)
 			for(var/mob/new_player/player in unassigned)
 				if(jobban_isbanned(player, "AI"))
@@ -237,9 +235,9 @@ CONTROLLER_DEF(occupations)
 	setup_occupations()
 
 	//Holder for Triumvirate is stored in the ticker, this just processes it
-	if(ticker)
+	if(global.CTgame_ticker)
 		for(var/datum/job/ai/A in occupations)
-			if(ticker.triai)
+			if(global.CTgame_ticker.triai)
 				A.spawn_positions = 3
 
 	//Get the players who are ready

@@ -57,8 +57,6 @@ Class Procs:
 	remove_edge(connection_edge/edge)
 		Called when an edge is erased. Removes it from processing.
 */
-GLOBAL_BYOND_TYPED(air_master, /datum/controller/air_system) // Set in /datum/process/air/setup()
-
 CONTROLLER_DEF(air_system)
 	name = "Air"
 
@@ -239,7 +237,7 @@ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_
 	ASSERT(A != B)
 	#endif
 
-	var/block = air_master.air_blocked(A,B)
+	var/block = global.CTair_system.air_blocked(A,B)
 	if(block & AIR_BLOCKED) return
 
 	var/direct = !(block & ZONE_BLOCKED)

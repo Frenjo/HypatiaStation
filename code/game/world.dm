@@ -55,12 +55,12 @@
 
 	sleep_offline = TRUE
 
-	global.master_controller = new /datum/controller/master()
+	global.CTmaster = new /datum/controller/master()
 	global.process_scheduler = new /datum/controller/process_scheduler()
 	spawn(1)
 		global.process_scheduler.deferSetupFor(/datum/process/ticker)
 		global.process_scheduler.setup()
-		global.master_controller.setup()
+		global.CTmaster.setup()
 
 	spawn(5 MINUTES) // Delay by 5 minutes (300 seconds/3000 deciseconds) so we aren't adding to the round-start lag.
 		if(CONFIG_GET(ToRban))
@@ -106,7 +106,7 @@
 	else if(T == "status")
 		var/list/s = list()
 		s["version"] = GLOBL.game_version
-		s["mode"] = global.ticker.master_mode
+		s["mode"] = global.CTgame_ticker.master_mode
 		s["respawn"] = CONFIG ? CONFIG_GET(respawn) : FALSE
 		s["enter"] = GLOBL.enter_allowed
 		s["vote"] = CONFIG_GET(allow_vote_mode)
@@ -140,8 +140,8 @@
 	var/list/Lines = file2list("data/mode.txt")
 	if(Lines.len)
 		if(Lines[1])
-			global.ticker.master_mode = Lines[1]
-			log_misc("Saved mode is '[global.ticker.master_mode]'")
+			global.CTgame_ticker.master_mode = Lines[1]
+			log_misc("Saved mode is '[global.CTgame_ticker.master_mode]'")
 
 /world/proc/save_mode(the_mode)
 	var/F = file("data/mode.txt")
@@ -197,9 +197,9 @@
 
 	var/list/features = list()
 
-	if(global.ticker)
-		if(global.ticker.master_mode)
-			features += global.ticker.master_mode
+	if(global.CTgame_ticker)
+		if(global.CTgame_ticker.master_mode)
+			features += global.CTgame_ticker.master_mode
 	else
 		features += "<b>STARTING</b>"
 

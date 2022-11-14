@@ -82,7 +82,7 @@
 
 	..()
 	// If the game is already underway initialize will no longer be called for us.
-	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
+	if(global.CTgame_ticker && global.CTgame_ticker.current_state == GAME_STATE_PLAYING)
 		initialize()
 
 /area/proc/initialize()

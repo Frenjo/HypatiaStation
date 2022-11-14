@@ -105,7 +105,7 @@
 	recipient << browse(output,"window=memory")
 
 /datum/mind/proc/edit_memory()
-	if(!ticker || !ticker.mode)
+	if(!global.CTgame_ticker || !global.CTgame_ticker.mode)
 		alert("Not before round-start!", "Alert")
 		return
 
@@ -139,12 +139,12 @@
 		sections["implant"] = text
 		/** REVOLUTION ***/
 		text = "revolution"
-		if(ticker.mode.config_tag == "revolution")
+		if(global.CTgame_ticker.mode.config_tag == "revolution")
 			text += uppertext(text)
 		text = "<i><b>[text]</b></i>: "
 		if(ismonkey(current) || H.is_loyalty_implanted(H))
 			text += "<b>LOYAL EMPLOYEE</b>|headrev|rev"
-		else if(src in ticker.mode.head_revolutionaries)
+		else if(src in global.CTgame_ticker.mode.head_revolutionaries)
 			text = "<a href='?src=\ref[src];revolution=clear'>employee</a>|<b>HEADREV</b>|<a href='?src=\ref[src];revolution=rev'>rev</a>"
 			text += "<br>Flash: <a href='?src=\ref[src];revolution=flash'>give</a>"
 
@@ -161,7 +161,7 @@
 			text += " <a href='?src=\ref[src];revolution=reequip'>Reequip</a> (gives traitor uplink)."
 			if(objectives.len == 0)
 				text += "<br>Objectives are empty! <a href='?src=\ref[src];revolution=autoobjectives'>Set to kill all heads</a>."
-		else if(src in ticker.mode.revolutionaries)
+		else if(src in global.CTgame_ticker.mode.revolutionaries)
 			text += "<a href='?src=\ref[src];revolution=clear'>employee</a>|<a href='?src=\ref[src];revolution=headrev'>headrev</a>|<b>REV</b>"
 		else
 			text += "<b>EMPLOYEE</b>|<a href='?src=\ref[src];revolution=headrev'>headrev</a>|<a href='?src=\ref[src];revolution=rev'>rev</a>"
@@ -169,12 +169,12 @@
 
 		/** CULT ***/
 		text = "cult"
-		if(ticker.mode.config_tag == "cult")
+		if(global.CTgame_ticker.mode.config_tag == "cult")
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
 		if(ismonkey(current) || H.is_loyalty_implanted(H))
 			text += "<B>LOYAL EMPLOYEE</B>|cultist"
-		else if(src in ticker.mode.cult)
+		else if(src in global.CTgame_ticker.mode.cult)
 			text += "<a href='?src=\ref[src];cult=clear'>employee</a>|<b>CULTIST</b>"
 			text += "<br>Give <a href='?src=\ref[src];cult=tome'>tome</a>|<a href='?src=\ref[src];cult=amulet'>amulet</a>."
 /*
@@ -187,10 +187,10 @@
 
 		/** WIZARD ***/
 		text = "wizard"
-		if(ticker.mode.config_tag == "wizard")
+		if(global.CTgame_ticker.mode.config_tag == "wizard")
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
-		if(src in ticker.mode.wizards)
+		if(src in global.CTgame_ticker.mode.wizards)
 			text += "<b>YES</b>|<a href='?src=\ref[src];wizard=clear'>no</a>"
 			text += "<br><a href='?src=\ref[src];wizard=lair'>To lair</a>, <a href='?src=\ref[src];common=undress'>undress</a>, <a href='?src=\ref[src];wizard=dressup'>dress up</a>, <a href='?src=\ref[src];wizard=name'>let choose name</a>."
 			if(objectives.len == 0)
@@ -201,10 +201,10 @@
 
 		/** CHANGELING ***/
 		text = "changeling"
-		if(ticker.mode.config_tag == "changeling" || ticker.mode.config_tag == "traitorchan")
+		if(global.CTgame_ticker.mode.config_tag == "changeling" || global.CTgame_ticker.mode.config_tag == "traitorchan")
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
-		if(src in ticker.mode.changelings)
+		if(src in global.CTgame_ticker.mode.changelings)
 			text += "<b>YES</b>|<a href='?src=\ref[src];changeling=clear'>no</a>"
 			if(objectives.len == 0)
 				text += "<br>Objectives are empty! <a href='?src=\ref[src];changeling=autoobjectives'>Randomize!</a>"
@@ -219,10 +219,10 @@
 
 		/** NUCLEAR ***/
 		text = "nuclear"
-		if(ticker.mode.config_tag == "nuclear")
+		if(global.CTgame_ticker.mode.config_tag == "nuclear")
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
-		if(src in ticker.mode.syndicates)
+		if(src in global.CTgame_ticker.mode.syndicates)
 			text += "<b>OPERATIVE</b>|<a href='?src=\ref[src];nuclear=clear'>nanotrasen</a>"
 			text += "<br><a href='?src=\ref[src];nuclear=lair'>To shuttle</a>, <a href='?src=\ref[src];common=undress'>undress</a>, <a href='?src=\ref[src];nuclear=dressup'>dress up</a>."
 			var/code
@@ -238,14 +238,14 @@
 
 	/** TRAITOR ***/
 	text = "traitor"
-	if(ticker.mode.config_tag == "traitor" || ticker.mode.config_tag == "traitorchan")
+	if(global.CTgame_ticker.mode.config_tag == "traitor" || global.CTgame_ticker.mode.config_tag == "traitorchan")
 		text = uppertext(text)
 	text = "<i><b>[text]</b></i>: "
 	if(ishuman(current))
 		if(H.is_loyalty_implanted(H))
 			text +="traitor|<b>LOYAL EMPLOYEE</b>"
 		else
-			if(src in ticker.mode.traitors)
+			if(src in global.CTgame_ticker.mode.traitors)
 				text += "<b>TRAITOR</b>|<a href='?src=\ref[src];traitor=clear'>Employee</a>"
 				if(objectives.len == 0)
 					text += "<br>Objectives are empty! <a href='?src=\ref[src];traitor=autoobjectives'>Randomize</a>!"
@@ -256,7 +256,7 @@
 	/** MONKEY ***/
 	if(iscarbon(current))
 		text = "monkey"
-		if(ticker.mode.config_tag == "monkey")
+		if(global.CTgame_ticker.mode.config_tag == "monkey")
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
 		if(ishuman(current))
@@ -279,11 +279,11 @@
 	/** SILICON ***/
 	if(issilicon(current))
 		text = "silicon"
-		if(ticker.mode.config_tag == "malfunction")
+		if(global.CTgame_ticker.mode.config_tag == "malfunction")
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
 		if(isAI(current))
-			if(src in ticker.mode.malf_ai)
+			if(src in global.CTgame_ticker.mode.malf_ai)
 				text += "<b>MALF</b>|<a href='?src=\ref[src];silicon=unmalf'>not malf</a>"
 			else
 				text += "<a href='?src=\ref[src];silicon=malf'>malf</a>|<b>NOT MALF</b>"
@@ -299,7 +299,7 @@
 			text += "<br>[n_e_robots] of [ai.connected_robots.len] slaved cyborgs are emagged. <a href='?src=\ref[src];silicon=unemagcyborgs'>Unemag</a>"
 		sections["malfunction"] = text
 
-	if(ticker.mode.config_tag == "traitorchan")
+	if(global.CTgame_ticker.mode.config_tag == "traitorchan")
 		if(sections["traitor"])
 			out += sections["traitor"]+"<br>"
 		if(sections["changeling"])
@@ -307,15 +307,15 @@
 		sections -= "traitor"
 		sections -= "changeling"
 	else
-		if(sections[ticker.mode.config_tag])
-			out += sections[ticker.mode.config_tag]+"<br>"
-		sections -= ticker.mode.config_tag
+		if(sections[global.CTgame_ticker.mode.config_tag])
+			out += sections[global.CTgame_ticker.mode.config_tag]+"<br>"
+		sections -= global.CTgame_ticker.mode.config_tag
 	for(var/i in sections)
 		if(sections[i])
 			out += sections[i]+"<br>"
 
 
-	if(((src in ticker.mode.head_revolutionaries) || (src in ticker.mode.traitors) || (src in ticker.mode.syndicates)) && ishuman(current))
+	if(((src in global.CTgame_ticker.mode.head_revolutionaries) || (src in global.CTgame_ticker.mode.traitors) || (src in global.CTgame_ticker.mode.syndicates)) && ishuman(current))
 		text = "Uplink: <a href='?src=\ref[src];common=uplink'>give</a>"
 		var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink()
 		var/crystals
@@ -396,7 +396,7 @@
 				var/objective_type = "[objective_type_capital][objective_type_text]"//Add them together into a text string.
 
 				var/list/possible_targets = list("Free objective")
-				for(var/datum/mind/possible_target in ticker.minds)
+				for(var/datum/mind/possible_target in global.CTgame_ticker.minds)
 					if((possible_target != src) && ishuman(possible_target.current))
 						possible_targets += possible_target.current
 
@@ -524,25 +524,25 @@
 				L.part = affected
 
 				to_chat(H, SPAN_DANGER("<font size=3>You somehow have become the recepient of a loyalty implant, and it just activated!</font>"))
-				if(src in ticker.mode.revolutionaries)
+				if(src in global.CTgame_ticker.mode.revolutionaries)
 					special_role = null
-					ticker.mode.revolutionaries -= src
+					global.CTgame_ticker.mode.revolutionaries -= src
 					to_chat(src, SPAN_DANGER("<font size=3>The nanobots in the loyalty implant remove all thoughts about being a revolutionary. Get back to work!</font>"))
-				if(src in ticker.mode.head_revolutionaries)
+				if(src in global.CTgame_ticker.mode.head_revolutionaries)
 					special_role = null
-					ticker.mode.head_revolutionaries -=src
+					global.CTgame_ticker.mode.head_revolutionaries -=src
 					to_chat(src, SPAN_DANGER("<font size=3>The nanobots in the loyalty implant remove all thoughts about being a revolutionary. Get back to work!</font>"))
-				if(src in ticker.mode.cult)
-					ticker.mode.cult -= src
-					ticker.mode.update_cult_icons_removed(src)
+				if(src in global.CTgame_ticker.mode.cult)
+					global.CTgame_ticker.mode.cult -= src
+					global.CTgame_ticker.mode.update_cult_icons_removed(src)
 					special_role = null
-					var/datum/game_mode/cult/cult = ticker.mode
+					var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
 					if(istype(cult))
 						cult.memoize_cult_objectives(src)
 					to_chat(current, SPAN_DANGER("<font size=3>The nanobots in the loyalty implant remove all thoughts about being in a cult. Have a productive day!</font>"))
 					memory = ""
-				if(src in ticker.mode.traitors)
-					ticker.mode.traitors -= src
+				if(src in global.CTgame_ticker.mode.traitors)
+					global.CTgame_ticker.mode.traitors -= src
 					special_role = null
 					to_chat(current, SPAN_DANGER("<font size=3>The nanobots in the loyalty implant remove all thoughts about being a traitor to NanoTrasen. Have a nice day!</font>"))
 					log_admin("[key_name_admin(usr)] has de-traitor'ed [current].")
@@ -551,47 +551,47 @@
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(href_list["revolution"])
 			if("clear")
-				if(src in ticker.mode.revolutionaries)
-					ticker.mode.revolutionaries -= src
+				if(src in global.CTgame_ticker.mode.revolutionaries)
+					global.CTgame_ticker.mode.revolutionaries -= src
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a revolutionary!</font>"))
-					ticker.mode.update_rev_icons_removed(src)
+					global.CTgame_ticker.mode.update_rev_icons_removed(src)
 					special_role = null
-				if(src in ticker.mode.head_revolutionaries)
-					ticker.mode.head_revolutionaries -= src
+				if(src in global.CTgame_ticker.mode.head_revolutionaries)
+					global.CTgame_ticker.mode.head_revolutionaries -= src
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a head revolutionary!</font>"))
-					ticker.mode.update_rev_icons_removed(src)
+					global.CTgame_ticker.mode.update_rev_icons_removed(src)
 					special_role = null
 					current.verbs -= /mob/living/carbon/human/proc/RevConvert
 				log_admin("[key_name_admin(usr)] has de-rev'ed [current].")
 
 			if("rev")
-				if(src in ticker.mode.head_revolutionaries)
-					ticker.mode.head_revolutionaries -= src
-					ticker.mode.update_rev_icons_removed(src)
+				if(src in global.CTgame_ticker.mode.head_revolutionaries)
+					global.CTgame_ticker.mode.head_revolutionaries -= src
+					global.CTgame_ticker.mode.update_rev_icons_removed(src)
 					to_chat(current, SPAN_DANGER("<font size=3>Revolution has been disappointed of your leader traits! You are a regular revolutionary now!</font>"))
-				else if(!(src in ticker.mode.revolutionaries))
+				else if(!(src in global.CTgame_ticker.mode.revolutionaries))
 					to_chat(current, SPAN_WARNING("<font size=3>You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill the heads to win the revolution!</font>"))
 					to_chat(current, "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>")
 				else
 					return
-				ticker.mode.revolutionaries += src
-				ticker.mode.update_rev_icons_added(src)
+				global.CTgame_ticker.mode.revolutionaries += src
+				global.CTgame_ticker.mode.update_rev_icons_added(src)
 				special_role = "Revolutionary"
 				log_admin("[key_name(usr)] has rev'ed [current].")
 
 			if("headrev")
-				if(src in ticker.mode.revolutionaries)
-					ticker.mode.revolutionaries -= src
-					ticker.mode.update_rev_icons_removed(src)
+				if(src in global.CTgame_ticker.mode.revolutionaries)
+					global.CTgame_ticker.mode.revolutionaries -= src
+					global.CTgame_ticker.mode.update_rev_icons_removed(src)
 					to_chat(current, SPAN_DANGER("<font size=3>You have proved your devotion to revoltion! You are a head revolutionary now!</font>"))
 					to_chat(current, "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>")
-				else if(!(src in ticker.mode.head_revolutionaries))
+				else if(!(src in global.CTgame_ticker.mode.head_revolutionaries))
 					to_chat(current, SPAN_INFO("You are a member of the revolutionaries' leadership now!"))
 				else
 					return
-				if(ticker.mode.head_revolutionaries.len > 0)
+				if(global.CTgame_ticker.mode.head_revolutionaries.len > 0)
 					// copy targets
-					var/datum/mind/valid_head = locate() in ticker.mode.head_revolutionaries
+					var/datum/mind/valid_head = locate() in global.CTgame_ticker.mode.head_revolutionaries
 					if(valid_head)
 						for(var/datum/objective/mutiny/O in valid_head.objectives)
 							var/datum/objective/mutiny/rev_obj = new
@@ -599,20 +599,20 @@
 							rev_obj.target = O.target
 							rev_obj.explanation_text = "Assassinate [O.target.name], the [O.target.assigned_role]."
 							objectives += rev_obj
-						ticker.mode.greet_revolutionary(src, 0)
+						global.CTgame_ticker.mode.greet_revolutionary(src, 0)
 				current.verbs += /mob/living/carbon/human/proc/RevConvert
-				ticker.mode.head_revolutionaries += src
-				ticker.mode.update_rev_icons_added(src)
+				global.CTgame_ticker.mode.head_revolutionaries += src
+				global.CTgame_ticker.mode.update_rev_icons_added(src)
 				special_role = "Head Revolutionary"
 				log_admin("[key_name_admin(usr)] has head-rev'ed [current].")
 
 			if("autoobjectives")
-				ticker.mode.forge_revolutionary_objectives(src)
-				ticker.mode.greet_revolutionary(src, 0)
+				global.CTgame_ticker.mode.forge_revolutionary_objectives(src)
+				global.CTgame_ticker.mode.greet_revolutionary(src, 0)
 				to_chat(usr, SPAN_INFO("The objectives for revolution have been generated and shown to [key]."))
 
 			if("flash")
-				if(!ticker.mode.equip_revolutionary(current))
+				if(!global.CTgame_ticker.mode.equip_revolutionary(current))
 					to_chat(usr, SPAN_WARNING("Spawning flash failed!"))
 
 			if("takeflash")
@@ -636,8 +636,8 @@
 				qdel(flash)
 				take_uplink()
 				var/fail = 0
-				fail |= !ticker.mode.equip_traitor(current, 1)
-				fail |= !ticker.mode.equip_revolutionary(current)
+				fail |= !global.CTgame_ticker.mode.equip_traitor(current, 1)
+				fail |= !global.CTgame_ticker.mode.equip_revolutionary(current)
 				if(fail)
 					to_chat(usr, SPAN_WARNING("Re-equipping revolutionary goes wrong!"))
 
@@ -645,11 +645,11 @@
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(href_list["cult"])
 			if("clear")
-				if(src in ticker.mode.cult)
-					ticker.mode.cult -= src
-					ticker.mode.update_cult_icons_removed(src)
+				if(src in global.CTgame_ticker.mode.cult)
+					global.CTgame_ticker.mode.cult -= src
+					global.CTgame_ticker.mode.update_cult_icons_removed(src)
 					special_role = null
-					var/datum/game_mode/cult/cult = ticker.mode
+					var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
 					if(istype(cult))
 						if(!CONFIG_GET(objectives_disabled))
 							cult.memoize_cult_objectives(src)
@@ -657,14 +657,14 @@
 					memory = ""
 					log_admin("[key_name_admin(usr)] has de-cult'ed [current].")
 			if("cultist")
-				if(!(src in ticker.mode.cult))
-					ticker.mode.cult += src
-					ticker.mode.update_cult_icons_added(src)
+				if(!(src in global.CTgame_ticker.mode.cult))
+					global.CTgame_ticker.mode.cult += src
+					global.CTgame_ticker.mode.update_cult_icons_added(src)
 					special_role = "Cultist"
 					current << "<font color=\"purple\"><b><i>You catch a glimpse of the Realm of Nar-Sie, The Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of Nar-Sie.</b></i></font>"
 					current << "<font color=\"purple\"><b><i>Assist your new compatriots in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</b></i></font>"
 					to_chat(current, "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>")
-					var/datum/game_mode/cult/cult = ticker.mode
+					var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
 					if(istype(cult))
 						if(!CONFIG_GET(objectives_disabled))
 							cult.memoize_cult_objectives(src)
@@ -688,22 +688,22 @@
 						to_chat(H, "A tome, a message from your new master, appears in your [where].")
 
 			if("amulet")
-				if(!ticker.mode.equip_cultist(current))
+				if(!global.CTgame_ticker.mode.equip_cultist(current))
 					to_chat(usr, SPAN_WARNING("Spawning amulet failed!"))
 
 	else if(href_list["wizard"])
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(href_list["wizard"])
 			if("clear")
-				if(src in ticker.mode.wizards)
-					ticker.mode.wizards -= src
+				if(src in global.CTgame_ticker.mode.wizards)
+					global.CTgame_ticker.mode.wizards -= src
 					special_role = null
 					current.spellremove(current, CONFIG_GET(feature_object_spell_system) ? "object": "verb")
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a wizard!</font>"))
 					log_admin("[key_name_admin(usr)] has de-wizard'ed [current].")
 			if("wizard")
-				if(!(src in ticker.mode.wizards))
-					ticker.mode.wizards += src
+				if(!(src in global.CTgame_ticker.mode.wizards))
+					global.CTgame_ticker.mode.wizards += src
 					special_role = "Wizard"
 					//ticker.mode.learn_basic_spells(current)
 					to_chat(current, SPAN_DANGER("You are the Space Wizard!"))
@@ -712,20 +712,20 @@
 			if("lair")
 				current.loc = pick(GLOBL.wizardstart)
 			if("dressup")
-				ticker.mode.equip_wizard(current)
+				global.CTgame_ticker.mode.equip_wizard(current)
 			if("name")
-				ticker.mode.name_wizard(current)
+				global.CTgame_ticker.mode.name_wizard(current)
 			if("autoobjectives")
 				if(!CONFIG_GET(objectives_disabled))
-					ticker.mode.forge_wizard_objectives(src)
+					global.CTgame_ticker.mode.forge_wizard_objectives(src)
 					to_chat(usr, SPAN_INFO("The objectives for wizard [key] have been generated. You can edit them and anounce manually."))
 
 	else if(href_list["changeling"])
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(href_list["changeling"])
 			if("clear")
-				if(src in ticker.mode.changelings)
-					ticker.mode.changelings -= src
+				if(src in global.CTgame_ticker.mode.changelings)
+					global.CTgame_ticker.mode.changelings -= src
 					special_role = null
 					current.remove_changeling_powers()
 					current.verbs -= /datum/changeling/proc/EvolutionMenu
@@ -734,9 +734,9 @@
 					to_chat(current, SPAN_DANGER("<font size=3>You grow weak and lose your powers! You are no longer a changeling and are stuck in your current form!</font>"))
 					log_admin("[key_name_admin(usr)] has de-changeling'ed [current].")
 			if("changeling")
-				if(!(src in ticker.mode.changelings))
-					ticker.mode.changelings += src
-					ticker.mode.grant_changeling_powers(current)
+				if(!(src in global.CTgame_ticker.mode.changelings))
+					global.CTgame_ticker.mode.changelings += src
+					global.CTgame_ticker.mode.grant_changeling_powers(current)
 					special_role = "Changeling"
 					to_chat(current, SPAN_DANGER("Your powers are awoken. A flash of memory returns to us... we are a changeling!"))
 					if(CONFIG_GET(objectives_disabled))
@@ -744,7 +744,7 @@
 					log_admin("[key_name_admin(usr)] has changeling'ed [current].")
 			if("autoobjectives")
 				if(!CONFIG_GET(objectives_disabled))
-					ticker.mode.forge_changeling_objectives(src)
+					global.CTgame_ticker.mode.forge_changeling_objectives(src)
 				to_chat(usr, SPAN_INFO("The objectives for changeling [key] have been generated. You can edit them and anounce manually."))
 
 			if("initialdna")
@@ -761,29 +761,29 @@
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(href_list["nuclear"])
 			if("clear")
-				if(src in ticker.mode.syndicates)
-					ticker.mode.syndicates -= src
-					ticker.mode.update_synd_icons_removed(src)
+				if(src in global.CTgame_ticker.mode.syndicates)
+					global.CTgame_ticker.mode.syndicates -= src
+					global.CTgame_ticker.mode.update_synd_icons_removed(src)
 					special_role = null
 					for(var/datum/objective/nuclear/O in objectives)
 						objectives -= O
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a syndicate operative!</font>"))
 					log_admin("[key_name_admin(usr)] has de-nuke op'ed [current].")
 			if("nuclear")
-				if(!(src in ticker.mode.syndicates))
-					ticker.mode.syndicates += src
-					ticker.mode.update_synd_icons_added(src)
-					if(ticker.mode.syndicates.len==1)
-						ticker.mode.prepare_syndicate_leader(src)
+				if(!(src in global.CTgame_ticker.mode.syndicates))
+					global.CTgame_ticker.mode.syndicates += src
+					global.CTgame_ticker.mode.update_synd_icons_added(src)
+					if(global.CTgame_ticker.mode.syndicates.len==1)
+						global.CTgame_ticker.mode.prepare_syndicate_leader(src)
 					else
-						current.real_name = "[syndicate_name()] Operative #[ticker.mode.syndicates.len-1]"
+						current.real_name = "[syndicate_name()] Operative #[global.CTgame_ticker.mode.syndicates.len-1]"
 					special_role = "Syndicate"
 					to_chat(current, SPAN_INFO("You are a [syndicate_name()] agent!"))
 					if(CONFIG_GET(objectives_disabled))
 						to_chat(current, "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>")
 					else
-						ticker.mode.forge_syndicate_objectives(src)
-					ticker.mode.greet_syndicate(src)
+						global.CTgame_ticker.mode.forge_syndicate_objectives(src)
+					global.CTgame_ticker.mode.greet_syndicate(src)
 					log_admin("[key_name_admin(usr)] has nuke op'ed [current].")
 			if("lair")
 				current.loc = get_turf(locate("landmark*Syndicate-Spawn"))
@@ -799,7 +799,7 @@
 				qdel(H.wear_suit)
 				qdel(H.w_uniform)
 
-				if(!ticker.mode.equip_syndicate(current))
+				if(!global.CTgame_ticker.mode.equip_syndicate(current))
 					to_chat(usr, SPAN_WARNING("Equipping a syndicate failed!"))
 			if("tellcode")
 				var/code
@@ -817,8 +817,8 @@
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(href_list["traitor"])
 			if("clear")
-				if(src in ticker.mode.traitors)
-					ticker.mode.traitors -= src
+				if(src in global.CTgame_ticker.mode.traitors)
+					global.CTgame_ticker.mode.traitors -= src
 					special_role = null
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a traitor!</font>"))
 					log_admin("[key_name_admin(usr)] has de-traitor'ed [current].")
@@ -828,8 +828,8 @@
 						A.show_laws()
 
 			if("traitor")
-				if(!(src in ticker.mode.traitors))
-					ticker.mode.traitors += src
+				if(!(src in global.CTgame_ticker.mode.traitors))
+					global.CTgame_ticker.mode.traitors += src
 					special_role = "traitor"
 					to_chat(current, SPAN_DANGER("You are a traitor!"))
 					log_admin("[key_name_admin(usr)] has traitor'ed [current].")
@@ -842,7 +842,7 @@
 
 			if("autoobjectives")
 				if(!CONFIG_GET(objectives_disabled))
-					ticker.mode.forge_traitor_objectives(src)
+					global.CTgame_ticker.mode.forge_traitor_objectives(src)
 					to_chat(usr, SPAN_INFO("The objectives for traitor [key] have been generated. You can edit them and anounce manually."))
 
 	else if(href_list["monkey"])
@@ -899,8 +899,8 @@
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(href_list["silicon"])
 			if("unmalf")
-				if(src in ticker.mode.malf_ai)
-					ticker.mode.malf_ai -= src
+				if(src in global.CTgame_ticker.mode.malf_ai)
+					global.CTgame_ticker.mode.malf_ai -= src
 					special_role = null
 
 					current.verbs.Remove(
@@ -983,7 +983,7 @@
 						if(suplink)
 							suplink.uses = crystals
 			if("uplink")
-				if(!ticker.mode.equip_traitor(current, !(src in ticker.mode.traitors)))
+				if(!global.CTgame_ticker.mode.equip_traitor(current, !(src in global.CTgame_ticker.mode.traitors)))
 					to_chat(usr, SPAN_WARNING("Equipping a syndicate failed!"))
 
 	else if(href_list["obj_announce"])
@@ -1039,8 +1039,8 @@
 		qdel(H)
 
 /datum/mind/proc/make_AI_Malf()
-	if(!(src in ticker.mode.malf_ai))
-		ticker.mode.malf_ai += src
+	if(!(src in global.CTgame_ticker.mode.malf_ai))
+		global.CTgame_ticker.mode.malf_ai += src
 
 		current.verbs += /mob/living/silicon/ai/proc/choose_modules
 		current.verbs += /datum/game_mode/malfunction/proc/takeover
@@ -1052,27 +1052,27 @@
 		current.icon_state = "ai-malf"
 
 /datum/mind/proc/make_Traitor()
-	if(!(src in ticker.mode.traitors))
-		ticker.mode.traitors += src
+	if(!(src in global.CTgame_ticker.mode.traitors))
+		global.CTgame_ticker.mode.traitors += src
 		special_role = "traitor"
 		if(!CONFIG_GET(objectives_disabled))
-			ticker.mode.forge_traitor_objectives(src)
-		ticker.mode.finalize_traitor(src)
-		ticker.mode.greet_traitor(src)
+			global.CTgame_ticker.mode.forge_traitor_objectives(src)
+		global.CTgame_ticker.mode.finalize_traitor(src)
+		global.CTgame_ticker.mode.greet_traitor(src)
 
 /datum/mind/proc/make_Nuke()
-	if(!(src in ticker.mode.syndicates))
-		ticker.mode.syndicates += src
-		ticker.mode.update_synd_icons_added(src)
-		if(ticker.mode.syndicates.len==1)
-			ticker.mode.prepare_syndicate_leader(src)
+	if(!(src in global.CTgame_ticker.mode.syndicates))
+		global.CTgame_ticker.mode.syndicates += src
+		global.CTgame_ticker.mode.update_synd_icons_added(src)
+		if(global.CTgame_ticker.mode.syndicates.len==1)
+			global.CTgame_ticker.mode.prepare_syndicate_leader(src)
 		else
-			current.real_name = "[syndicate_name()] Operative #[ticker.mode.syndicates.len-1]"
+			current.real_name = "[syndicate_name()] Operative #[global.CTgame_ticker.mode.syndicates.len-1]"
 		special_role = "Syndicate"
 		assigned_role = "MODE"
 		to_chat(current, SPAN_INFO("You are a [syndicate_name()] agent!"))
-		ticker.mode.forge_syndicate_objectives(src)
-		ticker.mode.greet_syndicate(src)
+		global.CTgame_ticker.mode.forge_syndicate_objectives(src)
+		global.CTgame_ticker.mode.greet_syndicate(src)
 
 		current.loc = get_turf(locate("landmark*Syndicate-Spawn"))
 
@@ -1088,20 +1088,20 @@
 		qdel(H.wear_suit)
 		qdel(H.w_uniform)
 
-		ticker.mode.equip_syndicate(current)
+		global.CTgame_ticker.mode.equip_syndicate(current)
 
 /datum/mind/proc/make_Changling()
-	if(!(src in ticker.mode.changelings))
-		ticker.mode.changelings += src
-		ticker.mode.grant_changeling_powers(current)
+	if(!(src in global.CTgame_ticker.mode.changelings))
+		global.CTgame_ticker.mode.changelings += src
+		global.CTgame_ticker.mode.grant_changeling_powers(current)
 		special_role = "Changeling"
 		if(!CONFIG_GET(objectives_disabled))
-			ticker.mode.forge_changeling_objectives(src)
-		ticker.mode.greet_changeling(src)
+			global.CTgame_ticker.mode.forge_changeling_objectives(src)
+		global.CTgame_ticker.mode.greet_changeling(src)
 
 /datum/mind/proc/make_Wizard()
-	if(!(src in ticker.mode.wizards))
-		ticker.mode.wizards += src
+	if(!(src in global.CTgame_ticker.mode.wizards))
+		global.CTgame_ticker.mode.wizards += src
 		special_role = "Wizard"
 		assigned_role = "MODE"
 		//ticker.mode.learn_basic_spells(current)
@@ -1111,21 +1111,21 @@
 		else
 			current.loc = pick(GLOBL.wizardstart)
 
-		ticker.mode.equip_wizard(current)
+		global.CTgame_ticker.mode.equip_wizard(current)
 		for(var/obj/item/weapon/spellbook/S in current.contents)
 			S.op = 0
-		ticker.mode.name_wizard(current)
-		ticker.mode.forge_wizard_objectives(src)
-		ticker.mode.greet_wizard(src)
+		global.CTgame_ticker.mode.name_wizard(current)
+		global.CTgame_ticker.mode.forge_wizard_objectives(src)
+		global.CTgame_ticker.mode.greet_wizard(src)
 
 /datum/mind/proc/make_Cultist()
-	if(!(src in ticker.mode.cult))
-		ticker.mode.cult += src
-		ticker.mode.update_cult_icons_added(src)
+	if(!(src in global.CTgame_ticker.mode.cult))
+		global.CTgame_ticker.mode.cult += src
+		global.CTgame_ticker.mode.update_cult_icons_added(src)
 		special_role = "Cultist"
 		to_chat(current, "<font color=\"purple\"><b><i>You catch a glimpse of the Realm of Nar-Sie, The Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of Nar-Sie.</b></i></font>")
 		to_chat(current, "<font color=\"purple\"><b><i>Assist your new compatriots in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</b></i></font>")
-		var/datum/game_mode/cult/cult = ticker.mode
+		var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
 		if(istype(cult))
 			cult.memoize_cult_objectives(src)
 		else
@@ -1150,13 +1150,13 @@
 		else
 			to_chat(H, "A tome, a message from your new master, appears in your [where].")
 
-	if(!ticker.mode.equip_cultist(current))
+	if(!global.CTgame_ticker.mode.equip_cultist(current))
 		to_chat(H, "Spawning an amulet from your Master failed.")
 
 /datum/mind/proc/make_Rev()
-	if(ticker.mode.head_revolutionaries.len>0)
+	if(global.CTgame_ticker.mode.head_revolutionaries.len>0)
 		// copy targets
-		var/datum/mind/valid_head = locate() in ticker.mode.head_revolutionaries
+		var/datum/mind/valid_head = locate() in global.CTgame_ticker.mode.head_revolutionaries
 		if(valid_head)
 			for(var/datum/objective/mutiny/O in valid_head.objectives)
 				var/datum/objective/mutiny/rev_obj = new
@@ -1164,13 +1164,13 @@
 				rev_obj.target = O.target
 				rev_obj.explanation_text = "Assassinate [O.target.current.real_name], the [O.target.assigned_role]."
 				objectives += rev_obj
-			ticker.mode.greet_revolutionary(src, 0)
-	ticker.mode.head_revolutionaries += src
-	ticker.mode.update_rev_icons_added(src)
+			global.CTgame_ticker.mode.greet_revolutionary(src, 0)
+	global.CTgame_ticker.mode.head_revolutionaries += src
+	global.CTgame_ticker.mode.update_rev_icons_added(src)
 	special_role = "Head Revolutionary"
 
-	ticker.mode.forge_revolutionary_objectives(src)
-	ticker.mode.greet_revolutionary(src, 0)
+	global.CTgame_ticker.mode.forge_revolutionary_objectives(src)
+	global.CTgame_ticker.mode.greet_revolutionary(src, 0)
 
 	var/list/L = current.get_contents()
 	var/obj/item/device/flash/flash = locate() in L
@@ -1178,7 +1178,7 @@
 	take_uplink()
 	var/fail = 0
 //	fail |= !ticker.mode.equip_traitor(current, 1)
-	fail |= !ticker.mode.equip_revolutionary(current)
+	fail |= !global.CTgame_ticker.mode.equip_revolutionary(current)
 
 // check whether this mind's mob has been brigged for the given duration
 // have to call this periodically for the duration to work properly
@@ -1217,8 +1217,8 @@
 	else
 		mind = new /datum/mind(key)
 		mind.original = src
-		if(ticker)
-			ticker.minds += mind
+		if(global.CTgame_ticker)
+			global.CTgame_ticker.minds += mind
 		else
 			world.log << "## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn"
 	if(!mind.name)

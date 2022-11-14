@@ -3,7 +3,8 @@
  */
 GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Set in world/New()
 
-CONTROLLER_DEF(process_scheduler)
+// This should NOT use CONTROLLER_DEF.
+/datum/controller/process_scheduler
 	name = "Process Scheduler"
 
 	// Processes known by the scheduler

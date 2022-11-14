@@ -209,16 +209,16 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	statpanel("Status")
 	if(client.statpanel == "Status")
 		stat(null, "Station Time: [worldtime2text()]")
-		if(ticker)
-			if(ticker.mode)
+		if(global.CTgame_ticker)
+			if(global.CTgame_ticker.mode)
 				//world << "DEBUG: ticker not null"
-				if(ticker.mode.name == "AI malfunction")
+				if(global.CTgame_ticker.mode.name == "AI malfunction")
 					//world << "DEBUG: malf mode ticker test"
-					if(ticker.mode:malf_mode_declared)
-						stat(null, "Time left: [max(ticker.mode:AI_win_timeleft / (ticker.mode:apcs / 3), 0)]")
-		if(global.emergency_controller)
-			if(global.emergency_controller.online() && !global.emergency_controller.returned())
-				var/timeleft = global.emergency_controller.estimate_arrival_time()
+					if(global.CTgame_ticker.mode:malf_mode_declared)
+						stat(null, "Time left: [max(global.CTgame_ticker.mode:AI_win_timeleft / (global.CTgame_ticker.mode:apcs / 3), 0)]")
+		if(global.CTemergency)
+			if(global.CTemergency.online() && !global.CTemergency.returned())
+				var/timeleft = global.CTemergency.estimate_arrival_time()
 				if(timeleft)
 					stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 
@@ -499,8 +499,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return 0 //something is terribly wrong
 
 	var/ghosts_can_write
-	if(ticker.mode.name == "cult")
-		var/datum/game_mode/cult/C = ticker.mode
+	if(global.CTgame_ticker.mode.name == "cult")
+		var/datum/game_mode/cult/C = global.CTgame_ticker.mode
 		if(C.cult.len > CONFIG_GET(cult_ghostwriter_req_cultists))
 			ghosts_can_write = 1
 

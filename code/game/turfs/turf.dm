@@ -211,7 +211,7 @@
 		for(var/obj/effect/landmark/zcontroller/c in controller)
 			if(c.down)
 				var/turf/below = locate(src.x, src.y, c.down_target)
-				if((air_master.has_valid_zone(below) || air_master.has_valid_zone(src)) && !istype(below, /turf/space)) // dont make open space into space, its pointless and makes people drop out of the station
+				if((global.CTair_system.has_valid_zone(below) || global.CTair_system.has_valid_zone(src)) && !istype(below, /turf/space)) // dont make open space into space, its pointless and makes people drop out of the station
 					var/turf/W = src.ChangeTurf(/turf/simulated/floor/open)
 					var/list/temp = list()
 					temp += W
@@ -247,8 +247,8 @@
 		if(istype(W,/turf/simulated/floor))
 			W.RemoveLattice()
 
-		if(air_master)
-			air_master.mark_for_update(src)
+		if(global.CTair_system)
+			global.CTair_system.mark_for_update(src)
 
 		for(var/turf/space/S in range(W, 1))
 			S.update_starlight()
@@ -261,8 +261,8 @@
 		if(old_fire)
 			old_fire.RemoveFire()
 
-		if(air_master)
-			air_master.mark_for_update(src)
+		if(global.CTair_system)
+			global.CTair_system.mark_for_update(src)
 
 		for(var/turf/space/S in range(W, 1))
 			S.update_starlight()

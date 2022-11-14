@@ -89,8 +89,8 @@
 	for(var/datum/mind/rev_mind in head_revolutionaries)
 		greet_revolutionary(rev_mind)
 	modePlayer += head_revolutionaries
-	if(global.emergency_controller)
-		global.emergency_controller.auto_recall = TRUE
+	if(global.CTemergency)
+		global.CTemergency.auto_recall = TRUE
 	spawn(rand(waittime_l, waittime_h))
 		send_intercept()
 	..()
@@ -100,7 +100,7 @@
 	checkwin_counter++
 	if(checkwin_counter >= 5)
 		if(!finished)
-			ticker.mode.check_win()
+			global.CTgame_ticker.mode.check_win()
 		checkwin_counter = 0
 	return 0
 
@@ -172,8 +172,8 @@
 /datum/game_mode/revolution/check_finished()
 	if(CONFIG_GET(continous_rounds))
 		if(finished != 0)
-			if(global.emergency_controller)
-				global.emergency_controller.auto_recall = TRUE
+			if(global.CTemergency)
+				global.CTemergency.auto_recall = TRUE
 		return ..()
 	if(finished != 0)
 		return 1
@@ -360,7 +360,7 @@
 /datum/game_mode/proc/auto_declare_completion_revolution()
 	var/list/targets = list()
 
-	if(head_revolutionaries.len || istype(ticker.mode, /datum/game_mode/revolution))
+	if(head_revolutionaries.len || istype(global.CTgame_ticker.mode, /datum/game_mode/revolution))
 		var/text = "<FONT size = 2><B>The head revolutionaries were:</B></FONT>"
 		for(var/datum/mind/headrev in head_revolutionaries)
 			text += "<br>[headrev.key] was [headrev.name] ("
@@ -382,7 +382,7 @@
 
 		world << text
 
-	if(revolutionaries.len || istype(ticker.mode, /datum/game_mode/revolution))
+	if(revolutionaries.len || istype(global.CTgame_ticker.mode, /datum/game_mode/revolution))
 		var/text = "<FONT size = 2><B>The revolutionaries were:</B></FONT>"
 		for(var/datum/mind/rev in revolutionaries)
 			text += "<br>[rev.key] was [rev.name] ("
@@ -401,7 +401,7 @@
 
 		world << text
 
-	if(head_revolutionaries.len || revolutionaries.len || istype(ticker.mode, /datum/game_mode/revolution))
+	if(head_revolutionaries.len || revolutionaries.len || istype(global.CTgame_ticker.mode, /datum/game_mode/revolution))
 		var/text = "<FONT size = 2><B>The heads of staff were:</B></FONT>"
 		var/list/heads = get_all_heads()
 		for(var/datum/mind/head in heads)

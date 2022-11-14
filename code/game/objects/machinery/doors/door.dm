@@ -209,7 +209,7 @@
 		return 1
 	if(operating > 0)
 		return
-	if(!ticker)
+	if(!global.CTgame_ticker)
 		return 0
 	if(!operating)
 		operating = 1
@@ -267,12 +267,12 @@
 	return 1
 
 /obj/machinery/door/proc/update_nearby_tiles(need_rebuild)
-	if(!air_master)
+	if(!global.CTair_system)
 		return 0
 
 	for(var/turf/simulated/turf in locs)
 		update_heat_protection(turf)
-		air_master.mark_for_update(turf)
+		global.CTair_system.mark_for_update(turf)
 
 	return 1
 

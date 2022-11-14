@@ -34,7 +34,7 @@
 	var/list/stored_data = list()
 
 /obj/item/weapon/cartridge/proc/post_status(command, data1, data2)
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
+	var/datum/radio_frequency/frequency = global.CTradio.return_frequency(1435)
 	if(!frequency)
 		return
 
@@ -262,7 +262,7 @@
 	if(mode == 47)
 		var/supplyData[0]
 
-		var/datum/shuttle/ferry/supply/supply_shuttle = global.supply_controller.shuttle
+		var/datum/shuttle/ferry/supply/supply_shuttle = global.CTsupply.shuttle
 		if(supply_shuttle)
 			supplyData["shuttle_moving"] = supply_shuttle.has_arrive_time()
 			supplyData["shuttle_eta"] = supply_shuttle.eta_minutes()
@@ -270,7 +270,7 @@
 
 		var/supplyOrderCount = 0
 		var/supplyOrderData[0]
-		for(var/S in global.supply_controller.shoppinglist)
+		for(var/S in global.CTsupply.shoppinglist)
 			var/datum/supply_order/SO = S
 			supplyOrderData[++supplyOrderData.len] = list(
 				"Number" = SO.ordernum,
@@ -286,7 +286,7 @@
 
 		var/requestCount = 0
 		var/requestData[0]
-		for(var/S in global.supply_controller.requestlist)
+		for(var/S in global.CTsupply.requestlist)
 			var/datum/supply_order/SO = S
 			requestCount++
 			requestData[++requestData.len] = list(

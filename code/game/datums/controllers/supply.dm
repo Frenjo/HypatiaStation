@@ -1,8 +1,6 @@
 /*
  * Supply Controller
  */
-GLOBAL_BYOND_TYPED(supply_controller, /datum/controller/supply) // Set in /datum/process/supply/setup()
-
 CONTROLLER_DEF(supply)
 	name = "Supply"
 

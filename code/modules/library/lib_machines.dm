@@ -271,11 +271,11 @@
 			if("6")
 				if(!bibledelay)
 					var/obj/item/weapon/storage/bible/B = new /obj/item/weapon/storage/bible(src.loc)
-					if(ticker && (ticker.Bible_icon_state && ticker.Bible_item_state))
-						B.icon_state = ticker.Bible_icon_state
-						B.item_state = ticker.Bible_item_state
-						B.name = ticker.Bible_name
-						B.deity_name = ticker.Bible_deity_name
+					if(global.CTgame_ticker && (global.CTgame_ticker.Bible_icon_state && global.CTgame_ticker.Bible_item_state))
+						B.icon_state = global.CTgame_ticker.Bible_icon_state
+						B.item_state = global.CTgame_ticker.Bible_item_state
+						B.name = global.CTgame_ticker.Bible_name
+						B.deity_name = global.CTgame_ticker.Bible_deity_name
 
 					bibledelay = 1
 					spawn(60)

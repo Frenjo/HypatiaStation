@@ -548,7 +548,7 @@ Auto Patrol: []"},
 
 // send a radio signal with multiple data key/values
 /obj/machinery/bot/secbot/proc/post_signal_multiple(freq, list/keyval)
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
+	var/datum/radio_frequency/frequency = global.CTradio.return_frequency(freq)
 
 	if(!frequency)
 		return

@@ -168,7 +168,7 @@
 		var/obj/item/weapon/paper/P = new
 		P.info = "The nuclear authorization code is: <b>[nuke_code]</b>"
 		P.name = "nuclear bomb code"
-		if(ticker.mode.config_tag=="nuclear")
+		if(global.CTgame_ticker.mode.config_tag=="nuclear")
 			P.loc = synd_mind.current.loc
 		else
 			var/mob/living/carbon/human/H = synd_mind.current
@@ -275,7 +275,7 @@
 		if(!is_type_in_list(disk_area, GLOBL.centcom_areas))
 			disk_rescued = 0
 			break
-	var/crew_evacuated = global.emergency_controller.returned()
+	var/crew_evacuated = global.CTemergency.returned()
 	//var/operatives_are_dead = is_operatives_are_dead()
 
 
@@ -334,7 +334,7 @@
 
 
 /datum/game_mode/proc/auto_declare_completion_nuclear()
-	if(syndicates.len || (ticker && istype(ticker.mode, /datum/game_mode/nuclear)))
+	if(syndicates.len || (global.CTgame_ticker && istype(global.CTgame_ticker.mode, /datum/game_mode/nuclear)))
 		var/text = "<FONT size = 2><B>The syndicate operatives were:</B></FONT>"
 
 		for(var/datum/mind/syndicate in syndicates)

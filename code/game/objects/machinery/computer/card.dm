@@ -49,7 +49,7 @@
 
 	user.set_machine(src)
 	var/dat
-	if (!( ticker ))
+	if(!global.CTgame_ticker)
 		return
 	if (mode) // accessing crew manifest
 

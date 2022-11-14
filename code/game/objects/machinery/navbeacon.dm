@@ -82,7 +82,7 @@
 
 // return a signal giving location and transponder codes
 /obj/machinery/navbeacon/proc/post_signal()
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
+	var/datum/radio_frequency/frequency = global.CTradio.return_frequency(freq)
 
 	if(!frequency)
 		return

@@ -6,7 +6,7 @@
 
 	if(alert("Are you sure you want to run [cinematic]?", "Confirmation", "Yes", "No") == "No")
 		return
-	if(!ticker)
+	if(!global.CTgame_ticker)
 		return
 
 	switch(cinematic)
@@ -18,5 +18,5 @@
 					override = input(src, "mode = ?", "Enter Parameter", null) as anything in list("nuclear emergency", "no override")
 				if(0)
 					override = input(src, "mode = ?", "Enter Parameter", null) as anything in list("blob", "nuclear emergency", "AI malfunction", "no override")
-			ticker.station_explosion_cinematic(parameter, override)
+			global.CTgame_ticker.station_explosion_cinematic(parameter, override)
 	return

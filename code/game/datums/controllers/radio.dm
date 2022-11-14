@@ -28,8 +28,6 @@
  *		returns:
  *			Reference to frequency object. Use it if you need to send and do not need to listen.
 */
-GLOBAL_BYOND_TYPED(radio_controller, /datum/controller/radio) // Set in world/New()
-
 CONTROLLER_DEF(radio)
 	name = "Radio"
 

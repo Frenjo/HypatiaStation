@@ -84,7 +84,7 @@ Implants;
 		if(player.client && player.ready)
 			playerC++
 
-	if(global.ticker.master_mode == "secret")
+	if(global.CTgame_ticker.master_mode == "secret")
 		if(playerC >= required_players_secret)
 			return 1
 	else
@@ -104,8 +104,8 @@ Implants;
 		display_roundstart_logout_report()
 
 	feedback_set_details("round_start", "[time2text(world.realtime)]")
-	if(ticker && ticker.mode)
-		feedback_set_details("game_mode", "[ticker.mode]")
+	if(global.CTgame_ticker && global.CTgame_ticker.mode)
+		feedback_set_details("game_mode", "[global.CTgame_ticker.mode]")
 	if(global.revdata)
 		feedback_set_details("revision", "[global.revdata.revision]")
 	feedback_set_details("server_ip", "[world.internet_address]:[world.port]")
@@ -117,7 +117,7 @@ Implants;
 	return 0
 
 /datum/game_mode/proc/check_finished() //to be called by ticker
-	if(global.emergency_controller.returned() || station_was_nuked)
+	if(global.CTemergency.returned() || station_was_nuked)
 		return 1
 	return 0
 
@@ -296,7 +296,7 @@ Implants;
 
 	// If we don't have enough antags, draft people who voted for the round.
 	if(candidates.len < recommended_enemies)
-		for(var/key in global.vote.round_voters)
+		for(var/key in global.CTvote.round_voters)
 			for(var/mob/new_player/player in players)
 				if(player.ckey == key)
 					log_debug("[player.key] voted for this round, so we are drafting them.")

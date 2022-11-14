@@ -6,17 +6,17 @@
 	mind.active = 1		//indicates that the mind is currently synced with a client
 
 	//Round specific stuff like hud updates
-	if(ticker && ticker.mode)
-		switch(ticker.mode.name)
+	if(global.CTgame_ticker && global.CTgame_ticker.mode)
+		switch(global.CTgame_ticker.mode.name)
 			if("revolution")
-				if((mind in ticker.mode.revolutionaries) || (src.mind in ticker.mode:head_revolutionaries))
-					ticker.mode.update_rev_icons_added(src.mind)
+				if((mind in global.CTgame_ticker.mode.revolutionaries) || (src.mind in global.CTgame_ticker.mode:head_revolutionaries))
+					global.CTgame_ticker.mode.update_rev_icons_added(src.mind)
 			if("cult")
-				if(mind in ticker.mode:cult)
-					ticker.mode.update_cult_icons_added(src.mind)
+				if(mind in global.CTgame_ticker.mode:cult)
+					global.CTgame_ticker.mode.update_cult_icons_added(src.mind)
 			if("nuclear emergency")
-				if(mind in ticker.mode:syndicates)
-					ticker.mode.update_all_synd_icons()
+				if(mind in global.CTgame_ticker.mode:syndicates)
+					global.CTgame_ticker.mode.update_all_synd_icons()
 	return .
 
 //This stuff needs to be merged from cloning.dm but I'm not in the mood to be shouted at for breaking all the things :< ~Carn

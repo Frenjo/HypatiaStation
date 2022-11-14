@@ -158,7 +158,7 @@
 /obj/item/toy/gun/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
 	if(flag)
 		return
-	if(!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
+	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
 		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return
 	src.add_fingerprint(user)

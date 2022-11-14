@@ -59,7 +59,7 @@
 
 		user.update_mutations()
 
-		ticker.mode.traitors += user.mind
+		global.CTgame_ticker.mode.traitors += user.mind
 		user.mind.special_role = "Avatar of the Wish Granter"
 
 		var/datum/objective/silence/silence = new

@@ -53,17 +53,17 @@
 
 	stat("Intent:", "[a_intent]")
 	stat("Move Mode:", "[m_intent]")
-	if(global.ticker && global.ticker.mode && global.ticker.mode.name == "AI malfunction")
-		if(global.ticker.mode:malf_mode_declared)
-			stat(null, "Time left: [max(global.ticker.mode:AI_win_timeleft / (global.ticker.mode:apcs / 3), 0)]")
-	if(global.emergency_controller)
+	if(global.CTgame_ticker && global.CTgame_ticker.mode && global.CTgame_ticker.mode.name == "AI malfunction")
+		if(global.CTgame_ticker.mode:malf_mode_declared)
+			stat(null, "Time left: [max(global.CTgame_ticker.mode:AI_win_timeleft / (global.CTgame_ticker.mode:apcs / 3), 0)]")
+	if(global.CTemergency)
 		var/timeleft
-		if(global.emergency_controller.online())
-			if(global.emergency_controller.has_eta())
-				timeleft = global.emergency_controller.estimate_arrival_time()
+		if(global.CTemergency.online())
+			if(global.CTemergency.has_eta())
+				timeleft = global.CTemergency.estimate_arrival_time()
 				stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 			else
-				timeleft = global.emergency_controller.estimate_launch_time()
+				timeleft = global.CTemergency.estimate_launch_time()
 				stat(null, "ETD-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 
 	if(client.statpanel == "Status")
@@ -424,7 +424,7 @@
 		unset_machine()
 		src << browse(null, t1)
 
-	if(href_list["item"] && !usr.stat && usr.canmove && !usr.restrained() && in_range(src, usr) && ticker) //if game hasn't started, can't make an equip_e
+	if(href_list["item"] && !usr.stat && usr.canmove && !usr.restrained() && in_range(src, usr) && global.CTgame_ticker) //if game hasn't started, can't make an equip_e
 		var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human()
 		O.source = usr
 		O.target = src

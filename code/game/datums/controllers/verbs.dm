@@ -12,7 +12,7 @@
 	qdel(src)
 	switch(controller)
 		if("Supply")
-			global.supply_controller.process()
+			global.CTsupply.process()
 			feedback_add_details("admin_verb", "RSupply")
 	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
 	return

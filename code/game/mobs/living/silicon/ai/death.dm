@@ -31,14 +31,14 @@
 			break
 		callshuttle++
 
-	if(ticker.mode.name == "revolution" || ticker.mode.name == "AI malfunction" || GLOBL.sent_strike_team)
+	if(global.CTgame_ticker.mode.name == "revolution" || global.CTgame_ticker.mode.name == "AI malfunction" || GLOBL.sent_strike_team)
 		callshuttle = 0
 
 	if(callshuttle == 3) //if all three conditions are met
-		global.emergency_controller.call_evac()
+		global.CTemergency.call_evac()
 		log_game("All the AIs, comm consoles and boards are destroyed. Shuttle called.")
 		message_admins("All the AIs, comm consoles and boards are destroyed. Shuttle called.", 1)
-		captain_announce("The emergency shuttle has been called. It will arrive in [round(global.emergency_controller.estimate_arrival_time() / 60)] minutes.")
+		captain_announce("The emergency shuttle has been called. It will arrive in [round(global.CTemergency.estimate_arrival_time() / 60)] minutes.")
 		world << sound('sound/AI/shuttlecalled.ogg')
 
 	if(explosive)

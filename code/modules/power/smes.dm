@@ -316,7 +316,7 @@
 	if(usr.stat || usr.restrained())
 		return
 
-	if(!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
+	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
 		if(!isAI(usr))
 			to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
 			return

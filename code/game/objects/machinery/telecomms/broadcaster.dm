@@ -242,7 +242,7 @@
 
 	// --- Broadcast to syndicate radio! ---
 	else if(data == 3)
-		var/datum/radio_frequency/syndicateconnection = radio_controller.return_frequency(FREQUENCY_SYNDICATE)
+		var/datum/radio_frequency/syndicateconnection = global.CTradio.return_frequency(FREQUENCY_SYNDICATE)
 		for(var/obj/item/device/radio/R in syndicateconnection.devices["[RADIO_CHAT]"])
 			if(R.receive_range(FREQUENCY_SYNDICATE, level) > -1)
 				radios += R
@@ -463,7 +463,7 @@
 		var/mob/living/carbon/human/H = new
 		M = H
 
-	var/datum/radio_frequency/connection = radio_controller.return_frequency(frequency)
+	var/datum/radio_frequency/connection = global.CTradio.return_frequency(frequency)
 
 	var/display_freq = connection.frequency
 
@@ -487,7 +487,7 @@
 
 	// --- Broadcast to syndicate radio! ---
 	else if(data == 3)
-		var/datum/radio_frequency/syndicateconnection = radio_controller.return_frequency(FREQUENCY_SYNDICATE)
+		var/datum/radio_frequency/syndicateconnection = global.CTradio.return_frequency(FREQUENCY_SYNDICATE)
 
 		for(var/obj/item/device/radio/R in syndicateconnection.devices["[RADIO_CHAT]"])
 			var/turf/position = get_turf(R)

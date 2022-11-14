@@ -101,7 +101,7 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawn) // Runtime fix for geometry loading before
 
 	//Not even going to touch this pile of spaghetti
 /turf/simulated/mineral/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
+	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
 		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return
 

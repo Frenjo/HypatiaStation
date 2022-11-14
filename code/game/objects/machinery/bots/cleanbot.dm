@@ -212,7 +212,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 			return
 
 		if(!patrol_path || patrol_path.len < 1)
-			var/datum/radio_frequency/frequency = radio_controller.return_frequency(beacon_freq)
+			var/datum/radio_frequency/frequency = global.CTradio.return_frequency(beacon_freq)
 
 			if(!frequency) return
 

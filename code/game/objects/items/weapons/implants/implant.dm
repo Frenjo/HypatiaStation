@@ -336,11 +336,11 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	if(!ishuman(M))
 		return 0
 	var/mob/living/carbon/human/H = M
-	if(H.mind in ticker.mode.head_revolutionaries)
+	if(H.mind in global.CTgame_ticker.mode.head_revolutionaries)
 		H.visible_message("[H] seems to resist the implant!", "You feel the corporate tendrils of NanoTrasen try to invade your mind!")
 		return 0
-	else if(H.mind in ticker.mode:revolutionaries)
-		ticker.mode:remove_revolutionary(H.mind)
+	else if(H.mind in global.CTgame_ticker.mode:revolutionaries)
+		global.CTgame_ticker.mode:remove_revolutionary(H.mind)
 	to_chat(H, SPAN_INFO("You feel a surge of loyalty towards NanoTrasen."))
 	return 1
 

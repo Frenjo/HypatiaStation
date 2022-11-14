@@ -9,7 +9,7 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 	if(!src.holder)
 		src << "Only administrators may use this command."
 		return
-	if(!ticker)
+	if(!global.CTgame_ticker)
 		alert("The game hasn't started yet!")
 		return
 //	if(world.time < 6000)
@@ -35,8 +35,8 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 
 	GLOBL.sent_syndicate_strike_team = 1
 
-	if(global.emergency_controller.can_recall() && global.emergency_controller.online())
-		global.emergency_controller.recall()
+	if(global.CTemergency.can_recall() && global.CTemergency.online())
+		global.CTemergency.recall()
 
 	var/syndicate_commando_number = syndicate_commandos_possible //for selecting a leader
 	var/syndicate_leader_selected = 0 //when the leader is chosen. The last person spawned.
@@ -122,7 +122,7 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 	new_syndicate_commando.mind_initialize()
 	new_syndicate_commando.mind.assigned_role = "MODE"
 	new_syndicate_commando.mind.special_role = "Syndicate Commando"
-	ticker.mode.traitors |= new_syndicate_commando.mind	//Adds them to current traitor list. Which is really the extra antagonist list.
+	global.CTgame_ticker.mode.traitors |= new_syndicate_commando.mind	//Adds them to current traitor list. Which is really the extra antagonist list.
 	new_syndicate_commando.equip_syndicate_commando(syndicate_leader_selected)
 	qdel(spawn_location)
 	return new_syndicate_commando

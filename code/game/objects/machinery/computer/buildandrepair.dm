@@ -90,10 +90,10 @@
 		if(!shuttlecaller.stat && shuttlecaller.client && isturf(shuttlecaller.loc))
 			return ..()
 
-	if(global.ticker.mode.name == "revolution" || global.ticker.mode.name == "AI malfunction" || GLOBL.sent_strike_team)
+	if(global.CTgame_ticker.mode.name == "revolution" || global.CTgame_ticker.mode.name == "AI malfunction" || GLOBL.sent_strike_team)
 		return ..()
 
-	global.emergency_controller.call_evac()
+	global.CTemergency.call_evac()
 	log_game("All the AIs, comm consoles and boards are destroyed. Shuttle called.")
 	message_admins("All the AIs, comm consoles and boards are destroyed. Shuttle called.", 1)
 

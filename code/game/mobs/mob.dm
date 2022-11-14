@@ -390,10 +390,10 @@ var/list/slot_equipment_priority = list(
 	if(!CONFIG_GET(respawn))
 		to_chat(usr, SPAN_INFO("Respawn is disabled."))
 		return
-	if(stat != DEAD || !ticker)
+	if(stat != DEAD || !global.CTgame_ticker)
 		to_chat(usr, SPAN_INFO_B("You must be dead to use this!"))
 		return
-	if(ticker.mode.name == "meteor" || ticker.mode.name == "epidemic")	//BS12 EDIT
+	if(global.CTgame_ticker.mode.name == "meteor" || global.CTgame_ticker.mode.name == "epidemic")	//BS12 EDIT
 		to_chat(usr, SPAN_INFO("Respawn is disabled for this roundtype."))
 		return
 	else
@@ -743,8 +743,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 			stat("CPU:", "[world.cpu]")
 			stat("Instances:", "[world.contents.len]")
 		if(statpanel("Controllers"))
-			if(global.master_controller)
-				global.master_controller.stat_controllers()
+			if(global.CTmaster)
+				global.CTmaster.stat_controllers()
 		if(statpanel("Processes"))
 			if(global.process_scheduler)
 				global.process_scheduler.statProcesses()

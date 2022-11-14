@@ -185,7 +185,7 @@
 		user.show_message("\blue Key: Suffocation/Toxin/Burns/Brute", 1)
 		user.show_message("\blue Body Temperature: ???", 1)
 		return
-	if(!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
+	if(!(ishuman(user) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
 		user << "\red You don't have the dexterity to do this!"
 		return
 	if(!isrobot(M))

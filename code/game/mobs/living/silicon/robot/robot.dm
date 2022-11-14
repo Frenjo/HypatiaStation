@@ -429,15 +429,15 @@ var/list/robot_verbs_default = list(
 // this function shows information about the malf_ai gameplay type in the status screen
 /mob/living/silicon/robot/show_malf_ai()
 	..()
-	if(ticker.mode.name == "AI malfunction")
-		var/datum/game_mode/malfunction/malf = ticker.mode
+	if(global.CTgame_ticker.mode.name == "AI malfunction")
+		var/datum/game_mode/malfunction/malf = global.CTgame_ticker.mode
 		for (var/datum/mind/malfai in malf.malf_ai)
 			if(connected_ai)
 				if(connected_ai.mind == malfai)
 					if(malf.apcs >= 3)
 						stat(null, "Time until station control secured: [max(malf.AI_win_timeleft/(malf.apcs/3), 0)] seconds")
-			else if(ticker.mode:malf_mode_declared)
-				stat(null, "Time left: [max(ticker.mode:AI_win_timeleft/(ticker.mode:apcs/3), 0)]")
+			else if(global.CTgame_ticker.mode:malf_mode_declared)
+				stat(null, "Time left: [max(global.CTgame_ticker.mode:AI_win_timeleft / (global.CTgame_ticker.mode:apcs / 3), 0)]")
 	return 0
 
 
@@ -739,7 +739,7 @@ var/list/robot_verbs_default = list(
 		return ..()
 
 /mob/living/silicon/robot/attack_slime(mob/living/carbon/slime/M as mob)
-	if(!ticker)
+	if(!global.CTgame_ticker)
 		M << "You cannot attack people before the game has started."
 		return
 
@@ -1091,7 +1091,7 @@ var/list/robot_verbs_default = list(
 	//Disconnect it's camera so it's not so easily tracked.
 	if(src.camera)
 		src.camera.network = list()
-		cameranet.removeCamera(src.camera)
+		global.CTcameranet.removeCamera(src.camera)
 
 
 /mob/living/silicon/robot/proc/ResetSecurityCodes()

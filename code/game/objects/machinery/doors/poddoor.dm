@@ -36,7 +36,7 @@
 /obj/machinery/door/poddoor/open()
 	if(src.operating == 1) //doors can still open when emag-disabled
 		return
-	if(!ticker)
+	if(!global.CTgame_ticker)
 		return 0
 	if(!src.operating) //in case of emag
 		src.operating = 1

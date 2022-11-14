@@ -11,8 +11,8 @@ PROCESS_DEF(ticker)
 /datum/process/ticker/setup()
 	lastTickerTime = world.timeofday
 
-	if(!global.ticker)
-		global.ticker = new /datum/controller/game_ticker()
+	if(!global.CTgame_ticker)
+		global.CTgame_ticker = new /datum/controller/game_ticker()
 
 	wait_for_pregame()
 
@@ -26,16 +26,16 @@ PROCESS_DEF(ticker)
 
 	lastTickerTime = currentTime
 
-	global.ticker.process()
+	global.CTgame_ticker.process()
 
 /datum/process/ticker/proc/wait_for_pregame()
 	set waitfor = FALSE
 	// This seems really, really wrong but I don't want to rearrange the entire initialisation order just yet.
 	// It's going to be one of those "temporary fixes" they find is still in the code two decades later.
-	while(!global.master_controller.initialised)
+	while(!global.CTmaster.initialised)
 		sleep(1)
-	if(global.ticker)
-		global.ticker.pregame()
+	if(global.CTgame_ticker)
+		global.CTgame_ticker.pregame()
 
 /datum/process/ticker/proc/getLastTickerTimeDuration()
 	return lastTickerTimeDuration

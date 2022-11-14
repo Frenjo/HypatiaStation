@@ -66,8 +66,8 @@
 			if(alert(AI_mind.current,"Do you want to use an alternative sprite for your real core?",,"Yes","No")=="Yes")
 				AI_mind.current.icon_state = "ai-malf2"
 */
-	if(global.emergency_controller)
-		global.emergency_controller.auto_recall = TRUE
+	if(global.CTemergency)
+		global.CTemergency.auto_recall = TRUE
 	spawn(rand(waittime_l, waittime_h))
 		send_intercept()
 	..()
@@ -136,8 +136,8 @@
 		return 1
 	if(is_malf_ai_dead())
 		if(CONFIG_GET(continous_rounds))
-			if(global.emergency_controller)
-				global.emergency_controller.auto_recall = TRUE
+			if(global.CTemergency)
+				global.CTemergency.auto_recall = TRUE
 			malf_mode_declared = 0
 		else
 			return 1
@@ -155,24 +155,24 @@
 	set category = "Malfunction"
 	set name = "System Override"
 	set desc = "Start the victory timer"
-	if(!istype(ticker.mode, /datum/game_mode/malfunction))
+	if(!istype(global.CTgame_ticker.mode, /datum/game_mode/malfunction))
 		usr << "You cannot begin a takeover in this round type!."
 		return
-	if(ticker.mode:malf_mode_declared)
+	if(global.CTgame_ticker.mode:malf_mode_declared)
 		usr << "You've already begun your takeover."
 		return
-	if(ticker.mode:apcs < 3)
-		usr << "You don't have enough hacked APCs to take over the station yet. You need to hack at least 3, however hacking more will make the takeover faster. You have hacked [ticker.mode:apcs] APCs so far."
+	if(global.CTgame_ticker.mode:apcs < 3)
+		usr << "You don't have enough hacked APCs to take over the station yet. You need to hack at least 3, however hacking more will make the takeover faster. You have hacked [global.CTgame_ticker.mode:apcs] APCs so far."
 		return
 
-	if(alert(usr, "Are you sure you wish to initiate the takeover? The station hostile runtime detection software is bound to alert everyone. You have hacked [ticker.mode:apcs] APCs.", "Takeover:", "Yes", "No") != "Yes")
+	if(alert(usr, "Are you sure you wish to initiate the takeover? The station hostile runtime detection software is bound to alert everyone. You have hacked [global.CTgame_ticker.mode:apcs] APCs.", "Takeover:", "Yes", "No") != "Yes")
 		return
 
 	command_alert("Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.", "Anomaly Alert")
 	set_security_level("delta")
 
-	ticker.mode:malf_mode_declared = 1
-	for(var/datum/mind/AI_mind in ticker.mode:malf_ai)
+	global.CTgame_ticker.mode:malf_mode_declared = 1
+	for(var/datum/mind/AI_mind in global.CTgame_ticker.mode:malf_ai)
 		AI_mind.current.verbs -= /datum/game_mode/malfunction/proc/takeover
 	for(var/mob/M in GLOBL.player_list)
 		if(!istype(M, /mob/new_player))
@@ -183,12 +183,12 @@
 	set category = "Malfunction"
 	set name = "Explode"
 	set desc = "Station go boom"
-	if(!ticker.mode:to_nuke_or_not_to_nuke)
+	if(!global.CTgame_ticker.mode:to_nuke_or_not_to_nuke)
 		return
-	ticker.mode:to_nuke_or_not_to_nuke = 0
-	for(var/datum/mind/AI_mind in ticker.mode:malf_ai)
+	global.CTgame_ticker.mode:to_nuke_or_not_to_nuke = 0
+	for(var/datum/mind/AI_mind in global.CTgame_ticker.mode:malf_ai)
 		AI_mind.current.verbs -= /datum/game_mode/malfunction/proc/ai_win
-	ticker.mode:explosion_in_progress = 1
+	global.CTgame_ticker.mode:explosion_in_progress = 1
 	for(var/mob/M in GLOBL.player_list)
 		M << 'sound/machines/Alarm.ogg'
 	world << "Self-destructing in 10"
@@ -197,17 +197,17 @@
 		world << i
 	sleep(10)
 	GLOBL.enter_allowed = FALSE
-	if(ticker)
-		ticker.station_explosion_cinematic(0, null)
-		if(ticker.mode)
-			ticker.mode:station_was_nuked = 1
-			ticker.mode:explosion_in_progress = 0
+	if(global.CTgame_ticker)
+		global.CTgame_ticker.station_explosion_cinematic(0, null)
+		if(global.CTgame_ticker.mode)
+			global.CTgame_ticker.mode:station_was_nuked = 1
+			global.CTgame_ticker.mode:explosion_in_progress = 0
 	return
 
 
 /datum/game_mode/malfunction/declare_completion()
 	var/malf_dead = is_malf_ai_dead()
-	var/crew_evacuated = global.emergency_controller.returned()
+	var/crew_evacuated = global.CTemergency.returned()
 
 	if(station_captured && station_was_nuked)
 		feedback_set_details("round_end_result", "win - AI win - nuke")
@@ -248,7 +248,7 @@
 
 
 /datum/game_mode/proc/auto_declare_completion_malfunction()
-	if(malf_ai.len || istype(ticker.mode, /datum/game_mode/malfunction))
+	if(malf_ai.len || istype(global.CTgame_ticker.mode, /datum/game_mode/malfunction))
 		var/text = "<FONT size = 2><B>The malfunctioning AI were:</B></FONT>"
 
 		for(var/datum/mind/malf in malf_ai)

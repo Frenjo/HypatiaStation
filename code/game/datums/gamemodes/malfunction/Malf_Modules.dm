@@ -115,14 +115,14 @@ rcd light flash thingy on matter drain
 	set category = "Malfunction"
 	set name = "Hack intercept"
 	usr.verbs -= /client/proc/interhack
-	ticker.mode:hack_intercept()
+	global.CTgame_ticker.mode:hack_intercept()
 
 /datum/AI_Module/small/reactivate_camera
 	module_name = "Reactivate camera"
 	mod_pick_name = "recam"
 	uses = 10
 
-/client/proc/reactivate_camera(obj/machinery/camera/C as obj in cameranet.cameras)
+/client/proc/reactivate_camera(obj/machinery/camera/C as obj in global.CTcameranet.cameras)
 	set name = "Reactivate Camera"
 	set category = "Malfunction"
 	if(istype (C, /obj/machinery/camera))
@@ -145,7 +145,7 @@ rcd light flash thingy on matter drain
 	mod_pick_name = "upgradecam"
 	uses = 10
 
-/client/proc/upgrade_camera(obj/machinery/camera/C as obj in cameranet.cameras)
+/client/proc/upgrade_camera(obj/machinery/camera/C as obj in global.CTcameranet.cameras)
 	set name = "Upgrade Camera"
 	set category = "Malfunction"
 	if(istype(C))
@@ -158,7 +158,7 @@ rcd light flash thingy on matter drain
 					if(!C.isXRay())
 						C.upgradeXRay()
 						//Update what it can see.
-						cameranet.updateVisibility(C)
+						global.CTcameranet.updateVisibility(C)
 						upgraded = 1
 
 					if(!C.isEmpProof())

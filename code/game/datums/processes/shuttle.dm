@@ -6,8 +6,8 @@ PROCESS_DEF(shuttle)
 	schedule_interval = 2 SECONDS
 
 /datum/process/shuttle/setup()
-	if(!global.shuttle_controller)
-		global.shuttle_controller = new /datum/controller/shuttle()
+	if(!global.CTshuttle)
+		global.CTshuttle = new /datum/controller/shuttle()
 
 /datum/process/shuttle/doWork()
-	global.shuttle_controller.process()
+	global.CTshuttle.process()

@@ -23,14 +23,14 @@ var/global/list/all_objectives = list()
 
 /datum/objective/proc/find_target()
 	var/list/possible_targets = list()
-	for(var/datum/mind/possible_target in ticker.minds)
+	for(var/datum/mind/possible_target in global.CTgame_ticker.minds)
 		if(possible_target != owner && ishuman(possible_target.current) && possible_target.current.stat != DEAD)
 			possible_targets += possible_target
 	if(possible_targets.len > 0)
 		target = pick(possible_targets)
 
 /datum/objective/proc/find_target_by_role(role, role_type = 0)//Option sets either to check assigned role or special role. Default to assigned.
-	for(var/datum/mind/possible_target in ticker.minds)
+	for(var/datum/mind/possible_target in global.CTgame_ticker.minds)
 		if(possible_target != owner && ishuman(possible_target.current) && (role_type ? possible_target.special_role : possible_target.assigned_role) == role)
 			target = possible_target
 			break
@@ -117,8 +117,8 @@ var/global/list/all_objectives = list()
 		if(target.current.stat == DEAD || target.current:handcuffed || !ishuman(target.current))
 			return 1
 		// Check if they're converted
-		if(istype(ticker.mode, /datum/game_mode/revolution))
-			if(target in ticker.mode:head_revolutionaries)
+		if(istype(global.CTgame_ticker.mode, /datum/game_mode/revolution))
+			if(target in global.CTgame_ticker.mode:head_revolutionaries)
 				return 1
 		var/turf/T = get_turf(target.current)
 		if(T && isNotStationLevel(T.z))			//If they leave the station they count as dead for this
@@ -288,7 +288,7 @@ var/global/list/all_objectives = list()
 /datum/objective/hijack/check_completion()
 	if(!owner.current || owner.current.stat)
 		return 0
-	if(!global.emergency_controller.returned())
+	if(!global.CTemergency.returned())
 		return 0
 	if(issilicon(owner.current))
 		return 0
@@ -310,7 +310,7 @@ var/global/list/all_objectives = list()
 /datum/objective/block/check_completion()
 	if(!issilicon(owner.current))
 		return 0
-	if(!global.emergency_controller.returned())
+	if(!global.CTemergency.returned())
 		return 0
 	if(!owner.current)
 		return 0
@@ -330,7 +330,7 @@ var/global/list/all_objectives = list()
 	explanation_text = "Do not allow anyone to escape the station.  Only allow the shuttle to be called when everyone is dead and your story is the only one left."
 
 /datum/objective/silence/check_completion()
-	if(!global.emergency_controller.returned())
+	if(!global.CTemergency.returned())
 		return 0
 
 	for(var/mob/living/player in GLOBL.player_list)
@@ -356,7 +356,7 @@ var/global/list/all_objectives = list()
 		return 0
 	if(isbrain(owner.current))
 		return 0
-	if(!global.emergency_controller.returned())
+	if(!global.CTemergency.returned())
 		return 0
 	if(!owner.current || owner.current.stat == DEAD)
 		return 0
@@ -680,15 +680,15 @@ var/global/list/all_objectives = list()
 	
 /datum/objective/absorb/proc/gen_amount_goal(lowbound = 4, highbound = 6)
 	target_amount = rand (lowbound, highbound)
-	if(ticker)
+	if(global.CTgame_ticker)
 		var/n_p = 1 //autowin
-		if(ticker.current_state == GAME_STATE_SETTING_UP)
+		if(global.CTgame_ticker.current_state == GAME_STATE_SETTING_UP)
 			for(var/mob/new_player/P in GLOBL.player_list)
 				if(P.client && P.ready && P.mind != owner)
 					n_p ++
-		else if(ticker.current_state == GAME_STATE_PLAYING)
+		else if(global.CTgame_ticker.current_state == GAME_STATE_PLAYING)
 			for(var/mob/living/carbon/human/P in GLOBL.player_list)
-				if(P.client && !(P.mind in ticker.mode.changelings) && P.mind != owner)
+				if(P.client && !(P.mind in global.CTgame_ticker.mode.changelings) && P.mind != owner)
 					n_p ++
 		target_amount = min(target_amount, n_p)
 
@@ -775,7 +775,7 @@ var/global/list/all_objectives = list()
 	var/list/possible_targets = list()
 	var/list/priority_targets = list()
 
-	for(var/datum/mind/possible_target in ticker.minds)
+	for(var/datum/mind/possible_target in global.CTgame_ticker.minds)
 		if(possible_target != owner && ishuman(possible_target.current) && possible_target.current.stat != DEAD && possible_target.assigned_role != "MODE")
 			possible_targets += possible_target
 			for(var/role in roles)
@@ -859,7 +859,7 @@ var/global/list/all_objectives = list()
 		if(total_amount >= target_amount)
 			return 1
 
-	var/datum/game_mode/heist/H = ticker.mode
+	var/datum/game_mode/heist/H = global.CTgame_ticker.mode
 	for(var/datum/mind/raider in H.raiders)
 		if(raider.current)
 			for(var/obj/O in raider.current.get_contents())
@@ -917,7 +917,7 @@ var/global/list/all_objectives = list()
 					S = I
 					total_amount += S.amount
 
-	var/datum/game_mode/heist/H = ticker.mode
+	var/datum/game_mode/heist/H = global.CTgame_ticker.mode
 	for(var/datum/mind/raider in H.raiders)
 		if(raider.current)
 			for(var/obj/item/O in raider.current.get_contents())
@@ -935,7 +935,7 @@ var/global/list/all_objectives = list()
 	explanation_text = "Do not leave any Vox behind, alive or dead."
 
 /datum/objective/heist/inviolate_crew/check_completion()
-	var/datum/game_mode/heist/H = ticker.mode
+	var/datum/game_mode/heist/H = global.CTgame_ticker.mode
 	if(H.is_raider_crew_safe())
 		return 1
 	return 0

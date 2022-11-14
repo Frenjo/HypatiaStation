@@ -32,7 +32,7 @@ AI MODULES
 			usr << "You haven't selected an AI to transmit laws to!"
 			return
 
-		if(ticker && ticker.mode && ticker.mode.name == "blob")
+		if(global.CTgame_ticker && global.CTgame_ticker.mode && global.CTgame_ticker.mode.name == "blob")
 			usr << "Law uploads have been disabled by NanoTrasen!"
 			return
 

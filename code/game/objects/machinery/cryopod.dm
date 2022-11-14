@@ -35,7 +35,7 @@ var/global/list/frozen_items = list()
 
 	var/dat
 
-	if(!ticker)
+	if(!global.CTgame_ticker)
 		return
 
 	dat += "<hr/><br/><b>Cryogenic Oversight Control</b><br/>"
@@ -220,14 +220,14 @@ var/global/list/frozen_items = list()
 			//Handle job slot/tater cleanup.
 			var/job = occupant.mind.assigned_role
 
-			job_master.free_role(job)
+			global.CToccupations.free_role(job)
 
 			if(occupant.mind.objectives.len)
 				qdel(occupant.mind.objectives)
 				occupant.mind.special_role = null
 			else
-				if(ticker.mode.name == "AutoTraitor")
-					var/datum/game_mode/traitor/autotraitor/current_mode = ticker.mode
+				if(global.CTgame_ticker.mode.name == "AutoTraitor")
+					var/datum/game_mode/traitor/autotraitor/current_mode = global.CTgame_ticker.mode
 					current_mode.possible_traitors.Remove(occupant)
 
 			// Delete them from datacore.

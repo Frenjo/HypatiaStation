@@ -42,9 +42,9 @@
 		if(istype(unsim, /turf/simulated))
 
 			var/turf/simulated/sim = unsim
-			if(air_master.has_valid_zone(sim))
+			if(global.CTair_system.has_valid_zone(sim))
 
-				air_master.connect(sim, src)
+				global.CTair_system.connect(sim, src)
 
 /turf/simulated/update_air_properties()
 	if(zone && zone.invalid)
@@ -117,7 +117,7 @@
 			var/turf/simulated/sim = unsim
 			sim.open_directions |= GLOBL.reverse_dir[d]
 
-			if(air_master.has_valid_zone(sim))
+			if(global.CTair_system.has_valid_zone(sim))
 				//Might have assigned a zone, since this happens for each direction.
 				if(!zone)
 
@@ -151,7 +151,7 @@
 						world << "Connecting to [sim.zone]"
 					#endif
 
-					air_master.connect(src, sim)
+					global.CTair_system.connect(src, sim)
 
 
 			#ifdef ZASDBG
@@ -169,7 +169,7 @@
 				postponed = list()
 			postponed.Add(unsim)
 
-	if(!air_master.has_valid_zone(src)) //Still no zone, make a new one.
+	if(!global.CTair_system.has_valid_zone(src)) //Still no zone, make a new one.
 		var/zone/newzone = new/zone()
 		newzone.add(src)
 
@@ -182,7 +182,7 @@
 	//At this point, a zone should have happened. If it hasn't, don't add more checks, fix the bug.
 
 	for(var/turf/T in postponed)
-		air_master.connect(src, T)
+		global.CTair_system.connect(src, T)
 
 /turf/proc/post_update_air_properties()
 	if(connections)
@@ -245,7 +245,7 @@
 /turf/simulated/return_air()
 	if(zone)
 		if(!zone.invalid)
-			air_master.mark_zone_update(zone)
+			global.CTair_system.mark_zone_update(zone)
 			return zone.air
 		else
 			if(!air)

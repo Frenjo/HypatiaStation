@@ -223,7 +223,7 @@ Auto Patrol: []"},
 			continue
 		if(ishuman(C))
 			threatlevel = src.assess_perp(C)
-		else if ((istype(C, /mob/living/carbon/monkey)) && (C.client) && (ticker.mode.name == "monkey"))
+		else if(istype(C, /mob/living/carbon/monkey) && C.client && global.CTgame_ticker.mode.name == "monkey")
 			threatlevel = 4
 		//src.speak(C.real_name + text(": threat: []", threatlevel))
 		if (threatlevel < 4 )
@@ -573,7 +573,7 @@ Auto Patrol: []"},
 // send a radio signal with multiple data key/values
 /obj/machinery/bot/ed209/proc/post_signal_multiple(var/freq, var/list/keyval)
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
+	var/datum/radio_frequency/frequency = global.CTradio.return_frequency(freq)
 
 	if(!frequency) return
 
@@ -629,7 +629,7 @@ Auto Patrol: []"},
 
 		if(ishuman(C))
 			src.threatlevel = src.assess_perp(C)
-		else if ((istype(C, /mob/living/carbon/monkey)) && (C.client) && (ticker.mode.name == "monkey"))
+		else if(istype(C, /mob/living/carbon/monkey) && C.client && global.CTgame_ticker.mode.name == "monkey")
 			src.threatlevel = 4
 
 		if (!src.threatlevel)

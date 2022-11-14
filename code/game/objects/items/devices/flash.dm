@@ -72,7 +72,7 @@
 			flick("e_flash", M.flash)
 
 			if(ishuman(M) && ishuman(user) && M.stat != DEAD)
-				if(user.mind && (user.mind in ticker.mode.head_revolutionaries) && ticker.mode.name == "revolution")
+				if(user.mind && (user.mind in global.CTgame_ticker.mode.head_revolutionaries) && global.CTgame_ticker.mode.name == "revolution")
 					var/revsafe = 0
 					for(var/obj/item/weapon/implant/loyalty/L in M)
 						if(L && L.implanted)
@@ -83,7 +83,7 @@
 						revsafe = 2
 					if(!revsafe)
 						M.mind.has_been_rev = 1
-						ticker.mode.add_revolutionary(M.mind)
+						global.CTgame_ticker.mode.add_revolutionary(M.mind)
 					else if(revsafe == 1)
 						to_chat(user, SPAN_WARNING("Something seems to be blocking the flash!"))
 					else

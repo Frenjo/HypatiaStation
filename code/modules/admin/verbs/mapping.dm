@@ -55,7 +55,7 @@ GLOBAL_GLOBL_INIT(intercom_range_display_status, 0)
 		qdel(C)
 
 	if(GLOBL.camera_range_display_status)
-		for(var/obj/machinery/camera/C in cameranet.cameras)
+		for(var/obj/machinery/camera/C in global.CTcameranet.cameras)
 			new/obj/effect/debugging/camera_range(C.loc)
 	feedback_add_details("admin_verb", "mCRD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -63,13 +63,13 @@ GLOBAL_GLOBL_INIT(intercom_range_display_status, 0)
 	set category = "Mapping"
 	set name = "Camera Report"
 
-	if(!global.master_controller)
+	if(!global.CTmaster)
 		alert(usr, "Master_controller not found.", "Sec Camera Report")
 		return 0
 
 	var/list/obj/machinery/camera/CL = list()
 
-	for(var/obj/machinery/camera/C in cameranet.cameras)
+	for(var/obj/machinery/camera/C in global.CTcameranet.cameras)
 		CL += C
 
 	var/output = {"<B>CAMERA ANNOMALITIES REPORT</B><HR>
@@ -266,12 +266,12 @@ var/list/debug_verbs = list(
 	set name = "Reboot ZAS"
 
 	if(alert("This will destroy and remake all zone geometry on the whole map.", "Reboot ZAS", "Reboot ZAS", "Nevermind") == "Reboot ZAS")
-		var/datum/controller/air_system/old_air = air_master
+		var/datum/controller/air_system/old_air = global.CTair_system
 		for(var/zone/zone in old_air.zones)
 			zone.c_invalidate()
 		qdel(old_air)
-		air_master = new
-		air_master.setup()
+		global.CTair_system = new /datum/controller/air_system()
+		global.CTair_system.setup()
 
 /client/proc/count_objects_on_z_level()
 	set category = "Mapping"

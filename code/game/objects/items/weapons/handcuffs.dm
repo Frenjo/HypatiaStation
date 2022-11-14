@@ -45,7 +45,7 @@
 						O.process()
 				return
 			return
-		if(!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
+		if(!(ishuman(user) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
 			to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
 			return
 		if(ishuman(C))

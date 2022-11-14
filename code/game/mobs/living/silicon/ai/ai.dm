@@ -139,7 +139,7 @@ var/list/ai_verbs_default = list(
 			src << "<B>While observing through a camera, you can use most (networked) devices which you can see, such as computers, APCs, intercoms, doors, etc.</B>"
 			src << "To use something, simply click on it."
 			src << "Use say :b to speak to your cyborgs through binary."
-			if (!(ticker && ticker.mode && (mind in ticker.mode.malf_ai)))
+			if(!(global.CTgame_ticker && global.CTgame_ticker.mode && (mind in global.CTgame_ticker.mode.malf_ai)))
 				show_laws()
 				src << "<b>These laws may be changed by other players, or by you being the traitor.</b>"
 
@@ -251,8 +251,8 @@ var/list/ai_verbs_default = list(
 
 // displays the malf_ai information if the AI is the malf
 /mob/living/silicon/ai/show_malf_ai()
-	if(ticker.mode.name == "AI malfunction")
-		var/datum/game_mode/malfunction/malf = ticker.mode
+	if(global.CTgame_ticker.mode.name == "AI malfunction")
+		var/datum/game_mode/malfunction/malf = global.CTgame_ticker.mode
 		for (var/datum/mind/malfai in malf.malf_ai)
 			if (mind == malfai) // are we the evil one?
 				if (malf.apcs >= 3)
@@ -312,7 +312,7 @@ var/list/ai_verbs_default = list(
 		call_shuttle_proc(src)
 
 	// hack to display shuttle timer
-	if(global.emergency_controller.online())
+	if(global.CTemergency.online())
 		var/obj/machinery/computer/communications/C = locate() in GLOBL.machines
 		if(C)
 			C.post_status("shuttle")
@@ -361,7 +361,7 @@ var/list/ai_verbs_default = list(
 		unset_machine()
 		src << browse(null, t1)
 	if(href_list["switchcamera"])
-		switchCamera(locate(href_list["switchcamera"])) in cameranet.cameras
+		switchCamera(locate(href_list["switchcamera"])) in global.CTcameranet.cameras
 	if(href_list["showalerts"])
 		ai_alerts()
 	//Carn: holopad requests
@@ -531,7 +531,7 @@ var/list/ai_verbs_default = list(
 
 	var/mob/living/silicon/ai/U = usr
 
-	for(var/obj/machinery/camera/C in cameranet.cameras)
+	for(var/obj/machinery/camera/C in global.CTcameranet.cameras)
 		if(!C.can_use())
 			continue
 
@@ -549,7 +549,7 @@ var/list/ai_verbs_default = list(
 	if(isnull(network))
 		network = old_network // If nothing is selected
 	else
-		for(var/obj/machinery/camera/C in cameranet.cameras)
+		for(var/obj/machinery/camera/C in global.CTcameranet.cameras)
 			if(!C.can_use())
 				continue
 			if(network in C.network)

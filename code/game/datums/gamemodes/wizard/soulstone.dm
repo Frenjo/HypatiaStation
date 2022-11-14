@@ -164,11 +164,11 @@
 						var/mob/living/simple_animal/construct/armoured/Z = new /mob/living/simple_animal/construct/armoured(get_turf(T.loc))
 						Z.key = A.key
 						if(iscultist(U))
-							if(ticker.mode.name == "cult")
-								ticker.mode:add_cultist(Z.mind)
+							if(global.CTgame_ticker.mode.name == "cult")
+								global.CTgame_ticker.mode:add_cultist(Z.mind)
 							else
-								ticker.mode.cult += Z.mind
-							ticker.mode.update_cult_icons_added(Z.mind)
+								global.CTgame_ticker.mode.cult += Z.mind
+							global.CTgame_ticker.mode.update_cult_icons_added(Z.mind)
 						qdel(T)
 						to_chat(Z, "<B>You are playing a Juggernaut. Though slow, you can withstand extreme punishment, and rip apart enemies and walls alike.</B>")
 						to_chat(Z, "<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>")
@@ -180,11 +180,11 @@
 						var/mob/living/simple_animal/construct/wraith/Z = new /mob/living/simple_animal/construct/wraith(get_turf(T.loc))
 						Z.key = A.key
 						if(iscultist(U))
-							if(ticker.mode.name == "cult")
-								ticker.mode:add_cultist(Z.mind)
+							if(global.CTgame_ticker.mode.name == "cult")
+								global.CTgame_ticker.mode:add_cultist(Z.mind)
 							else
-								ticker.mode.cult += Z.mind
-							ticker.mode.update_cult_icons_added(Z.mind)
+								global.CTgame_ticker.mode.cult += Z.mind
+							global.CTgame_ticker.mode.update_cult_icons_added(Z.mind)
 						qdel(T)
 						to_chat(Z, "<B>You are playing a Wraith. Though relatively fragile, you are fast, deadly, and even able to phase through walls.</B>")
 						to_chat(Z, "<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>")
@@ -196,11 +196,11 @@
 						var/mob/living/simple_animal/construct/builder/Z = new /mob/living/simple_animal/construct/builder (get_turf(T.loc))
 						Z.key = A.key
 						if(iscultist(U))
-							if(ticker.mode.name == "cult")
-								ticker.mode:add_cultist(Z.mind)
+							if(global.CTgame_ticker.mode.name == "cult")
+								global.CTgame_ticker.mode:add_cultist(Z.mind)
 							else
-								ticker.mode.cult += Z.mind
-							ticker.mode.update_cult_icons_added(Z.mind)
+								global.CTgame_ticker.mode.cult += Z.mind
+							global.CTgame_ticker.mode.update_cult_icons_added(Z.mind)
 						qdel(T)
 						to_chat(Z, "<B>You are playing an Artificer. You are incredibly weak and fragile, but you are able to construct fortifications, repair allied constructs (by clicking on them), and even create new constructs.</B>")
 						to_chat(Z, "<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>")

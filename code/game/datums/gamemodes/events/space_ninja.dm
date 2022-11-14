@@ -102,7 +102,7 @@ GLOBAL_GLOBL_INIT(ninja_confirmed_selection, 0)
 		to_chat(usr, SPAN_WARNING("Ninja selection already in progress. Please wait until it ends."))
 		return
 
-	var/datum/game_mode/current_mode = ticker.mode
+	var/datum/game_mode/current_mode = global.CTgame_ticker.mode
 	var/datum/mind/current_mind
 
 	/*Is the ninja playing for the good or bad guys? Is the ninja helping or hurting the station?
@@ -434,7 +434,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 	set category = null
 	set name = "Make Space Ninja"
 
-	if(!ticker)
+	if(!global.CTgame_ticker)
 		alert("Wait until the game starts")
 		return
 	if(!GLOBL.toggle_space_ninja)
@@ -468,7 +468,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 	if(!holder)
 		src << "Only administrators may use this command."
 		return
-	if(!ticker.mode)
+	if(!global.CTgame_ticker.mode)
 		alert("The game hasn't started yet!")
 		return
 	if(!GLOBL.toggle_space_ninja)

@@ -41,7 +41,14 @@
 /*
  * Controllers & Processes
  */
-#define CONTROLLER_DEF(X) /datum/controller/##X
+#define CONTROLLER_DEF(X) GLOBAL_BYOND_TYPED(CT##X, /datum/controller/##X); \
+/datum/controller/##X/New() \
+{ \
+	. = ..(); \
+	if(global.CT##X != src) \
+		global.CT##X = src; \
+} \
+/datum/controller/##X
 
 #define PROCESS_DEF(X) GLOBAL_BYOND_TYPED(PC##X, /datum/process/##X); \
 /datum/process/##X/New() \

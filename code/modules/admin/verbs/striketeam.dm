@@ -4,7 +4,7 @@ var/const/commandos_possible = 6 //if more Commandos are needed in the future
 GLOBAL_GLOBL_INIT(sent_strike_team, 0)
 
 /client/proc/strike_team()
-	if(!ticker)
+	if(!global.CTgame_ticker)
 		usr << "<font color='red'>The game hasn't started yet!</font>"
 		return
 	if(world.time < 6000)
@@ -30,8 +30,8 @@ GLOBAL_GLOBL_INIT(sent_strike_team, 0)
 
 	GLOBL.sent_strike_team = 1
 
-	if(global.emergency_controller.can_recall() && global.emergency_controller.online())
-		global.emergency_controller.recall()
+	if(global.CTemergency.can_recall() && global.CTemergency.online())
+		global.CTemergency.recall()
 
 	var/commando_number = commandos_possible //for selecting a leader
 	var/leader_selected = 0 //when the leader is chosen. The last person spawned.
@@ -117,7 +117,7 @@ GLOBAL_GLOBL_INIT(sent_strike_team, 0)
 	new_commando.mind_initialize()
 	new_commando.mind.assigned_role = "MODE"
 	new_commando.mind.special_role = "Death Commando"
-	ticker.mode.traitors |= new_commando.mind//Adds them to current traitor list. Which is really the extra antagonist list.
+	global.CTgame_ticker.mode.traitors |= new_commando.mind//Adds them to current traitor list. Which is really the extra antagonist list.
 	new_commando.equip_death_commando(leader_selected)
 	return new_commando
 

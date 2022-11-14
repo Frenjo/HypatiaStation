@@ -300,9 +300,9 @@
 			src.syndie = 1
 
 	for(var/ch_name in channels)
-		if(!radio_controller)
+		if(!global.CTradio)
 			sleep(30) // Waiting for the radio_controller to be created.
-		if(!radio_controller)
+		if(!global.CTradio)
 			src.name = "broken radio headset"
 			return
 

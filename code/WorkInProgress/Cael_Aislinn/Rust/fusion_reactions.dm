@@ -10,24 +10,24 @@
 /datum/controller/master/var/list/fusion_reactions
 
 /proc/get_fusion_reaction(var/primary_reactant, var/secondary_reactant)
-	if(!global.master_controller.fusion_reactions)
+	if(!global.CTmaster.fusion_reactions)
 		populate_fusion_reactions()
-	if(global.master_controller.fusion_reactions.Find(primary_reactant))
-		var/list/secondary_reactions = global.master_controller.fusion_reactions[primary_reactant]
+	if(global.CTmaster.fusion_reactions.Find(primary_reactant))
+		var/list/secondary_reactions = global.CTmaster.fusion_reactions[primary_reactant]
 		if(secondary_reactions.Find(secondary_reactant))
-			return global.master_controller.fusion_reactions[primary_reactant][secondary_reactant]
+			return global.CTmaster.fusion_reactions[primary_reactant][secondary_reactant]
 
 /proc/populate_fusion_reactions()
-	if(!global.master_controller.fusion_reactions)
-		global.master_controller.fusion_reactions = list()
+	if(!global.CTmaster.fusion_reactions)
+		global.CTmaster.fusion_reactions = list()
 		for(var/cur_reaction_type in SUBTYPESOF(/datum/fusion_reaction))
 			var/datum/fusion_reaction/cur_reaction = new cur_reaction_type()
-			if(!global.master_controller.fusion_reactions[cur_reaction.primary_reactant])
-				global.master_controller.fusion_reactions[cur_reaction.primary_reactant] = list()
-			global.master_controller.fusion_reactions[cur_reaction.primary_reactant][cur_reaction.secondary_reactant] = cur_reaction
-			if(!global.master_controller.fusion_reactions[cur_reaction.secondary_reactant])
-				global.master_controller.fusion_reactions[cur_reaction.secondary_reactant] = list()
-			global.master_controller.fusion_reactions[cur_reaction.secondary_reactant][cur_reaction.primary_reactant] = cur_reaction
+			if(!global.CTmaster.fusion_reactions[cur_reaction.primary_reactant])
+				global.CTmaster.fusion_reactions[cur_reaction.primary_reactant] = list()
+			global.CTmaster.fusion_reactions[cur_reaction.primary_reactant][cur_reaction.secondary_reactant] = cur_reaction
+			if(!global.CTmaster.fusion_reactions[cur_reaction.secondary_reactant])
+				global.CTmaster.fusion_reactions[cur_reaction.secondary_reactant] = list()
+			global.CTmaster.fusion_reactions[cur_reaction.secondary_reactant][cur_reaction.primary_reactant] = cur_reaction
 
 //Fake elements and fake reactions, but its nicer gameplay-wise
 //Deuterium

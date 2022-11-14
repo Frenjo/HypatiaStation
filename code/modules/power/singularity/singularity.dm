@@ -495,9 +495,9 @@ var/global/list/uneatable = list(
 /obj/singularity/narsie/large/New()
 	..()
 	to_world("<font size='28' color='red'><b>NAR-SIE HAS RISEN</b></font>")
-	if(global.emergency_controller)
-		global.emergency_controller.call_evac()
-		global.emergency_controller.launch_time = 0 // Cannot recall
+	if(global.CTemergency)
+		global.CTemergency.call_evac()
+		global.CTemergency.launch_time = 0 // Cannot recall
 
 /obj/singularity/narsie/process()
 	eat()
@@ -536,7 +536,7 @@ var/global/list/uneatable = list(
 
 /obj/singularity/narsie/proc/pickcultist() //Narsie rewards his cultists with being devoured first, then picks a ghost to follow. --NEO
 	var/list/cultists = list()
-	for(var/datum/mind/cult_nh_mind in ticker.mode.cult)
+	for(var/datum/mind/cult_nh_mind in global.CTgame_ticker.mode.cult)
 		if(!cult_nh_mind.current)
 			continue
 		if(cult_nh_mind.current.stat)

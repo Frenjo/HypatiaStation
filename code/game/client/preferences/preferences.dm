@@ -388,7 +388,7 @@
 	user << browse(dat, "window=preferences;size=560x580")
 
 /datum/preferences/proc/SetChoices(mob/user, limit = 17, list/splitJobs = list("Chief Medical Officer"), width = 550, height = 550)
-	if(!job_master)
+	if(!global.CToccupations)
 		return
 
 	//limit		- The amount of jobs allowed per column. Defaults to 17 to make it look nice.
@@ -407,9 +407,9 @@
 
 	//The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
 	var/datum/job/lastJob
-	if(!job_master)
+	if(!global.CToccupations)
 		return
-	for(var/datum/job/job in job_master.occupations)
+	for(var/datum/job/job in global.CToccupations.occupations)
 		index += 1
 		if(index >= limit || (job.title in splitJobs))
 			if(index < limit && lastJob != null)
@@ -567,7 +567,7 @@
 		player_alt_titles[job.title] = new_title
 
 /datum/preferences/proc/SetJob(mob/user, role)
-	var/datum/job/job = job_master.get_job(role)
+	var/datum/job/job = global.CToccupations.get_job(role)
 	if(!job)
 		user << browse(null, "window=mob_occupation")
 		ShowChoices(user)
@@ -1207,7 +1207,7 @@
 				if("lobby_music")
 					toggles ^= SOUND_LOBBY
 					if(toggles & SOUND_LOBBY)
-						user << sound(ticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1)
+						user << sound(global.CTgame_ticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1)
 					else
 						user << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
 

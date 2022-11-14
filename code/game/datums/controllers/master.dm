@@ -1,8 +1,6 @@
 /*
  * Master Controller
  */
-GLOBAL_BYOND_TYPED(master_controller, /datum/controller/master) // Set in world/New()
-
 GLOBAL_BYOND_INIT(air_processing_killed, FALSE)
 GLOBAL_BYOND_INIT(pipe_processing_killed, FALSE)
 
@@ -14,20 +12,20 @@ CONTROLLER_DEF(master)
 /datum/controller/master/New()
 	. = ..()
 	// There can be only one master_controller. Out with the old and in with the new.
-	if(global.master_controller != src)
+	if(global.CTmaster != src)
 		log_debug("Rebuilding Master Controller")
-		if(istype(global.master_controller))
-			qdel(global.master_controller)
-		global.master_controller = src
+		if(istype(global.CTmaster))
+			qdel(global.CTmaster)
+		global.CTmaster = src
 
-	if(!global.job_master)
-		global.job_master = new /datum/controller/occupations()
-		global.job_master.setup_occupations()
-		global.job_master.load_jobs("config/jobs.txt")
+	if(!global.CToccupations)
+		global.CToccupations = new /datum/controller/occupations()
+		global.CToccupations.setup_occupations()
+		global.CToccupations.load_jobs("config/jobs.txt")
 		to_world(SPAN_DANGER("Job setup complete."))
 	
-	if(!global.radio_controller)
-		global.radio_controller = new /datum/controller/radio()
+	if(!global.CTradio)
+		global.CTradio = new /datum/controller/radio()
 		to_world(SPAN_DANGER("Radio setup complete."))
 
 	if(!GLOBL.syndicate_code_phrase)

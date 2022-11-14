@@ -430,7 +430,7 @@
 	update_icon()
 
 /obj/machinery/alarm/proc/post_alert(alert_level)
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(alarm_frequency)
+	var/datum/radio_frequency/frequency = global.CTradio.return_frequency(alarm_frequency)
 	if(!frequency)
 		return
 

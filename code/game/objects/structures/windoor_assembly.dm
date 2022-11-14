@@ -321,9 +321,9 @@
 	return
 
 /obj/structure/windoor_assembly/proc/update_nearby_tiles(need_rebuild)
-	if(!air_master)
+	if(!global.CTair_system)
 		return 0
 
-	air_master.mark_for_update(loc)
+	global.CTair_system.mark_for_update(loc)
 
 	return 1

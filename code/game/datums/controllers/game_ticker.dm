@@ -1,8 +1,6 @@
 /*
  * Game Ticker
  */
-GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/process/ticker/setup()
-
 CONTROLLER_DEF(game_ticker)
 	name = "Ticker"
 
@@ -69,7 +67,7 @@ CONTROLLER_DEF(game_ticker)
 		while(current_state == GAME_STATE_PREGAME)
 			for(var/i = 0, i < 10, i++)
 				sleep(1)
-				global.vote.process()
+				global.CTvote.process()
 			if(roundstart_progressing)
 				pregame_timeleft--
 /*			if(pregame_timeleft == config.vote_autogamemode_timeleft)
@@ -98,7 +96,7 @@ CONTROLLER_DEF(game_ticker)
 			var/datum/game_mode/M = global.config.pick_mode(secret_force_mode)
 			if(M.can_start())
 				src.mode = global.config.pick_mode(secret_force_mode)
-		job_master.reset_occupations()
+		global.CToccupations.reset_occupations()
 		if(!src.mode)
 			src.mode = pickweight(runnable_modes)
 		if(src.mode)
@@ -110,17 +108,17 @@ CONTROLLER_DEF(game_ticker)
 		to_world("<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
 		qdel(mode)
 		current_state = GAME_STATE_PREGAME
-		job_master.reset_occupations()
+		global.CToccupations.reset_occupations()
 		return 0
 
 	//Configure mode and assign player to special mode stuff
-	job_master.divide_occupations() //Distribute jobs
+	global.CToccupations.divide_occupations() //Distribute jobs
 	var/can_continue = src.mode.pre_setup()//Setup special modes
 	if(!can_continue)
 		qdel(mode)
 		current_state = GAME_STATE_PREGAME
 		to_world("<B>Error setting up [master_mode].</B> Reverting to pre-game lobby.")
-		job_master.reset_occupations()
+		global.CToccupations.reset_occupations()
 		return 0
 
 	if(hide_mode)
@@ -143,7 +141,7 @@ CONTROLLER_DEF(game_ticker)
 
 	//here to initialize the random events nicely at round start
 	setup_economy()
-	shuttle_controller.setup_shuttle_docks() // Updated to reflect 'shuttles' port. -Frenjo
+	global.CTshuttle.setup_shuttle_docks() // Updated to reflect 'shuttles' port. -Frenjo
 
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		mode.post_setup()
@@ -292,7 +290,7 @@ CONTROLLER_DEF(game_ticker)
 /datum/controller/game_ticker/proc/collect_minds()
 	for(var/mob/living/player in GLOBL.player_list)
 		if(player.mind)
-			ticker.minds += player.mind
+			global.CTgame_ticker.minds += player.mind
 
 /datum/controller/game_ticker/proc/equip_characters()
 	var/captainless = 1
@@ -301,7 +299,7 @@ CONTROLLER_DEF(game_ticker)
 			if(player.mind.assigned_role == "Captain")
 				captainless = 0
 			if(player.mind.assigned_role != "MODE")
-				job_master.equip_rank(player, player.mind.assigned_role, 0)
+				global.CToccupations.equip_rank(player, player.mind.assigned_role, 0)
 				EquipCustomItems(player)
 	if(captainless)
 		for(var/mob/M in GLOBL.player_list)
@@ -314,7 +312,7 @@ CONTROLLER_DEF(game_ticker)
 
 	mode.process()
 
-	var/mode_finished = mode.check_finished() || (global.emergency_controller.returned() && global.emergency_controller.evac)
+	var/mode_finished = mode.check_finished() || (global.CTemergency.returned() && global.CTemergency.evac)
 	if(!mode.explosion_in_progress && mode_finished)
 		current_state = GAME_STATE_FINISHED
 

@@ -182,7 +182,7 @@
 	if(!holder)
 		src << "Only administrators may use this command."
 		return
-	if(ticker && ticker.mode)
+	if(global.CTgame_ticker && global.CTgame_ticker.mode)
 		src << "blobs: [blobs.len]"
 		src << "cores: [blob_cores.len]"
 		src << "nodes: [blob_nodes.len]"

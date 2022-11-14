@@ -8,7 +8,7 @@
 	)
 
 /proc/iscultist(mob/living/M as mob)
-	return istype(M) && M.mind && ticker && ticker.mode && (M.mind in ticker.mode.cult)
+	return istype(M) && M.mind && global.CTgame_ticker && global.CTgame_ticker.mode && (M.mind in global.CTgame_ticker.mode.cult)
 
 /proc/is_convertable_to_cult(datum/mind/mind)
 	if(!istype(mind))
@@ -317,7 +317,7 @@
 	return 1
 
 /datum/game_mode/proc/auto_declare_completion_cult()
-	if(cult.len || (ticker && istype(ticker.mode, /datum/game_mode/cult)))
+	if(cult.len || (global.CTgame_ticker && istype(global.CTgame_ticker.mode, /datum/game_mode/cult)))
 		var/text = "<FONT size = 2><B>The cultists were:</B></FONT>"
 		for(var/datum/mind/cultist in cult)
 

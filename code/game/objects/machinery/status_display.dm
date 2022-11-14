@@ -75,7 +75,7 @@
 		if(0)				//blank
 			remove_display()
 		if(1)				//emergency shuttle timer
-			if(global.emergency_controller.online())
+			if(global.CTemergency.online())
 				/*
 				var/line1
 				var/line2 = get_shuttle_timer()
@@ -118,7 +118,7 @@
 			//if(supply_shuttle.moving)
 				//line2 = get_supply_shuttle_timer()
 			// Edited this to reflect 'shuttles' port. -Frenjo
-			var/datum/shuttle/ferry/supply/supply_shuttle = global.supply_controller.shuttle
+			var/datum/shuttle/ferry/supply/supply_shuttle = global.CTsupply.shuttle
 			if(supply_shuttle.has_arrive_time())
 				line2 = get_supply_shuttle_timer()
 
@@ -175,10 +175,10 @@
 
 /obj/machinery/status_display/proc/get_shuttle_timer()
 	var/timeleft
-	if(global.emergency_controller.has_eta())
-		timeleft = global.emergency_controller.estimate_arrival_time()
+	if(global.CTemergency.has_eta())
+		timeleft = global.CTemergency.estimate_arrival_time()
 	else
-		timeleft = global.emergency_controller.estimate_launch_time()
+		timeleft = global.CTemergency.estimate_launch_time()
 
 	if(timeleft)
 		return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"
@@ -188,7 +188,7 @@
 	//if(supply_shuttle.moving)
 		//var/timeleft = round((supply_shuttle.eta_timeofday - world.timeofday) / 10,1)
 	// Edited this to reflect 'shuttles' port. -Frenjo
-	var/datum/shuttle/ferry/supply/supply_shuttle = global.supply_controller.shuttle
+	var/datum/shuttle/ferry/supply/supply_shuttle = global.CTsupply.shuttle
 	if(supply_shuttle.has_arrive_time())
 		var/timeleft = round((supply_shuttle.arrive_time - world.time) / 10, 1)
 

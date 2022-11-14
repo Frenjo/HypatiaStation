@@ -426,12 +426,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	//Now for special roles and equipment.
 	switch(new_character.mind.special_role)
 		if("traitor")
-			job_master.equip_rank(new_character, new_character.mind.assigned_role, 1)
-			ticker.mode.equip_traitor(new_character)
+			global.CToccupations.equip_rank(new_character, new_character.mind.assigned_role, 1)
+			global.CTgame_ticker.mode.equip_traitor(new_character)
 		if("Wizard")
 			new_character.loc = pick(GLOBL.wizardstart)
 			//ticker.mode.learn_basic_spells(new_character)
-			ticker.mode.equip_wizard(new_character)
+			global.CTgame_ticker.mode.equip_wizard(new_character)
 		if("Syndicate")
 			var/obj/effect/landmark/synd_spawn = locate("landmark*Syndicate-Spawn")
 			if(synd_spawn)
@@ -469,7 +469,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 						call(/datum/game_mode/proc/add_law_zero)(new_character)
 				//Add aliens.
 				else
-					job_master.equip_rank(new_character, new_character.mind.assigned_role, 1)//Or we simply equip them.
+					global.CToccupations.equip_rank(new_character, new_character.mind.assigned_role, 1)//Or we simply equip them.
 
 	//Announces the character on all the systems, based on the record.
 	if(!issilicon(new_character))//If they are not a cyborg/AI.
@@ -589,8 +589,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if (!holder)
 		src << "Only administrators may use this command."
 		return
-	if(job_master)
-		for(var/datum/job/job in job_master.occupations)
+	if(global.CToccupations)
+		for(var/datum/job/job in global.CToccupations.occupations)
 			src << "[job.title]: [job.total_positions]"
 	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -801,7 +801,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Admin"
 	set name = "Call Shuttle"
 
-	if(!ticker || !global.emergency_controller.location())
+	if(!global.CTgame_ticker || !global.CTemergency.location())
 		return
 
 	if(!check_rights(R_ADMIN))	return
@@ -809,14 +809,14 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm != "Yes") return
 
-	if(ticker.mode.name == "revolution" || ticker.mode.name == "AI malfunction" || ticker.mode.name == "confliction")
+	if(global.CTgame_ticker.mode.name == "revolution" || global.CTgame_ticker.mode.name == "AI malfunction" || global.CTgame_ticker.mode.name == "confliction")
 		var/choice = input("The shuttle will just return if you call it. Call anyway?") in list("Confirm", "Cancel")
 		if(choice == "Confirm")
-			global.emergency_controller.auto_recall = TRUE
+			global.CTemergency.auto_recall = TRUE
 		else
 			return
 
-	global.emergency_controller.call_evac()
+	global.CTemergency.call_evac()
 	feedback_add_details("admin_verb","CSHUT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
 	message_admins("\blue [key_name_admin(usr)] admin-called the emergency shuttle.", 1)
@@ -830,10 +830,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return
 
-	if(!ticker || !global.emergency_controller.can_recall())
+	if(!global.CTgame_ticker || !global.CTemergency.can_recall())
 		return
 
-	global.emergency_controller.recall()
+	global.CTemergency.recall()
 	feedback_add_details("admin_verb","CCSHUT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] admin-recalled the emergency shuttle.")
 	message_admins("\blue [key_name_admin(usr)] admin-recalled the emergency shuttle.", 1)
@@ -844,15 +844,15 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Admin"
 	set name = "Toggle Deny Shuttle"
 
-	if (!ticker)
+	if(!global.CTgame_ticker)
 		return
 
 	if(!check_rights(R_ADMIN))	return
 
-	global.emergency_controller.deny_shuttle = !global.emergency_controller.deny_shuttle
+	global.CTemergency.deny_shuttle = !global.CTemergency.deny_shuttle
 
-	log_admin("[key_name(src)] has [global.emergency_controller.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
-	message_admins("[key_name_admin(usr)] has [global.emergency_controller.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
+	log_admin("[key_name(src)] has [global.CTemergency.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
+	message_admins("[key_name_admin(usr)] has [global.CTemergency.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
 
 /client/proc/cmd_admin_attack_log(mob/M as mob in GLOBL.mob_list)
 	set category = "Special Verbs"
@@ -871,12 +871,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!check_rights(R_FUN))	return
 
-	if (ticker && ticker.mode)
+	if(global.CTgame_ticker && global.CTgame_ticker.mode)
 		usr << "Nope you can't do this, the game's already started. This only works before rounds!"
 		return
 
-	if(ticker.random_players)
-		ticker.random_players = FALSE
+	if(global.CTgame_ticker.random_players)
+		global.CTgame_ticker.random_players = FALSE
 		message_admins("Admin [key_name_admin(usr)] has disabled \"Everyone is Special\" mode.", 1)
 		usr << "Disabled."
 		return
@@ -894,7 +894,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	usr << "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>."
 
-	ticker.random_players = TRUE
+	global.CTgame_ticker.random_players = TRUE
 	feedback_add_details("admin_verb","MER") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 

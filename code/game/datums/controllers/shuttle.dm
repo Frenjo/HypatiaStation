@@ -5,8 +5,6 @@
 /*
  * Shuttle Controller
  */
-GLOBAL_BYOND_TYPED(shuttle_controller, /datum/controller/shuttle) // Set in /datum/process/shuttle/setup()
-
 CONTROLLER_DEF(shuttle)
 	name = "Shuttle"
 
@@ -109,8 +107,8 @@ CONTROLLER_DEF(shuttle)
 	shuttles["Escape Pod 5"] = shuttle
 
 	//give the emergency shuttle controller it's shuttles
-	global.emergency_controller.shuttle = shuttles["Escape"]
-	global.emergency_controller.escape_pods = list(
+	global.CTemergency.shuttle = shuttles["Escape"]
+	global.CTemergency.escape_pods = list(
 		shuttles["Escape Pod 1"],
 		shuttles["Escape Pod 2"],
 		shuttles["Escape Pod 3"],
@@ -288,7 +286,7 @@ CONTROLLER_DEF(shuttle)
 	//escape pod arming controllers
 	var/datum/shuttle/ferry/escape_pod/pod
 	var/list/pod_controller_map = list()
-	for(var/datum/shuttle/ferry/escape_pod/P in global.emergency_controller.escape_pods)
+	for(var/datum/shuttle/ferry/escape_pod/P in global.CTemergency.escape_pods)
 		if(P.dock_target_station)
 			pod_controller_map[P.dock_target_station] = P
 

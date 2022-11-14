@@ -156,7 +156,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set category = "Fun"
 	set name = "Make Robot"
 
-	if(!ticker)
+	if(!global.CTgame_ticker)
 		alert("Wait until the game starts")
 		return
 	if(ishuman(M))
@@ -171,7 +171,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set category = "Fun"
 	set name = "Make Simple Animal"
 
-	if(!ticker)
+	if(!global.CTgame_ticker)
 		alert("Wait until the game starts")
 		return
 
@@ -209,16 +209,16 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	pai.real_name = pai.name
 	pai.key = choice.key
 	card.setPersonality(pai)
-	for(var/datum/pAI_candidate/candidate in global.pAI_controller.pAI_candidates)
+	for(var/datum/pAI_candidate/candidate in global.CTpai.pAI_candidates)
 		if(candidate.key == choice.key)
-			global.pAI_controller.pAI_candidates.Remove(candidate)
+			global.CTpai.pAI_candidates.Remove(candidate)
 	feedback_add_details("admin_verb", "MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_alienize(mob/M in GLOBL.mob_list)
 	set category = "Fun"
 	set name = "Make Alien"
 
-	if(!ticker)
+	if(!global.CTgame_ticker)
 		alert("Wait until the game starts")
 		return
 	if(ishuman(M))
@@ -235,7 +235,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set category = "Fun"
 	set name = "Make slime"
 
-	if(!ticker)
+	if(!global.CTgame_ticker)
 		alert("Wait until the game starts")
 		return
 	if(ishuman(M))
@@ -376,7 +376,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set category = "Admin"
 	set name = "Grant Full Access"
 
-	if(!ticker)
+	if(!global.CTgame_ticker)
 		alert("Wait until the game starts")
 		return
 	if(ishuman(M))
@@ -990,7 +990,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(mob/M, block)
-	if(!ticker)
+	if(!global.CTgame_ticker)
 		alert("Wait until the game starts")
 		return
 	if(iscarbon(M))

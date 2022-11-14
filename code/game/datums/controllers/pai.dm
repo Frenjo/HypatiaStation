@@ -3,11 +3,11 @@
 /*
  * pAI Controller
  */
-// Recruiting observers to play as pAIs
-GLOBAL_BYOND_TYPED(pAI_controller, /datum/controller/pai)	// Global handler for pAI candidates
+// Recruiting observers to play as pAIs.
+// Global handler for pAI candidates.
 
 /hook/roundstart/proc/create_pai_controller()
-	global.pAI_controller = new /datum/controller/pai()
+	global.CTpai = new /datum/controller/pai()
 	return 1
 
 CONTROLLER_DEF(pai)
@@ -36,8 +36,8 @@ CONTROLLER_DEF(pai)
 			card.setPersonality(pai)
 			card.looking_for_personality = 0
 
-			ticker.mode.update_cult_icons_removed(card.pai.mind)
-			ticker.mode.update_rev_icons_removed(card.pai.mind)
+			global.CTgame_ticker.mode.update_cult_icons_removed(card.pai.mind)
+			global.CTgame_ticker.mode.update_rev_icons_removed(card.pai.mind)
 
 			pAI_candidates -= candidate
 			usr << browse(null, "window=findPai")
@@ -217,7 +217,7 @@ CONTROLLER_DEF(pai)
 /datum/controller/pai/proc/find_pAI(obj/item/device/paicard/p, mob/user)
 	request_recruits()
 	var/list/available = list()
-	for(var/datum/pAI_candidate/c in global.pAI_controller.pAI_candidates)
+	for(var/datum/pAI_candidate/c in global.CTpai.pAI_candidates)
 		if(c.ready)
 			var/found = 0
 			for(var/mob/dead/observer/o in GLOBL.player_list)
@@ -343,7 +343,7 @@ CONTROLLER_DEF(pai)
 				asked.Remove(O.key)
 		if(O.client)
 			var/hasSubmitted = 0
-			for(var/datum/pAI_candidate/c in global.pAI_controller.pAI_candidates)
+			for(var/datum/pAI_candidate/c in global.CTpai.pAI_candidates)
 				if(c.key == O.key)
 					hasSubmitted = 1
 			if(!hasSubmitted && (O.client.prefs.be_special & BE_PAI))

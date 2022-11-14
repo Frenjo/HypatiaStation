@@ -814,7 +814,7 @@
 	if(freq == control_freq && !wires.RemoteTX())
 		return
 
-	var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
+	var/datum/radio_frequency/frequency = global.CTradio.return_frequency(freq)
 
 	if(!frequency)
 		return

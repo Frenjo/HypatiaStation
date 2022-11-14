@@ -123,11 +123,11 @@ Contains helper procs for airflow, handled in /connection_group.
 			if(airflow_time++ >= airflow_speed - 7)
 				if(od)
 					density = FALSE
-				sleep(1 * global.air_master.tick_multiplier)
+				sleep(1 * global.CTair_system.tick_multiplier)
 		else
 			if(od)
 				density = FALSE
-			sleep(max(1, 10 - (airflow_speed + 3)) * global.air_master.tick_multiplier)
+			sleep(max(1, 10 - (airflow_speed + 3)) * global.CTair_system.tick_multiplier)
 		if(od)
 			density = TRUE
 		if((!(src.airflow_dest) || src.loc == src.airflow_dest))
@@ -191,9 +191,9 @@ Contains helper procs for airflow, handled in /connection_group.
 		airflow_speed -= vsc.airflow_speed_decay
 		if(airflow_speed > 7)
 			if(airflow_time++ >= airflow_speed - 7)
-				sleep(1 * global.air_master.tick_multiplier)
+				sleep(1 * global.CTair_system.tick_multiplier)
 		else
-			sleep(max(1,10-(airflow_speed+3)) * global.air_master.tick_multiplier)
+			sleep(max(1,10-(airflow_speed+3)) * global.CTair_system.tick_multiplier)
 		if((!(src.airflow_dest) || src.loc == src.airflow_dest))
 			src.airflow_dest = locate(min(max(src.x + xo, 1), world.maxx), min(max(src.y + yo, 1), world.maxy), src.z)
 		if((src.x == 1 || src.x == world.maxx || src.y == 1 || src.y == world.maxy))

@@ -238,7 +238,7 @@ VOX HEIST ROUNDTYPE
 /datum/game_mode/proc/auto_declare_completion_heist()
 	if(raiders.len)
 		var/check_return = 0
-		if(ticker && istype(ticker.mode, /datum/game_mode/heist))
+		if(global.CTgame_ticker && istype(global.CTgame_ticker.mode, /datum/game_mode/heist))
 			check_return = 1
 		var/text = "<FONT size = 2><B>The vox raiders were:</B></FONT>"
 

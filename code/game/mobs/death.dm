@@ -91,7 +91,7 @@
 
 	updateicon()
 
-	if(ticker && ticker.mode)
-		ticker.mode.check_win()
+	if(global.CTgame_ticker && global.CTgame_ticker.mode)
+		global.CTgame_ticker.mode.check_win()
 
 	return 1

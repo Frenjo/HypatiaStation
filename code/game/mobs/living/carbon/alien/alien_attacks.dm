@@ -31,7 +31,7 @@
 /mob/living/carbon/alien/attack_paw(mob/living/carbon/monkey/M as mob)
 	if(!(istype(M, /mob/living/carbon/monkey)))	return//Fix for aliens receiving double messages when attacking other aliens.
 
-	if (!ticker)
+	if(!global.CTgame_ticker)
 		M << "You cannot attack people before the game has started."
 		return
 	..()
@@ -53,7 +53,7 @@
 
 
 /mob/living/carbon/alien/attack_slime(mob/living/carbon/slime/M as mob)
-	if (!ticker)
+	if(!global.CTgame_ticker)
 		M << "You cannot attack people before the game has started."
 		return
 
@@ -80,7 +80,7 @@
 	return
 
 /mob/living/carbon/alien/attack_hand(mob/living/carbon/human/M as mob)
-	if (!ticker)
+	if(!global.CTgame_ticker)
 		M << "You cannot attack people before the game has started."
 		return
 

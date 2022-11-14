@@ -14,10 +14,10 @@
 	air_properties_vary_with_direction = 1
 
 /obj/machinery/door/window/update_nearby_tiles(need_rebuild)
-	if(!air_master)
+	if(!global.CTair_system)
 		return 0
 
-	air_master.mark_for_update(get_turf(src))
+	global.CTair_system.mark_for_update(get_turf(src))
 
 	return 1
 
@@ -48,7 +48,7 @@
 					sleep(50)
 					close()
 		return
-	if(!ticker)
+	if(!global.CTgame_ticker)
 		return
 	if(src.operating)
 		return
@@ -82,7 +82,7 @@
 /obj/machinery/door/window/open()
 	if(src.operating == 1) //doors can still open when emag-disabled
 		return 0
-	if(!ticker)
+	if(!global.CTgame_ticker)
 		return 0
 	if(!src.operating) //in case of emag
 		src.operating = 1

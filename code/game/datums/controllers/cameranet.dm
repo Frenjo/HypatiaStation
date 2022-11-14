@@ -3,10 +3,8 @@
  * 
  * The controller datum containing all the chunks.
  */
-GLOBAL_BYOND_TYPED(cameranet, /datum/controller/cameranet)
-
 /hook/startup/proc/create_camera_networks()
-	global.cameranet = new /datum/controller/cameranet()
+	global.CTcameranet = new /datum/controller/cameranet()
 	return 1
 
 CONTROLLER_DEF(cameranet)
@@ -63,7 +61,7 @@ CONTROLLER_DEF(cameranet)
 
 // Updates the chunks that the turf is located in. Use this when obstacles are destroyed or	when doors open.
 /datum/controller/cameranet/proc/updateVisibility(atom/A, opacity_check = 1)
-	if(!ticker || (opacity_check && !A.opacity))
+	if(!global.CTgame_ticker || (opacity_check && !A.opacity))
 		return
 	majorChunkChange(A, 2)
 

@@ -6,8 +6,8 @@
 	var/image/obscured
 
 /turf/proc/visibilityChanged()
-	if(ticker)
-		cameranet.updateVisibility(src)
+	if(global.CTgame_ticker)
+		global.CTcameranet.updateVisibility(src)
 
 /turf/simulated/New()
 	..()
@@ -20,23 +20,23 @@
 // STRUCTURES
 /obj/structure/New()
 	..()
-	if(ticker)
-		cameranet.updateVisibility(src)
+	if(global.CTgame_ticker)
+		global.CTcameranet.updateVisibility(src)
 
 /obj/structure/Destroy()
-	if(ticker)
-		cameranet.updateVisibility(src)
+	if(global.CTgame_ticker)
+		global.CTcameranet.updateVisibility(src)
 	return ..()
 
 // EFFECTS
 /obj/effect/New()
 	..()
-	if(ticker)
-		cameranet.updateVisibility(src)
+	if(global.CTgame_ticker)
+		global.CTcameranet.updateVisibility(src)
 
 /obj/effect/Destroy()
-	if(ticker)
-		cameranet.updateVisibility(src)
+	if(global.CTgame_ticker)
+		global.CTcameranet.updateVisibility(src)
 	return ..()
 
 // DOORS
@@ -45,8 +45,8 @@
 	. = ..(need_rebuild)
 	// Glass door glass = 1
 	// don't check then?
-	if(!glass && cameranet)
-		cameranet.updateVisibility(src, 0)
+	if(!glass && global.CTcameranet)
+		global.CTcameranet.updateVisibility(src, 0)
 
 
 // ROBOT MOVEMENT
@@ -63,7 +63,7 @@
 				updating = 1
 				spawn(BORG_CAMERA_BUFFER)
 					if(oldLoc != src.loc)
-						cameranet.updatePortableCamera(src.camera)
+						global.CTcameranet.updatePortableCamera(src.camera)
 					updating = 0
 
 // CAMERA
@@ -71,23 +71,23 @@
 /obj/machinery/camera/deactivate(user as mob, choice = 1)
 	..(user, choice)
 	if(src.can_use())
-		cameranet.addCamera(src)
+		global.CTcameranet.addCamera(src)
 	else
 		src.set_light(0)
-		cameranet.removeCamera(src)
+		global.CTcameranet.removeCamera(src)
 
 /obj/machinery/camera/initialize()
 	..()
-	cameranet.cameras += src //Camera must be added to global list of all cameras no matter what...
+	global.CTcameranet.cameras += src //Camera must be added to global list of all cameras no matter what...
 	var/list/open_networks = difflist(network, GLOBL.restricted_camera_networks) //...but if all of camera's networks are restricted, it only works for specific camera consoles.
 	if(open_networks.len) //If there is at least one open network, chunk is available for AI usage.
-		cameranet.addCamera(src)
+		global.CTcameranet.addCamera(src)
 
 /obj/machinery/camera/Destroy()
-	cameranet.cameras -= src
+	global.CTcameranet.cameras -= src
 	var/list/open_networks = difflist(network, GLOBL.restricted_camera_networks)
 	if(open_networks.len)
-		cameranet.removeCamera(src)
+		global.CTcameranet.removeCamera(src)
 	return ..()
 
 #undef BORG_CAMERA_BUFFER

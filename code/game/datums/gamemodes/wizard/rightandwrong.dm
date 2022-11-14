@@ -9,7 +9,7 @@
 		if(is_special_character(H))
 			continue
 		if(prob(25))
-			ticker.mode.traitors += H.mind
+			global.CTgame_ticker.mode.traitors += H.mind
 			H.mind.special_role = "traitor"
 			var/datum/objective/survive/survive = new
 			survive.owner = H.mind

@@ -263,9 +263,9 @@
 
 /obj/machinery/power/apc/proc/set_broken()
 	if(malfai && operating)
-		if(ticker.mode.config_tag == "malfunction")
+		if(global.CTgame_ticker.mode.config_tag == "malfunction")
 			if(isStationLevel(src.z)) //if (is_type_in_list(get_area(src), the_station_areas))
-				ticker.mode:apcs--
+				global.CTgame_ticker.mode:apcs--
 	stat |= BROKEN
 	operating = 0
 	if(occupant)
@@ -276,9 +276,9 @@
 /obj/machinery/power/apc/proc/toggle_breaker()
 	operating = !operating
 	if(malfai)
-		if(ticker.mode.config_tag == "malfunction")
+		if(global.CTgame_ticker.mode.config_tag == "malfunction")
 			if(isStationLevel(src.z)) //if (is_type_in_list(get_area(src), the_station_areas))
-				operating ? ticker.mode:apcs++ : ticker.mode:apcs--
+				operating ? global.CTgame_ticker.mode:apcs++ : global.CTgame_ticker.mode:apcs--
 
 	src.update()
 	update_icon()

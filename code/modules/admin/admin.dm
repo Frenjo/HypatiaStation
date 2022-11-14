@@ -549,7 +549,7 @@ var/global/floorIsLava = 0
 		<center><B>Game Panel</B></center><hr>\n
 		<A href='?src=\ref[src];c_mode=1'>Change Game Mode</A><br>
 		"}
-	if(global.ticker.master_mode == "secret")
+	if(global.CTgame_ticker.master_mode == "secret")
 		dat += "<A href='?src=\ref[src];f_secret=1'>(Force Secret Mode)</A><br>"
 
 	dat += {"
@@ -764,11 +764,11 @@ var/global/floorIsLava = 0
 	set category = "Server"
 	set desc="Start the round RIGHT NOW"
 	set name="Start Now"
-	if(!ticker)
+	if(!global.CTgame_ticker)
 		alert("Unable to start the game as it is not set up.")
 		return
-	if(ticker.current_state == GAME_STATE_PREGAME)
-		ticker.current_state = GAME_STATE_SETTING_UP
+	if(global.CTgame_ticker.current_state == GAME_STATE_PREGAME)
+		global.CTgame_ticker.current_state = GAME_STATE_SETTING_UP
 		log_admin("[usr.key] has started the game.")
 		message_admins("<font color='blue'>[usr.key] has started the game.</font>")
 		feedback_add_details("admin_verb","SN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -843,13 +843,13 @@ var/global/floorIsLava = 0
 
 	if(!check_rights(R_SERVER))
 		return
-	if(!ticker || ticker.current_state != GAME_STATE_PREGAME)
-		ticker.delay_end = !ticker.delay_end
-		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-		message_admins("\blue [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
+	if(!global.CTgame_ticker || global.CTgame_ticker.current_state != GAME_STATE_PREGAME)
+		global.CTgame_ticker.delay_end = !global.CTgame_ticker.delay_end
+		log_admin("[key_name(usr)] [global.CTgame_ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
+		message_admins("\blue [key_name(usr)] [global.CTgame_ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
 		return //alert("Round end delayed", null, null, null, null, null)
-	global.ticker.roundstart_progressing = !global.ticker.roundstart_progressing
-	if(!global.ticker.roundstart_progressing)
+	global.CTgame_ticker.roundstart_progressing = !global.CTgame_ticker.roundstart_progressing
+	if(!global.CTgame_ticker.roundstart_progressing)
 		world << "<b>The game start has been delayed.</b>"
 		log_admin("[key_name(usr)] delayed the game.")
 	else
@@ -916,38 +916,38 @@ var/global/floorIsLava = 0
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
 /proc/is_special_character(mob/M as mob) // returns 1 for specail characters and 2 for heroes of gamemode
-	if(!ticker || !ticker.mode)
+	if(!global.CTgame_ticker || !global.CTgame_ticker.mode)
 		return 0
 	if(!istype(M))
 		return 0
-	if((M.mind in ticker.mode.head_revolutionaries) || (M.mind in ticker.mode.revolutionaries))
-		if(ticker.mode.config_tag == "revolution")
+	if((M.mind in global.CTgame_ticker.mode.head_revolutionaries) || (M.mind in global.CTgame_ticker.mode.revolutionaries))
+		if(global.CTgame_ticker.mode.config_tag == "revolution")
 			return 2
 		return 1
-	if(M.mind in ticker.mode.cult)
-		if(ticker.mode.config_tag == "cult")
+	if(M.mind in global.CTgame_ticker.mode.cult)
+		if(global.CTgame_ticker.mode.config_tag == "cult")
 			return 2
 		return 1
-	if(M.mind in ticker.mode.malf_ai)
-		if(ticker.mode.config_tag == "malfunction")
+	if(M.mind in global.CTgame_ticker.mode.malf_ai)
+		if(global.CTgame_ticker.mode.config_tag == "malfunction")
 			return 2
 		return 1
-	if(M.mind in ticker.mode.syndicates)
-		if(ticker.mode.config_tag == "nuclear")
+	if(M.mind in global.CTgame_ticker.mode.syndicates)
+		if(global.CTgame_ticker.mode.config_tag == "nuclear")
 			return 2
 		return 1
-	if(M.mind in ticker.mode.wizards)
-		if(ticker.mode.config_tag == "wizard")
+	if(M.mind in global.CTgame_ticker.mode.wizards)
+		if(global.CTgame_ticker.mode.config_tag == "wizard")
 			return 2
 		return 1
-	if(M.mind in ticker.mode.changelings)
-		if(ticker.mode.config_tag == "changeling")
+	if(M.mind in global.CTgame_ticker.mode.changelings)
+		if(global.CTgame_ticker.mode.config_tag == "changeling")
 			return 2
 		return 1
 
 	for(var/datum/disease/D in M.viruses)
 		if(istype(D, /datum/disease/jungle_fever))
-			if(ticker.mode.config_tag == "monkey")
+			if(global.CTgame_ticker.mode.config_tag == "monkey")
 				return 2
 			return 1
 	if(isrobot(M))

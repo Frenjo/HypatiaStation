@@ -130,7 +130,7 @@ var/global/announce_vox_departure = 1 //Stealth systems - give an announcement o
 
 	vox_shuttle_location = "station"
 	if(href_list["start"])
-		if(ticker && (istype(ticker.mode,/datum/game_mode/heist)))
+		if(global.CTgame_ticker && istype(global.CTgame_ticker.mode,/datum/game_mode/heist))
 			if(!warning)
 				user << "\red Returning to dark space will end your raid and report your success or failure. If you are sure, press the button again."
 				warning = 1

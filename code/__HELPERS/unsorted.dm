@@ -1301,13 +1301,13 @@ var/mob/dview/dview_mob = new
 
 /proc/register_radio(source, old_frequency, new_frequency, radio_filter)
 	if(old_frequency)
-		radio_controller.remove_object(source, old_frequency)
+		global.CTradio.remove_object(source, old_frequency)
 	if(new_frequency)
-		return radio_controller.add_object(source, new_frequency, radio_filter)
+		return global.CTradio.add_object(source, new_frequency, radio_filter)
 
 /proc/unregister_radio(source, frequency)
-	if(radio_controller)
-		radio_controller.remove_object(source, frequency)
+	if(global.CTradio)
+		global.CTradio.remove_object(source, frequency)
 
 // Ported from Baystation12 on 27/11/2019. -Frenjo
 //Returns the amount of heat gained while in space due to thermal radiation (usually a negative value)
