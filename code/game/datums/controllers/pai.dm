@@ -10,7 +10,7 @@ GLOBAL_BYOND_TYPED(pAI_controller, /datum/controller/pai)	// Global handler for 
 	global.pAI_controller = new /datum/controller/pai()
 	return 1
 
-/datum/controller/pai
+CONTROLLER_DEF(pai)
 	name = "pAI"
 
 	var/list/pAI_candidates = list()

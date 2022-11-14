@@ -3,7 +3,7 @@
  */
 GLOBAL_GLOBL_LIST_NEW(events)
 
-/datum/process/event
+PROCESS_DEF(event)
 	name = "Event"
 	schedule_interval = 2 SECONDS
 

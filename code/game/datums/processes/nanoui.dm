@@ -8,7 +8,7 @@ GLOBAL_BYOND_TYPED(nanomanager, /datum/nanomanager)
 	global.nanomanager = new /datum/nanomanager()
 	return 1
 
-/datum/process/nanoui
+PROCESS_DEF(nanoui)
 	name = "NanoUI"
 	schedule_interval = 2 SECONDS
 

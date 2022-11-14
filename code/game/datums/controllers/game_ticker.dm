@@ -3,7 +3,7 @@
  */
 GLOBAL_BYOND_TYPED(ticker, /datum/controller/game_ticker) // Set in /datum/process/ticker/setup()
 
-/datum/controller/game_ticker
+CONTROLLER_DEF(game_ticker)
 	name = "Ticker"
 
 	var/const/restart_timeout = 600

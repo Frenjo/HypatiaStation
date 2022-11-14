@@ -7,7 +7,7 @@
  */
 GLOBAL_BYOND_TYPED(shuttle_controller, /datum/controller/shuttle) // Set in /datum/process/shuttle/setup()
 
-/datum/controller/shuttle
+CONTROLLER_DEF(shuttle)
 	name = "Shuttle"
 
 	var/list/shuttles	//maps shuttle tags to shuttle datums, so that they can be looked up.

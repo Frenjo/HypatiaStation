@@ -8,10 +8,9 @@
 #define GC_COLLECTION_TIMEOUT (30 SECONDS)
 #define GC_FORCE_DEL_PER_RUN 30
 
-GLOBAL_BYOND_TYPED(garbage_collector, /datum/process/garbage)
 GLOBAL_BYOND_LIST_NEW(delayed_garbage)
 
-/datum/process/garbage
+PROCESS_DEF(garbage)
 	name = "Garbage"
 	schedule_interval = 2 SECONDS
 	start_delay = 3
@@ -29,9 +28,6 @@ GLOBAL_BYOND_LIST_NEW(delayed_garbage)
 								// the types are stored as strings
 
 /datum/process/garbage/setup()
-	if(!global.garbage_collector)
-		global.garbage_collector = src
-
 	for(var/garbage in global.delayed_garbage)
 		qdel(garbage)
 	global.delayed_garbage.Cut()
@@ -114,8 +110,8 @@ GLOBAL_BYOND_LIST_NEW(delayed_garbage)
 	if(!istype(A))
 		warning("qdel() passed object of type [A.type]. qdel() can only handle /datum types.")
 		del(A)
-		global.garbage_collector.total_dels++
-		global.garbage_collector.hard_dels++
+		global.PCgarbage.total_dels++
+		global.PCgarbage.hard_dels++
 	else if(isnull(A.gcDestroyed))
 		// Let our friend know they're about to get collected
 		. = !A.Destroy()
@@ -132,8 +128,8 @@ GLOBAL_BYOND_LIST_NEW(delayed_garbage)
 	if(IsPooled(src))
 		PlaceInPool(src)
 	else
-		if(global.garbage_collector)
-			global.garbage_collector.AddTrash(src)
+		if(global.PCgarbage)
+			global.PCgarbage.AddTrash(src)
 		else
 			global.delayed_garbage |= src
 

@@ -5,5 +5,5 @@
  */
 GLOBAL_BYOND_TYPED(GLOBL, /datum/controller/global_variables) // Set in /datum/global_init/New()
 
-/datum/controller/global_variables
+CONTROLLER_DEF(global_variables)
 	name = "Global Variables"

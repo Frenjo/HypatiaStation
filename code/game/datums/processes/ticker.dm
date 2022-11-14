@@ -1,9 +1,7 @@
 /*
  * Game Ticker Process
  */
-GLOBAL_BYOND_TYPED(ticker_process, /datum/process/ticker) // Set in /datum/process/ticker/setup().
-
-/datum/process/ticker
+PROCESS_DEF(ticker)
 	name = "Ticker"
 	schedule_interval = 2 SECONDS
 
@@ -15,8 +13,6 @@ GLOBAL_BYOND_TYPED(ticker_process, /datum/process/ticker) // Set in /datum/proce
 
 	if(!global.ticker)
 		global.ticker = new /datum/controller/game_ticker()
-
-	global.ticker_process = src
 
 	wait_for_pregame()
 

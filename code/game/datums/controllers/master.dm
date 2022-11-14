@@ -6,7 +6,7 @@ GLOBAL_BYOND_TYPED(master_controller, /datum/controller/master) // Set in world/
 GLOBAL_BYOND_INIT(air_processing_killed, FALSE)
 GLOBAL_BYOND_INIT(pipe_processing_killed, FALSE)
 
-/datum/controller/master
+CONTROLLER_DEF(master)
 	name = "Master"
 
 	var/initialised = FALSE

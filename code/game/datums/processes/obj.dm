@@ -3,7 +3,7 @@
  */
 GLOBAL_GLOBL_LIST_NEW(processing_objects)
 
-/datum/process/obj
+PROCESS_DEF(obj)
 	name = "Obj"
 	schedule_interval = 2 SECONDS
 	start_delay = 8

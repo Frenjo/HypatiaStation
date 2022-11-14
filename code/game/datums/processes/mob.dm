@@ -1,7 +1,7 @@
 /*
  * Mob Process
  */
-/datum/process/mob
+PROCESS_DEF(mob)
 	name = "Mob"
 	schedule_interval = 2 SECONDS
 	start_delay = 16

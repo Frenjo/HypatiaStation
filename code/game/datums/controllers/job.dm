@@ -3,7 +3,7 @@
  */
 GLOBAL_BYOND_TYPED(job_master, /datum/controller/occupations) // Set in /datum/controller/master/New()
 
-/datum/controller/occupations
+CONTROLLER_DEF(occupations)
 	name = "Jobs"
 
 	// List of all jobs

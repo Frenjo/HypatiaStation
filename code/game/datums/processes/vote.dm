@@ -1,7 +1,7 @@
 /*
  * Voting Process
  */
-/datum/process/vote
+PROCESS_DEF(vote)
 	name = "Vote"
 	schedule_interval = 1 SECOND
 

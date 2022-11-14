@@ -59,7 +59,7 @@ Class Procs:
 */
 GLOBAL_BYOND_TYPED(air_master, /datum/controller/air_system) // Set in /datum/process/air/setup()
 
-/datum/controller/air_system
+CONTROLLER_DEF(air_system)
 	name = "Air"
 
 	var/static/tick_multiplier = 2

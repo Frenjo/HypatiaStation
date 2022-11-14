@@ -9,7 +9,7 @@ GLOBAL_BYOND_TYPED(cameranet, /datum/controller/cameranet)
 	global.cameranet = new /datum/controller/cameranet()
 	return 1
 
-/datum/controller/cameranet
+CONTROLLER_DEF(cameranet)
 	name = "Cameras"
 
 	// The cameras on the map, no matter if they work or not. Updated in obj/machinery/camera.dm by New() and Del().

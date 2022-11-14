@@ -7,7 +7,7 @@ GLOBAL_BYOND_TYPED(transfer_controller, /datum/controller/transfer)
 	global.transfer_controller = new /datum/controller/transfer()
 	return 1
 
-/datum/controller/transfer
+CONTROLLER_DEF(transfer)
 	name = "Transfer"
 
 	var/timerbuffer = 0 //buffer for time check

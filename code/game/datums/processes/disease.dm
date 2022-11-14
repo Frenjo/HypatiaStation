@@ -3,7 +3,7 @@
  */
 GLOBAL_GLOBL_LIST_NEW(active_diseases)
 
-/datum/process/disease
+PROCESS_DEF(disease)
 	name = "Disease"
 	schedule_interval = 2 SECONDS
 

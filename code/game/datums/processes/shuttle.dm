@@ -1,7 +1,7 @@
 /*
  * Shuttle Process
  */
-/datum/process/shuttle
+PROCESS_DEF(shuttle)
 	name = "Shuttle"
 	schedule_interval = 2 SECONDS
 

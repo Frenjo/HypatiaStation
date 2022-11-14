@@ -30,7 +30,7 @@
 */
 GLOBAL_BYOND_TYPED(radio_controller, /datum/controller/radio) // Set in world/New()
 
-/datum/controller/radio
+CONTROLLER_DEF(radio)
 	name = "Radio"
 
 	var/list/frequencies = list()

@@ -7,7 +7,7 @@ GLOBAL_GLOBL_LIST_NEW(machines)
 GLOBAL_GLOBL_LIST_NEW(processing_power_items)
 GLOBAL_GLOBL_LIST_NEW(powernets)
 
-/datum/process/machinery
+PROCESS_DEF(machinery)
 	name = "Machinery"
 	schedule_interval = 2 SECONDS
 	start_delay = 12

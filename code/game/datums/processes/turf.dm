@@ -3,7 +3,7 @@
  */
 GLOBAL_GLOBL_LIST_NEW(processing_turfs)
 
-/datum/process/turf
+PROCESS_DEF(turf)
 	name = "Turf"
 	schedule_interval = 3 SECONDS
 

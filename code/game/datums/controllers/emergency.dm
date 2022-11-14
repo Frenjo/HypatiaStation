@@ -10,7 +10,7 @@
 // Controls the emergency shuttle
 GLOBAL_BYOND_TYPED(emergency_controller, /datum/controller/emergency) // Set in /datum/process/emergency/setup()
 
-/datum/controller/emergency
+CONTROLLER_DEF(emergency)
 	name = "Emergency"
 
 	var/datum/shuttle/ferry/emergency/shuttle

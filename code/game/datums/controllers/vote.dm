@@ -3,7 +3,7 @@
  */
 GLOBAL_BYOND_TYPED(vote, /datum/controller/vote) // Set in /datum/process/vote/setup()
 
-/datum/controller/vote
+CONTROLLER_DEF(vote)
 	name = "Vote"
 
 	var/static/list/round_voters = list() // Keeps track of the individuals voting for a given round, for use in forcedrafting.

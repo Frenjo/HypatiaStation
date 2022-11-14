@@ -1,7 +1,7 @@
 /*
  * Supply Process
  */
-/datum/process/supply
+PROCESS_DEF(supply)
 	name = "Supply"
 	schedule_interval = 30 SECONDS
 

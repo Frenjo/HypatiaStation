@@ -3,7 +3,7 @@
  */
 GLOBAL_BYOND_TYPED(sun, /datum/sun)
 
-/datum/process/sun
+PROCESS_DEF(sun)
 	name = "Sun"
 	schedule_interval = 2 SECONDS
 

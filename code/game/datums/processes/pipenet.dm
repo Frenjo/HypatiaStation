@@ -3,7 +3,7 @@
  */
 GLOBAL_GLOBL_LIST_NEW(pipe_networks)
 
-/datum/process/pipenet
+PROCESS_DEF(pipenet)
 	name = "PipeNet"
 	schedule_interval = 2 SECONDS
 

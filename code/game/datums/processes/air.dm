@@ -1,7 +1,7 @@
 /*
  * Air Process
  */
-/datum/process/air
+PROCESS_DEF(air)
 	name = "Air"
 	schedule_interval = 2 SECONDS
 	start_delay = 4

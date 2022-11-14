@@ -37,3 +37,17 @@
 #define GLOBAL_GLOBL_LIST(N) GLOBAL_CONTROLLED(/list/##N)
 #define GLOBAL_GLOBL_LIST_INIT(N, V) GLOBAL_GLOBL_LIST(N) = V
 #define GLOBAL_GLOBL_LIST_NEW(N) GLOBAL_GLOBL_LIST_INIT(N, list())
+
+/*
+ * Controllers & Processes
+ */
+#define CONTROLLER_DEF(X) /datum/controller/##X
+
+#define PROCESS_DEF(X) GLOBAL_BYOND_TYPED(PC##X, /datum/process/##X); \
+/datum/process/##X/New() \
+{ \
+	. = ..(); \
+	if(global.PC##X != src) \
+		global.PC##X = src; \
+} \
+/datum/process/##X

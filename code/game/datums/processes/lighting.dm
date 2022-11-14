@@ -17,7 +17,7 @@ GLOBAL_GLOBL_LIST_NEW(lighting_update_lights_old)	// List of lighting sources  c
 GLOBAL_GLOBL_LIST_NEW(lighting_update_corners_old)	// List of lighting corners  currently being updated.
 GLOBAL_GLOBL_LIST_NEW(lighting_update_overlays_old)	// List of lighting overlays currently being updated.
 
-/datum/process/lighting
+PROCESS_DEF(lighting)
 	name = "Lighting"
 
 /datum/process/lighting/setup()
