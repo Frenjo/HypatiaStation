@@ -41,9 +41,22 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 /obj/space_star/New()
 	// At a close look, only 2 tiles contain red stars(9,10), 3 contain blue(6,7,8), and 5 have white(1,2,3,4,5).
 	// Let's try to keep that consistent by probability.
-	// There's also a slightly higher chance for non-animated white stars(3,4) to break up the twinkle a bit.
+	// There's also a slightly higher chance for non-animated white stars(4,5) to break up the twinkle a bit.
+	// Single stars(6,7,8,9,10) or small clusters(4,5) have a generally higher probability, whereas larger clusters(1,2,3) are generally more rare.
 	// Along with the default single white star(0) if nothing else is chosen just to fill space.
-	var/star_type = pick(prob(100); 0, prob(38); 1, prob(38); 2, prob(38); 3, prob(40); 4, prob(40); 5, prob(30); 6, prob(25); 7, prob(25); 8, prob(15); 9, prob(14); 10)
+	var/star_type = pick( \
+		100; 0, \
+		28; 1, \
+		28; 2, \
+		28; 3, \
+		34; 4, \
+		34; 5, \
+		27; 6, \
+		27; 7, \
+		27; 8, \
+		24; 9, \
+		24; 10 \
+	)
 	icon_state = "astar[star_type]"
 	pixel_x = rand(-50, 530)
 	pixel_y = rand(-50, 530)
