@@ -9,7 +9,6 @@
 /obj/item/projectile/change/on_hit(atom/change)
 	wabbajack(change)
 
-
 /obj/item/projectile/change/proc/wabbajack(mob/M as mob in GLOBL.living_mob_list)
 	if(isliving(M) && M.stat != DEAD)
 		if(M.monkeyizing)

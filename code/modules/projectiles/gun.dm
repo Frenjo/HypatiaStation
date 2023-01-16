@@ -24,7 +24,7 @@
 	var/clumsy_check = 1
 	var/tmp/list/mob/living/target //List of who yer targeting.
 	var/tmp/lock_time = -100
-	var/tmp/mouthshoot = 0 ///To stop people from suiciding twice... >.>
+	var/tmp/mouthshoot = FALSE ///To stop people from suiciding twice... >.>
 	var/automatic = 0 //Used to determine if you can target multiple people.
 	var/tmp/mob/living/last_moved_mob //Used to fire faster at more than one person.
 	var/tmp/told_cant_shoot = 0 //So that it doesn't spam them with the fact they cannot hit them.
@@ -74,7 +74,7 @@
 			Fire(A, user, params) //Otherwise, fire normally.
 
 /obj/item/weapon/gun/proc/isHandgun()
-	return 1
+	return TRUE
 
 /obj/item/weapon/gun/proc/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)//TODO: go over this
 	//Exclude lasertag guns from the CLUMSY check.
@@ -199,11 +199,11 @@
 /obj/item/weapon/gun/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
 	//Suicide handling.
 	if(M == user && user.zone_sel.selecting == "mouth" && !mouthshoot)
-		mouthshoot = 1
+		mouthshoot = TRUE
 		M.visible_message(SPAN_WARNING("[user] sticks their gun in their mouth, ready to pull the trigger..."))
 		if(!do_after(user, 40))
 			M.visible_message(SPAN_INFO("[user] decided life was worth living."))
-			mouthshoot = 0
+			mouthshoot = FALSE
 			return
 		if(load_into_chamber())
 			user.visible_message(SPAN_WARNING("[user] pulls the trigger."))
@@ -213,7 +213,7 @@
 				playsound(user, fire_sound, 50, 1)
 			if(istype(in_chamber, /obj/item/projectile/energy/beam/laser/tag))
 				user.show_message(SPAN_WARNING("You feel rather silly, trying to commit suicide with a toy."))
-				mouthshoot = 0
+				mouthshoot = FALSE
 				return
 
 			in_chamber.on_hit(M)
@@ -224,11 +224,11 @@
 				to_chat(user, SPAN_NOTICE("Ow..."))
 				user.apply_effect(110, AGONY, 0)
 			qdel(in_chamber)
-			mouthshoot = 0
+			mouthshoot = FALSE
 			return
 		else
 			click_empty(user)
-			mouthshoot = 0
+			mouthshoot = FALSE
 			return
 
 	if(load_into_chamber())

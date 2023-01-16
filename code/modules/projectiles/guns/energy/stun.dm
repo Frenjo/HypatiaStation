@@ -1,4 +1,3 @@
-
 /obj/item/weapon/gun/energy/taser
 	name = "taser gun"
 	desc = "A small, low capacity gun used for non-lethal takedowns."
@@ -16,11 +15,12 @@
 /obj/item/weapon/gun/energy/taser/cyborg
 	charge_cost = 100
 	cell_type = /obj/item/weapon/cell/secborg
+
 	var/charge_tick = 0
 	var/recharge_time = 10 //Time it takes for shots to recharge (in ticks)
 
 /obj/item/weapon/gun/energy/taser/cyborg/New()
-	..()
+	. = ..()
 	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/gun/energy/taser/cyborg/Destroy()
@@ -93,10 +93,11 @@
 		GUN_SETTING_SPECIAL = /obj/item/projectile/energy/bolt
 	)
 	cell_type = /obj/item/weapon/cell/crap
+
 	var/charge_tick = 0
 
 /obj/item/weapon/gun/energy/crossbow/New()
-	..()
+	. = ..()
 	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/gun/energy/crossbow/Destroy()

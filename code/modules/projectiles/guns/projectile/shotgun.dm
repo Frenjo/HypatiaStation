@@ -11,12 +11,13 @@
 	caliber = "shotgun"
 	origin_tech = list(RESEARCH_TECH_COMBAT = 4, RESEARCH_TECH_MATERIALS = 2)
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+
 	var/recentpump = 0 // to prevent spammage
 	var/pumped = 0
 	var/obj/item/ammo_casing/current_shell = null
 
 /obj/item/weapon/gun/projectile/shotgun/pump/isHandgun()
-	return 0
+	return FALSE
 
 /obj/item/weapon/gun/projectile/shotgun/pump/load_into_chamber()
 	if(in_chamber)
@@ -73,13 +74,6 @@
 	caliber = "shotgun"
 	origin_tech = list(RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MATERIALS = 1)
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
-
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/New()
-	for(var/i = 1, i <= max_shells, i++)
-		loaded += new ammo_type(src)
-
-	update_icon()
-	return
 
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/load_into_chamber()
 //		if(in_chamber)

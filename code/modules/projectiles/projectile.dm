@@ -18,6 +18,7 @@
 	anchored = TRUE //There's a reason this is here, Mport. God fucking damn it -Agouri. Find&Fix by Pete. The reason this is here is to stop the curving of emitter shots.
 	pass_flags = PASSTABLE
 	mouse_opacity = FALSE
+
 	var/bumped = 0		//Prevents it from hitting more than one guy at once
 	var/def_zone = ""	//Aiming at
 	var/mob/firer = null//Who shot it
@@ -66,7 +67,7 @@
 	if(!istype(target) || !istype(user))
 		return 0
 
-	var/obj/item/projectile/test/in_chamber = new /obj/item/projectile/test(get_step_to(user,target)) //Making the test....
+	var/obj/item/projectile/test/in_chamber = new /obj/item/projectile/test(get_step_to(user, target)) //Making the test....
 	in_chamber.target = target
 	in_chamber.flags = flags //Set the flags...
 	in_chamber.pass_flags = pass_flags //And the pass flags to that of the real projectile...
@@ -169,9 +170,10 @@
 	return
 
 /obj/item/projectile/test //Used to see if you can hit them.
-	invisibility = INVISIBILITY_MAXIMUM //Nope!  Can't see me!
+	invisibility = INVISIBILITY_MAXIMUM //Nope! Can't see me!
 	yo = null
 	xo = null
+
 	var/target = null
 	var/result = 0 //To pass the message back to the gun.
 

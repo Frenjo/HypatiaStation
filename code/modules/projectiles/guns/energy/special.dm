@@ -46,10 +46,11 @@
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/change)
 	origin_tech = null
 	clumsy_check = 0
+
 	var/charge_tick = 0
 
 /obj/item/weapon/gun/energy/staff/New()
-	..()
+	. = ..()
 	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/gun/energy/staff/Destroy()
@@ -100,10 +101,11 @@
 	)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_BIOTECH = 3, RESEARCH_TECH_POWERSTORAGE = 3)
 	modifystate = "floramut"
+
 	var/charge_tick = 0
 
 /obj/item/weapon/gun/energy/floragun/New()
-	..()
+	. = ..()
 	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/gun/energy/floragun/Destroy()
@@ -148,11 +150,12 @@
 	charge_cost = 100
 	cell_type = /obj/item/weapon/cell/potato
 	clumsy_check = 0 //Admin spawn only, might as well let clowns use it.
+
 	var/charge_tick = 0
 	var/recharge_time = 5 //Time it takes for shots to recharge (in ticks)
 
 /obj/item/weapon/gun/energy/meteorgun/New()
-	..()
+	. = ..()
 	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/gun/energy/meteorgun/Destroy()
@@ -235,6 +238,7 @@
 	charge_cost = 250
 	fire_delay = 35
 	w_class = 4.0
+
 	var/zoom = 0
 
 /obj/item/weapon/gun/energy/sniperrifle/dropped(mob/user)

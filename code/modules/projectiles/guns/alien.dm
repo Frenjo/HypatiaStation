@@ -32,7 +32,7 @@
 	item_state = "spikethrower"
 
 /obj/item/weapon/spikethrower/New()
-	..()
+	. = ..()
 	GLOBL.processing_objects.Add(src)
 	last_regen = world.time
 

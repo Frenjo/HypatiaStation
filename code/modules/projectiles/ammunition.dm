@@ -7,12 +7,13 @@
 	slot_flags = SLOT_BELT
 	throwforce = 1
 	w_class = 1.0
+
 	var/caliber = ""							//Which kind of guns it can be loaded into
 	var/projectile_type = null//The bullet type to create when New() is called
 	var/obj/item/projectile/BB = null 			//The loaded bullet
 
 /obj/item/ammo_casing/New()
-	..()
+	. = ..()
 	if(projectile_type)
 		BB = new projectile_type(src)
 	pixel_x = rand(-10.0, 10)
@@ -53,13 +54,14 @@
 	w_class = 1.0
 	throw_speed = 4
 	throw_range = 10
+
 	var/list/stored_ammo = list()
 	var/ammo_type = /obj/item/ammo_casing
 	var/max_ammo = 7
 	var/multiple_sprites = 0
 
 /obj/item/ammo_magazine/New()
-	..()
+	. = ..()
 	for(var/i = 1, i <= max_ammo, i++)
 		stored_ammo += new ammo_type(src)
 	update_icon()

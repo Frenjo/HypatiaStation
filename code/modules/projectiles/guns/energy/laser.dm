@@ -29,10 +29,11 @@
 	desc = "This is an antique laser gun. All craftsmanship is of the highest quality. It is decorated with assistant leather and chrome. The object menaces with spikes of energy. On the item is an image of Space Station 13. The station is exploding."
 	force = 10
 	origin_tech = null
+
 	var/charge_tick = 0
 
 /obj/item/weapon/gun/energy/laser/captain/New()
-	..()
+	. = ..()
 	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/gun/energy/laser/captain/Destroy()
@@ -74,7 +75,7 @@
 	fire_delay = 20
 
 /obj/item/weapon/gun/energy/lasercannon/isHandgun()
-	return 0
+	return FALSE
 
 /obj/item/weapon/gun/energy/lasercannon/cyborg/load_into_chamber()
 	if(in_chamber)
@@ -112,6 +113,7 @@
 	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/laser/tag/blue)
 	origin_tech = list(RESEARCH_TECH_COMBAT = 1, RESEARCH_TECH_MAGNETS = 2)
 	clumsy_check = 0
+
 	var/charge_tick = 0
 
 /obj/item/weapon/gun/energy/laser/bluetag/special_check(mob/living/carbon/human/M)
@@ -122,7 +124,7 @@
 	return 0
 
 /obj/item/weapon/gun/energy/laser/bluetag/New()
-	..()
+	. = ..()
 	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/gun/energy/laser/bluetag/Destroy()
@@ -149,6 +151,7 @@
 	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/laser/tag/red)
 	origin_tech = list(RESEARCH_TECH_COMBAT = 1, RESEARCH_TECH_MAGNETS = 2)
 	clumsy_check = 0
+
 	var/charge_tick = 0
 
 /obj/item/weapon/gun/energy/laser/redtag/special_check(mob/living/carbon/human/M)
@@ -159,7 +162,7 @@
 	return 0
 
 /obj/item/weapon/gun/energy/laser/redtag/New()
-	..()
+	. = ..()
 	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/gun/energy/laser/redtag/Destroy()

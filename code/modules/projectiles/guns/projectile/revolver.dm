@@ -7,7 +7,6 @@
 	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MATERIALS = 2)
 	ammo_type = /obj/item/ammo_casing/c38
 
-
 /obj/item/weapon/gun/projectile/detective/special_check(mob/living/carbon/human/M)
 	if(caliber == initial(caliber))
 		return 1
@@ -81,9 +80,8 @@
 	load_method = 2
 
 /obj/item/weapon/gun/projectile/detective/semiauto/New()
-	..()
+	. = ..()
 	empty_mag = new /obj/item/ammo_magazine/c45r/empty(src)
-	return
 
 /obj/item/weapon/gun/projectile/detective/semiauto/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()

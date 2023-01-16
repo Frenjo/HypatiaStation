@@ -20,10 +20,9 @@
 	load_method = 2
 
 /obj/item/weapon/gun/projectile/deagle/New()
-	..()
+	. = ..()
 	empty_mag = new /obj/item/ammo_magazine/a50/empty(src)
 	update_icon()
-	return
 
 /obj/item/weapon/gun/projectile/deagle/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()
@@ -56,10 +55,9 @@
 	load_method = 2
 
 /obj/item/weapon/gun/projectile/gyropistol/New()
-	..()
+	. = ..()
 	empty_mag = new /obj/item/ammo_magazine/a75/empty(src)
 	update_icon()
-	return
 
 /obj/item/weapon/gun/projectile/gyropistol/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()
@@ -91,9 +89,8 @@
 	load_method = 2
 
 /obj/item/weapon/gun/projectile/pistol/New()
-	..()
+	. = ..()
 	empty_mag = new /obj/item/ammo_magazine/mc9mm/empty(src)
-	return
 
 /obj/item/weapon/gun/projectile/pistol/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()

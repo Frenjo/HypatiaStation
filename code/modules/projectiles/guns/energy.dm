@@ -21,13 +21,12 @@
 	..()
 
 /obj/item/weapon/gun/energy/New()
-	..()
+	. = ..()
 	if(cell_type)
 		power_supply = new cell_type(src)
 	else
 		power_supply = new(src)
 	power_supply.give(power_supply.maxcharge)
-	return
 
 /obj/item/weapon/gun/energy/load_into_chamber()
 	if(in_chamber)

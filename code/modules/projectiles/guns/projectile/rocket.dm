@@ -1,5 +1,4 @@
 /obj/item/weapon/gun/rocketlauncher
-	var/projectile
 	name = "rocket launcher"
 	desc = "MAGGOT."
 	icon_state = "rocket"
@@ -11,11 +10,13 @@
 	flags = CONDUCT | USEDELAY
 	slot_flags = 0
 	origin_tech = list(RESEARCH_TECH_COMBAT = 8, RESEARCH_TECH_MATERIALS = 5)
-	projectile = /obj/item/missile
+
 	var/missile_speed = 2
 	var/missile_range = 30
 	var/max_rockets = 1
-	var/list/rockets = new/list()
+	var/list/rockets = list()
+
+	var/projectile = /obj/item/missile
 
 /obj/item/weapon/gun/rocketlauncher/examine()
 	set src in view()

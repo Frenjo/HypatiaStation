@@ -8,11 +8,10 @@
 	origin_tech = list(RESEARCH_TECH_COMBAT = 4, RESEARCH_TECH_MATERIALS = 2)
 	ammo_type = /obj/item/ammo_casing/c9mm
 	automatic = 1
-
 	fire_delay = 0
 
 /obj/item/weapon/gun/projectile/automatic/isHandgun()
-	return 0
+	return FALSE
 
 /obj/item/weapon/gun/projectile/automatic/mini_uzi
 	name = "Uzi"
@@ -25,7 +24,7 @@
 	ammo_type = /obj/item/ammo_casing/c45
 
 /obj/item/weapon/gun/projectile/automatic/mini_uzi/isHandgun()
-	return 1
+	return TRUE
 
 /obj/item/weapon/gun/projectile/automatic/c20r
 	name = "\improper C-20r SMG"
@@ -41,10 +40,9 @@
 	load_method = 2
 
 /obj/item/weapon/gun/projectile/automatic/c20r/New()
-	..()
+	. = ..()
 	empty_mag = new /obj/item/ammo_magazine/a12mm/empty(src)
 	update_icon()
-	return
 
 /obj/item/weapon/gun/projectile/automatic/c20r/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()
@@ -76,6 +74,7 @@
 	ammo_type = /obj/item/ammo_casing/a762
 	fire_sound = 'sound/weapons/Gunshot_smg.ogg'
 	load_method = 2
+
 	var/cover_open = 0
 	var/mag_inserted = 1
 

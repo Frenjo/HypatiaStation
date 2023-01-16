@@ -111,7 +111,7 @@
 
 //Yay, math!
 
-#define SIGN(X) ((X<0)?-1:1)
+#define SIGN(X) ((X < 0) ? -1 : 1)
 
 /proc/GunTrace(X1, Y1, X2, Y2, Z = 1, exc_obj, PX1 = 16, PY1 = 16, PX2 = 16, PY2 = 16)
 	//bluh << "Tracin' [X1],[Y1] to [X2],[Y2] on floor [Z]."
@@ -135,8 +135,8 @@
 					return M
 				Y1+=s
 	else
-		var/m = (32*(Y2-Y1)+(PY2-PY1))/(32*(X2-X1)+(PX2-PX1))
-		var/b = (Y1+PY1/32-0.015625)-m*(X1+PX1/32-0.015625) //In tiles
+		var/m = (32 * (Y2 - Y1) + (PY2 - PY1)) / (32 * (X2 - X1) + (PX2 - PX1))
+		var/b = (Y1 + PY1 / 32-0.015625) - m * (X1 + PX1 / 32 - 0.015625) //In tiles
 		var/signX = SIGN(X2 - X1)
 		var/signY = SIGN(Y2 - Y1)
 		if(X1 < X2)
@@ -181,7 +181,8 @@
 	for(var/mob/living/K in viewers(usr))
 		K << 'sound/weapons/TargetOn.ogg'
 
-	if(!targeted_by) targeted_by = list()
+	if(!targeted_by)
+		targeted_by = list()
 	targeted_by += I
 	I.lock_time = world.time + 20 //Target has 2 second to realize they're targeted and stop (or target the opponent).
 	to_chat(src, "((\red <b>Your character is being targeted. They have 2 seconds to stop any click or move actions.</b> \black While targeted, they may \
@@ -304,6 +305,7 @@
 
 /client/verb/ToggleGunMode()
 	set hidden = 1
+
 	gun_mode = !gun_mode
 	if(gun_mode)
 		to_chat(usr, "You will now take people captive.")

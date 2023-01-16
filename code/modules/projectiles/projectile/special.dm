@@ -32,7 +32,7 @@
 	var/temperature = 300
 
 /obj/item/projectile/temp/on_hit(atom/target, blocked = 0)//These two could likely check temp protection on the mob
-	if(istype(target, /mob/living))
+	if(ismob(target))
 		var/mob/M = target
 		M.bodytemperature = temperature
 	return 1
@@ -79,12 +79,14 @@
 //	if(ishuman(target) && M.dna && M.dna.mutantrace == "plant") //Plantmen possibly get mutated and damaged by the rays.
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = M
-		if((H.species.flags & IS_PLANT) && (M.nutrition < 500))
+		if((H.species.flags & IS_PLANT) && M.nutrition < 500)
 			if(prob(15))
-				M.apply_effect((rand(30, 80)), IRRADIATE)
+				M.apply_effect(rand(30, 80), IRRADIATE)
 				M.Weaken(5)
-				for(var/mob/V in viewers(src))
-					V.show_message(SPAN_WARNING("[M] writhes in pain as \his vacuoles boil."), 3, SPAN_WARNING("You hear the crunching of leaves."), 2)
+				M.visible_message(
+					message = SPAN_WARNING("[M] writhes in pain as \his vacuoles boil."),
+					blind_message = SPAN_WARNING("You hear the crunching of leaves.")
+				)
 			if(prob(35))
 			//	for (var/mob/V in viewers(src)) //Public messages commented out to prevent possible metaish genetics experimentation and stuff. - Cheridan
 			//		V.show_message("\red [M] is mutated by the radiation beam.", 3, "\red You hear the snapping of twigs.", 2)
@@ -116,10 +118,9 @@
 
 /obj/item/projectile/energy/florayield/on_hit(atom/target, blocked = 0)
 	var/mob/M = target
-//	if(ishuman(target) && M.dna && M.dna.mutantrace == "plant") //These rays make plantmen fat.
 	if(ishuman(target)) //These rays make plantmen fat.
 		var/mob/living/carbon/human/H = M
-		if((H.species.flags & IS_PLANT) && (M.nutrition < 500))
+		if((H.species.flags & IS_PLANT) && M.nutrition < 500)
 			M.nutrition += 30
 	else if(iscarbon(target))
 		M.show_message(SPAN_INFO("The radiation beam dissipates harmlessly through your body."))

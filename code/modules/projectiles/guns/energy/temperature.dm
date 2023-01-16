@@ -3,8 +3,6 @@
 	icon_state = "freezegun"
 	fire_sound = 'sound/weapons/pulse3.ogg'
 	desc = "A gun that changes temperatures."
-	var/temperature = T20C
-	var/current_temperature = T20C
 	charge_cost = 100
 	origin_tech = list(
 		RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_POWERSTORAGE = 3,
@@ -16,8 +14,11 @@
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/temp)
 	cell_type = /obj/item/weapon/cell/crap
 
+	var/temperature = T20C
+	var/current_temperature = T20C
+
 /obj/item/weapon/gun/energy/temperature/New()
-	..()
+	. = ..()
 	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/gun/energy/temperature/Destroy()

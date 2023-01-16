@@ -40,7 +40,7 @@
 	return
 
 /obj/item/weapon/gun/energy/pulse_rifle/isHandgun()
-	return 0
+	return FALSE
 
 /obj/item/weapon/gun/energy/pulse_rifle/cyborg/load_into_chamber()
 	if(in_chamber)
@@ -69,4 +69,4 @@
 	cell_type = /obj/item/weapon/cell/infinite
 
 /obj/item/weapon/gun/energy/pulse_rifle/M1911/isHandgun()
-	return 1
+	return TRUE

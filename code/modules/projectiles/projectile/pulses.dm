@@ -6,6 +6,7 @@
 	damage_type = BURN
 	flag = "laser"
 	eyeblur = 4
+
 	var/frequency = 1
 
 /obj/item/projectile/energy/pulse/laser/practice

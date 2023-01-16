@@ -16,8 +16,9 @@ var/list/beam_master = list()
 	damage_type = BURN
 	flag = "laser"
 	eyeblur = 4
-	var/frequency = 1
 	invisibility = INVISIBILITY_MAXIMUM
+
+	var/frequency = 1
 
 /obj/item/projectile/energy/beam/process()
 	var/reference = "\ref[src]" //So we do not have to recalculate it a ton
@@ -26,12 +27,11 @@ var/list/beam_master = list()
 		if(!current || loc == current) //If we pass our target
 			current = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z)
 		if(x == 1 || x == world.maxx || y == 1 || y == world.maxy)
-			src = null //Delete if it passes the world edge
+			qdel(src) //Delete if it passes the world edge
 			return
 		step_towards(src, current) //Move~
 
 		if(kill_count < 1)
-			//src = null
 			qdel(src)
 		kill_count--
 

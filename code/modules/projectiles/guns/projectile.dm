@@ -18,11 +18,10 @@
 	var/obj/item/ammo_magazine/empty_mag = null
 
 /obj/item/weapon/gun/projectile/New()
-	..()
+	. = ..()
 	for(var/i = 1, i <= max_shells, i++)
 		loaded += new ammo_type(src)
 	update_icon()
-	return
 
 /obj/item/weapon/gun/projectile/load_into_chamber()
 	if(in_chamber)
@@ -47,7 +46,7 @@
 /obj/item/weapon/gun/projectile/attackby(obj/item/A as obj, mob/user as mob)
 	var/num_loaded = 0
 	if(istype(A, /obj/item/ammo_magazine))
-		if((load_method == MAGAZINE) && loaded.len)
+		if(load_method == MAGAZINE && loaded.len)
 			return
 		var/obj/item/ammo_magazine/AM = A
 		if(AM.stored_ammo.len <= 0)

@@ -39,11 +39,12 @@
 	desc = "An energy gun with an experimental miniaturized reactor."
 	icon_state = "nucgun"
 	origin_tech = list(RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MATERIALS = 5, RESEARCH_TECH_POWERSTORAGE = 3)
+
 	var/lightfail = 0
 	var/charge_tick = 0
 
 /obj/item/weapon/gun/energy/gun/nuclear/New()
-	..()
+	. = ..()
 	GLOBL.processing_objects.Add(src)
 
 /obj/item/weapon/gun/energy/gun/nuclear/Destroy()
