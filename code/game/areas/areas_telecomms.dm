@@ -67,19 +67,16 @@
 /area/tcommsat/solar
 	requires_power = TRUE
 	always_unpowered = TRUE
+	icon_state = "tcomsatlounge"
 
 /area/tcommsat/solar/port
 	name = "\improper Telecommunications Port Solar Array"
-	icon_state = "tcomsatlounge"
 
 /area/tcommsat/solar/fore
 	name = "\improper Telecommunications Fore Solar Array"
-	icon_state = "tcomsatlounge"
 
 /area/tcommsat/solar/starboard
 	name = "\improper Telecommunications Starboard Solar Array"
-	icon_state = "tcomsatlounge"
 
 /area/tcommsat/solar/aft
 	name = "\improper Telecommunications Aft Solar Array"
-	icon_state = "tcomsatlounge"

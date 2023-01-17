@@ -1,7 +1,9 @@
 //Storage
+/area/storage
+	icon_state = "storage"
+
 /area/storage/tools
 	name = "Auxiliary Tool Storage"
-	icon_state = "storage"
 
 /area/storage/primary
 	name = "Primary Tool Storage"
@@ -9,11 +11,9 @@
 
 /area/storage/autolathe
 	name = "Autolathe Storage"
-	icon_state = "storage"
 
 /area/storage/art
 	name = "Art Supply Storage"
-	icon_state = "storage"
 
 /area/storage/auxillary
 	name = "Auxillary Storage"
@@ -25,7 +25,6 @@
 
 /area/storage/secure
 	name = "Secure Storage"
-	icon_state = "storage"
 
 /area/storage/emergency
 	name = "Starboard Emergency Storage"
@@ -40,6 +39,5 @@
 	icon_state = "auxstorage"
 
 /area/storage/testroom
-	requires_power = FALSE
 	name = "\improper Test Room"
-	icon_state = "storage"
+	requires_power = FALSE

@@ -44,7 +44,7 @@
 	name = "\improper Thunderdome"
 	icon_state = "thunder"
 	requires_power = FALSE
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 
 /area/tdome/tdome1
 	name = "\improper Thunderdome (Team 1)"

@@ -1,7 +1,9 @@
 //MedBay
+/area/medical
+	icon_state = "medbay"
+
 /area/medical/medbay
 	name = "\improper Medbay"
-	icon_state = "medbay"
 	ambience = list(
 		'sound/ambience/signal.ogg'
 	)
@@ -23,22 +25,18 @@
 
 /area/medical/medbay4
 	name = "\improper Medbay"
-	icon_state = "medbay"
 	ambience = list(
 		'sound/ambience/signal.ogg'
 	)
 
 /area/medical/main_storage
 	name = "\improper Medbay Storage"
-	icon_state = "medbay"
 
 /area/medical/icu
 	name = "\improper Intensive Care Unit"
-	icon_state = "medbay"
 
 /area/medical/dormitories
 	name = "\improper Medbay Dormitories"
-	icon_state = "medbay"
 
 /area/medical/biostorage
 	name = "\improper Secondary Storage"
@@ -49,7 +47,6 @@
 
 /area/medical/reception
 	name = "\improper Medbay Reception"
-	icon_state = "medbay"
 	ambience = list(
 		'sound/ambience/signal.ogg'
 	)
@@ -159,17 +156,17 @@
 
 //Toxins
 // Actually Research but apparently it's internally called toxins so we'll roll with it.
+/area/toxins
+	icon_state = "toxlab"
+
 /area/toxins/lab
 	name = "\improper Research and Development"
-	icon_state = "toxlab"
 
 /area/toxins/hallway
 	name = "\improper Research Lab"
-	icon_state = "toxlab"
 
 /area/toxins/s_breakroom
 	name = "\improper Science Break Room"
-	icon_state = "toxlab"
 
 /area/toxins/rdoffice
 	name = "\improper Research Director's Office"
@@ -177,11 +174,9 @@
 
 /area/toxins/supermatter
 	name = "\improper Supermatter Lab"
-	icon_state = "toxlab"
 
 /area/toxins/xenobiology
 	name = "\improper Xenobiology Lab"
-	icon_state = "toxlab"
 
 /area/toxins/storage
 	name = "\improper Science Storage"

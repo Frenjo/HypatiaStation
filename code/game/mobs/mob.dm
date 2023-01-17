@@ -1,5 +1,5 @@
 /mob/New()
-	..()
+	. = ..()
 	GLOBL.mob_list += src
 	if(stat == DEAD)
 		GLOBL.dead_mob_list += src

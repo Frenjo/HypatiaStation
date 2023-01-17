@@ -23,7 +23,7 @@
 	var/pathweight = 1
 
 /turf/New()
-	..()
+	. = ..()
 	GLOBL.processing_turfs.Add(src)
 	for(var/atom/movable/AM as mob|obj in src)
 		spawn(0)

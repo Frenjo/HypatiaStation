@@ -3,17 +3,17 @@
 	name = "\improper Syndicate Mothership"
 	icon_state = "syndie-ship"
 	requires_power = FALSE
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 
 /area/syndicate_mothership/control
 	name = "\improper Syndicate Control Room"
 	icon_state = "syndie-control"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 
 /area/syndicate_mothership/elite_squad
 	name = "\improper Syndicate Elite Squad"
 	icon_state = "syndie-elite"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 
 
 //ENEMY
@@ -25,7 +25,6 @@
 
 /area/syndicate_station/start
 	name = "\improper Syndicate Forward Operating Base"
-	icon_state = "yellow"
 	base_turf = /turf/unsimulated/floor
 
 /area/syndicate_station/southwest
@@ -69,7 +68,7 @@
 	name = "\improper Wizard's Den"
 	icon_state = "yellow"
 	requires_power = FALSE
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 
 /area/vox_station/transit
 	name = "\improper Hyperspace"

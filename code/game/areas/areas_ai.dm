@@ -1,10 +1,11 @@
 // AI Monitored
 /area/ai_monitored
 	name = "AI Monitored Area"
+
 	var/obj/machinery/camera/motioncamera = null
 
 /area/ai_monitored/initialize()
-	..()
+	. = ..()
 	// locate and store the motioncamera
 	// spawn on a delay to let turfs/objs load
 	for(var/obj/machinery/camera/M in src)
@@ -14,7 +15,7 @@
 			return
 
 /area/ai_monitored/Entered(atom/movable/O)
-	..()
+	. = ..()
 	if(ismob(O) && motioncamera)
 		motioncamera.newTarget(O)
 
@@ -36,6 +37,8 @@
 	icon_state = "storage"
 
 /area/turret_protected
+	name = "Turret Protected Area"
+	icon_state = "ai"
 
 /area/turret_protected/ai_upload
 	name = "\improper AI Upload Chamber"
@@ -60,35 +63,33 @@
 
 /area/turret_protected/aisat
 	name = "\improper AI Satellite"
-	icon_state = "ai"
 
 /area/turret_protected/aisat_interior
 	name = "\improper AI Satellite"
-	icon_state = "ai"
 
 /area/turret_protected/AIsatextFP
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 
 /area/turret_protected/AIsatextFS
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 
 /area/turret_protected/AIsatextAS
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 
 /area/turret_protected/AIsatextAP
 	name = "\improper AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 
 /area/turret_protected/NewAIMain
 	name = "\improper AI Main New"

@@ -1,11 +1,12 @@
 //Security
+/area/security
+	icon_state = "security"
+
 /area/security/main
 	name = "\improper Security Office"
-	icon_state = "security"
 
 /area/security/lobby
 	name = "\improper Security Lobby"
-	icon_state = "security"
 
 /area/security/brig
 	name = "\improper Brig"
@@ -58,7 +59,6 @@
 
 /area/security/hallway_post
 	name = "\improper Security Post"
-	icon_state = "security"
 
 /area/security/checkpoint/supply
 	name = "Security Post - Cargo Bay"
@@ -78,8 +78,6 @@
 
 /area/security/vacantoffice
 	name = "\improper Vacant Office"
-	icon_state = "security"
 
 /area/security/headdorms
 	name = "\improper Head Dormitories"
-	icon_state = "security"

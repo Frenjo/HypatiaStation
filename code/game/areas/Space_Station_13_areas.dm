@@ -5,7 +5,7 @@
 	icon_state = "dark128"
 	requires_power = TRUE
 	always_unpowered = TRUE
-	dynamic_lighting = 1
+	dynamic_lighting = TRUE
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
@@ -60,12 +60,13 @@
 	name = "Keelin's private beach"
 	icon_state = "null"
 	luminosity = 1
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 	requires_power = FALSE
+
 	var/sound/mysound = null
 
 /area/beach/New()
-	..()
+	. = ..()
 	var/sound/S = new/sound()
 	mysound = S
 	S.file = 'sound/ambience/shore.ogg'

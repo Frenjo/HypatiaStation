@@ -5,7 +5,6 @@
 
 /area/crew_quarters/sauna
 	name = "\improper Sauna"
-	icon_state = "Sleep"
 
 /area/crew_quarters/toilet
 	name = "\improper Dormitory Toilets"
@@ -13,27 +12,21 @@
 
 /area/crew_quarters/sleeping
 	name = "\improper Dormitories"
-	icon_state = "Sleep"
 
 /area/crew_quarters/sleeping/engi
 	name = "\improper Engineering Dormitories"
-	icon_state = "Sleep"
 
 /area/crew_quarters/sleeping/sec
 	name = "\improper Security Dormitories"
-	icon_state = "Sleep"
 
 /area/crew_quarters/sleeping/bedrooms
 	name = "\improper Dormitory Bedroom"
-	icon_state = "Sleep"
 
 /area/crew_quarters/sleeping/cryo
 	name = "\improper Cryogenic Storage"
-	icon_state = "Sleep"
 
 /area/crew_quarters/sleeping_male
 	name = "\improper Male Dorm"
-	icon_state = "Sleep"
 
 /area/crew_quarters/sleeping_male/toilet_male
 	name = "\improper Male Toilets"
@@ -41,7 +34,6 @@
 
 /area/crew_quarters/sleeping_female
 	name = "\improper Female Dorm"
-	icon_state = "Sleep"
 
 /area/crew_quarters/sleeping_female/toilet_female
 	name = "\improper Female Toilets"

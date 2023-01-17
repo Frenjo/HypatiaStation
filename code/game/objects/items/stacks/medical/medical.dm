@@ -7,6 +7,7 @@
 	w_class = 1
 	throw_speed = 4
 	throw_range = 20
+
 	var/heal_brute = 0
 	var/heal_burn = 0
 
@@ -39,7 +40,6 @@
 		H.UpdateDamageIcon()
 
 	else
-
 		M.heal_organ_damage(src.heal_brute / 2, src.heal_burn / 2)
 		user.visible_message(
 			SPAN_INFO("[M] has been applied with [src] by [user]."),

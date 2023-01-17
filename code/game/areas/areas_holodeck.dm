@@ -2,14 +2,13 @@
 /area/holodeck
 	name = "\improper Holodeck"
 	icon_state = "Holodeck"
-	dynamic_lighting = 0
+	dynamic_lighting = FALSE
 
 /area/holodeck/alphadeck
 	name = "\improper Holodeck Alpha"
 
 /area/holodeck/source_plating
 	name = "\improper Holodeck - Off"
-	icon_state = "Holodeck"
 
 /area/holodeck/source_emptycourt
 	name = "\improper Holodeck - Empty Court"
@@ -25,7 +24,6 @@
 
 /area/holodeck/source_beach
 	name = "\improper Holodeck - Beach"
-	icon_state = "Holodeck" // Lazy.
 
 /area/holodeck/source_burntest
 	name = "\improper Holodeck - Atmospheric Burn Test"

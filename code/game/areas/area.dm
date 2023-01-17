@@ -28,14 +28,14 @@
 
 	var/dynamic_lighting = TRUE
 
-	var/fire = null
+	var/fire = FALSE
 	var/atmos = 1
 	var/atmosalm = 0
 	var/poweralm = 1
-	var/party = null
-	var/lightswitch = 1
-	var/eject = null
-	var/destruct = null // Added this to make use of unused sprites. -Frenjo
+	var/party = FALSE
+	var/lightswitch = TRUE
+	var/eject = FALSE
+	var/destruct = FALSE // Added this to make use of unused sprites. -Frenjo
 
 	var/debug = 0
 	var/requires_power = TRUE
@@ -80,7 +80,7 @@
 	else
 		luminosity = 1
 
-	..()
+	. = ..()
 	// If the game is already underway initialize will no longer be called for us.
 	if(global.CTgame_ticker && global.CTgame_ticker.current_state == GAME_STATE_PLAYING)
 		initialize()
@@ -141,7 +141,7 @@
 
 /area/proc/firealert()
 	if(!fire)
-		fire = 1
+		fire = TRUE
 		updateicon()
 		mouse_opacity = FALSE
 		for(var/obj/machinery/door/firedoor/D in all_doors)
@@ -162,7 +162,7 @@
 
 /area/proc/firereset()
 	if(fire)
-		fire = 0
+		fire = FALSE
 		mouse_opacity = FALSE
 		updateicon()
 		for(var/obj/machinery/door/firedoor/D in all_doors)
@@ -181,26 +181,26 @@
 
 /area/proc/readyalert()
 	if(!eject)
-		eject = 1
+		eject = TRUE
 		updateicon()
 	return
 
 /area/proc/readyreset()
 	if(eject)
-		eject = 0
+		eject = FALSE
 		updateicon()
 	return
 
 /area/proc/partyalert()
-	if(!(party))
-		party = 1
+	if(!party)
+		party = TRUE
 		updateicon()
 		mouse_opacity = FALSE
 	return
 
 /area/proc/partyreset()
 	if(party)
-		party = 0
+		party = FALSE
 		mouse_opacity = FALSE
 		updateicon()
 		for(var/obj/machinery/door/firedoor/D in src)
@@ -215,13 +215,13 @@
 // Added these to make use of unused sprites. -Frenjo
 /area/proc/destructalert()
 	if(!destruct)
-		destruct = 1
+		destruct = TRUE
 		updateicon()
 	return
 
 /area/proc/destructreset()
 	if(destruct)
-		destruct = 0
+		destruct = FALSE
 		updateicon()
 	return
 

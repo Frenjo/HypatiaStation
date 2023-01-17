@@ -1,5 +1,6 @@
 //Engineering
 /area/engine
+	icon_state = "engine"
 	ambience = list(
 		'sound/ambience/ambisin1.ogg',
 		'sound/ambience/ambisin2.ogg',
@@ -23,11 +24,9 @@
 
 /area/engine/engineering
 	name = "Engineering"
-	icon_state = "engine"
 
 /area/engine/break_room
 	name = "\improper Engineering Foyer"
-	icon_state = "engine"
 
 /area/engine/emerg_storage
 	name = "\improper Emergency Materials Storage"
@@ -57,7 +56,6 @@
 
 /area/engine/singularity_engine/space
 	name = "\improper Singularity Engine Space"
-	icon_state = "engine_sing"
 	requires_power = FALSE
 
 /area/engine/thermoelectric_engine
@@ -106,32 +104,24 @@
 
 /area/construction/checkpoint
 	name = "\improper Construction Area"
-	icon_state = "yellow"
 
 /area/construction/supplyshuttle
 	name = "\improper Supply Shuttle"
-	icon_state = "yellow"
 
 /area/construction/quarters
 	name = "\improper Engineer's Quarters"
-	icon_state = "yellow"
 
 /area/construction/qmaint
 	name = "Maintenance"
-	icon_state = "yellow"
 
 /area/construction/hallway
 	name = "\improper Hallway"
-	icon_state = "yellow"
 
 /area/construction/solars
 	name = "\improper Solar Panels"
-	icon_state = "yellow"
 
 /area/construction/solarscontrol
 	name = "\improper Solar Panel Control"
-	icon_state = "yellow"
 
 /area/construction/Storage
 	name = "Construction Site Storage"
-	icon_state = "yellow"

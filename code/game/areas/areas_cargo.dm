@@ -1,6 +1,5 @@
 // Cargo/Supply
 /area/quartermaster
-	name = "\improper Quartermasters"
 	icon_state = "quart"
 
 ///////////WORK IN PROGRESS//////////
@@ -21,7 +20,6 @@
 
 /area/quartermaster/qm
 	name = "\improper Quartermaster's Office"
-	icon_state = "quart"
 
 /area/quartermaster/miningdock
 	name = "\improper Mining Dock"
