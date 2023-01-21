@@ -250,19 +250,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			return 0
 	return 1
 
-//Ensure the frequency is within bounds of what it should be sending/recieving at
-/proc/sanitize_frequency(f)
-	f = round(f)
-	f = max(1441, f) // 144.1
-	f = min(1489, f) // 148.9
-	if((f % 2) == 0) //Ensure the last digit is an odd number
-		f += 1
-	return f
-
-//Turns 1479 into 147.9
-/proc/format_frequency(f)
-	return "[round(f / 10)].[f % 10]"
-
 //This will update a mob's name, real_name, mind.name, data_core records, pda and id
 //Calling this proc without an oldname will only update the mob and skip updating the pda, id and records ~Carn
 /mob/proc/fully_replace_character_name(oldname, newname)
@@ -1070,17 +1057,18 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return get_turf(location)
 
 //Quick type checks for some tools
-var/global/list/common_tools = list(
-/obj/item/stack/cable_coil,
-/obj/item/weapon/wrench,
-/obj/item/weapon/weldingtool,
-/obj/item/weapon/screwdriver,
-/obj/item/weapon/wirecutters,
-/obj/item/device/multitool,
-/obj/item/weapon/crowbar)
+GLOBAL_GLOBL_LIST_INIT(common_tools, list(
+	/obj/item/stack/cable_coil,
+	/obj/item/weapon/wrench,
+	/obj/item/weapon/weldingtool,
+	/obj/item/weapon/screwdriver,
+	/obj/item/weapon/wirecutters,
+	/obj/item/device/multitool,
+	/obj/item/weapon/crowbar
+))
 
 /proc/istool(O)
-	if(O && is_type_in_list(O, common_tools))
+	if(O && is_type_in_list(O, GLOBL.common_tools))
 		return 1
 	return 0
 
@@ -1179,23 +1167,23 @@ var/global/list/common_tools = list(
 	if(W.sharp)
 		return 1
 	return( \
-		W.sharp												|| \
-		istype(W, /obj/item/weapon/screwdriver)				|| \
-		istype(W, /obj/item/weapon/pen)						|| \
-		istype(W, /obj/item/weapon/weldingtool)				|| \
-		istype(W, /obj/item/weapon/lighter/zippo)			|| \
-		istype(W, /obj/item/weapon/match)					|| \
+		W.sharp											|| \
+		istype(W, /obj/item/weapon/screwdriver)			|| \
+		istype(W, /obj/item/weapon/pen)					|| \
+		istype(W, /obj/item/weapon/weldingtool)			|| \
+		istype(W, /obj/item/weapon/lighter/zippo)		|| \
+		istype(W, /obj/item/weapon/match)				|| \
 		istype(W, /obj/item/clothing/mask/cigarette)
 	)
 
 /proc/is_surgery_tool(obj/item/W as obj)
 	return(	\
-	istype(W, /obj/item/weapon/scalpel)			||	\
-	istype(W, /obj/item/weapon/hemostat)		||	\
-	istype(W, /obj/item/weapon/retractor)		||	\
-	istype(W, /obj/item/weapon/cautery)			||	\
-	istype(W, /obj/item/weapon/bonegel)			||	\
-	istype(W, /obj/item/weapon/bonesetter)
+		istype(W, /obj/item/weapon/scalpel)		||	\
+		istype(W, /obj/item/weapon/hemostat)	||	\
+		istype(W, /obj/item/weapon/retractor)	||	\
+		istype(W, /obj/item/weapon/cautery)		||	\
+		istype(W, /obj/item/weapon/bonegel)		||	\
+		istype(W, /obj/item/weapon/bonesetter)
 	)
 
 //check if mob is lying down on something we can operate him on.
@@ -1228,7 +1216,7 @@ var/global/list/common_tools = list(
 /*
 Checks if that loc and dir has a item on the wall
 */
-var/list/WALLITEMS = list(
+GLOBAL_GLOBL_LIST_INIT(wall_items, list(
 	/obj/machinery/power/apc, /obj/machinery/alarm, /obj/item/device/radio/intercom,
 	/obj/structure/extinguisher_cabinet, /obj/structure/reagent_dispensers/peppertank,
 	/obj/machinery/status_display, /obj/machinery/requests_console, /obj/machinery/light_switch, /obj/effect/sign,
@@ -1236,11 +1224,11 @@ var/list/WALLITEMS = list(
 	/obj/machinery/computer/security/telescreen, /*/obj/machinery/embedded_controller/radio/simple_vent_controller,*/
 	/obj/item/weapon/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
 	/obj/structure/mirror, /obj/structure/closet/fireaxecabinet, /obj/machinery/computer/security/telescreen/entertainment
-	)
+))
 
 /proc/gotwallitem(loc, dir)
 	for(var/obj/O in loc)
-		for(var/item in WALLITEMS)
+		for(var/item in GLOBL.wall_items)
 			if(istype(O, item))
 				//Direction works sometimes
 				if(O.dir == dir)
@@ -1264,7 +1252,7 @@ var/list/WALLITEMS = list(
 
 	//Some stuff is placed directly on the wallturf (signs)
 	for(var/obj/O in get_step(loc, dir))
-		for(var/item in WALLITEMS)
+		for(var/item in GLOBL.wall_items)
 			if(istype(O, item))
 				if(O.pixel_x == 0 && O.pixel_y == 0)
 					return 1
@@ -1272,42 +1260,6 @@ var/list/WALLITEMS = list(
 
 /proc/format_text(text)
 	return replacetext(replacetext(text, "\proper ", ""), "\improper ", "")
-
-var/mob/dview/dview_mob = new
-
-//Version of view() which ignores darkness, because BYOND doesn't have it.
-/proc/dview(range = world.view, center, invis_flags = 0)
-	if(!center)
-		return
-
-	dview_mob.loc = center
-
-	dview_mob.see_invisible = invis_flags
-
-	. = view(range, dview_mob)
-	dview_mob.loc = null
-
-/mob/dview
-	invisibility = INVISIBILITY_MAXIMUM
-	density = FALSE
-
-	anchored = TRUE
-	simulated = FALSE
-
-	see_in_dark = 1e6
-
-/mob/dview/New()
-	// do nothing. we don't want to be in any mob lists; we're a dummy not a mob.
-
-/proc/register_radio(source, old_frequency, new_frequency, radio_filter)
-	if(old_frequency)
-		global.CTradio.remove_object(source, old_frequency)
-	if(new_frequency)
-		return global.CTradio.add_object(source, new_frequency, radio_filter)
-
-/proc/unregister_radio(source, frequency)
-	if(global.CTradio)
-		global.CTradio.remove_object(source, frequency)
 
 // Ported from Baystation12 on 27/11/2019. -Frenjo
 //Returns the amount of heat gained while in space due to thermal radiation (usually a negative value)
