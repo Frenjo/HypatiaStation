@@ -134,7 +134,7 @@
 		if(SOUTHWEST)
 			initialize_directions = SOUTH|WEST
 
-/obj/machinery/atmospherics/pipe/simple/initialize()
+/obj/machinery/atmospherics/pipe/simple/atmos_initialise()
 	normalize_dir()
 	var/node1_dir
 	var/node2_dir
@@ -403,7 +403,7 @@
 		if(WEST)
 			initialize_directions = NORTH|EAST|SOUTH
 
-/obj/machinery/atmospherics/pipe/manifold/initialize()
+/obj/machinery/atmospherics/pipe/manifold/atmos_initialise()
 	var/connect_directions = (NORTH|SOUTH|EAST|WEST) & (~dir)
 
 	for(var/direction in GLOBL.cardinal)
@@ -636,7 +636,7 @@
 	..()
 	alpha = 255
 
-/obj/machinery/atmospherics/pipe/manifold4w/initialize()
+/obj/machinery/atmospherics/pipe/manifold4w/atmos_initialise()
 	for(var/obj/machinery/atmospherics/target in get_step(src, 1))
 		if(target.initialize_directions & 2)
 			node1 = target
@@ -867,7 +867,7 @@
 		if(EAST)
 		 initialize_directions = WEST
 
-/obj/machinery/atmospherics/pipe/cap/initialize()
+/obj/machinery/atmospherics/pipe/cap/atmos_initialise()
 	for(var/obj/machinery/atmospherics/target in get_step(src, dir))
 		if(target.initialize_directions & get_dir(target, src))
 			node = target

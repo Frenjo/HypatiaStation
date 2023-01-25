@@ -12,7 +12,7 @@
 	..()
 	initialize_directions = dir
 
-/obj/machinery/atmospherics/unary/cold_sink/freezer/initialize()
+/obj/machinery/atmospherics/unary/cold_sink/freezer/atmos_initialise()
 	..()
 	if(node)
 		return

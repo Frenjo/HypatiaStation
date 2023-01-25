@@ -12,7 +12,7 @@
 	..()
 	initialize_directions = dir
 
-/obj/machinery/atmospherics/unary/heat_reservoir/heater/initialize()
+/obj/machinery/atmospherics/unary/heat_reservoir/heater/atmos_initialise()
 	..()
 	if(node)
 		return

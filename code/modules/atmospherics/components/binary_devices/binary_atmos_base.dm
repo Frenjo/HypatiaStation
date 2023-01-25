@@ -29,7 +29,7 @@
 	air1.volume = 200
 	air2.volume = 200
 
-/obj/machinery/atmospherics/binary/initialize()
+/obj/machinery/atmospherics/binary/atmos_initialise()
 	if(node1 && node2)
 		return
 

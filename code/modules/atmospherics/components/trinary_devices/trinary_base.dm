@@ -35,7 +35,7 @@
 	air2.volume = 200
 	air3.volume = 200
 
-/obj/machinery/atmospherics/trinary/initialize()
+/obj/machinery/atmospherics/trinary/atmos_initialise()
 	if(node1 && node2 && node3)
 		return
 

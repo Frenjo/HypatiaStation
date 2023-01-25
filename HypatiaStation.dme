@@ -299,6 +299,7 @@
 #include "code\game\datums\processes\event.dm"
 #include "code\game\datums\processes\garbage.dm"
 #include "code\game\datums\processes\inactivity.dm"
+#include "code\game\datums\processes\initialisation.dm"
 #include "code\game\datums\processes\lighting.dm"
 #include "code\game\datums\processes\machinery.dm"
 #include "code\game\datums\processes\mob.dm"

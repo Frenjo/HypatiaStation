@@ -36,7 +36,7 @@ Filter types:
 	var/frequency = 0
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/atmospherics/trinary/filter/initialize()
+/obj/machinery/atmospherics/trinary/filter/atmos_initialise()
 	..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 

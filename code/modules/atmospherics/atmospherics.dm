@@ -11,7 +11,6 @@ Pipelines + Other Objects -> Pipe network
 */
 
 /obj/machinery/atmospherics
-	auto_init = FALSE
 	anchored = TRUE
 	idle_power_usage = 0
 	active_power_usage = 0
@@ -21,6 +20,9 @@ Pipelines + Other Objects -> Pipe network
 
 	var/initialize_directions = 0
 	var/pipe_color
+
+/obj/machinery/atmospherics/proc/atmos_initialise()
+	return
 
 /obj/machinery/atmospherics/process()
 	build_network()

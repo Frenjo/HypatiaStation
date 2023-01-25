@@ -111,8 +111,8 @@ Class Procs:
 	var/manual = 0
 	var/global/gl_uid = 1
 
-/obj/machinery/New()
-	..()
+/obj/machinery/initialize()
+	. = ..()
 	if(!GLOBL.machinery_sort_required && global.CTgame_ticker)
 		dd_insertObjectList(GLOBL.machines, src)
 	else

@@ -14,6 +14,7 @@
 	var/id
 
 /obj/machinery/meter/initialize()
+	. = ..()
 	if(!target)
 		src.target = locate(/obj/machinery/atmospherics/pipe) in loc
 

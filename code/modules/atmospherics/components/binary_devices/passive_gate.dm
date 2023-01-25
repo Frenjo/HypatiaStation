@@ -14,7 +14,7 @@
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/atmospherics/binary/passive_gate/initialize()
+/obj/machinery/atmospherics/binary/passive_gate/atmos_initialise()
 	..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 

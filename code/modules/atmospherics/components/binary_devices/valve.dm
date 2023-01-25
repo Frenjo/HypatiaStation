@@ -8,7 +8,7 @@
 	var/open = 0
 	var/openDuringInit = 0
 
-/obj/machinery/atmospherics/binary/valve/initialize()
+/obj/machinery/atmospherics/binary/valve/atmos_initialise()
 	normalize_dir()
 
 	var/node1_dir
@@ -190,7 +190,7 @@
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/atmospherics/binary/valve/digital/initialize()
+/obj/machinery/atmospherics/binary/valve/digital/atmos_initialise()
 	..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 

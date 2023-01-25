@@ -31,7 +31,7 @@ Thus, the two variables affect pump operation are set in New():
 	on = 1
 	icon_state = "intact_on"
 
-/obj/machinery/atmospherics/binary/volume_pump/initialize()
+/obj/machinery/atmospherics/binary/volume_pump/atmos_initialise()
 	..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 

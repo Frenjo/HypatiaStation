@@ -14,13 +14,11 @@
 	var/moved_recently = FALSE
 	var/mob/pulledby = null
 
-	var/auto_init = TRUE
-
 /atom/movable/New()
 	. = ..()
-	// If the game is already underway initialize will no longer be called for us.
-	if(auto_init && global.CTgame_ticker && global.CTgame_ticker.current_state == GAME_STATE_PLAYING)
-		initialize()
+	// If the game is already underway, initialize will no longer be called for us.
+	if(global.CTmaster && global.CTmaster.initialised)
+		queue_for_initialisation(src)
 
 /atom/movable/proc/initialize()
 	if(!isnull(gcDestroyed))
@@ -37,6 +35,7 @@
 	..()
 
 /atom/movable/Destroy()
+	dequeue_for_initialisation(src)
 	if(reagents)
 		qdel(reagents)
 		reagents = null

@@ -109,7 +109,7 @@
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/atmospherics/trinary/tvalve/digital/initialize()
+/obj/machinery/atmospherics/trinary/tvalve/digital/atmos_initialise()
 	..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
@@ -191,7 +191,7 @@
 		if(WEST)
 			initialize_directions = EAST|WEST|SOUTH
 
-/obj/machinery/atmospherics/trinary/tvalve/mirrored/initialize()
+/obj/machinery/atmospherics/trinary/tvalve/mirrored/atmos_initialise()
 	var/node1_dir
 	var/node2_dir
 	var/node3_dir
@@ -229,7 +229,7 @@
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/initialize()
+/obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/atmos_initialise()
 	..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 

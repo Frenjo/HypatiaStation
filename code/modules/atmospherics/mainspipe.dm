@@ -75,7 +75,7 @@
 	aux.volume = volume
 	aux.nodes.len = nodes.len
 
-/obj/machinery/atmospherics/mains_pipe/initialize()
+/obj/machinery/atmospherics/mains_pipe/atmos_initialise()
 	..()
 	for(var/i = 1 to nodes.len)
 		var/obj/machinery/atmospherics/mains_pipe/node = nodes[i]
@@ -146,13 +146,13 @@
 		if(SOUTHWEST)
 			initialize_mains_directions = SOUTH|WEST
 
-/obj/machinery/atmospherics/mains_pipe/simple/initialize()
+/obj/machinery/atmospherics/mains_pipe/simple/atmos_initialise()
 	normalize_dir()
 
 	var/node1_dir
 	var/node2_dir
 	for(var/direction in GLOBL.cardinal)
-		if(direction&initialize_mains_directions)
+		if(direction & initialize_mains_directions)
 			if(!node1_dir)
 				node1_dir = direction
 			else if(!node2_dir)
@@ -216,7 +216,7 @@
 	..()
 	initialize_mains_directions = (NORTH|SOUTH|EAST|WEST) & ~dir
 
-/obj/machinery/atmospherics/mains_pipe/manifold/initialize()
+/obj/machinery/atmospherics/mains_pipe/manifold/atmos_initialise()
 	var/connect_directions = initialize_mains_directions
 
 	for(var/direction in GLOBL.cardinal)
@@ -278,7 +278,7 @@
 	nodes.len = 4
 	..()
 
-/obj/machinery/atmospherics/mains_pipe/manifold4w/initialize()
+/obj/machinery/atmospherics/mains_pipe/manifold4w/atmos_initialise()
 	for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, NORTH))
 		if(target.initialize_mains_directions & get_dir(target, src))
 			nodes[1] = target
@@ -331,7 +331,7 @@
 	initialize_mains_directions = turn(dir, 90) | turn(dir, -90)
 	initialize_directions = dir // actually have a normal connection too
 
-/obj/machinery/atmospherics/mains_pipe/split/initialize()
+/obj/machinery/atmospherics/mains_pipe/split/atmos_initialise()
 	var/node1_dir = turn(dir, 90)
 	var/node2_dir = turn(dir, -90)
 	var/node3_dir = dir
@@ -435,7 +435,7 @@
 	initialize_mains_directions = dir
 	initialize_directions = GLOBL.cardinal & ~dir // actually have a normal connection too
 
-/obj/machinery/atmospherics/mains_pipe/split3/initialize()
+/obj/machinery/atmospherics/mains_pipe/split3/atmos_initialise()
 	var/node1_dir = dir
 	var/supply_node_dir
 	var/scrubbers_node_dir
@@ -525,7 +525,7 @@
 /obj/machinery/atmospherics/mains_pipe/cap/update_icon()
 	icon_state = "cap[invisibility ? "-f" : ""]"
 
-/obj/machinery/atmospherics/mains_pipe/cap/initialize()
+/obj/machinery/atmospherics/mains_pipe/cap/atmos_initialise()
 	for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, dir))
 		if(target.initialize_mains_directions & get_dir(target, src))
 			nodes[1] = target
@@ -575,7 +575,7 @@
 	else
 		icon_state = "[hide?"h":""]mvalve[open]"
 
-/obj/machinery/atmospherics/mains_pipe/valve/initialize()
+/obj/machinery/atmospherics/mains_pipe/valve/atmos_initialise()
 	normalize_dir()
 
 	var/node1_dir
@@ -614,7 +614,7 @@
 	open = TRUE
 	update_icon()
 
-	initialize()
+	atmos_initialise()
 
 	return TRUE
 
@@ -657,7 +657,7 @@
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/atmospherics/mains_pipe/valve/digital/initialize()
+/obj/machinery/atmospherics/mains_pipe/valve/digital/atmos_initialise()
 	..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 

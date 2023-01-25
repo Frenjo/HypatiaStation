@@ -21,7 +21,7 @@
 	..()
 	name = "Air Injector"
 
-/obj/machinery/atmospherics/unary/outlet_injector/initialize()
+/obj/machinery/atmospherics/unary/outlet_injector/atmos_initialise()
 	..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 

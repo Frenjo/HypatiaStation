@@ -10,7 +10,6 @@ GLOBAL_GLOBL_LIST_NEW(all_lighting_overlays) // Global list of lighting overlays
 	invisibility = INVISIBILITY_LIGHTING
 	color = LIGHTING_BASE_MATRIX
 	icon_state = "light1"
-	auto_init = FALSE // doesn't need special init
 	blend_mode = BLEND_MULTIPLY
 
 	var/lum_r = 0

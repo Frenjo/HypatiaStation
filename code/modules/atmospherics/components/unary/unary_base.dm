@@ -16,7 +16,7 @@
 
 	air_contents.volume = 200
 
-/obj/machinery/atmospherics/unary/initialize()
+/obj/machinery/atmospherics/unary/atmos_initialise()
 	if(node)
 		return
 

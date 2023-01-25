@@ -16,7 +16,7 @@
 /obj/machinery/atmospherics/unary/portables_connector/New()
 	..()
 
-/obj/machinery/atmospherics/unary/portables_connector/initialize()
+/obj/machinery/atmospherics/unary/portables_connector/atmos_initialise()
 	..()
 	if(node)
 		return

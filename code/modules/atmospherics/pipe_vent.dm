@@ -24,7 +24,7 @@
 	initialize_directions = dir
 	..()
 
-/obj/machinery/atmospherics/pipe/vent/initialize()
+/obj/machinery/atmospherics/pipe/vent/atmos_initialise()
 	var/connect_direction = dir
 
 	for(var/obj/machinery/atmospherics/target in get_step(src, connect_direction))

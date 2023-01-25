@@ -42,7 +42,7 @@ Thus, the two variables affect pump operation are set in New():
 	air1.volume = 200
 	air2.volume = 200
 
-/obj/machinery/atmospherics/binary/pump/initialize()
+/obj/machinery/atmospherics/binary/pump/atmos_initialise()
 	..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 

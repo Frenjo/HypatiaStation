@@ -18,7 +18,7 @@
 	initialize_directions_he = initialize_directions	// The auto-detection from /pipe is good enough for a simple HE pipe
 // BubbleWrap END
 
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/initialize()
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/atmos_initialise()
 	color = "#404040" //we don't make use of the fancy overlay system for colours, use this to set the default.
 	normalize_dir()
 
@@ -106,7 +106,7 @@
 			initialize_directions_he = WEST
 // BubbleWrap END
 
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/initialize()
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/atmos_initialise()
 	color = "#404040" //we don't make use of the fancy overlay system for colours, use this to set the default.
 
 	for(var/obj/machinery/atmospherics/target in get_step(src, initialize_directions))
@@ -128,8 +128,8 @@
 	if(node1&&node2)
 		icon_state = "intact"
 	else
-		var/have_node1 = node1?1:0
-		var/have_node2 = node2?1:0
+		var/have_node1 = node1 ? 1 : 0
+		var/have_node2 = node2 ? 1 : 0
 		icon_state = "exposed[have_node1][have_node2]"
 	if(!node1&&!node2)
 		qdel(src)
