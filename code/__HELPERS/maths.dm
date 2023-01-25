@@ -4,9 +4,6 @@
 /var/const/Pi = 3.14159265
 /var/const/Sqrt2 = 1.41421356
 
-/proc/Clamp(val, min, max)
-	return max(min, min(val, max))
-
 // min is inclusive, max is exclusive
 /proc/Wrap(val, min, max)
 	var/d = max - min

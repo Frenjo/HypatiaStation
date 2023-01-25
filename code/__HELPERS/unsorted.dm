@@ -194,7 +194,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				return 1
 			if((dir & EAST) && (D.dir & (NORTH|SOUTH)))
 				return 1
-		else return 1	// it's a real, air blocking door
+		else
+			return 1	// it's a real, air blocking door
 	return 0
 
 /proc/TurfBlockedNonWindow(turf/loc)

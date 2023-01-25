@@ -92,7 +92,6 @@ GLOBAL_GLOBL_INIT(religion_name, null)
 		if(13)
 			GLOBL.current_map.station_name += pick("13", "XIII", "Thirteen")
 
-
 	if(CONFIG && CONFIG_GET(server_name))
 		world.name = "[CONFIG_GET(server_name)]: [name]"
 	else
@@ -145,7 +144,7 @@ GLOBAL_GLOBL_INIT(syndicate_name, null)
 GLOBAL_GLOBL(syndicate_code_phrase)		//Code phrase for traitors.
 GLOBAL_GLOBL(syndicate_code_response)	//Code response for traitors.
 
-	/*
+/*
 	Should be expanded.
 	How this works:
 	Instead of "I'm looking for James Smith," the traitor would say "James Smith" as part of a conversation.
@@ -157,7 +156,7 @@ GLOBAL_GLOBL(syndicate_code_response)	//Code response for traitors.
 	Can probably be done through "{ }" but I don't really see the practical benefit.
 	One example of an earlier system is commented below.
 	/N
-	*/
+*/
 
 /proc/generate_code_phrase()//Proc is used for phrase and response in master_controller.dm
 	var/code_phrase = ""//What is returned when the proc finishes.
@@ -168,29 +167,38 @@ GLOBAL_GLOBL(syndicate_code_response)	//Code response for traitors.
 		25; 5
 	)
 
-	var/safety[] = list(1,2,3)//Tells the proc which options to remove later on.
-	var/nouns[] = list("love","hate","anger","peace","pride","sympathy","bravery","loyalty","honesty","integrity","compassion","charity","success","courage","deceit","skill","beauty","brilliance","pain","misery","beliefs","dreams","justice","truth","faith","liberty","knowledge","thought","information","culture","trust","dedication","progress","education","hospitality","leisure","trouble","friendships", "relaxation")
-	var/drinks[] = list("vodka and tonic","gin fizz","bahama mama","manhattan","black Russian","whiskey soda","long island tea","margarita","Irish coffee"," manly dwarf","Irish cream","doctor's delight","Beepksy Smash","tequilla sunrise","brave bull","gargle blaster","bloody mary","whiskey cola","white Russian","vodka martini","martini","Cuba libre","kahlua","vodka","wine","moonshine")
-	var/locations[] = GLOBL.teleportlocs.len ? GLOBL.teleportlocs : drinks//if null, defaults to drinks instead.
+	var/list/safety = list(1, 2, 3)//Tells the proc which options to remove later on.
+	var/list/nouns = list(
+		"love", "hate", "anger", "peace", "pride", "sympathy", "bravery","loyalty", "honesty", "integrity",
+		"compassion", "charity", "success", "courage", "deceit", "skill", "beauty", "brilliance", "pain", "misery",
+		"beliefs", "dreams", "justice", "truth", "faith", "liberty", "knowledge", "thought", "information", "culture",
+		"trust", "dedication", "progress", "education", "hospitality", "leisure", "trouble", "friendships", "relaxation"
+	)
+	var/list/drinks = list(
+		"vodka and tonic", "gin fizz", "bahama mama", "manhattan", "black Russian", "whiskey soda", "long island tea", "margarita",
+		"Irish coffee", "manly dwarf", "Irish cream", "doctor's delight", "Beepksy Smash", "tequilla sunrise", "brave bull", "gargle blaster",
+		"bloody mary", "whiskey cola", "white Russian", "vodka martini", "martini", "Cuba libre", "kahlua", "vodka", "wine", "moonshine"
+	)
+	var/list/locations = GLOBL.teleportlocs.len ? GLOBL.teleportlocs : drinks//if null, defaults to drinks instead.
 
-	var/names[] = list()
+	var/list/names = list()
 	for(var/datum/data/record/t in GLOBL.data_core.general)//Picks from crew manifest.
 		names += t.fields["name"]
 
 	var/maxwords = words//Extra var to check for duplicates.
 
-	for(words,words>0,words--)//Randomly picks from one of the choices below.
+	for(words, words > 0, words--)//Randomly picks from one of the choices below.
 
-		if(words==1&&(1 in safety)&&(2 in safety))//If there is only one word remaining and choice 1 or 2 have not been selected.
-			safety = list(pick(1,2))//Select choice 1 or 2.
-		else if(words==1&&maxwords==2)//Else if there is only one word remaining (and there were two originally), and 1 or 2 were chosen,
+		if(words == 1 && (1 in safety) && (2 in safety))//If there is only one word remaining and choice 1 or 2 have not been selected.
+			safety = list(pick(1, 2))//Select choice 1 or 2.
+		else if(words == 1 && maxwords == 2)//Else if there is only one word remaining (and there were two originally), and 1 or 2 were chosen,
 			safety = list(3)//Default to list 3
 
 		switch(pick(safety))//Chance based on the safety list.
 			if(1)//1 and 2 can only be selected once each to prevent more than two specific names/places/etc.
-				switch(rand(1,2))//Mainly to add more options later.
+				switch(rand(1, 2))//Mainly to add more options later.
 					if(1)
-						if(names.len&&prob(70))
+						if(names.len && prob(70))
 							code_phrase += pick(names)
 						else
 							code_phrase += pick(pick(GLOBL.first_names_male, GLOBL.first_names_female))
@@ -200,21 +208,21 @@ GLOBAL_GLOBL(syndicate_code_response)	//Code response for traitors.
 						code_phrase += pick(GLOBL.joblist)//Returns a job.
 				safety -= 1
 			if(2)
-				switch(rand(1,2))//Places or things.
+				switch(rand(1, 2))//Places or things.
 					if(1)
 						code_phrase += pick(drinks)
 					if(2)
 						code_phrase += pick(locations)
 				safety -= 2
 			if(3)
-				switch(rand(1,3))//Nouns, adjectives, verbs. Can be selected more than once.
+				switch(rand(1, 3))//Nouns, adjectives, verbs. Can be selected more than once.
 					if(1)
 						code_phrase += pick(nouns)
 					if(2)
 						code_phrase += pick(GLOBL.adjectives)
 					if(3)
 						code_phrase += pick(GLOBL.verbs)
-		if(words==1)
+		if(words == 1)
 			code_phrase += "."
 		else
 			code_phrase += ", "

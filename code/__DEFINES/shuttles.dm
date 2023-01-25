@@ -4,7 +4,6 @@
 /*
 	Shuttles
 */
-
 // these define the time taken for the shuttle to get to SS13
 // and the time before it leaves again
 #define SHUTTLE_PREPTIME				300	// 5 minutes = 300 seconds - after this time, the shuttle departs centcom and cannot be recalled

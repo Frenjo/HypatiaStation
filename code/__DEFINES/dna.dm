@@ -1,7 +1,7 @@
 //bitflags for mutations
 // Extra powers:
-#define LASER			(1<<8) 	// harm intent - click anywhere to shoot lasers from eyes
-#define HEAL			(1<<9) 	// healing people with hands
+#define LASER			(1<<8)	// harm intent - click anywhere to shoot lasers from eyes
+#define HEAL			(1<<9)	// healing people with hands
 #define SHADOW			(1<<10)	// shadow teleportation (create in/out portals anywhere) (25%)
 #define SCREAM			(1<<11)	// supersonic screaming (25%)
 #define EXPLOSIVE		(1<<12)	// exploding on-demand (15%)

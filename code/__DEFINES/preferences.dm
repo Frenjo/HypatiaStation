@@ -34,9 +34,9 @@
 #define MAX_SAVE_SLOTS 20
 
 // Job Preferences
-#define GET_RANDOM_JOB 0
-#define BE_ASSISTANT 1
-#define RETURN_TO_LOBBY 2
+#define GET_RANDOM_JOB	0
+#define BE_ASSISTANT	1
+#define RETURN_TO_LOBBY	2
 
 // Skill Levels
 #define SKILL_NONE		0

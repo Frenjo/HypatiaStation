@@ -345,9 +345,9 @@
 
 	if(Toxins_pp > safe_toxins_max) // Too much toxins
 		var/ratio = (breath.gas[GAS_PLASMA] / safe_toxins_max) * 10
-		//adjustToxLoss(Clamp(ratio, MIN_PLASMA_DAMAGE, MAX_PLASMA_DAMAGE))	//Limit amount of damage toxin exposure can do per second
+		//adjustToxLoss(clamp(ratio, MIN_PLASMA_DAMAGE, MAX_PLASMA_DAMAGE))	//Limit amount of damage toxin exposure can do per second
 		if(reagents)
-			reagents.add_reagent("plasma", Clamp(ratio, MIN_PLASMA_DAMAGE, MAX_PLASMA_DAMAGE))
+			reagents.add_reagent("plasma", clamp(ratio, MIN_PLASMA_DAMAGE, MAX_PLASMA_DAMAGE))
 		toxins_alert = max(toxins_alert, 1)
 	else
 		toxins_alert = 0

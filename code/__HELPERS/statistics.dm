@@ -4,7 +4,7 @@
 	var/playercount = 0
 	for(var/mob/M in GLOBL.player_list)
 		if(M.client)
-			playercount += 1
+			playercount++
 	establish_db_connection()
 	if(!GLOBL.dbcon.IsConnected())
 		log_game("SQL ERROR during player polling. Failed to connect.")
@@ -111,9 +111,9 @@
 		return
 	while(1)
 		sql_poll_players()
-		sleep(600)
+		sleep(1 MINUTE)
 		sql_poll_admins()
-		sleep(6000) // Poll every ten minutes
+		sleep(10 MINUTES) // Poll every ten minutes
 
 //This proc is used for feedback. It is executed at round end.
 /proc/sql_commit_feedback()

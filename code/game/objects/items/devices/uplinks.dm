@@ -88,7 +88,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			continue
 
 		path_text = O[1]
-		cost = Clamp(text2num(O[2]), 1, 20) //Another halfassed fix for href exploit ~Z
+		cost = clamp(text2num(O[2]), 1, 20) //Another halfassed fix for href exploit ~Z
 
 		if(cost>uses)
 			continue

@@ -1,6 +1,6 @@
 #define PI 3.1415
 
-#define CLAMP01(x)			(Clamp(x, 0, 1))
+#define CLAMP01(x)			(clamp(x, 0, 1))
 #define CLAMP02(x, y, z)	(x <= y ? y : (x >= z ? z : x))
 
 #define QUANTIZE(variable)	(round(variable, 0.0001))

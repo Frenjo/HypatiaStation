@@ -5,7 +5,7 @@
 /hook/global_init/proc/makeDatumRefLists()
 	var/list/paths
 
-	// Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
+	// Hair - Initialises all /datum/sprite_accessory/hair into a list indexed by hair-style name
 	paths = SUBTYPESOF(/datum/sprite_accessory/hair)
 	for(var/path in paths)
 		var/datum/sprite_accessory/hair/H = new path()
@@ -19,7 +19,7 @@
 				GLOBL.hair_styles_male_list += H.name
 				GLOBL.hair_styles_female_list += H.name
 
-	// Facial Hair - Initialise all /datum/sprite_accessory/facial_hair into an list indexed by facialhair-style name
+	// Facial Hair - Initialises all /datum/sprite_accessory/facial_hair into a list indexed by facialhair-style name
 	paths = SUBTYPESOF(/datum/sprite_accessory/facial_hair)
 	for(var/path in paths)
 		var/datum/sprite_accessory/facial_hair/H = new path()
@@ -33,7 +33,7 @@
 				GLOBL.facial_hair_styles_male_list += H.name
 				GLOBL.facial_hair_styles_female_list += H.name
 
-	// Surgery Steps - Initialize all /datum/surgery_step into a list
+	// Surgery Steps - Initialises all /datum/surgery_step into a list.
 	paths = SUBTYPESOF(/datum/surgery_step)
 	for(var/T in paths)
 		var/datum/surgery_step/S = new T()
@@ -78,7 +78,7 @@
 		var/datum/job/J = new T()
 		GLOBL.joblist[J.title] = J
 
-	// Languages - Initialise all /datum/language and language keys into lists.
+	// Languages - Initialises all /datum/language and language keys into lists.
 	paths = SUBTYPESOF(/datum/language)
 	for(var/T in paths)
 		var/datum/language/L = new T()
@@ -88,7 +88,7 @@
 		var/datum/language/L = GLOBL.all_languages[language_name]
 		GLOBL.language_keys[":[lowertext(L.key)]"] = L
 
-	// Species - Initialise all /datum/species into a list.
+	// Species - Initialises all /datum/species into a list.
 	var/rkey = 0
 	paths = SUBTYPESOF(/datum/species)
 	for(var/T in paths)
@@ -100,7 +100,7 @@
 		if(S.flags & IS_WHITELISTED)
 			GLOBL.whitelisted_species += S.name
 	
-	// Skills - Initialise all /datum/skill into a list, indexed by field.
+	// Skills - Initialises all /datum/skill into a list, indexed by field.
 	paths = SUBTYPESOF(/datum/skill)
 	for(var/T in paths)
 		var/datum/skill/S = new T()

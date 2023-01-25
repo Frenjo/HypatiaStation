@@ -71,7 +71,7 @@
 		to_chat(user, SPAN_NOTICE("The crate is locked with a Deca-code lock."))
 		var/input = input(usr, "Enter digit from [min] to [max].", "Deca-Code Lock", "") as num
 		if(in_range(src, user))
-			input = Clamp(input, 0, 10)
+			input = clamp(input, 0, 10)
 			if(input == code)
 				to_chat(user, SPAN_NOTICE("The crate unlocks!"))
 				locked = 0

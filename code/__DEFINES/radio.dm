@@ -105,17 +105,17 @@ All frequencies in order:
 #define CHANNEL_COMMON			"Common"
 
 // Stuff moved from communications.dm.
-#define TRANSMISSION_WIRE	0
-#define TRANSMISSION_RADIO	1
-#define TRANSMISSION_SUBSPACE 2
+#define TRANSMISSION_WIRE		0
+#define TRANSMISSION_RADIO		1
+#define TRANSMISSION_SUBSPACE	2
 
 /* filters */
-#define RADIO_TO_AIRALARM "1"
-#define RADIO_FROM_AIRALARM "2"
-#define RADIO_CHAT "3"
-#define RADIO_ATMOSIA "4"
-#define RADIO_NAVBEACONS "5"
-#define RADIO_AIRLOCK "6"
-#define RADIO_SECBOT "7"
-#define RADIO_MULEBOT "8"
-#define RADIO_MAGNETS "9"
+#define RADIO_TO_AIRALARM	"1"
+#define RADIO_FROM_AIRALARM	"2"
+#define RADIO_CHAT			"3"
+#define RADIO_ATMOSIA		"4"
+#define RADIO_NAVBEACONS	"5"
+#define RADIO_AIRLOCK		"6"
+#define RADIO_SECBOT		"7"
+#define RADIO_MULEBOT		"8"
+#define RADIO_MAGNETS		"9"

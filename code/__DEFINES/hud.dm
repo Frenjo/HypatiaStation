@@ -1,8 +1,8 @@
 // Space Parallax
-#define PARALLAX_STAR_AMOUNT 849
-#define PARALLAX_BLUESPACE_STAR_AMOUNT 1000
-#define PARALLAX_SPACE 0
-#define PARALLAX_BLUESPACE 1
+#define PARALLAX_STAR_AMOUNT			849
+#define PARALLAX_BLUESPACE_STAR_AMOUNT	1000
+#define PARALLAX_SPACE		0
+#define PARALLAX_BLUESPACE	1
 
 // For secHUDs, medHUDs and variants. The number is the location of the image on the list hud_list of humans.
 #define HEALTH_HUD		1 // a simple line rounding the mob's number health
