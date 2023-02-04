@@ -4,7 +4,7 @@
  * Fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
 */
 #define isliving(X)		istype(X, /mob/living)
-#define isobserver(x) 	istype(x, /mob/dead/observer)
+#define isobserver(X) 	istype(X, /mob/dead/observer)
 
 // Carbon.
 #define iscarbon(X)		istype(X, /mob/living/carbon)
