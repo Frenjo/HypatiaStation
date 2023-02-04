@@ -8,7 +8,7 @@
 	cure_id = list("spaceacillin", "glycerol")
 	cure_chance = 5
 	agent = "Rip-LEY Alien Microbes"
-	affected_species = list("Human")
+	affected_species = list(SPECIES_HUMAN)
 
 	var/gibbed = 0
 

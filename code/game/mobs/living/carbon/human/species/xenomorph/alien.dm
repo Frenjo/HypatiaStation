@@ -9,19 +9,19 @@
 
 /mob/living/carbon/human/xdrone/New(new_loc)
 	h_style = "Bald"
-	..(new_loc, "Xenomorph Drone")
+	..(new_loc, SPECIES_XENOMORPH_DRONE)
 
 /mob/living/carbon/human/xsentinel/New(new_loc)
 	h_style = "Bald"
-	..(new_loc, "Xenomorph Sentinel")
+	..(new_loc, SPECIES_XENOMORPH_SENTINEL)
 
 /mob/living/carbon/human/xhunter/New(new_loc)
 	h_style = "Bald"
-	..(new_loc, "Xenomorph Hunter")
+	..(new_loc, SPECIES_XENOMORPH_HUNTER)
 
 /mob/living/carbon/human/xqueen/New(new_loc)
 	h_style = "Bald"
-	..(new_loc, "Xenomorph Queen")
+	..(new_loc, SPECIES_XENOMORPH_QUEEN)
 
 /mob/living/carbon/human/Stat()
 	..()

@@ -1,5 +1,5 @@
 /datum/species/vox
-	name = "Vox"
+	name = SPECIES_VOX
 	icobase = 'icons/mob/human_races/r_vox.dmi'
 	deform = 'icons/mob/human_races/r_def_vox.dmi'
 	language = "Vox-Pidgin"
@@ -40,7 +40,7 @@
 	)
 
 /datum/species/vox/armalis
-	name = "Vox Armalis"
+	name = SPECIES_VOX_ARMALIS
 	icobase = 'icons/mob/human_races/r_armalis.dmi'
 	deform = 'icons/mob/human_races/r_armalis.dmi'
 	language = "Vox-pidgin"

@@ -123,7 +123,7 @@ BLIND     // can't see anything
 	body_parts_covered = HANDS
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
-	species_restricted = list("exclude", "Soghun", "Tajaran")
+	species_restricted = list("exclude", SPECIES_SOGHUN, SPECIES_TAJARAN)
 
 /obj/item/clothing/gloves/examine()
 	set src in usr
@@ -174,7 +174,7 @@ BLIND     // can't see anything
 
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
-	species_restricted = list("exclude", "Soghun", "Tajaran")
+	species_restricted = list("exclude", SPECIES_SOGHUN, SPECIES_TAJARAN)
 
 //Suit
 /obj/item/clothing/suit
@@ -203,7 +203,7 @@ BLIND     // can't see anything
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
-	species_restricted = list("exclude", "Diona", "Vox")
+	species_restricted = list("exclude", SPECIES_DIONA, SPECIES_VOX)
 
 /obj/item/clothing/suit/space
 	name = "Space suit"
@@ -222,7 +222,7 @@ BLIND     // can't see anything
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
-	species_restricted = list("exclude", "Diona", "Vox")
+	species_restricted = list("exclude", SPECIES_DIONA, SPECIES_VOX)
 
 //Under clothing
 /obj/item/clothing/under

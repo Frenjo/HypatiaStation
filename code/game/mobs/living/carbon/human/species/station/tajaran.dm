@@ -1,5 +1,5 @@
 /datum/species/tajaran
-	name = "Tajaran"
+	name = SPECIES_TAJARAN
 	icobase = 'icons/mob/human_races/r_tajaran.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
 	language = "Siik'maas"

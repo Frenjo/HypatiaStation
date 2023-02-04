@@ -60,7 +60,7 @@ Creature-level abilities.
 	var/intensity = input("How intense do you want the projection to be?") in list(1, 2, 3)
 	var/say = input("What do you wish to say?")
 
-	if(target.get_species() == "Skrell")
+	if(target.get_species() == SPECIES_SKRELL)
 		target.show_message(SPAN_INFO("You hear [mob.real_name]'s words in your mind: [say]"))
 	else
 		switch(intensity)

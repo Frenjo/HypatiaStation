@@ -1,3 +1,20 @@
+// Species name defines.
+#define SPECIES_HUMAN "Human"
+#define SPECIES_SOGHUN "Soghun"
+#define SPECIES_TAJARAN "Tajaran"
+#define SPECIES_SKRELL "Skrell"
+#define SPECIES_VOX "Vox"
+#define SPECIES_VOX_ARMALIS "Vox Armalis"
+#define SPECIES_DIONA "Diona"
+#define SPECIES_OBSEDAI "Obsedai"
+#define SPECIES_PLASMALIN "Plasmalin"
+// Xenomorph subtypes.
+#define SPECIES_XENOMORPH "Xenomorph"
+#define SPECIES_XENOMORPH_DRONE "Xenomorph Drone"
+#define SPECIES_XENOMORPH_SENTINEL "Xenomorph Sentinel"
+#define SPECIES_XENOMORPH_HUNTER "Xenomorph Hunter"
+#define SPECIES_XENOMORPH_QUEEN "Xenomorph Queen"
+
 // Species flags.
 #define NO_BLOOD	1
 #define NO_BREATHE	2

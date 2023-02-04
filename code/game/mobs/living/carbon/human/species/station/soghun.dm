@@ -1,6 +1,6 @@
 // Standardised the species is called 'Soghun' but their language is 'Sinta'unathi'. -Frenjo
 /datum/species/soghun
-	name = "Soghun"
+	name = SPECIES_SOGHUN
 	icobase = 'icons/mob/human_races/r_lizard.dmi'
 	deform = 'icons/mob/human_races/r_def_lizard.dmi'
 	language = "Sinta'unathi"

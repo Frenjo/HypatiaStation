@@ -492,7 +492,7 @@
 
 /datum/admins/proc/create_vox_raider(obj/spawn_location, leader_chosen = 0)
 
-	var/mob/living/carbon/human/new_vox = new(spawn_location.loc, "Vox")
+	var/mob/living/carbon/human/new_vox = new(spawn_location.loc, SPECIES_VOX)
 
 	new_vox.gender = pick(MALE, FEMALE)
 	new_vox.h_style = "Short Vox Quills"

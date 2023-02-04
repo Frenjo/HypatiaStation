@@ -234,12 +234,12 @@
 		var/race = synd_mob.species.name
 
 		switch(race)
-			if("Soghun")
-				new_suit.species_restricted = list("Soghun")
-			if("Tajaran")
-				new_suit.species_restricted = list("Tajaran")
-			if("Skrell")
-				new_suit.species_restricted = list("Skrell")
+			if(SPECIES_SOGHUN)
+				new_suit.species_restricted = list(SPECIES_SOGHUN)
+			if(SPECIES_TAJARAN)
+				new_suit.species_restricted = list(SPECIES_TAJARAN)
+			if(SPECIES_SKRELL)
+				new_suit.species_restricted = list(SPECIES_SKRELL)
 
 	synd_mob.equip_to_slot_or_del(new_suit, slot_wear_suit)
 	synd_mob.equip_to_slot_or_del(new_helmet, slot_head)

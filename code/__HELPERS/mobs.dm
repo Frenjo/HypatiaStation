@@ -1,4 +1,4 @@
-/proc/random_hair_style(gender, species = "Human")
+/proc/random_hair_style(gender, species = SPECIES_HUMAN)
 	var/h_style = "Bald"
 
 	var/list/valid_hairstyles = list()
@@ -17,7 +17,7 @@
 
 	return h_style
 
-/proc/random_facial_hair_style(gender, species = "Human")
+/proc/random_facial_hair_style(gender, species = SPECIES_HUMAN)
 	var/f_style = "Shaved"
 
 	var/list/valid_facialhairstyles = list()
@@ -37,7 +37,7 @@
 
 		return f_style
 
-/proc/random_name(gender, species = "Human")
+/proc/random_name(gender, species = SPECIES_HUMAN)
 	if(gender == FEMALE)
 		return capitalize(pick(GLOBL.first_names_female)) + " " + capitalize(pick(GLOBL.last_names))
 	else

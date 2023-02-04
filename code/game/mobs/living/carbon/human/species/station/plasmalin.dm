@@ -1,5 +1,5 @@
 /datum/species/plasmalin
-	name = "Plasmalin"
+	name = SPECIES_PLASMALIN
 	icobase = 'icons/mob/human_races/r_plasmalin.dmi'
 	deform = 'icons/mob/human_races/r_plasmalin.dmi'
 	language = "Plasmalin"

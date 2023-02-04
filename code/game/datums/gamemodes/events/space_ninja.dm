@@ -233,7 +233,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 				//Here we want the ninja to murder all the queens. The other aliens don't really matter.
 				var/list/xeno_queen_list = list()
 				for(var/mob/living/carbon/human/xeno_queen in xeno_list)
-					if(xeno_queen.species.name == "Xenomorph Queen" && xeno_queen.mind && xeno_queen.stat != DEAD)
+					if(xeno_queen.species.name == SPECIES_XENOMORPH_QUEEN && xeno_queen.mind && xeno_queen.stat != DEAD)
 						xeno_queen_list += xeno_queen
 				if(xeno_queen_list.len && side == "face")//If there are queen about and the probability is 50.
 					for(var/mob/living/carbon/human/xeno_queen in xeno_queen_list)

@@ -7,7 +7,7 @@
 	desc = "A kit containing all the needed tools and parts to modify a hardsuit for another user."
 	icon_state = "modkit"
 	var/parts = MODKIT_FULL
-	var/list/target_species = list("Human", "Skrell")
+	var/list/target_species = list(SPECIES_HUMAN, SPECIES_SKRELL)
 
 	var/list/permitted_types = list(
 		/obj/item/clothing/head/helmet/space/rig,
@@ -49,7 +49,7 @@
 /obj/item/device/modkit/tajaran
 	name = "tajara hardsuit modification kit"
 	desc = "A kit containing all the needed tools and parts to modify a hardsuit for another user. This one looks like it's meant for Tajara."
-	target_species = list("Tajaran")
+	target_species = list(SPECIES_TAJARAN)
 
 /obj/item/device/modkit/examine()
 	..()

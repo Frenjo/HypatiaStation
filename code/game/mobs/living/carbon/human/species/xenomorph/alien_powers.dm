@@ -2,7 +2,7 @@
 	for(var/mob/living/carbon/human/Q in GLOBL.living_mob_list)
 		if(self && ignore_self && self == Q)
 			continue
-		if(Q.species.name != "Xenomorph Queen")
+		if(Q.species.name != SPECIES_XENOMORPH_QUEEN)
 			continue
 		if(!Q.key || !Q.client || Q.stat)
 			continue
@@ -111,7 +111,7 @@
 		to_chat(src, SPAN_ALIUM("You begin to evolve!"))
 		for(var/mob/O in viewers(src, null))
 			O.show_message(SPAN_RADIOACTIVE("[src] begins to twist and contort!"), 1)
-		src.set_species("Xenomorph Queen")
+		src.set_species(SPECIES_XENOMORPH_QUEEN)
 
 	return
 

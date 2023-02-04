@@ -1,5 +1,5 @@
 /datum/species/obsedai
-	name = "Obsedai"
+	name = SPECIES_OBSEDAI
 	icobase = 'icons/mob/human_races/r_obsedai.dmi'
 	deform = 'icons/mob/human_races/r_obsedai.dmi'
 	language = "Obsedaian"

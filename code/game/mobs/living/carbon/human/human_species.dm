@@ -8,27 +8,27 @@
 
 /mob/living/carbon/human/skrell/New(new_loc)
 	h_style = "Skrell Male Tentacles"
-	..(new_loc, "Skrell")
+	..(new_loc, SPECIES_SKRELL)
 
 /mob/living/carbon/human/tajaran/New(new_loc)
 	h_style = "Tajaran Ears"
-	..(new_loc, "Tajaran")
+	..(new_loc, SPECIES_TAJARAN)
 
 /mob/living/carbon/human/soghun/New(new_loc)
 	h_style = "Soghun Horns"
-	..(new_loc, "Soghun")
+	..(new_loc, SPECIES_SOGHUN)
 
 /mob/living/carbon/human/vox/New(new_loc)
 	h_style = "Short Vox Quills"
-	..(new_loc, "Vox")
+	..(new_loc, SPECIES_VOX)
 
 /mob/living/carbon/human/voxarmalis/New(new_loc)
 	h_style = "Bald"
-	..(new_loc, "Vox Armalis")
+	..(new_loc, SPECIES_VOX_ARMALIS)
 
 /mob/living/carbon/human/diona/New(new_loc)
 	h_style = "Bald"
-	..(new_loc, "Diona")
+	..(new_loc, SPECIES_DIONA)
 
 /mob/living/carbon/human/machine/New(new_loc)
 	h_style = "blue IPC screen"
@@ -36,8 +36,8 @@
 
 /mob/living/carbon/human/obsedai/New(new_loc)
 	h_style = "Bald"
-	..(new_loc, "Obsedai")
+	..(new_loc, SPECIES_OBSEDAI)
 
 /mob/living/carbon/human/plasmalin/New(new_loc)
 	h_style = "Bald"
-	..(new_loc, "Plasmalin")
+	..(new_loc, SPECIES_PLASMALIN)

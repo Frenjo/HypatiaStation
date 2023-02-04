@@ -10,7 +10,7 @@
 	var/list/datum/disease2/effectholder/effects = list()
 	var/antigen = 0 // 16 bits describing the antigens, when one bit is set, a cure with that bit can dock here
 	var/max_stage = 4
-	var/list/affected_species = list("Human", "Soghun", "Skrell", "Tajaran")
+	var/list/affected_species = list(SPECIES_HUMAN, SPECIES_SOGHUN, SPECIES_SKRELL, SPECIES_TAJARAN)
 
 /datum/disease2/disease/New()
 	uniqueID = rand(0, 10000)

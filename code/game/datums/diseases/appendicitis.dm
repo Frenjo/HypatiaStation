@@ -5,7 +5,7 @@
 	spread = "Acute"
 	cure = "Surgery"
 	agent = "Appendix"
-	affected_species = list("Human")
+	affected_species = list(SPECIES_HUMAN)
 	permeability_mod = 1
 	contagious_period = 9001 //slightly hacky, but hey! whatever works, right?
 	desc = "If left untreated the subject will become very weak, and may vomit often."
@@ -18,7 +18,7 @@
 	..()
 	if(ishuman(affected_mob))
 		var/mob/living/carbon/human/H = affected_mob
-		if(H.species.flags & IS_PLANT || H.species.flags & IS_SYNTHETIC || H.species.name == "Vox" || H.species.name == "Vox Armalis" || H.species.name == "Plasmalin")
+		if(H.species.flags & IS_PLANT || H.species.flags & IS_SYNTHETIC || H.species.name == SPECIES_VOX || H.species.name == SPECIES_VOX_ARMALIS || H.species.name == SPECIES_PLASMALIN)
 			src.cure()
 
 	if(stage == 1)

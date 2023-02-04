@@ -11,13 +11,13 @@
 	mob_swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = MONKEY|SLIME|SIMPLE_ANIMAL|ALIEN
 
-	var/obj/item/weapon/card/id/wear_id = null // Fix for station bounced radios -- Skie
-	var/greaterform = "Human"                  // Used when humanizing a monkey.
+	var/obj/item/weapon/card/id/wear_id = null	// Fix for station bounced radios -- Skie
+	var/greaterform = SPECIES_HUMAN				// Used when humanizing a monkey.
 	icon_state = "monkey1"
-	//var/uni_append = "12C4E2"                // Small appearance modifier for different species.
-	var/list/uni_append = list(0x12C, 0x4E2)    // Same as above for DNA2.
-	var/update_muts = 1                        // Monkey gene must be set at start.
-	var/alien = 0				   //Used for reagent metabolism.
+	//var/uni_append = "12C4E2"					// Small appearance modifier for different species.
+	var/list/uni_append = list(0x12C, 0x4E2)	// Same as above for DNA2.
+	var/update_muts = 1							// Monkey gene must be set at start.
+	var/alien = 0								//Used for reagent metabolism.
 
 /mob/living/carbon/monkey/tajara
 	name = "farwa"
@@ -83,19 +83,19 @@
 /mob/living/carbon/monkey/soghun/New()
 	..()
 	dna.mutantrace = "lizard"
-	greaterform = "Soghun"
+	greaterform = SPECIES_SOGHUN
 	add_language("Sinta'unathi")
 
 /mob/living/carbon/monkey/skrell/New()
 	..()
 	dna.mutantrace = "skrell"
-	greaterform = "Skrell"
+	greaterform = SPECIES_SKRELL
 	add_language("Skrellian")
 
 /mob/living/carbon/monkey/tajara/New()
 	..()
 	dna.mutantrace = "tajaran"
-	greaterform = "Tajaran"
+	greaterform = SPECIES_TAJARAN
 	add_language("Siik'tajr")
 
 /mob/living/carbon/monkey/diona/New()
@@ -103,7 +103,7 @@
 	alien = 1
 	gender = NEUTER
 	dna.mutantrace = "plant"
-	greaterform = "Diona"
+	greaterform = SPECIES_DIONA
 	add_language("Rootspeak")
 
 /mob/living/carbon/monkey/movement_delay()

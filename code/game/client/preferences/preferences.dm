@@ -45,7 +45,7 @@
 	var/r_eyes = 0						//Eye color
 	var/g_eyes = 0						//Eye color
 	var/b_eyes = 0						//Eye color
-	var/species = "Human"
+	var/species = SPECIES_HUMAN
 	var/secondary_language = "None"		//Secondary language
 
 	//Mob preview
@@ -861,7 +861,7 @@
 					if(new_age)
 						age = max(min(round(text2num(new_age)), AGE_MAX), AGE_MIN)
 				if("species")
-					var/list/new_species = list("Human")
+					var/list/new_species = list(SPECIES_HUMAN)
 					var/prev_species = species
 					var/whitelisted = 0
 
@@ -955,7 +955,7 @@
 						b_type = new_b_type
 
 				if("hair")
-					if(species == "Human" || species == "Soghun" || species == "Tajaran" || species == "Skrell")
+					if(species == SPECIES_HUMAN || species == SPECIES_SOGHUN || species == SPECIES_TAJARAN || species == SPECIES_SKRELL)
 						var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference") as color | null
 						if(new_hair)
 							r_hair = hex2num(copytext(new_hair, 2, 4))
@@ -1019,14 +1019,14 @@
 						b_eyes = hex2num(copytext(new_eyes, 6, 8))
 
 				if("s_tone")
-					if(!species == "Human" || !species == "Tajaran")
+					if(!species == SPECIES_HUMAN || !species == SPECIES_TAJARAN)
 						return
 					var/new_s_tone = input(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference") as num | null
 					if(new_s_tone)
 						s_tone = 35 - max(min( round(new_s_tone), 220),1)
 
 				if("skin")
-					if(species == "Soghun" || species == "Tajaran" || species == "Skrell")
+					if(species == SPECIES_SOGHUN || species == SPECIES_TAJARAN || species == SPECIES_SKRELL)
 						var/new_skin = input(user, "Choose your character's skin colour: ", "Character Preference") as color | null
 						if(new_skin)
 							r_skin = hex2num(copytext(new_skin, 2, 4))

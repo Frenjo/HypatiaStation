@@ -88,7 +88,7 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.species && H.species.name != "Vox")
+		if(H.species && H.species.name != SPECIES_VOX)
 			to_chat(user, SPAN_WARNING("The weapon does not respond to you!"))
 			return
 	else
@@ -137,7 +137,7 @@
 	if(loc != user)
 		var/mob/living/carbon/human/H = user
 		if(istype(H))
-			if(H.species.name == "Vox Armalis")
+			if(H.species.name == SPECIES_VOX_ARMALIS)
 				..()
 				return
 		to_chat(user, SPAN_WARNING("\The [src] is far too large for you to pick up."))

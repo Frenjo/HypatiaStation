@@ -1,5 +1,5 @@
 /datum/species/human
-	name = "Human"
+	name = SPECIES_HUMAN
 	language = "Sol Common"
 	unarmed_types = list(
 		/datum/unarmed_attack/punch,

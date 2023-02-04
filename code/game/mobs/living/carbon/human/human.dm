@@ -1136,7 +1136,7 @@
 /mob/living/carbon/human/proc/set_species(new_species, force_organs)
 	if(!dna)
 		if(!new_species)
-			new_species = "Human"
+			new_species = SPECIES_HUMAN
 	else
 		if(!new_species)
 			new_species = dna.species

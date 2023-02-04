@@ -53,7 +53,7 @@
 /mob/living/carbon/monkey/diona/attack_hand(mob/living/carbon/human/M as mob)
 	//Let people pick the little buggers up.
 	if(M.a_intent == "help")
-		if(M.species && M.species.name == "Diona")
+		if(M.species && M.species.name == SPECIES_DIONA)
 			M << "You feel your being twine with that of [src] as it merges with your biomass."
 			src << "You feel your being twine with that of [M] as you merge with its biomass."
 			src.verbs += /mob/living/carbon/monkey/diona/proc/split
@@ -74,7 +74,7 @@
 	..()
 	gender = NEUTER
 	dna.mutantrace = "plant"
-	greaterform = "Diona"
+	greaterform = SPECIES_DIONA
 	add_language("Rootspeak")
 	src.verbs += /mob/living/carbon/monkey/diona/proc/merge
 
@@ -133,7 +133,7 @@
 	set name = "Evolve"
 	set desc = "Grow to a more complex form."
 
-	if(!is_alien_whitelisted(src, "Diona") && CONFIG_GET(usealienwhitelist))
+	if(!is_alien_whitelisted(src, SPECIES_DIONA) && CONFIG_GET(usealienwhitelist))
 		src << alert("You are currently not whitelisted to play as a full diona.")
 		return 0
 
@@ -149,7 +149,7 @@
 	src.visible_message("\red [src] begins to shift and quiver, and erupts in a shower of shed bark and twigs!","\red You begin to shift and quiver, then erupt in a shower of shed bark and twigs, attaining your adult form!")
 
 	var/mob/living/carbon/human/adult = new(get_turf(src.loc))
-	adult.set_species("Diona")
+	adult.set_species(SPECIES_DIONA)
 
 	if(istype(loc, /obj/item/weapon/holder/diona))
 		var/obj/item/weapon/holder/diona/L = loc

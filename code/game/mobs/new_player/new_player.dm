@@ -144,7 +144,7 @@
 			to_chat(usr, SPAN_WARNING("The round is either not ready, or has already finished..."))
 			return
 
-		if(client.prefs.species != "Human")
+		if(client.prefs.species != SPECIES_HUMAN)
 			if(!is_alien_whitelisted(src, client.prefs.species) && CONFIG_GET(usealienwhitelist))
 				src << alert("You are currently not whitelisted to play [client.prefs.species].")
 				return 0

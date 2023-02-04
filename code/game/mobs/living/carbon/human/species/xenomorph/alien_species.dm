@@ -1,7 +1,7 @@
 //TODO: Generalize some kind of power pool so that other races can use it.
 //Stand-in until this is made more lore-friendly.
 /datum/species/xenos
-	name = "Xenomorph"
+	name = SPECIES_XENOMORPH
 	language = "Hivemind"
 	unarmed_types = list(
 		/datum/unarmed_attack/claws/strong,
@@ -94,7 +94,7 @@
 	..()
 
 /datum/species/xenos/drone
-	name = "Xenomorph Drone"
+	name = SPECIES_XENOMORPH_DRONE
 	caste_name = "drone"
 	weeds_plasma_rate = 15
 	slowdown = 2
@@ -130,7 +130,7 @@
 	return ..()
 
 /datum/species/xenos/hunter
-	name = "Xenomorph Hunter"
+	name = SPECIES_XENOMORPH_HUNTER
 	weeds_plasma_rate = 5
 	caste_name = "hunter"
 	slowdown = -1
@@ -157,7 +157,7 @@
 	)
 
 /datum/species/xenos/sentinel
-	name = "Xenomorph Sentinel"
+	name = SPECIES_XENOMORPH_SENTINEL
 	weeds_plasma_rate = 10
 	caste_name = "sentinel"
 	slowdown = 1
@@ -185,7 +185,7 @@
 	)
 
 /datum/species/xenos/queen
-	name = "Xenomorph Queen"
+	name = SPECIES_XENOMORPH_QUEEN
 	weeds_heal_rate = 5
 	weeds_plasma_rate = 20
 	caste_name = "queen"

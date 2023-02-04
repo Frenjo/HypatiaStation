@@ -381,7 +381,7 @@
 	icon_state = "plasmalin"
 	item_state = "plasmalin"
 	item_color = "plasmalin"
-	species_restricted = list("Plasmalin")
+	species_restricted = list(SPECIES_PLASMALIN)
 	flags_inv = HIDESHOES
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS
 

@@ -40,10 +40,10 @@
 	icon_state = "voxmask"
 	item_state = "voxmask"
 	permeability_coefficient = 0.01
-	species_restricted = list("Vox", "Vox Armalis")
+	species_restricted = list(SPECIES_VOX, SPECIES_VOX_ARMALIS)
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/mask.dmi',
-		"Vox Armalis" = 'icons/mob/species/armalis/mask.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/mask.dmi',
+		SPECIES_VOX_ARMALIS = 'icons/mob/species/armalis/mask.dmi',
 	)
 
 /obj/item/clothing/mask/breath/vox/attack_self(mob/user)
@@ -51,7 +51,7 @@
 
 /obj/item/clothing/mask/breath/vox/mob_can_equip(M as mob, slot)
 	var/mob/living/carbon/human/V = M
-	if(V.species.name != "Vox")
+	if(V.species.name != SPECIES_VOX)
 		to_chat(V, SPAN_WARNING("This clearly isn't designed for your species!"))
 		return 0
 

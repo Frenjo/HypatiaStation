@@ -4,10 +4,10 @@
 	desc = "Smoothly contoured and polished to a shine. Still looks like a fishbowl."
 	armor = list(melee = 20, bullet = 20, laser = 50, energy = 50, bomb = 50, bio = 100, rad = 100)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	species_restricted = list("Human", "Skrell")
+	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL)
 	sprite_sheets = list(
-		"Human" = 'icons/mob/species/skrell/helmet.dmi',
-		"Skrell" = 'icons/mob/species/skrell/helmet.dmi'
+		SPECIES_HUMAN = 'icons/mob/species/skrell/helmet.dmi',
+		SPECIES_SKRELL = 'icons/mob/species/skrell/helmet.dmi'
 	)
 
 /obj/item/clothing/head/helmet/space/skrell/white
@@ -30,10 +30,10 @@
 	)
 	heat_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	species_restricted = list("Human", "Skrell")
+	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL)
 	sprite_sheets = list(
-		"Human" = 'icons/mob/species/skrell/suit.dmi',
-		"Skrell" = 'icons/mob/species/skrell/suit.dmi'
+		SPECIES_HUMAN = 'icons/mob/species/skrell/suit.dmi',
+		SPECIES_SKRELL = 'icons/mob/species/skrell/suit.dmi'
 	)
 
 /obj/item/clothing/suit/space/skrell/white
@@ -52,9 +52,9 @@
 	heat_protection = HEAD
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	var/up = 0 //So Soghun helmets play nicely with the weldervision check.
-	species_restricted = list("Soghun")
+	species_restricted = list(SPECIES_SOGHUN)
 	sprite_sheets = list(
-		"Soghun" = 'icons/mob/species/soghun/helmet.dmi'
+		SPECIES_SOGHUN = 'icons/mob/species/soghun/helmet.dmi'
 	)
 
 /obj/item/clothing/head/helmet/space/soghun/helmet_cheap
@@ -72,9 +72,9 @@
 	)
 	heat_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	species_restricted = list("Soghun")
+	species_restricted = list(SPECIES_SOGHUN)
 	sprite_sheets = list(
-		"Soghun" = 'icons/mob/species/soghun/suit.dmi'
+		SPECIES_SOGHUN = 'icons/mob/species/soghun/suit.dmi'
 	)
 
 /obj/item/clothing/suit/space/soghun/rig_cheap
@@ -112,19 +112,19 @@
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
 	heat_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	species_restricted = list("Vox", "Vox Armalis")
+	species_restricted = list(SPECIES_VOX, SPECIES_VOX_ARMALIS)
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/suit.dmi',
-		"Vox Armalis" = 'icons/mob/species/armalis/suit.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi',
+		SPECIES_VOX_ARMALIS = 'icons/mob/species/armalis/suit.dmi',
 	)
 
 /obj/item/clothing/head/helmet/space/vox
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
 	flags = HEADCOVERSEYES | STOPSPRESSUREDAMAGE
-	species_restricted = list("Vox", "Vox Armalis")
+	species_restricted = list(SPECIES_VOX, SPECIES_VOX_ARMALIS)
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/head.dmi',
-		"Vox Armalis" = 'icons/mob/species/armalis/head.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/head.dmi',
+		SPECIES_VOX_ARMALIS = 'icons/mob/species/armalis/head.dmi',
 	)
 
 /obj/item/clothing/head/helmet/space/vox/pressure
@@ -177,7 +177,7 @@
 
 /obj/item/clothing/under/vox
 	has_sensor = 0
-	species_restricted = list("Vox")
+	species_restricted = list(SPECIES_VOX)
 
 /obj/item/clothing/under/vox/vox_casual
 	name = "alien clothing"
@@ -201,10 +201,10 @@
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	item_color = "gloves-vox"
-	species_restricted = list("Vox", "Vox Armalis")
+	species_restricted = list(SPECIES_VOX, SPECIES_VOX_ARMALIS)
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/gloves.dmi',
-		"Vox Armalis" = 'icons/mob/species/armalis/gloves.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/gloves.dmi',
+		SPECIES_VOX_ARMALIS = 'icons/mob/species/armalis/gloves.dmi',
 	)
 
 /obj/item/clothing/shoes/magboots/vox
@@ -212,10 +212,10 @@
 	name = "vox boots"
 	item_state = "boots-vox"
 	icon_state = "boots-vox"
-	species_restricted = list("Vox", "Vox Armalis")
+	species_restricted = list(SPECIES_VOX, SPECIES_VOX_ARMALIS)
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/feet.dmi',
-		"Vox Armalis" = 'icons/mob/species/armalis/feet.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/feet.dmi',
+		SPECIES_VOX_ARMALIS = 'icons/mob/species/armalis/feet.dmi',
 	)
 
 /obj/item/clothing/shoes/magboots/vox/attack_self(mob/user)
@@ -238,4 +238,4 @@
 	desc = "A space-capable helmet designed to prevent a Plasmalin from combusting in a human-breathable atmosphere."
 	icon_state = "rig0-standard-plasmalin"
 	item_state = "rig0-standard-plasmalin"
-	species_restricted = list("Plasmalin")
+	species_restricted = list(SPECIES_PLASMALIN)

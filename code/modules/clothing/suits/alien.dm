@@ -1,12 +1,12 @@
 //Soghun clothing.
 /obj/item/clothing/suit/soghun
-	species_restricted = list("exclude", "Vox", "Vox Armalis", "Obsedai")
+	species_restricted = list("exclude", SPECIES_VOX, SPECIES_VOX_ARMALIS, SPECIES_OBSEDAI)
 	sprite_sheets = list(
-		"Human" = 'icons/mob/species/soghun/suit.dmi',
-		"Soghun" = 'icons/mob/species/soghun/suit.dmi',
-		"Tajaran" = 'icons/mob/species/soghun/suit.dmi',
-		"Skrell" = 'icons/mob/species/soghun/suit.dmi',
-		"Plasmalin" = 'icons/mob/species/soghun/suit.dmi'
+		SPECIES_HUMAN = 'icons/mob/species/soghun/suit.dmi',
+		SPECIES_SOGHUN = 'icons/mob/species/soghun/suit.dmi',
+		SPECIES_TAJARAN = 'icons/mob/species/soghun/suit.dmi',
+		SPECIES_SKRELL = 'icons/mob/species/soghun/suit.dmi',
+		SPECIES_PLASMALIN = 'icons/mob/species/soghun/suit.dmi'
 	)
 
 /obj/item/clothing/suit/soghun/robe

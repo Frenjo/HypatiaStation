@@ -29,10 +29,10 @@
 	//Departments that the cycler can paint suits to look like.
 	var/list/departments = list("Engineering", "Mining", "Medical", "Security", "Atmos")
 	//Species that the suits can be configured to fit.
-	var/list/species = list("Human", "Tajaran")
+	var/list/species = list(SPECIES_HUMAN, SPECIES_TAJARAN)
 
 	var/target_department = "Engineering"
-	var/target_species = "Human"
+	var/target_species = SPECIES_HUMAN
 
 	var/mob/living/carbon/human/occupant = null
 	var/obj/item/clothing/suit/space/rig/suit = null
@@ -43,14 +43,14 @@
 	model_text = "Engineering"
 	req_access = list(ACCESS_CONSTRUCTION)
 	departments = list("Engineering", "Atmos")
-	species = list("Human", "Tajaran")
+	species = list(SPECIES_HUMAN, SPECIES_TAJARAN)
 
 /obj/machinery/suit_cycler/mining
 	name = "Mining suit cycler"
 	model_text = "Mining"
 	req_access = list(ACCESS_MINING)
 	departments = list("Mining")
-	species = list("Human", "Tajaran")
+	species = list(SPECIES_HUMAN, SPECIES_TAJARAN)
 	target_department = "Mining"
 
 /obj/machinery/suit_cycler/security
@@ -58,7 +58,7 @@
 	model_text = "Security"
 	req_access = list(ACCESS_SECURITY)
 	departments = list("Security")
-	species = list("Human", "Soghun", "Tajaran")
+	species = list(SPECIES_HUMAN, SPECIES_SOGHUN, SPECIES_TAJARAN)
 	target_department = "Security"
 
 /obj/machinery/suit_cycler/attack_ai(mob/user as mob)
@@ -476,21 +476,21 @@
 		return
 
 	switch(target_species)
-		if("Human", "Skrell")
+		if(SPECIES_HUMAN, SPECIES_SKRELL)
 			if(helmet)
-				helmet.species_restricted = list("exclude", "Soghun", "Tajaran", "Diona", "Vox")
+				helmet.species_restricted = list("exclude", SPECIES_SOGHUN, SPECIES_TAJARAN, SPECIES_DIONA, SPECIES_VOX)
 			if(suit)
-				suit.species_restricted = list("exclude", "Soghun", "Tajaran", "Diona", "Vox")
-		if("Soghun")
+				suit.species_restricted = list("exclude", SPECIES_SOGHUN, SPECIES_TAJARAN, SPECIES_DIONA, SPECIES_VOX)
+		if(SPECIES_SOGHUN)
 			if(helmet)
-				helmet.species_restricted = list("Soghun")
+				helmet.species_restricted = list(SPECIES_SOGHUN)
 			if(suit)
-				suit.species_restricted = list("Soghun")
-		if("Tajaran")
+				suit.species_restricted = list(SPECIES_SOGHUN)
+		if(SPECIES_TAJARAN)
 			if(helmet)
-				helmet.species_restricted = list("Tajaran")
+				helmet.species_restricted = list(SPECIES_TAJARAN)
 			if(suit)
-				suit.species_restricted = list("Tajaran")
+				suit.species_restricted = list(SPECIES_TAJARAN)
 
 	switch(target_department)
 		if("Engineering")

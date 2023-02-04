@@ -63,8 +63,8 @@
 			name = "mangled [name]"
 			desc = "[desc]<br>They have had the fingertips cut off of them."
 			if("exclude" in species_restricted)
-				species_restricted -= "Soghun"
-				species_restricted -= "Tajaran"
+				species_restricted -= SPECIES_SOGHUN
+				species_restricted -= SPECIES_TAJARAN
 			return
 		else
 			to_chat(user, SPAN_NOTICE("The [src] have already been clipped!"))

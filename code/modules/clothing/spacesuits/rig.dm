@@ -14,9 +14,9 @@
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
 	//Species-specific stuff.
-	species_restricted = list("exclude", "Soghun", "Tajaran", "Skrell", "Diona", "Vox", "Obsedai", "Plasmalin")
+	species_restricted = list("exclude", SPECIES_SOGHUN, SPECIES_TAJARAN, SPECIES_SKRELL, SPECIES_DIONA, SPECIES_VOX, SPECIES_OBSEDAI, SPECIES_PLASMALIN)
 	sprite_sheets = list(
-		"Tajaran" = 'icons/mob/species/tajara/helmet.dmi'
+		SPECIES_TAJARAN = 'icons/mob/species/tajara/helmet.dmi'
 	)
 
 /obj/item/clothing/head/helmet/space/rig/attack_self(mob/user)
@@ -61,9 +61,9 @@
 	)
 	heat_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	species_restricted = list("exclude", "Soghun", "Tajaran", "Diona", "Vox", "Obsedai", "Plasmalin")
+	species_restricted = list("exclude", SPECIES_SOGHUN, SPECIES_TAJARAN, SPECIES_DIONA, SPECIES_VOX, SPECIES_OBSEDAI, SPECIES_PLASMALIN)
 	sprite_sheets = list(
-		"Tajaran" = 'icons/mob/species/tajara/suit.dmi'
+		SPECIES_TAJARAN = 'icons/mob/species/tajara/suit.dmi'
 	)
 
 	//Breach thresholds, should ideally be inherited by most (if not all) hardsuits.
@@ -303,8 +303,8 @@
 	desc = "A special suit that protects against hazardous, low pressure environments. Has reinforced plating."
 	item_state = "mining_hardsuit"
 	sprite_sheets = list(
-		"Soghun" = 'icons/mob/species/soghun/suit.dmi',
-		"Tajaran" = 'icons/mob/species/tajara/suit.dmi'
+		SPECIES_SOGHUN = 'icons/mob/species/soghun/suit.dmi',
+		SPECIES_TAJARAN = 'icons/mob/species/tajara/suit.dmi'
 	)
 
 //Syndicate rig
@@ -317,7 +317,7 @@
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 60)
 	siemens_coefficient = 0.6
 	var/obj/machinery/camera/camera
-	species_restricted = list("exclude", "Vox")
+	species_restricted = list("exclude", SPECIES_VOX)
 
 /obj/item/clothing/head/helmet/space/rig/syndi/attack_self(mob/user)
 	if(camera)
@@ -348,7 +348,7 @@
 		/obj/item/weapon/melee/energy/sword, /obj/item/weapon/handcuffs, /obj/item/device/suit_cooling_unit
 	)
 	siemens_coefficient = 0.6
-	species_restricted = list("exclude", "Vox")
+	species_restricted = list("exclude", SPECIES_VOX)
 
 //Wizard Rig
 /obj/item/clothing/head/helmet/space/rig/wizard
@@ -392,8 +392,8 @@
 		/obj/item/device/healthanalyzer, /obj/item/stack/medical, /obj/item/device/suit_cooling_unit
 	)
 	sprite_sheets = list(
-		"Soghun" = 'icons/mob/species/soghun/suit.dmi',
-		"Tajaran" = 'icons/mob/species/tajara/suit.dmi'
+		SPECIES_SOGHUN = 'icons/mob/species/soghun/suit.dmi',
+		SPECIES_TAJARAN = 'icons/mob/species/tajara/suit.dmi'
 	)
 
 //Security
@@ -418,8 +418,8 @@
 	)
 	siemens_coefficient = 0.7
 	sprite_sheets = list(
-		"Soghun" = 'icons/mob/species/soghun/suit.dmi',
-		"Tajaran" = 'icons/mob/species/tajara/suit.dmi'
+		SPECIES_SOGHUN = 'icons/mob/species/soghun/suit.dmi',
+		SPECIES_TAJARAN = 'icons/mob/species/tajara/suit.dmi'
 	)
 
 //Atmospherics Rig (BS12)
@@ -440,6 +440,6 @@
 	armor = list(melee = 40, bullet = 0, laser = 0, energy = 0, bomb = 25, bio = 100, rad = 0)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	sprite_sheets = list(
-		"Soghun" = 'icons/mob/species/soghun/suit.dmi',
-		"Tajaran" = 'icons/mob/species/tajara/suit.dmi'
+		SPECIES_SOGHUN = 'icons/mob/species/soghun/suit.dmi',
+		SPECIES_TAJARAN = 'icons/mob/species/tajara/suit.dmi'
 	)

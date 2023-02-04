@@ -176,7 +176,7 @@
 	metadata		= sanitize_text(metadata, initial(metadata))
 	real_name		= reject_bad_name(real_name)
 	if(isnull(species))
-		species = "Human"
+		species = SPECIES_HUMAN
 	if(isnull(secondary_language))
 		secondary_language = "None"
 	if(isnull(spawnpoint))

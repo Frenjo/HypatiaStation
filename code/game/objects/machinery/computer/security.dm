@@ -416,7 +416,7 @@ What a mess.*/
 				G.fields["fingerprint"] = "Unknown"
 				G.fields["p_stat"] = "Active"
 				G.fields["m_stat"] = "Stable"
-				G.fields["species"] = "Human"
+				G.fields["species"] = SPECIES_HUMAN
 				GLOBL.data_core.general += G
 				active1 = G
 				active2 = null
