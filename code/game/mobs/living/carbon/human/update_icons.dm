@@ -858,10 +858,8 @@ var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/update_inv_legcuffed(update_icons = 1)
 	if(legcuffed)
 		overlays_standing[LEGCUFF_LAYER] = image("icon" = 'icons/mob/mob.dmi', "icon_state" = "legcuff1")
-		if(src.m_intent != "walk")
-			src.m_intent = "walk"
-			if(src.hud_used && src.hud_used.move_intent)
-				src.hud_used.move_intent.icon_state = "walking"
+		if(!IS_WALKING(src))
+			src.set_move_intent(/decl/move_intent/walk)
 	else
 		overlays_standing[LEGCUFF_LAYER] = null
 

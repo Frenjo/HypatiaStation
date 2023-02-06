@@ -124,7 +124,7 @@
 		using.name = "mov_intent"
 		using.set_dir(SOUTHWEST)
 		using.icon = ui_style
-		using.icon_state = (mymob.m_intent == "run" ? "running" : "walking")
+		using.icon_state = mymob.move_intent.hud_icon_state
 		using.screen_loc = UI_MOVI
 		using.layer = 20
 		using.color = ui_color

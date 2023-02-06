@@ -50,7 +50,7 @@
 		var/mob/living/carbon/M = crosser
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if((istype(H.shoes, /obj/item/clothing/shoes) && H.shoes.flags & NOSLIP) || M.m_intent == "walk")
+			if((istype(H.shoes, /obj/item/clothing/shoes) && H.shoes.flags & NOSLIP) || IS_RUNNING(M))
 				return
 			if(M.real_name != src.owner && istype(src.cartridge, /obj/item/weapon/cartridge/clown))
 				if(src.cartridge.charges < 5)

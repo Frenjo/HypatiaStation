@@ -319,7 +319,7 @@
 		L.lastarea = get_area(L.loc)
 	var/area/newarea = get_area(L.loc)
 	var/area/oldarea = L.lastarea
-	if(!oldarea.has_gravity && newarea.has_gravity && L.m_intent == "run") // Being ready when you change areas gives you a chance to avoid falling all together.
+	if(!oldarea.has_gravity && newarea.has_gravity && IS_RUNNING(L)) // Being ready when you change areas gives you a chance to avoid falling all together.
 		thunk(L)
 
 	L.lastarea = newarea
@@ -353,7 +353,7 @@
 		var/mob/living/carbon/human/human = mob
 		if(istype(human.shoes, /obj/item/clothing/shoes/magboots) && (human.shoes.flags & NOSLIP))
 			return
-		if(human.m_intent == "run") // Only clumsy humans can fall on their asses.
+		if(IS_RUNNING(human)) // Only clumsy humans can fall on their asses.
 			human.AdjustStunned(5)
 			human.AdjustWeakened(5)
 		else

@@ -248,13 +248,10 @@
 		move_delay = world.time - leftover	//set move delay
 
 		mob.last_move_intent = world.time + 10
-		switch(mob.m_intent)
-			if("run")
-				if(mob.drowsyness > 0)
-					move_delay += 6
-				move_delay += 1 + CONFIG_GET(run_speed)
-			if("walk")
-				move_delay += 7 + CONFIG_GET(walk_speed)
+		if(IS_RUNNING(mob))
+			if(mob.drowsyness > 0)
+				move_delay += 6
+		move_delay += mob.move_intent.move_delay
 		move_delay += mob.movement_delay()
 
 		if(CONFIG_GET(tickcomp))

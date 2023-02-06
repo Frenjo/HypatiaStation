@@ -338,7 +338,7 @@
 	..()
 	statpanel("Status")
 	stat("Intent: ", "[a_intent]")
-	stat("Move Mode: ", "[m_intent]")
+	stat("Move Mode: ", "[move_intent.name]")
 	if(client && mind)
 		if(client.statpanel == "Status")
 			if(mind.changeling)

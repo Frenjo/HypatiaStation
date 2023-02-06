@@ -44,7 +44,7 @@
 			if(istype(H.shoes, /obj/item/clothing/shoes/clown_shoes))
 				// Disabled footstep spacing, oh god what have I done? -Frenjo
 				//var/obj/item/clothing/shoes/clown_shoes/O = H.shoes
-				if(H.m_intent == "run")
+				if(IS_RUNNING(H))
 					//if(O.footstep >= 2)
 						//O.footstep = 0
 						//playsound(src, "clownstep", 50, 1) // this will get annoying very fast.
@@ -81,7 +81,7 @@
 			if(1)
 				if(ishuman(M)) // Added check since monkeys don't have shoes
 					var/mob/living/carbon/human/human = M
-					if(human.m_intent == "run" && !(istype(human.shoes, /obj/item/clothing/shoes) && (human.shoes.flags & NOSLIP)))
+					if(IS_RUNNING(human) && !(istype(human.shoes, /obj/item/clothing/shoes) && (human.shoes.flags & NOSLIP)))
 						human.stop_pulling()
 						step(human, human.dir)
 						to_chat(human, SPAN_INFO("You slipped on the wet floor!"))
@@ -92,7 +92,7 @@
 						human.inertia_dir = 0
 						return
 				else if(!isslime(M))
-					if(M.m_intent == "run")
+					if(IS_RUNNING(M))
 						M.stop_pulling()
 						step(M, M.dir)
 						to_chat(M, SPAN_INFO("You slipped on the wet floor!"))
@@ -122,7 +122,7 @@
 			if(3) // Ice
 				if(ishuman(M)) // Added check since monkeys don't have shoes
 					var/mob/living/carbon/human/human = M
-					if(human.m_intent == "run" && !(istype(human.shoes, /obj/item/clothing/shoes) && (human.shoes.flags & NOSLIP)) && prob(30))
+					if(IS_RUNNING(human) && !(istype(human.shoes, /obj/item/clothing/shoes) && (human.shoes.flags & NOSLIP)) && prob(30))
 						human.stop_pulling()
 						step(human, human.dir)
 						to_chat(human, SPAN_INFO("You slipped on the icy floor!"))
@@ -133,7 +133,7 @@
 						M.inertia_dir = 0
 						return
 				else if(!isslime(M))
-					if(M.m_intent == "run" && prob(30))
+					if(IS_RUNNING(M) && prob(30))
 						M.stop_pulling()
 						step(M, M.dir)
 						to_chat(M, SPAN_INFO("You slipped on the icy floor!"))

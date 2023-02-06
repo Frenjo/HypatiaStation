@@ -52,7 +52,7 @@
 	statpanel("Status")
 
 	stat("Intent:", "[a_intent]")
-	stat("Move Mode:", "[m_intent]")
+	stat("Move Mode:", "[move_intent.name]")
 	if(global.CTgame_ticker && global.CTgame_ticker.mode && global.CTgame_ticker.mode.name == "AI malfunction")
 		if(global.CTgame_ticker.mode:malf_mode_declared)
 			stat(null, "Time left: [max(global.CTgame_ticker.mode:AI_win_timeleft / (global.CTgame_ticker.mode:apcs / 3), 0)]")

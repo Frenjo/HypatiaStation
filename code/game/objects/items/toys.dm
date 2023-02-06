@@ -402,7 +402,7 @@
 /obj/item/toy/snappop/Crossed(H as mob|obj)
 	if((ishuman(H))) //i guess carp and shit shouldn't set them off
 		var/mob/living/carbon/M = H
-		if(M.m_intent == "run")
+		if(IS_RUNNING(M))
 			to_chat(M, SPAN_WARNING("You step on the snap pop!"))
 
 			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread

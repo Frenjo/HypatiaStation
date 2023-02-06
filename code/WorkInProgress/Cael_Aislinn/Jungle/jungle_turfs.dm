@@ -132,7 +132,7 @@
 	if(isliving(O))
 		var/mob/living/M = O
 		//slip in the murky water if we try to run through it
-		if(prob(10 + (M.m_intent == "run" ? 40 : 0)))
+		if(prob(10 + (IS_RUNNING(M) ? 40 : 0)))
 			to_chat(M, pick(SPAN_INFO("You slip on something slimy."), SPAN_INFO("You fall over into the murk.")))
 			M.Stun(2)
 			M.Weaken(1)

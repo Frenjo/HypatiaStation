@@ -167,7 +167,7 @@
 		if(ishuman(AM))
 			if(isturf(src.loc))
 				var/mob/living/carbon/H = AM
-				if(H.m_intent == "run")
+				if(IS_RUNNING(H))
 					armed = 0
 					H.legcuffed = src
 					src.loc = H

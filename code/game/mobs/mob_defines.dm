@@ -114,8 +114,13 @@
 	var/intent = null		//Living
 	var/shakecamera = 0
 	var/a_intent = "help"	//Living
-	var/m_int = null		//Living
-	var/m_intent = "run"	//Living
+
+	var/decl/move_intent/move_intent	//Living
+	var/static/list/move_intents = list(
+		/decl/move_intent/run = new /decl/move_intent/run(),
+		/decl/move_intent/walk = new /decl/move_intent/walk()
+	)
+
 	var/lastKnownIP = null
 	var/obj/structure/stool/bed/buckled = null	//Living
 	var/obj/item/l_hand = null					//Living
