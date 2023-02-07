@@ -9,12 +9,12 @@
 
 GLOBAL_GLOBL_INIT(lighting_overlays_initialised, FALSE)
 
-GLOBAL_GLOBL_LIST_NEW(lighting_update_lights)	// List of lighting sources  queued for update.
-GLOBAL_GLOBL_LIST_NEW(lighting_update_corners)	// List of lighting corners  queued for update.
+GLOBAL_GLOBL_LIST_NEW(lighting_update_lights)	// List of lighting sources queued for update.
+GLOBAL_GLOBL_LIST_NEW(lighting_update_corners)	// List of lighting corners queued for update.
 GLOBAL_GLOBL_LIST_NEW(lighting_update_overlays)	// List of lighting overlays queued for update.
 
-GLOBAL_GLOBL_LIST_NEW(lighting_update_lights_old)	// List of lighting sources  currently being updated.
-GLOBAL_GLOBL_LIST_NEW(lighting_update_corners_old)	// List of lighting corners  currently being updated.
+GLOBAL_GLOBL_LIST_NEW(lighting_update_lights_old)	// List of lighting sources currently being updated.
+GLOBAL_GLOBL_LIST_NEW(lighting_update_corners_old)	// List of lighting corners currently being updated.
 GLOBAL_GLOBL_LIST_NEW(lighting_update_overlays_old)	// List of lighting overlays currently being updated.
 
 PROCESS_DEF(lighting)

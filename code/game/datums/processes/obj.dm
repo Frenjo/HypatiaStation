@@ -29,5 +29,5 @@ PROCESS_DEF(obj)
 			GLOBL.processing_objects -= O
 
 /datum/process/obj/statProcess()
-	..()
+	. = ..()
 	stat(null, "[GLOBL.processing_objects.len] object\s")

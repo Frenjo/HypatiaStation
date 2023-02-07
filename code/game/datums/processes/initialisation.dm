@@ -28,5 +28,5 @@ PROCESS_DEF(initialisation)
 	GLOBL.queued_initialisations.Remove(AM)
 
 /datum/process/initialisation/statProcess()
-	..()
+	. = ..()
 	stat(null, "[GLOBL.queued_initialisations.len] pending object\s")

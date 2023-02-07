@@ -52,7 +52,7 @@ PROCESS_DEF(machinery)
 		SCHECK
 
 /datum/process/machinery/statProcess()
-	..()
+	. = ..()
 	stat(null, "[GLOBL.machines.len] machines")
 	stat(null, "[GLOBL.powernets.len] powernets")
 	stat(null, "[GLOBL.processing_power_items.len] power item\s")

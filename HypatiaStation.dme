@@ -156,7 +156,6 @@
 #include "code\game\datums\ai_laws.dm"
 #include "code\game\datums\beam.dm"
 #include "code\game\datums\browser.dm"
-#include "code\game\datums\clickable_stat.dm"
 #include "code\game\datums\computerfiles.dm"
 #include "code\game\datums\datacore.dm"
 #include "code\game\datums\datumvars.dm"

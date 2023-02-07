@@ -18,7 +18,7 @@ CONTROLLER_DEF(vote)
 	var/auto_muted = 0
 
 /datum/controller/vote/New()
-	..()
+	. = ..()
 	if(global.CTvote != src)
 		if(istype(global.CTvote))
 			qdel(global.CTvote)

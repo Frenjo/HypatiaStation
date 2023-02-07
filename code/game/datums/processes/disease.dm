@@ -14,5 +14,5 @@ PROCESS_DEF(disease)
 		SCHECK
 
 /datum/process/disease/statProcess()
-	..()
+	. = ..()
 	stat(null, "[GLOBL.active_diseases.len] disease\s")

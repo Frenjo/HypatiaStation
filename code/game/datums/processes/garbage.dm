@@ -60,7 +60,7 @@ PROCESS_DEF(garbage)
 		testing("GC: [refID] old enough to test: GCd_at_time: [GCd_at_time] time_to_kill: [time_to_kill] current: [world.time]")
 		#endif
 		if(A && A.gcDestroyed == GCd_at_time) // So if something else coincidently gets the same ref, it's not deleted by mistake
-			// Something's still referring to the qdel'd object.  Kill it.
+			// Something's still referring to the qdel'd object. Kill it.
 			testing("GC: -- \ref[A] | [A.type] was unable to be GC'd and was deleted --")
 			logging["[A.type]"]++
 			del(A)
@@ -92,7 +92,7 @@ PROCESS_DEF(garbage)
 	destroyed["\ref[A]"] = world.time
 
 /datum/process/garbage/statProcess()
-	..()
+	. = ..()
 	stat(null, "[garbage_collect ? "On" : "Off"], [destroyed.len] queued")
 	stat(null, "Dels: [total_dels], [soft_dels] soft, [hard_dels] hard, [tick_dels] last run")
 
@@ -177,7 +177,7 @@ PROCESS_DEF(garbage)
 		usr.client.running_find_references = null
 		return
 
-	if(alert("Running this will create a lot of lag until it finishes.  You can cancel it by running it again.  Would you like to begin the search?", "Find References", "Yes", "No") == "No")
+	if(alert("Running this will create a lot of lag until it finishes. You can cancel it by running it again. Would you like to begin the search?", "Find References", "Yes", "No") == "No")
 		return
 
 	// Remove this object from the list of things to be auto-deleted.

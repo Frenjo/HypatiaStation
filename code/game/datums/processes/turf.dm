@@ -17,5 +17,5 @@ PROCESS_DEF(turf)
 		SCHECK
 
 /datum/process/turf/statProcess()
-	..()
+	. = ..()
 	stat(null, "[GLOBL.processing_turfs.len] turf\s")

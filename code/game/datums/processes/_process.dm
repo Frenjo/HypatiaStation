@@ -93,7 +93,7 @@
 	var/start_delay = 0
 
 /datum/process/New(datum/controller/process_scheduler/scheduler)
-	..()
+	. = ..()
 	main = scheduler
 	previousStatus = "idle"
 	idle()

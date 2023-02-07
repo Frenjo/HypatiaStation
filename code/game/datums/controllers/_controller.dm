@@ -10,7 +10,7 @@ GLOBAL_GLOBL_LIST_NEW(controllers)
 	var/obj/clickable_stat/stat_click
 
 /datum/controller/New()
-	..()
+	. = ..()
 	GLOBL.controllers += src
 
 /datum/controller/Destroy()

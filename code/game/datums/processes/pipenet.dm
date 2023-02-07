@@ -17,5 +17,5 @@ PROCESS_DEF(pipenet)
 		GLOBL.pipe_networks.Remove(pipeNetwork)
 
 /datum/process/pipenet/statProcess()
-	..()
+	. = ..()
 	stat(null, "[GLOBL.pipe_networks.len] pipenets")

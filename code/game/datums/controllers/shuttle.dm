@@ -12,7 +12,7 @@ CONTROLLER_DEF(shuttle)
 	var/list/process_shuttles	//simple list of shuttles, for processing
 
 /datum/controller/shuttle/New()
-	..()
+	. = ..()
 	shuttles = list()
 	process_shuttles = list()
 

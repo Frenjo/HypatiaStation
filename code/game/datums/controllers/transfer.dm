@@ -12,7 +12,7 @@ CONTROLLER_DEF(transfer)
 	var/currenttick = 0
 
 /datum/controller/transfer/New()
-	..()
+	. = ..()
 	timerbuffer = CONFIG_GET(vote_autotransfer_initial)
 
 /datum/controller/transfer/process()

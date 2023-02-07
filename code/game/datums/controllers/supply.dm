@@ -22,7 +22,7 @@ CONTROLLER_DEF(supply)
 	var/datum/shuttle/ferry/supply/shuttle
 
 /datum/controller/supply/New()
-	..()
+	. = ..()
 	ordernum = rand(1, 9000)
 
 //Supply shuttle ticker - handles supply point regenertion and shuttle travelling between centcom and the station
