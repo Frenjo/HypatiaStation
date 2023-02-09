@@ -87,8 +87,8 @@ CONTROLLER_DEF(vote)
 		if(votes > greatest_votes)
 			greatest_votes = votes
 	//default-vote for everyone who didn't vote
-	if(!CONFIG_GET(vote_no_default) && choices.len)
-		var/non_voters = (GLOBL.clients.len - total_votes)
+	if(!CONFIG_GET(vote_no_default) && length(choices))
+		var/non_voters = (length(GLOBL.clients) - total_votes)
 		if(non_voters > 0)
 			if(mode == "restart")
 				choices["Continue Playing"] += non_voters
@@ -127,8 +127,8 @@ CONTROLLER_DEF(vote)
 /datum/controller/vote/proc/announce_result()
 	var/list/winners = get_result()
 	var/text
-	if(winners.len > 0)
-		if(winners.len > 1)
+	if(length(winners))
+		if(length(winners) > 1)
 			if(mode != "gamemode" || !global.CTgame_ticker.hide_mode) // Here we are making sure we don't announce potential game modes
 				text = "<b>Vote Tied Between:</b>\n"
 				for(var/option in winners)
@@ -193,7 +193,7 @@ CONTROLLER_DEF(vote)
 			return 0
 		if(current_votes[ckey])
 			choices[choices[current_votes[ckey]]]--
-		if(vote && 1 <= vote && vote <= choices.len)
+		if(vote && 1 <= vote && vote <= length(choices))
 			voted += usr.ckey
 			choices[choices[vote]]++	//check this
 			current_votes[ckey] = vote
@@ -300,7 +300,7 @@ CONTROLLER_DEF(vote)
 		else
 			. += "<h2>Vote: [capitalize(mode)]</h2>"
 		. += "Time Left: [time_remaining] s<hr><ul>"
-		for(var/i = 1, i <= choices.len, i++)
+		for(var/i = 1, i <= length(choices), i++)
 			var/votes = choices[choices[i]]
 			if(!votes)
 				votes = 0

@@ -44,7 +44,7 @@ CONTROLLER_DEF(master)
 	initialised = TRUE
 
 /datum/controller/master/proc/stat_controllers()
-	stat("Controllers:", GLOBL.controllers.len)
+	stat("Controllers:", length(GLOBL.controllers))
 	for(var/datum/controller/controller in GLOBL.controllers)
 		controller.stat_controller()
 

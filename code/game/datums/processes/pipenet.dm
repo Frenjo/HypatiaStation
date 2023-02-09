@@ -18,4 +18,4 @@ PROCESS_DEF(pipenet)
 
 /datum/process/pipenet/statProcess()
 	. = ..()
-	stat(null, "[GLOBL.pipe_networks.len] pipenets")
+	stat(null, "[length(GLOBL.pipe_networks)] pipenets")

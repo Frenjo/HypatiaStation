@@ -18,4 +18,4 @@ PROCESS_DEF(turf)
 
 /datum/process/turf/statProcess()
 	. = ..()
-	stat(null, "[GLOBL.processing_turfs.len] turf\s")
+	stat(null, "[length(GLOBL.processing_turfs)] turf\s")

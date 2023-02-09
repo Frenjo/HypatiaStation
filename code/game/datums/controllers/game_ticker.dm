@@ -88,7 +88,7 @@ CONTROLLER_DEF(game_ticker)
 	var/list/datum/game_mode/runnable_modes
 	if(master_mode == "random" || master_mode == "secret")
 		runnable_modes = CONFIG_GET(get_runnable_modes())
-		if(runnable_modes.len == 0)
+		if(!length(runnable_modes))
 			current_state = GAME_STATE_PREGAME
 			to_world("<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby.")
 			return 0
@@ -358,7 +358,7 @@ CONTROLLER_DEF(game_ticker)
 			to_world("<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>")
 		aiPlayer.show_laws(1)
 
-		if(aiPlayer.connected_robots.len)
+		if(length(aiPlayer.connected_robots))
 			var/robolist = "<b>The AI's loyal minions were:</b> "
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
 				robolist += "[robo.name][robo.stat ?" (Deactivated) (Played by: [robo.key]), " : " (Played by: [robo.key]), "]"

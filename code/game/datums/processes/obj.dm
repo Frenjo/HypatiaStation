@@ -30,4 +30,4 @@ PROCESS_DEF(obj)
 
 /datum/process/obj/statProcess()
 	. = ..()
-	stat(null, "[GLOBL.processing_objects.len] object\s")
+	stat(null, "[length(GLOBL.processing_objects)] object\s")

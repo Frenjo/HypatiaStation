@@ -291,7 +291,7 @@ CONTROLLER_DEF(shuttle)
 			pod_controller_map[P.dock_target_station] = P
 
 	//search for the controllers, if we have one.
-	if(dock_controller_map.len)
+	if(length(dock_controller_map))
 		for(var/obj/machinery/embedded_controller/radio/C in GLOBL.machines)	//only radio controllers are supported at the moment
 			if(istype(C.program, /datum/computer/file/embedded_program/docking))
 				if(C.id_tag in dock_controller_map)
@@ -322,7 +322,7 @@ CONTROLLER_DEF(shuttle)
 						pod.arming_controller = C.program
 
 	//sanity check
-	if(dock_controller_map.len || dock_controller_map_station.len || dock_controller_map_offsite.len)
+	if(length(dock_controller_map) || length(dock_controller_map_station) || length(dock_controller_map_offsite))
 		var/dat = ""
 		for(var/dock_tag in dock_controller_map + dock_controller_map_station + dock_controller_map_offsite)
 			dat += "\"[dock_tag]\", "

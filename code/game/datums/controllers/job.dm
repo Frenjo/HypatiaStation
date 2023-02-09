@@ -14,7 +14,7 @@ CONTROLLER_DEF(occupations)
 /datum/controller/occupations/proc/setup_occupations(faction = "Station")
 	occupations = list()
 	var/list/all_jobs = typesof(/datum/job)
-	if(!all_jobs.len)
+	if(!length(all_jobs))
 		to_world(SPAN_DANGER("Error setting up jobs, no job datums found!"))
 		return 0
 	for(var/J in all_jobs)
@@ -137,7 +137,7 @@ CONTROLLER_DEF(occupations)
 			if(!job)
 				continue
 			var/list/candidates = find_occupation_candidates(job, level)
-			if(!candidates.len)
+			if(!length(candidates))
 				continue
 
 			// Build a weighted list, weight by age.
@@ -170,7 +170,7 @@ CONTROLLER_DEF(occupations)
 						weightedCandidates[V] = 3 // Geezer.
 					else
 						// If there's ABSOLUTELY NOBODY ELSE
-						if(candidates.len == 1)
+						if(length(candidates) == 1)
 							weightedCandidates[V] = 1
 
 				var/mob/new_player/candidate = pickweight(weightedCandidates)
@@ -185,7 +185,7 @@ CONTROLLER_DEF(occupations)
 		if(!job)
 			continue
 		var/list/candidates = find_occupation_candidates(job, level)
-		if(!candidates.len)
+		if(!length(candidates))
 			continue
 		var/mob/new_player/candidate = pick(candidates)
 		assign_role(candidate, command_position)
@@ -206,7 +206,7 @@ CONTROLLER_DEF(occupations)
 				candidates = find_occupation_candidates(job, level, BE_MALF)
 			else
 				candidates = find_occupation_candidates(job, level)
-			if(candidates.len)
+			if(length(candidates))
 				var/mob/new_player/candidate = pick(candidates)
 				if(assign_role(candidate, "AI"))
 					ai_selected++
@@ -245,8 +245,8 @@ CONTROLLER_DEF(occupations)
 		if(player.ready && player.mind && !player.mind.assigned_role)
 			unassigned += player
 
-	debug("DO, Len: [unassigned.len]")
-	if(unassigned.len == 0)
+	debug("DO, Len: [length(unassigned)]")
+	if(!length(unassigned))
 		return 0
 
 	//Shuffle players and jobs
@@ -258,7 +258,7 @@ CONTROLLER_DEF(occupations)
 	debug("DO, Running Assistant Check 1")
 	var/datum/job/assist = new /datum/job/assistant()
 	var/list/assistant_candidates = find_occupation_candidates(assist, 3)
-	debug("AC1, Candidates: [assistant_candidates.len]")
+	debug("AC1, Candidates: [length(assistant_candidates)]")
 	for(var/mob/new_player/player in assistant_candidates)
 		debug("AC1 pass, Player: [player]")
 		assign_role(player, "Assistant")
@@ -369,7 +369,7 @@ CONTROLLER_DEF(occupations)
 		remembered_info += "<b>Your account pin is:</b> [M.remote_access_pin]<br>"
 		remembered_info += "<b>Your account funds are:</b> $[M.money]<br>"
 
-		if(M.transaction_log.len)
+		if(length(M.transaction_log))
 			var/datum/transaction/T = M.transaction_log[1]
 			remembered_info += "<b>Your account was created:</b> [T.time], [T.date] at [T.source_terminal]<br>"
 		H.mind.store_memory(remembered_info)

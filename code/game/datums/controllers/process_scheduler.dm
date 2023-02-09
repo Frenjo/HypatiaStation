@@ -280,10 +280,10 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 		highest_run_time[process] = time
 
 	var/list/lastTwenty = last_twenty_run_times[process]
-	if(lastTwenty.len == 20)
+	if(length(lastTwenty) == 20)
 		lastTwenty.Cut(1, 2)
 	lastTwenty.len++
-	lastTwenty[lastTwenty.len] = time
+	lastTwenty[length(lastTwenty)] = time
 
 /**
  * averageRunTime
@@ -313,12 +313,12 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 
 	for(var/datum/process/p in processes)
 		data.len++
-		data[data.len] = p.getContextData()
+		data[length(data)] = p.getContextData()
 
 	return data
 
 /datum/controller/process_scheduler/proc/getProcessCount()
-	return processes.len
+	return length(processes)
 
 /datum/controller/process_scheduler/proc/hasProcess(processName as text)
 	if(nameToProcessMap[processName])
@@ -371,7 +371,7 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 	if(!isRunning)
 		stat("Processes:", "Scheduler not running")
 		return
-	stat("Processes:", "[processes.len] (R [running.len] / Q [queued.len] / I [idle.len])")
+	stat("Processes:", "[length(processes)] (R [length(running)] / Q [length(queued)] / I [length(idle)])")
 	stat(null, "[round(cpuAverage, 0.1)] CPU, [round(timeAllowance, 0.1) / 10] TA")
 	for(var/datum/process/p in processes)
 		p.statProcess()

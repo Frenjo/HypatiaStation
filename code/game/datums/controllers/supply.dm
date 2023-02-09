@@ -40,7 +40,7 @@ CONTROLLER_DEF(supply)
 	if(istype(A, /obj/item/device/radio/beacon))
 		return 1
 
-	for(var/i = 1, i <= A.contents.len, i++)
+	for(var/i = 1, i <= length(A.contents), i++)
 		var/atom/B = A.contents[i]
 		if(.(B))
 			return 1
@@ -69,7 +69,7 @@ CONTROLLER_DEF(supply)
 				var/atom/A = atom
 				if(find_slip && istype(A, /obj/item/weapon/paper/manifest))
 					var/obj/item/weapon/paper/slip = A
-					if(slip.stamped && slip.stamped.len) //yes, the clown stamp will work. clown is the highest authority on the station, it makes sense
+					if(length(slip.stamped)) //yes, the clown stamp will work. clown is the highest authority on the station, it makes sense
 						points += points_per_slip
 						find_slip = 0
 					continue
@@ -86,7 +86,7 @@ CONTROLLER_DEF(supply)
 
 //Buyin
 /datum/controller/supply/proc/buy()
-	if(!shoppinglist.len)
+	if(!length(shoppinglist))
 		return
 
 	var/area/area_shuttle = shuttle.get_location_area()
@@ -110,9 +110,9 @@ CONTROLLER_DEF(supply)
 		clear_turfs += T
 
 	for(var/S in shoppinglist)
-		if(!clear_turfs.len)
+		if(!length(clear_turfs))
 			break
-		var/i = rand(1, clear_turfs.len)
+		var/i = rand(1, length(clear_turfs))
 		var/turf/pickedloc = clear_turfs[i]
 		clear_turfs.Cut(i, i + 1)
 
@@ -128,7 +128,7 @@ CONTROLLER_DEF(supply)
 		slip.info = "<h3>[command_name()] Shipping Manifest</h3><hr><br>"
 		slip.info +="Order #[SO.ordernum]<br>"
 		slip.info +="Destination: [GLOBL.current_map.station_name]<br>"
-		slip.info +="[shoppinglist.len] PACKAGES IN THIS SHIPMENT<br>"
+		slip.info +="[length(shoppinglist)] PACKAGES IN THIS SHIPMENT<br>"
 		slip.info +="CONTENTS:<br><ul>"
 
 		//spawn the stuff, finish generating the manifest while you're at it

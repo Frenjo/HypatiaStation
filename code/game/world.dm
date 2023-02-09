@@ -137,10 +137,10 @@
 	return 1
 
 /world/proc/load_mode()
-	var/list/Lines = file2list("data/mode.txt")
-	if(Lines.len)
-		if(Lines[1])
-			global.CTgame_ticker.master_mode = Lines[1]
+	var/list/lines = file2list("data/mode.txt")
+	if(length(lines))
+		if(lines[1])
+			global.CTgame_ticker.master_mode = lines[1]
 			log_misc("Saved mode is '[global.CTgame_ticker.master_mode]'")
 
 /world/proc/save_mode(the_mode)

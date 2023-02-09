@@ -26,4 +26,4 @@ PROCESS_DEF(mob)
 
 /datum/process/mob/statProcess()
 	. = ..()
-	stat(null, "[GLOBL.mob_list.len] mobs")
+	stat(null, "[length(GLOBL.mob_list)] mobs")

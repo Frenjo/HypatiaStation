@@ -9,7 +9,7 @@ PROCESS_DEF(event)
 
 /datum/process/event/doWork()
 	var/i = 1
-	while(i <= GLOBL.events.len)
+	while(i <= length(GLOBL.events))
 		var/datum/event/Event = GLOBL.events[i]
 		if(Event)
 			Event.process()

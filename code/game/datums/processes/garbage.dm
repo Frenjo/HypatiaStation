@@ -42,7 +42,7 @@ PROCESS_DEF(garbage)
 	var/checkRemain = GC_COLLECTIONS_PER_RUN
 	var/remaining_force_dels = GC_FORCE_DEL_PER_RUN
 
-	while(destroyed.len && --checkRemain >= 0)
+	while(length(destroyed) && --checkRemain >= 0)
 		if(remaining_force_dels <= 0)
 			#ifdef GC_DEBUG
 			testing("GC: Reached max force dels per tick [dels] vs [maxDels]")
@@ -93,7 +93,7 @@ PROCESS_DEF(garbage)
 
 /datum/process/garbage/statProcess()
 	. = ..()
-	stat(null, "[garbage_collect ? "On" : "Off"], [destroyed.len] queued")
+	stat(null, "[garbage_collect ? "On" : "Off"], [length(destroyed)] queued")
 	stat(null, "Dels: [total_dels], [soft_dels] soft, [hard_dels] hard, [tick_dels] last run")
 
 // Should be treated as a replacement for the 'del' keyword.
@@ -193,7 +193,7 @@ PROCESS_DEF(garbage)
 		things += thing
 	for(var/atom/thing)
 		things += thing
-	testing("Collected list of things in search for references to a [type]. ([things.len] Thing\s)")
+	testing("Collected list of things in search for references to a [type]. ([length(things)] Thing\s)")
 	for(var/datum/thing in things)
 		if(!usr.client.running_find_references)
 			return
@@ -210,7 +210,7 @@ PROCESS_DEF(garbage)
 /client/verb/purge_all_destroyed_objects()
 	set category = "Debug"
 	if(global.garbage_collector)
-		while(global.garbage_collector.destroyed.len)
+		while(length(global.garbage_collector.destroyed))
 			var/datum/o = locate(global.garbage_collector.destroyed[1])
 			if(istype(o) && o.gcDestroyed)
 				del(o)

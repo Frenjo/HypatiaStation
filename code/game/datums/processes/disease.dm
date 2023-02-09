@@ -15,4 +15,4 @@ PROCESS_DEF(disease)
 
 /datum/process/disease/statProcess()
 	. = ..()
-	stat(null, "[GLOBL.active_diseases.len] disease\s")
+	stat(null, "[length(GLOBL.active_diseases)] disease\s")

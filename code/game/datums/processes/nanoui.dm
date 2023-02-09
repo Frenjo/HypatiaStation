@@ -26,4 +26,4 @@ PROCESS_DEF(nanoui)
 
 /datum/process/nanoui/statProcess()
 	. = ..()
-	stat(null, "[global.nanomanager.processing_uis.len] UIs")
+	stat(null, "[length(global.nanomanager.processing_uis)] UIs")

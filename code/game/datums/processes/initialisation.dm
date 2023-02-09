@@ -14,7 +14,7 @@ PROCESS_DEF(initialisation)
 		AM.initialize()
 		SCHECK
 
-	if(!GLOBL.queued_initialisations.len)
+	if(!length(GLOBL.queued_initialisations))
 		disable()	// If we've initialized all pending objects, disable ourselves
 
 /proc/queue_for_initialisation(atom/movable/AM)
@@ -29,4 +29,4 @@ PROCESS_DEF(initialisation)
 
 /datum/process/initialisation/statProcess()
 	. = ..()
-	stat(null, "[GLOBL.queued_initialisations.len] pending object\s")
+	stat(null, "[length(GLOBL.queued_initialisations)] pending object\s")

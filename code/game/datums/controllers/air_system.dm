@@ -108,9 +108,9 @@ CONTROLLER_DEF(air_system)
 	world << {"<span class='danger'>Geometry initialised in [round(0.1 * (world.timeofday - start_time), 0.1)] seconds.</b></span>
 <span class='info'>
 Total Simulated Turfs: [simulated_turf_count]
-Total Zones: [zones.len]
-Total Edges: [edges.len]
-Total Active Edges: [active_edges.len ? SPAN_DANGER(active_edges.len) : "None"]
+Total Zones: [length(zones)]
+Total Edges: [length(edges)]
+Total Active Edges: [length(active_edges) ? SPAN_DANGER(length(active_edges)) : "None"]
 Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_count]</font>
 </span>"}
 
@@ -124,7 +124,7 @@ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_
 
 	var/list/updating
 
-	if(tiles_to_update.len)
+	if(length(tiles_to_update))
 		updating = tiles_to_update
 		tiles_to_update = list()
 
@@ -142,8 +142,8 @@ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_
 			CHECK_TICK
 
 		#ifdef ZASDBG
-		if(updated != updating.len)
-			tick_progress = "[updating.len - updated] tiles left unupdated."
+		if(updated != length(updating))
+			tick_progress = "[length(updating) - updated] tiles left unupdated."
 			to_world(SPAN_WARNING("[tick_progress]"))
 			. = 0
 		#endif
@@ -176,8 +176,8 @@ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_
 	if(.)
 		tick_progress = "updating zones"
 
-	active_zones = zones_to_update.len
-	if(zones_to_update.len)
+	active_zones = length(zones_to_update)
+	if(length(zones_to_update))
 		updating = zones_to_update
 		zones_to_update = list()
 		for(var/zone/zone in updating)
@@ -220,7 +220,7 @@ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_
 	ASSERT(!B.invalid)
 	ASSERT(A != B)
 	#endif
-	if(A.contents.len < B.contents.len)
+	if(length(A.contents) < length(B.contents))
 		A.c_merge(B)
 		mark_zone_update(B)
 	else

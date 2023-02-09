@@ -49,7 +49,7 @@ CONTROLLER_DEF(radio)
 	var/datum/radio_frequency/frequency = frequencies[f_text]
 	if(frequency)
 		frequency.remove_listener(device)
-		if(frequency.devices.len == 0)
+		if(!length(frequency.devices))
 			qdel(frequency)
 			frequencies -= f_text
 	return 1
