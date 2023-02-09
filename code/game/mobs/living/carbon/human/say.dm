@@ -119,7 +119,7 @@
 						r_ear.talk_into(src,message, message_mode, verbage, speaking)
 						used_radios += r_ear
 
-	if(used_radios.len)
+	if(length(used_radios))
 		italics = 1
 		message_range = 1
 
@@ -142,7 +142,7 @@
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if(!speaking)
 		if(istype(other, /mob/living/carbon/monkey/diona))
-			if(other.languages.len >= 2) // They've sucked down some blood and can speak common now.
+			if(length(other.languages) >= 2) // They've sucked down some blood and can speak common now.
 				return TRUE
 		if(issilicon(other))
 			return TRUE

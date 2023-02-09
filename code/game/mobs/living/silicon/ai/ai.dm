@@ -78,7 +78,7 @@ var/list/ai_verbs_default = list(
 	while(!pickedName)
 		pickedName = pick(GLOBL.ai_names)
 		for (var/mob/living/silicon/ai/A in GLOBL.mob_list)
-			if (A.real_name == pickedName && possibleNames.len > 1) //fixing the theoretically possible infinite loop
+			if(A.real_name == pickedName && length(possibleNames) > 1) //fixing the theoretically possible infinite loop
 				possibleNames -= pickedName
 				pickedName = null
 
@@ -209,10 +209,10 @@ var/list/ai_verbs_default = list(
 		for(var/line in lines)
 		// split & clean up
 			var/list/Entry = splittext(line, ":")
-			for(var/i = 1 to Entry.len)
+			for(var/i = 1 to length(Entry))
 				Entry[i] = trim(Entry[i])
 
-			if(Entry.len < 2)
+			if(length(Entry) < 2)
 				continue;
 
 			if(Entry[1] == src.ckey && Entry[2] == src.real_name)
@@ -268,7 +268,7 @@ var/list/ai_verbs_default = list(
 	for(var/cat in alarms)
 		dat += text("<B>[]</B><BR>\n", cat)
 		var/list/alarmlist = alarms[cat]
-		if(alarmlist.len)
+		if(length(alarmlist))
 			for(var/area_name in alarmlist)
 				var/datum/alarm/alarm = alarmlist[area_name]
 				dat += "<NOBR>"
@@ -278,8 +278,8 @@ var/list/ai_verbs_default = list(
 						cameratext += text("[]<A HREF=?src=\ref[];switchcamera=\ref[]>[]</A>", (cameratext=="") ? "" : " | ", src, I, I.c_tag)
 				dat += text("-- [] ([])", alarm.area.name, (cameratext)? cameratext : "No Camera")
 
-				if(alarm.sources.len > 1)
-					dat += text(" - [] sources", alarm.sources.len)
+				if(length(alarm.sources) > 1)
+					dat += " - [length(alarm.sources)] sources"
 				dat += "</NOBR><BR>\n"
 		else
 			dat += "-- All Systems Nominal<BR>\n"
@@ -536,7 +536,7 @@ var/list/ai_verbs_default = list(
 			continue
 
 		var/list/tempnetwork = difflist(C.network, GLOBL.restricted_camera_networks, 1)
-		if(tempnetwork.len)
+		if(length(tempnetwork))
 			for(var/i in tempnetwork)
 				cameralist[i] = i
 	var/old_network = network
@@ -600,7 +600,7 @@ var/list/ai_verbs_default = list(
 		for(var/datum/data/record/t in GLOBL.data_core.locked)//Look in data core locked.
 			personnel_list["[t.fields["name"]]: [t.fields["rank"]]"] = t.fields["image"]//Pull names, rank, and image.
 
-		if(personnel_list.len)
+		if(length(personnel_list))
 			input = input("Select a crew member:") as null|anything in personnel_list
 			var/icon/character_icon = personnel_list[input]
 			if(character_icon)

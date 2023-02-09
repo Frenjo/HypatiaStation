@@ -36,7 +36,7 @@ var/const/VOX_DELAY = 100 // 10 seconds
 		index++
 		var/stripped_word = copytext(word, 1, length(word) - 3) // Remove the .wav
 		dat += "<A href='?src=\ref[src];say_word=[stripped_word]'>[capitalize(stripped_word)]</A>"
-		if(index != vox_words.len)
+		if(index != length(vox_words))
 			dat += " / "
 
 	src << browse(dat, "window=announce_help;size=500x400")
@@ -61,7 +61,7 @@ var/const/VOX_DELAY = 100 // 10 seconds
 	var/list/words = splittext(trim(message), " ")
 	var/list/incorrect_words = list()
 
-	if(words.len > 30)
+	if(length(words) > 30)
 		words.len = 30
 
 	// Detect incorrect words which aren't .wav files.
@@ -73,7 +73,7 @@ var/const/VOX_DELAY = 100 // 10 seconds
 		if(!vox_word_exists(word))
 			incorrect_words += word
 
-	if(incorrect_words.len)
+	if(length(incorrect_words))
 		src << "<span class='notice'>These words are not available on the announcement system: [english_list(incorrect_words)].</span>"
 		return
 

@@ -104,33 +104,33 @@
 	//Speaking
 	if(!client && speak_chance)
 		if(rand(0, 200) < speak_chance)
-			if(speak && speak.len)
-				if((emote_hear && emote_hear.len) || (emote_see && emote_see.len))
-					var/length = speak.len
-					if(emote_hear && emote_hear.len)
-						length += emote_hear.len
-					if(emote_see && emote_see.len)
-						length += emote_see.len
+			if(length(speak))
+				if(length(emote_hear) || length(emote_see))
+					var/length = length(speak)
+					if(length(emote_hear))
+						length += length(emote_hear)
+					if(length(emote_see))
+						length += length(emote_see)
 					var/randomValue = rand(1, length)
-					if(randomValue <= speak.len)
+					if(randomValue <= length(speak))
 						say(pick(speak))
 					else
-						randomValue -= speak.len
-						if(emote_see && randomValue <= emote_see.len)
+						randomValue -= length(speak)
+						if(emote_see && randomValue <= length(emote_see))
 							emote(pick(emote_see), 1)
 						else
 							emote(pick(emote_hear), 2)
 				else
 					say(pick(speak))
 			else
-				if(!(emote_hear && emote_hear.len) && (emote_see && emote_see.len))
+				if(!length(emote_hear) && length(emote_see))
 					emote(pick(emote_see), 1)
-				if((emote_hear && emote_hear.len) && !(emote_see && emote_see.len))
+				if(length(emote_hear) && !length(emote_see))
 					emote(pick(emote_hear), 2)
-				if((emote_hear && emote_hear.len) && (emote_see && emote_see.len))
-					var/length = emote_hear.len + emote_see.len
+				if(length(emote_hear) && length(emote_see))
+					var/length = length(emote_hear) + length(emote_see)
 					var/pick = rand(1, length)
-					if(pick <= emote_see.len)
+					if(pick <= length(emote_see))
 						emote(pick(emote_see), 1)
 					else
 						emote(pick(emote_hear), 2)
@@ -390,7 +390,7 @@
 
 	var/verbage = "says"
 
-	if(speak_emote.len)
+	if(length(speak_emote))
 		verbage = pick(speak_emote)
 
 	message = capitalize(trim_left(message))

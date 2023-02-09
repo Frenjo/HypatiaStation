@@ -240,7 +240,7 @@
 					else
 						M.stop_pulling()
 
-		if(mob.pinned.len)
+		if(length(mob.pinned))
 			to_chat(src, SPAN_INFO("You're pinned to a wall by [mob.pinned[1]]!"))
 			return 0
 
@@ -269,7 +269,7 @@
 			move_delay = max(move_delay, world.time + 7)
 			var/list/L = mob.ret_grab()
 			if(istype(L, /list))
-				if(L.len == 2)
+				if(length(L) == 2)
 					L -= mob
 					var/mob/M = L[1]
 					if(M)

@@ -121,7 +121,7 @@
 	if(speaking)
 		speech_verb = speaking.speech_verb
 		speech_style = speaking.colour
-	else if(speak_emote && speak_emote.len)
+	else if(length(speak_emote))
 		speech_verb = pick(speak_emote)
 	else if(src.stuttering)
 		speech_verb = "stammers"

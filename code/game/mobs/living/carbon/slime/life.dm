@@ -458,7 +458,7 @@
 
 
 		if(starving && !client) // if a slime is starving, it starts losing its friends
-			if(Friends.len > 0 && prob(1))
+			if(length(Friends) && prob(1))
 				var/mob/nofriend = pick(Friends)
 				Friends -= nofriend
 
@@ -510,7 +510,7 @@
 						targets += L //Possible target found!
 
 
-			if((hungry || starving) && targets.len > 0)
+			if((hungry || starving) && length(targets))
 				if(!isslimeadult(src))
 					if(!starving)
 						for(var/mob/living/carbon/C in targets)
@@ -530,7 +530,7 @@
 				else
 					Target = targets[1] // closest target
 
-			if(targets.len > 0)
+			if(length(targets))
 				if(attacked > 0 || rabid)
 					Target = targets[1] //closest mob probably attacked it, so override Target and attack the nearest!
 

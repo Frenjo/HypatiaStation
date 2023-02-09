@@ -107,7 +107,7 @@ Works together with spawning an observer, noted above.
 	if(!client)
 		return 0
 
-	if(client.images.len)
+	if(length(client.images))
 		for(var/image/hud in client.images)
 			if(copytext(hud.icon_state, 1, 4) == "hud")
 				client.images.Remove(hud)
@@ -117,7 +117,7 @@ Works together with spawning an observer, noted above.
 		for(var/mob/living/target in oview(src, 14))
 			if(target.mind && (target.mind.special_role || issilicon(target)))
 				target_list += target
-		if(target_list.len)
+		if(length(target_list))
 			assess_targets(target_list, src)
 	if(medHUD)
 		process_medHUD(src)
@@ -135,7 +135,7 @@ Works together with spawning an observer, noted above.
 /*
 		else//If the silicon mob has no law datum, no inherent laws, or a law zero, add them to the hud.
 			var/mob/living/silicon/silicon_target = target
-			if(!silicon_target.laws||(silicon_target.laws&&(silicon_target.laws.zeroth||!silicon_target.laws.inherent.len))||silicon_target.mind.special_role=="traitor")
+			if(!silicon_target.laws || (silicon_target.laws && (silicon_target.laws.zeroth || !length(silicon_target.laws.inherent))) || silicon_target.mind.special_role == "traitor")
 				if(isrobot(silicon_target))//Different icons for robutts and AI.
 					U.client.images += image(tempHud,silicon_target,"hudmalborg")
 				else
@@ -309,7 +309,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	for(var/turf/T in get_area_turfs(thearea.type))
 		L += T
 
-	if(!L || !L.len)
+	if(!length(L))
 		to_chat(usr, "No area available.")
 
 	usr.loc = pick(L)
@@ -460,7 +460,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	for(var/obj/machinery/atmospherics/unary/vent_pump/v in world)
 		if(!v.welded && v.z == src.z)
 			found_vents.Add(v)
-	if(found_vents.len)
+	if(length(found_vents))
 		vent_found = pick(found_vents)
 		host = new /mob/living/simple_animal/mouse(vent_found.loc)
 	else
@@ -501,7 +501,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/ghosts_can_write
 	if(global.CTgame_ticker.mode.name == "cult")
 		var/datum/game_mode/cult/C = global.CTgame_ticker.mode
-		if(C.cult.len > CONFIG_GET(cult_ghostwriter_req_cultists))
+		if(length(C.cult) > CONFIG_GET(cult_ghostwriter_req_cultists))
 			ghosts_can_write = 1
 
 	if(!ghosts_can_write)
@@ -513,7 +513,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(B.amount > 0)
 			choices += B
 
-	if(!choices.len)
+	if(!length(choices))
 		to_chat(src, SPAN_WARNING("There is no blood to use nearby."))
 		return
 

@@ -71,7 +71,7 @@
 			src.say("0. [src.laws.zeroth]")
 			sleep(10)
 
-	for (var/index = 1, index <= src.laws.ion.len, index++)
+	for(var/index = 1, index <= length(laws.ion), index++)
 		var/law = src.laws.ion[index]
 		var/num = ionnum()
 		if (length(law) > 0)
@@ -79,7 +79,7 @@
 				src.say("[num]. [law]")
 				sleep(10)
 
-	for (var/index = 1, index <= src.laws.inherent.len, index++)
+	for(var/index = 1, index <= length(laws.inherent), index++)
 		var/law = src.laws.inherent[index]
 
 		if (length(law) > 0)
@@ -89,11 +89,11 @@
 			number++
 
 
-	for (var/index = 1, index <= src.laws.supplied.len, index++)
+	for(var/index = 1, index <= length(laws.supplied), index++)
 		var/law = src.laws.supplied[index]
 
 		if (length(law) > 0)
-			if(src.lawcheck.len >= number+1)
+			if(length(lawcheck) >= number + 1)
 				if (src.lawcheck[number+1] == "Yes")
 					src.say("[number]. [law]")
 					sleep(10)
@@ -113,7 +113,7 @@
 			src.lawcheck[1] = "No" //Given Law 0's usual nature, it defaults to NOT getting reported. --NeoFite
 		list += {"<A href='byond://?src=\ref[src];lawc=0'>[src.lawcheck[1]] 0:</A> [src.laws.zeroth]<BR>"}
 
-	for (var/index = 1, index <= src.laws.ion.len, index++)
+	for(var/index = 1, index <= length(laws.ion), index++)
 		var/law = src.laws.ion[index]
 
 		if (length(law) > 0)
@@ -125,7 +125,7 @@
 			src.ioncheck.len += 1
 
 	var/number = 1
-	for (var/index = 1, index <= src.laws.inherent.len, index++)
+	for(var/index = 1, index <= length(laws.inherent), index++)
 		var/law = src.laws.inherent[index]
 
 		if (length(law) > 0)
@@ -136,7 +136,7 @@
 			list += {"<A href='byond://?src=\ref[src];lawc=[number]'>[src.lawcheck[number+1]] [number]:</A> [law]<BR>"}
 			number++
 
-	for (var/index = 1, index <= src.laws.supplied.len, index++)
+	for(var/index = 1, index <= length(laws.supplied), index++)
 		var/law = src.laws.supplied[index]
 		if (length(law) > 0)
 			src.lawcheck.len += 1

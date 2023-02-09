@@ -183,9 +183,9 @@
 		src << "Only administrators may use this command."
 		return
 	if(global.CTgame_ticker && global.CTgame_ticker.mode)
-		src << "blobs: [blobs.len]"
-		src << "cores: [blob_cores.len]"
-		src << "nodes: [blob_nodes.len]"
+		src << "blobs: [length(blobs)]"
+		src << "cores: [length(blob_cores)]"
+		src << "nodes: [length(blob_nodes)]"
 	return
 
 /client/proc/Blobize()//Mostly stolen from the respawn command
@@ -204,7 +204,7 @@
 		var/list/ghosts = list()
 		for(var/mob/dead/observer/G in GLOBL.player_list)
 			ghosts += G
-		if(ghosts.len)
+		if(length(ghosts))
 			G_found = pick(ghosts)
 
 	else
@@ -220,7 +220,7 @@
 	if(G_found.client)
 		G_found.client.screen.len = null
 	var/mob/living/blob/B = new/mob/living/blob(locate(0,0,1))//temp area also just in case should do this better but tired
-	if(blob_cores.len > 0)
+	if(length(blob_cores))
 		var/obj/effect/blob/core/core = pick(blob_cores)
 		if(core)
 			B.loc = core.loc

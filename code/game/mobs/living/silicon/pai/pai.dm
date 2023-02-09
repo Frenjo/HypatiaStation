@@ -94,7 +94,7 @@
 	if (src.client.statpanel == "Status")
 		show_silenced()
 
-	if(proc_holder_list.len)//Generic list for proc_holder objects.
+	if(length(proc_holder_list)) //Generic list for proc_holder objects.
 		for(var/obj/effect/proc_holder/P in proc_holder_list)
 			statpanel("[P.panel]", "", P)
 

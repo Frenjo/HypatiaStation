@@ -320,10 +320,10 @@ var/list/robot_verbs_default = list(
 		for(var/line in lines)
 		// split & clean up
 			var/list/Entry = splittext(line, "-")
-			for(var/i = 1 to Entry.len)
+			for(var/i = 1 to length(Entry))
 				Entry[i] = trim(Entry[i])
 
-			if(Entry.len < 2)
+			if(length(Entry) < 2)
 				continue;
 
 			if(Entry[1] == src.ckey && Entry[2] == src.real_name) //They're in the list? Custom sprite time, var and icon change required
@@ -364,13 +364,13 @@ var/list/robot_verbs_default = list(
 	for (var/cat in alarms)
 		dat += text("<B>[cat]</B><BR>\n")
 		var/list/alarmlist = alarms[cat]
-		if (alarmlist.len)
+		if(length(alarmlist))
 			for (var/area_name in alarmlist)
 				var/datum/alarm/alarm = alarmlist[area_name]
 				dat += "<NOBR>"
 				dat += text("-- [area_name]")
-				if (alarm.sources.len > 1)
-					dat += text("- [alarm.sources.len] sources")
+				if(length(alarm.sources) > 1)
+					dat += "- [length(alarm.sources)] sources"
 				dat += "</NOBR><BR>\n"
 		else
 			dat += "-- All Systems Nominal<BR>\n"
@@ -857,7 +857,7 @@ var/list/robot_verbs_default = list(
 		return 1
 
 	var/list/L = req_access
-	if(!L.len) //no requirements
+	if(!length(L)) //no requirements
 		return 1
 	if(!I || !istype(I, /obj/item/weapon/card/id) || !I.access) //not ID or no access
 		return 0
@@ -1133,7 +1133,7 @@ var/list/robot_verbs_default = list(
 
 /mob/living/silicon/robot/proc/choose_icon(var/triesleft, var/list/module_sprites)
 
-	if(triesleft<1 || !module_sprites.len)
+	if(triesleft < 1 || !length(module_sprites))
 		return
 	else
 		triesleft--

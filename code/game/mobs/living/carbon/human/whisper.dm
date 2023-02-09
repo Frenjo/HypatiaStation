@@ -64,9 +64,9 @@
 		if(copytext(message, 1, 2) != "*")
 			var/list/temp_message = splittext(message, " ")
 			var/list/pick_list = list()
-			for(var/i = 1, i <= temp_message.len, i++)
+			for(var/i = 1, i <= length(temp_message), i++)
 				pick_list += i
-			for(var/i=1, i <= abs(temp_message.len/3), i++)
+			for(var/i = 1, i <= abs(length(temp_message) / 3), i++)
 				var/H = pick(pick_list)
 				if(findtext(temp_message[H], "*") || findtext(temp_message[H], ";") || findtext(temp_message[H], ":")) continue
 				temp_message[H] = ninjaspeak(temp_message[H])
@@ -129,13 +129,13 @@
 		M << speech_bubble
 		M.hear_say(message, verbage, speaking, alt_name, italics, src)
 
-	if(eavesdropping.len)
+	if(length(eavesdropping))
 		var/new_message = stars(message)	//hopefully passing the message twice through stars() won't hurt... I guess if you already don't understand the language, when they speak it too quietly to hear normally you would be able to catch even less.
 		for(var/mob/M in eavesdropping)
 			M << speech_bubble
 			M.hear_say(new_message, verbage, speaking, alt_name, italics, src)
 
-	if(watching.len)
+	if(length(watching))
 		var/rendered = "<span class='game say'><span class='name'>[src.name]</span> whispers something.</span>"
 		for(var/mob/M in watching)
 			M.show_message(rendered, 2)

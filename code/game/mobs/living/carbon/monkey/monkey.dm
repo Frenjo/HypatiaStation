@@ -69,9 +69,9 @@
 		dna.SetUIState(DNA_UI_GENDER, gender != MALE, 1)
 
 		// Set the blocks to uni_append, if needed.
-		if(uni_append.len>0)
-			for(var/b = 1; b <= uni_append.len; b++)
-				dna.SetUIValue(DNA_UI_LENGTH - (uni_append.len - b), uni_append[b], 1)
+		if(length(uni_append))
+			for(var/b = 1; b <= length(uni_append); b++)
+				dna.SetUIValue(DNA_UI_LENGTH - (length(uni_append) - b), uni_append[b], 1)
 		dna.UpdateUI()
 
 		update_muts=1
@@ -410,7 +410,7 @@
 	if(copytext(message, 1, 2) == "*")
 		return emote(copytext(message, 2))
 
-	if(speak_emote.len)
+	if(length(speak_emote))
 		verbage = pick(speak_emote)
 
 	message = capitalize(trim_left(message))

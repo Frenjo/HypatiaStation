@@ -16,7 +16,7 @@
 
 	if(length(message) >= 2)
 		var/channel_prefix = copytext(message, 1 ,3)
-		if(languages.len)
+		if(length(languages))
 			for(var/datum/language/L in languages)
 				if(lowertext(channel_prefix) == ":[L.key]")
 					verb = L.speech_verb

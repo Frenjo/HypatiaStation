@@ -42,8 +42,8 @@
 	var/datum/ai_laws/master = connected_ai ? connected_ai.laws : null
 	var/temp
 	if (master)
-		laws.ion.len = master.ion.len
-		for (var/index = 1, index <= master.ion.len, index++)
+		laws.ion.len = length(master.ion)
+		for(var/index = 1, index <= length(master.ion), index++)
 			temp = master.ion[index]
 			if (length(temp) > 0)
 				laws.ion[index] = temp
@@ -55,14 +55,14 @@
 				temp = master.zeroth
 			laws.zeroth = temp
 
-		laws.inherent.len = master.inherent.len
-		for (var/index = 1, index <= master.inherent.len, index++)
+		laws.inherent.len = length(master.inherent)
+		for(var/index = 1, index <= length(master.inherent), index++)
 			temp = master.inherent[index]
 			if (length(temp) > 0)
 				laws.inherent[index] = temp
 
-		laws.supplied.len = master.supplied.len
-		for (var/index = 1, index <= master.supplied.len, index++)
+		laws.supplied.len = length(master.supplied)
+		for(var/index = 1, index <= length(master.supplied), index++)
 			temp = master.supplied[index]
 			if (length(temp) > 0)
 				laws.supplied[index] = temp
@@ -114,7 +114,7 @@
 			src.say("0. [src.laws.zeroth]")
 			sleep(10)
 
-	for (var/index = 1, index <= src.laws.ion.len, index++)
+	for(var/index = 1, index <= length(laws.ion), index++)
 		var/law = src.laws.ion[index]
 		var/num = ionnum()
 		if (length(law) > 0)
@@ -122,7 +122,7 @@
 				src.say("[num]. [law]")
 				sleep(10)
 
-	for (var/index = 1, index <= src.laws.inherent.len, index++)
+	for(var/index = 1, index <= length(laws.inherent), index++)
 		var/law = src.laws.inherent[index]
 		if (length(law) > 0)
 			if (src.lawcheck[index+1] == "Yes")
@@ -130,11 +130,11 @@
 				sleep(10)
 			number++
 
-	for (var/index = 1, index <= src.laws.supplied.len, index++)
+	for(var/index = 1, index <= length(laws.supplied), index++)
 		var/law = src.laws.supplied[index]
 
 		if (length(law) > 0)
-			if(src.lawcheck.len >= number+1)
+			if(length(lawcheck) >= number + 1)
 				if (src.lawcheck[number+1] == "Yes")
 					src.say("[number]. [law]")
 					sleep(10)
@@ -150,7 +150,7 @@
 			src.lawcheck[1] = "No" //Given Law 0's usual nature, it defaults to NOT getting reported. --NeoFite
 		list += {"<A href='byond://?src=\ref[src];lawc=0'>[src.lawcheck[1]] 0:</A> [src.laws.zeroth]<BR>"}
 
-	for (var/index = 1, index <= src.laws.ion.len, index++)
+	for(var/index = 1, index <= length(laws.ion), index++)
 		var/law = src.laws.ion[index]
 		if (length(law) > 0)
 			if (!src.ioncheck[index])
@@ -159,7 +159,7 @@
 			src.ioncheck.len += 1
 
 	var/number = 1
-	for (var/index = 1, index <= src.laws.inherent.len, index++)
+	for(var/index = 1, index <= length(laws.inherent), index++)
 		var/law = src.laws.inherent[index]
 		if (length(law) > 0)
 			src.lawcheck.len += 1
@@ -168,7 +168,7 @@
 			list += {"<A href='byond://?src=\ref[src];lawc=[number]'>[src.lawcheck[number+1]] [number]:</A> [law]<BR>"}
 			number++
 
-	for (var/index = 1, index <= src.laws.supplied.len, index++)
+	for(var/index = 1, index <= length(laws.supplied), index++)
 		var/law = src.laws.supplied[index]
 		if (length(law) > 0)
 			src.lawcheck.len += 1

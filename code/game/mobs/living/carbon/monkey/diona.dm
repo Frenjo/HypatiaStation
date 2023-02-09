@@ -32,7 +32,7 @@
 	if(!loc)
 		qdel(src)
 
-	if(isturf(loc) || !(contents.len))
+	if(isturf(loc) || !length(contents))
 		for(var/mob/M in contents)
 			M.loc = get_turf(src)
 		qdel(src)
@@ -137,7 +137,7 @@
 		src << alert("You are currently not whitelisted to play as a full diona.")
 		return 0
 
-	if(donors.len < 5)
+	if(length(donors) < 5)
 		src << "You are not yet ready for your growth..."
 		return
 
@@ -199,13 +199,13 @@
 		update_progression()
 
 /mob/living/carbon/monkey/diona/proc/update_progression()
-	if(!donors.len)
+	if(!length(donors))
 		return
 
-	if(donors.len == 5)
+	if(length(donors) == 5)
 		ready_evolve = 1
 		to_chat(src, SPAN_ALIUM("You feel ready to move on to your next stage of growth."))
-	else if(donors.len == 3)
+	else if(length(donors) == 3)
 		universal_understand = 1
 		to_chat(src, SPAN_ALIUM("You feel your awareness expand, and realize you know how to understand the creatures around you."))
 	else
@@ -213,7 +213,7 @@
 
 /mob/living/carbon/monkey/diona/say_understands(mob/other, datum/language/speaking = null)
 	if(ishuman(other) && !speaking)
-		if(languages.len >= 2) // They have sucked down some blood.
+		if(length(languages) >= 2) // They have sucked down some blood.
 			return TRUE
 	return ..()
 
@@ -235,7 +235,7 @@
 
 	if(length(message) >= 2)
 		var/channel_prefix = copytext(message, 1, 3)
-		if(languages.len)
+		if(length(languages))
 			for(var/datum/language/L in languages)
 				if(lowertext(channel_prefix) == ":[L.key]")
 					verbage = L.speech_verb

@@ -122,10 +122,10 @@
 	spawn(30)
 		qdel(speech_bubble)
 
-	if(used_radios.len)
+	if(length(used_radios))
 		for(var/mob/living/M in hearers(5, src))
 			if(M != src)
-				M.show_message(SPAN_NOTICE("[src] talks into [used_radios.len ? used_radios[1] : "radio"]."))
+				M.show_message(SPAN_NOTICE("[src] talks into [length(used_radios) ? used_radios[1] : "radio"]."))
 
 	for(var/mob/M in listening)
 		if(M.client)

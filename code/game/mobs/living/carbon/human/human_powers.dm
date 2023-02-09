@@ -192,7 +192,7 @@
 	set desc = "Empties the contents of your stomach"
 	set category = "Abilities"
 
-	if(stomach_contents.len)
+	if(length(stomach_contents))
 		for(var/mob/M in src)
 			if(M in stomach_contents)
 				stomach_contents.Remove(M)

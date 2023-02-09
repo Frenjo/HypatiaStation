@@ -742,7 +742,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		if(statpanel("Status"))
 			stat("Location:", "([x], [y], [z]) [loc]")
 			stat("CPU:", "[world.cpu]")
-			stat("Instances:", "[world.contents.len]")
+			stat("Instances:", "[length(world.contents)]")
 		if(statpanel("Controllers"))
 			if(global.CTmaster)
 				global.CTmaster.stat_controllers()
@@ -760,7 +760,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 					continue
 				statpanel(listed_turf.name, null, A)
 
-	if(spell_list && spell_list.len)
+	if(length(spell_list))
 		for(var/obj/effect/proc_holder/spell/S in spell_list)
 			switch(S.charge_type)
 				if("recharge")
@@ -989,7 +989,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		self = 1 // Removing object from yourself.
 
 	valid_objects = get_visible_implants(1)
-	if(!valid_objects.len)
+	if(!length(valid_objects))
 		if(self)
 			to_chat(src, "You have nothing stuck in your body that is large enough to remove.")
 		else
@@ -1013,7 +1013,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	else
 		visible_message(SPAN_DANGER("[usr] rips [selection] out of [src]'s body."), SPAN_DANGER("[usr] rips [selection] out of your body."))
 	valid_objects = get_visible_implants(0)
-	if(valid_objects.len == 1) //Yanking out last object - removing verb.
+	if(length(valid_objects) == 1) //Yanking out last object - removing verb.
 		src.verbs -= /mob/proc/yank_out_object
 
 	if(ishuman(src))
@@ -1040,7 +1040,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	for(var/obj/item/weapon/O in pinned)
 		if(O == selection)
 			pinned -= O
-		if(!pinned.len)
+		if(!length(pinned))
 			anchored = FALSE
 	return 1
 

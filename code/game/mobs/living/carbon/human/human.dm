@@ -589,7 +589,7 @@
 								if(setmedical != "Cancel")
 									R.fields["p_stat"] = setmedical
 									modified = 1
-									if(GLOBL.pda_manifest.len)
+									if(length(GLOBL.pda_manifest))
 										GLOBL.pda_manifest.Cut()
 
 									spawn()
@@ -1059,7 +1059,7 @@
 
 /mob/living/carbon/human/clean_blood(clean_feet)
 	.=..()
-	if(clean_feet && !shoes && istype(feet_blood_DNA, /list) && feet_blood_DNA.len)
+	if(clean_feet && !shoes && length(feet_blood_DNA))
 		feet_blood_color = null
 		qdel(feet_blood_DNA)
 		update_inv_shoes(1)
@@ -1151,7 +1151,7 @@
 
 	species = GLOBL.all_species[new_species]
 
-	if(force_organs || !organs || !organs.len)
+	if(force_organs || !length(organs))
 		species.create_organs(src)
 
 	if(species.language)

@@ -52,7 +52,7 @@ default behaviour is:
 		if(isliving(AM))
 			var/mob/living/tmob = AM
 			for(var/mob/living/M in range(tmob, 1))
-				if(tmob.pinned.len || ((M.pulling == tmob && (tmob.restrained() && !M.restrained() && M.stat == CONSCIOUS)) || locate(/obj/item/weapon/grab, tmob.grabbed_by.len)))
+				if(length(tmob.pinned) || ((M.pulling == tmob && (tmob.restrained() && !M.restrained() && M.stat == CONSCIOUS)) || locate(/obj/item/weapon/grab, length(tmob.grabbed_by))))
 					if(!(world.time % 5))
 						to_chat(src, SPAN_WARNING("[tmob] is restrained, you cannot push past."))
 					now_pushing = 0
@@ -164,7 +164,7 @@ default behaviour is:
 		if(COLD_RESISTANCE in src.mutations) //fireproof
 			return 0
 		var/mob/living/carbon/human/H = src	//make this damage method divide the damage to be done among all the body parts, then burn each body part for that much damage. will have better effect then just randomly picking a body part
-		var/divided_damage = (burn_amount)/(H.organs.len)
+		var/divided_damage = burn_amount / length(H.organs)
 		var/extradam = 0	//added to when organ is at max dam
 		for(var/datum/organ/external/affecting in H.organs)
 			if(!affecting)
@@ -532,7 +532,7 @@ default behaviour is:
 								qdel(G)
 						else
 							ok = 0
-						if(locate(/obj/item/weapon/grab, M.grabbed_by.len))
+						if(locate(/obj/item/weapon/grab, length(M.grabbed_by)))
 							ok = 0
 					if(ok)
 						var/atom/movable/t = M.pulling
@@ -873,7 +873,7 @@ default behaviour is:
 		to_chat(src, "You'll need a non-welded vent to crawl into!")
 		return
 
-	if(!vent_found.network || !vent_found.network.normal_members.len)
+	if(!vent_found.network || !length(vent_found.network.normal_members))
 		to_chat(src, "This vent is not connected to anything.")
 		return
 
@@ -894,7 +894,7 @@ default behaviour is:
 			i++
 			index = "[T.loc.name]\[[i]\]"
 		vents[index] = temp_vent
-	if(!vents.len)
+	if(!length(vents))
 		to_chat(src, SPAN_WARNING("There are no available vents to travel to, they could be welded."))
 		return
 

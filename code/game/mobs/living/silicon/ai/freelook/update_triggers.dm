@@ -51,7 +51,7 @@
 	var/oldLoc = src.loc
 	. = ..()
 	if(.)
-		if(src.camera && src.camera.network.len)
+		if(camera && length(camera.network))
 			if(!updating)
 				updating = 1
 				spawn(BORG_CAMERA_BUFFER)

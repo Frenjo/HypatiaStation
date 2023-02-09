@@ -34,14 +34,14 @@
 		var/datum/alarm/alarm = alarmlist[A.name]
 		alarm.sources -= source
 
-		if (!(alarm.sources.len))
+		if(!length(alarm.sources))
 			cleared = 1
 			alarmlist -= A.name
 
 	return !cleared
 
 /mob/living/silicon/proc/queueAlarm(var/message, var/type, var/incoming = 1)
-	var/in_cooldown = (alarms_to_show.len > 0 || alarms_to_clear.len > 0)
+	var/in_cooldown = length(alarms_to_show) || length(alarms_to_clear)
 	if(incoming)
 		alarms_to_show += message
 		alarm_types_show[type] += 1
@@ -52,10 +52,10 @@
 	if(!in_cooldown)
 		spawn(10 * 10) // 10 seconds
 
-			if(alarms_to_show.len < 5)
+			if(length(alarms_to_show) < 5)
 				for(var/msg in alarms_to_show)
 					src << msg
-			else if(alarms_to_show.len)
+			else if(length(alarms_to_show))
 
 				var/msg = "--- "
 
@@ -77,11 +77,11 @@
 				msg += "<A href=?src=\ref[src];showalerts=1'>\[Show Alerts\]</a>"
 				src << msg
 
-			if(alarms_to_clear.len < 3)
+			if(length(alarms_to_clear) < 3)
 				for(var/msg in alarms_to_clear)
 					src << msg
 
-			else if(alarms_to_clear.len)
+			else if(length(alarms_to_clear))
 				var/msg = "--- "
 
 				if(alarm_types_clear["Motion"])
@@ -105,7 +105,7 @@
 
 			alarms_to_show = list()
 			alarms_to_clear = list()
-			for(var/i = 1; i < alarm_types_show.len; i++)
+			for(var/i = 1; i < length(alarm_types_show); i++)
 				alarm_types_show[i] = 0
-			for(var/i = 1; i < alarm_types_clear.len; i++)
+			for(var/i = 1; i < length(alarm_types_clear); i++)
 				alarm_types_clear[i] = 0

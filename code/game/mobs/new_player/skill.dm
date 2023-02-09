@@ -170,7 +170,7 @@
 	if(!istype(M))
 		return
 
-	if(!M.skills || M.skills.len == 0)
+	if(!length(M.skills))
 		to_chat(user, "There are no skills to display.")
 		return
 

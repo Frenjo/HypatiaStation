@@ -174,7 +174,7 @@ emp_act
 				if(T.y > world.maxy-6 || T.y < 6)
 					continue
 				turfs += T
-			if(!turfs.len)
+			if(!length(turfs))
 				turfs += pick(/turf in orange(6))
 			var/turf/picked = pick(turfs)
 			if(!isturf(picked))
@@ -233,7 +233,7 @@ emp_act
 			affecting.sabotaged = 1
 		return 1
 
-	if(I.attack_verb.len)
+	if(length(I.attack_verb))
 		visible_message(SPAN_DANGER("[src] has been [pick(I.attack_verb)] in the [hit_area] with [I.name] by [user]!"))
 	else
 		visible_message(SPAN_DANGER("[src] has been attacked in the [hit_area] with [I.name] by [user]!"))

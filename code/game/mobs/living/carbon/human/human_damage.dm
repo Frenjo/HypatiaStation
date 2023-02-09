@@ -124,7 +124,7 @@
 			for(var/datum/organ/external/O in organs)
 				if(!(O.status & ORGAN_MUTATED))
 					candidates |= O
-			if(candidates.len)
+			if(length(candidates))
 				var/datum/organ/external/O = pick(candidates)
 				O.mutate()
 				src << "<span class = 'notice'>Something is not right with your [O.display_name]...</span>"
@@ -168,7 +168,7 @@
 //It automatically updates health status
 /mob/living/carbon/human/heal_organ_damage(brute, burn)
 	var/list/datum/organ/external/parts = get_damaged_organs(brute, burn)
-	if(!parts.len)
+	if(!length(parts))
 		return
 	var/datum/organ/external/picked = pick(parts)
 	if(picked.heal_damage(brute,burn))
@@ -181,7 +181,7 @@
 //It automatically updates health status
 /mob/living/carbon/human/take_organ_damage(brute, burn, sharp = 0, edge = 0)
 	var/list/datum/organ/external/parts = get_damageable_organs()
-	if(!parts.len)
+	if(!length(parts))
 		return
 
 	var/datum/organ/external/picked = pick(parts)
@@ -196,7 +196,7 @@
 	var/list/datum/organ/external/parts = get_damaged_organs(brute, burn)
 
 	var/update = 0
-	while(parts.len && (brute>0 || burn>0) )
+	while(length(parts) && (brute > 0 || burn > 0))
 		var/datum/organ/external/picked = pick(parts)
 
 		var/brute_was = picked.brute_dam
@@ -220,7 +220,7 @@
 		return	//godmode
 	var/list/datum/organ/external/parts = get_damageable_organs()
 	var/update = 0
-	while(parts.len && (brute > 0 || burn > 0))
+	while(length(parts) && (brute > 0 || burn > 0))
 		var/datum/organ/external/picked = pick(parts)
 
 		var/brute_was = picked.brute_dam

@@ -12,7 +12,7 @@
 	randomize_hair_color("facial")
 	randomize_eyes_color()
 	randomize_skin_color()
-	underwear = rand(1, GLOBL.underwear_m.len)
+	underwear = rand(1, length(GLOBL.underwear_m))
 	backbag = 2
 	age = rand(AGE_MIN,AGE_MAX)
 	if(H)

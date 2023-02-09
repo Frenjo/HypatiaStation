@@ -310,7 +310,7 @@
 						emote("gasp")
 					updatehealth()
 
-			if(damage && organs.len)
+			if(damage && length(organs))
 				var/datum/organ/external/O = pick(organs)
 				if(istype(O))
 					O.add_autopsy_data("Radiation Poisoning", damage)
@@ -400,7 +400,7 @@
 		loc.assume_air(breath)
 
 		//spread some viruses while we are at it
-		if(virus2.len > 0)
+		if(length(virus2))
 			if(prob(10) && get_infection_chance(src))
 //				log_debug("[src] : Exhaling some viruses")
 				for(var/mob/living/carbon/M in view(1, src))
@@ -1158,7 +1158,7 @@
 		if(embedded_flag && !(life_tick % 10))
 			var/list/E
 			E = get_visible_implants(0)
-			if(!E.len)
+			if(!length(E))
 				embedded_flag = 0
 
 
@@ -1539,19 +1539,19 @@
 		for(var/obj/effect/decal/cleanable/O in view(1, src))
 			if(istype(O, /obj/effect/decal/cleanable/blood))
 				var/obj/effect/decal/cleanable/blood/B = O
-				if(B.virus2.len)
+				if(length(B.virus2))
 					for (var/ID in B.virus2)
 						var/datum/disease2/disease/V = B.virus2[ID]
 						infect_virus2(src, V.getcopy())
 
 			else if(istype(O, /obj/effect/decal/cleanable/mucus))
 				var/obj/effect/decal/cleanable/mucus/M = O
-				if(M.virus2.len)
+				if(length(M.virus2))
 					for (var/ID in M.virus2)
 						var/datum/disease2/disease/V = M.virus2[ID]
 						infect_virus2(src, V.getcopy())
 
-	if(virus2.len)
+	if(length(virus2))
 		for (var/ID in virus2)
 			var/datum/disease2/disease/V = virus2[ID]
 			if(isnull(V)) // Trying to figure out a runtime error that keeps repeating
@@ -1732,7 +1732,7 @@
 			holder2.icon_state = "hudbrainworm"
 		else
 			holder.icon_state = "hudhealthy"
-			if(virus2.len)
+			if(length(virus2))
 				holder2.icon_state = "hudill"
 			else
 				holder2.icon_state = "hudhealthy"
