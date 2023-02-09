@@ -54,12 +54,12 @@
 	else
 		air = new
 
-	while(possible_expansions.len > 0)
+	while(length(possible_expansions))
 		for(var/obj/machinery/atmospherics/pipe/borderline in possible_expansions)
 			var/list/result = borderline.pipeline_expansion()
-			var/edge_check = result.len
+			var/edge_check = length(result)
 
-			if(result.len > 0)
+			if(edge_check)
 				for(var/obj/machinery/atmospherics/pipe/item in result)
 					if(!members.Find(item))
 						members += item

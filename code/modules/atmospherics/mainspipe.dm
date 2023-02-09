@@ -65,19 +65,19 @@
 
 	supply = new /obj/machinery/atmospherics/pipe/mains_component(src)
 	supply.volume = volume
-	supply.nodes.len = nodes.len
+	supply.nodes.len = length(nodes)
 
 	scrubbers = new /obj/machinery/atmospherics/pipe/mains_component(src)
 	scrubbers.volume = volume
-	scrubbers.nodes.len = nodes.len
+	scrubbers.nodes.len = length(nodes)
 
 	aux = new /obj/machinery/atmospherics/pipe/mains_component(src)
 	aux.volume = volume
-	aux.nodes.len = nodes.len
+	aux.nodes.len = length(nodes)
 
 /obj/machinery/atmospherics/mains_pipe/atmos_initialise()
 	..()
-	for(var/i = 1 to nodes.len)
+	for(var/i = 1 to length(nodes))
 		var/obj/machinery/atmospherics/mains_pipe/node = nodes[i]
 		if(node)
 			supply.nodes[i] = node.supply

@@ -84,8 +84,8 @@ Class Procs:
 	fire_tiles.Remove(T)
 	T.zone = null
 	T.set_graphic(0)
-	if(contents.len)
-		air.group_multiplier = contents.len
+	if(length(contents))
+		air.group_multiplier = length(contents)
 	else
 		c_invalidate()
 
@@ -124,10 +124,10 @@ Class Procs:
 /zone/proc/add_tile_air(datum/gas_mixture/tile_air)
 	//air.volume += CELL_VOLUME
 	air.group_multiplier = 1
-	air.multiply(contents.len)
+	air.multiply(length(contents))
 	air.merge(tile_air)
-	air.divide(contents.len+1)
-	air.group_multiplier = contents.len+1
+	air.divide(length(contents) + 1)
+	air.group_multiplier = length(contents) + 1
 
 /zone/proc/tick()
 	if(air.check_tile_graphic())
@@ -146,9 +146,9 @@ Class Procs:
 		to_chat(M, "[GLOBL.gas_data.name[g]]: [air.gas[g]]")
 	to_chat(M, "P: [air.return_pressure()] kPa V: [air.volume]L T: [air.temperature]�K ([air.temperature - T0C]�C)")
 	to_chat(M, "O2 per N2: [(air.gas[GAS_NITROGEN] ? air.gas[GAS_OXYGEN]/air.gas[GAS_NITROGEN] : "N/A")] Moles: [air.total_moles]")
-	to_chat(M, "Simulated: [contents.len] ([air.group_multiplier])")
-	//to_chat(M, "Unsimulated: [unsimulated_contents.len]")
-	//to_chat(M, "Edges: [edges.len]")
+	to_chat(M, "Simulated: [length(contents)] ([air.group_multiplier])")
+	//to_chat(M, "Unsimulated: [length(unsimulated_contents)]")
+	//to_chat(M, "Edges: [length(edges)]")
 	if(invalid)
 		to_chat(M, "Invalid!")
 	var/zone_edges = 0

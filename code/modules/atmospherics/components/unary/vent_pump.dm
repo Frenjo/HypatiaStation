@@ -152,7 +152,7 @@
 	)
 
 	if(!initial_loc.air_vent_names[id_tag])
-		var/new_name = "[initial_loc.name] Vent Pump #[initial_loc.air_vent_names.len+1]"
+		var/new_name = "[initial_loc.name] Vent Pump #[length(initial_loc.air_vent_names) + 1]"
 		initial_loc.air_vent_names[id_tag] = new_name
 		src.name = new_name
 	initial_loc.air_vent_info[id_tag] = signal.data

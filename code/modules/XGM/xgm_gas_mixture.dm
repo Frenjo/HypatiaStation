@@ -47,18 +47,18 @@
 
 //Variadic version of adjust_gas().  Takes any number of gas and mole pairs, and applies them.
 /datum/gas_mixture/proc/adjust_multi()
-	ASSERT(!(args.len % 2))
+	ASSERT(!(length(args) % 2))
 
-	for(var/i = 1; i < args.len; i += 2)
+	for(var/i = 1; i < length(args); i += 2)
 		adjust_gas(args[i], args[i+1], update = 0)
 
 	update_values()
 
 //Variadic version of adjust_gas_temp().  Takes any number of gas, mole, and temperature tuples, and applies them.
 /datum/gas_mixture/proc/adjust_multi_temp()
-	ASSERT(!(args.len % 3))
+	ASSERT(!(length(args) % 3))
 
-	for(var/i = 1; i < args.len; i += 3)
+	for(var/i = 1; i < length(args); i += 3)
 		adjust_gas_temp(args[i], args[i + 1], args[i + 2], update = 0)
 
 	update_values()
@@ -248,10 +248,10 @@
 
 	. = 0
 	//Apply changes
-	if(graphic_add && graphic_add.len)
+	if(length(graphic_add))
 		graphic += graphic_add
 		. = 1
-	if(graphic_remove && graphic_remove.len)
+	if(length(graphic_remove))
 		graphic -= graphic_remove
 		. = 1
 
@@ -317,7 +317,7 @@
 		temp_avg = (temperature * full_heat_capacity + other.temperature * s_full_heat_capacity) / (full_heat_capacity + s_full_heat_capacity)
 
 	//WOOT WOOT TOUCH THIS AND YOU ARE A RETARD.
-	if(sharing_lookup_table.len >= connecting_tiles) //6 or more interconnecting tiles will max at 42% of air moved per tick.
+	if(length(sharing_lookup_table) >= connecting_tiles) //6 or more interconnecting tiles will max at 42% of air moved per tick.
 		ratio = sharing_lookup_table[connecting_tiles]
 	//WOOT WOOT TOUCH THIS AND YOU ARE A RETARD
 

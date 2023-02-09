@@ -44,11 +44,11 @@ Attach to transfer valve and open. BOOM.
 			T.fire = null
 		fire_tiles.Cut()
 
-	if(!fire_tiles.len)
+	if(!length(fire_tiles))
 		global.CTair_system.active_fire_zones.Remove(src)
 		return
 
-	var/datum/gas_mixture/burn_gas = air.remove_ratio(vsc.fire_consuption_rate, fire_tiles.len)
+	var/datum/gas_mixture/burn_gas = air.remove_ratio(vsc.fire_consuption_rate, length(fire_tiles))
 	var/gm = burn_gas.group_multiplier
 
 	burn_gas.group_multiplier = 1
@@ -138,7 +138,7 @@ Attach to transfer valve and open. BOOM.
 				if(!enemy_tile.zone || enemy_tile.fire)
 					continue
 
-				if(!enemy_tile.zone.fire_tiles.len)
+				if(!length(enemy_tile.zone.fire_tiles))
 					var/datum/gas_mixture/acs = enemy_tile.return_air()
 					if(!acs || !acs.check_combustability())
 						continue

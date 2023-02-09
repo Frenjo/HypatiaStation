@@ -90,7 +90,7 @@ Class Procs:
 /connection_edge/proc/recheck()
 
 /connection_edge/proc/flow(list/movable, differential, repelled)
-	for(var/i = 1; i <= movable.len; i++)
+	for(var/i = 1; i <= length(movable); i++)
 		var/atom/movable/M = movable[i]
 
 		//If they're already being tossed, don't do it again.
@@ -111,7 +111,7 @@ Class Procs:
 			for(var/turf/U in connecting_turfs)
 				if(get_dist(M, U) < world.view)
 					close_turfs += U
-			if(!close_turfs.len)
+			if(!length(close_turfs))
 				continue
 
 			M.airflow_dest = pick(close_turfs) //Pick a random midpoint to fly towards.
