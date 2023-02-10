@@ -26,7 +26,7 @@
 	if(!..())
 		return 0
 	var/list/datum/mind/possible_wizards = get_players_for_role(BE_WIZARD)
-	if(possible_wizards.len == 0)
+	if(!length(possible_wizards))
 		return 0
 	var/datum/mind/wizard = pick(possible_wizards)
 	wizards += wizard
@@ -34,7 +34,7 @@
 	wizard.assigned_role = "MODE" //So they aren't chosen for other jobs.
 	wizard.special_role = "Wizard"
 	wizard.original = wizard.current
-	if(GLOBL.wizardstart.len == 0)
+	if(!length(GLOBL.wizardstart))
 		to_chat(wizard.current, SPAN_DANGER("A starting location for you could not be found, please report this bug!"))
 		return 0
 	return 1
@@ -203,12 +203,12 @@
 /datum/game_mode/wizard/declare_completion()
 	if(finished)
 		feedback_set_details("round_end_result", "loss - wizard killed")
-		to_world(SPAN_DANGER("<FONT size = 3>The wizard[(wizards.len > 1) ? "s" : ""] has been killed by the crew! The Space Wizards Federation has been taught a lesson they will not soon forget!</FONT>"))
+		to_world(SPAN_DANGER("<FONT size = 3>The wizard[(length(wizards) > 1) ? "s" : ""] has been killed by the crew! The Space Wizards Federation has been taught a lesson they will not soon forget!</FONT>"))
 	..()
 	return 1
 
 /datum/game_mode/proc/auto_declare_completion_wizard()
-	if(wizards.len)
+	if(length(wizards))
 		var/text = "<FONT size = 2><B>The wizards/witches were:</B></FONT>"
 
 		for(var/datum/mind/wizard in wizards)

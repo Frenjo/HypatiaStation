@@ -188,13 +188,13 @@
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in GLOBL.machines)
 		if(!temp_vent.welded && temp_vent.network && isStationLevel(temp_vent.loc.z))
-			if(temp_vent.network.normal_members.len > 50) // Stops Aliens getting stuck in small networks. See: Security, Virology
+			if(length(temp_vent.network.normal_members) > 50) // Stops Aliens getting stuck in small networks. See: Security, Virology
 				vents += temp_vent
 
 	var/list/candidates = get_alien_candidates()
 
 	if(prob(40)) spawncount++ //sometimes, have two larvae spawn instead of one
-	while((spawncount >= 1) && vents.len && candidates.len)
+	while(spawncount >= 1 && length(vents) && length(candidates))
 
 		var/obj/vent = pick(vents)
 		var/candidate = pick(candidates)
@@ -258,7 +258,7 @@
 		if(istype(A, /area/security/brig) || istype(A, /area/prison))
 			areas += A
 
-	if(areas && areas.len > 0)
+	if(length(areas))
 		for(var/area/A in areas)
 			for(var/obj/machinery/light/L in A)
 				L.flicker(10)
@@ -311,12 +311,12 @@
 			for(var/obj/effect/landmark/newEpicentre in GLOBL.landmarks_list)
 				if(newEpicentre.name == "lightsout" && !(newEpicentre in epicentreList))
 					possibleEpicentres += newEpicentre
-			if(possibleEpicentres.len)
+			if(length(possibleEpicentres))
 				epicentreList += pick(possibleEpicentres)
 			else
 				break
 
-		if(!epicentreList.len)
+		if(!length(epicentreList))
 			return
 
 		for(var/obj/effect/landmark/epicentre in epicentreList)
@@ -358,7 +358,7 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 			var/list/pos_crew = list()
 			for(var/mob/living/carbon/human/pos in GLOBL.player_list)
 				pos_crew += pos.real_name
-			if(pos_crew.len)
+			if(length(pos_crew))
 				crew = pick(pos_crew)
 			else
 				crew = "Any Human"

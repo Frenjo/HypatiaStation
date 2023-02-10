@@ -26,7 +26,7 @@ var/global/list/all_objectives = list()
 	for(var/datum/mind/possible_target in global.CTgame_ticker.minds)
 		if(possible_target != owner && ishuman(possible_target.current) && possible_target.current.stat != DEAD)
 			possible_targets += possible_target
-	if(possible_targets.len > 0)
+	if(length(possible_targets))
 		target = pick(possible_targets)
 
 /datum/objective/proc/find_target_by_role(role, role_type = 0)//Option sets either to check assigned role or special role. Default to assigned.
@@ -628,7 +628,7 @@ var/global/list/all_objectives = list()
 		return 0
 	var/current_amount
 	var/obj/item/clothing/suit/space/space_ninja/S = owner.current:wear_suit
-	if(!S.stored_research.len)
+	if(!length(S.stored_research))
 		return 0
 	else
 		for(var/datum/tech/current_data in S.stored_research)
@@ -742,7 +742,7 @@ var/global/list/all_objectives = list()
 			proc/find_target() //I don't know how to make it work with the rune otherwise, so I'll do it via a global var, sacrifice_target, defined in rune15.dm
 				var/list/possible_targets = call(/datum/game_mode/cult/proc/get_unconvertables)()
 
-				if(possible_targets.len > 0)
+				if(length(possible_targets))
 					sacrifice_target = pick(possible_targets)
 
 				if(sacrifice_target && sacrifice_target.current)
@@ -783,9 +783,9 @@ var/global/list/all_objectives = list()
 					priority_targets += possible_target
 					continue
 
-	if(priority_targets.len > 0)
+	if(length(priority_targets))
 		target = pick(priority_targets)
-	else if(possible_targets.len > 0)
+	else if(length(possible_targets))
 		target = pick(possible_targets)
 
 	if(target && target.current)

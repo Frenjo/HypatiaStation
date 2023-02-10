@@ -72,25 +72,25 @@
 				cultists_possible -= player
 
 	for(var/cultists_number = 1 to max_cultists_to_start)
-		if(!cultists_possible.len)
+		if(!length(cultists_possible))
 			break
 		var/datum/mind/cultist = pick(cultists_possible)
 		cultists_possible -= cultist
 		cult += cultist
 
-	return (cult.len > 0)
+	return length(cult)
 
 /datum/game_mode/cult/post_setup()
 	modePlayer += cult
 	if("sacrifice" in objectives)
 		var/list/possible_targets = get_unconvertables()
 
-		if(!possible_targets.len)
+		if(!length(possible_targets))
 			for(var/mob/living/carbon/human/player in GLOBL.player_list)
 				if(player.mind && !(player.mind in cult))
 					possible_targets += player.mind
 
-		if(possible_targets.len > 0)
+		if(length(possible_targets))
 			sacrifice_target = pick(possible_targets)
 
 	for(var/datum/mind/cult_mind in cult)
@@ -109,7 +109,7 @@
 	..()
 
 /datum/game_mode/cult/proc/memoize_cult_objectives(datum/mind/cult_mind)
-	for(var/obj_count = 1, obj_count <= objectives.len, obj_count++)
+	for(var/obj_count = 1, obj_count <= length(objectives), obj_count++)
 		var/explanation
 		switch(objectives[obj_count])
 			if("survive")
@@ -153,7 +153,7 @@
 
 /datum/game_mode/cult/grant_runeword(mob/living/carbon/human/cult_mob, word)
 	if(!word)
-		if(startwords.len > 0)
+		if(length(startwords))
 			word = pick(startwords)
 			startwords -= word
 	return ..(cult_mob, word)
@@ -280,9 +280,9 @@
 
 	var/text = "<b>Cultists escaped:</b> [acolytes_survived]"
 	if(!CONFIG_GET(objectives_disabled))
-		if(objectives.len)
+		if(length(objectives))
 			text += "<br><b>The cultists' objectives were:</b>"
-			for(var/obj_count = 1, obj_count <= objectives.len, obj_count++)
+			for(var/obj_count = 1, obj_count <= length(objectives), obj_count++)
 				var/explanation
 				switch(objectives[obj_count])
 					if("survive")
@@ -317,7 +317,7 @@
 	return 1
 
 /datum/game_mode/proc/auto_declare_completion_cult()
-	if(cult.len || (global.CTgame_ticker && istype(global.CTgame_ticker.mode, /datum/game_mode/cult)))
+	if(length(cult) || (global.CTgame_ticker && istype(global.CTgame_ticker.mode, /datum/game_mode/cult)))
 		var/text = "<FONT size = 2><B>The cultists were:</B></FONT>"
 		for(var/datum/mind/cultist in cult)
 

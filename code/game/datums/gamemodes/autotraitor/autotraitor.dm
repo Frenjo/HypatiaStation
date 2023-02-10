@@ -35,7 +35,7 @@
 	traitor_prob = (num_players - (max_traitors - 1) * 10) * 10
 
 	// Stop setup if no possible traitors
-	if(!possible_traitors.len)
+	if(!length(possible_traitors))
 		return 0
 
 	if(CONFIG_GET(traitor_scaling))
@@ -57,7 +57,7 @@
 		if(istype(traitor))
 			traitor.special_role = "traitor"
 
-//	if(!traitors.len)
+//	if(!length(traitors))
 //		return 0
 	return 1
 
@@ -106,7 +106,7 @@
 			//message_admins("The probability of a new traitor is [traitor_prob]%")
 			if(prob(traitor_prob))
 				message_admins("Making a new Traitor.")
-				if(!possible_traitors.len)
+				if(!length(possible_traitors))
 					message_admins("No potential traitors.  Cancelling new traitor.")
 					traitorcheckloop()
 					return

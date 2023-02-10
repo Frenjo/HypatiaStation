@@ -18,7 +18,7 @@
 	if(!..())
 		return 0
 	var/list/datum/mind/possible_ninjas = get_players_for_role(BE_NINJA)
-	if(possible_ninjas.len == 0)
+	if(!length(possible_ninjas))
 		return 0
 	var/datum/mind/ninja = pick(possible_ninjas)
 	ninjas += ninja
@@ -27,7 +27,7 @@
 	ninja.special_role = "Ninja"
 	ninja.original = ninja.current
 
-	/*if(global.ninjastart.len == 0)
+	/*if(!length(global.ninjastart))
 		ninja.current << "<B>\red A proper starting location for you could not be found, please report this bug!</B>"
 		ninja.current << "<B>\red Attempting to place at a carpspawn.</B>"*/
 
@@ -35,10 +35,10 @@
 	for(var/obj/effect/landmark/L in GLOBL.landmarks_list)
 		if(L.name == "carpspawn")
 			GLOBL.ninjastart.Add(L)
-	if(GLOBL.ninjastart.len == 0 && GLOBL.latejoin.len > 0)
+	if(!length(GLOBL.ninjastart) && length(GLOBL.latejoin))
 		to_chat(ninja.current, SPAN_DANGER("No spawnable locations could be found. Defaulting to latejoin."))
 		return 1
-	else if(GLOBL.ninjastart.len == 0)
+	else if(!length(GLOBL.ninjastart))
 		to_chat(ninja.current, SPAN_DANGER("No spawnable locations could be found. Aborting."))
 		return 0
 
@@ -47,7 +47,7 @@
 /datum/game_mode/ninja/pre_setup()
 	for(var/datum/mind/ninja in ninjas)
 		ninja.current << browse(null, "window=playersetup")
-		ninja.current = create_space_ninja(pick(GLOBL.ninjastart.len ? GLOBL.ninjastart : GLOBL.latejoin))
+		ninja.current = create_space_ninja(pick(length(GLOBL.ninjastart) ? GLOBL.ninjastart : GLOBL.latejoin))
 		ninja.current.ckey = ninja.key
 	return 1
 
@@ -144,7 +144,7 @@
 		obj_count++
 
 /datum/game_mode/proc/auto_declare_completion_ninja()
-	if(ninjas.len)
+	if(length(ninjas))
 		var/text = "<FONT size = 2><B>The ninjas were:</B></FONT>"
 		for(var/datum/mind/ninja in ninjas)
 			var/ninjawin = 1
@@ -161,7 +161,7 @@
 				text += "body destroyed"
 			text += ")"
 
-			if(ninja.objectives.len)//If the ninja had no objectives, don't need to process this.
+			if(length(ninja.objectives))//If the ninja had no objectives, don't need to process this.
 				var/count = 1
 				for(var/datum/objective/objective in ninja.objectives)
 					if(objective.check_completion())

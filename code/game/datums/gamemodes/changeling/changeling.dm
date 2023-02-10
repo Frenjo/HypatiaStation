@@ -62,9 +62,9 @@ var/list/possible_changeling_IDs = list(
 
 	changeling_amount = 1 + round(num_players() / 10)
 
-	if(possible_changelings.len > 0)
+	if(length(possible_changelings))
 		for(var/i = 0, i < changeling_amount, i++)
-			if(!possible_changelings.len)
+			if(!length(possible_changelings))
 				break
 			var/datum/mind/changeling = pick(possible_changelings)
 			possible_changelings -= changeling
@@ -173,7 +173,7 @@ var/list/possible_changeling_IDs = list(
 	changeling_mob.make_changeling()
 
 /datum/game_mode/proc/auto_declare_completion_changeling()
-	if(changelings.len)
+	if(length(changelings))
 		var/text = "<FONT size = 2><B>The changelings were:</B></FONT>"
 		for(var/datum/mind/changeling in changelings)
 			var/changelingwin = 1
@@ -195,7 +195,7 @@ var/list/possible_changeling_IDs = list(
 			text += "<br><b>Changeling ID:</b> [changeling.changeling.changelingID]."
 			text += "<br><b>Genomes Absorbed:</b> [changeling.changeling.absorbedcount]"
 			if(!CONFIG_GET(objectives_disabled))
-				if(changeling.objectives.len)
+				if(length(changeling.objectives))
 					var/count = 1
 					for(var/datum/objective/objective in changeling.objectives)
 						if(objective.check_completion())
@@ -239,7 +239,7 @@ var/list/possible_changeling_IDs = list(
 		honorific = "Ms."
 	else
 		honorific = "Mr."
-	if(possible_changeling_IDs.len)
+	if(length(possible_changeling_IDs))
 		changelingID = pick(possible_changeling_IDs)
 		possible_changeling_IDs -= changelingID
 		changelingID = "[honorific] [changelingID]"

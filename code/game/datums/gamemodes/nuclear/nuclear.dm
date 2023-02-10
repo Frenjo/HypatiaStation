@@ -33,24 +33,24 @@
 	var/agent_number = 0
 
     /*
-	 * if(possible_syndicates.len > agents_possible)
+	 * if(length(possible_syndicates) > agents_possible)
 	 * 	agent_number = agents_possible
 	 * else
-	 * 	agent_number = possible_syndicates.len
+	 * 	agent_number = length(possible_syndicates)
 	 *
 	 * if(agent_number > n_players)
 	 *	agent_number = n_players/2
 	 */
 
-	if(possible_syndicates.len < 1)
+	if(length(possible_syndicates) < 1)
 		return 0
 
 	//Antag number should scale to active crew.
 	var/n_players = num_players()
 	agent_number = clamp((n_players / 5), 2, 6)
 
-	if(possible_syndicates.len < agent_number)
-		agent_number = possible_syndicates.len
+	if(length(possible_syndicates) < agent_number)
+		agent_number = length(possible_syndicates)
 
 	while(agent_number > 0)
 		var/datum/mind/new_syndicate = pick(possible_syndicates)
@@ -128,7 +128,7 @@
 	var/spawnpos = 1
 
 	for(var/datum/mind/synd_mind in syndicates)
-		if(spawnpos > synd_spawn.len)
+		if(spawnpos > length(synd_spawn))
 			spawnpos = 1
 		synd_mind.current.loc = synd_spawn[spawnpos]
 
@@ -151,7 +151,7 @@
 
 	if(uplinklocker)
 		new /obj/structure/closet/syndicate/nuclear(uplinklocker.loc)
-	if(nuke_spawn && synd_spawn.len > 0)
+	if(nuke_spawn && length(synd_spawn))
 		var/obj/machinery/nuclearbomb/the_bomb = new /obj/machinery/nuclearbomb(nuke_spawn.loc)
 		the_bomb.r_code = nuke_code
 
@@ -334,7 +334,7 @@
 
 
 /datum/game_mode/proc/auto_declare_completion_nuclear()
-	if(syndicates.len || (global.CTgame_ticker && istype(global.CTgame_ticker.mode, /datum/game_mode/nuclear)))
+	if(length(syndicates) || (global.CTgame_ticker && istype(global.CTgame_ticker.mode, /datum/game_mode/nuclear)))
 		var/text = "<FONT size = 2><B>The syndicate operatives were:</B></FONT>"
 
 		for(var/datum/mind/syndicate in syndicates)

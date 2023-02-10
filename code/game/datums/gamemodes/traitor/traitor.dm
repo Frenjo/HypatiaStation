@@ -31,7 +31,7 @@
 	var/list/possible_traitors = get_players_for_role(BE_TRAITOR)
 
 	// stop setup if no possible traitors
-	if(!possible_traitors.len)
+	if(!length(possible_traitors))
 		return 0
 
 	var/num_traitors = 1
@@ -47,14 +47,14 @@
 				possible_traitors -= player
 
 	for(var/j = 0, j < num_traitors, j++)
-		if(!possible_traitors.len)
+		if(!length(possible_traitors))
 			break
 		var/datum/mind/traitor = pick(possible_traitors)
 		traitors += traitor
 		traitor.special_role = "traitor"
 		possible_traitors.Remove(traitor)
 
-	if(!traitors.len)
+	if(!length(traitors))
 		return 0
 	return 1
 
@@ -176,7 +176,7 @@
 	//End code phrase.
 
 /datum/game_mode/proc/auto_declare_completion_traitor()
-	if(traitors.len)
+	if(length(traitors))
 		var/text = "<FONT size = 2><B>The traitors were:</B></FONT>"
 		for(var/datum/mind/traitor in traitors)
 			var/traitorwin = 1
@@ -193,7 +193,7 @@
 				text += "body destroyed"
 			text += ")"
 
-			if(traitor.objectives.len)//If the traitor had no objectives, don't need to process this.
+			if(length(traitor.objectives))//If the traitor had no objectives, don't need to process this.
 				var/count = 1
 				for(var/datum/objective/objective in traitor.objectives)
 					if(objective.check_completion())
@@ -277,7 +277,7 @@
 				freq += 2
 				if((freq % 2) == 0)
 					freq += 1
-			freq = freqlist[rand(1, freqlist.len)]
+			freq = freqlist[rand(1, length(freqlist))]
 
 			var/obj/item/device/uplink/hidden/T = new(R)
 			target_radio.hidden_uplink = T

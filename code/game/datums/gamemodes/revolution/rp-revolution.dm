@@ -36,7 +36,7 @@
 	var/i = 0
 	for(i = 0, i < number, i++)
 		possible_modes.Remove(pick(possible_modes))
-	possible_modes.Insert(rand(possible_modes.len), "nuke")
+	possible_modes.Insert(rand(length(possible_modes)), "nuke")
 
 	var/datum/intercept_text/i_text = new /datum/intercept_text
 	for(var/A in possible_modes)
@@ -67,10 +67,10 @@
 		world.Reboot()
 		return
 
-	if(revs_possible.len >= 3)
+	if(length(revs_possible) >= 3)
 		rev_number = 3
 	else
-		rev_number = revs_possible.len
+		rev_number = length(revs_possible)
 
 	while(rev_number > 0)
 		head_revolutionaries += pick(revs_possible - head_revolutionaries)
@@ -107,7 +107,7 @@
 	var/i = 0
 	for(i = 0, i < number, i++)
 		possible_modes.Remove(pick(possible_modes))
-	possible_modes.Insert(rand(possible_modes.len), "[ticker.mode]")
+	possible_modes.Insert(rand(length(possible_modes)), "[ticker.mode]")
 
 	var/datum/intercept_text/i_text = new /datum/intercept_text
 	for(var/A in possible_modes)
@@ -145,9 +145,9 @@
 
 /datum/game_mode/rp_revolution/proc/reveal_rev_heads()
 	. = ""
-	for(var/i = 1, i <= head_revolutionaries.len,i++)
+	for(var/i = 1, i <= length(head_revolutionaries), i++)
 		var/datum/mind/revmind = head_revolutionaries[i]
-		if(i < head_revolutionaries.len)
+		if(i < length(head_revolutionaries))
 			. += "[revmind.current.real_name],"
 		else
 			. += "and [revmind.current.real_name]"
@@ -184,7 +184,7 @@
 			if(player.client.be_syndicate & BE_REV)
 				candidates += player.mind
 
-	if(candidates.len < 1)
+	if(!length(candidates))
 		for(var/mob/living/carbon/human/player in world)
 			if(player.client)
 				candidates += player.mind
@@ -193,7 +193,7 @@
 	for(var/datum/mind/mind in uncons)
 		candidates -= mind
 
-	if(candidates.len < 1)
+	if(!length(candidates))
 		return null
 	else
 		return candidates

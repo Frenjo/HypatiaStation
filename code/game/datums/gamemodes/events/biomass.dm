@@ -90,9 +90,9 @@
 	if(!growth_queue)
 		qdel(src) //Sanity check
 		return
-	if(vines.len >= 250 && !reached_collapse_size)
+	if(length(vines) >= 250 && !reached_collapse_size)
 		reached_collapse_size = 1
-	if(vines.len >= 30 && !reached_slowdown_size )
+	if(length(vines) >= 30 && !reached_slowdown_size )
 		reached_slowdown_size = 1
 
 	var/maxgrowth = 0
@@ -105,7 +105,7 @@
 			maxgrowth = 0
 	else
 		maxgrowth = 4
-	var/length = min(30, vines.len / 5)
+	var/length = min(30, length(vines) / 5)
 	var/i = 0
 	var/growth = 0
 	var/list/obj/effect/biomass/queue_end = list()
@@ -177,13 +177,13 @@
 			var/area/A = locate(areapath)
 			//for(var/area/B in A.related)
 			//	for(var/turf/simulated/floor/F in B.contents)
-			//		if(!F.contents.len)
+			//		if(!length(F.contents))
 			//			turfs += F
 			for(var/turf/simulated/floor/F in A.contents)
-				if(!F.contents.len)
+				if(!length(F.contents))
 					turfs += F
 
-		if(turfs.len) //Pick a turf to spawn at if we can
+		if(length(turfs)) //Pick a turf to spawn at if we can
 			var/turf/simulated/floor/T = pick(turfs)
 			new/obj/effect/biomass_controller(T) //spawn a controller at turf
 			message_admins("\blue Event: Biomass spawned at [T.loc.loc] ([T.x],[T.y],[T.z])")

@@ -16,7 +16,7 @@
 	return
 
 /obj/effect/blob/factory/run_action()
-	if(spores.len >= max_spores)
+	if(length(spores) >= max_spores)
 		return 0
 	new/mob/living/simple_animal/hostile/blobspore(src.loc, src)
 	return 1

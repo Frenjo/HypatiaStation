@@ -34,10 +34,10 @@ VOX HEIST ROUNDTYPE
 	var/raider_num = 0
 
 	//Check that we have enough vox.
-	if(candidates.len < required_enemies)
+	if(length(candidates) < required_enemies)
 		return 0
-	else if(candidates.len < recommended_enemies)
-		raider_num = candidates.len
+	else if(length(candidates) < recommended_enemies)
+		raider_num = length(candidates)
 	else
 		raider_num = recommended_enemies
 
@@ -74,7 +74,7 @@ VOX HEIST ROUNDTYPE
 
 	//Spawn the vox!
 	for(var/datum/mind/raider in raiders)
-		if(index > raider_spawn.len)
+		if(index > length(raider_spawn))
 			index = 1
 
 		raider.current.loc = raider_spawn[index]
@@ -113,7 +113,7 @@ VOX HEIST ROUNDTYPE
 		send_intercept()
 
 /datum/game_mode/heist/proc/is_raider_crew_safe()
-	if(cortical_stacks.len == 0)
+	if(!length(cortical_stacks))
 		return 0
 
 	for(var/obj/stack in cortical_stacks)
@@ -172,14 +172,14 @@ VOX HEIST ROUNDTYPE
 
 /datum/game_mode/heist/declare_completion()
 	//No objectives, go straight to the feedback.
-	if(!(raid_objectives.len))
+	if(!length(raid_objectives))
 		return ..()
 
 	var/win_type = "Major"
 	var/win_group = "Crew"
 	var/win_msg = ""
 
-	var/success = raid_objectives.len
+	var/success = length(raid_objectives)
 
 	//Decrease success for failed objectives.
 	for(var/datum/objective/O in raid_objectives)
@@ -187,7 +187,7 @@ VOX HEIST ROUNDTYPE
 			success--
 
 	//Set result by objectives.
-	if(success == raid_objectives.len)
+	if(success == length(raid_objectives))
 		win_type = "Major"
 		win_group = "Vox"
 	else if(success > 2)
@@ -236,7 +236,7 @@ VOX HEIST ROUNDTYPE
 	..()
 
 /datum/game_mode/proc/auto_declare_completion_heist()
-	if(raiders.len)
+	if(length(raiders))
 		var/check_return = 0
 		if(global.CTgame_ticker && istype(global.CTgame_ticker.mode, /datum/game_mode/heist))
 			check_return = 1

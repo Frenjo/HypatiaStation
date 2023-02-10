@@ -6,7 +6,7 @@
 // The name is used on /vg/ for species with predefined genetic traits,
 //  and for the DNA panel in the player panel.
 /proc/getAssignedBlock(name, list/blocksLeft, activity_bounds = DNA_DEFAULT_BOUNDS)
-	if(blocksLeft.len == 0)
+	if(!length(blocksLeft))
 		warning("[name]: No more blocks left to assign!")
 		return 0
 	var/assigned = pick(blocksLeft)
@@ -120,7 +120,7 @@
 			blocks_assigned[G.block] = assignedToBlock
 			//testing("DNA2: Gene [G.name] assigned to block [G.block].")
 
-	testing("DNA2: [numsToAssign.len] blocks are unused: [english_list(numsToAssign)]")
+	testing("DNA2: [length(numsToAssign)] blocks are unused: [english_list(numsToAssign)]")
 
 	// HIDDEN MUTATIONS / SUPERPOWERS INITIALIZTION
 

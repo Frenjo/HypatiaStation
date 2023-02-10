@@ -295,7 +295,7 @@ Implants;
 			players -= player
 
 	// If we don't have enough antags, draft people who voted for the round.
-	if(candidates.len < recommended_enemies)
+	if(length(candidates) < recommended_enemies)
 		for(var/key in global.CTvote.round_voters)
 			for(var/mob/new_player/player in players)
 				if(player.ckey == key)
@@ -311,7 +311,7 @@ Implants;
 				if(player.assigned_role == job)
 					candidates -= player
 
-	/*if(candidates.len < recommended_enemies)
+	/*if(length(candidates) < recommended_enemies)
 		for(var/mob/new_player/player in players)
 			if(player.client && player.ready)
 				if(!(player.client.prefs.be_special & role)) // We don't have enough people who want to be antagonist, make a seperate list of people who don't want to be one
@@ -326,8 +326,8 @@ Implants;
 
 	drafted = shuffle(drafted) // Will hopefully increase randomness, Donkie
 
-	while(candidates.len < recommended_enemies)				// Pick randomlly just the number of people we need and add them to our list of candidates
-		if(drafted.len > 0)
+	while(length(candidates) < recommended_enemies)				// Pick randomlly just the number of people we need and add them to our list of candidates
+		if(length(drafted) > 0)
 			applicant = pick(drafted)
 			if(applicant)
 				candidates += applicant
@@ -337,7 +337,7 @@ Implants;
 		else												// Not enough scrubs, ABORT ABORT ABORT
 			break
 
-	if(candidates.len < recommended_enemies && override_jobbans) //If we still don't have enough people, we're going to start drafting banned people.
+	if(length(candidates) < recommended_enemies && override_jobbans) //If we still don't have enough people, we're going to start drafting banned people.
 		for(var/mob/new_player/player in players)
 			if (player.client && player.ready)
 				if(jobban_isbanned(player, "Syndicate") || jobban_isbanned(player, roletext)) //Nodrak/Carn: Antag Job-bans
@@ -351,8 +351,8 @@ Implants;
 
 	drafted = shuffle(drafted) // Will hopefully increase randomness, Donkie
 
-	while(candidates.len < recommended_enemies)				// Pick randomlly just the number of people we need and add them to our list of candidates
-		if(drafted.len > 0)
+	while(length(candidates) < recommended_enemies)				// Pick randomlly just the number of people we need and add them to our list of candidates
+		if(length(drafted) > 0)
 			applicant = pick(drafted)
 			if(applicant)
 				candidates += applicant
@@ -473,6 +473,6 @@ Implants;
 				dudes += man
 			else if(man.client.prefs.nanotrasen_relation == "Skeptical" && prob(50))
 				dudes += man
-	if(dudes.len == 0)
+	if(!length(dudes))
 		return null
 	return pick(dudes)

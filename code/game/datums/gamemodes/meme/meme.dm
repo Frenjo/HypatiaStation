@@ -50,12 +50,12 @@
 
 	var/list/datum/mind/possible_memes = get_players_for_role(BE_MEME)
 
-	if(possible_memes.len < 2)
+	if(length(possible_memes) < 2)
 		log_admin("MODE FAILURE: MEME. NOT ENOUGH MEME CANDIDATES.")
 		return 0 // not enough candidates for meme
 
 	// for each 2 possible memes, add one meme and one host
-	while(possible_memes.len >= 2)
+	while(length(possible_memes) >= 2)
 		var/datum/mind/meme = pick(possible_memes)
 		possible_memes.Remove(meme)
 
@@ -99,7 +99,7 @@
 
 		del original
 
-	log_admin("Created [memes.len] memes.")
+	log_admin("Created [length(memes)] memes.")
 
 	spawn (rand(waittime_l, waittime_h))
 		send_intercept()

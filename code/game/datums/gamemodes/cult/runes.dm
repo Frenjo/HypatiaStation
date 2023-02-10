@@ -568,7 +568,7 @@ var/list/sacrificed = list()
 	for(var/mob/H in victims)
 		if(global.CTgame_ticker.mode.name == "cult")
 			if(H.mind == global.CTgame_ticker.mode:sacrifice_target)
-				if(cultsinrange.len >= 3)
+				if(length(cultsinrange) >= 3)
 					sacrificed += H.mind
 					if(isrobot(H))
 						H.dust()	//To prevent the MMI from remaining
@@ -578,7 +578,7 @@ var/list/sacrificed = list()
 				else
 					to_chat(usr, SPAN_WARNING("Your target's earthly bonds are too strong. You need more cultists to succeed in this ritual."))
 			else
-				if(cultsinrange.len >= 3)
+				if(length(cultsinrange) >= 3)
 					if(H.stat !=2)
 						if(prob(80))
 							to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
@@ -616,7 +616,7 @@ var/list/sacrificed = list()
 						else
 							H.gib()
 		else
-			if(cultsinrange.len >= 3)
+			if(length(cultsinrange) >= 3)
 				if(H.stat !=2)
 					if(prob(80))
 						to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
@@ -656,7 +656,7 @@ var/list/sacrificed = list()
 	for(var/mob/living/carbon/monkey/M in src.loc)
 		if(global.CTgame_ticker.mode.name == "cult")
 			if(M.mind == global.CTgame_ticker.mode:sacrifice_target)
-				if(cultsinrange.len >= 3)
+				if(length(cultsinrange) >= 3)
 					sacrificed += M.mind
 					to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice, your objective is now complete."))
 				else
@@ -759,7 +759,7 @@ var/list/sacrificed = list()
 	for(var/mob/living/carbon/C in orange(1, src))
 		if(iscultist(C) && !C.stat)
 			users += C
-	if(users.len >= 3)
+	if(length(users) >= 3)
 		var/mob/living/carbon/cultist = input("Choose the one who you want to free", "Followers of Geometer") as null|anything in (cultists - users)
 		if(!cultist)
 			return fizzle()
@@ -805,7 +805,7 @@ var/list/sacrificed = list()
 	for(var/mob/living/carbon/C in orange(1, src))
 		if(iscultist(C) && !C.stat)
 			users += C
-	if(users.len >= 3)
+	if(length(users) >= 3)
 		var/mob/living/carbon/cultist = input("Choose the one who you want to summon", "Followers of Geometer") as null|anything in (cultists - user)
 		if(!cultist)
 			return fizzle()

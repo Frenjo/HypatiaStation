@@ -23,7 +23,7 @@
 			if(player.assigned_role == job)
 				possible_changelings -= player
 
-	if(possible_changelings.len>0)
+	if(length(possible_changelings))
 		var/datum/mind/changeling = pick(possible_changelings)
 		//possible_changelings-=changeling
 		changelings += changeling

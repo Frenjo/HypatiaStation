@@ -136,29 +136,29 @@
 			theftobjectives -= objective
 		else switch(selectobj)
 			if(1 to steal_range)
-				if(!theftobjectives.len)
+				if(!length(theftobjectives))
 					continue
 				var/datum/objective/objective = pickweight(theftobjectives)
 				for(1 to 10)
-					if(objective.points + total_weight <= 100 || !theftobjectives.len)
+					if(objective.points + total_weight <= 100 || !length(theftobjectives))
 						break
 					theftobjectives -= objective
 					objective = pickweight(theftobjectives)
-				if(!objective && !theftobjectives.len)
+				if(!objective && !length(theftobjectives))
 					continue
 				chosenobjectives += objective
 				total_weight += objective.points
 				theftobjectives -= objective
 			if(steal_range + 1 to frame_range)	//Framing Objectives (3% chance)
-				if(!frameobjectives.len)
+				if(!length(frameobjectives))
 					continue
 				var/datum/objective/objective = pickweight(frameobjectives)
 				for(1 to 10)
-					if(objective.points + total_weight <= 100 || !frameobjectives.len)
+					if(objective.points + total_weight <= 100 || !length(frameobjectives))
 						break
 					frameobjectives -= objective
 					objective = pickweight(frameobjectives)
-				if(!objective && !frameobjectives.len)
+				if(!objective && !length(frameobjectives))
 					continue
 				for(var/datum/objective/protection/conflicttest in chosenobjectives)	//Check to make sure we aren't telling them to Assassinate somebody they need to Protect.
 					if(conflicttest.target == objective.target)
@@ -174,16 +174,16 @@
 				frameobjectives -= objective
 				conflict = 0
 			if(frame_range + 1 to kill_range)
-				if(!killobjectives.len)
+				if(!length(killobjectives))
 					continue
 				var/datum/objective/assassinate/objective = pickweight(killobjectives)
 				world << objective
 				for(1 to 10)
-					if(objective.points + total_weight <= 100 || !killobjectives.len)
+					if(objective.points + total_weight <= 100 || !length(killobjectives))
 						break
 					killobjectives -= objective
 					objective = pickweight(killobjectives)
-				if(!objective && !killobjectives.len)
+				if(!objective && !length(killobjectives))
 					continue
 				for(var/datum/objective/protection/conflicttest in chosenobjectives)	//Check to make sure we aren't telling them to Assassinate somebody they need to Protect.
 					if(conflicttest.target == objective.target)
@@ -199,15 +199,15 @@
 				killobjectives -= objective
 				conflict = 0
 			if(kill_range + 1 to 100)	//Protection Objectives (5% chance)
-				if(!protectobjectives.len)
+				if(!length(protectobjectives))
 					continue
 				var/datum/objective/protection/objective = pickweight(protectobjectives)
 				for(1 to 10)
-					if(objective.points + total_weight <= 100 || !protectobjectives.len)
+					if(objective.points + total_weight <= 100 || !length(protectobjectives))
 						break
 					protectobjectives -= objective
 					objective = pickweight(protectobjectives)
-				if(!objective || !protectobjectives.len)
+				if(!objective || !length(protectobjectives))
 					continue
 				for(var/datum/objective/assassinate/conflicttest in chosenobjectives)	//Check to make sure we aren't telling them to Protect somebody they need to Assassinate.
 					if(conflicttest.target == objective.target)
@@ -407,7 +407,7 @@ datum
 					if((possible_target != owner) && istype(possible_target.current, /mob/living/carbon/human))
 						possible_targets += possible_target
 
-				if(possible_targets.len > 0)
+				if(length(possible_targets))
 					target = pick(possible_targets)
 
 				if(target && target.current)
@@ -1293,7 +1293,7 @@ datum
 				return target_amount
 
 			check_completion()
-				if(owner && owner.current && owner.current.changeling && owner.current.changeling.absorbed_dna && ((owner.current.changeling.absorbed_dna.len - 1) >= target_amount))
+				if(owner && owner.current && owner.current.changeling && (length((owner.current.changeling.absorbed_dna) - 1) >= target_amount))
 					return 1
 				else
 					return 0
@@ -1307,7 +1307,7 @@ datum
 				return target_amount
 
 			check_completion()
-				if(owner && owner.current && istype(owner.current,/mob/living/parasite/meme) && (owner.current:indoctrinated.len >= target_amount))
+				if(owner && owner.current && istype(owner.current,/mob/living/parasite/meme) && (length(owner.current:indoctrinated) >= target_amount))
 					return 1
 				else
 					return 0
@@ -1329,7 +1329,7 @@ datum
 					return 0
 				var/current_amount
 				var/obj/item/clothing/suit/space/space_ninja/S = owner.current:wear_suit
-				if(!S.stored_research.len)
+				if(!length(S.stored_research))
 					return 0
 				else
 					for(var/datum/tech/current_data in S.stored_research)

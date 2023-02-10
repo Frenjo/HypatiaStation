@@ -39,7 +39,7 @@
 			if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 				candidates += G.key
 
-	if(candidates.len)
+	if(length(candidates))
 		for(var/i = 0 to wave_size)
 			var/mob/living/blob/B = new/mob/living/blob(src.loc)
 			B.key = pick(candidates)
@@ -53,7 +53,8 @@
 	var/list/dirs = list(1,2,4,8)
 	dirs.Remove(origin_dir)//Dont pulse the guy who pulsed us
 	for(var/i = 1 to 4)
-		if(!dirs.len)	break
+		if(!length(dirs))
+			break
 		var/dirn = pick(dirs)
 		dirs.Remove(dirn)
 		var/turf/T = get_step(src, dirn)

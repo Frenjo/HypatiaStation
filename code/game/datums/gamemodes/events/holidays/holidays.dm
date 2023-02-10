@@ -199,7 +199,7 @@ GLOBAL_GLOBL_INIT(eventchance, 10)	//% per 5 mins
 			for(var/turf/simulated/floor/T)
 				if(T.contents)
 					Floorlist += T
-			var/turf/simulated/floor/F = Floorlist[rand(1,Floorlist.len)]
+			var/turf/simulated/floor/F = Floorlist[rand(1, length(Floorlist))]
 			Floorlist = null
 			var/obj/structure/closet/C = locate(/obj/structure/closet) in F
 			var/obj/item/weapon/reagent_containers/food/snacks/chocolateegg/wrapped/Egg

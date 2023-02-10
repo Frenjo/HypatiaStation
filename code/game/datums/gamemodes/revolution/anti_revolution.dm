@@ -37,18 +37,18 @@
 		if(player.mind.assigned_role in command_positions)
 			heads += player.mind
 		else
-			if(execute_targets.len < recommended_execute_targets)
+			if(length(execute_targets) < recommended_execute_targets)
 				execute_targets += player.mind
-			else if(brig_targets.len < recommended_brig_targets)
+			else if(length(brig_targets) < recommended_brig_targets)
 				brig_targets += player.mind
-			else if(demote_targets.len < recommended_demote_targets)
+			else if(length(demote_targets) < recommended_demote_targets)
 				demote_targets += player.mind
 
 
-	if(heads.len==0)
+	if(!length(heads))
 		return 0
 
-	if(execute_targets.len < required_execute_targets || brig_targets.len < required_brig_targets)
+	if(length(execute_targets) < required_execute_targets || length(brig_targets) < required_brig_targets)
 		return 0
 
 	return 1
@@ -180,7 +180,7 @@
 
 	world << "<FONT size = 2><B>Their objectives were: </B></FONT>"
 	for(var/datum/mind/head_mind in heads)
-		if(head_mind.objectives.len)//If the traitor had no objectives, don't need to process this.
+		if(length(head_mind.objectives))//If the traitor had no objectives, don't need to process this.
 			var/count = 1
 			for(var/datum/objective/objective in head_mind.objectives)
 				if(objective.check_completion())

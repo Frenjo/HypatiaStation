@@ -188,7 +188,7 @@ var/list/datum/power/changeling/powerinstances = list()
 		return
 	src = usr.mind.changeling
 
-	if(!powerinstances.len)
+	if(!length(powerinstances))
 		for(var/P in powers)
 			powerinstances += new P()
 

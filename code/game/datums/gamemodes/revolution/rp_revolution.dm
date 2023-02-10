@@ -42,13 +42,13 @@
 				possible_headrevs -= player
 
 	for(var/i = 1 to max_headrevs)
-		if(possible_headrevs.len == 0)
+		if(!length(possible_headrevs))
 			break
 		var/datum/mind/lenin = pick(possible_headrevs)
 		possible_headrevs -= lenin
 		head_revolutionaries += lenin
 
-	if((head_revolutionaries.len == 0)||!head_check)
+	if(!length(head_revolutionaries) || !head_check)
 		return 0
 	return 1
 
@@ -167,7 +167,7 @@
 	for (var/mob/living/carbon/human/P in oview(src))
 		if(!stat && P.client && P.mind && !P.mind.special_role)
 			Possible += P
-	if(!Possible.len)
+	if(!length(Possible))
 		src << "\red There doesn't appear to be anyone available for you to convert here."
 		return
 	var/mob/living/carbon/human/M = input("Select a person to convert", "Viva la revolution!", null) as mob in Possible

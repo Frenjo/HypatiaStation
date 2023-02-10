@@ -46,8 +46,8 @@ var/list/blob_nodes = list()
 				kill_air = 1
 				message_admins("Kill air has been set to true by Blob, testing to see how laggy it is without the extra processing from hullbreaches. Note: the blob is fireproof so plasma does not help anyways")
 
-			if(ticker && ticker.minds && ticker.minds.len)
-				var/player_based_cores = round(ticker.minds.len/players_per_core, 1)
+			if(ticker && length(ticker.minds))
+				var/player_based_cores = round(length(ticker.minds) / players_per_core, 1)
 				if(player_based_cores > cores_to_spawn)
 					cores_to_spawn = player_based_cores
 
@@ -75,12 +75,14 @@ var/list/blob_nodes = list()
 
 	proc/expandBlob()//Currently disabled
 		if(expanding)	return
-		if(!blobs.len)	return
+		if(!length(blobs))
+			return
 		expanding = 1
 
 		for(var/i = 1 to 2)
 			sleep(-1)
-			if(!blobs.len)	break
+			if(!length(blobs))
+				break
 			var/obj/effect/blob/B = pick(blobs)
 			if(B.z != 1)
 				continue
@@ -120,13 +122,13 @@ var/list/blob_nodes = list()
 				return
 
 			if (2)
-				if((blobs.len > blobnukecount) && (declared == 1))
+				if(length(blobs) > blobnukecount && (declared == 1))
 					command_alert("Uncontrolled spread of the biohazard onboard the station. We have issued directive 7-12 for [station_name()].  Any living Heads of Staff are ordered to enact directive 7-12 at any cost, a print out with detailed instructions has been sent to your communications computers.", "Biohazard Alert")
 					send_intercept(2)
 					declared = 2
 					spawn(20)
 						set_security_level("delta")
-				if(blobs.len > blobwincount)
+				if(length(blobs) > blobwincount)
 					stage = 3
 		return
 

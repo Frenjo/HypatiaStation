@@ -8,7 +8,7 @@
 
 	var/lesser_form = !ishuman(src)
 
-	if(!powerinstances.len)
+	if(!length(powerinstances))
 		for(var/P in powers)
 			powerinstances += new P()
 
@@ -52,7 +52,7 @@
 		to_chat(src, SPAN_WARNING("We are incapacitated."))
 		return
 
-	if(changeling.absorbed_dna.len < required_dna)
+	if(length(changeling.absorbed_dna) < required_dna)
 		to_chat(src, SPAN_WARNING("We require at least [required_dna] samples of compatible DNA."))
 		return
 
@@ -539,7 +539,7 @@ var/list/datum/dna/hivemind_bank = list()
 		if(!(DNA in hivemind_bank))
 			names += DNA.real_name
 
-	if(names.len <= 0)
+	if(!length(names))
 		to_chat(src, SPAN_NOTICE("The airwaves already have all of our DNA."))
 		return
 
@@ -571,7 +571,7 @@ var/list/datum/dna/hivemind_bank = list()
 		if(!(DNA in changeling.absorbed_dna))
 			names[DNA.real_name] = DNA
 
-	if(names.len <= 0)
+	if(!length(names))
 		to_chat(src, SPAN_NOTICE("There's no new DNA to absorb from the air."))
 		return
 

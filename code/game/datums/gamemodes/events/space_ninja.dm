@@ -132,7 +132,7 @@ GLOBAL_GLOBL_INIT(ninja_confirmed_selection, 0)
 			if(current_mind.current && current_mind.current.stat != DEAD)//If they are not destroyed and not dead.
 				antagonist_list += current_mind//Add them.
 
-	if(protagonist_list.len)//If the mind is both a protagonist and antagonist.
+	if(length(protagonist_list))//If the mind is both a protagonist and antagonist.
 		for(current_mind in protagonist_list)
 			if(current_mind in antagonist_list)
 				protagonist_list -= current_mind//We only want it in one list.
@@ -141,7 +141,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 */
 
 	//Here we pick a location and spawn the ninja.
-	if(GLOBL.ninjastart.len == 0)
+	if(!length(GLOBL.ninjastart))
 		for(var/obj/effect/landmark/L in GLOBL.landmarks_list)
 			if(L.name == "carpspawn")
 				GLOBL.ninjastart.Add(L)
@@ -158,11 +158,11 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 			if(G.client && !G.client.holder && !G.client.is_afk() && G.client.prefs.be_special & BE_NINJA)
 				if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 					candidates += G
-		if(!candidates.len)
+		if(!length(candidates))
 			return
 		candidates = shuffle(candidates)//Incorporating Donkie's list shuffle
 
-		while(!ninja_key && candidates.len)
+		while(!ninja_key && length(candidates))
 			candidate_mob = pick(candidates)
 			if(sd_Alert(candidate_mob, "Would you like to spawn as a space ninja?", buttons = list("Yes", "No"), duration = 150) == "Yes")
 				ninja_key = candidate_mob.ckey
@@ -208,7 +208,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 		GLOBL.ninja_selection_active = FALSE
 
 		//The ninja will be created on the right spawn point or at late join.
-		var/mob/living/carbon/human/new_ninja = create_space_ninja(pick(GLOBL.ninjastart.len ? GLOBL.ninjastart : GLOBL.latejoin))
+		var/mob/living/carbon/human/new_ninja = create_space_ninja(pick(length(GLOBL.ninjastart) ? GLOBL.ninjastart : GLOBL.latejoin))
 		new_ninja.key = ninja_key
 		new_ninja.wear_suit:randomize_param()//Give them a random set of suit parameters.
 		new_ninja.internal = new_ninja.s_store //So the poor ninja has something to breath when they spawn in spess.
@@ -229,13 +229,13 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 			new_ninja.mind.store_memory("<B>Mission:</B> \red [assign_mission].<br>")
 			to_chat(new_ninja, "\blue \nYou are an elite mercenary assassin of the Spider Clan, [new_ninja.real_name]. The dreaded \red <B>SPACE NINJA</B>!\blue You have a variety of abilities at your disposal, thanks to your nano-enhanced cyber armor. Remember your training! \nYour current mission is: \red <B>[assign_mission]</B>")
 		else
-			if(xeno_list.len > 3)//If there are more than three humanoid xenos on the station, time to get dangerous.
+			if(length(xeno_list) > 3)//If there are more than three humanoid xenos on the station, time to get dangerous.
 				//Here we want the ninja to murder all the queens. The other aliens don't really matter.
 				var/list/xeno_queen_list = list()
 				for(var/mob/living/carbon/human/xeno_queen in xeno_list)
 					if(xeno_queen.species.name == SPECIES_XENOMORPH_QUEEN && xeno_queen.mind && xeno_queen.stat != DEAD)
 						xeno_queen_list += xeno_queen
-				if(xeno_queen_list.len && side == "face")//If there are queen about and the probability is 50.
+				if(length(xeno_queen_list) && side == "face")//If there are queen about and the probability is 50.
 					for(var/mob/living/carbon/human/xeno_queen in xeno_queen_list)
 						var/datum/objective/assassinate/ninja_objective = new
 						ninja_objective.owner = ninja_mind
@@ -245,11 +245,11 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 						ninja_mind.objectives += ninja_objective
 					mission_set = TRUE
 
-			if(GLOBL.sent_strike_team && side == "heel" && antagonist_list.len)//If a strike team was sent, murder them all like a champ.
+			if(GLOBL.sent_strike_team && side == "heel" && length(antagonist_list))//If a strike team was sent, murder them all like a champ.
 				for(current_mind in antagonist_list)//Search and destroy. Since we already have an antagonist list, they should appear there.
 					if(current_mind && current_mind.special_role == "Death Commando")
 						commando_list += current_mind
-				if(commando_list.len)//If there are living commandos still in play.
+				if(length(commando_list))//If there are living commandos still in play.
 					for(var/mob/living/carbon/human/commando in commando_list)
 						var/datum/objective/assassinate/ninja_objective = new
 						ninja_objective.owner = ninja_mind
@@ -271,7 +271,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 
 				for(var/i = 2, i > 0, i--)//Two lists.
 					current_minds = i == 2 ? antagonist_list : protagonist_list//Which list are we looking at?
-					for(var/t = 3, (current_minds.len && t > 0), t--)//While the list is not empty and targets remain. Also, 3 targets is good.
+					for(var/t = 3, (length(current_minds) && t > 0), t--)//While the list is not empty and targets remain. Also, 3 targets is good.
 						current_mind = pick(current_minds)//Pick a random person.
 						/*I'm creating a logic gate here based on the ninja affiliation that compares the list being
 						looked at to the affiliation. Affiliation is just a number used to compare. Meaning comes from the logic involved.
@@ -283,10 +283,10 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 
 				var/objective_list[] = list(1, 2, 3, 4, 5, 6)//To remove later.
 				for(var/i = rand(1, 3), i > 0, i--)//Want to get a few random objectives. Currently up to 3.
-					if(!hostile_targets.len)//Remove appropriate choices from switch list if the target lists are empty.
+					if(!length(hostile_targets))//Remove appropriate choices from switch list if the target lists are empty.
 						objective_list -= 1
 						objective_list -= 4
-					if(!friendly_targets.len)
+					if(!length(friendly_targets))
 						objective_list -= 3
 					switch(pick(objective_list))
 						if(1)//kill
@@ -345,10 +345,10 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 
 							objective_list -= 6
 
-				if(ninja_mind.objectives.len)//If they got some objectives out of that.
+				if(length(ninja_mind.objectives))//If they got some objectives out of that.
 					mission_set = TRUE
 
-			if(!ninja_mind.objectives.len || !mission_set)//If they somehow did not get an objective at this point, time to destroy the station.
+			if(!length(ninja_mind.objectives) || !mission_set)//If they somehow did not get an objective at this point, time to destroy the station.
 				var/nuke_code
 				var/temp_code
 				for(var/obj/machinery/nuclearbomb/N in world)

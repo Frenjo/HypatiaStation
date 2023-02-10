@@ -96,7 +96,7 @@
 		if (!man.mind) continue
 		if (man.mind.assigned_role=="MODE") continue
 		dudes += man
-	if(dudes.len==0)
+	if(!length(dudes))
 		return null
 	return pick(dudes)
 
@@ -115,7 +115,7 @@
 	for(var/mob/living/carbon/human/man in GLOBL.player_list)
 		if(man.client && man.client.prefs.nanotrasen_relation == "Opposed")
 			dudes += man
-	for(var/i = 0, i < max(GLOBL.player_list.len / 10, 2), i++)
+	for(var/i = 0, i < max(length(GLOBL.player_list) / 10, 2), i++)
 		dudes += pick(GLOBL.player_list)
 	return pick(dudes)
 

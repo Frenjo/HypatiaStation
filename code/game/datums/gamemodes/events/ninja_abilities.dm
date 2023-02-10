@@ -162,7 +162,7 @@ This could be a lot better but I'm too tired atm.*/
 			if(M.stat)
 				continue //Doesn't target corpses or paralyzed persons.
 			targets.Add(M)
-		if(targets.len)
+		if(length(targets))
 			var/mob/living/target = pick(targets)	//The point here is to pick a random, living mob in oview to shoot stuff at.
 			var/turf/curloc = U.loc
 			var/atom/targloc = get_turf(target)
@@ -331,7 +331,7 @@ This is so anime it hurts. But that's the point.*/
 			if(M.stat)
 				continue	//Doesn't target corpses or paralyzed people.
 			targets.Add(M)
-		if(targets.len)
+		if(length(targets))
 			var/mob/living/target = pick(targets)
 			var/locx
 			var/locy

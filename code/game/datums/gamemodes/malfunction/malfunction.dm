@@ -32,14 +32,14 @@
 	for(var/mob/new_player/player in GLOBL.player_list)
 		if(player.mind && player.mind.assigned_role == "AI")
 			malf_ai+=player.mind
-	if(malf_ai.len)
+	if(length(malf_ai))
 		return 1
 	return 0
 
 
 /datum/game_mode/malfunction/post_setup()
 	for(var/datum/mind/AI_mind in malf_ai)
-		if(malf_ai.len < 1)
+		if(!length(malf_ai))
 			world << "Uh oh, its malfunction and there is no AI! Please report this."
 			world << "Rebooting world in 5 seconds."
 
@@ -248,7 +248,7 @@
 
 
 /datum/game_mode/proc/auto_declare_completion_malfunction()
-	if(malf_ai.len || istype(global.CTgame_ticker.mode, /datum/game_mode/malfunction))
+	if(length(malf_ai) || istype(global.CTgame_ticker.mode, /datum/game_mode/malfunction))
 		var/text = "<FONT size = 2><B>The malfunctioning AI were:</B></FONT>"
 
 		for(var/datum/mind/malf in malf_ai)

@@ -408,20 +408,20 @@ ________________________________________________________________________________
 				//if (A.laws.zeroth)
 				//	laws += "<li>0: [A.laws.zeroth]</li>"
 
-				for (var/index = 1, index <= A.laws.ion.len, index++)
+				for(var/index = 1, index <= length(A.laws.ion), index++)
 					var/law = A.laws.ion[index]
 					if (length(law) > 0)
 						var/num = ionnum()
 						laws += "<li>[num]. [law]</li>"
 
 				var/number = 1
-				for (var/index = 1, index <= A.laws.inherent.len, index++)
+				for(var/index = 1, index <= length(A.laws.inherent), index++)
 					var/law = A.laws.inherent[index]
 					if (length(law) > 0)
 						laws += "<li>[number]: [law]</li>"
 						number++
 
-				for (var/index = 1, index <= A.laws.supplied.len, index++)
+				for(var/index = 1, index <= length(A.laws.supplied), index++)
 					var/law = A.laws.supplied[index]
 					if (length(law) > 0)
 						laws += "<li>[number]: [law]</li>"
@@ -557,7 +557,7 @@ ________________________________________________________________________________
 					safety = 1
 					for(var/mob/living/carbon/M in oview(5,loc))
 						targets.Add(M)
-			if(targets.len)//Let's create an argument for the proc if needed.
+			if(length(targets))//Let's create an argument for the proc if needed.
 				proc_arguments = pick(targets)
 				safety = 0
 			if(!safety)
@@ -1063,7 +1063,7 @@ ________________________________________________________________________________
 			// These colons really need to be removed but I honestly don't feel like entirely rewriting this section right now.
 			if(A:files && istype(A:files, /datum/research))
 				var/datum/research/files = A:files
-				if(files.known_tech.len)
+				if(length(files.known_tech))
 					for(var/datum/tech/current_data in S.stored_research)
 						to_chat(U, SPAN_INFO("Checking \the [current_data.name] database."))
 						if(do_after(U, S.s_delay) && G.candrain && !isnull(A))
@@ -1190,7 +1190,7 @@ ________________________________________________________________________________
 	for(var/mob/living/target in oview(M))
 		if(target.mind && (target.mind.special_role || issilicon(target))) //They need to have a mind.
 			target_list += target
-	if(target_list.len)
+	if(length(target_list))
 		assess_targets(target_list, M)
 	if(!M.druggy)
 		M.see_invisible = SEE_INVISIBLE_LIVING
@@ -1222,7 +1222,7 @@ ________________________________________________________________________________
 					U.client.images += image(tempHud,target,"hudunknown1")
 		else//If the silicon mob has no law datum, no inherent laws, or a law zero, add them to the hud.
 			var/mob/living/silicon/silicon_target = target
-			if(!silicon_target.laws||(silicon_target.laws&&(silicon_target.laws.zeroth||!silicon_target.laws.inherent.len)))
+			if(!silicon_target.laws || (silicon_target.laws && (silicon_target.laws.zeroth || !length(silicon_target.laws.inherent))))
 				if(isrobot(silicon_target))//Different icons for robutts and AI.
 					U.client.images += image(tempHud,silicon_target,"hudmalborg")
 				else
@@ -1286,7 +1286,7 @@ ________________________________________________________________________________
 				for(var/mob/living/carbon/human/M in GLOBL.player_list)
 					if(M==U||!M.client||!M.real_name)	continue
 					names.Add(M.real_name)
-				voice = !names.len ? "Cuban Pete" : pick(names)
+				voice = !length(names) ? "Cuban Pete" : pick(names)
 		U << "You are now mimicking <B>[voice]</B>."
 	else
 		U << "The voice synthesizer is [voice!="Unknown"?"now":"already"] deactivated."
@@ -1299,7 +1299,7 @@ ________________________________________________________________________________
 	set category = "Ninja Equip"
 
 	var/index = ninja_visions.Find(ninja_vision) + 1
-	if(index > ninja_visions.len)
+	if(index > length(ninja_visions))
 		index = 1
 	ninja_vision = ninja_visions[index]
 	var/mob/U = loc

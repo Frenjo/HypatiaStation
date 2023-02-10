@@ -103,7 +103,7 @@
 		if(H.mind.assigned_role in command_positions) continue
 		crew += H
 
-	if(crew.len < 2)
+	if(length(crew) < 2)
 		world << "\red There aren't enough players for this mode!"
 		world << "\red Rebooting world in 5 seconds."
 
@@ -170,7 +170,8 @@
 	var/sick = 0
 	for(var/mob/living/carbon/human/H in world)
 		if(H.key && H.stat != 2) alive++
-		if(H.virus2.len && H.stat != 2) sick++
+		if(length(H.virus2) && H.stat != DEAD)
+			sick++
 
 	if(alive == 0)
 		finished = 2

@@ -105,7 +105,7 @@
 					if(T.client == null)
 						to_chat(U, "\red <b>Capture failed!</b>: \black The soul has already fled it's mortal frame.")
 					else
-						if(C.contents.len)
+						if(length(C.contents))
 							to_chat(U, "\red <b>Capture failed!</b>: \black The soul stone is full! Use or free an existing soul to make room.")
 						else
 							for(var/obj/item/W in T)
@@ -140,7 +140,7 @@
 			if(T.stat == DEAD)
 				to_chat(U, "\red <b>Capture failed!</b>: \black The shade has already been banished!")
 			else
-				if(C.contents.len)
+				if(length(C.contents))
 					to_chat(U, "\red <b>Capture failed!</b>: \black The soul stone is full! Use or free an existing soul to make room.")
 				else
 					if(T.name != C.imprinted)

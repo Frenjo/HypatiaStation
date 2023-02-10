@@ -59,13 +59,13 @@
 				possible_headrevs -= player
 
 	for(var/i = 1 to max_headrevs)
-		if(possible_headrevs.len == 0)
+		if(!length(possible_headrevs))
 			break
 		var/datum/mind/lenin = pick(possible_headrevs)
 		possible_headrevs -= lenin
 		head_revolutionaries += lenin
 
-	if((head_revolutionaries.len == 0) || !head_check)
+	if(!length(head_revolutionaries) || !head_check)
 		return 0
 	return 1
 
@@ -360,7 +360,7 @@
 /datum/game_mode/proc/auto_declare_completion_revolution()
 	var/list/targets = list()
 
-	if(head_revolutionaries.len || istype(global.CTgame_ticker.mode, /datum/game_mode/revolution))
+	if(length(head_revolutionaries) || istype(global.CTgame_ticker.mode, /datum/game_mode/revolution))
 		var/text = "<FONT size = 2><B>The head revolutionaries were:</B></FONT>"
 		for(var/datum/mind/headrev in head_revolutionaries)
 			text += "<br>[headrev.key] was [headrev.name] ("
@@ -382,7 +382,7 @@
 
 		world << text
 
-	if(revolutionaries.len || istype(global.CTgame_ticker.mode, /datum/game_mode/revolution))
+	if(length(revolutionaries) || istype(global.CTgame_ticker.mode, /datum/game_mode/revolution))
 		var/text = "<FONT size = 2><B>The revolutionaries were:</B></FONT>"
 		for(var/datum/mind/rev in revolutionaries)
 			text += "<br>[rev.key] was [rev.name] ("
@@ -401,7 +401,7 @@
 
 		world << text
 
-	if(head_revolutionaries.len || revolutionaries.len || istype(global.CTgame_ticker.mode, /datum/game_mode/revolution))
+	if(length(head_revolutionaries) || length(revolutionaries) || istype(global.CTgame_ticker.mode, /datum/game_mode/revolution))
 		var/text = "<FONT size = 2><B>The heads of staff were:</B></FONT>"
 		var/list/heads = get_all_heads()
 		for(var/datum/mind/head in heads)
