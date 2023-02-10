@@ -147,7 +147,7 @@
 // being unable to hear people due to being in a box within a bag.
 
 /proc/recursive_mob_check(atom/O, list/L = list(), recursion_limit = 3, client_check = 1, sight_check = 1, include_radio = 1)
-	//debug_mob += O.contents.len
+	//debug_mob += length(O.contents)
 	if(!recursion_limit)
 		return L
 
@@ -222,7 +222,7 @@
 	. = list()
 	// Returns a list of mobs who can hear any of the radios given in @radios
 	var/list/speaker_coverage = list()
-	for(var/i = 1; i <= radios.len; i++)
+	for(var/i = 1; i <= length(radios); i++)
 		var/obj/item/device/radio/R = radios[i]
 		if(R)
 			var/turf/speaker = get_turf(R)
@@ -232,7 +232,7 @@
 
 
 	// Try to find all the players who can hear the message
-	for(var/i = 1; i <= GLOBL.player_list.len; i++)
+	for(var/i = 1; i <= length(GLOBL.player_list); i++)
 		var/mob/M = GLOBL.player_list[i]
 		if(M)
 			var/turf/ear = get_turf(M)
@@ -312,7 +312,7 @@
 /proc/get_active_candidates(buffer = 1)
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
-	while(candidates.len <= 0 && i < 5)
+	while(!length(candidates) && i < 5)
 		for(var/mob/dead/observer/G in GLOBL.player_list)
 			if(((G.client.inactivity / 10) / 60) <= buffer + i) // the most active players are more likely to become an alien
 				if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
@@ -325,7 +325,7 @@
 /proc/get_alien_candidates()
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
-	while(candidates.len <= 0 && i < 5)
+	while(length(candidates) && i < 5)
 		for(var/mob/dead/observer/G in GLOBL.player_list)
 			if(G.client.prefs.be_special & BE_ALIEN)
 				if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + i) // the most active players are more likely to become an alien

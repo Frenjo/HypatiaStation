@@ -136,7 +136,7 @@ var/DB_PORT = 3306 // This is the port your MySQL server is running on (3306 is 
 /DBQuery/proc/GetRowData()
 	var/list/columns = Columns()
 	var/list/results
-	if(columns.len)
+	if(length(columns))
 		results = list()
 		for(var/C in columns)
 			results += C
@@ -158,7 +158,7 @@ var/DB_PORT = 3306 // This is the port your MySQL server is running on (3306 is 
 		column = columns.Find(column)
 	if(!conversions)
 		conversions = new/list(column)
-	else if(conversions.len < column)
+	else if(length(conversions) < column)
 		conversions.len = column
 	conversions[column] = conversion
 

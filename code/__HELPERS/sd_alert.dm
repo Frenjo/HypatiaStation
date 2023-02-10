@@ -168,7 +168,7 @@ Version 1 changes (from version 0):
 		if(response && validation)
 			if(islist(response))
 				var/list/L = response - validation
-				if(L.len)
+				if(length(L))
 					response = null
 				else
 					validated = 1

@@ -139,7 +139,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				if(T.y > world.maxy || T.y < 1)
 					continue
 				destination_list += T
-			if(destination_list.len)
+			if(length(destination_list))
 				destination = pick(destination_list)
 			else
 				return
@@ -355,7 +355,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		var/name = "[A.real_name] ([A.modtype] [A.braintype])"
 		borgs[name] = A
 
-	if(borgs.len)
+	if(length(borgs))
 		select = input("Unshackled borg signals detected:", "Borg selection", null, null) as null | anything in borgs
 		return borgs[select]
 
@@ -382,7 +382,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 /proc/select_active_ai(mob/user)
 	var/list/ais = active_ais()
-	if(ais.len)
+	if(length(ais))
 		if(user)
 			. = input(usr, "AI signals detected:", "AI selection") in ais
 		else
@@ -628,7 +628,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	for(var/atom/part in contents)
 		toReturn += part
-		if(part.contents.len && searchDepth)
+		if(length(part.contents) && searchDepth)
 			toReturn += part.GetAllContents(searchDepth - 1)
 
 	return toReturn
@@ -776,7 +776,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/turfs_src = get_area_turfs(src.type)
 	var/list/turfs_trg = get_area_turfs(A.type)
 
-	if(!turfs_src.len || !turfs_trg.len)
+	if(!length(turfs_src) || !length(turfs_trg))
 		return 0
 
 	//figure out a suitable origin - this assumes the shuttle areas are the exact same size and shape
@@ -969,7 +969,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	var/list/doors = new/list()
 
-	if(toupdate.len)
+	if(length(toupdate))
 		for(var/turf/simulated/T1 in toupdate)
 			for(var/obj/machinery/door/D2 in T1)
 				doors += D2

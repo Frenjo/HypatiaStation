@@ -179,7 +179,7 @@ GLOBAL_GLOBL(syndicate_code_response)	//Code response for traitors.
 		"Irish coffee", "manly dwarf", "Irish cream", "doctor's delight", "Beepksy Smash", "tequilla sunrise", "brave bull", "gargle blaster",
 		"bloody mary", "whiskey cola", "white Russian", "vodka martini", "martini", "Cuba libre", "kahlua", "vodka", "wine", "moonshine"
 	)
-	var/list/locations = GLOBL.teleportlocs.len ? GLOBL.teleportlocs : drinks//if null, defaults to drinks instead.
+	var/list/locations = length(GLOBL.teleportlocs) ? GLOBL.teleportlocs : drinks//if null, defaults to drinks instead.
 
 	var/list/names = list()
 	for(var/datum/data/record/t in GLOBL.data_core.general)//Picks from crew manifest.
@@ -198,7 +198,7 @@ GLOBAL_GLOBL(syndicate_code_response)	//Code response for traitors.
 			if(1)//1 and 2 can only be selected once each to prevent more than two specific names/places/etc.
 				switch(rand(1, 2))//Mainly to add more options later.
 					if(1)
-						if(names.len && prob(70))
+						if(length(names) && prob(70))
 							code_phrase += pick(names)
 						else
 							code_phrase += pick(pick(GLOBL.first_names_male, GLOBL.first_names_female))

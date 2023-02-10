@@ -18,7 +18,7 @@
 /proc/sql_poll_admins()
 	if(!CONFIG_GET(sqllogging))
 		return
-	var/admincount = GLOBL.admins.len
+	var/admincount = length(GLOBL.admins)
 	establish_db_connection()
 	if(!GLOBL.dbcon.IsConnected())
 		log_game("SQL ERROR during admin polling. Failed to connect.")

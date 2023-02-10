@@ -55,7 +55,7 @@
 		var/datum/chemical_reaction/D = new path()
 		var/list/reaction_ids = list()
 
-		if(D.required_reagents && D.required_reagents.len)
+		if(length(D.required_reagents))
 			for(var/reaction in D.required_reagents)
 				reaction_ids += reaction
 

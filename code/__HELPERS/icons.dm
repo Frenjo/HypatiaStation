@@ -466,7 +466,7 @@ world
 		else
 			r = hi;  g = mid; b = lo
 
-	return (HSV.len > 3) ? rgb(r, g, b, HSV[4]) : rgb(r, g, b)
+	return (length(HSV) > 3) ? rgb(r, g, b, HSV[4]) : rgb(r, g, b)
 
 /proc/RGBtoHSV(rgb)
 	if(!rgb)
@@ -505,7 +505,7 @@ world
 				hue = 1023; dir = -1; mid = g
 		hue += dir * round((mid-lo) * 255 / (hi-lo), 1)
 
-	return hsv(hue, sat, val, (RGB.len>3 ? RGB[4] : null))
+	return hsv(hue, sat, val, (length(RGB) > 3 ? RGB[4] : null))
 
 /proc/hsv(hue, sat, val, alpha)
 	if(hue < 0 || hue >= 1536)
@@ -554,11 +554,11 @@ world
 	var/list/HSV2 = ReadHSV(hsv2)
 
 	// add missing alpha if needed
-	if(HSV1.len < HSV2.len)
+	if(length(HSV1) < length(HSV2))
 		HSV1 += 255
-	else if(HSV2.len < HSV1.len)
+	else if(length(HSV2) < length(HSV1))
 		HSV2 += 255
-	var/usealpha = HSV1.len > 3
+	var/usealpha = length(HSV1) > 3
 
 	// normalize hsv values in case anything is screwy
 	if(HSV1[1] > 1536)
@@ -624,11 +624,11 @@ world
 	var/list/RGB2 = ReadRGB(rgb2)
 
 	// add missing alpha if needed
-	if(RGB1.len < RGB2.len)
+	if(length(RGB1) < length(RGB2))
 		RGB1 += 255
-	else if(RGB2.len < RGB1.len)
+	else if(length(RGB2) < length(RGB1))
 		RGB2 += 255
-	var/usealpha = RGB1.len > 3
+	var/usealpha = length(RGB1) > 3
 
 	var/r = round(RGB1[1] + (RGB2[1] - RGB1[1]) * amount, 1)
 	var/g = round(RGB1[2] + (RGB2[2] - RGB1[2]) * amount, 1)
@@ -685,13 +685,13 @@ world
 	// decompress hue
 	HSV[1] += round(HSV[1] / 255)
 
-	return hsv(HSV[1], HSV[2], HSV[3], (HSV.len > 3 ? HSV[4] : null))
+	return hsv(HSV[1], HSV[2], HSV[3], (length(HSV) > 3 ? HSV[4] : null))
 
 // Convert an rgb color to grayscale
 /proc/GrayScale(rgb)
 	var/list/RGB = ReadRGB(rgb)
 	var/gray = RGB[1]*0.3 + RGB[2]*0.59 + RGB[3]*0.11
-	return (RGB.len > 3) ? rgb(gray, gray, gray, RGB[4]) : rgb(gray, gray, gray)
+	return (length(RGB) > 3) ? rgb(gray, gray, gray, RGB[4]) : rgb(gray, gray, gray)
 
 // Change grayscale color to black->tone->white range
 /proc/ColorTone(rgb, tone)
@@ -735,7 +735,7 @@ The _flatIcons list is a cache for generated icon files.
 	var/compare // The overlay 'add' is being compared against
 	var/cmpIndex // The index in the layers list of 'compare'
 	while(TRUE)
-		if(curIndex <= process.len)
+		if(curIndex <= length(process))
 			current = process[curIndex]
 			if(!current)
 				continue
@@ -749,18 +749,18 @@ The _flatIcons list is a cache for generated icon files.
 					currentLayer = A.layer + (1000 + currentLayer) / 1000
 
 			// Sort add into layers list
-			for(cmpIndex = 1, cmpIndex <= layers.len, cmpIndex++)
+			for(cmpIndex = 1, cmpIndex <= length(layers), cmpIndex++)
 				compare = layers[cmpIndex]
 				if(currentLayer < layers[compare]) // Associated value is the calculated layer
 					layers.Insert(cmpIndex, current)
 					layers[current] = currentLayer
 					break
-			if(cmpIndex > layers.len) // Reached end of list without inserting
+			if(cmpIndex > length(layers)) // Reached end of list without inserting
 				layers[current] = currentLayer // Place at end
 
 			curIndex++
 
-		if(curIndex > process.len)
+		if(curIndex > length(process))
 			if(pSet == 0) // Switch to overlays
 				curIndex = 1
 				pSet = 1

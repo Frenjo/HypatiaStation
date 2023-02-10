@@ -87,7 +87,7 @@
 	var/sum = 0
 	for(var/val in args)
 		sum += val
-	return sum / args.len
+	return sum / length(args)
 
 // Returns the nth root of x.
 /proc/Root(n, x)

@@ -12,7 +12,7 @@
 			continue
 		valid_hairstyles[hairstyle] = GLOBL.hair_styles_list[hairstyle]
 
-	if(valid_hairstyles.len)
+	if(length(valid_hairstyles))
 		h_style = pick(valid_hairstyles)
 
 	return h_style
@@ -32,7 +32,7 @@
 
 		valid_facialhairstyles[facialhairstyle] = GLOBL.facial_hair_styles_list[facialhairstyle]
 
-	if(valid_facialhairstyles.len)
+	if(length(valid_facialhairstyles))
 		f_style = pick(valid_facialhairstyles)
 
 		return f_style

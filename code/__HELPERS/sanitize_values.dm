@@ -16,7 +16,7 @@
 		return value
 	if(default)
 		return default
-	if(List && List.len)
+	if(length(List))
 		return List[1]
 
 //more specialised stuff
