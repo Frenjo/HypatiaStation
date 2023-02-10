@@ -28,7 +28,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	nanoui_items = generate_nanoui_items()
 	for(var/D in ItemList)
 		var/list/O = splittext(D, ":")
-		if(O.len > 0)
+		if(length(O))
 			valid_items += O[1]
 
 
@@ -40,8 +40,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/items_nano[0]
 	for(var/D in ItemList)
 		var/list/O = splittext(D, ":")
-		if(O.len != 3)  //If it is not an actual item, make a break in the menu.
-			if(O.len == 1)  //If there is one item, it's probably a title
+		if(length(O) != 3)  //If it is not an actual item, make a break in the menu.
+			if(length(O) == 1)  //If there is one item, it's probably a title
 				items_nano[++items_nano.len] = list("Category" = "[O[1]]", "items" = list())
 			continue
 
@@ -77,8 +77,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 	for(var/D in ItemList)
 		var/list/O = splittext(D, ":")
-		if(O.len != 3)	//If it is not an actual item, make a break in the menu.
-			if(O.len == 1)	//If there is one item, it's probably a title
+		if(length(O) != 3)	//If it is not an actual item, make a break in the menu.
+			if(length(O) == 1)	//If there is one item, it's probably a title
 				dat += "<b>[O[1]]</b><br>"
 				category_items = 0
 			else	//Else, it's a white space.
@@ -174,7 +174,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		randomItems.Add("/obj/item/weapon/soap/syndie") //Syndicate Soap
 		randomItems.Add("/obj/item/weapon/storage/toolbox/syndicate") //Syndicate Toolbox
 
-	if(!randomItems.len)
+	if(!length(randomItems))
 		qdel(randomItems)
 		return 0
 	else

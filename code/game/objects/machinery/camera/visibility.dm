@@ -12,12 +12,12 @@
 	..()
 	global.CTcameranet.cameras += src //Camera must be added to global list of all cameras no matter what...
 	var/list/open_networks = difflist(network, GLOBL.restricted_camera_networks) //...but if all of camera's networks are restricted, it only works for specific camera consoles.
-	if(open_networks.len) //If there is at least one open network, chunk is available for AI usage.
+	if(length(open_networks)) //If there is at least one open network, chunk is available for AI usage.
 		global.CTcameranet.addCamera(src)
 
 /obj/machinery/camera/Destroy()
 	global.CTcameranet.cameras -= src
 	var/list/open_networks = difflist(network, GLOBL.restricted_camera_networks)
-	if(open_networks.len)
+	if(length(open_networks))
 		global.CTcameranet.removeCamera(src)
 	return ..()

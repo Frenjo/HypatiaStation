@@ -48,7 +48,7 @@
 				. = -1
 			else
 				return 0
-	if((reagents ? (reagents.len) : (0)) < avail_reagents.reagent_list.len)
+	if((reagents ? length(reagents) : 0) < length(avail_reagents.reagent_list))
 		return -1
 	return .
 
@@ -69,7 +69,7 @@
 				break
 		if(!found)
 			. = -1
-	if(checklist.len)
+	if(length(checklist))
 		return 0
 	return .
 
@@ -101,17 +101,17 @@
 	for(var/datum/recipe/recipe in avaiable_recipes)
 		if(recipe.check_reagents(obj.reagents) == exact && recipe.check_items(obj) == exact)
 			possible_recipes += recipe
-	if(possible_recipes.len == 0)
+	if(!length(possible_recipes))
 		return null
-	else if(possible_recipes.len == 1)
+	else if(length(possible_recipes) == 1)
 		return possible_recipes[1]
 	else //okay, let's select the most complicated recipe
 		var/r_count = 0
 		var/i_count = 0
 		. = possible_recipes[1]
 		for(var/datum/recipe/recipe in possible_recipes)
-			var/N_i = (recipe.items) ? (recipe.items.len) : 0
-			var/N_r = (recipe.reagents) ? (recipe.reagents.len) : 0
+			var/N_i = recipe.items ? length(recipe.items) : 0
+			var/N_r = recipe.reagents ? length(recipe.reagents) : 0
 			if(N_i > i_count || (N_i == i_count && N_r > r_count ))
 				r_count = N_r
 				i_count = N_i

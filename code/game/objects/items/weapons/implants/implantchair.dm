@@ -37,7 +37,7 @@
 	var/dat ="<B>Implanter Status</B><BR>"
 
 	dat +="<B>Current occupant:</B> [src.occupant ? "<BR>Name: [src.occupant]<BR>Health: [health_text]<BR>" : "<FONT color=red>None</FONT>"]<BR>"
-	dat += "<B>Implants:</B> [src.implant_list.len ? "[implant_list.len]" : "<A href='?src=\ref[src];replenish=1'>Replenish</A>"]<BR>"
+	dat += "<B>Implants:</B> [length(implant_list) ? "[length(implant_list)]" : "<A href='?src=\ref[src];replenish=1'>Replenish</A>"]<BR>"
 	if(src.occupant)
 		dat += "[src.ready ? "<A href='?src=\ref[src];implant=1'>Implant</A>" : "Recharging"]<BR>"
 	user.set_machine(src)
@@ -114,7 +114,7 @@
 /obj/machinery/implantchair/proc/implant(mob/M)
 	if(!iscarbon(M))
 		return
-	if(!implant_list.len)
+	if(!length(implant_list))
 		return
 	for(var/obj/item/weapon/implant/loyalty/imp in implant_list)
 		if(!imp)

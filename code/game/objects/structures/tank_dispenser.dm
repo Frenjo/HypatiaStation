@@ -81,7 +81,7 @@
 		if(href_list["oxygen"])
 			if(oxygentanks > 0)
 				var/obj/item/weapon/tank/oxygen/O
-				if(oxytanks.len == oxygentanks)
+				if(length(oxytanks) == oxygentanks)
 					O = oxytanks[1]
 					oxytanks.Remove(O)
 				else
@@ -93,7 +93,7 @@
 		if(href_list["plasma"])
 			if(plasmatanks > 0)
 				var/obj/item/weapon/tank/plasma/P
-				if(platanks.len == plasmatanks)
+				if(length(platanks) == plasmatanks)
 					P = platanks[1]
 					platanks.Remove(P)
 				else

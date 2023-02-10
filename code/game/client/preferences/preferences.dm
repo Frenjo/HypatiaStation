@@ -162,7 +162,7 @@
 			return "God"
 
 /datum/preferences/proc/SetSkills(mob/user)
-	if(skills.len == 0)
+	if(!length(skills))
 		ZeroSkills()
 
 	var/dat = "<body>"
@@ -256,7 +256,7 @@
 	//display limbs below
 	var/ind = 0
 	for(var/name in organ_data)
-		//world << "[ind] \ [organ_data.len]"
+		//world << "[ind] \ [length(organ_data)]"
 		var/status = organ_data[name]
 		var/organ_name = null
 		switch(name)
@@ -829,7 +829,7 @@
 				if("f_style")
 					f_style = random_facial_hair_style(gender, species)
 				if("underwear")
-					underwear = rand(1, GLOBL.underwear_m.len)
+					underwear = rand(1, length(GLOBL.underwear_m))
 					ShowChoices(user)
 				if("eyes")
 					r_eyes = rand(0, 255)
@@ -890,7 +890,7 @@
 								continue
 							valid_hairstyles[hairstyle] = GLOBL.hair_styles_list[hairstyle]
 
-						if(valid_hairstyles.len)
+						if(length(valid_hairstyles))
 							h_style = pick(valid_hairstyles)
 						else
 							//this shouldn't happen
@@ -909,7 +909,7 @@
 
 							valid_facialhairstyles[facialhairstyle] = GLOBL.facial_hair_styles_list[facialhairstyle]
 
-						if(valid_facialhairstyles.len)
+						if(length(valid_facialhairstyles))
 							f_style = pick(valid_facialhairstyles)
 						else
 							//this shouldn't happen
@@ -1313,7 +1313,7 @@
 		else
 			continue
 
-	if(underwear > GLOBL.underwear_m.len || underwear < 1)
+	if(underwear > length(GLOBL.underwear_m) || underwear < 1)
 		underwear = 0 //I'm sure this is 100% unnecessary, but I'm paranoid... sue me. //HAH NOW NO MORE MAGIC CLONING UNDIES
 	character.underwear = underwear
 

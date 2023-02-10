@@ -125,7 +125,7 @@
 			showname = "."
 
 		for(var/mob/O in viewers(messagesource, null))
-			if(attack_verb.len)
+			if(length(attack_verb))
 				O.show_message(SPAN_DANGER("[M] has been [pick(attack_verb)] with [src][showname]."), 1)
 			else
 				O.show_message(SPAN_DANGER("[M] has been attacked with [src][showname]."), 1)

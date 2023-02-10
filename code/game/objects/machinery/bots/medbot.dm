@@ -75,7 +75,7 @@
 			src.overlays += image('icons/obj/aibots.dmi', "medskin_[src.skin]")
 
 		src.botcard = new /obj/item/weapon/card/id(src)
-		if(isnull(src.botcard_access) || (src.botcard_access.len < 1))
+		if(!length(src.botcard_access))
 			var/datum/job/doctor/J = new/datum/job/doctor
 			src.botcard.access = J.get_access()
 		else
@@ -294,32 +294,32 @@
 			src.medicate_patient(src.patient)
 		return
 
-	else if(src.patient && (src.path.len) && (get_dist(src.patient,src.path[src.path.len]) > 2))
+	else if(src.patient && length(path) && get_dist(src.patient, src.path[length(path)]) > 2)
 		src.path = new()
 		src.currently_healing = 0
 		src.last_found = world.time
 
-	if(src.patient && src.path.len == 0 && (get_dist(src, src.patient) > 1))
+	if(src.patient && !length(path) && (get_dist(src, src.patient) > 1))
 		spawn(0)
 			src.path = AStar(src.loc, get_turf(src.patient), /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 30,id=botcard)
 			if(!path)
 				path = list()
-			if(src.path.len == 0)
+			if(!length(path))
 				src.oldpatient = src.patient
 				src.patient = null
 				src.currently_healing = 0
 				src.last_found = world.time
 		return
 
-	if(src.path.len > 0 && src.patient)
+	if(length(path) && src.patient)
 		step_to(src, src.path[1])
 		src.path -= src.path[1]
 		spawn(3)
-			if(src.path.len)
+			if(length(path))
 				step_to(src, src.path[1])
 				src.path -= src.path[1]
 
-	if(src.path.len > 8 && src.patient)
+	if(length(path) > 8 && src.patient)
 		src.frustration++
 
 	return
@@ -518,7 +518,7 @@
 		if(O.density && !istype(O, /obj/structure/window) && !istype(O, /obj/machinery/door))
 			return 1
 
-		if (O.density && (istype(O, /obj/machinery/door)) && (access.len))
+		if (O.density && istype(O, /obj/machinery/door) && length(access))
 			var/obj/machinery/door/D = O
 			for(var/req in D.req_access)
 				if(!(req in access)) //doesn't have this access
@@ -536,7 +536,7 @@
 		return
 
 	//Making a medibot!
-	if(src.contents.len >= 1)
+	if(length(contents))
 		to_chat(user, SPAN_NOTICE("You need to empty [src] out first."))
 		return
 

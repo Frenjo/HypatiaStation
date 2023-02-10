@@ -243,7 +243,7 @@
 						else
 							cur_oct[cur_note] = ni
 					playnote(uppertext(copytext(note,1,2)) + cur_acc[cur_note] + cur_oct[cur_note])
-				if(notes.len >= 2 && text2num(notes[2]))
+				if(length(notes) >= 2 && text2num(notes[2]))
 					sleep(song.tempo / text2num(notes[2]))
 				else
 					sleep(song.tempo)
@@ -261,7 +261,7 @@
 	var/dat = "<HEAD><TITLE>Piano</TITLE></HEAD><BODY>"
 
 	if(song)
-		if(song.lines.len > 0 && !(playing))
+		if(length(song.lines) && !(playing))
 			dat += "<A href='?src=\ref[src];play=1'>Play Song</A><BR><BR>"
 			dat += "<A href='?src=\ref[src];repeat=1'>Repeat Song: [repeat] times.</A><BR><BR>"
 		if(playing)
@@ -338,7 +338,7 @@
 			var/newline = html_encode(input("Enter your line: ", "Piano") as text|null)
 			if(!newline)
 				return
-			if(song.lines.len > 50)
+			if(length(song.lines) > 50)
 				return
 			if(length(newline) > 50)
 				newline = copytext(newline, 1, 50)
@@ -346,7 +346,7 @@
 
 		else if(href_list["deleteline"])
 			var/num = round(text2num(href_list["deleteline"]))
-			if(num > song.lines.len || num < 1)
+			if(num > length(song.lines) || num < 1)
 				return
 			song.lines.Cut(num, num+1)
 
@@ -357,7 +357,7 @@
 				return
 			if(length(content) > 50)
 				content = copytext(content, 1, 50)
-			if(num > song.lines.len || num < 1)
+			if(num > length(song.lines) || num < 1)
 				return
 			song.lines[num] = content
 
@@ -390,7 +390,7 @@
 				if(copytext(lines[1],1,6) == "BPM: ")
 					tempo = 600 / text2num(copytext(lines[1],6))
 					lines.Cut(1,2)
-				if(lines.len > 50)
+				if(length(lines) > 50)
 					usr << "Too many lines!"
 					lines.Cut(51)
 				var/linenum = 1

@@ -211,7 +211,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 		if(!should_patrol)
 			return
 
-		if(!patrol_path || patrol_path.len < 1)
+		if(!length(patrol_path))
 			var/datum/radio_frequency/frequency = global.CTradio.return_frequency(beacon_freq)
 
 			if(!frequency) return
@@ -235,20 +235,20 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 
 		return
 
-	if(target && path.len == 0)
+	if(target && !length(path))
 		spawn(0)
 			if(!src || !target) return
 			src.path = AStar(src.loc, src.target.loc, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 30, id=botcard)
 			if (!path) path = list()
-			if(src.path.len == 0)
+			if(!length(path))
 				src.oldtarget = src.target
 				target.targeted_by = null
 				src.target = null
 		return
-	if(src.path.len > 0 && src.target && (src.target != null))
+	if(length(path) && src.target && (src.target != null))
 		step_to(src, src.path[1])
 		src.path -= src.path[1]
-	else if(src.path.len == 1)
+	else if(length(path) == 1)
 		step_to(src, target)
 
 	if(src.target && (src.target != null))
@@ -262,7 +262,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 	src.oldloc = src.loc
 
 /obj/machinery/bot/cleanbot/proc/patrol_move()
-	if (src.patrol_path.len <= 0)
+	if(!length(patrol_path))
 		return
 
 	var/next = src.patrol_path[1]

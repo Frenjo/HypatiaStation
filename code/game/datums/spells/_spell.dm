@@ -246,7 +246,7 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 			for(var/mob/living/target in view_or_range(range, user, selection_type))
 				possible_targets += target
 			for(var/i = 1, i <= max_targets, i++)
-				if(!possible_targets.len)
+				if(!length(possible_targets))
 					break
 				if(target_ignore_prev)
 					var/target = pick(possible_targets)
@@ -258,7 +258,7 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 	if(!include_user && (user in targets))
 		targets -= user
 
-	if(!targets.len) //doesn't waste the spell
+	if(!length(targets)) //doesn't waste the spell
 		revert_cast(user)
 		return
 
@@ -272,7 +272,7 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 		if(!(target in view_or_range(inner_radius, user, selection_type)))
 			targets += target
 
-	if(!targets.len) //doesn't waste the spell
+	if(!length(targets)) //doesn't waste the spell
 		revert_cast()
 		return
 

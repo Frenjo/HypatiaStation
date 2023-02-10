@@ -233,7 +233,7 @@
 	return ..()
 
 /obj/machinery/magnetic_controller/process()
-	if(magnets.len == 0 && autolink)
+	if(!length(magnets) && autolink)
 		for(var/obj/machinery/magnetic_module/M in world)
 			if(M.freq == frequency && M.code == code)
 				magnets.Add(M)
@@ -253,7 +253,7 @@
 		<a href='?src=\ref[src];operation=probe'>Probe Generators</a><br>
 		"}
 
-	if(magnets.len >= 1)
+	if(length(magnets))
 
 		dat += "Magnets confirmed: <br>"
 		var/i = 0
@@ -336,7 +336,7 @@
 	if(looping)
 		return
 
-	while(moving && rpath.len >= 1)
+	while(moving && length(rpath))
 		if(stat & (BROKEN|NOPOWER))
 			break
 
@@ -349,7 +349,7 @@
 		signal.frequency = frequency
 		signal.data["code"] = code
 
-		if(pathpos > rpath.len) // if the position is greater than the length, we just loop through the list!
+		if(pathpos > length(rpath)) // if the position is greater than the length, we just loop through the list!
 			pathpos = 1
 
 		var/nextmove = uppertext(rpath[pathpos]) // makes it un-case-sensitive

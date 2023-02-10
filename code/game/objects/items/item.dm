@@ -405,7 +405,7 @@
 			if(slot_in_backpack)
 				if(H.back && (istype(H.back, /obj/item/weapon/storage/backpack) || istype(H.back, /obj/item/weapon/storage/satchel)))
 					var/obj/item/weapon/storage/store = H.back
-					if(store.contents.len < store.storage_slots && w_class <= store.max_w_class)
+					if(length(store.contents) < store.storage_slots && w_class <= store.max_w_class)
 						return 1
 				return 0
 		return 0 //Unsupported slot
@@ -572,7 +572,7 @@
 		generate_blood_overlay()
 
 	//apply the blood-splatter overlay if it isn't already in there
-	if(!blood_DNA.len)
+	if(!length(blood_DNA))
 		blood_overlay.color = blood_color
 		overlays += blood_overlay
 

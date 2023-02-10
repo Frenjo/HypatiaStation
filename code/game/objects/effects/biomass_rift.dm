@@ -85,7 +85,7 @@
 	if(possibleDirsInt & turn(direction,-90))
 		possibleDirs += turn(direction,-90)
 
-	if(!possibleDirs.len)
+	if(!length(possibleDirs))
 		return
 
 	direction = pick(possibleDirs)

@@ -20,7 +20,7 @@
 	var/icon_type = "donut"
 
 /obj/item/weapon/storage/fancy/update_icon(var/itemremoved = 0)
-	var/total_contents = src.contents.len - itemremoved
+	var/total_contents = length(contents) - itemremoved
 	src.icon_state = "[src.icon_type]box[total_contents]"
 	return
 
@@ -28,12 +28,12 @@
 	set src in oview(1)
 
 	..()
-	if(contents.len <= 0)
+	if(length(contents) <= 0)
 		usr << "There are no [src.icon_type]s left in the box."
-	else if(contents.len == 1)
+	else if(length(contents) == 1)
 		usr << "There is one [src.icon_type] left in the box."
 	else
-		usr << "There are [src.contents.len] [src.icon_type]s in the box."
+		usr << "There are [length(contents)] [src.icon_type]s in the box."
 
 	return
 
@@ -184,25 +184,25 @@
 
 
 /obj/item/weapon/storage/fancy/cigarettes/update_icon()
-	icon_state = "[initial(icon_state)][contents.len]"
-	desc = "There are [contents.len] cig\s left!"
+	icon_state = "[initial(icon_state)][length(contents)]"
+	desc = "There are [length(contents)] cig\s left!"
 	return
 
 /obj/item/weapon/storage/fancy/cigarettes/remove_from_storage(obj/item/W as obj, atom/new_location)
 		var/obj/item/clothing/mask/cigarette/C = W
 		if(!istype(C)) return // what
-		reagents.trans_to(C, (reagents.total_volume/contents.len))
+		reagents.trans_to(C, (reagents.total_volume / length(contents)))
 		..()
 
 /obj/item/weapon/storage/fancy/cigarettes/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M, /mob))
 		return
 
-	if(M == user && user.zone_sel.selecting == "mouth" && contents.len > 0 && !user.wear_mask)
+	if(M == user && user.zone_sel.selecting == "mouth" && length(contents) && !user.wear_mask)
 		var/obj/item/clothing/mask/cigarette/W = new /obj/item/clothing/mask/cigarette(user)
-		reagents.trans_to(W, (reagents.total_volume/contents.len))
+		reagents.trans_to(W, (reagents.total_volume / length(contents)))
 		user.equip_to_slot_if_possible(W, slot_wear_mask)
-		reagents.maximum_volume = 15 * contents.len
+		reagents.maximum_volume = 15 * length(contents)
 		contents.len--
 		user << "<span class='notice'>You take a cigarette out of the pack.</span>"
 		update_icon()
@@ -252,7 +252,7 @@
 	update_icon()
 
 /obj/item/weapon/storage/lockbox/vials/update_icon(var/itemremoved = 0)
-	var/total_contents = src.contents.len - itemremoved
+	var/total_contents = length(contents) - itemremoved
 	src.icon_state = "vialbox[total_contents]"
 	src.overlays.Cut()
 	if (!broken)

@@ -236,21 +236,21 @@
 			src.oldtarget = null
 		return
 
-	if(src.target && (src.target != null) && src.path.len == 0)
+	if(src.target && (src.target != null) && !length(path))
 		spawn(0)
 			if(!istype(src.target, /turf/))
 				src.path = AStar(src.loc, src.target.loc, /turf/proc/AdjacentTurfsSpace, /turf/proc/Distance, 0, 30, id=botcard)
 			else
 				src.path = AStar(src.loc, src.target, /turf/proc/AdjacentTurfsSpace, /turf/proc/Distance, 0, 30, id=botcard)
 			if (!src.path) src.path = list()
-			if(src.path.len == 0)
+			if(!length(path))
 				src.oldtarget = src.target
 				src.target = null
 		return
-	if(src.path.len > 0 && src.target && (src.target != null))
+	if(length(path) && src.target && (src.target != null))
 		step_to(src, src.path[1])
 		src.path -= src.path[1]
-	else if(src.path.len == 1)
+	else if(length(path) == 1)
 		step_to(src, target)
 		src.path = new()
 
@@ -393,7 +393,7 @@
 	if(!istype(T, /obj/item/stack/tile/plasteel))
 		..()
 		return
-	if(src.contents.len >= 1)
+	if(length(contents))
 		user << "<span class='notice'>They wont fit in as there is already stuff inside.</span>"
 		return
 	if(user.s_active)

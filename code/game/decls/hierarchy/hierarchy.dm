@@ -20,7 +20,7 @@
 		dd_insertObjectList(subtype_parent.children, subtype_instance)
 
 /decl/hierarchy/proc/is_category()
-	return children.len
+	return length(children)
 
 /decl/hierarchy/dd_SortValue()
 	return name

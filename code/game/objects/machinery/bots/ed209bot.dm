@@ -234,7 +234,7 @@ Auto Patrol: []"},
 			continue
 
 		targets += C
-	if (targets.len>0)
+	if(length(targets))
 		var/mob/t = pick(targets)
 		if (istype(t, /mob/living))
 			if ((t.stat!=2) && (t.lying != 1))
@@ -354,14 +354,14 @@ Auto Patrol: []"},
 
 		if(SECBOT_START_PATROL)	// start a patrol
 
-			if(path.len > 0 && patrol_target)	// have a valid path, so just resume
+			if(length(path) && patrol_target)	// have a valid path, so just resume
 				mode = SECBOT_PATROL
 				return
 
 			else if(patrol_target)		// has patrol target already
 				spawn(0)
 					calc_path()		// so just find a route to it
-					if(path.len == 0)
+					if(!length(path))
 						patrol_target = 0
 						return
 					mode = SECBOT_PATROL
@@ -397,7 +397,7 @@ Auto Patrol: []"},
 		at_patrol_target()
 		return
 
-	else if(path.len > 0 && patrol_target)		// valid path
+	else if(length(path) && patrol_target)		// valid path
 
 		var/turf/next = path[1]
 		if(next == loc)
@@ -424,7 +424,7 @@ Auto Patrol: []"},
 
 					spawn(2)
 						calc_path(next)
-						if(path.len == 0)
+						if(!length(path))
 							find_patrol_target()
 						else
 							blockcount = 0
@@ -853,7 +853,7 @@ Auto Patrol: []"},
 			if(C.stat == DEAD)
 				continue
 			targets += C
-		if(targets.len)
+		if(length(targets))
 			if(prob(50))
 				var/mob/toshoot = pick(targets)
 				if(toshoot)
@@ -865,7 +865,7 @@ Auto Patrol: []"},
 					else
 						shootAt(toshoot)
 			else if(prob(50))
-				if(targets.len)
+				if(length(targets))
 					var/mob/toarrest = pick(targets)
 					if (toarrest)
 						src.target = toarrest

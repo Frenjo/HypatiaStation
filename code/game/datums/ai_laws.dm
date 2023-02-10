@@ -118,7 +118,7 @@
 	src.inherent = list()
 
 /datum/ai_laws/proc/add_supplied_law(number, law)
-	while(src.supplied.len < number + 1)
+	while(length(supplied) < number + 1)
 		src.supplied += ""
 
 	src.supplied[number + 1] = law
@@ -133,20 +133,20 @@
 	if(src.zeroth)
 		to_chat(who, "0. [src.zeroth]")
 
-	for(var/index = 1, index <= src.ion.len, index++)
+	for(var/index = 1, index <= length(ion), index++)
 		var/law = src.ion[index]
 		var/num = ionnum()
 		to_chat(who, "[num]. [law]")
 
 	var/number = 1
-	for(var/index = 1, index <= src.inherent.len, index++)
+	for(var/index = 1, index <= length(inherent), index++)
 		var/law = src.inherent[index]
 
 		if(length(law) > 0)
 			to_chat(who, "[number]. [law]")
 			number++
 
-	for(var/index = 1, index <= src.supplied.len, index++)
+	for(var/index = 1, index <= length(supplied), index++)
 		var/law = src.supplied[index]
 		if(length(law) > 0)
 			to_chat(who, "[number]. [law]")

@@ -69,7 +69,7 @@
 					if(spreadsIntoAdjacent || !locate(/obj/effect/glowshroom) in view(1, earth))
 						possibleLocs += earth
 
-				if(!possibleLocs.len)
+				if(!length(possibleLocs))
 					break
 
 				var/turf/newLoc = pick(possibleLocs)
@@ -149,7 +149,7 @@
 		if(direction & i)
 			dirList += i
 
-	if(dirList.len)
+	if(length(dirList))
 		var/newDir = pick(dirList)
 		if(newDir == 16)
 			floor = 1

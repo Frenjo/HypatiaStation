@@ -22,7 +22,7 @@
 	return
 
 /obj/effect/spider/attackby(obj/item/weapon/W, mob/user)
-	if(W.attack_verb.len)
+	if(length(W.attack_verb))
 		visible_message(SPAN_DANGER("\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]" : "")]."))
 	else
 		visible_message(SPAN_DANGER("\The [src] have been attacked with \the [W][(user ? " by [user]" : "")]."))
@@ -138,11 +138,11 @@
 			entry_vent = null
 	else if(entry_vent)
 		if(get_dist(src, entry_vent) <= 1)
-			if(entry_vent.network && entry_vent.network.normal_members.len)
+			if(entry_vent.network && length(entry_vent.network.normal_members))
 				var/list/vents = list()
 				for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in entry_vent.network.normal_members)
 					vents.Add(temp_vent)
-				if(!vents.len)
+				if(!length(vents))
 					entry_vent = null
 					return
 				var/obj/machinery/atmospherics/unary/vent_pump/exit_vent = pick(vents)
@@ -178,7 +178,7 @@
 
 	else if(prob(25))
 		var/list/nearby = oview(5, src)
-		if(nearby.len)
+		if(length(nearby))
 			var/target_atom = pick(nearby)
 			walk_to(src, target_atom, 5)
 			if(prob(25))

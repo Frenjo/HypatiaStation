@@ -232,7 +232,7 @@ Alien plants should do something if theres a lot of poison
 	return
 
 /obj/effect/alien/weeds/attackby(obj/item/weapon/W, mob/user)
-	if(W.attack_verb.len)
+	if(length(W.attack_verb))
 		visible_message(SPAN_DANGER("\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]"))
 	else
 		visible_message(SPAN_DANGER("\The [src] have been attacked with \the [W][(user ? " by [user]." : ".")]"))
@@ -409,7 +409,7 @@ Alien plants should do something if theres a lot of poison
 /obj/effect/alien/egg/attackby(obj/item/weapon/W, mob/user)
 	if(health <= 0)
 		return
-	if(W.attack_verb.len)
+	if(length(W.attack_verb))
 		src.visible_message(SPAN_DANGER("\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]"))
 	else
 		src.visible_message(SPAN_DANGER("\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]"))

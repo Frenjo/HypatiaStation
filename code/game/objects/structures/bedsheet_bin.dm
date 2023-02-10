@@ -148,8 +148,8 @@ LINEN BINS
 		amount--
 
 		var/obj/item/weapon/bedsheet/B
-		if(sheets.len > 0)
-			B = sheets[sheets.len]
+		if(length(sheets))
+			B = sheets[length(sheets)]
 			sheets.Remove(B)
 
 		else
@@ -172,8 +172,8 @@ LINEN BINS
 		amount--
 
 		var/obj/item/weapon/bedsheet/B
-		if(sheets.len > 0)
-			B = sheets[sheets.len]
+		if(length(sheets))
+			B = sheets[length(sheets)]
 			sheets.Remove(B)
 
 		else

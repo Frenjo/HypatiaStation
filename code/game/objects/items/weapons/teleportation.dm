@@ -156,7 +156,7 @@ Frequency:
 		if(T.y > world.maxy - 8 || T.y < 8)
 			continue
 		turfs += T
-	if(turfs.len)
+	if(length(turfs))
 		L["None (Dangerous)"] = pick(turfs)
 	var/t1 = input(user, "Please select a teleporter to lock in on.", "Hand Teleporter") in L
 	if((user.get_active_hand() != src || user.stat || user.restrained()))

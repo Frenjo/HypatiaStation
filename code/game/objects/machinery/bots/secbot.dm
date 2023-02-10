@@ -333,14 +333,14 @@ Auto Patrol: []"},
 
 
 		if(SECBOT_START_PATROL)	// start a patrol
-			if(path.len > 0 && patrol_target)	// have a valid path, so just resume
+			if(length(path) && patrol_target)	// have a valid path, so just resume
 				mode = SECBOT_PATROL
 				return
 
 			else if(patrol_target)		// has patrol target already
 				spawn(0)
 					calc_path()		// so just find a route to it
-					if(path.len == 0)
+					if(!length(path))
 						patrol_target = 0
 						return
 					mode = SECBOT_PATROL
@@ -375,7 +375,7 @@ Auto Patrol: []"},
 		at_patrol_target()
 		return
 
-	else if(path.len > 0 && patrol_target)		// valid path
+	else if(length(path) && patrol_target)		// valid path
 
 		var/turf/next = path[1]
 		if(next == loc)
@@ -400,7 +400,7 @@ Auto Patrol: []"},
 
 					spawn(2)
 						calc_path(next)
-						if(path.len == 0)
+						if(!length(path))
 							find_patrol_target()
 						else
 							blockcount = 0

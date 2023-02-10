@@ -32,7 +32,7 @@
 		Gib(loc, viruses, MobDNA)
 
 /obj/effect/gibspawner/proc/Gib(atom/location, list/viruses = list(), datum/dna/MobDNA = null)
-	if(gibtypes.len != gibamounts.len || gibamounts.len != gibdirections.len)
+	if(length(gibtypes) != length(gibamounts) || length(gibamounts) != length(gibdirections))
 		to_world(SPAN_WARNING("Gib list length mismatch!"))
 		return
 
@@ -46,7 +46,7 @@
 		s.set_up(2, 1, location)
 		s.start()
 
-	for(var/i = 1, i <= gibtypes.len, i++)
+	for(var/i = 1, i <= length(gibtypes), i++)
 		if(gibamounts[i])
 			for(var/j = 1, j <= gibamounts[i], j++)
 				var/gibType = gibtypes[i]
@@ -60,7 +60,7 @@
 
 				gib.update_icon()
 
-				if(viruses.len > 0)
+				if(length(viruses))
 					for(var/datum/disease/D in viruses)
 						if(prob(virusProb))
 							var/datum/disease/viruus = D.Copy(1)
@@ -75,7 +75,7 @@
 				else if(istype(src, /obj/effect/gibspawner/human)) // Probably a monkey
 					gib.blood_DNA["Non-human DNA"] = "A+"
 				var/list/directions = gibdirections[i]
-				if(directions.len)
+				if(length(directions))
 					gib.streak(directions)
 
 	qdel(src)

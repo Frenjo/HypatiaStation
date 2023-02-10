@@ -87,7 +87,7 @@
 		devices_line -= device
 		while (null in devices_line)
 			devices_line -= null
-		if(devices_line.len == 0)
+		if(!length(devices_line))
 			devices -= devices_filter
 			qdel(devices_line)
 

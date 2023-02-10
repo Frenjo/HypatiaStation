@@ -94,7 +94,7 @@
 	var/output = "<B>[current.real_name]'s Memory</B><HR>"
 	output += memory
 
-	if(objectives.len > 0)
+	if(length(objectives))
 		output += "<HR><B>Objectives:</B>"
 
 		var/obj_count = 1
@@ -159,7 +159,7 @@
 				text += "."
 
 			text += " <a href='?src=\ref[src];revolution=reequip'>Reequip</a> (gives traitor uplink)."
-			if(objectives.len == 0)
+			if(!length(objectives))
 				text += "<br>Objectives are empty! <a href='?src=\ref[src];revolution=autoobjectives'>Set to kill all heads</a>."
 		else if(src in global.CTgame_ticker.mode.revolutionaries)
 			text += "<a href='?src=\ref[src];revolution=clear'>employee</a>|<a href='?src=\ref[src];revolution=headrev'>headrev</a>|<b>REV</b>"
@@ -178,7 +178,7 @@
 			text += "<a href='?src=\ref[src];cult=clear'>employee</a>|<b>CULTIST</b>"
 			text += "<br>Give <a href='?src=\ref[src];cult=tome'>tome</a>|<a href='?src=\ref[src];cult=amulet'>amulet</a>."
 /*
-			if (objectives.len==0)
+			if(!length(objectives))
 				text += "<br>Objectives are empty! Set to sacrifice and <a href='?src=\ref[src];cult=escape'>escape</a> or <a href='?src=\ref[src];cult=summon'>summon</a>."
 */
 		else
@@ -193,7 +193,7 @@
 		if(src in global.CTgame_ticker.mode.wizards)
 			text += "<b>YES</b>|<a href='?src=\ref[src];wizard=clear'>no</a>"
 			text += "<br><a href='?src=\ref[src];wizard=lair'>To lair</a>, <a href='?src=\ref[src];common=undress'>undress</a>, <a href='?src=\ref[src];wizard=dressup'>dress up</a>, <a href='?src=\ref[src];wizard=name'>let choose name</a>."
-			if(objectives.len == 0)
+			if(!length(objectives))
 				text += "<br>Objectives are empty! <a href='?src=\ref[src];wizard=autoobjectives'>Randomize!</a>"
 		else
 			text += "<a href='?src=\ref[src];wizard=wizard'>yes</a>|<b>NO</b>"
@@ -206,9 +206,9 @@
 		text = "<i><b>[text]</b></i>: "
 		if(src in global.CTgame_ticker.mode.changelings)
 			text += "<b>YES</b>|<a href='?src=\ref[src];changeling=clear'>no</a>"
-			if(objectives.len == 0)
+			if(!length(objectives))
 				text += "<br>Objectives are empty! <a href='?src=\ref[src];changeling=autoobjectives'>Randomize!</a>"
-			if(changeling && changeling.absorbed_dna.len && (current.real_name != changeling.absorbed_dna[1]))
+			if(changeling && length(changeling.absorbed_dna) && (current.real_name != changeling.absorbed_dna[1]))
 				text += "<br><a href='?src=\ref[src];changeling=initialdna'>Transform to initial appearance.</a>"
 		else
 			text += "<a href='?src=\ref[src];changeling=changeling'>yes</a>|<b>NO</b>"
@@ -247,7 +247,7 @@
 		else
 			if(src in global.CTgame_ticker.mode.traitors)
 				text += "<b>TRAITOR</b>|<a href='?src=\ref[src];traitor=clear'>Employee</a>"
-				if(objectives.len == 0)
+				if(!length(objectives))
 					text += "<br>Objectives are empty! <a href='?src=\ref[src];traitor=autoobjectives'>Randomize</a>!"
 			else
 				text += "<a href='?src=\ref[src];traitor=traitor'>traitor</a>|<b>Employee</b>"
@@ -291,12 +291,12 @@
 		if(istype(robot) && robot.emagged)
 			text += "<br>Cyborg: Is emagged! <a href='?src=\ref[src];silicon=unemag'>Unemag!</a><br>0th law: [robot.laws.zeroth]"
 		var/mob/living/silicon/ai/ai = current
-		if(istype(ai) && ai.connected_robots.len)
+		if(istype(ai) && length(ai.connected_robots))
 			var/n_e_robots = 0
 			for(var/mob/living/silicon/robot/R in ai.connected_robots)
 				if(R.emagged)
 					n_e_robots++
-			text += "<br>[n_e_robots] of [ai.connected_robots.len] slaved cyborgs are emagged. <a href='?src=\ref[src];silicon=unemagcyborgs'>Unemag</a>"
+			text += "<br>[n_e_robots] of [length(ai.connected_robots)] slaved cyborgs are emagged. <a href='?src=\ref[src];silicon=unemagcyborgs'>Unemag</a>"
 		sections["malfunction"] = text
 
 	if(global.CTgame_ticker.mode.config_tag == "traitorchan")
@@ -336,7 +336,7 @@
 	out += memory
 	out += "<br><a href='?src=\ref[src];memory_edit=1'>Edit memory</a><br>"
 	out += "Objectives:<br>"
-	if(objectives.len == 0)
+	if(!length(objectives))
 		out += "EMPTY<br>"
 	else
 		var/obj_count = 1
@@ -589,7 +589,7 @@
 					to_chat(current, SPAN_INFO("You are a member of the revolutionaries' leadership now!"))
 				else
 					return
-				if(global.CTgame_ticker.mode.head_revolutionaries.len > 0)
+				if(length(global.CTgame_ticker.mode.head_revolutionaries))
 					// copy targets
 					var/datum/mind/valid_head = locate() in global.CTgame_ticker.mode.head_revolutionaries
 					if(valid_head)
@@ -748,7 +748,7 @@
 				to_chat(usr, SPAN_INFO("The objectives for changeling [key] have been generated. You can edit them and anounce manually."))
 
 			if("initialdna")
-				if(!changeling || !changeling.absorbed_dna.len)
+				if(!changeling || !length(changeling.absorbed_dna))
 					to_chat(usr, SPAN_WARNING("Resetting DNA failed!"))
 				else
 					current.dna = changeling.absorbed_dna[1]
@@ -773,10 +773,10 @@
 				if(!(src in global.CTgame_ticker.mode.syndicates))
 					global.CTgame_ticker.mode.syndicates += src
 					global.CTgame_ticker.mode.update_synd_icons_added(src)
-					if(global.CTgame_ticker.mode.syndicates.len==1)
+					if(length(global.CTgame_ticker.mode.syndicates) == 1)
 						global.CTgame_ticker.mode.prepare_syndicate_leader(src)
 					else
-						current.real_name = "[syndicate_name()] Operative #[global.CTgame_ticker.mode.syndicates.len-1]"
+						current.real_name = "[syndicate_name()] Operative #[length(global.CTgame_ticker.mode.syndicates) - 1]"
 					special_role = "Syndicate"
 					to_chat(current, SPAN_INFO("You are a [syndicate_name()] agent!"))
 					if(CONFIG_GET(objectives_disabled))
@@ -1064,10 +1064,10 @@
 	if(!(src in global.CTgame_ticker.mode.syndicates))
 		global.CTgame_ticker.mode.syndicates += src
 		global.CTgame_ticker.mode.update_synd_icons_added(src)
-		if(global.CTgame_ticker.mode.syndicates.len==1)
+		if(length(global.CTgame_ticker.mode.syndicates) == 1)
 			global.CTgame_ticker.mode.prepare_syndicate_leader(src)
 		else
-			current.real_name = "[syndicate_name()] Operative #[global.CTgame_ticker.mode.syndicates.len-1]"
+			current.real_name = "[syndicate_name()] Operative #[length(global.CTgame_ticker.mode.syndicates) - 1]"
 		special_role = "Syndicate"
 		assigned_role = "MODE"
 		to_chat(current, SPAN_INFO("You are a [syndicate_name()] agent!"))
@@ -1105,7 +1105,7 @@
 		special_role = "Wizard"
 		assigned_role = "MODE"
 		//ticker.mode.learn_basic_spells(current)
-		if(!GLOBL.wizardstart.len)
+		if(!length(GLOBL.wizardstart))
 			current.loc = pick(GLOBL.latejoin)
 			to_chat(current, "HOT INSERTION, GO GO GO!")
 		else
@@ -1154,7 +1154,7 @@
 		to_chat(H, "Spawning an amulet from your Master failed.")
 
 /datum/mind/proc/make_Rev()
-	if(global.CTgame_ticker.mode.head_revolutionaries.len>0)
+	if(length(global.CTgame_ticker.mode.head_revolutionaries))
 		// copy targets
 		var/datum/mind/valid_head = locate() in global.CTgame_ticker.mode.head_revolutionaries
 		if(valid_head)

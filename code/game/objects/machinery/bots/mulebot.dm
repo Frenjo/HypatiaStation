@@ -517,7 +517,7 @@
 				at_target()
 				return
 
-			else if(path.len > 0 && target)		// valid path
+			else if(length(path) && target)		// valid path
 				var/turf/next = path[1]
 				reached_target = 0
 				if(next == loc)
@@ -574,7 +574,7 @@
 
 							spawn(2)
 								calc_path(next)
-								if(path.len > 0)
+								if(length(path))
 									src.visible_message("[src] makes a delighted ping!", "You hear a ping.")
 									playsound(src, 'sound/machines/ping.ogg', 50, 0)
 								mode = 4
@@ -599,7 +599,7 @@
 
 				calc_path()
 
-				if(path.len > 0)
+				if(length(path))
 					blockcount = 0
 					mode = 4
 					src.visible_message("[src] makes a delighted ping!", "You hear a ping.")

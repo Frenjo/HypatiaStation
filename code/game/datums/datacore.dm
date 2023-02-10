@@ -77,44 +77,44 @@ GLOBAL_GLOBL_LIST_NEW(pda_manifest)
 			misc[name] = rank
 
 	var/name
-	if(heads.len > 0)
+	if(length(heads))
 		dat += "<tr><th colspan=3>Heads</th></tr>"
 		for(name in heads)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[heads[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
-	if(sec.len > 0)
+	if(length(sec))
 		dat += "<tr><th colspan=3>Security</th></tr>"
 		for(name in sec)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[sec[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
-	if(eng.len > 0)
+	if(length(eng))
 		dat += "<tr><th colspan=3>Engineering</th></tr>"
 		for(name in eng)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[eng[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
-	if(med.len > 0)
+	if(length(med))
 		dat += "<tr><th colspan=3>Medical</th></tr>"
 		for(name in med)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[med[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
-	if(sci.len > 0)
+	if(length(sci))
 		dat += "<tr><th colspan=3>Science</th></tr>"
 		for(name in sci)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[sci[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
-	if(civ.len > 0)
+	if(length(civ))
 		dat += "<tr><th colspan=3>Civilian</th></tr>"
 		for(name in civ)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[civ[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	// in case somebody is insane and added them to the manifest, why not
-	if(bot.len > 0)
+	if(length(bot))
 		dat += "<tr><th colspan=3>Silicon</th></tr>"
 		for(name in bot)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[bot[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	// misc guys
-	if(misc.len > 0)
+	if(length(misc))
 		dat += "<tr><th colspan=3>Miscellaneous</th></tr>"
 		for(name in misc)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[misc[name]]</td><td>[isactive[name]]</td></tr>"
@@ -132,7 +132,7 @@ we'll only update it when it changes. The pda_manifest global list is zeroed out
 using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 */
 /datum/datacore/proc/get_manifest_json()
-	if(GLOBL.pda_manifest.len)
+	if(length(GLOBL.pda_manifest))
 		return GLOBL.pda_manifest
 
 	var/list/heads = list()
@@ -155,38 +155,38 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			depthead = 1
-			if(rank == "Captain" && heads.len != 1)
-				heads.Swap(1, heads.len)
+			if(rank == "Captain" && length(heads) != 1)
+				heads.Swap(1, length(heads))
 
 		if(real_rank in GLOBL.security_positions)
 			sec[++sec.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
-			if(depthead && sec.len != 1)
-				sec.Swap(1, sec.len)
+			if(depthead && length(sec) != 1)
+				sec.Swap(1, length(sec))
 
 		if(real_rank in GLOBL.engineering_positions)
 			eng[++eng.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
-			if(depthead && eng.len != 1)
-				eng.Swap(1, eng.len)
+			if(depthead && length(eng) != 1)
+				eng.Swap(1, length(eng))
 
 		if(real_rank in GLOBL.medical_positions)
 			med[++med.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
-			if(depthead && med.len != 1)
-				med.Swap(1, med.len)
+			if(depthead && length(med) != 1)
+				med.Swap(1, length(med))
 
 		if(real_rank in GLOBL.science_positions)
 			sci[++sci.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
-			if(depthead && sci.len != 1)
-				sci.Swap(1, sci.len)
+			if(depthead && length(sci) != 1)
+				sci.Swap(1, length(sci))
 
 		if(real_rank in GLOBL.civilian_positions)
 			civ[++civ.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
-			if(depthead && civ.len != 1)
-				civ.Swap(1, civ.len)
+			if(depthead && length(civ) != 1)
+				civ.Swap(1, length(civ))
 
 		if(real_rank in GLOBL.nonhuman_positions)
 			bot[++bot.len] = list("name" = name, "rank" = rank, "active" = isactive)
@@ -213,7 +213,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 	return
 
 /datum/datacore/proc/manifest_modify(name, assignment)
-	if(GLOBL.pda_manifest.len)
+	if(length(GLOBL.pda_manifest))
 		GLOBL.pda_manifest.Cut()
 
 	var/datum/data/record/foundrecord
@@ -238,7 +238,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		foundrecord.fields["real_rank"] = real_title
 
 /datum/datacore/proc/manifest_inject(mob/living/carbon/human/H)
-	if(GLOBL.pda_manifest.len)
+	if(length(GLOBL.pda_manifest))
 		GLOBL.pda_manifest.Cut()
 
 	if(H.mind && (H.mind.assigned_role != "MODE"))

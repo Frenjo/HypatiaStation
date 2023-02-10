@@ -155,11 +155,11 @@
 	for(var/i = 1, timerecorded < 3600, sleep(10 * (playsleepseconds)))
 		if(playing == 0)
 			break
-		if(storedinfo.len < i)
+		if(length(storedinfo) < i)
 			break
 		var/turf/T = get_turf(src)
 		T.visible_message("<font color=Maroon><B>Tape Recorder</B>: [storedinfo[i]]</font>")
-		if(storedinfo.len < i + 1)
+		if(length(storedinfo) < i + 1)
 			playsleepseconds = 1
 			sleep(10)
 			T = get_turf(src)
@@ -210,7 +210,7 @@
 	to_chat(usr, SPAN_NOTICE("Transcript printed."))
 	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
 	var/t1 = "<B>Transcript:</B><BR><BR>"
-	for(var/i = 1, storedinfo.len >= i, i++)
+	for(var/i = 1, length(storedinfo) >= i, i++)
 		t1 += "[storedinfo[i]]<BR>"
 	P.info = t1
 	P.name = "Transcript"

@@ -344,14 +344,14 @@
 		mode = 0
 		frustration = 0
 		src.path = new()
-	if(src.target && (src.path.len) && (get_dist(src.target, src.path[src.path.len]) > 2))
+	if(src.target && length(path) && get_dist(src.target, src.path[length(path)]) > 2)
 		src.path = new()
-	if(src.target && src.path.len == 0 && (get_dist(src, src.target) > 1))
+	if(src.target && !length(path) && get_dist(src, src.target) > 1)
 		spawn(0)
 			var/turf/dest = get_step_towards(target, src)  //Can't pathfind to a tray, as it is dense, so pathfind to the spot next to the tray
 
 			src.path = AStar(src.loc, dest, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 30, id = botcard)
-			if(src.path.len == 0)
+			if(!length(path))
 				for(var/turf/spot in orange(1, target)) //The closest one is unpathable, try  the other spots
 					if(spot == dest) //We already tried this spot
 						continue
@@ -359,23 +359,23 @@
 						continue
 					src.path = AStar(src.loc, spot, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 30, id = botcard)
 					src.path = reverselist(src.path)
-					if(src.path.len > 0)
+					if(length(path))
 						break
 
-				if(src.path.len == 0)
+				if(!length(path))
 					target = null
 					mode = 0
 		return
 
-	if(src.path.len > 0 && src.target)
+	if(length(path) && src.target)
 		step_to(src, src.path[1])
 		src.path -= src.path[1]
 		spawn(3)
-			if(src.path.len)
+			if(length(path))
 				step_to(src, src.path[1])
 				src.path -= src.path[1]
 
-	if(src.path.len > 8 && src.target)
+	if(length(path) > 8 && src.target)
 		src.frustration++
 
 /obj/machinery/bot/farmbot/proc/fertilize(obj/item/nutrient/fert)

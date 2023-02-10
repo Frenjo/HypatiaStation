@@ -20,7 +20,7 @@
 /datum/getrev/New(filename)
 	..()
 	var/list/Lines = file2list(filename)
-	if(!Lines.len)
+	if(!length(Lines))
 		return abort()
 	for(var/t in Lines)
 		if(!t)	continue

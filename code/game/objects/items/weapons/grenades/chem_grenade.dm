@@ -28,12 +28,12 @@
 			detonator = null
 			stage = 0
 			icon_state = initial(icon_state)
-		else if(beakers.len)
+		else if(length(beakers))
 			for(var/obj/B in beakers)
 				if(istype(B))
 					beakers -= B
 					user.put_in_hands(B)
-		name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
+		name = "unsecured grenade with [length(beakers)] containers[detonator ? " and detonator" : ""]"
 	if(stage > 1 && !active && clown_check(user))
 		user << "<span class='warning'>You prime \the [name]!</span>"
 
@@ -61,12 +61,12 @@
 		det.loc = src
 		detonator = det
 		icon_state = initial(icon_state) +"_ass"
-		name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
+		name = "unsecured grenade with [length(beakers)] containers[detonator ? " and detonator" : ""]"
 		stage = 1
 	else if(istype(W, /obj/item/weapon/screwdriver) && path != 2)
 		if(stage == 1)
 			path = 1
-			if(beakers.len)
+			if(length(beakers))
 				user << "\blue You lock the assembly."
 				name = "grenade"
 			else
@@ -84,13 +84,13 @@
 			else
 				user << "\blue You unlock the assembly."
 				playsound(src, 'sound/items/Screwdriver.ogg', 25, -3)
-				name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
+				name = "unsecured grenade with [length(beakers)] containers[detonator ? " and detonator" : ""]"
 				icon_state = initial(icon_state) + (detonator?"_ass":"")
 				stage = 1
 				active = 0
 	else if(is_type_in_list(W, allowed_containers) && (!stage || stage == 1) && path != 2)
 		path = 1
-		if(beakers.len == 2)
+		if(length(beakers) == 2)
 			user << "\red The grenade can not hold more containers."
 			return
 		else
@@ -100,7 +100,7 @@
 				W.loc = src
 				beakers += W
 				stage = 1
-				name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
+				name = "unsecured grenade with [length(beakers)] containers[detonator ? " and detonator" : ""]"
 			else
 				user << "\red \the [W] is empty."
 

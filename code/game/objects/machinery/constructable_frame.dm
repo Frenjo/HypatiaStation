@@ -92,7 +92,7 @@
 				state = 2
 				circuit.loc = src.loc
 				circuit = null
-				if(components.len == 0)
+				if(!length(components))
 					user << "\blue You remove the circuit board."
 				else
 					user << "\blue You remove the circuit board and other components."

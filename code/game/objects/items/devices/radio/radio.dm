@@ -177,7 +177,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 /obj/item/device/radio/proc/autosay(message, from, channel) //BS12 EDIT
 	var/datum/radio_frequency/connection = null
-	if(channel && channels && channels.len > 0)
+	if(channel && length(channels))
 		if(channel == "department")
 			//world << "DEBUG: channel=\"[channel]\" switching to \"[channels[1]]\""
 			channel = channels[1]
@@ -233,7 +233,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		if(channel == "headset")
 			channel = null
 		if(channel) // If a channel is specified, look for it.
-			if(channels && channels.len > 0)
+			if(length(channels))
 				if(channel == "department")
 					//world << "DEBUG: channel=\"[channel]\" switching to \"[channels[1]]\""
 					channel = channels[1]
@@ -416,7 +416,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	else // OLD RADIO SYSTEMS: By Goons?
 
 		var/datum/radio_frequency/connection = null
-		if(channel && channels && channels.len > 0)
+		if(channel && length(channels))
 			if(channel == "department")
 				//world << "DEBUG: channel=\"[channel]\" switching to \"[channels[1]]\""
 				channel = channels[1]
@@ -428,7 +428,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			return
 		var/display_freq = connection.frequency
 
-		//world << "DEBUG: used channel=\"[channel]\" frequency= \"[display_freq]\" connection.devices.len = [connection.devices.len]"
+		//world << "DEBUG: used channel=\"[channel]\" frequency= \"[display_freq]\" connection.devices.len = [length(connection.devices)]"
 
 		var/eqjobname
 
@@ -455,7 +455,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			//if(R.accept_rad(src, message))
 			receive |= R.send_hear(display_freq, 0)
 
-		//world << "DEBUG: receive.len=[receive.len]"
+		//world << "DEBUG: receive.len=[length(receive)]"
 		var/list/heard_masked = list() // masked name or no real name
 		var/list/heard_normal = list() // normal message
 		var/list/heard_voice = list() // voice message

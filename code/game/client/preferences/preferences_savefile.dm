@@ -203,8 +203,8 @@
 	r_eyes			= sanitize_integer(r_eyes, 0, 255, initial(r_eyes))
 	g_eyes			= sanitize_integer(g_eyes, 0, 255, initial(g_eyes))
 	b_eyes			= sanitize_integer(b_eyes, 0, 255, initial(b_eyes))
-	underwear		= sanitize_integer(underwear, 1, GLOBL.underwear_m.len, initial(underwear))
-	backbag			= sanitize_integer(backbag, 1, GLOBL.backbaglist.len, initial(backbag))
+	underwear		= sanitize_integer(underwear, 1, length(GLOBL.underwear_m), initial(underwear))
+	backbag			= sanitize_integer(backbag, 1, length(GLOBL.backbaglist), initial(backbag))
 	b_type			= sanitize_text(b_type, initial(b_type))
 
 	alternate_option = sanitize_integer(alternate_option, 0, 2, initial(alternate_option))

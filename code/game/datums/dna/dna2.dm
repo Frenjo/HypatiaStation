@@ -147,8 +147,8 @@
 
 	SetUIState(DNA_UI_GENDER, character.gender != MALE, 1)
 
-	SetUIValueRange(DNA_UI_HAIR_STYLE,	hair,	GLOBL.hair_styles_list.len,			1)
-	SetUIValueRange(DNA_UI_BEARD_STYLE,	beard,	GLOBL.facial_hair_styles_list.len,	1)
+	SetUIValueRange(DNA_UI_HAIR_STYLE,	hair,	length(GLOBL.hair_styles_list),			1)
+	SetUIValueRange(DNA_UI_BEARD_STYLE,	beard,	length(GLOBL.facial_hair_styles_list),	1)
 
 	UpdateUI()
 
@@ -357,7 +357,7 @@
 //  Just checks our character has all the crap it needs.
 /datum/dna/proc/check_integrity(mob/living/carbon/human/character)
 	if(character)
-		if(UI.len != DNA_UI_LENGTH)
+		if(length(UI) != DNA_UI_LENGTH)
 			ResetUIFrom(character)
 
 		if(length(struc_enzymes)!= 3 * DNA_SE_LENGTH)

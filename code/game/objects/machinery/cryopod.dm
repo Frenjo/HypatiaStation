@@ -64,12 +64,12 @@ var/global/list/frozen_items = list()
 		user << browse(dat, "window=cryolog")
 
 	else if(href_list["item"])
-		if(frozen_items.len == 0)
+		if(!length(frozen_items))
 			to_chat(user, SPAN_INFO("There is nothing to recover from storage."))
 			return
 
 		var/obj/item/I = input(usr, "Please choose which object to retrieve.", "Object recovery", null) as obj in frozen_items
-		if(!I || frozen_items.len == 0)
+		if(!I || !length(frozen_items))
 			to_chat(user, SPAN_INFO("There is nothing to recover from storage."))
 			return
 
@@ -79,7 +79,7 @@ var/global/list/frozen_items = list()
 		frozen_items -= I
 
 	else if(href_list["allitems"])
-		if(frozen_items.len == 0)
+		if(!length(frozen_items))
 			to_chat(user, SPAN_INFO("There is nothing to recover from storage."))
 			return
 
@@ -178,7 +178,7 @@ var/global/list/frozen_items = list()
 				occupant.drop_from_inventory(W)
 				W.loc = src
 
-				if(W.contents.len) //Make sure we catch anything not handled by del() on the items.
+				if(length(W.contents)) //Make sure we catch anything not handled by del() on the items.
 					for(var/obj/item/O in W.contents)
 						O.loc = src
 
@@ -222,7 +222,7 @@ var/global/list/frozen_items = list()
 
 			global.CToccupations.free_role(job)
 
-			if(occupant.mind.objectives.len)
+			if(length(occupant.mind.objectives))
 				qdel(occupant.mind.objectives)
 				occupant.mind.special_role = null
 			else
@@ -231,7 +231,7 @@ var/global/list/frozen_items = list()
 					current_mode.possible_traitors.Remove(occupant)
 
 			// Delete them from datacore.
-			if(GLOBL.pda_manifest.len)
+			if(length(GLOBL.pda_manifest))
 				GLOBL.pda_manifest.Cut()
 			for(var/datum/data/record/R in GLOBL.data_core.medical)
 				if((R.fields["name"] == occupant.real_name))

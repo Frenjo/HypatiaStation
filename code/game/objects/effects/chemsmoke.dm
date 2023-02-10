@@ -66,7 +66,7 @@
 	smokeFlow(location, targetTurfs, wallList)
 
 	//set the density of the cloud - for diluting reagents
-	density = max(1, targetTurfs.len / 4)	//clamp the cloud density minimum to 1 so it cant multiply the reagents
+	density = max(1, length(targetTurfs) / 4)	//clamp the cloud density minimum to 1 so it cant multiply the reagents
 
 	//Admin messaging
 	var/contained = ""
@@ -104,7 +104,7 @@
 		return
 
 	//reagent application - only run if there are extra reagents in the smoke
-	if(chemholder.reagents.reagent_list.len)
+	if(length(chemholder.reagents.reagent_list))
 		for(var/datum/reagent/R in chemholder.reagents.reagent_list)
 			var/proba = 100
 			var/runs = 5
@@ -186,7 +186,7 @@
 //------------------------------------------
 /datum/effect/system/smoke_spread/chem/proc/spawnSmoke(turf/T, icon/I, dist = 1)
 	var/obj/effect/smoke/chem/smoke = new(location)
-	if(chemholder.reagents.reagent_list.len)
+	if(length(chemholder.reagents.reagent_list))
 		chemholder.reagents.copy_to(smoke, chemholder.reagents.total_volume / dist, safety = 1)	//copy reagents to the smoke so mob/breathe() can handle inhaling the reagents
 	smoke.icon = I
 	smoke.layer = 6
@@ -222,7 +222,7 @@
 
 	pending += location
 
-	while(pending.len)
+	while(length(pending))
 		for(var/turf/simulated/current in pending)
 			for(var/D in GLOBL.cardinal)
 				var/turf/simulated/target = get_step(current, D)

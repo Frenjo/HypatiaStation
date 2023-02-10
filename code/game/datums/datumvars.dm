@@ -379,11 +379,11 @@ body
 //
 	else if(islist(value))
 		var/list/L = value
-		html += "[name] = /list ([L.len])"
+		html += "[name] = /list ([length(L)])"
 
-		if(L.len > 0 && !(name == "underlays" || name == "overlays" || name == "vars" || L.len > 500))
+		if(length(L) && !(name == "underlays" || name == "overlays" || name == "vars" || length(L) > 500))
 			// not sure if this is completely right...
-			if(L.vars.len > 0)
+			if(length(L.vars))
 				html += "<ol>"
 				html += "</ol>"
 			else
@@ -836,7 +836,7 @@ body
 			usr << "This can only be done to instances of type /mob"
 			return
 
-		if(!H.languages.len)
+		if(!length(H.languages))
 			usr << "This mob knows no languages."
 			return
 

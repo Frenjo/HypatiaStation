@@ -74,7 +74,7 @@
 			return
 		if(opened)
 			return 0
-		if(contents.len)
+		if(length(contents))
 			return 0
 		visible_message("[usr] folds up the [src.name]")
 		new item_path(get_turf(src))

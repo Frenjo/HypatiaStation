@@ -482,7 +482,7 @@ Status: []<BR>"},
 
 				targets += C // if the perp has passed all previous tests, congrats, it is now a "shoot-me!" nominee
 
-	if (targets.len>0) // if there are targets to shoot
+	if(length(targets)) // if there are targets to shoot
 
 		var/atom/t = pick(targets) // pick a perp from the list of targets. Targets go first because they are the most important
 
@@ -494,7 +494,7 @@ Status: []<BR>"},
 				spawn() shootAt(M) // shoot the target, finally
 
 	else
-		if(secondarytargets.len>0) // if there are no primary targets, go for secondary targets
+		if(length(secondarytargets)) // if there are no primary targets, go for secondary targets
 			var/mob/t = pick(secondarytargets)
 			if (istype(t, /mob/living))
 				if (t.stat!=2)

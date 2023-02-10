@@ -172,13 +172,13 @@
 			else
 				beepskyData["botstatus"] = list("loca" = null, "mode" = -1)
 			var/botsCount = 0
-			if(SC.botlist && SC.botlist.len)
+			if(length(SC.botlist))
 				for(var/obj/machinery/bot/B in SC.botlist)
 					botsCount++
 					if(B.loc)
 						botsData[++botsData.len] = list("Name" = sanitize(B.name), "Location" = sanitize(B.loc.loc.name), "ref" = "\ref[B]")
 
-			if(!botsData.len)
+			if(!length(botsData))
 				botsData[++botsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref" = null)
 
 			beepskyData["bots"] = botsData
@@ -232,7 +232,7 @@
 				if(B.loc)
 					mulebotsData[++mulebotsData.len] = list("Name" = sanitize(B.name), "Location" = sanitize(B.loc.loc.name), "ref" = "\ref[B]")
 
-			if(!mulebotsData.len)
+			if(!length(mulebotsData))
 				mulebotsData[++mulebotsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref" = null)
 
 			muleData["bots"] = mulebotsData
@@ -278,7 +278,7 @@
 				"ApprovedBy" = SO.orderedby,
 				"Comment" = html_encode(SO.comment)
 			)
-		if(!supplyOrderData.len)
+		if(!length(supplyOrderData))
 			supplyOrderData[++supplyOrderData.len] = list("Number" = null, "Name" = null, "OrderedBy" = null)
 
 		supplyData["approved"] = supplyOrderData
@@ -295,7 +295,7 @@
 				"OrderedBy" = SO.orderedby,
 				"Comment" = html_encode(SO.comment)
 			)
-		if(!requestData.len)
+		if(!length(requestData))
 			requestData[++requestData.len] = list("Number" = null, "Name" = null, "orderedBy" = null, "Comment" = null)
 
 		supplyData["requests"] = requestData
@@ -322,7 +322,7 @@
 				var/direction = get_dir(src, M)
 				MopData[++MopData.len] = list ("x" = ml.x, "y" = ml.y, "dir" = uppertext(dir2text(direction)), "status" = M.reagents.total_volume ? "Wet" : "Dry")
 
-		if(!MopData.len)
+		if(!length(MopData))
 			MopData[++MopData.len] = list("x" = 0, "y" = 0, dir=null, status = null)
 
 
@@ -335,7 +335,7 @@
 				var/direction = get_dir(src, B)
 				BucketData[++BucketData.len] = list ("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "status" = B.reagents.total_volume / 100)
 
-		if(!BucketData.len)
+		if(!length(BucketData))
 			BucketData[++BucketData.len] = list("x" = 0, "y" = 0, dir = null, status = null)
 
 		var/CbotData[0]
@@ -348,7 +348,7 @@
 				CbotData[++CbotData.len] = list("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "status" = B.on ? "Online" : "Offline")
 
 
-		if(!CbotData.len)
+		if(!length(CbotData))
 			CbotData[++CbotData.len] = list("x" = 0, "y" = 0, dir = null, status = null)
 		var/CartData[0]
 		for(var/obj/structure/janitorialcart/B in world)
@@ -358,7 +358,7 @@
 					continue
 				var/direction = get_dir(src,B)
 				CartData[++CartData.len] = list("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "status" = B.reagents.total_volume / 100)
-		if(!CartData.len)
+		if(!length(CartData))
 			CartData[++CartData.len] = list("x" = 0, "y" = 0, dir = null, status = null)
 
 		JaniData["mops"] = MopData

@@ -85,7 +85,7 @@
 					return
 
 				var/list/tempnetwork = splittext(input, ",")
-				if(tempnetwork.len < 1)
+				if(!length(tempnetwork))
 					usr << "No network found please hang up and try your call again."
 					return
 
@@ -101,7 +101,7 @@
 
 				C.network = uniquelist(tempnetwork)
 				tempnetwork = difflist(C.network, GLOBL.restricted_camera_networks)
-				if(!tempnetwork.len)//Camera isn't on any open network - remove its chunk from AI visibility.
+				if(!length(tempnetwork))//Camera isn't on any open network - remove its chunk from AI visibility.
 					global.CTcameranet.removeCamera(C)
 
 				C.c_tag = input
@@ -133,7 +133,7 @@
 		return
 
 	// Taking out upgrades
-	else if(iscrowbar(W) && upgrades.len)
+	else if(iscrowbar(W) && length(upgrades))
 		var/obj/U = locate(/obj) in upgrades
 		if(U)
 			user << "You unattach an upgrade from the assembly."

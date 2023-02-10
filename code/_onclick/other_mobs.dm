@@ -22,7 +22,7 @@
 	return
 
 /mob/living/carbon/human/RangedAttack(atom/A)
-	if(!gloves && !mutations.len)
+	if(!gloves && !length(mutations))
 		return
 	var/obj/item/clothing/gloves/G = gloves
 	if((LASER in mutations) && a_intent == "harm")

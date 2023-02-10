@@ -185,7 +185,7 @@
 		data["pda_count"] = count
 
 	if(mode == 21)
-		data["messagescount"] = tnote.len
+		data["messagescount"] = length(tnote)
 		data["messages"] = tnote
 	else
 		data["messagescount"] = null
@@ -902,8 +902,8 @@
 			if(!isobj(A))
 				return
 			if(!isnull(A.reagents))
-				if(A.reagents.reagent_list.len > 0)
-					var/reagents_length = A.reagents.reagent_list.len
+				if(length(A.reagents.reagent_list))
+					var/reagents_length = length(A.reagents.reagent_list)
 					to_chat(user, SPAN_INFO("[reagents_length] chemical agent[reagents_length > 1 ? "s" : ""] found."))
 					for(var/re in A.reagents.reagent_list)
 						to_chat(user, SPAN_INFO("\t [re]"))

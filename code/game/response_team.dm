@@ -53,7 +53,7 @@ GLOBAL_GLOBL(can_call_ert)
 			to_chat(usr, "<font color=red><b>You are jobbanned from the emergency reponse team!")
 			return
 
-		if(GLOBL.response_team_members.len > 5)
+		if(length(GLOBL.response_team_members) > 5)
 			to_chat(usr, "The emergency response team is already full!")
 
 		for(var/obj/effect/landmark/L in GLOBL.landmarks_list)

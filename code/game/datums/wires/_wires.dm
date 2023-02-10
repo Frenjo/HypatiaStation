@@ -52,7 +52,7 @@ GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "oran
 		indexes_to_pick += i
 	colours_to_pick.len = wire_count // Downsize it to our specifications.
 
-	while(colours_to_pick.len && indexes_to_pick.len)
+	while(length(colours_to_pick) && length(indexes_to_pick))
 		// Pick and remove a colour
 		var/colour = pick_n_take(colours_to_pick)
 
@@ -254,7 +254,7 @@ var/const/POWER = 8
 		UpdateCut(index, 0)
 
 /datum/wires/proc/RandomCut()
-	var/r = rand(1, wires.len)
+	var/r = rand(1, length(wires))
 	CutWireIndex(r)
 
 /datum/wires/proc/CutAll()

@@ -66,13 +66,13 @@
 	if(direction & (NORTH|SOUTH))
 		if(!phase_shift_by_x)
 			phase_shift_by_x = get_cross_shift_list(15)
-		var/x_shift = phase_shift_by_x[src.x % (phase_shift_by_x.len - 1) + 1]
+		var/x_shift = phase_shift_by_x[src.x % (length(phase_shift_by_x) - 1) + 1]
 		var/transit_state = ((direction & SOUTH ? world.maxy - src.y : src.y) + x_shift) % 15
 		overlays |= speedspace_cache["NS_[transit_state]"]
 	else if(direction & (EAST|WEST))
 		if(!phase_shift_by_y)
 			phase_shift_by_y = get_cross_shift_list(15)
-		var/y_shift = phase_shift_by_y[src.y % (phase_shift_by_y.len - 1) + 1]
+		var/y_shift = phase_shift_by_y[src.y % (length(phase_shift_by_y) - 1) + 1]
 		var/transit_state = ((direction & WEST ? world.maxx - src.x : src.x) + y_shift) % 15
 		overlays |= speedspace_cache["EW_[transit_state]"]
 
@@ -241,7 +241,7 @@
 			return
 		cur_x = cur_pos["x"]
 		cur_y = cur_pos["y"]
-		next_x = (--cur_x || GLOBL.global_map.len)
+		next_x = (--cur_x || length(GLOBL.global_map))
 		y_arr = GLOBL.global_map[next_x]
 		target_z = y_arr[cur_y]
 
@@ -261,7 +261,7 @@
 			return
 		cur_x = cur_pos["x"]
 		cur_y = cur_pos["y"]
-		next_x = (++cur_x > GLOBL.global_map.len ? 1 : cur_x)
+		next_x = (++cur_x > length(GLOBL.global_map) ? 1 : cur_x)
 		y_arr = GLOBL.global_map[next_x]
 		target_z = y_arr[cur_y]
 
@@ -281,7 +281,7 @@
 		cur_x = cur_pos["x"]
 		cur_y = cur_pos["y"]
 		y_arr = GLOBL.global_map[cur_x]
-		next_y = (--cur_y || y_arr.len)
+		next_y = (--cur_y || length(y_arr))
 		target_z = y_arr[next_y]
 
 		if(target_z)
@@ -301,7 +301,7 @@
 		cur_x = cur_pos["x"]
 		cur_y = cur_pos["y"]
 		y_arr = GLOBL.global_map[cur_x]
-		next_y = (++cur_y > y_arr.len ? 1 : cur_y)
+		next_y = (++cur_y > length(y_arr) ? 1 : cur_y)
 		target_z = y_arr[next_y]
 
 		if(target_z)

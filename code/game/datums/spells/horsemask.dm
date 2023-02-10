@@ -15,7 +15,7 @@
 	var/list/compatible_mobs = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
 
 /obj/effect/proc_holder/spell/targeted/horsemask/cast(list/targets, mob/user = usr)
-	if(!targets.len)
+	if(!length(targets))
 		to_chat(user, SPAN_NOTICE("No target found in range."))
 		return
 

@@ -87,7 +87,7 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 
 	turfs = get_area_turfs(/area/mine/unexplored)
 
-	if(!turfs.len)
+	if(!length(turfs))
 		return 0
 
 	while(!valid)

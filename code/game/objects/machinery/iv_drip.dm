@@ -154,7 +154,7 @@
 	usr << "The IV drip is [mode ? "injecting" : "taking blood"]."
 
 	if(beaker)
-		if(beaker.reagents && beaker.reagents.reagent_list.len)
+		if(beaker.reagents && length(beaker.reagents.reagent_list))
 			usr << "\blue Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid."
 		else
 			usr << "\blue Attached is an empty [beaker]."

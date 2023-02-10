@@ -143,7 +143,7 @@
 		if(src.panel_open)
 			attack_hand(user)
 		return
-	else if(istype(W, /obj/item/weapon/coin) && premium.len > 0)
+	else if(istype(W, /obj/item/weapon/coin) && length(premium))
 		user.drop_item()
 		W.loc = src
 		coin = W
@@ -247,13 +247,13 @@
 	var/dat = "<TT><center><b>[vendorname]</b></center><hr /><br>" //display the name, and added a horizontal rule
 	dat += "<b>Select an item: </b><br><br>" //the rest is just general spacing and bolding
 
-	if(premium.len > 0)
+	if(length(premium))
 		dat += "<b>Coin slot:</b> [coin ? coin : "No coin inserted"] (<a href='byond://?src=\ref[src];remove_coin=1'>Remove</A>)<br>"
 
 	if(ewallet)
 		dat += "<b>Charge card's credits:</b> [ewallet ? ewallet.worth : "No charge card inserted"] (<a href='byond://?src=\ref[src];remove_ewallet=1'>Remove</A>)<br><br>"
 
-	if(src.product_records.len == 0)
+	if(!length(product_records))
 		dat += "<font color = 'red'>No product loaded!</font>"
 	else
 		var/list/display_records = src.product_records
@@ -464,7 +464,7 @@
 		src.seconds_electrified--
 
 	//Pitch to the people!  Really sell it!
-	if(((src.last_slogan + src.slogan_delay) <= world.time) && (src.slogan_list.len > 0) && (!src.shut_up) && prob(5))
+	if((src.last_slogan + src.slogan_delay) <= world.time && length(slogan_list) && !src.shut_up && prob(5))
 		var/slogan = pick(src.slogan_list)
 		src.speak(slogan)
 		src.last_slogan = world.time

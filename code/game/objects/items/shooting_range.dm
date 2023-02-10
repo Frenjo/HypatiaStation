@@ -123,7 +123,7 @@
 			// Bullets are hard. They make dents!
 			bmark.icon_state = "dent"
 
-		if(Proj.damage >= 10 && bulletholes.len <= 35) // maximum of 35 bullet holes
+		if(Proj.damage >= 10 && length(bulletholes) <= 35) // maximum of 35 bullet holes
 			if(decaltype == 2) // bullet
 				if(prob(Proj.damage + 30)) // bullets make holes more commonly!
 					new/datum/bullethole(src, bmark.pixel_x, bmark.pixel_y) // create new bullet hole

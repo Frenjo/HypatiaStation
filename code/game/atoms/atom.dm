@@ -153,7 +153,7 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 				pass |= istype(A, type)
 			if(!pass)
 				continue
-		if(A.contents.len)
+		if(length(A.contents))
 			found += A.search_contents_for(path, filter_path)
 	return found
 
@@ -340,7 +340,7 @@ Maxdistance is the longest range the beam will persist before it gives up.
 			fingerprintslast = M.key
 
 	//Cleaning up shit.
-	if(fingerprints && !fingerprints.len)
+	if(fingerprints && !length(fingerprints))
 		qdel(fingerprints)
 	return
 
@@ -400,7 +400,7 @@ Maxdistance is the longest range the beam will persist before it gives up.
 	var/cur_x = null
 	var/cur_y = null
 	var/list/y_arr = null
-	for(cur_x = 1, cur_x <= GLOBL.global_map.len, cur_x++)
+	for(cur_x = 1, cur_x <= length(GLOBL.global_map), cur_x++)
 		y_arr = GLOBL.global_map[cur_x]
 		cur_y = y_arr.Find(src.z)
 		if(cur_y)

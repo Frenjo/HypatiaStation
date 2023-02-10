@@ -138,7 +138,7 @@ REAGENT SCANNER
 		var/mob/living/carbon/C = M
 		if(C.reagents.total_volume > 0)
 			user.show_message(SPAN_WARNING("Warning: Unknown substance detected in subject's blood."))
-		if(C.virus2.len)
+		if(length(C.virus2))
 			for(var/ID in C.virus2)
 				if(ID in virusDB)
 					var/datum/data/record/V = virusDB[ID]
@@ -363,7 +363,7 @@ REAGENT SCANNER
 
 	if(!isnull(O.reagents))
 		var/dat = ""
-		if(O.reagents.reagent_list.len > 0)
+		if(length(O.reagents.reagent_list))
 			var/one_percent = O.reagents.total_volume / 100
 			for(var/datum/reagent/R in O.reagents.reagent_list)
 				if(prob(reliability))

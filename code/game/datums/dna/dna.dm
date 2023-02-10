@@ -18,7 +18,7 @@
 			if(!character.h_style)
 				character.h_style = "Skinhead"
 
-			var/hrange = round(4095 / hair_styles_list.len)
+			var/hrange = round(4095 / length(hair_styles_list))
 			var/index = hair_styles_list.Find(character.h_style)
 			if(index)
 				hair = index * hrange - rand(1,hrange-1)
@@ -28,7 +28,7 @@
 			if(!character.f_style)
 				character.f_style = "Shaved"
 
-			var/f_hrange = round(4095 / facial_hair_styles_list.len)
+			var/f_hrange = round(4095 / length(facial_hair_styles_list))
 			index = facial_hair_styles_list.Find(character.f_style)
 			if(index)
 				beard = index * f_hrange - rand(1,f_hrange-1)
@@ -76,7 +76,7 @@
 	if(!character.h_style)
 		character.h_style = "Bald"
 
-	var/hrange = round(4095 / hair_styles_list.len)
+	var/hrange = round(4095 / length(hair_styles_list))
 	var/index = hair_styles_list.Find(character.h_style)
 	if(index)
 		hair = index * hrange - rand(1,hrange-1)
@@ -86,7 +86,7 @@
 	if(!character.f_style)
 		character.f_style = "Shaved"
 
-	var/f_hrange = round(4095 / facial_hair_styles_list.len)
+	var/f_hrange = round(4095 / length(facial_hair_styles_list))
 	index = facial_hair_styles_list.Find(character.f_style)
 	if(index)
 		beard = index * f_hrange - rand(1,f_hrange-1)

@@ -25,7 +25,7 @@
 	if(src.connected)
 		src.icon_state = "morgue0"
 	else
-		if(src.contents.len)
+		if(length(contents))
 			src.icon_state = "morgue2"
 		else
 			src.icon_state = "morgue1"
@@ -189,7 +189,7 @@
 	if(src.connected)
 		src.icon_state = "crema0"
 	else
-		if(src.contents.len)
+		if(length(contents))
 			src.icon_state = "crema2"
 		else
 			src.icon_state = "crema1"
@@ -301,7 +301,7 @@
 	if(cremating)
 		return //don't let you cremate something twice or w/e
 
-	if(contents.len <= 0)
+	if(!length(contents))
 		for(var/mob/M in viewers(src))
 			M.show_message(SPAN_WARNING("You hear a hollow crackle."), 1)
 			return

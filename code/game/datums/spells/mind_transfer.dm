@@ -24,11 +24,11 @@ Make sure spells that are removed from spell_list are actually removed and delet
 Also, you never added distance checking after target is selected. I've went ahead and did that.
 */
 /obj/effect/proc_holder/spell/targeted/mind_transfer/cast(list/targets, mob/user = usr)
-	if(!targets.len)
+	if(!length(targets))
 		to_chat(user, "No mind found.")
 		return
 
-	if(targets.len > 1)
+	if(length(targets) > 1)
 		to_chat(user, "Too many minds! You're not a hive damnit!")//Whaa...aat?
 		return
 
@@ -63,9 +63,9 @@ Also, you never added distance checking after target is selected. I've went ahea
 	var/list/checked_spells = user.spell_list
 	checked_spells -= m_transfer //Remove Mind Transfer from the list.
 
-	if(caster.spell_list.len)//If they have any spells left over after mind transfer is taken out. If they don't, we don't need this.
-		for(var/i = spell_loss_amount, (i > 0 && checked_spells.len), i--)//While spell loss amount is greater than zero and checked_spells has spells in it, run this proc.
-			for(var/j = checked_spells.len, (j > 0 && checked_spells.len), j--)//While the spell list to check is greater than zero and has spells in it, run this proc.
+	if(length(caster.spell_list))//If they have any spells left over after mind transfer is taken out. If they don't, we don't need this.
+		for(var/i = spell_loss_amount, (i > 0 && length(checked_spells)), i--)//While spell loss amount is greater than zero and checked_spells has spells in it, run this proc.
+			for(var/j = length(checked_spells), (j > 0 && length(checked_spells)), j--)//While the spell list to check is greater than zero and has spells in it, run this proc.
 				if(prob(base_spell_loss_chance))
 					checked_spells -= pick(checked_spells)//Pick a random spell to remove.
 					spawn(msg_wait)
@@ -79,11 +79,11 @@ Also, you never added distance checking after target is selected. I've went ahea
 	//SPELL LOSS END
 
 	//MIND TRANSFER BEGIN
-	if(caster.mind.special_verbs.len)//If the caster had any special verbs, remove them from the mob verb list.
+	if(length(caster.mind.special_verbs))//If the caster had any special verbs, remove them from the mob verb list.
 		for(var/V in caster.mind.special_verbs)//Since the caster is using an object spell system, this is mostly moot.
 			caster.verbs -= V//But a safety nontheless.
 
-	if(victim.mind.special_verbs.len)//Now remove all of the victim's verbs.
+	if(length(victim.mind.special_verbs))//Now remove all of the victim's verbs.
 		for(var/V in victim.mind.special_verbs)
 			victim.verbs -= V
 
@@ -93,7 +93,7 @@ Also, you never added distance checking after target is selected. I've went ahea
 	caster.mind.transfer_to(victim)
 	victim.spell_list = caster.spell_list//Now they are inside the victim's body.
 
-	if(victim.mind.special_verbs.len)//To add all the special verbs for the original caster.
+	if(length(victim.mind.special_verbs))//To add all the special verbs for the original caster.
 		for(var/V in caster.mind.special_verbs)//Not too important but could come into play.
 			caster.verbs += V
 
@@ -101,7 +101,7 @@ Also, you never added distance checking after target is selected. I've went ahea
 	caster.key = ghost.key	//have to transfer the key since the mind was not active
 	caster.spell_list = ghost.spell_list
 
-	if(caster.mind.special_verbs.len)//If they had any special verbs, we add them here.
+	if(length(caster.mind.special_verbs))//If they had any special verbs, we add them here.
 		for(var/V in caster.mind.special_verbs)
 			caster.verbs += V
 	//MIND TRANSFER END

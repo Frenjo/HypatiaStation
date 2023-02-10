@@ -139,7 +139,7 @@ Data storage vars:
 	return (time2text(last_exec)||"Wasn't executed yet")
 
 /datum/global_iterator/proc/set_process_args(list/arguments)
-	if(arguments && istype(arguments, /list) && arguments.len)
+	if(islist(arguments) && length(arguments))
 		arg_list = arguments
 		return 1
 	else

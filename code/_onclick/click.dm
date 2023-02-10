@@ -168,7 +168,7 @@
 	animals lunging, etc.
 */
 /mob/proc/RangedAttack(atom/A, params)
-	if(!mutations.len)
+	if(!length(mutations))
 		return
 	if((LASER in mutations) && a_intent == "harm")
 		LaserEyes(A) // moved into a proc below

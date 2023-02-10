@@ -22,7 +22,7 @@
 
 	if(do_after(usr, delay))
 		for(var/i = 0, i < summon_amt, i++)
-			if(!targets.len)
+			if(!length(targets))
 				break
 			var/summoned_object_type = pick(summon_type)
 			var/spawn_place = pick(targets)

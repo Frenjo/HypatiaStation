@@ -263,7 +263,7 @@
 			user << "This item does not fit."
 			return
 
-		if(contents.len < 5)
+		if(length(contents) < 5)
 			if(state in list(1, 3))
 				user.drop_item()
 				W.loc = src

@@ -135,7 +135,7 @@
 			toxic = max(0, toxic - 1)
 
 		//handle nutrients
-		nutrilevel -= bees_in_hive / 10 + owned_bee_swarms.len / 5
+		nutrilevel -= bees_in_hive / 10 + length(owned_bee_swarms) / 5
 		if(nutrilevel > 0)
 			bees_in_hive += 1 * yieldmod
 			if(health < maxhealth)
@@ -144,7 +144,7 @@
 			//nutrilevel is less than 1, so we're effectively subtracting here
 			health += max(nutrilevel - 1, round(-health / 2))
 			bees_in_hive += max(nutrilevel - 1, round(-bees_in_hive / 2))
-			if(owned_bee_swarms.len)
+			if(length(owned_bee_swarms))
 				var/mob/living/simple_animal/bee/B = pick(owned_bee_swarms)
 				B.target_turf = get_turf(src)
 
@@ -170,7 +170,7 @@
 
 		//find some plants, harvest
 		for(var/obj/machinery/hydroponics/H in view(7, src))
-			if(H.planted && !H.dead && H.myseed && prob(owned_bee_swarms.len * 10))
+			if(H.planted && !H.dead && H.myseed && prob(length(owned_bee_swarms) * 10))
 				src.nutrilevel++
 				H.nutrilevel++
 				if(mut < H.mutmod - 1)
@@ -196,7 +196,7 @@
 					toxic++
 
 /obj/machinery/apiary/proc/die()
-	if(owned_bee_swarms.len)
+	if(length(owned_bee_swarms))
 		var/mob/living/simple_animal/bee/B = pick(owned_bee_swarms)
 		B.target_turf = get_turf(src)
 		B.strength -= 1

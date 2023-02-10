@@ -639,7 +639,7 @@
 			continue
 		if(M.can_start())
 			runnable_modes[M] = probabilities[M.config_tag]
-			//world << "DEBUG: runnable_mode\[[runnable_modes.len]\] = [M.config_tag]"
+			//world << "DEBUG: runnable_mode\[[length(runnable_modes)]\] = [M.config_tag]"
 	return runnable_modes
 
 /configuration/proc/post_load()

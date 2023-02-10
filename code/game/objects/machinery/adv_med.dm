@@ -230,7 +230,7 @@
 				else
 					dat += "[(occupant.health > 50 ? "<font color='blue'>" : "<font color='red'>")]\tHealth %: [occupant.health] ([t1])</FONT><BR>"
 
-					if(occupant.virus2.len)
+					if(length(occupant.virus2))
 						dat += "<font color='red'>Viral pathogen detected in blood stream.</font><BR>"
 
 					dat += "[(occupant.getBruteLoss() < 60 ? "<font color='blue'>" : "<font color='red'>")]\t-Brute Damage %: [occupant.getBruteLoss()]</FONT><BR>"

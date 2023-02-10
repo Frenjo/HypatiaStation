@@ -181,7 +181,7 @@
 
 //This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /obj/item/weapon/storage/proc/orient2hud(mob/user as mob)
-	var/adjusted_contents = contents.len
+	var/adjusted_contents = length(contents)
 
 	//Numbered contents display
 	var/list/datum/numbered_display/numbered_contents
@@ -215,12 +215,12 @@
 
 	if(src.loc == W)
 		return 0 //Means the item is already in the storage item
-	if(contents.len >= storage_slots)
+	if(length(contents) >= storage_slots)
 		if(!stop_messages)
 			usr << "<span class='notice'>[src] is full, make some space.</span>"
 		return 0 //Storage item is full
 
-	if(can_hold.len)
+	if(length(can_hold))
 		var/ok = 0
 		for(var/A in can_hold)
 			if(istype(W, A))
@@ -442,7 +442,7 @@
 			return
 
 	//Otherwise we'll try to fold it.
-	if(contents.len)
+	if(length(contents))
 		return
 
 	if(!ispath(src.foldable))

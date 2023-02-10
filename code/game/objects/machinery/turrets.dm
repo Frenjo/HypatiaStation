@@ -182,7 +182,7 @@
 	for(var/mob/living/simple_animal/M in protected_area.turretTargets)
 		if(!M.stat)
 			new_targets += M
-	if(new_targets.len)
+	if(length(new_targets))
 		new_target = pick(new_targets)
 	return new_target
 
@@ -194,7 +194,7 @@
 		src.cover = new /obj/machinery/turretcover(src.loc)
 		src.cover.host = src
 	protected_area = get_protected_area()
-	if(!enabled || !protected_area || protected_area.turretTargets.len<=0)
+	if(!enabled || !protected_area || !length(protected_area.turretTargets))
 		if(!isDown() && !isPopping())
 			popDown()
 		return
@@ -610,7 +610,7 @@
 			if(M.stat || M.lying || (M in exclude))
 				continue
 			pos_targets += M
-	if(pos_targets.len)
+	if(length(pos_targets))
 		target = pick(pos_targets)
 	return target
 

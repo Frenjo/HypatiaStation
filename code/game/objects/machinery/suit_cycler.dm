@@ -89,7 +89,7 @@
 			to_chat(user, SPAN_WARNING("The suit cycler is locked."))
 			return
 
-		if(src.contents.len > 0)
+		if(length(contents))
 			to_chat(user, SPAN_WARNING("There is no room inside the cycler for [G.affecting.name]."))
 			return
 

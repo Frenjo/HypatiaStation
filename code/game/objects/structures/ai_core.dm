@@ -194,7 +194,7 @@ That prevents a few funky behaviors.
 				switch(interaction)
 					if("AICARD")
 						var/obj/item/device/aicard/card = src
-						if(card.contents.len) //If there is an AI on card.
+						if(length(card.contents)) //If there is an AI on card.
 							to_chat(user, "\red <b>Transfer failed</b>: \black Existing AI found on this terminal. Remove existing AI to install a new one.")
 						else
 							if(global.CTgame_ticker.mode.name == "AI malfunction")
@@ -271,8 +271,8 @@ That prevents a few funky behaviors.
 				switch(interaction)
 					if("AICARD")
 						var/obj/item/device/aicard/card = src
-						if(!target_fixer.contents.len)
-							if(!card.contents.len)
+						if(!length(target_fixer.contents))
+							if(!length(card.contents))
 								to_chat(user, "No AI to copy over!") //Well duh
 							else for(var/mob/living/silicon/ai/A in card)
 								card.icon_state = "aicard"
@@ -290,7 +290,7 @@ That prevents a few funky behaviors.
 								to_chat(A, "You have been uploaded to a stationary terminal. Sadly, there is no remote access from here.")
 								to_chat(user, "\blue <b>Transfer successful</b>: \black [A.name] ([rand(1000, 9999)].exe) installed and executed successfully. Local copy has been removed.")
 						else
-							if(!card.contents.len && target_fixer.occupant && !target_fixer.active)
+							if(!length(card.contents) && target_fixer.occupant && !target_fixer.active)
 								card.name = "inteliCard - [target_fixer.occupant.name]"
 								target_fixer.overlays += image('icons/obj/computer.dmi', "ai-fixer-empty")
 								if(target_fixer.occupant.stat == DEAD)
@@ -304,7 +304,7 @@ That prevents a few funky behaviors.
 								target_fixer.occupant.loc = card
 								target_fixer.occupant.cancel_camera()
 								target_fixer.occupant = null
-							else if(card.contents.len)
+							else if(length(card.contents))
 								to_chat(user, "\red <b>ERROR</b>: \black Artificial intelligence detected on terminal.")
 							else if(target_fixer.active)
 								to_chat(user, "\red <b>ERROR</b>: \black Reconstruction in progress.")
@@ -312,7 +312,7 @@ That prevents a few funky behaviors.
 								to_chat(user, "\red <b>ERROR</b>: \black Unable to locate artificial intelligence.")
 					if("NINJASUIT")
 						var/obj/item/clothing/suit/space/space_ninja/ninja_suit = src
-						if(!target_fixer.contents.len)
+						if(!length(target_fixer.contents))
 							if(!ninja_suit.AI)
 								to_chat(user, "No AI to copy over!")
 							else

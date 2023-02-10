@@ -243,14 +243,14 @@
 
 		//Hair
 		var/hairnum = hex2num(getblock(structure,13,3))
-		var/index = round(1 +(hairnum / 4096)*hair_styles_list.len)
-		if((0 < index) && (index <= hair_styles_list.len))
+		var/index = round(1 + (hairnum / 4096) * length(hair_styles_list))
+		if(0 < index && index <= length(hair_styles_list))
 			H.h_style = hair_styles_list[index]
 
 		//Facial Hair
 		var/beardnum = hex2num(getblock(structure,12,3))
-		index = round(1 +(beardnum / 4096)*facial_hair_styles_list.len)
-		if((0 < index) && (index <= facial_hair_styles_list.len))
+		index = round(1 + (beardnum / 4096) * length(facial_hair_styles_list))
+		if(0 < index && index <= length(facial_hair_styles_list))
 			H.f_style = facial_hair_styles_list[index]
 
 		H.update_body(0)
