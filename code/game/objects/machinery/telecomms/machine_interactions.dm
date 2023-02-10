@@ -73,7 +73,7 @@
 					to_chat(user, "You finish prying out the components.")
 
 					// Drop all the component stuff
-					if(contents.len > 0)
+					if(length(contents))
 						for(var/obj/x in src)
 							x.loc = user.loc
 					else
@@ -124,7 +124,7 @@
 		else
 			dat += "<br>Identification String: <a href='?src=\ref[src];input=id'>NULL</a>"
 		dat += "<br>Network: <a href='?src=\ref[src];input=network'>[network]</a>"
-		dat += "<br>Prefabrication: [autolinkers.len ? "TRUE" : "FALSE"]"
+		dat += "<br>Prefabrication: [length(autolinkers) ? "TRUE" : "FALSE"]"
 		if(hide) dat += "<br>Shadow Link: ACTIVE</a>"
 
 		//Show additional options for certain machines.

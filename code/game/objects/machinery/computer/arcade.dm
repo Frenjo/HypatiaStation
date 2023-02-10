@@ -161,7 +161,7 @@
 				log_game("[key_name_admin(usr)] has outbombed Cuban Pete and been awarded a bomb.")
 				src.New()
 				emagged = 0
-			else if(!contents.len)
+			else if(!length(contents))
 				feedback_inc("arcade_win_normal")
 				var/prizeselect = pickweight(prizes)
 				new prizeselect(src.loc)

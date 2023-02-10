@@ -49,7 +49,7 @@
 		listening_level = position.z
 
 /obj/machinery/telecomms/initialize()
-	if(autolinkers.len)
+	if(length(autolinkers))
 		// Links nearby machines
 		if(!long_range_link)
 			for(var/obj/machinery/telecomms/T in orange(20, src))
@@ -182,7 +182,7 @@
 	// return 1 if found, 0 if not found
 	if(!signal)
 		return 0
-	if((signal.frequency in freq_listening) || (!freq_listening.len))
+	if((signal.frequency in freq_listening) || !length(freq_listening))
 		return 1
 	else
 		return 0

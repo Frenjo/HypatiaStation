@@ -63,7 +63,7 @@
 
 /obj/machinery/computer/security/proc/can_access_camera(obj/machinery/camera/C)
 	var/list/shared_networks = src.network & C.network
-	if(shared_networks.len)
+	if(length(shared_networks))
 		return 1
 	return 0
 

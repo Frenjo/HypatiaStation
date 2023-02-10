@@ -21,15 +21,15 @@
 	var/list/names = splittext(child_names_txt, ";")
 	var/list/tags = splittext(child_tags_txt, ";")
 
-	if (names.len == tags.len)
-		for (var/i = 1; i <= tags.len; i++)
+	if(length(names) == length(tags))
+		for(var/i = 1; i <= length(tags); i++)
 			child_names[tags[i]] = names[i]
 
 
 /obj/machinery/embedded_controller/radio/docking_port_multi/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/data[0]
 
-	var/list/airlocks[child_names.len]
+	var/list/airlocks[length(child_names)]
 	var/i = 1
 	for (var/child_tag in child_names)
 		airlocks[i++] = list("name"=child_names[child_tag], "override_enabled"=(docking_program.children_override[child_tag] == "enabled"))

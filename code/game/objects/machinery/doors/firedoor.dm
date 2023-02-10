@@ -45,10 +45,10 @@
 /obj/machinery/door/firedoor/examine()
 	set src in view()
 	. = ..()
-	if(islist(users_to_open) && users_to_open.len)
+	if(length(users_to_open))
 		var/users_to_open_string = users_to_open[1]
-		if(users_to_open.len >= 2)
-			for(var/i = 2 to users_to_open.len)
+		if(length(users_to_open) >= 2)
+			for(var/i = 2 to length(users_to_open))
 				users_to_open_string += ", [users_to_open[i]]"
 		to_chat(usr, "These people have opened \the [src] during an alert: [users_to_open_string].")
 

@@ -141,7 +141,7 @@
 		return
 
 	if(accept_check(O))
-		if(contents.len >= max_n_of_items)
+		if(length(contents) >= max_n_of_items)
 			user << "<span class='notice'>\The [src] is full.</span>"
 			return 1
 		else
@@ -159,7 +159,7 @@
 		var/plants_loaded = 0
 		for(var/obj/G in P.contents)
 			if(accept_check(G))
-				if(contents.len >= max_n_of_items)
+				if(length(contents) >= max_n_of_items)
 					user << "<span class='notice'>\The [src] is full.</span>"
 					return 1
 				else
@@ -173,7 +173,7 @@
 
 			user.visible_message("<span class='notice'>[user] loads \the [src] with \the [P].</span>", \
 								 "<span class='notice'>You load \the [src] with \the [P].</span>")
-			if(P.contents.len > 0)
+			if(length(P.contents))
 				user << "<span class='notice'>Some items are refused.</span>"
 
 	else
@@ -225,7 +225,7 @@
 
 	var/dat = "<TT><b>Select an item:</b><br>"
 
-	if (contents.len == 0)
+	if(!length(contents))
 		dat += "<font color = 'red'>No product loaded!</font>"
 	else
 		for (var/O in item_quants)
@@ -417,7 +417,7 @@
 
 	var/dat = "<TT><b>Select an item:</b><br>"
 
-	if (contents.len == 0)
+	if(length(contents))
 		dat += "<font color = 'red'>No product loaded!</font>"
 	else
 		for (var/O in item_quants)

@@ -97,7 +97,7 @@
 
 		t += "<FONT SIZE=-1>"
 
-		if(L.len > 0)
+		if(length(L))
 
 			t += "Area                           Eqp./Lgt./Env.  Load   Cell<HR>"
 

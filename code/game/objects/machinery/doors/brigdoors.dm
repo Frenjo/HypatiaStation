@@ -50,7 +50,7 @@
 			if(C.id == src.id)
 				targets += C
 
-		if(targets.len == 0)
+		if(!length(targets))
 			stat |= BROKEN
 		update_icon()
 		return

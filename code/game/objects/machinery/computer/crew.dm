@@ -85,7 +85,7 @@
 
 				// Works around list += list2 merging lists; it's not pretty but it works
 				crewmembers += "temporary item"
-				crewmembers[crewmembers.len] = crewmemberData
+				crewmembers[length(crewmembers)] = crewmemberData
 
 	crewmembers = sortByKey(crewmembers, "name")
 

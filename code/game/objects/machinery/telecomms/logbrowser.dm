@@ -28,7 +28,7 @@
 		if(SERVER_SCREEN_MAIN_MENU)
 			dat += "<br>[temp]<br>"
 			dat += "<br>Current Network: <a href='?src=\ref[src];network=1'>[network]</a><br>"
-			if(servers.len)
+			if(length(servers))
 				dat += "<br>Detected Telecommunication Servers:<ul>"
 				for(var/obj/machinery/telecomms/T in servers)
 					dat += "<li><a href='?src=\ref[src];viewserver=[T.id]'>\ref[T] [T.name]</a> ([T.id])</li>"
@@ -138,16 +138,16 @@
 				screen = SERVER_SCREEN_MAIN_MENU
 
 			if("scan")
-				if(servers.len > 0)
+				if(length(servers))
 					temp = "<font color = #D70B00>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font color>"
 				else
 					for(var/obj/machinery/telecomms/server/T in range(25, src))
 						if(T.network == network)
 							servers.Add(T)
-					if(!servers.len)
+					if(!length(servers))
 						temp = "<font color = #D70B00>- FAILED: UNABLE TO LOCATE SERVERS IN \[[network]\] -</font color>"
 					else
-						temp = "<font color = #336699>- [servers.len] SERVERS PROBED & BUFFERED -</font color>"
+						temp = "<font color = #336699>- [length(servers)] SERVERS PROBED & BUFFERED -</font color>"
 					screen = SERVER_SCREEN_MAIN_MENU
 
 	if(href_list["delete"])

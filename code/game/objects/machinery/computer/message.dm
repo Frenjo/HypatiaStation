@@ -79,7 +79,7 @@
 /obj/machinery/computer/message_monitor/initialize()
 	//Is the server isn't linked to a server, and there's a server available, default it to the first one in the list.
 	if(!linkedServer)
-		if(GLOBL.message_servers && GLOBL.message_servers.len > 0)
+		if(length(GLOBL.message_servers))
 			linkedServer = GLOBL.message_servers[1]
 	return
 
@@ -298,10 +298,10 @@
 			if(auth) linkedServer.active = !linkedServer.active
 		//Find a server
 		if (href_list["find"])
-			if(GLOBL.message_servers && GLOBL.message_servers.len > 1)
+			if(length(GLOBL.message_servers) > 1)
 				src.linkedServer = input(usr,"Please select a server.", "Select a server.", null) as null|anything in GLOBL.message_servers
 				message = "<span class='alert'>NOTICE: Server selected.</span>"
-			else if(GLOBL.message_servers && GLOBL.message_servers.len > 0)
+			else if(length(GLOBL.message_servers))
 				linkedServer = GLOBL.message_servers[1]
 				message =  "<span class='notice'>NOTICE: Only Single Server Detected - Server selected.</span>"
 			else
@@ -409,7 +409,7 @@
 						for(var/obj/item/device/pda/P in GLOBL.pda_list)
 							if(!P.owner || P.toff || P.hidden) continue
 							sendPDAs += P
-						if(GLOBL.pda_list && GLOBL.pda_list.len > 0)
+						if(length(GLOBL.pda_list))
 							customrecepient = input(usr, "Select a PDA from the list.") as null|anything in sortAtom(sendPDAs)
 						else
 							customrecepient = null

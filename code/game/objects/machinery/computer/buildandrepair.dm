@@ -339,7 +339,7 @@
 			return
 		var/list/tempnetwork = splittext(input, ",")
 		tempnetwork = difflist(tempnetwork, GLOBL.restricted_camera_networks,1)
-		if(tempnetwork.len < 1)
+		if(!length(tempnetwork))
 			usr << "No network found please hang up and try your call again."
 			return
 		network = tempnetwork

@@ -344,7 +344,7 @@
 		var/datum/supply_order/O
 		var/decl/hierarchy/supply_pack/P
 		temp = "Invalid Request"
-		for(var/i = 1, i <= global.CTsupply.requestlist.len, i++) // Edited this to reflect 'shuttles' port. -Frenjo
+		for(var/i = 1, i <= length(global.CTsupply.requestlist), i++) // Edited this to reflect 'shuttles' port. -Frenjo
 			var/datum/supply_order/SO = global.CTsupply.requestlist[i] // Edited this to reflect 'shuttles' port. -Frenjo
 			if(SO.ordernum == ordernum)
 				O = SO
@@ -395,7 +395,7 @@
 		temp = "Invalid Request.<BR>"
 
 		// Edited this to reflct 'shuttles' port. -Frenjo
-		for(var/i = 1, i <= global.CTsupply.requestlist.len, i++)
+		for(var/i = 1, i <= length(global.CTsupply.requestlist), i++)
 			var/datum/supply_order/SO = global.CTsupply.requestlist[i]
 			if(SO.ordernum == ordernum)
 				global.CTsupply.requestlist.Cut(i,i + 1) // Edited this to reflct 'shuttles' port. -Frenjo

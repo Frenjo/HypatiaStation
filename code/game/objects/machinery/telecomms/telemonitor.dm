@@ -30,7 +30,7 @@
 		if(MONITOR_SCREEN_MAIN_MENU)
 			dat += "<br>[temp]<br><br>"
 			dat += "<br>Current Network: <a href='?src=\ref[src];network=1'>[network]</a><br>"
-			if(machinelist.len)
+			if(length(machinelist))
 				dat += "<br>Detected Network Entities:<ul>"
 				for(var/obj/machinery/telecomms/T in machinelist)
 					dat += "<li><a href='?src=\ref[src];viewmachine=[T.id]'>\ref[T] [T.name]</a> ([T.id])</li>"
@@ -80,16 +80,16 @@
 				screen = MONITOR_SCREEN_MAIN_MENU
 
 			if("probe")
-				if(machinelist.len > 0)
+				if(length(machinelist))
 					temp = "<font color = #D70B00>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font color>"
 				else
 					for(var/obj/machinery/telecomms/T in range(25, src))
 						if(T.network == network)
 							machinelist.Add(T)
-					if(!machinelist.len)
+					if(!length(machinelist))
 						temp = "<font color = #D70B00>- FAILED: UNABLE TO LOCATE NETWORK ENTITIES IN \[[network]\] -</font color>"
 					else
-						temp = "<font color = #336699>- [machinelist.len] ENTITIES LOCATED & BUFFERED -</font color>"
+						temp = "<font color = #336699>- [length(machinelist)] ENTITIES LOCATED & BUFFERED -</font color>"
 
 					screen = MONITOR_SCREEN_MAIN_MENU
 

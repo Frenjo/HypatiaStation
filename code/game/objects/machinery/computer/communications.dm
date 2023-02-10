@@ -347,7 +347,7 @@
 			dat += "Are you sure you want to call the shuttle? \[ <A HREF='?src=\ref[src];operation=crewtransfer2'>OK</A> | <A HREF='?src=\ref[src];operation=main'>Cancel</A> \]"
 		if(STATE_MESSAGELIST)
 			dat += "Messages:"
-			for(var/i = 1; i <= src.messagetitle.len; i++)
+			for(var/i = 1; i <= length(messagetitle); i++)
 				dat += "<BR><A HREF='?src=\ref[src];operation=viewmessage;message-num=[i]'>[src.messagetitle[i]]</A>"
 		if(STATE_VIEWMESSAGE)
 			if(src.currmsg)
@@ -411,7 +411,7 @@
 			dat += "Are you sure you want to call the shuttle? \[ <A HREF='?src=\ref[src];operation=ai-crewtransfer2'>OK</A> | <A HREF='?src=\ref[src];operation=main'>Cancel</A> \]"
 		if(STATE_MESSAGELIST)
 			dat += "Messages:"
-			for(var/i = 1; i<=src.messagetitle.len; i++)
+			for(var/i = 1; i <= length(messagetitle); i++)
 				dat += "<BR><A HREF='?src=\ref[src];operation=ai-viewmessage;message-num=[i]'>[src.messagetitle[i]]</A>"
 		if(STATE_VIEWMESSAGE)
 			if(src.aicurrmsg)

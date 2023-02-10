@@ -80,7 +80,7 @@
 		var/empty = 1
 		for(var/curNetId in connected_doors)
 			var/list/L = connected_doors[curNetId]
-			if(!L || L.len == 0)
+			if(!length(L))
 				continue
 			empty = 0
 			t += "<tr>"
