@@ -17,8 +17,8 @@
 	var/color = "#000000" // rgb: 0, 0, 0 (does not support alpha channels - yet!)
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
-	..()
 	holder = null
+	return ..()
 
 /datum/reagent/proc/reaction_mob(mob/M, method = TOUCH, volume) //By default we have a chance to transfer some
 	if(!isliving(M))

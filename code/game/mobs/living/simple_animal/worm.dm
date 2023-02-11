@@ -101,7 +101,7 @@
 /mob/living/simple_animal/space_worm/Destroy() //if a chunk a destroyed, make a new worm out of the split halves
 	if(previous)
 		previous.Detach()
-	..()
+	return ..()
 
 /mob/living/simple_animal/space_worm/Move()
 	var/attachementNextPosition = loc

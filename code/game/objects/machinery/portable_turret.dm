@@ -178,7 +178,7 @@
 	// deletes its own cover with it
 	qdel(cover)
 	cover = null
-	..()
+	return ..()
 
 /obj/machinery/porta_turret/attack_ai(mob/user as mob)
 	return attack_hand(user)

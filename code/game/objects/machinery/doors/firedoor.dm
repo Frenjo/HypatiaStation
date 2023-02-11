@@ -40,7 +40,7 @@
 /obj/machinery/door/firedoor/Destroy()
 	for(var/area/A in areas_added)
 		A.all_doors.Remove(src)
-	. = ..()
+	return ..()
 
 /obj/machinery/door/firedoor/examine()
 	set src in view()

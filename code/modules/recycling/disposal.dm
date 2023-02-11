@@ -670,8 +670,7 @@
 				AM.loc = T
 				AM.pipe_eject(0)
 			qdel(H)
-			..()
-			return
+			return ..()
 
 		// otherwise, do normal expel from turf
 		if(H)

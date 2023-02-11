@@ -98,7 +98,7 @@
 			if(isStationLevel(src.z)) //if (is_type_in_list(get_area(src), the_station_areas))
 				global.CTgame_ticker.mode:apcs--
 
-	area.apc -= src
+	area.apc = null
 	area.power_light = 0
 	area.power_equip = 0
 	area.power_environ = 0

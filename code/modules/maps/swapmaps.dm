@@ -187,7 +187,7 @@
 			if(x2 >= world.maxx || y2 >= world.maxy || z2 >= world.maxz)
 				CutXYZ()
 			qdel(areas)
-	..()
+	return ..()
 
 /*
 	Savefile format:

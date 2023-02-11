@@ -23,7 +23,7 @@
 /obj/machinery/bluespace_beacon/Destroy()
 	if(Beacon)
 		qdel(Beacon)
-	..()
+	return ..()
 
 // update the invisibility and icon
 /obj/machinery/bluespace_beacon/hide(var/intact)

@@ -120,7 +120,7 @@
 /obj/machinery/singularity_beacon/Destroy()
 	if(active)
 		Deactivate()
-	..()
+	return ..()
 
 /obj/machinery/singularity_beacon/proc/Activate(mob/user = null)
 	if(!checkWirePower())
