@@ -52,7 +52,7 @@
 	..()
 	if(!(usr in view(2)) && usr != src.loc)
 		return
-	if(reagents && reagents.reagent_list.len)
+	if(reagents && length(reagents.reagent_list))
 		to_chat(usr, SPAN_INFO("It contains [src.reagents.total_volume] units of liquid."))
 	else
 		to_chat(usr, SPAN_INFO("It is empty."))

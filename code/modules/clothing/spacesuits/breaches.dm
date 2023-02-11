@@ -50,7 +50,7 @@ var/global/list/breach_burn_descriptors = list(
 
 //Repair a certain amount of brute or burn damage to the suit.
 /obj/item/clothing/suit/space/proc/repair_breaches(damtype, amount, mob/user)
-	if(!can_breach || !breaches || !breaches.len || !damage)
+	if(!can_breach || !length(breaches) || !damage)
 		to_chat(user, "There are no breaches to repair on \the [src].")
 		return
 
@@ -60,7 +60,7 @@ var/global/list/breach_burn_descriptors = list(
 		if(B.damtype == damtype)
 			valid_breaches += B
 
-	if(!valid_breaches.len)
+	if(!length(valid_breaches))
 		to_chat(user, "There are no breaches to repair on \the [src].")
 		return
 
@@ -142,7 +142,7 @@ var/global/list/breach_burn_descriptors = list(
 	brute_damage = 0
 	burn_damage = 0
 
-	if(!can_breach || !breaches || !breaches.len)
+	if(!can_breach || !length(breaches))
 		name = base_name
 		return 0
 
@@ -209,6 +209,6 @@ var/global/list/breach_burn_descriptors = list(
 
 /obj/item/clothing/suit/space/examine()
 	..()
-	if(can_breach && breaches && breaches.len)
+	if(can_breach && length(breaches))
 		for(var/datum/breach/B in breaches)
 			to_chat(usr, SPAN_DANGER("It has \a [B.descriptor]."))

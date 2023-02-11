@@ -182,7 +182,7 @@
 				qdel(A)
 			// delete areas that belong only to this map
 			for(var/area/a in areas)
-				if(a && !a.contents.len)
+				if(a && !length(a.contents))
 					qdel(a)
 			if(x2 >= world.maxx || y2 >= world.maxy || z2 >= world.maxz)
 				CutXYZ()
@@ -227,7 +227,7 @@
 	S["y"] << y2 - y1 + 1
 	S["x"] << x2 - x1 + 1
 	S["areas"] << areas
-	for(n in 1 to areas.len)
+	for(n in 1 to length(areas))
 		areas[areas[n]] = n
 	var/oldcd = S.cd
 	for(z = z1, z <= z2, ++z)
@@ -498,25 +498,25 @@
 	for(M in src)
 		if(M.key)
 			break
-	if(overlays.len)
+	if(length(overlays))
 		S["overlays"] << overlays
-	if(underlays.len)
+	if(length(underlays))
 		S["underlays"] << underlays
-	if(contents.len && !isarea(src))
+	if(length(contents) && !isarea(src))
 		var/list/l = contents
 		if(M)
 			l = l.Copy()
 			for(M in src)
 				if(M.key)
 					l -= M
-		if(l.len)
+		if(length(l))
 			S["contents"] << l
 		if(l != contents)
 			qdel(l)
 
 /atom/Read(savefile/S)
 	var/list/l
-	if(contents.len)
+	if(length(contents))
 		l = contents
 	..()
 	// if the icon was a text string, it would not have loaded properly

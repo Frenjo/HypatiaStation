@@ -144,7 +144,7 @@
 
 		else if(task == "rank")
 			var/new_rank
-			if(GLOBL.admin_ranks.len)
+			if(length(GLOBL.admin_ranks))
 				new_rank = input("Please select a rank", "New rank", null, null) as null|anything in (GLOBL.admin_ranks|"*New Rank*")
 			else
 				new_rank = input("Please select a rank", "New rank", null, null) as null|anything in list("Game Master","Game Admin", "Trial Admin", "Admin Observer","*New Rank*")
@@ -162,7 +162,7 @@
 						usr << "<font color='red'>Error: Topic 'editrights': Invalid rank</font>"
 						return
 					if(CONFIG_GET(admin_legacy_system))
-						if(GLOBL.admin_ranks.len)
+						if(length(GLOBL.admin_ranks))
 							if(new_rank in GLOBL.admin_ranks)
 								rights = GLOBL.admin_ranks[new_rank]		//we typed a rank which already exists, use its rights
 							else
@@ -734,7 +734,7 @@
 				notbannedlist += job
 
 		//Banning comes first
-		if(notbannedlist.len) //at least 1 unbanned job exists in joblist so we have stuff to ban.
+		if(length(notbannedlist)) //at least 1 unbanned job exists in joblist so we have stuff to ban.
 			switch(alert("Temporary Ban?",,"Yes","No", "Cancel"))
 				if("Yes")
 					if(!check_rights(R_MOD,0) && !check_rights(R_BAN))  return
@@ -793,7 +793,7 @@
 
 		//Unbanning joblist
 		//all jobs in joblist are banned already OR we didn't give a reason (implying they shouldn't be banned)
-		if(joblist.len) //at least 1 banned job exists in joblist so we have stuff to unban.
+		if(length(joblist)) //at least 1 banned job exists in joblist so we have stuff to unban.
 			if(!CONFIG_GET(ban_legacy_system))
 				usr << "Unfortunately, database based unbanning cannot be done through this panel"
 				DB_ban_panel(M.ckey)
@@ -1660,9 +1660,9 @@
 
 		var/list/offset = splittext(href_list["offset"],",")
 		var/number = dd_range(1, 100, text2num(href_list["object_count"]))
-		var/X = offset.len > 0 ? text2num(offset[1]) : 0
-		var/Y = offset.len > 1 ? text2num(offset[2]) : 0
-		var/Z = offset.len > 2 ? text2num(offset[3]) : 0
+		var/X = length(offset) ? text2num(offset[1]) : 0
+		var/Y = length(offset) > 1 ? text2num(offset[2]) : 0
+		var/Z = length(offset) > 2 ? text2num(offset[3]) : 0
 		var/tmp_dir = href_list["object_dir"]
 		var/obj_dir = tmp_dir ? text2num(tmp_dir) : 2
 		if(!obj_dir || !(obj_dir in list(1,2,4,8,5,6,9,10)))
@@ -2436,7 +2436,7 @@
 				var/dat = "<B>Admin Log<HR></B>"
 				for(var/l in GLOBL.admin_log)
 					dat += "<li>[l]</li>"
-				if(!GLOBL.admin_log.len)
+				if(!length(GLOBL.admin_log))
 					dat += "No-one has done anything this round!"
 				usr << browse(dat, "window=admin_log")
 			if("maint_access_brig")

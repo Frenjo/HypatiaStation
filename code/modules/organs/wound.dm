@@ -60,7 +60,7 @@
 
 	src.damage = damage
 
-	max_bleeding_stage = src.desc_list.len - max_bleeding_stage
+	max_bleeding_stage = length(desc_list) - max_bleeding_stage
 
 	// initialize with the appropriate stage
 	src.init_stage(damage)
@@ -69,7 +69,7 @@
 
 // returns 1 if there's a next stage, 0 otherwise
 /datum/wound/proc/init_stage(initial_damage)
-	current_stage = stages.len
+	current_stage = length(stages)
 
 	while(src.current_stage > 1 && src.damage_list[current_stage-1] <= initial_damage / src.amount)
 		src.current_stage--
@@ -150,7 +150,7 @@
 	amount -= healed_damage
 	src.damage -= healed_damage
 
-	while(src.wound_damage() < damage_list[current_stage] && current_stage < src.desc_list.len)
+	while(src.wound_damage() < damage_list[current_stage] && current_stage < length(desc_list))
 		current_stage++
 	desc = desc_list[current_stage]
 	src.min_damage = damage_list[current_stage]

@@ -71,21 +71,25 @@ proc/dmp2swapmap(filename)
 			if(istext(L))
 				world << "Corrupt map file [filename]: [L]"
 				return
-			if(L.len<2)
+			if(length(L) < 2)
 				world << "Corrupt map file [filename]: Type list following \"[code]\" has only 1 item"
 				return
 			txt=k?copytext(txt,k+1):null
-			if(L[L.len] == "[world.area]") L[L.len]=0
+			if(L[length(L)] == "[world.area]")
+				L[length(L)] = 0
 			else
 				if(!areas) areas=list()
-				i=areas.Find(L[L.len])
-				if(i) L[L.len]=i
+				i = areas.Find(L[length(L)])
+				if(i)
+					L[length(L)] = i
 				else
-					areas+=L[L.len]
-					L[L.len]=areas.len
-			var/codetrans=d2sm_ConvertType(L[L.len-1],"\t\t\t\t")
-			if(L[L.len]) codetrans+="\t\t\t\tAREA = [L[L.len]]\n"
-			if(L.len>2) codetrans+=d2sm_Contents(L,L.len-2,"\t\t\t\t")
+					areas += L[length(L)]
+					L[length(L)] = length(areas)
+			var/codetrans = d2sm_ConvertType(L[length(L) - 1], "\t\t\t\t")
+			if(L[length(L)])
+				codetrans += "\t\t\t\tAREA = [L[length(L)]]\n"
+			if(length(L) > 2)
+				codetrans += d2sm_Contents(L, length(L) - 2, "\t\t\t\t")
 			codes[code]=copytext(codetrans,1,length(codetrans))
 		else if(text2ascii(txt)==40)
 			mode=40
@@ -99,7 +103,7 @@ proc/dmp2swapmap(filename)
 				world << "Corrupt map file [filename]: No matching ) for coordinates: [copytext(txt,1,findtext(txt,"\n"))]"
 				return
 			var/list/coords=d2sm_ParseCommaList(copytext(txt,2,i))
-			if(istext(coords) || coords.len!=3)
+			if(istext(coords) || length(coords) != 3)
 				world << "Corrupt map file [filename]: [istext(coords)?(coords):"[copytext(txt,1,i+1)] is not a valid (x,y,z) coordinate"]"
 				return
 			j=findtext(txt,"{",i+1)
@@ -139,10 +143,10 @@ proc/dmp2swapmap(filename)
 	F << ". = object(\".0\")\n.0\n\ttype = /swapmap\n\tid = \"[mapname]\"\n\tz = [Z]\n\ty = [Y]\n\tx = [X]"
 	if(areas)
 		txt=""
-		for(i=0,i<areas.len,++i)
+		for(i = 0, i < length(areas), ++i)
 			txt+="[i?", ":""]object(\".[i]\")"
 		F << "\tareas = list([txt])"
-		for(i=0,i<areas.len,++i)
+		for(i = 0, i < length(areas), ++i)
 			F << "\t\t.[i]"
 			txt=d2sm_ConvertType(areas[i+1],"\t\t\t")
 			F << copytext(txt,1,length(txt))

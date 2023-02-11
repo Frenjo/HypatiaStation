@@ -7,7 +7,7 @@
 		return
 
 	var/active_groups = global.CTair_system.active_zones
-	var/inactive_groups = global.CTair_system.zones.len - active_groups
+	var/inactive_groups = length(global.CTair_system.zones) - active_groups
 
 	var/hotspots = 0
 	for(var/obj/fire/hotspot in world)
@@ -26,7 +26,7 @@
 	var/output = {"<B>AIR SYSTEMS REPORT</B><HR>
 <B>General Processing Data</B><BR>
 	Cycle: [global.CTair_system.current_cycle]<br>
-	Groups: [global.CTair_system.zones.len]<BR>
+	Groups: [length(global.CTair_system.zones)]<BR>
 ---- <I>Active:</I> [active_groups]<BR>
 ---- <I>Inactive:</I> [inactive_groups]<BR><br>
 ---- <I>Active on station:</i> [active_on_main_station]<br>
@@ -36,7 +36,7 @@
 	Hotspot Processing: [hotspots]<BR>
 <br>
 <B>Geometry Processing Data</B><BR>
-	Tile Update: [global.CTair_system.tiles_to_update.len]<BR>
+	Tile Update: [length(global.CTair_system.tiles_to_update)]<BR>
 "}
 
 	usr << browse(output,"window=airreport")
@@ -101,7 +101,7 @@
 			if(!f)
 				output += "&nbsp;&nbsp;[filters[filter]]: ERROR<br>"
 				continue
-			output += "&nbsp;&nbsp;[filters[filter]]: [f.len]<br>"
+			output += "&nbsp;&nbsp;[filters[filter]]: [length(f)]<br>"
 			for(var/device in f)
 				if(isobj(device))
 					output += "&nbsp;&nbsp;&nbsp;&nbsp;[device] ([device:x],[device:y],[device:z] in area [get_area(device:loc)])<br>"

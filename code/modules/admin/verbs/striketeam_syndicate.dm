@@ -57,7 +57,7 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 		if(!G.client.holder && !G.client.is_afk())	//Whoever called/has the proc won't be added to the list.
 			if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 				candidates += G.key
-	for(var/i=commandos_possible,(i>0&&candidates.len),i--)//Decrease with every commando selected.
+	for(var/i = commandos_possible, i > 0 && length(candidates), i--) //Decrease with every commando selected.
 		var/candidate = input("Pick characters to spawn as the commandos. This will go on until there either no more ghosts to pick from or the slots are full.", "Active Players") as null|anything in candidates	//It will auto-pick a person when there is only one candidate.
 		candidates -= candidate		//Subtract from candidates.
 		commandos += candidate//Add their ghost to commandos.
@@ -70,7 +70,7 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 
 			var/mob/living/carbon/human/new_syndicate_commando = create_syndicate_death_commando(L, syndicate_leader_selected)
 
-			if(commandos.len)
+			if(length(commandos))
 				new_syndicate_commando.key = pick(commandos)
 				commandos -= new_syndicate_commando.key
 				new_syndicate_commando.internal = new_syndicate_commando.s_store

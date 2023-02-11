@@ -106,7 +106,7 @@
   * @return nothing
   */
 /obj/machinery/chem_dispenser/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
-	if(broken_requirements.len)
+	if(length(broken_requirements))
 		to_chat(user, SPAN_WARNING("[src] is broken. [broken_requirements[broken_requirements[1]]]"))
 		return
 	if(stat & (BROKEN|NOPOWER))
@@ -123,7 +123,7 @@
 	data["glass"] = accept_glass
 	var/beakerContents[0]
 	var/beakerCurrentVolume = 0
-	if(beaker && beaker.reagents && beaker.reagents.reagent_list.len)
+	if(beaker && beaker.reagents && length(beaker.reagents.reagent_list))
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beakerContents.Add(list(list("name" = R.name, "volume" = R.volume))) // list in a list because Byond merges the first list...
 			beakerCurrentVolume += R.volume
@@ -187,7 +187,7 @@
 	if(isrobot(user))
 		return
 
-	if(broken_requirements.len && B.type == broken_requirements[1])
+	if(length(broken_requirements) && B.type == broken_requirements[1])
 		broken_requirements -= broken_requirements[1]
 		to_chat(user, SPAN_NOTICE("You fix [src]."))
 		if(istype(B, /obj/item/stack))
@@ -196,7 +196,7 @@
 		else
 			user.drop_item()
 			qdel(B)
-		if(broken_requirements.len == 0)
+		if(!length(broken_requirements))
 			stat ^= BROKEN
 		return
 	if(src.beaker)
@@ -462,7 +462,7 @@
 				P.icon_state = "pill" + pillsprite
 				reagents.trans_to(P, amount_per_pill)
 				if(src.loaded_pill_bottle)
-					if(loaded_pill_bottle.contents.len < loaded_pill_bottle.storage_slots)
+					if(length(loaded_pill_bottle.contents) < loaded_pill_bottle.storage_slots)
 						P.loc = loaded_pill_bottle
 						src.updateUsrDialog()
 
@@ -523,7 +523,7 @@
 	if(!beaker)
 		dat = "Please insert beaker.<BR>"
 		if(src.loaded_pill_bottle)
-			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[loaded_pill_bottle.contents.len]/[loaded_pill_bottle.storage_slots]\]</A><BR><BR>"
+			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.storage_slots]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
 		dat += "<A href='?src=\ref[src];close=1'>Close</A>"
@@ -531,7 +531,7 @@
 		var/datum/reagents/R = beaker:reagents
 		dat += "<A href='?src=\ref[src];eject=1'>Eject beaker and Clear Buffer</A><BR>"
 		if(src.loaded_pill_bottle)
-			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[loaded_pill_bottle.contents.len]/[loaded_pill_bottle.storage_slots]\]</A><BR><BR>"
+			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[length(loaded_pill_bottle.contents)]/[loaded_pill_bottle.storage_slots]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
 		if(!R.total_volume)
@@ -661,7 +661,7 @@
 							Blood = L
 							break
 					var/list/res = Blood.data["resistances"]
-					spawn(res.len * 200)
+					spawn(length(res) * 200)
 						src.wait = null
 		else
 			src.temphtml = "The replicator is not ready yet."
@@ -757,7 +757,7 @@
 			if(B)
 				Blood = B
 				break
-		if(!R.total_volume||!R.reagent_list.len)
+		if(!R.total_volume || !length(R.reagent_list))
 			dat += "The beaker is empty<BR>"
 		else if(!Blood)
 			dat += "No blood sample found in beaker"
@@ -770,7 +770,7 @@
 
 			if(Blood.data["viruses"])
 				var/list/vir = Blood.data["viruses"]
-				if(vir.len)
+				if(length(vir))
 					for(var/datum/disease/D in Blood.data["viruses"])
 						if(!D.hidden[PANDEMIC])
 
@@ -803,7 +803,7 @@
 			dat += "<BR><b>Contains antibodies to:</b> "
 			if(Blood.data["resistances"])
 				var/list/res = Blood.data["resistances"]
-				if(res.len)
+				if(length(res))
 					dat += "<ul>"
 					for(var/type in Blood.data["resistances"])
 						var/disease_name = "Unknown"
@@ -822,7 +822,7 @@
 					dat += "nothing<BR>"
 			else
 				dat += "nothing<BR>"
-		dat += "<BR><A href='?src=\ref[src];eject=1'>Eject beaker</A>[((R.total_volume&&R.reagent_list.len) ? "-- <A href='?src=\ref[src];empty_beaker=1'>Empty beaker</A>":"")]<BR>"
+		dat += "<BR><A href='?src=\ref[src];eject=1'>Eject beaker</A>[(R.total_volume && length(R.reagent_list) ? "-- <A href='?src=\ref[src];empty_beaker=1'>Empty beaker</A>" : "")]<BR>"
 		dat += "<A href='?src=\ref[user];mach_close=pandemic'>Close</A>"
 
 	user << browse("<TITLE>[src.name]</TITLE><BR>[dat]", "window=pandemic;size=575x400")
@@ -932,7 +932,7 @@
 			src.updateUsrDialog()
 			return 0
 
-	if(holdingitems && holdingitems.len >= limit)
+	if(length(holdingitems) >= limit)
 		to_chat(usr, "The machine cannot hold anymore items.")
 		return 1
 
@@ -942,11 +942,11 @@
 			O.contents -= G
 			G.loc = src
 			holdingitems += G
-			if(holdingitems && holdingitems.len >= limit) //Sanity checking so the blender doesn't overfill
+			if(length(holdingitems) >= limit) //Sanity checking so the blender doesn't overfill
 				to_chat(user, "You fill the All-In-One grinder to the brim.")
 				break
 
-		if(!O.contents.len)
+		if(!length(O.contents))
 			to_chat(user, "You empty the plant bag into the All-In-One grinder.")
 
 		src.updateUsrDialog()
@@ -1007,7 +1007,7 @@
 		if(is_beaker_ready && !is_chamber_empty && !(stat & (NOPOWER|BROKEN)))
 			dat += "<A href='?src=\ref[src];action=grind'>Grind the reagents</a><BR>"
 			dat += "<A href='?src=\ref[src];action=juice'>Juice the reagents</a><BR><BR>"
-		if(holdingitems && holdingitems.len > 0)
+		if(length(holdingitems))
 			dat += "<A href='?src=\ref[src];action=eject'>Eject the reagents</a><BR>"
 		if(beaker)
 			dat += "<A href='?src=\ref[src];action=detach'>Detach the beaker</a><BR>"
@@ -1046,7 +1046,7 @@
 /obj/machinery/reagentgrinder/proc/eject()
 	if(usr.stat != 0)
 		return
-	if(holdingitems && holdingitems.len == 0)
+	if(!length(holdingitems))
 		return
 
 	for(var/obj/item/O in holdingitems)
@@ -1168,7 +1168,7 @@
 			if(beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 				break
 
-		if(O.reagents.reagent_list.len == 0)
+		if(!length(O.reagents.reagent_list))
 			remove_object(O)
 
 	//Sheets

@@ -21,12 +21,12 @@
 
 /obj/item/weapon/gun/grenadelauncher/attackby(obj/item/I as obj, mob/user as mob)
 	if((istype(I, /obj/item/weapon/grenade)))
-		if(grenades.len < max_grenades)
+		if(length(grenades) < max_grenades)
 			user.drop_item()
 			I.loc = src
 			grenades += I
 			to_chat(user, SPAN_INFO("You put the grenade in the grenade launcher."))
-			to_chat(user, SPAN_INFO("[grenades.len] / [max_grenades] Grenades."))
+			to_chat(user, SPAN_INFO("[length(grenades)] / [max_grenades] Grenades."))
 		else
 			to_chat(usr, SPAN_WARNING("The grenade launcher cannot hold more grenades."))
 
@@ -40,7 +40,7 @@
 	else if(target == user)
 		return
 
-	if(grenades.len)
+	if(length(grenades))
 		spawn(0)
 			fire_grenade(target, user)
 	else

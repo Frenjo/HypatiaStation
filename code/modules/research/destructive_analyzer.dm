@@ -77,7 +77,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 			to_chat(user, SPAN_WARNING("This doesn't seem to have a tech origin!"))
 			return
 		var/list/temp_tech = O.origin_tech
-		if(temp_tech.len == 0)
+		if(!length(temp_tech))
 			to_chat(user, SPAN_WARNING("You cannot deconstruct this item!"))
 			return
 		if(O.reliability < 90 && O.crit_fail == 0)

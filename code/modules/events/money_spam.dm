@@ -79,7 +79,7 @@
 					continue
 				viables.Add(check_pda)
 
-			if(!viables.len)
+			if(!length(viables))
 				return
 			P = pick(viables)
 

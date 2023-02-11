@@ -71,9 +71,9 @@
 				density = TRUE
 				name = "alien skeleton display"
 				if(contents.Find(/obj/item/weapon/fossil/skull/horned))
-					desc = "A creature made of [contents.len - 1] assorted bones and a horned skull. The plaque reads \'[plaque_contents]\'."
+					desc = "A creature made of [length(contents) - 1] assorted bones and a horned skull. The plaque reads \'[plaque_contents]\'."
 				else
-					desc = "A creature made of [contents.len - 1] assorted bones and a skull. The plaque reads \'[plaque_contents]\'."
+					desc = "A creature made of [length(contents) - 1] assorted bones and a skull. The plaque reads \'[plaque_contents]\'."
 			else
 				desc = "Incomplete skeleton, looks like it could use [breq - bnum] more bones."
 				to_chat(user, "Looks like it could use [breq - bnum] more bones.")
@@ -86,9 +86,9 @@
 			"You relabel the plaque on the base of \icon[src] [src]."
 		)
 		if(contents.Find(/obj/item/weapon/fossil/skull/horned))
-			desc = "A creature made of [contents.len - 1] assorted bones and a horned skull. The plaque reads \'[plaque_contents]\'."
+			desc = "A creature made of [length(contents) - 1] assorted bones and a horned skull. The plaque reads \'[plaque_contents]\'."
 		else
-			desc = "A creature made of [contents.len - 1] assorted bones and a skull. The plaque reads \'[plaque_contents]\'."
+			desc = "A creature made of [length(contents) - 1] assorted bones and a skull. The plaque reads \'[plaque_contents]\'."
 	else
 		..()
 

@@ -42,7 +42,7 @@
 					to_chat(M, SPAN_INFO("[pick("You feel tingly.", "You feel like floating.", "It is hard to speak.", "You can barely move.")]"))
 
 		for(var/obj/item/I in T)
-			if(!suspension_field.contents.len)
+			if(!length(suspension_field.contents))
 				suspension_field.icon_state = "energynet"
 				suspension_field.overlays += "shield2"
 			I.loc = suspension_field

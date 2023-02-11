@@ -32,7 +32,7 @@
 	if(isobj(target))
 		var/obj/O = target
 		if(!O.anchored)
-			if(cargo_holder.cargo.len < cargo_holder.cargo_capacity)
+			if(length(cargo_holder.cargo) < cargo_holder.cargo_capacity)
 				occupant_message("You lift [target] and start to load it into cargo compartment.")
 				chassis.visible_message("[chassis] lifts [target] and starts to load it into cargo compartment.")
 				set_ready_state(0)
@@ -45,7 +45,7 @@
 						O.loc = chassis
 						O.anchored = FALSE
 						occupant_message("<font color='blue'>[target] succesfully loaded.</font>")
-						log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
+						log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - length(cargo_holder.cargo)]")
 					else
 						occupant_message("<font color='red'>You must hold still while handling objects.</font>")
 						O.anchored = initial(O.anchored)
@@ -417,7 +417,7 @@
 		if(AR in theareas)
 			continue
 		theareas += AR
-	if(!theareas.len)
+	if(!length(theareas))
 		return
 	var/area/thearea = pick(theareas)
 	var/list/L = list()
@@ -431,7 +431,7 @@
 					break
 			if(clear)
 				L += T
-	if(!L.len)
+	if(!length(L))
 		return
 	var/turf/target_turf = pick(L)
 	if(!target_turf)
@@ -1061,7 +1061,7 @@
 	if(istype(target, /obj))
 		var/obj/O = target
 		if(!O.anchored)
-			if(cargo_holder.cargo.len < cargo_holder.cargo_capacity)
+			if(length(cargo_holder.cargo) < cargo_holder.cargo_capacity)
 				chassis.occupant_message("You lift [target] and start to load it into cargo compartment.")
 				chassis.visible_message("[chassis] lifts [target] and starts to load it into cargo compartment.")
 				set_ready_state(0)
@@ -1074,7 +1074,7 @@
 						O.loc = chassis
 						O.anchored = FALSE
 						chassis.occupant_message("<font color='blue'>[target] succesfully loaded.</font>")
-						chassis.log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
+						chassis.log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - length(cargo_holder.cargo)]")
 					else
 						chassis.occupant_message("<font color='red'>You must hold still while handling objects.</font>")
 						O.anchored = initial(O.anchored)

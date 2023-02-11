@@ -8,7 +8,7 @@ GLOBAL_GLOBL_INIT(account_hack_attempted, FALSE)
 
 /datum/event/money_hacker/setup()
 	end_time = world.time + 6000
-	if(all_money_accounts.len)
+	if(length(all_money_accounts))
 		affected_account = pick(all_money_accounts)
 
 		GLOBL.account_hack_attempted = TRUE

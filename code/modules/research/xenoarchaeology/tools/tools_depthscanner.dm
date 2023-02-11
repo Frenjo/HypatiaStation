@@ -26,16 +26,16 @@
 	user.visible_message(SPAN_INFO("[user] scans [A], the air around them humming gently."))
 	if(istype(A, /turf/simulated/mineral))
 		var/turf/simulated/mineral/M = A
-		if((M.finds && M.finds.len) || M.artifact_find)
+		if(length(M.finds) || M.artifact_find)
 			//create a new scanlog entry
 			var/datum/depth_scan/D = new()
 			D.coords = "[M.x].[rand(0, 9)]:[M.y].[rand(0, 9)]:[10 * M.z].[rand(0, 9)]"
 			D.time = worldtime2text()
-			D.record_index = positive_locations.len + 1
+			D.record_index = length(positive_locations) + 1
 			D.material = M.mineral ? M.mineral.display_name : "Rock"
 
 			//find the first artifact and store it
-			if(M.finds.len)
+			if(length(M.finds))
 				var/datum/find/F = M.finds[1]
 				D.depth = F.excavation_required * 2		//0-100% and 0-200cm
 				D.clearance = F.clearance_range * 2
@@ -53,7 +53,7 @@
 			var/datum/depth_scan/D = new()
 			D.coords = "[10 * B.x].[rand(0, 9)]:[10 * B.y].[rand(0, 9)]:[10 * B.z].[rand(0, 9)]"
 			D.time = worldtime2text()
-			D.record_index = positive_locations.len + 1
+			D.record_index = length(positive_locations) + 1
 
 			//these values are arbitrary
 			D.depth = rand(75, 100)
@@ -78,7 +78,7 @@
 		dat += "Clearance above anomaly depth: [current.clearance] cm<br>"
 		dat += "Dissonance spread: [current.dissonance_spread]<br>"
 		var/index = responsive_carriers.Find(current.material)
-		if(index > 0 && index <= finds_as_strings.len)
+		if(index > 0 && index <= length(finds_as_strings))
 			dat += "Anomaly material: [finds_as_strings[index]]<br>"
 		else
 			dat += "Anomaly material: Unknown<br>"
@@ -90,8 +90,8 @@
 		dat += "<br>"
 		dat += "<br>"
 	dat += "<hr>"
-	if(positive_locations.len)
-		for(var/index = 1, index <= positive_locations.len, index++)
+	if(length(positive_locations))
+		for(var/index = 1, index <= length(positive_locations), index++)
 			var/datum/depth_scan/D = positive_locations[index]
 			dat += "<A href='?src=\ref[src];select=[index]'>[D.time], coords: [D.coords]</a><br>"
 	else
@@ -108,12 +108,12 @@
 
 	if(href_list["select"])
 		var/index = text2num(href_list["select"])
-		if(index && index <= positive_locations.len)
+		if(index && index <= length(positive_locations))
 			current = positive_locations[index]
 	else if(href_list["clear"])
 		var/index = text2num(href_list["clear"])
 		if(index)
-			if(index <= positive_locations.len)
+			if(index <= length(positive_locations))
 				var/datum/depth_scan/D = positive_locations[index]
 				positive_locations.Remove(D)
 				qdel(D)

@@ -56,7 +56,7 @@
 	src.add_fingerprint(user)
 	if(mode <= 0) // It's off
 		if(istype(I, /obj/item/weapon/screwdriver))
-			if(contents.len > 0)
+			if(length(contents))
 				to_chat(user, "Eject the items first!")
 				return
 			if(mode == 0) // It's off but still not unscrewed
@@ -70,7 +70,7 @@
 				to_chat(user, "You attach the screws around the power connection.")
 				return
 		else if(istype(I, /obj/item/weapon/weldingtool) && mode == -1)
-			if(contents.len > 0)
+			if(length(contents))
 				to_chat(user, "Eject the items first!")
 				return
 			var/obj/item/weapon/weldingtool/W = I
@@ -331,7 +331,7 @@
 		return
 
 	// 	check for items in disposal - occupied light
-	if(contents.len > 0)
+	if(length(contents))
 		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-full")
 
 	// charging and ready light
@@ -352,7 +352,7 @@
 
 	flush_count++
 	if(flush_count >= flush_every_ticks)
-		if(contents.len)
+		if(length(contents))
 			if(mode == 2)
 				spawn(0)
 					feedback_inc("disposal_auto_flush",1)

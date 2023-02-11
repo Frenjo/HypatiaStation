@@ -47,7 +47,7 @@ GLOBAL_GLOBL_LIST_INIT(adminhelp_ignored_words, list("unknown", "the", "a", "an"
 			var/list/L = splittext(string, " ")
 			var/surname_found = 0
 			//surnames
-			for(var/i = L.len, i >= 1, i--)
+			for(var/i = length(L), i >= 1, i--)
 				var/word = ckey(L[i])
 				if(word)
 					surnames[word] = M
@@ -104,7 +104,7 @@ GLOBAL_GLOBL_LIST_INIT(adminhelp_ignored_words, list("unknown", "the", "a", "an"
 	//show it to the person adminhelping too
 	to_chat(src, "<font color='blue'>PM to-<b>Admins</b>: [original_msg]</font>")
 
-	var/admin_number_present = GLOBL.admins.len - admin_number_afk
+	var/admin_number_present = length(GLOBL.admins) - admin_number_afk
 	log_admin("HELP: [key_name(src)]: [original_msg] - heard by [admin_number_present] non-AFK admins.")
 	if(admin_number_present <= 0)
 		if(!admin_number_afk)

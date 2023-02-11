@@ -15,7 +15,8 @@ GLOBAL_GLOBL_LIST_NEW(admin_ranks)	//list of all ranks with associated rights
 		if(copytext(line,1,2) == "#")	continue
 
 		var/list/List = splittext(line,"+")
-		if(!List.len)					continue
+		if(!length(List))
+			continue
 
 		var/rank = ckeyEx(List[1])
 		switch(rank)
@@ -23,7 +24,7 @@ GLOBAL_GLOBL_LIST_NEW(admin_ranks)	//list of all ranks with associated rights
 			if("Removed")	continue				//Reserved
 
 		var/rights = 0
-		for(var/i=2, i<=List.len, i++)
+		for(var/i = 2, i <= length(List), i++)
 			switch(ckey(List[i]))
 				if("@","prev")					rights |= previous_rights
 				if("buildmode","build")			rights |= R_BUILDMODE
@@ -79,7 +80,8 @@ GLOBAL_GLOBL_LIST_NEW(admin_ranks)	//list of all ranks with associated rights
 
 			//Split the line at every "-"
 			var/list/List = splittext(line, "-")
-			if(!List.len)					continue
+			if(!length(List))
+				continue
 
 			//ckey is before the first "-"
 			var/ckey = ckey(List[1])
@@ -87,7 +89,7 @@ GLOBAL_GLOBL_LIST_NEW(admin_ranks)	//list of all ranks with associated rights
 
 			//rank follows the first "-"
 			var/rank = ""
-			if(List.len >= 2)
+			if(length(List) >= 2)
 				rank = ckeyEx(List[2])
 
 			//load permissions associated with this rank

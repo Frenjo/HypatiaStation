@@ -33,7 +33,7 @@
 	if(adj_sleepy)
 		M.sleeping = max(0, M.sleeping + adj_sleepy)
 
-	if(!src.data["special"] || (!isnum(src.data["special"]) && src.data.len))
+	if(!src.data["special"] || (!isnum(src.data["special"]) && length(data)))
 		data["special"] = 1				//if it doesn't exist we set it. if it's a list we're going to set it to 1 as well. This is to
 	src.data["special"] += boozepwr		//avoid a runtime error associated with drinking blood mixed in drinks (demon's blood).
 

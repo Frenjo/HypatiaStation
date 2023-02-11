@@ -140,7 +140,7 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawn) // Runtime fix for geometry loading before
 
 		//handle any archaeological finds we might uncover
 		var/fail_message
-		if(finds && finds.len)
+		if(length(finds))
 			var/datum/find/F = finds[1]
 			if(excavation_level + P.excavation_amount > F.excavation_required)
 				//Chance to destroy / extract any finds here
@@ -159,7 +159,7 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawn) // Runtime fix for geometry loading before
 		if(do_after(user, P.digspeed))
 			to_chat(user, SPAN_INFO("You finish [P.drill_verb] the rock."))
 
-			if(finds && finds.len)
+			if(length(finds))
 				var/datum/find/F = finds[1]
 				if(round(excavation_level + P.excavation_amount) == F.excavation_required)
 					//Chance to extract any items here perfectly, otherwise just pull them out along with the rock surrounding them
@@ -197,7 +197,7 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawn) // Runtime fix for geometry loading before
 			excavation_level += P.excavation_amount
 
 			//archaeo overlays
-			if(!archaeo_overlay && finds && finds.len)
+			if(!archaeo_overlay && length(finds))
 				var/datum/find/F = finds[1]
 				if(F.excavation_required <= excavation_level + F.view_range)
 					archaeo_overlay = "overlay_archaeo[rand(1,3)]"
@@ -223,7 +223,7 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawn) // Runtime fix for geometry loading before
 
 			/* Nope.
 			//extract pesky minerals while we're excavating
-			while(excavation_minerals.len && excavation_level > excavation_minerals[excavation_minerals.len])
+			while(length(excavation_minerals) && excavation_level > excavation_minerals[length(excavation_minerals)])
 				DropMineral()
 				pop(excavation_minerals)
 				mineralAmt-- */

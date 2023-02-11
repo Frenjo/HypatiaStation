@@ -36,7 +36,7 @@
 
 /obj/machinery/computer/telescience/examine()
 	..()
-	usr << "There are [crystals.len] bluespace crystals in the crystal ports."
+	usr << "There are [length(crystals)] bluespace crystals in the crystal ports."
 
 /obj/machinery/computer/telescience/initialize()
 	..()
@@ -65,7 +65,7 @@
 
 /obj/machinery/computer/telescience/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/bluespace_crystal))
-		if(crystals.len >= power_options.len)
+		if(length(crystals) >= length(power_options))
 			to_chat(user, SPAN_WARNING("There are not enough crystal ports."))
 			return
 		user.drop_item()
@@ -95,8 +95,8 @@
 	t += "<span class='linkOn'>Set Power</span>"
 	t += "<div class='statusDisplay'>"
 
-	for(var/i = 1; i <= power_options.len; i++)
-		if(crystals.len < i)
+	for(var/i = 1; i <= length(power_options); i++)
+		if(length(crystals) < i)
 			t += "<span class='linkOff'>[power_options[i]]</span>"
 			continue
 		if(power == power_options[i])
@@ -275,7 +275,7 @@
 		var/index = href_list["setpower"]
 		index = text2num(index)
 		if(index != null && power_options[index])
-			if(crystals.len >= index)
+			if(length(crystals) >= index)
 				power = power_options[index]
 
 	if(href_list["setz"])

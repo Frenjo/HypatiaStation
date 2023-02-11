@@ -36,7 +36,7 @@
 
 	if(!busy)
 		use_power = 1
-		if(input.len)
+		if(length(input))
 			fermenting_item = input[1]
 			input -= fermenting_item
 			progress = 0

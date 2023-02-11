@@ -270,7 +270,7 @@ nanoui is used to open and update nano browser uis
 		templatel_data[key] = templates[key];
 
 	var/template_data_json = "{}" // An empty JSON object
-	if(templatel_data.len > 0)
+	if(length(templatel_data))
 		template_data_json = json_encode(templatel_data)
 
 	var/initial_data_json = replacetext(replacetext(json_encode(initial_data), "&#34;", "&amp;#34;"), "'", "&#39;")

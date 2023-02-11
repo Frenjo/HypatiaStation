@@ -42,7 +42,7 @@
 		current_shell = null
 		if(in_chamber)
 			in_chamber = null
-	if(!loaded.len)
+	if(!length(loaded))
 		return 0
 
 	var/obj/item/ammo_casing/AC = loaded[1] //load next casing.
@@ -78,7 +78,7 @@
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/load_into_chamber()
 //		if(in_chamber)
 //			return 1 {R}
-	if(!loaded.len)
+	if(!length(loaded))
 		return 0
 
 	var/obj/item/ammo_casing/AC = loaded[1] //load next casing.
@@ -92,7 +92,7 @@
 	return 0
 
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/attack_self(mob/living/user as mob)
-	if(!(locate(/obj/item/ammo_casing/shotgun) in src) && !loaded.len)
+	if(!(locate(/obj/item/ammo_casing/shotgun) in src) && !length(loaded))
 		to_chat(user, SPAN_NOTICE("\The [src] is empty."))
 		return
 
@@ -107,7 +107,7 @@
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/attackby(obj/item/A as obj, mob/user as mob)
 	if(istype(A, /obj/item/ammo_casing) && !load_method)
 		var/obj/item/ammo_casing/AC = A
-		if(AC.caliber == caliber && (loaded.len < max_shells) && (contents.len < max_shells))	//forgive me father, for i have sinned
+		if(AC.caliber == caliber && (length(loaded) < max_shells) && (length(contents) < max_shells))	//forgive me father, for i have sinned
 			user.drop_item()
 			AC.loc = src
 			loaded += AC
@@ -117,7 +117,7 @@
 
 	if(istype(A, /obj/item/weapon/circular_saw) || istype(A, /obj/item/weapon/melee/energy) || istype(A, /obj/item/weapon/pickaxe/plasmacutter))
 		to_chat(user, SPAN_NOTICE("You begin to shorten the barrel of \the [src]."))
-		if(loaded.len)
+		if(length(loaded))
 			afterattack(user, user)	//will this work?
 			afterattack(user, user)	//it will. we call it twice, for twice the FUN
 			playsound(user, fire_sound, 50, 1)

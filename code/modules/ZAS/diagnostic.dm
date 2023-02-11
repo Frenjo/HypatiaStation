@@ -214,7 +214,7 @@
 		current.overlays += overlays[current_identifier]
 		sleep(5)
 
-		if( current_identifier > final_arrangement.len )
+		if(current_identifier > length(final_arrangement))
 			final_arrangement.len = current_identifier
 			final_arrangement[current_identifier] = list(current)
 
@@ -224,7 +224,7 @@
 	//lazy but fast
 	final_arrangement.Remove(null)
 
-	src << "There are [final_arrangement.len] unique segments."
+	src << "There are [length(final_arrangement)] unique segments."
 
 	for(var/turf/current in turfs)
 		current.overlays -= overlays

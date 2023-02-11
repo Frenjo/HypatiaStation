@@ -28,10 +28,10 @@
 	if(!istype(L, /list)) return
 	if(isnum(pos))
 		if(!value)
-			if(L.len >= pos)
+			if(length(L) >= pos)
 				return L[pos]
 		else
-			if(L.len >= pos)
+			if(length(L) >= pos)
 				L[pos] = value
 	else if(istext(pos))
 		if(!value)
@@ -80,7 +80,7 @@
 // Clone of list.Swap()
 /proc/n_listswap(var/list/L, var/firstindex, var/secondindex)
 	if(!istype(L, /list)) return
-	if(L.len >= secondindex && L.len >= firstindex)
+	if(length(L) >= secondindex && length(L) >= firstindex)
 		return L.Swap(firstindex, secondindex)
 
 // Clone of list.Insert()

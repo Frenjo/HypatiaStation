@@ -57,7 +57,7 @@
 	RG.my_atom = src
 	reagent_list += RG
 
-	var/datum/reagents/R = reagent_list[reagent_list.len]
+	var/datum/reagents/R = reagent_list[length(reagent_list)]
 	R.add_reagent(reagent, 30)
 
 /obj/item/weapon/reagent_containers/borghypo/attack(mob/M as mob, mob/user as mob)
@@ -80,7 +80,7 @@
 /obj/item/weapon/reagent_containers/borghypo/attack_self(mob/user as mob)
 	playsound(src, 'sound/effects/pop.ogg', 50, 0)		//Change the mode
 	mode++
-	if(mode > reagent_list.len)
+	if(mode > length(reagent_list))
 		mode = 1
 
 	charge_tick = 0 //Prevents wasted chems/cell charge if you're cycling through modes.

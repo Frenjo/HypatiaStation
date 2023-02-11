@@ -92,7 +92,7 @@
 	return 0
 
 /proc/sort_surgeries()
-	var/gap = GLOBL.surgery_steps.len
+	var/gap = length(GLOBL.surgery_steps)
 	var/swapped = 1
 	while(gap > 1 || swapped)
 		swapped = 0
@@ -100,7 +100,7 @@
 			gap = round(gap / 1.247330950103979)
 		if(gap < 1)
 			gap = 1
-		for(var/i = 1; gap + i <= GLOBL.surgery_steps.len; i++)
+		for(var/i = 1; gap + i <= length(GLOBL.surgery_steps); i++)
 			var/datum/surgery_step/l = GLOBL.surgery_steps[i]		//Fucking hate
 			var/datum/surgery_step/r = GLOBL.surgery_steps[gap + i]	//how lists work here
 			if(l.priority < r.priority)

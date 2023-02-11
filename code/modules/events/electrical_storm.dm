@@ -45,17 +45,17 @@
 	for(var/obj/effect/landmark/newEpicentre in landmarks_list)
 		if(newEpicentre.name == "lightsout" && !(newEpicentre in epicentreList))
 			possibleEpicentres += newEpicentre
-	if(possibleEpicentres.len)
+	if(length(possibleEpicentres))
 		epicentreList += pick(possibleEpicentres)
 	else
 		//break
 		return
 
-	if(!epicentreList.len)
+	if(!length(epicentreList))
 		return*/
 
 	//for(var/obj/effect/landmark/epicentre in epicentreList)
-	if(possibleEpicentres.len)
+	if(length(possibleEpicentres))
 		var/obj/effect/landmark/epicentre = pick(possibleEpicentres)
 		possibleEpicentres -= epicentre
 		for(var/obj/machinery/power/apc/apc in range(epicentre, lightsoutRange))

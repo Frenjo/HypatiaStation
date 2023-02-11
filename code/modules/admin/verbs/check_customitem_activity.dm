@@ -42,10 +42,10 @@ GLOBAL_GLOBL_INIT(inactive_keys, "None<br>")
 	for(var/line in lines)
 		// split & clean up
 		var/list/Entry = splittext(line, ":")
-		for(var/i = 1 to Entry.len)
+		for(var/i = 1 to length(Entry))
 			Entry[i] = trim(Entry[i])
 
-		if(Entry.len < 1)
+		if(!length(Entry))
 			continue
 
 		var/cur_key = Entry[1]
@@ -54,7 +54,7 @@ GLOBAL_GLOBL_INIT(inactive_keys, "None<br>")
 
 	//run a query to get all ckeys inactive for over 2 months
 	var/list/inactive_ckeys = list()
-	if(ckeys_with_customitems.len)
+	if(length(ckeys_with_customitems))
 		var/DBQuery/query_inactive = GLOBL.dbcon.NewQuery("SELECT ckey, lastseen FROM erro_player WHERE datediff(Now(), lastseen) > 60")
 		query_inactive.Execute()
 		while(query_inactive.NextRow())
@@ -65,14 +65,14 @@ GLOBAL_GLOBL_INIT(inactive_keys, "None<br>")
 				inactive_ckeys[cur_ckey] = "last seen on [query_inactive.item[2]]"
 
 	//if there are ckeys left over, check whether they have a database entry at all
-	if(ckeys_with_customitems.len)
+	if(length(ckeys_with_customitems))
 		for(var/cur_ckey in ckeys_with_customitems)
 			var/DBQuery/query_inactive = GLOBL.dbcon.NewQuery("SELECT ckey FROM erro_player WHERE ckey = '[cur_ckey]'")
 			query_inactive.Execute()
 			if(!query_inactive.RowCount())
 				inactive_ckeys += cur_ckey
 
-	if(inactive_ckeys.len)
+	if(length(inactive_ckeys))
 		GLOBL.inactive_keys = ""
 		for(var/cur_key in inactive_ckeys)
 			if(inactive_ckeys[cur_key])

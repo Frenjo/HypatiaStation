@@ -368,7 +368,7 @@
 	if(!M)
 		M = holder.my_atom
 
-	var/needs_update = M.mutations.len > 0
+	var/needs_update = length(M.mutations)
 
 	M.mutations = list()
 	M.disabilities = 0

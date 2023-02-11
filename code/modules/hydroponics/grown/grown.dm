@@ -53,14 +53,14 @@
 		if (S.mode == 1)
 			for(var/obj/item/G in get_turf(src))
 				if(istype(G, /obj/item/seeds) || istype(G, /obj/item/weapon/reagent_containers/food/snacks/grown))
-					if (S.contents.len < S.capacity)
+					if(length(S.contents) < S.capacity)
 						S.contents += G
 					else
 						user << "\blue The plant bag is full."
 						return
 			user << "\blue You pick up all the plants and seeds."
 		else
-			if (S.contents.len < S.capacity)
+			if(length(S.contents) < S.capacity)
 				S.contents += src;
 			else
 				user << "\blue The plant bag is full."*/
@@ -72,14 +72,14 @@
 		if (S.mode == 1)
 			for(var/obj/item/G in get_turf(src))
 				if(istype(G, /obj/item/seeds) || istype(G, /obj/item/weapon/reagent_containers/food/snacks/grown))
-					if (S.contents.len < S.capacity)
+					if(length(S.contents) < S.capacity)
 						S.contents += G
 					else
 						user << "\blue The plant bag is full."
 						return
 			user << "\blue You pick up all the plants and seeds."
 		else
-			if (S.contents.len < S.capacity)
+			if(length(S.contents) < S.capacity)
 				S.contents += src;
 			else
 				user << "\blue The plant bag is full."

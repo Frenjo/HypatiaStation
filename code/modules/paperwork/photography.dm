@@ -165,7 +165,7 @@
 		atoms.Add(A)
 
 	//Sorting icons based on levels
-	var/gap = atoms.len
+	var/gap = length(atoms)
 	var/swapped = 1
 	while(gap > 1 || swapped)
 		swapped = 0
@@ -173,14 +173,14 @@
 			gap = round(gap / 1.247330950103979)
 		if(gap < 1)
 			gap = 1
-		for(var/i = 1; gap + i <= atoms.len; i++)
+		for(var/i = 1; gap + i <= length(atoms); i++)
 			var/atom/l = atoms[i]		//Fucking hate
 			var/atom/r = atoms[gap+i]	//how lists work here
 			if(l.layer > r.layer)		//no "atoms[i].layer" for me
 				atoms.Swap(i, gap + i)
 				swapped = 1
 
-	for(var/i; i <= atoms.len; i++)
+	for(var/i; i <= length(atoms); i++)
 		var/atom/A = atoms[i]
 		if(A)
 			var/icon/img = getFlatIcon(A, A.dir)//build_composite_icon(A)

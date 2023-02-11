@@ -15,7 +15,7 @@ var/list/datum/puddle/puddles = list()
 	for(var/obj/effect/liquid/L in liquid_objects)
 		L.apply_calculated_effect()
 
-	if(liquid_objects.len == 0)
+	if(!length(liquid_objects))
 		qdel(src)
 
 /datum/puddle/New()
@@ -97,17 +97,17 @@ var/list/datum/puddle/puddles = list()
 			NL.controller = src.controller
 			controller.liquid_objects.Add(NL)
 
-	if(!spread_directions.len)
+	if(!length(spread_directions))
 		//world << "ERROR: No candidate to spread to."
 		return //No suitable candidate to spread to
 
-	var/average_volume = (src.volume + surrounding_volume) / (spread_directions.len + 1) //Average amount of volume on this and the surrounding tiles.
+	var/average_volume = (src.volume + surrounding_volume) / (length(spread_directions) + 1) //Average amount of volume on this and the surrounding tiles.
 	var/volume_difference = src.volume - average_volume //How much more/less volume this tile has than the surrounding tiles.
-	if(volume_difference <= (spread_directions.len*LIQUID_TRANSFER_THRESHOLD)) //If we have less than the threshold excess liquid - then there is nothing to do as other tiles will be giving us volume.or the liquid is just still.
+	if(volume_difference <= (length(spread_directions) * LIQUID_TRANSFER_THRESHOLD)) //If we have less than the threshold excess liquid - then there is nothing to do as other tiles will be giving us volume.or the liquid is just still.
 		//world << "ERROR: transfer volume lower than THRESHOLD!"
 		return
 
-	var/volume_per_tile = volume_difference / spread_directions.len
+	var/volume_per_tile = volume_difference / length(spread_directions)
 
 	for(var/direction in spread_directions)
 		var/turf/T = get_step(src,direction)

@@ -25,15 +25,15 @@
 	var/total_transfered = 0
 	var/current_list_element = 1
 
-	current_list_element = rand(1, reagent_list.len)
+	current_list_element = rand(1, length(reagent_list))
 
 	while(total_transfered != amount)
 		if(total_transfered >= amount)
 			break
-		if(total_volume <= 0 || !reagent_list.len)
+		if(total_volume <= 0 || !length(reagent_list))
 			break
 
-		if(current_list_element > reagent_list.len)
+		if(current_list_element > length(reagent_list))
 			current_list_element = 1
 		var/datum/reagent/current_reagent = reagent_list[current_list_element]
 
@@ -207,17 +207,17 @@
 	var/trans_data = null
 	//if(R.total_volume + amount > R.maximum_volume) return 0
 
-	current_list_element = rand(1, reagent_list.len) //Eh, bandaid fix.
+	current_list_element = rand(1, length(reagent_list)) //Eh, bandaid fix.
 
 	while(total_transfered != amount)
 		if(total_transfered >= amount)
 			break //Better safe than sorry.
-		if(total_volume <= 0 || !reagent_list.len)
+		if(total_volume <= 0 || !length(reagent_list))
 			break
 		if(R.total_volume >= R.maximum_volume)
 			break
 
-		if(current_list_element > reagent_list.len) current_list_element = 1
+		if(current_list_element > length(reagent_list)) current_list_element = 1
 		var/datum/reagent/current_reagent = reagent_list[current_list_element]
 		if(preserve_data)
 			trans_data = current_reagent.data
@@ -277,9 +277,9 @@
 					else
 						continue
 
-				var/total_required_reagents = C.required_reagents.len
+				var/total_required_reagents = length(C.required_reagents)
 				var/total_matching_reagents = 0
-				var/total_required_catalysts = C.required_catalysts.len
+				var/total_required_catalysts = length(C.required_catalysts)
 				var/total_matching_catalysts = 0
 				var/matching_container = 0
 				var/matching_other = 0

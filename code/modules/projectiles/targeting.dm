@@ -170,9 +170,9 @@
 /mob/living/proc/Targeted(obj/item/weapon/gun/I) //Self explanitory.
 	if(!I.target)
 		I.target = list(src)
-	else if(I.automatic && I.target.len < 5) //Automatic weapon, they can hold down a room.
+	else if(I.automatic && length(I.target) < 5) //Automatic weapon, they can hold down a room.
 		I.target += src
-	else if(I.target.len >= 5)
+	else if(length(I.target) >= 5)
 		if(ismob(I.loc))
 			to_chat(I.loc, "You can only target 5 people at once!")
 		return
@@ -190,7 +190,7 @@
 	 (other than a weapon to de-target), or moving will result in being fired upon. \red The aggressor may also fire manually, \
 	 so try not to get on their bad side.\black ))")
 
-	if(targeted_by.len == 1)
+	if(length(targeted_by) == 1)
 		spawn(0)
 			target_locked = image("icon" = 'icons/effects/Targeted.dmi', "icon_state" = "locking")
 			overlays += target_locked
@@ -240,12 +240,12 @@
 			M << 'sound/weapons/TargetOff.ogg'
 	targeted_by -= I
 	I.target.Remove(src) //De-target them
-	if(!I.target.len)
+	if(!length(I.target))
 		qdel(I.target)
 	var/mob/living/T = I.loc //Remove the targeting icons
 	if(T && ismob(T) && !I.target)
 		T.client.remove_gun_icons()
-	if(!targeted_by.len)
+	if(!length(targeted_by))
 		qdel(target_locked) //Remove the overlay
 		qdel(targeted_by)
 	spawn(1)

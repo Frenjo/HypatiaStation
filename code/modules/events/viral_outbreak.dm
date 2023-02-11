@@ -15,10 +15,11 @@
 	for(var/mob/living/carbon/human/G in GLOBL.player_list)
 		if(G.client && G.stat != DEAD)
 			candidates += G
-	if(!candidates.len)	return
+	if(!length(candidates))
+		return
 	candidates = shuffle(candidates)//Incorporating Donkie's list shuffle
 
-	while(severity > 0 && candidates.len)
+	while(severity > 0 && length(candidates))
 		if(prob(33))
 			infect_mob_random_lesser(candidates[1])
 		else

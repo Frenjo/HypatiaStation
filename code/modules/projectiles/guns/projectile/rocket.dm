@@ -23,24 +23,24 @@
 	..()
 	if(!(usr in view(2)) && usr != src.loc)
 		return
-	to_chat(usr, SPAN_INFO("[rockets.len] / [max_rockets] rockets."))
+	to_chat(usr, SPAN_INFO("[length(rockets)] / [max_rockets] rockets."))
 
 /obj/item/weapon/gun/rocketlauncher/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/ammo_casing/rocket))
-		if(rockets.len < max_rockets)
+		if(length(rockets) < max_rockets)
 			user.drop_item()
 			I.loc = src
 			rockets += I
 			to_chat(user, SPAN_INFO("You put the rocket in [src]."))
-			to_chat(user, SPAN_INFO("[rockets.len] / [max_rockets] rockets."))
+			to_chat(user, SPAN_INFO("[length(rockets)] / [max_rockets] rockets."))
 		else
 			to_chat(usr, SPAN_WARNING("[src] cannot hold more rockets."))
 
 /obj/item/weapon/gun/rocketlauncher/can_fire()
-	return rockets.len
+	return length(rockets)
 
 /obj/item/weapon/gun/rocketlauncher/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
-	if(rockets.len)
+	if(length(rockets))
 		var/obj/item/ammo_casing/rocket/I = rockets[1]
 		var/obj/item/missile/M = new projectile(user.loc)
 		playsound(user.loc, 'sound/effects/bang.ogg', 50, 1)

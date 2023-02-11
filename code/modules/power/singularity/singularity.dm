@@ -545,7 +545,7 @@ var/global/list/uneatable = list(
 		if(pos.z != src.z)
 			continue
 		cultists += cult_nh_mind.current
-	if(cultists.len)
+	if(length(cultists))
 		acquire(pick(cultists))
 		return
 		//If there was living cultists, it picks one to follow.
@@ -556,7 +556,7 @@ var/global/list/uneatable = list(
 		if(pos.z != src.z)
 			continue
 		cultists += food
-	if(cultists.len)
+	if(length(cultists))
 		acquire(pick(cultists))
 		return
 		//no living cultists, pick a living human instead.
@@ -567,7 +567,7 @@ var/global/list/uneatable = list(
 		if(pos.z != src.z)
 			continue
 		cultists += ghost
-	if(cultists.len)
+	if(length(cultists))
 		acquire(pick(cultists))
 		return
 		//no living humans, follow a ghost instead.

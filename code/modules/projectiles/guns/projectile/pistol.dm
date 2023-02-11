@@ -26,7 +26,7 @@
 
 /obj/item/weapon/gun/projectile/deagle/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()
-	if(!loaded.len && empty_mag)
+	if(!length(loaded) && empty_mag)
 		empty_mag.loc = get_turf(src.loc)
 		empty_mag = null
 		playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
@@ -61,7 +61,7 @@
 
 /obj/item/weapon/gun/projectile/gyropistol/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()
-	if(!loaded.len && empty_mag)
+	if(!length(loaded) && empty_mag)
 		empty_mag.loc = get_turf(src.loc)
 		empty_mag = null
 		playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
@@ -94,7 +94,7 @@
 
 /obj/item/weapon/gun/projectile/pistol/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()
-	if(!loaded.len && empty_mag)
+	if(!length(loaded) && empty_mag)
 		empty_mag.loc = get_turf(src.loc)
 		empty_mag = null
 	return

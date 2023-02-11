@@ -101,7 +101,7 @@
 	var/list/authorized = list()
 
 /obj/machinery/computer/shuttle_control/emergency/proc/has_authorization()
-	return (authorized.len >= req_authorizations || emagged)
+	return (length(authorized) >= req_authorizations || emagged)
 
 /obj/machinery/computer/shuttle_control/emergency/proc/reset_authorization()
 	//no need to reset emagged status. If they really want to go back to the station they can.
@@ -111,7 +111,7 @@
 /obj/machinery/computer/shuttle_control/emergency/proc/read_authorization(ident)
 	if(!ident)
 		return 0
-	if(authorized.len >= req_authorizations)
+	if(length(authorized) >= req_authorizations)
 		return 0	//don't need any more
 
 	var/list/access
@@ -143,8 +143,8 @@
 
 	src.visible_message("[src] beeps as it scans [ident].")
 	authorized[dna_hash] = auth_name
-	if(req_authorizations - authorized.len)
-		to_world(SPAN_INFO_B("Alert: [req_authorizations - authorized.len] authorization\s needed to override the shuttle autopilot."))
+	if(req_authorizations - length(authorized))
+		to_world(SPAN_INFO_B("Alert: [req_authorizations - length(authorized)] authorization\s needed to override the shuttle autopilot."))
 	return 1
 
 /obj/machinery/computer/shuttle_control/emergency/attackby(obj/item/weapon/W as obj, mob/user as mob)

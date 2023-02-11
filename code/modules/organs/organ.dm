@@ -61,7 +61,7 @@
 	for(var/datum/organ/internal/I in internal_organs)
 		I.process()
 
-	if(!force_process && !bad_external_organs.len)
+	if(!force_process && !length(bad_external_organs))
 		return
 
 	for(var/datum/organ/external/E in bad_external_organs)
@@ -82,7 +82,7 @@
 					I.take_damage(rand(3, 5))
 
 				//Moving makes open wounds get infected much faster
-				if(E.wounds.len)
+				if(length(E.wounds))
 					for(var/datum/wound/W in E.wounds)
 						if(W.infection_check())
 							W.germ_level += 1

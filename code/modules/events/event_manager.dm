@@ -17,7 +17,7 @@ GLOBAL_GLOBL_INIT(scheduledEvent, null)
 	if(!GLOBL.scheduledEvent)
 		//more players = more time between events, less players = less time between events
 		var/playercount_modifier = 1
-		switch(GLOBL.player_list.len)
+		switch(length(GLOBL.player_list))
 			if(0 to 10)
 				playercount_modifier = 1.2
 			if(11 to 15)

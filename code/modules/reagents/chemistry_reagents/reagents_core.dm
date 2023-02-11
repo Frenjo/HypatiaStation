@@ -21,7 +21,7 @@
 				M.contract_disease(D, 1, 0)
 	if(self.data && self.data["virus2"] && iscarbon(M))//infecting...
 		var/list/vlist = self.data["virus2"]
-		if(vlist.len)
+		if(length(vlist))
 			for(var/ID in vlist)
 				var/datum/disease2/disease/V = vlist[ID]
 				if(method == TOUCH)
@@ -593,7 +593,7 @@
 	// radium may increase your chances to cure a disease
 	if(iscarbon(M)) // make sure to only use it on carbon mobs
 		var/mob/living/carbon/C = M
-		if(C.virus2.len)
+		if(length(C.virus2))
 			for(var/ID in C.virus2)
 				var/datum/disease2/disease/V = C.virus2[ID]
 				if(prob(5))

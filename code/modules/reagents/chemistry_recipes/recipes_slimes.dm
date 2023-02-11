@@ -527,7 +527,7 @@
 	for(var/obj/item/device/radio/beacon/W in world)
 		possible += W
 
-	if(possible.len > 0)
+	if(length(possible))
 		chosen = pick(possible)
 
 	if(chosen)

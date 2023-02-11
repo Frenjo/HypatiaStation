@@ -61,7 +61,7 @@ research holder datum.
 //Checks to see if tech has all the required pre-reqs.
 //Input: datum/tech; Output: 0/1 (false/true)
 /datum/research/proc/TechHasReqs(datum/tech/T)
-	if(T.req_tech.len == 0)
+	if(!length(T.req_tech))
 		return 1
 	var/matches = 0
 	for(var/req in T.req_tech)
@@ -69,7 +69,7 @@ research holder datum.
 			if((req == known.id) && (known.level >= T.req_tech[req]))
 				matches++
 				break
-	if(matches == T.req_tech.len)
+	if(matches == length(T.req_tech))
 		return 1
 	else
 		return 0
@@ -77,7 +77,7 @@ research holder datum.
 //Checks to see if design has all the required pre-reqs.
 //Input: datum/design; Output: 0/1 (false/true)
 /datum/research/proc/DesignHasReqs(datum/design/D)
-	if(D.req_tech.len == 0)
+	if(!length(D.req_tech))
 		return 1
 	var/matches = 0
 	var/list/k_tech = list()
@@ -86,7 +86,7 @@ research holder datum.
 	for(var/req in D.req_tech)
 		if(!isnull(k_tech[req]) && k_tech[req] >= D.req_tech[req])
 			matches++
-	if(matches == D.req_tech.len)
+	if(matches == length(D.req_tech))
 		return 1
 	else
 		return 0
@@ -94,7 +94,7 @@ research holder datum.
 //Checks to see if design has all the required pre-reqs.
 //Input: datum/design; Output: 0/1 (false/true)
 /datum/research/proc/DesignHasReqs(var/datum/design/D)
-	if(D.req_tech.len == 0)
+	if(!length(D.req_tech))
 		return 1
 	var/matches = 0
 	for(var/req in D.req_tech)
@@ -102,7 +102,7 @@ research holder datum.
 			if((req == known.id) && (known.level >= D.req_tech[req]))
 				matches++
 				break
-	if(matches == D.req_tech.len)
+	if(matches == length(D.req_tech))
 		return 1
 	else
 		return 0

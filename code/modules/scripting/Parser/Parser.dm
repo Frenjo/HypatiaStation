@@ -49,7 +49,7 @@
 	Sets <curToken> to the next token in the <tokens> list, or null if there are no more tokens.
 */
 /n_Parser/proc/NextToken()
-	if(index >= tokens.len)
+	if(index >= length(tokens))
 		curToken=null
 	else
 		curToken = tokens[++index]
@@ -76,7 +76,7 @@
 
 /n_Parser/nS_Parser/Parse()
 	ASSERT(tokens)
-	for(, src.index <= src.tokens.len, src.index++)
+	for(, src.index <= length(tokens), src.index++)
 		curToken = tokens[index]
 		switch(curToken.type)
 			if(/token/keyword)
@@ -87,7 +87,7 @@
 						return
 			if(/token/word)
 				var/token/ntok
-				if(index + 1 > tokens.len)
+				if(index + 1 > length(tokens))
 					errors += new/scriptError/BadToken(curToken)
 					continue
 				ntok = tokens[index + 1]

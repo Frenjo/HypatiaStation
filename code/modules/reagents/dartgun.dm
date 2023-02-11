@@ -61,10 +61,10 @@
 	..()
 	if(!(usr in view(2)) && usr!=src.loc)
 		return
-	if(beakers.len)
+	if(length(beakers))
 		to_chat(usr, SPAN_INFO("[src] contains:"))
 		for(var/obj/item/weapon/reagent_containers/glass/beaker/B in beakers)
-			if(B.reagents && B.reagents.reagent_list.len)
+			if(B.reagents && length(B.reagents.reagent_list))
 				for(var/datum/reagent/R in B.reagents.reagent_list)
 					to_chat(usr, SPAN_INFO("[R.volume] units of [R.name]"))
 
@@ -93,7 +93,7 @@
 		if(!istype(I, container_type))
 			to_chat(user, SPAN_INFO("[I] doesn't seem to fit into [src]."))
 			return
-		if(beakers.len >= max_beakers)
+		if(length(beakers) >= max_beakers)
 			to_chat(user, SPAN_INFO("[src] already has [max_beakers] beakers in it - another one isn't going to fit!"))
 			return
 		var/obj/item/weapon/reagent_containers/glass/beaker/B = I
@@ -129,8 +129,8 @@
 
 	var/obj/item/weapon/reagent_containers/syringe/dart = new(src)
 
-	if(mixing.len)
-		var/mix_amount = dart_reagent_amount/mixing.len
+	if(length(mixing))
+		var/mix_amount = dart_reagent_amount / length(mixing)
 		for(var/obj/item/weapon/reagent_containers/glass/beaker/B in mixing)
 			B.reagents.trans_to(dart,mix_amount)
 
@@ -219,11 +219,11 @@
 	user.set_machine(src)
 	var/dat = "<b>[src] mixing control:</b><br><br>"
 
-	if(beakers.len)
+	if(length(beakers))
 		var/i = 1
 		for(var/obj/item/weapon/reagent_containers/glass/beaker/B in beakers)
 			dat += "Beaker [i] contains: "
-			if(B.reagents && B.reagents.reagent_list.len)
+			if(B.reagents && length(B.reagents.reagent_list))
 				for(var/datum/reagent/R in B.reagents.reagent_list)
 					dat += "<br>    [R.volume] units of [R.name], "
 				if(check_beaker_mixing(B))
@@ -259,18 +259,18 @@
 	src.add_fingerprint(usr)
 	if(href_list["stop_mix"])
 		var/index = text2num(href_list["stop_mix"])
-		if(index <= beakers.len)
+		if(index <= length(beakers))
 			for(var/obj/item/M in mixing)
 				if(M == beakers[index])
 					mixing -= M
 					break
 	else if(href_list["mix"])
 		var/index = text2num(href_list["mix"])
-		if(index <= beakers.len)
+		if(index <= length(beakers))
 			mixing += beakers[index]
 	else if(href_list["eject"])
 		var/index = text2num(href_list["eject"])
-		if(index <= beakers.len)
+		if(index <= length(beakers))
 			if(beakers[index])
 				var/obj/item/weapon/reagent_containers/glass/beaker/B = beakers[index]
 				to_chat(usr, "You remove [B] from [src].")

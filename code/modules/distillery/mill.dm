@@ -35,7 +35,7 @@
 
 	if(!busy)
 		use_power = 1
-		if(input.len)
+		if(length(input))
 			milled_item = input[1]
 			input -= milled_item
 			progress = 0

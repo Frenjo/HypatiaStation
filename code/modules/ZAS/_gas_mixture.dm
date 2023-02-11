@@ -121,7 +121,7 @@ What are the archived variables for?
 
 	var/heat_capacity = HEAT_CAPACITY_CALCULATION(oxygen,carbon_dioxide,nitrogen,toxins)
 
-	if(trace_gases.len)
+	if(length(trace_gases))
 		for(var/datum/gas/trace_gas in trace_gases)
 			heat_capacity += trace_gas.moles*trace_gas.specific_heat
 
@@ -135,7 +135,7 @@ What are the archived variables for?
 
 	var/heat_capacity_archived = HEAT_CAPACITY_CALCULATION(oxygen_archived,carbon_dioxide_archived,nitrogen_archived,toxins_archived)
 
-	if(trace_gases.len)
+	if(length(trace_gases))
 		for(var/datum/gas/trace_gas in trace_gases)
 			heat_capacity_archived += trace_gas.moles_archived*trace_gas.specific_heat
 
@@ -167,7 +167,7 @@ What are the archived variables for?
 	return total_moles
 	/*var/moles = oxygen + carbon_dioxide + nitrogen + toxins
 
-	if(trace_gases.len)
+	if(length(trace_gases))
 		for(var/datum/gas/trace_gas in trace_gases)
 			moles += trace_gas.moles
 	return moles*/
@@ -211,7 +211,7 @@ What are the archived variables for?
 
 	total_moles = oxygen + carbon_dioxide + nitrogen + toxins
 
-	if(trace_gases.len)
+	if(length(trace_gases))
 		for(var/datum/gas/trace_gas in trace_gases)
 			total_moles += trace_gas.moles
 
@@ -329,7 +329,7 @@ What are the archived variables for?
 	nitrogen_archived =  nitrogen
 	toxins_archived = toxins
 
-	if(trace_gases.len)
+	if(length(trace_gases))
 		for(var/datum/gas/trace_gas in trace_gases)
 			trace_gas.moles_archived = trace_gas.moles
 
@@ -356,7 +356,7 @@ What are the archived variables for?
 	if(abs(giver.temperature - temperature) > MINIMUM_TEMPERATURE_DELTA_TO_SUSPEND)
 		return 0
 
-	if(giver.trace_gases.len)
+	if(length(giver.trace_gases))
 		for(var/datum/gas/trace_gas in giver.trace_gases)
 			var/datum/gas/corresponding = locate(trace_gas.type) in trace_gases
 			if((trace_gas.moles > MINIMUM_AIR_TO_SUSPEND) && (!corresponding || (trace_gas.moles >= corresponding.moles*MINIMUM_AIR_RATIO_TO_SUSPEND)))
@@ -391,7 +391,7 @@ What are the archived variables for?
 		nitrogen += giver.nitrogen
 		toxins += giver.toxins
 
-	if(giver.trace_gases.len)
+	if(length(giver.trace_gases))
 		for(var/datum/gas/trace_gas in giver.trace_gases)
 			var/datum/gas/corresponding = locate(trace_gas.type) in trace_gases
 			if(!corresponding)
@@ -428,7 +428,7 @@ What are the archived variables for?
 	carbon_dioxide -= removed.carbon_dioxide/group_multiplier
 	toxins -= removed.toxins/group_multiplier
 
-	if(trace_gases.len)
+	if(length(trace_gases))
 		for(var/datum/gas/trace_gas in trace_gases)
 			var/datum/gas/corresponding = new trace_gas.type()
 			removed.trace_gases += corresponding
@@ -465,7 +465,7 @@ What are the archived variables for?
 	carbon_dioxide -= removed.carbon_dioxide/group_multiplier
 	toxins -= removed.toxins/group_multiplier
 
-	if(trace_gases.len)
+	if(length(trace_gases))
 		for(var/datum/gas/trace_gas in trace_gases)
 			var/datum/gas/corresponding = new trace_gas.type()
 			removed.trace_gases += corresponding
@@ -505,8 +505,8 @@ What are the archived variables for?
 	toxins = sample.toxins
 	total_moles = sample.total_moles()
 
-	trace_gases.len=null
-	if(sample.trace_gases.len > 0)
+	trace_gases.len = null
+	if(length(sample.trace_gases))
 		for(var/datum/gas/trace_gas in sample.trace_gases)
 			var/datum/gas/corresponding = new trace_gas.type()
 			trace_gases += corresponding
@@ -543,7 +543,7 @@ What are the archived variables for?
 	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_SUSPEND)
 		return 0
 
-	if(sharer.trace_gases.len)
+	if(length(sharer.trace_gases))
 		for(var/datum/gas/trace_gas in sharer.trace_gases)
 			if(trace_gas.moles_archived > MINIMUM_AIR_TO_SUSPEND*4)
 				var/datum/gas/corresponding = locate(trace_gas.type) in trace_gases
@@ -553,7 +553,7 @@ What are the archived variables for?
 				else
 					return 0
 
-	if(trace_gases.len)
+	if(length(trace_gases))
 		for(var/datum/gas/trace_gas in trace_gases)
 			if(trace_gas.moles_archived > MINIMUM_AIR_TO_SUSPEND*4)
 				if(!locate(trace_gas.type) in sharer.trace_gases)
@@ -565,7 +565,7 @@ What are the archived variables for?
 		|| ((abs(delta_toxins) > MINIMUM_AIR_TO_SUSPEND) && (abs(delta_toxins) >= sharer.toxins_archived*MINIMUM_AIR_RATIO_TO_SUSPEND)))
 		return -1
 
-	if(trace_gases.len)
+	if(length(trace_gases))
 		for(var/datum/gas/trace_gas in trace_gases)
 			if(trace_gas.moles_archived > MINIMUM_AIR_TO_SUSPEND*4)
 				var/datum/gas/corresponding = locate(trace_gas.type) in sharer.trace_gases
@@ -598,7 +598,7 @@ What are the archived variables for?
 	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_SUSPEND)
 		return 0
 
-	if(trace_gases.len)
+	if(length(trace_gases))
 		for(var/datum/gas/trace_gas in trace_gases)
 			if(trace_gas.moles_archived > MINIMUM_AIR_TO_SUSPEND*4)
 				return 0
@@ -680,7 +680,7 @@ What are the archived variables for?
 
 	var/list/trace_types_considered = list()
 
-	if(trace_gases.len)
+	if(length(trace_gases))
 		for(var/datum/gas/trace_gas in trace_gases)
 
 			var/datum/gas/corresponding = locate(trace_gas.type) in sharer.trace_gases
@@ -711,7 +711,7 @@ What are the archived variables for?
 			trace_types_considered += trace_gas.type
 
 
-	if(sharer.trace_gases.len)
+	if(length(sharer.trace_gases))
 		for(var/datum/gas/trace_gas in sharer.trace_gases)
 			if(trace_gas.type in trace_types_considered) continue
 			else
@@ -806,7 +806,7 @@ What are the archived variables for?
 
 	var/moved_moles = (delta_oxygen + delta_carbon_dioxide + delta_nitrogen + delta_toxins)
 
-	if(trace_gases.len)
+	if(length(trace_gases))
 		for(var/datum/gas/trace_gas in trace_gases)
 			var/delta = 0
 
@@ -1022,7 +1022,7 @@ What are the archived variables for?
 			//world << "temp fail [temperature] & [sample.temperature]"
 			return 0
 	var/check_moles
-	if(sample.trace_gases.len)
+	if(length(sample.trace_gases))
 		for(var/datum/gas/trace_gas in sample.trace_gases)
 			var/datum/gas/corresponding = locate(trace_gas.type) in trace_gases
 			if(corresponding)
@@ -1034,7 +1034,7 @@ What are the archived variables for?
 				((check_moles < (1-MINIMUM_AIR_RATIO_TO_SUSPEND)*trace_gas.moles) || (check_moles > (1+MINIMUM_AIR_RATIO_TO_SUSPEND)*trace_gas.moles)))
 				return 0
 
-	if(trace_gases.len)
+	if(length(trace_gases))
 		for(var/datum/gas/trace_gas in trace_gases)
 			var/datum/gas/corresponding = locate(trace_gas.type) in trace_gases
 			if(corresponding)
@@ -1054,7 +1054,7 @@ What are the archived variables for?
 	nitrogen += right_side.nitrogen
 	toxins += right_side.toxins
 
-	if(trace_gases.len || right_side.trace_gases.len)
+	if(length(trace_gases) || length(right_side.trace_gases))
 		for(var/datum/gas/trace_gas in right_side.trace_gases)
 			var/datum/gas/corresponding = locate(trace_gas.type) in trace_gases
 			if(!corresponding)
@@ -1076,7 +1076,7 @@ What are the archived variables for?
 	nitrogen = max(nitrogen - right_side.nitrogen)
 	toxins = max(toxins - right_side.toxins)
 
-	if(trace_gases.len || right_side.trace_gases.len)
+	if(length(trace_gases) || length(right_side.trace_gases))
 		for(var/datum/gas/trace_gas in right_side.trace_gases)
 			var/datum/gas/corresponding = locate(trace_gas.type) in trace_gases
 			if(corresponding)
@@ -1091,7 +1091,7 @@ What are the archived variables for?
 	nitrogen *= factor
 	toxins *= factor
 
-	if(trace_gases && trace_gases.len)
+	if(length(trace_gases))
 		for(var/datum/gas/trace_gas in trace_gases)
 			trace_gas.moles *= factor
 
@@ -1104,7 +1104,7 @@ What are the archived variables for?
 	nitrogen /= factor
 	toxins /= factor
 
-	if(trace_gases && trace_gases.len)
+	if(length(trace_gases))
 		for(var/datum/gas/trace_gas in trace_gases)
 			trace_gas.moles /= factor
 

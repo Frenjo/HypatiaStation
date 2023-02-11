@@ -26,7 +26,7 @@
 		var/http[] = world.Export("http://exitlist.torproject.org/exit-addresses")
 
 		var/list/rawlist = file2list(http["CONTENT"])
-		if(rawlist.len)
+		if(length(rawlist))
 			fdel(TORFILE)
 			var/savefile/F = new(TORFILE)
 			for( var/line in rawlist )

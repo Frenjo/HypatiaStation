@@ -29,14 +29,14 @@
 	return null
 
 /obj/proc/check_access(obj/item/I)
-	if(!src.req_access.len && !src.req_one_access.len) //no requirements
+	if(!length(req_access) && !length(req_one_access)) //no requirements
 		return 1
 	if(!I)
 		return 0
 	for(var/req in src.req_access)
 		if(!(req in I.GetAccess())) //doesn't have this access
 			return 0
-	if(src.req_one_access.len)
+	if(length(req_one_access))
 		for(var/req in src.req_one_access)
 			if(req in I.GetAccess()) //has an access from the single access list
 				return 1
@@ -44,7 +44,7 @@
 	return 1
 
 /obj/proc/check_access_list(list/L)
-	if(!src.req_access.len && !src.req_one_access.len)
+	if(!length(req_access) && !length(req_one_access))
 		return 1
 	if(!L)
 		return 0
@@ -53,7 +53,7 @@
 	for(var/req in src.req_access)
 		if(!(req in L)) //doesn't have this access
 			return 0
-	if(src.req_one_access.len)
+	if(length(req_one_access))
 		for(var/req in src.req_one_access)
 			if(req in L) //has an access from the single access list
 				return 1

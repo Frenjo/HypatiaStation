@@ -52,7 +52,7 @@
 
 			to_chat(user, SPAN_INFO("Done printing."))
 		to_chat(user, SPAN_INFO("[M]'s Fingerprints: [md5(M.dna.uni_identity)]"))
-	if(!M.blood_DNA || !M.blood_DNA.len)
+	if(!length(M.blood_DNA))
 		to_chat(user, SPAN_INFO("No blood found on [M]."))
 		if(M.blood_DNA)
 			qdel(M.blood_DNA)
@@ -87,7 +87,7 @@
 		return
 
 	//General
-	if((!A.fingerprints || !A.fingerprints.len) && !A.suit_fibers && !A.blood_DNA)
+	if(!length(A.fingerprints) && !A.suit_fibers && !A.blood_DNA)
 		user.visible_message(
 			"\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,
 			SPAN_INFO("Unable to locate any fingerprints, materials, fibers, or blood on [A]!"),
@@ -102,20 +102,20 @@
 		return
 
 	//PRINTS
-	if(!A.fingerprints || !A.fingerprints.len)
+	if(!length(A.fingerprints))
 		if(A.fingerprints)
 			qdel(A.fingerprints)
 	else
-		to_chat(user, SPAN_INFO("Isolated [A.fingerprints.len] fingerprints: Data Stored: Scan with Hi-Res Forensic Scanner to retrieve."))
+		to_chat(user, SPAN_INFO("Isolated [length(A.fingerprints)] fingerprints: Data Stored: Scan with Hi-Res Forensic Scanner to retrieve."))
 		var/list/complete_prints = list()
 		for(var/i in A.fingerprints)
 			var/print = A.fingerprints[i]
 			if(stringpercent(print) <= FINGERPRINT_COMPLETE)
 				complete_prints += print
-		if(complete_prints.len < 1)
+		if(!length(complete_prints))
 			to_chat(user, SPAN_INFO("&nbsp;&nbsp;No intact prints found."))
 		else
-			to_chat(user, SPAN_INFO("&nbsp;&nbsp;Found [complete_prints.len] intact prints."))
+			to_chat(user, SPAN_INFO("&nbsp;&nbsp;Found [length(complete_prints)] intact prints."))
 			for(var/i in complete_prints)
 				to_chat(user, SPAN_INFO("&nbsp;&nbsp;&nbsp;&nbsp;[i]."))
 
@@ -164,14 +164,14 @@
 		var/list/fibers = data_entry[2]
 		if(!fibers)
 			fibers = list()
-		if(A.suit_fibers && A.suit_fibers.len)
-			for(var/j = 1, j <= A.suit_fibers.len, j++)	//Fibers~~~
+		if(length(A.suit_fibers))
+			for(var/j = 1, j <= length(A.suit_fibers), j++)	//Fibers~~~
 				if(!fibers.Find(A.suit_fibers[j]))	//It isn't!  Add!
 					fibers += A.suit_fibers[j]
 		var/list/blood = data_entry[3]
 		if(!blood)
 			blood = list()
-		if(A.blood_DNA && A.blood_DNA.len)
+		if(length(A.blood_DNA))
 			for(var/main_blood in A.blood_DNA)
 				if(!blood[main_blood])
 					blood[main_blood] = A.blood_DNA[blood]

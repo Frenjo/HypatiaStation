@@ -40,11 +40,11 @@
 				// Output all the compile-time errors
 				src << output(null, "tcserror")
 
-				if(compileerrors.len)
+				if(length(compileerrors))
 					src << output("<b>Compile Errors</b>", "tcserror")
 					for(var/scriptError/e in compileerrors)
 						src << output("<font color = red>\t>[e.message]</font color>", "tcserror")
-					src << output("([compileerrors.len] errors)", "tcserror")
+					src << output("([length(compileerrors)] errors)", "tcserror")
 
 					// Output compile errors to all other people viewing the code too
 					for(var/mob/M in Machine.viewingcode)
@@ -53,7 +53,7 @@
 							M << output("<b>Compile Errors</b>", "tcserror")
 							for(var/scriptError/e in compileerrors)
 								M << output("<font color = red>\t>[e.message]</font color>", "tcserror")
-							M << output("([compileerrors.len] errors)", "tcserror")
+							M << output("([length(compileerrors)] errors)", "tcserror")
 
 
 				else
@@ -91,11 +91,11 @@
 				// Output all the compile-time errors
 				src << output(null, "tcserror")
 
-				if(compileerrors.len)
+				if(length(compileerrors))
 					src << output("<b>Compile Errors</b>", "tcserror")
 					for(var/scriptError/e in compileerrors)
 						src << output("<font color = red>\t>[e.message]</font color>", "tcserror")
-					src << output("([compileerrors.len] errors)", "tcserror")
+					src << output("([length(compileerrors)] errors)", "tcserror")
 
 					// Output compile errors to all other people viewing the code too
 					for(var/mob/M in Machine.viewingcode)
@@ -104,7 +104,7 @@
 							M << output("<b>Compile Errors</b>", "tcserror")
 							for(var/scriptError/e in compileerrors)
 								M << output("<font color = red>\t>[e.message]</font color>", "tcserror")
-							M << output("([compileerrors.len] errors)", "tcserror")
+							M << output("([length(compileerrors)] errors)", "tcserror")
 
 				else
 					// Finally, we run the code!
@@ -118,7 +118,7 @@
 
 					var/datum/signal/signal = new()
 					signal.data["message"] = ""
-					if(Server.freq_listening.len > 0)
+					if(length(Server.freq_listening))
 						signal.frequency = Server.freq_listening[1]
 					else
 						signal.frequency = FREQUENCY_COMMON

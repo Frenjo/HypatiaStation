@@ -46,7 +46,7 @@
 
 /obj/item/weapon/gun/projectile/automatic/c20r/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()
-	if(!loaded.len && empty_mag)
+	if(!length(loaded) && empty_mag)
 		empty_mag.loc = get_turf(src.loc)
 		empty_mag = null
 		playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
@@ -56,7 +56,7 @@
 /obj/item/weapon/gun/projectile/automatic/c20r/update_icon()
 	..()
 	if(empty_mag)
-		icon_state = "c20r-[round(loaded.len,4)]"
+		icon_state = "c20r-[round(length(loaded), 4)]"
 	else
 		icon_state = "c20r"
 	return
@@ -84,7 +84,7 @@
 	update_icon()
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/update_icon()
-	icon_state = "l6[cover_open ? "open" : "closed"][mag_inserted ? round(loaded.len, 25) : "-empty"]"
+	icon_state = "l6[cover_open ? "open" : "closed"][mag_inserted ? round(length(loaded), 25) : "-empty"]"
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw/afterattack(atom/target as mob|obj|turf, mob/living/user as mob|obj, flag, params) //what I tried to do here is just add a check to see if the cover is open or not and add an icon_state change because I can't figure out how c-20rs do it with overlays
 	if(cover_open)
@@ -103,8 +103,8 @@
 		//drop the mag
 		empty_mag = new /obj/item/ammo_magazine/a762(src)
 		empty_mag.stored_ammo = loaded
-		empty_mag.icon_state = "a762-[round(loaded.len, 10)]"
-		empty_mag.desc = "There are [loaded.len] shells left!"
+		empty_mag.icon_state = "a762-[round(length(loaded), 10)]"
+		empty_mag.desc = "There are [length(loaded)] shells left!"
 		empty_mag.loc = get_turf(src.loc)
 		user.put_in_hands(empty_mag)
 		empty_mag = null

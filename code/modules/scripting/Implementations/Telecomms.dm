@@ -29,7 +29,7 @@
 	returnerrors += scanner.errors
 	returnerrors += parser.errors
 
-	if(returnerrors.len)
+	if(length(returnerrors))
 		return returnerrors
 
 	interpreter = new(program)

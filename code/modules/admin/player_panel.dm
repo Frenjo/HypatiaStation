@@ -392,7 +392,7 @@
 				if(1)
 					dat += "ETA: <a href='?src=\ref[src];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
 		dat += "<a href='?src=\ref[src];delay_round_end=1'>[global.CTgame_ticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
-		if(global.CTgame_ticker.mode.syndicates.len)
+		if(length(global.CTgame_ticker.mode.syndicates))
 			dat += "<br><table cellspacing=5><tr><td><B>Syndicates</B></td><td></td></tr>"
 			for(var/datum/mind/N in global.CTgame_ticker.mode.syndicates)
 				var/mob/M = N.current
@@ -416,7 +416,7 @@
 				dat += "in [disk_loc.loc] at ([disk_loc.x], [disk_loc.y], [disk_loc.z])</td></tr>"
 			dat += "</table>"
 
-		if(global.CTgame_ticker.mode.head_revolutionaries.len || global.CTgame_ticker.mode.revolutionaries.len)
+		if(length(global.CTgame_ticker.mode.head_revolutionaries) || length(global.CTgame_ticker.mode.revolutionaries))
 			dat += "<br><table cellspacing=5><tr><td><B>Revolutionaries</B></td><td></td></tr>"
 			for(var/datum/mind/N in global.CTgame_ticker.mode.head_revolutionaries)
 				var/mob/M = N.current
@@ -442,7 +442,7 @@
 					dat += "<tr><td><i>Head not found!</i></td></tr>"
 			dat += "</table>"
 
-		if(global.CTgame_ticker.mode.changelings.len > 0)
+		if(length(global.CTgame_ticker.mode.changelings))
 			dat += "<br><table cellspacing=5><tr><td><B>Changelings</B></td><td></td><td></td></tr>"
 			for(var/datum/mind/changeling in global.CTgame_ticker.mode.changelings)
 				var/mob/M = changeling.current
@@ -454,7 +454,7 @@
 					dat += "<tr><td><i>Changeling not found!</i></td></tr>"
 			dat += "</table>"
 
-		if(global.CTgame_ticker.mode.wizards.len > 0)
+		if(length(global.CTgame_ticker.mode.wizards))
 			dat += "<br><table cellspacing=5><tr><td><B>Wizards</B></td><td></td><td></td></tr>"
 			for(var/datum/mind/wizard in global.CTgame_ticker.mode.wizards)
 				var/mob/M = wizard.current
@@ -466,7 +466,7 @@
 					dat += "<tr><td><i>Wizard not found!</i></td></tr>"
 			dat += "</table>"
 
-		if(global.CTgame_ticker.mode.raiders.len > 0)
+		if(length(global.CTgame_ticker.mode.raiders))
 			dat += "<br><table cellspacing=5><tr><td><B>Raiders</B></td><td></td><td></td></tr>"
 			for(var/datum/mind/raider in global.CTgame_ticker.mode.raiders)
 				var/mob/M = raider.current
@@ -476,7 +476,7 @@
 					dat += "<td><A HREF='?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
 			dat += "</table>"
 
-		if(global.CTgame_ticker.mode.ninjas.len > 0)
+		if(length(global.CTgame_ticker.mode.ninjas))
 			dat += "<br><table cellspacing=5><tr><td><B>Ninjas</B></td><td></td><td></td></tr>"
 			for(var/datum/mind/ninja in global.CTgame_ticker.mode.ninjas)
 				var/mob/M = ninja.current
@@ -488,7 +488,7 @@
 					dat += "<tr><td><i>Ninja not found!</i></td></tr>"
 			dat += "</table>"
 
-		if(global.CTgame_ticker.mode.cult.len)
+		if(length(global.CTgame_ticker.mode.cult))
 			dat += "<br><table cellspacing=5><tr><td><B>Cultists</B></td><td></td></tr>"
 			for(var/datum/mind/N in global.CTgame_ticker.mode.cult)
 				var/mob/M = N.current
@@ -497,7 +497,7 @@
 					dat += "<td><A href='?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td></tr>"
 			dat += "</table>"
 
-		/*if(istype(ticker.mode, /datum/game_mode/anti_revolution) && ticker.mode:heads.len)	//comment out anti-revolution
+		/*if(istype(ticker.mode, /datum/game_mode/anti_revolution) && length(ticker.mode:heads))	//comment out anti-revolution
 			dat += "<br><table cellspacing=5><tr><td><B>Corrupt Heads</B></td><td></td></tr>"
 			for(var/datum/mind/N in ticker.mode:heads)
 				var/mob/M = N.current
@@ -506,7 +506,7 @@
 					dat += "<td><A href='?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td></tr>"
 			dat += "</table>"
 */
-		if(global.CTgame_ticker.mode.traitors.len > 0)
+		if(length(global.CTgame_ticker.mode.traitors))
 			dat += "<br><table cellspacing=5><tr><td><B>Traitors</B></td><td></td><td></td></tr>"
 			for(var/datum/mind/traitor in global.CTgame_ticker.mode.traitors)
 				var/mob/M = traitor.current

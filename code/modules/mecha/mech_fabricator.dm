@@ -185,7 +185,7 @@
 /obj/machinery/mecha_part_fabricator/proc/operation_allowed(mob/M)
 	if(isrobot(M) || isAI(M))
 		return 1
-	if(!istype(req_access) || !req_access.len)
+	if(!length(req_access))
 		return 1
 	else if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -229,7 +229,7 @@
 /obj/machinery/mecha_part_fabricator/proc/convert_part_set(set_name as text)
 	var/list/parts = part_sets[set_name]
 	if(istype(parts, /list))
-		for(var/i = 1; i <= parts.len; i++)
+		for(var/i = 1; i <= length(parts); i++)
 			var/path = parts[i]
 			var/part = new path(src)
 			if(part)
@@ -269,7 +269,7 @@
 	return 1
 
 /obj/machinery/mecha_part_fabricator/proc/remove_part_set(set_name as text)
-	for(var/i = 1, i <= part_sets.len, i++)
+	for(var/i = 1, i <= length(part_sets), i++)
 		if(part_sets[i] == set_name)
 			part_sets.Cut(i, ++i)
 	return
@@ -391,10 +391,10 @@
 		queue = list()
 	if(part)
 		queue[++queue.len] = part
-	return queue.len
+	return length(queue)
 
 /obj/machinery/mecha_part_fabricator/proc/remove_from_queue(index)
-	if(!isnum(index) || !istype(queue) || (index < 1 || index > queue.len))
+	if(!isnum(index) || !istype(queue) || (index < 1 || index > length(queue)))
 		return 0
 	queue.Cut(index, ++index)
 	return 1
@@ -403,7 +403,7 @@
 	var/obj/item/part = listgetindex(src.queue, 1)
 	if(!part)
 		remove_from_queue(1)
-		if(src.queue.len)
+		if(length(queue))
 			return process_queue()
 		else
 			return
@@ -427,15 +427,15 @@
 
 /obj/machinery/mecha_part_fabricator/proc/list_queue()
 	var/output = "<b>Queue contains:</b>"
-	if(!istype(queue) || !queue.len)
+	if(!length(queue))
 		output += "<br>Nothing"
 	else
 		output += "<ol>"
-		for(var/i = 1; i <= queue.len; i++)
+		for(var/i = 1; i <= length(queue); i++)
 			var/obj/item/part = listgetindex(src.queue, i)
 			if(istype(part))
 				if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
-					output += "<li[!check_resources(part)?" style='color: #f00;'":null]>[part.name] - [i>1?"<a href='?src=\ref[src];queue_move=-1;index=[i]' class='arrow'>&uarr;</a>":null] [i<queue.len?"<a href='?src=\ref[src];queue_move=+1;index=[i]' class='arrow'>&darr;</a>":null] <a href='?src=\ref[src];remove_from_queue=[i]'>Remove</a></li>"
+					output += "<li[!check_resources(part) ? " style='color: #f00;'" : null]>[part.name] - [i > 1 ? "<a href='?src=\ref[src];queue_move=-1;index=[i]' class='arrow'>&uarr;</a>" : null] [i < length(queue) ? "<a href='?src=\ref[src];queue_move=+1;index=[i]' class='arrow'>&darr;</a>" : null] <a href='?src=\ref[src];remove_from_queue=[i]'>Remove</a></li>"
 				else//Prevents junk items from even appearing in the list, and they will be silently removed when the fab processes
 					remove_from_queue(i)//Trash it
 					return list_queue()//Rebuild it
@@ -489,7 +489,7 @@
 
 
 /obj/machinery/mecha_part_fabricator/proc/sync(silent = null)
-/*		if(queue.len)
+/*		if(length(queue))
 			if(!silent)
 				temp = "Error.  Please clear processing queue before updating!"
 				src.updateUsrDialog()
@@ -645,7 +645,7 @@
 		var/index = new_filter.getNum("index")
 		var/new_index = index + new_filter.getNum("queue_move")
 		if(isnum(index) && isnum(new_index))
-			if(InRange(new_index, 1, queue.len))
+			if(InRange(new_index, 1, length(queue)))
 				queue.Swap(index, new_index)
 		return update_queue_on_page()
 	if(href_list["clear_queue"])

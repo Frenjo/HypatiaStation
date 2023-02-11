@@ -96,8 +96,8 @@ var/global/economy_init = 0
 
 	for(var/loc_type in SUBTYPESOF(/datum/trade_destination))
 		var/datum/trade_destination/D = new loc_type
-		GLOBL.weighted_randomevent_locations[D] = D.viable_random_events.len
-		GLOBL.weighted_mundaneevent_locations[D] = D.viable_mundane_events.len
+		GLOBL.weighted_randomevent_locations[D] = length(D.viable_random_events)
+		GLOBL.weighted_mundaneevent_locations[D] = length(D.viable_mundane_events)
 
 	create_station_account()
 

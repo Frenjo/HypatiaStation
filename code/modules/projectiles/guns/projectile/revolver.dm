@@ -10,7 +10,7 @@
 /obj/item/weapon/gun/projectile/detective/special_check(mob/living/carbon/human/M)
 	if(caliber == initial(caliber))
 		return 1
-	if(prob(70 - (loaded.len * 10)))	//minimum probability of 10, maximum of 60
+	if(prob(70 - (length(loaded) * 10)))	//minimum probability of 10, maximum of 60
 		to_chat(M, SPAN_DANGER("[src] blows up in your face."))
 		M.take_organ_damage(0, 20)
 		M.drop_item()
@@ -42,13 +42,13 @@
 	if(istype(A, /obj/item/weapon/screwdriver))
 		if(caliber == "38")
 			to_chat(user, SPAN_NOTICE("You begin to reinforce the barrel of [src]."))
-			if(loaded.len)
+			if(length(loaded))
 				afterattack(user, user)	//you know the drill
 				playsound(user, fire_sound, 50, 1)
 				user.visible_message(SPAN_DANGER("[src] goes off!"), SPAN_DANGER("[src] goes off in your face!"))
 				return
 			if(do_after(user, 30))
-				if(loaded.len)
+				if(length(loaded))
 					to_chat(user, SPAN_NOTICE("You can't modify it!"))
 					return
 				caliber = "357"
@@ -57,13 +57,13 @@
 		else if(caliber == "357")
 			to_chat(user, SPAN_NOTICE("You begin to revert the modifications to [src]."))
 
-			if(loaded.len)
+			if(length(loaded))
 				afterattack(user, user)	//and again
 				playsound(user, fire_sound, 50, 1)
 				user.visible_message(SPAN_DANGER("[src] goes off!"), SPAN_DANGER("[src] goes off in your face!"))
 				return
 			if(do_after(user, 30))
-				if(loaded.len)
+				if(length(loaded))
 					to_chat(user, SPAN_NOTICE("You can't modify it!"))
 					return
 				caliber = "38"
@@ -85,7 +85,7 @@
 
 /obj/item/weapon/gun/projectile/detective/semiauto/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()
-	if(!loaded.len && empty_mag)
+	if(!length(loaded) && empty_mag)
 		empty_mag.loc = get_turf(src.loc)
 		empty_mag = null
 		to_chat(user, SPAN_NOTICE("The magazine falls out and clatters on the floor!"))
@@ -127,13 +127,13 @@
 
 	var/num_loaded = 0
 	if(istype(A, /obj/item/ammo_magazine))
-		if((load_method == 2) && loaded.len)
+		if((load_method == 2) && length(loaded))
 			return
 		var/obj/item/ammo_magazine/AM = A
 		for(var/obj/item/ammo_casing/AC in AM.stored_ammo)
-			if(getAmmo() > 0 || loaded.len >= max_shells)
+			if(getAmmo() > 0 || length(loaded) >= max_shells)
 				break
-			if(AC.caliber == caliber && loaded.len < max_shells)
+			if(AC.caliber == caliber && length(loaded) < max_shells)
 				AC.loc = src
 				AM.stored_ammo -= AC
 				loaded += AC
@@ -156,7 +156,7 @@
 		Spin()
 
 /obj/item/weapon/gun/projectile/russian/attack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj)
-	if(!loaded.len)
+	if(!length(loaded))
 		user.visible_message(SPAN_WARNING("*click*"), SPAN_WARNING("*click*"))
 		playsound(user, 'sound/weapons/empty.ogg', 100, 1)
 		return

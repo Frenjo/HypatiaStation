@@ -207,7 +207,7 @@ var/global/floorIsLava = 0
 		note_keys = sortList(note_keys)
 
 		// Display the notes on the current page
-		var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
+		var/number_pages = length(note_keys) / PLAYER_NOTES_ENTRIES_PER_PAGE
 		// Emulate ceil(why does BYOND not have ceil)
 		if(number_pages != round(number_pages))
 			number_pages = round(number_pages) + 1
@@ -217,7 +217,7 @@ var/global/floorIsLava = 0
 
 		var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
 		var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
-		upper_bound = min(upper_bound, note_keys.len)
+		upper_bound = min(upper_bound, length(note_keys))
 		for(var/index = lower_bound, index <= upper_bound, index++)
 			var/t = note_keys[index]
 			dat += "<tr><td><a href='?src=\ref[src];notes=show;ckey=[t]'>[t]</a></td></tr>"
@@ -239,7 +239,8 @@ var/global/floorIsLava = 0
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || !infos.len) return 0
+	if(!length(infos))
+		return 0
 	else return 1
 
 
@@ -992,11 +993,11 @@ var/global/floorIsLava = 0
 		if(findtext("[path]", object))
 			matches += path
 
-	if(matches.len == 0)
+	if(!length(matches))
 		return
 
 	var/chosen
-	if(matches.len == 1)
+	if(length(matches) == 1)
 		chosen = matches[1]
 	else
 		chosen = input("Select an atom type", "Spawn Atom", matches[1]) as null|anything in matches

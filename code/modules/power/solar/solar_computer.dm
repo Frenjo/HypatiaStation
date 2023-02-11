@@ -95,7 +95,7 @@
 	t += "<B><span class='highlight'>Connected devices:</span></B><div class='statusDisplay'>"
 
 	t += "<A href='?src=\ref[src];search_connected=1'>Search for devices</A><BR>"
-	t += "Solar panels : [connected_panels.len] connected<BR>"
+	t += "Solar panels : [length(connected_panels)] connected<BR>"
 	t += "Solar tracker : [connected_tracker ? "<span class='good'>Found</span>" : "<span class='bad'>Not found</span>"]</div><BR>"
 
 	t += "<A href='?src=\ref[src];close=1'>Close</A>"

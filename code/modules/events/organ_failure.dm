@@ -15,11 +15,11 @@
 	for(var/mob/living/carbon/human/G in GLOBL.player_list)
 		if(G.mind && G.mind.current && G.mind.current.stat != DEAD && G.health > 70)
 			candidates += G
-	if(!candidates.len)
+	if(!length(candidates))
 		return
 	candidates = shuffle(candidates)//Incorporating Donkie's list shuffle
 
-	while(severity > 0 && candidates.len)
+	while(severity > 0 && length(candidates))
 		var/mob/living/carbon/human/C = candidates[1]
 
 		var/acute = prob(15)

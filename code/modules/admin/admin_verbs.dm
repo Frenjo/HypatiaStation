@@ -730,7 +730,7 @@ var/list/admin_verbs_donor = list(
 		for(var/datum/job/J in global.CToccupations.occupations)
 			if(J.current_positions >= J.total_positions && J.total_positions != -1)
 				jobs += J.title
-		if(!jobs.len)
+		if(!length(jobs))
 			usr << "There are no fully staffed jobs."
 			return
 		var/job = input("Please select job slot to free", "Free job slot") as null|anything in jobs

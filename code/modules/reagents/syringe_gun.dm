@@ -17,18 +17,18 @@
 	..()
 	if(!(usr in view(2)) && usr != src.loc)
 		return
-	to_chat(usr, SPAN_INFO("[syringes.len] / [max_syringes] syringes."))
+	to_chat(usr, SPAN_INFO("[length(syringes)] / [max_syringes] syringes."))
 
 /obj/item/weapon/gun/syringe/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = I
 		if(S.mode != 2) //SYRINGE_BROKEN in syringes.dm
-			if(syringes.len < max_syringes)
+			if(length(syringes) < max_syringes)
 				user.drop_item()
 				I.loc = src
 				syringes += I
 				to_chat(user, SPAN_INFO("You put the syringe in [src]."))
-				to_chat(user, SPAN_INFO("[syringes.len] / [max_syringes] syringes."))
+				to_chat(user, SPAN_INFO("[length(syringes)] / [max_syringes] syringes."))
 			else
 				to_chat(usr, SPAN_WARNING("[src] cannot hold more syringes."))
 		else
@@ -40,13 +40,13 @@
 	..()
 
 /obj/item/weapon/gun/syringe/can_fire()
-	return syringes.len
+	return length(syringes)
 
 /obj/item/weapon/gun/syringe/can_hit(mob/living/target as mob, mob/living/user as mob)
 	return 1		//SHOOT AND LET THE GOD GUIDE IT (probably will hit a wall anyway)
 
 /obj/item/weapon/gun/syringe/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
-	if(syringes.len)
+	if(length(syringes))
 		spawn(0)
 			fire_syringe(target,user)
 	else

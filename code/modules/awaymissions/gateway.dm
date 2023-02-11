@@ -68,13 +68,13 @@
 		toggleoff()
 		break
 
-	if(linked.len == 8)
+	if(length(linked) == 8)
 		ready = TRUE
 
 /obj/machinery/gateway/centerstation/proc/toggleon(mob/user as mob)
 	if(!ready)
 		return
-	if(linked.len != 8)
+	if(length(linked) != 8)
 		return
 	if(!powered())
 		return
@@ -170,13 +170,13 @@
 		toggleoff()
 		break
 
-	if(linked.len == 8)
+	if(length(linked) == 8)
 		ready = TRUE
 
 /obj/machinery/gateway/centeraway/proc/toggleon(mob/user as mob)
 	if(!ready)
 		return
-	if(linked.len != 8)
+	if(length(linked) != 8)
 		return
 	if(!stationgate)
 		to_chat(user, SPAN_NOTICE("Error: No destination found."))

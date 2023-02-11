@@ -197,11 +197,11 @@
 			break
 
 
-		if(index>tokens.len)																						//End of File
+		if(index > length(tokens))																						//End of File
 			errors += new/scriptError/EndOfFile()
 			break
 		var/token/ntok
-		if(index + 1 <= tokens.len)
+		if(index + 1 <= length(tokens))
 			ntok = tokens[index + 1]
 
 		if(istype(curToken, /token/symbol) && curToken.value == "(")			//Parse parentheses expression

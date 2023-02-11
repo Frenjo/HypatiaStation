@@ -70,7 +70,7 @@
 				else
 					dat += "<a href='?src=\ref[src];choice=create_account;'>Create new account</a><br><br>"
 					dat += "<table border=1 style='width:100%'>"
-					for(var/i = 1, i <= all_money_accounts.len, i++)
+					for(var/i = 1, i <= length(all_money_accounts), i++)
 						var/datum/money_account/D = all_money_accounts[i]
 						dat += "<tr>"
 						dat += "<td>#[D.account_number]</td>"
@@ -160,7 +160,7 @@
 							access_level = 1
 			if("view_account_detail")
 				var/index = text2num(href_list["account_index"])
-				if(index && index <= all_money_accounts.len)
+				if(index && index <= length(all_money_accounts))
 					detailed_account_view = all_money_accounts[index]
 			if("view_accounts_list")
 				detailed_account_view = null

@@ -27,7 +27,7 @@
 	if(!(usr in view(2)) && usr != src.loc)
 		return
 	to_chat(usr, SPAN_INFO("It contains:"))
-	if(reagents && reagents.reagent_list.len)
+	if(reagents && length(reagents.reagent_list))
 		for(var/datum/reagent/R in reagents.reagent_list)
 			to_chat(usr, SPAN_INFO("[R.volume] units of [R.name]"))
 	else

@@ -31,7 +31,7 @@
 	antigen |= text2num(pick(antigen_list))
 	spreadtype = prob(70) ? "Airborne" : "Contact"
 
-	if(GLOBL.all_species.len)
+	if(length(GLOBL.all_species))
 		affected_species = get_infectable_species()
 
 /proc/get_infectable_species()
@@ -41,8 +41,8 @@
 		var/datum/species/S = GLOBL.all_species[specie]
 		if(!(S.flags & IS_SYNTHETIC))
 			meat += S.name
-	if(meat.len)
-		var/num = rand(1, meat.len)
+	if(length(meat))
+		var/num = rand(1, length(meat))
 		for(var/i = 0, i < num, i++)
 			var/picked = pick(meat)
 			meat -= picked
@@ -115,7 +115,7 @@
 	if (prob(5))
 		antigen = text2num(pick(antigen_list))
 		antigen |= text2num(pick(antigen_list))
-	if (prob(5) && GLOBL.all_species.len)
+	if(prob(5) && length(GLOBL.all_species))
 		affected_species = get_infectable_species()
 
 /datum/disease2/disease/proc/getcopy()
@@ -204,7 +204,7 @@ var/global/list/virusDB = list()
 		if(G.client && G.stat != DEAD)
 			candidates += G
 
-	if(!candidates.len)
+	if(!length(candidates))
 		return
 
 	candidates = shuffle(candidates)
@@ -217,7 +217,7 @@ var/global/list/virusDB = list()
 	for(var/mob/living/carbon/human/G in GLOBL.player_list)
 		if(G.client && G.stat != DEAD)
 			candidates += G
-	if(!candidates.len)
+	if(!length(candidates))
 		return
 
 	candidates = shuffle(candidates)

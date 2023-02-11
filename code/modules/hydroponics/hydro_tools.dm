@@ -317,7 +317,7 @@
 		var/obj/item/weapon/seedbag/S = O
 		if (S.mode == 1)
 			for (var/obj/item/seeds/G in locate(src.x,src.y,src.z))
-				if (S.contents.len < S.capacity)
+				if(length(S.contents) < S.capacity)
 					S.contents += G;
 					if(S.item_quants[G.name])
 						S.item_quants[G.name]++
@@ -329,7 +329,7 @@
 					return
 			user << "\blue You pick up all the seeds."
 		else
-			if (S.contents.len < S.capacity)
+			if(length(S.contents) < S.capacity)
 				S.contents += src;
 				if(S.item_quants[name])
 					S.item_quants[name]++
@@ -344,7 +344,7 @@
 
 	var/dat = "<TT><b>Select an item:</b><br>"
 
-	if (contents.len == 0)
+	if(!length(contents))
 		dat += "<font color = 'red'>No seeds loaded!</font>"
 	else
 		for (var/O in item_quants)

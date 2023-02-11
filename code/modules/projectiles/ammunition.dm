@@ -68,5 +68,5 @@
 
 /obj/item/ammo_magazine/update_icon()
 	if(multiple_sprites)
-		icon_state = "[initial(icon_state)]-[stored_ammo.len]"
-	desc = "There are [stored_ammo.len] shell\s left!"
+		icon_state = "[initial(icon_state)]-[length(stored_ammo)]"
+	desc = "There are [length(stored_ammo)] shell\s left!"

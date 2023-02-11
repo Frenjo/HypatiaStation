@@ -13,12 +13,12 @@
 
 	var/list/query_list = SDQL2_tokenize(query_text)
 
-	if(!query_list || query_list.len < 1)
+	if(!length(query_list))
 		return
 
 	var/list/query_tree = SDQL_parse(query_list)
 
-	if(query_tree.len < 1)
+	if(!length(query_tree))
 		return
 
 	var/list/from_objs = list()
@@ -214,7 +214,7 @@
 	var/result = 0
 	var/val
 
-	for(var/i = start, i <= expression.len, i++)
+	for(var/i = start, i <= length(expression), i++)
 		var/op = ""
 
 		if(i > start)
@@ -269,7 +269,7 @@
 	var/i = start
 	var/val = null
 
-	if(i > expression.len)
+	if(i > length(expression))
 		return list("val" = null, "i" = i)
 
 	if(istype(expression[i], /list))
@@ -301,7 +301,7 @@
 
 	else
 		val = SDQL_var(object, expression, i)
-		i = expression.len
+		i = length(expression)
 
 	return list("val" = val, "i" = i)
 
@@ -309,7 +309,7 @@
 
 	if(expression[start] in object.vars)
 
-		if(start < expression.len && expression[start + 1] == ".")
+		if(start < length(expression) && expression[start + 1] == ".")
 			return SDQL_var(object.vars[expression[start]], expression[start + 2])
 
 		else

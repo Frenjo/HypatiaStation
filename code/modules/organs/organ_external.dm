@@ -151,9 +151,9 @@
 					possible_points += parent
 				if(children)
 					possible_points += children
-				if(forbidden_limbs.len)
+				if(length(forbidden_limbs))
 					possible_points -= forbidden_limbs
-				if(possible_points.len)
+				if(length(possible_points))
 					//And pass the pain around
 					var/datum/organ/external/target = pick(possible_points)
 					target.take_damage(brute, burn, sharp, edge, used_weapon, forbidden_limbs + src)
@@ -231,7 +231,7 @@ This function completely restores a damaged organ to perfect condition.
 		owner.custom_pain("You feel something rip in your [display_name]!", 1)
 
 		// first check whether we can widen an existing wound
-	if(wounds.len > 0 && prob(max(50 + (number_wounds - 1) * 10, 90)))
+	if(length(wounds) > 0 && prob(max(50 + (number_wounds - 1) * 10, 90)))
 		if((type == CUT || type == BRUISE) && damage >= 5)
 			//we need to make sure that the wound we are going to worsen is compatible with the type of damage...
 			var/list/compatible_wounds = list()
@@ -239,7 +239,7 @@ This function completely restores a damaged organ to perfect condition.
 				if(W.can_worsen(type, damage))
 					compatible_wounds += W
 
-			if(compatible_wounds.len)
+			if(length(compatible_wounds))
 				var/datum/wound/W = pick(compatible_wounds)
 				W.open_wound(damage)
 				if(prob(25))
@@ -460,7 +460,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 		//configurable regen speed woo, no-regen hardcore or instaheal hugbox, choose your destiny
 		heal_amt = heal_amt * CONFIG_GET(organ_regeneration_multiplier)
 		// amount of healing is spread over all the wounds
-		heal_amt = heal_amt / (wounds.len + 1)
+		heal_amt = heal_amt / (length(wounds) + 1)
 		// making it look prettier on scanners
 		heal_amt = round(heal_amt,0.1)
 		W.heal_damage(heal_amt)

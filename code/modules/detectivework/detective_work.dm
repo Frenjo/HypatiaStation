@@ -46,7 +46,7 @@
 		if(prob(20 * item_multiplier) && !(fibertext in suit_fibers))
 			//world.log << "Added fibertext: [fibertext]"
 			suit_fibers += "Material from a pair of [M.gloves.name]."
-	if(!suit_fibers.len)
+	if(!length(suit_fibers))
 		qdel(suit_fibers)
 
 var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(print) proc, and means about 80% of
@@ -171,7 +171,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 				card = I
 				if(!card.fingerprints)
 					card.fingerprints = list()
-				if(card.amount > 1 || !card.fingerprints.len)
+				if(card.amount > 1 || !length(card.fingerprints))
 					usr << "\red ERROR: No prints/too many cards."
 					if(card.loc == src)
 						card.loc = src.loc
@@ -188,10 +188,10 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 				delete_dossier(href_list["delete_record"])
 			if(href_list["delete_aux"])
 				delete_record(href_list["delete_aux"])
-			if((!misc || !misc.len) && (!files || !files.len))
+			if(!length(misc) && !length(files))
 				temp = "Database is empty."
 			else
-				if(files && files.len)
+				if(length(files))
 					temp = "<b>Criminal Evidence Database</b><br><br>"
 					temp += "Consolidated data points:<br>"
 					for(var/print in files)
@@ -200,7 +200,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 					temp += "<br><a href='?src=\ref[src];operation=card'>{Insert Finger Print Card (To complete a Dossier)}</a><br><br><br>"
 				else
 					temp = ""
-				if(misc && misc.len)
+				if(length(misc))
 					temp += {"<b>Auxiliary Evidence Database</b><br><br>
 					This is where anything without fingerprints goes.<br><br>"}
 					for(var/atom in misc)
@@ -230,23 +230,23 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 					var/list/prints = outputs[1]
 					temp += "<big><b>Object:</b> [outputs[4]]</big><br>"
 					temp += "&nbsp<b>Fingerprints:</b><br>"
-					temp += "&nbsp;&nbsp;&nbsp;&nbsp;[prints.len] Unique fingerprints found.<br>"
+					temp += "&nbsp;&nbsp;&nbsp;&nbsp;[length(prints)] Unique fingerprints found.<br>"
 					var/complete_prints = 0
 					for(var/print in prints)
 						if(stringpercent(prints[print]) <= FINGERPRINT_COMPLETE)
 							complete_prints++
 							temp += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[prints[print]]<br>"
 					if(complete_prints)
-						temp += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And [prints.len - complete_prints] unknown unique prints.<br>"
+						temp += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And [length(prints) - complete_prints] unknown unique prints.<br>"
 					else
 						temp += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No prints of sufficient completeness.<br>"
 					var/list/fibers = outputs[2]
-					if(fibers && fibers.len)
+					if(length(fibers))
 						temp += "&nbsp<b>Fibers:</b><br>"
-						for(var/j = 1, j <= fibers.len, j++)
+						for(var/j = 1, j <= length(fibers), j++)
 							temp += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[fibers[j]]<br>"
 					var/list/blood = outputs[3]
-					if(blood && blood.len)
+					if(length(blood))
 						temp += "&nbsp<b>Blood:</b><br>"
 						for(var/named in blood)
 							temp += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type: [blood[named]], DNA: [named]<br>"
@@ -276,23 +276,23 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 					var/list/prints = outputs[1]
 					P.info += "<big><b>Object:</b> [outputs[4]]</big><br>"
 					P.info += "&nbsp<b>Fingerprints:</b><br>"
-					P.info += "&nbsp;&nbsp;&nbsp;&nbsp;[prints.len] Unique fingerprints found.<br>"
+					P.info += "&nbsp;&nbsp;&nbsp;&nbsp;[length(prints)] Unique fingerprints found.<br>"
 					var/complete_prints = 0
 					for(var/print in prints)
 						if(stringpercent(prints[print]) <= FINGERPRINT_COMPLETE)
 							complete_prints++
 							P.info += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[prints[print]]<br>"
 					if(complete_prints)
-						P.info += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And [prints.len - complete_prints] unknown unique prints.<br>"
+						P.info += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And [length(prints) - complete_prints] unknown unique prints.<br>"
 					else
 						P.info += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No prints of sufficient completeness.<br>"
 					var/list/fibers = outputs[2]
-					if(fibers && fibers.len)
+					if(length(fibers))
 						P.info += "&nbsp<b>Fibers:</b><br>"
-						for(var/j = 1, j <= fibers.len, j++)
+						for(var/j = 1, j <= length(fibers), j++)
 							P.info += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[fibers[j]]<br>"
 					var/list/blood = outputs[3]
-					if(blood && blood.len)
+					if(length(blood))
 						P.info += "&nbsp<b>Blood:</b><br>"
 						for(var/named in blood)
 							P.info += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type: [blood[named]], DNA: [named]<br>"
@@ -307,23 +307,23 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 				var/list/prints = outputs[4]
 				if(prints)
 					temp += "&nbsp<b>Fingerprints:</b><br>"
-					temp += "&nbsp;&nbsp;&nbsp;&nbsp;[prints.len] Unique fingerprints found.<br>"
+					temp += "&nbsp;&nbsp;&nbsp;&nbsp;[length(prints)] Unique fingerprints found.<br>"
 					var/complete_prints = 0
 					for(var/print in prints)
 						if(stringpercent(prints[print]) <= FINGERPRINT_COMPLETE)
 							complete_prints++
 							temp += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[prints[print]]<br>"
 					if(complete_prints)
-						temp += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And [prints.len - complete_prints] unknown unique prints.<br>"
+						temp += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And [length(prints) - complete_prints] unknown unique prints.<br>"
 					else
 						temp += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No prints of sufficient completeness.<br>"
 				var/list/fibers = outputs[1]
-				if(fibers && fibers.len)
+				if(length(fibers))
 					temp += "&nbsp<b>Fibers:</b><br>"
 					for(var/fiber in fibers)
 						temp += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[fiber]<br>"
 				var/list/blood = outputs[2]
-				if(blood && blood.len)
+				if(length(blood))
 					temp += "&nbsp<b>Blood:</b><br>"
 					for(var/named in blood)
 						temp += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type: [blood[named]], DNA: [named]<br>"
@@ -343,23 +343,23 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 				var/list/prints = outputs[4]
 				if(prints)
 					P.info += "&nbsp<b>Fingerprints:</b><br>"
-					P.info += "&nbsp;&nbsp;&nbsp;&nbsp;[prints.len] Unique fingerprints found.<br>"
+					P.info += "&nbsp;&nbsp;&nbsp;&nbsp;[length(prints)] Unique fingerprints found.<br>"
 					var/complete_prints = 0
 					for(var/print in prints)
 						if(stringpercent(prints[print]) <= FINGERPRINT_COMPLETE)
 							complete_prints++
 							P.info += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[prints[print]]<br>"
 					if(complete_prints)
-						P.info += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And [prints.len - complete_prints] unknown unique prints.<br>"
+						P.info += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And [length(prints) - complete_prints] unknown unique prints.<br>"
 					else
 						P.info += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No prints of sufficient completeness.<br>"
 				var/list/fibers = outputs[1]
-				if(fibers && fibers.len)
+				if(length(fibers))
 					P.info += "&nbsp<b>Fibers:</b><br>"
 					for(var/fiber in fibers)
 						P.info += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[fiber]<br>"
 				var/list/blood = outputs[2]
-				if(blood && blood.len)
+				if(length(blood))
 					P.info += "&nbsp<b>Blood:</b><br>"
 					for(var/named in blood)
 						P.info += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type: [blood[named]], DNA: [named]<br>"
@@ -408,7 +408,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 					if(!scanning.fingerprints)
 						scan_data += "No Fingerprints Found<br><br>"
 					else
-						scan_data += "Isolated [scanning.fingerprints.len] Fingerprints.  Loaded into database.<br>"
+						scan_data += "Isolated [length(scanning.fingerprints)] Fingerprints.  Loaded into database.<br>"
 						add_data(scanning)
 
 					if(!scanning.suit_fibers)
@@ -579,7 +579,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 			data_point[4] = atom_name
 			var/list/new_file[2]
 			new_file[1] = atom_fingerprints[main_print]
-			new_file[2] = "Dossier [files.len + 1]"
+			new_file[2] = "Dossier [length(files) + 1]"
 			new_file[atom_reference] = data_point
 			files[main_print] = new_file
 	return 1
@@ -596,7 +596,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 	return
 
 /obj/machinery/computer/forensic_scanning/proc/process_card()	//Same as above, but for fingerprint cards
-	if(card.fingerprints && !(card.amount > 1) && islist(card.fingerprints) && files && files.len)
+	if(card.fingerprints && !(card.amount > 1) && islist(card.fingerprints) && length(files))
 		to_chat(usr, "You insert the card, and it is destroyed by the machinery in the process of comparing prints.")
 		var/found = 0
 		for(var/master_print in card.fingerprints)
@@ -618,12 +618,12 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 	return
 
 /obj/machinery/computer/forensic_scanning/proc/delete_record(atom_ref)	//Deletes an entry in the misc database at the given location
-	if(misc && misc.len)
+	if(length(misc))
 		misc.Remove(atom_ref)
 	return
 
 /obj/machinery/computer/forensic_scanning/proc/delete_dossier(print)	//Deletes a Dossier at a given location.
-	if(files && files.len)
+	if(length(files))
 		files.Remove(print)
 	return
 

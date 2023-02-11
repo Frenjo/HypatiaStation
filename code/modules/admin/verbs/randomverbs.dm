@@ -441,16 +441,16 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			new_character.equip_space_ninja()
 			new_character.internal = new_character.s_store
 			new_character.internals.icon_state = "internal1"
-			if(GLOBL.ninjastart.len == 0)
+			if(!length(GLOBL.ninjastart))
 				new_character << "<B>\red A proper starting location for you could not be found, please report this bug!</B>"
 				new_character << "<B>\red Attempting to place at a carpspawn.</B>"
 				for(var/obj/effect/landmark/L in GLOBL.landmarks_list)
 					if(L.name == "carpspawn")
 						GLOBL.ninjastart.Add(L)
-				if(GLOBL.ninjastart.len == 0 && GLOBL.latejoin.len > 0)
+				if(!length(GLOBL.ninjastart) && length(GLOBL.latejoin))
 					new_character << "<B>\red Still no spawneable locations could be found. Defaulting to latejoin.</B>"
 					new_character.loc = pick(GLOBL.latejoin)
-				else if(GLOBL.ninjastart.len == 0)
+				else if(!length(GLOBL.ninjastart))
 					new_character << "<B>\red Still no spawneable locations could be found. Aborting.</B>"
 
 		if("Death Commando")//Leaves them at late-join spawn.

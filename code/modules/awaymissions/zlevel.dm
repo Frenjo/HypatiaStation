@@ -1,12 +1,12 @@
 /proc/createRandomZlevel()
-	if(GLOBL.awaydestinations.len)	//crude, but it saves another var!
+	if(length(GLOBL.awaydestinations))	//crude, but it saves another var!
 		return
 
 	var/list/possible_z_levels = list()
 	to_world(SPAN_DANGER("Searching for away missions..."))
 
 	var/list/mission_list = file2list("maps/RandomZLevels/fileList.txt")
-	if(!mission_list.len)
+	if(!length(mission_list))
 		return
 
 	for(var/t in mission_list)
@@ -35,7 +35,7 @@
 			continue
 		possible_z_levels.Add(name)
 
-	if(possible_z_levels.len)
+	if(length(possible_z_levels))
 		to_world(SPAN_DANGER("Loading away mission..."))
 
 		var/map = pick(possible_z_levels)

@@ -62,14 +62,14 @@
 	for(var/areapath in typesof(spawn_area_type))
 		//world << "	checking [areapath]"
 		var/area/A = locate(areapath)
-		//world << "	A: [A], contents.len: [A.contents.len]"
+		//world << "	A: [A], contents.len: [length(A.contents)]"
 		//for(var/area/B in A.related)
-			//world << "	B: [B], contents.len: [B.contents.len]"
+			//world << "	B: [B], contents.len: [length(B.contents)]"
 		//	for(var/turf/simulated/floor/F in B.contents)
-		//		if(!F.contents.len)
+		//		if(!length(F.contents))
 		//			turfs += F
 		for(var/turf/simulated/floor/F in A.contents)
-			if(!F.contents.len)
+			if(!length(F.contents))
 				turfs += F
 
 	var/list/spawn_types = list()
@@ -90,7 +90,7 @@
 
 	spawn(0)
 		var/num = rand(2,max_number)
-		while(turfs.len > 0 && num > 0)
+		while(length(turfs) && num > 0)
 			var/turf/simulated/floor/T = pick(turfs)
 			turfs.Remove(T)
 			num--

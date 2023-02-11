@@ -364,14 +364,14 @@
 			new_gun.max_shells = rand(1, 12)
 			if(prob(33))
 				var/num_bullets = rand(1, new_gun.max_shells)
-				if(num_bullets < new_gun.loaded.len)
+				if(num_bullets < length(new_gun.loaded))
 					new_gun.loaded.Cut()
 					for(var/i = 1, i <= num_bullets, i++)
 						var/A = text2path(new_gun.ammo_type)
 						new_gun.loaded += new A(new_gun)
 				else
 					for(var/obj/item/I in new_gun)
-						if(new_gun.loaded.len > num_bullets)
+						if(length(new_gun.loaded) > num_bullets)
 							if(I in new_gun.loaded)
 								new_gun.loaded.Remove(I)
 								I.loc = null
@@ -486,11 +486,11 @@
 			descriptors.Add("is encircled with bands of [pick("quadrinium", "cordite", "ferritic-alloy", "plasteel", "duranium")]")
 		if(prob(30))
 			descriptors.Add("menaces with spikes of [pick("solid plasma", "uranium", "white pearl", "black steel")]")
-		if(descriptors.len > 0)
+		if(length(descriptors))
 			decorations = "It "
-			for(var/index = 1, index <= descriptors.len, index++)
+			for(var/index = 1, index <= length(descriptors), index++)
 				if(index > 1)
-					if(index == descriptors.len)
+					if(index == length(descriptors))
 						decorations += " and "
 					else
 						decorations += ", "

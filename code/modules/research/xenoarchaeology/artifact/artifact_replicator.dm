@@ -73,7 +73,7 @@
 		construction[button_desc] = type
 
 /obj/machinery/replicator/process()
-	if(spawning_types.len && powered())
+	if(length(spawning_types) && powered())
 		spawn_progress++
 		if(spawn_progress > max_spawn_ticks)
 			visible_message(SPAN_INFO("\icon[src] [src] pings!"))
@@ -84,7 +84,7 @@
 			spawn_progress = 0
 			max_spawn_ticks = rand(5, 30)
 
-			if(!spawning_types.len)
+			if(!length(spawning_types))
 				use_power = 1
 				icon_state = "borgcharger0(old)"
 
@@ -97,7 +97,7 @@
 /obj/machinery/replicator/interact(mob/user)
 	var/dat = "The control panel displays an incomprehensible selection of controls, many with unusual markings or text around them.<br>"
 	dat += "<br>"
-	for(var/index = 1, index<=construction.len, index++)
+	for(var/index = 1, index <= length(construction), index++)
 		dat += "<A href='?src=\ref[src];activate=[index]'>\[[construction[index]]\]</a><br>"
 
 	user << browse(dat, "window=alien_replicator")
@@ -105,8 +105,8 @@
 /obj/machinery/replicator/Topic(href, href_list)
 	if(href_list["activate"])
 		var/index = text2num(href_list["activate"])
-		if(index > 0 && index <= construction.len)
-			if(spawning_types.len)
+		if(index > 0 && index <= length(construction))
+			if(length(spawning_types))
 				visible_message(SPAN_INFO("\icon[src] a [pick("light", "dial", "display", "meter", "pad")] on [src]'s front [pick("blinks","flashes")] [pick("red", "yellow", "blue", "orange", "purple", "green", "white")]."))
 			else
 				visible_message(SPAN_INFO("\icon[src] [src]'s front compartment slides shut."))

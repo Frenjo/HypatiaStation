@@ -63,7 +63,7 @@
 				var/template_number = templates.Find(test_template)
 				if(!template_number)
 					templates.Add(test_template)
-					template_number = templates.len
+					template_number = length(templates)
 
 				template_buffer += "[template_number],"
 
@@ -71,9 +71,9 @@
 
 		template_buffer += "."
 
-	var/key_length = round/*floor*/(log(letter_digits.len, templates.len - 1) + 1)
-	var/list/keys[templates.len]
-	for(var/key_pos = 1; key_pos <= templates.len; key_pos++)
+	var/key_length = round/*floor*/(log(length(letter_digits), length(templates) - 1) + 1)
+	var/list/keys[length(templates)]
+	for(var/key_pos = 1; key_pos <= length(templates); key_pos++)
 		keys[key_pos] = get_model_key(key_pos, key_length)
 		dmm_text += {""[keys[key_pos]]" = ([templates[key_pos]])\n"}
 
@@ -170,8 +170,8 @@
 	var/key = ""
 	var/working_digit = which - 1
 	for(var/digit_pos = key_length; digit_pos >= 1; digit_pos--)
-		var/place_value = round/*floor*/(working_digit / (letter_digits.len ** (digit_pos - 1)))
-		working_digit -= place_value * (letter_digits.len ** (digit_pos - 1))
+		var/place_value = round/*floor*/(working_digit / (length(letter_digits) ** (digit_pos - 1)))
+		working_digit -= place_value * (length(letter_digits) ** (digit_pos - 1))
 		key = "[key][letter_digits[place_value + 1]]"
 	return key
 

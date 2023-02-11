@@ -187,7 +187,7 @@
 	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
 
 	var/find_prob = 0
-	if(affected.implants.len)
+	if(length(affected.implants))
 		var/obj/item/obj = affected.implants[1]
 		if(istype(obj, /obj/item/weapon/implant))
 			var/obj/item/weapon/implant/imp = obj
@@ -249,7 +249,7 @@
 		SPAN_WARNING("Your hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!")
 	)
 	affected.createwound(CUT, 20)
-	if(affected.implants.len)
+	if(length(affected.implants))
 		var/fail_prob = 10
 		fail_prob += 100 - tool_quality(tool)
 		if(prob(fail_prob))

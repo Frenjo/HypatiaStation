@@ -124,7 +124,7 @@
 	return output
 
 /obj/mecha/combat/honker/get_equipment_list()
-	if(!equipment.len)
+	if(!length(equipment))
 		return
 	var/output = "<b>Honk-ON-Systems:</b><div style=\"margin-left: 15px;\">"
 	for(var/obj/item/mecha_parts/mecha_equipment/MT in equipment)

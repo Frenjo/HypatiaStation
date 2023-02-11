@@ -88,7 +88,7 @@
   * @return int The number of uis updated
   */
 /datum/nanomanager/proc/update_user_uis(mob/user, src_object = null, ui_key = null)
-	if(isnull(user.open_uis) || !islist(user.open_uis) || open_uis.len == 0)
+	if(isnull(user.open_uis) || !islist(user.open_uis) || !length(open_uis))
 		return 0 // has no open uis
 
 	var/update_count = 0
@@ -109,7 +109,7 @@
   * @return int The number of uis closed
   */
 /datum/nanomanager/proc/close_user_uis(mob/user, src_object = null, ui_key = null)
-	if(isnull(user.open_uis) || !islist(user.open_uis) || open_uis.len == 0)
+	if(isnull(user.open_uis) || !islist(user.open_uis) || !length(open_uis))
 		return 0 // has no open uis
 
 	var/close_count = 0
@@ -183,7 +183,7 @@
   * @return nothing
   */
 /datum/nanomanager/proc/user_transferred(mob/oldMob, mob/newMob)
-	if(isnull(oldMob.open_uis) || !islist(oldMob.open_uis) || open_uis.len == 0)
+	if(isnull(oldMob.open_uis) || !islist(oldMob.open_uis) || !length(open_uis))
 		return 0 // has no open uis
 
 	if(isnull(newMob.open_uis) || !islist(newMob.open_uis))

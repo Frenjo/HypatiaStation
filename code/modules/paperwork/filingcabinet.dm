@@ -51,13 +51,13 @@
 
 
 /obj/structure/filingcabinet/attack_hand(mob/user as mob)
-	if(contents.len <= 0)
+	if(!length(contents))
 		to_chat(user, SPAN_NOTICE("\The [src] is empty."))
 		return
 
 	user.set_machine(src)
 	var/dat = "<center><table>"
-	for(var/i = contents.len, i >= 1, i--)
+	for(var/i = length(contents), i >= 1, i--)
 		var/obj/item/P = contents[i]
 		dat += "<tr><td><a href='?src=\ref[src];retrieve=\ref[P]'>[P.name]</a></td></tr>"
 	dat += "</table></center>"
@@ -72,8 +72,8 @@
 		..()
 
 /obj/structure/filingcabinet/attack_self_tk(mob/user)
-	if(contents.len)
-		if(prob(40 + contents.len * 5))
+	if(length(contents))
+		if(prob(40 + length(contents) * 5))
 			var/obj/item/I = pick(contents)
 			I.loc = loc
 			if(prob(25))

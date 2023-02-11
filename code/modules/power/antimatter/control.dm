@@ -155,7 +155,7 @@
 				"You hear a ratchet")
 			src.anchored = TRUE
 			connect_to_network()
-		else if(!linked_shielding.len > 0)
+		else if(!length(linked_shielding) > 0)
 			playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 			user.visible_message("[user.name] unsecures the [src.name].", \
 				"You remove the anchor bolts.", \
@@ -249,12 +249,13 @@
 
 
 /obj/machinery/power/am_control_unit/proc/check_core_stability()
-	if(stored_core_stability_delay || linked_cores.len <= 0)	return
+	if(stored_core_stability_delay || !length(linked_cores))
+		return
 	stored_core_stability_delay = 1
 	stored_core_stability = 0
 	for(var/obj/machinery/am_shielding/AMS in linked_cores)
 		stored_core_stability += AMS.stability
-	stored_core_stability/=linked_cores.len
+	stored_core_stability /= length(linked_cores)
 	spawn(40)
 		stored_core_stability_delay = 0
 	return
@@ -277,8 +278,8 @@
 	dat += "<A href='?src=\ref[src];togglestatus=1'>Toggle Status</A><BR>"
 
 	dat += "Instability: [stability]%<BR>"
-	dat += "Reactor parts: [linked_shielding.len]<BR>"//TODO: perhaps add some sort of stability check
-	dat += "Cores: [linked_cores.len]<BR><BR>"
+	dat += "Reactor parts: [length(linked_shielding)]<BR>"//TODO: perhaps add some sort of stability check
+	dat += "Cores: [length(linked_cores)]<BR><BR>"
 	dat += "-Current Efficiency: [reported_core_efficiency]<BR>"
 	dat += "-Average Stability: [stored_core_stability] <A href='?src=\ref[src];refreshstability=1'>(update)</A><BR>"
 	dat += "Last Produced: [stored_power]<BR>"

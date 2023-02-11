@@ -14,7 +14,7 @@
 	if(!speaking_to_players)
 		GLOBL.processing_objects.Remove(src)
 		return
-	if(prob(10) && world.timeofday >= lastsaid && heard_words.len >= 1)
+	if(prob(10) && world.timeofday >= lastsaid && length(heard_words))
 		SaySomething()
 
 /obj/item/weapon/proc/catchMessage(msg, mob/source)
@@ -32,9 +32,9 @@
 				msg+=" "*/
 			seperate = splittext(msg, " ")
 
-		for(var/Xa = 1, Xa < seperate.len, Xa++)
+		for(var/Xa = 1, Xa < length(seperate), Xa++)
 			var/next = Xa + 1
-			if(heard_words.len > 20 + rand(10, 20))
+			if(length(heard_words) > 20 + rand(10, 20))
 				heard_words.Remove(heard_words[1])
 			if(!heard_words["[lowertext(seperate[Xa])]"])
 				heard_words["[lowertext(seperate[Xa])]"] = list()
@@ -60,7 +60,7 @@
 
 /obj/item/weapon/proc/SaySomething(word = null)
 	var/msg
-	var/limit = rand(max(5, heard_words.len / 2)) + 3
+	var/limit = rand(max(5, length(heard_words) / 2)) + 3
 	var/text
 	if(!word)
 		text = "[pick(heard_words)]"

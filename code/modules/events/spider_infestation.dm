@@ -19,10 +19,10 @@ GLOBAL_GLOBL_INIT(sent_spiders_to_station, FALSE)
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in world)
 		if(!temp_vent.welded && temp_vent.network && isStationLevel(temp_vent.loc.z))
-			if(temp_vent.network.normal_members.len > 50)
+			if(length(temp_vent.network.normal_members) > 50)
 				vents += temp_vent
 
-	while((spawncount >= 1) && vents.len)
+	while(spawncount >= 1 && length(vents))
 		var/obj/vent = pick(vents)
 		new /obj/effect/spider/spiderling(vent.loc)
 		vents -= vent

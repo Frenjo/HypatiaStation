@@ -145,7 +145,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	var/savefile/info = new /savefile("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || infos.len < index)
+	if(!infos || length(infos) < index)
 		return
 
 	var/datum/player_info/item = infos[index]

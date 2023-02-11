@@ -48,10 +48,10 @@ GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 	possibleEvents[/datum/event/trivial_news] = 400
 	possibleEvents[/datum/event/mundane_news] = 300
 
-	possibleEvents[/datum/event/pda_spam] = max(min(25, GLOBL.player_list.len) * 4, 200)
-	possibleEvents[/datum/event/money_lotto] = max(min(5, GLOBL.player_list.len), 50)
+	possibleEvents[/datum/event/pda_spam] = max(min(25, length(GLOBL.player_list)) * 4, 200)
+	possibleEvents[/datum/event/money_lotto] = max(min(5, length(GLOBL.player_list)), 50)
 	if(GLOBL.account_hack_attempted)
-		possibleEvents[/datum/event/money_hacker] = max(min(25, GLOBL.player_list.len) * 4, 200)
+		possibleEvents[/datum/event/money_hacker] = max(min(25, length(GLOBL.player_list)) * 4, 200)
 
 	possibleEvents[/datum/event/carp_migration] = 20 + 10 * active_with_role["Engineer"]
 	possibleEvents[/datum/event/brand_intelligence] = 20 + 25 * active_with_role["Janitor"]
@@ -118,7 +118,7 @@ GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 	//moved this to proc/check_event()
 	/*var/chance = possibleEvents[picked_event]
 	var/base_chance = 0.4
-	switch(player_list.len)
+	switch(length(player_list))
 		if(5 to 10)
 			base_chance = 0.6
 		if(11 to 15)

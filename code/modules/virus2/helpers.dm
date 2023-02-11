@@ -120,7 +120,7 @@
 		return "retardation"
 
 //	log_debug("Spreading [vector] diseases from [src] to [victim]")
-	if(virus2.len > 0)
+	if(length(virus2))
 		for(var/ID in virus2)
 //			log_debug("Attempting virus [ID]")
 			var/datum/disease2/disease/V = virus2[ID]
@@ -140,7 +140,7 @@
 					infect_virus2(victim, V)
 
 	//contact goes both ways
-	if(victim.virus2.len > 0 && vector == "Contact")
+	if(length(victim.virus2) && vector == "Contact")
 //		log_debug("Spreading [vector] diseases from [victim] to [src]")
 		var/nudity = 1
 

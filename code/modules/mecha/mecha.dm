@@ -182,7 +182,7 @@
 			usr << "It's heavily damaged."
 		else
 			usr << "It's falling apart."
-	if(equipment && equipment.len)
+	if(length(equipment))
 		usr << "It's equipped with:"
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
 			usr << "\icon[ME] [ME]"
@@ -1197,7 +1197,7 @@
 /obj/mecha/check_access(obj/item/weapon/card/id/I, list/access_list)
 	if(!istype(access_list))
 		return 1
-	if(!access_list.len) //no requirements
+	if(!length(access_list)) //no requirements
 		return 1
 	if(istype(I, /obj/item/device/pda))
 		var/obj/item/device/pda/pda = I
@@ -1343,18 +1343,18 @@
 
 /obj/mecha/proc/get_equipment_menu() //outputs mecha html equipment menu
 	var/output
-	if(equipment.len)
+	if(length(equipment))
 		output += {"<div class='wr'>
 						<div class='header'>Equipment</div>
 						<div class='links'>"}
 		for(var/obj/item/mecha_parts/mecha_equipment/W in equipment)
 			output += "[W.name] <a href='?src=\ref[W];detach=1'>Detach</a><br>"
-		output += "<b>Available equipment slots:</b> [max_equip-equipment.len]"
+		output += "<b>Available equipment slots:</b> [max_equip - length(equipment)]"
 		output += "</div></div>"
 	return output
 
 /obj/mecha/proc/get_equipment_list() //outputs mecha equipment list in html
-	if(!equipment.len)
+	if(!length(equipment))
 		return
 	var/output = "<b>Equipment:</b><div style=\"margin-left: 15px;\">"
 	for(var/obj/item/mecha_parts/mecha_equipment/MT in equipment)
@@ -1430,11 +1430,11 @@
 
 /obj/mecha/proc/log_message(message as text, red = null)
 	log.len++
-	log[log.len] = list("time" = world.timeofday, "message" = "[red ? "<font color='red'>" : null][message][red ? "</font>" : null]")
-	return log.len
+	log[length(log)] = list("time" = world.timeofday, "message" = "[red ? "<font color='red'>" : null][message][red ? "</font>" : null]")
+	return length(log)
 
 /obj/mecha/proc/log_append_to_last(message as text, red = null)
-	var/list/last_entry = src.log[src.log.len]
+	var/list/last_entry = src.log[length(log)]
 	last_entry["message"] += "<br>[red ? "<font color='red'>" : null][message][red?"</font>" : null]"
 	return
 

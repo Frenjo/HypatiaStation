@@ -48,7 +48,7 @@
 	return
 
 /obj/effect/landmark/zcontroller/proc/add(list/L, I, transfer)
-	while(L.len)
+	while(length(L))
 		var/turf/T = pick(L)
 
 		L -= T
@@ -89,7 +89,7 @@
 	var/list/fastholder = list()
 	var/new_list
 
-	while(L.len)
+	while(length(L))
 		var/turf/T = pick(L)
 		new_list = 0
 

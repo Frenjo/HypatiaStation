@@ -27,7 +27,7 @@
 	if(in_chamber)
 		return 1 //{R}
 
-	if(!loaded.len)
+	if(!length(loaded))
 		return 0
 
 	var/obj/item/ammo_casing/AC = loaded[1] //load next casing.
@@ -46,16 +46,16 @@
 /obj/item/weapon/gun/projectile/attackby(obj/item/A as obj, mob/user as mob)
 	var/num_loaded = 0
 	if(istype(A, /obj/item/ammo_magazine))
-		if(load_method == MAGAZINE && loaded.len)
+		if(load_method == MAGAZINE && length(loaded))
 			return
 		var/obj/item/ammo_magazine/AM = A
-		if(AM.stored_ammo.len <= 0)
+		if(!length(AM.stored_ammo))
 			to_chat(user, SPAN_WARNING("The magazine is empty!"))
 			return
 		for(var/obj/item/ammo_casing/AC in AM.stored_ammo)
-			if(loaded.len >= max_shells)
+			if(length(loaded) >= max_shells)
 				break
-			if(AC.caliber == caliber && loaded.len < max_shells)
+			if(AC.caliber == caliber && length(loaded) < max_shells)
 				AC.loc = src
 				AM.stored_ammo -= AC
 				loaded += AC
@@ -66,7 +66,7 @@
 			empty_mag.loc = src
 	if(istype(A, /obj/item/ammo_casing) && load_method == SPEEDLOADER)
 		var/obj/item/ammo_casing/AC = A
-		if(AC.caliber == caliber && loaded.len < max_shells)
+		if(AC.caliber == caliber && length(loaded) < max_shells)
 			user.drop_item()
 			AC.loc = src
 			loaded += AC
@@ -80,7 +80,7 @@
 /obj/item/weapon/gun/projectile/attack_self(mob/user as mob)
 	if(target)
 		return ..()
-	if(loaded.len)
+	if(length(loaded))
 		if(load_method == SPEEDLOADER)
 			var/obj/item/ammo_casing/AC = loaded[1]
 			loaded -= AC
@@ -102,9 +102,9 @@
 /obj/item/weapon/gun/projectile/examine()
 	..()
 	to_chat(usr, "Has [getAmmo()] round\s remaining.")
-//		if(in_chamber && !loaded.len)
+//		if(in_chamber && !length(loaded))
 //			usr << "However, it has a chambered round."
-//		if(in_chamber && loaded.len)
+//		if(in_chamber && length(loaded))
 //			usr << "It also has a chambered round." {R}
 	return
 

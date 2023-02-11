@@ -25,7 +25,7 @@
 		to_chat(user, SPAN_NOTICE("[I] won't fit in [src]."))
 		return
 
-	if(contents.len)
+	if(length(contents))
 		to_chat(user, SPAN_NOTICE("[src] already has something inside it."))
 		return ..()
 
@@ -65,7 +65,7 @@
 	return
 
 /obj/item/weapon/evidencebag/attack_self(mob/user as mob)
-	if(contents.len)
+	if(length(contents))
 		var/obj/item/I = contents[1]
 		user.visible_message(
 			"[user] takes [I] out of [src]",

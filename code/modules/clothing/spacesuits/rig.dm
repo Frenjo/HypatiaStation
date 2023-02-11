@@ -146,7 +146,7 @@
 	if(active_device)
 		usr << "You already have \the [active_device] deployed."
 		return
-	if(!mounted_devices.len)
+	if(!length(mounted_devices))
 		usr << "You do not have any devices mounted on \the [src]."
 		return
 /obj/item/clothing/suit/space/rig/verb/stow_mounted_device()

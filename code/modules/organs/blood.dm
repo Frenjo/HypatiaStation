@@ -150,7 +150,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 		nums += G
 		iconL.Remove(G.icon_state)
 
-	if(nums.len < 5)
+	if(length(nums) < 5)
 		var/obj/effect/decal/cleanable/blood/drip/this = new(T)
 		this.icon_state = pick(iconL)
 		this.blood_DNA = list()

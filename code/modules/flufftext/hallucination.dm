@@ -51,7 +51,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 							slots_free += UI_STORAGE1
 						if(!H.r_store)
 							slots_free += UI_STORAGE2
-					if(slots_free.len)
+					if(length(slots_free))
 						halitem.screen_loc = pick(slots_free)
 						halitem.layer = 50
 						switch(rand(1, 6))
@@ -94,7 +94,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 					var/list/possible_points = list()
 					for(var/turf/simulated/floor/F in view(src, world.view))
 						possible_points += F
-					if(possible_points.len)
+					if(length(possible_points))
 						var/turf/simulated/floor/target = pick(possible_points)
 						switch(rand(1, 3))
 							if(1)
@@ -166,7 +166,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 					var/list/possible_points = list()
 					for(var/turf/simulated/floor/F in view(src, world.view))
 						possible_points += F
-					if(possible_points.len)
+					if(length(possible_points))
 						var/turf/simulated/floor/target = pick(possible_points)
 						switch(rand(1,4))
 							if(1)
@@ -212,12 +212,12 @@ Gunshots/explosions/opening doors/less rare audio (done)
 		"Play Charades","Oxygen","Inject BeAcOs","Ninja Lizards","Limit Break","Build Sentry")
 
 		if(mid_txts)
-			while(mid_txts.len)
+			while(length(mid_txts))
 				var/mid_txt = pick(mid_txts)
 				mocktxt += mid_txt
 				mid_txts -= mid_txt
 
-		while(buttons.len)
+		while(length(buttons))
 
 			var/button = pick(buttons)
 
@@ -379,7 +379,8 @@ var/list/non_fakeattack_weapons = list(
 		clone = H
 		break	//changed the code a bit. Less randomised, but less work to do. Should be ok, world.contents aren't stored in any particular order.
 
-//	if(!possible_clones.len) return
+//	if(!length(possible_clones))
+//		return
 //	clone = pick(possible_clones)
 	if(!clone)
 		return

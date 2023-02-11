@@ -6,14 +6,14 @@
 	volume = 50
 
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/on_reagent_change()
-	/*if(reagents.reagent_list.len > 1 )
+	/*if(length(reagents.reagent_list) > 1)
 		icon_state = "glass_brown"
 		name = "Glass of Hooch"
 		desc = "Two or more drinks, mixed together."*/
-	/*else if(reagents.reagent_list.len == 1)
+	/*else if(length(reagents.reagent_list) == 1)
 		for(var/datum/reagent/R in reagents.reagent_list)
 			switch(R.id)*/
-	if(reagents.reagent_list.len > 0)
+	if(length(reagents.reagent_list))
 		//mrid = R.get_master_reagent_id()
 		switch(reagents.get_master_reagent_id())
 			if("beer")

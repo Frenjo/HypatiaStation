@@ -31,7 +31,7 @@
 			H.client.screen |= GLOBL.global_hud.ionstorm
 
 	var/random_player = "The Captain"
-	if(players.len)
+	if(length(players))
 		random_player = pick(players)	// Random player's name, to be used in laws.
 
 	var/list/laws = list("Do not respond to queries of any kind.", "When asked a question, respond with the least-obvious and least-rational answer.", "You are a mouse.")

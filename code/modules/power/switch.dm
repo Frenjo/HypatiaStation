@@ -70,7 +70,7 @@
 			C.power_switch = src
 
 			var/datum/powernet/PN = new()
-			PN.number = powernets.len + 1
+			PN.number = length(powernets) + 1
 			powernets += PN
 			C.netnum = PN.number
 			PN.cables += C

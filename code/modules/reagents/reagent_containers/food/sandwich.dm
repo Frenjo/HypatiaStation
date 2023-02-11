@@ -20,7 +20,7 @@
 		if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/breadslice))
 			sandwich_limit += 4
 
-	if(src.contents.len > sandwich_limit)
+	if(length(contents) > sandwich_limit)
 		to_chat(user, SPAN_WARNING("If you put anything else on \the [src] it's going to collapse."))
 		return
 	else if(istype(W, /obj/item/weapon/shard))
@@ -50,7 +50,7 @@
 		i++
 		if(i == 1)
 			fullname += "[O.name]"
-		else if(i == ingredients.len)
+		else if(i == length(ingredients))
 			fullname += " and [O.name]"
 		else
 			fullname += ", [O.name]"
@@ -63,13 +63,13 @@
 
 	var/image/T = new(src.icon, "sandwich_top")
 	T.pixel_x = pick(list(-1, 0, 1))
-	T.pixel_y = (ingredients.len * 2) + 1
+	T.pixel_y = (length(ingredients) * 2) + 1
 	overlays += T
 
 	name = lowertext("[fullname] sandwich")
 	if(length(name) > 80)
 		name = "[pick(list("absurd", "colossal", "enormous", "ridiculous"))] sandwich"
-	w_class = n_ceil(clamp((ingredients.len / 2), 1, 3))
+	w_class = n_ceil(clamp((length(ingredients) / 2), 1, 3))
 
 /obj/item/weapon/reagent_containers/food/snacks/csandwich/Destroy()
 	for(var/obj/item/O in ingredients)

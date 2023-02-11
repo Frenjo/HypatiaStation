@@ -43,7 +43,7 @@
 		if(ai.client)
 			AIs += ai
 
-	if(AIs.len)
+	if(length(AIs))
 		malfAI = pick(AIs)
 
 	if(malfAI)
@@ -72,8 +72,8 @@
 							if(!(applicant.job in temp.restricted_jobs))
 								candidates += applicant
 
-	if(candidates.len)
-		var/numTraitors = min(candidates.len, 3)
+	if(length(candidates))
+		var/numTraitors = min(length(candidates), 3)
 
 		for(var/i = 0, i<numTraitors, i++)
 			H = pick(candidates)
@@ -104,8 +104,8 @@
 							if(!(applicant.job in temp.restricted_jobs))
 								candidates += applicant
 
-	if(candidates.len)
-		var/numChanglings = min(candidates.len, 3)
+	if(length(candidates))
+		var/numChanglings = min(length(candidates), 3)
 
 		for(var/i = 0, i<numChanglings, i++)
 			H = pick(candidates)
@@ -134,8 +134,8 @@
 							if(!(applicant.job in temp.restricted_jobs))
 								candidates += applicant
 
-	if(candidates.len)
-		var/numRevs = min(candidates.len, 3)
+	if(length(candidates))
+		var/numRevs = min(length(candidates), 3)
 
 		for(var/i = 0, i<numRevs, i++)
 			H = pick(candidates)
@@ -165,7 +165,7 @@
 
 	sleep(300)
 
-	if(candidates.len)
+	if(length(candidates))
 		shuffle(candidates)
 		for(var/mob/i in candidates)
 			if(!i || !i.client) continue //Dont bother removing them from the list since we only grab one wizard
@@ -199,8 +199,8 @@
 							if(!(applicant.job in temp.restricted_jobs))
 								candidates += applicant
 
-	if(candidates.len)
-		var/numCultists = min(candidates.len, 4)
+	if(length(candidates))
+		var/numCultists = min(length(candidates), 4)
 
 		for(var/i = 0, i<numCultists, i++)
 			H = pick(candidates)
@@ -235,7 +235,7 @@
 
 	sleep(300)
 
-	if(candidates.len)
+	if(length(candidates))
 		var/numagents = 5
 		var/agentcount = 0
 
@@ -342,7 +342,7 @@
 		if(!G.key)
 			candidates.Remove(G)
 
-	if(candidates.len)
+	if(length(candidates))
 		var/numagents = 6
 		//Spawns commandos and equips them.
 		for (var/obj/effect/landmark/L in /area/syndicate_mothership/elite_squad)
@@ -354,7 +354,7 @@
 				var/mob/living/carbon/human/new_syndicate_commando = create_syndicate_death_commando(L, syndicate_leader_selected)
 
 
-				while((!theghost || !theghost.client) && candidates.len)
+				while((!theghost || !theghost.client) && length(candidates))
 					theghost = pick(candidates)
 					candidates.Remove(theghost)
 
@@ -460,7 +460,7 @@
 		if(!G.key)
 			candidates.Remove(G)
 
-	if(candidates.len)
+	if(length(candidates))
 		var/max_raiders = 1
 		var/raiders = max_raiders
 		//Spawns vox raiders and equips them.
@@ -471,7 +471,7 @@
 
 				var/mob/living/carbon/human/new_vox = create_vox_raider(L, leader_chosen)
 
-				while((!theghost || !theghost.client) && candidates.len)
+				while((!theghost || !theghost.client) && length(candidates))
 					theghost = pick(candidates)
 					candidates.Remove(theghost)
 

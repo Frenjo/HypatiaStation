@@ -13,7 +13,7 @@
 	endWhen = releaseWhen + 1
 
 /datum/event/prison_break/announce()
-	if(prisonAreas && prisonAreas.len > 0)
+	if(length(prisonAreas))
 		command_alert("[pick("Gr3y.T1d3 virus", "Malignant trojan")] detected in [station_name()] imprisonment subroutines. Recommend station AI involvement.", "Security Alert")
 	else
 		world.log << "ERROR: Could not initate grey-tide. Unable find prison or brig area."
@@ -24,14 +24,14 @@
 		if(istype(A, /area/security/brig) || istype(A, /area/prison))
 			prisonAreas += A
 
-	if(prisonAreas && prisonAreas.len > 0)
+	if(length(prisonAreas))
 		for(var/area/A in prisonAreas)
 			for(var/obj/machinery/light/L in A)
 				L.flicker(10)
 
 /datum/event/prison_break/tick()
 	if(activeFor == releaseWhen)
-		if(prisonAreas && prisonAreas.len > 0)
+		if(length(prisonAreas))
 			for(var/area/A in prisonAreas)
 				for(var/obj/machinery/power/apc/temp_apc in A)
 					temp_apc.overload_lighting()
