@@ -9,7 +9,7 @@ PROCESS_DEF(pipenet)
 
 /datum/process/pipenet/doWork()
 	for(var/datum/pipe_network/pipeNetwork in GLOBL.pipe_networks)
-		if(istype(pipeNetwork) && isnull(pipeNetwork.gcDestroyed))
+		if(istype(pipeNetwork) && !GC_DESTROYED(pipeNetwork))
 			pipeNetwork.process()
 			SCHECK
 			continue

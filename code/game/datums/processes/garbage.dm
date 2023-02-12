@@ -2,7 +2,7 @@
  * Garbage Collector Process
  */
 // The time a datum was destroyed by the GC, or null if it hasn't been
-/datum/var/gcDestroyed
+/datum/var/gc_destroyed
 
 #define GC_COLLECTIONS_PER_RUN 150
 #define GC_COLLECTION_TIMEOUT (30 SECONDS)
@@ -59,7 +59,7 @@ PROCESS_DEF(garbage)
 		#ifdef GC_DEBUG
 		testing("GC: [refID] old enough to test: GCd_at_time: [GCd_at_time] time_to_kill: [time_to_kill] current: [world.time]")
 		#endif
-		if(A && A.gcDestroyed == GCd_at_time) // So if something else coincidently gets the same ref, it's not deleted by mistake
+		if(A && A.gc_destroyed == GCd_at_time) // So if something else coincidently gets the same ref, it's not deleted by mistake
 			// Something's still referring to the qdel'd object. Kill it.
 			testing("GC: -- \ref[A] | [A.type] was unable to be GC'd and was deleted --")
 			logging["[A.type]"]++
@@ -82,12 +82,12 @@ PROCESS_DEF(garbage)
 //#undef GC_COLLECTIONS_PER_TICK
 
 /datum/process/garbage/proc/AddTrash(datum/A)
-	if(!istype(A) || !isnull(A.gcDestroyed))
+	if(!istype(A) || GC_DESTROYED(A))
 		return
 	#ifdef GC_DEBUG
 	testing("GC: AddTrash(\ref[A] - [A.type])")
 	#endif
-	A.gcDestroyed = world.time
+	A.gc_destroyed = world.time
 	destroyed -= "\ref[A]" // Removing any previous references that were GC'd so that the current object will be at the end of the list.
 	destroyed["\ref[A]"] = world.time
 
@@ -112,7 +112,7 @@ PROCESS_DEF(garbage)
 		del(A)
 		global.PCgarbage.total_dels++
 		global.PCgarbage.hard_dels++
-	else if(isnull(A.gcDestroyed))
+	else if(!GC_DESTROYED(A))
 		// Let our friend know they're about to get collected
 		. = !A.Destroy()
 		if(. && A)

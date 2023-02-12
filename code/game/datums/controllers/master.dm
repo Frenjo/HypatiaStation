@@ -56,7 +56,7 @@ CONTROLLER_DEF(master)
 
 	to_world(SPAN_DANGER("Initialising objects."))
 	for(var/atom/movable/object in world)
-		if(isnull(object.gcDestroyed))
+		if(!GC_DESTROYED(object))
 			object.initialize()
 	sleep(-1)
 

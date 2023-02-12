@@ -15,7 +15,7 @@ PROCESS_DEF(nanoui)
 /datum/process/nanoui/doWork()
 	for(last_object in global.nanomanager.processing_uis)
 		var/datum/nanoui/NUI = last_object
-		if(istype(NUI) && isnull(NUI.gcDestroyed))
+		if(istype(NUI) && !GC_DESTROYED(NUI))
 			try
 				NUI.process()
 			catch(var/exception/e)

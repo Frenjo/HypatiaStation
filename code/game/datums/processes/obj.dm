@@ -16,7 +16,7 @@ PROCESS_DEF(obj)
 /datum/process/obj/doWork()
 	for(var/last_object in GLOBL.processing_objects)
 		var/obj/O = last_object
-		if(isnull(O.gcDestroyed))
+		if(!GC_DESTROYED(O))
 			try
 				if(O.process() == PROCESS_KILL)
 					GLOBL.processing_objects.Remove(O)

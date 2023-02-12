@@ -14,7 +14,7 @@ PROCESS_DEF(mob)
 /datum/process/mob/doWork()
 	for(last_object in GLOBL.mob_list)
 		var/mob/M = last_object
-		if(isnull(M.gcDestroyed))
+		if(!GC_DESTROYED(M))
 			try
 				M.Life()
 			catch(var/exception/e)

@@ -21,14 +21,14 @@
 		queue_for_initialisation(src)
 
 /atom/movable/proc/initialize()
-	if(!isnull(gcDestroyed))
+	if(GC_DESTROYED(src))
 		CRASH("GC: -- [type] had initialize() called after qdel() --")
 
 /atom/movable/Del()
-	if(isnull(gcDestroyed) && loc)
+	if(!GC_DESTROYED(src) && loc)
 		testing("GC: -- [type] was deleted via del() rather than qdel() --")
 		Destroy()
-	else if(isnull(gcDestroyed))
+	else if(!GC_DESTROYED(src))
 		testing("GC: [type] was deleted via GC without qdel()") //Not really a huge issue but from now on, please qdel()
 //	else
 //		testing("GC: [type] was deleted via GC with qdel()")

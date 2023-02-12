@@ -24,7 +24,7 @@ PROCESS_DEF(machinery)
 
 /datum/process/machinery/proc/internal_process_machinery()
 	for(var/obj/machinery/M in GLOBL.machines)
-		if(M && !M.gcDestroyed)
+		if(M && !GC_DESTROYED(M))
 			if(M.process() == PROCESS_KILL)
 				GLOBL.machines.Remove(M)
 				continue
@@ -36,7 +36,7 @@ PROCESS_DEF(machinery)
 
 /datum/process/machinery/proc/internal_process_powernets()
 	for(var/datum/powernet/powerNetwork in GLOBL.powernets)
-		if(istype(powerNetwork) && isnull(powerNetwork.gcDestroyed))
+		if(istype(powerNetwork) && !GC_DESTROYED(powerNetwork))
 			powerNetwork.reset()
 			SCHECK
 			continue
