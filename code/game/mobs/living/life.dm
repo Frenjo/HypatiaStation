@@ -10,9 +10,16 @@
 	
 	var/datum/gas_mixture/environment = loc.return_air()
 
+	if(stat != DEAD)
+		// Mutations and radiation.
+		handle_mutations_and_radiation()
+
 	// Handle temperature/pressure differences between body and environment.
 	if(environment) // More error checking -- TLE
 		handle_environment(environment) // Optimised a good bit.
+
+/mob/living/proc/handle_mutations_and_radiation()
+	return
 
 /mob/living/proc/handle_environment(datum/gas_mixture/environment)
 	return

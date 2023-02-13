@@ -35,7 +35,13 @@
 /mob/living/carbon/human/Life()
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
-	. = ..()
+
+	// This duplicates some checks that are found later on (. = ..()) but it's necessary to prevent...
+	// ... the blinded, fire_alert, life_tick and in_stasis variables being updated when they shouldn't be.
+	if(!loc)
+		return
+	if(monkeyizing)
+		return
 
 	/*
 	//This code is here to try to determine what causes the gender switch to plural error. Once the error is tracked down and fixed, this code should be deleted
@@ -59,6 +65,9 @@
 	in_stasis = istype(loc, /obj/structure/closet/body_bag/cryobag) && loc:opened == 0
 	if(in_stasis)
 		loc:used++
+	
+	// This is here due to the wonky way that blinded, fire_alert and in_stasis are set.
+	. = ..()
 
 	if(life_tick % 30 == 15)
 		hud_updateflag = 1022
@@ -77,9 +86,6 @@
 
 		//Updates the number of stored chemicals for powers
 		handle_changeling()
-
-		//Mutations and radiation
-		handle_mutations_and_radiation()
 
 		//Chemicals in the body
 		handle_chemicals_in_body()
@@ -123,6 +129,82 @@
 	// Grabbing
 	for(var/obj/item/weapon/grab/G in src)
 		G.process()
+
+/mob/living/carbon/human/handle_mutations_and_radiation()
+	if(species.flags & IS_SYNTHETIC) //Robots don't suffer from mutations or radloss.
+		return
+	if(in_stasis)
+		return
+
+	if(getFireLoss())
+		if((COLD_RESISTANCE in mutations) || prob(1))
+			heal_organ_damage(0, 1)
+
+	// DNA2 - Gene processing.
+	// The HULK stuff that was here is now in the hulk gene.
+	for(var/datum/dna/gene/gene in dna_genes)
+		if(!gene.block)
+			continue
+		if(gene.is_active(src))
+			speech_problem_flag = 1
+			gene.OnMobLife(src)
+
+	if(radiation)
+		if(radiation > 100)
+			radiation = 100
+			Weaken(10)
+			to_chat(src, SPAN_WARNING("You feel weak."))
+			emote("collapse")
+
+		if(radiation < 0)
+			radiation = 0
+
+		else
+			if(species.flags & RAD_ABSORB)
+				var/rads = radiation / 25
+				radiation -= rads
+				nutrition += rads
+				adjustBruteLoss(-rads)
+				adjustOxyLoss(-rads)
+				adjustToxLoss(-rads)
+				updatehealth()
+				return
+
+			var/damage = 0
+			switch(radiation)
+				if(1 to 49)
+					radiation--
+					if(prob(25))
+						adjustToxLoss(1)
+						damage = 1
+						updatehealth()
+
+				if(50 to 74)
+					radiation -= 2
+					damage = 1
+					adjustToxLoss(1)
+					if(prob(5))
+						radiation -= 5
+						Weaken(3)
+						to_chat(src, SPAN_WARNING("You feel weak."))
+						emote("collapse")
+					updatehealth()
+
+				if(75 to 100)
+					radiation -= 3
+					adjustToxLoss(3)
+					damage = 1
+					if(prob(1))
+						to_chat(src, SPAN_WARNING("You mutate!"))
+						randmutb(src)
+						domutcheck(src, null)
+						emote("gasp")
+					updatehealth()
+
+			if(damage && length(organs))
+				var/datum/organ/external/O = pick(organs)
+				if(istype(O))
+					O.add_autopsy_data("Radiation Poisoning", damage)
 
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
 	if(!environment)
@@ -339,80 +421,6 @@
 		// Next, the method to induce stasis has some adverse side-effects, manifesting
 		// as cloneloss
 		adjustCloneLoss(0.1)
-
-/mob/living/carbon/human/proc/handle_mutations_and_radiation()
-	if(species.flags & IS_SYNTHETIC) //Robots don't suffer from mutations or radloss.
-		return
-
-	if(getFireLoss())
-		if((COLD_RESISTANCE in mutations) || prob(1))
-			heal_organ_damage(0, 1)
-
-	// DNA2 - Gene processing.
-	// The HULK stuff that was here is now in the hulk gene.
-	for(var/datum/dna/gene/gene in dna_genes)
-		if(!gene.block)
-			continue
-		if(gene.is_active(src))
-			speech_problem_flag = 1
-			gene.OnMobLife(src)
-
-	if(radiation)
-		if(radiation > 100)
-			radiation = 100
-			Weaken(10)
-			to_chat(src, SPAN_WARNING("You feel weak."))
-			emote("collapse")
-
-		if(radiation < 0)
-			radiation = 0
-
-		else
-			if(species.flags & RAD_ABSORB)
-				var/rads = radiation / 25
-				radiation -= rads
-				nutrition += rads
-				adjustBruteLoss(-rads)
-				adjustOxyLoss(-rads)
-				adjustToxLoss(-rads)
-				updatehealth()
-				return
-
-			var/damage = 0
-			switch(radiation)
-				if(1 to 49)
-					radiation--
-					if(prob(25))
-						adjustToxLoss(1)
-						damage = 1
-						updatehealth()
-
-				if(50 to 74)
-					radiation -= 2
-					damage = 1
-					adjustToxLoss(1)
-					if(prob(5))
-						radiation -= 5
-						Weaken(3)
-						to_chat(src, SPAN_WARNING("You feel weak."))
-						emote("collapse")
-					updatehealth()
-
-				if(75 to 100)
-					radiation -= 3
-					adjustToxLoss(3)
-					damage = 1
-					if(prob(1))
-						to_chat(src, SPAN_WARNING("You mutate!"))
-						randmutb(src)
-						domutcheck(src, null)
-						emote("gasp")
-					updatehealth()
-
-			if(damage && length(organs))
-				var/datum/organ/external/O = pick(organs)
-				if(istype(O))
-					O.add_autopsy_data("Radiation Poisoning", damage)
 
 /mob/living/carbon/human/proc/breathe()
 	if(reagents.has_reagent("lexorin"))

@@ -4,9 +4,6 @@
 	. = ..()
 
 	if(stat != DEAD)
-		//Mutations and radiation
-		handle_mutations_and_radiation()
-
 		//Chemicals in the body
 		handle_chemicals_in_body()
 
@@ -23,9 +20,42 @@
 	if(client)
 		handle_regular_hud_updates()
 
+/mob/living/carbon/brain/handle_mutations_and_radiation()
+	if(radiation)
+		if(radiation > 100)
+			radiation = 100
+			if(!container) // If it's not in an MMI
+				to_chat(src, SPAN_WARNING("You feel weak."))
+			else // Fluff-wise, since the brain can't detect anything itself, the MMI handles thing like that
+				to_chat(src, SPAN_WARNING("STATUS: CRITICAL AMOUNTS OF RADIATION DETECTED."))
+
+		switch(radiation)
+			if(1 to 49)
+				radiation--
+				if(prob(25))
+					adjustToxLoss(1)
+					updatehealth()
+
+			if(50 to 74)
+				radiation -= 2
+				adjustToxLoss(1)
+				if(prob(5))
+					radiation -= 5
+					if(!container)
+						to_chat(src, SPAN_WARNING("You feel weak."))
+					else
+						to_chat(src, SPAN_WARNING("STATUS: DANGEROUS LEVELS OF RADIATION DETECTED."))
+				updatehealth()
+
+			if(75 to 100)
+				radiation -= 3
+				adjustToxLoss(3)
+				updatehealth()
+
 /mob/living/carbon/brain/handle_environment(datum/gas_mixture/environment)
 	if(!environment)
 		return
+
 	var/environment_heat_capacity = environment.heat_capacity()
 	if(istype(get_turf(src), /turf/space))
 		var/turf/heat_turf = get_turf(src)
@@ -42,38 +72,6 @@
 	//Account for massive pressure differences
 
 	return //TODO: DEFERRED
-
-/mob/living/carbon/brain/proc/handle_mutations_and_radiation()
-	if(radiation)
-		if(radiation > 100)
-			radiation = 100
-			if(!container)//If it's not in an MMI
-				src << "\red You feel weak."
-			else//Fluff-wise, since the brain can't detect anything itself, the MMI handles thing like that
-				src << "\red STATUS: CRITICAL AMOUNTS OF RADIATION DETECTED."
-
-		switch(radiation)
-			if(1 to 49)
-				radiation--
-				if(prob(25))
-					adjustToxLoss(1)
-					updatehealth()
-
-			if(50 to 74)
-				radiation -= 2
-				adjustToxLoss(1)
-				if(prob(5))
-					radiation -= 5
-					if(!container)
-						src << "\red You feel weak."
-					else
-						src << "\red STATUS: DANGEROUS LEVELS OF RADIATION DETECTED."
-				updatehealth()
-
-			if(75 to 100)
-				radiation -= 3
-				adjustToxLoss(3)
-				updatehealth()
 
 /mob/living/carbon/brain/proc/handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)
 	if(status_flags & GODMODE) return

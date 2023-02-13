@@ -24,16 +24,12 @@
 				//Only try to take a breath every 4 seconds, unless suffocating
 				breathe()
 			else //Still give containing object the chance to interact
-				if(istype(loc, /obj/))
+				if(isobj(loc))
 					var/obj/location_as_object = loc
 					location_as_object.handle_internal_lifeform(src, 0)
 
-
 		//Updates the number of stored chemicals for powers
 		handle_changeling()
-
-		//Mutations and radiation
-		handle_mutations_and_radiation()
 
 		//Chemicals in the body
 		handle_chemicals_in_body()
@@ -68,6 +64,61 @@
 		if(prob(1))
 			emote(pick("scratch", "jump", "roll", "tail"))
 	updatehealth()
+
+/mob/living/carbon/monkey/handle_mutations_and_radiation()
+	if(getFireLoss())
+		if((COLD_RESISTANCE in mutations) || prob(50))
+			switch(getFireLoss())
+				if(1 to 50)
+					adjustFireLoss(-1)
+				if(51 to 100)
+					adjustFireLoss(-5)
+
+	if((HULK in mutations) && health <= 25)
+		mutations.Remove(HULK)
+		to_chat(src, SPAN_WARNING("You suddenly feel very weak."))
+		Weaken(3)
+		emote("collapse")
+
+	if(radiation)
+		if(istype(src, /mob/living/carbon/monkey/diona)) //Filthy check. Dionaea don't take rad damage.
+			var/rads = radiation / 25
+			radiation -= rads
+			nutrition += rads
+			heal_overall_damage(rads, rads)
+			adjustOxyLoss(-rads)
+			adjustToxLoss(-rads)
+			return
+
+		if(radiation > 100)
+			radiation = 100
+			Weaken(10)
+			to_chat(src, SPAN_WARNING("You feel weak."))
+			emote("collapse")
+
+		switch(radiation)
+			if(1 to 49)
+				radiation--
+				if(prob(25))
+					adjustToxLoss(1)
+
+			if(50 to 74)
+				radiation -= 2
+				adjustToxLoss(1)
+				if(prob(5))
+					radiation -= 5
+					Weaken(3)
+					to_chat(src, SPAN_WARNING("You feel weak."))
+					emote("collapse")
+
+			if(75 to 100)
+				radiation -= 3
+				adjustToxLoss(3)
+				if(prob(1))
+					to_chat(src, SPAN_WARNING("You mutate!"))
+					randmutb(src)
+					domutcheck(src, null)
+					emote("gasp")
 
 /mob/living/carbon/monkey/handle_environment(datum/gas_mixture/environment)
 	if(!environment)
@@ -105,8 +156,8 @@
 		if(HAZARD_LOW_PRESSURE to WARNING_LOW_PRESSURE)
 			pressure_alert = -1
 		else
-			if( !(COLD_RESISTANCE in mutations) )
-				adjustBruteLoss( LOW_PRESSURE_DAMAGE )
+			if(!(COLD_RESISTANCE in mutations))
+				adjustBruteLoss(LOW_PRESSURE_DAMAGE)
 				pressure_alert = -2
 			else
 				pressure_alert = -1
@@ -137,62 +188,6 @@
 	if (disabilities & NERVOUS)
 		if (prob(10))
 			stuttering = max(10, stuttering)
-
-/mob/living/carbon/monkey/proc/handle_mutations_and_radiation()
-	if(getFireLoss())
-		if((COLD_RESISTANCE in mutations) || prob(50))
-			switch(getFireLoss())
-				if(1 to 50)
-					adjustFireLoss(-1)
-				if(51 to 100)
-					adjustFireLoss(-5)
-
-	if ((HULK in mutations) && health <= 25)
-		mutations.Remove(HULK)
-		src << "\red You suddenly feel very weak."
-		Weaken(3)
-		emote("collapse")
-
-	if (radiation)
-
-		if(istype(src,/mob/living/carbon/monkey/diona)) //Filthy check. Dionaea don't take rad damage.
-			var/rads = radiation/25
-			radiation -= rads
-			nutrition += rads
-			heal_overall_damage(rads,rads)
-			adjustOxyLoss(-(rads))
-			adjustToxLoss(-(rads))
-			return
-
-		if (radiation > 100)
-			radiation = 100
-			Weaken(10)
-			src << "\red You feel weak."
-			emote("collapse")
-
-		switch(radiation)
-			if(1 to 49)
-				radiation--
-				if(prob(25))
-					adjustToxLoss(1)
-
-			if(50 to 74)
-				radiation -= 2
-				adjustToxLoss(1)
-				if(prob(5))
-					radiation -= 5
-					Weaken(3)
-					src << "\red You feel weak."
-					emote("collapse")
-
-			if(75 to 100)
-				radiation -= 3
-				adjustToxLoss(3)
-				if(prob(1))
-					src << "\red You mutate!"
-					randmutb(src)
-					domutcheck(src,null)
-					emote("gasp")
 
 /mob/living/carbon/monkey/proc/handle_virus_updates()
 	if(status_flags & GODMODE)	return 0	//godmode
