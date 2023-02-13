@@ -14,17 +14,22 @@
 
 /datum/event/radiation_storm/tick()
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
+		if(!H)
+			continue
+
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
 		if(isNotStationLevel(T.z))
 			continue
 		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew_quarters))
-			H.client.screen.Remove(GLOBL.global_hud.radstorm)
+			if(H.client)
+				H.client.screen.Remove(GLOBL.global_hud.radstorm)
 			continue
 
 		if(ishuman(H))
-			H.client.screen |= GLOBL.global_hud.radstorm
+			if(H.client)
+				H.client.screen |= GLOBL.global_hud.radstorm
 			H.apply_effect(rand(15, 35), IRRADIATE, 0)
 			if(prob(5))
 				H.apply_effect(rand(40, 70), IRRADIATE, 0)
