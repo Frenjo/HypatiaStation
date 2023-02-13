@@ -1,7 +1,7 @@
 /mob/living/carbon/brain/Life()
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
-	..()
+	. = ..()
 
 	if(stat != DEAD)
 		//Mutations and radiation
@@ -10,19 +10,11 @@
 		//Chemicals in the body
 		handle_chemicals_in_body()
 
-	var/datum/gas_mixture/environment // Added to prevent null location errors-- TLE
-	if(loc)
-		environment = loc.return_air()
-
 	//Apparently, the person who wrote this code designed it so that
 	//blinded get reset each cycle and then get activated later in the
 	//code. Very ugly. I dont care. Moving this stuff here so its easy
 	//to find it.
 	blinded = null
-
-	//Handle temperature/pressure differences between body and environment
-	if(environment)	// More error checking -- TLE
-		handle_environment(environment)
 
 	//Status updates, death etc.
 	handle_regular_status_updates()
@@ -30,6 +22,26 @@
 
 	if(client)
 		handle_regular_hud_updates()
+
+/mob/living/carbon/brain/handle_environment(datum/gas_mixture/environment)
+	if(!environment)
+		return
+	var/environment_heat_capacity = environment.heat_capacity()
+	if(istype(get_turf(src), /turf/space))
+		var/turf/heat_turf = get_turf(src)
+		environment_heat_capacity = heat_turf.heat_capacity
+
+	if(environment.temperature > (T0C + 50) || environment.temperature < (T0C + 10))
+		var/transfer_coefficient = 1
+
+		handle_temperature_damage(HEAD, environment.temperature, environment_heat_capacity * transfer_coefficient)
+
+	if(stat == DEAD)
+		bodytemperature += 0.1 * (environment.temperature - bodytemperature) * environment_heat_capacity / (environment_heat_capacity + 270000)
+
+	//Account for massive pressure differences
+
+	return //TODO: DEFERRED
 
 /mob/living/carbon/brain/proc/handle_mutations_and_radiation()
 	if(radiation)
@@ -62,26 +74,6 @@
 				radiation -= 3
 				adjustToxLoss(3)
 				updatehealth()
-
-/mob/living/carbon/brain/proc/handle_environment(datum/gas_mixture/environment)
-	if(!environment)
-		return
-	var/environment_heat_capacity = environment.heat_capacity()
-	if(istype(get_turf(src), /turf/space))
-		var/turf/heat_turf = get_turf(src)
-		environment_heat_capacity = heat_turf.heat_capacity
-
-	if((environment.temperature > (T0C + 50)) || (environment.temperature < (T0C + 10)))
-		var/transfer_coefficient = 1
-
-		handle_temperature_damage(HEAD, environment.temperature, environment_heat_capacity*transfer_coefficient)
-
-	if(stat==2)
-		bodytemperature += 0.1*(environment.temperature - bodytemperature)*environment_heat_capacity/(environment_heat_capacity + 270000)
-
-	//Account for massive pressure differences
-
-	return //TODO: DEFERRED
 
 /mob/living/carbon/brain/proc/handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)
 	if(status_flags & GODMODE) return

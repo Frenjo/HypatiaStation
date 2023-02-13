@@ -370,6 +370,7 @@
 #include "code\game\mobs\dead\observer\observer.dm"
 #include "code\game\mobs\dead\observer\say.dm"
 #include "code\game\mobs\living\damage_procs.dm"
+#include "code\game\mobs\living\life.dm"
 #include "code\game\mobs\living\living.dm"
 #include "code\game\mobs\living\living_defense.dm"
 #include "code\game\mobs\living\living_defines.dm"

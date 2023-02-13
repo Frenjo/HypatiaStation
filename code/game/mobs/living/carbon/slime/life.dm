@@ -1,11 +1,7 @@
 /mob/living/carbon/slime/Life()
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
-
-	if (src.monkeyizing)
-		return
-
-	..()
+	. = ..()
 
 	if(stat != DEAD)
 		//Chemicals in the body
@@ -15,27 +11,74 @@
 
 		handle_targets()
 
-
-	var/datum/gas_mixture/environment // Added to prevent null location errors-- TLE
-	if(src.loc)
-		environment = loc.return_air()
-
-
 	//Apparently, the person who wrote this code designed it so that
 	//blinded get reset each cycle and then get activated later in the
 	//code. Very ugly. I dont care. Moving this stuff here so its easy
 	//to find it.
-	src.blinded = null
+	blinded = null
 
 	// Basically just deletes any screen objects :<
 	regular_hud_updates()
 
-	//Handle temperature/pressure differences between body and environment
-	if(environment)
-		handle_environment(environment)
-
 	//Status updates, death etc.
 	handle_regular_status_updates()
+
+/mob/living/carbon/slime/handle_environment(datum/gas_mixture/environment)
+	if(!environment)
+		adjustToxLoss(rand(10, 20))
+		return
+
+	//var/environment_heat_capacity = environment.heat_capacity()
+	var/loc_temp = T0C
+	if(istype(get_turf(src), /turf/space))
+		//environment_heat_capacity = loc:heat_capacity
+		var/turf/heat_turf = get_turf(src)
+		loc_temp = heat_turf.temperature
+	else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
+		var/obj/machinery/atmospherics/unary/cryo_cell/cell = loc
+		loc_temp = cell.air_contents.temperature
+	else
+		loc_temp = environment.temperature
+
+	/*
+	if((environment.temperature > (T0C + 50)) || (environment.temperature < (T0C + 10)))
+		var/transfer_coefficient
+
+		transfer_coefficient = 1
+		if(wear_mask && (wear_mask.body_parts_covered & HEAD) && (environment.temperature < wear_mask.protective_temperature))
+			transfer_coefficient *= wear_mask.heat_transfer_coefficient
+
+		// handle_temperature_damage(HEAD, environment.temperature, environment_heat_capacity * transfer_coefficient)
+	*/
+
+	if(loc_temp < 310.15) // a cold place
+		bodytemperature += adjust_body_temperature(bodytemperature, loc_temp, 1)
+	else // a hot place
+		bodytemperature += adjust_body_temperature(bodytemperature, loc_temp, 1)
+
+	/*
+	if(stat == DEAD)
+		bodytemperature += 0.1 * (environment.temperature - bodytemperature) * environment_heat_capacity / (environment_heat_capacity + 270000)
+
+	*/
+	//Account for massive pressure differences
+
+	if(bodytemperature < (T0C + 5)) // start calculating temperature damage etc
+		if(bodytemperature <= (T0C - 40)) // stun temperature
+			Tempstun = 1
+
+		if(bodytemperature <= (T0C - 50)) // hurt temperature
+			if(bodytemperature <= 50) // sqrting negative numbers is bad
+				adjustToxLoss(200)
+			else
+				adjustToxLoss(round(sqrt(bodytemperature)) * 2)
+
+	else
+		Tempstun = 0
+
+	updatehealth()
+
+	return //TODO: DEFERRED
 
 /mob/living/carbon/slime
 	var/AIproc = 0 // determines if the AI loop is activated
@@ -144,65 +187,6 @@
 
 	AIproc = 0
 	//world << "AI proc ended."
-
-/mob/living/carbon/slime/proc/handle_environment(datum/gas_mixture/environment)
-	if(!environment)
-		adjustToxLoss(rand(10, 20))
-		return
-
-	//var/environment_heat_capacity = environment.heat_capacity()
-	var/loc_temp = T0C
-	if(istype(get_turf(src), /turf/space))
-		//environment_heat_capacity = loc:heat_capacity
-		var/turf/heat_turf = get_turf(src)
-		loc_temp = heat_turf.temperature
-	else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
-		var/obj/machinery/atmospherics/unary/cryo_cell/cell = loc
-		loc_temp = cell.air_contents.temperature
-	else
-		loc_temp = environment.temperature
-
-	/*
-	if((environment.temperature > (T0C + 50)) || (environment.temperature < (T0C + 10)))
-		var/transfer_coefficient
-
-		transfer_coefficient = 1
-		if(wear_mask && (wear_mask.body_parts_covered & HEAD) && (environment.temperature < wear_mask.protective_temperature))
-			transfer_coefficient *= wear_mask.heat_transfer_coefficient
-
-		// handle_temperature_damage(HEAD, environment.temperature, environment_heat_capacity*transfer_coefficient)
-	*/
-
-
-	if(loc_temp < 310.15) // a cold place
-		bodytemperature += adjust_body_temperature(bodytemperature, loc_temp, 1)
-	else // a hot place
-		bodytemperature += adjust_body_temperature(bodytemperature, loc_temp, 1)
-
-	/*
-	if(stat==2)
-		bodytemperature += 0.1*(environment.temperature - bodytemperature)*environment_heat_capacity/(environment_heat_capacity + 270000)
-
-	*/
-	//Account for massive pressure differences
-
-	if(bodytemperature < (T0C + 5)) // start calculating temperature damage etc
-		if(bodytemperature <= (T0C - 40)) // stun temperature
-			Tempstun = 1
-
-		if(bodytemperature <= (T0C - 50)) // hurt temperature
-			if(bodytemperature <= 50) // sqrting negative numbers is bad
-				adjustToxLoss(200)
-			else
-				adjustToxLoss(round(sqrt(bodytemperature)) * 2)
-
-	else
-		Tempstun = 0
-
-	updatehealth()
-
-	return //TODO: DEFERRED
-
 
 /mob/living/carbon/slime/proc/adjust_body_temperature(current, loc_temp, boost)
 	var/temperature = current

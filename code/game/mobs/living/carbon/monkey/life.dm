@@ -12,18 +12,13 @@
 /mob/living/carbon/monkey/Life()
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
-	if (monkeyizing)	return
-	if (update_muts)
-		update_muts=0
-		domutcheck(src,null,MUTCHK_FORCED)
-	..()
+	if(update_muts)
+		update_muts = 0
+		domutcheck(src, null, MUTCHK_FORCED)
+	. = ..()
 
-	var/datum/gas_mixture/environment // Added to prevent null location errors-- TLE
-	if(loc)
-		environment = loc.return_air()
-
-	if (stat != DEAD)
-		if(!istype(src,/mob/living/carbon/monkey/diona)) //still breathing
+	if(stat != DEAD)
+		if(!istype(src, /mob/living/carbon/monkey/diona)) //still breathing
 			//First, resolve location and get a breath
 			if(global.CTair_system.current_cycle % 4 == 2)
 				//Only try to take a breath every 4 seconds, unless suffocating
@@ -55,10 +50,6 @@
 	//to find it.
 	blinded = null
 
-	//Handle temperature/pressure differences between body and environment
-	if(environment)	// More error checking -- TLE
-		handle_environment(environment)
-
 	//Status updates, death etc.
 	handle_regular_status_updates()
 	update_canmove()
@@ -71,14 +62,56 @@
 		G.process()
 
 	if(!client && stat == CONSCIOUS)
-
 		if(prob(33) && canmove && isturf(loc) && !pulledby) //won't move if being pulled
-
 			step(src, pick(GLOBL.cardinal))
 
 		if(prob(1))
-			emote(pick("scratch","jump","roll","tail"))
+			emote(pick("scratch", "jump", "roll", "tail"))
 	updatehealth()
+
+/mob/living/carbon/monkey/handle_environment(datum/gas_mixture/environment)
+	if(!environment)
+		return
+
+	//Moved pressure calculations here for use in skip-processing check.
+	var/pressure = environment.return_pressure()
+	var/adjusted_pressure = calculate_affecting_pressure(pressure)
+
+	if(adjusted_pressure < WARNING_HIGH_PRESSURE && adjusted_pressure > WARNING_LOW_PRESSURE && abs(environment.temperature - 293.15) < 20 && abs(bodytemperature - 310.14) < 0.5 && environment.gas[GAS_PLASMA] < GLOBL.gas_data.overlay_limit[GAS_PLASMA])
+		return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
+
+	var/environment_heat_capacity = environment.heat_capacity()
+	if(istype(get_turf(src), /turf/space))
+		var/turf/heat_turf = get_turf(src)
+		environment_heat_capacity = heat_turf.heat_capacity
+
+	if(environment.temperature > (T0C + 50) || environment.temperature < (T0C + 10))
+		var/transfer_coefficient = 1
+
+		handle_temperature_damage(HEAD, environment.temperature, environment_heat_capacity * transfer_coefficient)
+
+	if(stat == DEAD)
+		bodytemperature += 0.1 * (environment.temperature - bodytemperature) * environment_heat_capacity / (environment_heat_capacity + 270000)
+
+	//Account for massive pressure differences
+	switch(adjusted_pressure)
+		if(HAZARD_HIGH_PRESSURE to INFINITY)
+			adjustBruteLoss(min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) - 1) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE))
+			pressure_alert = 2
+		if(WARNING_HIGH_PRESSURE to HAZARD_HIGH_PRESSURE)
+			pressure_alert = 1
+		if(WARNING_LOW_PRESSURE to WARNING_HIGH_PRESSURE)
+			pressure_alert = 0
+		if(HAZARD_LOW_PRESSURE to WARNING_LOW_PRESSURE)
+			pressure_alert = -1
+		else
+			if( !(COLD_RESISTANCE in mutations) )
+				adjustBruteLoss( LOW_PRESSURE_DAMAGE )
+				pressure_alert = -2
+			else
+				pressure_alert = -1
+
+	return
 
 /mob/living/carbon/monkey/calculate_affecting_pressure(var/pressure)
 	..()
@@ -373,50 +406,6 @@
 	//Temporary fixes to the alerts.
 
 	return 1
-
-/mob/living/carbon/monkey/proc/handle_environment(datum/gas_mixture/environment)
-	if(!environment)
-		return
-
-	//Moved pressure calculations here for use in skip-processing check.
-	var/pressure = environment.return_pressure()
-	var/adjusted_pressure = calculate_affecting_pressure(pressure)
-
-	if(adjusted_pressure < WARNING_HIGH_PRESSURE && adjusted_pressure > WARNING_LOW_PRESSURE && abs(environment.temperature - 293.15) < 20 && abs(bodytemperature - 310.14) < 0.5 && environment.gas[GAS_PLASMA] < GLOBL.gas_data.overlay_limit[GAS_PLASMA])
-		return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
-
-	var/environment_heat_capacity = environment.heat_capacity()
-	if(istype(get_turf(src), /turf/space))
-		var/turf/heat_turf = get_turf(src)
-		environment_heat_capacity = heat_turf.heat_capacity
-
-	if((environment.temperature > (T0C + 50)) || (environment.temperature < (T0C + 10)))
-		var/transfer_coefficient = 1
-
-		handle_temperature_damage(HEAD, environment.temperature, environment_heat_capacity*transfer_coefficient)
-
-	if(stat==2)
-		bodytemperature += 0.1*(environment.temperature - bodytemperature)*environment_heat_capacity/(environment_heat_capacity + 270000)
-
-	//Account for massive pressure differences
-	switch(adjusted_pressure)
-		if(HAZARD_HIGH_PRESSURE to INFINITY)
-			adjustBruteLoss( min( ( (adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE) )
-			pressure_alert = 2
-		if(WARNING_HIGH_PRESSURE to HAZARD_HIGH_PRESSURE)
-			pressure_alert = 1
-		if(WARNING_LOW_PRESSURE to WARNING_HIGH_PRESSURE)
-			pressure_alert = 0
-		if(HAZARD_LOW_PRESSURE to WARNING_LOW_PRESSURE)
-			pressure_alert = -1
-		else
-			if( !(COLD_RESISTANCE in mutations) )
-				adjustBruteLoss( LOW_PRESSURE_DAMAGE )
-				pressure_alert = -2
-			else
-				pressure_alert = -1
-
-	return
 
 /mob/living/carbon/monkey/proc/handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)
 	if(status_flags & GODMODE) return

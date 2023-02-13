@@ -1,11 +1,9 @@
 /mob/living/silicon/robot/Life()
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
+	. = ..()
 
-	if (src.monkeyizing)
-		return
-
-	src.blinded = null
+	blinded = null
 
 	//Status updates, death etc.
 	clamp_values()
@@ -14,7 +12,7 @@
 	if(client)
 		handle_regular_hud_updates()
 		update_items()
-	if (src.stat != DEAD) //still using power
+	if(stat != DEAD) //still using power
 		use_power()
 		process_killswitch()
 		process_locks()

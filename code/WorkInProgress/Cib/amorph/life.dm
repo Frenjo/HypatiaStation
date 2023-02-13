@@ -11,26 +11,15 @@
 /mob/living/carbon/amorph/Life()
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
+	. = ..()
 
-	if (src.monkeyizing)
-		return
-
-	..()
-
-	var/datum/gas_mixture/environment // Added to prevent null location errors-- TLE
-	if(src.loc)
-		environment = loc.return_air()
-
-	if (src.stat != 2) //still breathing
-
+	if(src.stat != DEAD) //still breathing
 		//First, resolve location and get a breath
-
-		if(air_master.current_cycle%4==2)
+		if(air_master.current_cycle % 4 == 2)
 			//Only try to take a breath every 4 seconds, unless suffocating
 			breathe()
-
 		else //Still give containing object the chance to interact
-			if(istype(loc, /obj/))
+			if(isobj(loc))
 				var/obj/location_as_object = loc
 				location_as_object.handle_internal_lifeform(src, 0)
 
@@ -38,14 +27,10 @@
 	//blinded get reset each cycle and then get activated later in the
 	//code. Very ugly. I dont care. Moving this stuff here so its easy
 	//to find it.
-	src.blinded = null
+	blinded = null
 
 	//Disease Check
 	handle_virus_updates()
-
-	//Handle temperature/pressure differences between body and environment
-	if(environment)	// More error checking -- TLE
-		handle_environment(environment)
 
 	//Mutations and radiation
 	handle_mutations_and_radiation()
@@ -74,6 +59,41 @@
 	// Grabbing
 	for(var/obj/item/weapon/grab/G in src)
 		G.process()
+
+/mob/living/carbon/amorph/handle_environment(datum/gas_mixture/environment)
+	if(!environment)
+		return
+	var/environment_heat_capacity = environment.heat_capacity()
+	if(istype(loc, /turf/space))
+		environment_heat_capacity = loc:heat_capacity
+
+	if(environment.temperature > (T0C + 50) || environment.temperature < (T0C + 10))
+		var/transfer_coefficient = 1
+		if(wear_mask && (wear_mask.body_parts_covered & HEAD) && (environment.temperature < wear_mask.protective_temperature))
+			transfer_coefficient *= wear_mask.heat_transfer_coefficient
+
+		handle_temperature_damage(HEAD, environment.temperature, environment_heat_capacity * transfer_coefficient)
+
+	if(stat == DEAD)
+		bodytemperature += 0.1 * (environment.temperature - bodytemperature) * environment_heat_capacity / (environment_heat_capacity + 270000)
+
+	//Account for massive pressure differences
+
+	var/pressure = environment.return_pressure()
+
+//	if(!wear_suit)		Monkies cannot into space.
+//		if(!istype(wear_suit, /obj/item/clothing/suit/space))
+
+			/*if(pressure < 20)
+				if(prob(25))
+					src << "You feel the splittle on your lips and the fluid on your eyes boiling away, the capillteries in your skin breaking."
+				adjustBruteLoss(5)
+			*/
+
+	if(pressure > HAZARD_HIGH_PRESSURE)
+		adjustBruteLoss(min((10 + (round(pressure / HIGH_STEP_PRESSURE - 2) * 5)), MAX_PRESSURE_DAMAGE))
+
+	return //TODO: DEFERRED
 
 /mob/living/carbon/amorph
 	proc
@@ -237,47 +257,6 @@
 							spawn(0) emote(pick("giggle", "laugh"))
 
 			return 1
-
-		handle_environment(datum/gas_mixture/environment)
-			if(!environment)
-				return
-			var/environment_heat_capacity = environment.heat_capacity()
-			if(istype(loc, /turf/space))
-				environment_heat_capacity = loc:heat_capacity
-
-			if((environment.temperature > (T0C + 50)) || (environment.temperature < (T0C + 10)))
-				var/transfer_coefficient
-
-				transfer_coefficient = 1
-				if(wear_mask && (wear_mask.body_parts_covered & HEAD) && (environment.temperature < wear_mask.protective_temperature))
-					transfer_coefficient *= wear_mask.heat_transfer_coefficient
-
-				handle_temperature_damage(HEAD, environment.temperature, environment_heat_capacity*transfer_coefficient)
-
-			if(stat==2)
-				bodytemperature += 0.1*(environment.temperature - bodytemperature)*environment_heat_capacity/(environment_heat_capacity + 270000)
-
-			//Account for massive pressure differences
-
-
-			var/pressure = environment.return_pressure()
-
-		//	if(!wear_suit)		Monkies cannot into space.
-		//		if(!istype(wear_suit, /obj/item/clothing/suit/space))
-
-					/*if(pressure < 20)
-						if(prob(25))
-							src << "You feel the splittle on your lips and the fluid on your eyes boiling away, the capillteries in your skin breaking."
-						adjustBruteLoss(5)
-					*/
-
-			if(pressure > HAZARD_HIGH_PRESSURE)
-
-				adjustBruteLoss(min((10+(round(pressure/(HIGH_STEP_PRESSURE)-2)*5)),MAX_PRESSURE_DAMAGE))
-
-
-
-			return //TODO: DEFERRED
 
 		handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)
 			if(src.nodamage) return

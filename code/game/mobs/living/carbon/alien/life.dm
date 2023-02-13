@@ -2,14 +2,9 @@
 /mob/living/carbon/alien/Life()
 	set invisibility = 0
 	set background = BACKGROUND_ENABLED
+	. = ..()
 
-	if (monkeyizing)
-		return
-
-	..()
-
-	if (stat != DEAD) //still breathing
-
+	if(stat != DEAD) //still breathing
 		// GROW!
 		update_progression()
 
@@ -21,8 +16,6 @@
 
 	blinded = null
 
-	handle_environment()
-
 	//Status updates, death etc.
 	handle_regular_status_updates()
 	update_canmove()
@@ -30,6 +23,11 @@
 
 	if(client)
 		handle_regular_hud_updates()
+
+/mob/living/carbon/alien/handle_environment(datum/gas_mixture/enviroment)
+	//TODO: Work out if larvae breathe/suffer from pressure/suffer from heat.
+	if(!enviroment)
+		return
 
 /mob/living/carbon/alien/proc/handle_chemicals_in_body()
 	return // Nothing yet. Maybe check it out at a later date.
@@ -48,11 +46,6 @@
 	adjustOxyLoss(-(rads))
 	adjustToxLoss(-(rads))
 	return
-
-/mob/living/carbon/alien/proc/handle_environment(enviroment)
-	//TODO: Work out if larvae breathe/suffer from pressure/suffer from heat.
-	if(!enviroment)
-		return
 
 /mob/living/carbon/alien/proc/handle_regular_status_updates()
 	// TODO: sleep, blind, stunned, paralyzed?
