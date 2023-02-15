@@ -44,7 +44,7 @@
 	var/obj/item/owner
 
 /obj/screen/item_action/New(obj/item/O)
-	..()
+	. = ..()
 	owner = O
 
 /obj/screen/item_action/Destroy()
@@ -206,12 +206,11 @@
 
 	switch(name)
 		if("toggle")
+			usr.hud_used.inventory_shown = !usr.hud_used.inventory_shown
 			if(usr.hud_used.inventory_shown)
-				usr.hud_used.inventory_shown = 0
-				usr.client.screen -= usr.hud_used.other
-			else
-				usr.hud_used.inventory_shown = 1
 				usr.client.screen += usr.hud_used.other
+			else
+				usr.client.screen -= usr.hud_used.other
 
 			usr.hud_used.hidden_inventory_update()
 
@@ -259,39 +258,47 @@
 		if("pull")
 			usr.stop_pulling()
 		if("throw")
-			if(!usr.stat && isturf(usr.loc) && !usr.restrained())
-				usr:toggle_throw_mode()
+			if(iscarbon(usr) && !usr.stat && isturf(usr.loc) && !usr.restrained())
+				var/mob/living/carbon/C = usr
+				C.toggle_throw_mode()
 		if("drop")
 			usr.drop_item_v()
 
 		if("module")
-			if(issilicon(usr))
-				if(usr:module)
+			if(isrobot(usr))
+				var/mob/living/silicon/robot/R = usr
+				if(R.module)
 					return 1
-				usr:pick_module()
+				R.pick_module()
 
 		if("radio")
-			if(issilicon(usr))
-				usr:radio_menu()
+			if(isrobot(usr))
+				var/mob/living/silicon/robot/R = usr
+				R.radio_menu()
 		if("panel")
-			if(issilicon(usr))
-				usr:installed_modules()
+			if(isrobot(usr))
+				var/mob/living/silicon/robot/R = usr
+				R.installed_modules()
 
 		if("store")
-			if(issilicon(usr))
-				usr:uneq_active()
+			if(isrobot(usr))
+				var/mob/living/silicon/robot/R = usr
+				R.uneq_active()
 
 		if("module1")
 			if(isrobot(usr))
-				usr:toggle_module(1)
+				var/mob/living/silicon/robot/R = usr
+				R.toggle_module(1)
 
 		if("module2")
 			if(isrobot(usr))
-				usr:toggle_module(2)
+				var/mob/living/silicon/robot/R = usr
+				R.toggle_module(2)
 
 		if("module3")
 			if(isrobot(usr))
-				usr:toggle_module(3)
+				var/mob/living/silicon/robot/R = usr
+				R.toggle_module(3)
 
 		if("Allow Walking")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.

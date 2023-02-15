@@ -66,7 +66,7 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 	plane = SPACE_DUST_PLANE
 
 /obj/space_star/bluespace/New()
-	..()
+	. = ..()
 	var/star_type = pick(prob(100); 0, prob(50); 1, prob(10); 2, prob(1); 3, prob(10); 4, prob(15); 5, prob(75); 6)
 	icon_state = "bstar[star_type]"
 

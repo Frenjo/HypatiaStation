@@ -265,14 +265,14 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	if(usr.client.view == world.view)
 		if(!usr.hud_used.hud_shown)
-			usr.button_pressed_F12(1)	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
-		usr.button_pressed_F12(1)
+			usr.button_pressed_F12(TRUE)	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
+		usr.button_pressed_F12(TRUE)
 		usr.client.view = 12
 		zoom = 1
 	else
 		usr.client.view = world.view
 		if(!usr.hud_used.hud_shown)
-			usr.button_pressed_F12(1)
+			usr.button_pressed_F12(TRUE)
 		zoom = 0
 	to_chat(usr, "<font color='[zoom ? "blue" : "red"]'>Zoom mode [zoom ? "en" : "dis"]abled.</font>")
 	return

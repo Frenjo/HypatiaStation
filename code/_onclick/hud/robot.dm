@@ -160,7 +160,7 @@
 				src.adding += mymob.gun_run_icon
 			src.adding += mymob.gun_move_icon
 
-	mymob.client.screen = null
+	mymob.client.screen.Cut()
 	mymob.client.screen += list(
 		mymob.throw_icon,
 		mymob.zone_sel,

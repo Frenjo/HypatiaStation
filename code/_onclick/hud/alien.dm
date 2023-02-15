@@ -234,8 +234,7 @@
 	mymob.zone_sel.overlays.Cut()
 	mymob.zone_sel.overlays += image('icons/mob/zone_sel.dmi', "[mymob.zone_sel.selecting]")
 
-	mymob.client.screen = null
-
+	mymob.client.screen.Cut()
 	mymob.client.screen += list(
 		mymob.throw_icon,
 		mymob.zone_sel,
