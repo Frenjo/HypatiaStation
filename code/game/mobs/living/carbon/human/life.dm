@@ -973,7 +973,7 @@
 		var/total_plasmaloss = 0
 		for(var/obj/item/I in src)
 			if(I.contaminated)
-				total_plasmaloss += vsc.plc.CONTAMINATION_LOSS
+				total_plasmaloss += global.vsc.plc.CONTAMINATION_LOSS
 		if(status_flags & GODMODE)
 			return 0	//godmode
 		adjustToxLoss(total_plasmaloss)

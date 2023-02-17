@@ -1,4 +1,4 @@
-var/global/vs_control/vsc = new
+GLOBAL_BYOND_NEW(vsc, /vs_control)
 
 /vs_control
 	var/fire_consuption_rate = 0.25
@@ -76,7 +76,7 @@ var/global/vs_control/vsc = new
 
 /vs_control/var/list/settings = list()
 /vs_control/var/list/bitflags = list("1","2","4","8","16","32","64","128","256","512","1024")
-/vs_control/var/pl_control/plc = new()
+/vs_control/var/pl_control/plc = new /pl_control()
 
 /vs_control/New()
 	. = ..()

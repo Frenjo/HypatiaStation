@@ -46,10 +46,10 @@ var/list/advance_cures = list(
  */
 /datum/disease/advance/New(process = 1, datum/disease/advance/D)
 	// Setup our dictionary if it hasn't already.
-	if(!length(dictionary_symptoms))
-		for(var/symp in list_symptoms)
+	if(!length(GLOBL.dictionary_symptoms))
+		for(var/symp in GLOBL.list_symptoms)
 			var/datum/symptom/S = new symp
-			dictionary_symptoms[S.id] = symp
+			GLOBL.dictionary_symptoms[S.id] = symp
 
 	if(!istype(D))
 		D = null
@@ -136,7 +136,7 @@ var/list/advance_cures = list(
 
 	// Generate symptoms. By default, we only choose non-deadly symptoms.
 	var/list/possible_symptoms = list()
-	for(var/symp in list_symptoms)
+	for(var/symp in GLOBL.list_symptoms)
 		var/datum/symptom/S = new symp
 		if(S.level <= type_level_limit)
 			if(!HasSymptom(S))
@@ -360,7 +360,7 @@ var/list/advance_cures = list(
 
 	var/list/symptoms = list()
 	symptoms += "Done"
-	symptoms += list_symptoms.Copy()
+	symptoms += GLOBL.list_symptoms.Copy()
 	do
 		var/symptom = input(user, "Choose a symptom to add ([i] remaining)", "Choose a Symptom") in symptoms
 		if(istext(symptom))

@@ -7,8 +7,8 @@
  */
 
 //Used for logging people entering cryosleep and important items they are carrying.
-var/global/list/frozen_crew = list()
-var/global/list/frozen_items = list()
+GLOBAL_GLOBL_LIST_NEW(frozen_crew)
+GLOBAL_GLOBL_LIST_NEW(frozen_items)
 
 //Main cryopod console.
 
@@ -57,37 +57,37 @@ var/global/list/frozen_items = list()
 
 	if(href_list["log"])
 		var/dat = "<b>Recently stored crewmembers</b><br/><hr/><br/>"
-		for(var/person in frozen_crew)
+		for(var/person in GLOBL.frozen_crew)
 			dat += "[person]<br/>"
 		dat += "<hr/>"
 
 		user << browse(dat, "window=cryolog")
 
 	else if(href_list["item"])
-		if(!length(frozen_items))
+		if(!length(GLOBL.frozen_items))
 			to_chat(user, SPAN_INFO("There is nothing to recover from storage."))
 			return
 
-		var/obj/item/I = input(usr, "Please choose which object to retrieve.", "Object recovery", null) as obj in frozen_items
-		if(!I || !length(frozen_items))
+		var/obj/item/I = input(usr, "Please choose which object to retrieve.", "Object recovery", null) as obj in GLOBL.frozen_items
+		if(!I || !length(GLOBL.frozen_items))
 			to_chat(user, SPAN_INFO("There is nothing to recover from storage."))
 			return
 
 		visible_message(SPAN_INFO("The console beeps happily as it disgorges \the [I]."), 3)
 
 		I.loc = get_turf(src)
-		frozen_items -= I
+		GLOBL.frozen_items -= I
 
 	else if(href_list["allitems"])
-		if(!length(frozen_items))
+		if(!length(GLOBL.frozen_items))
 			to_chat(user, SPAN_INFO("There is nothing to recover from storage."))
 			return
 
 		visible_message(SPAN_INFO("The console beeps happily as it disgorges the desired objects."), 3)
 
-		for(var/obj/item/I in frozen_items)
+		for(var/obj/item/I in GLOBL.frozen_items)
 			I.loc = get_turf(src)
-			frozen_items -= I
+			GLOBL.frozen_items -= I
 
 	else if(href_list["crew"])
 		to_chat(user, SPAN_WARNING("Functionality unavailable at this time."))
@@ -197,10 +197,10 @@ var/global/list/frozen_items = list()
 				if(!preserve)
 					qdel(W)
 				else
-					frozen_items += W
+					GLOBL.frozen_items += W
 
 			//Update any existing objectives involving this mob.
-			for(var/datum/objective/O in all_objectives)
+			for(var/datum/objective/O in GLOBL.all_objectives)
 				if(istype(O, /datum/objective/mutiny) && O.target == occupant.mind) //We don't want revs to get objectives that aren't for heads of staff. Letting them win or lose based on cryo is silly so we remove the objective.
 					qdel(O) //TODO: Update rev objectives on login by head (may happen already?) ~ Z
 				else if(O.target && istype(O.target, /datum/mind))
@@ -213,7 +213,7 @@ var/global/list/frozen_items = list()
 								return
 							O.find_target()
 							if(!(O.target))
-								all_objectives -= O
+								GLOBL.all_objectives -= O
 								O.owner.objectives -= O
 								qdel(O)
 
@@ -254,7 +254,7 @@ var/global/list/frozen_items = list()
 			occupant.ckey = null
 
 			//Make an announcement and log the person entering storage.
-			frozen_crew += "[occupant.real_name]"
+			GLOBL.frozen_crew += "[occupant.real_name]"
 
 			announce.autosay("[occupant.real_name] has entered long-term storage.", "Cryogenic Oversight")
 			visible_message(SPAN_INFO("The crypod hums and hisses as it moves [occupant.real_name] into storage."), 3)

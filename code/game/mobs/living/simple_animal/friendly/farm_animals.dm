@@ -184,8 +184,8 @@
 			new /mob/living/simple_animal/chicken(src.loc)
 			qdel(src)
 
-var/const/MAX_CHICKENS = 50
-var/global/chicken_count = 0
+/var/const/MAX_CHICKENS = 50
+GLOBAL_GLOBL_INIT(chicken_count, 0)
 
 /mob/living/simple_animal/chicken
 	name = "\improper chicken"
@@ -220,11 +220,11 @@ var/global/chicken_count = 0
 	icon_dead = "chicken_[body_color]_dead"
 	pixel_x = rand(-6, 6)
 	pixel_y = rand(0, 10)
-	chicken_count += 1
+	GLOBL.chicken_count += 1
 
 /mob/living/simple_animal/chicken/Die()
 	..()
-	chicken_count -= 1
+	GLOBL.chicken_count -= 1
 
 /mob/living/simple_animal/chicken/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/grown/wheat)) //feedin' dem chickens
@@ -249,7 +249,7 @@ var/global/chicken_count = 0
 		var/obj/item/weapon/reagent_containers/food/snacks/egg/E = new(get_turf(src))
 		E.pixel_x = rand(-6,6)
 		E.pixel_y = rand(-6,6)
-		if(chicken_count < MAX_CHICKENS && prob(10))
+		if(GLOBL.chicken_count < MAX_CHICKENS && prob(10))
 			GLOBL.processing_objects.Add(E)
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/var/amount_grown = 0

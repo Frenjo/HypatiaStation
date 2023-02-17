@@ -4,7 +4,7 @@
 	TODO: Proper documentation
 	icon_key is [species.race_key][g][husk][fat][hulk][skeleton][s_tone]
 */
-var/global/list/human_icon_cache = list()
+GLOBAL_BYOND_LIST_NEW(human_icon_cache)
 
 	///////////////////////
 	//UPDATE_ICONS SYSTEM//
@@ -176,15 +176,15 @@ Please contact me on #coderbus IRC. ~Carn x
 		M.Translate(0, 16 * (size_multiplier - 1))
 		src.transform = M
 
-var/global/list/damage_icon_parts = list()
+GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 /proc/get_damage_icon_part(damage_state, body_part)
-	if(damage_icon_parts["[damage_state]/[body_part]"] == null)
+	if(global.damage_icon_parts["[damage_state]/[body_part]"] == null)
 		var/icon/DI = new /icon('icons/mob/dam_human.dmi', damage_state)			// the damage icon for whole human
 		DI.Blend(new /icon('icons/mob/dam_mask.dmi', body_part), ICON_MULTIPLY)		// mask with this organ's pixels
-		damage_icon_parts["[damage_state]/[body_part]"] = DI
+		global.damage_icon_parts["[damage_state]/[body_part]"] = DI
 		return DI
 	else
-		return damage_icon_parts["[damage_state]/[body_part]"]
+		return global.damage_icon_parts["[damage_state]/[body_part]"]
 
 //DAMAGE OVERLAYS
 //constructs damage icon for each organ from mask * damage field and saves it in our overlays_ lists
@@ -267,9 +267,9 @@ var/global/list/damage_icon_parts = list()
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0][s_tone]"
 
 	var/icon/base_icon
-	if(human_icon_cache[icon_key])
+	if(global.human_icon_cache[icon_key])
 		//Icon is cached, use existing icon.
-		base_icon = human_icon_cache[icon_key]
+		base_icon = global.human_icon_cache[icon_key]
 	else
 
 	//BEGIN CACHED ICON GENERATION.
@@ -337,7 +337,7 @@ var/global/list/damage_icon_parts = list()
 				else
 					base_icon.Blend(rgb(-s_tone, -s_tone, -s_tone), ICON_SUBTRACT)
 
-		human_icon_cache[icon_key] = base_icon
+		global.human_icon_cache[icon_key] = base_icon
 
 	//END CACHED ICON GENERATION.
 

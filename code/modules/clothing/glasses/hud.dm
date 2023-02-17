@@ -22,7 +22,7 @@
 	name = "Security HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
 	icon_state = "securityhud"
-	var/global/list/jobs[0]
+	var/static/list/jobs[0]
 
 /obj/item/clothing/glasses/hud/security/jensenshades
 	name = "Augmented shades"

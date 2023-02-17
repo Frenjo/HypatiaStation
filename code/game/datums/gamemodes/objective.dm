@@ -1,5 +1,5 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-var/global/list/all_objectives = list()
+GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective
 	var/datum/mind/owner = null			//Who owns the objective.
@@ -9,13 +9,13 @@ var/global/list/all_objectives = list()
 	var/completed = 0					//currently only used for custom objectives.
 
 /datum/objective/New(text)
-	all_objectives |= src
+	GLOBL.all_objectives |= src
 	if(text)
 		explanation_text = text
 	..()
 
 /datum/objective/Destroy()
-	all_objectives -= src
+	GLOBL.all_objectives -= src
 	return ..()
 
 /datum/objective/proc/check_completion()
@@ -484,7 +484,7 @@ var/global/list/all_objectives = list()
 	var/obj/item/steal_target
 	var/target_name
 
-	var/global/possible_items[] = list(
+	var/static/list/possible_items = list(
 		"the captain's antique laser gun" = /obj/item/weapon/gun/energy/laser/captain,
 		"a hand teleporter" = /obj/item/weapon/hand_tele,
 		"an RCD" = /obj/item/weapon/rcd,
@@ -507,7 +507,7 @@ var/global/list/all_objectives = list()
 		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
 	)
 
-	var/global/possible_items_special[] = list(
+	var/static/list/possible_items_special = list(
 		/*"nuclear authentication disk" = /obj/item/weapon/disk/nuclear,*///Broken with the change to nuke disk making it respawn on z level change.
 		"nuclear gun" = /obj/item/weapon/gun/energy/gun/nuclear,
 		"diamond drill" = /obj/item/weapon/pickaxe/diamonddrill,
@@ -943,13 +943,13 @@ var/global/list/all_objectives = list()
 
 #define MAX_VOX_KILLS 10 //Number of kills during the round before the Inviolate is broken.
 						 //Would be nice to use vox-specific kills but is currently not feasible.
-var/global/vox_kills = 0 //Used to check the Inviolate.
+GLOBAL_GLOBL_INIT(vox_kills, 0) //Used to check the Inviolate.
 
 /datum/objective/heist/inviolate_death
 	explanation_text = "Follow the Inviolate. Minimise death and loss of resources."
 	
 /datum/objective/heist/inviolate_death/check_completion()
-	if(vox_kills > MAX_VOX_KILLS)
+	if(GLOBL.vox_kills > MAX_VOX_KILLS)
 		return 0
 	return 1
 #undef MAX_VOX_KILLS

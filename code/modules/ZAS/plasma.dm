@@ -81,7 +81,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	//Handles all the bad things plasma can do.
 
 	//Contamination
-	if(vsc.plc.CLOTH_CONTAMINATION)
+	if(global.vsc.plc.CLOTH_CONTAMINATION)
 		contaminate()
 
 	//Anything else requires them to not be dead.
@@ -89,7 +89,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 		return
 
 	//Burn skin if exposed.
-	if(vsc.plc.SKIN_BURNS)
+	if(global.vsc.plc.SKIN_BURNS)
 		if(!pl_head_protected() || !pl_suit_protected())
 			burn_skin(0.75)
 			if(prob(20))
@@ -97,7 +97,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 			updatehealth()
 
 	//Burn eyes if exposed.
-	if(vsc.plc.EYE_BURNS)
+	if(global.vsc.plc.EYE_BURNS)
 		if(!head)
 			if(!wear_mask)
 				burn_eyes()
@@ -113,8 +113,8 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 						burn_eyes()
 
 	//Genetic Corruption
-	if(vsc.plc.GENETIC_CORRUPTION)
-		if(rand(1, 10000) < vsc.plc.GENETIC_CORRUPTION)
+	if(global.vsc.plc.GENETIC_CORRUPTION)
+		if(rand(1, 10000) < global.vsc.plc.GENETIC_CORRUPTION)
 			randmutb(src)
 			to_chat(src, SPAN_WARNING("High levels of toxins cause you to spontaneously mutate."))
 			domutcheck(src, null)
@@ -134,7 +134,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 /mob/living/carbon/human/proc/pl_head_protected()
 	//Checks if the head is adequately sealed.
 	if(head)
-		if(vsc.plc.PLASMAGUARD_ONLY)
+		if(global.vsc.plc.PLASMAGUARD_ONLY)
 			if(head.flags & PLASMAGUARD)
 				return 1
 		else if(head.flags & HEADCOVERSEYES)
@@ -144,7 +144,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 /mob/living/carbon/human/proc/pl_suit_protected()
 	//Checks if the suit is adequately sealed.
 	if(wear_suit)
-		if(vsc.plc.PLASMAGUARD_ONLY)
+		if(global.vsc.plc.PLASMAGUARD_ONLY)
 			if(wear_suit.flags & PLASMAGUARD)
 				return 1
 		else
@@ -166,7 +166,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 /turf/Entered(obj/item/I)
 	. = ..()
 	//Items that are in plasma, but not on a mob, can still be contaminated.
-	if(istype(I) && vsc.plc.CLOTH_CONTAMINATION && I.can_contaminate())
+	if(istype(I) && global.vsc.plc.CLOTH_CONTAMINATION && I.can_contaminate())
 		var/datum/gas_mixture/env = return_air(1)
 		if(!env)
 			return

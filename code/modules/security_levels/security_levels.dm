@@ -1,4 +1,4 @@
-/var/security_level = SEC_LEVEL_GREEN
+GLOBAL_GLOBL_INIT(security_level, SEC_LEVEL_GREEN)
 //0 = code green
 //1 = code yellow
 //2 = code blue
@@ -19,13 +19,13 @@
 			level = SEC_LEVEL_DELTA
 
 	//Will not be announced if you try to set to the same level as it already is
-	if(level >= SEC_LEVEL_GREEN && level <= SEC_LEVEL_DELTA && level != security_level)
+	if(level >= SEC_LEVEL_GREEN && level <= SEC_LEVEL_DELTA && level != GLOBL.security_level)
 		switch(level)
 			if(SEC_LEVEL_GREEN)
 				to_world("<font size=4 color='red'>Attention! Security level lowered to green</font>")
 				to_world("<font color='red'>[CONFIG_GET(alert_desc_green)]</font>")
 				world << sound('sound/vox/doop.wav', volume = 37) // Play a sound whenever the level changes downwards. -Frenjo
-				security_level = SEC_LEVEL_GREEN
+				GLOBL.security_level = SEC_LEVEL_GREEN
 
 				// Stole this code from below, again. -Frenjo
 				var/obj/machinery/computer/communications/CC = locate(/obj/machinery/computer/communications, world)
@@ -46,7 +46,7 @@
 						A.destructreset()
 
 			if(SEC_LEVEL_YELLOW)
-				if(security_level < SEC_LEVEL_YELLOW)
+				if(GLOBL.security_level < SEC_LEVEL_YELLOW)
 					to_world("<font size=4 color='red'>Attention! Security level elevated to yellow</font>")
 					to_world("<font color='red'>[CONFIG_GET(alert_desc_yellow_upto)]</font>")
 					world << sound('sound/vox/dadeda.wav', volume = 34) // Play a sound whenever the level changes upwards. -Frenjo
@@ -54,7 +54,7 @@
 					to_world("<font size=4 color='red'>Attention! Security level lowered to yellow</font>")
 					to_world("<font color='red'>[CONFIG_GET(alert_desc_yellow_downto)]</font>")
 					world << sound('sound/vox/doop.wav', volume = 37) // Play a sound whenever the level changes downwards. -Frenjo
-				security_level = SEC_LEVEL_YELLOW
+				GLOBL.security_level = SEC_LEVEL_YELLOW
 
 				// Stole this code from below, made the blue alert sprite to go with it too! -Frenjo
 				var/obj/machinery/computer/communications/CC = locate(/obj/machinery/computer/communications, world)
@@ -76,7 +76,7 @@
 						A.destructreset()
 
 			if(SEC_LEVEL_BLUE)
-				if(security_level < SEC_LEVEL_BLUE)
+				if(GLOBL.security_level < SEC_LEVEL_BLUE)
 					to_world("<font size=4 color='red'>Attention! Security level elevated to blue</font>")
 					to_world("<font color='red'>[CONFIG_GET(alert_desc_blue_upto)]</font>")
 					world << sound('sound/vox/dadeda.wav', volume = 34) // Play a sound whenever the level changes upwards. -Frenjo
@@ -85,7 +85,7 @@
 					to_world("<font size=4 color='red'>Attention! Security level lowered to blue</font>")
 					to_world("<font color='red'>[CONFIG_GET(alert_desc_blue_downto)]</font>")
 					world << sound('sound/vox/doop.wav', volume = 37) // Play a sound whenever the level changes downwards. -Frenjo
-				security_level = SEC_LEVEL_BLUE
+				GLOBL.security_level = SEC_LEVEL_BLUE
 
 				// Stole this code from below, made the blue alert sprite to go with it too! -Frenjo
 				var/obj/machinery/computer/communications/CC = locate(/obj/machinery/computer/communications, world)
@@ -106,7 +106,7 @@
 						A.destructreset()
 
 			if(SEC_LEVEL_RED)
-				if(security_level < SEC_LEVEL_RED)
+				if(GLOBL.security_level < SEC_LEVEL_RED)
 					to_world("<font size=4 color='red'>Attention! Code red!</font>")
 					to_world("<font color='red'>[CONFIG_GET(alert_desc_red_upto)]</font>")
 					world << sound('sound/vox/dadeda.wav', volume = 34) // Play a sound whenever the level changes upwards. -Frenjo
@@ -114,7 +114,7 @@
 					to_world("<font size=4 color='red'>Attention! Code red!</font>")
 					to_world("<font color='red'>[CONFIG_GET(alert_desc_red_downto)]</font>")
 					world << sound('sound/vox/doop.wav', volume = 37) // Play a sound whenever the level changes downwards. -Frenjo
-				security_level = SEC_LEVEL_RED
+				GLOBL.security_level = SEC_LEVEL_RED
 
 				//	- At the time of commit, setting status displays didn't work properly
 				// Uncommented 06/10/2019 and it works now! -Frenjo
@@ -140,7 +140,7 @@
 				to_world("<font color='red'>[CONFIG_GET(alert_desc_delta)]</font>")
 				world << sound('sound/vox/dadeda.wav', volume = 34) // Play a sound whenever the level changes upwards. -Frenjo
 				world << sound('sound/misc/bloblarm.ogg', volume = 70) // Self destruction needs dramatic noises. -Frenjo
-				security_level = SEC_LEVEL_DELTA
+				GLOBL.security_level = SEC_LEVEL_DELTA
 
 				// Stole this code from above, again again, made the alien-esque sprite to go with it! -Frenjo
 				var/obj/machinery/computer/communications/CC = locate(/obj/machinery/computer/communications, world)
@@ -163,7 +163,7 @@
 		return
 
 /proc/get_security_level()
-	switch(security_level)
+	switch(GLOBL.security_level)
 		if(SEC_LEVEL_GREEN)
 			return "green"
 		if(SEC_LEVEL_YELLOW)

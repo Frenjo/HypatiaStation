@@ -1,11 +1,11 @@
-/var/global/list/datum/lighting_corner/all_lighting_corners = list()
-/var/global/datum/lighting_corner/dummy/dummy_lighting_corner = new /datum/lighting_corner/dummy()
+GLOBAL_BYOND_LIST_NEW(all_lighting_corners)
+GLOBAL_BYOND_NEW(dummy_lighting_corner, /datum/lighting_corner/dummy)
 // Because we can control each corner of every lighting overlay.
 // And corners get shared between multiple turfs (unless you're on the corners of the map, then 1 corner doesn't).
 // For the record: these should never ever ever be deleted, even if the turf doesn't have dynamic lighting.
 
 // This list is what the code that assigns corners listens to, the order in this list is the order in which corners are added to the /turf/corners list.
-/var/global/list/lighting_corner_diagonal = list(NORTHEAST, SOUTHEAST, SOUTHWEST, NORTHWEST)
+GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUTHWEST, NORTHWEST))
 
 /datum/lighting_corner
 	var/list/turf/masters					= list()

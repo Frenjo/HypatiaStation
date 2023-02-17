@@ -10,11 +10,11 @@
 	idle_power_usage = 5
 	active_power_usage = 100
 	var/obj/item/weapon/reagent_containers/beaker = null
-	var/global/list/allowed_items = list (
-		/obj/item/weapon/reagent_containers/food/snacks/grown/tomato  = "tomatojuice",
-		/obj/item/weapon/reagent_containers/food/snacks/grown/carrot  = "carrotjuice",
+	var/static/list/allowed_items = list (
+		/obj/item/weapon/reagent_containers/food/snacks/grown/tomato = "tomatojuice",
+		/obj/item/weapon/reagent_containers/food/snacks/grown/carrot = "carrotjuice",
 		/obj/item/weapon/reagent_containers/food/snacks/grown/berries = "berryjuice",
-		/obj/item/weapon/reagent_containers/food/snacks/grown/banana  = "banana",
+		/obj/item/weapon/reagent_containers/food/snacks/grown/banana = "banana",
 		/obj/item/weapon/reagent_containers/food/snacks/grown/potato = "potato",
 		/obj/item/weapon/reagent_containers/food/snacks/grown/lemon = "lemonjuice",
 		/obj/item/weapon/reagent_containers/food/snacks/grown/orange = "orangejuice",

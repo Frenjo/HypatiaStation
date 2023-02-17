@@ -59,7 +59,7 @@
 		sql_report_death(src)
 		global.CTgame_ticker.mode.check_win()
 		if(istype(global.CTgame_ticker.mode, /datum/game_mode/heist))
-			vox_kills++ //Bad vox. Shouldn't be killing humans.
+			GLOBL.vox_kills++ //Bad vox. Shouldn't be killing humans.
 
 	return ..(gibbed, species.death_message)
 

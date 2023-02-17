@@ -198,7 +198,7 @@
 		if(istype(wear_mask, /obj/item/clothing/mask/horsehead))
 			var/obj/item/clothing/mask/horsehead/hoers = wear_mask
 			if(hoers.voicechange)
-				if(mind && mind.changeling && department_radio_keys[copytext(message, 1, 3)] != "changeling")
+				if(mind && mind.changeling && GLOBL.department_radio_keys[copytext(message, 1, 3)] != "changeling")
 					message = pick("NEEIIGGGHHHH!", "NEEEIIIIGHH!", "NEIIIGGHH!", "HAAWWWWW!", "HAAAWWW!")
 					verbage = pick("whinnies","neighs", "says")
 					handled = 1

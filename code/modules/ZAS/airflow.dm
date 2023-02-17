@@ -7,7 +7,7 @@ Contains helper procs for airflow, handled in /connection_group.
 /mob/proc/airflow_stun()
 	if(stat == DEAD)
 		return 0
-	if(last_airflow_stun > world.time - vsc.airflow_stun_cooldown)
+	if(last_airflow_stun > world.time - global.vsc.airflow_stun_cooldown)
 		return 0
 	if(!(status_flags & CANSTUN) && !(status_flags & CANWEAKEN))
 		to_chat(src, SPAN_INFO("You stay upright as the air rushes past you."))
@@ -24,7 +24,7 @@ Contains helper procs for airflow, handled in /connection_group.
 	return
 
 /mob/living/carbon/human/airflow_stun()
-	if(last_airflow_stun > world.time - vsc.airflow_stun_cooldown)
+	if(last_airflow_stun > world.time - global.vsc.airflow_stun_cooldown)
 		return 0
 	if(buckled)
 		return 0
@@ -43,13 +43,13 @@ Contains helper procs for airflow, handled in /connection_group.
 	if(anchored && !ismob(src))
 		return 0
 
-	if(!istype(src, /obj/item) && n < vsc.airflow_dense_pressure)
+	if(!istype(src, /obj/item) && n < global.vsc.airflow_dense_pressure)
 		return 0
 
 	return 1
 
 /mob/check_airflow_movable(n)
-	if(n < vsc.airflow_heavy_pressure)
+	if(n < global.vsc.airflow_heavy_pressure)
 		return 0
 	return 1
 
@@ -64,13 +64,13 @@ Contains helper procs for airflow, handled in /connection_group.
 	. = ..()
 	switch(w_class)
 		if(2)
-			if(n < vsc.airflow_lightest_pressure)
+			if(n < global.vsc.airflow_lightest_pressure)
 				return 0
 		if(3)
-			if(n < vsc.airflow_light_pressure)
+			if(n < global.vsc.airflow_light_pressure)
 				return 0
 		if(4, 5)
-			if(n < vsc.airflow_medium_pressure)
+			if(n < global.vsc.airflow_medium_pressure)
 				return 0
 
 /atom/movable/var/tmp/turf/airflow_dest
@@ -83,7 +83,7 @@ Contains helper procs for airflow, handled in /connection_group.
 		return
 	if(airflow_speed < 0)
 		return
-	if(last_airflow > world.time - vsc.airflow_delay)
+	if(last_airflow > world.time - global.vsc.airflow_delay)
 		return
 	if(airflow_speed)
 		airflow_speed = n / max(get_dist(src, airflow_dest), 1)
@@ -118,7 +118,7 @@ Contains helper procs for airflow, handled in /connection_group.
 		if(airflow_speed <= 0)
 			return
 		airflow_speed = min(airflow_speed, 15)
-		airflow_speed -= vsc.airflow_speed_decay
+		airflow_speed -= global.vsc.airflow_speed_decay
 		if(airflow_speed > 7)
 			if(airflow_time++ >= airflow_speed - 7)
 				if(od)
@@ -138,7 +138,7 @@ Contains helper procs for airflow, handled in /connection_group.
 			return
 		step_towards(src, src.airflow_dest)
 		if(ismob(src) && src:client)
-			src:client:move_delay = world.time + vsc.airflow_mob_slowdown
+			src:client:move_delay = world.time + global.vsc.airflow_mob_slowdown
 	airflow_dest = null
 	airflow_speed = 0
 	airflow_time = 0
@@ -151,7 +151,7 @@ Contains helper procs for airflow, handled in /connection_group.
 		return
 	if(airflow_speed < 0)
 		return
-	if(last_airflow > world.time - vsc.airflow_delay)
+	if(last_airflow > world.time - global.vsc.airflow_delay)
 		return
 	if(airflow_speed)
 		airflow_speed = n / max(get_dist(src, airflow_dest), 1)
@@ -188,7 +188,7 @@ Contains helper procs for airflow, handled in /connection_group.
 		if(airflow_speed <= 0)
 			return
 		airflow_speed = min(airflow_speed, 15)
-		airflow_speed -= vsc.airflow_speed_decay
+		airflow_speed -= global.vsc.airflow_speed_decay
 		if(airflow_speed > 7)
 			if(airflow_time++ >= airflow_speed - 7)
 				sleep(1 * global.CTair_system.tick_multiplier)
@@ -202,7 +202,7 @@ Contains helper procs for airflow, handled in /connection_group.
 			return
 		step_towards(src, src.airflow_dest)
 		if(ismob(src) && src:client)
-			src:client:move_delay = world.time + vsc.airflow_mob_slowdown
+			src:client:move_delay = world.time + global.vsc.airflow_mob_slowdown
 	airflow_dest = null
 	airflow_speed = 0
 	airflow_time = 0
@@ -247,7 +247,7 @@ Contains helper procs for airflow, handled in /connection_group.
 		src.wear_suit.add_blood(src)
 	if(src.w_uniform)
 		src.w_uniform.add_blood(src)
-	var/b_loss = airflow_speed * vsc.airflow_damage
+	var/b_loss = airflow_speed * global.vsc.airflow_damage
 
 	var/blocked = run_armor_check("head", "melee")
 	apply_damage(b_loss / 3, BRUTE, "head", blocked, 0, "Airflow")
@@ -259,10 +259,10 @@ Contains helper procs for airflow, handled in /connection_group.
 	apply_damage(b_loss / 3, BRUTE, "groin", blocked, 0, "Airflow")
 
 	if(airflow_speed > 10)
-		paralysis += round(airflow_speed * vsc.airflow_stun)
+		paralysis += round(airflow_speed * global.vsc.airflow_stun)
 		stunned = max(stunned,paralysis + 3)
 	else
-		stunned += round(airflow_speed * vsc.airflow_stun / 2)
+		stunned += round(airflow_speed * global.vsc.airflow_stun / 2)
 	. = ..()
 
 /zone/proc/movables()

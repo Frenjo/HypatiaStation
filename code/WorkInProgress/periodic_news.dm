@@ -99,12 +99,12 @@
 	channel_name = "Tau Ceti Daily"
 
 
-/var/global/list/newscaster_standard_feeds = list(
+GLOBAL_GLOBL_LIST_INIT(newscaster_standard_feeds, list(
 	/datum/news_announcement/bluespace_research,
 	/datum/news_announcement/lotus_tree,
 	/datum/news_announcement/random_junk,
 	/datum/news_announcement/food_riots
-)
+))
 
 /proc/process_newscaster()
 	check_for_newscaster_updates(global.CTgame_ticker.mode.newscaster_announcements)

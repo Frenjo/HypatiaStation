@@ -1,5 +1,5 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
-var/global/list/rad_collectors = list()
+GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 
 /obj/machinery/power/rad_collector
 	name = "Radiation Collector Array"
@@ -18,10 +18,10 @@ var/global/list/rad_collectors = list()
 
 /obj/machinery/power/rad_collector/New()
 	..()
-	rad_collectors += src
+	GLOBL.rad_collectors += src
 
 /obj/machinery/power/rad_collector/Destroy()
-	rad_collectors -= src
+	GLOBL.rad_collectors -= src
 	return ..()
 
 /obj/machinery/power/rad_collector/process()

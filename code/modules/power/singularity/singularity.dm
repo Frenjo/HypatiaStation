@@ -1,9 +1,9 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
-var/global/list/uneatable = list(
+GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 	/turf/space,
 	/obj/effect/overlay
-)
+))
 
 /obj/singularity
 	name = "Gravitational Singularity"
@@ -234,7 +234,7 @@ var/global/list/uneatable = list(
 		var/dist = get_dist(X, src)
 		// Movable atoms only
 		if(dist > consume_range && istype(X, /atom/movable))
-			if(is_type_in_list(X, uneatable))
+			if(is_type_in_list(X, GLOBL.uneatable))
 				continue
 			if((X && !X:anchored && !ishuman(X)) || src.current_size >= 9)
 				step_towards(X, src)
@@ -255,7 +255,7 @@ var/global/list/uneatable = list(
 
 /obj/singularity/proc/consume(atom/A)
 	var/gain = 0
-	if(is_type_in_list(A, uneatable))
+	if(is_type_in_list(A, GLOBL.uneatable))
 		return 0
 	if(isliving(A))//Mobs get gibbed
 		gain = 20
@@ -459,7 +459,7 @@ var/global/list/uneatable = list(
 	return
 
 /obj/singularity/proc/pulse()
-	for(var/obj/machinery/power/rad_collector/R in rad_collectors)
+	for(var/obj/machinery/power/rad_collector/R in GLOBL.rad_collectors)
 		if(get_dist(R, src) <= 15) // Better than using orange() every process
 			R.receive_pulse(energy)
 	return
@@ -508,7 +508,7 @@ var/global/list/uneatable = list(
 		mezzer()
 
 /obj/singularity/narsie/consume(atom/A) //Has its own consume proc because it doesn't need energy and I don't want BoHs to explode it. --NEO
-	if(is_type_in_list(A, uneatable))
+	if(is_type_in_list(A, GLOBL.uneatable))
 		return 0
 	if(isliving(A))//Mobs get gibbed
 		A:gib()

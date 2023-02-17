@@ -6,7 +6,7 @@ Creation/Deletion is laggy, so let's reduce reuse and recycle!
 */
 #define ATOM_POOL_COUNT 100
 // "define DEBUG_ATOM_POOL 1
-/var/global/list/GlobalPool = list()
+GLOBAL_BYOND_LIST_NEW(GlobalPool)
 
 //You'll be using this proc 90% of the time.
 //It grabs a type from the pool if it can
@@ -38,13 +38,13 @@ Creation/Deletion is laggy, so let's reduce reuse and recycle!
 	if(!get_type)
 		return 0
 
-	if(isnull(GlobalPool[get_type]))
+	if(isnull(global.GlobalPool[get_type]))
 		return 0
 
-	if(length(GlobalPool[get_type]) == 0)
+	if(length(global.GlobalPool[get_type]) == 0)
 		return 0
 
-	var/datum/D = pick_n_take(GlobalPool[get_type])
+	var/datum/D = pick_n_take(global.GlobalPool[get_type])
 	if(D)
 		D.ResetVars()
 		D.Prepare(second_arg)
@@ -55,26 +55,26 @@ Creation/Deletion is laggy, so let's reduce reuse and recycle!
 	if(!istype(D))
 		return
 
-	if(length(GlobalPool[D.type]) > ATOM_POOL_COUNT)
+	if(length(global.GlobalPool[D.type]) > ATOM_POOL_COUNT)
 		#ifdef DEBUG_ATOM_POOL
 		to_world("DEBUG_DATUM_POOL: PlaceInPool([D.type]) exceeds [ATOM_POOL_COUNT]. Discarding.")
 		#endif
 		qdel(D)
 		return
 
-	if(D in GlobalPool[D.type])
+	if(D in global.GlobalPool[D.type])
 		return
 
-	if(!GlobalPool[D.type])
-		GlobalPool[D.type] = list()
+	if(!global.GlobalPool[D.type])
+		global.GlobalPool[D.type] = list()
 
-	GlobalPool[D.type] += D
+	global.GlobalPool[D.type] += D
 
 	D.Destroy()
 	D.ResetVars()
 
 /proc/IsPooled(datum/D)
-	if(isnull(GlobalPool[D.type]) || length(GlobalPool[D.type]) == 0)
+	if(isnull(global.GlobalPool[D.type]) || length(global.GlobalPool[D.type]) == 0)
 		return 0
 	return 1
 

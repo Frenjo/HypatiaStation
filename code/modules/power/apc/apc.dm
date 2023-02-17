@@ -50,15 +50,15 @@
 	var/datum/wires/apc/wires = null
 	var/update_state = -1
 	var/update_overlay = -1
-	var/global/status_overlays = 0
+	var/static/status_overlays = 0
 	var/updating_icon = 0
 
 	var/standard_max_charge
-	var/global/list/status_overlays_lock
-	var/global/list/status_overlays_charging
-	var/global/list/status_overlays_equipment
-	var/global/list/status_overlays_lighting
-	var/global/list/status_overlays_environ
+	var/static/list/status_overlays_lock
+	var/static/list/status_overlays_charging
+	var/static/list/status_overlays_equipment
+	var/static/list/status_overlays_lighting
+	var/static/list/status_overlays_environ
 	var/is_critical = 0
 
 /obj/machinery/power/apc/New(turf/loc, ndir, building = 0)

@@ -243,7 +243,7 @@
 	Consume(user)
 
 /obj/machinery/power/supermatter/proc/transfer_energy()
-	for(var/obj/machinery/power/rad_collector/R in rad_collectors)
+	for(var/obj/machinery/power/rad_collector/R in GLOBL.rad_collectors)
 		if(get_dist(R, src) <= 15) // Better than using orange() every process
 			R.receive_pulse(power)
 	return

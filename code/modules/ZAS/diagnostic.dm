@@ -234,4 +234,4 @@
 /client/proc/ZASSettings()
 	set category = "Debug"
 
-	vsc.SetDefault(mob)
+	global.vsc.SetDefault(mob)

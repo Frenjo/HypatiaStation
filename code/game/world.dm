@@ -25,8 +25,8 @@
 	GLOBL.href_logfile = file("data/logs/[date_string] hrefs.htm")
 	GLOBL.diary = file("data/logs/[date_string].log")
 	GLOBL.diaryofmeanpeople = file("data/logs/[date_string] Attack.log")
-	GLOBL.diary << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
-	GLOBL.diaryofmeanpeople << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
+	GLOBL.diary << "[global.log_end]\n[global.log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][global.log_end]\n---------------------[global.log_end]"
+	GLOBL.diaryofmeanpeople << "[global.log_end]\n[global.log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][global.log_end]\n---------------------[global.log_end]"
 	GLOBL.changelog_hash = md5('html/changelog.html')			//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)

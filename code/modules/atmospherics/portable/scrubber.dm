@@ -155,7 +155,7 @@ Power regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?src=\
 	volume = 50000
 	volume_rate = 5000
 
-	var/global/gid = 1
+	var/static/gid = 1
 	var/id = 0
 	
 /obj/machinery/portable_atmospherics/scrubber/huge/New()

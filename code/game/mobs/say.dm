@@ -167,7 +167,7 @@
 
 	if(length(message) >= 2)
 		var/channel_prefix = copytext(message, 1, 3)
-		return department_radio_keys[channel_prefix]
+		return GLOBL.department_radio_keys[channel_prefix]
 
 	return null
 

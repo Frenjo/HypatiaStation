@@ -1,9 +1,9 @@
 // Symptoms are the effects that engineered advanced diseases do.
 
-/var/list/list_symptoms = SUBTYPESOF(/datum/symptom)
-/var/list/dictionary_symptoms = list()
+GLOBAL_GLOBL_LIST_INIT(list_symptoms, SUBTYPESOF(/datum/symptom))
+GLOBAL_GLOBL_LIST_NEW(dictionary_symptoms)
 
-var/global/const/SYMPTOM_ACTIVATION_PROB = 3
+/var/global/const/SYMPTOM_ACTIVATION_PROB = 3
 
 /datum/symptom
 	// Buffs/Debuffs the symptom has to the overall engineered disease.
@@ -18,7 +18,7 @@ var/global/const/SYMPTOM_ACTIVATION_PROB = 3
 	var/id = ""
 
 /datum/symptom/New()
-	var/list/S = list_symptoms
+	var/list/S = GLOBL.list_symptoms
 	for(var/i = 1; i <= length(S); i++)
 		if(src.type == S[i])
 			id = "[i]"

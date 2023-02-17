@@ -2679,11 +2679,11 @@
 	else if(href_list["vsc"])
 		if(check_rights(R_ADMIN|R_SERVER))
 			if(href_list["vsc"] == "airflow")
-				vsc.ChangeSettingsDialog(usr,vsc.settings)
+				global.vsc.ChangeSettingsDialog(usr, vsc.settings)
 			if(href_list["vsc"] == "plasma")
-				vsc.ChangeSettingsDialog(usr,vsc.plc.settings)
+				global.vsc.ChangeSettingsDialog(usr, vsc.plc.settings)
 			if(href_list["vsc"] == "default")
-				vsc.SetDefault(usr)
+				global.vsc.SetDefault(usr)
 
 	// player info stuff
 

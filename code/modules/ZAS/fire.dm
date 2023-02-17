@@ -48,7 +48,7 @@ Attach to transfer valve and open. BOOM.
 		global.CTair_system.active_fire_zones.Remove(src)
 		return
 
-	var/datum/gas_mixture/burn_gas = air.remove_ratio(vsc.fire_consuption_rate, length(fire_tiles))
+	var/datum/gas_mixture/burn_gas = air.remove_ratio(global.vsc.fire_consuption_rate, length(fire_tiles))
 	var/gm = burn_gas.group_multiplier
 
 	burn_gas.group_multiplier = 1
@@ -150,7 +150,7 @@ Attach to transfer valve and open. BOOM.
 					continue
 
 				//Spread the fire.
-				if(prob(50 + 50 * (firelevel/vsc.fire_firelevel_multiplier)) && my_tile.CanPass(null, enemy_tile, 0, 0) && enemy_tile.CanPass(null, my_tile, 0, 0))
+				if(prob(50 + 50 * (firelevel / global.vsc.fire_firelevel_multiplier)) && my_tile.CanPass(null, enemy_tile, 0, 0) && enemy_tile.CanPass(null, my_tile, 0, 0))
 					enemy_tile.create_fire(firelevel)
 			else
 				enemy_tile.adjacent_fire_act(loc, air_contents, air_contents.temperature, air_contents.volume)
@@ -230,7 +230,7 @@ Attach to transfer valve and open. BOOM.
 		var/total_reactants = total_fuel + used_oxidizers
 
 		//determine the amount of reactants actually reacting
-		var/used_reactants_ratio = min(max(total_reactants * firelevel / vsc.fire_firelevel_multiplier, 0.2), total_reactants) / total_reactants
+		var/used_reactants_ratio = min(max(total_reactants * firelevel / global.vsc.fire_firelevel_multiplier, 0.2), total_reactants) / total_reactants
 
 		//remove and add gasses as calculated
 		remove_by_flag(XGM_GAS_OXIDIZER, used_oxidizers * used_reactants_ratio)
@@ -245,7 +245,7 @@ Attach to transfer valve and open. BOOM.
 				qdel(liquid)
 
 		//calculate the energy produced by the reaction and then set the new temperature of the mix
-		temperature = (starting_energy + vsc.fire_fuel_energy_release * total_fuel) / heat_capacity()
+		temperature = (starting_energy + global.vsc.fire_fuel_energy_release * total_fuel) / heat_capacity()
 
 		update_values()
 		. = total_reactants * used_reactants_ratio
@@ -272,7 +272,7 @@ Attach to transfer valve and open. BOOM.
 /datum/gas_mixture/proc/check_combustability(obj/effect/decal/cleanable/liquid_fuel/liquid)
 	. = 0
 	for(var/g in gas)
-		if(GLOBL.gas_data.flags[g] & XGM_GAS_OXIDIZER && QUANTIZE(gas[g] * vsc.fire_consuption_rate) >= 0.1)
+		if(GLOBL.gas_data.flags[g] & XGM_GAS_OXIDIZER && QUANTIZE(gas[g] * global.vsc.fire_consuption_rate) >= 0.1)
 			. = 1
 			break
 
@@ -284,7 +284,7 @@ Attach to transfer valve and open. BOOM.
 
 	. = 0
 	for(var/g in gas)
-		if(GLOBL.gas_data.flags[g] & XGM_GAS_FUEL && QUANTIZE(gas[g] * vsc.fire_consuption_rate) >= 0.1)
+		if(GLOBL.gas_data.flags[g] & XGM_GAS_FUEL && QUANTIZE(gas[g] * global.vsc.fire_consuption_rate) >= 0.1)
 			. = 1
 			break
 
@@ -310,13 +310,13 @@ Attach to transfer valve and open. BOOM.
 			//calculates how close the mixture of the reactants is to the optimum
 			var/mix_multiplier = 1 / (1 + (5 * ((total_oxidizers / total_combustables) ** 2)))
 			//toss everything together
-			firelevel = vsc.fire_firelevel_multiplier * mix_multiplier * dampening_multiplier
+			firelevel = global.vsc.fire_firelevel_multiplier * mix_multiplier * dampening_multiplier
 
 	return max( 0, firelevel)
 
 
 /mob/living/proc/FireBurn(firelevel, last_temperature, pressure)
-	var/mx = 5 * firelevel/vsc.fire_firelevel_multiplier * min(pressure / ONE_ATMOSPHERE, 1)
+	var/mx = 5 * firelevel / global.vsc.fire_firelevel_multiplier * min(pressure / ONE_ATMOSPHERE, 1)
 	apply_damage(2.5*mx, BURN)
 
 
@@ -347,7 +347,7 @@ Attach to transfer valve and open. BOOM.
 			if(C.body_parts_covered & ARMS)
 				arms_exposure = 0
 	//minimize this for low-pressure enviroments
-	var/mx = 5 * firelevel / vsc.fire_firelevel_multiplier * min(pressure / ONE_ATMOSPHERE, 1)
+	var/mx = 5 * firelevel / global.vsc.fire_firelevel_multiplier * min(pressure / ONE_ATMOSPHERE, 1)
 
 	//Always check these damage procs first if fire damage isn't working. They're probably what's wrong.
 

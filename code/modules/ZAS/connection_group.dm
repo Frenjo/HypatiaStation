@@ -94,13 +94,13 @@ Class Procs:
 		var/atom/movable/M = movable[i]
 
 		//If they're already being tossed, don't do it again.
-		if(M.last_airflow > world.time - vsc.airflow_delay)
+		if(M.last_airflow > world.time - global.vsc.airflow_delay)
 			continue
 		if(M.airflow_speed)
 			continue
 
 		//Check for knocking people over
-		if(ismob(M) && differential > vsc.airflow_stun_pressure)
+		if(ismob(M) && differential > global.vsc.airflow_stun_pressure)
 			if(M:status_flags & GODMODE)
 				continue
 			M:airflow_stun()
@@ -167,7 +167,7 @@ Class Procs:
 	var/equiv = A.air.share_ratio(B.air, coefficient)
 
 	var/differential = A.air.return_pressure() - B.air.return_pressure()
-	if(abs(differential) >= vsc.airflow_lightest_pressure)
+	if(abs(differential) >= global.vsc.airflow_lightest_pressure)
 		var/list/attracted
 		var/list/repelled
 		if(differential > 0)
@@ -237,7 +237,7 @@ Class Procs:
 	var/equiv = A.air.share_space(air)
 
 	var/differential = A.air.return_pressure() - air.return_pressure()
-	if(abs(differential) >= vsc.airflow_lightest_pressure)
+	if(abs(differential) >= global.vsc.airflow_lightest_pressure)
 		var/list/attracted = A.movables()
 		flow(attracted, abs(differential), differential < 0)
 

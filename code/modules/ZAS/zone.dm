@@ -49,7 +49,7 @@ Class Procs:
 
 /zone/var/list/edges = list()
 
-/zone/var/datum/gas_mixture/air = new
+/zone/var/datum/gas_mixture/air = new /datum/gas_mixture()
 
 /zone/New()
 	global.CTair_system.add_zone(src)

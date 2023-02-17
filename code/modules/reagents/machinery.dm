@@ -647,7 +647,7 @@
 					D = archive_diseases[path]
 					vaccine_type = path
 				else
-					if(vaccine_type in diseases)
+					if(vaccine_type in GLOBL.diseases)
 						D = new vaccine_type(0, null)
 
 				if(D)
@@ -678,7 +678,7 @@
 				if(A)
 					D = new A.type(0, A)
 			else
-				if(type in diseases) // Make sure this is a disease
+				if(type in GLOBL.diseases) // Make sure this is a disease
 					D = new type(0, null)
 			var/list/data = list("viruses" = list(D))
 			var/name = sanitize(input(usr, "Name:", "Name the culture", D.name))

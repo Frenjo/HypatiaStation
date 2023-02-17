@@ -1,6 +1,6 @@
 //NEVER USE THIS IT SUX	-PETETHEGOAT
 
-var/global/list/cached_icons = list()
+GLOBAL_GLOBL_LIST_NEW(cached_icons)
 
 /obj/item/weapon/reagent_containers/glass/paint
 	desc = "It's a paint bucket."
@@ -185,14 +185,14 @@ var/global/list/cached_icons = list()
 	if(!istype(T) || istype(T, /turf/space))
 		return
 	var/ind = "[initial(T.icon)][color]"
-	if(!cached_icons[ind])
+	if(!GLOBL.cached_icons[ind])
 		var/icon/overlay = new/icon(initial(T.icon))
 		overlay.Blend(color, ICON_MULTIPLY)
 		overlay.SetIntensity(1.4)
 		T.icon = overlay
-		cached_icons[ind] = T.icon
+		GLOBL.cached_icons[ind] = T.icon
 	else
-		T.icon = cached_icons[ind]
+		T.icon = GLOBL.cached_icons[ind]
 	return
 
 /datum/reagent/paint/red

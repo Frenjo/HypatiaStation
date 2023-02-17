@@ -1,4 +1,4 @@
-/var/list/department_radio_keys = list(
+GLOBAL_GLOBL_LIST_INIT(department_radio_keys, list(
 	// Lowercase variants.
 	":w" = "whisper",			"#w" = "whisper",			".w" = "whisper",
 	":g" = "changeling",		"#g" = "changeling",		".g" = "changeling",
@@ -57,7 +57,7 @@
 	":�" = CHANNEL_MEDICAL,		"#�" = CHANNEL_MEDICAL,		".�" = CHANNEL_MEDICAL,
 	":�" = CHANNEL_ENGINEERING,	"#�" = CHANNEL_ENGINEERING,	".�" = CHANNEL_ENGINEERING,
 	":�" = CHANNEL_SECURITY,	"#�" = CHANNEL_SECURITY,	".�" = CHANNEL_SECURITY
-)
+))
 
 /mob/living/proc/binarycheck()
 	if(ispAI(src))

@@ -558,7 +558,7 @@ var/list/admin_verbs_donor = list(
 	set category = "Fun"
 	set name = "Give Disease"
 	set desc = "Gives a Disease to a mob."
-	var/datum/disease/D = input("Choose the disease to give to that guy", "ACHOO") as null|anything in diseases
+	var/datum/disease/D = input("Choose the disease to give to that guy", "ACHOO") as null | anything in GLOBL.diseases
 	if(!D) return
 	T.contract_disease(new D, 1)
 	feedback_add_details("admin_verb","GD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

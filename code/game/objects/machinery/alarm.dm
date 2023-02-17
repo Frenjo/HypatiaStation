@@ -1477,7 +1477,7 @@ FIRE ALARM
 
 /obj/machinery/firealarm/initialize()
 	if(isContactLevel(z))
-		if(security_level)
+		if(GLOBL.security_level)
 			src.overlays += image('icons/obj/monitors.dmi', "overlay_[get_security_level()]")
 		else
 			src.overlays += image('icons/obj/monitors.dmi', "overlay_green")
