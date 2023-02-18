@@ -168,6 +168,7 @@
 #include "code\game\datums\controllers\_controller.dm"
 #include "code\game\datums\controllers\air_system.dm"
 #include "code\game\datums\controllers\cameranet.dm"
+#include "code\game\datums\controllers\decls.dm"
 #include "code\game\datums\controllers\emergency.dm"
 #include "code\game\datums\controllers\game_ticker.dm"
 #include "code\game\datums\controllers\global_variables.dm"

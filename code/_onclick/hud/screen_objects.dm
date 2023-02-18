@@ -234,7 +234,7 @@
 					C.set_move_intent(/decl/move_intent/walk) // Just in case.
 					return 1
 				else
-					var/decl/move_intent/next_move_intent = next_in_list(C.move_intent.type, C.move_intents)
+					var/next_move_intent = next_in_list(C.move_intent.type, C.move_intents)
 					C.set_move_intent(next_move_intent)
 		if("Reset Machine")
 			usr.unset_machine()

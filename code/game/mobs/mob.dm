@@ -1,6 +1,6 @@
 /mob/New()
 	. = ..()
-	move_intent = move_intents[/decl/move_intent/run] // Sets the initial move_intent.
+	move_intent = GET_DECL_INSTANCE(/decl/move_intent/run) // Sets the initial move_intent.
 	GLOBL.mob_list += src
 	if(stat == DEAD)
 		GLOBL.dead_mob_list += src

@@ -1,6 +1,6 @@
-GLOBAL_GLOBL_TYPED(gas_data, /datum/xgm_gas_data)
+GLOBAL_GLOBL_TYPED(gas_data, /decl/xgm_gas_data) // TODO: This needs to be moved over to the declarations controller.
 
-/datum/xgm_gas_data
+/decl/xgm_gas_data
 	//Simple list of all the gas IDs.
 	var/list/gases = list()
 	//The friendly, human-readable name for the gas.
@@ -28,12 +28,12 @@ GLOBAL_GLOBL_TYPED(gas_data, /datum/xgm_gas_data)
 	var/flags = 0
 
 /hook/startup/proc/generateGasData()
-	GLOBL.gas_data = new /datum/xgm_gas_data()
-	for(var/p in SUBTYPESOF(/decl/xgm_gas))
-		var/decl/xgm_gas/gas = new p //avoid initial() because of potential New() actions
+	GLOBL.gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
+	for(var/type in SUBTYPESOF(/decl/xgm_gas))
+		var/decl/xgm_gas/gas = GET_DECL_INSTANCE(type) //avoid initial() because of potential New() actions
 
 		if(gas.id in GLOBL.gas_data.gases)
-			error("Duplicate gas id `[gas.id]` in `[p]`")
+			error("Duplicate gas id `[gas.id]` in `[type]`")
 
 		GLOBL.gas_data.gases += gas.id
 		GLOBL.gas_data.name[gas.id] = gas.name

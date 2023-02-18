@@ -5,9 +5,6 @@
 //BIG NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NEW NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-GLOBAL_GLOBL_NEW(cargo_supply_pack_root, /decl/hierarchy/supply_pack)
-GLOBAL_GLOBL_LIST_NEW(cargo_supply_packs)	// Non-category supply packs
-
 /decl/hierarchy/supply_pack
 	name = "Supply Packs"
 
@@ -24,23 +21,19 @@ GLOBAL_GLOBL_LIST_NEW(cargo_supply_packs)	// Non-category supply packs
 	var/supply_method = /decl/supply_method
 
 /decl/hierarchy/supply_pack/New()
-	..()
+	. = ..()
 	if(is_category())
 		return	// Don't init the manifest for category entries
-
-	if(!GLOBL.cargo_supply_packs)
-		GLOBL.cargo_supply_packs = list()
-	dd_insertObjectList(GLOBL.cargo_supply_packs, src)	// Add all non-category supply packs to the list
 
 	if(!num_contained)
 		for(var/entry in contains)
 			num_contained += max(1, contains[entry])
 
-	var/decl/supply_method/sm = get_supply_method(supply_method)
+	var/decl/supply_method/sm = GET_DECL_INSTANCE(supply_method)
 	manifest = sm.setup_manifest(src)
 
 /decl/hierarchy/supply_pack/proc/spawn_contents(location)
-	var/decl/supply_method/sm = get_supply_method(supply_method)
+	var/decl/supply_method/sm = GET_DECL_INSTANCE(supply_method)
 	return sm.spawn_contents(src, location)
 
 /*
@@ -51,17 +44,6 @@ GLOBAL_GLOBL_LIST_NEW(cargo_supply_packs)	// Non-category supply packs
 //BIG NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NEW NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 */
-
-GLOBAL_GLOBL_LIST_NEW(supply_methods)
-
-/proc/get_supply_method(method_type)
-	if(!GLOBL.supply_methods)
-		GLOBL.supply_methods = list()
-	. = GLOBL.supply_methods[method_type]
-	if(!.)
-		. = new method_type()
-		GLOBL.supply_methods[method_type] = .
-
 /decl/supply_method/proc/spawn_contents(decl/hierarchy/supply_pack/sp, location)
 	if(!sp || !location)
 		return
