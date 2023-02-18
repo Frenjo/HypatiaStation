@@ -81,11 +81,8 @@
 		luminosity = 1
 
 	. = ..()
-	// If the game is already underway initialize will no longer be called for us.
-	if(global.CTgame_ticker && global.CTgame_ticker.current_state == GAME_STATE_PLAYING)
-		initialize()
 
-/area/proc/initialize()
+/area/initialize()
 	if(!requires_power || isnull(apc))
 		power_light = 0			//rastaf0
 		power_equip = 0			//rastaf0

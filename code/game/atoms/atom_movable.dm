@@ -14,26 +14,6 @@
 	var/moved_recently = FALSE
 	var/mob/pulledby = null
 
-/atom/movable/New()
-	. = ..()
-	// If the game is already underway, initialize will no longer be called for us.
-	if(global.CTmaster && global.CTmaster.initialised)
-		queue_for_initialisation(src)
-
-/atom/movable/proc/initialize()
-	if(GC_DESTROYED(src))
-		CRASH("GC: -- [type] had initialize() called after qdel() --")
-
-/atom/movable/Del()
-	if(!GC_DESTROYED(src) && loc)
-		testing("GC: -- [type] was deleted via del() rather than qdel() --")
-		Destroy()
-	else if(!GC_DESTROYED(src))
-		testing("GC: [type] was deleted via GC without qdel()") //Not really a huge issue but from now on, please qdel()
-//	else
-//		testing("GC: [type] was deleted via GC with qdel()")
-	..()
-
 /atom/movable/Destroy()
 	dequeue_for_initialisation(src)
 	if(reagents)

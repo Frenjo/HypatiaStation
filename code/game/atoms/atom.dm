@@ -36,6 +36,26 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 
+/atom/New()
+	. = ..()
+	// If the game is already underway, initialize will no longer be called for us.
+	if(global.CTmaster && global.CTmaster.initialised)
+		queue_for_initialisation(src)
+
+/atom/proc/initialize()
+	if(GC_DESTROYED(src))
+		CRASH("GC: -- [type] had initialize() called after qdel() --")
+
+/atom/Del()
+	if(!GC_DESTROYED(src) && loc)
+		testing("GC: -- [type] was deleted via del() rather than qdel() --")
+		Destroy()
+	else if(!GC_DESTROYED(src))
+		testing("GC: [type] was deleted via GC without qdel()") //Not really a huge issue but from now on, please qdel()
+//	else
+//		testing("GC: [type] was deleted via GC with qdel()")
+	..()
+
 /atom/Destroy()
 	density = FALSE
 	invisibility = INVISIBILITY_MAXIMUM
