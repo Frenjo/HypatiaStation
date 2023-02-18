@@ -38,18 +38,17 @@ Class Procs:
 		Sends M a printout of important figures for the zone.
 
 */
-
-
-/zone/var/name
-/zone/var/invalid = 0
-/zone/var/list/contents = list()
-/zone/var/list/fire_tiles = list()
-
-/zone/var/needs_update = 0
-
-/zone/var/list/edges = list()
-
-/zone/var/datum/gas_mixture/air = new /datum/gas_mixture()
+/zone
+	var/name
+	var/invalid = 0
+	var/list/contents = list()
+	var/list/fire_tiles = list()
+	
+	var/needs_update = FALSE
+	
+	var/list/edges = list()
+	
+	var/datum/gas_mixture/air = new /datum/gas_mixture()
 
 /zone/New()
 	global.CTair_system.add_zone(src)
@@ -117,7 +116,7 @@ Class Procs:
 	c_invalidate()
 	for(var/turf/simulated/T in contents)
 		//T.dbg(invalid_zone)
-		T.needs_air_update = 0 //Reset the marker so that it will be added to the list.
+		T.needs_air_update = FALSE //Reset the marker so that it will be added to the list.
 		global.CTair_system.mark_for_update(T)
 		CHECK_TICK
 

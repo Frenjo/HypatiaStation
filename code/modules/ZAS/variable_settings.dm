@@ -74,9 +74,10 @@ GLOBAL_BYOND_NEW(vsc, /vs_control)
 	var/connection_temperature_delta_DESC = "The smallest temperature difference which will cause heat to travel through doors."
 
 
-/vs_control/var/list/settings = list()
-/vs_control/var/list/bitflags = list("1","2","4","8","16","32","64","128","256","512","1024")
-/vs_control/var/pl_control/plc = new /pl_control()
+/vs_control
+	var/list/settings = list()
+	var/list/bitflags = list("1", "2", "4", "8", "16", "32", "64", "128", "256", "512", "1024")
+	var/pl_control/plc = new /pl_control()
 
 /vs_control/New()
 	. = ..()
@@ -196,45 +197,53 @@ GLOBAL_BYOND_NEW(vsc, /vs_control)
 		plc.Randomize(V)
 
 /vs_control/proc/SetDefault(mob/user)
-	var/list/setting_choices = list("Plasma - Standard", "Plasma - Low Hazard", "Plasma - High Hazard", "Plasma - Oh Shit!",\
-	"ZAS - Normal", "ZAS - Forgiving", "ZAS - Dangerous", "ZAS - Hellish")
-	var/def = input(user, "Which of these presets should be used?") as null|anything in setting_choices
+	var/list/setting_choices = list(
+		"Plasma - Standard",
+		"Plasma - Low Hazard",
+		"Plasma - High Hazard",
+		"Plasma - Oh Shit!",
+		"ZAS - Normal",
+		"ZAS - Forgiving",
+		"ZAS - Dangerous",
+		"ZAS - Hellish"
+	)
+	var/def = input(user, "Which of these presets should be used?") as null | anything in setting_choices
 	if(!def)
 		return
 	switch(def)
 		if("Plasma - Standard")
-			plc.CLOTH_CONTAMINATION = 1 //If this is on, plasma does damage by getting into cloth.
+			plc.CLOTH_CONTAMINATION = 1		//If this is on, plasma does damage by getting into cloth.
 			plc.PLASMAGUARD_ONLY = 0
-			plc.GENETIC_CORRUPTION = 0 //Chance of genetic corruption as well as toxic damage, X in 1000.
-			plc.SKIN_BURNS = 0       //Plasma has an effect similar to mustard gas on the un-suited.
-			plc.EYE_BURNS = 1 //Plasma burns the eyes of anyone not wearing eye protection.
+			plc.GENETIC_CORRUPTION = 0		//Chance of genetic corruption as well as toxic damage, X in 1000.
+			plc.SKIN_BURNS = 0				//Plasma has an effect similar to mustard gas on the un-suited.
+			plc.EYE_BURNS = 1				//Plasma burns the eyes of anyone not wearing eye protection.
 			plc.PLASMA_HALLUCINATION = 0
 			plc.CONTAMINATION_LOSS = 0.02
 
 		if("Plasma - Low Hazard")
-			plc.CLOTH_CONTAMINATION = 0 //If this is on, plasma does damage by getting into cloth.
+			plc.CLOTH_CONTAMINATION = 0		//If this is on, plasma does damage by getting into cloth.
 			plc.PLASMAGUARD_ONLY = 0
-			plc.GENETIC_CORRUPTION = 0 //Chance of genetic corruption as well as toxic damage, X in 1000
-			plc.SKIN_BURNS = 0       //Plasma has an effect similar to mustard gas on the un-suited.
-			plc.EYE_BURNS = 1 //Plasma burns the eyes of anyone not wearing eye protection.
+			plc.GENETIC_CORRUPTION = 0		//Chance of genetic corruption as well as toxic damage, X in 1000
+			plc.SKIN_BURNS = 0				//Plasma has an effect similar to mustard gas on the un-suited.
+			plc.EYE_BURNS = 1				//Plasma burns the eyes of anyone not wearing eye protection.
 			plc.PLASMA_HALLUCINATION = 0
 			plc.CONTAMINATION_LOSS = 0.01
 
 		if("Plasma - High Hazard")
-			plc.CLOTH_CONTAMINATION = 1 //If this is on, plasma does damage by getting into cloth.
+			plc.CLOTH_CONTAMINATION = 1		//If this is on, plasma does damage by getting into cloth.
 			plc.PLASMAGUARD_ONLY = 0
-			plc.GENETIC_CORRUPTION = 0 //Chance of genetic corruption as well as toxic damage, X in 1000.
-			plc.SKIN_BURNS = 1       //Plasma has an effect similar to mustard gas on the un-suited.
-			plc.EYE_BURNS = 1 //Plasma burns the eyes of anyone not wearing eye protection.
+			plc.GENETIC_CORRUPTION = 0		//Chance of genetic corruption as well as toxic damage, X in 1000.
+			plc.SKIN_BURNS = 1				//Plasma has an effect similar to mustard gas on the un-suited.
+			plc.EYE_BURNS = 1				//Plasma burns the eyes of anyone not wearing eye protection.
 			plc.PLASMA_HALLUCINATION = 1
 			plc.CONTAMINATION_LOSS = 0.05
 
 		if("Plasma - Oh Shit!")
-			plc.CLOTH_CONTAMINATION = 1 //If this is on, plasma does damage by getting into cloth.
+			plc.CLOTH_CONTAMINATION = 1		//If this is on, plasma does damage by getting into cloth.
 			plc.PLASMAGUARD_ONLY = 1
-			plc.GENETIC_CORRUPTION = 5 //Chance of genetic corruption as well as toxic damage, X in 1000.
-			plc.SKIN_BURNS = 1       //Plasma has an effect similar to mustard gas on the un-suited.
-			plc.EYE_BURNS = 1 //Plasma burns the eyes of anyone not wearing eye protection.
+			plc.GENETIC_CORRUPTION = 5		//Chance of genetic corruption as well as toxic damage, X in 1000.
+			plc.SKIN_BURNS = 1				//Plasma has an effect similar to mustard gas on the un-suited.
+			plc.EYE_BURNS = 1				//Plasma burns the eyes of anyone not wearing eye protection.
 			plc.PLASMA_HALLUCINATION = 1
 			plc.CONTAMINATION_LOSS = 0.075
 
@@ -295,10 +304,10 @@ GLOBAL_BYOND_NEW(vsc, /vs_control)
 			airflow_mob_slowdown = 3
 			connection_insulation = 0
 
-
 	to_world(SPAN_INFO_B("[key_name(user)] changed the global plasma/ZAS settings to \"[def]\"."))
 
-/pl_control/var/list/settings = list()
+/pl_control
+	var/list/settings = list()
 
 /pl_control/New()
 	. = ..()

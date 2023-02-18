@@ -2,7 +2,8 @@
 Contains helper procs for airflow, handled in /connection_group.
 */
 
-/mob/var/tmp/last_airflow_stun = 0
+/mob
+	var/tmp/last_airflow_stun = 0
 
 /mob/proc/airflow_stun()
 	if(stat == DEAD)
@@ -58,7 +59,6 @@ Contains helper procs for airflow, handled in /connection_group.
 
 /mob/living/silicon/check_airflow_movable()
 	return 0
-
 
 /obj/item/check_airflow_movable(n)
 	. = ..()
@@ -144,7 +144,6 @@ Contains helper procs for airflow, handled in /connection_group.
 	airflow_time = 0
 	if(od)
 		density = FALSE
-
 
 /atom/movable/proc/RepelAirflowDest(n)
 	if(!airflow_dest)

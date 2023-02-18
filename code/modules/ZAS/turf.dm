@@ -1,9 +1,11 @@
-/turf/simulated/var/zone/zone
-/turf/simulated/var/open_directions
-/turf/simulated/var/gas_graphic
+/turf/simulated
+	var/zone/zone
+	var/open_directions
+	var/gas_graphic
 
-/turf/var/needs_air_update = 0
-/turf/var/datum/gas_mixture/air
+/turf
+	var/needs_air_update = FALSE
+	var/datum/gas_mixture/air
 
 /turf/simulated/proc/set_graphic(new_graphic)
 	gas_graphic = new_graphic
@@ -40,10 +42,8 @@
 			continue
 
 		if(istype(unsim, /turf/simulated))
-
 			var/turf/simulated/sim = unsim
 			if(global.CTair_system.has_valid_zone(sim))
-
 				global.CTair_system.connect(sim, src)
 
 /turf/simulated/update_air_properties()
@@ -94,7 +94,6 @@
 
 		var/r_block = c_airblock(unsim)
 		if(r_block & AIR_BLOCKED)
-
 			#ifdef ZASDBG
 			if(verbose)
 				world << "[d] is blocked."
@@ -120,7 +119,6 @@
 			if(global.CTair_system.has_valid_zone(sim))
 				//Might have assigned a zone, since this happens for each direction.
 				if(!zone)
-
 					//if((block & ZONE_BLOCKED) || (r_block & ZONE_BLOCKED && !(s_block & ZONE_BLOCKED)))
 					if(((block & ZONE_BLOCKED) && !(r_block & ZONE_BLOCKED)) || (r_block & ZONE_BLOCKED && !(s_block & ZONE_BLOCKED)))
 						#ifdef ZASDBG
@@ -135,7 +133,6 @@
 						postponed.Add(sim)
 
 					else
-
 						sim.zone.add(src)
 
 						#ifdef ZASDBG
@@ -145,14 +142,12 @@
 						#endif
 
 				else if(sim.zone != zone)
-
 					#ifdef ZASDBG
 					if(verbose)
 						world << "Connecting to [sim.zone]"
 					#endif
 
 					global.CTair_system.connect(src, sim)
-
 
 			#ifdef ZASDBG
 				else if(verbose)
@@ -163,14 +158,13 @@
 			#endif
 
 		else
-
 			//Postponing connections to tiles until a zone is assured.
 			if(!postponed)
 				postponed = list()
 			postponed.Add(unsim)
 
 	if(!global.CTair_system.has_valid_zone(src)) //Still no zone, make a new one.
-		var/zone/newzone = new/zone()
+		var/zone/newzone = new /zone()
 		newzone.add(src)
 
 	#ifdef ZASDBG
@@ -196,7 +190,7 @@
 
 /turf/return_air()
 	//Create gas mixture to hold data for passing
-	var/datum/gas_mixture/GM = new
+	var/datum/gas_mixture/GM = new /datum/gas_mixture()
 
 	GM.adjust_multi(
 		GAS_OXYGEN, oxygen,

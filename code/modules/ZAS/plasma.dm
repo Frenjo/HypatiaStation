@@ -1,4 +1,4 @@
-var/image/contamination_overlay = image('icons/effects/contamination.dmi')
+var/global/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 /pl_control
 	var/PLASMA_DMG = 3
@@ -37,9 +37,8 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	var/N2O_HALLUCINATION_NAME = "N2O Hallucination"
 	var/N2O_HALLUCINATION_DESC = "Does being in sleeping gas cause you to hallucinate?"
 
-
-/obj/var/contaminated = 0
-
+/obj
+	var/contaminated = FALSE
 
 /obj/item/proc/can_contaminate()
 	//Clothing and backpacks can be contaminated.
@@ -53,11 +52,11 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 /obj/item/proc/contaminate()
 	//Do a contamination overlay? Temporary measure to keep contamination less deadly than it was.
 	if(!contaminated)
-		contaminated = 1
+		contaminated = TRUE
 		overlays += contamination_overlay
 
 /obj/item/proc/decontaminate()
-	contaminated = 0
+	contaminated = FALSE
 	overlays -= contamination_overlay
 
 /mob/proc/contaminate()
@@ -119,7 +118,6 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 			to_chat(src, SPAN_WARNING("High levels of toxins cause you to spontaneously mutate."))
 			domutcheck(src, null)
 
-
 /mob/living/carbon/human/proc/burn_eyes()
 	//The proc that handles eye burning.
 	if(prob(20))
@@ -161,7 +159,6 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 		shoes.contaminate()
 	if(gloves)
 		gloves.contaminate()
-
 
 /turf/Entered(obj/item/I)
 	. = ..()

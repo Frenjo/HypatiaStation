@@ -48,15 +48,15 @@ Class Procs:
 		Makes numerous checks to decide whether the connection is still valid. Erases it automatically if not.
 
 */
-
-/connection/var/turf/simulated/A
-/connection/var/turf/simulated/B
-/connection/var/zone/zoneA
-/connection/var/zone/zoneB
-
-/connection/var/connection_edge/edge
-
-/connection/var/state = 0
+/connection
+	var/turf/simulated/A
+	var/turf/simulated/B
+	var/zone/zoneA
+	var/zone/zoneB
+	
+	var/connection_edge/edge
+	
+	var/state = 0
 
 /connection/New(turf/simulated/A, turf/simulated/B)
 	#ifdef ZASDBG
@@ -159,6 +159,5 @@ Class Procs:
 			//world << "erased."
 			erase()
 			return
-
 
 	//world << "valid."

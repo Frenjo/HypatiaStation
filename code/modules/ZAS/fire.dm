@@ -9,8 +9,8 @@ Fill rest with super hot gas from separated canisters, they should be about 125C
 Attach to transfer valve and open. BOOM.
 
 */
-
-/turf/var/obj/fire/fire = null
+/turf
+	var/obj/fire/fire = null
 
 //Some legacy definitions so fires can be started.
 /atom/proc/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -158,8 +158,8 @@ Attach to transfer valve and open. BOOM.
 	animate(src, color = heat2color(air_contents.temperature), 5)
 	set_light(l_color = color)
 
-/obj/fire/New(newLoc,fl)
-	..()
+/obj/fire/New(newLoc, fl)
+	. = ..()
 
 	if(!isturf(loc))
 		qdel(src)
@@ -171,7 +171,6 @@ Attach to transfer valve and open. BOOM.
 
 	firelevel = fl
 	global.CTair_system.active_hotspots.Add(src)
-
 
 /obj/fire/Destroy()
 	if(istype(loc, /turf/simulated))
@@ -188,9 +187,11 @@ Attach to transfer valve and open. BOOM.
 		loc = null
 	global.CTair_system.active_hotspots.Remove(src)
 
+/turf/simulated
+	var/fire_protection = 0 //Protects newly extinguished tiles from being overrun again.
 
-/turf/simulated/var/fire_protection = 0 //Protects newly extinguished tiles from being overrun again.
 /turf/proc/apply_fire_protection()
+
 /turf/simulated/apply_fire_protection()
 	fire_protection = world.time
 
@@ -236,7 +237,7 @@ Attach to transfer valve and open. BOOM.
 		remove_by_flag(XGM_GAS_OXIDIZER, used_oxidizers * used_reactants_ratio)
 		remove_by_flag(XGM_GAS_FUEL, total_fuel * used_reactants_ratio)
 
-		adjust_gas(GAS_CARBON_DIOXIDE, max(total_fuel*used_reactants_ratio, 0))
+		adjust_gas(GAS_CARBON_DIOXIDE, max(total_fuel * used_reactants_ratio, 0))
 
 		if(liquid)
 			liquid.amount -= (liquid.amount * used_fuel_ratio * used_reactants_ratio) * 5 // liquid fuel burns 5 times as quick
@@ -312,13 +313,11 @@ Attach to transfer valve and open. BOOM.
 			//toss everything together
 			firelevel = global.vsc.fire_firelevel_multiplier * mix_multiplier * dampening_multiplier
 
-	return max( 0, firelevel)
-
+	return max(0, firelevel)
 
 /mob/living/proc/FireBurn(firelevel, last_temperature, pressure)
 	var/mx = 5 * firelevel / global.vsc.fire_firelevel_multiplier * min(pressure / ONE_ATMOSPHERE, 1)
-	apply_damage(2.5*mx, BURN)
-
+	apply_damage(2.5 * mx, BURN)
 
 /mob/living/carbon/human/FireBurn(firelevel, last_temperature, pressure)
 	//Burns mobs due to fire. Respects heat transfer coefficients on various body parts.
