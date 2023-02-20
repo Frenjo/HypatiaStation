@@ -219,8 +219,11 @@ Maxdistance is the longest range the beam will persist before it gives up.
 /atom/proc/relaymove()
 	return
 
-//called to set the atom's dir and used to add behaviour to dir-changes
+// Called to set the atom's dir.
+// Can be used to add behaviour to dir-changes.
 /atom/proc/set_dir(new_dir)
+	SHOULD_CALL_PARENT(TRUE)
+
 	. = new_dir != dir
 	dir = new_dir
 

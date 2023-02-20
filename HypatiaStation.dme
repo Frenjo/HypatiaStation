@@ -337,6 +337,7 @@
 #include "code\game\datums\wires\mulebot.dm"
 #include "code\game\datums\wires\particle_accelerator.dm"
 #include "code\game\datums\wires\radio.dm"
+#include "code\game\decls\_decl.dm"
 #include "code\game\decls\gases.dm"
 #include "code\game\decls\move_intent.dm"
 #include "code\game\decls\hierarchy\hierarchy.dm"

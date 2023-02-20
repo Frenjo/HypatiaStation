@@ -149,6 +149,8 @@ PROCESS_DEF(garbage)
 // This should be overridden to remove all references pointing to the object being destroyed.
 // Return true if the the GC controller should allow the object to continue existing. (Useful if pooling objects.)
 /datum/proc/Destroy()
+	SHOULD_CALL_PARENT(TRUE)
+
 	tag = null
 	return
 

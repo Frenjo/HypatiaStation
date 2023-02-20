@@ -83,6 +83,7 @@
 	. = ..()
 
 /area/initialize()
+	. = ..()
 	if(!requires_power || isnull(apc))
 		power_light = 0			//rastaf0
 		power_equip = 0			//rastaf0

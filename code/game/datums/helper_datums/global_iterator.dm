@@ -66,10 +66,11 @@ Data storage vars:
 	return
 
 /datum/global_iterator/Destroy()
+	SHOULD_CALL_PARENT(FALSE) // Do not call ..()
+
 	tag = null
 	arg_list.Cut()
 	stop()
-	//Do not call ..()
 
 /datum/global_iterator/proc/main()
 	state = 1
