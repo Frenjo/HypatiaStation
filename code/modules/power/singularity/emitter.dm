@@ -24,7 +24,7 @@
 	var/fire_mode = GUN_MODE_BEAM
 
 /obj/machinery/power/emitter/initialize()
-	..()
+	. = ..()
 	if(state == 2 && anchored)
 		connect_to_network()
 

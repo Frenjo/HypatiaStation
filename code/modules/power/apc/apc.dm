@@ -89,7 +89,7 @@
 		src.update_icon()
 
 /obj/machinery/power/apc/initialize()
-	..()
+	. = ..()
 	src.update()
 
 /obj/machinery/power/apc/Destroy()

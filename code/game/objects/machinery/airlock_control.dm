@@ -92,7 +92,7 @@
 	return
 
 /obj/machinery/door/airlock/initialize()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_AIRLOCK)
 
 	update_icon()
@@ -159,7 +159,7 @@
 			update_icon()
 
 /obj/machinery/airlock_sensor/initialize()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_AIRLOCK)
 
 /obj/machinery/airlock_sensor/Destroy()
@@ -211,7 +211,7 @@
 	flick("access_button_cycle", src)
 
 /obj/machinery/access_button/initialize()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_AIRLOCK)
 
 /obj/machinery/access_button/Destroy()

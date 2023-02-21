@@ -36,7 +36,7 @@
 	filling_color = "#C4C4C4"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/plastellium/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("plasticide", 1 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
@@ -86,7 +86,7 @@
 	filling_color = "#59691B"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/kudzupod/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
 	reagents.add_reagent("anti_toxin", 1 + round((potency / 25), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -111,7 +111,7 @@
 
 //So potency can be set in the proc that creates these crops
 /obj/item/weapon/grown/nettle/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
 	reagents.add_reagent("sacid", round(potency, 1))
 	force = round((5 + potency / 5), 1)
@@ -162,7 +162,7 @@
 
 //So potency can be set in the proc that creates these crops
 /obj/item/weapon/grown/deathnettle/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
 	reagents.add_reagent("pacid", round(potency, 1))
 	force = round((5 + potency / 2.5), 1)
@@ -231,7 +231,7 @@
 	filling_color = "#C0C9AD"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/sugarcane/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("sugar", 4 + round((potency / 5), 1))
 
 // *************************************
@@ -271,7 +271,7 @@
 
 //Workaround to keep harvesting from working weirdly.
 /obj/item/weapon/reagent_containers/food/snacks/grown/money/initialize()
-	..()
+	. = ..()
 	qdel(src)
 
 /*

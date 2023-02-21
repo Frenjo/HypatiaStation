@@ -52,6 +52,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	return ..()
 
 /obj/item/device/radio/initialize()
+	. = ..()
 	if(freerange)
 		if(frequency < 1200 || frequency > 1600)
 			frequency = sanitize_frequency(frequency, maxf)

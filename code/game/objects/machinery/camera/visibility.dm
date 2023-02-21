@@ -9,7 +9,7 @@
 		global.CTcameranet.removeCamera(src)
 
 /obj/machinery/camera/initialize()
-	..()
+	. = ..()
 	global.CTcameranet.cameras += src //Camera must be added to global list of all cameras no matter what...
 	var/list/open_networks = difflist(network, GLOBL.restricted_camera_networks) //...but if all of camera's networks are restricted, it only works for specific camera consoles.
 	if(length(open_networks)) //If there is at least one open network, chunk is available for AI usage.

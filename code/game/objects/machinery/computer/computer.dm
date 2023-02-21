@@ -13,6 +13,7 @@
 	var/light_power_on = 1
 
 /obj/machinery/computer/initialize()
+	. = ..()
 	power_change()
 
 /obj/machinery/computer/process()

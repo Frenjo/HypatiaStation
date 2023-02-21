@@ -133,6 +133,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			break
 
 /obj/machinery/computer/rdconsole/initialize()
+	. = ..()
 	SyncRDevices()
 
 /*	Instead of calling this every tick, it is only being called when needed

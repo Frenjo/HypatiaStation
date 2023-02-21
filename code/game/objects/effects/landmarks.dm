@@ -101,7 +101,7 @@
 	return
 
 /obj/effect/landmark/initialize()
-	..()
+	. = ..()
 	if(delete_me)
 		qdel(src)
 

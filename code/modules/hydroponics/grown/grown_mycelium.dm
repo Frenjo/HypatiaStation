@@ -10,7 +10,7 @@
 	filling_color = "#FF4800"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/reishi/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1)
 	reagents.add_reagent("stoxin", 3 + round(potency / 3, 1))
 	reagents.add_reagent("space_drugs", 1 + round(potency / 25, 1))
@@ -34,7 +34,7 @@
 	filling_color = "#FF0000"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/amanita/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1)
 	reagents.add_reagent("amatoxin", 3 + round(potency / 3, 1))
 	reagents.add_reagent("psilocybin", 1 + round(potency / 25, 1))
@@ -58,7 +58,7 @@
 	filling_color = "#FFDEDE"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/angel/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
 	reagents.add_reagent("amatoxin", 13 + round(potency / 3, 1))
 	reagents.add_reagent("psilocybin", 1 + round(potency / 25, 1))
@@ -82,7 +82,7 @@
 	filling_color = "#F714BE"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/libertycap/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
 	reagents.add_reagent("psilocybin", 3 + round(potency / 5, 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -104,7 +104,7 @@
 	filling_color = "#FFE991"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/chanterelle/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 25), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
@@ -127,7 +127,7 @@
 	plant_type = 2
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/glowshroom/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("radium", 1 + round((potency / 20), 1))
 	if(ismob(src.loc))
 		pickup(src.loc)
@@ -172,7 +172,7 @@
 	filling_color = "#F714BE"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/plumphelmet/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 2 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
@@ -195,7 +195,7 @@
 	plant_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/walkingmushroom/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 2 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 	if(ismob(src.loc))

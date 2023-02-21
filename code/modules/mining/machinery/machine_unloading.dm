@@ -9,7 +9,7 @@
 	var/obj/machinery/mineral/output = null
 
 /obj/machinery/mineral/unloading_machine/initialize()
-	..()
+	. = ..()
 	for(var/dir in GLOBL.cardinal)
 		input = locate(/obj/machinery/mineral/input, get_step(src, dir))
 		if(input)

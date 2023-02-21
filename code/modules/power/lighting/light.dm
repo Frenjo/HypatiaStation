@@ -69,7 +69,7 @@
 			broken(1)
 
 /obj/machinery/light/initialize()
-	..()
+	. = ..()
 	on = powered()
 	update(0)
 

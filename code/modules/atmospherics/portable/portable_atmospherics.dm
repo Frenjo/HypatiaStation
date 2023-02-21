@@ -19,7 +19,7 @@
 	return 1
 
 /obj/machinery/portable_atmospherics/initialize()
-	..()
+	. = ..()
 	var/obj/machinery/atmospherics/unary/portables_connector/port = locate() in loc
 	if(port)
 		connect(port)

@@ -65,7 +65,7 @@
 	eyeobj.name = "[src.name] (AI Eye)" // Give it a name
 
 /mob/living/silicon/ai/initialize()
-	..()
+	. = ..()
 	eyeobj.loc = src.loc
 
 /mob/living/silicon/ai/Destroy()

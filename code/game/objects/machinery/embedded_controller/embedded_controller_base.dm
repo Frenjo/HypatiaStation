@@ -58,7 +58,7 @@
 	unacidable = 1
 
 /obj/machinery/embedded_controller/radio/initialize()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, radio_filter)
 
 /obj/machinery/embedded_controller/radio/Destroy()

@@ -45,7 +45,7 @@
 
 // create a new QM cartridge, and register to receive bot control & beacon message
 /obj/item/radio/integrated/beepsky/initialize()
-	..()
+	. = ..()
 	register_radio(src, null, control_freq, RADIO_SECBOT)
 
 /obj/item/radio/integrated/beepsky/Destroy()
@@ -112,7 +112,7 @@
 
 // create a new QM cartridge, and register to receive bot control & beacon message
 /obj/item/radio/integrated/mule/initialize()
-	..()
+	. = ..()
 	register_radio(src, null, control_freq, RADIO_MULEBOT)
 	register_radio(src, null, beacon_freq, RADIO_NAVBEACONS)
 	spawn(10)
@@ -207,6 +207,7 @@
 	var/datum/radio_frequency/radio_connection
 
 /obj/item/radio/integrated/signal/initialize()
+	. = ..()
 	if(!global.CTradio)
 		return
 

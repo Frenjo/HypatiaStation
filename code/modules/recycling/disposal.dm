@@ -29,7 +29,7 @@
 // create a new disposal
 // find the attached trunk (if present) and init gas resvr.
 /obj/machinery/disposal/initialize()
-	..()
+	. = ..()
 	trunk = locate() in src.loc
 	if(!trunk)
 		mode = 0

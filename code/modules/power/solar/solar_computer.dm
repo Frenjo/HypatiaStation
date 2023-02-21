@@ -31,7 +31,7 @@
 	var/list/connected_panels = list()
 
 /obj/machinery/power/solar_control/initialize()
-	..()
+	. = ..()
 	if(!powernet)
 		return
 	set_panels(cdir)

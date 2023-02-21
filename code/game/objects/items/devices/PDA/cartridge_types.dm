@@ -51,7 +51,7 @@
 	desc = "A data cartridge with an integrated radio signaler module."
 
 /obj/item/weapon/cartridge/signal/initialize()
-	..()
+	. = ..()
 	radio = new /obj/item/radio/integrated/signal(src)
 
 /obj/item/weapon/cartridge/signal/Destroy()
@@ -83,7 +83,7 @@
 	access_security = TRUE
 
 /obj/item/weapon/cartridge/security/initialize()
-	..()
+	. = ..()
 	radio = new /obj/item/radio/integrated/beepsky(src)
 
 /obj/item/weapon/cartridge/detective
@@ -100,7 +100,7 @@
 	access_quartermaster = TRUE
 
 /obj/item/weapon/cartridge/quartermaster/initialize()
-	..()
+	. = ..()
 	radio = new /obj/item/radio/integrated/mule(src)
 
 // Heads
@@ -131,7 +131,7 @@
 	access_security = TRUE
 
 /obj/item/weapon/cartridge/hop/initialize()
-	..()
+	. = ..()
 	radio = new /obj/item/radio/integrated/mule(src)
 
 /obj/item/weapon/cartridge/hos
@@ -141,7 +141,7 @@
 	access_security = TRUE
 
 /obj/item/weapon/cartridge/hos/initialize()
-	..()
+	. = ..()
 	radio = new /obj/item/radio/integrated/beepsky(src)
 
 /obj/item/weapon/cartridge/ce
@@ -166,7 +166,7 @@
 	access_atmos = TRUE
 
 /obj/item/weapon/cartridge/rd/initialize()
-	..()
+	. = ..()
 	radio = new /obj/item/radio/integrated/signal(src)
 
 // Syndicate

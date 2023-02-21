@@ -168,7 +168,7 @@
 	anchored = TRUE
 
 /obj/machinery/body_scanconsole/initialize()
-	..()
+	. = ..()
 	src.connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
 	return
 

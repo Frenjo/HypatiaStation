@@ -134,7 +134,7 @@
 	first_run()
 
 /obj/machinery/alarm/initialize()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_TO_AIRALARM)
 	if(!master_is_operating())
 		elect_master()
@@ -1476,6 +1476,7 @@ FIRE ALARM
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 
 /obj/machinery/firealarm/initialize()
+	. = ..()
 	if(isContactLevel(z))
 		if(GLOBL.security_level)
 			src.overlays += image('icons/obj/monitors.dmi', "overlay_[get_security_level()]")

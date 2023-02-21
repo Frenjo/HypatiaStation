@@ -137,6 +137,7 @@
 
 
 /obj/machinery/jungle_controller/initialize()
+	. = ..()
 	to_world(SPAN_DANGER("Setting up jungle, this may take a bleeding eternity..."))
 
 	//crash dat shuttle

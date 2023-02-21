@@ -14,7 +14,7 @@
 	var/brightness_on = 4 //luminosity when on
 
 /obj/item/device/flashlight/initialize()
-	..()
+	. = ..()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
 		set_light(brightness_on)
@@ -211,6 +211,8 @@
 	set_light(brightness_on)
 
 /obj/item/device/flashlight/slime/initialize()
+	SHOULD_CALL_PARENT(FALSE) // TODO: Refactor this.
+
 	spawn(1) //Might be sloppy, but seems to be necessary to prevent further runtimes and make these work as intended... don't judge me!
 		update_brightness()
 		icon_state = initial(icon_state)

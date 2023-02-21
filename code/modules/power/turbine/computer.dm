@@ -13,7 +13,7 @@
 	var/door_status = 0
 
 /obj/machinery/computer/turbine_control/initialize()
-	..()
+	. = ..()
 	for(var/obj/machinery/compressor/C in GLOBL.machines)
 		if(id == C.comp_id)
 			compressor = C

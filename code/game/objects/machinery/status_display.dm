@@ -43,7 +43,7 @@
 // register for radio system
 // must wait for map loading to finish
 /obj/machinery/status_display/initialize()
-	..()
+	. = ..()
 	register_radio(src, null, frequency, null)
 
 /obj/machinery/status_display/Destroy()

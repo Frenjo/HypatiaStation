@@ -57,6 +57,7 @@
 	..()
 
 /obj/machinery/vending/initialize()
+	. = ..()
 	src.slogan_list = splittext(src.product_slogans, ";")
 
 	// So not all machines speak at the exact same time.

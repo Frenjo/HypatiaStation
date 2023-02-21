@@ -16,7 +16,7 @@
 	var/lastgenlev = -1
 
 /obj/machinery/power/generator/initialize()
-	..()
+	. = ..()
 	reconnect()
 
 /obj/machinery/power/generator/Destroy()

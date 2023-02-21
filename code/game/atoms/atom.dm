@@ -43,6 +43,8 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 		queue_for_initialisation(src)
 
 /atom/proc/initialize()
+	SHOULD_CALL_PARENT(TRUE)
+
 	if(GC_DESTROYED(src))
 		CRASH("GC: -- [type] had initialize() called after qdel() --")
 

@@ -22,7 +22,7 @@
 	inturf = get_step(src, dir)
 
 /obj/machinery/compressor/initialize()
-	..()
+	. = ..()
 	turbine = locate() in get_step(src, get_dir(inturf, src))
 	if(!turbine)
 		stat |= BROKEN

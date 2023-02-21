@@ -218,7 +218,7 @@
 	var/c_mode = 0
 
 /obj/machinery/disposal/delivery_chute/initialize()
-	..()
+	. = ..()
 	trunk = locate() in src.loc
 	if(trunk)
 		trunk.linked = src	// link the pipe trunk to self

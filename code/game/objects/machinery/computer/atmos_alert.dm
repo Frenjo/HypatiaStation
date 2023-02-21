@@ -15,7 +15,7 @@
 	light_color = "#e6ffff"
 
 /obj/machinery/computer/atmos_alert/initialize()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, receive_frequency, RADIO_ATMOSIA)
 
 /obj/machinery/computer/atmos_alert/Destroy()

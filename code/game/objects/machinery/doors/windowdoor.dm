@@ -22,7 +22,7 @@
 	return 1
 
 /obj/machinery/door/window/initialize()
-	..()
+	. = ..()
 	if(length(req_access))
 		src.icon_state = "[src.icon_state]"
 		src.base_state = src.icon_state

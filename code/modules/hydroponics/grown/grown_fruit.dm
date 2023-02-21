@@ -9,7 +9,7 @@
 	filling_color = "#FF0000"
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/chili/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 25), 1))
 	reagents.add_reagent("capsaicin", 3 + round(potency / 5, 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -31,7 +31,7 @@
 	filling_color = "#66CEED"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/icepepper/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
 	reagents.add_reagent("frostoil", 3 + round(potency / 5, 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -52,7 +52,7 @@
 	filling_color = "#A332AD"
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/grapes/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	reagents.add_reagent("sugar", 1 + round((potency / 5), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -69,7 +69,7 @@
 	filling_color = "#A6FFA3"
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/greengrapes/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	reagents.add_reagent("kelotane", 3 + round((potency / 5), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -85,7 +85,7 @@
 	filling_color = "#C2C9FF"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/berries/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
@@ -102,7 +102,7 @@
 	icon_state = "glowberrypile"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/glowberries/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", round((potency / 10), 1))
 	reagents.add_reagent("uranium", 3 + round(potency / 5, 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -133,7 +133,7 @@
 	filling_color = "#B422C7"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/poisonberries/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1)
 	reagents.add_reagent("toxin", 3 + round(potency / 5, 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -151,7 +151,7 @@
 	filling_color = "#4E0957"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/deathberries/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1)
 	reagents.add_reagent("toxin", 3 + round(potency / 3, 1))
 	reagents.add_reagent("lexorin", 1 + round(potency / 5, 1))
@@ -176,7 +176,7 @@
 	src.pixel_y = rand(-5.0, 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/banana/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("banana", 1 + round((potency / 10), 1))
 	bitesize = 5
 
@@ -191,7 +191,7 @@
 	filling_color = "#550F5C"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/eggplant/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
@@ -207,7 +207,7 @@
 	filling_color = "#DFE88B"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/apple/initialize()
-	..()
+	. = ..()
 	reagents.maximum_volume = 20
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = reagents.maximum_volume // Always eat the apple in one
@@ -224,7 +224,7 @@
 	filling_color = "#B3BD5E"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/apple/poisoned/initialize()
-	..()
+	. = ..()
 	reagents.maximum_volume = 20
 	reagents.add_reagent("cyanide", 1 + round((potency / 5), 1))
 	bitesize = reagents.maximum_volume // Always eat the apple in one
@@ -241,7 +241,7 @@
 	filling_color = "#F5CB42"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/goldapple/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	reagents.add_reagent("gold", 1 + round((potency / 5), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -260,7 +260,7 @@
 	slices_num = 5
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/watermelon/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 6), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
@@ -276,7 +276,7 @@
 	filling_color = "#FAB728"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/pumpkin/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 6), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
@@ -302,7 +302,7 @@
 	filling_color = "#28FA59"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/lime/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
@@ -318,7 +318,7 @@
 	filling_color = "#FAF328"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/lemon/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
@@ -334,7 +334,7 @@
 	filling_color = "#FAAD28"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/orange/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
@@ -350,7 +350,7 @@
 	filling_color = "#9C8E54"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/cocoapod/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	reagents.add_reagent("coco", 4 + round((potency / 5), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -367,7 +367,7 @@
 	gender = PLURAL
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/cherries/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 15), 1))
 	reagents.add_reagent("sugar", 1 + round((potency / 15), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)

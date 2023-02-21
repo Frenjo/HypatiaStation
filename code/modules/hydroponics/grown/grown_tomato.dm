@@ -13,7 +13,7 @@
 	potency = 10
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/tomato/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
@@ -36,7 +36,7 @@
 	filling_color = "#FF0000"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/bloodtomato/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	reagents.add_reagent("blood", 1 + round((potency / 5), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -71,7 +71,7 @@
 	plant_type = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/killertomato/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 	if(ismob(src.loc))
@@ -98,7 +98,7 @@
 	filling_color = "#586CFC"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/bluetomato/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
 	reagents.add_reagent("lube", 1 + round((potency / 5), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -143,7 +143,7 @@
 	filling_color = "#91F8FF"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/bluespacetomato/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
 	reagents.add_reagent("singulo", 1 + round((potency / 5), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)

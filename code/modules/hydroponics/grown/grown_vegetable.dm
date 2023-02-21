@@ -10,7 +10,7 @@
 	filling_color = "#A2B5A1"
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/cabbage/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = reagents.total_volume
 
@@ -26,7 +26,7 @@
 	filling_color = "#E6E8DA"
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/potato/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = reagents.total_volume
 
@@ -56,7 +56,7 @@
 	icon_state = "soybeans"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/soybeans/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
@@ -72,7 +72,7 @@
 	filling_color = "#FFC400"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/carrot/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
 	reagents.add_reagent("imidazoline", 3 + round(potency / 5, 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -89,7 +89,7 @@
 	filling_color = "#FFFCCC"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/whitebeet/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", round((potency / 20), 1))
 	reagents.add_reagent("sugar", 1 + round((potency / 5), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)

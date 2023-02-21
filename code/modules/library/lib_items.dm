@@ -18,6 +18,7 @@
 	opacity = TRUE
 
 /obj/structure/bookcase/initialize()
+	. = ..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/weapon/book))
 			I.loc = src

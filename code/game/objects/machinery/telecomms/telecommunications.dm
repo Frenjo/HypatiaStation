@@ -49,6 +49,7 @@
 		listening_level = position.z
 
 /obj/machinery/telecomms/initialize()
+	. = ..()
 	if(length(autolinkers))
 		// Links nearby machines
 		if(!long_range_link)

@@ -9,7 +9,7 @@
 	var/machinedir = SOUTHEAST
 
 /obj/machinery/mineral/stacking_unit_console/initialize()
-	..()
+	. = ..()
 	machine = locate(/obj/machinery/mineral/stacking_machine, get_step(src, machinedir))
 	if(machine)
 		machine.console = src
@@ -222,7 +222,7 @@
 	var/stack_amt = 50	//ammount to stack before releassing
 
 /obj/machinery/mineral/stacking_machine/initialize()
-	..()
+	. = ..()
 	for(var/dir in GLOBL.cardinal)
 		input = locate(/obj/machinery/mineral/input, get_step(src, dir))
 		if(input)

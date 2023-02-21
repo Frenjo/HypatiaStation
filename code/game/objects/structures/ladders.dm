@@ -9,6 +9,7 @@
 	var/obj/structure/ladder/up = null		//the ladder above this one
 
 /obj/structure/ladder/initialize()
+	. = ..()
 	for(var/obj/structure/ladder/L in world)
 		if(L.id == id)
 			if(L.height == (height - 1))

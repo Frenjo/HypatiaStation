@@ -28,6 +28,7 @@
 
 
 /obj/structure/filingcabinet/initialize()
+	. = ..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/weapon/folder) || istype(I, /obj/item/weapon/photo))
 			I.loc = src

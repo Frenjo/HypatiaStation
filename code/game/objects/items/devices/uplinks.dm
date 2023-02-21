@@ -307,7 +307,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 // The hidden uplink MUST be inside an obj/item's contents.
 /obj/item/device/uplink/hidden/initialize()
-	..()
+	. = ..()
 	if(!istype(src.loc, /obj/item))
 		qdel(src)
 

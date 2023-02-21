@@ -7,7 +7,7 @@
 	mouse_opacity = FALSE
 
 /obj/effect/expl_particles/initialize()
-	..()
+	. = ..()
 	spawn(15)
 		qdel(src)
 
@@ -39,7 +39,7 @@
 	pixel_y = -32
 
 /obj/effect/explosion/initialize()
-	..()
+	. = ..()
 	spawn(10)
 		qdel(src)
 

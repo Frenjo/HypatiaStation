@@ -71,7 +71,7 @@
 
 // must wait for map loading to finish
 /obj/machinery/bot/mulebot/initialize()
-	..()
+	. = ..()
 	register_radio(src, null, control_freq, RADIO_MULEBOT)
 	register_radio(src, null, beacon_freq, RADIO_NAVBEACONS)
 

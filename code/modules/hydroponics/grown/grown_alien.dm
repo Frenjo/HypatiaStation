@@ -9,7 +9,7 @@
 	filling_color = "#70C470"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/shand/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("bicaridine", round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
@@ -35,7 +35,7 @@
 	filling_color = "#70C470"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/mtear/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("honey", 1 + round((potency / 10), 1))
 	reagents.add_reagent("kelotane", 3 + round((potency / 5), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)

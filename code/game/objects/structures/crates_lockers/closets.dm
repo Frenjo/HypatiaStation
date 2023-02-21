@@ -15,6 +15,7 @@
 							  //then open it in a populated area to crash clients.
 
 /obj/structure/closet/initialize()
+	. = ..()
 	if(!opened)		// if closed, any item at the crate's loc is put in the contents
 		for(var/obj/item/I in src.loc)
 			if(I.density || I.anchored || I == src)

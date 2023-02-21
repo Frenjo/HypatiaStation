@@ -11,7 +11,7 @@
 
 // Borrows code from cloning computer
 /obj/machinery/computer/gravity_control_computer/initialize()
-	..()
+	. = ..()
 	updatemodules()
 
 /obj/machinery/computer/gravity_control_computer/proc/updatemodules()
@@ -120,7 +120,7 @@
 	var/effectiverange = 25
 
 /obj/machinery/gravity_generator/initialize()
-	..()
+	. = ..()
 	locatelocalareas()
 
 /obj/machinery/gravity_generator/proc/locatelocalareas()

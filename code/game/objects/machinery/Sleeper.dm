@@ -12,7 +12,7 @@
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 
 /obj/machinery/sleep_console/initialize()
-	..()
+	. = ..()
 	if(orient == "RIGHT")
 		icon_state = "sleeperconsole-r"
 		src.connected = locate(/obj/machinery/sleeper, get_step(src, EAST))
@@ -160,7 +160,7 @@
 	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 
 /obj/machinery/sleeper/initialize()
-	..()
+	. = ..()
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
 

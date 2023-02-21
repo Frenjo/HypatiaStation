@@ -332,7 +332,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity
 
 /obj/machinery/door/airlock/initialize()
-	..()
+	. = ..()
 	if(src.closeOtherId != null)
 		for(var/obj/machinery/door/airlock/A in world)
 			if(A.closeOtherId == src.closeOtherId && A != src)

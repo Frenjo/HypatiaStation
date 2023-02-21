@@ -12,7 +12,7 @@
 		spawn_item()
 
 /obj/random/initialize()
-	..()
+	. = ..()
 	qdel(src)
 
 // this function should return a specific item to spawn

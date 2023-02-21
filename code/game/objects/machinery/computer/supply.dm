@@ -16,7 +16,7 @@
 	var/decl/hierarchy/supply_pack/current_category
 
 /obj/machinery/computer/supplycomp/initialize()
-	..()
+	. = ..()
 	current_category = GET_DECL_INSTANCE(/decl/hierarchy/supply_pack)
 
 /obj/machinery/computer/supplycomp/attack_ai(mob/user as mob)
@@ -36,7 +36,7 @@
 	var/decl/hierarchy/supply_pack/current_category
 
 /obj/machinery/computer/ordercomp/initialize()
-	..()
+	. = ..()
 	current_category = GET_DECL_INSTANCE(/decl/hierarchy/supply_pack)
 
 /obj/machinery/computer/ordercomp/attack_ai(mob/user as mob)

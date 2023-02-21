@@ -437,7 +437,7 @@ update_flag
 	src.update_icon()
 
 /obj/machinery/portable_atmospherics/canister/sleep_agent/roomfiller/initialize()
-	..()
+	. = ..()
 	var/turf/simulated/location = src.loc
 	if(istype(src.loc))
 		while(!location.air)

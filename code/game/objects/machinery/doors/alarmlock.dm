@@ -13,7 +13,7 @@
 	air_connection = new /datum/radio_frequency()
 
 /obj/machinery/door/airlock/alarmlock/initialize()
-	..()
+	. = ..()
 	air_connection = register_radio(src, null, air_frequency, RADIO_TO_AIRALARM)
 	open()
 

@@ -39,7 +39,7 @@
 	usr << "There are [length(crystals)] bluespace crystals in the crystal ports."
 
 /obj/machinery/computer/telescience/initialize()
-	..()
+	. = ..()
 	link_telepad()
 	for(var/i = 1; i <= starting_crystals; i++)
 		crystals += new /obj/item/bluespace_crystal/artificial(null) // starting crystals

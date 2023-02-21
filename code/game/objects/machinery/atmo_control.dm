@@ -84,7 +84,7 @@
 		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
 /obj/machinery/air_sensor/initialize()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/air_sensor/Destroy()
@@ -114,7 +114,7 @@
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/computer/general_air_control/initialize()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/computer/general_air_control/Destroy()

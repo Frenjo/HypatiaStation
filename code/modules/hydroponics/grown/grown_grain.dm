@@ -12,7 +12,7 @@
 
 //So potency can be set in the proc that creates these crops
 /obj/item/weapon/reagent_containers/food/snacks/grown/corn/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
@@ -28,7 +28,7 @@
 	filling_color = "#F7E186"
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/wheat/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 25), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
@@ -44,6 +44,6 @@
 	filling_color = "#FFF8DB"
 	
 /obj/item/weapon/reagent_containers/food/snacks/grown/ricestalk/initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 25), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)

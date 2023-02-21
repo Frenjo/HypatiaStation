@@ -22,7 +22,7 @@
 		src.connected_area = get_area(src)
 
 /obj/machinery/light_switch/initialize()
-	..()
+	. = ..()
 	if(!name)
 		name = "light switch ([connected_area.name])"
 

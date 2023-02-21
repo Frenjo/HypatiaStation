@@ -15,7 +15,7 @@
 	outturf = get_step(src, dir)
 
 /obj/machinery/power/turbine/initialize()
-	..()
+	. = ..()
 	compressor = locate() in get_step(src, get_dir(outturf, src))
 	if(!compressor)
 		stat |= BROKEN

@@ -33,7 +33,7 @@
 			T.update_icon()
 
 /obj/structure/table/initialize()
-	..()
+	. = ..()
 	for(var/obj/structure/table/T in src.loc)
 		if(T != src)
 			qdel(T)

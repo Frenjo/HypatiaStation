@@ -29,6 +29,7 @@ FLOOR SAFES
 	tumbler_2_open = rand(0, 72)
 
 /obj/structure/safe/initialize()
+	. = ..()
 	for(var/obj/item/I in loc)
 		if(space >= maxspace)
 			return

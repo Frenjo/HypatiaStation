@@ -218,7 +218,7 @@
 	var/on = 0 //0 = off, 1 =... oh you know!
 
 /obj/machinery/mineral/processing_unit/initialize()
-	..()
+	. = ..()
 	for(var/dir in GLOBL.cardinal)
 		input = locate(/obj/machinery/mineral/input, get_step(src, dir))
 		if(input)

@@ -75,7 +75,7 @@
 	src.icon_state = "secbot[src.on]"
 
 /obj/machinery/bot/secbot/initialize()
-	..()
+	. = ..()
 	src.botcard = new /obj/item/weapon/card/id(src)
 	var/datum/job/detective/J = new/datum/job/detective
 	src.botcard.access = J.get_access()

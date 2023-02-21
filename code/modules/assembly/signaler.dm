@@ -20,7 +20,7 @@
 	var/deadman = 0
 
 /obj/item/device/assembly/signaler/initialize()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_CHAT)
 
 /obj/item/device/assembly/signaler/activate()

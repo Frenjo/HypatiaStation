@@ -28,7 +28,7 @@
 
 // must wait for map loading to finish
 /obj/machinery/navbeacon/initialize()
-	..()
+	. = ..()
 	register_radio(src, null, freq, RADIO_NAVBEACONS)
 
 /obj/machinery/navbeacon/Destroy()

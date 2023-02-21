@@ -26,6 +26,7 @@
 	var/mutantrace = "human"
 
 /obj/effect/landmark/corpse/initialize()
+	. = ..()
 	createCorpse()
 
 /obj/effect/landmark/corpse/Destroy()
