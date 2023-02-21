@@ -143,10 +143,10 @@
 				newletter = "ah"
 			if(lowertext(newletter) == "c")
 				newletter = "k"
-		switch(rand(1, 15))
-			if(1, 3, 5, 8)
+		switch(rand(1, 7))
+			if(1, 3, 5/*, 8*/)
 				newletter = "[lowertext(newletter)]"
-			if(2, 4, 6, 15)
+			if(2, 4, 6/*, 15*/)
 				newletter = "[uppertext(newletter)]"
 			if(7)
 				newletter += "'"
