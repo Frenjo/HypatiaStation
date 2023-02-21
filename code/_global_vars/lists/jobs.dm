@@ -1,5 +1,14 @@
 GLOBAL_GLOBL_LIST_NEW(assistant_occupations)
 
+GLOBAL_GLOBL_LIST_INIT(departments, list(
+	"Command",
+	"Medical",
+	"Engineering",
+	"Security",
+	"Civilian",
+	"Cargo"
+))
+
 GLOBAL_GLOBL_LIST_INIT(command_positions, list(
 	"Captain",
 	"Head of Personnel",
@@ -34,7 +43,7 @@ GLOBAL_GLOBL_LIST_INIT(science_positions, list(
 	"Xenobiologist"
 ))
 
-//Hypatia Edit
+// Hypatia Edit
 GLOBAL_GLOBL_LIST_INIT(cargo_positions, list(
 	"Quartermaster",
 	"Cargo Technician",
@@ -43,7 +52,7 @@ GLOBAL_GLOBL_LIST_INIT(cargo_positions, list(
 	"Shaft Miner",
 ))
 
-//BS12 EDIT
+// BS12 EDIT
 GLOBAL_GLOBL_LIST_INIT(civilian_positions, list(
 	"Head of Personnel",
 	"Bartender",
@@ -71,30 +80,3 @@ GLOBAL_GLOBL_LIST_INIT(nonhuman_positions, list(
 	"Cyborg",
 	"pAI"
 ))
-
-/proc/guest_jobbans(job)
-	return ((job in GLOBL.command_positions) || (job in GLOBL.nonhuman_positions) || (job in GLOBL.security_positions))
-
-/proc/get_job_datums()
-	var/list/occupations = list()
-	var/list/all_jobs = typesof(/datum/job)
-
-	for(var/A in all_jobs)
-		var/datum/job/job = new A()
-		if(!job)
-			continue
-		occupations += job
-
-	return occupations
-
-/proc/get_alternate_titles(job)
-	var/list/jobs = get_job_datums()
-	var/list/titles = list()
-
-	for(var/datum/job/J in jobs)
-		if(!J)
-			continue
-		if(J.title == job)
-			titles = J.alt_titles
-
-	return titles

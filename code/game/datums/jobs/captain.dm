@@ -1,16 +1,20 @@
+/*
+ * Captain
+ */
 /datum/job/captain
 	title = "Captain"
 	flag = JOB_CAPTAIN
 	department_flag = DEPARTMENT_ENGSEC
 	faction = "Station"
+
 	total_positions = 1
 	spawn_positions = 1
+
 	supervisors = "NanoTrasen Officials and Space Law"
 	selection_color = "#ccccff"
+
 	idtype = /obj/item/weapon/card/id/gold
 	req_admin_notify = TRUE
-	access = list() 			//See get_access()
-	minimal_access = list() 	//See get_access()
 	minimal_player_age = 14
 
 /datum/job/captain/equip(mob/living/carbon/human/H)
@@ -54,7 +58,9 @@
 /datum/job/captain/get_access()
 	return get_all_accesses()
 
-
+/*
+ * Head of Personnel
+ */
 /datum/job/hop
 	title = "Head of Personnel"
 	flag = JOB_HOP
@@ -67,6 +73,7 @@
 	idtype = /obj/item/weapon/card/id/silver
 	req_admin_notify = TRUE
 	minimal_player_age = 10
+
 	access = list(
 		ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_FORENSICS_LOCKERS,
 		ACCESS_MEDICAL, ACCESS_ENGINE, ACCESS_CHANGE_IDS, ACCESS_AI_UPLOAD, ACCESS_EVA, ACCESS_HEADS,
@@ -83,6 +90,7 @@
 		ACCESS_THEATRE, ACCESS_CHAPEL_OFFICE, ACCESS_LIBRARY, ACCESS_RESEARCH, ACCESS_HEADS_VAULT, ACCESS_CLOWN, ACCESS_MIME,
 		ACCESS_HOP, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_GATEWAY
 	)
+
 	alt_titles = list("Human Resources Director")
 
 /datum/job/hop/equip(mob/living/carbon/human/H)

@@ -1,23 +1,31 @@
+/*
+ * Whitelist
+ */
 #define WHITELISTFILE "data/whitelist.txt"
 
-/var/list/whitelist = list()
+GLOBAL_GLOBL_LIST_NEW(whitelist)
 
 /hook/startup/proc/loadWhitelist()
 	if(CONFIG_GET(usewhitelist))
 		load_whitelist()
-	return 1
+	return TRUE
 
 /proc/load_whitelist()
-	whitelist = file2list(WHITELISTFILE)
-	if(!length(whitelist))
-		whitelist = null
+	GLOBL.whitelist = file2list(WHITELISTFILE)
+	if(!length(GLOBL.whitelist))
+		GLOBL.whitelist = null
 
 /proc/check_whitelist(mob/M /*, var/rank*/)
-	if(!whitelist)
-		return 0
-	return ("[M.ckey]" in whitelist)
+	if(!GLOBL.whitelist)
+		return FALSE
+	return ("[M.ckey]" in GLOBL.whitelist)
 
-/var/list/alien_whitelist = list()
+#undef WHITELISTFILE
+
+/*
+ * Alien Whitelist
+ */
+GLOBAL_GLOBL_LIST_NEW(alien_whitelist)
 
 /hook/startup/proc/loadAlienWhitelist()
 	if(CONFIG_GET(usealienwhitelist))
@@ -29,25 +37,23 @@
 	if(!text)
 		log_misc("Failed to load config/alienwhitelist.txt")
 	else
-		alien_whitelist = splittext(text, "\n")
+		GLOBL.alien_whitelist = splittext(text, "\n")
 
 //todo: admin aliens
 /proc/is_alien_whitelisted(mob/M, species)
 	if(!CONFIG_GET(usealienwhitelist))
-		return 1
+		return TRUE
 	if(species == "human" || species == SPECIES_HUMAN)
-		return 1
+		return TRUE
 	if(check_rights(R_ADMIN, 0))
-		return 1
-	if(!alien_whitelist)
-		return 0
+		return TRUE
+	if(!GLOBL.alien_whitelist)
+		return FALSE
 	if(M && species)
-		for(var/s in alien_whitelist)
+		for(var/s in GLOBL.alien_whitelist)
 			if(findtext(s, "[M.ckey] - [species]"))
-				return 1
+				return TRUE
 			if(findtext(s, "[M.ckey] - All"))
-				return 1
+				return TRUE
 
-	return 0
-
-#undef WHITELISTFILE
+	return FALSE

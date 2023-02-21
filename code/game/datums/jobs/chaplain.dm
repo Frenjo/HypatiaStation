@@ -1,15 +1,22 @@
-//Due to how large this one is it gets its own file
+// Due to how large this one is it gets its own file.
+/*
+ * Chaplain
+ */
 /datum/job/chaplain
 	title = "Chaplain"
 	flag = JOB_CHAPLAIN
 	department_flag = DEPARTMENT_CIVILIAN
 	faction = "Station"
+
 	total_positions = 1
 	spawn_positions = 1
+
 	supervisors = "the Head of Personnel"
 	selection_color = "#dddddd"
+
 	access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_MAINT_TUNNELS)
 	minimal_access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM)
+
 	alt_titles = list("Counselor")
 
 /datum/job/chaplain/equip(mob/living/carbon/human/H)

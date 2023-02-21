@@ -1,14 +1,18 @@
+/*
+ * Assistant
+ */
 /datum/job/assistant
 	title = "Assistant"
 	flag = JOB_ASSISTANT
 	department_flag = DEPARTMENT_CIVILIAN
 	faction = "Station"
+
 	total_positions = -1
 	spawn_positions = -1
+
 	supervisors = "absolutely everyone"
 	selection_color = "#dddddd"
-	access = list()			//See /datum/job/assistant/get_access()
-	minimal_access = list()	//See /datum/job/assistant/get_access()
+
 	// Added Visitor as alt title for assistant. -Frenjo
 	alt_titles = list("Technical Assistant", "Medical Intern", "Research Assistant", "Security Cadet", "Visitor")
 

@@ -1,14 +1,22 @@
+/*
+ * Head of Security
+ */
 /datum/job/hos
 	title = "Head of Security"
 	flag = JOB_HOS
 	department_flag = DEPARTMENT_ENGSEC
 	faction = "Station"
+
 	total_positions = 1
 	spawn_positions = 1
+
 	supervisors = "the Captain"
 	selection_color = "#ffdddd"
+
 	idtype = /obj/item/weapon/card/id/silver
 	req_admin_notify = TRUE
+	minimal_player_age = 14
+
 	access = list(
 		ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT,
 		ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_ALL_PERSONAL_LOCKERS,
@@ -21,7 +29,7 @@
 		ACCESS_RESEARCH, ACCESS_ENGINE, ACCESS_MINING, ACCESS_MEDICAL, ACCESS_CONSTRUCTION, ACCESS_MAILSORTING,
 		ACCESS_HEADS, ACCESS_HOS, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_GATEWAY
 	)
-	minimal_player_age = 14
+
 	alt_titles = list("Security Commander")
 
 /datum/job/hos/equip(mob/living/carbon/human/H)
@@ -60,19 +68,25 @@
 	L.part = affected
 	return 1
 
-
+/*
+ * Warden
+ */
 /datum/job/warden
 	title = "Warden"
 	flag = JOB_WARDEN
 	department_flag = DEPARTMENT_ENGSEC
 	faction = "Station"
+
 	total_positions = 2
 	spawn_positions = 2
+
 	supervisors = "the Head of Security"
 	selection_color = "#ffeeee"
+
+	minimal_player_age = 5
+
 	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE)
 	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS)
-	minimal_player_age = 5
 
 /datum/job/warden/equip(mob/living/carbon/human/H)
 	if(!H)
@@ -103,20 +117,27 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), slot_in_backpack)
 	return 1
 
-
+/*
+ * Detective
+ */
 /datum/job/detective
 	title = "Detective"
 	flag = JOB_DETECTIVE
 	department_flag = DEPARTMENT_ENGSEC
 	faction = "Station"
+
 	total_positions = 1
 	spawn_positions = 1
+
 	supervisors = "the Head of Security"
 	selection_color = "#ffeeee"
+
+	minimal_player_age = 3
+
 	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_COURT)
 	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_FORENSICS_LOCKERS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS, ACCESS_COURT)
+
 	alt_titles = list("Forensic Technician")
-	minimal_player_age = 3
 
 /datum/job/detective/equip(mob/living/carbon/human/H)
 	if(!H)
@@ -156,19 +177,25 @@
 		H.equip_to_slot_or_del(new /obj/item/device/detective_scanner(H), slot_in_backpack)
 	return 1
 
-
+/*
+ * Security Officer
+ */
 /datum/job/officer
 	title = "Security Officer"
 	flag = JOB_OFFICER
 	department_flag = DEPARTMENT_ENGSEC
 	faction = "Station"
+
 	total_positions = 5
 	spawn_positions = 5
+
 	supervisors = "the Head of Security"
 	selection_color = "#ffeeee"
+
+	minimal_player_age = 3
+
 	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE)
 	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS)
-	minimal_player_age = 3
 
 /datum/job/officer/equip(mob/living/carbon/human/H)
 	if(!H)
@@ -197,19 +224,25 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), slot_in_backpack)
 	return 1
 
-
+/*
+ * Security Paramedic
+ */
 /datum/job/secpara
 	title = "Security Paramedic"
 	flag = JOB_SECPARA
 	department_flag = DEPARTMENT_ENGSEC
 	faction = "Station"
+
 	total_positions = 1
 	spawn_positions = 1
+
 	supervisors = "the Warden and the Head of Security"
 	selection_color = "#ffeeee"
+
+	minimal_player_age = 7
+
 	access = list(ACCESS_MEDICAL, ACCESS_CHEMISTRY, ACCESS_SURGERY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_MORGUE)
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS)
-	minimal_player_age = 7
 
 /datum/job/secpara/equip(mob/living/carbon/human/H)
 	if(!H)
