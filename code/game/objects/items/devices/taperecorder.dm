@@ -4,20 +4,21 @@
 	icon_state = "taperecorderidle"
 	item_state = "analyzer"
 	w_class = 1.0
-	m_amt = 60
-	g_amt = 30
+	matter_amounts = list(MATERIAL_METAL = 60, MATERIAL_GLASS = 30)
+
+	flags = CONDUCT
+	throwforce = 2
+	throw_speed = 4
+	throw_range = 20
+
 	var/emagged = 0.0
 	var/recording = 0.0
 	var/playing = 0.0
 	var/timerecorded = 0.0
 	var/playsleepseconds = 0.0
-	var/list/storedinfo = new/list()
-	var/list/timestamp = new/list()
+	var/list/storedinfo = list()
+	var/list/timestamp = list()
 	var/canprint = 1
-	flags = CONDUCT
-	throwforce = 2
-	throw_speed = 4
-	throw_range = 20
 
 /obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, verbage = "says")
 	if(recording)

@@ -15,7 +15,7 @@
 	desc = "HOLY SHEET! That is a lot of glass."
 	singular_name = "glass sheet"
 	icon_state = "sheet-glass"
-	g_amt = 3750
+	matter_amounts = list(MATERIAL_GLASS = 3750)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
 	var/created_window = /obj/structure/window/basic
 
@@ -24,7 +24,7 @@
 	desc = "HOLY SHEET! That is a lot of glass."
 	singular_name = "glass sheet"
 	icon_state = "sheet-glass"
-	g_amt = 0
+	matter_amounts = list()
 	created_window = /obj/structure/window/basic
 
 /obj/item/stack/sheet/glass/attack_self(mob/user as mob)
@@ -123,7 +123,6 @@
 			src.use(2)
 	return 0
 
-
 /*
  * Reinforced glass sheets
  */
@@ -132,8 +131,7 @@
 	desc = "Glass which seems to have rods or something stuck in them."
 	singular_name = "reinforced glass sheet"
 	icon_state = "sheet-rglass"
-	g_amt = 3750
-	m_amt = 1875
+	matter_amounts = list(MATERIAL_METAL = 1875, MATERIAL_GLASS = 3750)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2)
 
 /obj/item/stack/sheet/rglass/cyborg
@@ -141,8 +139,7 @@
 	desc = "Glass which seems to have rods or something stuck in them."
 	singular_name = "reinforced glass sheet"
 	icon_state = "sheet-rglass"
-	g_amt = 0
-	m_amt = 0
+	matter_amounts = list()
 
 /obj/item/stack/sheet/rglass/attack_self(mob/user as mob)
 	construct_window(user)
@@ -253,7 +250,6 @@
 			return 1
 	return 0
 
-
 /*
  * Glass shards - TODO: Move this into code/game/object/item/weapons
  */
@@ -331,7 +327,7 @@
 	desc = "A very strong and very resistant sheet of a plasma-glass alloy."
 	singular_name = "plasma glass sheet"
 	icon_state = "sheet-plasmaglass"
-	g_amt = 7500
+	matter_amounts = list(MATERIAL_GLASS = 7500)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_PLASMATECH = 2)
 	created_window = /obj/structure/window/plasmabasic
 
@@ -355,7 +351,6 @@
 	else
 		return ..()
 
-
 /*
  * Reinforced plasma glass sheets
  */
@@ -364,8 +359,7 @@
 	desc = "Plasma glass which seems to have rods or something stuck in them."
 	singular_name = "reinforced plasma glass sheet"
 	icon_state = "sheet-plasmarglass"
-	g_amt = 7500
-	m_amt = 1875
+	matter_amounts = list(MATERIAL_METAL = 1875, MATERIAL_GLASS = 7500)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_PLASMATECH = 2)
 	created_window = /obj/structure/window/plasmareinforced
 

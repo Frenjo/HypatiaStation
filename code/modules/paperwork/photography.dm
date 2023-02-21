@@ -17,7 +17,6 @@
 	item_state = "electropack"
 	w_class = 1.0
 
-
 /********
 * photo *
 ********/
@@ -71,7 +70,6 @@
 	add_fingerprint(usr)
 	return
 
-
 /**************
 * photo album *
 **************/
@@ -117,13 +115,13 @@
 	w_class = 2.0
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	m_amt = 2000
+	matter_amounts = list(MATERIAL_METAL = 2000)
+
 	var/pictures_max = 10
 	var/pictures_left = 10
 	var/on = 1
 	var/icon_on = "camera"
 	var/icon_off = "camera_off"
-
 
 /obj/item/device/camera/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
@@ -148,7 +146,6 @@
 		pictures_left = pictures_max
 		return
 	..()
-
 
 /obj/item/device/camera/proc/get_icon(turf/the_turf as turf)
 	//Bigger icon base to capture those icons that were shifted to the next tile
@@ -188,7 +185,6 @@
 				res.Blend(new/icon(img, "", A.dir), ICON_OVERLAY, 33 + A.pixel_x, 33 + A.pixel_y)
 	return res
 
-
 /obj/item/device/camera/proc/get_mobs(turf/the_turf as turf)
 	var/mob_detail
 	for(var/mob/living/carbon/A in the_turf)
@@ -209,7 +205,6 @@
 		else
 			mob_detail += "You can also see [A] on the photo[A:health < 75 ? " - [A] looks hurt":""].[holding ? " [holding]":"."]."
 	return mob_detail
-
 
 /obj/item/device/camera/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
 	if(!on || !pictures_left || ismob(target.loc))

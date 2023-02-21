@@ -4,12 +4,14 @@
 	icon_state = "fab-idle"
 	density = TRUE
 	anchored = TRUE
-	var/metal_amount = 0
-	var/operating = 0
-	var/obj/item/robot_parts/being_built = null
+
 	use_power = 1
 	idle_power_usage = 20
 	active_power_usage = 5000
+
+	var/metal_amount = 0
+	var/operating = 0
+	var/obj/item/robot_parts/being_built = null
 
 /obj/machinery/robotic_fabricator/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/stack/sheet/metal))
@@ -21,7 +23,7 @@
 					if(!O:amount)
 						return
 					while(metal_amount < 150000 && O:amount)
-						src.metal_amount += O:m_amt /*O:height * O:width * O:length * 100000.0*/
+						src.metal_amount += O.matter_amounts[MATERIAL_METAL] /*O:height * O:width * O:length * 100000.0*/
 						O:amount--
 						count++
 

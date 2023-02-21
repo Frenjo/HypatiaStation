@@ -4,9 +4,7 @@
 	name = "infrared emitter"
 	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
 	icon_state = "infrared"
-	m_amt = 1000
-	g_amt = 500
-	w_amt = 100
+	matter_amounts = list(MATERIAL_METAL = 1000, MATERIAL_GLASS = 500, "waste" = 100)
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 2)
 
 	wires = WIRE_PULSE
@@ -147,9 +145,7 @@
 	set_dir(turn(dir, 90))
 	return
 
-
 /***************************IBeam*********************************/
-
 /obj/effect/beam/i_beam
 	name = "i beam"
 	icon = 'icons/obj/projectiles.dmi'

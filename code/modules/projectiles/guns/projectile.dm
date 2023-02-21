@@ -9,8 +9,9 @@
 	caliber = "357"
 	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MATERIALS = 2)
 	w_class = 3.0
-	m_amt = 1000
+	matter_amounts = list(MATERIAL_METAL = 1000)
 	recoil = 1
+
 	var/ammo_type = /obj/item/ammo_casing/a357
 	var/list/loaded = list()
 	var/max_shells = 7

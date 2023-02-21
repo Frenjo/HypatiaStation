@@ -23,7 +23,7 @@
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0
-	m_amt = 50
+	matter_amounts = list(MATERIAL_METAL = 50)
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
 
 /*
@@ -42,7 +42,7 @@
 	throwforce = 15.0
 	throw_speed = 4
 	throw_range = 4
-	m_amt = 15000
+	matter_amounts = list(MATERIAL_METAL = 15000)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_COMBAT = 1)
 	attack_verb = list("chopped", "torn", "cut")
 

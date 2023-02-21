@@ -19,4 +19,4 @@
 	desc = "Used in the construction of computers and other devices with a interactive console."
 	icon_state = "screen"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
-	g_amt = 200
+	matter_amounts = list(MATERIAL_GLASS = 200)

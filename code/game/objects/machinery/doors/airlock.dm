@@ -863,7 +863,7 @@ About the new airlock wires panel:
 	if(src.isElectrified())
 		if(istype(mover, /obj/item))
 			var/obj/item/i = mover
-			if(i.m_amt)
+			if(i.matter_amounts[MATERIAL_METAL])
 				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 				s.set_up(5, 1, src)
 				s.start()

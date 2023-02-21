@@ -3,7 +3,6 @@
  * TO-DO -- Using it as a power measurement tool for cables etc. Nannek.
  *
  */
-
 /obj/item/device/debugger
 	icon = 'icons/obj/hacktool.dmi'
 	name = "debugger"
@@ -16,9 +15,9 @@
 	throw_range = 15
 	throw_speed = 3
 	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."
-	m_amt = 50
-	g_amt = 20
+	matter_amounts = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 20)
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 1, RESEARCH_TECH_ENGINEERING = 1)
+
 	var/obj/machinery/telecomms/buffer // simple machine buffer for device linkage
 
 /obj/item/device/debugger/is_used_on(obj/O, mob/user)

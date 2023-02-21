@@ -10,10 +10,11 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = 3.0
+	matter_amounts = list(MATERIAL_METAL = 750, MATERIAL_GLASS = 50)
+
 	var/charge = 0	// note %age conveted to actual charge in New
 	var/maxcharge = 1000
-	m_amt = 700
-	g_amt = 50
+
 	var/rigged = 0		// true if rigged to explode
 	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
 	var/construction_cost = list(MATERIAL_METAL = 750, MATERIAL_GLASS = 75)
@@ -29,7 +30,7 @@
 	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
 	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 0)
 	maxcharge = 500
-	g_amt = 40
+	matter_amounts = list(MATERIAL_METAL = 750, MATERIAL_GLASS = 40)
 
 /obj/item/weapon/cell/crap/empty/New()
 	..()
@@ -40,7 +41,7 @@
 	name = "security borg rechargable D battery"
 	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 0)
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
-	g_amt = 40
+	matter_amounts = list(MATERIAL_METAL = 750, MATERIAL_GLASS = 40)
 
 /obj/item/weapon/cell/secborg/empty/New()
 	..()
@@ -51,7 +52,7 @@
 	name = "APC power cell"
 	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 1)
 	maxcharge = 5000
-	g_amt = 50
+	matter_amounts = list(MATERIAL_METAL = 750, MATERIAL_GLASS = 50)
 
 /obj/item/weapon/cell/apc/empty/New()
 	..()
@@ -62,7 +63,7 @@
 	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 2)
 	icon_state = "hcell"
 	maxcharge = 10000
-	g_amt = 60
+	matter_amounts = list(MATERIAL_METAL = 750, MATERIAL_GLASS = 60)
 
 /obj/item/weapon/cell/high/empty/New()
 	..()
@@ -74,7 +75,7 @@
 	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 5)
 	icon_state = "scell"
 	maxcharge = 20000
-	g_amt = 70
+	matter_amounts = list(MATERIAL_METAL = 750, MATERIAL_GLASS = 70)
 	construction_cost = list(MATERIAL_METAL = 750, MATERIAL_GLASS = 100)
 
 /obj/item/weapon/cell/super/empty/New()
@@ -87,7 +88,7 @@
 	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 6)
 	icon_state = "hpcell"
 	maxcharge = 30000
-	g_amt = 80
+	matter_amounts = list(MATERIAL_METAL = 750, MATERIAL_GLASS = 80)
 	construction_cost = list(MATERIAL_METAL = 500, MATERIAL_GLASS = 150, MATERIAL_GOLD = 200, MATERIAL_SILVER = 200)
 
 /obj/item/weapon/cell/hyper/empty/New()
@@ -100,10 +101,11 @@
 	icon_state = "icell"
 	origin_tech =  null
 	maxcharge = 30000
-	g_amt = 80
+	matter_amounts = list(MATERIAL_METAL = 750, MATERIAL_GLASS = 80)
 
 /obj/item/weapon/cell/infinite/use()
 	return 1
+
 
 /obj/item/weapon/cell/potato
 	name = "potato battery"
@@ -113,8 +115,7 @@
 	icon_state = "potato_cell" //"potato_battery"
 	charge = 100
 	maxcharge = 300
-	m_amt = 0
-	g_amt = 0
+	matter_amounts = list()
 	minor_fault = 1
 
 
@@ -126,5 +127,4 @@
 	icon_state = "yellow slime extract" //"potato_battery"
 	maxcharge = 10000
 	maxcharge = 10000
-	m_amt = 0
-	g_amt = 0
+	matter_amounts = list()

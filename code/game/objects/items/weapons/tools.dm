@@ -24,10 +24,9 @@
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0
-	m_amt = 150
+	matter_amounts = list(MATERIAL_METAL = 150)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_ENGINEERING = 1)
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
-
 
 /*
  * Screwdriver
@@ -44,8 +43,7 @@
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
-	g_amt = 0
-	m_amt = 75
+	matter_amounts = list(MATERIAL_METAL = 75)
 	attack_verb = list("stabbed")
 
 /obj/item/weapon/screwdriver/suicide_act(mob/user)
@@ -107,7 +105,7 @@
 	throw_speed = 2
 	throw_range = 9
 	w_class = 2.0
-	m_amt = 80
+	matter_amounts = list(MATERIAL_METAL = 80)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_ENGINEERING = 1)
 	attack_verb = list("pinched", "nipped")
 	sharp = 1
@@ -132,7 +130,6 @@
 	else
 		..()
 
-
 /*
  * Welding Tool
  */
@@ -154,8 +151,7 @@
 	w_class = 2.0
 
 	//Cost to make in the autolathe
-	m_amt = 70
-	g_amt = 30
+	matter_amounts = list(MATERIAL_METAL = 70, MATERIAL_GLASS = 30)
 
 	//R&D tech level
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 1)
@@ -434,25 +430,23 @@
 /obj/item/weapon/weldingtool/largetank
 	name = "Industrial Welding Tool"
 	max_fuel = 40
-	m_amt = 70
-	g_amt = 60
+	matter_amounts = list(MATERIAL_METAL = 70, MATERIAL_GLASS = 60)
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2)
 
 /obj/item/weapon/weldingtool/hugetank
 	name = "Upgraded Welding Tool"
 	max_fuel = 80
 	w_class = 3.0
-	m_amt = 70
-	g_amt = 120
+	matter_amounts = list(MATERIAL_METAL = 70, MATERIAL_GLASS = 120)
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 3)
 
 /obj/item/weapon/weldingtool/experimental
 	name = "Experimental Welding Tool"
 	max_fuel = 40
 	w_class = 3.0
-	m_amt = 70
-	g_amt = 120
+	matter_amounts = list(MATERIAL_METAL = 70, MATERIAL_GLASS = 120)
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_PLASMATECH = 3)
+
 	var/last_gen = 0
 
 /obj/item/weapon/weldingtool/experimental/proc/fuel_gen()//Proc to make the experimental welder generate fuel, optimized as fuck -Sieve
@@ -460,7 +454,6 @@
 	reagents += gen_amount
 	if(reagents > max_fuel)
 		reagents = max_fuel
-
 
 /*
  * Crowbar
@@ -476,7 +469,7 @@
 	throwforce = 7.0
 	item_state = "crowbar"
 	w_class = 2.0
-	m_amt = 50
+	matter_amounts = list(MATERIAL_METAL = 50)
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 1)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 

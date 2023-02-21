@@ -4,8 +4,7 @@
 	desc = "A tiny laser used in certain devices."
 	icon_state = "micro_laser"
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 1)
-	m_amt = 10
-	g_amt = 20
+	matter_amounts = list(MATERIAL_METAL = 10, MATERIAL_GLASS = 20)
 
 // Rating 2
 /obj/item/weapon/stock_part/micro_laser/high
@@ -14,8 +13,6 @@
 	icon_state = "high_micro_laser"
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 3)
 	rating = 2
-	m_amt = 10
-	g_amt = 20
 
 // Rating 3
 /obj/item/weapon/stock_part/micro_laser/ultra
@@ -24,8 +21,6 @@
 	desc = "A tiny laser used in certain devices."
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 5)
 	rating = 3
-	m_amt = 10
-	g_amt = 20
 
 // Rating 4
 /obj/item/weapon/stock_part/micro_laser/hyperultra
@@ -34,5 +29,3 @@
 	desc = "A tiny laser used in certain devices."
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 7)
 	rating = 4
-	m_amt = 10
-	g_amt = 20

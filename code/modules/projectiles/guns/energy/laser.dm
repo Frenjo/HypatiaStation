@@ -5,7 +5,6 @@
 	item_state = "laser"
 	fire_sound = 'sound/weapons/Laser.ogg'
 	w_class = 3.0
-	m_amt = 2000
 	origin_tech = list(RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MAGNETS = 2)
 	gun_setting = GUN_SETTING_KILL
 	pulse_projectile_types = list(GUN_SETTING_KILL = /obj/item/projectile/energy/pulse/laser)

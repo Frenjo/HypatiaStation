@@ -19,12 +19,10 @@
 	desc = "Retracts stuff."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "retractor"
-	m_amt = 10000
-	g_amt = 5000
+	matter_amounts = list(MATERIAL_METAL = 10000, MATERIAL_GLASS = 5000)
 	flags = CONDUCT
 	w_class = 2.0
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
-
 
 /*
  * Hemostat
@@ -34,13 +32,11 @@
 	desc = "You think you have seen this before."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "hemostat"
-	m_amt = 5000
-	g_amt = 2500
+	matter_amounts = list(MATERIAL_METAL = 5000, MATERIAL_GLASS = 2500)
 	flags = CONDUCT
 	w_class = 2.0
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
 	attack_verb = list("attacked", "pinched")
-
 
 /*
  * Cautery
@@ -50,13 +46,11 @@
 	desc = "This stops bleeding."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "cautery"
-	m_amt = 5000
-	g_amt = 2500
+	matter_amounts = list(MATERIAL_METAL = 5000, MATERIAL_GLASS = 2500)
 	flags = CONDUCT
 	w_class = 2.0
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
 	attack_verb = list("burnt")
-
 
 /*
  * Surgical Drill
@@ -67,8 +61,7 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "drill"
 	hitsound = 'sound/weapons/circsawhit.ogg'
-	m_amt = 15000
-	g_amt = 10000
+	matter_amounts = list(MATERIAL_METAL = 15000, MATERIAL_GLASS = 10000)
 	flags = CONDUCT
 	force = 15.0
 	w_class = 2.0
@@ -82,7 +75,6 @@
 		)
 	)
 	return (BRUTELOSS)
-
 
 /*
  * Scalpel
@@ -100,8 +92,7 @@
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
-	m_amt = 10000
-	g_amt = 5000
+	matter_amounts = list(MATERIAL_METAL = 10000, MATERIAL_GLASS = 5000)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
@@ -113,7 +104,6 @@
 		)
 	)
 	return (BRUTELOSS)
-
 
 /*
  * Researchable Scalpels
@@ -144,7 +134,6 @@
 	icon_state = "scalpel_manager_on"
 	force = 7.5
 
-
 /*
  * Circular Saw
  */
@@ -160,8 +149,7 @@
 	throwforce = 9.0
 	throw_speed = 3
 	throw_range = 5
-	m_amt = 20000
-	g_amt = 10000
+	matter_amounts = list(MATERIAL_METAL = 20000, MATERIAL_GLASS = 10000)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharp = 1
@@ -180,7 +168,6 @@
 	w_class = 2.0
 	throwforce = 1.0
 
-
 /*
  * FixOVein
  */
@@ -192,8 +179,8 @@
 	throwforce = 1.0
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 3)
 	w_class = 2.0
-	var/usage_amount = 10
 
+	var/usage_amount = 10
 
 /*
  * Bone Setter

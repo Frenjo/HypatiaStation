@@ -8,9 +8,9 @@
 	throw_speed = 2
 	throw_range = 10
 	force = 4.0
+
 	var/list/syringes = list()
 	var/max_syringes = 1
-	m_amt = 2000
 
 /obj/item/weapon/gun/syringe/examine()
 	set src in view()

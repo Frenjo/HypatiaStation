@@ -2,9 +2,9 @@
 	name = "mousetrap"
 	desc = "A handy little spring-loaded trap for catching pesty rodents."
 	icon_state = "mousetrap"
-	m_amt = 100
-	w_amt = 10
+	matter_amounts = list(MATERIAL_METAL = 100, "waste" = 10)
 	origin_tech = list(RESEARCH_TECH_COMBAT = 1)
+
 	var/armed = 0
 
 /obj/item/device/assembly/mousetrap/examine()

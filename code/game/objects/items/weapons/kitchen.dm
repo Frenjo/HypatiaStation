@@ -163,7 +163,7 @@
 	throwforce = 6.0
 	throw_speed = 3
 	throw_range = 6
-	m_amt = 12000
+	matter_amounts = list(MATERIAL_METAL = 12000)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
@@ -193,7 +193,7 @@
 	throwforce = 8.0
 	throw_speed = 3
 	throw_range = 6
-	m_amt = 12000
+	matter_amounts = list(MATERIAL_METAL = 12000)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = 1
@@ -266,7 +266,7 @@
 	throw_range = 5
 	w_class = 3.0
 	flags = CONDUCT
-	m_amt = 3000
+	matter_amounts = list(MATERIAL_METAL = 3000)
 	/* // NOPE
 	var/food_total= 0
 	var/burger_amt = 0
@@ -288,7 +288,6 @@
 					   // w_class = 3 -- takes up 5
 
 /obj/item/weapon/tray/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-
 	// Drop all the things. All of them.
 	overlays.Cut()
 	for(var/obj/item/I in carrying)
@@ -436,7 +435,6 @@
 	return val
 
 /obj/item/weapon/tray/pickup(mob/user)
-
 	if(!isturf(loc))
 		return
 
@@ -457,7 +455,6 @@
 			overlays += image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer)
 
 /obj/item/weapon/tray/dropped(mob/user)
-
 	var/mob/living/M
 	for(M in src.loc) //to handle hand switching
 		return
@@ -480,16 +477,9 @@
 						step(I, pick(NORTH,SOUTH,EAST,WEST))
 						sleep(rand(2,4))
 
-
-
-
-
 /////////////////////////////////////////////////////////////////////////////////////////
 //Enough with the violent stuff, here's what happens if you try putting food on it
 /////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 /*/obj/item/weapon/tray/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/kitchen/utensil/fork))
 		if (W.icon_state == "forkloaded")

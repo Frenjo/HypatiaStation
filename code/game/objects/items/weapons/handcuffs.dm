@@ -10,8 +10,9 @@
 	w_class = 2.0
 	throw_speed = 2
 	throw_range = 5
-	m_amt = 500
+	matter_amounts = list(MATERIAL_METAL = 500)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
+
 	var/dispenser = 0
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
 
@@ -89,7 +90,6 @@
 					O.process()
 			return
 	return
-
 
 var/last_chew = 0
 /mob/living/carbon/human/RestrainedClickOn(atom/A)

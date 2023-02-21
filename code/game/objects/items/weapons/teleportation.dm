@@ -12,17 +12,19 @@
 	desc = "Used to track those with locater implants."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "locator"
-	var/temp = null
-	var/frequency = 1451
-	var/broadcasting = null
-	var/listening = 1.0
+
 	flags = CONDUCT
 	w_class = 2.0
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
-	m_amt = 400
+	matter_amounts = list(MATERIAL_METAL = 400)
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 1)
+
+	var/temp = null
+	var/frequency = 1451
+	var/broadcasting = null
+	var/listening = 1.0
 
 /obj/item/weapon/locator/attack_self(mob/user as mob)
 	user.set_machine(src)
@@ -119,7 +121,6 @@ Frequency:
 					src.attack_self(M)
 	return
 
-
 /*
  * Hand-tele
  */
@@ -133,7 +134,7 @@ Frequency:
 	w_class = 2.0
 	throw_speed = 3
 	throw_range = 5
-	m_amt = 10000
+	matter_amounts = list(MATERIAL_METAL = 10000)
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 1, RESEARCH_TECH_BLUESPACE = 3)
 
 /obj/item/weapon/hand_tele/attack_self(mob/user as mob)

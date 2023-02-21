@@ -66,7 +66,7 @@
 	throwforce = 4.0
 	item_state = "pickaxe"
 	w_class = 4.0
-	m_amt = 3750 //one sheet, but where can you make them?
+	matter_amounts = list(MATERIAL_METAL = 3750) //one sheet, but where can you make them?
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_ENGINEERING = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	sharp = 1
@@ -167,7 +167,7 @@
 	throwforce = 4.0
 	item_state = "shovel"
 	w_class = 3.0
-	m_amt = 50
+	matter_amounts = list(MATERIAL_METAL = 50)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_ENGINEERING = 1)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 

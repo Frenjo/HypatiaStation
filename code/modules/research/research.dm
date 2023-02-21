@@ -43,7 +43,6 @@ research holder datum.
 **						Master Types						  **
 **	Includes all the helper procs and basic tech processing.  **
 ***************************************************************/
-
 /datum/research								//Holder for all the existing, archived, and known tech. Individual to console.
 									//Datum/tech go here.
 	var/list/possible_tech = list()			//List of all tech in the game that players have access to (barring special events).
@@ -159,12 +158,10 @@ research holder datum.
 			break
 	return
 
-
 /***************************************************************
 **						Technology Datums					  **
 **	Includes all the various technoliges and what they make.  **
 ***************************************************************/
-
 /datum/tech	//Datum of individual technologies.
 	var/name = "name"					//Name of the technology.
 	var/desc = "description"			//General description of what it does and what it makes.
@@ -251,7 +248,6 @@ research holder datum.
 	req_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_PROGRAMMING = 3)
 */
 
-
 /obj/item/weapon/disk/tech_disk
 	name = "Technology Disk"
 	desc = "A disk for storing technology data for further research."
@@ -259,8 +255,7 @@ research holder datum.
 	icon_state = "datadisk2"
 	item_state = "card-id"
 	w_class = 1.0
-	m_amt = 30
-	g_amt = 10
+	matter_amounts = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 10)
 
 	var/datum/tech/stored
 

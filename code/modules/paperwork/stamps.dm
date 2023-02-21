@@ -8,7 +8,7 @@
 	w_class = 1.0
 	throw_speed = 7
 	throw_range = 15
-	m_amt = 60
+	matter_amounts = list(MATERIAL_METAL = 60)
 	item_color = "cargo"
 	pressure_resistance = 2
 	attack_verb = list("stamped")
@@ -62,7 +62,6 @@
 	name = "centcom rubber stamp"
 	icon_state = "stamp-cent"
 	item_color = "centcom"
-
 
 /obj/item/weapon/stamp/attack_paw(mob/user as mob)
 	return attack_hand(user)

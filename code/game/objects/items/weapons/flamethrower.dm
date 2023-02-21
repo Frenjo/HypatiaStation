@@ -10,8 +10,9 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 3.0
-	m_amt = 500
+	matter_amounts = list(MATERIAL_METAL = 500)
 	origin_tech = list(RESEARCH_TECH_COMBAT = 1, RESEARCH_TECH_PLASMATECH = 1)
+
 	var/status = 0
 	var/throw_amount = 100
 	var/lit = 0	//on or off

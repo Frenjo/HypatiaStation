@@ -83,7 +83,6 @@
 	icon_state = "crossbow"
 	w_class = 2.0
 	item_state = "crossbow"
-	m_amt = 2000
 	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_SYNDICATE = 5)
 	silenced = 1
 	fire_sound = 'sound/weapons/Genhit.ogg'
@@ -122,7 +121,7 @@
 	desc = "A weapon favored by syndicate infiltration teams."
 	w_class = 4.0
 	force = 10
-	m_amt = 200000
+	matter_amounts = list(MATERIAL_METAL = 200000)
 	pulse_projectile_types = list(
 		GUN_SETTING_SPECIAL = /obj/item/projectile/energy/bolt/large
 	)

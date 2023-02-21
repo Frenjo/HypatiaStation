@@ -124,9 +124,9 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	w_class = 3.0
-	g_amt = 10
-	m_amt = 10
+	matter_amounts = list(MATERIAL_METAL = 10, MATERIAL_GLASS = 10)
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
+
 	var/bullets = 7.0
 
 /obj/item/toy/gun/examine()
@@ -180,8 +180,8 @@
 	icon_state = "357-7"
 	flags = CONDUCT
 	w_class = 1.0
-	g_amt = 10
-	m_amt = 10
+	matter_amounts = list(MATERIAL_METAL = 10, MATERIAL_GLASS = 10)
+
 	var/amount_left = 7.0
 
 /obj/item/toy/ammo/gun/update_icon()
@@ -318,10 +318,11 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "sword0"
 	item_state = "sword0"
-	var/active = 0.0
 	w_class = 2.0
 	flags = NOSHIELD
 	attack_verb = list("attacked", "struck", "hit")
+
+	var/active = 0
 
 /obj/item/toy/sword/attack_self(mob/user as mob)
 	src.active = !(src.active)
@@ -422,8 +423,8 @@
 	icon = 'icons/obj/harvest.dmi'
 	icon_state = "sunflower"
 	item_state = "sunflower"
+
 	var/empty = 0
-	flags
 
 /obj/item/toy/waterflower/New()
 	var/datum/reagents/R = new/datum/reagents(10)
@@ -487,6 +488,7 @@
 /obj/item/toy/prize
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "ripleytoy"
+
 	var/cooldown = 0
 
 //all credit to skasi for toy mech fun ideas
@@ -523,7 +525,6 @@
 	name = "toy gygax"
 	desc = "Mini-Mecha action figure! Collect them all! 4/11."
 	icon_state = "gygaxtoy"
-
 
 /obj/item/toy/prize/durand
 	name = "toy durand"

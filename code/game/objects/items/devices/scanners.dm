@@ -12,12 +12,14 @@ REAGENT SCANNER
 	name = "T-ray scanner"
 	desc = "A terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
 	icon_state = "t-ray0"
-	var/on = 0
+
 	slot_flags = SLOT_BELT
 	w_class = 2
 	item_state = "electronic"
-	m_amt = 150
+	matter_amounts = list(MATERIAL_METAL = 150)
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 1, RESEARCH_TECH_ENGINEERING = 1)
+
+	var/on = 0
 
 /obj/item/device/t_scanner/attack_self(mob/user)
 	on = !on
@@ -65,9 +67,10 @@ REAGENT SCANNER
 	w_class = 1.0
 	throw_speed = 5
 	throw_range = 10
-	m_amt = 200
+	matter_amounts = list(MATERIAL_METAL = 200)
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 1, RESEARCH_TECH_BIOTECH = 1)
-	var/mode = 1;
+
+	var/mode = 1
 
 /obj/item/device/healthanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
 	if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
@@ -212,6 +215,7 @@ REAGENT SCANNER
 	user.show_message("\red <b>Warning: Blood Level ERROR: --% --cl.\blue Type: ERROR")
 	user.show_message("\blue Subject's pulse: <font color='red'>-- bpm.</font>")
 
+
 /obj/item/device/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	name = "analyzer"
@@ -223,8 +227,7 @@ REAGENT SCANNER
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20
-	m_amt = 30
-	g_amt = 20
+	matter_amounts = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 20)
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 1, RESEARCH_TECH_ENGINEERING = 1)
 
 /obj/item/device/analyzer/attack_self(mob/user as mob)
@@ -269,9 +272,9 @@ REAGENT SCANNER
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20
-	m_amt = 30
-	g_amt = 20
+	matter_amounts = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 20)
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_BIOTECH = 2)
+
 	var/details = 0
 	var/recent_fail = 0
 
@@ -343,9 +346,9 @@ REAGENT SCANNER
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20
-	m_amt = 30
-	g_amt = 20
+	matter_amounts = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 20)
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_BIOTECH = 2)
+
 	var/details = 0
 	var/recent_fail = 0
 

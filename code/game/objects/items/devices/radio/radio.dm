@@ -2,13 +2,20 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	// 0 = old radios
 	// 1 = new radios (subspace technology)
 
-
 /obj/item/device/radio
 	icon = 'icons/obj/radio.dmi'
 	name = "station bounced radio"
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
+
+	flags = CONDUCT
+	slot_flags = SLOT_BELT
+	throw_speed = 2
+	throw_range = 9
+	w_class = 2
+	matter_amounts = list(MATERIAL_METAL = 75, MATERIAL_GLASS = 25)
+
 	var/on = 1 // 0 for off
 	var/last_transmission
 	var/frequency = FREQUENCY_COMMON //common chat
@@ -25,13 +32,6 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	var/syndie = 0//Holder to see if it's a syndicate encrpyed radio
 	var/maxf = 1499
 //			"Example" = FREQ_LISTENING|FREQ_BROADCASTING
-	flags = CONDUCT
-	slot_flags = SLOT_BELT
-	throw_speed = 2
-	throw_range = 9
-	w_class = 2
-	g_amt = 25
-	m_amt = 75
 
 	var/const/TRANSMISSION_DELAY = 5 // only 2/second/radio
 	var/const/FREQ_LISTENING = 1

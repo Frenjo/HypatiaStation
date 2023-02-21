@@ -11,11 +11,12 @@
 	icon = 'icons/obj/syringe.dmi'
 	item_state = "syringe_0"
 	icon_state = "0"
-	g_amt = 150
+	matter_amounts = list(MATERIAL_GLASS = 150)
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = null //list(5,10,15)
 	volume = 15
 	sharp = 1
+
 	var/mode = SYRINGE_DRAW
 
 /obj/item/weapon/reagent_containers/syringe/on_reagent_change()
@@ -268,6 +269,7 @@
 	amount_per_transfer_from_this = 50
 	possible_transfer_amounts = null //list(5,10,15)
 	volume = 50
+
 	var/mode = SYRINGE_DRAW
 
 /obj/item/weapon/reagent_containers/ld50_syringe/on_reagent_change()

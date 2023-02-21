@@ -7,9 +7,9 @@
 	w_class = 2
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	m_amt = 50
-	g_amt = 20
+	matter_amounts = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 20)
 	icon_action_button = "action_flashlight"
+
 	var/on = 0
 	var/brightness_on = 4 //luminosity when on
 
@@ -118,8 +118,7 @@
 	brightness_on = 5
 	w_class = 4
 	flags = CONDUCT
-	m_amt = 0
-	g_amt = 0
+	matter_amounts = list()
 	on = 1
 
 // green-shaded desk lamp
@@ -146,6 +145,7 @@
 	icon_state = "flare"
 	item_state = "flare"
 	icon_action_button = null	//just pull it manually, neckbeard.
+
 	var/fuel = 0
 	var/on_damage = 7
 	var/produce_heat = 1500
@@ -202,8 +202,7 @@
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
 	w_class = 1
-	m_amt = 0
-	g_amt = 0
+	matter_amounts = list()
 	brightness_on = 6
 	on = 1 //Bio-luminesence has one setting, on.
 

@@ -21,8 +21,9 @@ RCD
 	throw_speed = 1
 	throw_range = 5
 	w_class = 3.0
-	m_amt = 50000
+	matter_amounts = list(MATERIAL_METAL = 50000)
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_MATERIALS = 2)
+
 	var/datum/effect/system/spark_spread/spark_system
 	var/matter = 0
 	var/working = 0
@@ -211,5 +212,4 @@ RCD
 	density = FALSE
 	anchored = FALSE
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2)
-	m_amt = 30000
-	g_amt = 15000
+	matter_amounts = list(MATERIAL_METAL = 30000, MATERIAL_GLASS = 15000)

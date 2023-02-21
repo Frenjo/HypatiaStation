@@ -19,18 +19,22 @@ If d1 = 0 and d2 = dir, it's a O-X cable, getting from the center of the tile to
 If d1 = dir1 and d2 = dir2, it's a full X-X cable, getting from dir1 to dir2
 By design, d1 is the smallest direction and d2 is the highest
 */
-
 /obj/structure/cable
 	level = 1
 	anchored = TRUE
-	var/datum/powernet/powernet
+
 	name = "power cable"
 	desc = "A flexible superconducting cable for heavy-duty power transfer"
 	icon = 'icons/obj/power_cond_white.dmi'
 	icon_state = "0-1"
+
+	layer = 2.44 //Just below unary stuff, which is at 2.45 and above pipes, which are at 2.4
+
+	var/datum/powernet/powernet
+	
 	var/d1 = 0
 	var/d2 = 1
-	layer = 2.44 //Just below unary stuff, which is at 2.45 and above pipes, which are at 2.4
+
 	var/cable_color = COLOR_RED
 	var/obj/structure/powerswitch/power_switch
 
@@ -444,7 +448,6 @@ By design, d1 is the smallest direction and d2 is the highest
 ////////////////////////////////
 // Definitions
 ////////////////////////////////
-
 #define MAXCOIL 30
 
 /obj/item/stack/cable_coil
@@ -459,8 +462,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	w_class = 2.0
 	throw_speed = 2
 	throw_range = 5
-	m_amt = 50
-	g_amt = 20
+	matter_amounts = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 20)
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	item_state = "coil"

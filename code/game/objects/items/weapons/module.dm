@@ -16,8 +16,7 @@
 	name = "power control module"
 	desc = "Heavy-duty switching circuits for power control."
 	icon_state = "power_mod"
-	m_amt = 50
-	g_amt = 50
+	matter_amounts = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
 
 /obj/item/weapon/module/id_auth
 	name = "\improper ID authentication module"

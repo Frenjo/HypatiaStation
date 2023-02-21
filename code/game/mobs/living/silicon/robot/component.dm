@@ -171,9 +171,10 @@
 	w_class = 1.0
 	throw_speed = 5
 	throw_range = 10
-	m_amt = 200
+	matter_amounts = list(MATERIAL_METAL = 200)
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 1, RESEARCH_TECH_BIOTECH = 1)
-	var/mode = 1;
+
+	var/mode = 1
 
 /obj/item/device/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
 	if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))

@@ -8,10 +8,10 @@
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
-	m_amt = 500
+	matter_amounts = list(MATERIAL_METAL = 500)
+
 	var/obj/item/weapon/disk/nuclear/the_disk = null
 	var/active = 0
-
 
 /obj/item/weapon/pinpointer/attack_self()
 	if(!active)
@@ -172,12 +172,9 @@
 
 			return attack_self()
 
-
 ///////////////////////
 //nuke op pinpointers//
 ///////////////////////
-
-
 /obj/item/weapon/pinpointer/nukeop
 	var/mode = 0	//Mode 0 locates disk, mode 1 locates the shuttle
 	var/obj/machinery/computer/shuttle_control/multi/syndicate/home = null
@@ -195,7 +192,6 @@
 		active = 0
 		icon_state = "pinoff"
 		user << "<span class='notice'>You deactivate the pinpointer.</span>"
-
 
 /obj/item/weapon/pinpointer/nukeop/workdisk()
 	if(!active) return
@@ -228,7 +224,6 @@
 			icon_state = "pinonfar"
 
 	spawn(5) .()
-
 
 /obj/item/weapon/pinpointer/nukeop/proc/worklocation()
 	if(!active)	return

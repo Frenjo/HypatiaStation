@@ -20,10 +20,11 @@
 	w_class = 1.0
 	throw_speed = 7
 	throw_range = 15
-	m_amt = 10
-	var/colour = "black"	//what colour the ink is!
+	matter_amounts = list(MATERIAL_METAL = 10)
+
 	pressure_resistance = 2
 
+	var/colour = "black"	//what colour the ink is!
 
 /obj/item/weapon/pen/blue
 	desc = "It's a normal blue ink pen."

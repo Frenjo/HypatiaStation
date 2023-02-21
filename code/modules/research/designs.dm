@@ -64,9 +64,7 @@ other types of metals and chemistry for reagents).
 	reliability = new_reliability
 	return
 
-
 ///////////////////Computer Boards///////////////////////////////////
-
 /datum/design/seccamera
 	name = "Circuit Design (Security)"
 	desc = "Allows for the construction of circuit boards used to build security camera computers."
@@ -366,7 +364,6 @@ other types of metals and chemistry for reagents).
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/aifixer
 
-
 ///////////////////////////////////
 //////////AI Module Disks//////////
 ///////////////////////////////////
@@ -487,7 +484,6 @@ other types of metals and chemistry for reagents).
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_DIAMOND = 100)
 	build_path = /obj/item/weapon/aiModule/tyrant
 
-
 ///////////////////////////////////
 /////Subspace Telecomms////////////
 ///////////////////////////////////
@@ -554,7 +550,6 @@ other types of metals and chemistry for reagents).
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/telecomms/broadcaster
 
-
 ///////////////////////////////////
 /////Non-Board Computer Stuff//////
 ///////////////////////////////////
@@ -585,7 +580,6 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 2000, MATERIAL_GLASS = 1000, MATERIAL_SILVER = 1000, MATERIAL_GOLD = 500, MATERIAL_PLASMA = 500, MATERIAL_DIAMOND = 100)
 	build_path = /obj/item/device/mmi/posibrain
-
 
 ///////////////////////////////////
 //////////Mecha Module Disks///////
@@ -706,7 +700,6 @@ other types of metals and chemistry for reagents).
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/mecha/honker/targeting
-
 
 ////////////////////////////////////////
 /////////// Mecha Equpment /////////////
@@ -870,7 +863,6 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/mecha_parts/mecha_equipment/generator/nuclear
 	category = "Exosuit Equipment"
 
-
 ////////////////////////////////////////
 //////////Disk Construction Disks///////
 ////////////////////////////////////////
@@ -891,7 +883,6 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 10)
 	build_path = /obj/item/weapon/disk/tech_disk
-
 
 ////////////////////////////////////////
 /////////////Stock Parts////////////////
@@ -1087,7 +1078,6 @@ other types of metals and chemistry for reagents).
 	reliability_base = 75
 	build_path = /obj/item/weapon/stock_part/matter_bin/hyper
 
-
 ////////////////////////////////////////
 ///////////////Subspace/////////////////
 ////////////////////////////////////////
@@ -1154,7 +1144,6 @@ other types of metals and chemistry for reagents).
 	materials = list(MATERIAL_GLASS = 100, MATERIAL_SILVER = 10, MATERIAL_URANIUM = 15)
 	build_path = /obj/item/weapon/stock_part/subspace/transmitter
 
-
 ////////////////////////////////////////
 //////////////////Power/////////////////
 ////////////////////////////////////////
@@ -1208,7 +1197,6 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 1500, MATERIAL_SILVER = 150, MATERIAL_GLASS = 3000)
 	build_path = /obj/item/device/lightreplacer
-
 
 ////////////////////////////////////////
 //////////////MISC Boards///////////////
@@ -1276,7 +1264,6 @@ other types of metals and chemistry for reagents).
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/mechfab
 
-
 /////////////////////////////////////////
 ////////////Power Stuff//////////////////
 /////////////////////////////////////////
@@ -1309,7 +1296,6 @@ other types of metals and chemistry for reagents).
 	reliability_base = 74
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/pacman/mrs
-
 
 /////////////////////////////////////////
 ////////////Medical Tools////////////////
@@ -1499,7 +1485,6 @@ other types of metals and chemistry for reagents).
 	materials = list(MATERIAL_METAL = 7500, MATERIAL_GLASS = 4500, MATERIAL_SILVER = 1500, MATERIAL_GOLD = 1500)
 	build_path = /obj/item/weapon/reagent_containers/hypospray
 
-
 /////////////////////////////////////////
 /////////////////Weapons/////////////////
 /////////////////////////////////////////
@@ -1640,7 +1625,6 @@ other types of metals and chemistry for reagents).
 	materials = list(MATERIAL_METAL = 5000, MATERIAL_GLASS = 1000, MATERIAL_PLASMA = 3000)
 	build_path = /obj/item/weapon/gun/energy/toxgun
 
-
 /////////////////////////////////////////
 /////////////////Mining//////////////////
 /////////////////////////////////////////
@@ -1700,7 +1684,6 @@ other types of metals and chemistry for reagents).
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
 	build_path = /obj/item/clothing/glasses/meson
 
-
 /////////////////////////////////////////
 //////////////Blue Space/////////////////
 /////////////////////////////////////////
@@ -1743,7 +1726,6 @@ other types of metals and chemistry for reagents).
 	reliability_base = 100
 	build_path = /obj/item/weapon/storage/bag/ore/holding
 
-
 /////////////////////////////////////////
 /////////////////HUDs////////////////////
 /////////////////////////////////////////
@@ -1766,7 +1748,6 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/clothing/glasses/hud/security
 	locked = 1
 
-
 /////////////////////////////////////////
 //////////////////Test///////////////////
 /////////////////////////////////////////
@@ -1779,7 +1760,6 @@ other types of metals and chemistry for reagents).
 			materials = list(MATERIAL_GOLD = 3000, "iron" = 15, "copper" = 10, MATERIAL_SILVER = 2500)
 			build_path = "/obj/item/weapon/banhammer" */
 
-
 ////////////////////////////////////////
 //Disks for transporting design datums//
 ////////////////////////////////////////
@@ -1790,14 +1770,13 @@ other types of metals and chemistry for reagents).
 	icon_state = "datadisk2"
 	item_state = "card-id"
 	w_class = 1.0
-	m_amt = 30
-	g_amt = 10
+	matter_amounts = list(MATERIAL_METAL = 30, MATERIAL_METAL = 10)
+
 	var/datum/design/blueprint
 
 /obj/item/weapon/disk/design_disk/New()
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
-
 
 /////////////////////////////////////////
 //////////////Borg Upgrades//////////////
@@ -1810,7 +1789,6 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_COMBAT = 4, RESEARCH_TECH_SYNDICATE = 3)
 	build_path = /obj/item/borg/upgrade/syndicate
 	category = "Cyborg Upgrade Modules"
-
 
 /////////////////////////////////////////
 /////////////PDA and Radio stuff/////////

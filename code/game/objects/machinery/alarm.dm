@@ -71,6 +71,7 @@
 	active_power_usage = 8
 	power_channel = ENVIRON
 	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_ENGINE_EQUIP)
+
 	var/frequency = 1439
 	//var/skipprocess = 0 //Experimenting
 	var/alarm_frequency = 1437
@@ -1213,8 +1214,7 @@ Just a object used in constructing air alarms
 	icon_state = "door_electronics"
 	desc = "Looks like a circuit. Probably is."
 	w_class = 2.0
-	m_amt = 50
-	g_amt = 50
+	matter_amounts = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
 
 /*
 FIRE ALARM
@@ -1224,16 +1224,19 @@ FIRE ALARM
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire0"
-	var/detecting = 1.0
-	var/working = 1.0
-	var/time = 10.0
-	var/timing = 0.0
-	var/lockdownbyai = 0
+
 	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 6
 	power_channel = ENVIRON
+
+	var/detecting = 1.0
+	var/working = 1.0
+	var/time = 10.0
+	var/timing = 0.0
+	var/lockdownbyai = 0
+
 	var/last_process = 0
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
@@ -1495,8 +1498,7 @@ Just a object used in constructing fire alarms
 	icon_state = "door_electronics"
 	desc = "A circuit. It has a label on it, it says \"Can handle heat levels up to 40 degrees celsius!\""
 	w_class = 2.0
-	m_amt = 50
-	g_amt = 50
+	matter_amounts = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
 
 
 /obj/machinery/partyalarm
@@ -1504,15 +1506,17 @@ Just a object used in constructing fire alarms
 	desc = "Cuban Pete is in the house!"
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire0"
+
+	anchored = TRUE
+	use_power = 1
+	idle_power_usage = 2
+	active_power_usage = 6
+
 	var/detecting = 1.0
 	var/working = 1.0
 	var/time = 10.0
 	var/timing = 0.0
 	var/lockdownbyai = 0
-	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 2
-	active_power_usage = 6
 
 /obj/machinery/partyalarm/attack_paw(mob/user as mob)
 	return attack_hand(user)

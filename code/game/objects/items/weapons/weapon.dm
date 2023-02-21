@@ -91,7 +91,7 @@
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0
-	m_amt = 50
+	matter_amounts = list(MATERIAL_METAL = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
 /obj/item/weapon/disk
@@ -208,7 +208,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "rack_parts"
 	flags = CONDUCT
-	m_amt = 3750
+	matter_amounts = list(MATERIAL_METAL = 3750)
 
 /obj/item/weapon/shard
 	name = "shard"
@@ -221,7 +221,7 @@
 	force = 5.0
 	throwforce = 8.0
 	item_state = "shard-glass"
-	g_amt = 3750
+	matter_amounts = list(MATERIAL_GLASS = 3750)
 	attack_verb = list("stabbed", "slashed", "sliced", "cut")
 
 /obj/item/weapon/shard/suicide_act(mob/user)
@@ -285,7 +285,7 @@
 	w_class = 2.0
 	throw_speed = 4
 	throw_range = 20
-	m_amt = 100
+	matter_amounts = list(MATERIAL_METAL = 100)
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 1)
 
 	var/temp = null
@@ -300,7 +300,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "table_parts"
-	m_amt = 3750
+	matter_amounts = list(MATERIAL_METAL = 3750)
 	flags = CONDUCT
 	attack_verb = list("slammed", "bashed", "battered", "bludgeoned", "thrashed", "whacked")
 
@@ -309,7 +309,7 @@
 	desc = "Hard table parts. Well...harder..."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "reinf_tableparts"
-	m_amt = 7500
+	matter_amounts = list(MATERIAL_METAL = 7500)
 	flags = CONDUCT
 
 /obj/item/weapon/table_parts/wood
@@ -323,7 +323,7 @@
 	name = "wire"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "item_wire"
-	m_amt = 40
+	matter_amounts = list(MATERIAL_METAL = 40)
 	attack_verb = list("whipped", "lashed", "disciplined", "tickled")
 
 	var/amount = 1.0

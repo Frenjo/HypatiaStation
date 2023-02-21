@@ -54,35 +54,34 @@
 	icon_state = "gshell"
 	caliber = "shotgun"
 	projectile_type = /obj/item/projectile/bullet
-	m_amt = 12500
+	matter_amounts = list(MATERIAL_METAL = 12500)
 
 /obj/item/ammo_casing/shotgun/blank
 	name = "shotgun shell"
 	desc = "A blank shell."
 	icon_state = "blshell"
 	projectile_type = null
-	m_amt = 250
+	matter_amounts = list(MATERIAL_METAL = 250)
 
 /obj/item/ammo_casing/shotgun/beanbag
 	name = "beanbag shell"
 	desc = "A weak beanbag shell."
 	icon_state = "bshell"
 	projectile_type = /obj/item/projectile/bullet/weakbullet/beanbag
-	m_amt = 500
+	matter_amounts = list(MATERIAL_METAL = 500)
 
 /obj/item/ammo_casing/shotgun/stunshell
 	name = "stun shell"
 	desc = "A stunning shell."
 	icon_state = "stunshell"
 	projectile_type = /obj/item/projectile/bullet/stunshot
-	m_amt = 2500
+	matter_amounts = list(MATERIAL_METAL = 2500)
 
 /obj/item/ammo_casing/shotgun/dart
 	name = "shotgun darts"
 	desc = "A dart for use in shotguns."
 	icon_state = "dart"
 	projectile_type = /obj/item/projectile/energy/dart
-	m_amt = 12500
 
 /obj/item/ammo_casing/a762
 	desc = "A 7.62 bullet casing."

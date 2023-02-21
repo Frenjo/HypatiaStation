@@ -9,7 +9,7 @@
 	anchored = FALSE
 	density = FALSE
 	pressure_resistance = 5 * ONE_ATMOSPHERE
-	m_amt = 1850
+	matter_amounts = list(MATERIAL_METAL = 1850)
 	level = 2
 
 	var/ptype = 0
@@ -90,7 +90,6 @@
 /obj/structure/disposalconstruct/hide(intact)
 	invisibility = (intact && level == 1) ? 101 : 0	// hide if floor is intact
 	update()
-
 
 // flip and rotate verbs
 /obj/structure/disposalconstruct/verb/rotate()
