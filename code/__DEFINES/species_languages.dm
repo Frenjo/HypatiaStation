@@ -3,6 +3,7 @@
 #define SPECIES_SOGHUN "Soghun"
 #define SPECIES_TAJARAN "Tajaran"
 #define SPECIES_SKRELL "Skrell"
+#define SPECIES_MACHINE "Machine"
 #define SPECIES_VOX "Vox"
 #define SPECIES_VOX_ARMALIS "Vox Armalis"
 #define SPECIES_DIONA "Diona"

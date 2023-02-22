@@ -1,5 +1,5 @@
 /datum/species/machine
-	name = "Machine"
+	name = SPECIES_MACHINE
 	icobase = 'icons/mob/human_races/r_machine.dmi'
 	deform = 'icons/mob/human_races/r_machine.dmi'
 	language = "Binary Audio Language"
