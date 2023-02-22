@@ -1,4 +1,4 @@
-// See code/datums/controllers/global_variables.dm.
+// See code/game/datums/controllers/global_variables.dm.
 
 /*
  * Internal

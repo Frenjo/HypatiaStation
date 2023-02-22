@@ -6,3 +6,6 @@
 
 // Bitflags.
 #define BITFLAG(X) (1 << X)
+
+// Used to retrieve /decl instances from the declarations controller.
+#define GET_DECL_INSTANCE(X) global.CTdecls.get_decl_instance(X)

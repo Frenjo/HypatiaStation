@@ -1,8 +1,6 @@
 /*
  * Declarations Controller
  */
-#define GET_DECL_INSTANCE(X) global.CTdecls.get_decl_instance(X) 
-
 CONTROLLER_DEF(decls)
 	name = "Declarations"
 
