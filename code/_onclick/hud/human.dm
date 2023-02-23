@@ -1,4 +1,4 @@
-/datum/hud/proc/human_hud(ui_style = 'icons/mob/screen1_White.dmi', ui_color = "#ffffff", ui_alpha = 255, mob/living/carbon/human/target)
+/datum/hud/proc/human_hud(ui_style = 'icons/mob/screen/screen1_White.dmi', ui_color = "#ffffff", ui_alpha = 255, mob/living/carbon/human/target)
 	var/datum/hud_data/hud_data
 	if(!istype(target))
 		hud_data = new()
@@ -299,7 +299,7 @@
 		hud_elements |= mymob.nutrition_icon
 
 	mymob.blind = new /obj/screen()
-	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
+	mymob.blind.icon = 'icons/mob/screen/screen1_full.dmi'
 	mymob.blind.icon_state = "blackimageoverlay"
 	mymob.blind.name = " "
 	mymob.blind.screen_loc = "1,1"
@@ -308,7 +308,7 @@
 	hud_elements |= mymob.blind
 
 	mymob.damageoverlay = new /obj/screen()
-	mymob.damageoverlay.icon = 'icons/mob/screen1_full.dmi'
+	mymob.damageoverlay.icon = 'icons/mob/screen/screen1_full.dmi'
 	mymob.damageoverlay.icon_state = "oxydamageoverlay0"
 	mymob.damageoverlay.name = "dmg"
 	mymob.damageoverlay.screen_loc = "1,1"
@@ -332,7 +332,7 @@
 	mymob.zone_sel.color = ui_color
 	mymob.zone_sel.alpha = ui_alpha
 	mymob.zone_sel.overlays.Cut()
-	mymob.zone_sel.overlays += image('icons/mob/zone_sel.dmi', "[mymob.zone_sel.selecting]")
+	mymob.zone_sel.overlays += image('icons/mob/screen/zone_sel.dmi', "[mymob.zone_sel.selecting]")
 	hud_elements |= mymob.zone_sel
 
 	//Handle the gun settings buttons
@@ -390,7 +390,7 @@
 	for(var/obj/item/I in src)
 		if(I.icon_action_button)
 			var/obj/screen/item_action/A = new(I)
-			//A.icon = 'icons/mob/screen1_action.dmi'
+			//A.icon = 'icons/mob/screen/screen1_action.dmi'
 			//A.icon_state = I.icon_action_button
 			A.icon = ui_style2icon(client.prefs.UI_style)
 			A.icon_state = "template"

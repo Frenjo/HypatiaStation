@@ -2,7 +2,7 @@ GLOBAL_GLOBL_LIST_NEW(bump_teleporters)
 
 /obj/effect/bump_teleporter
 	name = "bump-teleporter"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/screen1.dmi'
 	icon_state = "x2"
 	invisibility = INVISIBILITY_MAXIMUM 		//nope, can't see this
 	anchored = TRUE

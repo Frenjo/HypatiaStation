@@ -1,6 +1,6 @@
 /obj/effect/landmark
 	name = "landmark"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/screen1.dmi'
 	icon_state = "x2"
 	anchored = TRUE
 	unacidable = TRUE
@@ -115,7 +115,7 @@
 // Job spawn landmarks.
 /obj/effect/landmark/start
 	name = "start"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/screen1.dmi'
 	icon_state = "x"
 	anchored = TRUE
 

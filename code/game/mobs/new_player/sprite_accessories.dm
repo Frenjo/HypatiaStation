@@ -43,7 +43,7 @@
 */
 
 /datum/sprite_accessory/hair
-	icon = 'icons/mob/Human_face.dmi'		// default icon for all hairs
+	icon = 'icons/mob/on_mob/Human_face.dmi'		// default icon for all hairs
 
 /datum/sprite_accessory/hair/bald
 	name = "Bald"
@@ -397,7 +397,7 @@
 */
 
 /datum/sprite_accessory/facial_hair
-	icon = 'icons/mob/Human_face.dmi'
+	icon = 'icons/mob/on_mob/human_face.dmi'
 	gender = MALE // barf (unless you're a dorf, dorfs dig chix /w beards :P)
 
 /datum/sprite_accessory/facial_hair/shaved

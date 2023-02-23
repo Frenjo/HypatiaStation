@@ -22,7 +22,7 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 
 /obj/space_parallax
 	name = "space"
-	icon = 'icons/mob/screen1_full.dmi'
+	icon = 'icons/mob/screen/screen1_full.dmi'
 	icon_state = "space_blank"
 	screen_loc = UI_SPACE_PARALLAX
 	plane = SPACE_PARALLAX_PLANE

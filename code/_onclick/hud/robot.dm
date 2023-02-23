@@ -8,7 +8,7 @@
 	using = new /obj/screen()
 	using.name = "radio"
 	using.set_dir(SOUTHWEST)
-	using.icon = 'icons/mob/screen1_robot.dmi'
+	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = "radio"
 	using.screen_loc = UI_MOVI
 	using.layer = 20
@@ -18,7 +18,7 @@
 	using = new /obj/screen()
 	using.name = "module1"
 	using.set_dir(SOUTHWEST)
-	using.icon = 'icons/mob/screen1_robot.dmi'
+	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = "inv1"
 	using.screen_loc = UI_INV1
 	using.layer = 20
@@ -28,7 +28,7 @@
 	using = new /obj/screen()
 	using.name = "module2"
 	using.set_dir(SOUTHWEST)
-	using.icon = 'icons/mob/screen1_robot.dmi'
+	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = "inv2"
 	using.screen_loc = UI_INV2
 	using.layer = 20
@@ -38,7 +38,7 @@
 	using = new /obj/screen()
 	using.name = "module3"
 	using.set_dir(SOUTHWEST)
-	using.icon = 'icons/mob/screen1_robot.dmi'
+	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = "inv3"
 	using.screen_loc = UI_INV3
 	using.layer = 20
@@ -51,7 +51,7 @@
 	using = new /obj/screen()
 	using.name = "act_intent"
 	using.set_dir(SOUTHWEST)
-	using.icon = 'icons/mob/screen1_robot.dmi'
+	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = (mymob.a_intent == "hurt" ? "harm" : mymob.a_intent)
 	using.screen_loc = UI_ACTI
 	using.layer = 20
@@ -61,21 +61,21 @@
 //Cell
 	var/mob/living/silicon/robot/robot = mymob
 	robot.cells = new /obj/screen()
-	robot.cells.icon = 'icons/mob/screen1_robot.dmi'
+	robot.cells.icon = 'icons/mob/screen/screen1_robot.dmi'
 	robot.cells.icon_state = "charge-empty"
 	robot.cells.name = "cell"
 	robot.cells.screen_loc = UI_TOXIN
 
 //Health
 	mymob.healths = new /obj/screen()
-	mymob.healths.icon = 'icons/mob/screen1_robot.dmi'
+	mymob.healths.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob.healths.icon_state = "health0"
 	mymob.healths.name = "health"
 	mymob.healths.screen_loc = UI_BORG_HEALTH
 
 //Installed Module
 	mymob.hands = new /obj/screen()
-	mymob.hands.icon = 'icons/mob/screen1_robot.dmi'
+	mymob.hands.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob.hands.icon_state = "nomod"
 	mymob.hands.name = "module"
 	mymob.hands.screen_loc = UI_BORG_MODULE
@@ -83,7 +83,7 @@
 //Module Panel
 	using = new /obj/screen()
 	using.name = "panel"
-	using.icon = 'icons/mob/screen1_robot.dmi'
+	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = "panel"
 	using.screen_loc = UI_BORG_PANEL
 	using.layer = 19
@@ -91,7 +91,7 @@
 
 //Store
 	mymob.throw_icon = new /obj/screen()
-	mymob.throw_icon.icon = 'icons/mob/screen1_robot.dmi'
+	mymob.throw_icon.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob.throw_icon.icon_state = "store"
 	mymob.throw_icon.name = "store"
 	mymob.throw_icon.screen_loc = UI_BORG_STORE
@@ -104,41 +104,41 @@
 
 
 	mymob.oxygen = new /obj/screen()
-	mymob.oxygen.icon = 'icons/mob/screen1_robot.dmi'
+	mymob.oxygen.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob.oxygen.icon_state = "oxy0"
 	mymob.oxygen.name = "oxygen"
 	mymob.oxygen.screen_loc = UI_OXYGEN
 
 	mymob.fire = new /obj/screen()
-	mymob.fire.icon = 'icons/mob/screen1_robot.dmi'
+	mymob.fire.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob.fire.icon_state = "fire0"
 	mymob.fire.name = "fire"
 	mymob.fire.screen_loc = UI_FIRE
 
 	mymob.pullin = new /obj/screen()
-	mymob.pullin.icon = 'icons/mob/screen1_robot.dmi'
+	mymob.pullin.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob.pullin.icon_state = "pull0"
 	mymob.pullin.name = "pull"
 	mymob.pullin.screen_loc = UI_BORG_PULL
 
 	mymob.blind = new /obj/screen()
-	mymob.blind.icon = 'icons/mob/screen1_full.dmi'
+	mymob.blind.icon = 'icons/mob/screen/screen1_full.dmi'
 	mymob.blind.icon_state = "blackimageoverlay"
 	mymob.blind.name = " "
 	mymob.blind.screen_loc = "1,1"
 	mymob.blind.invisibility = INVISIBILITY_MAXIMUM // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 
 	mymob.flash = new /obj/screen()
-	mymob.flash.icon = 'icons/mob/screen1_robot.dmi'
+	mymob.flash.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob.flash.icon_state = "blank"
 	mymob.flash.name = "flash"
 	mymob.flash.screen_loc = "1,1 to 15,15"
 	mymob.flash.layer = 17
 
 	mymob.zone_sel = new /obj/screen/zone_sel()
-	mymob.zone_sel.icon = 'icons/mob/screen1_robot.dmi'
+	mymob.zone_sel.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob.zone_sel.overlays.Cut()
-	mymob.zone_sel.overlays += image('icons/mob/zone_sel.dmi', "[mymob.zone_sel.selecting]")
+	mymob.zone_sel.overlays += image('icons/mob/screen/zone_sel.dmi', "[mymob.zone_sel.selecting]")
 
 	//Handle the gun settings buttons
 	mymob.gun_setting_icon = new /obj/screen/gun/mode(null)

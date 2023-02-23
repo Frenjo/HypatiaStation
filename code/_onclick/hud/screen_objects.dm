@@ -8,7 +8,7 @@
 */
 /obj/screen
 	name = ""
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/screen1.dmi'
 	layer = 20
 	unacidable = 1
 
@@ -104,7 +104,7 @@
 
 /obj/screen/gun
 	name = "gun"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/screen1.dmi'
 	master = null
 	dir = 2
 
@@ -198,7 +198,7 @@
 
 /obj/screen/zone_sel/update_icon()
 	overlays.Cut()
-	overlays += image('icons/mob/zone_sel.dmi', "[selecting]")
+	overlays += image('icons/mob/screen/zone_sel.dmi', "[selecting]")
 
 /obj/screen/Click(location, control, params)
 	if(!usr)
