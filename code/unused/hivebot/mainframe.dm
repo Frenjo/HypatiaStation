@@ -108,7 +108,7 @@
 		usr << "You can't deploy because you are dead!"
 		return
 
-	var/list/bodies = new/list()
+	var/list/bodies = list()
 
 	for(var/mob/living/silicon/hivebot/H in mob_list)
 		if(H.z == src.z)

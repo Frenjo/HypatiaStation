@@ -81,7 +81,7 @@
 
 /proc/circlerange(center = usr, radius = 3)
 	var/turf/centerturf = get_turf(center)
-	var/list/turfs = new/list()
+	var/list/turfs = list()
 	var/rsq = radius * (radius + 0.5)
 
 	for(var/atom/T in range(radius, centerturf))
@@ -95,7 +95,7 @@
 
 /proc/circleview(center = usr, radius = 3)
 	var/turf/centerturf = get_turf(center)
-	var/list/atoms = new/list()
+	var/list/atoms = list()
 	var/rsq = radius * (radius + 0.5)
 
 	for(var/atom/A in view(radius, centerturf))
@@ -117,7 +117,7 @@
 
 /proc/circlerangeturfs(center = usr, radius = 3)
 	var/turf/centerturf = get_turf(center)
-	var/list/turfs = new/list()
+	var/list/turfs = list()
 	var/rsq = radius * (radius + 0.5)
 
 	for(var/turf/T in range(radius, centerturf))
@@ -129,7 +129,7 @@
 
 /proc/circleviewturfs(center = usr, radius = 3)		//Is there even a diffrence between this proc and circlerangeturfs()?
 	var/turf/centerturf = get_turf(center)
-	var/list/turfs = new/list()
+	var/list/turfs = list()
 	var/rsq = radius * (radius + 0.5)
 
 	for(var/turf/T in view(radius, centerturf))

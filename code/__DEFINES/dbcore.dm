@@ -157,7 +157,7 @@ var/DB_PORT = 3306 // This is the port your MySQL server is running on (3306 is 
 	if(istext(column))
 		column = columns.Find(column)
 	if(!conversions)
-		conversions = new/list(column)
+		conversions = list(column)
 	else if(length(conversions) < column)
 		conversions.len = column
 	conversions[column] = conversion

@@ -368,7 +368,7 @@ var/list/non_fakeattack_weapons = list(
 )
 
 /proc/fake_attack(mob/living/target)
-//	var/list/possible_clones = new/list()
+//	var/list/possible_clones = list()
 	var/mob/living/carbon/human/clone = null
 	var/clone_weapon = null
 

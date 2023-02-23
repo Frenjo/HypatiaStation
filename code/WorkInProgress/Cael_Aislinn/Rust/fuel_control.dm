@@ -17,23 +17,23 @@
 	..()
 	//these are the only three stages we can accept
 	//we have another console for SCRAM
-	fuel_injectors = new/list
-	stage_status = new/list
+	fuel_injectors = list
+	stage_status = list
 
 	fuel_injectors.Add("One")
-	fuel_injectors["One"] = new/list
+	fuel_injectors["One"] = list
 	stage_status.Add("One")
 	stage_status["One"] = 0
 	fuel_injectors.Add("Two")
-	fuel_injectors["Two"] = new/list
+	fuel_injectors["Two"] = list
 	stage_status.Add("Two")
 	stage_status["Two"] = 0
 	fuel_injectors.Add("Three")
-	fuel_injectors["Three"] = new/list
+	fuel_injectors["Three"] = list
 	stage_status.Add("Three")
 	stage_status["Three"] = 0
 	fuel_injectors.Add("SCRAM")
-	fuel_injectors["SCRAM"] = new/list
+	fuel_injectors["SCRAM"] = list
 	stage_status.Add("SCRAM")
 	stage_status["SCRAM"] = 0
 

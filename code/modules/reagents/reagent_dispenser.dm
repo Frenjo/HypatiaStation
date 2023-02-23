@@ -114,7 +114,7 @@
 			)
 			rig.loc = get_turf(usr)
 			rig = null
-			overlays = new/list()
+			overlays = list()
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/wrench))

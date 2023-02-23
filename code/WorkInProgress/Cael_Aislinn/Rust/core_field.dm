@@ -320,7 +320,7 @@ Deuterium-tritium fusion: 4.5 x 10^7 K
 				reactants_reacting_pool -= reactant
 
 		//loop through all the reacting reagents, picking out random reactions for them
-		var/list/produced_reactants = new/list
+		var/list/produced_reactants = list()
 		var/list/primary_reactant_pool = reactants_reacting_pool.Copy()
 		while(primary_reactant_pool.len)
 			//pick one of the unprocessed reacting reagents randomly
@@ -336,7 +336,7 @@ Deuterium-tritium fusion: 4.5 x 10^7 K
 				possible_secondary_reactants.Remove(cur_primary_reactant)
 
 			//loop through and work out all the possible reactions
-			var/list/possible_reactions = new/list
+			var/list/possible_reactions = list()
 			for(var/cur_secondary_reactant in possible_secondary_reactants)
 				if(possible_secondary_reactants[cur_secondary_reactant] < 1)
 					continue

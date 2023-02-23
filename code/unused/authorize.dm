@@ -113,7 +113,7 @@ var/goon_keylist[0]
 var/list/beta_tester_keylist
 
 /proc/beta_tester_loadfile()
-	beta_tester_keylist = new/list()
+	beta_tester_keylist = list()
 	var/text = file2text("config/testers.txt")
 	if (!text)
 		diary << "Failed to load config/testers.txt\n"

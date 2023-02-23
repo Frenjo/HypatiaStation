@@ -17,7 +17,7 @@
 	for(var/obj/machinery/compressor/C in GLOBL.machines)
 		if(id == C.comp_id)
 			compressor = C
-		doors = new /list()
+		doors = list()
 		for(var/obj/machinery/door/poddoor/P in GLOBL.machines)
 			if(P.id == id)
 				doors += P

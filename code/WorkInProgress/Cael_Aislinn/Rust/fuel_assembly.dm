@@ -9,7 +9,7 @@
 	//
 
 /obj/item/weapon/fuel_assembly/New()
-	rod_quantities = new/list
+	rod_quantities = list()
 
 //these can be abstracted away for now
 /*

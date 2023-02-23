@@ -66,7 +66,7 @@ proc
 	dd_text2list(text, separator)
 		var/textlength      = lentext(text)
 		var/separatorlength = lentext(separator)
-		var/list/textList   = new /list()
+		var/list/textList   = list()
 		var/searchPosition  = 1
 		var/findPosition    = 1
 		var/buggyText
@@ -86,7 +86,7 @@ proc
 	dd_text2List(text, separator)
 		var/textlength      = lentext(text)
 		var/separatorlength = lentext(separator)
-		var/list/textList   = new /list()
+		var/list/textList   = list()
 		var/searchPosition  = 1
 		var/findPosition    = 1
 		var/buggyText

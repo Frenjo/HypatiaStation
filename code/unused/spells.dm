@@ -310,7 +310,7 @@
 		src << "Not when you are incapacitated."
 		return
 	if(!usr.casting()) return
-	var/list/turfs = new/list()
+	var/list/turfs = list()
 	for(var/turf/T in orange(6))
 		if(istype(T,/turf/space)) continue
 		if(T.density) continue
@@ -341,7 +341,7 @@
 	var/A
 	usr.verbs -= /mob/proc/teleport
 /*
-	var/list/theareas = new/list()
+	var/list/theareas = list()
 	for(var/area/AR in world)
 		if(istype(AR, /area/shuttle) || istype(AR, /area/syndicate_station)) continue
 		if(theareas.Find(AR.name)) continue

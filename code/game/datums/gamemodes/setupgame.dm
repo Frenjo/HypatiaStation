@@ -24,7 +24,7 @@
 		DIFFMUT = rand(0, 20)
 
 	/* Old, for reference (so I don't accidentally activate something) - N3X
-	var/list/avnums = new/list()
+	var/list/avnums = list()
 	var/tempnum
 
 	avnums.Add(2)

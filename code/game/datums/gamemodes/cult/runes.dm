@@ -5,7 +5,7 @@ var/list/sacrificed = list()
 /obj/effect/rune/proc/teleport(key)
 	var/mob/living/user = usr
 	var/allrunesloc[]
-	allrunesloc = new/list()
+	allrunesloc = list()
 	var/index = 0
 //	var/tempnum = 0
 	for(var/obj/effect/rune/R in world)
@@ -39,7 +39,7 @@ var/list/sacrificed = list()
 
 /obj/effect/rune/proc/itemport(key)
 //	var/allrunesloc[]
-//	allrunesloc = new/list()
+//	allrunesloc = list()
 //	var/index = 0
 //	var/tempnum = 0
 	var/culcount = 0

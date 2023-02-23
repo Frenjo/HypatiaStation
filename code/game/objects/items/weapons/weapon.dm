@@ -344,7 +344,7 @@
 	throw_range = 20
 
 /obj/item/weapon/camera_bug/attack_self(mob/usr as mob)
-	var/list/cameras = new/list()
+	var/list/cameras = list()
 	for(var/obj/machinery/camera/C in global.CTcameranet.cameras)
 		if(C.bugged && C.status)
 			cameras.Add(C)
@@ -352,7 +352,7 @@
 		to_chat(usr, SPAN_WARNING("No bugged functioning cameras found."))
 		return
 
-	var/list/friendly_cameras = new/list()
+	var/list/friendly_cameras = list()
 
 	for(var/obj/machinery/camera/C in cameras)
 		friendly_cameras.Add(C.c_tag)

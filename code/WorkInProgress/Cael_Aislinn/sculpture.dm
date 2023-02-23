@@ -43,7 +43,7 @@
 		message_admins("Alert: [target.real_name] has been grabbed and is being strangled by SCP-173. Set var/allow_escape = 1 to allow this player to escape temporarily, or var/hibernate = 1 to disable it entirely.")
 
 /mob/living/simple_animal/sculpture/proc/Escape()
-	var/list/turfs = new/list()
+	var/list/turfs = list()
 	for(var/turf/thisturf in view(50,src))
 		if(istype(thisturf, /turf/space))
 			continue
@@ -206,7 +206,7 @@
 
 			//if we're not strangling anyone, take a stroll
 			if(!G && prob(10))
-				var/list/turfs = new/list()
+				var/list/turfs = list()
 				for(var/turf/thisturf in view(7,src))
 					if(istype(thisturf, /turf/space))
 						continue

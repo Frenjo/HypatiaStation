@@ -30,7 +30,7 @@
 	if(src.current)
 		user.reset_view(src.current)
 
-	var/list/L = new/list
+	var/list/L = list
 	for (var/obj/machinery/camera/C in world)
 		L.Add(C)
 

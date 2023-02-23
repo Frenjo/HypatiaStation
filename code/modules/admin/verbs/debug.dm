@@ -35,7 +35,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		var/target = null
 		var/targetselected = 0
 		var/lst[] // List reference
-		lst = new/list() // Make the list
+		lst = list() // Make the list
 		var/returnval = null
 		var/class = null
 

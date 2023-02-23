@@ -163,7 +163,7 @@ emp_act
 		var/obj/item/I = wear_suit
 		if(I.IsShield() && (prob(35)))
 			visible_message(SPAN_DANGER("The reactive teleport system flings [src] clear of [attack_text]!"))
-			var/list/turfs = new/list()
+			var/list/turfs = list()
 			for(var/turf/T in orange(6))
 				if(istype(T, /turf/space))
 					continue

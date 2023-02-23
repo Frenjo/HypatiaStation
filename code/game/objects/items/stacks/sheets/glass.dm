@@ -74,7 +74,7 @@
 			if(src.loc != user)
 				return 1
 
-			var/list/directions = new/list(GLOBL.cardinal)
+			var/list/directions = list(GLOBL.cardinal)
 			var/i = 0
 			for(var/obj/structure/window/win in user.loc)
 				i++
@@ -162,7 +162,7 @@
 			if(src.loc != user)
 				return 1
 
-			var/list/directions = new/list(GLOBL.cardinal)
+			var/list/directions = list(GLOBL.cardinal)
 			var/i = 0
 			for(var/obj/structure/window/win in user.loc)
 				i++
