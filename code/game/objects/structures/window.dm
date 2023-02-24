@@ -1,12 +1,13 @@
 /obj/structure/window
 	name = "window"
 	desc = "A window."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/windows.dmi'
 	density = TRUE
 	layer = 3.2//Just above doors
 	pressure_resistance = 4 * ONE_ATMOSPHERE
 	anchored = TRUE
 	flags = ON_BORDER
+
 	var/maxhealth = 14.0
 	var/health
 	var/ini_dir = null

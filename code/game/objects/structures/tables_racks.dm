@@ -13,7 +13,7 @@
 /obj/structure/table
 	name = "table"
 	desc = "A square piece of metal standing on four metal legs. It can not move."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/tables.dmi'
 	icon_state = "table"
 	density = TRUE
 	anchored = TRUE
@@ -23,6 +23,7 @@
 	breakable = 1
 
 	parts = /obj/item/weapon/table_parts
+
 	var/flipped = 0
 	var/health = 100
 
