@@ -1,4 +1,6 @@
-//Security
+/*
+ * Security
+ */
 /area/security
 	icon_state = "security"
 
@@ -53,31 +55,39 @@
 	name = "\improper Vault"
 	icon_state = "nuke_storage"
 
-/area/security/checkpoint
-	name = "\improper Security Checkpoint"
-	icon_state = "checkpoint1"
-
-/area/security/hallway_post
-	name = "\improper Security Post"
-
-/area/security/checkpoint/supply
-	name = "Security Post - Cargo Bay"
-	icon_state = "checkpoint1"
-
-/area/security/checkpoint/engineering
-	name = "Security Post - Engineering"
-	icon_state = "checkpoint1"
-
-/area/security/checkpoint/medical
-	name = "Security Post - Medbay"
-	icon_state = "checkpoint1"
-
-/area/security/checkpoint/science
-	name = "Security Post - Science"
-	icon_state = "checkpoint1"
-
 /area/security/vacantoffice
 	name = "\improper Vacant Office"
 
 /area/security/headdorms
 	name = "\improper Head Dormitories"
+
+/*
+ * Security Posts
+ */
+/area/security/post
+	name = "\improper Security Post"
+
+/area/security/post/arrivals
+	name = "\improper Arrivals Security Post"
+
+/area/security/post/starboard
+	name = "\improper Starboard Security Post"
+
+/*
+ * Security Checkpoints
+ */
+/area/security/checkpoint
+	name = "\improper Security Checkpoint"
+	icon_state = "checkpoint1"
+
+/area/security/checkpoint/supply
+	name = "Security Post - Cargo Bay"
+
+/area/security/checkpoint/engineering
+	name = "Security Post - Engineering"
+
+/area/security/checkpoint/medical
+	name = "Security Post - Medbay"
+
+/area/security/checkpoint/science
+	name = "Security Post - Science"
