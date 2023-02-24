@@ -3,17 +3,17 @@
 /obj/structure/table/holotable
 	name = "table"
 	desc = "A square piece of metal standing on four metal legs. It can not move."
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/tables.dmi'
 	icon_state = "table"
 	density = TRUE
 	anchored = TRUE
 	layer = 2.8
-	throwpass = 1	//You can throw objects over this, despite it's density.
+	throwpass = 1	// You can throw objects over this, despite it's density.
 
 /obj/structure/table/holotable/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/structure/table/holotable/attack_animal(mob/living/user as mob) //Removed code for larva since it doesn't work. Previous code is now a larva ability. /N
+/obj/structure/table/holotable/attack_animal(mob/living/user as mob) // Removed code for larva since it doesn't work. Previous code is now a larva ability. /N
 	return attack_hand(user)
 
 /obj/structure/table/holotable/attack_hand(mob/user as mob)
@@ -42,7 +42,6 @@
 /obj/structure/table/holotable/wood
 	name = "table"
 	desc = "A square piece of wood standing on four wooden legs. It can not move."
-	icon = 'icons/obj/structures.dmi'
 	icon_state = "wood_table"
 
 // Stool
@@ -57,11 +56,11 @@
 // Window
 /obj/structure/holowindow
 	name = "reinforced window"
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "rwindow"
 	desc = "A window."
 	density = TRUE
-	layer = 3.2//Just above doors
+	layer = 3.2 // Just above doors
 	pressure_resistance = 4 * ONE_ATMOSPHERE
 	anchored = TRUE
 	flags = ON_BORDER
