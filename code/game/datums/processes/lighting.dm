@@ -21,7 +21,7 @@ PROCESS_DEF(lighting)
 	name = "Lighting"
 
 /datum/process/lighting/setup()
-	schedule_interval = world.tick_lag // run as fast as you possibly can
+	schedule_interval = world.tick_lag // Run as fast as we possibly can.
 	create_all_lighting_overlays()
 	GLOBL.lighting_overlays_initialised = TRUE
 
@@ -36,11 +36,11 @@ PROCESS_DEF(lighting)
 	var/corner_updates	= 0
 	var/overlay_updates	= 0
 
-	GLOBL.lighting_update_lights_old = GLOBL.lighting_update_lights //We use a different list so any additions to the update lists during a delay from scheck() don't cause things to be cut from the list without being updated.
+	GLOBL.lighting_update_lights_old = GLOBL.lighting_update_lights // We use a different list so any additions to the update lists during a delay from scheck() don't cause things to be cut from the list without being updated.
 	GLOBL.lighting_update_lights = list()
 	for(var/datum/light_source/L in GLOBL.lighting_update_lights_old)
 		if(light_updates >= MAX_LIGHT_UPDATES_PER_WORK && !roundstart)
-			GLOBL.lighting_update_lights += L
+			GLOBL.lighting_update_lights.Add(L)
 			continue // DON'T break, we're adding stuff back into the update queue.
 
 		if(L.check() || L.destroyed || L.force_update)
@@ -48,7 +48,7 @@ PROCESS_DEF(lighting)
 			if(!L.destroyed)
 				L.apply_lum()
 
-		else if(L.vis_update)	//We smartly update only tiles that became (in) visible to use.
+		else if(L.vis_update)	// We smartly update only tiles that became (in) visible to use.
 			L.smart_vis_update()
 
 		L.vis_update	= FALSE
@@ -59,11 +59,11 @@ PROCESS_DEF(lighting)
 
 		SCHECK
 
-	GLOBL.lighting_update_corners_old = GLOBL.lighting_update_corners //Same as above.
+	GLOBL.lighting_update_corners_old = GLOBL.lighting_update_corners // Same as above.
 	GLOBL.lighting_update_corners = list()
 	for(var/A in GLOBL.lighting_update_corners_old)
 		if(corner_updates >= MAX_CORNER_UPDATES_PER_WORK && !roundstart)
-			GLOBL.lighting_update_corners += A
+			GLOBL.lighting_update_corners.Add(A)
 			continue // DON'T break, we're adding stuff back into the update queue.
 
 		var/datum/lighting_corner/C = A
@@ -81,7 +81,7 @@ PROCESS_DEF(lighting)
 
 	for(var/atom/movable/lighting_overlay/O in GLOBL.lighting_update_overlays_old)
 		if(overlay_updates >= MAX_OVERLAY_UPDATES_PER_WORK && !roundstart)
-			GLOBL.lighting_update_overlays += O
+			GLOBL.lighting_update_overlays.Add(O)
 			continue // DON'T break, we're adding stuff back into the update queue.
 
 		O.update_overlay()

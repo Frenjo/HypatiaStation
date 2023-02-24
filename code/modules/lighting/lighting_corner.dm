@@ -32,7 +32,7 @@ GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUT
 /datum/lighting_corner/New(turf/new_turf, diagonal)
 	. = ..()
 
-	global.all_lighting_corners += src
+	global.all_lighting_corners.Add(src)
 
 	masters[new_turf] = turn(diagonal, 180)
 	z = new_turf.z
@@ -83,8 +83,8 @@ GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUT
 
 /datum/lighting_corner/proc/update_active()
 	active = FALSE
-	for (var/turf/T in masters)
-		if (T.lighting_overlay)
+	for(var/turf/T in masters)
+		if(T.lighting_overlay)
 			active = TRUE
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
@@ -95,7 +95,7 @@ GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUT
 
 	if(!needs_update)
 		needs_update = TRUE
-		GLOBL.lighting_update_corners += src
+		GLOBL.lighting_update_corners.Add(src)
 
 /datum/lighting_corner/proc/update_overlays()
 	// Cache these values a head of time so 4 individual lighting overlays don't all calculate them individually.
@@ -117,7 +117,7 @@ GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUT
 		if(T.lighting_overlay)
 			if(!T.lighting_overlay.needs_update)
 				T.lighting_overlay.needs_update = TRUE
-				GLOBL.lighting_update_overlays += T.lighting_overlay
+				GLOBL.lighting_update_overlays.Add(T.lighting_overlay)
 
 /datum/lighting_corner/dummy/New()
 	return

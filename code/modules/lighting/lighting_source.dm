@@ -20,7 +20,7 @@
 	var/tmp/applied_lum_g
 	var/tmp/applied_lum_b
 
-	var/list/datum/lighting_corner/effect_str     // List used to store how much we're affecting corners.
+	var/list/datum/lighting_corner/effect_str	// List used to store how much we're affecting corners.
 	var/list/turf/affecting_turfs
 
 	var/applied = FALSE // Whether we have applied our light yet or not.
@@ -35,13 +35,13 @@
 	if(!source_atom.light_sources)
 		source_atom.light_sources = list()
 
-	source_atom.light_sources += src // Add us to the lights of our owner.
+	source_atom.light_sources.Add(src) // Add us to the lights of our owner.
 	top_atom = top
 	if(top_atom != source_atom)
 		if(!top.light_sources)
 			top.light_sources = list()
 
-		top_atom.light_sources += src
+		top_atom.light_sources.Add(src)
 
 	source_turf = top_atom
 	light_power = source_atom.light_power
@@ -62,10 +62,10 @@
 	destroyed = TRUE
 	force_update()
 	if(source_atom)
-		source_atom.light_sources -= src
+		source_atom.light_sources.Remove(src)
 
 	if(top_atom)
-		top_atom.light_sources -= src
+		top_atom.light_sources.Remove(src)
 
 // Call it dirty, I don't care.
 // This is here so there's no performance loss on non-instant updates from the fact that the engine can also do instant updates.
@@ -73,7 +73,7 @@
 #define effect_update(BYOND)			\
 	if(!needs_update)					\
 	{									\
-		GLOBL.lighting_update_lights += src;	\
+		GLOBL.lighting_update_lights.Add(src);	\
 		needs_update = TRUE;			\
 	}
 
@@ -82,7 +82,7 @@
 	// This top atom is different.
 	if(new_top_atom && new_top_atom != top_atom)
 		if(top_atom != source_atom) // Remove ourselves from the light sources of that top atom.
-			top_atom.light_sources -= src
+			top_atom.light_sources.Remove(src)
 
 		top_atom = new_top_atom
 
@@ -90,7 +90,7 @@
 			if(!top_atom.light_sources)
 				top_atom.light_sources = list()
 
-			top_atom.light_sources += src // Add ourselves to the light sources of our new top atom.
+			top_atom.light_sources.Add(src) // Add ourselves to the light sources of our new top atom.
 
 	effect_update(null)
 
@@ -202,7 +202,7 @@
 				continue
 
 			C.update_gen = update_gen
-			C.affecting += src
+			C.affecting.Add(src)
 
 			if(!C.active)
 				effect_str[C] = 0
@@ -213,8 +213,8 @@
 		if(!T.affecting_lights)
 			T.affecting_lights = list()
 
-		T.affecting_lights += src
-		affecting_turfs += T
+		T.affecting_lights.Add(src)
+		affecting_turfs.Add(T)
 
 	update_gen++
 
@@ -225,14 +225,14 @@
 		if(!T.affecting_lights)
 			T.affecting_lights = list()
 		else
-			T.affecting_lights -= src
+			T.affecting_lights.Remove(src)
 
 	affecting_turfs.Cut()
 
 	for(var/datum/lighting_corner/C in effect_str)
 		REMOVE_CORNER(C)
 
-		C.affecting -= src
+		C.affecting.Remove(src)
 
 	effect_str.Cut()
 
@@ -249,23 +249,23 @@
 		if(!T.lighting_corners_initialised)
 			T.generate_missing_corners()
 		corners |= T.get_corners()
-		turfs += T
+		turfs.Add(T)
 
 	var/list/L = turfs - affecting_turfs // New turfs, add us to the affecting lights of them.
-	affecting_turfs += L
+	affecting_turfs.Add(L)
 	for(var/turf/T in L)
 		if(!T.affecting_lights)
 			T.affecting_lights = list(src)
 		else
-			T.affecting_lights += src
+			T.affecting_lights.Add(src)
 
 	L = affecting_turfs - turfs // Now-gone turfs, remove us from the affecting lights.
-	affecting_turfs -= L
+	affecting_turfs.Remove(L)
 	for(var/turf/T in L)
-		T.affecting_lights -= src
+		T.affecting_lights.Remove(src)
 
 	for(var/datum/lighting_corner/C in corners - effect_str) // New corners
-		C.affecting += src
+		C.affecting.Add(src)
 		if(!C.active)
 			effect_str[C] = 0
 			continue
@@ -274,8 +274,8 @@
 
 	for(var/datum/lighting_corner/C in effect_str - corners) // Old, now gone, corners.
 		REMOVE_CORNER(C)
-		C.affecting -= src
-		effect_str -= C
+		C.affecting.Remove(src)
+		effect_str.Remove(C)
 
 #undef effect_update
 #undef LUM_FALLOFF

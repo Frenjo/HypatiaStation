@@ -59,7 +59,7 @@
 
 	totallums /= 4 // 4 corners, max channel selected, return the average
 
-	totallums = (totallums - minlum) /(maxlum - minlum)
+	totallums = (totallums - minlum) / (maxlum - minlum)
 
 	return CLAMP01(totallums)
 

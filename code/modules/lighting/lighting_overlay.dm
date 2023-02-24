@@ -21,7 +21,7 @@ GLOBAL_GLOBL_LIST_NEW(all_lighting_overlays) // Global list of lighting overlays
 /atom/movable/lighting_overlay/New(atom/loc, no_update = FALSE)
 	. = ..()
 	verbs.Cut()
-	GLOBL.all_lighting_overlays += src
+	GLOBL.all_lighting_overlays.Add(src)
 
 	var/turf/T = loc //If this runtimes atleast we'll know what's creating overlays outside of turfs.
 	T.lighting_overlay = src
@@ -29,6 +29,18 @@ GLOBAL_GLOBL_LIST_NEW(all_lighting_overlays) // Global list of lighting overlays
 	if(no_update)
 		return
 	update_overlay()
+
+/atom/movable/lighting_overlay/Destroy()
+	GLOBL.all_lighting_overlays.Remove(src)
+	GLOBL.lighting_update_overlays.Remove(src)
+	GLOBL.lighting_update_overlays_old.Remove(src)
+
+	var/turf/T = loc
+	if(istype(T))
+		T.lighting_overlay = null
+		T.luminosity = 1
+
+	return ..()
 
 /atom/movable/lighting_overlay/proc/update_overlay()
 	set waitfor = FALSE
@@ -74,15 +86,3 @@ GLOBAL_GLOBL_LIST_NEW(all_lighting_overlays) // Global list of lighting overlays
 	else
 		animate(src, color = new_matrix, time = 5)
 		animate(luminosity = 0, time = 0)
-
-/atom/movable/lighting_overlay/Destroy()
-	GLOBL.all_lighting_overlays -= src
-	GLOBL.lighting_update_overlays -= src
-	GLOBL.lighting_update_overlays_old -= src
-
-	var/turf/T = loc
-	if(istype(T))
-		T.lighting_overlay = null
-		T.luminosity = 1
-
-	return ..()
