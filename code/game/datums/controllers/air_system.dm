@@ -136,7 +136,7 @@ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_
 			T.post_update_air_properties()
 			T.needs_air_update = FALSE
 			#ifdef ZASDBG
-			T.overlays -= mark
+			T.overlays.Remove(mark)
 			updated++
 			#endif
 			CHECK_TICK
@@ -281,7 +281,7 @@ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_
 		return
 	tiles_to_update |= T
 	#ifdef ZASDBG
-	T.overlays += mark
+	T.overlays.Add(mark)
 	#endif
 	T.needs_air_update = TRUE
 

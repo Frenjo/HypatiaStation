@@ -70,7 +70,7 @@
 		return
 
 	if(abs(temperature-giver.temperature)>MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
-		var/self_heat_capacity = heat_capacity()*group_multiplier
+		var/self_heat_capacity = heat_capacity() * group_multiplier
 		var/giver_heat_capacity = giver.heat_capacity()*giver.group_multiplier
 		var/combined_heat_capacity = giver_heat_capacity + self_heat_capacity
 		if(combined_heat_capacity != 0)
@@ -113,7 +113,7 @@
 	total_moles = 0
 	for(var/g in gas)
 		if(gas[g] <= 0)
-			gas -= g
+			gas.Remove(g)
 		else
 			total_moles += gas[g]
 
@@ -238,21 +238,21 @@
 			if(gas[g] <= GLOBL.gas_data.overlay_limit[g])
 				if(!graphic_remove)
 					graphic_remove = list()
-				graphic_remove += GLOBL.gas_data.tile_overlay[g]
+				graphic_remove.Add(GLOBL.gas_data.tile_overlay[g])
 		else
 			//Overlay isn't applied for this gas, check if it's valid and needs to be added.
 			if(gas[g] > GLOBL.gas_data.overlay_limit[g])
 				if(!graphic_add)
 					graphic_add = list()
-				graphic_add += GLOBL.gas_data.tile_overlay[g]
+				graphic_add.Add(GLOBL.gas_data.tile_overlay[g])
 
 	. = 0
 	//Apply changes
 	if(length(graphic_add))
-		graphic += graphic_add
+		graphic.Add(graphic_add)
 		. = 1
 	if(length(graphic_remove))
-		graphic -= graphic_remove
+		graphic.Remove(graphic_remove)
 		. = 1
 
 //Simpler version of merge(), adjusts gas amounts directly and doesn't account for temperature or group_multiplier.

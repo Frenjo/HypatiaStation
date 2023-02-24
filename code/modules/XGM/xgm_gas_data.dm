@@ -35,7 +35,7 @@ GLOBAL_GLOBL_TYPED(gas_data, /decl/xgm_gas_data) // TODO: This needs to be moved
 		if(gas.id in GLOBL.gas_data.gases)
 			error("Duplicate gas id `[gas.id]` in `[type]`")
 
-		GLOBL.gas_data.gases += gas.id
+		GLOBL.gas_data.gases.Add(gas.id)
 		GLOBL.gas_data.name[gas.id] = gas.name
 		GLOBL.gas_data.specific_heat[gas.id] = gas.specific_heat
 		GLOBL.gas_data.molar_mass[gas.id] = gas.molar_mass

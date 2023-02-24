@@ -74,19 +74,19 @@
 	if(new_network.normal_members.Find(src))
 		return 0
 
-	new_network.normal_members += src
+	new_network.normal_members.Add(src)
 
 	return null
 
 /obj/machinery/atmospherics/binary/build_network()
 	if(!network1 && node1)
 		network1 = new /datum/pipe_network()
-		network1.normal_members += src
+		network1.normal_members.Add(src)
 		network1.build_network(node1, src)
 
 	if(!network2 && node2)
 		network2 = new /datum/pipe_network()
-		network2.normal_members += src
+		network2.normal_members.Add(src)
 		network2.build_network(node2, src)
 
 /obj/machinery/atmospherics/binary/return_network(obj/machinery/atmospherics/reference)
@@ -112,9 +112,9 @@
 	var/list/results = list()
 
 	if(network1 == reference)
-		results += air1
+		results.Add(air1)
 	if(network2 == reference)
-		results += air2
+		results.Add(air2)
 
 	return results
 

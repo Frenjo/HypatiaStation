@@ -85,15 +85,15 @@ GLOBAL_BYOND_NEW(vsc, /vs_control)
 
 	var/datum/D = new() //Ensure only unique vars are put through by making a datum and removing all common vars.
 	for(var/V in D.vars)
-		settings -= V
+		settings.Remove(V)
 
 	for(var/V in settings)
 		if(findtextEx(V, "_RANDOM") || findtextEx(V, "_DESC") || findtextEx(V, "_METHOD"))
-			settings -= V
+			settings.Remove(V)
 
-	settings -= "settings"
-	settings -= "bitflags"
-	settings -= "plc"
+	settings.Remove("settings")
+	settings.Remove("bitflags")
+	settings.Remove("plc")
 
 /vs_control/proc/ChangeSettingsDialog(mob/user, list/L)
 	//var/which = input(user,"Choose a setting:") in L
@@ -315,13 +315,13 @@ GLOBAL_BYOND_NEW(vsc, /vs_control)
 
 	var/datum/D = new() //Ensure only unique vars are put through by making a datum and removing all common vars.
 	for(var/V in D.vars)
-		settings -= V
+		settings.Remove(V)
 
 	for(var/V in settings)
 		if(findtextEx(V, "_RANDOM") || findtextEx(V, "_DESC"))
-			settings -= V
+			settings.Remove(V)
 
-	settings -= "settings"
+	settings.Remove("settings")
 
 /pl_control/proc/Randomize(V)
 	var/newvalue

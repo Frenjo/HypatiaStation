@@ -109,7 +109,7 @@ Class Procs:
 			var/list/close_turfs = list()
 			for(var/turf/U in connecting_turfs)
 				if(get_dist(M, U) < world.view)
-					close_turfs += U
+					close_turfs.Add(U)
 			if(!length(close_turfs))
 				continue
 

@@ -48,14 +48,14 @@
 	if(new_network.normal_members.Find(src))
 		return 0
 
-	new_network.normal_members += src
+	new_network.normal_members.Add(src)
 
 	return null
 
 /obj/machinery/atmospherics/unary/build_network()
 	if(!network && node)
 		network = new /datum/pipe_network()
-		network.normal_members += src
+		network.normal_members.Add(src)
 		network.build_network(node, src)
 
 /obj/machinery/atmospherics/unary/return_network(obj/machinery/atmospherics/reference)
@@ -76,7 +76,7 @@
 	var/list/results = list()
 
 	if(network == reference)
-		results += air_contents
+		results.Add(air_contents)
 
 	return results
 

@@ -33,7 +33,7 @@
 	update_network_gases()
 
 	if(length(normal_members) || length(line_members))
-		GLOBL.pipe_networks += src
+		GLOBL.pipe_networks.Add(src)
 	else
 		qdel(src)
 
@@ -61,10 +61,10 @@
 	for(var/obj/machinery/atmospherics/normal_member in normal_members)
 		var/result = normal_member.return_network_air(src)
 		if(result)
-			gases += result
+			gases.Add(result)
 
 	for(var/datum/pipeline/line_member in line_members)
-		gases += line_member.air
+		gases.Add(line_member.air)
 
 /datum/pipe_network/proc/reconcile_air()
 	equalize_gases(gases)

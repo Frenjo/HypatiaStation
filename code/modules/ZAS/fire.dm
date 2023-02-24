@@ -63,7 +63,7 @@ Attach to transfer valve and open. BOOM.
 		if(T.fire)
 			T.fire.firelevel = firelevel
 		else
-			fire_tiles -= T
+			fire_tiles.Remove(T)
 
 /turf/proc/create_fire(fl)
 	return 0

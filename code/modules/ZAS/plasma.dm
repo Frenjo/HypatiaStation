@@ -53,11 +53,11 @@ var/global/image/contamination_overlay = image('icons/effects/contamination.dmi'
 	//Do a contamination overlay? Temporary measure to keep contamination less deadly than it was.
 	if(!contaminated)
 		contaminated = TRUE
-		overlays += contamination_overlay
+		overlays.Add(contamination_overlay)
 
 /obj/item/proc/decontaminate()
 	contaminated = FALSE
-	overlays -= contamination_overlay
+	overlays.Remove(contamination_overlay)
 
 /mob/proc/contaminate()
 

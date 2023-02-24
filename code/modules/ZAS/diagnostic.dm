@@ -23,7 +23,7 @@
 	else
 		if(zone_debug_images)
 			for(var/zone in  zone_debug_images)
-				images -= zone_debug_images[zone]
+				images.Remove(zone_debug_images[zone])
 			zone_debug_images = null
 
 /client/var/list/zone_debug_images
@@ -96,10 +96,10 @@
 		var/list/current_zone_images = list()
 
 		for(var/turf/T in contents)
-			current_zone_images += image('icons/misc/debug_group.dmi', T, null, TURF_LAYER)
+			current_zone_images.Add(image('icons/misc/debug_group.dmi', T, null, TURF_LAYER))
 
 		for(var/turf/space/S in unsimulated_tiles)
-			current_zone_images += image('icons/misc/debug_space.dmi', S, null, TURF_LAYER)
+			current_zone_images.Add(image('icons/misc/debug_space.dmi', S, null, TURF_LAYER))
 
 		client << "<u>Zone Air Contents</u>"
 		client << "Oxygen: [air.oxygen]"
@@ -116,8 +116,8 @@
 
 		for(var/connection/C in connections)
 			client << "\ref[C] [C.A] --> [C.B] [(C.indirect?"Open":"Closed")]"
-			current_zone_images += image('icons/misc/debug_connect.dmi', C.A, null, TURF_LAYER)
-			current_zone_images += image('icons/misc/debug_connect.dmi', C.B, null, TURF_LAYER)
+			current_zone_images.Add(image('icons/misc/debug_connect.dmi', C.A, null, TURF_LAYER))
+			current_zone_images.Add(image('icons/misc/debug_connect.dmi', C.B, null, TURF_LAYER))
 
 		client << "Connected Zones:"
 		for(var/zone/zone in connected_zones)
@@ -134,12 +134,12 @@
 			client.zone_debug_images = list()
 		client.zone_debug_images[src] = current_zone_images
 
-		client.images += client.zone_debug_images[src]
+		client.images.Add(client.zone_debug_images[src])
 
 	else
 		dbg_output = 0
 
-		client.images -= client.zone_debug_images[src]
+		client.images.Remove(client.zone_debug_images[src])
 		client.zone_debug_images.Remove(src)
 
 	if(air_master)
@@ -175,7 +175,7 @@
 			if(!current.ZCanPass(adjacent))
 				continue
 			if(turfs.Find(adjacent))
-				current_adjacents += adjacent
+				current_adjacents.Add(adjacent)
 				adjacent_id = turfs[adjacent]
 
 				if(adjacent_id && (!lowest_id || adjacent_id < lowest_id))
@@ -183,33 +183,33 @@
 
 		if(!lowest_id)
 			lowest_id = current_identifier++
-			identical_ids += lowest_id
-			overlays += image('icons/misc/debug_rebuild.dmi',, "[lowest_id]")
+			identical_ids.Add(lowest_id)
+			overlays.Add(image('icons/misc/debug_rebuild.dmi',, "[lowest_id]"))
 
 		for(var/turf/simulated/adjacent in current_adjacents)
 			adjacent_id = turfs[adjacent]
 			if(adjacent_id != lowest_id)
 				if(adjacent_id)
-					adjacent.overlays -= overlays[adjacent_id]
+					adjacent.overlays.Remove(overlays[adjacent_id])
 					identical_ids[adjacent_id] = lowest_id
 
 				turfs[adjacent] = lowest_id
-				adjacent.overlays += overlays[lowest_id]
+				adjacent.overlays.Add(overlays[lowest_id])
 
 				sleep(5)
 
 		if(turfs[current])
-			current.overlays -= overlays[turfs[current]]
+			current.overlays.Remove(overlays[turfs[current]])
 		turfs[current] = lowest_id
-		current.overlays += overlays[lowest_id]
+		current.overlays.Add(overlays[lowest_id])
 		sleep(5)
 
 	var/list/final_arrangement = list()
 
 	for(var/turf/simulated/current in turfs)
 		current_identifier = identical_ids[turfs[current]]
-		current.overlays -= overlays[turfs[current]]
-		current.overlays += overlays[current_identifier]
+		current.overlays.Remove(overlays[turfs[current]])
+		current.overlays.Add(overlays[current_identifier])
 		sleep(5)
 
 		if(current_identifier > length(final_arrangement))
@@ -225,7 +225,7 @@
 	src << "There are [length(final_arrangement)] unique segments."
 
 	for(var/turf/current in turfs)
-		current.overlays -= overlays
+		current.overlays.Remove(overlays)
 
 	return final_arrangement*/
 

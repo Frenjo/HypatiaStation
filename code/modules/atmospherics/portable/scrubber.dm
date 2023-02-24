@@ -19,10 +19,10 @@
 		icon_state = "pscrubber:0"
 
 	if(holding)
-		overlays += "scrubber-open"
+		overlays.Add("scrubber-open")
 
 	if(connected_port)
-		overlays += "scrubber-connector"
+		overlays.Add("scrubber-connector")
 
 	return
 

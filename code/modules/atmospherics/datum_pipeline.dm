@@ -62,8 +62,8 @@
 			if(edge_check)
 				for(var/obj/machinery/atmospherics/pipe/item in result)
 					if(!members.Find(item))
-						members += item
-						possible_expansions += item
+						members.Add(item)
+						possible_expansions.Add(item)
 
 						volume += item.volume
 						item.parent = src
@@ -76,9 +76,9 @@
 					edge_check--
 
 			if(edge_check > 0)
-				edges += borderline
+				edges.Add(borderline)
 
-			possible_expansions -= borderline
+			possible_expansions.Remove(borderline)
 
 	air.volume = volume
 
@@ -86,7 +86,7 @@
 	if(new_network.line_members.Find(src))
 		return 0
 
-	new_network.line_members += src
+	new_network.line_members.Add(src)
 
 	network = new_network
 
@@ -148,7 +148,7 @@
 				var/heat = thermal_conductivity * delta_temperature * \
 					(partial_heat_capacity * modeled_location.heat_capacity / (partial_heat_capacity + modeled_location.heat_capacity))
 
-				air.temperature -= heat/total_heat_capacity
+				air.temperature -= heat / total_heat_capacity
 				modeled_location.temperature += heat / modeled_location.heat_capacity
 
 		else

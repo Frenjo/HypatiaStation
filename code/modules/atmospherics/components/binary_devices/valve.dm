@@ -94,7 +94,7 @@
 	if(new_network.normal_members.Find(src))
 		return 0
 
-	new_network.normal_members += src
+	new_network.normal_members.Add(src)
 
 	if(open)
 		if(reference == node1)

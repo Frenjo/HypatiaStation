@@ -20,10 +20,10 @@
 		icon_state = "psiphon:0"
 
 	if(holding)
-		overlays += "siphon-open"
+		overlays.Add("siphon-open")
 
 	if(connected_port)
-		overlays += "siphon-connector"
+		overlays.Add("siphon-connector")
 
 	return
 

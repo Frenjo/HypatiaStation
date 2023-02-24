@@ -86,7 +86,7 @@
 	var/list/results = list()
 
 	if(connected_device)
-		results += connected_device.air_contents
+		results.Add(connected_device.air_contents)
 
 	return results
 
