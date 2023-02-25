@@ -11,7 +11,7 @@ CONTROLLER_DEF(decls)
 	if(!ispath(type_path, /decl))
 		return
 	
-	if(!instances[type_path])
+	if(isnull(instances[type_path]))
 		instances[type_path] = new type_path()
 	
 	return instances[type_path]

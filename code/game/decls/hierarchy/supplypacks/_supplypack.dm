@@ -15,8 +15,8 @@
 	var/containertype = /obj/structure/closet/crate
 	var/containername = null
 	var/access = null
-	var/hidden = 0
-	var/contraband = 0
+	var/hidden = FALSE
+	var/contraband = FALSE
 	var/num_contained = 0 //number of items picked to be contained in a randomised crate
 	var/supply_method = /decl/supply_method
 

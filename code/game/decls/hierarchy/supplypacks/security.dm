@@ -15,7 +15,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate
 	containername = "Special Ops crate"
-	hidden = 1
+	hidden = TRUE
 
 
 /decl/hierarchy/supply_pack/security/beanbagammo

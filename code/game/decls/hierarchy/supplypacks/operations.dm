@@ -47,16 +47,16 @@
 
 
 /decl/hierarchy/supply_pack/operations/contraband
-	num_contained = 5
+	name = "Contraband crate"
 	contains = list(
 		/obj/item/seeds/bloodtomatoseed,
 		/obj/item/weapon/storage/pill_bottle/zoom,
 		/obj/item/weapon/storage/pill_bottle/happy,
 		/obj/item/weapon/reagent_containers/food/drinks/bottle/pwine
 	)
-	name = "Contraband crate"
 	cost = 30
 	containertype = /obj/structure/closet/crate
 	containername = "Unlabeled crate"
-	contraband = 1
+	contraband = TRUE
+	num_contained = 5
 	supply_method = /decl/supply_method/randomised
