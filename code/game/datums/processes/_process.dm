@@ -234,14 +234,14 @@
 
 /datum/process/proc/getContextData()
 	return list(
-	"name" = name,
-	"averageRunTime" = main.averageRunTime(src),
-	"lastRunTime" = main.last_run_time[src],
-	"highestRunTime" = main.highest_run_time[src],
-	"ticks" = ticks,
-	"schedule" = schedule_interval,
-	"status" = getStatusText(),
-	"disabled" = disabled
+		"name" = name,
+		"averageRunTime" = main.averageRunTime(src),
+		"lastRunTime" = main.last_run_time[src],
+		"highestRunTime" = main.highest_run_time[src],
+		"ticks" = ticks,
+		"schedule" = schedule_interval,
+		"status" = getStatusText(),
+		"disabled" = disabled
 	)
 
 /datum/process/proc/getStatus()

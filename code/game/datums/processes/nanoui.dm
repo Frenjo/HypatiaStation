@@ -13,7 +13,7 @@ PROCESS_DEF(nanoui)
 	schedule_interval = 2 SECONDS
 
 /datum/process/nanoui/doWork()
-	for(last_object in global.nanomanager.processing_uis)
+	for(var/last_object in global.nanomanager.processing_uis)
 		var/datum/nanoui/NUI = last_object
 		if(istype(NUI) && !GC_DESTROYED(NUI))
 			try
@@ -22,7 +22,7 @@ PROCESS_DEF(nanoui)
 				catchException(e, NUI)
 		else
 			catchBadType(NUI)
-			global.nanomanager.processing_uis -= NUI
+			global.nanomanager.processing_uis.Remove(NUI)
 
 /datum/process/nanoui/statProcess()
 	. = ..()

@@ -10,9 +10,9 @@ PROCESS_DEF(event)
 /datum/process/event/doWork()
 	var/i = 1
 	while(i <= length(GLOBL.events))
-		var/datum/event/Event = GLOBL.events[i]
-		if(Event)
-			Event.process()
+		var/datum/event/event = GLOBL.events[i]
+		if(event)
+			event.process()
 			i++
 			continue
 		GLOBL.events.Cut(i, i + 1)

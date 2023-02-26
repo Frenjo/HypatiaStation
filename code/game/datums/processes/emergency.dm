@@ -6,7 +6,7 @@ PROCESS_DEF(emergency)
 	schedule_interval = 2 SECONDS
 
 /datum/process/emergency/setup()
-	if(!global.CTemergency)
+	if(isnull(global.CTemergency))
 		global.CTemergency = new /datum/controller/emergency()
 
 /datum/process/emergency/doWork()

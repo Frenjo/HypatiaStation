@@ -107,7 +107,7 @@ CONTROLLER_DEF(supply)
 			contcount++
 		if(contcount)
 			continue
-		clear_turfs += T
+		clear_turfs.Add(T)
 
 	for(var/S in shoppinglist)
 		if(!length(clear_turfs))
@@ -134,7 +134,7 @@ CONTROLLER_DEF(supply)
 		//spawn the stuff, finish generating the manifest while you're at it
 		if(SP.access)
 			A:req_access = list()
-			A:req_access += text2num(SP.access)
+			A:req_access.Add(text2num(SP.access))
 
 		var/list/spawned = SP.spawn_contents(A)
 		for(var/atom/content in spawned)

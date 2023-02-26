@@ -46,7 +46,7 @@ CONTROLLER_DEF(cameranet)
 
 	for(var/x = x1; x <= x2; x += 16)
 		for(var/y = y1; y <= y2; y += 16)
-			visibleChunks += getCameraChunk(x, y, ai.z)
+			visibleChunks.Add(getCameraChunk(x, y, ai.z))
 
 	var/list/remove = ai.visibleCameraChunks - visibleChunks
 	var/list/add = visibleChunks - ai.visibleCameraChunks
@@ -114,7 +114,7 @@ CONTROLLER_DEF(cameranet)
 					var/datum/camerachunk/chunk = getCameraChunk(x, y, T.z)
 					if(choice == 0)
 						// Remove the camera.
-						chunk.cameras -= c
+						chunk.cameras.Remove(c)
 					else if(choice == 1)
 						// You can't have the same camera in the list twice.
 						chunk.cameras |= c

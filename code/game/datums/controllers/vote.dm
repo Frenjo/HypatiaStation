@@ -194,7 +194,7 @@ CONTROLLER_DEF(vote)
 		if(current_votes[ckey])
 			choices[choices[current_votes[ckey]]]--
 		if(vote && 1 <= vote && vote <= length(choices))
-			voted += usr.ckey
+			voted.Add(usr.ckey)
 			choices[choices[vote]]++	//check this
 			current_votes[ckey] = vote
 			return vote
@@ -348,7 +348,7 @@ CONTROLLER_DEF(vote)
 		return	//not necessary but meh...just in-case somebody does something stupid
 	switch(href_list["vote"])
 		if("close")
-			voting -= usr.client
+			voting.Remove(usr.client)
 			usr << browse(null, "window=vote")
 			return
 		if("cancel")

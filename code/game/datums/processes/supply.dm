@@ -6,7 +6,7 @@ PROCESS_DEF(supply)
 	schedule_interval = 30 SECONDS
 
 /datum/process/supply/setup()
-	if(!global.CTsupply)
+	if(isnull(global.CTsupply))
 		global.CTsupply = new /datum/controller/supply()
 		global.CTsupply.shuttle = global.CTshuttle.shuttles["Supply"]
 

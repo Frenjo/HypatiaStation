@@ -8,11 +8,6 @@ PROCESS_DEF(obj)
 	schedule_interval = 2 SECONDS
 	start_delay = 8
 
-/datum/process/obj/started()
-	..()
-	if(!GLOBL.processing_objects)
-		GLOBL.processing_objects = list()
-
 /datum/process/obj/doWork()
 	for(var/last_object in GLOBL.processing_objects)
 		var/obj/O = last_object
@@ -26,7 +21,7 @@ PROCESS_DEF(obj)
 			SCHECK
 		else
 			catchBadType(O)
-			GLOBL.processing_objects -= O
+			GLOBL.processing_objects.Remove(O)
 
 /datum/process/obj/statProcess()
 	. = ..()

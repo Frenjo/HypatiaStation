@@ -70,7 +70,7 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
  */
 /datum/controller/process_scheduler/proc/deferSetupFor(processPath)
 	if(!(processPath in deferredSetupList))
-		deferredSetupList += processPath
+		deferredSetupList.Add(processPath)
 
 /datum/controller/process_scheduler/setup()
 	// There can be only one
@@ -225,30 +225,30 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 
 /datum/controller/process_scheduler/proc/setIdleProcessState(datum/process/process)
 	if(process in running)
-		running -= process
+		running.Remove(process)
 	if(process in queued)
-		queued -= process
+		queued.Remove(process)
 	if(!(process in idle))
-		idle += process
+		idle.Add(process)
 
 /datum/controller/process_scheduler/proc/setQueuedProcessState(datum/process/process)
 	if(process in running)
-		running -= process
+		running.Remove(process)
 	if(process in idle)
-		idle -= process
+		idle.Remove(process)
 	if(!(process in queued))
-		queued += process
+		queued.Add(process)
 
 	// The other state transitions are handled internally by the process.
 	process.queued()
 
 /datum/controller/process_scheduler/proc/setRunningProcessState(datum/process/process)
 	if(process in queued)
-		queued -= process
+		queued.Remove(process)
 	if(process in idle)
-		idle -= process
+		idle.Remove(process)
 	if(!(process in running))
-		running += process
+		running.Add(process)
 
 /datum/controller/process_scheduler/proc/recordStart(datum/process/process, time = null)
 	if(isnull(time))

@@ -8,7 +8,7 @@ PROCESS_DEF(initialisation)
 	schedule_interval = 1 // Not 1 SECOND, 1 decisecond.
 
 /datum/process/initialisation/doWork()
-	for(last_object in GLOBL.queued_initialisations)
+	for(var/last_object in GLOBL.queued_initialisations)
 		var/atom/A = last_object
 		dequeue_for_initialisation(A)
 		A.initialize()
@@ -20,7 +20,7 @@ PROCESS_DEF(initialisation)
 /proc/queue_for_initialisation(atom/A)
 	if(!istype(A))
 		CRASH("Invalid type. Was [A.type].")
-	GLOBL.queued_initialisations += A
+	GLOBL.queued_initialisations.Add(A)
 	if(global.PCinitialisation && global.PCinitialisation.disabled)
 		global.PCinitialisation.enable() // If a new object has been queued and the initializer is disabled, awaken it
 

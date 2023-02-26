@@ -19,8 +19,8 @@ CONTROLLER_DEF(game_ticker)
 	var/event_time = null
 	var/event = 0
 
-	var/login_music						// The music file played in the pregame lobby.
-	var/possible_login_music = list(	// The list of all possible login music files to play.
+	var/login_music							// The music file played in the pregame lobby.
+	var/list/possible_login_music = list(	// The list of all possible login music files to play.
 		'sound/music/space.ogg',
 		'sound/music/traitor.ogg',
 		'sound/music/title2.ogg',
@@ -53,11 +53,11 @@ CONTROLLER_DEF(game_ticker)
 
 /datum/controller/game_ticker/proc/pregame()
 	if(CONFIG_GET(holiday_name) == "Halloween")
-		possible_login_music += list(
+		possible_login_music.Add(list(
 			'sound/music/halloween/skeletons.ogg',
 			'sound/music/halloween/halloween.ogg',
 			'sound/music/halloween/ghosts.ogg'
-		)
+		))
 	login_music = pick(possible_login_music)
 
 	do
@@ -122,9 +122,9 @@ CONTROLLER_DEF(game_ticker)
 		return 0
 
 	if(hide_mode)
-		var/list/modes = new
+		var/list/modes = list()
 		for(var/datum/game_mode/M in runnable_modes)
-			modes += M.name
+			modes.Add(M.name)
 		modes = sortList(modes)
 		to_world("<B>The current game mode is - Secret!</B>")
 		to_world("<B>Possibilities:</B> [english_list(modes)]")
@@ -195,12 +195,12 @@ CONTROLLER_DEF(game_ticker)
 		for(var/mob/living/M in GLOBL.living_mob_list)
 			M.buckled = temp_buckle				//buckles the mob so it can't do anything
 			if(M.client)
-				M.client.screen += cinematic	//show every client the cinematic
+				M.client.screen.Add(cinematic)	//show every client the cinematic
 	else	//nuke kills everyone on z-level 1 to prevent "hurr-durr I survived"
 		for(var/mob/living/M in GLOBL.living_mob_list)
 			M.buckled = temp_buckle
 			if(M.client)
-				M.client.screen += cinematic
+				M.client.screen.Add(cinematic)
 
 			switch(M.z)
 				if(0)	//inside a crate or something
@@ -290,7 +290,7 @@ CONTROLLER_DEF(game_ticker)
 /datum/controller/game_ticker/proc/collect_minds()
 	for(var/mob/living/player in GLOBL.player_list)
 		if(player.mind)
-			global.CTgame_ticker.minds += player.mind
+			global.CTgame_ticker.minds.Add(player.mind)
 
 /datum/controller/game_ticker/proc/equip_characters()
 	var/captainless = 1

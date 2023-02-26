@@ -23,7 +23,7 @@ CONTROLLER_DEF(occupations)
 			continue
 		if(job.faction != faction)
 			continue
-		occupations += job
+		occupations.Add(job)
 
 	return 1
 
@@ -63,7 +63,7 @@ CONTROLLER_DEF(occupations)
 			debug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
 			player.mind.assigned_role = rank
 			player.mind.role_alt_title = get_player_alt_title(player, rank)
-			unassigned -= player
+			unassigned.Remove(player)
 			job.current_positions++
 			return 1
 	debug("AR has failed, Player: [player], Rank: [rank]")
@@ -91,7 +91,7 @@ CONTROLLER_DEF(occupations)
 			continue
 		if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
 			debug("FOC pass, Player: [player], Level:[level]")
-			candidates += player
+			candidates.Add(player)
 	return candidates
 
 /datum/controller/occupations/proc/give_random_job(mob/new_player/player)
@@ -117,7 +117,7 @@ CONTROLLER_DEF(occupations)
 		if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
 			debug("GRJ Random job given, Player: [player], Job: [job]")
 			assign_role(player, job.title)
-			unassigned -= player
+			unassigned.Remove(player)
 			break
 
 /datum/controller/occupations/proc/reset_occupations()
@@ -243,7 +243,7 @@ CONTROLLER_DEF(occupations)
 	//Get the players who are ready
 	for(var/mob/new_player/player in GLOBL.player_list)
 		if(player.ready && player.mind && !player.mind.assigned_role)
-			unassigned += player
+			unassigned.Add(player)
 
 	debug("DO, Len: [length(unassigned)]")
 	if(!length(unassigned))
@@ -262,7 +262,7 @@ CONTROLLER_DEF(occupations)
 	for(var/mob/new_player/player in assistant_candidates)
 		debug("AC1 pass, Player: [player]")
 		assign_role(player, "Assistant")
-		assistant_candidates -= player
+		assistant_candidates.Remove(player)
 	debug("DO, AC1 end")
 
 	//Select one head
@@ -309,7 +309,7 @@ CONTROLLER_DEF(occupations)
 					if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
 						debug("DO pass, Player: [player], Level:[level], Job:[job.title]")
 						assign_role(player, job.title)
-						unassigned -= player
+						unassigned.Remove(player)
 						break
 
 	// Hand out random jobs to the people who didn't get any in the last check
@@ -332,7 +332,7 @@ CONTROLLER_DEF(occupations)
 	for(var/mob/new_player/player in unassigned)
 		if(player.client.prefs.alternate_option == RETURN_TO_LOBBY)
 			player.ready = FALSE
-			unassigned -= player
+			unassigned.Remove(player)
 	return 1
 
 /datum/controller/occupations/proc/equip_rank(mob/living/carbon/human/H, rank, joined_late = 0)

@@ -39,7 +39,7 @@ CONTROLLER_DEF(pai)
 			global.CTgame_ticker.mode.update_cult_icons_removed(card.pai.mind)
 			global.CTgame_ticker.mode.update_rev_icons_removed(card.pai.mind)
 
-			pAI_candidates -= candidate
+			pAI_candidates.Remove(candidate)
 			usr << browse(null, "window=findPai")
 
 	if(href_list["new"])

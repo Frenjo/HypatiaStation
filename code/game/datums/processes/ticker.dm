@@ -11,7 +11,7 @@ PROCESS_DEF(ticker)
 /datum/process/ticker/setup()
 	lastTickerTime = world.timeofday
 
-	if(!global.CTgame_ticker)
+	if(isnull(global.CTgame_ticker))
 		global.CTgame_ticker = new /datum/controller/game_ticker()
 
 	wait_for_pregame()

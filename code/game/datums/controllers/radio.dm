@@ -51,7 +51,7 @@ CONTROLLER_DEF(radio)
 		frequency.remove_listener(device)
 		if(!length(frequency.devices))
 			qdel(frequency)
-			frequencies -= f_text
+			frequencies.Remove(f_text)
 	return 1
 
 /datum/controller/radio/proc/return_frequency(new_frequency as num)

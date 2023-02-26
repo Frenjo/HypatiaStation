@@ -11,10 +11,10 @@ GLOBAL_GLOBL_LIST_NEW(controllers)
 
 /datum/controller/New()
 	. = ..()
-	GLOBL.controllers += src
+	GLOBL.controllers.Add(src)
 
 /datum/controller/Destroy()
-	GLOBL.controllers -= src
+	GLOBL.controllers.Remove(src)
 	return ..()
 
 /datum/controller/proc/setup()

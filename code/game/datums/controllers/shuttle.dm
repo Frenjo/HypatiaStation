@@ -31,7 +31,7 @@ CONTROLLER_DEF(shuttle)
 	shuttle.transit_direction = WEST
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-15, 15) // Since it ends up docking ass-backwards, this gives it a bit of "manoeuvring time".
 	shuttles["Arrival"] = shuttle
-	process_shuttles += shuttle
+	process_shuttles.Add(shuttle)
 
 	// Escape shuttle and pods
 	shuttle = new /datum/shuttle/ferry/emergency()
@@ -46,7 +46,7 @@ CONTROLLER_DEF(shuttle)
 	shuttle.transit_direction = NORTH
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN
 	shuttles["Escape"] = shuttle
-	process_shuttles += shuttle
+	process_shuttles.Add(shuttle)
 
 	shuttle = new /datum/shuttle/ferry/escape_pod()
 	shuttle.location = 0
@@ -59,8 +59,8 @@ CONTROLLER_DEF(shuttle)
 	shuttle.dock_target_offsite = "escape_pod_1_recovery"
 	shuttle.transit_direction = NORTH
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-30, 60)	//randomize this so it seems like the pods are being picked up one by one
-	process_shuttles += shuttle
 	shuttles["Escape Pod 1"] = shuttle
+	process_shuttles.Add(shuttle)
 
 	shuttle = new /datum/shuttle/ferry/escape_pod()
 	shuttle.location = 0
@@ -73,8 +73,8 @@ CONTROLLER_DEF(shuttle)
 	shuttle.dock_target_offsite = "escape_pod_2_recovery"
 	shuttle.transit_direction = NORTH
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-30, 60)	//randomize this so it seems like the pods are being picked up one by one
-	process_shuttles += shuttle
 	shuttles["Escape Pod 2"] = shuttle
+	process_shuttles.Add(shuttle)
 
 	shuttle = new /datum/shuttle/ferry/escape_pod()
 	shuttle.location = 0
@@ -87,8 +87,8 @@ CONTROLLER_DEF(shuttle)
 	shuttle.dock_target_offsite = "escape_pod_3_recovery"
 	shuttle.transit_direction = EAST
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-30, 60)	//randomize this so it seems like the pods are being picked up one by one
-	process_shuttles += shuttle
 	shuttles["Escape Pod 3"] = shuttle
+	process_shuttles.Add(shuttle)
 
 	//There is no pod 4, apparently.
 
@@ -103,8 +103,8 @@ CONTROLLER_DEF(shuttle)
 	shuttle.dock_target_offsite = "escape_pod_5_recovery"
 	shuttle.transit_direction = EAST //should this be WEST? I have no idea.
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION_RETURN + rand(-30, 60)	//randomize this so it seems like the pods are being picked up one by one
-	process_shuttles += shuttle
 	shuttles["Escape Pod 5"] = shuttle
+	process_shuttles.Add(shuttle)
 
 	//give the emergency shuttle controller it's shuttles
 	global.CTemergency.shuttle = shuttles["Escape"]
@@ -125,10 +125,10 @@ CONTROLLER_DEF(shuttle)
 	shuttle.docking_controller_tag = "supply_shuttle"
 	shuttle.dock_target_station = "cargo_bay"
 	shuttles["Supply"] = shuttle
-	process_shuttles += shuttle
+	process_shuttles.Add(shuttle)
 
 	// Admin shuttles.
-	shuttle = new()
+	shuttle = new /datum/shuttle/ferry()
 	shuttle.location = 1
 	shuttle.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	shuttle.area_offsite = locate(/area/shuttle/transport1/centcom)
@@ -137,9 +137,9 @@ CONTROLLER_DEF(shuttle)
 	shuttle.dock_target_station = "centcomshuttle_dock_airlock"
 	shuttle.dock_target_offsite = "centcomshuttle_bay"
 	shuttles["CentCom"] = shuttle
-	process_shuttles += shuttle
+	process_shuttles.Add(shuttle)
 
-	shuttle = new()
+	shuttle = new /datum/shuttle/ferry()
 	shuttle.location = 1
 	shuttle.warmup_time = 7 //want some warmup time so people can cancel. // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	shuttle.area_offsite = locate(/area/shuttle/administration/centcom)
@@ -148,18 +148,18 @@ CONTROLLER_DEF(shuttle)
 	shuttle.dock_target_station = "adminshuttle_dock_airlock"
 	shuttle.dock_target_offsite = "adminshuttle_bay_airlock"
 	shuttles["Administration"] = shuttle
-	process_shuttles += shuttle
+	process_shuttles.Add(shuttle)
 
-	shuttle = new()
+	shuttle = new /datum/shuttle/ferry()
 	shuttle.area_offsite = locate(/area/shuttle/alien/base)
 	shuttle.area_station = locate(/area/shuttle/alien/mine)
 	shuttles["Alien"] = shuttle
-	process_shuttles += shuttle
+	process_shuttles.Add(shuttle)
 
 	// Public shuttles
 
 	// Added engineering shuttle to make use of the 'Ruskie DJ Station'. -Frenjo
-	shuttle = new()
+	shuttle = new /datum/shuttle/ferry()
 	shuttle.location = 0
 	shuttle.warmup_time = 7 //want some warmup time so people can cancel. // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	shuttle.area_offsite = locate(/area/shuttle/engineering/outpost)
@@ -168,9 +168,9 @@ CONTROLLER_DEF(shuttle)
 	shuttle.dock_target_station = "engineeringshuttle_dock_airlock"
 	shuttle.dock_target_offsite = "engineeringshuttle_outpost_airlock"
 	shuttles["Engineering"] = shuttle
-	process_shuttles += shuttle
+	process_shuttles.Add(shuttle)
 
-	shuttle = new()
+	shuttle = new /datum/shuttle/ferry()
 	shuttle.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	shuttle.area_offsite = locate(/area/shuttle/mining/outpost)
 	shuttle.area_station = locate(/area/shuttle/mining/station)
@@ -178,9 +178,9 @@ CONTROLLER_DEF(shuttle)
 	shuttle.dock_target_station = "miningshuttle_dock_airlock"
 	shuttle.dock_target_offsite = "miningshuttle_outpost_airlock"
 	shuttles["Mining"] = shuttle
-	process_shuttles += shuttle
+	process_shuttles.Add(shuttle)
 
-	shuttle = new()
+	shuttle = new /datum/shuttle/ferry()
 	shuttle.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	shuttle.area_offsite = locate(/area/shuttle/research/outpost)
 	shuttle.area_station = locate(/area/shuttle/research/station)
@@ -188,9 +188,9 @@ CONTROLLER_DEF(shuttle)
 	shuttle.dock_target_station = "researchshuttle_dock_airlock"
 	shuttle.dock_target_offsite = "researchshuttle_dock_outpost"
 	shuttles["Research"] = shuttle
-	process_shuttles += shuttle
+	process_shuttles.Add(shuttle)
 
-	shuttle = new()
+	shuttle = new /datum/shuttle/ferry()
 	shuttle.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	shuttle.area_offsite = locate(/area/shuttle/prison/prison)
 	shuttle.area_station = locate(/area/shuttle/prison/station)
@@ -198,10 +198,10 @@ CONTROLLER_DEF(shuttle)
 	shuttle.dock_target_station = "prisonshuttle_dock_airlock"
 	shuttle.dock_target_offsite = "prisonshuttle_sat_airlock"
 	shuttles["Prison"] = shuttle
-	process_shuttles += shuttle
+	process_shuttles.Add(shuttle)
 
 	// ERT Shuttle
-	var/datum/shuttle/ferry/multidock/specops/ert = new()
+	var/datum/shuttle/ferry/multidock/specops/ert = new /datum/shuttle/ferry/multidock/specops()
 	ert.location = 0
 	ert.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
 	ert.area_offsite = locate(/area/shuttle/specops/station)	//centcom is the home station, the Exodus is offsite
@@ -212,7 +212,7 @@ CONTROLLER_DEF(shuttle)
 	ert.dock_target_station = "specopsshuttle_dock_centcom"
 	ert.dock_target_offsite = "specopsshuttle_dock_airlock"
 	shuttles["Special Operations"] = ert
-	process_shuttles += ert
+	process_shuttles.Add(ert)
 
 	//Vox Shuttle.
 	var/datum/shuttle/multi_shuttle/vox_shuttle = new /datum/shuttle/multi_shuttle()
@@ -297,7 +297,7 @@ CONTROLLER_DEF(shuttle)
 				if(C.id_tag in dock_controller_map)
 					shuttle = dock_controller_map[C.id_tag]
 					shuttle.docking_controller = C.program
-					dock_controller_map -= C.id_tag
+					dock_controller_map.Remove(C.id_tag)
 
 					//escape pods
 					if(istype(C, /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod) && istype(shuttle, /datum/shuttle/ferry/escape_pod))
@@ -308,12 +308,12 @@ CONTROLLER_DEF(shuttle)
 					multidock = dock_controller_map_station[C.id_tag]
 					if(istype(multidock))
 						multidock.docking_controller_station = C.program
-						dock_controller_map_station -= C.id_tag
+						dock_controller_map_station.Remove(C.id_tag)
 				if(C.id_tag in dock_controller_map_offsite)
 					multidock = dock_controller_map_offsite[C.id_tag]
 					if(istype(multidock))
 						multidock.docking_controller_offsite = C.program
-						dock_controller_map_offsite -= C.id_tag
+						dock_controller_map_offsite.Remove(C.id_tag)
 
 				//escape pods
 				if(C.id_tag in pod_controller_map)

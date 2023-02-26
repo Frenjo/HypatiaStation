@@ -6,13 +6,8 @@ PROCESS_DEF(mob)
 	schedule_interval = 2 SECONDS
 	start_delay = 16
 
-/datum/process/mob/started()
-	..()
-	if(!GLOBL.mob_list)
-		GLOBL.mob_list = list()
-
 /datum/process/mob/doWork()
-	for(last_object in GLOBL.mob_list)
+	for(var/last_object in GLOBL.mob_list)
 		var/mob/M = last_object
 		if(!GC_DESTROYED(M))
 			try
@@ -22,7 +17,7 @@ PROCESS_DEF(mob)
 			SCHECK
 		else
 			catchBadType(M)
-			GLOBL.mob_list -= M
+			GLOBL.mob_list.Remove(M)
 
 /datum/process/mob/statProcess()
 	. = ..()

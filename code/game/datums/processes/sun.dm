@@ -8,7 +8,7 @@ PROCESS_DEF(sun)
 	schedule_interval = 2 SECONDS
 
 /datum/process/sun/setup()
-	if(!global.sun)
+	if(isnull(global.sun))
 		global.sun = new /datum/sun()
 
 /datum/process/sun/doWork()

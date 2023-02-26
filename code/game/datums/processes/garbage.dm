@@ -88,7 +88,7 @@ PROCESS_DEF(garbage)
 	testing("GC: AddTrash(\ref[A] - [A.type])")
 	#endif
 	A.gc_destroyed = world.time
-	destroyed -= "\ref[A]" // Removing any previous references that were GC'd so that the current object will be at the end of the list.
+	destroyed.Remove("\ref[A]") // Removing any previous references that were GC'd so that the current object will be at the end of the list.
 	destroyed["\ref[A]"] = world.time
 
 /datum/process/garbage/statProcess()
@@ -184,17 +184,17 @@ PROCESS_DEF(garbage)
 
 	// Remove this object from the list of things to be auto-deleted.
 	if(global.garbage_collector)
-		global.garbage_collector.destroyed -= "\ref[src]"
+		global.garbage_collector.destroyed.Remove("\ref[src]")
 
 	usr.client.running_find_references = type
 	testing("Beginning search for references to a [type].")
 	var/list/things = list()
 	for(var/client/thing)
-		things += thing
+		things.Add(thing)
 	for(var/datum/thing)
-		things += thing
+		things.Add(thing)
 	for(var/atom/thing)
-		things += thing
+		things.Add(thing)
 	testing("Collected list of things in search for references to a [type]. ([length(things)] Thing\s)")
 	for(var/datum/thing in things)
 		if(!usr.client.running_find_references)

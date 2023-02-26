@@ -7,7 +7,7 @@ PROCESS_DEF(air)
 	start_delay = 4
 
 /datum/process/air/setup()
-	if(!global.CTair_system)
+	if(isnull(global.CTair_system))
 		global.CTair_system = new /datum/controller/air_system()
 		global.CTair_system.setup()
 
