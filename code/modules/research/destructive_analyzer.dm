@@ -10,11 +10,12 @@ Note: Must be placed within 3 tiles of the R&D Console
 /obj/machinery/r_n_d/destructive_analyzer
 	name = "Destructive Analyzer"
 	icon_state = "d_analyzer"
+
 	var/obj/item/weapon/loaded_item = null
 	var/decon_mod = 1
 
 /obj/machinery/r_n_d/destructive_analyzer/New()
-	..()
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/destructive_analyzer(src)
 	component_parts += new /obj/item/weapon/stock_part/scanning_module(src)
@@ -34,21 +35,22 @@ Note: Must be placed within 3 tiles of the R&D Console
 	return
 
 /obj/machinery/r_n_d/destructive_analyzer/attackby(obj/O as obj, mob/user as mob)
-	if(shocked)
-		shock(user, 50)
+	if(..())
+		return 1
+
 	if(istype(O, /obj/item/weapon/screwdriver))
 		if(!opened)
-			opened = 1
+			opened = TRUE
 			if(linked_console)
 				linked_console.linked_destroy = null
 				linked_console = null
 			icon_state = "d_analyzer_t"
 			to_chat(user, "You open the maintenance hatch of the [src.name].")
 		else
-			opened = 0
+			opened = FALSE
 			icon_state = "d_analyzer"
 			to_chat(user, "You close the maintenance hatch of the [src.name].")
-		return
+		return 1
 	if(opened)
 		if(istype(O, /obj/item/weapon/crowbar))
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
@@ -62,38 +64,37 @@ Note: Must be placed within 3 tiles of the R&D Console
 		else
 			to_chat(user, SPAN_WARNING("You can't load the [src.name] while it's opened."))
 			return 1
-	if(disabled)
-		return
+	
 	if(!linked_console)
-		to_chat(user, SPAN_WARNING("The [src.name] must be linked to an R&D console first!"))
-		return
-	if(busy)
-		to_chat(user, SPAN_WARNING("The [src.name] is busy right now."))
-		return
-	if(istype(O, /obj/item) && !loaded_item)
-		if(isrobot(user)) //Don't put your module items in there!
-			return
-		if(!O.origin_tech)
-			to_chat(user, SPAN_WARNING("This doesn't seem to have a tech origin!"))
-			return
-		var/list/temp_tech = O.origin_tech
-		if(!length(temp_tech))
-			to_chat(user, SPAN_WARNING("You cannot deconstruct this item!"))
-			return
-		if(O.reliability < 90 && O.crit_fail == 0)
-			to_chat(user, SPAN_WARNING("Item is neither reliable enough nor broken enough to learn from."))
-			return
-		busy = 1
-		loaded_item = O
-		user.drop_item()
-		O.loc = src
-		to_chat(user, SPAN_INFO("You add the [O.name] to the [src.name]!"))
-		flick("d_analyzer_la", src)
-		spawn(10)
-			icon_state = "d_analyzer_l"
-			busy = 0
+		to_chat(user, SPAN_WARNING("\The [src.name] must be linked to an R&D console first!"))
 		return 1
-	return
+
+	if(!istype(O, /obj/item) || loaded_item)
+		return 1
+	if(isrobot(user)) // Don't put your module items in there!
+		return 1
+
+	if(!O.origin_tech)
+		to_chat(user, SPAN_WARNING("This doesn't seem to have a tech origin!"))
+		return 1
+	var/list/temp_tech = O.origin_tech
+	if(!length(temp_tech))
+		to_chat(user, SPAN_WARNING("You cannot deconstruct this item!"))
+		return 1
+	if(O.reliability < 90 && O.crit_fail == 0)
+		to_chat(user, SPAN_WARNING("This item is neither reliable enough nor broken enough to learn from."))
+		return 1
+
+	busy = TRUE
+	loaded_item = O
+	user.drop_item()
+	O.loc = src
+	to_chat(user, SPAN_INFO("You add the [O.name] to the [src.name]!"))
+	flick("d_analyzer_la", src)
+	spawn(10)
+		icon_state = "d_analyzer_l"
+		busy = FALSE
+	return 1
 
 //For testing purposes only.
 /*/obj/item/weapon/deconstruction_test

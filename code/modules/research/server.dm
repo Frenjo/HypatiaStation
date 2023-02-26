@@ -19,7 +19,7 @@
 	var/operating_temperature = 100 + T0C
 
 /obj/machinery/r_n_d/server/New()
-	..()
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/rdserver(src)
 	component_parts += new /obj/item/weapon/stock_part/scanning_module(src)
@@ -125,20 +125,19 @@
 				env.merge(removed)
 
 /obj/machinery/r_n_d/server/attackby(obj/item/O as obj, mob/user as mob)
-	if(disabled)
-		return
-	if(shocked)
-		shock(user, 50)
+	if(..())
+		return 1
+
 	if(istype(O, /obj/item/weapon/screwdriver))
 		if(!opened)
-			opened = 1
+			opened = TRUE
 			icon_state = "server_o"
 			to_chat(user, "You open the maintenance hatch of the [src.name].")
 		else
-			opened = 0
+			opened = FALSE
 			icon_state = "server"
 			to_chat(user, "You close the maintenance hatch of the [src.name].")
-		return
+		return 1
 	if(opened)
 		if(istype(O, /obj/item/weapon/crowbar))
 			griefProtection()
