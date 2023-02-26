@@ -1,8 +1,8 @@
 // Returns the lowest turf available on a given Z-level.
 /proc/get_base_turf(z)
-	if(!GLOBL.current_map.base_turf_by_z[z])
-		GLOBL.current_map.base_turf_by_z[z] = world.turf
-	return GLOBL.current_map.base_turf_by_z[z]
+	if(isnull(GLOBL.current_map.base_turf_by_z["[z]"]))
+		GLOBL.current_map.base_turf_by_z["[z]"] = world.turf
+	return GLOBL.current_map.base_turf_by_z["[z]"]
 
 // An area can override the z-level base turf, so our solar array areas etc. can be space-based.
 /proc/get_base_turf_by_area(turf/T)
