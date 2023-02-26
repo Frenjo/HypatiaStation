@@ -1,33 +1,22 @@
-#define RECOMMENDED_VERSION 514
-
 /*
  * World Creation
  *
  * Here is where a round itself is actually set up and started, lots of important things happen here:
  *	Sets the game window's title bar text to include the game version and current map's station name.
  *	Sets the world's tick_lag value from the configuration.
- *	Sets up some log files.
- *	Calculates the changelog hash.
  *	Checks if the recommended BYOND version is running.
  *	Post-loads the configuration files.
  *	Sets up the hub visibility variables.
- *	Loads admins and moderators.
+ *	Calls the startup hook.
+ *	Loads an away mission and generates the mining asteroid's secrets.
  *	Activates the master_controller and process_scheduler, starting the game loop that causes everything else to begin setting up and processing.
  *
  * Nothing happens until something moves. ~ Albert Einstein
 */
+#define RECOMMENDED_VERSION 514
 /world/New()
 	name = "Space Station 13 - [GLOBL.game_version]: [GLOBL.current_map.station_name]"
 	tick_lag = CONFIG_GET(ticklag)
-
-	//logs
-	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
-	GLOBL.href_logfile = file("data/logs/[date_string] hrefs.htm")
-	GLOBL.diary = file("data/logs/[date_string].log")
-	GLOBL.diaryofmeanpeople = file("data/logs/[date_string] Attack.log")
-	GLOBL.diary << "[global.log_end]\n[global.log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][global.log_end]\n---------------------[global.log_end]"
-	GLOBL.diaryofmeanpeople << "[global.log_end]\n[global.log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][global.log_end]\n---------------------[global.log_end]"
-	GLOBL.changelog_hash = md5('html/changelog.html')			//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)
 		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND."
@@ -65,7 +54,6 @@
 	spawn(5 MINUTES) // Delay by 5 minutes (300 seconds/3000 deciseconds) so we aren't adding to the round-start lag.
 		if(CONFIG_GET(ToRban))
 			ToRban_autoupdate()
-	return
 #undef RECOMMENDED_VERSION
 
 /world/Del()
