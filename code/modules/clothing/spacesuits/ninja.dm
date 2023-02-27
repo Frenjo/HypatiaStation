@@ -31,8 +31,9 @@
 		"tricordrazine", "dexalinp", "spaceacillin", 
 		"anti_toxin", "nutriment", "radium", "hyronalin"
 	)
-	var/stored_research[] 								//For stealing station research.
-	var/obj/item/weapon/disk/tech_disk/t_disk 			//To copy design onto disk.
+
+	var/list/stored_research = list()			// For stealing station research.
+	var/obj/item/weapon/disk/tech_disk/t_disk 	//To copy design onto disk.
 
 		//Other articles of ninja gear worn together, used to easily reference them after initializing.
 	var/obj/item/clothing/head/helmet/space/space_ninja/n_hood

@@ -2,86 +2,72 @@
 /proc/get_material_name_by_type(type)
 	switch(type)
 		if(/obj/item/stack/sheet/metal)
-			. = MATERIAL_METAL
+			return MATERIAL_METAL
 		if(/obj/item/stack/sheet/glass)
-			. = MATERIAL_GLASS
+			return MATERIAL_GLASS
 		if(/obj/item/stack/sheet/mineral/gold)
-			. = MATERIAL_GOLD
+			return MATERIAL_GOLD
 		if(/obj/item/stack/sheet/mineral/silver)
-			. = MATERIAL_SILVER
+			return MATERIAL_SILVER
 		if(/obj/item/stack/sheet/mineral/diamond)
-			. = MATERIAL_DIAMOND
+			return MATERIAL_DIAMOND
 		if(/obj/item/stack/sheet/mineral/plasma)
-			. = MATERIAL_PLASMA
+			return MATERIAL_PLASMA
 		if(/obj/item/stack/sheet/mineral/uranium)
-			. = MATERIAL_URANIUM
+			return MATERIAL_URANIUM
 		if(/obj/item/stack/sheet/mineral/bananium)
-			. = MATERIAL_BANANIUM
+			return MATERIAL_BANANIUM
 		if(/obj/item/stack/sheet/mineral/adamantine)
-			. = MATERIAL_ADAMANTINE
+			return MATERIAL_ADAMANTINE
 		if(/obj/item/stack/sheet/mineral/mythril)
-			. = MATERIAL_MYTHRIL
+			return MATERIAL_MYTHRIL
 
 // Returns the typepath of the material with the provided MATERIAL_X define.
 /proc/get_material_type_by_name(name)
 	switch(name)
 		if(MATERIAL_METAL)
-			. = /obj/item/stack/sheet/metal
+			return /obj/item/stack/sheet/metal
 		if(MATERIAL_GLASS)
-			. = /obj/item/stack/sheet/glass
+			return /obj/item/stack/sheet/glass
 		if(MATERIAL_GOLD)
-			. = /obj/item/stack/sheet/mineral/gold
+			return /obj/item/stack/sheet/mineral/gold
 		if(MATERIAL_SILVER)
-			. = /obj/item/stack/sheet/mineral/silver
+			return /obj/item/stack/sheet/mineral/silver
 		if(MATERIAL_DIAMOND)
-			. = /obj/item/stack/sheet/mineral/diamond
+			return /obj/item/stack/sheet/mineral/diamond
 		if(MATERIAL_PLASMA)
-			. = /obj/item/stack/sheet/mineral/plasma
+			return /obj/item/stack/sheet/mineral/plasma
 		if(MATERIAL_URANIUM)
-			. = /obj/item/stack/sheet/mineral/uranium
+			return /obj/item/stack/sheet/mineral/uranium
 		if(MATERIAL_BANANIUM)
-			. = /obj/item/stack/sheet/mineral/bananium
+			return /obj/item/stack/sheet/mineral/bananium
 		if(MATERIAL_ADAMANTINE)
-			. = /obj/item/stack/sheet/mineral/adamantine
+			return /obj/item/stack/sheet/mineral/adamantine
 		if(MATERIAL_MYTHRIL)
-			. = /obj/item/stack/sheet/mineral/mythril
+			return /obj/item/stack/sheet/mineral/mythril
 
-// Returns the name of the material with the provided id.
+// Returns the name of the material with the provided id or null if it doesn't exist.
 /proc/get_material_name_by_id(id)
-	. = null
 	switch(id)
 		if(MATERIAL_METAL)
-			. = "Metal"
+			return "Metal"
 		if(MATERIAL_GLASS)
-			. = "Glass"
+			return "Glass"
 		if(MATERIAL_GOLD)
-			. = "Gold"
+			return "Gold"
 		if(MATERIAL_SILVER)
-			. = "Silver"
+			return "Silver"
 		if(MATERIAL_DIAMOND)
-			. = "Diamond"
+			return "Diamond"
 		if(MATERIAL_PLASMA)
-			. = "Solid Plasma"
+			return "Solid Plasma"
 		if(MATERIAL_URANIUM)
-			. = "Uranium"
+			return "Uranium"
 		if(MATERIAL_BANANIUM)
-			. = "Bananium"
+			return "Bananium"
 		if(MATERIAL_ADAMANTINE)
-			. = "Adamantine"
+			return "Adamantine"
 		if(MATERIAL_MYTHRIL)
-			. = "Mythril"
-	if(!isnull(.))
-		return .
-	else
-		var/datum/reagent/temp_reagent
-		for(var/R in SUBTYPESOF(/datum/reagent))
-			temp_reagent = null
-			temp_reagent = new R()
-			if(temp_reagent.id == id)
-				. = temp_reagent.name
-				qdel(temp_reagent)
-				temp_reagent = null
-				break
+			return "Mythril"
 
-	if(isnull(.))
-		. = "null material"
+	return null

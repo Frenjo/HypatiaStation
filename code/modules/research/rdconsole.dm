@@ -50,21 +50,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	var/id = 0			//ID of the computer (for server restrictions).
 	var/sync = 1		//If sync = 0, it doesn't show up on Server Control Console
 
-/obj/machinery/computer/rdconsole/proc/get_tech_name(id) //A simple helper proc to find the name of a tech with a given ID.
-	. = null
-	var/datum/tech/check_tech
-	for(var/T in SUBTYPESOF(/datum/tech))
-		check_tech = null
-		check_tech = new T()
-		if(check_tech.id == id)
-			. = check_tech.name
-			qdel(check_tech)
-			check_tech = null
-			break
-	
-	if(isnull(.))
-		. = "null tech"
-
 /obj/machinery/computer/rdconsole/proc/SyncRDevices() //Makes sure it is properly sync'ed up with the devices attached to it (if any).
 	for(var/obj/machinery/r_n_d/D in oview(3, src))
 		if(!isnull(D.linked_console) || D.disabled || D.opened)
@@ -608,7 +593,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Origin Tech:<BR>"
 			var/list/temp_tech = linked_destroy.loaded_item.origin_tech
 			for(var/T in temp_tech)
-				dat += "* [get_tech_name(T)] [temp_tech[T]]<BR>"
+				var/datum/tech/tech = GLOBL.all_techs[T] // If this comes out as null, then someone has added something invalid to linked_destroy.loaded_item.origin_tech.
+				dat += "* [tech.name] [temp_tech[T]]<BR>"
 			dat += "<HR><A href='?src=\ref[src];deconstruct=1'>Deconstruct Item</A> || "
 			dat += "<A href='?src=\ref[src];eject_item=1'>Eject Item</A> || "
 
@@ -630,7 +616,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				var/temp_dat = "[D.name]"
 				var/check_materials = TRUE
 				for(var/M in D.materials)
-					temp_dat += " [D.materials[M]] [get_material_name_by_id(M)]"
+					var/material_name = get_material_name_by_id(M)
+					if(isnull(material_name))
+						var/datum/reagent/reagent = GLOBL.chemical_reagents_list[M]
+						material_name = reagent.name // If this still comes out as null, then someone has added something invalid to D.materials.
+					temp_dat += " [D.materials[M]] [material_name]"
 					if(D.materials[M] > linked_lathe.stored_materials[M])
 						check_materials = FALSE
 					if(!check_materials && linked_lathe.reagents.has_reagent(M, D.materials[M]))
@@ -752,7 +742,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				var/temp_dat = "[D.name]"
 				var/check_materials = TRUE
 				for(var/M in D.materials)
-					temp_dat += " [D.materials[M]] [get_material_name_by_id(M)]"
+					var/material_name = get_material_name_by_id(M)
+					if(isnull(material_name))
+						var/datum/reagent/reagent = GLOBL.chemical_reagents_list[M]
+						material_name = reagent.name // If this still comes out as null, then someone has added something invalid to D.materials.
+					temp_dat += " [D.materials[M]] [material_name]"
 					if(D.materials[M] > linked_imprinter.stored_materials[M])
 						check_materials = FALSE
 					if(!check_materials && linked_imprinter.reagents.has_reagent(M, D.materials[M]))

@@ -109,6 +109,18 @@
 				GLOBL.all_skills[S.field] = list()
 			var/list/field_list = GLOBL.all_skills[S.field]
 			field_list += S
+	
+	// Techs - Initialises all /datum/tech into a list, indexed by id.
+	paths = SUBTYPESOF(/datum/tech)
+	for(var/type in paths)
+		var/datum/tech/T = new type()
+		GLOBL.all_techs[T.id] = T
+	
+	// Designs - Initialises all /datum/design into a list, indexed by id.
+	paths = SUBTYPESOF(/datum/design)
+	for(var/T in paths)
+		var/datum/design/D = new T()
+		GLOBL.all_designs[D.id] = D
 
 	return 1
 

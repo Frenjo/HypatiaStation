@@ -43,41 +43,41 @@ research holder datum.
 **						Master Types						  **
 **	Includes all the helper procs and basic tech processing.  **
 ***************************************************************/
-/datum/research								//Holder for all the existing, archived, and known tech. Individual to console.
-									//Datum/tech go here.
-	var/list/possible_tech = list()			//List of all tech in the game that players have access to (barring special events).
-	var/list/known_tech = list()				//List of locally known tech.
-	var/list/possible_designs = list()		//List of all designs (at base reliability).
-	var/list/known_designs = list()			//List of available designs (at base reliability).
+/datum/research	// Holder for all the existing, archived, and known tech. Individual to console.
+	// Datum/tech go here.
+	var/list/possible_tech = list()		// List of all tech in the game that players have access to (barring special events).
+	var/list/known_tech = list()		// List of locally known tech.
+	var/list/possible_designs = list()	// List of all designs (at base reliability).
+	var/list/known_designs = list()		// List of available designs (at base reliability).
 
-/datum/research/New()		//Insert techs into possible_tech here. Known_tech automatically updated.
-	for(var/T in SUBTYPESOF(/datum/tech))
-		possible_tech += new T(src)
-	for(var/D in SUBTYPESOF(/datum/design))
-		possible_designs += new D(src)
+/datum/research/New()	// Insert techs into possible_tech here. Known_tech automatically updated.
+	for(var/T in GLOBL.all_techs)
+		possible_tech += GLOBL.all_techs[T]
+	for(var/D in GLOBL.all_designs)
+		possible_designs += GLOBL.all_designs[D]
 	RefreshResearch()
 
-//Checks to see if tech has all the required pre-reqs.
-//Input: datum/tech; Output: 0/1 (false/true)
+// Checks to see if tech has all the required pre-reqs.
+// Input: datum/tech; Output: TRUE/FALSE
 /datum/research/proc/TechHasReqs(datum/tech/T)
 	if(!length(T.req_tech))
-		return 1
+		return TRUE
 	var/matches = 0
 	for(var/req in T.req_tech)
 		for(var/datum/tech/known in known_tech)
-			if((req == known.id) && (known.level >= T.req_tech[req]))
+			if(req == known.id && known.level >= T.req_tech[req])
 				matches++
 				break
 	if(matches == length(T.req_tech))
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 
-//Checks to see if design has all the required pre-reqs.
-//Input: datum/design; Output: 0/1 (false/true)
+// Checks to see if design has all the required pre-reqs.
+// Input: datum/design; Output: TRUE/FALSE
 /datum/research/proc/DesignHasReqs(datum/design/D)
 	if(!length(D.req_tech))
-		return 1
+		return TRUE
 	var/matches = 0
 	var/list/k_tech = list()
 	for(var/datum/tech/known in known_tech)
@@ -86,15 +86,15 @@ research holder datum.
 		if(!isnull(k_tech[req]) && k_tech[req] >= D.req_tech[req])
 			matches++
 	if(matches == length(D.req_tech))
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 /*
-//Checks to see if design has all the required pre-reqs.
-//Input: datum/design; Output: 0/1 (false/true)
+// Checks to see if design has all the required pre-reqs.
+// Input: datum/design; Output: TRUE/FALSE
 /datum/research/proc/DesignHasReqs(var/datum/design/D)
 	if(!length(D.req_tech))
-		return 1
+		return TRUE
 	var/matches = 0
 	for(var/req in D.req_tech)
 		for(var/datum/tech/known in known_tech)
@@ -102,13 +102,13 @@ research holder datum.
 				matches++
 				break
 	if(matches == length(D.req_tech))
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 */
 
-//Adds a tech to known_tech list. Checks to make sure there aren't duplicates and updates existing tech's levels if needed.
-//Input: datum/tech; Output: Null
+// Adds a tech to known_tech list. Checks to make sure there aren't duplicates and updates existing tech's levels if needed.
+// Input: datum/tech; Output: Null
 /datum/research/proc/AddTech2Known(datum/tech/T)
 	for(var/datum/tech/known in known_tech)
 		if(T.id == known.id)
@@ -127,8 +127,8 @@ research holder datum.
 	known_designs += D
 	return
 
-//Refreshes known_tech and known_designs list. Then updates the reliability vars of the designs in the known_designs list.
-//Input/Output: n/a
+// Refreshes known_tech and known_designs list. Then updates the reliability vars of the designs in the known_designs list.
+// Input/Output: n/a
 /datum/research/proc/RefreshResearch()
 	for(var/datum/tech/PT in possible_tech)
 		if(TechHasReqs(PT))
@@ -142,8 +142,8 @@ research holder datum.
 		D.CalcReliability(known_tech)
 	return
 
-//Refreshes the levels of a given tech.
-//Input: Tech's ID and Level; Output: null
+// Refreshes the levels of a given tech.
+// Input: Tech's ID and Level; Output: null
 /datum/research/proc/UpdateTech(ID, level)
 	for(var/datum/tech/KT in known_tech)
 		if(KT.id == ID)
@@ -163,13 +163,13 @@ research holder datum.
 **	Includes all the various technoliges and what they make.  **
 ***************************************************************/
 /datum/tech	//Datum of individual technologies.
-	var/name = "name"					//Name of the technology.
-	var/desc = "description"			//General description of what it does and what it makes.
-	var/id = "id"						//An easily referenced ID. Must be alphanumeric, lower-case, and no symbols.
-	var/level = 1						//A simple number scale of the research level. Level 0 = Secret tech.
-	var/list/req_tech = list()			//List of ids associated values of techs required to research this tech. "id" = #
+	var/name = "name"			// Name of the technology.
+	var/desc = "description"	// General description of what it does and what it makes.
+	var/id = "id"				// An easily referenced ID. Must be alphanumeric, lower-case, and no symbols.
+	var/level = 1				// A simple number scale of the research level. Level 0 = Secret tech.
+	var/list/req_tech = list()	// List of ids associated values of techs required to research this tech. "id" = #
 
-//Trunk Technologies (don't require any other techs and you start knowning them).
+// Trunk Technologies (don't require any other techs and you start knowing them).
 /datum/tech/materials
 	name = "Materials Research"
 	desc = "Development of new and improved materials."
@@ -219,6 +219,7 @@ research holder datum.
 	name = "Illegal Technologies Research"
 	desc = "The study of technologies that violate standard NanoTrasen regulations."
 	id = RESEARCH_TECH_SYNDICATE
+	level = 0
 
 // Added this, hopefully it's fixed. -Frenjo
 /datum/tech/arcane
@@ -228,7 +229,7 @@ research holder datum.
 	level = 0
 
 /*
-//Branch Techs
+// Branch Techs
 /datum/tech/explosives
 	name = "Explosives Research"
 	desc = "The creation and application of explosive materials."

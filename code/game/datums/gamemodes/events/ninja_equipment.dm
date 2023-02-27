@@ -27,9 +27,10 @@ ________________________________________________________________________________
 	spark_system = new()//spark initialize
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
-	stored_research = new()//Stolen research initialize.
-	for(var/T in SUBTYPESOF(/datum/tech))//Store up on research.
-		stored_research += new T(src)
+
+	for(var/T in GLOBL.all_techs) // Store up on research.
+		stored_research += GLOBL.all_techs[T]
+
 	var/reagent_amount//reagent initialize
 	for(var/reagent_id in reagent_list)
 		reagent_amount += reagent_id == "radium" ? r_maxamount+(a_boost*a_transfer) : r_maxamount//AI can inject radium directly.
