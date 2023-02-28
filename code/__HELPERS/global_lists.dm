@@ -3,7 +3,15 @@
 //////////////////////////
 
 /hook/global_init/proc/makeDatumRefLists()
-	var/list/paths
+	var/list/paths = list()
+
+	// TODO: Convert these to /decl/mineral.
+	// Minerals - Initialises all /mineral into a list, indexed by id.
+	// --- THIS HAS TO BE FIRST OTHERWISE SHIT BREAKS ---
+	paths = SUBTYPESOF(/mineral)
+	for(var/type in paths)
+		var/mineral/M = new type()
+		GLOBL.all_minerals[M.id] = M
 
 	// Hair - Initialises all /datum/sprite_accessory/hair into a list indexed by hair-style name
 	paths = SUBTYPESOF(/datum/sprite_accessory/hair)
@@ -12,12 +20,12 @@
 		GLOBL.hair_styles_list[H.name] = H
 		switch(H.gender)
 			if(MALE)
-				GLOBL.hair_styles_male_list += H.name
+				GLOBL.hair_styles_male_list.Add(H.name)
 			if(FEMALE)
-				GLOBL.hair_styles_female_list += H.name
+				GLOBL.hair_styles_female_list.Add(H.name)
 			else
-				GLOBL.hair_styles_male_list += H.name
-				GLOBL.hair_styles_female_list += H.name
+				GLOBL.hair_styles_male_list.Add(H.name)
+				GLOBL.hair_styles_female_list.Add(H.name)
 
 	// Facial Hair - Initialises all /datum/sprite_accessory/facial_hair into a list indexed by facialhair-style name
 	paths = SUBTYPESOF(/datum/sprite_accessory/facial_hair)
@@ -26,18 +34,18 @@
 		GLOBL.facial_hair_styles_list[H.name] = H
 		switch(H.gender)
 			if(MALE)
-				GLOBL.facial_hair_styles_male_list += H.name
+				GLOBL.facial_hair_styles_male_list.Add(H.name)
 			if(FEMALE)
-				GLOBL.facial_hair_styles_female_list += H.name
+				GLOBL.facial_hair_styles_female_list.Add(H.name)
 			else
-				GLOBL.facial_hair_styles_male_list += H.name
-				GLOBL.facial_hair_styles_female_list += H.name
+				GLOBL.facial_hair_styles_male_list.Add(H.name)
+				GLOBL.facial_hair_styles_female_list.Add(H.name)
 
 	// Surgery Steps - Initialises all /datum/surgery_step into a list.
 	paths = SUBTYPESOF(/datum/surgery_step)
 	for(var/T in paths)
 		var/datum/surgery_step/S = new T()
-		GLOBL.surgery_steps += S
+		GLOBL.surgery_steps.Add(S)
 	sort_surgeries()
 
 	// Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id.
@@ -57,13 +65,13 @@
 
 		if(length(D.required_reagents))
 			for(var/reaction in D.required_reagents)
-				reaction_ids += reaction
+				reaction_ids.Add(reaction)
 
 		// Create filters based on each reagent id in the required reagents list
 		for(var/id in reaction_ids)
-			if(!GLOBL.chemical_reactions_list[id])
+			if(isnull(GLOBL.chemical_reactions_list[id]))
 				GLOBL.chemical_reactions_list[id] = list()
-			GLOBL.chemical_reactions_list[id] += D
+			GLOBL.chemical_reactions_list[id].Add(D)
 			break // Don't bother adding ourselves to other reagent ids, it is redundant.
 
 	// Medical side effects. List all effects by their names
@@ -98,17 +106,17 @@
 		GLOBL.all_species[S.name] = S
 
 		if(S.flags & IS_WHITELISTED)
-			GLOBL.whitelisted_species += S.name
+			GLOBL.whitelisted_species.Add(S.name)
 	
 	// Skills - Initialises all /datum/skill into a list, indexed by field.
 	paths = SUBTYPESOF(/datum/skill)
 	for(var/T in paths)
 		var/datum/skill/S = new T()
 		if(S.id != "none")
-			if(!GLOBL.all_skills.Find(S.field))
+			if(isnull(GLOBL.all_skills.Find(S.field)))
 				GLOBL.all_skills[S.field] = list()
 			var/list/field_list = GLOBL.all_skills[S.field]
-			field_list += S
+			field_list.Add(S)
 	
 	// Techs - Initialises all /datum/tech into a list, indexed by id.
 	paths = SUBTYPESOF(/datum/tech)
@@ -118,9 +126,14 @@
 	
 	// Designs - Initialises all /datum/design into a list, indexed by id.
 	paths = SUBTYPESOF(/datum/design)
-	for(var/T in paths)
-		var/datum/design/D = new T()
+	for(var/type in paths)
+		var/datum/design/D = new type()
 		GLOBL.all_designs[D.id] = D
+	
+	// Artifact effects - Adds the typepaths of all /datum/artifact_effect to a list.
+	paths = SUBTYPESOF(/datum/artifact_effect)
+	for(var/type in paths)
+		GLOBL.all_artifact_effect_types.Add(type)
 
 	return 1
 

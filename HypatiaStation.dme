@@ -96,6 +96,7 @@
 #include "code\_global_vars\lists\jobs.dm"
 #include "code\_global_vars\lists\logging.dm"
 #include "code\_global_vars\lists\mapping.dm"
+#include "code\_global_vars\lists\mining.dm"
 #include "code\_global_vars\lists\miscellaneous.dm"
 #include "code\_global_vars\lists\mobs.dm"
 #include "code\_global_vars\lists\names.dm"

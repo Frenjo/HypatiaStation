@@ -5,7 +5,7 @@
 GLOBAL_GLOBL_LIST_NEW(artifact_spawn) // Runtime fix for geometry loading before controller is instantiated.
 
 /turf/simulated/mineral //wall piece
-	name = "Rock"
+	name = "rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
 	oxygen = 0
@@ -15,7 +15,7 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawn) // Runtime fix for geometry loading before
 	blocks_air = 1
 	temperature = T0C
 
-	var/mineral/mineral
+	var/mineral/mineral = null
 	var/mined_ore = 0
 	var/last_act = 0
 
@@ -92,12 +92,11 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawn) // Runtime fix for geometry loading before
 					target_turf.MineralSpread()
 
 /turf/simulated/mineral/proc/UpdateMineral()
-	if(!mineral)
-		name = "\improper Rock"
-		icon_state = "rock"
+	if(isnull(mineral))
 		return
-	name = "\improper [mineral.display_name] deposit"
-	icon_state = "rock_[mineral.name]"
+
+	name = "\improper [lowertext(mineral.name)] deposit"
+	icon_state = "rock_[mineral.id]"
 
 	//Not even going to touch this pile of spaghetti
 /turf/simulated/mineral/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -348,94 +347,64 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawn) // Runtime fix for geometry loading before
 				R.amount = rand(5, 25)
 
 // Re-added these because some away missions require them.
-/turf/simulated/mineral/bananium
-	icon_state = "rock_Bananium"
-	var/mineral_name = MATERIAL_BANANIUM
+/turf/simulated/mineral/gold
+	icon_state = "rock_gold"
 
-/turf/simulated/mineral/bananium/New()
-	if(!GLOBL.name_to_mineral)
-		SetupMinerals()
-
-	if(mineral_name in GLOBL.name_to_mineral)
-		mineral = GLOBL.name_to_mineral[mineral_name]
-		UpdateMineral()
-
-	. = ..()
-
-/turf/simulated/mineral/diamond
-	icon_state = "rock_Diamond"
-	var/mineral_name = MATERIAL_DIAMOND
-
-/turf/simulated/mineral/diamond/New()
-	if(!GLOBL.name_to_mineral)
-		SetupMinerals()
-
-	if(mineral_name in GLOBL.name_to_mineral)
-		mineral = GLOBL.name_to_mineral[mineral_name]
-		UpdateMineral()
-
+/turf/simulated/mineral/gold/New()
+	mineral = GLOBL.all_minerals[MATERIAL_GOLD]
+	UpdateMineral()
 	. = ..()
 
 /turf/simulated/mineral/silver
-	icon_state = "rock_Silver"
-	var/mineral_name = MATERIAL_SILVER
+	icon_state = "rock_silver"
 
 /turf/simulated/mineral/silver/New()
-	if(!GLOBL.name_to_mineral)
-		SetupMinerals()
-
-	if(mineral_name in GLOBL.name_to_mineral)
-		mineral = GLOBL.name_to_mineral[mineral_name]
-		UpdateMineral()
-
+	mineral = GLOBL.all_minerals[MATERIAL_SILVER]
+	UpdateMineral()
 	. = ..()
 
-/turf/simulated/mineral/gold
-	icon_state = "rock_Gold"
-	var/mineral_name = MATERIAL_GOLD
+/turf/simulated/mineral/diamond
+	icon_state = "rock_diamond"
 
-/turf/simulated/mineral/gold/New()
-	if(!GLOBL.name_to_mineral)
-		SetupMinerals()
+/turf/simulated/mineral/diamond/New()
+	mineral = GLOBL.all_minerals[MATERIAL_DIAMOND]
+	UpdateMineral()
+	. = ..()
 
-	if(mineral_name in GLOBL.name_to_mineral)
-		mineral = GLOBL.name_to_mineral[mineral_name]
-		UpdateMineral()
+/turf/simulated/mineral/bananium
+	icon_state = "rock_bananium"
 
+/turf/simulated/mineral/bananium/New()
+	mineral = GLOBL.all_minerals[MATERIAL_BANANIUM]
+	UpdateMineral()
 	. = ..()
 // End of away mission specific additions.
 
 /turf/simulated/mineral/random
-	name = "Mineral deposit"
-	var/mineralSpawnChanceList = list(
+	name = "mineral deposit"
+
+	var/mineral_chance = 10 // Means 10% chance of this plot changing to a mineral deposit.
+	var/mineral_spawn_chance_list = list(
 		MATERIAL_URANIUM = 5,
-		"Iron" = 40,
+		MATERIAL_METAL = 40,
 		MATERIAL_DIAMOND = 1,
 		MATERIAL_GOLD = 5,
 		MATERIAL_SILVER = 5,
 		MATERIAL_PLASMA = 25,
 		MATERIAL_BANANIUM = 1
 	)
-	var/mineralChance = 10 // Means 10% chance of this plot changing to a mineral deposit.
 
 /turf/simulated/mineral/random/New()
-	if(prob(mineralChance) && !mineral)
-		var/mineral_name = pickweight(mineralSpawnChanceList) //temp mineral name
-
-		if(!GLOBL.name_to_mineral)
-			SetupMinerals()
-
-		if(mineral_name && (mineral_name in GLOBL.name_to_mineral))
-			mineral = GLOBL.name_to_mineral[mineral_name]
-			UpdateMineral()
-
+	if(prob(mineral_chance))
+		mineral = GLOBL.all_minerals[pickweight(mineral_spawn_chance_list)]
+	UpdateMineral()
 	. = ..()
 
 /turf/simulated/mineral/random/high_chance
-	mineralChance = 25
-	mineralSpawnChanceList = list(
+	mineral_chance = 25
+	mineral_spawn_chance_list = list(
 		MATERIAL_URANIUM = 10,
-		"Iron" = 30,
+		MATERIAL_METAL = 30,
 		MATERIAL_DIAMOND = 2,
 		MATERIAL_GOLD = 10,
 		MATERIAL_SILVER = 10,
@@ -447,13 +416,14 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawn) // Runtime fix for geometry loading before
  * Asteroid
  */
 /turf/simulated/floor/plating/airless/asteroid //floor piece
-	name = "Asteroid"
+	name = "asteroid"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "asteroid"
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
 	icon_plating = "asteroid"
+
 	var/dug = 0	//0 = has not yet been dug, 1 = has already been dug
 
 /turf/simulated/floor/plating/airless/asteroid/New()

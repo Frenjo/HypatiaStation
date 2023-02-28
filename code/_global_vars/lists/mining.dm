@@ -1,0 +1,1 @@
+GLOBAL_GLOBL_LIST_NEW(all_minerals) // A list of all minerals, indexed by id.

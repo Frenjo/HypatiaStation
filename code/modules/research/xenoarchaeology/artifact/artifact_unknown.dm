@@ -14,12 +14,12 @@
 	..()
 
 	//setup primary effect - these are the main ones (mixed)
-	var/effecttype = pick(SUBTYPESOF(/datum/artifact_effect))
+	var/effecttype = pick(GLOBL.all_artifact_effect_types)
 	my_effect = new effecttype(src)
 
 	//75% chance to have a secondary stealthy (and mostly bad) effect
 	if(prob(75))
-		effecttype = pick(SUBTYPESOF(/datum/artifact_effect))
+		effecttype = pick(GLOBL.all_artifact_effect_types)
 		secondary_effect = new effecttype(src)
 		if(prob(75))
 			secondary_effect.ToggleActivate(0)

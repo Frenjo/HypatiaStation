@@ -842,33 +842,14 @@
 	s_tone = max(min(round(text2num(new_tone)), 220), 1)
 	s_tone = -s_tone + 35
 
-	// hair
-	var/list/all_hairs = SUBTYPESOF(/datum/sprite_accessory/hair)
-	var/list/hairs = list()
-
-	// loop through potential hairs
-	for(var/x in all_hairs)
-		var/datum/sprite_accessory/hair/H = new x // create new hair datum based on type x
-		hairs.Add(H.name) // add hair name to hairs
-		qdel(H) // delete the hair after it's all done
-
-	var/new_style = input("Please select hair style", "Character Generation", h_style) as null|anything in hairs
-
-	// if new style selected (not cancel)
+	// Hair.
+	var/new_style = input("Please select hair style", "Character Generation", h_style) as null | anything in GLOBL.hair_styles_list
+	// If new style selected (not cancel.)
 	if(new_style)
 		h_style = new_style
 
-	// facial hair
-	var/list/all_fhairs = SUBTYPESOF(/datum/sprite_accessory/facial_hair)
-	var/list/fhairs = list()
-
-	for(var/x in all_fhairs)
-		var/datum/sprite_accessory/facial_hair/H = new x
-		fhairs.Add(H.name)
-		qdel(H)
-
-	new_style = input("Please select facial style", "Character Generation", f_style) as null|anything in fhairs
-
+	// Facial hair.
+	new_style = input("Please select facial style", "Character Generation", f_style) as null | anything in GLOBL.facial_hair_styles_list
 	if(new_style)
 		f_style = new_style
 
