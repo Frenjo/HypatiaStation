@@ -1,4 +1,9 @@
-GLOBAL_GLOBL_LIST_NEW(assistant_occupations)
+GLOBAL_GLOBL_LIST_NEW(all_jobs) // List of all job types, minus borg and AI, indexed by name.
+GLOBAL_GLOBL_LIST_INIT(all_centcom_jobs, list(
+	"VIP Guest", "Custodian", "Thunderdome Overseer",
+	"Intel Officer", "Medical Officer", "Death Commando",
+	"Research Officer", "BlackOps Commander", "Supreme Commander"
+))
 
 GLOBAL_GLOBL_LIST_INIT(departments, list(
 	"Command",
@@ -23,7 +28,7 @@ GLOBAL_GLOBL_LIST_INIT(engineering_positions, list(
 	"Chief Engineer",
 	"Station Engineer",
 	"Atmospheric Technician",
-	"Roboticist",	// Part of both science and engineering.
+	"Roboticist"	// Part of both science and engineering.
 ))
 
 GLOBAL_GLOBL_LIST_INIT(medical_positions, list(
@@ -49,7 +54,7 @@ GLOBAL_GLOBL_LIST_INIT(cargo_positions, list(
 	"Cargo Technician",
 	"Mailman", // Re-added mailman. -Frenjo
 	"Mining Foreman",
-	"Shaft Miner",
+	"Shaft Miner"
 ))
 
 // BS12 EDIT

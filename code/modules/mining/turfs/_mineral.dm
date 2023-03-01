@@ -30,9 +30,7 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawn) // Runtime fix for geometry loading before
 
 /turf/simulated/mineral/New()
 	. = ..()
-	UpdateMineral()
-	if(mineral.spread)
-		MineralSpread()
+	update_and_spread_mineral()
 
 /turf/simulated/mineral/initialize()
 	. = ..()
@@ -222,21 +220,25 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawn) // Runtime fix for geometry loading before
 	else
 		return attack_hand(user)
 
-/turf/simulated/mineral/proc/UpdateMineral()
+// Updates the turf's mineral and, if applicable, attempts to spread it.
+/turf/simulated/mineral/proc/update_and_spread_mineral()
 	if(ispath(mineral, /decl/mineral))
 		mineral = GET_DECL_INSTANCE(mineral)
+	if(isnull(mineral))
+		return
 
 	name = "\improper [lowertext(mineral.name)] deposit"
 	icon_state = "rock_[mineral.id]"
 
-/turf/simulated/mineral/proc/MineralSpread()
+	if(!mineral.spread || !mineral.spread_chance)
+		return
+
 	for(var/trydir in GLOBL.cardinal)
 		if(prob(mineral.spread_chance))
 			var/turf/simulated/mineral/random/target_turf = get_step(src, trydir)
 			if(istype(target_turf) && !target_turf.mineral)
 				target_turf.mineral = mineral
-				target_turf.UpdateMineral()
-				target_turf.MineralSpread()
+				target_turf.update_and_spread_mineral()
 
 /turf/simulated/mineral/proc/DropMineral()
 	if(isnull(mineral))

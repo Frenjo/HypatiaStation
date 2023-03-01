@@ -296,7 +296,7 @@
 	output += "<tr><td><b>Duration:</b> <input type='text' name='dbbaddduration'></td>"
 	output += "<td><b>Job:</b><select name='dbbanaddjob'>"
 	output += "<option value=''>--</option>"
-	for(var/j in get_all_jobs())
+	for(var/j in GLOBL.all_jobs)
 		output += "<option value='[j]'>[j]</option>"
 	for(var/j in GLOBL.nonhuman_positions)
 		output += "<option value='[j]'>[j]</option>"

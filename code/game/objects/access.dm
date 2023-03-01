@@ -77,10 +77,10 @@
 		rank = src:rank
 		assignment = src:assignment
 
-	if(rank in GLOBL.joblist)
+	if(rank in GLOBL.all_jobs)
 		return rank
 
-	if(assignment in GLOBL.joblist)
+	if(assignment in GLOBL.all_jobs)
 		return assignment
 
 	return "Unknown"
@@ -117,6 +117,6 @@
 
 	if(jobName in get_all_job_icons()) //Check if the job has a hud icon
 		return jobName
-	if(jobName in get_all_centcom_jobs()) //Return with the NT logo if it is a CentCom job
+	if(jobName in GLOBL.all_centcom_jobs) //Return with the NT logo if it is a CentCom job
 		return "CentCom"
 	return "Unknown" //Return unknown if none of the above apply

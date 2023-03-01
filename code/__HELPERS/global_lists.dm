@@ -2,10 +2,10 @@
 /////Initial Building/////
 //////////////////////////
 
-/hook/global_init/proc/makeDatumRefLists()
+/hook/global_init/proc/make_datum_ref_lists()
 	var/list/paths = list()
 
-	// Hair - Initialises all /datum/sprite_accessory/hair into a list indexed by hair-style name
+	// Hair - Initialises all /datum/sprite_accessory/hair into a list, indexed by name.
 	paths = SUBTYPESOF(/datum/sprite_accessory/hair)
 	for(var/path in paths)
 		var/datum/sprite_accessory/hair/H = new path()
@@ -19,7 +19,7 @@
 				GLOBL.hair_styles_male_list.Add(H.name)
 				GLOBL.hair_styles_female_list.Add(H.name)
 
-	// Facial Hair - Initialises all /datum/sprite_accessory/facial_hair into a list indexed by facialhair-style name
+	// Facial Hair - Initialises all /datum/sprite_accessory/facial_hair into a list, indexed by name.
 	paths = SUBTYPESOF(/datum/sprite_accessory/facial_hair)
 	for(var/path in paths)
 		var/datum/sprite_accessory/facial_hair/H = new path()
@@ -35,12 +35,12 @@
 
 	// Surgery Steps - Initialises all /datum/surgery_step into a list.
 	paths = SUBTYPESOF(/datum/surgery_step)
-	for(var/T in paths)
-		var/datum/surgery_step/S = new T()
+	for(var/path in paths)
+		var/datum/surgery_step/S = new path()
 		GLOBL.surgery_steps.Add(S)
 	sort_surgeries()
 
-	// Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id.
+	// Chemical Reagents - Initialises all /datum/reagent into a list, indexed by reagent id.
 	paths = SUBTYPESOF(/datum/reagent)
 	for(var/path in paths)
 		var/datum/reagent/D = new path()
@@ -59,29 +59,30 @@
 			for(var/reaction in D.required_reagents)
 				reaction_ids.Add(reaction)
 
-		// Create filters based on each reagent id in the required reagents list
+		// Create filters based on each reagent id in the required reagents list.
 		for(var/id in reaction_ids)
 			if(isnull(GLOBL.chemical_reactions_list[id]))
 				GLOBL.chemical_reactions_list[id] = list()
-			GLOBL.chemical_reactions_list[id].Add(D)
+			var/list/id_list = GLOBL.chemical_reactions_list[id]
+			id_list.Add(D)
 			break // Don't bother adding ourselves to other reagent ids, it is redundant.
 
-	// Medical side effects. List all effects by their names
+	// Medical side effects - Initialises all /datum/medical_side_effect into a list, indexed by name.
 	paths = SUBTYPESOF(/datum/medical_effect)
-	for(var/T in paths)
-		var/datum/medical_effect/M = new T()
-		GLOBL.side_effects[M.name] = T
+	for(var/path in paths)
+		var/datum/medical_effect/M = new path()
+		GLOBL.side_effects[M.name] = M
 
-	//List of job. I can't believe this was calculated multiple times per tick!
+	// Jobs - Initialises all /datum/job (except the base, /datum/job/ai and /datum/job/cyborg) into a list, indexed by name.
 	paths = typesof(/datum/job) - list(/datum/job, /datum/job/ai, /datum/job/cyborg)
-	for(var/T in paths)
-		var/datum/job/J = new T()
-		GLOBL.joblist[J.title] = J
+	for(var/path in paths)
+		var/datum/job/J = new path()
+		GLOBL.all_jobs[J.title] = J
 
 	// Languages - Initialises all /datum/language and language keys into lists.
 	paths = SUBTYPESOF(/datum/language)
-	for(var/T in paths)
-		var/datum/language/L = new T()
+	for(var/path in paths)
+		var/datum/language/L = new path()
 		GLOBL.all_languages[L.name] = L
 
 	for(var/language_name in GLOBL.all_languages)
@@ -91,9 +92,9 @@
 	// Species - Initialises all /datum/species into a list.
 	var/rkey = 0
 	paths = SUBTYPESOF(/datum/species)
-	for(var/T in paths)
+	for(var/path in paths)
 		rkey++
-		var/datum/species/S = new T()
+		var/datum/species/S = new path()
 		S.race_key = rkey //Used in mob icon caching.
 		GLOBL.all_species[S.name] = S
 
@@ -102,30 +103,31 @@
 	
 	// Skills - Initialises all /datum/skill into a list, indexed by field.
 	paths = SUBTYPESOF(/datum/skill)
-	for(var/T in paths)
-		var/datum/skill/S = new T()
-		if(S.id != "none")
-			if(isnull(GLOBL.all_skills.Find(S.field)))
-				GLOBL.all_skills[S.field] = list()
-			var/list/field_list = GLOBL.all_skills[S.field]
-			field_list.Add(S)
+	for(var/path in paths)
+		var/datum/skill/S = new path()
+		if(S.id == "none")
+			continue
+		if(isnull(GLOBL.all_skills[S.field]))
+			GLOBL.all_skills[S.field] = list()
+		var/list/field_list = GLOBL.all_skills[S.field]
+		field_list.Add(S)
 	
 	// Techs - Initialises all /datum/tech into a list, indexed by id.
 	paths = SUBTYPESOF(/datum/tech)
-	for(var/type in paths)
-		var/datum/tech/T = new type()
+	for(var/path in paths)
+		var/datum/tech/T = new path()
 		GLOBL.all_techs[T.id] = T
 	
 	// Designs - Initialises all /datum/design into a list, indexed by id.
 	paths = SUBTYPESOF(/datum/design)
-	for(var/type in paths)
-		var/datum/design/D = new type()
+	for(var/path in paths)
+		var/datum/design/D = new path()
 		GLOBL.all_designs[D.id] = D
 	
 	// Artifact effects - Adds the typepaths of all /datum/artifact_effect to a list.
 	paths = SUBTYPESOF(/datum/artifact_effect)
-	for(var/type in paths)
-		GLOBL.all_artifact_effect_types.Add(type)
+	for(var/path in paths)
+		GLOBL.all_artifact_effect_types.Add(path)
 
 	return 1
 

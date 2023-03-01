@@ -104,7 +104,7 @@ display round(lastgen) and plasmatank amount
 	var/heat = 0
 
 /obj/machinery/power/port_gen/pacman/New()
-	..()
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_part/matter_bin(src)
 	component_parts += new /obj/item/weapon/stock_part/micro_laser(src)
@@ -112,8 +112,7 @@ display round(lastgen) and plasmatank amount
 	component_parts += new /obj/item/stack/cable_coil(src)
 	component_parts += new /obj/item/weapon/stock_part/capacitor(src)
 	component_parts += new board_path(src)
-	var/obj/sheet = new sheet_path(null)
-	sheet_name = sheet.name
+	sheet_name = lowertext(get_material_name_by_type(sheet_path))
 	RefreshParts()
 
 /obj/machinery/power/port_gen/pacman/initialize()

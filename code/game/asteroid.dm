@@ -15,7 +15,7 @@ GLOBAL_GLOBL_LIST_INIT(space_surprises, list(
 GLOBAL_GLOBL_LIST_NEW(spawned_surprises)
 GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 
-/proc/spawn_room(atom/start_loc, x_size, y_size, wall, floor, clean = 0, name)
+/proc/spawn_room(atom/start_loc, x_size, y_size, wall, floor, clean = FALSE, name)
 	var/list/room_turfs = list("walls" = list(), "floors" = list())
 
 	//world << "Room spawned at [start_loc.x],[start_loc.y],[start_loc.z]"

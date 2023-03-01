@@ -3,10 +3,9 @@
 
 /proc/get_job_datums()
 	var/list/occupations = list()
-	var/list/all_jobs = typesof(/datum/job)
 
-	for(var/A in all_jobs)
-		var/datum/job/job = new A()
+	for(var/job_name in GLOBL.all_jobs)
+		var/datum/job/job = GLOBL.all_jobs[job_name]
 		if(!job)
 			continue
 		occupations += job
@@ -25,22 +24,5 @@
 
 	return titles
 
-/proc/get_all_jobs()
-	var/list/all_jobs = list()
-	var/list/all_datums = typesof(/datum/job)
-	all_datums.Remove(list(/datum/job, /datum/job/ai, /datum/job/cyborg))
-	var/datum/job/jobdatum
-	for(var/jobtype in all_datums)
-		jobdatum = new jobtype
-		all_jobs.Add(jobdatum.title)
-	return all_jobs
-
-/proc/get_all_centcom_jobs()
-	return list(
-		"VIP Guest", "Custodian", "Thunderdome Overseer",
-		"Intel Officer", "Medical Officer", "Death Commando",
-		"Research Officer", "BlackOps Commander", "Supreme Commander"
-	)
-
 /proc/get_all_job_icons() //For all existing HUD icons
-	return GLOBL.joblist + list("Prisoner")
+	return GLOBL.all_jobs + list("Prisoner")
