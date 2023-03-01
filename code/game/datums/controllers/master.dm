@@ -55,6 +55,12 @@ CONTROLLER_DEF(master)
 			area.initialize()
 	sleep(-1)
 
+	to_world(SPAN_DANGER("Initialising turfs."))
+	for(var/turf/simulated/turf in world)
+		if(!GC_DESTROYED(turf))
+			turf.initialize()
+	sleep(-1)
+
 	to_world(SPAN_DANGER("Initialising objects."))
 	for(var/atom/movable/object in world)
 		if(!GC_DESTROYED(object))

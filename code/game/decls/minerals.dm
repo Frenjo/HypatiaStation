@@ -1,67 +1,78 @@
-/mineral
+/decl/mineral
+	// What is my MATERIAL_X define?
+	var/id
 	// What am I called?
 	var/name
 
-	// What is my MATERIAL_X define?
-	var/id
-
 	// How much ore?
 	var/result_amount
-
 	// Does this type of deposit spread?
-	var/spread = 1
-
+	var/spread = TRUE
 	// Chance of spreading in any direction.
 	var/spread_chance
 
-	// Path to the resultant ore.
+	// Path to the resultant ore. Must be a subtype of /obj/item/weapon/ore!
 	var/ore
 
-/mineral/iron
-	name = "Iron"
+/decl/mineral/iron
 	id = MATERIAL_METAL
+	name = "Iron"
+
 	result_amount = 5
 	spread_chance = 20
+
 	ore = /obj/item/weapon/ore/iron
 
-/mineral/gold
-	name = "Gold"
+/decl/mineral/gold
 	id = MATERIAL_GOLD
+	name = "Gold"
+
 	result_amount = 5
 	spread_chance = 10
+
 	ore = /obj/item/weapon/ore/gold
 
-/mineral/silver
-	name = "Silver"
+/decl/mineral/silver
 	id = MATERIAL_SILVER
+	name = "Silver"
+
 	result_amount = 5
 	spread_chance = 10
+
 	ore = /obj/item/weapon/ore/silver
 
-/mineral/diamond
-	name = "Diamond"
+/decl/mineral/diamond
 	id = MATERIAL_DIAMOND
+	name = "Diamond"
+
 	result_amount = 5
 	spread_chance = 10
+
 	ore = /obj/item/weapon/ore/diamond
 
-/mineral/plasma
-	name = "Plasma"
+/decl/mineral/plasma
 	id = MATERIAL_PLASMA
+	name = "Plasma"
+
 	result_amount = 5
 	spread_chance = 20
+
 	ore = /obj/item/weapon/ore/plasma
 
-/mineral/uranium
-	name = "Uranium"
+/decl/mineral/uranium
 	id = MATERIAL_URANIUM
+	name = "Uranium"
+
 	result_amount = 5
 	spread_chance = 10
+
 	ore = /obj/item/weapon/ore/uranium
 
-/mineral/bananium
-	name = "Bananium"
+/decl/mineral/bananium
 	id = MATERIAL_BANANIUM
+	name = "Bananium"
+
 	result_amount = 3
 	spread_chance = 1
+
 	ore = /obj/item/weapon/ore/bananium

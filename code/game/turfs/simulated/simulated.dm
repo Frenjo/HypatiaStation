@@ -12,7 +12,7 @@
 	var/dirt = 0
 
 /turf/simulated/New()
-	..()
+	. = ..()
 	levelupdate()
 
 /turf/simulated/proc/AddTracks(typepath, bloodDNA, comingdir, goingdir, bloodcolor = "#A10808")

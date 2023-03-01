@@ -5,14 +5,6 @@
 /hook/global_init/proc/makeDatumRefLists()
 	var/list/paths = list()
 
-	// TODO: Convert these to /decl/mineral.
-	// Minerals - Initialises all /mineral into a list, indexed by id.
-	// --- THIS HAS TO BE FIRST OTHERWISE SHIT BREAKS ---
-	paths = SUBTYPESOF(/mineral)
-	for(var/type in paths)
-		var/mineral/M = new type()
-		GLOBL.all_minerals[M.id] = M
-
 	// Hair - Initialises all /datum/sprite_accessory/hair into a list indexed by hair-style name
 	paths = SUBTYPESOF(/datum/sprite_accessory/hair)
 	for(var/path in paths)
