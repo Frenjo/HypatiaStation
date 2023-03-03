@@ -153,7 +153,7 @@
 			qdel(src) //dont kill proc after del()
 			usr.before_take_item(oldsrc)
 			qdel(oldsrc)
-			if(istype(O, /obj/item))
+			if(isitem(O))
 				usr.put_in_hands(O)
 		O.add_fingerprint(usr)
 		//BubbleWrap - so newly formed boxes are empty

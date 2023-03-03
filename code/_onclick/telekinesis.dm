@@ -135,7 +135,7 @@
 		return // todo: something like attack_self not laden with assumptions inherent to attack_self
 
 
-	if(!isturf(target) && istype(focus, /obj/item) && target.Adjacent(focus))
+	if(!isturf(target) && isitem(focus) && target.Adjacent(focus))
 		var/obj/item/I = focus
 		var/resolved = target.attackby(I, user, user:get_organ_target())
 		if(!resolved && target && I)

@@ -556,7 +556,7 @@
  // Maybe some people are okay with that.
 
 		for(var/mob/M in GLOBL.dead_mob_list)
-			if(!M.client || istype(M, /mob/new_player))
+			if(!M.client || isnewplayer(M))
 				continue //skip monkeys, leavers and new players
 			if(M.stat == DEAD && (M.client.prefs.toggles & CHAT_GHOSTSIGHT) && !(M in viewers(src,null)))
 				M.show_message(message)

@@ -29,7 +29,7 @@
 	if(!proximity)
 		return
 	if(!active_dummy)
-		if(istype(target, /obj/item) && !istype(target, /obj/item/weapon/disk/nuclear))
+		if(isitem(target) && !istype(target, /obj/item/weapon/disk/nuclear))
 			playsound(get_turf(src), 'sound/weapons/flash.ogg', 100, 1, -6)
 			user << "\blue Scanned [target]."
 			saved_item = target.type

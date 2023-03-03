@@ -45,8 +45,8 @@
 			loc = T.loc
 			if(isarea(loc))
 				//stage = 4
-				//if (!loc.master.power_equip && !istype(src.loc,/obj/item))
-				if(!loc.power_equip && !istype(src.loc, /obj/item))
+				//if (!loc.master.power_equip && !isitem(src.loc))
+				if(!loc.power_equip && !isitem(src.loc))
 					//stage = 5
 					blind = 1
 
@@ -96,8 +96,8 @@
 			src.see_in_dark = 0
 			src.see_invisible = SEE_INVISIBLE_LIVING
 
-			//if (((!loc.master.power_equip) || isspace(T)) && !istype(src.loc,/obj/item))
-			if(((!loc.power_equip) || isspace(T)) && !istype(src.loc, /obj/item))
+			//if (((!loc.master.power_equip) || isspace(T)) && !isitem(src.loc))
+			if(((!loc.power_equip) || isspace(T)) && !isitem(src.loc))
 				if(src:aiRestorePowerRoutine == 0)
 					src:aiRestorePowerRoutine = 1
 

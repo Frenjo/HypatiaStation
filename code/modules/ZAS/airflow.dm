@@ -44,7 +44,7 @@ Contains helper procs for airflow, handled in /connection_group.
 	if(anchored && !ismob(src))
 		return 0
 
-	if(!istype(src, /obj/item) && n < global.vsc.airflow_dense_pressure)
+	if(!isitem(src) && n < global.vsc.airflow_dense_pressure)
 		return 0
 
 	return 1
@@ -224,7 +224,7 @@ Contains helper procs for airflow, handled in /connection_group.
 	for(var/mob/M in hearers(src))
 		M.show_message(SPAN_DANGER("\The [src] slams into \a [A]!"), 1, SPAN_WARNING("You hear a loud slam!"), 2)
 	playsound(src, "smash.ogg", 25, 1, -1)
-	weakened = max(weakened, (istype(A, /obj/item) ? A:w_class : rand(1, 5))) //Heheheh
+	weakened = max(weakened, (isitem(A) ? A:w_class : rand(1, 5))) //Heheheh
 	. = ..()
 
 /obj/airflow_hit(atom/A)

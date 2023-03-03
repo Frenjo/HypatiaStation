@@ -690,7 +690,7 @@
 	if(!user)
 		return
 
-	if(!istype(user, /mob/new_player))
+	if(!isnewplayer(user))
 		return
 	if(href_list["preference"] == "job")
 		switch(href_list["task"])

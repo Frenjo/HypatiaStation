@@ -266,7 +266,7 @@
 	if(!R)
 		. = 0
 	else
-		if(istype(R, /obj/item/device/radio))
+		if(isradio(R))
 			// generate list of radio freqs
 			var/obj/item/device/radio/target_radio = R
 			var/freq = 1441

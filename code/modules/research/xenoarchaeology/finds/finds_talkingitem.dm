@@ -98,7 +98,7 @@
 	for(var/mob/M in GLOBL.mob_list)
 		if(!M.client)
 			continue //skip monkeys and leavers
-		if(istype(M, /mob/new_player))
+		if(isnewplayer(M))
 			continue
 		if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
 			listening |= M

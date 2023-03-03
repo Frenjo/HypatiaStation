@@ -303,7 +303,7 @@ CONTROLLER_DEF(game_ticker)
 				EquipCustomItems(player)
 	if(captainless)
 		for(var/mob/M in GLOBL.player_list)
-			if(!istype(M, /mob/new_player))
+			if(!isnewplayer(M))
 				to_chat(M, "Captainship not forced on anyone.")
 
 /datum/controller/game_ticker/process()

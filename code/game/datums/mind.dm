@@ -1004,7 +1004,7 @@
 			if (istype(t, /obj/item/device/pda))
 				if (t:uplink) del(t:uplink)
 				t:uplink = null
-			else if (istype(t, /obj/item/device/radio))
+			else if(isradio(t))
 				if (t:traitorradio) del(t:traitorradio)
 				t:traitorradio = null
 				t:traitor_frequency = 0.0

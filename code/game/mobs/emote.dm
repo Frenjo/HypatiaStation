@@ -27,7 +27,7 @@
 		for(var/mob/M in GLOBL.player_list)
 			if(!M.client)
 				continue //skip monkeys and leavers
-			if(istype(M, /mob/new_player))
+			if(isnewplayer(M))
 				continue
 			if(findtext(message," snores.")) //Because we have so many sleeping people.
 				break
@@ -77,7 +77,7 @@
 		log_emote("Ghost/[src.key] : [message]")
 
 		for(var/mob/M in GLOBL.player_list)
-			if(istype(M, /mob/new_player))
+			if(isnewplayer(M))
 				continue
 
 			if(M.client && M.client.holder && (M.client.holder.rights & R_ADMIN | R_MOD) && (M.client.prefs.toggles & CHAT_DEAD)) // Show the emote to admins/mods

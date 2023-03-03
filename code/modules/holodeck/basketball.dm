@@ -29,13 +29,13 @@
 		visible_message(SPAN_WARNING("[G.assailant] dunks [G.affecting] into the [src]!"), 3)
 		qdel(W)
 		return
-	else if(istype(W, /obj/item) && get_dist(src, user) < 2)
+	else if(isitem(W) && get_dist(src, user) < 2)
 		user.drop_item(src)
 		visible_message(SPAN_INFO("[user] dunks [W] into the [src]!"), 3)
 		return
 
 /obj/structure/holohoop/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(istype(mover, /obj/item) && mover.throwing)
+	if(isitem(mover) && mover.throwing)
 		var/obj/item/I = mover
 		if(istype(I, /obj/item/projectile))
 			return

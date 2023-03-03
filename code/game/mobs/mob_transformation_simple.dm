@@ -3,7 +3,7 @@
 //Returns the new mob
 //Note that this proc does NOT do MMI related stuff!
 /mob/proc/change_mob_type(new_type = null, turf/location = null, new_name = null as text, delete_old_mob = 0 as num)
-	if(istype(src, /mob/new_player))
+	if(isnewplayer(src))
 		to_chat(usr, SPAN_WARNING("Cannot convert players who have not entered yet."))
 		return
 

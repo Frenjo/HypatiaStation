@@ -600,7 +600,7 @@ default behaviour is:
 			to_chat(M, "[H] wriggles out of your grip!")
 			to_chat(src, "You wriggle out of [M]'s grip!")
 
-		else if(istype(H.loc, /obj/item))
+		else if(isitem(H.loc))
 			to_chat(src, "You struggle free of [H.loc].")
 			H.loc = get_turf(H)
 		return

@@ -42,7 +42,7 @@ GLOBAL_GLOBL(can_call_ert)
 /client/verb/JoinResponseTeam()
 	set category = "IC"
 
-	if(isobserver(usr) || istype(usr, /mob/new_player))
+	if(isobserver(usr) || isnewplayer(usr))
 		if(!GLOBL.send_emergency_team)
 			to_chat(usr, "No emergency response team is currently being sent.")
 			return

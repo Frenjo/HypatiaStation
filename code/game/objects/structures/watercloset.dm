@@ -439,7 +439,7 @@
 		return
 
 	var/obj/item/I = O
-	if(!I || !istype(I, /obj/item))
+	if(!I || !isitem(I))
 		return
 
 	to_chat(user, SPAN_INFO("You start washing \the [I]."))

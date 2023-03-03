@@ -111,7 +111,7 @@
 	..()
 
 /obj/item/weapon/implanter/compressed/afterattack(atom/A, mob/user as mob)
-	if(istype(A, /obj/item) && imp)
+	if(isitem(A) && imp)
 		var/obj/item/weapon/implant/compressed/c = imp
 		if(c.scanned)
 			to_chat(user, SPAN_WARNING("Something is already scanned inside the implant!"))

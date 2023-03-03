@@ -16,7 +16,7 @@
 		B.host << "The captive mind of [src] whispers, \"[message]\""
 
 		for(var/mob/M in GLOBL.player_list)
-			if(istype(M, /mob/new_player))
+			if(isnewplayer(M))
 				continue
 			else if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
 				M << "The captive mind of [src] whispers, \"[message]\""
@@ -129,7 +129,7 @@
 	host << "Your own thoughts speak: \"[message]\""
 
 	for(var/mob/M in GLOBL.player_list)
-		if(istype(M, /mob/new_player))
+		if(isnewplayer(M))
 			continue
 		else if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
 			M << "[src.truename] whispers to [host], \"[message]\""

@@ -11,7 +11,7 @@
 		return
 	// pick up items, mostly copied from base tray pickup proc
 	// see code\game\objects\items\weapons\kitchen.dm line 241
-	if ( istype(target,/obj/item))
+	if(isitem(target))
 		if ( !isturf(target.loc) ) // Don't load up stuff if it's inside a container or mob!
 			return
 		var turf/pickup = target.loc

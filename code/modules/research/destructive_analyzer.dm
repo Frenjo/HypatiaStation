@@ -69,7 +69,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		to_chat(user, SPAN_WARNING("\The [src.name] must be linked to an R&D console first!"))
 		return 1
 
-	if(!istype(O, /obj/item) || loaded_item)
+	if(!isitem(O) || loaded_item)
 		return 1
 	if(isrobot(user)) // Don't put your module items in there!
 		return 1

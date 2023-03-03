@@ -359,7 +359,7 @@ var/list/admin_verbs_donor = list(
 		ghost.can_reenter_corpse = 1			//just in-case.
 		ghost.reenter_corpse()
 		feedback_add_details("admin_verb","P") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	else if(istype(mob,/mob/new_player))
+	else if(isnewplayer(mob))
 		src << "<font color='red'>Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.</font>"
 	else
 		//ghostize

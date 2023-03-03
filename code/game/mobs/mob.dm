@@ -480,7 +480,7 @@ var/list/slot_equipment_priority = list(
 
 	if(client.holder && (client.holder.rights & R_ADMIN))
 		is_admin = 1
-	else if(stat != DEAD || istype(src, /mob/new_player))
+	else if(stat != DEAD || isnewplayer(src))
 		to_chat(usr, SPAN_INFO("You must be observing to use this!"))
 		return
 

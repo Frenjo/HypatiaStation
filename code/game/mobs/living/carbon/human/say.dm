@@ -67,11 +67,11 @@
 
 	switch(message_mode)
 		if("headset")
-			if(l_ear && istype(l_ear, /obj/item/device/radio))
+			if(l_ear && isradio(l_ear))
 				var/obj/item/device/radio/R = l_ear
 				R.talk_into(src,message,null, verbage, speaking)
 				used_radios += l_ear
-			else if(r_ear && istype(r_ear, /obj/item/device/radio))
+			else if(r_ear && isradio(r_ear))
 				var/obj/item/device/radio/R = r_ear
 				R.talk_into(src,message,null, verbage, speaking)
 				used_radios += r_ear
@@ -79,10 +79,10 @@
 		if("right ear")
 			var/obj/item/device/radio/R
 			var/has_radio = 0
-			if(r_ear && istype(r_ear, /obj/item/device/radio))
+			if(r_ear && isradio(r_ear))
 				R = r_ear
 				has_radio = 1
-			if(r_hand && istype(r_hand, /obj/item/device/radio))
+			if(r_hand && isradio(r_hand))
 				R = r_hand
 				has_radio = 1
 			if(has_radio)
@@ -92,10 +92,10 @@
 		if("left ear")
 			var/obj/item/device/radio/R
 			var/has_radio = 0
-			if(l_ear && istype(l_ear, /obj/item/device/radio))
+			if(l_ear && isradio(l_ear))
 				R = l_ear
 				has_radio = 1
-			if(l_hand && istype(l_hand, /obj/item/device/radio))
+			if(l_hand && isradio(l_hand))
 				R = l_hand
 				has_radio = 1
 			if(has_radio)
@@ -112,10 +112,10 @@
 		else
 			if(message_mode)
 				if(message_mode in (GLOBL.radio_channels | "department"))
-					if(l_ear && istype(l_ear, /obj/item/device/radio))
+					if(l_ear && isradio(l_ear))
 						l_ear.talk_into(src,message, message_mode, verbage, speaking)
 						used_radios += l_ear
-					else if(r_ear && istype(r_ear, /obj/item/device/radio))
+					else if(r_ear && isradio(r_ear))
 						r_ear.talk_into(src,message, message_mode, verbage, speaking)
 						used_radios += r_ear
 

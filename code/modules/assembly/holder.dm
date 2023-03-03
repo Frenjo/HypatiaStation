@@ -117,7 +117,7 @@
 	if(a_right)
 		a_right.on_found(finder)
 	if(special_assembly)
-		if(istype(special_assembly, /obj/item))
+		if(isitem(special_assembly))
 			var/obj/item/S = special_assembly
 			S.on_found(finder)
 

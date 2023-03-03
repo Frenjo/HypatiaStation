@@ -57,7 +57,7 @@
 	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span>[alt_name] <span class='message'>[message]</span></span>"
 
 	for(var/mob/M in GLOBL.player_list)
-		if(istype(M, /mob/new_player))
+		if(isnewplayer(M))
 			continue
 		if(M.client && M.client.holder && (M.client.holder.rights & R_ADMIN|R_MOD) && (M.client.prefs.toggles & CHAT_DEAD)) // Show the message to admins/mods with deadchat toggled on
 			to_chat(M, rendered)	//Admins can hear deadchat, if they choose to, no matter if they're blind/deaf or not.

@@ -159,7 +159,7 @@ emp_act
 		if(I.IsShield() && (prob(50 - round(damage / 3))))
 			visible_message(SPAN_DANGER("[src] blocks [attack_text] with the [r_hand.name]!"))
 			return 1
-	if(wear_suit && istype(wear_suit, /obj/item))
+	if(wear_suit && isitem(wear_suit))
 		var/obj/item/I = wear_suit
 		if(I.IsShield() && (prob(35)))
 			visible_message(SPAN_DANGER("The reactive teleport system flings [src] clear of [attack_text]!"))

@@ -77,7 +77,7 @@
 			wrapped = null
 			return
 
-	if(istype(target, /obj/item)) //Check that we're not pocketing a mob.
+	if(isitem(target)) // Check that we're not pocketing a mob.
 		//...and that the item is not in a container.
 		if(!isturf(target.loc))
 			return

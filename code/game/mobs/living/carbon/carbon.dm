@@ -303,7 +303,7 @@
 		item.loc = src.loc
 		if(src.client)
 			src.client.screen -= item
-		if(istype(item, /obj/item))
+		if(isitem(item))
 			item:dropped(src) // let it know it's been dropped
 
 	//actually throw it!

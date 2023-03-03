@@ -161,7 +161,7 @@
 	var/message_body = "<span class='message'>[speaker.say_quote(message)], \"[message]\"</span></span></i>"
 
 	for (var/mob/M in GLOBL.dead_mob_list)
-		if(!istype(M, /mob/new_player) && !istype(M, /mob/living/carbon/brain)) //No meta-evesdropping
+		if(!isnewplayer(M) && !istype(M, /mob/living/carbon/brain)) //No meta-evesdropping
 			M.show_message("[message_start] [message_body]", 2)
 
 	for (var/mob/living/S in GLOBL.living_mob_list)

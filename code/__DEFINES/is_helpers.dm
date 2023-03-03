@@ -1,11 +1,12 @@
 /*
  * Mob Helpers
- * 
+ *
  * Fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
  */
 //#define ismob(X)		istype(X, /mob) // Built-in.
 #define isliving(X)		istype(X, /mob/living)
-#define isobserver(X) 	istype(X, /mob/dead/observer)
+#define isobserver(X)	istype(X, /mob/dead/observer)
+#define isnewplayer(X)	istype(X, /mob/new_player)
 
 // Carbon.
 #define iscarbon(X)		istype(X, /mob/living/carbon)
@@ -35,8 +36,24 @@
 #define isclown(X)		istype(X, /mob/living/simple_animal/hostile/retaliate/clown)
 
 /*
+ * Object Helpers
+ *
+ * Fun if you want to typecast objects without writing long path-filled lines.
+ */
+//#define isobj(X)	istype(X, /obj) // Built-in.
+#define isitem(X)	istype(X, /obj/item)
+
+#define isradio(X)	istype(X, /obj/item/device/radio)
+
+// This one line was typed out almost 30+ times so it justifies an entry here.
+#define isrune(X) istype(X, /obj/effect/rune)
+
+// Same as above, this one line was typed out many times so it's justified.
+#define isMMI(X) istype(X, /obj/item/device/mmi)
+
+/*
  * Turf Helpers
- * 
+ *
  * Fun if you want to typecast turfs without writing long path-filled lines.
  */
 //#define isturf(X)		istype(X, /turf) // Built-in.
@@ -48,9 +65,3 @@
 */
 #define hasorgans(X)	ishuman(X)
 #define isorgan(X)		istype(X, /datum/organ/external)
-
-// This one line was typed out almost 30+ times so it justifies an entry here.
-#define isrune(X) istype(X, /obj/effect/rune)
-
-// Same as above, this one line was typed out many times so it's justified.
-#define isMMI(X) istype(X, /obj/item/device/mmi)

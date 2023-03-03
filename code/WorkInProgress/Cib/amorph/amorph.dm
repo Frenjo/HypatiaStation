@@ -226,7 +226,7 @@
 /mob/living/carbon/amorph/db_click(text, t1)
 	var/obj/item/W = equipped()
 	var/emptyHand = (W == null)
-	if ((!emptyHand) && (!istype(W, /obj/item)))
+	if(!emptyHand && !isitem(W))
 		return
 	if (emptyHand)
 		usr.next_move = usr.prev_move

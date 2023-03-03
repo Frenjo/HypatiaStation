@@ -181,7 +181,7 @@
 					new /obj/item/stack/sheet/mineral/plasma(src, oldStack.amount)
 					qdel(oldStack)
 					continue
-			else if(istype(stomachContent, /obj/item)) //converts to plasma, keeping the w_class
+			else if(isitem(stomachContent)) //converts to plasma, keeping the w_class
 				var/obj/item/oldItem = stomachContent
 				new /obj/item/stack/sheet/mineral/plasma(src, oldItem.w_class)
 				qdel(oldItem)

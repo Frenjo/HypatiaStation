@@ -108,7 +108,7 @@
 					W.dropped(target)
 				W.add_fingerprint(source)
 			else
-				if (istype(item, /obj/item))
+				if(isitem(item))
 					source.drop_item()
 					loc = target
 					item.layer = 20
@@ -128,7 +128,7 @@
 					W.dropped(target)
 				W.add_fingerprint(source)
 			else
-				if (istype(item, /obj/item))
+				if(isitem(item))
 					source.drop_item()
 					loc = target
 					item.layer = 20
@@ -148,7 +148,7 @@
 					W.reset_plane_and_layer()
 				W.add_fingerprint(source)
 			else
-				if ((istype(item, /obj/item) && item.slot_flags & SLOT_BACK ))
+				if(isitem(item) && (item.slot_flags & SLOT_BACK))
 					source.drop_item()
 					loc = target
 					item.layer = 20

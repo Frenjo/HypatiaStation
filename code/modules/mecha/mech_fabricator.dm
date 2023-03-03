@@ -235,7 +235,7 @@
 			if(part)
 				parts[i] = part
 			//debug below
-			if(!istype(parts[i], /obj/item))
+			if(!isitem(parts[i]))
 				return 0
 	return
 
