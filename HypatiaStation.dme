@@ -10,6 +10,7 @@
 #define DEBUG
 // END_PREFERENCES
 // BEGIN_INCLUDE
+#include "code\__byond_compat.dm"
 #include "code\__spaceman_dmm.dm"
 #include "code\_debugger.dm"
 #include "code\_global_init.dm"

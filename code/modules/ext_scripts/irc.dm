@@ -7,7 +7,7 @@
 			else
 				nudge_lib = "lib/nudge.so"
 
-			call(nudge_lib, "nudge")("[CONFIG_GET(comms_password)]","[CONFIG_GET(irc_bot_host)]","[channel]","[msg]")
+			LIBCALL(nudge_lib, "nudge")("[CONFIG_GET(comms_password)]","[CONFIG_GET(irc_bot_host)]","[channel]","[msg]")
 		else
 			ext_python("ircbot_message.py", "[CONFIG_GET(comms_password)] [CONFIG_GET(irc_bot_host)] [channel] [msg]")
 	return
