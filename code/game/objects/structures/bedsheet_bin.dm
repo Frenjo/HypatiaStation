@@ -3,7 +3,6 @@ CONTAINS:
 BEDSHEETS
 LINEN BINS
 */
-
 /obj/item/weapon/bedsheet
 	name = "bedsheet"
 	desc = "A surprisingly soft linen bedsheet."
@@ -17,7 +16,6 @@ LINEN BINS
 	w_class = 1.0
 	item_color = "white"
 
-
 /obj/item/weapon/bedsheet/attack_self(mob/user as mob)
 	user.drop_item()
 	if(layer == initial(layer))
@@ -26,7 +24,6 @@ LINEN BINS
 		reset_plane_and_layer()
 	add_fingerprint(user)
 	return
-
 
 /obj/item/weapon/bedsheet/blue
 	icon_state = "sheetblue"
@@ -92,19 +89,16 @@ LINEN BINS
 	icon_state = "sheetbrown"
 	item_color = "brown"
 
-
-
-
+#define STARTING_LINEN_AMOUNT 20
 /obj/structure/bedsheetbin
 	name = "linen bin"
 	desc = "A linen bin. It looks rather cosy."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "linenbin-full"
 	anchored = TRUE
-	var/amount = 20
+	var/amount = STARTING_LINEN_AMOUNT
 	var/list/sheets = list()
 	var/obj/item/hidden = null
-
 
 /obj/structure/bedsheetbin/examine()
 	usr << desc
@@ -116,13 +110,15 @@ LINEN BINS
 		return
 	usr << "There are [amount] bed sheets in the bin."
 
-
 /obj/structure/bedsheetbin/update_icon()
 	switch(amount)
-		if(0)				icon_state = "linenbin-empty"
-		if(1 to amount / 2)	icon_state = "linenbin-half"
-		else				icon_state = "linenbin-full"
-
+		if(0)
+			icon_state = "linenbin-empty"
+		if(1 to (STARTING_LINEN_AMOUNT / 2))
+			icon_state = "linenbin-half"
+		else
+			icon_state = "linenbin-full"
+#undef STARTING_LINEN_AMOUNT
 
 /obj/structure/bedsheetbin/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/bedsheet))
@@ -137,11 +133,8 @@ LINEN BINS
 		hidden = I
 		user << "<span class='notice'>You hide [I] among the sheets.</span>"
 
-
-
 /obj/structure/bedsheetbin/attack_paw(mob/user as mob)
 	return attack_hand(user)
-
 
 /obj/structure/bedsheetbin/attack_hand(mob/user as mob)
 	if(amount >= 1)
@@ -164,7 +157,6 @@ LINEN BINS
 			user << "<span class='notice'>[hidden] falls out of [B]!</span>"
 			hidden = null
 
-
 	add_fingerprint(user)
 
 /obj/structure/bedsheetbin/attack_tk(mob/user as mob)
@@ -186,6 +178,5 @@ LINEN BINS
 		if(hidden)
 			hidden.loc = loc
 			hidden = null
-
 
 	add_fingerprint(user)

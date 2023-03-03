@@ -215,12 +215,13 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 		if(1000 to 1999)
 			allowed_size = 7
 		// Adjust for eating supermatter. -Frenjo
-		if(2000 to INFINITY && !has_eaten_supermatter_crystal && !has_eaten_supermatter_shard)
-			allowed_size = 9
-		if(5000 to 9999 && has_eaten_supermatter_shard || has_eaten_supermatter_crystal)
-			allowed_size = 10
-		if(10000 to INFINITY && has_eaten_supermatter_crystal)
-			allowed_size = 11
+		if(2000 to INFINITY)
+			if(energy < 5000 && (!has_eaten_supermatter_shard && !has_eaten_supermatter_crystal))
+				allowed_size = 9
+			else if(energy > 5000 && (has_eaten_supermatter_shard || has_eaten_supermatter_crystal))
+				allowed_size = 10
+			else if(energy > 10000 && has_eaten_supermatter_crystal)
+				allowed_size = 11
 	if(current_size != allowed_size)
 		expand()
 	return 1
