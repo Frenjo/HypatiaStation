@@ -1,4 +1,28 @@
 /*
+ * Atom Helpers
+ *
+ * Fun if you want to typecast atoms without writing long path-filled lines.
+ */
+#define isatom(X)		istype(X, /atom)
+#define ismovable(X)	istype(X, /atom/movable)
+
+/*
+ * Client Helpers
+ *
+ * Fun if you want to typecast clients without writing long path-filled lines.
+ */
+#define isclient(X)	istype(X, /client)
+
+/*
+ * Datum Helpers
+ *
+ * Fun if you want to typecast datums without writing long path-filled lines.
+ */
+#define isdatum(X)	istype(X, /datum)
+
+#define isorgan(X)	istype(X, /datum/organ/external)
+
+/*
  * Mob Helpers
  *
  * Fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
@@ -64,4 +88,3 @@
  * Miscellaneous Helpers
 */
 #define hasorgans(X)	ishuman(X)
-#define isorgan(X)		istype(X, /datum/organ/external)

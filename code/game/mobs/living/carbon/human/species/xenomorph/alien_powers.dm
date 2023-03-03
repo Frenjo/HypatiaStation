@@ -178,7 +178,7 @@
 	//I'm not motivated enough to revise this. Prjectile code in general needs update.
 	// Maybe change this to use throw_at? ~ Z
 	var/turf/T = loc
-	var/turf/U = (istype(target, /atom/movable) ? target.loc : target)
+	var/turf/U = (ismovable(target) ? target.loc : target)
 
 	if(!U || !T)
 		return

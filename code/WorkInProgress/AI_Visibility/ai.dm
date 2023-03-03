@@ -98,7 +98,7 @@
 		client.eye = eyeobj
 		client.perspective = EYE_PERSPECTIVE
 
-		if (istype(A, /atom/movable))
+		if(ismovable(A))
 			eyeobj.loc = locate(A.x, A.y, A.z)
 
 		else

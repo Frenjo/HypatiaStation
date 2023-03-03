@@ -1,5 +1,5 @@
 /proc/isobject(x)
-	return (istype(x, /datum) || istype(x, /list) || istype(x, /savefile) || istype(x, /client) || (x == world))
+	return (isdatum(x) || islist(x) || istype(x, /savefile) || isclient(x) || (x == world))
 
 /n_Interpreter/proc/Eval(node/expression/exp)
 	if(istype(exp, /node/expression/FunctionCall))

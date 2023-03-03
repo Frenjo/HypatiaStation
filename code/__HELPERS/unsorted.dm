@@ -497,7 +497,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	if(!whom)
 		return "*null*"
-	if(istype(whom, /client))
+	if(isclient(whom))
 		C = whom
 		M = C.mob
 		key = C.key
@@ -505,7 +505,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		M = whom
 		C = M.client
 		key = M.key
-	else if(istype(whom, /datum))
+	else if(isdatum(whom))
 		var/datum/D = whom
 		return "*invalid:[D.type]*"
 	else

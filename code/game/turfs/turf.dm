@@ -113,7 +113,7 @@
 
 //^^^^^ Infared beam stuff ^^^^^
 
-	if(!istype(atom, /atom/movable))
+	if(!ismovable(atom))
 		return
 
 	var/atom/movable/M = atom

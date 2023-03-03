@@ -63,7 +63,7 @@
 
 		now_pushing = 0
 		..()
-		if(!(istype(AM, /atom/movable)))
+		if(!ismovable(AM))
 			return
 		if(!(now_pushing))
 			now_pushing = 1

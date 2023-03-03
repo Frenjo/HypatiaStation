@@ -70,7 +70,7 @@
 		if("select")
 			var/text = ""
 			for(var/datum/t in objs)
-				if(istype(t, /atom))
+				if(isatom(t))
 					var/atom/a = t
 
 					if(a.x)
@@ -197,7 +197,7 @@
 			if(istype(d, type))
 				out += d
 
-	else if(ispath(type, /atom))
+	else if(isatom(type))
 		for(var/atom/d in location)
 			if(istype(d, type))
 				out += d

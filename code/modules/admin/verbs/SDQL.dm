@@ -308,7 +308,7 @@
 		if("select")
 			var/text = ""
 			for(var/datum/t in objs)
-				if(istype(t, /atom))
+				if(isatom(t))
 					var/atom/a = t
 
 					if(a.x)
@@ -367,7 +367,7 @@
 			var/split = findtext(text, ".")
 			var/v = copytext(text, 1, split)
 
-			if((v in object.vars) && istype(object.vars[v], /datum))
+			if((v in object.vars) && isdatum(object.vars[v]))
 				return SDQL_text2value(object.vars[v], copytext(text, split + 1))
 			else
 				return null

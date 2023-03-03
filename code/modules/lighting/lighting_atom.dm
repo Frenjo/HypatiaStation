@@ -29,7 +29,7 @@
 			light.destroy()
 			light = null
 	else
-		if(!istype(loc, /atom/movable))
+		if(!ismovable(loc))
 			. = src
 		else
 			. = loc

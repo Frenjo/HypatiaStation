@@ -13,7 +13,7 @@
 
 	if(!D)
 		return
-	if(istype(D, /atom))
+	if(isatom(D))
 		var/atom/A = D
 		title = "[A.name] (\ref[A]) = [A.type]"
 
@@ -24,7 +24,7 @@
 
 	var/icon/sprite
 
-	if(istype(D, /atom))
+	if(isatom(D))
 		var/atom/AT = D
 		if(AT.icon && AT.icon_state)
 			sprite = new /icon(AT.icon, AT.icon_state)
@@ -166,7 +166,7 @@
 
 	body += "<div align='center'>"
 
-	if(istype(D, /atom))
+	if(isatom(D))
 		var/atom/A = D
 		if(isliving(A))
 			body += "<a href='?_src_=vars;rename=\ref[D]'><b>[D]</b></a>"
@@ -369,11 +369,11 @@ body
 	else if(isfile(value))
 		html += "[name] = <span class='value'>'[value]'</span>"
 
-	else if(istype(value, /datum))
+	else if(isdatum(value))
 		var/datum/D = value
 		html += "<a href='?_src_=vars;Vars=\ref[value]'>[name] \ref[value]</a> = [D.type]"
 
-	else if(istype(value, /client))
+	else if(isclient(value))
 		var/client/C = value
 		html += "<a href='?_src_=vars;Vars=\ref[value]'>[name] \ref[value]</a> = [C] [C.type]"
 //
@@ -435,7 +435,7 @@ body
 			return
 
 		var/D = locate(href_list["datumedit"])
-		if(!istype(D, /datum) && !istype(D, /client))
+		if(!isdatum(D) && !isclient(D))
 			usr << "This can only be used on instances of types /client or /datum"
 			return
 
@@ -446,7 +446,7 @@ body
 			return
 
 		var/D = locate(href_list["datumchange"])
-		if(!istype(D,/datum) && !istype(D, /client))
+		if(!isdatum(D) && !isclient(D))
 			usr << "This can only be used on instances of types /client or /datum"
 			return
 
@@ -966,7 +966,7 @@ body
 
 	if(href_list["datumrefresh"])
 		var/datum/DAT = locate(href_list["datumrefresh"])
-		if(!istype(DAT, /datum))
+		if(!isdatum(DAT))
 			return
 		src.debug_variables(DAT)
 

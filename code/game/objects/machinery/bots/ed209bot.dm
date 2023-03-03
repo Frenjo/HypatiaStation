@@ -797,7 +797,7 @@ Auto Patrol: []"},
 		return
 	lastfired = world.time
 	var/turf/T = loc
-	var/atom/U = (istype(target, /atom/movable) ? target.loc : target)
+	var/atom/U = (ismovable(target) ? target.loc : target)
 	if(!U || !T)
 		return
 	while(!isturf(U))

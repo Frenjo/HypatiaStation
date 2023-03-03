@@ -233,7 +233,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 	for(var/atom/X in orange(grav_pull, src))
 		var/dist = get_dist(X, src)
 		// Movable atoms only
-		if(dist > consume_range && istype(X, /atom/movable))
+		if(dist > consume_range && ismovable(X))
 			if(is_type_in_list(X, GLOBL.uneatable))
 				continue
 			if((X && !X:anchored && !ishuman(X)) || src.current_size >= 9)
@@ -246,7 +246,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 						continue
 				step_towards(H, src)
 		// Turf and movable atoms
-		else if(dist <= consume_range && (isturf(X) || istype(X, /atom/movable)))
+		else if(dist <= consume_range && (isturf(X) || ismovable(X)))
 			consume(X)
 
 	if(GLOBL.defer_powernet_rebuild != 2)
@@ -590,7 +590,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 	if(GLOBL.defer_powernet_rebuild != 2)
 		GLOBL.defer_powernet_rebuild = 1
 	for(var/atom/X in orange(consume_range, src))
-		if(isturf(X) || istype(X, /atom/movable))
+		if(isturf(X) || ismovable(X))
 			consume(X)
 	if(GLOBL.defer_powernet_rebuild != 2)
 		GLOBL.defer_powernet_rebuild = 0

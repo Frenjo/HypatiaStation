@@ -169,7 +169,7 @@
 					return*/
 		src.now_pushing = 0
 		..()
-		if (!istype(AM, /atom/movable))
+		if(!ismovable(AM))
 			return
 		if (!src.now_pushing)
 			src.now_pushing = 1

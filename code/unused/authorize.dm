@@ -148,13 +148,15 @@ var/list/beta_tester_keylist
 
 /proc/isgoon(X)
 	if (istype(X,/mob)) X=X:ckey
-	if (istype(X,/client)) X=X:ckey
+	if(isclient(X))
+		X=X:ckey
 	if ((ckey(X) in goon_keylist)) return 1
 	else return 0
 
 /proc/istester(X)
 	if (istype(X,/mob)) X=X:ckey
-	if (istype(X,/client)) X=X:ckey
+	if(isclient(X))
+		X=X:ckey
 	if ((ckey(X) in beta_tester_keylist)) return 1
 	else return 0
 

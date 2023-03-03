@@ -139,7 +139,7 @@
 	if (usr.stat)
 		return
 
-	if (istype(A, /atom/movable))
+	if(ismovable(A))
 		A.loc = src.loc
 		for(var/mob/O in view(src, null))
 			if ((O.client && !(O.blinded)))

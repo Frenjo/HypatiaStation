@@ -53,7 +53,8 @@ datum/light_source
 		..()
 		owner = A
 
-		if(istype(owner, /atom/movable))	mobile = 1		//apparantly this is faster than type-checking
+		if(ismovable(owner))
+			mobile = 1		//apparantly this is faster than type-checking
 		else								mobile = 0		//Perhaps removing support for luminous turfs would be a good idea.
 
 		__x = owner.x

@@ -207,7 +207,8 @@
 		if(mech_click == world.time) return
 		mech_click = world.time
 
-		if(!istype(object, /atom)) return
+		if(!isatom(object))
+			return
 		if(istype(object, /obj/screen))
 			var/obj/screen/using = object
 			if(using.screen_loc == ui_acti || using.screen_loc == ui_iarrowleft || using.screen_loc == ui_iarrowright)//ignore all HUD objects save 'intent' and its arrows

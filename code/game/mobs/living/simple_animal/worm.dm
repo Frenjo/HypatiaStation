@@ -142,7 +142,7 @@
 			wall.ChangeTurf(/turf/simulated/floor)
 			new /obj/item/stack/sheet/metal(src, flatPlasmaValue)
 			return 1
-	else if(istype(target,/atom/movable))
+	else if(ismovable(target))
 		if(ismob(target) || eatingDuration >= 50) //5 ticks to eat stuff like airlocks
 			var/atom/movable/objectOrMob = target
 			contents += objectOrMob

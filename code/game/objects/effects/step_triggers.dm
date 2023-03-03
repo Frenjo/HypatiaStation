@@ -29,7 +29,7 @@
 	var/list/affecting = list()
 
 /obj/effect/step_trigger/thrower/Trigger(atom/A)
-	if(!A || !istype(A, /atom/movable))
+	if(!A || !ismovable(A))
 		return
 
 	var/atom/movable/AM = A
