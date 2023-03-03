@@ -119,12 +119,12 @@ CONTROLLER_DEF(supply)
 		var/datum/supply_order/SO = S
 		var/decl/hierarchy/supply_pack/SP = SO.object
 
-		var/atom/A = new SP.containertype(pickedloc)
-		A.name = "[SP.containername] [SO.comment ? "([SO.comment])":"" ]"
+		var/obj/structure/O = new SP.containertype(pickedloc)
+		O.name = "[SP.containername] [SO.comment ? "([SO.comment])":"" ]"
 
 		//supply manifest generation begin
 
-		var/obj/item/weapon/paper/manifest/slip = new /obj/item/weapon/paper/manifest(A)
+		var/obj/item/weapon/paper/manifest/slip = new /obj/item/weapon/paper/manifest(O)
 		slip.info = "<h3>[command_name()] Shipping Manifest</h3><hr><br>"
 		slip.info +="Order #[SO.ordernum]<br>"
 		slip.info +="Destination: [GLOBL.current_map.station_name]<br>"
@@ -133,10 +133,10 @@ CONTROLLER_DEF(supply)
 
 		//spawn the stuff, finish generating the manifest while you're at it
 		if(SP.access)
-			A:req_access = list()
-			A:req_access.Add(text2num(SP.access))
+			O.req_access = list()
+			O.req_access.Add(text2num(SP.access))
 
-		var/list/spawned = SP.spawn_contents(A)
+		var/list/spawned = SP.spawn_contents(O)
 		for(var/atom/content in spawned)
 			slip.info += "<li>[content.name]</li>" //add the item to the manifest
 		slip.info += "</ul><br>"

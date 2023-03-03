@@ -1,8 +1,8 @@
 /*
  * Mineral Deposits
  */
-/datum/controller/master/var/list/artifact_spawning_turfs = list()
-GLOBAL_GLOBL_LIST_NEW(artifact_spawn) // Runtime fix for geometry loading before controller is instantiated.
+/datum/controller/master
+	var/list/artifact_spawning_turfs = list()
 
 /turf/simulated/mineral //wall piece
 	name = "rock"

@@ -12,7 +12,7 @@
 	var/manifest = ""
 	var/amount = null
 	var/cost = null
-	var/containertype = /obj/structure/closet/crate
+	var/containertype = /obj/structure/closet/crate // Must be an /obj/structure subtype.
 	var/containername = null
 	var/access = null
 	var/hidden = FALSE
