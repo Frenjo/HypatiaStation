@@ -171,7 +171,7 @@
 	update_icon()
 
 	for(var/turf/target_tile in range(2, src))
-		if(istype(target_tile, /turf/space) && !(locate(/obj/machinery/shield) in target_tile))
+		if(isspace(target_tile) && !(locate(/obj/machinery/shield) in target_tile))
 			if(malfunction && prob(33) || !malfunction)
 				deployed_shields += new /obj/machinery/shield(target_tile)
 
@@ -295,7 +295,8 @@
 				src.shields_down()
 			anchored = FALSE
 		else
-			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
+			if(isspace(get_turf(src)))
+				return //No wrenching these in space!
 			playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 			user << "\blue You secure the [src] to the floor!"
 			anchored = TRUE

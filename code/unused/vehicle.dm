@@ -198,7 +198,7 @@
 		return
 
 	proc/inspace()
-		if(istype(src.loc, /turf/space))
+		if(isspace(src.loc))
 			return 1
 		return 0
 

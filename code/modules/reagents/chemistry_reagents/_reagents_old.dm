@@ -232,7 +232,7 @@ datum
 					M.adjustToxLoss(rand(15,20))
 
 				var/hotspot = (locate(/obj/fire) in T)
-				if(hotspot && !istype(T, /turf/space))
+				if(hotspot && !isspace(T))
 					var/datum/gas_mixture/lowertemp = T.remove_air( T:air:total_moles() )
 					lowertemp.temperature = max( min(lowertemp.temperature-2000,lowertemp.temperature / 2) ,0)
 					lowertemp.react()
@@ -243,7 +243,7 @@ datum
 				del(src)
 				var/turf/T = get_turf(O)
 				var/hotspot = (locate(/obj/fire) in T)
-				if(hotspot && !istype(T, /turf/space))
+				if(hotspot && !isspace(T))
 					var/datum/gas_mixture/lowertemp = T.remove_air( T:air:total_moles() )
 					lowertemp.temperature = max( min(lowertemp.temperature-2000,lowertemp.temperature / 2) ,0)
 					lowertemp.react()
@@ -428,7 +428,7 @@ datum
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
 				M.druggy = max(M.druggy, 15)
-				if(isturf(M.loc) && !istype(M.loc, /turf/space))
+				if(isturf(M.loc) && !isspace(M.loc))
 					if(M.canmove && !M.restrained())
 						if(prob(10)) step(M, pick(cardinal))
 				if(prob(7)) M.emote(pick("twitch","drool","moan","giggle"))
@@ -555,7 +555,7 @@ datum
 
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
-				if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
+				if(M.canmove && !M.restrained() && isspace(M.loc))
 					step(M, pick(cardinal))
 				if(prob(5)) M.emote(pick("twitch","drool","moan"))
 				M.adjustBrainLoss(2)
@@ -582,7 +582,7 @@ datum
 
 			reaction_turf(var/turf/T, var/volume)
 				del(src)
-				if(!istype(T, /turf/space))
+				if(!isspace(T))
 					var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, T)
 					if (!dirtoverlay)
 						dirtoverlay = new/obj/effect/decal/cleanable/dirt(T)
@@ -646,7 +646,7 @@ datum
 
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
-				if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
+				if(M.canmove && !M.restrained() && isspace(M.loc))
 					step(M, pick(cardinal))
 				if(prob(5)) M.emote(pick("twitch","drool","moan"))
 				..()
@@ -713,7 +713,7 @@ datum
 			reaction_turf(var/turf/T, var/volume)
 				del(src)
 				if(volume >= 3)
-					if(!istype(T, /turf/space))
+					if(!isspace(T))
 						var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
 						if(!glow)
 							new /obj/effect/decal/cleanable/greenglow(T)
@@ -879,7 +879,7 @@ datum
 			reaction_turf(var/turf/T, var/volume)
 				del(src)
 				if(volume >= 3)
-					if(!istype(T, /turf/space))
+					if(!isspace(T))
 						var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
 						if(!glow)
 							new /obj/effect/decal/cleanable/greenglow(T)
@@ -2366,7 +2366,7 @@ datum
 
 			reaction_turf(var/turf/T, var/volume)
 				del(src)
-				if(!istype(T, /turf/space))
+				if(!isspace(T))
 					new /obj/effect/decal/cleanable/flour(T)
 */
 

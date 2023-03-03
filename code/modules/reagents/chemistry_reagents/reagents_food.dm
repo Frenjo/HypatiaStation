@@ -483,7 +483,7 @@
 
 			reaction_turf(var/turf/T, var/volume)
 				qdel(src)
-				if(!istype(T, /turf/space))
+				if(!isspace(T))
 					new /obj/effect/decal/cleanable/flour(T)
 */
 

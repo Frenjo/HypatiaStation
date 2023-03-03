@@ -344,7 +344,7 @@
 			thunk(M)
 
 /area/proc/thunk(mob)
-	if(istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.
+	if(isspace(get_turf(mob))) // Can't fall onto nothing.
 		return
 
 	if(ishuman(mob)) // Only humans can wear magboots, so we give them a chance to.

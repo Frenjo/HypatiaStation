@@ -95,7 +95,7 @@ RCD
 
 	switch(mode)
 		if(MODE_FLOOR_AND_WALLS)
-			if(istype(A, /turf/space))
+			if(isspace(A))
 				if(useResource(1, user))
 					to_chat(user, "Building Floor...")
 					activate()

@@ -917,7 +917,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 					var/old_icon1 = T.icon
 
 					if(platingRequired)
-						if(istype(B, /turf/space))
+						if(isspace(B))
 							continue moving
 
 					var/turf/X = new T.type(B)

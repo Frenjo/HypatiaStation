@@ -45,7 +45,7 @@
 /mob/living/simple_animal/sculpture/proc/Escape()
 	var/list/turfs = list()
 	for(var/turf/thisturf in view(50,src))
-		if(istype(thisturf, /turf/space))
+		if(isspace(thisturf))
 			continue
 		else if(istype(thisturf, /turf/simulated/wall))
 			continue
@@ -94,7 +94,7 @@
 		observed = 1
 
 	//can't do anything in space at all
-	if(istype(get_turf(src), /turf/space) || hibernate)
+	if(isspace(get_turf(src)) || hibernate)
 		return
 
 	for(var/mob/living/M in view(7, src))
@@ -208,7 +208,7 @@
 			if(!G && prob(10))
 				var/list/turfs = list()
 				for(var/turf/thisturf in view(7,src))
-					if(istype(thisturf, /turf/space))
+					if(isspace(thisturf))
 						continue
 					else if(istype(thisturf, /turf/simulated/wall))
 						continue

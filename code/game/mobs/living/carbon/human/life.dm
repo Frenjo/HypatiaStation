@@ -217,12 +217,12 @@
 	var/pressure = environment.return_pressure()
 	var/adjusted_pressure = calculate_affecting_pressure(pressure) //Returns how much pressure actually affects the mob.
 
-	if(!istype(get_turf(src), /turf/space)) //space is not meant to change your body temperature.
+	if(!isspace(get_turf(src))) //space is not meant to change your body temperature.
 		var/loc_temp = T0C
 		if(istype(loc, /obj/mecha))
 			var/obj/mecha/M = loc
 			loc_temp = M.return_temperature()
-		else if(istype(get_turf(src), /turf/space))
+		else if(isspace(get_turf(src)))
 		else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			var/obj/machinery/atmospherics/unary/cryo_cell/cell = loc
 			loc_temp = cell.air_contents.temperature

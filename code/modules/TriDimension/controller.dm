@@ -100,10 +100,10 @@
 		T.overlays -= T.z_overlays
 		T.z_overlays -= T.z_overlays
 
-		if(down && (istype(T, /turf/space) || istype(T, /turf/simulated/floor/open)))
+		if(down && (isspace(T) || isopenspace(T)))
 			var/turf/below = locate(T.x, T.y, down_target)
 			if(below)
-				if(!(istype(below, /turf/space) || istype(below, /turf/simulated/floor/open)))
+				if(!isspace(below) || !isopenspace(below))
 					var/image/t_img = list()
 					new_list = 1
 
@@ -158,16 +158,16 @@
 				var/eligeable = 0
 				for(var/d in cardinal)
 					var/turf/mT = get_step(above,d)
-					if(istype(mT, /turf/space) || istype(mT, /turf/simulated/floor/open))
+					if(isspace(mT) || isopenspace(mT))
 						eligeable = 1
 					/*if(mT.opacity == 0)
 						for(var/f in cardinal)
 							var/turf/nT = get_step(mT,f)
-							if(istype(nT, /turf/space) || istype(nT, /turf/simulated/floor/open))
+							if(isspace(nT) || isopenspace(nT))
 								eligeable = 1*/
-				if(istype(above, /turf/space) || istype(above, /turf/simulated/floor/open)) eligeable = 1
+				if(isspace(above) || isopenspace(above)) eligeable = 1
 				if(eligeable == 1)
-					if(!(istype(above, /turf/space) || istype(above, /turf/simulated/floor/open)))
+					if(!isspace(above) || !isopenspace(above))
 						var/image/t_img = list()
 						if(new_list < 1) new_list = 1
 

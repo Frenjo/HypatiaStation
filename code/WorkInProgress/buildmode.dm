@@ -187,7 +187,7 @@
 	switch(buildmode)
 		if(1)
 			if(isturf(object) && pa.Find("left") && !pa.Find("alt") && !pa.Find("ctrl") )
-				if(istype(object, /turf/space))
+				if(isspace(object))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/floor)
 					return

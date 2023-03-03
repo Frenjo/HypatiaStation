@@ -75,7 +75,7 @@ turf
 turf/simulated/proc/consider_pressure_difference_space(connection_difference)
 	for(var/direction in cardinal)
 		if(direction&group_border)
-			if(istype(get_step(src,direction),/turf/space))
+			if(isspace(get_step(src,direction)))
 				if(!pressure_difference)
 					air_master.high_pressure_delta += src
 				pressure_direction = direction
@@ -252,7 +252,7 @@ turf/simulated
 					if(!istype(T) || (T.parent!=parent))
 
 						//See what kind of border it is
-						if(istype(T,/turf/space))
+						if(isspace(T))
 							if(parent.space_borders)
 								parent.space_borders -= src
 								parent.space_borders += src

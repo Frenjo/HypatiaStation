@@ -72,7 +72,7 @@
 	do
 		sleep(1)
 		walk_towards(M, M.dest, 1)
-	while (!istype(M.loc, /turf/space) || pickedstart.loc.name != "Space" ) //FUUUCK, should never happen.
+	while(!isspace(M.loc) || pickedstart.loc.name != "Space" ) //FUUUCK, should never happen.
 
 	return
 

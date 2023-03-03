@@ -478,7 +478,7 @@
 
 
 
-		else if(!istype(src, /turf/space))
+		else if(!isspace(src))
 			M:inertia_dir = 0
 	..()
 	var/objects = 0

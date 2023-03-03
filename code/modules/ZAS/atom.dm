@@ -53,10 +53,10 @@
 	#ifdef ZLEVELS
 	if(other.z != src.z)
 		if(other.z < src.z)
-			if(!istype(src, /turf/simulated/floor/open))
+			if(!isopenspace(src))
 				return BLOCKED
 		else
-			if(!istype(other, /turf/simulated/floor/open))
+			if(!isopenspace(other))
 				return BLOCKED
 	#endif
 

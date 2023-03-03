@@ -149,7 +149,7 @@ GLOBAL_GLOBL_LIST_NEW(cached_icons)
 
 /obj/item/weapon/paint/afterattack(turf/target, mob/user as mob, proximity)
 	if(!proximity) return
-	if(!istype(target) || istype(target, /turf/space))
+	if(!istype(target) || isspace(target))
 		return
 	var/ind = "[initial(target.icon)][color]"
 	if(!cached_icons[ind])
@@ -181,7 +181,7 @@ GLOBAL_GLOBL_LIST_NEW(cached_icons)
 	description = "This paint will only adhere to floor tiles."
 
 /datum/reagent/paint/reaction_turf(turf/T, volume)
-	if(!istype(T) || istype(T, /turf/space))
+	if(!istype(T) || isspace(T))
 		return
 	var/ind = "[initial(T.icon)][color]"
 	if(!GLOBL.cached_icons[ind])

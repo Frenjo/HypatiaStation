@@ -118,7 +118,7 @@
 			minimap_icon.DrawBox(rgb(100, 100, 100), x + 1, y + 1, x + 2, y + 2)
 			continue
 
-		else if(istype(turf, /turf/space))
+		else if(isspace(turf))
 			minimap_icon.DrawBox(rgb(0, 0, 0), x + 1, y + 1, x + 2, y + 2)
 
 		else

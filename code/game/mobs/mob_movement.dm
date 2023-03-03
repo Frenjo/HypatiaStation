@@ -215,13 +215,13 @@
 	if(!mob.canmove)
 		return
 
-	//if(istype(mob.loc, /turf/space) || (mob.flags & NOGRAV))
+	//if(isspace(mob.loc) || (mob.flags & NOGRAV))
 	//	if(!mob.Process_Spacemove(0))	return 0
 
 	if(!mob.lastarea)
 		mob.lastarea = get_area(mob.loc)
 
-	if(istype(mob.loc, /turf/space) || !mob.lastarea.has_gravity)
+	if(isspace(mob.loc) || !mob.lastarea.has_gravity)
 		if(!mob.Process_Spacemove(0))
 			return 0
 
@@ -393,7 +393,7 @@
 
 	var/dense_object = 0
 	for(var/turf/turf in oview(1,src))
-		if(istype(turf, /turf/space))
+		if(isspace(turf))
 			continue
 
 		if(ishuman(src))	// Only humans can wear magboots, so we give them a chance to.

@@ -64,7 +64,7 @@
 	if(!environment)
 		return
 	var/environment_heat_capacity = environment.heat_capacity()
-	if(istype(loc, /turf/space))
+	if(isspace(loc))
 		environment_heat_capacity = loc:heat_capacity
 
 	if(environment.temperature > (T0C + 50) || environment.temperature < (T0C + 10))

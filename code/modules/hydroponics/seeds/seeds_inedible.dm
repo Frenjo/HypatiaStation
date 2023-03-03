@@ -122,7 +122,7 @@
 	plant_type = 1
 
 /obj/item/seeds/kudzuseed/attack_self(mob/user as mob)
-	if(istype(user.loc, /turf/space))
+	if(isspace(user.loc))
 		return
 	to_chat(user, SPAN_NOTICE("You plant the kudzu. You monster."))
 	new /obj/effect/spacevine_controller(user.loc)

@@ -118,7 +118,7 @@
 	for(var/obj/effect/biomass/biomass in location)
 		if(biomass != source)
 			return 0
-	if(istype(location,/turf/space))
+	if(isspace(location))
 		return 0
 	if(location.density)
 		return 0

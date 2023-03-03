@@ -54,7 +54,7 @@
 				var/datum/gas_mixture/environment = loc.return_air()
 				environment_temperature = environment.temperature
 
-		else if(istype(loc, /turf/space))
+		else if(isspace(loc))
 			parent.radiate_heat_to_space(surface, 1)
 
 		else

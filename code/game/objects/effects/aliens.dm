@@ -167,7 +167,7 @@
 
 /obj/effect/alien/weeds/New(pos, node)
 	..()
-	if(istype(loc, /turf/space))
+	if(isspace(loc))
 		qdel(src)
 		return
 
@@ -196,7 +196,7 @@ Alien plants should do something if theres a lot of poison
 		update()
 		return
 */
-	if(istype(U, /turf/space))
+	if(isspace(U))
 		qdel(src)
 		return
 
@@ -207,7 +207,7 @@ Alien plants should do something if theres a lot of poison
 		for(var/dirn in GLOBL.cardinal)
 			var/turf/T = get_step(src, dirn)
 
-			if(!istype(T) || T.density || locate(/obj/effect/alien/weeds) in T || istype(T.loc, /area/arrival) || istype(T, /turf/space))
+			if(!istype(T) || T.density || locate(/obj/effect/alien/weeds) in T || istype(T.loc, /area/arrival) || isspace(T))
 				continue
 
 	//		if (locate(/obj/movable, T)) // don't propogate into movables

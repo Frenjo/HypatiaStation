@@ -641,7 +641,7 @@
 	if(!part1 || !part1.secured)
 		return
 	for(var/atom/A in view(1, src.loc))
-		if(A!=src && !istype(A, /turf/space) && !isarea(A))
+		if(A != src && !isspace(A) && !isarea(A))
 			//world << "[A]:[A.type] was sensed"
 			src.part1.sense()
 			break

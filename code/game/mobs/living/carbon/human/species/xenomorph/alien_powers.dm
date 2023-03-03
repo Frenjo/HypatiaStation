@@ -42,7 +42,7 @@
 		var/has_foundation
 		if(T)
 			//TODO: Work out the actual conditions this needs.
-			if(!istype(T, /turf/space))
+			if(!isspace(T))
 				has_foundation = 1
 		if(!has_foundation)
 			to_chat(src, SPAN_WARNING("You need a solid foundation to do that on."))

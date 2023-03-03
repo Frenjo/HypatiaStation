@@ -96,8 +96,8 @@
 			src.see_in_dark = 0
 			src.see_invisible = SEE_INVISIBLE_LIVING
 
-			//if (((!loc.master.power_equip) || istype(T, /turf/space)) && !istype(src.loc,/obj/item))
-			if(((!loc.power_equip) || istype(T, /turf/space)) && !istype(src.loc, /obj/item))
+			//if (((!loc.master.power_equip) || isspace(T)) && !istype(src.loc,/obj/item))
+			if(((!loc.power_equip) || isspace(T)) && !istype(src.loc, /obj/item))
 				if(src:aiRestorePowerRoutine == 0)
 					src:aiRestorePowerRoutine = 1
 
@@ -113,7 +113,7 @@
 						sleep(50)
 						//if (loc.master.power_equip)
 						if(loc.power_equip)
-							if(!istype(T, /turf/space))
+							if(!isspace(T))
 								src << "Alert cancelled. Power has been restored without our assistance."
 								src:aiRestorePowerRoutine = 0
 								src.blind.invisibility = INVISIBILITY_MAXIMUM // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
@@ -122,7 +122,7 @@
 						sleep(20)
 						src << "Emergency control system online. Verifying connection to power network."
 						sleep(50)
-						if(istype(T, /turf/space))
+						if(isspace(T))
 							src << "Unable to verify! No power connection detected!"
 							src:aiRestorePowerRoutine = 2
 							return
@@ -158,7 +158,7 @@
 								return
 							//if (loc.master.power_equip)
 							if(loc.power_equip)
-								if(!istype(T, /turf/space))
+								if(!isspace(T))
 									src << "Alert cancelled. Power has been restored without our assistance."
 									src:aiRestorePowerRoutine = 0
 									// Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo

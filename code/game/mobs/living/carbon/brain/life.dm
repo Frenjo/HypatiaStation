@@ -57,7 +57,7 @@
 		return
 
 	var/environment_heat_capacity = environment.heat_capacity()
-	if(istype(get_turf(src), /turf/space))
+	if(isspace(get_turf(src)))
 		var/turf/heat_turf = get_turf(src)
 		environment_heat_capacity = heat_turf.heat_capacity
 

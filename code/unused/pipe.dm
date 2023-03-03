@@ -625,7 +625,7 @@ var/linenums = 0
 	if(istype(src, /obj/machinery/pipes/flexipipe)) return
 
 	if( level != 1)				// no heat exchange for under-floor pipes
-		if(istype(T,/turf/space))		// heat exchange less efficient in space (no conduction)
+		if(isspace(T))		// heat exchange less efficient in space (no conduction)
 			gas.temperature += ( T.temp - temp) / (3.0 * insulation * numnodes)
 		else
 
@@ -648,7 +648,7 @@ var/linenums = 0
 			T.res_vars()	// ensure turf tmp vars are updated
 
 	else								// if level 1 but in space, perform cooling anyway - exposed pipes
-		if(istype(T,/turf/space))
+		if(isspace(T))
 			gas.temperature += ( T.temp - temp) / (3.0 * insulation * numnodes)
 */ //TODO FIX
 // finds the machine with compatible p_dir in 1 step in dir from S

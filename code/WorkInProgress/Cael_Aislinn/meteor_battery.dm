@@ -128,7 +128,7 @@
 		if(get_turf(M) == M.target && M)
 			//missile has arrived at destination
 			fired_missiles.Remove(M)
-			if( istype(get_turf(M), /turf/space) )
+			if(isspace(get_turf(M)))
 				//send the missile shooting off into the distance
 				walk(M, get_dir(src,M), MISSILE_SPEED)
 				spawn(rand(3,10) * 10)

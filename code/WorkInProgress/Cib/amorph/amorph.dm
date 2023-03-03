@@ -113,7 +113,8 @@
 
 	if(analgesic) return -1
 
-	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
+	if(isspace(loc))
+		return -1 // It's hard to be slowed down in space by... anything
 
 	var/health_deficiency = traumatic_shock
 	if(health_deficiency >= 40) tally += (health_deficiency / 25)

@@ -312,12 +312,12 @@
 
 		if(!src.lastarea)
 			src.lastarea = get_area(src.loc)
-		if(istype(src.loc, /turf/space) || !src.lastarea.has_gravity)
+		if(isspace(src.loc) || !src.lastarea.has_gravity)
 			src.inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 
 /*
-		if(istype(src.loc, /turf/space) || (src.flags & NOGRAV)) //they're in space, move em one space in the opposite direction
+		if(isspace(src.loc) || (src.flags & NOGRAV)) //they're in space, move em one space in the opposite direction
 			src.inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 */

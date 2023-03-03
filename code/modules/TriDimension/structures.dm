@@ -222,7 +222,7 @@
 	for(var/obj/effect/landmark/zcontroller/c in cl)
 		if(c.up)
 			var/turf/O = locate(src.x, src.y, c.up_target)
-			if(istype(O, /turf/space))
+			if(isspace(O))
 				O.ChangeTurf(/turf/simulated/floor/open)
 
 /obj/multiz/stairs/initialize()
@@ -241,7 +241,7 @@
 				for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
 					if(controller.up)
 						var/turf/above = locate(src.x, src.y, controller.up_target)
-						if(istype(above, /turf/space) || istype(above, /turf/simulated/floor/open))
+						if(isspace(above) || isopenspace(above))
 							src.target = above
 				break
 		if(target)

@@ -9,7 +9,7 @@
 			legal = controller.up
 			if(controller.up)
 				var/turf/T = locate(usr.x, usr.y, controller.up_target)
-				if(T && (istype(T, /turf/space) || istype(T, /turf/simulated/floor/open)))
+				if(T && (isspace(T) || isopenspace(T)))
 					var/blocked = FALSE
 					for(var/atom/A in T.contents)
 						if(A.density)
@@ -37,7 +37,7 @@
 			if(controller.down)
 				var/turf/T = locate(usr.x, usr.y, controller.down_target)
 				var/turf/S = locate(usr.x, usr.y, usr.z)
-				if(T && (istype(S, /turf/space) || istype(S, /turf/simulated/floor/open)))
+				if(T && (isspace(S) || isopenspace(S)))
 					var/blocked = FALSE
 					for(var/atom/A in T.contents)
 						if(A.density)

@@ -61,7 +61,7 @@
 					numDead += 1
 				else
 					var/T = M.loc
-					if(istype(T, /turf/space))
+					if(isspace(T))
 						numSpace += 1
 					else if(istype(T, /turf))
 						if(isNotStationLevel(M.z))

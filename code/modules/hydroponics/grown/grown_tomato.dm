@@ -78,7 +78,7 @@
 		pickup(src.loc)
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/killertomato/attack_self(mob/user as mob)
-	if(istype(user.loc, /turf/space))
+	if(isspace(user.loc))
 		return
 
 	new /mob/living/simple_animal/tomato(user.loc)
@@ -166,7 +166,7 @@
 	for(var/turf/T in orange(M, outer_teleport_radius))
 		if(T in orange(M, inner_teleport_radius))
 			continue
-		if(istype(T, /turf/space))
+		if(isspace(T))
 			continue
 		if(T.density)
 			continue

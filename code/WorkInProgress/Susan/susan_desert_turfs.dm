@@ -143,7 +143,7 @@
 /obj/effect/alien/flesh/weeds/New(pos, node)
 	..()
 	linked_node = node
-	if(istype(loc, /turf/space))
+	if(isspace(loc))
 		del(src)
 		return
 	if(icon_state == "flesh")icon_state = pick("flesh", "flesh1", "flesh2")
@@ -168,7 +168,7 @@ Alien plants should do something if theres a lot of poison
 		update()
 		return
 */
-	if (istype(U, /turf/space))
+	if(isspace(U))
 		del(src)
 		return
 
@@ -176,7 +176,7 @@ Alien plants should do something if theres a lot of poison
 		for(var/dirn in cardinal)
 			var/turf/T = get_step(src, dirn)
 
-			if (!istype(T) || T.density || locate(/obj/effect/alien/flesh/weeds) in T || istype(T.loc, /area/arrival) || istype(T, /turf/space))
+			if(!istype(T) || T.density || locate(/obj/effect/alien/flesh/weeds) in T || istype(T.loc, /area/arrival) || isspace(T))
 				continue
 
 			if(!linked_node || get_dist(linked_node, src) > linked_node.node_range)

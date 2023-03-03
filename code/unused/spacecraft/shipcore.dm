@@ -89,7 +89,7 @@
 		var/zsav = src.loc.z
 
 		for(var/turf/T in block(lowerleft, upperright))
-			if(!istype(T, /turf/space))
+			if(!isspace(T))
 				return 0 // One of the tiles in the range we're moving to isn't a space tile - something's in the way!
 
 		// Alright, the way is clear, we can actually begin transferring everything over now.
@@ -225,7 +225,7 @@ obj/machinery/ship_component/thruster
 				return 1
 			if(lastused + cooldown <= world.time)
 				for(var/turf/T in range(1,src))
-					if(istype(T, /turf/space))
+					if(isspace(T))
 						src.ready = 1
 						break
 			else
@@ -312,7 +312,7 @@ obj/machinery/ship_component/control_panel
 			cleanup_self()
 		var/i
 		for(i=0, i<distance, i++)
-			if(istype(src.loc, /turf/space))
+			if(isspace(src.loc))
 				break
 			else
 				core.receive_turf(src.loc)

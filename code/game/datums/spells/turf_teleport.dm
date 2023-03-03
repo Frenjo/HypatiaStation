@@ -14,7 +14,7 @@
 		for(var/turf/T in range(target, outer_tele_radius))
 			if(T in range(target, inner_tele_radius))
 				continue
-			if(istype(T, /turf/space) && !include_space)
+			if(isspace(T) && !include_space)
 				continue
 			if(T.density && !include_dense)
 				continue

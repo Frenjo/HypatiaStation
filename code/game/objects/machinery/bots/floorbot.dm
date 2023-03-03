@@ -201,7 +201,7 @@
 						break
 			*/
 			var/turf/T = get_step(src, targetdirection)
-			if(istype(T, /turf/space))
+			if(isspace(T))
 				src.oldtarget = T
 				src.target = T
 		if(!src.target || src.target == null)
@@ -282,7 +282,7 @@
 
 
 /obj/machinery/bot/floorbot/proc/repair(var/turf/target)
-	if(istype(target, /turf/space))
+	if(isspace(target))
 		if(istype(target.loc, /area/space))
 			return
 	else if(!istype(target, /turf/simulated/floor))
@@ -291,7 +291,7 @@
 		return
 	src.anchored = TRUE
 	src.icon_state = "floorbot-c"
-	if(istype(target, /turf/space/))
+	if(isspace(target))
 		visible_message("\red [src] begins to repair the hole")
 		var/obj/item/stack/tile/plasteel/T = new /obj/item/stack/tile/plasteel
 		src.repairing = 1

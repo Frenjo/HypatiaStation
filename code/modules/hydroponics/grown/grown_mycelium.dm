@@ -135,7 +135,7 @@
 		src.set_light(round(potency / 10, 1))
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/glowshroom/attack_self(mob/user as mob)
-	if(istype(user.loc, /turf/space))
+	if(isspace(user.loc))
 		return
 
 	var/obj/effect/glowshroom/planted = new /obj/effect/glowshroom(user.loc)
@@ -202,7 +202,7 @@
 		pickup(src.loc)
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/walkingmushroom/attack_self(mob/user as mob)
-	if(istype(user.loc, /turf/space))
+	if(isspace(user.loc))
 		return
 
 	new /mob/living/simple_animal/mushroom(user.loc)

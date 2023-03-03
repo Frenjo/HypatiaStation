@@ -2,7 +2,8 @@
  * Mob Helpers
  * 
  * Fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
-*/
+ */
+//#define ismob(X)		istype(X, /mob) // Built-in.
 #define isliving(X)		istype(X, /mob/living)
 #define isobserver(X) 	istype(X, /mob/dead/observer)
 
@@ -32,6 +33,15 @@
 #define isbear(X)		istype(X, /mob/living/simple_animal/hostile/bear)
 #define iscarp(X)		istype(X, /mob/living/simple_animal/hostile/carp)
 #define isclown(X)		istype(X, /mob/living/simple_animal/hostile/retaliate/clown)
+
+/*
+ * Turf Helpers
+ * 
+ * Fun if you want to typecast turfs without writing long path-filled lines.
+ */
+//#define isturf(X)		istype(X, /turf) // Built-in.
+#define isspace(X)		istype(X, /turf/space)
+#define isopenspace(X)	istype(X, /turf/simulated/floor/open)
 
 /*
  * Miscellaneous Helpers

@@ -312,7 +312,8 @@
 	if(!usr.casting()) return
 	var/list/turfs = list()
 	for(var/turf/T in orange(6))
-		if(istype(T,/turf/space)) continue
+		if(isspace(T))
+			continue
 		if(T.density) continue
 		if(T.x>world.maxx-4 || T.x<4)	continue	//putting them at the edge is dumb
 		if(T.y>world.maxy-4 || T.y<4)	continue

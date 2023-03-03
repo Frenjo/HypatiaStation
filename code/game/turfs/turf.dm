@@ -131,7 +131,7 @@
 			inertial_drift(M)
 	*/
 
-		else if(!istype(src, /turf/space))
+		else if(!isspace(src))
 			M:inertia_dir = 0
 	..()
 	var/objects = 0
@@ -211,7 +211,7 @@
 		for(var/obj/effect/landmark/zcontroller/c in controller)
 			if(c.down)
 				var/turf/below = locate(src.x, src.y, c.down_target)
-				if((global.CTair_system.has_valid_zone(below) || global.CTair_system.has_valid_zone(src)) && !istype(below, /turf/space)) // dont make open space into space, its pointless and makes people drop out of the station
+				if((global.CTair_system.has_valid_zone(below) || global.CTair_system.has_valid_zone(src)) && !isspace(below)) // dont make open space into space, its pointless and makes people drop out of the station
 					var/turf/W = ChangeTurf(/turf/simulated/floor/open)
 					var/list/temp = list()
 					temp.Add(W)
@@ -328,7 +328,7 @@
 
 	for(var/direction in cardinal)//Only use cardinals to cut down on lag
 		var/turf/T = get_step(src,direction)
-		if(istype(T,/turf/space))//Counted as no air
+		if(isspace(T))//Counted as no air
 			turf_count++//Considered a valid turf for air calcs
 			continue
 		else if(istype(T,/turf/simulated/floor))
@@ -350,7 +350,7 @@
 	//cael - duplicate the averaged values across adjacent turfs to enforce a seamless atmos change
 	for(var/direction in cardinal)//Only use cardinals to cut down on lag
 		var/turf/T = get_step(src,direction)
-		if(istype(T,/turf/space))//Counted as no air
+		if(isspace(T))//Counted as no air
 			continue
 		else if(istype(T,/turf/simulated/floor))
 			var/turf/simulated/S = T

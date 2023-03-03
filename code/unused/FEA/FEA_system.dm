@@ -175,7 +175,7 @@ datum
 								if(istype(T,/turf/simulated) && !T:parent)
 									possible_members += T
 									members += T
-								else if(istype(T,/turf/space))
+								else if(isspace(T))
 									possible_space_borders -= test
 									possible_space_borders += test
 									test.length_space_border++
