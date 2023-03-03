@@ -121,7 +121,7 @@
 	var/loopsanity = 100
 	if(ismob(M))
 		var/mob/mob = M
-		if(!mob.lastarea)
+		if(isnull(mob.lastarea))
 			mob.lastarea = get_area(M.loc)
 		if(!mob.lastarea.has_gravity)
 			inertial_drift(M)
@@ -140,7 +140,7 @@
 			break
 		objects++
 		spawn(0)
-			if((A && M))
+			if(A && M)
 				A.HasProximity(M, 1)
 			return
 	return
@@ -166,13 +166,13 @@
 	return 0
 
 /turf/proc/inertial_drift(atom/movable/A as mob|obj)
-	if(!(A.last_move))
+	if(isnull(A.last_move))
 		return
 
 	if(ismob(A) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy - 1))
 		var/mob/M = A
 		if(M.Process_Spacemove(1))
-			M.inertia_dir  = 0
+			M.inertia_dir = 0
 			return
 		spawn(5)
 			if(M && !M.anchored && !M.pulledby && M.loc == src)
@@ -197,12 +197,12 @@
 // Removes all signs of lattice on the pos of the turf -Donkieyo
 /turf/proc/RemoveLattice()
 	var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-	if(L)
+	if(!isnull(L))
 		qdel(L)
 
 //Creates a new turf
 /turf/proc/ChangeTurf(turf/N)
-	if(!N)
+	if(isnull(N))
 		return
 
 ///// Z-Level Stuff ///// This makes sure that turfs are not changed to space when one side is part of a zone
@@ -212,9 +212,9 @@
 			if(c.down)
 				var/turf/below = locate(src.x, src.y, c.down_target)
 				if((global.CTair_system.has_valid_zone(below) || global.CTair_system.has_valid_zone(src)) && !istype(below, /turf/space)) // dont make open space into space, its pointless and makes people drop out of the station
-					var/turf/W = src.ChangeTurf(/turf/simulated/floor/open)
+					var/turf/W = ChangeTurf(/turf/simulated/floor/open)
 					var/list/temp = list()
-					temp += W
+					temp.Add(W)
 					c.add(temp, 3, 1) // report the new open space to the zcontroller
 					return W
 ///// Z-Level Stuff
@@ -244,7 +244,7 @@
 		if(old_fire)
 			fire = old_fire
 
-		if(istype(W,/turf/simulated/floor))
+		if(istype(W, /turf/simulated/floor))
 			W.RemoveLattice()
 
 		if(global.CTair_system)
@@ -301,18 +301,16 @@
 		return 0
 
 	if(other.zone)
-		if(!src.air)
+		if(isnull(src.air))
 			src.make_air()
 		src.air.copy_from(other.zone.air)
 		other.zone.remove(other)
 	return 1
 
-
 //No idea why resetting the base appearence from New() isn't enough, but without this it doesn't work
 /turf/simulated/shuttle/wall/corner/exterior/transport_properties_from(turf/simulated/other)
 	. = ..()
 	reset_base_appearance()
-
 
 //Commented out by SkyMarshal 5/10/13 - If you are patching up space, it should be vacuum.
 //  If you are replacing a wall, you have increased the volume of the room without increasing the amount of gas in it.
@@ -365,7 +363,6 @@
 				S.air.update_values()
 */
 
-
 /turf/proc/ReplaceWithLattice()
 	src.ChangeTurf(get_base_turf_by_area(get_area(src.loc)))
 	new /obj/structure/lattice(locate(src.x, src.y, src.z))
@@ -387,12 +384,12 @@
 	flags |= NOJAUNT
 
 /turf/proc/AdjacentTurfs()
-	var/L[] = new()
+	var/list/list = list()
 	for(var/turf/simulated/t in oview(src, 1))
 		if(!t.density)
 			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
-				L.Add(t)
-	return L
+				list.Add(t)
+	return list
 
 /turf/proc/Distance(turf/t)
 	if(get_dist(src, t) == 1)
@@ -400,12 +397,12 @@
 		cost *= (pathweight + t.pathweight) / 2
 		return cost
 	else
-		return get_dist(src,t)
+		return get_dist(src, t)
 
 /turf/proc/AdjacentTurfsSpace()
-	var/L[] = new()
+	var/list/list = list()
 	for(var/turf/t in oview(src, 1))
 		if(!t.density)
 			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
-				L.Add(t)
-	return L
+				list.Add(t)
+	return list

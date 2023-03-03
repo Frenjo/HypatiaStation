@@ -26,30 +26,35 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 
 	for(var/x = 0, x < x_size, x++)
 		for(var/y = 0, y < y_size, y++)
-			var/turf/T
+			var/turf/T = null
 			var/cur_loc = locate(start_loc.x + x, start_loc.y + y, start_loc.z)
 			if(clean)
 				for(var/O in cur_loc)
 					qdel(O)
 
-			var/area/asteroid/artifactroom/A = new
+			var/area/asteroid/artifactroom/A = new /area/asteroid/artifactroom()
 			if(name)
 				A.name = name
 			else
 				A.name = "Artifact Room #[start_loc.x][start_loc.y][start_loc.z]"
 
-			if(x == 0 || x == x_size - 1 || y == 0 || y == y_size - 1)
+			if(x == 0 || x == (x_size - 1) || y == 0 || y == (y_size - 1))
 				if(wall == /obj/effect/alien/resin)
-					T = new floor(cur_loc)
+					T = cur_loc
+					T.ChangeTurf(floor)
 					new /obj/effect/alien/resin(T)
 				else
-					T = new wall(cur_loc)
-					room_turfs["walls"] += T
+					T = cur_loc
+					T.ChangeTurf(wall)
+					var/list/walls = room_turfs["walls"]
+					walls.Add(T)
 			else
-				T = new floor(cur_loc)
-				room_turfs["floors"] += T
+				T = cur_loc
+				T.ChangeTurf(floor)
+				var/list/floors = room_turfs["floors"]
+				floors.Add(T)
 
-			A.contents += T
+			A.contents.Add(T)
 
 	return room_turfs
 
@@ -62,7 +67,7 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 	var/x_len = input("Desired length.", "Length", 5)
 	var/y_len = input("Desired width.", "Width", 5)
 	var/clean = input("Delete existing items in area?", "Clean area?", 0)
-	switch(alert("Wall type", null,"Reinforced wall", "Regular wall", "Resin wall"))
+	switch(alert("Wall type", null, "Reinforced wall", "Regular wall", "Resin wall"))
 		if("Reinforced wall")
 			wall = /turf/simulated/wall/r_wall
 		if("Regular wall")
@@ -79,7 +84,7 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 	return
 
 /proc/make_mining_asteroid_secret(size = 5)
-	var/valid = 0
+	var/valid = FALSE
 	var/turf/T = null
 	var/sanity = 0
 	var/list/room = null
@@ -91,48 +96,48 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 		return 0
 
 	while(!valid)
-		valid = 1
+		valid = TRUE
 		sanity++
 		if(sanity > 100)
 			return 0
 
 		T = pick(turfs)
-		if(!T)
+		if(isnull(T))
 			return 0
 
 		var/list/surroundings = list()
 
-		surroundings += range(7, locate(T.x, T.y, T.z))
-		surroundings += range(7, locate(T.x + size, T.y, T.z))
-		surroundings += range(7, locate(T.x, T.y + size, T.z))
-		surroundings += range(7, locate(T.x + size, T.y + size, T.z))
+		surroundings.Add(range(7, locate(T.x, T.y, T.z)))
+		surroundings.Add(range(7, locate(T.x + size, T.y, T.z)))
+		surroundings.Add(range(7, locate(T.x, T.y + size, T.z)))
+		surroundings.Add(range(7, locate(T.x + size, T.y + size, T.z)))
 
 		if(locate(/area/mine/explored) in surroundings)			// +5s are for view range
-			valid = 0
+			valid = FALSE
 			continue
 
 		if(locate(/turf/space) in surroundings)
-			valid = 0
+			valid = FALSE
 			continue
 
 		if(locate(/area/asteroid/artifactroom) in surroundings)
-			valid = 0
+			valid = FALSE
 			continue
 
 		if(locate(/turf/simulated/floor/plating/airless/asteroid) in surroundings)
-			valid = 0
+			valid = FALSE
 			continue
 
-	if(!T)
+	if(isnull(T))
 		return 0
 
-	room = spawn_room(T, size, size, , , 1)
+	room = spawn_room(start_loc = T, x_size = size, y_size = size, clean = TRUE)
 
 	if(room)
 		T = pick(room["floors"])
-		if(T)
+		if(!isnull(T))
 			var/surprise = null
-			valid = 0
+			valid = FALSE
 			while(!valid)
 				surprise = pickweight(GLOBL.space_surprises)
 				if(surprise in GLOBL.spawned_surprises)

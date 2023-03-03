@@ -5,7 +5,7 @@
 
 /turf
 	var/needs_air_update = FALSE
-	var/datum/gas_mixture/air
+	var/datum/gas_mixture/air = null
 
 /turf/simulated/proc/set_graphic(new_graphic)
 	gas_graphic = new_graphic
