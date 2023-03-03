@@ -24,16 +24,16 @@
 		return 0
 
 	var/obj/item/weapon/storage/bible/B = new /obj/item/weapon/storage/bible(H) //BS12 EDIT
-	H.equip_to_slot_or_del(B, slot_l_hand)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), slot_l_ear)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/chaplain(H), slot_belt)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
+	H.equip_to_slot_or_del(B, SLOT_ID_L_HAND)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), SLOT_ID_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/device/pda/chaplain(H), SLOT_ID_BELT)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
 
 	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), slot_r_hand)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
 	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), slot_in_backpack)
+		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 
 	spawn(0)
 		var/religion_name = "Christianity"

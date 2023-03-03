@@ -241,39 +241,39 @@ GLOBAL_GLOBL(can_call_ert)
 
 /mob/living/carbon/human/proc/equip_strike_team(leader_selected = 0)
 	//Special radio setup
-	equip_to_slot_or_del(new /obj/item/device/radio/headset/ert(src), slot_l_ear)
+	equip_to_slot_or_del(new /obj/item/device/radio/headset/ert(src), SLOT_ID_L_EAR)
 
 	//Replaced with new ERT uniform
-	equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(src), slot_w_uniform)
-	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), slot_shoes)
-	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), slot_gloves)
-	equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(src), slot_glasses)
-	equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(src), slot_back)
+	equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(src), SLOT_ID_W_UNIFORM)
+	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), SLOT_ID_SHOES)
+	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), SLOT_ID_GLOVES)
+	equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(src), SLOT_ID_GLASSES)
+	equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(src), SLOT_ID_BACK)
 /*
 
 	//Old ERT Uniform
 	//Basic Uniform
-	equip_to_slot_or_del(new /obj/item/clothing/under/syndicate/tacticool(src), slot_w_uniform)
-	equip_to_slot_or_del(new /obj/item/device/flashlight(src), slot_l_store)
-	equip_to_slot_or_del(new /obj/item/weapon/clipboard(src), slot_r_store)
-	equip_to_slot_or_del(new /obj/item/weapon/gun/energy/gun(src), slot_belt)
-	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/swat(src), slot_wear_mask)
+	equip_to_slot_or_del(new /obj/item/clothing/under/syndicate/tacticool(src), SLOT_ID_W_UNIFORM)
+	equip_to_slot_or_del(new /obj/item/device/flashlight(src), SLOT_ID_L_STORE)
+	equip_to_slot_or_del(new /obj/item/weapon/clipboard(src), SLOT_ID_R_STORE)
+	equip_to_slot_or_del(new /obj/item/weapon/gun/energy/gun(src), SLOT_ID_BELT)
+	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/swat(src), SLOT_ID_WEAR_MASK)
 
 	//Glasses
-	equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(src), slot_glasses)
+	equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(src), SLOT_ID_GLASSES)
 
 	//Shoes & gloves
-	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), slot_shoes)
-	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), slot_gloves)
+	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), SLOT_ID_SHOES)
+	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), SLOT_ID_GLOVES)
 
 	//Removed
-//	equip_to_slot_or_del(new /obj/item/clothing/suit/armor/swat(src), slot_wear_suit)
-//	equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/deathsquad(src), slot_head)
+//	equip_to_slot_or_del(new /obj/item/clothing/suit/armor/swat(src), SLOT_ID_WEAR_SUIT)
+//	equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/deathsquad(src), SLOT_ID_HEAD)
 
 	//Backpack
-	equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(src), slot_back)
-	equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(src), slot_in_backpack)
-	equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(src), slot_in_backpack)
+	equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(src), SLOT_ID_BACK)
+	equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(src), SLOT_ID_IN_BACKPACK)
+	equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(src), SLOT_ID_IN_BACKPACK)
 */
 	var/obj/item/weapon/card/id/W = new(src)
 	W.assignment = "Emergency Response Team[leader_selected ? " Leader" : ""]"
@@ -282,7 +282,7 @@ GLOBAL_GLOBL(can_call_ert)
 	W.icon_state = "centcom"
 	W.access = get_all_accesses()
 	W.access += get_all_centcom_access()
-	equip_to_slot_or_del(W, slot_wear_id)
+	equip_to_slot_or_del(W, SLOT_ID_WEAR_ID)
 
 	return 1
 

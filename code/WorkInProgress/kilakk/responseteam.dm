@@ -215,20 +215,20 @@ var/global/admin_emergency_team = 0 // Used for admin-spawned response teams
 	equip_to_slot_or_del(new /obj/item/device/radio/headset/ert(src), slot_ears)
 
 	// Uniform
-	equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(src), slot_w_uniform)
-	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), slot_shoes)
-	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), slot_gloves)
-	equip_to_slot_or_del(new /obj/item/weapon/gun/energy/gun(src), slot_belt)
+	equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(src), SLOT_ID_W_UNIFORM)
+	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), SLOT_ID_SHOES)
+	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), SLOT_ID_GLOVES)
+	equip_to_slot_or_del(new /obj/item/weapon/gun/energy/gun(src), SLOT_ID_BELT)
 
 	// Glasses
-	equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(src), slot_glasses)
+	equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(src), SLOT_ID_GLASSES)
 
 	// Backpack
-	equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(src), slot_back)
+	equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(src), SLOT_ID_BACK)
 
 	// Put stuff into their backpacks
-	equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(src), slot_in_backpack)
-	// equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(src), slot_in_backpack) // Regular medkit
+	equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(src), SLOT_ID_IN_BACKPACK)
+	// equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(src), SLOT_ID_IN_BACKPACK) // Regular medkit
 
 	// Loyalty implants
 	var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(src)
@@ -248,7 +248,7 @@ var/global/admin_emergency_team = 0 // Used for admin-spawned response teams
 		E.access += list(access_cent_general, access_cent_specops, access_cent_living, access_cent_storage)
 		E.assignment = "Emergency Response Team"
 	E.registered_name = real_name
-	equip_to_slot_or_del(E, slot_wear_id)
+	equip_to_slot_or_del(E, SLOT_ID_WEAR_ID)
 
 	update_icons()
 

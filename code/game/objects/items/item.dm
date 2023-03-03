@@ -257,45 +257,45 @@
 		var/mob/living/carbon/human/H = M
 
 		switch(slot)
-			if(slot_l_hand)
+			if(SLOT_ID_L_HAND)
 				if(H.l_hand)
 					return 0
 				return 1
-			if(slot_r_hand)
+			if(SLOT_ID_R_HAND)
 				if(H.r_hand)
 					return 0
 				return 1
-			if(slot_wear_mask)
+			if(SLOT_ID_WEAR_MASK)
 				if(H.wear_mask)
 					return 0
 				if(!(slot_flags & SLOT_MASK))
 					return 0
 				return 1
-			if(slot_back)
+			if(SLOT_ID_BACK)
 				if(H.back)
 					return 0
 				if(!(slot_flags & SLOT_BACK))
 					return 0
 				return 1
-			if(slot_wear_suit)
+			if(SLOT_ID_WEAR_SUIT)
 				if(H.wear_suit)
 					return 0
 				if(!(slot_flags & SLOT_OCLOTHING))
 					return 0
 				return 1
-			if(slot_gloves)
+			if(SLOT_ID_GLOVES)
 				if(H.gloves)
 					return 0
 				if(!(slot_flags & SLOT_GLOVES))
 					return 0
 				return 1
-			if(slot_shoes)
+			if(SLOT_ID_SHOES)
 				if(H.shoes)
 					return 0
 				if(!(slot_flags & SLOT_FEET))
 					return 0
 				return 1
-			if(slot_belt)
+			if(SLOT_ID_BELT)
 				if(H.belt)
 					return 0
 				if(!H.w_uniform)
@@ -305,19 +305,19 @@
 				if(!(slot_flags & SLOT_BELT))
 					return
 				return 1
-			if(slot_glasses)
+			if(SLOT_ID_GLASSES)
 				if(H.glasses)
 					return 0
 				if(!(slot_flags & SLOT_EYES))
 					return 0
 				return 1
-			if(slot_head)
+			if(SLOT_ID_HEAD)
 				if(H.head)
 					return 0
 				if(!(slot_flags & SLOT_HEAD))
 					return 0
 				return 1
-			if(slot_l_ear)
+			if(SLOT_ID_L_EAR)
 				if(H.l_ear)
 					return 0
 				if(w_class < 2)
@@ -327,7 +327,7 @@
 				if((slot_flags & SLOT_TWOEARS) && H.r_ear)
 					return 0
 				return 1
-			if(slot_r_ear)
+			if(SLOT_ID_R_EAR)
 				if(H.r_ear)
 					return 0
 				if(w_class < 2)
@@ -337,13 +337,13 @@
 				if((slot_flags & SLOT_TWOEARS) && H.l_ear)
 					return 0
 				return 1
-			if(slot_w_uniform)
+			if(SLOT_ID_W_UNIFORM)
 				if(H.w_uniform)
 					return 0
 				if(!(slot_flags & SLOT_ICLOTHING))
 					return 0
 				return 1
-			if(slot_wear_id)
+			if(SLOT_ID_WEAR_ID)
 				if(H.wear_id)
 					return 0
 				if(!H.w_uniform)
@@ -353,7 +353,7 @@
 				if(!(slot_flags & SLOT_ID))
 					return 0
 				return 1
-			if(slot_l_store)
+			if(SLOT_ID_L_STORE)
 				if(H.l_store)
 					return 0
 				if(!H.w_uniform)
@@ -364,7 +364,7 @@
 					return 0
 				if(w_class <= 2 || (slot_flags & SLOT_POCKET))
 					return 1
-			if(slot_r_store)
+			if(SLOT_ID_R_STORE)
 				if(H.r_store)
 					return 0
 				if(!H.w_uniform)
@@ -376,7 +376,7 @@
 				if(w_class <= 2 || (slot_flags & SLOT_POCKET))
 					return 1
 				return 0
-			if(slot_s_store)
+			if(SLOT_ID_S_STORE)
 				if(H.s_store)
 					return 0
 				if(!H.wear_suit)
@@ -390,19 +390,19 @@
 				if(istype(src, /obj/item/device/pda) || istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed))
 					return 1
 				return 0
-			if(slot_handcuffed)
+			if(SLOT_ID_HANDCUFFED)
 				if(H.handcuffed)
 					return 0
 				if(!istype(src, /obj/item/weapon/handcuffs))
 					return 0
 				return 1
-			if(slot_legcuffed)
+			if(SLOT_ID_LEGCUFFED)
 				if(H.legcuffed)
 					return 0
 				if(!istype(src, /obj/item/weapon/legcuffs))
 					return 0
 				return 1
-			if(slot_in_backpack)
+			if(SLOT_ID_IN_BACKPACK)
 				if(H.back && (istype(H.back, /obj/item/weapon/storage/backpack) || istype(H.back, /obj/item/weapon/storage/satchel)))
 					var/obj/item/weapon/storage/store = H.back
 					if(length(store.contents) < store.storage_slots && w_class <= store.max_w_class)
@@ -415,21 +415,21 @@
 		//START MONKEY
 		var/mob/living/carbon/monkey/MO = M
 		switch(slot)
-			if(slot_l_hand)
+			if(SLOT_ID_L_HAND)
 				if(MO.l_hand)
 					return 0
 				return 1
-			if(slot_r_hand)
+			if(SLOT_ID_R_HAND)
 				if(MO.r_hand)
 					return 0
 				return 1
-			if(slot_wear_mask)
+			if(SLOT_ID_WEAR_MASK)
 				if(MO.wear_mask)
 					return 0
 				if(!(slot_flags & SLOT_MASK))
 					return 0
 				return 1
-			if(slot_back)
+			if(SLOT_ID_BACK)
 				if(MO.back)
 					return 0
 				if(!(slot_flags & SLOT_BACK))

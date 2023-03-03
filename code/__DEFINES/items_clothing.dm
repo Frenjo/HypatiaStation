@@ -6,21 +6,22 @@
 #define CANDLE_LUM 3 //For how bright candles are
 
 //ITEM INVENTORY SLOT BITMASKS
-#define SLOT_OCLOTHING	1
-#define SLOT_ICLOTHING	2
-#define SLOT_GLOVES		4
-#define SLOT_EYES		8
-#define SLOT_EARS		16
-#define SLOT_MASK		32
-#define SLOT_HEAD		64
-#define SLOT_FEET		128
-#define SLOT_ID			256
-#define SLOT_BELT		512
-#define SLOT_BACK		1024
-#define SLOT_POCKET		2048	//this is to allow items with a w_class of 3 or 4 to fit in pockets.
-#define SLOT_DENYPOCKET	4096	//this is to deny items with a w_class of 2 or 1 to fit in pockets.
-#define SLOT_TWOEARS	8192
-#define SLOT_LEGS		16384
+// These are used by /obj/item/var/slot_flags.
+#define SLOT_OCLOTHING	BITFLAG(1)
+#define SLOT_ICLOTHING	BITFLAG(2)
+#define SLOT_GLOVES		BITFLAG(3)
+#define SLOT_EYES		BITFLAG(4)
+#define SLOT_EARS		BITFLAG(5)
+#define SLOT_MASK		BITFLAG(6)
+#define SLOT_HEAD		BITFLAG(7)
+#define SLOT_FEET		BITFLAG(8)
+#define SLOT_ID			BITFLAG(9)
+#define SLOT_BELT		BITFLAG(10)
+#define SLOT_BACK		BITFLAG(11)
+#define SLOT_POCKET		BITFLAG(12)	//this is to allow items with a w_class of 3 or 4 to fit in pockets.
+#define SLOT_DENYPOCKET	BITFLAG(13)	//this is to deny items with a w_class of 2 or 1 to fit in pockets.
+#define SLOT_TWOEARS	BITFLAG(14)
+#define SLOT_LEGS		BITFLAG(15)
 
 //FLAGS BITMASK
 #define STOPSPRESSUREDAMAGE BITFLAG(0)	//This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
@@ -35,6 +36,7 @@
 #define NOBLUDGEON	BITFLAG(7)	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
 #define NOBLOODY	BITFLAG(8)	// used to items if they don't want to get a blood overlay
 
+// TODO: Possibly merge these down into generic COVERSEYES and COVERSMOUTH.
 #define GLASSESCOVERSEYES	BITFLAG(9)
 #define MASKCOVERSEYES		BITFLAG(9)	// get rid of some of the other retardation in these flags
 #define HEADCOVERSEYES		BITFLAG(9)	// feel free to realloc these numbers for other purposes
@@ -71,28 +73,28 @@
 #define HIDEEYES	4	//APPLIES ONLY TO HELMETS/MASKS!! (eyes means glasses)
 #define HIDEFACE	8	//APPLIES ONLY TO HELMETS/MASKS!! Dictates whether we appear as unknown.
 
-//slots
-#define slot_back			1
-#define slot_wear_mask		2
-#define slot_handcuffed		3
-#define slot_l_hand			4
-#define slot_r_hand			5
-#define slot_belt			6
-#define slot_wear_id		7
-#define slot_l_ear			8
-#define slot_glasses		9
-#define slot_gloves			10
-#define slot_head			11
-#define slot_shoes			12
-#define slot_wear_suit		13
-#define slot_w_uniform		14
-#define slot_l_store		15
-#define slot_r_store		16
-#define slot_s_store		17
-#define slot_in_backpack	18
-#define slot_legcuffed		19
-#define slot_r_ear			20
-#define slot_legs			21
+// Slot ID defines.
+#define SLOT_ID_BACK		1
+#define SLOT_ID_WEAR_MASK	2
+#define SLOT_ID_HANDCUFFED	3
+#define SLOT_ID_L_HAND		4
+#define SLOT_ID_R_HAND		5
+#define SLOT_ID_BELT		6
+#define SLOT_ID_WEAR_ID		7
+#define SLOT_ID_L_EAR		8
+#define SLOT_ID_GLASSES		9
+#define SLOT_ID_GLOVES		10
+#define SLOT_ID_HEAD		11
+#define SLOT_ID_SHOES		12
+#define SLOT_ID_WEAR_SUIT	13
+#define SLOT_ID_W_UNIFORM	14
+#define SLOT_ID_L_STORE		15
+#define SLOT_ID_R_STORE		16
+#define SLOT_ID_S_STORE		17
+#define SLOT_ID_IN_BACKPACK	18
+#define SLOT_ID_LEGCUFFED	19
+#define SLOT_ID_R_EAR		20
+#define SLOT_ID_LEGS		21
 
 //Cant seem to find a mob bitflags area other than the powers one
 

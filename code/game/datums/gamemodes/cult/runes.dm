@@ -1034,10 +1034,10 @@ var/list/sacrificed = list()
 		SPAN_WARNING("You are blinded by the flash of red light! After you're able to see again, you see that you are now wearing a set of armor.")
 	)
 
-	user.equip_to_slot_or_del(new /obj/item/clothing/head/culthood/alt(user), slot_head)
-	user.equip_to_slot_or_del(new /obj/item/clothing/suit/cultrobes/alt(user), slot_wear_suit)
-	user.equip_to_slot_or_del(new /obj/item/clothing/shoes/cult(user), slot_shoes)
-	user.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/cultpack(user), slot_back)
+	user.equip_to_slot_or_del(new /obj/item/clothing/head/culthood/alt(user), SLOT_ID_HEAD)
+	user.equip_to_slot_or_del(new /obj/item/clothing/suit/cultrobes/alt(user), SLOT_ID_WEAR_SUIT)
+	user.equip_to_slot_or_del(new /obj/item/clothing/shoes/cult(user), SLOT_ID_SHOES)
+	user.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/cultpack(user), SLOT_ID_BACK)
 	//the above update their overlay icons cache but do not call update_icons()
 	//the below calls update_icons() at the end, which will update overlay icons by using the (now updated) cache
 	user.put_in_hands(new /obj/item/weapon/melee/cultblade(user))	//put in hands or on floor

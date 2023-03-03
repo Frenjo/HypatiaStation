@@ -32,46 +32,46 @@
 
 /mob/living/carbon/human/proc/has_organ_for_slot(slot)
 	switch(slot)
-		if(slot_back)
+		if(SLOT_ID_BACK)
 			return has_organ("chest")
-		if(slot_wear_mask)
+		if(SLOT_ID_WEAR_MASK)
 			return has_organ("head")
-		if(slot_handcuffed)
+		if(SLOT_ID_HANDCUFFED)
 			return has_organ("l_hand") && has_organ("r_hand")
-		if(slot_legcuffed)
+		if(SLOT_ID_LEGCUFFED)
 			return has_organ("l_leg") && has_organ("r_leg")
-		if(slot_l_hand)
+		if(SLOT_ID_L_HAND)
 			return has_organ("l_hand")
-		if(slot_r_hand)
+		if(SLOT_ID_R_HAND)
 			return has_organ("r_hand")
-		if(slot_belt)
+		if(SLOT_ID_BELT)
 			return has_organ("chest")
-		if(slot_wear_id)
+		if(SLOT_ID_WEAR_ID)
 			// the only relevant check for this is the uniform check
 			return 1
-		if(slot_l_ear)
+		if(SLOT_ID_L_EAR)
 			return has_organ("head")
-		if(slot_r_ear)
+		if(SLOT_ID_R_EAR)
 			return has_organ("head")
-		if(slot_glasses)
+		if(SLOT_ID_GLASSES)
 			return has_organ("head")
-		if(slot_gloves)
+		if(SLOT_ID_GLOVES)
 			return has_organ("l_hand") && has_organ("r_hand")
-		if(slot_head)
+		if(SLOT_ID_HEAD)
 			return has_organ("head")
-		if(slot_shoes)
+		if(SLOT_ID_SHOES)
 			return has_organ("r_foot") && has_organ("l_foot")
-		if(slot_wear_suit)
+		if(SLOT_ID_WEAR_SUIT)
 			return has_organ("chest")
-		if(slot_w_uniform)
+		if(SLOT_ID_W_UNIFORM)
 			return has_organ("chest")
-		if(slot_l_store)
+		if(SLOT_ID_L_STORE)
 			return has_organ("chest")
-		if(slot_r_store)
+		if(SLOT_ID_R_STORE)
 			return has_organ("chest")
-		if(slot_s_store)
+		if(SLOT_ID_S_STORE)
 			return has_organ("chest")
-		if(slot_in_backpack)
+		if(SLOT_ID_IN_BACKPACK)
 			return 1
 
 /mob/living/carbon/human/u_equip(obj/item/W as obj)
@@ -213,41 +213,41 @@
 
 	W.loc = src
 	switch(slot)
-		if(slot_back)
+		if(SLOT_ID_BACK)
 			src.back = W
 			W.equipped(src, slot)
 			update_inv_back(redraw_mob)
-		if(slot_wear_mask)
+		if(SLOT_ID_WEAR_MASK)
 			src.wear_mask = W
 			if((wear_mask.flags & BLOCKHAIR) || (wear_mask.flags & BLOCKHEADHAIR))
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 			W.equipped(src, slot)
 			update_inv_wear_mask(redraw_mob)
-		if(slot_handcuffed)
+		if(SLOT_ID_HANDCUFFED)
 			src.handcuffed = W
 			update_inv_handcuffed(redraw_mob)
-		if(slot_legcuffed)
+		if(SLOT_ID_LEGCUFFED)
 			src.legcuffed = W
 			W.equipped(src, slot)
 			update_inv_legcuffed(redraw_mob)
-		if(slot_l_hand)
+		if(SLOT_ID_L_HAND)
 			src.l_hand = W
 			W.equipped(src, slot)
 			update_inv_l_hand(redraw_mob)
-		if(slot_r_hand)
+		if(SLOT_ID_R_HAND)
 			src.r_hand = W
 			W.equipped(src, slot)
 			update_inv_r_hand(redraw_mob)
-		if(slot_belt)
+		if(SLOT_ID_BELT)
 			src.belt = W
 			W.equipped(src, slot)
 			update_inv_belt(redraw_mob)
-		if(slot_wear_id)
+		if(SLOT_ID_WEAR_ID)
 			src.wear_id = W
 			W.equipped(src, slot)
 			update_inv_wear_id(redraw_mob)
-		if(slot_l_ear)
+		if(SLOT_ID_L_EAR)
 			src.l_ear = W
 			if(l_ear.slot_flags & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
@@ -256,7 +256,7 @@
 				O.layer = 20
 			W.equipped(src, slot)
 			update_inv_ears(redraw_mob)
-		if(slot_r_ear)
+		if(SLOT_ID_R_EAR)
 			src.r_ear = W
 			if(r_ear.slot_flags & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
@@ -265,15 +265,15 @@
 				O.layer = 20
 			W.equipped(src, slot)
 			update_inv_ears(redraw_mob)
-		if(slot_glasses)
+		if(SLOT_ID_GLASSES)
 			src.glasses = W
 			W.equipped(src, slot)
 			update_inv_glasses(redraw_mob)
-		if(slot_gloves)
+		if(SLOT_ID_GLOVES)
 			src.gloves = W
 			W.equipped(src, slot)
 			update_inv_gloves(redraw_mob)
-		if(slot_head)
+		if(SLOT_ID_HEAD)
 			src.head = W
 			if((head.flags & BLOCKHAIR) || (head.flags & BLOCKHEADHAIR) || (head.flags_inv & HIDEMASK))
 				update_hair(redraw_mob)	//rebuild hair
@@ -283,33 +283,33 @@
 				W.update_icon(src)
 			W.equipped(src, slot)
 			update_inv_head(redraw_mob)
-		if(slot_shoes)
+		if(SLOT_ID_SHOES)
 			src.shoes = W
 			W.equipped(src, slot)
 			update_inv_shoes(redraw_mob)
-		if(slot_wear_suit)
+		if(SLOT_ID_WEAR_SUIT)
 			src.wear_suit = W
 			if(wear_suit.flags_inv & HIDESHOES)
 				update_inv_shoes(0)
 			W.equipped(src, slot)
 			update_inv_wear_suit(redraw_mob)
-		if(slot_w_uniform)
+		if(SLOT_ID_W_UNIFORM)
 			src.w_uniform = W
 			W.equipped(src, slot)
 			update_inv_w_uniform(redraw_mob)
-		if(slot_l_store)
+		if(SLOT_ID_L_STORE)
 			src.l_store = W
 			W.equipped(src, slot)
 			update_inv_pockets(redraw_mob)
-		if(slot_r_store)
+		if(SLOT_ID_R_STORE)
 			src.r_store = W
 			W.equipped(src, slot)
 			update_inv_pockets(redraw_mob)
-		if(slot_s_store)
+		if(SLOT_ID_S_STORE)
 			src.s_store = W
 			W.equipped(src, slot)
 			update_inv_s_store(redraw_mob)
-		if(slot_in_backpack)
+		if(SLOT_ID_IN_BACKPACK)
 			if(src.get_active_hand() == W)
 				src.u_equip(W)
 			W.loc = src.back
@@ -581,75 +581,75 @@ It can still be worn/put on as normal.
 
 	switch(place)	//here we go again...
 		if("mask")
-			slot_to_process = slot_wear_mask
+			slot_to_process = SLOT_ID_WEAR_MASK
 			if (target.wear_mask && target.wear_mask.canremove)
 				strip_item = target.wear_mask
 		if("gloves")
-			slot_to_process = slot_gloves
+			slot_to_process = SLOT_ID_GLOVES
 			if (target.gloves && target.gloves.canremove)
 				strip_item = target.gloves
 		if("eyes")
-			slot_to_process = slot_glasses
+			slot_to_process = SLOT_ID_GLASSES
 			if (target.glasses)
 				strip_item = target.glasses
 		if("belt")
-			slot_to_process = slot_belt
+			slot_to_process = SLOT_ID_BELT
 			if (target.belt)
 				strip_item = target.belt
 		if("s_store")
-			slot_to_process = slot_s_store
+			slot_to_process = SLOT_ID_S_STORE
 			if (target.s_store)
 				strip_item = target.s_store
 		if("head")
-			slot_to_process = slot_head
+			slot_to_process = SLOT_ID_HEAD
 			if (target.head && target.head.canremove)
 				strip_item = target.head
 		if("l_ear")
-			slot_to_process = slot_l_ear
+			slot_to_process = SLOT_ID_L_EAR
 			if (target.l_ear)
 				strip_item = target.l_ear
 		if("r_ear")
-			slot_to_process = slot_r_ear
+			slot_to_process = SLOT_ID_R_EAR
 			if (target.r_ear)
 				strip_item = target.r_ear
 		if("shoes")
-			slot_to_process = slot_shoes
+			slot_to_process = SLOT_ID_SHOES
 			if (target.shoes && target.shoes.canremove)
 				strip_item = target.shoes
 		if("l_hand")
 			if (istype(target, /obj/item/clothing/suit/straight_jacket))
 				qdel(src)
-			slot_to_process = slot_l_hand
+			slot_to_process = SLOT_ID_L_HAND
 			if (target.l_hand)
 				strip_item = target.l_hand
 		if("r_hand")
 			if (istype(target, /obj/item/clothing/suit/straight_jacket))
 				qdel(src)
-			slot_to_process = slot_r_hand
+			slot_to_process = SLOT_ID_R_HAND
 			if (target.r_hand)
 				strip_item = target.r_hand
 		if("uniform")
-			slot_to_process = slot_w_uniform
+			slot_to_process = SLOT_ID_W_UNIFORM
 			if(target.w_uniform && target.w_uniform.canremove)
 				strip_item = target.w_uniform
 		if("suit")
-			slot_to_process = slot_wear_suit
+			slot_to_process = SLOT_ID_WEAR_SUIT
 			if (target.wear_suit && target.wear_suit.canremove)
 				strip_item = target.wear_suit
 		if("id")
-			slot_to_process = slot_wear_id
+			slot_to_process = SLOT_ID_WEAR_ID
 			if (target.wear_id)
 				strip_item = target.wear_id
 		if("back")
-			slot_to_process = slot_back
+			slot_to_process = SLOT_ID_BACK
 			if (target.back)
 				strip_item = target.back
 		if("handcuff")
-			slot_to_process = slot_handcuffed
+			slot_to_process = SLOT_ID_HANDCUFFED
 			if (target.handcuffed)
 				strip_item = target.handcuffed
 		if("legcuff")
-			slot_to_process = slot_legcuffed
+			slot_to_process = SLOT_ID_LEGCUFFED
 			if (target.legcuffed)
 				strip_item = target.legcuffed
 		if("splints")
@@ -687,7 +687,7 @@ It can still be worn/put on as normal.
 					O.show_message("\red [source] injects [target] with the DNA Injector!", 1)
 				S.inuse = 0
 		if("pockets")
-			slot_to_process = slot_l_store
+			slot_to_process = SLOT_ID_L_STORE
 			strip_item = target.l_store		//We'll do both
 		if("internal")
 			if (target.internal)
@@ -722,7 +722,7 @@ It can still be worn/put on as normal.
 				W.reset_plane_and_layer()
 				W.dropped(target)
 			W.add_fingerprint(source)
-			if(slot_to_process == slot_l_store) //pockets! Needs to process the other one too. Snowflake code, wooo! It's not like anyone will rewrite this anytime soon. If I'm wrong then... CONGRATULATIONS! ;)
+			if(slot_to_process == SLOT_ID_L_STORE) //pockets! Needs to process the other one too. Snowflake code, wooo! It's not like anyone will rewrite this anytime soon. If I'm wrong then... CONGRATULATIONS! ;)
 				if(target.r_store)
 					target.u_equip(target.r_store) //At this stage l_store is already processed by the code above, we only need to process r_store.
 		else

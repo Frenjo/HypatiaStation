@@ -26,9 +26,9 @@
 
 	H.gender = NEUTER
 
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/plasmalin(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/plasmalin(H), slot_gloves)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/plasmalin(H), slot_head)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/plasmalin(H), SLOT_ID_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/plasmalin(H), SLOT_ID_GLOVES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/plasmalin(H), SLOT_ID_HEAD)
 
 	return ..()
 

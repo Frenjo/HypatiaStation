@@ -36,25 +36,25 @@
 
 	switch(H.backbag)
 		if(2)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial(H), SLOT_ID_BACK)
 		if(3)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/eng(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/eng(H), SLOT_ID_BACK)
 		if(4)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), SLOT_ID_BACK)
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/ce(H), slot_l_ear)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chief_engineer(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/heads/ce(H), slot_l_store)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/white(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), slot_gloves)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/ce(H), SLOT_ID_L_EAR)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chief_engineer(H), SLOT_ID_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/device/pda/heads/ce(H), SLOT_ID_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), SLOT_ID_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/white(H), SLOT_ID_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), SLOT_ID_BELT)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
 
 	if(istype(H.species.survival_kit, /obj/item/weapon/storage/box/survival))
 		if(H.backbag == 1)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H), slot_r_hand)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H), SLOT_ID_R_HAND)
 		else
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H.back), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H.back), SLOT_ID_IN_BACKPACK)
 	return 1
 
 /*
@@ -89,25 +89,25 @@
 
 	switch(H.backbag)
 		if(2)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial(H), SLOT_ID_BACK)
 		if(3)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/eng(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/eng(H), SLOT_ID_BACK)
 		if(4)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), SLOT_ID_BACK)
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_eng(H), slot_l_ear)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/engineer(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat(H), slot_head)
-	H.equip_to_slot_or_del(new /obj/item/device/t_scanner(H), slot_r_store)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/engineering(H), slot_l_store)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_eng(H), SLOT_ID_L_EAR)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/engineer(H), SLOT_ID_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(H), SLOT_ID_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), SLOT_ID_BELT)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat(H), SLOT_ID_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/device/t_scanner(H), SLOT_ID_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/pda/engineering(H), SLOT_ID_L_STORE)
 
 	if(istype(H.species.survival_kit, /obj/item/weapon/storage/box/survival))
 		if(H.backbag == 1)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H), slot_r_hand)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H), SLOT_ID_R_HAND)
 		else
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H.back), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H.back), SLOT_ID_IN_BACKPACK)
 	return 1
 
 /*
@@ -141,21 +141,21 @@
 
 	switch(H.backbag)
 		if(2)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), SLOT_ID_BACK)
 		if(3)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/norm(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/norm(H), SLOT_ID_BACK)
 		if(4)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), slot_back)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), SLOT_ID_BACK)
 
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_eng(H), slot_l_ear)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/atmospheric_technician(H), slot_w_uniform)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), slot_shoes)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/atmos(H), slot_l_store)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/atmostech/(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_eng(H), SLOT_ID_L_EAR)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/atmospheric_technician(H), SLOT_ID_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/device/pda/atmos(H), SLOT_ID_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/atmostech/(H), SLOT_ID_BELT)
 
 	if(!istype(H.species.survival_kit, /obj/item/weapon/storage/box/survival))
 		if(H.backbag == 1)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H), slot_r_hand)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H), SLOT_ID_R_HAND)
 		else
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H.back), slot_in_backpack)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H.back), SLOT_ID_IN_BACKPACK)
 	return 1

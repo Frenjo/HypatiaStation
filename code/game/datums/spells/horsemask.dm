@@ -34,7 +34,7 @@
 		SPAN_DANGER("[target]'s face  lights up in fire, and after the event a horse's head takes its place!"),
 		SPAN_DANGER("Your face burns up, and shortly after the fire you realise you have the face of a horse!")
 	)
-	target.equip_to_slot(magichead, slot_wear_mask)
+	target.equip_to_slot(magichead, SLOT_ID_WEAR_MASK)
 
 	flick("e_flash", target.flash)
 
@@ -48,6 +48,6 @@
 	..()
 
 /obj/item/clothing/mask/horsehead/magic/equipped(mob/user, slot)
-	if(slot == slot_wear_mask)
+	if(slot == SLOT_ID_WEAR_MASK)
 		canremove = 0		//curses!
 	..()

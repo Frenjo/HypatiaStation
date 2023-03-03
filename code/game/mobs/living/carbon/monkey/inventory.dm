@@ -204,30 +204,30 @@
 		u_equip(W)
 
 	switch(slot)
-		if(slot_back)
+		if(SLOT_ID_BACK)
 			src.back = W
 			W.equipped(src, slot)
 			update_inv_back(redraw_mob)
-		if(slot_wear_mask)
+		if(SLOT_ID_WEAR_MASK)
 			src.wear_mask = W
 			W.equipped(src, slot)
 			update_inv_wear_mask(redraw_mob)
-		if(slot_handcuffed)
+		if(SLOT_ID_HANDCUFFED)
 			src.handcuffed = W
 			update_inv_handcuffed(redraw_mob)
-		if(slot_legcuffed)
+		if(SLOT_ID_LEGCUFFED)
 			src.legcuffed = W
 			W.equipped(src, slot)
 			update_inv_legcuffed(redraw_mob)
-		if(slot_l_hand)
+		if(SLOT_ID_L_HAND)
 			src.l_hand = W
 			W.equipped(src, slot)
 			update_inv_l_hand(redraw_mob)
-		if(slot_r_hand)
+		if(SLOT_ID_R_HAND)
 			src.r_hand = W
 			W.equipped(src, slot)
 			update_inv_r_hand(redraw_mob)
-		if(slot_in_backpack)
+		if(SLOT_ID_IN_BACKPACK)
 			W.loc = src.back
 		else
 			usr << "\red You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it..."

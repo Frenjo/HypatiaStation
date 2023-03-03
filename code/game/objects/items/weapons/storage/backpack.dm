@@ -19,7 +19,7 @@
 	..()
 
 /obj/item/weapon/storage/backpack/equipped(mob/user, slot)
-	if(slot == slot_back && src.use_sound)
+	if(slot == SLOT_ID_BACK && src.use_sound)
 		playsound(src.loc, src.use_sound, 50, 1, -5)
 	..(user, slot)
 

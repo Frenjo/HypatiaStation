@@ -195,20 +195,20 @@ proc/dress_for_job_default(var/mob/living/carbon/human/employee as mob, var/job_
 		var/item = JOB.equipment_ears[1]
 		employee.equip_to_slot_or_del(new item(employee), employee.slot_ears)
 		item = JOB.equipment_under[1]
-		employee.equip_to_slot_or_del(new item(employee), employee.slot_w_uniform)
+		employee.equip_to_slot_or_del(new item(employee), employee.SLOT_ID_W_UNIFORM)
 
 
 		/*
-	src.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial (src), slot_back)
-	src.equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(src), slot_in_backpack)
+	src.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial (src), SLOT_ID_BACK)
+	src.equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(src), SLOT_ID_IN_BACKPACK)
 	src.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_eng (src), slot_ears) // -- TLE
-	src.equip_to_slot_or_del(new /obj/item/device/pda/engineering(src), slot_belt)
-	src.equip_to_slot_or_del(new /obj/item/clothing/under/rank/engineer(src), slot_w_uniform)
-	src.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(src), slot_shoes)
-	src.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/hardhat(src), slot_head)
-	src.equip_to_slot_or_del(new /obj/item/weapon/storage/utilitybelt/full(src), slot_l_hand) //currently spawns in hand due to traitor assignment requiring a PDA to be on the belt. --Errorage
-	//src.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(src), slot_gloves) removed as part of Dangercon 2011, approved by Urist_McDorf --Errorage
-	src.equip_to_slot_or_del(new /obj/item/device/t_scanner(src), slot_r_store)
+	src.equip_to_slot_or_del(new /obj/item/device/pda/engineering(src), SLOT_ID_BELT)
+	src.equip_to_slot_or_del(new /obj/item/clothing/under/rank/engineer(src), SLOT_ID_W_UNIFORM)
+	src.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(src), SLOT_ID_SHOES)
+	src.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/hardhat(src), SLOT_ID_HEAD)
+	src.equip_to_slot_or_del(new /obj/item/weapon/storage/utilitybelt/full(src), SLOT_ID_L_HAND) //currently spawns in hand due to traitor assignment requiring a PDA to be on the belt. --Errorage
+	//src.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(src), SLOT_ID_GLOVES) removed as part of Dangercon 2011, approved by Urist_McDorf --Errorage
+	src.equip_to_slot_or_del(new /obj/item/device/t_scanner(src), SLOT_ID_R_STORE)
 	*/
 
 

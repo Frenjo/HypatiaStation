@@ -120,9 +120,9 @@
 		equip_to_slot_if_possible(W, slot)
 
 /mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = 0, disable_warning = 1, redraw_mob = 1)
-	if(equip_to_slot_if_possible(W, slot_l_hand, del_on_fail, disable_warning, redraw_mob))
+	if(equip_to_slot_if_possible(W, SLOT_ID_L_HAND, del_on_fail, disable_warning, redraw_mob))
 		return 1
-	else if(equip_to_slot_if_possible(W, slot_r_hand, del_on_fail, disable_warning, redraw_mob))
+	else if(equip_to_slot_if_possible(W, SLOT_ID_R_HAND, del_on_fail, disable_warning, redraw_mob))
 		return 1
 	return 0
 
@@ -155,21 +155,21 @@
 
 //The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
 var/list/slot_equipment_priority = list(
-	slot_back,
-	slot_wear_id,
-	slot_w_uniform,
-	slot_wear_suit,
-	slot_wear_mask,
-	slot_head,
-	slot_shoes,
-	slot_gloves,
-	slot_l_ear,
-	slot_r_ear,
-	slot_glasses,
-	slot_belt,
-	slot_s_store,
-	slot_l_store,
-	slot_r_store
+	SLOT_ID_BACK,
+	SLOT_ID_WEAR_ID,
+	SLOT_ID_W_UNIFORM,
+	SLOT_ID_WEAR_SUIT,
+	SLOT_ID_WEAR_MASK,
+	SLOT_ID_HEAD,
+	SLOT_ID_SHOES,
+	SLOT_ID_GLOVES,
+	SLOT_ID_L_EAR,
+	SLOT_ID_R_EAR,
+	SLOT_ID_GLASSES,
+	SLOT_ID_BELT,
+	SLOT_ID_S_STORE,
+	SLOT_ID_L_STORE,
+	SLOT_ID_R_STORE
 )
 
 //puts the item "W" into an appropriate slot in a human's inventory

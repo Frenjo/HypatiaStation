@@ -162,7 +162,7 @@
 		if(mymob && !mymob.hand)	//This being 0 or null means the right hand is in use
 			inv_box.icon_state = "hand_active"
 		inv_box.screen_loc = UI_RHAND
-		inv_box.slot_id = slot_r_hand
+		inv_box.slot_id = SLOT_ID_R_HAND
 		inv_box.layer = 19
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
@@ -178,7 +178,7 @@
 		if(mymob && mymob.hand)	//This being 1 means the left hand is in use
 			inv_box.icon_state = "hand_active"
 		inv_box.screen_loc = UI_LHAND
-		inv_box.slot_id = slot_l_hand
+		inv_box.slot_id = SLOT_ID_L_HAND
 		inv_box.layer = 19
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha

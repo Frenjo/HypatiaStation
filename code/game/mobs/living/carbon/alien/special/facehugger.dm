@@ -149,7 +149,7 @@ var/const/MAX_ACTIVE_TIME = 400
 
 			target.visible_message("\red \b [src] tears [W] off of [target]'s face!")
 
-		target.equip_to_slot(src, slot_wear_mask)
+		target.equip_to_slot(src, SLOT_ID_WEAR_MASK)
 
 		if(!sterile) L.Paralyse(MAX_IMPREGNATION_TIME / 6) //something like 25 ticks = 20 seconds with the default settings
 	else if(iscorgi(M))

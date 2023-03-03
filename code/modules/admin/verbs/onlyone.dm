@@ -32,12 +32,12 @@
 				continue
 			qdel(I)
 
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/kilt(H), slot_w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(H), slot_l_ear)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret(H), slot_head)
-		H.equip_to_slot_or_del(new /obj/item/weapon/claymore(H), slot_l_hand)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(H), slot_shoes)
-		H.equip_to_slot_or_del(new /obj/item/weapon/pinpointer(H.loc), slot_l_store)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/kilt(H), SLOT_ID_W_UNIFORM)
+		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(H), SLOT_ID_L_EAR)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret(H), SLOT_ID_HEAD)
+		H.equip_to_slot_or_del(new /obj/item/weapon/claymore(H), SLOT_ID_L_HAND)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(H), SLOT_ID_SHOES)
+		H.equip_to_slot_or_del(new /obj/item/weapon/pinpointer(H.loc), SLOT_ID_L_STORE)
 
 		var/obj/item/weapon/card/id/W = new(H)
 		W.name = "[H.real_name]'s ID Card"
@@ -46,7 +46,7 @@
 		W.access += get_all_centcom_access()
 		W.assignment = "Highlander"
 		W.registered_name = H.real_name
-		H.equip_to_slot_or_del(W, slot_wear_id)
+		H.equip_to_slot_or_del(W, SLOT_ID_WEAR_ID)
 
 	message_admins("\blue [key_name_admin(usr)] used THERE CAN BE ONLY ONE!", 1)
 	log_admin("[key_name(usr)] used there can be only one.")

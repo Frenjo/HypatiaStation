@@ -100,7 +100,7 @@
 			to_chat(M, "Your suit's helmet deploys with a hiss.")
 			//TODO: Species check, skull damage for forcing an unfitting helmet on?
 			helmet.loc = H
-			H.equip_to_slot(helmet, slot_head)
+			H.equip_to_slot(helmet, SLOT_ID_HEAD)
 			helmet.canremove = 0
 
 	if(attached_boots && boots)
@@ -109,7 +109,7 @@
 		else
 			to_chat(M, "Your suit's boots deploy with a hiss.")
 			boots.loc = H
-			H.equip_to_slot(boots, slot_shoes)
+			H.equip_to_slot(boots, SLOT_ID_SHOES)
 			boots.canremove = 0
 
 /obj/item/clothing/suit/space/rig/dropped()
@@ -196,7 +196,7 @@
 			return
 		//TODO: Species check, skull damage for forcing an unfitting helmet on?
 		helmet.loc = H
-		H.equip_to_slot(helmet, slot_head)
+		H.equip_to_slot(helmet, SLOT_ID_HEAD)
 		helmet.canremove = 0
 		to_chat(H, SPAN_INFO("You deploy your hardsuit helmet, sealing you off from the world."))
 

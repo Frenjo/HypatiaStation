@@ -201,7 +201,7 @@
 	if(M == user && user.zone_sel.selecting == "mouth" && length(contents) && !user.wear_mask)
 		var/obj/item/clothing/mask/cigarette/W = new /obj/item/clothing/mask/cigarette(user)
 		reagents.trans_to(W, (reagents.total_volume / length(contents)))
-		user.equip_to_slot_if_possible(W, slot_wear_mask)
+		user.equip_to_slot_if_possible(W, SLOT_ID_WEAR_MASK)
 		reagents.maximum_volume = 15 * length(contents)
 		contents.len--
 		user << "<span class='notice'>You take a cigarette out of the pack.</span>"

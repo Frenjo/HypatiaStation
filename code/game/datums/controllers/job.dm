@@ -405,42 +405,42 @@ CONTROLLER_DEF(occupations)
 				switch(H.backbag) //BS12 EDIT
 					if(1)
 						if(H.species.survival_kit)
-							H.equip_to_slot_or_del(new H.species.survival_kit(H), slot_r_hand)
+							H.equip_to_slot_or_del(new H.species.survival_kit(H), SLOT_ID_R_HAND)
 					if(2)
 						var/obj/item/weapon/storage/backpack/bpk = new/obj/item/weapon/storage/backpack(H)
 						if(H.species.survival_kit)
 							new H.species.survival_kit(bpk)
-						H.equip_to_slot_or_del(bpk, slot_back, 1)
+						H.equip_to_slot_or_del(bpk, SLOT_ID_BACK, 1)
 					if(3)
 						var/obj/item/weapon/storage/satchel/sat = new /obj/item/weapon/storage/satchel/norm(H)
 						if(H.species.survival_kit)
 							new H.species.survival_kit(sat)
-						H.equip_to_slot_or_del(sat, slot_back, 1)
+						H.equip_to_slot_or_del(sat, SLOT_ID_BACK, 1)
 					if(4)
 						var/obj/item/weapon/storage/sat = new /obj/item/weapon/storage/satchel(H)
 						if(H.species.survival_kit)
 							new H.species.survival_kit(sat)
-						H.equip_to_slot_or_del(sat, slot_back, 1)
+						H.equip_to_slot_or_del(sat, SLOT_ID_BACK, 1)
 
 	if(H.species)
 		if(H.species.name == SPECIES_TAJARAN || H.species.name == SPECIES_SOGHUN)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H), slot_shoes, 1)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H), SLOT_ID_SHOES, 1)
 		else if(H.species.name == SPECIES_VOX)
-			H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/vox(src), slot_wear_mask)
+			H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/vox(src), SLOT_ID_WEAR_MASK)
 			if(!H.r_hand)
-				H.equip_to_slot_or_del(new /obj/item/weapon/tank/nitrogen(src), slot_r_hand)
+				H.equip_to_slot_or_del(new /obj/item/weapon/tank/nitrogen(src), SLOT_ID_R_HAND)
 				H.internal = H.r_hand
 			else if(!H.l_hand)
-				H.equip_to_slot_or_del(new /obj/item/weapon/tank/nitrogen(src), slot_l_hand)
+				H.equip_to_slot_or_del(new /obj/item/weapon/tank/nitrogen(src), SLOT_ID_L_HAND)
 				H.internal = H.l_hand
 			H.internals.icon_state = "internal1"
 		else if(H.species.name == SPECIES_PLASMALIN)
-			H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
+			H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), SLOT_ID_WEAR_MASK)
 			if(!H.r_hand)
-				H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), slot_r_hand)
+				H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), SLOT_ID_R_HAND)
 				H.internal = H.r_hand
 			else if(!H.l_hand)
-				H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), slot_l_hand)
+				H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), SLOT_ID_L_HAND)
 				H.internal = H.l_hand
 			H.internals.icon_state = "internal1"
 
@@ -450,11 +450,11 @@ CONTROLLER_DEF(occupations)
 		to_chat(H, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
 
 	spawn_id(H, rank, alt_title)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), slot_l_ear)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), SLOT_ID_L_EAR)
 
 	//Gives glasses to the vision impaired
 	if(H.disabilities & NEARSIGHTED)
-		var/equipped = H.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular(H), slot_glasses)
+		var/equipped = H.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular(H), SLOT_ID_GLASSES)
 		if(equipped != 1)
 			var/obj/item/clothing/glasses/G = H.glasses
 			G.prescription = 1
@@ -495,9 +495,9 @@ CONTROLLER_DEF(occupations)
 		if(H.mind && H.mind.initial_account)
 			C.associated_account_number = H.mind.initial_account.account_number
 
-		H.equip_to_slot_or_del(C, slot_wear_id)
+		H.equip_to_slot_or_del(C, SLOT_ID_WEAR_ID)
 
-	H.equip_to_slot_or_del(new /obj/item/device/pda(H), slot_belt)
+	H.equip_to_slot_or_del(new /obj/item/device/pda(H), SLOT_ID_BELT)
 	if(locate(/obj/item/device/pda, H))
 		var/obj/item/device/pda/pda = locate(/obj/item/device/pda, H)
 		pda.owner = H.real_name
