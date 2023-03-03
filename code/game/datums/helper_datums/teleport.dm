@@ -168,7 +168,7 @@
 		return 0
 
 	if(destination.z == 2) //centcom z-level
-		if(istype(teleatom, /obj/mecha))
+		if(ismecha(teleatom))
 			var/obj/mecha/MM = teleatom
 			to_chat(MM.occupant, SPAN_DANGER("The mech would not survive the jump to a location so far away!"))
 			return 0

@@ -359,7 +359,7 @@
 		var/mob/living/L = target_mob
 		if(!L.stat && L.health >= 0)
 			return 0
-	if(istype(target_mob, /obj/mecha))
+	if(ismecha(target_mob))
 		var/obj/mecha/M = target_mob
 		if(M.occupant)
 			return 0

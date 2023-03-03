@@ -219,7 +219,7 @@
 
 	if(!isspace(get_turf(src))) //space is not meant to change your body temperature.
 		var/loc_temp = T0C
-		if(istype(loc, /obj/mecha))
+		if(ismecha(loc))
 			var/obj/mecha/M = loc
 			loc_temp = M.return_temperature()
 		else if(isspace(get_turf(src)))

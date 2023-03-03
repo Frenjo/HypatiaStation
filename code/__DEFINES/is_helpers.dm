@@ -65,15 +65,13 @@
  * Fun if you want to typecast objects without writing long path-filled lines.
  */
 //#define isobj(X)	istype(X, /obj) // Built-in.
+#define ismecha(X)	istype(X, /obj/mecha)
+
 #define isitem(X)	istype(X, /obj/item)
-
 #define isradio(X)	istype(X, /obj/item/device/radio)
-
-// This one line was typed out almost 30+ times so it justifies an entry here.
-#define isrune(X) istype(X, /obj/effect/rune)
-
-// Same as above, this one line was typed out many times so it's justified.
 #define isMMI(X) istype(X, /obj/item/device/mmi)
+
+#define isrune(X) istype(X, /obj/effect/rune)
 
 /*
  * Turf Helpers

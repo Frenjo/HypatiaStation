@@ -8,7 +8,7 @@
 		usr:lastDblClick = world.time
 
 	//Putting it here for now. It diverts stuff to the mech clicking procs. Putting it here stops us drilling items in our inventory Carn
-	if(istype(usr.loc,/obj/mecha))
+	if(ismecha(usr.loc))
 		if(usr.client && (src in usr.client.screen))
 			return
 		var/obj/mecha/Mech = usr.loc

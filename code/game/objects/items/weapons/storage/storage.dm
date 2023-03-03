@@ -33,7 +33,7 @@
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
 	if(ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist
-		if(istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
+		if(ismecha(usr.loc)) // stops inventory actions in a mech
 			return
 
 		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block

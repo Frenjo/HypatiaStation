@@ -17,7 +17,7 @@
 
 	if(iscarbon(O))
 		turretTargets |= O
-	else if(istype(O, /obj/mecha))
+	else if(ismecha(O))
 		var/obj/mecha/Mech = O
 		if(Mech.occupant)
 			turretTargets |= Mech
@@ -31,7 +31,7 @@
 
 	if(ismob(O) && !issilicon(O))
 		turretTargets -= O
-	else if(istype(O, /obj/mecha))
+	else if(ismecha(O))
 		turretTargets -= O
 	..()
 	return 1
@@ -158,7 +158,7 @@
 			if(!MC.stat)
 				if(!MC.lying || lasers)
 					return 1
-		else if(istype(T, /obj/mecha))
+		else if(ismecha(T))
 			var/obj/mecha/ME = T
 			if(ME.occupant)
 				return 1
@@ -569,7 +569,7 @@
 		var/mob/M = target
 		if(!M.stat && !M.lying)	//ninjas can't catch you if you're lying
 			return 1
-	else if(istype(target, /obj/mecha))
+	else if(ismecha(target))
 		return 1
 	return 0
 

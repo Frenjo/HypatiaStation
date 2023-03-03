@@ -39,7 +39,7 @@
 					T = L
 					break
 
-		else if(istype(A, /obj/mecha)) // Our line of sight stuff was already done in ListTargets().
+		else if(ismecha(A)) // Our line of sight stuff was already done in ListTargets().
 			var/obj/mecha/M = A
 			if(M.occupant)
 				stance = HOSTILE_STANCE_ATTACK
@@ -91,7 +91,7 @@
 		var/mob/living/L = target_mob
 		L.attack_animal(src)
 		return L
-	if(istype(target_mob,/obj/mecha))
+	if(ismecha(target_mob))
 		var/obj/mecha/M = target_mob
 		M.attack_animal(src)
 		return M

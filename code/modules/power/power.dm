@@ -296,7 +296,7 @@
 //source is an object caused electrocuting (airlock, grille, etc)
 //No animations will be performed by this proc.
 /proc/electrocute_mob(mob/living/carbon/M as mob, power_source, obj/source, siemens_coeff = 1.0)
-	if(istype(M.loc, /obj/mecha))
+	if(ismecha(M.loc))
 		return 0	//feckin mechs are dumb
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M

@@ -96,7 +96,7 @@
 		A.add_fingerprint(H)
 		drain("SMES", A, suit)
 		return 1
-	if(istype(A, /obj/mecha))
+	if(ismecha(A))
 		A.add_fingerprint(H)
 		drain("MECHA", A, suit)
 		return 1

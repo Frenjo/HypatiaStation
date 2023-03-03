@@ -290,7 +290,7 @@ var/list/slot_equipment_priority = list(
 	set category = "Object"
 	set src = usr
 
-	if(istype(loc, /obj/mecha))
+	if(ismecha(loc))
 		return
 
 	if(hand)

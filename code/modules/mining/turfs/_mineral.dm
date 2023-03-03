@@ -76,7 +76,7 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawn) // Runtime fix for geometry loading before
 		if(istype(R.module_active, /obj/item/weapon/pickaxe))
 			attackby(R.module_active, R)
 
-	else if(istype(AM, /obj/mecha))
+	else if(ismecha(AM))
 		var/obj/mecha/M = AM
 		if(istype(M.selected, /obj/item/mecha_parts/mecha_equipment/tool/drill))
 			M.selected.action(src)

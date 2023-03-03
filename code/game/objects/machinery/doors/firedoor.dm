@@ -57,7 +57,7 @@
 		return
 	if(!density)
 		return ..()
-	if(istype(AM, /obj/mecha))
+	if(ismecha(AM))
 		var/obj/mecha/mecha = AM
 		if(mecha.occupant)
 			var/mob/M = mecha.occupant
