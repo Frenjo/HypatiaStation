@@ -401,7 +401,7 @@
 						possible_targets += possible_target.current
 
 				var/mob/def_target = null
-				var/objective_list[] = list(/datum/objective/assassinate, /datum/objective/protect, /datum/objective/debrain)
+				var/list/objective_list = list(/datum/objective/assassinate, /datum/objective/protect, /datum/objective/debrain)
 				if(objective && (objective.type in objective_list) && objective:target)
 					var/datum/objective/objec = objective
 					def_target = objec.target.current

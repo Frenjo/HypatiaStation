@@ -40,7 +40,7 @@
 	if(!codes_txt)
 		return
 
-	codes = new()
+	codes = list()
 
 	var/list/entries = splittext(codes_txt, ";")	// entries are separated by semicolons
 
@@ -231,7 +231,7 @@ Transponder Codes:<UL>"}
 					return
 
 				if(!codes)
-					codes = new()
+					codes = list()
 
 				codes[newkey] = newval
 

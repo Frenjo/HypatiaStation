@@ -2,7 +2,7 @@
 
 /datum/song
 	var/name = "Untitled"
-	var/list/lines = new()
+	var/list/lines = list()
 	var/tempo = 5
 
 /obj/structure/device/piano

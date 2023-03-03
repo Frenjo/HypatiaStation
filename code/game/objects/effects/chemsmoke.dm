@@ -50,7 +50,7 @@
 	if(!location)
 		return
 
-	targetTurfs = new()
+	targetTurfs = list()
 
 	//build affected area list
 	for(var/turf/T in view(range, location))
@@ -60,7 +60,7 @@
 
 	//make secondary list for reagents that affect walls
 	if(chemholder.reagents.has_reagent("thermite") || chemholder.reagents.has_reagent("plantbgone"))
-		wallList = new()
+		wallList = list()
 
 	//pathing check
 	smokeFlow(location, targetTurfs, wallList)
@@ -217,8 +217,8 @@
 // quickly check what turfs the smoke (airflow) can actually reach.
 //------------------------------------------
 /datum/effect/system/smoke_spread/chem/proc/smokeFlow()
-	var/list/pending = new()
-	var/list/complete = new()
+	var/list/pending = list()
+	var/list/complete = list()
 
 	pending += location
 

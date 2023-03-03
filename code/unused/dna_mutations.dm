@@ -38,7 +38,7 @@ This system could be expanded to migrate all of our current mutations to. Maybe.
 		var/passes = 0
 		for(var/datum/mutationreq/require in requirements)
 
-			var/se_block[] = getblockbuffer(M.dna.struc_enzymes, require.block, 3) // focus onto the block
+			var/list/se_block = getblockbuffer(M.dna.struc_enzymes, require.block, 3) // focus onto the block
 			if(se_block.len == 3) // we want to make sure there are exactly 3 entries
 
 				if(se_block[require.subblock] == require.reqID)

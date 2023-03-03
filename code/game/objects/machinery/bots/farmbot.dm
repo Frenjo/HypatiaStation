@@ -48,7 +48,7 @@
 
 	var/obj/structure/reagent_dispensers/watertank/tank // the water tank that was used to make it, remains inside the bot.
 
-	var/path[] = new() // used for pathing
+	var/list/path = list() // used for pathing
 	var/frustration
 
 /obj/machinery/bot/farmbot/New()
@@ -80,7 +80,7 @@
 
 /obj/machinery/bot/farmbot/turn_off()
 	..()
-	src.path = new()
+	src.path = list()
 	src.icon_state = "farmbot[src.on]"
 	src.updateUsrDialog()
 
@@ -343,9 +343,9 @@
 		target = null
 		mode = 0
 		frustration = 0
-		src.path = new()
+		src.path = list()
 	if(src.target && length(path) && get_dist(src.target, src.path[length(path)]) > 2)
-		src.path = new()
+		src.path = list()
 	if(src.target && !length(path) && get_dist(src, src.target) > 1)
 		spawn(0)
 			var/turf/dest = get_step_towards(target, src)  //Can't pathfind to a tray, as it is dense, so pathfind to the spot next to the tray

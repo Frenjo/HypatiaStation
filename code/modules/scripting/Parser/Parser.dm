@@ -68,7 +68,7 @@
 	tokens  - A list of tokens to parse.
 	options - An object used for configuration.
 */
-/n_Parser/nS_Parser/New(tokens[], n_scriptOptions/options)
+/n_Parser/nS_Parser/New(list/tokens, n_scriptOptions/options)
 	src.tokens = tokens
 	src.options = options
 	curBlock = global_block

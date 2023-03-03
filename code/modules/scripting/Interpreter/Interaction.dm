@@ -117,7 +117,7 @@
 	See Also:
 	- <ProcExists()>
 */
-/n_Interpreter/proc/CallProc(name, params[]=null)
+/n_Interpreter/proc/CallProc(name, list/params = null)
 	if(!ProcExists(name))
 		//CRASH("No function named '[name]'.")
 		return

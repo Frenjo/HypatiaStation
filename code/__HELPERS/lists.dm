@@ -185,7 +185,7 @@
 /proc/mergeKey(list/client/L, list/client/R, order = 1)
 	var/Li = 1
 	var/Ri = 1
-	var/list/result = new()
+	var/list/result = list()
 	while(Li <= length(L) && Ri <= length(R))
 		var/client/rL = L[Li]
 		var/client/rR = R[Ri]
@@ -209,7 +209,7 @@
 /proc/mergeAtoms(list/atom/L, list/atom/R, order = 1)
 	var/Li = 1
 	var/Ri = 1
-	var/list/result = new()
+	var/list/result = list()
 	while(Li <= length(L) && Ri <= length(R))
 		var/atom/rL = L[Li]
 		var/atom/rR = R[Ri]
@@ -235,7 +235,7 @@
 /proc/mergeRecordLists(list/datum/data/record/L, list/datum/data/record/R, field = "name", order = 1)
 	var/Li = 1
 	var/Ri = 1
-	var/list/result = new()
+	var/list/result = list()
 	if(!isnull(L) && !isnull(R))
 		while(Li <= length(L) && Ri <= length(R))
 			var/datum/data/record/rL = L[Li]
@@ -264,7 +264,7 @@
 
 //Mergsorge: uses sortList() but uses the var's name specifically. This should probably be using mergeAtom() instead
 /proc/sortNames(list/L)
-	var/list/Q = new()
+	var/list/Q = list()
 	for(var/atom/x in L)
 		Q[x.name] = x
 	return sortList(Q)
@@ -272,7 +272,7 @@
 /proc/mergeLists(list/L, list/R)
 	var/Li = 1
 	var/Ri = 1
-	var/list/result = new()
+	var/list/result = list()
 	while(Li <= length(L) && Ri <= length(R))
 		if(sorttext(L[Li], R[Ri]) < 1)
 			result += R[Ri++]
@@ -293,7 +293,7 @@
 /proc/mergeKeyedLists(list/L, list/R, key)
 	var/Li = 1
 	var/Ri = 1
-	var/list/result = new()
+	var/list/result = list()
 	while(Li <= length(L) && Ri <= length(R))
 		if(sorttext(L[Li][key], R[Ri][key]) < 1)
 			// Works around list += list2 merging lists; it's not pretty but it works
@@ -317,7 +317,7 @@
 /proc/mergeAssoc(list/L, list/R)
 	var/Li = 1
 	var/Ri = 1
-	var/list/result = new()
+	var/list/result = list()
 	while(Li <= length(L) && Ri <= length(R))
 		if(sorttext(L[Li], R[Ri]) < 1)
 			result += R&R[Ri++]
@@ -400,7 +400,7 @@
 /proc/dd_mergeObjectList(list/L, list/R, list/cache)
 	var/Li = 1
 	var/Ri = 1
-	var/list/result = new()
+	var/list/result = list()
 	while(Li <= length(L) && Ri <= length(R))
 		var/LLi = L[Li]
 		var/RRi = R[Ri]

@@ -18,7 +18,7 @@ CONTROLLER_DEF(pai)
 
 	var/askDelay = 10 * 60 * 1	// One minute [ms * sec * min]
 
-/datum/controller/pai/Topic(href, href_list[])
+/datum/controller/pai/Topic(href, list/href_list)
 	if(href_list["download"])
 		var/datum/pAI_candidate/candidate = locate(href_list["candidate"])
 		var/obj/item/device/paicard/card = locate(href_list["device"])

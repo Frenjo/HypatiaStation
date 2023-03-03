@@ -26,7 +26,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 	var/area/syndicate_mothership/elite_squad/elite_squad = locate()//Where is the specops area located?
 	var/mob/living/silicon/decoy/announcer = locate() in syndicate_ship//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
 
-	var/message_tracker[] = list(0,1,2,3,5,10,30,45)//Create a a list with potential time values.
+	var/list/message_tracker = list(0, 1, 2, 3, 5, 10, 30, 45) // Create a a list with potential time values.
 	var/message = "THE SYNDICATE ELITE SHUTTLE IS PREPARING FOR LAUNCH"//Initial message shown.
 	if(announcer)
 		announcer.say(message)
@@ -84,7 +84,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 
 		sleep(10)
 
-		var/spawn_marauder[] = new()
+		var/list/spawn_marauder = list()
 		for(var/obj/effect/landmark/L in landmarks_list)
 			if(L.name == "Marauder Entry")
 				spawn_marauder.Add(L)

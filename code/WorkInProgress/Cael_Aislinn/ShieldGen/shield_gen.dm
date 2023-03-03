@@ -174,7 +174,7 @@
 	else
 		average_field_strength = 0
 
-/obj/machinery/shield_gen/Topic(href, href_list[])
+/obj/machinery/shield_gen/Topic(href, list/href_list)
 	..()
 	if( href_list["close"] )
 		usr << browse(null, "window=shield_generator")

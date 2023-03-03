@@ -91,7 +91,7 @@ var/list/ai_verbs_default = list(
 
 	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
 
-	proc_holder_list = new()
+	proc_holder_list = list()
 
 	if(L)
 		if(istype(L, /datum/ai_laws))
@@ -595,7 +595,7 @@ var/list/ai_verbs_default = list(
 
 	var/input
 	if(alert("Would you like to select a hologram based on a crew member or switch to unique avatar?", , "Crew Member", "Unique") == "Crew Member")
-		var/personnel_list[] = list()
+		var/list/personnel_list = list()
 
 		for(var/datum/data/record/t in GLOBL.data_core.locked)//Look in data core locked.
 			personnel_list["[t.fields["name"]]: [t.fields["rank"]]"] = t.fields["image"]//Pull names, rank, and image.
@@ -610,9 +610,9 @@ var/list/ai_verbs_default = list(
 			alert("No suitable records found. Aborting.")
 
 	else
-		var/icon_list[] = list(
-		"default",
-		"floating face"
+		var/list/icon_list = list(
+			"default",
+			"floating face"
 		)
 		input = input("Please select a hologram:") as null | anything in icon_list
 		if(input)

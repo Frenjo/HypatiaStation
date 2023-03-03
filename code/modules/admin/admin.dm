@@ -987,7 +987,7 @@ var/global/floorIsLava = 0
 		return
 
 	var/list/types = typesof(/atom)
-	var/list/matches = new()
+	var/list/matches = list()
 
 	for(var/path in types)
 		if(findtext("[path]", object))

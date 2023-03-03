@@ -28,7 +28,7 @@ var/specops_shuttle_timeleft = 0
 	var/obj/item/device/radio/intercom/announcer = new /obj/item/device/radio/intercom(null)//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
 	announcer.config(list("Response Team" = 0))
 
-	var/message_tracker[] = list(0,1,2,3,5,10,30,45)//Create a a list with potential time values.
+	var/list/message_tracker = list(0, 1, 2, 3, 5, 10, 30, 45) // Create a a list with potential time values.
 	var/message = "\"THE SPECIAL OPERATIONS SHUTTLE IS PREPARING TO RETURN\""//Initial message shown.
 	if(announcer)
 		announcer.autosay(message, "A.L.I.C.E.", "Response Team")
@@ -103,7 +103,7 @@ var/specops_shuttle_timeleft = 0
 	var/obj/item/device/radio/intercom/announcer = new /obj/item/device/radio/intercom(null)//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
 	announcer.config(list("Response Team" = 0))
 
-	var/message_tracker[] = list(0,1,2,3,5,10,30,45)//Create a a list with potential time values.
+	var/list/message_tracker = list(0, 1, 2, 3, 5, 10, 30, 45) // Create a a list with potential time values.
 	var/message = "\"THE SPECIAL OPERATIONS SHUTTLE IS PREPARING FOR LAUNCH\""//Initial message shown.
 	if(announcer)
 		announcer.autosay(message, "A.L.I.C.E.", "Response Team")
@@ -159,7 +159,7 @@ var/specops_shuttle_timeleft = 0
 
 		sleep(10)
 
-		var/spawn_marauder[] = new()
+		var/list/spawn_marauder = list()
 		for(var/obj/effect/landmark/L in world)
 			if(L.name == "Marauder Entry")
 				spawn_marauder.Add(L)
@@ -373,7 +373,7 @@ var/specops_shuttle_timeleft = 0
 	var/area/centcom/specops/special_ops = locate()//Where is the specops area located?
 	var/mob/living/silicon/decoy/announcer = locate() in cent_com//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
 
-	var/message_tracker[] = list(0,1,2,3,5,10,30,45)//Create a a list with potential time values.
+	var/list/message_tracker = list(0, 1, 2, 3, 5, 10, 30, 45) // Create a a list with potential time values.
 	var/message = "THE SPECIAL OPERATIONS SHUTTLE IS PREPARING FOR LAUNCH"//Initial message shown.
 	if(announcer)
 		announcer.say(message)
@@ -429,7 +429,7 @@ var/specops_shuttle_timeleft = 0
 
 		sleep(10)
 
-		var/spawn_marauder[] = new()
+		var/list/spawn_marauder = list()
 		for(var/obj/effect/landmark/L in landmarks_list)
 			if(L.name == "Marauder Entry")
 				spawn_marauder.Add(L)

@@ -36,7 +36,7 @@
 
 	camera_network_sort(L)
 
-	var/list/D = new()
+	var/list/D = list()
 	D["Cancel"] = "Cancel"
 	for (var/obj/machinery/camera/C in L)
 		if ( C.network in src.networks )

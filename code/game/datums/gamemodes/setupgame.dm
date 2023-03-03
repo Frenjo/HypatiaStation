@@ -61,7 +61,7 @@
 	avnums.Remove(tempnum)
 	BLINDBLOCK = tempnum
 	*/
-	var/list/numsToAssign = new()
+	var/list/numsToAssign = list()
 	for(var/i = 1; i < DNA_SE_LENGTH; i++)
 		numsToAssign += i
 

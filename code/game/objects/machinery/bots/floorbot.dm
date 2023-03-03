@@ -44,7 +44,7 @@
 	var/turf/oldtarget
 	var/oldloc = null
 	req_access = list(ACCESS_CONSTRUCTION)
-	var/path[] = new()
+	var/list/path = list()
 	var/targetdirection
 
 
@@ -63,7 +63,7 @@
 	src.oldtarget = null
 	src.oldloc = null
 	src.updateicon()
-	src.path = new()
+	src.path = list()
 	src.updateUsrDialog()
 
 /obj/machinery/bot/floorbot/attack_hand(mob/user as mob)
@@ -252,7 +252,7 @@
 		src.path -= src.path[1]
 	else if(length(path) == 1)
 		step_to(src, target)
-		src.path = new()
+		src.path = list()
 
 	if(src.loc == src.target || src.loc == src.target.loc)
 		if(istype(src.target, /obj/item/stack/tile/plasteel))
@@ -275,7 +275,7 @@
 				src.anchored = FALSE
 				src.repairing = 0
 				src.target = null
-		src.path = new()
+		src.path = list()
 		return
 
 	src.oldloc = src.loc

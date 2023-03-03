@@ -547,7 +547,7 @@ ________________________________________________________________________________
 		if("Trigger Ability")
 			var/ability_name = href_list["name"]+href_list["cost"]//Adds the name and cost to create the full proc name.
 			var/proc_arguments//What arguments to later pass to the proc, if any.
-			var/targets[] = list()//To later check for.
+			var/list/targets = list() // To later check for.
 			var/safety = 0//To later make sure we're triggering the proc when needed.
 			switch(href_list["name"])//Special case.
 				if("Phase Shift")
@@ -1187,7 +1187,7 @@ ________________________________________________________________________________
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/hud/ninja/process_hud(mob/M)
-	var/target_list[] = list()
+	var/list/target_list = list()
 	for(var/mob/living/target in oview(M))
 		if(target.mind && (target.mind.special_role || issilicon(target))) //They need to have a mind.
 			target_list += target
@@ -1283,7 +1283,7 @@ ________________________________________________________________________________
 			if(81 to 90)//Small chance of a wizard name.
 				voice = "[pick(GLOBL.wizard_first)] [pick(GLOBL.wizard_second)]"
 			if(91 to 100)//Small chance of an existing crew name.
-				var/names[] = new()
+				var/list/names = list()
 				for(var/mob/living/carbon/human/M in GLOBL.player_list)
 					if(M==U||!M.client||!M.real_name)	continue
 					names.Add(M.real_name)

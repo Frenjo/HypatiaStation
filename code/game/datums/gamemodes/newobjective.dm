@@ -1229,7 +1229,7 @@ datum
 				if(!owner.current)
 					return 0
 				var/area/shuttle = locate(/area/shuttle/escape/centcom)
-				var/protected_mobs[] = list(/mob/living/silicon/ai, /mob/living/silicon/pai, /mob/living/silicon/robot)
+				var/list/protected_mobs = list(/mob/living/silicon/ai, /mob/living/silicon/pai, /mob/living/silicon/robot)
 				for(var/mob/living/player in world)
 					if(player.type in protected_mobs)	continue
 					if (player.mind)

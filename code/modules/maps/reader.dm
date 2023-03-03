@@ -181,7 +181,7 @@
 				next_attribute = findtext(full_def, ";", attribute_position)
 
 				//Loop: Identifies each attribute/value pair, and stores it in attributes[].
-				attributes +=  copytext(full_def, attribute_position, next_attribute)
+				attributes += copytext(full_def, attribute_position, next_attribute)
 
 		//Construct attributes associative list
 		var/list/fields = list()

@@ -4,7 +4,7 @@
 	icon_state = "area_atmos"
 	circuit = /obj/item/weapon/circuitboard/area_atmos
 
-	var/list/connectedscrubbers = new()
+	var/list/connectedscrubbers = list()
 	var/status = ""
 
 	var/range = 25
@@ -113,7 +113,7 @@
 	return 1
 
 /obj/machinery/computer/area_atmos/proc/scanscrubbers()
-	connectedscrubbers = new()
+	connectedscrubbers = list()
 
 	var/found = 0
 	for(var/obj/machinery/portable_atmospherics/scrubber/huge/scrubber in range(range, src.loc))
@@ -153,7 +153,7 @@
 	return 1
 
 /obj/machinery/computer/area_atmos/area/scanscrubbers()
-	connectedscrubbers = new()
+	connectedscrubbers = list()
 
 	var/found = 0
 

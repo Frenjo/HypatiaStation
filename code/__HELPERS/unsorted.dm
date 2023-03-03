@@ -119,8 +119,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	if(destination)//If there is a destination.
 		if(errorx || errory)//If errorx or y were specified.
-			var/destination_list[] = list()//To add turfs to list.
-			//destination_list = new()
+			var/list/destination_list = list() // To add turfs to list.
 			/*This will draw a block around the target turf, given what the error is.
 			Specifying the values above will basically draw a different sort of block.
 			If the values are the same, it will be a square. If they are different, it will be a rectengle.
@@ -210,7 +209,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/getline(atom/M, atom/N)//Ultra-Fast Bresenham Line-Drawing Algorithm
 	var/px = M.x		//starting x
 	var/py = M.y
-	var/line[] = list(locate(px, py, M.z))
+	var/list/line = list(locate(px, py, M.z))
 	var/dx = N.x - px	//x distance
 	var/dy = N.y - py
 	var/dxabs = abs(dx)//Absolute value of x distance

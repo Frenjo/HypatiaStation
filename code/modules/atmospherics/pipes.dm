@@ -906,7 +906,7 @@
 	..()
 
 /obj/machinery/atmospherics/pipe/cap/update_icon()
-	overlays = new()
+	overlays = list()
 
 	icon_state = "cap[invisibility ? "-f" : ""]"
 	return

@@ -27,7 +27,7 @@
 	var/mob/living/carbon/affecting = null 				//The wearer.
 	var/obj/item/weapon/cell/cell						//Starts out with a high-capacity cell using New().
 	var/datum/effect/system/spark_spread/spark_system	//To create sparks.
-	var/reagent_list[] = list(							//The reagents ids which are added to the suit at New().
+	var/list/reagent_list = list(							//The reagents ids which are added to the suit at New().
 		"tricordrazine", "dexalinp", "spaceacillin", 
 		"anti_toxin", "nutriment", "radium", "hyronalin"
 	)

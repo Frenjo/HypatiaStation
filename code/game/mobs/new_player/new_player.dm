@@ -90,7 +90,7 @@
 				if(player.ready)
 					totalPlayersReady++
 
-/mob/new_player/Topic(href, href_list[])
+/mob/new_player/Topic(href, list/href_list)
 	if(!client)
 		return 0
 

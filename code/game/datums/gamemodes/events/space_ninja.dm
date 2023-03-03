@@ -116,7 +116,7 @@ GLOBAL_GLOBL_INIT(ninja_confirmed_selection, 0)
 	var/list/commando_list = list()//Commandos.
 
 	//We want the ninja to appear only in certain modes.
-//	var/acceptable_modes_list[] = list("traitor","revolution","cult","wizard","changeling","traitorchan","nuclear","malfunction","monkey")  // Commented out for both testing and ninjas
+//	var/list/acceptable_modes_list = list("traitor","revolution","cult","wizard","changeling","traitorchan","nuclear","malfunction","monkey")  // Commented out for both testing and ninjas
 //	if(!(current_mode.config_tag in acceptable_modes_list))
 //		return
 
@@ -281,7 +281,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 						friendly_targets += i != side_list ? current_mind : null
 						current_minds -= current_mind//Remove the mind so it's not picked again.
 
-				var/objective_list[] = list(1, 2, 3, 4, 5, 6)//To remove later.
+				var/list/objective_list = list(1, 2, 3, 4, 5, 6) // To remove later.
 				for(var/i = rand(1, 3), i > 0, i--)//Want to get a few random objectives. Currently up to 3.
 					if(!length(hostile_targets))//Remove appropriate choices from switch list if the target lists are empty.
 						objective_list -= 1

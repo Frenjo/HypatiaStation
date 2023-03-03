@@ -155,7 +155,7 @@
 	var/icon/turficon = build_composite_icon(the_turf)
 	res.Blend(turficon, ICON_OVERLAY, 33, 33)
 
-	var/atoms[] = list()
+	var/list/atoms = list()
 	for(var/atom/A in the_turf)
 		if(A.invisibility)
 			continue

@@ -343,7 +343,7 @@ CONTROLLER_DEF(vote)
 	. += "<a href='?src=\ref[src];vote=close' style='position:absolute;right:50px'>Close</a></body></html>"
 	return .
 
-/datum/controller/vote/Topic(href, href_list[], hsrc)
+/datum/controller/vote/Topic(href, list/href_list, hsrc)
 	if(!usr || !usr.client)
 		return	//not necessary but meh...just in-case somebody does something stupid
 	switch(href_list["vote"])

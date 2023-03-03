@@ -20,7 +20,7 @@
 	var/obj/item/weapon/reagent_containers/glass/reagent_glass = null //Can be set to draw from this for reagents.
 	var/skin = null //Set to "tox", "ointment" or "o2" for the other two firstaid kits.
 	var/frustration = 0
-	var/path[] = new()
+	var/list/path = list()
 	var/mob/living/carbon/patient = null
 	var/mob/living/carbon/oldpatient = null
 	var/oldloc = null
@@ -91,7 +91,7 @@
 	src.patient = null
 	src.oldpatient = null
 	src.oldloc = null
-	src.path = new()
+	src.path = list()
 	src.currently_healing = 0
 	src.last_found = world.time
 	src.icon_state = "medibot[src.on]"
@@ -258,7 +258,7 @@
 		src.patient = null
 		src.currently_healing = 0
 		src.last_found = world.time
-		src.path = new()
+		src.path = list()
 
 	if(!src.patient)
 		if(!src.shut_up && prob(1))
@@ -295,7 +295,7 @@
 		return
 
 	else if(src.patient && length(path) && get_dist(src.patient, src.path[length(path)]) > 2)
-		src.path = new()
+		src.path = list()
 		src.currently_healing = 0
 		src.last_found = world.time
 
@@ -504,7 +504,7 @@
 //Pretty ugh
 /*
 /turf/proc/AdjacentTurfsAllowMedAccess()
-	var/L[] = new()
+	var/list/L = list()
 	for(var/turf/t in oview(src,1))
 		if(!t.density)
 			if(!LinkBlocked(src, t) && !TurfBlockedNonWindowNonDoor(t,get_access("Medical Doctor")))

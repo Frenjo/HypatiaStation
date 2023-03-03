@@ -304,7 +304,7 @@ var/engwords = list(
 				</html>
 				"}
 
-/obj/item/weapon/tome/Topic(href, href_list[])
+/obj/item/weapon/tome/Topic(href, list/href_list)
 	if(src.loc == usr)
 		var/number = text2num(href_list["number"])
 		if(usr.stat|| usr.restrained())

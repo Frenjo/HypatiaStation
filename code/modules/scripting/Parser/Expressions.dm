@@ -159,7 +159,7 @@
 	Parameters:
 	end - A list of values to compare the current token to.
 */
-/n_Parser/nS_Parser/proc/EndOfExpression(end[])
+/n_Parser/nS_Parser/proc/EndOfExpression(list/end)
 	if(!curToken)
 		return 1
 	if(istype(curToken, /token/symbol) && end.Find(curToken.value))

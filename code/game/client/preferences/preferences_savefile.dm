@@ -225,7 +225,7 @@
 	if(isnull(disabilities))
 		disabilities = 0
 	if(!player_alt_titles)
-		player_alt_titles = new()
+		player_alt_titles = list()
 	if(!organ_data)
 		src.organ_data = list()
 	//if(!skin_style) skin_style = "Default"

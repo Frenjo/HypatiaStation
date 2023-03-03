@@ -33,8 +33,8 @@
 	var/obj/effect/decal/cleanable/oldtarget
 	var/oldloc = null
 	req_access = list(ACCESS_JANITOR)
-	var/path[] = new()
-	var/patrol_path[] = null
+	var/list/path = list()
+	var/list/patrol_path = null
 	var/beacon_freq = 1445		// navigation beacon frequency
 	var/closest_dist
 	var/closest_loc
@@ -75,7 +75,7 @@
 	src.oldtarget = null
 	src.oldloc = null
 	src.icon_state = "cleanbot[src.on]"
-	src.path = new()
+	src.path = list()
 	src.updateUsrDialog()
 
 /obj/machinery/bot/cleanbot/attack_hand(mob/user as mob)
@@ -255,7 +255,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 		patrol_path = null
 		if(src.loc == src.target.loc)
 			clean(src.target)
-			src.path = new()
+			src.path = list()
 			src.target = null
 			return
 

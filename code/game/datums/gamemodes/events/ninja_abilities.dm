@@ -157,7 +157,7 @@ This could be a lot better but I'm too tired atm.*/
 	var/C = 80
 	if(!ninjacost(C, 1))
 		var/mob/living/carbon/human/U = affecting
-		var/targets[] = list()	//So yo can shoot while yo throw dawg
+		var/list/targets = list()	//So yo can shoot while yo throw dawg
 		for(var/mob/living/M in oview(loc))
 			if(M.stat)
 				continue //Doesn't target corpses or paralyzed persons.
@@ -325,8 +325,7 @@ This is so anime it hurts. But that's the point.*/
 
 	if(!ninjacost())	//Simply checks for stat.
 		var/mob/living/carbon/human/U = affecting
-		var/targets[]
-		targets = new()
+		var/list/targets = list()
 		for(var/mob/living/M in oview(6))
 			if(M.stat)
 				continue	//Doesn't target corpses or paralyzed people.

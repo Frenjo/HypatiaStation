@@ -125,7 +125,7 @@
 	if(stored_charge < active_power_usage * 1.5)
 		time_since_fail = 0
 
-/obj/machinery/shield_capacitor/Topic(href, href_list[])
+/obj/machinery/shield_capacitor/Topic(href, list/href_list)
 	..()
 	if( href_list["close"] )
 		usr << browse(null, "window=shield_capacitor")

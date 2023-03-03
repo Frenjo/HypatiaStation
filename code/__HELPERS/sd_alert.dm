@@ -103,7 +103,7 @@ Version 1 changes (from version 0):
 	target << browse(null, "window=\ref[src]")
 	return ..()
 
-/sd_alert/Topic(href, params[])
+/sd_alert/Topic(href, list/params)
 	if(usr.client != target)
 		return
 	response = params["clk"]

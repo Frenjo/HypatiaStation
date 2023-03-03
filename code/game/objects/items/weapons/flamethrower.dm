@@ -141,7 +141,7 @@
 	onclose(user, "flamethrower")
 	return
 
-/obj/item/weapon/flamethrower/Topic(href, href_list[])
+/obj/item/weapon/flamethrower/Topic(href, list/href_list)
 	if(href_list["close"])
 		usr.unset_machine()
 		usr << browse(null, "window=flamethrower")

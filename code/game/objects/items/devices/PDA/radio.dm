@@ -66,7 +66,7 @@
 	*/
 	if(signal.data["type"] == "secbot")
 		if(!botlist)
-			botlist = new()
+			botlist = list()
 
 		if(!(signal.source in botlist))
 			botlist += signal.source
@@ -133,7 +133,7 @@
 	*/
 	if(signal.data["type"] == "mulebot")
 		if(!botlist)
-			botlist = new()
+			botlist = list()
 
 		if(!(signal.source in botlist))
 			botlist += signal.source
@@ -144,7 +144,7 @@
 
 	else if(signal.data["beacon"])
 		if(!beacons)
-			beacons = new()
+			beacons = list()
 
 		beacons[signal.data["beacon"] ] = signal.source
 
