@@ -37,11 +37,11 @@ length to avoid portals or something i guess?? Not that they're counted right no
 // Also added 'exclude' turf to avoid travelling over; defaults to null
 
 /PriorityQueue
-	var/L[]
+	var/list/L
 	var/cmp
 
 /PriorityQueue/New(compare)
-	L = new()
+	L = list()
 	cmp = compare
 	
 /PriorityQueue/proc/IsEmpty()
@@ -52,9 +52,9 @@ length to avoid portals or something i guess?? Not that they're counted right no
 	var/j
 	L.Add(d)
 	i = length(L)
-	j = i>>1
-	while(i > 1 &&  call(cmp)(L[j],L[i]) > 0)
-		L.Swap(i,j)
+	j = i >> 1
+	while(i > 1 && call(cmp)(L[j], L[i]) > 0)
+		L.Swap(i, j)
 		i = j
 		j >>= 1
 
@@ -67,7 +67,7 @@ length to avoid portals or something i guess?? Not that they're counted right no
 /PriorityQueue/proc/Remove(i)
 	if(i > length(L))
 		return 0
-	L.Swap(i,length(L))
+	L.Swap(i, length(L))
 	L.Cut(length(L))
 	if(i < length(L))
 		_Fix(i)
@@ -87,7 +87,7 @@ length to avoid portals or something i guess?? Not that they're counted right no
 	L[i] = item
 
 /PriorityQueue/proc/List()
-	var/ret[] = new()
+	var/list/ret = list()
 	var/copy = L.Copy()
 	while(!IsEmpty())
 		ret.Add(Dequeue())
@@ -107,7 +107,7 @@ length to avoid portals or something i guess?? Not that they're counted right no
 	var/h
 	var/nt		// Nodes traversed
 
-/PathNode/New(s,p,pg,ph,pnt)
+/PathNode/New(s, p, pg, ph, pnt)
 	source = s
 	prevNode = p
 	g = pg
@@ -121,36 +121,37 @@ length to avoid portals or something i guess?? Not that they're counted right no
 /proc/PathWeightCompare(PathNode/a, PathNode/b)
 	return a.f - b.f
 
-/proc/AStar(start,end,adjacent,dist,maxnodes,maxnodedepth = 30,mintargetdist,minnodedist,id=null, var/turf/exclude=null)
+/proc/AStar(start, end, adjacent, dist, maxnodes, maxnodedepth = 30, mintargetdist, minnodedist, id = null, turf/exclude = null)
 //	world << "A*: [start] [end] [adjacent] [dist] [maxnodes] [maxnodedepth] [mintargetdist], [minnodedist] [id]"
 	var/PriorityQueue/open = new /PriorityQueue(/proc/PathWeightCompare)
-	var/closed[] = new()
-	var/path[]
+	var/list/closed = list()
+	var/list/path = null
 	start = get_turf(start)
-	if(!start) return 0
+	if(isnull(start))
+		return 0
 
-	open.Enqueue(new /PathNode(start,null,0,call(start,dist)(end)))
+	open.Enqueue(new /PathNode(start, null, 0, call(start, dist)(end)))
 
-	while(!open.IsEmpty() && !path)
+	while(!open.IsEmpty() && isnull(path))
 	{
 		var/PathNode/cur = open.Dequeue()
 		closed.Add(cur.source)
 
 		var/closeenough
 		if(mintargetdist)
-			closeenough = call(cur.source,dist)(end) <= mintargetdist
+			closeenough = call(cur.source, dist)(end) <= mintargetdist
 
 		if(cur.source == end || closeenough)
-			path = new()
+			path = list()
 			path.Add(cur.source)
 			while(cur.prevNode)
 				cur = cur.prevNode
 				path.Add(cur.source)
 			break
 
-		var/L[] = call(cur.source,adjacent)(id)
+		var/list/L = call(cur.source, adjacent)(id)
 		if(minnodedist && maxnodedepth)
-			if(call(cur.source,minnodedist)(end) + cur.nt >= maxnodedepth)
+			if(call(cur.source, minnodedist)(end) + cur.nt >= maxnodedepth)
 				continue
 		else if(maxnodedepth)
 			if(cur.nt >= maxnodedepth)
@@ -159,9 +160,9 @@ length to avoid portals or something i guess?? Not that they're counted right no
 		for(var/datum/d in L)
 			if(d == exclude)
 				continue
-			var/ng = cur.g + call(cur.source,dist)(d)
+			var/ng = cur.g + call(cur.source, dist)(d)
 			if(d.bestF)
-				if(ng + call(d,dist)(end) < d.bestF)
+				if(ng + call(d, dist)(end) < d.bestF)
 					for(var/i = 1; i <= length(open.L); i++)
 						var/PathNode/n = open.L[i]
 						if(n.source == d)
@@ -170,7 +171,7 @@ length to avoid portals or something i guess?? Not that they're counted right no
 				else
 					continue
 
-			open.Enqueue(new /PathNode(d,cur,ng,call(d,dist)(end),cur.nt+1))
+			open.Enqueue(new /PathNode(d, cur, ng, call(d, dist)(end), cur.nt + 1))
 			if(maxnodes && length(open.L) > maxnodes)
 				open.L.Cut(length(open.L))
 	}
@@ -184,7 +185,7 @@ length to avoid portals or something i guess?? Not that they're counted right no
 		temp.bestF = 0
 		closed.Cut(length(closed))
 
-	if(path)
+	if(!isnull(path))
 		for(var/i = 1; i <= length(path) / 2; i++)
 			path.Swap(i, length(path) - i + 1)
 
