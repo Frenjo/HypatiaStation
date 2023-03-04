@@ -24,9 +24,9 @@
 	// This is FALSE so we can set it to a URL once the player logs in and have them download the resources from a different server.
 	preload_rsc = FALSE
 
-		////////////////
-		//ADMIN THINGS//
-		////////////////
+	/*
+	 * Admin Things
+	 */
 	// Holder for admin info, null if the client isn't an admin.
 	var/datum/admins/holder = null
 	var/buildmode = 0
@@ -36,9 +36,9 @@
 	// Contains the number of times a message identical to last_message was sent.
 	var/last_message_count = 0
 
-		/////////
-		//OTHER//
-		/////////
+	/*
+	 * Other
+	 */
 	// Player preferences datum for the client.
 	var/datum/preferences/prefs = null
 	var/move_delay = 1
@@ -49,22 +49,22 @@
 	// When the client last died as a mouse.
 	var/time_died_as_mouse = null
 
-		///////////////
-		//SOUND STUFF//
-		///////////////
+	/*
+	 * Sound Stuff
+	 */
 	var/ambience_playing = null
 	var/played = 0
 
-		////////////
-		//SECURITY//
-		////////////
+	/*
+	 * Security
+	 */
 	var/next_allowed_topic_time = 10
 	// comment out the line below when debugging locally to enable the options & messages menu
 	//control_freak = 1
 
-		////////////////////////////////////
-		//things that require the database//
-		////////////////////////////////////
+	/*
+	 * Things That Require The Database
+	 */
 	// These have default values so admins know why they aren't working.
 	// Used to determine how old the account is, in days.
 	var/player_age = "Requires database"
@@ -72,3 +72,10 @@
 	var/related_accounts_ip = "Requires database"
 	// Used to determine what other accounts previously logged in from this computer id.
 	var/related_accounts_cid = "Requires database"
+
+// Checks if a client is afk.
+// 3000 frames = 5 minutes
+/client/proc/is_afk(duration = 3000)
+	if(inactivity > duration)
+		return inactivity
+	return 0
