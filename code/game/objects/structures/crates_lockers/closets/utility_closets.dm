@@ -235,6 +235,16 @@
 	density = FALSE
 	wall_mounted = TRUE
 
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/syringe/inaprovaline,
+		/obj/item/stack/medical/ointment,
+		/obj/item/stack/medical/ointment,
+		/obj/item/stack/medical/ointment,
+		/obj/item/stack/medical/bruise_pack,
+		/obj/item/stack/medical/bruise_pack,
+		/obj/item/stack/medical/bruise_pack
+	)
+
 /obj/structure/closet/medical_wall/update_icon()
 	if(!opened)
 		icon_state = icon_closed

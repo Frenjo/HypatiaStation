@@ -20,12 +20,14 @@
 /obj/structure/closet/New()
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
+	// Spawns the items in the starts_with list.
 	for(var/type in starts_with)
 		new type(src)
 
 /obj/structure/closet/initialize()
 	. = ..()
-	if(!opened)		// if closed, any item at the crate's loc is put in the contents
+	// If closed, any item at the crate's loc is put in the contents.
+	if(!opened)
 		for(var/obj/item/I in src.loc)
 			if(I.density || I.anchored || I == src)
 				continue
@@ -144,7 +146,7 @@
 			qdel(src)
 		if(2)
 			if(prob(50))
-				for (var/atom/movable/A as mob|obj in src)
+				for(var/atom/movable/A as mob|obj in src)
 					A.loc = src.loc
 					A.ex_act(severity++)
 				qdel(src)
@@ -296,7 +298,7 @@
 	if(!opened)
 		icon_state = icon_closed
 		if(welded)
-			overlays += "welded"
+			overlays.Add("welded")
 	else
 		icon_state = icon_opened
 

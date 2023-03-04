@@ -3,10 +3,10 @@
 	req_access = list(ACCESS_ARMORY)
 	icon = 'icons/obj/guncabinet.dmi'
 	icon_state = "base"
-	icon_off ="base"
-	icon_broken ="base"
-	icon_locked ="base"
-	icon_closed ="base"
+	icon_off = "base"
+	icon_broken = "base"
+	icon_locked = "base"
+	icon_closed = "base"
 	icon_opened = "base"
 
 /obj/structure/closet/secure_closet/guncabinet/New()
@@ -20,7 +20,7 @@
 /obj/structure/closet/secure_closet/guncabinet/update_icon()
 	overlays.Cut()
 	if(opened)
-		overlays += icon(icon,"door_open")
+		overlays.Add(icon(icon, "door_open"))
 	else
 		var/lazors = 0
 		var/shottas = 0
@@ -41,13 +41,13 @@
 					gun.icon_state = "projectile"
 
 				gun.pixel_x = i*4
-				overlays += gun
+				overlays.Add(gun)
 
-		overlays += icon(src.icon,"door")
+		overlays.Add(icon(src.icon, "door"))
 
 		if(broken)
-			overlays += icon(src.icon, "broken")
-		else if (locked)
-			overlays += icon(src.icon, "locked")
+			overlays.Add(icon(src.icon, "broken"))
+		else if(locked)
+			overlays.Add(icon(src.icon, "locked"))
 		else
-			overlays += icon(src.icon, "open")
+			overlays.Add(icon(src.icon, "open"))

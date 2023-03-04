@@ -37,7 +37,7 @@
 			if(O.client && !O.blinded)
 				to_chat(O, SPAN_NOTICE("The crate has been [locked ? null : "un"]locked by [user]."))
 		overlays.Cut()
-		overlays += locked ? redlight : greenlight
+		overlays.Add(locked ? redlight : greenlight)
 	else
 		to_chat(user, SPAN_NOTICE("Access denied."))
 
@@ -67,10 +67,10 @@
 		return ..()
 	if(locked && (istype(W, /obj/item/weapon/card/emag) || istype(W, /obj/item/weapon/melee/energy/blade)))
 		overlays.Cut()
-		overlays += emag
-		overlays += sparks
+		overlays.Add(emag)
+		overlays.Add(sparks)
 		spawn(6)
-			overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
+			overlays.Remove(sparks) //Tried lots of stuff but nothing works right. so i have to use this *sadface*
 		playsound(src, "sparks", 60, 1)
 		src.locked = 0
 		src.broken = 1
@@ -88,13 +88,13 @@
 		if(!locked)
 			src.locked = 1
 			overlays.Cut()
-			overlays += redlight
+			overlays.Add(redlight)
 		else
 			overlays.Cut()
-			overlays += emag
-			overlays += sparks
+			overlays.Add(emag)
+			overlays.Add(sparks)
 			spawn(6)
-				overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
+				overlays.Remove(sparks) //Tried lots of stuff but nothing works right. so i have to use this *sadface*
 			playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 			src.locked = 0
 	if(!opened && prob(20 / severity))
@@ -102,5 +102,5 @@
 			open()
 		else
 			src.req_access = list()
-			src.req_access += pick(get_all_accesses())
+			src.req_access.Add(pick(get_all_accesses()))
 	..()

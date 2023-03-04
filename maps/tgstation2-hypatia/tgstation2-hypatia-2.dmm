@@ -247,7 +247,7 @@
 "ip" = (/obj/structure/closet/secure_closet/courtroom,/turf/unsimulated/floor{dir = 10; icon_state = "carpetside"},/area/centcom/control)
 "is" = (/obj/structure/table/reinforced,/obj/item/device/pda/captain,/turf/unsimulated/floor{icon_state = "floor"},/area/centcom/control)
 "iv" = (/obj/structure/shuttle/engine/propulsion,/turf/space,/area/syndicate_station/start)
-"ix" = (/obj/structure/closet/medical_wall{pixel_y = 31},/obj/item/stack/medical/bruise_pack,/obj/item/stack/medical/bruise_pack,/obj/item/stack/medical/bruise_pack,/obj/item/stack/medical/ointment,/obj/item/stack/medical/ointment,/obj/item/stack/medical/ointment,/obj/item/weapon/reagent_containers/syringe/inaprovaline,/turf/simulated/shuttle/floor{icon_state = "floor2"},/area/shuttle/escape/centcom)
+"ix" = (/obj/structure/closet/medical_wall{pixel_y = 31},/turf/simulated/shuttle/floor{icon_state = "floor2"},/area/shuttle/escape/centcom)
 "iy" = (/obj/structure/holostool,/turf/simulated/floor/holofloor{dir = 4; icon_state = "carpet11-0"},/area/holodeck/source_meetinghall)
 "iD" = (/obj/structure/rack,/obj/item/clothing/suit/wizrobe/magusred,/obj/item/clothing/head/wizard/magus,/obj/item/weapon/staff,/turf/unsimulated/floor{icon_state = "grimy"},/area/wizard_station)
 "iE" = (/turf/unsimulated/floor,/area/centcom)

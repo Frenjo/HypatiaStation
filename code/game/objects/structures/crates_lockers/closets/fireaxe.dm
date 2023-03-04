@@ -62,7 +62,7 @@
 				return
 			fireaxe = O
 			user.drop_item(O)
-			src.contents += O
+			src.contents.Add(O)
 			to_chat(user, SPAN_INFO("You place the fire axe back in the [src.name]."))
 			update_icon()
 		else

@@ -45,7 +45,7 @@
 				open()
 			else
 				src.req_access = list()
-				src.req_access += pick(get_all_accesses())
+				src.req_access.Add(pick(get_all_accesses()))
 	..()
 
 /obj/structure/closet/secure_closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -100,7 +100,7 @@
 		else
 			icon_state = icon_closed
 		if(welded)
-			overlays += "welded"
+			overlays.Add("welded")
 	else
 		icon_state = icon_opened
 

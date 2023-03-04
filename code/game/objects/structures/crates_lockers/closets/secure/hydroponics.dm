@@ -9,21 +9,18 @@
 	icon_off = "hydrosecureoff"
 
 	starts_with = list(
-		
+		/obj/item/weapon/storage/bag/plants,
+		/obj/item/clothing/under/rank/hydroponics,
+		/obj/item/device/analyzer/plant_analyzer,
+		/obj/item/clothing/head/greenbandana,
+		/obj/item/weapon/minihoe,
+		/obj/item/weapon/hatchet,
+		/obj/item/weapon/bee_net
 	)
 
 /obj/structure/closet/secure_closet/hydroponics/New()
-	..()
-	switch(rand(1, 2))
-		if(1)
-			new /obj/item/clothing/suit/apron(src)
-		if(2)
-			new /obj/item/clothing/suit/apron/overalls(src)
-
-	new /obj/item/weapon/storage/bag/plants(src)
-	new /obj/item/clothing/under/rank/hydroponics(src)
-	new /obj/item/device/analyzer/plant_analyzer(src)
-	new /obj/item/clothing/head/greenbandana(src)
-	new /obj/item/weapon/minihoe(src)
-	new /obj/item/weapon/hatchet(src)
-	new /obj/item/weapon/bee_net(src)
+	if(prob(50))
+		starts_with.Add(/obj/item/clothing/suit/apron)
+	else
+		starts_with.Add(/obj/item/clothing/suit/apron/overalls)
+	. = ..()
