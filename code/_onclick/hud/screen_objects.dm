@@ -239,7 +239,9 @@
 		if("Reset Machine")
 			usr.unset_machine()
 		if("internal")
-			usr.ui_toggle_internals()
+			if(isliving(usr))
+				var/mob/living/L = usr
+				L.ui_toggle_internals()
 		if("act_intent")
 			usr.a_intent_change("right")
 		if("help")

@@ -327,6 +327,3 @@
 		if(del_on_fail)
 			qdel(W)
 	return equipped
-
-/mob/proc/ui_toggle_internals()
-	return 0
