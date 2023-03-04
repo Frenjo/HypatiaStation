@@ -157,20 +157,18 @@
 			break
 
 /obj/structure/closet/crate/juice
-	
-/obj/structure/closet/crate/juice/New()
-	..()
-	new/obj/machinery/juicer(src)
-	new/obj/item/weapon/reagent_containers/food/snacks/grown/tomato(src)
-	new/obj/item/weapon/reagent_containers/food/snacks/grown/carrot(src)
-	new/obj/item/weapon/reagent_containers/food/snacks/grown/berries(src)
-	new/obj/item/weapon/reagent_containers/food/snacks/grown/banana(src)
-	new/obj/item/weapon/reagent_containers/food/snacks/grown/tomato(src)
-	new/obj/item/weapon/reagent_containers/food/snacks/grown/carrot(src)
-	new/obj/item/weapon/reagent_containers/food/snacks/grown/berries(src)
-	new/obj/item/weapon/reagent_containers/food/snacks/grown/banana(src)
-	new/obj/item/weapon/reagent_containers/food/snacks/grown/tomato(src)
-	new/obj/item/weapon/reagent_containers/food/snacks/grown/carrot(src)
-	new/obj/item/weapon/reagent_containers/food/snacks/grown/berries(src)
-	new/obj/item/weapon/reagent_containers/food/snacks/grown/banana(src)
-
+	starts_with = list(
+		/obj/machinery/juicer,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/tomato,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/carrot,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/berries,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/banana,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/tomato,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/carrot,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/berries,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/banana,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/tomato,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/carrot,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/berries,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/banana
+	)

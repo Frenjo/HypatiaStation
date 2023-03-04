@@ -1,5 +1,3 @@
-/obj/structure/closet/secure_closet/freezer
-
 /obj/structure/closet/secure_closet/freezer/update_icon()
 	if(broken)
 		icon_state = icon_broken
@@ -12,22 +10,32 @@
 		else
 			icon_state = icon_opened
 
+/*
+ * Kitchen
+ */
 /obj/structure/closet/secure_closet/freezer/kitchen
 	name = "Kitchen Cabinet"
 	req_access = list(ACCESS_KITCHEN)
 
-/obj/structure/closet/secure_closet/freezer/kitchen/New()
-	..()
-	for(var/i = 0, i < 6, i++)
-		new /obj/item/weapon/reagent_containers/food/snacks/flour(src)
-	new /obj/item/weapon/reagent_containers/food/condiment/sugar(src)
-	for(var/i = 0, i < 3, i++)
-		new /obj/item/weapon/reagent_containers/food/snacks/meat/monkey(src)
-	return
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/condiment/sugar,
+		/obj/item/weapon/reagent_containers/food/snacks/flour,
+		/obj/item/weapon/reagent_containers/food/snacks/flour,
+		/obj/item/weapon/reagent_containers/food/snacks/flour,
+		/obj/item/weapon/reagent_containers/food/snacks/flour,
+		/obj/item/weapon/reagent_containers/food/snacks/flour,
+		/obj/item/weapon/reagent_containers/food/snacks/flour,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/monkey,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/monkey,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/monkey
+	)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/mining
 	req_access = list()
 
+/*
+ * Meat
+ */
 /obj/structure/closet/secure_closet/freezer/meat
 	name = "Meat Fridge"
 	icon_state = "fridge1"
@@ -37,12 +45,16 @@
 	icon_broken = "fridgebroken"
 	icon_off = "fridge1"
 
-/obj/structure/closet/secure_closet/freezer/meat/New()
-	..()
-	for(var/i = 0, i < 4, i++)
-		new /obj/item/weapon/reagent_containers/food/snacks/meat/monkey(src)
-	return
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat/monkey,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/monkey,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/monkey,
+		/obj/item/weapon/reagent_containers/food/snacks/meat/monkey
+	)
 
+/*
+ * Fridge
+ */
 /obj/structure/closet/secure_closet/freezer/fridge
 	name = "Refrigerator"
 	icon_state = "fridge1"
@@ -52,16 +64,22 @@
 	icon_broken = "fridgebroken"
 	icon_off = "fridge1"
 
-/obj/structure/closet/secure_closet/freezer/fridge/New()
-	..()
-	for(var/i = 0, i < 5, i++)
-		new /obj/item/weapon/reagent_containers/food/drinks/milk(src)
-	for(var/i = 0, i < 3, i++)
-		new /obj/item/weapon/reagent_containers/food/drinks/soymilk(src)
-	for(var/i = 0, i < 2, i++)
-		new /obj/item/weapon/storage/fancy/egg_box(src)
-	return
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/drinks/milk,
+		/obj/item/weapon/reagent_containers/food/drinks/milk,
+		/obj/item/weapon/reagent_containers/food/drinks/milk,
+		/obj/item/weapon/reagent_containers/food/drinks/milk,
+		/obj/item/weapon/reagent_containers/food/drinks/milk,
+		/obj/item/weapon/reagent_containers/food/drinks/soymilk,
+		/obj/item/weapon/reagent_containers/food/drinks/soymilk,
+		/obj/item/weapon/reagent_containers/food/drinks/soymilk,
+		/obj/item/weapon/storage/fancy/egg_box,
+		/obj/item/weapon/storage/fancy/egg_box
+	)
 
+/*
+ * Money
+ */
 /obj/structure/closet/secure_closet/freezer/money
 	name = "Freezer"
 	icon_state = "fridge1"
@@ -72,20 +90,19 @@
 	icon_off = "fridge1"
 	req_access = list(ACCESS_HEADS_VAULT)
 
-/obj/structure/closet/secure_closet/freezer/money/New()
-	..()
-	for(var/i = 0, i < 3, i++)
-		new /obj/item/weapon/spacecash/c1000(src)
-	for(var/i = 0, i < 5, i++)
-		new /obj/item/weapon/spacecash/c500(src)
-	for(var/i = 0, i < 6, i++)
-		new /obj/item/weapon/spacecash/c200(src)
-	return
-
-
-
-
-
-
-
-
+	starts_with = list(
+		/obj/item/weapon/spacecash/c1000,
+		/obj/item/weapon/spacecash/c1000,
+		/obj/item/weapon/spacecash/c1000,
+		/obj/item/weapon/spacecash/c500,
+		/obj/item/weapon/spacecash/c500,
+		/obj/item/weapon/spacecash/c500,
+		/obj/item/weapon/spacecash/c500,
+		/obj/item/weapon/spacecash/c500,
+		/obj/item/weapon/spacecash/c200,
+		/obj/item/weapon/spacecash/c200,
+		/obj/item/weapon/spacecash/c200,
+		/obj/item/weapon/spacecash/c200,
+		/obj/item/weapon/spacecash/c200,
+		/obj/item/weapon/spacecash/c200
+	)

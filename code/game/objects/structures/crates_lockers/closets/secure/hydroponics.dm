@@ -8,6 +8,10 @@
 	icon_broken = "hydrosecurebroken"
 	icon_off = "hydrosecureoff"
 
+	starts_with = list(
+		
+	)
+
 /obj/structure/closet/secure_closet/hydroponics/New()
 	..()
 	switch(rand(1, 2))

@@ -38,7 +38,7 @@
 			if(src.smashed || src.localopened)
 				if(localopened)
 					localopened = 0
-					icon_state = text("fireaxe[][][][]closing", hasaxe, src.localopened, src.hitstaken, src.smashed)
+					icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]closing"
 					spawn(10)
 						update_icon()
 				return
@@ -71,11 +71,11 @@
 			else
 				localopened = !localopened
 				if(localopened)
-					icon_state = text("fireaxe[][][][]opening", hasaxe, src.localopened, src.hitstaken, src.smashed)
+					icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]opening"
 					spawn(10)
 						update_icon()
 				else
-					icon_state = text("fireaxe[][][][]closing", hasaxe, src.localopened, src.hitstaken, src.smashed)
+					icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]closing"
 					spawn(10)
 						update_icon()
 	else
@@ -84,7 +84,7 @@
 		if(istype(O, /obj/item/device/multitool))
 			if(localopened)
 				localopened = 0
-				icon_state = text("fireaxe[][][][]closing", hasaxe, src.localopened, src.hitstaken, src.smashed)
+				icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]closing"
 				spawn(10) update_icon()
 				return
 			else
@@ -97,11 +97,11 @@
 		else
 			localopened = !localopened
 			if(localopened)
-				icon_state = text("fireaxe[][][][]opening", hasaxe, src.localopened, src.hitstaken, src.smashed)
+				icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]opening"
 				spawn(10)
 					update_icon()
 			else
-				icon_state = text("fireaxe[][][][]closing", hasaxe, src.localopened, src.hitstaken, src.smashed)
+				icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]closing"
 				spawn(10)
 					update_icon()
 
@@ -126,22 +126,22 @@
 			else
 				localopened = !localopened
 				if(localopened)
-					src.icon_state = text("fireaxe[][][][]opening", hasaxe, src.localopened, src.hitstaken, src.smashed)
+					src.icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]opening"
 					spawn(10)
 						update_icon()
 				else
-					src.icon_state = text("fireaxe[][][][]closing", hasaxe, src.localopened, src.hitstaken, src.smashed)
+					src.icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]closing"
 					spawn(10)
 						update_icon()
 
 	else
 		localopened = !localopened //I'm pretty sure we don't need an if(src.smashed) in here. In case I'm wrong and it fucks up teh cabinet, **MARKER**. -Agouri
 		if(localopened)
-			src.icon_state = text("fireaxe[][][][]opening", hasaxe, src.localopened, src.hitstaken, src.smashed)
+			src.icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]opening"
 			spawn(10)
 				update_icon()
 		else
-			src.icon_state = text("fireaxe[][][][]closing", hasaxe, src.localopened, src.hitstaken, src.smashed)
+			src.icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]closing"
 			spawn(10)
 				update_icon()
 
@@ -206,7 +206,7 @@
 	var/hasaxe = 0
 	if(fireaxe)
 		hasaxe = 1
-	icon_state = text("fireaxe[][][][]", hasaxe, src.localopened, src.hitstaken, src.smashed)
+	icon_state = "fireaxe[hasaxe][localopened][hitstaken][smashed]"
 
 /obj/structure/closet/fireaxecabinet/open()
 	return

@@ -1,382 +1,424 @@
+/*
+ * Wardrobe
+ */
 /obj/structure/closet/wardrobe
 	name = "wardrobe"
 	desc = "It's a storage unit for standard-issue NanoTrasen attire."
 	icon_state = "blue"
 	icon_closed = "blue"
 
-
+/*
+ * Security (Red)
+ */
 /obj/structure/closet/wardrobe/red
 	name = "security wardrobe"
 	icon_state = "red"
 	icon_closed = "red"
 
-/obj/structure/closet/wardrobe/red/New()
-	..()
-	new /obj/item/clothing/under/rank/security(src)
-	new /obj/item/clothing/under/rank/security(src)
-	new /obj/item/clothing/under/rank/security(src)
-	new /obj/item/clothing/under/rank/security2(src)
-	new /obj/item/clothing/under/rank/security2(src)
-	new /obj/item/clothing/under/rank/security2(src)
-	new /obj/item/clothing/shoes/jackboots(src)
-	new /obj/item/clothing/shoes/jackboots(src)
-	new /obj/item/clothing/shoes/jackboots(src)
-	new /obj/item/clothing/head/soft/sec(src)
-	new /obj/item/clothing/head/soft/sec(src)
-	new /obj/item/clothing/head/soft/sec(src)
-	new /obj/item/clothing/head/beret/sec(src)
-	new /obj/item/clothing/head/beret/sec(src)
-	new /obj/item/clothing/head/beret/sec(src)
+	starts_with = list(
+		/obj/item/clothing/under/rank/security,
+		/obj/item/clothing/under/rank/security,
+		/obj/item/clothing/under/rank/security,
+		/obj/item/clothing/under/rank/security2,
+		/obj/item/clothing/under/rank/security2,
+		/obj/item/clothing/under/rank/security2,
+		/obj/item/clothing/shoes/jackboots,
+		/obj/item/clothing/shoes/jackboots,
+		/obj/item/clothing/shoes/jackboots,
+		/obj/item/clothing/head/soft/sec,
+		/obj/item/clothing/head/soft/sec,
+		/obj/item/clothing/head/soft/sec,
+		/obj/item/clothing/head/beret/sec,
+		/obj/item/clothing/head/beret/sec,
+		/obj/item/clothing/head/beret/sec
+	)
 
-
+/*
+ * Pink
+ */
 /obj/structure/closet/wardrobe/pink
 	name = "pink wardrobe"
 	icon_state = "pink"
 	icon_closed = "pink"
 
-/obj/structure/closet/wardrobe/pink/New()
-	..()
-	new /obj/item/clothing/under/color/pink(src)
-	new /obj/item/clothing/under/color/pink(src)
-	new /obj/item/clothing/under/color/pink(src)
-	new /obj/item/clothing/shoes/brown(src)
-	new /obj/item/clothing/shoes/brown(src)
-	new /obj/item/clothing/shoes/brown(src)
+	starts_with = list(
+		/obj/item/clothing/under/color/pink,
+		/obj/item/clothing/under/color/pink,
+		/obj/item/clothing/under/color/pink,
+		/obj/item/clothing/shoes/brown,
+		/obj/item/clothing/shoes/brown,
+		/obj/item/clothing/shoes/brown
+	)
 
-
+/*
+ * Black
+ */
 /obj/structure/closet/wardrobe/black
 	name = "black wardrobe"
 	icon_state = "black"
 	icon_closed = "black"
 
-/obj/structure/closet/wardrobe/black/New()
-	..()
-	new /obj/item/clothing/under/color/black(src)
-	new /obj/item/clothing/under/color/black(src)
-	new /obj/item/clothing/under/color/black(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/head/that(src)
-	new /obj/item/clothing/head/that(src)
-	new /obj/item/clothing/head/that(src)
+	starts_with = list(
+		/obj/item/clothing/under/color/black,
+		/obj/item/clothing/under/color/black,
+		/obj/item/clothing/under/color/black,
+		/obj/item/clothing/shoes/black,
+		/obj/item/clothing/shoes/black,
+		/obj/item/clothing/shoes/black,
+		/obj/item/clothing/head/that,
+		/obj/item/clothing/head/that,
+		/obj/item/clothing/head/that
+	)
 
-
+/*
+ * Chaplain
+ */
 /obj/structure/closet/wardrobe/chaplain_black
 	name = "chapel wardrobe"
 	desc = "It's a storage unit for NanoTrasen-approved religious attire."
 	icon_state = "black"
 	icon_closed = "black"
 
-/obj/structure/closet/wardrobe/chaplain_black/New()
-	..()
-	new /obj/item/clothing/under/rank/chaplain(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/suit/nun(src)
-	new /obj/item/clothing/head/nun_hood(src)
-	new /obj/item/clothing/suit/chaplain_hoodie(src)
-	new /obj/item/clothing/head/chaplain_hood(src)
-	new /obj/item/clothing/suit/holidaypriest(src)
-	new /obj/item/clothing/under/wedding/bride_white(src)
-	new /obj/item/weapon/storage/backpack/cultpack (src)
-	new /obj/item/weapon/storage/fancy/candle_box(src)
-	new /obj/item/weapon/storage/fancy/candle_box(src)
+	starts_with = list(
+		/obj/item/clothing/under/rank/chaplain,
+		/obj/item/clothing/shoes/black,
+		/obj/item/clothing/suit/nun,
+		/obj/item/clothing/head/nun_hood,
+		/obj/item/clothing/suit/chaplain_hoodie,
+		/obj/item/clothing/head/chaplain_hood,
+		/obj/item/clothing/suit/holidaypriest,
+		/obj/item/clothing/under/wedding/bride_white,
+		/obj/item/weapon/storage/backpack/cultpack,
+		/obj/item/weapon/storage/fancy/candle_box,
+		/obj/item/weapon/storage/fancy/candle_box
+	)
 
-
+/*
+ * Green
+ */
 /obj/structure/closet/wardrobe/green
 	name = "green wardrobe"
 	icon_state = "green"
 	icon_closed = "green"
 
-/obj/structure/closet/wardrobe/green/New()
-	..()
-	new /obj/item/clothing/under/color/green(src)
-	new /obj/item/clothing/under/color/green(src)
-	new /obj/item/clothing/under/color/green(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/shoes/black(src)
+	starts_with = list(
+		/obj/item/clothing/under/color/green,
+		/obj/item/clothing/under/color/green,
+		/obj/item/clothing/under/color/green,
+		/obj/item/clothing/shoes/black,
+		/obj/item/clothing/shoes/black,
+		/obj/item/clothing/shoes/black
+	)
 
-
+/*
+ * Xenos
+ */
 /obj/structure/closet/wardrobe/xenos
 	name = "xenos wardrobe"
 	icon_state = "green"
 	icon_closed = "green"
 
-/obj/structure/closet/wardrobe/xenos/New()
-	..()
-	new /obj/item/clothing/suit/soghun/mantle(src)
-	new /obj/item/clothing/suit/soghun/robe(src)
-	new /obj/item/clothing/shoes/sandal(src)
-	new /obj/item/clothing/shoes/sandal(src)
-	new /obj/item/clothing/shoes/sandal(src)
+	starts_with = list(
+		/obj/item/clothing/suit/soghun/mantle,
+		/obj/item/clothing/suit/soghun/robe,
+		/obj/item/clothing/shoes/sandal,
+		/obj/item/clothing/shoes/sandal,
+		/obj/item/clothing/shoes/sandal
+	)
 
-
+/*
+ * Prison (Orange)
+ */
 /obj/structure/closet/wardrobe/orange
 	name = "prison wardrobe"
 	desc = "It's a storage unit for NanoTrasen-regulation prisoner attire."
 	icon_state = "orange"
 	icon_closed = "orange"
 
-/obj/structure/closet/wardrobe/orange/New()
-	..()
-	new /obj/item/clothing/under/color/orange(src)
-	new /obj/item/clothing/under/color/orange(src)
-	new /obj/item/clothing/under/color/orange(src)
-	new /obj/item/clothing/shoes/orange(src)
-	new /obj/item/clothing/shoes/orange(src)
-	new /obj/item/clothing/shoes/orange(src)
+	starts_with = list(
+		/obj/item/clothing/under/color/orange,
+		/obj/item/clothing/under/color/orange,
+		/obj/item/clothing/under/color/orange,
+		/obj/item/clothing/shoes/orange,
+		/obj/item/clothing/shoes/orange,
+		/obj/item/clothing/shoes/orange
+	)
 
-
+/*
+ * Yellow
+ */
 /obj/structure/closet/wardrobe/yellow
 	name = "yellow wardrobe"
 	icon_state = "wardrobe-y"
 	icon_closed = "wardrobe-y"
 
-/obj/structure/closet/wardrobe/yellow/New()
-	..()
-	new /obj/item/clothing/under/color/yellow(src)
-	new /obj/item/clothing/under/color/yellow(src)
-	new /obj/item/clothing/under/color/yellow(src)
-	new /obj/item/clothing/shoes/orange(src)
-	new /obj/item/clothing/shoes/orange(src)
-	new /obj/item/clothing/shoes/orange(src)
+	starts_with = list(
+		/obj/item/clothing/under/color/yellow,
+		/obj/item/clothing/under/color/yellow,
+		/obj/item/clothing/under/color/yellow,
+		/obj/item/clothing/shoes/orange,
+		/obj/item/clothing/shoes/orange,
+		/obj/item/clothing/shoes/orange
+	)
 
-
+/*
+ * Atmospherics
+ */
 /obj/structure/closet/wardrobe/atmospherics_yellow
 	name = "atmospherics wardrobe"
 	icon_state = "yellow"
 	icon_closed = "yellow"
 
-/obj/structure/closet/wardrobe/atmospherics_yellow/New()
-	..()
-	new /obj/item/clothing/under/rank/atmospheric_technician(src)
-	new /obj/item/clothing/under/rank/atmospheric_technician(src)
-	new /obj/item/clothing/under/rank/atmospheric_technician(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/head/hardhat/red(src)
-	new /obj/item/clothing/head/hardhat/red(src)
-	new /obj/item/clothing/head/hardhat/red(src)
-	new /obj/item/clothing/head/beret/eng(src)
-	new /obj/item/clothing/head/beret/eng(src)
-	new /obj/item/clothing/head/beret/eng(src)
+	starts_with = list(
+		/obj/item/clothing/under/rank/atmospheric_technician,
+		/obj/item/clothing/under/rank/atmospheric_technician,
+		/obj/item/clothing/under/rank/atmospheric_technician,
+		/obj/item/clothing/shoes/black,
+		/obj/item/clothing/shoes/black,
+		/obj/item/clothing/shoes/black,
+		/obj/item/clothing/head/hardhat/red,
+		/obj/item/clothing/head/hardhat/red,
+		/obj/item/clothing/head/hardhat/red,
+		/obj/item/clothing/head/beret/eng,
+		/obj/item/clothing/head/beret/eng,
+		/obj/item/clothing/head/beret/eng
+	)
 
-
+/*
+ * Engineering
+ */
 /obj/structure/closet/wardrobe/engineering_yellow
 	name = "engineering wardrobe"
 	icon_state = "yellow"
 	icon_closed = "yellow"
 
-/obj/structure/closet/wardrobe/engineering_yellow/New()
-	..()
-	new /obj/item/clothing/under/rank/engineer(src)
-	new /obj/item/clothing/under/rank/engineer(src)
-	new /obj/item/clothing/under/rank/engineer(src)
-	new /obj/item/clothing/shoes/orange(src)
-	new /obj/item/clothing/shoes/orange(src)
-	new /obj/item/clothing/shoes/orange(src)
-	new /obj/item/clothing/head/hardhat(src)
-	new /obj/item/clothing/head/hardhat(src)
-	new /obj/item/clothing/head/hardhat(src)
-	new /obj/item/clothing/head/beret/eng(src)
-	new /obj/item/clothing/head/beret/eng(src)
-	new /obj/item/clothing/head/beret/eng(src)
+	starts_with = list(
+		/obj/item/clothing/under/rank/engineer,
+		/obj/item/clothing/under/rank/engineer,
+		/obj/item/clothing/under/rank/engineer,
+		/obj/item/clothing/shoes/orange,
+		/obj/item/clothing/shoes/orange,
+		/obj/item/clothing/shoes/orange,
+		/obj/item/clothing/head/hardhat,
+		/obj/item/clothing/head/hardhat,
+		/obj/item/clothing/head/hardhat,
+		/obj/item/clothing/head/beret/eng,
+		/obj/item/clothing/head/beret/eng,
+		/obj/item/clothing/head/beret/eng
+	)
 
-
+/*
+ * White
+ */
 /obj/structure/closet/wardrobe/white
 	name = "white wardrobe"
 	icon_state = "white"
 	icon_closed = "white"
 
-/obj/structure/closet/wardrobe/white/New()
-	..()
-	new /obj/item/clothing/under/color/white(src)
-	new /obj/item/clothing/under/color/white(src)
-	new /obj/item/clothing/under/color/white(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
+	starts_with = list(
+		/obj/item/clothing/under/color/white,
+		/obj/item/clothing/under/color/white,
+		/obj/item/clothing/under/color/white,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/shoes/white
+	)
 
-
+/*
+ * Pyjamas
+ */
 /obj/structure/closet/wardrobe/pjs
 	name = "Pajama wardrobe"
 	icon_state = "white"
 	icon_closed = "white"
 
-/obj/structure/closet/wardrobe/pjs/New()
-	..()
-	new /obj/item/clothing/under/pj/red(src)
-	new /obj/item/clothing/under/pj/red(src)
-	new /obj/item/clothing/under/pj/blue(src)
-	new /obj/item/clothing/under/pj/blue(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/slippers(src)
-	new /obj/item/clothing/shoes/slippers(src)
+	starts_with = list(
+		/obj/item/clothing/under/pj/red,
+		/obj/item/clothing/under/pj/red,
+		/obj/item/clothing/under/pj/blue,
+		/obj/item/clothing/under/pj/blue,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/shoes/slippers,
+		/obj/item/clothing/shoes/slippers
+	)
 
-
+/*
+ * Toxins
+ */
 /obj/structure/closet/wardrobe/toxins_white
 	name = "toxins wardrobe"
 	icon_state = "white"
 	icon_closed = "white"
 
-/obj/structure/closet/wardrobe/toxins_white/New()
-	..()
-	new /obj/item/clothing/under/rank/scientist(src)
-	new /obj/item/clothing/under/rank/scientist(src)
-	new /obj/item/clothing/under/rank/scientist(src)
-	new /obj/item/clothing/suit/storage/labcoat(src)
-	new /obj/item/clothing/suit/storage/labcoat(src)
-	new /obj/item/clothing/suit/storage/labcoat(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/slippers(src)
-	new /obj/item/clothing/shoes/slippers(src)
-	new /obj/item/clothing/shoes/slippers(src)
+	starts_with = list(
+		/obj/item/clothing/under/rank/scientist,
+		/obj/item/clothing/under/rank/scientist,
+		/obj/item/clothing/under/rank/scientist,
+		/obj/item/clothing/suit/storage/labcoat,
+		/obj/item/clothing/suit/storage/labcoat,
+		/obj/item/clothing/suit/storage/labcoat,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/shoes/white
+	)
 
-
+/*
+ * Robotics
+ */
 /obj/structure/closet/wardrobe/robotics_black
 	name = "robotics wardrobe"
 	icon_state = "black"
 	icon_closed = "black"
 
-/obj/structure/closet/wardrobe/robotics_black/New()
-	..()
-	new /obj/item/clothing/under/rank/roboticist(src)
-	new /obj/item/clothing/under/rank/roboticist(src)
-	new /obj/item/clothing/suit/storage/labcoat(src)
-	new /obj/item/clothing/suit/storage/labcoat(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/gloves/black(src)
-	new /obj/item/clothing/gloves/black(src)
+	starts_with = list(
+		/obj/item/clothing/under/rank/roboticist,
+		/obj/item/clothing/under/rank/roboticist,
+		/obj/item/clothing/suit/storage/labcoat,
+		/obj/item/clothing/suit/storage/labcoat,
+		/obj/item/clothing/shoes/black,
+		/obj/item/clothing/shoes/black,
+		/obj/item/clothing/gloves/black,
+		/obj/item/clothing/gloves/black
+	)
 
-
+/*
+ * Chemistry
+ */
 /obj/structure/closet/wardrobe/chemistry_white
 	name = "chemistry wardrobe"
 	icon_state = "white"
 	icon_closed = "white"
 
-/obj/structure/closet/wardrobe/chemistry_white/New()
-	..()
-	new /obj/item/clothing/under/rank/chemist(src)
-	new /obj/item/clothing/under/rank/chemist(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/suit/storage/labcoat/chemist(src)
-	new /obj/item/clothing/suit/storage/labcoat/chemist(src)
+	starts_with = list(
+		/obj/item/clothing/under/rank/chemist,
+		/obj/item/clothing/under/rank/chemist,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/suit/storage/labcoat/chemist,
+		/obj/item/clothing/suit/storage/labcoat/chemist
+	)
 
-
+/*
+ * Genetics
+ */
 /obj/structure/closet/wardrobe/genetics_white
 	name = "genetics wardrobe"
 	icon_state = "white"
 	icon_closed = "white"
 
-/obj/structure/closet/wardrobe/genetics_white/New()
-	..()
-	new /obj/item/clothing/under/rank/geneticist(src)
-	new /obj/item/clothing/under/rank/geneticist(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/suit/storage/labcoat/genetics(src)
-	new /obj/item/clothing/suit/storage/labcoat/genetics(src)
+	starts_with = list(
+		/obj/item/clothing/under/rank/geneticist,
+		/obj/item/clothing/under/rank/geneticist,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/suit/storage/labcoat/genetics,
+		/obj/item/clothing/suit/storage/labcoat/genetics
+	)
 
-
+/*
+ * Virology
+ */
 /obj/structure/closet/wardrobe/virology_white
 	name = "virology wardrobe"
 	icon_state = "white"
 	icon_closed = "white"
 
-/obj/structure/closet/wardrobe/virology_white/New()
-	..()
-	new /obj/item/clothing/under/rank/virologist(src)
-	new /obj/item/clothing/under/rank/virologist(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/suit/storage/labcoat/virologist(src)
-	new /obj/item/clothing/suit/storage/labcoat/virologist(src)
-	new /obj/item/clothing/mask/surgical(src)
-	new /obj/item/clothing/mask/surgical(src)
+	starts_with = list(
+		/obj/item/clothing/under/rank/virologist,
+		/obj/item/clothing/under/rank/virologist,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/suit/storage/labcoat/virologist,
+		/obj/item/clothing/suit/storage/labcoat/virologist,
+		/obj/item/clothing/mask/surgical,
+		/obj/item/clothing/mask/surgical
+	)
 
-
+/*
+ * Medical
+ */
 /obj/structure/closet/wardrobe/medic_white
 	name = "medical wardrobe"
 	icon_state = "white"
 	icon_closed = "white"
 
-/obj/structure/closet/wardrobe/medic_white/New()
-	..()
-	new /obj/item/clothing/under/rank/medical(src)
-	new /obj/item/clothing/under/rank/medical(src)
-	new /obj/item/clothing/under/rank/medical/blue(src)
-	new /obj/item/clothing/under/rank/medical/green(src)
-	new /obj/item/clothing/under/rank/medical/purple(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/suit/storage/labcoat(src)
-	new /obj/item/clothing/suit/storage/labcoat(src)
-	new /obj/item/clothing/mask/surgical(src)
-	new /obj/item/clothing/mask/surgical(src)
+	starts_with = list(
+		/obj/item/clothing/under/rank/medical,
+		/obj/item/clothing/under/rank/medical,
+		/obj/item/clothing/under/rank/medical/blue,
+		/obj/item/clothing/under/rank/medical/green,
+		/obj/item/clothing/under/rank/medical/purple,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/suit/storage/labcoat,
+		/obj/item/clothing/suit/storage/labcoat,
+		/obj/item/clothing/mask/surgical,
+		/obj/item/clothing/mask/surgical
+	)
 
-
+/*
+ * Grey
+ */
 /obj/structure/closet/wardrobe/grey
 	name = "grey wardrobe"
 	icon_state = "grey"
 	icon_closed = "grey"
 
-/obj/structure/closet/wardrobe/grey/New()
-	..()
-	new /obj/item/clothing/under/color/grey(src)
-	new /obj/item/clothing/under/color/grey(src)
-	new /obj/item/clothing/under/color/grey(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/head/soft/grey(src)
-	new /obj/item/clothing/head/soft/grey(src)
-	new /obj/item/clothing/head/soft/grey(src)
+	starts_with = list(
+		/obj/item/clothing/under/color/grey,
+		/obj/item/clothing/under/color/grey,
+		/obj/item/clothing/under/color/grey,
+		/obj/item/clothing/shoes/black,
+		/obj/item/clothing/shoes/black,
+		/obj/item/clothing/shoes/black,
+		/obj/item/clothing/head/soft/grey,
+		/obj/item/clothing/head/soft/grey,
+		/obj/item/clothing/head/soft/grey
+	)
 
-
+/*
+ * Mixed
+ */
 /obj/structure/closet/wardrobe/mixed
 	name = "mixed wardrobe"
 	icon_state = "mixed"
 	icon_closed = "mixed"
 
-/obj/structure/closet/wardrobe/mixed/New()
-	..()
-	new /obj/item/clothing/under/color/blue(src)
-	new /obj/item/clothing/under/color/yellow(src)
-	new /obj/item/clothing/under/color/green(src)
-	new /obj/item/clothing/under/color/orange(src)
-	new /obj/item/clothing/under/color/pink(src)
-	new /obj/item/clothing/under/dress/plaid_blue(src)
-	new /obj/item/clothing/under/dress/plaid_red(src)
-	new /obj/item/clothing/under/dress/plaid_purple(src)
-	new /obj/item/clothing/shoes/blue(src)
-	new /obj/item/clothing/shoes/yellow(src)
-	new /obj/item/clothing/shoes/green(src)
-	new /obj/item/clothing/shoes/orange(src)
-	new /obj/item/clothing/shoes/purple(src)
-	new /obj/item/clothing/shoes/red(src)
-	new /obj/item/clothing/shoes/leather(src)
+	starts_with = list(
+		/obj/item/clothing/under/color/blue,
+		/obj/item/clothing/under/color/yellow,
+		/obj/item/clothing/under/color/green,
+		/obj/item/clothing/under/color/orange,
+		/obj/item/clothing/under/color/pink,
+		/obj/item/clothing/under/dress/plaid_blue,
+		/obj/item/clothing/under/dress/plaid_red,
+		/obj/item/clothing/under/dress/plaid_purple,
+		/obj/item/clothing/shoes/blue,
+		/obj/item/clothing/shoes/yellow,
+		/obj/item/clothing/shoes/green,
+		/obj/item/clothing/shoes/orange,
+		/obj/item/clothing/shoes/purple,
+		/obj/item/clothing/shoes/red,
+		/obj/item/clothing/shoes/leather
+	)
 
-
+/*
+ * Tactical
+ */
 /obj/structure/closet/wardrobe/tactical
 	name = "tactical equipment"
 	icon_state = "syndicate1"
 	icon_closed = "syndicate1"
 	icon_opened = "syndicate1open"
 
-/obj/structure/closet/wardrobe/tactical/New()
-	new /obj/item/clothing/under/tactical(src)
-	new /obj/item/clothing/suit/armor/tactical(src)
-	new /obj/item/clothing/head/helmet/tactical(src)
-	new /obj/item/clothing/mask/balaclava/tactical(src)
-	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
-	new /obj/item/weapon/storage/belt/security/tactical(src)
-	new /obj/item/clothing/shoes/jackboots(src)
-	new /obj/item/clothing/gloves/black(src)
-
+	starts_with = list(
+		/obj/item/clothing/under/tactical,
+		/obj/item/clothing/suit/armor/tactical,
+		/obj/item/clothing/head/helmet/tactical,
+		/obj/item/clothing/mask/balaclava/tactical,
+		/obj/item/clothing/glasses/sunglasses/sechud/tactical,
+		/obj/item/weapon/storage/belt/security/tactical,
+		/obj/item/clothing/shoes/jackboots,
+		/obj/item/clothing/gloves/black
+	)

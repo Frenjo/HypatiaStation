@@ -1,3 +1,6 @@
+/*
+ * Scientist
+ */
 /obj/structure/closet/secure_closet/scientist
 	name = "Scientist's Locker"
 	req_access = list(ACCESS_RESEARCH)
@@ -8,19 +11,23 @@
 	icon_broken = "secureresbroken"
 	icon_off = "secureresoff"
 
+	starts_with = list(
+		/obj/item/wardrobe/scientist,
+		/obj/item/device/pda/toxins,
+		/obj/item/weapon/tank/oxygen,
+		/obj/item/clothing/mask/gas,
+		/obj/item/device/radio/headset/headset_sci
+	)
+
 /obj/structure/closet/secure_closet/scientist/New()
-	..()
-	new /obj/item/wardrobe/scientist(src)
-	//
+	. = ..()
 	var/obj/item/weapon/storage/backpack/BPK = new /obj/item/weapon/storage/backpack(src)
 	var/obj/item/weapon/storage/box/B = new(BPK)
 	new /obj/item/weapon/pen(B)
-	new /obj/item/device/pda/toxins(src)
-	new /obj/item/weapon/tank/oxygen(src)
-	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/device/radio/headset/headset_sci(src)
 
-
+/*
+ * Research Director
+ */
 /obj/structure/closet/secure_closet/rd
 	name = "Research Director's Locker"
 	req_access = list(ACCESS_RD)
@@ -30,17 +37,18 @@
 	icon_opened = "rdsecureopen"
 	icon_broken = "rdsecurebroken"
 	icon_off = "rdsecureoff"
+	
+	starts_with = list(
+		/obj/item/wardrobe/rd,
+		/obj/item/weapon/clipboard,
+		/obj/item/weapon/tank/air,
+		/obj/item/clothing/mask/gas,
+		/obj/item/device/flash,
+		/obj/item/device/radio/headset/heads/rd
+	)
 
 /obj/structure/closet/secure_closet/rd/New()
-	..()
-	new /obj/item/wardrobe/rd(src)
-	//
+	. = ..()
 	var/obj/item/weapon/storage/backpack/BPK = new /obj/item/weapon/storage/backpack(src)
 	var/obj/item/weapon/storage/box/B = new(BPK)
 	new /obj/item/weapon/pen(B)
-	new /obj/item/weapon/clipboard(src)
-	new /obj/item/weapon/tank/air(src)
-	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/device/flash(src)
-	new /obj/item/device/radio/headset/heads/rd(src)
-	//

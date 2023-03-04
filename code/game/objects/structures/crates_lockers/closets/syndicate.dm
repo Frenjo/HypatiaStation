@@ -1,3 +1,6 @@
+/*
+ * Syndicate
+ */
 /obj/structure/closet/syndicate
 	name = "armoury closet"
 	desc = "Why is this here?"
@@ -5,60 +8,73 @@
 	icon_closed = "syndicate"
 	icon_opened = "syndicateopen"
 
-
+/*
+ * Syndicate Personal
+ */
 /obj/structure/closet/syndicate/personal
 	desc = "It's a storage unit for operative gear."
 
-/obj/structure/closet/syndicate/personal/New()
-	..()
-	new /obj/item/weapon/tank/jetpack/oxygen(src)
-	new /obj/item/clothing/mask/gas/syndicate(src)
-	new /obj/item/clothing/under/syndicate(src)
-	new /obj/item/clothing/head/helmet/space/rig/syndi(src)
-	new /obj/item/clothing/suit/space/rig/syndi(src)
-	new /obj/item/weapon/crowbar/red(src)
-	new /obj/item/weapon/cell/high(src)
-	new /obj/item/weapon/card/id/syndicate(src)
-	new /obj/item/device/multitool(src)
-	new /obj/item/weapon/shield/energy(src)
-	new /obj/item/clothing/shoes/magboots(src)
+	starts_with = list(
+		/obj/item/weapon/tank/jetpack/oxygen,
+		/obj/item/clothing/mask/gas/syndicate,
+		/obj/item/clothing/under/syndicate,
+		/obj/item/clothing/head/helmet/space/rig/syndi,
+		/obj/item/clothing/suit/space/rig/syndi,
+		/obj/item/weapon/crowbar/red,
+		/obj/item/weapon/cell/high,
+		/obj/item/weapon/card/id/syndicate,
+		/obj/item/device/multitool,
+		/obj/item/weapon/shield/energy,
+		/obj/item/clothing/shoes/magboots
+	)
 
-
+/*
+ * Syndicate Nuclear
+ */
 /obj/structure/closet/syndicate/nuclear
 	desc = "It's a storage unit for nuclear-operative gear."
 
+	starts_with = list(
+		/obj/item/ammo_magazine/a12mm,
+		/obj/item/ammo_magazine/a12mm,
+		/obj/item/ammo_magazine/a12mm,
+		/obj/item/ammo_magazine/a12mm,
+		/obj/item/ammo_magazine/a12mm,
+		/obj/item/weapon/storage/box/handcuffs,
+		/obj/item/weapon/storage/box/flashbangs,
+		/obj/item/weapon/gun/energy/gun,
+		/obj/item/weapon/gun/energy/gun,
+		/obj/item/weapon/gun/energy/gun,
+		/obj/item/weapon/gun/energy/gun,
+		/obj/item/weapon/gun/energy/gun,
+		/obj/item/weapon/pinpointer/nukeop,
+		/obj/item/weapon/pinpointer/nukeop,
+		/obj/item/weapon/pinpointer/nukeop,
+		/obj/item/weapon/pinpointer/nukeop,
+		/obj/item/weapon/pinpointer/nukeop,
+		/obj/item/device/pda/syndicate
+	)
+
 /obj/structure/closet/syndicate/nuclear/New()
-	..()
-	new /obj/item/ammo_magazine/a12mm(src)
-	new /obj/item/ammo_magazine/a12mm(src)
-	new /obj/item/ammo_magazine/a12mm(src)
-	new /obj/item/ammo_magazine/a12mm(src)
-	new /obj/item/ammo_magazine/a12mm(src)
-	new /obj/item/weapon/storage/box/handcuffs(src)
-	new /obj/item/weapon/storage/box/flashbangs(src)
-	new /obj/item/weapon/gun/energy/gun(src)
-	new /obj/item/weapon/gun/energy/gun(src)
-	new /obj/item/weapon/gun/energy/gun(src)
-	new /obj/item/weapon/gun/energy/gun(src)
-	new /obj/item/weapon/gun/energy/gun(src)
-	new /obj/item/weapon/pinpointer/nukeop(src)
-	new /obj/item/weapon/pinpointer/nukeop(src)
-	new /obj/item/weapon/pinpointer/nukeop(src)
-	new /obj/item/weapon/pinpointer/nukeop(src)
-	new /obj/item/weapon/pinpointer/nukeop(src)
-	new /obj/item/device/pda/syndicate(src)
+	. = ..()
 	var/obj/item/device/radio/uplink/U = new(src)
 	U.hidden_uplink.uses = 40
 
+/*
+ * Syndicate Resources
+ */
 /obj/structure/closet/syndicate/resources
 	desc = "An old, dusty locker."
 
-/obj/structure/closet/syndicate/resources/New()
-	..()
-	var/common_min = 30 //Minimum amount of minerals in the stack for common minerals
-	var/common_max = 50 //Maximum amount of HONK in the stack for HONK common minerals
-	var/rare_min = 5  //Minimum HONK of HONK in the stack HONK HONK rare minerals
-	var/rare_max = 20 //Maximum HONK HONK HONK in the HONK for HONK rare HONK
+/*
+ * Syndicate Resources (Random)
+ */
+/obj/structure/closet/syndicate/resources/random/New()
+	. = ..()
+	var/common_min = 30	//Minimum amount of minerals in the stack for common minerals
+	var/common_max = 50	//Maximum amount of HONK in the stack for HONK common minerals
+	var/rare_min = 5	//Minimum HONK of HONK in the stack HONK HONK rare minerals
+	var/rare_max = 20	//Maximum HONK HONK HONK in the HONK for HONK rare HONK
 
 	var/pickednum = rand(1, 50)
 
@@ -104,12 +120,14 @@
 	if(pickednum == 50)
 		new /obj/item/weapon/tank/jetpack/carbondioxide(src)
 
-	return
-
+/*
+ * Syndicate Resources (Everything)
+ */
 /obj/structure/closet/syndicate/resources/everything
 	desc = "It's an emergency storage closet for repairs."
 
 /obj/structure/closet/syndicate/resources/everything/New()
+	. = ..()
 	var/list/resources = list(
 		/obj/item/stack/sheet/metal,
 		/obj/item/stack/sheet/glass,
@@ -127,4 +145,3 @@
 		for(var/res in resources)
 			var/obj/item/stack/R = new res(src)
 			R.amount = R.max_amount
-	return

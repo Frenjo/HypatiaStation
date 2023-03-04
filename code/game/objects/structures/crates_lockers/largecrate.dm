@@ -1,3 +1,6 @@
+/*
+ * Large Crate
+ */
 /obj/structure/largecrate
 	name = "large crate"
 	desc = "A hefty wooden crate."
@@ -24,11 +27,15 @@
 	else
 		return attack_hand(user)
 
-
+/*
+ * Mule Crate
+ */
 /obj/structure/largecrate/mule
 	icon_state = "mulecrate"
 
-
+/*
+ * Lisa Crate
+ */
 /obj/structure/largecrate/lisa
 	icon_state = "lisacrate"
 
@@ -37,7 +44,9 @@
 		new /mob/living/simple_animal/corgi/Lisa(loc)
 	..()
 
-
+/*
+ * Cow Crate
+ */
 /obj/structure/largecrate/cow
 	name = "cow crate"
 	icon_state = "lisacrate"
@@ -47,7 +56,9 @@
 		new /mob/living/simple_animal/cow(loc)
 	..()
 
-
+/*
+ * Goat Crate
+ */
 /obj/structure/largecrate/goat
 	name = "goat crate"
 	icon_state = "lisacrate"
@@ -57,7 +68,9 @@
 		new /mob/living/simple_animal/hostile/retaliate/goat(loc)
 	..()
 
-
+/*
+ * Chicken Crate
+ */
 /obj/structure/largecrate/chick
 	name = "chicken crate"
 	icon_state = "lisacrate"
@@ -69,7 +82,9 @@
 			new /mob/living/simple_animal/chick(loc)
 	..()
 
-
+/*
+ * Hoverpod Crate
+ */
 // Ported hoverpod from NSS Eternal. -Frenjo
 /obj/structure/largecrate/hoverpod
 	name = "\improper Hoverpod assembly crate"

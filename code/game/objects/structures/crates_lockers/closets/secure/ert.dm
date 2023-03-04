@@ -1,3 +1,6 @@
+/*
+ * ERT Commander
+ */
 /obj/structure/closet/secure_closet/ert/commander
 	name = "\improper ERT commander locker"
 	req_access = list(ACCESS_SECURITY)
@@ -8,19 +11,21 @@
 	icon_broken = "capsecurebroken"
 	icon_off = "capsecureoff"
 
-/obj/structure/closet/secure_closet/ert/commander/New()
-	..()
-	new /obj/item/clothing/head/helmet/space/ert/commander(src)
-	new /obj/item/clothing/suit/space/ert/commander(src)
-	new /obj/item/weapon/plastique(src)
-	new /obj/item/weapon/storage/belt/security/full(src)
-	new /obj/item/weapon/gun/energy/ionrifle(src)
-	new /obj/item/weapon/gun/energy/gun/nuclear(src)
-	new /obj/item/clothing/glasses/thermal(src)
-	new /obj/item/weapon/lighter/zippo(src)
-	new /obj/item/weapon/pinpointer(src)
+	starts_with = list(
+		/obj/item/clothing/head/helmet/space/ert/commander,
+		/obj/item/clothing/suit/space/ert/commander,
+		/obj/item/weapon/plastique,
+		/obj/item/weapon/storage/belt/security/full,
+		/obj/item/weapon/gun/energy/ionrifle,
+		/obj/item/weapon/gun/energy/gun/nuclear,
+		/obj/item/clothing/glasses/thermal,
+		/obj/item/weapon/lighter/zippo,
+		/obj/item/weapon/pinpointer
+	)
 
-
+/*
+ * ERT Security
+ */
 /obj/structure/closet/secure_closet/ert/security
 	name = "\improper ERT security locker"
 	req_access = list(ACCESS_SECURITY)
@@ -31,17 +36,19 @@
 	icon_broken = "secbroken"
 	icon_off = "secoff"
 
-/obj/structure/closet/secure_closet/ert/security/New()
-	..()
-	new /obj/item/clothing/head/helmet/space/ert/security(src)
-	new /obj/item/clothing/suit/space/ert/security(src)
-	new /obj/item/weapon/plastique(src)
-	new /obj/item/weapon/storage/belt/security/full(src)
-	new /obj/item/weapon/gun/energy/ionrifle(src)
-	new /obj/item/weapon/gun/energy/gun/nuclear(src)
-	new /obj/item/clothing/glasses/thermal(src)
+	starts_with = list(
+		/obj/item/clothing/head/helmet/space/ert/security,
+		/obj/item/clothing/suit/space/ert/security,
+		/obj/item/weapon/plastique,
+		/obj/item/weapon/storage/belt/security/full,
+		/obj/item/weapon/gun/energy/ionrifle,
+		/obj/item/weapon/gun/energy/gun/nuclear,
+		/obj/item/clothing/glasses/thermal
+	)
 
-
+/*
+ * ERT Engineer
+ */
 /obj/structure/closet/secure_closet/ert/engineer
 	name = "\improper ERT engineer locker"
 	req_access = list(ACCESS_ENGINE)
@@ -51,18 +58,20 @@
 	icon_opened = "secureengopen"
 	icon_broken = "secureengbroken"
 	icon_off = "secureengoff"
+	
+	starts_with = list(
+		/obj/item/clothing/head/helmet/space/ert/engineer,
+		/obj/item/clothing/suit/space/ert/engineer,
+		/obj/item/weapon/gun/energy/taser,
+		/obj/item/weapon/storage/belt/utility/full,
+		/obj/item/weapon/storage/backpack/industrial/full,
+		/obj/item/device/t_scanner,
+		/obj/item/clothing/glasses/meson
+	)
 
-/obj/structure/closet/secure_closet/ert/engineer/New()
-	..()
-	new /obj/item/clothing/head/helmet/space/ert/engineer(src)
-	new /obj/item/clothing/suit/space/ert/engineer(src)
-	new /obj/item/weapon/gun/energy/taser(src)
-	new /obj/item/weapon/storage/belt/utility/full(src)
-	new /obj/item/weapon/storage/backpack/industrial/full(src)
-	new /obj/item/device/t_scanner(src)
-	new /obj/item/clothing/glasses/meson(src)
-
-
+/*
+ * ERT Medical
+ */
 /obj/structure/closet/secure_closet/ert/medical
 	name = "\improper ERT medical locker"
 	req_access = list(ACCESS_MEDICAL)
@@ -73,11 +82,11 @@
 	icon_broken = "securemedbroken"
 	icon_off = "securemedoff"
 
-/obj/structure/closet/secure_closet/ert/medical/New()
-	..()
-	new /obj/item/clothing/head/helmet/space/ert/medical(src)
-	new /obj/item/clothing/suit/space/ert/medical(src)
-	new /obj/item/weapon/gun/energy/taser(src)
-	new /obj/item/weapon/storage/backpack/medic/full(src)
-	new /obj/item/weapon/storage/belt/medical(src)
-	new /obj/item/clothing/glasses/hud/health(src)
+	starts_with = list(
+		/obj/item/clothing/head/helmet/space/ert/medical,
+		/obj/item/clothing/suit/space/ert/medical,
+		/obj/item/weapon/gun/energy/taser,
+		/obj/item/weapon/storage/backpack/medic/full,
+		/obj/item/weapon/storage/belt/medical,
+		/obj/item/clothing/glasses/hud/health
+	)

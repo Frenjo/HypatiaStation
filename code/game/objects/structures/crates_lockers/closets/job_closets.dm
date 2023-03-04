@@ -14,20 +14,20 @@
 	icon_state = "black"
 	icon_closed = "black"
 
-/obj/structure/closet/gmcloset/New()
-	..()
-	new /obj/item/clothing/head/that(src)
-	new /obj/item/clothing/head/that(src)
-	new /obj/item/clothing/head/hairflower(src)
-	new /obj/item/clothing/under/sl_suit(src)
-	new /obj/item/clothing/under/sl_suit(src)
-	new /obj/item/clothing/under/rank/bartender(src)
-	new /obj/item/clothing/under/rank/bartender(src)
-	new /obj/item/clothing/under/dress/dress_saloon(src)
-	new /obj/item/clothing/suit/wcoat(src)
-	new /obj/item/clothing/suit/wcoat(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/clothing/shoes/black(src)
+	starts_with = list(
+		/obj/item/clothing/head/that,
+		/obj/item/clothing/head/that,
+		/obj/item/clothing/head/hairflower,
+		/obj/item/clothing/under/sl_suit,
+		/obj/item/clothing/under/sl_suit,
+		/obj/item/clothing/under/rank/bartender,
+		/obj/item/clothing/under/rank/bartender,
+		/obj/item/clothing/under/dress/dress_saloon,
+		/obj/item/clothing/suit/wcoat,
+		/obj/item/clothing/suit/wcoat,
+		/obj/item/clothing/shoes/black,
+		/obj/item/clothing/shoes/black
+	)
 
 /*
  * Janitor
@@ -38,20 +38,20 @@
 	icon_state = "mixed"
 	icon_closed = "mixed"
 
-/obj/structure/closet/jcloset/New()
-	..()
-	new /obj/item/clothing/under/rank/janitor(src)
-	new /obj/item/weapon/cartridge/janitor(src)
-	new /obj/item/clothing/gloves/black(src)
-	new /obj/item/clothing/head/soft/purple(src)
-	new /obj/item/device/flashlight(src)
-	new /obj/item/weapon/caution(src)
-	new /obj/item/weapon/caution(src)
-	new /obj/item/weapon/caution(src)
-	new /obj/item/weapon/caution(src)
-	new /obj/item/device/lightreplacer(src)
-	new /obj/item/weapon/storage/bag/trash(src)
-	new /obj/item/clothing/shoes/galoshes(src)
+	starts_with = list(
+		/obj/item/clothing/under/rank/janitor,
+		/obj/item/weapon/cartridge/janitor,
+		/obj/item/clothing/gloves/black,
+		/obj/item/clothing/head/soft/purple,
+		/obj/item/device/flashlight,
+		/obj/item/weapon/caution,
+		/obj/item/weapon/caution,
+		/obj/item/weapon/caution,
+		/obj/item/weapon/caution,
+		/obj/item/device/lightreplacer,
+		/obj/item/weapon/storage/bag/trash,
+		/obj/item/clothing/shoes/galoshes
+	)
 
 /*
  * Lawyer
@@ -62,14 +62,14 @@
 	icon_state = "blue"
 	icon_closed = "blue"
 
-/obj/structure/closet/lawcloset/New()
-	..()
-	new /obj/item/clothing/under/lawyer/female(src)
-	new /obj/item/clothing/under/lawyer/black(src)
-	new /obj/item/clothing/under/lawyer/red(src)
-	new /obj/item/clothing/under/lawyer/bluesuit(src)
-	new /obj/item/clothing/suit/storage/lawyer/bluejacket(src)
-	new /obj/item/clothing/under/lawyer/purpsuit(src)
-	new /obj/item/clothing/suit/storage/lawyer/purpjacket(src)
-	new /obj/item/clothing/shoes/brown(src)
-	new /obj/item/clothing/shoes/black(src)
+	starts_with = list(
+		/obj/item/clothing/under/lawyer/female,
+		/obj/item/clothing/under/lawyer/black,
+		/obj/item/clothing/under/lawyer/red,
+		/obj/item/clothing/under/lawyer/bluesuit,
+		/obj/item/clothing/suit/storage/lawyer/bluejacket,
+		/obj/item/clothing/under/lawyer/purpsuit,
+		/obj/item/clothing/suit/storage/lawyer/purpjacket,
+		/obj/item/clothing/shoes/brown,
+		/obj/item/clothing/shoes/black
+	)

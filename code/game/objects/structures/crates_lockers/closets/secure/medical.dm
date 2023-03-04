@@ -1,49 +1,56 @@
+/*
+ * Medicine
+ */
 /obj/structure/closet/secure_closet/medical1
 	name = "Medicine Closet"
 	desc = "Filled with medical junk."
+	req_access = list(ACCESS_MEDICAL)
 	icon_state = "medical1"
 	icon_closed = "medical"
 	icon_locked = "medical1"
 	icon_opened = "medicalopen"
 	icon_broken = "medicalbroken"
 	icon_off = "medicaloff"
-	req_access = list(ACCESS_MEDICAL)
 
-/obj/structure/closet/secure_closet/medical1/New()
-	..()
-	new /obj/item/weapon/storage/box/autoinjectors(src)
-	new /obj/item/weapon/storage/box/syringes(src)
-	new /obj/item/weapon/reagent_containers/dropper(src)
-	new /obj/item/weapon/reagent_containers/dropper(src)
-	new /obj/item/weapon/reagent_containers/glass/beaker(src)
-	new /obj/item/weapon/reagent_containers/glass/beaker(src)
-	new /obj/item/weapon/reagent_containers/glass/bottle/inaprovaline(src)
-	new /obj/item/weapon/reagent_containers/glass/bottle/inaprovaline(src)
-	new /obj/item/weapon/reagent_containers/glass/bottle/antitoxin(src)
-	new /obj/item/weapon/reagent_containers/glass/bottle/antitoxin(src)
+	starts_with = list(
+		/obj/item/weapon/storage/box/autoinjectors,
+		/obj/item/weapon/storage/box/syringes,
+		/obj/item/weapon/reagent_containers/dropper,
+		/obj/item/weapon/reagent_containers/dropper,
+		/obj/item/weapon/reagent_containers/glass/beaker,
+		/obj/item/weapon/reagent_containers/glass/beaker,
+		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
+		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
+		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
+		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin
+	)
 
-
+/*
+ * Anaesthetic
+ */
 /obj/structure/closet/secure_closet/medical2
 	name = "Anesthetic"
 	desc = "Used to knock people out."
+	req_access = list(ACCESS_SURGERY)
 	icon_state = "medical1"
 	icon_closed = "medical"
 	icon_locked = "medical1"
 	icon_opened = "medicalopen"
 	icon_broken = "medicalbroken"
 	icon_off = "medicaloff"
-	req_access = list(ACCESS_SURGERY)
 
-/obj/structure/closet/secure_closet/medical2/New()
-	..()
-	new /obj/item/weapon/tank/anesthetic(src)
-	new /obj/item/weapon/tank/anesthetic(src)
-	new /obj/item/weapon/tank/anesthetic(src)
-	new /obj/item/clothing/mask/breath/medical(src)
-	new /obj/item/clothing/mask/breath/medical(src)
-	new /obj/item/clothing/mask/breath/medical(src)
+	starts_with = list(
+		/obj/item/weapon/tank/anesthetic,
+		/obj/item/weapon/tank/anesthetic,
+		/obj/item/weapon/tank/anesthetic,
+		/obj/item/clothing/mask/breath/medical,
+		/obj/item/clothing/mask/breath/medical,
+		/obj/item/clothing/mask/breath/medical
+	)
 
-
+/*
+ * Medical Doctor
+ */
 /obj/structure/closet/secure_closet/medical3
 	name = "Medical Doctor's Locker"
 	req_access = list(ACCESS_SURGERY)
@@ -54,49 +61,52 @@
 	icon_broken = "securemedbroken"
 	icon_off = "securemedoff"
 
+	starts_with = list(
+		/obj/item/clothing/under/rank/nursesuit,
+		/obj/item/clothing/head/nursehat,
+		/obj/item/clothing/under/rank/medical,
+		/obj/item/clothing/under/rank/nurse,
+		/obj/item/clothing/under/rank/orderly,
+		/obj/item/clothing/suit/storage/labcoat,
+		/obj/item/clothing/suit/storage/fr_jacket,
+		/obj/item/clothing/shoes/white,
+	//	/obj/item/weapon/cartridge/medical,
+		/obj/item/device/radio/headset/headset_med,
+		/obj/item/weapon/storage/belt/medical
+	)
+
 /obj/structure/closet/secure_closet/medical3/New()
-	..()
 	if(prob(50))
-		new /obj/item/weapon/storage/backpack/medic(src)
+		starts_with.Add(/obj/item/weapon/storage/backpack/medic)
 	else
-		new /obj/item/weapon/storage/satchel/med(src)
-
-	new /obj/item/clothing/under/rank/nursesuit(src)
-	new /obj/item/clothing/head/nursehat(src)
+		starts_with.Add(/obj/item/weapon/storage/satchel/med)
 
 	switch(pick("blue", "green", "purple"))
 		if("blue")
-			new /obj/item/clothing/under/rank/medical/blue(src)
-			new /obj/item/clothing/head/surgery/blue(src)
+			starts_with.Add(/obj/item/clothing/under/rank/medical/blue)
+			starts_with.Add(/obj/item/clothing/head/surgery/blue)
 		if("green")
-			new /obj/item/clothing/under/rank/medical/green(src)
-			new /obj/item/clothing/head/surgery/green(src)
+			starts_with.Add(/obj/item/clothing/under/rank/medical/green)
+			starts_with.Add(/obj/item/clothing/head/surgery/green)
 		if("purple")
-			new /obj/item/clothing/under/rank/medical/purple(src)
-			new /obj/item/clothing/head/surgery/purple(src)
+			starts_with.Add(/obj/item/clothing/under/rank/medical/purple)
+			starts_with.Add(/obj/item/clothing/head/surgery/purple)
 
 	switch(pick("blue", "green", "purple"))
 		if("blue")
-			new /obj/item/clothing/under/rank/medical/blue(src)
-			new /obj/item/clothing/head/surgery/blue(src)
+			starts_with.Add(/obj/item/clothing/under/rank/medical/blue)
+			starts_with.Add(/obj/item/clothing/head/surgery/blue)
 		if("green")
-			new /obj/item/clothing/under/rank/medical/green(src)
-			new /obj/item/clothing/head/surgery/green(src)
+			starts_with.Add(/obj/item/clothing/under/rank/medical/green)
+			starts_with.Add(/obj/item/clothing/head/surgery/green)
 		if("purple")
-			new /obj/item/clothing/under/rank/medical/purple(src)
-			new /obj/item/clothing/head/surgery/purple(src)
+			starts_with.Add(/obj/item/clothing/under/rank/medical/purple)
+			starts_with.Add(/obj/item/clothing/head/surgery/purple)
+	. = ..()
 
-	new /obj/item/clothing/under/rank/medical(src)
-	new /obj/item/clothing/under/rank/nurse(src)
-	new /obj/item/clothing/under/rank/orderly(src)
-	new /obj/item/clothing/suit/storage/labcoat(src)
-	new /obj/item/clothing/suit/storage/fr_jacket(src)
-	new /obj/item/clothing/shoes/white(src)
-//	new /obj/item/weapon/cartridge/medical(src)
-	new /obj/item/device/radio/headset/headset_med(src)
-	new /obj/item/weapon/storage/belt/medical(src)
-
-
+/*
+ * Chief Medical Officer
+ */
 /obj/structure/closet/secure_closet/cmo
 	name = "Chief Medical Officer's Locker"
 	req_access = list(ACCESS_CMO)
@@ -107,71 +117,79 @@
 	icon_broken = "cmosecurebroken"
 	icon_off = "cmosecureoff"
 
-/obj/structure/closet/secure_closet/cmo/New()
-	..()
-	if(prob(50))
-		new /obj/item/weapon/storage/backpack/medic(src)
-	else
-		new /obj/item/weapon/storage/satchel/med(src)
+	starts_with = list(
+		/obj/item/clothing/suit/bio_suit/cmo,
+		/obj/item/clothing/head/bio_hood/cmo,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/under/rank/chief_medical_officer,
+		/obj/item/clothing/suit/storage/labcoat/cmo,
+		/obj/item/weapon/cartridge/cmo,
+		/obj/item/clothing/gloves/latex,
+		/obj/item/clothing/shoes/brown,
+		/obj/item/device/radio/headset/heads/cmo,
+		/obj/item/weapon/storage/belt/medical,
+		/obj/item/device/flash,
+		/obj/item/weapon/reagent_containers/hypospray
+	)
 
-	new /obj/item/clothing/suit/bio_suit/cmo(src)
-	new /obj/item/clothing/head/bio_hood/cmo(src)
-	new /obj/item/clothing/shoes/white(src)
+/obj/structure/closet/secure_closet/cmo/New()
+	if(prob(50))
+		starts_with.Add(/obj/item/weapon/storage/backpack/medic)
+	else
+		starts_with.Add(/obj/item/weapon/storage/satchel/med)
 
 	switch(pick("blue", "green", "purple"))
 		if("blue")
-			new /obj/item/clothing/under/rank/medical/blue(src)
-			new /obj/item/clothing/head/surgery/blue(src)
+			starts_with.Add(/obj/item/clothing/under/rank/medical/blue)
+			starts_with.Add(/obj/item/clothing/head/surgery/blue)
 		if("green")
-			new /obj/item/clothing/under/rank/medical/green(src)
-			new /obj/item/clothing/head/surgery/green(src)
+			starts_with.Add(/obj/item/clothing/under/rank/medical/green)
+			starts_with.Add(/obj/item/clothing/head/surgery/green)
 		if("purple")
-			new /obj/item/clothing/under/rank/medical/purple(src)
-			new /obj/item/clothing/head/surgery/purple(src)
+			starts_with.Add(/obj/item/clothing/under/rank/medical/purple)
+			starts_with.Add(/obj/item/clothing/head/surgery/purple)
+	. = ..()
 
-	new /obj/item/clothing/under/rank/chief_medical_officer(src)
-	new /obj/item/clothing/suit/storage/labcoat/cmo(src)
-	new /obj/item/weapon/cartridge/cmo(src)
-	new /obj/item/clothing/gloves/latex(src)
-	new /obj/item/clothing/shoes/brown	(src)
-	new /obj/item/device/radio/headset/heads/cmo(src)
-	new /obj/item/weapon/storage/belt/medical(src)
-	new /obj/item/device/flash(src)
-	new /obj/item/weapon/reagent_containers/hypospray(src)
-
-
+/*
+ * Animal Control
+ */
 /obj/structure/closet/secure_closet/animal
 	name = "Animal Control"
 	req_access = list(ACCESS_SURGERY)
 
-/obj/structure/closet/secure_closet/animal/New()
-	..()
-	new /obj/item/device/assembly/signaler(src)
-	new /obj/item/device/radio/electropack(src)
-	new /obj/item/device/radio/electropack(src)
-	new /obj/item/device/radio/electropack(src)
+	starts_with = list(
+		/obj/item/device/assembly/signaler,
+		/obj/item/device/radio/electropack,
+		/obj/item/device/radio/electropack,
+		/obj/item/device/radio/electropack
+	)
 
-
+/*
+ * Chemical
+ */
 /obj/structure/closet/secure_closet/chemical
 	name = "Chemical Closet"
 	desc = "Store dangerous chemicals in here."
+	req_access = list(ACCESS_CHEMISTRY)
 	icon_state = "medical1"
 	icon_closed = "medical"
 	icon_locked = "medical1"
 	icon_opened = "medicalopen"
 	icon_broken = "medicalbroken"
 	icon_off = "medicaloff"
-	req_access = list(ACCESS_CHEMISTRY)
 
-/obj/structure/closet/secure_closet/chemical/New()
-	..()
-	new /obj/item/weapon/storage/box/pillbottles(src)
-	new /obj/item/weapon/storage/box/pillbottles(src)
+	starts_with = list(
+		/obj/item/weapon/storage/box/pillbottles,
+		/obj/item/weapon/storage/box/pillbottles
+	)
 
-
+/*
+ * First Aid
+ */
 /obj/structure/closet/secure_closet/medical_wall
 	name = "First Aid Closet"
 	desc = "It's a secure wall-mounted storage unit for first aid supplies."
+	req_access = list(ACCESS_MEDICAL)
 	icon_state = "medical_wall_locked"
 	icon_closed = "medical_wall_unlocked"
 	icon_locked = "medical_wall_locked"
@@ -180,8 +198,7 @@
 	icon_off = "medical_wall_off"
 	anchored = TRUE
 	density = FALSE
-	wall_mounted = 1
-	req_access = list(ACCESS_MEDICAL)
+	wall_mounted = TRUE
 
 /obj/structure/closet/secure_closet/medical_wall/update_icon()
 	if(broken)

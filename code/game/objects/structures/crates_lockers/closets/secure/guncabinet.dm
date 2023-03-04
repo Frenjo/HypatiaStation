@@ -10,7 +10,7 @@
 	icon_opened = "base"
 
 /obj/structure/closet/secure_closet/guncabinet/New()
-	..()
+	. = ..()
 	update_icon()
 
 /obj/structure/closet/secure_closet/guncabinet/toggle()
@@ -24,7 +24,7 @@
 	else
 		var/lazors = 0
 		var/shottas = 0
-		for (var/obj/item/weapon/gun/G in contents)
+		for(var/obj/item/weapon/gun/G in contents)
 			if(istype(G, /obj/item/weapon/gun/energy))
 				lazors++
 			if(istype(G, /obj/item/weapon/gun/projectile/))
@@ -46,8 +46,8 @@
 		overlays += icon(src.icon,"door")
 
 		if(broken)
-			overlays += icon(src.icon,"broken")
+			overlays += icon(src.icon, "broken")
 		else if (locked)
-			overlays += icon(src.icon,"locked")
+			overlays += icon(src.icon, "locked")
 		else
-			overlays += icon(src.icon,"open")
+			overlays += icon(src.icon, "open")

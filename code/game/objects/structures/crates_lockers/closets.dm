@@ -4,15 +4,24 @@
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "closed"
 	density = TRUE
+
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/opened = 0
 	var/welded = 0
-	var/wall_mounted = 0 //never solid (You can always pass over it)
+	var/wall_mounted = FALSE //never solid (You can always pass over it)
 	var/health = 100
 	var/lastbang
 	var/storage_capacity = 30 //This is so that someone can't pack hundreds of items in a locker/crate
 							  //then open it in a populated area to crash clients.
+	
+	var/list/starts_with = list() // A list of typepaths for things this closet will spawn with.
+
+/obj/structure/closet/New()
+	SHOULD_CALL_PARENT(TRUE)
+	. = ..()
+	for(var/type in starts_with)
+		new type(src)
 
 /obj/structure/closet/initialize()
 	. = ..()

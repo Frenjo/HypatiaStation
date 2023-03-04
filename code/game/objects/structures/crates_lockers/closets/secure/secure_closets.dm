@@ -5,16 +5,20 @@
 	icon_state = "secure1"
 	density = TRUE
 	opened = 0
+
+	icon_closed = "secure"
+	icon_opened = "secureopen"
+
+	wall_mounted = FALSE //never solid (You can always pass over it)
+	health = 200
+
 	var/locked = 1
 	var/broken = 0
 	var/large = 1
-	icon_closed = "secure"
+
 	var/icon_locked = "secure1"
-	icon_opened = "secureopen"
 	var/icon_broken = "securebroken"
 	var/icon_off = "secureoff"
-	wall_mounted = 0 //never solid (You can always pass over it)
-	health = 200
 
 /obj/structure/closet/secure_closet/can_open()
 	if(src.locked)
@@ -43,25 +47,6 @@
 				src.req_access = list()
 				src.req_access += pick(get_all_accesses())
 	..()
-
-/obj/structure/closet/secure_closet/proc/togglelock(mob/user as mob)
-	if(src.opened)
-		to_chat(user, SPAN_NOTICE("Close the locker first."))
-		return
-	if(src.broken)
-		to_chat(user, SPAN_WARNING("The locker appears to be broken."))
-		return
-	if(user.loc == src)
-		to_chat(user, SPAN_NOTICE("You can't reach the lock from inside."))
-		return
-	if(src.allowed(user))
-		src.locked = !src.locked
-		for(var/mob/O in viewers(user, 3))
-			if((O.client && !(O.blinded)))
-				to_chat(O, SPAN_NOTICE("The locker has been [locked ? null : "un"]locked by [user]."))
-		update_icon()
-	else
-		to_chat(user, SPAN_NOTICE("Access denied."))
 
 /obj/structure/closet/secure_closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(src.opened)
@@ -107,6 +92,37 @@
 /obj/structure/closet/secure_closet/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
+/obj/structure/closet/secure_closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
+	overlays.Cut()
+	if(!opened)
+		if(locked)
+			icon_state = icon_locked
+		else
+			icon_state = icon_closed
+		if(welded)
+			overlays += "welded"
+	else
+		icon_state = icon_opened
+
+/obj/structure/closet/secure_closet/proc/togglelock(mob/user as mob)
+	if(src.opened)
+		to_chat(user, SPAN_NOTICE("Close the locker first."))
+		return
+	if(src.broken)
+		to_chat(user, SPAN_WARNING("The locker appears to be broken."))
+		return
+	if(user.loc == src)
+		to_chat(user, SPAN_NOTICE("You can't reach the lock from inside."))
+		return
+	if(src.allowed(user))
+		src.locked = !src.locked
+		for(var/mob/O in viewers(user, 3))
+			if((O.client && !(O.blinded)))
+				to_chat(O, SPAN_NOTICE("The locker has been [locked ? null : "un"]locked by [user]."))
+		update_icon()
+	else
+		to_chat(user, SPAN_NOTICE("Access denied."))
+
 /obj/structure/closet/secure_closet/verb/verb_togglelock()
 	set src in oview(1) // One square distance
 	set category = "Object"
@@ -120,15 +136,3 @@
 		src.togglelock(usr)
 	else
 		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
-
-/obj/structure/closet/secure_closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
-	overlays.Cut()
-	if(!opened)
-		if(locked)
-			icon_state = icon_locked
-		else
-			icon_state = icon_closed
-		if(welded)
-			overlays += "welded"
-	else
-		icon_state = icon_opened

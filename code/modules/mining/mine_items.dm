@@ -13,31 +13,33 @@
  */
 /obj/structure/closet/secure_closet/miner
 	name = "miner's equipment"
+	req_access = list(ACCESS_MINING)
 	icon_state = "miningsec1"
 	icon_closed = "miningsec"
 	icon_locked = "miningsec1"
 	icon_opened = "miningsecopen"
 	icon_broken = "miningsecbroken"
 	icon_off = "miningsecoff"
-	req_access = list(ACCESS_MINING)
+
+	starts_with = list(
+		/obj/item/device/radio/headset/headset_cargo,
+		/obj/item/clothing/under/rank/miner,
+		/obj/item/clothing/gloves/black,
+		/obj/item/clothing/shoes/black,
+		/obj/item/device/analyzer,
+		/obj/item/weapon/storage/bag/ore,
+		/obj/item/device/flashlight/lantern,
+		/obj/item/weapon/shovel,
+		/obj/item/weapon/pickaxe,
+		/obj/item/clothing/glasses/meson
+	)
 
 /obj/structure/closet/secure_closet/miner/New()
-	..()
 	if(prob(50))
-		new /obj/item/weapon/storage/backpack/industrial(src)
+		starts_with.Add(/obj/item/weapon/storage/backpack/industrial)
 	else
-		new /obj/item/weapon/storage/satchel/eng(src)
-
-	new /obj/item/device/radio/headset/headset_cargo(src)
-	new /obj/item/clothing/under/rank/miner(src)
-	new /obj/item/clothing/gloves/black(src)
-	new /obj/item/clothing/shoes/black(src)
-	new /obj/item/device/analyzer(src)
-	new /obj/item/weapon/storage/bag/ore(src)
-	new /obj/item/device/flashlight/lantern(src)
-	new /obj/item/weapon/shovel(src)
-	new /obj/item/weapon/pickaxe(src)
-	new /obj/item/clothing/glasses/meson(src)
+		starts_with.Add(/obj/item/weapon/storage/satchel/eng)
+	. = ..()
 
 /*
  * Shuttle Computer

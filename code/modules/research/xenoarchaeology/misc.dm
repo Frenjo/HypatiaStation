@@ -73,15 +73,15 @@
 	icon_broken = "secureresbroken"
 	icon_off = "secureresoff"
 
-/obj/structure/closet/secure_closet/xenoarchaeologist/New()
-	. = ..()
-	new /obj/item/clothing/under/rank/scientist(src)
-	new /obj/item/clothing/suit/storage/labcoat(src)
-	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/clothing/glasses/science(src)
-	new /obj/item/device/radio/headset/headset_xenoarch(src)
-	new /obj/item/weapon/storage/belt/archaeology(src)
-	new /obj/item/weapon/storage/box/excavation(src)
+	starts_with = list(
+		/obj/item/clothing/under/rank/scientist,
+		/obj/item/clothing/suit/storage/labcoat,
+		/obj/item/clothing/shoes/white,
+		/obj/item/clothing/glasses/science,
+		/obj/item/device/radio/headset/headset_xenoarch,
+		/obj/item/weapon/storage/belt/archaeology,
+		/obj/item/weapon/storage/box/excavation
+	)
 
 /obj/structure/closet/excavation
 	name = "Excavation tools"
@@ -89,21 +89,21 @@
 	icon_closed = "toolcloset"
 	icon_opened = "toolclosetopen"
 
-/obj/structure/closet/excavation/New()
-	. = ..()
-	new /obj/item/weapon/storage/belt/archaeology(src)
-	new /obj/item/weapon/storage/box/excavation(src)
-	new /obj/item/device/flashlight/lantern(src)
-	new /obj/item/device/ano_scanner(src)
-	new /obj/item/device/depth_scanner(src)
-	new /obj/item/device/core_sampler(src)
-	new /obj/item/device/gps(src)
-	new /obj/item/device/beacon_locator(src)
-	new /obj/item/device/radio/beacon(src)
-	new /obj/item/clothing/glasses/meson(src)
-	new /obj/item/weapon/pickaxe(src)
-	new /obj/item/device/measuring_tape(src)
-	new /obj/item/weapon/pickaxe/hand(src)
+	starts_with = list(
+		/obj/item/weapon/storage/belt/archaeology,
+		/obj/item/weapon/storage/box/excavation,
+		/obj/item/device/flashlight/lantern,
+		/obj/item/device/ano_scanner,
+		/obj/item/device/depth_scanner,
+		/obj/item/device/core_sampler,
+		/obj/item/device/gps,
+		/obj/item/device/beacon_locator,
+		/obj/item/device/radio/beacon,
+		/obj/item/clothing/glasses/meson,
+		/obj/item/weapon/pickaxe,
+		/obj/item/device/measuring_tape,
+		/obj/item/weapon/pickaxe/hand
+	)
 
 /*
  * Isolation Room Air Alarms

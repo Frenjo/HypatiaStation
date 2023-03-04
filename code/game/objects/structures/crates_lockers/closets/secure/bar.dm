@@ -1,3 +1,6 @@
+/*
+ * Booze Cabinet
+ */
 /obj/structure/closet/secure_closet/bar
 	name = "Booze"
 	req_access = list(ACCESS_BAR)
@@ -8,18 +11,18 @@
 	icon_broken = "cabinetdetective_broken"
 	icon_off = "cabinetdetective_broken"
 
-/obj/structure/closet/secure_closet/bar/New()
-	..()
-	new /obj/item/weapon/reagent_containers/food/drinks/cans/beer(src)
-	new /obj/item/weapon/reagent_containers/food/drinks/cans/beer(src)
-	new /obj/item/weapon/reagent_containers/food/drinks/cans/beer(src)
-	new /obj/item/weapon/reagent_containers/food/drinks/cans/beer(src)
-	new /obj/item/weapon/reagent_containers/food/drinks/cans/beer(src)
-	new /obj/item/weapon/reagent_containers/food/drinks/cans/beer(src)
-	new /obj/item/weapon/reagent_containers/food/drinks/cans/beer(src)
-	new /obj/item/weapon/reagent_containers/food/drinks/cans/beer(src)
-	new /obj/item/weapon/reagent_containers/food/drinks/cans/beer(src)
-	new /obj/item/weapon/reagent_containers/food/drinks/cans/beer(src)
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
+		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
+		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
+		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
+		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
+		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
+		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
+		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
+		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
+		/obj/item/weapon/reagent_containers/food/drinks/cans/beer
+	)
 
 /obj/structure/closet/secure_closet/bar/update_icon()
 	if(broken)

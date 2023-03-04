@@ -1,3 +1,6 @@
+/*
+ * Chief Engineer
+ */
 /obj/structure/closet/secure_closet/engineering_chief
 	name = "Chief Engineer's Locker"
 	req_access = list(ACCESS_CE)
@@ -8,33 +11,37 @@
 	icon_broken = "securecebroken"
 	icon_off = "secureceoff"
 
+	starts_with = list(
+		/obj/item/blueprints,
+		/obj/item/clothing/under/rank/chief_engineer,
+		/obj/item/clothing/head/hardhat/white,
+		/obj/item/clothing/head/welding,
+		/obj/item/clothing/gloves/yellow,
+		/obj/item/clothing/shoes/brown,
+		/obj/item/weapon/cartridge/ce,
+		/obj/item/device/radio/headset/heads/ce,
+		/obj/item/weapon/storage/toolbox/mechanical,
+		/obj/item/clothing/suit/storage/hazardvest,
+		/obj/item/clothing/mask/gas,
+		/obj/item/device/multitool,
+		/obj/item/device/flash,
+		/obj/item/taperoll/engineering
+	)
+
 /obj/structure/closet/secure_closet/engineering_chief/New()
-	..()
 	if(prob(50))
-		new /obj/item/weapon/storage/backpack/industrial(src)
+		starts_with.Add(/obj/item/weapon/storage/backpack/industrial)
 	else
-		new /obj/item/weapon/storage/satchel/eng(src)
+		starts_with.Add(/obj/item/weapon/storage/satchel/eng)
 	if(prob(70))
-		new /obj/item/clothing/tie/storage/brown_vest(src)
+		starts_with.Add(/obj/item/clothing/tie/storage/brown_vest)
 	else
-		new /obj/item/clothing/tie/storage/webbing(src)
+		starts_with.Add(/obj/item/clothing/tie/storage/webbing)
+	. = ..()
 
-	new /obj/item/blueprints(src)
-	new /obj/item/clothing/under/rank/chief_engineer(src)
-	new /obj/item/clothing/head/hardhat/white(src)
-	new /obj/item/clothing/head/welding(src)
-	new /obj/item/clothing/gloves/yellow(src)
-	new /obj/item/clothing/shoes/brown(src)
-	new /obj/item/weapon/cartridge/ce(src)
-	new /obj/item/device/radio/headset/heads/ce(src)
-	new /obj/item/weapon/storage/toolbox/mechanical(src)
-	new /obj/item/clothing/suit/storage/hazardvest(src)
-	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/device/multitool(src)
-	new /obj/item/device/flash(src)
-	new /obj/item/taperoll/engineering(src)
-
-
+/*
+ * Electrical
+ */
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "Electrical Supplies"
 	req_access = list(ACCESS_ENGINE_EQUIP)
@@ -45,25 +52,26 @@
 	icon_broken = "secureengelecbroken"
 	icon_off = "secureengelecoff"
 
-/obj/structure/closet/secure_closet/engineering_electrical/New()
-	..()
-	new /obj/item/clothing/gloves/yellow(src)
-	new /obj/item/clothing/gloves/yellow(src)
-	new /obj/item/weapon/storage/toolbox/electrical(src)
-	new /obj/item/weapon/storage/toolbox/electrical(src)
-	new /obj/item/weapon/storage/toolbox/electrical(src)
-	new /obj/item/weapon/module/power_control(src)
-	new /obj/item/weapon/module/power_control(src)
-	new /obj/item/weapon/module/power_control(src)
-	new /obj/item/device/multitool(src)
-	new /obj/item/device/multitool(src)
-	new /obj/item/device/multitool(src)
+	starts_with = list(
+		/obj/item/clothing/gloves/yellow,
+		/obj/item/clothing/gloves/yellow,
+		/obj/item/weapon/storage/toolbox/electrical,
+		/obj/item/weapon/storage/toolbox/electrical,
+		/obj/item/weapon/storage/toolbox/electrical,
+		/obj/item/weapon/module/power_control,
+		/obj/item/weapon/module/power_control,
+		/obj/item/weapon/module/power_control,
+		/obj/item/device/multitool,
+		/obj/item/device/multitool,
+		/obj/item/device/multitool,
 
-	// Adds the new circuit storage boxes to these, I can't think of anywhere better to put them except laying around. -Frenjo
-	new /obj/item/weapon/storage/box/circuits(src)
-	new /obj/item/weapon/storage/box/circuits(src)
+		/obj/item/weapon/storage/box/circuits,
+		/obj/item/weapon/storage/box/circuits
+	)
 
-
+/*
+ * Welding
+ */
 /obj/structure/closet/secure_closet/engineering_welding
 	name = "Welding Supplies"
 	req_access = list(ACCESS_CONSTRUCTION)
@@ -74,19 +82,21 @@
 	icon_broken = "secureengweldbroken"
 	icon_off = "secureengweldoff"
 
-/obj/structure/closet/secure_closet/engineering_welding/New()
-	..()
-	new /obj/item/clothing/head/welding(src)
-	new /obj/item/clothing/head/welding(src)
-	new /obj/item/clothing/head/welding(src)
-	new /obj/item/weapon/weldingtool/largetank(src)
-	new /obj/item/weapon/weldingtool/largetank(src)
-	new /obj/item/weapon/weldingtool/largetank(src)
-	new /obj/item/weapon/weldpack(src)
-	new /obj/item/weapon/weldpack(src)
-	new /obj/item/weapon/weldpack(src)
+	starts_with = list(
+		/obj/item/clothing/head/welding,
+		/obj/item/clothing/head/welding,
+		/obj/item/clothing/head/welding,
+		/obj/item/weapon/weldingtool/largetank,
+		/obj/item/weapon/weldingtool/largetank,
+		/obj/item/weapon/weldingtool/largetank,
+		/obj/item/weapon/weldpack,
+		/obj/item/weapon/weldpack,
+		/obj/item/weapon/weldpack
+	)
 
-
+/*
+ * Engineer
+ */
 /obj/structure/closet/secure_closet/engineering_personal
 	name = "Engineer's Locker"
 	req_access = list(ACCESS_ENGINE_EQUIP)
@@ -97,26 +107,30 @@
 	icon_broken = "secureengbroken"
 	icon_off = "secureengoff"
 
+	starts_with = list(
+		/obj/item/weapon/storage/toolbox/mechanical,
+		/obj/item/device/radio/headset/headset_eng,
+		/obj/item/clothing/suit/storage/hazardvest,
+		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/glasses/meson,
+		/obj/item/weapon/cartridge/engineering,
+		/obj/item/taperoll/engineering
+	)
+
 /obj/structure/closet/secure_closet/engineering_personal/New()
-	..()
 	if(prob(50))
-		new /obj/item/weapon/storage/backpack/industrial(src)
+		starts_with.Add(/obj/item/weapon/storage/backpack/industrial)
 	else
-		new /obj/item/weapon/storage/satchel/eng(src)
+		starts_with.Add(/obj/item/weapon/storage/satchel/eng)
 	if(prob(70))
-		new /obj/item/clothing/tie/storage/brown_vest(src)
+		starts_with.Add(/obj/item/clothing/tie/storage/brown_vest)
 	else
-		new /obj/item/clothing/tie/storage/webbing(src)
+		starts_with.Add(/obj/item/clothing/tie/storage/webbing)
+	. = ..()
 
-	new /obj/item/weapon/storage/toolbox/mechanical(src)
-	new /obj/item/device/radio/headset/headset_eng(src)
-	new /obj/item/clothing/suit/storage/hazardvest(src)
-	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/clothing/glasses/meson(src)
-	new /obj/item/weapon/cartridge/engineering(src)
-	new /obj/item/taperoll/engineering(src)
-
-
+/*
+ * Atmospheric Technician
+ */
 /obj/structure/closet/secure_closet/atmos_personal
 	name = "Technician's Locker"
 	req_access = list(ACCESS_ATMOSPHERICS)
@@ -127,22 +141,24 @@
 	icon_broken = "secureatmbroken"
 	icon_off = "secureatmoff"
 
-/obj/structure/closet/secure_closet/atmos_personal/New()
-	..()
-	if(prob(50))
-		new /obj/item/weapon/storage/backpack/industrial(src)
-	else
-		new /obj/item/weapon/storage/satchel/eng(src)
-	if(prob(70))
-		new /obj/item/clothing/tie/storage/brown_vest(src)
-	else
-		new /obj/item/clothing/tie/storage/webbing(src)
+	starts_with = list(
+		/obj/item/clothing/suit/fire/firefighter,
+		/obj/item/device/flashlight,
+		/obj/item/weapon/extinguisher,
+		/obj/item/device/radio/headset/headset_eng,
+		/obj/item/clothing/suit/storage/hazardvest,
+		/obj/item/clothing/mask/gas,
+		/obj/item/weapon/cartridge/atmos,
+		/obj/item/taperoll/engineering
+	)
 
-	new /obj/item/clothing/suit/fire/firefighter(src)
-	new /obj/item/device/flashlight(src)
-	new /obj/item/weapon/extinguisher(src)
-	new /obj/item/device/radio/headset/headset_eng(src)
-	new /obj/item/clothing/suit/storage/hazardvest(src)
-	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/weapon/cartridge/atmos(src)
-	new /obj/item/taperoll/engineering(src)
+/obj/structure/closet/secure_closet/atmos_personal/New()
+	if(prob(50))
+		starts_with.Add(/obj/item/weapon/storage/backpack/industrial)
+	else
+		starts_with.Add(/obj/item/weapon/storage/satchel/eng)
+	if(prob(70))
+		starts_with.Add(/obj/item/clothing/tie/storage/brown_vest)
+	else
+		starts_with.Add(/obj/item/clothing/tie/storage/webbing)
+	. = ..()

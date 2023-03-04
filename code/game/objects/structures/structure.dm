@@ -5,7 +5,7 @@
 	var/parts
 
 /obj/structure/New()
-	..()
+	. = ..()
 	if(climbable)
 		verbs += /obj/structure/proc/do_climb
 
