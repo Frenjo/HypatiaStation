@@ -21,8 +21,8 @@
 
 	ui_interact(user)
 
-/obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
-	var/data[0]
+/obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
+	var/list/data
 	var/datum/shuttle/ferry/shuttle = global.CTshuttle.shuttles[shuttle_tag]
 	if(!istype(shuttle))
 		return
@@ -37,7 +37,7 @@
 			shuttle_state = "in_transit"
 
 	var/shuttle_status
-	switch (shuttle.process_state)
+	switch(shuttle.process_state)
 		if(IDLE_STATE)
 			if(shuttle.in_use)
 				shuttle_status = "Busy."
@@ -64,12 +64,11 @@
 	)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
-
-	if(!ui)
+	if(isnull(ui))
 		ui = new(user, src, ui_key, "shuttle_control_console.tmpl", "[shuttle_tag] Shuttle Control", 470, 310)
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_auto_update()
 
 /obj/machinery/computer/shuttle_control/Topic(href, href_list)
 	if(..())

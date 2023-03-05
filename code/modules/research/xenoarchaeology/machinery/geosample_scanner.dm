@@ -118,7 +118,7 @@
 		return
 
 	// this is the data which will be sent to the ui
-	var/data[0]
+	var/list/data = list()
 	data["scanned_item"] = (scanned_item ? scanned_item.name : "")
 	data["scanned_item_desc"] = (scanned_item ? (scanned_item.desc ? scanned_item.desc : "No information on record.") : "")
 	data["last_scan_data"] = last_scan_data
@@ -145,7 +145,7 @@
 	
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)	
-	if(!ui)
+	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "geoscanner.tmpl", "High Res Radiocarbon Spectrometer", 900, 825)
@@ -154,7 +154,7 @@
 		// open the new ui window
 		ui.open()
 		// auto update every Master Controller tick
-		ui.set_auto_update(1)
+		ui.set_auto_update()
 
 /obj/machinery/radiocarbon_spectrometer/process()
 	if(scanning)

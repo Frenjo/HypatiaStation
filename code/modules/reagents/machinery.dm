@@ -115,13 +115,13 @@
 		return
 
 	// this is the data which will be sent to the ui
-	var/data[0]
+	var/list/data = list()
 	data["amount"] = amount
 	data["energy"] = energy
 	data["maxEnergy"] = max_energy
 	data["isBeakerLoaded"] = beaker ? 1 : 0
 	data["glass"] = accept_glass
-	var/beakerContents[0]
+	var/list/beakerContents = list()
 	var/beakerCurrentVolume = 0
 	if(beaker && beaker.reagents && length(beaker.reagents.reagent_list))
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
@@ -136,7 +136,7 @@
 		data["beakerCurrentVolume"] = null
 		data["beakerMaxVolume"] = null
 
-	var chemicals[0]
+	var/list/chemicals = list()
 	for(var/re in dispensable_reagents)
 		var/datum/reagent/temp = GLOBL.chemical_reagents_list[re]
 		if(temp)
@@ -145,7 +145,7 @@
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if(!ui)
+	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "chem_dispenser.tmpl", ui_title, 380, 650)

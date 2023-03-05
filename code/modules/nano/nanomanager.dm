@@ -2,7 +2,7 @@
 // There should only ever be one (global) instance of nanomanger
 /datum/nanomanager
 	// a list of current open /nanoui UIs, grouped by src_object and ui_key
-	var/open_uis[0]
+	var/list/open_uis = list()
 	// a list of current open /nanoui UIs, not grouped, for use in processing
 	var/list/processing_uis = list()
 
@@ -25,15 +25,15 @@
   *
   * @return /nanoui Returns the found ui, for null if none exists
   */
-/datum/nanomanager/proc/try_update_ui(mob/user, src_object, ui_key, datum/nanoui/ui, data)
+/datum/nanomanager/proc/try_update_ui(mob/user, src_object, ui_key, datum/nanoui/ui, list/data)
 	if(isnull(ui)) // no ui has been passed, so we'll search for one
 		ui = get_open_ui(user, src_object, ui_key)
 
-	if(!isnull(ui))		
+	if(!isnull(ui))
 		// The UI is already open so push the data to it
 		ui.push_data(data)
 		return ui
-		
+
 	return null
 
  /**
@@ -68,18 +68,20 @@
 /datum/nanomanager/proc/update_uis(src_object)
 	var/src_object_key = "\ref[src_object]"
 	if(isnull(open_uis[src_object_key]) || !islist(open_uis[src_object_key]))
-		return 0	
+		return 0
 
 	var/update_count = 0
-	for(var/ui_key in open_uis[src_object_key])			
+	for(var/ui_key in open_uis[src_object_key])
 		for(var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
-			if(ui && ui.src_object && ui.user)
+			if(isnull(ui))
+				continue
+			if(!isnull(ui.src_object) && !isnull(ui.user))
 				ui.process(1)
 				update_count++
 	return update_count
-	
+
  /**
-  * Update /nanoui uis belonging to user 
+  * Update /nanoui uis belonging to user
   *
   * @param user /mob The mob who owns the uis
   * @param src_object /obj|/mob If src_object is provided, only update uis which are attached to src_object (optional)
@@ -92,15 +94,15 @@
 		return 0 // has no open uis
 
 	var/update_count = 0
-	for(var/datum/nanoui/ui in user.open_uis)		
-		if((isnull(src_object) || !isnull(src_object) && ui.src_object == src_object) && (isnull(ui_key) || !isnull(ui_key) && ui.ui_key == ui_key))
-			ui.process(1)
+	for(var/datum/nanoui/ui in user.open_uis)
+		if((isnull(src_object) || (!isnull(src_object) && ui.src_object == src_object)) && (isnull(ui_key) || (!isnull(ui_key) && ui.ui_key == ui_key)))
+			ui.process(TRUE)
 			update_count++
-			
+
 	return update_count
-	
+
  /**
-  * Close /nanoui uis belonging to user 
+  * Close /nanoui uis belonging to user
   *
   * @param user /mob The mob who owns the uis
   * @param src_object /obj|/mob If src_object is provided, only close uis which are attached to src_object (optional)
@@ -113,11 +115,11 @@
 		return 0 // has no open uis
 
 	var/close_count = 0
-	for(var/datum/nanoui/ui in user.open_uis)		
-		if((isnull(src_object) || !isnull(src_object) && ui.src_object == src_object) && (isnull(ui_key) || !isnull(ui_key) && ui.ui_key == ui_key))
+	for(var/datum/nanoui/ui in user.open_uis)
+		if((isnull(src_object) || (!isnull(src_object) && ui.src_object == src_object)) && (isnull(ui_key) || (!isnull(ui_key) && ui.ui_key == ui_key)))
 			ui.close()
 			close_count++
-			
+
 	return close_count
 
  /**
@@ -133,7 +135,7 @@
 	if(isnull(open_uis[src_object_key]) || !islist(open_uis[src_object_key]))
 		open_uis[src_object_key] = list(ui.ui_key = list())
 	else if(isnull(open_uis[src_object_key][ui.ui_key]) || !islist(open_uis[src_object_key][ui.ui_key]))
-		open_uis[src_object_key][ui.ui_key] = list();
+		open_uis[src_object_key][ui.ui_key] = list()
 
 	ui.user.open_uis.Add(ui)
 	var/list/uis = open_uis[src_object_key][ui.ui_key]
@@ -159,7 +161,7 @@
 	ui.user.open_uis.Remove(ui)
 	var/list/uis = open_uis[src_object_key][ui.ui_key]
 	return uis.Remove(ui)
-	
+
  /**
   * This is called on user logout
   * Closes/clears all uis attached to the user's /mob
@@ -168,8 +170,6 @@
   *
   * @return nothing
   */
-
-// 
 /datum/nanomanager/proc/user_logout(mob/user)
 	return close_user_uis(user)
 
@@ -194,9 +194,9 @@
 		newMob.open_uis.Add(ui)
 
 	oldMob.open_uis.Cut()
-	
+
 	return 1 // success
-	
+
  /**
   * Sends all nano assets to the client
   * This is called on user login
@@ -205,15 +205,14 @@
   *
   * @return nothing
   */
-
 /datum/nanomanager/proc/send_resources(client)
-	var/list/nano_asset_dirs = list(\
+	var/list/nano_asset_dirs = list(
 		"nano/css/",
 		"nano/images/",
 		"nano/js/",
 		"nano/templates/"
 	)
-	
+
 	var/list/files = null
 	for(var/path in nano_asset_dirs)
 		files = flist(path)

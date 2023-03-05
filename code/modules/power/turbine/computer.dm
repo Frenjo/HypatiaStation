@@ -100,7 +100,7 @@
 	if(stat & BROKEN)
 		return
 
-	var/data[0]
+	var/list/data = list()
 	data["status"] = src.compressor.starter
 	data["speed"] = round(src.compressor.rpm)
 	data["power"] = round(src.compressor.turbine.lastgen)
@@ -109,8 +109,8 @@
 
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if(!ui)
+	if(isnull(ui))
 		ui = new(user, src, ui_key, "turbine_ctrl.tmpl", "Gas Turbine Control Computer", 420, 360)
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_auto_update()

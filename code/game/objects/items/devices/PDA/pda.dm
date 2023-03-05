@@ -109,7 +109,7 @@
 
 	var/title = "Personal Data Assistant"
 
-	var/data[0] // This is the data that will be sent to the PDA
+	var/list/data = list() // This is the data that will be sent to the PDA
 
 	data["owner"] = owner					// Who is your daddy...
 	data["ownjob"] = ownjob					// ...and what does he do?
@@ -128,7 +128,7 @@
 
 	data["cart_loaded"] = cartridge ? TRUE : FALSE
 	if(cartridge)
-		var/cartdata[0]
+		var/list/cartdata = list()
 
 		if(mode in cartmodes)
 			data["records"] = cartridge.create_NanoUI_values()
@@ -168,8 +168,8 @@
 	data["newMessage"] = newmessage
 
 	if(mode == 2)
-		var/convopdas[0]
-		var/pdas[0]
+		var/list/convopdas = list()
+		var/list/pdas = list()
 		var/count = 0
 		for(var/obj/item/device/pda/P in GLOBL.pda_list)
 			if(!P.owner || P.toff || P == src || P.hidden)
@@ -229,7 +229,7 @@
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if(!ui)
+	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "pda.tmpl", title, 520, 400)

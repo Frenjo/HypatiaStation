@@ -55,12 +55,12 @@
 /obj/machinery/computer/crew/interact(mob/user)
 	ui_interact(user)
 
-/obj/machinery/computer/crew/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null)
+/obj/machinery/computer/crew/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	user.set_machine(src)
 	src.scan()
-	var/data[0]
+	var/list/data = list()
 	var/list/crewmembers = list()
 
 	for(var/obj/item/clothing/under/C in src.tracked)
@@ -92,13 +92,12 @@
 	data["crewmembers"] = crewmembers
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if(!ui)
+	if(isnull(ui))
 		ui = new(user, src, ui_key, "crew_monitor.tmpl", "Crew Monitoring Computer", 900, 600)
 		ui.set_initial_data(data)
 		ui.open()
-
 		// should make the UI auto-update; doesn't seem to?
-		ui.set_auto_update(1)
+		ui.set_auto_update()
 
 /obj/machinery/computer/crew/proc/scan()
 	for(var/mob/living/carbon/human/H in GLOBL.mob_list)

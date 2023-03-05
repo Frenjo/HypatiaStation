@@ -194,7 +194,7 @@
 	if(stat & BROKEN)
 		return
 
-	var/data[0]
+	var/list/data = list()
 	data["on"] = on
 	data["node1_concentration"] = node1_concentration
 	data["node2_concentration"] = node2_concentration
@@ -202,8 +202,8 @@
 
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if(!ui)
+	if(isnull(ui))
 		ui = new(user, src, ui_key, "gas_mixer.tmpl", "Gas Mixer", 540, 380)
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_auto_update()

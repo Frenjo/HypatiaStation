@@ -215,7 +215,7 @@ update_flag
 		return
 
 	// this is the data which will be sent to the ui
-	var/data[0]
+	var/list/data = list()
 	data["name"] = name
 	data["canLabel"] = can_label ? TRUE : FALSE
 	data["portConnected"] = connected_port ? TRUE : FALSE
@@ -231,7 +231,7 @@ update_flag
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if(!ui)
+	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "canister.tmpl", "Canister", 480, 400)
@@ -240,7 +240,7 @@ update_flag
 		// open the new ui window
 		ui.open()
 		// auto update every Master Controller tick
-		ui.set_auto_update(1)
+		ui.set_auto_update()
 
 /obj/machinery/portable_atmospherics/canister/Topic(href, href_list)
 	//Do not use "if(..()) return" here, canisters will stop working in unpowered areas like space or on the derelict.

@@ -347,7 +347,7 @@ display round(lastgen) and plasmatank amount
 	if(stat & BROKEN)
 		return
 
-	var/data[0]
+	var/list/data = list()
 	data["active"] = active
 	data["power_gen"] = power_gen
 	data["power_output"] = power_output
@@ -359,8 +359,8 @@ display round(lastgen) and plasmatank amount
 
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if(!ui)
+	if(isnull(ui))
 		ui = new(user, src, ui_key, "port_gen.tmpl", name, 540, 460)
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_auto_update()

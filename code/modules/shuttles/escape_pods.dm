@@ -25,10 +25,8 @@
 	name = "escape pod controller"
 	var/datum/shuttle/ferry/escape_pod/pod
 
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
-	var/data[0]
-
-	data = list(
+/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
+	var/list/data = list(
 		"docking_status" = docking_program.get_docking_status(),
 		"override_enabled" = docking_program.override_enabled,
 		"door_state" = docking_program.memory["door_status"]["state"],
@@ -38,12 +36,11 @@
 	)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
-
-	if(!ui)
+	if(isnull(ui))
 		ui = new(user, src, ui_key, "escape_pod_console.tmpl", name, 470, 290)
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_auto_update()
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/Topic(href, href_list)
 	if(..())	//I hate this "return 1 to indicate they are not allowed to use the controller" crap, but not sure how else to do it without being able to call machinery/Topic() directly.
@@ -68,8 +65,8 @@
 	docking_program = new/datum/computer/file/embedded_program/docking/simple/escape_pod(src)
 	program = docking_program
 
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
-	var/data[0]
+/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
+	var/list/data
 
 	var/armed = null
 	if(istype(docking_program, /datum/computer/file/embedded_program/docking/simple/escape_pod))
@@ -83,12 +80,11 @@
 	)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
-
-	if(!ui)
+	if(isnull(ui))
 		ui = new(user, src, ui_key, "escape_pod_berth_console.tmpl", name, 470, 290)
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_auto_update()
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/card/emag) && !emagged)

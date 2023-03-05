@@ -335,7 +335,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 */
 /obj/item/device/uplink/hidden/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	var/title = "Syndicate Uplink"
-	var/data[0]
+	var/list/data = list()
 
 	data["crystals"] = uses
 	data["nano_items"] = nanoui_items
@@ -343,7 +343,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if(!ui)
+	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600)

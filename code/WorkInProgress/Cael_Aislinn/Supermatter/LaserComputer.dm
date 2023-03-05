@@ -195,7 +195,7 @@
 		return
 
 	var/obj/machinery/zero_point_emitter/laser = lasers[1]
-	var/data[0]
+	var/list/data = list()
 	data["laser_status"] = laser.active
 	data["laser_energy"] = round(laser.energy, 0.0001)
 	data["laser_frequency"] = laser.frequency
@@ -203,8 +203,8 @@
 
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if(!ui)
+	if(isnull(ui))
 		ui = new(user, src, ui_key, "laser_ctrl.tmpl", "Zero-Point Laser Status Monitor", 480, 360)
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_auto_update()

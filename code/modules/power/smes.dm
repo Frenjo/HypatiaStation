@@ -284,7 +284,7 @@
 		return
 
 	// this is the data which will be sent to the ui
-	var/data[0]
+	var/list/data = list()
 	data["nameTag"] = name_tag
 	data["storedCapacity"] = round(100.0 * charge / capacity, 0.1)
 	data["charging"] = inputting
@@ -299,16 +299,16 @@
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if(!ui)
+	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "smes.tmpl", "SMES Power Storage Unit", 540, 380)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
 		ui.open()
 		// auto update every Master Controller tick
-		ui.set_auto_update(1)
+		ui.set_auto_update()
 
 /obj/machinery/power/smes/Topic(href, href_list)
 	..()

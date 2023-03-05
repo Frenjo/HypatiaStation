@@ -24,10 +24,8 @@
 /obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller
 	name = "Advanced Airlock Controller"
 
-/obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
-
-	data = list(
+/obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
+	var/list/data = list(
 		"chamber_pressure" = round(program.memory["chamber_sensor_pressure"]),
 		"external_pressure" = round(program.memory["external_sensor_pressure"]),
 		"internal_pressure" = round(program.memory["internal_sensor_pressure"]),
@@ -37,15 +35,11 @@
 	)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
-
-	if (!ui)
+	if(isnull(ui))
 		ui = new(user, src, ui_key, "advanced_airlock_console.tmpl", name, 470, 290)
-
 		ui.set_initial_data(data)
-
 		ui.open()
-
-		ui.set_auto_update(1)
+		ui.set_auto_update()
 
 /obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller/Topic(href, href_list)
 	if(..())
@@ -82,10 +76,8 @@
 	name = "Airlock Controller"
 	tag_secure = 1
 
-/obj/machinery/embedded_controller/radio/airlock/airlock_controller/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
-
-	data = list(
+/obj/machinery/embedded_controller/radio/airlock/airlock_controller/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
+	var/list/data = list(
 		"chamber_pressure" = round(program.memory["chamber_sensor_pressure"]),
 		"exterior_status" = program.memory["exterior_status"],
 		"interior_status" = program.memory["interior_status"],
@@ -93,15 +85,11 @@
 	)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
-
-	if (!ui)
+	if(isnull(ui))
 		ui = new(user, src, ui_key, "simple_airlock_console.tmpl", name, 470, 290)
-
 		ui.set_initial_data(data)
-
 		ui.open()
-
-		ui.set_auto_update(1)
+		ui.set_auto_update()
 
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller/Topic(href, href_list)
 	if(..())
@@ -147,25 +135,19 @@
 	else
 		icon_state = "access_control_off"
 
-/obj/machinery/embedded_controller/radio/airlock/access_controller/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
-
-	data = list(
+/obj/machinery/embedded_controller/radio/airlock/access_controller/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
+	var/list/data = list(
 		"exterior_status" = program.memory["exterior_status"],
 		"interior_status" = program.memory["interior_status"],
 		"processing" = program.memory["processing"]
 	)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
-
-	if (!ui)
+	if(isnull(ui))
 		ui = new(user, src, ui_key, "door_access_console.tmpl", name, 330, 220)
-
 		ui.set_initial_data(data)
-
 		ui.open()
-
-		ui.set_auto_update(1)
+		ui.set_auto_update()
 
 /obj/machinery/embedded_controller/radio/airlock/access_controller/Topic(href, href_list)
 	if(..())

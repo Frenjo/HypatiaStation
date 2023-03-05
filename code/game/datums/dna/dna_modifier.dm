@@ -344,7 +344,7 @@
 		return
 
 	// this is the data which will be sent to the ui
-	var/data[0]
+	var/list/data = list()
 	data["selectedMenuKey"] = selected_menu_key
 	data["locked"] = src.connected.locked
 	data["hasOccupant"] = connected.occupant ? 1 : 0
@@ -353,7 +353,7 @@
 
 	data["hasDisk"] = disk ? 1 : 0
 
-	var/diskData[0]
+	var/list/diskData = list()
 	if(!disk || !disk.buf)
 		diskData["data"] = null
 		diskData["owner"] = null
@@ -381,7 +381,7 @@
 	data["selectedUITarget"] = selected_ui_target
 	data["selectedUITargetHex"] = selected_ui_target_hex
 
-	var/occupantData[0]
+	var/list/occupantData = list()
 	if(!src.connected.occupant || !src.connected.occupant.dna)
 		occupantData["name"] = null
 		occupantData["stat"] = null
@@ -419,16 +419,16 @@
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if(!ui)
+	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "dna_modifier.tmpl", "DNA Modifier Console", 660, 700)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
 		ui.open()
 		// auto update every Master Controller tick
-		ui.set_auto_update(1)
+		ui.set_auto_update()
 
 /obj/machinery/computer/scan_consolenew/Topic(href, href_list)
 	if(..())

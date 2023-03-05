@@ -156,8 +156,8 @@
 	read_authorization(W)
 	..()
 
-/obj/machinery/computer/shuttle_control/emergency/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
-	var/data[0]
+/obj/machinery/computer/shuttle_control/emergency/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
+	var/list/data
 	var/datum/shuttle/ferry/emergency/shuttle = global.CTshuttle.shuttles[shuttle_tag]
 	if(!istype(shuttle))
 		return
@@ -218,12 +218,11 @@
 	)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
-
-	if(!ui)
+	if(isnull(ui))
 		ui = new(user, src, ui_key, "escape_shuttle_control_console.tmpl", "Shuttle Control", 470, 420)
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_auto_update()
 
 /obj/machinery/computer/shuttle_control/emergency/Topic(href, href_list)
 	if(..())

@@ -212,15 +212,15 @@ Thus, the two variables affect pump operation are set in New():
 	if(stat & BROKEN)
 		return
 
-	var/data[0]
+	var/list/data = list()
 	data["on"] = on
 	data["target_transfer_rate"] = round(transfer_rate)
 	data["max_transfer_rate"] = max_transfer_rate
 
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if(!ui)
+	if(isnull(ui))
 		ui = new(user, src, ui_key, "volume_gas_pump.tmpl", "Volumetric Gas Pump", 470, 290)
 		ui.set_initial_data(data)
 		ui.open()
-		ui.set_auto_update(1)
+		ui.set_auto_update()

@@ -47,7 +47,7 @@
 	
 /obj/machinery/atmospherics/unary/heat_reservoir/heater/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	// this is the data which will be sent to the ui
-	var/data[0]
+	var/list/data = list()
 	data["on"] = on ? TRUE : FALSE
 	data["gasPressure"] = round(air_contents.return_pressure())
 	data["gasTemperature"] = round(air_contents.temperature)
@@ -62,7 +62,7 @@
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
-	if(!ui)
+	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "freezer.tmpl", "Gas Heating System", 440, 300)
@@ -71,7 +71,7 @@
 		// open the new ui window
 		ui.open()
 		// auto update every Master Controller tick
-		ui.set_auto_update(1)
+		ui.set_auto_update()
 
 /obj/machinery/atmospherics/unary/heat_reservoir/heater/Topic(href, href_list)
 	if(href_list["toggleStatus"])
