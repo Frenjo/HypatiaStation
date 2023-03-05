@@ -11,7 +11,7 @@
 /obj/structure/lattice/initialize()
 	. = ..()
 ///// Z-Level Stuff
-	if(!isspace(src.loc) || !isopenspace(src.loc))
+	if(!(isspace(src.loc) || isopenspace(src.loc)))
 ///// Z-Level Stuff
 		qdel(src)
 	for(var/obj/structure/lattice/LAT in src.loc)
