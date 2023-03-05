@@ -10,7 +10,7 @@
 /var/list/recentmessages = list() // global list of recent messages broadcasted : used to circumvent massive radio spam
 /var/message_delay = 0 // To make sure restarting the recentmessages list is kept in sync
 
-/obj/machinery/telecomms/broadcaster
+/obj/machinery/telecoms/broadcaster
 	name = "Subspace Broadcaster"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "broadcaster"
@@ -23,9 +23,9 @@
 	//heatgen = 0
 	operating_temperature = null
 	delay = 7
-	circuitboard = /obj/item/weapon/circuitboard/telecomms/broadcaster
+	circuitboard = /obj/item/weapon/circuitboard/telecoms/broadcaster
 
-/obj/machinery/telecomms/broadcaster/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
+/obj/machinery/telecoms/broadcaster/receive_information(datum/signal/signal, obj/machinery/telecoms/machine_from)
 	// Don't broadcast rejected signals
 	if(signal.data["reject"])
 		return
@@ -95,7 +95,7 @@
 		/* --- Do a snazzy animation! --- */
 		flick("broadcaster_send", src)
 
-/obj/machinery/telecomms/broadcaster/Destroy()
+/obj/machinery/telecoms/broadcaster/Destroy()
 	// In case message_delay is left on 1, otherwise it won't reset the list and people can't say the same thing twice anymore.
 	if(message_delay)
 		message_delay = 0
@@ -106,7 +106,7 @@
 	Basically just an empty shell for receiving and broadcasting radio messages. Not
 	very flexible, but it gets the job done.
 */
-/obj/machinery/telecomms/allinone
+/obj/machinery/telecoms/allinone
 	name = "Telecommunications Mainframe"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "comm_server"
@@ -121,7 +121,7 @@
 
 	var/intercept = 0 // if nonzero, broadcasts all messages to syndicate channel
 
-/obj/machinery/telecomms/allinone/receive_signal(datum/signal/signal)
+/obj/machinery/telecoms/allinone/receive_signal(datum/signal/signal)
 	if(!on) // has to be on to receive messages
 		return
 
@@ -634,12 +634,12 @@
 
 
 //Use this to test if an obj can communicate with a Telecommunications Network
-/atom/proc/test_telecomms()
-	var/datum/signal/signal = src.telecomms_process()
+/atom/proc/test_telecoms()
+	var/datum/signal/signal = src.telecoms_process()
 	var/turf/position = get_turf(src)
 	return (position.z in signal.data["level"] && signal.data["done"])
 
-/atom/proc/telecomms_process()
+/atom/proc/telecoms_process()
 	// First, we want to generate a new radio signal
 	var/datum/signal/signal = new
 	signal.transmission_method = 2 // 2 would be a subspace transmission.
@@ -659,7 +659,7 @@
 	signal.frequency = FREQUENCY_COMMON// Common channel
 
   //#### Sending the signal to all subspace receivers ####//
-	for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
+	for(var/obj/machinery/telecoms/receiver/R in telecoms_list)
 		R.receive_signal(signal)
 
 	sleep(rand(10, 25))

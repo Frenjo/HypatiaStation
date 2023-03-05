@@ -99,7 +99,7 @@
 		/obj/machinery/vending,
 		/obj/machinery/bot,
 		/obj/machinery/door,
-		/obj/machinery/telecomms,
+		/obj/machinery/telecoms,
 		/obj/machinery/mecha_part_fabricator
 		)
 

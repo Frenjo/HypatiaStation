@@ -232,17 +232,17 @@
 
 /obj/item/weapon/circuitboard/comm_monitor
 	name = "Circuit board (Telecommunications Monitor)"
-	build_path = /obj/machinery/computer/telecomms/monitor
+	build_path = /obj/machinery/computer/telecoms/monitor
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 
 /obj/item/weapon/circuitboard/comm_server
 	name = "Circuit board (Telecommunications Server Monitor)"
-	build_path = /obj/machinery/computer/telecomms/server
+	build_path = /obj/machinery/computer/telecoms/server
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 
 /obj/item/weapon/circuitboard/comm_traffic
 	name = "Circuitboard (Telecommunications Traffic Control)"
-	build_path = /obj/machinery/computer/telecomms/traffic
+	build_path = /obj/machinery/computer/telecoms/traffic
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 
 /obj/item/weapon/circuitboard/curefab

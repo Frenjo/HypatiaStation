@@ -410,7 +410,7 @@
 "hZ" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"; tag = ""},/turf/simulated/floor{icon_state = "hydrofloor"},/area/awaymission/academy/academyaft)
 "ia" = (/obj/structure/rack,/turf/simulated/floor{icon_state = "hydrofloor"},/area/awaymission/academy/academyaft)
 "ib" = (/turf/simulated/floor/grass,/area/awaymission/academy/academyaft)
-"ic" = (/obj/structure/rack,/obj/item/weapon/circuitboard/telecomms/broadcaster,/obj/item/weapon/circuitboard/telecomms/receiver,/obj/item/weapon/circuitboard/telecomms/relay,/turf/simulated/floor{icon_state = "hydrofloor"},/area/awaymission/academy/academyaft)
+"ic" = (/obj/structure/rack,/obj/item/weapon/circuitboard/telecoms/broadcaster,/obj/item/weapon/circuitboard/telecoms/receiver,/obj/item/weapon/circuitboard/telecoms/relay,/turf/simulated/floor{icon_state = "hydrofloor"},/area/awaymission/academy/academyaft)
 "ie" = (/turf/simulated/floor{icon_state = "cafeteria"},/area/awaymission/academy/academyaft)
 "if" = (/obj/structure/mirror{pixel_y = 28},/turf/simulated/floor{icon_state = "cafeteria"},/area/awaymission/academy/academyaft)
 "ig" = (/obj/effect/decal/cleanable/cobweb2,/turf/simulated/floor{icon_state = "cafeteria"},/area/awaymission/academy/academyaft)

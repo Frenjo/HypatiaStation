@@ -6,5 +6,5 @@
 			A << "<br>"
 			A << "<span class='warning'><b>Ionospheric anomalies detected. Temporary telecommunication failure imminent. Please contact you-BZZT<b></span>"
 			A << "<br>"
-	for(var/obj/machinery/telecomms/T in telecomms_list)
+	for(var/obj/machinery/telecoms/T in telecoms_list)
 		T.emp_act(1)

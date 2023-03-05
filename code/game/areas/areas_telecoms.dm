@@ -1,5 +1,5 @@
 // Telecommunications Satellite
-/area/tcommsat
+/area/tcomsat
 	ambience = list(
 		'sound/ambience/ambisin2.ogg',
 		'sound/ambience/signal.ogg',
@@ -7,16 +7,16 @@
 		'sound/ambience/ambigen10.ogg'
 	)
 
-/area/tcommsat/entrance
-	name = "\improper Telecomms Teleporter"
+/area/tcomsat/entrance
+	name = "\improper Telecommunications Teleporter"
 	icon_state = "tcomsatentrance"
 
-/area/tcommsat/chamber
-	name = "\improper Telecomms Central Compartment"
+/area/tcomsat/chamber
+	name = "\improper Telecommunications Central Compartment"
 	icon_state = "tcomsatcham"
 
 /area/turret_protected/tcomsat
-	name = "\improper Telecomms Satellite"
+	name = "\improper Telecommunications Satellite"
 	icon_state = "tcomsatlob"
 	ambience = list(
 		'sound/ambience/ambisin2.ogg',
@@ -26,7 +26,7 @@
 	)
 
 /area/turret_protected/tcomfoyer
-	name = "\improper Telecomms Foyer"
+	name = "\improper Telecommunications Foyer"
 	icon_state = "tcomsatentrance"
 	ambience = list(
 		'sound/ambience/ambisin2.ogg',
@@ -55,28 +55,28 @@
 		'sound/ambience/ambigen10.ogg'
 	)
 
-/area/tcommsat/computer
-	name = "\improper Telecomms Control Room"
+/area/tcomsat/computer
+	name = "\improper Telecommunications Control Room"
 	icon_state = "tcomsatcomp"
 
-/area/tcommsat/lounge
+/area/tcomsat/lounge
 	name = "\improper Telecommunications Satellite Lounge"
 	icon_state = "tcomsatlounge"
 
 // Added these due to map editing. -Frenjo
-/area/tcommsat/solar
+/area/tcomsat/solar
 	requires_power = TRUE
 	always_unpowered = TRUE
 	icon_state = "tcomsatlounge"
 
-/area/tcommsat/solar/port
+/area/tcomsat/solar/port
 	name = "\improper Telecommunications Port Solar Array"
 
-/area/tcommsat/solar/fore
+/area/tcomsat/solar/fore
 	name = "\improper Telecommunications Fore Solar Array"
 
-/area/tcommsat/solar/starboard
+/area/tcomsat/solar/starboard
 	name = "\improper Telecommunications Starboard Solar Array"
 
-/area/tcommsat/solar/aft
+/area/tcomsat/solar/aft
 	name = "\improper Telecommunications Aft Solar Array"

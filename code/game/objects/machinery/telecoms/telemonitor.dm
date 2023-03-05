@@ -1,25 +1,25 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 /*
-	Telecomms monitor tracks the overall trafficing of a telecommunications network
+	Telecoms monitor tracks the overall trafficing of a telecommunications network
 	and displays a heirarchy of linked machines.
 */
 
 #define MONITOR_SCREEN_MAIN_MENU 0
 #define MONITOR_SCREEN_VIEWING_MACHINE 1
 
-/obj/machinery/computer/telecomms/monitor
+/obj/machinery/computer/telecoms/monitor
 	name = "Telecommunications Monitor"
 	icon_state = "comm_monitor"
 
 	var/screen = MONITOR_SCREEN_MAIN_MENU	// the screen number:
 	var/list/machinelist = list()			// the machines located by the computer
-	var/obj/machinery/telecomms/SelectedMachine
+	var/obj/machinery/telecoms/SelectedMachine
 
 	var/network = "NULL"		// the network to probe
 	var/temp = ""				// temporary feedback messages
 
-/obj/machinery/computer/telecomms/monitor/attack_hand(mob/user as mob)
+/obj/machinery/computer/telecoms/monitor/attack_hand(mob/user as mob)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	user.set_machine(src)
@@ -32,7 +32,7 @@
 			dat += "<br>Current Network: <a href='?src=\ref[src];network=1'>[network]</a><br>"
 			if(length(machinelist))
 				dat += "<br>Detected Network Entities:<ul>"
-				for(var/obj/machinery/telecomms/T in machinelist)
+				for(var/obj/machinery/telecoms/T in machinelist)
 					dat += "<li><a href='?src=\ref[src];viewmachine=[T.id]'>\ref[T] [T.name]</a> ([T.id])</li>"
 				dat += "</ul>"
 				dat += "<br><a href='?src=\ref[src];operation=release'>\[Flush Buffer\]</a>"
@@ -46,7 +46,7 @@
 			dat += "<br>Current Network: [network]<br>"
 			dat += "Selected Network Entity: [SelectedMachine.name] ([SelectedMachine.id])<br>"
 			dat += "Linked Entities: <ol>"
-			for(var/obj/machinery/telecomms/T in SelectedMachine.links)
+			for(var/obj/machinery/telecoms/T in SelectedMachine.links)
 				if(!T.hide)
 					dat += "<li><a href='?src=\ref[src];viewmachine=[T.id]'>\ref[T.id] [T.name]</a> ([T.id])</li>"
 			dat += "</ol>"
@@ -57,7 +57,7 @@
 	temp = ""
 	return
 
-/obj/machinery/computer/telecomms/monitor/Topic(href, href_list)
+/obj/machinery/computer/telecoms/monitor/Topic(href, href_list)
 	if(..())
 		return
 	add_fingerprint(usr)
@@ -65,7 +65,7 @@
 
 	if(href_list["viewmachine"])
 		screen = MONITOR_SCREEN_VIEWING_MACHINE
-		for(var/obj/machinery/telecomms/T in machinelist)
+		for(var/obj/machinery/telecoms/T in machinelist)
 			if(T.id == href_list["viewmachine"])
 				SelectedMachine = T
 				break
@@ -83,7 +83,7 @@
 				if(length(machinelist))
 					temp = "<font color = #D70B00>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font color>"
 				else
-					for(var/obj/machinery/telecomms/T in range(25, src))
+					for(var/obj/machinery/telecoms/T in range(25, src))
 						if(T.network == network)
 							machinelist.Add(T)
 					if(!length(machinelist))
@@ -107,7 +107,7 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/telecomms/monitor/attackby(obj/item/weapon/D as obj, mob/user as mob)
+/obj/machinery/computer/telecoms/monitor/attackby(obj/item/weapon/D as obj, mob/user as mob)
 	if(istype(D, /obj/item/weapon/screwdriver))
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))

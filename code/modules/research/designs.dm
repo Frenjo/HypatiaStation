@@ -485,7 +485,7 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/weapon/aiModule/tyrant
 
 ///////////////////////////////////
-/////Subspace Telecomms////////////
+/////Subspace Telecoms////////////
 ///////////////////////////////////
 /datum/design/subspace_receiver
 	name = "Circuit Design (Subspace Receiver)"
@@ -494,52 +494,52 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 3, RESEARCH_TECH_BLUESPACE = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/telecomms/receiver
+	build_path = /obj/item/weapon/circuitboard/telecoms/receiver
 
-/datum/design/telecomms_bus
+/datum/design/telecoms_bus
 	name = "Circuit Design (Bus Mainframe)"
 	desc = "Allows for the construction of Telecommunications Bus Mainframes."
 	id = "s-bus"
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/telecomms/bus
+	build_path = /obj/item/weapon/circuitboard/telecoms/bus
 
-/datum/design/telecomms_hub
+/datum/design/telecoms_hub
 	name = "Circuit Design (Hub Mainframe)"
 	desc = "Allows for the construction of Telecommunications Hub Mainframes."
 	id = "s-hub"
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/telecomms/hub
+	build_path = /obj/item/weapon/circuitboard/telecoms/hub
 
-/datum/design/telecomms_relay
+/datum/design/telecoms_relay
 	name = "Circuit Design (Relay Mainframe)"
 	desc = "Allows for the construction of Telecommunications Relay Mainframes."
 	id = "s-relay"
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_BLUESPACE = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/telecomms/relay
+	build_path = /obj/item/weapon/circuitboard/telecoms/relay
 
-/datum/design/telecomms_processor
+/datum/design/telecoms_processor
 	name = "Circuit Design (Processor Unit)"
 	desc = "Allows for the construction of Telecommunications Processor equipment."
 	id = "s-processor"
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/telecomms/processor
+	build_path = /obj/item/weapon/circuitboard/telecoms/processor
 
-/datum/design/telecomms_server
+/datum/design/telecoms_server
 	name = "Circuit Design (Server Mainframe)"
 	desc = "Allows for the construction of Telecommunications Servers."
 	id = "s-server"
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/telecomms/server
+	build_path = /obj/item/weapon/circuitboard/telecoms/server
 
 /datum/design/subspace_broadcaster
 	name = "Circuit Design (Subspace Broadcaster)"
@@ -548,7 +548,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_BLUESPACE = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/telecomms/broadcaster
+	build_path = /obj/item/weapon/circuitboard/telecoms/broadcaster
 
 ///////////////////////////////////
 /////Non-Board Computer Stuff//////

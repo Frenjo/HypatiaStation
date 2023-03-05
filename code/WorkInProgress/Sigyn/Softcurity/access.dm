@@ -60,7 +60,7 @@
 /var/const/access_hos = 58
 /var/const/access_RC_announce = 59 //Request console announcements
 /var/const/access_keycard_auth = 60 //Used for events which require at least two people to confirm them
-/var/const/access_tcomsat = 61 // has access to the entire telecomms satellite / machinery
+/var/const/access_tcomsat = 61 // has access to the entire telecoms satellite / machinery
 /var/const/access_gateway = 62
 /var/const/access_sec_doors = 63 // Security front doors
 

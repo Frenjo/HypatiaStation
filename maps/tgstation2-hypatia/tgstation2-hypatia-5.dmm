@@ -902,7 +902,7 @@
 "Ly" = (/obj/structure/transit_tube{icon_state = "D-NE"},/obj/effect/decal/floor/industrial/delivery,/turf/simulated/floor/airless,/area/mine/explored)
 "LC" = (/obj/structure/sink{pixel_y = 30},/obj/machinery/light/small,/obj/structure/mirror{pixel_y = -32},/turf/simulated/floor{icon_state = "showroomfloor"},/area/mine/living_quarters)
 "LD" = (/obj/effect/decal/remains/xeno,/turf/simulated/floor/airless,/area/mine/abandoned)
-"LE" = (/obj/machinery/telecomms/relay/preset/mining,/obj/machinery/light/small{dir = 1},/obj/effect/decal/floor/industrial/vault,/turf/simulated/floor{icon_state = "dark"},/area/mine/maintenance)
+"LE" = (/obj/machinery/telecoms/relay/preset/mining,/obj/machinery/light/small{dir = 1},/obj/effect/decal/floor/industrial/vault,/turf/simulated/floor{icon_state = "dark"},/area/mine/maintenance)
 "LF" = (/turf/simulated/shuttle/wall/corner/exterior/blockorange/ne,/area/shuttle/alien/mine)
 "LG" = (/obj/machinery/access_button{command = "cycle_exterior"; master_tag = "research_airlock"; name = "exterior access button"; pixel_x = 25; pixel_y = 25},/turf/simulated/floor/airless{icon_state = "asteroidwarning"},/area/mine/explored)
 "LH" = (/obj/structure/transit_tube/station{dir = 8},/obj/effect/decal/floor/industrial/bot,/turf/simulated/floor,/area/research_outpost/atmos)

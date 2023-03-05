@@ -279,11 +279,11 @@ to destroy them and players will be able to make replacements.
 							/obj/item/stack/cable_coil = 2,)
 
 
-// Telecomms circuit boards:
+// Telecoms circuit boards:
 
-/obj/item/weapon/circuitboard/telecomms/receiver
+/obj/item/weapon/circuitboard/telecoms/receiver
 	name = "Circuit Board (Subspace Receiver)"
-	build_path = /obj/machinery/telecomms/receiver
+	build_path = /obj/machinery/telecoms/receiver
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 3, RESEARCH_TECH_BLUESPACE = 2)
 	frame_desc = "Requires 1 Subspace Ansible, 1 Hyperwave Filter, 2 Micro Manipulators, and 1 Micro-Laser."
@@ -293,9 +293,9 @@ to destroy them and players will be able to make replacements.
 							/obj/item/weapon/stock_part/manipulator = 2,
 							/obj/item/weapon/stock_part/micro_laser = 1)
 
-/obj/item/weapon/circuitboard/telecomms/hub
+/obj/item/weapon/circuitboard/telecoms/hub
 	name = "Circuit Board (Hub Mainframe)"
-	build_path = /obj/machinery/telecomms/hub
+	build_path = /obj/machinery/telecoms/hub
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	frame_desc = "Requires 2 Micro Manipulators, 2 Cable Coil and 2 Hyperwave Filter."
@@ -304,9 +304,9 @@ to destroy them and players will be able to make replacements.
 							/obj/item/stack/cable_coil = 2,
 							/obj/item/weapon/stock_part/subspace/filter = 2)
 
-/obj/item/weapon/circuitboard/telecomms/relay
+/obj/item/weapon/circuitboard/telecoms/relay
 	name = "Circuit Board (Relay Mainframe)"
-	build_path = /obj/machinery/telecomms/relay
+	build_path = /obj/machinery/telecoms/relay
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_BLUESPACE = 3)
 	frame_desc = "Requires 2 Micro Manipulators, 2 Cable Coil and 2 Hyperwave Filters."
@@ -315,9 +315,9 @@ to destroy them and players will be able to make replacements.
 							/obj/item/stack/cable_coil = 2,
 							/obj/item/weapon/stock_part/subspace/filter = 2)
 
-/obj/item/weapon/circuitboard/telecomms/bus
+/obj/item/weapon/circuitboard/telecoms/bus
 	name = "Circuit Board (Bus Mainframe)"
-	build_path = /obj/machinery/telecomms/bus
+	build_path = /obj/machinery/telecoms/bus
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	frame_desc = "Requires 2 Micro Manipulators, 1 Cable Coil and 1 Hyperwave Filter."
@@ -326,9 +326,9 @@ to destroy them and players will be able to make replacements.
 							/obj/item/stack/cable_coil = 1,
 							/obj/item/weapon/stock_part/subspace/filter = 1)
 
-/obj/item/weapon/circuitboard/telecomms/processor
+/obj/item/weapon/circuitboard/telecoms/processor
 	name = "Circuit Board (Processor Unit)"
-	build_path = /obj/machinery/telecomms/processor
+	build_path = /obj/machinery/telecoms/processor
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	frame_desc = "Requires 3 Micro Manipulators, 1 Hyperwave Filter, 2 Treatment Disks, 1 Wavelength Analyzer, 2 Cable Coils and 1 Subspace Amplifier."
@@ -340,9 +340,9 @@ to destroy them and players will be able to make replacements.
 							/obj/item/stack/cable_coil = 2,
 							/obj/item/weapon/stock_part/subspace/amplifier = 1)
 
-/obj/item/weapon/circuitboard/telecomms/server
+/obj/item/weapon/circuitboard/telecoms/server
 	name = "Circuit Board (Telecommunication Server)"
-	build_path = /obj/machinery/telecomms/server
+	build_path = /obj/machinery/telecoms/server
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	frame_desc = "Requires 2 Micro Manipulators, 1 Cable Coil and 1 Hyperwave Filter."
@@ -351,9 +351,9 @@ to destroy them and players will be able to make replacements.
 							/obj/item/stack/cable_coil = 1,
 							/obj/item/weapon/stock_part/subspace/filter = 1)
 
-/obj/item/weapon/circuitboard/telecomms/broadcaster
+/obj/item/weapon/circuitboard/telecoms/broadcaster
 	name = "Circuit Board (Subspace Broadcaster)"
-	build_path = /obj/machinery/telecomms/broadcaster
+	build_path = /obj/machinery/telecoms/broadcaster
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_BLUESPACE = 2)
 	frame_desc = "Requires 2 Micro Manipulators, 1 Cable Coil, 1 Hyperwave Filter, 1 Ansible Crystal and 2 High-Powered Micro-Lasers. "

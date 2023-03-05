@@ -128,7 +128,7 @@
 "iZ" = (/obj/structure/window/basic{dir = 4},/turf/space,/area/space)
 "ja" = (/obj/structure/cable,/obj/structure/cable{d2 = 2; icon_state = "0-2"},/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/plating/airless,/area/solar/derelict_starboard)
 "jc" = (/turf/simulated/shuttle/wall/corner/exterior/smoothwhite/sw,/area/space)
-"je" = (/obj/machinery/telecomms/relay/preset/ruskie,/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/plating,/area/djstation)
+"je" = (/obj/machinery/telecoms/relay/preset/ruskie,/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/plating,/area/djstation)
 "jf" = (/obj/structure/toilet{dir = 4},/turf/simulated/floor{icon_state = "freezerfloor"},/area/djstation)
 "jk" = (/obj/machinery/teleport/hub,/turf/simulated/floor/airless,/area/derelict/teleporter)
 "jm" = (/obj/structure/window/reinforced{dir = 1},/obj/effect/decal/floor/chapel/red{dir = 1},/turf/simulated/floor{icon_state = "darkchapel"},/area/derelict/medical/chapel)

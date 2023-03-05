@@ -473,8 +473,8 @@
 							M.close()
 
 		if("Detonate")//Detonate PDA... maybe
-			// check if telecomms I/O route FREQUENCY_COMMON (1459) is stable
-			//var/telecomms_intact = telecomms_process(P.owner, owner, t)
+			// check if telecoms I/O route FREQUENCY_COMMON (1459) is stable
+			//var/telecoms_intact = telecoms_process(P.owner, owner, t)
 			var/obj/machinery/message_server/useMS = null
 			if(GLOBL.message_servers)
 				for(var/obj/machinery/message_server/MS in GLOBL.message_servers)
@@ -483,7 +483,7 @@
 						useMS = MS
 						break
 
-			var/datum/signal/signal = src.telecomms_process()
+			var/datum/signal/signal = src.telecoms_process()
 
 			var/useTC = 0
 			if(signal)
@@ -655,8 +655,8 @@
 		return
 
 	last_text = world.time
-	// check if telecomms I/O route FREQUENCY_COMMON (1459) is stable
-	//var/telecomms_intact = telecomms_process(P.owner, owner, t)
+	// check if telecoms I/O route FREQUENCY_COMMON (1459) is stable
+	//var/telecoms_intact = telecoms_process(P.owner, owner, t)
 	var/obj/machinery/message_server/useMS = null
 	if(GLOBL.message_servers)
 		for(var/obj/machinery/message_server/MS in GLOBL.message_servers)
@@ -665,7 +665,7 @@
 				useMS = MS
 				break
 
-	var/datum/signal/signal = src.telecomms_process()
+	var/datum/signal/signal = src.telecoms_process()
 
 	var/useTC = 0
 	if(signal)

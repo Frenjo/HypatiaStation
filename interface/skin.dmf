@@ -396,8 +396,8 @@ menu "menu"
 		saved-params = "is-checked"
 
 
-window "Telecomms IDE"
-	elem "Telecomms IDE"
+window "Telecoms IDE"
+	elem "Telecoms IDE"
 		type = MAIN
 		pos = 281,0
 		size = 569x582

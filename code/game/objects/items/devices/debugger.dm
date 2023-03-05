@@ -18,7 +18,7 @@
 	matter_amounts = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 20)
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 1, RESEARCH_TECH_ENGINEERING = 1)
 
-	var/obj/machinery/telecomms/buffer // simple machine buffer for device linkage
+	var/obj/machinery/telecoms/buffer // simple machine buffer for device linkage
 
 /obj/item/device/debugger/is_used_on(obj/O, mob/user)
 	if(istype(O, /obj/machinery/power/apc))

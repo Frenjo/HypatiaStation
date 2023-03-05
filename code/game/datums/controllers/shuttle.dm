@@ -245,7 +245,7 @@ CONTROLLER_DEF(shuttle)
 		"Southwest of the station" = locate(/area/syndicate_station/southwest),
 		"South of the station" = locate(/area/syndicate_station/south),
 		"Southeast of the station" = locate(/area/syndicate_station/southeast),
-		"Telecomms Satellite" = locate(/area/syndicate_station/commssat),
+		"Telecoms Satellite" = locate(/area/syndicate_station/commssat),
 		"Mining Asteroid" = locate(/area/syndicate_station/mining),
 		/*"Arrivals dock" = locate(/area/syndicate_station/arrivals_dock),*/
 	)

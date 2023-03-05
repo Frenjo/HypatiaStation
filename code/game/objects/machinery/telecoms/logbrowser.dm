@@ -3,21 +3,21 @@
 #define SERVER_SCREEN_MAIN_MENU 0
 #define SERVER_SCREEN_VIEWING_SERVER 1
 
-/obj/machinery/computer/telecomms/server
+/obj/machinery/computer/telecoms/server
 	name = "Telecommunications Server Monitor"
 	icon_state = "comm_logs"
 	req_access = list(ACCESS_TCOMSAT)
 
 	var/screen = SERVER_SCREEN_MAIN_MENU	// the screen number:
 	var/list/servers = list()				// the servers located by the computer
-	var/obj/machinery/telecomms/server/SelectedServer
+	var/obj/machinery/telecoms/server/SelectedServer
 
 	var/network = "NULL"		// the network to probe
 	var/temp = ""				// temporary feedback messages
 
 	var/universal_translate = 0 // set to 1 if it can translate nonhuman speech
 
-/obj/machinery/computer/telecomms/server/attack_hand(mob/user as mob)
+/obj/machinery/computer/telecoms/server/attack_hand(mob/user as mob)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	user.set_machine(src)
@@ -30,7 +30,7 @@
 			dat += "<br>Current Network: <a href='?src=\ref[src];network=1'>[network]</a><br>"
 			if(length(servers))
 				dat += "<br>Detected Telecommunication Servers:<ul>"
-				for(var/obj/machinery/telecomms/T in servers)
+				for(var/obj/machinery/telecoms/T in servers)
 					dat += "<li><a href='?src=\ref[src];viewserver=[T.id]'>\ref[T] [T.name]</a> ([T.id])</li>"
 				dat += "</ul>"
 				dat += "<br><a href='?src=\ref[src];operation=release'>\[Flush Buffer\]</a>"
@@ -115,7 +115,7 @@
 	temp = ""
 	return
 
-/obj/machinery/computer/telecomms/server/Topic(href, href_list)
+/obj/machinery/computer/telecoms/server/Topic(href, href_list)
 	if(..())
 		return
 	add_fingerprint(usr)
@@ -123,7 +123,7 @@
 
 	if(href_list["viewserver"])
 		screen = SERVER_SCREEN_VIEWING_SERVER
-		for(var/obj/machinery/telecomms/T in servers)
+		for(var/obj/machinery/telecoms/T in servers)
 			if(T.id == href_list["viewserver"])
 				SelectedServer = T
 				break
@@ -141,7 +141,7 @@
 				if(length(servers))
 					temp = "<font color = #D70B00>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font color>"
 				else
-					for(var/obj/machinery/telecomms/server/T in range(25, src))
+					for(var/obj/machinery/telecoms/server/T in range(25, src))
 						if(T.network == network)
 							servers.Add(T)
 					if(!length(servers))
@@ -177,7 +177,7 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/telecomms/server/attackby(obj/item/weapon/D as obj, mob/user as mob)
+/obj/machinery/computer/telecoms/server/attackby(obj/item/weapon/D as obj, mob/user as mob)
 	if(istype(D, /obj/item/weapon/screwdriver))
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))

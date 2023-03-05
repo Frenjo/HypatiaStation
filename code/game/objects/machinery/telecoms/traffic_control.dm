@@ -3,7 +3,7 @@
 #define TRAFFIC_SCREEN_MAIN_MENU 0
 #define TRAFFIC_SCREEN_VIEWING_SERVER 1
 
-/obj/machinery/computer/telecomms/traffic
+/obj/machinery/computer/telecoms/traffic
 	name = "Telecommunications Traffic Control"
 	icon_state = "computer_generic"
 	req_access = list(ACCESS_TCOMSAT)
@@ -13,13 +13,13 @@
 	var/mob/editingcode
 	var/mob/lasteditor
 	var/list/viewingcode = list()
-	var/obj/machinery/telecomms/server/SelectedServer
+	var/obj/machinery/telecoms/server/SelectedServer
 
 	var/network = "NULL"		// the network to probe
 	var/temp = ""				// temporary feedback messages
 	var/storedcode = ""			// code stored
 
-/obj/machinery/computer/telecomms/traffic/attack_hand(mob/user as mob)
+/obj/machinery/computer/telecoms/traffic/attack_hand(mob/user as mob)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	user.set_machine(src)
@@ -32,7 +32,7 @@
 			dat += "<br>Current Network: <a href='?src=\ref[src];network=1'>[network]</a><br>"
 			if(length(servers))
 				dat += "<br>Detected Telecommunication Servers:<ul>"
-				for(var/obj/machinery/telecomms/T in servers)
+				for(var/obj/machinery/telecoms/T in servers)
 					dat += "<li><a href='?src=\ref[src];viewserver=[T.id]'>\ref[T] [T.name]</a> ([T.id])</li>"
 				dat += "</ul>"
 				dat += "<br><a href='?src=\ref[src];operation=release'>\[Flush Buffer\]</a>"
@@ -60,7 +60,7 @@
 	temp = ""
 	return
 
-/obj/machinery/computer/telecomms/traffic/Topic(href, href_list)
+/obj/machinery/computer/telecoms/traffic/Topic(href, href_list)
 	if(..())
 		return
 	add_fingerprint(usr)
@@ -72,7 +72,7 @@
 
 	if(href_list["viewserver"])
 		screen = TRAFFIC_SCREEN_VIEWING_SERVER
-		for(var/obj/machinery/telecomms/T in servers)
+		for(var/obj/machinery/telecoms/T in servers)
 			if(T.id == href_list["viewserver"])
 				SelectedServer = T
 				break
@@ -90,7 +90,7 @@
 				if(length(servers))
 					temp = "<font color = #D70B00>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font color>"
 				else
-					for(var/obj/machinery/telecomms/server/T in range(25, src))
+					for(var/obj/machinery/telecoms/server/T in range(25, src))
 						if(T.network == network)
 							servers.Add(T)
 					if(!length(servers))
@@ -109,7 +109,7 @@
 				if(!editingcode)
 					lasteditor = usr
 					editingcode = usr
-					winshow(editingcode, "Telecomms IDE", 1) // show the IDE
+					winshow(editingcode, "Telecoms IDE", 1) // show the IDE
 					winset(editingcode, "tcscode", "is-disabled=false")
 					winset(editingcode, "tcscode", "text=\"\"")
 					var/showcode = replacetext(storedcode, "\\\"", "\\\\\"")
@@ -119,7 +119,7 @@
 						update_ide()
 				else
 					viewingcode.Add(usr)
-					winshow(usr, "Telecomms IDE", 1) // show the IDE
+					winshow(usr, "Telecoms IDE", 1) // show the IDE
 					winset(usr, "tcscode", "is-disabled=true")
 					winset(editingcode, "tcscode", "text=\"\"")
 					var/showcode = replacetext(storedcode, "\"", "\\\"")
@@ -142,7 +142,7 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/telecomms/traffic/attackby(obj/item/weapon/D as obj, mob/user as mob)
+/obj/machinery/computer/telecoms/traffic/attackby(obj/item/weapon/D as obj, mob/user as mob)
 	if(istype(D, /obj/item/weapon/screwdriver))
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
@@ -176,7 +176,7 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/computer/telecomms/traffic/proc/update_ide()
+/obj/machinery/computer/telecoms/traffic/proc/update_ide()
 	// loop if there's someone manning the keyboard
 	while(editingcode)
 		if(!editingcode.client)
@@ -192,7 +192,7 @@
 		// If the player's not manning the keyboard anymore, adjust everything
 		if((!(editingcode in range(1, src)) && !issilicon(editingcode)) || (editingcode.machine != src && !issilicon(editingcode)))
 			if(editingcode)
-				winshow(editingcode, "Telecomms IDE", 0) // hide the window!
+				winshow(editingcode, "Telecoms IDE", 0) // hide the window!
 			editingcode = null
 			break
 
@@ -209,7 +209,7 @@
 					winset(M, "tcscode", "text=\"[showcode]\"")
 				else
 					viewingcode.Remove(M)
-					winshow(M, "Telecomms IDE", 0) // hide the window!
+					winshow(M, "Telecoms IDE", 0) // hide the window!
 
 		sleep(5)
 

@@ -12,7 +12,7 @@
 
 /datum/TCS_Compiler
 	var/n_Interpreter/TCS_Interpreter/interpreter
-	var/obj/machinery/telecomms/server/Holder	// the server that is running the code
+	var/obj/machinery/telecoms/server/Holder	// the server that is running the code
 	var/ready = 1 // 1 if ready to run code
 
 	/* -- Compile a raw block of text -- */
@@ -187,7 +187,7 @@
 	signal.frequency 		= interpreter.GetVar("$freq")
 
 	var/setname = ""
-	var/obj/machinery/telecomms/server/S = signal.data["server"]
+	var/obj/machinery/telecoms/server/S = signal.data["server"]
 	if(interpreter.GetVar("$source") in S.stored_names)
 		setname = interpreter.GetVar("$source")
 	else
@@ -206,7 +206,7 @@
 /*  -- Actual language proc code --  */
 /datum/signal/proc/mem(var/address, var/value)
 	if(istext(address))
-		var/obj/machinery/telecomms/server/S = data["server"]
+		var/obj/machinery/telecoms/server/S = data["server"]
 
 		if(!value && value != 0)
 			return S.memory[address]
@@ -216,7 +216,7 @@
 
 /datum/signal/proc/tcombroadcast(var/message, var/freq, var/source, var/job)
 	var/datum/signal/newsign = new
-	var/obj/machinery/telecomms/server/S = data["server"]
+	var/obj/machinery/telecoms/server/S = data["server"]
 	var/obj/item/device/radio/hradio = S.server_radio
 
 	if(!hradio)
@@ -261,6 +261,6 @@
 	newsign.data["vmask"] = 0
 	newsign.data["level"] = list()
 
-	var/pass = S.relay_information(newsign, /obj/machinery/telecomms/hub)
+	var/pass = S.relay_information(newsign, /obj/machinery/telecoms/hub)
 	if(!pass)
-		S.relay_information(newsign, /obj/machinery/telecomms/broadcaster) // send this simple message to broadcasters
+		S.relay_information(newsign, /obj/machinery/telecoms/broadcaster) // send this simple message to broadcasters
