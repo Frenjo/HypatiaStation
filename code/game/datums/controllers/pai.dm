@@ -22,11 +22,11 @@ CONTROLLER_DEF(pai)
 	if(href_list["download"])
 		var/datum/pAI_candidate/candidate = locate(href_list["candidate"])
 		var/obj/item/device/paicard/card = locate(href_list["device"])
-		if(card.pai)
+		if(!isnull(card.pai))
 			return
 		if(istype(card, /obj/item/device/paicard) && istype(candidate, /datum/pAI_candidate))
 			var/mob/living/silicon/pai/pai = new(card)
-			if(!candidate.name)
+			if(isnull(candidate.name))
 				pai.name = pick(GLOBL.ninja_names)
 			else
 				pai.name = candidate.name
@@ -51,39 +51,40 @@ CONTROLLER_DEF(pai)
 			if("name")
 				t = input("Enter a name for your pAI", "pAI Name", candidate.name) as text
 				if(t)
-					candidate.name = copytext(sanitize(t),1,MAX_NAME_LEN)
+					candidate.name = copytext(sanitize(t), 1, MAX_NAME_LEN)
 			if("desc")
 				t = input("Enter a description for your pAI", "pAI Description", candidate.description) as message
 				if(t)
-					candidate.description = copytext(sanitize(t),1,MAX_MESSAGE_LEN)
+					candidate.description = copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
 			if("role")
 				t = input("Enter a role for your pAI", "pAI Role", candidate.role) as text
 				if(t)
-					candidate.role = copytext(sanitize(t),1,MAX_MESSAGE_LEN)
+					candidate.role = copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
 			if("ooc")
 				t = input("Enter any OOC comments", "pAI OOC Comments", candidate.comments) as message
 				if(t)
-					candidate.comments = copytext(sanitize(t),1,MAX_MESSAGE_LEN)
+					candidate.comments = copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
 			if("save")
 				candidate.savefile_save(usr)
 			if("load")
 				candidate.savefile_load(usr)
-				//In case people have saved unsanitized stuff.
-				if(candidate.name)
-					candidate.name = copytext(sanitize(candidate.name),1,MAX_NAME_LEN)
-				if(candidate.description)
-					candidate.description = copytext(sanitize(candidate.description),1,MAX_MESSAGE_LEN)
-				if(candidate.role)
-					candidate.role = copytext(sanitize(candidate.role),1,MAX_MESSAGE_LEN)
-				if(candidate.comments)
-					candidate.comments = copytext(sanitize(candidate.comments),1,MAX_MESSAGE_LEN)
+				// In case people have saved unsanitized stuff.
+				if(!isnull(candidate.name))
+					candidate.name = copytext(sanitize(candidate.name), 1, MAX_NAME_LEN)
+				if(!isnull(candidate.description))
+					candidate.description = copytext(sanitize(candidate.description), 1, MAX_MESSAGE_LEN)
+				if(!isnull(candidate.role))
+					candidate.role = copytext(sanitize(candidate.role), 1, MAX_MESSAGE_LEN)
+				if(!isnull(candidate.comments))
+					candidate.comments = copytext(sanitize(candidate.comments), 1, MAX_MESSAGE_LEN)
 
 			if("submit")
-				if(candidate)
-					candidate.ready = TRUE
-					for(var/obj/item/device/paicard/p in world)
-						if(p.looking_for_personality == 1)
-							p.alertUpdate()
+				if(!isnull(candidate))
+					return
+				candidate.ready = TRUE
+				for(var/obj/item/device/paicard/p in world)
+					if(p.looking_for_personality == 1)
+						p.alertUpdate()
 				usr << browse(null, "window=paiRecruit")
 				return
 		recruit_window(usr)
@@ -95,7 +96,7 @@ CONTROLLER_DEF(pai)
 			break
 		if(c.key == M.key)
 			candidate = c
-	if(!candidate)
+	if(isnull(candidate))
 		candidate = new /datum/pAI_candidate()
 		candidate.key = M.key
 		pAI_candidates.Add(candidate)
@@ -341,7 +342,7 @@ CONTROLLER_DEF(pai)
 				continue
 			else
 				asked.Remove(O.key)
-		if(O.client)
+		if(!isnull(O.client))
 			var/hasSubmitted = 0
 			for(var/datum/pAI_candidate/c in global.CTpai.pAI_candidates)
 				if(c.key == O.key)
@@ -350,19 +351,20 @@ CONTROLLER_DEF(pai)
 				question(O.client)
 
 /datum/controller/pai/proc/question(client/C)
-	spawn(0)
-		if(!C)
-			return
-		asked.Add(C.key)
-		asked[C.key] = world.time
-		var/response = alert(C, "Someone is requesting a pAI personality. Would you like to play as a personal AI?", "pAI Request", "Yes", "No", "Never for this round")
-		if(!C)
-			return		//handle logouts that happen whilst the alert is waiting for a response.
-		if(response == "Yes")
-			recruit_window(C.mob)
-		else if (response == "Never for this round")
-			var/warning = alert(C, "Are you sure? This action will be undoable and you will need to wait until next round.", "You sure?", "Yes", "No")
-			if(warning == "Yes")
-				asked[C.key] = INFINITY
-			else
-				question(C)
+	set waitfor = FALSE
+
+	if(isnull(C))
+		return
+	asked.Add(C.key)
+	asked[C.key] = world.time
+	var/response = alert(C, "Someone is requesting a pAI personality. Would you like to play as a personal AI?", "pAI Request", "Yes", "No", "Never for this round")
+	if(isnull(C))
+		return	// Handle logouts that happen whilst the alert is waiting for a response.
+	if(response == "Yes")
+		recruit_window(C.mob)
+	else if(response == "Never for this round")
+		var/warning = alert(C, "Are you sure? This action will be undoable and you will need to wait until next round.", "You sure?", "Yes", "No")
+		if(warning == "Yes")
+			asked[C.key] = INFINITY
+		else
+			question(C)

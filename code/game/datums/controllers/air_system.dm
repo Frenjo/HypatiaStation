@@ -252,9 +252,9 @@ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_
 	var/a_to_b = get_dir(A, B)
 	var/b_to_a = get_dir(B, A)
 
-	if(!A.connections)
+	if(isnull(A.connections))
 		A.connections = new /connection_manager()
-	if(!B.connections)
+	if(isnull(B.connections))
 		B.connections = new /connection_manager()
 
 	if(A.connections.get(a_to_b))

@@ -11,7 +11,7 @@ PROCESS_DEF(event)
 	var/i = 1
 	while(i <= length(GLOBL.events))
 		var/datum/event/event = GLOBL.events[i]
-		if(event)
+		if(!isnull(event))
 			event.process()
 			i++
 			continue

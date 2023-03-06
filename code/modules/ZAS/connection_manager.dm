@@ -30,7 +30,7 @@ Class Procs:
 
 */
 /turf
-	var/tmp/connection_manager/connections
+	var/tmp/connection_manager/connections = null
 
 /connection_manager
 	var/connection/N
@@ -130,4 +130,4 @@ Class Procs:
 	#endif
 
 /connection_manager/proc/check(connection/c)
-	return c && c.valid()
+	return c?.valid()

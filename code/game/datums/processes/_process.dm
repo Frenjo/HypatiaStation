@@ -247,8 +247,8 @@
 /datum/process/proc/getStatus()
 	return status
 
-/datum/process/proc/getStatusText(s = 0)
-	if(!s)
+/datum/process/proc/getStatusText(s = null)
+	if(isnull(s))
 		s = status
 	switch(s)
 		if(PROCESS_STATUS_IDLE)

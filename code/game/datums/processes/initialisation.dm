@@ -21,7 +21,7 @@ PROCESS_DEF(initialisation)
 	if(!istype(A))
 		CRASH("Invalid type. Was [A.type].")
 	GLOBL.queued_initialisations.Add(A)
-	if(global.PCinitialisation && global.PCinitialisation.disabled)
+	if(global.PCinitialisation?.disabled)
 		global.PCinitialisation.enable() // If a new object has been queued and the initializer is disabled, awaken it
 
 /proc/dequeue_for_initialisation(atom/A)

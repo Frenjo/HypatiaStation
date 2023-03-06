@@ -14,7 +14,7 @@
 	var/name = "invalid"
 	var/config_tag = null
 	var/intercept_hacked = 0
-	var/votable = 1
+	var/votable = TRUE
 	var/probability = 0
 	var/station_was_nuked = 0 //see nuclearbomb.dm and malfunction.dm
 	var/explosion_in_progress = 0 //sit back and relax

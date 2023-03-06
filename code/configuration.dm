@@ -33,8 +33,8 @@
 	var/static/list/resource_urls = null
 
 	// Python.
-	var/static/python_path = ""					//Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
-	var/static/use_lib_nudge = FALSE			//Use the C library nudge instead of the python nudge.
+	var/static/python_path = null				// Path to the python executable. Defaults to "python" on windows and "/usr/bin/env python2" on unix
+	var/static/use_lib_nudge = FALSE			// Use the C library nudge instead of the python nudge.
 	var/static/nudge_script_path = "nudge.py"	// where the nudge.py script is located
 
 	// IRC.
@@ -220,14 +220,14 @@
 	var/list/result = list()
 	var/list/lines = file2list(filename)
 	for(var/t in lines)
-		if(!t)
+		if(isnull(t))
 			continue
 		t = trim(t)
 		if(length(t) == 0 || copytext(t, 1, 2) == "#")
 			continue
 		var/pos = findtext(t, " ")
 		var/name = (pos ? lowertext(copytext(t, 1, pos)) : lowertext(t))
-		if(!name)
+		if(isnull(name))
 			continue
 		var/value = (pos ? copytext(t, pos + 1) : TRUE)
 		result[name] = value
@@ -351,7 +351,7 @@
 				var/prob_pos = findtext(value, " ")
 				var/prob_name = null
 				var/prob_value = null
-				if(prob_pos)
+				if(!isnull(prob_pos))
 					prob_name = lowertext(copytext(value, 1, prob_pos))
 					prob_value = copytext(value, prob_pos + 1)
 					if(prob_name in modes)
@@ -599,22 +599,21 @@
 				log_misc("Unknown setting in config/forumdbconfig.txt: '[option]'")
 
 /configuration/proc/load_gamemodes()
-	var/list/L = SUBTYPESOF(/datum/game_mode)
-	for(var/T in L)
+	for(var/T in SUBTYPESOF(/datum/game_mode))
 		// I wish I didn't have to instance the game modes in order to look up
 		// their information, but it is the only way (at least that I know of).
 		var/datum/game_mode/M = new T()
 
-		if(M.config_tag)
+		if(!isnull(M.config_tag))
 			if(!(M.config_tag in modes))	// ensure each mode is added only once
 				log_misc("Adding game mode [M.name] ([M.config_tag]) to configuration.")
-				src.modes += M.config_tag
-				src.mode_names[M.config_tag] = M.name
-				src.probabilities[M.config_tag] = M.probability
+				modes.Add(M.config_tag)
+				mode_names[M.config_tag] = M.name
+				probabilities[M.config_tag] = M.probability
 				if(M.votable)
-					src.votable_modes += M.config_tag
+					votable_modes.Add(M.config_tag)
 		qdel(M)
-	src.votable_modes += "secret"
+	votable_modes.Add("secret")
 
 /configuration/proc/pick_mode(mode_name)
 	// I wish I didn't have to instance the game modes in order to look up
@@ -627,7 +626,7 @@
 	return new /datum/game_mode/extended()
 
 /configuration/proc/get_runnable_modes()
-	var/list/datum/game_mode/runnable_modes = new
+	var/list/datum/game_mode/runnable_modes = list()
 	for(var/T in SUBTYPESOF(/datum/game_mode))
 		var/datum/game_mode/M = new T()
 		//world << "DEBUG: [T], tag=[M.config_tag], prob=[probabilities[M.config_tag]]"
@@ -644,7 +643,7 @@
 
 /configuration/proc/post_load()
 	//apply a default value to python_path, if needed
-	if(!python_path)
+	if(isnull(python_path))
 		if(world.system_type == UNIX)
 			python_path = "/usr/bin/env python2"
 		else //probably windows, if not this should work anyway

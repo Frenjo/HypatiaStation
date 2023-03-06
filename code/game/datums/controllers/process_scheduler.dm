@@ -74,7 +74,7 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 
 /datum/controller/process_scheduler/setup()
 	// There can be only one
-	if(global.process_scheduler && (global.process_scheduler != src))
+	if(!isnull(global.process_scheduler) && (global.process_scheduler != src))
 		del(src)
 		return 0
 

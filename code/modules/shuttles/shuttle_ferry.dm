@@ -18,8 +18,8 @@
 	var/area_station
 	var/area_offsite
 	//TODO: change location to a string and use a mapping for area and dock targets.
-	var/dock_target_station
-	var/dock_target_offsite
+	var/dock_target_station = null
+	var/dock_target_offsite = null
 
 	var/last_dock_attempt_time = 0
 

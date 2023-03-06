@@ -84,7 +84,7 @@ CONTROLLER_DEF(game_ticker)
 /datum/controller/game_ticker/setup()
 	//Create and announce mode
 	if(master_mode == "secret")
-		src.hide_mode = TRUE
+		hide_mode = TRUE
 	var/list/datum/game_mode/runnable_modes
 	if(master_mode == "random" || master_mode == "secret")
 		runnable_modes = CONFIG_GET(get_runnable_modes())
@@ -95,16 +95,15 @@ CONTROLLER_DEF(game_ticker)
 		if(secret_force_mode != "secret")
 			var/datum/game_mode/M = global.config.pick_mode(secret_force_mode)
 			if(M.can_start())
-				src.mode = global.config.pick_mode(secret_force_mode)
+				mode = global.config.pick_mode(secret_force_mode)
 		global.CToccupations.reset_occupations()
-		if(!src.mode)
-			src.mode = pickweight(runnable_modes)
-		if(src.mode)
-			var/mtype = src.mode.type
-			src.mode = new mtype
+		if(isnull(mode))
+			mode = pickweight(runnable_modes)
+		if(!isnull(mode))
+			mode = new mode.type()
 	else
-		src.mode = global.config.pick_mode(master_mode)
-	if(!src.mode.can_start())
+		mode = global.config.pick_mode(master_mode)
+	if(!mode.can_start())
 		to_world("<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
 		qdel(mode)
 		current_state = GAME_STATE_PREGAME
@@ -113,7 +112,7 @@ CONTROLLER_DEF(game_ticker)
 
 	//Configure mode and assign player to special mode stuff
 	global.CToccupations.divide_occupations() //Distribute jobs
-	var/can_continue = src.mode.pre_setup()//Setup special modes
+	var/can_continue = mode.pre_setup()//Setup special modes
 	if(!can_continue)
 		qdel(mode)
 		current_state = GAME_STATE_PREGAME
@@ -129,7 +128,7 @@ CONTROLLER_DEF(game_ticker)
 		to_world("<B>The current game mode is - Secret!</B>")
 		to_world("<B>Possibilities:</B> [english_list(modes)]")
 	else
-		src.mode.announce()
+		mode.announce()
 
 	current_state = GAME_STATE_PLAYING
 	create_characters() //Create player characters and transfer them
@@ -178,7 +177,7 @@ CONTROLLER_DEF(game_ticker)
 
 //Plus it provides an easy way to make cinematics for other events. Just use this as a template :)
 /datum/controller/game_ticker/proc/station_explosion_cinematic(station_missed = 0, override = null)
-	if(cinematic)
+	if(!isnull(cinematic))
 		return	//already a cinematic in progress!
 
 	//initialise our cinematic screen object
@@ -194,13 +193,11 @@ CONTROLLER_DEF(game_ticker)
 	if(station_missed)
 		for(var/mob/living/M in GLOBL.living_mob_list)
 			M.buckled = temp_buckle				//buckles the mob so it can't do anything
-			if(M.client)
-				M.client.screen.Add(cinematic)	//show every client the cinematic
+			M.client?.screen.Add(cinematic)	//show every client the cinematic
 	else	//nuke kills everyone on z-level 1 to prevent "hurr-durr I survived"
 		for(var/mob/living/M in GLOBL.living_mob_list)
 			M.buckled = temp_buckle
-			if(M.client)
-				M.client.screen.Add(cinematic)
+			M.client?.screen.Add(cinematic)
 
 			switch(M.z)
 				if(0)	//inside a crate or something
@@ -269,35 +266,38 @@ CONTROLLER_DEF(game_ticker)
 	//Otherwise if its a verb it will continue on afterwards.
 	sleep(300)
 
-	if(cinematic)
+	if(!isnull(cinematic))
 		qdel(cinematic)		//end the cinematic
-	if(temp_buckle)
+	if(!isnull(temp_buckle))
 		qdel(temp_buckle)	//release everybody
 	return
 
 /datum/controller/game_ticker/proc/create_characters()
 	for(var/mob/new_player/player in GLOBL.player_list)
-		if(player.ready && player.mind)
-			if(player.mind.assigned_role == "AI")
-				player.close_spawn_windows()
-				player.AIize()
-			else if(!player.mind.assigned_role)
-				continue
-			else
-				player.create_character()
-				qdel(player)
+		if(!player.ready || isnull(player.mind))
+			continue
+		if(player.mind.assigned_role == "AI")
+			player.close_spawn_windows()
+			player.AIize()
+		else if(isnull(player.mind.assigned_role))
+			continue
+		else
+			player.create_character()
+			qdel(player)
 
 /datum/controller/game_ticker/proc/collect_minds()
 	for(var/mob/living/player in GLOBL.player_list)
-		if(player.mind)
+		if(!isnull(player.mind))
 			global.CTgame_ticker.minds.Add(player.mind)
 
 /datum/controller/game_ticker/proc/equip_characters()
-	var/captainless = 1
+	var/captainless = TRUE
 	for(var/mob/living/carbon/human/player in GLOBL.player_list)
-		if(player && player.mind && player.mind.assigned_role)
+		if(isnull(player) || isnull(player.mind))
+			continue
+		if(player.mind.assigned_role)
 			if(player.mind.assigned_role == "Captain")
-				captainless = 0
+				captainless = FALSE
 			if(player.mind.assigned_role != "MODE")
 				global.CToccupations.equip_rank(player, player.mind.assigned_role, 0)
 				EquipCustomItems(player)
@@ -330,8 +330,7 @@ CONTROLLER_DEF(game_ticker)
 				if(!delay_end)
 					to_world(SPAN_INFO_B("Restarting in [restart_timeout / 10] seconds."))
 
-			if(blackbox)
-				blackbox.save_all_data_to_sql()
+			blackbox?.save_all_data_to_sql()
 
 			if(!delay_end)
 				sleep(restart_timeout)
@@ -365,14 +364,17 @@ CONTROLLER_DEF(game_ticker)
 			to_world(robolist)
 
 	for(var/mob/living/silicon/robot/robo in GLOBL.mob_list)
-		if(!robo.connected_ai)
-			if(robo.stat != DEAD)
-				to_world("<b>[robo.name] (Played by: [robo.key]) survived as an AI-less borg! Its laws were:</b>")
-			else
-				to_world("<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a cyborg without an AI. Its laws were:</b>")
+		if(isnull(robo))
+			continue
+		if(!isnull(robo.connected_ai))
+			continue
 
-			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
-				robo.laws.show_laws(world)
+		if(robo.stat != DEAD)
+			to_world("<b>[robo.name] (Played by: [robo.key]) survived as an AI-less borg! Its laws were:</b>")
+		else
+			to_world("<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a cyborg without an AI. Its laws were:</b>")
+
+		robo.laws.show_laws(world) // How the hell do we lose robo between here and the world messages directly above this?
 
 	mode.declare_completion()//To declare normal completion.
 
@@ -386,7 +388,7 @@ CONTROLLER_DEF(game_ticker)
 	//Look into all mobs in world, dead or alive
 	for(var/datum/mind/Mind in minds)
 		var/temprole = Mind.special_role
-		if(temprole)							//if they are an antagonist of some sort.
+		if(!isnull(temprole))					//if they are an antagonist of some sort.
 			if(temprole in total_antagonists)	//If the role exists already, add the name to it
 				total_antagonists[temprole] += ", [Mind.name]([Mind.key])"
 			else

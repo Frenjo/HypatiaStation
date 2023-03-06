@@ -34,8 +34,7 @@ PROCESS_DEF(ticker)
 	// It's going to be one of those "temporary fixes" they find is still in the code two decades later.
 	while(!global.CTmaster.initialised)
 		sleep(1)
-	if(global.CTgame_ticker)
-		global.CTgame_ticker.pregame()
+	global.CTgame_ticker?.pregame()
 
 /datum/process/ticker/proc/getLastTickerTimeDuration()
 	return lastTickerTimeDuration

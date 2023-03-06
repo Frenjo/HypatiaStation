@@ -152,12 +152,12 @@
 /world/proc/load_mods()
 	if(CONFIG_GET(admin_legacy_system))
 		var/text = file2text("config/moderators.txt")
-		if(!text)
+		if(isnull(text))
 			error("Failed to load config/mods.txt")
 		else
 			var/list/lines = splittext(text, "\n")
 			for(var/line in lines)
-				if(!line)
+				if(isnull(line))
 					continue
 
 				if(copytext(line, 1, 2) == ";")
@@ -185,8 +185,8 @@
 
 	var/list/features = list()
 
-	if(global.CTgame_ticker)
-		if(global.CTgame_ticker.master_mode)
+	if(!isnull(global.CTgame_ticker))
+		if(!isnull(global.CTgame_ticker.master_mode))
 			features += global.CTgame_ticker.master_mode
 	else
 		features += "<b>STARTING</b>"
@@ -204,7 +204,7 @@
 
 	var/n = 0
 	for(var/mob/M in GLOBL.player_list)
-		if(M.client)
+		if(!isnull(M.client))
 			n++
 
 	if(n > 1)

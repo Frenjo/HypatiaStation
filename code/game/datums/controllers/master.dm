@@ -18,19 +18,19 @@ CONTROLLER_DEF(master)
 			qdel(global.CTmaster)
 		global.CTmaster = src
 
-	if(!global.CToccupations)
+	if(isnull(global.CToccupations))
 		global.CToccupations = new /datum/controller/occupations()
 		global.CToccupations.setup_occupations()
 		global.CToccupations.load_jobs("config/jobs.txt")
 		to_world(SPAN_DANGER("Job setup complete."))
 	
-	if(!global.CTradio)
+	if(isnull(global.CTradio))
 		global.CTradio = new /datum/controller/radio()
 		to_world(SPAN_DANGER("Radio setup complete."))
 
-	if(!GLOBL.syndicate_code_phrase)
+	if(isnull(GLOBL.syndicate_code_phrase))
 		GLOBL.syndicate_code_phrase = generate_code_phrase()
-	if(!GLOBL.syndicate_code_response)
+	if(isnull(GLOBL.syndicate_code_response))
 		GLOBL.syndicate_code_response = generate_code_phrase()
 
 /datum/controller/master/setup()

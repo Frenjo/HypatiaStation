@@ -6,7 +6,7 @@
 	set name = "Restart Controller"
 	set desc = "Restart one of the various periodic loop controllers for the game (be careful!)"
 
-	if(!holder)
+	if(isnull(holder))
 		return
 	switch(controller)
 		if("Supply")
@@ -20,7 +20,7 @@
 	set name = "Debug Configuration"
 	set desc = "Debug the global configuration object for the game (be careful!)"
 
-	if(!holder)
+	if(isnull(holder))
 		return
 	
 	debug_variables(CONFIG)
@@ -37,7 +37,7 @@
 	name = "clickable"
 
 	// The controller to debug when the button is clicked.
-	var/datum/controller/target
+	var/datum/controller/target = null
 
 /obj/clickable_stat/New(loc, text, datum/controller/target)
 	. = ..()
@@ -45,7 +45,7 @@
 	src.target = target
 
 /obj/clickable_stat/Click()
-	if(!usr.client.holder || !target)
+	if(isnull(usr.client.holder) || isnull(target))
 		return
 	
 	usr.client.debug_variables(target)

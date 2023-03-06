@@ -25,7 +25,7 @@ CONTROLLER_DEF(vote)
 		global.CTvote = src
 
 /datum/controller/vote/process()	//called by master_controller
-	if(mode)
+	if(!isnull(mode))
 		// No more change mode votes after the game has started.
 		// 3 is GAME_STATE_PLAYING, but that #define is undefined for some reason
 		if(mode == "gamemode" && global.CTgame_ticker.current_state >= 2)
@@ -179,8 +179,7 @@ CONTROLLER_DEF(vote)
 	if(restart)
 		to_world("World restarting due to vote...")
 		feedback_set_details("end_error", "restart vote")
-		if(blackbox)
-			blackbox.save_all_data_to_sql()
+		blackbox?.save_all_data_to_sql()
 		sleep(50)
 		log_game("Rebooting due to restart vote")
 		world.Reboot()
@@ -188,10 +187,10 @@ CONTROLLER_DEF(vote)
 	return .
 
 /datum/controller/vote/proc/submit_vote(ckey, vote)
-	if(mode)
+	if(!isnull(mode))
 		if(CONFIG_GET(vote_no_dead) && usr.stat == DEAD && !usr.client.holder)
 			return 0
-		if(current_votes[ckey])
+		if(!isnull(current_votes[ckey]))
 			choices[choices[current_votes[ckey]]]--
 		if(vote && 1 <= vote && vote <= length(choices))
 			voted.Add(usr.ckey)
@@ -201,7 +200,7 @@ CONTROLLER_DEF(vote)
 	return 0
 
 /datum/controller/vote/proc/initiate_vote(vote_type, initiator_key)
-	if(!mode)
+	if(isnull(mode))
 		if(started_time != null && !check_rights(R_ADMIN))
 			var/next_allowed_time = (started_time + CONFIG_GET(vote_delay))
 			if(next_allowed_time > world.time)
@@ -212,7 +211,7 @@ CONTROLLER_DEF(vote)
 			if("restart")
 				choices.Add("Restart Round", "Continue Playing")
 			if("gamemode")
-				if(global.CTgame_ticker.current_state >= 2)
+				if(global.CTgame_ticker.current_state >= GAME_STATE_SETTING_UP)
 					return 0
 				choices.Add(CONFIG_GET(votable_modes))
 			if("crew_transfer")
@@ -223,21 +222,22 @@ CONTROLLER_DEF(vote)
 					if(get_security_level() == "red" || get_security_level() == "delta")
 						to_chat(initiator_key, "The current alert status is too high to call for a crew transfer!")
 						return 0
-					if(global.CTgame_ticker.current_state <= 2)
+					if(global.CTgame_ticker.current_state <= GAME_STATE_SETTING_UP)
 						to_chat(initiator_key, "The crew transfer button has been disabled!")
 						return 0
 					question = "End the shift?"
 					choices.Add("Initiate Crew Transfer", "Continue The Round")
 			if("custom")
 				question = html_encode(input(usr, "What is the vote for?") as text | null)
-				if(!question)
+				if(isnull(question))
 					return 0
 				for(var/i = 1, i <= 10, i++)
 					var/option = capitalize(html_encode(input(usr, "Please enter an option or hit cancel to finish") as text | null))
 					if(!option || mode || !usr.client)
 						break
 					choices.Add(option)
-			else			return 0
+			else
+				return 0
 		mode = vote_type
 		initiator = initiator_key
 		started_time = world.time
@@ -283,19 +283,19 @@ CONTROLLER_DEF(vote)
 	return 0
 
 /datum/controller/vote/proc/interface(client/C)
-	if(!C)
+	if(isnull(C))
 		return
-	var/admin = 0
-	var/trialmin = 0
-	if(C.holder)
-		admin = 1
+	var/admin = FALSE
+	var/trialmin = FALSE
+	if(!isnull(C.holder))
+		admin = TRUE
 		if(C.holder.rights & R_ADMIN)
-			trialmin = 1
+			trialmin = TRUE
 	voting |= C
 
 	. = "<html><head><title>Voting Panel</title></head><body>"
-	if(mode)
-		if(question)
+	if(!isnull(mode))
+		if(!isnull(question))
 			. += "<h2>Vote: '[question]'</h2>"
 		else
 			. += "<h2>Vote: [capitalize(mode)]</h2>"
@@ -344,7 +344,7 @@ CONTROLLER_DEF(vote)
 	return .
 
 /datum/controller/vote/Topic(href, list/href_list, hsrc)
-	if(!usr || !usr.client)
+	if(isnull(usr) || isnull(usr.client))
 		return	//not necessary but meh...just in-case somebody does something stupid
 	switch(href_list["vote"])
 		if("close")
@@ -352,25 +352,25 @@ CONTROLLER_DEF(vote)
 			usr << browse(null, "window=vote")
 			return
 		if("cancel")
-			if(usr.client.holder)
+			if(!isnull(usr.client.holder))
 				reset()
 		if("toggle_restart")
-			if(usr.client.holder)
+			if(!isnull(usr.client.holder))
 				CONFIG_SET(allow_vote_restart, !CONFIG_GET(allow_vote_restart))
 		if("toggle_gamemode")
-			if(usr.client.holder)
+			if(!isnull(usr.client.holder))
 				CONFIG_SET(allow_vote_mode, !CONFIG_GET(allow_vote_mode))
 		if("restart")
-			if(CONFIG_GET(allow_vote_restart) || usr.client.holder)
+			if(CONFIG_GET(allow_vote_restart) || !isnull(usr.client.holder))
 				initiate_vote("restart", usr.key)
 		if("gamemode")
-			if(CONFIG_GET(allow_vote_mode) || usr.client.holder)
+			if(CONFIG_GET(allow_vote_mode) || !isnull(usr.client.holder))
 				initiate_vote("gamemode", usr.key)
 		if("crew_transfer")
-			if(CONFIG_GET(allow_vote_restart) || usr.client.holder)
+			if(CONFIG_GET(allow_vote_restart) || !isnull(usr.client.holder))
 				initiate_vote("crew_transfer", usr.key)
 		if("custom")
-			if(usr.client.holder)
+			if(!isnull(usr.client.holder))
 				initiate_vote("custom", usr.key)
 		else
 			submit_vote(usr.ckey, round(text2num(href_list["vote"])))
@@ -380,5 +380,5 @@ CONTROLLER_DEF(vote)
 	set category = "OOC"
 	set name = "Vote"
 
-	if(global.CTvote)
+	if(!isnull(global.CTvote))
 		src << browse(global.CTvote.interface(client), "window=vote;can_close=0")

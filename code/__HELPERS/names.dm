@@ -140,9 +140,9 @@ GLOBAL_GLOBL_INIT(syndicate_name, null)
 	return name
 
 
-//Traitors and traitor silicons will get these. Revs will not.
-GLOBAL_GLOBL(syndicate_code_phrase)		//Code phrase for traitors.
-GLOBAL_GLOBL(syndicate_code_response)	//Code response for traitors.
+// Traitors and traitor silicons will get these. Revs will not.
+GLOBAL_GLOBL_INIT(syndicate_code_phrase, null)		// Code phrase for traitors.
+GLOBAL_GLOBL_INIT(syndicate_code_response, null)	// Code response for traitors.
 
 /*
 	Should be expanded.

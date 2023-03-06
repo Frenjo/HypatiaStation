@@ -36,7 +36,7 @@ CONTROLLER_DEF(radio)
 /datum/controller/radio/proc/add_object(obj/device as obj, new_frequency as num, filter = null as text|null)
 	var/f_text = num2text(new_frequency)
 	var/datum/radio_frequency/frequency = frequencies[f_text]
-	if(!frequency)
+	if(isnull(frequency))
 		frequency = new /datum/radio_frequency()
 		frequency.frequency = new_frequency
 		frequencies[f_text] = frequency
@@ -47,7 +47,7 @@ CONTROLLER_DEF(radio)
 /datum/controller/radio/proc/remove_object(obj/device, old_frequency)
 	var/f_text = num2text(old_frequency)
 	var/datum/radio_frequency/frequency = frequencies[f_text]
-	if(frequency)
+	if(!isnull(frequency))
 		frequency.remove_listener(device)
 		if(!length(frequency.devices))
 			qdel(frequency)
@@ -57,7 +57,7 @@ CONTROLLER_DEF(radio)
 /datum/controller/radio/proc/return_frequency(new_frequency as num)
 	var/f_text = num2text(new_frequency)
 	var/datum/radio_frequency/frequency = frequencies[f_text]
-	if(!frequency)
+	if(isnull(frequency))
 		frequency = new /datum/radio_frequency()
 		frequency.frequency = new_frequency
 		frequencies[f_text] = frequency

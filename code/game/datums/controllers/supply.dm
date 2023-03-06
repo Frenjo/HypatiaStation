@@ -48,7 +48,7 @@ CONTROLLER_DEF(supply)
 //Sellin
 /datum/controller/supply/proc/sell()
 	var/area/area_shuttle = shuttle.get_location_area()
-	if(!area_shuttle)
+	if(isnull(area_shuttle))
 		return
 
 	var/plasma_count = 0
@@ -90,7 +90,7 @@ CONTROLLER_DEF(supply)
 		return
 
 	var/area/area_shuttle = shuttle.get_location_area()
-	if(!area_shuttle)
+	if(isnull(area_shuttle))
 		return
 
 	var/list/clear_turfs = list()

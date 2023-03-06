@@ -59,7 +59,7 @@ PROCESS_DEF(garbage)
 		#ifdef GC_DEBUG
 		testing("GC: [refID] old enough to test: GCd_at_time: [GCd_at_time] time_to_kill: [time_to_kill] current: [world.time]")
 		#endif
-		if(A && A.gc_destroyed == GCd_at_time) // So if something else coincidently gets the same ref, it's not deleted by mistake
+		if(A?.gc_destroyed == GCd_at_time) // So if something else coincidently gets the same ref, it's not deleted by mistake
 			// Something's still referring to the qdel'd object. Kill it.
 			testing("GC: -- \ref[A] | [A.type] was unable to be GC'd and was deleted --")
 			logging["[A.type]"]++
@@ -99,7 +99,7 @@ PROCESS_DEF(garbage)
 // Should be treated as a replacement for the 'del' keyword.
 // Datums passed to this will be given a chance to clean up references to allow the GC to collect them.
 /proc/qdel(datum/A)
-	if(!A)
+	if(isnull(A))
 		return
 	if(islist(A))
 		var/list/L = A
@@ -171,10 +171,10 @@ PROCESS_DEF(garbage)
 	set background = BACKGROUND_ENABLED
 	set src in world
 
-	if(!usr || !usr.client)
+	if(isnull(usr) || isnull(usr.client))
 		return
 
-	if(usr.client.running_find_references)
+	if(!isnull(usr.client.running_find_references))
 		testing("CANCELLED search for references to a [usr.client.running_find_references].")
 		usr.client.running_find_references = null
 		return
@@ -183,8 +183,7 @@ PROCESS_DEF(garbage)
 		return
 
 	// Remove this object from the list of things to be auto-deleted.
-	if(global.garbage_collector)
-		global.garbage_collector.destroyed.Remove("\ref[src]")
+	global.garbage_collector?.destroyed.Remove("\ref[src]")
 
 	usr.client.running_find_references = type
 	testing("Beginning search for references to a [type].")
@@ -197,7 +196,7 @@ PROCESS_DEF(garbage)
 		things.Add(thing)
 	testing("Collected list of things in search for references to a [type]. ([length(things)] Thing\s)")
 	for(var/datum/thing in things)
-		if(!usr.client.running_find_references)
+		if(isnull(usr.client.running_find_references))
 			return
 		for(var/varname in thing.vars)
 			var/variable = thing.vars[varname]
