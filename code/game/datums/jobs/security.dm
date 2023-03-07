@@ -33,7 +33,7 @@
 	alt_titles = list("Security Commander")
 
 /datum/job/hos/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	switch(H.backbag)
@@ -64,7 +64,7 @@
 	L.imp_in = H
 	L.implanted = 1
 	var/datum/organ/external/affected = H.organs_by_name["head"]
-	affected.implants += L
+	affected.implants.Add(L)
 	L.part = affected
 	return 1
 
@@ -89,7 +89,7 @@
 	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_MAINT_TUNNELS)
 
 /datum/job/warden/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	switch(H.backbag)
@@ -140,7 +140,7 @@
 	alt_titles = list("Forensic Technician")
 
 /datum/job/detective/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	switch(H.backbag)
@@ -160,7 +160,7 @@
 	H.equip_to_slot_or_del(CIG, SLOT_ID_WEAR_MASK)	*/
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
 	
-	if(H.mind.role_alt_title && H.mind.role_alt_title == "Forensic Technician")
+	if(!isnull(H.mind.role_alt_title) && H.mind.role_alt_title == "Forensic Technician")
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/forensics/blue(H), SLOT_ID_WEAR_SUIT)
 	else
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/det_suit(H), SLOT_ID_WEAR_SUIT)
@@ -198,7 +198,7 @@
 	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS)
 
 /datum/job/officer/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	switch(H.backbag)
@@ -245,7 +245,7 @@
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS)
 
 /datum/job/secpara/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	switch(H.backbag)

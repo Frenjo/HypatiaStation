@@ -37,7 +37,7 @@
 	return 1
 
 /datum/job/proc/get_access()
-	if(!CONFIG)	// Needed for robots.
+	if(isnull(CONFIG)) // Needed for robots.
 		return src.minimal_access.Copy()
 
 	if(CONFIG_GET(jobs_have_minimal_access))
@@ -52,7 +52,7 @@
 	return 0
 
 /datum/job/proc/available_in_days(client/C)
-	if(!C)
+	if(isnull(C))
 		return 0
 	if(!CONFIG_GET(use_age_restriction_for_jobs))
 		return 0

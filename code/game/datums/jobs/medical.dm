@@ -31,7 +31,7 @@
 	alt_titles = list("Medical Director")
 
 /datum/job/cmo/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	switch(H.backbag)
@@ -77,7 +77,7 @@
 	alt_titles = list("Surgeon", "Emergency Physician", "Nurse")
 
 /datum/job/doctor/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	switch(H.backbag)
@@ -88,7 +88,7 @@
 		if(4)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), SLOT_ID_BACK)
 
-	if(H.mind.role_alt_title)
+	if(!isnull(H.mind.role_alt_title))
 		switch(H.mind.role_alt_title)
 			if("Emergency Physician")
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), SLOT_ID_W_UNIFORM)
@@ -147,7 +147,7 @@
 	alt_titles = list("Pharmacist")
 
 /datum/job/chemist/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_med(H), SLOT_ID_L_EAR)
@@ -183,7 +183,7 @@
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_GENETICS, ACCESS_RESEARCH)
 
 /datum/job/geneticist/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_medsci(H), SLOT_ID_L_EAR)
@@ -222,7 +222,7 @@
 	alt_titles = list("Pathologist", "Microbiologist")
 
 /datum/job/virologist/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_med(H), SLOT_ID_L_EAR)
@@ -262,7 +262,7 @@
 	alt_titles = list("Psychologist")
 
 /datum/job/psychiatrist/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	switch(H.backbag)

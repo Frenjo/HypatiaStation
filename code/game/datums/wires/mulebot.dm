@@ -30,13 +30,13 @@ var/const/WIRE_BEACON_RX = 256	// beacon ping recv
 		if(WIRE_POWER1, WIRE_POWER2)
 			holder.visible_message(SPAN_NOTICE("\icon[holder] The charge light flickers."))
 		if(WIRE_AVOIDANCE)
-			holder.visible_message(SPAN_NOTICE("\icon[holder] The external warning lights flash briefly.</span>"))
+			holder.visible_message(SPAN_NOTICE("\icon[holder] The external warning lights flash briefly."))
 		if(WIRE_LOADCHECK)
-			holder.visible_message(SPAN_NOTICE("\icon[holder] The load platform clunks.</span>"))
+			holder.visible_message(SPAN_NOTICE("\icon[holder] The load platform clunks."))
 		if(WIRE_MOTOR1, WIRE_MOTOR2)
-			holder.visible_message(SPAN_NOTICE("\icon[holder] The drive motor whines briefly.</span>"))
+			holder.visible_message(SPAN_NOTICE("\icon[holder] The drive motor whines briefly."))
 		else
-			holder.visible_message(SPAN_NOTICE("\icon[holder] You hear a radio crackle.</span>"))
+			holder.visible_message(SPAN_NOTICE("\icon[holder] You hear a radio crackle."))
 
 // HELPER PROCS
 /datum/wires/mulebot/proc/Motor1()

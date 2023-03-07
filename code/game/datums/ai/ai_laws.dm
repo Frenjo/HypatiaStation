@@ -14,15 +14,15 @@
 /* General ai_law functions */
 /datum/ai_laws/proc/set_zeroth_law(law, law_borg = null)
 	zeroth = law
-	if(law_borg) //Making it possible for slaved borgs to see a different law 0 than their AI. --NEO
+	if(!isnull(law_borg)) // Making it possible for slaved borgs to see a different law 0 than their AI. --NEO
 		zeroth_borg = law_borg
 
 /datum/ai_laws/proc/add_inherent_law(law)
 	if(!(law in inherent))
-		inherent += law
+		inherent.Add(law)
 
 /datum/ai_laws/proc/add_ion_law(law)
-	ion += law
+	ion.Add(law)
 
 /datum/ai_laws/proc/clear_inherent_laws()
 	qdel(inherent)
@@ -30,18 +30,18 @@
 
 /datum/ai_laws/proc/add_supplied_law(number, law)
 	while(length(supplied) < number + 1)
-		supplied += ""
+		supplied.Add("")
 
 	supplied[number + 1] = law
 
 /datum/ai_laws/proc/clear_supplied_laws()
-	supplied = list()
+	supplied.Cut()
 
 /datum/ai_laws/proc/clear_ion_laws()
-	ion = list()
+	ion.Cut()
 
 /datum/ai_laws/proc/show_laws(who)
-	if(zeroth)
+	if(!isnull(zeroth))
 		to_chat(who, "0. [zeroth]")
 
 	for(var/index = 1, index <= length(ion), index++)

@@ -4,12 +4,10 @@
 	var/dy
 //	var/counter = 50		// to make the vars update during 1st call
 	var/rate
-	var/list/solars			// for debugging purposes, references solars_list at the constructor
 	var/nexttime = 3600		// Replacement for var/counter to force the sun to move every X IC minutes
 	var/lastAngleUpdate
 
 /datum/sun/New()
-	solars = GLOBL.solars_list
 	rate = rand(750, 1250) / 1000			// 75.0% - 125.0% of standard rotation
 	if(prob(50))
 		rate = -rate
@@ -34,7 +32,7 @@
 
 	if(lastAngleUpdate != angle)
 		for(var/obj/machinery/power/tracker/T in GLOBL.solars_list)
-			if(!T.powernet)
+			if(isnull(T.powernet))
 				GLOBL.solars_list.Remove(T)
 				continue
 			T.set_angle(angle)
@@ -60,10 +58,10 @@
 		dy = c / abs(s)
 
 	for(var/obj/machinery/power/solar/S in GLOBL.solars_list)
-		if(!S.powernet)
+		if(isnull(S.powernet))
 			GLOBL.solars_list.Remove(S)
 			continue
-		if(S.control)
+		if(!isnull(S.control))
 			occlusion(S)
 
 // for a solar panel, trace towards sun to see if we're in shadow

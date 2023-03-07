@@ -31,7 +31,7 @@
 	)
 
 /datum/job/rd/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/rd(H), SLOT_ID_L_EAR)
@@ -71,7 +71,7 @@
 	alt_titles = list("Researcher", "Xenoarcheologist", "Anomalist", "Plasma Researcher")
 
 /datum/job/scientist/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sci(H), SLOT_ID_L_EAR)
@@ -108,7 +108,7 @@
 	minimal_access = list(ACCESS_RESEARCH, ACCESS_XENOBIOLOGY)
 
 /datum/job/xenobiologist/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sci(H), SLOT_ID_L_EAR)
@@ -148,7 +148,7 @@
 	alt_titles = list("Biomechanical Engineer", "Mechatronic Engineer")
 
 /datum/job/roboticist/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_rob(H), SLOT_ID_L_EAR)

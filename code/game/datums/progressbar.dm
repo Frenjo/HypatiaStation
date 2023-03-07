@@ -7,7 +7,7 @@
 
 /datum/progressbar/New(mob/user, goal_number, atom/target)
 	. = ..()
-	if(!target)
+	if(isnull(target))
 		target = user
 	if(!istype(target))
 		EXCEPTION("Invalid target given")
@@ -17,27 +17,27 @@
 	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	bar.pixel_y = 32
 	src.user = user
-	if(user)
+	if(!isnull(user))
 		client = user.client
 
 /datum/progressbar/Destroy()
-	if(client)
+	if(!isnull(client))
 		client.images -= bar
 	qdel(bar)
 	return ..()
 
 /datum/progressbar/proc/update(progress)
-	if(!user || !user.client)
-		shown = 0
+	if(isnull(user) || isnull(user.client))
+		shown = FALSE
 		return
 	if(user.client != client)
-		if(client)
-			client.images -= bar
-		if(user.client)
-			user.client.images += bar
+		if(!isnull(client))
+			client.images.Remove(bar)
+		if(!isnull(user.client))
+			user.client.images.Add(bar)
 
 	progress = clamp(progress, 0, goal)
 	bar.icon_state = "prog_bar_[round(((progress / goal) * 100), 5)]"
 	if(!shown)
-		user.client.images += bar
-		shown = 1
+		user.client.images.Add(bar)
+		shown = TRUE

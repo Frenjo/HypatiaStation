@@ -143,7 +143,7 @@
 	if(stat & (NOPOWER | BROKEN))
 		return
 
-	if(connected_tracker?.powernet != powernet) //NOTE : handled here so that we don't add trackers to the processing list
+	if(connected_tracker && connected_tracker.powernet != powernet) //NOTE : handled here so that we don't add trackers to the processing list
 		connected_tracker.unset_control()
 
 	if(track == TRACKING_MANUAL && trackrate) //manual tracking and set a rotation speed

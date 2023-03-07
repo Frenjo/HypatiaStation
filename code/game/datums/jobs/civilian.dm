@@ -19,7 +19,7 @@
 	alt_titles = list("Barista", "Mixologist")
 
 /datum/job/bartender/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	switch(H.backbag)
@@ -72,7 +72,7 @@
 	alt_titles = list("Cook")
 
 /datum/job/chef/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
@@ -111,7 +111,7 @@
 	alt_titles = list("Hydroponicist", "Gardener")
 
 /datum/job/hydro/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
@@ -151,7 +151,7 @@
 	minimal_access = list(ACCESS_CLOWN, ACCESS_THEATRE)
 
 /datum/job/clown/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
@@ -190,7 +190,7 @@
 	minimal_access = list(ACCESS_MIME, ACCESS_THEATRE)
 
 /datum/job/mime/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	if(H.backbag == 2)
@@ -242,9 +242,9 @@
 	if(!H.miming)
 		to_chat(usr, "You still haven't atoned for your speaking transgression. Wait.")
 		return
-	H.verbs -= /client/proc/mimewall
+	H.verbs.Remove(/client/proc/mimewall)
 	spawn(300)
-		H.verbs += /client/proc/mimewall
+		H.verbs.Add(/client/proc/mimewall)
 	for(var/mob/V in viewers(H))
 		if(V != usr)
 			V.show_message("[H] looks as if a wall is in front of them.", 3, "", 2)
@@ -312,7 +312,7 @@
 	alt_titles = list("Custodial Specialist", "Sanitation Technician", "Cleaner")
 
 /datum/job/janitor/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
@@ -349,7 +349,7 @@
 	alt_titles = list("Journalist", "Reporter")
 
 /datum/job/librarian/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
@@ -387,7 +387,7 @@
 	alt_titles = list("Lawyer")
 
 /datum/job/lawyer/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec(H), SLOT_ID_L_EAR)
@@ -415,7 +415,7 @@
 	L.imp_in = H
 	L.implanted = 1
 	var/datum/organ/external/affected = H.organs_by_name["head"]
-	affected.implants += L
+	affected.implants.Add(L)
 	L.part = affected
 
 	return 1

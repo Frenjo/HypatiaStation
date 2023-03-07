@@ -17,7 +17,7 @@
 	alt_titles = list("Technical Assistant", "Medical Intern", "Research Assistant", "Security Cadet", "Visitor")
 
 /datum/job/assistant/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), SLOT_ID_W_UNIFORM)

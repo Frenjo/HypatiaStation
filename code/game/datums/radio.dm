@@ -19,18 +19,19 @@
 //	var/N_nf=0
 //	var/Nt=0
 	var/turf/start_point
-	if(range)
+	if(!isnull(range))
 		start_point = get_turf(source)
-		if(!start_point)
+		if(isnull(start_point))
 			qdel(signal)
 			return 0
-	if(filter) //here goes some copypasta. It is for optimisation. -rastaf0
+
+	if(!isnull(filter)) //here goes some copypasta. It is for optimisation. -rastaf0
 		for(var/obj/device in devices[filter])
 			if(device == source)
 				continue
-			if(range)
+			if(!isnull(range))
 				var/turf/end_point = get_turf(device)
-				if(!end_point)
+				if(isnull(end_point))
 					continue
 				//if(max(abs(start_point.x-end_point.x), abs(start_point.y-end_point.y)) <= range)
 				if(start_point.z != end_point.z || get_dist(start_point, end_point) > range)
@@ -39,9 +40,9 @@
 		for(var/obj/device in devices["_default"])
 			if(device == source)
 				continue
-			if(range)
+			if(!isnull(range))
 				var/turf/end_point = get_turf(device)
-				if(!end_point)
+				if(isnull(end_point))
 					continue
 				//if(max(abs(start_point.x-end_point.x), abs(start_point.y-end_point.y)) <= range)
 				if(start_point.z != end_point.z || get_dist(start_point, end_point) > range)
@@ -55,9 +56,9 @@
 			for(var/obj/device in devices[next_filter])
 				if(device == source)
 					continue
-				if(range)
+				if(!isnull(range))
 					var/turf/end_point = get_turf(device)
-					if(!end_point)
+					if(isnull(end_point))
 						continue
 					//if(max(abs(start_point.x-end_point.x), abs(start_point.y-end_point.y)) <= range)
 					if(start_point.z != end_point.z || get_dist(start_point, end_point) > range)
@@ -68,14 +69,14 @@
 //	del(signal)
 
 /datum/radio_frequency/proc/add_listener(obj/device as obj, filter as text | null)
-	if(!filter)
+	if(isnull(filter))
 		filter = "_default"
 	//log_admin("add_listener(device=[device],filter=[filter]) frequency=[frequency]")
 	var/list/obj/devices_line = devices[filter]
-	if(!devices_line)
-		devices_line = new
+	if(isnull(devices_line))
+		devices_line = list()
 		devices[filter] = devices_line
-	devices_line += device
+	devices_line.Add(device)
 //	var/list/obj/devices_line___ = devices[filter_str]
 //	var/l = devices_line___.len
 	//log_admin("DEBUG: devices_line.len=[devices_line.len]")
@@ -84,11 +85,11 @@
 /datum/radio_frequency/proc/remove_listener(obj/device)
 	for(var/devices_filter in devices)
 		var/list/devices_line = devices[devices_filter]
-		devices_line -= device
-		while (null in devices_line)
-			devices_line -= null
+		devices_line.Remove(device)
+		while(null in devices_line)
+			devices_line.Remove(null)
 		if(!length(devices_line))
-			devices -= devices_filter
+			devices.Remove(devices_filter)
 			qdel(devices_line)
 
 /*

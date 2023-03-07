@@ -27,7 +27,7 @@
 	)
 
 /datum/job/qm/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_qm(H), SLOT_ID_L_EAR)
@@ -66,7 +66,7 @@
 	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MAILSORTING)
 
 /datum/job/cargo_tech/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_cargo(H), SLOT_ID_L_EAR)
@@ -105,7 +105,7 @@
 	alt_titles = list("Head Miner")
 
 /datum/job/miningforeman/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_mineforeman(H), SLOT_ID_L_EAR)
@@ -155,7 +155,7 @@
 	alt_titles = list("Prospector")
 
 /datum/job/mining/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_mine(H), SLOT_ID_L_EAR)
@@ -206,7 +206,7 @@
 	alt_titles = list("Postman", "Delivery Technician") // Should probably change this to "Delivery Specialist", but "Cargo Technician" exists. -Frenjo
 
 /datum/job/mailman/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_cargo(H), SLOT_ID_L_EAR)

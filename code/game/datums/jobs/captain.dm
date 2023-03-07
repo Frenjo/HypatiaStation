@@ -18,7 +18,7 @@
 	minimal_player_age = 14
 
 /datum/job/captain/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	switch(H.backbag)
@@ -51,7 +51,7 @@
 	L.implanted = 1
 	to_world("<b>[H.real_name] is the captain!</b>")
 	var/datum/organ/external/affected = H.organs_by_name["head"]
-	affected.implants += L
+	affected.implants.Add(L)
 	L.part = affected
 	return 1
 
@@ -94,7 +94,7 @@
 	alt_titles = list("Human Resources Director")
 
 /datum/job/hop/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	switch(H.backbag)

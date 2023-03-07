@@ -243,7 +243,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 
 	if(H.mind && (H.mind.assigned_role != "MODE"))
 		var/assignment
-		if(H.mind.role_alt_title)
+		if(!isnull(H.mind.role_alt_title))
 			assignment = H.mind.role_alt_title
 		else if(H.mind.assigned_role)
 			assignment = H.mind.assigned_role

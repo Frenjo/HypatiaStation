@@ -20,7 +20,7 @@
 	alt_titles = list("Counselor")
 
 /datum/job/chaplain/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	var/obj/item/weapon/storage/bible/B = new /obj/item/weapon/storage/bible(H) //BS12 EDIT
@@ -82,14 +82,14 @@
 			new_deity = deity_name
 		B.deity_name = new_deity
 
-		var/accepted = 0
-		var/outoftime = 0
+		var/accepted = FALSE
+		var/outoftime = FALSE
 		spawn(200) // 20 seconds to choose
-			outoftime = 1
+			outoftime = TRUE
 		var/new_book_style = "Bible"
 
 		while(!accepted)
-			if(!B)
+			if(isnull(B))
 				break // prevents possible runtime errors
 			new_book_style = input(H, "Which bible style would you like?") in list("Bible", "Koran", "Scrapbook", "Creeper", "White Bible", "Holy Light", "Athiest", "Tome", "The King in Yellow", "Ithaqua", "Scientology", "the bible melts", "Necronomicon")
 			switch(new_book_style)
@@ -154,13 +154,13 @@
 
 			switch(input(H, "Look at your bible - is this what you want?") in list("Yes", "No"))
 				if("Yes")
-					accepted = 1
+					accepted = TRUE
 				if("No")
 					if(outoftime)
 						to_chat(H, "Welp, out of time, buddy. You're stuck. Next time choose faster.")
-						accepted = 1
+						accepted = TRUE
 
-		if(global.CTgame_ticker)
+		if(!isnull(global.CTgame_ticker))
 			global.CTgame_ticker.Bible_icon_state = B.icon_state
 			global.CTgame_ticker.Bible_item_state = B.item_state
 			global.CTgame_ticker.Bible_name = B.name

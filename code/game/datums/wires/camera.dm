@@ -1,7 +1,6 @@
 // Wires for cameras.
-
 /datum/wires/camera
-	random = 1
+	random = TRUE
 	holder_type = /obj/machinery/camera
 	wire_count = 6
 
@@ -52,7 +51,7 @@ var/const/CAMERA_WIRE_NOTHING2 = 32
 			var/new_range = (C.view_range == initial(C.view_range) ? C.short_range : initial(C.view_range))
 			C.setViewRange(new_range)
 		if(CAMERA_WIRE_POWER)
-			C.deactivate(null) // Deactivate the camera
+			C.deactivate(null) // Deactivate the camera.
 		if(CAMERA_WIRE_LIGHT)
 			C.light_disabled = !C.light_disabled
 		if(CAMERA_WIRE_ALARM)

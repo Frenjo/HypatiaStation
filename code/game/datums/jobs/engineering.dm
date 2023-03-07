@@ -31,7 +31,7 @@
 	)
 
 /datum/job/chief_engineer/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	switch(H.backbag)
@@ -84,7 +84,7 @@
 	alt_titles = list("Maintenance Technician", "Engine Technician", "Electrician")
 
 /datum/job/engineer/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	switch(H.backbag)
@@ -136,7 +136,7 @@
 	)
 
 /datum/job/atmos/equip(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	switch(H.backbag)

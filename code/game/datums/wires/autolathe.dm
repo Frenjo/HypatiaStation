@@ -1,5 +1,4 @@
 /datum/wires/autolathe
-
 	holder_type = /obj/machinery/autolathe
 	wire_count = 6
 
