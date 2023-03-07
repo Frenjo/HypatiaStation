@@ -13,7 +13,8 @@
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 	var/sharp = 0	// whether this object cuts
 	var/edge = 0	// whether this object is more likely to dismember
-	var/in_use = 0 	// If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
+	var/in_use = FALSE 	// If we have a user using us, this will be set to TRUE.
+						// We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 
 	var/damtype = "brute"
 	var/force = 0
@@ -87,7 +88,7 @@
 		var/ai_in_use = AutoUpdateAI(src)
 
 		if(!ai_in_use && !is_in_use)
-			in_use = 0
+			in_use = FALSE
 
 /obj/proc/interact(mob/user)
 	return
@@ -103,7 +104,7 @@
 		unset_machine()
 	src.machine = O
 	if(istype(O))
-		O.in_use = 1
+		O.in_use = TRUE
 
 /obj/item/proc/updateSelfDialog()
 	var/mob/M = src.loc

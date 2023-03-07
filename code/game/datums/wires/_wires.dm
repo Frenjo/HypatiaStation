@@ -2,7 +2,6 @@
 // Was created to replace a horrible case of copy and pasted code with no care for maintability.
 // Goodbye Door wires, Cyborg wires, Vending Machine wires, Autolathe wires
 // Protolathe wires, APC wires and Camera wires!
-
 #define MAX_FLAG 65535
 
 GLOBAL_GLOBL_LIST_NEW(same_wires)
@@ -10,7 +9,7 @@ GLOBAL_GLOBL_LIST_NEW(same_wires)
 GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "orange", "brown", "gold", "gray", "cyan", "navy", "purple", "pink", "black", "yellow"))
 
 /datum/wires
-	var/random = 0 // Will the wires be different for every single instance.
+	var/random = FALSE // Will the wires be different for every single instance.
 	var/atom/holder = null // The holder
 	var/holder_type = null // The holder type; used to make sure that the holder is the correct type.
 	var/wire_count = 0 // Max is 16
@@ -26,7 +25,7 @@ GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "oran
 	var/window_y = 470
 
 /datum/wires/New(atom/holder)
-	..()
+	. = ..()
 	src.holder = holder
 	if(!istype(holder, holder_type))
 		CRASH("Our holder is null/the wrong type!")
@@ -37,7 +36,7 @@ GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "oran
 	// Get the same wires
 	else
 		// We don't have any wires to copy yet, generate some and then copy it.
-		if(!GLOBL.same_wires[holder_type])
+		if(isnull(GLOBL.same_wires[holder_type]))
 			GenerateWires()
 			GLOBL.same_wires[holder_type] = src.wires.Copy()
 		else
@@ -64,9 +63,9 @@ GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "oran
 
 /datum/wires/proc/Interact(mob/living/user)
 	var/html = null
-	if(holder && CanUse(user))
+	if(!isnull(holder) && CanUse(user))
 		html = GetInteractWindow()
-	if(html)
+	if(!isnull(html))
 		user.set_machine(holder)
 	else
 		user.unset_machine()
@@ -74,7 +73,7 @@ GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "oran
 		user << browse(null, "window=wires")
 		return
 
-	var/datum/browser/popup = new(user, "wires", holder.name, window_x, window_y)
+	var/datum/browser/popup = new /datum/browser(user, "wires", holder.name, window_x, window_y)
 	popup.set_content(html)
 	popup.set_title_image(user.browse_rsc_icon(holder.icon, holder.icon_state))
 	popup.open()
@@ -98,48 +97,51 @@ GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "oran
 
 /datum/wires/Topic(href, href_list)
 	..()
-	if(in_range(holder, usr) && isliving(usr))
-
-		var/mob/living/L = usr
-		if(CanUse(L) && href_list["action"])
-			var/obj/item/I = L.get_active_hand()
-			holder.add_hiddenprint(L)
-			if(href_list["cut"]) // Toggles the cut/mend status
-				if(istype(I, /obj/item/weapon/wirecutters))
-					var/colour = href_list["cut"]
-					CutWireColour(colour)
-				else
-					to_chat(L, SPAN_ERROR("You need wirecutters!"))
-
-			else if(href_list["pulse"])
-				if(istype(I, /obj/item/device/multitool))
-					var/colour = href_list["pulse"]
-					PulseColour(colour)
-				else
-					to_chat(L, SPAN_ERROR("You need a multitool!"))
-
-			else if(href_list["attach"])
-				var/colour = href_list["attach"]
-				// Detach
-				if(IsAttached(colour))
-					var/obj/item/O = Detach(colour)
-					if(O)
-						L.put_in_hands(O)
-
-				// Attach
-				else
-					if(istype(I, /obj/item/device/assembly/signaler))
-						L.drop_item()
-						Attach(colour, I)
-					else
-						to_chat(L, SPAN_ERROR("You need a remote signaller!"))
-
-		// Update Window
-			Interact(usr)
-
+	if(!in_range(holder, usr))
+		return
+	if(!isliving(usr))
+		return
 	if(href_list["close"])
 		usr << browse(null, "window=wires")
-		usr.unset_machine(holder)
+		usr.unset_machine()
+		return
+
+	var/mob/living/L = usr
+	if(CanUse(L) && href_list["action"])
+		var/obj/item/I = L.get_active_hand()
+		holder.add_hiddenprint(L)
+		if(href_list["cut"]) // Toggles the cut/mend status
+			if(istype(I, /obj/item/weapon/wirecutters))
+				var/colour = href_list["cut"]
+				CutWireColour(colour)
+			else
+				to_chat(L, SPAN_ERROR("You need wirecutters!"))
+
+		else if(href_list["pulse"])
+			if(istype(I, /obj/item/device/multitool))
+				var/colour = href_list["pulse"]
+				PulseColour(colour)
+			else
+				to_chat(L, SPAN_ERROR("You need a multitool!"))
+
+		else if(href_list["attach"])
+			var/colour = href_list["attach"]
+			// Detach
+			if(IsAttached(colour))
+				var/obj/item/O = Detach(colour)
+				if(!isnull(O))
+					L.put_in_hands(O)
+
+			// Attach
+			else
+				if(istype(I, /obj/item/device/assembly/signaler))
+					L.drop_item()
+					Attach(colour, I)
+				else
+					to_chat(L, SPAN_ERROR("You need a remote signaller!"))
+
+		// Update Window
+		Interact(usr)
 
 //
 // Overridable Procs
@@ -172,7 +174,6 @@ var/const/POWER = 8
 	if(SAFETY )
 		A.safety()
 */
-
 
 //
 // Helper Procs

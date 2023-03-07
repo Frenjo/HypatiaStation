@@ -2,7 +2,8 @@
 	name = "\improper Telepad Control Console"
 	desc = "Used to teleport objects to and from the telescience telepad."
 	icon_state = "teleport"
-	var/sending = 1
+
+	var/sending = TRUE
 	var/obj/machinery/telepad/telepad = null
 	var/temp_msg = "Telescience control console initialized.<BR>Welcome."
 
@@ -21,13 +22,12 @@
 	// Based on the power used
 	var/teleport_cooldown = 0
 	var/list/power_options = list(5, 10, 20, 25, 30, 40, 50, 80, 100) // every index requires a bluespace crystal
-	var/teleporting = 0
+	var/teleporting = FALSE
 	var/starting_crystals = 3
 	var/list/crystals = list()
 
 /obj/machinery/computer/telescience/New()
-	..()
-	link_telepad()
+	. = ..()
 	recalibrate()
 
 /obj/machinery/computer/telescience/Destroy()
@@ -36,13 +36,13 @@
 
 /obj/machinery/computer/telescience/examine()
 	..()
-	usr << "There are [length(crystals)] bluespace crystals in the crystal ports."
+	to_chat(usr, "There are [length(crystals)] bluespace crystals in the crystal ports.")
 
 /obj/machinery/computer/telescience/initialize()
 	. = ..()
 	link_telepad()
 	for(var/i = 1; i <= starting_crystals; i++)
-		crystals += new /obj/item/bluespace_crystal/artificial(null) // starting crystals
+		crystals.Add(new /obj/item/bluespace_crystal/artificial(null)) // starting crystals
 	power = power_options[1]
 
 /obj/machinery/computer/telescience/proc/link_telepad()
@@ -53,7 +53,7 @@
 		icon_state = "telescib"
 	else
 		if(stat & NOPOWER)
-			src.icon_state = "teleport0"
+			icon_state = "teleport0"
 			stat |= NOPOWER
 		else
 			icon_state = initial(icon_state)
@@ -69,7 +69,7 @@
 			to_chat(user, SPAN_WARNING("There are not enough crystal ports."))
 			return
 		user.drop_item()
-		crystals += W
+		crystals.Add(W)
 		W.loc = null
 		user.visible_message(SPAN_NOTICE("[user] inserts a [W] into the [src]'s crystal port."))
 	else
@@ -84,51 +84,49 @@
 	interact(user)
 
 /obj/machinery/computer/telescience/interact(mob/user)
-	user.machine = src
-	in_use = 1
+	user.set_machine(src)
 
-	var/t = "<div class='statusDisplay'>[temp_msg]</div><BR>"
-	t += "<A href='?src=\ref[src];setrotation=1'>Set Bearing</A>"
-	t += "<div class='statusDisplay'>[rotation]�</div>"
-	t += "<A href='?src=\ref[src];setangle=1'>Set Elevation</A>"
-	t += "<div class='statusDisplay'>[angle]�</div>"
-	t += "<span class='linkOn'>Set Power</span>"
-	t += "<div class='statusDisplay'>"
+	var/html = "<div class='statusDisplay'>[temp_msg]</div><BR>"
+	html += "<A href='?src=\ref[src];setrotation=1'>Set Bearing</A>"
+	html += "<div class='statusDisplay'>[rotation]�</div>"
+	html += "<A href='?src=\ref[src];setangle=1'>Set Elevation</A>"
+	html += "<div class='statusDisplay'>[angle]�</div>"
+	html += "<span class='linkOn'>Set Power</span>"
+	html += "<div class='statusDisplay'>"
 
 	for(var/i = 1; i <= length(power_options); i++)
 		if(length(crystals) < i)
-			t += "<span class='linkOff'>[power_options[i]]</span>"
+			html += "<span class='linkOff'>[power_options[i]]</span>"
 			continue
 		if(power == power_options[i])
-			t += "<span class='linkOn'>[power_options[i]]</span>"
+			html += "<span class='linkOn'>[power_options[i]]</span>"
 			continue
-		t += "<A href='?src=\ref[src];setpower=[i]'>[power_options[i]]</A>"
+		html += "<A href='?src=\ref[src];setpower=[i]'>[power_options[i]]</A>"
 
-	t += "</div>"
-	t += "<A href='?src=\ref[src];setz=1'>Set Sector</A>"
-	t += "<div class='statusDisplay'>[z_co ? z_co : "NULL"]</div>"
+	html += "</div>"
+	html += "<A href='?src=\ref[src];setz=1'>Set Sector</A>"
+	html += "<div class='statusDisplay'>[z_co ? z_co : "NULL"]</div>"
 
-	t += "<BR><A href='?src=\ref[src];send=1'>Send</A>"
-	t += " <A href='?src=\ref[src];receive=1'>Receive</A>"
-	t += "<BR><A href='?src=\ref[src];recal=1'>Recalibrate Crystals</A> <A href='?src=\ref[src];eject=1'>Eject Crystals</A>"
+	html += "<BR><A href='?src=\ref[src];send=1'>Send</A>"
+	html += " <A href='?src=\ref[src];receive=1'>Receive</A>"
+	html += "<BR><A href='?src=\ref[src];recal=1'>Recalibrate Crystals</A> <A href='?src=\ref[src];eject=1'>Eject Crystals</A>"
 
 	// Information about the last teleport
-	t += "<BR><div class='statusDisplay'>"
-	if(!last_tele_data)
-		t += "No teleport data found."
+	html += "<BR><div class='statusDisplay'>"
+	if(isnull(last_tele_data))
+		html += "No teleport data found."
 	else
-		t += "Source Location: ([last_tele_data.src_x], [last_tele_data.src_y])<BR>"
+		html += "Source Location: ([last_tele_data.src_x], [last_tele_data.src_y])<BR>"
 		//t += "Distance: [round(last_tele_data.distance, 0.1)]m<BR>"
-		t += "Time: [round(last_tele_data.time, 0.1)] secs<BR>"
-	t += "</div>"
+		html += "Time: [round(last_tele_data.time, 0.1)] secs<BR>"
+	html += "</div>"
 
-	var/datum/browser/popup = new(user, "telesci", name, 300, 500)
-	popup.set_content(t)
+	var/datum/browser/popup = new /datum/browser(user, "telesci", name, 300, 500)
+	popup.set_content(html)
 	popup.open()
-	return
 
 /obj/machinery/computer/telescience/proc/sparks()
-	if(telepad)
+	if(!isnull(telepad))
 		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 		s.set_up(5, 1, get_turf(telepad))
 		s.start()
@@ -149,8 +147,7 @@
 		temp_msg = "Telepad is in use.<BR>Please wait."
 		return
 
-	if(telepad)
-
+	if(!isnull(telepad))
 		var/truePower = clamp(power + power_off, 1, 1000)
 		var/trueRotation = rotation + rotation_off
 		var/trueAngle = clamp(angle + angle_off, 1, 90)
@@ -169,16 +166,16 @@
 		if(spawn_time > 15) // 1.5 seconds
 			playsound(telepad.loc, 'sound/weapons/flash.ogg', 25, 1)
 			// Wait depending on the time the projectile took to get there
-			teleporting = 1
+			teleporting = TRUE
 			temp_msg = "Powering up bluespace crystals.<BR>Please wait."
 
 
 		spawn(round(proj_data.time) * 10) // in seconds
-			if(!telepad)
+			if(isnull(telepad))
 				return
 			if(telepad.stat & NOPOWER)
 				return
-			teleporting = 0
+			teleporting = FALSE
 			teleport_cooldown = world.time + (power * 2)
 			teles_left -= 1
 
@@ -227,7 +224,7 @@
 
 /obj/machinery/computer/telescience/proc/teleport(mob/user)
 	if(rotation == null || angle == null || z_co == null)
-		temp_msg = "ERROR!<BR>Set a angle, rotation and sector."
+		temp_msg = "ERROR!<BR>Set an angle, rotation and sector."
 		return
 	if(power <= 0)
 		telefail()
@@ -252,11 +249,15 @@
 /obj/machinery/computer/telescience/proc/eject()
 	for(var/obj/item/I in crystals)
 		I.loc = src.loc
-		crystals -= I
+		crystals.Remove(I)
 	power = 0
 
 /obj/machinery/computer/telescience/Topic(href, href_list)
 	if(..())
+		return
+	if(href_list["close"])
+		usr << browse(null, "window=telesci")
+		usr.unset_machine()
 		return
 	if(href_list["setrotation"])
 		var/new_rot = input("Please input desired bearing in degrees.", name, rotation) as num
@@ -274,7 +275,7 @@
 	if(href_list["setpower"])
 		var/index = href_list["setpower"]
 		index = text2num(index)
-		if(index != null && power_options[index])
+		if(!isnull(index) && power_options[index])
 			if(length(crystals) >= index)
 				power = power_options[index]
 
@@ -285,11 +286,11 @@
 		z_co = clamp(round(new_z), 1, 10)
 
 	if(href_list["send"])
-		sending = 1
+		sending = TRUE
 		teleport(usr)
 
 	if(href_list["receive"])
-		sending = 0
+		sending = FALSE
 		teleport(usr)
 
 	if(href_list["recal"])

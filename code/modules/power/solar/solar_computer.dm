@@ -8,7 +8,6 @@
 //
 // Solar Control Computer
 //
-
 /obj/machinery/power/solar_control
 	name = "solar panel control"
 	desc = "A controller for solar panel arrays."
@@ -32,7 +31,7 @@
 
 /obj/machinery/power/solar_control/initialize()
 	. = ..()
-	if(!powernet)
+	if(isnull(powernet))
 		return
 	set_panels(cdir)
 	connect_to_network()
@@ -40,8 +39,7 @@
 /obj/machinery/power/solar_control/Destroy()
 	for(var/obj/machinery/power/solar/M in connected_panels)
 		M.unset_control()
-	if(connected_tracker)
-		connected_tracker.unset_control()
+	connected_tracker?.unset_control()
 	return ..()
 
 /obj/machinery/power/solar_control/disconnect_from_network()
@@ -50,7 +48,7 @@
 
 /obj/machinery/power/solar_control/connect_to_network()
 	var/to_return = ..()
-	if(powernet) //if connected and not already in solar_list...
+	if(!isnull(powernet)) //if connected and not already in solar_list...
 		GLOBL.solars_list |= src //... add it
 	return to_return
 
@@ -66,12 +64,13 @@
 	icon_state = "solar"
 	overlays.Cut()
 	if(cdir > -1)
-		overlays += image('icons/obj/computer.dmi', "solcon-o", FLY_LAYER, angle2dir(cdir))
+		overlays.Add(image('icons/obj/computer.dmi', "solcon-o", FLY_LAYER, angle2dir(cdir)))
 	return
 
 /obj/machinery/power/solar_control/attack_ai(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN | NOPOWER)) return
+	if(stat & (BROKEN | NOPOWER))
+		return
 	interact(user)
 
 /obj/machinery/power/solar_control/attack_hand(mob/user)
@@ -79,31 +78,32 @@
 		interact(user)
 
 /obj/machinery/power/solar_control/interact(mob/user)
-	var/t = "<B><span class='highlight'>Generated power</span></B> : [round(lastgen)] W<BR>"
-	t += "<B><span class='highlight'>Orientation</span></B>: [rate_control(src,"cdir","[cdir]&deg",1,15)] ([angle2text(cdir)])<BR>"
-	t += "<B><span class='highlight'>Tracking:</B><div class='statusDisplay'>"
+	user.set_machine(src)
+
+	var/html = "<B><span class='highlight'>Generated power</span></B> : [round(lastgen)] W<BR>"
+	html += "<B><span class='highlight'>Orientation</span></B>: [rate_control(src,"cdir","[cdir]&deg",1,15)] ([angle2text(cdir)])<BR>"
+	html += "<B><span class='highlight'>Tracking:</B><div class='statusDisplay'>"
 	switch(track)
-		if(0)
-			t += "<span class='linkOn'>Off</span> <A href='?src=\ref[src];track=1'>Timed</A> <A href='?src=\ref[src];track=2'>Auto</A><BR>"
-		if(1)
-			t += "<A href='?src=\ref[src];track=0'>Off</A> <span class='linkOn'>Timed</span> <A href='?src=\ref[src];track=2'>Auto</A><BR>"
-		if(2)
-			t += "<A href='?src=\ref[src];track=0'>Off</A> <A href='?src=\ref[src];track=1'>Timed</A> <span class='linkOn'>Auto</span><BR>"
+		if(TRACKING_OFF)
+			html += "<span class='linkOn'>Off</span> <A href='?src=\ref[src];track=1'>Timed</A> <A href='?src=\ref[src];track=2'>Auto</A><BR>"
+		if(TRACKING_MANUAL)
+			html += "<A href='?src=\ref[src];track=0'>Off</A> <span class='linkOn'>Timed</span> <A href='?src=\ref[src];track=2'>Auto</A><BR>"
+		if(TRACKING_AUTO)
+			html += "<A href='?src=\ref[src];track=0'>Off</A> <A href='?src=\ref[src];track=1'>Timed</A> <span class='linkOn'>Auto</span><BR>"
 
-	t += "Tracking Rate: [rate_control(src,"tdir","[trackrate] deg/h ([trackrate<0 ? "CCW" : "CW"])",1,30,180)]</div><BR>"
+	html += "Tracking Rate: [rate_control(src,"tdir","[trackrate] deg/h ([trackrate<0 ? "CCW" : "CW"])",1,30,180)]</div><BR>"
 
-	t += "<B><span class='highlight'>Connected devices:</span></B><div class='statusDisplay'>"
+	html += "<B><span class='highlight'>Connected devices:</span></B><div class='statusDisplay'>"
 
-	t += "<A href='?src=\ref[src];search_connected=1'>Search for devices</A><BR>"
-	t += "Solar panels : [length(connected_panels)] connected<BR>"
-	t += "Solar tracker : [connected_tracker ? "<span class='good'>Found</span>" : "<span class='bad'>Not found</span>"]</div><BR>"
+	html += "<A href='?src=\ref[src];search_connected=1'>Search for devices</A><BR>"
+	html += "Solar panels : [length(connected_panels)] connected<BR>"
+	html += "Solar tracker : [connected_tracker ? "<span class='good'>Found</span>" : "<span class='bad'>Not found</span>"]</div><BR>"
 
-	t += "<A href='?src=\ref[src];close=1'>Close</A>"
+	html += "<A href='?src=\ref[src];close=1'>Close</A>"
 
-	var/datum/browser/popup = new(user, "solar", name)
-	popup.set_content(t)
+	var/datum/browser/popup = new /datum/browser(user, "solcon", name)
+	popup.set_content(html)
 	popup.open()
-	return
 
 /obj/machinery/power/solar_control/attackby(I as obj, user as mob)
 	if(istype(I, /obj/item/weapon/screwdriver))
@@ -143,9 +143,8 @@
 	if(stat & (NOPOWER | BROKEN))
 		return
 
-	if(connected_tracker) //NOTE : handled here so that we don't add trackers to the processing list
-		if(connected_tracker.powernet != powernet)
-			connected_tracker.unset_control()
+	if(connected_tracker?.powernet != powernet) //NOTE : handled here so that we don't add trackers to the processing list
+		connected_tracker.unset_control()
 
 	if(track == TRACKING_MANUAL && trackrate) //manual tracking and set a rotation speed
 		if(nexttime <= world.time) //every time we need to increase/decrease the angle by 1°...
@@ -158,11 +157,11 @@
 	if(..())
 		usr << browse(null, "window=solcon")
 		usr.unset_machine()
-		return 0
+		return
 	if(href_list["close"] )
 		usr << browse(null, "window=solcon")
 		usr.unset_machine()
-		return 0
+		return
 
 	if(href_list["rate control"])
 		if(href_list["cdir"])
@@ -221,17 +220,17 @@
 
 //search for unconnected panels and trackers in the computer powernet and connect them
 /obj/machinery/power/solar_control/proc/search_for_connected()
-	if(powernet)
+	if(!isnull(powernet))
 		for(var/obj/machinery/power/M in powernet.nodes)
 			if(istype(M, /obj/machinery/power/solar))
 				var/obj/machinery/power/solar/S = M
-				if(!S.control) //i.e unconnected
+				if(isnull(S.control)) //i.e unconnected
 					S.set_control(src)
 					connected_panels |= S
 			else if(istype(M, /obj/machinery/power/tracker))
-				if(!connected_tracker) //if there's already a tracker connected to the computer don't add another
+				if(isnull(connected_tracker)) //if there's already a tracker connected to the computer don't add another
 					var/obj/machinery/power/tracker/T = M
-					if(!T.control) //i.e unconnected
+					if(isnull(T.control)) //i.e unconnected
 						connected_tracker = T
 						T.set_control(src)
 
@@ -241,12 +240,11 @@
 		return
 
 	switch(track)
-		if(1)
+		if(TRACKING_MANUAL)
 			if(trackrate)	//we're manual tracking. If we set a rotation speed...
 				cdir = targetdir	//...the current direction is the targetted one (and rotates panels to it)
-		if(2) // auto-tracking
-			if(connected_tracker)
-				connected_tracker.set_angle(global.sun.angle)
+		if(TRACKING_AUTO) // auto-tracking
+			connected_tracker?.set_angle(global.sun.angle)
 
 	set_panels(cdir)
 	updateDialog()

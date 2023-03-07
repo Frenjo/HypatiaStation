@@ -8,11 +8,12 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 	w_class = 2.0
 	slot_flags = SLOT_BELT
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_ENGINEERING = 2)
+
 	var/gpstag = "COM0"
-	var/emped = 0
+	var/emped = FALSE
 
 /obj/item/device/gps/New()
-	..()
+	. = ..()
 	GLOBL.gps_list.Add(src)
 	name = "global positioning system ([gpstag])"
 	overlays += "working"
@@ -22,34 +23,33 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 	return ..()
 
 /obj/item/device/gps/emp_act(severity)
-	emped = 1
-	overlays -= "working"
-	overlays += "emp"
+	emped = TRUE
+	overlays.Remove("working")
+	overlays.Add("emp")
 	spawn(300)
-		emped = 0
-		overlays -= "emp"
-		overlays += "working"
+		emped = FALSE
+		overlays.Remove("emp")
+		overlays.Add("working")
 
 /obj/item/device/gps/attack_self(mob/user as mob)
-
-	var/obj/item/device/gps/t = ""
+	var/html
 	if(emped)
-		t += "ERROR"
+		html += "ERROR"
 	else
-		t += "<BR><A href='?src=\ref[src];tag=1'>Set Tag</A> "
-		t += "<BR>Tag: [gpstag]"
+		html += "<BR><A href='?src=\ref[src];tag=1'>Set Tag</A> "
+		html += "<BR>Tag: [gpstag]"
 
 		for(var/obj/item/device/gps/G in GLOBL.gps_list)
 			var/turf/pos = get_turf(G)
 			var/area/gps_area = get_area(G)
 			var/tracked_gpstag = G.gpstag
-			if(G.emped == 1)
-				t += "<BR>[tracked_gpstag]: ERROR"
+			if(G.emped)
+				html += "<BR>[tracked_gpstag]: ERROR"
 			else
-				t += "<BR>[tracked_gpstag]: [format_text(gps_area.name)] ([pos.x], [pos.y], [pos.z])"
+				html += "<BR>[tracked_gpstag]: [format_text(gps_area.name)] ([pos.x], [pos.y], [pos.z])"
 
-	var/datum/browser/popup = new(user, "GPS", name, 600, 450)
-	popup.set_content(t)
+	var/datum/browser/popup = new /datum/browser(user, "GPS", name, 600, 450)
+	popup.set_content(html)
 	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
