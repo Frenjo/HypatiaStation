@@ -189,34 +189,17 @@
 	return 0
 
 /turf/return_air()
-	//Create gas mixture to hold data for passing
+	// Create gas mixture to hold data for passing.
 	var/datum/gas_mixture/GM = new /datum/gas_mixture()
-
-	GM.adjust_multi(
-		GAS_OXYGEN, oxygen,
-		GAS_CARBON_DIOXIDE, carbon_dioxide,
-		GAS_NITROGEN, nitrogen,
-		GAS_PLASMA, toxins
-	)
-
+	if(!isnull(initial_gases))
+		GM.gas = initial_gases.Copy()
 	GM.temperature = temperature
-
+	GM.update_values()
 	return GM
 
 /turf/remove_air(amount as num)
-	var/datum/gas_mixture/GM = new
-
-	var/sum = oxygen + carbon_dioxide + nitrogen + toxins
-	if(sum > 0)
-		GM.gas[GAS_OXYGEN] = (oxygen / sum) * amount
-		GM.gas[GAS_CARBON_DIOXIDE] = (carbon_dioxide / sum) * amount
-		GM.gas[GAS_NITROGEN] = (nitrogen / sum) * amount
-		GM.gas[GAS_PLASMA] = (toxins / sum) * amount
-
-	GM.temperature = temperature
-	GM.update_values()
-
-	return GM
+	var/datum/gas_mixture/GM = return_air()
+	return GM.remove(amount)
 
 /turf/simulated/assume_air(datum/gas_mixture/giver)
 	var/datum/gas_mixture/my_air = return_air()
@@ -242,29 +225,24 @@
 			global.CTair_system.mark_zone_update(zone)
 			return zone.air
 		else
-			if(!air)
+			if(isnull(air))
 				make_air()
 			c_copy_air()
 			return air
 	else
-		if(!air)
+		if(isnull(air))
 			make_air()
 		return air
 
 /turf/proc/make_air()
-	air = new/datum/gas_mixture
+	air = new /datum/gas_mixture()
+	if(!isnull(initial_gases))
+		air.gas = initial_gases.Copy()
 	air.temperature = temperature
-	air.adjust_multi(
-		GAS_OXYGEN, oxygen,
-		GAS_CARBON_DIOXIDE, carbon_dioxide,
-		GAS_NITROGEN, nitrogen,
-		GAS_PLASMA, toxins
-	)
-	air.group_multiplier = 1
-	air.volume = CELL_VOLUME
+	air.update_values()
 
 /turf/simulated/proc/c_copy_air()
-	if(!air)
-		air = new/datum/gas_mixture
+	if(isnull(air))
+		air = new /datum/gas_mixture()
 	air.copy_from(zone.air)
 	air.group_multiplier = 1

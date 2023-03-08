@@ -5,8 +5,6 @@
 	name = "asteroid"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "asteroid"
-	oxygen = 0
-	nitrogen = 0
 	temperature = TCMB
 	icon_plating = "asteroid"
 

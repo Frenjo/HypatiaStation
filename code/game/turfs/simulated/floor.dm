@@ -37,10 +37,12 @@ var/list/wood_icons = list("wood", "wood-broken")
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "floor"
 
-	var/icon_regular_floor = "floor" //used to remember what icon the tile should have by default
-	var/icon_plating = "plating"
 	thermal_conductivity = 0.040
 	heat_capacity = 10000
+
+	var/icon_regular_floor = "floor" //used to remember what icon the tile should have by default
+	var/icon_plating = "plating"
+
 	var/lava = 0
 	var/broken = 0
 	var/burnt = 0

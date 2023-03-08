@@ -1,5 +1,4 @@
 /turf/unsimulated
 	intact = 1
 	name = "command"
-	oxygen = MOLES_O2STANDARD
-	nitrogen = MOLES_N2STANDARD
+	initial_gases = list(GAS_OXYGEN = MOLES_O2STANDARD, GAS_NITROGEN = MOLES_N2STANDARD)

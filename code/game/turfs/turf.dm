@@ -2,20 +2,17 @@
 	icon = 'icons/turf/floors.dmi'
 	level = 1.0
 
-	//for floors, use is_plating(), is_plasteel_floor() and is_light_floor()
+	// For floors, use is_plating(), is_plasteel_floor() and is_light_floor().
 	var/intact = 1
 
-	//Properties for open tiles (/floor)
-	var/oxygen = 0
-	var/carbon_dioxide = 0
-	var/nitrogen = 0
-	var/toxins = 0
+	// Properties for open tiles (/floor)
+	var/list/initial_gases = list() // A list of all gas amounts that this turf starts with, indexed by GAS_X define.
 
-	//Properties for airtight tiles (/wall)
+	// Properties for airtight tiles (/wall)
 	var/thermal_conductivity = 0.05
 	var/heat_capacity = 1
 
-	//Properties for both
+	// Properties for both
 	var/temperature = T20C
 
 	var/blocks_air = 0

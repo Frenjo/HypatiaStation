@@ -1,8 +1,10 @@
+/*
+ * Airless
+ */
 /turf/simulated/floor/airless
 	icon_state = "floor"
 	name = "airless floor"
-	oxygen = 0
-	nitrogen = 0
+	initial_gases = null
 	temperature = TCMB
 
 /turf/simulated/floor/airless/New()
@@ -12,6 +14,9 @@
 /turf/simulated/floor/airless/ceiling
 	icon_state = "rockvault"
 
+/*
+ * Light
+ */
 /turf/simulated/floor/light
 	name = "Light floor"
 	light_range = 5
@@ -26,12 +31,17 @@
 			update_icon()
 			name = n
 
-
+/*
+ * Wood
+ */
 /turf/simulated/floor/wood
 	name = "floor"
 	icon_state = "wood"
 	floor_type = /obj/item/stack/tile/wood
 
+/*
+ * Vault
+ */
 /turf/simulated/floor/vault
 	icon_state = "rockvault"
 
@@ -46,6 +56,9 @@
 	..()
 	icon_state = "[type]vault"
 
+/*
+ * Reinforced (Engine)
+ */
 /turf/simulated/floor/engine
 	name = "reinforced floor"
 	icon_state = "engine"
@@ -77,73 +90,53 @@
 /turf/simulated/floor/engine/vacuum
 	name = "vacuum floor"
 	icon_state = "engine"
-	oxygen = 0
-	nitrogen = 0
+	initial_gases = null
 	temperature = TCMB
 
 // Oxygen
 /turf/simulated/floor/engine/oxygen
 	name = "o2 floor"
-	oxygen = 100000
-	nitrogen = 0
+	initial_gases = list(GAS_OXYGEN = 100000)
 
 // Nitrogen
 /turf/simulated/floor/engine/nitrogen
 	name = "n2 floor"
-	oxygen = 0
-	nitrogen = 100000
+	initial_gases = list(GAS_NITROGEN = 100000)
 
 // Air
 /turf/simulated/floor/engine/air
 	name = "air floor"
-	oxygen = 2644
-	nitrogen = 10580
+	initial_gases = list(GAS_OXYGEN = 2644, GAS_NITROGEN = 10580)
 
 // Hydrogen
 /turf/simulated/floor/engine/hydrogen
 	name = "h2 floor"
-	oxygen = 0
-	nitrogen = 0
-
-/turf/simulated/floor/engine/hydrogen/New()
-	..()
-	assume_gas(GAS_HYDROGEN, 70000)
+	initial_gases = list(GAS_HYDROGEN = 70000)
 
 // Carbon Dioxide
 /turf/simulated/floor/engine/co2
 	name = "co2 floor"
-	oxygen = 0
-	nitrogen = 0
-	carbon_dioxide = 50000
+	initial_gases = list(GAS_CARBON_DIOXIDE = 50000)
 
 // Plasma
 /turf/simulated/floor/engine/plasma
 	name = "plasma floor"
-	oxygen = 0
-	nitrogen = 0
-	toxins = 70000
+	initial_gases = list(GAS_PLASMA = 70000)
 
 // Oxygen Agent-B
 /turf/simulated/floor/engine/oxygen_agent_b
 	name = "o2a-b floor"
-	oxygen = 0
-	nitrogen = 0
-
-/turf/simulated/floor/engine/oxygen_agent_b/New()
-	..()
-	assume_gas(GAS_OXYGEN_AGENT_B, 2000)
+	initial_gases = list(GAS_OXYGEN_AGENT_B = 2000)
 
 // Nitrous Oxide
 /turf/simulated/floor/engine/n2o
 	name = "n2o floor"
-	oxygen = 0
-	nitrogen = 0
-
-/turf/simulated/floor/engine/n2o/New()
-	..()
-	assume_gas(GAS_SLEEPING_AGENT, 2000)
+	initial_gases = list(GAS_SLEEPING_AGENT = 2000)
 // END ATMOSPHERICS TANK FLOORS
 
+/*
+ * Plating
+ */
 /turf/simulated/floor/plating
 	name = "plating"
 	icon_state = "plating"
@@ -153,14 +146,16 @@
 /turf/simulated/floor/plating/airless
 	icon_state = "plating"
 	name = "airless plating"
-	oxygen = 0
-	nitrogen = 0
+	initial_gases = null
 	temperature = TCMB
 
 /turf/simulated/floor/plating/airless/New()
 	..()
 	name = "plating"
 
+/*
+ * Coloured Grids
+ */
 /turf/simulated/floor/bluegrid
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "bcircuit"
@@ -169,7 +164,9 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gcircuit"
 
-
+/*
+ * Shuttle
+ */
 /turf/simulated/shuttle
 	name = "shuttle"
 	icon = 'icons/turf/shuttle.dmi'
@@ -188,15 +185,22 @@
 	name = "floor"
 	icon_state = "floor"
 
+/turf/simulated/shuttle/floor/vox
+	icon_state = "floor4"
+	initial_gases = list(GAS_NITROGEN = MOLES_N2STANDARD)
+
 /turf/simulated/shuttle/plating
 	name = "plating"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
 
 /turf/simulated/shuttle/floor4	// Added this floor tile so that I have a seperate turf to check in the shuttle -- Polymorph
-	name = "Brig floor"			// Also added it into the 2x3 brig area of the shuttle.
+	name = "brig floor"			// Also added it into the 2x3 brig area of the shuttle.
 	icon_state = "floor4"
 
+/*
+ * Beach
+ */
 /turf/simulated/floor/beach
 	name = "Beach"
 	icon = 'icons/misc/beach.dmi'
@@ -218,6 +222,9 @@
 	..()
 	overlays += image("icon" = 'icons/misc/beach.dmi', "icon_state" = "water5", "layer" = MOB_LAYER + 0.1)
 
+/*
+ * Grass
+ */
 /turf/simulated/floor/grass
 	name = "Grass patch"
 	icon_state = "grass1"
@@ -234,6 +241,9 @@
 					var/turf/simulated/floor/FF = get_step(src, direction)
 					FF.update_icon() //so siding get updated properly
 
+/*
+ * Carpet
+ */
 /turf/simulated/floor/carpet
 	name = "Carpet"
 	icon_state = "carpet"
@@ -251,12 +261,17 @@
 					var/turf/simulated/floor/FF = get_step(src, direction)
 					FF.update_icon() //so siding get updated properly
 
-
+/*
+ * Iron Sand
+ */
 /turf/simulated/floor/plating/ironsand/New()
 	..()
 	name = "Iron Sand"
 	icon_state = "ironsand[rand(1, 15)]"
 
+/*
+ * Snow
+ */
 /turf/simulated/floor/plating/snow
 	name = "snow"
 	icon = 'icons/turf/snow.dmi'
@@ -264,3 +279,28 @@
 
 /turf/simulated/floor/plating/snow/ex_act(severity)
 	return
+
+/*
+ * Server
+ */
+/turf/simulated/floor/server
+	name = "server walkway"
+	icon_state = "dark"
+	initial_gases = list(GAS_NITROGEN = 500)
+	temperature = 80
+
+/turf/simulated/floor/bluegrid/server
+	name = "server base"
+	initial_gases = list(GAS_NITROGEN = 500)
+	temperature = 80
+
+/turf/simulated/floor/mainframe
+	name = "mainframe floor"
+	icon_state = "dark"
+	initial_gases = list(GAS_NITROGEN = 100)
+	temperature = 80
+
+/turf/simulated/floor/bluegrid/mainframe
+	name = "mainframe base"
+	initial_gases = list(GAS_NITROGEN = 100)
+	temperature = 80

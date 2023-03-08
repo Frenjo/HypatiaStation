@@ -1,7 +1,6 @@
 /turf/simulated
 	name = "station"
-	oxygen = MOLES_O2STANDARD
-	nitrogen = MOLES_N2STANDARD
+	initial_gases = list(GAS_OXYGEN = MOLES_O2STANDARD, GAS_NITROGEN = MOLES_N2STANDARD)
 
 	var/wet = 0
 	var/image/wet_overlay = null

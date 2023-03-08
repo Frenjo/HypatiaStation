@@ -2,6 +2,7 @@
 	name = "Mech Bay Recharge Station"
 	icon = 'icons/mecha/mech_bay.dmi'
 	icon_state = "recharge_floor"
+
 	var/obj/machinery/mech_bay_recharge_port/recharge_port
 	var/obj/machinery/computer/mech_bay_power_console/recharge_console
 	var/obj/mecha/recharging_mecha = null
@@ -42,6 +43,10 @@
 			recharge_port.recharge_console = recharge_console
 	return
 
+/turf/simulated/floor/mech_bay_recharge_floor/asteroid
+	icon_state = "recharge_floor_asteroid"
+	initial_gases = null
+	temperature = TCMB
 
 /obj/machinery/mech_bay_recharge_port
 	name = "Mech Bay Power Port"
@@ -49,6 +54,7 @@
 	anchored = TRUE
 	icon = 'icons/mecha/mech_bay.dmi'
 	icon_state = "recharge_port"
+
 	var/turf/simulated/floor/mech_bay_recharge_floor/recharge_floor
 	var/obj/machinery/computer/mech_bay_power_console/recharge_console
 	var/datum/global_iterator/mech_bay_recharger/pr_recharger

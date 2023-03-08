@@ -6,6 +6,12 @@
 /turf/simulated/floor/holofloor/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	return	// HOLOFLOOR DOES NOT GIVE A FUCK
 
+/turf/simulated/floor/holofloor/burnmix
+	name = "burn-mix floor"
+	icon_state = "engine"
+	initial_gases = list(GAS_OXYGEN = 2500, GAS_PLASMA = 5000)
+	temperature = 370
+
 // Grass
 /turf/simulated/floor/holofloor/grass
 	name = "Lush Grass"

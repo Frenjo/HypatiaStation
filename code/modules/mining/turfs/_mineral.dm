@@ -8,8 +8,7 @@
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
-	oxygen = 0
-	nitrogen = 0
+	initial_gases = null
 	opacity = TRUE
 	density = TRUE
 	blocks_air = 1

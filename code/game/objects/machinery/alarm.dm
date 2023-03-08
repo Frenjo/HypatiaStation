@@ -248,7 +248,6 @@
 			remote_control = 1
 
 	updateDialog()
-	return
 
 /obj/machinery/alarm/proc/overall_danger_level()
 	var/turf/simulated/location = loc
@@ -286,8 +285,6 @@
 	for(var/obj/machinery/alarm/AA in alarm_area)
 		if(!(AA.stat & (NOPOWER | BROKEN)))
 			alarm_area.master_air_alarm = AA
-			return 1
-	return 0
 
 /obj/machinery/alarm/proc/get_danger_level(current_value, list/danger_levels)
 	if((current_value >= danger_levels[4] && danger_levels[4] > 0) || current_value <= danger_levels[1])
@@ -348,7 +345,7 @@
 		alarm_area.air_scrub_names[m_id] = new_name
 	else
 		return
-	spawn (10)
+	spawn(10)
 		send_signal(m_id, list("init" = new_name))
 
 /obj/machinery/alarm/proc/refresh_all()
@@ -364,10 +361,10 @@
 		send_signal(id_tag, list("status"))
 
 /obj/machinery/alarm/proc/send_signal(target, list/command)//sends signal 'command' to 'target'. Returns 0 if no radio connection, 1 otherwise
-	if(!radio_connection)
+	if(isnull(radio_connection))
 		return 0
 
-	var/datum/signal/signal = new
+	var/datum/signal/signal = new /datum/signal()
 	signal.transmission_method = TRANSMISSION_RADIO
 	signal.source = src
 
@@ -432,10 +429,10 @@
 
 /obj/machinery/alarm/proc/post_alert(alert_level)
 	var/datum/radio_frequency/frequency = global.CTradio.return_frequency(alarm_frequency)
-	if(!frequency)
+	if(isnull(frequency))
 		return
 
-	var/datum/signal/alert_signal = new
+	var/datum/signal/alert_signal = new /datum/signal()
 	alert_signal.source = src
 	alert_signal.transmission_method = TRANSMISSION_RADIO
 	alert_signal.data["zone"] = alarm_area.name
@@ -461,7 +458,7 @@
 /obj/machinery/alarm/proc/air_doors_close(manual)
 	var/area/A = get_area(src)
 	if(!A.air_doors_activated)
-		A.air_doors_activated = 1
+		A.air_doors_activated = TRUE
 		for(var/obj/machinery/door/firedoor/E in A.all_doors)
 			if(istype(E, /obj/machinery/door/firedoor))
 				if(!E:blocked)
@@ -497,7 +494,7 @@
 /obj/machinery/alarm/proc/air_doors_open(manual)
 	var/area/A = get_area(loc)
 	if(A.air_doors_activated)
-		A.air_doors_activated = 0
+		A.air_doors_activated = FALSE
 		for(var/obj/machinery/door/firedoor/E in A.all_doors)
 			if(istype(E, /obj/machinery/door/firedoor))
 				if(!E:blocked)
@@ -564,8 +561,6 @@
 
 	updateDialog()
 
-	return
-
 /obj/machinery/alarm/proc/mend(wireColor)
 	var/wireFlag = AAlarmWireColorToFlag[wireColor]
 	var/wireIndex = AAlarmWireColorToIndex[wireColor] //not used in this function
@@ -583,7 +578,6 @@
 				aidisabled = 0
 
 	updateDialog()
-	return
 
 /obj/machinery/alarm/proc/pulse(wireColor)
 	//var/wireFlag = AAlarmWireColorToFlag[wireColor] //not used in this function
@@ -626,10 +620,9 @@
 			update_icon()
 
 	updateDialog()
-	return
 
 /obj/machinery/alarm/proc/shock(mob/user, prb)
-	if((stat & (NOPOWER)))		// unpowered, no shock
+	if((stat & NOPOWER))		// unpowered, no shock
 		return 0
 	if(!prob(prb))
 		return 0 //you lucked out, no shock for you
@@ -700,8 +693,6 @@
 	if(!shorted)
 		user << browse(return_text(user),"window=air_alarm")
 		onclose(user, "air_alarm")
-
-	return
 
 /obj/machinery/alarm/proc/return_text(mob/user)
 	if(issilicon(user) && locked)
@@ -833,7 +824,7 @@ Toxins: <span class='dl[plasma_dangerlevel]'>[plasma_percent]</span>%<br>
 				for(var/id_tag in alarm_area.air_vent_names)
 					var/long_name = alarm_area.air_vent_names[id_tag]
 					var/list/data = alarm_area.air_vent_info[id_tag]
-					if(!data)
+					if(isnull(data))
 						continue;
 					var/state = ""
 
@@ -875,7 +866,7 @@ siphoning
 				for(var/id_tag in alarm_area.air_scrub_names)
 					var/long_name = alarm_area.air_scrub_names[id_tag]
 					var/list/data = alarm_area.air_scrub_info[id_tag]
-					if(!data)
+					if(isnull(data))
 						continue;
 					var/state = ""
 
@@ -974,13 +965,13 @@ table tr:first-child th:first-child { border: none;}
 
 	if(get_dist(src, usr) > 1)
 		if(!issilicon(usr))
-			usr.machine = null
+			usr.unset_machine()
 			usr << browse(null, "window=air_alarm")
 			usr << browse(null, "window=AAlarmwires")
 			return
 
 	add_fingerprint(usr)
-	usr.machine = src
+	usr.set_machine(src)
 
 	if(href_list["command"])
 		var/device_id = href_list["id_tag"]
@@ -1078,7 +1069,7 @@ table tr:first-child th:first-child { border: none;}
 		var/max_temperature = min(selected[3] - T0C, MAX_TEMPERATURE)
 		var/min_temperature = max(selected[2] - T0C, MIN_TEMPERATURE)
 		var/input_temperature = input("What temperature would you like the system to mantain? (Capped between [min_temperature]C and [max_temperature]C)", "Thermostat Controls") as num|null
-		if(!input_temperature || input_temperature > max_temperature || input_temperature < min_temperature)
+		if(isnull(input_temperature) || input_temperature > max_temperature || input_temperature < min_temperature)
 			to_chat(usr, "Temperature must be between [min_temperature]C and [max_temperature]C.")
 		else
 			target_temperature = input_temperature + T0C
@@ -1110,7 +1101,6 @@ table tr:first-child th:first-child { border: none;}
 			pulse(t1)
 
 	updateUsrDialog()
-
 
 /obj/machinery/alarm/attackby(obj/item/W as obj, mob/user as mob)
 /*	if (istype(W, /obj/item/weapon/wirecutters))
@@ -1266,7 +1256,6 @@ FIRE ALARM
 	if(src.detecting)
 		if(temperature > T0C + 200)
 			src.alarm()			// added check of detector status here
-	return
 
 /obj/machinery/firealarm/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -1336,7 +1325,6 @@ FIRE ALARM
 		return
 
 	src.alarm()
-	return
 
 /obj/machinery/firealarm/process()//Note: this processing was mostly phased out due to other code, and only runs when needed
 	if(stat & (NOPOWER|BROKEN))
@@ -1356,14 +1344,12 @@ FIRE ALARM
 	if(locate(/obj/fire) in loc)
 		alarm()
 
-	return
-
 /obj/machinery/firealarm/power_change()
 	if(powered(ENVIRON))
 		stat &= ~NOPOWER
 		update_icon()
 	else
-		spawn(rand(0,15))
+		spawn(rand(0, 15))
 			stat |= NOPOWER
 			update_icon()
 
@@ -1408,7 +1394,6 @@ FIRE ALARM
 		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>[stars("Fire alarm")]</B> [d1]\n<HR><b>The current alert level is: [stars(get_security_level())]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
 		user << browse(dat, "window=firealarm")
 		onclose(user, "firealarm")
-	return
 
 /obj/machinery/firealarm/Topic(href, href_list)
 	..()
@@ -1439,7 +1424,6 @@ FIRE ALARM
 	else
 		usr << browse(null, "window=firealarm")
 		return
-	return
 
 /obj/machinery/firealarm/proc/reset()
 	if(!src.working)
@@ -1450,7 +1434,6 @@ FIRE ALARM
 		return
 	A.firereset()
 	update_icon()
-	return
 
 /obj/machinery/firealarm/proc/alarm()
 	if(!src.working)
@@ -1462,7 +1445,6 @@ FIRE ALARM
 	A.firealert()
 	update_icon()
 	//playsound(src, 'sound/ambience/signal.ogg', 75, 0)
-	return
 
 /obj/machinery/firealarm/New(loc, dir, building)
 	..()
@@ -1482,9 +1464,9 @@ FIRE ALARM
 	. = ..()
 	if(isContactLevel(z))
 		if(GLOBL.security_level)
-			src.overlays += image('icons/obj/monitors.dmi', "overlay_[get_security_level()]")
+			src.overlays.Add(image('icons/obj/monitors.dmi', "overlay_[get_security_level()]"))
 		else
-			src.overlays += image('icons/obj/monitors.dmi', "overlay_green")
+			src.overlays.Add(image('icons/obj/monitors.dmi', "overlay_green"))
 
 	update_icon()
 
@@ -1525,7 +1507,7 @@ Just a object used in constructing fire alarms
 	if(user.stat || stat & (NOPOWER|BROKEN))
 		return
 
-	user.machine = src
+	usr.set_machine(src)
 	var/area/A = get_area(src)
 	ASSERT(isarea(A))
 	//if(A.master)
@@ -1560,7 +1542,6 @@ Just a object used in constructing fire alarms
 		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>[stars("Party Button")]</B> [d1]\n<HR>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
 		user << browse(dat, "window=partyalarm")
 		onclose(user, "partyalarm")
-	return
 
 /obj/machinery/partyalarm/proc/reset()
 	if(!working)
@@ -1570,7 +1551,6 @@ Just a object used in constructing fire alarms
 	//if(A.master)
 		//A = A.master
 	A.partyreset()
-	return
 
 /obj/machinery/partyalarm/proc/alarm()
 	if(!working)
@@ -1580,7 +1560,6 @@ Just a object used in constructing fire alarms
 	//if(A.master)
 		//A = A.master
 	A.partyalert()
-	return
 
 /obj/machinery/partyalarm/Topic(href, href_list)
 	..()
@@ -1607,7 +1586,6 @@ Just a object used in constructing fire alarms
 	else
 		usr << browse(null, "window=partyalarm")
 		return
-	return
 
 #undef MAX_TEMPERATURE
 #undef MIN_TEMPERATURE
