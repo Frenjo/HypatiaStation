@@ -106,28 +106,29 @@
 
 		if("hurt")
 			// See if they can attack, and which attacks to use.
-			var/datum/unarmed_attack/attack = null
-			for(var/datum/unarmed_attack/u_attack in M.species.unarmed_attacks)
-				if(!attack.is_usable(M))
+			var/decl/unarmed_attack/attack = null
+			for(var/type in M.species.unarmed_attacks)
+				var/decl/unarmed_attack/u_attack = GET_DECL_INSTANCE(type)
+				if(isnull(u_attack) || !u_attack.is_usable(M))
 					continue
 				else
 					attack = u_attack
 					break
 			
-			if(!attack)
+			if(isnull(attack))
 				return 0
+			
+			var/attack_verb = pick(attack.attack_verb)
 
-			M.attack_log += text("\[[time_stamp()]\] <font color='red'>[attack.attack_verb]ed [src.name] ([src.ckey])</font>")
-			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been [attack.attack_verb]ed by [M.name] ([M.ckey])</font>")
-			msg_admin_attack("[key_name(M)] [attack.attack_verb]ed [key_name(src)]")
+			M.attack_log += text("\[[time_stamp()]\] <font color='red'>[attack_verb]ed [src.name] ([src.ckey])</font>")
+			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been [attack_verb]ed by [M.name] ([M.ckey])</font>")
+			msg_admin_attack("[key_name(M)] [attack_verb]ed [key_name(src)]")
 
 			var/damage = rand(0, 5)//BS12 EDIT
 			if(!damage)
 				playsound(loc, attack.miss_sound, 25, 1, -1)
-				visible_message(SPAN_DANGER("[M] attempted to [pick(attack.attack_verb)] [src]!"))
-
+				visible_message(SPAN_DANGER("[M] attempted to [attack_verb] [src]!"))
 				return 0
-
 
 			var/datum/organ/external/affecting = get_organ(ran_zone(M.zone_sel.selecting))
 			var/armor_block = run_armor_check(affecting, "melee")
@@ -137,7 +138,7 @@
 
 			playsound(loc, attack.attack_sound, 25, 1, -1)
 
-			visible_message(SPAN_DANGER("[M] has [attack.attack_verb]ed [src]!"))
+			visible_message(SPAN_DANGER("[M] has [attack_verb]ed [src]!"))
 			//Rearranged, so claws don't increase weaken chance.
 			if(damage >= 5 && prob(50))
 				visible_message(SPAN_DANGER("[M] has weakened [src]!"))
@@ -145,7 +146,6 @@
 
 			damage += attack.damage
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp = attack.sharp, edge = attack.edge)
-
 
 		if("disarm")
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>")

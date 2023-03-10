@@ -3,7 +3,11 @@
 	icobase = 'icons/mob/human_races/r_diona.dmi'
 	deform = 'icons/mob/human_races/r_def_plant.dmi'
 	language = "Rootspeak"
-	unarmed_types = list(/datum/unarmed_attack/diona)
+
+	unarmed_attacks = list(
+		/decl/unarmed_attack/diona
+	)
+
 	primitive = /mob/living/carbon/monkey/diona
 	slowdown = 7
 

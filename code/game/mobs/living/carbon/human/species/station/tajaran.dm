@@ -5,10 +5,12 @@
 	language = "Siik'maas"
 	secondary_langs = list("Siik'tajr")
 	tail = "tajtail"
-	unarmed_types = list(
-		/datum/unarmed_attack/claws,
-		/datum/unarmed_attack/bite
+
+	unarmed_attacks = list(
+		/decl/unarmed_attack/claws,
+		/decl/unarmed_attack/bite
 	)
+
 	darksight = 8
 
 	cold_level_1 = 200 //Default 260

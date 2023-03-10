@@ -12,15 +12,16 @@
 	var/tail									// Name of tail image in species effects icon file.
 	var/language								// Default racial language, if any.
 	var/secondary_langs = list()				// The names of secondary languages that are available to this species.
-	var/list/unarmed_attacks					// For empty hand harm-intent attack
+
 	var/datum/hud_data/hud
 	var/hud_type
 	var/slowdown = 0
 	var/gluttonous								// Can eat some mobs. 1 for monkeys, 2 for people.
 
-	var/list/unarmed_types = list(
-		/datum/unarmed_attack,
-		/datum/unarmed_attack/bite
+	// For empty hand harm-intent attacks.
+	var/list/unarmed_attacks = list(
+		/decl/unarmed_attack/punch,
+		/decl/unarmed_attack/bite
 	)
 
 	var/mutantrace								// Safeguard due to old code.
@@ -75,12 +76,12 @@
 	// Species-specific abilities.
 	var/list/inherent_verbs
 	var/list/has_organ = list(
-		"heart" =		/datum/organ/internal/heart,
-		"lungs" =		/datum/organ/internal/lungs,
-		"liver" =		/datum/organ/internal/liver,
-		"kidneys" =		/datum/organ/internal/kidney,
-		"brain" =		/datum/organ/internal/brain,
-		"eyes" =		/datum/organ/internal/eyes
+		"heart" =	/datum/organ/internal/heart,
+		"lungs" =	/datum/organ/internal/lungs,
+		"liver" =	/datum/organ/internal/liver,
+		"kidneys" =	/datum/organ/internal/kidney,
+		"brain" =	/datum/organ/internal/brain,
+		"eyes" =	/datum/organ/internal/eyes
 	)
 
 	var/survival_kit = /obj/item/weapon/storage/box/survival // For species with custom survival kits, default is the standard kit.
@@ -91,24 +92,20 @@
 	var/swap_flags = ALLMOBS	// What can we swap place with?
 
 /datum/species/New()
-	if(hud_type)
+	if(!isnull(hud_type))
 		hud = new hud_type()
 	else
-		hud = new()
-	
-	unarmed_attacks = list()
-	for(var/datum/unarmed_attack/type in unarmed_types)
-		unarmed_attacks += new type()
+		hud = new /datum/hud_data()
 
 /datum/species/proc/create_organs(mob/living/carbon/human/H) //Handles creation of mob organs.
 	//Trying to work out why species changes aren't fixing organs properly.
-	if(H.organs)
+	if(!isnull(H.organs))
 		H.organs.Cut()
-	if(H.internal_organs)
+	if(!isnull(H.internal_organs))
 		H.internal_organs.Cut()
-	if(H.organs_by_name)
+	if(!isnull(H.organs_by_name))
 		H.organs_by_name.Cut()
-	if(H.internal_organs_by_name)
+	if(!isnull(H.internal_organs_by_name))
 		H.internal_organs_by_name.Cut()
 
 	H.organs = list()
@@ -134,7 +131,7 @@
 		H.internal_organs_by_name[organ] = new organ_type(H)
 
 	for(var/name in H.organs_by_name)
-		H.organs += H.organs_by_name[name]
+		H.organs.Add(H.organs_by_name[name])
 
 	for(var/datum/organ/external/O in H.organs)
 		O.owner = H
@@ -161,15 +158,15 @@
 	)
 
 /datum/species/proc/add_inherent_verbs(mob/living/carbon/human/H)
-	if(inherent_verbs)
+	if(!isnull(inherent_verbs))
 		for(var/verb_path in inherent_verbs)
 			H.verbs |= verb_path
 	return
 
 /datum/species/proc/remove_inherent_verbs(mob/living/carbon/human/H)
-	if(inherent_verbs)
+	if(!isnull(inherent_verbs))
 		for(var/verb_path in inherent_verbs)
-			H.verbs -= verb_path
+			H.verbs.Remove(verb_path)
 	return
 
 /datum/species/proc/handle_post_spawn(mob/living/carbon/human/H) //Handles anything not already covered by basic species assignment.
@@ -208,12 +205,13 @@
 // Called when using the shredding behavior.
 /datum/species/proc/can_shred(mob/living/carbon/human/H)
 	if(H.a_intent != "hurt")
-		return 0
+		return FALSE
 	
-	for(var/datum/unarmed_attack/attack in unarmed_attacks)
-		if(!attack.is_usable(H))
+	for(var/type in unarmed_attacks)
+		var/decl/unarmed_attack/attack = GET_DECL_INSTANCE(type)
+		if(isnull(attack) || !attack.is_usable(H))
 			continue
 		if(attack.shredding)
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE

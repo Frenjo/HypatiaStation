@@ -3,7 +3,10 @@
 	icobase = 'icons/mob/human_races/r_machine.dmi'
 	deform = 'icons/mob/human_races/r_machine.dmi'
 	language = "Binary Audio Language"
-	unarmed_types = list(/datum/unarmed_attack/punch/strong)
+
+	unarmed_attacks = list(
+		/decl/unarmed_attack/punch/strong
+	)
 
 	eyes = "blank_eyes"
 	brute_mod = 0.5

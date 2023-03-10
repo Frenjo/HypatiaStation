@@ -3,9 +3,10 @@
 	icobase = 'icons/mob/human_races/r_vox.dmi'
 	deform = 'icons/mob/human_races/r_def_vox.dmi'
 	language = "Vox-Pidgin"
-	unarmed_types = list(
-		/datum/unarmed_attack/claws/strong,
-		/datum/unarmed_attack/bite/strong
+
+	unarmed_attacks = list(
+		/decl/unarmed_attack/claws/strong,
+		/decl/unarmed_attack/bite/strong
 	)
 
 	warning_low_pressure = 50
@@ -44,10 +45,6 @@
 	icobase = 'icons/mob/human_races/r_armalis.dmi'
 	deform = 'icons/mob/human_races/r_armalis.dmi'
 	language = "Vox-pidgin"
-	unarmed_types = list(
-		/datum/unarmed_attack/claws/strong,
-		/datum/unarmed_attack/bite/strong
-	)
 
 	warning_low_pressure = 50
 	hazard_low_pressure = 0

@@ -3,7 +3,11 @@
 	icobase = 'icons/mob/human_races/r_obsedai.dmi'
 	deform = 'icons/mob/human_races/r_obsedai.dmi'
 	language = "Obsedaian"
-	unarmed_types = list(/datum/unarmed_attack/punch/verystrong)
+
+	unarmed_attacks = list(
+		/decl/unarmed_attack/punch/verystrong
+	)
+
 	slowdown = 7
 
 	eyes = "blank_eyes"

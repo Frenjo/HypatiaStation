@@ -3,7 +3,11 @@
 	icobase = 'icons/mob/human_races/r_plasmalin.dmi'
 	deform = 'icons/mob/human_races/r_plasmalin.dmi'
 	language = "Plasmalin"
-	unarmed_types = list(/datum/unarmed_attack/punch)
+
+	unarmed_attacks = list(
+		/decl/unarmed_attack/punch
+	)
+
 	slowdown = 1
 
 	brute_mod = 1.5

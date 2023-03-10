@@ -5,10 +5,12 @@
 	deform = 'icons/mob/human_races/r_def_lizard.dmi'
 	language = "Sinta'unathi"
 	tail = "sogtail"
-	unarmed_types = list(
-		/datum/unarmed_attack/claws,
-		/datum/unarmed_attack/bite/strong
+
+	unarmed_attacks = list(
+		/decl/unarmed_attack/claws,
+		/decl/unarmed_attack/bite/strong
 	)
+
 	primitive = /mob/living/carbon/monkey/soghun
 	darksight = 3
 	gluttonous = 1
