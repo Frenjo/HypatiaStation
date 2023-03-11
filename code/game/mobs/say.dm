@@ -37,16 +37,16 @@
 		to_chat(usr, SPAN_WARNING("Speech is currently admin-disabled."))
 		return
 
-	if(!src.client.holder)
+	if(isnull(client.holder))
 		if(!GLOBL.dsay_allowed)
 			to_chat(src, SPAN_WARNING("Deadchat is globally muted."))
 			return
 
-	if(client && !(client.prefs.toggles & CHAT_DEAD))
+	if(!isnull(client) && !(client.prefs.toggles & CHAT_DEAD))
 		to_chat(usr, SPAN_WARNING("You have deadchat muted."))
 		return
 
-	if(mind && mind.name)
+	if(mind?.name)
 		name = "[mind.name]"
 	else
 		name = real_name
@@ -59,17 +59,17 @@
 	for(var/mob/M in GLOBL.player_list)
 		if(isnewplayer(M))
 			continue
-		if(M.client && M.client.holder && (M.client.holder.rights & R_ADMIN|R_MOD) && (M.client.prefs.toggles & CHAT_DEAD)) // Show the message to admins/mods with deadchat toggled on
+		if((M.client?.holder.rights & R_ADMIN|R_MOD) && (M.client?.prefs.toggles & CHAT_DEAD)) // Show the message to admins/mods with deadchat toggled on
 			to_chat(M, rendered)	//Admins can hear deadchat, if they choose to, no matter if they're blind/deaf or not.
 
-		else if(M.client && M.stat == DEAD && (M.client.prefs.toggles & CHAT_DEAD)) // Show the message to regular ghosts with deadchat toggled on.
+		else if(M.stat == DEAD && (M.client?.prefs.toggles & CHAT_DEAD)) // Show the message to regular ghosts with deadchat toggled on.
 			M.show_message(rendered, 2) //Takes into account blindness and such.
 	return
 
 /mob/proc/say_understands_language(mob/other, datum/language/speaking = null)
-	if(speaking) // Language check.
+	if(!isnull(speaking)) // Language check.
 		var/understood = FALSE
-		for(var/datum/language/L in src.languages)
+		for(var/datum/language/L in languages)
 			if(speaking.name == L.name)
 				understood = TRUE
 				break
@@ -79,7 +79,7 @@
 			return FALSE
 
 /mob/proc/say_understands(mob/other, datum/language/speaking = null)
-	if(src.stat == DEAD) //Dead
+	if(stat == DEAD) //Dead
 		return TRUE
 
 	//Universal speak makes everything understandable, for obvious reasons.
@@ -94,7 +94,7 @@
 			return TRUE
 		if(isAI(src) && ispAI(other))
 			return TRUE
-		if(istype(other, src.type) || istype(src, other.type))
+		if(istype(other, type) || istype(src, other.type))
 			return TRUE
 		return FALSE
 
@@ -102,7 +102,7 @@
 	for(var/datum/language/L in src.languages)
 		if(speaking.name == L.name)
 			if(L.flags & NONVERBAL)
-				if((src.sdisabilities & BLIND || src.blinded || src.stat) || !(other in view(src)))
+				if((sdisabilities & BLIND || blinded || stat) || !(other in view(src)))
 					return FALSE
 
 			return TRUE
@@ -118,7 +118,7 @@
 	var/speech_verb = "says"
 	var/speech_style = "body"
 
-	if(speaking)
+	if(!isnull(speaking))
 		speech_verb = speaking.speech_verb
 		speech_style = speaking.colour
 	else if(length(speak_emote))

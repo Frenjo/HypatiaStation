@@ -3,6 +3,4 @@
 		return
 
 	move_intent = GET_DECL_INSTANCE(intent)
-	if(hud_used)
-		if(hud_used.move_intent)
-			hud_used.move_intent.icon_state = move_intent.hud_icon_state
+	hud_used?.move_intent?.icon_state = move_intent.hud_icon_state

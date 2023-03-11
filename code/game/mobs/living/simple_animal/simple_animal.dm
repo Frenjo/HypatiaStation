@@ -57,11 +57,10 @@
 
 /mob/living/simple_animal/New()
 	..()
-	verbs -= /mob/verb/observe
+	verbs.Remove(/mob/verb/observe)
 
 /mob/living/simple_animal/Login()
-	if(src && src.client)
-		src.client.screen = null
+	client?.screen = null
 	..()
 
 /mob/living/simple_animal/updatehealth()
@@ -78,7 +77,6 @@
 			density = TRUE
 		return 0
 
-
 	if(health < 1)
 		Die()
 
@@ -92,17 +90,17 @@
 	if(paralysis)
 		AdjustParalysis(-1)
 
-	//Movement
-	if(!client && !stop_automated_movement && wander && !anchored)
-		if(isturf(src.loc) && !resting && !buckled && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
+	// Movement.
+	if(isnull(client) && !stop_automated_movement && wander && !anchored)
+		if(isturf(loc) && !resting && isnull(buckled) && canmove) // This is so it only moves if it's not inside a closet, genetics machine, etc.
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
-				if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
+				if(!(stop_automated_movement_when_pulled && !isnull(pulledby))) // Some animals don't move when pulled.
 					Move(get_step(src, pick(GLOBL.cardinal)))
 					turns_since_move = 0
 
-	//Speaking
-	if(!client && speak_chance)
+	// Speaking.
+	if(isnull(client) && speak_chance)
 		if(rand(0, 200) < speak_chance)
 			if(length(speak))
 				if(length(emote_hear) || length(emote_see))
@@ -135,9 +133,8 @@
 					else
 						emote(pick(emote_hear), 2)
 
-
-	//Atmos
-	var/atmos_suitable = 1
+	// Atmos.
+	var/atmos_suitable = TRUE
 
 	var/atom/A = src.loc
 	if(isturf(A))
@@ -223,11 +220,11 @@
 		if("help")
 			if(health > 0)
 				for(var/mob/O in viewers(src, null))
-					if((O.client && !O.blinded))
+					if(!isnull(O.client) && !O.blinded)
 						O.show_message(SPAN_INFO("[M] [response_help] [src]."))
 
 		if("grab")
-			if (M == src)
+			if(M == src)
 				return
 			if(!(status_flags & CANPUSH))
 				return
@@ -242,23 +239,21 @@
 			LAssailant = M
 
 			for(var/mob/O in viewers(src, null))
-				if((O.client && !O.blinded))
+				if(!isnull(O.client) && !O.blinded)
 					O.show_message(SPAN_WARNING("[M] has grabbed [src] passively!"), 1)
 
 		if("hurt", "disarm")
 			adjustBruteLoss(harm_intent_damage)
 			for(var/mob/O in viewers(src, null))
-				if((O.client && !O.blinded))
+				if(!isnull(O.client) && !O.blinded)
 					O.show_message(SPAN_WARNING("[M] [response_harm] [src]."))
 
-	return
-
 /mob/living/simple_animal/attack_slime(mob/living/carbon/slime/M as mob)
-	if(!global.CTgame_ticker)
+	if(isnull(global.CTgame_ticker))
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
 
-	if(M.Victim)
+	if(!isnull(M.Victim))
 		return // can't attack while eating!
 
 	visible_message(SPAN_DANGER("The [M.name] glomps [src]!"))
@@ -272,12 +267,8 @@
 
 	adjustBruteLoss(damage)
 
-	return
-
-
 /mob/living/simple_animal/attackby(obj/item/O as obj, mob/user as mob)  //Marker -Agouri
 	if(istype(O, /obj/item/stack/medical))
-
 		if(stat != DEAD)
 			var/obj/item/stack/medical/MED = O
 			if(health < maxHealth)
@@ -313,8 +304,6 @@
 				if((M.client && !M.blinded))
 					M.show_message(SPAN_WARNING("[user] gently taps [src] with the [O]."))
 
-
-
 /mob/living/simple_animal/movement_delay()
 	var/tally = 0 //Incase I need to add stuff other than "speed" later
 
@@ -328,17 +317,16 @@
 	stat("Health:", "[round((health / maxHealth) * 100)]%")
 
 /mob/living/simple_animal/proc/Die()
-	GLOBL.living_mob_list -= src
-	GLOBL.dead_mob_list += src
+	GLOBL.living_mob_list.Remove(src)
+	GLOBL.dead_mob_list.Add(src)
 	icon_state = icon_dead
 	stat = DEAD
 	density = FALSE
-	return
 
 /mob/living/simple_animal/ex_act(severity)
 	if(!blinded)
 		flick("flash", flash)
-	switch (severity)
+	switch(severity)
 		if(1.0)
 			adjustBruteLoss(500)
 			gib()
@@ -346,7 +334,6 @@
 
 		if(2.0)
 			adjustBruteLoss(60)
-
 
 		if(3.0)
 			adjustBruteLoss(30)
@@ -358,25 +345,24 @@
 	if(isliving(target_mob))
 		var/mob/living/L = target_mob
 		if(!L.stat && L.health >= 0)
-			return 0
+			return FALSE
 	if(ismecha(target_mob))
 		var/obj/mecha/M = target_mob
-		if(M.occupant)
-			return 0
+		if(!isnull(M.occupant))
+			return FALSE
 	if(istype(target_mob, /obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob
 		if(B.health > 0)
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 //Call when target overlay should be added/removed
 /mob/living/simple_animal/update_targeted()
-	if(!targeted_by && target_locked)
+	if(isnull(targeted_by) && target_locked)
 		qdel(target_locked)
-	overlays = null
-	if(targeted_by && target_locked)
-		overlays += target_locked
-
+	overlays.Cut()
+	if(!isnull(targeted_by) && target_locked)
+		overlays.Add(target_locked)
 
 /mob/living/simple_animal/say(message)
 	if(stat)
@@ -384,9 +370,6 @@
 
 	if(copytext(message, 1, 2) == "*")
 		return emote(copytext(message, 2))
-
-	if(stat)
-		return
 
 	var/verbage = "says"
 

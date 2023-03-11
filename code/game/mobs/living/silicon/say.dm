@@ -14,7 +14,7 @@
 
 /mob/living/silicon/say_understands(other, datum/language/speaking = null)
 	// These only pertain to common. Languages are handled by mob/say_understands()
-	if(!speaking)
+	if(isnull(speaking))
 		if(ishuman(other))
 			return TRUE
 		if(issilicon(other))
@@ -27,11 +27,11 @@
 	if(!message)
 		return
 
-	if(src.client)
+	if(!isnull(client))
 		if(client.prefs.muted & MUTE_IC)
 			src << "You cannot send IC messages (muted)."
 			return
-		if(src.client.handle_spam_prevention(message, MUTE_IC))
+		if(client.handle_spam_prevention(message, MUTE_IC))
 			return
 
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
@@ -55,7 +55,6 @@
 	var/mob/living/silicon/robot/R = src
 	var/mob/living/silicon/pai/P = src
 
-
 	//Must be concious to speak
 	if(stat)
 		return
@@ -70,13 +69,11 @@
 		else
 			message = trim(copytext(message, 3))
 
-
 	//parse language key and consume it
 	var/datum/language/speaking = parse_language(message)
-	if(speaking)
+	if(!isnull(speaking))
 		verbage = speaking.speech_verb
 		message = copytext(message, 3)
-
 		if(speaking.flags & HIVEMIND)
 			speaking.broadcast(src, trim(message))
 			return
@@ -87,18 +84,19 @@
 		listeners |= src
 
 		for(var/mob/living/silicon/D in listeners)
-			if(D.client && istype(D, src.type))
+			if(D.client && istype(D, type))
 				D << "<b>[src]</b> transmits, \"[message]\""
 
 		for(var/mob/M in GLOBL.player_list)
 			if(isnewplayer(M))
 				continue
-			else if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
-				if(M.client) M << "<b>[src]</b> transmits, \"[message]\""
+			else if(M.stat == DEAD && M.client.prefs.toggles & CHAT_GHOSTEARS)
+				if(!isnull(M.client))
+					M << "<b>[src]</b> transmits, \"[message]\""
 		return
 
 	if(message_mode && bot_type == IS_ROBOT && !R.is_component_functioning("radio"))
-		src << "\red Your radio isn't functional at this time."
+		to_chat(src, SPAN_WARNING("Your radio isn't functional at this time."))
 		return
 
 	switch(message_mode)
@@ -139,7 +137,6 @@
 						P.radio.talk_into(src, message, message_mode, verbage, speaking)
 				return
 
-
 	return ..(message, null, verbage)
 
 //For holopads only. Usable by AI.
@@ -162,7 +159,7 @@
 		var/message_stars = stars(message)
 		var/rendered_b = "<span class='game say'><span class='name'>[voice_name]</span> [verbage], <span class='message'>\"[message_stars]\"</span></span>"
 
-		src << "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [verbage], <span class='message'>[message]</span></span></i>"//The AI can "hear" its own message.
+		to_chat(src, "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [verbage], <span class='message'>[message]</span></span></i>") // The AI can "hear" its own message.
 
 		for(var/mob/M in hearers(T.loc))//The location is the object, default distance.
 			if(M.say_understands(src))//If they understand AI speak. Humans and the like will be able to.
@@ -172,8 +169,7 @@
 		/*Radios "filter out" this conversation channel so we don't need to account for them.
 		This is another way of saying that we won't bother dealing with them.*/
 	else
-		src << "No holopad connected."
-	return
+		to_chat(src, "No holopad connected.")
 
 #undef IS_AI
 #undef IS_ROBOT

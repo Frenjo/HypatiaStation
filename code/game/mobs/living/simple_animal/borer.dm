@@ -30,9 +30,9 @@
 	desc = "A small, quivering sluglike creature."
 	speak_emote = list("chirrups")
 	emote_hear = list("chirrups")
-	response_help  = "pokes the"
+	response_help = "pokes the"
 	response_disarm = "prods the"
-	response_harm   = "stomps on the"
+	response_harm = "stomps on the"
 	icon_state = "brainslug"
 	icon_living = "brainslug"
 	icon_dead = "brainslug_dead"
@@ -46,12 +46,12 @@
 	pass_flags = PASSTABLE
 
 	var/used_dominate
-	var/chemicals = 10                      // Chemicals used for reproduction and spitting neurotoxin.
-	var/mob/living/carbon/human/host        // Human host for the brain worm.
-	var/truename                            // Name used for brainworm-speak.
+	var/chemicals = 10						// Chemicals used for reproduction and spitting neurotoxin.
+	var/mob/living/carbon/human/host		// Human host for the brain worm.
+	var/truename							// Name used for brainworm-speak.
 	var/mob/living/captive_brain/host_brain // Used for swapping control of the body back and forth.
-	var/controlling                         // Used in human death check.
-	var/docile = 0                          // Sugar can stop borers from acting.
+	var/controlling = FALSE					// Used in human death check.
+	var/docile = 0							// Sugar can stop borers from acting.
 
 /mob/living/simple_animal/borer/Life()
 	..()

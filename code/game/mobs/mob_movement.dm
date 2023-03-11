@@ -1,41 +1,32 @@
 /mob/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || (height == 0))
-		return 1
+		return TRUE
 
 	if(ismob(mover))
 		var/mob/moving_mob = mover
-		if((other_mobs && moving_mob.other_mobs))
-			return 1
+		if(other_mobs && moving_mob.other_mobs)
+			return TRUE
 		return (!mover.density || !density || lying)
 	else
 		return (!mover.density || !density || lying)
 
-
 /client/North()
 	..()
-
 
 /client/South()
 	..()
 
-
 /client/West()
 	..()
-
 
 /client/East()
 	..()
 
-
 /client/Northeast()
 	swap_hand()
-	return
-
 
 /client/Southeast()
 	attack_self()
-	return
-
 
 /client/Southwest()
 	if(iscarbon(usr))
@@ -43,8 +34,6 @@
 		C.toggle_throw_mode()
 	else
 		to_chat(usr, SPAN_WARNING("This mob type cannot throw items."))
-	return
-
 
 /client/Northwest()
 	if(iscarbon(usr))
@@ -55,51 +44,47 @@
 		drop_item()
 	else
 		to_chat(usr, SPAN_WARNING("This mob type cannot drop items."))
-	return
 
 //This gets called when you press the delete button.
 /client/verb/delete_key_pressed()
-	set hidden = 1
+	set hidden = TRUE
 
-	if(!usr.pulling)
+	if(isnull(usr.pulling))
 		to_chat(usr, SPAN_INFO("You are not pulling anything."))
 		return
 	usr.stop_pulling()
 
 /client/verb/swap_hand()
-	set hidden = 1
+	set hidden = TRUE
+
 	if(iscarbon(mob))
-		mob:swap_hand()
+		var/mob/living/carbon/C = mob
+		C.swap_hand()
 	if(isrobot(mob))
 		var/mob/living/silicon/robot/R = mob
 		R.cycle_modules()
-	return
-
-
 
 /client/verb/attack_self()
-	set hidden = 1
-	if(mob)
-		mob.mode()
-	return
+	set hidden = TRUE
 
+	if(!isnull(mob))
+		mob.mode()
 
 /client/verb/toggle_throw_mode()
-	set hidden = 1
+	set hidden = TRUE
+
 	if(!iscarbon(mob))
 		return
-	if(!mob.stat && isturf(mob.loc) && !mob.restrained())
-		mob:toggle_throw_mode()
-	else
-		return
+	var/mob/living/carbon/C = mob
 
+	if(!mob.stat && isturf(mob.loc) && !mob.restrained())
+		C.toggle_throw_mode()
 
 /client/verb/drop_item()
-	set hidden = 1
+	set hidden = TRUE
+
 	if(!isrobot(mob))
 		mob.drop_item_v()
-	return
-
 
 /client/Center()
 	/* No 3D movement in 2D spessman game. dir 16 is Z Up
@@ -108,8 +93,6 @@
 		if (mob.canmove)
 			return O.relaymove(mob, 16)
 	*/
-	return
-
 
 /atom/movable/Move(NewLoc, direct)
 	if(direct & (direct - 1))
@@ -144,23 +127,21 @@
 								step(src, SOUTH)
 	else
 		. = ..()
-	return
-
 
 /client/proc/Move_object(direct)
-	if(mob && mob.control_object)
-		if(mob.control_object.density)
-			step(mob.control_object, direct)
-			if(!mob.control_object)
-				return
-			mob.control_object.set_dir(direct)
-		else
-			mob.control_object.loc = get_step(mob.control_object, direct)
-	return
+	if(isnull(mob) || isnull(mob.control_object))
+		return
 
+	if(mob.control_object.density)
+		step(mob.control_object, direct)
+		if(isnull(mob.control_object))
+			return
+		mob.control_object.set_dir(direct)
+	else
+		mob.control_object.loc = get_step(mob.control_object, direct)
 
 /client/Move(n, direct)
-	if(!mob)
+	if(isnull(mob))
 		return
 
 	// Ported some other code across here! -Frenjo
@@ -168,15 +149,12 @@
 	if(leftover > 1)
 		leftover = 0
 
-	if(mob.control_object)
+	if(!isnull(mob.control_object))
 		Move_object(direct)
 
 	if(isobserver(mob))
 		return mob.Move(n, direct)
 
-	// Who thought having two separate statements was a good idea? -Frenjo
-	//if(moving) return 0
-	//if(world.time < move_delay)	return
 	if(moving || world.time < move_delay)
 		return 0
 
@@ -185,23 +163,23 @@
 			if(S.victim == mob)
 				return
 
-	if(mob.stat == 2)
+	if(mob.stat == DEAD)
 		return
 
 	if(isAI(mob))
 		return AIMove(n, direct, mob)
 
 	if(mob.monkeyizing)
-		return	//This is sota the goto stop mobs from moving var
+		return // This is sota the goto stop mobs from moving var.
 
 	if(isliving(mob))
 		var/mob/living/L = mob
-		if(L.incorporeal_move)	//Move though walls
+		if(L.incorporeal_move) // Move though walls.
 			Process_Incorpmove(direct)
 			return
-		if(mob.client)
+		if(!isnull(mob.client))
 			if(mob.client.view != world.view)
-				if(locate(/obj/item/weapon/gun/energy/sniperrifle, mob.contents))	// If mob moves while zoomed in with sniper rifle, unzoom them.
+				if(locate(/obj/item/weapon/gun/energy/sniperrifle, mob.contents)) // If mob moves while zoomed in with sniper rifle, unzoom them.
 					var/obj/item/weapon/gun/energy/sniperrifle/s = locate() in mob
 					if(s.zoom)
 						s.zoom()
@@ -209,7 +187,7 @@
 	if(Process_Grab())
 		return
 
-	if(mob.buckled)	//if we're buckled to something, tell it we moved.
+	if(!isnull(mob.buckled)) // If we're buckled to something, tell it we moved.
 		return mob.buckled.relaymove(mob, direct)
 
 	if(!mob.canmove)
@@ -218,20 +196,19 @@
 	//if(isspace(mob.loc) || (mob.flags & NOGRAV))
 	//	if(!mob.Process_Spacemove(0))	return 0
 
-	if(!mob.lastarea)
+	if(isnull(mob.lastarea))
 		mob.lastarea = get_area(mob.loc)
 
 	if(isspace(mob.loc) || !mob.lastarea.has_gravity)
 		if(!mob.Process_Spacemove(0))
 			return 0
 
-
-	if(isobj(mob.loc) || ismob(mob.loc))	//Inside an object, tell it we moved
+	if(isobj(mob.loc) || ismob(mob.loc)) // Inside an object, tell it we moved.
 		var/atom/O = mob.loc
 		return O.relaymove(mob, direct)
 
 	if(isturf(mob.loc))
-		if(mob.restrained())	//Why being pulled while cuffed prevents you from moving
+		if(mob.restrained()) // Why being pulled while cuffed prevents you from moving.
 			for(var/mob/M in range(mob, 1))
 				if(M.pulling == mob)
 					if(!M.restrained() && M.stat == CONSCIOUS && M.canmove && mob.Adjacent(M))
@@ -259,20 +236,17 @@
 			var/tickcomp = ((1 / world.tick_lag) * 1.3)
 			move_delay = move_delay + tickcomp
 
-
-
-
-		//We are now going to move
-		moving = 1
-		//Something with pulling things
+		// We are now going to move.
+		moving = TRUE
+		// Something with pulling things.
 		if(locate(/obj/item/weapon/grab, mob))
 			move_delay = max(move_delay, world.time + 7)
 			var/list/L = mob.ret_grab()
-			if(istype(L, /list))
+			if(islist(L))
 				if(length(L) == 2)
-					L -= mob
+					L.Remove(mob)
 					var/mob/M = L[1]
-					if(M)
+					if(!isnull(M))
 						if(get_dist(mob, M) <= 1 || M.loc == mob.loc)
 							var/turf/T = mob.loc
 							. = ..()
@@ -281,7 +255,7 @@
 								if((diag - 1) & diag)
 								else
 									diag = null
-								if((get_dist(mob, M) > 1 || diag))
+								if(get_dist(mob, M) > 1 || diag)
 									step(M, get_dir(M.loc, T))
 				else
 					for(var/mob/M in L)
@@ -302,16 +276,15 @@
 		else
 			. = ..()
 
-		moving = 0
+		moving = FALSE
 
 		return .
 
-	return
-
-
-///Process_Grab()
-///Called by client/Move()
-///Checks to see if you are grabbing anything and if moving will affect your grab.
+/*
+ * Process_Grab()
+ * Called by client/Move()
+ * Checks to see if you are grabbing anything and if moving will affect your grab.
+ */
 /client/proc/Process_Grab()
 	for(var/obj/item/weapon/grab/G in list(mob.l_hand, mob.r_hand))
 		if(G.state == GRAB_KILL) //no wandering across the station/asteroid while choking someone
@@ -319,10 +292,11 @@
 			G.hud.icon_state = "disarm/kill"
 			G.state = GRAB_NECK
 
-
-///Process_Incorpmove
-///Called by client/Move()
-///Allows mobs to run though walls
+/*
+ * Process_Incorpmove
+ * Called by client/Move()
+ * Allows mobs to run though walls.
+ */
 /client/proc/Process_Incorpmove(direct)
 	var/turf/mobloc = get_turf(mob)
 	if(!isliving(mob))
@@ -375,43 +349,41 @@
 			L.set_dir(direct)
 	return 1
 
-
-///Process_Spacemove
-///Called by /client/Move()
-///For moving in space
-///Return 1 for movement 0 for none
+/*
+ * Process_Spacemove
+ * Called by /client/Move()
+ * For moving in space.
+ * Return TRUE for movement, FALSE for none.
+ */
 /mob/proc/Process_Spacemove(check_drift = 0)
 	//First check to see if we can do things
 	if(restrained())
-		return 0
+		return FALSE
 
 	/*
 	if(istype(src,/mob/living/carbon))
 		if(src.l_hand && src.r_hand)
-			return 0
+			return FALSE
 	*/
 
 	var/dense_object = 0
-	for(var/turf/turf in oview(1,src))
+	for(var/turf/turf in oview(1, src))
 		if(isspace(turf))
 			continue
 
 		if(ishuman(src))	// Only humans can wear magboots, so we give them a chance to.
-			if(istype(turf, /turf/simulated/floor) && !src.lastarea.has_gravity && !(istype(src:shoes, /obj/item/clothing/shoes/magboots) && (src:shoes:flags & NOSLIP)))
-				continue
-
+			var/mob/living/carbon/human/H = src
+			if(istype(turf, /turf/simulated/floor) && !lastarea.has_gravity)
+				if(!(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes:flags & NOSLIP)))
+					continue
 
 		else
-			if(istype(turf, /turf/simulated/floor) && !src.lastarea.has_gravity) // No one else gets a chance.
+			if(istype(turf, /turf/simulated/floor) && !lastarea.has_gravity) // No one else gets a chance.
 				continue
-
-
-
 		/*
 		if(istype(turf,/turf/simulated/floor) && (src.flags & NOGRAV))
 			continue
 		*/
-
 
 		dense_object++
 		break
@@ -419,37 +391,34 @@
 	if(!dense_object && (locate(/obj/structure/lattice) in oview(1, src)))
 		dense_object++
 
-	//Lastly attempt to locate any dense objects we could push off of
-	//TODO: If we implement objects drifing in space this needs to really push them
-	//Due to a few issues only anchored and dense objects will now work.
+	// Lastly attempt to locate any dense objects we could push off of.
+	// TODO: If we implement objects drifing in space this needs to really push them
+	// Due to a few issues only anchored and dense objects will now work.
 	if(!dense_object)
 		for(var/obj/O in oview(1, src))
 			if(O && O.density && O.anchored)
 				dense_object++
 				break
 
-	//Nothing to push off of so end here
+	// Nothing to push off of so end here.
 	if(!dense_object)
-		return 0
+		return FALSE
 
-
-
-	//Check to see if we slipped
+	// Check to see if we slipped.
 	if(prob(Process_Spaceslipping(5)))
 		to_chat(src, SPAN_INFO_B("You slipped!"))
 		src.inertia_dir = src.last_move
 		step(src, src.inertia_dir)
-		return 0
-	//If not then we can reset inertia and move
+		return FALSE
+	// If not then we can reset inertia and move.
 	inertia_dir = 0
-	return 1
-
+	return TRUE
 
 /mob/proc/Process_Spaceslipping(prob_slip = 5)
-	//Setup slipage
-	//If knocked out we might just hit it and stop.  This makes it possible to get dead bodies and such.
+	// Setup slippage.
+	// If knocked out we might just hit it and stop. This makes it possible to get dead bodies and such.
 	if(stat)
-		prob_slip = 0  // Changing this to zero to make it line up with the comment.
+		prob_slip = 0 // Changing this to zero to make it line up with the comment.
 
 	prob_slip = round(prob_slip)
 	return(prob_slip)

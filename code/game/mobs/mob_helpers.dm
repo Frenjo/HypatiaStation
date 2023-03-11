@@ -22,7 +22,6 @@
 */
 	return zone
 
-
 /proc/ran_zone(zone, probability)
 	zone = check_zone(zone)
 	if(!probability)
@@ -53,7 +52,7 @@
 	zone = check_zone(zone)
 
 	// you can only miss if your target is standing and not restrained
-	if(!target.buckled && !target.lying)
+	if(isnull(target.buckled) && !target.lying)
 		var/miss_chance = 10
 		switch(zone)
 			if("head")
@@ -101,7 +100,6 @@
 						return "l_leg"
 					if(10)
 						return "r_leg"
-
 	return zone
 
 // Holy shit, this code. Why? -- Marajin
@@ -226,34 +224,32 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
 
 /proc/shake_camera(mob/M, duration, strength = 1)
-	if(!M || !M.client || M.shakecamera)
+	if(isnull(M) || isnull(M.client) || M.shakecamera)
 		return
 	spawn(1)
 		var/oldeye = M.client.eye
 		var/x
-		M.shakecamera = 1
+		M.shakecamera = TRUE
 		for(x = 0; x < duration, x++)
 			M.client.eye = locate(dd_range(1, M.loc.x + rand(-strength, strength), world.maxx), dd_range(1, M.loc.y + rand(-strength, strength), world.maxy), M.loc.z)
 			sleep(1)
-		M.shakecamera = 0
+		M.shakecamera = FALSE
 		M.client.eye = oldeye
-
 
 /proc/findname(msg)
 	for(var/mob/M in GLOBL.mob_list)
 		if(M.real_name == msg)
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
+/mob/proc/abiotic(full_body = FALSE)
+	if(full_body && ((l_hand && !l_hand.abstract) || (r_hand && !r_hand.abstract) || (back || wear_mask)))
+		return TRUE
 
-/mob/proc/abiotic(full_body = 0)
-	if(full_body && ((src.l_hand && !src.l_hand.abstract) || (src.r_hand && !src.r_hand.abstract) || (src.back || src.wear_mask)))
-		return 1
+	if((l_hand && !l_hand.abstract) || (r_hand && !r_hand.abstract))
+		return TRUE
 
-	if((src.l_hand && !src.l_hand.abstract) || (src.r_hand && !src.r_hand.abstract))
-		return 1
-
-	return 0
+	return FALSE
 
 //converts intent-strings into numbers and back
 var/list/intents = list("help", "disarm", "grab", "hurt")
@@ -279,7 +275,7 @@ var/list/intents = list("help", "disarm", "grab", "hurt")
 			else
 				return "hurt"
 
-//change a mob's act-intent. Input the intent as a string such as "help" or use "right"/"left
+// Change a mob's act-intent. Input the intent as a string such as "help" or use "right"/"left".
 /mob/verb/a_intent_change(input as text)
 	set name = "a-intent"
 	set hidden = 1
@@ -289,10 +285,10 @@ var/list/intents = list("help", "disarm", "grab", "hurt")
 			if("help", "disarm", "grab", "hurt")
 				a_intent = input
 			if("right")
-				a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
+				a_intent = intent_numeric((intent_numeric(a_intent) + 1) % 4)
 			if("left")
-				a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
-		if(hud_used && hud_used.action_intent)
+				a_intent = intent_numeric((intent_numeric(a_intent) + 3) % 4)
+		if(hud_used?.action_intent)
 			hud_used.action_intent.icon_state = "intent_[a_intent]"
 
 	else if(isrobot(src) || ismonkey(src) || islarva(src))
@@ -301,9 +297,9 @@ var/list/intents = list("help", "disarm", "grab", "hurt")
 				a_intent = "help"
 			if("hurt")
 				a_intent = "hurt"
-			if("right","left")
+			if("right", "left")
 				a_intent = intent_numeric(intent_numeric(a_intent) - 3)
-		if(hud_used && hud_used.action_intent)
+		if(hud_used?.action_intent)
 			if(a_intent == "hurt")
 				hud_used.action_intent.icon_state = "harm"
 			else
@@ -313,5 +309,5 @@ var/list/intents = list("help", "disarm", "grab", "hurt")
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
 		if(C.sdisabilities & BLIND || C.blinded)
-			return 1
-	return 0
+			return TRUE
+	return FALSE

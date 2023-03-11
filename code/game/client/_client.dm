@@ -42,8 +42,8 @@
 	// Player preferences datum for the client.
 	var/datum/preferences/prefs = null
 	var/move_delay = 1
-	var/moving = null
-	var/adminobs = null
+	var/moving = FALSE
+	var/adminobs = FALSE
 	// Current area of the client's controlled mob.
 	var/area = null
 	// When the client last died as a mouse.

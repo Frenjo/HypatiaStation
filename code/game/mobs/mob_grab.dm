@@ -4,23 +4,24 @@
 /obj/item/weapon/grab
 	name = "grab"
 	flags = NOBLUDGEON
-	var/obj/screen/grab/hud = null
-	var/mob/affecting = null
-	var/mob/assailant = null
-	var/state = GRAB_PASSIVE
-
-	var/allow_upgrade = 1
-	var/last_upgrade = 0
-
-	var/destroying = 0
 
 	layer = 21
 	abstract = 1
 	item_state = "nothing"
 	w_class = 5.0
 
+	var/obj/screen/grab/hud = null
+	var/mob/affecting = null
+	var/mob/assailant = null
+	var/state = GRAB_PASSIVE
+
+	var/allow_upgrade = TRUE
+	var/last_upgrade = 0
+
+	var/destroying = FALSE
+
 /obj/item/weapon/grab/New(mob/user, mob/victim)
-	..()
+	. = ..()
 	loc = user
 	assailant = user
 	affecting = victim
@@ -35,22 +36,21 @@
 	hud.master = src
 
 /obj/item/weapon/grab/Destroy()
-	if(affecting)
-		affecting.grabbed_by -= src
+	if(!isnull(affecting))
+		affecting.grabbed_by.Remove(src)
 		affecting = null
-	if(assailant)
-		if(assailant.client)
-			assailant.client.screen -= hud
+	if(!isnull(assailant))
+		assailant.client?.screen.Remove(hud)
 		assailant = null
 	qdel(hud)
 	hud = null
-	destroying = 1 // stops us calling qdel(src) on dropped()
+	destroying = TRUE // Stops us calling qdel(src) on dropped()
 	return ..()
 
 //Used by throw code to hand over the mob, instead of throwing the grab. The grab is then deleted by the throw code.
 /obj/item/weapon/grab/proc/thrown()
-	if(affecting)
-		if(affecting.buckled)
+	if(!isnull(affecting))
+		if(!isnull(affecting.buckled))
 			return null
 		if(state >= GRAB_AGGRESSIVE)
 			return affecting
@@ -58,7 +58,7 @@
 
 //This makes sure that the grab screen object is displayed in the correct hand.
 /obj/item/weapon/grab/proc/synch()
-	if(affecting)
+	if(!isnull(affecting))
 		if(assailant.r_hand == src)
 			hud.screen_loc = UI_RHAND
 		else
@@ -69,28 +69,28 @@
 		return PROCESS_KILL
 
 	confirm()
-	if(!assailant)
+	if(isnull(assailant))
 		qdel(src) // Same here, except we're trying to delete ourselves.
 		return PROCESS_KILL
 
-	if(assailant.client)
-		assailant.client.screen -= hud
-		assailant.client.screen += hud
+	if(!isnull(assailant.client))
+		assailant.client.screen.Remove(hud)
+		assailant.client.screen.Add(hud)
 
 	if(assailant.pulling == affecting)
 		assailant.stop_pulling()
 
 	if(state <= GRAB_AGGRESSIVE)
-		allow_upgrade = 1
+		allow_upgrade = TRUE
 		//disallow upgrading if we're grabbing more than one person
-		if((assailant.l_hand && assailant.l_hand != src && istype(assailant.l_hand, /obj/item/weapon/grab)))
+		if(!isnull(assailant.l_hand) && assailant.l_hand != src && istype(assailant.l_hand, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = assailant.l_hand
 			if(G.affecting != affecting)
-				allow_upgrade = 0
-		if((assailant.r_hand && assailant.r_hand != src && istype(assailant.r_hand, /obj/item/weapon/grab)))
+				allow_upgrade = TRUE
+		if(!isnull(assailant.r_hand) && assailant.r_hand != src && istype(assailant.r_hand, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = assailant.r_hand
 			if(G.affecting != affecting)
-				allow_upgrade = 0
+				allow_upgrade = TRUE
 		if(state == GRAB_AGGRESSIVE)
 			affecting.drop_l_hand()
 			affecting.drop_r_hand()
@@ -99,13 +99,13 @@
 				if(G == src)
 					continue
 				if(G.state == GRAB_AGGRESSIVE)
-					allow_upgrade = 0
+					allow_upgrade = FALSE
 		if(allow_upgrade)
 			hud.icon_state = "reinforce"
 		else
 			hud.icon_state = "!reinforce"
 
-	else if(!affecting.buckled)
+	else if(isnull(affecting.buckled))
 		affecting.loc = assailant.loc
 
 	if(state >= GRAB_NECK)
@@ -121,7 +121,7 @@
 		affecting.losebreath = min(affecting.losebreath + 2, 3)
 
 /obj/item/weapon/grab/proc/s_click(obj/screen/S)
-	if(!affecting)
+	if(isnull(affecting))
 		return
 	if(state == GRAB_UPGRADING)
 		return
@@ -150,7 +150,7 @@
 		assailant.visible_message(SPAN_WARNING("[assailant] has reinforced \his grip on [affecting] (now neck)!"))
 		state = GRAB_NECK
 		icon_state = "grabbed+1"
-		if(!affecting.buckled)
+		if(isnull(affecting.buckled))
 			affecting.loc = assailant.loc
 		affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their neck grabbed by [assailant.name] ([assailant.ckey])</font>"
 		assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Grabbed the neck of [affecting.name] ([affecting.ckey])</font>"
@@ -165,7 +165,7 @@
 		if(do_after(assailant, UPGRADE_KILL_TIMER))
 			if(state == GRAB_KILL)
 				return
-			if(!affecting)
+			if(isnull(affecting))
 				qdel(src)
 				return
 			if(!assailant.canmove || assailant.lying)
@@ -184,21 +184,21 @@
 			hud.icon_state = "disarm/kill"
 			state = GRAB_NECK
 
-//This is used to make sure the victim hasn't managed to yackety sax away before using the grab.
+// This is used to make sure the victim hasn't managed to yackety sax away before using the grab.
 /obj/item/weapon/grab/proc/confirm()
-	if(!assailant || !affecting)
+	if(isnull(assailant) || isnull(affecting))
 		qdel(src)
-		return 0
+		return FALSE
 
-	if(affecting)
+	if(!isnull(affecting))
 		if(!isturf(assailant.loc) || (!isturf(affecting.loc) || assailant.loc != affecting.loc && get_dist(assailant, affecting) > 1))
 			qdel(src)
-			return 0
+			return FALSE
 
-	return 1
+	return TRUE
 
 /obj/item/weapon/grab/attack(mob/M, mob/user)
-	if(!affecting)
+	if(isnull(affecting))
 		return
 
 	if(M == affecting)

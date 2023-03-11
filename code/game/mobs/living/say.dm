@@ -18,7 +18,6 @@ GLOBAL_GLOBL_LIST_INIT(department_radio_keys, list(
 	":s" = CHANNEL_SECURITY,	"#s" = CHANNEL_SECURITY,	".s" = CHANNEL_SECURITY,
 	":x" = CHANNEL_MINING,		"#x" = CHANNEL_MINING,		".x" = CHANNEL_MINING,
 
-
 	// Uppercase variants.
 	":W" = "whisper",			"#W" = "whisper",			".W" = "whisper",
 	":G" = "changeling",		"#G" = "changeling",		".G" = "changeling",
@@ -37,7 +36,6 @@ GLOBAL_GLOBL_LIST_INIT(department_radio_keys, list(
 	":E" = CHANNEL_ENGINEERING,	"#E" = CHANNEL_ENGINEERING,	".E" = CHANNEL_ENGINEERING,
 	":S" = CHANNEL_SECURITY,	"#S" = CHANNEL_SECURITY,	".S" = CHANNEL_SECURITY,
 	":X" = CHANNEL_MINING,		"#X" = CHANNEL_MINING,		".X" = CHANNEL_MINING,
-
 
 	// TODO: Fix this because I don't know russian keyboards. -Frenjo
 	//kinda localization -- rastaf0
@@ -67,7 +65,7 @@ GLOBAL_GLOBL_LIST_INIT(department_radio_keys, list(
 		return
 
 	var/mob/living/carbon/human/H = src
-	if(H.l_ear || H.r_ear)
+	if(!isnull(H.l_ear) || !isnull(H.r_ear))
 		var/obj/item/device/radio/headset/dongle
 		if(istype(H.l_ear, /obj/item/device/radio/headset))
 			dongle = H.l_ear
@@ -88,7 +86,7 @@ GLOBAL_GLOBL_LIST_INIT(department_radio_keys, list(
 	var/turf/T = get_turf(src)
 
 	var/list/listening = list()
-	if(T)
+	if(!isnull(T))
 		var/list/objects = list()
 		var/list/hear = hear(message_range, T)
 		var/list/hearturfs = list()
@@ -96,18 +94,18 @@ GLOBAL_GLOBL_LIST_INIT(department_radio_keys, list(
 		for(var/I in hear)
 			if(ismob(I))
 				var/mob/M = I
-				listening += M
-				hearturfs += M.locs[1]
+				listening.Add(M)
+				hearturfs.Add(M.locs[1])
 				for(var/obj/O in M.contents)
 					objects |= O
 
-			else if(istype(I, /obj))
+			else if(isobj(I))
 				var/obj/O = I
-				hearturfs += O.locs[1]
+				hearturfs.Add(O.locs[1])
 				objects |= O
 
 		for(var/mob/M in GLOBL.player_list)
-			if(M.stat == DEAD && M.client && (M.client.prefs.toggles & CHAT_GHOSTEARS))
+			if(M.stat == DEAD && (M.client?.prefs.toggles & CHAT_GHOSTEARS))
 				listening |= M
 				continue
 			if(M.loc && (M.locs[1] in hearturfs))
@@ -128,7 +126,7 @@ GLOBAL_GLOBL_LIST_INIT(department_radio_keys, list(
 				M.show_message(SPAN_NOTICE("[src] talks into [length(used_radios) ? used_radios[1] : "radio"]."))
 
 	for(var/mob/M in listening)
-		if(M.client)
+		if(!isnull(M.client))
 			M << speech_bubble
 			M.hear_say(message, verbage, speaking, alt_name, italics, src)
 
