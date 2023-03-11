@@ -41,7 +41,6 @@
 	src.m_flag = 1
 	if(A != src.loc && A && A.z == src.z)
 		src.last_move = get_dir(A, src.loc)
-	return
 
 /atom/movable/Bump(atom/A, yes)
 	if(src.throwing)
@@ -54,7 +53,6 @@
 			A.Bumped(src)
 		return
 	..()
-	return
 
 /atom/movable/proc/forceMove(atom/destination)
 	if(destination)
@@ -173,28 +171,3 @@
 	src.throwing = 0
 	if(isobj(src))
 		src.throw_impact(get_turf(src), speed)
-
-//Overlays
-/atom/movable/overlay
-	var/atom/master = null
-	anchored = TRUE
-
-/atom/movable/overlay/New()
-	for(var/x in src.verbs)
-		src.verbs -= x
-	..()
-
-/atom/movable/overlay/attackby(a, b)
-	if(src.master)
-		return src.master.attackby(a, b)
-	return
-
-/atom/movable/overlay/attack_paw(a, b, c)
-	if(src.master)
-		return src.master.attack_paw(a, b, c)
-	return
-
-/atom/movable/overlay/attack_hand(a, b, c)
-	if(src.master)
-		return src.master.attack_hand(a, b, c)
-	return

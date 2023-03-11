@@ -243,9 +243,9 @@
 
 /obj/item/stack/proc/copy_evidences(obj/item/stack/from as obj)
 	src.blood_DNA = from.blood_DNA
-	src.fingerprints  = from.fingerprints
-	src.fingerprintshidden  = from.fingerprintshidden
-	src.fingerprintslast  = from.fingerprintslast
+	src.fingerprints = from.fingerprints
+	src.hidden_fingerprints = from.hidden_fingerprints
+	src.last_fingerprints = from.last_fingerprints
 	//TODO bloody overlay
 
 

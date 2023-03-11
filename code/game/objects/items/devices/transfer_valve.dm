@@ -181,12 +181,12 @@
 		if(attacher)
 			log_str += "(<A HREF='?_src_=holder;adminmoreinfo=\ref[attacher]'>?</A>)"
 
-		var/mob/mob = get_mob_by_key(src.fingerprintslast)
+		var/mob/mob = get_mob_by_key(src.last_fingerprints)
 		var/last_touch_info = ""
 		if(mob)
 			last_touch_info = "(<A HREF='?_src_=holder;adminmoreinfo=\ref[mob]'>?</A>)"
 
-		log_str += " Last touched by: [src.fingerprintslast][last_touch_info]"
+		log_str += " Last touched by: [src.last_fingerprints][last_touch_info]"
 		GLOBL.bombers += log_str
 		message_admins(log_str, 0, 1)
 		log_game(log_str)

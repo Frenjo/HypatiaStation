@@ -304,8 +304,8 @@
 
 	switchcount++
 	if(rigged)
-		log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
-		message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
+		log_admin("LOG: Rigged light explosion, last touched by [last_fingerprints]")
+		message_admins("LOG: Rigged light explosion, last touched by [last_fingerprints]")
 
 		explode()
 	else if(prob(min(60, switchcount * switchcount * 0.01)))
@@ -355,8 +355,8 @@
 	update()
 
 	if(on && rigged)
-		log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
-		message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
+		log_admin("LOG: Rigged light explosion, last touched by [last_fingerprints]")
+		message_admins("LOG: Rigged light explosion, last touched by [last_fingerprints]")
 		explode()
 
 /obj/machinery/light/proc/remove_bulb()

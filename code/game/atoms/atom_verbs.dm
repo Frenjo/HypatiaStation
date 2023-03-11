@@ -1,3 +1,21 @@
+// This is a proc not a verb but there are worse inconsistencies in this codebase.
+/atom/proc/examine(mob/user, distance = -1)
+	//This reformat names to get a/an properly working on item descriptions when they are bloody
+	var/f_name = "\a [src]."
+	if(src.blood_DNA && !istype(src, /obj/effect/decal))
+		if(gender == PLURAL)
+			f_name = "some "
+		else
+			f_name = "a "
+		f_name += "<span class='danger'>blood-stained</span> [name]!"
+
+	to_chat(user, "\icon[src] That's [f_name]")
+
+	if(desc)
+		to_chat(user, desc)
+
+	return distance == -1 || (get_dist(src, user) <= distance)
+
 /atom/movable/verb/pull()
 	set name = "Pull"
 	set category = "Object"
@@ -5,7 +23,6 @@
 
 	if(Adjacent(usr))
 		usr.start_pulling(src)
-	return
 
 /atom/verb/point()
 	set name = "Point To"
@@ -14,7 +31,7 @@
 	var/atom/this = src//detach proc from src
 	//qdel(src) // Trying to fix pointing deleting whatever you point at. -Frenjo
 
-	if(!usr || !isturf(usr.loc))
+	if(isnull(usr) || !isturf(usr.loc))
 		return
 	if(usr.stat || usr.restrained())
 		return
@@ -22,14 +39,12 @@
 		return
 
 	var/tile = get_turf(this)
-	if(!tile)
+	if(isnull(tile))
 		return
 
 	var/P = new /obj/effect/decal/point(tile)
 	spawn(20)
-		if(P)
+		if(!isnull(P))
 			qdel(P)
-		else
-			return
 
 	usr.visible_message("<b>[usr]</b> points to [this].") // Added a full stop here. -Frenjo

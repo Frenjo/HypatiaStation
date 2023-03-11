@@ -72,10 +72,10 @@
 		if(armor < 2)
 			apply_damage(O.throwforce * (speed / 5), dtype, zone, armor, O, sharp = is_sharp(O), edge = has_edge(O))
 
-		if(!O.fingerprintslast)
+		if(!O.last_fingerprints)
 			return
 
-		var/client/assailant = GLOBL.directory[ckey(O.fingerprintslast)]
+		var/client/assailant = GLOBL.directory[ckey(O.last_fingerprints)]
 		if(assailant && assailant.mob && ismob(assailant.mob))
 			var/mob/M = assailant.mob
 

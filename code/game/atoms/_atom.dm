@@ -15,11 +15,14 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 
 	var/level = 2
 	var/flags
+
 	var/list/fingerprints
-	var/list/fingerprintshidden
-	var/fingerprintslast = null
+	var/list/hidden_fingerprints
+	var/last_fingerprints = null
+
 	var/list/blood_DNA
 	var/blood_color
+
 	var/last_bumped = 0
 	var/pass_flags = 0
 	var/throwpass = 0
@@ -39,7 +42,7 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 /atom/New()
 	. = ..()
 	// If the game is already underway, initialize will no longer be called for us.
-	if(global.CTmaster && global.CTmaster.initialised)
+	if(global.CTmaster?.initialised)
 		queue_for_initialisation(src)
 
 /atom/proc/initialize()
@@ -97,7 +100,7 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 	return null
 
 /atom/proc/return_air()
-	if(loc)
+	if(!isnull(loc))
 		return loc.return_air()
 	else
 		return null
@@ -163,12 +166,11 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
  *
  * RETURNS: list of found atoms
  */
-
 /atom/proc/search_contents_for(path, list/filter_path = null)
 	var/list/found = list()
 	for(var/atom/A in src)
 		if(istype(A, path))
-			found += A
+			found.Add(A)
 		if(filter_path)
 			var/pass = 0
 			for(var/type in filter_path)
@@ -176,7 +178,7 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 			if(!pass)
 				continue
 		if(length(A.contents))
-			found += A.search_contents_for(path, filter_path)
+			found.Add(A.search_contents_for(path, filter_path))
 	return found
 
 
@@ -199,24 +201,6 @@ Maxdistance is the longest range the beam will persist before it gives up.
 	spawn(0)
 		newbeam.Start()
 	return newbeam
-
-//All atoms
-/atom/proc/examine(mob/user, distance = -1)
-	//This reformat names to get a/an properly working on item descriptions when they are bloody
-	var/f_name = "\a [src]."
-	if(src.blood_DNA && !istype(src, /obj/effect/decal))
-		if(gender == PLURAL)
-			f_name = "some "
-		else
-			f_name = "a "
-		f_name += "<span class='danger'>blood-stained</span> [name]!"
-
-	to_chat(user, "\icon[src] That's [f_name]")
-
-	if(desc)
-		to_chat(user, desc)
-
-	return distance == -1 || (get_dist(src, user) <= distance)
 
 /atom/proc/relaymove()
 	return
@@ -250,20 +234,20 @@ Maxdistance is the longest range the beam will persist before it gives up.
 		var/mob/living/carbon/human/H = M
 		if(!istype(H.dna, /datum/dna))
 			return 0
-		if(H.gloves)
-			if(src.fingerprintslast != H.key)
-				src.fingerprintshidden += "\[[time_stamp()]\] (Wearing gloves). Real name: [H.real_name], Key: [H.key]"
-				src.fingerprintslast = H.key
+		if(!isnull(H.gloves))
+			if(last_fingerprints != H.key)
+				hidden_fingerprints.Add("\[[time_stamp()]\] (Wearing gloves). Real name: [H.real_name], Key: [H.key]")
+				last_fingerprints = H.key
 			return 0
-		if(!src.fingerprints)
-			if(src.fingerprintslast != H.key)
-				src.fingerprintshidden += "\[[time_stamp()]\] Real name: [H.real_name], Key: [H.key]"
-				src.fingerprintslast = H.key
+		if(isnull(fingerprints))
+			if(last_fingerprints != H.key)
+				hidden_fingerprints.Add("\[[time_stamp()]\] Real name: [H.real_name], Key: [H.key]")
+				last_fingerprints = H.key
 			return 1
 	else
-		if(src.fingerprintslast != M.key)
-			src.fingerprintshidden += "\[[time_stamp()]\] Real name: [M.real_name], Key: [M.key]"
-			src.fingerprintslast = M.key
+		if(last_fingerprints != M.key)
+			hidden_fingerprints.Add("\[[time_stamp()]\] Real name: [M.real_name], Key: [M.key]")
+			last_fingerprints = M.key
 	return
 
 /atom/proc/add_fingerprint(mob/living/M as mob)
@@ -274,20 +258,21 @@ Maxdistance is the longest range the beam will persist before it gives up.
 	if(isnull(M.key))
 		return
 	if(ishuman(M))
-		//Add the list if it does not exist.
-		if(!fingerprintshidden)
-			fingerprintshidden = list()
+		// Add the list if it does not exist.
+		if(isnull(hidden_fingerprints))
+			hidden_fingerprints = list()
 
-		//Fibers~
+		// Fibers~
 		add_fibers(M)
 
-		//He has no prints!
+		// He has no prints!
 		if(mFingerprints in M.mutations)
-			if(fingerprintslast != M.key)
-				fingerprintshidden += "(Has no fingerprints) Real name: [M.real_name], Key: [M.key]"
-				fingerprintslast = M.key
-			return 0		//Now, lets get to the dirty work.
-		//First, make sure their DNA makes sense.
+			if(last_fingerprints != M.key)
+				hidden_fingerprints.Add("(Has no fingerprints) Real name: [M.real_name], Key: [M.key]")
+				last_fingerprints = M.key
+			return 0 // Now, lets get to the dirty work.
+
+		// First, make sure their DNA makes sense.
 		var/mob/living/carbon/human/H = M
 		if(!istype(H.dna, /datum/dna) || !H.dna.uni_identity || length(H.dna.uni_identity) != 32)
 			if(!istype(H.dna, /datum/dna))
@@ -295,129 +280,123 @@ Maxdistance is the longest range the beam will persist before it gives up.
 				H.dna.real_name = H.real_name
 		H.check_dna()
 
-		//Now, deal with gloves.
-		if(H.gloves && H.gloves != src)
-			if(fingerprintslast != H.key)
-				fingerprintshidden += "\[[time_stamp()]\](Wearing gloves). Real name: [H.real_name], Key: [H.key]"
-				fingerprintslast = H.key
+		// Now, deal with gloves.
+		if(!isnull(H.gloves) && H.gloves != src)
+			if(last_fingerprints != H.key)
+				hidden_fingerprints.Add("\[[time_stamp()]\](Wearing gloves). Real name: [H.real_name], Key: [H.key]")
+				last_fingerprints = H.key
 			H.gloves.add_fingerprint(M)
 
-		//Deal with gloves the pass finger/palm prints.
+		// Deal with gloves the pass finger/palm prints.
 		if(H.gloves != src)
 			if(prob(75) && istype(H.gloves, /obj/item/clothing/gloves/latex))
 				return 0
 			else if(H.gloves && !istype(H.gloves, /obj/item/clothing/gloves/latex))
 				return 0
 
-		//More adminstuffz
-		if(fingerprintslast != H.key)
-			fingerprintshidden += "\[[time_stamp()]\]Real name: [H.real_name], Key: [H.key]"
-			fingerprintslast = H.key
+		// More adminstuffz.
+		if(last_fingerprints != H.key)
+			hidden_fingerprints.Add("\[[time_stamp()]\]Real name: [H.real_name], Key: [H.key]")
+			last_fingerprints = H.key
 
-		//Make the list if it does not exist.
-		if(!fingerprints)
+		// Make the list if it does not exist.
+		if(isnull(fingerprints))
 			fingerprints = list()
 
-		//Hash this shit.
+		// Hash this shit.
 		var/full_print = md5(H.dna.uni_identity)
 
-		// Add the fingerprints
-		//
+		// Add the fingerprints.
 		if(fingerprints[full_print])
-			switch(stringpercent(fingerprints[full_print]))		//tells us how many stars are in the current prints.
+			switch(stringpercent(fingerprints[full_print])) // Tells us how many stars are in the current prints.
 				if(28 to 32)
 					if(prob(1))
-						fingerprints[full_print] = full_print		// You rolled a one buddy.
+						fingerprints[full_print] = full_print // You rolled a one buddy.
 					else
 						fingerprints[full_print] = stars(full_print, rand(0, 40)) // 24 to 32
 
 				if(24 to 27)
 					if(prob(3))
-						fingerprints[full_print] = full_print		//Sucks to be you.
+						fingerprints[full_print] = full_print // Sucks to be you.
 					else
 						fingerprints[full_print] = stars(full_print, rand(15, 55)) // 20 to 29
 
 				if(20 to 23)
 					if(prob(5))
-						fingerprints[full_print] = full_print		//Had a good run didn't ya.
+						fingerprints[full_print] = full_print // Had a good run didn't ya.
 					else
 						fingerprints[full_print] = stars(full_print, rand(30, 70)) // 15 to 25
 
 				if(16 to 19)
 					if(prob(5))
-						fingerprints[full_print] = full_print		//Welp.
+						fingerprints[full_print] = full_print // Welp.
 					else
 						fingerprints[full_print]  = stars(full_print, rand(40, 100))  // 0 to 21
 
 				if(0 to 15)
 					if(prob(5))
-						fingerprints[full_print] = stars(full_print, rand(0, 50))	// small chance you can smudge.
+						fingerprints[full_print] = stars(full_print, rand(0, 50)) // Small chance you can smudge.
 					else
 						fingerprints[full_print] = full_print
 		else
-			fingerprints[full_print] = stars(full_print, rand(0, 20))	//Initial touch, not leaving much evidence the first time.
+			fingerprints[full_print] = stars(full_print, rand(0, 20)) // Initial touch, not leaving much evidence the first time.
 
 		return 1
 	else
-		//Smudge up dem prints some
-		if(fingerprintslast != M.key)
-			fingerprintshidden += "\[[time_stamp()]\]Real name: [M.real_name], Key: [M.key]"
-			fingerprintslast = M.key
+		// Smudge up dem prints some.
+		if(last_fingerprints != M.key)
+			hidden_fingerprints.Add("\[[time_stamp()]\]Real name: [M.real_name], Key: [M.key]")
+			last_fingerprints = M.key
 
 	//Cleaning up shit.
-	if(fingerprints && !length(fingerprints))
+	if(!isnull(fingerprints) && !length(fingerprints))
 		qdel(fingerprints)
 	return
-
 
 /atom/proc/transfer_fingerprints_to(atom/A)
 	if(!islist(A.fingerprints))
 		A.fingerprints = list()
-	if(!islist(A.fingerprintshidden))
-		A.fingerprintshidden = list()
+	if(!islist(A.hidden_fingerprints))
+		A.hidden_fingerprints = list()
 
 	//skytodo
 	//A.fingerprints |= fingerprints			//detective
 	//A.fingerprintshidden |= fingerprintshidden	//admin
-	if(fingerprints)
+	if(!isnull(fingerprints))
 		A.fingerprints |= fingerprints.Copy()			//detective
-	if(fingerprintshidden)
-		A.fingerprintshidden |= fingerprintshidden.Copy()	//admin	A.fingerprintslast = fingerprintslast
+	if(!isnull(hidden_fingerprints))
+		A.hidden_fingerprints |= hidden_fingerprints.Copy()	//admin	A.fingerprintslast = fingerprintslast
 
-
-//returns 1 if made bloody, returns 0 otherwise
+// Returns TRUE if made bloody, returns FALSE otherwise.
 /atom/proc/add_blood(mob/living/carbon/human/M as mob)
 	if(flags & NOBLOODY)
-		return 0
-	. = 1
+		return FALSE
 	if(!ishuman(M))
-		return 0
+		return FALSE
+
 	if(!istype(M.dna, /datum/dna))
 		M.dna = new /datum/dna(null)
 		M.dna.real_name = M.real_name
 	M.check_dna()
-	if(!blood_DNA || !islist(blood_DNA))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
+	if(isnull(blood_DNA) || !islist(blood_DNA)) // If our list of DNA doesn't exist yet (or isn't a list) initialise it.
 		blood_DNA = list()
 	blood_color = "#A10808"
 	if(M.species)
 		blood_color = M.species.blood_color
-	return
+	return TRUE
 
-/atom/proc/add_vomit_floor(mob/living/carbon/M as mob, toxvomit = 0)
+/atom/proc/add_vomit_floor(mob/living/carbon/M as mob, toxvomit = FALSE)
 	if(istype(src, /turf/simulated))
 		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
-
 		// Make toxins vomit look different
 		if(toxvomit)
 			this.icon_state = "vomittox_[pick(1, 4)]"
 
-
 /atom/proc/clean_blood()
-	src.germ_level = 0
+	germ_level = 0
 	if(islist(blood_DNA))
 		qdel(blood_DNA)
 		return 1
-
 
 /atom/proc/get_global_map_pos()
 	if(!islist(GLOBL.global_map) || isemptylist(GLOBL.global_map))
