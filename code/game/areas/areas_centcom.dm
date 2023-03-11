@@ -1,4 +1,6 @@
-// CENTCOM
+/*
+ * CentCom.
+ */
 /area/centcom
 	name = "\improper CentCom"
 	icon_state = "centcom"
@@ -7,18 +9,6 @@
 
 /area/centcom/control
 	name = "\improper CentCom Control"
-
-/area/centcom/evac
-	name = "\improper CentCom Emergency Shuttle"
-
-/area/centcom/suppy
-	name = "\improper CentCom Supply Shuttle"
-
-/area/centcom/ferry
-	name = "\improper CentCom Transport Shuttle"
-
-/area/centcom/shuttle
-	name = "\improper CentCom Administration Shuttle"
 
 /area/centcom/test
 	name = "\improper CentCom Testing Facility"
@@ -39,7 +29,32 @@
 	name = "Solitary Confinement"
 	icon_state = "brig"
 
-//THUNDERDOME
+/*
+ * Shuttle Docks.
+ */
+/area/centcom/shuttle_dock
+	name = "\improper CentCom Shuttle Dock"
+
+/area/centcom/shuttle_dock/emergency
+	name = "\improper CentCom Emergency Shuttle Dock"
+
+/area/centcom/shuttle_dock/supply
+	name = "\improper CentCom Supply Shuttle Dock"
+
+/area/centcom/shuttle_dock/ferry
+	name = "\improper CentCom Transport Shuttle Dock"
+
+/area/centcom/shuttle_dock/administration
+	name = "\improper CentCom Administration Shuttle Dock"
+
+/area/centcom/shuttle_dock/arrival
+	name = "\improper CentCom Arrival Shuttle Dock"
+
+/*
+ * Thunderdome.
+ * 
+ * THUNDERDOME
+ */
 /area/tdome
 	name = "\improper Thunderdome"
 	icon_state = "thunder"
