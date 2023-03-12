@@ -35,7 +35,8 @@
 	var/aistate = STATE_DEFAULT
 	var/message_cooldown = FALSE
 	var/centcom_message_cooldown = FALSE
-	var/tmp_alertlevel = 0
+
+	var/tmp/decl/security_level/temp_alert_level = null // The typepath of the security level we're trying to set the station to, if applicable.
 
 	var/status_display_freq = 1435
 	var/stat_msg1
@@ -82,31 +83,19 @@
 				I = pda.id
 			if(I && istype(I))
 				if((ACCESS_CAPTAIN in I.access) || (ACCESS_HEADS in I.access)) //Let heads change the alert level.
-					var/old_level = GLOBL.security_level
-					if(!tmp_alertlevel)
-						tmp_alertlevel = SEC_LEVEL_GREEN
-					if(tmp_alertlevel < SEC_LEVEL_GREEN)
-						tmp_alertlevel = SEC_LEVEL_GREEN
-					if(tmp_alertlevel == SEC_LEVEL_YELLOW)
-						tmp_alertlevel = SEC_LEVEL_YELLOW
-					if(tmp_alertlevel > SEC_LEVEL_BLUE)
-						tmp_alertlevel = SEC_LEVEL_BLUE //Cannot engage delta with this
-					set_security_level(tmp_alertlevel)
-					if(GLOBL.security_level != old_level)
-						//Only notify the admins if an actual change happened
-						log_game("[key_name(usr)] has changed the security level to [get_security_level()].")
-						message_admins("[key_name_admin(usr)] has changed the security level to [get_security_level()].")
-						switch(GLOBL.security_level)
-							if(SEC_LEVEL_GREEN)
-								feedback_inc("alert_comms_green", 1)
-							if(SEC_LEVEL_YELLOW)
-								feedback_inc("alert_comms_yellow", 1)
-							if(SEC_LEVEL_BLUE)
-								feedback_inc("alert_comms_blue", 1)
-					tmp_alertlevel = 0
+					var/decl/security_level/old_level = GLOBL.security_level
+					if(temp_alert_level == /decl/security_level/red || temp_alert_level == /decl/security_level/delta)
+						temp_alert_level = /decl/security_level/blue // Cannot engage red or delta with this.
+					set_security_level(temp_alert_level)
+					if(GLOBL.security_level != old_level.type)
+						// Only notify the admins if an actual change happened.
+						log_game("[key_name(usr)] has changed the security level to [GLOBL.security_level.name].")
+						message_admins("[key_name_admin(usr)] has changed the security level to [GLOBL.security_level.name].")
+						feedback_inc("alert_comms_[GLOBL.security_level.name]", 1)
+					temp_alert_level = null
 				else
 					to_chat(usr, "You are not authorized to do this.")
-					tmp_alertlevel = 0
+					temp_alert_level = null
 				state = STATE_DEFAULT
 			else
 				to_chat(usr, "You need to swipe your ID.")
@@ -274,8 +263,7 @@
 			src.aistate = STATE_STATUSDISPLAY
 
 		if("securitylevel")
-			src.tmp_alertlevel = text2num(href_list["newalertlevel"])
-			if(!tmp_alertlevel) tmp_alertlevel = 0
+			temp_alert_level = text2path(href_list["newalertlevel"])
 			state = STATE_CONFIRM_LEVEL
 
 		if("changeseclevel")
@@ -380,16 +368,16 @@
 			dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=lockdown'>Lockdown</A> |"
 			dat += " <A HREF='?src=\ref[src];operation=setstat;statdisp=alert;alert=biohazard'>Biohazard</A> |"
 		if(STATE_ALERT_LEVEL)
-			dat += "Current alert level: [get_security_level()]<BR>"
-			if(GLOBL.security_level == SEC_LEVEL_DELTA)
+			dat += "Current alert level: [GLOBL.security_level.name]<BR>"
+			if(IS_SEC_LEVEL(/decl/security_level/delta))
 				dat += "<font color='red'><b>The self-destruct mechanism is active. Find a way to deactivate the mechanism to lower the alert level or evacuate.</b></font>"
 			else
-				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_BLUE]'>Blue</A><BR>"
-				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_YELLOW]'>Yellow</A><BR>"
-				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_GREEN]'>Green</A>"
+				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[/decl/security_level/blue]'>Blue</A><BR>"
+				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[/decl/security_level/yellow]'>Yellow</A><BR>"
+				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[/decl/security_level/green]'>Green</A>"
 		if(STATE_CONFIRM_LEVEL)
-			dat += "Current alert level: [get_security_level()]<BR>"
-			dat += "Confirm the change to: [num2seclevel(tmp_alertlevel)]<BR>"
+			dat += "Current alert level: [GLOBL.security_level.name]<BR>"
+			dat += "Confirm the change to: [GLOBL.security_level.name]<BR>"
 			dat += "<A HREF='?src=\ref[src];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
 
 	dat += "<BR>\[ [(src.state != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=main'>Main Menu</A> | " : ""]<A HREF='?src=\ref[user];mach_close=communications'>Close</A> \]"
@@ -539,8 +527,7 @@
 
 /obj/machinery/computer/communications/proc/post_status(command, data1, data2)
 	var/datum/radio_frequency/frequency = global.CTradio.return_frequency(status_display_freq)
-
-	if(!frequency)
+	if(isnull(frequency))
 		return
 
 	var/datum/signal/status_signal = new /datum/signal()

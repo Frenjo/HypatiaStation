@@ -26,7 +26,7 @@ GLOBAL_GLOBL(can_call_ert)
 		return
 	if(alert("Do you want to dispatch an Emergency Response Team?", , "Yes", "No") != "Yes")
 		return
-	if(get_security_level() != "red") // Allow admins to reconsider if the alert level isn't Red
+	if(!IS_SEC_LEVEL(/decl/security_level/red)) // Allow admins to reconsider if the alert level isn't Red
 		switch(alert("The station is not in red alert. Do you still want to dispatch a response team?", , "Yes", "No"))
 			if("No")
 				return
@@ -113,14 +113,7 @@ GLOBAL_GLOBL(can_call_ert)
 // the more likely an ERT is to be able to be called.
 /proc/increment_ert_chance()
 	while(!GLOBL.send_emergency_team) // There is no ERT at the time.
-		if(get_security_level() == "green")
-			GLOBL.ert_base_chance += 1
-		if(get_security_level() == "blue")
-			GLOBL.ert_base_chance += 2
-		if(get_security_level() == "red")
-			GLOBL.ert_base_chance += 3
-		if(get_security_level() == "delta")
-			GLOBL.ert_base_chance += 10		// Need those big guns
+		GLOBL.ert_base_chance += GLOBL.security_level.ert_base_chance_mod
 		sleep(3 MINUTES)
 
 

@@ -219,7 +219,7 @@ CONTROLLER_DEF(vote)
 					question = "End the shift?"
 					choices.Add("Initiate Crew Transfer", "Continue The Round")
 				else
-					if(get_security_level() == "red" || get_security_level() == "delta")
+					if(!GLOBL.security_level.can_call_transfer)
 						to_chat(initiator_key, "The current alert status is too high to call for a crew transfer!")
 						return 0
 					if(global.CTgame_ticker.current_state <= GAME_STATE_SETTING_UP)

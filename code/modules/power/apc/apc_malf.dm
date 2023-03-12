@@ -44,7 +44,7 @@
 		src.occupant.parent.adjustOxyLoss(src.occupant.getOxyLoss())
 		src.occupant.parent.cancel_camera()
 		qdel(src.occupant)
-		if(seclevel2num(get_security_level()) == SEC_LEVEL_DELTA)
+		if(IS_SEC_LEVEL(/decl/security_level/delta))
 			for(var/obj/item/weapon/pinpointer/point in world)
 				for(var/datum/mind/AI_mind in global.CTgame_ticker.mode.malf_ai)
 					var/mob/living/silicon/ai/A = AI_mind.current // the current mob the mind owns

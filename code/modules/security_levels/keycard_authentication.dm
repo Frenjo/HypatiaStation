@@ -23,11 +23,9 @@
 
 /obj/machinery/keycard_auth/attack_ai(mob/user as mob)
 	to_chat(user, "The station AI is not to interact with these devices.")
-	return
 
 /obj/machinery/keycard_auth/attack_paw(mob/user as mob)
 	to_chat(user, "You are too primitive to use this device.")
-	return
 
 /obj/machinery/keycard_auth/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(stat & (NOPOWER | BROKEN))
@@ -38,7 +36,7 @@
 		if(ACCESS_KEYCARD_AUTH in ID.access)
 			if(active == TRUE)
 				//This is not the device that made the initial request. It is the device confirming the request.
-				if(event_source)
+				if(!isnull(event_source))
 					event_source.confirmed = TRUE
 					event_source.event_confirmed_by = usr
 			else if(screen == 2)
@@ -63,7 +61,6 @@
 	user.set_machine(src)
 
 	ui_interact(user) // Added this to reflect NanoUI port. -Frenjo
-	return
 
 // Porting this to NanoUI, it looks way better honestly. -Frenjo
 /obj/machinery/keycard_auth/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
@@ -98,7 +95,6 @@
 
 	updateUsrDialog()
 	add_fingerprint(usr)
-	return
 
 /obj/machinery/keycard_auth/proc/reset()
 	active = FALSE
@@ -112,11 +108,12 @@
 
 /obj/machinery/keycard_auth/proc/broadcast_request()
 	icon_state = "auth_on"
-	for(var/obj/machinery/keycard_auth/KA in world)
-		if(KA == src) continue
-		KA.reset()
+	for(var/obj/machinery/keycard_auth/auth in world)
+		if(auth == src)
+			continue
+		auth.reset()
 		spawn()
-			KA.receive_request(src)
+			auth.receive_request(src)
 
 	sleep(confirm_delay)
 	if(confirmed)
@@ -143,8 +140,8 @@
 
 /obj/machinery/keycard_auth/proc/trigger_event()
 	switch(event)
-		if("Red alert")
-			set_security_level(SEC_LEVEL_RED)
+		if("Red Alert")
+			set_security_level(/decl/security_level/red)
 			feedback_inc("alert_keycard_auth_red", 1)
 		if("Grant Emergency Maintenance Access")
 			make_maint_all_access()
@@ -158,10 +155,10 @@
 				feedback_inc("alert_keycard_auth_ert", 1)
 
 
-/var/global/maint_all_access = 0
+/var/global/maint_all_access = FALSE
 
 /proc/make_maint_all_access()
-	maint_all_access = 1
+	maint_all_access = TRUE
 	to_world("<font size=4 color='red'>Attention!</font>")
 	to_world("<font color='red'>The maintenance access requirement has been revoked on all maintenance airlocks.</font>")
 
@@ -171,7 +168,7 @@
 			M.update_icon()
 
 /proc/revoke_maint_all_access()
-	maint_all_access = 0
+	maint_all_access = FALSE
 	to_world("<font size=4 color='red'>Attention!</font>")
 	to_world("<font color='red'>The maintenance access requirement has been readded on all maintenance airlocks.</font>")
 

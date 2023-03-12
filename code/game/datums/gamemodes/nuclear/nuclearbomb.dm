@@ -367,12 +367,12 @@ var/bomb_set
 							src.icon_state = "nuclearbomb2"
 						if(!src.safety)
 							bomb_set = 1//There can still be issues with this reseting when there are multiple bombs. Not a big deal tho for Nuke/N
-							set_security_level(SEC_LEVEL_DELTA) // Trigger alert level delta when the bomb is activated. -Frenjo
+							set_security_level(/decl/security_level/delta) // Trigger alert level delta when the bomb is activated. -Frenjo
 						else
 							bomb_set = 0
 					else
 						bomb_set = 0
-						set_security_level(SEC_LEVEL_RED) // Lower to level red when the timer's stopped. -Frenjo
+						set_security_level(/decl/security_level/red) // Lower to level red when the timer's stopped. -Frenjo
 						if(!src.lighthack)
 							src.icon_state = "nuclearbomb1"
 				if(href_list["safety"])
@@ -380,7 +380,7 @@ var/bomb_set
 					if(safety)
 						src.timing = 0
 						bomb_set = 0
-						set_security_level(SEC_LEVEL_RED) // Lower to level red when the safety's put back on. -Frenjo
+						set_security_level(/decl/security_level/red) // Lower to level red when the safety's put back on. -Frenjo
 				if(href_list["anchor"])
 					if(removal_stage == 5)
 						src.anchored = FALSE

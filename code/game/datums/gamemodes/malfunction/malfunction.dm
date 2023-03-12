@@ -169,7 +169,7 @@
 		return
 
 	command_alert("Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.", "Anomaly Alert")
-	set_security_level("delta")
+	set_security_level(/decl/security_level/delta)
 
 	global.CTgame_ticker.mode:malf_mode_declared = 1
 	for(var/datum/mind/AI_mind in global.CTgame_ticker.mode:malf_ai)
