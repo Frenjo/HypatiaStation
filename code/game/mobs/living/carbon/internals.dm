@@ -15,7 +15,7 @@
 
 			var/list/nicename = null
 			var/list/tankcheck = null
-			var/breathes = GAS_OXYGEN	// Default, we'll check later.
+			var/breathes = /decl/xgm_gas/oxygen	// Default, we'll check later.
 			var/list/contents = list()
 
 			if(ishuman(C))
@@ -37,29 +37,29 @@
 					switch(breathes)
 						// These tanks we're sure of their contents.
 						// So we're a bit more picky about them.
-						if(GAS_NITROGEN)
-							if(t.air_contents.gas[GAS_NITROGEN] && !t.air_contents.gas[GAS_OXYGEN])
-								contents.Add(t.air_contents.gas[GAS_NITROGEN])
+						if(/decl/xgm_gas/nitrogen)
+							if(t.air_contents.gas[/decl/xgm_gas/nitrogen] && !t.air_contents.gas[/decl/xgm_gas/oxygen])
+								contents.Add(t.air_contents.gas[/decl/xgm_gas/nitrogen])
 							else
 								contents.Add(0)
 
-						if(GAS_OXYGEN)
-							if(t.air_contents.gas[GAS_OXYGEN] && !t.air_contents.gas[GAS_PLASMA])
-								contents.Add(t.air_contents.gas[GAS_OXYGEN])
+						if(/decl/xgm_gas/oxygen)
+							if(t.air_contents.gas[/decl/xgm_gas/oxygen] && !t.air_contents.gas[/decl/xgm_gas/plasma])
+								contents.Add(t.air_contents.gas[/decl/xgm_gas/oxygen])
 							else
 								contents.Add(0)
 
 						// No races breath this, but never know about downstream servers.
-						if(GAS_CARBON_DIOXIDE)
-							if(t.air_contents.gas[GAS_CARBON_DIOXIDE] && !t.air_contents.gas[GAS_PLASMA])
-								contents.Add(t.air_contents.gas[GAS_CARBON_DIOXIDE])
+						if(/decl/xgm_gas/carbon_dioxide)
+							if(t.air_contents.gas[/decl/xgm_gas/carbon_dioxide] && !t.air_contents.gas[/decl/xgm_gas/plasma])
+								contents.Add(t.air_contents.gas[/decl/xgm_gas/carbon_dioxide])
 							else
 								contents.Add(0)
 
 						// Plasmalins breath this.
-						if(GAS_PLASMA)
-							if(t.air_contents.gas[GAS_PLASMA] && !t.air_contents.gas[GAS_OXYGEN])
-								contents.Add(t.air_contents.gas[GAS_PLASMA])
+						if(/decl/xgm_gas/plasma)
+							if(t.air_contents.gas[/decl/xgm_gas/plasma] && !t.air_contents.gas[/decl/xgm_gas/oxygen])
+								contents.Add(t.air_contents.gas[/decl/xgm_gas/plasma])
 							else
 								contents.Add(0)
 				else
@@ -85,4 +85,4 @@
 				if(C.internals)
 					C.internals.icon_state = "internal1"
 			else
-				to_chat(C, SPAN_NOTICE("You don't have a[breathes == GAS_OXYGEN ? "n oxygen" : addtext(" ", breathes)] tank."))
+				to_chat(C, SPAN_NOTICE("You don't have a[breathes == /decl/xgm_gas/oxygen ? "n oxygen" : addtext(" ", breathes)] tank."))

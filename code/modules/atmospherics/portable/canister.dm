@@ -321,9 +321,9 @@ update_flag
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/oxygen/New()
-	..()
-	src.air_contents.adjust_gas(GAS_OXYGEN, (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
-	src.update_icon()
+	. = ..()
+	air_contents.adjust_gas(/decl/xgm_gas/oxygen, (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
+	update_icon()
 
 // Nitrogen
 /obj/machinery/portable_atmospherics/canister/nitrogen
@@ -333,9 +333,9 @@ update_flag
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/nitrogen/New()
-	..()
-	src.air_contents.adjust_gas(GAS_NITROGEN, (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
-	src.update_icon()
+	. = ..()
+	air_contents.adjust_gas(/decl/xgm_gas/nitrogen, (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
+	update_icon()
 
 // Mixed Air
 /obj/machinery/portable_atmospherics/canister/air
@@ -345,12 +345,12 @@ update_flag
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/air/New()
-	..()
-	src.air_contents.adjust_multi(
-		GAS_OXYGEN, (O2STANDARD * src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature),
-		GAS_NITROGEN, (N2STANDARD * src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
+	. = ..()
+	air_contents.adjust_multi(
+		/decl/xgm_gas/oxygen, (O2STANDARD * maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature),
+		/decl/xgm_gas/nitrogen, (N2STANDARD * maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
 	)
-	src.update_icon()
+	update_icon()
 
 // Hydrogen
 /obj/machinery/portable_atmospherics/canister/hydrogen
@@ -360,9 +360,9 @@ update_flag
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/hydrogen/New()
-	..()
-	src.air_contents.adjust_gas(GAS_HYDROGEN, (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
-	src.update_icon()
+	. = ..()
+	air_contents.adjust_gas(/decl/xgm_gas/hydrogen, (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
+	update_icon()
 
 // Carbon Dioxide
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide
@@ -372,9 +372,9 @@ update_flag
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide/New()
-	..()
-	src.air_contents.adjust_gas(GAS_CARBON_DIOXIDE, (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
-	src.update_icon()
+	. = ..()
+	air_contents.adjust_gas(/decl/xgm_gas/carbon_dioxide, (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
+	update_icon()
 
 // Plasma
 /obj/machinery/portable_atmospherics/canister/toxins
@@ -384,9 +384,9 @@ update_flag
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/toxins/New()
-	..()
-	src.air_contents.adjust_gas(GAS_PLASMA, (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
-	src.update_icon()
+	. = ..()
+	air_contents.adjust_gas(/decl/xgm_gas/plasma, (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
+	update_icon()
 
 // Oxygen + Plasma Mix
 // Added this because of updated atmos stuff. -Frenjo
@@ -397,13 +397,13 @@ update_flag
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/oxygen_toxins/New()
-	..()
+	. = ..()
 	// This has a 75/25 plasma/oxygen mixture. -Frenjo
-	src.air_contents.adjust_multi(
-		GAS_OXYGEN, (src.maximum_pressure * filled / 0.25) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature),
-		GAS_PLASMA, (src.maximum_pressure * filled / 0.75) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
+	air_contents.adjust_multi(
+		/decl/xgm_gas/oxygen, (maximum_pressure * filled / 0.25) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature),
+		/decl/xgm_gas/plasma, (maximum_pressure * filled / 0.75) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
 	)
-	src.update_icon()
+	update_icon()
 
 // Oxygen Agent-B
 // Added this because I'm curious. -Frenjo
@@ -414,9 +414,9 @@ update_flag
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/oxygen_agent_b/New()
-	..()
-	air_contents.adjust_gas(GAS_OXYGEN_AGENT_B, (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
-	src.update_icon()
+	. = ..()
+	air_contents.adjust_gas(/decl/xgm_gas/oxygen_agent_b, (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
+	update_icon()
 
 // Nitrous Oxide
 /obj/machinery/portable_atmospherics/canister/sleeping_agent
@@ -426,15 +426,15 @@ update_flag
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/sleeping_agent/New()
-	..()
-	air_contents.adjust_gas(GAS_SLEEPING_AGENT, (src.maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
-	src.update_icon()
+	. = ..()
+	air_contents.adjust_gas(/decl/xgm_gas/sleeping_agent, (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
+	update_icon()
 
 //Dirty way to fill room with gas. However it is a bit easier to do than creating some floor/engine/n2o -rastaf0
 /obj/machinery/portable_atmospherics/canister/sleeping_agent/roomfiller/New()
-	..()
-	air_contents.gas[GAS_SLEEPING_AGENT] = 9 * 4000
-	src.update_icon()
+	. = ..()
+	air_contents.gas[/decl/xgm_gas/sleeping_agent] = 9 * 4000
+	update_icon()
 
 /obj/machinery/portable_atmospherics/canister/sleep_agent/roomfiller/initialize()
 	. = ..()

@@ -6,7 +6,7 @@
 	var/intact = 1
 
 	// Properties for open tiles (/floor)
-	var/list/initial_gases = list() // A list of all gas amounts that this turf starts with, indexed by GAS_X define.
+	var/list/initial_gases = list() // A list of all gas amounts that this turf starts with, indexed by typepath.
 
 	// Properties for airtight tiles (/wall)
 	var/thermal_conductivity = 0.05

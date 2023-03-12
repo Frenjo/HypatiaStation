@@ -332,10 +332,10 @@ table tr:first-child th:first-child { border: none;}
 <TR><th></th><th class=dl2>min2</th><th class=dl1>min1</th><th class=dl1>max1</th><th class=dl2>max2</th></TR>
 "}
 			var/list/gases = list(
-				GAS_OXYGEN			= "O<sub>2</sub>",
-				GAS_CARBON_DIOXIDE	= "CO<sub>2</sub>",
-				GAS_PLASMA			= "Toxin",
-				"other"				= "Other",
+				/decl/xgm_gas/oxygen			= "O<sub>2</sub>",
+				/decl/xgm_gas/carbon_dioxide	= "CO<sub>2</sub>",
+				/decl/xgm_gas/plasma			= "Toxin",
+				"other"							= "Other",
 			)
 			var/list/tlv
 			for(var/g in gases)

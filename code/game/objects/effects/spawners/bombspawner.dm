@@ -124,7 +124,7 @@
 
 
 /obj/effect/spawner/newbomb/New()
-	..()
+	. = ..()
 
 	var/obj/item/device/transfer_valve/V = new(src.loc)
 	var/obj/item/weapon/tank/plasma/PT = new(V)
@@ -137,10 +137,10 @@
 	OT.master = V
 
 	PT.air_contents.temperature = PLASMA_FLASHPOINT
-	PT.air_contents.adjust_multi(GAS_PLASMA, 12, GAS_CARBON_DIOXIDE, 8)
+	PT.air_contents.adjust_multi(/decl/xgm_gas/plasma, 12, /decl/xgm_gas/carbon_dioxide, 8)
 
 	OT.air_contents.temperature = PLASMA_FLASHPOINT
-	OT.air_contents.adjust_gas(GAS_OXYGEN, 20)
+	OT.air_contents.adjust_gas(/decl/xgm_gas/oxygen, 20)
 
 	var/obj/item/device/assembly/S
 

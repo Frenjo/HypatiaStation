@@ -102,7 +102,7 @@
 	new /obj/structure/girder(src)
 	src.ChangeTurf(/turf/simulated/floor)
 	for(var/turf/simulated/floor/target_tile in range(0, src))
-		target_tile.assume_gas(GAS_PLASMA, 20, 400 + T0C)
+		target_tile.assume_gas(/decl/xgm_gas/plasma, 20, 400 + T0C)
 		spawn(0)
 			target_tile.hotspot_expose(temperature, 400)
 	for(var/obj/structure/falsewall/plasma/F in range(3, src))//Hackish as fuck, but until temperature_expose works, there is nothing I can do -Sieve

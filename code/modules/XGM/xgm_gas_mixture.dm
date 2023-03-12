@@ -34,7 +34,7 @@
 		return
 
 	if(moles > 0 && abs(temperature - temp) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
-		var/self_heat_capacity = heat_capacity()*group_multiplier
+		var/self_heat_capacity = heat_capacity() * group_multiplier
 		var/giver_heat_capacity = GLOBL.gas_data.specific_heat[gasid] * moles
 		var/combined_heat_capacity = giver_heat_capacity + self_heat_capacity
 		if(combined_heat_capacity != 0)

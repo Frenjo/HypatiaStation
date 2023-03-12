@@ -59,27 +59,27 @@
 			var/total_moles = air_sample.total_moles
 			if(total_moles > 0)
 				if(output & AIR_SENSOR_OXYGEN)
-					signal.data[GAS_OXYGEN] = round(100 * air_sample.gas[GAS_OXYGEN] / total_moles, 0.1)
+					signal.data[/decl/xgm_gas/oxygen] = round(100 * air_sample.gas[/decl/xgm_gas/oxygen] / total_moles, 0.1)
 				if(output & AIR_SENSOR_NITROGEN)
-					signal.data[GAS_NITROGEN] = round(100 * air_sample.gas[GAS_NITROGEN] / total_moles, 0.1)
+					signal.data[/decl/xgm_gas/nitrogen] = round(100 * air_sample.gas[/decl/xgm_gas/nitrogen] / total_moles, 0.1)
 				if(output & AIR_SENSOR_HYDROGEN)
-					signal.data[GAS_HYDROGEN] = round(100 * air_sample.gas[GAS_HYDROGEN] / total_moles, 0.1)
+					signal.data[/decl/xgm_gas/hydrogen] = round(100 * air_sample.gas[/decl/xgm_gas/hydrogen] / total_moles, 0.1)
 				if(output & AIR_SENSOR_CARBON_DIOXIDE)
-					signal.data[GAS_CARBON_DIOXIDE] = round(100 * air_sample.gas[GAS_CARBON_DIOXIDE] / total_moles, 0.1)
+					signal.data[/decl/xgm_gas/carbon_dioxide] = round(100 * air_sample.gas[/decl/xgm_gas/carbon_dioxide] / total_moles, 0.1)
 				if(output & AIR_SENSOR_PLASMA)
-					signal.data[GAS_PLASMA] = round(100 * air_sample.gas[GAS_PLASMA] / total_moles, 0.1)
+					signal.data[/decl/xgm_gas/plasma] = round(100 * air_sample.gas[/decl/xgm_gas/plasma] / total_moles, 0.1)
 				if(output & AIR_SENSOR_OXYGEN_AGENT_B)
-					signal.data[GAS_OXYGEN_AGENT_B] = round(100 * air_sample.gas[GAS_OXYGEN_AGENT_B] / total_moles, 0.1)
+					signal.data[/decl/xgm_gas/oxygen_agent_b] = round(100 * air_sample.gas[/decl/xgm_gas/oxygen_agent_b] / total_moles, 0.1)
 				if(output & AIR_SENSOR_SLEEPING_AGENT)
-					signal.data[GAS_SLEEPING_AGENT] = round(100 * air_sample.gas[GAS_SLEEPING_AGENT] / total_moles, 0.1)
+					signal.data[/decl/xgm_gas/sleeping_agent] = round(100 * air_sample.gas[/decl/xgm_gas/sleeping_agent] / total_moles, 0.1)
 			else
-				signal.data[GAS_OXYGEN] = 0
-				signal.data[GAS_NITROGEN] = 0
-				signal.data[GAS_HYDROGEN] = 0
-				signal.data[GAS_CARBON_DIOXIDE] = 0
-				signal.data[GAS_PLASMA] = 0
-				signal.data[GAS_OXYGEN_AGENT_B] = 0
-				signal.data[GAS_SLEEPING_AGENT] = 0
+				signal.data[/decl/xgm_gas/oxygen] = 0
+				signal.data[/decl/xgm_gas/nitrogen] = 0
+				signal.data[/decl/xgm_gas/hydrogen] = 0
+				signal.data[/decl/xgm_gas/carbon_dioxide] = 0
+				signal.data[/decl/xgm_gas/plasma] = 0
+				signal.data[/decl/xgm_gas/oxygen_agent_b] = 0
+				signal.data[/decl/xgm_gas/sleeping_agent] = 0
 		signal.data["sigtype"] = "status"
 		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
@@ -188,30 +188,30 @@
 					sensor_part += "   <B>Pressure:</B> [data["pressure"]] kPa<BR>"
 				if(data["temperature"])
 					sensor_part += "   <B>Temperature:</B> [data["temperature"]] K<BR>"
-				if(data[GAS_OXYGEN] || data[GAS_NITROGEN] || data[GAS_HYDROGEN] || data[GAS_CARBON_DIOXIDE] \
-				|| data[GAS_PLASMA] || data[GAS_OXYGEN_AGENT_B] || data[GAS_SLEEPING_AGENT])
+				if(data[/decl/xgm_gas/oxygen] || data[/decl/xgm_gas/nitrogen] || data[/decl/xgm_gas/hydrogen] || data[/decl/xgm_gas/carbon_dioxide] \
+				|| data[/decl/xgm_gas/plasma] || data[/decl/xgm_gas/oxygen_agent_b] || data[/decl/xgm_gas/sleeping_agent])
 					sensor_part += "   <B>Gas Composition: </B>"
-					if(data[GAS_OXYGEN])
+					if(data[/decl/xgm_gas/oxygen])
 						sensor_part += "<BR>"
-						sensor_part += "[data[GAS_OXYGEN]]% O2;"
-					if(data[GAS_NITROGEN])
+						sensor_part += "[data[/decl/xgm_gas/oxygen]]% O2;"
+					if(data[/decl/xgm_gas/nitrogen])
 						sensor_part += "<BR>"
-						sensor_part += "[data[GAS_NITROGEN]]% N;"
-					if(data[GAS_HYDROGEN])
+						sensor_part += "[data[/decl/xgm_gas/nitrogen]]% N;"
+					if(data[/decl/xgm_gas/hydrogen])
 						sensor_part += "<BR>"
-						sensor_part += "[data[GAS_HYDROGEN]]% H2;"
-					if(data[GAS_CARBON_DIOXIDE])
+						sensor_part += "[data[/decl/xgm_gas/hydrogen]]% H2;"
+					if(data[/decl/xgm_gas/carbon_dioxide])
 						sensor_part += "<BR>"
-						sensor_part += "[data[GAS_CARBON_DIOXIDE]]% CO2;"
-					if(data[GAS_PLASMA])
+						sensor_part += "[data[/decl/xgm_gas/carbon_dioxide]]% CO2;"
+					if(data[/decl/xgm_gas/plasma])
 						sensor_part += "<BR>"
-						sensor_part += "[data[GAS_PLASMA]]% TX;"
-					if(data[GAS_OXYGEN_AGENT_B])
+						sensor_part += "[data[/decl/xgm_gas/plasma]]% TX;"
+					if(data[/decl/xgm_gas/oxygen_agent_b])
 						sensor_part += "<BR>"
-						sensor_part += "[data[GAS_OXYGEN_AGENT_B]]% O2A-B;"
-					if(data[GAS_SLEEPING_AGENT])
+						sensor_part += "[data[/decl/xgm_gas/oxygen_agent_b]]% O2A-B;"
+					if(data[/decl/xgm_gas/sleeping_agent])
 						sensor_part += "<BR>"
-						sensor_part += "[data[GAS_SLEEPING_AGENT]]% N2O;"
+						sensor_part += "[data[/decl/xgm_gas/sleeping_agent]]% N2O;"
 				sensor_part += "<HR>"
 			else
 				sensor_part = "<FONT color='red'>[long_name] can not be found!</FONT><BR>"

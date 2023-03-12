@@ -149,28 +149,28 @@
 				bodytemperature += diff
 
 			if(min_oxy)
-				if(Environment.gas[GAS_OXYGEN] < min_oxy)
+				if(Environment.gas[/decl/xgm_gas/oxygen] < min_oxy)
 					atmos_suitable = 0
 			if(max_oxy)
-				if(Environment.gas[GAS_OXYGEN] > max_oxy)
+				if(Environment.gas[/decl/xgm_gas/oxygen] > max_oxy)
 					atmos_suitable = 0
 			if(min_tox)
-				if(Environment.gas[GAS_PLASMA] < min_tox)
+				if(Environment.gas[/decl/xgm_gas/plasma] < min_tox)
 					atmos_suitable = 0
 			if(max_tox)
-				if(Environment.gas[GAS_PLASMA] > max_tox)
+				if(Environment.gas[/decl/xgm_gas/plasma] > max_tox)
 					atmos_suitable = 0
 			if(min_n2)
-				if(Environment.gas[GAS_NITROGEN] < min_n2)
+				if(Environment.gas[/decl/xgm_gas/nitrogen] < min_n2)
 					atmos_suitable = 0
 			if(max_n2)
-				if(Environment.gas[GAS_NITROGEN] > max_n2)
+				if(Environment.gas[/decl/xgm_gas/nitrogen] > max_n2)
 					atmos_suitable = 0
 			if(min_co2)
-				if(Environment.gas[GAS_CARBON_DIOXIDE] < min_co2)
+				if(Environment.gas[/decl/xgm_gas/carbon_dioxide] < min_co2)
 					atmos_suitable = 0
 			if(max_co2)
-				if(Environment.gas[GAS_CARBON_DIOXIDE] > max_co2)
+				if(Environment.gas[/decl/xgm_gas/carbon_dioxide] > max_co2)
 					atmos_suitable = 0
 
 	//Atmos effect

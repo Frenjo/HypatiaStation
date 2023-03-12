@@ -567,7 +567,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 			for(var/obj/item/I in all_items) //Check for plasma tanks
 				if(istype(I, steal_target))
-					found_amount += (target_name == "28 moles of plasma (full tank)") ? I:air_contents:gas[GAS_PLASMA] : I:amount
+					found_amount += (target_name == "28 moles of plasma (full tank)") ? I:air_contents:gas[/decl/xgm_gas/plasma] : I:amount
 			return found_amount >= target_amount
 
 		if("50 coins (in bag)")

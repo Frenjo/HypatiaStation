@@ -122,12 +122,12 @@
 	cell.maxcharge = 15000
 
 /obj/mecha/proc/add_cabin()
-	cabin_air = new
+	cabin_air = new /datum/gas_mixture()
 	cabin_air.temperature = T20C
 	cabin_air.volume = 200
 	cabin_air.adjust_multi(
-		GAS_OXYGEN, O2STANDARD*cabin_air.volume / (R_IDEAL_GAS_EQUATION * cabin_air.temperature),
-		GAS_NITROGEN, N2STANDARD * cabin_air.volume / (R_IDEAL_GAS_EQUATION * cabin_air.temperature)
+		/decl/xgm_gas/oxygen, O2STANDARD * cabin_air.volume / (R_IDEAL_GAS_EQUATION * cabin_air.temperature),
+		/decl/xgm_gas/nitrogen, N2STANDARD * cabin_air.volume / (R_IDEAL_GAS_EQUATION * cabin_air.temperature)
 	)
 	return cabin_air
 

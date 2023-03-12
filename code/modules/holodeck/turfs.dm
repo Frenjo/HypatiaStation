@@ -9,7 +9,7 @@
 /turf/simulated/floor/holofloor/burnmix
 	name = "burn-mix floor"
 	icon_state = "engine"
-	initial_gases = list(GAS_OXYGEN = 2500, GAS_PLASMA = 5000)
+	initial_gases = list(/decl/xgm_gas/oxygen = 2500, /decl/xgm_gas/plasma = 5000)
 	temperature = 370
 
 // Grass

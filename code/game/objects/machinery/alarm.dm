@@ -108,12 +108,12 @@
 /obj/machinery/alarm/server/New()
 	..()
 	req_access = list(ACCESS_RD, ACCESS_ATMOSPHERICS, ACCESS_ENGINE_EQUIP)
-	TLV[GAS_OXYGEN] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
-	TLV[GAS_CARBON_DIOXIDE] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
-	TLV[GAS_PLASMA] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
-	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
-	TLV["pressure"] =		list(0,ONE_ATMOSPHERE * 0.10, ONE_ATMOSPHERE * 1.40, ONE_ATMOSPHERE * 1.60) /* kpa */
-	TLV["temperature"] =	list(20, 40, 140, 160) // K
+	TLV[/decl/xgm_gas/oxygen] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
+	TLV[/decl/xgm_gas/carbon_dioxide] =	list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
+	TLV[/decl/xgm_gas/plasma] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
+	TLV["other"] =						list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
+	TLV["pressure"] =					list(0,ONE_ATMOSPHERE * 0.10, ONE_ATMOSPHERE * 1.40, ONE_ATMOSPHERE * 1.60) /* kpa */
+	TLV["temperature"] =				list(20, 40, 140, 160) // K
 	target_temperature = 90
 
 /obj/machinery/alarm/New(loc, dir, building = 0)
@@ -155,12 +155,12 @@
 		name = "[alarm_area.name] Air Alarm"
 
 	// breathable air according to human/Life()
-	TLV[GAS_OXYGEN] =			list(16, 19, 135, 140) // Partial pressure, kpa
-	TLV[GAS_CARBON_DIOXIDE] = list(-1.0, -1.0, 5, 10) // Partial pressure, kpa
-	TLV[GAS_PLASMA] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
-	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
-	TLV["pressure"] =		list(ONE_ATMOSPHERE * 0.80, ONE_ATMOSPHERE * 0.90, ONE_ATMOSPHERE * 1.10, ONE_ATMOSPHERE * 1.20) /* kpa */
-	TLV["temperature"] =	list(T0C - 26, T0C, T0C + 40, T0C + 66) // K
+	TLV[/decl/xgm_gas/oxygen] =			list(16, 19, 135, 140) // Partial pressure, kpa
+	TLV[/decl/xgm_gas/carbon_dioxide] =	list(-1.0, -1.0, 5, 10) // Partial pressure, kpa
+	TLV[/decl/xgm_gas/plasma] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
+	TLV["other"] =						list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
+	TLV["pressure"] =					list(ONE_ATMOSPHERE * 0.80, ONE_ATMOSPHERE * 0.90, ONE_ATMOSPHERE * 1.10, ONE_ATMOSPHERE * 1.20) /* kpa */
+	TLV["temperature"] =				list(T0C - 26, T0C, T0C + 40, T0C + 66) // K
 
 /obj/machinery/alarm/process()
 	if((stat & (NOPOWER | BROKEN)) || shorted || buildstage != 2)
@@ -263,9 +263,9 @@
 	//	other_moles+=G.moles
 
 	var/pressure_dangerlevel = get_danger_level(environment_pressure, TLV["pressure"])
-	var/oxygen_dangerlevel = get_danger_level(environment.gas[GAS_OXYGEN] * partial_pressure, TLV[GAS_OXYGEN])
-	var/co2_dangerlevel = get_danger_level(environment.gas[GAS_CARBON_DIOXIDE] * partial_pressure, TLV[GAS_CARBON_DIOXIDE])
-	var/plasma_dangerlevel = get_danger_level(environment.gas[GAS_PLASMA] * partial_pressure, TLV[GAS_PLASMA])
+	var/oxygen_dangerlevel = get_danger_level(environment.gas[/decl/xgm_gas/oxygen] * partial_pressure, TLV[/decl/xgm_gas/oxygen])
+	var/co2_dangerlevel = get_danger_level(environment.gas[/decl/xgm_gas/carbon_dioxide] * partial_pressure, TLV[/decl/xgm_gas/carbon_dioxide])
+	var/plasma_dangerlevel = get_danger_level(environment.gas[/decl/xgm_gas/plasma] * partial_pressure, TLV[/decl/xgm_gas/plasma])
 	var/temperature_dangerlevel = get_danger_level(environment.temperature, TLV["temperature"])
 	//var/other_dangerlevel = get_danger_level(other_moles*partial_pressure, TLV["other"])
 
@@ -724,17 +724,17 @@
 	var/environment_pressure = environment.return_pressure()
 	var/pressure_dangerlevel = get_danger_level(environment_pressure, current_settings)
 
-	current_settings = TLV[GAS_OXYGEN]
-	var/oxygen_dangerlevel = get_danger_level(environment.gas[GAS_OXYGEN] * partial_pressure, current_settings)
-	var/oxygen_percent = round(environment.gas[GAS_OXYGEN] / total * 100, 2)
+	current_settings = TLV[/decl/xgm_gas/oxygen]
+	var/oxygen_dangerlevel = get_danger_level(environment.gas[/decl/xgm_gas/oxygen] * partial_pressure, current_settings)
+	var/oxygen_percent = round(environment.gas[/decl/xgm_gas/oxygen] / total * 100, 2)
 
-	current_settings = TLV[GAS_CARBON_DIOXIDE]
-	var/co2_dangerlevel = get_danger_level(environment.gas[GAS_CARBON_DIOXIDE] * partial_pressure, current_settings)
-	var/co2_percent = round(environment.gas[GAS_CARBON_DIOXIDE] / total * 100, 2)
+	current_settings = TLV[/decl/xgm_gas/carbon_dioxide]
+	var/co2_dangerlevel = get_danger_level(environment.gas[/decl/xgm_gas/carbon_dioxide] * partial_pressure, current_settings)
+	var/co2_percent = round(environment.gas[/decl/xgm_gas/carbon_dioxide] / total * 100, 2)
 
-	current_settings = TLV[GAS_PLASMA]
-	var/plasma_dangerlevel = get_danger_level(environment.gas[GAS_PLASMA] * partial_pressure, current_settings)
-	var/plasma_percent = round(environment.gas[GAS_PLASMA] / total * 100, 2)
+	current_settings = TLV[/decl/xgm_gas/plasma]
+	var/plasma_dangerlevel = get_danger_level(environment.gas[/decl/xgm_gas/plasma] * partial_pressure, current_settings)
+	var/plasma_percent = round(environment.gas[/decl/xgm_gas/plasma] / total * 100, 2)
 
 	//current_settings = TLV["other"]
 	//var/other_moles = 0.0
@@ -931,10 +931,10 @@ table tr:first-child th:first-child { border: none;}
 <TR><th></th><th class=dl2>min2</th><th class=dl1>min1</th><th class=dl1>max1</th><th class=dl2>max2</th></TR>
 "}
 			var/list/gases = list(
-				GAS_OXYGEN			= "O<sub>2</sub>",
-				GAS_CARBON_DIOXIDE	= "CO<sub>2</sub>",
-				GAS_PLASMA			= "Toxin",
-				"other"				= "Other"
+				/decl/xgm_gas/oxygen			= "O<sub>2</sub>",
+				/decl/xgm_gas/carbon_dioxide	= "CO<sub>2</sub>",
+				/decl/xgm_gas/plasma			= "Toxin",
+				"other"							= "Other"
 			)
 
 			var/list/selected

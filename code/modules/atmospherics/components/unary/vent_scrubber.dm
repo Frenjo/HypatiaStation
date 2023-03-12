@@ -102,9 +102,9 @@
 	var/datum/gas_mixture/environment = loc.return_air()
 
 	if(scrubbing)
-		if(environment.gas[GAS_PLASMA] > 0.001 || environment.gas[GAS_CARBON_DIOXIDE] > 0.001 \
-		|| environment.gas[GAS_OXYGEN_AGENT_B] > 0.001 || environment.gas[GAS_SLEEPING_AGENT] > 0.001 \
-		|| environment.gas[GAS_HYDROGEN] > 0.001)
+		if(environment.gas[/decl/xgm_gas/plasma] > 0.001 || environment.gas[/decl/xgm_gas/carbon_dioxide] > 0.001 \
+		|| environment.gas[/decl/xgm_gas/oxygen_agent_b] > 0.001 || environment.gas[/decl/xgm_gas/sleeping_agent] > 0.001 \
+		|| environment.gas[/decl/xgm_gas/hydrogen] > 0.001)
 			var/transfer_moles = min(1, volume_rate / environment.volume) * environment.total_moles
 
 			//Take a gas sample
@@ -116,22 +116,22 @@
 			var/datum/gas_mixture/filtered_out = new
 			filtered_out.temperature = removed.temperature
 			if(scrub_Toxins)
-				filtered_out.gas[GAS_PLASMA] = removed.gas[GAS_PLASMA]
-				removed.gas[GAS_PLASMA] = 0
+				filtered_out.gas[/decl/xgm_gas/plasma] = removed.gas[/decl/xgm_gas/plasma]
+				removed.gas[/decl/xgm_gas/plasma] = 0
 			if(scrub_CO2)
-				filtered_out.gas[GAS_CARBON_DIOXIDE] = removed.gas[GAS_CARBON_DIOXIDE]
-				removed.gas[GAS_CARBON_DIOXIDE] = 0
+				filtered_out.gas[/decl/xgm_gas/carbon_dioxide] = removed.gas[/decl/xgm_gas/carbon_dioxide]
+				removed.gas[/decl/xgm_gas/carbon_dioxide] = 0
 			if(scrub_N2O)
-				filtered_out.gas[GAS_SLEEPING_AGENT] = removed.gas[GAS_SLEEPING_AGENT]
-				removed.gas[GAS_SLEEPING_AGENT] = 0
-			if(removed.gas[GAS_OXYGEN_AGENT_B])
-				filtered_out.gas[GAS_OXYGEN_AGENT_B] = removed.gas[GAS_OXYGEN_AGENT_B]
-				removed.gas[GAS_OXYGEN_AGENT_B] = 0
+				filtered_out.gas[/decl/xgm_gas/sleeping_agent] = removed.gas[/decl/xgm_gas/sleeping_agent]
+				removed.gas[/decl/xgm_gas/sleeping_agent] = 0
+			if(removed.gas[/decl/xgm_gas/oxygen_agent_b])
+				filtered_out.gas[/decl/xgm_gas/oxygen_agent_b] = removed.gas[/decl/xgm_gas/oxygen_agent_b]
+				removed.gas[/decl/xgm_gas/oxygen_agent_b] = 0
 			// TODO: Set this up so you can manually toggle scrubbing of each individual gas.
 			// Temporary solution is to just always scrub hydrogen in the same way as Oxygen Agent-B. -Frenjo
-			if(removed.gas[GAS_HYDROGEN])
-				filtered_out.gas[GAS_HYDROGEN] = removed.gas[GAS_HYDROGEN]
-				removed.gas[GAS_HYDROGEN] = 0
+			if(removed.gas[/decl/xgm_gas/hydrogen])
+				filtered_out.gas[/decl/xgm_gas/hydrogen] = removed.gas[/decl/xgm_gas/hydrogen]
+				removed.gas[/decl/xgm_gas/hydrogen] = 0
 
 			//Remix the resulting gases
 			air_contents.merge(filtered_out)

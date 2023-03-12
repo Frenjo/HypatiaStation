@@ -958,11 +958,11 @@
 		return
 	var/datum/gas_mixture/GM = new
 	if(prob(10))
-		T.assume_gas(GAS_PLASMA, 100, 1500 + T0C)
+		T.assume_gas(/decl/xgm_gas/plasma, 100, 1500 + T0C)
 		T.visible_message("The [src] suddenly disgorges a cloud of heated plasma.")
 		destroy()
 	else
-		T.assume_gas(GAS_PLASMA, 5, istype(T) ? T.air.temperature : T20C)
+		T.assume_gas(/decl/xgm_gas/plasma, 5, istype(T) ? T.air.temperature : T20C)
 		T.visible_message("The [src] suddenly disgorges a cloud of plasma.")
 	T.assume_air(GM)
 	return

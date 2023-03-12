@@ -45,24 +45,24 @@
 
 		//Filter it
 		if(removed)
-			var/datum/gas_mixture/filtered_out = new
+			var/datum/gas_mixture/filtered_out = new /datum/gas_mixture()
 
 			filtered_out.temperature = removed.temperature
 
-			filtered_out.gas[GAS_HYDROGEN] = removed.gas[GAS_HYDROGEN]
-			removed.gas[GAS_HYDROGEN] = 0
+			filtered_out.gas[/decl/xgm_gas/hydrogen] = removed.gas[/decl/xgm_gas/hydrogen]
+			removed.gas[/decl/xgm_gas/hydrogen] = 0
 
-			filtered_out.gas[GAS_CARBON_DIOXIDE] = removed.gas[GAS_CARBON_DIOXIDE]
-			removed.gas[GAS_CARBON_DIOXIDE] = 0
+			filtered_out.gas[/decl/xgm_gas/carbon_dioxide] = removed.gas[/decl/xgm_gas/carbon_dioxide]
+			removed.gas[/decl/xgm_gas/carbon_dioxide] = 0
 
-			filtered_out.gas[GAS_PLASMA] = removed.gas[GAS_PLASMA]
-			removed.gas[GAS_PLASMA] = 0
+			filtered_out.gas[/decl/xgm_gas/plasma] = removed.gas[/decl/xgm_gas/plasma]
+			removed.gas[/decl/xgm_gas/plasma] = 0
 
-			filtered_out.gas[GAS_OXYGEN_AGENT_B] = removed.gas[GAS_OXYGEN_AGENT_B]
-			removed.gas[GAS_OXYGEN_AGENT_B] = 0
+			filtered_out.gas[/decl/xgm_gas/oxygen_agent_b] = removed.gas[/decl/xgm_gas/oxygen_agent_b]
+			removed.gas[/decl/xgm_gas/oxygen_agent_b] = 0
 
-			filtered_out.gas[GAS_SLEEPING_AGENT] = removed.gas[GAS_SLEEPING_AGENT]
-			removed.gas[GAS_SLEEPING_AGENT] = 0
+			filtered_out.gas[/decl/xgm_gas/sleeping_agent] = removed.gas[/decl/xgm_gas/sleeping_agent]
+			removed.gas[/decl/xgm_gas/sleeping_agent] = 0
 
 			//Remix the resulting gases
 			air_contents.merge(filtered_out)
@@ -73,7 +73,6 @@
 				loc.assume_air(removed)
 		//src.update_icon()
 	src.updateDialog()
-	return
 
 /obj/machinery/portable_atmospherics/scrubber/return_air()
 	return air_contents

@@ -88,39 +88,39 @@ Filter types:
 
 		switch(filter_type)
 			if(GAS_FILTER_OXYGEN) //removing O2
-				filtered_out.gas[GAS_OXYGEN] = removed.gas[GAS_OXYGEN]
-				removed.gas[GAS_OXYGEN] = 0
+				filtered_out.gas[/decl/xgm_gas/oxygen] = removed.gas[/decl/xgm_gas/oxygen]
+				removed.gas[/decl/xgm_gas/oxygen] = 0
 
 			if(GAS_FILTER_NITROGEN) //removing N2
-				filtered_out.gas[GAS_NITROGEN] = removed.gas[GAS_NITROGEN]
-				removed.gas[GAS_NITROGEN] = 0
+				filtered_out.gas[/decl/xgm_gas/nitrogen] = removed.gas[/decl/xgm_gas/nitrogen]
+				removed.gas[/decl/xgm_gas/nitrogen] = 0
 			
 			if(GAS_FILTER_HYDROGEN) //removing H2
-				filtered_out.gas[GAS_HYDROGEN] = removed.gas[GAS_HYDROGEN]
-				removed.gas[GAS_HYDROGEN] = 0
+				filtered_out.gas[/decl/xgm_gas/hydrogen] = removed.gas[/decl/xgm_gas/hydrogen]
+				removed.gas[/decl/xgm_gas/hydrogen] = 0
 
 			if(GAS_FILTER_CARBON_DIOXIDE) //removing CO2
-				filtered_out.gas[GAS_CARBON_DIOXIDE] = removed.gas[GAS_CARBON_DIOXIDE]
-				removed.gas[GAS_CARBON_DIOXIDE] = 0
+				filtered_out.gas[/decl/xgm_gas/carbon_dioxide] = removed.gas[/decl/xgm_gas/carbon_dioxide]
+				removed.gas[/decl/xgm_gas/carbon_dioxide] = 0
 			
 			if(GAS_FILTER_CARBON_MOLECULES) //removing hydrocarbons
-				filtered_out.gas[GAS_PLASMA] = removed.gas[GAS_PLASMA]
-				removed.gas[GAS_PLASMA] = 0
+				filtered_out.gas[/decl/xgm_gas/plasma] = removed.gas[/decl/xgm_gas/plasma]
+				removed.gas[/decl/xgm_gas/plasma] = 0
 
-				filtered_out.gas[GAS_OXYGEN_AGENT_B] = removed.gas[GAS_OXYGEN_AGENT_B]
-				removed.gas[GAS_OXYGEN_AGENT_B] = 0
+				filtered_out.gas[/decl/xgm_gas/oxygen_agent_b] = removed.gas[/decl/xgm_gas/oxygen_agent_b]
+				removed.gas[/decl/xgm_gas/oxygen_agent_b] = 0
 			
 			if(GAS_FILTER_PLASMA) //removing plasma
-				filtered_out.gas[GAS_PLASMA] = removed.gas[GAS_PLASMA]
-				removed.gas[GAS_PLASMA] = 0
+				filtered_out.gas[/decl/xgm_gas/plasma] = removed.gas[/decl/xgm_gas/plasma]
+				removed.gas[/decl/xgm_gas/plasma] = 0
 			
 			if(GAS_FILTER_OXYGEN_AGENT_B) //removing oxygen agent b
-				filtered_out.gas[GAS_OXYGEN_AGENT_B] = removed.gas[GAS_OXYGEN_AGENT_B]
-				removed.gas[GAS_OXYGEN_AGENT_B] = 0
+				filtered_out.gas[/decl/xgm_gas/oxygen_agent_b] = removed.gas[/decl/xgm_gas/oxygen_agent_b]
+				removed.gas[/decl/xgm_gas/oxygen_agent_b] = 0
 
 			if(GAS_FILTER_SLEEPING_AGENT) //removing N2O
-				filtered_out.gas[GAS_SLEEPING_AGENT] = removed.gas[GAS_SLEEPING_AGENT]
-				removed.gas[GAS_SLEEPING_AGENT] = 0
+				filtered_out.gas[/decl/xgm_gas/sleeping_agent] = removed.gas[/decl/xgm_gas/sleeping_agent]
+				removed.gas[/decl/xgm_gas/sleeping_agent] = 0
 
 			else
 				filtered_out = null

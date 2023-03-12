@@ -212,7 +212,7 @@
 	for(var/turf/simulated/floor/target_tile in range(2, loc))
 		var/toxinsToDeduce = temperature / 10
 
-		target_tile.assume_gas(GAS_PLASMA, toxinsToDeduce, 200 + T0C)
+		target_tile.assume_gas(/decl/xgm_gas/plasma, toxinsToDeduce, 200 + T0C)
 
 		spawn(0)
 			target_tile.hotspot_expose(temperature, 400)

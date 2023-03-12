@@ -9,11 +9,12 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
+
 	var/gas_filter_strength = 1		//For gas mask filters
-	var/list/filtered_gases = list(GAS_PLASMA, GAS_SLEEPING_AGENT, GAS_OXYGEN_AGENT_B)
+	var/list/filtered_gases = list(/decl/xgm_gas/plasma, /decl/xgm_gas/sleeping_agent, /decl/xgm_gas/oxygen_agent_b)
 
 /obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)
-	var/datum/gas_mixture/filtered = new
+	var/datum/gas_mixture/filtered = new /datum/gas_mixture()
 
 	for(var/g in filtered_gases)
 		if(air.gas[g])

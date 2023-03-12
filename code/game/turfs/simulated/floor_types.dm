@@ -96,42 +96,42 @@
 // Oxygen
 /turf/simulated/floor/engine/oxygen
 	name = "o2 floor"
-	initial_gases = list(GAS_OXYGEN = 100000)
+	initial_gases = list(/decl/xgm_gas/oxygen = 100000)
 
 // Nitrogen
 /turf/simulated/floor/engine/nitrogen
 	name = "n2 floor"
-	initial_gases = list(GAS_NITROGEN = 100000)
+	initial_gases = list(/decl/xgm_gas/nitrogen = 100000)
 
 // Air
 /turf/simulated/floor/engine/air
 	name = "air floor"
-	initial_gases = list(GAS_OXYGEN = 2644, GAS_NITROGEN = 10580)
+	initial_gases = list(/decl/xgm_gas/oxygen = 2644, /decl/xgm_gas/nitrogen = 10580)
 
 // Hydrogen
 /turf/simulated/floor/engine/hydrogen
 	name = "h2 floor"
-	initial_gases = list(GAS_HYDROGEN = 70000)
+	initial_gases = list(/decl/xgm_gas/hydrogen = 70000)
 
 // Carbon Dioxide
 /turf/simulated/floor/engine/co2
 	name = "co2 floor"
-	initial_gases = list(GAS_CARBON_DIOXIDE = 50000)
+	initial_gases = list(/decl/xgm_gas/carbon_dioxide = 50000)
 
 // Plasma
 /turf/simulated/floor/engine/plasma
 	name = "plasma floor"
-	initial_gases = list(GAS_PLASMA = 70000)
+	initial_gases = list(/decl/xgm_gas/plasma = 70000)
 
 // Oxygen Agent-B
 /turf/simulated/floor/engine/oxygen_agent_b
 	name = "o2a-b floor"
-	initial_gases = list(GAS_OXYGEN_AGENT_B = 2000)
+	initial_gases = list(/decl/xgm_gas/oxygen_agent_b = 2000)
 
 // Nitrous Oxide
 /turf/simulated/floor/engine/n2o
 	name = "n2o floor"
-	initial_gases = list(GAS_SLEEPING_AGENT = 2000)
+	initial_gases = list(/decl/xgm_gas/sleeping_agent = 2000)
 // END ATMOSPHERICS TANK FLOORS
 
 /*
@@ -195,7 +195,7 @@
 
 /turf/simulated/shuttle/floor/vox
 	icon_state = "floor4"
-	initial_gases = list(GAS_NITROGEN = MOLES_N2STANDARD)
+	initial_gases = list(/decl/xgm_gas/nitrogen = MOLES_N2STANDARD)
 
 /turf/simulated/shuttle/plating
 	name = "plating"
@@ -294,21 +294,21 @@
 /turf/simulated/floor/server
 	name = "server walkway"
 	icon_state = "dark"
-	initial_gases = list(GAS_NITROGEN = 500)
+	initial_gases = list(/decl/xgm_gas/nitrogen = 500)
 	temperature = 80
 
 /turf/simulated/floor/bluegrid/server
 	name = "server base"
-	initial_gases = list(GAS_NITROGEN = 500)
+	initial_gases = list(/decl/xgm_gas/nitrogen = 500)
 	temperature = 80
 
 /turf/simulated/floor/mainframe
 	name = "mainframe floor"
 	icon_state = "dark"
-	initial_gases = list(GAS_NITROGEN = 100)
+	initial_gases = list(/decl/xgm_gas/nitrogen = 100)
 	temperature = 80
 
 /turf/simulated/floor/bluegrid/mainframe
 	name = "mainframe base"
-	initial_gases = list(GAS_NITROGEN = 100)
+	initial_gases = list(/decl/xgm_gas/nitrogen = 100)
 	temperature = 80

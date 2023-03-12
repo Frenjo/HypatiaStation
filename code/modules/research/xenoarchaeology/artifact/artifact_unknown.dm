@@ -81,13 +81,13 @@
 			else if(env.temperature > 375)
 				trigger_hot = 1
 
-			if(env.gas[GAS_PLASMA] >= 10)
+			if(env.gas[/decl/xgm_gas/plasma] >= 10)
 				trigger_plasma = 1
-			if(env.gas[GAS_OXYGEN] >= 10)
+			if(env.gas[/decl/xgm_gas/oxygen] >= 10)
 				trigger_oxy = 1
-			if(env.gas[GAS_CARBON_DIOXIDE] >= 10)
+			if(env.gas[/decl/xgm_gas/carbon_dioxide] >= 10)
 				trigger_co2 = 1
-			if(env.gas[GAS_NITROGEN] >= 10)
+			if(env.gas[/decl/xgm_gas/nitrogen] >= 10)
 				trigger_nitro = 1
 
 	//COLD ACTIVATION

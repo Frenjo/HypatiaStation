@@ -17,8 +17,8 @@
 	cold_level_3 = 0
 
 	eyes = "vox_eyes_s"
-	breath_type = GAS_NITROGEN
-	poison_type = GAS_OXYGEN
+	breath_type = /decl/xgm_gas/nitrogen
+	poison_type = /decl/xgm_gas/oxygen
 
 	flags = IS_WHITELISTED | NO_SCAN | HAS_EYE_COLOR
 
@@ -61,8 +61,8 @@
 	burn_mod = 0.2
 
 	eyes = "blank_eyes"
-	breath_type = GAS_NITROGEN
-	poison_type = GAS_OXYGEN
+	breath_type = /decl/xgm_gas/nitrogen
+	poison_type = /decl/xgm_gas/oxygen
 
 	flags = NO_SCAN | NO_BLOOD | HAS_TAIL | NO_PAIN | IS_WHITELISTED
 

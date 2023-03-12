@@ -69,9 +69,9 @@
 			return
 
 /obj/structure/transit_tube_pod/New(loc)
-	..(loc)
+	. = ..(loc)
 
-	air_contents.adjust_multi(GAS_OXYGEN, MOLES_O2STANDARD * 2, GAS_NITROGEN, MOLES_N2STANDARD)
+	air_contents.adjust_multi(/decl/xgm_gas/oxygen, MOLES_O2STANDARD * 2, /decl/xgm_gas/nitrogen, MOLES_N2STANDARD)
 	air_contents.temperature = T20C
 
 	// Give auto tubes time to align before trying to start moving

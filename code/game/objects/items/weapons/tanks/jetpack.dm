@@ -23,10 +23,9 @@
 /obj/item/weapon/tank/jetpack/examine()
 	set src in usr
 	..()
-	if(air_contents.gas[GAS_OXYGEN] < 10)
-		usr << text("\red <B>The meter on the [src.name] indicates you are almost out of air!</B>")
+	if(air_contents.gas[/decl/xgm_gas/oxygen] < 10)
+		to_chat(usr, SPAN_DANGER("The meter on the [src.name] indicates you are almost out of air!"))
 		playsound(usr, 'sound/effects/alert.ogg', 50, 1)
-	return
 
 /obj/item/weapon/tank/jetpack/verb/toggle_rockets()
 	set name = "Toggle Jetpack Stabilization"
@@ -75,9 +74,8 @@
 	item_state =  "jetpack-void"
 
 /obj/item/weapon/tank/jetpack/void/New()
-	..()
-	air_contents.adjust_gas(GAS_OXYGEN, (6 * ONE_ATMOSPHERE) * volume / (R_IDEAL_GAS_EQUATION * T20C))
-	return
+	. = ..()
+	air_contents.adjust_gas(/decl/xgm_gas/oxygen, (6 * ONE_ATMOSPHERE) * volume / (R_IDEAL_GAS_EQUATION * T20C))
 
 
 /obj/item/weapon/tank/jetpack/oxygen
@@ -87,9 +85,8 @@
 	item_state = "jetpack"
 
 /obj/item/weapon/tank/jetpack/oxygen/New()
-	..()
-	air_contents.adjust_gas(GAS_OXYGEN, (6 * ONE_ATMOSPHERE) * volume / (R_IDEAL_GAS_EQUATION * T20C))
-	return
+	. = ..()
+	air_contents.adjust_gas(/decl/xgm_gas/oxygen, (6 * ONE_ATMOSPHERE) * volume / (R_IDEAL_GAS_EQUATION * T20C))
 
 
 /obj/item/weapon/tank/jetpack/carbondioxide
@@ -100,17 +97,16 @@
 	item_state =  "jetpack-black"
 
 /obj/item/weapon/tank/jetpack/carbondioxide/New()
-	..()
-	src.ion_trail = new /datum/effect/system/ion_trail_follow()
-	src.ion_trail.set_up(src)
+	. = ..()
+	ion_trail = new /datum/effect/system/ion_trail_follow()
+	ion_trail.set_up(src)
 	//src.air_contents.carbon_dioxide = (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
-	air_contents.adjust_gas(GAS_CARBON_DIOXIDE, (6 * ONE_ATMOSPHERE) * volume / (R_IDEAL_GAS_EQUATION * T20C))
-	return
+	air_contents.adjust_gas(/decl/xgm_gas/carbon_dioxide, (6 * ONE_ATMOSPHERE) * volume / (R_IDEAL_GAS_EQUATION * T20C))
 
 /obj/item/weapon/tank/jetpack/carbondioxide/examine()
 	set src in usr
 	..()
-	if(air_contents.gas[GAS_CARBON_DIOXIDE] < 10)
-		usr << text("\red <B>The meter on the [src.name] indicates you are almost out of air!</B>")
+	if(air_contents.gas[/decl/xgm_gas/carbon_dioxide] < 10)
+		to_chat(usr, SPAN_DANGER("The meter on the [name] indicates you are almost out of air!"))
 		playsound(usr, 'sound/effects/alert.ogg', 50, 1)
 	return

@@ -13,8 +13,8 @@
 	brute_mod = 1.5
 	burn_mod = 1.5
 
-	breath_type = GAS_PLASMA
-	poison_type = GAS_OXYGEN
+	breath_type = /decl/xgm_gas/plasma
+	poison_type = /decl/xgm_gas/oxygen
 
 	body_temperature = T0C - 3
 
@@ -46,7 +46,7 @@
 		if(environment.total_moles > 0)
 			// TODO: Make this loop through all gases checking for an XGM_GAS_OXIDIZER flag.
 			// Potentially won't actually do this because it's more authentic to /tg/ like this. -Frenjo
-			if(environment.gas[GAS_OXYGEN] >= 1)
+			if(environment.gas[/decl/xgm_gas/oxygen] >= 1)
 				H.adjust_fire_stacks(1)
 				if(!H.on_fire && H.fire_stacks > 0)
 					H.visible_message(

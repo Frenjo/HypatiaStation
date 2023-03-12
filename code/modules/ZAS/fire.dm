@@ -237,7 +237,7 @@ Attach to transfer valve and open. BOOM.
 		remove_by_flag(XGM_GAS_OXIDIZER, used_oxidizers * used_reactants_ratio)
 		remove_by_flag(XGM_GAS_FUEL, total_fuel * used_reactants_ratio)
 
-		adjust_gas(GAS_CARBON_DIOXIDE, max(total_fuel * used_reactants_ratio, 0))
+		adjust_gas(/decl/xgm_gas/carbon_dioxide, max(total_fuel * used_reactants_ratio, 0))
 
 		if(liquid)
 			liquid.amount -= (liquid.amount * used_fuel_ratio * used_reactants_ratio) * 5 // liquid fuel burns 5 times as quick

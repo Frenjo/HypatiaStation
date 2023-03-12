@@ -578,13 +578,13 @@
 		breath_type = species.breath_type
 		inhaling = breath.gas[breath_type]
 	else
-		inhaling = GAS_OXYGEN
+		inhaling = /decl/xgm_gas/oxygen
 
 	if(species.poison_type)
 		poison_type = species.poison_type
 		poison = breath.gas[poison_type]
 	else
-		poison = GAS_PLASMA
+		poison = /decl/xgm_gas/plasma
 
 	if(species.exhale_type)
 		exhale_type = species.exhale_type
@@ -666,8 +666,8 @@
 		toxins_alert = 0
 
 	// If there's some other shit in the air lets deal with it here.
-	if(breath.gas[GAS_SLEEPING_AGENT])
-		var/SA_pp = (breath.gas[GAS_SLEEPING_AGENT] / breath.total_moles) * breath_pressure
+	if(breath.gas[/decl/xgm_gas/sleeping_agent])
+		var/SA_pp = (breath.gas[/decl/xgm_gas/sleeping_agent] / breath.total_moles) * breath_pressure
 		// Enough to make us paralysed for a bit
 		if(SA_pp > SA_para_min)
 			// 3 gives them one second to wake up and run away a bit!
@@ -680,7 +680,7 @@
 			if(prob(20))
 				spawn(0)
 					emote(pick("giggle", "laugh"))
-		breath.adjust_gas(GAS_SLEEPING_AGENT, -breath.gas[GAS_SLEEPING_AGENT])
+		breath.adjust_gas(/decl/xgm_gas/sleeping_agent, -breath.gas[/decl/xgm_gas/sleeping_agent])
 
 	// Were we able to breathe?
 	if(failed_inhale || failed_exhale)

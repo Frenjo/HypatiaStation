@@ -26,11 +26,11 @@ GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 
 /obj/machinery/power/rad_collector/process()
 	if(P)
-		if(P.air_contents.gas[GAS_PLASMA] == 0)
+		if(P.air_contents.gas[/decl/xgm_gas/plasma] == 0)
 			investigate_log("<font color='red'>out of fuel</font>.","singulo")
 			eject()
 		else
-			P.air_contents.adjust_gas(GAS_PLASMA, -0.001 * drainratio)
+			P.air_contents.adjust_gas(/decl/xgm_gas/plasma, -0.001 * drainratio)
 	return
 
 /obj/machinery/power/rad_collector/attack_hand(mob/user as mob)
@@ -41,7 +41,7 @@ GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 				"[user.name] turns the [src.name] [active? "on":"off"].",
 				"You turn the [src.name] [active? "on":"off"]."
 			)
-			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [user.key]. [P?"Fuel: [round(P.air_contents.gas[GAS_PLASMA]/0.29)]%":"<font color='red'>It is empty</font>"].","singulo")
+			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [user.key]. [P?"Fuel: [round(P.air_contents.gas[/decl/xgm_gas/plasma]/0.29)]%":"<font color='red'>It is empty</font>"].","singulo")
 			return
 		else
 			to_chat(user, SPAN_WARNING("The controls are locked!"))
@@ -119,11 +119,10 @@ GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 /obj/machinery/power/rad_collector/proc/receive_pulse(pulse_strength)
 	if(P && active)
 		var/power_produced = 0
-		power_produced = P.air_contents.gas[GAS_PLASMA] * pulse_strength * 20
+		power_produced = P.air_contents.gas[/decl/xgm_gas/plasma] * pulse_strength * 20
 		add_avail(power_produced)
 		last_power = power_produced
 		return
-	return
 
 /obj/machinery/power/rad_collector/proc/update_icons()
 	overlays.Cut()

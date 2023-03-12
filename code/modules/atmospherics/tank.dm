@@ -88,37 +88,37 @@
 	name = "Pressure Tank (Carbon Dioxide)"
 
 /obj/machinery/atmospherics/pipe/tank/carbon_dioxide/New()
-	air_temporary = new
+	air_temporary = new /datum/gas_mixture()
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
 
-	air_temporary.adjust_gas(GAS_CARBON_DIOXIDE, (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
+	air_temporary.adjust_gas(/decl/xgm_gas/carbon_dioxide, (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
 
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/pipe/tank/toxins
 	icon = 'icons/obj/atmospherics/orange_pipe_tank.dmi'
 	name = "Pressure Tank (Plasma)"
 
 /obj/machinery/atmospherics/pipe/tank/toxins/New()
-	air_temporary = new
+	air_temporary = new /datum/gas_mixture()
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
 
-	air_temporary.adjust_gas(GAS_PLASMA, (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
+	air_temporary.adjust_gas(/decl/xgm_gas/plasma, (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
 
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/pipe/tank/oxygen_agent_b
 	icon = 'icons/obj/atmospherics/red_orange_pipe_tank.dmi'
 	name = "Pressure Tank (Oxygen + Plasma)"
 
 /obj/machinery/atmospherics/pipe/tank/oxygen_agent_b/New()
-	air_temporary = new
+	air_temporary = new /datum/gas_mixture()
 	air_temporary.volume = volume
 	air_temporary.temperature = T0C
 
-	air_temporary.adjust_gas(GAS_OXYGEN_AGENT_B, (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
+	air_temporary.adjust_gas(/decl/xgm_gas/oxygen_agent_b, (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
 
 	..()
 
@@ -127,39 +127,39 @@
 	name = "Pressure Tank (Oxygen)"
 
 /obj/machinery/atmospherics/pipe/tank/oxygen/New()
-	air_temporary = new
+	air_temporary = new /datum/gas_mixture()
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
 
-	air_temporary.adjust_gas(GAS_OXYGEN, (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
+	air_temporary.adjust_gas(/decl/xgm_gas/oxygen, (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
 
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/pipe/tank/nitrogen
 	icon = 'icons/obj/atmospherics/red_pipe_tank.dmi'
 	name = "Pressure Tank (Nitrogen)"
 
 /obj/machinery/atmospherics/pipe/tank/nitrogen/New()
-	air_temporary = new
+	air_temporary = new /datum/gas_mixture()
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
 
-	air_temporary.adjust_gas(GAS_NITROGEN, (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
+	air_temporary.adjust_gas(/decl/xgm_gas/nitrogen, (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
 
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/pipe/tank/air
 	icon = 'icons/obj/atmospherics/red_pipe_tank.dmi'
 	name = "Pressure Tank (Air)"
 
 /obj/machinery/atmospherics/pipe/tank/air/New()
-	air_temporary = new
+	air_temporary = new /datum/gas_mixture()
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
 
 	air_temporary.adjust_multi(
-		GAS_OXYGEN, (25 * ONE_ATMOSPHERE * O2STANDARD) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature),
-		GAS_NITROGEN, (25 * ONE_ATMOSPHERE * N2STANDARD) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature)
+		/decl/xgm_gas/oxygen, (25 * ONE_ATMOSPHERE * O2STANDARD) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature),
+		/decl/xgm_gas/nitrogen, (25 * ONE_ATMOSPHERE * N2STANDARD) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature)
 	)
 
-	..()
+	return ..()

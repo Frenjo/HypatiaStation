@@ -209,10 +209,10 @@
 			var/total_moles = environment.total_moles
 
 			if(total_moles)
-				var/o2_level = environment.gas[GAS_OXYGEN] / total_moles
-				var/n2_level = environment.gas[GAS_NITROGEN] / total_moles
-				var/co2_level = environment.gas[GAS_CARBON_DIOXIDE] / total_moles
-				var/plasma_level = environment.gas[GAS_PLASMA] / total_moles
+				var/o2_level = environment.gas[/decl/xgm_gas/oxygen] / total_moles
+				var/n2_level = environment.gas[/decl/xgm_gas/nitrogen] / total_moles
+				var/co2_level = environment.gas[/decl/xgm_gas/carbon_dioxide] / total_moles
+				var/plasma_level = environment.gas[/decl/xgm_gas/plasma] / total_moles
 				var/unknown_level = 1 - (o2_level + n2_level + co2_level + plasma_level)
 				data["aircontents"] = list(
 					"pressure" = "[round(pressure, 0.1)]",
