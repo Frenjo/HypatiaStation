@@ -32,13 +32,13 @@
 
 /datum/light_source/New(atom/owner, atom/top)
 	source_atom = owner // Set our new owner.
-	if(!source_atom.light_sources)
+	if(isnull(source_atom.light_sources))
 		source_atom.light_sources = list()
 
 	source_atom.light_sources.Add(src) // Add us to the lights of our owner.
 	top_atom = top
 	if(top_atom != source_atom)
-		if(!top.light_sources)
+		if(isnull(top.light_sources))
 			top.light_sources = list()
 
 		top_atom.light_sources.Add(src)
@@ -61,10 +61,10 @@
 /datum/light_source/proc/destroy()
 	destroyed = TRUE
 	force_update()
-	if(source_atom)
+	if(!isnull(source_atom))
 		source_atom.light_sources.Remove(src)
 
-	if(top_atom)
+	if(!isnull(top_atom))
 		top_atom.light_sources.Remove(src)
 
 // Call it dirty, I don't care.
@@ -80,14 +80,14 @@
 // This proc will cause the light source to update the top atom, and add itself to the update queue.
 /datum/light_source/proc/update(atom/new_top_atom)
 	// This top atom is different.
-	if(new_top_atom && new_top_atom != top_atom)
+	if(!isnull(new_top_atom) && new_top_atom != top_atom)
 		if(top_atom != source_atom) // Remove ourselves from the light sources of that top atom.
 			top_atom.light_sources.Remove(src)
 
 		top_atom = new_top_atom
 
 		if(top_atom != source_atom)
-			if(!top_atom.light_sources)
+			if(isnull(top_atom.light_sources))
 				top_atom.light_sources = list()
 
 			top_atom.light_sources.Add(src) // Add ourselves to the light sources of our new top atom.
@@ -96,49 +96,49 @@
 
 // Will force an update without checking if it's actually needed.
 /datum/light_source/proc/force_update()
-	force_update = 1
+	force_update = TRUE
 
 	effect_update(null)
 
 // Will cause the light source to recalculate turfs that were removed or added to visibility only.
 /datum/light_source/proc/vis_update()
-	vis_update = 1
+	vis_update = TRUE
 
 	effect_update(null)
 
 // Will check if we actually need to update, and update any variables that may need to be updated.
 /datum/light_source/proc/check()
-	if(!source_atom || !light_range || !light_power)
+	if(isnull(source_atom) || !light_range || !light_power)
 		destroy()
-		return 1
+		return TRUE
 
 	if(!top_atom)
 		top_atom = source_atom
-		. = 1
+		. = TRUE
 
 	if(isturf(top_atom))
 		if(source_turf != top_atom)
 			source_turf = top_atom
-			. = 1
+			. = TRUE
 	else if(top_atom.loc != source_turf)
 		source_turf = top_atom.loc
-		. = 1
+		. = TRUE
 
 	if(source_atom.light_power != light_power)
 		light_power = source_atom.light_power
-		. = 1
+		. = TRUE
 
 	if(source_atom.light_range != light_range)
 		light_range = source_atom.light_range
-		. = 1
+		. = TRUE
 
 	if(light_range && light_power && !applied)
-		. = 1
+		. = TRUE
 
 	if(source_atom.light_color != light_color)
 		light_color = source_atom.light_color
 		parse_light_color()
-		. = 1
+		. = TRUE
 
 // Decompile the hexadecimal colour into lumcounts of each perspective.
 /datum/light_source/proc/parse_light_color()
@@ -186,7 +186,7 @@
 
 /datum/light_source/proc/apply_lum()
 	var/static/update_gen = 1
-	applied = 1
+	applied = TRUE
 
 	// Keep track of the last applied lum values so that the lighting can be reversed
 	applied_lum_r = lum_r
@@ -210,7 +210,7 @@
 
 			APPLY_CORNER(C)
 
-		if(!T.affecting_lights)
+		if(isnull(T.affecting_lights))
 			T.affecting_lights = list()
 
 		T.affecting_lights.Add(src)
@@ -222,7 +222,7 @@
 	applied = FALSE
 
 	for(var/turf/T in affecting_turfs)
-		if(!T.affecting_lights)
+		if(isnull(T.affecting_lights))
 			T.affecting_lights = list()
 		else
 			T.affecting_lights.Remove(src)
@@ -254,7 +254,7 @@
 	var/list/L = turfs - affecting_turfs // New turfs, add us to the affecting lights of them.
 	affecting_turfs.Add(L)
 	for(var/turf/T in L)
-		if(!T.affecting_lights)
+		if(isnull(T.affecting_lights))
 			T.affecting_lights = list(src)
 		else
 			T.affecting_lights.Add(src)

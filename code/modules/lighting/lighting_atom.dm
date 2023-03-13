@@ -9,10 +9,10 @@
 // Nonsensical value for l_color default, so we can detect if it gets set to null.
 #define NONSENSICAL_VALUE -99999
 /atom/proc/set_light(l_range, l_power, l_color = NONSENSICAL_VALUE)
-	if(l_power != null)
+	if(!isnull(l_power))
 		light_power = l_power
 
-	if(l_range != null)
+	if(!isnull(l_range))
 		light_range = l_range
 
 	if(l_color != NONSENSICAL_VALUE)
@@ -25,7 +25,7 @@
 	set waitfor = FALSE
 
 	if(!light_power || !light_range)
-		if(light)
+		if(!isnull(light))
 			light.destroy()
 			light = null
 	else
@@ -34,7 +34,7 @@
 		else
 			. = loc
 
-		if(light)
+		if(!isnull(light))
 			light.update(.)
 		else
 			light = new /datum/light_source(src, .)
@@ -50,7 +50,7 @@
 		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guranteed to be on afterwards anyways.
 
 /atom/Destroy()
-	if(light)
+	if(!isnull(light))
 		light.destroy()
 		light = null
 	return ..()

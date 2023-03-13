@@ -22,8 +22,12 @@ PROCESS_DEF(lighting)
 
 /datum/process/lighting/setup()
 	schedule_interval = world.tick_lag // Run as fast as we possibly can.
+
+	var/start_time = world.timeofday
 	create_all_lighting_overlays()
 	GLOBL.lighting_overlays_initialised = TRUE
+	to_world(SPAN_DANGER("Overlays initialised in [round(0.1 * (world.timeofday - start_time), 0.1)] seconds."))
+	// TODO: Give this more debug output like the air_system has, total areas, total turfs, total overlays, total corners, etc.
 
 	doWork(TRUE)
 
@@ -85,7 +89,7 @@ PROCESS_DEF(lighting)
 			continue // DON'T break, we're adding stuff back into the update queue.
 
 		O.update_overlay()
-		O.needs_update = 0
+		O.needs_update = FALSE
 		overlay_updates++
 		SCHECK
 

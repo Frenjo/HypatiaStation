@@ -22,7 +22,7 @@
 		L.vis_update()
 
 /turf/proc/lighting_clear_overlay()
-	if(lighting_overlay)
+	if(!isnull(lighting_overlay))
 		qdel(lighting_overlay)
 
 	for(var/datum/lighting_corner/C in corners)
@@ -30,7 +30,7 @@
 
 // Builds a lighting overlay for us, but only if our area is dynamic.
 /turf/proc/lighting_build_overlay()
-	if(lighting_overlay)
+	if(!isnull(lighting_overlay))
 		return
 
 	var/area/A = loc
@@ -50,7 +50,7 @@
 
 // Used to get a scaled lumcount.
 /turf/proc/get_lumcount(minlum = 0, maxlum = 1)
-	if(!lighting_overlay)
+	if(isnull(lighting_overlay))
 		return 1
 
 	var/totallums = 0
@@ -74,14 +74,14 @@
 /turf/Entered(atom/movable/Obj, atom/OldLoc)
 	. = ..()
 
-	if(Obj && Obj.opacity)
+	if(Obj?.opacity)
 		has_opaque_atom = TRUE // Make sure to do this before reconsider_lights(), incase we're on instant updates. Guaranteed to be on in this case.
 		reconsider_lights()
 
 /turf/Exited(atom/movable/Obj, atom/newloc)
 	. = ..()
 
-	if(Obj && Obj.opacity)
+	if(Obj?.opacity)
 		recalc_atom_opacity() // Make sure to do this before reconsider_lights(), incase we're on instant updates.
 		reconsider_lights()
 
@@ -97,7 +97,7 @@
 		corners = list(null, null, null, null)
 
 	for(var/i = 1 to 4)
-		if(corners[i]) // Already have a corner on this direction.
+		if(!isnull(corners[i])) // Already have a corner on this direction.
 			continue
 
 		corners[i] = new /datum/lighting_corner(src, global.lighting_corner_diagonal[i])
