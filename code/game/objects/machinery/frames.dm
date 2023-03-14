@@ -33,7 +33,7 @@
 		to_chat(usr, SPAN_WARNING("\The [src] cannot be placed in this area."))
 		return
 
-	if(gotwallitem(loc, ndir))
+	if(has_wall_item(loc, ndir))
 		to_chat(usr, SPAN_WARNING("There's already an item on this wall!"))
 		return
 

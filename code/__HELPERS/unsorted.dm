@@ -40,8 +40,8 @@
 		return 0
 	return 1
 
-/proc/Get_Angle(atom/movable/start, atom/movable/end)//For beams.
-	if(!start || !end)
+/proc/Get_Angle(atom/movable/start, atom/movable/end) // For beams.
+	if(isnull(start) || isnull(end))
 		return 0
 
 	var/dy
@@ -117,7 +117,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	var/turf/destination = locate(location.x + dirx, location.y + diry, location.z)
 
-	if(destination)//If there is a destination.
+	if(!isnull(destination)) // If there is a destination.
 		if(errorx || errory)//If errorx or y were specified.
 			var/list/destination_list = list() // To add turfs to list.
 			/*This will draw a block around the target turf, given what the error is.
@@ -137,7 +137,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 					continue//Don't want them to teleport off the map.
 				if(T.y > world.maxy || T.y < 1)
 					continue
-				destination_list += T
+				destination_list.Add(T)
 			if(length(destination_list))
 				destination = pick(destination_list)
 			else
@@ -156,7 +156,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return destination
 
 /proc/LinkBlocked(turf/A, turf/B)
-	if(A == null || B == null)
+	if(isnull(A) || isnull(B))
 		return 1
 	var/adir = get_dir(A,B)
 	var/rdir = get_dir(B,A)
@@ -257,10 +257,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		return 0
 	real_name = newname
 	name = newname
-	if(mind)
-		mind.name = newname
-	if(dna)
-		dna.real_name = real_name
+	mind?.name = newname
+	dna?.real_name = real_name
 
 	if(oldname)
 		//update the datacore records! This is goig to be a bit costly.
@@ -272,8 +270,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 		//update our pda and id if we have them on our person
 		var/list/searching = GetAllContents(searchDepth = 3)
-		var/search_id = 1
-		var/search_pda = 1
+		var/search_id = TRUE
+		var/search_pda = TRUE
 
 		for(var/A in searching)
 			if(search_id && istype(A, /obj/item/weapon/card/id))
@@ -283,7 +281,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 					ID.name = "[newname]'s ID Card ([ID.assignment])"
 					if(!search_pda)
 						break
-					search_id = 0
+					search_id = FALSE
 
 			else if(search_pda && istype(A, /obj/item/device/pda))
 				var/obj/item/device/pda/PDA = A
@@ -292,53 +290,53 @@ Turf and target are seperate in case you want to teleport some distance from a t
 					PDA.name = "PDA - [newname] ([PDA.ownjob])" // Edited this to space out the dash. -Frenjo
 					if(!search_id)
 						break
-					search_pda = 0
+					search_pda = FALSE
 	return 1
 
 //Generalised helper proc for letting mobs rename themselves. Used to be clname() and ainame()
 //Last modified by Carn
 /mob/proc/rename_self(role, allow_numbers = 0)
-	spawn(0)
-		var/oldname = real_name
+	set waitfor = FALSE
 
-		var/time_passed = world.time
-		var/newname
+	var/oldname = real_name
 
-		for(var/i = 1, i <= 3, i++)	//we get 3 attempts to pick a suitable name.
-			newname = input(src, "You are a [role]. Would you like to change your name to something else?", "Name change", oldname) as text
-			if((world.time - time_passed) > 300)
-				return	//took too long
-			newname = reject_bad_name(newname, allow_numbers)	//returns null if the name doesn't meet some basic requirements. Tidies up a few other things like bad-characters.
+	var/time_passed = world.time
+	var/newname
 
-			for(var/mob/living/M in GLOBL.player_list)
-				if(M == src)
-					continue
-				if(!newname || M.real_name == newname)
-					newname = null
-					break
-			if(newname)
-				break	//That's a suitable name!
-			to_chat(src, "Sorry, that [role]-name wasn't appropriate, please try another. It's possibly too long/short, has bad characters or is already taken.")
+	for(var/i = 1, i <= 3, i++)	//we get 3 attempts to pick a suitable name.
+		newname = input(src, "You are a [role]. Would you like to change your name to something else?", "Name change", oldname) as text
+		if((world.time - time_passed) > 300)
+			return	//took too long
+		newname = reject_bad_name(newname, allow_numbers)	//returns null if the name doesn't meet some basic requirements. Tidies up a few other things like bad-characters.
 
-		if(!newname)	//we'll stick with the oldname then
-			return
+		for(var/mob/living/M in GLOBL.player_list)
+			if(M == src)
+				continue
+			if(!newname || M.real_name == newname)
+				newname = null
+				break
+		if(newname)
+			break	//That's a suitable name!
+		to_chat(src, "Sorry, that [role]-name wasn't appropriate, please try another. It's possibly too long/short, has bad characters or is already taken.")
 
-		if(cmptext("ai", role))
-			if(isAI(src))
-				var/mob/living/silicon/ai/A = src
-				oldname = null//don't bother with the records update crap
-				//world << "<b>[newname] is the AI!</b>"
-				//world << sound('sound/AI/newAI.ogg')
-				// Set eyeobj name
-				if(A.eyeobj)
-					A.eyeobj.name = "[newname] (AI Eye)"
+	if(!newname)	//we'll stick with the oldname then
+		return
 
-				// Set ai pda name
-				if(A.aiPDA)
-					A.aiPDA.owner = newname
-					A.aiPDA.name = newname + " (" + A.aiPDA.ownjob + ")"
+	if(cmptext("ai", role))
+		if(isAI(src))
+			var/mob/living/silicon/ai/A = src
+			oldname = null//don't bother with the records update crap
+			//world << "<b>[newname] is the AI!</b>"
+			//world << sound('sound/AI/newAI.ogg')
+			// Set eyeobj name
+			A.eyeobj?.name = "[newname] (AI Eye)"
 
-		fully_replace_character_name(oldname, newname)
+			// Set ai pda name
+			if(!isnull(A.aiPDA))
+				A.aiPDA.owner = newname
+				A.aiPDA.name = newname + " (" + A.aiPDA.ownjob + ")"
+
+	fully_replace_character_name(oldname, newname)
 
 //Picks a string of symbols to display as the law number for hacked or ion laws
 /proc/ionnum()
@@ -349,7 +347,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/select = null
 	var/list/borgs = list()
 	for(var/mob/living/silicon/robot/A in GLOBL.player_list)
-		if(A.stat == DEAD || A.connected_ai || A.scrambledcodes || isdrone(A))
+		if(A.stat == DEAD || !isnull(A.connected_ai) || A.scrambledcodes || isdrone(A))
 			continue
 		var/name = "[A.real_name] ([A.modtype] [A.braintype])"
 		borgs[name] = A
@@ -369,12 +367,12 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		. += A
 	return .
 
-//Find an active ai with the least borgs. VERBOSE PROCNAME HUH!
+// Find an active ai with the least borgs. VERBOSE PROCNAME HUH!
 /proc/select_active_ai_with_fewest_borgs()
-	var/mob/living/silicon/ai/selected
+	var/mob/living/silicon/ai/selected = null
 	var/list/active = active_ais()
 	for(var/mob/living/silicon/ai/A in active)
-		if(!selected || (selected.connected_robots > A.connected_robots))
+		if(isnull(selected) || (selected.connected_robots > A.connected_robots))
 			selected = A
 
 	return selected
@@ -390,30 +388,30 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 /proc/get_sorted_mobs()
 	var/list/old_list = getmobs()
-	var/list/AI_list = list()
-	var/list/Dead_list = list()
+	var/list/ai_list = list()
+	var/list/dead_list = list()
 	var/list/keyclient_list = list()
 	var/list/key_list = list()
 	var/list/logged_list = list()
 	for(var/named in old_list)
 		var/mob/M = old_list[named]
 		if(issilicon(M))
-			AI_list |= M
+			ai_list |= M
 		else if(isobserver(M) || M.stat == DEAD)
-			Dead_list |= M
-		else if(M.key && M.client)
+			dead_list |= M
+		else if(!isnull(M.key) && !isnull(M.client))
 			keyclient_list |= M
-		else if(M.key)
+		else if(!isnull(M.key))
 			key_list |= M
 		else
 			logged_list |= M
 		old_list.Remove(named)
 	var/list/new_list = list()
-	new_list += AI_list
-	new_list += keyclient_list
-	new_list += key_list
-	new_list += logged_list
-	new_list += Dead_list
+	new_list.Add(ai_list)
+	new_list.Add(keyclient_list)
+	new_list.Add(key_list)
+	new_list.Add(logged_list)
+	new_list.Add(dead_list)
 	return new_list
 
 //Returns a list of all mobs with their name
@@ -430,7 +428,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		else
 			names.Add(name)
 			namecounts[name] = 1
-		if(M.real_name && M.real_name != M.name)
+		if(!isnull(M.real_name) && M.real_name != M.name)
 			name += " \[[M.real_name]\]"
 		if(M.stat == DEAD)
 			if(isobserver(M))
@@ -467,10 +465,10 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		moblist.Add(M)
 	for(var/mob/living/simple_animal/M in sortmob)
 		moblist.Add(M)
-//	for(var/mob/living/silicon/hivebot/M in world)
-//		mob_list.Add(M)
-//	for(var/mob/living/silicon/hive_mainframe/M in world)
-//		mob_list.Add(M)
+//	for(var/mob/living/silicon/hivebot/M in sortmob)
+//		moblist.Add(M)
+//	for(var/mob/living/silicon/hive_mainframe/M in sortmob)
+//		moblist.Add(M)
 	return moblist
 
 //E = MC^2
@@ -514,21 +512,23 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	. = ""
 
 	if(key)
-		if(include_link && C)
+		if(include_link && !isnull(C))
 			. += "<a href='?priv_msg=\ref[C]'>"
 
-		if(C && C.holder && C.holder.fakekey && !include_name)
+		if(C?.holder?.fakekey && !include_name)
 			. += "Administrator"
 		else
 			. += key
 
 		if(include_link)
-			if(C)	. += "</a>"
-			else	. += " (DC)"
+			if(!isnull(C))
+				. += "</a>"
+			else
+				. += " (DC)"
 	else
 		. += "*no key*"
 
-	if(include_name && M)
+	if(include_name && !isnull(M))
 		if(M.real_name)
 			. += "/([M.real_name])"
 		else if(M.name)
@@ -542,9 +542,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 // returns the turf located at the map edge in the specified direction relative to A
 // used for mass driver
 /proc/get_edge_target_turf(atom/A, direction)
-
 	var/turf/target = locate(A.x, A.y, A.z)
-	if(!A || !target)
+	if(isnull(A) || isnull(target))
 		return 0
 		//since NORTHEAST == NORTH & EAST, etc, doing it this way allows for diagonal mass drivers in the future
 		//and isn't really any more complicated
@@ -607,7 +606,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/anim(turf/location as turf, target as mob|obj, a_icon, a_icon_state as text, flick_anim as text, sleeptime = 0, direction as num)
 //This proc throws up either an icon or an animation for a specified amount of time.
 //The variables should be apparent enough.
-	var/atom/movable/overlay/animation = new(location)
+	var/atom/movable/overlay/animation = new /atom/movable/overlay(location)
 	if(direction)
 		animation.set_dir(direction)
 	animation.icon = a_icon
@@ -626,9 +625,9 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/toReturn = list()
 
 	for(var/atom/part in contents)
-		toReturn += part
+		toReturn.Add(part)
 		if(length(part.contents) && searchDepth)
-			toReturn += part.GetAllContents(searchDepth - 1)
+			toReturn.Add(part.GetAllContents(searchDepth - 1))
 
 	return toReturn
 
@@ -640,24 +639,24 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	while(current != target_turf)
 		if(steps > length)
-			return 0
+			return FALSE
 		if(current.opacity)
-			return 0
+			return FALSE
 		for(var/atom/A in current)
 			if(A.opacity)
-				return 0
+				return FALSE
 		current = get_step_towards(current, target_turf)
 		steps++
 
-	return 1
+	return TRUE
 
 /proc/is_blocked_turf(turf/T)
-	var/cant_pass = 0
+	var/cant_pass = FALSE
 	if(T.density)
-		cant_pass = 1
+		cant_pass = TRUE
 	for(var/atom/A in T)
 		if(A.density)//&&A.anchored
-			cant_pass = 1
+			cant_pass = TRUE
 	return cant_pass
 
 /proc/get_step_towards2(atom/ref, atom/trg)
@@ -702,7 +701,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/return_areas()
 	var/list/area/areas = list()
 	for(var/area/A in world)
-		areas += A
+		areas.Add(A)
 	return areas
 
 //Returns: all the areas in the world, sorted.
@@ -723,7 +722,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/areas = list()
 	for(var/area/N in world)
 		if(istype(N, areatype))
-			areas += N
+			areas.Add(N)
 	return areas
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
@@ -741,7 +740,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	for(var/area/N in world)
 		if(istype(N, areatype))
 			for(var/turf/T in N)
-				turfs += T
+				turfs.Add(T)
 	return turfs
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
@@ -759,7 +758,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	for(var/area/N in world)
 		if(istype(N, areatype))
 			for(var/atom/A in N)
-				atoms += A
+				atoms.Add(A)
 	return atoms
 
 /area/proc/move_contents_to(area/A, turftoleave = null, direction = null, ignore_turf = null)
@@ -768,8 +767,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	//Notes: Attempts to move the contents of one area to another area.
 	//		Movement based on lower left corner. Tiles that do not fit
 	//		into the new area will not be moved.
-
-	if(!A || !src)
+	if(isnull(A) || isnull(src))
 		return 0
 
 	var/list/turfs_src = get_area_turfs(src.type)
@@ -807,7 +805,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		var/y_pos = (source.y - src_min_y)
 
 		var/turf/target = locate(trg_min_x + x_pos, trg_min_y + y_pos, trg_z)
-		if(!target || target.loc != A)
+		if(isnull(target) || target.loc != A)
 			continue
 
 		transport_turf_contents(source, target, direction)
@@ -838,7 +836,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return new_turf
 
 /proc/DuplicateObject(obj/original, perfectcopy = 0 , sameloc = 0)
-	if(!original)
+	if(isnull(original))
 		return null
 
 	var/obj/O = null
@@ -849,7 +847,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		O = new original.type(locate(0, 0, 0))
 
 	if(perfectcopy)
-		if((O) && (original))
+		if(!isnull(O) && !isnull(original))
 			for(var/V in original.vars)
 				if(!(V in list("type", "loc", "locs", "vars", "parent", "parent_type", "verbs", "ckey", "key")))
 					O.vars[V] = original.vars[V]
@@ -866,8 +864,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	//Notes: Attempts to move the contents of one area to another area.
 	//		Movement based on lower left corner. Tiles that do not fit
 	//		into the new area will not be moved.
-
-	if(!A || !src)
+	if(isnull(A) || isnull(src))
 		return 0
 
 	var/list/turfs_src = get_area_turfs(src.type)
@@ -876,34 +873,38 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/src_min_x = 0
 	var/src_min_y = 0
 	for(var/turf/T in turfs_src)
-		if(T.x < src_min_x || !src_min_x) src_min_x	= T.x
-		if(T.y < src_min_y || !src_min_y) src_min_y	= T.y
+		if(T.x < src_min_x || !src_min_x)
+			src_min_x	= T.x
+		if(T.y < src_min_y || !src_min_y)
+			src_min_y	= T.y
 
 	var/trg_min_x = 0
 	var/trg_min_y = 0
 	for(var/turf/T in turfs_trg)
-		if(T.x < trg_min_x || !trg_min_x) trg_min_x	= T.x
-		if(T.y < trg_min_y || !trg_min_y) trg_min_y	= T.y
+		if(T.x < trg_min_x || !trg_min_x)
+			trg_min_x	= T.x
+		if(T.y < trg_min_y || !trg_min_y)
+			trg_min_y	= T.y
 
 	var/list/refined_src = list()
 	for(var/turf/T in turfs_src)
-		refined_src += T
-		refined_src[T] = new/datum/coords
+		refined_src.Add(T)
+		refined_src[T] = new /datum/coords()
 		var/datum/coords/C = refined_src[T]
 		C.x_pos = (T.x - src_min_x)
 		C.y_pos = (T.y - src_min_y)
 
 	var/list/refined_trg = list()
 	for(var/turf/T in turfs_trg)
-		refined_trg += T
-		refined_trg[T] = new/datum/coords
+		refined_trg.Add(T)
+		refined_trg[T] = new /datum/coords()
 		var/datum/coords/C = refined_trg[T]
 		C.x_pos = (T.x - trg_min_x)
 		C.y_pos = (T.y - trg_min_y)
 
 	var/list/toupdate = list()
 
-	var/copiedobjs = list()
+	var/list/copiedobjs = list()
 
 	moving:
 		for(var/turf/T in refined_src)
@@ -911,7 +912,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			for(var/turf/B in refined_trg)
 				var/datum/coords/C_trg = refined_trg[B]
 				if(C_src.x_pos == C_trg.x_pos && C_src.y_pos == C_trg.y_pos)
-
 					var/old_dir1 = T.dir
 					var/old_icon_state1 = T.icon_state
 					var/old_icon1 = T.icon
@@ -925,19 +925,18 @@ Turf and target are seperate in case you want to teleport some distance from a t
 					X.icon_state = old_icon_state1
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
 
-
 					var/list/objs = list()
 					var/list/newobjs = list()
 					var/list/mobs = list()
 					var/list/newmobs = list()
 
 					for(var/obj/O in T)
-						if(!istype(O, /obj))
+						if(!isobj(O))
 							continue
-						objs += O
+						objs.Add(O)
 
 					for(var/obj/O in objs)
-						newobjs += DuplicateObject(O, 1)
+						newobjs.Add(DuplicateObject(O, TRUE))
 
 					for(var/obj/O in newobjs)
 						O.loc = X
@@ -945,36 +944,31 @@ Turf and target are seperate in case you want to teleport some distance from a t
 					for(var/mob/M in T)
 						if(!ismob(M) || istype(M, /mob/aiEye))
 							continue // If we need to check for more mobs, I'll add a variable
-						mobs += M
+						mobs.Add(M)
 
 					for(var/mob/M in mobs)
-						newmobs += DuplicateObject(M, 1)
+						newmobs.Add(DuplicateObject(M, TRUE))
 
 					for(var/mob/M in newmobs)
 						M.loc = X
 
-					copiedobjs += newobjs
-					copiedobjs += newmobs
+					copiedobjs.Add(newobjs)
+					copiedobjs.Add(newmobs)
 
 					for(var/V in T.vars)
 						if(!(V in list("type", "loc", "locs", "vars", "parent", "parent_type", "verbs", "ckey", "key", "x", "y", "z", "contents", "luminosity")))
 							X.vars[V] = T.vars[V]
 
-					toupdate += X
+					toupdate.Add(X)
 
-					refined_src -= T
-					refined_trg -= B
+					refined_src.Remove(T)
+					refined_trg.Remove(B)
 					continue moving
-
-	var/list/doors = list()
 
 	if(length(toupdate))
 		for(var/turf/simulated/T1 in toupdate)
-			for(var/obj/machinery/door/D2 in T1)
-				doors += D2
-
-	for(var/obj/O in doors)
-		O:update_nearby_tiles(1)
+			for(var/obj/machinery/door/door in T1)
+				door.update_nearby_tiles(TRUE)
 
 	return copiedobjs
 
@@ -1006,8 +1000,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/get_mob_with_client_list()
 	var/list/mobs = list()
 	for(var/mob/M in GLOBL.mob_list)
-		if(M.client)
-			mobs += M
+		if(!isnull(M.client))
+			mobs.Add(M)
 	return mobs
 
 /proc/parse_zone(zone)
@@ -1068,49 +1062,49 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 ))
 
 /proc/istool(O)
-	if(O && is_type_in_list(O, GLOBL.common_tools))
-		return 1
-	return 0
+	if(!isnull(O) && is_type_in_list(O, GLOBL.common_tools))
+		return TRUE
+	return FALSE
 
 /proc/iswrench(O)
 	if(istype(O, /obj/item/weapon/wrench))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/iswelder(O)
 	if(istype(O, /obj/item/weapon/weldingtool))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/iscoil(O)
 	if(istype(O, /obj/item/stack/cable_coil))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/iswirecutter(O)
 	if(istype(O, /obj/item/weapon/wirecutters))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/isscrewdriver(O)
 	if(istype(O, /obj/item/weapon/screwdriver))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/ismultitool(O)
 	if(istype(O, /obj/item/device/multitool))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/iscrowbar(O)
 	if(istype(O, /obj/item/weapon/crowbar))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/iswire(O)
 	if(istype(O, /obj/item/stack/cable_coil))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/is_hot(obj/item/W as obj)
 	switch(W.type)
@@ -1144,28 +1138,28 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 
 //Whether or not the given item counts as sharp in terms of dealing damage
 /proc/is_sharp(obj/O as obj)
-	if(!O)
-		return 0
+	if(isnull(O))
+		return FALSE
 	if(O.sharp)
-		return 1
+		return TRUE
 	if(O.edge)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 //Whether or not the given item counts as cutting with an edge in terms of removing limbs
 /proc/has_edge(obj/O as obj)
-	if(!O)
-		return 0
+	if(isnull(O))
+		return FALSE
 	if(O.edge)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 //Returns 1 if the given item is capable of popping things like balloons, inflatable barriers, or cutting police tape.
 /proc/can_puncture(obj/item/W as obj)		// For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
-	if(!W)
-		return 0
+	if(isnull(W))
+		return FALSE
 	if(W.sharp)
-		return 1
+		return TRUE
 	return( \
 		W.sharp											|| \
 		istype(W, /obj/item/weapon/screwdriver)			|| \
@@ -1226,37 +1220,36 @@ GLOBAL_GLOBL_LIST_INIT(wall_items, list(
 	/obj/structure/mirror, /obj/structure/closet/fireaxecabinet, /obj/machinery/computer/security/telescreen/entertainment
 ))
 
-/proc/gotwallitem(loc, dir)
+/proc/has_wall_item(loc, dir)
 	for(var/obj/O in loc)
 		for(var/item in GLOBL.wall_items)
 			if(istype(O, item))
-				//Direction works sometimes
+				// Direction works sometimes.
 				if(O.dir == dir)
-					return 1
+					return TRUE
 
-				//Some stuff doesn't use dir properly, so we need to check pixel instead
+				// Some stuff doesn't use dir properly, so we need to check pixel instead.
 				switch(dir)
 					if(SOUTH)
 						if(O.pixel_y > 10)
-							return 1
+							return TRUE
 					if(NORTH)
 						if(O.pixel_y < -10)
-							return 1
+							return TRUE
 					if(WEST)
 						if(O.pixel_x > 10)
-							return 1
+							return TRUE
 					if(EAST)
 						if(O.pixel_x < -10)
-							return 1
+							return TRUE
 
-
-	//Some stuff is placed directly on the wallturf (signs)
+	// Some stuff is placed directly on the wallturf, IE signs.
 	for(var/obj/O in get_step(loc, dir))
 		for(var/item in GLOBL.wall_items)
 			if(istype(O, item))
-				if(O.pixel_x == 0 && O.pixel_y == 0)
-					return 1
-	return 0
+				if(!O.pixel_x && !O.pixel_y)
+					return TRUE
+	return FALSE
 
 /proc/format_text(text)
 	return replacetext(replacetext(text, "\proper ", ""), "\improper ", "")
