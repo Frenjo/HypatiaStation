@@ -571,7 +571,7 @@ var/list/ai_verbs_default = list(
 	)
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
 
-	var/obj/machinery/computer/communications/comms = locate() in GLOBL.machines
+	var/obj/machinery/computer/communications/comms = locate() in GLOBL.communications_consoles
 	if(emote == "Friend Computer")
 		comms?.post_status("friend_computer")
 	else

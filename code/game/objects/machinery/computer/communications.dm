@@ -1,4 +1,5 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
+GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 
 #define STATE_DEFAULT 1
 #define STATE_CALLSHUTTLE 2
@@ -41,6 +42,14 @@
 	var/status_display_freq = 1435
 	var/stat_msg1
 	var/stat_msg2
+
+/obj/machinery/computer/communications/New()
+	. = ..()
+	GLOBL.communications_consoles.Add(src)
+
+/obj/machinery/computer/communications/Destroy()
+	GLOBL.communications_consoles.Remove(src)
+	return ..()
 
 /obj/machinery/computer/communications/process()
 	if(..())

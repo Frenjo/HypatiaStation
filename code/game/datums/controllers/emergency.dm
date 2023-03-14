@@ -136,7 +136,7 @@ CONTROLLER_DEF(emergency)
 
 // Sets the status displays.
 /datum/controller/emergency/proc/set_status_displays(recalled = FALSE)
-	var/obj/machinery/computer/communications/comms = locate() in GLOBL.machines
+	var/obj/machinery/computer/communications/comms = locate() in GLOBL.communications_consoles
 	comms?.post_status(recalled ? "blank" : "shuttle")
 
 /datum/controller/emergency/proc/can_call()
