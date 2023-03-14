@@ -75,15 +75,15 @@ Version 1 changes (from version 0):
 		CRASH("sd_Alert: Invalid target:[who] (\ref[who])")
 
 	var/sd_alert/T = locate(tag)
-	if(T)
+	if(!isnull(T))
 		if(istype(T))
 			qdel(T)
 		else
 			CRASH("sd_Alert: tag \"[tag]\" is already in use by datum '[T]' (type: [T.type])")
-	T = new(who, tag)
+	T = new /sd_alert(who, tag)
 	if(duration)
 		spawn(duration)
-			if(T)
+			if(!isnull(T))
 				qdel(T)
 			return
 	T.Display(message, title, buttons, default, unfocus, size, table, style, select, flags)

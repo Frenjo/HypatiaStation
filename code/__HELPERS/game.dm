@@ -88,7 +88,7 @@
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
 		if(dx * dx + dy * dy <= rsq)
-			turfs += T
+			turfs.Add(T)
 
 	//turfs += centerturf
 	return turfs
@@ -102,7 +102,7 @@
 		var/dx = A.x - centerturf.x
 		var/dy = A.y - centerturf.y
 		if(dx * dx + dy * dy <= rsq)
-			atoms += A
+			atoms.Add(A)
 
 	//turfs += centerturf
 	return atoms
@@ -124,7 +124,7 @@
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
 		if(dx * dx + dy * dy <= rsq)
-			turfs += T
+			turfs.Add(T)
 	return turfs
 
 /proc/circleviewturfs(center = usr, radius = 3)		//Is there even a diffrence between this proc and circlerangeturfs()?
@@ -136,7 +136,7 @@
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
 		if(dx * dx + dy * dy <= rsq)
-			turfs += T
+			turfs.Add(T)
 	return turfs
 
 
@@ -154,7 +154,7 @@
 	for(var/atom/A in O.contents)
 		if(ismob(A))
 			var/mob/M = A
-			if(client_check && !M.client)
+			if(client_check && isnull(M.client))
 				L |= recursive_mob_check(A, L, recursion_limit - 1, client_check, sight_check, include_radio)
 				continue
 			if(sight_check && !isInSight(A, O))
@@ -181,37 +181,37 @@
 	var/turf/T = get_turf(source)
 	var/list/hear = list()
 
-	if(!T)
+	if(isnull(T))
 		return hear
 
 	var/list/range = hear(R, T)
 
 	for(var/mob/M in range)
-		if(M.client)
-			hear += M
+		if(!isnull(M.client))
+			hear.Add(M)
 
 	var/list/objects = list()
 
 	for(var/obj/O in range)				//Get a list of objects in hearing range.  We'll check to see if any clients have their "eye" set to the object 
-		objects += O
+		objects.Add(O)
 
 	for(var/client/C in GLOBL.clients)
 		if(!istype(C) || !C.eye)
-			continue   			//I have no idea when this client check would be needed, but if this runtimes people won't hear anything
+			continue		//I have no idea when this client check would be needed, but if this runtimes people won't hear anything
 							//So kinda paranoid about runtime avoidance.
 		if(C.mob in hear)
 			continue
 		if(C.eye in (hear|objects))
 			if(!(C.mob in hear))
-				hear += C.mob
+				hear.Add(C.mob)
 
 		else if(!(C.mob in hear))
 			if(C.mob.loc && (C.mob.loc in (hear | objects)))
-				hear += C.mob
+				hear.Add(C.mob)
 			else if(C.mob.loc.loc && (C.mob.loc.loc in (hear | objects)))  
-				hear += C.mob
+				hear.Add(C.mob)
 			else if(C.mob.loc.loc.loc && (C.mob.loc.loc.loc in (hear | objects)))   //Going a little deeper
-				hear += C.mob
+				hear.Add(C.mob)
 
 	return hear
 
@@ -224,67 +224,65 @@
 	var/list/speaker_coverage = list()
 	for(var/i = 1; i <= length(radios); i++)
 		var/obj/item/device/radio/R = radios[i]
-		if(R)
+		if(!isnull(R))
 			var/turf/speaker = get_turf(R)
 			if(speaker)
 				for(var/turf/T in hear(R.canhear_range, speaker))
 					speaker_coverage[T] = T
 
-
 	// Try to find all the players who can hear the message
 	for(var/i = 1; i <= length(GLOBL.player_list); i++)
 		var/mob/M = GLOBL.player_list[i]
-		if(M)
+		if(!isnull(M))
 			var/turf/ear = get_turf(M)
-			if(ear)
+			if(!isnull(ear))
 				// Ghostship is magic: Ghosts can hear radio chatter from anywhere
-				if(speaker_coverage[ear] || (isobserver(M) && (M.client) && (M.client.prefs.toggles & CHAT_GHOSTRADIO)))
+				if(speaker_coverage[ear] || (isobserver(M) && (M.client?.prefs.toggles & CHAT_GHOSTRADIO)))
 					. |= M		// Since we're already looping through mobs, why bother using |= ? This only slows things down.
 	return .
 
-/proc/inLineOfSight(X1,Y1,X2,Y2,Z=1,PX1=16.5,PY1=16.5,PX2=16.5,PY2=16.5)
+/proc/inLineOfSight(X1, Y1, X2, Y2, Z = 1, PX1 = 16.5, PY1 = 16.5, PX2 = 16.5, PY2 = 16.5)
 	var/turf/T
-	if(X1==X2)
-		if(Y1==Y2)
-			return 1 //Light cannot be blocked on same tile
+	if(X1 == X2)
+		if(Y1 == Y2)
+			return TRUE //Light cannot be blocked on same tile
 		else
-			var/s = SIGN(Y2-Y1)
-			Y1+=s
-			while(Y1!=Y2)
-				T=locate(X1,Y1,Z)
+			var/s = SIGN(Y2 - Y1)
+			Y1 += s
+			while(Y1 != Y2)
+				T = locate(X1, Y1, Z)
 				if(T.opacity)
-					return 0
-				Y1+=s
+					return FALSE
+				Y1 += s
 	else
-		var/m=(32*(Y2-Y1)+(PY2-PY1))/(32*(X2-X1)+(PX2-PX1))
-		var/b=(Y1+PY1/32-0.015625)-m*(X1+PX1/32-0.015625) //In tiles
-		var/signX = SIGN(X2-X1)
-		var/signY = SIGN(Y2-Y1)
-		if(X1<X2)
-			b+=m
-		while(X1!=X2 || Y1!=Y2)
-			if(round(m*X1+b-Y1))
-				Y1+=signY //Line exits tile vertically
+		var/m = (32 * (Y2 - Y1) + (PY2 - PY1)) / (32 * (X2 - X1) + (PX2 - PX1))
+		var/b = (Y1 + PY1 / 32 - 0.015625) - m * (X1 + PX1 / 32 - 0.015625) //In tiles
+		var/signX = SIGN(X2 - X1)
+		var/signY = SIGN(Y2 - Y1)
+		if(X1 < X2)
+			b += m
+		while(X1 != X2 || Y1 != Y2)
+			if(round(m * X1 + b - Y1))
+				Y1 += signY //Line exits tile vertically
 			else
-				X1+=signX //Line exits tile horizontally
-			T=locate(X1,Y1,Z)
+				X1 += signX //Line exits tile horizontally
+			T = locate(X1, Y1, Z)
 			if(T.opacity)
-				return 0
-	return 1
+				return FALSE
+	return TRUE
 #undef SIGN
 
 /proc/isInSight(atom/A, atom/B)
 	var/turf/Aturf = get_turf(A)
 	var/turf/Bturf = get_turf(B)
 
-	if(!Aturf || !Bturf)
-		return 0
+	if(isnull(Aturf) || isnull(Bturf))
+		return FALSE
 
 	if(inLineOfSight(Aturf.x, Aturf.y, Bturf.x, Bturf.y, Aturf.z))
-		return 1
-
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /proc/get_cardinal_step_away(atom/start, atom/finish) //returns the position of a step from start away from finish, in one of the cardinal directions
 	//returns only NORTH, SOUTH, EAST, or WEST
@@ -307,7 +305,6 @@
 			return M
 	return null
 
-
 // Will return a list of active candidates. It increases the buffer 5 times until it finds a candidate which is active within the buffer.
 /proc/get_active_candidates(buffer = 1)
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
@@ -316,12 +313,11 @@
 		for(var/mob/dead/observer/G in GLOBL.player_list)
 			if(((G.client.inactivity / 10) / 60) <= buffer + i) // the most active players are more likely to become an alien
 				if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
-					candidates += G.key
+					candidates.Add(G.key)
 		i++
 	return candidates
 
 // Same as above but for alien candidates.
-
 /proc/get_alien_candidates()
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
@@ -330,27 +326,30 @@
 			if(G.client.prefs.be_special & BE_ALIEN)
 				if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + i) // the most active players are more likely to become an alien
 					if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
-						candidates += G.key
+						candidates.Add(G.key)
 		i++
 	return candidates
 
 /proc/ScreenText(obj/O, maptext = "", screen_loc = "CENTER-7,CENTER-7", maptext_height = 480, maptext_width = 480)
-	if(!isobj(O))	O = new /obj/screen/text()
+	if(!isobj(O))
+		O = new /obj/screen/text()
 	O.maptext = maptext
 	O.maptext_height = maptext_height
 	O.maptext_width = maptext_width
 	O.screen_loc = screen_loc
 	return O
 
-/proc/Show2Group4Delay(obj/O, list/group, delay=0)
-	if(!isobj(O))	return
-	if(!group)	group = GLOBL.clients
+/proc/Show2Group4Delay(obj/O, list/group, delay = 0)
+	if(!isobj(O))
+		return
+	if(isnull(group))
+		group = GLOBL.clients
 	for(var/client/C in group)
-		C.screen += O
+		C.screen.Add(O)
 	if(delay)
 		spawn(delay)
 			for(var/client/C in group)
-				C.screen -= O
+				C.screen.Remove(O)
 
 /datum/projectile_data
 	var/src_x

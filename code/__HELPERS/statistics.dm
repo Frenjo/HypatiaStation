@@ -3,7 +3,7 @@
 		return
 	var/playercount = 0
 	for(var/mob/M in GLOBL.player_list)
-		if(M.client)
+		if(!isnull(M.client))
 			playercount++
 	establish_db_connection()
 	if(!GLOBL.dbcon.IsConnected())
@@ -41,9 +41,9 @@
 /proc/sql_report_death(mob/living/carbon/human/H)
 	if(!CONFIG_GET(sqllogging))
 		return
-	if(!H)
+	if(isnull(H))
 		return
-	if(!H.key || !H.mind)
+	if(isnull(H.key) || isnull(H.mind))
 		return
 
 	var/turf/T = H.loc
@@ -75,9 +75,9 @@
 /proc/sql_report_cyborg_death(mob/living/silicon/robot/H)
 	if(!CONFIG_GET(sqllogging))
 		return
-	if(!H)
+	if(isnull(H))
 		return
-	if(!H.key || !H.mind)
+	if(isnull(H.key) || isnull(H.mind))
 		return
 
 	var/turf/T = H.loc
@@ -117,7 +117,7 @@
 
 //This proc is used for feedback. It is executed at round end.
 /proc/sql_commit_feedback()
-	if(!blackbox)
+	if(isnull(blackbox))
 		log_game("Round ended without a blackbox recorder. No feedback was sent to the database.")
 		return
 

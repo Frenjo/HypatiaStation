@@ -8,8 +8,8 @@ the HUD updates properly! */
 		return
 
 	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, GLOBL.med_hud_users)
-	for(var/mob/living/carbon/human/patient in P.Mob.in_view(P.Turf))
-		if(P.Mob.see_invisible < patient.invisibility)
+	for(var/mob/living/carbon/human/patient in P.mob.in_view(P.turf))
+		if(P.mob.see_invisible < patient.invisibility)
 			continue
 
 		if(!local_scanner)
@@ -20,63 +20,63 @@ the HUD updates properly! */
 			else
 				continue
 
-		P.Client.images += patient.hud_list[HEALTH_HUD]
+		P.client.images.Add(patient.hud_list[HEALTH_HUD])
 		if(local_scanner)
-			P.Client.images += patient.hud_list[STATUS_HUD]
+			P.client.images.Add(patient.hud_list[STATUS_HUD])
 
 //Security HUDs. Pass a value for the second argument to enable implant viewing or other special features.
 /proc/process_sec_hud(mob/M, advanced_mode, mob/Alt)
 	if(!can_process_hud(M))
 		return
 	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, GLOBL.sec_hud_users)
-	for(var/mob/living/carbon/human/perp in P.Mob.in_view(P.Turf))
-		if(P.Mob.see_invisible < perp.invisibility)
+	for(var/mob/living/carbon/human/perp in P.mob.in_view(P.turf))
+		if(P.mob.see_invisible < perp.invisibility)
 			continue
 
-		P.Client.images += perp.hud_list[ID_HUD]
+		P.client.images.Add(perp.hud_list[ID_HUD])
 		if(advanced_mode)
-			P.Client.images += perp.hud_list[WANTED_HUD]
-			P.Client.images += perp.hud_list[IMPTRACK_HUD]
-			P.Client.images += perp.hud_list[IMPLOYAL_HUD]
-			P.Client.images += perp.hud_list[IMPCHEM_HUD]
+			P.client.images.Add(perp.hud_list[WANTED_HUD])
+			P.client.images.Add(perp.hud_list[IMPTRACK_HUD])
+			P.client.images.Add(perp.hud_list[IMPLOYAL_HUD])
+			P.client.images.Add(perp.hud_list[IMPCHEM_HUD])
 
 /datum/arranged_hud_process
-	var/client/Client
-	var/mob/Mob
-	var/turf/Turf
+	var/client/client
+	var/mob/mob
+	var/turf/turf
 
 /proc/arrange_hud_process(mob/M, mob/Alt, list/hud_list)
 	hud_list |= M
-	var/datum/arranged_hud_process/P = new
-	P.Client = M.client
-	P.Mob = Alt ? Alt : M
-	P.Turf = get_turf(P.Mob)
+	var/datum/arranged_hud_process/P = new /datum/arranged_hud_process()
+	P.client = M.client
+	P.mob = Alt ? Alt : M
+	P.turf = get_turf(P.mob)
 	return P
 
 /proc/can_process_hud(mob/M)
-	if(!M)
-		return 0
-	if(!M.client)
-		return 0
+	if(isnull(M))
+		return FALSE
+	if(isnull(M.client))
+		return FALSE
 	if(M.stat != CONSCIOUS)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 //Deletes the current HUD images so they can be refreshed with new ones.
 /mob/proc/regular_hud_updates() //Used in the life.dm of mobs that can use HUDs.
-	if(client)
+	if(!isnull(client))
 		for(var/image/hud in client.images)
 			if(copytext(hud.icon_state, 1, 4) == "hud")
-				client.images -= hud
-	GLOBL.med_hud_users -= src
-	GLOBL.sec_hud_users -= src
+				client.images.Remove(hud)
+	GLOBL.med_hud_users.Remove(src)
+	GLOBL.sec_hud_users.Remove(src)
 
 /mob/proc/in_view(turf/T)
 	return view(T)
 
 /mob/aiEye/in_view(turf/T)
-	var/list/viewed = new
+	var/list/viewed = list()
 	for(var/mob/living/carbon/human/H in GLOBL.mob_list)
 		if(get_dist(H, T) <= 7)
-			viewed += H
+			viewed.Add(H)
 	return viewed

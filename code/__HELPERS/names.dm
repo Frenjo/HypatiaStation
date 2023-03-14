@@ -1,6 +1,6 @@
 GLOBAL_GLOBL_INIT(church_name, null)
 /proc/church_name()
-	if(GLOBL.church_name)
+	if(!isnull(GLOBL.church_name))
 		return GLOBL.church_name
 
 	var/name = ""
@@ -17,7 +17,7 @@ GLOBAL_GLOBL_INIT(church_name, null)
 
 GLOBAL_GLOBL_INIT(command_name, null)
 /proc/command_name()
-	if(GLOBL.command_name)
+	if(!isnull(GLOBL.command_name))
 		return GLOBL.command_name
 
 	var/name = "Central Command"
@@ -32,7 +32,7 @@ GLOBAL_GLOBL_INIT(command_name, null)
 
 GLOBAL_GLOBL_INIT(religion_name, null)
 /proc/religion_name()
-	if(GLOBL.religion_name)
+	if(!isnull(GLOBL.religion_name))
 		return GLOBL.religion_name
 
 	var/name = ""
@@ -43,7 +43,7 @@ GLOBAL_GLOBL_INIT(religion_name, null)
 	return capitalize(name)
 
 /proc/station_name()
-	if(GLOBL.current_map.station_name)
+	if(!isnull(GLOBL.current_map.station_name))
 		return GLOBL.current_map.station_name
 
 	var/random = rand(1, 5)
@@ -111,7 +111,7 @@ GLOBAL_GLOBL_INIT(religion_name, null)
 
 GLOBAL_GLOBL_INIT(syndicate_name, null)
 /proc/syndicate_name()
-	if(GLOBL.syndicate_name)
+	if(!isnull(GLOBL.syndicate_name))
 		return GLOBL.syndicate_name
 
 	var/name = ""
@@ -182,13 +182,12 @@ GLOBAL_GLOBL_INIT(syndicate_code_response, null)	// Code response for traitors.
 	var/list/locations = length(GLOBL.teleportlocs) ? GLOBL.teleportlocs : drinks//if null, defaults to drinks instead.
 
 	var/list/names = list()
-	for(var/datum/data/record/t in GLOBL.data_core.general)//Picks from crew manifest.
-		names += t.fields["name"]
+	for(var/datum/data/record/t in GLOBL.data_core.general) // Picks from crew manifest.
+		names.Add(t.fields["name"])
 
 	var/maxwords = words//Extra var to check for duplicates.
 
 	for(words, words > 0, words--)//Randomly picks from one of the choices below.
-
 		if(words == 1 && (1 in safety) && (2 in safety))//If there is only one word remaining and choice 1 or 2 have not been selected.
 			safety = list(pick(1, 2))//Select choice 1 or 2.
 		else if(words == 1 && maxwords == 2)//Else if there is only one word remaining (and there were two originally), and 1 or 2 were chosen,

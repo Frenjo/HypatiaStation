@@ -6,9 +6,9 @@
 
 	for(var/job_name in GLOBL.all_jobs)
 		var/datum/job/job = GLOBL.all_jobs[job_name]
-		if(!job)
+		if(isnull(job))
 			continue
-		occupations += job
+		occupations.Add(job)
 
 	return occupations
 
@@ -17,7 +17,7 @@
 	var/list/titles = list()
 
 	for(var/datum/job/J in jobs)
-		if(!J)
+		if(isnull(J))
 			continue
 		if(J.title == job)
 			titles = J.alt_titles

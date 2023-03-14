@@ -125,7 +125,7 @@
 			return "health-100"
 
 /proc/do_mob(mob/user, mob/target, time = 30, uninterruptible = 0, progress = 1)
-	if(!user || !target)
+	if(isnull(user) || isnull(target))
 		return 0
 	var/user_loc = user.loc
 	var/target_loc = target.loc
@@ -133,22 +133,22 @@
 	var/holding = user.get_active_hand()
 	var/datum/progressbar/progbar
 	if(progress)
-		progbar = new(user, time, target)
+		progbar = new /datum/progressbar(user, time, target)
 
-	var/endtime = world.time+time
+	var/endtime = world.time + time
 	var/starttime = world.time
 	. = 1
 	while(world.time < endtime)
 		sleep(1)
 		if(progress)
 			progbar.update(world.time - starttime)
-		if(!user || !target)
+		if(isnull(user) || isnull(target))
 			. = 0
 			break
 		if(uninterruptible)
 			continue
 
-		if(!user || user.incapacitated() || user.loc != user_loc)
+		if(isnull(user) || user.incapacitated() || user.loc != user_loc)
 			. = 0
 			break
 
@@ -159,37 +159,37 @@
 		qdel(progbar)
 
 /proc/do_after(mob/user, delay, atom/target = null, needhand = 1, progress = 1)
-	if(!user)
+	if(isnull(user))
 		return 0
 	var/atom/target_loc = null
-	if(target)
+	if(!isnull(target))
 		target_loc = target.loc
 
 	var/atom/original_loc = user.loc
 
 	var/holding = user.get_active_hand()
 
-	var/holdingnull = 1 //User's hand started out empty, check for an empty hand
-	if(holding)
-		holdingnull = 0 //Users hand started holding something, check to see if it's still holding that
+	var/holdingnull = TRUE // User's hand started out empty, check for an empty hand.
+	if(!isnull(holding))
+		holdingnull = FALSE // User's hand started holding something, check to see if it's still holding that.
 
 	var/datum/progressbar/progbar
 	if(progress)
-		progbar = new(user, delay, target)
+		progbar = new /datum/progressbar(user, delay, target)
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
 	. = 1
-	while (world.time < endtime)
+	while(world.time < endtime)
 		sleep(1)
 		if(progress)
 			progbar.update(world.time - starttime)
 
-		if(!user || user.incapacitated() || user.loc != original_loc)
+		if(isnull(user) || user.incapacitated() || user.loc != original_loc)
 			. = 0
 			break
 
-		if(target_loc && (!target || target_loc != target.loc))
+		if(!isnull(target_loc) && (isnull(target) || target_loc != target.loc))
 			. = 0
 			break
 
@@ -219,7 +219,7 @@
 		if(!istype(ID))
 			ID = null
 
-		if(ID)
+		if(!isnull(ID))
 			return ID.registered_name
 
 	C = H.wear_id
@@ -233,5 +233,5 @@
 		if(!istype(ID))
 			ID = null
 
-		if(ID)
+		if(!isnull(ID))
 			return ID.registered_name

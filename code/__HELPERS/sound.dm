@@ -26,17 +26,17 @@ GLOBAL_GLOBL_LIST_INIT(page_sound, list('sound/effects/pageturn1.ogg', 'sound/ef
  	// Looping through the player list has the added bonus of working for mobs inside containers
 	for(var/P in GLOBL.player_list)
 		var/mob/M = P
-		if(!M || !M.client)
+		if(isnull(M) || isnull(M.client))
 			continue
 
 		var/distance = get_dist(M, turf_source)
 		if(distance <= (world.view + extrarange) * 3)
 			var/turf/T = get_turf(M)
 
-			if(T && T.z == turf_source.z)
+			if(T?.z == turf_source.z)
 				//check that the air can transmit sound
 				var/datum/gas_mixture/environment = T.return_air()
-				if(!environment || environment.return_pressure() < SOUND_MINIMUM_PRESSURE)
+				if(isnull(environment) || environment.return_pressure() < SOUND_MINIMUM_PRESSURE)
 					if(distance > 1)
 						continue
 
@@ -50,7 +50,7 @@ var/const/FALLOFF_SOUNDS = 2
 var/const/SURROUND_CAP = 255
 
 /mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff)
-	if(!src.client || ear_deaf > 0)
+	if(isnull(client) || ear_deaf > 0)
 		return
 
 	soundin = get_sfx(soundin)
@@ -88,7 +88,7 @@ var/const/SURROUND_CAP = 255
 	src << S
 
 /client/proc/playtitlemusic()
-	if(!global.CTgame_ticker || !global.CTgame_ticker.login_music)
+	if(isnull(global.CTgame_ticker) || !global.CTgame_ticker.login_music)
 		return
 	if(prefs.toggles & SOUND_LOBBY)
 		src << sound(global.CTgame_ticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS

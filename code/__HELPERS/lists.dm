@@ -79,11 +79,11 @@
 /proc/difflist(list/first, list/second, skiprep = 0)
 	if(!islist(first) || !islist(second))
 		return
-	var/list/result = new
+	var/list/result = list()
 	if(skiprep)
 		for(var/e in first)
 			if(!(e in result) && !(e in second))
-				result += e
+				result.Add(e)
 	else
 		result = first - second
 	return result
@@ -96,7 +96,7 @@
 /proc/uniquemergelist(list/first, list/second, skiprep = 0)
 	if(!islist(first) || !islist(second))
 		return
-	var/list/result = new
+	var/list/result = list()
 	if(skiprep)
 		result = difflist(first, second, skiprep) + difflist(second, first, skiprep)
 	else
@@ -108,7 +108,7 @@
 	var/total = 0
 	var/item
 	for(item in L)
-		if(!L[item])
+		if(L[item])
 			L[item] = 1
 		total += L[item]
 
@@ -124,7 +124,7 @@
 /proc/pick_n_take(list/listfrom)
 	if(length(listfrom))
 		var/picked = pick(listfrom)
-		listfrom -= picked
+		listfrom.Remove(picked)
 		return picked
 	return null
 
@@ -149,21 +149,21 @@
 //Reverses the order of items in the list
 /proc/reverselist(list/L)
 	var/list/output = list()
-	if(L)
+	if(!isnull(L))
 		for(var/i = length(L); i >= 1; i--)
 			output += L[i]
 	return output
 
 //Randomize: Return the list in a random order
 /proc/shuffle(list/shufflelist)
-	if(!shufflelist)
+	if(isnull(shufflelist))
 		return
 	var/list/new_list = list()
 	var/list/old_list = shufflelist.Copy()
 	while(length(old_list))
 		var/item = pick(old_list)
-		new_list += item
-		old_list -= item
+		new_list.Add(item)
+		old_list.Remove(item)
 	return new_list
 
 //Return a list with no duplicate entries
@@ -171,7 +171,7 @@
 	var/list/K = list()
 	for(var/item in L)
 		if(!(item in K))
-			K += item
+			K.Add(item)
 	return K
 
 //Mergesort: divides up the list into halves to begin the sort
@@ -214,9 +214,9 @@
 		var/atom/rL = L[Li]
 		var/atom/rR = R[Ri]
 		if(sorttext(rL.name, rR.name) == order)
-			result += L[Li++]
+			result.Add(L[Li++])
 		else
-			result += R[Ri++]
+			result.Add(R[Ri++])
 
 	if(Li <= length(L))
 		return (result + L.Copy(Li, 0))
@@ -240,16 +240,16 @@
 		while(Li <= length(L) && Ri <= length(R))
 			var/datum/data/record/rL = L[Li]
 			if(isnull(rL))
-				L -= rL
+				L.Remove(rL)
 				continue
 			var/datum/data/record/rR = R[Ri]
 			if(isnull(rR))
-				R -= rR
+				R.Remove(rR)
 				continue
 			if(sorttext(rL.fields[field], rR.fields[field]) == order)
-				result += L[Li++]
+				result.Add(L[Li++])
 			else
-				result += R[Ri++]
+				result.Add(R[Ri++])
 
 		if(Li <= length(L))
 			return (result + L.Copy(Li, 0))
@@ -275,9 +275,9 @@
 	var/list/result = list()
 	while(Li <= length(L) && Ri <= length(R))
 		if(sorttext(L[Li], R[Ri]) < 1)
-			result += R[Ri++]
+			result.Add(R[Ri++])
 		else
-			result += L[Li++]
+			result.Add(L[Li++])
 
 	if(Li <= length(L))
 		return (result + L.Copy(Li, 0))
@@ -297,10 +297,10 @@
 	while(Li <= length(L) && Ri <= length(R))
 		if(sorttext(L[Li][key], R[Ri][key]) < 1)
 			// Works around list += list2 merging lists; it's not pretty but it works
-			result += "temp item"
+			result.Add("temp item")
 			result[length(result)] = R[Ri++]
 		else
-			result += "temp item"
+			result.Add("temp item")
 			result[length(result)] = L[Li++]
 
 	if(Li <= length(L))
@@ -320,9 +320,9 @@
 	var/list/result = list()
 	while(Li <= length(L) && Ri <= length(R))
 		if(sorttext(L[Li], R[Ri]) < 1)
-			result += R&R[Ri++]
+			result.Add(R&R[Ri++])
 		else
-			result += L&L[Li++]
+			result.Add(L&L[Li++])
 
 	if(Li <= length(L))
 		return (result + L.Copy(Li, 0))
@@ -342,12 +342,12 @@
 		var/bit = 1
 		for(var/i = 1, i <= max, i++)
 			if(bitfield & bit)
-				r += wordlist[i]
+				r.Add(wordlist[i])
 			bit = bit << 1
 	else
 		for(var/bit = 1, bit <= 65535, bit = bit << 1)
 			if(bitfield & bit)
-				r += bit
+				r.Add(bit)
 
 	return r
 
@@ -373,10 +373,10 @@
 	var/list/out = list(pop(L))
 	for(var/entry in L)
 		if(isnum(entry))
-			var/success = 0
+			var/success = FALSE
 			for(var/i = 1, i <= length(out), i++)
 				if(entry <= out[i])
-					success = 1
+					success = TRUE
 					out.Insert(i, entry)
 					break
 			if(!success)
@@ -413,9 +413,9 @@
 			RRiV = RRi:dd_SortValue()
 			cache[RRi] = RRiV
 		if(LLiV < RRiV)
-			result += L[Li++]
+			result.Add(L[Li++])
 		else
-			result += R[Ri++]
+			result.Add(R[Ri++])
 
 	if(Li <= length(L))
 		return (result + L.Copy(Li, 0))

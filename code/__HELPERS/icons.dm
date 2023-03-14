@@ -216,7 +216,7 @@ world
 #define TO_HEX_DIGIT(n) ascii2text((n&15) + ((n&15)<10 ? 48 : 87))
 
 /icon/proc/MakeLying()
-	var/icon/I = new(src, dir=SOUTH)
+	var/icon/I = new /icon(src, dir = SOUTH)
 	I.BecomeLying()
 	return I
 
@@ -237,22 +237,23 @@ world
 	GrayScale()
 
 	var/list/TONE = ReadRGB(tone)
-	var/gray = round(TONE[1]*0.3 + TONE[2]*0.59 + TONE[3]*0.11, 1)
+	var/gray = round(TONE[1] * 0.3 + TONE[2] * 0.59 + TONE[3] * 0.11, 1)
 
-	var/icon/upper = (255 - gray) ? new(src) : null
+	var/icon/upper = (255 - gray) ? new /icon(src) : null
 
 	if(gray)
 		MapColors(255/gray,0,0, 0,255/gray,0, 0,0,255/gray, 0,0,0)
 		Blend(tone, ICON_MULTIPLY)
-	else SetIntensity(0)
-	if(255-gray)
+	else
+		SetIntensity(0)
+	if(255 - gray)
 		upper.Blend(rgb(gray, gray, gray), ICON_SUBTRACT)
 		upper.MapColors((255-TONE[1])/(255-gray),0,0,0, 0,(255-TONE[2])/(255-gray),0,0, 0,0,(255-TONE[3])/(255-gray),0, 0,0,0,0, 0,0,0,1)
 		Blend(upper, ICON_ADD)
 
 // Take the minimum color of two icons; combine transparency as if blending with ICON_ADD
 /icon/proc/MinColors(icon)
-	var/icon/I = new(src)
+	var/icon/I = new /icon(src)
 	I.Opaque()
 	I.Blend(icon, ICON_SUBTRACT)
 	Blend(I, ICON_SUBTRACT)
@@ -261,14 +262,14 @@ world
 /icon/proc/MaxColors(icon)
 	var/icon/I
 	if(isicon(icon))
-		I = new(icon)
+		I = new /icon(icon)
 	else
 		// solid color
-		I = new(src)
+		I = new /icon(src)
 		I.Blend("#000000", ICON_OVERLAY)
 		I.SwapColor("#000000", null)
 		I.Blend(icon, ICON_OVERLAY)
-	var/icon/J = new(src)
+	var/icon/J = new /icon(src)
 	J.Opaque()
 	I.Blend(J, ICON_SUBTRACT)
 	Blend(I, ICON_OR)
@@ -289,7 +290,7 @@ world
 	AddAlphaMask(mask)
 
 /icon/proc/AddAlphaMask(mask)
-	var/icon/M = new(mask)
+	var/icon/M = new /icon(mask)
 	M.Blend("#ffffff", ICON_SUBTRACT)
 	// apply mask
 	Blend(M, ICON_ADD)
@@ -851,7 +852,7 @@ The _flatIcons list is a cache for generated icon files.
 		overlays += I//And finally add the overlay.
 
 /proc/getHologramIcon(icon/A, safety = 1)//If safety is on, a new icon is not created.
-	var/icon/flat_icon = safety ? A : new(A)//Has to be a new icon to not constantly change the same icon.
+	var/icon/flat_icon = safety ? A : new /icon(A)//Has to be a new icon to not constantly change the same icon.
 	flat_icon.ColorTone(rgb(125, 180, 225))//Let's make it bluish.
 	flat_icon.ChangeOpacity(0.5)//Make it half transparent.
 	var/icon/alpha_mask = new('icons/effects/effects.dmi', "scanline")//Scanline effect.
