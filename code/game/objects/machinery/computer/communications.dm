@@ -121,9 +121,6 @@
 		if("callshuttle2")
 			if(src.authenticated)
 				call_shuttle_proc(usr)
-				if(global.CTemergency.online())
-					post_status("alert", "evacalert") // Use the new custom evac alert screen. -Frenjo
-					//post_status("shuttle")
 			src.state = STATE_DEFAULT
 		if("crewtransfer")
 			src.state = STATE_DEFAULT
@@ -132,8 +129,6 @@
 		if("crewtransfer2")
 			if(src.authenticated)
 				init_shift_change(usr)
-				if(global.CTemergency.online())
-					post_status("shuttle")
 		if("cancelshuttle")
 			src.state = STATE_DEFAULT
 			if(src.authenticated)
@@ -543,6 +538,8 @@
 			//message_admins("STATUS: [user] set status screen with [PDA]. Message: [data1] [data2]")
 		if("alert")
 			status_signal.data["picture_state"] = data1
+		if("ai_emotion")
+			status_signal.data["emotion"] = data1
 
 	frequency.post_signal(src, status_signal)
 

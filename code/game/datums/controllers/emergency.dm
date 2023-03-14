@@ -91,6 +91,8 @@ CONTROLLER_DEF(emergency)
 	for(var/area/A in world)
 		if(istype(A, /area/hallway))
 			A.readyalert()
+	
+	set_status_displays()
 
 //calls the shuttle for a routine crew transfer
 /datum/controller/emergency/proc/call_transfer()
@@ -107,6 +109,8 @@ CONTROLLER_DEF(emergency)
 
 	captain_announce("A crew transfer has been scheduled. The shuttle has been called. It will arrive in approximately [round(estimate_arrival_time() / 60)] minutes.")
 	world << sound('sound/AI/crewtransfer2.ogg')
+
+	set_status_displays()
 
 //recalls the shuttle
 /datum/controller/emergency/proc/recall()
@@ -127,6 +131,13 @@ CONTROLLER_DEF(emergency)
 	else
 		captain_announce("The scheduled crew transfer has been cancelled.")
 		world << sound('sound/AI/shuttlerecall2.ogg')
+	
+	set_status_displays(TRUE)
+
+// Sets the status displays.
+/datum/controller/emergency/proc/set_status_displays(recalled = FALSE)
+	var/obj/machinery/computer/communications/comms = locate() in GLOBL.machines
+	comms?.post_status(recalled ? "blank" : "shuttle")
 
 /datum/controller/emergency/proc/can_call()
 	if(deny_shuttle)

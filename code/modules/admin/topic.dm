@@ -2186,13 +2186,8 @@
 				feedback_add_details("admin_secrets_fun_used","FA")
 				for(var/mob/aiEye/aE in GLOBL.mob_list)
 					aE.icon_state = "ai_friend"
-				for(var/obj/machinery/M in GLOBL.machines)
-					if(istype(M, /obj/machinery/ai_status_display))
-						var/obj/machinery/ai_status_display/A = M
-						A.emotion = "Friend Computer"
-					else if(istype(M, /obj/machinery/status_display))
-						var/obj/machinery/status_display/A = M
-						A.friendc = 1
+				var/obj/machinery/computer/communications/comms = locate() in GLOBL.machines
+				comms?.post_status("friend_computer")
 				message_admins("[key_name_admin(usr)] turned all AIs into best friends.", 1)
 			if("floorlava")
 				if(floorIsLava)

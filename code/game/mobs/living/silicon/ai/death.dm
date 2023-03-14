@@ -2,32 +2,31 @@
 	if(stat == DEAD)
 		return
 
-	if(src.custom_sprite == 1)//check for custom AI sprite, defaulting to blue screen if no.
+	if(custom_sprite)//check for custom AI sprite, defaulting to blue screen if no.
 		icon_state = "[ckey]-ai-crash"
 
-	if(src.eyeobj)
-		src.eyeobj.setLoc(get_turf(src))
+	eyeobj?.setLoc(get_turf(src))
 
 	var/callshuttle = 0
 
 	for(var/obj/machinery/computer/communications/commconsole in world)
 		if(commconsole.z == 2)
 			continue
-		if(istype(commconsole.loc,/turf))
+		if(isturf(commconsole.loc))
 			break
 		callshuttle++
 
 	for(var/obj/item/weapon/circuitboard/communications/commboard in world)
 		if(commboard.z == 2)
 			continue
-		if(istype(commboard.loc,/turf) || istype(commboard.loc,/obj/item/weapon/storage))
+		if(isturf(commboard.loc) || istype(commboard.loc, /obj/item/weapon/storage))
 			break
 		callshuttle++
 
 	for(var/mob/living/silicon/ai/shuttlecaller in GLOBL.player_list)
 		if(shuttlecaller.z == 2)
 			continue
-		if(!shuttlecaller.stat && shuttlecaller.client && istype(shuttlecaller.loc,/turf))
+		if(!shuttlecaller.stat && !isnull(shuttlecaller.client) && isturf(shuttlecaller.loc))
 			break
 		callshuttle++
 
@@ -45,13 +44,13 @@
 		spawn(10)
 			explosion(src.loc, 3, 6, 12, 15)
 
-	for(var/obj/machinery/ai_status_display/O in world) //change status
-		spawn(0)
-		O.mode = 2
-		if (istype(loc, /obj/item/device/aicard))
-			loc.icon_state = "aicard-404"
+	var/obj/machinery/computer/communications/comms = locate() in GLOBL.machines // Change status.
+	comms?.post_status("bsod")
+	if(istype(loc, /obj/item/device/aicard))
+		loc.icon_state = "aicard-404"
 
 	tod = worldtime2text() //weasellos time of death patch
-	if(mind)	mind.store_memory("Time of death: [tod]", 0)
+	if(mind)
+		mind.store_memory("Time of death: [tod]", 0)
 
 	return ..(gibbed)

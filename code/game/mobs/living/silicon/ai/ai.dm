@@ -311,14 +311,6 @@ var/list/ai_verbs_default = list(
 	if(confirm == "Yes")
 		call_shuttle_proc(src)
 
-	// hack to display shuttle timer
-	if(global.CTemergency.online())
-		var/obj/machinery/computer/communications/C = locate() in GLOBL.machines
-		if(C)
-			C.post_status("shuttle")
-
-	return
-
 /mob/living/silicon/ai/proc/ai_cancel_call()
 	set category = "AI Commands"
 	if(src.stat == DEAD)
@@ -570,22 +562,20 @@ var/list/ai_verbs_default = list(
 	set name = "AI Status"
 
 	if(usr.stat == DEAD)
-		usr <<"You cannot change your emotional status because you are dead!"
+		to_chat(usr, "You cannot change your emotional status because you are dead!")
 		return
-	var/list/ai_emotions = list("Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Sad", "BSOD", "Blank", "Problems?", "Awesome", "Facepalm", "Friend Computer")
+
+	var/list/ai_emotions = list(
+		"Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Sad",
+		"BSOD", "Blank", "Problems?", "Awesome", "Facepalm", "Friend Computer"
+	)
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
-	for(var/obj/machinery/M in GLOBL.machines) //change status
-		if(istype(M, /obj/machinery/ai_status_display))
-			var/obj/machinery/ai_status_display/AISD = M
-			AISD.emotion = emote
-		//if Friend Computer, change ALL displays
-		else if(istype(M, /obj/machinery/status_display))
-			var/obj/machinery/status_display/SD = M
-			if(emote == "Friend Computer")
-				SD.friendc = 1
-			else
-				SD.friendc = 0
-	return
+
+	var/obj/machinery/computer/communications/comms = locate() in GLOBL.machines
+	if(emote == "Friend Computer")
+		comms?.post_status("friend_computer")
+	else
+		comms?.post_status("ai_emotion", emote)
 
 //I am the icon meister. Bow fefore me.	//>fefore
 /mob/living/silicon/ai/proc/ai_hologram_change()

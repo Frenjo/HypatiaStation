@@ -1,10 +1,9 @@
 /mob/living/silicon/ai/Logout()
-	..()
-	for(var/obj/machinery/ai_status_display/O in world) //change status
-		O.mode = 0
+	. = ..()
+	var/obj/machinery/computer/communications/comms = locate() in GLOBL.machines // Change status.
+	comms?.post_status("blank")
 	if(!isturf(loc))
-		if (client)
+		if(!isnull(client))
 			client.eye = loc
 			client.perspective = EYE_PERSPECTIVE
-	src.view_core()
-	return
+	view_core()
