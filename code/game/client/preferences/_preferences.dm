@@ -106,96 +106,10 @@
 	age = rand(25, 35)
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
-/datum/preferences/proc/ZeroSkills(forced = 0)
-	for(var/V in GLOBL.all_skills)
-		for(var/datum/skill/S in GLOBL.all_skills[V])
-			if(!skills.Find(S.id) || forced)
-				skills[S.id] = SKILL_NONE
-
-/datum/preferences/proc/CalculateSkillPoints()
-	used_skillpoints = 0
-	for(var/V in GLOBL.all_skills)
-		for(var/datum/skill/S in GLOBL.all_skills[V])
-			var/multiplier = 1
-			switch(skills[S.id])
-				if(SKILL_NONE)
-					used_skillpoints += 0 * multiplier
-				if(SKILL_BASIC)
-					used_skillpoints += 1 * multiplier
-				if(SKILL_ADEPT)
-					// secondary skills cost less
-					if(S.secondary)
-						used_skillpoints += 1 * multiplier
-					else
-						used_skillpoints += 3 * multiplier
-				if(SKILL_EXPERT)
-					// secondary skills cost less
-					if(S.secondary)
-						used_skillpoints += 3 * multiplier
-					else
-						used_skillpoints += 6 * multiplier
-
-/datum/preferences/proc/GetSkillClass(points)
-	// skill classes describe how your character compares in total points
-	var/original_points = points
-	points -= min(round((age - 20) / 2.5), 4) // every 2.5 years after 20, one extra skillpoint
-	if(age > 30)
-		points -= round((age - 30) / 5) // every 5 years after 30, one extra skillpoint
-	if(original_points > 0 && points <= 0)
-		points = 1
-	switch(points)
-		if(0)
-			return "Unconfigured"
-		if(1 to 3)
-			return "Terrifying"
-		if(4 to 6)
-			return "Below Average"
-		if(7 to 10)
-			return "Average"
-		if(11 to 14)
-			return "Above Average"
-		if(15 to 18)
-			return "Exceptional"
-		if(19 to 24)
-			return "Genius"
-		if(24 to 1000)
-			return "God"
-
-/datum/preferences/proc/SetSkills(mob/user)
-	if(!length(skills))
-		ZeroSkills()
-
-	var/dat = "<body>"
-	dat += "<b>Select your Skills</b><br>"
-	dat += "Current skill level: <b>[GetSkillClass(used_skillpoints)]</b> ([used_skillpoints])<br>"
-	dat += "<a href=\"byond://?src=\ref[user];preference=skills;preconfigured=1;\">Use preconfigured skillset</a><br>"
-	dat += "<table>"
-	for(var/V in GLOBL.all_skills)
-		dat += "<tr><th colspan = 5><b>[V]</b>"
-		dat += "</th></tr>"
-		for(var/datum/skill/S in GLOBL.all_skills[V])
-			var/level = skills[S.id]
-			dat += "<tr style='text-align:left;'>"
-			dat += "<th><a href='byond://?src=\ref[user];preference=skills;skillinfo=\ref[S]'>[S.name]</a></th>"
-			dat += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_NONE]'><font color=[(level == SKILL_NONE) ? "red" : "black"]>\[Untrained\]</font></a></th>"
-			// secondary skills don't have an amateur level
-			if(S.secondary)
-				dat += "<th></th>"
-			else
-				dat += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_BASIC]'><font color=[(level == SKILL_BASIC) ? "red" : "black"]>\[Amateur\]</font></a></th>"
-			dat += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_ADEPT]'><font color=[(level == SKILL_ADEPT) ? "red" : "black"]>\[Trained\]</font></a></th>"
-			dat += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_EXPERT]'><font color=[(level == SKILL_EXPERT) ? "red" : "black"]>\[Professional\]</font></a></th>"
-			dat += "</tr>"
-	dat += "</table>"
-	dat += "<a href=\"byond://?src=\ref[user];preference=skills;cancel=1;\">\[Done\]</a>"
-
-	user << browse(null, "window=preferences")
-	user << browse(dat, "window=show_skills;size=600x800")
-	return
-
 /datum/preferences/proc/ShowChoices(mob/user)
-	if(!user || !user.client)
+	if(isnull(user) || isnull(user.client))
 		return
+
 	update_preview_icon()
 	user << browse_rsc(preview_icon_front, "previewicon.png")
 	user << browse_rsc(preview_icon_side, "previewicon2.png")
@@ -387,102 +301,6 @@
 
 	user << browse(dat, "window=preferences;size=560x580")
 
-/datum/preferences/proc/SetChoices(mob/user, limit = 17, list/splitJobs = list("Chief Medical Officer"), width = 550, height = 550)
-	if(!global.CToccupations)
-		return
-
-	//limit		- The amount of jobs allowed per column. Defaults to 17 to make it look nice.
-	//splitJobs	- Allows you split the table by job. You can make different tables for each department by including their heads. Defaults to CE to make it look nice.
-	//width		- Screen' width. Defaults to 550 to make it look nice.
-	//height	- Screen's height. Defaults to 500 to make it look nice.
-
-
-	var/HTML = "<body>"
-	HTML += "<tt><center>"
-	HTML += "<b>Choose occupation chances</b><br>Unavailable occupations are crossed out.<br><br>"
-	HTML += "<center><a href='?_src_=prefs;preference=job;task=close'>\[Done\]</a></center><br>" // Easier to press up here.
-	HTML += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more colomns.
-	HTML += "<table width='100%' cellpadding='1' cellspacing='0'>"
-	var/index = -1
-
-	//The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
-	var/datum/job/lastJob
-	if(!global.CToccupations)
-		return
-	for(var/datum/job/job in global.CToccupations.occupations)
-		index += 1
-		if(index >= limit || (job.title in splitJobs))
-			if(index < limit && lastJob != null)
-				//If the cells were broken up by a job in the splitJob list then it will fill in the rest of the cells with
-				//the last job's selection color. Creating a rather nice effect.
-				for(var/i = 0, i < (limit - index), i += 1)
-					HTML += "<tr bgcolor='[lastJob.selection_color]'><td width='60%' align='right'><a>&nbsp</a></td><td><a>&nbsp</a></td></tr>"
-			HTML += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0'>"
-			index = 0
-
-		HTML += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
-		var/rank = job.title
-		lastJob = job
-		if(jobban_isbanned(user, rank))
-			HTML += "<del>[rank]</del></td><td><b> \[BANNED]</b></td></tr>"
-			continue
-		if(!job.player_old_enough(user.client))
-			var/available_in_days = job.available_in_days(user.client)
-			HTML += "<del>[rank]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
-			continue
-		if((job_civilian_low & JOB_ASSISTANT) && rank != "Assistant")
-			HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
-			continue
-		if((rank in GLOBL.command_positions) || rank == "AI")//Bold head jobs
-			HTML += "<b>[rank]</b>"
-		else
-			HTML += "[rank]"
-
-		HTML += "</td><td width='40%'>"
-
-		HTML += "<a href='?_src_=prefs;preference=job;task=input;text=[rank]'>"
-
-		if(rank == "Assistant")//Assistant is special
-			if(job_civilian_low & JOB_ASSISTANT)
-				HTML += " <font color=green>\[Yes]</font>"
-			else
-				HTML += " <font color=red>\[No]</font>"
-			if(job.alt_titles)
-				HTML += "</a></td></tr><tr bgcolor='[lastJob.selection_color]'><td width='60%' align='center'><a>&nbsp</a></td><td><a href=\"byond://?src=\ref[user];preference=job;task=alt_title;job=\ref[job]\">\[[GetPlayerAltTitle(job)]\]</a></td></tr>"
-			HTML += "</a></td></tr>"
-			continue
-
-		if(GetJobDepartment(job, 1) & job.flag)
-			HTML += " <font color=blue>\[High]</font>"
-		else if(GetJobDepartment(job, 2) & job.flag)
-			HTML += " <font color=green>\[Medium]</font>"
-		else if(GetJobDepartment(job, 3) & job.flag)
-			HTML += " <font color=orange>\[Low]</font>"
-		else
-			HTML += " <font color=red>\[NEVER]</font>"
-		if(job.alt_titles)
-			HTML += "</a></td></tr><tr bgcolor='[lastJob.selection_color]'><td width='60%' align='center'><a>&nbsp</a></td><td><a href=\"byond://?src=\ref[user];preference=job;task=alt_title;job=\ref[job]\">\[[GetPlayerAltTitle(job)]\]</a></td></tr>"
-		HTML += "</a></td></tr>"
-
-	HTML += "</td'></tr></table>"
-
-	HTML += "</center></table>"
-
-	switch(alternate_option)
-		if(GET_RANDOM_JOB)
-			HTML += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=green>Get random job if preferences unavailable</font></a></u></center><br>"
-		if(BE_ASSISTANT)
-			HTML += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=red>Be assistant if preference unavailable</font></a></u></center><br>"
-		if(RETURN_TO_LOBBY)
-			HTML += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=purple>Return to lobby if preference unavailable</font></a></u></center><br>"
-
-	HTML += "<center><a href='?_src_=prefs;preference=job;task=reset'>\[Reset\]</a></center>"
-	HTML += "</tt>"
-
-	user << browse(null, "window=preferences")
-	user << browse(HTML, "window=mob_occupation;size=[width]x[height]")
-	return
-
 /datum/preferences/proc/SetDisabilities(mob/user)
 	var/HTML = "<body>"
 	HTML += "<tt><center>"
@@ -501,7 +319,6 @@
 
 	user << browse(null, "window=preferences")
 	user << browse(HTML, "window=disabil;size=350x300")
-	return
 
 /datum/preferences/proc/SetRecords(mob/user)
 	var/HTML = "<body>"
@@ -535,7 +352,6 @@
 
 	user << browse(null, "window=preferences")
 	user << browse(HTML, "window=records;size=350x300")
-	return
 
 /datum/preferences/proc/SetAntagoptions(mob/user)
 	if(uplinklocation == "")
@@ -553,145 +369,13 @@
 
 	user << browse(null, "window=preferences")
 	user << browse(HTML, "window=antagoptions")
-	return
-
-/datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
-	return player_alt_titles.Find(job.title) > 0 ? player_alt_titles[job.title] : job.title
-
-/datum/preferences/proc/SetPlayerAltTitle(datum/job/job, new_title)
-	// remove existing entry
-	if(player_alt_titles.Find(job.title))
-		player_alt_titles -= job.title
-	// add one if it's not default
-	if(job.title != new_title)
-		player_alt_titles[job.title] = new_title
-
-/datum/preferences/proc/SetJob(mob/user, role)
-	var/datum/job/job = global.CToccupations.get_job(role)
-	if(!job)
-		user << browse(null, "window=mob_occupation")
-		ShowChoices(user)
-		return
-
-	if(role == "Assistant")
-		if(job_civilian_low & job.flag)
-			job_civilian_low &= ~job.flag
-		else
-			job_civilian_low |= job.flag
-		SetChoices(user)
-		return 1
-
-	if(GetJobDepartment(job, 1) & job.flag)
-		SetJobDepartment(job, 1)
-	else if(GetJobDepartment(job, 2) & job.flag)
-		SetJobDepartment(job, 2)
-	else if(GetJobDepartment(job, 3) & job.flag)
-		SetJobDepartment(job, 3)
-	else//job = Never
-		SetJobDepartment(job, 4)
-
-	SetChoices(user)
-	return 1
-
-/datum/preferences/proc/ResetJobs()
-	job_civilian_high = 0
-	job_civilian_med = 0
-	job_civilian_low = 0
-
-	job_medsci_high = 0
-	job_medsci_med = 0
-	job_medsci_low = 0
-
-	job_engsec_high = 0
-	job_engsec_med = 0
-	job_engsec_low = 0
-
-/datum/preferences/proc/GetJobDepartment(datum/job/job, level)
-	if(!job || !level)
-		return 0
-	switch(job.department_flag)
-		if(DEPARTMENT_CIVILIAN)
-			switch(level)
-				if(1)
-					return job_civilian_high
-				if(2)
-					return job_civilian_med
-				if(3)
-					return job_civilian_low
-		if(DEPARTMENT_MEDSCI)
-			switch(level)
-				if(1)
-					return job_medsci_high
-				if(2)
-					return job_medsci_med
-				if(3)
-					return job_medsci_low
-		if(DEPARTMENT_ENGSEC)
-			switch(level)
-				if(1)
-					return job_engsec_high
-				if(2)
-					return job_engsec_med
-				if(3)
-					return job_engsec_low
-	return 0
-
-/datum/preferences/proc/SetJobDepartment(datum/job/job, level)
-	if(!job || !level)
-		return 0
-	switch(level)
-		if(1)//Only one of these should ever be active at once so clear them all here
-			job_civilian_high = 0
-			job_medsci_high = 0
-			job_engsec_high = 0
-			return 1
-		if(2)//Set current highs to med, then reset them
-			job_civilian_med |= job_civilian_high
-			job_medsci_med |= job_medsci_high
-			job_engsec_med |= job_engsec_high
-			job_civilian_high = 0
-			job_medsci_high = 0
-			job_engsec_high = 0
-
-	switch(job.department_flag)
-		if(DEPARTMENT_CIVILIAN)
-			switch(level)
-				if(2)
-					job_civilian_high = job.flag
-					job_civilian_med &= ~job.flag
-				if(3)
-					job_civilian_med |= job.flag
-					job_civilian_low &= ~job.flag
-				else
-					job_civilian_low |= job.flag
-		if(DEPARTMENT_MEDSCI)
-			switch(level)
-				if(2)
-					job_medsci_high = job.flag
-					job_medsci_med &= ~job.flag
-				if(3)
-					job_medsci_med |= job.flag
-					job_medsci_low &= ~job.flag
-				else
-					job_medsci_low |= job.flag
-		if(DEPARTMENT_ENGSEC)
-			switch(level)
-				if(2)
-					job_engsec_high = job.flag
-					job_engsec_med &= ~job.flag
-				if(3)
-					job_engsec_med |= job.flag
-					job_engsec_low &= ~job.flag
-				else
-					job_engsec_low |= job.flag
-	return 1
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
-	if(!user)
+	if(isnull(user))
 		return
-
 	if(!isnewplayer(user))
 		return
+
 	if(href_list["preference"] == "job")
 		switch(href_list["task"])
 			if("close")
@@ -1249,7 +933,7 @@
 	if(CONFIG_GET(humans_need_surnames))
 		var/firstspace = findtext(real_name, " ")
 		var/name_length = length(real_name)
-		if(!firstspace)	//we need a surname
+		if(!firstspace) // We need a surname.
 			real_name += " [pick(GLOBL.last_names)]"
 		else if(firstspace == name_length)
 			real_name += "[pick(GLOBL.last_names)]"
@@ -1291,13 +975,13 @@
 
 	character.skills = skills
 
-	// Destroy/cyborgize organs
+	// Destroy/cyborgize organs.
 	for(var/name in organ_data)
 		var/datum/organ/external/O = character.organs_by_name[name]
 		var/datum/organ/internal/I = character.internal_organs_by_name[name]
 		var/status = organ_data[name]
 
-		if(!I || !O)
+		if(isnull(I) || isnull(O))
 			continue
 
 		if(status == "amputated")
@@ -1314,11 +998,11 @@
 			continue
 
 	if(underwear > length(GLOBL.underwear_m) || underwear < 1)
-		underwear = 0 //I'm sure this is 100% unnecessary, but I'm paranoid... sue me. //HAH NOW NO MORE MAGIC CLONING UNDIES
+		underwear = 0 // I'm sure this is 100% unnecessary, but I'm paranoid... sue me. //HAH NOW NO MORE MAGIC CLONING UNDIES
 	character.underwear = underwear
 
 	if(backbag > 4 || backbag < 1)
-		backbag = 1 //Same as above
+		backbag = 1 // Same as above.
 	character.backbag = backbag
 
 	//Debugging report to track down a bug, which randomly assigned the plural gender to people.
@@ -1332,7 +1016,7 @@
 	dat += "<tt><center>"
 
 	var/savefile/S = new /savefile(path)
-	if(S)
+	if(!isnull(S))
 		dat += "<b>Select a character slot to load</b><hr>"
 		var/name
 		for(var/i = 1, i <= MAX_SAVE_SLOTS, i++)

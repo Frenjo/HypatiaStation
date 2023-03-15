@@ -10,7 +10,7 @@
 //if a file can't be updated, return 0 to delete it and start again
 //if a file was updated, return 1
 /datum/preferences/proc/savefile_update()
-	if(savefile_version < 8)	//lazily delete everything + additional files so they can be saved in the new format
+	if(savefile_version < 8) // Lazily delete everything + additional files so they can be saved in the new format.
 		for(var/ckey in GLOBL.preferences_datums)
 			var/datum/preferences/D = GLOBL.preferences_datums[ckey]
 			if(D == src)
@@ -18,13 +18,13 @@
 				if(delpath && fexists(delpath))
 					fdel(delpath)
 				break
-		return 0
+		return FALSE
 
-	if(savefile_version == SAVEFILE_VERSION_MAX)	//update successful.
+	if(savefile_version == SAVEFILE_VERSION_MAX) // Update successful.
 		save_preferences()
 		save_character()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /datum/preferences/proc/load_path(ckey, filename = "preferences.sav")
 	if(!ckey)
@@ -34,34 +34,35 @@
 
 /datum/preferences/proc/load_preferences()
 	if(!path)
-		return 0
+		return FALSE
 	if(!fexists(path))
-		return 0
+		return FALSE
 	var/savefile/S = new /savefile(path)
-	if(!S)
-		return 0
+	if(isnull(S))
+		return FALSE
+
 	S.cd = "/"
 
 	S["version"] >> savefile_version
-	//Conversion
+	// Conversion.
 	if(!savefile_version || !isnum(savefile_version) || savefile_version < SAVEFILE_VERSION_MIN || savefile_version > SAVEFILE_VERSION_MAX)
-		if(!savefile_update())  //handles updates
+		if(!savefile_update()) // Handles updates.
 			savefile_version = SAVEFILE_VERSION_MAX
 			save_preferences()
 			save_character()
-			return 0
+			return FALSE
 
-	//general preferences
-	S["ooccolor"]			>> ooccolor
-	S["lastchangelog"]		>> lastchangelog
-	S["UI_style"]			>> UI_style
-	S["be_special"]			>> be_special
-	S["default_slot"]		>> default_slot
-	S["toggles"]			>> toggles
-	S["UI_style_color"]		>> UI_style_color
-	S["UI_style_alpha"]		>> UI_style_alpha
+	// General preferences.
+	S["ooccolor"]		>> ooccolor
+	S["lastchangelog"]	>> lastchangelog
+	S["UI_style"]		>> UI_style
+	S["be_special"]		>> be_special
+	S["default_slot"]	>> default_slot
+	S["toggles"]		>> toggles
+	S["UI_style_color"]	>> UI_style_color
+	S["UI_style_alpha"]	>> UI_style_alpha
 
-	//Sanitize
+	// Sanitize.
 	ooccolor		= sanitize_hexcolor(ooccolor, initial(ooccolor))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
 	UI_style		= sanitize_inlist(UI_style, list("White", "Midnight", "Orange", "old"), initial(UI_style))
@@ -71,38 +72,40 @@
 	UI_style_color	= sanitize_hexcolor(UI_style_color, initial(UI_style_color))
 	UI_style_alpha	= sanitize_integer(UI_style_alpha, 0, 255, initial(UI_style_alpha))
 
-	return 1
+	return TRUE
 
 /datum/preferences/proc/save_preferences()
 	if(!path)
-		return 0
+		return FALSE
 	var/savefile/S = new /savefile(path)
-	if(!S)
-		return 0
+	if(isnull(S))
+		return FALSE
+
 	S.cd = "/"
 
 	S["version"] << savefile_version
 
-	//general preferences
-	S["ooccolor"]			<< ooccolor
-	S["lastchangelog"]		<< lastchangelog
-	S["UI_style"]			<< UI_style
-	S["be_special"]			<< be_special
-	S["default_slot"]		<< default_slot
-	S["toggles"]			<< toggles
-	S["UI_style_color"]		<< UI_style_color
-	S["UI_style_alpha"]		<< UI_style_alpha
+	// General preferences.
+	S["ooccolor"]		<< ooccolor
+	S["lastchangelog"]	<< lastchangelog
+	S["UI_style"]		<< UI_style
+	S["be_special"]		<< be_special
+	S["default_slot"]	<< default_slot
+	S["toggles"]		<< toggles
+	S["UI_style_color"]	<< UI_style_color
+	S["UI_style_alpha"]	<< UI_style_alpha
 
-	return 1
+	return TRUE
 
 /datum/preferences/proc/load_character(slot)
 	if(!path)
-		return 0
+		return FALSE
 	if(!fexists(path))
-		return 0
+		return FALSE
 	var/savefile/S = new /savefile(path)
-	if(!S)
-		return 0
+	if(isnull(S))
+		return FALSE
+
 	S.cd = "/"
 	if(!slot)
 		slot = default_slot
@@ -112,7 +115,7 @@
 		S["default_slot"] << slot
 	S.cd = "/character[slot]"
 
-	//Character
+	// Character.
 	S["OOC_Notes"]			>> metadata
 	S["real_name"]			>> real_name
 	S["name_is_always_random"] >> be_random_name
@@ -122,7 +125,7 @@
 	S["language"]			>> secondary_language
 	S["spawnpoint"]			>> spawnpoint
 
-	//colors to be consolidated into hex strings (requires some work with dna code)
+	// Colours to be consolidated into hex strings (requires some work with dna code).
 	S["hair_red"]			>> r_hair
 	S["hair_green"]			>> g_hair
 	S["hair_blue"]			>> b_hair
@@ -142,7 +145,7 @@
 	S["backbag"]			>> backbag
 	S["b_type"]				>> b_type
 
-	//Jobs
+	// Jobs.
 	S["alternate_option"]	>> alternate_option
 	S["job_civilian_high"]	>> job_civilian_high
 	S["job_civilian_med"]	>> job_civilian_med
@@ -154,7 +157,7 @@
 	S["job_engsec_med"]		>> job_engsec_med
 	S["job_engsec_low"]		>> job_engsec_low
 
-	//Miscellaneous
+	// Miscellaneous.
 	S["flavor_text"]		>> flavor_text
 	S["med_record"]			>> med_record
 	S["sec_record"]			>> sec_record
@@ -172,7 +175,7 @@
 
 	S["uplinklocation"] >> uplinklocation
 
-	//Sanitize
+	// Sanitize.
 	metadata		= sanitize_text(metadata, initial(metadata))
 	real_name		= reject_bad_name(real_name)
 	if(isnull(species))
@@ -218,29 +221,30 @@
 	job_engsec_med = sanitize_integer(job_engsec_med, 0, 65535, initial(job_engsec_med))
 	job_engsec_low = sanitize_integer(job_engsec_low, 0, 65535, initial(job_engsec_low))
 
-	if(!skills)
+	if(isnull(skills))
 		skills = list()
 	if(!used_skillpoints)
-		used_skillpoints= 0
-	if(isnull(disabilities))
+		used_skillpoints = 0
+	if(!disabilities)
 		disabilities = 0
-	if(!player_alt_titles)
+	if(isnull(player_alt_titles))
 		player_alt_titles = list()
-	if(!organ_data)
-		src.organ_data = list()
+	if(isnull(organ_data))
+		organ_data = list()
 	//if(!skin_style) skin_style = "Default"
 
-	return 1
+	return TRUE
 
 /datum/preferences/proc/save_character()
 	if(!path)
-		return 0
+		return FALSE
 	var/savefile/S = new /savefile(path)
-	if(!S)
-		return 0
+	if(isnull(S))
+		return FALSE
+
 	S.cd = "/character[default_slot]"
 
-	//Character
+	// Character.
 	S["OOC_Notes"]			<< metadata
 	S["real_name"]			<< real_name
 	S["name_is_always_random"] << be_random_name
@@ -267,7 +271,7 @@
 	S["backbag"]			<< backbag
 	S["b_type"]				<< b_type
 
-	//Jobs
+	// Jobs.
 	S["alternate_option"]	<< alternate_option
 	S["job_civilian_high"]	<< job_civilian_high
 	S["job_civilian_med"]	<< job_civilian_med
@@ -279,7 +283,7 @@
 	S["job_engsec_med"]		<< job_engsec_med
 	S["job_engsec_low"]		<< job_engsec_low
 
-	//Miscellaneous
+	// Miscellaneous.
 	S["flavor_text"]		<< flavor_text
 	S["med_record"]			<< med_record
 	S["sec_record"]			<< sec_record
@@ -297,7 +301,7 @@
 
 	S["uplinklocation"] << uplinklocation
 
-	return 1
+	return TRUE
 
 #undef SAVEFILE_VERSION_MAX
 #undef SAVEFILE_VERSION_MIN
