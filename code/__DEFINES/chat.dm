@@ -26,3 +26,8 @@
  */
 #define FEEDBACK_ACCESS_DENIED SPAN_WARNING("Access denied.")
 #define FEEDBACK_NOT_ENOUGH_DEXTERITY SPAN_WARNING("You don't have the dexterity to use \the [src]!")
+
+// These two will (hopefully) be removed when I get around to a construction overhaul...
+// Because once that's done, this stuff will be more centralised and not all over the place.
+#define FEEDBACK_DISCONNECT_MONITOR SPAN_INFO("You disconnect the monitor.")
+#define FEEDBACK_BROKEN_GLASS_FALLS SPAN_INFO("The broken glass falls out.")

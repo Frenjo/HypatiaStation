@@ -57,7 +57,7 @@
 		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			if(stat & BROKEN)
-				user << "\blue The broken glass falls out."
+				to_chat(user, FEEDBACK_BROKEN_GLASS_FALLS)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( loc )
 				new /obj/item/weapon/shard( loc )
 
@@ -81,7 +81,7 @@
 				A.anchored = TRUE
 				qdel(src)
 			else
-				user << "\blue You disconnect the monitor."
+				to_chat(user, FEEDBACK_DISCONNECT_MONITOR)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( loc )
 
 				//generate appropriate circuitboard. Accounts for /pod/old computer types

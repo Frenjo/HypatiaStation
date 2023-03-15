@@ -110,12 +110,12 @@
 			for(var/obj/C in src)
 				C.loc = src.loc
 			if(src.stat & BROKEN)
-				user << "\blue The broken glass falls out."
+				to_chat(user, FEEDBACK_BROKEN_GLASS_FALLS)
 				new /obj/item/weapon/shard(src.loc)
 				A.state = 3
 				A.icon_state = "3"
 			else
-				to_chat(user, SPAN_INFO("You disconnect the monitor."))
+				to_chat(user, FEEDBACK_DISCONNECT_MONITOR)
 				A.state = 4
 				A.icon_state = "4"
 			qdel(src)
