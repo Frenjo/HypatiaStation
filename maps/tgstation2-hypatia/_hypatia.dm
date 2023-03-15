@@ -18,6 +18,7 @@
 /datum/map/tgstation2_hypatia
 	name = "tgstation2-hypatia"
 	station_name = "NSS Hypatia"
+	short_name = "Hypatia"
 
 	station_levels = list(1)
 	admin_levels = list(2)

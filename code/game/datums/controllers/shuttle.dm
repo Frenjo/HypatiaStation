@@ -204,7 +204,7 @@ CONTROLLER_DEF(shuttle)
 	var/datum/shuttle/ferry/multidock/specops/ert = new /datum/shuttle/ferry/multidock/specops()
 	ert.location = 0
 	ert.warmup_time = 7 // Edited the warmup as 10 seconds seems a bit long. -Frenjo
-	ert.area_offsite = locate(/area/shuttle/specops/station)	//centcom is the home station, the Exodus is offsite
+	ert.area_offsite = locate(/area/shuttle/specops/station)	// CentCom is the home station, the station is offsite.
 	ert.area_station = locate(/area/shuttle/specops/centcom)
 	ert.docking_controller_tag = "specopsshuttle_port"
 	ert.docking_controller_tag_station = "specopsshuttle_port"
