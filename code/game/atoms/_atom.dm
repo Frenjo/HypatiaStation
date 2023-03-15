@@ -230,6 +230,11 @@ Maxdistance is the longest range the beam will persist before it gives up.
 		return
 	if(isnull(M.key))
 		return
+	
+	// Add the list if it does not exist.
+	if(isnull(hidden_fingerprints))
+		hidden_fingerprints = list()
+
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(!istype(H.dna, /datum/dna))
@@ -257,11 +262,12 @@ Maxdistance is the longest range the beam will persist before it gives up.
 		return
 	if(isnull(M.key))
 		return
-	if(ishuman(M))
-		// Add the list if it does not exist.
-		if(isnull(hidden_fingerprints))
-			hidden_fingerprints = list()
 
+	// Add the list if it does not exist.
+	if(isnull(hidden_fingerprints))
+		hidden_fingerprints = list()
+
+	if(ishuman(M))
 		// Fibers~
 		add_fibers(M)
 
