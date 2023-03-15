@@ -5,8 +5,8 @@ GLOBAL_GLOBL_LIST_INIT(adminhelp_ignored_words, list("unknown", "the", "a", "an"
 	set category = "Admin"
 	set name = "Adminhelp"
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, SPAN_WARNING("Speech is currently admin-disabled."))
+	if(say_disabled)
+		to_chat(usr, FEEDBACK_SPEECH_ADMIN_DISABLED) // This is here to try to identify lag problems.
 		return
 
 	//handle muting and automuting

@@ -2,8 +2,8 @@
 	set name = "OOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
 	set category = "OOC"
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, SPAN_WARNING("Speech is currently admin-disabled."))
+	if(say_disabled)
+		to_chat(usr, FEEDBACK_SPEECH_ADMIN_DISABLED) // This is here to try to identify lag problems.
 		return
 
 	if(!mob)
@@ -92,8 +92,8 @@
 	set desc = "Local OOC, seen only by those in view."
 	set category = "OOC"
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, SPAN_WARNING("Speech is currently admin-disabled."))
+	if(say_disabled)
+		to_chat(usr, FEEDBACK_SPEECH_ADMIN_DISABLED) // This is here to try to identify lag problems.
 		return
 
 	if(!mob)

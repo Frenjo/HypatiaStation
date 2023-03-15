@@ -9,8 +9,8 @@
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	set category = "IC"
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, SPAN_WARNING("Speech is currently admin-disabled."))
+	if(say_disabled)
+		to_chat(usr, FEEDBACK_SPEECH_ADMIN_DISABLED) // This is here to try to identify lag problems.
 		return
 	usr.say(message)
 
@@ -18,8 +18,8 @@
 	set name = "Me"
 	set category = "IC"
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, SPAN_WARNING("Speech is currently admin-disabled."))
+	if(say_disabled)
+		to_chat(usr, FEEDBACK_SPEECH_ADMIN_DISABLED) // This is here to try to identify lag problems.
 		return
 
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
@@ -33,8 +33,8 @@
 	var/name = src.real_name
 	var/alt_name = ""
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, SPAN_WARNING("Speech is currently admin-disabled."))
+	if(say_disabled)
+		to_chat(usr, FEEDBACK_SPEECH_ADMIN_DISABLED) // This is here to try to identify lag problems.
 		return
 
 	if(isnull(client.holder))

@@ -306,7 +306,7 @@
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
 			if(!istype(usr.equipped(), /obj/item/weapon/gun))
-				to_chat(usr, "You need your gun in your active hand to do that!")
+				to_chat(usr, FEEDBACK_GUN_NOT_ACTIVE_HAND)
 				return
 			usr.client.AllowTargetMove()
 			gun_click_time = world.time
@@ -315,7 +315,7 @@
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
 			if(!istype(usr.equipped(), /obj/item/weapon/gun))
-				to_chat(usr, "You need your gun in your active hand to do that!")
+				to_chat(usr, FEEDBACK_GUN_NOT_ACTIVE_HAND)
 				return
 			usr.client.AllowTargetMove()
 			gun_click_time = world.time
@@ -324,7 +324,7 @@
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
 			if(!istype(usr.equipped(), /obj/item/weapon/gun))
-				to_chat(usr, "You need your gun in your active hand to do that!")
+				to_chat(usr, FEEDBACK_GUN_NOT_ACTIVE_HAND)
 				return
 			usr.client.AllowTargetRun()
 			gun_click_time = world.time
@@ -333,7 +333,7 @@
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
 			if(!istype(usr.equipped(), /obj/item/weapon/gun))
-				to_chat(usr, "You need your gun in your active hand to do that!")
+				to_chat(usr, FEEDBACK_GUN_NOT_ACTIVE_HAND)
 				return
 			usr.client.AllowTargetRun()
 			gun_click_time = world.time
@@ -342,7 +342,7 @@
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
 			if(!istype(usr.equipped(), /obj/item/weapon/gun))
-				to_chat(usr, "You need your gun in your active hand to do that!")
+				to_chat(usr, FEEDBACK_GUN_NOT_ACTIVE_HAND)
 				return
 			usr.client.AllowTargetClick()
 			gun_click_time = world.time
@@ -351,7 +351,7 @@
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
 			if(!istype(usr.equipped(), /obj/item/weapon/gun))
-				to_chat(usr, "You need your gun in your active hand to do that!")
+				to_chat(usr, FEEDBACK_GUN_NOT_ACTIVE_HAND)
 				return
 			usr.client.AllowTargetClick()
 			gun_click_time = world.time

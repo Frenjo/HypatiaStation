@@ -144,7 +144,7 @@
 
 /turf/space/Entered(atom/movable/A as mob|obj)
 	if(movement_disabled)
-		to_chat(usr, SPAN_WARNING("Movement is admin-disabled.")) //This is to identify lag problems
+		to_chat(usr, FEEDBACK_MOVEMENT_ADMIN_DISABLED) // This is to identify lag problems.
 		return
 	..()
 	if(!A || src != A.loc)

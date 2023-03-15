@@ -2,8 +2,8 @@
 	set category = "IC"
 	set name = "Pray"
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "\red Speech is currently admin-disabled."
+	if(say_disabled)
+		to_chat(usr, FEEDBACK_SPEECH_ADMIN_DISABLED) // This is here to try to identify lag problems.
 		return
 
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)

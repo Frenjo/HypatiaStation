@@ -55,7 +55,7 @@
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		to_chat(usr, SPAN_WARNING("Movement is admin-disabled.")) //This is to identify lag problems
+		to_chat(usr, FEEDBACK_MOVEMENT_ADMIN_DISABLED) // This is to identify lag problems.
 		return
 	if(!mover || !isturf(mover.loc))
 		return 1
@@ -96,7 +96,7 @@
 
 /turf/Entered(atom/atom as mob|obj)
 	if(movement_disabled)
-		to_chat(usr, SPAN_WARNING("Movement is admin-disabled.")) //This is to identify lag problems
+		to_chat(usr, FEEDBACK_MOVEMENT_ADMIN_DISABLED) // This is to identify lag problems.
 		return
 	..()
 //vvvvv Infared beam stuff vvvvv
