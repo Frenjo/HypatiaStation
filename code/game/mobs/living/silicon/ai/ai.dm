@@ -567,7 +567,7 @@ var/list/ai_verbs_default = list(
 
 	var/list/ai_emotions = list(
 		"Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Sad",
-		"BSOD", "Blank", "Problems?", "Awesome", "Facepalm", "Friend Computer"
+		"BSOD", "Blank", "Problems?", "Awesome", "Dorfy", "Facepalm", "Friend Computer"
 	)
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
 

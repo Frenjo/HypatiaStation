@@ -17,10 +17,9 @@
 #define STATUS_MODE_FRIEND_COMPUTER	1
 #define STATUS_MODE_EVAC_SHUTTLE	2
 #define STATUS_MODE_MESSAGE			3
-#define STATUS_MODE_ALERT			4
+#define STATUS_MODE_PICTURE			4
 #define STATUS_MODE_SUPPLY_SHUTTLE	5
 #define STATUS_MODE_AI_EMOTION		6
-#define STATUS_MODE_BSOD			7
 
 /*
  * Status Displays.
@@ -86,10 +85,11 @@
 /obj/machinery/status_display/receive_signal(datum/signal/signal)
 	switch(signal.data["command"])
 		if("blank")
-			mode = STATUS_MODE_BLANK
+			set_blank()
 		
 		if("friend_computer")
 			mode = STATUS_MODE_FRIEND_COMPUTER
+			set_picture("ai_friend")
 
 		if("shuttle")
 			mode = STATUS_MODE_EVAC_SHUTTLE
@@ -102,22 +102,12 @@
 			set_message(signal.data["msg1"], signal.data["msg2"])
 
 		if("alert")
-			mode = STATUS_MODE_ALERT
+			mode = STATUS_MODE_PICTURE
 			set_picture(signal.data["picture_state"])
 
 // set what is displayed
 /obj/machinery/status_display/proc/update()
-	if(mode != last_mode) // This ensures that the displays are refreshed whenever the mode changes.
-		remove_display()
-		last_mode = mode
-
 	switch(mode)
-		if(STATUS_MODE_BLANK)
-			remove_display()
-
-		if(STATUS_MODE_FRIEND_COMPUTER)
-			set_picture("ai_friend")
-
 		if(STATUS_MODE_EVAC_SHUTTLE)
 			if(global.CTemergency.online())
 				if(!evac_countdown)
@@ -172,6 +162,10 @@
 	else
 		message2 = ""
 		index2 = 0
+
+/obj/machinery/status_display/proc/set_blank()
+	mode = STATUS_MODE_BLANK
+	remove_display()
 
 /obj/machinery/status_display/proc/set_picture(state)
 	if(picture_state == state)
@@ -260,65 +254,40 @@
 	mode = STATUS_MODE_BLANK
 
 	var/emotion = "Neutral"
+	var/static/list/all_emotions = list(
+		"Very Happy" = "ai_veryhappy",
+		"Happy" = "ai_happy",
+		"Neutral" = "ai_neutral",
+		"Unsure" = "ai_unsure",
+		"Confused" = "ai_confused",
+		"Sad" = "ai_sad",
+		"BSOD" = "ai_bsod",
+		"Problems?" = "ai_trollface",
+		"Awesome" = "ai_awesome",
+		"Dorfy" = "ai_urist",
+		"Facepalm" = "ai_facepalm"
+	)
 
 /obj/machinery/status_display/ai/receive_signal(datum/signal/signal)
 	switch(signal.data["command"])
 		if("friend_computer")
-			mode = STATUS_MODE_FRIEND_COMPUTER
+			. = ..(signal)
 
 		if("ai_emotion")
-			mode = STATUS_MODE_AI_EMOTION
 			emotion = signal.data["emotion"]
-
-		if("bsod")
-			mode = STATUS_MODE_BSOD
-
-/obj/machinery/status_display/ai/update()
-	switch(mode)
-		if(STATUS_MODE_AI_EMOTION)
-			switch(emotion)
-				if("Very Happy")
-					set_picture("ai_veryhappy")
-				if("Happy")
-					set_picture("ai_happy")
-				if("Neutral")
-					set_picture("ai_neutral")
-				if("Unsure")
-					set_picture("ai_unsure")
-				if("Confused")
-					set_picture("ai_confused")
-				if("Sad")
-					set_picture("ai_sad")
-				if("BSOD")
-					set_picture("ai_bsod")
-				if("Blank")
-					set_picture("ai_off")
-				if("Problems?")
-					set_picture("ai_trollface")
-				if("Awesome")
-					set_picture("ai_awesome")
-				if("Dorfy")
-					set_picture("ai_urist")
-				if("Facepalm")
-					set_picture("ai_facepalm")
-				if("Friend Computer")
-					set_picture("ai_friend")
-			return
-
-		if(STATUS_MODE_BSOD)
-			set_picture("ai_bsod")
-			return
-
-	return ..()
+			if(emotion == "Blank")
+				set_blank()
+			else
+				mode = STATUS_MODE_AI_EMOTION
+				set_picture(all_emotions[emotion])
 
 #undef STATUS_MODE_BLANK
 #undef STATUS_MODE_FRIEND_COMPUTER
 #undef STATUS_MODE_EVAC_SHUTTLE
 #undef STATUS_MODE_MESSAGE
-#undef STATUS_MODE_ALERT
+#undef STATUS_MODE_PICTURE
 #undef STATUS_MODE_SUPPLY_SHUTTLE
 #undef STATUS_MODE_AI_EMOTION
-#undef STATUS_MODE_BSOD
 
 #undef CHARS_PER_LINE
 #undef FONT_SIZE
