@@ -162,7 +162,7 @@ Note: Once everything is added to the public areas, will add m_amt and g_amt to 
 to destroy them and players will be able to make replacements.
 */
 /obj/item/weapon/circuitboard/destructive_analyzer
-	name = "Circuit board (Destructive Analyzer)"
+	name = "circuit board (Destructive Analyzer)"
 	build_path = /obj/machinery/r_n_d/destructive_analyzer
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
@@ -173,7 +173,7 @@ to destroy them and players will be able to make replacements.
 							/obj/item/weapon/stock_part/micro_laser = 1)
 
 /obj/item/weapon/circuitboard/autolathe
-	name = "Circuit board (Autolathe)"
+	name = "circuit board (Autolathe)"
 	build_path = /obj/machinery/autolathe
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
@@ -184,7 +184,7 @@ to destroy them and players will be able to make replacements.
 							/obj/item/weapon/stock_part/console_screen = 1)
 
 /obj/item/weapon/circuitboard/protolathe
-	name = "Circuit board (Protolathe)"
+	name = "circuit board (Protolathe)"
 	build_path = /obj/machinery/r_n_d/protolathe
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
@@ -196,7 +196,7 @@ to destroy them and players will be able to make replacements.
 
 
 /obj/item/weapon/circuitboard/circuit_imprinter
-	name = "Circuit board (Circuit Imprinter)"
+	name = "circuit board (Circuit Imprinter)"
 	build_path = /obj/machinery/r_n_d/circuit_imprinter
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
@@ -207,7 +207,7 @@ to destroy them and players will be able to make replacements.
 							/obj/item/weapon/reagent_containers/glass/beaker = 2)
 
 /obj/item/weapon/circuitboard/pacman
-	name = "Circuit Board (PACMAN-type Generator)"
+	name = "circuit board (PACMAN-type Generator)"
 	build_path = /obj/machinery/power/port_gen/pacman
 	board_type = "machine"
 	origin_tech = list(
@@ -222,17 +222,17 @@ to destroy them and players will be able to make replacements.
 							/obj/item/weapon/stock_part/capacitor = 1)
 
 /obj/item/weapon/circuitboard/pacman/super
-	name = "Circuit Board (SUPERPACMAN-type Generator)"
+	name = "circuit board (SUPERPACMAN-type Generator)"
 	build_path = /obj/machinery/power/port_gen/pacman/super
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_POWERSTORAGE = 4, RESEARCH_TECH_ENGINEERING = 4)
 
 /obj/item/weapon/circuitboard/pacman/mrs
-	name = "Circuit Board (MRSPACMAN-type Generator)"
+	name = "circuit board (MRSPACMAN-type Generator)"
 	build_path = /obj/machinery/power/port_gen/pacman/mrs
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_POWERSTORAGE = 5, RESEARCH_TECH_ENGINEERING = 5)
 
 /obj/item/weapon/circuitboard/rdserver
-	name = "Circuit Board (R&D Server)"
+	name = "circuit board (R&D Server)"
 	build_path = /obj/machinery/r_n_d/server
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
@@ -242,7 +242,7 @@ to destroy them and players will be able to make replacements.
 							/obj/item/weapon/stock_part/scanning_module = 1)
 
 /obj/item/weapon/circuitboard/mechfab
-	name = "Circuit board (Exosuit Fabricator)"
+	name = "circuit board (Exosuit Fabricator)"
 	build_path = /obj/machinery/mecha_part_fabricator
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_ENGINEERING = 3)
@@ -254,7 +254,7 @@ to destroy them and players will be able to make replacements.
 							/obj/item/weapon/stock_part/console_screen = 1)
 
 /obj/item/weapon/circuitboard/clonepod
-	name = "Circuit board (Clone Pod)"
+	name = "circuit board (Clone Pod)"
 	build_path = /obj/machinery/clonepod
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_BIOTECH = 3)
@@ -266,7 +266,7 @@ to destroy them and players will be able to make replacements.
 							/obj/item/weapon/stock_part/console_screen = 1)
 
 /obj/item/weapon/circuitboard/clonescanner
-	name = "Circuit board (Cloning Scanner)"
+	name = "circuit board (Cloning Scanner)"
 	build_path = /obj/machinery/dna_scannernew
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_BIOTECH = 2)
@@ -282,7 +282,7 @@ to destroy them and players will be able to make replacements.
 // Telecoms circuit boards:
 
 /obj/item/weapon/circuitboard/telecoms/receiver
-	name = "Circuit Board (Subspace Receiver)"
+	name = "circuit board (Subspace Receiver)"
 	build_path = /obj/machinery/telecoms/receiver
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 3, RESEARCH_TECH_BLUESPACE = 2)
@@ -294,7 +294,7 @@ to destroy them and players will be able to make replacements.
 							/obj/item/weapon/stock_part/micro_laser = 1)
 
 /obj/item/weapon/circuitboard/telecoms/hub
-	name = "Circuit Board (Hub Mainframe)"
+	name = "circuit board (Hub Mainframe)"
 	build_path = /obj/machinery/telecoms/hub
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
@@ -305,7 +305,7 @@ to destroy them and players will be able to make replacements.
 							/obj/item/weapon/stock_part/subspace/filter = 2)
 
 /obj/item/weapon/circuitboard/telecoms/relay
-	name = "Circuit Board (Relay Mainframe)"
+	name = "circuit board (Relay Mainframe)"
 	build_path = /obj/machinery/telecoms/relay
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_BLUESPACE = 3)
@@ -316,7 +316,7 @@ to destroy them and players will be able to make replacements.
 							/obj/item/weapon/stock_part/subspace/filter = 2)
 
 /obj/item/weapon/circuitboard/telecoms/bus
-	name = "Circuit Board (Bus Mainframe)"
+	name = "circuit board (Bus Mainframe)"
 	build_path = /obj/machinery/telecoms/bus
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
@@ -327,7 +327,7 @@ to destroy them and players will be able to make replacements.
 							/obj/item/weapon/stock_part/subspace/filter = 1)
 
 /obj/item/weapon/circuitboard/telecoms/processor
-	name = "Circuit Board (Processor Unit)"
+	name = "circuit board (Processor Unit)"
 	build_path = /obj/machinery/telecoms/processor
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
@@ -341,7 +341,7 @@ to destroy them and players will be able to make replacements.
 							/obj/item/weapon/stock_part/subspace/amplifier = 1)
 
 /obj/item/weapon/circuitboard/telecoms/server
-	name = "Circuit Board (Telecommunication Server)"
+	name = "circuit board (Telecommunication Server)"
 	build_path = /obj/machinery/telecoms/server
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
@@ -352,7 +352,7 @@ to destroy them and players will be able to make replacements.
 							/obj/item/weapon/stock_part/subspace/filter = 1)
 
 /obj/item/weapon/circuitboard/telecoms/broadcaster
-	name = "Circuit Board (Subspace Broadcaster)"
+	name = "circuit board (Subspace Broadcaster)"
 	build_path = /obj/machinery/telecoms/broadcaster
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_BLUESPACE = 2)

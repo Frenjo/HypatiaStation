@@ -3,7 +3,7 @@
 // RUST Core Control computer
 
 /obj/item/weapon/circuitboard/rust_core_control
-	name = "Circuit board (RUST core controller)"
+	name = "circuit board (RUST core controller)"
 	build_path = /obj/machinery/computer/rust_core_control
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 
@@ -20,7 +20,7 @@
 // RUST Fuel Control computer
 
 /obj/item/weapon/circuitboard/rust_fuel_control
-	name = "Circuit board (RUST fuel controller)"
+	name = "circuit board (RUST fuel controller)"
 	build_path = /obj/machinery/computer/rust_fuel_control
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 

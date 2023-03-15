@@ -159,7 +159,7 @@
 					user << "\red You cannot add that component to the machine!"
 
 /obj/item/weapon/circuitboard/firealarm
-	name = "Circuit board (Fire Alarm)"
+	name = "circuit board (Fire Alarm)"
 	build_path = "/obj/machinery/firealarm"
 	board_type = "wallmount"
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2)
@@ -171,7 +171,7 @@
 							"/obj/item/weapon/cable_coil" = 2)
 
 /obj/item/weapon/circuitboard/alarm
-	name = "Circuit board (Atmospheric Alarm)"
+	name = "circuit board (Atmospheric Alarm)"
 	build_path = "/obj/machinery/alarm"
 	board_type = "wallmount"
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
@@ -184,7 +184,7 @@
 
 /* oh right, not a machine :(
 /obj/item/weapon/circuitboard/intercom
-	name = "Circuit board (Intercom)"
+	name = "circuit board (Intercom)"
 	build_path = "/obj/item/device/radio/intercom"
 	board_type = "wallmount"
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2)
@@ -197,7 +197,7 @@
 
 /* too complex to set up the dept for an RC in a way intuitive for the user
 /obj/item/weapon/circuitboard/requests_console
-	name = "Circuit board (Requests Console)"
+	name = "circuit board (Requests Console)"
 	build_path = "/obj/machinery/requests_console"
 	board_type = "wallmount"
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
@@ -210,7 +210,7 @@
 */
 
 /obj/item/weapon/circuitboard/status_display
-	name = "Circuit board (Status Display)"
+	name = "circuit board (Status Display)"
 	build_path = "/obj/machinery/status_display"
 	board_type = "wallmount"
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
@@ -221,7 +221,7 @@
 							"/obj/item/weapon/cable_coil" = 1)
 
 /obj/item/weapon/circuitboard/light_switch
-	name = "Circuit board (Light Switch)"
+	name = "circuit board (Light Switch)"
 	build_path = "/obj/machinery/light_switch"
 	board_type = "wallmount"
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2)

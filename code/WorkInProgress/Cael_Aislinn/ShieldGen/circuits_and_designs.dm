@@ -3,7 +3,7 @@
 // External Shield Generator
 
 /obj/item/weapon/circuitboard/shield_gen_ex
-	name = "Circuit board (Experimental hull shield generator)"
+	name = "circuit board (Experimental hull shield generator)"
 	board_type = "machine"
 	build_path = /obj/machinery/shield_gen/external
 	origin_tech = list(RESEARCH_TECH_BLUESPACE = 4, RESEARCH_TECH_PLASMATECH = 3)
@@ -30,7 +30,7 @@
 // Shield Generator
 
 /obj/item/weapon/circuitboard/shield_gen
-	name = "Circuit board (Experimental bubble shield generator)"
+	name = "circuit board (Experimental bubble shield generator)"
 	board_type = "machine"
 	build_path = /obj/machinery/shield_gen/external
 	origin_tech = list(RESEARCH_TECH_BLUESPACE = 4, RESEARCH_TECH_PLASMATECH = 3)
@@ -57,7 +57,7 @@
 // Shield Capacitor
 
 /obj/item/weapon/circuitboard/shield_cap
-	name = "Circuit board (Experimental shield capacitor)"
+	name = "circuit board (Experimental shield capacitor)"
 	board_type = "machine"
 	build_path = /obj/machinery/shield_capacitor
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_POWERSTORAGE = 4)
