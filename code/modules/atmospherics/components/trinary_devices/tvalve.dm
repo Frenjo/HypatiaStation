@@ -122,7 +122,7 @@
 
 /obj/machinery/atmospherics/trinary/tvalve/digital/attack_hand(mob/user as mob)
 	if(!src.allowed(user))
-		to_chat(user, SPAN_WARNING("Access denied."))
+		to_chat(user, FEEDBACK_ACCESS_DENIED)
 		return
 	..()
 
@@ -242,7 +242,7 @@
 
 /obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/attack_hand(mob/user as mob)
 	if(!src.allowed(user))
-		to_chat(user, SPAN_WARNING("Access denied."))
+		to_chat(user, FEEDBACK_ACCESS_DENIED)
 		return
 	..()
 

@@ -102,7 +102,7 @@
 	if (!istype(M, /mob))
 		return
 	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
-		user << "\red You don't have the dexterity to do this!"
+		to_chat(user, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 		return
 
 	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been injected with [name] by [user.name] ([user.ckey])</font>")

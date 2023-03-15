@@ -51,7 +51,7 @@
 			return ..()	//just hit them in the head
 
 		if(!(ishuman(user) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")	//don't have dexterity
-			to_chat(user, SPAN_NOTICE("You don't have the dexterity to do this!"))
+			to_chat(user, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 			return
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear

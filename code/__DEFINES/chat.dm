@@ -20,3 +20,9 @@
 #define SPAN_DISARM(text)		SPAN("disarm", text)
 #define SPAN_CAUTION(text)		SPAN("caution", text)
 #define SPAN_MODERATE(text)		SPAN("moderate", text)
+
+/*
+ * Feedback Defines
+ */
+#define FEEDBACK_ACCESS_DENIED SPAN_WARNING("Access denied.")
+#define FEEDBACK_NOT_ENOUGH_DEXTERITY SPAN_WARNING("You don't have the dexterity to use \the [src]!")

@@ -83,7 +83,7 @@ REAGENT SCANNER
 		user.show_message("\blue Body Temperature: ???", 1)
 		return
 	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
-		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
+		to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 		return
 	user.visible_message(
 		SPAN_NOTICE("[user] has analyzed [M]'s vitals."),
@@ -234,7 +234,7 @@ REAGENT SCANNER
 	if(user.stat)
 		return
 	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
-		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
+		to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 		return
 
 	var/turf/location = user.loc
@@ -297,7 +297,7 @@ REAGENT SCANNER
 		to_chat(user, SPAN_WARNING("This device has critically failed and is no longer functional!"))
 		return
 	if(!(ishuman(user) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
-		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
+		to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 		return
 	if(reagents.total_volume)
 		var/list/blood_traces = list()
@@ -356,7 +356,7 @@ REAGENT SCANNER
 	if(user.stat)
 		return
 	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
-		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
+		to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 		return
 	if(!istype(O))
 		return

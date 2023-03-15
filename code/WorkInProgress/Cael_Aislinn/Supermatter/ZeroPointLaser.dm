@@ -188,7 +188,7 @@
 				src.locked = 0 //just in case it somehow gets locked
 				user << "\red The controls can only be locked when the [src] is online"
 		else
-			to_chat(user, SPAN_WARNING("Access denied."))
+			to_chat(user, FEEDBACK_ACCESS_DENIED)
 		return
 
 

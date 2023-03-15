@@ -84,7 +84,7 @@
 		return
 
 	if(!allowed(user))
-		to_chat(user, SPAN_WARNING("Access denied."))
+		to_chat(user, FEEDBACK_ACCESS_DENIED)
 		return
 
 	var/alarmed = 0

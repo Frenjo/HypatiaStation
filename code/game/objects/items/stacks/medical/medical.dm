@@ -17,7 +17,7 @@
 		return 1
 
 	if(!(ishuman(user) || issilicon(user) || ismonkey(user) && global.CTgame_ticker && global.CTgame_ticker.mode.name == "monkey"))
-		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
+		to_chat(user, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 		return 1
 
 	if(ishuman(M))

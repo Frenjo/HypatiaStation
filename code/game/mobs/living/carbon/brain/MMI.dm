@@ -63,7 +63,7 @@
 			locked = !locked
 			user << "\blue You [locked ? "lock" : "unlock"] the brain holder."
 		else
-			to_chat(user, SPAN_WARNING("Access denied."))
+			to_chat(user, FEEDBACK_ACCESS_DENIED)
 		return
 	if(brainmob)
 		O.attack(brainmob, user)//Oh noooeeeee

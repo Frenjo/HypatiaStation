@@ -62,7 +62,7 @@
 	if(!isturf(user.loc))
 		return 0
 	if(!user.IsAdvancedToolUser())
-		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
+		to_chat(user, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 		return 0
 
 	var/title = "Sheet-Glass"
@@ -150,7 +150,7 @@
 	if(!isturf(user.loc))
 		return 0
 	if(!user.IsAdvancedToolUser())
-		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
+		to_chat(user, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 		return 0
 
 	var/title = "Sheet Reinf. Glass"

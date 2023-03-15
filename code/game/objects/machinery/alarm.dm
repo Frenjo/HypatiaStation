@@ -1135,7 +1135,7 @@ table tr:first-child th:first-child { border: none;}
 						to_chat(user, SPAN_INFO("You [locked ? "lock" : "unlock"] the Air Alarm interface."))
 						updateUsrDialog()
 					else
-						to_chat(user, SPAN_WARNING("Access denied."))
+						to_chat(user, FEEDBACK_ACCESS_DENIED)
 			return
 
 		if(1)

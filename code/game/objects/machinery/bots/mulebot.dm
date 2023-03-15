@@ -255,7 +255,7 @@
 					locked = !locked
 					updateDialog()
 				else
-					usr << "\red Access denied."
+					to_chat(usr, FEEDBACK_ACCESS_DENIED)
 					return
 			if("power")
 				if (src.on)

@@ -66,7 +66,7 @@ var/prison_shuttle_timeleft = 0
 
 	attack_hand(var/mob/user as mob)
 		if(!src.allowed(user) && (!hacked))
-			to_chat(user, SPAN_WARNING("Access denied."))
+			to_chat(user, FEEDBACK_ACCESS_DENIED)
 			return
 		if(prison_break)
 			user << "\red Unable to locate shuttle."

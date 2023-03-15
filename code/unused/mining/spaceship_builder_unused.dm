@@ -121,7 +121,7 @@
 		return
 
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		usr << "\red You don't have the dexterity to do this!"
+		to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 		return
 
 	if (istype(W, /obj/item/stack/sheet/metal))

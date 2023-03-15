@@ -47,7 +47,7 @@
 				return
 			return
 		if(!(ishuman(user) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
-			to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
+			to_chat(user, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 			return
 		if(ishuman(C))
 			if(!C.handcuffed)

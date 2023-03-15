@@ -89,7 +89,7 @@
 				return
 
 	if(!user.IsAdvancedToolUser())
-		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
+		to_chat(user, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 		return
 	if(isliving(user))
 		var/mob/living/M = user

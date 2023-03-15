@@ -773,7 +773,7 @@
 /turf/simulated/wall/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		usr << "\red You don't have the dexterity to do this!"
+		to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 		return
 
 	if (istype(W, /obj/item/weapon/weldingtool) && W:welding)
@@ -920,7 +920,7 @@
 /turf/simulated/wall/r_wall/attackby(obj/item/W as obj, mob/user as mob)
 
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		usr << "\red You don't have the dexterity to do this!"
+		to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 		return
 
 	if(!istype(src, /turf/simulated/wall/r_wall))

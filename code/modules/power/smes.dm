@@ -318,7 +318,7 @@
 
 	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
 		if(!isAI(usr))
-			to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
+			to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 			return
 
 	if(!isturf(src.loc) && !issilicon(usr))

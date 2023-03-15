@@ -292,7 +292,7 @@
 			locked = !locked
 			to_chat(usr, "You [locked ? "" : "un"]lock \the [src].")
 		else
-			to_chat(usr, SPAN_WARNING("Access denied."))
+			to_chat(usr, FEEDBACK_ACCESS_DENIED)
 
 	else if(href_list["begin_decontamination"])
 		if(safeties && occupant)

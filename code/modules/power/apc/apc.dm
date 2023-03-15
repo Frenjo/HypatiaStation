@@ -267,7 +267,7 @@
 	if(!user.client)
 		return 0
 	if(!(ishuman(user) || issilicon(user) || ismonkey(user) /*&& ticker && ticker.mode.name == "monkey"*/))
-		to_chat(user, SPAN_WARNING("You don't have the dexterity to use [src]!"))
+		to_chat(user, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 		return 0
 	if(user.restrained())
 		to_chat(user, SPAN_WARNING("You must have free hands to use [src]."))

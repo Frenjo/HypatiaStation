@@ -153,7 +153,7 @@
 				to_chat(user, "You [locked ? "lock" : "unlock"] the APC interface.")
 				update_icon()
 			else
-				to_chat(user, SPAN_WARNING("Access denied."))
+				to_chat(user, FEEDBACK_ACCESS_DENIED)
 	else if(istype(W, /obj/item/weapon/card/emag) && !(emagged || malfhack))		// trying to unlock with an emag card
 		if(opened)
 			to_chat(user, "You must close the cover to swipe an ID card.")

@@ -187,7 +187,7 @@
 		user.show_message("\blue Body Temperature: ???", 1)
 		return
 	if(!(ishuman(user) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
-		user << "\red You don't have the dexterity to do this!"
+		to_chat(user, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 		return
 	if(!isrobot(M))
 		user << "\red You can't analyze non-robotic things!"

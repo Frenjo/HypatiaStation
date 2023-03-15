@@ -22,7 +22,7 @@
 		return
 
 	if(!allowed(user))
-		to_chat(user, SPAN_WARNING("Access denied."))
+		to_chat(user, FEEDBACK_ACCESS_DENIED)
 		return
 
 	user.set_machine(src)
@@ -49,7 +49,7 @@
 		return
 
 	if(!allowed(usr))
-		usr << "\red Access denied."
+		to_chat(usr, FEEDBACK_ACCESS_DENIED)
 		return
 
 	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc))) || (issilicon(usr)))

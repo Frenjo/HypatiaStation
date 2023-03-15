@@ -121,7 +121,7 @@
 				to_chat(O, SPAN_NOTICE("The locker has been [locked ? null : "un"]locked by [user]."))
 		update_icon()
 	else
-		to_chat(user, SPAN_NOTICE("Access denied."))
+		to_chat(user, FEEDBACK_ACCESS_DENIED)
 
 /obj/structure/closet/secure_closet/verb/verb_togglelock()
 	set src in oview(1) // One square distance

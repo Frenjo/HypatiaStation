@@ -209,7 +209,7 @@ var/bomb_set
 /obj/machinery/nuclearbomb/attack_hand(mob/user as mob)
 	if(src.extended)
 		if(!ishuman(user))
-			to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
+			to_chat(user, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 			return 1
 
 		user.set_machine(src)
@@ -263,7 +263,7 @@ var/bomb_set
 	if(!usr.canmove || usr.stat || usr.restrained())
 		return
 	if(!ishuman(usr))
-		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
+		to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
 		return 1
 
 	if(src.deployable)
