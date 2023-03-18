@@ -10,16 +10,14 @@
 		mail_destination = 0
 		return
 
-	src << "\blue You configure your internal beacon, tagging yourself for delivery to '[tag]'."
+	to_chat(src, SPAN_INFO("You configure your internal beacon, tagging yourself for delivery to '[tag]'."))
 	mail_destination = GLOBL.tagger_locations.Find(tag)
 
 	//Auto flush if we use this verb inside a disposal chute.
 	var/obj/machinery/disposal/D = src.loc
 	if(istype(D))
-		src << "\blue \The [D] acknowledges your signal."
+		to_chat(src, SPAN_INFO("\The [D] acknowledges your signal."))
 		D.flush_count = D.flush_every_ticks
-
-	return
 
 //DRONE PICKUP.
 //Item holder.
@@ -34,12 +32,12 @@
 //Actual picking-up event.
 /mob/living/silicon/robot/drone/attack_hand(mob/living/carbon/human/M as mob)
 	if(M.a_intent == "help")
-		var/obj/item/weapon/holder/drone/D = new(loc)
-		src.loc = D
+		var/obj/item/weapon/holder/drone/D = new /obj/item/weapon/holder/drone(loc)
+		loc = D
 		D.name = loc.name
 		D.attack_hand(M)
-		M << "You scoop up [src]."
-		src << "[M] scoops you up."
+		to_chat(M, "You scoop up [src].")
+		to_chat(src, "[M] scoops you up.")
 		return
 
-	..()
+	. = ..()

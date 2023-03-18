@@ -1,9 +1,10 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
-/**********************************************************************
-						Cyborg Spec Items
-***********************************************************************/
-//Might want to move this into several files later but for now it works here
+/*
+ * Cyborg Spec Items
+ *
+ * Might want to move this into several files later but for now it works here.
+ */
 /obj/item/borg/stun
 	name = "electrified arm"
 	icon = 'icons/obj/decals.dmi'
@@ -21,28 +22,28 @@
 		M.stuttering = 5
 	M.Stun(5)
 
-	for(var/mob/O in viewers(M, null))
-		if(O.client)
-			O.show_message(SPAN_DANGER("[user] has prodded [M] with an electrically-charged arm!"), 1, SPAN_WARNING("You hear someone fall."), 2)
+	visible_message(
+		SPAN_DANGER("[user] has prodded [M] with an electrically-charged arm!"),
+		SPAN_WARNING("You hear someone fall.")
+	)
 
 /obj/item/borg/overdrive
 	name = "overdrive"
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
 
-/**********************************************************************
-						HUD/SIGHT things
-***********************************************************************/
+/*
+ * Sight
+ */
 /obj/item/borg/sight
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "securearea"
-	var/sight_mode = null
 
+	var/sight_mode = null
 
 /obj/item/borg/sight/xray
 	name = "\proper x-ray Vision"
 	sight_mode = BORGXRAY
-
 
 /obj/item/borg/sight/thermal
 	name = "\proper thermal vision"
@@ -56,10 +57,13 @@
 	icon_state = "meson"
 	icon = 'icons/obj/clothing/glasses.dmi'
 
+/*
+ * HUDs
+ */
 /obj/item/borg/sight/hud
 	name = "hud"
-	var/obj/item/clothing/glasses/hud/hud = null
 
+	var/obj/item/clothing/glasses/hud/hud = null
 
 /obj/item/borg/sight/hud/med
 	name = "medical hud"
@@ -67,10 +71,8 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 
 /obj/item/borg/sight/hud/med/New()
-	..()
+	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/health(src)
-	return
-
 
 /obj/item/borg/sight/hud/sec
 	name = "security hud"
@@ -78,6 +80,5 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 
 /obj/item/borg/sight/hud/sec/New()
-	..()
+	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/security(src)
-	return

@@ -5,10 +5,11 @@
 	icon_state = "blank"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
+
 	var/construction_time = 100
 	var/list/construction_cost = list(MATERIAL_METAL = 20000, MATERIAL_GLASS = 5000)
 	var/list/part = null
-	var/sabotaged = 0 //Emagging limbs can have repercussions when installed as prosthetics.
+	var/sabotaged = 0 // Emagging limbs can have repercussions when installed as prosthetics.
 
 /obj/item/robot_parts/l_arm
 	name = "robot left arm"
@@ -48,7 +49,8 @@
 	icon_state = "chest"
 	construction_time = 350
 	construction_cost = list(MATERIAL_METAL = 40000)
-	var/wires = 0.0
+
+	var/wires = FALSE
 	var/obj/item/weapon/cell/cell = null
 
 /obj/item/robot_parts/head
@@ -57,6 +59,7 @@
 	icon_state = "head"
 	construction_time = 350
 	construction_cost = list(MATERIAL_METAL = 25000)
+
 	var/obj/item/device/flash/flash1 = null
 	var/obj/item/device/flash/flash2 = null
 
@@ -66,6 +69,7 @@
 	icon_state = "robo_suit"
 	construction_time = 500
 	construction_cost = list(MATERIAL_METAL = 50000)
+
 	var/obj/item/robot_parts/l_arm/l_arm = null
 	var/obj/item/robot_parts/r_arm/r_arm = null
 	var/obj/item/robot_parts/l_leg/l_leg = null
@@ -75,127 +79,138 @@
 	var/created_name = ""
 
 /obj/item/robot_parts/robot_suit/New()
-	..()
-	src.updateicon()
+	. = ..()
+	updateicon()
 
 /obj/item/robot_parts/robot_suit/proc/updateicon()
-	src.overlays.Cut()
-	if(src.l_arm)
-		src.overlays += "l_arm+o"
-	if(src.r_arm)
-		src.overlays += "r_arm+o"
-	if(src.chest)
-		src.overlays += "chest+o"
-	if(src.l_leg)
-		src.overlays += "l_leg+o"
-	if(src.r_leg)
-		src.overlays += "r_leg+o"
-	if(src.head)
-		src.overlays += "head+o"
+	overlays.Cut()
+	if(!isnull(l_arm))
+		overlays.Add("l_arm+o")
+	if(!isnull(r_arm))
+		overlays.Add("r_arm+o")
+	if(!isnull(chest))
+		overlays.Add("chest+o")
+	if(!isnull(l_leg))
+		overlays.Add("l_leg+o")
+	if(!isnull(r_leg))
+		overlays.Add("r_leg+o")
+	if(!isnull(head))
+		overlays.Add("head+o")
 
 /obj/item/robot_parts/robot_suit/proc/check_completion()
-	if(src.l_arm && src.r_arm)
-		if(src.l_leg && src.r_leg)
-			if(src.chest && src.head)
-				feedback_inc("cyborg_frames_built",1)
-				return 1
-	return 0
+	if(!isnull(l_arm) && !isnull(r_arm))
+		if(!isnull(l_leg) && !isnull(r_leg))
+			if(!isnull(chest) && !isnull(head))
+				feedback_inc("cyborg_frames_built", 1)
+				return TRUE
+	return FALSE
 
 /obj/item/robot_parts/robot_suit/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if(istype(W, /obj/item/stack/sheet/metal) && !l_arm && !r_arm && !l_leg && !r_leg && !chest && !head)
+	. = ..()
+	if(istype(W, /obj/item/stack/sheet/metal) && isnull(l_arm) && isnull(r_arm) && isnull(l_leg) && isnull(r_leg) && isnull(chest) && isnull(head))
+		var/obj/item/stack/sheet/metal/M = W
 		var/obj/item/weapon/ed209_assembly/B = new /obj/item/weapon/ed209_assembly
 		B.loc = get_turf(src)
-		user << "You armed the robot frame"
-		W:use(1)
-		if (user.get_inactive_hand()==src)
+		to_chat(user, SPAN_INFO("You arm the robot frame."))
+		M.use(1)
+		if(user.get_inactive_hand() == src)
 			user.before_take_item(src)
 			user.put_in_inactive_hand(B)
 		qdel(src)
+
 	if(istype(W, /obj/item/robot_parts/l_leg))
-		if(src.l_leg)	return
+		if(!isnull(l_leg))
+			return
 		user.drop_item()
 		W.loc = src
-		src.l_leg = W
-		src.updateicon()
+		l_leg = W
+		updateicon()
 
 	if(istype(W, /obj/item/robot_parts/r_leg))
-		if(src.r_leg)	return
+		if(!isnull(r_leg))
+			return
 		user.drop_item()
 		W.loc = src
-		src.r_leg = W
-		src.updateicon()
+		r_leg = W
+		updateicon()
 
 	if(istype(W, /obj/item/robot_parts/l_arm))
-		if(src.l_arm)	return
+		if(!isnull(l_arm))
+			return
 		user.drop_item()
 		W.loc = src
-		src.l_arm = W
-		src.updateicon()
+		l_arm = W
+		updateicon()
 
 	if(istype(W, /obj/item/robot_parts/r_arm))
-		if(src.r_arm)	return
+		if(!isnull(r_arm))
+			return
 		user.drop_item()
 		W.loc = src
-		src.r_arm = W
-		src.updateicon()
+		r_arm = W
+		updateicon()
 
 	if(istype(W, /obj/item/robot_parts/chest))
-		if(src.chest)	return
-		if(W:wires && W:cell)
+		if(!isnull(chest))
+			return
+		var/obj/item/robot_parts/chest/part_chest = W
+		if(part_chest.wires && !isnull(part_chest.cell))
 			user.drop_item()
-			W.loc = src
-			src.chest = W
-			src.updateicon()
-		else if(!W:wires)
-			user << "\blue You need to attach wires to it first!"
+			part_chest.loc = src
+			chest = part_chest
+			updateicon()
+		else if(part_chest.wires)
+			to_chat(user, SPAN_INFO("You need to attach wires to it first!"))
 		else
-			user << "\blue You need to attach a cell to it first!"
+			to_chat(user, SPAN_INFO("You need to attach a cell to it first!"))
 
 	if(istype(W, /obj/item/robot_parts/head))
-		if(src.head)	return
-		if(W:flash2 && W:flash1)
+		if(!isnull(head))
+			return
+		var/obj/item/robot_parts/head/part_head = W
+		if(!isnull(part_head.flash1) && !isnull(part_head.flash2))
 			user.drop_item()
-			W.loc = src
-			src.head = W
-			src.updateicon()
+			part_head.loc = src
+			head = part_head
+			updateicon()
 		else
-			user << "\blue You need to attach a flash to it first!"
+			to_chat(user, SPAN_INFO("You need to attach a flash to it first!"))
 
-	if(istype(W, /obj/item/device/mmi))
+	if(isMMI(W))
 		var/obj/item/device/mmi/M = W
 		if(check_completion())
-			if(!istype(loc,/turf))
-				user << "\red You can't put the [W] in, the frame has to be standing on the ground to be perfectly precise."
+			if(!isturf(loc))
+				to_chat(user, SPAN_WARNING("You can't put the [W] in, the frame has to be standing on the ground to be perfectly precise."))
 				return
-			if(!M.brainmob)
-				user << "\red Sticking an empty [W] into the frame would sort of defeat the purpose."
+			if(isnull(M.brainmob))
+				to_chat(user, SPAN_WARNING("Sticking an empty [W] into the frame would sort of defeat the purpose."))
 				return
-			if(!M.brainmob.key)
+			if(isnull(M.brainmob.key))
 				var/ghost_can_reenter = 0
-				if(M.brainmob.mind)
+				if(!isnull(M.brainmob.mind))
 					for(var/mob/dead/observer/G in GLOBL.player_list)
 						if(G.can_reenter_corpse && G.mind == M.brainmob.mind)
-							ghost_can_reenter = 1
+							ghost_can_reenter = TRUE
 							break
 				if(!ghost_can_reenter)
-					user << "<span class='notice'>The [W] is completely unresponsive; there's no point.</span>"
+					to_chat(user, SPAN_NOTICE("The [W] is completely unresponsive; there's no point."))
 					return
 
 			if(M.brainmob.stat == DEAD)
-				user << "\red Sticking a dead [W] into the frame would sort of defeat the purpose."
+				to_chat(user, SPAN_WARNING("Sticking a dead [W] into the frame would sort of defeat the purpose."))
 				return
 
 			if(M.brainmob.mind in global.CTgame_ticker.mode.head_revolutionaries)
-				user << "\red The frame's firmware lets out a shrill sound, and flashes 'Abnormal Memory Engram'. It refuses to accept the [W]."
+				to_chat(user, SPAN_WARNING("The frame's firmware lets out a shrill sound, and flashes 'Abnormal Memory Engram'. It refuses to accept the [W]."))
 				return
 
 			if(jobban_isbanned(M.brainmob, "Cyborg"))
-				user << "\red This [W] does not seem to fit."
+				to_chat(user, SPAN_WARNING("This [W] does not seem to fit."))
 				return
 
 			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(get_turf(loc), unfinished = 1)
-			if(!O)	return
+			if(isnull(O))
+				return
 
 			user.drop_item()
 
@@ -206,7 +221,7 @@
 
 			M.brainmob.mind.transfer_to(O)
 
-			if(O.mind && O.mind.special_role)
+			if(O.mind?.special_role)
 				O.mind.store_memory("In case you look at this after being borged, the objectives are only here until I find a way to make them not show up for you, as I can't simply delete them without screwing up round-end reporting. --NeoFite")
 
 			O.job = "Cyborg"
@@ -216,82 +231,77 @@
 			W.loc = O//Should fix cybros run time erroring when blown up. It got deleted before, along with the frame.
 
 			// Since we "magically" installed a cell, we also have to update the correct component.
-			if(O.cell)
+			if(!isnull(O.cell))
 				var/datum/robot_component/cell_component = O.components["power cell"]
 				cell_component.wrapped = O.cell
 				cell_component.installed = 1
 
-			feedback_inc("cyborg_birth",1)
+			feedback_inc("cyborg_birth", 1)
 			O.Namepick()
 
 			qdel(src)
 		else
-			user << "\blue The MMI must go in after everything else!"
+			to_chat(user, SPAN_INFO("The MMI must go in after everything else!"))
 
-	if (istype(W, /obj/item/weapon/pen))
+	if(istype(W, /obj/item/weapon/pen))
 		var/t = stripped_input(user, "Enter new robot name", src.name, src.created_name, MAX_NAME_LEN)
-		if (!t)
+		if(!t)
 			return
-		if (!in_range(src, usr) && src.loc != usr)
+		if(!in_range(src, usr) && src.loc != usr)
 			return
 
 		src.created_name = t
 
-	return
-
 /obj/item/robot_parts/chest/attackby(obj/item/W as obj, mob/user as mob)
-	..()
+	. = ..()
 	if(istype(W, /obj/item/weapon/cell))
-		if(src.cell)
-			user << "\blue You have already inserted a cell!"
+		if(!isnull(cell))
+			to_chat(user, SPAN_INFO("You have already inserted a cell!"))
 			return
 		else
 			user.drop_item()
 			W.loc = src
 			src.cell = W
-			user << "\blue You insert the cell!"
+			to_chat(user, SPAN_INFO("You insert the cell!"))
 	if(istype(W, /obj/item/stack/cable_coil))
-		if(src.wires)
-			user << "\blue You have already inserted wire!"
+		if(wires)
+			to_chat(user, SPAN_INFO("You have already inserted wire!"))
 			return
 		else
 			var/obj/item/stack/cable_coil/coil = W
 			coil.use(1)
-			src.wires = 1.0
-			user << "\blue You insert the wire!"
-	return
+			wires = TRUE
+			to_chat(user, SPAN_INFO("You insert the wire!"))
 
 /obj/item/robot_parts/head/attackby(obj/item/W as obj, mob/user as mob)
-	..()
+	. = ..()
 	if(istype(W, /obj/item/device/flash))
-		if(src.flash1 && src.flash2)
-			user << "\blue You have already inserted the eyes!"
+		if(!isnull(flash1) && !isnull(flash2))
+			to_chat(user, SPAN_INFO("You have already inserted the eyes!"))
 			return
-		else if(src.flash1)
+		else if(!isnull(flash1))
 			user.drop_item()
 			W.loc = src
-			src.flash2 = W
-			user << "\blue You insert the flash into the eye socket!"
+			flash2 = W
+			to_chat(user, SPAN_INFO("You insert the flash into the eye socket!"))
 		else
 			user.drop_item()
 			W.loc = src
-			src.flash1 = W
-			user << "\blue You insert the flash into the eye socket!"
+			flash1 = W
+			to_chat(user, SPAN_INFO("You insert the flash into the eye socket!"))
 	else if(istype(W, /obj/item/weapon/stock_part/manipulator))
-		user << "\blue You install some manipulators and modify the head, creating a functional spider-bot!"
+		to_chat(user, SPAN_INFO("You install some manipulators and modify the head, creating a functional spider-bot!"))
 		new /mob/living/simple_animal/spiderbot(get_turf(loc))
 		user.drop_item()
 		qdel(W)
 		qdel(src)
-		return
-	return
 
 /obj/item/robot_parts/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/card/emag))
+	if(istype(W, /obj/item/weapon/card/emag))
 		if(sabotaged)
-			user << "\red [src] is already sabotaged!"
+			to_chat(user, SPAN_WARNING("[src] is already sabotaged!"))
 		else
-			user << "\red You slide [W] into the dataport on [src] and short out the safeties."
-			sabotaged = 1
+			to_chat(user, SPAN_WARNING("You slide [W] into the dataport on [src] and short out the safeties."))
+			sabotaged = TRUE
 		return
-	..()
+	. = ..()
