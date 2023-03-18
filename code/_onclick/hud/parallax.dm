@@ -3,24 +3,24 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 
 /proc/create_parallax()
 	for(var/i = 0; i < PARALLAX_STAR_AMOUNT; i++)
-		GLOBL.parallax_stars += new /obj/space_star()
+		GLOBL.parallax_stars.Add(new /atom/movable/space_star())
 
 	for(var/i = 0; i < PARALLAX_BLUESPACE_STAR_AMOUNT; i++)
-		GLOBL.parallax_bluespace_stars += new /obj/space_star/bluespace()
+		GLOBL.parallax_bluespace_stars.Add(new /atom/movable/space_star/bluespace())
 
-/obj/parallax_master
+/atom/movable/parallax_master
 	screen_loc = UI_SPACE_PARALLAX
 	plane = SPACE_PARALLAX_PLANE
 	blend_mode = BLEND_MULTIPLY
 	appearance_flags = PLANE_MASTER
-	mouse_opacity = 0
+	mouse_opacity = FALSE
 	simulated = FALSE
 
-/obj/parallax_master/bluespace
+/atom/movable/parallax_master/bluespace
 	plane = SPACE_DUST_PLANE
 	blend_mode = BLEND_ADD
 
-/obj/space_parallax
+/atom/movable/space_parallax
 	name = "space"
 	icon = 'icons/mob/screen/screen1_full.dmi'
 	icon_state = "space_blank"
@@ -29,7 +29,7 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 	blend_mode = BLEND_ADD
 	simulated = FALSE
 
-/obj/space_star
+/atom/movable/space_star
 	name = "star"
 	icon = 'icons/turf/stars.dmi'
 	icon_state = "star0"
@@ -38,7 +38,7 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 	appearance_flags = KEEP_APART
 	simulated = FALSE
 
-/obj/space_star/New()
+/atom/movable/space_star/New()
 	// At a close look, only 2 tiles contain red stars(9,10), 3 contain blue(6,7,8), and 5 have white(1,2,3,4,5).
 	// Let's try to keep that consistent by probability.
 	// There's also a slightly higher chance for non-animated white stars(4,5) to break up the twinkle a bit.
@@ -61,27 +61,38 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 	pixel_x = rand(-50, 530)
 	pixel_y = rand(-50, 530)
 
-/obj/space_star/bluespace
+/atom/movable/space_star/bluespace
 	icon_state = "bstar0"
 	plane = SPACE_DUST_PLANE
 
-/obj/space_star/bluespace/New()
+/atom/movable/space_star/bluespace/New()
 	. = ..()
-	var/star_type = pick(prob(100); 0, prob(50); 1, prob(10); 2, prob(1); 3, prob(10); 4, prob(15); 5, prob(75); 6)
+	// These probabilities are mostly kept consistent to Halworsen's original implementation.
+	var/star_type = pick( \
+		100; 0, \
+		50; 1, \
+		10; 2, \
+		1; 3, \
+		10; 4, \
+		15; 5, \
+		75; 6 \
+	)
 	icon_state = "bstar[star_type]"
 
 /client
-	var/obj/parallax_master/parallax_master
-	var/obj/parallax_master/bluespace/bluespace_master
-	var/obj/space_parallax/space_parallax
+	var/atom/movable/parallax_master/parallax_master
+	var/atom/movable/parallax_master/bluespace/bluespace_master
+	var/atom/movable/space_parallax/space_parallax
 
 /client/proc/apply_parallax()
 	// SPESS BACKGROUND
-	if(!parallax_master && !bluespace_master && !space_parallax)
-		parallax_master = new /obj/parallax_master()
-		bluespace_master = new /obj/parallax_master/bluespace()
-		space_parallax = new /obj/space_parallax()
-	
+	if(isnull(parallax_master))
+		parallax_master = new /atom/movable/parallax_master()
+	if(isnull(bluespace_master))
+		bluespace_master = new /atom/movable/parallax_master/bluespace()
+	if(isnull(space_parallax))
+		space_parallax = new /atom/movable/space_parallax()
+
 	space_parallax.overlays |= GLOBL.parallax_stars
 	screen |= list(parallax_master, space_parallax)
 
@@ -95,17 +106,17 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 		screen |= bluespace_master
 	else
 		space_parallax.overlays |= GLOBL.parallax_stars
-		screen -= bluespace_master
+		screen.Remove(bluespace_master)
 
 /mob/Move()
 	. = ..()
-	if(. && client)
+	if(. && !isnull(client))
 		var/area/new_area = get_area(src)
 		client.set_parallax_space(new_area.parallax_type)
 
 /mob/forceMove()
 	. = ..()
-	if(. && client)
+	if(. && !isnull(client))
 		var/area/new_area = get_area(src)
 		client.set_parallax_space(new_area.parallax_type)
 
