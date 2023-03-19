@@ -52,25 +52,28 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 		CRASH("GC: -- [type] had initialize() called after qdel() --")
 
 /atom/Del()
-	if(!GC_DESTROYED(src) && loc)
+	if(!GC_DESTROYED(src) && !isnull(loc))
 		testing("GC: -- [type] was deleted via del() rather than qdel() --")
 		Destroy()
 	else if(!GC_DESTROYED(src))
 		testing("GC: [type] was deleted via GC without qdel()") //Not really a huge issue but from now on, please qdel()
 //	else
 //		testing("GC: [type] was deleted via GC with qdel()")
-	..()
+	. = ..()
 
 /atom/Destroy()
+	dequeue_for_initialisation(src)
+
 	density = FALSE
 	invisibility = INVISIBILITY_MAXIMUM
 	set_opacity(0)
 
-	if(reagents)
+	if(!isnull(reagents))
 		qdel(reagents)
 		reagents = null
-	for(var/atom/movable/AM in contents)
-		qdel(AM)
+	for(var/atom/movable/mover in contents)
+		qdel(mover)
+
 	return ..()
 
 /atom/proc/throw_impact(atom/hit_atom, speed)
@@ -81,14 +84,14 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 	else if(isobj(hit_atom))
 		var/obj/O = hit_atom
 		if(!O.anchored)
-			step(O, src.dir)
+			step(O, dir)
 		O.hitby(src, speed)
 
 	else if(isturf(hit_atom))
 		var/turf/T = hit_atom
 		if(T.density)
 			spawn(2)
-				step(src, turn(src.dir, 180))
+				step(src, turn(dir, 180))
 			if(isliving(src))
 				var/mob/living/M = src
 				M.take_organ_damage(20)
@@ -100,15 +103,12 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 	return null
 
 /atom/proc/return_air()
-	if(!isnull(loc))
-		return loc.return_air()
-	else
-		return null
+	return loc?.return_air()
 
 /atom/proc/check_eye(user as mob)
 	if(isAI(user)) // WHYYYY
-		return 1
-	return
+		return TRUE
+	return FALSE
 
 /atom/proc/on_reagent_change()
 	return
@@ -151,18 +151,18 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 
 /atom/proc/in_contents_of(container)//can take class or object instance as argument
 	if(ispath(container))
-		if(istype(src.loc, container))
-			return 1
+		if(istype(loc, container))
+			return TRUE
 	else if(src in container)
-		return 1
-	return
+		return TRUE
+	return FALSE
 
 /*
  *	atom/proc/search_contents_for(path,list/filter_path=null)
  * Recursevly searches all atom contens (including contents contents and so on).
  *
  * ARGS: path - search atom contents for atoms of this type
- *	   list/filter_path - if set, contents of atoms not of types in this list are excluded from search.
+ *		list/filter_path - if set, contents of atoms not of types in this list are excluded from search.
  *
  * RETURNS: list of found atoms
  */
@@ -180,7 +180,6 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 		if(length(A.contents))
 			found.Add(A.search_contents_for(path, filter_path))
 	return found
-
 
 /*
 Beam code by Gunbuddy
@@ -253,7 +252,6 @@ Maxdistance is the longest range the beam will persist before it gives up.
 		if(last_fingerprints != M.key)
 			hidden_fingerprints.Add("\[[time_stamp()]\] Real name: [M.real_name], Key: [M.key]")
 			last_fingerprints = M.key
-	return
 
 /atom/proc/add_fingerprint(mob/living/M as mob)
 	if(isnull(M))
@@ -357,7 +355,6 @@ Maxdistance is the longest range the beam will persist before it gives up.
 	//Cleaning up shit.
 	if(!isnull(fingerprints) && !length(fingerprints))
 		qdel(fingerprints)
-	return
 
 /atom/proc/transfer_fingerprints_to(atom/A)
 	if(!islist(A.fingerprints))
@@ -407,6 +404,7 @@ Maxdistance is the longest range the beam will persist before it gives up.
 /atom/proc/get_global_map_pos()
 	if(!islist(GLOBL.global_map) || isemptylist(GLOBL.global_map))
 		return
+
 	var/cur_x = null
 	var/cur_y = null
 	var/list/y_arr = null

@@ -70,7 +70,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 
 
 /turf/simulated/floor/New()
-	..()
+	. = ..()
 	if(icon_state in icons_to_ignore_at_floor_init) //so damaged/burned tiles or plating icons aren't saved as the default
 		icon_regular_floor = "floor"
 	else
@@ -86,28 +86,27 @@ var/list/wood_icons = list("wood", "wood-broken")
 	//set src in oview(1)
 	switch(severity)
 		if(1.0)
-			src.ChangeTurf(get_base_turf_by_area(src))
+			ChangeTurf(get_base_turf_by_area(src))
 		if(2.0)
 			switch(pick(1, 2;75, 3))
 				if(1)
-					src.ReplaceWithLattice()
+					ReplaceWithLattice()
 					if(prob(33))
 						new /obj/item/stack/sheet/metal(src)
 				if(2)
-					src.ChangeTurf(get_base_turf_by_area(src))
+					ChangeTurf(get_base_turf_by_area(src))
 				if(3)
 					if(prob(80))
-						src.break_tile_to_plating()
+						break_tile_to_plating()
 					else
-						src.break_tile()
-					src.hotspot_expose(1000, CELL_VOLUME)
+						break_tile()
+					hotspot_expose(1000, CELL_VOLUME)
 					if(prob(33))
 						new /obj/item/stack/sheet/metal(src)
 		if(3.0)
 			if(prob(50))
-				src.break_tile()
-				src.hotspot_expose(1000, CELL_VOLUME)
-	return
+				break_tile()
+				hotspot_expose(1000, CELL_VOLUME)
 
 /turf/simulated/floor/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(!burnt && prob(5))
@@ -115,7 +114,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 	else if(prob(1) && !is_plating())
 		make_plating()
 		burn_tile()
-	return
 
 /turf/simulated/floor/adjacent_fire_act(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
 	var/dir_to = get_dir(src, adj_turf)
@@ -130,6 +128,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 /turf/simulated/floor/proc/update_icon()
 	if(lava)
 		return
+
 	else if(is_plasteel_floor())
 		if(!broken && !burnt)
 			icon_state = icon_regular_floor
@@ -213,11 +212,11 @@ var/list/wood_icons = list("wood", "wood-broken")
 				update_visuals(air)*/
 
 /turf/simulated/floor/return_siding_icon_state()
-	..()
+	. = ..()
 	if(is_grass_floor())
 		var/dir_sum = 0
 		for(var/direction in GLOBL.cardinal)
-			var/turf/T = get_step(src,direction)
+			var/turf/T = get_step(src, direction)
 			if(!(T.is_grass_floor()))
 				dir_sum += direction
 		if(dir_sum)
@@ -226,7 +225,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 			return 0
 
 /turf/simulated/floor/attack_paw(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /turf/simulated/floor/attack_hand(mob/user as mob)
 	if(is_light_floor())
@@ -251,7 +250,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 		M.start_pulling(t)
 	else
 		step(user.pulling, get_dir(user.pulling.loc, src))
-	return
 
 /turf/simulated/floor/proc/gets_drilled()
 	return
@@ -300,26 +298,26 @@ var/list/wood_icons = list("wood", "wood-broken")
 	if(istype(src, /turf/simulated/floor/engine))
 		return
 	if(istype(src, /turf/simulated/floor/mech_bay_recharge_floor))
-		src.ChangeTurf(/turf/simulated/floor/plating)
+		ChangeTurf(/turf/simulated/floor/plating)
 	if(broken)
 		return
 	if(is_plasteel_floor())
-		src.icon_state = "damaged[pick(1,2,3,4,5)]"
+		icon_state = "damaged[pick(1,2,3,4,5)]"
 		broken = 1
 	else if(is_light_floor())
-		src.icon_state = "light_broken"
+		icon_state = "light_broken"
 		broken = 1
 	else if(is_plating())
-		src.icon_state = "platingdmg[pick(1,2,3)]"
+		icon_state = "platingdmg[pick(1,2,3)]"
 		broken = 1
 	else if(is_wood_floor())
-		src.icon_state = "wood-broken"
+		icon_state = "wood-broken"
 		broken = 1
 	else if(is_carpet_floor())
-		src.icon_state = "carpet-broken"
+		icon_state = "carpet-broken"
 		broken = 1
 	else if(is_grass_floor())
-		src.icon_state = "sand[pick("1","2","3")]"
+		icon_state = "sand[pick("1","2","3")]"
 		broken = 1
 
 /turf/simulated/floor/proc/burn_tile()
@@ -330,22 +328,22 @@ var/list/wood_icons = list("wood", "wood-broken")
 	if(broken || burnt)
 		return
 	if(is_plasteel_floor())
-		src.icon_state = "damaged[pick(1,2,3,4,5)]"
+		icon_state = "damaged[pick(1,2,3,4,5)]"
 		burnt = 1
 	else if(is_plasteel_floor())
-		src.icon_state = "floorscorched[pick(1,2)]"
+		icon_state = "floorscorched[pick(1,2)]"
 		burnt = 1
 	else if(is_plating())
-		src.icon_state = "panelscorched"
+		icon_state = "panelscorched"
 		burnt = 1
 	else if(is_wood_floor())
-		src.icon_state = "wood-broken"
+		icon_state = "wood-broken"
 		burnt = 1
 	else if(is_carpet_floor())
-		src.icon_state = "carpet-broken"
+		icon_state = "carpet-broken"
 		burnt = 1
 	else if(is_grass_floor())
-		src.icon_state = "sand[pick("1","2","3")]"
+		icon_state = "sand[pick("1","2","3")]"
 		burnt = 1
 
 //This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf
@@ -387,7 +385,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	burnt = 0
 	intact = 1
 	set_light(0)
-	if(T)
+	if(!isnull(T))
 		if(istype(T, /obj/item/stack/tile/plasteel))
 			floor_type = T.type
 			if(icon_regular_floor)
@@ -413,7 +411,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	broken = 0
 	burnt = 0
 	intact = 1
-	if(T)
+	if(!isnull(T))
 		if(istype(T, /obj/item/stack/tile/light))
 			floor_type = T.type
 			update_icon()
@@ -431,7 +429,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	broken = 0
 	burnt = 0
 	intact = 1
-	if(T)
+	if(!isnull(T))
 		if(istype(T, /obj/item/stack/tile/grass))
 			floor_type = T.type
 			update_icon()
@@ -449,7 +447,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	broken = 0
 	burnt = 0
 	intact = 1
-	if(T)
+	if(!isnull(T))
 		if(istype(T, /obj/item/stack/tile/wood))
 			floor_type = T.type
 			update_icon()
@@ -467,7 +465,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	broken = 0
 	burnt = 0
 	intact = 1
-	if(T)
+	if(!isnull(T))
 		if(istype(T, /obj/item/stack/tile/carpet))
 			floor_type = T.type
 			update_icon()
@@ -480,7 +478,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	levelupdate()
 
 /turf/simulated/floor/attackby(obj/item/C as obj, mob/user as mob)
-	if(!C || !user)
+	if(isnull(C) || isnull(user))
 		return 0
 
 	if(istype(C, /obj/item/weapon/light/bulb)) //only for light tiles
@@ -510,7 +508,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 
 		make_plating()
 		playsound(src, 'sound/items/Crowbar.ogg', 80, 1)
-
 		return
 
 	if(istype(C, /obj/item/weapon/screwdriver) && is_wood_floor())
@@ -523,7 +520,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 
 		make_plating()
 		playsound(src, 'sound/items/Screwdriver.ogg', 80, 1)
-
 		return
 
 	if(istype(C, /obj/item/stack/rods))
@@ -568,7 +564,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 				playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			else
 				to_chat(user, SPAN_INFO("This section is too damaged to support a tile. Use a welder to fix the damage."))
-
 
 	if(istype(C, /obj/item/stack/cable_coil))
 		if(is_plating())

@@ -31,7 +31,6 @@
 	to_chat(user, SPAN_INFO("You push the wall but nothing happens!"))
 	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 	src.add_fingerprint(user)
-	return
 
 /turf/simulated/wall/r_wall/attackby(obj/item/W as obj, mob/user as mob)
 	if(!(ishuman(user) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
@@ -50,7 +49,7 @@
 				playsound(src, 'sound/items/Welder.ogg', 10, 1)
 				for(var/obj/effect/E in src) if(E.name == "Wallrot")
 					qdel(E)
-				rotting = 0
+				rotting = FALSE
 				return
 		else if(!is_sharp(W) && W.force >= 10 || W.force >= 20)
 			to_chat(user, SPAN_NOTICE("\The [src] crumbles away under the force of your [W.name]."))
@@ -316,4 +315,3 @@
 	//Finally, CHECKING FOR FALSE WALLS if it isn't damaged
 	else if(!d_state)
 		return attack_hand(user)
-	return

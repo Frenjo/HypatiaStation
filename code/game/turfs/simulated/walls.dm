@@ -11,7 +11,7 @@
 	heat_capacity = 312500 //a little over 5 cm thick, 312500 for 1m by 2.5m by 0.25m plasteel wall
 
 	var/mineral = MATERIAL_METAL
-	var/rotting = 0
+	var/rotting = FALSE
 
 	var/damage = 0
 	var/damage_cap = 100 //Wall will break down to girders if damage reaches this point
@@ -91,10 +91,8 @@
 		return
 
 	overlays.Cut()
-	overlays += damage_overlays[overlay]
+	overlays.Add(damage_overlays[overlay])
 	damage_overlay = overlay
-
-	return
 
 /turf/simulated/wall/proc/generate_overlays()
 	var/alpha_inc = 256 / length(damage_overlays)
@@ -110,7 +108,6 @@
 	if(dam)
 		damage = max(0, damage + dam)
 		update_damage()
-	return
 
 /turf/simulated/wall/proc/update_damage()
 	var/cap = damage_cap
@@ -122,12 +119,9 @@
 	else
 		update_icon()
 
-	return
-
 /turf/simulated/wall/adjacent_fire_act(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
 	if(adj_temp > max_temperature)
 		take_damage(log(rand(5, 10) * (adj_temp - max_temperature)))
-
 	return ..()
 
 /turf/simulated/wall/proc/dismantle_wall(devastated = 0, explode = 0)
@@ -192,17 +186,14 @@
 				dismantle_wall(1, 1)
 		if(3.0)
 			take_damage(rand(0, 250))
-		else
-	return
 
 /turf/simulated/wall/blob_act()
 	take_damage(rand(75, 125))
-	return
 
 // Wall-rot effect, a nasty fungus that destroys walls.
 /turf/simulated/wall/proc/rot()
 	if(!rotting)
-		rotting = 1
+		rotting = TRUE
 
 		var/number_rots = rand(2,3)
 		for(var/i = 0, i < number_rots, i++)
@@ -240,7 +231,6 @@
 		if(O)
 			qdel(O)
 //	F.sd_LumReset()		//TODO: ~Carn
-	return
 
 /turf/simulated/wall/meteorhit(obj/M as obj)
 	if(prob(15) && !rotting)
@@ -265,7 +255,7 @@
 			take_damage(rand(25, 75))
 			return
 
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /turf/simulated/wall/attack_animal(mob/living/M as mob)
 	if(M.wall_smash)
@@ -283,7 +273,6 @@
 				return
 
 	to_chat(M, SPAN_INFO("You push the wall but nothing happens!"))
-	return
 
 /turf/simulated/wall/attack_hand(mob/user as mob)
 	if((HULK in user.mutations))
@@ -305,8 +294,7 @@
 
 	to_chat(user, SPAN_INFO("You push the wall but nothing happens!"))
 	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
-	src.add_fingerprint(user)
-	return
+	add_fingerprint(user)
 
 /turf/simulated/wall/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!(ishuman(user) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
@@ -325,7 +313,7 @@
 				playsound(src, 'sound/items/Welder.ogg', 10, 1)
 				for(var/obj/effect/E in src) if(E.name == "Wallrot")
 					qdel(E)
-				rotting = 0
+				rotting = FALSE
 				return
 		else if(!is_sharp(W) && W.force >= 10 || W.force >= 20)
 			to_chat(user, SPAN_NOTICE("\The [src] crumbles away under the force of your [W.name]."))
@@ -516,4 +504,4 @@
 	for(var/obj/effect/E in src)
 		if(E.name == "Wallrot")
 			qdel(E)
-	..(newtype)
+	. = ..(newtype)

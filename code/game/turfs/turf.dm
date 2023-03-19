@@ -22,10 +22,12 @@
 /turf/New()
 	. = ..()
 	GLOBL.processing_turfs.Add(src)
+
 	for(var/atom/movable/AM as mob|obj in src)
 		spawn(0)
-			src.Entered(AM)
+			Entered(AM)
 			return
+
 	if(dynamic_lighting)
 		luminosity = 0
 	else
@@ -41,58 +43,58 @@
 /turf/ex_act(severity)
 	return 0
 
-/turf/bullet_act(obj/item/projectile/Proj)
-	if(istype(Proj, /obj/item/projectile/energy/beam/pulse))
-		src.ex_act(2)
-	..()
-	return 0
+/turf/bullet_act(obj/item/projectile/proj)
+	if(istype(proj, /obj/item/projectile/energy/beam/pulse))
+		ex_act(2)
+	. = ..()
 
-/turf/bullet_act(obj/item/projectile/Proj)
-	if(istype(Proj, /obj/item/projectile/bullet/gyro))
+/turf/bullet_act(obj/item/projectile/proj)
+	if(istype(proj, /obj/item/projectile/bullet/gyro))
 		explosion(src, -1, 0, 2)
-	..()
-	return 0
+	. = ..()
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
 		to_chat(usr, FEEDBACK_MOVEMENT_ADMIN_DISABLED) // This is to identify lag problems.
 		return
-	if(!mover || !isturf(mover.loc))
-		return 1
 
-	//First, check objects to block exit that are not on the border
+	if(isnull(mover) || !isturf(mover.loc))
+		return TRUE
+
+	// First, check objects to block exit that are not on the border.
 	for(var/obj/obstacle in mover.loc)
 		if(!(obstacle.flags & ON_BORDER) && mover != obstacle && forget != obstacle)
 			if(!obstacle.CheckExit(mover, src))
 				mover.Bump(obstacle, 1)
-				return 0
+				return FALSE
 
-	//Now, check objects to block exit that are on the border
+	// Now, check objects to block exit that are on the border.
 	for(var/obj/border_obstacle in mover.loc)
 		if((border_obstacle.flags & ON_BORDER) && mover != border_obstacle && forget != border_obstacle)
 			if(!border_obstacle.CheckExit(mover, src))
 				mover.Bump(border_obstacle, 1)
-				return 0
+				return FALSE
 
-	//Next, check objects to block entry that are on the border
+	// Next, check objects to block entry that are on the border.
 	for(var/obj/border_obstacle in src)
 		if(border_obstacle.flags & ON_BORDER)
 			if(!border_obstacle.CanPass(mover, mover.loc, 1, 0) && forget != border_obstacle)
 				mover.Bump(border_obstacle, 1)
-				return 0
+				return FALSE
 
-	//Then, check the turf itself
-	if(!src.CanPass(mover, src))
+	// Then, check the turf itself.
+	if(!CanPass(mover, src))
 		mover.Bump(src, 1)
-		return 0
+		return FALSE
 
-	//Finally, check objects/mobs to block entry that are not on the border
+	// Finally, check objects/mobs to block entry that are not on the border.
 	for(var/atom/movable/obstacle in src)
 		if(!(obstacle.flags & ON_BORDER))
 			if(!obstacle.CanPass(mover, mover.loc, 1, 0) && forget != obstacle)
 				mover.Bump(obstacle, 1)
-				return 0
-	return 1 //Nothing found to block so return success!
+				return FALSE
+
+	return TRUE // Nothing found to block so return success!
 
 /turf/Entered(atom/atom as mob|obj)
 	if(movement_disabled)
@@ -140,7 +142,6 @@
 			if(A && M)
 				A.HasProximity(M, 1)
 			return
-	return
 
 /turf/proc/adjacent_fire_act(turf/simulated/floor/source, temperature, volume)
 	return
@@ -166,19 +167,18 @@
 	if(isnull(A.last_move))
 		return
 
-	if(ismob(A) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy - 1))
+	if(ismob(A) && x > 2 && x < (world.maxx - 1) && y > 2 && y < (world.maxy - 1))
 		var/mob/M = A
 		if(M.Process_Spacemove(1))
 			M.inertia_dir = 0
 			return
 		spawn(5)
-			if(M && !M.anchored && !M.pulledby && M.loc == src)
+			if(!isnull(M) && !M.anchored && !M.pulledby && M.loc == src)
 				if(M.inertia_dir)
 					step(M, M.inertia_dir)
 					return
 				M.inertia_dir = M.last_move
 				step(M, M.inertia_dir)
-	return
 
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
@@ -244,8 +244,7 @@
 		if(istype(W, /turf/simulated/floor))
 			W.RemoveLattice()
 
-		if(global.CTair_system)
-			global.CTair_system.mark_for_update(src)
+		global.CTair_system?.mark_for_update(src)
 
 		for(var/turf/space/S in range(W, 1))
 			S.update_starlight()
@@ -258,8 +257,7 @@
 		if(old_fire)
 			old_fire.RemoveFire()
 
-		if(global.CTair_system)
-			global.CTair_system.mark_for_update(src)
+		global.CTair_system?.mark_for_update(src)
 
 		for(var/turf/space/S in range(W, 1))
 			S.update_starlight()
@@ -285,11 +283,11 @@
 	if(!istype(other, src.type))
 		return 0
 
-	src.set_dir(other.dir)
-	src.icon_state = other.icon_state
-	src.icon = other.icon
-	src.overlays = other.overlays.Copy()
-	src.underlays = other.underlays.Copy()
+	set_dir(other.dir)
+	icon_state = other.icon_state
+	icon = other.icon
+	overlays = other.overlays.Copy()
+	underlays = other.underlays.Copy()
 	return 1
 
 //I would name this copy_from() but we remove the other turf from their air zone for some reason
@@ -298,9 +296,9 @@
 		return 0
 
 	if(other.zone)
-		if(isnull(src.air))
-			src.make_air()
-		src.air.copy_from(other.zone.air)
+		if(isnull(air))
+			make_air()
+		air.copy_from(other.zone.air)
 		other.zone.remove(other)
 	return 1
 
@@ -361,8 +359,8 @@
 */
 
 /turf/proc/ReplaceWithLattice()
-	src.ChangeTurf(get_base_turf_by_area(get_area(src.loc)))
-	new /obj/structure/lattice(locate(src.x, src.y, src.z))
+	ChangeTurf(get_base_turf_by_area(get_area(src.loc)))
+	new /obj/structure/lattice(locate(x, y, z))
 
 /turf/proc/kill_creatures(mob/U = null)	//Will kill people/creatures and damage mechs./N
 //Useful to batch-add creatures to the list.

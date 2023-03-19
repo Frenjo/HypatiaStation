@@ -124,7 +124,7 @@
 	return
 
 /obj/item/attack_hand(mob/user as mob)
-	if(!user)
+	if(isnull(user))
 		return
 	if(hasorgans(user))
 		var/datum/organ/external/temp = user:organs_by_name["r_hand"]
@@ -134,25 +134,24 @@
 			to_chat(user, SPAN_NOTICE("You try to move your [temp.display_name], but cannot!"))
 			return
 
-	if(istype(src.loc, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = src.loc
+	if(istype(loc, /obj/item/weapon/storage))
+		var/obj/item/weapon/storage/S = loc
 		S.remove_from_storage(src)
 
-	src.throwing = 0
-	if(src.loc == user)
+	throwing = THROW_NONE
+	if(loc == user)
 		//canremove==0 means that object may not be removed. You can still wear it. This only applies to clothing. /N
-		if(!src.canremove)
+		if(!canremove)
 			return
 		else
 			user.u_equip(src)
 	else
-		if(isliving(src.loc))
+		if(isliving(loc))
 			return
 		user.next_move = max(user.next_move + 2, world.time + 2)
-	src.pickup(user)
+	pickup(user)
 	add_fingerprint(user)
 	user.put_in_active_hand(src)
-	return
 
 /obj/item/attack_paw(mob/user as mob)
 	if(istype(src.loc, /obj/item/weapon/storage))
@@ -160,7 +159,7 @@
 			if(M.s_active == src.loc)
 				if(M.client)
 					M.client.screen -= src
-	src.throwing = 0
+	throwing = THROW_NONE
 	if(src.loc == user)
 		//canremove==0 means that object may not be removed. You can still wear it. This only applies to clothing. /N
 		if(istype(src, /obj/item/clothing) && !src:canremove)

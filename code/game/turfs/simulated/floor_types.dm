@@ -8,7 +8,7 @@
 	temperature = TCMB
 
 /turf/simulated/floor/airless/New()
-	..()
+	. = ..()
 	name = "floor"
 
 /turf/simulated/floor/airless/ceiling
@@ -25,9 +25,9 @@
 
 /turf/simulated/floor/light/New()
 	var/n = name //just in case commands rename it in the ..() call
-	..()
+	. = ..()
 	spawn(4)
-		if(src)
+		if(!isnull(src))
 			update_icon()
 			name = n
 
@@ -46,14 +46,14 @@
 	icon_state = "rockvault"
 
 /turf/simulated/floor/vault/New(location, type)
-	..()
+	. = ..()
 	icon_state = "[type]vault"
 
 /turf/simulated/wall/vault
 	icon_state = "rockvault"
 
 /turf/simulated/wall/vault/New(location, type)
-	..()
+	. = ..()
 	icon_state = "[type]vault"
 
 /*
@@ -66,9 +66,9 @@
 	heat_capacity = 325000
 
 /turf/simulated/floor/engine/attackby(obj/item/weapon/C as obj, mob/user as mob)
-	if(!C)
+	if(isnull(C))
 		return
-	if(!user)
+	if(isnull(user))
 		return
 	if(istype(C, /obj/item/weapon/wrench))
 		to_chat(user, SPAN_INFO("Removing rods..."))
@@ -78,7 +78,6 @@
 			ChangeTurf(/turf/simulated/floor)
 			var/turf/simulated/floor/F = src
 			F.make_plating()
-			return
 
 /turf/simulated/floor/engine/cult
 	name = "engraved floor"
@@ -150,7 +149,7 @@
 	temperature = TCMB
 
 /turf/simulated/floor/plating/airless/New()
-	..()
+	. = ..()
 	name = "plating"
 
 /*
@@ -227,8 +226,8 @@
 	icon_state = "water"
 
 /turf/simulated/floor/beach/water/New()
-	..()
-	overlays += image("icon" = 'icons/misc/beach.dmi', "icon_state" = "water5", "layer" = MOB_LAYER + 0.1)
+	. = ..()
+	overlays.Add(image("icon" = 'icons/misc/beach.dmi', "icon_state" = "water5", "layer" = MOB_LAYER + 0.1))
 
 /*
  * Grass
@@ -240,9 +239,9 @@
 
 /turf/simulated/floor/grass/New()
 	icon_state = "grass[pick("1","2","3","4")]"
-	..()
+	. = ..()
 	spawn(4)
-		if(src)
+		if(!isnull(src))
 			update_icon()
 			for(var/direction in GLOBL.cardinal)
 				if(istype(get_step(src, direction), /turf/simulated/floor))
@@ -260,9 +259,9 @@
 /turf/simulated/floor/carpet/New()
 	if(!icon_state)
 		icon_state = "carpet"
-	..()
+	. = ..()
 	spawn(4)
-		if(src)
+		if(!isnull(src))
 			update_icon()
 			for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
 				if(istype(get_step(src, direction), /turf/simulated/floor))
@@ -273,7 +272,7 @@
  * Iron Sand
  */
 /turf/simulated/floor/plating/ironsand/New()
-	..()
+	. = ..()
 	name = "Iron Sand"
 	icon_state = "ironsand[rand(1, 15)]"
 

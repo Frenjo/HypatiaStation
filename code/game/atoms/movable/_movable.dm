@@ -8,55 +8,50 @@
 	var/move_speed = 10
 	var/l_move_time = 1
 	var/m_flag = 1
-	var/throwing = 0
+	var/throwing = THROW_NONE
 	var/throw_speed = 2
 	var/throw_range = 7
 	var/moved_recently = FALSE
 	var/mob/pulledby = null
 
 /atom/movable/Destroy()
-	dequeue_for_initialisation(src)
-	if(reagents)
-		qdel(reagents)
-		reagents = null
-	for(var/atom/movable/AM in contents)
-		qdel(AM)
-	var/turf/un_opaque
+	var/turf/un_opaque = null
 	if(opacity && isturf(loc))
 		un_opaque = loc
 	loc = null
-	if(un_opaque)
-		un_opaque.recalc_atom_opacity()
-	if(pulledby)
+	un_opaque?.recalc_atom_opacity()
+
+	if(!isnull(pulledby))
 		if(pulledby.pulling == src)
 			pulledby.pulling = null
 		pulledby = null
+
 	return ..()
 
 /atom/movable/Move()
-	var/atom/A = src.loc
+	var/atom/A = loc
 	. = ..()
-	src.move_speed = world.time - src.l_move_time
-	src.l_move_time = world.time
-	src.m_flag = 1
-	if(A != src.loc && A && A.z == src.z)
-		src.last_move = get_dir(A, src.loc)
+	move_speed = world.time - l_move_time
+	l_move_time = world.time
+	m_flag = 1
+	if(A != loc && A?.z == z)
+		last_move = get_dir(A, loc)
 
 /atom/movable/Bump(atom/A, yes)
-	if(src.throwing)
-		src.throw_impact(A)
-		src.throwing = 0
+	if(throwing)
+		throw_impact(A)
+		throwing = THROW_NONE
 
 	spawn(0)
-		if(A && yes)
+		if(!isnull(A) && yes)
 			A.last_bumped = world.time
 			A.Bumped(src)
 		return
-	..()
+	. = ..()
 
 /atom/movable/proc/forceMove(atom/destination)
-	if(destination)
-		if(loc)
+	if(!isnull(destination))
+		if(!isnull(loc))
 			loc.Exited(src)
 		loc = destination
 		loc.Entered(src)
@@ -64,31 +59,33 @@
 	return 0
 
 /atom/movable/proc/hit_check(speed)
-	if(src.throwing)
+	if(throwing)
 		for(var/atom/A in get_turf(src))
 			if(A == src)
 				continue
 			if(isliving(A))
-				if(A:lying)
+				var/mob/living/living = A
+				if(living.lying)
 					continue
-				src.throw_impact(A, speed)
-				if(src.throwing == 1)
-					src.throwing = 0
+				throw_impact(living, speed)
+				if(throwing)
+					throwing = THROW_NONE
 			if(isobj(A))
-				if(A.density && !A.throwpass)	// **TODO: Better behaviour for windows which are dense, but shouldn't always stop movement
-					src.throw_impact(A, speed)
-					src.throwing = 0
+				var/obj/object = A
+				if(object.density && !object.throwpass)	// **TODO: Better behaviour for windows which are dense, but shouldn't always stop movement
+					throw_impact(object, speed)
+					throwing = THROW_NONE
 
 /atom/movable/proc/throw_at(atom/target, range, speed)
-	if(!target || !src)
+	if(isnull(target) || isnull(src))
 		return 0
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
 
-	src.throwing = 1
+	throwing = THROW_WEAK
 
-	if(usr)
+	if(!isnull(usr))
 		if(HULK in usr.mutations)
-			src.throwing = 2 // really strong throw!
+			throwing = THROW_STRONG // really strong throw!
 
 	var/dist_x = abs(target.x - src.x)
 	var/dist_y = abs(target.y - src.y)
@@ -109,13 +106,13 @@
 	var/area/a = get_area(src.loc)
 	if(dist_x > dist_y)
 		var/error = dist_x / 2 - dist_y
-		while(src && target &&((((src.x < target.x && dx == EAST) || (src.x > target.x && dx == WEST)) && dist_travelled < range) || (a && !a.has_gravity) || isspace(src.loc)) && src.throwing && isturf(src.loc))
+		while(!isnull(src) && !isnull(target) &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || (a && !a.has_gravity) || isspace(loc)) && throwing && isturf(loc))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dy)
-				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
+				if(isnull(step)) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				src.Move(step)
+				Move(step)
 				hit_check(speed)
 				error += dist_x
 				dist_travelled++
@@ -125,9 +122,9 @@
 					sleep(1)
 			else
 				var/atom/step = get_step(src, dx)
-				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
+				if(isnull(step)) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				src.Move(step)
+				Move(step)
 				hit_check(speed)
 				error -= dist_y
 				dist_travelled++
@@ -138,13 +135,13 @@
 			a = get_area(src.loc)
 	else
 		var/error = dist_y / 2 - dist_x
-		while(src && target &&((((src.y < target.y && dy == NORTH) || (src.y > target.y && dy == SOUTH)) && dist_travelled < range) || !a.has_gravity || isspace(src.loc)) && src.throwing && isturf(src.loc))
+		while(!isnull(src) && !isnull(target) &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || !a.has_gravity || isspace(loc)) && throwing && isturf(loc))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dx)
-				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
+				if(isnull(step)) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				src.Move(step)
+				Move(step)
 				hit_check(speed)
 				error += dist_y
 				dist_travelled++
@@ -154,9 +151,9 @@
 					sleep(1)
 			else
 				var/atom/step = get_step(src, dy)
-				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
+				if(isnull(step)) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				src.Move(step)
+				Move(step)
 				hit_check(speed)
 				error -= dist_x
 				dist_travelled++
@@ -168,6 +165,6 @@
 			a = get_area(src.loc)
 
 	//done throwing, either because it hit something or it finished moving
-	src.throwing = 0
+	throwing = THROW_NONE
 	if(isobj(src))
-		src.throw_impact(get_turf(src), speed)
+		throw_impact(get_turf(src), speed)

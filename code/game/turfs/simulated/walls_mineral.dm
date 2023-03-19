@@ -74,15 +74,15 @@
 
 /turf/simulated/wall/mineral/uranium/attack_hand(mob/user as mob)
 	radiate(1)
-	..()
+	. = ..()
 
 /turf/simulated/wall/mineral/uranium/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	radiate(1)
-	..()
+	. = ..()
 
 /turf/simulated/wall/mineral/uranium/Bumped(AM as mob|obj)
 	radiate(1)
-	..()
+	. = ..()
 
 /turf/simulated/wall/mineral/plasma
 	name = "plasma wall"
@@ -95,7 +95,7 @@
 	if(is_hot(W) > 300)//If the temperature of the object is over 300, then ignite
 		ignite(is_hot(W))
 		return
-	..()
+	. = ..()
 
 /turf/simulated/wall/mineral/plasma/proc/PlasmaBurn(temperature)
 	spawn(2)
@@ -127,7 +127,7 @@
 		PlasmaBurn(2500)
 	else if(istype(Proj, /obj/item/projectile/ion))
 		PlasmaBurn(500)
-	..()
+	. = ..()
 
 /*
 /turf/simulated/wall/mineral/proc/shock()

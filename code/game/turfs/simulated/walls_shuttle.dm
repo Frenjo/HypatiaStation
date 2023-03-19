@@ -62,14 +62,14 @@
 	var/image/corner_overlay
 
 /turf/simulated/shuttle/wall/corner/exterior/New()
-	..()
+	. = ..()
 	reset_base_appearance()
 	reset_overlay()
 
 //Grabs the base turf type from our area and copies its appearance
 /turf/simulated/shuttle/wall/corner/exterior/proc/reset_base_appearance()
 	var/turf/base_type = get_base_turf_by_area(src)
-	if(!base_type)
+	if(isnull(base_type))
 		return
 
 	icon = initial(base_type.icon)
@@ -77,12 +77,12 @@
 	copy_initial_plane_and_layer(base_type)
 
 /turf/simulated/shuttle/wall/corner/exterior/proc/reset_overlay()
-	if(corner_overlay)
-		overlays -= corner_overlay
+	if(!isnull(corner_overlay))
+		overlays.Remove(corner_overlay)
 	else
 		corner_overlay = image(icon = 'icons/turf/shuttle.dmi', icon_state = corner_overlay_state, layer = src.layer, dir = src.dir)
 		corner_overlay.plane = GAME_PLANE
-	overlays += corner_overlay
+	overlays.Add(corner_overlay)
 
 // Predefined Shuttle Exterior Corners
 /turf/simulated/shuttle/wall/corner/exterior/smoothwhite

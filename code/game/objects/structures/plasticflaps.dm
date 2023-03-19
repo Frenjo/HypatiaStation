@@ -17,12 +17,12 @@
 
 	var/obj/structure/stool/bed/B = A
 	if(istype(A, /obj/structure/stool/bed) && B.buckled_mob)//if it's a bed/chair and someone is buckled, it will not pass
-		return 0
+		return FALSE
 
 	else if(isliving(A)) // You Shall Not Pass!
 		var/mob/living/M = A
 		if(!M.lying && !ismonkey(M) && !isslime(M) && !ismouse(M) && !isdrone(M))  //If your not laying down, or a small creature, no pass.
-			return 0
+			return FALSE
 	return ..()
 
 /obj/structure/plasticflaps/ex_act(severity)
@@ -41,14 +41,14 @@
 	desc = "Heavy duty, airtight, plastic flaps."
 
 /obj/structure/plasticflaps/mining/New() //set the turf below the flaps to block air
-	..()
+	. = ..()
 	var/turf/T = get_turf(loc)
-	if(T)
-		T.blocks_air = 1
+	if(!isnull(T))
+		T.blocks_air = TRUE
 
 /obj/structure/plasticflaps/mining/Destroy() //lazy hack to set the turf to allow air to pass if it's a simulated floor
 	var/turf/T = get_turf(loc)
-	if(T)
+	if(!isnull(T))
 		if(istype(T, /turf/simulated/floor))
-			T.blocks_air = 0
+			T.blocks_air = FALSE
 	return ..()

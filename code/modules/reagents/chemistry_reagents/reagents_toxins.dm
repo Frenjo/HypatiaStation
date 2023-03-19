@@ -240,7 +240,7 @@
 	if(istype(T, /turf/simulated/wall))
 		var/turf/simulated/wall/W = T
 		if(W.rotting)
-			W.rotting = 0
+			W.rotting = FALSE
 			for(var/obj/effect/E in W)
 				if(E.name == "Wallrot")
 					qdel(E)

@@ -16,7 +16,7 @@
 
 /turf/simulated/proc/AddTracks(typepath, bloodDNA, comingdir, goingdir, bloodcolor = "#A10808")
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
-	if(!tracks)
+	if(isnull(tracks))
 		tracks = new typepath(src)
 	tracks.AddTracks(bloodDNA, comingdir, goingdir, bloodcolor)
 
@@ -32,11 +32,11 @@
 		dirt++
 		var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, src)
 		if(dirt >= 50)
-			if(!dirtoverlay)
+			if(isnull(dirtoverlay))
 				dirtoverlay = new/obj/effect/decal/cleanable/dirt(src)
 				dirtoverlay.alpha = 15
 			else if(dirt > 50)
-				dirtoverlay.alpha = min(dirtoverlay.alpha+5, 255)
+				dirtoverlay.alpha = min(dirtoverlay.alpha + 5, 255)
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
@@ -56,27 +56,27 @@
 			// Tracking blood
 			var/list/bloodDNA = null
 			var/bloodcolor = ""
-			if(H.shoes)
+			if(!isnull(H.shoes))
 				var/obj/item/clothing/shoes/S = H.shoes
 				if(S.track_blood && S.blood_DNA)
 					bloodDNA = S.blood_DNA
-					bloodcolor=S.blood_color
+					bloodcolor = S.blood_color
 					S.track_blood--
 			else
 				if(H.track_blood && H.feet_blood_DNA)
 					bloodDNA = H.feet_blood_DNA
-					bloodcolor=H.feet_blood_color
+					bloodcolor = H.feet_blood_color
 					H.track_blood--
 
 			if(bloodDNA)
-				src.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints, bloodDNA, H.dir, 0, bloodcolor) // Coming
+				AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints, bloodDNA, H.dir, 0, bloodcolor) // Coming
 				var/turf/simulated/from = get_step(H,reverse_direction(H.dir))
 				if(istype(from) && from)
 					from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints, bloodDNA, 0, H.dir, bloodcolor) // Going
 
 				bloodDNA = null
 
-		switch(src.wet)
+		switch(wet)
 			if(1)
 				if(ishuman(M)) // Added check since monkeys don't have shoes
 					var/mob/living/carbon/human/human = M
@@ -118,6 +118,7 @@
 					to_chat(M, SPAN_INFO("You slipped on the floor!"))
 					playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
 					M.Weaken(10)
+
 			if(3) // Ice
 				if(ishuman(M)) // Added check since monkeys don't have shoes
 					var/mob/living/carbon/human/human = M
@@ -143,7 +144,7 @@
 						M.inertia_dir = 0
 						return
 
-	..()
+	. = ..()
 
 //returns 1 if made bloody, returns 0 otherwise
 /turf/simulated/add_blood(mob/living/carbon/human/M as mob)

@@ -1,8 +1,8 @@
 // This is a proc not a verb but there are worse inconsistencies in this codebase.
 /atom/proc/examine(mob/user, distance = -1)
-	//This reformat names to get a/an properly working on item descriptions when they are bloody
+	// This reformats names to get a/an properly working on item descriptions when they are bloody.
 	var/f_name = "\a [src]."
-	if(src.blood_DNA && !istype(src, /obj/effect/decal))
+	if(blood_DNA && !istype(src, /obj/effect/decal))
 		if(gender == PLURAL)
 			f_name = "some "
 		else

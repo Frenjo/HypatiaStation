@@ -9,7 +9,7 @@
 /atom/movable/overlay/New()
 	for(var/type in verbs)
 		verbs.Remove(type)
-	..()
+	. = ..()
 
 /atom/movable/overlay/attackby(a, b)
 	if(!isnull(master))
