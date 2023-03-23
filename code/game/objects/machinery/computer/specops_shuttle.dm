@@ -204,7 +204,7 @@ var/specops_shuttle_timeleft = 0
 				if("ASSAULT3")
 					spawn(0)
 						M.close()
-		special_ops.readyreset()//Reset firealarm after the team launched.
+		special_ops.evac_reset()//Reset firealarm after the team launched.
 	//End Marauder launchpad.
 
 	var/area/start_location = locate(/area/shuttle/specops/centcom)
@@ -328,7 +328,7 @@ var/specops_shuttle_timeleft = 0
 
 		var/area/centcom/specops/special_ops = locate()
 		if(special_ops)
-			special_ops.readyalert()//Trigger alarm for the spec ops area.
+			special_ops.evac_alert()//Trigger alarm for the spec ops area.
 		specops_shuttle_moving_to_station = 1
 
 		specops_shuttle_time = world.timeofday + SPECOPS_MOVETIME

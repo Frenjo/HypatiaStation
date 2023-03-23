@@ -1797,7 +1797,7 @@
 					return
 				GLOBL.gravity_is_on = !GLOBL.gravity_is_on
 				for(var/area/A in world)
-					A.gravitychange(GLOBL.gravity_is_on,A)
+					A.gravitychange(GLOBL.gravity_is_on, A)
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","Grav")
 				if(GLOBL.gravity_is_on)
@@ -2026,10 +2026,10 @@
 						if(M.stat != DEAD && prob(25))
 							var/area/AffectedArea = get_area(M)
 							if(AffectedArea.name != "Space" && AffectedArea.name != "Engine Walls" && AffectedArea.name != "Chemical Lab Test Chamber" && AffectedArea.name != "Escape Shuttle" && AffectedArea.name != "Arrival Area" && AffectedArea.name != "Arrival Shuttle" && AffectedArea.name != "start area" && AffectedArea.name != "Engine Combustion Chamber")
-								AffectedArea.power_light = 0
+								AffectedArea.power_light = FALSE
 								AffectedArea.power_change()
 								spawn(rand(55,185))
-									AffectedArea.power_light = 1
+									AffectedArea.power_light = TRUE
 									AffectedArea.power_change()
 								var/Message = rand(1,4)
 								switch(Message)

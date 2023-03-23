@@ -262,7 +262,7 @@
 
 				var/area/A = T.loc
 
-				if(A.fire)
+				if(A.fire_alarm)
 
 					var/red = getr(colour)
 					var/green = getg(colour)

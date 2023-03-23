@@ -50,7 +50,7 @@
 			var/area/a = loc.loc // Gets our locations location, like a dream within a dream
 			if(!isarea(a))
 				return
-			if(a.power_equip == 0) // There's no APC in this area, don't try to cheat power!
+			if(!a.power_equip) // There's no APC in this area, don't try to cheat power!
 				user << "\red The [name] blinks red as you try to insert the cell!"
 				return
 

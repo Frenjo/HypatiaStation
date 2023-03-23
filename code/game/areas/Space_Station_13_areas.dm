@@ -20,22 +20,22 @@
 /area/space/updateicon()
 	return
 
-/area/space/poweralert()
+/area/space/power_alert()
 	return
 
-/area/space/atmosalert()
+/area/space/atmos_alert()
 	return
 
-/area/space/firealert()
+/area/space/fire_alert()
 	return
 
-/area/space/readyalert()
+/area/space/evac_alert()
 	return
 
-/area/space/partyalert()
+/area/space/party_alert()
 	return
 
-/area/space/destructalert()
+/area/space/destruct_alert()
 	return
 
 /area/arrival

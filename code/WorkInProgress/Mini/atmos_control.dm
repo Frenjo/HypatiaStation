@@ -37,7 +37,7 @@
 	else
 		for(var/obj/machinery/alarm/alarm in GLOBL.machines)
 			dat += "<a href='?src=\ref[src]&alarm=\ref[alarm]'>"
-			switch(max(alarm.danger_level, alarm.alarm_area.atmosalm))
+			switch(max(alarm.danger_level, alarm.alarm_area.atmos_alarm))
 				if (0)
 					dat += "<font color=green>"
 				if (1)
@@ -164,14 +164,14 @@
 					current.air_doors_open(1)
 
 		if(href_list["atmos_alarm"])
-			if (current.alarm_area.atmosalert(2))
+			if(current.alarm_area.atmos_alert(2))
 				current.apply_danger_level(2)
 			spawn(1)
 				src.updateUsrDialog()
 			current.update_icon()
 			return
 		if(href_list["atmos_reset"])
-			if (current.alarm_area.atmosalert(0))
+			if(current.alarm_area.atmos_alert(0))
 				current.apply_danger_level(0)
 			spawn(1)
 				src.updateUsrDialog()
@@ -194,7 +194,7 @@
 
 	switch(current.screen)
 		if(AALARM_SCREEN_MAIN)
-			if(current.alarm_area.atmosalm)
+			if(current.alarm_area.atmos_alarm)
 				output += {"<a href='?src=\ref[src];alarm=\ref[current];atmos_reset=1'>Reset - Atmospheric Alarm</a><hr>"}
 			else
 				output += {"<a href='?src=\ref[src];alarm=\ref[current];atmos_alarm=1'>Activate - Atmospheric Alarm</a><hr>"}

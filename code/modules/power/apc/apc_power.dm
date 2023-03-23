@@ -97,16 +97,16 @@
 				lighting = autoset(lighting, 1)
 				environ = autoset(environ, 1)
 				autoflag = 3
-				area.poweralert(1, src)
+				area.power_alert(1, src)
 				if(cell.percent() >= 80)
-					area.poweralert(1, src)
+					area.power_alert(1, src)
 
 		else if(cell.percent() < AUTO_THRESHOLD_LIGHTING && cell.percent() > AUTO_THRESHOLD_EQUIPMENT && longtermpower < 0)		// <30%, turn off lighting
 			if(autoflag != 2)
 				equipment = autoset(equipment, 1)
 				lighting = autoset(lighting, 2)
 				environ = autoset(environ, 1)
-				area.poweralert(0, src)
+				area.power_alert(0, src)
 				autoflag = 2
 
 		else if(cell.percent() < AUTO_THRESHOLD_EQUIPMENT)	// <15%, turn off lighting & equipment
@@ -114,7 +114,7 @@
 				equipment = autoset(equipment, 2)
 				lighting = autoset(lighting, 2)
 				environ = autoset(environ, 1)
-				area.poweralert(0, src)
+				area.power_alert(0, src)
 				autoflag = 1
 
 		else if(cell.charge <= 0)							// zero charge, turn all off
@@ -122,7 +122,7 @@
 				equipment = autoset(equipment, 0)
 				lighting = autoset(lighting, 0)
 				environ = autoset(environ, 0)
-				area.poweralert(0, src)
+				area.power_alert(0, src)
 				autoflag = 0
 
 		// now trickle-charge the cell
@@ -169,7 +169,7 @@
 		equipment = autoset(equipment, 0)
 		lighting = autoset(lighting, 0)
 		environ = autoset(environ, 0)
-		area.poweralert(0, src)
+		area.power_alert(0, src)
 		autoflag = 0
 
 	// update icon & area power if anything changed
@@ -238,9 +238,9 @@
 		area.power_equip = (equipment >= POWERCHAN_ON)
 		area.power_environ = (environ >= POWERCHAN_ON)
 	else
-		area.power_light = 0
-		area.power_equip = 0
-		area.power_environ = 0
+		area.power_light = FALSE
+		area.power_equip = FALSE
+		area.power_environ = FALSE
 	area.power_change()
 
 // val 0=off, 1=off(auto) 2=on 3=on(auto)

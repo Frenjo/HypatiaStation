@@ -300,7 +300,7 @@
 	if((stat & (NOPOWER|BROKEN)) || shorted)
 		icon_state = "alarmp"
 		return
-	switch(max(danger_level, alarm_area.atmosalm))
+	switch(max(danger_level, alarm_area.atmos_alarm))
 		if(0)
 			icon_state = "alarm0"
 		if(1)
@@ -412,7 +412,7 @@
 				send_signal(device_id, list("power" = 0))
 
 /obj/machinery/alarm/proc/apply_danger_level(new_danger_level)
-	if(alarm_area.atmosalert(new_danger_level))
+	if(alarm_area.atmos_alert(new_danger_level))
 		post_alert(new_danger_level)
 
 	for(var/area/A in alarm_area)
@@ -553,7 +553,7 @@
 			apply_mode()
 
 		if(AALARM_WIRE_AALARM)
-			if(alarm_area.atmosalert(2))
+			if(alarm_area.atmos_alert(2))
 				apply_danger_level(2)
 			spawn(1)
 				updateUsrDialog()
@@ -613,7 +613,7 @@
 			apply_mode()
 
 		if(AALARM_WIRE_AALARM)
-			if(alarm_area.atmosalert(0))
+			if(alarm_area.atmos_alert(0))
 				apply_danger_level(0)
 			spawn(1)
 				updateUsrDialog()
@@ -766,7 +766,7 @@ Toxins: <span class='dl[plasma_dangerlevel]'>[plasma_percent]</span>%<br>
 		if(1)
 			output += "<span class='dl1'>Caution</span>"
 		if(0)
-			if(alarm_area.atmosalm)
+			if(alarm_area.atmos_alarm)
 				output += {"<span class='dl1'>Caution: Atmos alert in area</span>"}
 			else
 				output += {"<span class='dl0'>Optimal</span>"}
@@ -800,7 +800,7 @@ Toxins: <span class='dl[plasma_dangerlevel]'>[plasma_percent]</span>%<br>
 
 	switch(screen)
 		if(AALARM_SCREEN_MAIN)
-			if(alarm_area.atmosalm)
+			if(alarm_area.atmos_alarm)
 				output += "<a href='?src=\ref[src];atmos_reset=1'>Reset - Atmospheric Alarm</a><hr>"
 			else
 				output += "<a href='?src=\ref[src];atmos_alarm=1'>Activate - Atmospheric Alarm</a><hr>"
@@ -1051,12 +1051,12 @@ table tr:first-child th:first-child { border: none;}
 				air_doors_open(1)
 
 	if(href_list["atmos_alarm"])
-		if(alarm_area.atmosalert(2))
+		if(alarm_area.atmos_alert(2))
 			apply_danger_level(2)
 		update_icon()
 
 	if(href_list["atmos_reset"])
-		if(alarm_area.atmosalert(0))
+		if(alarm_area.atmos_alert(0))
 			apply_danger_level(0)
 		update_icon()
 
@@ -1366,7 +1366,7 @@ FIRE ALARM
 	var/d2
 	if(ishuman(user) || issilicon(user))
 		A = A.loc
-		if(A.fire)
+		if(A.fire_alarm)
 			d1 = "<A href='?src=\ref[src];reset=1'>Reset - Lockdown</A>"
 		else
 			d1 = "<A href='?src=\ref[src];alarm=1'>Alarm - Lockdown</A>"
@@ -1381,7 +1381,7 @@ FIRE ALARM
 		onclose(user, "firealarm")
 	else
 		A = A.loc
-		if(A.fire)
+		if(A.fire_alarm)
 			d1 = "<A href='?src=\ref[src];reset=1'>[stars("Reset - Lockdown")]</A>"
 		else
 			d1 = "<A href='?src=\ref[src];alarm=1'>[stars("Alarm - Lockdown")]</A>"
@@ -1432,7 +1432,7 @@ FIRE ALARM
 	A = A.loc
 	if(!isarea(A))
 		return
-	A.firereset()
+	A.fire_reset()
 	update_icon()
 
 /obj/machinery/firealarm/proc/alarm()
@@ -1442,7 +1442,7 @@ FIRE ALARM
 	A = A.loc
 	if(!isarea(A))
 		return
-	A.firealert()
+	A.fire_alert()
 	update_icon()
 	//playsound(src, 'sound/ambience/signal.ogg', 75, 0)
 
@@ -1515,7 +1515,7 @@ Just a object used in constructing fire alarms
 	var/d1
 	var/d2
 	if(ishuman(user) || issilicon(user))
-		if(A.party)
+		if(A.party_alarm)
 			d1 = "<A href='?src=\ref[src];reset=1'>No Party :(</A>"
 		else
 			d1 = "<A href='?src=\ref[src];alarm=1'>PARTY!!!</A>"
@@ -1529,7 +1529,7 @@ Just a object used in constructing fire alarms
 		user << browse(dat, "window=partyalarm")
 		onclose(user, "partyalarm")
 	else
-		if(A.fire)
+		if(A.fire_alarm)
 			d1 = "<A href='?src=\ref[src];reset=1'>[stars("No Party :(")]</A>"
 		else
 			d1 = "<A href='?src=\ref[src];alarm=1'>[stars("PARTY!!!")]</A>"
@@ -1550,7 +1550,7 @@ Just a object used in constructing fire alarms
 	ASSERT(isarea(A))
 	//if(A.master)
 		//A = A.master
-	A.partyreset()
+	A.party_reset()
 
 /obj/machinery/partyalarm/proc/alarm()
 	if(!working)
@@ -1559,7 +1559,7 @@ Just a object used in constructing fire alarms
 	ASSERT(isarea(A))
 	//if(A.master)
 		//A = A.master
-	A.partyalert()
+	A.party_alert()
 
 /obj/machinery/partyalarm/Topic(href, href_list)
 	..()

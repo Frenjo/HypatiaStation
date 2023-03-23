@@ -24,7 +24,7 @@
 		if(!isarea(a))
 			to_chat(user, SPAN_WARNING("The [name] blinks red as you try to insert the item!"))
 			return
-		if(a.power_equip == 0)
+		if(!a.power_equip)
 			to_chat(user, SPAN_WARNING("The [name] blinks red as you try to insert the item!"))
 			return
 

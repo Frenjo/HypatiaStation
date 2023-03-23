@@ -175,7 +175,7 @@
 	// Updates all hallway areas so they flash.
 	for(var/area/A in world)
 		if(istype(A, /area/hallway))
-			A.destructalert()
+			A.destruct_alert()
 
 /decl/security_level/delta/on_change_from()
 	. = ..()
@@ -186,7 +186,7 @@
 	// Resets all hallway areas so they stop flashing.
 	for(var/area/A in world)
 		if(istype(A, /area/hallway))
-			A.destructreset()
+			A.destruct_reset()
 
 /decl/security_level/delta/on_elevate_to()
 	. = ..()

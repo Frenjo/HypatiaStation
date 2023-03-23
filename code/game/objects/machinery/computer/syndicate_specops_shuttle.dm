@@ -130,7 +130,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 					spawn(0)
 						M.close()
 						*/
-	elite_squad.readyreset()//Reset firealarm after the team launched.
+	elite_squad.evac_reset()//Reset firealarm after the team launched.
 	//End Marauder launchpad.
 /*
 	var/obj/explosionmarker = locate("Syndicate Breach Area")
@@ -248,7 +248,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 
 		var/area/syndicate_mothership/elite_squad/elite_squad = locate()
 		if(elite_squad)
-			elite_squad.readyalert()//Trigger alarm for the spec ops area.
+			elite_squad.evac_alert()//Trigger alarm for the spec ops area.
 		syndicate_elite_shuttle_moving_to_station = 1
 
 		syndicate_elite_shuttle_time = world.timeofday + SYNDICATE_ELITE_MOVETIME

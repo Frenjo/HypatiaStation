@@ -97,7 +97,7 @@
 			src.see_invisible = SEE_INVISIBLE_LIVING
 
 			//if (((!loc.master.power_equip) || isspace(T)) && !isitem(src.loc))
-			if(((!loc.power_equip) || isspace(T)) && !isitem(src.loc))
+			if((!loc.power_equip || isspace(T)) && !isitem(src.loc))
 				if(src:aiRestorePowerRoutine == 0)
 					src:aiRestorePowerRoutine = 1
 

@@ -200,5 +200,5 @@
 				if("ASSAULT3")
 					spawn(0)
 						M.close()
-		special_ops.readyreset()//Reset firealarm after the team launched.
+		special_ops.evac_reset()//Reset firealarm after the team launched.
 	//End Marauder launchpad.

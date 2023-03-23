@@ -90,7 +90,7 @@ CONTROLLER_DEF(emergency)
 	world << sound('sound/AI/shuttlecalled.ogg')
 	for(var/area/A in world)
 		if(istype(A, /area/hallway))
-			A.readyalert()
+			A.evac_alert()
 	
 	set_status_displays()
 
@@ -126,7 +126,7 @@ CONTROLLER_DEF(emergency)
 
 		for(var/area/A in world)
 			if(istype(A, /area/hallway))
-				A.readyreset()
+				A.evac_reset()
 		evac = FALSE
 	else
 		captain_announce("The scheduled crew transfer has been cancelled.")

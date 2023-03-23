@@ -52,7 +52,7 @@
 	/*
 	 * Sound Stuff
 	 */
-	var/ambience_playing = null
+	var/ambience_playing = FALSE
 	var/played = 0
 
 	/*
