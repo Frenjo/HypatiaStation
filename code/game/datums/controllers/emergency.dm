@@ -88,9 +88,8 @@ CONTROLLER_DEF(emergency)
 	evac = TRUE
 	captain_announce("An emergency evacuation shuttle has been called. It will arrive in approximately [round(estimate_arrival_time() / 60)] minutes.")
 	world << sound('sound/AI/shuttlecalled.ogg')
-	for(var/area/A in world)
-		if(istype(A, /area/hallway))
-			A.evac_alert()
+	for(var/area/hallway/hall in GLOBL.contactable_hallway_areas)
+		hall.evac_alert()
 	
 	set_status_displays()
 
@@ -124,9 +123,8 @@ CONTROLLER_DEF(emergency)
 		captain_announce("The emergency shuttle has been recalled.")
 		world << sound('sound/AI/shuttlerecalled.ogg')
 
-		for(var/area/A in world)
-			if(istype(A, /area/hallway))
-				A.evac_reset()
+		for(var/area/hallway/hall in GLOBL.contactable_hallway_areas)
+			hall.evac_reset()
 		evac = FALSE
 	else
 		captain_announce("The scheduled crew transfer has been cancelled.")

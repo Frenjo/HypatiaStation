@@ -1,4 +1,19 @@
-//Hallway
+/*
+ * Hallway
+ */
+/area/hallway/New()
+	. = ..()
+	if(isContactLevel(z))
+		GLOBL.contactable_hallway_areas.Add(src)
+
+/area/hallway/Destroy()
+	if(isContactLevel(z))
+		GLOBL.contactable_hallway_areas.Remove(src)
+	return ..()
+
+/*
+ * Primary
+ */
 /area/hallway/primary/fore
 	name = "\improper Fore Primary Hallway"
 	icon_state = "hallF"
@@ -21,6 +36,9 @@
 	icon_state = "hallC"
 	ambience = list('sound/ambience/ambiruntime.ogg')
 
+/*
+ * Secondary
+ */
 /area/hallway/secondary/exit
 	name = "\improper Escape Shuttle Hallway"
 	icon_state = "escape"
