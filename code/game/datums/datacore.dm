@@ -24,11 +24,11 @@ GLOBAL_GLOBL_LIST_NEW(pda_manifest)
 	var/dat = {"
 	<head><style>
 		.manifest {border-collapse:collapse;}
-		.manifest td, th {border:1px solid [monochrome?"black":"#DEF; background-color:white; color:black"]; padding:.25em}
-		.manifest th {height: 2em; [monochrome?"border-top-width: 3px":"background-color: #48C; color:white"]}
-		.manifest tr.head th { [monochrome?"border-top-width: 1px":"background-color: #488;"] }
+		.manifest td, th {border:1px solid [monochrome ? "black" : "#DEF; background-color:white; color:black"]; padding:.25em}
+		.manifest th {height: 2em; [monochrome ? "border-top-width: 3px" : "background-color: #48C; color:white"]}
+		.manifest tr.head th { [monochrome ? "border-top-width: 1px" : "background-color: #488;"] }
 		.manifest td:first-child {text-align:right}
-		.manifest tr.alt td {[monochrome?"border-top-width: 2px":"background-color: #DEF"]}
+		.manifest tr.alt td {[monochrome?"border-top-width: 2px" : "background-color: #DEF"]}
 	</style></head>
 	<table class="manifest" width='350px'>
 	<tr class='head'><th>Name</th><th>Rank</th><th>Activity</th></tr>
@@ -43,7 +43,7 @@ GLOBAL_GLOBL_LIST_NEW(pda_manifest)
 		if(OOC)
 			var/active = FALSE
 			for(var/mob/M in GLOBL.player_list)
-				if(M.real_name == name && M.client && M.client.inactivity <= 10 * 60 * 10)
+				if(M.real_name == name && !isnull(M.client) && M.client.inactivity <= 10 * 60 * 10)
 					active = TRUE
 					break
 			isactive[name] = active ? "Active" : "Inactive"
@@ -210,7 +210,6 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 /datum/datacore/proc/manifest()
 	for(var/mob/living/carbon/human/H in GLOBL.player_list)
 		manifest_inject(H)
-	return
 
 /datum/datacore/proc/manifest_modify(name, assignment)
 	if(length(GLOBL.pda_manifest))
@@ -219,7 +218,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 	var/datum/data/record/foundrecord
 	var/real_title = assignment
 	for(var/datum/data/record/t in GLOBL.data_core.general)
-		if(t)
+		if(!isnull(t))
 			if(t.fields["name"] == name)
 				foundrecord = t
 				break
@@ -227,13 +226,13 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 	var/list/all_jobs = get_job_datums()
 	for(var/datum/job/J in all_jobs)
 		var/list/alttitles = get_alternate_titles(J.title)
-		if(!J)
+		if(isnull(J))
 			continue
 		if(assignment in alttitles)
 			real_title = J.title
 			break
 
-	if(foundrecord)
+	if(!isnull(foundrecord))
 		foundrecord.fields["rank"] = assignment
 		foundrecord.fields["real_rank"] = real_title
 
@@ -241,7 +240,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 	if(length(GLOBL.pda_manifest))
 		GLOBL.pda_manifest.Cut()
 
-	if(H.mind && (H.mind.assigned_role != "MODE"))
+	if(!isnull(H.mind) && (H.mind.assigned_role != "MODE"))
 		var/assignment
 		if(!isnull(H.mind.role_alt_title))
 			assignment = H.mind.role_alt_title
@@ -255,7 +254,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		var/id = add_zero(num2hex(rand(1, 1.6777215E7)), 6)	//this was the best they could come up with? A large random number? *sigh*
 
 		//General Record
-		var/datum/data/record/G = new()
+		var/datum/data/record/G = new /datum/data/record()
 		G.fields["id"]			= id
 		G.fields["name"]		= H.real_name
 		G.fields["real_rank"]	= H.mind.assigned_role
@@ -271,10 +270,10 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 			G.fields["notes"] = H.gen_record
 		else
 			G.fields["notes"] = "No notes found."
-		general += G
+		general.Add(G)
 
 		//Medical Record
-		var/datum/data/record/M = new()
+		var/datum/data/record/M = new /datum/data/record()
 		M.fields["id"]			= id
 		M.fields["name"]		= H.real_name
 		M.fields["b_type"]		= H.b_type
@@ -291,10 +290,10 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 			M.fields["notes"] = H.med_record
 		else
 			M.fields["notes"] = "No notes found."
-		medical += M
+		medical.Add(M)
 
 		//Security Record
-		var/datum/data/record/S = new()
+		var/datum/data/record/S = new /datum/data/record()
 		S.fields["id"]			= id
 		S.fields["name"]		= H.real_name
 		S.fields["criminal"]	= "None"
@@ -307,10 +306,10 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 			S.fields["notes"] = H.sec_record
 		else
 			S.fields["notes"] = "No notes."
-		security += S
+		security.Add(S)
 
 		//Locked Record
-		var/datum/data/record/L = new()
+		var/datum/data/record/L = new /datum/data/record()
 		L.fields["id"]			= md5("[H.real_name][H.mind.assigned_role]")
 		L.fields["name"]		= H.real_name
 		L.fields["rank"] 		= H.mind.assigned_role
@@ -321,8 +320,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		L.fields["enzymes"]		= H.dna.SE // Used in respawning
 		L.fields["identity"]	= H.dna.UI // "
 		L.fields["image"]		= getFlatIcon(H, 0)	//This is god-awful
-		locked += L
-	return
+		locked.Add(L)
 
 /proc/get_id_photo(mob/living/carbon/human/H)
 	var/icon/preview_icon = null
@@ -348,8 +346,8 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 			temp.MapColors(rgb(77, 77, 77), rgb(150, 150, 150), rgb(28, 28, 28), rgb(0, 0, 0))
 		preview_icon.Blend(temp, ICON_OVERLAY)
 
-	//Tail
-	if(H.species.tail && H.species.flags & HAS_TAIL)
+	// Tail
+	if(!isnull(H.species.tail) && H.species.flags & HAS_TAIL)
 		temp = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[H.species.tail]_s")
 		preview_icon.Blend(temp, ICON_OVERLAY)
 
@@ -362,7 +360,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 
 	// Skin color
 	if(H.species.flags & HAS_SKIN_TONE)
-		if(!H.species || H.species.flags & HAS_SKIN_COLOR)
+		if(isnull(H.species) || H.species.flags & HAS_SKIN_COLOR)
 			preview_icon.Blend(rgb(H.r_skin, H.g_skin, H.b_skin), ICON_ADD)
 
 	var/icon/eyes_s = new/icon("icon" = 'icons/mob/on_mob/human_face.dmi', "icon_state" = H.species ? H.species.eyes : "eyes_s")
@@ -370,13 +368,13 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 	eyes_s.Blend(rgb(H.r_eyes, H.g_eyes, H.b_eyes), ICON_ADD)
 
 	var/datum/sprite_accessory/hair_style = GLOBL.hair_styles_list[H.h_style]
-	if(hair_style)
+	if(!isnull(hair_style))
 		var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 		hair_s.Blend(rgb(H.r_hair, H.g_hair, H.b_hair), ICON_ADD)
 		eyes_s.Blend(hair_s, ICON_OVERLAY)
 
 	var/datum/sprite_accessory/facial_hair_style = GLOBL.facial_hair_styles_list[H.f_style]
-	if(facial_hair_style)
+	if(!isnull(facial_hair_style))
 		var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 		facial_s.Blend(rgb(H.r_facial, H.g_facial, H.b_facial), ICON_ADD)
 		eyes_s.Blend(facial_s, ICON_OVERLAY)
@@ -487,7 +485,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 			clothes_s = new /icon('icons/mob/on_mob/uniform.dmi', "grey_s")
 			clothes_s.Blend(new /icon('icons/mob/on_mob/feet.dmi', "black"), ICON_UNDERLAY)
 	preview_icon.Blend(eyes_s, ICON_OVERLAY)
-	if(clothes_s)
+	if(!isnull(clothes_s))
 		preview_icon.Blend(clothes_s, ICON_OVERLAY)
 	qdel(eyes_s)
 	qdel(clothes_s)
