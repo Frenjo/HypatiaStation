@@ -50,7 +50,7 @@
 			modules.Add(O)
 
 /obj/item/weapon/robot_module/proc/add_languages(mob/living/silicon/robot/R)
-	R.add_language("Binary Audio Language", 0)
+	R.add_language("Binary Audio Language", FALSE)
 
 /*
  * Standard Module
@@ -249,14 +249,14 @@
 
 /obj/item/weapon/robot_module/butler/add_languages(mob/living/silicon/robot/R)
 //full set of languages
-	R.add_language("Sol Common", 1)
-	R.add_language("Sinta'unathi", 1)
-	R.add_language("Siik'maas", 1)
-	R.add_language("Siik'tajr", 0)
-	R.add_language("Skrellian", 1)
-	R.add_language("Rootspeak", 0)
-	R.add_language("Tradeband", 1)
-	R.add_language("Gutter", 1)
+	R.add_language("Sol Common")
+	R.add_language("Sinta'unathi")
+	R.add_language("Siik'maas")
+	R.add_language("Siik'tajr", FALSE)
+	R.add_language("Skrellian")
+	R.add_language("Rootspeak", FALSE)
+	R.add_language("Tradeband")
+	R.add_language("Gutter")
 
 /obj/item/weapon/robot_module/butler/respawn_consumable(mob/living/silicon/robot/R)
 	var/obj/item/weapon/reagent_containers/food/condiment/enzyme/E = locate() in modules

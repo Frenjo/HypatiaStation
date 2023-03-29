@@ -39,8 +39,8 @@
 	verbs += /mob/living/proc/hide
 
 	remove_language("Robot Talk")
-	add_language("Robot Talk", 0)
-	add_language("Drone Talk", 1)
+	add_language("Robot Talk", FALSE)
+	add_language("Drone Talk")
 
 	//They are unable to be upgraded, so let's give them a bit of a better battery.
 	cell.maxcharge = 10000

@@ -110,20 +110,20 @@ var/list/ai_verbs_default = list(
 		add_ai_verbs()
 
 	//Languages
-	add_language("Robot Talk", 1)
-	add_language("Drone Talk", 0)
+	add_language("Robot Talk")
+	add_language("Drone Talk", FALSE)
 
-	add_language("Sol Common", 0)
-	add_language("Sinta'unathi", 0)
-	add_language("Siik'maas", 0)
-	add_language("Siik'tajr", 0)
-	add_language("Skrellian", 0)
-	add_language("Rootspeak", 0)
-	add_language("Obsedaian", 0)
-	add_language("Plasmalin", 0)
-	add_language("Binary Audio Language", 1)
-	add_language("Tradeband", 1)
-	add_language("Gutter", 0)
+	add_language("Sol Common", FALSE)
+	add_language("Sinta'unathi", FALSE)
+	add_language("Siik'maas", FALSE)
+	add_language("Siik'tajr", FALSE)
+	add_language("Skrellian", FALSE)
+	add_language("Rootspeak", FALSE)
+	add_language("Obsedaian", FALSE)
+	add_language("Plasmalin", FALSE)
+	add_language("Binary Audio Language")
+	add_language("Tradeband")
+	add_language("Gutter", FALSE)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
