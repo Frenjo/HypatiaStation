@@ -146,9 +146,10 @@
 
 	stat(null, "Intent: [a_intent]")
 	stat(null, "Move Mode: [m_intent]")
-	if(ticker && ticker.mode && ticker.mode.name == "AI malfunction")
-		if(ticker.mode:malf_mode_declared)
-			stat(null, "Time left: [max(ticker.mode:AI_win_timeleft/(ticker.mode:apcs/3), 0)]")
+	if(IS_GAME_MODE(/datum/game_mode/malfunction))
+		var/datum/game_mode/malfunction/malf = global.CTgame_ticker.mode
+		if(malf.malf_mode_declared)
+			stat(null, "Time left: [max(malf.AI_win_timeleft / (malf.apcs / 3), 0)]")
 	if(emergency_shuttle)
 		if(emergency_shuttle.online && emergency_shuttle.location < 2)
 			var/timeleft = emergency_shuttle.timeleft()

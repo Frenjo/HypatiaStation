@@ -501,7 +501,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 			to_chat(user, "It is not crew transfer time. [round((135000 - world.time) / 600)] minutes before trying again.") //may need to change "/600"
 			return
 
-		if(global.CTgame_ticker.mode.name == "revolution" || global.CTgame_ticker.mode.name == "AI malfunction" || global.CTgame_ticker.mode.name == "sandbox")
+		if(IS_GAME_MODE(/datum/game_mode/revolution) || IS_GAME_MODE(/datum/game_mode/malfunction) || global.CTgame_ticker.mode.name == "sandbox")
 			// New version pretends to call the shuttle but cause the shuttle to return after a random duration.
 			global.CTemergency.auto_recall = TRUE
 
@@ -565,7 +565,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 		if(!shuttlecaller.stat && shuttlecaller.client && isturf(shuttlecaller.loc))
 			return ..()
 
-	if(global.CTgame_ticker.mode.name == "revolution" || global.CTgame_ticker.mode.name == "AI malfunction" || GLOBL.sent_strike_team)
+	if(IS_GAME_MODE(/datum/game_mode/revolution) || IS_GAME_MODE(/datum/game_mode/malfunction) || GLOBL.sent_strike_team)
 		return ..()
 
 	global.CTemergency.call_evac()

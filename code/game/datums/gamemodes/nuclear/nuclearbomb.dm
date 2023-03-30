@@ -438,16 +438,18 @@ var/bomb_set
 		off_station = 2
 
 	if(global.CTgame_ticker)
-		if(global.CTgame_ticker.mode && global.CTgame_ticker.mode.name == "nuclear emergency")
+		if(IS_GAME_MODE(/datum/game_mode/nuclear))
+			var/datum/game_mode/nuclear/nuclear = global.CTgame_ticker.mode
 			var/obj/machinery/computer/shuttle_control/multi/syndicate/syndie_location = locate(/obj/machinery/computer/shuttle_control/multi/syndicate)
 			if(syndie_location)
-				global.CTgame_ticker.mode:syndies_didnt_escape = (syndie_location.z > 1 ? 0 : 1)	//muskets will make me change this, but it will do for now
-			global.CTgame_ticker.mode:nuke_off_station = off_station
-		global.CTgame_ticker.station_explosion_cinematic(off_station,null)
-		if(global.CTgame_ticker.mode)
+				nuclear.syndies_didnt_escape = (syndie_location.z > 1 ? 0 : 1)	//muskets will make me change this, but it will do for now
+			nuclear.nuke_off_station = off_station
+		global.CTgame_ticker.station_explosion_cinematic(off_station, null)
+		if(!isnull(global.CTgame_ticker.mode))
 			global.CTgame_ticker.mode.explosion_in_progress = 0
-			if(global.CTgame_ticker.mode.name == "nuclear emergency")
-				global.CTgame_ticker.mode:nukes_left --
+			if(IS_GAME_MODE(/datum/game_mode/nuclear))
+				var/datum/game_mode/nuclear/nuclear = global.CTgame_ticker.mode
+				nuclear.nukes_left --
 			else
 				to_world("<B>The station was destoyed by the nuclear blast!</B>")
 

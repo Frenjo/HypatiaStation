@@ -209,11 +209,11 @@
 			src.healths.icon_state = "health7"
 
 	if(src.syndicate && src.client)
-		if(global.CTgame_ticker.mode.name == "traitor")
+		if(IS_GAME_MODE(/datum/game_mode/traitor))
 			for(var/datum/mind/tra in global.CTgame_ticker.mode.traitors)
-				if(tra.current)
+				if(!isnull(tra.current))
 					var/I = image('icons/mob/mob.dmi', loc = tra.current, icon_state = "traitor")
-					src.client.images += I
+					src.client.images.Add(I)
 		if(src.connected_ai)
 			src.connected_ai.connected_robots -= src
 			src.connected_ai = null

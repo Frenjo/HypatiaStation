@@ -48,7 +48,7 @@
 			if (timeleft)
 				stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 /*
-		if(ticker.mode.name == "AI malfunction")
+		if(IS_GAME_MODE(/datum/game_mode/malfunction))
 			stat(null, "Points left until the AI takes over: [AI_points]/[AI_points_win]")
 */
 

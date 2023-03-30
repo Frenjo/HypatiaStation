@@ -213,10 +213,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		stat(null, "Station Time: [worldtime2text()]")
 		if(!isnull(global.CTgame_ticker?.mode))
 			//world << "DEBUG: ticker not null"
-			if(global.CTgame_ticker.mode.name == "AI malfunction")
+			if(IS_GAME_MODE(/datum/game_mode/malfunction))
+				var/datum/game_mode/malfunction/malf = global.CTgame_ticker.mode
 				//world << "DEBUG: malf mode ticker test"
-				if(global.CTgame_ticker.mode:malf_mode_declared)
-					stat(null, "Time left: [max(global.CTgame_ticker.mode:AI_win_timeleft / (global.CTgame_ticker.mode:apcs / 3), 0)]")
+				if(malf.malf_mode_declared)
+					stat(null, "Time left: [max(malf.AI_win_timeleft / (malf.apcs / 3), 0)]")
 		if(!isnull(global.CTemergency))
 			if(global.CTemergency.online() && !global.CTemergency.returned())
 				var/timeleft = global.CTemergency.estimate_arrival_time()
@@ -500,9 +501,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return 0 //something is terribly wrong
 
 	var/ghosts_can_write
-	if(global.CTgame_ticker.mode.name == "cult")
-		var/datum/game_mode/cult/C = global.CTgame_ticker.mode
-		if(length(C.cult) > CONFIG_GET(cult_ghostwriter_req_cultists))
+	if(IS_GAME_MODE(/datum/game_mode/cult))
+		var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+		if(length(cult.cult) > CONFIG_GET(cult_ghostwriter_req_cultists))
 			ghosts_can_write = TRUE
 
 	if(!ghosts_can_write)

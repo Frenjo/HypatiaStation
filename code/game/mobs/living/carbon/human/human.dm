@@ -53,9 +53,10 @@
 
 	stat("Intent:", "[a_intent]")
 	stat("Move Mode:", "[move_intent.name]")
-	if(global.CTgame_ticker && global.CTgame_ticker.mode && global.CTgame_ticker.mode.name == "AI malfunction")
-		if(global.CTgame_ticker.mode:malf_mode_declared)
-			stat(null, "Time left: [max(global.CTgame_ticker.mode:AI_win_timeleft / (global.CTgame_ticker.mode:apcs / 3), 0)]")
+	if(IS_GAME_MODE(/datum/game_mode/malfunction))
+		var/datum/game_mode/malfunction/malf = global.CTgame_ticker.mode
+		if(malf.malf_mode_declared)
+			stat(null, "Time left: [max(malf.AI_win_timeleft / (malf.apcs / 3), 0)]")
 	if(global.CTemergency)
 		var/timeleft
 		if(global.CTemergency.online())

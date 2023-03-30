@@ -922,27 +922,27 @@ var/global/floorIsLava = 0
 	if(!istype(M))
 		return 0
 	if((M.mind in global.CTgame_ticker.mode.head_revolutionaries) || (M.mind in global.CTgame_ticker.mode.revolutionaries))
-		if(global.CTgame_ticker.mode.config_tag == "revolution")
+		if(IS_GAME_MODE(/datum/game_mode/revolution))
 			return 2
 		return 1
 	if(M.mind in global.CTgame_ticker.mode.cult)
-		if(global.CTgame_ticker.mode.config_tag == "cult")
+		if(IS_GAME_MODE(/datum/game_mode/cult))
 			return 2
 		return 1
 	if(M.mind in global.CTgame_ticker.mode.malf_ai)
-		if(global.CTgame_ticker.mode.config_tag == "malfunction")
+		if(IS_GAME_MODE(/datum/game_mode/malfunction))
 			return 2
 		return 1
 	if(M.mind in global.CTgame_ticker.mode.syndicates)
-		if(global.CTgame_ticker.mode.config_tag == "nuclear")
+		if(IS_GAME_MODE(/datum/game_mode/nuclear))
 			return 2
 		return 1
 	if(M.mind in global.CTgame_ticker.mode.wizards)
-		if(global.CTgame_ticker.mode.config_tag == "wizard")
+		if(IS_GAME_MODE(/datum/game_mode/wizard))
 			return 2
 		return 1
 	if(M.mind in global.CTgame_ticker.mode.changelings)
-		if(global.CTgame_ticker.mode.config_tag == "changeling")
+		if(IS_GAME_MODE(/datum/game_mode/changeling))
 			return 2
 		return 1
 

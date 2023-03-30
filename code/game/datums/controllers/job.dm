@@ -202,7 +202,7 @@ CONTROLLER_DEF(occupations)
 	for(var/i = job.total_positions, i > 0, i--)
 		for(var/level = 1 to 3)
 			var/list/candidates = list()
-			if(global.CTgame_ticker.mode.name == "AI malfunction")//Make sure they want to malf if its malf
+			if(IS_GAME_MODE(/datum/game_mode/malfunction)) // Make sure they want to malf if its malf.
 				candidates = find_occupation_candidates(job, level, BE_MALF)
 			else
 				candidates = find_occupation_candidates(job, level)
@@ -212,7 +212,7 @@ CONTROLLER_DEF(occupations)
 					ai_selected++
 					break
 		//Malf NEEDS an AI so force one if we didn't get a player who wanted it
-		if((global.CTgame_ticker.mode.name == "AI malfunction") && (!ai_selected))
+		if(IS_GAME_MODE(/datum/game_mode/malfunction) && !ai_selected)
 			unassigned = shuffle(unassigned)
 			for(var/mob/new_player/player in unassigned)
 				if(jobban_isbanned(player, "AI"))

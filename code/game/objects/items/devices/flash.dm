@@ -72,7 +72,7 @@
 			flick("e_flash", M.flash)
 
 			if(ishuman(M) && ishuman(user) && M.stat != DEAD)
-				if(user.mind && (user.mind in global.CTgame_ticker.mode.head_revolutionaries) && global.CTgame_ticker.mode.name == "revolution")
+				if(user.mind && (user.mind in global.CTgame_ticker.mode.head_revolutionaries) && IS_GAME_MODE(/datum/game_mode/revolution))
 					var/revsafe = 0
 					for(var/obj/item/weapon/implant/loyalty/L in M)
 						if(L && L.implanted)

@@ -164,10 +164,11 @@
 						var/mob/living/simple_animal/construct/armoured/Z = new /mob/living/simple_animal/construct/armoured(get_turf(T.loc))
 						Z.key = A.key
 						if(iscultist(U))
-							if(global.CTgame_ticker.mode.name == "cult")
-								global.CTgame_ticker.mode:add_cultist(Z.mind)
+							if(IS_GAME_MODE(/datum/game_mode/cult))
+								var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+								cult.add_cultist(Z.mind)
 							else
-								global.CTgame_ticker.mode.cult += Z.mind
+								global.CTgame_ticker.mode.cult.Add(Z.mind)
 							global.CTgame_ticker.mode.update_cult_icons_added(Z.mind)
 						qdel(T)
 						to_chat(Z, "<B>You are playing a Juggernaut. Though slow, you can withstand extreme punishment, and rip apart enemies and walls alike.</B>")
@@ -180,10 +181,11 @@
 						var/mob/living/simple_animal/construct/wraith/Z = new /mob/living/simple_animal/construct/wraith(get_turf(T.loc))
 						Z.key = A.key
 						if(iscultist(U))
-							if(global.CTgame_ticker.mode.name == "cult")
-								global.CTgame_ticker.mode:add_cultist(Z.mind)
+							if(IS_GAME_MODE(/datum/game_mode/cult))
+								var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+								cult.add_cultist(Z.mind)
 							else
-								global.CTgame_ticker.mode.cult += Z.mind
+								global.CTgame_ticker.mode.cult.Add(Z.mind)
 							global.CTgame_ticker.mode.update_cult_icons_added(Z.mind)
 						qdel(T)
 						to_chat(Z, "<B>You are playing a Wraith. Though relatively fragile, you are fast, deadly, and even able to phase through walls.</B>")
@@ -196,10 +198,11 @@
 						var/mob/living/simple_animal/construct/builder/Z = new /mob/living/simple_animal/construct/builder (get_turf(T.loc))
 						Z.key = A.key
 						if(iscultist(U))
-							if(global.CTgame_ticker.mode.name == "cult")
-								global.CTgame_ticker.mode:add_cultist(Z.mind)
+							if(IS_GAME_MODE(/datum/game_mode/cult))
+								var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+								cult.add_cultist(Z.mind)
 							else
-								global.CTgame_ticker.mode.cult += Z.mind
+								global.CTgame_ticker.mode.cult.Add(Z.mind)
 							global.CTgame_ticker.mode.update_cult_icons_added(Z.mind)
 						qdel(T)
 						to_chat(Z, "<B>You are playing an Artificer. You are incredibly weak and fragile, but you are able to construct fortifications, repair allied constructs (by clicking on them), and even create new constructs.</B>")

@@ -1,4 +1,4 @@
-// To add a rev to the list of revolutionaries, make sure it's rev (with if(ticker.mode.name == "revolution)),
+// To add a rev to the list of revolutionaries, make sure it's rev (with if(IS_GAME_MODE(/datum/game_mode/revolution))),
 // then call ticker.mode:add_revolutionary(_THE_PLAYERS_MIND_)
 // nothing else needs to be done, as that proc will check if they are a valid target.
 // Just make sure the converter is a head before you call it!

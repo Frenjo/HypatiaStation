@@ -1739,7 +1739,8 @@ turf/simulated/floor/return_siding_icon_state()
 	if(ticker && ticker.mode)
 
 		// Okay, so let's make it so that people can travel z levels but not nuke disks!
-		// if(ticker.mode.name == "nuclear emergency")	return
+		// if(IS_GAME_MODE(/datum/game_mode/nuclear))
+		//	return
 
 		if(ticker.mode.name == "extended"||ticker.mode.name == "sandbox")
 			Sandbox_Spacemove(A)

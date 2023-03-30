@@ -197,7 +197,7 @@ That prevents a few funky behaviors.
 						if(length(card.contents)) //If there is an AI on card.
 							to_chat(user, "\red <b>Transfer failed</b>: \black Existing AI found on this terminal. Remove existing AI to install a new one.")
 						else
-							if(global.CTgame_ticker.mode.name == "AI malfunction")
+							if(IS_GAME_MODE(/datum/game_mode/malfunction))
 								var/datum/game_mode/malfunction/malf = global.CTgame_ticker.mode
 								for(var/datum/mind/malfai in malf.malf_ai)
 									if(target_ai.mind == malfai)
@@ -220,7 +220,7 @@ That prevents a few funky behaviors.
 						if(ninja_suit.AI) //If there is an AI on card.
 							to_chat(user, "\red <b>Transfer failed</b>: \black Existing AI found on this terminal. Remove existing AI to install a new one.")
 						else
-							if(global.CTgame_ticker.mode.name == "AI malfunction")
+							if(IS_GAME_MODE(/datum/game_mode/malfunction))
 								var/datum/game_mode/malfunction/malf = global.CTgame_ticker.mode
 								for(var/datum/mind/malfai in malf.malf_ai)
 									if(target_ai.mind == malfai)

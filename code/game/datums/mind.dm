@@ -105,7 +105,7 @@
 	recipient << browse(output,"window=memory")
 
 /datum/mind/proc/edit_memory()
-	if(isnull(global.CTgame_ticker) || isnull(global.CTgame_ticker.mode))
+	if(isnull(global.CTgame_ticker?.mode))
 		alert("Not before round-start!", "Alert")
 		return
 
@@ -139,7 +139,7 @@
 		sections["implant"] = text
 		/** REVOLUTION ***/
 		text = "revolution"
-		if(global.CTgame_ticker.mode.config_tag == "revolution")
+		if(IS_GAME_MODE(/datum/game_mode/revolution))
 			text += uppertext(text)
 		text = "<i><b>[text]</b></i>: "
 		if(ismonkey(current) || H.is_loyalty_implanted(H))
@@ -169,7 +169,7 @@
 
 		/** CULT ***/
 		text = "cult"
-		if(global.CTgame_ticker.mode.config_tag == "cult")
+		if(IS_GAME_MODE(/datum/game_mode/cult))
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
 		if(ismonkey(current) || H.is_loyalty_implanted(H))
@@ -187,7 +187,7 @@
 
 		/** WIZARD ***/
 		text = "wizard"
-		if(global.CTgame_ticker.mode.config_tag == "wizard")
+		if(IS_GAME_MODE(/datum/game_mode/wizard))
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
 		if(src in global.CTgame_ticker.mode.wizards)
@@ -201,7 +201,7 @@
 
 		/** CHANGELING ***/
 		text = "changeling"
-		if(global.CTgame_ticker.mode.config_tag == "changeling" || global.CTgame_ticker.mode.config_tag == "traitorchan")
+		if(IS_GAME_MODE(/datum/game_mode/changeling) || IS_GAME_MODE(/datum/game_mode/traitor/changeling))
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
 		if(src in global.CTgame_ticker.mode.changelings)
@@ -219,7 +219,7 @@
 
 		/** NUCLEAR ***/
 		text = "nuclear"
-		if(global.CTgame_ticker.mode.config_tag == "nuclear")
+		if(IS_GAME_MODE(/datum/game_mode/nuclear))
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
 		if(src in global.CTgame_ticker.mode.syndicates)
@@ -238,7 +238,7 @@
 
 	/** TRAITOR ***/
 	text = "traitor"
-	if(global.CTgame_ticker.mode.config_tag == "traitor" || global.CTgame_ticker.mode.config_tag == "traitorchan")
+	if(IS_GAME_MODE(/datum/game_mode/traitor) || IS_GAME_MODE(/datum/game_mode/traitor/changeling))
 		text = uppertext(text)
 	text = "<i><b>[text]</b></i>: "
 	if(ishuman(current))
@@ -279,7 +279,7 @@
 	/** SILICON ***/
 	if(issilicon(current))
 		text = "silicon"
-		if(global.CTgame_ticker.mode.config_tag == "malfunction")
+		if(IS_GAME_MODE(/datum/game_mode/malfunction))
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
 		if(isAI(current))
@@ -299,7 +299,7 @@
 			text += "<br>[n_e_robots] of [length(ai.connected_robots)] slaved cyborgs are emagged. <a href='?src=\ref[src];silicon=unemagcyborgs'>Unemag</a>"
 		sections["malfunction"] = text
 
-	if(global.CTgame_ticker.mode.config_tag == "traitorchan")
+	if(IS_GAME_MODE(/datum/game_mode/traitor/changeling))
 		if(!isnull(sections["traitor"]))
 			out += sections["traitor"]+"<br>"
 		if(!isnull(sections["changeling"]))

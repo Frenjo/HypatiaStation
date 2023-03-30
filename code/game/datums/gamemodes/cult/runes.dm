@@ -130,8 +130,9 @@ var/list/sacrificed = list()
 			cultist_count += 1
 	if(cultist_count >= 9)
 		new /obj/singularity/narsie/large(src.loc)
-		if(global.CTgame_ticker.mode.name == "cult")
-			global.CTgame_ticker.mode:eldergod = 0
+		if(IS_GAME_MODE(/datum/game_mode/cult))
+			var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+			cult.eldergod = 0
 		return
 	else
 		return fizzle()
@@ -225,8 +226,10 @@ var/list/sacrificed = list()
 	var/is_sacrifice_target = 0
 	for(var/mob/living/carbon/human/M in src.loc)
 		if(M.stat == DEAD)
-			if(global.CTgame_ticker.mode.name == "cult" && M.mind == global.CTgame_ticker.mode:sacrifice_target)
-				is_sacrifice_target = 1
+			if(IS_GAME_MODE(/datum/game_mode/cult))
+				var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+				if(M.mind == cult.sacrifice_target)
+					is_sacrifice_target = 1
 			else
 				corpse_to_raise = M
 				if(M.key)
@@ -242,8 +245,10 @@ var/list/sacrificed = list()
 		for(var/obj/effect/rune/R in world)
 			if(R.word1 == cultwords["blood"] && R.word2 == cultwords["join"] && R.word3 == cultwords["hell"])
 				for(var/mob/living/carbon/human/N in R.loc)
-					if(global.CTgame_ticker.mode.name == "cult" && N.mind && N.mind == global.CTgame_ticker.mode:sacrifice_target)
-						is_sacrifice_target = 1
+					if(IS_GAME_MODE(/datum/game_mode/cult))
+						var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+						if(N.mind == cult.sacrifice_target)
+							is_sacrifice_target = 1
 					else
 						if(N.stat != DEAD)
 							body_to_sacrifice = N
@@ -286,10 +291,13 @@ var/list/sacrificed = list()
 	)
 	body_to_sacrifice.gib()
 
-//	if(ticker.mode.name == "cult")
-//		ticker.mode:add_cultist(corpse_to_raise.mind)
-//	else
-//		ticker.mode.cult |= corpse_to_raise.mind
+/*
+	if(IS_GAME_MODE(/datum/game_mode/cult))
+		var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+		cult.add_cultist(corpse_to_raise.mind)
+	else
+		ticker.mode.cult |= corpse_to_raise.mind
+*/
 
 	to_chat(corpse_to_raise, "<font color=\"purple\"><b><i>Your blood pulses. Your head throbs. The world goes red. All at once you are aware of a horrible, horrible truth. The veil of reality has been ripped away and in the festering wound left behind something sinister takes root.</b></i></font>")
 	to_chat(corpse_to_raise, "<font color=\"purple\"><b><i>Assist your new compatriots in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</b></i></font>")
@@ -391,10 +399,11 @@ var/list/sacrificed = list()
 
 	D.key = ghost.key
 
-	if(global.CTgame_ticker.mode.name == "cult")
-		global.CTgame_ticker.mode:add_cultist(D.mind)
+	if(IS_GAME_MODE(/datum/game_mode/cult))
+		var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+		cult.add_cultist(D.mind)
 	else
-		global.CTgame_ticker.mode.cult += D.mind
+		global.CTgame_ticker.mode.cult.Add(D.mind)
 
 	D.mind.special_role = "Cultist"
 	to_chat(D, "<font color=\"purple\"><b><i>Your blood pulses. Your head throbs. The world goes red. All at once you are aware of a horrible, horrible truth. The veil of reality has been ripped away and in the festering wound left behind something sinister takes root.</b></i></font>")
@@ -564,8 +573,9 @@ var/list/sacrificed = list()
 			cultsinrange += C
 			C.say("Barhah hra zar[pick("'", "`")]garis!")
 	for(var/mob/H in victims)
-		if(global.CTgame_ticker.mode.name == "cult")
-			if(H.mind == global.CTgame_ticker.mode:sacrifice_target)
+		if(IS_GAME_MODE(/datum/game_mode/cult))
+			var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+			if(H.mind == cult.sacrifice_target)
 				if(length(cultsinrange) >= 3)
 					sacrificed += H.mind
 					if(isrobot(H))
@@ -580,7 +590,7 @@ var/list/sacrificed = list()
 					if(H.stat !=2)
 						if(prob(80))
 							to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
-							global.CTgame_ticker.mode:grant_runeword(usr)
+							cult.grant_runeword(usr)
 						else
 							to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
 							to_chat(usr, SPAN_WARNING("However, this soul was not enough to gain His favor."))
@@ -591,7 +601,7 @@ var/list/sacrificed = list()
 					else
 						if(prob(40))
 							to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
-							global.CTgame_ticker.mode:grant_runeword(usr)
+							cult.grant_runeword(usr)
 						else
 							to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
 							to_chat(usr, SPAN_WARNING("However, a mere dead body is not enough to satisfy Him."))
@@ -605,7 +615,7 @@ var/list/sacrificed = list()
 					else
 						if(prob(40))
 							to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
-							global.CTgame_ticker.mode:grant_runeword(usr)
+							cult.grant_runeword(usr)
 						else
 							to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
 							to_chat(usr, SPAN_WARNING("However, a mere dead body is not enough to satisfy Him."))
@@ -618,7 +628,7 @@ var/list/sacrificed = list()
 				if(H.stat !=2)
 					if(prob(80))
 						to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
-						global.CTgame_ticker.mode:grant_runeword(usr)
+						global.CTgame_ticker.mode.grant_runeword(usr)
 					else
 						to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
 						to_chat(usr, SPAN_WARNING("However, this soul was not enough to gain His favor."))
@@ -629,7 +639,7 @@ var/list/sacrificed = list()
 				else
 					if(prob(40))
 						to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
-						global.CTgame_ticker.mode:grant_runeword(usr)
+						global.CTgame_ticker.mode.grant_runeword(usr)
 					else
 						to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
 						to_chat(usr, SPAN_WARNING("However, a mere dead body is not enough to satisfy Him."))
@@ -643,7 +653,7 @@ var/list/sacrificed = list()
 				else
 					if(prob(40))
 						to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
-						global.CTgame_ticker.mode:grant_runeword(usr)
+						global.CTgame_ticker.mode.grant_runeword(usr)
 					else
 						to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
 						to_chat(usr, SPAN_WARNING("However, a mere dead body is not enough to satisfy Him."))
@@ -651,9 +661,11 @@ var/list/sacrificed = list()
 						H.dust()//To prevent the MMI from remaining
 					else
 						H.gib()
+
 	for(var/mob/living/carbon/monkey/M in src.loc)
-		if(global.CTgame_ticker.mode.name == "cult")
-			if(M.mind == global.CTgame_ticker.mode:sacrifice_target)
+		if(IS_GAME_MODE(/datum/game_mode/cult))
+			var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+			if(M.mind == cult.sacrifice_target)
 				if(length(cultsinrange) >= 3)
 					sacrificed += M.mind
 					to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice, your objective is now complete."))
@@ -663,7 +675,7 @@ var/list/sacrificed = list()
 			else
 				if(prob(20))
 					to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts your meager sacrifice."))
-					global.CTgame_ticker.mode:grant_runeword(usr)
+					cult.grant_runeword(usr)
 				else
 					to_chat(usr, SPAN_WARNING("The Geometer of blood accepts this sacrifice."))
 					to_chat(usr, SPAN_WARNING("However, a mere monkey is not enough to satisfy Him."))
@@ -672,21 +684,24 @@ var/list/sacrificed = list()
 			if(prob(20))
 				global.CTgame_ticker.mode.grant_runeword(usr)
 		M.gib()
-/*			for(var/mob/living/carbon/alien/A)
+/*	
+	for(var/mob/living/carbon/alien/A)
 		for(var/mob/K in cultsinrange)
 			K.say("Barhah hra zar'garis!")
-		A.dust()      /// A.gib() doesnt work for some reason, and dust() leaves that skull and bones thingy which we dont really need.
-		if(ticker.mode.name == "cult")
+		A.dust() /// A.gib() doesnt work for some reason, and dust() leaves that skull and bones thingy which we dont really need.
+		if(IS_GAME_MODE(/datum/game_mode/cult))
+			var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
 			if(prob(75))
 				usr << "\red The Geometer of Blood accepts your exotic sacrifice."
-				ticker.mode:grant_runeword(usr)
+				cult.grant_runeword(usr)
 			else
 				usr << "\red The Geometer of Blood accepts your exotic sacrifice."
 				usr << "\red However, this alien is not enough to gain His favor."
 		else
 			usr << "\red The Geometer of Blood accepts your exotic sacrifice."
 		return
-	return fizzle() */
+	return fizzle() 
+*/
 
 
 /////////////////////////////////////////SIXTEENTH RUNE
