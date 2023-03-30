@@ -95,7 +95,7 @@
 /obj/machinery/power/apc/Destroy()
 	if(malfai && operating)
 		if(global.CTgame_ticker.mode.config_tag == "malfunction")
-			if(isStationLevel(src.z)) //if (is_type_in_list(get_area(src), the_station_areas))
+			if(isStationLevel(src.z))
 				global.CTgame_ticker.mode:apcs--
 
 	area.apc = null
@@ -204,7 +204,7 @@
 					malfai.malfhacking = 0
 					locked = 1
 					if(global.CTgame_ticker.mode.config_tag == "malfunction")
-						if(isStationLevel(src.z)) //if (is_type_in_list(get_area(src), the_station_areas))
+						if(isStationLevel(src.z))
 							global.CTgame_ticker.mode:apcs++
 					if(usr:parent)
 						src.malfai = usr:parent
