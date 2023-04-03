@@ -25,7 +25,7 @@ CONTROLLER_DEF(pai)
 		if(!isnull(card.pai))
 			return
 		if(istype(card, /obj/item/device/paicard) && istype(candidate, /datum/pAI_candidate))
-			var/mob/living/silicon/pai/pai = new(card)
+			var/mob/living/silicon/pai/pai = new /mob/living/silicon/pai(card)
 			if(isnull(candidate.name))
 				pai.name = pick(GLOBL.ninja_names)
 			else

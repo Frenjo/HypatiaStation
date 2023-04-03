@@ -39,7 +39,7 @@ CONTROLLER_DEF(emergency)
 			if(!shuttle.location)	//leaving from the station
 				//launch the pods!
 				for(var/datum/shuttle/ferry/escape_pod/pod in escape_pods)
-					if(!pod.arming_controller || pod.arming_controller.armed)
+					if(isnull(pod.arming_controller) || pod.arming_controller.armed)
 						pod.launch(src)
 
 			if(autopilot)
@@ -61,8 +61,7 @@ CONTROLLER_DEF(emergency)
 		//arm the escape pods
 		if(evac)
 			for(var/datum/shuttle/ferry/escape_pod/pod in escape_pods)
-				if(pod.arming_controller)
-					pod.arming_controller.arm()
+				pod.arming_controller?.arm()
 
 //begins the launch countdown and sets the amount of time left until launch
 /datum/controller/emergency/proc/set_launch_countdown(seconds)

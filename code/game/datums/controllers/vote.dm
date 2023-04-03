@@ -163,7 +163,7 @@ CONTROLLER_DEF(vote)
 			if("gamemode")
 				if(global.CTgame_ticker.master_mode != .)
 					world.save_mode(.)
-					if(global.CTgame_ticker && global.CTgame_ticker.mode)
+					if(!isnull(global.CTgame_ticker?.mode))
 						restart = 1
 					else
 						global.CTgame_ticker.master_mode = .
@@ -188,7 +188,7 @@ CONTROLLER_DEF(vote)
 
 /datum/controller/vote/proc/submit_vote(ckey, vote)
 	if(!isnull(mode))
-		if(CONFIG_GET(vote_no_dead) && usr.stat == DEAD && !usr.client.holder)
+		if(CONFIG_GET(vote_no_dead) && usr.stat == DEAD && isnull(usr.client.holder))
 			return 0
 		if(!isnull(current_votes[ckey]))
 			choices[choices[current_votes[ckey]]]--

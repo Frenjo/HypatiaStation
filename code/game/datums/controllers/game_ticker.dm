@@ -212,7 +212,7 @@ CONTROLLER_DEF(game_ticker)
 	//Now animate the cinematic
 	switch(station_missed)
 		if(1)	//nuke was nearby but (mostly) missed
-			if(mode && !override)
+			if(!isnull(mode) && !override)
 				override = mode.name
 			switch(override)
 				if("nuclear emergency") //Nuke wasn't on station when it blew up
@@ -232,7 +232,7 @@ CONTROLLER_DEF(game_ticker)
 			world << sound('sound/effects/explosionfar.ogg')
 
 		else	//station was destroyed
-			if(mode && !override)
+			if(!isnull(mode) && !override)
 				override = mode.name
 			switch(override)
 				if("nuclear emergency") //Nuke Ops successfully bombed the station

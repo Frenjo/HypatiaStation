@@ -145,7 +145,6 @@ CONTROLLER_DEF(supply)
 			slip.loc = null	//we are out of blanks for Form #44-D Ordering Illicit Drugs.
 
 	shoppinglist.Cut()
-	return
 
 // Supply manifest
 /obj/item/weapon/paper/manifest

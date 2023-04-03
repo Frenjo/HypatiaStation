@@ -19,12 +19,11 @@ CONTROLLER_DEF(occupations)
 		return 0
 	for(var/J in all_jobs)
 		var/datum/job/job = new J()
-		if(!job)
+		if(isnull(job))
 			continue
 		if(job.faction != faction)
 			continue
 		occupations.Add(job)
-
 	return 1
 
 /datum/controller/occupations/proc/debug(text)
@@ -34,10 +33,10 @@ CONTROLLER_DEF(occupations)
 	return 1
 
 /datum/controller/occupations/proc/get_job(rank)
-	if(!rank)
+	if(isnull(rank))
 		return null
 	for(var/datum/job/J in occupations)
-		if(!J)
+		if(isnull(J))
 			continue
 		if(J.title == rank)
 			return J
@@ -48,9 +47,9 @@ CONTROLLER_DEF(occupations)
 
 /datum/controller/occupations/proc/assign_role(mob/new_player/player, rank, latejoin = 0)
 	debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
-	if(player && player.mind && rank)
+	if(!isnull(player?.mind) && !isnull(rank))
 		var/datum/job/job = get_job(rank)
-		if(!job)
+		if(isnull(job))
 			return 0
 		if(jobban_isbanned(player, rank))
 			return 0
@@ -71,7 +70,7 @@ CONTROLLER_DEF(occupations)
 
 /datum/controller/occupations/proc/free_role(rank)	//making additional slot on the fly
 	var/datum/job/job = get_job(rank)
-	if(job && job.current_positions >= job.total_positions && job.total_positions != -1)
+	if(!isnull(job) && job.current_positions >= job.total_positions && job.total_positions != -1)
 		job.total_positions++
 		return 1
 	return 0
@@ -97,7 +96,7 @@ CONTROLLER_DEF(occupations)
 /datum/controller/occupations/proc/give_random_job(mob/new_player/player)
 	debug("GRJ Giving random job, Player: [player]")
 	for(var/datum/job/job in shuffle(occupations))
-		if(!job)
+		if(isnull(job))
 			continue
 
 		if(istype(job, get_job("Assistant"))) // We don't want to give him assistant, that's boring!
@@ -122,19 +121,18 @@ CONTROLLER_DEF(occupations)
 
 /datum/controller/occupations/proc/reset_occupations()
 	for(var/mob/new_player/player in GLOBL.player_list)
-		if((player) && (player.mind))
+		if(!isnull(player?.mind))
 			player.mind.assigned_role = null
 			player.mind.special_role = null
 	setup_occupations()
 	unassigned = list()
-	return
 
 //This proc is called before the level loop of DivideOccupations() and will try to select a head, ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check
 /datum/controller/occupations/proc/fill_head_position()
 	for(var/level = 1 to 3)
 		for(var/command_position in GLOBL.command_positions)
 			var/datum/job/job = get_job(command_position)
-			if(!job)
+			if(isnull(job))
 				continue
 			var/list/candidates = find_occupation_candidates(job, level)
 			if(!length(candidates))
@@ -152,7 +150,7 @@ CONTROLLER_DEF(occupations)
 
 			for(var/mob/V in candidates)
 				// Log-out during round-start? What a bad boy, no head position for you!
-				if(!V.client)
+				if(isnull(V.client))
 					continue
 				var/age = V.client.prefs.age
 				// I absolutely hate that this is necessary for now but I just cannot think of a better logical path.
@@ -182,19 +180,18 @@ CONTROLLER_DEF(occupations)
 /datum/controller/occupations/proc/check_head_positions(level)
 	for(var/command_position in GLOBL.command_positions)
 		var/datum/job/job = get_job(command_position)
-		if(!job)
+		if(isnull(job))
 			continue
 		var/list/candidates = find_occupation_candidates(job, level)
 		if(!length(candidates))
 			continue
 		var/mob/new_player/candidate = pick(candidates)
 		assign_role(candidate, command_position)
-	return
 
 /datum/controller/occupations/proc/fill_ai_position()
 	var/ai_selected = 0
 	var/datum/job/job = get_job("AI")
-	if(!job)
+	if(isnull(job))
 		return 0
 	if(job.title == "AI" && CONFIG && !CONFIG_GET(allow_ai))
 		return 0
@@ -224,7 +221,6 @@ CONTROLLER_DEF(occupations)
 			return 1
 		return 0
 
-
 /** Proc DivideOccupations
  *  fills var "assigned_role" for all ready players.
  *  This proc must not have any side effect besides of modifying "assigned_role".
@@ -235,14 +231,14 @@ CONTROLLER_DEF(occupations)
 	setup_occupations()
 
 	//Holder for Triumvirate is stored in the ticker, this just processes it
-	if(global.CTgame_ticker)
+	if(!isnull(global.CTgame_ticker))
 		for(var/datum/job/ai/A in occupations)
 			if(global.CTgame_ticker.triai)
 				A.spawn_positions = 3
 
 	//Get the players who are ready
 	for(var/mob/new_player/player in GLOBL.player_list)
-		if(player.ready && player.mind && !player.mind.assigned_role)
+		if(player.ready && !isnull(player.mind) && !player.mind.assigned_role)
 			unassigned.Add(player)
 
 	debug("DO, Len: [length(unassigned)]")
@@ -292,7 +288,7 @@ CONTROLLER_DEF(occupations)
 		for(var/mob/new_player/player in unassigned)
 			// Loop through all jobs
 			for(var/datum/job/job in shuffledoccupations) // SHUFFLE ME BABY
-				if(!job)
+				if(isnull(job))
 					continue
 
 				if(jobban_isbanned(player, job.title))
@@ -336,11 +332,11 @@ CONTROLLER_DEF(occupations)
 	return 1
 
 /datum/controller/occupations/proc/equip_rank(mob/living/carbon/human/H, rank, joined_late = 0)
-	if(!H)
+	if(isnull(H))
 		return 0
 
 	var/datum/job/job = get_job(rank)
-	if(job)
+	if(!isnull(job))
 		job.equip(H)
 	else
 		to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
@@ -356,14 +352,14 @@ CONTROLLER_DEF(occupations)
 				continue
 			S = sloc
 			break
-		if(!S)
+		if(isnull(S))
 			S = locate("start*[rank]") // use old stype
-		if(istype(S, /obj/effect/landmark/start) && istype(S.loc, /turf))
+		if(istype(S, /obj/effect/landmark/start) && isturf(S.loc))
 			H.loc = S.loc
 
 	//give them an account in the station database
-	var/datum/money_account/M = create_account(H.real_name, rand(50,500)*10, null)
-	if(H.mind)
+	var/datum/money_account/M = create_account(H.real_name, rand(50, 500) * 10, null)
+	if(!isnull(H.mind))
 		var/remembered_info = ""
 		remembered_info += "<b>Your account number is:</b> #[M.account_number]<br>"
 		remembered_info += "<b>Your account pin is:</b> [M.remote_access_pin]<br>"
@@ -377,7 +373,7 @@ CONTROLLER_DEF(occupations)
 		H.mind.initial_account = M
 
 	// If they're head, give them the account info for their department
-	if(H.mind && job.head_position)
+	if(!isnull(H.mind) && job.head_position)
 		var/remembered_info = ""
 		var/datum/money_account/department_account = department_accounts[job.department]
 
@@ -392,7 +388,7 @@ CONTROLLER_DEF(occupations)
 		to_chat(H, SPAN_INFO_B("Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]."))
 
 	var/alt_title = null
-	if(H.mind)
+	if(!isnull(H.mind))
 		H.mind.assigned_role = rank
 		alt_title = H.mind.role_alt_title
 
@@ -422,24 +418,24 @@ CONTROLLER_DEF(occupations)
 							new H.species.survival_kit(sat)
 						H.equip_to_slot_or_del(sat, SLOT_ID_BACK, 1)
 
-	if(H.species)
+	if(!isnull(H.species))
 		if(H.species.name == SPECIES_TAJARAN || H.species.name == SPECIES_SOGHUN)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H), SLOT_ID_SHOES, 1)
 		else if(H.species.name == SPECIES_VOX)
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/vox(src), SLOT_ID_WEAR_MASK)
-			if(!H.r_hand)
+			if(isnull(H.r_hand))
 				H.equip_to_slot_or_del(new /obj/item/weapon/tank/nitrogen(src), SLOT_ID_R_HAND)
 				H.internal = H.r_hand
-			else if(!H.l_hand)
+			else if(isnull(H.l_hand))
 				H.equip_to_slot_or_del(new /obj/item/weapon/tank/nitrogen(src), SLOT_ID_L_HAND)
 				H.internal = H.l_hand
 			H.internals.icon_state = "internal1"
 		else if(H.species.name == SPECIES_PLASMALIN)
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), SLOT_ID_WEAR_MASK)
-			if(!H.r_hand)
+			if(isnull(H.r_hand))
 				H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), SLOT_ID_R_HAND)
 				H.internal = H.r_hand
-			else if(!H.l_hand)
+			else if(isnull(H.l_hand))
 				H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), SLOT_ID_L_HAND)
 				H.internal = H.l_hand
 			H.internals.icon_state = "internal1"
@@ -465,9 +461,8 @@ CONTROLLER_DEF(occupations)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
 	return 1
 
-
 /datum/controller/occupations/proc/spawn_id(mob/living/carbon/human/H, rank, title)
-	if(!H)
+	if(isnull(H))
 		return 0
 	var/obj/item/weapon/card/id/C = null
 
@@ -477,7 +472,7 @@ CONTROLLER_DEF(occupations)
 			job = J
 			break
 
-	if(job)
+	if(!isnull(job))
 		if(job.title == "Cyborg")
 			return
 		else
@@ -485,14 +480,15 @@ CONTROLLER_DEF(occupations)
 			C.access = job.get_access()
 	else
 		C = new /obj/item/weapon/card/id(H)
-	if(C)
+
+	if(!isnull(C))
 		C.registered_name = H.real_name
 		C.rank = rank
 		C.assignment = title ? title : rank
 		C.name = "[C.registered_name]'s ID Card ([C.assignment])"
 
 		//put the player's account number onto the ID
-		if(H.mind && H.mind.initial_account)
+		if(!isnull(H.mind?.initial_account))
 			C.associated_account_number = H.mind.initial_account.account_number
 
 		H.equip_to_slot_or_del(C, SLOT_ID_WEAR_ID)
@@ -503,7 +499,6 @@ CONTROLLER_DEF(occupations)
 		pda.owner = H.real_name
 		pda.ownjob = C.assignment
 		pda.name = "PDA - [H.real_name] ([pda.ownjob])" // Edited this to space out the dash. -Frenjo
-
 	return 1
 
 /datum/controller/occupations/proc/load_jobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
@@ -532,13 +527,12 @@ CONTROLLER_DEF(occupations)
 
 		if(name && value)
 			var/datum/job/J = get_job(name)
-			if(!J)
+			if(isnull(J))
 				continue
 			J.total_positions = text2num(value)
 			J.spawn_positions = text2num(value)
 			if(name == "AI" || name == "Cyborg")	//I dont like this here but it will do for now
 				J.total_positions = 0
-
 	return 1
 
 /datum/controller/occupations/proc/handle_feedback_gathering()
@@ -552,7 +546,7 @@ CONTROLLER_DEF(occupations)
 		var/level5 = 0 //banned
 		var/level6 = 0 //account too young
 		for(var/mob/new_player/player in GLOBL.player_list)
-			if(!(player.ready && player.mind && !player.mind.assigned_role))
+			if(!player.ready || isnull(player.mind) || player.mind.assigned_role)
 				continue //This player is not ready
 			if(jobban_isbanned(player, job.title))
 				level5++
