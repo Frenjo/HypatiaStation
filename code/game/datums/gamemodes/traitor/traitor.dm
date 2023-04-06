@@ -176,50 +176,49 @@
 	//End code phrase.
 
 /datum/game_mode/proc/auto_declare_completion_traitor()
-	if(length(traitors))
-		var/text = "<FONT size = 2><B>The traitors were:</B></FONT>"
-		for(var/datum/mind/traitor in traitors)
-			var/traitorwin = 1
+	if(!length(traitors))
+		return
 
-			text += "<br>[traitor.key] was [traitor.name] ("
-			if(traitor.current)
-				if(traitor.current.stat == DEAD)
-					text += "died"
-				else
-					text += "survived"
-				if(traitor.current.real_name != traitor.name)
-					text += " as [traitor.current.real_name]"
+	var/text = "<FONT size = 2><B>The traitors were:</B></FONT>"
+	for(var/datum/mind/traitor in traitors)
+		var/traitorwin = TRUE
+		text += "<br>[traitor.key] was [traitor.name] ("
+		if(!isnull(traitor.current))
+			if(traitor.current.stat == DEAD)
+				text += "died"
 			else
-				text += "body destroyed"
-			text += ")"
+				text += "survived"
+			if(traitor.current.real_name != traitor.name)
+				text += " as [traitor.current.real_name]"
+		else
+			text += "body destroyed"
+		text += ")"
 
-			if(length(traitor.objectives))//If the traitor had no objectives, don't need to process this.
-				var/count = 1
-				for(var/datum/objective/objective in traitor.objectives)
-					if(objective.check_completion())
-						text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='green'><B>Success!</B></font>"
-						feedback_add_details("traitor_objective", "[objective.type]|SUCCESS")
-					else
-						text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='red'>Fail.</font>"
-						feedback_add_details("traitor_objective", "[objective.type]|FAIL")
-						traitorwin = 0
-					count++
-
-			var/special_role_text
-			if(traitor.special_role)
-				special_role_text = lowertext(traitor.special_role)
-			else
-				special_role_text = "antagonist"
-			if(!CONFIG_GET(objectives_disabled))
-				if(traitorwin)
-					text += "<br><font color='green'><B>The [special_role_text] was successful!</B></font>"
-					feedback_add_details("traitor_success","SUCCESS")
+		if(length(traitor.objectives))//If the traitor had no objectives, don't need to process this.
+			var/count = 1
+			for(var/datum/objective/objective in traitor.objectives)
+				if(objective.check_completion())
+					text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='green'><B>Success!</B></font>"
+					feedback_add_details("traitor_objective", "[objective.type]|SUCCESS")
 				else
-					text += "<br><font color='red'><B>The [special_role_text] has failed!</B></font>"
-					feedback_add_details("traitor_success","FAIL")
+					text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='red'>Fail.</font>"
+					feedback_add_details("traitor_objective", "[objective.type]|FAIL")
+					traitorwin = FALSE
+				count++
 
-		world << text
-	return 1
+		var/special_role_text
+		if(traitor.special_role)
+			special_role_text = lowertext(traitor.special_role)
+		else
+			special_role_text = "antagonist"
+		if(!CONFIG_GET(objectives_disabled))
+			if(traitorwin)
+				text += "<br><font color='green'><B>The [special_role_text] was successful!</B></font>"
+				feedback_add_details("traitor_success","SUCCESS")
+			else
+				text += "<br><font color='red'><B>The [special_role_text] has failed!</B></font>"
+				feedback_add_details("traitor_success","FAIL")
+	to_world(text)
 
 /datum/game_mode/proc/equip_traitor(mob/living/carbon/human/traitor_mob, safety = 0)
 	if(!istype(traitor_mob))

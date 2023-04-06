@@ -23,15 +23,14 @@
 		*/
 
 /obj/effect/blob/New(loc, h = 30)
-	blobs += src
+	GLOBL.blobs.Add(src)
 	src.health = h
 	src.set_dir(pick(1, 2, 4, 8))
 	src.update_icon()
-	..(loc)
-	return
+	. = ..(loc)
 
 /obj/effect/blob/Destroy()
-	blobs -= src
+	GLOBL.blobs.Remove(src)
 	return ..()
 
 /obj/effect/blob/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)

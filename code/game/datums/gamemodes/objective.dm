@@ -112,16 +112,17 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 // less violent rev objectives
 /datum/objective/mutiny/rp/check_completion()
 	var/rval = 1
-	if(target && target.current)
+	if(!isnull(target?.current))
 		//assume that only carbon mobs can become rev heads for now
 		if(target.current.stat == DEAD || target.current:handcuffed || !ishuman(target.current))
 			return 1
 		// Check if they're converted
-		if(istype(global.CTgame_ticker.mode, /datum/game_mode/revolution))
-			if(target in global.CTgame_ticker.mode:head_revolutionaries)
+		if(IS_GAME_MODE(/datum/game_mode/revolution))
+			var/datum/game_mode/revolution/rev = global.CTgame_ticker.mode
+			if(target in rev.head_revolutionaries)
 				return 1
 		var/turf/T = get_turf(target.current)
-		if(T && isNotStationLevel(T.z))			//If they leave the station they count as dead for this
+		if(!isnull(T) && isNotStationLevel(T.z)) // If they leave the station they count as dead for this.
 			rval = 2
 		return 0
 	return rval

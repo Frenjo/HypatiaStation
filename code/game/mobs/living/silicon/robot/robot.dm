@@ -422,7 +422,7 @@ var/list/robot_verbs_default = list(
 // this function shows information about the malf_ai gameplay type in the status screen
 /mob/living/silicon/robot/show_malf_ai()
 	. = ..()
-	if(istype(global.CTgame_ticker.mode, /datum/game_mode/malfunction))
+	if(IS_GAME_MODE(/datum/game_mode/malfunction))
 		var/datum/game_mode/malfunction/malf = global.CTgame_ticker.mode
 		for(var/datum/mind/malfai in malf.malf_ai)
 			if(connected_ai?.mind == malfai)

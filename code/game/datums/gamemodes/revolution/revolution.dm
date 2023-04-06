@@ -358,9 +358,12 @@
 	return 1
 
 /datum/game_mode/proc/auto_declare_completion_revolution()
+	if(!length(head_revolutionaries) && !length(revolutionaries) && !IS_GAME_MODE(/datum/game_mode/revolution))
+		return
+
 	var/list/targets = list()
 
-	if(length(head_revolutionaries) || istype(global.CTgame_ticker.mode, /datum/game_mode/revolution))
+	if(length(head_revolutionaries) || IS_GAME_MODE(/datum/game_mode/revolution))
 		var/text = "<FONT size = 2><B>The head revolutionaries were:</B></FONT>"
 		for(var/datum/mind/headrev in head_revolutionaries)
 			text += "<br>[headrev.key] was [headrev.name] ("
@@ -379,10 +382,9 @@
 
 			for(var/datum/objective/mutiny/objective in headrev.objectives)
 				targets |= objective.target
+		to_world(text)
 
-		world << text
-
-	if(length(revolutionaries) || istype(global.CTgame_ticker.mode, /datum/game_mode/revolution))
+	if(length(revolutionaries) || IS_GAME_MODE(/datum/game_mode/revolution))
 		var/text = "<FONT size = 2><B>The revolutionaries were:</B></FONT>"
 		for(var/datum/mind/rev in revolutionaries)
 			text += "<br>[rev.key] was [rev.name] ("
@@ -398,10 +400,9 @@
 			else
 				text += "body destroyed"
 			text += ")"
+		to_world(text)
 
-		world << text
-
-	if(length(head_revolutionaries) || length(revolutionaries) || istype(global.CTgame_ticker.mode, /datum/game_mode/revolution))
+	if(length(head_revolutionaries) || length(revolutionaries) || IS_GAME_MODE(/datum/game_mode/revolution))
 		var/text = "<FONT size = 2><B>The heads of staff were:</B></FONT>"
 		var/list/heads = get_all_heads()
 		for(var/datum/mind/head in heads)
@@ -423,11 +424,7 @@
 			text += ")"
 			if(target)
 				text += "</font>"
-
-		world << text
+		to_world(text)
 
 /proc/is_convertable_to_rev(datum/mind/mind)
-	return istype(mind) && \
-		ishuman(mind.current) && \
-		!(mind.assigned_role in GLOBL.command_positions) && \
-		!(mind.assigned_role in list("Security Officer", "Detective", "Warden"))
+	return istype(mind) && ishuman(mind.current) && !(mind.assigned_role in GLOBL.command_positions) && !(mind.assigned_role in GLOBL.security_positions)

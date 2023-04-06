@@ -89,7 +89,7 @@
 	affected.implants += I
 	I.part = affected
 
-	if(global.CTgame_ticker.mode && istype(global.CTgame_ticker.mode, /datum/game_mode/heist))
+	if(IS_GAME_MODE(/datum/game_mode/heist))
 		var/datum/game_mode/heist/M = global.CTgame_ticker.mode
-		M.cortical_stacks += I
+		M.cortical_stacks.Add(I)
 		M.raiders[H.mind] = I

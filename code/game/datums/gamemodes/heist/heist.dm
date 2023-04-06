@@ -234,32 +234,32 @@ VOX HEIST ROUNDTYPE
 	..()
 
 /datum/game_mode/proc/auto_declare_completion_heist()
-	if(length(raiders))
-		var/check_return = 0
-		if(global.CTgame_ticker && istype(global.CTgame_ticker.mode, /datum/game_mode/heist))
-			check_return = 1
-		var/text = "<FONT size = 2><B>The vox raiders were:</B></FONT>"
+	if(!length(raiders))
+		return
+		
+	var/check_return = FALSE
+	if(IS_GAME_MODE(/datum/game_mode/heist))
+		check_return = TRUE
 
-		for(var/datum/mind/vox in raiders)
-			text += "<br>[vox.key] was [vox.name] ("
-			if(check_return)
-				var/obj/stack = raiders[vox]
-				if(get_area(stack) != locate(/area/shuttle/vox/station))
-					text += "left behind)"
-					continue
-			if(vox.current)
-				if(vox.current.stat == DEAD)
-					text += "died"
-				else
-					text += "survived"
-				if(vox.current.real_name != vox.name)
-					text += " as [vox.current.real_name]"
+	var/text = "<FONT size = 2><B>The vox raiders were:</B></FONT>"
+	for(var/datum/mind/vox in raiders)
+		text += "<br>[vox.key] was [vox.name] ("
+		if(check_return)
+			var/obj/stack = raiders[vox]
+			if(get_area(stack) != locate(/area/shuttle/vox/station))
+				text += "left behind)"
+				continue
+		if(!isnull(vox.current))
+			if(vox.current.stat == DEAD)
+				text += "died"
 			else
-				text += "body destroyed"
-			text += ")"
-
-		world << text
-	return 1
+				text += "survived"
+			if(vox.current.real_name != vox.name)
+				text += " as [vox.current.real_name]"
+		else
+			text += "body destroyed"
+		text += ")"
+	to_world(text)
 
 /datum/game_mode/heist/check_finished()
 	if(!is_raider_crew_alive() || (vox_shuttle_location && (vox_shuttle_location == "start")))

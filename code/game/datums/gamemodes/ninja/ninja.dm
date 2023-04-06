@@ -144,48 +144,47 @@
 		obj_count++
 
 /datum/game_mode/proc/auto_declare_completion_ninja()
-	if(length(ninjas))
-		var/text = "<FONT size = 2><B>The ninjas were:</B></FONT>"
-		for(var/datum/mind/ninja in ninjas)
-			var/ninjawin = 1
+	if(!length(ninjas))
+		return
 
-			text += "<br>[ninja.key] was [ninja.name] ("
-			if(ninja.current)
-				if(ninja.current.stat == DEAD)
-					text += "died"
-				else
-					text += "survived"
-				if(ninja.current.real_name != ninja.name)
-					text += " as [ninja.current.real_name]"
+	var/text = "<FONT size = 2><B>The ninjas were:</B></FONT>"
+	for(var/datum/mind/ninja in ninjas)
+		var/ninjawin = TRUE
+		text += "<br>[ninja.key] was [ninja.name] ("
+		if(ninja.current)
+			if(ninja.current.stat == DEAD)
+				text += "died"
 			else
-				text += "body destroyed"
-			text += ")"
+				text += "survived"
+			if(ninja.current.real_name != ninja.name)
+				text += " as [ninja.current.real_name]"
+		else
+			text += "body destroyed"
+		text += ")"
 
-			if(length(ninja.objectives))//If the ninja had no objectives, don't need to process this.
-				var/count = 1
-				for(var/datum/objective/objective in ninja.objectives)
-					if(objective.check_completion())
-						text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='green'><B>Success!</B></font>"
-						feedback_add_details("traitor_objective","[objective.type]|SUCCESS")
-					else
-						text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='red'>Fail.</font>"
-						feedback_add_details("traitor_objective","[objective.type]|FAIL")
-						ninjawin = 0
-					count++
-
-			var/special_role_text
-			if(ninja.special_role)
-				special_role_text = lowertext(ninja.special_role)
-			else
-				special_role_text = "antagonist"
-
-			if(!CONFIG_GET(objectives_disabled))
-				if(ninjawin)
-					text += "<br><font color='green'><B>The [special_role_text] was successful!</B></font>"
-					feedback_add_details("traitor_success","SUCCESS")
+		if(length(ninja.objectives))//If the ninja had no objectives, don't need to process this.
+			var/count = 1
+			for(var/datum/objective/objective in ninja.objectives)
+				if(objective.check_completion())
+					text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='green'><B>Success!</B></font>"
+					feedback_add_details("traitor_objective","[objective.type]|SUCCESS")
 				else
-					text += "<br><font color='red'><B>The [special_role_text] has failed!</B></font>"
-					feedback_add_details("traitor_success","FAIL")
+					text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='red'>Fail.</font>"
+					feedback_add_details("traitor_objective","[objective.type]|FAIL")
+					ninjawin = FALSE
+				count++
 
-		world << text
-	return 1
+		var/special_role_text
+		if(ninja.special_role)
+			special_role_text = lowertext(ninja.special_role)
+		else
+			special_role_text = "antagonist"
+
+		if(!CONFIG_GET(objectives_disabled))
+			if(ninjawin)
+				text += "<br><font color='green'><B>The [special_role_text] was successful!</B></font>"
+				feedback_add_details("traitor_success","SUCCESS")
+			else
+				text += "<br><font color='red'><B>The [special_role_text] has failed!</B></font>"
+				feedback_add_details("traitor_success","FAIL")
+	to_world(text)

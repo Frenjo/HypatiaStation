@@ -334,25 +334,23 @@
 
 
 /datum/game_mode/proc/auto_declare_completion_nuclear()
-	if(length(syndicates) || (global.CTgame_ticker && istype(global.CTgame_ticker.mode, /datum/game_mode/nuclear)))
-		var/text = "<FONT size = 2><B>The syndicate operatives were:</B></FONT>"
+	if(!length(syndicates) && !IS_GAME_MODE(/datum/game_mode/nuclear))
+		return
 
-		for(var/datum/mind/syndicate in syndicates)
-
-			text += "<br>[syndicate.key] was [syndicate.name] ("
-			if(syndicate.current)
-				if(syndicate.current.stat == DEAD)
-					text += "died"
-				else
-					text += "survived"
-				if(syndicate.current.real_name != syndicate.name)
-					text += " as [syndicate.current.real_name]"
+	var/text = "<FONT size = 2><B>The syndicate operatives were:</B></FONT>"
+	for(var/datum/mind/syndicate in syndicates)
+		text += "<br>[syndicate.key] was [syndicate.name] ("
+		if(!isnull(syndicate.current))
+			if(syndicate.current.stat == DEAD)
+				text += "died"
 			else
-				text += "body destroyed"
-			text += ")"
-
-		to_world(text)
-	return 1
+				text += "survived"
+			if(syndicate.current.real_name != syndicate.name)
+				text += " as [syndicate.current.real_name]"
+		else
+			text += "body destroyed"
+		text += ")"
+	to_world(text)
 
 
 /*/proc/nukelastname(var/mob/M as mob) //--All praise goes to NEO|Phyte, all blame goes to DH, and it was Cindi-Kate's idea. Also praise Urist for copypasta ho.

@@ -249,7 +249,6 @@
 #include "code\game\datums\gamemodes\objective.dm"
 #include "code\game\datums\gamemodes\setupgame.dm"
 #include "code\game\datums\gamemodes\autotraitor\autotraitor.dm"
-#include "code\game\datums\gamemodes\blob\blob.dm"
 #include "code\game\datums\gamemodes\blob\theblob.dm"
 #include "code\game\datums\gamemodes\blob\blobs\core.dm"
 #include "code\game\datums\gamemodes\blob\blobs\factory.dm"

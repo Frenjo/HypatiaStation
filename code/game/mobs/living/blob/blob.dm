@@ -179,14 +179,14 @@
 	set desc = "blob report."
 	set hidden = 1
 
-	if(!holder)
+	if(isnull(holder))
 		src << "Only administrators may use this command."
 		return
-	if(global.CTgame_ticker && global.CTgame_ticker.mode)
-		src << "blobs: [length(blobs)]"
-		src << "cores: [length(blob_cores)]"
-		src << "nodes: [length(blob_nodes)]"
-	return
+
+	if(!isnull(global.CTgame_ticker?.mode))
+		to_chat(src, "blobs: [length(GLOBL.blobs)]")
+		to_chat(src, "cores: [length(GLOBL.blob_cores)]")
+		to_chat(src, "nodes: [length(GLOBL.blob_nodes)]")
 
 /client/proc/Blobize()//Mostly stolen from the respawn command
 	set category = "Debug"
@@ -220,8 +220,8 @@
 	if(G_found.client)
 		G_found.client.screen.len = null
 	var/mob/living/blob/B = new/mob/living/blob(locate(0,0,1))//temp area also just in case should do this better but tired
-	if(length(blob_cores))
-		var/obj/effect/blob/core/core = pick(blob_cores)
+	if(length(GLOBL.blob_cores))
+		var/obj/effect/blob/core/core = pick(GLOBL.blob_cores)
 		if(core)
 			B.loc = core.loc
 	B.ghost_name = G_found.real_name

@@ -7,13 +7,13 @@
 	fire_resist = 2
 
 /obj/effect/blob/core/New(loc, h = 200)
-	blobs += src
-	blob_cores += src
+	GLOBL.blobs.Add(src)
+	GLOBL.blob_cores.Add(src)
 	GLOBL.processing_objects.Add(src)
-	..(loc, h)
+	. = ..(loc, h)
 
 /obj/effect/blob/core/Destroy()
-	blob_cores -= src
+	GLOBL.blob_cores.Remove(src)
 	GLOBL.processing_objects.Remove(src)
 	return ..()
 

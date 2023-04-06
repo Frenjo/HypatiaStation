@@ -155,7 +155,7 @@
 	set category = "Malfunction"
 	set name = "System Override"
 	set desc = "Start the victory timer"
-	if(!istype(global.CTgame_ticker.mode, /datum/game_mode/malfunction))
+	if(!IS_GAME_MODE(/datum/game_mode/malfunction))
 		usr << "You cannot begin a takeover in this round type!."
 		return
 	if(global.CTgame_ticker.mode:malf_mode_declared)
@@ -248,21 +248,20 @@
 
 
 /datum/game_mode/proc/auto_declare_completion_malfunction()
-	if(length(malf_ai) || istype(global.CTgame_ticker.mode, /datum/game_mode/malfunction))
-		var/text = "<FONT size = 2><B>The malfunctioning AI were:</B></FONT>"
+	if(!length(malf_ai) && !IS_GAME_MODE(/datum/game_mode/malfunction))
+		return
 
-		for(var/datum/mind/malf in malf_ai)
-			text += "<br>[malf.key] was [malf.name] ("
-			if(malf.current)
-				if(malf.current.stat == DEAD)
-					text += "deactivated"
-				else
-					text += "operational"
-				if(malf.current.real_name != malf.name)
-					text += " as [malf.current.real_name]"
+	var/text = "<FONT size = 2><B>The malfunctioning AI were:</B></FONT>"
+	for(var/datum/mind/malf in malf_ai)
+		text += "<br>[malf.key] was [malf.name] ("
+		if(malf.current)
+			if(malf.current.stat == DEAD)
+				text += "deactivated"
 			else
-				text += "hardware destroyed"
-			text += ")"
-
-		world << text
-	return 1
+				text += "operational"
+			if(malf.current.real_name != malf.name)
+				text += " as [malf.current.real_name]"
+		else
+			text += "hardware destroyed"
+		text += ")"
+	to_world(text)

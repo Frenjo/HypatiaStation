@@ -173,50 +173,48 @@ var/list/possible_changeling_IDs = list(
 	changeling_mob.make_changeling()
 
 /datum/game_mode/proc/auto_declare_completion_changeling()
-	if(length(changelings))
-		var/text = "<FONT size = 2><B>The changelings were:</B></FONT>"
-		for(var/datum/mind/changeling in changelings)
-			var/changelingwin = 1
+	if(!length(changelings))
+		return
 
-			text += "<br>[changeling.key] was [changeling.name] ("
-			if(changeling.current)
-				if(changeling.current.stat == DEAD)
-					text += "died"
-				else
-					text += "survived"
-				if(changeling.current.real_name != changeling.name)
-					text += " as [changeling.current.real_name]"
+	var/text = "<FONT size = 2><B>The changelings were:</B></FONT>"
+	for(var/datum/mind/changeling in changelings)
+		var/changelingwin = TRUE
+		text += "<br>[changeling.key] was [changeling.name] ("
+		if(changeling.current)
+			if(changeling.current.stat == DEAD)
+				text += "died"
 			else
-				text += "body destroyed"
-				changelingwin = 0
-			text += ")"
+				text += "survived"
+			if(changeling.current.real_name != changeling.name)
+				text += " as [changeling.current.real_name]"
+		else
+			text += "body destroyed"
+			changelingwin = FALSE
+		text += ")"
 
-			//Removed sanity if(changeling) because we -want- a runtime to inform us that the changelings list is incorrect and needs to be fixed.
-			text += "<br><b>Changeling ID:</b> [changeling.changeling.changelingID]."
-			text += "<br><b>Genomes Absorbed:</b> [changeling.changeling.absorbedcount]"
-			if(!CONFIG_GET(objectives_disabled))
-				if(length(changeling.objectives))
-					var/count = 1
-					for(var/datum/objective/objective in changeling.objectives)
-						if(objective.check_completion())
-							text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='green'><B>Success!</B></font>"
-							feedback_add_details("changeling_objective", "[objective.type]|SUCCESS")
-						else
-							text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='red'>Fail.</font>"
-							feedback_add_details("changeling_objective", "[objective.type]|FAIL")
-							changelingwin = 0
-						count++
-				if(!CONFIG_GET(objectives_disabled))
-					if(changelingwin)
-						text += "<br><font color='green'><B>The changeling was successful!</B></font>"
-						feedback_add_details("changeling_success", "SUCCESS")
+		//Removed sanity if(changeling) because we -want- a runtime to inform us that the changelings list is incorrect and needs to be fixed.
+		text += "<br><b>Changeling ID:</b> [changeling.changeling.changelingID]."
+		text += "<br><b>Genomes Absorbed:</b> [changeling.changeling.absorbedcount]"
+		if(!CONFIG_GET(objectives_disabled))
+			if(length(changeling.objectives))
+				var/count = 1
+				for(var/datum/objective/objective in changeling.objectives)
+					if(objective.check_completion())
+						text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='green'><B>Success!</B></font>"
+						feedback_add_details("changeling_objective", "[objective.type]|SUCCESS")
 					else
-						text += "<br><font color='red'><B>The changeling has failed.</B></font>"
-						feedback_add_details("changeling_success", "FAIL")
-
-		to_world(text)
-
-	return 1
+						text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='red'>Fail.</font>"
+						feedback_add_details("changeling_objective", "[objective.type]|FAIL")
+						changelingwin = FALSE
+					count++
+			if(!CONFIG_GET(objectives_disabled))
+				if(changelingwin)
+					text += "<br><font color='green'><B>The changeling was successful!</B></font>"
+					feedback_add_details("changeling_success", "SUCCESS")
+				else
+					text += "<br><font color='red'><B>The changeling has failed.</B></font>"
+					feedback_add_details("changeling_success", "FAIL")
+	to_world(text)
 
 /datum/changeling //stores changeling powers, changeling recharge thingie, changeling absorbed DNA and changeling ID (for changeling hivemind)
 	var/list/absorbed_dna = list()

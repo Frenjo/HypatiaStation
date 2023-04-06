@@ -20,12 +20,12 @@ GLOBAL_GLOBL_INIT(blobevent, FALSE)
 
 /proc/dotheblobbaby()
 	if(GLOBL.blobevent)
-		if(length(blob_cores))
+		if(length(GLOBL.blob_cores))
 			for(var/i = 1 to 5)
 				sleep(-1)
-				if(!length(blob_cores))
+				if(!length(GLOBL.blob_cores))
 					break
-				var/obj/effect/blob/B = pick(blob_cores)
+				var/obj/effect/blob/B = pick(GLOBL.blob_cores)
 				if(isNotStationLevel(B.z))
 					continue
 				B.Life()

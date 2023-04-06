@@ -55,10 +55,10 @@
 	if(!gibbed && species.death_sound)
 		playsound(loc, species.death_sound, 80, 1, 1)
 
-	if(global.CTgame_ticker && global.CTgame_ticker.mode)
+	if(!isnull(global.CTgame_ticker?.mode))
 		sql_report_death(src)
 		global.CTgame_ticker.mode.check_win()
-		if(istype(global.CTgame_ticker.mode, /datum/game_mode/heist))
+		if(IS_GAME_MODE(/datum/game_mode/heist))
 			GLOBL.vox_kills++ //Bad vox. Shouldn't be killing humans.
 
 	return ..(gibbed, species.death_message)
