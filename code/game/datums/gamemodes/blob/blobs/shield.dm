@@ -14,8 +14,6 @@
 	if(health <= 0)
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		qdel(src)
-		return
-	return
 
 /obj/effect/blob/shield/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(istype(mover) && mover.checkpass(PASSBLOB))

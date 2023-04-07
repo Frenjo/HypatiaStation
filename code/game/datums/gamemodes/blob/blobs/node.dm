@@ -21,8 +21,6 @@
 	if(health <= 0)
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		qdel(src)
-		return
-	return
 
 /obj/effect/blob/node/run_action()
 	Pulse(0, 0)

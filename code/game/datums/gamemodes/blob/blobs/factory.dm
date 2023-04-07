@@ -5,6 +5,7 @@
 	health = 100
 	brute_resist = 1
 	fire_resist = 2
+
 	var/list/spores = list()
 	var/max_spores = 4
 
@@ -12,13 +13,11 @@
 	if(health <= 0)
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		qdel(src)
-		return
-	return
 
 /obj/effect/blob/factory/run_action()
 	if(length(spores) >= max_spores)
 		return 0
-	new/mob/living/simple_animal/hostile/blobspore(src.loc, src)
+	new /mob/living/simple_animal/hostile/blobspore(src.loc, src)
 	return 1
 
 /obj/effect/blob/factory/Destroy()
@@ -40,7 +39,7 @@
 	melee_damage_upper = 8
 	attacktext = "hits"
 	attack_sound = 'sound/weapons/genhit1.ogg'
-	var/obj/effect/blob/factory/factory = null
+
 	faction = "blob"
 	min_oxy = 0
 	max_oxy = 0
@@ -53,19 +52,19 @@
 	minbodytemp = 0
 	maxbodytemp = 360
 
-/mob/living/simple_animal/hostile/blobspore/New(loc, var/obj/effect/blob/factory/linked_node)
-	..()
+	var/obj/effect/blob/factory/factory = null
+
+/mob/living/simple_animal/hostile/blobspore/New(loc, obj/effect/blob/factory/linked_node)
 	if(istype(linked_node))
 		factory = linked_node
-		factory.spores += src
-	..(loc)
-	return
+		factory.spores.Add(src)
+	. = ..(loc)
 
 /mob/living/simple_animal/hostile/blobspore/Die()
 	qdel(src)
 
 /mob/living/simple_animal/hostile/blobspore/Destroy()
-	if(factory)
-		factory.spores -= src
+	if(!isnull(factory))
+		factory.spores.Remove(src)
 		factory = null
 	return ..()

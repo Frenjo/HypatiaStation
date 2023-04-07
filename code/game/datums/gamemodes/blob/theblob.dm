@@ -9,6 +9,7 @@
 	density = TRUE
 	opacity = FALSE
 	anchored = TRUE
+
 	var/active = 1
 	var/health = 30
 	var/brute_resist = 4
@@ -43,7 +44,6 @@
 /obj/effect/blob/process()
 	spawn(-1)
 		Life()
-	return
 
 /obj/effect/blob/proc/Pulse(pulse = 0, origin_dir = 0)//Todo: Fix spaceblob expand
 	set background = BACKGROUND_ENABLED
@@ -55,7 +55,8 @@
 		change_to("Shield")
 		return
 
-	if(pulse > 20)	return//Inf loop check
+	if(pulse > 20)
+		return//Inf loop check
 	//Looking for another blob to pulse
 	var/list/dirs = list(1, 2, 4, 8)
 	dirs.Remove(origin_dir)//Dont pulse the guy who pulsed us
@@ -66,12 +67,10 @@
 		dirs.Remove(dirn)
 		var/turf/T = get_step(src, dirn)
 		var/obj/effect/blob/B = (locate(/obj/effect/blob) in T)
-		if(!B)
+		if(isnull(B))
 			expand(T)//No blob here so try and expand
 			return
 		B.Pulse((pulse + 1), get_dir(src.loc, T))
-		return
-	return
 
 /obj/effect/blob/proc/run_action()
 	return 0
@@ -91,7 +90,7 @@
 /obj/effect/blob/proc/expand(turf/T = null)
 	if(!prob(health))
 		return
-	if(!T)
+	if(isnull(T))
 		var/list/dirs = list(1, 2, 4, 8)
 		for(var/i = 1 to 4)
 			var/dirn = pick(dirs)
@@ -102,9 +101,9 @@
 			else
 				T = null
 
-	if(!T)
+	if(isnull(T))
 		return 0
-	var/obj/effect/blob/B = new /obj/effect/blob(src.loc, min(src.health, 30))
+	var/obj/effect/blob/B = new /obj/effect/blob(loc, min(health, 30))
 	if(T.Enter(B, src))//Attempt to move into the tile
 		B.loc = T
 	else
@@ -118,15 +117,14 @@
 	var/damage = 50
 	switch(severity)
 		if(1)
-			src.health -= rand(100, 120)
+			health -= rand(100, 120)
 		if(2)
-			src.health -= rand(60, 100)
+			health -= rand(60, 100)
 		if(3)
-			src.health -= rand(20, 60)
+			health -= rand(20, 60)
 
-	health -= (damage/brute_resist)
+	health -= (damage / brute_resist)
 	update_icon()
-	return
 
 /obj/effect/blob/update_icon()//Needs to be updated with the types
 	if(health <= 0)
@@ -140,46 +138,45 @@
 //		icon_state = "blob_damaged2"
 //		return
 
-/obj/effect/blob/bullet_act(obj/item/projectile/Proj)
-	if(!Proj)
+/obj/effect/blob/bullet_act(obj/item/projectile/proj)
+	if(isnull(proj))
 		return
-	switch(Proj.damage_type)
+
+	switch(proj.damage_type)
 		if(BRUTE)
-			health -= (Proj.damage/brute_resist)
+			health -= (proj.damage / brute_resist)
 		if(BURN)
-			health -= (Proj.damage/fire_resist)
+			health -= (proj.damage / fire_resist)
 
 	update_icon()
 	return 0
 
 /obj/effect/blob/attackby(obj/item/weapon/W, mob/user)
 	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
-	src.visible_message(SPAN_DANGER("The [src.name] has been attacked with \the [W][(user ? " by [user]" : "")]."))
+	visible_message(SPAN_DANGER("The [name] has been attacked with \the [W][(user ? " by [user]" : "")]."))
 	var/damage = 0
 	switch(W.damtype)
 		if("fire")
-			damage = (W.force / max(src.fire_resist, 1))
+			damage = (W.force / max(fire_resist, 1))
 			if(istype(W, /obj/item/weapon/weldingtool))
 				playsound(src, 'sound/items/Welder.ogg', 100, 1)
 		if("brute")
-			damage = (W.force / max(src.brute_resist, 1))
+			damage = (W.force / max(brute_resist, 1))
 
 	health -= damage
 	update_icon()
-	return
 
 /obj/effect/blob/proc/change_to(type = "Normal")
 	switch(type)
 		if("Normal")
-			new/obj/effect/blob(src.loc, src.health)
+			new /obj/effect/blob(loc, health)
 		if("Node")
-			new/obj/effect/blob/node(src.loc, src.health * 2)
+			new /obj/effect/blob/node(loc, health * 2)
 		if("Factory")
-			new/obj/effect/blob/factory(src.loc, src.health)
+			new /obj/effect/blob/factory(loc, health)
 		if("Shield")
-			new/obj/effect/blob/shield(src.loc, src.health * 2)
+			new /obj/effect/blob/shield(loc, health * 2)
 	qdel(src)
-	return
 
 //////////////////////////////****IDLE BLOB***/////////////////////////////////////
 
@@ -189,9 +186,9 @@
 	icon_state = "blobidle0"
 
 /obj/effect/blob/idle/New(loc, h = 10)
-	src.health = h
-	src.set_dir(pick(1, 2, 4, 8))
-	src.update_idle()
+	health = h
+	set_dir(pick(1, 2, 4, 8))
+	update_idle()
 
 /obj/effect/blob/idle/proc/update_idle()
 	if(health <= 0)
@@ -206,7 +203,7 @@
 	icon_state = "blobidle0"
 
 /obj/effect/blob/idle/Destroy()
-	var/obj/effect/blob/B = new /obj/effect/blob(src.loc)
+	var/obj/effect/blob/B = new /obj/effect/blob(loc)
 	spawn(30)
 		B.Life()
 	return ..()

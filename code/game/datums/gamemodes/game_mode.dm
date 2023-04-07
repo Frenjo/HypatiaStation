@@ -81,7 +81,7 @@ Implants;
 /datum/game_mode/proc/can_start()
 	var/playerC = 0
 	for(var/mob/new_player/player in GLOBL.player_list)
-		if(player.client && player.ready)
+		if(!isnull(player.client) && player.ready)
 			playerC++
 
 	if(global.CTgame_ticker.master_mode == "secret")
@@ -104,7 +104,7 @@ Implants;
 		display_roundstart_logout_report()
 
 	feedback_set_details("round_start", "[time2text(world.realtime)]")
-	if(global.CTgame_ticker && global.CTgame_ticker.mode)
+	if(!isnull(global.CTgame_ticker?.mode))
 		feedback_set_details("game_mode", "[global.CTgame_ticker.mode]")
 	if(global.revdata)
 		feedback_set_details("revision", "[global.revdata.revision]")
@@ -140,28 +140,28 @@ Implants;
 	)
 
 	for(var/mob/M in GLOBL.player_list)
-		if(M.client)
+		if(!isnull(M.client))
 			clients++
 			if(ishuman(M))
 				if(!M.stat)
 					surviving_humans++
-					if(M.loc && M.loc.loc && (M.loc.loc.type in escape_locations))
+					if(!isnull(M.loc?.loc) && (M.loc.loc.type in escape_locations))
 						escaped_humans++
 			if(!M.stat)
 				surviving_total++
-				if(M.loc && M.loc.loc && (M.loc.loc.type in escape_locations))
+				if(!isnull(M.loc?.loc) && (M.loc.loc.type in escape_locations))
 					escaped_total++
 
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape/centcom)
+				if(!isnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape/centcom)
 					escaped_on_shuttle++
 
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod1/centcom)
+				if(!isnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape_pod1/centcom)
 					escaped_on_pod_1++
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod2/centcom)
+				if(!isnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape_pod2/centcom)
 					escaped_on_pod_2++
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod3/centcom)
+				if(!isnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape_pod3/centcom)
 					escaped_on_pod_3++
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod5/centcom)
+				if(!isnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape_pod5/centcom)
 					escaped_on_pod_5++
 
 			if(isobserver(M))
@@ -203,21 +203,21 @@ Implants;
 
 	var/list/suspects = list()
 	for(var/mob/living/carbon/human/man in GLOBL.player_list)
-		if(man.client && man.mind)
+		if(!isnull(man.client) && !isnull(man.mind))
 			// NT relation option
 			var/special_role = man.mind.special_role
 			if(special_role == "Wizard" || special_role == "Ninja" || special_role == "Syndicate" || special_role == "Vox Raider")
 				continue	//NT intelligence ruled out possiblity that those are too classy to pretend to be a crew.
 			if(man.client.prefs.nanotrasen_relation == "Opposed" && prob(50) || man.client.prefs.nanotrasen_relation == "Skeptical" && prob(20))
-				suspects += man
+				suspects.Add(man)
 			// Antags
 			else if(special_role == "traitor" && prob(40) || special_role == "Changeling" && prob(50) \
 			|| special_role == "Cultist" && prob(30) || special_role == "Head Revolutionary" && prob(30))
-				suspects += man
+				suspects.Add(man)
 
 				// If they're a traitor or likewise, give them extra TC in exchange.
 				var/obj/item/device/uplink/hidden/suplink = man.mind.find_syndicate_uplink()
-				if(suplink)
+				if(!isnull(suplink))
 					var/extra = 4
 					suplink.uses += extra
 					to_chat(man, SPAN_WARNING("We have received notice that enemy intelligence suspects you to be linked with us. We have thus invested significant resources to increase your uplink's capacity."))
@@ -227,7 +227,7 @@ Implants;
 
 			// Some poor people who were just in the wrong place at the wrong time..
 			else if(prob(10))
-				suspects += man
+				suspects.Add(man)
 	for(var/mob/M in suspects)
 		switch(rand(1, 100))
 			if(1 to 50)
@@ -282,7 +282,7 @@ Implants;
 	for(var/mob/new_player/player in GLOBL.player_list)
 		if(player.client && player.ready)
 			if(!jobban_isbanned(player, "Syndicate") && !jobban_isbanned(player, roletext))
-				players += player
+				players.Add(player)
 
 	// Shuffle the players list so that it becomes ping-independent.
 	players = shuffle(players)
@@ -291,8 +291,8 @@ Implants;
 	for(var/mob/new_player/player in players)
 		if(player.client.prefs.be_special & role)
 			log_debug("[player.key] had [roletext] enabled, so we are drafting them.")
-			candidates += player.mind
-			players -= player
+			candidates.Add(player.mind)
+			players.Remove(player)
 
 	// If we don't have enough antags, draft people who voted for the round.
 	if(length(candidates) < recommended_enemies)
@@ -300,8 +300,8 @@ Implants;
 			for(var/mob/new_player/player in players)
 				if(player.ckey == key)
 					log_debug("[player.key] voted for this round, so we are drafting them.")
-					candidates += player.mind
-					players -= player
+					candidates.Add(player.mind)
+					players.Remove(player)
 					break
 
 	// Remove candidates who want to be antagonist but have a job that precludes it
@@ -309,7 +309,7 @@ Implants;
 		for(var/datum/mind/player in candidates)
 			for(var/job in restricted_jobs)
 				if(player.assigned_role == job)
-					candidates -= player
+					candidates.Remove(player)
 
 	/*if(length(candidates) < recommended_enemies)
 		for(var/mob/new_player/player in players)
@@ -380,7 +380,7 @@ Implants;
 /datum/game_mode/proc/num_players()
 	. = 0
 	for(var/mob/new_player/P in GLOBL.player_list)
-		if(P.client && P.ready)
+		if(!isnull(P.client) && P.ready)
 			. ++
 
 
@@ -390,8 +390,8 @@ Implants;
 /datum/game_mode/proc/get_living_heads()
 	var/list/heads = list()
 	for(var/mob/living/carbon/human/player in GLOBL.mob_list)
-		if(player.stat!=2 && player.mind && (player.mind.assigned_role in GLOBL.command_positions))
-			heads += player.mind
+		if(player.stat != DEAD && (player.mind?.assigned_role in GLOBL.command_positions))
+			heads.Add(player.mind)
 	return heads
 
 
@@ -401,8 +401,8 @@ Implants;
 /datum/game_mode/proc/get_all_heads()
 	var/list/heads = list()
 	for(var/mob/player in GLOBL.mob_list)
-		if(player.mind && (player.mind.assigned_role in GLOBL.command_positions))
-			heads += player.mind
+		if((player.mind?.assigned_role in GLOBL.command_positions))
+			heads.Add(player.mind)
 	return heads
 
 /datum/game_mode/New()
@@ -414,8 +414,7 @@ Implants;
 /proc/display_roundstart_logout_report()
 	var/msg = "\blue <b>Roundstart logout report\n\n"
 	for(var/mob/living/L in GLOBL.mob_list)
-
-		if(L.ckey)
+		if(!isnull(L.ckey))
 			var/found = 0
 			for(var/client/C in GLOBL.clients)
 				if(C.ckey == L.ckey)
@@ -425,7 +424,7 @@ Implants;
 				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
 
 
-		if(L.ckey && L.client)
+		if(!isnull(L.ckey) && !isnull(L.client))
 			if(L.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2))	//Connected, but inactive (alt+tabbed or something)
 				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
 				continue //AFK client
@@ -442,7 +441,7 @@ Implants;
 
 			continue //Happy connected client
 		for(var/mob/dead/observer/D in GLOBL.mob_list)
-			if(D.mind && (D.mind.original == L || D.mind.current == L))
+			if(!isnull(D.mind) && (D.mind.original == L || D.mind.current == L))
 				if(L.stat == DEAD)
 					if(L.suiciding)	//Suicider
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Suicide</b></font>)\n"
@@ -458,21 +457,18 @@ Implants;
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Ghosted</b></font>)\n"
 						continue //Ghosted while alive
 
-
-
 	for(var/mob/M in GLOBL.mob_list)
-		if(M.client && M.client.holder)
-			M << msg
-
+		if(!isnull(M.client?.holder))
+			to_chat(M, msg)
 
 /proc/get_nt_opposed()
 	var/list/dudes = list()
 	for(var/mob/living/carbon/human/man in GLOBL.player_list)
-		if(man.client)
+		if(!isnull(man.client))
 			if(man.client.prefs.nanotrasen_relation == "Opposed")
-				dudes += man
+				dudes.Add(man)
 			else if(man.client.prefs.nanotrasen_relation == "Skeptical" && prob(50))
-				dudes += man
+				dudes.Add(man)
 	if(!length(dudes))
 		return null
 	return pick(dudes)

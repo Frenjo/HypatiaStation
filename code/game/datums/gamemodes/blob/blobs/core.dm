@@ -21,8 +21,6 @@
 	if(health <= 0)
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		qdel(src)
-		return
-	return
 
 /obj/effect/blob/core/run_action()
 	Pulse(0, 1)
@@ -36,14 +34,14 @@
 	var/list/candidates = list()
 	for(var/mob/dead/observer/G in GLOBL.player_list)
 		if(G.client.prefs.be_special & BE_ALIEN)
-			if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
-				candidates += G.key
+			if(!(isnull(G.mind?.current) && G.mind.current.stat != DEAD))
+				candidates.Add(G.key)
 
 	if(length(candidates))
 		for(var/i = 0 to wave_size)
-			var/mob/living/blob/B = new/mob/living/blob(src.loc)
+			var/mob/living/blob/B = new /mob/living/blob(src.loc)
 			B.key = pick(candidates)
-			candidates -= B.key
+			candidates.Remove(B.key)
 
 /*
 /obj/effect/blob/core/Pulse(pulse = 0, origin_dir = 0)//Todo: Fix spaceblob expand
