@@ -119,9 +119,9 @@
 					R.reaction_turf(T, R.volume)
 
 			//reagents that should be applied to turfs in a random pattern
-			if(R.id == "carbon")
+			if(istype(R, /datum/reagent/carbon))
 				proba = 75
-			else if(R.id in list("blood", "radium", "uranium"))
+			else if(is_type_in_list(R, list(/datum/reagent/blood, /datum/reagent/radium, /datum/reagent/uranium)))
 				proba = 25
 
 			spawn(0)
@@ -142,7 +142,7 @@
 					sleep(30)
 
 	//build smoke icon
-	var/color = mix_color_from_reagents(chemholder.reagents.reagent_list)
+	var/color = mix_colour_from_reagents(chemholder.reagents.reagent_list)
 	var/icon/I
 	if(color)
 		I = icon('icons/effects/chemsmoke.dmi')

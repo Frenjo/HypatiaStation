@@ -19,17 +19,15 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/cryptobiolin/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/cryptobiolin/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	M.make_dizzy(1)
 	if(!M.confused)
 		M.confused = 1
 	M.confused = max(M.confused, 20)
-	holder.remove_reagent(src.id, 0.5 * REAGENTS_METABOLISM)
-	..()
-	return
-
+	holder.remove_reagent(id, 0.5 * REAGENTS_METABOLISM)
+	. = ..()
 
 // Basic stuff.
 /datum/reagent/inaprovaline
@@ -40,8 +38,8 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE*2
 
-/datum/reagent/inaprovaline/on_mob_life(mob/living/M as mob, alien)
-	if(!M)
+/datum/reagent/inaprovaline/on_mob_life(mob/living/M, alien)
+	if(isnull(M))
 		M = holder.my_atom
 
 	if(alien && alien == IS_VOX)
@@ -50,9 +48,7 @@
 		if(M.losebreath >= 10)
 			M.losebreath = max(10, M.losebreath - 5)
 
-	holder.remove_reagent(src.id, 0.5 * REAGENTS_METABOLISM)
-	return
-
+	holder.remove_reagent(id, 0.5 * REAGENTS_METABOLISM)
 
 /datum/reagent/bicaridine
 	name = "Bicaridine"
@@ -62,16 +58,14 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/bicaridine/on_mob_life(mob/living/M as mob, alien)
+/datum/reagent/bicaridine/on_mob_life(mob/living/M, alien)
+	if(isnull(M))
+		M = holder.my_atom
 	if(M.stat == DEAD)
 		return
-	if(!M)
-		M = holder.my_atom
 	if(alien != IS_DIONA)
 		M.heal_organ_damage(2 * REM, 0)
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/kelotane
 	name = "Kelotane"
@@ -81,16 +75,14 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/kelotane/on_mob_life(mob/living/M as mob)
+/datum/reagent/kelotane/on_mob_life(mob/living/M)
+	if(isnull(M))
+		M = holder.my_atom
 	if(M.stat == DEAD)
 		return
-	if(!M)
-		M = holder.my_atom
 	//This needs a diona check but if one is added they won't be able to heal burn damage at all.
 	M.heal_organ_damage(0, 2 * REM)
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/anti_toxin
 	name = "Anti-Toxin (Dylovene)"
@@ -99,17 +91,15 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
-/datum/reagent/anti_toxin/on_mob_life(mob/living/M as mob, alien)
-	if(!M)
+/datum/reagent/anti_toxin/on_mob_life(mob/living/M, alien)
+	if(isnull(M))
 		M = holder.my_atom
 	if(!alien || alien != IS_DIONA)
 		M.reagents.remove_all_type(/datum/reagent/toxin, 1 * REM, 0, 1)
 		M.drowsyness = max(M.drowsyness - 2 * REM, 0)
 		M.hallucination = max(0, M.hallucination - 5 * REM)
 		M.adjustToxLoss(-2 * REM)
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/dexalin
 	name = "Dexalin"
@@ -119,11 +109,11 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/dexalin/on_mob_life(mob/living/M as mob, alien)
-	if(M.stat == DEAD)
-		return  //See above, down and around. --Agouri
-	if(!M)
+/datum/reagent/dexalin/on_mob_life(mob/living/M, alien)
+	if(isnull(M))
 		M = holder.my_atom
+	if(M.stat == DEAD)
+		return // See above, down and around. --Agouri
 
 	if(alien && alien == IS_VOX)
 		M.adjustToxLoss(2 * REM)
@@ -132,9 +122,7 @@
 
 	if(holder.has_reagent("lexorin"))
 		holder.remove_reagent("lexorin", 2 * REM)
-	..()
-	return
-
+	. = ..()
 
 // Added cordrazine for fluff reasons, half as effective as tricordrazine. -Frenjo
 /datum/reagent/cordrazine
@@ -144,11 +132,11 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#DDC8EA" // rgb: 221, 200, 234 - I was aiming for a lighter version of tricordrazine.
 
-/datum/reagent/cordrazine/on_mob_life(mob/living/M as mob, alien)
+/datum/reagent/cordrazine/on_mob_life(mob/living/M, alien)
+	if(isnull(M))
+		M = holder.my_atom
 	if(M.stat == DEAD)
 		return
-	if(!M)
-		M = holder.my_atom
 	if(!alien || alien != IS_DIONA)
 		if(M.getOxyLoss())
 			M.adjustOxyLoss(-0.5 * REM)
@@ -158,9 +146,7 @@
 			M.heal_organ_damage(0, 0.5 * REM)
 		if(M.getToxLoss() && prob(80))
 			M.adjustToxLoss(-0.5 * REM)
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/tricordrazine
 	name = "Tricordrazine"
@@ -169,11 +155,11 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
-/datum/reagent/tricordrazine/on_mob_life(mob/living/M as mob, alien)
+/datum/reagent/tricordrazine/on_mob_life(mob/living/M, alien)
+	if(isnull(M))
+		M = holder.my_atom
 	if(M.stat == DEAD)
 		return
-	if(!M)
-		M = holder.my_atom
 	if(!alien || alien != IS_DIONA)
 		if(M.getOxyLoss())
 			M.adjustOxyLoss(-1 * REM)
@@ -183,9 +169,7 @@
 			M.heal_organ_damage(0,1 * REM)
 		if(M.getToxLoss() && prob(80))
 			M.adjustToxLoss(-1 * REM)
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/hyronalin
 	name = "Hyronalin"
@@ -196,13 +180,11 @@
 	custom_metabolism = 0.05
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/hyronalin/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/hyronalin/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	M.radiation = max(M.radiation - 3 * REM,0)
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/spaceacillin
 	name = "Spaceacillin"
@@ -213,10 +195,8 @@
 	custom_metabolism = 0.01
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/spaceacillin/on_mob_life(mob/living/M as mob)
-	..()
-	return
-
+/datum/reagent/spaceacillin/on_mob_life(mob/living/M)
+	. = ..()
 
 /datum/reagent/toxin/stoxin
 	name = "Sleep Toxin"
@@ -228,8 +208,8 @@
 	custom_metabolism = 0.1
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/toxin/stoxin/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/toxin/stoxin/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	if(!data["special"])
 		data["special"] = 1
@@ -247,9 +227,7 @@
 			M.Weaken(20)
 			M.drowsyness  = max(M.drowsyness, 30)
 	data["special"]++
-	..()
-	return
-
+	. = ..()
 
 // Advanced variants of basic stuff.
 /datum/reagent/dermaline
@@ -260,16 +238,14 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE/2
 
-/datum/reagent/dermaline/on_mob_life(mob/living/M as mob, alien)
+/datum/reagent/dermaline/on_mob_life(mob/living/M, alien)
+	if(isnull(M))
+		M = holder.my_atom
 	if(M.stat == DEAD) //THE GUY IS **DEAD**! BEREFT OF ALL LIFE HE RESTS IN PEACE etc etc. He does NOT metabolise shit anymore, god DAMN
 		return
-	if(!M)
-		M = holder.my_atom
 	if(!alien || alien != IS_DIONA)
 		M.heal_organ_damage(0, 3 * REM)
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/dexalinp
 	name = "Dexalin Plus"
@@ -279,11 +255,11 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE/2
 
-/datum/reagent/dexalinp/on_mob_life(mob/living/M as mob, alien)
+/datum/reagent/dexalinp/on_mob_life(mob/living/M, alien)
+	if(isnull(M))
+		M = holder.my_atom
 	if(M.stat == DEAD)
 		return
-	if(!M)
-		M = holder.my_atom
 
 	if(alien && alien == IS_VOX)
 		M.adjustOxyLoss()
@@ -292,9 +268,7 @@
 
 	if(holder.has_reagent("lexorin"))
 		holder.remove_reagent("lexorin", 2 * REM)
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/arithrazine
 	name = "Arithrazine"
@@ -305,18 +279,16 @@
 	custom_metabolism = 0.05
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/arithrazine/on_mob_life(mob/living/M as mob)
-	if(M.stat == DEAD)
-		return  //See above, down and around. --Agouri
-	if(!M)
+/datum/reagent/arithrazine/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
+	if(M.stat == DEAD)
+		return // See above, down and around. --Agouri
 	M.radiation = max(M.radiation - 7 * REM, 0)
 	M.adjustToxLoss(-1 * REM)
 	if(prob(15))
 		M.take_organ_damage(1, 0)
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/srejuvenate
 	name = "Soporific Rejuvenant"
@@ -326,15 +298,15 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/srejuvenate/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/srejuvenate/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	if(!data["special"])
 		data["special"] = 1
 	data["special"]++
 	if(M.losebreath >= 10)
 		M.losebreath = max(10, M.losebreath - 10)
-	holder.remove_reagent(src.id, 0.2)
+	holder.remove_reagent(id, 0.2)
 	switch(data["special"])
 		if(1 to 15)
 			M.eye_blurry = max(M.eye_blurry, 10)
@@ -351,9 +323,7 @@
 			M.stuttering = 0
 			M.confused = 0
 			M.jitteriness = 0
-	..()
-	return
-
+	. = ..()
 
 // Special stuff.
 /datum/reagent/ryetalyn
@@ -364,8 +334,8 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/ryetalyn/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/ryetalyn/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 
 	var/needs_update = length(M.mutations)
@@ -379,9 +349,7 @@
 		var/mob/living/carbon/human/H = M
 		H.update_mutations()
 
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/alkysine
 	name = "Alkysine"
@@ -392,13 +360,11 @@
 	custom_metabolism = 0.05
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/alkysine/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/alkysine/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	M.adjustBrainLoss(-3 * REM)
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/imidazoline
 	name = "Imidazoline"
@@ -408,8 +374,8 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/imidazoline/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/imidazoline/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	M.eye_blurry = max(M.eye_blurry - 5 , 0)
 	M.eye_blind = max(M.eye_blind - 5 , 0)
@@ -419,9 +385,7 @@
 		if(istype(E))
 			if(E.damage > 0)
 				E.damage -= 1
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/synaptizine
 	name = "Synaptizine"
@@ -432,8 +396,8 @@
 	custom_metabolism = 0.01
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/synaptizine/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/synaptizine/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	M.drowsyness = max(M.drowsyness - 5, 0)
 	M.AdjustParalysis(-1)
@@ -444,9 +408,7 @@
 	M.hallucination = max(0, M.hallucination - 10)
 	if(prob(60))
 		M.adjustToxLoss(1)
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/leporazine
 	name = "Leporazine"
@@ -456,16 +418,14 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/leporazine/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/leporazine/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	if(M.bodytemperature > 310)
 		M.bodytemperature = max(310, M.bodytemperature - (40 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	else if(M.bodytemperature < 311)
 		M.bodytemperature = min(310, M.bodytemperature + (40 * TEMPERATURE_DAMAGE_COEFFICIENT))
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/rezadone
 	name = "Rezadone"
@@ -475,8 +435,8 @@
 	color = "#669900" // rgb: 102, 153, 0
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/rezadone/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/rezadone/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	if(!data["special"])
 		data["special"] = 1
@@ -493,10 +453,7 @@
 			M.adjustToxLoss(1)
 			M.make_dizzy(5)
 			M.make_jittery(5)
-
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/peridaxon
 	name = "Peridaxon"
@@ -506,8 +463,8 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = 10
 
-/datum/reagent/peridaxon/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/peridaxon/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -515,9 +472,7 @@
 		for(var/datum/organ/internal/I in C.internal_organs)
 			if(I.damage > 0)
 				I.damage -= 0.20
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/ethylredoxrazine	// FUCK YOU, ALCOHOL
 	name = "Ethylredoxrazine"
@@ -527,17 +482,15 @@
 	color = "#605048" // rgb: 96, 80, 72
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/ethylredoxrazine/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/ethylredoxrazine/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	M.dizziness = 0
 	M.drowsyness = 0
 	M.stuttering = 0
 	M.confused = 0
 	M.reagents.remove_all_type(/datum/reagent/ethanol, 1 * REM, 0, 1)
-	..()
-	return
-
+	. = ..()
 
 // Cryocell chemicals.
 /datum/reagent/cryoxadone
@@ -547,17 +500,15 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
-/datum/reagent/cryoxadone/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/cryoxadone/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	if(M.bodytemperature < 170)
 		M.adjustCloneLoss(-1)
 		M.adjustOxyLoss(-1)
 		M.heal_organ_damage(1,1)
 		M.adjustToxLoss(-1)
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/clonexadone
 	name = "Clonexadone"
@@ -566,17 +517,15 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
-/datum/reagent/clonexadone/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/clonexadone/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	if(M.bodytemperature < 170)
 		M.adjustCloneLoss(-3)
 		M.adjustOxyLoss(-3)
 		M.heal_organ_damage(3,3)
 		M.adjustToxLoss(-3)
-	..()
-	return
-
+	. = ..()
 
 // Painkillers.
 /datum/reagent/paracetamol
@@ -587,10 +536,9 @@
 	color = "#C855DC"
 	overdose = 60
 
-/datum/reagent/paracetamol/on_mob_life(mob/living/M as mob)
+/datum/reagent/paracetamol/on_mob_life(mob/living/M)
 	if(volume > overdose)
 		M.hallucination = max(M.hallucination, 2)
-
 
 /datum/reagent/tramadol
 	name = "Tramadol"
@@ -600,10 +548,9 @@
 	color = "#C8A5DC"
 	overdose = 30
 
-/datum/reagent/tramadol/on_mob_life(mob/living/M as mob)
+/datum/reagent/tramadol/on_mob_life(mob/living/M)
 	if(volume > overdose)
 		M.hallucination = max(M.hallucination, 2)
-
 
 /datum/reagent/oxycodone
 	name = "Oxycodone"
@@ -613,11 +560,10 @@
 	color = "#C805DC"
 	overdose = 20
 
-/datum/reagent/oxycodone/on_mob_life(mob/living/M as mob)
+/datum/reagent/oxycodone/on_mob_life(mob/living/M)
 	if(volume > overdose)
 		M.druggy = max(M.druggy, 10)
 		M.hallucination = max(M.hallucination, 3)
-
 
 // Stimulants.
 /datum/reagent/hyperzine
@@ -629,13 +575,12 @@
 	custom_metabolism = 0.03
 	overdose = REAGENTS_OVERDOSE/2
 
-/datum/reagent/hyperzine/on_mob_life(mob/living/M as mob)
-	if(!M) M = holder.my_atom
+/datum/reagent/hyperzine/on_mob_life(mob/living/M)
+	if(isnull(M))
+		M = holder.my_atom
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
-	..()
-	return
-
+	. = ..()
 
 // Misc stuff.
 /datum/reagent/sterilizine
@@ -655,7 +600,7 @@
 					usr << "Well, that was stupid."
 					M.adjustToxLoss(3)
 				return
-			on_mob_life(var/mob/living/M as mob)
+			on_mob_life(var/mob/living/M)
 				if(!M) M = holder.my_atom
 					M.radiation += 3
 					..()
@@ -670,13 +615,11 @@
 	color = "#202040" // rgb: 20, 20, 40
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/serotrotium/on_mob_life(mob/living/M as mob)
+/datum/reagent/serotrotium/on_mob_life(mob/living/M)
 	if(ishuman(M))
 		if(prob(7))
 			M.emote(pick("twitch","drool","moan","gasp"))
-		holder.remove_reagent(src.id, 0.25 * REAGENTS_METABOLISM)
-	return
-
+		holder.remove_reagent(id, 0.25 * REAGENTS_METABOLISM)
 
 /datum/reagent/adminordrazine //An OP chemical for admins
 	name = "Adminordrazine"
@@ -686,8 +629,8 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
 /datum/reagent/adminordrazine/on_mob_life(mob/living/carbon/M as mob)
-	if(!M)
-		M = holder.my_atom ///This can even heal dead people.
+	if(isnull(M))
+		M = holder.my_atom // This can even heal dead people.
 	M.reagents.remove_all_type(/datum/reagent/toxin, 5 * REM, 0, 1)
 	M.setCloneLoss(0)
 	M.setOxyLoss(0)
@@ -715,5 +658,4 @@
 		D.stage--
 		if(D.stage < 1)
 			D.cure()
-	..()
-	return
+	. = ..()

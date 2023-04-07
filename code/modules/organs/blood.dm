@@ -28,9 +28,11 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 //Resets blood data
 /mob/living/carbon/human/proc/fixblood()
 	for(var/datum/reagent/blood/B in vessel.reagent_list)
-		if(B.id == "blood")
-			B.data = list("donor" = src, "viruses" = null, "blood_DNA" = dna.unique_enzymes, "blood_type" = dna.b_type,	\
-						"resistances" = null, "trace_chem" = null, "virus2" = null, "antibodies" = null)
+		if(istype(B, /datum/reagent/blood))
+			B.data = list(
+				"donor" = src, "viruses" = null, "blood_DNA" = dna.unique_enzymes, "blood_type" = dna.b_type,
+				"resistances" = null, "trace_chem" = null, "virus2" = null, "antibodies" = null
+			)
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/proc/handle_blood()

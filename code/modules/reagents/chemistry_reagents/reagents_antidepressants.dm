@@ -7,10 +7,10 @@
 	custom_metabolism = 0.01
 	data = list("special" = 0)
 
-/datum/reagent/antidepressant/methylphenidate/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/antidepressant/methylphenidate/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
-	if(src.volume <= 0.1)
+	if(volume <= 0.1)
 		if(data["special"] != -1)
 			data["special"] = -1
 			to_chat(M, SPAN_WARNING("You lose focus.."))
@@ -18,9 +18,7 @@
 		if(world.time > data["special"] + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data["special"] = world.time
 			to_chat(M, SPAN_INFO("Your mind feels focused and undivided."))
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/antidepressant/citalopram
 	name = "Citalopram"
@@ -31,10 +29,10 @@
 	custom_metabolism = 0.01
 	data = list("special" = 0)
 
-/datum/reagent/antidepressant/citalopram/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/antidepressant/citalopram/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
-	if(src.volume <= 0.1)
+	if(volume <= 0.1)
 		if(data["special"] != -1)
 			data["special"] = -1
 			to_chat(M, SPAN_WARNING("Your mind feels a little less stable.."))
@@ -42,9 +40,7 @@
 		if(world.time > data["special"] + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data["special"] = world.time
 			to_chat(M, SPAN_INFO("Your mind feels stable.. a little stable."))
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/antidepressant/paroxetine
 	name = "Paroxetine"
@@ -55,10 +51,10 @@
 	custom_metabolism = 0.01
 	data = list("special" = 0)
 
-/datum/reagent/antidepressant/paroxetine/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/antidepressant/paroxetine/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
-	if(src.volume <= 0.1)
+	if(volume <= 0.1)
 		if(data["special"] != -1)
 			data["special"] = -1
 			to_chat(M, SPAN_WARNING("Your mind feels much less stable.."))
@@ -70,5 +66,4 @@
 			else
 				to_chat(M, SPAN_WARNING("Your mind breaks apart.."))
 				M.hallucination += 200
-	..()
-	return
+	. = ..()

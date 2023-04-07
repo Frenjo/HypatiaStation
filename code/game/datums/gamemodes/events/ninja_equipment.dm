@@ -33,7 +33,7 @@ ________________________________________________________________________________
 
 	var/reagent_amount//reagent initialize
 	for(var/reagent_id in reagent_list)
-		reagent_amount += reagent_id == "radium" ? r_maxamount+(a_boost*a_transfer) : r_maxamount//AI can inject radium directly.
+		reagent_amount += reagent_id == "radium" ? r_maxamount + (a_boost * a_transfer) : r_maxamount // AI can inject radium directly.
 	reagents = new(reagent_amount)
 	reagents.my_atom = src
 	for(var/reagent_id in reagent_list)
@@ -302,9 +302,9 @@ ________________________________________________________________________________
 				dat += "Warning: Virus Detected. Name: [D.name].Type: [D.spread]. Stage: [D.stage]/[D.max_stages]. Possible Cure: [D.cure].<br>"
 			dat += "<ul>"
 			for(var/datum/reagent/R in reagents.reagent_list)
-				if(R.id=="radium"&&s_control)//Can only directly inject radium when AI is in control.
+				if(istype(R, /datum/reagent/radium) && s_control)//Can only directly inject radium when AI is in control.
 					continue
-				dat += "<li><a href='byond://?src=\ref[src];choice=Inject;name=[R.name];tag=[R.id]'><img src=sos_2.png> Inject [R.name]: [(reagents.get_reagent_amount(R.id)-(R.id=="radium"?(a_boost*a_transfer):0))/(R.id=="nutriment"?5:a_transfer)] left</a></li>"
+				dat += "<li><a href='byond://?src=\ref[src];choice=Inject;name=[R.name];tag=[R.id]'><img src=sos_2.png> Inject [R.name]: [(reagents.get_reagent_amount(R.id) - (istype(R, /datum/reagent/radium) ? (a_boost * a_transfer) : 0)) / (istype(R, /datum/reagent/nutriment) ? 5 : a_transfer)] left</a></li>"
 			dat += "</ul>"
 		if(1)
 			dat += "<h4><img src=sos_5.png> Atmospheric Scan:</h4>"//Headers don't need breaks. They are automatically placed.

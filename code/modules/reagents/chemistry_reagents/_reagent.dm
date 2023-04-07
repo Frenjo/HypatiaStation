@@ -20,57 +20,53 @@
 	holder = null
 	return ..()
 
-/datum/reagent/proc/reaction_mob(mob/M, method = TOUCH, volume) //By default we have a chance to transfer some
+/datum/reagent/proc/reaction_mob(mob/M, method = TOUCH, volume) // By default we have a chance to transfer some of the reagent to the mob on TOUCHING it.
 	if(!isliving(M))
 		return 0
 	var/datum/reagent/self = src
-	qdel(src)											//of the reagent to the mob on TOUCHING it.
+	qdel(src)
+	if(isnull(self.holder)) // For catching rare runtimes.
+		return 0
 
-	if(self.holder)	//for catching rare runtimes
-		if(!istype(self.holder.my_atom, /obj/effect/smoke/chem))
-			// If the chemicals are in a smoke cloud, do not try to let the chemicals "penetrate" into the mob's system (balance station 13) -- Doohl
-			if(method == TOUCH)
-				var/chance = 1
-				var/block = 0
+	if(!istype(self.holder.my_atom, /obj/effect/smoke/chem))
+		// If the chemicals are in a smoke cloud, do not try to let the chemicals "penetrate" into the mob's system (balance station 13) -- Doohl
+		if(method == TOUCH)
+			var/chance = 1
+			var/block = 0
 
-				for(var/obj/item/clothing/C in M.get_equipped_items())
-					if(C.permeability_coefficient < chance)
-						chance = C.permeability_coefficient
-					if(istype(C, /obj/item/clothing/suit/bio_suit))
-						// bio suits are just about completely fool-proof - Doohl
-						// kind of a hacky way of making bio suits more resistant to chemicals but w/e
-						if(prob(75))
-							block = 1
+			for(var/obj/item/clothing/C in M.get_equipped_items())
+				if(C.permeability_coefficient < chance)
+					chance = C.permeability_coefficient
+				if(istype(C, /obj/item/clothing/suit/bio_suit))
+					// bio suits are just about completely fool-proof - Doohl
+					// kind of a hacky way of making bio suits more resistant to chemicals but w/e
+					if(prob(75))
+						block = 1
 
-					if(istype(C, /obj/item/clothing/head/bio_hood))
-						if(prob(75))
-							block = 1
+				if(istype(C, /obj/item/clothing/head/bio_hood))
+					if(prob(75))
+						block = 1
 
-				chance = chance * 100
+			chance = chance * 100
 
-				if(prob(chance) && !block)
-					if(M.reagents)
-						M.reagents.add_reagent(self.id, self.volume / 2)
+			if(prob(chance) && !block)
+				M.reagents?.add_reagent(self.id, self.volume / 2)
 	return 1
 
 /datum/reagent/proc/reaction_obj(obj/O, volume)
 	qdel(src)
 	//By default we transfer a small part of the reagent to the object if it can hold reagents.
-	if(O.reagents)
-		O.reagents.add_reagent(id, volume / 3)
-	return
+	O.reagents?.add_reagent(id, volume / 3)
 
 /datum/reagent/proc/reaction_turf(turf/T, volume)
 	qdel(src)
-	return
 
-/datum/reagent/proc/on_mob_life(mob/living/M as mob, alien)
+/datum/reagent/proc/on_mob_life(mob/living/M, alien)
 	if(!isliving(M))
 		return //Noticed runtime errors from pacid trying to damage ghosts, this should fix. --NEO
 	if(overdose > 0 && volume >= overdose) //Overdosing, wooo
 		M.adjustToxLoss(overdose_dam)
-	holder.remove_reagent(src.id, custom_metabolism) //By default it slowly disappears.
-	return
+	holder.remove_reagent(id, custom_metabolism) //By default it slowly disappears.
 
 /datum/reagent/proc/on_move(mob/M)
 	return

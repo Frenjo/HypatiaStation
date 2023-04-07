@@ -36,7 +36,7 @@ GLOBAL_GLOBL_LIST_NEW(cached_icons)
 	reagents.add_reagent("paint_[paint_type]", volume)
 
 /obj/item/weapon/reagent_containers/glass/paint/on_reagent_change() //Until we have a generic "paint", this will give new colours to all paints in the can
-	var/mixedcolor = mix_color_from_reagents(reagents.reagent_list)
+	var/mixedcolor = mix_colour_from_reagents(reagents.reagent_list)
 	for(var/datum/reagent/paint/P in reagents.reagent_list)
 		P.color = mixedcolor
 

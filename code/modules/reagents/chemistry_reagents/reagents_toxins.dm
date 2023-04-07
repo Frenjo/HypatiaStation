@@ -9,14 +9,12 @@
 	var/toxpwr = 0.7 // Toxins are really weak, but without being treated, last very long.
 	custom_metabolism = 0.1
 
-/datum/reagent/toxin/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/toxin/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	if(toxpwr)
 		M.adjustToxLoss(toxpwr * REM)
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/toxin/amatoxin
 	name = "Amatoxin"
@@ -25,7 +23,6 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#792300" // rgb: 121, 35, 0
 	toxpwr = 1
-
 
 /datum/reagent/toxin/mutagen
 	name = "Unstable mutagen"
@@ -39,7 +36,7 @@
 	if(!..())
 		return
 	if(!istype(M) || !M.dna)
-		return  //No robots, AIs, aliens, Ians or other mobs should be affected by this.
+		return // No robots, AIs, aliens, Ians or other mobs should be affected by this.
 	qdel(src)
 	if((method == TOUCH && prob(33)) || method == INGEST)
 		randmuti(M)
@@ -49,17 +46,14 @@
 			randmutg(M)
 		domutcheck(M, null)
 		M.UpdateAppearance()
-	return
 
 /datum/reagent/toxin/mutagen/on_mob_life(mob/living/carbon/M)
+	if(isnull(M))
+		M = holder.my_atom
 	if(!istype(M))
 		return
-	if(!M)
-		M = holder.my_atom
 	M.apply_effect(10, IRRADIATE, 0)
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/plasma
 	name = "Plasma"
@@ -70,8 +64,8 @@
 	var/toxpwr = 3
 	custom_metabolism = 0.1
 
-/datum/reagent/plasma/on_mob_life(mob/living/M as mob, alien)
-	if(!M)
+/datum/reagent/plasma/on_mob_life(mob/living/M, alien)
+	if(isnull(M))
 		M = holder.my_atom
 	if(alien && alien == IS_PLASMALIN)
 		M.adjustBruteLoss(-5)
@@ -81,8 +75,7 @@
 
 	if(holder.has_reagent("inaprovaline"))
 		holder.remove_reagent("inaprovaline", 2 * REM)
-	..()
-	return
+	. = ..()
 
 /datum/reagent/plasma/reaction_obj(obj/O, volume)
 	qdel(src)
@@ -90,7 +83,7 @@
 		var/obj/item/weapon/reagent_containers/food/snacks/egg/slime/egg = O
 		if (egg.grown)
 			egg.Hatch()*/
-	if((!O) || (!volume))
+	if(isnull(O) || !volume)
 		return 0
 	var/turf/the_turf = get_turf(O)
 	the_turf.assume_gas(/decl/xgm_gas/volatile_fuel, volume, T20C)
@@ -108,19 +101,17 @@
 	toxpwr = 0
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/toxin/lexorin/on_mob_life(mob/living/M as mob)
+/datum/reagent/toxin/lexorin/on_mob_life(mob/living/M)
+	if(isnull(M))
+		M = holder.my_atom
 	if(M.stat == DEAD)
 		return
-	if(!M)
-		M = holder.my_atom
 	if(prob(33))
 		M.take_organ_damage(1 * REM, 0)
 	M.adjustOxyLoss(3)
 	if(prob(20))
 		M.emote("gasp")
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/toxin/slimejelly
 	name = "Slime Jelly"
@@ -130,15 +121,13 @@
 	color = "#801E28" // rgb: 128, 30, 40
 	toxpwr = 0
 
-/datum/reagent/toxin/slimejelly/on_mob_life(mob/living/M as mob)
+/datum/reagent/toxin/slimejelly/on_mob_life(mob/living/M)
 	if(prob(10))
 		to_chat(M, SPAN_WARNING("Your insides are burning!"))
 		M.adjustToxLoss(rand(20, 60) * REM)
 	else if(prob(40))
 		M.heal_organ_damage(5 * REM, 0)
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/toxin/cyanide //Fast and Lethal
 	name = "Cyanide"
@@ -149,14 +138,12 @@
 	toxpwr = 4
 	custom_metabolism = 0.4
 
-/datum/reagent/toxin/cyanide/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/toxin/cyanide/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	M.adjustOxyLoss(4 * REM)
 	M.sleeping += 1
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/toxin/minttoxin
 	name = "Mint Toxin"
@@ -166,14 +153,12 @@
 	color = "#CF3600" // rgb: 207, 54, 0
 	toxpwr = 0
 
-/datum/reagent/toxin/minttoxin/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/toxin/minttoxin/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	if(FAT in M.mutations)
 		M.gib()
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
@@ -182,7 +167,6 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#003333" // rgb: 0, 51, 51
 	toxpwr = 2
-
 
 /datum/reagent/toxin/zombiepowder
 	name = "Zombie Powder"
@@ -193,22 +177,20 @@
 	toxpwr = 0.5
 
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/carbon/M as mob)
-	if(!M)
+	if(isnull(M))
 		M = holder.my_atom
 	M.status_flags |= FAKEDEATH
 	M.adjustOxyLoss(0.5 * REM)
 	M.Weaken(10)
 	M.silent = max(M.silent, 10)
 	M.tod = worldtime2text()
-	..()
-	return
+	. = ..()
 
 /datum/reagent/toxin/zombiepowder/Destroy()
-	if(holder && ismob(holder.my_atom))
+	if(ismob(holder?.my_atom))
 		var/mob/M = holder.my_atom
 		M.status_flags &= ~FAKEDEATH
 	return ..()
-
 
 /datum/reagent/toxin/mindbreaker
 	name = "Mindbreaker Toxin"
@@ -221,11 +203,10 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/toxin/mindbreaker/on_mob_life(mob/living/M)
-	if(!M) M = holder.my_atom
+	if(isnull(M))
+		M = holder.my_atom
 	M.hallucination += 10
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/toxin/plantbgone
 	name = "Plant-B-Gone"
@@ -249,7 +230,7 @@
 				O.show_message(SPAN_INFO("The fungi are completely dissolved by the solution!"), 1)
 
 /datum/reagent/toxin/plantbgone/reaction_obj(obj/O, volume)
-	if(istype(O, /obj/effect/alien/weeds/))
+	if(istype(O, /obj/effect/alien/weeds))
 		var/obj/effect/alien/weeds/alien_weeds = O
 		alien_weeds.health -= rand(15, 35) // Kills alien weeds pretty fast
 		alien_weeds.healthcheck()
@@ -264,14 +245,13 @@
 	qdel(src)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
-		if(!C.wear_mask) // If not wearing a mask
+		if(isnull(C.wear_mask)) // If not wearing a mask
 			C.adjustToxLoss(2) // 4 toxic damage per application, doubled for some reason
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.dna)
+			if(!isnull(H.dna))
 				if(H.species.flags & IS_PLANT) //plantmen take a LOT of damage
 					H.adjustToxLoss(50)
-
 
 /datum/reagent/toxin/chloralhydrate
 	name = "Chloral Hydrate"
@@ -284,8 +264,8 @@
 	overdose = 15
 	overdose_dam = 5
 
-/datum/reagent/toxin/chloralhydrate/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/toxin/chloralhydrate/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	if(!data["special"])
 		data["special"] = 1
@@ -298,9 +278,7 @@
 			M.Weaken(30)
 		if(200 to INFINITY)
 			M.sleeping += 1
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
@@ -319,9 +297,7 @@
 				H.losebreath = max(10, H.losebreath - 10)
 			H.adjustOxyLoss(2)
 			H.Weaken(10)
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/toxin/potassium_chlorophoride
 	name = "Potassium Chlorophoride"
@@ -340,9 +316,7 @@
 				H.losebreath = max(10, M.losebreath - 10)
 			H.adjustOxyLoss(2)
 			H.Weaken(10)
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/toxin/beer2	//disguised as normal beer for use by emagged brobots
 	name = "Beer"
@@ -353,8 +327,8 @@
 	custom_metabolism = 0.15 // Sleep toxins should always be consumed pretty fast
 	overdose = REAGENTS_OVERDOSE/2
 
-/datum/reagent/toxin/beer2/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/toxin/beer2/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	if(!data["special"])
 		data["special"] = 1
@@ -368,9 +342,7 @@
 			M.sleeping += 1
 			M.adjustToxLoss((data["special"] - 50) * REM)
 	data["special"]++
-	..()
-	return
-
+	. = ..()
 
 /datum/reagent/toxin/acid
 	name = "Sulphuric acid"
@@ -379,14 +351,14 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#DB5008" // rgb: 219, 80, 8
 	toxpwr = 1
+
 	var/meltprob = 10
 
-/datum/reagent/toxin/acid/on_mob_life(mob/living/M as mob)
-	if(!M)
+/datum/reagent/toxin/acid/on_mob_life(mob/living/M)
+	if(isnull(M))
 		M = holder.my_atom
 	M.take_organ_damage(0, 1 * REM)
-	..()
-	return
+	. = ..()
 
 /datum/reagent/toxin/acid/reaction_mob(mob/living/M, method = TOUCH, volume)//magic numbers everywhere
 	if(!isliving(M))
@@ -455,7 +427,6 @@
 			for(var/mob/M in viewers(5, O))
 				to_chat(M, SPAN_WARNING("\the [O] melts."))
 			qdel(O)
-
 
 /datum/reagent/toxin/acid/polyacid
 	name = "Polytrinic acid"

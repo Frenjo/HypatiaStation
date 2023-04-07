@@ -210,7 +210,7 @@
 
 		filling.icon_state = "syringe[rounded_vol]"
 
-		filling.icon += mix_color_from_reagents(reagents.reagent_list)
+		filling.icon += mix_colour_from_reagents(reagents.reagent_list)
 		overlays += filling
 
 /obj/item/weapon/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
