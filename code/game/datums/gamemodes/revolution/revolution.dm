@@ -427,4 +427,5 @@
 		to_world(text)
 
 /proc/is_convertable_to_rev(datum/mind/mind)
-	return istype(mind) && ishuman(mind.current) && !(mind.assigned_role in GLOBL.command_positions) && !(mind.assigned_role in GLOBL.security_positions)
+	return istype(mind) && ishuman(mind.current) && !(mind.assigned_role in GLOBL.command_positions) \
+	&& !(mind.assigned_role in list("Security Officer", "Detective", "Warden"))
