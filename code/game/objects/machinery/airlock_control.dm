@@ -17,34 +17,34 @@
 
 	switch(signal.data["command"])
 		if("open")
-			open(1)
+			open(TRUE)
 
 		if("close")
-			close(1)
+			close(TRUE)
 
 		if("unlock")
-			locked = 0
+			locked = FALSE
 			update_icon()
 
 		if("lock")
-			locked = 1
+			locked = TRUE
 			update_icon()
 
 		if("secure_open")
-			locked = 0
+			locked = FALSE
 			update_icon()
 
 			sleep(2)
-			open(1)
+			open(TRUE)
 
-			locked = 1
+			locked = TRUE
 			update_icon()
 
 		if("secure_close")
-			locked = 0
-			close(1)
+			locked = FALSE
+			close(TRUE)
 
-			locked = 1
+			locked = TRUE
 			sleep(2)
 			update_icon()
 
@@ -58,8 +58,8 @@
 		signal.data["tag"] = id_tag
 		signal.data["timestamp"] = world.time
 
-		signal.data["door_status"] = density?("closed"):("open")
-		signal.data["lock_status"] = locked?("locked"):("unlocked")
+		signal.data["door_status"] = density ? "closed" : "open"
+		signal.data["lock_status"] = locked ? "locked" : "unlocked"
 
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
 

@@ -28,3 +28,6 @@ GLOBAL_GLOBL_LIST_NEW(solars_list)
 
 GLOBAL_GLOBL_LIST_NEW(pda_list)
 GLOBAL_GLOBL_LIST_NEW(pda_chatrooms)
+
+GLOBAL_GLOBL_LIST_NEW(airlocks_list)
+GLOBAL_GLOBL_LIST_NEW(maintenance_airlocks_list)

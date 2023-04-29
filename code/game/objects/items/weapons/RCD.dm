@@ -125,7 +125,7 @@ RCD
 							return 0
 						activate()
 						var/obj/machinery/door/airlock/T = new /obj/machinery/door/airlock(A)
-						T.autoclose = 1
+						T.autoclose = TRUE
 						return 1
 					return 0
 				return 0

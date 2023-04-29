@@ -5,6 +5,7 @@
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/interior.dmi'
 	icon_state = "door1"
+
 	layer = 2.7
 	var/open_layer = 2.7
 	var/closed_layer = 3.1
@@ -14,16 +15,16 @@
 	density = TRUE
 
 	var/secondsElectrified = 0
-	var/visible = 1
-	var/p_open = 0
+	var/visible = TRUE
+	var/p_open = FALSE
 	var/operating = 0
-	var/autoclose = 0
-	var/glass = 0
-	var/normalspeed = 1
-	var/heat_proof = 0 // For glass airlocks/opacity firedoors
+	var/autoclose = FALSE
+	var/glass = FALSE
+	var/normalspeed = TRUE
+	var/heat_proof = FALSE // For glass airlocks/opacity firedoors
 	var/air_properties_vary_with_direction = 0
 
-	var/block_air_zones = 1 //If set, air zones cannot merge across the door even when it is opened.
+	var/block_air_zones = TRUE // If TRUE, air zones cannot merge across the door even when it is opened.
 
 	//Multi-tile doors
 	dir = EAST

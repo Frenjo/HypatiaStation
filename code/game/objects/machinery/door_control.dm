@@ -13,7 +13,7 @@
 
 	var/id = null
 	var/range = 10
-	var/normaldoorcontrol = 0
+	var/normaldoorcontrol = FALSE
 	var/desiredstate = 0 // Zero is closed, 1 is open.
 	var/specialfunctions = 1
 	/*
@@ -92,25 +92,25 @@
 							return
 				if(desiredstate == 1)
 					if(specialfunctions & IDSCAN)
-						D.aiDisabledIdScanner = 1
+						D.aiDisabledIdScanner = TRUE
 					if(specialfunctions & BOLTS)
-						D.locked = 1
+						D.locked = TRUE
 						D.update_icon()
 					if(specialfunctions & SHOCK)
 						D.secondsElectrified = -1
 					if(specialfunctions & SAFE)
-						D.safe = 0
+						D.safe = FALSE
 				else
 					if(specialfunctions & IDSCAN)
-						D.aiDisabledIdScanner = 0
+						D.aiDisabledIdScanner = FALSE
 					if(specialfunctions & BOLTS)
 						if(!D.isWireCut(4) && D.arePowerSystemsOn())
-							D.locked = 0
+							D.locked = FALSE
 							D.update_icon()
 					if(specialfunctions & SHOCK)
 						D.secondsElectrified = 0
 					if(specialfunctions & SAFE)
-						D.safe = 1
+						D.safe = TRUE
 
 	else
 		for(var/obj/machinery/door/poddoor/M in world)

@@ -4,15 +4,15 @@
 	name = "airlock electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
-	w_class = 2.0 //It should be tiny! -Agouri
+	w_class = 2.0 // It should be tiny! -Agouri
 	matter_amounts = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
 
 	req_access = list(ACCESS_ENGINE)
 
 	var/list/conf_access = null
-	var/one_access = 0 //if set to 1, door would receive req_one_access instead of req_access
+	var/one_access = FALSE // If set to TRUE, door would receive req_one_access instead of req_access.
 	var/last_configurator = null
-	var/locked = 1
+	var/locked = TRUE
 
 /obj/item/weapon/airlock_electronics/attack_self(mob/user as mob)
 	if(!ishuman(user) && !isdrone(user))
@@ -35,7 +35,7 @@
 		t1 += "Access requirement is set to "
 		t1 += one_access ? "<a style='color: green' href='?src=\ref[src];one_access=1'>ONE</a><hr>" : "<a style='color: red' href='?src=\ref[src];one_access=1'>ALL</a><hr>"
 
-		t1 += conf_access == null ? "<font color=red>All</font><br>" : "<a href='?src=\ref[src];access=all'>All</a><br>"
+		t1 += isnull(conf_access) ? "<font color=red>All</font><br>" : "<a href='?src=\ref[src];access=all'>All</a><br>"
 
 		t1 += "<br>"
 
@@ -65,22 +65,22 @@
 
 	if(href_list["login"])
 		if(issilicon(usr))
-			src.locked = 0
-			src.last_configurator = usr.name
+			locked = FALSE
+			last_configurator = usr.name
 		else
 			var/obj/item/I = usr.get_active_hand()
 			if(istype(I, /obj/item/device/pda))
 				var/obj/item/device/pda/pda = I
 				I = pda.id
-			if(I && src.check_access(I))
-				src.locked = 0
-				src.last_configurator = I:registered_name
+			if(!isnull(I) && check_access(I))
+				locked = FALSE
+				last_configurator = I:registered_name
 
 	if(locked)
 		return
 
 	if(href_list["logout"])
-		locked = 1
+		locked = TRUE
 
 	if(href_list["one_access"])
 		one_access = !one_access
@@ -100,8 +100,8 @@
 			conf_access = list()
 
 		if(!(req in conf_access))
-			conf_access += req
+			conf_access.Add(req)
 		else
-			conf_access -= req
+			conf_access.Remove(req)
 			if(!length(conf_access))
 				conf_access = null

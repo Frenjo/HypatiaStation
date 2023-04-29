@@ -2283,7 +2283,7 @@
 			if("eagles")//SCRAW
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","EgL")
-				for(var/obj/machinery/door/airlock/W in world)
+				for(var/obj/machinery/door/airlock/W in GLOBL.airlocks_list)
 					if(isStationLevel(W.z) && !istype(get_area(W), /area/bridge) && !istype(get_area(W), /area/crew_quarters) && !istype(get_area(W), /area/prison))
 						W.req_access = list()
 				message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
@@ -2435,12 +2435,12 @@
 					dat += "No-one has done anything this round!"
 				usr << browse(dat, "window=admin_log")
 			if("maint_access_brig")
-				for(var/obj/machinery/door/airlock/maintenance/M in world)
+				for(var/obj/machinery/door/airlock/maintenance/M in GLOBL.maintenance_airlocks_list)
 					if(ACCESS_MAINT_TUNNELS in M.req_access)
 						M.req_access = list(ACCESS_BRIG)
 				message_admins("[key_name_admin(usr)] made all maint doors brig access-only.")
 			if("maint_access_engiebrig")
-				for(var/obj/machinery/door/airlock/maintenance/M in world)
+				for(var/obj/machinery/door/airlock/maintenance/M in GLOBL.maintenance_airlocks_list)
 					if(ACCESS_MAINT_TUNNELS in M.req_access)
 						M.req_access = list()
 						M.req_one_access = list(ACCESS_BRIG, ACCESS_ENGINE)

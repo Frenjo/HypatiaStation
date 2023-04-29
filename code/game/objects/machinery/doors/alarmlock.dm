@@ -36,8 +36,8 @@
 	if(alarm_area == our_area.name)
 		switch(alert)
 			if("severe")
-				autoclose = 1
+				autoclose = TRUE
 				close()
 			if("minor", "clear")
-				autoclose = 0
+				autoclose = FALSE
 				open()
