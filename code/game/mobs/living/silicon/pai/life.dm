@@ -1,20 +1,21 @@
 /mob/living/silicon/pai/Life()
-	if(src.stat == DEAD)
+	if(stat == DEAD)
 		return
 
-	if(src.cable)
-		if(get_dist(src, src.cable) > 1)
-			var/turf/T = get_turf_or_move(src.loc)
-			for(var/mob/M in viewers(T))
-				M.show_message(SPAN_WARNING("The data cable rapidly retracts back into its spool."), 3, SPAN_WARNING("You hear a click and the sound of wire spooling rapidly."), 2)
-			qdel(src.cable)
+	if(!isnull(cable))
+		if(get_dist(src, cable) > 1)
+			visible_message(
+				message = SPAN_WARNING("The data cable rapidly retracts back into its spool."),
+				blind_message = SPAN_WARNING("You hear a click and the sound of wire spooling rapidly.")
+			)
+			qdel(cable)
 
 	regular_hud_updates()
 
-	if(src.secHUD == 1)
+	if(secHUD)
 		process_sec_hud(src, 1)
 
-	if(src.medHUD == 1)
+	if(medHUD)
 		process_med_hud(src, 1)
 
 	if(silence_time)

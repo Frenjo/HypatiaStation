@@ -38,7 +38,7 @@
 
 	// This duplicates some checks that are found later on (. = ..()) but it's necessary to prevent...
 	// ... the blinded, fire_alert, life_tick and in_stasis variables being updated when they shouldn't be.
-	if(!loc)
+	if(isnull(loc))
 		return
 	if(monkeyizing)
 		return
@@ -207,7 +207,7 @@
 					O.add_autopsy_data("Radiation Poisoning", damage)
 
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
-	if(!environment)
+	if(isnull(environment))
 		return
 
 	//Stuff like the xenomorph's plasma regen happens here.
@@ -320,10 +320,10 @@
 	var/pressure_difference = abs(pressure - ONE_ATMOSPHERE)
 	var/pressure_adjustment_coefficient = 1	//Determins how much the clothing you are wearing protects you in percent.
 
-	if(head && (head.flags & STOPSPRESSUREDAMAGE))
+	if(head?.flags & STOPSPRESSUREDAMAGE)
 		pressure_adjustment_coefficient -= PRESSURE_HEAD_REDUCTION_COEFFICIENT
 
-	if(wear_suit && (wear_suit.flags & STOPSPRESSUREDAMAGE))
+	if(wear_suit?.flags & STOPSPRESSUREDAMAGE)
 		pressure_adjustment_coefficient -= PRESSURE_SUIT_REDUCTION_COEFFICIENT
 
 		//Handles breaches in your space suit. 10 suit damage equals a 100% loss of pressure reduction.
@@ -369,8 +369,8 @@
 						say("[prob(50) ? ";" : ""][pick("SHIT", "PISS", "FUCK", "CUNT", "COCKSUCKER", "MOTHERFUCKER", "TITS")]")
 				var/old_x = pixel_x
 				var/old_y = pixel_y
-				pixel_x += rand(-2,2)
-				pixel_y += rand(-1,1)
+				pixel_x += rand(-2, 2)
+				pixel_y += rand(-1, 1)
 				sleep(2)
 				pixel_x = old_x
 				pixel_y = old_y
@@ -427,7 +427,7 @@
 		return
 	if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 		return
-	if(species && (species.flags & NO_BREATHE || species.flags & IS_SYNTHETIC))
+	if(!isnull(species) && (species.flags & NO_BREATHE || species.flags & IS_SYNTHETIC))
 		return
 
 	var/datum/gas_mixture/environment = loc.return_air()
@@ -440,7 +440,8 @@
 	if(losebreath > 0) //Suffocating so do not take a breath
 		losebreath--
 		if(prob(10)) //Gasp per 10 ticks? Sounds about right.
-			spawn emote("gasp")
+			spawn()
+				emote("gasp")
 		if(isobj(loc))
 			var/obj/location_as_object = loc
 			location_as_object.handle_internal_lifeform(src, 0)
@@ -476,23 +477,20 @@
 							rupture_lung()
 
 				// Handle filtering
-				var/block = 0
-				if(wear_mask)
-					if(wear_mask.flags & BLOCK_GAS_SMOKE_EFFECT)
-						block = 1
-				if(glasses)
-					if(glasses.flags & BLOCK_GAS_SMOKE_EFFECT)
-						block = 1
-				if(head)
-					if(head.flags & BLOCK_GAS_SMOKE_EFFECT)
-						block = 1
+				var/block = FALSE
+				if(wear_mask?.flags & BLOCK_GAS_SMOKE_EFFECT)
+					block = TRUE
+				if(glasses?.flags & BLOCK_GAS_SMOKE_EFFECT)
+					block = TRUE
+				if(head?.flags & BLOCK_GAS_SMOKE_EFFECT)
+					block = TRUE
 
 				if(!block)
 					for(var/obj/effect/smoke/chem/smoke in view(1, src))
 						if(smoke.reagents.total_volume)
 							smoke.reagents.reaction(src, INGEST)
 							spawn(5)
-								if(smoke)
+								if(!isnull(smoke))
 									smoke.reagents.copy_to(src, 10) // I dunno, maybe the reagents enter the blood stream through the lungs?
 							break // If they breathe in the nasty stuff once, no need to continue checking
 
@@ -511,11 +509,11 @@
 			if(prob(10) && get_infection_chance(src))
 //				log_debug("[src] : Exhaling some viruses")
 				for(var/mob/living/carbon/M in view(1, src))
-					src.spread_disease_to(M)
+					spread_disease_to(M)
 
 
 /mob/living/carbon/human/proc/get_breath_from_internal(volume_needed)
-	if(internal)
+	if(!isnull(internal))
 		if(!contents.Find(internal))
 			internal = null
 		if(!wear_mask || !(wear_mask.flags & AIRTIGHT))
@@ -531,22 +529,22 @@
 	if(status_flags & GODMODE)
 		return
 
-	if(!breath || (breath.total_moles == 0) || suiciding)
+	if(isnull(breath) || (breath.total_moles == 0) || suiciding)
 		if(reagents.has_reagent("inaprovaline"))
 			return
 
 		if(suiciding)
 			adjustOxyLoss(2)//If you are suiciding, you should die a little bit faster
-			failed_last_breath = 1
+			failed_last_breath = TRUE
 			oxygen_alert = max(oxygen_alert, 1)
 			return 0
 
 		if(health > CONFIG_GET(health_threshold_crit))
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
-			failed_last_breath = 1
+			failed_last_breath = TRUE
 		else
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
-			failed_last_breath = 1
+			failed_last_breath = TRUE
 
 		oxygen_alert = max(oxygen_alert, 1)
 
@@ -565,32 +563,32 @@
 	var/inhaling
 	var/poison
 	var/exhaling
-	var/no_exhale
+	var/no_exhale = FALSE
 
 	var/breath_type
 	var/poison_type
 	var/exhale_type
 
-	var/failed_inhale = 0
-	var/failed_exhale = 0
+	var/failed_inhale = FALSE
+	var/failed_exhale = FALSE
 
-	if(species.breath_type)
+	if(!isnull(species.breath_type))
 		breath_type = species.breath_type
 		inhaling = breath.gas[breath_type]
 	else
 		inhaling = /decl/xgm_gas/oxygen
 
-	if(species.poison_type)
+	if(!isnull(species.poison_type))
 		poison_type = species.poison_type
 		poison = breath.gas[poison_type]
 	else
 		poison = /decl/xgm_gas/plasma
 
-	if(species.exhale_type)
+	if(!isnull(species.exhale_type))
 		exhale_type = species.exhale_type
 		exhaling = breath.gas[exhale_type]
 	else
-		no_exhale = 1
+		no_exhale = TRUE
 
 	var/inhale_pp = (inhaling / breath.total_moles) * breath_pressure
 	var/toxins_pp = (poison / breath.total_moles) * breath_pressure
@@ -606,11 +604,11 @@
 			// Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!)
 			// The hell? By definition ratio > 1, and HUMAN_MAX_OXYLOSS = 1... why do we even have this?
 			adjustOxyLoss(min(5 * (1 - ratio), HUMAN_MAX_OXYLOSS))
-			failed_inhale = 1
+			failed_inhale = TRUE
 			inhaled_gas_used = inhaling * ratio / 6
 		else
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
-			failed_inhale = 1
+			failed_inhale = TRUE
 
 		oxygen_alert = max(oxygen_alert, 1)
 
@@ -632,7 +630,7 @@
 
 		adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 		co2_alert = 1
-		failed_exhale = 1
+		failed_exhale = TRUE
 
 	else if(exhaled_pp > safe_exhaled_max * 0.7)
 		if(!co2_alert || prob(1))
@@ -646,7 +644,7 @@
 		if(getOxyLoss() < 50 * ratio)
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 		co2_alert = 1
-		failed_exhale = 1
+		failed_exhale = TRUE
 
 	else if(exhaled_pp > safe_exhaled_max * 0.6)
 		if(prob(0.3))
@@ -684,9 +682,9 @@
 
 	// Were we able to breathe?
 	if(failed_inhale || failed_exhale)
-		failed_last_breath = 1
+		failed_last_breath = TRUE
 	else
-		failed_last_breath = 0
+		failed_last_breath = FALSE
 		adjustOxyLoss(-5)
 
 	// Hot air hurts :(
@@ -790,22 +788,22 @@
 /mob/living/carbon/human/proc/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
 	var/thermal_protection_flags = 0
 	//Handle normal clothing
-	if(head)
+	if(!isnull(head))
 		if(head.max_heat_protection_temperature && head.max_heat_protection_temperature >= temperature)
 			thermal_protection_flags |= head.heat_protection
-	if(wear_suit)
+	if(!isnull(wear_suit))
 		if(wear_suit.max_heat_protection_temperature && wear_suit.max_heat_protection_temperature >= temperature)
 			thermal_protection_flags |= wear_suit.heat_protection
-	if(w_uniform)
+	if(!isnull(w_uniform))
 		if(w_uniform.max_heat_protection_temperature && w_uniform.max_heat_protection_temperature >= temperature)
 			thermal_protection_flags |= w_uniform.heat_protection
-	if(shoes)
+	if(!isnull(shoes))
 		if(shoes.max_heat_protection_temperature && shoes.max_heat_protection_temperature >= temperature)
 			thermal_protection_flags |= shoes.heat_protection
-	if(gloves)
+	if(!isnull(gloves))
 		if(gloves.max_heat_protection_temperature && gloves.max_heat_protection_temperature >= temperature)
 			thermal_protection_flags |= gloves.heat_protection
-	if(wear_mask)
+	if(!isnull(wear_mask))
 		if(wear_mask.max_heat_protection_temperature && wear_mask.max_heat_protection_temperature >= temperature)
 			thermal_protection_flags |= wear_mask.heat_protection
 
@@ -815,7 +813,7 @@
 	var/thermal_protection_flags = get_heat_protection_flags(temperature)
 
 	var/thermal_protection = 0.0
-	if(thermal_protection_flags)
+	if(!isnull(thermal_protection_flags))
 		if(thermal_protection_flags & HEAD)
 			thermal_protection += THERMAL_PROTECTION_HEAD
 		if(thermal_protection_flags & UPPER_TORSO)
@@ -846,22 +844,22 @@
 	var/thermal_protection_flags = 0
 	//Handle normal clothing
 
-	if(head)
+	if(!isnull(head))
 		if(head.min_cold_protection_temperature && head.min_cold_protection_temperature <= temperature)
 			thermal_protection_flags |= head.cold_protection
-	if(wear_suit)
+	if(!isnull(wear_suit))
 		if(wear_suit.min_cold_protection_temperature && wear_suit.min_cold_protection_temperature <= temperature)
 			thermal_protection_flags |= wear_suit.cold_protection
-	if(w_uniform)
+	if(!isnull(w_uniform))
 		if(w_uniform.min_cold_protection_temperature && w_uniform.min_cold_protection_temperature <= temperature)
 			thermal_protection_flags |= w_uniform.cold_protection
-	if(shoes)
+	if(!isnull(shoes))
 		if(shoes.min_cold_protection_temperature && shoes.min_cold_protection_temperature <= temperature)
 			thermal_protection_flags |= shoes.cold_protection
-	if(gloves)
+	if(!isnull(gloves))
 		if(gloves.min_cold_protection_temperature && gloves.min_cold_protection_temperature <= temperature)
 			thermal_protection_flags |= gloves.cold_protection
-	if(wear_mask)
+	if(!isnull(wear_mask))
 		if(wear_mask.min_cold_protection_temperature && wear_mask.min_cold_protection_temperature <= temperature)
 			thermal_protection_flags |= wear_mask.cold_protection
 
@@ -875,7 +873,7 @@
 	var/thermal_protection_flags = get_cold_protection_flags(temperature)
 
 	var/thermal_protection = 0.0
-	if(thermal_protection_flags)
+	if(!isnull(thermal_protection_flags))
 		if(thermal_protection_flags & HEAD)
 			thermal_protection += THERMAL_PROTECTION_HEAD
 		if(thermal_protection_flags & UPPER_TORSO)
@@ -960,9 +958,9 @@
 */
 
 /mob/living/carbon/human/proc/handle_chemicals_in_body()
-	if(reagents && !(species.flags & IS_SYNTHETIC)) //Synths don't process reagents.
+	if(!isnull(reagents) && !(species.flags & IS_SYNTHETIC)) //Synths don't process reagents.
 		var/alien = 0 //Not the best way to handle it, but neater than checking this for every single reagent proc.
-		if(species && species.reagent_tag)
+		if(species?.reagent_tag)
 			alien = species.reagent_tag
 			reagents.metabolize(src, alien)
 
@@ -979,7 +977,7 @@
 		var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
 		if(isturf(loc)) //else, there's considered to be no light
 			var/turf/T = loc
-			if(T)
+			if(!isnull(T))
 				light_amount = T.get_lumcount(0.5) * 10 //hardcapped so it's not abused by having a ton of flashlights
 			else
 				light_amount = 1
@@ -995,12 +993,12 @@
 				adjustOxyLoss(-(light_amount))
 				//TODO: heal wounds, heal broken limbs.
 
-	if(dna && dna.mutantrace == "shadow")
+	if(dna?.mutantrace == "shadow")
 		var/light_amount = 0
 		if(isturf(loc))
 			var/turf/T = loc
 			var/atom/movable/lighting_overlay/L = locate(/atom/movable/lighting_overlay) in T
-			if(L)
+			if(!isnull(L))
 				light_amount = L.lum_r + L.lum_g + L.lum_b //hardcapped so it's not abused by having a ton of flashlights
 			else
 				light_amount = 10
@@ -1133,12 +1131,11 @@
 			speech_problem_flag = 1
 			handle_dreams()
 			adjustHalLoss(-3)
-			if(mind)
-				if((mind.active && client != null) || immune_to_ssd) //This also checks whether a client is connected, if not, sleep is not reduced.
-					sleeping = max(sleeping-1, 0)
+			if((mind?.active && !isnull(client)) || immune_to_ssd) //This also checks whether a client is connected, if not, sleep is not reduced.
+				sleeping = max(sleeping-1, 0)
 			blinded = 1
 			stat = UNCONSCIOUS
-			if(prob(2) && health && !hal_crit && client)
+			if(prob(2) && health && !hal_crit && !isnull(client))
 				spawn(0)
 					emote("snore")
 		else if(resting)
@@ -1201,7 +1198,7 @@
 		if(druggy)
 			druggy = max(druggy - 1, 0)
 
-		if(gloves && germ_level > gloves.germ_level && prob(10))
+		if(!isnull(gloves) && germ_level > gloves.germ_level && prob(10))
 			gloves.germ_level += 1
 
 	return 1
@@ -1210,7 +1207,7 @@
 	if(hud_updateflag)
 		handle_hud_list()
 
-	if(!client)
+	if(isnull(client))
 		return 0
 
 	for(var/image/hud in client.images)
@@ -1253,7 +1250,7 @@
 					I = image("icon" = 'icons/mob/screen/screen1_full.dmi', "icon_state" = "passage9")
 				if(-INFINITY to -95)
 					I = image("icon" = 'icons/mob/screen/screen1_full.dmi', "icon_state" = "passage10")
-			damageoverlay.overlays += I
+			damageoverlay.overlays.Add(I)
 	else
 		//Oxygen damage overlay
 		if(oxyloss)
@@ -1273,10 +1270,10 @@
 					I = image("icon" = 'icons/mob/screen/screen1_full.dmi', "icon_state" = "oxydamageoverlay6")
 				if(45 to INFINITY)
 					I = image("icon" = 'icons/mob/screen/screen1_full.dmi', "icon_state" = "oxydamageoverlay7")
-			damageoverlay.overlays += I
+			damageoverlay.overlays.Add(I)
 
 		//Fire and Brute damage overlay (BSSR)
-		var/hurtdamage = src.getBruteLoss() + src.getFireLoss() + damageoverlaytemp
+		var/hurtdamage = getBruteLoss() + getFireLoss() + damageoverlaytemp
 		damageoverlaytemp = 0 // We do this so we can detect if someone hits us or not.
 		if(hurtdamage)
 			var/image/I
@@ -1293,7 +1290,7 @@
 					I = image("icon" = 'icons/mob/screen/screen1_full.dmi', "icon_state" = "brutedamageoverlay5")
 				if(85 to INFINITY)
 					I = image("icon" = 'icons/mob/screen/screen1_full.dmi', "icon_state" = "brutedamageoverlay6")
-			damageoverlay.overlays += I
+			damageoverlay.overlays.Add(I)
 
 	if(stat == DEAD)
 		sight |= (SEE_TURFS | SEE_MOBS | SEE_OBJS)
@@ -1302,7 +1299,7 @@
 			see_invisible = SEE_INVISIBLE_LEVEL_TWO
 		if(healths)
 			healths.icon_state = "health7"	//DEAD healthmeter
-		if(client)
+		if(!isnull(client))
 			if(client.view != world.view)
 				if(locate(/obj/item/weapon/gun/energy/sniperrifle, contents))
 					var/obj/item/weapon/gun/energy/sniperrifle/s = locate() in src
@@ -1313,7 +1310,7 @@
 		sight &= ~(SEE_TURFS | SEE_MOBS | SEE_OBJS)
 		see_in_dark = species.darksight
 		see_invisible = see_in_dark > 2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
-		if(dna)
+		if(!isnull(dna))
 			switch(dna.mutantrace)
 				if("slime")
 					see_in_dark = 3
@@ -1328,28 +1325,28 @@
 			if(!druggy)
 				see_invisible = SEE_INVISIBLE_LEVEL_TWO
 
-		if(seer == 1)
+		if(seer)
 			var/obj/effect/rune/R = locate() in loc
-			if(R && R.word1 == cultwords["see"] && R.word2 == cultwords["hell"] && R.word3 == cultwords["join"])
+			if(!isnull(R) && R.word1 == cultwords["see"] && R.word2 == cultwords["hell"] && R.word3 == cultwords["join"])
 				see_invisible = SEE_INVISIBLE_OBSERVER
 			else
 				see_invisible = SEE_INVISIBLE_LIVING
-				seer = 0
+				seer = FALSE
 
-		var/glasses_processed = 0
+		var/glasses_processed = FALSE
 		if(istype(wear_mask, /obj/item/clothing/mask/gas/voice/space_ninja))
 			var/obj/item/clothing/mask/gas/voice/space_ninja/O = wear_mask
-			glasses_processed = 1
+			glasses_processed = TRUE
 			process_glasses(O.ninja_vision.glasses)
 
-		if(glasses)
-			glasses_processed = 1
+		if(!isnull(glasses))
+			glasses_processed = TRUE
 			process_glasses(glasses)
 
 		if(!seer && !glasses_processed)
 			see_invisible = SEE_INVISIBLE_LIVING
 
-		if(healths)
+		if(!isnull(healths))
 			if(analgesic)
 				healths.icon_state = "health_health_numb"
 			else
@@ -1360,54 +1357,85 @@
 						healths.icon_state = "health7"
 					else
 						//switch(health - halloss)
-						switch(100 - ((species && species.flags & NO_PAIN & !IS_SYNTHETIC) ? 0 : traumatic_shock))
-							if(100 to INFINITY)	healths.icon_state = "health0"
-							if(80 to 100)		healths.icon_state = "health1"
-							if(60 to 80)		healths.icon_state = "health2"
-							if(40 to 60)		healths.icon_state = "health3"
-							if(20 to 40)		healths.icon_state = "health4"
-							if(0 to 20)			healths.icon_state = "health5"
-							else				healths.icon_state = "health6"
+						switch(100 - ((species?.flags & NO_PAIN & !IS_SYNTHETIC) ? 0 : traumatic_shock))
+							if(100 to INFINITY)
+								healths.icon_state = "health0"
+							if(80 to 100)
+								healths.icon_state = "health1"
+							if(60 to 80)
+								healths.icon_state = "health2"
+							if(40 to 60)
+								healths.icon_state = "health3"
+							if(20 to 40)
+								healths.icon_state = "health4"
+							if(0 to 20)
+								healths.icon_state = "health5"
+							else
+								healths.icon_state = "health6"
 
 		if(nutrition_icon)
 			switch(nutrition)
-				if(450 to INFINITY)	nutrition_icon.icon_state = "nutrition0"
-				if(350 to 450)		nutrition_icon.icon_state = "nutrition1"
-				if(250 to 350)		nutrition_icon.icon_state = "nutrition2"
-				if(150 to 250)		nutrition_icon.icon_state = "nutrition3"
-				else				nutrition_icon.icon_state = "nutrition4"
+				if(450 to INFINITY)
+					nutrition_icon.icon_state = "nutrition0"
+				if(350 to 450)
+					nutrition_icon.icon_state = "nutrition1"
+				if(250 to 350)
+					nutrition_icon.icon_state = "nutrition2"
+				if(150 to 250)
+					nutrition_icon.icon_state = "nutrition3"
+				else
+					nutrition_icon.icon_state = "nutrition4"
 
-		if(pressure)
+		if(!isnull(pressure))
 			pressure.icon_state = "pressure[pressure_alert]"
 
-		if(pullin)
-			if(pulling)	pullin.icon_state = "pull1"
-			else		pullin.icon_state = "pull0"
-//			if(rest)	//Not used with new UI
-//				if(resting || lying || sleeping)		rest.icon_state = "rest1"
-//				else									rest.icon_state = "rest0"
-		if(toxin)
-			if(hal_screwyhud == 4 || toxins_alert)	toxin.icon_state = "tox1"
-			else									toxin.icon_state = "tox0"
-		if(oxygen)
-			if(hal_screwyhud == 3 || oxygen_alert)	oxygen.icon_state = "oxy1"
-			else									oxygen.icon_state = "oxy0"
-		if(fire)
-			if(fire_alert)	fire.icon_state = "fire[fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
-			else			fire.icon_state = "fire0"
+		if(!isnull(pullin))
+			if(!isnull(pulling))
+				pullin.icon_state = "pull1"
+			else
+				pullin.icon_state = "pull0"
+//		if(rest)	//Not used with new UI
+//			if(resting || lying || sleeping)
+//				rest.icon_state = "rest1"
+//			else
+//				rest.icon_state = "rest0"
+		if(!isnull(toxin))
+			if(hal_screwyhud == 4 || toxins_alert)
+				toxin.icon_state = "tox1"
+			else
+				toxin.icon_state = "tox0"
+		if(!isnull(oxygen))
+			if(hal_screwyhud == 3 || oxygen_alert)
+				oxygen.icon_state = "oxy1"
+			else
+				oxygen.icon_state = "oxy0"
+		if(!isnull(fire))
+			if(fire_alert)
+				fire.icon_state = "fire[fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
+			else
+				fire.icon_state = "fire0"
 
-		if(bodytemp)
-			if(!species)
+		if(!isnull(bodytemp))
+			if(isnull(species))
 				switch(bodytemperature) //310.055 optimal body temp
-					if(370 to INFINITY)	bodytemp.icon_state = "temp4"
-					if(350 to 370)		bodytemp.icon_state = "temp3"
-					if(335 to 350)		bodytemp.icon_state = "temp2"
-					if(320 to 335)		bodytemp.icon_state = "temp1"
-					if(300 to 320)		bodytemp.icon_state = "temp0"
-					if(295 to 300)		bodytemp.icon_state = "temp-1"
-					if(280 to 295)		bodytemp.icon_state = "temp-2"
-					if(260 to 280)		bodytemp.icon_state = "temp-3"
-					else				bodytemp.icon_state = "temp-4"
+					if(370 to INFINITY)
+						bodytemp.icon_state = "temp4"
+					if(350 to 370)
+						bodytemp.icon_state = "temp3"
+					if(335 to 350)
+						bodytemp.icon_state = "temp2"
+					if(320 to 335)
+						bodytemp.icon_state = "temp1"
+					if(300 to 320)
+						bodytemp.icon_state = "temp0"
+					if(295 to 300)
+						bodytemp.icon_state = "temp-1"
+					if(280 to 295)
+						bodytemp.icon_state = "temp-2"
+					if(260 to 280)
+						bodytemp.icon_state = "temp-3"
+					else
+						bodytemp.icon_state = "temp-4"
 			else
 				var/temp_step
 				if(bodytemperature >= species.body_temperature)
@@ -1438,55 +1466,55 @@
 					else
 						bodytemp.icon_state = "temp0"
 
-		if(blind)
+		if(!isnull(blind))
 			if(blinded)
 				blind.invisibility = 0 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 			else
 				blind.invisibility = INVISIBILITY_MAXIMUM // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 
 		if(disabilities & NEARSIGHTED)	//this looks meh but saves a lot of memory by not requiring to add var/prescription
-			if(glasses)					//to every /obj/item
+			if(!isnull(glasses))		//to every /obj/item
 				var/obj/item/clothing/glasses/G = glasses
 				if(!G.prescription)
-					client.screen += GLOBL.global_hud.vimpaired
+					client.screen.Add(GLOBL.global_hud.vimpaired)
 			else
-				client.screen += GLOBL.global_hud.vimpaired
+				client.screen.Add(GLOBL.global_hud.vimpaired)
 
 		if(eye_blurry)
-			client.screen += GLOBL.global_hud.blurry
+			client.screen.Add(GLOBL.global_hud.blurry)
 		if(druggy)
-			client.screen += GLOBL.global_hud.druggy
+			client.screen.Add(GLOBL.global_hud.druggy)
 
-		var/masked = 0
+		var/masked = FALSE
 
 		if(istype(head, /obj/item/clothing/head/welding) || istype(head, /obj/item/clothing/head/helmet/space/soghun))
 			var/obj/item/clothing/head/welding/O = head
 			if(!O.up && GLOBL.welding_helmet_tint)
 				client.screen.Add(GLOBL.global_hud.darkMask)
-				masked = 1
+				masked = TRUE
 
 		if(!masked && istype(glasses, /obj/item/clothing/glasses/welding))
 			var/obj/item/clothing/glasses/welding/O = glasses
 			if(!O.up && GLOBL.welding_helmet_tint)
 				client.screen.Add(GLOBL.global_hud.darkMask)
 
-		if(machine)
+		if(!isnull(machine))
 			if(!machine.check_eye(src))
 				reset_view(null)
 		else
-			var/isRemoteObserve = 0
+			var/isRemoteObserve = FALSE
 			if((mRemote in mutations) && remoteview_target)
 				if(remoteview_target.stat == CONSCIOUS)
-					isRemoteObserve = 1
-			if(!isRemoteObserve && client && !client.adminobs)
+					isRemoteObserve = TRUE
+			if(!isRemoteObserve && !isnull(client) && !client.adminobs)
 				remoteview_target = null
 				reset_view(null)
 	return 1
 
 /mob/living/carbon/human/proc/process_glasses(obj/item/clothing/glasses/G)
-	if(G && G.active)
+	if(G?.active)
 		see_in_dark += G.darkness_view
-		if(G.overlay)
+		if(!isnull(G.overlay))
 			client.screen |= G.overlay
 		if(G.vision_flags)
 			sight |= G.vision_flags
@@ -1498,8 +1526,7 @@
 // The purpose of this is to stop xray and w/e from preventing you from using huds -- Love, Doohl
 		if(istype(G, /obj/item/clothing/glasses/sunglasses/sechud))
 			var/obj/item/clothing/glasses/sunglasses/sechud/O = G
-			if(O.hud)
-				O.hud.process_hud(src)
+			O.hud?.process_hud(src)
 			if(!druggy)
 				see_invisible = SEE_INVISIBLE_LIVING
 		else if(istype(G, /obj/item/clothing/glasses/hud))
@@ -1554,11 +1581,11 @@
 			else
 				V.activate(src)
 			// activate may have deleted the virus
-			if(!V)
+			if(isnull(V))
 				continue
 
 			// check if we're immune
-			if(V.antigen & src.antibodies)
+			if(V.antigen & antibodies)
 				V.dead = 1
 
 	return
@@ -1581,14 +1608,13 @@
 					nutrition += 10
 
 /mob/living/carbon/human/proc/handle_changeling()
-	if(mind && mind.changeling)
-		mind.changeling.regenerate()
+	mind?.changeling?.regenerate()
 
 /mob/living/carbon/human/handle_shock()
 	..()
 	if(status_flags & GODMODE)
 		return 0	//godmode
-	if(analgesic || (species && species.flags & NO_PAIN))
+	if(analgesic || (species?.flags & NO_PAIN))
 		return // analgesic avoids all traumatic shock temporarily
 
 	if(health < CONFIG_GET(health_threshold_softcrit))// health 0 makes you immediately collapse
@@ -1648,7 +1674,7 @@
 	if(life_tick % 5)
 		return pulse	//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
 
-	if(species && species.flags & NO_BLOOD)
+	if(species?.flags & NO_BLOOD)
 		return PULSE_NONE //No blood, no pulse.
 
 	if(stat == DEAD)
@@ -1737,9 +1763,9 @@
 
 	if(BITTEST(hud_updateflag, ID_HUD))
 		var/image/holder = hud_list[ID_HUD]
-		if(wear_id)
+		if(!isnull(wear_id))
 			var/obj/item/weapon/card/id/I = wear_id.GetID()
-			if(I)
+			if(!isnull(I))
 				holder.icon_state = "hud[ckey(I.GetJobName())]"
 			else
 				holder.icon_state = "hudunknown"
@@ -1752,9 +1778,9 @@
 		var/image/holder = hud_list[WANTED_HUD]
 		holder.icon_state = "hudblank"
 		var/perpname = name
-		if(wear_id)
+		if(!isnull(wear_id))
 			var/obj/item/weapon/card/id/I = wear_id.GetID()
-			if(I)
+			if(!isnull(I))
 				perpname = I.registered_name
 
 		for(var/datum/data/record/E in GLOBL.data_core.general)
@@ -1799,7 +1825,7 @@
 	if(BITTEST(hud_updateflag, SPECIALROLE_HUD))
 		var/image/holder = hud_list[SPECIALROLE_HUD]
 		holder.icon_state = "hudblank"
-		if(mind)
+		if(!isnull(mind))
 			switch(mind.special_role)
 				if("traitor", "Syndicate")
 					holder.icon_state = "hudsyndicate"

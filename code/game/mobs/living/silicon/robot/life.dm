@@ -9,7 +9,7 @@
 	clamp_values()
 	handle_regular_status_updates()
 
-	if(client)
+	if(!isnull(client))
 		handle_regular_hud_updates()
 		update_items()
 	if(stat != DEAD) //still using power
@@ -33,87 +33,89 @@
 		var/datum/robot_component/C = components[V]
 		C.update_power_state()
 
-	if(cell && is_component_functioning("power cell") && src.cell.charge > 0)
-		if(src.module_state_1)
-			src.cell.use(3)
-		if(src.module_state_2)
-			src.cell.use(3)
-		if(src.module_state_3)
-			src.cell.use(3)
+	if(!isnull(cell) && is_component_functioning("power cell") && cell.charge > 0)
+		if(!isnull(module_state_1))
+			cell.use(3)
+		if(!isnull(module_state_2))
+			cell.use(3)
+		if(!isnull(module_state_3))
+			cell.use(3)
 
-		src.has_power = 1
+		has_power = TRUE
 	else
-		if(src.has_power)
-			src << "\red You are now running on emergency backup power."
-		src.has_power = 0
+		if(has_power)
+			to_chat(src, SPAN_WARNING("You are now running on emergency backup power."))
+		has_power = FALSE
 
 /mob/living/silicon/robot/proc/handle_regular_status_updates()
-	if(src.camera && !scrambledcodes)
-		if(src.stat == DEAD || isWireCut(5))
-			src.camera.status = 0
+	if(!isnull(camera) && !scrambledcodes)
+		if(stat == DEAD || isWireCut(5))
+			camera.status = 0
 		else
-			src.camera.status = 1
+			camera.status = 1
 
 	updatehealth()
 
-	if(src.sleeping)
+	if(sleeping)
 		Paralyse(3)
-		src.sleeping--
+		sleeping--
 
-	if(src.resting)
+	if(resting)
 		Weaken(5)
 
-	if(health < CONFIG_GET(health_threshold_dead) && src.stat != DEAD) //die only once
+	if(health < CONFIG_GET(health_threshold_dead) && stat != DEAD) //die only once
 		death()
 
-	if(src.stat != DEAD) //Alive.
-		if(src.paralysis || src.stunned || src.weakened || !src.has_power) //Stunned etc.
-			src.stat = 1
-			if(src.stunned > 0)
+	if(stat != DEAD) //Alive.
+		if(paralysis || stunned || weakened || !has_power) //Stunned etc.
+			stat = 1
+			if(stunned > 0)
 				AdjustStunned(-1)
-			if(src.weakened > 0)
+			if(weakened > 0)
 				AdjustWeakened(-1)
-			if(src.paralysis > 0)
+			if(paralysis > 0)
 				AdjustParalysis(-1)
-				src.blinded = 1
+				blinded = 1
 			else
-				src.blinded = 0
+				blinded = 0
 
 		else	//Not stunned.
-			src.stat = 0
+			stat = 0
 
 	else //Dead.
-		src.blinded = 1
-		src.stat = 2
+		blinded = 1
+		stat = 2
 
-	if (src.stuttering) src.stuttering--
+	if(stuttering)
+		stuttering--
 
-	if (src.eye_blind)
-		src.eye_blind--
-		src.blinded = 1
+	if(eye_blind)
+		eye_blind--
+		blinded = 1
 
-	if (src.ear_deaf > 0) src.ear_deaf--
-	if (src.ear_damage < 25)
-		src.ear_damage -= 0.05
-		src.ear_damage = max(src.ear_damage, 0)
+	if(ear_deaf > 0)
+		ear_deaf--
+	if(ear_damage < 25)
+		ear_damage -= 0.05
+		ear_damage = max(ear_damage, 0)
 
-	src.density = !( src.lying )
+	density = !( lying )
 
-	if ((src.sdisabilities & BLIND))
-		src.blinded = 1
-	if ((src.sdisabilities & DEAF))
-		src.ear_deaf = 1
+	if(sdisabilities & BLIND)
+		blinded = 1
+	if(sdisabilities & DEAF)
+		ear_deaf = 1
 
-	if (src.eye_blurry > 0)
-		src.eye_blurry--
-		src.eye_blurry = max(0, src.eye_blurry)
+	if(eye_blurry > 0)
+		eye_blurry--
+		eye_blurry = max(0, eye_blurry)
 
-	if (src.druggy > 0)
-		src.druggy--
-		src.druggy = max(0, src.druggy)
+	if(druggy > 0)
+		druggy--
+		druggy = max(0, druggy)
 
 	//update the state of modules and components here
-	if (src.stat != 0)
+	if(stat != 0)
 		uneq_all()
 
 	if(!is_component_functioning("radio"))
@@ -122,163 +124,162 @@
 		radio.on = 1
 
 	if(is_component_functioning("camera"))
-		src.blinded = 0
+		blinded = 0
 	else
-		src.blinded = 1
+		blinded = 1
 
 	if(!is_component_functioning("actuator"))
-		src.Paralyse(3)
+		Paralyse(3)
 
 	return 1
 
 /mob/living/silicon/robot/proc/handle_regular_hud_updates()
-	if(src.stat == DEAD || (XRAY in mutations) || src.sight_mode & BORGXRAY)
-		src.sight |= SEE_TURFS
-		src.sight |= SEE_MOBS
-		src.sight |= SEE_OBJS
-		src.see_in_dark = 8
-		src.see_invisible = SEE_INVISIBLE_MINIMUM
-	else if(src.sight_mode & BORGMESON && src.sight_mode & BORGTHERM)
-		src.sight |= SEE_TURFS
-		src.sight |= SEE_MOBS
-		src.see_in_dark = 8
+	if(stat == DEAD || (XRAY in mutations) || sight_mode & BORGXRAY)
+		sight |= SEE_TURFS
+		sight |= SEE_MOBS
+		sight |= SEE_OBJS
+		see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_MINIMUM
-	else if(src.sight_mode & BORGMESON)
-		src.sight |= SEE_TURFS
-		src.see_in_dark = 8
+	else if(sight_mode & BORGMESON && sight_mode & BORGTHERM)
+		sight |= SEE_TURFS
+		sight |= SEE_MOBS
+		see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_MINIMUM
-	else if(src.sight_mode & BORGTHERM)
-		src.sight |= SEE_MOBS
-		src.see_in_dark = 8
-		src.see_invisible = SEE_INVISIBLE_LEVEL_TWO
-	else if(src.stat != DEAD)
-		src.sight &= ~SEE_MOBS
-		src.sight &= ~SEE_TURFS
-		src.sight &= ~SEE_OBJS
-		src.see_in_dark = 8
-		src.see_invisible = SEE_INVISIBLE_LEVEL_TWO
+	else if(sight_mode & BORGMESON)
+		sight |= SEE_TURFS
+		see_in_dark = 8
+		see_invisible = SEE_INVISIBLE_MINIMUM
+	else if(sight_mode & BORGTHERM)
+		sight |= SEE_MOBS
+		see_in_dark = 8
+		see_invisible = SEE_INVISIBLE_LEVEL_TWO
+	else if(stat != DEAD)
+		sight &= ~SEE_MOBS
+		sight &= ~SEE_TURFS
+		sight &= ~SEE_OBJS
+		see_in_dark = 8
+		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 
 	regular_hud_updates()
 
 	var/obj/item/borg/sight/hud/hud = (locate(/obj/item/borg/sight/hud) in src)
-	if(hud && hud.hud)
+	if(!isnull(hud?.hud))
 		hud.hud.process_hud(src)
 	else
-		switch(src.sensor_mode)
+		switch(sensor_mode)
 			if(SEC_HUD)
 				process_sec_hud(src, 0)
 			if(MED_HUD)
 				process_med_hud(src, 0)
 
-	if(src.healths)
-		if(src.stat != DEAD)
+	if(!isnull(healths))
+		if(stat != DEAD)
 			if(isdrone(src))
 				switch(health)
 					if(35 to INFINITY)
-						src.healths.icon_state = "health0"
+						healths.icon_state = "health0"
 					if(25 to 34)
-						src.healths.icon_state = "health1"
+						healths.icon_state = "health1"
 					if(15 to 24)
-						src.healths.icon_state = "health2"
+						healths.icon_state = "health2"
 					if(5 to 14)
-						src.healths.icon_state = "health3"
+						healths.icon_state = "health3"
 					if(0 to 4)
-						src.healths.icon_state = "health4"
+						healths.icon_state = "health4"
 					if(-35 to 0)
-						src.healths.icon_state = "health5"
+						healths.icon_state = "health5"
 					else
-						src.healths.icon_state = "health6"
+						healths.icon_state = "health6"
 			else
 				switch(health)
 					if(200 to INFINITY)
-						src.healths.icon_state = "health0"
+						healths.icon_state = "health0"
 					if(150 to 200)
-						src.healths.icon_state = "health1"
+						healths.icon_state = "health1"
 					if(100 to 150)
-						src.healths.icon_state = "health2"
+						healths.icon_state = "health2"
 					if(50 to 100)
-						src.healths.icon_state = "health3"
+						healths.icon_state = "health3"
 					if(0 to 50)
-						src.healths.icon_state = "health4"
+						healths.icon_state = "health4"
 					else
 						if(health > CONFIG_GET(health_threshold_dead))
-							src.healths.icon_state = "health5"
+							healths.icon_state = "health5"
 						else
-							src.healths.icon_state = "health6"
+							healths.icon_state = "health6"
 		else
-			src.healths.icon_state = "health7"
+			healths.icon_state = "health7"
 
-	if(src.syndicate && src.client)
+	if(syndicate && !isnull(client))
 		if(IS_GAME_MODE(/datum/game_mode/traitor))
 			for(var/datum/mind/tra in global.CTgame_ticker.mode.traitors)
 				if(!isnull(tra.current))
 					var/I = image('icons/mob/mob.dmi', loc = tra.current, icon_state = "traitor")
-					src.client.images.Add(I)
-		if(src.connected_ai)
-			src.connected_ai.connected_robots -= src
-			src.connected_ai = null
-		if(src.mind)
-			if(!src.mind.special_role)
-				src.mind.special_role = "traitor"
-				global.CTgame_ticker.mode.traitors += src.mind
+					client.images.Add(I)
+		if(!isnull(connected_ai))
+			connected_ai.connected_robots.Remove(src)
+			connected_ai = null
+		if(!isnull(mind))
+			if(isnull(mind.special_role))
+				mind.special_role = "traitor"
+				global.CTgame_ticker.mode.traitors += mind
 
-	if(src.cells)
-		if(src.cell)
-			var/cellcharge = src.cell.charge/src.cell.maxcharge
+	if(!isnull(cells))
+		if(!isnull(cell))
+			var/cellcharge = cell.charge / cell.maxcharge
 			switch(cellcharge)
 				if(0.75 to INFINITY)
-					src.cells.icon_state = "charge4"
+					cells.icon_state = "charge4"
 				if(0.5 to 0.75)
-					src.cells.icon_state = "charge3"
+					cells.icon_state = "charge3"
 				if(0.25 to 0.5)
-					src.cells.icon_state = "charge2"
+					cells.icon_state = "charge2"
 				if(0 to 0.25)
-					src.cells.icon_state = "charge1"
+					cells.icon_state = "charge1"
 				else
-					src.cells.icon_state = "charge0"
+					cells.icon_state = "charge0"
 		else
-			src.cells.icon_state = "charge-empty"
+			cells.icon_state = "charge-empty"
 
-	if(bodytemp)
-		switch(src.bodytemperature) //310.055 optimal body temp
+	if(!isnull(bodytemp))
+		switch(bodytemperature) //310.055 optimal body temp
 			if(335 to INFINITY)
-				src.bodytemp.icon_state = "temp2"
+				bodytemp.icon_state = "temp2"
 			if(320 to 335)
-				src.bodytemp.icon_state = "temp1"
+				bodytemp.icon_state = "temp1"
 			if(300 to 320)
-				src.bodytemp.icon_state = "temp0"
+				bodytemp.icon_state = "temp0"
 			if(260 to 300)
-				src.bodytemp.icon_state = "temp-1"
+				bodytemp.icon_state = "temp-1"
 			else
-				src.bodytemp.icon_state = "temp-2"
+				bodytemp.icon_state = "temp-2"
 
-
-	if(src.pullin)
-		src.pullin.icon_state = "pull[src.pulling ? 1 : 0]"
+	if(!isnull(pullin))
+		pullin.icon_state = "pull[pulling ? 1 : 0]"
 //Oxygen and fire does nothing yet!!
-//	if (src.oxygen) src.oxygen.icon_state = "oxy[src.oxygen_alert ? 1 : 0]"
-//	if (src.fire) src.fire.icon_state = "fire[src.fire_alert ? 1 : 0]"
+//	if(oxygen) oxygen.icon_state = "oxy[oxygen_alert ? 1 : 0]"
+//	if(fire) fire.icon_state = "fire[fire_alert ? 1 : 0]"
 
 	client.screen.Remove(GLOBL.global_hud.blurry, GLOBL.global_hud.druggy, GLOBL.global_hud.vimpaired)
 
-	if((src.blind && src.stat != DEAD))
-		if(src.blinded)
-			src.blind.invisibility = 0 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
+	if(!isnull(blind) && stat != DEAD)
+		if(blinded)
+			blind.invisibility = 0 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 		else
-			src.blind.invisibility = INVISIBILITY_MAXIMUM // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
-			if(src.disabilities & NEARSIGHTED)
-				src.client.screen += GLOBL.global_hud.vimpaired
+			blind.invisibility = INVISIBILITY_MAXIMUM // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
+			if(disabilities & NEARSIGHTED)
+				client.screen.Add(GLOBL.global_hud.vimpaired)
 
-			if(src.eye_blurry)
-				src.client.screen += GLOBL.global_hud.blurry
+			if(eye_blurry)
+				client.screen.Add(GLOBL.global_hud.blurry)
 
-			if(src.druggy)
-				src.client.screen += GLOBL.global_hud.druggy
+			if(druggy)
+				client.screen.Add(GLOBL.global_hud.druggy)
 
-	if(src.stat != DEAD)
-		if(src.machine)
-			if(!(src.machine.check_eye(src)))
-				src.reset_view(null)
+	if(stat != DEAD)
+		if(!isnull(machine))
+			if(!machine.check_eye(src))
+				reset_view(null)
 		else
 			if(client && !client.adminobs)
 				reset_view(null)
@@ -286,25 +287,25 @@
 	return 1
 
 /mob/living/silicon/robot/proc/update_items()
-	if(src.client)
-		src.client.screen -= src.contents
-		for(var/obj/I in src.contents)
-			if(I && !(istype(I, /obj/item/weapon/cell) || isradio(I) || istype(I, /obj/machinery/camera) || istype(I, /obj/item/device/mmi)))
-				src.client.screen += I
-	if(src.module_state_1)
-		src.module_state_1:screen_loc = UI_INV1
-	if(src.module_state_2)
-		src.module_state_2:screen_loc = UI_INV2
-	if(src.module_state_3)
-		src.module_state_3:screen_loc = UI_INV3
+	if(!isnull(client))
+		client.screen.Remove(contents)
+		for(var/obj/I in contents)
+			if(!isnull(I) && !(istype(I, /obj/item/weapon/cell) || isradio(I) || istype(I, /obj/machinery/camera) || istype(I, /obj/item/device/mmi)))
+				client.screen.Add(I)
+	if(!isnull(module_state_1))
+		module_state_1:screen_loc = UI_INV1
+	if(!isnull(module_state_2))
+		module_state_2:screen_loc = UI_INV2
+	if(!isnull(module_state_3))
+		module_state_3:screen_loc = UI_INV3
 	updateicon()
 
 /mob/living/silicon/robot/proc/process_killswitch()
 	if(killswitch)
 		killswitch_time --
 		if(killswitch_time <= 0)
-			if(src.client)
-				src << "\red <B>Killswitch Activated"
+			if(!isnull(client))
+				to_chat(src, SPAN_DANGER("Killswitch activated."))
 			killswitch = 0
 			spawn(5)
 				gib()
@@ -314,9 +315,9 @@
 		uneq_all()
 		weaponlock_time --
 		if(weaponlock_time <= 0)
-			if(src.client)
+			if(!isnull(client))
 				to_chat(src, SPAN_DANGER("Weapon Lock Timed Out!"))
-			weapon_lock = 0
+			weapon_lock = FALSE
 			weaponlock_time = 120
 
 /mob/living/silicon/robot/update_canmove()

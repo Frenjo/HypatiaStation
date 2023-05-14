@@ -140,38 +140,38 @@
 	if(isturf(A))
 		var/turf/T = A
 
-		var/datum/gas_mixture/Environment = T.return_air()
+		var/datum/gas_mixture/environment = T.return_air()
 
-		if(Environment)
-			if(abs(Environment.temperature - bodytemperature) > 40)
-				var/diff = Environment.temperature - bodytemperature
+		if(!isnull(environment))
+			if(abs(environment.temperature - bodytemperature) > 40)
+				var/diff = environment.temperature - bodytemperature
 				diff = diff / 5
 				bodytemperature += diff
 
 			if(min_oxy)
-				if(Environment.gas[/decl/xgm_gas/oxygen] < min_oxy)
-					atmos_suitable = 0
+				if(environment.gas[/decl/xgm_gas/oxygen] < min_oxy)
+					atmos_suitable = FALSE
 			if(max_oxy)
-				if(Environment.gas[/decl/xgm_gas/oxygen] > max_oxy)
-					atmos_suitable = 0
+				if(environment.gas[/decl/xgm_gas/oxygen] > max_oxy)
+					atmos_suitable = FALSE
 			if(min_tox)
-				if(Environment.gas[/decl/xgm_gas/plasma] < min_tox)
-					atmos_suitable = 0
+				if(environment.gas[/decl/xgm_gas/plasma] < min_tox)
+					atmos_suitable = FALSE
 			if(max_tox)
-				if(Environment.gas[/decl/xgm_gas/plasma] > max_tox)
-					atmos_suitable = 0
+				if(environment.gas[/decl/xgm_gas/plasma] > max_tox)
+					atmos_suitable = FALSE
 			if(min_n2)
-				if(Environment.gas[/decl/xgm_gas/nitrogen] < min_n2)
-					atmos_suitable = 0
+				if(environment.gas[/decl/xgm_gas/nitrogen] < min_n2)
+					atmos_suitable = FALSE
 			if(max_n2)
-				if(Environment.gas[/decl/xgm_gas/nitrogen] > max_n2)
-					atmos_suitable = 0
+				if(environment.gas[/decl/xgm_gas/nitrogen] > max_n2)
+					atmos_suitable = FALSE
 			if(min_co2)
-				if(Environment.gas[/decl/xgm_gas/carbon_dioxide] < min_co2)
-					atmos_suitable = 0
+				if(environment.gas[/decl/xgm_gas/carbon_dioxide] < min_co2)
+					atmos_suitable = FALSE
 			if(max_co2)
-				if(Environment.gas[/decl/xgm_gas/carbon_dioxide] > max_co2)
-					atmos_suitable = 0
+				if(environment.gas[/decl/xgm_gas/carbon_dioxide] > max_co2)
+					atmos_suitable = FALSE
 
 	//Atmos effect
 	if(bodytemperature < minbodytemp)

@@ -1,11 +1,10 @@
 /mob/living/silicon/decoy/Life()
-	if(src.stat == DEAD)
+	if(stat == DEAD)
 		return
 	else
-		if(src.health <= CONFIG_GET(health_threshold_dead) && src.stat != DEAD)
+		if(health <= CONFIG_GET(health_threshold_dead) && src.stat != DEAD)
 			death()
 			return
-
 
 /mob/living/silicon/decoy/updatehealth()
 	if(status_flags & GODMODE)

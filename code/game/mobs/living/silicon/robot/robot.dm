@@ -63,7 +63,7 @@ var/list/robot_verbs_default = list(
 	var/borgwires = 31 // 0b11111
 	var/killswitch = 0
 	var/killswitch_time = 60
-	var/weapon_lock = 0
+	var/weapon_lock = FALSE
 	var/weaponlock_time = 120
 	var/lawupdate = TRUE // Cyborgs will sync their laws with their AI by default.
 	var/lawcheck[1] //For stating laws.

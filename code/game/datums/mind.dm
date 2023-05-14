@@ -39,7 +39,7 @@
 	var/memory
 
 	var/assigned_role
-	var/special_role
+	var/special_role = null
 
 	var/role_alt_title = null
 

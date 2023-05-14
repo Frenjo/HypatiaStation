@@ -18,7 +18,7 @@
 	update_canmove()
 	update_icons()
 
-	if(client)
+	if(!isnull(client))
 		handle_regular_hud_updates()
 
 /mob/living/carbon/alien/handle_mutations_and_radiation()
@@ -37,7 +37,7 @@
 
 /mob/living/carbon/alien/handle_environment(datum/gas_mixture/enviroment)
 	//TODO: Work out if larvae breathe/suffer from pressure/suffer from heat.
-	if(!enviroment)
+	if(isnull(enviroment))
 		return
 
 /mob/living/carbon/alien/proc/handle_chemicals_in_body()

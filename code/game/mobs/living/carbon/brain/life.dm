@@ -17,7 +17,7 @@
 	handle_regular_status_updates()
 	update_canmove()
 
-	if(client)
+	if(!isnull(client))
 		handle_regular_hud_updates()
 
 /mob/living/carbon/brain/handle_mutations_and_radiation()
@@ -74,21 +74,22 @@
 	return //TODO: DEFERRED
 
 /mob/living/carbon/brain/proc/handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)
-	if(status_flags & GODMODE) return
+	if(status_flags & GODMODE)
+		return
 
 	if(exposed_temperature > bodytemperature)
-		var/discomfort = min( abs(exposed_temperature - bodytemperature)*(exposed_intensity)/2000000, 1.0)
+		var/discomfort = min(abs(exposed_temperature - bodytemperature) * (exposed_intensity) / 2000000, 1.0)
 		//adjustFireLoss(2.5*discomfort)
 		//adjustFireLoss(5.0*discomfort)
-		adjustFireLoss(20.0*discomfort)
+		adjustFireLoss(20.0 * discomfort)
 
 	else
-		var/discomfort = min( abs(exposed_temperature - bodytemperature)*(exposed_intensity)/2000000, 1.0)
+		var/discomfort = min(abs(exposed_temperature - bodytemperature) * (exposed_intensity) / 2000000, 1.0)
 		//adjustFireLoss(2.5*discomfort)
-		adjustFireLoss(5.0*discomfort)
+		adjustFireLoss(5.0 * discomfort)
 
 /mob/living/carbon/brain/proc/handle_chemicals_in_body()
-	if(reagents) reagents.metabolize(src)
+	reagents?.metabolize(src)
 
 	confused = max(0, confused - 1)
 	// decrement dizziness counter, clamped to 0
@@ -108,7 +109,7 @@
 		blinded = 1
 		silent = 0
 	else				//ALIVE. LIGHTS ARE ON
-		if(!container && (health < CONFIG_GET(health_threshold_dead) || ((world.time - timeofhostdeath) > CONFIG_GET(revival_brain_life))))
+		if(isnull(container) && (health < CONFIG_GET(health_threshold_dead) || ((world.time - timeofhostdeath) > CONFIG_GET(revival_brain_life))))
 			death()
 			blinded = 1
 			silent = 0
@@ -119,7 +120,7 @@
 			if(!(container && istype(container, /obj/item/device/mmi)))
 				emp_damage = 0
 			else
-				emp_damage = round(emp_damage,1)//Let's have some nice numbers to work with
+				emp_damage = round(emp_damage, 1)//Let's have some nice numbers to work with
 			switch(emp_damage)
 				if(31 to INFINITY)
 					emp_damage = 30//Let's not overdo it
@@ -172,20 +173,20 @@
 			AdjustStunned(-1)
 
 		if(weakened)
-			weakened = max(weakened-1,0)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
+			weakened = max(weakened - 1,0)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
 
 		if(stuttering)
-			stuttering = max(stuttering-1, 0)
+			stuttering = max(stuttering - 1, 0)
 
 		if(silent)
-			silent = max(silent-1, 0)
+			silent = max(silent - 1, 0)
 
 		if(druggy)
-			druggy = max(druggy-1, 0)
+			druggy = max(druggy - 1, 0)
 	return 1
 
 /mob/living/carbon/brain/proc/handle_regular_hud_updates()
-	if(stat == DEAD || (XRAY in src.mutations))
+	if(stat == DEAD || (XRAY in mutations))
 		sight |= SEE_TURFS
 		sight |= SEE_MOBS
 		sight |= SEE_OBJS
@@ -198,7 +199,7 @@
 		see_in_dark = 2
 		see_invisible = SEE_INVISIBLE_LIVING
 
-	if(healths)
+	if(!isnull(healths))
 		if(stat != DEAD)
 			switch(health)
 				if(100 to INFINITY)
@@ -218,32 +219,32 @@
 		else
 			healths.icon_state = "health7"
 
-	if(pullin)
+	if(!isnull(pullin))
 		pullin.icon_state = "pull[pulling ? 1 : 0]"
-	if(client)
+	if(!isnull(client))
 		client.screen.Remove(GLOBL.global_hud.blurry, GLOBL.global_hud.druggy, GLOBL.global_hud.vimpaired)
 
-	if((blind && stat != DEAD))
-		if((blinded))
+	if(!isnull(blind) && stat != DEAD)
+		if(blinded)
 			blind.invisibility = 0 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 		else
 			blind.invisibility = INVISIBILITY_MAXIMUM // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 
 			if(disabilities & NEARSIGHTED)
-				client.screen += GLOBL.global_hud.vimpaired
+				client.screen.Add(GLOBL.global_hud.vimpaired)
 
 			if(eye_blurry)
-				client.screen += GLOBL.global_hud.blurry
+				client.screen.Add(GLOBL.global_hud.blurry)
 
 			if(druggy)
-				client.screen += GLOBL.global_hud.druggy
+				client.screen.Add(GLOBL.global_hud.druggy)
 
 	if(stat != DEAD)
-		if(machine)
+		if(!isnull(machine))
 			if(!machine.check_eye(src))
 				reset_view(null)
 		else
-			if(client && !client.adminobs)
+			if(!isnull(client) && !client.adminobs)
 				reset_view(null)
 
 	return 1

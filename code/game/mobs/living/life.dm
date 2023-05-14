@@ -3,7 +3,7 @@
 	set background = BACKGROUND_ENABLED
 	. = ..()
 
-	if(!loc)
+	if(isnull(loc))
 		return	// Fixing a null error that occurs when the mob isn't found in the world -- TLE
 	if(monkeyizing)
 		return
@@ -15,7 +15,7 @@
 		handle_mutations_and_radiation()
 
 	// Handle temperature/pressure differences between body and environment.
-	if(environment) // More error checking -- TLE
+	if(!isnull(environment)) // More error checking -- TLE
 		handle_environment(environment) // Optimised a good bit.
 
 /mob/living/proc/handle_mutations_and_radiation()
