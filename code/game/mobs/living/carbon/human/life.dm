@@ -1461,14 +1461,14 @@
 
 		if(istype(head, /obj/item/clothing/head/welding) || istype(head, /obj/item/clothing/head/helmet/space/soghun))
 			var/obj/item/clothing/head/welding/O = head
-			if(!O.up && GLOBL.tinted_weldhelh)
-				client.screen += GLOBL.global_hud.darkMask
+			if(!O.up && GLOBL.welding_helmet_tint)
+				client.screen.Add(GLOBL.global_hud.darkMask)
 				masked = 1
 
 		if(!masked && istype(glasses, /obj/item/clothing/glasses/welding))
 			var/obj/item/clothing/glasses/welding/O = glasses
-			if(!O.up && GLOBL.tinted_weldhelh)
-				client.screen += GLOBL.global_hud.darkMask
+			if(!O.up && GLOBL.welding_helmet_tint)
+				client.screen.Add(GLOBL.global_hud.darkMask)
 
 		if(machine)
 			if(!machine.check_eye(src))

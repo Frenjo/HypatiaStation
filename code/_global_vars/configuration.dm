@@ -15,7 +15,7 @@ GLOBAL_GLOBL_INIT(ooc_allowed, TRUE)
 GLOBAL_GLOBL_INIT(dsay_allowed, TRUE)
 GLOBAL_GLOBL_INIT(dooc_allowed, TRUE)
 GLOBAL_GLOBL_INIT(enter_allowed, TRUE)
-GLOBAL_GLOBL_INIT(tinted_weldhelh, TRUE)
+GLOBAL_GLOBL_INIT(welding_helmet_tint, TRUE)
 
 GLOBAL_GLOBL_INIT(debug2, FALSE)
 

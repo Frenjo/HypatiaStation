@@ -1030,18 +1030,18 @@ var/global/floorIsLava = 0
 	feedback_add_details("admin_verb", "STP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/datum/admins/proc/toggletintedweldhelmets()
+/datum/admins/proc/toggle_welding_helmet_tint()
 	set category = "Debug"
-	set desc="Reduces view range when wearing welding helmets"
-	set name="Toggle tinted welding helmes"
-	GLOBL.tinted_weldhelh = !GLOBL.tinted_weldhelh
-	if(GLOBL.tinted_weldhelh)
-		world << "<B>The tinted_weldhelh has been enabled!</B>"
+	set name = "Toggle Welding Helmet Tint"
+	set desc = "Reduces view range when wearing welding helmets."
+	GLOBL.welding_helmet_tint = !GLOBL.welding_helmet_tint
+	if(GLOBL.welding_helmet_tint)
+		to_world("<B>Welding helmet tint has been enabled!</B>")
 	else
-		world << "<B>The tinted_weldhelh has been disabled!</B>"
-	log_admin("[key_name(usr)] toggled tinted_weldhelh.")
-	message_admins("[key_name_admin(usr)] toggled tinted_weldhelh.", 1)
-	feedback_add_details("admin_verb", "TTWH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		to_world("<B>Welding helmet tint has been disabled!</B>")
+	log_admin("[key_name(usr)] toggled welding helmet tint.")
+	message_admins("[key_name_admin(usr)] toggled welding helmet tint.", 1)
+	feedback_add_details("admin_verb", "TWHT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleguests()
 	set category = "Server"
