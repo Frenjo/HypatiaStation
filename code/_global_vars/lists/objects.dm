@@ -31,3 +31,5 @@ GLOBAL_GLOBL_LIST_NEW(pda_chatrooms)
 
 GLOBAL_GLOBL_LIST_NEW(airlocks_list)
 GLOBAL_GLOBL_LIST_NEW(maintenance_airlocks_list)
+
+GLOBAL_GLOBL_LIST_NEW(conveyors_list)

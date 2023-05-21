@@ -18,7 +18,7 @@
 //	var/N_f=0
 //	var/N_nf=0
 //	var/Nt=0
-	var/turf/start_point
+	var/turf/start_point = null
 	if(!isnull(range))
 		start_point = get_turf(source)
 		if(isnull(start_point))

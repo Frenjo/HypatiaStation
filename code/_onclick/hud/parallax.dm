@@ -16,9 +16,13 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 	mouse_opacity = FALSE
 	simulated = FALSE
 
+	var/parallax_type = PARALLAX_SPACE
+
 /atom/movable/parallax_master/bluespace
 	plane = SPACE_DUST_PLANE
 	blend_mode = BLEND_ADD
+
+	parallax_type = PARALLAX_BLUESPACE
 
 /atom/movable/space_parallax
 	name = "space"
@@ -28,6 +32,8 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 	plane = SPACE_PARALLAX_PLANE
 	blend_mode = BLEND_ADD
 	simulated = FALSE
+
+	var/parallax_type = PARALLAX_SPACE
 
 /atom/movable/space_star
 	name = "star"
@@ -97,6 +103,11 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 	screen |= list(parallax_master, space_parallax)
 
 /client/proc/set_parallax_space(parallax_type)
+	if(space_parallax.parallax_type == parallax_type)
+		return
+
+	space_parallax.parallax_type = parallax_type
+
 	var/is_bluespace = (parallax_type == PARALLAX_BLUESPACE)
 	space_parallax.icon_state = is_bluespace ? "bluespace" : "space_blank"
 	space_parallax.overlays.Cut()

@@ -25,7 +25,7 @@
 /datum/pipe_network/proc/build_network(obj/machinery/atmospherics/start_normal, obj/machinery/atmospherics/reference)
 	//Purpose: Generate membership roster
 	//Notes: Assuming that members will add themselves to appropriate roster in network_expand()
-	if(!start_normal)
+	if(isnull(start_normal))
 		qdel(src)
 
 	start_normal.network_expand(src, reference)
@@ -60,7 +60,7 @@
 
 	for(var/obj/machinery/atmospherics/normal_member in normal_members)
 		var/result = normal_member.return_network_air(src)
-		if(result)
+		if(!isnull(result))
 			gases.Add(result)
 
 	for(var/datum/pipeline/line_member in line_members)

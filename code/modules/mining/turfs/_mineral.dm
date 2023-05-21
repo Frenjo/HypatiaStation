@@ -25,7 +25,7 @@
 	var/archaeo_overlay = ""
 	var/excav_overlay = ""
 	var/obj/item/weapon/last_find
-	var/datum/artifact_find/artifact_find
+	var/datum/artifact_find/artifact_find = null
 
 /turf/simulated/mineral/New()
 	. = ..()

@@ -9,10 +9,10 @@
 	explosion_resistance = 15
 
 /obj/machinery/door/airlock/receive_signal(datum/signal/signal)
-	if(!signal || signal.encryption)
+	if(isnull(signal) || signal.encryption)
 		return
 
-	if(id_tag != signal.data["tag"] || !signal.data["command"])
+	if(id_tag != signal.data["tag"] || isnull(signal.data["command"]))
 		return
 
 	switch(signal.data["command"])
@@ -23,16 +23,21 @@
 			close(TRUE)
 
 		if("unlock")
+			if(!locked)
+				return
 			locked = FALSE
 			update_icon()
 
 		if("lock")
+			if(locked)
+				return
 			locked = TRUE
 			update_icon()
 
 		if("secure_open")
-			locked = FALSE
-			update_icon()
+			if(locked)
+				locked = FALSE
+				update_icon()
 
 			sleep(2)
 			open(TRUE)
@@ -41,19 +46,20 @@
 			update_icon()
 
 		if("secure_close")
-			locked = FALSE
+			if(locked)
+				locked = FALSE
+				update_icon()
+
+			sleep(2)
 			close(TRUE)
 
 			locked = TRUE
-			sleep(2)
 			update_icon()
-
 	send_status()
 
-
 /obj/machinery/door/airlock/proc/send_status()
-	if(radio_connection)
-		var/datum/signal/signal = new
+	if(!isnull(radio_connection))
+		var/datum/signal/signal = new /datum/signal()
 		signal.transmission_method = TRANSMISSION_RADIO
 		signal.data["tag"] = id_tag
 		signal.data["timestamp"] = world.time
@@ -77,7 +83,7 @@
 	..(AM)
 	if(ismecha(AM))
 		var/obj/mecha/mecha = AM
-		if(density && radio_connection && mecha.occupant && (src.allowed(mecha.occupant) || src.check_access_list(mecha.operation_req_access)))
+		if(density && !isnull(radio_connection) && !isnull(mecha.occupant) && (allowed(mecha.occupant) || check_access_list(mecha.operation_req_access)))
 			var/datum/signal/signal = new
 			signal.transmission_method = TRANSMISSION_RADIO
 			signal.data["tag"] = id_tag

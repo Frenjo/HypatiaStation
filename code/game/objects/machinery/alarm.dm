@@ -279,7 +279,7 @@
 	)
 
 /obj/machinery/alarm/proc/master_is_operating()
-	return alarm_area.master_air_alarm && !(alarm_area.master_air_alarm.stat & (NOPOWER | BROKEN))
+	return !isnull(alarm_area.master_air_alarm) && !(alarm_area.master_air_alarm.stat & (NOPOWER | BROKEN))
 
 /obj/machinery/alarm/proc/elect_master()
 	for(var/obj/machinery/alarm/AA in alarm_area)
@@ -311,16 +311,19 @@
 /obj/machinery/alarm/receive_signal(datum/signal/signal)
 	if(stat & (NOPOWER|BROKEN))
 		return
+
 	if(alarm_area.master_air_alarm != src)
 		if(master_is_operating())
 			return
 		elect_master()
 		if(alarm_area.master_air_alarm != src)
 			return
-	if(!signal || signal.encryption)
+
+	if(isnull(signal) || signal.encryption)
 		return
+
 	var/id_tag = signal.data["tag"]
-	if(!id_tag)
+	if(isnull(id_tag))
 		return
 	if(signal.data["area"] != area_uid)
 		return

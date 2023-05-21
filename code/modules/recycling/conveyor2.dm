@@ -23,6 +23,8 @@
 // create a conveyor
 /obj/machinery/conveyor/New(loc, newdir, on = 0)
 	..(loc)
+	GLOBL.conveyors_list.Add(src)
+
 	if(newdir)
 		dir = newdir
 	switch(dir)
@@ -53,6 +55,10 @@
 	if(on)
 		operating = 1
 		setmove()
+
+/obj/machinery/conveyor/Destroy()
+	GLOBL.conveyors_list.Remove(src)
+	return ..()
 
 /obj/machinery/conveyor/proc/setmove()
 	if(operating == 1)
@@ -181,9 +187,9 @@
 /obj/machinery/conveyor_switch/initialize()		// allow map load
 	. = ..()
 	conveyors = list()
-	for(var/obj/machinery/conveyor/C in world)
+	for(var/obj/machinery/conveyor/C in GLOBL.conveyors_list)
 		if(C.id == id)
-			conveyors += C
+			conveyors.Add(C)
 
 // update the icon depending on the position
 /obj/machinery/conveyor_switch/proc/update()
