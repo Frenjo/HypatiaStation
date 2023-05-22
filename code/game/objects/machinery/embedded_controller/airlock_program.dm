@@ -58,33 +58,34 @@
 
 /datum/computer/file/embedded_program/airlock/receive_signal(datum/signal/signal, receive_method, receive_param)
 	var/receive_tag = signal.data["tag"]
-	if(!receive_tag) return
+	if(isnull(receive_tag))
+		return
 
-	if(receive_tag==tag_chamber_sensor)
+	if(receive_tag == tag_chamber_sensor)
 		if(signal.data["pressure"])
 			memory["chamber_sensor_pressure"] = text2num(signal.data["pressure"])
 
-	else if(receive_tag==tag_exterior_sensor)
+	else if(receive_tag == tag_exterior_sensor)
 		memory["external_sensor_pressure"] = text2num(signal.data["pressure"])
 
-	else if(receive_tag==tag_interior_sensor)
+	else if(receive_tag == tag_interior_sensor)
 		memory["internal_sensor_pressure"] = text2num(signal.data["pressure"])
 
-	else if(receive_tag==tag_exterior_door)
+	else if(receive_tag == tag_exterior_door)
 		memory["exterior_status"]["state"] = signal.data["door_status"]
 		memory["exterior_status"]["lock"] = signal.data["lock_status"]
 
-	else if(receive_tag==tag_interior_door)
+	else if(receive_tag == tag_interior_door)
 		memory["interior_status"]["state"] = signal.data["door_status"]
 		memory["interior_status"]["lock"] = signal.data["lock_status"]
 
-	else if(receive_tag==tag_airpump)
+	else if(receive_tag == tag_airpump)
 		if(signal.data["power"])
 			memory["pump_status"] = signal.data["direction"]
 		else
 			memory["pump_status"] = "off"
 
-	else if(receive_tag==id_tag)
+	else if(receive_tag == id_tag)
 		if(istype(master, /obj/machinery/embedded_controller/radio/airlock/access_controller))
 			switch(signal.data["command"])
 				if("cycle_exterior")

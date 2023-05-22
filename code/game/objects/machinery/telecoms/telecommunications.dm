@@ -39,8 +39,8 @@
 	var/listening_level = 0	// 0 = auto set in New() - this is the z level that the machine is listening to.
 
 /obj/machinery/telecoms/New()
-	telecoms_list += src
-	..()
+	telecoms_list.Add(src)
+	. = ..()
 
 	//Set the listening_level if there's none.
 	if(!listening_level)
@@ -60,17 +60,14 @@
 				add_link(T)
 
 /obj/machinery/telecoms/Destroy()
-	telecoms_list -= src
+	telecoms_list.Remove(src)
 	for(var/obj/machinery/telecoms/comm in telecoms_list)
-		comm.links -= src
+		comm.links.Remove(src)
 	links = list()
 	return ..()
 
 /obj/machinery/telecoms/update_icon()
-	if(on)
-		icon_state = initial(icon_state)
-	else
-		icon_state = "[initial(icon_state)]_off"
+	icon_state = on ? initial(icon_state) : "[initial(icon_state)]_off"
 
 /obj/machinery/telecoms/process()
 	update_power()

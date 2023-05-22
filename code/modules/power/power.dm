@@ -28,32 +28,24 @@
 
 // common helper procs for all power machines
 /obj/machinery/power/proc/add_avail(amount)
-	if(powernet)
+	if(!isnull(powernet))
 		powernet.newavail += amount
 
 /obj/machinery/power/proc/draw_power(amount)
-	if(powernet)
-		return powernet.draw_power(amount)
-	return 0
+	return !isnull(powernet) ? powernet.draw_power(amount) : 0
 
 /obj/machinery/power/proc/surplus()
-	if(powernet)
-		return powernet.avail - powernet.load
-	else
-		return 0
+	return !isnull(powernet) ? powernet.avail - powernet.load : 0
 
 /obj/machinery/power/proc/avail()
-	if(powernet)
-		return powernet.avail
-	else
-		return 0
+	return !isnull(powernet) ? powernet.avail : 0
 
 /obj/machinery/power/proc/disconnect_terminal() // machines without a terminal will just return, no harm no fowl.
 	return
 
 // returns true if the area has power on given channel (or doesn't require power).
 /obj/machinery/proc/powered(chan = -1) // defaults to power_channel
-	if(!src.loc)
+	if(isnull(loc))
 		return 0
 
 	//Don't do this. It allows machines that set use_power to 0 when off (many machines) to
@@ -61,9 +53,9 @@
 	//if(!use_power)
 	//	return 1
 
-	var/area/A = src.loc.loc		// make sure it's in an area
-	if(!A || !isarea(A))
-		return 0					// if not, then not powered
+	var/area/A = loc.loc		// make sure it's in an area
+	if(!isarea(A))
+		return 0				// if not, then not powered
 	if(chan == -1)
 		chan = power_channel
 	return A.powered(chan) // return power status of the area
@@ -71,7 +63,7 @@
 // increment the power usage stats for an area
 /obj/machinery/proc/use_power(amount, chan = -1) // defaults to power_channel
 	var/area/A = get_area(src)		// make sure it's in an area
-	if(!A || !isarea(A))
+	if(!isarea(A))
 		return
 	if(chan == -1)
 		chan = power_channel
@@ -86,12 +78,12 @@
 
 // connect the machine to a powernet if a node cable is present on the turf
 /obj/machinery/power/proc/connect_to_network()
-	var/turf/T = src.loc
-	if(!T || !istype(T))
+	var/turf/T = loc
+	if(!istype(T))
 		return 0
 
 	var/obj/structure/cable/C = T.get_cable_node() //check if we have a node cable on the machine turf, the first found is picked
-	if(!C || !C.powernet)
+	if(isnull(C?.powernet))
 		return 0
 
 	C.powernet.add_machine(src)
@@ -99,7 +91,7 @@
 
 // remove and disconnect the machine from its current powernet
 /obj/machinery/power/proc/disconnect_from_network()
-	if(!powernet)
+	if(isnull(powernet))
 		return 0
 	powernet.remove_machine(src)
 	return 1
@@ -167,7 +159,7 @@
 /obj/machinery/power/proc/get_indirect_connections()
 	. = list()
 	for(var/obj/structure/cable/C in loc)
-		if(C.powernet)
+		if(!isnull(C.powernet))
 			continue
 		if(C.d1 == 0) // the cable is a node cable
 			. += C
@@ -228,8 +220,8 @@
 	GLOBL.powernets.Cut()
 
 	for(var/obj/structure/cable/PC in GLOBL.cable_list)
-		if(!PC.powernet)
-			var/datum/powernet/NewPN = new()
+		if(isnull(PC.powernet))
+			var/datum/powernet/NewPN = new /datum/powernet()
 			NewPN.add_cable(PC)
 			propagate_network(PC, PC.powernet)
 	return 1
@@ -267,7 +259,7 @@
 
 //Merge two powernets, the bigger (in cable length term) absorbing the other
 /proc/merge_powernets(datum/powernet/net1, datum/powernet/net2)
-	if(!net1 || !net2) //if one of the powernet doesn't exist, return
+	if(isnull(net1) || isnull(net2)) //if one of the powernet doesn't exist, return
 		return
 
 	if(net1 == net2) //don't merge same powernets

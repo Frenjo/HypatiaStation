@@ -19,35 +19,39 @@
 
 /obj/effect/window_spawner/initialize()
 	. = ..()
-	if(!win_path)
+	if(!ispath(win_path))
 		return
-	if(global.CTgame_ticker && global.CTgame_ticker.current_state < GAME_STATE_PLAYING)
+	if(global.CTgame_ticker?.current_state < GAME_STATE_PLAYING)
 		activate()
 
 /obj/effect/window_spawner/proc/activate()
 	if(activated)
 		return
+
 	if(!locate(/obj/structure/grille) in get_turf(src))
-		var/obj/structure/grille/G = PoolOrNew(/obj/structure/grille, src.loc)
+		var/obj/structure/grille/G = PoolOrNew(/obj/structure/grille, loc)
 		handle_grille_spawn(G)
+
 	var/list/neighbours = list()
 	for(var/dir in GLOBL.cardinal)
 		var/turf/T = get_step(src, dir)
 		var/obj/effect/window_spawner/other = locate(/obj/effect/window_spawner) in T
-		if(!other)
-			var/found_connection
+		if(isnull(other))
+			var/found_connection = FALSE
 			if(locate(/obj/structure/grille) in T)
 				for(var/obj/structure/window/W in T)
-					if(W.type == win_path && W.dir == get_dir(T,src))
-						found_connection = 1
+					if(W.type == win_path && W.dir == get_dir(T, src))
+						found_connection = TRUE
 						qdel(W)
 			if(!found_connection)
-				var/obj/structure/window/new_win = PoolOrNew(win_path, src.loc)
+				var/obj/structure/window/new_win = PoolOrNew(win_path, loc)
 				new_win.set_dir(dir)
 				handle_window_spawn(new_win)
 		else
 			neighbours |= other
+
 	activated = TRUE
+
 	for(var/obj/effect/window_spawner/other in neighbours)
 		if(!other.activated)
 			other.activate()

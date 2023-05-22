@@ -81,4 +81,3 @@
 					dir_sum += direction
 
 		icon_state = "lattice[dir_sum]"
-		return

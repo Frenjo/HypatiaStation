@@ -9,10 +9,10 @@
 	var/alert_pressure = 0
 
 /datum/pipeline/Destroy()
-	if(network)
+	if(!isnull(network))
 		qdel(network)
 
-	if(air && air.volume)
+	if(air?.volume)
 		temporarily_store_air()
 		qdel(air)
 
@@ -32,13 +32,13 @@
 /datum/pipeline/proc/temporarily_store_air()
 	//Update individual gas_mixtures by volume ratio
 	for(var/obj/machinery/atmospherics/pipe/member in members)
-		member.air_temporary = new
+		member.air_temporary = new /datum/gas_mixture()
 		member.air_temporary.copy_from(air)
 		member.air_temporary.volume = member.volume
 		member.air_temporary.multiply(member.volume / air.volume)
 
 /datum/pipeline/proc/build_pipeline(obj/machinery/atmospherics/pipe/base)
-	air = new
+	air = new /datum/gas_mixture()
 
 	var/list/possible_expansions = list(base)
 	members = list(base)
@@ -48,11 +48,11 @@
 	base.parent = src
 	alert_pressure = base.alert_pressure
 
-	if(base.air_temporary)
+	if(!isnull(base.air_temporary))
 		air = base.air_temporary
 		base.air_temporary = null
 	else
-		air = new
+		air = new /datum/gas_mixture()
 
 	while(length(possible_expansions))
 		for(var/obj/machinery/atmospherics/pipe/borderline in possible_expansions)
@@ -70,7 +70,7 @@
 
 						alert_pressure = min(alert_pressure, item.alert_pressure)
 
-						if(item.air_temporary)
+						if(!isnull(item.air_temporary))
 							air.merge(item.air_temporary)
 
 					edge_check--
@@ -98,7 +98,7 @@
 	return 1
 
 /datum/pipeline/proc/return_network(obj/machinery/atmospherics/reference)
-	if(!network)
+	if(isnull(network))
 		network = new /datum/pipe_network()
 		network.build_network(src, null)
 			//technically passing these parameters should not be allowed
@@ -110,9 +110,9 @@
 	var/datum/gas_mixture/air_sample = air.remove_ratio(mingle_volume / air.volume)
 	air_sample.volume = mingle_volume
 
-	if(istype(target) && target.zone)
+	if(!isnull(target?.zone))
 		//Have to consider preservation of group statuses
-		var/datum/gas_mixture/turf_copy = new
+		var/datum/gas_mixture/turf_copy = new /datum/gas_mixture()
 
 		turf_copy.copy_from(target.zone.air)
 		turf_copy.volume = target.zone.air.volume //Copy a good representation of the turf from parent group
@@ -131,7 +131,7 @@
 		air.merge(air_sample)
 		//turf_air already modified by equalize_gases()
 
-	if(network)
+	if(!isnull(network))
 		network.update = TRUE
 
 /datum/pipeline/proc/temperature_interact(turf/target, share_volume, thermal_conductivity)
@@ -155,7 +155,7 @@
 			var/delta_temperature = 0
 			var/sharer_heat_capacity = 0
 
-			if(modeled_location.zone)
+			if(!isnull(modeled_location.zone))
 				delta_temperature = (air.temperature - modeled_location.zone.air.temperature)
 				sharer_heat_capacity = modeled_location.zone.air.heat_capacity()
 			else
@@ -176,7 +176,7 @@
 
 			air.temperature += self_temperature_delta
 
-			if(modeled_location.zone)
+			if(!isnull(modeled_location.zone))
 				modeled_location.zone.air.temperature += sharer_temperature_delta / modeled_location.zone.air.group_multiplier
 			else
 				modeled_location.air.temperature += sharer_temperature_delta
@@ -189,7 +189,7 @@
 				(partial_heat_capacity * target.heat_capacity / (partial_heat_capacity + target.heat_capacity))
 
 			air.temperature -= heat / total_heat_capacity
-	if(network)
+	if(!isnull(network))
 		network.update = TRUE
 
 // Ported from Baystation12 on 27/11/2019. -Frenjo
@@ -202,5 +202,5 @@
 
 	air.add_thermal_energy(heat_gain)
 
-	if(network)
+	if(!isnull(network))
 		network.update = TRUE

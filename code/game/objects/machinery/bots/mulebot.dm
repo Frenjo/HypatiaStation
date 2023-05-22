@@ -56,14 +56,14 @@
 	var/bloodiness = 0	// count of bloodiness
 
 /obj/machinery/bot/mulebot/New()
-	..()
-	wires = new(src)
-	botcard = new(src)
+	. = ..()
+	wires = new /datum/wires/mulebot(src)
+	botcard = new /obj/item/weapon/card/id(src)
 
-	var/datum/job/cargo_tech/J = new/datum/job/cargo_tech
+	var/datum/job/cargo_tech/J = new /datum/job/cargo_tech()
 	botcard.access = J.get_access()
 //	botcard.access += access_robotics //Why --Ikki
-	cell = new(src)
+	cell = new /obj/item/weapon/cell(src)
 	cell.charge = 2000
 	cell.maxcharge = 2000
 
