@@ -661,15 +661,15 @@ Auto Patrol: []"},
 			threatcount += 2
 
 		//Agent cards lower threatlevel.
-		if(perp.wear_id && istype(perp.wear_id.GetID(), /obj/item/weapon/card/id/syndicate))
+		if(istype(perp.wear_id?.get_id(), /obj/item/weapon/card/id/syndicate))
 			threatcount -= 2
 
 	if(src.check_records)
 		for(var/datum/data/record/E in GLOBL.data_core.general)
 			var/perpname = perp.name
-			if(perp.wear_id)
-				var/obj/item/weapon/card/id/id = perp.wear_id.GetID()
-				if(id)
+			if(!isnull(perp.wear_id))
+				var/obj/item/weapon/card/id/id = perp.wear_id.get_id()
+				if(!isnull(id))
 					perpname = id.registered_name
 
 			if(E.fields["name"] == perpname)

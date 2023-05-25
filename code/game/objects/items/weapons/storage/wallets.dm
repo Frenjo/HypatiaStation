@@ -92,12 +92,9 @@
 				return
 	icon_state = "wallet"
 
-/obj/item/weapon/storage/wallet/GetID()
+/obj/item/weapon/storage/wallet/get_id()
 	return front_id
 
-/obj/item/weapon/storage/wallet/GetAccess()
-	var/obj/item/I = GetID()
-	if(I)
-		return I.GetAccess()
-	else
-		return ..()
+/obj/item/weapon/storage/wallet/get_access()
+	var/obj/item/I = get_id()
+	return !isnull(I) ? I.get_access() : ..()

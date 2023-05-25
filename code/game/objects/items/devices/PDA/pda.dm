@@ -81,13 +81,10 @@
 	else
 		return 0
 
-/obj/item/device/pda/GetAccess()
-	if(id)
-		return id.GetAccess()
-	else
-		return ..()
+/obj/item/device/pda/get_access()
+	return !isnull(id) ? id.get_access() : ..()
 
-/obj/item/device/pda/GetID()
+/obj/item/device/pda/get_id()
 	return id
 
 /obj/item/device/pda/MouseDrop(obj/over_object as obj, src_location, over_location)
@@ -1007,6 +1004,18 @@
 
 		plist[text("[name]")] = P
 	return plist
+
+// Access-related overrides.
+// These just forward the calls to the inserted ID card if it exists.
+/obj/item/device/pda/get_job_real_name()
+	return !isnull(id) ? id.get_job_real_name() : "Unknown"
+
+/obj/item/device/pda/get_job_display_name()
+	return !isnull(id) ? id.get_job_display_name() : "Unknown"
+
+/obj/item/device/pda/get_job_name()
+	return !isnull(id) ? id.get_job_name() : "Unknown"
+// End access-related overrides.
 
 
 //Some spare PDAs in a box

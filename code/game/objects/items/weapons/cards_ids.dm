@@ -153,10 +153,10 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/item/weapon/card/id/GetAccess()
+/obj/item/weapon/card/id/get_access()
 	return access
 
-/obj/item/weapon/card/id/GetID()
+/obj/item/weapon/card/id/get_id()
 	return src
 
 /obj/item/weapon/card/id/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -180,6 +180,31 @@
 	usr << "The DNA hash on the card is [dna_hash]."
 	usr << "The fingerprint hash on the card is [fingerprint_hash]."
 	return
+
+// Access-related overrides.
+/obj/item/weapon/card/id/get_job_real_name()
+	if(rank in GLOBL.all_jobs)
+		return rank
+	else if(assignment in GLOBL.all_jobs)
+		return assignment
+	return "Unknown"
+
+/obj/item/weapon/card/id/get_job_display_name()
+	if(!isnull(assignment))
+		return assignment
+	return "Unknown"
+
+/obj/item/weapon/card/id/get_job_name()
+	if(!isnull(assignment))
+		// Checks if the job has a hud icon.
+		if(assignment in get_all_job_icons())
+			return assignment
+		// Returns the NT logo if it's a CentCom job.
+		if(assignment in GLOBL.all_centcom_jobs)
+			return "CentCom"
+	// Returns unknown if none of the above apply.
+	return "Unknown"
+// End access-related overrides.
 
 
 /obj/item/weapon/card/id/silver

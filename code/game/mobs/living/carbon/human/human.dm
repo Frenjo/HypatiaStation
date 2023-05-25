@@ -395,16 +395,15 @@
 	if(istype(wear_id, /obj/item/device/pda))
 		var/obj/item/device/pda/P = wear_id
 		return P.owner
-	if(wear_id)
-		var/obj/item/weapon/card/id/I = wear_id.GetID()
-		if(I)
+	if(!isnull(wear_id))
+		var/obj/item/weapon/card/id/I = wear_id.get_id()
+		if(!isnull(I))
 			return I.registered_name
-	return
 
 //gets ID card object from special clothes slot or null.
 /mob/living/carbon/human/proc/get_idcard()
-	if(wear_id)
-		return wear_id.GetID()
+	if(!isnull(wear_id))
+		return wear_id.get_id()
 
 //Added a safety check in case you want to shock a human mob directly through electrocute_act.
 /mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, safety = 0)
@@ -442,12 +441,9 @@
 		if(hasHUD(usr, "security"))
 			var/modified = 0
 			var/perpname = "wot"
-			if(wear_id)
-				var/obj/item/weapon/card/id/I = wear_id.GetID()
-				if(I)
-					perpname = I.registered_name
-				else
-					perpname = name
+			if(!isnull(wear_id))
+				var/obj/item/weapon/card/id/I = wear_id.get_id()
+				perpname = !isnull(I) ? I.registered_name : name
 			else
 				perpname = name
 

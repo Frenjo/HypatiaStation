@@ -73,7 +73,7 @@
 			human = 1
 			var/mob/living/carbon/human/H = M
 			//Cameras can't track people wearing an agent card or a ninja hood.
-			if(H.wear_id && istype(H.wear_id.GetID(), /obj/item/weapon/card/id/syndicate))
+			if(istype(H.wear_id?.get_id(), /obj/item/weapon/card/id/syndicate))
 				continue
 			if(istype(H.head, /obj/item/clothing/head/helmet/space/space_ninja))
 				continue
@@ -130,7 +130,7 @@
 				return
 			if(ishuman(target))
 				var/mob/living/carbon/human/H = target
-				if(H.wear_id && istype(H.wear_id.GetID(), /obj/item/weapon/card/id/syndicate))
+				if(istype(H.wear_id?.get_id(), /obj/item/weapon/card/id/syndicate))
 					U << "Follow camera mode terminated."
 					U.cameraFollow = null
 					return

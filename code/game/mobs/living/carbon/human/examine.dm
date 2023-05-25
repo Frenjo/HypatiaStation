@@ -403,12 +403,9 @@
 		var/perpname = "wot"
 		var/criminal = "None"
 
-		if(wear_id)
-			var/obj/item/weapon/card/id/I = wear_id.GetID()
-			if(I)
-				perpname = I.registered_name
-			else
-				perpname = name
+		if(!isnull(wear_id))
+			var/obj/item/weapon/card/id/I = wear_id.get_id()
+			perpname = !isnull(I) ? I.registered_name : name
 		else
 			perpname = name
 

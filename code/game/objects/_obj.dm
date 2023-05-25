@@ -20,22 +20,13 @@
 	var/force = 0
 
 /obj/assume_air(datum/gas_mixture/giver)
-	if(loc)
-		return loc.assume_air(giver)
-	else
-		return null
+	return !isnull(loc) ? loc.assume_air(giver) : null
 
 /obj/remove_air(amount)
-	if(loc)
-		return loc.remove_air(amount)
-	else
-		return null
+	return !isnull(loc) ? loc.remove_air(amount) : null
 
 /obj/return_air()
-	if(loc)
-		return loc.return_air()
-	else
-		return null
+	return !isnull(loc) ? loc.return_air() : null
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
 	return
@@ -48,43 +39,40 @@
 	//		null if object handles breathing logic for lifeform
 	//		datum/air_group to tell lifeform to process using that breath return
 	//DEFAULT: Take air from turf to give to have mob process
-	if(breath_request > 0)
-		return remove_air(breath_request)
-	else
-		return null
+	return (breath_request > 0) ? remove_air(breath_request) : null
 
 /obj/proc/updateUsrDialog()
 	if(in_use)
-		var/is_in_use = 0
+		var/is_in_use = FALSE
 		var/list/nearby = viewers(1, src)
 		for(var/mob/M in nearby)
-			if(M.client && M.machine == src)
-				is_in_use = 1
-				src.attack_hand(M)
+			if(!isnull(M.client) && M.machine == src)
+				is_in_use = TRUE
+				attack_hand(M)
 		if(isAI(usr) || isrobot(usr))
 			if(!(usr in nearby))
-				if(usr.client && usr.machine == src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
-					is_in_use = 1
-					src.attack_ai(usr)
+				if(!isnull(usr.client) && usr.machine == src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
+					is_in_use = TRUE
+					attack_ai(usr)
 
 		// check for TK users
 		if(ishuman(usr))
 			if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab))
 				if(!(usr in nearby))
-					if(usr.client && usr.machine == src)
-						is_in_use = 1
-						src.attack_hand(usr)
+					if(!isnull(usr.client) && usr.machine == src)
+						is_in_use = TRUE
+						attack_hand(usr)
 		in_use = is_in_use
 
 /obj/proc/updateDialog()
 	// Check that people are actually using the machine. If not, don't update anymore.
 	if(in_use)
 		var/list/nearby = viewers(1, src)
-		var/is_in_use = 0
+		var/is_in_use = FALSE
 		for(var/mob/M in nearby)
-			if(M.client && M.machine == src)
-				is_in_use = 1
-				src.interact(M)
+			if(!isnull(M.client) && M.machine == src)
+				is_in_use = TRUE
+				interact(M)
 		var/ai_in_use = AutoUpdateAI(src)
 
 		if(!ai_in_use && !is_in_use)
@@ -97,19 +85,19 @@
 	return
 
 /mob/proc/unset_machine()
-	src.machine = null
+	machine = null
 
 /mob/proc/set_machine(obj/O)
-	if(src.machine)
+	if(!isnull(machine))
 		unset_machine()
-	src.machine = O
+	machine = O
 	if(istype(O))
 		O.in_use = TRUE
 
 /obj/item/proc/updateSelfDialog()
-	var/mob/M = src.loc
-	if(istype(M) && M.client && M.machine == src)
-		src.attack_self(M)
+	var/mob/M = loc
+	if(istype(M) && !isnull(M.client) && M.machine == src)
+		attack_self(M)
 
 /obj/proc/alter_health()
 	return 1

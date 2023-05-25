@@ -10,11 +10,8 @@
 	var/expiration_time = 0
 	var/reason = "NOT SPECIFIED"
 
-/obj/item/weapon/card/id/guest/GetAccess()
-	if (world.time > expiration_time)
-		return access
-	else
-		return temp_access
+/obj/item/weapon/card/id/guest/get_access()
+	return (world.time > expiration_time) ? access : temp_access
 
 /obj/item/weapon/card/id/guest/examine()
 	..()
