@@ -628,13 +628,12 @@ var/list/admin_verbs_donor = list(
 	set name = "Toggle href logging"
 	set category = "Server"
 	if(!holder)	return
-	if(CONFIG)
-		if(CONFIG_GET(log_hrefs))
-			CONFIG_SET(log_hrefs, FALSE)
-			src << "<b>Stopped logging hrefs</b>"
-		else
-			CONFIG_SET(log_hrefs, TRUE)
-			src << "<b>Started logging hrefs</b>"
+	if(CONFIG_GET(log_hrefs))
+		CONFIG_SET(log_hrefs, FALSE)
+		src << "<b>Stopped logging hrefs</b>"
+	else
+		CONFIG_SET(log_hrefs, TRUE)
+		src << "<b>Started logging hrefs</b>"
 
 /client/proc/check_ai_laws()
 	set name = "Check AI Laws"
@@ -753,15 +752,14 @@ var/list/admin_verbs_donor = list(
 	set name = "Toggle ghost writers"
 	set category = "Server"
 	if(!holder)	return
-	if(CONFIG)
-		if(CONFIG_GET(cult_ghostwriter))
-			CONFIG_SET(cult_ghostwriter, FALSE)
-			src << "<b>Disallowed ghost writers.</b>"
-			message_admins("Admin [key_name_admin(usr)] has disabled ghost writers.", 1)
-		else
-			CONFIG_SET(cult_ghostwriter, TRUE)
-			src << "<b>Enabled ghost writers.</b>"
-			message_admins("Admin [key_name_admin(usr)] has enabled ghost writers.", 1)
+	if(CONFIG_GET(cult_ghostwriter))
+		CONFIG_SET(cult_ghostwriter, FALSE)
+		src << "<b>Disallowed ghost writers.</b>"
+		message_admins("Admin [key_name_admin(usr)] has disabled ghost writers.", 1)
+	else
+		CONFIG_SET(cult_ghostwriter, TRUE)
+		src << "<b>Enabled ghost writers.</b>"
+		message_admins("Admin [key_name_admin(usr)] has enabled ghost writers.", 1)
 
 
 /client/proc/toggledebuglogs()

@@ -23,7 +23,7 @@
 	if(isnull(holder))
 		return
 	
-	debug_variables(CONFIG)
+	debug_variables(global.config)
 	feedback_add_details("admin_verb", "DConfiguration")
 	message_admins("Admin [key_name_admin(usr)] is debugging the global game configuration.")
 

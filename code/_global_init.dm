@@ -32,4 +32,4 @@
 	GLOBL.changelog_hash = md5('html/changelog.html')
 
 	callHook("global_init")
-	del(src)
+	del(src) // This shouldn't qdel.

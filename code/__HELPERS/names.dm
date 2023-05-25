@@ -92,7 +92,7 @@ GLOBAL_GLOBL_INIT(religion_name, null)
 		if(13)
 			GLOBL.current_map.station_name += pick("13", "XIII", "Thirteen")
 
-	if(CONFIG && CONFIG_GET(server_name))
+	if(!isnull(CONFIG_GET(server_name)))
 		world.name = "[CONFIG_GET(server_name)]: [name]"
 	else
 		world.name = GLOBL.current_map.station_name
@@ -102,7 +102,7 @@ GLOBAL_GLOBL_INIT(religion_name, null)
 /proc/world_name(name)
 	GLOBL.current_map.station_name = name
 
-	if(CONFIG && CONFIG_GET(server_name))
+	if(!isnull(CONFIG_GET(server_name)))
 		world.name = "[CONFIG_GET(server_name)]: [name]"
 	else
 		world.name = name

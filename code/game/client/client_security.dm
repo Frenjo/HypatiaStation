@@ -45,7 +45,7 @@
 		return
 
 	//Logs all hrefs
-	if(CONFIG && CONFIG_GET(log_hrefs) && GLOBL.href_logfile)
+	if(CONFIG_GET(log_hrefs) && !isnull(GLOBL.href_logfile))
 		GLOBL.href_logfile << "<small>[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]<br>"
 
 	switch(href_list["_src_"])

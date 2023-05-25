@@ -23,16 +23,16 @@
 
 	global.config.post_load()
 
-	if(CONFIG && CONFIG_GET(server_name) != null && CONFIG_GET(server_suffix) && world.port > 0)
+	if(!isnull(CONFIG_GET(server_name)) && CONFIG_GET(server_suffix) && world.port > 0)
 		// dumb and hardcoded but I don't care~
 		CONFIG_GET(server_name) += " #[(world.port % 1000) / 100]"
 
-	if(CONFIG && CONFIG_GET(log_runtime))
+	if(CONFIG_GET(log_runtime))
 		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
 	callHook("startup")
 
-	src.update_status()
+	update_status()
 
 	. = ..()
 
@@ -95,7 +95,7 @@
 		var/list/s = list()
 		s["version"] = GLOBL.game_version
 		s["mode"] = global.CTgame_ticker.master_mode
-		s["respawn"] = CONFIG ? CONFIG_GET(respawn) : FALSE
+		s["respawn"] = CONFIG_GET(respawn)
 		s["enter"] = GLOBL.enter_allowed
 		s["vote"] = CONFIG_GET(allow_vote_mode)
 		s["ai"] = CONFIG_GET(allow_ai)
@@ -172,7 +172,7 @@
 /world/proc/update_status()
 	var/s = ""
 
-	if(CONFIG && CONFIG_GET(server_name))
+	if(!isnull(CONFIG_GET(server_name)))
 		s += "<b>[CONFIG_GET(server_name)]</b> &#8212; "
 
 	s += "<b>[station_name()]</b>";
@@ -185,22 +185,21 @@
 
 	var/list/features = list()
 
-	if(!isnull(global.CTgame_ticker))
-		if(!isnull(global.CTgame_ticker.master_mode))
-			features += global.CTgame_ticker.master_mode
+	if(!isnull(global.CTgame_ticker?.master_mode))
+		features.Add(global.CTgame_ticker.master_mode)
 	else
-		features += "<b>STARTING</b>"
+		features.Add("<b>STARTING</b>")
 
 	if(!GLOBL.enter_allowed)
-		features += "closed"
+		features.Add("closed")
 
-	features += CONFIG_GET(respawn) ? "respawn" : "no respawn"
+	features.Add(CONFIG_GET(respawn) ? "respawn" : "no respawn")
 
-	if(CONFIG && CONFIG_GET(allow_vote_mode))
-		features += "vote"
+	if(CONFIG_GET(allow_vote_mode))
+		features.Add("vote")
 
-	if(CONFIG && CONFIG_GET(allow_ai))
-		features += "AI allowed"
+	if(CONFIG_GET(allow_ai))
+		features.Add("AI allowed")
 
 	var/n = 0
 	for(var/mob/M in GLOBL.player_list)
@@ -208,25 +207,25 @@
 			n++
 
 	if(n > 1)
-		features += "~[n] players"
+		features.Add("~[n] players")
 	else if(n > 0)
-		features += "~[n] player"
+		features.Add("~[n] player")
 
 	/*
 	is there a reason for this? the byond site shows 'hosted by X' when there is a proper host already.
 	if(host)
-		features += "hosted by <b>[host]</b>"
+		features.Add("hosted by <b>[host]</b>")
 	*/
 
-	if(!host && CONFIG && CONFIG_GET(hostedby))
-		features += "hosted by <b>[CONFIG_GET(hostedby)]</b>"
+	if(!host && !isnull(CONFIG_GET(hostedby)))
+		features.Add("hosted by <b>[CONFIG_GET(hostedby)]</b>")
 
-	if(features)
+	if(!isnull(features))
 		s += ": [jointext(features, ", ")]"
 
 	/* does this help? I do not know */
-	if(src.status != s)
-		src.status = s
+	if(status != s)
+		status = s
 
 // Database connections.
 /hook/startup/proc/connectDB()

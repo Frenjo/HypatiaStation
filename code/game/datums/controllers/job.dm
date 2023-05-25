@@ -193,7 +193,7 @@ CONTROLLER_DEF(occupations)
 	var/datum/job/job = get_job("AI")
 	if(isnull(job))
 		return 0
-	if(job.title == "AI" && CONFIG && !CONFIG_GET(allow_ai))
+	if(job.title == "AI" && !CONFIG_GET(allow_ai))
 		return 0
 
 	for(var/i = job.total_positions, i > 0, i--)

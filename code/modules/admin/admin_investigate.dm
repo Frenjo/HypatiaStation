@@ -39,8 +39,8 @@
 			src << browse(F,"window=investigate[subject];size=800x300")
 
 		if("hrefs")				//persistant logs and stuff
-			if(CONFIG && CONFIG_GET(log_hrefs))
-				if(GLOBL.href_logfile)
+			if(CONFIG_GET(log_hrefs))
+				if(!isnull(GLOBL.href_logfile))
 					src << browse(GLOBL.href_logfile,"window=investigate[subject];size=800x300")
 				else
 					src << "<font color='red'>Error: admin_investigate: No href logfile found.</font>"
