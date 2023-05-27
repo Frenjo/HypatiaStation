@@ -3,7 +3,7 @@
 
 /obj/machinery/apiary
 	name = "apiary tray"
-	icon = 'icons/obj/hydroponics.dmi'
+	icon = 'icons/obj/flora/hydroponics.dmi'
 	icon_state = "hydrotray3"
 	density = TRUE
 	anchored = TRUE

@@ -1,6 +1,6 @@
 /obj/machinery/portable_atmospherics/canister
 	name = "canister"
-	icon = 'icons/obj/canister.dmi'
+	icon = 'icons/obj/atmospherics/canister.dmi'
 	icon_state = "yellow"
 	density = TRUE
 	flags = CONDUCT

@@ -1,9 +1,9 @@
 /obj/machinery/computer/cloning
 	name = "Cloning console"
-	icon = 'icons/obj/computer.dmi'
 	icon_state = "dna"
 	circuit = /obj/item/weapon/circuitboard/cloning
 	req_access = list(ACCESS_HEADS) //Only used for record deletion right now.
+
 	var/obj/machinery/dna_scannernew/scanner = null //Linked scanner. For scanning.
 	var/obj/machinery/clonepod/pod1 = null //Linked cloning pod.
 	var/temp = ""

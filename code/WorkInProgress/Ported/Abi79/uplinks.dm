@@ -312,7 +312,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 /obj/item/device/uplink/radio
 	name = "ship bounced radio"
-	icon = 'icons/obj/radio.dmi'
+	icon = 'icons/obj/devices/radio.dmi'
 	icon_state = "radio"
 	var/temp = null 			//Temporary storage area for a message offering the option to destroy the radio
 	var/selfdestruct = 0		//Set to 1 while the radio is self destructing itself.

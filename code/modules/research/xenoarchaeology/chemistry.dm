@@ -71,7 +71,7 @@
 /obj/item/weapon/reagent_containers/glass/solution_tray
 	name = "solution tray"
 	desc = "A small, open-topped glass container for delicate research samples. It sports a re-useable strip for labelling with a pen."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/devices/device.dmi'
 	icon_state = "solution_tray"
 	matter_amounts = list(MATERIAL_GLASS = 5)
 	w_class = 1.0

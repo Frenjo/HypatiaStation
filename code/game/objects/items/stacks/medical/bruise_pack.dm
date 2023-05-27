@@ -49,6 +49,6 @@
 	name = "\improper S'rendarr's Hand leaf"
 	singular_name = "S'rendarr's Hand leaf"
 	desc = "A poultice made of soft leaves that is rubbed on bruises."
-	icon = 'icons/obj/harvest.dmi'
+	icon = 'icons/obj/flora/harvest.dmi'
 	icon_state = "shandp"
 	heal_brute = 7

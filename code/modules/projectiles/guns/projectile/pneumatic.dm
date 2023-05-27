@@ -1,7 +1,7 @@
 /obj/item/weapon/storage/pneumatic
 	name = "pneumatic cannon"
 	desc = "A large gas-powered cannon."
-	icon = 'icons/obj/gun.dmi'
+	icon = 'icons/obj/weapons/gun.dmi'
 	icon_state = "pneumatic"
 	item_state = "pneumatic"
 	w_class = 5.0
@@ -125,7 +125,7 @@
 
 	var/obj/item/object = contents[1]
 	var/speed = ((fire_pressure * tank.volume) / object.w_class) / force_divisor //projectile speed.
-	if(speed > 80) 
+	if(speed > 80)
 		speed = 80 //damage cap.
 
 	user.visible_message(SPAN_DANGER("[user] fires [src] and launches [object] at [target]!"), SPAN_DANGER("You fire [src] and launch [object] at [target]!"))

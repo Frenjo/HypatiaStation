@@ -7,7 +7,6 @@ var/global/announce_vox_departure = TRUE //Stealth systems - give an announcemen
 
 /obj/machinery/computer/vox_stealth
 	name = "skipjack cloaking field terminal"
-	icon = 'icons/obj/computer.dmi'
 	icon_state = "syndishuttle"
 	req_access = list(ACCESS_SYNDICATE)
 
@@ -34,7 +33,6 @@ var/global/announce_vox_departure = TRUE //Stealth systems - give an announcemen
 
 /obj/machinery/computer/vox_station
 	name = "vox skipjack terminal"
-	icon = 'icons/obj/computer.dmi'
 	icon_state = "syndishuttle"
 	req_access = list(ACCESS_SYNDICATE)
 

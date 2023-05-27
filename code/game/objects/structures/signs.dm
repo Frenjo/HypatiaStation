@@ -1,5 +1,5 @@
 /obj/structure/sign
-	icon = 'icons/obj/decals.dmi'
+	icon = 'icons/obj/effects/decals.dmi'
 	anchored = TRUE
 	opacity = FALSE
 	density = FALSE
@@ -30,7 +30,7 @@
 		S.name = name
 		S.desc = desc
 		S.icon_state = icon_state
-		//var/icon/I = icon('icons/obj/decals.dmi', icon_state)
+		//var/icon/I = icon('icons/obj/effects/decals.dmi', icon_state)
 		//S.icon = I.Scale(24, 24)
 		S.sign_state = icon_state
 		qdel(src)
@@ -40,7 +40,7 @@
 /obj/item/sign
 	name = "sign"
 	desc = ""
-	icon = 'icons/obj/decals.dmi'
+	icon = 'icons/obj/effects/decals.dmi'
 	w_class = 3		//big
 	var/sign_state = ""
 

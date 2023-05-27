@@ -308,7 +308,7 @@ Alien plants should do something if theres a lot of poison
 //hostile entities or npcs
 
 /obj/item/projectile/slimeglob
-	icon = 'icons/obj/projectiles.dmi'
+	icon = 'icons/obj/weapons/projectiles.dmi'
 	icon_state = "toxin"
 	damage = 20
 	damage_type = BRUTE

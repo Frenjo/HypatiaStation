@@ -7,7 +7,7 @@
  */
 /obj/item/borg/stun
 	name = "electrified arm"
-	icon = 'icons/obj/decals.dmi'
+	icon = 'icons/obj/effects/decals.dmi'
 	icon_state = "shock"
 
 /obj/item/borg/stun/attack(mob/M as mob, mob/living/silicon/robot/user as mob)
@@ -29,14 +29,14 @@
 
 /obj/item/borg/overdrive
 	name = "overdrive"
-	icon = 'icons/obj/decals.dmi'
+	icon = 'icons/obj/effects/decals.dmi'
 	icon_state = "shock"
 
 /*
  * Sight
  */
 /obj/item/borg/sight
-	icon = 'icons/obj/decals.dmi'
+	icon = 'icons/obj/effects/decals.dmi'
 	icon_state = "securearea"
 
 	var/sight_mode = null

@@ -58,10 +58,10 @@ for reference:
 /obj/structure/barricade/wooden
 	name = "wooden barricade"
 	desc = "This space is blocked off by a wooden barricade."
-	icon = 'icons/obj/structures.dmi'
 	icon_state = "woodenbarricade"
 	anchored = TRUE
 	density = TRUE
+
 	var/health = 100.0
 	var/maxhealth = 100.0
 

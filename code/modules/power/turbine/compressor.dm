@@ -1,7 +1,7 @@
 /obj/machinery/compressor
 	name = "compressor"
 	desc = "The compressor stage of a gas turbine generator."
-	icon = 'icons/obj/pipes.dmi'
+	icon = 'icons/obj/pipes/pipes.dmi'
 	icon_state = "compressor"
 	anchored = TRUE
 	density = TRUE
@@ -57,13 +57,13 @@
 			rpmtarget = 0
 
 	if(rpm > 50000)
-		overlays += image('icons/obj/pipes.dmi', "comp-o4", FLY_LAYER)
+		overlays += image('icons/obj/pipes/pipes.dmi', "comp-o4", FLY_LAYER)
 	else if(rpm > 10000)
-		overlays += image('icons/obj/pipes.dmi', "comp-o3", FLY_LAYER)
+		overlays += image('icons/obj/pipes/pipes.dmi', "comp-o3", FLY_LAYER)
 	else if(rpm > 2000)
-		overlays += image('icons/obj/pipes.dmi', "comp-o2", FLY_LAYER)
+		overlays += image('icons/obj/pipes/pipes.dmi', "comp-o2", FLY_LAYER)
 	else if(rpm > 500)
-		overlays += image('icons/obj/pipes.dmi', "comp-o1", FLY_LAYER)
+		overlays += image('icons/obj/pipes/pipes.dmi', "comp-o1", FLY_LAYER)
 	 //TODO: DEFERRED
 
 #undef COMPFRICTION

@@ -4,7 +4,6 @@
 /obj/item/weapon/shield/riot
 	name = "riot shield"
 	desc = "A shield adept at blocking blunt objects from connecting with the torso of the shield wielder."
-	icon = 'icons/obj/weapons.dmi'
 	icon_state = "riot"
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
@@ -34,7 +33,6 @@
 /obj/item/weapon/shield/energy
 	name = "energy combat shield"
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
-	icon = 'icons/obj/weapons.dmi'
 	icon_state = "eshield0" // eshield1 for expanded
 	flags = CONDUCT
 	force = 3.0
@@ -51,7 +49,7 @@
 /obj/item/weapon/cloaking_device
 	name = "cloaking device"
 	desc = "Use this to become invisible to the human eyesocket."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/devices/device.dmi'
 	icon_state = "shield0"
 	flags = CONDUCT
 	item_state = "electronic"

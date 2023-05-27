@@ -1,7 +1,7 @@
 /obj/machinery/artifact_analyser
 	name = "Anomaly Analyser"
 	desc = "Studies the emissions of anomalous materials to discover their uses."
-	icon = 'icons/obj/virology.dmi'
+	icon = 'icons/obj/machines/virology.dmi'
 	icon_state = "isolator"
 	anchored = TRUE
 	density = TRUE

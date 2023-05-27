@@ -56,21 +56,21 @@ Gunshots/explosions/opening doors/less rare audio (done)
 						halitem.layer = 50
 						switch(rand(1, 6))
 							if(1) //revolver
-								halitem.icon = 'icons/obj/gun.dmi'
+								halitem.icon = 'icons/obj/weapons/gun.dmi'
 								halitem.icon_state = "revolver"
 								halitem.name = "Revolver"
 							if(2) //c4
-								halitem.icon = 'icons/obj/assemblies.dmi'
+								halitem.icon = 'icons/obj/assemblies/assemblies.dmi'
 								halitem.icon_state = "plastic-explosive0"
 								halitem.name = "Mysterious Package"
 								if(prob(25))
 									halitem.icon_state = "c4small_1"
 							if(3) //sword
-								halitem.icon = 'icons/obj/weapons.dmi'
+								halitem.icon = 'icons/obj/weapons/weapons.dmi'
 								halitem.icon_state = "sword1"
 								halitem.name = "Sword"
 							if(4) //stun baton
-								halitem.icon = 'icons/obj/weapons.dmi'
+								halitem.icon = 'icons/obj/weapons/weapons.dmi'
 								halitem.icon_state = "stunbaton"
 								halitem.name = "Stun Baton"
 							if(5) //emag
@@ -78,7 +78,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 								halitem.icon_state = "emag"
 								halitem.name = "Cryptographic Sequencer"
 							if(6) //flashbang
-								halitem.icon = 'icons/obj/grenade.dmi'
+								halitem.icon = 'icons/obj/weapons/grenade.dmi'
 								halitem.icon_state = "flashbang1"
 								halitem.name = "Flashbang"
 						if(client)
@@ -105,7 +105,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 								halimage = image('icons/effects/fire.dmi', target, "1", TURF_LAYER)
 							if(3)
 								//src << "C4"
-								halimage = image('icons/obj/assemblies.dmi', target, "plastic-explosive2", OBJ_LAYER + 0.01)
+								halimage = image('icons/obj/assemblies/assemblies.dmi', target, "plastic-explosive2", OBJ_LAYER + 0.01)
 
 
 						if(client)
@@ -268,7 +268,7 @@ proc/check_panel(mob/M)
 	my_target.show_message(SPAN_DANGER("[src] has been attacked by [my_target]!"), 1) //Lazy.
 
 	src.health -= P.force
-	
+
 	return
 
 /obj/effect/fake_attacker/Crossed(mob/M, somenumber)

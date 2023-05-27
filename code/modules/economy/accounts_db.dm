@@ -1,7 +1,7 @@
 /obj/machinery/account_database
 	name = "Accounts uplink console"
 	desc = "Access transaction logs, account data and all kinds of other financial records."
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	//icon_state = "aiupload"
 	icon_state = "accountsuplink" // Changed this so that it has a separate sprite which actually makes sense. -Frenjo
 	density = TRUE

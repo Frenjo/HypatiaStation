@@ -88,7 +88,7 @@
 	throw_speed = 4
 	throw_range = 20
 	force = 0
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "syndballoon"
 	item_state = "syndballoon"
 	w_class = 4.0
@@ -99,7 +99,7 @@
 /obj/item/toy/blink
 	name = "electronic blink toy game"
 	desc = "Blink. Blink. Blink. Ages 8 and up."
-	icon = 'icons/obj/radio.dmi'
+	icon = 'icons/obj/devices/radio.dmi'
 	icon_state = "beacon"
 	item_state = "signaler"
 
@@ -118,7 +118,7 @@
 /obj/item/toy/gun
 	name = "cap gun"
 	desc = "There are 0 caps left. Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps!"
-	icon = 'icons/obj/gun.dmi'
+	icon = 'icons/obj/weapons/gun.dmi'
 	icon_state = "revolver"
 	item_state = "gun"
 	flags = CONDUCT
@@ -176,7 +176,7 @@
 /obj/item/toy/ammo/gun
 	name = "ammo-caps"
 	desc = "There are 7 caps left! Make sure to recyle the box in an autolathe when it gets empty."
-	icon = 'icons/obj/ammo.dmi'
+	icon = 'icons/obj/weapons/ammo.dmi'
 	icon_state = "357-7"
 	flags = CONDUCT
 	w_class = 1.0
@@ -196,7 +196,7 @@
 /obj/item/toy/crossbow
 	name = "foam dart crossbow"
 	desc = "A weapon favored by many overactive children. Ages 8 and up."
-	icon = 'icons/obj/gun.dmi'
+	icon = 'icons/obj/weapons/gun.dmi'
 	icon_state = "crossbow"
 	item_state = "crossbow"
 	w_class = 2.0
@@ -315,7 +315,7 @@
 /obj/item/toy/sword
 	name = "toy sword"
 	desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "sword0"
 	item_state = "sword0"
 	w_class = 2.0
@@ -350,7 +350,7 @@
 /obj/item/toy/katana
 	name = "replica katana"
 	desc = "Woefully underpowered in D20."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "katana"
 	item_state = "katana"
 	flags = CONDUCT
@@ -420,7 +420,7 @@
 /obj/item/toy/waterflower
 	name = "Water Flower"
 	desc = "A seemingly innocent sunflower...with a twist."
-	icon = 'icons/obj/harvest.dmi'
+	icon = 'icons/obj/flora/harvest.dmi'
 	icon_state = "sunflower"
 	item_state = "sunflower"
 
@@ -564,7 +564,7 @@
 /obj/item/toy/katana
 	name = "replica katana"
 	desc = "Woefully underpowered in D20."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "katana"
 	item_state = "katana"
 	flags = CONDUCT

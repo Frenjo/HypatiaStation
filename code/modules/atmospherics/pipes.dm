@@ -94,7 +94,7 @@
 
 
 /obj/machinery/atmospherics/pipe/simple
-	icon = 'icons/obj/pipes.dmi'
+	icon = 'icons/obj/pipes/pipes.dmi'
 
 	name = "pipe"
 	desc = "A one meter section of regular pipe"
@@ -360,7 +360,7 @@
 
 /obj/machinery/atmospherics/pipe/simple/insulated
 	name = "insulated pipe"
-	icon = 'icons/obj/atmospherics/red_pipe.dmi'
+	icon = 'icons/obj/pipes/insulated.dmi'
 	icon_state = "intact"
 
 	minimum_temperature_difference = 10000
@@ -373,7 +373,7 @@
 
 
 /obj/machinery/atmospherics/pipe/manifold
-	icon = 'icons/obj/atmospherics/pipe_manifold.dmi'
+	icon = 'icons/obj/pipes/manifold.dmi'
 
 	name = "pipe manifold"
 	desc = "A manifold composed of regular pipes"
@@ -601,7 +601,7 @@
 
 /obj/machinery/atmospherics/pipe/manifold/insulated
 	name = "insulated pipe manifold"
-	icon = 'icons/obj/atmospherics/red_pipe.dmi'
+	icon = 'icons/obj/pipes/insulated.dmi'
 	icon_state = "manifold"
 
 	//minimum_temperature_difference = 10000
@@ -614,7 +614,7 @@
 
 
 /obj/machinery/atmospherics/pipe/manifold4w
-	icon = 'icons/obj/atmospherics/pipe_manifold.dmi'
+	icon = 'icons/obj/pipes/manifold.dmi'
 
 	name = "4-way pipe manifold"
 	desc = "A manifold composed of regular pipes"
@@ -751,7 +751,7 @@
 
 	else
 		icon_state = "manifold4w_ex"
-		var/icon/con = new/icon('icons/obj/atmospherics/pipe_manifold.dmi',"manifold4w_con") //Since 4-ways are supposed to be directionless, they need an overlay instead it seems.
+		var/icon/con = new/icon('icons/obj/pipes/manifold.dmi',"manifold4w_con") //Since 4-ways are supposed to be directionless, they need an overlay instead it seems.
 
 		if(node1)
 			overlays += new/image(con, dir = 1)
@@ -828,7 +828,7 @@
 
 /obj/machinery/atmospherics/pipe/manifold4w/insulated
 	name = "insulated 4-way pipe manifold"
-	icon = 'icons/obj/atmospherics/red_pipe.dmi'
+	icon = 'icons/obj/pipes/insulated.dmi'
 	icon_state = "manifold4w"
 
 	//minimum_temperature_difference = 10000
@@ -843,7 +843,7 @@
 /obj/machinery/atmospherics/pipe/cap
 	name = "pipe endcap"
 	desc = "An endcap for pipes"
-	icon = 'icons/obj/pipes.dmi'
+	icon = 'icons/obj/pipes/pipes.dmi'
 	icon_state = "cap"
 	level = 2
 	layer = 2.4 //under wires with their 2.44

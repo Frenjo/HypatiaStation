@@ -102,7 +102,6 @@
 #undef AIR_SENSOR_SLEEPING_AGENT
 
 /obj/machinery/computer/general_air_control
-	icon = 'icons/obj/computer.dmi'
 	icon_state = "tank"
 
 	name = "Computer"
@@ -225,7 +224,6 @@
 	return output
 
 /obj/machinery/computer/general_air_control/large_tank_control
-	icon = 'icons/obj/computer.dmi'
 	icon_state = "tank"
 
 	var/input_tag
@@ -324,7 +322,6 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 		src.updateUsrDialog()
 
 /obj/machinery/computer/general_air_control/fuel_injection
-	icon = 'icons/obj/computer.dmi'
 	icon_state = "atmos"
 
 	var/device_tag

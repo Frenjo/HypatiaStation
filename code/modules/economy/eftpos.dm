@@ -1,7 +1,6 @@
 /obj/item/device/eftpos
 	name = "EFTPOS scanner"
 	desc = "Swipe your ID card to make purchases electronically."
-	icon = 'icons/obj/device.dmi'
 	icon_state = "eftpos"
 
 	var/machine_id = ""

@@ -40,7 +40,7 @@
 /obj/item/weapon/grown/sunflower // FLOWER POWER!
 	name = "sunflower"
 	desc = "It's beautiful! A certain person might beat you to death if you trample these."
-	icon = 'icons/obj/harvest.dmi'
+	icon = 'icons/obj/flora/harvest.dmi'
 	icon_state = "sunflower"
 	damtype = "fire"
 	force = 0

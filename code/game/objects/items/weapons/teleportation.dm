@@ -10,7 +10,7 @@
 /obj/item/weapon/locator
 	name = "locator"
 	desc = "Used to track those with locater implants."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/devices/device.dmi'
 	icon_state = "locator"
 
 	flags = CONDUCT
@@ -127,7 +127,7 @@ Frequency:
 /obj/item/weapon/hand_tele
 	name = "hand tele"
 	desc = "A portable item using blue-space technology."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/devices/device.dmi'
 	icon_state = "hand_tele"
 	item_state = "electronic"
 	throwforce = 5

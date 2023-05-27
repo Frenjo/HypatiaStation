@@ -1,7 +1,6 @@
 /obj/structure/lattice
 	desc = "A lightweight support lattice."
 	name = "lattice"
-	icon = 'icons/obj/structures.dmi'
 	icon_state = "latticefull"
 	density = FALSE
 	anchored = TRUE
@@ -17,7 +16,7 @@
 	for(var/obj/structure/lattice/LAT in src.loc)
 		if(LAT != src)
 			qdel(LAT)
-	icon = 'icons/obj/smoothlattice.dmi'
+	icon = 'icons/obj/structures/smoothlattice.dmi'
 	icon_state = "latticeblank"
 	updateOverlays()
 	for(var/dir in GLOBL.cardinal)

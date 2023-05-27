@@ -36,6 +36,6 @@
 	name = "\improper Messa's Tear petals"
 	singular_name = "Messa's Tear petals"
 	desc = "A poultice made of cold, blue petals that is rubbed on burns."
-	icon = 'icons/obj/harvest.dmi'
+	icon = 'icons/obj/flora/harvest.dmi'
 	icon_state = "mtearp"
 	heal_burn = 7

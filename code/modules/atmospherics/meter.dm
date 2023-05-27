@@ -1,7 +1,7 @@
 /obj/machinery/meter
 	name = "meter"
 	desc = "It measures something."
-	icon = 'icons/obj/meter.dmi'
+	icon = 'icons/obj/atmospherics/meter.dmi'
 	icon_state = "meterX"
 	anchored = TRUE
 	power_channel = ENVIRON

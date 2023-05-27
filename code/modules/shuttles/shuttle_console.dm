@@ -4,7 +4,6 @@
 
 /obj/machinery/computer/shuttle_control
 	name = "shuttle control console"
-	icon = 'icons/obj/computer.dmi'
 	icon_state = "shuttle"
 	circuit = null
 

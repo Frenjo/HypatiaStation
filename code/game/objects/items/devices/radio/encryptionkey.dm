@@ -1,7 +1,7 @@
 /obj/item/device/encryptionkey
 	name = "Standard Encryption Key"
 	desc = "An encyption key for a radio headset. Has no special codes in it. WHY DOES IT EXIST? ASK NANOTRASEN."
-	icon = 'icons/obj/radio.dmi'
+	icon = 'icons/obj/devices/radio.dmi'
 	icon_state = "cypherkey"
 	item_state = ""
 

@@ -33,7 +33,6 @@
 /obj/item/weapon/gun/energy/staff
 	name = "staff of change"
 	desc = "An artefact that spits bolts of coruscating energy which cause the target's very form to reshape itself"
-	icon = 'icons/obj/gun.dmi'
 	icon_state = "staffofchange"
 	item_state = "staffofchange"
 	fire_sound = 'sound/weapons/emitter.ogg'
@@ -89,7 +88,6 @@
 	name = "floral somatoray"
 	desc = "A tool that discharges controlled radiation which induces mutation in plant cells."
 	icon_state = "floramut100"
-	item_state = "obj/item/gun.dmi"
 	fire_sound = 'sound/effects/stealthoff.ogg'
 	charge_cost = 100
 	gun_mode = GUN_MODE_PULSE
@@ -227,7 +225,6 @@
 /obj/item/weapon/gun/energy/sniperrifle
 	name = "L.W.A.P. Sniper Rifle"
 	desc = "A rifle constructed of lightweight materials, fitted with a SMART aiming-system scope."
-	icon = 'icons/obj/gun.dmi'
 	icon_state = "sniper"
 	fire_sound = 'sound/weapons/marauder.ogg'
 	origin_tech = list(RESEARCH_TECH_COMBAT = 6, RESEARCH_TECH_MATERIALS = 5, RESEARCH_TECH_POWERSTORAGE = 4)

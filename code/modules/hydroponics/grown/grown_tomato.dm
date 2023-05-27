@@ -11,7 +11,7 @@
 	icon_state = "tomato"
 	filling_color = "#FF0000"
 	potency = 10
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/grown/tomato/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
@@ -34,7 +34,7 @@
 	icon_state = "bloodtomato"
 	potency = 10
 	filling_color = "#FF0000"
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/grown/bloodtomato/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
@@ -96,7 +96,7 @@
 	icon_state = "bluetomato"
 	potency = 10
 	filling_color = "#586CFC"
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/grown/bluetomato/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
@@ -141,7 +141,7 @@
 	potency = 20
 	origin_tech = list(RESEARCH_TECH_BLUESPACE = 3)
 	filling_color = "#91F8FF"
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/grown/bluespacetomato/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
@@ -216,7 +216,7 @@
 /*
 /obj/item/weapon/grown/gibtomato
 	desc = "A plump tomato."
-	icon = 'icons/obj/harvest.dmi'
+	icon = 'icons/obj/flora/harvest.dmi'
 	name = "Gib Tomato"
 	icon_state = "gibtomato"
 	damtype = "fire"

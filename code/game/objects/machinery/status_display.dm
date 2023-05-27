@@ -26,7 +26,7 @@
  */
 /obj/machinery/status_display
 	name = "status display"
-	icon = 'icons/obj/status_display.dmi'
+	icon = 'icons/obj/machines/status_display.dmi'
 	icon_state = "frame"
 	anchored = TRUE
 	density = FALSE
@@ -86,7 +86,7 @@
 	switch(signal.data["command"])
 		if("blank")
 			set_blank()
-		
+
 		if("friend_computer")
 			mode = STATUS_MODE_FRIEND_COMPUTER
 			set_picture("ai_friend")
@@ -172,7 +172,7 @@
 		return
 	picture_state = state
 	remove_display()
-	overlays.Add(image('icons/obj/status_display.dmi', icon_state = picture_state))
+	overlays.Add(image('icons/obj/machines/status_display.dmi', icon_state = picture_state))
 
 /obj/machinery/status_display/proc/update_display(line1, line2)
 	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[line1]<br>[line2]</div>"}
@@ -245,7 +245,7 @@
  * AI Status Displays.
  */
 /obj/machinery/status_display/ai
-	icon = 'icons/obj/status_display.dmi'
+	icon = 'icons/obj/machines/status_display.dmi'
 	icon_state = "frame"
 	name = "AI display"
 	anchored = TRUE

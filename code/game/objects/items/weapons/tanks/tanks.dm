@@ -3,7 +3,7 @@
 
 /obj/item/weapon/tank
 	name = "tank"
-	icon = 'icons/obj/tank.dmi'
+	icon = 'icons/obj/atmospherics/tank.dmi'
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	w_class = 3

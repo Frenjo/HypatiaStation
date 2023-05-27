@@ -14,20 +14,19 @@
 /obj/item/weapon/staff/broom
 	name = "broom"
 	desc = "Used for sweeping, and flying into the night while cackling. Black cat not included."
-	icon = 'icons/obj/wizard.dmi'
 	icon_state = "broom"
 
 /obj/item/weapon/staff/gentcane
 	name = "Gentlemans Cane"
 	desc = "An ebony can with an ivory tip."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "cane"
 	item_state = "stick"
 
 /obj/item/weapon/staff/stick
 	name = "stick"
 	desc = "A great tool to drag someone else's drinks across the bar."
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "stick"
 	item_state = "stick"
 	force = 3.0

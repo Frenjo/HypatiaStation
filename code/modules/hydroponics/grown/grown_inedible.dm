@@ -4,7 +4,7 @@
 
 /obj/item/weapon/grown // Grown weapons
 	name = "grown_weapon"
-	icon = 'icons/obj/weapons.dmi'
+
 	var/seed
 	var/plantname = ""
 	var/productname
@@ -16,7 +16,7 @@
 	var/yield = 2
 	var/potency = 1
 	var/plant_type = 0
-	
+
 /obj/item/weapon/grown/New()
 	var/datum/reagents/R = new/datum/reagents(50)
 	reagents = R
@@ -34,7 +34,7 @@
 	desc = "Hmm, needs some processing"
 	icon_state = "plastellium"
 	filling_color = "#C4C4C4"
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/grown/plastellium/initialize()
 	. = ..()
 	reagents.add_reagent("plasticide", 1 + round((potency / 10), 1))
@@ -46,7 +46,7 @@
 /obj/item/weapon/grown/log
 	name = "tower-cap log"
 	desc = "It's better than bad, it's good!"
-	icon = 'icons/obj/harvest.dmi'
+	icon = 'icons/obj/flora/harvest.dmi'
 	icon_state = "logs"
 	force = 5
 	throwforce = 5
@@ -84,7 +84,7 @@
 	desc = "<I>Pueraria Virallis</I>: An invasive species with vines that rapidly creep and wrap around whatever they contact."
 	icon_state = "kudzupod"
 	filling_color = "#59691B"
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/grown/kudzupod/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
@@ -96,7 +96,6 @@
  */
 /obj/item/weapon/grown/nettle // -- Skie
 	desc = "It's probably <B>not</B> wise to touch it with bare hands..."
-	icon = 'icons/obj/weapons.dmi'
 	name = "nettle"
 	icon_state = "nettle"
 	damtype = "fire"
@@ -146,7 +145,6 @@
  */
 /obj/item/weapon/grown/deathnettle // -- Skie
 	desc = "The \red glowing \black nettle incites \red<B>rage</B>\black in you just from looking at it!"
-	icon = 'icons/obj/weapons.dmi'
 	name = "deathnettle"
 	icon_state = "deathnettle"
 	damtype = "fire"
@@ -229,7 +227,7 @@
 	icon_state = "sugarcane"
 	potency = 50
 	filling_color = "#C0C9AD"
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/grown/sugarcane/initialize()
 	. = ..()
 	reagents.add_reagent("sugar", 4 + round((potency / 5), 1))
@@ -249,7 +247,7 @@
 	desc = "Green and lush."
 	icon_state = "spawner"
 	potency = 10
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/grown/money/New()
 	switch(rand(1, 100))//(potency) //It wants to use the default potency instead of the new, so it was always 10. Will try to come back to this later - Cheridan
 		if(0 to 10)

@@ -3,7 +3,6 @@
  */
 /obj/item/device/analyzer/plant_analyzer
 	name = "plant analyzer"
-	icon = 'icons/obj/device.dmi'
 	icon_state = "hydro"
 	item_state = "analyzer"
 
@@ -16,7 +15,6 @@
 /obj/item/weapon/minihoe // -- Numbers
 	name = "mini hoe"
 	desc = "It's used for removing weeds or scratching your back."
-	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hoe"
 	item_state = "hoe"
 	flags = CONDUCT | NOBLUDGEON
@@ -32,7 +30,6 @@
 /obj/item/weapon/hatchet
 	name = "hatchet"
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
-	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hatchet"
 	flags = CONDUCT
 	force = 12.0
@@ -83,7 +80,7 @@
  */
 /obj/item/weapon/weedspray // -- Skie
 	desc = "It's a toxic mixture, in spray form, to kill small weeds."
-	icon = 'icons/obj/hydroponics.dmi'
+	icon = 'icons/obj/flora/hydroponics.dmi'
 	name = "weed-spray"
 	icon_state = "weedspray"
 	item_state = "spray"
@@ -106,7 +103,7 @@
  */
 /obj/item/weapon/pestspray // -- Skie
 	desc = "It's some pest eliminator spray! <I>Do not inhale!</I>"
-	icon = 'icons/obj/hydroponics.dmi'
+	icon = 'icons/obj/flora/hydroponics.dmi'
 	name = "pest-spray"
 	icon_state = "pestspray"
 	item_state = "spray"
@@ -261,7 +258,7 @@
 /obj/item/weapon/corncob
 	name = "corn cob"
 	desc = "A reminder of meals gone by."
-	icon = 'icons/obj/harvest.dmi'
+	icon = 'icons/obj/flora/harvest.dmi'
 	icon_state = "corncob"
 	item_state = "corncob"
 	w_class = 1.0
@@ -285,7 +282,7 @@
 //uncomment when this is updated to match storage update
 /*
 /obj/item/weapon/seedbag
-	icon = 'icons/obj/hydroponics.dmi'
+	icon = 'icons/obj/flora/hydroponics.dmi'
 	icon_state = "seedbag"
 	name = "Seed Bag"
 	desc = "A small satchel made for organizing seeds."

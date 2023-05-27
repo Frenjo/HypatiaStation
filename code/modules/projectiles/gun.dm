@@ -1,7 +1,7 @@
 /obj/item/weapon/gun
 	name = "gun"
 	desc = "Its a gun. It's pretty terrible, though."
-	icon = 'icons/obj/gun.dmi'
+	icon = 'icons/obj/weapons/gun.dmi'
 	icon_state = "detective"
 	item_state = "gun"
 	flags = CONDUCT

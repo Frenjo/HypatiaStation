@@ -1,7 +1,7 @@
 /obj/machinery/computer/centrifuge
 	name = "Isolation Centrifuge"
 	desc = "Used to separate things with different weight. Spin 'em round, round, right round."
-	icon = 'icons/obj/virology.dmi'
+	icon = 'icons/obj/machines/virology.dmi'
 	icon_state = "centrifuge"
 	var/curing
 	var/isolating

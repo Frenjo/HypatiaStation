@@ -17,8 +17,8 @@
 	var/yield = 0
 	var/potency = -1
 	var/plant_type = 0
-	icon = 'icons/obj/harvest.dmi'
-	
+	icon = 'icons/obj/flora/harvest.dmi'
+
 /obj/item/weapon/reagent_containers/food/snacks/grown/New(newloc, newpotency)
 	if(!isnull(newpotency))
 		potency = newpotency

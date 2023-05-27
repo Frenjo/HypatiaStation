@@ -45,7 +45,7 @@
 /obj/random/technology_scanner
 	name = "Random Scanner"
 	desc = "This is a random technology scanner."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/devices/device.dmi'
 	icon_state = "atmos"
 
 /obj/random/technology_scanner/item_to_spawn()

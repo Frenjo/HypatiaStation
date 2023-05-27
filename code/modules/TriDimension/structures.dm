@@ -3,7 +3,7 @@
 ///////////////////////////////////////
 // Base
 /obj/multiz
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/structures.dmi'
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
@@ -121,7 +121,7 @@
 			)
 			M.Move(target.loc)
 
-/*	
+/*
 	ex_act(severity)
 		switch(severity)
 			if(1.0)

@@ -1,16 +1,16 @@
 /obj/machinery/computer/aifixer
 	name = "AI System Integrity Restorer"
-	icon = 'icons/obj/computer.dmi'
 	icon_state = "ai-fixer"
 	circuit = /obj/item/weapon/circuitboard/aifixer
 	req_access = list(ACCESS_CAPTAIN, ACCESS_ROBOTICS, ACCESS_HEADS)
+
 	var/mob/living/silicon/ai/occupant = null
 	var/active = 0
 
 	light_color = "#a97faa"
 
 /obj/machinery/computer/aifixer/New()
-	src.overlays += image('icons/obj/computer.dmi', "ai-fixer-empty")
+	src.overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-empty")
 
 /obj/machinery/computer/aifixer/attackby(I as obj, user as mob)
 	if(istype(I, /obj/item/device/aicard))
@@ -81,7 +81,7 @@
 		return
 	if(href_list["fix"])
 		src.active = 1
-		src.overlays += image('icons/obj/computer.dmi', "ai-fixer-on")
+		src.overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-on")
 		while(src.occupant.health < 100)
 			src.occupant.adjustOxyLoss(-1)
 			src.occupant.adjustFireLoss(-1)
@@ -93,12 +93,12 @@
 				src.occupant.lying = 0
 				GLOBL.dead_mob_list -= src.occupant
 				GLOBL.living_mob_list += src.occupant
-				src.overlays -= image('icons/obj/computer.dmi', "ai-fixer-404")
-				src.overlays += image('icons/obj/computer.dmi', "ai-fixer-full")
+				src.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-404")
+				src.overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-full")
 			src.updateUsrDialog()
 			sleep(10)
 		src.active = 0
-		src.overlays -= image('icons/obj/computer.dmi', "ai-fixer-on")
+		src.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-on")
 
 		src.add_fingerprint(usr)
 	src.updateUsrDialog()
@@ -116,8 +116,8 @@
 		if(occupant)
 			switch(occupant.stat)
 				if(0)
-					overlays += image('icons/obj/computer.dmi', "ai-fixer-full")
+					overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-full")
 				if(2)
-					overlays += image('icons/obj/computer.dmi', "ai-fixer-404")
+					overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-404")
 		else
-			overlays += image('icons/obj/computer.dmi', "ai-fixer-empty")
+			overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-empty")

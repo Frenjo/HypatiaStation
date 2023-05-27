@@ -2,7 +2,7 @@
 /obj/machinery/bunsen_burner
 	name = "bunsen burner"
 	desc = "A flat, self-heating device designed for bringing chemical mixtures to boil."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/devices/device.dmi'
 	icon_state = "bunsen0"
 
 	var/heating = 0		//whether the bunsen is turned on

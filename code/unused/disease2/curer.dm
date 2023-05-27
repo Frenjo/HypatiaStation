@@ -1,10 +1,10 @@
 /obj/machinery/computer/curer
 	name = "Cure Research Machine"
-	icon = 'icons/obj/computer.dmi'
 	icon_state = "dna"
 //	brightnessred = 0
 //	brightnessgreen = 2 //Used for multicoloured lighting on BS12
 //	brightnessblue = 2
+
 	var/curing
 	var/virusing
 	circuit = "/obj/item/weapon/circuitboard/mining"

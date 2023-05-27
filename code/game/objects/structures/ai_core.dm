@@ -282,23 +282,23 @@ That prevents a few funky behaviors.
 								target_fixer.occupant = A
 								A.control_disabled = 1
 								if(A.stat == DEAD)
-									target_fixer.overlays += image('icons/obj/computer.dmi', "ai-fixer-404")
+									target_fixer.overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-404")
 								else
-									target_fixer.overlays += image('icons/obj/computer.dmi', "ai-fixer-full")
-								target_fixer.overlays -= image('icons/obj/computer.dmi', "ai-fixer-empty")
+									target_fixer.overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-full")
+								target_fixer.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-empty")
 								A.cancel_camera()
 								to_chat(A, "You have been uploaded to a stationary terminal. Sadly, there is no remote access from here.")
 								to_chat(user, "\blue <b>Transfer successful</b>: \black [A.name] ([rand(1000, 9999)].exe) installed and executed successfully. Local copy has been removed.")
 						else
 							if(!length(card.contents) && target_fixer.occupant && !target_fixer.active)
 								card.name = "inteliCard - [target_fixer.occupant.name]"
-								target_fixer.overlays += image('icons/obj/computer.dmi', "ai-fixer-empty")
+								target_fixer.overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-empty")
 								if(target_fixer.occupant.stat == DEAD)
 									card.icon_state = "aicard-404"
-									target_fixer.overlays -= image('icons/obj/computer.dmi', "ai-fixer-404")
+									target_fixer.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-404")
 								else
 									card.icon_state = "aicard-full"
-									target_fixer.overlays -= image('icons/obj/computer.dmi', "ai-fixer-full")
+									target_fixer.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-full")
 								to_chat(target_fixer.occupant, "You have been downloaded to a mobile storage device. Still no remote access.")
 								to_chat(user, "\blue <b>Transfer successful</b>: \black [target_fixer.occupant.name] ([rand(1000, 9999)].exe) removed from host terminal and stored within local memory.")
 								target_fixer.occupant.loc = card
@@ -321,8 +321,8 @@ That prevents a few funky behaviors.
 								target_fixer.occupant = suit_ai
 								ninja_suit.AI = null
 								suit_ai.control_disabled = 1
-								target_fixer.overlays += image('icons/obj/computer.dmi', "ai-fixer-full")
-								target_fixer.overlays -= image('icons/obj/computer.dmi', "ai-fixer-empty")
+								target_fixer.overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-full")
+								target_fixer.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-empty")
 								suit_ai.cancel_camera()
 								to_chat(suit_ai, "You have been uploaded to a stationary terminal. Sadly, there is no remote access from here.")
 								to_chat(user, "\blue <b>Transfer successful</b>: \black [suit_ai.name] ([rand(1000, 9999)].exe) installed and executed successfully. Local copy has been removed.")
@@ -331,8 +331,8 @@ That prevents a few funky behaviors.
 								if(target_fixer.occupant.stat)
 									to_chat(user, "\red <b>ERROR</b>: \black [target_fixer.occupant.name] data core is corrupted. Unable to install.")
 								else
-									target_fixer.overlays += image('icons/obj/computer.dmi', "ai-fixer-empty")
-									target_fixer.overlays -= image('icons/obj/computer.dmi', "ai-fixer-full")
+									target_fixer.overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-empty")
+									target_fixer.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-full")
 									to_chat(target_fixer.occupant, "You have been downloaded to a mobile storage device. Still no remote access.")
 									to_chat(user, "\blue <b>Transfer successful</b>: \black [target_fixer.occupant.name] ([rand(1000, 9999)].exe) removed from host terminal and stored within local memory.")
 									target_fixer.occupant.loc = ninja_suit

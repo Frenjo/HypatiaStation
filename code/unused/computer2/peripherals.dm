@@ -168,7 +168,7 @@
 			if(4)
 				prize = new /obj/item/weapon/c_tube( prize_location )
 				prize.name = "toy sword"
-				prize.icon = 'icons/obj/weapons.dmi'
+				prize.icon = 'icons/obj/weapons/weapons.dmi'
 				prize.icon_state = "sword1"
 				prize.desc = "A sword made of cheap plastic."
 

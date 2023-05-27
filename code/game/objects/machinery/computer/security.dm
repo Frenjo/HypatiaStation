@@ -6,6 +6,7 @@
 	icon_state = "security"
 	req_one_access = list(ACCESS_SECURITY, ACCESS_FORENSICS_LOCKERS)
 	circuit = /obj/item/weapon/circuitboard/secure_data
+
 	var/obj/item/weapon/card/id/scan = null
 	var/authenticated = null
 	var/rank = null
@@ -589,5 +590,4 @@ What a mess.*/
 	..(severity)
 
 /obj/machinery/computer/secure_data/detective_computer
-	icon = 'icons/obj/computer.dmi'
 	icon_state = "messyfiles"

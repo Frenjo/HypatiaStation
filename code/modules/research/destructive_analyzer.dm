@@ -64,7 +64,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		else
 			to_chat(user, SPAN_WARNING("You can't load the [src.name] while it's opened."))
 			return 1
-	
+
 	if(!linked_console)
 		to_chat(user, SPAN_WARNING("\The [src.name] must be linked to an R&D console first!"))
 		return 1
@@ -100,7 +100,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 /*/obj/item/weapon/deconstruction_test
 	name = "Test Item"
 	desc = "WTF?"
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "d20"
 	g_amt = 5000
 	m_amt = 5000

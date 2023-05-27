@@ -11,7 +11,7 @@
 
 /obj/item/projectile
 	name = "projectile"
-	icon = 'icons/obj/projectiles.dmi'
+	icon = 'icons/obj/weapons/projectiles.dmi'
 	icon_state = "bullet"
 	density = TRUE
 	unacidable = 1

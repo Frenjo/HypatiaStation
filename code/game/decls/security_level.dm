@@ -1,6 +1,6 @@
 /*
  * Datum based security levels.
- * 
+ *
  * This makes it easy to add new levels and switching behaviours.
  */
 /decl/security_level
@@ -39,7 +39,7 @@
 	for(var/obj/machinery/firealarm/fire_alarm in GLOBL.machines)
 		if(isContactLevel(fire_alarm.z))
 			fire_alarm.overlays.Cut()
-			fire_alarm.overlays.Add(image('icons/obj/monitors.dmi', "overlay_[name]"))
+			fire_alarm.overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_[name]"))
 
 // Things to do when the level is moved away from us in any direction.
 /decl/security_level/proc/on_change_from()
@@ -55,7 +55,7 @@
 
 /*
  * Green.
- * 
+ *
  * Everything's fine.
  */
 /decl/security_level/green
@@ -72,7 +72,7 @@
 
 /*
  * Yellow.
- * 
+ *
  * Security alert.
  */
 /decl/security_level/yellow
@@ -90,7 +90,7 @@
 
 /*
  * Blue.
- * 
+ *
  * Suspected threat.
  */
 /decl/security_level/blue
@@ -112,7 +112,7 @@
 
 /*
  * Red.
- * 
+ *
  * Confirmed threat.
  */
 /decl/security_level/red
@@ -146,7 +146,7 @@
 
 /*
  * Delta.
- * 
+ *
  * Self destruct engaged.
  */
 /decl/security_level/delta

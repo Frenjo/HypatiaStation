@@ -1,7 +1,7 @@
 /obj/machinery/portable_atmospherics/scrubber
 	name = "Portable Air Scrubber"
 
-	icon = 'icons/obj/atmos.dmi'
+	icon = 'icons/obj/atmospherics/atmos.dmi'
 	icon_state = "pscrubber:0"
 	density = TRUE
 
@@ -156,7 +156,7 @@ Power regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?src=\
 
 	var/static/gid = 1
 	var/id = 0
-	
+
 /obj/machinery/portable_atmospherics/scrubber/huge/New()
 	..()
 	id = gid

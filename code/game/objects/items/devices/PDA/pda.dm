@@ -2,7 +2,7 @@
 /obj/item/device/pda
 	name = "PDA"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
-	icon = 'icons/obj/pda.dmi'
+	icon = 'icons/obj/devices/pda.dmi'
 	icon_state = "pda"
 	item_state = "electronic"
 	w_class = 1.0
@@ -723,7 +723,7 @@
 
 		log_pda("[usr] (PDA: [src.name]) sent \"[t]\" to [P.name]")
 		P.overlays.Cut()
-		P.overlays += image('icons/obj/pda.dmi', "pda-r")
+		P.overlays += image('icons/obj/devices/pda.dmi', "pda-r")
 		P.newmessage = TRUE
 	else
 		to_chat(U, SPAN_NOTICE("ERROR: Messaging server is not responding."))
@@ -927,7 +927,7 @@
 					to_chat(user, SPAN_INFO("Temperature: [round(T.air_contents.temperature-T0C)]&deg;C"))
 				else
 					to_chat(user, SPAN_INFO("Tank is empty!"))
-				
+
 			if(istype(A, /obj/machinery/portable_atmospherics))
 				var/obj/machinery/portable_atmospherics/P = A
 				var/pressure = P.air_contents.return_pressure()
@@ -1022,7 +1022,7 @@
 /obj/item/weapon/storage/box/PDAs
 	name = "spare PDAs"
 	desc = "A box of spare PDA microcomputers."
-	icon = 'icons/obj/pda.dmi'
+	icon = 'icons/obj/devices/pda.dmi'
 	icon_state = "pdabox"
 
 /obj/item/weapon/storage/box/PDAs/New()

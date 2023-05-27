@@ -1,9 +1,9 @@
 /obj/machinery/computer/mecha
 	name = "Exosuit Control"
-	icon = 'icons/obj/computer.dmi'
 	icon_state = "mecha"
 	req_access = list(ACCESS_ROBOTICS)
 	circuit = /obj/item/weapon/circuitboard/mecha_control
+
 	var/list/located = list()
 	var/screen = 0
 	var/stored_data
@@ -69,7 +69,7 @@
 /obj/item/mecha_parts/mecha_tracking
 	name = "Exosuit tracking beacon"
 	desc = "Device used to transmit exosuit data."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/devices/device.dmi'
 	icon_state = "motion2"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_MAGNETS = 2)
 	construction_time = 50

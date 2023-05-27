@@ -1,6 +1,6 @@
 /obj/item/seeds
 	name = "pack of seeds"
-	icon = 'icons/obj/seeds.dmi'
+	icon = 'icons/obj/flora/seeds.dmi'
 	icon_state = "seed" // unknown plant seed - these shouldn't exist in-game
 	w_class = 1.0 // Makes them pocketable
 	var/mypath = /obj/item/seeds

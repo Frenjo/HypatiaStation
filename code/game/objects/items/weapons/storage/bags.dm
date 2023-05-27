@@ -99,7 +99,7 @@
 // -----------------------------
 
 /obj/item/weapon/storage/bag/plants
-	icon = 'icons/obj/hydroponics.dmi'
+	icon = 'icons/obj/flora/hydroponics.dmi'
 	icon_state = "plantbag"
 	name = "plant bag"
 	storage_slots = 50; //the number of plant pieces it can carry.

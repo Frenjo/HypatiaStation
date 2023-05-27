@@ -190,7 +190,7 @@
 
 /obj/machinery/magnetic_controller
 	name = "Magnetic Control Console"
-	icon = 'icons/obj/airlock_machines.dmi' // uses an airlock machine icon, THINK GREEN HELP THE ENVIRONMENT - RECYCLING!
+	icon = 'icons/obj/machines/airlock_machines.dmi' // uses an airlock machine icon, THINK GREEN HELP THE ENVIRONMENT - RECYCLING!
 	icon_state = "airlock_control_standby"
 	density = TRUE
 	anchored = TRUE
@@ -220,7 +220,7 @@
 		for(var/obj/machinery/magnetic_module/M in world)
 			if(M.freq == frequency && M.code == code)
 				magnets.Add(M)
-	
+
 	if(path) // check for default path
 		filter_path() // renders rpath
 

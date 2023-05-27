@@ -47,7 +47,7 @@
 /obj/item/weapon/firbang
 	desc = "It is set to detonate in 10 seconds."
 	name = "firbang"
-	icon = 'icons/obj/grenade.dmi'
+	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "flashbang"
 	var/state = null
 	var/det_time = 100.0

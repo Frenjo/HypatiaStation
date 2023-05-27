@@ -111,7 +111,7 @@
 	name = "potato battery"
 	desc = "A rechargable starch based power cell."
 	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 1)
-	icon = 'icons/obj/power.dmi' //'icons/obj/harvest.dmi'
+	icon = 'icons/obj/power.dmi' //'icons/obj/flora/harvest.dmi'
 	icon_state = "potato_cell" //"potato_battery"
 	charge = 100
 	maxcharge = 300
@@ -123,7 +123,7 @@
 	name = "charged slime core"
 	desc = "A yellow slime core infused with plasma, it crackles with power."
 	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 2, RESEARCH_TECH_BIOTECH = 4)
-	icon = 'icons/mob/slimes.dmi' //'icons/obj/harvest.dmi'
+	icon = 'icons/mob/slimes.dmi' //'icons/obj/flora/harvest.dmi'
 	icon_state = "yellow slime extract" //"potato_battery"
 	maxcharge = 10000
 	maxcharge = 10000

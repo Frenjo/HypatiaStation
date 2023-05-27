@@ -2,7 +2,7 @@
 	name = "Pathogenic Isolator"
 	density = TRUE
 	anchored = TRUE
-	icon = 'icons/obj/virology.dmi'
+	icon = 'icons/obj/machines/virology.dmi'
 	icon_state = "isolator"
 	var/datum/disease2/disease/virus2 = null
 	var/isolating = 0

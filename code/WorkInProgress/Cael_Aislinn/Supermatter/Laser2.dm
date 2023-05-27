@@ -45,7 +45,7 @@
 
 /obj/beam/e_beam
 	name = "Laser beam"
-	icon = 'icons/obj/projectiles.dmi'
+	icon = 'icons/obj/weapons/projectiles.dmi'
 	icon_state = "u_laser"
 	var/obj/machinery/engine/laser/master = null
 	var/obj/beam/e_beam/next = null

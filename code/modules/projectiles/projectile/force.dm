@@ -1,6 +1,5 @@
 /obj/item/projectile/forcebolt
 	name = "force bolt"
-	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "ice_1"
 	damage = 20
 	flag = "energy"

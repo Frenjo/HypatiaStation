@@ -3,7 +3,7 @@
 /obj/item/weapon/gripper
 	name = "magnetic gripper"
 	desc = "A simple grasping tool for synthetic assets."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/devices/device.dmi'
 	icon_state = "gripper"
 
 	//Has a list of items that it can hold.
@@ -104,7 +104,7 @@
 /obj/item/weapon/matter_decompiler
 	name = "matter decompiler"
 	desc = "Eating trash, bits of glass, or other debris will replenish your stores."
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/devices/device.dmi'
 	icon_state = "decompiler"
 
 	//Metal, glass, wood, plastic.

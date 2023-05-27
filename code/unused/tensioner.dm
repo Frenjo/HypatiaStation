@@ -836,9 +836,9 @@ var/global/datum/tension/tension_master
 
 /obj/machinery/computer/Borg_station
 	name = "Cyborg Station Terminal"
-	icon = 'icons/obj/computer.dmi'
 	icon_state = "syndishuttle"
 	req_access = list()
+
 	var/temp = null
 	var/hacked = 0
 	var/jumpcomplete = 0

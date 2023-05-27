@@ -4,7 +4,6 @@
 
 /obj/machinery/computer/supplycomp
 	name = "Supply shuttle console"
-	icon = 'icons/obj/computer.dmi'
 	icon_state = "supply"
 	req_access = list(ACCESS_CARGO)
 	circuit = /obj/item/weapon/circuitboard/supplycomp
@@ -27,7 +26,6 @@
 
 /obj/machinery/computer/ordercomp
 	name = "Supply ordering console"
-	icon = 'icons/obj/computer.dmi'
 	icon_state = "request"
 	circuit = /obj/item/weapon/circuitboard/ordercomp
 

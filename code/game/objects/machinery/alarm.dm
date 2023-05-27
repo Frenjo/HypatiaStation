@@ -63,7 +63,7 @@
 
 /obj/machinery/alarm
 	name = "alarm"
-	icon = 'icons/obj/monitors.dmi'
+	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "alarm0"
 	anchored = TRUE
 	use_power = 1
@@ -1215,7 +1215,7 @@ FIRE ALARM
 /obj/machinery/firealarm
 	name = "fire alarm"
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
-	icon = 'icons/obj/monitors.dmi'
+	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "fire0"
 
 	anchored = TRUE
@@ -1467,9 +1467,9 @@ FIRE ALARM
 	. = ..()
 	if(isContactLevel(z))
 		if(!isnull(GLOBL.security_level))
-			src.overlays.Add(image('icons/obj/monitors.dmi', "overlay_[GLOBL.security_level.name]"))
+			src.overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_[GLOBL.security_level.name]"))
 		else
-			src.overlays.Add(image('icons/obj/monitors.dmi', "overlay_green"))
+			src.overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_green"))
 
 	update_icon()
 
@@ -1489,7 +1489,7 @@ Just a object used in constructing fire alarms
 /obj/machinery/partyalarm
 	name = "\improper PARTY BUTTON"
 	desc = "Cuban Pete is in the house!"
-	icon = 'icons/obj/monitors.dmi'
+	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "fire0"
 
 	anchored = TRUE

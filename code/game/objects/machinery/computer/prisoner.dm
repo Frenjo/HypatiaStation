@@ -2,10 +2,10 @@
 
 /obj/machinery/computer/prisoner
 	name = "Prisoner Management"
-	icon = 'icons/obj/computer.dmi'
 	icon_state = "explosive"
 	req_access = list(ACCESS_ARMORY)
 	circuit = /obj/item/weapon/circuitboard/prisoner
+
 	var/id = 0.0
 	var/temp = null
 	var/status = 0
@@ -110,5 +110,3 @@
 		src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	return
-
-

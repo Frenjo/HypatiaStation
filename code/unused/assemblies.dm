@@ -1,6 +1,6 @@
 /*/obj/item/assembly
 	name = "assembly"
-	icon = 'icons/obj/assemblies.dmi'
+	icon = 'icons/obj/assemblies/assemblies.dmi'
 	item_state = "assembly"
 	var/status = 0.0
 	throwforce = 10

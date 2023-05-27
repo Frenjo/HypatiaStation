@@ -1,6 +1,6 @@
 /obj/item/weapon
 	name = "weapon"
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/weapons/weapons.dmi'
 
 /obj/item/weapon/Bump(mob/M as mob)
 	spawn(0)
@@ -84,7 +84,6 @@
 /obj/item/weapon/cane
 	name = "cane"
 	desc = "A cane used by a true gentlemen. Or a clown."
-	icon = 'icons/obj/weapons.dmi'
 	icon_state = "cane"
 	item_state = "stick"
 	flags = CONDUCT
@@ -236,7 +235,7 @@
 /*/obj/item/weapon/syndicate_uplink
 	name = "station bounced radio"
 	desc = "Remain silent about this..."
-	icon = 'icons/obj/radio.dmi'
+	icon = 'icons/obj/devices/radio.dmi'
 	icon_state = "radio"
 	var/temp = null
 	var/uses = 10.0
@@ -276,7 +275,7 @@
 /obj/item/weapon/SWF_uplink
 	name = "station-bounced radio"
 	desc = "used to communicate it appears."
-	icon = 'icons/obj/radio.dmi'
+	icon = 'icons/obj/devices/radio.dmi'
 	icon_state = "radio"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
@@ -336,7 +335,6 @@
 
 /obj/item/device/camera_bug
 	name = "camera bug"
-	icon = 'icons/obj/device.dmi'
 	icon_state = "flash"
 	w_class = 1.0
 	item_state = "electronic"
@@ -381,7 +379,6 @@
 /obj/item/weapon/hatchet/soghunknife
 	name = "duelling knife"
 	desc = "A length of leather-bound wood studded with razor-sharp teeth. How crude."
-	icon = 'icons/obj/weapons.dmi'
 	icon_state = "soghunknife"
 	attack_verb = list("ripped", "torn", "cut")
 

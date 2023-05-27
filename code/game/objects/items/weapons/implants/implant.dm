@@ -3,8 +3,9 @@
 
 /obj/item/weapon/implant
 	name = "implant"
-	icon = 'icons/obj/device.dmi'
+	icon = 'icons/obj/devices/device.dmi'
 	icon_state = "implant"
+
 	var/implanted = null
 	var/mob/imp_in = null
 	var/datum/organ/external/part = null

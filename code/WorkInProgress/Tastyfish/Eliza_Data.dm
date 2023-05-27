@@ -396,7 +396,7 @@
 					O.show_message(text("\icon[pda] *[pda.ttone]*"))
 
 			pda.overlays = null
-			pda.overlays += image('icons/obj/pda.dmi', "pda-r")
+			pda.overlays += image('icons/obj/devices/pda.dmi', "pda-r")
 		else
 			var/list/href_list = list()
 			href_list["src"] = "\ref[eliza.speaker.loc.loc]"

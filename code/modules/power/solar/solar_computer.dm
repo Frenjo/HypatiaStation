@@ -11,7 +11,7 @@
 /obj/machinery/power/solar_control
 	name = "solar panel control"
 	desc = "A controller for solar panel arrays."
-	icon = 'icons/obj/computer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "solar"
 	anchored = TRUE
 	density = TRUE
@@ -64,7 +64,7 @@
 	icon_state = "solar"
 	overlays.Cut()
 	if(cdir > -1)
-		overlays.Add(image('icons/obj/computer.dmi', "solcon-o", FLY_LAYER, angle2dir(cdir)))
+		overlays.Add(image('icons/obj/machines/computer.dmi', "solcon-o", FLY_LAYER, angle2dir(cdir)))
 	return
 
 /obj/machinery/power/solar_control/attack_ai(mob/user)

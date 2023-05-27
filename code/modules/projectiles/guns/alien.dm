@@ -7,7 +7,6 @@
 	sharp = 1
 	throwforce = 5
 	w_class = 2
-	icon = 'icons/obj/weapons.dmi'
 	icon_state = "metal-rod"
 	item_state = "bolt"
 
@@ -27,7 +26,7 @@
 	var/tmp/list/mob/living/target
 	var/tmp/mob/living/last_moved_mob
 
-	icon = 'icons/obj/gun.dmi'
+	icon = 'icons/obj/weapons/gun.dmi'
 	icon_state = "spikethrower3"
 	item_state = "spikethrower"
 
@@ -115,7 +114,7 @@
 	name = "alien heavy cannon"
 	desc = "It's some kind of enormous alien weapon, as long as a man is tall."
 
-	icon = 'icons/obj/gun.dmi' //Actual on-sprite is handled by icon_override.
+	icon = 'icons/obj/weapons/gun.dmi' //Actual on-sprite is handled by icon_override.
 	icon_state = "noisecannon"
 	item_state = "noisecannon"
 	recoil = 1
