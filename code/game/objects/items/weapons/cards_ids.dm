@@ -125,7 +125,7 @@
 	desc = "A card used to provide ID and determine access across the station."
 	icon_state = "id"
 	item_state = "card-id"
-	var/access = list()
+	var/list/access = list()
 	var/registered_name = "Unknown" // The name registered_name on the card
 	slot_flags = SLOT_ID
 
@@ -139,19 +139,17 @@
 	var/dorm = 0		// determines if this ID has claimed a dorm already
 
 /obj/item/weapon/card/id/New()
-	..()
+	. = ..()
 	spawn(30)
 	if(ishuman(loc))
-		blood_type = loc:dna:b_type
-		dna_hash = loc:dna:unique_enzymes
-		fingerprint_hash = md5(loc:dna:uni_identity)
+		var/mob/living/carbon/human/human = loc
+		blood_type = human.dna.b_type
+		dna_hash = human.dna.unique_enzymes
+		fingerprint_hash = md5(human.dna.uni_identity)
 
 /obj/item/weapon/card/id/attack_self(mob/user as mob)
-	for(var/mob/O in viewers(user, null))
-		O.show_message(text("[] shows you: \icon[] []: assignment: []", user, src, src.name, src.assignment), 1)
-
-	src.add_fingerprint(user)
-	return
+	visible_message("[user] shows you: \icon[src] [src.name]: assignment: [src.assignment]")
+	add_fingerprint(user)
 
 /obj/item/weapon/card/id/get_access()
 	return access
@@ -161,7 +159,7 @@
 
 /obj/item/weapon/card/id/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
-	if(istype(W,/obj/item/weapon/id_wallet))
+	if(istype(W, /obj/item/weapon/id_wallet))
 		user << "You slip [src] into [W]."
 		src.name = "[src.registered_name]'s [W.name] ([src.assignment])"
 		src.desc = W.desc
@@ -175,11 +173,10 @@
 	set category = "Object"
 	set src in usr
 
-	usr << text("\icon[] []: The current assignment on the card is [].", src, src.name, src.assignment)
-	usr << "The blood type on the card is [blood_type]."
-	usr << "The DNA hash on the card is [dna_hash]."
-	usr << "The fingerprint hash on the card is [fingerprint_hash]."
-	return
+	to_chat(usr, "\icon[src] [name]: The current assignment on the card is [assignment].")
+	to_chat(usr, "The blood type on the card is [blood_type].")
+	to_chat(usr, "The DNA hash on the card is [dna_hash].")
+	to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")
 
 // Access-related overrides.
 /obj/item/weapon/card/id/get_job_real_name()
@@ -223,10 +220,11 @@
 	name = "agent card"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_EXTERNAL_AIRLOCKS)
 	origin_tech = list(RESEARCH_TECH_SYNDICATE = 3)
+
 	var/registered_user = null
 
 /obj/item/weapon/card/id/syndicate/New(mob/user as mob)
-	..()
+	. = ..()
 	if(!isnull(user)) // Runtime prevention on laggy starts or where users log out because of lag at round start.
 		registered_name = ishuman(user) ? user.real_name : user.name
 	else
@@ -239,49 +237,47 @@
 		return
 	if(istype(O, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/I = O
-		src.access |= I.access
-		if(istype(user, /mob/living) && user.mind)
-			if(user.mind.special_role)
-				usr << "\blue The card's microscanners activate as you pass it over the ID, copying its access."
+		access |= I.access
+		if(isliving(user) && !isnull(user.mind?.special_role))
+			to_chat(usr, SPAN_INFO("The card's microscanners activate as you pass it over the ID, copying its access."))
 
 /obj/item/weapon/card/id/syndicate/attack_self(mob/user as mob)
 	if(!src.registered_name)
 		//Stop giving the players unsanitized unputs! You are giving ways for players to intentionally crash clients! -Nodrak
-		var t = reject_bad_name(input(user, "What name would you like to put on this card?", "Agent card name", ishuman(user) ? user.real_name : user.name))
+		var/t = reject_bad_name(input(user, "What name would you like to put on this card?", "Agent card name", ishuman(user) ? user.real_name : user.name))
 		if(!t) //Same as mob/new_player/prefrences.dm
 			alert("Invalid name.")
 			return
-		src.registered_name = t
+		registered_name = t
 
-		var u = copytext(sanitize(input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", "Agent")),1,MAX_MESSAGE_LEN)
+		var/u = copytext(sanitize(input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", "Agent")),1,MAX_MESSAGE_LEN)
 		if(!u)
 			alert("Invalid assignment.")
-			src.registered_name = ""
+			registered_name = ""
 			return
-		src.assignment = u
-		src.name = "[src.registered_name]'s ID Card ([src.assignment])"
-		user << "\blue You successfully forge the ID card."
+		assignment = u
+		name = "[registered_name]'s ID Card ([assignment])"
+		to_chat(user, SPAN_INFO("You successfully forge the ID card."))
 		registered_user = user
-	else if(!registered_user || registered_user == user)
-
-		if(!registered_user)
+	else if(isnull(registered_user) || registered_user == user)
+		if(isnull(registered_user))
 			registered_user = user  //
 
-		switch(alert("Would you like to display the ID, or retitle it?","Choose.","Rename","Show"))
+		switch(alert("Would you like to display the ID, or retitle it?", "Choose.", "Rename", "Show"))
 			if("Rename")
-				var t = copytext(sanitize(input(user, "What name would you like to put on this card?", "Agent card name", ishuman(user) ? user.real_name : user.name)),1,26)
+				var/t = copytext(sanitize(input(user, "What name would you like to put on this card?", "Agent card name", ishuman(user) ? user.real_name : user.name)),1,26)
 				if(!t || t == "Unknown" || t == "floor" || t == "wall" || t == "r-wall") //Same as mob/new_player/prefrences.dm
 					alert("Invalid name.")
 					return
-				src.registered_name = t
+				registered_name = t
 
-				var u = copytext(sanitize(input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", "Assistant")),1,MAX_MESSAGE_LEN)
+				var/u = copytext(sanitize(input(user, "What occupation would you like to put on this card?\nNote: This will not grant any access levels other than Maintenance.", "Agent card job assignment", "Assistant")),1,MAX_MESSAGE_LEN)
 				if(!u)
 					alert("Invalid assignment.")
 					return
-				src.assignment = u
-				src.name = "[src.registered_name]'s ID Card ([src.assignment])"
-				user << "\blue You successfully forge the ID card."
+				assignment = u
+				name = "[registered_name]'s ID Card ([assignment])"
+				to_chat(user, SPAN_INFO("You successfully forge the ID card."))
 				return
 			if("Show")
 				..()
@@ -306,9 +302,9 @@
 	assignment = "Captain"
 	
 /obj/item/weapon/card/id/captains_spare/New()
+	. = ..()
 	var/datum/job/captain/J = new/datum/job/captain
 	access = J.get_access()
-	..()
 
 
 /obj/item/weapon/card/id/centcom
@@ -319,5 +315,5 @@
 	assignment = "General"
 	
 /obj/item/weapon/card/id/centcom/New()
+	. = ..()
 	access = get_all_centcom_access()
-	..()

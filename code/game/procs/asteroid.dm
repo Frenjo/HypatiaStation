@@ -19,9 +19,9 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 	var/list/room_turfs = list("walls" = list(), "floors" = list())
 
 	//world << "Room spawned at [start_loc.x],[start_loc.y],[start_loc.z]"
-	if(!wall)
+	if(isnull(wall))
 		wall = pick(/turf/simulated/wall/r_wall, /turf/simulated/wall, /obj/effect/alien/resin)
-	if(!floor)
+	if(isnull(floor))
 		floor = pick(/turf/simulated/floor, /turf/simulated/floor/engine)
 
 	for(var/x = 0, x < x_size, x++)
@@ -33,10 +33,7 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 					qdel(O)
 
 			var/area/asteroid/artifactroom/A = new /area/asteroid/artifactroom()
-			if(name)
-				A.name = name
-			else
-				A.name = "Artifact Room #[start_loc.x][start_loc.y][start_loc.z]"
+			A.name = !isnull(name) ? name : "Artifact Room #[start_loc.x][start_loc.y][start_loc.z]"
 
 			if(x == 0 || x == (x_size - 1) || y == 0 || y == (y_size - 1))
 				if(wall == /obj/effect/alien/resin)
@@ -79,9 +76,8 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 			floor = /turf/simulated/floor
 		if("Reinforced floor")
 			floor = /turf/simulated/floor/engine
-	if(x && y && z && wall && floor && x_len && y_len)
+	if(!isnull(x) && !isnull(y) && !isnull(z) && !isnull(wall) && !isnull(floor) && !isnull(x_len) && !isnull(y_len))
 		spawn_room(locate(x, y, z), x_len, y_len, wall, floor, clean)
-	return
 
 /proc/make_mining_asteroid_secret(size = 5)
 	var/valid = FALSE
@@ -133,7 +129,7 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 
 	room = spawn_room(start_loc = T, x_size = size, y_size = size, clean = TRUE)
 
-	if(room)
+	if(!isnull(room))
 		T = pick(room["floors"])
 		if(!isnull(T))
 			var/surprise = null

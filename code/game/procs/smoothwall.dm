@@ -10,13 +10,13 @@
 
 	if(!istype(src, /turf/simulated/shuttle/wall)) //or else we'd have wacky shuttle merging with walls action
 		for(var/turf/simulated/wall/W in orange(src, 1))
-			if(abs(src.x - W.x)-abs(src.y - W.y)) //doesn't count diagonal walls
+			if(abs(x - W.x) - abs(y - W.y)) //doesn't count diagonal walls
 				junction |= get_dir(src, W)
 		for(var/obj/structure/falsewall/W in orange(src, 1))
-			if(abs(src.x - W.x)-abs(src.y - W.y)) //doesn't count diagonal walls
+			if(abs(x - W.x) - abs(y - W.y)) //doesn't count diagonal walls
 				junction |= get_dir(src, W)
 		for(var/obj/structure/falserwall/W in orange(src, 1))
-			if(abs(src.x - W.x)-abs(src.y - W.y)) //doesn't count diagonal walls
+			if(abs(x - W.x) - abs(y - W.y)) //doesn't count diagonal walls
 				junction |= get_dir(src, W)
 
 /* Commenting this out for now until we figure out what to do with shuttle smooth walls, if anything.
@@ -39,7 +39,7 @@
 		var/turf/simulated/wall/wall = src
 		wall.icon_state = "[wall.walltype][junction]"
 	else if(istype(src, /obj/structure/falserwall))
-		src.icon_state = "rwall[junction]"
+		icon_state = "rwall[junction]"
 	else if(istype(src, /obj/structure/falsewall))
 		var/obj/structure/falsewall/fwall = src
 		fwall.icon_state = "[fwall.mineral][junction]"
@@ -75,8 +75,6 @@
 			else //otherwise, the space one
 				src.icon_state = "swall_s[junction]"*/
 
-	return
-
 /atom/proc/relativewall_neighbours()
 	for(var/turf/simulated/wall/W in range(src, 1))
 		W.relativewall()
@@ -85,7 +83,6 @@
 		W.update_icon()//Refreshes the wall to make sure the icons don't desync
 	for(var/obj/structure/falserwall/W in range(src, 1))
 		W.relativewall()
-	return
 
 /turf/simulated/wall/New()
 	relativewall_neighbours()
@@ -137,17 +134,16 @@
 	var/junction = 0 //will be used to determine from which side the wall is connected to other walls
 
 	for(var/turf/simulated/wall/W in orange(src, 1))
-		if(abs(src.x - W.x)-abs(src.y - W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)//Only 'like' walls connect -Sieve
+		if(abs(x - W.x)-abs(y - W.y)) //doesn't count diagonal walls
+			if(mineral == W.mineral)//Only 'like' walls connect -Sieve
 				junction |= get_dir(src, W)
 	for(var/obj/structure/falsewall/W in orange(src, 1))
-		if(abs(src.x - W.x)-abs(src.y - W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)
+		if(abs(x - W.x) - abs(y - W.y)) //doesn't count diagonal walls
+			if(mineral == W.mineral)
 				junction |= get_dir(src, W)
 	for(var/obj/structure/falserwall/W in orange(src, 1))
-		if(abs(src.x - W.x)-abs(src.y - W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)
+		if(abs(x - W.x) - abs(y - W.y)) //doesn't count diagonal walls
+			if(mineral == W.mineral)
 				junction |= get_dir(src, W)
 	var/turf/simulated/wall/wall = src
 	wall.icon_state = "[wall.walltype][junction]"
-	return

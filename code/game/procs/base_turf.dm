@@ -7,7 +7,7 @@
 // An area can override the z-level base turf, so our solar array areas etc. can be space-based.
 /proc/get_base_turf_by_area(turf/T)
 	var/area/A = T.loc
-	if(A && A.base_turf)
+	if(!isnull(A?.base_turf))
 		return A.base_turf
 	return get_base_turf(T.z)
 
@@ -16,15 +16,15 @@
 	set name = "Set Base Turf"
 	set desc = "Set the base turf for a z-level."
 
-	if(!holder)
+	if(isnull(holder))
 		return
 
 	var/choice = input("Which Z-level do you wish to set the base turf for?") as num | null
-	if(!choice)
+	if(isnull(choice))
 		return
 
 	var/new_base_path = input("Please select a turf path or cancel to reset to [world.turf].") as null | anything in typesof(/turf)
-	if(!new_base_path)
+	if(isnull(new_base_path))
 		new_base_path = world.turf
 	GLOBL.current_map.base_turf_by_z[choice] = new_base_path
 	message_admins("[key_name_admin(usr)] has set the base turf for z-level [choice] to [get_base_turf(choice)].")

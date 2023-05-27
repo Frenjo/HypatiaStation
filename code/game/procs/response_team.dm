@@ -12,10 +12,10 @@ GLOBAL_GLOBL(can_call_ert)
 	set category = "Special Verbs"
 	set desc = "Send an emergency response team to the station"
 
-	if(!holder)
+	if(isnull(holder))
 		to_chat(usr, SPAN_WARNING("Only administrators may use this command."))
 		return
-	if(!global.CTgame_ticker)
+	if(isnull(global.CTgame_ticker))
 		to_chat(usr, SPAN_WARNING("The game hasn't started yet!"))
 		return
 	if(global.CTgame_ticker.current_state == GAME_STATE_PREGAME)
@@ -195,12 +195,12 @@ GLOBAL_GLOBL(can_call_ert)
 
 	// Hair.
 	var/new_hstyle = input(usr, "Select a hair style", "Grooming") as null | anything in GLOBL.hair_styles_list
-	if(new_hstyle)
+	if(!isnull(new_hstyle))
 		M.h_style = new_hstyle
 
 	// Facial hair.
 	var/new_fstyle = input(usr, "Select a facial hair style", "Grooming") as null | anything in GLOBL.facial_hair_styles_list
-	if(new_fstyle)
+	if(!isnull(new_fstyle))
 		M.f_style = new_fstyle
 
 	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female")
@@ -227,7 +227,7 @@ GLOBAL_GLOBL(can_call_ert)
 	M.mind.assigned_role = "MODE"
 	M.mind.special_role = "Response Team"
 	if(!(M.mind in global.CTgame_ticker.minds))
-		global.CTgame_ticker.minds += M.mind	//Adds them to regular mind list.
+		global.CTgame_ticker.minds.Add(M.mind)	//Adds them to regular mind list.
 	M.loc = spawn_location
 	M.equip_strike_team(leader_selected)
 	return M
@@ -274,7 +274,7 @@ GLOBAL_GLOBL(can_call_ert)
 	W.name = "[real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
 	W.access = get_all_accesses()
-	W.access += get_all_centcom_access()
+	W.access.Add(get_all_centcom_access())
 	equip_to_slot_or_del(W, SLOT_ID_WEAR_ID)
 
 	return 1
