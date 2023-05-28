@@ -992,7 +992,7 @@
 	else if(src.operation_allowed(usr))
 		passed = 1
 	if(!passed)
-		to_chat(usr, FEEDBACK_ACCESS_DENIED)
+		FEEDBACK_ACCESS_DENIED(usr)
 		src.log_append_to_last("Permission denied.")
 		return
 	for(var/mob/living/carbon/slime/M in range(1, usr))

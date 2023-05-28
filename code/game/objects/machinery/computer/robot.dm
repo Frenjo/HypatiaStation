@@ -126,7 +126,7 @@
 						src.temp = null
 
 				else
-					to_chat(usr, FEEDBACK_ACCESS_DENIED)
+					FEEDBACK_ACCESS_DENIED(usr)
 
 		else if (href_list["stop"])
 			src.temp = {"
@@ -168,7 +168,7 @@
 								log_game("\blue [key_name_admin(usr)] detonated [R.name]!")
 								R.self_destruct()
 			else
-				to_chat(usr, FEEDBACK_ACCESS_DENIED)
+				FEEDBACK_ACCESS_DENIED(usr)
 
 		else if (href_list["stopbot"])
 			if(src.allowed(usr))
@@ -190,7 +190,7 @@
 								R << "You have been locked down!"
 
 			else
-				to_chat(usr, FEEDBACK_ACCESS_DENIED)
+				FEEDBACK_ACCESS_DENIED(usr)
 
 		else if (href_list["magbot"])
 			if(src.allowed(usr))

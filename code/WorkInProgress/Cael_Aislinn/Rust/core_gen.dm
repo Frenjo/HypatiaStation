@@ -161,7 +161,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 				src.locked = 0 //just in case it somehow gets locked
 				user << "\red The controls can only be locked when the [src] is online"
 		else
-			to_chat(user, FEEDBACK_ACCESS_DENIED)
+			FEEDBACK_ACCESS_DENIED(user)
 		return
 
 	if(istype(W, /obj/item/weapon/card/emag) && !emagged)

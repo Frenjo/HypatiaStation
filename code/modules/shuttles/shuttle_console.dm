@@ -15,7 +15,7 @@
 		return
 	//src.add_fingerprint(user)	//shouldn't need fingerprints just for looking at it.
 	if(!allowed(user))
-		to_chat(user, FEEDBACK_ACCESS_DENIED)
+		FEEDBACK_ACCESS_DENIED(user)
 		return 1
 
 	ui_interact(user)

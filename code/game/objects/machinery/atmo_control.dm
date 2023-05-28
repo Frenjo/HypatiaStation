@@ -136,7 +136,7 @@
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			if(src.stat & BROKEN)
-				to_chat(user, FEEDBACK_BROKEN_GLASS_FALLS)
+				FEEDBACK_BROKEN_GLASS_FALLS(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
 				new /obj/item/weapon/shard(src.loc)
 				var/obj/item/weapon/circuitboard/air_management/M = new /obj/item/weapon/circuitboard/air_management(A)
@@ -149,7 +149,7 @@
 				A.anchored = TRUE
 				qdel(src)
 			else
-				to_chat(user, FEEDBACK_DISCONNECT_MONITOR)
+				FEEDBACK_DISCONNECT_MONITOR(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
 				var/obj/item/weapon/circuitboard/air_management/M = new /obj/item/weapon/circuitboard/air_management(A)
 				for(var/obj/C in src)
@@ -337,7 +337,7 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			if(src.stat & BROKEN)
-				to_chat(user, FEEDBACK_BROKEN_GLASS_FALLS)
+				FEEDBACK_BROKEN_GLASS_FALLS(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
 				new /obj/item/weapon/shard(src.loc)
 				var/obj/item/weapon/circuitboard/injector_control/M = new /obj/item/weapon/circuitboard/injector_control(A)
@@ -350,7 +350,7 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 				A.anchored = TRUE
 				qdel(src)
 			else
-				to_chat(user, FEEDBACK_DISCONNECT_MONITOR)
+				FEEDBACK_DISCONNECT_MONITOR(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
 				var/obj/item/weapon/circuitboard/injector_control/M = new /obj/item/weapon/circuitboard/injector_control(A)
 				for(var/obj/C in src)

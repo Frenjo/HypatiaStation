@@ -83,7 +83,7 @@
 // Not even going to touch this pile of spaghetti.
 /turf/simulated/mineral/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
-		to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 
 	if(istype(W, /obj/item/device/core_sampler))

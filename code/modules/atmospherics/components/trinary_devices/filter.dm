@@ -94,7 +94,7 @@ Filter types:
 			if(GAS_FILTER_NITROGEN) //removing N2
 				filtered_out.gas[/decl/xgm_gas/nitrogen] = removed.gas[/decl/xgm_gas/nitrogen]
 				removed.gas[/decl/xgm_gas/nitrogen] = 0
-			
+
 			if(GAS_FILTER_HYDROGEN) //removing H2
 				filtered_out.gas[/decl/xgm_gas/hydrogen] = removed.gas[/decl/xgm_gas/hydrogen]
 				removed.gas[/decl/xgm_gas/hydrogen] = 0
@@ -102,18 +102,18 @@ Filter types:
 			if(GAS_FILTER_CARBON_DIOXIDE) //removing CO2
 				filtered_out.gas[/decl/xgm_gas/carbon_dioxide] = removed.gas[/decl/xgm_gas/carbon_dioxide]
 				removed.gas[/decl/xgm_gas/carbon_dioxide] = 0
-			
+
 			if(GAS_FILTER_CARBON_MOLECULES) //removing hydrocarbons
 				filtered_out.gas[/decl/xgm_gas/plasma] = removed.gas[/decl/xgm_gas/plasma]
 				removed.gas[/decl/xgm_gas/plasma] = 0
 
 				filtered_out.gas[/decl/xgm_gas/oxygen_agent_b] = removed.gas[/decl/xgm_gas/oxygen_agent_b]
 				removed.gas[/decl/xgm_gas/oxygen_agent_b] = 0
-			
+
 			if(GAS_FILTER_PLASMA) //removing plasma
 				filtered_out.gas[/decl/xgm_gas/plasma] = removed.gas[/decl/xgm_gas/plasma]
 				removed.gas[/decl/xgm_gas/plasma] = 0
-			
+
 			if(GAS_FILTER_OXYGEN_AGENT_B) //removing oxygen agent b
 				filtered_out.gas[/decl/xgm_gas/oxygen_agent_b] = removed.gas[/decl/xgm_gas/oxygen_agent_b]
 				removed.gas[/decl/xgm_gas/oxygen_agent_b] = 0
@@ -170,7 +170,7 @@ Filter types:
 		return
 
 	if(!src.allowed(user))
-		to_chat(user, FEEDBACK_ACCESS_DENIED)
+		FEEDBACK_ACCESS_DENIED(user)
 		return
 
 	// Edited this to reflect NanoUI port. -Frenjo

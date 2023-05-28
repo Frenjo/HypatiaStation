@@ -13,7 +13,7 @@ GLOBAL_GLOBL(can_call_ert)
 	set desc = "Send an emergency response team to the station"
 
 	if(isnull(holder))
-		to_chat(usr, SPAN_WARNING("Only administrators may use this command."))
+		FEEDBACK_COMMAND_ADMIN_ONLY(usr)
 		return
 	if(isnull(global.CTgame_ticker))
 		to_chat(usr, SPAN_WARNING("The game hasn't started yet!"))

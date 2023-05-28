@@ -466,7 +466,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 	set popup_menu = 0
 
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	if(!global.CTgame_ticker.mode)
 		alert("The game hasn't started yet!")

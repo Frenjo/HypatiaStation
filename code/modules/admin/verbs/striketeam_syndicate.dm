@@ -7,7 +7,7 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 	set name = "Spawn Syndicate Strike Team"
 	set desc = "Spawns a squad of commandos in the Syndicate Mothership if you want to run an admin event."
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	if(!global.CTgame_ticker)
 		alert("The game hasn't started yet!")

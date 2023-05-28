@@ -4,7 +4,7 @@
 	set hidden = 1
 
 	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	if(!src.mob)
 		return

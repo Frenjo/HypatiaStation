@@ -180,7 +180,7 @@
 	set hidden = 1
 
 	if(isnull(holder))
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	if(!isnull(global.CTgame_ticker?.mode))
@@ -195,7 +195,7 @@
 	set hidden = 1
 
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	var/input = input(src, "Please specify which key will be turned into a bloby.", "Key", "")
 

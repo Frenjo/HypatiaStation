@@ -298,7 +298,7 @@
 
 /turf/simulated/wall/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!(ishuman(user) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
-		to_chat(user, FEEDBACK_NOT_ENOUGH_DEXTERITY)
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return
 
 	//get the user's location

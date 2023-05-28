@@ -350,7 +350,7 @@
 					return
 
 			if((!src.allowed(usr)) && (!src.emagged) && (src.wires & WIRE_SCANID)) //For SECURE VENDING MACHINES YEAH
-				to_chat(usr, FEEDBACK_ACCESS_DENIED) // Unless emagged of course.
+				FEEDBACK_ACCESS_DENIED(usr) // Unless emagged of course.
 				flick(src.icon_deny,src)
 				return
 
@@ -412,7 +412,7 @@
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
 	if((!src.allowed(user)) && (!src.emagged) && (src.wires & WIRE_SCANID)) //For SECURE VENDING MACHINES YEAH
-		to_chat(user, FEEDBACK_ACCESS_DENIED) // Unless emagged of course.
+		FEEDBACK_ACCESS_DENIED(user) // Unless emagged of course.
 		flick(src.icon_deny, src)
 		return
 	src.vend_ready = 0 //One thing at a time!!

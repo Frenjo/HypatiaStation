@@ -513,7 +513,7 @@ Doing this because FindTurfs() isn't even used
 	set category = "Debug"
 	set name = "Change event %"
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	if(src.holder)
 		eventchance = number
@@ -525,7 +525,7 @@ Doing this because FindTurfs() isn't even used
 	set category = "Admin"
 	set name = "Random Expl.(REMOVE ME)"
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	for(var/turf/T in world)
 		if(prob(4) && T.z == 1 && istype(T,/turf/station/floor))
@@ -549,7 +549,7 @@ Doing this because FindTurfs() isn't even used
 	set category = "Debug"
 	set name = "Stabilize Atmos."
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	spawn(0)
 		for(var/turf/T in view())
@@ -576,7 +576,7 @@ Doing this because FindTurfs() isn't even used
 	set category = "Special Verbs"
 	set name = "Create Fire"
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	world << "[usr.key] created fire"
 	spawn(0)
@@ -587,7 +587,7 @@ Doing this because FindTurfs() isn't even used
 	set category = "Special Verbs"
 	set name = "Create CO2"
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	world << "[usr.key] created CO2"
 	spawn(0)
@@ -597,7 +597,7 @@ Doing this because FindTurfs() isn't even used
 	set category = "Special Verbs"
 	set name = "Create N2O"
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	world << "[usr.key] created N2O"
 	spawn(0)
@@ -607,7 +607,7 @@ Doing this because FindTurfs() isn't even used
 	set category = "Special Verbs"
 	set name = "Create Explosion"
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	world << "[usr.key] created an explosion"
 	var/obj/item/weapon/tank/plasmatank/pt = new /obj/item/weapon/tank/plasmatank( T )
@@ -615,5 +615,3 @@ Doing this because FindTurfs() isn't even used
 	playsound(pt.loc, 'sound/effects/explosionfar.ogg', 100, 1,10)
 	pt.gas.temperature = 500+T0C
 	pt.ignite()
-
-

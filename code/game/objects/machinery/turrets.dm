@@ -397,7 +397,7 @@
 				if(user.machine == src)
 					src.attack_hand(user)
 		else
-			to_chat(user, FEEDBACK_ACCESS_DENIED)
+			FEEDBACK_ACCESS_DENIED(user)
 
 /obj/machinery/turretid/attack_ai(mob/user as mob)
 	if(!ailock)

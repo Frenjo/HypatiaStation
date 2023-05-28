@@ -337,7 +337,7 @@ Status: []<BR>"},
 			locked = !src.locked
 			user << "Controls are now [locked ? "locked." : "unlocked."]"
 		else
-			to_chat(user, FEEDBACK_ACCESS_DENIED)
+			FEEDBACK_ACCESS_DENIED(user)
 
 	else
 		// if the turret was attacked with the intention of harming it:
@@ -1018,7 +1018,7 @@ Status: []<BR>"},
 			user << "Controls are now [Parent_Turret.locked ? "locked." : "unlocked."]"
 			updateUsrDialog()
 		else
-			to_chat(user, FEEDBACK_ACCESS_DENIED)
+			FEEDBACK_ACCESS_DENIED(user)
 
 	else
 		Parent_Turret.health -= W.force * 0.5

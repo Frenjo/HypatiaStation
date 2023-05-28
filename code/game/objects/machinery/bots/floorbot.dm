@@ -116,7 +116,7 @@
 			if(open)
 				user << "<span class='warning'>Please close the access panel before locking it.</span>"
 			else
-				to_chat(user, FEEDBACK_ACCESS_DENIED)
+				FEEDBACK_ACCESS_DENIED(user)
 		src.updateUsrDialog()
 	else
 		..()

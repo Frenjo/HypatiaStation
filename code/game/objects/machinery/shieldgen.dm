@@ -306,7 +306,7 @@
 			src.locked = !src.locked
 			user << "The controls are now [src.locked ? "locked." : "unlocked."]"
 		else
-			to_chat(user, FEEDBACK_ACCESS_DENIED)
+			FEEDBACK_ACCESS_DENIED(user)
 
 	else
 		..()
@@ -509,7 +509,7 @@
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
 		else
-			to_chat(user, FEEDBACK_ACCESS_DENIED)
+			FEEDBACK_ACCESS_DENIED(user)
 
 	else
 		src.add_fingerprint(user)

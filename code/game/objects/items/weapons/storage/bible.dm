@@ -47,7 +47,7 @@
 	log_attack("<font color='red'>[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>")
 
 	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		to_chat(user, FEEDBACK_NOT_ENOUGH_DEXTERITY)
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return
 	if(!chaplain)
 		user << "\red The book sizzles in your hands."

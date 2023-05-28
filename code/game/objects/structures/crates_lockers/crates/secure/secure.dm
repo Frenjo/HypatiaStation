@@ -39,7 +39,7 @@
 		overlays.Cut()
 		overlays.Add(locked ? redlight : greenlight)
 	else
-		to_chat(user, FEEDBACK_ACCESS_DENIED)
+		FEEDBACK_ACCESS_DENIED(user)
 
 /obj/structure/closet/crate/secure/verb/verb_togglelock()
 	set src in oview(1) // One square distance

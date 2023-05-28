@@ -318,7 +318,7 @@
 
 	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
 		if(!isAI(usr))
-			to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
+			FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 			return
 
 	if(!isturf(src.loc) && !issilicon(usr))
@@ -403,7 +403,7 @@
 /obj/machinery/power/smes/magical
 	name = "magical power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit. Magically produces power."
-	
+
 /obj/machinery/power/smes/magical/process()
 	capacity = INFINITY
 	charge = INFINITY

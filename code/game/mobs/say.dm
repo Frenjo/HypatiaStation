@@ -10,7 +10,7 @@
 	set name = "Say"
 	set category = "IC"
 	if(say_disabled)
-		to_chat(usr, FEEDBACK_SPEECH_ADMIN_DISABLED) // This is here to try to identify lag problems.
+		FEEDBACK_SPEECH_ADMIN_DISABLED(usr) // This is here to try to identify lag problems.
 		return
 	usr.say(message)
 
@@ -19,7 +19,7 @@
 	set category = "IC"
 
 	if(say_disabled)
-		to_chat(usr, FEEDBACK_SPEECH_ADMIN_DISABLED) // This is here to try to identify lag problems.
+		FEEDBACK_SPEECH_ADMIN_DISABLED(usr) // This is here to try to identify lag problems.
 		return
 
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
@@ -34,7 +34,7 @@
 	var/alt_name = ""
 
 	if(say_disabled)
-		to_chat(usr, FEEDBACK_SPEECH_ADMIN_DISABLED) // This is here to try to identify lag problems.
+		FEEDBACK_SPEECH_ADMIN_DISABLED(usr) // This is here to try to identify lag problems.
 		return
 
 	if(isnull(client.holder))

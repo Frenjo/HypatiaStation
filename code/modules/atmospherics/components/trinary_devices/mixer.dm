@@ -119,7 +119,7 @@
 		return
 	src.add_fingerprint(usr)
 	if(!src.allowed(user))
-		to_chat(user, FEEDBACK_ACCESS_DENIED)
+		FEEDBACK_ACCESS_DENIED(user)
 		return
 	usr.set_machine(src)
 	/*var/dat = {"<b>Power: </b><a href='?src=\ref[src];power=1'>[on?"On":"Off"]</a><br>

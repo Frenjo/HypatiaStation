@@ -631,7 +631,7 @@ var/list/robot_verbs_default = list(
 				to_chat(user, "You [locked ? "lock" : "unlock"] [src]'s interface.")
 				updateicon()
 			else
-				to_chat(user, FEEDBACK_ACCESS_DENIED)
+				FEEDBACK_ACCESS_DENIED(user)
 
 	else if(istype(W, /obj/item/weapon/card/emag))		// trying to unlock with an emag card
 		if(!opened)//Cover is closed

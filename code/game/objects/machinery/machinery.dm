@@ -192,7 +192,7 @@ Class Procs:
 	if(usr.restrained() || usr.lying || usr.stat)
 		return 1
 	if(!(ishuman(usr) || issilicon(usr) || ismonkey(usr) && global.CTgame_ticker && global.CTgame_ticker.mode.name == "monkey"))
-		to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return 1
 
 	var/norange = 0
@@ -228,7 +228,7 @@ Class Procs:
 	if(user.lying || user.stat)
 		return 1
 	if(!(ishuman(usr) || issilicon(usr) || ismonkey(usr) && global.CTgame_ticker && global.CTgame_ticker.mode.name == "monkey"))
-		to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return 1
 /*
 	//distance checks are made by atom/proc/DblClick
@@ -253,4 +253,3 @@ Class Procs:
 /obj/machinery/proc/assign_uid()
 	uid = gl_uid
 	gl_uid++
-

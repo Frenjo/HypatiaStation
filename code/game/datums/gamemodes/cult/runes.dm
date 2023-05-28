@@ -589,10 +589,10 @@ var/list/sacrificed = list()
 				if(length(cultsinrange) >= 3)
 					if(H.stat !=2)
 						if(prob(80))
-							to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+							FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
 							cult.grant_runeword(usr)
 						else
-							to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+							FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
 							to_chat(usr, SPAN_WARNING("However, this soul was not enough to gain His favor."))
 						if(isrobot(H))
 							H.dust()	//To prevent the MMI from remaining
@@ -600,10 +600,10 @@ var/list/sacrificed = list()
 							H.gib()
 					else
 						if(prob(40))
-							to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+							FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
 							cult.grant_runeword(usr)
 						else
-							to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+							FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
 							to_chat(usr, SPAN_WARNING("However, a mere dead body is not enough to satisfy Him."))
 						if(isrobot(H))
 							H.dust()	//To prevent the MMI from remaining
@@ -614,10 +614,10 @@ var/list/sacrificed = list()
 						to_chat(usr, SPAN_WARNING("The victim is still alive, you will need more cultists chanting for the sacrifice to succeed."))
 					else
 						if(prob(40))
-							to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+							FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
 							cult.grant_runeword(usr)
 						else
-							to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+							FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
 							to_chat(usr, SPAN_WARNING("However, a mere dead body is not enough to satisfy Him."))
 						if(isrobot(H))
 							H.dust()//To prevent the MMI from remaining
@@ -627,10 +627,10 @@ var/list/sacrificed = list()
 			if(length(cultsinrange) >= 3)
 				if(H.stat !=2)
 					if(prob(80))
-						to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+						FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
 						global.CTgame_ticker.mode.grant_runeword(usr)
 					else
-						to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+						FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
 						to_chat(usr, SPAN_WARNING("However, this soul was not enough to gain His favor."))
 					if(isrobot(H))
 						H.dust()//To prevent the MMI from remaining
@@ -638,10 +638,10 @@ var/list/sacrificed = list()
 						H.gib()
 				else
 					if(prob(40))
-						to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+						FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
 						global.CTgame_ticker.mode.grant_runeword(usr)
 					else
-						to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+						FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
 						to_chat(usr, SPAN_WARNING("However, a mere dead body is not enough to satisfy Him."))
 					if(isrobot(H))
 						H.dust()//To prevent the MMI from remaining
@@ -652,10 +652,10 @@ var/list/sacrificed = list()
 					to_chat(usr, SPAN_WARNING("The victim is still alive, you will need more cultists chanting for the sacrifice to succeed."))
 				else
 					if(prob(40))
-						to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+						FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
 						global.CTgame_ticker.mode.grant_runeword(usr)
 					else
-						to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts this sacrifice."))
+						FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
 						to_chat(usr, SPAN_WARNING("However, a mere dead body is not enough to satisfy Him."))
 					if(isrobot(H))
 						H.dust()//To prevent the MMI from remaining
@@ -684,7 +684,7 @@ var/list/sacrificed = list()
 			if(prob(20))
 				global.CTgame_ticker.mode.grant_runeword(usr)
 		M.gib()
-/*	
+/*
 	for(var/mob/living/carbon/alien/A)
 		for(var/mob/K in cultsinrange)
 			K.say("Barhah hra zar'garis!")
@@ -700,7 +700,7 @@ var/list/sacrificed = list()
 		else
 			usr << "\red The Geometer of Blood accepts your exotic sacrifice."
 		return
-	return fizzle() 
+	return fizzle()
 */
 
 

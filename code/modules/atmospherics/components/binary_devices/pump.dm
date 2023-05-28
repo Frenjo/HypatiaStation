@@ -153,7 +153,7 @@ Thus, the two variables affect pump operation are set in New():
 	src.add_fingerprint(usr)
 
 	if(!src.allowed(user))
-		to_chat(user, FEEDBACK_ACCESS_DENIED)
+		FEEDBACK_ACCESS_DENIED(user)
 		return
 
 	usr.set_machine(src)

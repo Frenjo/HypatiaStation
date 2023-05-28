@@ -21,7 +21,7 @@ var/global/announce_vox_departure = TRUE //Stealth systems - give an announcemen
 
 /obj/machinery/computer/vox_stealth/attack_hand(mob/user as mob)
 	if(!allowed(user))
-		to_chat(user, FEEDBACK_ACCESS_DENIED)
+		FEEDBACK_ACCESS_DENIED(user)
 		return
 
 	if(announce_vox_departure)
@@ -83,7 +83,7 @@ var/global/announce_vox_departure = TRUE //Stealth systems - give an announcemen
 
 /obj/machinery/computer/vox_station/attack_hand(mob/user as mob)
 	if(!allowed(user))
-		to_chat(user, FEEDBACK_ACCESS_DENIED)
+		FEEDBACK_ACCESS_DENIED(user)
 		return
 
 	user.set_machine(src)

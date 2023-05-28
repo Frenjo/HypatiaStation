@@ -174,7 +174,7 @@ Auto Patrol: []"},
 			if(open)
 				user << "\red Please close the access panel before locking it."
 			else
-				to_chat(user, FEEDBACK_ACCESS_DENIED)
+				FEEDBACK_ACCESS_DENIED(user)
 	else
 		..()
 		if(!istype(W, /obj/item/weapon/screwdriver) && (W.force) && (!src.target))

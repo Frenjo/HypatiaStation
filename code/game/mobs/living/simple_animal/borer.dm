@@ -5,7 +5,7 @@
 /mob/living/captive_brain/say(message)
 	if(src.client)
 		if(client.prefs.muted & MUTE_IC)
-			src << "\red You cannot speak in IC (muted)."
+			FEEDBACK_IC_MUTED(src)
 			return
 		if(src.client.handle_spam_prevention(message,MUTE_IC))
 			return
@@ -110,7 +110,7 @@
 
 	if(src.client)
 		if(client.prefs.muted & MUTE_IC)
-			src << "\red You cannot speak in IC (muted)."
+			FEEDBACK_IC_MUTED(src)
 			return
 		if(src.client.handle_spam_prevention(message,MUTE_IC))
 			return

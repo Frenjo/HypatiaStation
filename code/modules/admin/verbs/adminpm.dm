@@ -4,9 +4,12 @@
 	set name = "Admin PM Mob"
 
 	if(!holder)
+		// This hasn't been converted to use FEEDBACK_COMMAND_ADMIN_ONLY because I'm debating whether or not...
+		// ... I want to convert all generic feedback to include the name of the command you tried to execute...
+		// ... like these ones currently are.
 		to_chat(src, "<font color='red'>Error: Admin-PM-Context: Only administrators may use this command.</font>")
 		return
-	
+
 	if(!ismob(M) || !M.client)
 		return
 	cmd_admin_pm(M.client, null)
@@ -17,6 +20,9 @@
 	set category = "Admin"
 	set name = "Admin PM"
 	if(!holder)
+		// This hasn't been converted to use FEEDBACK_COMMAND_ADMIN_ONLY because I'm debating whether or not...
+		// ... I want to convert all generic feedback to include the name of the command you tried to execute...
+		// ... like these ones currently are.
 		to_chat(src, "<font color='red'>Error: Admin-PM-Panel: Only administrators may use this command.</font>")
 		return
 	var/list/client/targets[0]

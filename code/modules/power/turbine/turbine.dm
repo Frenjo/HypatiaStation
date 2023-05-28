@@ -95,7 +95,7 @@
 		return
 	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
 		if(!isAI(usr))
-			to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
+			FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 			return
 
 	if((usr.machine == src && (get_dist(src, usr) <= 1 && isturf(src.loc))) || isAI(usr))

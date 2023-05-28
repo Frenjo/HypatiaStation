@@ -57,7 +57,7 @@
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
 			updateDialog()
 		else
-			to_chat(user, FEEDBACK_ACCESS_DENIED)
+			FEEDBACK_ACCESS_DENIED(user)
 	else if(istype(W, /obj/item/weapon/card/emag))
 		if(prob(75))
 			src.locked = !src.locked

@@ -260,7 +260,7 @@ var/specops_shuttle_timeleft = 0
 
 /obj/machinery/computer/specops_shuttle/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		to_chat(user, FEEDBACK_ACCESS_DENIED)
+		FEEDBACK_ACCESS_DENIED(user)
 		return
 
 //Commented out so admins can do shenanigans at their leisure. Also makes the force-spawned admin ERTs able to use the shuttle.
@@ -523,7 +523,7 @@ var/specops_shuttle_timeleft = 0
 
 /obj/machinery/computer/specops_shuttle/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		to_chat(user, FEEDBACK_ACCESS_DENIED)
+		FEEDBACK_ACCESS_DENIED(user)
 		return
 
 //	if (sent_strike_team == 0)

@@ -292,7 +292,7 @@
 /obj/machinery/clonepod/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
 		if(!src.check_access(W))
-			to_chat(user, FEEDBACK_ACCESS_DENIED)
+			FEEDBACK_ACCESS_DENIED(user)
 			return
 		if((!src.locked) || (isnull(src.occupant)))
 			return

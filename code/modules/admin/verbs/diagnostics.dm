@@ -128,7 +128,7 @@
 	set category = "Debug"
 		/*
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	if(!air_master)
@@ -150,7 +150,7 @@
 	set category = "Debug"
 	/*
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	if(!air_master)

@@ -4,7 +4,7 @@
 	set category = "Admin"
 
 	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	if(CONFIG_GET(allow_admin_jump))
@@ -21,7 +21,7 @@
 	set category = "Admin"
 
 	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	if(CONFIG_GET(allow_admin_jump))
@@ -38,7 +38,7 @@
 	set name = "Jump to Mob"
 
 	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	if(CONFIG_GET(allow_admin_jump))
@@ -60,7 +60,7 @@
 	set name = "Jump to Coordinate"
 
 	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	if(CONFIG_GET(allow_admin_jump))
@@ -80,7 +80,7 @@
 	set name = "Jump to Key"
 
 	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	if(CONFIG_GET(allow_admin_jump))
@@ -105,7 +105,7 @@
 	set desc = "Mob to teleport"
 
 	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	if(CONFIG_GET(allow_admin_jump))
@@ -122,7 +122,7 @@
 	set desc = "Key to teleport"
 
 	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	if(CONFIG_GET(allow_admin_jump))
@@ -149,7 +149,7 @@
 	set name = "Send Mob"
 
 	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	var/area/A = input(usr, "Pick an area.", "Pick an area") in return_sorted_areas()

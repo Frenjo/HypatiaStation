@@ -21,7 +21,7 @@
 		return
 
 	if(!allowed(user))
-		to_chat(user, FEEDBACK_ACCESS_DENIED)
+		FEEDBACK_ACCESS_DENIED(user)
 		return
 
 	user.set_machine(src)
@@ -48,7 +48,7 @@
 		return
 
 	if(!allowed(usr))
-		to_chat(usr, FEEDBACK_ACCESS_DENIED)
+		FEEDBACK_ACCESS_DENIED(usr)
 		return
 
 	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc))) || (issilicon(usr)))

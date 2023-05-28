@@ -87,7 +87,7 @@
 		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			if(stat & BROKEN)
-				to_chat(user, FEEDBACK_BROKEN_GLASS_FALLS)
+				FEEDBACK_BROKEN_GLASS_FALLS(user)
 				var/obj/structure/computerframe/CF = new /obj/structure/computerframe(loc)
 				new /obj/item/weapon/shard(loc)
 				var/obj/item/weapon/circuitboard/security/CB = new /obj/item/weapon/circuitboard/security(CF)
@@ -100,7 +100,7 @@
 				CF.anchored = TRUE
 				qdel(src)
 			else
-				to_chat(user, FEEDBACK_DISCONNECT_MONITOR)
+				FEEDBACK_DISCONNECT_MONITOR(user)
 				var/obj/structure/computerframe/CF = new /obj/structure/computerframe( loc )
 				var/obj/item/weapon/circuitboard/security/CB = new /obj/item/weapon/circuitboard/security(CF)
 				CB.network = network

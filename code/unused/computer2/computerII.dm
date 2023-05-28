@@ -293,12 +293,12 @@
 			var/obj/computer2frame/A = new /obj/computer2frame( src.loc )
 			A.created_icon_state = src.base_icon_state
 			if (src.stat & BROKEN)
-				to_chat(user, FEEDBACK_BROKEN_GLASS_FALLS)
+				FEEDBACK_BROKEN_GLASS_FALLS(user)
 				new /obj/item/weapon/shard( src.loc )
 				A.state = 3
 				A.icon_state = "3"
 			else
-				to_chat(user, FEEDBACK_DISCONNECT_MONITOR)
+				FEEDBACK_DISCONNECT_MONITOR(user)
 				A.state = 4
 				A.icon_state = "4"
 

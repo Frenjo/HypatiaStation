@@ -14,7 +14,7 @@
 /obj/item/device/megaphone/attack_self(mob/living/user as mob)
 	if(user.client)
 		if(user.client.prefs.muted & MUTE_IC)
-			to_chat(src, SPAN_WARNING("You cannot speak in IC (muted)."))
+			FEEDBACK_IC_MUTED(src)
 			return
 	if(!ishuman(user))
 		to_chat(src, SPAN_WARNING("You don't know how to use this!"))

@@ -8,7 +8,7 @@
 	req_access = list(ACCESS_CENT_SPECOPS)
 
 /obj/machinery/computer/shuttle_control/specops/attack_ai(user as mob)
-	to_chat(user, FEEDBACK_ACCESS_DENIED)
+	FEEDBACK_ACCESS_DENIED(user)
 	return 1
 
 //for shuttles that may use a different docking port at each location

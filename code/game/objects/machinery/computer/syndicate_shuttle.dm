@@ -44,7 +44,7 @@
 
 /obj/machinery/computer/syndicate_station/attack_hand(mob/user as mob)
 	if(!allowed(user))
-		to_chat(user, FEEDBACK_ACCESS_DENIED)
+		FEEDBACK_ACCESS_DENIED(user)
 		return
 
 	user.set_machine(src)

@@ -12,7 +12,7 @@ var/global/admin_emergency_team = 0 // Used for admin-spawned response teams
 	set desc = "Send an emergency response team to the station"
 
 	if(!holder)
-		usr << "\red Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(usr)
 		return
 	if(!ticker)
 		usr << "\red The game hasn't started yet!"
@@ -253,4 +253,3 @@ var/global/admin_emergency_team = 0 // Used for admin-spawned response teams
 	update_icons()
 
 	return 1
-

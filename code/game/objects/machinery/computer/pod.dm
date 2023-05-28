@@ -57,7 +57,7 @@
 		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			if(stat & BROKEN)
-				to_chat(user, FEEDBACK_BROKEN_GLASS_FALLS)
+				FEEDBACK_BROKEN_GLASS_FALLS(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( loc )
 				new /obj/item/weapon/shard( loc )
 
@@ -81,7 +81,7 @@
 				A.anchored = TRUE
 				qdel(src)
 			else
-				to_chat(user, FEEDBACK_DISCONNECT_MONITOR)
+				FEEDBACK_DISCONNECT_MONITOR(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( loc )
 
 				//generate appropriate circuitboard. Accounts for /pod/old computer types
@@ -207,7 +207,7 @@
 
 /obj/machinery/computer/pod/old/syndicate/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		to_chat(user, FEEDBACK_ACCESS_DENIED)
+		FEEDBACK_ACCESS_DENIED(user)
 		return
 	else
 		..()

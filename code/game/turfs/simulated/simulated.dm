@@ -22,7 +22,7 @@
 
 /turf/simulated/Entered(atom/A, atom/OL)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		to_chat(usr, FEEDBACK_MOVEMENT_ADMIN_DISABLED) // This is to identify lag problems.
+		FEEDBACK_MOVEMENT_ADMIN_DISABLED(usr) // This is to identify lag problems.
 		return
 
 	if(iscarbon(A))

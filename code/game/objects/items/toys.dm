@@ -159,7 +159,7 @@
 	if(flag)
 		return
 	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
-		to_chat(user, FEEDBACK_NOT_ENOUGH_DEXTERITY)
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return
 	src.add_fingerprint(user)
 	if(src.bullets < 1)

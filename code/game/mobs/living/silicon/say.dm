@@ -29,7 +29,7 @@
 
 	if(!isnull(client))
 		if(client.prefs.muted & MUTE_IC)
-			src << "You cannot send IC messages (muted)."
+			FEEDBACK_IC_MUTED(src)
 			return
 		if(client.handle_spam_prevention(message, MUTE_IC))
 			return

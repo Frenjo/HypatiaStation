@@ -193,7 +193,7 @@
 			if(open)
 				to_chat(user, SPAN_WARNING("Please close the access panel before locking it."))
 			else
-				to_chat(user, FEEDBACK_ACCESS_DENIED)
+				FEEDBACK_ACCESS_DENIED(user)
 
 	else if(istype(W, /obj/item/weapon/reagent_containers/glass))
 		if(src.locked)

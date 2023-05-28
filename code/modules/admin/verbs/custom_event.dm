@@ -4,7 +4,7 @@
 	set name = "Change Custom Event"
 
 	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	var/input = input(usr, "Enter the description of the custom event. Be descriptive. To cancel the event, make this blank or hit cancel.", "Custom Event", GLOBL.custom_event_msg) as message | null

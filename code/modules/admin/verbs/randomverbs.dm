@@ -2,7 +2,7 @@
 	set category = null
 	set name = "Drop Everything"
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	var/confirm = alert(src, "Make [M] drop everything?", "Message", "Yes", "No")
@@ -20,7 +20,7 @@
 	set category = "Admin"
 	set name = "Prison"
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	if (ismob(M))
 		if(istype(M, /mob/living/silicon/ai))
@@ -49,7 +49,7 @@
 
 	if(!ismob(M))	return
 	if (!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	var/msg = input("Message:", text("Subtle PM to [M.key]")) as text
@@ -70,7 +70,7 @@
 	set name = "Global Narrate"
 
 	if (!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	var/msg = input("Message:", text("Enter the text you wish to appear to everyone:")) as text
@@ -87,7 +87,7 @@
 	set name = "Direct Narrate"
 
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	if(!M)
@@ -110,7 +110,7 @@
 	set category = "Special Verbs"
 	set name = "Godmode"
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	M.status_flags ^= GODMODE
 	usr << "\blue Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]"
@@ -175,7 +175,7 @@
 	set category = "Fun"
 	set name = "Add Random AI Law"
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm != "Yes") return
@@ -234,7 +234,7 @@ Ccomp's first proc.
 	set name = "Allow player to respawn"
 	set desc = "Let's the player bypass the 30 minute wait to respawn or allow them to re-enter their corpse."
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 	var/list/ghosts= get_ghosts(1,1)
 
 	var/target = input("Please, select a ghost!", "COME BACK TO LIFE!", null, null) as null|anything in ghosts
@@ -264,7 +264,7 @@ Ccomp's first proc.
 	set desc = "Toggles antagHUD usage for observers"
 
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 	var/action=""
 	if(CONFIG_GET(antag_hud_allowed))
 		for(var/mob/dead/observer/g in get_ghosts())
@@ -297,7 +297,7 @@ Ccomp's first proc.
 	set name = "Toggle antagHUD Restrictions"
 	set desc = "Restricts players that have used antagHUD from being able to join this round."
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 	var/action=""
 	if(CONFIG_GET(antag_hud_restricted))
 		for(var/mob/dead/observer/g in get_ghosts())
@@ -331,7 +331,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Respawn Character"
 	set desc = "Respawn a person that has been gibbed/dusted/killed. They must be a ghost for this to work and preferably should not have a body to go back into."
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	var/input = ckey(input(src, "Please specify which key will be respawned.", "Key", ""))
 	if(!input)
@@ -492,7 +492,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Fun"
 	set name = "Add Custom AI law"
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	var/input = input(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", "") as text|null
 	if(!input)
@@ -520,7 +520,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Special Verbs"
 	set name = "Rejuvenate"
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	if(!mob)
 		return
@@ -540,7 +540,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Special Verbs"
 	set name = "Create Command Report"
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	var/input = input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as message|null
 	var/customname = input(usr, "Pick a title for the report.", "Title") as text|null
@@ -573,7 +573,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Delete"
 
 	if (!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	if (alert(src, "Are you sure you want to delete:\n[O]\nat ([O.x], [O.y], [O.z])?", "Confirmation", "Yes", "No") == "Yes")
@@ -587,7 +587,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "List free slots"
 
 	if (!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	if(global.CToccupations)
 		for(var/datum/job/job in global.CToccupations.occupations)
@@ -684,7 +684,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Manual Ban"
 	set category = "Special Verbs"
 	if(!authenticated || !holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	var/mob/M = null
 	switch(alert("How would you like to ban someone today?", "Manual Ban", "Key List", "Enter Manually", "Cancel"))
@@ -755,7 +755,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Debug"
 	set name = "Stabilize Atmos."
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	feedback_add_details("admin_verb","STATM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 // DEFERRED

@@ -408,5 +408,5 @@
 				if(!C.cremating)
 					C.cremate(user)
 	else
-		to_chat(user, FEEDBACK_ACCESS_DENIED)
+		FEEDBACK_ACCESS_DENIED(user)
 	return

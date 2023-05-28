@@ -16,16 +16,16 @@
 		if(2)
 /*
 			if(affected_mob.sleeping && prob(40))  //removed until sleeping is fixed
-				to_chat(affected_mob, FEEDBACK_YOU_FEEL_BETTER)
+				FEEDBACK_YOU_FEEL_BETTER(affected_mob)
 				cure()
 				return
 */
 			if(affected_mob.lying && prob(40))  //changed FROM prob(10) until sleeping is fixed
-				to_chat(affected_mob, FEEDBACK_YOU_FEEL_BETTER)
+				FEEDBACK_YOU_FEEL_BETTER(affected_mob)
 				cure()
 				return
 			if(prob(1) && prob(5))
-				to_chat(affected_mob, FEEDBACK_YOU_FEEL_BETTER)
+				FEEDBACK_YOU_FEEL_BETTER(affected_mob)
 				cure()
 				return
 			if(prob(1))
@@ -39,16 +39,16 @@
 		if(3)
 /*
 			if(affected_mob.sleeping && prob(25))  //removed until sleeping is fixed
-				to_chat(affected_mob, FEEDBACK_YOU_FEEL_BETTER)
+				FEEDBACK_YOU_FEEL_BETTER(affected_mob)
 				cure()
 				return
 */
 			if(affected_mob.lying && prob(25))  //changed FROM prob(5) until sleeping is fixed
-				to_chat(affected_mob, FEEDBACK_YOU_FEEL_BETTER)
+				FEEDBACK_YOU_FEEL_BETTER(affected_mob)
 				cure()
 				return
 			if(prob(1) && prob(1))
-				to_chat(affected_mob, FEEDBACK_YOU_FEEL_BETTER)
+				FEEDBACK_YOU_FEEL_BETTER(affected_mob)
 				cure()
 				return
 			if(prob(1))

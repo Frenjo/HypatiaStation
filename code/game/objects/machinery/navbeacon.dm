@@ -118,7 +118,7 @@
 				src.locked = !src.locked
 				to_chat(user, "Controls are now [src.locked ? "locked" : "unlocked"].")
 			else
-				to_chat(user, FEEDBACK_ACCESS_DENIED)
+				FEEDBACK_ACCESS_DENIED(user)
 			updateDialog()
 		else
 			to_chat(user, "You must open the cover first!")

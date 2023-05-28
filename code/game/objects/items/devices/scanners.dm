@@ -83,7 +83,7 @@ REAGENT SCANNER
 		user.show_message("\blue Body Temperature: ???", 1)
 		return
 	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
-		to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 	user.visible_message(
 		SPAN_NOTICE("[user] has analyzed [M]'s vitals."),
@@ -94,7 +94,7 @@ REAGENT SCANNER
 		//these sensors are designed for organic life
 		output_error(user, M)
 		return
-	
+
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.flags & IS_SYNTHETIC)
@@ -234,7 +234,7 @@ REAGENT SCANNER
 	if(user.stat)
 		return
 	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
-		to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 
 	var/turf/location = user.loc
@@ -297,7 +297,7 @@ REAGENT SCANNER
 		to_chat(user, SPAN_WARNING("This device has critically failed and is no longer functional!"))
 		return
 	if(!(ishuman(user) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
-		to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 	if(reagents.total_volume)
 		var/list/blood_traces = list()
@@ -356,7 +356,7 @@ REAGENT SCANNER
 	if(user.stat)
 		return
 	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
-		to_chat(usr, FEEDBACK_NOT_ENOUGH_DEXTERITY)
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 	if(!istype(O))
 		return

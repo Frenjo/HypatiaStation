@@ -88,7 +88,7 @@
 				to_chat(user, "You [ locked ? "lock" : "unlock"] the compressor interface.")
 				update_icon()
 			else
-				to_chat(user, FEEDBACK_ACCESS_DENIED)
+				FEEDBACK_ACCESS_DENIED(user)
 		return
 
 	else if(istype(W, /obj/item/weapon/card/emag) && !emagged)		// trying to unlock with an emag card

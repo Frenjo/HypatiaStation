@@ -3,7 +3,7 @@
 	set name = "Check Plumbing"
 
 	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	feedback_add_details("admin_verb", "CP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -28,7 +28,7 @@
 	set name = "Check Power"
 
 	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	feedback_add_details("admin_verb", "CPOW") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

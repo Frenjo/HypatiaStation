@@ -4,7 +4,7 @@
 
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
-			src << "\red You cannot speak in IC (Muted)."
+			FEEDBACK_IC_MUTED(src)
 			return
 
 	message =  trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))

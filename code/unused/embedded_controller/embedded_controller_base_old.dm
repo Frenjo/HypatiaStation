@@ -27,7 +27,7 @@
 	src.ui_interact(user)
 
 /obj/machinery/embedded_controller/attack_paw(mob/user as mob)
-	to_chat(user, FEEDBACK_NOT_ENOUGH_DEXTERITY)
+	FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 	return
 
 /obj/machinery/embedded_controller/attack_hand(mob/user as mob)

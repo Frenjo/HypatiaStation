@@ -1097,7 +1097,7 @@ var/global/floorIsLava = 0
 	set desc = "Should fix any mob sprite update errors."
 
 	if(!holder)
-		src << "Only administrators may use this command."
+		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
 	if(istype(H))
