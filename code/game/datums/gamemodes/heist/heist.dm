@@ -236,7 +236,7 @@ VOX HEIST ROUNDTYPE
 /datum/game_mode/proc/auto_declare_completion_heist()
 	if(!length(raiders))
 		return
-		
+
 	var/check_return = FALSE
 	if(IS_GAME_MODE(/datum/game_mode/heist))
 		check_return = TRUE
@@ -262,6 +262,7 @@ VOX HEIST ROUNDTYPE
 	to_world(text)
 
 /datum/game_mode/heist/check_finished()
-	if(!is_raider_crew_alive() || (vox_shuttle_location && (vox_shuttle_location == "start")))
+	var/datum/shuttle/multi_shuttle/vox_shuttle = global.CTshuttle.shuttles["Vox Skipjack"]
+	if(!is_raider_crew_alive() || vox_shuttle?.returned_home)
 		return TRUE
 	return ..()

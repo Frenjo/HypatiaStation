@@ -14,9 +14,9 @@
 	if(isnull(location))
 		return
 
-	if(!destination)
+	if(isnull(destination))
 		destination = get_location_area(!location)
-	if(!origin)
+	if(isnull(origin))
 		origin = get_location_area(location)
 
 	//it would be cool to play a sound here

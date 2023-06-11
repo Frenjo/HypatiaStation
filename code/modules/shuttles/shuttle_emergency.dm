@@ -206,15 +206,15 @@
 	data = list(
 		"shuttle_status" = shuttle_status,
 		"shuttle_state" = shuttle_state,
-		"has_docking" = shuttle.docking_controller ? 1 : 0,
-		"docking_status" = shuttle.docking_controller ? shuttle.docking_controller.get_docking_status() : null,
-		"docking_override" = shuttle.docking_controller ? shuttle.docking_controller.override_enabled : null,
+		"has_docking" = !isnull(shuttle.docking_controller) ? TRUE : FALSE,
+		"docking_status" = !isnull(shuttle.docking_controller) ? shuttle.docking_controller.get_docking_status() : null,
+		"docking_override" = !isnull(shuttle.docking_controller) ? shuttle.docking_controller.override_enabled : null,
 		"can_launch" = shuttle.can_launch(src),
 		"can_cancel" = shuttle.can_cancel(src),
 		"can_force" = shuttle.can_force(src),
 		"auth_list" = auth_list,
 		"has_auth" = has_auth,
-		"user" = debug? user : null,
+		"user" = debug ? user : null,
 	)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -230,7 +230,7 @@
 
 	if(href_list["removeid"])
 		var/dna_hash = href_list["removeid"]
-		authorized -= dna_hash
+		authorized.Remove(dna_hash)
 
 	if(!emagged && href_list["scanid"])
 		//They selected an empty entry. Try to scan their id.

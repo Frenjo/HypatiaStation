@@ -65,7 +65,7 @@
 	if(isnull(location_id))
 		location_id = location
 
-	if(!location_id)
+	if(isnull(location_id))
 		return area_station
 	return area_offsite
 
@@ -137,7 +137,7 @@
 	process_state = WAIT_FINISH
 	in_use = null
 
-	if(docking_controller && !docking_controller.undocked())
+	if(!isnull(docking_controller) && !docking_controller.undocked())
 		docking_controller.force_undock()
 
 	spawn(10)

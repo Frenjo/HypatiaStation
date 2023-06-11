@@ -52,17 +52,17 @@
 		moving_status = SHUTTLE_IDLE
 
 /datum/shuttle/proc/dock()
-	if(!docking_controller)
+	if(isnull(docking_controller))
 		return
 
 	var/dock_target = current_dock_target()
-	if(!dock_target)
+	if(isnull(dock_target))
 		return
 
 	docking_controller.initiate_docking(dock_target)
 
 /datum/shuttle/proc/undock()
-	if(!docking_controller)
+	if(isnull(docking_controller))
 		return
 	docking_controller.initiate_undocking()
 
@@ -70,7 +70,7 @@
 	return null
 
 /datum/shuttle/proc/skip_docking_checks()
-	if(!docking_controller || !current_dock_target())
+	if(isnull(docking_controller) || isnull(current_dock_target()))
 		return 1	//shuttles without docking controllers or at locations without docking ports act like old-style shuttles
 	return 0
 
@@ -87,14 +87,14 @@
 		//world << "cancelling move, shuttle will overlap."
 		return
 
-	if(docking_controller && !docking_controller.undocked())
+	if(!isnull(docking_controller) && !docking_controller.undocked())
 		docking_controller.force_undock()
 
 	var/list/dstturfs = list()
 	var/throwy = world.maxy
 
 	for(var/turf/T in destination)
-		dstturfs += T
+		dstturfs.Add(T)
 		if(T.y < throwy)
 			throwy = T.y
 
@@ -113,18 +113,17 @@
 	origin.move_contents_to(destination, direction = direction)
 
 	for(var/mob/M in destination)
-		if(M.client)
+		if(!isnull(M.client))
 			spawn(0)
-				if(M.buckled)
+				if(!isnull(M.buckled))
 					to_chat(M, SPAN_WARNING("Sudden acceleration presses you into your chair!"))
 					shake_camera(M, 3, 1)
 				else
 					to_chat(M, SPAN_WARNING("The floor lurches beneath you!"))
 					shake_camera(M, 10, 1)
 		if(iscarbon(M))
-			if(!M.buckled)
+			if(isnull(M.buckled))
 				M.Weaken(3)
-	return
 
 //returns 1 if the shuttle has a valid arrive time
 /datum/shuttle/proc/has_arrive_time()

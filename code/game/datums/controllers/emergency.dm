@@ -89,7 +89,7 @@ CONTROLLER_DEF(emergency)
 	world << sound('sound/AI/shuttlecalled.ogg')
 	for(var/area/hallway/hall in GLOBL.contactable_hallway_areas)
 		hall.evac_alert()
-	
+
 	set_status_displays()
 
 //calls the shuttle for a routine crew transfer
@@ -128,7 +128,7 @@ CONTROLLER_DEF(emergency)
 	else
 		captain_announce("The scheduled crew transfer has been cancelled.")
 		world << sound('sound/AI/shuttlerecall2.ogg')
-	
+
 	set_status_displays(TRUE)
 
 // Sets the status displays.
@@ -175,7 +175,7 @@ CONTROLLER_DEF(emergency)
 
 //so we don't have emergency_controller.shuttle.location everywhere
 /datum/controller/emergency/proc/location()
-	if(!shuttle)
+	if(isnull(shuttle))
 		return 1	//if we dont have a shuttle datum, just act like it's at centcom
 	return shuttle.location
 

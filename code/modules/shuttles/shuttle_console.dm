@@ -7,8 +7,8 @@
 	icon_state = "shuttle"
 	circuit = null
 
-	var/shuttle_tag	// Used to coordinate data in shuttle controller.
-	var/hacked = 0	// Has been emagged, no access restrictions.
+	var/shuttle_tag		// Used to coordinate data in shuttle controller.
+	var/hacked = FALSE	// Has been emagged, no access restrictions.
 
 /obj/machinery/computer/shuttle_control/attack_hand(user as mob)
 	if(..(user))
@@ -74,7 +74,7 @@
 		return
 
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 
 	var/datum/shuttle/ferry/shuttle = global.CTshuttle.shuttles[shuttle_tag]
 	if(!istype(shuttle))
@@ -89,9 +89,9 @@
 
 /obj/machinery/computer/shuttle_control/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/card/emag))
-		src.req_access = list()
-		src.req_one_access = list()
-		hacked = 1
+		req_access = list()
+		req_one_access = list()
+		hacked = TRUE
 		to_chat(usr, "You short out the console's ID checking system. It's now available to everyone!")
 	else
 		..()

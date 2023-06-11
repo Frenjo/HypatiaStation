@@ -672,7 +672,7 @@
 "xh" = (/turf/simulated/shuttle/wall/corner/interior/smoothwhite/ne,/area/shuttle/transport1/centcom)
 "xi" = (/obj/structure/table,/obj/item/weapon/gun/energy/ionrifle,/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/syndicate_station/start)
 "xk" = (/turf/simulated/shuttle/wall{icon_state = "swall11"},/area/shuttle/escape/centcom)
-"xl" = (/obj/machinery/computer/vox_stealth,/turf/simulated/shuttle/floor/vox,/area/shuttle/vox/station)
+"xl" = (/obj/machinery/computer{desc = "This old terminal seems to have been rendered obsolete by advances in shuttle control technology. It hasn't been removed, so perhaps it'll be useful again some day."; icon_state = "syndishuttle"; name = "skipjack cloaking field terminal"},/turf/simulated/shuttle/floor/vox,/area/shuttle/vox/station)
 "xm" = (/obj/structure/table,/obj/machinery/recharger{pixel_y = 4},/turf/simulated/shuttle/floor{icon_state = "floor2"},/area/shuttle/administration/centcom)
 "xn" = (/obj/machinery/vending/dinnerware,/turf/unsimulated/floor{icon_state = "cafeteria"},/area/centcom/living)
 "xo" = (/obj/machinery/atmospherics/unary/portables_connector,/obj/machinery/portable_atmospherics/canister/oxygen,/obj/structure/sign/nosmoking_2{pixel_y = 30},/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/shuttle/escape/centcom)
