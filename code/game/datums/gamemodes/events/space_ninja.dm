@@ -977,7 +977,7 @@ mob/verb/remove_object_panel()
 	set category = "Ninja Debug"
 
 	ninja_debug_target = src//The target is you, brohime.
-	world << "Target: [src]"
+	to_world("Target: [src]")
 
 /mob/verb/hack_spideros_debug()
 	set name = "Debug Hack Spider OS"

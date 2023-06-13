@@ -136,8 +136,8 @@
 //Announces the game type//
 ///////////////////////////
 /datum/game_mode/revolution/rp_revolution/announce()
-	world << "<B>The current game mode is - Revolution!</B>"
-	world << "<B>Some crewmembers are attempting to start a revolution!</B>"
+	to_world("<B>The current game mode is - Revolution!</B>")
+	to_world("<B>Some crewmembers are attempting to start a revolution!</B>")
 
 
 //////////////////////////////////////////////////////////////////////
@@ -147,10 +147,10 @@
 	if(!CONFIG_GET(objectives_disabled))
 		if(finished == 1)
 			feedback_set_details("round_end_result", "win - heads overthrown")
-			world << "\red <FONT size = 3><B> The heads of staff were overthrown! The revolutionaries win!</B></FONT>"
+			to_world(SPAN_DANGER("<FONT size = 3>The heads of staff were overthrown! The revolutionaries win!</FONT>"))
 		else if(finished == 2)
 			feedback_set_details("round_end_result", "loss - revolution stopped")
-			world << "\red <FONT size = 3><B> The heads of staff managed to stop the revolution!</B></FONT>"
+			to_world(SPAN_DANGER("<FONT size = 3>The heads of staff managed to stop the revolution!</FONT>"))
 		..()
 	return 1
 

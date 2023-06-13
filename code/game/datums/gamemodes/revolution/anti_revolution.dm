@@ -26,8 +26,8 @@
 //Announces the game type//
 ///////////////////////////
 /datum/game_mode/anti_revolution/announce()
-	world << "<B>The current game mode is - Anti-Revolution!</B>"
-	world << "<B>Looks like CentCom has given a few new orders..</B>"
+	to_world("<B>The current game mode is - Anti-Revolution!</B>")
+	to_world("<B>Looks like CentCom has given a few new orders..</B>")
 
 ///////////////////////////////////////////////////////////////////////////////
 //Gets the round setup, cancelling if there's not enough players at the start//
@@ -155,13 +155,13 @@
 
 	var/text = ""
 	if(finished == 2)
-		world << "\red <FONT size = 3><B> The heads of staff were relieved of their posts! The crew wins!</B></FONT>"
+		to_world(SPAN_DANGER("<FONT size = 3>The heads of staff were relieved of their posts! The crew wins!</FONT>"))
 	else if(finished == 1)
-		world << "\red <FONT size = 3><B> The heads of staff managed to meet the goals set for them by CentCom!</B></FONT>"
+		to_world(SPAN_DANGER("<FONT size = 3>The heads of staff managed to meet the goals set for them by CentCom!</FONT>"))
 
 
 
-	world << "<FONT size = 2><B>The heads of staff were: </B></FONT>"
+	to_world("<FONT size = 2><B>The heads of staff were: </B></FONT>")
 	var/list/heads = list()
 	heads = get_all_heads()
 	for(var/datum/mind/head_mind in heads)
@@ -175,10 +175,10 @@
 		else
 			text += "[head_mind.key] (character destroyed)"
 
-		world << text
+		to_world(text)
 
 
-	world << "<FONT size = 2><B>Their objectives were: </B></FONT>"
+	to_world("<FONT size = 2><B>Their objectives were: </B></FONT>")
 	for(var/datum/mind/head_mind in heads)
 		if(length(head_mind.objectives))//If the traitor had no objectives, don't need to process this.
 			var/count = 1

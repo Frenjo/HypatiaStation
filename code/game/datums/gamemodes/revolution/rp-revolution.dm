@@ -24,7 +24,7 @@
 
 
 /datum/game_mode/rp_revolution/announce()
-	world << "<B>The current game mode is - Revolution RP!</B>"
+	to_world("<B>The current game mode is - Revolution RP!</B>")
 
 /datum/game_mode/rp_revolution/send_intercept()
 	var/intercepttext = "<FONT size = 3><B>Cent. Com. Update</B> Requested staus information:</FONT><HR>"
@@ -62,7 +62,7 @@
 	var/rev_number = 0
 
 	if(!revs_possible || !heads)
-		world << "<B> \red Not enough players for RP revolution game mode. Restarting world in 5 seconds."
+		to_world(SPAN_DANGER("Not enough players for RP revolution game mode. Restarting world in 5 seconds."))
 		sleep(50)
 		world.Reboot()
 		return
@@ -229,11 +229,11 @@
 
 	var/text = ""
 	if(finished == 1)
-		world << "\red <FONT size = 3><B> The heads of staff were relieved of their posts! The revolutionaries win!</B></FONT>"
+		to_world(SPAN_DANGER("<FONT size = 3>The heads of staff were relieved of their posts! The revolutionaries win!</FONT>"))
 	else if(finished == 2)
-		world << "\red <FONT size = 3><B> The heads of staff managed to stop the revolution!</B></FONT>"
+		to_world(SPAN_DANGER("<FONT size = 3>The heads of staff managed to stop the revolution!</FONT>"))
 
-	world << "<FONT size = 2><B>The head revolutionaries were: </B></FONT>"
+	to_world("<FONT size = 2><B>The head revolutionaries were:</B></FONT>")
 	for(var/datum/mind/rev_mind in head_revolutionaries)
 		text = ""
 		if(rev_mind.current)
@@ -245,10 +245,10 @@
 		else
 			text += "[rev_mind.key] (character destroyed)"
 
-		world << text
+		to_world(text)
 
 	text = ""
-	world << "<FONT size = 2><B>The converted revolutionaries were: </B></FONT>"
+	to_world("<FONT size = 2><B>The converted revolutionaries were:</B></FONT>")
 	for(var/datum/mind/rev_nh_mind in revolutionaries)
 		if(rev_nh_mind.current)
 			text += "[rev_nh_mind.current.real_name]"
@@ -260,9 +260,9 @@
 			text += "[rev_nh_mind.key] (character destroyed)"
 		text += ", "
 
-	world << text
+	to_world(text)
 
-	world << "<FONT size = 2><B>The heads of staff were: </B></FONT>"
+	to_world("<FONT size = 2><B>The heads of staff were:</B></FONT>")
 	var/list/heads = list()
 	heads = get_all_heads()
 	for(var/datum/mind/head_mind in heads)
@@ -276,7 +276,7 @@
 		else
 			text += "[head_mind.key] (character destroyed)"
 
-		world << text
+		to_world(text)
 	return 1
 
 

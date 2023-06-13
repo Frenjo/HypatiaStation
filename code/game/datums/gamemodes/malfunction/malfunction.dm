@@ -23,9 +23,9 @@
 
 
 /datum/game_mode/malfunction/announce()
-	world << "<B>The current game mode is - AI Malfunction!</B>"
-	world << "<B>The AI on the satellite has malfunctioned and must be destroyed.</B>"
-	world << "The AI satellite is deep in space and can only be accessed with the use of a teleporter! You have [AI_win_timeleft/60] minutes to disable it."
+	to_world("<B>The current game mode is - AI Malfunction!</B>")
+	to_world("<B>The AI on the satellite has malfunctioned and must be destroyed.</B>")
+	to_world("The AI satellite is deep in space and can only be accessed with the use of a teleporter! You have [AI_win_timeleft / 60] minutes to disable it.")
 
 
 /datum/game_mode/malfunction/pre_setup()
@@ -40,8 +40,8 @@
 /datum/game_mode/malfunction/post_setup()
 	for(var/datum/mind/AI_mind in malf_ai)
 		if(!length(malf_ai))
-			world << "Uh oh, its malfunction and there is no AI! Please report this."
-			world << "Rebooting world in 5 seconds."
+			to_world("Uh oh, it's malfunction and there is no AI! Please report this.")
+			to_world("Rebooting world in 5 seconds.")
 
 			feedback_set_details("end_error","malf - no AI")
 
@@ -107,18 +107,18 @@
 
 
 /datum/game_mode/malfunction/proc/capture_the_station()
-	world << "<FONT size = 3><B>The AI has won!</B></FONT>"
-	world << "<B>It has fully taken control of all of [station_name()]'s systems.</B>"
+	to_world("<FONT size = 3><B>The AI has won!</B></FONT>")
+	to_world("<B>It has fully taken control of all of [station_name()]'s systems.</B>")
 
 	to_nuke_or_not_to_nuke = 1
 	for(var/datum/mind/AI_mind in malf_ai)
-		AI_mind.current << "Congratulations you have taken control of the station."
-		AI_mind.current << "You may decide to blow up the station. You have 60 seconds to choose."
-		AI_mind.current << "You should have a new verb in the Malfunction tab. If you dont - rejoin the game."
-		AI_mind.current.verbs += /datum/game_mode/malfunction/proc/ai_win
+		to_chat(AI_mind.current, "Congratulations you have taken control of the station.")
+		to_chat(AI_mind.current, "You may decide to blow up the station. You have 60 seconds to choose.")
+		to_chat(AI_mind.current, "You should have a new verb in the Malfunction tab. If you dont - rejoin the game.")
+		AI_mind.current.verbs.Add(/datum/game_mode/malfunction/proc/ai_win)
 	spawn(600)
 		for(var/datum/mind/AI_mind in malf_ai)
-			AI_mind.current.verbs -= /datum/game_mode/malfunction/proc/ai_win
+			AI_mind.current.verbs.Remove(/datum/game_mode/malfunction/proc/ai_win)
 		to_nuke_or_not_to_nuke = 0
 	return
 
@@ -191,10 +191,10 @@
 	global.CTgame_ticker.mode:explosion_in_progress = 1
 	for(var/mob/M in GLOBL.player_list)
 		M << 'sound/machines/Alarm.ogg'
-	world << "Self-destructing in 10"
+	to_world("Self-destructing in 10...")
 	for(var/i = 9 to 1 step -1)
 		sleep(10)
-		world << i
+		to_world(i + "...")
 	sleep(10)
 	GLOBL.enter_allowed = FALSE
 	if(global.CTgame_ticker)
@@ -211,38 +211,38 @@
 
 	if(station_captured && station_was_nuked)
 		feedback_set_details("round_end_result", "win - AI win - nuke")
-		world << "<FONT size = 3><B>AI Victory</B></FONT>"
-		world << "<B>Everyone was killed by the self-destruct!</B>"
+		to_world("<FONT size = 3><B>AI Victory</B></FONT>")
+		to_world("<B>Everyone was killed by the self-destruct!</B>")
 
 	else if(station_captured && malf_dead && !station_was_nuked)
 		feedback_set_details("round_end_result", "halfwin - AI killed, staff lost control")
-		world << "<FONT size = 3><B>Neutral Victory</B></FONT>"
-		world << "<B>The AI has been killed!</B> The staff has lose control over the station."
+		to_world("<FONT size = 3><B>Neutral Victory</B></FONT>")
+		to_world("<B>The AI has been killed!</B> The staff have lost control of the station.")
 
 	else if(station_captured && !malf_dead && !station_was_nuked)
 		feedback_set_details("round_end_result", "win - AI win - no explosion")
-		world << "<FONT size = 3><B>AI Victory</B></FONT>"
-		world << "<B>The AI has chosen not to explode you all!</B>"
+		to_world("<FONT size = 3><B>AI Victory</B></FONT>")
+		to_world("<B>The AI has chosen not to explode you all!</B>")
 
 	else if(!station_captured && station_was_nuked)
 		feedback_set_details("round_end_result", "halfwin - everyone killed by nuke")
-		world << "<FONT size = 3><B>Neutral Victory</B></FONT>"
-		world << "<B>Everyone was killed by the nuclear blast!</B>"
+		to_world("<FONT size = 3><B>Neutral Victory</B></FONT>")
+		to_world("<B>Everyone was killed by the nuclear blast!</B>")
 
 	else if(!station_captured && malf_dead && !station_was_nuked)
 		feedback_set_details("round_end_result", "loss - staff win")
-		world << "<FONT size = 3><B>Human Victory</B></FONT>"
-		world << "<B>The AI has been killed!</B> The staff is victorious."
+		to_world("<FONT size = 3><B>Human Victory</B></FONT>")
+		to_world("<B>The AI has been killed!</B> The staff are victorious.")
 
 	else if(!station_captured && !malf_dead && !station_was_nuked && crew_evacuated)
 		feedback_set_details("round_end_result", "halfwin - evacuated")
-		world << "<FONT size = 3><B>Neutral Victory</B></FONT>"
-		world << "<B>The Corporation has lose [station_name()]! All survived personnel will be fired!</B>"
+		to_world("<FONT size = 3><B>Neutral Victory</B></FONT>")
+		to_world("<B>The Corporation has lost [station_name()]! All surviving personnel will be fired!</B>")
 
 	else if(!station_captured && !malf_dead && !station_was_nuked && !crew_evacuated)
 		feedback_set_details("round_end_result", "nalfwin - interrupted")
-		world << "<FONT size = 3><B>Neutral Victory</B></FONT>"
-		world << "<B>Round was mysteriously interrupted!</B>"
+		to_world("<FONT size = 3><B>Neutral Victory</B></FONT>")
+		to_world("<B>The round was mysteriously interrupted!</B>")
 	..()
 	return 1
 

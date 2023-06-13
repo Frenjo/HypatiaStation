@@ -34,8 +34,10 @@
 //Announces the game type//
 ///////////////////////////
 /datum/game_mode/revolution/announce()
-	world << "<B>The current game mode is - Revolution!</B>"
-	world << "<B>Some crewmembers are attempting to start a revolution!<BR>\nRevolutionaries - Kill the Captain, HoP, HoS, CE, RD and CMO. Convert other crewmembers (excluding the heads of staff, and security officers) to your cause by flashing them. Protect your leaders.<BR>\nPersonnel - Protect the heads of staff. Kill the leaders of the revolution, and brainwash the other revolutionaries (by beating them in the head).</B>"
+	to_world("<B>The current game mode is - Revolution!</B>")
+	to_world("<B>Some crewmembers are attempting to start a revolution!<BR>")
+	to_world("Revolutionaries - Kill the Captain, HoP, HoS, CE, RD and CMO. Convert other crewmembers (excluding the heads of staff, and security officers) to your cause by flashing them. Protect your leaders.<BR>")
+	to_world("Personnel - Protect the heads of staff. Kill the leaders of the revolution, and brainwash the other revolutionaries (by beating them in the head).")
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -350,10 +352,10 @@
 	if(!CONFIG_GET(objectives_disabled))
 		if(finished == 1)
 			feedback_set_details("round_end_result", "win - heads killed")
-			world << "\red <FONT size = 3><B> The heads of staff were killed or abandoned the station! The revolutionaries win!</B></FONT>"
+			to_world(SPAN_DANGER("<FONT size = 3>The heads of staff were killed or abandoned the station! The revolutionaries win!</FONT>"))
 		else if(finished == 2)
 			feedback_set_details("round_end_result", "loss - rev heads killed")
-			world << "\red <FONT size = 3><B> The heads of staff managed to stop the revolution!</B></FONT>"
+			to_world(SPAN_DANGER("<FONT size = 3>The heads of staff managed to stop the revolution!</FONT>"))
 		..()
 	return 1
 

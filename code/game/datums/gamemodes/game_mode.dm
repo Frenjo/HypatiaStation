@@ -74,7 +74,7 @@ Implants;
 */
 
 /datum/game_mode/proc/announce() //to be calles when round starts
-	world << "<B>Notice</B>: [src] did not define announce()"
+	to_world("<B>Notice</B>: [src] did not define announce()")
 
 ///can_start()
 ///Checks to see if the game can be setup and ran with the current number of players or whatnot.

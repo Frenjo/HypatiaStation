@@ -19,11 +19,11 @@ VOX HEIST ROUNDTYPE
 	var/list/obj/cortical_stacks = list() //Stacks for 'leave nobody behind' objective.
 
 /datum/game_mode/heist/announce()
-	world << "<B>The current game mode is - Heist!</B>"
-	world << "<B>An unidentified bluespace signature has slipped past the Icarus and is approaching [station_name()]!</B>"
-	world << "Whoever they are, they're likely up to no good. Protect the crew and station resources against this dastardly threat!"
-	world << "<B>Raiders:</B> Loot [station_name()] for anything and everything you need."
-	world << "<B>Personnel:</B> Repel the raiders and their low, low prices and/or crossbows."
+	to_world("<B>The current game mode is - Heist!</B>")
+	to_world("<B>An unidentified bluespace signature has slipped past the Icarus and is approaching [station_name()]!</B>")
+	to_world("Whoever they are, they're likely up to no good. Protect the crew and station resources against this dastardly threat!")
+	to_world("<B>Raiders:</B> Loot [station_name()] for anything and everything you need.")
+	to_world("<B>Personnel:</B> Repel the raiders and their low, low prices and/or crossbows.")
 
 /datum/game_mode/heist/can_start()
 	if(!..())
@@ -217,17 +217,17 @@ VOX HEIST ROUNDTYPE
 		else
 			win_msg += "<B>The Vox Raiders were repelled!</B>"
 
-	world << "\red <FONT size = 3><B>[win_type] [win_group] victory!</B></FONT>"
-	world << "[win_msg]"
+	to_world("\red <FONT size = 3><B>[win_type] [win_group] victory!</B></FONT>")
+	to_world("[win_msg]")
 	feedback_set_details("round_end_result","heist - [win_type] [win_group]")
 
 	var/count = 1
 	for(var/datum/objective/objective in raid_objectives)
 		if(objective.check_completion())
-			world << "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='green'><B>Success!</B></font>"
+			to_world("<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='green'><B>Success!</B></font>")
 			feedback_add_details("traitor_objective","[objective.type]|SUCCESS")
 		else
-			world << "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='red'>Fail.</font>"
+			to_world("<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='red'>Fail.</font>")
 			feedback_add_details("traitor_objective","[objective.type]|FAIL")
 		count++
 
