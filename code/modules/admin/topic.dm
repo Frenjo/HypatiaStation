@@ -10,43 +10,43 @@
 		switch(href_list["makeAntag"])
 			if("1")
 				log_admin("[key_name(usr)] has spawned a traitor.")
-				if(!src.makeTraitors())
+				if(!make_traitors())
 					usr << "\red Unfortunately there weren't enough candidates available."
 			if("2")
 				log_admin("[key_name(usr)] has spawned a changeling.")
-				if(!src.makeChanglings())
+				if(!make_changelings())
 					usr << "\red Unfortunately there weren't enough candidates available."
 			if("3")
 				log_admin("[key_name(usr)] has spawned revolutionaries.")
-				if(!src.makeRevs())
+				if(!make_revolutionaries())
 					usr << "\red Unfortunately there weren't enough candidates available."
 			if("4")
 				log_admin("[key_name(usr)] has spawned a cultists.")
-				if(!src.makeCult())
+				if(!make_cult())
 					usr << "\red Unfortunately there weren't enough candidates available."
 			if("5")
 				log_admin("[key_name(usr)] has spawned a malf AI.")
-				if(!src.makeMalfAImode())
+				if(!make_ai_malfunction())
 					usr << "\red Unfortunately there weren't enough candidates available."
 			if("6")
 				log_admin("[key_name(usr)] has spawned a wizard.")
-				if(!src.makeWizard())
+				if(!make_wizard())
 					usr << "\red Unfortunately there weren't enough candidates available."
 			if("7")
 				log_admin("[key_name(usr)] has spawned a nuke team.")
-				if(!src.makeNukeTeam())
+				if(!make_nuclear_operatives())
 					usr << "\red Unfortunately there weren't enough candidates available."
 			if("8")
 				log_admin("[key_name(usr)] has spawned a ninja.")
-				src.makeSpaceNinja()
+				make_space_ninja()
 			if("9")
 				log_admin("[key_name(usr)] has spawned aliens.")
-				src.makeAliens()
+				make_aliens()
 			if("10")
 				log_admin("[key_name(usr)] has spawned a death squad.")
 			if("11")
 				log_admin("[key_name(usr)] has spawned vox raiders.")
-				if(!src.makeVoxRaiders())
+				if(!make_vox_raiders())
 					usr << "\red Unfortunately there weren't enough candidates available."
 	else if(href_list["dbsearchckey"] || href_list["dbsearchadmin"])
 		var/adminckey = href_list["dbsearchadmin"]

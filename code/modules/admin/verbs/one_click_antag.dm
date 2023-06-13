@@ -3,13 +3,10 @@
 	set desc = "Auto-create an antagonist of your choice"
 	set category = "Admin"
 
-	if(holder)
+	if(!isnull(holder))
 		holder.one_click_antag()
-	return
-
 
 /datum/admins/proc/one_click_antag()
-
 	var/dat = {"<B>One-click Antagonist</B><br>
 		<a href='?src=\ref[src];makeAntag=1'>Make Traitors</a><br>
 		<a href='?src=\ref[src];makeAntag=2'>Make Changlings</a><br>
@@ -30,227 +27,174 @@
 		"}
 */
 	usr << browse(dat, "window=oneclickantag;size=400x400")
-	return
 
+/datum/admins/proc/return_antagonist_candidates(role_flag, antagonist_type, restricted_jobs)
+	var/list/candidates = list()
+	for(var/mob/living/carbon/human/applicant in GLOBL.player_list)
+		if(!(applicant.client.prefs.be_special & role_flag))
+			continue
+		if(!applicant.stat || isnull(applicant.mind))
+			continue
+		if(!isnull(applicant.mind.special_role))
+			continue
+		if(jobban_isbanned(applicant, antagonist_type) || jobban_isbanned(applicant, "Syndicate"))
+			continue
+		if(applicant.job in restricted_jobs)
+			continue
+		candidates.Add(applicant)
+	return candidates
 
-/datum/admins/proc/makeMalfAImode()
-
+/datum/admins/proc/make_ai_malfunction()
 	var/list/mob/living/silicon/AIs = list()
 	var/mob/living/silicon/malfAI = null
-	var/datum/mind/themind = null
 
 	for(var/mob/living/silicon/ai/ai in GLOBL.player_list)
-		if(ai.client)
-			AIs += ai
+		if(!isnull(ai.client))
+			AIs.Add(ai)
 
 	if(length(AIs))
 		malfAI = pick(AIs)
 
-	if(malfAI)
-		themind = malfAI.mind
-		themind.make_AI_Malf()
+	if(!isnull(malfAI))
+		malfAI.mind.make_ai_malfunction()
 		return 1
-
 	return 0
 
-
-/datum/admins/proc/makeTraitors()
-	var/datum/game_mode/traitor/temp = new
-
+/datum/admins/proc/make_traitors()
+	var/datum/game_mode/traitor/temp = new /datum/game_mode/traitor()
 	if(CONFIG_GET(protect_roles_from_antagonist))
-		temp.restricted_jobs += temp.protected_jobs
+		temp.restricted_jobs.Add(temp.protected_jobs)
 
-	var/list/mob/living/carbon/human/candidates = list()
-	var/mob/living/carbon/human/H = null
-
-	for(var/mob/living/carbon/human/applicant in GLOBL.player_list)
-		if(applicant.client.prefs.be_special & BE_TRAITOR)
-			if(!applicant.stat)
-				if(applicant.mind)
-					if (!applicant.mind.special_role)
-						if(!jobban_isbanned(applicant, "traitor") && !jobban_isbanned(applicant, "Syndicate"))
-							if(!(applicant.job in temp.restricted_jobs))
-								candidates += applicant
-
+	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_TRAITOR, "traitor", temp.restricted_jobs)
 	if(length(candidates))
-		var/numTraitors = min(length(candidates), 3)
-
-		for(var/i = 0, i<numTraitors, i++)
-			H = pick(candidates)
-			H.mind.make_Traitor()
+		var/num_traitors = min(length(candidates), 3)
+		for(var/i = 0, i < num_traitors, i++)
+			var/mob/living/carbon/human/H = pick(candidates)
+			H.mind.make_traitor()
 			candidates.Remove(H)
-
 		return 1
-
-
 	return 0
 
-
-/datum/admins/proc/makeChanglings()
-
-	var/datum/game_mode/changeling/temp = new
+/datum/admins/proc/make_changelings()
+	var/datum/game_mode/changeling/temp = new /datum/game_mode/changeling()
 	if(CONFIG_GET(protect_roles_from_antagonist))
-		temp.restricted_jobs += temp.protected_jobs
+		temp.restricted_jobs.Add(temp.protected_jobs)
 
-	var/list/mob/living/carbon/human/candidates = list()
-	var/mob/living/carbon/human/H = null
-
-	for(var/mob/living/carbon/human/applicant in GLOBL.player_list)
-		if(applicant.client.prefs.be_special & BE_CHANGELING)
-			if(!applicant.stat)
-				if(applicant.mind)
-					if (!applicant.mind.special_role)
-						if(!jobban_isbanned(applicant, "changeling") && !jobban_isbanned(applicant, "Syndicate"))
-							if(!(applicant.job in temp.restricted_jobs))
-								candidates += applicant
-
+	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_CHANGELING, "changeling", temp.restricted_jobs)
 	if(length(candidates))
-		var/numChanglings = min(length(candidates), 3)
-
-		for(var/i = 0, i<numChanglings, i++)
-			H = pick(candidates)
-			H.mind.make_Changling()
+		var/num_changelings = min(length(candidates), 3)
+		for(var/i = 0, i < num_changelings, i++)
+			var/mob/living/carbon/human/H = pick(candidates)
+			H.mind.make_changeling()
 			candidates.Remove(H)
-
 		return 1
-
 	return 0
 
-/datum/admins/proc/makeRevs()
-
+/datum/admins/proc/make_revolutionaries()
 	var/datum/game_mode/revolution/temp = new
 	if(CONFIG_GET(protect_roles_from_antagonist))
-		temp.restricted_jobs += temp.protected_jobs
+		temp.restricted_jobs.Add(temp.protected_jobs)
 
-	var/list/mob/living/carbon/human/candidates = list()
-	var/mob/living/carbon/human/H = null
-
-	for(var/mob/living/carbon/human/applicant in GLOBL.player_list)
-		if(applicant.client.prefs.be_special & BE_REV)
-			if(applicant.stat == CONSCIOUS)
-				if(applicant.mind)
-					if(!applicant.mind.special_role)
-						if(!jobban_isbanned(applicant, "revolutionary") && !jobban_isbanned(applicant, "Syndicate"))
-							if(!(applicant.job in temp.restricted_jobs))
-								candidates += applicant
-
+	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_REV, "revolutionary", temp.restricted_jobs)
 	if(length(candidates))
-		var/numRevs = min(length(candidates), 3)
-
-		for(var/i = 0, i<numRevs, i++)
-			H = pick(candidates)
-			H.mind.make_Rev()
+		var/num_revs = min(length(candidates), 3)
+		for(var/i = 0, i < num_revs, i++)
+			var/mob/living/carbon/human/H = pick(candidates)
+			H.mind.make_revolutionary()
 			candidates.Remove(H)
 		return 1
-
 	return 0
 
-/datum/admins/proc/makeWizard()
+/datum/admins/proc/make_wizard()
 	var/list/mob/dead/observer/candidates = list()
 	var/mob/dead/observer/theghost = null
 	var/time_passed = world.time
 
 	for(var/mob/dead/observer/G in GLOBL.player_list)
-		if(!jobban_isbanned(G, "wizard") && !jobban_isbanned(G, "Syndicate"))
-			spawn(0)
-				switch(alert(G, "Do you wish to be considered for the position of Space Wizard Foundation 'diplomat'?","Please answer in 30 seconds!","Yes","No"))
-					if("Yes")
-						if((world.time-time_passed)>300)//If more than 30 game seconds passed.
-							return
-						candidates += G
-					if("No")
+		if(jobban_isbanned(G, "wizard") || jobban_isbanned(G, "Syndicate"))
+			continue
+		spawn(0)
+			switch(alert(G, "Do you wish to be considered for the position of Space Wizard Foundation 'diplomat'?", "Please answer in 30 seconds!", "Yes", "No"))
+				if("Yes")
+					if((world.time - time_passed) > 300) // If more than 30 game seconds passed.
 						return
-					else
-						return
+					candidates.Add(G)
+				if("No")
+					return
+				else
+					return
 
 	sleep(300)
 
 	if(length(candidates))
 		shuffle(candidates)
 		for(var/mob/i in candidates)
-			if(!i || !i.client) continue //Dont bother removing them from the list since we only grab one wizard
+			if(isnull(i?.client))
+				continue // Don't bother removing them from the list since we only grab one wizard
 
 			theghost = i
 			break
 
-	if(theghost)
-		var/mob/living/carbon/human/new_character=makeBody(theghost)
-		new_character.mind.make_Wizard()
+	if(!isnull(theghost))
+		var/mob/living/carbon/human/new_character = make_body(theghost)
+		new_character.mind.make_wizard()
 		return 1
-
 	return 0
 
-
-/datum/admins/proc/makeCult()
-
-	var/datum/game_mode/cult/temp = new
+/datum/admins/proc/make_cult()
+	var/datum/game_mode/cult/temp = new /datum/game_mode/cult()
 	if(CONFIG_GET(protect_roles_from_antagonist))
-		temp.restricted_jobs += temp.protected_jobs
+		temp.restricted_jobs.Add(temp.protected_jobs)
 
-	var/list/mob/living/carbon/human/candidates = list()
-	var/mob/living/carbon/human/H = null
-
-	for(var/mob/living/carbon/human/applicant in GLOBL.player_list)
-		if(applicant.client.prefs.be_special & BE_CULTIST)
-			if(applicant.stat == CONSCIOUS)
-				if(applicant.mind)
-					if(!applicant.mind.special_role)
-						if(!jobban_isbanned(applicant, "cultist") && !jobban_isbanned(applicant, "Syndicate"))
-							if(!(applicant.job in temp.restricted_jobs))
-								candidates += applicant
-
+	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_CULTIST, "cultist", temp.restricted_jobs)
 	if(length(candidates))
-		var/numCultists = min(length(candidates), 4)
+		var/num_cultists = min(length(candidates), 4)
 
-		for(var/i = 0, i<numCultists, i++)
-			H = pick(candidates)
-			H.mind.make_Cultist()
+		for(var/i = 0, i < num_cultists, i++)
+			var/mob/living/carbon/human/H = pick(candidates)
+			H.mind.make_cultist()
 			candidates.Remove(H)
 			temp.grant_runeword(H)
-
 		return 1
-
 	return 0
 
-
-
-/datum/admins/proc/makeNukeTeam()
-
+/datum/admins/proc/make_nuclear_operatives()
 	var/list/mob/dead/observer/candidates = list()
 	var/mob/dead/observer/theghost = null
 	var/time_passed = world.time
 
 	for(var/mob/dead/observer/G in GLOBL.player_list)
-		if(!jobban_isbanned(G, "operative") && !jobban_isbanned(G, "Syndicate"))
-			spawn(0)
-				switch(alert(G,"Do you wish to be considered for a nuke team being sent in?","Please answer in 30 seconds!","Yes","No"))
-					if("Yes")
-						if((world.time-time_passed)>300)//If more than 30 game seconds passed.
-							return
-						candidates += G
-					if("No")
+		if(jobban_isbanned(G, "operative") || jobban_isbanned(G, "Syndicate"))
+			continue
+		spawn(0)
+			switch(alert(G,"Do you wish to be considered for a nuke team being sent in?", "Please answer in 30 seconds!", "Yes", "No"))
+				if("Yes")
+					if((world.time - time_passed) > 300) // If more than 30 game seconds passed.
 						return
-					else
-						return
+					candidates.Add(G)
+				if("No")
+					return
+				else
+					return
 
 	sleep(300)
 
 	if(length(candidates))
-		var/numagents = 5
+		var/num_agents = 5
 		var/agentcount = 0
 
-		for(var/i = 0, i<numagents,i++)
-			shuffle(candidates) //More shuffles means more randoms
+		for(var/i = 0, i < num_agents, i++)
+			shuffle(candidates) // More shuffles means more randoms.
 			for(var/mob/j in candidates)
-				if(!j || !j.client)
+				if(isnull(j?.client))
 					candidates.Remove(j)
 					continue
 
 				theghost = candidates
 				candidates.Remove(theghost)
 
-				var/mob/living/carbon/human/new_character=makeBody(theghost)
-				new_character.mind.make_Nuke()
+				var/mob/living/carbon/human/new_character = make_body(theghost)
+				new_character.mind.make_nuclear_operative()
 
 				agentcount++
 
@@ -262,16 +206,16 @@
 
 		var/nuke_code = "[rand(10000, 99999)]"
 
-		if(nuke_spawn)
-			var/obj/item/weapon/paper/P = new
-			P.info = "Sadly, the Syndicate could not get you a nuclear bomb.  We have, however, acquired the arming code for the station's onboard nuke.  The nuclear authorization code is: <b>[nuke_code]</b>"
+		if(!isnull(nuke_spawn))
+			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper()
+			P.info = "Sadly, the Syndicate could not get you a nuclear bomb. We have, however, acquired the arming code for the station's onboard nuke. The nuclear authorization code is: <b>[nuke_code]</b>"
 			P.name = "nuclear bomb code and instructions"
 			P.loc = nuke_spawn.loc
 
-		if(closet_spawn)
+		if(!isnull(closet_spawn))
 			new /obj/structure/closet/syndicate/nuclear(closet_spawn.loc)
 
-		for(var/obj/effect/landmark/A in /area/syndicate_station/start)//Because that's the only place it can BE -Sieve
+		for(var/obj/effect/landmark/A in /area/syndicate_station/start) // Because that's the only place it can BE -Sieve
 			if(A.name == "Syndicate-Gear-Closet")
 				new /obj/structure/closet/syndicate/personal(A.loc)
 				qdel(A)
@@ -283,38 +227,33 @@
 				continue
 
 		for(var/datum/mind/synd_mind in global.CTgame_ticker.mode.syndicates)
-			if(synd_mind.current)
-				if(synd_mind.current.client)
-					for(var/image/I in synd_mind.current.client.images)
-						if(I.icon_state == "synd")
-							qdel(I)
+			if(!isnull(synd_mind.current?.client))
+				for(var/image/I in synd_mind.current.client.images)
+					if(I.icon_state == "synd")
+						qdel(I)
 
 		for(var/datum/mind/synd_mind in global.CTgame_ticker.mode.syndicates)
-			if(synd_mind.current)
-				if(synd_mind.current.client)
-					for(var/datum/mind/synd_mind_1 in global.CTgame_ticker.mode.syndicates)
-						if(synd_mind_1.current)
-							var/I = image('icons/mob/mob.dmi', loc = synd_mind_1.current, icon_state = "synd")
-							synd_mind.current.client.images += I
+			if(!isnull(synd_mind.current?.client))
+				for(var/datum/mind/synd_mind_1 in global.CTgame_ticker.mode.syndicates)
+					if(!isnull(synd_mind_1.current))
+						var/I = image('icons/mob/mob.dmi', loc = synd_mind_1.current, icon_state = "synd")
+						synd_mind.current.client.images.Add(I)
 
-		for (var/obj/machinery/nuclearbomb/bomb in world)
-			bomb.r_code = nuke_code						// All the nukes are set to this code.
+		for(var/obj/machinery/nuclearbomb/bomb in world)
+			bomb.r_code = nuke_code // All the nukes are set to this code.
 
 	return 1
 
 
-
-
-
-/datum/admins/proc/makeAliens()
+/datum/admins/proc/make_aliens()
 	alien_infestation(3)
 	return 1
 
-/datum/admins/proc/makeSpaceNinja()
+/datum/admins/proc/make_space_ninja()
 	space_ninja_arrival()
 	return 1
 
-/datum/admins/proc/makeDeathsquad()
+/datum/admins/proc/make_deathsquad()
 	var/list/mob/dead/observer/candidates = list()
 	var/mob/dead/observer/theghost = null
 	var/time_passed = world.time
@@ -327,11 +266,11 @@
 	//Generates a list of commandos from active ghosts. Then the user picks which characters to respawn as the commandos.
 	for(var/mob/dead/observer/G in GLOBL.player_list)
 		spawn(0)
-			switch(alert(G,"Do you wish to be considered for an elite syndicate strike team being sent in?","Please answer in 30 seconds!","Yes","No"))
+			switch(alert(G,"Do you wish to be considered for an elite syndicate strike team being sent in?", "Please answer in 30 seconds!", "Yes", "No"))
 				if("Yes")
-					if((world.time-time_passed)>300)//If more than 30 game seconds passed.
+					if((world.time - time_passed) > 300)//If more than 30 game seconds passed.
 						return
-					candidates += G
+					candidates.Add(G)
 				if("No")
 					return
 				else
@@ -339,26 +278,25 @@
 	sleep(300)
 
 	for(var/mob/dead/observer/G in candidates)
-		if(!G.key)
+		if(isnull(G.key))
 			candidates.Remove(G)
 
 	if(length(candidates))
-		var/numagents = 6
+		var/num_agents = 6
 		//Spawns commandos and equips them.
-		for (var/obj/effect/landmark/L in /area/syndicate_mothership/elite_squad)
-			if(numagents<=0)
+		for(var/obj/effect/landmark/L in /area/syndicate_mothership/elite_squad)
+			if(num_agents <= 0)
 				break
-			if (L.name == "Syndicate-Commando")
-				syndicate_leader_selected = numagents == 1?1:0
+			if(L.name == "Syndicate-Commando")
+				syndicate_leader_selected = num_agents == 1 ? TRUE : FALSE
 
 				var/mob/living/carbon/human/new_syndicate_commando = create_syndicate_death_commando(L, syndicate_leader_selected)
 
-
-				while((!theghost || !theghost.client) && length(candidates))
+				while((isnull(theghost) || isnull(theghost.client)) && length(candidates))
 					theghost = pick(candidates)
 					candidates.Remove(theghost)
 
-				if(!theghost)
+				if(isnull(theghost))
 					qdel(new_syndicate_commando)
 					break
 
@@ -368,36 +306,36 @@
 
 				//So they don't forget their code or mission.
 
+				to_chat(new_syndicate_commando, SPAN_INFO("You are an Elite Syndicate [!syndicate_leader_selected ? "commando" : "<B>LEADER</B>"] in the service of the Syndicate."))
+				to_chat(new_syndicate_commando, "Your current mission is: [SPAN_DANGER(input)]")
 
-				new_syndicate_commando << "\blue You are an Elite Syndicate. [!syndicate_leader_selected?"commando":"<B>LEADER</B>"] in the service of the Syndicate. \nYour current mission is: \red<B> [input]</B>"
-
-				numagents--
-		if(numagents >= 6)
+				num_agents--
+		if(num_agents >= 6)
 			return 0
 
-		for (var/obj/effect/landmark/L in /area/shuttle/syndicate_elite)
-			if (L.name == "Syndicate-Commando-Bomb")
+		for(var/obj/effect/landmark/L in /area/shuttle/syndicate_elite)
+			if(L.name == "Syndicate-Commando-Bomb")
 				new /obj/effect/spawner/newbomb/timer/syndicate(L.loc)
 
 	return 1
 
-
-/datum/admins/proc/makeBody(var/mob/dead/observer/G_found) // Uses stripped down and bastardized code from respawn character
-	if(!G_found || !G_found.key)	return
+/datum/admins/proc/make_body(mob/dead/observer/G_found) // Uses stripped down and bastardized code from respawn character
+	if(isnull(G_found) || isnull(G_found.key))
+		return
 
 	//First we spawn a dude.
-	var/mob/living/carbon/human/new_character = new(pick(GLOBL.latejoin))//The mob being spawned.
+	var/mob/living/carbon/human/new_character = new(pick(GLOBL.latejoin)) // The mob being spawned.
 
-	new_character.gender = pick(MALE,FEMALE)
+	new_character.gender = pick(MALE, FEMALE)
 
-	var/datum/preferences/A = new()
+	var/datum/preferences/A = new /datum/preferences()
 	A.randomize_appearance_for(new_character)
 	if(new_character.gender == MALE)
 		new_character.real_name = "[pick(GLOBL.first_names_male)] [pick(GLOBL.last_names)]"
 	else
 		new_character.real_name = "[pick(GLOBL.first_names_female)] [pick(GLOBL.last_names)]"
 	new_character.name = new_character.real_name
-	new_character.age = rand(17,45)
+	new_character.age = rand(17, 45)
 
 	new_character.dna.ready_dna(new_character)
 	new_character.key = G_found.key
@@ -412,12 +350,12 @@
 
 	new_syndicate_commando.gender = pick(MALE, FEMALE)
 
-	var/datum/preferences/A = new()//Randomize appearance for the commando.
+	var/datum/preferences/A = new /datum/preferences() // Randomizes appearance for the commando.
 	A.randomize_appearance_for(new_syndicate_commando)
 
 	new_syndicate_commando.real_name = "[!syndicate_leader_selected ? syndicate_commando_rank : syndicate_commando_leader_rank] [syndicate_commando_name]"
 	new_syndicate_commando.name = new_syndicate_commando.real_name
-	new_syndicate_commando.age = !syndicate_leader_selected ? rand(23,35) : rand(35,45)
+	new_syndicate_commando.age = !syndicate_leader_selected ? rand(23, 35) : rand(35, 45)
 
 	new_syndicate_commando.dna.ready_dna(new_syndicate_commando)//Creates DNA.
 
@@ -427,13 +365,12 @@
 	new_syndicate_commando.mind.special_role = "Syndicate Commando"
 
 	//Adds them to current traitor list. Which is really the extra antagonist list.
-	global.CTgame_ticker.mode.traitors += new_syndicate_commando.mind
+	global.CTgame_ticker.mode.traitors.Add(new_syndicate_commando.mind)
 	new_syndicate_commando.equip_syndicate_commando(syndicate_leader_selected)
 
 	return new_syndicate_commando
 
-/datum/admins/proc/makeVoxRaiders()
-
+/datum/admins/proc/make_vox_raiders()
 	var/list/mob/dead/observer/candidates = list()
 	var/mob/dead/observer/theghost = null
 	var/time_passed = world.time
@@ -444,11 +381,11 @@
 	//Generates a list of candidates from active ghosts.
 	for(var/mob/dead/observer/G in GLOBL.player_list)
 		spawn(0)
-			switch(alert(G,"Do you wish to be considered for a vox raiding party arriving on the station?","Please answer in 30 seconds!","Yes","No"))
+			switch(alert(G,"Do you wish to be considered for a vox raiding party arriving on the station?", "Please answer in 30 seconds!", "Yes", "No"))
 				if("Yes")
-					if((world.time-time_passed)>300)//If more than 30 game seconds passed.
+					if((world.time - time_passed) > 300)//If more than 30 game seconds passed.
 						return
-					candidates += G
+					candidates.Add(G)
 				if("No")
 					return
 				else
@@ -457,31 +394,32 @@
 	sleep(300) //Debug.
 
 	for(var/mob/dead/observer/G in candidates)
-		if(!G.key)
+		if(isnull(G.key))
 			candidates.Remove(G)
 
 	if(length(candidates))
 		var/max_raiders = 1
 		var/raiders = max_raiders
 		//Spawns vox raiders and equips them.
-		for (var/obj/effect/landmark/L in world)
+		for(var/obj/effect/landmark/L in world)
 			if(L.name == "voxstart")
-				if(raiders<=0)
+				if(raiders <= 0)
 					break
 
 				var/mob/living/carbon/human/new_vox = create_vox_raider(L, leader_chosen)
 
-				while((!theghost || !theghost.client) && length(candidates))
+				while((isnull(theghost) || isnull(theghost.client)) && length(candidates))
 					theghost = pick(candidates)
 					candidates.Remove(theghost)
 
-				if(!theghost)
+				if(isnull(theghost))
 					qdel(new_vox)
 					break
 
 				new_vox.key = theghost.key
-				new_vox << "\blue You are a Vox Primalis, fresh out of the Shoal. Your ship has arrived at the Tau Ceti system hosting the NSV Exodus... or was it the Luna? NSS? Utopia? Nobody is really sure, but everyong is raring to start pillaging! Your current goal is: \red<B> [input]</B>"
-				new_vox << "\red Don't forget to turn on your nitrogen internals!"
+				to_chat(new_vox, SPAN_INFO("You are a Vox Primalis, fresh out of the Shoal. Your ship has arrived at the Tau Ceti system hosting the NSV Exodus... or was it the Luna? NSS? Utopia? Nobody is really sure, but everyone is raring to start pillaging!"))
+				to_chat(new_vox, "Your current goal is: [SPAN_DANGER(input)]")
+				to_chat(new_vox, SPAN_WARNING("Don't forget to turn on your nitrogen internals!"))
 
 				raiders--
 			if(raiders > max_raiders)
@@ -491,24 +429,23 @@
 	return 1
 
 /datum/admins/proc/create_vox_raider(obj/spawn_location, leader_chosen = 0)
-
 	var/mob/living/carbon/human/new_vox = new(spawn_location.loc, SPECIES_VOX)
 
 	new_vox.gender = pick(MALE, FEMALE)
 	new_vox.h_style = "Short Vox Quills"
 	new_vox.regenerate_icons()
 
-	var/sounds = rand(2,10)
+	var/sounds = rand(2, 10)
 	var/i = 0
 	var/newname = ""
 
-	while(i<=sounds)
+	while(i <= sounds)
 		i++
 		newname += pick(list("ti","hi","ki","ya","ta","ha","ka","ya","chi","cha","kah"))
 
 	new_vox.real_name = capitalize(newname)
 	new_vox.name = new_vox.real_name
-	new_vox.age = rand(12,20)
+	new_vox.age = rand(12, 20)
 
 	new_vox.dna.ready_dna(new_vox) // Creates DNA.
 	new_vox.dna.mutantrace = "vox"
@@ -517,7 +454,7 @@
 	new_vox.mind.special_role = "Vox Raider"
 	new_vox.mutations |= NOCLONE //Stops the station crew from messing around with their DNA.
 
-	global.CTgame_ticker.mode.traitors += new_vox.mind
+	global.CTgame_ticker.mode.traitors.Add(new_vox.mind)
 	new_vox.equip_vox_raider()
 
 	return new_vox
