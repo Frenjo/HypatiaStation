@@ -1,4 +1,3 @@
-
 #define NITROGEN_RETARDATION_FACTOR 4		//Higher == N2 slows reaction more
 //#define THERMAL_RELEASE_MODIFIER 10				//Higher == less heat released during reaction
 #define THERMAL_RELEASE_MODIFIER 750
@@ -17,10 +16,13 @@
 	desc = "A strangely translucent and iridescent crystal. \red You get headaches just from looking at it."
 	icon = 'icons/obj/engine.dmi'
 	icon_state = "darkmatter"
+
 	density = TRUE
 	anchored = TRUE
+
 	//luminosity = 4
 	light_range = 4
+	light_color = "#8A8A00"
 
 	var/gasefficency = 0.25
 
@@ -35,7 +37,6 @@
 	var/emergency_alert = "DANGER! CRYSTAL DELAMINATION IMMINENT!"// Make this a bit more desperate sounding. -Frenjo
 	var/explosion_point = 1000
 
-	light_color = "#8A8A00"
 	var/warning_color = "#B8B800"
 	var/emergency_color = "#D9D900"
 
@@ -52,12 +53,11 @@
 	//How much the bullets damage should be multiplied by when it is added to the internal variables
 	var/config_bullet_energy = 2
 	//How much of the power is left after processing is finished?
-//		var/config_power_reduction_per_tick = 0.5
+//	var/config_power_reduction_per_tick = 0.5
 	//How much hallucination should it produce per unit of power?
 	var/config_hallucination_power = 0.1
 
 	var/obj/item/device/radio/radio
-
 
 /obj/machinery/power/supermatter/shard //Small subtype, less efficient and more sensitive, but less boom.
 	name = "Supermatter Shard"
@@ -76,7 +76,7 @@
 
 /obj/machinery/power/supermatter/New()
 	. = ..()
-	radio = new(src)
+	radio = new /obj/item/device/radio(src)
 
 /obj/machinery/power/supermatter/Destroy()
 	qdel(radio)
@@ -85,7 +85,6 @@
 /obj/machinery/power/supermatter/proc/explode()
 	explosion(get_turf(src), explosion_power, explosion_power * 2, explosion_power * 3, explosion_power * 4, 1)
 	qdel(src)
-	return
 
 /obj/machinery/power/supermatter/proc/shift_light(lum, clr)
 	if(lum != light_range || clr != light_color)
@@ -145,7 +144,7 @@
 		power = min(power, 1600)
 		return 1
 
-	if(!removed)
+	if(isnull(removed))
 		return 1
 
 	damage_archived = damage
@@ -206,19 +205,17 @@
 
 	return 1
 
-
-/obj/machinery/power/supermatter/bullet_act(obj/item/projectile/Proj)
+/obj/machinery/power/supermatter/bullet_act(obj/item/projectile/proj)
 	var/turf/L = loc
 	if(!istype(L))		// We don't run process() when we are in space
 		return 0	// This stops people from being able to really power up the supermatter
 				// Then bring it inside to explode instantly upon landing on a valid turf.
 
-	if(Proj.flag != "bullet")
-		power += Proj.damage * config_bullet_energy
+	if(proj.flag != "bullet")
+		power += proj.damage * config_bullet_energy
 	else
-		damage += Proj.damage * config_bullet_energy
+		damage += proj.damage * config_bullet_energy
 	return 0
-
 
 /obj/machinery/power/supermatter/attack_paw(mob/user as mob)
 	return attack_hand(user)
@@ -228,7 +225,6 @@
 		return attack_hand(user)
 	else
 		to_chat(user, SPAN_WARNING("You attempt to interface with the control circuits but find they are not connected to your network. Maybe in a future firmware update."))
-	return
 
 /obj/machinery/power/supermatter/attack_ai(mob/user as mob)
 	to_chat(user, SPAN_WARNING("You attempt to interface with the control circuits but find they are not connected to your network. Maybe in a future firmware update."))
@@ -246,7 +242,6 @@
 	for(var/obj/machinery/power/rad_collector/R in GLOBL.rad_collectors)
 		if(get_dist(R, src) <= 15) // Better than using orange() every process
 			R.receive_pulse(power)
-	return
 
 /obj/machinery/power/supermatter/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
 	user.visible_message(

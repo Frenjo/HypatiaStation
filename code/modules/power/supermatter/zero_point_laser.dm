@@ -1,8 +1,10 @@
-//new supermatter lasers
+// Originally from code/WorkInProgress/Cael_Aislinn/Supermatter/ZeroPointLaser.dm.
+// Moved on 13/06/2023. -Frenjo
 
+//new supermatter lasers
 /obj/machinery/zero_point_emitter
-	name = "Zero-point laser"
-	desc = "A super-powerful laser"
+	name = "zero-point laser"
+	desc = "A super-powerful laser."
 	icon = 'icons/obj/engine.dmi'
 	icon_state = "laser"
 	anchored = FALSE
@@ -13,7 +15,7 @@
 	idle_power_usage = 10
 	active_power_usage = 300
 
-	var/active = 0
+	var/active = FALSE
 	var/fire_delay = 100
 	var/last_shot = 0
 	var/shot_number = 0
@@ -31,15 +33,11 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(src.anchored || usr:stat)
-		usr << "It is fastened to the floor!"
+	if(anchored || usr:stat)
+		to_chat(usr, "It is fastened to the floor!")
 		return 0
-	src.set_dir(turn(src.dir, 90))
+	set_dir(turn(dir, 90))
 	return 1
-
-/obj/machinery/zero_point_emitter/New()
-	..()
-	return
 
 /obj/machinery/zero_point_emitter/update_icon()
 	if(active && !(stat & (NOPOWER | BROKEN)))
@@ -69,7 +67,6 @@
 		user << "\red The [src] needs to be firmly secured to the floor first."
 		return 1*/
 
-
 /obj/machinery/zero_point_emitter/emp_act(severity)//Emitters are hardened but still might have issues
 	use_power(1000)
 /*	if((severity == 1)&&prob(1)&&prob(1))
@@ -79,24 +76,24 @@
 	return 1
 
 /obj/machinery/zero_point_emitter/process()
-	if(stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER | BROKEN))
 		return
-	if(src.state != 2)
-		src.active = 0
+	if(state != 2)
+		active = FALSE
 		return
-	if(((src.last_shot + src.fire_delay) <= world.time) && (src.active == 1))
-		src.last_shot = world.time
-		if(src.shot_number < 3)
-			src.fire_delay = 2
-			src.shot_number ++
+	if(((last_shot + fire_delay) <= world.time) && active)
+		last_shot = world.time
+		if(shot_number < 3)
+			fire_delay = 2
+			shot_number ++
 		else
-			src.fire_delay = rand(20,100)
-			src.shot_number = 0
+			fire_delay = rand(20, 100)
+			shot_number = 0
 		use_power(1000)
-		var/obj/item/projectile/energy/beam/emitter/A = new /obj/item/projectile/energy/beam/emitter(src.loc)
+		var/obj/item/projectile/energy/beam/emitter/A = new /obj/item/projectile/energy/beam/emitter(loc)
 		playsound(src, 'sound/weapons/emitter2.ogg', 25, 1)
 		if(prob(35))
-			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
+			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
 			s.set_up(5, 1, src)
 			s.start()
 		A.set_dir(src.dir)
@@ -115,97 +112,103 @@
 				A.xo = 0
 		A.process()	//TODO: Carn: check this out
 
-
 /obj/machinery/zero_point_emitter/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/wrench))
 		if(active)
-			user << "Turn off the [src] first."
+			to_chat(user, "Turn off the [src] first.")
 			return
 		switch(state)
 			if(0)
 				state = 1
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
-				user.visible_message("[user.name] secures [src.name] to the floor.", \
-					"You secure the external reinforcing bolts to the floor.", \
-					"You hear a ratchet")
-				src.anchored = TRUE
+				user.visible_message(
+					"[user.name] secures [name] to the floor.",
+					"You secure the external reinforcing bolts to the floor.",
+					"You hear a ratchet."
+				)
+				anchored = TRUE
 			if(1)
 				state = 0
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
-				user.visible_message("[user.name] unsecures [src.name] reinforcing bolts from the floor.", \
-					"You undo the external reinforcing bolts.", \
-					"You hear a ratchet")
-				src.anchored = FALSE
+				user.visible_message(
+					"[user.name] unsecures [name] reinforcing bolts from the floor.",
+					"You undo the external reinforcing bolts.",
+					"You hear a ratchet."
+				)
+				anchored = FALSE
 			if(2)
-				user << "\red The [src.name] needs to be unwelded from the floor."
+				to_chat(user, SPAN_WARNING("The [name] needs to be unwelded from the floor."))
 		return
 
 	if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		if(active)
-			user << "Turn off the [src] first."
+			to_chat(user, "Turn off the [src] first.")
 			return
 		switch(state)
 			if(0)
-				user << "\red The [src.name] needs to be wrenched to the floor."
+				to_chat(user, SPAN_WARNING("The [name] needs to be wrenched to the floor."))
 			if(1)
-				if(WT.remove_fuel(0,user))
+				if(WT.remove_fuel(0, user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
-					user.visible_message("[user.name] starts to weld the [src.name] to the floor.", \
-						"You start to weld the [src] to the floor.", \
-						"You hear welding")
+					user.visible_message(
+						"[user.name] starts to weld the [name] to the floor.",
+						"You start to weld the [src] to the floor.",
+						"You hear welding."
+					)
 					if(do_after(user, 20))
-						if(!src || !WT.isOn())
+						if(isnull(src) || !WT.isOn())
 							return
 						state = 2
-						user << "You weld the [src] to the floor."
+						to_chat(user, "You weld the [src] to the floor.")
 				else
-					user << "\red You need more welding fuel to complete this task."
+					to_chat(user, SPAN_WARNING("You need more welding fuel to complete this task."))
 			if(2)
-				if(WT.remove_fuel(0,user))
+				if(WT.remove_fuel(0, user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
-					user.visible_message("[user.name] starts to cut the [src.name] free from the floor.", \
-						"You start to cut the [src] free from the floor.", \
-						"You hear welding")
+					user.visible_message(
+						"[user.name] starts to cut the [name] free from the floor.",
+						"You start to cut the [src] free from the floor.",
+						"You hear welding."
+					)
 					if(do_after(user, 20))
-						if(!src || !WT.isOn())
+						if(isnull(src) || !WT.isOn())
 							return
 						state = 1
-						user << "You cut the [src] free from the floor."
+						to_chat(user, "You cut the [src] free from the floor.")
 				else
-					user << "\red You need more welding fuel to complete this task."
+					to_chat(user, SPAN_WARNING("You need more welding fuel to complete this task."))
 		return
 
 	if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))
 		if(emagged)
-			user << "\red The lock seems to be broken"
+			to_chat(user, SPAN_WARNING("The lock seems to be broken."))
 			return
-		if(src.allowed(user))
+		if(allowed(user))
 			if(active)
-				src.locked = !src.locked
-				user << "The controls are now [src.locked ? "locked." : "unlocked."]"
+				locked = !locked
+				to_chat(user, "The controls are now [locked ? "locked" : "unlocked"].")
 			else
-				src.locked = 0 //just in case it somehow gets locked
-				user << "\red The controls can only be locked when the [src] is online"
+				locked = FALSE //just in case it somehow gets locked
+				to_chat(user, SPAN_WARNING("The controls can only be locked when the [src] is online."))
 		else
 			FEEDBACK_ACCESS_DENIED(user)
 		return
 
-
 	if(istype(W, /obj/item/weapon/card/emag) && !emagged)
-		locked = 0
-		emagged = 1
-		user.visible_message("[user.name] emags the [src.name].","\red You short out the lock.")
+		locked = FALSE
+		emagged = TRUE
+		user.visible_message(
+			"[user.name] emags the [name].",
+			SPAN_WARNING("You short out the lock.")
+		)
 		return
 
 	..()
-	return
-
 
 /obj/machinery/zero_point_emitter/power_change()
 	..()
 	update_icon()
-	return
 
 /obj/machinery/zero_point_emitter/Topic(href, href_list)
 	..()
@@ -213,18 +216,18 @@
 		var/i = text2num(href_list["input"])
 		var/d = i
 		var/new_power = energy + d
-		new_power = max(new_power,0.0001)	//lowest possible value
-		new_power = min(new_power,0.01)		//highest possible value
+		new_power = max(new_power, 0.0001)	//lowest possible value
+		new_power = min(new_power, 0.01)	//highest possible value
 		energy = new_power
 		//
 		for(var/obj/machinery/computer/lasercon/comp in world)
-			if(comp.id == src.id)
+			if(comp.id == id)
 				comp.updateDialog()
 	else if(href_list["online"] )
 		active = !active
 		//
 		for(var/obj/machinery/computer/lasercon/comp in world)
-			if(comp.id == src.id)
+			if(comp.id == id)
 				comp.updateDialog()
 	else if(href_list["freq"] )
 		var/amt = text2num(href_list["freq"])
@@ -234,5 +237,5 @@
 		frequency = new_freq
 		//
 		for(var/obj/machinery/computer/lasercon/comp in world)
-			if(comp.id == src.id)
+			if(comp.id == id)
 				comp.updateDialog()

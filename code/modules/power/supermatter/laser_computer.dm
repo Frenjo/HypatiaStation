@@ -1,7 +1,10 @@
+// Originally from code/WorkInProgress/Cael_Aislinn/Supermatter/LaserComputer.dm.
+// Moved on 13/06/2023. -Frenjo
+
 //The laser control computer
 //Used to control the lasers
 /obj/machinery/computer/lasercon
-	name = "Laser control computer"
+	name = "laser control computer"
 	icon_state = "atmos"
 
 	var/list/lasers = list()
@@ -12,38 +15,39 @@
 	. = ..()
 	for(var/obj/machinery/zero_point_emitter/laser in world)
 		if(laser.id == id)
-			lasers += laser
+			lasers.Add(laser)
 
 /obj/machinery/computer/lasercon/process()
 	..()
 	updateDialog()
 
-	// Edited/ported this code to work with the attack_hand verb. -Frenjo
-	/*interact(mob/user)
-		if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
-			if (!issilicon(user))
-				user.machine = null
-				user << browse(null, "window=laser_control")
-				return
-		//var/t = "<TT><B>Laser status monitor</B><HR>"
-		var/t = "<TT><B>Laser Status Monitor</B><HR>"
-		for(var/obj/machinery/zero_point_emitter/laser in lasers)
-			t += "Zero Point Laser<br>"
-			t += "Power level: <A href = '?src=\ref[laser];input=-0.005'>-</A> <A href = '?src=\ref[laser];input=-0.001'>-</A> <A href = '?src=\ref[laser];input=-0.0005'>-</A> <A href = '?src=\ref[laser];input=-0.0001'>-</A> [laser.energy]MeV <A href = '?src=\ref[laser];input=0.0001'>+</A> <A href = '?src=\ref[laser];input=0.0005'>+</A> <A href = '?src=\ref[laser];input=0.001'>+</A> <A href = '?src=\ref[laser];input=0.005'>+</A><BR>"
-			t += "Frequency: <A href = '?src=\ref[laser];freq=-10000'>-</A> <A href = '?src=\ref[laser];freq=-1000'>-</A> [laser.freq] <A href = '?src=\ref[laser];freq=1000'>+</A> <A href = '?src=\ref[laser];freq=10000'>+</A><BR>"
-			t += "Output: [laser.active ? "<B>Online</B> <A href = '?src=\ref[laser];online=1'>Offline</A>" : "<A href = '?src=\ref[laser];online=1'>Online</A> <B>Offline</B> "]<BR>"
-		t += "<hr>"
-		t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
-		user << browse(t, "window=laser_control;size=500x800")
-		user.machine = src*/
-
+/*
+// Edited/ported this code to work with the attack_hand verb. -Frenjo
+/obj/machinery/computer/lasercon/interact(mob/user)
+	if((get_dist(src, user) > 1) || (stat & (BROKEN|NOPOWER)))
+		if(!issilicon(user))
+			user.machine = null
+			user << browse(null, "window=laser_control")
+			return
+	//var/t = "<TT><B>Laser status monitor</B><HR>"
+	var/t = "<TT><B>Laser Status Monitor</B><HR>"
+	for(var/obj/machinery/zero_point_emitter/laser in lasers)
+		t += "Zero Point Laser<br>"
+		t += "Power level: <A href = '?src=\ref[laser];input=-0.005'>-</A> <A href = '?src=\ref[laser];input=-0.001'>-</A> <A href = '?src=\ref[laser];input=-0.0005'>-</A> <A href = '?src=\ref[laser];input=-0.0001'>-</A> [laser.energy]MeV <A href = '?src=\ref[laser];input=0.0001'>+</A> <A href = '?src=\ref[laser];input=0.0005'>+</A> <A href = '?src=\ref[laser];input=0.001'>+</A> <A href = '?src=\ref[laser];input=0.005'>+</A><BR>"
+		t += "Frequency: <A href = '?src=\ref[laser];freq=-10000'>-</A> <A href = '?src=\ref[laser];freq=-1000'>-</A> [laser.freq] <A href = '?src=\ref[laser];freq=1000'>+</A> <A href = '?src=\ref[laser];freq=10000'>+</A><BR>"
+		t += "Output: [laser.active ? "<B>Online</B> <A href = '?src=\ref[laser];online=1'>Offline</A>" : "<A href = '?src=\ref[laser];online=1'>Online</A> <B>Offline</B> "]<BR>"
+	t += "<hr>"
+	t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
+	user << browse(t, "window=laser_control;size=500x800")
+	user.machine = src
+*/
 
 // Ported and reformatted/edited above code to actually work, what is interact() anyway? -Frenjo
 /obj/machinery/computer/lasercon/attack_hand(mob/user)
 	if((get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)))
-		if (!issilicon(user))
-			user.machine = null
-			user << browse(null, "window=laser_control")
+		if(!issilicon(user))
+			user.unset_machine()
+			//user << browse(null, "window=laser_control")
 			return
 
 	/*
@@ -56,22 +60,20 @@
 	t += "<hr>"
 	t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
 	user << browse(t, "window=laser_control")
-	user.machine = src*/
+	user.machine = src
+	*/
 
 	// Edited this a second time to reflect NanoUI port. -Frenjo
 	usr.set_machine(src)
 	ui_interact(user)
-	return // Somebody decided having no return statement was a good idea. -Frenjo
 
 // Nobody added compatibility for AIs yet either... -Frenjo
 /obj/machinery/computer/lasercon/attack_ai()
-	src.attack_hand()
-	return
+	attack_hand()
 
 /*
 /obj/machinery/computer/lasercon/proc/interact(mob/user)
-
-	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
+	if((get_dist(src, user) > 1) || (stat & (BROKEN|NOPOWER)))
 		if (!issilicon(user))
 			user.machine = null
 			user << browse(null, "window=powcomp")
@@ -86,8 +88,6 @@
 	if(!laser)
 		t += "\red No laser found"
 	else
-
-
 		t += "Power level:  <A href = '?src=\ref[src];input=-4'>-</A> <A href = '?src=\ref[src];input=-3'>-</A> <A href = '?src=\ref[src];input=-2'>-</A> <A href = '?src=\ref[src];input=-1'>-</A> [add_lspace(laser.power,5)] <A href = '?src=\ref[src];input=1'>+</A> <A href = '?src=\ref[src];input=2'>+</A> <A href = '?src=\ref[src];input=3'>+</A> <A href = '?src=\ref[src];input=4'>+</A><BR>"
 		if(advanced)
 			t += "Frequency:  <A href = '?src=\ref[src];freq=-10000'>-</A> <A href = '?src=\ref[src];freq=-1000'>-</A> [add_lspace(laser.freq,5)] <A href = '?src=\ref[src];freq=1000'>+</A> <A href = '?src=\ref[src];freq=10000'>+</A><BR>"
@@ -142,11 +142,11 @@
 	switch(href_list["power"])
 		if("offline")
 			for(var/obj/machinery/zero_point_emitter/laser in lasers)
-				laser.active = 0
+				laser.active = FALSE
 		if("online")
 			for(var/obj/machinery/zero_point_emitter/laser in lasers)
 				if(laser.state == 2)
-					laser.active = 1
+					laser.active = TRUE
 
 	if(href_list["input"])
 		var/i = text2num(href_list["input"])
@@ -164,11 +164,11 @@
 			new_freq = min(new_freq, 20000)
 			laser.frequency = new_freq
 
-	src.updateUsrDialog()
-	return // Somebody decided having no return statement was a good idea. -Frenjo
+	updateUsrDialog()
+
 /*
 /obj/machinery/computer/lasercon/process()
-	if(!(stat & (NOPOWER|BROKEN)) )
+	if(!(stat & (NOPOWER|BROKEN)))
 		use_power(250)
 
 	//src.updateDialog()
@@ -176,7 +176,6 @@
 
 /*
 /obj/machinery/computer/lasercon/power_change()
-
 	if(stat & BROKEN)
 		icon_state = "broken"
 	else
@@ -204,7 +203,7 @@
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
 	if(isnull(ui))
-		ui = new(user, src, ui_key, "laser_ctrl.tmpl", "Zero-Point Laser Status Monitor", 480, 360)
+		ui = new /datum/nanoui(user, src, ui_key, "laser_ctrl.tmpl", "Zero-Point Laser Status Monitor", 480, 360)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update()
