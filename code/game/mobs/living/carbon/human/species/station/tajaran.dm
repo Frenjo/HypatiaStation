@@ -28,3 +28,7 @@
 	reagent_tag = IS_TAJARAN
 
 	flesh_color = "#AFA59E"
+
+/datum/species/tajaran/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H), SLOT_ID_SHOES)

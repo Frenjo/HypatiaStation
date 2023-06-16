@@ -84,7 +84,8 @@
 		"eyes" =	/datum/organ/internal/eyes
 	)
 
-	var/survival_kit = /obj/item/weapon/storage/box/survival // For species with custom survival kits, default is the standard kit.
+	// For species with custom survival kits, defaults to the standard kit.
+	var/survival_kit = /obj/item/weapon/storage/box/survival
 
 	// Bump vars
 	var/bump_flag = HUMAN		// What are we considered to be when bumped?
@@ -97,8 +98,11 @@
 	else
 		hud = new /datum/hud_data()
 
-/datum/species/proc/create_organs(mob/living/carbon/human/H) //Handles creation of mob organs.
-	//Trying to work out why species changes aren't fixing organs properly.
+// Handles creation of mob organs.
+/datum/species/proc/create_organs(mob/living/carbon/human/H)
+	SHOULD_CALL_PARENT(TRUE)
+
+	// Trying to work out why species changes aren't fixing organs properly.
 	if(!isnull(H.organs))
 		H.organs.Cut()
 	if(!isnull(H.internal_organs))
@@ -113,7 +117,7 @@
 	H.organs_by_name = list()
 	H.internal_organs_by_name = list()
 
-	//This is a basic humanoid limb setup.
+	// This is a basic humanoid limb setup.
 	H.organs_by_name["chest"] = new/datum/organ/external/chest()
 	H.organs_by_name["groin"] = new/datum/organ/external/groin(H.organs_by_name["chest"])
 	H.organs_by_name["head"] = new/datum/organ/external/head(H.organs_by_name["chest"])
@@ -144,35 +148,24 @@
 		for(var/datum/organ/internal/I in H.internal_organs)
 			I.mechanize()
 
-/datum/species/proc/hug(mob/living/carbon/human/H, mob/living/target)
-	var/t_him = "them"
-	switch(target.gender)
-		if(MALE)
-			t_him = "him"
-		if(FEMALE)
-			t_him = "her"
-
-	H.visible_message(
-		SPAN_NOTICE("[H] hugs [target] to make [t_him] feel better!"),
-		SPAN_NOTICE("You hug [target] to make [t_him] feel better!")
-	)
-
 /datum/species/proc/add_inherent_verbs(mob/living/carbon/human/H)
 	if(!isnull(inherent_verbs))
 		for(var/verb_path in inherent_verbs)
 			H.verbs |= verb_path
-	return
 
 /datum/species/proc/remove_inherent_verbs(mob/living/carbon/human/H)
 	if(!isnull(inherent_verbs))
 		for(var/verb_path in inherent_verbs)
 			H.verbs.Remove(verb_path)
-	return
 
-/datum/species/proc/handle_post_spawn(mob/living/carbon/human/H) //Handles anything not already covered by basic species assignment.
+// Handles anything not already covered by basic species assignment.
+/datum/species/proc/handle_post_spawn(mob/living/carbon/human/H)
+	SHOULD_CALL_PARENT(TRUE)
+
 	add_inherent_verbs(H)
 
-/datum/species/proc/handle_death(mob/living/carbon/human/H) //Handles any species-specific death events (such as dionaea nymph spawns).
+// Handles any species-specific death events (such as dionaea nymph spawns).
+/datum/species/proc/handle_death(mob/living/carbon/human/H)
 	if(flags & IS_SYNTHETIC)
 		//H.make_jittery(200) //S-s-s-s-sytem f-f-ai-i-i-i-i-lure-ure-ure-ure
 		H.h_style = ""
@@ -180,7 +173,6 @@
 			//H.is_jittery = 0
 			//H.jitteriness = 0
 			H.update_hair()
-	return
 
 // Only used for alien plasma weeds atm, but could be used for Dionaea later.
 /datum/species/proc/handle_environment_special(mob/living/carbon/human/H)
@@ -206,7 +198,7 @@
 /datum/species/proc/can_shred(mob/living/carbon/human/H)
 	if(H.a_intent != "hurt")
 		return FALSE
-	
+
 	for(var/type in unarmed_attacks)
 		var/decl/unarmed_attack/attack = GET_DECL_INSTANCE(type)
 		if(isnull(attack) || !attack.is_usable(H))

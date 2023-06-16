@@ -12,12 +12,12 @@
 	slowdown = 7
 
 	has_organ = list(
-		"nutrient channel" =	/datum/organ/internal/diona/nutrients,
-		"neural strata" =		/datum/organ/internal/diona/strata,
-		"response node" =		/datum/organ/internal/diona/node,
-		"gas bladder" =			/datum/organ/internal/diona/bladder,
-		"polyp segment" =		/datum/organ/internal/diona/polyp,
-		"anchoring ligament" =	/datum/organ/internal/diona/ligament
+		"nutrient channel" = /datum/organ/internal/diona/nutrients,
+		"neural strata" = /datum/organ/internal/diona/strata,
+		"response node" = /datum/organ/internal/diona/node,
+		"gas bladder" = /datum/organ/internal/diona/bladder,
+		"polyp segment" = /datum/organ/internal/diona/polyp,
+		"anchoring ligament" = /datum/organ/internal/diona/ligament
 	)
 
 	warning_low_pressure = 50
@@ -43,7 +43,7 @@
 	survival_kit = /obj/item/weapon/storage/box/survival_diona
 
 /datum/species/diona/handle_post_spawn(mob/living/carbon/human/H)
-	if(!H)
+	if(isnull(H))
 		return
 
 	H.gender = NEUTER
@@ -53,12 +53,12 @@
 /datum/species/diona/handle_death(mob/living/carbon/human/H)
 	var/mob/living/carbon/monkey/diona/S = new(get_turf(H))
 
-	if(H.mind)
+	if(!isnull(H.mind))
 		H.mind.transfer_to(S)
 		S.key = H
 
 	for(var/mob/living/carbon/monkey/diona/D in H.contents)
-		if(D.client)
+		if(!isnull(D.client))
 			D.loc = H.loc
 		else
 			qdel(D)

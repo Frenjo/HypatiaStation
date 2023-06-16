@@ -73,23 +73,37 @@
 	icon_template = 'icons/mob/human_races/r_armalis.dmi'
 
 /datum/species/vox/create_organs(mob/living/carbon/human/H)
-	..() //create organs first.
+	. = ..() // Create organs first.
 
-	//Now apply cortical stack.
+	// Now apply cortical stack.
 	var/datum/organ/external/affected = H.get_organ("head")
 
-	//To avoid duplicates.
+	// To avoid duplicates.
 	for(var/obj/item/weapon/implant/cortical/imp in H.contents)
-		affected.implants -= imp
+		affected.implants.Remove(imp)
 		qdel(imp)
 
-	var/obj/item/weapon/implant/cortical/I = new(H)
+	var/obj/item/weapon/implant/cortical/I = new /obj/item/weapon/implant/cortical(H)
 	I.imp_in = H
 	I.implanted = 1
-	affected.implants += I
+	affected.implants.Add(I)
 	I.part = affected
 
 	if(IS_GAME_MODE(/datum/game_mode/heist))
 		var/datum/game_mode/heist/M = global.CTgame_ticker.mode
 		M.cortical_stacks.Add(I)
 		M.raiders[H.mind] = I
+
+/datum/species/vox/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+
+	// Equips a set of nitrogen internals and activates them.
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/vox(src), SLOT_ID_WEAR_MASK)
+	if(isnull(H.r_hand))
+		H.equip_to_slot_or_del(new /obj/item/weapon/tank/nitrogen(src), SLOT_ID_R_HAND)
+		H.internal = H.r_hand
+	else if(isnull(H.l_hand))
+		H.equip_to_slot_or_del(new /obj/item/weapon/tank/nitrogen(src), SLOT_ID_L_HAND)
+		H.internal = H.l_hand
+	spawn(20) // I hate the fact that this is necessary but I don't have the will to track down where HUD initialisation happens.
+		H.internals.icon_state = "internal1"

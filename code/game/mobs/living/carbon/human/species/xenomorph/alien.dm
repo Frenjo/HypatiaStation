@@ -1,55 +1,56 @@
 /proc/create_new_xenomorph(alien_caste, target)
 	target = get_turf(target)
-	if(!target || !alien_caste)
+	if(isnull(target) || isnull(alien_caste))
 		return
 
-	var/mob/living/carbon/human/new_alien = new(target)
+	var/mob/living/carbon/human/new_alien = new /mob/living/carbon/human(target)
 	new_alien.set_species("Xenomorph [alien_caste]")
 	return new_alien
 
 /mob/living/carbon/human/xdrone/New(new_loc)
 	h_style = "Bald"
-	..(new_loc, SPECIES_XENOMORPH_DRONE)
+	. = ..(new_loc, SPECIES_XENOMORPH_DRONE)
 
 /mob/living/carbon/human/xsentinel/New(new_loc)
 	h_style = "Bald"
-	..(new_loc, SPECIES_XENOMORPH_SENTINEL)
+	. = ..(new_loc, SPECIES_XENOMORPH_SENTINEL)
 
 /mob/living/carbon/human/xhunter/New(new_loc)
 	h_style = "Bald"
-	..(new_loc, SPECIES_XENOMORPH_HUNTER)
+	. = ..(new_loc, SPECIES_XENOMORPH_HUNTER)
 
 /mob/living/carbon/human/xqueen/New(new_loc)
 	h_style = "Bald"
-	..(new_loc, SPECIES_XENOMORPH_QUEEN)
+	. = ..(new_loc, SPECIES_XENOMORPH_QUEEN)
 
 /mob/living/carbon/human/Stat()
-	..()
+	. = ..()
 
 // I feel like we should generalize/condense down all the various icon-rendering antag procs.
-/*----------------------------------------
+/*
+----------------------------------------
 Proc: AddInfectionImages()
 Des: Gives the client of the alien an image on each infected mob.
-----------------------------------------*/
+----------------------------------------
+*/
 /mob/living/carbon/human/proc/AddInfectionImages()
-	if(client)
+	if(!isnull(client))
 		for(var/mob/living/C in GLOBL.mob_list)
 			if(C.status_flags & XENO_HOST)
 				var/obj/item/alien_embryo/A = locate() in C
-				var/I = image('icons/mob/alien.dmi', loc = C, icon_state = "infected[A.stage]")
-				client.images += I
-	return
+				client.images.Add(image('icons/mob/alien.dmi', loc = C, icon_state = "infected[A.stage]"))
 
-/*----------------------------------------
+/*
+----------------------------------------
 Proc: RemoveInfectionImages()
 Des: Removes all infected images from the alien.
-----------------------------------------*/
+----------------------------------------
+*/
 /mob/living/carbon/human/proc/RemoveInfectionImages()
-	if(client)
+	if(!isnull(client))
 		for(var/image/I in client.images)
 			if(dd_hasprefix_case(I.icon_state, "infected"))
 				qdel(I)
-	return
 
 /* TODO: Convert this over.
 /mob/living/carbon/human/alien/show_inv(mob/user as mob)

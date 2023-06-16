@@ -25,19 +25,28 @@
 	survival_kit = /obj/item/weapon/storage/box/survival_plasmalin
 
 /datum/species/plasmalin/handle_post_spawn(mob/living/carbon/human/H)
-	if(!H)
-		return 0
+	. = ..()
 
 	H.gender = NEUTER
 
+	// Equips the standard Plasmalin clothing.
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/plasmalin(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/plasmalin(H), SLOT_ID_GLOVES)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/plasmalin(H), SLOT_ID_HEAD)
 
-	return ..()
+	// Equips a set of plasma internals and activates them.
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), SLOT_ID_WEAR_MASK)
+	if(isnull(H.r_hand))
+		H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), SLOT_ID_R_HAND)
+		H.internal = H.r_hand
+	else if(isnull(H.l_hand))
+		H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), SLOT_ID_L_HAND)
+		H.internal = H.l_hand
+	spawn(20) // I hate the fact that this is necessary but I don't have the will to track down where HUD initialisation happens.
+		H.internals.icon_state = "internal1"
 
 /datum/species/plasmalin/handle_environment_special(mob/living/carbon/human/H)
-	if(!H.loc)
+	if(isnull(H.loc))
 		return
 
 	var/atmos_sealed = (H.wear_suit && H.wear_suit.flags & STOPSPRESSUREDAMAGE) && (H.head && H.head.flags & STOPSPRESSUREDAMAGE)

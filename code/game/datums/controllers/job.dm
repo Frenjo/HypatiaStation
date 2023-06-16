@@ -398,47 +398,21 @@ CONTROLLER_DEF(occupations)
 				return 1
 			if("AI", "Clown", "Mime")	//don't need bag preference stuff!
 			else
+				var/obj/item/weapon/storage/backbag = null
 				switch(H.backbag) //BS12 EDIT
-					if(1)
-						if(H.species.survival_kit)
-							H.equip_to_slot_or_del(new H.species.survival_kit(H), SLOT_ID_R_HAND)
 					if(2)
-						var/obj/item/weapon/storage/backpack/bpk = new/obj/item/weapon/storage/backpack(H)
-						if(H.species.survival_kit)
-							new H.species.survival_kit(bpk)
-						H.equip_to_slot_or_del(bpk, SLOT_ID_BACK, 1)
+						backbag = new/obj/item/weapon/storage/backpack(H)
 					if(3)
-						var/obj/item/weapon/storage/satchel/sat = new /obj/item/weapon/storage/satchel/norm(H)
-						if(H.species.survival_kit)
-							new H.species.survival_kit(sat)
-						H.equip_to_slot_or_del(sat, SLOT_ID_BACK, 1)
+						backbag = new /obj/item/weapon/storage/satchel/norm(H)
 					if(4)
-						var/obj/item/weapon/storage/sat = new /obj/item/weapon/storage/satchel(H)
-						if(H.species.survival_kit)
-							new H.species.survival_kit(sat)
-						H.equip_to_slot_or_del(sat, SLOT_ID_BACK, 1)
-
-	if(!isnull(H.species))
-		if(H.species.name == SPECIES_TAJARAN || H.species.name == SPECIES_SOGHUN)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H), SLOT_ID_SHOES, 1)
-		else if(H.species.name == SPECIES_VOX)
-			H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/vox(src), SLOT_ID_WEAR_MASK)
-			if(isnull(H.r_hand))
-				H.equip_to_slot_or_del(new /obj/item/weapon/tank/nitrogen(src), SLOT_ID_R_HAND)
-				H.internal = H.r_hand
-			else if(isnull(H.l_hand))
-				H.equip_to_slot_or_del(new /obj/item/weapon/tank/nitrogen(src), SLOT_ID_L_HAND)
-				H.internal = H.l_hand
-			H.internals.icon_state = "internal1"
-		else if(H.species.name == SPECIES_PLASMALIN)
-			H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), SLOT_ID_WEAR_MASK)
-			if(isnull(H.r_hand))
-				H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), SLOT_ID_R_HAND)
-				H.internal = H.r_hand
-			else if(isnull(H.l_hand))
-				H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), SLOT_ID_L_HAND)
-				H.internal = H.l_hand
-			H.internals.icon_state = "internal1"
+						backbag = new /obj/item/weapon/storage/satchel(H)
+				if(!isnull(backbag))
+					if(ispath(H.species.survival_kit))
+						new H.species.survival_kit(backbag)
+					H.equip_to_slot_or_del(backbag, SLOT_ID_BACK, 1)
+				else
+					if(ispath(H.species.survival_kit))
+						H.equip_to_slot_or_del(new H.species.survival_kit(H), SLOT_ID_R_HAND)
 
 	to_chat(H, "<B>You are the [alt_title ? alt_title : rank].</B>")
 	to_chat(H, "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")

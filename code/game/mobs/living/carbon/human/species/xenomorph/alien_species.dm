@@ -61,7 +61,8 @@
 	)
 
 /datum/species/xenos/handle_post_spawn(mob/living/carbon/human/H)
-	if(H.mind)
+	. = ..()
+	if(!isnull(H.mind))
 		H.mind.assigned_role = "Alien"
 		H.mind.special_role = "Alien"
 
@@ -69,10 +70,8 @@
 	H.real_name = "alien [caste_name] ([alien_number])"
 	H.name = H.real_name
 
-	return ..()
-
 /datum/species/xenos/handle_environment_special(mob/living/carbon/human/H)
-	if(!H.loc)
+	if(isnull(H.loc))
 		return
 
 	if(locate(/obj/effect/alien/weeds) in H.loc)
@@ -85,15 +84,12 @@
 			H.adjustFireLoss(-weeds_heal_rate)
 			H.adjustOxyLoss(-weeds_heal_rate)
 			H.adjustToxLoss(-weeds_heal_rate)
-		..()
 
 /datum/species/xenos/handle_login_special(mob/living/carbon/human/H)
 	H.AddInfectionImages()
-	..()
 
 /datum/species/xenos/handle_logout_special(mob/living/carbon/human/H)
 	H.RemoveInfectionImages()
-	..()
 
 /datum/species/xenos/drone
 	name = SPECIES_XENOMORPH_DRONE
@@ -223,7 +219,7 @@
 	//health = 250
 
 /datum/species/xenos/queen/handle_login_special(mob/living/carbon/human/H)
-	..()
+	. = ..()
 	// Make sure only one official queen exists at any point.
 	if(!alien_queen_exists(1, H))
 		H.real_name = "alien queen ([alien_number])"
@@ -234,21 +230,21 @@
 
 /datum/hud_data/alien
 	icon = 'icons/mob/screen/screen1_alien.dmi'
-	has_a_intent =	1
-	has_m_intent =	1
-	has_warnings =	1
-	has_hands =		1
-	has_drop =		1
-	has_throw =		1
-	has_resist =	1
-	has_pressure =	0
-	has_nutrition =	0
-	has_bodytemp =	0
-	has_internals =	0
+	has_a_intent =	TRUE
+	has_m_intent =	TRUE
+	has_warnings =	TRUE
+	has_hands =		TRUE
+	has_drop =		TRUE
+	has_throw =		TRUE
+	has_resist =	TRUE
+	has_pressure =	FALSE
+	has_nutrition =	FALSE
+	has_bodytemp =	FALSE
+	has_internals =	FALSE
 
 	gear = list(
 		"o_clothing" =	list("loc" = UI_BELT,		"slot" = SLOT_ID_WEAR_SUIT,	"state" = "equip",	"dir" = SOUTH),
-		"head" =		list("loc" = UI_ID,			"slot" = SLOT_ID_HEAD,			"state" = "hair"),
-		"storage1" =	list("loc" = UI_STORAGE1,	"slot" = SLOT_ID_L_STORE,		"state" = "pocket"),
-		"storage2" =	list("loc" = UI_STORAGE2,	"slot" = SLOT_ID_R_STORE,		"state" = "pocket"),
+		"head" =		list("loc" = UI_ID,			"slot" = SLOT_ID_HEAD,		"state" = "hair"),
+		"storage1" =	list("loc" = UI_STORAGE1,	"slot" = SLOT_ID_L_STORE,	"state" = "pocket"),
+		"storage2" =	list("loc" = UI_STORAGE2,	"slot" = SLOT_ID_R_STORE,	"state" = "pocket"),
 	)

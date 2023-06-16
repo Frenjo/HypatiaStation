@@ -474,6 +474,7 @@
 #include "code\game\mobs\living\carbon\human\whisper.dm"
 #include "code\game\mobs\living\carbon\human\species\species.dm"
 #include "code\game\mobs\living\carbon\human\species\species_hud.dm"
+#include "code\game\mobs\living\carbon\human\species\species_powers.dm"
 #include "code\game\mobs\living\carbon\human\species\outsider\vox.dm"
 #include "code\game\mobs\living\carbon\human\species\station\diona.dm"
 #include "code\game\mobs\living\carbon\human\species\station\human.dm"

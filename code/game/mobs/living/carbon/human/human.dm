@@ -1112,19 +1112,19 @@
 		to_chat(usr, SPAN_INFO("[self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)]."))
 
 /mob/living/carbon/human/proc/set_species(new_species, force_organs)
-	if(!dna)
-		if(!new_species)
+	if(isnull(dna))
+		if(isnull(new_species))
 			new_species = SPECIES_HUMAN
 	else
-		if(!new_species)
+		if(isnull(new_species))
 			new_species = dna.species
 		else
 			dna.species = new_species
 
-	if(species)
-		if(species.name && species.name == new_species)
+	if(!isnull(species))
+		if(!isnull(species.name) && species.name == new_species)
 			return
-		if(species.language)
+		if(!isnull(species.language))
 			remove_language(species.language)
 
 	species = GLOBL.all_species[new_species]
@@ -1132,19 +1132,19 @@
 	if(force_organs || !length(organs))
 		species.create_organs(src)
 
-	if(species.language)
+	if(!isnull(species.language))
 		add_language(species.language)
 
 	spawn(0)
 		update_icons()
 		if(!(species.flags & NO_BLOOD))
 			vessel.add_reagent("blood", 560 - vessel.total_volume)
-	
+
 	mob_bump_flag = species.bump_flag
 	mob_swap_flags = species.swap_flags
 	mob_push_flags = species.push_flags
 
-	if(species)
+	if(!isnull(species))
 		species.handle_post_spawn(src)
 		return 1
 	else
