@@ -352,22 +352,24 @@ var/list/admin_verbs_donor = list(
 /client/proc/admin_ghost()
 	set category = "Admin"
 	set name = "Aghost"
-	if(!holder)	return
-	if(istype(mob,/mob/dead/observer))
+
+	if(isnull(holder))
+		return
+	if(istype(mob, /mob/dead/observer))
 		//re-enter
 		var/mob/dead/observer/ghost = mob
-		ghost.can_reenter_corpse = 1			//just in-case.
+		ghost.can_reenter_corpse = TRUE			//just in-case.
 		ghost.reenter_corpse()
-		feedback_add_details("admin_verb","P") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		feedback_add_details("admin_verb", "P") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else if(isnewplayer(mob))
-		src << "<font color='red'>Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.</font>"
+		to_chat(src, SPAN_WARNING("Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first."))
 	else
 		//ghostize
 		var/mob/body = mob
 		body.ghostize(1)
-		if(body && !body.key)
+		if(!isnull(body) && isnull(body.key))
 			body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
-		feedback_add_details("admin_verb","O") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		feedback_add_details("admin_verb", "O") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
 /client/proc/invisimin()

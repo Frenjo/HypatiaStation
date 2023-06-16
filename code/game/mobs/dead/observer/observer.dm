@@ -202,7 +202,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/can_use_hands()
 	return 0
 
-/mob/dead/observer/is_active()	
+/mob/dead/observer/is_active()
 	return 0
 
 // Updated to reflect 'shuttles' port. -Frenjo
@@ -233,12 +233,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(isnull(mind?.current) || !can_reenter_corpse)
 		to_chat(src, SPAN_WARNING("You have no body."))
 		return
-	if(mind.current.key && copytext(mind.current.key, 1, 2) != "@")	//makes sure we don't accidentally kick any clients
+	if(!isnull(mind.current.key) && copytext(mind.current.key, 1, 2) != "@")	//makes sure we don't accidentally kick any clients
 		to_chat(src, SPAN_WARNING("Another consciousness is in your body... It is resisting you."))
 		return
 	if(mind.current.ajourn && mind.current.stat != DEAD)	//check if the corpse is astral-journeying (it's client ghosted using a cultist rune).
 		var/obj/effect/rune/R = locate() in mind.current.loc	//whilst corpse is alive, we can only reenter the body if it's on the rune
-		if(!(R && R.word1 == cultwords["hell"] && R.word2 == cultwords["travel"] && R.word3 == cultwords["self"]))	//astral journeying rune
+		if(!(!isnull(R) && R.word1 == cultwords["hell"] && R.word2 == cultwords["travel"] && R.word3 == cultwords["self"]))	//astral journeying rune
 			to_chat(src, SPAN_WARNING("The astral cord that ties your body and your spirit has been severed. You are likely to wander the realm beyond until your body is finally dead and thus reunited with you."))
 			return
 

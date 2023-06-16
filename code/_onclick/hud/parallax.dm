@@ -98,8 +98,10 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 		bluespace_master = new /atom/movable/parallax_master/bluespace()
 	if(isnull(space_parallax))
 		space_parallax = new /atom/movable/space_parallax()
+	else
+		space_parallax.overlays.Cut()
 
-	space_parallax.overlays |= GLOBL.parallax_stars
+	space_parallax.overlays.Add(GLOBL.parallax_stars)
 	screen |= list(parallax_master, space_parallax)
 
 /client/proc/set_parallax_space(parallax_type)
@@ -113,10 +115,10 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 	space_parallax.overlays.Cut()
 
 	if(is_bluespace)
-		space_parallax.overlays |= GLOBL.parallax_bluespace_stars
+		space_parallax.overlays.Add(GLOBL.parallax_bluespace_stars)
 		screen |= bluespace_master
 	else
-		space_parallax.overlays |= GLOBL.parallax_stars
+		space_parallax.overlays.Add(GLOBL.parallax_stars)
 		screen.Remove(bluespace_master)
 
 /mob/Move()
