@@ -25,7 +25,7 @@ GLOBAL_GLOBL_LIST_NEW(all_lighting_overlays) // Global list of lighting overlays
 
 	var/turf/T = loc //If this runtimes atleast we'll know what's creating overlays outside of turfs.
 	T.lighting_overlay = src
-	T.luminosity = 0
+	T.luminosity = FALSE
 	if(no_update)
 		return
 	update_overlay()
@@ -38,7 +38,7 @@ GLOBAL_GLOBL_LIST_NEW(all_lighting_overlays) // Global list of lighting overlays
 	var/turf/T = loc
 	if(istype(T))
 		T.lighting_overlay = null
-		T.luminosity = 1
+		T.luminosity = TRUE
 
 	return ..()
 
@@ -81,8 +81,8 @@ GLOBAL_GLOBL_LIST_NEW(all_lighting_overlays) // Global list of lighting overlays
 	var/lum = max > LIGHTING_SOFT_THRESHOLD
 
 	if(lum)
-		luminosity = 1
+		luminosity = TRUE
 		animate(src, color = new_matrix, time = 5)
 	else
 		animate(src, color = new_matrix, time = 5)
-		animate(luminosity = 0, time = 0)
+		animate(luminosity = FALSE, time = 0)

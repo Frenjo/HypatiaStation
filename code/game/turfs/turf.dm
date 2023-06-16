@@ -28,11 +28,6 @@
 			Entered(AM)
 			return
 
-	if(dynamic_lighting)
-		luminosity = 0
-	else
-		luminosity = 1
-
 /turf/Destroy()
 	GLOBL.processing_turfs.Remove(src)
 	return ..()

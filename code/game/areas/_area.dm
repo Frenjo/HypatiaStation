@@ -20,7 +20,6 @@
 	icon_state = "unknown"
 	layer = 10
 	mouse_opacity = FALSE
-	luminosity = 1
 	level = null
 
 	/*
@@ -32,7 +31,6 @@
 	/*
 	 * Misc
 	 */
-	var/dynamic_lighting = TRUE
 	var/turf/base_turf // The base turf type of the area, which can be used to override the z-level's base turf.
 
 	/*
@@ -88,11 +86,6 @@
 	icon_state = ""
 	uid = ++static_uid
 
-	if(dynamic_lighting)
-		luminosity = 0
-	else
-		luminosity = 1
-
 	. = ..()
 
 /area/initialize()
@@ -120,17 +113,6 @@
 	else
 	//	new lighting behaviour with obj lights
 		icon_state = null
-
-/area/proc/set_lightswitch(new_switch)
-	if(lightswitch != new_switch)
-		lightswitch = new_switch
-		updateicon()
-		power_change()
-
-/area/proc/set_emergency_lighting(enable)
-	for(var/obj/machinery/light/M in src)
-		M.set_emergency_lighting(enable)
-		CHECK_TICK
 
 /area/Entered(A)
 	var/musVolume = 25
@@ -188,5 +170,5 @@
 		else
 			human.AdjustStunned(2)
 			human.AdjustWeakened(2)
-	
+
 	to_chat(mob, "Gravity!")

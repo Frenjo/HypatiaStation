@@ -112,7 +112,7 @@
 		destroy()
 		return TRUE
 
-	if(!top_atom)
+	if(isnull(top_atom))
 		top_atom = source_atom
 		. = TRUE
 

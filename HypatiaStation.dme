@@ -1256,6 +1256,7 @@
 #include "code\modules\library\lib_machines.dm"
 #include "code\modules\library\lib_readme.dm"
 #include "code\modules\lighting\_lighting_defines.dm"
+#include "code\modules\lighting\lighting_area.dm"
 #include "code\modules\lighting\lighting_atom.dm"
 #include "code\modules\lighting\lighting_corner.dm"
 #include "code\modules\lighting\lighting_overlay.dm"

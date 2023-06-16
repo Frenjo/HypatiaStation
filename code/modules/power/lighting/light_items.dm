@@ -31,7 +31,7 @@
 	brightness_power = 2
 	brightness_color = "#FFFFFF"
 	lighting_modes = list(
-		LIGHT_MODE_EMERGENCY = list(l_range = 3, l_power = 1, l_color = "#d13e43"), 
+		LIGHT_MODE_EMERGENCY = list(l_range = 3, l_power = 1, l_color = "#d13e43"),
 	)
 
 /obj/item/weapon/light/tube/large
@@ -73,7 +73,7 @@
 	brightness_color = "#d13e43"
 
 /obj/item/weapon/light/throw_impact(atom/hit_atom)
-	..()
+	. = ..()
 	shatter()
 
 // update the icon state and description of the light
@@ -90,8 +90,8 @@
 			desc = "A broken [name]."
 
 /obj/item/weapon/light/New(atom/newloc, obj/machinery/light/fixture = null)
-	..()
-	if(fixture)
+	. = ..()
+	if(!isnull(fixture))
 		status = fixture.status
 		rigged = fixture.rigged
 		switchcount = fixture.switchcount
@@ -107,7 +107,6 @@
 // attack bulb/tube with object
 // if a syringe, can inject plasma to make it explode
 /obj/item/weapon/light/attackby(obj/item/I, mob/user)
-	..()
 	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = I
 
@@ -120,8 +119,7 @@
 
 		S.reagents.clear_reagents()
 	else
-		..()
-	return
+		return ..()
 
 // called after an attack with a light item
 // shatter light, unless it was an attempt to put it in a light socket
@@ -138,9 +136,9 @@
 
 /obj/item/weapon/light/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
-		src.visible_message(
+		visible_message(
 			SPAN_WARNING("[name] shatters."),
-			SPAN_WARNING("You hear a small glass object shatter.")
+			"You hear a small glass object shatter."
 		)
 		status = LIGHT_BROKEN
 		force = 5

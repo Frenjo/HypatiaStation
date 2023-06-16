@@ -1,7 +1,7 @@
 /proc/get_light_type_instance(light_type)
 	. = GLOBL.light_type_cache[light_type]
 	if(!.)
-		. = new light_type
+		. = new light_type()
 		GLOBL.light_type_cache[light_type] = .
 
 // the standard tube light fixture
@@ -56,8 +56,8 @@
 
 // create a new lighting fixture
 /obj/machinery/light/New(atom/newloc, obj/machinery/light_construct/construct = null)
-	..(newloc)
-	if(construct)
+	. = ..(newloc)
+	if(!isnull(construct))
 		status = LIGHT_EMPTY
 		construct_type = construct.type
 		construct.transfer_fingerprints_to(src)
@@ -75,7 +75,7 @@
 
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
-	if(A)
+	if(!isnull(A))
 		on = FALSE
 	return ..()
 
@@ -97,7 +97,7 @@
 // examine verb
 /obj/machinery/light/examine()
 	var/fitting = get_fitting_name()
-	if(usr && !usr.stat)
+	if(!isnull(usr) && !usr.stat)
 		switch(status)
 			if(LIGHT_OK)
 				to_chat(usr, "[desc] It is turned [on? "on" : "off"].")
@@ -129,20 +129,17 @@
 
 		to_chat(user, "You insert [W].")
 		insert_bulb(W)
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 
 	// attempt to break the light
 	//If xenos decide they want to smash a light bulb with a toolbox, who am I to stop them? /N
 	else if(status != LIGHT_BROKEN && status != LIGHT_EMPTY)
 		if(prob(1 + W.force * 5))
-			to_chat(user, "You hit the light, and it smashes!")
-			for(var/mob/M in viewers(src))
-				if(M == user)
-					continue
-				M.show_message(
-					"[user.name] smashed the light!", 3,
-					"You hear a tinkle of breaking glass", 2
-				)
+			user.visible_message(
+				SPAN_WARNING("[user.name] smashed the light!"),
+				"You hit the light, and it smashes!",
+				"You hear the tinkle of breaking glass."
+			)
 			if(on && (W.flags & CONDUCT))
 				//if(!user.mutations & COLD_RESISTANCE)
 				if(prob(12))
@@ -161,29 +158,28 @@
 				"You open [src]'s casing.",
 				"You hear a noise."
 			)
-			new construct_type(src.loc, src)
+			new construct_type(loc, src)
 			qdel(src)
 			return
 
 		to_chat(user, "You stick \the [W] into the light socket!")
 		if(powered() && (W.flags & CONDUCT))
-			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
+			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
 			s.set_up(3, 1, src)
 			s.start()
 			//if(!user.mutations & COLD_RESISTANCE)
 			if(prob(75))
-				electrocute_mob(user, get_area(src), src, rand(0.7,1.0))
+				electrocute_mob(user, get_area(src), src, rand(0.7, 1.0))
 
 // returns whether this light has power
 // true if area has power and lightswitch is on
 /obj/machinery/light/powered()
 	var/area/A = get_area(src)
-	return A && A.lightswitch && ..(power_channel)
+	return !isnull(A) && A.lightswitch && ..(power_channel)
 
 // ai attack - make lights flicker, because why not
 /obj/machinery/light/attack_ai(mob/user)
-	src.flicker(1)
-	return
+	flicker(1)
 
 /obj/machinery/light/attack_animal(mob/living/M)
 	if(M.melee_damage_upper == 0)
@@ -192,11 +188,11 @@
 		to_chat(M, SPAN_WARNING("That object is useless to you."))
 		return
 	else if(status == LIGHT_OK || status == LIGHT_BURNED)
-		for(var/mob/O in viewers(src))
-			O.show_message(
-				SPAN_WARNING("[M.name] smashed the light!"), 3,
-				"You hear a tinkle of breaking glass", 2
-			)
+		M.visible_message(
+			SPAN_WARNING("[M.name] smashed the light!"),
+			"You hit the light, and it smashes!",
+			"You hear the tinkle of breaking glass."
+		)
 		broken()
 	return
 
@@ -211,18 +207,18 @@
 
 	// make it burn hands if not wearing fire-insulated gloves
 	if(on)
-		var/prot = 0
-		var/mob/living/carbon/human/H = user
+		var/prot = FALSE
 
-		if(istype(H))
-			if(H.gloves)
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(!isnull(H.gloves))
 				var/obj/item/clothing/gloves/G = H.gloves
 				if(G.max_heat_protection_temperature)
 					prot = (G.max_heat_protection_temperature > 360)
 		else
-			prot = 1
+			prot = TRUE
 
-		if(prot > 0 || (COLD_RESISTANCE in user.mutations))
+		if(prot || (COLD_RESISTANCE in user.mutations))
 			to_chat(user, "You remove the light [get_fitting_name()].")
 		else if(TK in user.mutations)
 			to_chat(user, "You telekinetically remove the light [get_fitting_name()].")
@@ -285,7 +281,7 @@
 	if(on)
 		use_power = 2
 		var/changed = 0
-		if(current_mode && (current_mode in lighting_modes))
+		if(!isnull(current_mode) && (current_mode in lighting_modes))
 			changed = set_light(arglist(lighting_modes[current_mode]))
 		else
 			changed = set_light(brightness_range, brightness_power, brightness_color)
@@ -360,7 +356,7 @@
 		explode()
 
 /obj/machinery/light/proc/remove_bulb()
-	. = new light_type(src.loc, src)
+	. = new light_type(loc, src)
 
 	switchcount = 0
 	status = LIGHT_EMPTY
@@ -391,7 +387,7 @@
 		if(status == LIGHT_OK || status == LIGHT_BURNED)
 			playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		if(on)
-			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
+			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
 			s.set_up(3, 1, src)
 			s.start()
 	status = LIGHT_BROKEN
@@ -406,7 +402,7 @@
 
 // explode the light
 /obj/machinery/light/proc/explode()
-	var/turf/T = get_turf(src.loc)
+	var/turf/T = get_turf(loc)
 	spawn(0)
 		broken()	// break it first to give a warning
 		sleep(2)
