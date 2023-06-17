@@ -407,11 +407,17 @@ CONTROLLER_DEF(occupations)
 					if(4)
 						backbag = new /obj/item/weapon/storage/satchel(H)
 				if(!isnull(backbag))
-					if(ispath(H.species.survival_kit))
-						new H.species.survival_kit(backbag)
-					H.equip_to_slot_or_del(backbag, SLOT_ID_BACK, 1)
+					H.equip_to_slot_or_del(backbag, SLOT_ID_BACK)
+
+				if(ispath(job.special_survival_kit) && H.species.survival_kit == /obj/item/weapon/storage/box/survival)
+					if(!isnull(backbag))
+						H.equip_to_slot_or_del(new job.special_survival_kit(backbag), SLOT_ID_IN_BACKPACK)
+					else
+						H.equip_to_slot_or_del(new job.special_survival_kit(H), SLOT_ID_R_HAND)
 				else
-					if(ispath(H.species.survival_kit))
+					if(!isnull(backbag))
+						H.equip_to_slot_or_del(new H.species.survival_kit(backbag), SLOT_ID_IN_BACKPACK)
+					else
 						H.equip_to_slot_or_del(new H.species.survival_kit(H), SLOT_ID_R_HAND)
 
 	to_chat(H, "<B>You are the [alt_title ? alt_title : rank].</B>")

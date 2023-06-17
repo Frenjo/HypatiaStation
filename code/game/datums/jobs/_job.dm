@@ -33,6 +33,10 @@
 	// List of alternate titles, if any.
 	var/list/alt_titles
 
+	// The specific survival kit provided to characters with this job, if there is one.
+	// Currently only used for engineering jobs.
+	var/special_survival_kit = null
+
 /datum/job/proc/equip(mob/living/carbon/human/H)
 	return 1
 

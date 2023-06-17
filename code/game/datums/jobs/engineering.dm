@@ -30,6 +30,8 @@
 		ACCESS_CE, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_AI_UPLOAD
 	)
 
+	special_survival_kit = /obj/item/weapon/storage/box/survival_engineer
+
 /datum/job/chief_engineer/equip(mob/living/carbon/human/H)
 	if(isnull(H))
 		return 0
@@ -50,11 +52,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), SLOT_ID_BELT)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
 
-	if(istype(H.species.survival_kit, /obj/item/weapon/storage/box/survival))
-		if(H.backbag == 1)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H), SLOT_ID_R_HAND)
-		else
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H.back), SLOT_ID_IN_BACKPACK)
 	return 1
 
 /*
@@ -83,6 +80,8 @@
 
 	alt_titles = list("Maintenance Technician", "Engine Technician", "Electrician")
 
+	special_survival_kit = /obj/item/weapon/storage/box/survival_engineer
+
 /datum/job/engineer/equip(mob/living/carbon/human/H)
 	if(isnull(H))
 		return 0
@@ -103,11 +102,6 @@
 	H.equip_to_slot_or_del(new /obj/item/device/t_scanner(H), SLOT_ID_R_STORE)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/engineering(H), SLOT_ID_L_STORE)
 
-	if(istype(H.species.survival_kit, /obj/item/weapon/storage/box/survival))
-		if(H.backbag == 1)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H), SLOT_ID_R_HAND)
-		else
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H.back), SLOT_ID_IN_BACKPACK)
 	return 1
 
 /*
@@ -135,6 +129,8 @@
 		ACCESS_EXTERNAL_AIRLOCKS
 	)
 
+	special_survival_kit = /obj/item/weapon/storage/box/survival_engineer
+
 /datum/job/atmos/equip(mob/living/carbon/human/H)
 	if(isnull(H))
 		return 0
@@ -153,9 +149,4 @@
 	H.equip_to_slot_or_del(new /obj/item/device/pda/atmos(H), SLOT_ID_L_STORE)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/atmostech/(H), SLOT_ID_BELT)
 
-	if(!istype(H.species.survival_kit, /obj/item/weapon/storage/box/survival))
-		if(H.backbag == 1)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H), SLOT_ID_R_HAND)
-		else
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H.back), SLOT_ID_IN_BACKPACK)
 	return 1
