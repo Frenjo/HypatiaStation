@@ -37,11 +37,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
 	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), SLOT_ID_GLASSES)
 	H.equip_to_slot_or_del(new /obj/item/weapon/clipboard(H), SLOT_ID_L_HAND)
-	
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
+
 	return 1
 
 /*
@@ -74,11 +70,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/cargo(H), SLOT_ID_BELT)
 //	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
-	
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
+
 	return 1
 
 /*
@@ -104,6 +96,8 @@
 
 	alt_titles = list("Head Miner")
 
+	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
+
 /datum/job/miningforeman/equip(mob/living/carbon/human/H)
 	if(isnull(H))
 		return 0
@@ -122,11 +116,9 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
 
 	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H), SLOT_ID_R_HAND)
 		H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), SLOT_ID_L_HAND)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/bag/ore(H), SLOT_ID_L_STORE)
 	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H.back), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/bag/ore(H), SLOT_ID_IN_BACKPACK)
 	return 1
@@ -154,6 +146,8 @@
 
 	alt_titles = list("Prospector")
 
+	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
+
 /datum/job/mining/equip(mob/living/carbon/human/H)
 	if(isnull(H))
 		return 0
@@ -172,11 +166,9 @@
 //	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
 
 	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H), SLOT_ID_R_HAND)
 		H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), SLOT_ID_L_HAND)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/bag/ore(H), SLOT_ID_L_STORE)
 	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival_engineer(H.back), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/bag/ore(H), SLOT_ID_IN_BACKPACK)
 	return 1
@@ -215,9 +207,5 @@
 	H.equip_to_slot_or_del(new /obj/item/device/pda/cargo/mailman(H), SLOT_ID_BELT) // Mailman gets his own PDA now too! -Frenjo
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/blue(H), SLOT_ID_GLOVES)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/mailman(H), SLOT_ID_HEAD) // And the distinctive hat too! -Frenjo
-	
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
+
 	return 1

@@ -50,10 +50,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), SLOT_ID_L_HAND)
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), SLOT_ID_S_STORE)
 
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 	return 1
 
 /*
@@ -119,10 +115,6 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/adv(H), SLOT_ID_L_HAND)
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), SLOT_ID_S_STORE)
 
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 	return 1
 
 /*
@@ -158,10 +150,7 @@
 
 	if(H.backbag == 3)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/chem(H), SLOT_ID_BACK)
-	else if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
+
 	return 1
 
 /*
@@ -195,10 +184,7 @@
 
 	if(H.backbag == 3)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/gen(H), SLOT_ID_BACK)
-	else if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
+
 	return 1
 
 /*
@@ -235,10 +221,7 @@
 
 	if(H.backbag == 3)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/vir(H), SLOT_ID_BACK)
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
+
 	return 1
 
 /*
@@ -280,8 +263,4 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), SLOT_ID_WEAR_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), SLOT_ID_S_STORE)
 
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 	return 1

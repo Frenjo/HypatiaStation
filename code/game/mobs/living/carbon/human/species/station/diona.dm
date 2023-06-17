@@ -40,7 +40,7 @@
 	blood_color = "#004400"
 	flesh_color = "#907E4A"
 
-	survival_kit = /obj/item/weapon/storage/box/survival_diona
+	survival_kit = /obj/item/weapon/storage/box/survival/diona
 
 /datum/species/diona/handle_post_spawn(mob/living/carbon/human/H)
 	if(isnull(H))

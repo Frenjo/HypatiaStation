@@ -30,11 +30,6 @@
 	H.equip_to_slot_or_del(new /obj/item/device/pda/chaplain(H), SLOT_ID_BELT)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
 
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
-
 	spawn(0)
 		var/religion_name = "Christianity"
 		var/new_religion = copytext(sanitize(input(H, "You are the crew services officer. Would you like to change your religion? Default is Christianity, in SPACE.", "Name change", religion_name)), 1, MAX_NAME_LEN)

@@ -43,10 +43,6 @@
 
 	if(H.backbag == 3)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/tox(H), SLOT_ID_BACK)
-	else if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 
 	return 1
 
@@ -82,10 +78,6 @@
 
 	if(H.backbag == 3)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/tox(H), SLOT_ID_BACK)
-	else if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 
 	return 1
 
@@ -119,10 +111,6 @@
 
 	if(H.backbag == 3)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/tox(H), SLOT_ID_BACK)
-	else if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 
 	return 1
 
@@ -162,10 +150,5 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), SLOT_ID_WEAR_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/toolbox/mechanical(H), SLOT_ID_L_HAND)
-
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 
 	return 1

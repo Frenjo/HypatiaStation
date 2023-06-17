@@ -30,7 +30,7 @@
 		ACCESS_CE, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_AI_UPLOAD
 	)
 
-	special_survival_kit = /obj/item/weapon/storage/box/survival_engineer
+	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
 
 /datum/job/chief_engineer/equip(mob/living/carbon/human/H)
 	if(isnull(H))
@@ -80,7 +80,7 @@
 
 	alt_titles = list("Maintenance Technician", "Engine Technician", "Electrician")
 
-	special_survival_kit = /obj/item/weapon/storage/box/survival_engineer
+	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
 
 /datum/job/engineer/equip(mob/living/carbon/human/H)
 	if(isnull(H))
@@ -129,7 +129,7 @@
 		ACCESS_EXTERNAL_AIRLOCKS
 	)
 
-	special_survival_kit = /obj/item/weapon/storage/box/survival_engineer
+	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
 
 /datum/job/atmos/equip(mob/living/carbon/human/H)
 	if(isnull(H))

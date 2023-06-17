@@ -22,7 +22,7 @@
 
 	reagent_tag = IS_PLASMALIN
 
-	survival_kit = /obj/item/weapon/storage/box/survival_plasmalin
+	survival_kit = /obj/item/weapon/storage/box/survival/plasmalin
 
 /datum/species/plasmalin/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()

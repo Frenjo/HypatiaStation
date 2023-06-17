@@ -52,12 +52,10 @@
 //	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas(H), SLOT_ID_WEAR_MASK) //Grab one from the armory you donk
 	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(H), SLOT_ID_GLASSES)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/gun(H), SLOT_ID_S_STORE)
-	
+
 	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
 		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), SLOT_ID_L_STORE)
 	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), SLOT_ID_IN_BACKPACK)
 
 	var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(H)
@@ -108,13 +106,12 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(H), SLOT_ID_GLASSES)
 //	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas(H), SLOT_ID_WEAR_MASK) //Grab one from the armory you donk
 	H.equip_to_slot_or_del(new /obj/item/device/flash(H), SLOT_ID_L_STORE)
-	
+
 	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
 		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), SLOT_ID_L_HAND)
 	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), SLOT_ID_IN_BACKPACK)
+
 	return 1
 
 /*
@@ -159,7 +156,7 @@
 	CIG.light("")
 	H.equip_to_slot_or_del(CIG, SLOT_ID_WEAR_MASK)	*/
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
-	
+
 	if(!isnull(H.mind.role_alt_title) && H.mind.role_alt_title == "Forensic Technician")
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/forensics/blue(H), SLOT_ID_WEAR_SUIT)
 	else
@@ -168,13 +165,12 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/lighter/zippo(H), SLOT_ID_L_STORE)
 
 	if(H.backbag == 1)//Why cant some of these things spawn in his office?
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/evidence(H), SLOT_ID_L_HAND)
 		H.equip_to_slot_or_del(new /obj/item/device/detective_scanner(H), SLOT_ID_R_STORE)
 	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/evidence(H), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/device/detective_scanner(H), SLOT_ID_IN_BACKPACK)
+
 	return 1
 
 /*
@@ -217,11 +213,10 @@
 	H.equip_to_slot_or_del(new /obj/item/device/flash(H), SLOT_ID_L_STORE)
 
 	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
 		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), SLOT_ID_L_HAND)
 	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), SLOT_ID_IN_BACKPACK)
+
 	return 1
 
 /*
@@ -263,8 +258,4 @@
 	H.equip_to_slot_or_del(new /obj/item/device/pda/medical(H), SLOT_ID_BELT)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(H), SLOT_ID_L_HAND)
 
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 	return 1

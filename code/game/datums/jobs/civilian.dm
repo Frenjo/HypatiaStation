@@ -29,25 +29,22 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/norm(H), SLOT_ID_BACK)
 		if(4)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), SLOT_ID_BACK)
-	
+
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/bartender(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/bar(H), SLOT_ID_BELT)
 
+	var/obj/item/weapon/storage/box/barpack = new /obj/item/weapon/storage/box(H)
+	barpack.name = "bartender survival kit"
+	new /obj/item/ammo_casing/shotgun/beanbag(barpack)
+	new /obj/item/ammo_casing/shotgun/beanbag(barpack)
+	new /obj/item/ammo_casing/shotgun/beanbag(barpack)
+	new /obj/item/ammo_casing/shotgun/beanbag(barpack)
 	if(H.backbag == 1)
-		var/obj/item/weapon/storage/box/survival/Barpack = new /obj/item/weapon/storage/box/survival(H)
-		H.equip_to_slot_or_del(Barpack, SLOT_ID_R_HAND)
-		new /obj/item/ammo_casing/shotgun/beanbag(Barpack)
-		new /obj/item/ammo_casing/shotgun/beanbag(Barpack)
-		new /obj/item/ammo_casing/shotgun/beanbag(Barpack)
-		new /obj/item/ammo_casing/shotgun/beanbag(Barpack)
+		H.equip_to_slot_or_del(barpack, SLOT_ID_R_HAND)
 	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_IN_BACKPACK)
-		H.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun/beanbag(H), SLOT_ID_IN_BACKPACK)
-		H.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun/beanbag(H), SLOT_ID_IN_BACKPACK)
-		H.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun/beanbag(H), SLOT_ID_IN_BACKPACK)
-		H.equip_to_slot_or_del(new /obj/item/ammo_casing/shotgun/beanbag(H), SLOT_ID_IN_BACKPACK)
+		H.equip_to_slot_or_del(barpack, SLOT_ID_IN_BACKPACK)
 
 	return 1
 
@@ -81,11 +78,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/chefhat(H), SLOT_ID_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/chef(H), SLOT_ID_BELT)
-
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 
 	return 1
 
@@ -124,10 +116,7 @@
 
 	if(H.backbag == 3)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/hyd(H), SLOT_ID_BACK)
-	else if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
+
 	return 1
 
 /*
@@ -156,7 +145,6 @@
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/clown(H), SLOT_ID_BACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/clown(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/clown_shoes(H), SLOT_ID_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/clown(H), SLOT_ID_BELT)
@@ -208,11 +196,9 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/suspenders(H), SLOT_ID_WEAR_SUIT)
 
 	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
 		H.equip_to_slot_or_del(new /obj/item/toy/crayon/mime(H), SLOT_ID_L_STORE)
 		H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing(H), SLOT_ID_L_HAND)
 	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/toy/crayon/mime(H), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing(H), SLOT_ID_IN_BACKPACK)
 
@@ -320,11 +306,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/janitor(H), SLOT_ID_BELT)
 
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
-
 	return 1
 
 /*
@@ -357,11 +338,6 @@
 	H.equip_to_slot_or_del(new /obj/item/device/pda/librarian(H), SLOT_ID_BELT)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/weapon/barcodescanner(H), SLOT_ID_L_HAND)
-
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 
 	return 1
 
@@ -405,11 +381,6 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/big(H), SLOT_ID_GLASSES)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/lawyer(H), SLOT_ID_BELT)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/briefcase(H), SLOT_ID_L_HAND)
-
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 
 	var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(H)
 	L.imp_in = H

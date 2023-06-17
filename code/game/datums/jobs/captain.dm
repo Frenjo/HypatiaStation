@@ -30,7 +30,6 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), SLOT_ID_BACK)
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 	var/obj/item/clothing/under/U = new /obj/item/clothing/under/rank/captain(H)
 	if(H.age > 49)
 		U.hastie = new /obj/item/clothing/tie/medal/gold/captain(U)
@@ -40,7 +39,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), SLOT_ID_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/caphat(H), SLOT_ID_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), SLOT_ID_GLASSES)
-	
+
 	if(H.backbag == 1)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(H), SLOT_ID_R_HAND)
 	else
@@ -106,7 +105,6 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), SLOT_ID_BACK)
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/hop(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/head_of_personnel(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), SLOT_ID_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/heads/hop(H), SLOT_ID_BELT)
