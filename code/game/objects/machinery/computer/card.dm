@@ -163,9 +163,9 @@
 				accesses += "<h5>Central Command:</h5>"
 				for(var/A in get_all_centcom_access())
 					if(A in modify.access)
-						accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=0'><font color=\"red\">[replacetext(get_centcom_access_desc(A), " ", "&nbsp")]</font></a> "
+						accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=0'><font color=\"red\">[replacetext(get_access_desc(A), " ", "&nbsp")]</font></a> "
 					else
-						accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=1'>[replacetext(get_centcom_access_desc(A), " ", "&nbsp")]</a> "
+						accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=1'>[replacetext(get_access_desc(A), " ", "&nbsp")]</a> "
 			else
 				accesses += "<div align='center'><b>Access</b></div>"
 				accesses += "<table style='width:100%'>"
@@ -248,7 +248,7 @@
 				if(authenticated)
 					var/access_type = text2num(href_list["access_target"])
 					var/access_allowed = text2num(href_list["allowed"])
-					if(access_type in (istype(src, /obj/machinery/computer/card/centcom) ? get_all_centcom_access() : get_all_accesses()))
+					if(access_type in (istype(src, /obj/machinery/computer/card/centcom) ? get_all_centcom_access() : get_all_station_access()))
 						modify.access -= access_type
 						if(access_allowed == 1)
 							modify.access += access_type
@@ -326,4 +326,3 @@
 	name = "CentCom Identification Computer"
 	circuit = /obj/item/weapon/circuitboard/card/centcom
 	req_access = list(ACCESS_CENT_CAPTAIN)
-

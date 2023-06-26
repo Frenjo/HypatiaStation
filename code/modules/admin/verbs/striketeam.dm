@@ -167,7 +167,7 @@ GLOBAL_GLOBL_INIT(sent_strike_team, 0)
 	var/obj/item/weapon/card/id/W = new(src)
 	W.name = "[real_name]'s ID Card"
 	W.icon_state = "centcom"
-	W.access = get_all_accesses()//They get full station access.
+	W.access = get_all_station_access() //They get full station access.
 	W.access += list(ACCESS_CENT_GENERAL, ACCESS_CENT_SPECOPS, ACCESS_CENT_LIVING, ACCESS_CENT_STORAGE)//Let's add their alloted CentCom access.
 	W.assignment = "Death Commando"
 	W.registered_name = real_name

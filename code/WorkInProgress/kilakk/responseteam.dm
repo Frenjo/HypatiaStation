@@ -239,7 +239,7 @@ var/global/admin_emergency_team = 0 // Used for admin-spawned response teams
 	var/obj/item/weapon/card/id/E = new(src)
 	E.name = "[real_name]'s ID Card (Emergency Response Team)"
 	E.icon_state = "centcom"
-	E.access = get_all_accesses() // ERTs can go everywhere on the station
+	E.access = get_all_station_access() // ERTs can go everywhere on the station
 	if(leader_selected)
 		E.name = "[real_name]'s ID Card (Emergency Response Team Leader)"
 		E.access += get_all_centcom_access()

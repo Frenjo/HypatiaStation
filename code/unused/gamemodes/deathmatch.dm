@@ -55,7 +55,7 @@
 					M.internal = O
 
 					var/obj/item/weapon/card/id/W = new(M)
-					W.access = get_all_accesses()
+					W.access = get_all_station_access()
 					W.name = "[newname]'s ID card (Death Commando)"
 					W.assignment = "Death Commando"
 					W.registered_name = newname

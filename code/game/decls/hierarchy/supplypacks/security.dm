@@ -52,7 +52,7 @@
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Weapons crate"
-	access = ACCESS_ARMORY
+	access = ACCESS_ARMOURY
 
 
 /decl/hierarchy/supply_pack/security/eweapons
@@ -69,7 +69,7 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Experimental weapons crate"
-	access = ACCESS_HEADS
+	access = ACCESS_BRIDGE
 
 
 /decl/hierarchy/supply_pack/security/armor
@@ -111,7 +111,7 @@
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Riot gear crate"
-	access = ACCESS_ARMORY
+	access = ACCESS_ARMOURY
 
 
 /decl/hierarchy/supply_pack/security/loyalty
@@ -120,7 +120,7 @@
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Loyalty implant crate"
-	access = ACCESS_ARMORY
+	access = ACCESS_ARMOURY
 
 
 /decl/hierarchy/supply_pack/security/ballistic
@@ -134,7 +134,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Ballistic gear crate"
-	access = ACCESS_ARMORY
+	access = ACCESS_ARMOURY
 
 
 /decl/hierarchy/supply_pack/security/erifle
@@ -148,7 +148,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Energy marksman crate"
-	access = ACCESS_ARMORY
+	access = ACCESS_ARMOURY
 
 
 /decl/hierarchy/supply_pack/security/shotgunammo
@@ -168,7 +168,7 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Shotgun shells"
-	access = ACCESS_ARMORY
+	access = ACCESS_ARMOURY
 
 
 /decl/hierarchy/supply_pack/security/expenergy
@@ -182,7 +182,7 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Experimental energy gear crate"
-	access = ACCESS_ARMORY
+	access = ACCESS_ARMOURY
 
 
 /decl/hierarchy/supply_pack/security/exparmor
@@ -196,7 +196,7 @@
 	cost = 35
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Experimental armor crate"
-	access = ACCESS_ARMORY
+	access = ACCESS_ARMOURY
 
 
 /decl/hierarchy/supply_pack/security/securitybarriers

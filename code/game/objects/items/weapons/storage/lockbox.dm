@@ -9,7 +9,7 @@
 	max_w_class = 3
 	max_combined_w_class = 14 //The sum of the w_classes of all the items in this storage item.
 	storage_slots = 4
-	req_access = list(ACCESS_ARMORY)
+	req_access = list(ACCESS_ARMOURY)
 
 	var/locked = 1
 	var/broken = 0

@@ -452,3 +452,14 @@
 
 /obj/machinery/camera/dd_SortValue()
 	return "[c_tag]"
+
+// Creates every subtype of the provided prototype and adds it to a list.
+// If no list is provided, one is created.
+/proc/init_subtypes(prototype, list/L = null)
+	if(isnull(L))
+		L = list()
+
+	for(var/path in SUBTYPESOF(prototype))
+		L.Add(new path())
+
+	return L

@@ -3,7 +3,7 @@
 /obj/machinery/computer/prisoner
 	name = "Prisoner Management"
 	icon_state = "explosive"
-	req_access = list(ACCESS_ARMORY)
+	req_access = list(ACCESS_ARMOURY)
 	circuit = /obj/item/weapon/circuitboard/prisoner
 
 	var/id = 0.0

@@ -273,7 +273,7 @@ GLOBAL_GLOBL(can_call_ert)
 	W.registered_name = real_name
 	W.name = "[real_name]'s ID Card ([W.assignment])"
 	W.icon_state = "centcom"
-	W.access = get_all_accesses()
+	W.access = get_all_station_access()
 	W.access.Add(get_all_centcom_access())
 	equip_to_slot_or_del(W, SLOT_ID_WEAR_ID)
 

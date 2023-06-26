@@ -45,7 +45,7 @@
 				open()
 			else
 				src.req_access = list()
-				src.req_access.Add(pick(get_all_accesses()))
+				src.req_access.Add(pick(get_all_station_access()))
 	..()
 
 /obj/structure/closet/secure_closet/attackby(obj/item/weapon/W as obj, mob/user as mob)

@@ -21,7 +21,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 	name = "Communications Console"
 	desc = "This can be used for various important functions. Still under developement."
 	icon_state = "comm"
-	req_access = list(ACCESS_HEADS)
+	req_access = list(ACCESS_BRIDGE)
 	circuit = /obj/item/weapon/circuitboard/communications
 
 	light_color = "#0099ff"
@@ -91,7 +91,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 				var/obj/item/device/pda/pda = I
 				I = pda.id
 			if(I && istype(I))
-				if((ACCESS_CAPTAIN in I.access) || (ACCESS_HEADS in I.access)) //Let heads change the alert level.
+				if((ACCESS_CAPTAIN in I.access) || (ACCESS_BRIDGE in I.access)) //Let heads change the alert level.
 					var/decl/security_level/old_level = GLOBL.security_level
 					if(temp_alert_level == /decl/security_level/red || temp_alert_level == /decl/security_level/delta)
 						temp_alert_level = /decl/security_level/blue // Cannot engage red or delta with this.

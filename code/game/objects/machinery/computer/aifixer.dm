@@ -2,7 +2,7 @@
 	name = "AI System Integrity Restorer"
 	icon_state = "ai-fixer"
 	circuit = /obj/item/weapon/circuitboard/aifixer
-	req_access = list(ACCESS_CAPTAIN, ACCESS_ROBOTICS, ACCESS_HEADS)
+	req_access = list(ACCESS_CAPTAIN, ACCESS_ROBOTICS, ACCESS_BRIDGE)
 
 	var/mob/living/silicon/ai/occupant = null
 	var/active = 0
