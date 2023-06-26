@@ -1,29 +1,42 @@
+/*
+ * Glasses
+ */
 /obj/item/clothing/glasses
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
-	//w_class = 2.0
-	//flags = GLASSESCOVERSEYES
-	//slot_flags = SLOT_EYES
-	//var/vision_flags = 0
-	//var/darkness_view = 0//Base human is 2
-	//var/invisa_view = 0
-	var/prescription = 0
-	var/toggleable = 0
-	var/active = 1
+	w_class = 2.0
+	flags = GLASSESCOVERSEYES
+	slot_flags = SLOT_EYES
+
+	var/vision_flags = 0
+	var/darkness_view = 0 // Base human is 2.
+	var/invisa_view = 0
+	var/prescription = FALSE
+	var/toggleable = FALSE
+	var/active = TRUE
 	var/obj/screen/overlay = null
+
+/*
+ * Values for vision_flags:
+ *	SEE_SELF // Can see self, no matter what.
+ *	SEE_MOBS // Can see all mobs, no matter what.
+ *	SEE_OBJS // Can see all objs, no matter what.
+ *	SEE_TURFS // Can see all turfs (and areas), no matter what.
+ *	SEE_PIXELS // If an object is in an unlit area, but some of its pixels are in a lit area (via pixel_x, y or smooth movement), can see those pixels.
+ *	BLIND // Can't see anything.
+ */
 
 /obj/item/clothing/glasses/attack_self(mob/user)
 	if(toggleable)
 		if(active)
-			active = 0
 			icon_state = "degoggles"
 			user.update_inv_glasses()
 			to_chat(user, "You deactivate the optical matrix on the [src].")
 		else
-			active = 1
 			icon_state = initial(icon_state)
 			user.update_inv_glasses()
 			to_chat(user, "You activate the optical matrix on the [src].")
+		active = !active
 
 
 /obj/item/clothing/glasses/meson
@@ -33,17 +46,17 @@
 	item_state = "glasses"
 	icon_action_button = "action_meson"
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_ENGINEERING = 2)
-	toggleable = 1
+	toggleable = TRUE
 	vision_flags = SEE_TURFS
 
 /obj/item/clothing/glasses/meson/New()
-	..()
+	. = ..()
 	overlay = GLOBL.global_hud.meson
 
 /obj/item/clothing/glasses/meson/prescription
 	name = "prescription mesons"
 	desc = "Optical Meson Scanner with prescription lenses."
-	prescription = 1
+	prescription = TRUE
 
 
 /obj/item/clothing/glasses/science
@@ -52,10 +65,10 @@
 	icon_state = "purple"
 	item_state = "glasses"
 	icon_action_button = "action_science"
-	toggleable = 1
+	toggleable = TRUE
 
 /obj/item/clothing/glasses/science/New()
-	..()
+	. = ..()
 	overlay = GLOBL.global_hud.scig
 
 
@@ -68,7 +81,7 @@
 	darkness_view = 7
 
 /obj/item/clothing/glasses/night/New()
-	..()
+	. = ..()
 	overlay = GLOBL.global_hud.nvg
 
 
@@ -93,7 +106,7 @@
 	item_state = "glasses"
 	icon_action_button = "action_material"
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_ENGINEERING = 3)
-	toggleable = 1
+	toggleable = TRUE
 	vision_flags = SEE_OBJS
 
 
@@ -102,7 +115,7 @@
 	desc = "Made by Nerd. Co."
 	icon_state = "glasses"
 	item_state = "glasses"
-	prescription = 1
+	prescription = TRUE
 
 /obj/item/clothing/glasses/regular/hipster
 	name = "Prescription Glasses"
@@ -141,7 +154,7 @@
 
 /obj/item/clothing/glasses/sunglasses/prescription
 	name = "prescription sunglasses"
-	prescription = 1
+	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/big
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
@@ -152,10 +165,11 @@
 	name = "HUDSunglasses"
 	desc = "Sunglasses with a HUD."
 	icon_state = "sunhud"
+
 	var/obj/item/clothing/glasses/hud/security/hud = null
 
 /obj/item/clothing/glasses/sunglasses/sechud/New()
-	..()
+	. = ..()
 	hud = new/obj/item/clothing/glasses/hud/security(src)
 
 /obj/item/clothing/glasses/sunglasses/sechud/tactical
@@ -170,22 +184,22 @@
 	icon_state = "welding-g"
 	item_state = "welding-g"
 	icon_action_button = "action_welding_g"
-	var/up = 0
+
+	var/up = FALSE
 
 /obj/item/clothing/glasses/welding/attack_self(mob/user)
 	if(user.canmove && !user.stat && !user.restrained())
 		if(up)
-			up = !up
 			flags |= GLASSESCOVERSEYES
 			flags_inv |= HIDEEYES
 			icon_state = initial(icon_state)
 			to_chat(user, "You flip \the [src] down to protect your eyes.")
 		else
-			up = !up
 			flags &= ~HEADCOVERSEYES
 			flags_inv &= ~HIDEEYES
 			icon_state = "[initial(icon_state)]up"
 			to_chat(user, "You push \the [src] up out of your face.")
+		up = !up
 
 		user.update_inv_glasses()
 
@@ -204,17 +218,17 @@
 	item_state = "glasses"
 	icon_action_button = "action_thermal"
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 3)
-	toggleable = 1
+	toggleable = TRUE
 	vision_flags = SEE_MOBS
 	invisa_view = 2
 
 /obj/item/clothing/glasses/thermal/New()
-	..()
+	. = ..()
 	overlay = GLOBL.global_hud.thermal
 
 /obj/item/clothing/glasses/thermal/emp_act(severity)
-	if(ishuman(src.loc))
-		var/mob/living/carbon/human/M = src.loc
+	if(ishuman(loc))
+		var/mob/living/carbon/human/M = loc
 		to_chat(M, SPAN_WARNING("The Optical Thermal Scanner overloads and blinds you!"))
 		if(M.glasses == src)
 			M.eye_blind = 3
@@ -236,18 +250,18 @@
 	desc = "A monocle thermal."
 	icon_state = "thermoncle"
 	flags = null //doesn't protect eyes because it's a monocle, duh
-	toggleable = 0
+	toggleable = FALSE
 
 /obj/item/clothing/glasses/thermal/eyepatch
 	name = "Optical Thermal Eyepatch"
 	desc = "An eyepatch with built-in thermal optics"
 	icon_state = "eyepatch"
 	item_state = "eyepatch"
-	toggleable = 0
+	toggleable = FALSE
 
 /obj/item/clothing/glasses/thermal/jensen
 	name = "Optical Thermal Implants"
 	desc = "A set of implantable lenses designed to augment your vision"
 	icon_state = "thermalimplants"
 	item_state = "syringe_kit"
-	toggleable = 0
+	toggleable = FALSE

@@ -20,7 +20,7 @@
 			return
 
 		C.use(2)
-		wired = 1
+		wired = TRUE
 		siemens_coefficient = 3.0
 		to_chat(user, SPAN_NOTICE("You wrap some wires around the [src]."))
 		update_icon()
@@ -49,7 +49,7 @@
 			update_icon()
 			return
 		if(wired) //wires disappear into the void because fuck that shit
-			wired = 0
+			wired = FALSE
 			siemens_coefficient = initial(siemens_coefficient)
 			to_chat(user, SPAN_NOTICE("You cut the wires away from the [src]."))
 			update_icon()
@@ -59,7 +59,7 @@
 		if(!clipped)
 			playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 			user.visible_message(SPAN_WARNING("[user] cuts the fingertips off of the [src]."), SPAN_WARNING("You cut the fingertips off of the [src]."))
-			clipped = 1
+			clipped = TRUE
 			name = "mangled [name]"
 			desc = "[desc]<br>They have had the fingertips cut off of them."
 			if("exclude" in species_restricted)
