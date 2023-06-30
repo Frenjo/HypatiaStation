@@ -20,5 +20,5 @@
 		to_chat(user, "The [src] is empty.")
 		return
 	var/obj/item/weapon/paper/P = input(user, "Choose a sheet to take out.", "[src]", "Cancel") as null|obj in src.contents
-	if(!isnull(P) && in_range(src, user))
+	if(isnotnull(P) && in_range(src, user))
 		P.loc = user.loc

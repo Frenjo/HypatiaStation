@@ -23,7 +23,7 @@
 	if(user in src.stomach_contents)
 		if(prob(40))
 			for(var/mob/M in hearers(4, src))
-				if(!isnull(M.client))
+				if(isnotnull(M.client))
 					M.show_message(SPAN_WARNING("You hear something rumbling inside [src]'s stomach..."), 2)
 			var/obj/item/I = user.get_active_hand()
 			if(I?.force)
@@ -39,7 +39,7 @@
 				else
 					take_organ_damage(d)
 				for(var/mob/M in viewers(user, null))
-					if(!isnull(M.client))
+					if(isnotnull(M.client))
 						M.show_message(SPAN_DANGER("[user] attacks [src]'s stomach wall with the [I.name]!"), 2)
 				playsound(user.loc, 'sound/effects/attackblob.ogg', 50, 1)
 
@@ -55,7 +55,7 @@
 			stomach_contents.Remove(M)
 		M.loc = src.loc
 		for(var/mob/N in viewers(src, null))
-			if(!isnull(N.client))
+			if(isnotnull(N.client))
 				N.show_message(SPAN_DANGER("[M] bursts out of [src]!"), 2)
 	. = ..(null, 1)
 
@@ -65,7 +65,7 @@
 
 	if(hasorgans(M))
 		var/datum/organ/external/temp = M:organs_by_name["r_hand"]
-		if(!isnull(M.hand))
+		if(isnotnull(M.hand))
 			temp = M:organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
 			to_chat(M, SPAN_WARNING("You can't use your [temp.display_name]!"))
@@ -114,7 +114,7 @@
 
 /mob/living/carbon/proc/swap_hand()
 	var/obj/item/item_in_hand = get_active_hand()
-	if(!isnull(item_in_hand)) //this segment checks if the item in your hand is twohanded.
+	if(isnotnull(item_in_hand)) //this segment checks if the item in your hand is twohanded.
 		if(istype(item_in_hand, /obj/item/weapon/twohanded))
 			var/obj/item/weapon/twohanded/twohanded = item_in_hand
 			if(twohanded.wielded)
@@ -228,7 +228,7 @@
 	. = ..()
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if(!isnull(H.gloves))
+		if(isnotnull(H.gloves))
 			if(H.gloves.clean_blood())
 				H.update_inv_gloves(0)
 			H.gloves.germ_level = 0
@@ -250,12 +250,12 @@
 
 /mob/living/carbon/proc/throw_mode_off()
 	in_throw_mode = FALSE
-	if(!isnull(throw_icon))
+	if(isnotnull(throw_icon))
 		src.throw_icon.icon_state = "act_throw_off"
 
 /mob/living/carbon/proc/throw_mode_on()
 	in_throw_mode = TRUE
-	if(!isnull(throw_icon))
+	if(isnotnull(throw_icon))
 		throw_icon.icon_state = "act_throw_on"
 
 /mob/proc/throw_item(atom/target)
@@ -278,7 +278,7 @@
 		if(ismob(item))
 			var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 			var/turf/end_T = get_turf(target)
-			if(!isnull(start_T) && !isnull(end_T))
+			if(isnotnull(start_T) && isnotnull(end_T))
 				var/mob/M = item
 				var/start_T_descriptor = "<font color='#6b5d00'>tile at [start_T.x], [start_T.y], [start_T.z] in area [get_area(start_T)]</font>"
 				var/end_T_descriptor = "<font color='#6b4400'>tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]</font>"
@@ -302,7 +302,7 @@
 			I.dropped(src) // let it know it's been dropped
 
 	//actually throw it!
-	if(!isnull(item))
+	if(isnotnull(item))
 		visible_message(SPAN_WARNING("[src] has thrown [item]."))
 
 		if(isnull(lastarea))
@@ -324,14 +324,14 @@
 	bodytemperature = max(bodytemperature, BODYTEMP_HEAT_DAMAGE_LIMIT + 10)
 
 /mob/living/carbon/can_use_hands()
-	if(!isnull(handcuffed))
+	if(isnotnull(handcuffed))
 		return FALSE
-	if(!isnull(buckled) && !istype(buckled, /obj/structure/stool/bed/chair)) // buckling does not restrict hands
+	if(isnotnull(buckled) && !istype(buckled, /obj/structure/stool/bed/chair)) // buckling does not restrict hands
 		return FALSE
 	return TRUE
 
 /mob/living/carbon/restrained()
-	if(!isnull(handcuffed))
+	if(isnotnull(handcuffed))
 		return TRUE
 	return FALSE
 
@@ -421,7 +421,7 @@
 		to_chat(B.host_brain, SPAN_DANGER("Your vision swims as the alien parasite releases control of your body."))
 		B.ckey = ckey
 		B.controlling = FALSE
-	if(!isnull(B.host_brain.ckey))
+	if(isnotnull(B.host_brain.ckey))
 		ckey = B.host_brain.ckey
 		B.host_brain.ckey = null
 		B.host_brain.name = "host brain"

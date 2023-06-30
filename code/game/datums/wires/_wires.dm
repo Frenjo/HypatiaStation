@@ -63,9 +63,9 @@ GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "oran
 
 /datum/wires/proc/Interact(mob/living/user)
 	var/html = null
-	if(!isnull(holder) && CanUse(user))
+	if(isnotnull(holder) && CanUse(user))
 		html = GetInteractWindow()
-	if(!isnull(html))
+	if(isnotnull(html))
 		user.set_machine(holder)
 	else
 		user.unset_machine()
@@ -129,7 +129,7 @@ GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "oran
 			// Detach
 			if(IsAttached(colour))
 				var/obj/item/O = Detach(colour)
-				if(!isnull(O))
+				if(isnotnull(O))
 					L.put_in_hands(O)
 
 			// Attach

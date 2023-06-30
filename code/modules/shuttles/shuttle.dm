@@ -87,7 +87,7 @@
 		//world << "cancelling move, shuttle will overlap."
 		return
 
-	if(!isnull(docking_controller) && !docking_controller.undocked())
+	if(isnotnull(docking_controller) && !docking_controller.undocked())
 		docking_controller.force_undock()
 
 	var/list/dstturfs = list()
@@ -113,9 +113,9 @@
 	origin.move_contents_to(destination, direction = direction)
 
 	for(var/mob/M in destination)
-		if(!isnull(M.client))
+		if(isnotnull(M.client))
 			spawn(0)
-				if(!isnull(M.buckled))
+				if(isnotnull(M.buckled))
 					to_chat(M, SPAN_WARNING("Sudden acceleration presses you into your chair!"))
 					shake_camera(M, 3, 1)
 				else

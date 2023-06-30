@@ -64,7 +64,7 @@
 	qdel(src)
 
 /mob/living/simple_animal/hostile/blobspore/Destroy()
-	if(!isnull(factory))
+	if(isnotnull(factory))
 		factory.spores.Remove(src)
 		factory = null
 	return ..()

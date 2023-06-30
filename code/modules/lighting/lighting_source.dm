@@ -61,10 +61,10 @@
 /datum/light_source/proc/destroy()
 	destroyed = TRUE
 	force_update()
-	if(!isnull(source_atom))
+	if(isnotnull(source_atom))
 		source_atom.light_sources.Remove(src)
 
-	if(!isnull(top_atom))
+	if(isnotnull(top_atom))
 		top_atom.light_sources.Remove(src)
 
 // Call it dirty, I don't care.
@@ -80,7 +80,7 @@
 // This proc will cause the light source to update the top atom, and add itself to the update queue.
 /datum/light_source/proc/update(atom/new_top_atom)
 	// This top atom is different.
-	if(!isnull(new_top_atom) && new_top_atom != top_atom)
+	if(isnotnull(new_top_atom) && new_top_atom != top_atom)
 		if(top_atom != source_atom) // Remove ourselves from the light sources of that top atom.
 			top_atom.light_sources.Remove(src)
 

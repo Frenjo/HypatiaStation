@@ -108,4 +108,4 @@ GLOBAL_GLOBL_LIST_INIT(all_region_access, null)
 	var/list/accesses = get_all_access_datums_assoc()
 	var/datum/access/access = accesses["[id]"]
 
-	return !isnull(access) ? access.name : ""
+	return isnotnull(access) ? access.name : ""

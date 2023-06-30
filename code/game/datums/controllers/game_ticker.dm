@@ -99,7 +99,7 @@ CONTROLLER_DEF(game_ticker)
 		global.CToccupations.reset_occupations()
 		if(isnull(mode))
 			mode = pickweight(runnable_modes)
-		if(!isnull(mode))
+		if(isnotnull(mode))
 			mode = new mode.type()
 	else
 		mode = global.config.pick_mode(master_mode)
@@ -177,7 +177,7 @@ CONTROLLER_DEF(game_ticker)
 
 //Plus it provides an easy way to make cinematics for other events. Just use this as a template :)
 /datum/controller/game_ticker/proc/station_explosion_cinematic(station_missed = 0, override = null)
-	if(!isnull(cinematic))
+	if(isnotnull(cinematic))
 		return	//already a cinematic in progress!
 
 	//initialise our cinematic screen object
@@ -212,7 +212,7 @@ CONTROLLER_DEF(game_ticker)
 	//Now animate the cinematic
 	switch(station_missed)
 		if(1)	//nuke was nearby but (mostly) missed
-			if(!isnull(mode) && !override)
+			if(isnotnull(mode) && !override)
 				override = mode.name
 			switch(override)
 				if("nuclear emergency") //Nuke wasn't on station when it blew up
@@ -232,7 +232,7 @@ CONTROLLER_DEF(game_ticker)
 			world << sound('sound/effects/explosionfar.ogg')
 
 		else	//station was destroyed
-			if(!isnull(mode) && !override)
+			if(isnotnull(mode) && !override)
 				override = mode.name
 			switch(override)
 				if("nuclear emergency") //Nuke Ops successfully bombed the station
@@ -266,9 +266,9 @@ CONTROLLER_DEF(game_ticker)
 	//Otherwise if its a verb it will continue on afterwards.
 	sleep(300)
 
-	if(!isnull(cinematic))
+	if(isnotnull(cinematic))
 		qdel(cinematic)		//end the cinematic
-	if(!isnull(temp_buckle))
+	if(isnotnull(temp_buckle))
 		qdel(temp_buckle)	//release everybody
 	return
 
@@ -287,7 +287,7 @@ CONTROLLER_DEF(game_ticker)
 
 /datum/controller/game_ticker/proc/collect_minds()
 	for(var/mob/living/player in GLOBL.player_list)
-		if(!isnull(player.mind))
+		if(isnotnull(player.mind))
 			global.CTgame_ticker.minds.Add(player.mind)
 
 /datum/controller/game_ticker/proc/equip_characters()
@@ -366,7 +366,7 @@ CONTROLLER_DEF(game_ticker)
 	for(var/mob/living/silicon/robot/robo in GLOBL.mob_list)
 		if(isnull(robo))
 			continue
-		if(!isnull(robo.connected_ai))
+		if(isnotnull(robo.connected_ai))
 			continue
 
 		if(robo.stat != DEAD)
@@ -388,7 +388,7 @@ CONTROLLER_DEF(game_ticker)
 	//Look into all mobs in world, dead or alive
 	for(var/datum/mind/Mind in minds)
 		var/temprole = Mind.special_role
-		if(!isnull(temprole))					//if they are an antagonist of some sort.
+		if(isnotnull(temprole))					//if they are an antagonist of some sort.
 			if(temprole in total_antagonists)	//If the role exists already, add the name to it
 				total_antagonists[temprole] += ", [Mind.name]([Mind.key])"
 			else

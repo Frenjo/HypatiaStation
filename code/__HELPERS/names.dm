@@ -1,6 +1,6 @@
 GLOBAL_GLOBL_INIT(church_name, null)
 /proc/church_name()
-	if(!isnull(GLOBL.church_name))
+	if(isnotnull(GLOBL.church_name))
 		return GLOBL.church_name
 
 	var/name = ""
@@ -17,7 +17,7 @@ GLOBAL_GLOBL_INIT(church_name, null)
 
 GLOBAL_GLOBL_INIT(command_name, null)
 /proc/command_name()
-	if(!isnull(GLOBL.command_name))
+	if(isnotnull(GLOBL.command_name))
 		return GLOBL.command_name
 
 	var/name = "Central Command"
@@ -32,7 +32,7 @@ GLOBAL_GLOBL_INIT(command_name, null)
 
 GLOBAL_GLOBL_INIT(religion_name, null)
 /proc/religion_name()
-	if(!isnull(GLOBL.religion_name))
+	if(isnotnull(GLOBL.religion_name))
 		return GLOBL.religion_name
 
 	var/name = ""
@@ -43,7 +43,7 @@ GLOBAL_GLOBL_INIT(religion_name, null)
 	return capitalize(name)
 
 /proc/station_name()
-	if(!isnull(GLOBL.current_map.station_name))
+	if(isnotnull(GLOBL.current_map.station_name))
 		return GLOBL.current_map.station_name
 
 	var/random = rand(1, 5)
@@ -92,7 +92,7 @@ GLOBAL_GLOBL_INIT(religion_name, null)
 		if(13)
 			GLOBL.current_map.station_name += pick("13", "XIII", "Thirteen")
 
-	if(!isnull(CONFIG_GET(server_name)))
+	if(isnotnull(CONFIG_GET(server_name)))
 		world.name = "[CONFIG_GET(server_name)]: [name]"
 	else
 		world.name = GLOBL.current_map.station_name
@@ -102,7 +102,7 @@ GLOBAL_GLOBL_INIT(religion_name, null)
 /proc/world_name(name)
 	GLOBL.current_map.station_name = name
 
-	if(!isnull(CONFIG_GET(server_name)))
+	if(isnotnull(CONFIG_GET(server_name)))
 		world.name = "[CONFIG_GET(server_name)]: [name]"
 	else
 		world.name = name
@@ -111,7 +111,7 @@ GLOBAL_GLOBL_INIT(religion_name, null)
 
 GLOBAL_GLOBL_INIT(syndicate_name, null)
 /proc/syndicate_name()
-	if(!isnull(GLOBL.syndicate_name))
+	if(isnotnull(GLOBL.syndicate_name))
 		return GLOBL.syndicate_name
 
 	var/name = ""

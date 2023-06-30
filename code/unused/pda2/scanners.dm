@@ -58,7 +58,7 @@
 
 			if(istype(A,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = A
-				if (!istype(H.dna, /datum/dna) || !isnull(H.gloves))
+				if (!istype(H.dna, /datum/dna) || isnotnull(H.gloves))
 					dat += "\blue Unable to scan [A]'s fingerprints.\n"
 				else
 					dat += "\blue [H]'s Fingerprints: [md5(H.dna.uni_identity)]\n"
@@ -89,7 +89,7 @@
 			if(..())
 				return
 			var/dat = null
-			if(!isnull(A.reagents))
+			if(isnotnull(A.reagents))
 				if(A.reagents.reagent_list.len > 0)
 					var/reagents_length = A.reagents.reagent_list.len
 					dat += "\blue [reagents_length] chemical agent[reagents_length > 1 ? "s" : ""] found.\n"

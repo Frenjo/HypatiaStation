@@ -117,7 +117,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	var/turf/destination = locate(location.x + dirx, location.y + diry, location.z)
 
-	if(!isnull(destination)) // If there is a destination.
+	if(isnotnull(destination)) // If there is a destination.
 		if(errorx || errory)//If errorx or y were specified.
 			var/list/destination_list = list() // To add turfs to list.
 			/*This will draw a block around the target turf, given what the error is.
@@ -332,7 +332,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			A.eyeobj?.name = "[newname] (AI Eye)"
 
 			// Set ai pda name
-			if(!isnull(A.aiPDA))
+			if(isnotnull(A.aiPDA))
 				A.aiPDA.owner = newname
 				A.aiPDA.name = newname + " (" + A.aiPDA.ownjob + ")"
 
@@ -347,7 +347,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/select = null
 	var/list/borgs = list()
 	for(var/mob/living/silicon/robot/A in GLOBL.player_list)
-		if(A.stat == DEAD || !isnull(A.connected_ai) || A.scrambledcodes || isdrone(A))
+		if(A.stat == DEAD || isnotnull(A.connected_ai) || A.scrambledcodes || isdrone(A))
 			continue
 		var/name = "[A.real_name] ([A.modtype] [A.braintype])"
 		borgs[name] = A
@@ -399,9 +399,9 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			ai_list |= M
 		else if(isobserver(M) || M.stat == DEAD)
 			dead_list |= M
-		else if(!isnull(M.key) && !isnull(M.client))
+		else if(isnotnull(M.key) && isnotnull(M.client))
 			keyclient_list |= M
-		else if(!isnull(M.key))
+		else if(isnotnull(M.key))
 			key_list |= M
 		else
 			logged_list |= M
@@ -428,7 +428,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		else
 			names.Add(name)
 			namecounts[name] = 1
-		if(!isnull(M.real_name) && M.real_name != M.name)
+		if(isnotnull(M.real_name) && M.real_name != M.name)
 			name += " \[[M.real_name]\]"
 		if(M.stat == DEAD)
 			if(isobserver(M))
@@ -512,7 +512,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	. = ""
 
 	if(key)
-		if(include_link && !isnull(C))
+		if(include_link && isnotnull(C))
 			. += "<a href='?priv_msg=\ref[C]'>"
 
 		if(C?.holder?.fakekey && !include_name)
@@ -521,14 +521,14 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			. += key
 
 		if(include_link)
-			if(!isnull(C))
+			if(isnotnull(C))
 				. += "</a>"
 			else
 				. += " (DC)"
 	else
 		. += "*no key*"
 
-	if(include_name && !isnull(M))
+	if(include_name && isnotnull(M))
 		if(M.real_name)
 			. += "/([M.real_name])"
 		else if(M.name)
@@ -847,7 +847,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		O = new original.type(locate(0, 0, 0))
 
 	if(perfectcopy)
-		if(!isnull(O) && !isnull(original))
+		if(isnotnull(O) && isnotnull(original))
 			for(var/V in original.vars)
 				if(!(V in list("type", "loc", "locs", "vars", "parent", "parent_type", "verbs", "ckey", "key")))
 					O.vars[V] = original.vars[V]
@@ -1000,7 +1000,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/get_mob_with_client_list()
 	var/list/mobs = list()
 	for(var/mob/M in GLOBL.mob_list)
-		if(!isnull(M.client))
+		if(isnotnull(M.client))
 			mobs.Add(M)
 	return mobs
 
@@ -1062,7 +1062,7 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 ))
 
 /proc/istool(O)
-	if(!isnull(O) && is_type_in_list(O, GLOBL.common_tools))
+	if(isnotnull(O) && is_type_in_list(O, GLOBL.common_tools))
 		return TRUE
 	return FALSE
 

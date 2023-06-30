@@ -3,7 +3,7 @@
 	set desc = "Auto-create an antagonist of your choice"
 	set category = "Admin"
 
-	if(!isnull(holder))
+	if(isnotnull(holder))
 		holder.one_click_antag()
 
 /datum/admins/proc/one_click_antag()
@@ -35,7 +35,7 @@
 			continue
 		if(!applicant.stat || isnull(applicant.mind))
 			continue
-		if(!isnull(applicant.mind.special_role))
+		if(isnotnull(applicant.mind.special_role))
 			continue
 		if(jobban_isbanned(applicant, antagonist_type) || jobban_isbanned(applicant, "Syndicate"))
 			continue
@@ -49,13 +49,13 @@
 	var/mob/living/silicon/malfAI = null
 
 	for(var/mob/living/silicon/ai/ai in GLOBL.player_list)
-		if(!isnull(ai.client))
+		if(isnotnull(ai.client))
 			AIs.Add(ai)
 
 	if(length(AIs))
 		malfAI = pick(AIs)
 
-	if(!isnull(malfAI))
+	if(isnotnull(malfAI))
 		malfAI.mind.make_ai_malfunction()
 		return 1
 	return 0
@@ -135,7 +135,7 @@
 			theghost = i
 			break
 
-	if(!isnull(theghost))
+	if(isnotnull(theghost))
 		var/mob/living/carbon/human/new_character = make_body(theghost)
 		new_character.mind.make_wizard()
 		return 1
@@ -206,13 +206,13 @@
 
 		var/nuke_code = "[rand(10000, 99999)]"
 
-		if(!isnull(nuke_spawn))
+		if(isnotnull(nuke_spawn))
 			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper()
 			P.info = "Sadly, the Syndicate could not get you a nuclear bomb. We have, however, acquired the arming code for the station's onboard nuke. The nuclear authorization code is: <b>[nuke_code]</b>"
 			P.name = "nuclear bomb code and instructions"
 			P.loc = nuke_spawn.loc
 
-		if(!isnull(closet_spawn))
+		if(isnotnull(closet_spawn))
 			new /obj/structure/closet/syndicate/nuclear(closet_spawn.loc)
 
 		for(var/obj/effect/landmark/A in /area/syndicate_station/start) // Because that's the only place it can BE -Sieve
@@ -227,15 +227,15 @@
 				continue
 
 		for(var/datum/mind/synd_mind in global.CTgame_ticker.mode.syndicates)
-			if(!isnull(synd_mind.current?.client))
+			if(isnotnull(synd_mind.current?.client))
 				for(var/image/I in synd_mind.current.client.images)
 					if(I.icon_state == "synd")
 						qdel(I)
 
 		for(var/datum/mind/synd_mind in global.CTgame_ticker.mode.syndicates)
-			if(!isnull(synd_mind.current?.client))
+			if(isnotnull(synd_mind.current?.client))
 				for(var/datum/mind/synd_mind_1 in global.CTgame_ticker.mode.syndicates)
-					if(!isnull(synd_mind_1.current))
+					if(isnotnull(synd_mind_1.current))
 						var/I = image('icons/mob/mob.dmi', loc = synd_mind_1.current, icon_state = "synd")
 						synd_mind.current.client.images.Add(I)
 

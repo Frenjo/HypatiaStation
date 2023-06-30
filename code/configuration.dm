@@ -245,7 +245,7 @@
 				server_suffix = TRUE
 			if("hostedby")
 				hostedby = value
-			
+
 			// Tick.
 			if("ticklag")
 				ticklag = text2num(value)
@@ -265,7 +265,7 @@
 				banappeals = value
 			if("resource_urls")
 				resource_urls = splittext(value, " ")
-			
+
 			// Python.
 			if("python_path")
 				if(value)
@@ -344,13 +344,13 @@
 				ToRban = TRUE
 			if("automute_on")
 				automute_on = TRUE
-			
+
 			// Gamemode.
 			if("probability")
 				var/prob_pos = findtext(value, " ")
 				var/prob_name = null
 				var/prob_value = null
-				if(!isnull(prob_pos))
+				if(isnotnull(prob_pos))
 					prob_name = lowertext(copytext(value, 1, prob_pos))
 					prob_value = copytext(value, prob_pos + 1)
 					if(prob_name in modes)
@@ -379,7 +379,7 @@
 				allow_random_events = TRUE
 			if("allow_holidays")
 				allow_holidays = TRUE
-			
+
 			// Voting.
 			if("allow_vote_restart")
 				allow_vote_restart = TRUE
@@ -418,7 +418,7 @@
 				disable_player_mice = TRUE
 			if("uneducated_mice")
 				uneducated_mice = TRUE
-			
+
 			// Alert level descriptions.
 			if("alert_green")
 				alert_desc_green = value
@@ -436,7 +436,7 @@
 				alert_desc_red_downto = value
 			if("alert_delta")
 				alert_desc_delta = value
-			
+
 			// Mobs.
 			if("dont_del_newmob")
 				del_new_on_log = FALSE
@@ -561,7 +561,7 @@
 				sqllogin = value
 			if("password")
 				sqlpass = value
-			
+
 			// Feedback configuration.
 			if("feedback_database")
 				sqlfdbkdb = value
@@ -603,7 +603,7 @@
 		// their information, but it is the only way (at least that I know of).
 		var/datum/game_mode/M = new T()
 
-		if(!isnull(M.config_tag))
+		if(isnotnull(M.config_tag))
 			if(!(M.config_tag in modes))	// ensure each mode is added only once
 				log_misc("Adding game mode [M.name] ([M.config_tag]) to configuration.")
 				modes.Add(M.config_tag)

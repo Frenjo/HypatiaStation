@@ -77,7 +77,7 @@
 					for(var/obj/machinery/bot/medbot/M in world)
 						var/turf/bl = get_turf(M)
 						bdat += "[M.name] - <b>\[[bl.x],[bl.y]\]</b> - [M.on ? "Online" : "Offline"]<br>"
-						if(!isnull(M.reagent_glass))
+						if(isnotnull(M.reagent_glass))
 							bdat += "Reservoir: \[[M.reagent_glass.reagents.total_volume]/[M.reagent_glass.reagents.maximum_volume]\]"
 						else
 							bdat += "Using Internal Synthesizer."

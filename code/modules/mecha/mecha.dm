@@ -1700,7 +1700,7 @@
 	return 0
 
 /obj/mecha/proc/give_power(amount)
-	if(!isnull(get_charge()))
+	if(isnotnull(get_charge()))
 		cell.give(amount)
 		return 1
 	return 0

@@ -125,7 +125,7 @@ Please wait until completion...</TT><BR>
 					build_cost = 75000
 
 			var/building = build_type
-			if(!isnull(building))
+			if(isnotnull(building))
 				if(src.metal_amount >= build_cost)
 					src.operating = 1
 					src.use_power = 2
@@ -138,7 +138,7 @@ Please wait until completion...</TT><BR>
 					src.updateUsrDialog()
 
 					spawn(build_time)
-						if(!isnull(src.being_built))
+						if(isnotnull(src.being_built))
 							src.being_built.loc = get_turf(src)
 							src.being_built = null
 						src.use_power = 1

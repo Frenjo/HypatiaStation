@@ -98,7 +98,7 @@
 /datum/reagent/vaccine/reaction_mob(mob/M, method = TOUCH, volume)
 	var/datum/reagent/vaccine/self = src
 	qdel(src)
-	if(!isnull(self.data) && method == INGEST)
+	if(isnotnull(self.data) && method == INGEST)
 		for(var/datum/disease/D in M.viruses)
 			if(istype(D, /datum/disease/advance))
 				var/datum/disease/advance/A = D
@@ -139,7 +139,7 @@
 			if(T.wet >= 2)
 				return
 			T.wet = 0
-			if(!isnull(T.wet_overlay))
+			if(isnotnull(T.wet_overlay))
 				T.overlays.Remove(T.wet_overlay)
 				T.wet_overlay = null
 
@@ -147,7 +147,7 @@
 		M.adjustToxLoss(rand(15, 20))
 
 	var/obj/fire/hotspot = locate(/obj/fire) in T
-	if(!isnull(hotspot) && !isspace(T))
+	if(isnotnull(hotspot) && !isspace(T))
 		var/datum/gas_mixture/lowertemp = T.remove_air(T.air.total_moles)
 		lowertemp.temperature = max(min(lowertemp.temperature - 2000, lowertemp.temperature / 2), 0)
 		lowertemp.react()
@@ -158,7 +158,7 @@
 	qdel(src)
 	var/turf/T = get_turf(O)
 	var/obj/fire/hotspot = locate(/obj/fire) in T
-	if(!isnull(hotspot) && !isspace(T))
+	if(isnotnull(hotspot) && !isspace(T))
 		var/datum/gas_mixture/lowertemp = T.remove_air(T.air.total_moles)
 		lowertemp.temperature = max(min(lowertemp.temperature - 2000,lowertemp.temperature / 2), 0)
 		lowertemp.react()
@@ -211,7 +211,7 @@
 			if(!istype(T))
 				return
 			T.wet = 0
-			if(!isnull(T.wet_overlay))
+			if(isnotnull(T.wet_overlay))
 				T.overlays.Remove(T.wet_overlay)
 				T.wet_overlay = null
 
@@ -281,7 +281,7 @@
 		var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(M.loc)
 		new_mob.a_intent = "hurt"
 		new_mob.universal_speak = TRUE
-		if(!isnull(M.mind))
+		if(isnotnull(M.mind))
 			M.mind.transfer_to(new_mob)
 		else
 			new_mob.key = M.key
@@ -736,25 +736,25 @@
 /datum/reagent/space_cleaner/reaction_mob(mob/M, method = TOUCH, volume)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
-		if(!isnull(C.r_hand))
+		if(isnotnull(C.r_hand))
 			C.r_hand.clean_blood()
-		if(!isnull(C.l_hand))
+		if(isnotnull(C.l_hand))
 			C.l_hand.clean_blood()
-		if(!isnull(C.wear_mask))
+		if(isnotnull(C.wear_mask))
 			if(C.wear_mask.clean_blood())
 				C.update_inv_wear_mask(0)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = C
-			if(!isnull(H.head))
+			if(isnotnull(H.head))
 				if(H.head.clean_blood())
 					H.update_inv_head(0)
-			if(!isnull(H.wear_suit))
+			if(isnotnull(H.wear_suit))
 				if(H.wear_suit.clean_blood())
 					H.update_inv_wear_suit(0)
-			else if(!isnull(H.w_uniform))
+			else if(isnotnull(H.w_uniform))
 				if(H.w_uniform.clean_blood())
 					H.update_inv_w_uniform(0)
-			if(!isnull(H.shoes))
+			if(isnotnull(H.shoes))
 				if(H.shoes.clean_blood())
 					H.update_inv_shoes(0)
 			else

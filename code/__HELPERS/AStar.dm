@@ -43,7 +43,7 @@ length to avoid portals or something i guess?? Not that they're counted right no
 /PriorityQueue/New(compare)
 	L = list()
 	cmp = compare
-	
+
 /PriorityQueue/proc/IsEmpty()
 	return !length(L)
 
@@ -185,7 +185,7 @@ length to avoid portals or something i guess?? Not that they're counted right no
 		temp.bestF = 0
 		closed.Cut(length(closed))
 
-	if(!isnull(path))
+	if(isnotnull(path))
 		for(var/i = 1; i <= length(path) / 2; i++)
 			path.Swap(i, length(path) - i + 1)
 

@@ -27,7 +27,7 @@
 	src.scanner = findscanner()
 	src.pod1 = findcloner()
 
-	if(!isnull(src.pod1))
+	if(isnotnull(src.pod1))
 		src.pod1.connected = src // Some variable the pod needs
 
 /obj/machinery/computer/cloning/proc/findscanner()
@@ -40,7 +40,7 @@
 		scannerf = locate(/obj/machinery/dna_scannernew, get_step(src, dir))
 
 		// If found, then we break, and return the scanner
-		if (!isnull(scannerf))
+		if (isnotnull(scannerf))
 			break
 
 	// If no scanner was found, it will return null
@@ -53,7 +53,7 @@
 
 		podf = locate(/obj/machinery/clonepod, get_step(src, dir))
 
-		if(!isnull(podf))
+		if(isnotnull(podf))
 			break
 
 	return podf
@@ -125,7 +125,7 @@
 
 				dat += "Lock status: <a href='byond://?src=\ref[src];lock=1'>[src.scanner.locked ? "Locked" : "Unlocked"]</a><br>"
 
-			if(!isnull(src.pod1))
+			if(isnotnull(src.pod1))
 				dat += "Biomass: <i>[src.pod1.biomass]</i><br>"
 
 			// Database
@@ -159,7 +159,7 @@
 				else
 					dat += "<font color=red>Unable to locate implant.</font><br>"
 
-				if(!isnull(src.diskette))
+				if(isnotnull(src.diskette))
 					dat += "<a href='byond://?src=\ref[src];disk=load'>Load from disk.</a>"
 
 					dat += " | Save: <a href='byond://?src=\ref[src];save_disk=ue'>UI + UE</a>"
@@ -198,7 +198,7 @@
 	if(loading)
 		return
 
-	if((href_list["scan"]) && (!isnull(src.scanner)))
+	if((href_list["scan"]) && (isnotnull(src.scanner)))
 		scantemp = ""
 
 		loading = 1
@@ -212,7 +212,7 @@
 
 
 		//No locking an open scanner.
-	else if((href_list["lock"]) && (!isnull(src.scanner)))
+	else if((href_list["lock"]) && (isnotnull(src.scanner)))
 		if((!src.scanner.locked) && (src.scanner.occupant))
 			src.scanner.locked = 1
 		else
@@ -265,7 +265,7 @@
 
 				src.temp = "Load successful."
 			if("eject")
-				if (!isnull(src.diskette))
+				if (isnotnull(src.diskette))
 					src.diskette.loc = src.loc
 					src.diskette = null
 
@@ -356,7 +356,7 @@
 	if(NOCLONE in subject.mutations)
 		scantemp = "Error: Mental interface failure."
 		return
-	if(!isnull(find_record(subject.ckey)))
+	if(isnotnull(find_record(subject.ckey)))
 		scantemp = "Subject already in database."
 		return
 
@@ -379,7 +379,7 @@
 	else
 		R.implant = "\ref[imp]"
 
-	if(!isnull(subject.mind)) //Save that mind so traitors can continue traitoring after cloning.
+	if(isnotnull(subject.mind)) //Save that mind so traitors can continue traitoring after cloning.
 		R.mind = "\ref[subject.mind]"
 
 	src.records += R

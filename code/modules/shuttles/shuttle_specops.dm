@@ -40,7 +40,7 @@
 	announcer.config(list("Response Team" = 0))
 
 /datum/shuttle/ferry/multidock/specops/proc/radio_announce(message)
-	if(!isnull(announcer))
+	if(isnotnull(announcer))
 		announcer.autosay(message, "A.L.I.C.E.", "Response Team")
 
 /datum/shuttle/ferry/multidock/specops/launch(user)

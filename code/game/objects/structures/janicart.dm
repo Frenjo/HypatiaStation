@@ -77,19 +77,19 @@
 		else
 			to_chat(user, SPAN_NOTICE("[src] can't hold any more signs."))
 
-	else if(!isnull(mybag))
+	else if(isnotnull(mybag))
 		mybag.attackby(I, user)
 
 /obj/structure/janitorialcart/attack_hand(mob/user)
 	user.set_machine(src)
 	var/html
-	if(!isnull(mybag))
+	if(isnotnull(mybag))
 		html += "<a href='?src=\ref[src];garbage=1'>[mybag.name]</a><br>"
-	if(!isnull(mymop))
+	if(isnotnull(mymop))
 		html += "<a href='?src=\ref[src];mop=1'>[mymop.name]</a><br>"
-	if(!isnull(myspray))
+	if(isnotnull(myspray))
 		html += "<a href='?src=\ref[src];spray=1'>[myspray.name]</a><br>"
-	if(!isnull(myreplacer))
+	if(isnotnull(myreplacer))
 		html += "<a href='?src=\ref[src];replacer=1'>[myreplacer.name]</a><br>"
 	if(signs)
 		html += "<a href='?src=\ref[src];sign=1'>[signs] sign\s</a><br>"
@@ -110,29 +110,29 @@
 
 	var/mob/living/user = usr
 	if(href_list["garbage"])
-		if(!isnull(mybag))
+		if(isnotnull(mybag))
 			user.put_in_hands(mybag)
 			to_chat(user, SPAN_NOTICE("You take [mybag] from [src]."))
 			mybag = null
 	if(href_list["mop"])
-		if(!isnull(mymop))
+		if(isnotnull(mymop))
 			user.put_in_hands(mymop)
 			to_chat(user, SPAN_NOTICE("You take [mymop] from [src]."))
 			mymop = null
 	if(href_list["spray"])
-		if(!isnull(myspray))
+		if(isnotnull(myspray))
 			user.put_in_hands(myspray)
 			to_chat(user, SPAN_NOTICE("You take [myspray] from [src]."))
 			myspray = null
 	if(href_list["replacer"])
-		if(!isnull(myreplacer))
+		if(isnotnull(myreplacer))
 			user.put_in_hands(myreplacer)
 			to_chat(user, SPAN_NOTICE("You take [myreplacer] from [src]."))
 			myreplacer = null
 	if(href_list["sign"])
 		if(signs)
 			var/obj/item/weapon/caution/sign = locate() in src
-			if(!isnull(sign))
+			if(isnotnull(sign))
 				user.put_in_hands(sign)
 				to_chat(user, SPAN_NOTICE("You take \a [sign] from [src]."))
 				signs--
@@ -145,13 +145,13 @@
 
 /obj/structure/janitorialcart/update_icon()
 	overlays.Cut()
-	if(!isnull(mybag))
+	if(isnotnull(mybag))
 		overlays.Add("cart_garbage")
-	if(!isnull(mymop))
+	if(isnotnull(mymop))
 		overlays.Add("cart_mop")
-	if(!isnull(myspray))
+	if(isnotnull(myspray))
 		overlays.Add("cart_spray")
-	if(!isnull(myreplacer))
+	if(isnotnull(myreplacer))
 		overlays.Add("cart_replacer")
 	if(signs)
 		overlays.Add("cart_sign[signs]")
@@ -198,7 +198,7 @@
 		mybag = I
 
 /obj/structure/stool/bed/chair/janicart/attack_hand(mob/user)
-	if(!isnull(mybag))
+	if(isnotnull(mybag))
 		mybag.loc = get_turf(user)
 		user.put_in_hands(mybag)
 		mybag = null
@@ -239,7 +239,7 @@
 	add_fingerprint(user)
 
 /obj/structure/stool/bed/chair/janicart/unbuckle()
-	if(!isnull(buckled_mob))
+	if(isnotnull(buckled_mob))
 		buckled_mob.pixel_x = 0
 		buckled_mob.pixel_y = 0
 	..()
@@ -276,7 +276,7 @@
 			buckled_mob.pixel_y = 7
 
 /obj/structure/stool/bed/chair/janicart/bullet_act(obj/item/projectile/proj)
-	if(!isnull(buckled_mob))
+	if(isnotnull(buckled_mob))
 		if(prob(85))
 			return buckled_mob.bullet_act(proj)
 	visible_message(SPAN_WARNING("[proj] ricochets off the [callme]!"))

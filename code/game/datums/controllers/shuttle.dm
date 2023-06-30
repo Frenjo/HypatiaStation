@@ -40,7 +40,7 @@ CONTROLLER_DEF(shuttle)
 
 	for(var/shuttle_tag in shuttles)
 		shuttle = shuttles[shuttle_tag]
-		if(!isnull(shuttle.docking_controller_tag))
+		if(isnotnull(shuttle.docking_controller_tag))
 			dock_controller_map[shuttle.docking_controller_tag] = shuttle
 		if(istype(shuttle, /datum/shuttle/ferry/multidock))
 			multidock = shuttle
@@ -51,7 +51,7 @@ CONTROLLER_DEF(shuttle)
 	var/datum/shuttle/ferry/escape_pod/pod
 	var/list/pod_controller_map = list()
 	for(var/datum/shuttle/ferry/escape_pod/P in global.CTemergency.escape_pods)
-		if(!isnull(P.dock_target_station))
+		if(isnotnull(P.dock_target_station))
 			pod_controller_map[P.dock_target_station] = P
 
 	//search for the controllers, if we have one.

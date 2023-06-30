@@ -62,7 +62,7 @@
 
 /datum/species/xenos/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
-	if(!isnull(H.mind))
+	if(isnotnull(H.mind))
 		H.mind.assigned_role = "Alien"
 		H.mind.special_role = "Alien"
 

@@ -13,7 +13,7 @@
 		if("exclude" in species_restricted)
 			exclusive = TRUE
 
-		if(!isnull(H.species))
+		if(isnotnull(H.species))
 			if(exclusive)
 				if(!(H.species.name in species_restricted))
 					wearable = TRUE

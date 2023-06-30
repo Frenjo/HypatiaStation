@@ -60,7 +60,7 @@
 
 /obj/machinery/door/airlock/initialize()
 	. = ..()
-	if(!isnull(closeOtherId))
+	if(isnotnull(closeOtherId))
 		for(var/obj/machinery/door/airlock/A in GLOBL.airlocks_list)
 			if(A.closeOtherId == closeOtherId && A != src)
 				closeOther = A
@@ -119,7 +119,7 @@
 	return retval
 
 /obj/machinery/door/airlock/update_icon()
-	if(!isnull(overlays))
+	if(isnotnull(overlays))
 		overlays.Cut()
 	if(density)
 		if(locked && lights)
@@ -138,14 +138,14 @@
 /obj/machinery/door/airlock/do_animate(animation)
 	switch(animation)
 		if("opening")
-			if(!isnull(overlays))
+			if(isnotnull(overlays))
 				overlays.Cut()
 			if(p_open)
 				flick("o_door_opening", src)
 			else
 				flick("door_opening", src)
 		if("closing")
-			if(!isnull(overlays))
+			if(isnotnull(overlays))
 				overlays.Cut()
 			if(p_open)
 				flick("o_door_closing", src)
@@ -216,7 +216,7 @@
 
 				var/obj/structure/door_assembly/da = new assembly_type(loc)
 				da.anchored = TRUE
-				if(!isnull(mineral))
+				if(isnotnull(mineral))
 					da.glass = mineral
 				//else if(glass)
 				else if(glass && !da.glass)
@@ -276,7 +276,7 @@
 		. = ..()
 
 /obj/machinery/door/airlock/plasma/attackby(C as obj, mob/user as mob)
-	if(!isnull(C))
+	if(isnotnull(C))
 		ignite(is_hot(C))
 	. = ..()
 
@@ -296,7 +296,7 @@
 		playsound(src, 'sound/items/bikehorn.ogg', 30, 1)
 	else
 		playsound(src, 'sound/machines/airlock.ogg', 30, 1)
-	if(!isnull(closeOther) && istype(closeOther, /obj/machinery/door/airlock) && !closeOther.density)
+	if(isnotnull(closeOther) && istype(closeOther, /obj/machinery/door/airlock) && !closeOther.density)
 		closeOther.close()
 	return ..()
 
@@ -345,7 +345,7 @@
 		playsound(src, 'sound/machines/airlock.ogg', 30, 1)
 	for(var/turf/turf in locs)
 		var/obj/structure/window/killthis = (locate(/obj/structure/window) in turf)
-		if(!isnull(killthis))
+		if(isnotnull(killthis))
 			killthis.ex_act(2)//Smashin windows
 	. = ..()
 

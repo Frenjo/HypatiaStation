@@ -2,7 +2,7 @@
 	if(stat == DEAD)
 		return
 
-	if(!isnull(cable))
+	if(isnotnull(cable))
 		if(get_dist(src, cable) > 1)
 			visible_message(
 				message = SPAN_WARNING("The data cable rapidly retracts back into its spool."),

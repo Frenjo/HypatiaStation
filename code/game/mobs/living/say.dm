@@ -65,7 +65,7 @@ GLOBAL_GLOBL_LIST_INIT(department_radio_keys, list(
 		return
 
 	var/mob/living/carbon/human/H = src
-	if(!isnull(H.l_ear) || !isnull(H.r_ear))
+	if(isnotnull(H.l_ear) || isnotnull(H.r_ear))
 		var/obj/item/device/radio/headset/dongle
 		if(istype(H.l_ear, /obj/item/device/radio/headset))
 			dongle = H.l_ear
@@ -86,7 +86,7 @@ GLOBAL_GLOBL_LIST_INIT(department_radio_keys, list(
 	var/turf/T = get_turf(src)
 
 	var/list/listening = list()
-	if(!isnull(T))
+	if(isnotnull(T))
 		var/list/objects = list()
 		var/list/hear = hear(message_range, T)
 		var/list/hearturfs = list()
@@ -126,7 +126,7 @@ GLOBAL_GLOBL_LIST_INIT(department_radio_keys, list(
 				M.show_message(SPAN_NOTICE("[src] talks into [length(used_radios) ? used_radios[1] : "radio"]."))
 
 	for(var/mob/M in listening)
-		if(!isnull(M.client))
+		if(isnotnull(M.client))
 			M << speech_bubble
 			M.hear_say(message, verbage, speaking, alt_name, italics, src)
 

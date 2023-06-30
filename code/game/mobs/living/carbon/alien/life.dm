@@ -18,7 +18,7 @@
 	update_canmove()
 	update_icons()
 
-	if(!isnull(client))
+	if(isnotnull(client))
 		handle_regular_hud_updates()
 
 /mob/living/carbon/alien/handle_mutations_and_radiation()

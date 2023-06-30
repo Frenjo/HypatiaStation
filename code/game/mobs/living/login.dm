@@ -6,7 +6,7 @@
 	mind.active = TRUE	//indicates that the mind is currently synced with a client
 
 	//Round specific stuff like hud updates
-	if(!isnull(global.CTgame_ticker?.mode))
+	if(isnotnull(global.CTgame_ticker?.mode))
 		switch(global.CTgame_ticker.mode.type)
 			if(/datum/game_mode/revolution)
 				var/datum/game_mode/revolution/revolution = global.CTgame_ticker.mode

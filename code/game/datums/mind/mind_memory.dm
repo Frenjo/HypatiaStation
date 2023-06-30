@@ -64,7 +64,7 @@
 
 			var/list/L = current.get_contents()
 			var/obj/item/device/flash/flash = locate() in L
-			if(!isnull(flash))
+			if(isnotnull(flash))
 				if(!flash.broken)
 					text += "|<a href='?src=\ref[src];revolution=takeflash'>take</a>."
 				else
@@ -214,14 +214,14 @@
 		sections["malfunction"] = text
 
 	if(IS_GAME_MODE(/datum/game_mode/traitor/changeling))
-		if(!isnull(sections["traitor"]))
+		if(isnotnull(sections["traitor"]))
 			out += sections["traitor"]+"<br>"
-		if(!isnull(sections["changeling"]))
+		if(isnotnull(sections["changeling"]))
 			out += sections["changeling"]+"<br>"
 		sections.Remove("traitor")
 		sections.Remove("changeling")
 	else
-		if(!isnull(sections[global.CTgame_ticker.mode.config_tag]))
+		if(isnotnull(sections[global.CTgame_ticker.mode.config_tag]))
 			out += sections[global.CTgame_ticker.mode.config_tag]+"<br>"
 		sections.Remove(global.CTgame_ticker.mode.config_tag)
 	for(var/i in sections)

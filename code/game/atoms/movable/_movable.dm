@@ -21,7 +21,7 @@
 	loc = null
 	un_opaque?.recalc_atom_opacity()
 
-	if(!isnull(pulledby))
+	if(isnotnull(pulledby))
 		if(pulledby.pulling == src)
 			pulledby.pulling = null
 		pulledby = null
@@ -43,15 +43,15 @@
 		throwing = THROW_NONE
 
 	spawn(0)
-		if(!isnull(A) && yes)
+		if(isnotnull(A) && yes)
 			A.last_bumped = world.time
 			A.Bumped(src)
 		return
 	. = ..()
 
 /atom/movable/proc/forceMove(atom/destination)
-	if(!isnull(destination))
-		if(!isnull(loc))
+	if(isnotnull(destination))
+		if(isnotnull(loc))
 			loc.Exited(src)
 		loc = destination
 		loc.Entered(src)
@@ -83,7 +83,7 @@
 
 	throwing = THROW_WEAK
 
-	if(!isnull(usr))
+	if(isnotnull(usr))
 		if(HULK in usr.mutations)
 			throwing = THROW_STRONG // really strong throw!
 
@@ -106,7 +106,7 @@
 	var/area/a = get_area(src.loc)
 	if(dist_x > dist_y)
 		var/error = dist_x / 2 - dist_y
-		while(!isnull(src) && !isnull(target) &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || (a && !a.has_gravity) || isspace(loc)) && throwing && isturf(loc))
+		while(isnotnull(src) && isnotnull(target) &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || (a && !a.has_gravity) || isspace(loc)) && throwing && isturf(loc))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dy)
@@ -135,7 +135,7 @@
 			a = get_area(src.loc)
 	else
 		var/error = dist_y / 2 - dist_x
-		while(!isnull(src) && !isnull(target) &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || !a.has_gravity || isspace(loc)) && throwing && isturf(loc))
+		while(isnotnull(src) && isnotnull(target) &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || !a.has_gravity || isspace(loc)) && throwing && isturf(loc))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dx)

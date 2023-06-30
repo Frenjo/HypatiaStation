@@ -20,7 +20,7 @@
 	icon = 'icons/obj/flora/harvest.dmi'
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/New(newloc, newpotency)
-	if(!isnull(newpotency))
+	if(isnotnull(newpotency))
 		potency = newpotency
 	..()
 	src.pixel_x = rand(-5.0, 5)

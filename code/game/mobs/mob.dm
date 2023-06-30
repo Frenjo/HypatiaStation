@@ -245,7 +245,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	var/obj/P = new /obj/effect/decal/point(tile)
 	P.invisibility = invisibility
 	spawn(20)
-		if(!isnull(P))
+		if(isnotnull(P))
 			qdel(P)
 
 	return 1
@@ -257,7 +257,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 		else
 			return L.container
 	else
-		if(!isnull(L))
+		if(isnotnull(L))
 			L = new /obj/effect/list_container/mobl(null)
 			L.container.Add(src)
 			L.master = src
@@ -265,13 +265,13 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 			var/obj/item/weapon/grab/G = l_hand
 			if(!L.container.Find(G.affecting))
 				L.container.Add(G.affecting)
-				if(!isnull(G.affecting))
+				if(isnotnull(G.affecting))
 					G.affecting.ret_grab(L, 1)
 		if(istype(r_hand, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = r_hand
 			if(!L.container.Find(G.affecting))
 				L.container.Add(G.affecting)
-				if(!isnull(G.affecting))
+				if(isnotnull(G.affecting))
 					G.affecting.ret_grab(L, 1)
 		if(!flag)
 			if(L.master == src)
@@ -293,12 +293,12 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 
 	if(hand)
 		var/obj/item/W = l_hand
-		if(!isnull(W))
+		if(isnotnull(W))
 			W.attack_self(src)
 			update_inv_l_hand()
 	else
 		var/obj/item/W = r_hand
-		if(!isnull(W))
+		if(isnotnull(W))
 			W.attack_self(src)
 			update_inv_r_hand()
 	if(next_move < world.time)
@@ -318,7 +318,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 /mob/verb/memory()
 	set name = "Notes"
 	set category = "IC"
-	if(!isnull(mind))
+	if(isnotnull(mind))
 		mind.show_memory(src)
 	else
 		to_chat(src, "The game appears to have misplaced your mind datum, so we can't show you your notes.")
@@ -330,7 +330,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
 	msg = sanitize(msg)
 
-	if(!isnull(mind))
+	if(isnotnull(mind))
 		mind.store_memory(msg)
 	else
 		to_chat(src, "The game appears to have misplaced your mind datum, so we can't show you your notes.")
@@ -355,7 +355,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 		to_chat(usr, "No.")
 	var/msg = input(usr, "Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.", "Flavor Text", html_decode(flavor_text)) as message | null
 
-	if(!isnull(msg))
+	if(isnotnull(msg))
 		msg = copytext(msg, 1, MAX_MESSAGE_LEN)
 		msg = html_encode(msg)
 
@@ -543,7 +543,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 
 	var/mob/mob_eye = creatures[eye_name]
 
-	if(!isnull(client) && !isnull(mob_eye))
+	if(isnotnull(client) && isnotnull(mob_eye))
 		client.eye = mob_eye
 		if(is_admin)
 			client.adminobs = TRUE
@@ -599,7 +599,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	set name = "Stop Pulling"
 	set category = "IC"
 
-	if(!isnull(pulling))
+	if(isnotnull(pulling))
 		pulling.pulledby = null
 		pulling = null
 
@@ -618,7 +618,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 		else
 			M.LAssailant = usr
 
-	if(!isnull(pulling))
+	if(isnotnull(pulling))
 		var/pulling_old = pulling
 		stop_pulling()
 		// Are we pulling the same thing twice? Just stop pulling.
@@ -680,7 +680,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	set waitfor = FALSE
 	is_dizzy = TRUE
 	while(dizziness > 100)
-		if(!isnull(client))
+		if(isnotnull(client))
 			var/amplitude = dizziness * (sin(dizziness * 0.044 * world.time) + 1) / 70
 			client.pixel_x = amplitude * sin(0.008 * dizziness * world.time)
 			client.pixel_y = amplitude * cos(0.008 * dizziness * world.time)
@@ -688,7 +688,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		sleep(1)
 	//endwhile - reset the pixel offsets to zero
 	is_dizzy = FALSE
-	if(!isnull(client))
+	if(isnotnull(client))
 		client.pixel_x = 0
 		client.pixel_y = 0
 

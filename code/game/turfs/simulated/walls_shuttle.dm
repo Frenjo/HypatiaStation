@@ -77,7 +77,7 @@
 	copy_initial_plane_and_layer(base_type)
 
 /turf/simulated/shuttle/wall/corner/exterior/proc/reset_overlay()
-	if(!isnull(corner_overlay))
+	if(isnotnull(corner_overlay))
 		overlays.Remove(corner_overlay)
 	else
 		corner_overlay = image(icon = 'icons/turf/shuttle.dmi', icon_state = corner_overlay_state, layer = src.layer, dir = src.dir)

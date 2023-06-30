@@ -8,6 +8,6 @@
 	set hidden = 1
 
 	var/ref = copytext(data, 1, findtext(data, ";"))
-	if(!isnull(src.skincmds[ref]))
+	if(isnotnull(src.skincmds[ref]))
 		var/obj/a = src.skincmds[ref]
 		a.SkinCmd(src, copytext(data, findtext(data, ";") + 1))

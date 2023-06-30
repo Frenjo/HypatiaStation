@@ -22,7 +22,7 @@
 	for(dir in list(NORTH, EAST, SOUTH, WEST))
 		//world << "SEARCHING IN [dir]"
 		foundgenerator = locate(/obj/machinery/gravity_generator, get_step(src, dir))
-		if(!isnull(foundgenerator))
+		if(isnotnull(foundgenerator))
 			//world << "FOUND"
 			break
 	return foundgenerator

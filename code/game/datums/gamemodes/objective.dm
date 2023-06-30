@@ -37,7 +37,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 
 /datum/objective/assassinate
-	
+
 /datum/objective/assassinate/find_target()
 	..()
 	if(target && target.current)
@@ -92,7 +92,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 
 /datum/objective/mutiny/rp
-	
+
 /datum/objective/mutiny/rp/find_target()
 	..()
 	if(target && target.current)
@@ -112,7 +112,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 // less violent rev objectives
 /datum/objective/mutiny/rp/check_completion()
 	var/rval = 1
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		//assume that only carbon mobs can become rev heads for now
 		if(target.current.stat == DEAD || target.current:handcuffed || !ishuman(target.current))
 			return 1
@@ -122,7 +122,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 			if(target in rev.head_revolutionaries)
 				return 1
 		var/turf/T = get_turf(target.current)
-		if(!isnull(T) && isNotStationLevel(T.z)) // If they leave the station they count as dead for this.
+		if(isnotnull(T) && isNotStationLevel(T.z)) // If they leave the station they count as dead for this.
 			rval = 2
 		return 0
 	return rval
@@ -132,7 +132,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective/anti_revolution/execute/find_target()
 	..()
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		explanation_text = "[target.current.real_name], the [target.assigned_role] has extracted confidential information above their clearance. Execute \him[target.current]."
 	else
 		explanation_text = "Free Objective"
@@ -140,14 +140,14 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective/anti_revolution/execute/find_target_by_role(role, role_type = 0)
 	..(role, role_type)
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has extracted confidential information above their clearance. Execute \him[target.current]."
 	else
 		explanation_text = "Free Objective"
 	return target
 
 /datum/objective/anti_revolution/execute/check_completion()
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		if(target.current.stat == DEAD || !ishuman(target.current))
 			return 1
 		return 0
@@ -159,7 +159,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective/anti_revolution/brig/find_target()
 	..()
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		explanation_text = "Brig [target.current.real_name], the [target.assigned_role] for 20 minutes to set an example."
 	else
 		explanation_text = "Free Objective"
@@ -167,7 +167,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective/anti_revolution/brig/find_target_by_role(role, role_type=0)
 	..(role, role_type)
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		explanation_text = "Brig [target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] for 20 minutes to set an example."
 	else
 		explanation_text = "Free Objective"
@@ -177,7 +177,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	if(already_completed)
 		return 1
 
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		if(target.current.stat == DEAD)
 			return 0
 		if(target.is_brigged(10 * 60 * 10))
@@ -188,10 +188,10 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 
 /datum/objective/anti_revolution/demote
-	
+
 /datum/objective/anti_revolution/demote/find_target()
 	..()
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		explanation_text = "[target.current.real_name], the [target.assigned_role]  has been classified as harmful to NanoTrasen's goals. Demote \him[target.current] to assistant."
 	else
 		explanation_text = "Free Objective"
@@ -199,14 +199,14 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective/anti_revolution/demote/find_target_by_role(role, role_type = 0)
 	..(role, role_type)
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has been classified as harmful to NanoTrasen's goals. Demote \him[target.current] to assistant."
 	else
 		explanation_text = "Free Objective"
 	return target
 
 /datum/objective/anti_revolution/demote/check_completion()
-	if(!isnull(target?.current) && ishuman(target))
+	if(isnotnull(target?.current) && ishuman(target))
 		var/obj/item/weapon/card/id/I = target.current:wear_id
 		if(istype(I, /obj/item/device/pda))
 			var/obj/item/device/pda/P = I
@@ -223,10 +223,10 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 
 /datum/objective/debrain//I want braaaainssss
-	
+
 /datum/objective/debrain/find_target()
 	..()
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		explanation_text = "Steal the brain of [target.current.real_name]."
 	else
 		explanation_text = "Free Objective"
@@ -234,7 +234,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective/debrain/find_target_by_role(role, role_type = 0)
 	..(role, role_type)
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		explanation_text = "Steal the brain of [target.current.real_name] the [!role_type ? target.assigned_role : target.special_role]."
 	else
 		explanation_text = "Free Objective"
@@ -256,10 +256,10 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 
 /datum/objective/protect//The opposite of killing a dude.
-	
+
 /datum/objective/protect/find_target()
 	..()
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		explanation_text = "Protect [target.current.real_name], the [target.assigned_role]."
 	else
 		explanation_text = "Free Objective"
@@ -267,7 +267,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective/protect/find_target_by_role(role, role_type = 0)
 	..(role, role_type)
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		explanation_text = "Protect [target.current.real_name], the [!role_type ? target.assigned_role : target.special_role]."
 	else
 		explanation_text = "Free Objective"
@@ -276,7 +276,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 /datum/objective/protect/check_completion()
 	if(isnull(target))	//If it's a free objective.
 		return 1
-	if(!isnull(target.current))
+	if(isnotnull(target.current))
 		if(target.current.stat == DEAD || issilicon(target.current) || isbrain(target.current))
 			return 0
 		return 1
@@ -298,7 +298,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	for(var/mob/living/player in GLOBL.player_list)
 		if(player.type in protected_mobs)
 			continue
-		if(!isnull(player.mind) && (player.mind != owner))
+		if(isnotnull(player.mind) && (player.mind != owner))
 			if(player.stat != DEAD)			//they're not dead!
 				if(get_turf(player) in shuttle)
 					return 0
@@ -320,7 +320,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	for(var/mob/living/player in GLOBL.player_list)
 		if(player.type in protected_mobs)
 			continue
-		if(!isnull(player.mind))
+		if(isnotnull(player.mind))
 			if(player.stat != DEAD)
 				if(get_turf(player) in shuttle)
 					return 0
@@ -337,7 +337,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	for(var/mob/living/player in GLOBL.player_list)
 		if(player == owner.current)
 			continue
-		if(!isnull(player.mind))
+		if(isnotnull(player.mind))
 			if(player.stat != DEAD)
 				var/turf/T = get_turf(player)
 				if(!T)
@@ -405,7 +405,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective/brig/find_target()
 	..()
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		explanation_text = "Have [target.current.real_name], the [target.assigned_role] brigged for 10 minutes."
 	else
 		explanation_text = "Free Objective"
@@ -413,7 +413,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective/brig/find_target_by_role(role, role_type = 0)
 	..(role, role_type)
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		explanation_text = "Have [target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] brigged for 10 minutes."
 	else
 		explanation_text = "Free Objective"
@@ -423,7 +423,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	if(already_completed)
 		return 1
 
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		if(target.current.stat == DEAD)
 			return 0
 		// Make the actual required time a bit shorter than the official time
@@ -439,7 +439,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective/harm/find_target()
 	..()
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		explanation_text = "Make an example of [target.current.real_name], the [target.assigned_role]. Break one of their bones, detach one of their limbs or disfigure their face. Make sure they're alive when you do it."
 	else
 		explanation_text = "Free Objective"
@@ -448,7 +448,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective/harm/find_target_by_role(role, role_type = 0)
 	..(role, role_type)
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		explanation_text = "Make an example of [target.current.real_name], the [!role_type ? target.assigned_role : target.special_role]. Break one of their bones, detach one of their limbs or disfigure their face. Make sure they're alive when you do it."
 	else
 		explanation_text = "Free Objective"
@@ -458,7 +458,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	if(already_completed)
 		return 1
 
-	if(!isnull(target?.current) && ishuman(target.current))
+	if(isnotnull(target?.current) && ishuman(target.current))
 		if(target.current.stat == DEAD)
 			return 0
 
@@ -573,7 +573,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 		if("50 coins (in bag)")
 			var/obj/item/weapon/moneybag/B = locate() in all_items
-			if(!isnull(B))
+			if(isnotnull(B))
 				var/target = text2num(target_name)
 				var/found_amount = 0.0
 				for(var/obj/item/weapon/coin/C in B)
@@ -587,7 +587,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 						return 1
 
 			for(var/obj/item/clothing/suit/space/space_ninja/S in all_items) //Let an AI downloaded into a space ninja suit count
-				if(!isnull(S.AI) && S.AI.stat != DEAD)
+				if(isnotnull(S.AI) && S.AI.stat != DEAD)
 					return 1
 
 			for(var/mob/living/silicon/ai/ai in world)
@@ -614,7 +614,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 
 /datum/objective/download
-	
+
 /datum/objective/download/proc/gen_amount_goal()
 	target_amount = rand(10, 20)
 	explanation_text = "Download [target_amount] research levels."
@@ -678,18 +678,18 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 
 /datum/objective/absorb
-	
+
 /datum/objective/absorb/proc/gen_amount_goal(lowbound = 4, highbound = 6)
 	target_amount = rand (lowbound, highbound)
-	if(!isnull(global.CTgame_ticker))
+	if(isnotnull(global.CTgame_ticker))
 		var/n_p = 1 //autowin
 		if(global.CTgame_ticker.current_state == GAME_STATE_SETTING_UP)
 			for(var/mob/new_player/P in GLOBL.player_list)
-				if(!isnull(P.client) && P.ready && P.mind != owner)
+				if(isnotnull(P.client) && P.ready && P.mind != owner)
 					n_p ++
 		else if(global.CTgame_ticker.current_state == GAME_STATE_PLAYING)
 			for(var/mob/living/carbon/human/P in GLOBL.player_list)
-				if(!isnull(P.client) && !(P.mind in global.CTgame_ticker.mode.changelings) && P.mind != owner)
+				if(isnotnull(P.client) && !(P.mind in global.CTgame_ticker.mode.changelings) && P.mind != owner)
 					n_p ++
 		target_amount = min(target_amount, n_p)
 
@@ -697,7 +697,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	return target_amount
 
 /datum/objective/absorb/check_completion()
-	if(!isnull(owner?.changeling) && owner.changeling.absorbed_dna && owner.changeling.absorbedcount >= target_amount)
+	if(isnotnull(owner?.changeling) && owner.changeling.absorbed_dna && owner.changeling.absorbedcount >= target_amount)
 		return 1
 	else
 		return 0
@@ -765,12 +765,12 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 //Vox heist objectives.
 
 /datum/objective/heist
-	
+
 /datum/objective/heist/proc/choose_target()
 	return
 
 /datum/objective/heist/kidnap
-	
+
 /datum/objective/heist/kidnap/choose_target()
 	var/list/roles = list("Chief Engineer", "Research Director", "Roboticist", "Chemist", "Station Engineer")
 	var/list/possible_targets = list()
@@ -796,7 +796,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	return target
 
 /datum/objective/heist/kidnap/check_completion()
-	if(!isnull(target?.current))
+	if(isnotnull(target?.current))
 		if(target.current.stat == DEAD)
 			return 0 // They're dead. Fail.
 		//if (!target.current.restrained())
@@ -862,7 +862,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 	var/datum/game_mode/heist/H = global.CTgame_ticker.mode
 	for(var/datum/mind/raider in H.raiders)
-		if(!isnull(raider.current))
+		if(isnotnull(raider.current))
 			for(var/obj/O in raider.current.get_contents())
 				if(istype(O, target))
 					total_amount++
@@ -948,7 +948,7 @@ GLOBAL_GLOBL_INIT(vox_kills, 0) //Used to check the Inviolate.
 
 /datum/objective/heist/inviolate_death
 	explanation_text = "Follow the Inviolate. Minimise death and loss of resources."
-	
+
 /datum/objective/heist/inviolate_death/check_completion()
 	if(GLOBL.vox_kills > MAX_VOX_KILLS)
 		return 0

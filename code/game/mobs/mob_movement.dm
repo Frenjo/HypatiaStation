@@ -67,7 +67,7 @@
 /client/verb/attack_self()
 	set hidden = TRUE
 
-	if(!isnull(mob))
+	if(isnotnull(mob))
 		mob.mode()
 
 /client/verb/toggle_throw_mode()
@@ -149,7 +149,7 @@
 	if(leftover > 1)
 		leftover = 0
 
-	if(!isnull(mob.control_object))
+	if(isnotnull(mob.control_object))
 		Move_object(direct)
 
 	if(isobserver(mob))
@@ -177,7 +177,7 @@
 		if(L.incorporeal_move) // Move though walls.
 			Process_Incorpmove(direct)
 			return
-		if(!isnull(mob.client))
+		if(isnotnull(mob.client))
 			if(mob.client.view != world.view)
 				if(locate(/obj/item/weapon/gun/energy/sniperrifle, mob.contents)) // If mob moves while zoomed in with sniper rifle, unzoom them.
 					var/obj/item/weapon/gun/energy/sniperrifle/s = locate() in mob
@@ -187,7 +187,7 @@
 	if(Process_Grab())
 		return
 
-	if(!isnull(mob.buckled)) // If we're buckled to something, tell it we moved.
+	if(isnotnull(mob.buckled)) // If we're buckled to something, tell it we moved.
 		return mob.buckled.relaymove(mob, direct)
 
 	if(!mob.canmove)
@@ -246,7 +246,7 @@
 				if(length(L) == 2)
 					L.Remove(mob)
 					var/mob/M = L[1]
-					if(!isnull(M))
+					if(isnotnull(M))
 						if(get_dist(mob, M) <= 1 || M.loc == mob.loc)
 							var/turf/T = mob.loc
 							. = ..()

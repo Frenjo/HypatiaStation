@@ -152,7 +152,7 @@
 	return
 
 /obj/machinery/bot/mulebot/bullet_act()
-	if(prob(50) && !isnull(load))
+	if(prob(50) && isnotnull(load))
 		unload(0)
 	if(prob(25))
 		src.visible_message("\red Something shorts out inside [src]!")

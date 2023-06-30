@@ -61,7 +61,7 @@
 		if(isnull(S.powernet))
 			GLOBL.solars_list.Remove(S)
 			continue
-		if(!isnull(S.control))
+		if(isnotnull(S.control))
 			occlusion(S)
 
 // for a solar panel, trace towards sun to see if we're in shadow

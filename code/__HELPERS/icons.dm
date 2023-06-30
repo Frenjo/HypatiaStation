@@ -533,7 +533,7 @@ world
 	. += TO_HEX_DIGIT(sat)
 	. += TO_HEX_DIGIT(val >> 4)
 	. += TO_HEX_DIGIT(val)
-	if(!isnull(alpha))
+	if(isnotnull(alpha))
 		if(alpha < 0)
 			alpha = 0
 		if(alpha > 255)

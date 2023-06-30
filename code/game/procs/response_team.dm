@@ -195,12 +195,12 @@ GLOBAL_GLOBL(can_call_ert)
 
 	// Hair.
 	var/new_hstyle = input(usr, "Select a hair style", "Grooming") as null | anything in GLOBL.hair_styles_list
-	if(!isnull(new_hstyle))
+	if(isnotnull(new_hstyle))
 		M.h_style = new_hstyle
 
 	// Facial hair.
 	var/new_fstyle = input(usr, "Select a facial hair style", "Grooming") as null | anything in GLOBL.facial_hair_styles_list
-	if(!isnull(new_fstyle))
+	if(isnotnull(new_fstyle))
 		M.f_style = new_fstyle
 
 	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female")

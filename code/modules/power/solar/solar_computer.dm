@@ -48,7 +48,7 @@
 
 /obj/machinery/power/solar_control/connect_to_network()
 	var/to_return = ..()
-	if(!isnull(powernet)) //if connected and not already in solar_list...
+	if(isnotnull(powernet)) //if connected and not already in solar_list...
 		GLOBL.solars_list |= src //... add it
 	return to_return
 
@@ -220,7 +220,7 @@
 
 //search for unconnected panels and trackers in the computer powernet and connect them
 /obj/machinery/power/solar_control/proc/search_for_connected()
-	if(!isnull(powernet))
+	if(isnotnull(powernet))
 		for(var/obj/machinery/power/M in powernet.nodes)
 			if(istype(M, /obj/machinery/power/solar))
 				var/obj/machinery/power/solar/S = M

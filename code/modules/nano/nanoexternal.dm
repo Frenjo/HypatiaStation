@@ -16,7 +16,7 @@
 	if(istype(ui))
 		ui.close()
 
-		if(!isnull(ui.ref))
+		if(isnotnull(ui.ref))
 			var/href = "close=1"
 			src.Topic(href, params2list(href), ui.ref)	// this will direct to the atom's Topic() proc via client.Topic()
 		else if(ui.on_close_logic)

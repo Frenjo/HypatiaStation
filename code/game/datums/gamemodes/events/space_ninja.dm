@@ -780,7 +780,7 @@ spideros = text2num(return_to)//Maximum length here is 6. Use (return_to, X) to 
 				U << "\red Warning: no exposed cable available."
 			else
 				U << "\blue Connecting to wire, stand still..."
-				if(do_after(U,50)&&!isnull(attached))
+				if(do_after(U,50)&&isnotnull(attached))
 					drain("WIRE",attached,U:wear_suit,src)
 				else
 					U << "\red Procedure interrupted. Protocol terminated."
@@ -1022,7 +1022,7 @@ That is why you attached them to objects.
 					src << current_clone
 					spawn(300)
 						del(current_clone)
-					spawn while(!isnull(current_clone))
+					spawn while(isnotnull(current_clone))
 						step_to(current_clone,src,1)
 						sleep(5)
 			if(safety<=0)	break

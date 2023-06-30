@@ -206,9 +206,9 @@
 	data = list(
 		"shuttle_status" = shuttle_status,
 		"shuttle_state" = shuttle_state,
-		"has_docking" = !isnull(shuttle.docking_controller) ? TRUE : FALSE,
-		"docking_status" = !isnull(shuttle.docking_controller) ? shuttle.docking_controller.get_docking_status() : null,
-		"docking_override" = !isnull(shuttle.docking_controller) ? shuttle.docking_controller.override_enabled : null,
+		"has_docking" = isnotnull(shuttle.docking_controller) ? TRUE : FALSE,
+		"docking_status" = isnotnull(shuttle.docking_controller) ? shuttle.docking_controller.get_docking_status() : null,
+		"docking_override" = isnotnull(shuttle.docking_controller) ? shuttle.docking_controller.override_enabled : null,
 		"can_launch" = shuttle.can_launch(src),
 		"can_cancel" = shuttle.can_cancel(src),
 		"can_force" = shuttle.can_force(src),

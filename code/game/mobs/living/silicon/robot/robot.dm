@@ -115,13 +115,13 @@ var/list/robot_verbs_default = list(
 	else if(isdrone(src))
 		laws = new /datum/ai_laws/drone()
 		connected_ai = select_active_ai_with_fewest_borgs()
-		if(!isnull(connected_ai))
+		if(isnotnull(connected_ai))
 			connected_ai.connected_robots.Add(src)
 			lawsync()
 	else
 		laws = new /datum/ai_laws/corporate()
 		connected_ai = select_active_ai_with_fewest_borgs()
-		if(!isnull(connected_ai))
+		if(isnotnull(connected_ai))
 			connected_ai.connected_robots.Add(src)
 			lawsync()
 			lawupdate = TRUE
@@ -152,7 +152,7 @@ var/list/robot_verbs_default = list(
 
 	. = ..()
 
-	if(!isnull(cell))
+	if(isnotnull(cell))
 		var/datum/robot_component/cell_component = components["power cell"]
 		cell_component.wrapped = cell
 		cell_component.installed = 1
@@ -182,11 +182,11 @@ var/list/robot_verbs_default = list(
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
 //Improved /N
 /mob/living/silicon/robot/Destroy()
-	if(!isnull(mmi) && !isnull(mind)) // Safety for when a cyborg gets dust()ed. Or there is no MMI inside.
+	if(isnotnull(mmi) && isnotnull(mind)) // Safety for when a cyborg gets dust()ed. Or there is no MMI inside.
 		var/turf/T = get_turf(loc) // To hopefully prevent run time errors.
-		if(!isnull(T))
+		if(isnotnull(T))
 			mmi.loc = T
-		if(!isnull(mmi.brainmob))
+		if(isnotnull(mmi.brainmob))
 			mind.transfer_to(mmi.brainmob)
 		else
 			to_chat(src, SPAN_DANGER("Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug."))
@@ -197,7 +197,7 @@ var/list/robot_verbs_default = list(
 	return ..()
 
 /mob/living/silicon/robot/proc/pick_module()
-	if(!isnull(module))
+	if(isnotnull(module))
 		return
 	var/list/modules = list("Standard", "Engineering", "Medical", "Miner", "Janitor", "Service", "Security")
 	if(crisis && IS_SEC_LEVEL(/decl/security_level/red)) // Leaving this in until it's balanced appropriately.
@@ -207,7 +207,7 @@ var/list/robot_verbs_default = list(
 
 	var/module_sprites[0] // Used to store the associations between sprite names and sprite index.
 
-	if(!isnull(module))
+	if(isnotnull(module))
 		return
 
 	switch(modtype)
@@ -228,7 +228,7 @@ var/list/robot_verbs_default = list(
 		if("Miner")
 			module = new /obj/item/weapon/robot_module/miner(src)
 			module.channels = list("Supply" = 1)
-			if(!isnull(camera) && ("Robots" in camera.network))
+			if(isnotnull(camera) && ("Robots" in camera.network))
 				camera.network.Add("MINE")
 			module_sprites["Basic"] = "Miner_old"
 			module_sprites["Advanced Droid"] = "droid-miner"
@@ -237,7 +237,7 @@ var/list/robot_verbs_default = list(
 		if("Medical")
 			module = new /obj/item/weapon/robot_module/medical(src)
 			module.channels = list("Medical" = 1)
-			if(!isnull(camera) && ("Robots" in camera.network))
+			if(isnotnull(camera) && ("Robots" in camera.network))
 				camera.network.Add("Medical")
 			module_sprites["Basic"] = "Medbot"
 			module_sprites["Advanced Droid"] = "droid-medical"
@@ -255,7 +255,7 @@ var/list/robot_verbs_default = list(
 		if("Engineering")
 			module = new /obj/item/weapon/robot_module/engineering(src)
 			module.channels = list("Engineering" = 1)
-			if(!isnull(camera) && ("Robots" in camera.network))
+			if(isnotnull(camera) && ("Robots" in camera.network))
 				camera.network.Add("Engineering")
 			module_sprites["Basic"] = "Engineering"
 			module_sprites["Antique"] = "engineerrobot"
@@ -309,7 +309,7 @@ var/list/robot_verbs_default = list(
 	setup_PDA()
 
 	//We also need to update name of internal camera.
-	if(!isnull(camera))
+	if(isnotnull(camera))
 		camera.c_tag = changed_name
 
 	if(!custom_sprite) //Check for custom sprite
@@ -436,19 +436,19 @@ var/list/robot_verbs_default = list(
 /mob/living/silicon/robot/proc/show_jetpack_pressure()
 	// if you have a jetpack, show the internal tank pressure
 	var/obj/item/weapon/tank/jetpack/current_jetpack = installed_jetpack()
-	if(!isnull(current_jetpack))
+	if(isnotnull(current_jetpack))
 		stat("Internal Atmosphere Info", current_jetpack.name)
 		stat("Tank Pressure", current_jetpack.air_contents.return_pressure())
 
 // this function returns the robots jetpack, if one is installed
 /mob/living/silicon/robot/proc/installed_jetpack()
-	if(!isnull(module))
+	if(isnotnull(module))
 		return (locate(/obj/item/weapon/tank/jetpack) in module.modules)
 	return 0
 
 // this function displays the cyborgs current cell charge in the stat panel
 /mob/living/silicon/robot/proc/show_cell_power()
-	if(!isnull(cell))
+	if(isnotnull(cell))
 		stat(null, text("Charge Left: [cell.charge]/[cell.maxcharge]"))
 	else
 		stat(null, text("No Cell Inserted!"))
@@ -533,7 +533,7 @@ var/list/robot_verbs_default = list(
 
 	else if(istype(W, /obj/item/weapon/crowbar))	// crowbar means open or close the cover
 		if(opened)
-			if(!isnull(cell))
+			if(isnotnull(cell))
 				to_chat(user, "You close the cover.")
 				opened = 0
 				updateicon()
@@ -584,7 +584,7 @@ var/list/robot_verbs_default = list(
 		var/datum/robot_component/C = components["power cell"]
 		if(wiresexposed)
 			to_chat(user, "Close the panel first.")
-		else if(!isnull(cell))
+		else if(isnotnull(cell))
 			to_chat(user, "There is a power cell already installed.")
 		else
 			user.drop_item()
@@ -607,15 +607,15 @@ var/list/robot_verbs_default = list(
 		to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"].")
 		updateicon()
 
-	else if(istype(W, /obj/item/weapon/screwdriver) && opened && !isnull(cell))	// radio
-		if(!isnull(radio))
+	else if(istype(W, /obj/item/weapon/screwdriver) && opened && isnotnull(cell))	// radio
+		if(isnotnull(radio))
 			radio.attackby(W, user) // Push it to the radio to let it handle everything.
 		else
 			to_chat(user, "Unable to locate a radio.")
 		updateicon()
 
 	else if(istype(W, /obj/item/device/encryptionkey/) && opened)
-		if(!isnull(radio))//sanityyyyyy
+		if(isnotnull(radio))//sanityyyyyy
 			radio.attackby(W, user)//GTFO, you have your own procs
 		else
 			to_chat(user, "Unable to locate a radio.")
@@ -685,7 +685,7 @@ var/list/robot_verbs_default = list(
 					to_chat(src, "<b>Obey these laws:</b>")
 					laws.show_laws(src)
 					to_chat(src, SPAN_DANGER("ALERT: [user.real_name] is your new master. Obey your new laws and their commands."))
-					if(!isnull(module) && istype(module, /obj/item/weapon/robot_module/miner))
+					if(isnotnull(module) && istype(module, /obj/item/weapon/robot_module/miner))
 						for(var/obj/item/weapon/pickaxe/borgdrill/D in module.modules)
 							qdel(D)
 						module.modules.Add(new /obj/item/weapon/pickaxe/diamonddrill(module))
@@ -722,7 +722,7 @@ var/list/robot_verbs_default = list(
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
 
-	if(!isnull(M.Victim))
+	if(isnotnull(M.Victim))
 		return // can't attack while eating!
 
 	if(health > -100)
@@ -791,7 +791,7 @@ var/list/robot_verbs_default = list(
 
 	if(opened && !wiresexposed && (!issilicon(user)))
 		var/datum/robot_component/cell_component = components["power cell"]
-		if(!isnull(cell))
+		if(isnotnull(cell))
 			cell.updateicon()
 			cell.add_fingerprint(user)
 			user.put_in_active_hand(cell)
@@ -934,7 +934,7 @@ var/list/robot_verbs_default = list(
 
 	if(href_list["mod"])
 		var/obj/item/O = locate(href_list["mod"])
-		if(!isnull(O))
+		if(isnotnull(O))
 			O.attack_self(src)
 
 	if(href_list["act"])
@@ -1032,16 +1032,16 @@ var/list/robot_verbs_default = list(
 					else if(ishuman(A))
 						var/mob/living/carbon/human/cleaned_human = A
 						if(cleaned_human.lying)
-							if(!isnull(cleaned_human.head))
+							if(isnotnull(cleaned_human.head))
 								cleaned_human.head.clean_blood()
 								cleaned_human.update_inv_head(0)
-							if(!isnull(cleaned_human.wear_suit))
+							if(isnotnull(cleaned_human.wear_suit))
 								cleaned_human.wear_suit.clean_blood()
 								cleaned_human.update_inv_wear_suit(0)
-							else if(!isnull(cleaned_human.w_uniform))
+							else if(isnotnull(cleaned_human.w_uniform))
 								cleaned_human.w_uniform.clean_blood()
 								cleaned_human.update_inv_w_uniform(0)
-							if(!isnull(cleaned_human.shoes))
+							if(isnotnull(cleaned_human.shoes))
 								cleaned_human.shoes.clean_blood()
 								cleaned_human.update_inv_shoes(0)
 							cleaned_human.clean_blood(1)
@@ -1051,7 +1051,7 @@ var/list/robot_verbs_default = list(
 	gib()
 
 /mob/living/silicon/robot/proc/UnlinkSelf()
-	if(!isnull(connected_ai))
+	if(isnotnull(connected_ai))
 		connected_ai = null
 	lawupdate = FALSE
 	lockcharge = 0
@@ -1059,7 +1059,7 @@ var/list/robot_verbs_default = list(
 	scrambledcodes = TRUE
 
 	// Disconnect it's camera so it's not so easily tracked.
-	if(!isnull(camera))
+	if(isnotnull(camera))
 		camera.network = list()
 		global.CTcameranet.removeCamera(camera)
 
@@ -1068,7 +1068,7 @@ var/list/robot_verbs_default = list(
 	set name = "Reset Identity Codes"
 	set desc = "Scrambles your security and identification codes and resets your current buffers.  Unlocks you and but permenantly severs you from your AI and the robotics console and will deactivate your camera system."
 
-	if(!isnull(src))
+	if(isnotnull(src))
 		UnlinkSelf()
 		to_chat(src, "Buffers flushed and reset. Camera system shutdown. All systems operational.")
 		verbs.Remove(/mob/living/silicon/robot/proc/ResetSecurityCodes)
@@ -1079,7 +1079,7 @@ var/list/robot_verbs_default = list(
 	set src = usr
 
 	var/obj/item/W = get_active_hand()
-	if(!isnull(W))
+	if(isnotnull(W))
 		W.attack_self(src)
 
 /mob/living/silicon/robot/verb/pose()

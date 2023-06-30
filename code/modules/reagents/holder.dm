@@ -221,7 +221,7 @@
 
 /datum/reagents/proc/metabolize(mob/living/M, alien)
 	for(var/datum/reagent/R in reagent_list)
-		if(!isnull(M) && !isnull(R))
+		if(isnotnull(M) && isnotnull(R))
 			R.on_mob_life(M, alien)
 	update_total()
 
@@ -421,7 +421,7 @@
 
 			// mix dem viruses
 			if(istype(R, /datum/reagent/blood) && reagent == "blood")
-				if(!isnull(R.data) && !isnull(data))
+				if(isnotnull(R.data) && isnotnull(data))
 					if(R.data["viruses"] || data["viruses"])
 						var/list/mix1 = R.data["viruses"]
 						var/list/mix2 = data["viruses"]
@@ -435,7 +435,7 @@
 							to_mix.Add(AD)
 
 						var/datum/disease/advance/AD = Advance_Mix(to_mix)
-						if(!isnull(AD))
+						if(isnotnull(AD))
 							var/list/preserve = list(AD)
 							for(var/D in R.data["viruses"])
 								if(!istype(D, /datum/disease/advance))
@@ -447,7 +447,7 @@
 			return 0
 
 	var/datum/reagent/D = GLOBL.chemical_reagents_list[reagent]
-	if(!isnull(D))
+	if(isnotnull(D))
 		var/datum/reagent/R = new D.type()
 		reagent_list.Add(R)
 		R.holder = src

@@ -97,4 +97,4 @@
 
 /obj/item/weapon/storage/wallet/get_access()
 	var/obj/item/I = get_id()
-	return !isnull(I) ? I.get_access() : ..()
+	return isnotnull(I) ? I.get_access() : ..()

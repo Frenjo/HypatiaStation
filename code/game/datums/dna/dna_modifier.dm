@@ -285,7 +285,7 @@
 	spawn(5)
 		for(dir in list(NORTH, EAST, SOUTH, WEST))
 			connected = locate(/obj/machinery/dna_scannernew, get_step(src, dir))
-			if(!isnull(connected))
+			if(isnotnull(connected))
 				break
 		spawn(250)
 			src.injector_ready = 1

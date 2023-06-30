@@ -126,7 +126,7 @@
 	popup.open()
 
 /obj/machinery/computer/telescience/proc/sparks()
-	if(!isnull(telepad))
+	if(isnotnull(telepad))
 		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 		s.set_up(5, 1, get_turf(telepad))
 		s.start()
@@ -147,7 +147,7 @@
 		temp_msg = "Telepad is in use.<BR>Please wait."
 		return
 
-	if(!isnull(telepad))
+	if(isnotnull(telepad))
 		var/truePower = clamp(power + power_off, 1, 1000)
 		var/trueRotation = rotation + rotation_off
 		var/trueAngle = clamp(angle + angle_off, 1, 90)
@@ -275,7 +275,7 @@
 	if(href_list["setpower"])
 		var/index = href_list["setpower"]
 		index = text2num(index)
-		if(!isnull(index) && power_options[index])
+		if(isnotnull(index) && power_options[index])
 			if(length(crystals) >= index)
 				power = power_options[index]
 

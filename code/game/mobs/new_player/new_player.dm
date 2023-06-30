@@ -241,7 +241,7 @@
 					return
 
 				for(var/optionid = id_min; optionid <= id_max; optionid++)
-					if(!isnull(href_list["o[optionid]"]))	//Test if this optionid was replied to
+					if(isnotnull(href_list["o[optionid]"]))	//Test if this optionid was replied to
 						var/rating
 						if(href_list["o[optionid]"] == "abstain")
 							rating = null
@@ -260,7 +260,7 @@
 					return
 
 				for(var/optionid = id_min; optionid <= id_max; optionid++)
-					if(!isnull(href_list["option_[optionid]"]))	//Test if this optionid was selected
+					if(isnotnull(href_list["option_[optionid]"]))	//Test if this optionid was selected
 						vote_on_poll(pollid, optionid, 1)
 
 /mob/new_player/proc/IsJobAvailable(rank)
@@ -330,7 +330,7 @@
 /mob/new_player/proc/AnnounceArrival(mob/living/carbon/human/character, rank, join_message)
 	if(global.CTgame_ticker.current_state == GAME_STATE_PLAYING)
 		var/obj/item/device/radio/intercom/a = new /obj/item/device/radio/intercom(null)// BS12 EDIT Arrivals Announcement Computer, rather than the AI.
-		if(!isnull(character.mind.role_alt_title))
+		if(isnotnull(character.mind.role_alt_title))
 			rank = character.mind.role_alt_title
 		a.autosay("[character.real_name], [rank ? "[rank]," : "visitor," ] [join_message ? join_message : "has arrived on the station"].", "Arrivals Announcement Computer")
 		qdel(a)

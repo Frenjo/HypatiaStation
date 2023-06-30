@@ -20,13 +20,13 @@
 	var/force = 0
 
 /obj/assume_air(datum/gas_mixture/giver)
-	return !isnull(loc) ? loc.assume_air(giver) : null
+	return isnotnull(loc) ? loc.assume_air(giver) : null
 
 /obj/remove_air(amount)
-	return !isnull(loc) ? loc.remove_air(amount) : null
+	return isnotnull(loc) ? loc.remove_air(amount) : null
 
 /obj/return_air()
-	return !isnull(loc) ? loc.return_air() : null
+	return isnotnull(loc) ? loc.return_air() : null
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
 	return
@@ -46,12 +46,12 @@
 		var/is_in_use = FALSE
 		var/list/nearby = viewers(1, src)
 		for(var/mob/M in nearby)
-			if(!isnull(M.client) && M.machine == src)
+			if(isnotnull(M.client) && M.machine == src)
 				is_in_use = TRUE
 				attack_hand(M)
 		if(isAI(usr) || isrobot(usr))
 			if(!(usr in nearby))
-				if(!isnull(usr.client) && usr.machine == src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
+				if(isnotnull(usr.client) && usr.machine == src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
 					is_in_use = TRUE
 					attack_ai(usr)
 
@@ -59,7 +59,7 @@
 		if(ishuman(usr))
 			if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab))
 				if(!(usr in nearby))
-					if(!isnull(usr.client) && usr.machine == src)
+					if(isnotnull(usr.client) && usr.machine == src)
 						is_in_use = TRUE
 						attack_hand(usr)
 		in_use = is_in_use
@@ -70,7 +70,7 @@
 		var/list/nearby = viewers(1, src)
 		var/is_in_use = FALSE
 		for(var/mob/M in nearby)
-			if(!isnull(M.client) && M.machine == src)
+			if(isnotnull(M.client) && M.machine == src)
 				is_in_use = TRUE
 				interact(M)
 		var/ai_in_use = AutoUpdateAI(src)
@@ -88,7 +88,7 @@
 	machine = null
 
 /mob/proc/set_machine(obj/O)
-	if(!isnull(machine))
+	if(isnotnull(machine))
 		unset_machine()
 	machine = O
 	if(istype(O))
@@ -96,7 +96,7 @@
 
 /obj/item/proc/updateSelfDialog()
 	var/mob/M = loc
-	if(istype(M) && !isnull(M.client) && M.machine == src)
+	if(istype(M) && isnotnull(M.client) && M.machine == src)
 		attack_self(M)
 
 /obj/proc/alter_health()

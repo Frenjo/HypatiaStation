@@ -17,7 +17,7 @@
 	handle_regular_status_updates()
 	update_canmove()
 
-	if(!isnull(client))
+	if(isnotnull(client))
 		handle_regular_hud_updates()
 
 /mob/living/carbon/brain/handle_mutations_and_radiation()
@@ -199,7 +199,7 @@
 		see_in_dark = 2
 		see_invisible = SEE_INVISIBLE_LIVING
 
-	if(!isnull(healths))
+	if(isnotnull(healths))
 		if(stat != DEAD)
 			switch(health)
 				if(100 to INFINITY)
@@ -219,12 +219,12 @@
 		else
 			healths.icon_state = "health7"
 
-	if(!isnull(pullin))
+	if(isnotnull(pullin))
 		pullin.icon_state = "pull[pulling ? 1 : 0]"
-	if(!isnull(client))
+	if(isnotnull(client))
 		client.screen.Remove(GLOBL.global_hud.blurry, GLOBL.global_hud.druggy, GLOBL.global_hud.vimpaired)
 
-	if(!isnull(blind) && stat != DEAD)
+	if(isnotnull(blind) && stat != DEAD)
 		if(blinded)
 			blind.invisibility = 0 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 		else
@@ -240,11 +240,11 @@
 				client.screen.Add(GLOBL.global_hud.druggy)
 
 	if(stat != DEAD)
-		if(!isnull(machine))
+		if(isnotnull(machine))
 			if(!machine.check_eye(src))
 				reset_view(null)
 		else
-			if(!isnull(client) && !client.adminobs)
+			if(isnotnull(client) && !client.adminobs)
 				reset_view(null)
 
 	return 1

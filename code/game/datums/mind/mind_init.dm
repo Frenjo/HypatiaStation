@@ -1,11 +1,11 @@
 // Initialisation procs.
 /mob/living/proc/mind_initialize()
-	if(!isnull(mind))
+	if(isnotnull(mind))
 		mind.key = key
 	else
 		mind = new /datum/mind(key)
 		mind.original = src
-		if(!isnull(global.CTgame_ticker))
+		if(isnotnull(global.CTgame_ticker))
 			global.CTgame_ticker.minds.Add(mind)
 		else
 			world.log << "## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn"

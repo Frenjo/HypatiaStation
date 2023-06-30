@@ -1,6 +1,6 @@
 /*
  * CAMERA NET
- * 
+ *
  * The controller datum containing all the chunks.
  */
 /hook/startup/proc/create_camera_networks()
@@ -100,7 +100,7 @@ CONTROLLER_DEF(cameranet)
 		return
 
 	var/turf/T = get_turf(c)
-	if(!isnull(T))
+	if(isnotnull(T))
 		var/x1 = max(0, T.x - 8) & ~0xf
 		var/y1 = max(0, T.y - 8) & ~0xf
 		var/x2 = min(world.maxx, T.x + 8) & ~0xf

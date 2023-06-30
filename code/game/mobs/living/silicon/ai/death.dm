@@ -26,7 +26,7 @@
 	for(var/mob/living/silicon/ai/shuttlecaller in GLOBL.player_list)
 		if(shuttlecaller.z == 2)
 			continue
-		if(!shuttlecaller.stat && !isnull(shuttlecaller.client) && isturf(shuttlecaller.loc))
+		if(!shuttlecaller.stat && isnotnull(shuttlecaller.client) && isturf(shuttlecaller.loc))
 			break
 		callshuttle++
 

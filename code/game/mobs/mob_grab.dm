@@ -36,10 +36,10 @@
 	hud.master = src
 
 /obj/item/weapon/grab/Destroy()
-	if(!isnull(affecting))
+	if(isnotnull(affecting))
 		affecting.grabbed_by.Remove(src)
 		affecting = null
-	if(!isnull(assailant))
+	if(isnotnull(assailant))
 		assailant.client?.screen.Remove(hud)
 		assailant = null
 	qdel(hud)
@@ -49,8 +49,8 @@
 
 //Used by throw code to hand over the mob, instead of throwing the grab. The grab is then deleted by the throw code.
 /obj/item/weapon/grab/proc/thrown()
-	if(!isnull(affecting))
-		if(!isnull(affecting.buckled))
+	if(isnotnull(affecting))
+		if(isnotnull(affecting.buckled))
 			return null
 		if(state >= GRAB_AGGRESSIVE)
 			return affecting
@@ -58,7 +58,7 @@
 
 //This makes sure that the grab screen object is displayed in the correct hand.
 /obj/item/weapon/grab/proc/synch()
-	if(!isnull(affecting))
+	if(isnotnull(affecting))
 		if(assailant.r_hand == src)
 			hud.screen_loc = UI_RHAND
 		else
@@ -73,7 +73,7 @@
 		qdel(src) // Same here, except we're trying to delete ourselves.
 		return PROCESS_KILL
 
-	if(!isnull(assailant.client))
+	if(isnotnull(assailant.client))
 		assailant.client.screen.Remove(hud)
 		assailant.client.screen.Add(hud)
 
@@ -83,11 +83,11 @@
 	if(state <= GRAB_AGGRESSIVE)
 		allow_upgrade = TRUE
 		//disallow upgrading if we're grabbing more than one person
-		if(!isnull(assailant.l_hand) && assailant.l_hand != src && istype(assailant.l_hand, /obj/item/weapon/grab))
+		if(isnotnull(assailant.l_hand) && assailant.l_hand != src && istype(assailant.l_hand, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = assailant.l_hand
 			if(G.affecting != affecting)
 				allow_upgrade = TRUE
-		if(!isnull(assailant.r_hand) && assailant.r_hand != src && istype(assailant.r_hand, /obj/item/weapon/grab))
+		if(isnotnull(assailant.r_hand) && assailant.r_hand != src && istype(assailant.r_hand, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = assailant.r_hand
 			if(G.affecting != affecting)
 				allow_upgrade = TRUE
@@ -190,7 +190,7 @@
 		qdel(src)
 		return FALSE
 
-	if(!isnull(affecting))
+	if(isnotnull(affecting))
 		if(!isturf(assailant.loc) || (!isturf(affecting.loc) || assailant.loc != affecting.loc && get_dist(assailant, affecting) > 1))
 			qdel(src)
 			return FALSE

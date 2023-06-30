@@ -93,7 +93,7 @@
 	var/swap_flags = ALLMOBS	// What can we swap place with?
 
 /datum/species/New()
-	if(!isnull(hud_type))
+	if(isnotnull(hud_type))
 		hud = new hud_type()
 	else
 		hud = new /datum/hud_data()
@@ -103,13 +103,13 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 	// Trying to work out why species changes aren't fixing organs properly.
-	if(!isnull(H.organs))
+	if(isnotnull(H.organs))
 		H.organs.Cut()
-	if(!isnull(H.internal_organs))
+	if(isnotnull(H.internal_organs))
 		H.internal_organs.Cut()
-	if(!isnull(H.organs_by_name))
+	if(isnotnull(H.organs_by_name))
 		H.organs_by_name.Cut()
-	if(!isnull(H.internal_organs_by_name))
+	if(isnotnull(H.internal_organs_by_name))
 		H.internal_organs_by_name.Cut()
 
 	H.organs = list()
@@ -149,12 +149,12 @@
 			I.mechanize()
 
 /datum/species/proc/add_inherent_verbs(mob/living/carbon/human/H)
-	if(!isnull(inherent_verbs))
+	if(isnotnull(inherent_verbs))
 		for(var/verb_path in inherent_verbs)
 			H.verbs |= verb_path
 
 /datum/species/proc/remove_inherent_verbs(mob/living/carbon/human/H)
-	if(!isnull(inherent_verbs))
+	if(isnotnull(inherent_verbs))
 		for(var/verb_path in inherent_verbs)
 			H.verbs.Remove(verb_path)
 

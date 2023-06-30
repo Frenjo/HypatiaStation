@@ -83,7 +83,7 @@ research holder datum.
 	for(var/datum/tech/known in known_tech)
 		k_tech[known.id] = known.level
 	for(var/req in D.req_tech)
-		if(!isnull(k_tech[req]) && k_tech[req] >= D.req_tech[req])
+		if(isnotnull(k_tech[req]) && k_tech[req] >= D.req_tech[req])
 			matches++
 	if(matches == length(D.req_tech))
 		return TRUE

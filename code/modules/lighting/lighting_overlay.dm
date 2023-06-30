@@ -47,7 +47,7 @@ GLOBAL_GLOBL_LIST_NEW(all_lighting_overlays) // Global list of lighting overlays
 	var/turf/T = loc
 
 	if(!istype(T))
-		if(!isnull(loc))
+		if(isnotnull(loc))
 			log_debug("A lighting overlay realised its loc was NOT a turf (actual loc: [loc][loc ? ", " + loc.type : "null"]) in update_overlay() and got qdel'ed!")
 		else
 			log_debug("A lighting overlay realised it was in nullspace in update_overlay() and got pooled!")

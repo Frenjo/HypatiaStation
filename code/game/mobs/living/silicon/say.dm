@@ -27,7 +27,7 @@
 	if(!message)
 		return
 
-	if(!isnull(client))
+	if(isnotnull(client))
 		if(client.prefs.muted & MUTE_IC)
 			FEEDBACK_IC_MUTED(src)
 			return
@@ -71,7 +71,7 @@
 
 	//parse language key and consume it
 	var/datum/language/speaking = parse_language(message)
-	if(!isnull(speaking))
+	if(isnotnull(speaking))
 		verbage = speaking.speech_verb
 		message = copytext(message, 3)
 		if(speaking.flags & HIVEMIND)
@@ -91,7 +91,7 @@
 			if(isnewplayer(M))
 				continue
 			else if(M.stat == DEAD && M.client.prefs.toggles & CHAT_GHOSTEARS)
-				if(!isnull(M.client))
+				if(isnotnull(M.client))
 					M << "<b>[src]</b> transmits, \"[message]\""
 		return
 

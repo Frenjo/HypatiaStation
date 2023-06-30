@@ -123,13 +123,13 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 
 /mob/Move()
 	. = ..()
-	if(. && !isnull(client))
+	if(. && isnotnull(client))
 		var/area/new_area = get_area(src)
 		client.set_parallax_space(new_area.parallax_type)
 
 /mob/forceMove()
 	. = ..()
-	if(. && !isnull(client))
+	if(. && isnotnull(client))
 		var/area/new_area = get_area(src)
 		client.set_parallax_space(new_area.parallax_type)
 

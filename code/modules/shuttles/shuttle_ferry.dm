@@ -137,7 +137,7 @@
 	process_state = WAIT_FINISH
 	in_use = null
 
-	if(!isnull(docking_controller) && !docking_controller.undocked())
+	if(isnotnull(docking_controller) && !docking_controller.undocked())
 		docking_controller.force_undock()
 
 	spawn(10)

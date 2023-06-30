@@ -165,7 +165,7 @@
 		if(istype(radio, /obj/item/radio/integrated/beepsky))
 			var/obj/item/radio/integrated/beepsky/SC = radio
 			beepskyData["active"] = SC.active
-			if(SC.active && !isnull(SC.botstatus))
+			if(SC.active && isnotnull(SC.botstatus))
 				var/area/loca = SC.botstatus["loca"]
 				var/loca_name = sanitize(loca.name)
 				beepskyData["botstatus"] = list("loca" = loca_name, "mode" = SC.botstatus["mode"])
@@ -201,7 +201,7 @@
 		if(istype(radio, /obj/item/radio/integrated/mule))
 			var/obj/item/radio/integrated/mule/QC = radio
 			muleData["active"] = QC.active
-			if(QC.active && !isnull(QC.botstatus))
+			if(QC.active && isnotnull(QC.botstatus))
 				var/area/loca = QC.botstatus["loca"]
 				var/loca_name = sanitize(loca.name)
 				muleData["botstatus"] = list(

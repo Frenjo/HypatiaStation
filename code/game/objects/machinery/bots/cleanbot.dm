@@ -69,7 +69,7 @@
 
 /obj/machinery/bot/cleanbot/turn_off()
 	..()
-	if(!isnull(src.target))
+	if(isnotnull(src.target))
 		target.targeted_by = null
 	src.target = null
 	src.oldtarget = null

@@ -118,7 +118,7 @@
 /turf/space/attackby(obj/item/C as obj, mob/user as mob)
 	if(istype(C, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-		if(!isnull(L))
+		if(isnotnull(L))
 			return
 		var/obj/item/stack/rods/R = C
 		to_chat(user, SPAN_INFO("Constructing support lattice ..."))
@@ -129,7 +129,7 @@
 
 	if(istype(C, /obj/item/stack/tile/plasteel))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-		if(!isnull(L))
+		if(isnotnull(L))
 			var/obj/item/stack/tile/plasteel/S = C
 			qdel(L)
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
@@ -152,7 +152,7 @@
 
 	inertial_drift(A)
 
-	if(!isnull(global.CTgame_ticker?.mode))
+	if(isnotnull(global.CTgame_ticker?.mode))
 		// Okay, so let's make it so that people can travel z levels but not nuke disks!
 		// if(IS_GAME_MODE(/datum/game_mode/nuclear))
 		//	return
@@ -171,7 +171,7 @@
 			if(!isemptylist(disk_search))
 				if(isliving(A))
 					var/mob/living/living = A
-					if(!isnull(living.client) && !living.stat)
+					if(isnotnull(living.client) && !living.stat)
 						to_chat(living, SPAN_WARNING("Something you are carrying is preventing you from leaving. Don't play stupid; you know exactly what it is."))
 						if(living.x <= TRANSITIONEDGE)
 							living.inertia_dir = 4

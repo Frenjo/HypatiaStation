@@ -23,7 +23,7 @@
 	. = ..()
 	if(!isnum(value))
 		value=text2num(value)
-		ASSERT(!isnull(value))
+		ASSERT(isnotnull(value))
 
 /token/accessor
 	var/object

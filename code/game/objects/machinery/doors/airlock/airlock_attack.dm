@@ -223,5 +223,5 @@
 			sleep(10)
 			//bring up airlock dialog
 			aiHacking = FALSE
-			if(!isnull(user))
+			if(isnotnull(user))
 				attack_ai(user)

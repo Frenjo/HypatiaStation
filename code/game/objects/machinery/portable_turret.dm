@@ -585,9 +585,9 @@ Status: []<BR>"},
 		for(var/datum/data/record/E in GLOBL.data_core.general)
 
 			var/perpname = perp.name
-			if(!isnull(perp.wear_id))
+			if(isnotnull(perp.wear_id))
 				var/obj/item/weapon/card/id/id = perp.wear_id.get_id()
-				if(!isnull(id))
+				if(isnotnull(id))
 					perpname = id.registered_name
 
 			if (E.fields["name"] == perpname)

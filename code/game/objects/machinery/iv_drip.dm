@@ -52,7 +52,7 @@
 
 /obj/machinery/iv_drip/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/reagent_containers))
-		if(!isnull(src.beaker))
+		if(isnotnull(src.beaker))
 			user << "There is already a reagent container loaded!"
 			return
 

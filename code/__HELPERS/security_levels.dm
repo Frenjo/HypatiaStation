@@ -15,12 +15,12 @@ GLOBAL_GLOBL_LIST_NEW(contactable_blue_grid_turfs)
 		return
 	if(new_level.severity == old_level.severity) // We can't change to the level we're already at.
 		return
-	
+
 	old_level.on_change_from()
 	new_level.on_change_to()
 
 	if(new_level.severity > old_level.severity) // If the level's going up...
-		if(!isnull(new_level.text_upto))
+		if(isnotnull(new_level.text_upto))
 			to_world("<font size=4 color='red'>[new_level.text_upto]</font>")
 		else
 			to_world("<font size=4 color='red'>Attention! Security level elevated to [new_level.name].</font>")
@@ -28,7 +28,7 @@ GLOBAL_GLOBL_LIST_NEW(contactable_blue_grid_turfs)
 		world << sound('sound/vox/dadeda.wav', volume = 34)
 		new_level.on_elevate_to()
 	else // Otherwise, if the level's going down...
-		if(!isnull(new_level.text_downto))
+		if(isnotnull(new_level.text_downto))
 			to_world("<font size=4 color='red'>[new_level.text_downto]</font>")
 		else
 			to_world("<font size=4 color='red'>Attention! Security level lowered to [new_level.name].</font>")

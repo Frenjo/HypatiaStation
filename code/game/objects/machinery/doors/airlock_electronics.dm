@@ -72,7 +72,7 @@
 			if(istype(I, /obj/item/device/pda))
 				var/obj/item/device/pda/pda = I
 				I = pda.id
-			if(!isnull(I) && check_access(I))
+			if(isnotnull(I) && check_access(I))
 				locked = FALSE
 				last_configurator = I:registered_name
 

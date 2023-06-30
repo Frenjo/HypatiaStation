@@ -7,7 +7,7 @@
 
 /datum/mind/proc/take_uplink()
 	var/obj/item/device/uplink/hidden/H = find_syndicate_uplink()
-	if(!isnull(H))
+	if(isnotnull(H))
 		qdel(H)
 
 /datum/mind/proc/make_ai_malfunction()
@@ -129,7 +129,7 @@
 	if(length(global.CTgame_ticker.mode.head_revolutionaries))
 		// copy targets
 		var/datum/mind/valid_head = locate() in global.CTgame_ticker.mode.head_revolutionaries
-		if(!isnull(valid_head))
+		if(isnotnull(valid_head))
 			for(var/datum/objective/mutiny/O in valid_head.objectives)
 				var/datum/objective/mutiny/rev_obj = new /datum/objective/mutiny()
 				rev_obj.owner = src
@@ -168,7 +168,7 @@
 			is_currently_brigged = FALSE
 			break // if they still have ID they're not brigged
 		for(var/obj/item/device/pda/P in current)
-			if(!isnull(P.id))
+			if(isnotnull(P.id))
 				is_currently_brigged = FALSE
 				break // if they still have ID they're not brigged
 

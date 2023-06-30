@@ -30,7 +30,7 @@
 			for(var/i = 1, i < length(tankcheck) + 1, ++i)
 				if(istype(tankcheck[i], /obj/item/weapon/tank))
 					var/obj/item/weapon/tank/t = tankcheck[i]
-					if(!isnull(t.manipulated_by) && t.manipulated_by != C.real_name && findtext(t.desc, breathes))
+					if(isnotnull(t.manipulated_by) && t.manipulated_by != C.real_name && findtext(t.desc, breathes))
 						// Someone messed with the tank and put unknown gases in it, so we're going to believe the tank is what it says it is.
 						contents.Add(t.air_contents.total_moles)
 						continue

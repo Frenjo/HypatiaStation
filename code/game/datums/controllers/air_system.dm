@@ -334,9 +334,9 @@ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_
 		return edge
 
 /datum/controller/air_system/proc/has_same_air(turf/A, turf/B)
-	if(!isnull(A.initial_gases) && isnull(B.initial_gases))
+	if(isnotnull(A.initial_gases) && isnull(B.initial_gases))
 		return FALSE
-	if(isnull(A.initial_gases) && !isnull(B.initial_gases))
+	if(isnull(A.initial_gases) && isnotnull(B.initial_gases))
 		return FALSE
 	for(var/gas in A.initial_gases)
 		if(!(gas in B.initial_gases))

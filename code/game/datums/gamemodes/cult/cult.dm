@@ -323,7 +323,7 @@
 	var/text = "<FONT size = 2><B>The cultists were:</B></FONT>"
 	for(var/datum/mind/cultist in cult)
 		text += "<br>[cultist.key] was [cultist.name] ("
-		if(!isnull(cultist.current))
+		if(isnotnull(cultist.current))
 			if(cultist.current.stat == DEAD)
 				text += "died"
 			else

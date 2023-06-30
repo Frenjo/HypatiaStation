@@ -403,9 +403,9 @@
 		var/perpname = "wot"
 		var/criminal = "None"
 
-		if(!isnull(wear_id))
+		if(isnotnull(wear_id))
 			var/obj/item/weapon/card/id/I = wear_id.get_id()
-			perpname = !isnull(I) ? I.registered_name : name
+			perpname = isnotnull(I) ? I.registered_name : name
 		else
 			perpname = name
 

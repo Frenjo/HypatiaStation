@@ -29,7 +29,7 @@
 
 	//Admin Authorisation
 	holder = GLOBL.admin_datums[ckey]
-	if(!isnull(holder))
+	if(isnotnull(holder))
 		GLOBL.admins.Add(src)
 		holder.owner = src
 
@@ -53,7 +53,7 @@
 		GLOBL.host = key
 		world.update_status()
 
-	if(!isnull(holder))
+	if(isnotnull(holder))
 		add_admin_verbs()
 		admin_memo_show()
 

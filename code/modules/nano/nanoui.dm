@@ -74,13 +74,13 @@ nanoui is used to open and update nano browser uis
 	// Add the passed template as the 'main' template, this is required
 	add_template("main", ntemplate)
 
-	if(!isnull(ntitle))
+	if(isnotnull(ntitle))
 		title = ntitle
-	if(!isnull(nwidth))
+	if(isnotnull(nwidth))
 		width = nwidth
-	if(!isnull(nheight))
+	if(isnotnull(nheight))
 		height = nheight
-	if(!isnull(nref))
+	if(isnotnull(nref))
 		ref = nref
 
 	add_common_assets()
@@ -390,7 +390,7 @@ nanoui is used to open and update nano browser uis
 	if(status != STATUS_INTERACTIVE || user != usr) // If UI is not interactive or usr calling Topic is not the UI user
 		return
 
-	if(!isnull(src_object) && src_object.Topic(href, href_list))
+	if(isnotnull(src_object) && src_object.Topic(href, href_list))
 		nanomanager.update_uis(src_object) // update all UIs attached to src_object
 
  /**

@@ -47,7 +47,7 @@ CONTROLLER_DEF(occupations)
 
 /datum/controller/occupations/proc/assign_role(mob/new_player/player, rank, latejoin = 0)
 	debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
-	if(!isnull(player?.mind) && !isnull(rank))
+	if(isnotnull(player?.mind) && isnotnull(rank))
 		var/datum/job/job = get_job(rank)
 		if(isnull(job))
 			return 0
@@ -70,7 +70,7 @@ CONTROLLER_DEF(occupations)
 
 /datum/controller/occupations/proc/free_role(rank)	//making additional slot on the fly
 	var/datum/job/job = get_job(rank)
-	if(!isnull(job) && job.current_positions >= job.total_positions && job.total_positions != -1)
+	if(isnotnull(job) && job.current_positions >= job.total_positions && job.total_positions != -1)
 		job.total_positions++
 		return 1
 	return 0
@@ -121,7 +121,7 @@ CONTROLLER_DEF(occupations)
 
 /datum/controller/occupations/proc/reset_occupations()
 	for(var/mob/new_player/player in GLOBL.player_list)
-		if(!isnull(player?.mind))
+		if(isnotnull(player?.mind))
 			player.mind.assigned_role = null
 			player.mind.special_role = null
 	setup_occupations()
@@ -231,14 +231,14 @@ CONTROLLER_DEF(occupations)
 	setup_occupations()
 
 	//Holder for Triumvirate is stored in the ticker, this just processes it
-	if(!isnull(global.CTgame_ticker))
+	if(isnotnull(global.CTgame_ticker))
 		for(var/datum/job/ai/A in occupations)
 			if(global.CTgame_ticker.triai)
 				A.spawn_positions = 3
 
 	//Get the players who are ready
 	for(var/mob/new_player/player in GLOBL.player_list)
-		if(player.ready && !isnull(player.mind) && !player.mind.assigned_role)
+		if(player.ready && isnotnull(player.mind) && !player.mind.assigned_role)
 			unassigned.Add(player)
 
 	debug("DO, Len: [length(unassigned)]")
@@ -336,7 +336,7 @@ CONTROLLER_DEF(occupations)
 		return 0
 
 	var/datum/job/job = get_job(rank)
-	if(!isnull(job))
+	if(isnotnull(job))
 		job.equip(H)
 	else
 		to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
@@ -359,7 +359,7 @@ CONTROLLER_DEF(occupations)
 
 	//give them an account in the station database
 	var/datum/money_account/M = create_account(H.real_name, rand(50, 500) * 10, null)
-	if(!isnull(H.mind))
+	if(isnotnull(H.mind))
 		var/remembered_info = ""
 		remembered_info += "<b>Your account number is:</b> #[M.account_number]<br>"
 		remembered_info += "<b>Your account pin is:</b> [M.remote_access_pin]<br>"
@@ -373,7 +373,7 @@ CONTROLLER_DEF(occupations)
 		H.mind.initial_account = M
 
 	// If they're head, give them the account info for their department
-	if(!isnull(H.mind) && job.head_position)
+	if(isnotnull(H.mind) && job.head_position)
 		var/remembered_info = ""
 		var/datum/money_account/department_account = department_accounts[job.department]
 
@@ -388,7 +388,7 @@ CONTROLLER_DEF(occupations)
 		to_chat(H, SPAN_INFO_B("Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]."))
 
 	var/alt_title = null
-	if(!isnull(H.mind))
+	if(isnotnull(H.mind))
 		H.mind.assigned_role = rank
 		alt_title = H.mind.role_alt_title
 
@@ -406,16 +406,16 @@ CONTROLLER_DEF(occupations)
 						backbag = new /obj/item/weapon/storage/satchel/norm(H)
 					if(4)
 						backbag = new /obj/item/weapon/storage/satchel(H)
-				if(!isnull(backbag))
+				if(isnotnull(backbag))
 					H.equip_to_slot_or_del(backbag, SLOT_ID_BACK)
 
 				if(ispath(job.special_survival_kit) && H.species.survival_kit == /obj/item/weapon/storage/box/survival)
-					if(!isnull(backbag))
+					if(isnotnull(backbag))
 						H.equip_to_slot_or_del(new job.special_survival_kit(backbag), SLOT_ID_IN_BACKPACK)
 					else
 						H.equip_to_slot_or_del(new job.special_survival_kit(H), SLOT_ID_R_HAND)
 				else
-					if(!isnull(backbag))
+					if(isnotnull(backbag))
 						H.equip_to_slot_or_del(new H.species.survival_kit(backbag), SLOT_ID_IN_BACKPACK)
 					else
 						H.equip_to_slot_or_del(new H.species.survival_kit(H), SLOT_ID_R_HAND)
@@ -452,7 +452,7 @@ CONTROLLER_DEF(occupations)
 			job = J
 			break
 
-	if(!isnull(job))
+	if(isnotnull(job))
 		if(job.title == "Cyborg")
 			return
 		else
@@ -461,14 +461,14 @@ CONTROLLER_DEF(occupations)
 	else
 		C = new /obj/item/weapon/card/id(H)
 
-	if(!isnull(C))
+	if(isnotnull(C))
 		C.registered_name = H.real_name
 		C.rank = rank
 		C.assignment = title ? title : rank
 		C.name = "[C.registered_name]'s ID Card ([C.assignment])"
 
 		//put the player's account number onto the ID
-		if(!isnull(H.mind?.initial_account))
+		if(isnotnull(H.mind?.initial_account))
 			C.associated_account_number = H.mind.initial_account.account_number
 
 		H.equip_to_slot_or_del(C, SLOT_ID_WEAR_ID)

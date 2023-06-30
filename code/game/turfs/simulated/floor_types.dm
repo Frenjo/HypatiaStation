@@ -27,7 +27,7 @@
 	var/n = name //just in case commands rename it in the ..() call
 	. = ..()
 	spawn(4)
-		if(!isnull(src))
+		if(isnotnull(src))
 			update_icon()
 			name = n
 
@@ -243,7 +243,7 @@
 	icon_state = "grass[pick("1","2","3","4")]"
 	. = ..()
 	spawn(4)
-		if(!isnull(src))
+		if(isnotnull(src))
 			update_icon()
 			for(var/direction in GLOBL.cardinal)
 				if(istype(get_step(src, direction), /turf/simulated/floor))
@@ -263,7 +263,7 @@
 		icon_state = "carpet"
 	. = ..()
 	spawn(4)
-		if(!isnull(src))
+		if(isnotnull(src))
 			update_icon()
 			for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
 				if(istype(get_step(src, direction), /turf/simulated/floor))

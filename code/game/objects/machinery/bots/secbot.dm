@@ -667,9 +667,9 @@ Auto Patrol: []"},
 	if(src.check_records)
 		for(var/datum/data/record/E in GLOBL.data_core.general)
 			var/perpname = perp.name
-			if(!isnull(perp.wear_id))
+			if(isnotnull(perp.wear_id))
 				var/obj/item/weapon/card/id/id = perp.wear_id.get_id()
-				if(!isnull(id))
+				if(isnotnull(id))
 					perpname = id.registered_name
 
 			if(E.fields["name"] == perpname)
@@ -681,7 +681,7 @@ Auto Patrol: []"},
 	return threatcount
 
 /obj/machinery/bot/secbot/Bump(M as mob|obj) //Leave no door unopened!
-	if((istype(M, /obj/machinery/door)) && (!isnull(src.botcard)))
+	if((istype(M, /obj/machinery/door)) && (isnotnull(src.botcard)))
 		var/obj/machinery/door/D = M
 		if(!istype(D, /obj/machinery/door/firedoor) && D.check_access(src.botcard))
 			D.open()

@@ -191,7 +191,7 @@
 /turf/return_air()
 	// Create gas mixture to hold data for passing.
 	var/datum/gas_mixture/GM = new /datum/gas_mixture()
-	if(!isnull(initial_gases))
+	if(isnotnull(initial_gases))
 		GM.gas = initial_gases.Copy()
 	GM.temperature = temperature
 	GM.update_values()
@@ -236,7 +236,7 @@
 
 /turf/proc/make_air()
 	air = new /datum/gas_mixture()
-	if(!isnull(initial_gases))
+	if(isnotnull(initial_gases))
 		air.gas = initial_gases.Copy()
 	air.temperature = temperature
 	air.update_values()

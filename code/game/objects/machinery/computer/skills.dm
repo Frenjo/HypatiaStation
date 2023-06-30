@@ -71,7 +71,7 @@
 <th><A href='?src=\ref[src];choice=Sorting;sort=rank'>Rank</A></th>
 <th><A href='?src=\ref[src];choice=Sorting;sort=fingerprint'>Fingerprints</A></th>
 </tr>"}
-					if(!isnull(GLOBL.data_core.general))
+					if(isnotnull(GLOBL.data_core.general))
 						for(var/datum/data/record/R in sortRecord(GLOBL.data_core.general, sortBy, order))
 							for(var/datum/data/record/E in GLOBL.data_core.security)
 							var/background

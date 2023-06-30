@@ -60,7 +60,7 @@
 
 	for(var/obj/machinery/atmospherics/normal_member in normal_members)
 		var/result = normal_member.return_network_air(src)
-		if(!isnull(result))
+		if(isnotnull(result))
 			gases.Add(result)
 
 	for(var/datum/pipeline/line_member in line_members)

@@ -137,7 +137,7 @@
 /obj/machinery/clonepod/attack_hand(mob/user as mob)
 	if((isnull(src.occupant)) || (stat & NOPOWER))
 		return
-	if((!isnull(src.occupant)) && (src.occupant.stat != DEAD))
+	if((isnotnull(src.occupant)) && (src.occupant.stat != DEAD))
 		var/completion = (100 * ((src.occupant.health + 100) / (src.heal_level + 100)))
 		user << "Current clone cycle is [round(completion)]% complete."
 	return

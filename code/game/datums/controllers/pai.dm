@@ -22,7 +22,7 @@ CONTROLLER_DEF(pai)
 	if(href_list["download"])
 		var/datum/pAI_candidate/candidate = locate(href_list["candidate"])
 		var/obj/item/device/paicard/card = locate(href_list["device"])
-		if(!isnull(card.pai))
+		if(isnotnull(card.pai))
 			return
 		if(istype(card, /obj/item/device/paicard) && istype(candidate, /datum/pAI_candidate))
 			var/mob/living/silicon/pai/pai = new /mob/living/silicon/pai(card)
@@ -69,17 +69,17 @@ CONTROLLER_DEF(pai)
 			if("load")
 				candidate.savefile_load(usr)
 				// In case people have saved unsanitized stuff.
-				if(!isnull(candidate.name))
+				if(isnotnull(candidate.name))
 					candidate.name = copytext(sanitize(candidate.name), 1, MAX_NAME_LEN)
-				if(!isnull(candidate.description))
+				if(isnotnull(candidate.description))
 					candidate.description = copytext(sanitize(candidate.description), 1, MAX_MESSAGE_LEN)
-				if(!isnull(candidate.role))
+				if(isnotnull(candidate.role))
 					candidate.role = copytext(sanitize(candidate.role), 1, MAX_MESSAGE_LEN)
-				if(!isnull(candidate.comments))
+				if(isnotnull(candidate.comments))
 					candidate.comments = copytext(sanitize(candidate.comments), 1, MAX_MESSAGE_LEN)
 
 			if("submit")
-				if(!isnull(candidate))
+				if(isnotnull(candidate))
 					return
 				candidate.ready = TRUE
 				for(var/obj/item/device/paicard/p in world)
@@ -342,7 +342,7 @@ CONTROLLER_DEF(pai)
 				continue
 			else
 				asked.Remove(O.key)
-		if(!isnull(O.client))
+		if(isnotnull(O.client))
 			var/hasSubmitted = 0
 			for(var/datum/pAI_candidate/c in global.CTpai.pAI_candidates)
 				if(c.key == O.key)

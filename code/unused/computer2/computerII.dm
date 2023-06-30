@@ -215,7 +215,7 @@
 	if (href_list["id"])
 		switch(href_list["id"])
 			if("auth")
-				if(!isnull(src.authid))
+				if(isnotnull(src.authid))
 					src.authid.loc = get_turf(src)
 					src.authid = null
 				else
@@ -225,7 +225,7 @@
 						I.loc = src
 						src.authid = I
 			if("aux")
-				if(!isnull(src.auxid))
+				if(isnotnull(src.auxid))
 					src.auxid.loc = get_turf(src)
 					src.auxid = null
 				else
@@ -237,7 +237,7 @@
 
 	//Same but for a data disk
 	else if (href_list["disk"])
-		if(!isnull(src.diskette))
+		if(isnotnull(src.diskette))
 			src.diskette.loc = get_turf(src)
 			src.diskette = null
 /*		else

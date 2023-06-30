@@ -438,7 +438,7 @@
 			if(src.mode)
 				dat += " | <a href='byond://?src=\ref[src];mode=0'>Main Menu</a>"
 
-			else if (!isnull(src.master.cartridge))
+			else if (isnotnull(src.master.cartridge))
 				dat += " | <a href='byond://?src=\ref[src.master];eject_cart=1'>Eject [src.master.cartridge]</a>"
 
 			dat += " | <a href='byond://?src=\ref[src.master];refresh=1'>Refresh</a>"

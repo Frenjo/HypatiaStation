@@ -47,7 +47,7 @@
 "}
 				if(2.0)
 					dat += "<B>Record List</B>:<HR>"
-					if(!isnull(GLOBL.data_core.general))
+					if(isnotnull(GLOBL.data_core.general))
 						for(var/datum/data/record/R in sortRecord(GLOBL.data_core.general))
 							dat += text("<A href='?src=\ref[];d_rec=\ref[]'>[]: []<BR>", src, R, R.fields["id"], R.fields["name"])
 							//Foreach goto(132)
@@ -110,7 +110,7 @@
 						var/turf/bl = get_turf(M)
 						if(bl)	//if it can't find a turf for the medibot, then it probably shouldn't be showing up
 							bdat += "[M.name] - <b>\[[bl.x],[bl.y]\]</b> - [M.on ? "Online" : "Offline"]<br>"
-							if((!isnull(M.reagent_glass)) && M.use_beaker)
+							if((isnotnull(M.reagent_glass)) && M.use_beaker)
 								bdat += "Reservoir: \[[M.reagent_glass.reagents.total_volume]/[M.reagent_glass.reagents.maximum_volume]\]<br>"
 							else
 								bdat += "Using Internal Synthesizer.<br>"

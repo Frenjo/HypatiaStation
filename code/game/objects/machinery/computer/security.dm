@@ -74,7 +74,7 @@
 <th><A href='?src=\ref[src];choice=Sorting;sort=fingerprint'>Fingerprints</A></th>
 <th>Criminal Status</th>
 </tr>"}
-					if(!isnull(GLOBL.data_core.general))
+					if(isnotnull(GLOBL.data_core.general))
 						for(var/datum/data/record/R in sortRecord(GLOBL.data_core.general, sortBy, order))
 							var/crimstat = ""
 							for(var/datum/data/record/E in GLOBL.data_core.security)

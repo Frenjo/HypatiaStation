@@ -80,7 +80,7 @@
 
 	//Special case for blood splatters, runes and gibs.
 	if(istype(A, /obj/effect/decal/cleanable/blood) || isrune(A) || istype(A, /obj/effect/decal/cleanable/blood/gibs))
-		if(!isnull(A.blood_DNA))
+		if(isnotnull(A.blood_DNA))
 			for(var/blood in A.blood_DNA)
 				to_chat(user, SPAN_INFO("Blood type: [A.blood_DNA[blood]]\nDNA: [blood]"))
 				flick("forensic2", src)

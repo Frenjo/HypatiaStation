@@ -51,7 +51,7 @@ GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUT
 
 	// Diagonal one is easy.
 	T = get_step(new_turf, diagonal)
-	if(!isnull(T)) // In case we're on the map's border.
+	if(isnotnull(T)) // In case we're on the map's border.
 		if(isnull(T.corners))
 			T.corners = list(null, null, null, null)
 
@@ -61,7 +61,7 @@ GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUT
 
 	// Now the horizontal one.
 	T = get_step(new_turf, horizontal)
-	if(!isnull(T)) // Ditto.
+	if(isnotnull(T)) // Ditto.
 		if(isnull(T.corners))
 			T.corners = list(null, null, null, null)
 
@@ -71,7 +71,7 @@ GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUT
 
 	// And finally the vertical one.
 	T = get_step(new_turf, vertical)
-	if(!isnull(T))
+	if(isnotnull(T))
 		if(isnull(T.corners))
 			T.corners = list(null, null, null, null)
 
@@ -84,7 +84,7 @@ GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUT
 /datum/lighting_corner/proc/update_active()
 	active = FALSE
 	for(var/turf/T in masters)
-		if(!isnull(T.lighting_overlay))
+		if(isnotnull(T.lighting_overlay))
 			active = TRUE
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
@@ -114,7 +114,7 @@ GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUT
 
 	for(var/TT in masters)
 		var/turf/T = TT
-		if(!isnull(T.lighting_overlay))
+		if(isnotnull(T.lighting_overlay))
 			if(!T.lighting_overlay.needs_update)
 				T.lighting_overlay.needs_update = TRUE
 				GLOBL.lighting_update_overlays.Add(T.lighting_overlay)

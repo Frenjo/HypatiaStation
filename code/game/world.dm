@@ -23,7 +23,7 @@
 
 	global.config.post_load()
 
-	if(!isnull(CONFIG_GET(server_name)) && CONFIG_GET(server_suffix) && world.port > 0)
+	if(isnotnull(CONFIG_GET(server_name)) && CONFIG_GET(server_suffix) && world.port > 0)
 		// dumb and hardcoded but I don't care~
 		CONFIG_GET(server_name) += " #[(world.port % 1000) / 100]"
 
@@ -172,7 +172,7 @@
 /world/proc/update_status()
 	var/s = ""
 
-	if(!isnull(CONFIG_GET(server_name)))
+	if(isnotnull(CONFIG_GET(server_name)))
 		s += "<b>[CONFIG_GET(server_name)]</b> &#8212; "
 
 	s += "<b>[station_name()]</b>";
@@ -185,7 +185,7 @@
 
 	var/list/features = list()
 
-	if(!isnull(global.CTgame_ticker?.master_mode))
+	if(isnotnull(global.CTgame_ticker?.master_mode))
 		features.Add(global.CTgame_ticker.master_mode)
 	else
 		features.Add("<b>STARTING</b>")
@@ -203,7 +203,7 @@
 
 	var/n = 0
 	for(var/mob/M in GLOBL.player_list)
-		if(!isnull(M.client))
+		if(isnotnull(M.client))
 			n++
 
 	if(n > 1)
@@ -217,10 +217,10 @@
 		features.Add("hosted by <b>[host]</b>")
 	*/
 
-	if(!host && !isnull(CONFIG_GET(hostedby)))
+	if(!host && isnotnull(CONFIG_GET(hostedby)))
 		features.Add("hosted by <b>[CONFIG_GET(hostedby)]</b>")
 
-	if(!isnull(features))
+	if(isnotnull(features))
 		s += ": [jointext(features, ", ")]"
 
 	/* does this help? I do not know */

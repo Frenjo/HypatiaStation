@@ -249,7 +249,7 @@
 			C.adjustToxLoss(2) // 4 toxic damage per application, doubled for some reason
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(!isnull(H.dna))
+			if(isnotnull(H.dna))
 				if(H.species.flags & IS_PLANT) //plantmen take a LOT of damage
 					H.adjustToxLoss(50)
 

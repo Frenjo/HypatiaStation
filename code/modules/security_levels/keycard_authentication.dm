@@ -36,7 +36,7 @@
 		if(ACCESS_KEYCARD_AUTH in ID.access)
 			if(active == TRUE)
 				//This is not the device that made the initial request. It is the device confirming the request.
-				if(!isnull(event_source))
+				if(isnotnull(event_source))
 					event_source.confirmed = TRUE
 					event_source.event_confirmed_by = usr
 			else if(screen == 2)

@@ -52,7 +52,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 /obj/machinery/computer/rdconsole/proc/SyncRDevices() //Makes sure it is properly sync'ed up with the devices attached to it (if any).
 	for(var/obj/machinery/r_n_d/D in oview(3, src))
-		if(!isnull(D.linked_console) || D.disabled || D.opened)
+		if(isnotnull(D.linked_console) || D.disabled || D.opened)
 			continue
 		if(istype(D, /obj/machinery/r_n_d/destructive_analyzer))
 			if(isnull(linked_destroy))
@@ -474,11 +474,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				dat += "<A href='?src=\ref[src];menu=1.4'>Disk Operations</A><BR>"
 			else
 				dat += "(Please Insert Disk)<BR>"
-			if(!isnull(linked_destroy))
+			if(isnotnull(linked_destroy))
 				dat += "<A href='?src=\ref[src];menu=2.2'>Destructive Analyzer Menu</A><BR>"
-			if(!isnull(linked_lathe))
+			if(isnotnull(linked_lathe))
 				dat += "<A href='?src=\ref[src];menu=3.1'>Protolathe Construction Menu</A><BR>"
-			if(!isnull(linked_imprinter))
+			if(isnotnull(linked_imprinter))
 				dat += "<A href='?src=\ref[src];menu=4.1'>Circuit Construction Menu</A><BR>"
 			dat += "<A href='?src=\ref[src];menu=1.6'>Settings</A>"
 

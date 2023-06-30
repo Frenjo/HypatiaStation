@@ -912,7 +912,7 @@
 	return
 
 /obj/machinery/reagentgrinder/update_icon()
-	icon_state = "juicer" + num2text(!isnull(beaker))
+	icon_state = "juicer" + num2text(isnotnull(beaker))
 	return
 
 

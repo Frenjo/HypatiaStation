@@ -168,7 +168,7 @@
 	else if((href_list["use_beaker"]) && (!src.locked || issilicon(usr)))
 		src.use_beaker = !src.use_beaker
 
-	else if(href_list["eject"] && (!isnull(src.reagent_glass)))
+	else if(href_list["eject"] && (isnotnull(src.reagent_glass)))
 		if(!src.locked)
 			src.reagent_glass.loc = get_turf(src)
 			src.reagent_glass = null
@@ -199,7 +199,7 @@
 		if(src.locked)
 			to_chat(user, SPAN_NOTICE("You cannot insert a beaker because the panel is locked."))
 			return
-		if(!isnull(src.reagent_glass))
+		if(isnotnull(src.reagent_glass))
 			to_chat(user, SPAN_NOTICE("There is already a beaker loaded."))
 			return
 
@@ -479,7 +479,7 @@
 	return
 
 /obj/machinery/bot/medbot/Bump(M as mob|obj) //Leave no door unopened!
-	if((istype(M, /obj/machinery/door)) && (!isnull(src.botcard)))
+	if((istype(M, /obj/machinery/door)) && (isnotnull(src.botcard)))
 		var/obj/machinery/door/D = M
 		if(!istype(D, /obj/machinery/door/firedoor) && D.check_access(src.botcard))
 			D.open()

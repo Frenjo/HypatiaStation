@@ -65,7 +65,7 @@
 
 /obj/machinery/bot/farmbot/Bump(M as mob|obj) //Leave no door unopened!
 	spawn(0)
-		if((istype(M, /obj/machinery/door)) && (!isnull(src.botcard)))
+		if((istype(M, /obj/machinery/door)) && (isnotnull(src.botcard)))
 			var/obj/machinery/door/D = M
 			if(!istype(D, /obj/machinery/door/firedoor) && D.check_access(src.botcard))
 				D.open()

@@ -149,7 +149,7 @@
 //Reverses the order of items in the list
 /proc/reverselist(list/L)
 	var/list/output = list()
-	if(!isnull(L))
+	if(isnotnull(L))
 		for(var/i = length(L); i >= 1; i--)
 			output += L[i]
 	return output
@@ -236,7 +236,7 @@
 	var/Li = 1
 	var/Ri = 1
 	var/list/result = list()
-	if(!isnull(L) && !isnull(R))
+	if(isnotnull(L) && isnotnull(R))
 		while(Li <= length(L) && Ri <= length(R))
 			var/datum/data/record/rL = L[Li]
 			if(isnull(rL))

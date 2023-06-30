@@ -155,7 +155,7 @@
 						to_chat(H, "Welp, out of time, buddy. You're stuck. Next time choose faster.")
 						accepted = TRUE
 
-		if(!isnull(global.CTgame_ticker))
+		if(isnotnull(global.CTgame_ticker))
 			global.CTgame_ticker.Bible_icon_state = B.icon_state
 			global.CTgame_ticker.Bible_item_state = B.item_state
 			global.CTgame_ticker.Bible_name = B.name

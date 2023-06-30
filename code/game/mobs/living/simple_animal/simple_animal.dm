@@ -95,7 +95,7 @@
 		if(isturf(loc) && !resting && isnull(buckled) && canmove) // This is so it only moves if it's not inside a closet, genetics machine, etc.
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
-				if(!(stop_automated_movement_when_pulled && !isnull(pulledby))) // Some animals don't move when pulled.
+				if(!(stop_automated_movement_when_pulled && isnotnull(pulledby))) // Some animals don't move when pulled.
 					Move(get_step(src, pick(GLOBL.cardinal)))
 					turns_since_move = 0
 
@@ -142,7 +142,7 @@
 
 		var/datum/gas_mixture/environment = T.return_air()
 
-		if(!isnull(environment))
+		if(isnotnull(environment))
 			if(abs(environment.temperature - bodytemperature) > 40)
 				var/diff = environment.temperature - bodytemperature
 				diff = diff / 5
@@ -220,7 +220,7 @@
 		if("help")
 			if(health > 0)
 				for(var/mob/O in viewers(src, null))
-					if(!isnull(O.client) && !O.blinded)
+					if(isnotnull(O.client) && !O.blinded)
 						O.show_message(SPAN_INFO("[M] [response_help] [src]."))
 
 		if("grab")
@@ -239,13 +239,13 @@
 			LAssailant = M
 
 			for(var/mob/O in viewers(src, null))
-				if(!isnull(O.client) && !O.blinded)
+				if(isnotnull(O.client) && !O.blinded)
 					O.show_message(SPAN_WARNING("[M] has grabbed [src] passively!"), 1)
 
 		if("hurt", "disarm")
 			adjustBruteLoss(harm_intent_damage)
 			for(var/mob/O in viewers(src, null))
-				if(!isnull(O.client) && !O.blinded)
+				if(isnotnull(O.client) && !O.blinded)
 					O.show_message(SPAN_WARNING("[M] [response_harm] [src]."))
 
 /mob/living/simple_animal/attack_slime(mob/living/carbon/slime/M as mob)
@@ -253,7 +253,7 @@
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
 
-	if(!isnull(M.Victim))
+	if(isnotnull(M.Victim))
 		return // can't attack while eating!
 
 	visible_message(SPAN_DANGER("The [M.name] glomps [src]!"))
@@ -348,7 +348,7 @@
 			return FALSE
 	if(ismecha(target_mob))
 		var/obj/mecha/M = target_mob
-		if(!isnull(M.occupant))
+		if(isnotnull(M.occupant))
 			return FALSE
 	if(istype(target_mob, /obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob
@@ -361,7 +361,7 @@
 	if(isnull(targeted_by) && target_locked)
 		qdel(target_locked)
 	overlays.Cut()
-	if(!isnull(targeted_by) && target_locked)
+	if(isnotnull(targeted_by) && target_locked)
 		overlays.Add(target_locked)
 
 /mob/living/simple_animal/say(message)

@@ -53,12 +53,12 @@
 /datum/species/diona/handle_death(mob/living/carbon/human/H)
 	var/mob/living/carbon/monkey/diona/S = new(get_turf(H))
 
-	if(!isnull(H.mind))
+	if(isnotnull(H.mind))
 		H.mind.transfer_to(S)
 		S.key = H
 
 	for(var/mob/living/carbon/monkey/diona/D in H.contents)
-		if(!isnull(D.client))
+		if(isnotnull(D.client))
 			D.loc = H.loc
 		else
 			qdel(D)

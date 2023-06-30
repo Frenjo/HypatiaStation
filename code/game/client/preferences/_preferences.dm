@@ -1016,7 +1016,7 @@
 	dat += "<tt><center>"
 
 	var/savefile/S = new /savefile(path)
-	if(!isnull(S))
+	if(isnotnull(S))
 		dat += "<b>Select a character slot to load</b><hr>"
 		var/name
 		for(var/i = 1, i <= MAX_SAVE_SLOTS, i++)

@@ -279,7 +279,7 @@
 	)
 
 /obj/machinery/alarm/proc/master_is_operating()
-	return !isnull(alarm_area.master_air_alarm) && !(alarm_area.master_air_alarm.stat & (NOPOWER | BROKEN))
+	return isnotnull(alarm_area.master_air_alarm) && !(alarm_area.master_air_alarm.stat & (NOPOWER | BROKEN))
 
 /obj/machinery/alarm/proc/elect_master()
 	for(var/obj/machinery/alarm/AA in alarm_area)
@@ -510,7 +510,7 @@
 
 /*				if(istype(E, /obj/machinery/door/airlock))
 				if((!E:arePowerSystemsOn()) || (E.stat & NOPOWER)) continue
-				if(!isnull(E:air_locked)) //Don't mess with doors locked for other reasons.
+				if(isnotnull(E:air_locked)) //Don't mess with doors locked for other reasons.
 					E:req_access = E:air_locked
 					E:air_locked = null
 					E.update_icon()*/
@@ -1466,7 +1466,7 @@ FIRE ALARM
 /obj/machinery/firealarm/initialize()
 	. = ..()
 	if(isContactLevel(z))
-		if(!isnull(GLOBL.security_level))
+		if(isnotnull(GLOBL.security_level))
 			src.overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_[GLOBL.security_level.name]"))
 		else
 			src.overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_green"))

@@ -187,12 +187,12 @@
 	var/list/range = hear(R, T)
 
 	for(var/mob/M in range)
-		if(!isnull(M.client))
+		if(isnotnull(M.client))
 			hear.Add(M)
 
 	var/list/objects = list()
 
-	for(var/obj/O in range)				//Get a list of objects in hearing range.  We'll check to see if any clients have their "eye" set to the object 
+	for(var/obj/O in range)				//Get a list of objects in hearing range.  We'll check to see if any clients have their "eye" set to the object
 		objects.Add(O)
 
 	for(var/client/C in GLOBL.clients)
@@ -208,7 +208,7 @@
 		else if(!(C.mob in hear))
 			if(C.mob.loc && (C.mob.loc in (hear | objects)))
 				hear.Add(C.mob)
-			else if(C.mob.loc.loc && (C.mob.loc.loc in (hear | objects)))  
+			else if(C.mob.loc.loc && (C.mob.loc.loc in (hear | objects)))
 				hear.Add(C.mob)
 			else if(C.mob.loc.loc.loc && (C.mob.loc.loc.loc in (hear | objects)))   //Going a little deeper
 				hear.Add(C.mob)
@@ -224,7 +224,7 @@
 	var/list/speaker_coverage = list()
 	for(var/i = 1; i <= length(radios); i++)
 		var/obj/item/device/radio/R = radios[i]
-		if(!isnull(R))
+		if(isnotnull(R))
 			var/turf/speaker = get_turf(R)
 			if(speaker)
 				for(var/turf/T in hear(R.canhear_range, speaker))
@@ -233,9 +233,9 @@
 	// Try to find all the players who can hear the message
 	for(var/i = 1; i <= length(GLOBL.player_list); i++)
 		var/mob/M = GLOBL.player_list[i]
-		if(!isnull(M))
+		if(isnotnull(M))
 			var/turf/ear = get_turf(M)
-			if(!isnull(ear))
+			if(isnotnull(ear))
 				// Ghostship is magic: Ghosts can hear radio chatter from anywhere
 				if(speaker_coverage[ear] || (isobserver(M) && (M.client?.prefs.toggles & CHAT_GHOSTRADIO)))
 					. |= M		// Since we're already looping through mobs, why bother using |= ? This only slows things down.

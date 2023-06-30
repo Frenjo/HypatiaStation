@@ -77,7 +77,7 @@
 /mob/dead/observer/Topic(href, href_list)
 	if(href_list["track"])
 		var/mob/target = locate(href_list["track"]) in GLOBL.mob_list
-		if(!isnull(target))
+		if(isnotnull(target))
 			ManualFollow(target)
 
 /mob/dead/attackby(obj/item/W, mob/user)
@@ -211,14 +211,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	statpanel("Status")
 	if(client.statpanel == "Status")
 		stat(null, "Station Time: [worldtime2text()]")
-		if(!isnull(global.CTgame_ticker?.mode))
+		if(isnotnull(global.CTgame_ticker?.mode))
 			//world << "DEBUG: ticker not null"
 			if(IS_GAME_MODE(/datum/game_mode/malfunction))
 				var/datum/game_mode/malfunction/malf = global.CTgame_ticker.mode
 				//world << "DEBUG: malf mode ticker test"
 				if(malf.malf_mode_declared)
 					stat(null, "Time left: [max(malf.AI_win_timeleft / (malf.apcs / 3), 0)]")
-		if(!isnull(global.CTemergency))
+		if(isnotnull(global.CTemergency))
 			if(global.CTemergency.online() && !global.CTemergency.returned())
 				var/timeleft = global.CTemergency.estimate_arrival_time()
 				if(timeleft)
@@ -233,12 +233,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(isnull(mind?.current) || !can_reenter_corpse)
 		to_chat(src, SPAN_WARNING("You have no body."))
 		return
-	if(!isnull(mind.current.key) && copytext(mind.current.key, 1, 2) != "@")	//makes sure we don't accidentally kick any clients
+	if(isnotnull(mind.current.key) && copytext(mind.current.key, 1, 2) != "@")	//makes sure we don't accidentally kick any clients
 		to_chat(src, SPAN_WARNING("Another consciousness is in your body... It is resisting you."))
 		return
 	if(mind.current.ajourn && mind.current.stat != DEAD)	//check if the corpse is astral-journeying (it's client ghosted using a cultist rune).
 		var/obj/effect/rune/R = locate() in mind.current.loc	//whilst corpse is alive, we can only reenter the body if it's on the rune
-		if(!(!isnull(R) && R.word1 == cultwords["hell"] && R.word2 == cultwords["travel"] && R.word3 == cultwords["self"]))	//astral journeying rune
+		if(!(isnotnull(R) && R.word1 == cultwords["hell"] && R.word2 == cultwords["travel"] && R.word3 == cultwords["self"]))	//astral journeying rune
 			to_chat(src, SPAN_WARNING("The astral cord that ties your body and your spirit has been severed. You are likely to wander the realm beyond until your body is finally dead and thus reunited with you."))
 			return
 
@@ -328,14 +328,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 // This is the ghost's follow verb with an argument
 /mob/dead/observer/proc/ManualFollow(atom/movable/target)
-	if(!isnull(target) && target != src)
-		if(!isnull(following) && following == target)
+	if(isnotnull(target) && target != src)
+		if(isnotnull(following) && following == target)
 			return
 		following = target
 		to_chat(src, SPAN_INFO("Now following [target]."))
 		spawn(0)
 			var/turf/pos = get_turf(src)
-			while(loc == pos && !isnull(target) && following == target && !isnull(client))
+			while(loc == pos && isnotnull(target) && following == target && isnotnull(client))
 				var/turf/T = get_turf(target)
 				if(isnull(T))
 					break
@@ -365,7 +365,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			var/mob/A = src			 // Source mob
 			var/turf/T = get_turf(M) // Turf of the destination mob
 
-			if(!isnull(T) && isturf(T))	// Make sure the turf exists, then move the source to that destination.
+			if(isnotnull(T) && isturf(T))	// Make sure the turf exists, then move the source to that destination.
 				A.loc = T
 			else
 				to_chat(A, "This mob is not located in the game world.")
@@ -468,7 +468,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		to_chat(src, SPAN_WARNING("Unable to find any unwelded vents to spawn mice at."))
 
-	if(!isnull(host))
+	if(isnotnull(host))
 		if(CONFIG_GET(uneducated_mice))
 			host.universal_understand = FALSE
 		host.ckey = src.ckey

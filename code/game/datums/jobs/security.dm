@@ -157,7 +157,7 @@
 	H.equip_to_slot_or_del(CIG, SLOT_ID_WEAR_MASK)	*/
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
 
-	if(!isnull(H.mind.role_alt_title) && H.mind.role_alt_title == "Forensic Technician")
+	if(isnotnull(H.mind.role_alt_title) && H.mind.role_alt_title == "Forensic Technician")
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/forensics/blue(H), SLOT_ID_WEAR_SUIT)
 	else
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/det_suit(H), SLOT_ID_WEAR_SUIT)

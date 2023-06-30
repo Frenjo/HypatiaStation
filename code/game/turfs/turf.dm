@@ -168,7 +168,7 @@
 			M.inertia_dir = 0
 			return
 		spawn(5)
-			if(!isnull(M) && !M.anchored && !M.pulledby && M.loc == src)
+			if(isnotnull(M) && !M.anchored && !M.pulledby && M.loc == src)
 				if(M.inertia_dir)
 					step(M, M.inertia_dir)
 					return
@@ -189,7 +189,7 @@
 // Removes all signs of lattice on the pos of the turf -Donkieyo
 /turf/proc/RemoveLattice()
 	var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-	if(!isnull(L))
+	if(isnotnull(L))
 		qdel(L)
 
 //Creates a new turf

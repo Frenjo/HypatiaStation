@@ -22,7 +22,7 @@
 			death()
 			return
 
-		if(!isnull(machine))
+		if(isnotnull(machine))
 			if(!machine.check_eye(src))
 				reset_view(null)
 

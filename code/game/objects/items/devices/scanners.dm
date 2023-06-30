@@ -364,7 +364,7 @@ REAGENT SCANNER
 		to_chat(user, SPAN_WARNING("This device has critically failed and is no longer functional!"))
 		return
 
-	if(!isnull(O.reagents))
+	if(isnotnull(O.reagents))
 		var/dat = ""
 		if(length(O.reagents.reagent_list))
 			var/one_percent = O.reagents.total_volume / 100

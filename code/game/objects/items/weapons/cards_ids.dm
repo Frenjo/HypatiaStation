@@ -187,12 +187,12 @@
 	return "Unknown"
 
 /obj/item/weapon/card/id/get_job_display_name()
-	if(!isnull(assignment))
+	if(isnotnull(assignment))
 		return assignment
 	return "Unknown"
 
 /obj/item/weapon/card/id/get_job_name()
-	if(!isnull(assignment))
+	if(isnotnull(assignment))
 		// Checks if the job has a hud icon.
 		if(assignment in get_all_job_icons())
 			return assignment
@@ -225,7 +225,7 @@
 
 /obj/item/weapon/card/id/syndicate/New(mob/user as mob)
 	. = ..()
-	if(!isnull(user)) // Runtime prevention on laggy starts or where users log out because of lag at round start.
+	if(isnotnull(user)) // Runtime prevention on laggy starts or where users log out because of lag at round start.
 		registered_name = ishuman(user) ? user.real_name : user.name
 	else
 		registered_name = "Agent Card"
@@ -238,7 +238,7 @@
 	if(istype(O, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/I = O
 		access |= I.access
-		if(isliving(user) && !isnull(user.mind?.special_role))
+		if(isliving(user) && isnotnull(user.mind?.special_role))
 			to_chat(usr, SPAN_INFO("The card's microscanners activate as you pass it over the ID, copying its access."))
 
 /obj/item/weapon/card/id/syndicate/attack_self(mob/user as mob)
@@ -300,7 +300,7 @@
 	item_state = "gold_id"
 	registered_name = "Captain"
 	assignment = "Captain"
-	
+
 /obj/item/weapon/card/id/captains_spare/New()
 	. = ..()
 	var/datum/job/captain/J = new/datum/job/captain
@@ -313,7 +313,7 @@
 	icon_state = "centcom"
 	registered_name = "Central Command"
 	assignment = "General"
-	
+
 /obj/item/weapon/card/id/centcom/New()
 	. = ..()
 	access = get_all_centcom_access()

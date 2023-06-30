@@ -217,7 +217,7 @@
 				spawn CheckDNA(M, src)
 
 		if("pdamessage")
-			if(!isnull(pda))
+			if(isnotnull(pda))
 				if(href_list["toggler"])
 					pda.toff = !pda.toff
 				else if(href_list["ringer"])
@@ -454,7 +454,7 @@
 	var/dat = ""
 	if(src.subscreen == 0)
 		dat += "<h2>Medical Records</h2><HR>"
-		if(!isnull(GLOBL.data_core.general))
+		if(isnotnull(GLOBL.data_core.general))
 			for(var/datum/data/record/R in sortRecord(GLOBL.data_core.general))
 				dat += text("<A href='?src=\ref[];med_rec=\ref[];software=medicalrecord;sub=1'>[]: []<BR>", src, R, R.fields["id"], R.fields["name"])
 		//dat += text("<HR><A href='?src=\ref[];screen=0;softFunction=medical records'>Back</A>", src)
@@ -477,7 +477,7 @@
 	var/dat = ""
 	if(src.subscreen == 0)
 		dat += "<h2>Security Records</h2><HR>"
-		if(!isnull(GLOBL.data_core.general))
+		if(isnotnull(GLOBL.data_core.general))
 			for(var/datum/data/record/R in sortRecord(GLOBL.data_core.general))
 				dat += text("Name: <A href='?src=\ref[];field=name'>[]</A><BR>\nID: <A href='?src=\ref[];field=id'>[]</A><BR>\nSex: <A href='?src=\ref[];field=sex'>[]</A><BR>\nAge: <A href='?src=\ref[];field=age'>[]</A><BR>\nRank: <A href='?src=\ref[];field=rank'>[]</A><BR>\nFingerprint: <A href='?src=\ref[];field=fingerprint'>[]</A><BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", src, src.securityActive1.fields["name"], src, src.securityActive1.fields["id"], src, src.securityActive1.fields["sex"], src, src.securityActive1.fields["age"], src, src.securityActive1.fields["rank"], src, src.securityActive1.fields["fingerprint"], src.securityActive1.fields["p_stat"], src.securityActive1.fields["m_stat"])
 	if(src.subscreen == 1)

@@ -214,7 +214,7 @@
 	var/text = "<FONT size = 2><B>The wizards/witches were:</B></FONT>"
 	for(var/datum/mind/wizard in wizards)
 		text += "<br>[wizard.key] was [wizard.name] ("
-		if(!isnull(wizard.current))
+		if(isnotnull(wizard.current))
 			if(wizard.current.stat == DEAD)
 				text += "died"
 			else
@@ -238,7 +238,7 @@
 					wizardwin = FALSE
 				count++
 
-			if(!isnull(wizard.current) && wizard.current.stat != DEAD && wizardwin)
+			if(isnotnull(wizard.current) && wizard.current.stat != DEAD && wizardwin)
 				text += "<br><font color='green'><B>The wizard was successful!</B></font>"
 				feedback_add_details("wizard_success", "SUCCESS")
 			else

@@ -75,7 +75,7 @@ Version 1 changes (from version 0):
 		CRASH("sd_Alert: Invalid target:[who] (\ref[who])")
 
 	var/sd_alert/T = locate(tag)
-	if(!isnull(T))
+	if(isnotnull(T))
 		if(istype(T))
 			qdel(T)
 		else
@@ -83,7 +83,7 @@ Version 1 changes (from version 0):
 	T = new /sd_alert(who, tag)
 	if(duration)
 		spawn(duration)
-			if(!isnull(T))
+			if(isnotnull(T))
 				qdel(T)
 			return
 	T.Display(message, title, buttons, default, unfocus, size, table, style, select, flags)

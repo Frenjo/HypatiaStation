@@ -395,14 +395,14 @@
 	if(istype(wear_id, /obj/item/device/pda))
 		var/obj/item/device/pda/P = wear_id
 		return P.owner
-	if(!isnull(wear_id))
+	if(isnotnull(wear_id))
 		var/obj/item/weapon/card/id/I = wear_id.get_id()
-		if(!isnull(I))
+		if(isnotnull(I))
 			return I.registered_name
 
 //gets ID card object from special clothes slot or null.
 /mob/living/carbon/human/proc/get_idcard()
-	if(!isnull(wear_id))
+	if(isnotnull(wear_id))
 		return wear_id.get_id()
 
 //Added a safety check in case you want to shock a human mob directly through electrocute_act.
@@ -441,9 +441,9 @@
 		if(hasHUD(usr, "security"))
 			var/modified = 0
 			var/perpname = "wot"
-			if(!isnull(wear_id))
+			if(isnotnull(wear_id))
 				var/obj/item/weapon/card/id/I = wear_id.get_id()
-				perpname = !isnull(I) ? I.registered_name : name
+				perpname = isnotnull(I) ? I.registered_name : name
 			else
 				perpname = name
 
@@ -1121,10 +1121,10 @@
 		else
 			dna.species = new_species
 
-	if(!isnull(species))
-		if(!isnull(species.name) && species.name == new_species)
+	if(isnotnull(species))
+		if(isnotnull(species.name) && species.name == new_species)
 			return
-		if(!isnull(species.language))
+		if(isnotnull(species.language))
 			remove_language(species.language)
 
 	species = GLOBL.all_species[new_species]
@@ -1132,7 +1132,7 @@
 	if(force_organs || !length(organs))
 		species.create_organs(src)
 
-	if(!isnull(species.language))
+	if(isnotnull(species.language))
 		add_language(species.language)
 
 	spawn(0)
@@ -1144,7 +1144,7 @@
 	mob_swap_flags = species.swap_flags
 	mob_push_flags = species.push_flags
 
-	if(!isnull(species))
+	if(isnotnull(species))
 		species.handle_post_spawn(src)
 		return 1
 	else

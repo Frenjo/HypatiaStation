@@ -28,17 +28,17 @@
 
 // common helper procs for all power machines
 /obj/machinery/power/proc/add_avail(amount)
-	if(!isnull(powernet))
+	if(isnotnull(powernet))
 		powernet.newavail += amount
 
 /obj/machinery/power/proc/draw_power(amount)
-	return !isnull(powernet) ? powernet.draw_power(amount) : 0
+	return isnotnull(powernet) ? powernet.draw_power(amount) : 0
 
 /obj/machinery/power/proc/surplus()
-	return !isnull(powernet) ? powernet.avail - powernet.load : 0
+	return isnotnull(powernet) ? powernet.avail - powernet.load : 0
 
 /obj/machinery/power/proc/avail()
-	return !isnull(powernet) ? powernet.avail : 0
+	return isnotnull(powernet) ? powernet.avail : 0
 
 /obj/machinery/power/proc/disconnect_terminal() // machines without a terminal will just return, no harm no fowl.
 	return
@@ -159,7 +159,7 @@
 /obj/machinery/power/proc/get_indirect_connections()
 	. = list()
 	for(var/obj/structure/cable/C in loc)
-		if(!isnull(C.powernet))
+		if(isnotnull(C.powernet))
 			continue
 		if(C.d1 == 0) // the cable is a node cable
 			. += C

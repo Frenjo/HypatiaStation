@@ -249,7 +249,7 @@ VOX HEIST ROUNDTYPE
 			if(get_area(stack) != locate(/area/shuttle/vox/station))
 				text += "left behind)"
 				continue
-		if(!isnull(vox.current))
+		if(isnotnull(vox.current))
 			if(vox.current.stat == DEAD)
 				text += "died"
 			else

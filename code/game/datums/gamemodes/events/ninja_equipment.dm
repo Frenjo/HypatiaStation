@@ -1025,7 +1025,7 @@ ________________________________________________________________________________
 				var/obj/machinery/power/apc/B = A.loc.loc:get_apc()//Object.turf.area find APC
 				if(B)//If APC exists. Might not if the area is unpowered like CentCom.
 					var/datum/powernet/PN = B.terminal.powernet
-					while(G.candrain&&!maxcapacity&&!isnull(A))//And start a proc similar to drain from wire.
+					while(G.candrain&&!maxcapacity&&isnotnull(A))//And start a proc similar to drain from wire.
 						drain = rand(G.mindrain,G.maxdrain)
 						var/drained = 0
 						if(PN&&do_after(U,10))
@@ -1067,7 +1067,7 @@ ________________________________________________________________________________
 				if(length(files.known_tech))
 					for(var/datum/tech/current_data in S.stored_research)
 						to_chat(U, SPAN_INFO("Checking \the [current_data.name] database."))
-						if(do_after(U, S.s_delay) && G.candrain && !isnull(A))
+						if(do_after(U, S.s_delay) && G.candrain && isnotnull(A))
 							for(var/datum/tech/analyzing_data in files.known_tech)
 								if(current_data.id == analyzing_data.id)
 									if(analyzing_data.level > current_data.level)
@@ -1081,7 +1081,7 @@ ________________________________________________________________________________
 		if("WIRE")
 			var/obj/structure/cable/A = target
 			var/datum/powernet/PN = A.get_powernet()
-			while(G.candrain&&!maxcapacity&&!isnull(A))
+			while(G.candrain&&!maxcapacity&&isnotnull(A))
 				drain = (round((rand(G.mindrain,G.maxdrain))/2))
 				var/drained = 0
 				if(PN&&do_after(U,10))
@@ -1350,7 +1350,7 @@ It is possible to destroy the net by the occupant or someone else.
 					"[M.name] was recovered from the energy net!", 1,
 					"You hear a grunt.", 2
 				)
-			if(!isnull(master))//As long as they still exist.
+			if(isnotnull(master))//As long as they still exist.
 				master << "\red <b>ERROR</b>: \black unable to initiate transport protocol. Procedure terminated."
 		qdel(src)
 	return
@@ -1359,17 +1359,17 @@ It is possible to destroy the net by the occupant or someone else.
 	var/check = 60//30 seconds before teleportation. Could be extended I guess. - Extended to one minute
 	var/mob_name = affecting.name//Since they will report as null if terminated before teleport.
 	//The person can still try and attack the net when inside.
-	while(!isnull(M)&&!isnull(src)&&check>0)//While M and net exist, and 60 seconds have not passed.
+	while(isnotnull(M)&&isnotnull(src)&&check>0)//While M and net exist, and 60 seconds have not passed.
 		check--
 		sleep(10)
 
 	if(isnull(M)||M.loc!=loc)//If mob is gone or not at the location.
-		if(!isnull(master))//As long as they still exist.
+		if(isnotnull(master))//As long as they still exist.
 			master << "\red <b>ERROR</b>: \black unable to locate \the [mob_name]. Procedure terminated."
 		qdel(src)//Get rid of the net.
 		return
 
-	if(!isnull(src))//As long as both net and person exist.
+	if(isnotnull(src))//As long as both net and person exist.
 		//No need to check for countdown here since while() broke, it's implicit that it finished.
 
 		density = FALSE//Make the net pass-through.
@@ -1403,7 +1403,7 @@ It is possible to destroy the net by the occupant or someone else.
 				"You hear sparks flying!", 2
 			)
 
-		if(!isnull(master))//As long as they still exist.
+		if(isnotnull(master))//As long as they still exist.
 			master << "\blue <b>SUCCESS</b>: \black transport procedure of \the [affecting] complete."
 
 		M.captured = 0 //Important.

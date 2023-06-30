@@ -44,7 +44,7 @@
 
 	var/P = new /obj/effect/decal/point(tile)
 	spawn(20)
-		if(!isnull(P))
+		if(isnotnull(P))
 			qdel(P)
 
 	usr.visible_message("<b>[usr]</b> points to [this].") // Added a full stop here. -Frenjo

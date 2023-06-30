@@ -42,7 +42,7 @@
 			to_chat(src, SPAN_WARNING("Deadchat is globally muted."))
 			return
 
-	if(!isnull(client) && !(client.prefs.toggles & CHAT_DEAD))
+	if(isnotnull(client) && !(client.prefs.toggles & CHAT_DEAD))
 		to_chat(usr, SPAN_WARNING("You have deadchat muted."))
 		return
 
@@ -67,7 +67,7 @@
 	return
 
 /mob/proc/say_understands_language(mob/other, datum/language/speaking = null)
-	if(!isnull(speaking)) // Language check.
+	if(isnotnull(speaking)) // Language check.
 		var/understood = FALSE
 		for(var/datum/language/L in languages)
 			if(speaking.name == L.name)
@@ -118,7 +118,7 @@
 	var/speech_verb = "says"
 	var/speech_style = "body"
 
-	if(!isnull(speaking))
+	if(isnotnull(speaking))
 		speech_verb = speaking.speech_verb
 		speech_style = speaking.colour
 	else if(length(speak_emote))

@@ -100,7 +100,7 @@
 /*	Now handled by get_active_hand()
 	// ------- ROBOT -------
 	if(istype(usr, /mob/living/silicon/robot))
-		if(!isnull(usr:module_active))
+		if(isnotnull(usr:module_active))
 			W = usr:module_active
 		else
 			W = null

@@ -38,7 +38,7 @@
 			return
 
 	var/admin_rank = "Player"
-	if(!isnull(src.holder))
+	if(isnotnull(src.holder))
 		admin_rank = src.holder.rank
 
 	var/sql_ip = sql_sanitize_text(src.address)

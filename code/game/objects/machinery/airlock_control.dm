@@ -58,7 +58,7 @@
 	send_status()
 
 /obj/machinery/door/airlock/proc/send_status()
-	if(!isnull(radio_connection))
+	if(isnotnull(radio_connection))
 		var/datum/signal/signal = new /datum/signal()
 		signal.transmission_method = TRANSMISSION_RADIO
 		signal.data["tag"] = id_tag
@@ -83,7 +83,7 @@
 	..(AM)
 	if(ismecha(AM))
 		var/obj/mecha/mecha = AM
-		if(density && !isnull(radio_connection) && !isnull(mecha.occupant) && (allowed(mecha.occupant) || check_access_list(mecha.operation_req_access)))
+		if(density && isnotnull(radio_connection) && isnotnull(mecha.occupant) && (allowed(mecha.occupant) || check_access_list(mecha.operation_req_access)))
 			var/datum/signal/signal = new
 			signal.transmission_method = TRANSMISSION_RADIO
 			signal.data["tag"] = id_tag

@@ -88,7 +88,7 @@
 			return "toddler"
 		if(3 to 13)
 			return "child"
-		if(13 to 19)	
+		if(13 to 19)
 			return "teenager"
 		if(19 to 30)
 			return "young adult"
@@ -100,7 +100,7 @@
 			return "aging"
 		if(70 to INFINITY)
 			return "elderly"
-		else	
+		else
 			return "unknown"
 
 /proc/RoundHealth(health)
@@ -162,7 +162,7 @@
 	if(isnull(user))
 		return 0
 	var/atom/target_loc = null
-	if(!isnull(target))
+	if(isnotnull(target))
 		target_loc = target.loc
 
 	var/atom/original_loc = user.loc
@@ -170,7 +170,7 @@
 	var/holding = user.get_active_hand()
 
 	var/holdingnull = TRUE // User's hand started out empty, check for an empty hand.
-	if(!isnull(holding))
+	if(isnotnull(holding))
 		holdingnull = FALSE // User's hand started holding something, check to see if it's still holding that.
 
 	var/datum/progressbar/progbar
@@ -189,7 +189,7 @@
 			. = 0
 			break
 
-		if(!isnull(target_loc) && (isnull(target) || target_loc != target.loc))
+		if(isnotnull(target_loc) && (isnull(target) || target_loc != target.loc))
 			. = 0
 			break
 
@@ -219,7 +219,7 @@
 		if(!istype(ID))
 			ID = null
 
-		if(!isnull(ID))
+		if(isnotnull(ID))
 			return ID.registered_name
 
 	C = H.wear_id
@@ -233,5 +233,5 @@
 		if(!istype(ID))
 			ID = null
 
-		if(!isnull(ID))
+		if(isnotnull(ID))
 			return ID.registered_name

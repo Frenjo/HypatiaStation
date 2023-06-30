@@ -19,17 +19,17 @@
 //	var/N_nf=0
 //	var/Nt=0
 	var/turf/start_point = null
-	if(!isnull(range))
+	if(isnotnull(range))
 		start_point = get_turf(source)
 		if(isnull(start_point))
 			qdel(signal)
 			return 0
 
-	if(!isnull(filter)) //here goes some copypasta. It is for optimisation. -rastaf0
+	if(isnotnull(filter)) //here goes some copypasta. It is for optimisation. -rastaf0
 		for(var/obj/device in devices[filter])
 			if(device == source)
 				continue
-			if(!isnull(range))
+			if(isnotnull(range))
 				var/turf/end_point = get_turf(device)
 				if(isnull(end_point))
 					continue
@@ -40,7 +40,7 @@
 		for(var/obj/device in devices["_default"])
 			if(device == source)
 				continue
-			if(!isnull(range))
+			if(isnotnull(range))
 				var/turf/end_point = get_turf(device)
 				if(isnull(end_point))
 					continue
@@ -56,7 +56,7 @@
 			for(var/obj/device in devices[next_filter])
 				if(device == source)
 					continue
-				if(!isnull(range))
+				if(isnotnull(range))
 					var/turf/end_point = get_turf(device)
 					if(isnull(end_point))
 						continue

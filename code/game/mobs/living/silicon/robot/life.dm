@@ -9,7 +9,7 @@
 	clamp_values()
 	handle_regular_status_updates()
 
-	if(!isnull(client))
+	if(isnotnull(client))
 		handle_regular_hud_updates()
 		update_items()
 	if(stat != DEAD) //still using power
@@ -33,12 +33,12 @@
 		var/datum/robot_component/C = components[V]
 		C.update_power_state()
 
-	if(!isnull(cell) && is_component_functioning("power cell") && cell.charge > 0)
-		if(!isnull(module_state_1))
+	if(isnotnull(cell) && is_component_functioning("power cell") && cell.charge > 0)
+		if(isnotnull(module_state_1))
 			cell.use(3)
-		if(!isnull(module_state_2))
+		if(isnotnull(module_state_2))
 			cell.use(3)
-		if(!isnull(module_state_3))
+		if(isnotnull(module_state_3))
 			cell.use(3)
 
 		has_power = TRUE
@@ -48,7 +48,7 @@
 		has_power = FALSE
 
 /mob/living/silicon/robot/proc/handle_regular_status_updates()
-	if(!isnull(camera) && !scrambledcodes)
+	if(isnotnull(camera) && !scrambledcodes)
 		if(stat == DEAD || isWireCut(5))
 			camera.status = 0
 		else
@@ -163,7 +163,7 @@
 	regular_hud_updates()
 
 	var/obj/item/borg/sight/hud/hud = (locate(/obj/item/borg/sight/hud) in src)
-	if(!isnull(hud?.hud))
+	if(isnotnull(hud?.hud))
 		hud.hud.process_hud(src)
 	else
 		switch(sensor_mode)
@@ -172,7 +172,7 @@
 			if(MED_HUD)
 				process_med_hud(src, 0)
 
-	if(!isnull(healths))
+	if(isnotnull(healths))
 		if(stat != DEAD)
 			if(isdrone(src))
 				switch(health)
@@ -210,22 +210,22 @@
 		else
 			healths.icon_state = "health7"
 
-	if(syndicate && !isnull(client))
+	if(syndicate && isnotnull(client))
 		if(IS_GAME_MODE(/datum/game_mode/traitor))
 			for(var/datum/mind/tra in global.CTgame_ticker.mode.traitors)
-				if(!isnull(tra.current))
+				if(isnotnull(tra.current))
 					var/I = image('icons/mob/mob.dmi', loc = tra.current, icon_state = "traitor")
 					client.images.Add(I)
-		if(!isnull(connected_ai))
+		if(isnotnull(connected_ai))
 			connected_ai.connected_robots.Remove(src)
 			connected_ai = null
-		if(!isnull(mind))
+		if(isnotnull(mind))
 			if(isnull(mind.special_role))
 				mind.special_role = "traitor"
 				global.CTgame_ticker.mode.traitors += mind
 
-	if(!isnull(cells))
-		if(!isnull(cell))
+	if(isnotnull(cells))
+		if(isnotnull(cell))
 			var/cellcharge = cell.charge / cell.maxcharge
 			switch(cellcharge)
 				if(0.75 to INFINITY)
@@ -241,7 +241,7 @@
 		else
 			cells.icon_state = "charge-empty"
 
-	if(!isnull(bodytemp))
+	if(isnotnull(bodytemp))
 		switch(bodytemperature) //310.055 optimal body temp
 			if(335 to INFINITY)
 				bodytemp.icon_state = "temp2"
@@ -254,7 +254,7 @@
 			else
 				bodytemp.icon_state = "temp-2"
 
-	if(!isnull(pullin))
+	if(isnotnull(pullin))
 		pullin.icon_state = "pull[pulling ? 1 : 0]"
 //Oxygen and fire does nothing yet!!
 //	if(oxygen) oxygen.icon_state = "oxy[oxygen_alert ? 1 : 0]"
@@ -262,7 +262,7 @@
 
 	client.screen.Remove(GLOBL.global_hud.blurry, GLOBL.global_hud.druggy, GLOBL.global_hud.vimpaired)
 
-	if(!isnull(blind) && stat != DEAD)
+	if(isnotnull(blind) && stat != DEAD)
 		if(blinded)
 			blind.invisibility = 0 // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 		else
@@ -277,7 +277,7 @@
 				client.screen.Add(GLOBL.global_hud.druggy)
 
 	if(stat != DEAD)
-		if(!isnull(machine))
+		if(isnotnull(machine))
 			if(!machine.check_eye(src))
 				reset_view(null)
 		else
@@ -287,16 +287,16 @@
 	return 1
 
 /mob/living/silicon/robot/proc/update_items()
-	if(!isnull(client))
+	if(isnotnull(client))
 		client.screen.Remove(contents)
 		for(var/obj/I in contents)
-			if(!isnull(I) && !(istype(I, /obj/item/weapon/cell) || isradio(I) || istype(I, /obj/machinery/camera) || istype(I, /obj/item/device/mmi)))
+			if(isnotnull(I) && !(istype(I, /obj/item/weapon/cell) || isradio(I) || istype(I, /obj/machinery/camera) || istype(I, /obj/item/device/mmi)))
 				client.screen.Add(I)
-	if(!isnull(module_state_1))
+	if(isnotnull(module_state_1))
 		module_state_1:screen_loc = UI_INV1
-	if(!isnull(module_state_2))
+	if(isnotnull(module_state_2))
 		module_state_2:screen_loc = UI_INV2
-	if(!isnull(module_state_3))
+	if(isnotnull(module_state_3))
 		module_state_3:screen_loc = UI_INV3
 	updateicon()
 
@@ -304,7 +304,7 @@
 	if(killswitch)
 		killswitch_time --
 		if(killswitch_time <= 0)
-			if(!isnull(client))
+			if(isnotnull(client))
 				to_chat(src, SPAN_DANGER("Killswitch activated."))
 			killswitch = 0
 			spawn(5)
@@ -315,7 +315,7 @@
 		uneq_all()
 		weaponlock_time --
 		if(weaponlock_time <= 0)
-			if(!isnull(client))
+			if(isnotnull(client))
 				to_chat(src, SPAN_DANGER("Weapon Lock Timed Out!"))
 			weapon_lock = FALSE
 			weaponlock_time = 120

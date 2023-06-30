@@ -47,7 +47,7 @@ CONTROLLER_DEF(radio)
 /datum/controller/radio/proc/remove_object(obj/device, old_frequency)
 	var/f_text = num2text(old_frequency)
 	var/datum/radio_frequency/frequency = frequencies[f_text]
-	if(!isnull(frequency))
+	if(isnotnull(frequency))
 		frequency.remove_listener(device)
 		if(!length(frequency.devices))
 			qdel(frequency)

@@ -82,7 +82,7 @@
 		return 0
 
 /obj/item/device/pda/get_access()
-	return !isnull(id) ? id.get_access() : ..()
+	return isnotnull(id) ? id.get_access() : ..()
 
 /obj/item/device/pda/get_id()
 	return id
@@ -199,7 +199,7 @@
 
 	if(mode == 3)
 		var/turf/T = get_turf(user.loc)
-		if(!isnull(T))
+		if(isnotnull(T))
 			var/datum/gas_mixture/environment = T.return_air()
 
 			var/pressure = environment.return_pressure()
@@ -248,10 +248,10 @@
 	return
 
 /obj/item/device/pda/Topic(href, href_list)
-	if(href_list["cartmenu"] && !isnull(cartridge))
+	if(href_list["cartmenu"] && isnotnull(cartridge))
 		cartridge.Topic(href, href_list)
 		return 1
-	if(href_list["radiomenu"] && !isnull(cartridge) && !isnull(cartridge.radio))
+	if(href_list["radiomenu"] && isnotnull(cartridge) && isnotnull(cartridge.radio))
 		cartridge.radio.Topic(href, href_list)
 		return 1
 
@@ -298,7 +298,7 @@
 			ownjob = id.assignment
 			name = "PDA - [owner] ([ownjob])" // Edited this to space out the dash. -Frenjo
 		if("Eject")//Ejects the cart, only done from hub.
-			if(!isnull(cartridge))
+			if(isnotnull(cartridge))
 				var/turf/T = loc
 				if(ismob(T))
 					T = T.loc
@@ -346,17 +346,17 @@
 		if("Medical Scan")
 			if(scanmode == 1)
 				scanmode = 0
-			else if((!isnull(cartridge)) && (cartridge.access_medical))
+			else if((isnotnull(cartridge)) && (cartridge.access_medical))
 				scanmode = 1
 		if("Reagent Scan")
 			if(scanmode == 3)
 				scanmode = 0
-			else if((!isnull(cartridge)) && (cartridge.access_reagent_scanner))
+			else if((isnotnull(cartridge)) && (cartridge.access_reagent_scanner))
 				scanmode = 3
 		if("Halogen Counter")
 			if(scanmode == 4)
 				scanmode = 0
-			else if((!isnull(cartridge)) && (cartridge.access_engine))
+			else if((isnotnull(cartridge)) && (cartridge.access_engine))
 				scanmode = 4
 		if("Honk")
 			if(!(last_honk && world.time < last_honk + 20))
@@ -365,7 +365,7 @@
 		if("Gas Scan")
 			if(scanmode == 5)
 				scanmode = 0
-			else if((!isnull(cartridge)) && (cartridge.access_atmos))
+			else if((isnotnull(cartridge)) && (cartridge.access_atmos))
 				scanmode = 5
 
 //MESSENGER/NOTE FUNCTIONS===================================
@@ -432,7 +432,7 @@
 		if("Send Honk")//Honk virus
 			if(istype(cartridge, /obj/item/weapon/cartridge/clown))//Cartridge checks are kind of unnecessary since everything is done through switch.
 				var/obj/item/device/pda/P = locate(href_list["target"])//Leaving it alone in case it may do something useful, I guess.
-				if(!isnull(P))
+				if(isnotnull(P))
 					if(!P.toff && cartridge.charges > 0)
 						cartridge.charges--
 						U.show_message(SPAN_INFO("Virus sent!"), 1)
@@ -446,7 +446,7 @@
 		if("Send Silence")//Silent virus
 			if(istype(cartridge, /obj/item/weapon/cartridge/mime))
 				var/obj/item/device/pda/P = locate(href_list["target"])
-				if(!isnull(P))
+				if(isnotnull(P))
 					if(!P.toff && cartridge.charges > 0)
 						cartridge.charges--
 						U.show_message(SPAN_INFO("Virus sent!"), 1)
@@ -498,7 +498,7 @@
 					U.show_message(SPAN_WARNING("An error flashes on your [src]: Recipient unavailable."), 1)
 					return
 				var/obj/item/device/pda/P = locate(href_list["target"])
-				if(!isnull(P))
+				if(isnotnull(P))
 					if(!P.toff && cartridge.charges > 0)
 						cartridge.charges--
 
@@ -867,7 +867,7 @@
 					to_chat(user, SPAN_INFO("No fingerprints found on [C]."))
 				else if(ishuman(C))
 					var/mob/living/carbon/human/H = C
-					if(!isnull(H.gloves))
+					if(isnotnull(H.gloves))
 						to_chat(user, SPAN_INFO("No fingerprints found on [C]."))
 				else
 					to_chat(user, SPAN_INFO("[C]'s Fingerprints: [md5(C.dna.uni_identity)]"))
@@ -898,7 +898,7 @@
 		if(3)
 			if(!isobj(A))
 				return
-			if(!isnull(A.reagents))
+			if(isnotnull(A.reagents))
 				if(length(A.reagents.reagent_list))
 					var/reagents_length = length(A.reagents.reagent_list)
 					to_chat(user, SPAN_INFO("[reagents_length] chemical agent[reagents_length > 1 ? "s" : ""] found."))
@@ -1008,13 +1008,13 @@
 // Access-related overrides.
 // These just forward the calls to the inserted ID card if it exists.
 /obj/item/device/pda/get_job_real_name()
-	return !isnull(id) ? id.get_job_real_name() : "Unknown"
+	return isnotnull(id) ? id.get_job_real_name() : "Unknown"
 
 /obj/item/device/pda/get_job_display_name()
-	return !isnull(id) ? id.get_job_display_name() : "Unknown"
+	return isnotnull(id) ? id.get_job_display_name() : "Unknown"
 
 /obj/item/device/pda/get_job_name()
-	return !isnull(id) ? id.get_job_name() : "Unknown"
+	return isnotnull(id) ? id.get_job_name() : "Unknown"
 // End access-related overrides.
 
 

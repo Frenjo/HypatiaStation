@@ -43,7 +43,7 @@ GLOBAL_GLOBL_LIST_NEW(pda_manifest)
 		if(OOC)
 			var/active = FALSE
 			for(var/mob/M in GLOBL.player_list)
-				if(M.real_name == name && !isnull(M.client) && M.client.inactivity <= 10 * 60 * 10)
+				if(M.real_name == name && isnotnull(M.client) && M.client.inactivity <= 10 * 60 * 10)
 					active = TRUE
 					break
 			isactive[name] = active ? "Active" : "Inactive"
@@ -218,7 +218,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 	var/datum/data/record/foundrecord
 	var/real_title = assignment
 	for(var/datum/data/record/t in GLOBL.data_core.general)
-		if(!isnull(t))
+		if(isnotnull(t))
 			if(t.fields["name"] == name)
 				foundrecord = t
 				break
@@ -232,7 +232,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 			real_title = J.title
 			break
 
-	if(!isnull(foundrecord))
+	if(isnotnull(foundrecord))
 		foundrecord.fields["rank"] = assignment
 		foundrecord.fields["real_rank"] = real_title
 
@@ -240,9 +240,9 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 	if(length(GLOBL.pda_manifest))
 		GLOBL.pda_manifest.Cut()
 
-	if(!isnull(H.mind) && (H.mind.assigned_role != "MODE"))
+	if(isnotnull(H.mind) && (H.mind.assigned_role != "MODE"))
 		var/assignment
-		if(!isnull(H.mind.role_alt_title))
+		if(isnotnull(H.mind.role_alt_title))
 			assignment = H.mind.role_alt_title
 		else if(H.mind.assigned_role)
 			assignment = H.mind.assigned_role
@@ -347,7 +347,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		preview_icon.Blend(temp, ICON_OVERLAY)
 
 	// Tail
-	if(!isnull(H.species.tail) && H.species.flags & HAS_TAIL)
+	if(isnotnull(H.species.tail) && H.species.flags & HAS_TAIL)
 		temp = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[H.species.tail]_s")
 		preview_icon.Blend(temp, ICON_OVERLAY)
 
@@ -368,13 +368,13 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 	eyes_s.Blend(rgb(H.r_eyes, H.g_eyes, H.b_eyes), ICON_ADD)
 
 	var/datum/sprite_accessory/hair_style = GLOBL.hair_styles_list[H.h_style]
-	if(!isnull(hair_style))
+	if(isnotnull(hair_style))
 		var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 		hair_s.Blend(rgb(H.r_hair, H.g_hair, H.b_hair), ICON_ADD)
 		eyes_s.Blend(hair_s, ICON_OVERLAY)
 
 	var/datum/sprite_accessory/facial_hair_style = GLOBL.facial_hair_styles_list[H.f_style]
-	if(!isnull(facial_hair_style))
+	if(isnotnull(facial_hair_style))
 		var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 		facial_s.Blend(rgb(H.r_facial, H.g_facial, H.b_facial), ICON_ADD)
 		eyes_s.Blend(facial_s, ICON_OVERLAY)
@@ -485,7 +485,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 			clothes_s = new /icon('icons/mob/on_mob/uniform.dmi', "grey_s")
 			clothes_s.Blend(new /icon('icons/mob/on_mob/feet.dmi', "black"), ICON_UNDERLAY)
 	preview_icon.Blend(eyes_s, ICON_OVERLAY)
-	if(!isnull(clothes_s))
+	if(isnotnull(clothes_s))
 		preview_icon.Blend(clothes_s, ICON_OVERLAY)
 	qdel(eyes_s)
 	qdel(clothes_s)

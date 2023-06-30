@@ -84,7 +84,7 @@
 		if(4)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), SLOT_ID_BACK)
 
-	if(!isnull(H.mind.role_alt_title))
+	if(isnotnull(H.mind.role_alt_title))
 		switch(H.mind.role_alt_title)
 			if("Emergency Physician")
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), SLOT_ID_W_UNIFORM)

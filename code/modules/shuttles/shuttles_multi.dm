@@ -23,7 +23,7 @@
 
 /datum/shuttle/multi_shuttle/New()
 	. = ..()
-	if(!isnull(origin))
+	if(isnotnull(origin))
 		last_departed = origin
 
 /datum/shuttle/multi_shuttle/move(area/origin, area/destination)

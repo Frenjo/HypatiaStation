@@ -56,7 +56,7 @@
 			// Tracking blood
 			var/list/bloodDNA = null
 			var/bloodcolor = ""
-			if(!isnull(H.shoes))
+			if(isnotnull(H.shoes))
 				var/obj/item/clothing/shoes/S = H.shoes
 				if(S.track_blood && S.blood_DNA)
 					bloodDNA = S.blood_DNA

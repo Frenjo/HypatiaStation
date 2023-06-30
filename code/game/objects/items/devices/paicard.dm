@@ -16,7 +16,7 @@
 
 /obj/item/device/paicard/Destroy()
 	//Will stop people throwing friend pAIs into the singularity so they can respawn
-	if(!isnull(pai))
+	if(isnotnull(pai))
 		pai.death(0)
 	return ..()
 

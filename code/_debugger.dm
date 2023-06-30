@@ -9,10 +9,10 @@
 	enable_debugger()
 
 /debugger/proc/enable_debugger()
-	if(!isnull(debug_server))
+	if(isnotnull(debug_server))
 		LIBCALL(debug_server, "auxtools_init")()
 		enable_debugging()
 
 /debugger/proc/shutdown_debugger()
-	if(!isnull(debug_server))
+	if(isnotnull(debug_server))
 		LIBCALL(debug_server, "auxtools_shutdown")()

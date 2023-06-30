@@ -22,7 +22,7 @@
 	return ..()
 
 /obj/item/clothing/gloves/emp_act(severity)
-	if(!isnull(cell))
+	if(isnotnull(cell))
 		//why is this not part of the powercell code?
 		cell.charge -= 1000 / severity
 		if(cell.charge < 0)

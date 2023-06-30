@@ -45,7 +45,7 @@
 		// Will create sparks and print out the console's password. You will then have to wait a while for the console to be back online.
 		// It'll take more time if there's more characters in the password..
 		if(!emag)
-			if(!isnull(src.linkedServer))
+			if(isnotnull(src.linkedServer))
 				icon_state = hack_icon // An error screen I made in the computers.dmi
 				emag = 1
 				screen = 2
@@ -505,8 +505,8 @@
 	spawn(10)
 		if(GLOBL.message_servers)
 			for(var/obj/machinery/message_server/server in GLOBL.message_servers)
-				if(!isnull(server))
-					if(!isnull(server.decryptkey))
+				if(isnotnull(server))
+					if(isnotnull(server.decryptkey))
 						info = "<center><h2>Daily Key Reset</h2></center><br>The new message monitor key is '[server.decryptkey]'.<br>Please keep this a secret and away from the clown.<br>If necessary, change the password to a more secure one."
 						info_links = info
 						overlays += "paper_words"

@@ -66,8 +66,8 @@
 /datum/mind/proc/transfer_to(mob/living/new_character)
 	if(!istype(new_character))
 		world.log << "## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn"
-	if(!isnull(current))			// Remove ourself from our old body's mind variable.
-		if(!isnull(changeling))
+	if(isnotnull(current))			// Remove ourself from our old body's mind variable.
+		if(isnotnull(changeling))
 			current.remove_changeling_powers()
 			current.verbs.Remove(/datum/changeling/proc/EvolutionMenu)
 		current.mind = null
@@ -79,7 +79,7 @@
 	current = new_character		// Link ourself to our new body.
 	new_character.mind = src	// And link our new body to ourself.
 
-	if(!isnull(changeling))
+	if(isnotnull(changeling))
 		new_character.make_changeling()
 
 	if(active)

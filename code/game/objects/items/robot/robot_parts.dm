@@ -84,23 +84,23 @@
 
 /obj/item/robot_parts/robot_suit/proc/updateicon()
 	overlays.Cut()
-	if(!isnull(l_arm))
+	if(isnotnull(l_arm))
 		overlays.Add("l_arm+o")
-	if(!isnull(r_arm))
+	if(isnotnull(r_arm))
 		overlays.Add("r_arm+o")
-	if(!isnull(chest))
+	if(isnotnull(chest))
 		overlays.Add("chest+o")
-	if(!isnull(l_leg))
+	if(isnotnull(l_leg))
 		overlays.Add("l_leg+o")
-	if(!isnull(r_leg))
+	if(isnotnull(r_leg))
 		overlays.Add("r_leg+o")
-	if(!isnull(head))
+	if(isnotnull(head))
 		overlays.Add("head+o")
 
 /obj/item/robot_parts/robot_suit/proc/check_completion()
-	if(!isnull(l_arm) && !isnull(r_arm))
-		if(!isnull(l_leg) && !isnull(r_leg))
-			if(!isnull(chest) && !isnull(head))
+	if(isnotnull(l_arm) && isnotnull(r_arm))
+		if(isnotnull(l_leg) && isnotnull(r_leg))
+			if(isnotnull(chest) && isnotnull(head))
 				feedback_inc("cyborg_frames_built", 1)
 				return TRUE
 	return FALSE
@@ -119,7 +119,7 @@
 		qdel(src)
 
 	if(istype(W, /obj/item/robot_parts/l_leg))
-		if(!isnull(l_leg))
+		if(isnotnull(l_leg))
 			return
 		user.drop_item()
 		W.loc = src
@@ -127,7 +127,7 @@
 		updateicon()
 
 	if(istype(W, /obj/item/robot_parts/r_leg))
-		if(!isnull(r_leg))
+		if(isnotnull(r_leg))
 			return
 		user.drop_item()
 		W.loc = src
@@ -135,7 +135,7 @@
 		updateicon()
 
 	if(istype(W, /obj/item/robot_parts/l_arm))
-		if(!isnull(l_arm))
+		if(isnotnull(l_arm))
 			return
 		user.drop_item()
 		W.loc = src
@@ -143,7 +143,7 @@
 		updateicon()
 
 	if(istype(W, /obj/item/robot_parts/r_arm))
-		if(!isnull(r_arm))
+		if(isnotnull(r_arm))
 			return
 		user.drop_item()
 		W.loc = src
@@ -151,10 +151,10 @@
 		updateicon()
 
 	if(istype(W, /obj/item/robot_parts/chest))
-		if(!isnull(chest))
+		if(isnotnull(chest))
 			return
 		var/obj/item/robot_parts/chest/part_chest = W
-		if(part_chest.wires && !isnull(part_chest.cell))
+		if(part_chest.wires && isnotnull(part_chest.cell))
 			user.drop_item()
 			part_chest.loc = src
 			chest = part_chest
@@ -165,10 +165,10 @@
 			to_chat(user, SPAN_INFO("You need to attach a cell to it first!"))
 
 	if(istype(W, /obj/item/robot_parts/head))
-		if(!isnull(head))
+		if(isnotnull(head))
 			return
 		var/obj/item/robot_parts/head/part_head = W
-		if(!isnull(part_head.flash1) && !isnull(part_head.flash2))
+		if(isnotnull(part_head.flash1) && isnotnull(part_head.flash2))
 			user.drop_item()
 			part_head.loc = src
 			head = part_head
@@ -187,7 +187,7 @@
 				return
 			if(isnull(M.brainmob.key))
 				var/ghost_can_reenter = 0
-				if(!isnull(M.brainmob.mind))
+				if(isnotnull(M.brainmob.mind))
 					for(var/mob/dead/observer/G in GLOBL.player_list)
 						if(G.can_reenter_corpse && G.mind == M.brainmob.mind)
 							ghost_can_reenter = TRUE
@@ -231,7 +231,7 @@
 			W.loc = O//Should fix cybros run time erroring when blown up. It got deleted before, along with the frame.
 
 			// Since we "magically" installed a cell, we also have to update the correct component.
-			if(!isnull(O.cell))
+			if(isnotnull(O.cell))
 				var/datum/robot_component/cell_component = O.components["power cell"]
 				cell_component.wrapped = O.cell
 				cell_component.installed = 1
@@ -255,7 +255,7 @@
 /obj/item/robot_parts/chest/attackby(obj/item/W as obj, mob/user as mob)
 	. = ..()
 	if(istype(W, /obj/item/weapon/cell))
-		if(!isnull(cell))
+		if(isnotnull(cell))
 			to_chat(user, SPAN_INFO("You have already inserted a cell!"))
 			return
 		else
@@ -276,10 +276,10 @@
 /obj/item/robot_parts/head/attackby(obj/item/W as obj, mob/user as mob)
 	. = ..()
 	if(istype(W, /obj/item/device/flash))
-		if(!isnull(flash1) && !isnull(flash2))
+		if(isnotnull(flash1) && isnotnull(flash2))
 			to_chat(user, SPAN_INFO("You have already inserted the eyes!"))
 			return
-		else if(!isnull(flash1))
+		else if(isnotnull(flash1))
 			user.drop_item()
 			W.loc = src
 			flash2 = W

@@ -46,7 +46,7 @@
 			if (src.connected_ai)
 				src.connected_ai = null
 		if (BORG_WIRE_CAMERA)
-			if(!isnull(src.camera) && !scrambledcodes)
+			if(isnotnull(src.camera) && !scrambledcodes)
 				src.camera.status = 0
 				src.camera.deactivate(usr, 0) // Will kick anyone who is watching the Cyborg's camera.
 
@@ -61,7 +61,7 @@
 			if (src.lawupdate == 0 && !src.emagged)
 				src.lawupdate = 1
 		if(BORG_WIRE_CAMERA)
-			if (!isnull(src.camera) && !scrambledcodes)
+			if (isnotnull(src.camera) && !scrambledcodes)
 				src.camera.status = 1
 				src.camera.deactivate(usr, 0) // Will kick anyone who is watching the Cyborg's camera.
 
@@ -80,7 +80,7 @@
 				src.connected_ai = select_active_ai()
 
 		if (BORG_WIRE_CAMERA)
-			if(!isnull(src.camera) && src.camera.status && !scrambledcodes)
+			if(isnotnull(src.camera) && src.camera.status && !scrambledcodes)
 				src.camera.deactivate(usr, 0) // Kick anyone watching the Cyborg's camera, doesn't display you disconnecting the camera.
 				usr << "[src]'s camera lens focuses loudly."
 				src << "Your camera lens focuses loudly."
@@ -108,7 +108,7 @@
 				t1 += "<a href='?src=\ref[src];pulse=[Borgwires[wiredesc]]'>Pulse</a> "
 			t1 += "<br>"
 		t1 += text("<br>\n[(src.lawupdate ? "The LawSync light is on." : "The LawSync light is off.")]<br>\n[(src.connected_ai ? "The AI link light is on." : "The AI link light is off.")]")
-		t1 += text("<br>\n[((!isnull(src.camera) && src.camera.status == 1) ? "The Camera light is on." : "The Camera light is off.")]<br>\n")
+		t1 += text("<br>\n[((isnotnull(src.camera) && src.camera.status == 1) ? "The Camera light is on." : "The Camera light is off.")]<br>\n")
 		t1 += text("<p><a href='?src=\ref[src];close2=1'>Close</a></p>\n")
 		user << browse(t1, "window=borgwires")
 		onclose(user, "borgwires")

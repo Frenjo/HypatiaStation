@@ -46,7 +46,7 @@
 	var/list/temp_list = modules
 	modules = list()
 	for(var/obj/O in temp_list)
-		if(!isnull(O))
+		if(isnotnull(O))
 			modules.Add(O)
 
 /obj/item/weapon/robot_module/proc/add_languages(mob/living/silicon/robot/R)
@@ -148,7 +148,7 @@
 	)
 	for(var/T in stacks)
 		var/O = locate(T) in modules
-		if(!isnull(O))
+		if(isnotnull(O))
 			if(O:amount < 50)
 				O:amount++
 		else

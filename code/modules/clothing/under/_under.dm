@@ -21,7 +21,7 @@
 	var/displays_id = 1
 
 /obj/item/clothing/under/attackby(obj/item/I, mob/user)
-	if(!isnull(hastie))
+	if(isnotnull(hastie))
 		hastie.attackby(I, user)
 		return
 
@@ -39,7 +39,7 @@
 
 /obj/item/clothing/under/attack_hand(mob/user as mob)
 	// Only forward to the attached accessory if the clothing is equipped (not in a storage).
-	if(!isnull(hastie) && loc == user)
+	if(isnotnull(hastie) && loc == user)
 		hastie.attack_hand(user)
 		return
 	..()
@@ -74,7 +74,7 @@
 			to_chat(usr, "Its vital tracker appears to be enabled.")
 		if(3)
 			to_chat(usr, "Its vital tracker and tracking beacon appear to be enabled.")
-	if(!isnull(hastie))
+	if(isnotnull(hastie))
 		to_chat(usr, "\A [hastie] is clipped to it.")
 
 /obj/item/clothing/under/verb/toggle()

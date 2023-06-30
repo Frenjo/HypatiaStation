@@ -385,7 +385,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	burnt = 0
 	intact = 1
 	set_light(0)
-	if(!isnull(T))
+	if(isnotnull(T))
 		if(istype(T, /obj/item/stack/tile/plasteel))
 			floor_type = T.type
 			if(icon_regular_floor)
@@ -411,7 +411,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	broken = 0
 	burnt = 0
 	intact = 1
-	if(!isnull(T))
+	if(isnotnull(T))
 		if(istype(T, /obj/item/stack/tile/light))
 			floor_type = T.type
 			update_icon()
@@ -429,7 +429,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	broken = 0
 	burnt = 0
 	intact = 1
-	if(!isnull(T))
+	if(isnotnull(T))
 		if(istype(T, /obj/item/stack/tile/grass))
 			floor_type = T.type
 			update_icon()
@@ -447,7 +447,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	broken = 0
 	burnt = 0
 	intact = 1
-	if(!isnull(T))
+	if(isnotnull(T))
 		if(istype(T, /obj/item/stack/tile/wood))
 			floor_type = T.type
 			update_icon()
@@ -465,7 +465,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	broken = 0
 	burnt = 0
 	intact = 1
-	if(!isnull(T))
+	if(isnotnull(T))
 		if(istype(T, /obj/item/stack/tile/carpet))
 			floor_type = T.type
 			update_icon()

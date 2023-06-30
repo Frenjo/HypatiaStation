@@ -156,21 +156,21 @@
 		var/mouth_covered = 0
 		var/eyes_covered = 0
 		var/obj/item/safe_thing = null
-		if(!isnull(victim.wear_mask))
+		if(isnotnull(victim.wear_mask))
 			if(victim.wear_mask.flags & MASKCOVERSEYES)
 				eyes_covered = TRUE
 				safe_thing = victim.wear_mask
 			if(victim.wear_mask.flags & MASKCOVERSMOUTH)
 				mouth_covered = TRUE
 				safe_thing = victim.wear_mask
-		if(!isnull(victim.head))
+		if(isnotnull(victim.head))
 			if(victim.head.flags & MASKCOVERSEYES)
 				eyes_covered = TRUE
 				safe_thing = victim.head
 			if(victim.head.flags & MASKCOVERSMOUTH)
 				mouth_covered = TRUE
 				safe_thing = victim.head
-		if(!isnull(victim.glasses))
+		if(isnotnull(victim.glasses))
 			eyes_covered = TRUE
 			if(isnull(safe_thing))
 				safe_thing = victim.glasses
@@ -367,7 +367,7 @@
 		if(T.wet >= 1)
 			return
 		T.wet = 1
-		if(!isnull(T.wet_overlay))
+		if(isnotnull(T.wet_overlay))
 			T.overlays.Remove(T.wet_overlay)
 			T.wet_overlay = null
 		T.wet_overlay = image('icons/effects/water.dmi', T, "wet_floor")
@@ -379,11 +379,11 @@
 			if(T.wet >= 2)
 				return
 			T.wet = 0
-			if(!isnull(T.wet_overlay))
+			if(isnotnull(T.wet_overlay))
 				T.overlays.Remove(T.wet_overlay)
 				T.wet_overlay = null
 	var/obj/fire/hotspot = locate(/obj/fire) in T
-	if(!isnull(hotspot))
+	if(isnotnull(hotspot))
 		var/datum/gas_mixture/lowertemp = T.remove_air(T.air.total_moles)
 		lowertemp.temperature = max(min(lowertemp.temperature - 2000, lowertemp.temperature / 2), 0)
 		lowertemp.react()

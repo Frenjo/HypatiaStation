@@ -52,7 +52,7 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 		CRASH("GC: -- [type] had initialize() called after qdel() --")
 
 /atom/Del()
-	if(!GC_DESTROYED(src) && !isnull(loc))
+	if(!GC_DESTROYED(src) && isnotnull(loc))
 		testing("GC: -- [type] was deleted via del() rather than qdel() --")
 		Destroy()
 	else if(!GC_DESTROYED(src))
@@ -68,7 +68,7 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 	invisibility = INVISIBILITY_MAXIMUM
 	set_opacity(0)
 
-	if(!isnull(reagents))
+	if(isnotnull(reagents))
 		qdel(reagents)
 		reagents = null
 	for(var/atom/movable/mover in contents)
@@ -229,7 +229,7 @@ Maxdistance is the longest range the beam will persist before it gives up.
 		return
 	if(isnull(M.key))
 		return
-	
+
 	// Add the list if it does not exist.
 	if(isnull(hidden_fingerprints))
 		hidden_fingerprints = list()
@@ -238,7 +238,7 @@ Maxdistance is the longest range the beam will persist before it gives up.
 		var/mob/living/carbon/human/H = M
 		if(!istype(H.dna, /datum/dna))
 			return 0
-		if(!isnull(H.gloves))
+		if(isnotnull(H.gloves))
 			if(last_fingerprints != H.key)
 				hidden_fingerprints.Add("\[[time_stamp()]\] (Wearing gloves). Real name: [H.real_name], Key: [H.key]")
 				last_fingerprints = H.key
@@ -285,7 +285,7 @@ Maxdistance is the longest range the beam will persist before it gives up.
 		H.check_dna()
 
 		// Now, deal with gloves.
-		if(!isnull(H.gloves) && H.gloves != src)
+		if(isnotnull(H.gloves) && H.gloves != src)
 			if(last_fingerprints != H.key)
 				hidden_fingerprints.Add("\[[time_stamp()]\](Wearing gloves). Real name: [H.real_name], Key: [H.key]")
 				last_fingerprints = H.key
@@ -353,7 +353,7 @@ Maxdistance is the longest range the beam will persist before it gives up.
 			last_fingerprints = M.key
 
 	//Cleaning up shit.
-	if(!isnull(fingerprints) && !length(fingerprints))
+	if(isnotnull(fingerprints) && !length(fingerprints))
 		qdel(fingerprints)
 
 /atom/proc/transfer_fingerprints_to(atom/A)
@@ -365,9 +365,9 @@ Maxdistance is the longest range the beam will persist before it gives up.
 	//skytodo
 	//A.fingerprints |= fingerprints			//detective
 	//A.fingerprintshidden |= fingerprintshidden	//admin
-	if(!isnull(fingerprints))
+	if(isnotnull(fingerprints))
 		A.fingerprints |= fingerprints.Copy()			//detective
-	if(!isnull(hidden_fingerprints))
+	if(isnotnull(hidden_fingerprints))
 		A.hidden_fingerprints |= hidden_fingerprints.Copy()	//admin	A.fingerprintslast = fingerprintslast
 
 // Returns TRUE if made bloody, returns FALSE otherwise.

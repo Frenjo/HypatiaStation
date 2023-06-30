@@ -174,7 +174,7 @@ PROCESS_DEF(garbage)
 	if(isnull(usr) || isnull(usr.client))
 		return
 
-	if(!isnull(usr.client.running_find_references))
+	if(isnotnull(usr.client.running_find_references))
 		testing("CANCELLED search for references to a [usr.client.running_find_references].")
 		usr.client.running_find_references = null
 		return

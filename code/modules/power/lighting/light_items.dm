@@ -91,7 +91,7 @@
 
 /obj/item/weapon/light/New(atom/newloc, obj/machinery/light/fixture = null)
 	. = ..()
-	if(!isnull(fixture))
+	if(isnotnull(fixture))
 		status = fixture.status
 		rigged = fixture.rigged
 		switchcount = fixture.switchcount

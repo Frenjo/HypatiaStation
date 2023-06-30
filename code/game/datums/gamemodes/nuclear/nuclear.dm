@@ -342,7 +342,7 @@
 	var/text = "<FONT size = 2><B>The syndicate operatives were:</B></FONT>"
 	for(var/datum/mind/syndicate in syndicates)
 		text += "<br>[syndicate.key] was [syndicate.name] ("
-		if(!isnull(syndicate.current))
+		if(isnotnull(syndicate.current))
 			if(syndicate.current.stat == DEAD)
 				text += "died"
 			else

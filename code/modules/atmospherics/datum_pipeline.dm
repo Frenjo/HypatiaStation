@@ -9,7 +9,7 @@
 	var/alert_pressure = 0
 
 /datum/pipeline/Destroy()
-	if(!isnull(network))
+	if(isnotnull(network))
 		qdel(network)
 
 	if(air?.volume)
@@ -48,7 +48,7 @@
 	base.parent = src
 	alert_pressure = base.alert_pressure
 
-	if(!isnull(base.air_temporary))
+	if(isnotnull(base.air_temporary))
 		air = base.air_temporary
 		base.air_temporary = null
 	else
@@ -70,7 +70,7 @@
 
 						alert_pressure = min(alert_pressure, item.alert_pressure)
 
-						if(!isnull(item.air_temporary))
+						if(isnotnull(item.air_temporary))
 							air.merge(item.air_temporary)
 
 					edge_check--
@@ -110,7 +110,7 @@
 	var/datum/gas_mixture/air_sample = air.remove_ratio(mingle_volume / air.volume)
 	air_sample.volume = mingle_volume
 
-	if(!isnull(target?.zone))
+	if(isnotnull(target?.zone))
 		//Have to consider preservation of group statuses
 		var/datum/gas_mixture/turf_copy = new /datum/gas_mixture()
 
@@ -131,7 +131,7 @@
 		air.merge(air_sample)
 		//turf_air already modified by equalize_gases()
 
-	if(!isnull(network))
+	if(isnotnull(network))
 		network.update = TRUE
 
 /datum/pipeline/proc/temperature_interact(turf/target, share_volume, thermal_conductivity)
@@ -155,7 +155,7 @@
 			var/delta_temperature = 0
 			var/sharer_heat_capacity = 0
 
-			if(!isnull(modeled_location.zone))
+			if(isnotnull(modeled_location.zone))
 				delta_temperature = (air.temperature - modeled_location.zone.air.temperature)
 				sharer_heat_capacity = modeled_location.zone.air.heat_capacity()
 			else
@@ -176,7 +176,7 @@
 
 			air.temperature += self_temperature_delta
 
-			if(!isnull(modeled_location.zone))
+			if(isnotnull(modeled_location.zone))
 				modeled_location.zone.air.temperature += sharer_temperature_delta / modeled_location.zone.air.group_multiplier
 			else
 				modeled_location.air.temperature += sharer_temperature_delta
@@ -189,7 +189,7 @@
 				(partial_heat_capacity * target.heat_capacity / (partial_heat_capacity + target.heat_capacity))
 
 			air.temperature -= heat / total_heat_capacity
-	if(!isnull(network))
+	if(isnotnull(network))
 		network.update = TRUE
 
 // Ported from Baystation12 on 27/11/2019. -Frenjo
@@ -202,5 +202,5 @@
 
 	air.add_thermal_energy(heat_gain)
 
-	if(!isnull(network))
+	if(isnotnull(network))
 		network.update = TRUE

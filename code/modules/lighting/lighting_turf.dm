@@ -25,7 +25,7 @@
 		L.vis_update()
 
 /turf/proc/lighting_clear_overlay()
-	if(!isnull(lighting_overlay))
+	if(isnotnull(lighting_overlay))
 		qdel(lighting_overlay)
 
 	for(var/datum/lighting_corner/C in corners)
@@ -33,7 +33,7 @@
 
 // Builds a lighting overlay for us, but only if our area is dynamic.
 /turf/proc/lighting_build_overlay()
-	if(!isnull(lighting_overlay))
+	if(isnotnull(lighting_overlay))
 		return
 
 	var/area/A = loc
@@ -100,7 +100,7 @@
 		corners = list(null, null, null, null)
 
 	for(var/i = 1 to 4)
-		if(!isnull(corners[i])) // Already have a corner on this direction.
+		if(isnotnull(corners[i])) // Already have a corner on this direction.
 			continue
 
 		corners[i] = new /datum/lighting_corner(src, global.lighting_corner_diagonal[i])

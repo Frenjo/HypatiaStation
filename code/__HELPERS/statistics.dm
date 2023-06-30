@@ -3,7 +3,7 @@
 		return
 	var/playercount = 0
 	for(var/mob/M in GLOBL.player_list)
-		if(!isnull(M.client))
+		if(isnotnull(M.client))
 			playercount++
 	establish_db_connection()
 	if(!GLOBL.dbcon.IsConnected())

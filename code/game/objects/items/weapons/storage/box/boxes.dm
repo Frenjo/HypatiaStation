@@ -34,7 +34,7 @@
 /obj/item/weapon/storage/box/New()
 	. = ..()
 	// Spawns the items in the starts_with list.
-	if(!isnull(starts_with))
+	if(isnotnull(starts_with))
 		for(var/type in starts_with)
 			new type(src)
 

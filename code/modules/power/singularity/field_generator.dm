@@ -285,7 +285,7 @@ field_generator power level display
 					return 0
 		steps += 1
 		G = locate(/obj/machinery/field_generator) in T
-		if(!isnull(G))
+		if(isnotnull(G))
 			steps -= 1
 			if(!G.active)
 				return 0

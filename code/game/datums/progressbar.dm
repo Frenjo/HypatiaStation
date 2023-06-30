@@ -17,11 +17,11 @@
 	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	bar.pixel_y = 32
 	src.user = user
-	if(!isnull(user))
+	if(isnotnull(user))
 		client = user.client
 
 /datum/progressbar/Destroy()
-	if(!isnull(client))
+	if(isnotnull(client))
 		client.images -= bar
 	qdel(bar)
 	return ..()
@@ -31,9 +31,9 @@
 		shown = FALSE
 		return
 	if(user.client != client)
-		if(!isnull(client))
+		if(isnotnull(client))
 			client.images.Remove(bar)
-		if(!isnull(user.client))
+		if(isnotnull(user.client))
 			user.client.images.Add(bar)
 
 	progress = clamp(progress, 0, goal)

@@ -34,7 +34,7 @@ Des: Gives the client of the alien an image on each infected mob.
 ----------------------------------------
 */
 /mob/living/carbon/human/proc/AddInfectionImages()
-	if(!isnull(client))
+	if(isnotnull(client))
 		for(var/mob/living/C in GLOBL.mob_list)
 			if(C.status_flags & XENO_HOST)
 				var/obj/item/alien_embryo/A = locate() in C
@@ -47,7 +47,7 @@ Des: Removes all infected images from the alien.
 ----------------------------------------
 */
 /mob/living/carbon/human/proc/RemoveInfectionImages()
-	if(!isnull(client))
+	if(isnotnull(client))
 		for(var/image/I in client.images)
 			if(dd_hasprefix_case(I.icon_state, "infected"))
 				qdel(I)

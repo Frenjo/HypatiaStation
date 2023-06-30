@@ -445,7 +445,7 @@ var/bomb_set
 				nuclear.syndies_didnt_escape = (syndie_location.z > 1 ? 0 : 1)	//muskets will make me change this, but it will do for now
 			nuclear.nuke_off_station = off_station
 		global.CTgame_ticker.station_explosion_cinematic(off_station, null)
-		if(!isnull(global.CTgame_ticker.mode))
+		if(isnotnull(global.CTgame_ticker.mode))
 			global.CTgame_ticker.mode.explosion_in_progress = 0
 			if(IS_GAME_MODE(/datum/game_mode/nuclear))
 				var/datum/game_mode/nuclear/nuclear = global.CTgame_ticker.mode

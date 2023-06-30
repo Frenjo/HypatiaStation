@@ -29,7 +29,7 @@
 	if(isnull(ui)) // no ui has been passed, so we'll search for one
 		ui = get_open_ui(user, src_object, ui_key)
 
-	if(!isnull(ui))
+	if(isnotnull(ui))
 		// The UI is already open so push the data to it
 		ui.push_data(data)
 		return ui
@@ -75,7 +75,7 @@
 		for(var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
 			if(isnull(ui))
 				continue
-			if(!isnull(ui.src_object) && !isnull(ui.user))
+			if(isnotnull(ui.src_object) && isnotnull(ui.user))
 				ui.process(1)
 				update_count++
 	return update_count
@@ -95,7 +95,7 @@
 
 	var/update_count = 0
 	for(var/datum/nanoui/ui in user.open_uis)
-		if((isnull(src_object) || (!isnull(src_object) && ui.src_object == src_object)) && (isnull(ui_key) || (!isnull(ui_key) && ui.ui_key == ui_key)))
+		if((isnull(src_object) || (isnotnull(src_object) && ui.src_object == src_object)) && (isnull(ui_key) || (isnotnull(ui_key) && ui.ui_key == ui_key)))
 			ui.process(TRUE)
 			update_count++
 
@@ -116,7 +116,7 @@
 
 	var/close_count = 0
 	for(var/datum/nanoui/ui in user.open_uis)
-		if((isnull(src_object) || (!isnull(src_object) && ui.src_object == src_object)) && (isnull(ui_key) || (!isnull(ui_key) && ui.ui_key == ui_key)))
+		if((isnull(src_object) || (isnotnull(src_object) && ui.src_object == src_object)) && (isnull(ui_key) || (isnotnull(ui_key) && ui.ui_key == ui_key)))
 			ui.close()
 			close_count++
 

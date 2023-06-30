@@ -13,7 +13,7 @@
 
 /obj/machinery/light_construct/New(atom/newloc, obj/machinery/light/fixture = null)
 	. = ..(newloc)
-	if(!isnull(fixture))
+	if(isnotnull(fixture))
 		fixture_type = fixture.type
 		fixture.transfer_fingerprints_to(src)
 		set_dir(fixture.dir)

@@ -35,7 +35,7 @@
 
 	user.u_equip(src)
 
-	if(!isnull(O))
+	if(isnotnull(O))
 		user.put_in_hands(O)
 		O.add_fingerprint(user)
 

@@ -94,7 +94,7 @@
 		log_query.Execute()
 		to_chat(usr, SPAN_INFO("New admin added."))
 	else
-		if(!isnull(admin_id) && isnum(admin_id))
+		if(isnotnull(admin_id) && isnum(admin_id))
 			var/DBQuery/insert_query = GLOBL.dbcon.NewQuery("UPDATE `erro_admin` SET rank = '[new_rank]' WHERE id = [admin_id]")
 			insert_query.Execute()
 			var/DBQuery/log_query = GLOBL.dbcon.NewQuery("INSERT INTO `test`.`erro_admin_log` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , '[usr.ckey]', '[usr.client.address]', 'Edited the rank of [adm_ckey] to [new_rank]');")

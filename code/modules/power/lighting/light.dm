@@ -57,7 +57,7 @@
 // create a new lighting fixture
 /obj/machinery/light/New(atom/newloc, obj/machinery/light_construct/construct = null)
 	. = ..(newloc)
-	if(!isnull(construct))
+	if(isnotnull(construct))
 		status = LIGHT_EMPTY
 		construct_type = construct.type
 		construct.transfer_fingerprints_to(src)
@@ -75,7 +75,7 @@
 
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
-	if(!isnull(A))
+	if(isnotnull(A))
 		on = FALSE
 	return ..()
 
@@ -97,7 +97,7 @@
 // examine verb
 /obj/machinery/light/examine()
 	var/fitting = get_fitting_name()
-	if(!isnull(usr) && !usr.stat)
+	if(isnotnull(usr) && !usr.stat)
 		switch(status)
 			if(LIGHT_OK)
 				to_chat(usr, "[desc] It is turned [on? "on" : "off"].")
@@ -175,7 +175,7 @@
 // true if area has power and lightswitch is on
 /obj/machinery/light/powered()
 	var/area/A = get_area(src)
-	return !isnull(A) && A.lightswitch && ..(power_channel)
+	return isnotnull(A) && A.lightswitch && ..(power_channel)
 
 // ai attack - make lights flicker, because why not
 /obj/machinery/light/attack_ai(mob/user)
@@ -211,7 +211,7 @@
 
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			if(!isnull(H.gloves))
+			if(isnotnull(H.gloves))
 				var/obj/item/clothing/gloves/G = H.gloves
 				if(G.max_heat_protection_temperature)
 					prot = (G.max_heat_protection_temperature > 360)
@@ -281,7 +281,7 @@
 	if(on)
 		use_power = 2
 		var/changed = 0
-		if(!isnull(current_mode) && (current_mode in lighting_modes))
+		if(isnotnull(current_mode) && (current_mode in lighting_modes))
 			changed = set_light(arglist(lighting_modes[current_mode]))
 		else
 			changed = set_light(brightness_range, brightness_power, brightness_color)

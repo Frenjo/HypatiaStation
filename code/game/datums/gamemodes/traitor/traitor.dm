@@ -183,7 +183,7 @@
 	for(var/datum/mind/traitor in traitors)
 		var/traitorwin = TRUE
 		text += "<br>[traitor.key] was [traitor.name] ("
-		if(!isnull(traitor.current))
+		if(isnotnull(traitor.current))
 			if(traitor.current.stat == DEAD)
 				text += "died"
 			else

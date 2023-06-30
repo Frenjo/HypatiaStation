@@ -24,10 +24,10 @@
 	if(hungry >= 70)
 		tally += hungry / 50
 
-	if(!isnull(wear_suit))
+	if(isnotnull(wear_suit))
 		tally += wear_suit.slowdown
 
-	if(!isnull(shoes))
+	if(isnotnull(shoes))
 		tally += shoes.slowdown
 
 	for(var/organ_name in list("l_foot", "r_foot", "l_leg", "r_leg"))

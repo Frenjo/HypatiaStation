@@ -135,7 +135,7 @@
 		if(isnull(new_objective))
 			return
 
-		if(!isnull(objective))
+		if(isnotnull(objective))
 			objectives.Remove(objective)
 			objectives.Insert(objective_pos, new_objective)
 		else
@@ -241,7 +241,7 @@
 				if(length(global.CTgame_ticker.mode.head_revolutionaries))
 					// copy targets
 					var/datum/mind/valid_head = locate() in global.CTgame_ticker.mode.head_revolutionaries
-					if(!isnull(valid_head))
+					if(isnotnull(valid_head))
 						for(var/datum/objective/mutiny/O in valid_head.objectives)
 							var/datum/objective/mutiny/rev_obj = new /datum/objective/mutiny()
 							rev_obj.owner = src
@@ -378,7 +378,7 @@
 					special_role = null
 					current.remove_changeling_powers()
 					current.verbs.Remove(/datum/changeling/proc/EvolutionMenu)
-					if(!isnull(changeling))
+					if(isnotnull(changeling))
 						qdel(changeling)
 					to_chat(current, SPAN_DANGER("<font size=3>You grow weak and lose your powers! You are no longer a changeling and are stuck in your current form!</font>"))
 					log_admin("[key_name_admin(usr)] has de-changeling'ed [current].")
@@ -599,7 +599,7 @@
 					var/mob/living/silicon/ai/ai = current
 					for(var/mob/living/silicon/robot/R in ai.connected_robots)
 						R.emagged = FALSE
-						if(!isnull(R.module))
+						if(isnotnull(R.module))
 							if(R.activated(R.module.emag))
 								R.module_active = null
 							if(R.module_state_1 == R.module.emag)
@@ -626,7 +626,7 @@
 					var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink()
 					var/crystals = suplink?.uses
 					crystals = input("Amount of telecrystals for [key]", "Syndicate uplink", crystals) as null | num
-					if(!isnull(crystals))
+					if(isnotnull(crystals))
 						suplink?.uses = crystals
 			if("uplink")
 				if(!global.CTgame_ticker.mode.equip_traitor(current, !(src in global.CTgame_ticker.mode.traitors)))

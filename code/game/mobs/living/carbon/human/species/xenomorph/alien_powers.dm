@@ -1,6 +1,6 @@
 /proc/alien_queen_exists(ignore_self, mob/living/carbon/human/self)
 	for(var/mob/living/carbon/human/Q in GLOBL.living_mob_list)
-		if(!isnull(self) && ignore_self && self == Q)
+		if(isnotnull(self) && ignore_self && self == Q)
 			continue
 		if(Q.species.name != SPECIES_XENOMORPH_QUEEN)
 			continue
@@ -40,7 +40,7 @@
 	if(needs_foundation)
 		var/turf/T = get_turf(src)
 		var/has_foundation
-		if(!isnull(T))
+		if(isnotnull(T))
 			//TODO: Work out the actual conditions this needs.
 			if(!isspace(T))
 				has_foundation = 1
