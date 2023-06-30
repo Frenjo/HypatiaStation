@@ -21,11 +21,8 @@
 
 		on = FALSE
 
-	return
-
 /obj/machinery/atmospherics/unary/oxygen_generator/New()
-	..()
-
+	. = ..()
 	air_contents.volume = 50
 
 /obj/machinery/atmospherics/unary/oxygen_generator/process()
@@ -43,7 +40,7 @@
 		air_contents.temperature = (current_heat_capacity * air_contents.temperature + 20 * added_oxygen * T0C) / (current_heat_capacity + 20 * added_oxygen)
 		air_contents.adjust_gas(/decl/xgm_gas/oxygen, added_oxygen)
 
-		if(network)
+		if(isnotnull(network))
 			network.update = TRUE
 
 	return 1

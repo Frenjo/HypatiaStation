@@ -22,7 +22,7 @@
 
 /obj/machinery/atmospherics/pipe/vent/New()
 	initialize_directions = dir
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/pipe/vent/atmos_initialise()
 	var/connect_direction = dir
@@ -35,12 +35,12 @@
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/vent/Destroy()
-	if(node1)
+	if(isnotnull(node1))
 		node1.disconnect(src)
 	return ..()
 
 /obj/machinery/atmospherics/pipe/vent/process()
-	if(!parent)
+	if(isnull(parent))
 		if(build_killswitch <= 0)
 			. = PROCESS_KILL
 		else
@@ -62,7 +62,7 @@
 	return list(node1)
 
 /obj/machinery/atmospherics/pipe/vent/update_icon()
-	if(node1)
+	if(isnotnull(node1))
 		icon_state = "intact"
 		dir = get_dir(src, node1)
 	else
@@ -78,7 +78,7 @@
 	return null
 
 /obj/machinery/atmospherics/pipe/vent/hide(i) //to make the little pipe section invisible, the icon changes.
-	if(node1)
+	if(isnotnull(node1))
 		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]intact"
 		dir = get_dir(src, node1)
 	else

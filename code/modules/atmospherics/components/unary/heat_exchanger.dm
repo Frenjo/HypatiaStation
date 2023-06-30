@@ -15,10 +15,9 @@
 	else
 		icon_state = "exposed"
 
-	return
-
 /obj/machinery/atmospherics/unary/heat_exchanger/atmos_initialise()
-	if(!partner)
+	. = ..()
+	if(isnull(partner))
 		var/partner_connect = turn(dir, 180)
 
 		for(var/obj/machinery/atmospherics/unary/heat_exchanger/target in get_step(src, partner_connect))
@@ -27,11 +26,9 @@
 				partner.partner = src
 				break
 
-	..()
-
 /obj/machinery/atmospherics/unary/heat_exchanger/process()
 	..()
-	if(!partner)
+	if(isnull(partner))
 		return 0
 
 	if(!global.CTair_system || global.CTair_system.current_cycle <= update_cycle)
@@ -54,12 +51,12 @@
 		air_contents.temperature = new_temperature
 		partner.air_contents.temperature = new_temperature
 
-	if(network)
+	if(isnotnull(network))
 		if(abs(old_temperature - air_contents.temperature) > 1)
 			network.update = TRUE
 
-	if(partner.network)
-		if(abs(other_old_temperature-partner.air_contents.temperature) > 1)
+	if(isnotnull(partner.network))
+		if(abs(other_old_temperature - partner.air_contents.temperature) > 1)
 			partner.network.update = TRUE
 
 	return 1
@@ -67,7 +64,7 @@
 /obj/machinery/atmospherics/unary/heat_exchanger/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
-	var/turf/T = src.loc
+	var/turf/T = loc
 	if(level == 1 && isturf(T) && T.intact)
 		to_chat(user, SPAN_WARNING("You must remove the plating first."))
 		return 1
@@ -87,5 +84,5 @@
 			SPAN_INFO("You have unfastened \the [src]."),
 			"You hear a ratchet."
 		)
-		new /obj/item/pipe(loc, make_from=src)
+		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)

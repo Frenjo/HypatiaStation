@@ -14,7 +14,7 @@
 
 // BubbleWrap
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/New()
-	..()
+	. = ..()
 	initialize_directions_he = initialize_directions	// The auto-detection from /pipe is good enough for a simple HE pipe
 // BubbleWrap END
 
@@ -25,7 +25,7 @@
 	var/node1_dir
 	var/node2_dir
 	for(var/direction in GLOBL.cardinal)
-		if(direction&initialize_directions_he)
+		if(direction & initialize_directions_he)
 			if(!node1_dir)
 				node1_dir = direction
 			else if(!node2_dir)
@@ -40,7 +40,6 @@
 			node2 = target
 			break
 	update_icon()
-	return
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/process()
 	if(!parent)
@@ -48,8 +47,9 @@
 	else
 		var/environment_temperature = 0
 		if(istype(loc, /turf/simulated))
-			if(loc:blocks_air)
-				environment_temperature = loc:temperature
+			var/turf/simulated/T = loc
+			if(T.blocks_air)
+				environment_temperature = T.temperature
 			else
 				var/datum/gas_mixture/environment = loc.return_air()
 				environment_temperature = environment.temperature
@@ -90,7 +90,7 @@
 
 // BubbleWrap
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/New()
-	..()
+	. = ..()
 	switch(dir)
 		if(SOUTH)
 			initialize_directions = NORTH
@@ -119,17 +119,17 @@
 			break
 
 	update_icon()
-	return
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/process()
 	..()
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/update_icon()
-	if(node1&&node2)
+	if(isnotnull(node1) && isnotnull(node2))
 		icon_state = "intact"
 	else
-		var/have_node1 = node1 ? 1 : 0
-		var/have_node2 = node2 ? 1 : 0
+		var/have_node1 = isnotnull(node1)
+		var/have_node2 = isnotnull(node2)
 		icon_state = "exposed[have_node1][have_node2]"
-	if(!node1&&!node2)
+
+	if(isnull(node1) && isnull(node2))
 		qdel(src)

@@ -7,7 +7,7 @@
 	var/list/nodes = list()
 
 /obj/machinery/atmospherics/pipe/mains_component/New(loc)
-	..(loc)
+	. = ..(loc)
 	parent_pipe = loc
 
 /obj/machinery/atmospherics/pipe/mains_component/Destroy()
@@ -61,7 +61,7 @@
 	var/alert_pressure = 55 * ONE_ATMOSPHERE
 
 /obj/machinery/atmospherics/mains_pipe/New()
-	..()
+	. = ..()
 
 	supply = new /obj/machinery/atmospherics/pipe/mains_component(src)
 	supply.volume = volume
@@ -76,21 +76,21 @@
 	aux.nodes.len = length(nodes)
 
 /obj/machinery/atmospherics/mains_pipe/atmos_initialise()
-	..()
+	. = ..()
 	for(var/i = 1 to length(nodes))
 		var/obj/machinery/atmospherics/mains_pipe/node = nodes[i]
-		if(node)
+		if(isnotnull(node))
 			supply.nodes[i] = node.supply
 			scrubbers.nodes[i] = node.scrubbers
 			aux.nodes[i] = node.aux
 
 /obj/machinery/atmospherics/mains_pipe/Destroy()
 	disconnect()
-	if(supply)
+	if(isnotnull(supply))
 		qdel(supply)
-	if(scrubbers)
+	if(isnotnull(scrubbers))
 		qdel(scrubbers)
-	if(aux)
+	if(isnotnull(aux))
 		qdel(aux)
 	return ..()
 
@@ -131,7 +131,7 @@
 
 /obj/machinery/atmospherics/mains_pipe/simple/New()
 	nodes.len = 2
-	..()
+	. = ..()
 	switch(dir)
 		if(SOUTH, NORTH)
 			initialize_mains_directions = SOUTH|NORTH
@@ -169,7 +169,7 @@
 
 	..() // initialize internal pipes
 
-	var/turf/T = src.loc			// hide if turf is not intact
+	var/turf/T = loc			// hide if turf is not intact
 	hide(T.intact)
 	update_icon()
 
@@ -213,7 +213,7 @@
 
 /obj/machinery/atmospherics/mains_pipe/manifold/New()
 	nodes.len = 3
-	..()
+	. = ..()
 	initialize_mains_directions = (NORTH|SOUTH|EAST|WEST) & ~dir
 
 /obj/machinery/atmospherics/mains_pipe/manifold/atmos_initialise()
@@ -251,7 +251,7 @@
 
 	..() // initialize internal pipes
 
-	var/turf/T = src.loc			// hide if turf is not intact
+	var/turf/T = loc			// hide if turf is not intact
 	hide(T.intact)
 	update_icon()
 
@@ -276,7 +276,7 @@
 
 /obj/machinery/atmospherics/mains_pipe/manifold4w/New()
 	nodes.len = 4
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/mains_pipe/manifold4w/atmos_initialise()
 	for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, NORTH))
@@ -301,7 +301,7 @@
 
 	..() // initialize internal pipes
 
-	var/turf/T = src.loc			// hide if turf is not intact
+	var/turf/T = loc			// hide if turf is not intact
 	hide(T.intact)
 	update_icon()
 
@@ -327,7 +327,7 @@
 
 /obj/machinery/atmospherics/mains_pipe/split/New()
 	nodes.len = 2
-	..()
+	. = ..()
 	initialize_mains_directions = turn(dir, 90) | turn(dir, -90)
 	initialize_directions = dir // actually have a normal connection too
 
@@ -359,7 +359,7 @@
 			if(N1 && N2)
 				N1.merge(N2)
 
-	var/turf/T = src.loc			// hide if turf is not intact
+	var/turf/T = loc			// hide if turf is not intact
 	hide(T.intact)
 	update_icon()
 
@@ -375,7 +375,7 @@
 	icon_type = "supply"
 
 /obj/machinery/atmospherics/mains_pipe/split/supply/New()
-	..()
+	. = ..()
 	split_node = supply
 
 /obj/machinery/atmospherics/mains_pipe/split/supply/hidden
@@ -392,7 +392,7 @@
 	icon_type = "scrubbers"
 
 /obj/machinery/atmospherics/mains_pipe/split/scrubbers/New()
-	..()
+	. = ..()
 	split_node = scrubbers
 
 /obj/machinery/atmospherics/mains_pipe/split/scrubbers/hidden
@@ -409,7 +409,7 @@
 	icon_type = "aux"
 
 /obj/machinery/atmospherics/mains_pipe/split/aux/New()
-	..()
+	. = ..()
 	split_node = aux
 
 /obj/machinery/atmospherics/mains_pipe/split/aux/hidden
@@ -431,7 +431,7 @@
 
 /obj/machinery/atmospherics/mains_pipe/split3/New()
 	nodes.len = 1
-	..()
+	. = ..()
 	initialize_mains_directions = dir
 	initialize_directions = GLOBL.cardinal & ~dir // actually have a normal connection too
 
@@ -469,23 +469,23 @@
 
 	// bind them
 	spawn(5)
-		if(supply_node)
+		if(isnotnull(supply_node))
 			var/datum/pipe_network/N1 = supply_node.return_network(src)
 			var/datum/pipe_network/N2 = supply.return_network(supply)
-			if(N1 && N2)
+			if(isnotnull(N1) && isnotnull(N2))
 				N1.merge(N2)
-		if(scrubbers_node)
+		if(isnotnull(scrubbers_node))
 			var/datum/pipe_network/N1 = scrubbers_node.return_network(src)
 			var/datum/pipe_network/N2 = scrubbers.return_network(scrubbers)
-			if(N1 && N2)
+			if(isnotnull(N1) && isnotnull(N2))
 				N1.merge(N2)
-		if(aux_node)
+		if(isnotnull(aux_node))
 			var/datum/pipe_network/N1 = aux_node.return_network(src)
 			var/datum/pipe_network/N2 = aux.return_network(aux)
-			if(N1 && N2)
+			if(isnotnull(N1) && isnotnull(N2))
 				N1.merge(N2)
 
-	var/turf/T = src.loc			// hide if turf is not intact
+	var/turf/T = loc			// hide if turf is not intact
 	hide(T.intact)
 	update_icon()
 
@@ -494,9 +494,9 @@
 
 /obj/machinery/atmospherics/mains_pipe/split3/return_network(obj/machinery/atmospherics/reference)
 	var/obj/machinery/atmospherics/A = supply_node.return_network(reference)
-	if(!A)
+	if(isnull(A))
 		A = scrubbers_node.return_network(reference)
-	if(!A)
+	if(isnull(A))
 		A = aux_node.return_network(reference)
 
 	return A
@@ -519,7 +519,7 @@
 
 /obj/machinery/atmospherics/mains_pipe/cap/New()
 	nodes.len = 1
-	..()
+	. = ..()
 	initialize_mains_directions = dir
 
 /obj/machinery/atmospherics/mains_pipe/cap/update_icon()
@@ -533,7 +533,7 @@
 
 	..()
 
-	var/turf/T = src.loc	// hide if turf is not intact
+	var/turf/T = loc	// hide if turf is not intact
 	hide(T.intact)
 	update_icon()
 
@@ -557,7 +557,7 @@
 
 /obj/machinery/atmospherics/mains_pipe/valve/New()
 	nodes.len = 2
-	..()
+	. = ..()
 	initialize_mains_directions = dir | turn(dir, 180)
 
 /obj/machinery/atmospherics/mains_pipe/valve/update_icon(animation)
@@ -571,7 +571,7 @@
 			break
 
 	if(animation)
-		flick("[hide ? "h" : ""]mvalve[src.open][!src.open]", src)
+		flick("[hide ? "h" : ""]mvalve[open][!open]", src)
 	else
 		icon_state = "[hide?"h":""]mvalve[open]"
 
@@ -658,7 +658,7 @@
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/mains_pipe/valve/digital/atmos_initialise()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/mains_pipe/valve/digital/Destroy()
@@ -666,10 +666,10 @@
 	return ..()
 
 /obj/machinery/atmospherics/mains_pipe/valve/digital/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/atmospherics/mains_pipe/valve/digital/attack_hand(mob/user as mob)
-	if(!src.allowed(user))
+	if(!allowed(user))
 		FEEDBACK_ACCESS_DENIED(user)
 		return
 	..()
@@ -685,12 +685,12 @@
 			break
 
 	if(animation)
-		flick("[hide?"h":""]dvalve[src.open][!src.open]",src)
+		flick("[hide?"h":""]dvalve[open][!open]", src)
 	else
 		icon_state = "[hide?"h":""]dvalve[open]"
 
 /obj/machinery/atmospherics/mains_pipe/valve/digital/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || signal.data["tag"] != id)
+	if(isnull(signal.data["tag"]) || signal.data["tag"] != id)
 		return 0
 
 	switch(signal.data["command"])

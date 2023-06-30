@@ -15,7 +15,7 @@
 
 /obj/machinery/atmospherics/pipe/tank/New()
 	initialize_directions = dir
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/pipe/tank/atmos_initialise()
 	var/connect_direction = dir
@@ -28,7 +28,7 @@
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/tank/Destroy()
-	if(node1)
+	if(isnotnull(node1))
 		node1.disconnect(src)
 	return ..()
 
@@ -36,7 +36,7 @@
 	return list(node1)
 
 /obj/machinery/atmospherics/pipe/tank/process()
-	if(!parent)
+	if(isnull(parent))
 		..()
 	else
 		. = PROCESS_KILL
@@ -50,7 +50,7 @@
 */
 
 /obj/machinery/atmospherics/pipe/tank/update_icon()
-	if(node1)
+	if(isnotnull(node1))
 		icon_state = "intact"
 
 		dir = get_dir(src, node1)
@@ -120,7 +120,7 @@
 
 	air_temporary.adjust_gas(/decl/xgm_gas/oxygen_agent_b, (25 * ONE_ATMOSPHERE) * air_temporary.volume / (R_IDEAL_GAS_EQUATION * air_temporary.temperature))
 
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/pipe/tank/oxygen
 	icon = 'icons/obj/atmospherics/blue_pipe_tank.dmi'

@@ -11,26 +11,24 @@
 	var/volume_rate = 800
 
 /obj/machinery/portable_atmospherics/scrubber/update_icon()
-	src.overlays = 0
+	overlays = 0
 
 	if(on)
 		icon_state = "pscrubber:1"
 	else
 		icon_state = "pscrubber:0"
 
-	if(holding)
+	if(isnotnull(holding))
 		overlays.Add("scrubber-open")
 
-	if(connected_port)
+	if(isnotnull(connected_port))
 		overlays.Add("scrubber-connector")
-
-	return
 
 /obj/machinery/portable_atmospherics/scrubber/process()
 	..()
 	if(on)
 		var/datum/gas_mixture/environment
-		if(holding)
+		if(isnotnull(holding))
 			environment = holding.air_contents
 		else
 			environment = loc.return_air()
@@ -38,7 +36,7 @@
 
 		//Take a gas sample
 		var/datum/gas_mixture/removed
-		if(holding)
+		if(isnotnull(holding))
 			removed = environment.remove(transfer_moles)
 		else
 			removed = loc.remove_air(transfer_moles)
@@ -67,12 +65,12 @@
 			//Remix the resulting gases
 			air_contents.merge(filtered_out)
 
-			if(holding)
+			if(isnotnull(holding))
 				environment.merge(removed)
 			else
 				loc.assume_air(removed)
 		//src.update_icon()
-	src.updateDialog()
+	updateDialog()
 
 /obj/machinery/portable_atmospherics/scrubber/return_air()
 	return air_contents
@@ -87,7 +85,7 @@
 	user.set_machine(src)
 	var/holding_text
 
-	if(holding)
+	if(isnotnull(holding))
 		holding_text = {"<BR><B>Tank Pressure</B>: [holding.air_contents.return_pressure()] KPa<BR>
 <A href='?src=\ref[src];remove_tank=1'>Remove Tank</A><BR>
 "}
@@ -105,21 +103,20 @@ Power regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?src=\
 
 	user << browse(output_text, "window=scrubber;size=600x300")
 	onclose(user, "scrubber")
-	return
 
 /obj/machinery/portable_atmospherics/scrubber/Topic(href, href_list)
 	..()
 	if(usr.stat || usr.restrained())
 		return
 
-	if((get_dist(src, usr) <= 1) && isturf(src.loc))
+	if((get_dist(src, usr) <= 1) && isturf(loc))
 		usr.set_machine(src)
 
 		if(href_list["power"])
 			on = !on
 
 		if(href_list["remove_tank"])
-			if(holding)
+			if(isnotnull(holding))
 				holding.loc = loc
 				holding = null
 
@@ -127,13 +124,11 @@ Power regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?src=\
 			var/diff = text2num(href_list["volume_adj"])
 			volume_rate = min(10 * ONE_ATMOSPHERE, max(0, volume_rate + diff))
 
-		src.updateUsrDialog()
-		src.add_fingerprint(usr)
+		updateUsrDialog()
+		add_fingerprint(usr)
 		update_icon()
 	else
 		usr << browse(null, "window=scrubber")
-		return
-	return
 
 /obj/machinery/portable_atmospherics/scrubber/emp_act(severity)
 	if(stat & (BROKEN | NOPOWER))
@@ -158,7 +153,7 @@ Power regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?src=\
 	var/id = 0
 
 /obj/machinery/portable_atmospherics/scrubber/huge/New()
-	..()
+	. = ..()
 	id = gid
 	gid++
 	name = "[name] (ID [id])"
@@ -167,7 +162,7 @@ Power regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?src=\
 	to_chat(usr, SPAN_INFO("You can't directly interact with this machine. Use the area atmos computer."))
 
 /obj/machinery/portable_atmospherics/scrubber/huge/update_icon()
-	src.overlays = 0
+	overlays = 0
 
 	if(on)
 		icon_state = "scrubber:1"

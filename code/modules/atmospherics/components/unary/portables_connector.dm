@@ -14,11 +14,11 @@
 
 
 /obj/machinery/atmospherics/unary/portables_connector/New()
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/unary/portables_connector/atmos_initialise()
-	..()
-	if(node)
+	. = ..()
+	if(isnotnull(node))
 		return
 
 	var/node_connect = dir
@@ -33,10 +33,10 @@
 /obj/machinery/atmospherics/unary/portables_connector/Destroy()
 	loc = null
 
-	if(connected_device)
+	if(isnotnull(connected_device))
 		connected_device.disconnect()
 
-	if(node)
+	if(isnotnull(node))
 		node.disconnect(src)
 		qdel(network)
 
@@ -45,16 +45,14 @@
 	return ..()
 
 /obj/machinery/atmospherics/unary/portables_connector/update_icon()
-	if(node)
+	if(isnotnull(node))
 		icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]intact"
 		dir = get_dir(src, node)
 	else
 		icon_state = "exposed"
 
-	return
-
 /obj/machinery/atmospherics/unary/portables_connector/hide(i) //to make the little pipe section invisible, the icon changes.
-	if(node)
+	if(isnotnull(node))
 		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]intact"
 		dir = get_dir(src, node)
 	else
@@ -64,10 +62,10 @@
 	..()
 	if(!on)
 		return
-	if(!connected_device)
+	if(isnull(connected_device))
 		on = FALSE
 		return
-	if(network)
+	if(isnotnull(network))
 		network.update = TRUE
 	return 1
 
@@ -85,7 +83,7 @@
 /obj/machinery/atmospherics/unary/portables_connector/return_network_air(datum/pipe_network/reference)
 	var/list/results = list()
 
-	if(connected_device)
+	if(isnotnull(connected_device))
 		results.Add(connected_device.air_contents)
 
 	return results
@@ -93,13 +91,13 @@
 /obj/machinery/atmospherics/unary/portables_connector/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
-	if(connected_device)
+	if(isnotnull(connected_device))
 		to_chat(user, SPAN_WARNING("You cannot unwrench this [src], dettach [connected_device] first."))
 		return 1
 	if(locate(/obj/machinery/portable_atmospherics, src.loc))
 		return 1
 
-	var/turf/T = src.loc
+	var/turf/T = loc
 	if(level == 1 && isturf(T) && T.intact)
 		to_chat(user, SPAN_WARNING("You must remove the plating first."))
 		return 1

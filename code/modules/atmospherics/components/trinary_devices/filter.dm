@@ -15,7 +15,7 @@
 
 	name = "Gas filter"
 
-	var/on = 0
+	var/on = FALSE
 	var/temp = null // -- TLE
 
 	var/target_pressure = ONE_ATMOSPHERE
@@ -37,7 +37,7 @@ Filter types:
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/trinary/filter/atmos_initialise()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/trinary/filter/Destroy()
@@ -128,13 +128,13 @@ Filter types:
 		air2.merge(filtered_out)
 		air3.merge(removed)
 
-	if(network2)
+	if(isnotnull(network2))
 		network2.update = TRUE
 
-	if(network3)
+	if(isnotnull(network3))
 		network3.update = TRUE
 
-	if(network1)
+	if(isnotnull(network1))
 		network1.update = TRUE
 
 	return 1
@@ -169,38 +169,37 @@ Filter types:
 	if(..())
 		return
 
-	if(!src.allowed(user))
+	if(!allowed(user))
 		FEEDBACK_ACCESS_DENIED(user)
 		return
 
 	// Edited this to reflect NanoUI port. -Frenjo
 	usr.set_machine(src)
 	ui_interact(user)
-	return
 
 /obj/machinery/atmospherics/trinary/filter/Topic(href, href_list) // -- TLE
 	if(..())
 		return
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 
 	// Edited this to reflect NanoUI port. -Frenjo
 	switch(href_list["power"])
 		if("off")
-			on = 0
+			on = FALSE
 		if("on")
-			on = 1
+			on = TRUE
 
 	if(href_list["filterset"])
-		src.filter_type = text2num(href_list["filterset"])
+		filter_type = text2num(href_list["filterset"])
 
 	switch(href_list["pressure"])
 		if("set_press")
-			var/new_pressure = input(usr, "Enter new output pressure (0-4500kPa)", "Pressure control", src.target_pressure) as num
-			src.target_pressure = max(0, min(4500, new_pressure))
+			var/new_pressure = input(usr, "Enter new output pressure (0-4500kPa)", "Pressure control", target_pressure) as num
+			target_pressure = max(0, min(4500, new_pressure))
 
-	src.update_icon()
-	src.updateUsrDialog()
+	update_icon()
+	updateUsrDialog()
 /*
 	for(var/mob/M in viewers(1, src))
 		if ((M.client && M.machine == src))

@@ -13,7 +13,7 @@
 	var/datum/pipe_network/network2
 
 /obj/machinery/atmospherics/binary/New()
-	..()
+	. = ..()
 	switch(dir)
 		if(NORTH)
 			initialize_directions = NORTH | SOUTH
@@ -23,14 +23,15 @@
 			initialize_directions = EAST | WEST
 		if(WEST)
 			initialize_directions = EAST | WEST
-	air1 = new
-	air2 = new
+
+	air1 = new /datum/gas_mixture()
+	air2 = new /datum/gas_mixture()
 
 	air1.volume = 200
 	air2.volume = 200
 
 /obj/machinery/atmospherics/binary/atmos_initialise()
-	if(node1 && node2)
+	if(isnotnull(node1) && isnotnull(node2))
 		return
 
 	var/node2_connect = dir
@@ -51,10 +52,10 @@
 /obj/machinery/atmospherics/binary/Destroy()
 	loc = null
 
-	if(node1)
+	if(isnotnull(node1))
 		node1.disconnect(src)
 		qdel(network1)
-	if(node2)
+	if(isnotnull(node2))
 		node2.disconnect(src)
 		qdel(network2)
 
@@ -79,12 +80,12 @@
 	return null
 
 /obj/machinery/atmospherics/binary/build_network()
-	if(!network1 && node1)
+	if(isnull(network1) && isnotnull(node1))
 		network1 = new /datum/pipe_network()
 		network1.normal_members.Add(src)
 		network1.build_network(node1, src)
 
-	if(!network2 && node2)
+	if(isnull(network2) && isnotnull(node2))
 		network2 = new /datum/pipe_network()
 		network2.normal_members.Add(src)
 		network2.build_network(node2, src)

@@ -19,7 +19,7 @@ Thus, the two variables affect pump operation are set in New():
 	name = "Volumetric gas pump"
 	desc = "A volumetric pump"
 
-	var/on = 0
+	var/on = FALSE
 	var/transfer_rate = 200
 	var/max_transfer_rate = 200
 
@@ -28,11 +28,11 @@ Thus, the two variables affect pump operation are set in New():
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/binary/volume_pump/on
-	on = 1
+	on = TRUE
 	icon_state = "intact_on"
 
 /obj/machinery/atmospherics/binary/volume_pump/atmos_initialise()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/binary/volume_pump/Destroy()
@@ -42,12 +42,12 @@ Thus, the two variables affect pump operation are set in New():
 /obj/machinery/atmospherics/binary/volume_pump/update_icon()
 	if(stat & NOPOWER)
 		icon_state = "intact_off"
-	else if(node1 && node2)
+	else if(isnotnull(node1) && isnotnull(node2))
 		icon_state = "intact_[on?("on"):("off")]"
 	else
-		if(node1)
+		if(isnotnull(node1))
 			icon_state = "exposed_1_off"
-		else if(node2)
+		else if(isnotnull(node2))
 			icon_state = "exposed_2_off"
 		else
 			icon_state = "exposed_3_off"
@@ -71,18 +71,18 @@ Thus, the two variables affect pump operation are set in New():
 
 	air2.merge(removed)
 
-	if(network1)
+	if(isnotnull(network1))
 		network1.update = TRUE
-	if(network2)
+	if(isnotnull(network2))
 		network2.update = TRUE
 
 	return 1
 
 /obj/machinery/atmospherics/binary/volume_pump/proc/broadcast_status()
-	if(!radio_connection)
+	if(isnull(radio_connection))
 		return 0
 
-	var/datum/signal/signal = new
+	var/datum/signal/signal = new /datum/signal()
 	signal.transmission_method = TRANSMISSION_RADIO
 	signal.source = src
 
@@ -108,7 +108,7 @@ Thus, the two variables affect pump operation are set in New():
 		onclose(user, "atmo_pump")*/
 
 /obj/machinery/atmospherics/binary/volume_pump/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || signal.data["tag"] != id || signal.data["sigtype"] != "command")
+	if(isnull(signal.data["tag"]) || signal.data["tag"] != id || signal.data["sigtype"] != "command")
 		return 0
 
 	if("power" in signal.data)
@@ -136,14 +136,13 @@ Thus, the two variables affect pump operation are set in New():
 /obj/machinery/atmospherics/binary/volume_pump/attack_hand(user as mob)
 	if(..())
 		return
-	src.add_fingerprint(usr)
-	if(!src.allowed(user))
+	add_fingerprint(usr)
+	if(!allowed(user))
 		FEEDBACK_ACCESS_DENIED(user)
 		return
 
 	usr.set_machine(src)
 	ui_interact(user) // Edited this to reflect NanoUI port. -Frenjo
-	return
 
 /obj/machinery/atmospherics/binary/volume_pump/Topic(href, href_list)
 	if(..()) return
@@ -156,9 +155,9 @@ Thus, the two variables affect pump operation are set in New():
 	// Edited this to reflect NanoUI port. -Frenjo
 	switch(href_list["power"])
 		if("off")
-			on = 0
+			on = FALSE
 		if("on")
-			on = 1
+			on = TRUE
 
 	switch(href_list["set_pressure"])
 		if("min")
@@ -166,13 +165,12 @@ Thus, the two variables affect pump operation are set in New():
 		if("max")
 			src.transfer_rate = max_transfer_rate
 		if("set")
-			var/new_transfer_rate = input(usr, "Enter new output volume (0 - [max_transfer_rate]l/s)", "Flow control", src.transfer_rate) as num
-			src.transfer_rate = max(0, min(200, new_transfer_rate))
+			var/new_transfer_rate = input(usr, "Enter new output volume (0 - [max_transfer_rate]l/s)", "Flow control", transfer_rate) as num
+			transfer_rate = max(0, min(200, new_transfer_rate))
 
 	usr.set_machine(src)
-	src.update_icon()
-	src.updateUsrDialog()
-	return
+	update_icon()
+	updateUsrDialog()
 
 /obj/machinery/atmospherics/binary/volume_pump/power_change()
 	..()
@@ -192,7 +190,7 @@ Thus, the two variables affect pump operation are set in New():
 
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_air.return_pressure()-env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
+	if((int_air.return_pressure() - env_air.return_pressure()) > 2 * ONE_ATMOSPHERE)
 		to_chat(user, SPAN_WARNING("You cannot unwrench this [src], it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
@@ -200,10 +198,11 @@ Thus, the two variables affect pump operation are set in New():
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 	to_chat(user, SPAN_INFO("You begin to unfasten \the [src]..."))
 	if(do_after(user, 40))
-		user.visible_message( \
-			"[user] unfastens \the [src].", \
-			SPAN_INFO("You have unfastened \the [src]."), \
-			"You hear a ratchet.")
+		user.visible_message(
+			"[user] unfastens \the [src].",
+			SPAN_INFO("You have unfastened \the [src]."),
+			"You hear a ratchet."
+		)
 		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)
 

@@ -10,7 +10,7 @@
 
 	level = 1
 
-	var/on = 0
+	var/on = FALSE
 	var/pump_direction = 1 //0 = siphoning, 1 = releasing
 
 	var/external_pressure_bound = ONE_ATMOSPHERE
@@ -30,12 +30,12 @@
 	name = "Large Dual Port Air Vent"
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/high_volume/New()
-	..()
+	. = ..()
 	air1.volume = 1000
 	air2.volume = 1000
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/atmos_initialise()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/Destroy()
@@ -50,9 +50,7 @@
 			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
 	else
 		icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
-		on = 0
-
-	return
+		on = FALSE
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/hide(i) //to make the little pipe section invisible, the icon changes.
 	if(on)
@@ -62,8 +60,7 @@
 			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
 	else
 		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
-		on = 0
-	return
+		on = FALSE
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/process()
 	..()
@@ -77,9 +74,9 @@
 	if(pump_direction) //input -> external
 		var/pressure_delta = 10000
 
-		if(pressure_checks&1)
+		if(pressure_checks & 1)
 			pressure_delta = min(pressure_delta, (external_pressure_bound - environment_pressure))
-		if(pressure_checks&2)
+		if(pressure_checks & 2)
 			pressure_delta = min(pressure_delta, (air1.return_pressure() - input_pressure_min))
 
 		if(pressure_delta > 0)
@@ -90,7 +87,7 @@
 
 				loc.assume_air(removed)
 
-				if(network1)
+				if(isnotnull(network1))
 					network1.update = TRUE
 
 	else //external -> output
@@ -109,16 +106,16 @@
 
 				air2.merge(removed)
 
-				if(network2)
+				if(isnotnull(network2))
 					network2.update = TRUE
 
 	return 1
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/proc/broadcast_status()
-	if(!radio_connection)
+	if(isnull(radio_connection))
 		return 0
 
-	var/datum/signal/signal = new
+	var/datum/signal/signal = new /datum/signal()
 	signal.transmission_method = TRANSMISSION_RADIO
 	signal.source = src
 
@@ -138,7 +135,7 @@
 	return 1
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || signal.data["tag"] != id || signal.data["sigtype"] != "command")
+	if(isnull(signal.data["tag"]) || signal.data["tag"] != id || signal.data["sigtype"] != "command")
 		return 0
 	if("power" in signal.data)
 		on = text2num(signal.data["power"])

@@ -6,6 +6,8 @@
 	desc = "A gas circulator pump and heat exchanger."
 	icon = 'icons/obj/pipes/pipes.dmi'
 	icon_state = "circ-off"
+
+	density = TRUE
 	anchored = FALSE
 
 	var/recent_moles_transferred = 0
@@ -14,10 +16,8 @@
 	var/last_pressure_delta = 0
 	var/last_worldtime_transfer = 0
 
-	density = TRUE
-
 /obj/machinery/atmospherics/binary/circulator/New()
-	..()
+	. = ..()
 	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
 
 /obj/machinery/atmospherics/binary/circulator/proc/return_transfer_air()
@@ -35,12 +35,12 @@
 
 			//Actually transfer the gas
 			removed = air1.remove(recent_moles_transferred)
-			if(removed)
+			if(isnotnull(removed))
 				last_heat_capacity = removed.heat_capacity()
 				last_temperature = removed.temperature
 
 				//Update the gas networks.
-				if(network1)
+				if(isnotnull(network1))
 					network1.update = TRUE
 
 				last_worldtime_transfer = world.time
@@ -61,7 +61,7 @@
 	if(stat & (BROKEN|NOPOWER) || !anchored)
 		icon_state = "circ-p"
 	else if(last_pressure_delta > 0 && recent_moles_transferred > 0)
-		if(last_pressure_delta > 5*ONE_ATMOSPHERE)
+		if(last_pressure_delta > 5 * ONE_ATMOSPHERE)
 			icon_state = "circ-run"
 		else
 			icon_state = "circ-slow"
@@ -83,17 +83,17 @@
 
 			atmos_initialise()
 			build_network()
-			if(node1)
+			if(isnotnull(node1))
 				node1.atmos_initialise()
 				node1.build_network()
-			if(node2)
+			if(isnotnull(node2))
 				node2.atmos_initialise()
 				node2.build_network()
 		else
-			if(node1)
+			if(isnotnull(node1))
 				node1.disconnect(src)
 				qdel(network1)
-			if(node2)
+			if(isnotnull(node2))
 				node2.disconnect(src)
 				qdel(network2)
 
@@ -111,7 +111,7 @@
 	if(usr.stat || usr.restrained() || anchored)
 		return
 
-	src.set_dir(turn(src.dir, 90))
+	set_dir(turn(dir, 90))
 	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
 
 
@@ -123,5 +123,5 @@
 	if(usr.stat || usr.restrained() || anchored)
 		return
 
-	src.set_dir(turn(src.dir, -90))
+	set_dir(turn(dir, -90))
 	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."

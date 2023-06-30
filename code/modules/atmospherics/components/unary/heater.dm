@@ -9,12 +9,12 @@
 	current_heat_capacity = 1000
 
 /obj/machinery/atmospherics/unary/heat_reservoir/heater/New()
-	..()
+	. = ..()
 	initialize_directions = dir
 
 /obj/machinery/atmospherics/unary/heat_reservoir/heater/atmos_initialise()
-	..()
-	if(node)
+	. = ..()
+	if(isnotnull(node))
 		return
 
 	var/node_connect = dir
@@ -27,14 +27,13 @@
 	update_icon()
 
 /obj/machinery/atmospherics/unary/heat_reservoir/heater/update_icon()
-	if(node)
+	if(isnotnull(node))
 		if(on)
 			icon_state = "heater_1"
 		else
 			icon_state = "heater"
 	else
 		icon_state = "heater_0"
-	return
 
 /obj/machinery/atmospherics/unary/heat_reservoir/heater/attack_ai(mob/user as mob)
 	ui_interact(user)
@@ -44,7 +43,7 @@
 
 /obj/machinery/atmospherics/unary/heat_reservoir/heater/attack_hand(mob/user as mob)
 	ui_interact(user)
-	
+
 /obj/machinery/atmospherics/unary/heat_reservoir/heater/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	// this is the data which will be sent to the ui
 	var/list/data = list()
@@ -54,7 +53,7 @@
 	data["minGasTemperature"] = round(T20C)
 	data["maxGasTemperature"] = round(T20C + 280)
 	data["targetGasTemperature"] = round(current_temperature)
-	
+
 	var/temp_class = "normal"
 	if(air_contents.temperature > (T20C + 40))
 		temp_class = "bad"
@@ -83,7 +82,7 @@
 			current_temperature = min((T20C + 280), src.current_temperature + amount)
 		else
 			current_temperature = max(T20C, src.current_temperature + amount)
-	
+
 	add_fingerprint(usr)
 	return 1
 

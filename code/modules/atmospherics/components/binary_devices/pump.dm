@@ -19,7 +19,7 @@ Thus, the two variables affect pump operation are set in New():
 	name = "Gas pump"
 	desc = "A pump"
 
-	var/on = 0
+	var/on = FALSE
 	var/target_pressure = ONE_ATMOSPHERE
 	var/max_pressure = 4500
 
@@ -34,16 +34,16 @@ Thus, the two variables affect pump operation are set in New():
 	max_pressure = 15000000
 
 /obj/machinery/atmospherics/binary/pump/on
-	on = 1
+	on = TRUE
 	icon_state = "intact_on"
 
 /obj/machinery/atmospherics/binary/pump/New()
-	..()
+	. = ..()
 	air1.volume = 200
 	air2.volume = 200
 
 /obj/machinery/atmospherics/binary/pump/atmos_initialise()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/binary/pump/Destroy()
@@ -53,12 +53,12 @@ Thus, the two variables affect pump operation are set in New():
 /obj/machinery/atmospherics/binary/pump/update_icon()
 	if(stat & NOPOWER)
 		icon_state = "intact_off"
-	else if(node1 && node2)
+	else if(isnotnull(node1) && isnotnull(node2))
 		icon_state = "intact_[on?("on"):("off")]"
 	else
-		if(node1)
+		if(isnotnull(node1))
 			icon_state = "exposed_1_off"
-		else if(node2)
+		else if(isnotnull(node2))
 			icon_state = "exposed_2_off"
 		else
 			icon_state = "exposed_3_off"
@@ -84,15 +84,15 @@ Thus, the two variables affect pump operation are set in New():
 		var/datum/gas_mixture/removed = air1.remove(transfer_moles)
 		air2.merge(removed)
 
-		if(network1)
+		if(isnotnull(network1))
 			network1.update = TRUE
-		if(network2)
+		if(isnotnull(network2))
 			network2.update = TRUE
 
 	return 1
 
 /obj/machinery/atmospherics/binary/pump/proc/broadcast_status()
-	if(!radio_connection)
+	if(isnull(radio_connection))
 		return 0
 
 	var/datum/signal/signal = new
@@ -121,7 +121,7 @@ Thus, the two variables affect pump operation are set in New():
 		onclose(user, "atmo_pump")*/
 
 /obj/machinery/atmospherics/binary/pump/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"] != "command"))
+	if(isnull(signal.data["tag"]) || (signal.data["tag"] != id) || (signal.data["sigtype"] != "command"))
 		return 0
 
 	if("power" in signal.data)
@@ -145,20 +145,18 @@ Thus, the two variables affect pump operation are set in New():
 	spawn(2)
 		broadcast_status()
 	update_icon()
-	return
 
 /obj/machinery/atmospherics/binary/pump/attack_hand(user as mob)
 	if(..())
 		return
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 
-	if(!src.allowed(user))
+	if(!allowed(user))
 		FEEDBACK_ACCESS_DENIED(user)
 		return
 
 	usr.set_machine(src)
 	ui_interact(user) // Edited this to reflect NanoUI port. -Frenjo
-	return
 
 /obj/machinery/atmospherics/binary/pump/Topic(href,href_list)
 	if(..())
@@ -172,9 +170,9 @@ Thus, the two variables affect pump operation are set in New():
 	// Edited this to reflect NanoUI port. -Frenjo
 	switch(href_list["power"])
 		if("off")
-			on = 0
+			on = FALSE
 		if("on")
-			on = 1
+			on = TRUE
 
 	switch(href_list["set_press"])
 		if("min")
@@ -182,13 +180,12 @@ Thus, the two variables affect pump operation are set in New():
 		if("max")
 			src.target_pressure = max_pressure
 		if("set")
-			var/new_pressure = input(usr, "Enter new output pressure (0 - [max_pressure]kPa)", "Pressure Control", src.target_pressure) as num
-			src.target_pressure = max(0, min(max_pressure, new_pressure))
+			var/new_pressure = input(usr, "Enter new output pressure (0 - [max_pressure]kPa)", "Pressure Control", target_pressure) as num
+			target_pressure = max(0, min(max_pressure, new_pressure))
 
 	usr.set_machine(src)
-	src.update_icon()
-	src.updateUsrDialog()
-	return
+	update_icon()
+	updateUsrDialog()
 
 /obj/machinery/atmospherics/binary/pump/power_change()
 	..()
@@ -201,7 +198,7 @@ Thus, the two variables affect pump operation are set in New():
 		to_chat(user, SPAN_WARNING("You cannot unwrench this [src], turn it off first."))
 		return 1
 
-	var/turf/T = src.loc
+	var/turf/T = loc
 	if(level == 1 && isturf(T) && T.intact)
 		to_chat(user, SPAN_WARNING("You must remove the plating first."))
 		return 1

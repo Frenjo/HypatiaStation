@@ -18,11 +18,11 @@
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/unary/outlet_injector/New()
-	..()
+	. = ..()
 	name = "Air Injector"
 
 /obj/machinery/atmospherics/unary/outlet_injector/atmos_initialise()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/unary/outlet_injector/Destroy()
@@ -30,7 +30,7 @@
 	return ..()
 
 /obj/machinery/atmospherics/unary/outlet_injector/update_icon()
-	if(node)
+	if(isnotnull(node))
 		if(on && !(stat & NOPOWER))
 			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]on"
 		else
@@ -38,8 +38,6 @@
 	else
 		icon_state = "exposed"
 		on = FALSE
-
-	return
 
 /obj/machinery/atmospherics/unary/outlet_injector/power_change()
 	var/old_stat = stat
@@ -61,13 +59,13 @@
 
 		loc.assume_air(removed)
 
-		if(network)
+		if(isnotnull(network))
 			network.update = TRUE
 
 	return 1
 
 /obj/machinery/atmospherics/unary/outlet_injector/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || signal.data["tag"] != id || signal.data["sigtype"] != "command")
+	if(isnull(signal.data["tag"]) || signal.data["tag"] != id || signal.data["sigtype"] != "command")
 		return 0
 
 	if("power" in signal.data)
@@ -104,7 +102,6 @@
 	else
 		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]exposed"
 		on = FALSE
-	return
 
 /obj/machinery/atmospherics/unary/outlet_injector/proc/inject()
 	if(on || injecting)
@@ -119,16 +116,16 @@
 
 		loc.assume_air(removed)
 
-		if(network)
+		if(isnotnull(network))
 			network.update = TRUE
 
 	flick("inject", src)
 
 /obj/machinery/atmospherics/unary/outlet_injector/proc/broadcast_status()
-	if(!radio_connection)
+	if(isnull(radio_connection))
 		return 0
 
-	var/datum/signal/signal = new
+	var/datum/signal/signal = new /datum/signal()
 	signal.transmission_method = TRANSMISSION_RADIO
 	signal.source = src
 
@@ -157,7 +154,7 @@
 	unacidable = TRUE
 
 /obj/machinery/atmospherics/unary/outlet_injector/New()
-	..()
+	. = ..()
 	name = "Acid-Proof Air Injector"
 
 // Switched on acid proof variant.

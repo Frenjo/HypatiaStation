@@ -14,7 +14,7 @@
 
 /obj/machinery/atmospherics/trinary/tvalve/update_icon(animation)
 	if(animation)
-		flick("tvalve[src.state][!src.state]",src)
+		flick("tvalve[state][!state]",src)
 	else
 		icon_state = "tvalve[state]"
 
@@ -25,19 +25,19 @@
 	state = 1
 	update_icon()
 
-	if(network1)
+	if(isnotnull(network1))
 		qdel(network1)
-	if(network3)
+	if(isnotnull(network3))
 		qdel(network3)
 	build_network()
 
-	if(network1 && network2)
+	if(isnotnull(network1) && isnotnull(network2))
 		network1.merge(network2)
 		network2 = network1
 
-	if(network1)
+	if(isnotnull(network1))
 		network1.update = TRUE
-	else if(network2)
+	else if(isnotnull(network2))
 		network2.update = TRUE
 
 	return 1
@@ -49,19 +49,19 @@
 	state = 0
 	update_icon()
 
-	if(network1)
+	if(isnotnull(network1))
 		qdel(network1)
-	if(network2)
+	if(isnotnull(network2))
 		qdel(network2)
 	build_network()
 
-	if(network1 && network3)
+	if(isnotnull(network1) && isnotnull(network3))
 		network1.merge(network3)
 		network3 = network1
 
-	if(network1)
+	if(isnotnull(network1))
 		network1.update = TRUE
-	else if(network3)
+	else if(isnotnull(network3))
 		network3.update = TRUE
 
 	return 1
@@ -73,17 +73,17 @@
 	return attack_hand(user)
 
 /obj/machinery/atmospherics/trinary/tvalve/attack_hand(mob/user as mob)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	update_icon(1)
 	sleep(10)
-	if(src.state)
-		src.go_straight()
+	if(state)
+		go_straight()
 	else
-		src.go_to_side()
+		go_to_side()
 
 /obj/machinery/atmospherics/trinary/tvalve/process()
 	..()
-	GLOBL.machines.Remove(src)
+	return PROCESS_KILL
 
 /*	if(open && (!node1 || !node2))
 		close()
@@ -98,7 +98,6 @@
 	else if (nodealert)
 		nodealert = 0
 */
-	return
 
 /obj/machinery/atmospherics/trinary/tvalve/digital		// can be controlled by AI
 	name = "digital switching valve"
@@ -110,7 +109,7 @@
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/trinary/tvalve/digital/atmos_initialise()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/trinary/tvalve/digital/Destroy()
@@ -118,16 +117,16 @@
 	return ..()
 
 /obj/machinery/atmospherics/trinary/tvalve/digital/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/atmospherics/trinary/tvalve/digital/attack_hand(mob/user as mob)
-	if(!src.allowed(user))
+	if(!allowed(user))
 		FEEDBACK_ACCESS_DENIED(user)
 		return
 	..()
 
 /obj/machinery/atmospherics/trinary/tvalve/digital/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || signal.data["tag"] != id)
+	if(isnull(signal.data["tag"]) || signal.data["tag"] != id)
 		return 0
 
 	switch(signal.data["command"])
@@ -152,7 +151,7 @@
 		to_chat(user, SPAN_WARNING("You cannot unwrench this [src], it's too complicated."))
 		return 1
 
-	var/turf/T = src.loc
+	var/turf/T = loc
 	if(level == 1 && isturf(T) && T.intact)
 		to_chat(user, SPAN_WARNING("You must remove the plating first."))
 		return 1
@@ -180,7 +179,7 @@
 	icon_state = "tvalvem0"
 
 /obj/machinery/atmospherics/trinary/tvalve/mirrored/New()
-	..()
+	. = ..()
 	switch(dir)
 		if(NORTH)
 			initialize_directions = SOUTH|NORTH|WEST
@@ -215,7 +214,7 @@
 
 /obj/machinery/atmospherics/trinary/tvalve/mirrored/update_icon(animation)
 	if(animation)
-		flick("tvalvem[src.state][!src.state]", src)
+		flick("tvalvem[state][!state]", src)
 	else
 		icon_state = "tvalvem[state]"
 
@@ -230,7 +229,7 @@
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/atmos_initialise()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/Destroy()
@@ -238,16 +237,16 @@
 	return ..()
 
 /obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/attack_hand(mob/user as mob)
-	if(!src.allowed(user))
+	if(!allowed(user))
 		FEEDBACK_ACCESS_DENIED(user)
 		return
 	..()
 
 /obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || signal.data["tag"] != id)
+	if(isnull(signal.data["tag"]) || signal.data["tag"] != id)
 		return 0
 
 	switch(signal.data["command"])

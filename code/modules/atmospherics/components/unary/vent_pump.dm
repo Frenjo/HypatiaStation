@@ -40,7 +40,7 @@
 	var/radio_filter_in
 
 /obj/machinery/atmospherics/unary/vent_pump/New()
-	..()
+	. = ..()
 	air_contents.volume = 200
 	initial_loc = get_area(loc)
 	area_uid = initial_loc.uid
@@ -50,7 +50,7 @@
 		id_tag = num2text(uid)
 
 /obj/machinery/atmospherics/unary/vent_pump/atmos_initialise()
-	..()
+	. = ..()
 	//some vents work his own special way
 	radio_filter_in = frequency == 1439 ? (RADIO_FROM_AIRALARM) : null
 	radio_filter_out = frequency == 1439 ? (RADIO_TO_AIRALARM) : null
@@ -73,13 +73,11 @@
 	else
 		icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
 
-	return
-
 /obj/machinery/atmospherics/unary/vent_pump/process()
 	..()
 	if(stat & (NOPOWER|BROKEN))
 		return
-	if(!node)
+	if(isnull(node))
 		on = FALSE
 	//broadcast_status() // from now air alarm/control computer should request update purposely --rastaf0
 	if(!on)
@@ -106,7 +104,7 @@
 
 				loc.assume_air(removed)
 
-				if(network)
+				if(isnotnull(network))
 					network.update = TRUE
 
 	else //external -> internal
@@ -126,21 +124,21 @@
 
 				air_contents.merge(removed)
 
-				if(network)
+				if(isnotnull(network))
 					network.update = TRUE
 	return 1
 
 /obj/machinery/atmospherics/unary/vent_pump/proc/broadcast_status()
-	if(!radio_connection)
+	if(isnull(radio_connection))
 		return 0
 
-	var/datum/signal/signal = new
+	var/datum/signal/signal = new /datum/signal()
 	signal.transmission_method = TRANSMISSION_RADIO
 	signal.source = src
 
 	signal.data = list(
-		"area" = src.area_uid,
-		"tag" = src.id_tag,
+		"area" = area_uid,
+		"tag" = id_tag,
 		"device" = "AVP",
 		"power" = on,
 		"direction" = pump_direction ? ("release") : ("siphon"),
@@ -154,7 +152,7 @@
 	if(!initial_loc.air_vent_names[id_tag])
 		var/new_name = "[initial_loc.name] Vent Pump #[length(initial_loc.air_vent_names) + 1]"
 		initial_loc.air_vent_names[id_tag] = new_name
-		src.name = new_name
+		name = new_name
 	initial_loc.air_vent_info[id_tag] = signal.data
 
 	radio_connection.post_signal(src, signal, radio_filter_out)
@@ -165,7 +163,7 @@
 		return
 
 	//log_admin("DEBUG \[[world.timeofday]\]: /obj/machinery/atmospherics/unary/vent_pump/receive_signal([signal.debug_print()])")
-	if(!signal.data["tag"] || signal.data["tag"] != id_tag || signal.data["sigtype"] != "command")
+	if(isnull(signal.data["tag"]) || signal.data["tag"] != id_tag || signal.data["sigtype"] != "command")
 		return 0
 
 	if(signal.data["purge"] != null)
@@ -232,13 +230,12 @@
 	spawn(2)
 		broadcast_status()
 	update_icon()
-	return
 
 /obj/machinery/atmospherics/unary/vent_pump/hide(i) //to make the little pipe section invisible, the icon changes.
 	if(welded)
 		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]weld"
 		return
-	if(on&&node)
+	if(on && isnotnull(node))
 		if(pump_direction)
 			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]out"
 		else
@@ -246,7 +243,6 @@
 	else
 		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
 		on = FALSE
-	return
 
 /obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/weldingtool))
@@ -254,7 +250,7 @@
 		if(WT.remove_fuel(0, user))
 			to_chat(user, SPAN_INFO("You begin to weld the vent."))
 			if(do_after(user, 20))
-				if(!src || !WT.isOn())
+				if(isnull(src) || !WT.isOn())
 					return
 				playsound(src, 'sound/items/Welder2.ogg', 50, 1)
 				if(!welded)
@@ -299,7 +295,7 @@
 		to_chat(user, SPAN_WARNING("You cannot unwrench this [src], turn it off first."))
 		return 1
 
-	var/turf/T = src.loc
+	var/turf/T = loc
 	if(level == 1 && isturf(T) && T.intact)
 		to_chat(user, SPAN_WARNING("You must remove the plating first."))
 		return 1
@@ -361,7 +357,7 @@
 	power_channel = EQUIP
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/New()
-	..()
+	. = ..()
 	air_contents.volume = 1000
 
 // Large switched on variant.
@@ -380,6 +376,7 @@
 	name = "Large Air Vent (Siphon/On)"
 	on = TRUE
 	icon_state = "in"
+
 #undef PRESSURE_CHECK_NULL
 #undef PRESSURE_CHECK_EXTERNAL
 #undef PRESSURE_CHECK_INTERNAL

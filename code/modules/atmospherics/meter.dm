@@ -15,11 +15,11 @@
 
 /obj/machinery/meter/initialize()
 	. = ..()
-	if(!target)
-		src.target = locate(/obj/machinery/atmospherics/pipe) in loc
+	if(isnull(target))
+		target = locate(/obj/machinery/atmospherics/pipe) in loc
 
 /obj/machinery/meter/process()
-	if(!target)
+	if(isnull(target))
 		icon_state = "meterX"
 		return 0
 
@@ -30,7 +30,7 @@
 	//use_power(5)
 
 	var/datum/gas_mixture/environment = target.return_air()
-	if(!environment)
+	if(isnull(environment))
 		icon_state = "meterX"
 		return 0
 
@@ -51,10 +51,10 @@
 
 	if(frequency)
 		var/datum/radio_frequency/radio_connection = global.CTradio.return_frequency(frequency)
-		if(!radio_connection)
+		if(isnull(radio_connection))
 			return
 
-		var/datum/signal/signal = new
+		var/datum/signal/signal = new /datum/signal()
 		signal.source = src
 		signal.transmission_method = TRANSMISSION_RADIO
 		signal.data = list(
@@ -102,7 +102,7 @@
 
 /obj/machinery/meter/proc/status()
 	var/t = ""
-	if(src.target)
+	if(isnotnull(target))
 		var/datum/gas_mixture/environment = target.return_air()
 		if(environment)
 			t += "The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.temperature,0.01)]&deg;K ([round(environment.temperature-T0C,0.01)]&deg;C)"
@@ -116,8 +116,8 @@
 // TURF METER - REPORTS A TILE'S AIR CONTENTS
 /obj/machinery/meter/turf/initialize()
 	. = ..()
-	if(!target)
-		src.target = loc
+	if(isnull(target))
+		target = loc
 
 /obj/machinery/meter/turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	return

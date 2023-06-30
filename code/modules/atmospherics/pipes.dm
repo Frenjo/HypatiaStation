@@ -14,7 +14,7 @@
 
 /obj/machinery/atmospherics/pipe/Destroy()
 	qdel(parent)
-	if(air_temporary)
+	if(isnotnull(air_temporary))
 		loc.assume_air(air_temporary)
 	return ..()
 
@@ -27,28 +27,28 @@
 	return 1
 
 /obj/machinery/atmospherics/pipe/return_air()
-	if(!parent)
+	if(isnull(parent))
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
 
 	return parent.air
 
 /obj/machinery/atmospherics/pipe/build_network()
-	if(!parent)
+	if(isnull(parent))
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
 
 	return parent.return_network()
 
 /obj/machinery/atmospherics/pipe/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
-	if(!parent)
+	if(isnull(parent))
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
 
 	return parent.network_expand(new_network, reference)
 
 /obj/machinery/atmospherics/pipe/return_network(obj/machinery/atmospherics/reference)
-	if(!parent)
+	if(isnull(parent))
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
 
@@ -65,7 +65,7 @@
 
 	if(!iswrench(W))
 		return ..()
-	var/turf/T = src.loc
+	var/turf/T = loc
 	if(level == 1 && isturf(T) && T.intact)
 		to_chat(user, SPAN_WARNING("You must remove the plating first."))
 		return 1
@@ -118,7 +118,7 @@
 	var/fatigue_pressure = 55 * ONE_ATMOSPHERE
 
 /obj/machinery/atmospherics/pipe/simple/New()
-	..()
+	. = ..()
 	alpha = 255
 	switch(dir)
 		if(SOUTH, NORTH)
@@ -155,11 +155,11 @@
 			node2 = target
 			break
 
-	if(!node1 && !node2)
+	if(isnull(node1) && isnull(node2))
 		qdel(src)
 		return
 
-	var/turf/T = src.loc			// hide if turf is not intact
+	var/turf/T = loc			// hide if turf is not intact
 	hide(T.intact)
 	update_icon()
 
@@ -176,7 +176,7 @@
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/simple/process()
-	if(!parent) //This should cut back on the overhead calling build_network thousands of times per cycle
+	if(isnull(parent)) //This should cut back on the overhead calling build_network thousands of times per cycle
 		..()
 	else
 		. = PROCESS_KILL
@@ -231,10 +231,10 @@
 	else return 1
 
 /obj/machinery/atmospherics/pipe/simple/proc/burst()
-	src.visible_message(SPAN_DANGER("[src] bursts!"));
+	visible_message(SPAN_DANGER("[src] bursts!"));
 	playsound(src, 'sound/effects/bang.ogg', 25, 1)
-	var/datum/effect/system/smoke_spread/smoke = new
-	smoke.set_up(1, 0, src.loc, 0)
+	var/datum/effect/system/smoke_spread/smoke = new /datum/effect/system/smoke_spread()
+	smoke.set_up(1, 0, loc, 0)
 	smoke.start()
 	qdel(src)
 
@@ -263,7 +263,7 @@
 			color = COLOR_PURPLE_PIPE
 		if("grey")
 			color = null
-	if(node1&&node2)
+	if(isnotnull(node1) && isnotnull(node2))
 		icon_state = "intact[invisibility ? "-f" : "" ]"
 
 		//var/node1_direction = get_dir(src, node1)
@@ -271,7 +271,7 @@
 
 		//dir = node1_direction|node2_direction
 	else
-		if(!node1 && !node2)
+		if(isnull(node1) && isnull(node2))
 			var/turf/T = get_turf(src)
 			new /obj/item/pipe(loc, make_from = src)
 			for(var/obj/machinery/meter/meter in T)
@@ -279,8 +279,8 @@
 					new /obj/item/pipe_meter(T)
 					qdel(meter)
 			qdel(src)
-		var/have_node1 = node1 ? 1 : 0
-		var/have_node2 = node2 ? 1 : 0
+		var/have_node1 = isnotnull(node1)
+		var/have_node2 = isnotnull(node2)
 		icon_state = "exposed[have_node1][have_node2][invisibility ? "-f" : "" ]"
 
 /obj/machinery/atmospherics/pipe/simple/disconnect(obj/machinery/atmospherics/reference)
@@ -391,7 +391,7 @@
 	var/obj/machinery/atmospherics/node3
 
 /obj/machinery/atmospherics/pipe/manifold/New()
-	..()
+	. = ..()
 	alpha = 255
 	switch(dir)
 		if(NORTH)
@@ -436,16 +436,16 @@
 			if(node3)
 				break
 
-	var/turf/T = src.loc			// hide if turf is not intact
+	var/turf/T = loc			// hide if turf is not intact
 	hide(T.intact)
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/manifold/Destroy()
-	if(node1)
+	if(isnotnull(node1))
 		node1.disconnect(src)
-	if(node2)
+	if(isnotnull(node2))
 		node2.disconnect(src)
-	if(node3)
+	if(isnotnull(node3))
 		node3.disconnect(src)
 	return ..()
 
@@ -458,7 +458,7 @@
 	return list(node1, node2, node3)
 
 /obj/machinery/atmospherics/pipe/manifold/process()
-	if(!parent)
+	if(isnull(parent))
 		..()
 	else
 		. = PROCESS_KILL
@@ -502,7 +502,7 @@
 	..()
 
 /obj/machinery/atmospherics/pipe/manifold/update_icon()
-	if(node1 && node2 && node3)
+	if(isnotnull(node1) && isnotnull(node2) && isnotnull(node3))
 		switch(pipe_color)
 			if("red")
 				color = COLOR_RED
@@ -524,11 +524,11 @@
 		var/unconnected = 0
 		var/connect_directions = (NORTH|SOUTH|EAST|WEST) & (~dir)
 
-		if(node1)
+		if(isnotnull(node1))
 			connected |= get_dir(src, node1)
-		if(node2)
+		if(isnotnull(node2))
 			connected |= get_dir(src, node2)
-		if(node3)
+		if(isnotnull(node3))
 			connected |= get_dir(src, node3)
 
 		unconnected = (~connected) & (connect_directions)
@@ -537,7 +537,6 @@
 
 		if(!connected)
 			src = null
-	return
 
 // Added names to unnamed pipes to avoid confusion. -Frenjo
 /obj/machinery/atmospherics/pipe/manifold/visible
@@ -633,7 +632,7 @@
 	var/obj/machinery/atmospherics/node4
 
 /obj/machinery/atmospherics/pipe/manifold4w/New()
-	..()
+	. = ..()
 	alpha = 255
 
 /obj/machinery/atmospherics/pipe/manifold4w/atmos_initialise()
@@ -657,18 +656,18 @@
 			node4 = target
 			break
 
-	var/turf/T = src.loc			// hide if turf is not intact
+	var/turf/T = loc			// hide if turf is not intact
 	hide(T.intact)
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/manifold4w/Destroy()
-	if(node1)
+	if(isnotnull(node1))
 		node1.disconnect(src)
-	if(node2)
+	if(isnotnull(node2))
 		node2.disconnect(src)
-	if(node3)
+	if(isnotnull(node3))
 		node3.disconnect(src)
-	if(node4)
+	if(isnotnull(node4))
 		node4.disconnect(src)
 	return ..()
 
@@ -681,7 +680,7 @@
 	return list(node1, node2, node3, node4)
 
 /obj/machinery/atmospherics/pipe/manifold4w/process()
-	if(!parent)
+	if(isnull(parent))
 		..()
 	else
 		. = PROCESS_KILL
@@ -731,7 +730,7 @@
 
 /obj/machinery/atmospherics/pipe/manifold4w/update_icon()
 	overlays.Cut()
-	if(node1 && node2 && node3 && node4)
+	if(isnotnull(node1) && isnotnull(node2) && isnotnull(node3) && isnotnull(node4))
 		switch(pipe_color)
 			if("red")
 				color = COLOR_RED
@@ -751,18 +750,18 @@
 
 	else
 		icon_state = "manifold4w_ex"
-		var/icon/con = new/icon('icons/obj/pipes/manifold.dmi',"manifold4w_con") //Since 4-ways are supposed to be directionless, they need an overlay instead it seems.
+		var/icon/con = new /icon('icons/obj/pipes/manifold.dmi',"manifold4w_con") //Since 4-ways are supposed to be directionless, they need an overlay instead it seems.
 
-		if(node1)
-			overlays += new/image(con, dir = 1)
-		if(node2)
-			overlays += new/image(con, dir = 2)
-		if(node3)
-			overlays += new/image(con, dir = 4)
-		if(node4)
-			overlays += new/image(con, dir = 8)
+		if(isnotnull(node1))
+			overlays.Add(new /image(con, dir = 1))
+		if(isnotnull(node2))
+			overlays.Add(new /image(con, dir = 2))
+		if(isnotnull(node3))
+			overlays.Add(new /image(con, dir = 4))
+		if(isnotnull(node4))
+			overlays.Add(new /image(con, dir = 8))
 
-		if(!node1 && !node2 && !node3 && !node4)
+		if(isnull(node1) && isnull(node2) && isnull(node3) && isnull(node4))
 			src = null
 	return
 
@@ -856,7 +855,7 @@
 	var/obj/machinery/atmospherics/node
 
 /obj/machinery/atmospherics/pipe/cap/New()
-	..()
+	. = ..()
 	switch(dir)
 		if(SOUTH)
 		 initialize_directions = NORTH
@@ -873,12 +872,12 @@
 			node = target
 			break
 
-	var/turf/T = src.loc			// hide if turf is not intact
+	var/turf/T = loc			// hide if turf is not intact
 	hide(T.intact)
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/cap/Destroy()
-	if(node)
+	if(isnotnull(node))
 		node.disconnect(src)
 	return ..()
 
@@ -891,7 +890,7 @@
 	return list(node)
 
 /obj/machinery/atmospherics/pipe/cap/process()
-	if(!parent)
+	if(isnull(parent))
 		..()
 	else
 		. = PROCESS_KILL

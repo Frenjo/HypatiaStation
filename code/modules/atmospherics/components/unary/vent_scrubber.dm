@@ -34,10 +34,10 @@
 	if(!id_tag)
 		assign_uid()
 		id_tag = num2text(uid)
-	..()
+	. = ..()
 
 /obj/machinery/atmospherics/unary/vent_scrubber/atmos_initialise()
-	..()
+	. = ..()
 	radio_filter_in = frequency == initial(frequency) ? RADIO_FROM_AIRALARM : null
 	radio_filter_out = frequency == initial(frequency) ? RADIO_TO_AIRALARM : null
 	radio_connection = register_radio(src, null, frequency, radio_filter_in)
@@ -45,7 +45,7 @@
 
 /obj/machinery/atmospherics/unary/vent_scrubber/Destroy()
 	unregister_radio(src, frequency)
-	if(initial_loc)
+	if(isnotnull(initial_loc))
 		initial_loc.air_scrub_info -= id_tag
 		initial_loc.air_scrub_names -= id_tag
 	return ..()
@@ -61,10 +61,10 @@
 	return
 
 /obj/machinery/atmospherics/unary/vent_scrubber/proc/broadcast_status()
-	if(!radio_connection)
+	if(isnull(radio_connection))
 		return 0
 
-	var/datum/signal/signal = new
+	var/datum/signal/signal = new /datum/signal()
 	signal.transmission_method = TRANSMISSION_RADIO
 	signal.source = src
 	signal.data = list(
@@ -83,7 +83,7 @@
 	if(!initial_loc.air_scrub_names[id_tag])
 		var/new_name = "[initial_loc.name] Air Scrubber #[length(initial_loc.air_scrub_names) + 1]"
 		initial_loc.air_scrub_names[id_tag] = new_name
-		src.name = new_name
+		name = new_name
 	initial_loc.air_scrub_info[id_tag] = signal.data
 	radio_connection.post_signal(src, signal, radio_filter_out)
 
@@ -93,7 +93,7 @@
 	..()
 	if(stat & (NOPOWER | BROKEN))
 		return
-	if(!node)
+	if(isnull(node))
 		on = FALSE
 	//broadcast_status()
 	if(!on)
@@ -138,7 +138,7 @@
 
 			loc.assume_air(removed)
 
-			if(network)
+			if(isnotnull(network))
 				network.update = TRUE
 
 	else //Just siphoning all air
@@ -151,7 +151,7 @@
 
 		air_contents.merge(removed)
 
-		if(network)
+		if(isnotnull(network))
 			network.update = TRUE
 
 	return 1
@@ -172,12 +172,12 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/receive_signal(datum/signal/signal)
 	if(stat & (NOPOWER|BROKEN))
 		return
-	if(!signal.data["tag"] || signal.data["tag"] != id_tag || signal.data["sigtype"] != "command")
+	if(isnull(signal.data["tag"]) || signal.data["tag"] != id_tag || signal.data["sigtype"] != "command")
 		return 0
 
-	if(signal.data["power"] != null)
+	if(isnotnull(signal.data["power"]))
 		on = text2num(signal.data["power"])
-	if(signal.data["power_toggle"] != null)
+	if(isnotnull(signal.data["power_toggle"]))
 		on = !on
 
 	if(signal.data["panic_siphon"]) //must be before if("scrubbing" thing
@@ -189,7 +189,7 @@
 		else
 			scrubbing = SCRUBBING
 			volume_rate = initial(volume_rate)
-	if(signal.data["toggle_panic_siphon"] != null)
+	if(isnotnull(signal.data["toggle_panic_siphon"]))
 		panic = !panic
 		if(panic)
 			on = TRUE
@@ -199,31 +199,31 @@
 			scrubbing = SCRUBBING
 			volume_rate = initial(volume_rate)
 
-	if(signal.data["scrubbing"] != null)
+	if(isnotnull(signal.data["scrubbing"]))
 		scrubbing = text2num(signal.data["scrubbing"])
 	if(signal.data["toggle_scrubbing"])
 		scrubbing = !scrubbing
 
-	if(signal.data["co2_scrub"] != null)
+	if(isnotnull(signal.data["co2_scrub"]))
 		scrub_CO2 = text2num(signal.data["co2_scrub"])
 	if(signal.data["toggle_co2_scrub"])
 		scrub_CO2 = !scrub_CO2
 
-	if(signal.data["tox_scrub"] != null)
+	if(isnotnull(signal.data["tox_scrub"]))
 		scrub_Toxins = text2num(signal.data["tox_scrub"])
 	if(signal.data["toggle_tox_scrub"])
 		scrub_Toxins = !scrub_Toxins
 
-	if(signal.data["n2o_scrub"] != null)
+	if(isnotnull(signal.data["n2o_scrub"]))
 		scrub_N2O = text2num(signal.data["n2o_scrub"])
 	if(signal.data["toggle_n2o_scrub"])
 		scrub_N2O = !scrub_N2O
 
-	if(signal.data["init"] != null)
+	if(isnotnull(signal.data["init"]))
 		name = signal.data["init"]
 		return
 
-	if(signal.data["status"] != null)
+	if(isnotnull(signal.data["status"]))
 		spawn(2)
 			broadcast_status()
 		return //do not update_icon
@@ -232,7 +232,6 @@
 	spawn(2)
 		broadcast_status()
 	update_icon()
-	return
 
 /obj/machinery/atmospherics/unary/vent_scrubber/power_change()
 	if(powered(power_channel))
@@ -247,7 +246,7 @@
 	if(!(stat & NOPOWER) && on)
 		to_chat(user, SPAN_WARNING("You cannot unwrench this [src], turn it off first."))
 		return 1
-	var/turf/T = src.loc
+	var/turf/T = loc
 	if(level == 1 && isturf(T) && T.intact)
 		to_chat(user, SPAN_WARNING("You must remove the plating first."))
 		return 1
@@ -286,5 +285,6 @@
 	name = "Air Scrubber (Siphon/On)"
 	on = TRUE
 	icon_state = "in"
+
 #undef SIPHONING
 #undef SCRUBBING

@@ -12,20 +12,18 @@
 	var/target_pressure = 100
 
 /obj/machinery/portable_atmospherics/pump/update_icon()
-	src.overlays = 0
+	overlays = 0
 
 	if(on)
 		icon_state = "psiphon:1"
 	else
 		icon_state = "psiphon:0"
 
-	if(holding)
+	if(isnotnull(holding))
 		overlays.Add("siphon-open")
 
-	if(connected_port)
+	if(isnotnull(connected_port))
 		overlays.Add("siphon-connector")
-
-	return
 
 /obj/machinery/portable_atmospherics/pump/emp_act(severity)
 	if(stat & (BROKEN | NOPOWER))
@@ -47,7 +45,7 @@
 	..()
 	if(on)
 		var/datum/gas_mixture/environment
-		if(holding)
+		if(isnotnull(holding))
 			environment = holding.air_contents
 		else
 			environment = loc.return_air()
@@ -62,7 +60,7 @@
 				//Actually transfer the gas
 				var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
 
-				if(holding)
+				if(isnotnull(holding))
 					environment.merge(removed)
 				else
 					loc.assume_air(removed)
@@ -76,7 +74,7 @@
 
 				//Actually transfer the gas
 				var/datum/gas_mixture/removed
-				if(holding)
+				if(isnotnull(holding))
 					removed = environment.remove(transfer_moles)
 				else
 					removed = loc.remove_air(transfer_moles)
@@ -84,8 +82,7 @@
 				air_contents.merge(removed)
 		//src.update_icon()
 
-	src.updateDialog()
-	return
+	updateDialog()
 
 /obj/machinery/portable_atmospherics/pump/return_air()
 	return air_contents
@@ -100,7 +97,7 @@
 	user.set_machine(src)
 	var/holding_text
 
-	if(holding)
+	if(isnotnull(holding))
 		holding_text = {"<BR><B>Tank Pressure</B>: [holding.air_contents.return_pressure()] KPa<BR>
 <A href='?src=\ref[src];remove_tank=1'>Remove Tank</A><BR>
 "}
@@ -119,14 +116,12 @@ Target Pressure: <A href='?src=\ref[src];pressure_adj=-1000'>-</A> <A href='?src
 	user << browse(output_text, "window=pump;size=600x300")
 	onclose(user, "pump")
 
-	return
-
 /obj/machinery/portable_atmospherics/pump/Topic(href, href_list)
 	..()
 	if(usr.stat || usr.restrained())
 		return
 
-	if((get_dist(src, usr) <= 1) && isturf(src.loc))
+	if((get_dist(src, usr) <= 1) && isturf(loc))
 		usr.set_machine(src)
 
 		if(href_list["power"])
@@ -136,7 +131,7 @@ Target Pressure: <A href='?src=\ref[src];pressure_adj=-1000'>-</A> <A href='?src
 			direction_out = !direction_out
 
 		if(href_list["remove_tank"])
-			if(holding)
+			if(isnotnull(holding))
 				holding.loc = loc
 				holding = null
 
@@ -144,10 +139,8 @@ Target Pressure: <A href='?src=\ref[src];pressure_adj=-1000'>-</A> <A href='?src
 			var/diff = text2num(href_list["pressure_adj"])
 			target_pressure = min(10 * ONE_ATMOSPHERE, max(0, target_pressure + diff))
 
-		src.updateUsrDialog()
-		src.add_fingerprint(usr)
+		updateUsrDialog()
+		add_fingerprint(usr)
 		update_icon()
 	else
 		usr << browse(null, "window=pump")
-		return
-	return

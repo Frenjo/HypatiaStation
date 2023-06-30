@@ -9,12 +9,12 @@
 	current_heat_capacity = 1000
 
 /obj/machinery/atmospherics/unary/cold_sink/freezer/New()
-	..()
+	. = ..()
 	initialize_directions = dir
 
 /obj/machinery/atmospherics/unary/cold_sink/freezer/atmos_initialise()
-	..()
-	if(node)
+	. = ..()
+	if(isnotnull(node))
 		return
 
 	var/node_connect = dir
@@ -34,7 +34,6 @@
 			icon_state = "freezer"
 	else
 		icon_state = "freezer_0"
-	return
 
 /obj/machinery/atmospherics/unary/cold_sink/freezer/attack_ai(mob/user as mob)
 	ui_interact(user)
@@ -54,7 +53,7 @@
 	data["minGasTemperature"] = round(T0C - 200)
 	data["maxGasTemperature"] = round(T20C)
 	data["targetGasTemperature"] = round(current_temperature)
-	
+
 	var/temp_class = "good"
 	if(air_contents.temperature > (T0C - 20))
 		temp_class = "bad"
@@ -75,16 +74,16 @@
 		// auto update every Master Controller tick
 		ui.set_auto_update()
 
-/obj/machinery/atmospherics/unary/cold_sink/freezer/Topic(href, href_list)	
+/obj/machinery/atmospherics/unary/cold_sink/freezer/Topic(href, href_list)
 	if(href_list["toggleStatus"])
 		on = !on
 		update_icon()
 	if(href_list["temp"])
 		var/amount = text2num(href_list["temp"])
 		if(amount > 0)
-			current_temperature = min(T20C, src.current_temperature+amount)
+			current_temperature = min(T20C, current_temperature + amount)
 		else
-			current_temperature = max((T0C - 200), src.current_temperature+amount)
+			current_temperature = max((T0C - 200), current_temperature + amount)
 
 	add_fingerprint(usr)
 	return 1

@@ -16,7 +16,7 @@
 	var/datum/pipe_network/network3
 
 /obj/machinery/atmospherics/trinary/New()
-	..()
+	. = ..()
 	switch(dir)
 		if(NORTH)
 			initialize_directions = EAST | NORTH | SOUTH
@@ -27,16 +27,16 @@
 		if(WEST)
 			initialize_directions = WEST | NORTH | EAST
 
-	air1 = new
-	air2 = new
-	air3 = new
+	air1 = new /datum/gas_mixture()
+	air2 = new /datum/gas_mixture()
+	air3 = new /datum/gas_mixture()
 
 	air1.volume = 200
 	air2.volume = 200
 	air3.volume = 200
 
 /obj/machinery/atmospherics/trinary/atmos_initialise()
-	if(node1 && node2 && node3)
+	if(isnotnull(node1) && isnotnull(node2) && isnotnull(node3))
 		return
 
 	var/node1_connect = turn(dir, -180)
@@ -63,13 +63,13 @@
 /obj/machinery/atmospherics/trinary/Destroy()
 	loc = null
 
-	if(node1)
+	if(isnotnull(node1))
 		node1.disconnect(src)
 		qdel(network1)
-	if(node2)
+	if(isnotnull(node2))
 		node2.disconnect(src)
 		qdel(network2)
-	if(node3)
+	if(isnotnull(node3))
 		node3.disconnect(src)
 		qdel(network3)
 
@@ -98,17 +98,17 @@
 	return null
 
 /obj/machinery/atmospherics/trinary/build_network()
-	if(!network1 && node1)
+	if(isnull(network1) && isnotnull(node1))
 		network1 = new /datum/pipe_network()
 		network1.normal_members.Add(src)
 		network1.build_network(node1, src)
 
-	if(!network2 && node2)
+	if(isnull(network2) && isnotnull(node2))
 		network2 = new /datum/pipe_network()
 		network2.normal_members.Add(src)
 		network2.build_network(node2, src)
 
-	if(!network3 && node3)
+	if(isnull(network3) && isnotnull(node3))
 		network3 = new /datum/pipe_network()
 		network3.normal_members.Add(src)
 		network3.build_network(node3, src)

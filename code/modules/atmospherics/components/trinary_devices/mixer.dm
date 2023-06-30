@@ -6,7 +6,7 @@
 
 	name = "Gas mixer"
 
-	var/on = 0
+	var/on = FALSE
 
 	var/target_pressure = ONE_ATMOSPHERE
 	var/node1_concentration = 0.5
@@ -17,13 +17,11 @@
 /obj/machinery/atmospherics/trinary/mixer/update_icon()
 	if(stat & NOPOWER)
 		icon_state = "intact_off"
-	else if(node2 && node3 && node1)
+	else if(isnotnull(node2) && isnotnull(node3) && isnotnull(node1))
 		icon_state = "intact_[on?("on"):("off")]"
 	else
 		icon_state = "intact_off"
-		on = 0
-
-	return
+		on = FALSE
 
 /obj/machinery/atmospherics/trinary/mixer/power_change()
 	var/old_stat = stat
@@ -32,7 +30,7 @@
 		update_icon()
 
 /obj/machinery/atmospherics/trinary/mixer/New()
-	..()
+	. = ..()
 	air3.volume = 300
 
 /obj/machinery/atmospherics/trinary/mixer/process()
@@ -78,13 +76,13 @@
 		var/datum/gas_mixture/removed2 = air2.remove(transfer_moles2)
 		air3.merge(removed2)
 
-	if(network1 && transfer_moles1)
+	if(isnotnull(network1) && transfer_moles1)
 		network1.update = TRUE
 
-	if(network2 && transfer_moles2)
+	if(isnotnull(network2) && transfer_moles2)
 		network2.update = TRUE
 
-	if(network3)
+	if(isnotnull(network3))
 		network3.update = TRUE
 
 	return 1
@@ -92,7 +90,7 @@
 /obj/machinery/atmospherics/trinary/mixer/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench))
 		return ..()
-	var/turf/T = src.loc
+	var/turf/T = loc
 	if(level == 1 && isturf(T) && T.intact)
 		to_chat(user, SPAN_WARNING("You must remove the plating first."))
 		return 1
@@ -107,18 +105,19 @@
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 	to_chat(user, SPAN_INFO("You begin to unfasten \the [src]..."))
 	if(do_after(user, 40))
-		user.visible_message( \
-			"[user] unfastens \the [src].", \
-			SPAN_INFO("You have unfastened \the [src]."), \
-			"You hear a ratchet.")
+		user.visible_message(
+			"[user] unfastens \the [src].",
+			SPAN_INFO("You have unfastened \the [src]."),
+			"You hear a ratchet."
+		)
 		new /obj/item/pipe(loc, make_from=src)
 		qdel(src)
 
 /obj/machinery/atmospherics/trinary/mixer/attack_hand(user as mob)
 	if(..())
 		return
-	src.add_fingerprint(usr)
-	if(!src.allowed(user))
+	add_fingerprint(usr)
+	if(!allowed(user))
 		FEEDBACK_ACCESS_DENIED(user)
 		return
 	usr.set_machine(src)
@@ -144,10 +143,10 @@
 	user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_mixer")
 	onclose(user, "atmo_mixer")*/
 	ui_interact(user) // Edited this to reflect NanoUI port. -Frenjo
-	return
 
 /obj/machinery/atmospherics/trinary/mixer/Topic(href, href_list)
-	if(..()) return
+	if(..())
+		return
 	/*if(href_list["power"])
 		on = !on
 	if(href_list["set_press"])
@@ -165,28 +164,27 @@
 	// Edited this to reflect NanoUI port. -Frenjo
 	switch(href_list["power"])
 		if("off")
-			on = 0
+			on = FALSE
 		if("on")
-			on = 1
+			on = TRUE
 
 	if(href_list["node1_c"])
 		var/value = text2num(href_list["node1_c"])
-		src.node1_concentration = max(0, min(1, src.node1_concentration + value))
-		src.node2_concentration = max(0, min(1, src.node2_concentration - value))
+		node1_concentration = max(0, min(1, node1_concentration + value))
+		node2_concentration = max(0, min(1, node2_concentration - value))
 
 	if(href_list["node2_c"])
 		var/value = text2num(href_list["node2_c"])
-		src.node2_concentration = max(0, min(1, src.node2_concentration + value))
-		src.node1_concentration = max(0, min(1, src.node1_concentration - value))
+		node2_concentration = max(0, min(1, node2_concentration + value))
+		node1_concentration = max(0, min(1, node1_concentration - value))
 
 	switch(href_list["pressure"])
 		if("set_press")
-			var/new_pressure = input(usr, "Enter new output pressure (0-4500kPa)", "Pressure control", src.target_pressure) as num
-			src.target_pressure = max(0, min(4500, new_pressure))
+			var/new_pressure = input(usr, "Enter new output pressure (0-4500kPa)", "Pressure control", target_pressure) as num
+			target_pressure = max(0, min(4500, new_pressure))
 
-	src.update_icon()
-	src.updateUsrDialog()
-	return
+	update_icon()
+	updateUsrDialog()
 
 // Porting this to NanoUI, it looks way better honestly. -Frenjo
 // Porting this one was literally satan, just saying.

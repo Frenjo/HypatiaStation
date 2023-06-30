@@ -7,7 +7,7 @@
 	name = "Passive gate"
 	desc = "A one-way air valve that does not require power"
 
-	var/on = 0
+	var/on = FALSE
 	var/target_pressure = ONE_ATMOSPHERE
 
 	var/frequency = 0
@@ -15,7 +15,7 @@
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/binary/passive_gate/atmos_initialise()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/binary/passive_gate/Destroy()
@@ -25,12 +25,12 @@
 /obj/machinery/atmospherics/binary/passive_gate/update_icon()
 	if(stat & NOPOWER)
 		icon_state = "intact_off"
-	else if(node1 && node2)
+	else if(isnotnull(node1) && isnotnull(node2))
 		icon_state = "intact_[on?("on"):("off")]"
 	else
-		if(node1)
+		if(isnotnull(node1))
 			icon_state = "exposed_1_off"
-		else if(node2)
+		else if(isnotnull(node2))
 			icon_state = "exposed_2_off"
 		else
 			icon_state = "exposed_3_off"
@@ -60,17 +60,17 @@
 		var/datum/gas_mixture/removed = air1.remove(transfer_moles)
 		air2.merge(removed)
 
-		if(network1)
+		if(isnotnull(network1))
 			network1.update = TRUE
 
-		if(network2)
+		if(isnotnull(network2))
 			network2.update = TRUE
 
 /obj/machinery/atmospherics/binary/passive_gate/proc/broadcast_status()
-	if(!radio_connection)
+	if(isnull(radio_connection))
 		return 0
 
-	var/datum/signal/signal = new
+	var/datum/signal/signal = new /datum/signal()
 	signal.transmission_method = TRANSMISSION_RADIO
 	signal.source = src
 
@@ -88,14 +88,14 @@
 /obj/machinery/atmospherics/binary/passive_gate/interact(mob/user as mob)
 	var/dat = {"<b>Power: </b><a href='?src=\ref[src];power=1'>[on?"On":"Off"]</a><br>
 				<b>Desirable output pressure: </b>
-				[round(target_pressure,0.1)]kPa | <a href='?src=\ref[src];set_press=1'>Change</a>
+				[round(target_pressure, 0.1)]kPa | <a href='?src=\ref[src];set_press=1'>Change</a>
 				"}
 
 	user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_pump")
 	onclose(user, "atmo_pump")
 
 /obj/machinery/atmospherics/binary/passive_gate/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || signal.data["tag"] != id || signal.data["sigtype"] != "command")
+	if(isnull(signal.data["tag"]) || signal.data["tag"] != id || signal.data["sigtype"] != "command")
 		return 0
 
 	if("power" in signal.data)
@@ -119,18 +119,16 @@
 	spawn(2)
 		broadcast_status()
 	update_icon()
-	return
 
 /obj/machinery/atmospherics/binary/passive_gate/attack_hand(user as mob)
 	if(..())
 		return
-	src.add_fingerprint(usr)
-	if(!src.allowed(user))
+	add_fingerprint(usr)
+	if(!allowed(user))
 		FEEDBACK_ACCESS_DENIED(user)
 		return
 	usr.set_machine(src)
 	interact(user)
-	return
 
 /obj/machinery/atmospherics/binary/passive_gate/Topic(href, href_list)
 	if(..())
@@ -138,12 +136,11 @@
 	if(href_list["power"])
 		on = !on
 	if(href_list["set_press"])
-		var/new_pressure = input(usr, "Enter new output pressure (0-4500kPa)", "Pressure control", src.target_pressure) as num
-		src.target_pressure = max(0, min(4500, new_pressure))
+		var/new_pressure = input(usr, "Enter new output pressure (0-4500kPa)", "Pressure control", target_pressure) as num
+		target_pressure = max(0, min(4500, new_pressure))
 	usr.set_machine(src)
-	src.update_icon()
-	src.updateUsrDialog()
-	return
+	update_icon()
+	updateUsrDialog()
 
 /obj/machinery/atmospherics/binary/passive_gate/power_change()
 	..()
@@ -155,7 +152,7 @@
 	if(on)
 		to_chat(user, SPAN_WARNING("You cannot unwrench this [src], turn it off first."))
 		return 1
-	var/turf/T = src.loc
+	var/turf/T = loc
 	if(level == 1 && isturf(T) && T.intact)
 		to_chat(user, SPAN_WARNING("You must remove the plating first."))
 		return 1

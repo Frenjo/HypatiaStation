@@ -2,7 +2,7 @@
 	name = "atmoalter"
 	use_power = FALSE
 
-	var/datum/gas_mixture/air_contents = new
+	var/datum/gas_mixture/air_contents
 
 	var/obj/machinery/atmospherics/unary/portables_connector/connected_port
 	var/obj/item/weapon/tank/holding
@@ -13,15 +13,15 @@
 	var/maximum_pressure = 90 * ONE_ATMOSPHERE
 
 /obj/machinery/portable_atmospherics/New()
-	..()
+	. = ..()
+	air_contents = new /datum/gas_mixture()
 	air_contents.volume = volume
 	air_contents.temperature = T20C
-	return 1
 
 /obj/machinery/portable_atmospherics/initialize()
 	. = ..()
 	var/obj/machinery/atmospherics/unary/portables_connector/port = locate() in loc
-	if(port)
+	if(isnotnull(port))
 		connect(port)
 		update_icon()
 
@@ -30,7 +30,7 @@
 	return ..()
 
 /obj/machinery/portable_atmospherics/process()
-	if(!connected_port) //only react when pipe_network will ont it do it for you
+	if(isnull(connected_port)) //only react when pipe_network will ont it do it for you
 		//Allow for reactions
 		air_contents.react()
 	else
@@ -41,7 +41,7 @@
 
 /obj/machinery/portable_atmospherics/proc/connect(obj/machinery/atmospherics/unary/portables_connector/new_port)
 	//Make sure not already connected to something else
-	if(connected_port || !new_port || new_port.connected_device)
+	if(isnotnull(connected_port) || isnull(new_port) || isnotnull(new_port.connected_device))
 		return 0
 
 	//Make sure are close enough for a valid connection
@@ -56,18 +56,18 @@
 
 	//Actually enforce the air sharing
 	var/datum/pipe_network/network = connected_port.return_network(src)
-	if(network && !network.gases.Find(air_contents))
+	if(isnotnull(network) && !network.gases.Find(air_contents))
 		network.gases.Add(air_contents)
 		network.update = TRUE
 
 	return 1
 
 /obj/machinery/portable_atmospherics/proc/disconnect()
-	if(!connected_port)
+	if(isnull(connected_port))
 		return 0
 
 	var/datum/pipe_network/network = connected_port.return_network(src)
-	if(network)
+	if(isnotnull(network))
 		network.gases.Remove(air_contents)
 
 	anchored = FALSE
@@ -79,25 +79,25 @@
 
 /obj/machinery/portable_atmospherics/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	var/obj/icon = src
-	if(istype(W, /obj/item/weapon/tank) && !src.destroyed)
-		if(src.holding)
+	if(istype(W, /obj/item/weapon/tank) && !destroyed)
+		if(isnotnull(holding))
 			return
 		var/obj/item/weapon/tank/T = W
 		user.drop_item()
 		T.loc = src
-		src.holding = T
+		holding = T
 		update_icon()
 		return
 
 	else if(istype(W, /obj/item/weapon/wrench))
-		if(connected_port)
+		if(isnotnull(connected_port))
 			disconnect()
 			to_chat(user, SPAN_INFO("You disconnect [name] from the port."))
 			update_icon()
 			return
 		else
 			var/obj/machinery/atmospherics/unary/portables_connector/possible_port = locate(/obj/machinery/atmospherics/unary/portables_connector/) in loc
-			if(possible_port)
+			if(isnotnull(possible_port))
 				if(connect(possible_port))
 					to_chat(user, SPAN_INFO("You connect [name] to the port."))
 					update_icon()
@@ -109,9 +109,9 @@
 				to_chat(user, SPAN_INFO("Nothing happens."))
 				return
 
-	else if((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
+	else if(istype(W, /obj/item/device/analyzer) && get_dist(user, src) <= 1)
 		visible_message("\red [user] has used [W] on \icon[icon]")
-		if(air_contents)
+		if(isnotnull(air_contents))
 			var/pressure = air_contents.return_pressure()
 			var/total_moles = air_contents.total_moles
 
@@ -127,4 +127,3 @@
 		else
 			to_chat(user, SPAN_INFO("Tank is empty!"))
 		return
-	return

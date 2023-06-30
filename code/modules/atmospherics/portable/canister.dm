@@ -24,7 +24,7 @@
 /obj/machinery/portable_atmospherics/canister/proc/check_change()
 	var/old_flag = update_flag
 	update_flag = 0
-	if(holding)
+	if(isnotnull(holding))
 		update_flag |= 1
 	if(connected_port)
 		update_flag |= 2
@@ -55,9 +55,9 @@ update_flag
 32 = tank_pressure go boom.
 */
 
-	if(src.destroyed)
-		src.overlays = 0
-		src.icon_state = "[src.canister_color]-1"
+	if(destroyed)
+		overlays = 0
+		icon_state = "[canister_color]-1"
 
 	if(icon_state != "[canister_color]")
 		icon_state = "[canister_color]"
@@ -65,7 +65,7 @@ update_flag
 	if(check_change()) //Returns 1 if no change needed to icons.
 		return
 
-	src.overlays = 0
+	overlays = 0
 
 	if(update_flag & 1)
 		overlays.Add("can-open")
@@ -79,7 +79,6 @@ update_flag
 		overlays.Add("can-o2")
 	else if(update_flag & 32)
 		overlays.Add("can-o3")
-	return
 
 /obj/machinery/portable_atmospherics/canister/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > temperature_resistance)
@@ -90,18 +89,18 @@ update_flag
 	if(destroyed)
 		return 1
 
-	if(src.health <= 10)
+	if(health <= 10)
 		var/atom/location = src.loc
 		location.assume_air(air_contents)
 
-		src.destroyed = TRUE
+		destroyed = TRUE
 		playsound(src, 'sound/effects/spray.ogg', 10, 1, -3)
-		src.density = FALSE
+		density = FALSE
 		update_icon()
 
-		if(src.holding)
-			src.holding.loc = src.loc
-			src.holding = null
+		if(isnotnull(holding))
+			holding.loc = loc
+			holding = null
 
 		return 1
 	else
@@ -115,7 +114,7 @@ update_flag
 
 	if(valve_open)
 		var/datum/gas_mixture/environment
-		if(holding)
+		if(isnotnull(holding))
 			environment = holding.air_contents
 		else
 			environment = loc.return_air()
@@ -131,11 +130,11 @@ update_flag
 			//Actually transfer the gas
 			var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
 
-			if(holding)
+			if(isnotnull(holding))
 				environment.merge(removed)
 			else
 				loc.assume_air(removed)
-			src.update_icon()
+			update_icon()
 
 	if(air_contents.return_pressure() < 1)
 		can_label = TRUE
@@ -144,44 +143,41 @@ update_flag
 
 	if(air_contents.temperature > PLASMA_FLASHPOINT)
 		air_contents.zburn()
-	return
 
 /obj/machinery/portable_atmospherics/canister/return_air()
 	return air_contents
 
 /obj/machinery/portable_atmospherics/canister/proc/return_temperature()
-	var/datum/gas_mixture/GM = src.return_air()
-	if(GM && GM.volume > 0)
-		return GM.temperature
+	var/datum/gas_mixture/air = return_air()
+	if(air?.volume > 0)
+		return air.temperature
 	return 0
 
 /obj/machinery/portable_atmospherics/canister/proc/return_pressure()
-	var/datum/gas_mixture/GM = src.return_air()
-	if(GM && GM.volume > 0)
-		return GM.return_pressure()
+	var/datum/gas_mixture/air = return_air()
+	if(air?.volume > 0)
+		return air.return_pressure()
 	return 0
 
 /obj/machinery/portable_atmospherics/canister/blob_act()
-	src.health -= 200
+	health -= 200
 	healthcheck()
-	return
 
-/obj/machinery/portable_atmospherics/canister/bullet_act(obj/item/projectile/Proj)
-	if(Proj.damage)
-		src.health -= round(Proj.damage / 2)
+/obj/machinery/portable_atmospherics/canister/bullet_act(obj/item/projectile/proj)
+	if(proj.damage)
+		health -= round(proj.damage / 2)
 		healthcheck()
 	..()
 
 /obj/machinery/portable_atmospherics/canister/meteorhit(obj/O as obj)
-	src.health = 0
+	health = 0
 	healthcheck()
-	return
 
 /obj/machinery/portable_atmospherics/canister/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/weapon/wrench) && !istype(W, /obj/item/weapon/tank) && !istype(W, /obj/item/device/analyzer) && !istype(W, /obj/item/device/pda))
 		visible_message(SPAN_WARNING("[user] hits the [src] with a [W]!"))
-		src.health -= W.force
-		src.add_fingerprint(user)
+		health -= W.force
+		add_fingerprint(user)
 		healthcheck()
 
 	if(isrobot(user) && istype(W, /obj/item/weapon/tank/jetpack))
@@ -211,7 +207,7 @@ update_flag
 	return src.ui_interact(user)
 
 /obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
-	if(src.destroyed)
+	if(destroyed)
 		return
 
 	// this is the data which will be sent to the ui
@@ -226,7 +222,7 @@ update_flag
 	data["valveOpen"] = valve_open ? TRUE : FALSE
 
 	data["hasHoldingTank"] = holding ? TRUE : FALSE
-	if(holding)
+	if(isnotnull(holding))
 		data["holdingTank"] = list("name" = holding.name, "tankPressure" = round(holding.air_contents.return_pressure()))
 
 	// update the ui if it exists, returns null if no ui is passed/found
@@ -249,19 +245,19 @@ update_flag
 
 	if(href_list["toggle"])
 		if(valve_open)
-			if(holding)
+			if(isnotnull(holding))
 				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
 			else
 				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the <font color='red'><b>air</b></font><br>"
 		else
-			if(holding)
+			if(isnotnull(holding))
 				release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the [holding]<br>"
 			else
 				release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the <font color='red'><b>air</b></font><br>"
 		valve_open = !valve_open
 
 	if(href_list["remove_tank"])
-		if(holding)
+		if(isnotnull(holding))
 			if(istype(holding, /obj/item/weapon/tank))
 				holding.manipulated_by = usr.real_name
 			holding.loc = loc
@@ -302,12 +298,12 @@ update_flag
 				"\[Rainbow\]" = "rainbow",
 			)
 			var/label = input("Choose canister label", "Gas Canister") as null | anything in colors
-			if(label)
-				src.canister_color = colors[label]
-				src.icon_state = colors[label]
-				src.name = "Canister: [label]"
+			if(isnotnull(label))
+				canister_color = colors[label]
+				icon_state = colors[label]
+				name = "Canister: [label]"
 
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	update_icon()
 
 	return 1
@@ -318,7 +314,7 @@ update_flag
 	name = "Canister: \[O2\]"
 	icon_state = "bluews"
 	canister_color = "bluews"
-	can_label = 0
+	can_label = FALSE
 
 /obj/machinery/portable_atmospherics/canister/oxygen/New()
 	. = ..()
@@ -330,7 +326,7 @@ update_flag
 	name = "Canister: \[N2\]"
 	icon_state = "red"
 	canister_color = "red"
-	can_label = 0
+	can_label = FALSE
 
 /obj/machinery/portable_atmospherics/canister/nitrogen/New()
 	. = ..()
@@ -342,7 +338,7 @@ update_flag
 	name = "Canister \[Air\]"
 	icon_state = "grey"
 	canister_color = "grey"
-	can_label = 0
+	can_label = FALSE
 
 /obj/machinery/portable_atmospherics/canister/air/New()
 	. = ..()
@@ -357,7 +353,7 @@ update_flag
 	name = "Canister: \[H2\]"
 	icon_state = "green"
 	canister_color = "green"
-	can_label = 0
+	can_label = FALSE
 
 /obj/machinery/portable_atmospherics/canister/hydrogen/New()
 	. = ..()
@@ -369,7 +365,7 @@ update_flag
 	name = "Canister \[CO2\]"
 	icon_state = "black"
 	canister_color = "black"
-	can_label = 0
+	can_label = FALSE
 
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide/New()
 	. = ..()
@@ -381,7 +377,7 @@ update_flag
 	name = "Canister \[Toxin (Bio)\]"
 	icon_state = "orange"
 	canister_color = "orange"
-	can_label = 0
+	can_label = FALSE
 
 /obj/machinery/portable_atmospherics/canister/toxins/New()
 	. = ..()
@@ -394,7 +390,7 @@ update_flag
 	name = "Canister \[O2/TOX\]"
 	icon_state = "orangews2"
 	canister_color = "orangews2"
-	can_label = 0
+	can_label = FALSE
 
 /obj/machinery/portable_atmospherics/canister/oxygen_toxins/New()
 	. = ..()
@@ -411,7 +407,7 @@ update_flag
 	name = "Canister \[Oxygen Agent-B\]"
 	icon_state = "orangebs"
 	canister_color = "orangebs"
-	can_label = 0
+	can_label = FALSE
 
 /obj/machinery/portable_atmospherics/canister/oxygen_agent_b/New()
 	. = ..()
@@ -423,7 +419,7 @@ update_flag
 	name = "Canister: \[N2O\]"
 	icon_state = "redws2"
 	canister_color = "redws2"
-	can_label = 0
+	can_label = FALSE
 
 /obj/machinery/portable_atmospherics/canister/sleeping_agent/New()
 	. = ..()
@@ -438,9 +434,9 @@ update_flag
 
 /obj/machinery/portable_atmospherics/canister/sleep_agent/roomfiller/initialize()
 	. = ..()
-	var/turf/simulated/location = src.loc
-	if(istype(src.loc))
+	var/turf/simulated/location = loc
+	if(istype(loc))
 		while(!location.air)
 			sleep(10)
 		location.assume_air(air_contents)
-		air_contents = new
+		air_contents = new /datum/gas_mixture()

@@ -10,14 +10,14 @@
 	var/datum/pipe_network/network
 
 /obj/machinery/atmospherics/unary/New()
-	..()
+	. = ..()
 	initialize_directions = dir
-	air_contents = new
+	air_contents = new /datum/gas_mixture()
 
 	air_contents.volume = 200
 
 /obj/machinery/atmospherics/unary/atmos_initialise()
-	if(node)
+	if(isnotnull(node))
 		return
 
 	var/node_connect = dir
@@ -32,7 +32,7 @@
 /obj/machinery/atmospherics/unary/Destroy()
 	loc = null
 
-	if(node)
+	if(isnotnull(node))
 		node.disconnect(src)
 		qdel(network)
 
@@ -53,7 +53,7 @@
 	return null
 
 /obj/machinery/atmospherics/unary/build_network()
-	if(!network && node)
+	if(isnull(network) && isnotnull(node))
 		network = new /datum/pipe_network()
 		network.normal_members.Add(src)
 		network.build_network(node, src)

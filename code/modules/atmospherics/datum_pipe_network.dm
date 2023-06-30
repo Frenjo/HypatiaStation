@@ -10,7 +10,7 @@
 
 /datum/pipe_network/New()
 	//air_transient = new()
-	..()
+	. = ..()
 
 /datum/pipe_network/proc/process()
 	//Equalize gases amongst pipe if called for

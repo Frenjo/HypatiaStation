@@ -20,11 +20,9 @@
 
 		on = FALSE
 
-	return
-
 /obj/machinery/atmospherics/unary/cold_sink/process()
 	..()
-	if(!on || !network)
+	if(!on || isnull(network))
 		return 0
 	var/air_heat_capacity = air_contents.heat_capacity()
 	var/combined_heat_capacity = current_heat_capacity + air_heat_capacity

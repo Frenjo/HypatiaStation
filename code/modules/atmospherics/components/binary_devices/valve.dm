@@ -5,8 +5,8 @@
 	name = "manual valve"
 	desc = "A pipe valve"
 
-	var/open = 0
-	var/openDuringInit = 0
+	var/open = FALSE
+	var/openDuringInit = FALSE
 
 /obj/machinery/atmospherics/binary/valve/atmos_initialise()
 	normalize_dir()
@@ -35,7 +35,7 @@
 	if(openDuringInit)
 		close()
 		open()
-		openDuringInit = 0
+		openDuringInit = FALSE
 
 /*
 	var/connect_directions
@@ -72,12 +72,12 @@
 */
 
 /obj/machinery/atmospherics/binary/valve/open
-	open = 1
+	open = TRUE
 	icon_state = "valve1"
 
 /obj/machinery/atmospherics/binary/valve/update_icon(animation)
 	if(animation)
-		flick("valve[src.open][!src.open]", src)
+		flick("valve[open][!open]", src)
 	else
 		icon_state = "valve[open]"
 
@@ -98,10 +98,10 @@
 
 	if(open)
 		if(reference == node1)
-			if(node2)
+			if(isnotnull(node2))
 				return node2.network_expand(new_network, src)
 		else if(reference == node2)
-			if(node1)
+			if(isnotnull(node1))
 				return node1.network_expand(new_network, src)
 
 	return null
@@ -110,16 +110,16 @@
 	if(open)
 		return 0
 
-	open = 1
+	open = TRUE
 	update_icon()
 
-	if(network1 && network2)
+	if(isnotnull(network1) && isnotnull(network2))
 		network1.merge(network2)
 		network2 = network1
 
-	if(network1)
+	if(isnotnull(network1))
 		network1.update = TRUE
-	else if(network2)
+	else if(isnotnull(network2))
 		network2.update = TRUE
 
 	return 1
@@ -128,12 +128,12 @@
 	if(!open)
 		return 0
 
-	open = 0
+	open = FALSE
 	update_icon()
 
-	if(network1)
+	if(isnotnull(network1))
 		qdel(network1)
-	if(network2)
+	if(isnotnull(network2))
 		qdel(network2)
 
 	build_network()
@@ -153,17 +153,17 @@
 	return attack_hand(user)
 
 /obj/machinery/atmospherics/binary/valve/attack_hand(mob/user as mob)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	update_icon(1)
 	sleep(10)
-	if(src.open)
-		src.close()
+	if(open)
+		close()
 	else
-		src.open()
+		open()
 
 /obj/machinery/atmospherics/binary/valve/process()
 	..()
-	. = PROCESS_KILL
+	return PROCESS_KILL
 
 /*	if(open && (!node1 || !node2))
 		close()
@@ -179,8 +179,6 @@
 		nodealert = 0
 */
 
-	return
-
 /obj/machinery/atmospherics/binary/valve/digital		// can be controlled by AI
 	name = "digital valve"
 	desc = "A digitally controlled valve."
@@ -191,7 +189,7 @@
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/binary/valve/digital/atmos_initialise()
-	..()
+	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
 /obj/machinery/atmospherics/binary/valve/digital/Destroy()
@@ -199,16 +197,16 @@
 	return ..()
 
 /obj/machinery/atmospherics/binary/valve/digital/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/atmospherics/binary/valve/digital/attack_hand(mob/user as mob)
-	if(!src.allowed(user))
+	if(!allowed(user))
 		FEEDBACK_ACCESS_DENIED(user)
 		return
 	..()
 
 /obj/machinery/atmospherics/binary/valve/digital/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || signal.data["tag"] != id)
+	if(isnull(signal.data["tag"]) || signal.data["tag"] != id)
 		return 0
 
 	switch(signal.data["command"])
@@ -233,7 +231,7 @@
 		to_chat(user, SPAN_WARNING("You cannot unwrench this [src], it's too complicated."))
 		return 1
 
-	var/turf/T = src.loc
+	var/turf/T = loc
 	if(level == 1 && isturf(T) && T.intact)
 		to_chat(user, SPAN_WARNING("You must remove the plating first."))
 		return 1

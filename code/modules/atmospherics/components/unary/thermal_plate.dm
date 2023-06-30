@@ -10,11 +10,10 @@
 	desc = "Transfers heat to and from an area"
 
 /obj/machinery/atmospherics/unary/thermal_plate/update_icon()
-	if(node)
+	if(isnotnull(node))
 		icon_state = "intact_off"
 	else
 		icon_state = "exposed"
-	return
 
 /obj/machinery/atmospherics/unary/thermal_plate/process()
 	..()
@@ -43,7 +42,8 @@
 	var/combined_heat_capacity = internal_removed.heat_capacity() + external_removed.heat_capacity()
 	var/combined_energy = internal_removed.temperature * internal_removed.heat_capacity() + external_removed.heat_capacity() * external_removed.temperature
 
-	if(!combined_heat_capacity) combined_heat_capacity = 1
+	if(!combined_heat_capacity)
+		combined_heat_capacity = 1
 	var/final_temperature = combined_energy / combined_heat_capacity
 
 	external_removed.temperature = final_temperature
@@ -71,7 +71,7 @@
 	internal_removed.temperature = final_temperature
 	air_contents.merge(internal_removed)
 
-	if(network)
+	if(isnotnull(network))
 		network.update = TRUE
 
 	return 1
