@@ -94,15 +94,15 @@
 	name = "solution tray box"
 	icon_state = "solution_trays"
 
-/obj/item/weapon/storage/box/solution_trays/New()
-	..()
-	new /obj/item/weapon/reagent_containers/glass/solution_tray(src)
-	new /obj/item/weapon/reagent_containers/glass/solution_tray(src)
-	new /obj/item/weapon/reagent_containers/glass/solution_tray(src)
-	new /obj/item/weapon/reagent_containers/glass/solution_tray(src)
-	new /obj/item/weapon/reagent_containers/glass/solution_tray(src)
-	new /obj/item/weapon/reagent_containers/glass/solution_tray(src)
-	new /obj/item/weapon/reagent_containers/glass/solution_tray(src)
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/glass/solution_tray,
+		/obj/item/weapon/reagent_containers/glass/solution_tray,
+		/obj/item/weapon/reagent_containers/glass/solution_tray,
+		/obj/item/weapon/reagent_containers/glass/solution_tray,
+		/obj/item/weapon/reagent_containers/glass/solution_tray,
+		/obj/item/weapon/reagent_containers/glass/solution_tray,
+		/obj/item/weapon/reagent_containers/glass/solution_tray
+	)
 
 
 /obj/item/weapon/reagent_containers/glass/beaker/tungsten

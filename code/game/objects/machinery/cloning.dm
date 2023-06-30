@@ -431,15 +431,15 @@
 	name = "Diskette Box"
 	icon_state = "disk_kit"
 
-/obj/item/weapon/storage/box/disks/New()
-	..()
-	new /obj/item/weapon/disk/data(src)
-	new /obj/item/weapon/disk/data(src)
-	new /obj/item/weapon/disk/data(src)
-	new /obj/item/weapon/disk/data(src)
-	new /obj/item/weapon/disk/data(src)
-	new /obj/item/weapon/disk/data(src)
-	new /obj/item/weapon/disk/data(src)
+	starts_with = list(
+		/obj/item/weapon/disk/data,
+		/obj/item/weapon/disk/data,
+		/obj/item/weapon/disk/data,
+		/obj/item/weapon/disk/data,
+		/obj/item/weapon/disk/data,
+		/obj/item/weapon/disk/data,
+		/obj/item/weapon/disk/data
+	)
 
 /*
  *	Manual -- A big ol' manual.

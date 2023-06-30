@@ -1025,22 +1025,24 @@
 	icon = 'icons/obj/devices/pda.dmi'
 	icon_state = "pdabox"
 
-/obj/item/weapon/storage/box/PDAs/New()
-	..()
-	new /obj/item/device/pda(src)
-	new /obj/item/device/pda(src)
-	new /obj/item/device/pda(src)
-	new /obj/item/device/pda(src)
-	new /obj/item/weapon/cartridge/head(src)
-
-	var/newcart = pick( \
-		/obj/item/weapon/cartridge/engineering, \
-		/obj/item/weapon/cartridge/security, \
-		/obj/item/weapon/cartridge/medical, \
-		/obj/item/weapon/cartridge/signal/toxins, \
-		/obj/item/weapon/cartridge/quartermaster \
+	starts_with = list(
+		/obj/item/device/pda,
+		/obj/item/device/pda,
+		/obj/item/device/pda,
+		/obj/item/device/pda,
+		/obj/item/weapon/cartridge/head
 	)
-	new newcart(src)
+
+/obj/item/weapon/storage/box/PDAs/New()
+	var/list/cartridges = list(
+		/obj/item/weapon/cartridge/engineering,
+		/obj/item/weapon/cartridge/security,
+		/obj/item/weapon/cartridge/medical,
+		/obj/item/weapon/cartridge/signal/toxins,
+		/obj/item/weapon/cartridge/quartermaster
+	)
+	starts_with.Add(pick(cartridges))
+	return ..()
 
 // Pass along the pulse to atoms in contents, largely added so pAIs are vulnerable to EMP
 /obj/item/device/pda/emp_act(severity)

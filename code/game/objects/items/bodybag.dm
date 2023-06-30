@@ -17,16 +17,16 @@
 	name = "body bags"
 	desc = "This box contains body bags."
 	icon_state = "bodybags"
-	
-/obj/item/weapon/storage/box/bodybags/New()
-	..()
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
-	new /obj/item/bodybag(src)
+
+	starts_with = list(
+		/obj/item/bodybag,
+		/obj/item/bodybag,
+		/obj/item/bodybag,
+		/obj/item/bodybag,
+		/obj/item/bodybag,
+		/obj/item/bodybag,
+		/obj/item/bodybag
+	)
 
 
 /obj/structure/closet/body_bag

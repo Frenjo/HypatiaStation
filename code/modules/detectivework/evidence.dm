@@ -87,16 +87,15 @@
 /obj/item/weapon/storage/box/evidence
 	name = "evidence bag box"
 	desc = "A box claiming to contain evidence bags."
-	
-/obj/item/weapon/storage/box/evidence/New()
-	new /obj/item/weapon/evidencebag(src)
-	new /obj/item/weapon/evidencebag(src)
-	new /obj/item/weapon/evidencebag(src)
-	new /obj/item/weapon/evidencebag(src)
-	new /obj/item/weapon/evidencebag(src)
-	new /obj/item/weapon/evidencebag(src)
-	..()
-	return
+
+	starts_with = list(
+		/obj/item/weapon/evidencebag,
+		/obj/item/weapon/evidencebag,
+		/obj/item/weapon/evidencebag,
+		/obj/item/weapon/evidencebag,
+		/obj/item/weapon/evidencebag,
+		/obj/item/weapon/evidencebag
+	)
 
 /obj/item/weapon/f_card
 	name = "finger print card"

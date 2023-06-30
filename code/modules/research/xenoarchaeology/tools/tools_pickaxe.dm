@@ -121,12 +121,12 @@
 	max_w_class = 4
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
 
-/obj/item/weapon/storage/box/excavation/New()
-	..()
-	new /obj/item/weapon/pickaxe/brush(src)
-	new /obj/item/weapon/pickaxe/one_pick(src)
-	new /obj/item/weapon/pickaxe/two_pick(src)
-	new /obj/item/weapon/pickaxe/three_pick(src)
-	new /obj/item/weapon/pickaxe/four_pick(src)
-	new /obj/item/weapon/pickaxe/five_pick(src)
-	new /obj/item/weapon/pickaxe/six_pick(src)
+	starts_with = list(
+		/obj/item/weapon/pickaxe/brush,
+		/obj/item/weapon/pickaxe/one_pick,
+		/obj/item/weapon/pickaxe/two_pick,
+		/obj/item/weapon/pickaxe/three_pick,
+		/obj/item/weapon/pickaxe/four_pick,
+		/obj/item/weapon/pickaxe/five_pick,
+		/obj/item/weapon/pickaxe/six_pick
+	)

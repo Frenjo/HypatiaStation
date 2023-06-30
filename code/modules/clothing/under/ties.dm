@@ -456,16 +456,15 @@
 /obj/item/weapon/storage/box/holobadge
 	name = "holobadge box"
 	desc = "A box claiming to contain holobadges."
-	
-/obj/item/weapon/storage/box/holobadge/New()
-	..()
-	new /obj/item/clothing/tie/holobadge(src)
-	new /obj/item/clothing/tie/holobadge(src)
-	new /obj/item/clothing/tie/holobadge(src)
-	new /obj/item/clothing/tie/holobadge(src)
-	new /obj/item/clothing/tie/holobadge/cord(src)
-	new /obj/item/clothing/tie/holobadge/cord(src)
-	return
+
+	starts_with = list(
+		/obj/item/clothing/tie/holobadge,
+		/obj/item/clothing/tie/holobadge,
+		/obj/item/clothing/tie/holobadge,
+		/obj/item/clothing/tie/holobadge,
+		/obj/item/clothing/tie/holobadge/cord,
+		/obj/item/clothing/tie/holobadge/cord
+	)
 
 /obj/item/clothing/tie/storage/knifeharness
 	name = "decorated harness"
