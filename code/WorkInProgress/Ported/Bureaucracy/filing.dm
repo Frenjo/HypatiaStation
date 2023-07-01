@@ -1,4 +1,3 @@
-// Enabled as of 08/10/2019. -Frenjo
 /obj/structure/filingcabinet
 	name = "Filing Cabinet"
 	desc = "A large cabinet with drawers."

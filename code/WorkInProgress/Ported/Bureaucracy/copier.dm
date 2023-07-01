@@ -1,5 +1,4 @@
 // Contains: copy machine
-// Enabled as of 08/10/2019. -Frenjo
 /obj/machinery/copier
 	name = "Copy Machine"
 	icon = 'icons/obj/bureaucracy.dmi'
