@@ -3,26 +3,24 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 
 /proc/create_parallax()
 	for(var/i = 0; i < PARALLAX_STAR_AMOUNT; i++)
-		GLOBL.parallax_stars.Add(new /atom/movable/space_star())
+		GLOBL.parallax_stars.Add(new /atom/movable/space_star/space())
 
 	for(var/i = 0; i < PARALLAX_BLUESPACE_STAR_AMOUNT; i++)
 		GLOBL.parallax_bluespace_stars.Add(new /atom/movable/space_star/bluespace())
 
 /atom/movable/parallax_master
 	screen_loc = UI_SPACE_PARALLAX
-	plane = SPACE_PARALLAX_PLANE
-	blend_mode = BLEND_MULTIPLY
 	appearance_flags = PLANE_MASTER
 	mouse_opacity = FALSE
 	simulated = FALSE
 
-	var/parallax_type = PARALLAX_SPACE
+/atom/movable/parallax_master/space
+	plane = SPACE_PARALLAX_PLANE
+	blend_mode = BLEND_MULTIPLY
 
 /atom/movable/parallax_master/bluespace
 	plane = SPACE_DUST_PLANE
 	blend_mode = BLEND_ADD
-
-	parallax_type = PARALLAX_BLUESPACE
 
 /atom/movable/space_parallax
 	name = "space"
@@ -38,13 +36,20 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 /atom/movable/space_star
 	name = "star"
 	icon = 'icons/turf/stars.dmi'
-	icon_state = "star0"
-	plane = SPACE_PARALLAX_PLANE
 	blend_mode = BLEND_ADD
 	appearance_flags = KEEP_APART
 	simulated = FALSE
 
 /atom/movable/space_star/New()
+	pixel_x = rand(-50, 530)
+	pixel_y = rand(-50, 530)
+
+/atom/movable/space_star/space
+	icon_state = "star0"
+	plane = SPACE_PARALLAX_PLANE
+
+/atom/movable/space_star/space/New()
+	. = ..()
 	// At a close look, only 2 tiles contain red stars(9,10), 3 contain blue(6,7,8), and 5 have white(1,2,3,4,5).
 	// Let's try to keep that consistent by probability.
 	// There's also a slightly higher chance for non-animated white stars(4,5) to break up the twinkle a bit.
@@ -64,8 +69,6 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 		24; 10 \
 	)
 	icon_state = "astar[star_type]"
-	pixel_x = rand(-50, 530)
-	pixel_y = rand(-50, 530)
 
 /atom/movable/space_star/bluespace
 	icon_state = "bstar0"
@@ -86,14 +89,14 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 	icon_state = "bstar[star_type]"
 
 /client
-	var/atom/movable/parallax_master/parallax_master
+	var/atom/movable/parallax_master/space/space_master
 	var/atom/movable/parallax_master/bluespace/bluespace_master
 	var/atom/movable/space_parallax/space_parallax
 
 /client/proc/apply_parallax()
 	// SPESS BACKGROUND
-	if(isnull(parallax_master))
-		parallax_master = new /atom/movable/parallax_master()
+	if(isnull(space_master))
+		space_master = new /atom/movable/parallax_master/space()
 	if(isnull(bluespace_master))
 		bluespace_master = new /atom/movable/parallax_master/bluespace()
 	if(isnull(space_parallax))
@@ -102,7 +105,7 @@ GLOBAL_GLOBL_LIST_NEW(parallax_bluespace_stars)
 		space_parallax.overlays.Cut()
 
 	space_parallax.overlays.Add(GLOBL.parallax_stars)
-	screen |= list(parallax_master, space_parallax)
+	screen |= list(space_master, space_parallax)
 
 /client/proc/set_parallax_space(parallax_type)
 	if(space_parallax.parallax_type == parallax_type)
