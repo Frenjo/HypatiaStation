@@ -1,6 +1,6 @@
 /datum/hud/proc/larva_hud()
-	src.adding = list()
-	src.other = list()
+	adding = list()
+	other = list()
 
 	var/obj/screen/using
 
@@ -11,7 +11,7 @@
 	using.icon_state = (mymob.a_intent == "hurt" ? "harm" : mymob.a_intent)
 	using.screen_loc = UI_ACTI
 	using.layer = 20
-	src.adding += using
+	adding.Add(using)
 	action_intent = using
 
 	using = new /obj/screen()
@@ -21,7 +21,7 @@
 	using.icon_state = mymob.move_intent.hud_icon_state
 	using.screen_loc = UI_MOVI
 	using.layer = 20
-	src.adding += using
+	adding.Add(using)
 	move_intent = using
 
 	mymob.oxygen = new /obj/screen()
@@ -71,11 +71,10 @@
 	mymob.flash.layer = 17
 
 	mymob.zone_sel = new /obj/screen/zone_sel()
-	mymob.zone_sel.overlays.Cut()
-	mymob.zone_sel.overlays += image('icons/mob/screen/zone_sel.dmi', "[mymob.zone_sel.selecting]")
+	mymob.zone_sel.update_icon()
 
 	mymob.client.screen.Cut()
-	mymob.client.screen += list(
+	mymob.client.screen.Add(list(
 		mymob.zone_sel,
 		mymob.oxygen,
 		mymob.toxin,
@@ -84,5 +83,5 @@
 		mymob.pullin,
 		mymob.blind,
 		mymob.flash
-	) //, mymob.rest, mymob.sleep, mymob.mach )
-	mymob.client.screen += src.adding + src.other
+	)) //, mymob.rest, mymob.sleep, mymob.mach )
+	mymob.client.screen.Add(adding + other)

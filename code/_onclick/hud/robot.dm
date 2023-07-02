@@ -1,6 +1,6 @@
 /datum/hud/proc/robot_hud()
-	src.adding = list()
-	src.other = list()
+	adding = list()
+	other = list()
 
 	var/obj/screen/using
 
@@ -12,7 +12,7 @@
 	using.icon_state = "radio"
 	using.screen_loc = UI_MOVI
 	using.layer = 20
-	src.adding += using
+	adding.Add(using)
 
 //Module select
 	using = new /obj/screen()
@@ -22,7 +22,7 @@
 	using.icon_state = "inv1"
 	using.screen_loc = UI_INV1
 	using.layer = 20
-	src.adding += using
+	adding.Add(using)
 	mymob:inv1 = using
 
 	using = new /obj/screen()
@@ -32,7 +32,7 @@
 	using.icon_state = "inv2"
 	using.screen_loc = UI_INV2
 	using.layer = 20
-	src.adding += using
+	adding.Add(using)
 	mymob:inv2 = using
 
 	using = new /obj/screen()
@@ -42,7 +42,7 @@
 	using.icon_state = "inv3"
 	using.screen_loc = UI_INV3
 	using.layer = 20
-	src.adding += using
+	adding.Add(using)
 	mymob:inv3 = using
 
 //End of module select
@@ -55,7 +55,7 @@
 	using.icon_state = (mymob.a_intent == "hurt" ? "harm" : mymob.a_intent)
 	using.screen_loc = UI_ACTI
 	using.layer = 20
-	src.adding += using
+	adding.Add(using)
 	action_intent = using
 
 //Cell
@@ -87,7 +87,7 @@
 	using.icon_state = "panel"
 	using.screen_loc = UI_BORG_PANEL
 	using.layer = 19
-	src.adding += using
+	adding.Add(using)
 
 //Store
 	mymob.throw_icon = new /obj/screen()
@@ -137,31 +137,30 @@
 
 	mymob.zone_sel = new /obj/screen/zone_sel()
 	mymob.zone_sel.icon = 'icons/mob/screen/screen1_robot.dmi'
-	mymob.zone_sel.overlays.Cut()
-	mymob.zone_sel.overlays += image('icons/mob/screen/zone_sel.dmi', "[mymob.zone_sel.selecting]")
+	mymob.zone_sel.update_icon()
 
 	//Handle the gun settings buttons
-	mymob.gun_setting_icon = new /obj/screen/gun/mode(null)
-	if(mymob.client)
+	mymob.gun_setting_icon = new /obj/screen/gun/mode()
+	if(isnotnull(mymob.client))
 		if(mymob.client.gun_mode) // If in aim mode, correct the sprite
 			mymob.gun_setting_icon.set_dir(2)
 	for(var/obj/item/weapon/gun/G in mymob) // If targeting someone, display other buttons
-		if(G.target)
-			mymob.item_use_icon = new /obj/screen/gun/item(null)
+		if(isnotnull(G.target))
+			mymob.item_use_icon = new /obj/screen/gun/item()
 			if(mymob.client.target_can_click)
 				mymob.item_use_icon.set_dir(1)
-			src.adding += mymob.item_use_icon
-			mymob.gun_move_icon = new /obj/screen/gun/move(null)
+			adding.Add(mymob.item_use_icon)
+			mymob.gun_move_icon = new /obj/screen/gun/move()
 			if(mymob.client.target_can_move)
 				mymob.gun_move_icon.set_dir(1)
-				mymob.gun_run_icon = new /obj/screen/gun/run(null)
+				mymob.gun_run_icon = new /obj/screen/gun/run()
 				if(mymob.client.target_can_run)
 					mymob.gun_run_icon.set_dir(1)
-				src.adding += mymob.gun_run_icon
-			src.adding += mymob.gun_move_icon
+				adding.Add(mymob.gun_run_icon)
+			adding.Add(mymob.gun_move_icon)
 
 	mymob.client.screen.Cut()
-	mymob.client.screen += list(
+	mymob.client.screen.Add(list(
 		mymob.throw_icon,
 		mymob.zone_sel,
 		mymob.oxygen,
@@ -173,7 +172,5 @@
 		mymob.blind,
 		mymob.flash,
 		mymob.gun_setting_icon
-	) //, mymob.rest, mymob.sleep, mymob.mach )
-	mymob.client.screen += src.adding + src.other
-
-	return
+	)) //, mymob.rest, mymob.sleep, mymob.mach )
+	mymob.client.screen.Add(adding + other)

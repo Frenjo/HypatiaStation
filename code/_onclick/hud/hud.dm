@@ -160,7 +160,7 @@ GLOBAL_GLOBL_LIST_INIT(global_huds, list(
 */
 
 /datum/hud
-	var/mob/mymob
+	var/mob/mymob = null
 
 	var/hud_shown = TRUE		//Used for the HUD toggle (F12)
 	var/inventory_shown = TRUE	//the inventory
@@ -187,87 +187,87 @@ GLOBAL_GLOBL_LIST_INIT(global_huds, list(
 	instantiate()
 
 /datum/hud/proc/hidden_inventory_update()
-	if(!mymob)
+	if(isnull(mymob))
 		return
 
 	if(ishuman(mymob))
 		var/mob/living/carbon/human/H = mymob
 		if(inventory_shown && hud_shown)
-			if(H.shoes)
+			if(isnotnull(H.shoes))
 				H.shoes.screen_loc = UI_SHOES
-			if(H.gloves)
+			if(isnotnull(H.gloves))
 				H.gloves.screen_loc = UI_GLOVES
-			if(H.l_ear)
+			if(isnotnull(H.l_ear))
 				H.l_ear.screen_loc = UI_L_EAR
-			if(H.r_ear)
+			if(isnotnull(H.r_ear))
 				H.r_ear.screen_loc = UI_R_EAR
-			if(H.glasses)
+			if(isnotnull(H.glasses))
 				H.glasses.screen_loc = UI_GLASSES
-			if(H.w_uniform)
+			if(isnotnull(H.w_uniform))
 				H.w_uniform.screen_loc = UI_ICLOTHING
-			if(H.wear_suit)
+			if(isnotnull(H.wear_suit))
 				H.wear_suit.screen_loc = UI_OCLOTHING
-			if(H.wear_mask)
+			if(isnotnull(H.wear_mask))
 				H.wear_mask.screen_loc = UI_MASK
-			if(H.head)
+			if(isnotnull(H.head))
 				H.head.screen_loc = UI_HEAD
 		else
-			if(H.shoes)
+			if(isnotnull(H.shoes))
 				H.shoes.screen_loc = null
-			if(H.gloves)
+			if(isnotnull(H.gloves))
 				H.gloves.screen_loc = null
-			if(H.l_ear)
+			if(isnotnull(H.l_ear))
 				H.l_ear.screen_loc = null
-			if(H.r_ear)
+			if(isnotnull(H.r_ear))
 				H.r_ear.screen_loc = null
-			if(H.glasses)
+			if(isnotnull(H.glasses))
 				H.glasses.screen_loc = null
-			if(H.w_uniform)
+			if(isnotnull(H.w_uniform))
 				H.w_uniform.screen_loc = null
-			if(H.wear_suit)
+			if(isnotnull(H.wear_suit))
 				H.wear_suit.screen_loc = null
-			if(H.wear_mask)
+			if(isnotnull(H.wear_mask))
 				H.wear_mask.screen_loc = null
-			if(H.head)
+			if(isnotnull(H.head))
 				H.head.screen_loc = null
 
 /datum/hud/proc/persistant_inventory_update()
-	if(!mymob)
+	if(isnull(mymob))
 		return
 
 	if(ishuman(mymob))
 		var/mob/living/carbon/human/H = mymob
 		if(hud_shown)
-			if(H.s_store)
+			if(isnotnull(H.s_store))
 				H.s_store.screen_loc = UI_SSTORE1
-			if(H.wear_id)
+			if(isnotnull(H.wear_id))
 				H.wear_id.screen_loc = UI_ID
-			if(H.belt)
+			if(isnotnull(H.belt))
 				H.belt.screen_loc = UI_BELT
-			if(H.back)
+			if(isnotnull(H.back))
 				H.back.screen_loc = UI_BACK
-			if(H.l_store)
+			if(isnotnull(H.l_store))
 				H.l_store.screen_loc = UI_STORAGE1
-			if(H.r_store)
+			if(isnotnull(H.r_store))
 				H.r_store.screen_loc = UI_STORAGE2
 		else
-			if(H.s_store)
+			if(isnotnull(H.s_store))
 				H.s_store.screen_loc = null
-			if(H.wear_id)
+			if(isnotnull(H.wear_id))
 				H.wear_id.screen_loc = null
-			if(H.belt)
+			if(isnotnull(H.belt))
 				H.belt.screen_loc = null
-			if(H.back)
+			if(isnotnull(H.back))
 				H.back.screen_loc = null
-			if(H.l_store)
+			if(isnotnull(H.l_store))
 				H.l_store.screen_loc = null
-			if(H.r_store)
+			if(isnotnull(H.r_store))
 				H.r_store.screen_loc = null
 
 /datum/hud/proc/instantiate()
 	if(!ismob(mymob))
 		return 0
-	if(!mymob.client)
+	if(isnull(mymob.client))
 		return 0
 
 	var/ui_style = ui_style2icon(mymob.client.prefs.UI_style)
@@ -296,53 +296,53 @@ GLOBAL_GLOBL_LIST_INIT(global_huds, list(
 
 	if(hud_used)
 		if(ishuman(src))
-			if(!client)
+			if(isnull(client))
 				return
 			if(client.view != world.view)
 				return
 
 			hud_used.hud_shown = !hud_used.hud_shown
 			if(!hud_used.hud_shown)
-				if(hud_used.adding)
-					client.screen -= hud_used.adding
-				if(hud_used.other)
-					client.screen -= hud_used.other
-				if(hud_used.hotkeybuttons)
-					client.screen -= hud_used.hotkeybuttons
-				if(hud_used.item_action_list)
-					client.screen -= hud_used.item_action_list
+				if(isnotnull(hud_used.adding))
+					client.screen.Remove(hud_used.adding)
+				if(isnotnull(hud_used.other))
+					client.screen.Remove(hud_used.other)
+				if(isnotnull(hud_used.hotkeybuttons))
+					client.screen.Remove(hud_used.hotkeybuttons)
+				if(isnotnull(hud_used.item_action_list))
+					client.screen.Remove(hud_used.item_action_list)
 
 				//Due to some poor coding some things need special treatment:
 				//These ones are a part of 'adding', 'other' or 'hotkeybuttons' but we want them to stay
 				if(!full)
-					client.screen += hud_used.l_hand_hud_object	//we want the hands to be visible
-					client.screen += hud_used.r_hand_hud_object	//we want the hands to be visible
-					client.screen += hud_used.action_intent		//we want the intent swticher visible
+					client.screen.Add(hud_used.l_hand_hud_object)	//we want the hands to be visible
+					client.screen.Add(hud_used.r_hand_hud_object)	//we want the hands to be visible
+					client.screen.Add(hud_used.action_intent)		//we want the intent swticher visible
 					hud_used.action_intent.screen_loc = UI_ACTI_ALT	//move this to the alternative position, where zone_select usually is.
 				else
-					client.screen -= healths
-					client.screen -= internals
-					client.screen -= gun_setting_icon
+					client.screen.Remove(healths)
+					client.screen.Remove(internals)
+					client.screen.Remove(gun_setting_icon)
 
 				//These ones are not a part of 'adding', 'other' or 'hotkeybuttons' but we want them gone.
-				client.screen -= zone_sel	//zone_sel is a mob variable for some reason.
+				client.screen.Remove(zone_sel)	//zone_sel is a mob variable for some reason.
 
 			else
-				if(hud_used.adding)
-					client.screen += hud_used.adding
-				if(hud_used.other && hud_used.inventory_shown)
-					client.screen += hud_used.other
-				if(hud_used.hotkeybuttons && !hud_used.hotkey_ui_hidden)
-					client.screen += hud_used.hotkeybuttons
-				if(healths)
+				if(isnotnull(hud_used.adding))
+					client.screen.Add(hud_used.adding)
+				if(isnotnull(hud_used.other) && hud_used.inventory_shown)
+					client.screen.Add(hud_used.other)
+				if(isnotnull(hud_used.hotkeybuttons) && !hud_used.hotkey_ui_hidden)
+					client.screen.Add(hud_used.hotkeybuttons)
+				if(isnotnull(healths))
 					client.screen |= healths
-				if(internals)
+				if(isnotnull(internals))
 					client.screen |= internals
-				if(gun_setting_icon)
+				if(isnotnull(gun_setting_icon))
 					client.screen |= gun_setting_icon
 
 				hud_used.action_intent.screen_loc = UI_ACTI //Restore intent selection to the original position
-				client.screen += zone_sel				//This one is a special snowflake
+				client.screen.Add(zone_sel)				//This one is a special snowflake
 
 			hud_used.hidden_inventory_update()
 			hud_used.persistant_inventory_update()

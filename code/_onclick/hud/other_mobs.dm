@@ -29,4 +29,4 @@
 	blobhealthdisplay.layer = 20
 
 	mymob.client.screen.Cut()
-	mymob.client.screen += list(blobpwrdisplay, blobhealthdisplay)
+	mymob.client.screen.Add(list(blobpwrdisplay, blobhealthdisplay))

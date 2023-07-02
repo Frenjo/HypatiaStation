@@ -52,7 +52,7 @@
 	return ..()
 
 /obj/screen/item_action/Click()
-	if(!usr || !owner)
+	if(isnull(usr) || isnull(owner))
 		return 1
 	if(usr.next_move >= world.time)
 		return
@@ -95,9 +95,9 @@
 		return 1
 	if(ismecha(usr.loc)) // stops inventory actions in a mech
 		return 1
-	if(master)
+	if(isnotnull(master))
 		var/obj/item/I = usr.get_active_hand()
-		if(I)
+		if(isnotnull(I))
 			master.attackby(I, usr)
 			usr.next_move = world.time + 2
 	return 1
@@ -133,6 +133,7 @@
 	name = "damage zone"
 	icon_state = "zone_sel"
 	screen_loc = UI_ZONESEL
+
 	var/selecting = "chest"
 
 /obj/screen/zone_sel/Click(location, control,params)
@@ -198,19 +199,19 @@
 
 /obj/screen/zone_sel/update_icon()
 	overlays.Cut()
-	overlays += image('icons/mob/screen/zone_sel.dmi', "[selecting]")
+	overlays.Add(image('icons/mob/screen/zone_sel.dmi', "[selecting]"))
 
 /obj/screen/Click(location, control, params)
-	if(!usr)
+	if(isnull(usr))
 		return 1
 
 	switch(name)
 		if("toggle")
 			usr.hud_used.inventory_shown = !usr.hud_used.inventory_shown
 			if(usr.hud_used.inventory_shown)
-				usr.client.screen += usr.hud_used.other
+				usr.client.screen.Add(usr.hud_used.other)
 			else
-				usr.client.screen -= usr.hud_used.other
+				usr.client.screen.Remove(usr.hud_used.other)
 
 			usr.hud_used.hidden_inventory_update()
 
@@ -229,7 +230,7 @@
 		if("mov_intent")
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
-				if(C.legcuffed)
+				if(isnotnull(C.legcuffed))
 					to_chat(C, SPAN_NOTICE("You are legcuffed! You cannot run until you get [C.legcuffed] removed!"))
 					C.set_move_intent(/decl/move_intent/walk) // Just in case.
 					return 1
@@ -269,7 +270,7 @@
 		if("module")
 			if(isrobot(usr))
 				var/mob/living/silicon/robot/R = usr
-				if(R.module)
+				if(isnotnull(R.module))
 					return 1
 				R.pick_module()
 

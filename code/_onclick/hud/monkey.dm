@@ -1,6 +1,6 @@
 /datum/hud/proc/monkey_hud(ui_style = 'icons/mob/screen/screen1_old.dmi')
-	src.adding = list()
-	src.other = list()
+	adding = list()
+	other = list()
 
 	var/obj/screen/using
 	var/obj/screen/inventory/inv_box
@@ -12,7 +12,7 @@
 	using.icon_state = (mymob.a_intent == "hurt" ? "harm" : mymob.a_intent)
 	using.screen_loc = UI_ACTI
 	using.layer = 20
-	src.adding += using
+	adding.Add(using)
 	action_intent = using
 
 //intent small hud objects
@@ -26,7 +26,7 @@
 	using.icon = ico
 	using.screen_loc = UI_ACTI
 	using.layer = 21
-	src.adding += using
+	adding.Add(using)
 	help_intent = using
 
 	ico = new(ui_style, "black")
@@ -37,7 +37,7 @@
 	using.icon = ico
 	using.screen_loc = UI_ACTI
 	using.layer = 21
-	src.adding += using
+	adding.Add(using)
 	disarm_intent = using
 
 	ico = new(ui_style, "black")
@@ -48,7 +48,7 @@
 	using.icon = ico
 	using.screen_loc = UI_ACTI
 	using.layer = 21
-	src.adding += using
+	adding.Add(using)
 	grab_intent = using
 
 	ico = new(ui_style, "black")
@@ -59,7 +59,7 @@
 	using.icon = ico
 	using.screen_loc = UI_ACTI
 	using.layer = 21
-	src.adding += using
+	adding.Add(using)
 	hurt_intent = using
 
 //end intent small hud objects
@@ -71,7 +71,7 @@
 	using.icon_state = mymob.move_intent.hud_icon_state
 	using.screen_loc = UI_MOVI
 	using.layer = 20
-	src.adding += using
+	adding.Add(using)
 	move_intent = using
 
 	using = new /obj/screen()
@@ -80,20 +80,20 @@
 	using.icon_state = "act_drop"
 	using.screen_loc = UI_DROP_THROW
 	using.layer = 19
-	src.adding += using
+	adding.Add(using)
 
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "r_hand"
 	inv_box.set_dir(WEST)
 	inv_box.icon = ui_style
 	inv_box.icon_state = "hand_inactive"
-	if(mymob && !mymob.hand)	//This being 0 or null means the right hand is in use
+	if(isnotnull(mymob) && !mymob.hand)	//This being 0 or null means the right hand is in use
 		inv_box.icon_state = "hand_active"
 	inv_box.screen_loc = UI_RHAND
 	inv_box.slot_id = SLOT_ID_R_HAND
 	inv_box.layer = 19
-	src.r_hand_hud_object = inv_box
-	src.adding += inv_box
+	r_hand_hud_object = inv_box
+	adding.Add(inv_box)
 
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "l_hand"
@@ -105,8 +105,8 @@
 	inv_box.screen_loc = UI_LHAND
 	inv_box.slot_id = SLOT_ID_L_HAND
 	inv_box.layer = 19
-	src.l_hand_hud_object = inv_box
-	src.adding += inv_box
+	l_hand_hud_object = inv_box
+	adding.Add(inv_box)
 
 	using = new /obj/screen()
 	using.name = "hand"
@@ -115,7 +115,7 @@
 	using.icon_state = "hand1"
 	using.screen_loc = UI_SWAPHAND1
 	using.layer = 19
-	src.adding += using
+	adding.Add(using)
 
 	using = new /obj/screen()
 	using.name = "hand"
@@ -124,7 +124,7 @@
 	using.icon_state = "hand2"
 	using.screen_loc = UI_SWAPHAND2
 	using.layer = 19
-	src.adding += using
+	adding.Add(using)
 
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "mask"
@@ -134,7 +134,7 @@
 	inv_box.screen_loc = UI_MONKEY_MASK
 	inv_box.slot_id = SLOT_ID_WEAR_MASK
 	inv_box.layer = 19
-	src.adding += inv_box
+	adding.Add(inv_box)
 
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "back"
@@ -144,7 +144,7 @@
 	inv_box.screen_loc = UI_BACK
 	inv_box.slot_id = SLOT_ID_BACK
 	inv_box.layer = 19
-	src.adding += inv_box
+	adding.Add(inv_box)
 
 	mymob.throw_icon = new /obj/screen()
 	mymob.throw_icon.icon = ui_style
@@ -216,31 +216,30 @@
 
 	mymob.zone_sel = new /obj/screen/zone_sel()
 	mymob.zone_sel.icon = ui_style
-	mymob.zone_sel.overlays.Cut()
-	mymob.zone_sel.overlays += image('icons/mob/screen/zone_sel.dmi', "[mymob.zone_sel.selecting]")
+	mymob.zone_sel.update_icon()
 
 	//Handle the gun settings buttons
-	mymob.gun_setting_icon = new /obj/screen/gun/mode(null)
-	if(mymob.client)
+	mymob.gun_setting_icon = new /obj/screen/gun/mode()
+	if(isnotnull(mymob.client))
 		if(mymob.client.gun_mode) // If in aim mode, correct the sprite
 			mymob.gun_setting_icon.set_dir(2)
 	for(var/obj/item/weapon/gun/G in mymob) // If targeting someone, display other buttons
-		if(G.target)
-			mymob.item_use_icon = new /obj/screen/gun/item(null)
+		if(isnotnull(G.target))
+			mymob.item_use_icon = new /obj/screen/gun/item()
 			if(mymob.client.target_can_click)
 				mymob.item_use_icon.set_dir(1)
-			src.adding += mymob.item_use_icon
-			mymob.gun_move_icon = new /obj/screen/gun/move(null)
+			adding.Add(mymob.item_use_icon)
+			mymob.gun_move_icon = new /obj/screen/gun/move()
 			if(mymob.client.target_can_move)
 				mymob.gun_move_icon.set_dir(1)
-				mymob.gun_run_icon = new /obj/screen/gun/run(null)
+				mymob.gun_run_icon = new /obj/screen/gun/run()
 				if(mymob.client.target_can_run)
 					mymob.gun_run_icon.set_dir(1)
-				src.adding += mymob.gun_run_icon
-			src.adding += mymob.gun_move_icon
+				adding.Add(mymob.gun_run_icon)
+			adding.Add(mymob.gun_move_icon)
 
 	mymob.client.screen.Cut()
-	mymob.client.screen += list(
+	mymob.client.screen.Add(list(
 		mymob.throw_icon,
 		mymob.zone_sel,
 		mymob.oxygen,
@@ -254,7 +253,5 @@
 		mymob.blind,
 		mymob.flash,
 		mymob.gun_setting_icon
-	) //, mymob.hands, mymob.rest, mymob.sleep, mymob.mach )
-	mymob.client.screen += src.adding + src.other
-
-	return
+	)) //, mymob.hands, mymob.rest, mymob.sleep, mymob.mach )
+	mymob.client.screen.Add(adding + other)

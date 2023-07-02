@@ -8,9 +8,9 @@
 	if(hud_data.icon)
 		ui_style = hud_data.icon
 
-	src.adding = list()
-	src.other = list()
-	src.hotkeybuttons = list() //These can be disabled for hotkey usersx
+	adding = list()
+	other = list()
+	hotkeybuttons = list() //These can be disabled for hotkey usersx
 
 	var/list/hud_elements = list()
 	var/obj/screen/using
@@ -35,10 +35,10 @@
 			inv_box.set_dir(slot_data["dir"])
 
 		if(slot_data["toggle"])
-			src.other += inv_box
+			other.Add(inv_box)
 			has_hidden_gear = 1
 		else
-			src.adding += inv_box
+			adding.Add(inv_box)
 
 	if(has_hidden_gear)
 		using = new /obj/screen()
@@ -49,7 +49,7 @@
 		using.layer = 20
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.adding += using
+		adding.Add(using)
 
 	// Draw the attack intent dialogue.
 	if(hud_data.has_a_intent)
@@ -62,7 +62,7 @@
 		using.color = ui_color
 		using.alpha = ui_alpha
 		using.layer = 20
-		src.adding += using
+		adding.Add(using)
 		action_intent = using
 
 		hud_elements |= using
@@ -79,7 +79,7 @@
 		using.screen_loc = UI_ACTI
 		using.alpha = ui_alpha
 		using.layer = 21
-		src.adding += using
+		adding.Add(using)
 		help_intent = using
 
 		ico = new(ui_style, "black")
@@ -91,7 +91,7 @@
 		using.screen_loc = UI_ACTI
 		using.alpha = ui_alpha
 		using.layer = 21
-		src.adding += using
+		adding.Add(using)
 		disarm_intent = using
 
 		ico = new(ui_style, "black")
@@ -103,7 +103,7 @@
 		using.screen_loc = UI_ACTI
 		using.alpha = ui_alpha
 		using.layer = 21
-		src.adding += using
+		adding.Add(using)
 		grab_intent = using
 
 		ico = new(ui_style, "black")
@@ -115,7 +115,7 @@
 		using.screen_loc = UI_ACTI
 		using.alpha = ui_alpha
 		using.layer = 21
-		src.adding += using
+		adding.Add(using)
 		hurt_intent = using
 		//end intent small hud objects
 
@@ -129,7 +129,7 @@
 		using.layer = 20
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.adding += using
+		adding.Add(using)
 		move_intent = using
 
 	if(hud_data.has_drop)
@@ -141,7 +141,7 @@
 		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.hotkeybuttons += using
+		hotkeybuttons.Add(using)
 
 	if(hud_data.has_hands)
 		using = new /obj/screen()
@@ -152,7 +152,7 @@
 		using.layer = 20
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.adding += using
+		adding.Add(using)
 
 		inv_box = new /obj/screen/inventory()
 		inv_box.name = "r_hand"
@@ -167,8 +167,8 @@
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
 
-		src.r_hand_hud_object = inv_box
-		src.adding += inv_box
+		r_hand_hud_object = inv_box
+		adding.Add(inv_box)
 
 		inv_box = new /obj/screen/inventory()
 		inv_box.name = "l_hand"
@@ -182,8 +182,8 @@
 		inv_box.layer = 19
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
-		src.l_hand_hud_object = inv_box
-		src.adding += inv_box
+		l_hand_hud_object = inv_box
+		adding.Add(inv_box)
 
 		using = new /obj/screen/inventory()
 		using.name = "hand"
@@ -194,7 +194,7 @@
 		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.adding += using
+		adding.Add(using)
 
 		using = new /obj/screen/inventory()
 		using.name = "hand"
@@ -205,7 +205,7 @@
 		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.adding += using
+		adding.Add(using)
 
 	if(hud_data.has_resist)
 		using = new /obj/screen()
@@ -216,7 +216,7 @@
 		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
-		src.hotkeybuttons += using
+		hotkeybuttons.Add(using)
 
 	if(hud_data.has_throw)
 		mymob.throw_icon = new /obj/screen()
@@ -226,7 +226,7 @@
 		mymob.throw_icon.screen_loc = UI_DROP_THROW
 		mymob.throw_icon.color = ui_color
 		mymob.throw_icon.alpha = ui_alpha
-		src.hotkeybuttons += mymob.throw_icon
+		hotkeybuttons.Add(mymob.throw_icon)
 		hud_elements |= mymob.throw_icon
 
 		mymob.pullin = new /obj/screen()
@@ -234,7 +234,7 @@
 		mymob.pullin.icon_state = "pull0"
 		mymob.pullin.name = "pull"
 		mymob.pullin.screen_loc = UI_PULL_RESIST
-		src.hotkeybuttons += mymob.pullin
+		hotkeybuttons.Add(mymob.pullin)
 		hud_elements |= mymob.pullin
 
 	if(hud_data.has_internals)
@@ -327,41 +327,38 @@
 
 	mymob.pain = new /obj/screen(null)
 
-	mymob.zone_sel = new /obj/screen/zone_sel(null)
+	mymob.zone_sel = new /obj/screen/zone_sel()
 	mymob.zone_sel.icon = ui_style
 	mymob.zone_sel.color = ui_color
 	mymob.zone_sel.alpha = ui_alpha
-	mymob.zone_sel.overlays.Cut()
-	mymob.zone_sel.overlays += image('icons/mob/screen/zone_sel.dmi', "[mymob.zone_sel.selecting]")
+	mymob.zone_sel.update_icon()
 	hud_elements |= mymob.zone_sel
 
 	//Handle the gun settings buttons
-	mymob.gun_setting_icon = new /obj/screen/gun/mode(null)
+	mymob.gun_setting_icon = new /obj/screen/gun/mode()
 	hud_elements |= mymob.gun_setting_icon
-	if(mymob.client)
+	if(isnotnull(mymob.client))
 		if(mymob.client.gun_mode) // If in aim mode, correct the sprite
 			mymob.gun_setting_icon.set_dir(2)
 	for(var/obj/item/weapon/gun/G in mymob) // If targeting someone, display other buttons
-		if(G.target)
-			mymob.item_use_icon = new /obj/screen/gun/item(null)
+		if(isnotnull(G.target))
+			mymob.item_use_icon = new /obj/screen/gun/item()
 			if(mymob.client.target_can_click)
 				mymob.item_use_icon.set_dir(1)
-			src.adding += mymob.item_use_icon
-			mymob.gun_move_icon = new /obj/screen/gun/move(null)
+			adding.Add(mymob.item_use_icon)
+			mymob.gun_move_icon = new /obj/screen/gun/move()
 			if(mymob.client.target_can_move)
 				mymob.gun_move_icon.set_dir(1)
-				mymob.gun_run_icon = new /obj/screen/gun/run(null)
+				mymob.gun_run_icon = new /obj/screen/gun/run()
 				if(mymob.client.target_can_run)
 					mymob.gun_run_icon.set_dir(1)
-				src.adding += mymob.gun_run_icon
-			src.adding += mymob.gun_move_icon
+				adding.Add(mymob.gun_run_icon)
+			adding.Add(mymob.gun_move_icon)
 
 	mymob.client.screen.Cut()
-	mymob.client.screen += hud_elements
-	mymob.client.screen += src.adding + src.hotkeybuttons
+	mymob.client.screen.Add(hud_elements)
+	mymob.client.screen.Add(adding + hotkeybuttons)
 	inventory_shown = FALSE
-
-	return
 
 /mob/living/carbon/human/verb/toggle_hotkey_verbs()
 	set category = "OOC"
@@ -369,27 +366,26 @@
 	set desc = "This disables or enables the user interface buttons which can be used with hotkeys."
 
 	if(hud_used.hotkey_ui_hidden)
-		client.screen += hud_used.hotkeybuttons
-		hud_used.hotkey_ui_hidden = 0
+		client.screen.Add(hud_used.hotkeybuttons)
 	else
-		client.screen -= hud_used.hotkeybuttons
-		hud_used.hotkey_ui_hidden = 1
+		client.screen.Remove(hud_used.hotkeybuttons)
+	hud_used.hotkey_ui_hidden = !hud_used.hotkey_ui_hidden
 
 /mob/living/carbon/human/update_action_buttons()
 	var/num = 1
-	if(!hud_used)
+	if(isnull(hud_used))
 		return
-	if(!client)
+	if(isnull(client))
 		return
 	if(!hud_used.hud_shown)	//Hud toggled to minimal
 		return
 
-	client.screen -= hud_used.item_action_list
+	client.screen.Remove(hud_used.item_action_list)
 
 	hud_used.item_action_list = list()
 	for(var/obj/item/I in src)
 		if(I.icon_action_button)
-			var/obj/screen/item_action/A = new(I)
+			var/obj/screen/item_action/A = new /obj/screen/item_action(I)
 			//A.icon = 'icons/mob/screen/screen1_action.dmi'
 			//A.icon_state = I.icon_action_button
 			A.icon = ui_style2icon(client.prefs.UI_style)
@@ -397,13 +393,13 @@
 			var/image/img = image(I.icon, A, I.icon_state)
 			img.pixel_x = 0
 			img.pixel_y = 0
-			A.overlays += img
+			A.overlays.Add(img)
 
 			if(I.action_button_name)
 				A.name = I.action_button_name
 			else
 				A.name = "Use [I.name]"
-			hud_used.item_action_list += A
+			hud_used.item_action_list.Add(A)
 			switch(num)
 				if(1)
 					A.screen_loc = UI_ACTION_SLOT1
@@ -417,4 +413,4 @@
 					A.screen_loc = UI_ACTION_SLOT5
 					break //5 slots available, so no more can be added.
 			num++
-	src.client.screen += src.hud_used.item_action_list
+	client.screen.Add(hud_used.item_action_list)
