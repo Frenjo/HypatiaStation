@@ -22,8 +22,9 @@
 	return
 
 /mob/living/carbon/human/RangedAttack(atom/A)
-	if(!gloves && !length(mutations))
+	if(isnull(gloves) && !length(mutations))
 		return
+
 	var/obj/item/clothing/gloves/G = gloves
 	if((LASER in mutations) && a_intent == "harm")
 		LaserEyes(A) // moved into a proc below
@@ -81,8 +82,7 @@
 	var/armor = ML.run_armor_check(dam_zone, "melee")
 	if(prob(75))
 		ML.apply_damage(rand(1, 3), BRUTE, dam_zone, armor)
-		for(var/mob/O in viewers(ML, null))
-			O.show_message(SPAN_DANGER("[name] has bit [ML]!"), 1)
+		visible_message(SPAN_DANGER("[name] has bit [ML]!"))
 		if(armor >= 2)
 			return
 		if(ismonkey(ML))
@@ -90,8 +90,7 @@
 				if(istype(D, /datum/disease/jungle_fever))
 					ML.contract_disease(D, 1, 0)
 	else
-		for(var/mob/O in viewers(ML, null))
-			O.show_message(SPAN_DANGER("[src] has attempted to bite [ML]!"), 1)
+		visible_message(SPAN_DANGER("[src] has attempted to bite [ML]!"))
 
 /*
 	Aliens

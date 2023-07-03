@@ -68,7 +68,7 @@
 		if(!locate(/turf) in list(A, A.loc)) // Prevents inventory from being drilled
 			return
 		var/obj/mecha/M = loc
-		return M.click_action(A,src)
+		return M.click_action(A, src)
 
 	if(restrained())
 		RestrainedClickOn(A)
@@ -102,12 +102,12 @@
 			next_move = world.time + 4 // in a box/bag or in your square
 
 		// No adjacency needed
-		if(W)
+		if(isnotnull(W))
 			if(W.flags & USEDELAY)
 				next_move += 5
 
 			var/resolved = A.attackby(W, src)
-			if(!resolved && A && W)
+			if(!resolved && isnotnull(A) && isnotnull(W))
 				W.afterattack(A, src, 1, params) // 1 indicates adjacency
 		else
 			UnarmedAttack(A)
@@ -122,29 +122,26 @@
 		next_move = world.time + 6
 
 		if(A.Adjacent(src)) // see adjacent.dm
-			if(W)
+			if(isnotnull(W))
 				if(W.flags & USEDELAY)
 					next_move += 5
 
 				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
 				var/resolved = A.attackby(W, src)
-				if(!resolved && A && W)
+				if(!resolved && isnotnull(A) && isnotnull(W))
 					W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
 			else
 				UnarmedAttack(A, 1)
 			return
 		else // non-adjacent click
-			if(W)
+			if(isnotnull(W))
 				W.afterattack(A, src, 0, params) // 0: not Adjacent
 			else
 				RangedAttack(A, params)
 
-	return
-
 // Default behavior: ignore double clicks, consider them normal clicks instead
 /mob/proc/DblClickOn(atom/A, params)
 	ClickOn(A,params)
-
 
 /*
 	Translates into attack_hand, etc.
@@ -185,6 +182,7 @@
 			else
 				return
 		A.attack_tk(src)
+
 /*
 	Restrained ClickOn
 
@@ -200,6 +198,7 @@
 */
 /mob/proc/MiddleClickOn(atom/A)
 	return
+
 /mob/living/carbon/MiddleClickOn(atom/A)
 	swap_hand()
 
@@ -217,8 +216,9 @@
 /mob/proc/ShiftClickOn(atom/A)
 	A.ShiftClick(src)
 	return
+
 /atom/proc/ShiftClick(mob/user)
-	if(user.client && user.client.eye == user)
+	if(isnotnull(user.client) && user.client.eye == user)
 		examine()
 		user.face_atom(src)
 	return
@@ -230,6 +230,7 @@
 /mob/proc/CtrlClickOn(atom/A)
 	A.CtrlClick(src)
 	return
+
 /atom/proc/CtrlClick(mob/user)
 	return
 
@@ -248,13 +249,12 @@
 
 /atom/proc/AltClick(mob/user)
 	var/turf/T = get_turf(src)
-	if(T && T.Adjacent(user))
+	if(T?.Adjacent(user))
 		if(user.listed_turf == T)
 			user.listed_turf = null
 		else
 			user.listed_turf = T
 			user.client.statpanel = T.name
-	return
 
 /*
 	Misc helpers
@@ -294,8 +294,9 @@
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
 /mob/proc/face_atom(atom/A)
-	if(buckled || !A || !x || !y || !A.x || !A.y || (stat && !isobserver(src)))
+	if(buckled || isnull(A) || !x || !y || !A.x || !A.y || (stat && !isobserver(src)))
 		return
+
 	var/dx = A.x - x
 	var/dy = A.y - y
 	if(!dx && !dy)

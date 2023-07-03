@@ -5,7 +5,6 @@
 	However, they do have a range restriction on item use, so they cannot do without the
 	adjacency code.
 */
-
 /mob/living/silicon/robot/ClickOn(atom/A, params)
 	if(world.time <= next_click)
 		return
@@ -47,7 +46,7 @@
 	var/obj/item/W = get_active_hand()
 
 	// Cyborgs have no range-checking unless there is item use
-	if(!W)
+	if(isnull(W))
 		A.add_hiddenprint(src)
 		A.attack_robot(src)
 		return
@@ -72,7 +71,7 @@
 			next_move += 5
 
 		var/resolved = A.attackby(W, src)
-		if(!resolved && A && W)
+		if(!resolved && isnotnull(A) && isnotnull(W))
 			W.afterattack(A, src, 1, params)
 		return
 
@@ -111,6 +110,7 @@
 */
 /mob/living/silicon/robot/UnarmedAttack(atom/A)
 	A.attack_robot(src)
+
 /mob/living/silicon/robot/RangedAttack(atom/A)
 	A.attack_robot(src)
 

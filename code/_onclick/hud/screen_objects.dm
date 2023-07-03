@@ -34,7 +34,7 @@
 	name = "close"
 
 /obj/screen/close/Click()
-	if(master)
+	if(isnotnull(master))
 		if(istype(master, /obj/item/weapon/storage))
 			var/obj/item/weapon/storage/S = master
 			S.close(usr)
@@ -136,7 +136,7 @@
 
 	var/selecting = "chest"
 
-/obj/screen/zone_sel/Click(location, control,params)
+/obj/screen/zone_sel/Click(location, control, params)
 	var/list/PL = params2list(params)
 	var/icon_x = text2num(PL["icon-x"])
 	var/icon_y = text2num(PL["icon-y"])

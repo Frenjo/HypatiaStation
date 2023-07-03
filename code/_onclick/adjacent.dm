@@ -27,13 +27,13 @@
 /turf/Adjacent(atom/neighbor, atom/target = null)
 	var/turf/T0 = get_turf(neighbor)
 	if(T0 == src)
-		return 1
+		return TRUE
 	if(get_dist(src, T0) > 1)
-		return 0
+		return FALSE
 
 	if(T0.x == x || T0.y == y)
 		// Check for border blockages
-		return T0.ClickCross(get_dir(T0, src), border_only = 1) && src.ClickCross(get_dir(src, T0), border_only = 1, target_atom = target)
+		return T0.ClickCross(get_dir(T0, src), border_only = 1) && ClickCross(get_dir(src, T0), border_only = 1, target_atom = target)
 
 	// Not orthagonal
 	var/in_dir = get_dir(neighbor, src) // eg. northwest (1+8)
@@ -45,14 +45,14 @@
 			continue // could not leave T0 in that direction
 
 		var/turf/T1 = get_step(T0, d)
-		if(!T1 || T1.density || !T1.ClickCross(get_dir(T1, T0) | get_dir(T1, src), border_only = 0))
+		if(isnull(T1) || T1.density || !T1.ClickCross(get_dir(T1, T0) | get_dir(T1, src), border_only = 0))
 			continue // couldn't enter or couldn't leave T1
 
-		if(!src.ClickCross(get_dir(src, T1), border_only = 1, target_atom = target))
+		if(!ClickCross(get_dir(src, T1), border_only = 1, target_atom = target))
 			continue // could not enter src
 
-		return 1 // we don't care about our own density
-	return 0
+		return TRUE // we don't care about our own density
+	return FALSE
 
 /*
 	Adjacency (to anything else):
@@ -64,24 +64,24 @@
 */
 /atom/movable/Adjacent(atom/neighbor)
 	if(neighbor == loc)
-		return 1
+		return TRUE
 	if(!isturf(loc))
-		return 0
+		return FALSE
 	for(var/turf/T in locs)
 		if(isnull(T))
 			continue
 		if(T.Adjacent(neighbor, src))
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 // This is necessary for storage items not on your person.
 /obj/item/Adjacent(atom/neighbor, recurse = 1)
 	if(neighbor == loc)
-		return 1
+		return TRUE
 	if(isitem(loc))
 		if(recurse > 0)
 			return loc.Adjacent(neighbor, recurse - 1)
-		return 0
+		return FALSE
 	return ..()
 /*
 	Special case: This allows you to reach a door when it is visally on top of,
@@ -92,11 +92,11 @@
 	so they can be interacted with without opening the door.
 */
 /obj/machinery/door/Adjacent(atom/neighbor)
-	var/obj/machinery/door/firedoor/border_only/BOD = locate() in loc
-	if(BOD)
-		BOD.throwpass = 1 // allow click to pass
+	var/obj/machinery/door/firedoor/border_only/border_door = locate() in loc
+	if(isnotnull(border_door))
+		border_door.throwpass = TRUE // allow click to pass
 		. = ..()
-		BOD.throwpass = 0
+		border_door.throwpass = FALSE
 		return .
 	return ..()
 
@@ -115,13 +115,14 @@
 				var/obj/structure/window/W = target_atom
 				if(istype(W))
 					if(!W.is_fulltile())	//exception for breaking full tile windows on top of single pane windows
-						return 0
+						return FALSE
 				else
-					return 0
+					return FALSE
 
 		else if(!border_only) // dense, not on border, cannot pass over
-			return 0
-	return 1
+			return FALSE
+	return TRUE
+
 /*
 	Aside: throwpass does not do what I thought it did originally, and is only used for checking whether or not
 	a thrown object should stop after already successfully entering a square.  Currently the throw code involved

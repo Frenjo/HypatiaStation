@@ -13,7 +13,6 @@
 	if(user.stat)
 		return
 	user.UnarmedAttack(src, 0) // attack_hand, attack_paw, etc
-	return
 
 /*
 	This is similar to item attack_self, but applies to anything
@@ -32,23 +31,21 @@
 		..()
 		return
 
-	var/obj/item/tk_grab/O = new(src)
+	var/obj/item/tk_grab/O = new /obj/item/tk_grab(src)
 	user.put_in_active_hand(O)
 	O.host = user
 	O.focus_object(src)
-	return
 
 /obj/item/attack_tk(mob/user)
 	if(user.stat || !isturf(loc))
 		return
 	if((TK in user.mutations) && !user.get_active_hand()) // both should already be true to get here
-		var/obj/item/tk_grab/O = new(src)
+		var/obj/item/tk_grab/O = new /obj/item/tk_grab(src)
 		user.put_in_active_hand(O)
 		O.host = user
 		O.focus_object(src)
 	else
 		warning("Strange attack_tk(): TK([TK in user.mutations]) empty hand([!user.get_active_hand()])")
-	return
 
 
 /mob/attack_tk(mob/user)
@@ -77,30 +74,28 @@
 	var/mob/living/host = null
 
 /obj/item/tk_grab/dropped(mob/user as mob)
-	if(focus && user && loc != user && loc != user.loc) // drop_item() gets called when you tk-attack a table/closet with an item
+	if(isnotnull(focus) && isnotnull(user) && loc != user && loc != user.loc) // drop_item() gets called when you tk-attack a table/closet with an item
 		if(focus.Adjacent(loc))
 			focus.loc = loc
 
 	qdel(src)
-	return
 
 //stops TK grabs being equipped anywhere but into hands
 /obj/item/tk_grab/equipped(mob/user, slot)
 	if(slot == SLOT_ID_L_HAND || slot == SLOT_ID_R_HAND)
 		return
 	qdel(src)
-	return
 
 /obj/item/tk_grab/attack_self(mob/user as mob)
-	if(focus)
+	if(isnotnull(focus))
 		focus.attack_self_tk(user)
 
 /obj/item/tk_grab/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, proximity)//TODO: go over this
-	if(!target || !user)
+	if(isnull(target) || isnull(user))
 		return
 	if(last_throw + 3 > world.time)
 		return
-	if(!host || host != user)
+	if(isnull(host) || host != user)
 		qdel(src)
 		return
 	if(!(TK in host.mutations))
@@ -110,7 +105,7 @@
 		return
 
 	var/d = get_dist(user, target)
-	if(focus)
+	if(isnotnull(focus))
 		d = max(d, get_dist(user, focus)) // whichever is further
 	switch(d)
 		if(0)
@@ -126,7 +121,7 @@
 			to_chat(user, SPAN_INFO("Your mind won't reach that far."))
 			return
 
-	if(!focus)
+	if(isnull(focus))
 		focus_object(target, user)
 		return
 
@@ -138,14 +133,13 @@
 	if(!isturf(target) && isitem(focus) && target.Adjacent(focus))
 		var/obj/item/I = focus
 		var/resolved = target.attackby(I, user, user:get_organ_target())
-		if(!resolved && target && I)
+		if(!resolved && isnotnull(target) && isnotnull(I))
 			I.afterattack(target, user, 1) // for splashing with beakers
 
 	else
 		apply_focus_overlay()
 		focus.throw_at(target, 10, 1)
 		last_throw = world.time
-	return
 
 /obj/item/tk_grab/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
 	return
@@ -159,11 +153,11 @@
 	focus = target
 	update_icon()
 	apply_focus_overlay()
-	return
 
 /obj/item/tk_grab/proc/apply_focus_overlay()
-	if(!focus)
+	if(isnull(focus))
 		return
+
 	var/obj/effect/overlay/O = PoolOrNew(/obj/effect/overlay, locate(focus.x, focus.y, focus.z))
 	O.name = "sparkles"
 	O.anchored = TRUE
@@ -176,13 +170,11 @@
 	flick("empdisable", O)
 	spawn(5)
 		qdel(O)
-	return
 
 /obj/item/tk_grab/update_icon()
 	overlays.Cut()
-	if(focus && focus.icon && focus.icon_state)
-		overlays += icon(focus.icon, focus.icon_state)
-	return
+	if(isnotnull(focus) && isnotnull(focus.icon) && isnotnull(focus.icon_state))
+		overlays.Add(icon(focus.icon, focus.icon_state))
 
 /*Not quite done likely needs to use something thats not get_step_to
 /obj/item/tk_grab/proc/check_path()

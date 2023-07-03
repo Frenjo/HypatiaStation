@@ -1,4 +1,3 @@
-
 // Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
 /obj/item/proc/attack_self(mob/user)
 	return
@@ -23,6 +22,7 @@
 /obj/item/proc/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
 	if(!istype(M)) // not sure if this is the right thing...
 		return
+
 	var/messagesource = M
 	if(can_operate(M))		//Checks if mob is lying down on table for surgery
 		if(do_surgery(M, user, src))
@@ -130,8 +130,8 @@
 			else
 				O.show_message(SPAN_DANGER("[M] has been attacked with [src][showname]."), 1)
 
-		if(!showname && user)
-			if(user.client)
+		if(!showname)
+			if(isnotnull(user?.client))
 				to_chat(user, SPAN_DANGER("You attack [M] with [src]."))
 
 	if(ishuman(M))

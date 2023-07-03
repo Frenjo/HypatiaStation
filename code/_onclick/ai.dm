@@ -101,10 +101,9 @@
 
 /obj/machinery/door/airlock/AIShiftClick()  // Opens and closes doors!
 	if(density)
-		Topic("aiEnable=7", list("aiEnable"="7"), 1) // 1 meaning no window (consistency!)
+		Topic("aiEnable=7", list("aiEnable" = "7"), 1) // 1 meaning no window (consistency!)
 	else
-		Topic("aiDisable=7", list("aiDisable"="7"), 1)
-	return
+		Topic("aiDisable=7", list("aiDisable" = "7"), 1)
 
 /atom/proc/AICtrlClick()
 	return
@@ -128,4 +127,3 @@
 	else
 		// disable/6 is not in Topic; disable/5 disables both temporary and permenant shock
 		Topic("aiDisable=5", list("aiDisable" = "5"), 1)
-	return
