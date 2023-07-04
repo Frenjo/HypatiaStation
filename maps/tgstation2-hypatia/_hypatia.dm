@@ -6,6 +6,7 @@
 	#include "tgstation2-hypatia-4.dmm"
 	#include "tgstation2-hypatia-5.dmm"
 	#include "tgstation2-hypatia-6.dmm"
+	#include "tgstation2-hypatia-transit.dmm"
 
 	#define CURRENT_MAP_DATUM /datum/map/tgstation2_hypatia
 
