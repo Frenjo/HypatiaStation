@@ -20,9 +20,6 @@
 	alt_titles = list("Counselor")
 
 /datum/job/chaplain/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	var/obj/item/weapon/storage/bible/B = new /obj/item/weapon/storage/bible(H) //BS12 EDIT
 	H.equip_to_slot_or_del(B, SLOT_ID_L_HAND)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
@@ -162,4 +159,5 @@
 			global.CTgame_ticker.Bible_deity_name = B.deity_name
 		feedback_set_details("religion_deity", "[new_deity]")
 		feedback_set_details("religion_book", "[new_book_style]")
+
 	return 1

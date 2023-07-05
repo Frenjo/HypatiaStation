@@ -31,9 +31,6 @@
 	)
 
 /datum/job/rd/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/rd(H), SLOT_ID_L_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), SLOT_ID_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/research_director(H), SLOT_ID_W_UNIFORM)
@@ -67,9 +64,6 @@
 	alt_titles = list("Researcher", "Xenoarcheologist", "Anomalist", "Plasma Researcher")
 
 /datum/job/scientist/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sci(H), SLOT_ID_L_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), SLOT_ID_SHOES)
@@ -100,9 +94,6 @@
 	minimal_access = list(ACCESS_RESEARCH, ACCESS_XENOBIOLOGY)
 
 /datum/job/xenobiologist/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sci(H), SLOT_ID_L_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), SLOT_ID_SHOES)
@@ -136,14 +127,14 @@
 	alt_titles = list("Biomechanical Engineer", "Mechatronic Engineer")
 
 /datum/job/roboticist/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_rob(H), SLOT_ID_L_EAR)
-	if(H.backbag == 2)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), SLOT_ID_BACK)
-	if(H.backbag == 3)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/norm(H), SLOT_ID_BACK)
+
+	switch(H.backbag)
+		if(2)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), SLOT_ID_BACK)
+		if(3)
+			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/norm(H), SLOT_ID_BACK)
+
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/roboticist(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/roboticist(H), SLOT_ID_BELT)

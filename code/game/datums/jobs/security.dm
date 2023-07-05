@@ -33,9 +33,6 @@
 	alt_titles = list("Security Commander")
 
 /datum/job/hos/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	switch(H.backbag)
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(H), SLOT_ID_BACK)
@@ -64,6 +61,7 @@
 	var/datum/organ/external/affected = H.organs_by_name["head"]
 	affected.implants.Add(L)
 	L.part = affected
+
 	return 1
 
 /*
@@ -87,9 +85,6 @@
 	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMOURY, ACCESS_COURT, ACCESS_MAINT_TUNNELS)
 
 /datum/job/warden/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	switch(H.backbag)
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(H), SLOT_ID_BACK)
@@ -137,9 +132,6 @@
 	alt_titles = list("Forensic Technician")
 
 /datum/job/detective/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	switch(H.backbag)
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), SLOT_ID_BACK)
@@ -162,6 +154,7 @@
 	else
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/det_suit(H), SLOT_ID_WEAR_SUIT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/det_hat(H), SLOT_ID_HEAD)
+
 	H.equip_to_slot_or_del(new /obj/item/weapon/lighter/zippo(H), SLOT_ID_L_STORE)
 
 	if(H.backbag == 1)//Why cant some of these things spawn in his office?
@@ -194,9 +187,6 @@
 	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS)
 
 /datum/job/officer/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	switch(H.backbag)
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(H), SLOT_ID_BACK)
@@ -240,9 +230,6 @@
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS)
 
 /datum/job/secpara/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	switch(H.backbag)
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/medic(H), SLOT_ID_BACK)

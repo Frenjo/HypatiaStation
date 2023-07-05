@@ -17,16 +17,10 @@
 	alt_titles = list("Technical Assistant", "Medical Intern", "Research Assistant", "Security Cadet", "Visitor")
 
 /datum/job/assistant/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/color/grey(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
 
 	return 1
 
 /datum/job/assistant/get_access()
-	if(CONFIG_GET(assistant_maint))
-		return list(ACCESS_MAINT_TUNNELS)
-	else
-		return list()
+	return CONFIG_GET(assistant_maint) ? list(ACCESS_MAINT_TUNNELS) : list()

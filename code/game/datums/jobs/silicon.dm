@@ -16,11 +16,6 @@
 	req_admin_notify = TRUE
 	minimal_player_age = 7
 
-/datum/job/ai/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-	return 1
-
 /*
  * Cyborg
  */
@@ -39,8 +34,3 @@
 	minimal_player_age = 1
 
 	alt_titles = list("Android", "Robot", "Drone")
-
-/datum/job/cyborg/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-	return 1

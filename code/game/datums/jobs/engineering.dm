@@ -33,9 +33,6 @@
 	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
 
 /datum/job/chief_engineer/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	switch(H.backbag)
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial(H), SLOT_ID_BACK)
@@ -83,9 +80,6 @@
 	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
 
 /datum/job/engineer/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	switch(H.backbag)
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial(H), SLOT_ID_BACK)
@@ -132,9 +126,6 @@
 	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
 
 /datum/job/atmos/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	switch(H.backbag)
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), SLOT_ID_BACK)

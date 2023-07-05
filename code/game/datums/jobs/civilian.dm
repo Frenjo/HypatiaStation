@@ -19,9 +19,6 @@
 	alt_titles = list("Barista", "Mixologist")
 
 /datum/job/bartender/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	switch(H.backbag)
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), SLOT_ID_BACK)
@@ -69,9 +66,6 @@
 	alt_titles = list("Cook")
 
 /datum/job/chef/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chef(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(H), SLOT_ID_WEAR_SUIT)
@@ -103,9 +97,6 @@
 	alt_titles = list("Hydroponicist", "Gardener")
 
 /datum/job/hydro/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/hydroponics(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
@@ -140,9 +131,6 @@
 	minimal_access = list(ACCESS_CLOWN, ACCESS_THEATRE)
 
 /datum/job/clown/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
 	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/clown(H), SLOT_ID_BACK)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/clown(H), SLOT_ID_W_UNIFORM)
@@ -178,9 +166,6 @@
 	minimal_access = list(ACCESS_MIME, ACCESS_THEATRE)
 
 /datum/job/mime/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	if(H.backbag == 2)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), SLOT_ID_BACK)
 	if(H.backbag == 3)
@@ -202,10 +187,10 @@
 		H.equip_to_slot_or_del(new /obj/item/toy/crayon/mime(H), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing(H), SLOT_ID_IN_BACKPACK)
 
-	H.verbs += /client/proc/mimespeak
-	H.verbs += /client/proc/mimewall
-	H.mind.special_verbs += /client/proc/mimespeak
-	H.mind.special_verbs += /client/proc/mimewall
+	H.verbs.Add(/client/proc/mimespeak)
+	H.verbs.Add(/client/proc/mimewall)
+	H.mind.special_verbs.Add(/client/proc/mimespeak)
+	H.mind.special_verbs.Add(/client/proc/mimewall)
 	H.miming = TRUE
 
 	return 1
@@ -217,6 +202,7 @@
 	set category = "Mime"
 	set name = "Invisible wall"
 	set desc = "Create an invisible wall on your location."
+
 	if(usr.stat)
 		to_chat(usr, "Not when you're incapacitated.")
 		return
@@ -236,7 +222,6 @@
 			V.show_message("[H] looks as if a wall is in front of them.", 3, "", 2)
 	to_chat(usr, "You form a wall in front of yourself.")
 	new /obj/effect/forcefield/mime(locate(usr.x, usr.y, usr.z))
-	return
 
 /obj/effect/forcefield/mime
 	icon_state = "empty"
@@ -264,6 +249,7 @@
 	set category = "Mime"
 	set name = "Speech"
 	set desc = "Toggle your speech."
+
 	if(!ishuman(usr))
 		return
 
@@ -275,7 +261,6 @@
 		to_chat(usr, "You'll have to wait if you want to atone for your sins.")
 		spawn(3000)
 			H.miming = TRUE
-	return
 
 /*
  * Janitor
@@ -298,9 +283,6 @@
 	alt_titles = list("Custodial Specialist", "Sanitation Technician", "Cleaner")
 
 /datum/job/janitor/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/janitor(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
@@ -330,9 +312,6 @@
 	alt_titles = list("Journalist", "Reporter")
 
 /datum/job/librarian/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket/red(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/librarian(H), SLOT_ID_BELT)
@@ -363,9 +342,6 @@
 	alt_titles = list("Lawyer")
 
 /datum/job/lawyer/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec(H), SLOT_ID_L_EAR)
 	switch(H.backbag)
 		if(2)

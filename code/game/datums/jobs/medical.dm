@@ -31,9 +31,6 @@
 	alt_titles = list("Medical Director")
 
 /datum/job/cmo/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	switch(H.backbag)
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/medic(H), SLOT_ID_BACK)
@@ -73,9 +70,6 @@
 	alt_titles = list("Surgeon", "Emergency Physician", "Nurse")
 
 /datum/job/doctor/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	switch(H.backbag)
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/medic(H), SLOT_ID_BACK)
@@ -139,9 +133,6 @@
 	alt_titles = list("Pharmacist")
 
 /datum/job/chemist/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_med(H), SLOT_ID_L_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chemist(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), SLOT_ID_SHOES)
@@ -172,9 +163,6 @@
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_GENETICS, ACCESS_RESEARCH)
 
 /datum/job/geneticist/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_medsci(H), SLOT_ID_L_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/geneticist(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), SLOT_ID_SHOES)
@@ -208,9 +196,6 @@
 	alt_titles = list("Pathologist", "Microbiologist")
 
 /datum/job/virologist/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_med(H), SLOT_ID_L_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/virologist(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/viro(H), SLOT_ID_BELT)
@@ -245,9 +230,6 @@
 	alt_titles = list("Psychologist")
 
 /datum/job/psychiatrist/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	switch(H.backbag)
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/medic(H), SLOT_ID_BACK)

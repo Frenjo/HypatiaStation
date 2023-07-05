@@ -18,9 +18,6 @@
 	minimal_player_age = 14
 
 /datum/job/captain/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	switch(H.backbag)
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/captain(H), SLOT_ID_BACK)
@@ -52,6 +49,7 @@
 	var/datum/organ/external/affected = H.organs_by_name["head"]
 	affected.implants.Add(L)
 	L.part = affected
+
 	return 1
 
 /datum/job/captain/get_access()
@@ -93,9 +91,6 @@
 	alt_titles = list("Human Resources Director")
 
 /datum/job/hop/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	switch(H.backbag)
 		if(2)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), SLOT_ID_BACK)
@@ -113,4 +108,5 @@
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(H), SLOT_ID_R_HAND)
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(H.back), SLOT_ID_IN_BACKPACK)
+
 	return 1

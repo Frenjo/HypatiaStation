@@ -27,9 +27,6 @@
 	)
 
 /datum/job/qm/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_qm(H), SLOT_ID_L_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/cargo(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), SLOT_ID_SHOES)
@@ -62,9 +59,6 @@
 	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MAILSORTING)
 
 /datum/job/cargo_tech/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_cargo(H), SLOT_ID_L_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/cargotech(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
@@ -99,9 +93,6 @@
 	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
 
 /datum/job/miningforeman/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_mineforeman(H), SLOT_ID_L_EAR)
 	switch(H.backbag)
 		if(2)
@@ -110,6 +101,7 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/eng(H), SLOT_ID_BACK)
 		if(4)
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), SLOT_ID_BACK)
+
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner/foreman(H), SLOT_ID_W_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/shaftminer(H), SLOT_ID_BELT)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
@@ -121,6 +113,7 @@
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/bag/ore(H), SLOT_ID_IN_BACKPACK)
+
 	return 1
 
 /*
@@ -149,9 +142,6 @@
 	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
 
 /datum/job/mining/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_mine(H), SLOT_ID_L_EAR)
 	switch(H.backbag)
 		if(2)
@@ -171,6 +161,7 @@
 	else
 		H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/weapon/storage/bag/ore(H), SLOT_ID_IN_BACKPACK)
+
 	return 1
 
 /*
@@ -198,9 +189,6 @@
 	alt_titles = list("Postman", "Delivery Technician") // Should probably change this to "Delivery Specialist", but "Cargo Technician" exists. -Frenjo
 
 /datum/job/mailman/equip(mob/living/carbon/human/H)
-	if(isnull(H))
-		return 0
-
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_cargo(H), SLOT_ID_L_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/mailman(H), SLOT_ID_W_UNIFORM) // Mailman needs the distinctive uniform! -Frenjo
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
