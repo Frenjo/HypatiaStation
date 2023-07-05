@@ -19,7 +19,7 @@
 	icon_state = "Warden"
 
 /area/security/armoury
-	name = "\improper Armory"
+	name = "\improper Armoury"
 	icon_state = "Warden"
 
 /area/security/hos

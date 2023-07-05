@@ -166,9 +166,9 @@
 /datum/game_mode/proc/prepare_syndicate_leader(datum/mind/synd_mind, nuke_code)
 	if(nuke_code)
 		synd_mind.store_memory("<B>Syndicate Nuclear Bomb Code</B>: [nuke_code]", 0, 0)
-		synd_mind.current << "The nuclear authorization code is: <B>[nuke_code]</B>"
+		synd_mind.current << "The nuclear authorisation code is: <B>[nuke_code]</B>"
 		var/obj/item/weapon/paper/P = new
-		P.info = "The nuclear authorization code is: <b>[nuke_code]</b>"
+		P.info = "The nuclear authorisation code is: <b>[nuke_code]</b>"
 		P.name = "nuclear bomb code"
 		if(IS_GAME_MODE(/datum/game_mode/nuclear))
 			P.loc = synd_mind.current.loc

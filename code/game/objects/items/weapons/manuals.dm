@@ -1116,7 +1116,7 @@
 
 				<h1><a name="Hardsuit">Hardsuits</a></h1><BR>
 				<I>Heavy, uncomfortable, still the best option.</I><BR>
-				These suits come in Engineering, Mining, and the Armory. There's also a couple Medical Hardsuits in EVA. These provide a lot more protection than the standard suits.<BR><BR>
+				These suits come in Engineering, Mining, and the Armoury. There's also a couple Medical Hardsuits in EVA. These provide a lot more protection than the standard suits.<BR><BR>
 
 				Similarly to the other suits, these are split into three parts. Fastening the pant and top are mostly the same as the other spacesuits, with the exception that these are a bit heavier,
 				though not as bulky. The helmet goes on differently, with the air tube feeing into the suit and out a hole near the left shoulder, while the helmet goes on turned ninety degrees counter-clockwise,

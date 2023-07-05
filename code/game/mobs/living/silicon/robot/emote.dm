@@ -189,7 +189,7 @@
 
 		if("law")
 			if(istype(module,/obj/item/weapon/robot_module/security))
-				message = "<B>[src]</B> shows its legal authorization barcode."
+				message = "<B>[src]</B> shows its legal authorisation barcode."
 
 				playsound(src, 'sound/voice/biamthelaw.ogg', 50, 0)
 				m_type = 2

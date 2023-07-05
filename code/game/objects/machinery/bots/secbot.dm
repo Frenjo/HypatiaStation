@@ -52,7 +52,7 @@
 
 /obj/machinery/bot/secbot/armsky
 	name = "Sergeant-at-Armsky"
-	desc = "It's Sergeant-at-Armsky! Powered by a potato and a shot of whiskey, protecting the armory 'til the end of time."
+	desc = "It's Sergeant-at-Armsky! Powered by a potato and a shot of whiskey, protecting the armoury 'til the end of time."
 	idcheck = 1
 	arrest_type = 1
 
@@ -123,7 +123,7 @@ Maintenance panel panel is [src.open ? "opened" : "closed"]"},
 
 	if(!src.locked || issilicon(user))
 		dat += text({"<BR>
-Check for Weapon Authorization: []<BR>
+Check for Weapon Authorisation: []<BR>
 Check Security Records: []<BR>
 Operating Mode: []<BR>
 Auto Patrol: []"},

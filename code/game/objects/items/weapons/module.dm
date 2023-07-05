@@ -20,7 +20,7 @@
 
 /obj/item/weapon/module/id_auth
 	name = "\improper ID authentication module"
-	desc = "A module allowing secure authorization of ID cards."
+	desc = "A module allowing secure authorisation of ID cards."
 	icon_state = "id_mod"
 
 /obj/item/weapon/module/cell_power

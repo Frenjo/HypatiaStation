@@ -413,8 +413,8 @@
 		return
 	if(isliving(user))
 		user.visible_message(
-			SPAN_WARNING("[user] displays their NanoTrasen Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NT Security."),
-			SPAN_WARNING("You display your NanoTrasen Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NT Security.")
+			SPAN_WARNING("[user] displays their NanoTrasen Internal Security Legal Authorisation Badge.\nIt reads: [stored_name], NT Security."),
+			SPAN_WARNING("You display your NanoTrasen Internal Security Legal Authorisation Badge.\nIt reads: [stored_name], NT Security.")
 		)
 
 /obj/item/clothing/tie/holobadge/attackby(obj/item/O as obj, mob/user as mob)

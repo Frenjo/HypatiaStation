@@ -2,7 +2,7 @@
 
 /var/const/access_security = 1 // Security equipment
 /var/const/access_brig = 2 // Brig timers and permabrig
-/var/const/access_armory = 3
+/var/const/access_armoury = 3
 /var/const/access_forensics_lockers= 4
 /var/const/access_medical = 5
 /var/const/access_morgue = 6
@@ -209,13 +209,13 @@
 		if("Crew Supervisor")
 			return list(access_security, access_sec_doors, access_brig, access_court)
 		if("Correctional Advisor")
-			return list(access_security, access_sec_doors, access_brig, access_armory, access_court)
+			return list(access_security, access_sec_doors, access_brig, access_armoury, access_court)
 		if("Scientist")
 			return list(access_tox, access_tox_storage, access_research, access_xenobiology)
 		if("Safety Administrator")
 			return list(access_medical, access_morgue, access_tox, access_tox_storage, access_chemistry, access_genetics, access_court,
 			            access_teleporter, access_heads, access_tech_storage, access_security, access_sec_doors, access_brig, access_atmospherics,
-			            access_maint_tunnels, access_bar, access_janitor, access_kitchen, access_robotics, access_armory, access_hydroponics,
+			            access_maint_tunnels, access_bar, access_janitor, access_kitchen, access_robotics, access_armoury, access_hydroponics,
 			            access_theatre, access_research, access_hos, access_RC_announce, access_forensics_lockers, access_keycard_auth, access_gateway)
 		if("Head of Personnel")
 			return list(access_security, access_sec_doors, access_brig, access_court, access_forensics_lockers,
@@ -288,7 +288,7 @@
 			return get_all_centcom_access()
 
 /proc/get_all_accesses()
-	return list(access_security, access_sec_doors, access_brig, access_armory, access_forensics_lockers, access_court,
+	return list(access_security, access_sec_doors, access_brig, access_armoury, access_forensics_lockers, access_court,
 	            access_medical, access_genetics, access_morgue, access_rd,
 	            access_tox, access_tox_storage, access_chemistry, access_engine, access_engine_equip, access_maint_tunnels,
 	            access_external_airlocks, access_emergency_storage, access_change_ids, access_ai_upload,
@@ -311,7 +311,7 @@
 		if(0)
 			return get_all_accesses()
 		if(1) //security
-			return list(access_sec_doors, access_security, access_brig, access_armory, access_forensics_lockers, access_court, access_hos)
+			return list(access_sec_doors, access_security, access_brig, access_armoury, access_forensics_lockers, access_court, access_hos)
 		if(2) //medbay
 			return list(access_medical, access_genetics, access_morgue, access_chemistry, access_virology, access_surgery, access_cmo)
 		if(3) //research
@@ -409,8 +409,8 @@
 			return "Atmospherics"
 		if(access_crematorium)
 			return "Crematorium"
-		if(access_armory)
-			return "Armory"
+		if(access_armoury)
+			return "Armoury"
 		if(access_construction)
 			return "Construction Areas"
 		if(access_kitchen)

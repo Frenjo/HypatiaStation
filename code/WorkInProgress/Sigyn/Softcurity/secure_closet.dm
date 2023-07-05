@@ -83,7 +83,7 @@
 
 /obj/structure/closet/secure_closet/warden
 	name = "Correctional Advisor's Locker"
-	req_access = list(access_armory)
+	req_access = list(access_armoury)
 	icon_state = "wardensecure1"
 	icon_closed = "wardensecure"
 	icon_locked = "wardensecure1"

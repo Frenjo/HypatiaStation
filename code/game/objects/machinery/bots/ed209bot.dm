@@ -120,7 +120,7 @@ Maintenance panel panel is [src.open ? "opened" : "closed"]"},
 	if(!src.locked || issilicon(user))
 		if(!lasercolor)
 			dat += text({"<BR>
-Check for Weapon Authorization: []<BR>
+Check for Weapon Authorisation: []<BR>
 Check Security Records: []<BR>
 Operating Mode: []<BR>
 Auto Patrol: []"},

@@ -8,7 +8,7 @@
 /datum/shuttle/ferry/emergency/arrived()
 	if(istype(in_use, /obj/machinery/computer/shuttle_control/emergency))
 		var/obj/machinery/computer/shuttle_control/emergency/C = in_use
-		C.reset_authorization()
+		C.reset_authorisation()
 
 	global.CTemergency.shuttle_arrived()
 
@@ -39,7 +39,7 @@
 /datum/shuttle/ferry/emergency/can_launch(user)
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))
 		var/obj/machinery/computer/shuttle_control/emergency/C = user
-		if(!C.has_authorization())
+		if(!C.has_authorisation())
 			return 0
 	return ..()
 
@@ -47,16 +47,16 @@
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))
 		var/obj/machinery/computer/shuttle_control/emergency/C = user
 
-		//initiating or cancelling a launch ALWAYS requires authorization, but if we are already set to launch anyways than forcing does not.
+		//initiating or cancelling a launch ALWAYS requires authorisation, but if we are already set to launch anyways than forcing does not.
 		//this is so that people can force launch if the docking controller cannot safely undock without needing X heads to swipe.
-		if(!(process_state == WAIT_LAUNCH || C.has_authorization()))
+		if(!(process_state == WAIT_LAUNCH || C.has_authorisation()))
 			return 0
 	return ..()
 
 /datum/shuttle/ferry/emergency/can_cancel(user)
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))
 		var/obj/machinery/computer/shuttle_control/emergency/C = user
-		if(!C.has_authorization())
+		if(!C.has_authorisation())
 			return 0
 	return ..()
 
@@ -97,21 +97,21 @@
 /obj/machinery/computer/shuttle_control/emergency
 	shuttle_tag = "Escape"
 	var/debug = 0
-	var/req_authorizations = 2
+	var/req_authorisations = 2
 	var/list/authorized = list()
 
-/obj/machinery/computer/shuttle_control/emergency/proc/has_authorization()
-	return (length(authorized) >= req_authorizations || emagged)
+/obj/machinery/computer/shuttle_control/emergency/proc/has_authorisation()
+	return (length(authorized) >= req_authorisations || emagged)
 
-/obj/machinery/computer/shuttle_control/emergency/proc/reset_authorization()
+/obj/machinery/computer/shuttle_control/emergency/proc/reset_authorisation()
 	//no need to reset emagged status. If they really want to go back to the station they can.
 	authorized = initial(authorized)
 
-//returns 1 if the ID was accepted and a new authorization was added, 0 otherwise
-/obj/machinery/computer/shuttle_control/emergency/proc/read_authorization(ident)
+//returns 1 if the ID was accepted and a new authorisation was added, 0 otherwise
+/obj/machinery/computer/shuttle_control/emergency/proc/read_authorisation(ident)
 	if(!ident)
 		return 0
-	if(length(authorized) >= req_authorizations)
+	if(length(authorized) >= req_authorisations)
 		return 0	//don't need any more
 
 	var/list/access
@@ -143,17 +143,17 @@
 
 	src.visible_message("[src] beeps as it scans [ident].")
 	authorized[dna_hash] = auth_name
-	if(req_authorizations - length(authorized))
-		to_world(SPAN_INFO_B("Alert: [req_authorizations - length(authorized)] authorization\s needed to override the shuttle autopilot."))
+	if(req_authorisations - length(authorized))
+		to_world(SPAN_INFO_B("Alert: [req_authorisations - length(authorized)] authorisation\s needed to override the shuttle autopilot."))
 	return 1
 
 /obj/machinery/computer/shuttle_control/emergency/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/card/emag) && !emagged)
-		to_chat(user, SPAN_INFO("You short out the [src]'s authorization protocols."))
+		to_chat(user, SPAN_INFO("You short out the [src]'s authorisation protocols."))
 		emagged = 1
 		return
 
-	read_authorization(W)
+	read_authorisation(W)
 	..()
 
 /obj/machinery/computer/shuttle_control/emergency/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
@@ -187,21 +187,21 @@
 		if(WAIT_FINISH)
 			shuttle_status = "Arriving at destination now."
 
-	//build a list of authorizations
-	var/list/auth_list[req_authorizations]
+	//build a list of authorisations
+	var/list/auth_list[req_authorisations]
 
 	if(!emagged)
 		var/i = 1
 		for(var/dna_hash in authorized)
 			auth_list[i++] = list("auth_name" = authorized[dna_hash], "auth_hash" = dna_hash)
 
-		while(i <= req_authorizations)	//fill up the rest of the list with blank entries
+		while(i <= req_authorisations)	//fill up the rest of the list with blank entries
 			auth_list[i++] = list("auth_name" = "", "auth_hash" = null)
 	else
-		for(var/i = 1; i <= req_authorizations; i++)
+		for(var/i = 1; i <= req_authorisations; i++)
 			auth_list[i] = list("auth_name" = "<font color=\"red\">ERROR</font>", "auth_hash" = null)
 
-	var/has_auth = has_authorization()
+	var/has_auth = has_authorisation()
 
 	data = list(
 		"shuttle_status" = shuttle_status,
@@ -236,5 +236,5 @@
 		//They selected an empty entry. Try to scan their id.
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
-			if(!read_authorization(H.get_active_hand()))	//try to read what's in their hand first
-				read_authorization(H.wear_id)
+			if(!read_authorisation(H.get_active_hand()))	//try to read what's in their hand first
+				read_authorisation(H.wear_id)

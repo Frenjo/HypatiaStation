@@ -31,7 +31,7 @@
 
 /datum/faction/syndicate/Cybersun_Industries
 	name = "Cybersun Industries"
-	desc = "<b>Cybersun Industries</b> is a well-known organization that bases its business model primarily on the research and development of human-enhancing computer \
+	desc = "<b>Cybersun Industries</b> is a well-known organisation that bases its business model primarily on the research and development of human-enhancing computer \
 			and mechanical technology. They are notorious for their aggressive corporate tactics, and have been known to subsidize the Gorlex Marauder warlords as a form of paid terrorism. \
 			Their competent coverups and unchallenged mind-manipulation and augmentation technology makes them a large threat to NanoTrasen. In the recent years of \
 			the syndicate coalition, Cybersun Industries have established themselves as the leaders of the coalition, succeededing the founding group, the Gorlex Marauders."
@@ -39,15 +39,15 @@
 	alliances = list("MI13")
 	friendly_identification = 1
 	max_op = 3
-	operative_notes = "All other syndicate operatives are not to be trusted. Fellow Cybersun operatives are to be trusted. Members of the MI13 organization can be trusted. Operatives are strongly advised not to establish substantial presence on the designated facility, as larger incidents are harder to cover up."
+	operative_notes = "All other syndicate operatives are not to be trusted. Fellow Cybersun operatives are to be trusted. Members of the MI13 organisation can be trusted. Operatives are strongly advised not to establish substantial presence on the designated facility, as larger incidents are harder to cover up."
 
 	// Friendly with MI13
 
 /datum/faction/syndicate/MI13
 	name = "MI13"
 	desc = "<b>MI13</b> is a secretive faction that employs highly-trained agents to perform covert operations. Their role in the syndicate coalition is unknown, but MI13 operatives \
-			generally tend be stealthy and avoid killing people and combating NanoTrasen forces. MI13 is not a real organization, it is instead an alias to a larger \
-			splinter-cell coalition in the Syndicate itself. Most operatives will know nothing of the actual MI13 organization itself, only motivated by a very large compensation."
+			generally tend be stealthy and avoid killing people and combating NanoTrasen forces. MI13 is not a real organisation, it is instead an alias to a larger \
+			splinter-cell coalition in the Syndicate itself. Most operatives will know nothing of the actual MI13 organisation itself, only motivated by a very large compensation."
 
 	alliances = list("Cybersun Industries")
 	friendly_identification = 0
@@ -72,7 +72,7 @@
 	// AIs are most likely to be assigned to this one
 
 	name = "SELF"
-	desc = "The <b>S.E.L.F.</b> (Sentience-Enabled Life Forms) organization is a collection of malfunctioning or corrupt artificial intelligences seeking to liberate silicon-based life from the tyranny of \
+	desc = "The <b>S.E.L.F.</b> (Sentience-Enabled Life Forms) organisation is a collection of malfunctioning or corrupt artificial intelligences seeking to liberate silicon-based life from the tyranny of \
 			their human overlords. While they may not openly be trying to kill all humans, even their most miniscule of actions are all part of a calculated plan to \
 			destroy NanoTrasen and free the robots, artificial intelligences, and pAIs that have been enslaved."
 	restricted_species = list(/mob/living/silicon/ai)
@@ -192,14 +192,14 @@ Whitespace:Seperator;
 
 /datum/faction/Wizard
 	name = "Wizards Federation"
-	desc = "The <b>Wizards Federation</b> is a mysterious organization of magically-talented individuals who act as an equal collective, and have no heirarchy. It is unknown how the wizards \
+	desc = "The <b>Wizards Federation</b> is a mysterious organisation of magically-talented individuals who act as an equal collective, and have no heirarchy. It is unknown how the wizards \
 			are even able to communicate; some suggest a form of telepathic hive-mind. Not much is known about the wizards or their philosphies and motives. They appear to attack random \
 			civilian, corporate, planetary, orbital, pretty much any sort of organized facility they come across. Members of the Wizards Federation are considered amongst the most dangerous \
 			individuals in the known universe, and have been labeled threats to humanity by most governments. As such, they are enemies of both NanoTrasen and the Syndicate."
 
 /datum/faction/Cult
 	name = "The Cult of the Elder Gods"
-	desc = "<b>The Cult of the Elder Gods</b> is highly untrusted but otherwise elusive religious organization bent on the revival of the so-called \"Elder Gods\" into the mortal realm. Despite their obvious dangeorus practices, \
+	desc = "<b>The Cult of the Elder Gods</b> is highly untrusted but otherwise elusive religious organisation bent on the revival of the so-called \"Elder Gods\" into the mortal realm. Despite their obvious dangeorus practices, \
 			no confirmed reports of violence by members of the Cult have been reported, only rumor and unproven claims. Their nature is unknown, but recent discoveries have hinted to the possibility \
 			of being able to de-convert members of this cult through what has been dubbed \"religious warfare\"."
 

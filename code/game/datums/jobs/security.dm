@@ -46,7 +46,7 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), SLOT_ID_SHOES)
 	H.equip_to_slot_or_del(new /obj/item/device/pda/heads/hos(H), SLOT_ID_BELT)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
-//	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas(H), SLOT_ID_WEAR_MASK) //Grab one from the armory you donk
+//	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas(H), SLOT_ID_WEAR_MASK) // Grab one from the armoury you donk.
 	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(H), SLOT_ID_GLASSES)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/gun(H), SLOT_ID_S_STORE)
 
@@ -99,7 +99,7 @@
 	H.equip_to_slot_or_del(new /obj/item/device/pda/warden(H), SLOT_ID_BELT)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
 	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(H), SLOT_ID_GLASSES)
-//	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas(H), SLOT_ID_WEAR_MASK) //Grab one from the armory you donk
+//	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas(H), SLOT_ID_WEAR_MASK) // Grab one from the armoury you donk.
 	H.equip_to_slot_or_del(new /obj/item/device/flash(H), SLOT_ID_L_STORE)
 
 	if(H.backbag == 1)

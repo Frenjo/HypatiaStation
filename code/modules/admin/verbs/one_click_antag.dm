@@ -208,7 +208,7 @@
 
 		if(isnotnull(nuke_spawn))
 			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper()
-			P.info = "Sadly, the Syndicate could not get you a nuclear bomb. We have, however, acquired the arming code for the station's onboard nuke. The nuclear authorization code is: <b>[nuke_code]</b>"
+			P.info = "Sadly, the Syndicate could not get you a nuclear bomb. We have, however, acquired the arming code for the station's onboard nuke. The nuclear authorisation code is: <b>[nuke_code]</b>"
 			P.name = "nuclear bomb code and instructions"
 			P.loc = nuke_spawn.loc
 

@@ -200,7 +200,7 @@ Behaviour controls are [src.locked ? "locked" : "unlocked"]"},
 
 		if(!src.locked)
 			dat += text({"<BR>
-Check for Weapon Authorization: []<BR>
+Check for Weapon Authorisation: []<BR>
 Check Security Records: []<BR>
 Neutralize Identified Criminals: []<BR>
 Neutralize All Non-Security and Non-Command Personnel: []<BR>
@@ -548,7 +548,7 @@ Status: []<BR>"},
 		if(!src.allowed(perp))
 			return 10
 
-	if(auth_weapons) // check for weapon authorization
+	if(auth_weapons) // check for weapon authorisation
 		if((isnull(perp.wear_id)) || (istype(perp.wear_id.get_id(), /obj/item/weapon/card/id/syndicate)))
 
 			if((src.allowed(perp)) && !(src.lasercolor)) // if the perp has security access, return 0
@@ -884,7 +884,7 @@ Behaviour controls are [Parent_Turret.locked ? "locked" : "unlocked"]"},
 
 
 		dat += text({"<BR>
-Check for Weapon Authorization: []<BR>
+Check for Weapon Authorisation: []<BR>
 Check Security Records: []<BR>
 Neutralize Identified Criminals: []<BR>
 Neutralize All Non-Security and Non-Command Personnel: []<BR>
@@ -921,7 +921,7 @@ Behaviour controls are [Parent_Turret.locked ? "locked" : "unlocked"]"},
 
 		if(!Parent_Turret.locked)
 			dat += text({"<BR>
-Check for Weapon Authorization: []<BR>
+Check for Weapon Authorisation: []<BR>
 Check Security Records: []<BR>
 Neutralize Identified Criminals: []<BR>
 Neutralize All Non-Security and Non-Command Personnel: []<BR>

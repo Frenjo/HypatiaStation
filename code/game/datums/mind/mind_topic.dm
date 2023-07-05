@@ -458,7 +458,7 @@
 						break
 				if(code)
 					store_memory("<B>Syndicate Nuclear Bomb Code</B>: [code]", 0, 0)
-					to_chat(current, "The nuclear authorization code is: <B>[code]</B>.")
+					to_chat(current, "The nuclear authorisation code is: <B>[code]</B>.")
 				else
 					to_chat(usr, SPAN_WARNING("No valid nuke found!"))
 
