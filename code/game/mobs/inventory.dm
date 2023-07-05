@@ -327,3 +327,10 @@
 		if(del_on_fail)
 			qdel(W)
 	return equipped
+
+/mob/living/carbon/human/proc/equip_outfit(decl/outfit_path)
+	var/decl/hierarchy/outfit/outfit = GET_DECL_INSTANCE(outfit_path)
+	if(isnull(outfit))
+		return FALSE
+
+	return outfit.equip(src)

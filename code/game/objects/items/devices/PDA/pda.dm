@@ -295,8 +295,7 @@
 		if("Authenticate")//Checks for ID
 			id_check(U, 1)
 		if("UpdateInfo")
-			ownjob = id.assignment
-			name = "PDA - [owner] ([ownjob])" // Edited this to space out the dash. -Frenjo
+			set_job(id.assignment)
 		if("Eject")//Ejects the cart, only done from hub.
 			if(isnotnull(cartridge))
 				var/turf/T = loc
@@ -805,9 +804,7 @@
 			to_chat(user, SPAN_NOTICE("\The [src] rejects the ID."))
 			return
 		if(!owner)
-			owner = idcard.registered_name
-			ownjob = idcard.assignment
-			name = "PDA-[owner] ([ownjob])"
+			set_owner_and_job(idcard.registered_name, idcard.assignment)
 			to_chat(user, SPAN_NOTICE("Card scanned."))
 		else
 			//Basic safety check. If either both objects are held by user or PDA is on ground and card is in hand.
@@ -1017,6 +1014,23 @@
 	return isnotnull(id) ? id.get_job_name() : "Unknown"
 // End access-related overrides.
 
+// Owner and job helpers.
+/obj/item/device/pda/proc/set_owner(owner)
+	src.owner = owner
+	update_label()
+
+/obj/item/device/pda/proc/set_job(job)
+	ownjob = job
+	update_label()
+
+/obj/item/device/pda/proc/set_owner_and_job(owner, job)
+	set_owner(owner)
+	set_job(job)
+	update_label()
+
+/obj/item/device/pda/proc/update_label()
+	name = "PDA - [owner] ([ownjob])"
+// End owner and job helpers.
 
 //Some spare PDAs in a box
 /obj/item/weapon/storage/box/PDAs

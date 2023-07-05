@@ -103,7 +103,7 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 	feedback_add_details("admin_verb","SDTHS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/create_syndicate_death_commando(obj/spawn_location, syndicate_leader_selected = 0)
-	var/mob/living/carbon/human/new_syndicate_commando = new(spawn_location.loc)
+	var/mob/living/carbon/human/new_syndicate_commando = new /mob/living/carbon/human/(spawn_location.loc)
 	var/syndicate_commando_leader_rank = pick("Lieutenant", "Captain", "Major")
 	var/syndicate_commando_rank = pick("Corporal", "Sergeant", "Staff Sergeant", "Sergeant 1st Class", "Master Sergeant", "Sergeant Major")
 	var/syndicate_commando_name = pick(GLOBL.last_names)
@@ -123,56 +123,6 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 	new_syndicate_commando.mind.assigned_role = "MODE"
 	new_syndicate_commando.mind.special_role = "Syndicate Commando"
 	global.CTgame_ticker.mode.traitors |= new_syndicate_commando.mind	//Adds them to current traitor list. Which is really the extra antagonist list.
-	new_syndicate_commando.equip_syndicate_commando(syndicate_leader_selected)
+	new_syndicate_commando.equip_outfit(syndicate_leader_selected ? /decl/hierarchy/outfit/syndicate_commando/leader : /decl/hierarchy/outfit/syndicate_commando/standard)
 	qdel(spawn_location)
 	return new_syndicate_commando
-
-/mob/living/carbon/human/proc/equip_syndicate_commando(syndicate_leader_selected = 0)
-
-	var/obj/item/device/radio/R = new /obj/item/device/radio/headset/syndicate(src)
-	R.radio_connection = register_radio(R, null, FREQUENCY_SYNDICATE, RADIO_CHAT) //Same frequency as the syndicate team in Nuke mode.
-	equip_to_slot_or_del(R, SLOT_ID_L_EAR)
-	equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(src), SLOT_ID_W_UNIFORM)
-	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), SLOT_ID_SHOES)
-	if (!syndicate_leader_selected)
-		equip_to_slot_or_del(new /obj/item/clothing/suit/space/syndicate/black(src), SLOT_ID_WEAR_SUIT)
-	else
-		equip_to_slot_or_del(new /obj/item/clothing/suit/space/syndicate/black/red(src), SLOT_ID_WEAR_SUIT)
-	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), SLOT_ID_GLOVES)
-	if (!syndicate_leader_selected)
-		equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/syndicate/black(src), SLOT_ID_HEAD)
-	else
-		equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/syndicate/black/red(src), SLOT_ID_HEAD)
-	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/syndicate(src), SLOT_ID_WEAR_MASK)
-	equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal(src), SLOT_ID_GLASSES)
-
-	equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(src), SLOT_ID_BACK)
-	equip_to_slot_or_del(new /obj/item/weapon/storage/box(src), SLOT_ID_IN_BACKPACK)
-
-	equip_to_slot_or_del(new /obj/item/ammo_magazine/c45(src), SLOT_ID_IN_BACKPACK)
-	equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(src), SLOT_ID_IN_BACKPACK)
-	equip_to_slot_or_del(new /obj/item/weapon/plastique(src), SLOT_ID_IN_BACKPACK)
-	equip_to_slot_or_del(new /obj/item/device/flashlight(src), SLOT_ID_IN_BACKPACK)
-	if (!syndicate_leader_selected)
-		equip_to_slot_or_del(new /obj/item/weapon/plastique(src), SLOT_ID_IN_BACKPACK)
-	else
-		equip_to_slot_or_del(new /obj/item/weapon/pinpointer(src), SLOT_ID_IN_BACKPACK)
-		equip_to_slot_or_del(new /obj/item/weapon/disk/nuclear(src), SLOT_ID_IN_BACKPACK)
-
-	equip_to_slot_or_del(new /obj/item/weapon/melee/energy/sword(src), SLOT_ID_L_STORE)
-	equip_to_slot_or_del(new /obj/item/weapon/grenade/empgrenade(src), SLOT_ID_R_STORE)
-	equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen(src), SLOT_ID_S_STORE)
-	equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/silenced(src), SLOT_ID_BELT)
-
-	equip_to_slot_or_del(new /obj/item/weapon/gun/energy/pulse_rifle(src), SLOT_ID_R_HAND) //Will change to something different at a later time -- Superxpdude
-
-	var/obj/item/weapon/card/id/syndicate/W = new(src) //Untrackable by AI
-	W.name = "[real_name]'s ID Card"
-	W.icon_state = "id"
-	W.access = get_all_station_access() //They get full station access because obviously the syndicate has HAAAX, and can make special IDs for their most elite members.
-	W.access += list(ACCESS_CENT_GENERAL, ACCESS_CENT_SPECOPS, ACCESS_CENT_LIVING, ACCESS_CENT_STORAGE, ACCESS_SYNDICATE)//Let's add their forged CentCom access and syndicate access.
-	W.assignment = "Syndicate Commando"
-	W.registered_name = real_name
-	equip_to_slot_or_del(W, SLOT_ID_WEAR_ID)
-
-	return 1

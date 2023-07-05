@@ -203,6 +203,9 @@
 	return "Unknown"
 // End access-related overrides.
 
+/obj/item/weapon/card/id/proc/update_name()
+	name = isnotnull(assignment) ? "[registered_name]'s ID Card ([assignment])" : "[registered_name]'s ID Card"
+
 
 /obj/item/weapon/card/id/silver
 	name = "identification card"
@@ -230,7 +233,11 @@
 	else
 		registered_name = "Agent Card"
 	assignment = "Agent"
-	name = "[registered_name]'s ID Card ([assignment])"
+	update_name()
+
+/obj/item/weapon/card/id/syndicate/station_access/New()
+	. = ..() // This one's the same as the normal agent card except it has all station access by default.
+	access |= get_all_station_access()
 
 /obj/item/weapon/card/id/syndicate/afterattack(obj/item/weapon/O as obj, mob/user as mob, proximity)
 	if(!proximity)
@@ -256,7 +263,7 @@
 			registered_name = ""
 			return
 		assignment = u
-		name = "[registered_name]'s ID Card ([assignment])"
+		update_name()
 		to_chat(user, SPAN_INFO("You successfully forge the ID card."))
 		registered_user = user
 	else if(isnull(registered_user) || registered_user == user)
@@ -276,7 +283,7 @@
 					alert("Invalid assignment.")
 					return
 				assignment = u
-				name = "[registered_name]'s ID Card ([assignment])"
+				update_name()
 				to_chat(user, SPAN_INFO("You successfully forge the ID card."))
 				return
 			if("Show")
@@ -317,3 +324,7 @@
 /obj/item/weapon/card/id/centcom/New()
 	. = ..()
 	access = get_all_centcom_access()
+
+/obj/item/weapon/card/id/centcom/station/New()
+	. = ..()
+	access.Add(get_all_station_access())

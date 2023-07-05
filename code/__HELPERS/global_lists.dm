@@ -46,7 +46,7 @@
 	for(var/path in SUBTYPESOF(/datum/reagent))
 		var/datum/reagent/D = new path()
 		GLOBL.chemical_reagents_list[D.id] = D
-	
+
 	// Chemical Reactions - Initialises all /datum/chemical_reaction into a list.
 	// It is filtered into multiple lists within a list.
 	// For example:
@@ -123,15 +123,24 @@
 	for(var/path in SUBTYPESOF(/datum/tech))
 		var/datum/tech/T = new path()
 		GLOBL.all_techs[T.id] = T
-	
+
 	// Designs - Initialises all /datum/design into a list, indexed by id.
 	for(var/path in SUBTYPESOF(/datum/design))
 		var/datum/design/D = new path()
 		GLOBL.all_designs[D.id] = D
-	
+
 	// Artifact effects - Adds the typepaths of all /datum/artifact_effect to a list.
 	for(var/path in SUBTYPESOF(/datum/artifact_effect))
 		GLOBL.all_artifact_effect_types.Add(path)
+	return 1
+
+/hook/global_init/proc/init_outfits()
+	// Outfits - Initialises all /decl/outfit into a list, indexed by name.
+	for(var/path in SUBTYPESOF(/decl/hierarchy/outfit))
+		var/decl/hierarchy/outfit/O = GET_DECL_INSTANCE(path)
+		if(O.is_hidden())
+			continue
+		GLOBL.all_outfits[O.name] = path
 	return 1
 
 /* // Uncomment to debug chemical reaction list.

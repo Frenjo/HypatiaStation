@@ -366,7 +366,7 @@
 
 	//Adds them to current traitor list. Which is really the extra antagonist list.
 	global.CTgame_ticker.mode.traitors.Add(new_syndicate_commando.mind)
-	new_syndicate_commando.equip_syndicate_commando(syndicate_leader_selected)
+	new_syndicate_commando.equip_outfit(syndicate_leader_selected ? /decl/hierarchy/outfit/syndicate_commando/leader : /decl/hierarchy/outfit/syndicate_commando/standard)
 
 	return new_syndicate_commando
 

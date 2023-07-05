@@ -454,7 +454,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 					new_character << "<B>\red Still no spawneable locations could be found. Aborting.</B>"
 
 		if("Death Commando")//Leaves them at late-join spawn.
-			new_character.equip_death_commando()
+			new_character.equip_outfit(/decl/hierarchy/outfit/death_commando/standard)
 			new_character.internal = new_character.s_store
 			new_character.internals.icon_state = "internal1"
 		else//They may also be a cyborg or AI.
