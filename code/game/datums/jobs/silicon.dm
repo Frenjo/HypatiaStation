@@ -10,9 +10,10 @@
 	total_positions = 0
 	spawn_positions = 1
 
-	selection_color = "#ccffcc"
 	supervisors = "your laws"
+	selection_color = "#ccffcc"
 
+	idtype = null
 	req_admin_notify = TRUE
 	minimal_player_age = 7
 
@@ -31,6 +32,7 @@
 	supervisors = "your laws and the AI"	//Nodrak
 	selection_color = "#ddffdd"
 
+	idtype = null
 	minimal_player_age = 1
 
 	alt_titles = list("Android", "Robot", "Drone")

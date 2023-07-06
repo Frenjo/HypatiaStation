@@ -13,7 +13,7 @@ CONTROLLER_DEF(occupations)
 
 /datum/controller/occupations/proc/setup_occupations(faction = "Station")
 	occupations = list()
-	var/list/all_jobs = typesof(/datum/job)
+	var/list/all_jobs = SUBTYPESOF(/datum/job)
 	if(!length(all_jobs))
 		to_world(SPAN_DANGER("Error setting up jobs, no job datums found!"))
 		return 0
@@ -230,11 +230,10 @@ CONTROLLER_DEF(occupations)
 	debug("Running DO")
 	setup_occupations()
 
-	//Holder for Triumvirate is stored in the ticker, this just processes it
-	if(isnotnull(global.CTgame_ticker))
+	// Holder for Triumvirate is stored in the ticker, this just processes it.
+	if(isnotnull(global.CTgame_ticker) && global.CTgame_ticker.triai)
 		for(var/datum/job/ai/A in occupations)
-			if(global.CTgame_ticker.triai)
-				A.spawn_positions = 3
+			A.spawn_positions = 3
 
 	//Get the players who are ready
 	for(var/mob/new_player/player in GLOBL.player_list)
@@ -387,16 +386,20 @@ CONTROLLER_DEF(occupations)
 	spawn(0)
 		to_chat(H, SPAN_INFO_B("Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]."))
 
-	var/alt_title = null
+	var/alt_title = H.mind.role_alt_title
+	to_chat(H, "<B>You are the [isnotnull(alt_title) ? alt_title : rank].</B>")
+	to_chat(H, "<b>As the [isnotnull(alt_title) ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
+	if(job.req_admin_notify)
+		to_chat(H, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
+
 	if(isnotnull(H.mind))
 		H.mind.assigned_role = rank
-		alt_title = H.mind.role_alt_title
 
 		switch(rank)
 			if("Cyborg")
 				H.Robotize()
-				return 1
-			if("AI", "Clown", "Mime")	//don't need bag preference stuff!
+				return
+			if("Clown", "Mime")	//don't need bag preference stuff!
 			else
 				var/obj/item/weapon/storage/backbag = null
 				switch(H.backbag) //BS12 EDIT
@@ -420,11 +423,6 @@ CONTROLLER_DEF(occupations)
 					else
 						H.equip_to_slot_or_del(new H.species.survival_kit(H), SLOT_ID_R_HAND)
 
-	to_chat(H, "<B>You are the [alt_title ? alt_title : rank].</B>")
-	to_chat(H, "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
-	if(job.req_admin_notify)
-		to_chat(H, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
-
 	spawn_id(H, rank, alt_title)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), SLOT_ID_L_EAR)
 
@@ -442,44 +440,32 @@ CONTROLLER_DEF(occupations)
 	return 1
 
 /datum/controller/occupations/proc/spawn_id(mob/living/carbon/human/H, rank, title)
-	if(isnull(H))
-		return 0
-	var/obj/item/weapon/card/id/C = null
-
 	var/datum/job/job = null
 	for(var/datum/job/J in occupations)
 		if(J.title == rank)
 			job = J
 			break
 
-	if(isnotnull(job))
-		if(job.title == "Cyborg")
-			return
-		else
-			C = new job.idtype(H)
-			C.access = job.get_access()
+	var/obj/item/weapon/card/id/C = null
+	if(isnotnull(job?.idtype))
+		C = new job.idtype(H)
+		C.access = job.get_access()
 	else
 		C = new /obj/item/weapon/card/id(H)
 
-	if(isnotnull(C))
-		C.registered_name = H.real_name
-		C.rank = rank
-		C.assignment = title ? title : rank
-		C.name = "[C.registered_name]'s ID Card ([C.assignment])"
-
-		//put the player's account number onto the ID
-		if(isnotnull(H.mind?.initial_account))
-			C.associated_account_number = H.mind.initial_account.account_number
-
-		H.equip_to_slot_or_del(C, SLOT_ID_WEAR_ID)
+	C.registered_name = H.real_name
+	C.rank = rank
+	C.assignment = title ? title : rank
+	C.update_name()
+	if(isnotnull(H.mind?.initial_account))
+		// Puts the player's account number onto the ID.
+		C.associated_account_number = H.mind.initial_account.account_number
+	H.equip_to_slot_or_del(C, SLOT_ID_WEAR_ID)
 
 	H.equip_to_slot_or_del(new /obj/item/device/pda(H), SLOT_ID_BELT)
-	if(locate(/obj/item/device/pda, H))
-		var/obj/item/device/pda/pda = locate(/obj/item/device/pda, H)
-		pda.owner = H.real_name
-		pda.ownjob = C.assignment
-		pda.name = "PDA - [H.real_name] ([pda.ownjob])" // Edited this to space out the dash. -Frenjo
-	return 1
+	var/obj/item/device/pda/pda = locate(/obj/item/device/pda) in H
+	if(isnotnull(pda))
+		pda.set_owner_and_job(H.real_name, C.assignment)
 
 /datum/controller/occupations/proc/load_jobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
 	if(!CONFIG_GET(load_jobs_from_txt))
