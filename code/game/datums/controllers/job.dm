@@ -330,13 +330,13 @@ CONTROLLER_DEF(occupations)
 			unassigned.Remove(player)
 	return 1
 
-/datum/controller/occupations/proc/equip_rank(mob/living/carbon/human/H, rank, joined_late = 0)
+/datum/controller/occupations/proc/equip_rank(mob/living/carbon/human/H, rank, joined_late = FALSE)
 	if(isnull(H))
 		return 0
 
 	var/datum/job/job = get_job(rank)
 	if(isnotnull(job))
-		job.equip(H)
+		job.equip(H, H.mind.role_alt_title)
 	else
 		to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
 
@@ -388,43 +388,34 @@ CONTROLLER_DEF(occupations)
 
 	var/alt_title = H.mind.role_alt_title
 	to_chat(H, "<B>You are the [isnotnull(alt_title) ? alt_title : rank].</B>")
-	to_chat(H, "<b>As the [isnotnull(alt_title) ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
+	if(isnotnull(job.supervisors))
+		to_chat(H, "<b>As the [isnotnull(alt_title) ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
 	if(job.req_admin_notify)
 		to_chat(H, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
 
+	if(rank == "Cyborg")
+		H.Robotize()
+		return
+
 	if(isnotnull(H.mind))
 		H.mind.assigned_role = rank
+		var/obj/item/weapon/card/id/identification = locate(/obj/item/weapon/card/id) in H
+		if(isnotnull(identification))
+			identification.access = job.get_access()
+			if(isnotnull(H.mind.initial_account))
+				// Puts the player's account number onto their ID.
+				identification.associated_account_number = H.mind.initial_account.account_number
 
-		switch(rank)
-			if("Cyborg")
-				H.Robotize()
-				return
-			if("Clown", "Mime")	//don't need bag preference stuff!
-			else
-				var/obj/item/weapon/storage/backbag = null
-				switch(H.backbag) //BS12 EDIT
-					if(2)
-						backbag = new/obj/item/weapon/storage/backpack(H)
-					if(3)
-						backbag = new /obj/item/weapon/storage/satchel/norm(H)
-					if(4)
-						backbag = new /obj/item/weapon/storage/satchel(H)
-				if(isnotnull(backbag))
-					H.equip_to_slot_or_del(backbag, SLOT_ID_BACK)
-
-				if(ispath(job.special_survival_kit) && H.species.survival_kit == /obj/item/weapon/storage/box/survival)
-					if(isnotnull(backbag))
-						H.equip_to_slot_or_del(new job.special_survival_kit(backbag), SLOT_ID_IN_BACKPACK)
-					else
-						H.equip_to_slot_or_del(new job.special_survival_kit(H), SLOT_ID_R_HAND)
-				else
-					if(isnotnull(backbag))
-						H.equip_to_slot_or_del(new H.species.survival_kit(backbag), SLOT_ID_IN_BACKPACK)
-					else
-						H.equip_to_slot_or_del(new H.species.survival_kit(H), SLOT_ID_R_HAND)
-
-	spawn_id(H, rank, alt_title)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), SLOT_ID_L_EAR)
+	if(ispath(job.special_survival_kit) && H.species.survival_kit == /obj/item/weapon/storage/box/survival)
+		if(isnotnull(H.back))
+			H.equip_to_slot_or_del(new job.special_survival_kit(H.back), SLOT_ID_IN_BACKPACK)
+		else
+			H.equip_to_slot_or_del(new job.special_survival_kit(H), SLOT_ID_R_HAND)
+	else
+		if(isnotnull(H.back))
+			H.equip_to_slot_or_del(new H.species.survival_kit(H.back), SLOT_ID_IN_BACKPACK)
+		else
+			H.equip_to_slot_or_del(new H.species.survival_kit(H), SLOT_ID_R_HAND)
 
 	//Gives glasses to the vision impaired
 	if(H.disabilities & NEARSIGHTED)
@@ -438,34 +429,6 @@ CONTROLLER_DEF(occupations)
 	BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
 	return 1
-
-/datum/controller/occupations/proc/spawn_id(mob/living/carbon/human/H, rank, title)
-	var/datum/job/job = null
-	for(var/datum/job/J in occupations)
-		if(J.title == rank)
-			job = J
-			break
-
-	var/obj/item/weapon/card/id/C = null
-	if(isnotnull(job?.idtype))
-		C = new job.idtype(H)
-		C.access = job.get_access()
-	else
-		C = new /obj/item/weapon/card/id(H)
-
-	C.registered_name = H.real_name
-	C.rank = rank
-	C.assignment = title ? title : rank
-	C.update_name()
-	if(isnotnull(H.mind?.initial_account))
-		// Puts the player's account number onto the ID.
-		C.associated_account_number = H.mind.initial_account.account_number
-	H.equip_to_slot_or_del(C, SLOT_ID_WEAR_ID)
-
-	H.equip_to_slot_or_del(new /obj/item/device/pda(H), SLOT_ID_BELT)
-	var/obj/item/device/pda/pda = locate(/obj/item/device/pda) in H
-	if(isnotnull(pda))
-		pda.set_owner_and_job(H.real_name, C.assignment)
 
 /datum/controller/occupations/proc/load_jobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
 	if(!CONFIG_GET(load_jobs_from_txt))

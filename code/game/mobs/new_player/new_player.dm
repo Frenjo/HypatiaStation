@@ -295,7 +295,7 @@
 	global.CToccupations.assign_role(src, rank, 1)
 
 	var/mob/living/carbon/human/character = create_character()	//creates the human and transfers vars and mind
-	global.CToccupations.equip_rank(character, rank, 1)					//equips the human
+	global.CToccupations.equip_rank(character, rank, TRUE)				//equips the human
 	EquipCustomItems(character)
 
 	//Find our spawning point.

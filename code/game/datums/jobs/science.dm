@@ -13,7 +13,6 @@
 	supervisors = "the Captain"
 	selection_color = "#ffddff"
 
-	idtype = /obj/item/weapon/card/id/silver
 	req_admin_notify = TRUE
 	minimal_player_age = 7
 
@@ -30,18 +29,7 @@
 		ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_GATEWAY, ACCESS_XENOARCH
 	)
 
-/datum/job/rd/equip(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/rd(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/research_director(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/heads/rd(H), SLOT_ID_BELT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), SLOT_ID_WEAR_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/weapon/clipboard(H), SLOT_ID_L_HAND)
-
-	if(H.backbag == 3)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/tox(H), SLOT_ID_BACK)
-
-	return 1
+	outfit = /decl/hierarchy/outfit/job/science/rd
 
 /*
  * Scientist
@@ -61,19 +49,8 @@
 	access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_XENOARCH)
 	minimal_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOARCH)
 
+	outfit = /decl/hierarchy/outfit/job/science/scientist
 	alt_titles = list("Researcher", "Xenoarcheologist", "Anomalist", "Plasma Researcher")
-
-/datum/job/scientist/equip(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sci(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/toxins(H), SLOT_ID_BELT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat/science(H), SLOT_ID_WEAR_SUIT)
-
-	if(H.backbag == 3)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/tox(H), SLOT_ID_BACK)
-
-	return 1
 
 /*
  * Xenobiologist
@@ -93,17 +70,7 @@
 	access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY)
 	minimal_access = list(ACCESS_RESEARCH, ACCESS_XENOBIOLOGY)
 
-/datum/job/xenobiologist/equip(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sci(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/scientist(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/toxins(H), SLOT_ID_BELT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat/science(H), SLOT_ID_WEAR_SUIT)
-
-	if(H.backbag == 3)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/tox(H), SLOT_ID_BACK)
-
-	return 1
+	outfit = /decl/hierarchy/outfit/job/science/xenobiologist
 
 /*
  * Roboticist
@@ -124,22 +91,5 @@
 	access = list(ACCESS_ROBOTICS, ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_TECH_STORAGE, ACCESS_MORGUE, ACCESS_RESEARCH)
 	minimal_access = list(ACCESS_ROBOTICS, ACCESS_TECH_STORAGE, ACCESS_MORGUE, ACCESS_RESEARCH)
 
+	outfit = /decl/hierarchy/outfit/job/science/roboticist
 	alt_titles = list("Biomechanical Engineer", "Mechatronic Engineer")
-
-/datum/job/roboticist/equip(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_rob(H), SLOT_ID_L_EAR)
-
-	switch(H.backbag)
-		if(2)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), SLOT_ID_BACK)
-		if(3)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/norm(H), SLOT_ID_BACK)
-
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/roboticist(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/roboticist(H), SLOT_ID_BELT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), SLOT_ID_WEAR_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/toolbox/mechanical(H), SLOT_ID_L_HAND)
-
-	return 1

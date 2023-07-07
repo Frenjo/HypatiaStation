@@ -16,21 +16,11 @@
 	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
 	minimal_access = list(ACCESS_BAR)
 
+	outfit = /decl/hierarchy/outfit/job/service/bartender
 	alt_titles = list("Barista", "Mixologist")
 
 /datum/job/bartender/equip(mob/living/carbon/human/H)
-	switch(H.backbag)
-		if(2)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), SLOT_ID_BACK)
-		if(3)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/norm(H), SLOT_ID_BACK)
-		if(4)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), SLOT_ID_BACK)
-
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/bartender(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/bar(H), SLOT_ID_BELT)
+	. = ..()
 
 	var/obj/item/weapon/storage/box/barpack = new /obj/item/weapon/storage/box(H)
 	barpack.name = "bartender survival kit"
@@ -63,17 +53,8 @@
 	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
 	minimal_access = list(ACCESS_KITCHEN)
 
+	outfit = /decl/hierarchy/outfit/job/service/chef
 	alt_titles = list("Cook")
-
-/datum/job/chef/equip(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chef(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(H), SLOT_ID_WEAR_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/chefhat(H), SLOT_ID_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/chef(H), SLOT_ID_BELT)
-
-	return 1
 
 /*
  * Botanist
@@ -94,21 +75,8 @@
 	access = list(ACCESS_HYDROPONICS, ACCESS_BAR, ACCESS_KITCHEN, ACCESS_MORGUE)
 	minimal_access = list(ACCESS_HYDROPONICS, ACCESS_MORGUE)
 
+	outfit = /decl/hierarchy/outfit/job/service/botanist
 	alt_titles = list("Hydroponicist", "Gardener")
-
-/datum/job/hydro/equip(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/hydroponics(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/botanic_leather(H), SLOT_ID_GLOVES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), SLOT_ID_WEAR_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/device/analyzer/plant_analyzer(H), SLOT_ID_S_STORE)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/botanist(H), SLOT_ID_BELT)
-
-	if(H.backbag == 3)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/hyd(H), SLOT_ID_BACK)
-
-	return 1
 
 /*
  * Clown
@@ -130,19 +98,11 @@
 	access = list(ACCESS_CLOWN, ACCESS_THEATRE, ACCESS_MAINT_TUNNELS)
 	minimal_access = list(ACCESS_CLOWN, ACCESS_THEATRE)
 
+	outfit = /decl/hierarchy/outfit/job/service/clown
+
 /datum/job/clown/equip(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/clown(H), SLOT_ID_BACK)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/clown(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/clown_shoes(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/clown(H), SLOT_ID_BELT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(H), SLOT_ID_WEAR_MASK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/grown/banana(H), SLOT_ID_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/bikehorn(H), SLOT_ID_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/stamp/clown(H), SLOT_ID_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/toy/crayon/rainbow(H), SLOT_ID_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/fancy/crayons(H), SLOT_ID_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/toy/waterflower(H), SLOT_ID_IN_BACKPACK)
+	. = ..()
+
 	H.mutations.Add(CLUMSY)
 
 	return 1
@@ -165,27 +125,10 @@
 	access = list(ACCESS_MIME, ACCESS_THEATRE, ACCESS_MAINT_TUNNELS)
 	minimal_access = list(ACCESS_MIME, ACCESS_THEATRE)
 
+	outfit = /decl/hierarchy/outfit/job/service/mime
+
 /datum/job/mime/equip(mob/living/carbon/human/H)
-	if(H.backbag == 2)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), SLOT_ID_BACK)
-	if(H.backbag == 3)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/norm(H), SLOT_ID_BACK)
-
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/mime(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/mime(H), SLOT_ID_BELT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/white(H), SLOT_ID_GLOVES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/mime(H), SLOT_ID_WEAR_MASK)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/beret(H), SLOT_ID_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/suspenders(H), SLOT_ID_WEAR_SUIT)
-
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/toy/crayon/mime(H), SLOT_ID_L_STORE)
-		H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing(H), SLOT_ID_L_HAND)
-	else
-		H.equip_to_slot_or_del(new /obj/item/toy/crayon/mime(H), SLOT_ID_IN_BACKPACK)
-		H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing(H), SLOT_ID_IN_BACKPACK)
+	. = ..()
 
 	H.verbs.Add(/client/proc/mimespeak)
 	H.verbs.Add(/client/proc/mimewall)
@@ -280,15 +223,8 @@
 	access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS)
 	minimal_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS)
 
+	outfit = /decl/hierarchy/outfit/job/service/janitor
 	alt_titles = list("Custodial Specialist", "Sanitation Technician", "Cleaner")
-
-/datum/job/janitor/equip(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/janitor(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/janitor(H), SLOT_ID_BELT)
-
-	return 1
 
 /*
  * Librarian
@@ -309,16 +245,8 @@
 	access = list(ACCESS_LIBRARY, ACCESS_MAINT_TUNNELS)
 	minimal_access = list(ACCESS_LIBRARY)
 
+	outfit = /decl/hierarchy/outfit/job/service/librarian
 	alt_titles = list("Journalist", "Reporter")
-
-/datum/job/librarian/equip(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket/red(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/librarian(H), SLOT_ID_BELT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/weapon/barcodescanner(H), SLOT_ID_L_HAND)
-
-	return 1
 
 /*
  * Internal Affairs Agent
@@ -339,28 +267,15 @@
 	access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS, ACCESS_MAINT_TUNNELS)
 	minimal_access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS)
 
+	outfit = /decl/hierarchy/outfit/job/internal_affairs
 	alt_titles = list("Lawyer")
 
 /datum/job/lawyer/equip(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec(H), SLOT_ID_L_EAR)
-	switch(H.backbag)
-		if(2)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), SLOT_ID_BACK)
-		if(3)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/norm(H), SLOT_ID_BACK)
-		if(4)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), SLOT_ID_BACK)
-
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/internalaffairs(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/internalaffairs(H), SLOT_ID_WEAR_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/big(H), SLOT_ID_GLASSES)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/lawyer(H), SLOT_ID_BELT)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/briefcase(H), SLOT_ID_L_HAND)
+	. = ..()
 
 	var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(H)
 	L.imp_in = H
-	L.implanted = 1
+	L.implanted = TRUE
 	var/datum/organ/external/affected = H.organs_by_name["head"]
 	affected.implants.Add(L)
 	L.part = affected

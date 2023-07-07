@@ -26,16 +26,7 @@
 		ACCESS_RC_ANNOUNCE
 	)
 
-/datum/job/qm/equip(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_qm(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/cargo(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/cargo/quartermaster(H), SLOT_ID_BELT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), SLOT_ID_GLASSES)
-	H.equip_to_slot_or_del(new /obj/item/weapon/clipboard(H), SLOT_ID_L_HAND)
-
-	return 1
+	outfit = /decl/hierarchy/outfit/job/cargo/qm
 
 /*
  * Cargo Technician
@@ -58,14 +49,7 @@
 	)
 	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MAILSORTING)
 
-/datum/job/cargo_tech/equip(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_cargo(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/cargotech(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/cargo(H), SLOT_ID_BELT)
-//	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
-
-	return 1
+	outfit = /decl/hierarchy/outfit/job/cargo/technician
 
 /*
  * Mining Foreman
@@ -88,33 +72,10 @@
 	)
 	minimal_access = list(ACCESS_MINING, ACCESS_MINT, ACCESS_MINING_STATION, ACCESS_MAILSORTING)
 
+	outfit = /decl/hierarchy/outfit/job/cargo/mining/foreman
 	alt_titles = list("Head Miner")
 
 	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
-
-/datum/job/miningforeman/equip(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_mineforeman(H), SLOT_ID_L_EAR)
-	switch(H.backbag)
-		if(2)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial(H), SLOT_ID_BACK)
-		if(3)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/eng(H), SLOT_ID_BACK)
-		if(4)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), SLOT_ID_BACK)
-
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner/foreman(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/shaftminer(H), SLOT_ID_BELT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
-
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), SLOT_ID_L_HAND)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/bag/ore(H), SLOT_ID_L_STORE)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), SLOT_ID_IN_BACKPACK)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/bag/ore(H), SLOT_ID_IN_BACKPACK)
-
-	return 1
 
 /*
  * Shaft Miner
@@ -137,32 +98,10 @@
 	)
 	minimal_access = list(ACCESS_MINING, ACCESS_MINT, ACCESS_MINING_STATION, ACCESS_MAILSORTING)
 
+	outfit = /decl/hierarchy/outfit/job/cargo/mining/miner
 	alt_titles = list("Prospector")
 
 	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
-
-/datum/job/mining/equip(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_mine(H), SLOT_ID_L_EAR)
-	switch(H.backbag)
-		if(2)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial(H), SLOT_ID_BACK)
-		if(3)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/eng(H), SLOT_ID_BACK)
-		if(4)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), SLOT_ID_BACK)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/shaftminer(H), SLOT_ID_BELT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
-//	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
-
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), SLOT_ID_L_HAND)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/bag/ore(H), SLOT_ID_L_STORE)
-	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/crowbar(H), SLOT_ID_IN_BACKPACK)
-		H.equip_to_slot_or_del(new /obj/item/weapon/storage/bag/ore(H), SLOT_ID_IN_BACKPACK)
-
-	return 1
 
 /*
  * Mailman
@@ -186,14 +125,5 @@
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO)
 	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_MAILSORTING)
 
+	outfit = /decl/hierarchy/outfit/job/cargo/mailman
 	alt_titles = list("Postman", "Delivery Technician") // Should probably change this to "Delivery Specialist", but "Cargo Technician" exists. -Frenjo
-
-/datum/job/mailman/equip(mob/living/carbon/human/H)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_cargo(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/mailman(H), SLOT_ID_W_UNIFORM) // Mailman needs the distinctive uniform! -Frenjo
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/cargo/mailman(H), SLOT_ID_BELT) // Mailman gets his own PDA now too! -Frenjo
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/blue(H), SLOT_ID_GLOVES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/mailman(H), SLOT_ID_HEAD) // And the distinctive hat too! -Frenjo
-
-	return 1

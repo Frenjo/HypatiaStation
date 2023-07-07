@@ -13,7 +13,6 @@
 	supervisors = "the Captain"
 	selection_color = "#ffeeaa"
 
-	idtype = /obj/item/weapon/card/id/silver
 	req_admin_notify = TRUE
 	minimal_player_age = 7
 
@@ -30,26 +29,9 @@
 		ACCESS_CE, ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_TCOMSAT, ACCESS_AI_UPLOAD
 	)
 
+	outfit = /decl/hierarchy/outfit/job/engineering/chief
+
 	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
-
-/datum/job/chief_engineer/equip(mob/living/carbon/human/H)
-	switch(H.backbag)
-		if(2)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial(H), SLOT_ID_BACK)
-		if(3)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/eng(H), SLOT_ID_BACK)
-		if(4)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), SLOT_ID_BACK)
-
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/ce(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chief_engineer(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/heads/ce(H), SLOT_ID_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/white(H), SLOT_ID_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), SLOT_ID_BELT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_ID_GLOVES)
-
-	return 1
 
 /*
  * Station Engineer
@@ -75,28 +57,10 @@
 		ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION
 	)
 
+	outfit = /decl/hierarchy/outfit/job/engineering/engineer
 	alt_titles = list("Maintenance Technician", "Engine Technician", "Electrician")
 
 	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
-
-/datum/job/engineer/equip(mob/living/carbon/human/H)
-	switch(H.backbag)
-		if(2)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/industrial(H), SLOT_ID_BACK)
-		if(3)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/eng(H), SLOT_ID_BACK)
-		if(4)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), SLOT_ID_BACK)
-
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_eng(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/engineer(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/full(H), SLOT_ID_BELT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat(H), SLOT_ID_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/device/t_scanner(H), SLOT_ID_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/engineering(H), SLOT_ID_L_STORE)
-
-	return 1
 
 /*
  * Atmospheric Technician
@@ -123,21 +87,6 @@
 		ACCESS_EXTERNAL_AIRLOCKS
 	)
 
+	outfit = /decl/hierarchy/outfit/job/engineering/atmospherics
+
 	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
-
-/datum/job/atmos/equip(mob/living/carbon/human/H)
-	switch(H.backbag)
-		if(2)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(H), SLOT_ID_BACK)
-		if(3)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/norm(H), SLOT_ID_BACK)
-		if(4)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(H), SLOT_ID_BACK)
-
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_eng(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/atmospheric_technician(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/atmos(H), SLOT_ID_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/utility/atmostech/(H), SLOT_ID_BELT)
-
-	return 1

@@ -17,15 +17,15 @@
 	access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_MAINT_TUNNELS)
 	minimal_access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM)
 
+	outfit = /decl/hierarchy/outfit/job/service/chaplain
 	alt_titles = list("Counselor")
 
 /datum/job/chaplain/equip(mob/living/carbon/human/H)
-	var/obj/item/weapon/storage/bible/B = new /obj/item/weapon/storage/bible(H) //BS12 EDIT
-	H.equip_to_slot_or_del(B, SLOT_ID_L_HAND)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_service(H), SLOT_ID_L_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), SLOT_ID_W_UNIFORM)
-	H.equip_to_slot_or_del(new /obj/item/device/pda/chaplain(H), SLOT_ID_BELT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_ID_SHOES)
+	. = ..()
+
+	var/obj/item/weapon/storage/bible/B = locate(/obj/item/weapon/storage/bible) in H
+	if(isnull(B))
+		return
 
 	spawn(0)
 		var/religion_name = "Christianity"

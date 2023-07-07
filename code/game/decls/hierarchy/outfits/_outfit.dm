@@ -132,7 +132,11 @@ if(isnotnull(VAR)) \
 	for(var/path in backpack_contents)
 		var/count = backpack_contents[path]
 		for(var/i = 0; i < count; i++)
-			user.equip_to_slot_or_del(new path(user), SLOT_ID_IN_BACKPACK)
+			// If they don't have a backpack, just drop them on the floor.
+			if(user.equip_to_slot_or_del(new path(user), SLOT_ID_IN_BACKPACK))
+				continue
+			else
+				new path(user.loc)
 
 	post_equip(user)
 	user.regenerate_icons()

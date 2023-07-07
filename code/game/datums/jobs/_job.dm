@@ -15,12 +15,10 @@
 	var/current_positions = 0
 
 	// Supervisors, who this person answers to directly.
-	var/supervisors = ""
+	var/supervisors = null
 	// Selection screen color.
 	var/selection_color = "#ffffff"
 
-	// The type of ID the player will have.
-	var/idtype = /obj/item/weapon/card/id
 	// If this is set to TRUE, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/req_admin_notify = FALSE
 	// If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
@@ -30,15 +28,23 @@
 	var/list/access = list()			// Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
 	var/list/minimal_access = list()	// Useful for servers which prefer to only have access given to the places a job absolutely needs (IE larger server population.)
 
-	// List of alternate titles, if any.
+	// A typepath to the outfit that mobs with this job will spawn with, if any.
+	var/outfit
+	// List of alternate titles with alternate outfits as associative values, if any.
 	var/list/alt_titles
 
 	// The specific survival kit provided to characters with this job, if there is one.
 	// Currently only used for engineering jobs.
 	var/special_survival_kit = null
 
-/datum/job/proc/equip(mob/living/carbon/human/H)
-	return 1
+/datum/job/proc/equip(mob/living/carbon/human/H, alt_title)
+	SHOULD_CALL_PARENT(TRUE)
+
+	var/outfit_type = outfit
+	if(isnotnull(alt_title) && alt_title != title)
+		outfit_type = alt_titles[alt_title]
+
+	return H.equip_outfit(outfit_type)
 
 /datum/job/proc/get_access()
 	if(CONFIG_GET(jobs_have_minimal_access))

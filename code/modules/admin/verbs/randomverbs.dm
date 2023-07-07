@@ -426,7 +426,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	//Now for special roles and equipment.
 	switch(new_character.mind.special_role)
 		if("traitor")
-			global.CToccupations.equip_rank(new_character, new_character.mind.assigned_role, 1)
+			global.CToccupations.equip_rank(new_character, new_character.mind.assigned_role, TRUE)
 			global.CTgame_ticker.mode.equip_traitor(new_character)
 		if("Wizard")
 			new_character.loc = pick(GLOBL.wizardstart)
@@ -469,7 +469,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 						call(/datum/game_mode/proc/add_law_zero)(new_character)
 				//Add aliens.
 				else
-					global.CToccupations.equip_rank(new_character, new_character.mind.assigned_role, 1)//Or we simply equip them.
+					global.CToccupations.equip_rank(new_character, new_character.mind.assigned_role, TRUE)//Or we simply equip them.
 
 	//Announces the character on all the systems, based on the record.
 	if(!issilicon(new_character))//If they are not a cyborg/AI.

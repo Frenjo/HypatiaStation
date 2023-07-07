@@ -299,7 +299,7 @@ CONTROLLER_DEF(game_ticker)
 			if(player.mind.assigned_role == "Captain")
 				captainless = FALSE
 			if(player.mind.assigned_role != "MODE")
-				global.CToccupations.equip_rank(player, player.mind.assigned_role, 0)
+				global.CToccupations.equip_rank(player, player.mind.assigned_role, FALSE)
 				EquipCustomItems(player)
 	if(captainless)
 		for(var/mob/M in GLOBL.player_list)
