@@ -108,6 +108,7 @@
 
 /decl/hierarchy/outfit/death_commando/leader/New()
 	backpack_contents.Add(list(/obj/item/weapon/pinpointer = 1, /obj/item/weapon/disk/nuclear = 1))
+	. = ..()
 
 /*
  * Syndicate Commando Common

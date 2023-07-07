@@ -4,6 +4,7 @@
 	var/list/decl/hierarchy/children
 
 /decl/hierarchy/New(full_init = TRUE)
+	. = ..()
 	children = list()
 	if(!full_init)
 		return
