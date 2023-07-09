@@ -69,7 +69,7 @@
 
 /obj/item/clothing/glasses/science/New()
 	. = ..()
-	overlay = GLOBL.global_hud.scig
+	overlay = GLOBL.global_hud.science
 
 
 /obj/item/clothing/glasses/night

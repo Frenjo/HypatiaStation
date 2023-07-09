@@ -1214,10 +1214,10 @@
 		if(copytext(hud.icon_state, 1, 4) == "hud") //ugly, but icon comparison is worse, I believe
 			client.images.Remove(hud)
 
-	client.screen.Remove( \
-		GLOBL.global_hud.blurry, GLOBL.global_hud.druggy, GLOBL.global_hud.vimpaired, \
-		GLOBL.global_hud.darkMask, GLOBL.global_hud.nvg, GLOBL.global_hud.scig, \
-		GLOBL.global_hud.thermal, GLOBL.global_hud.meson \
+	client.screen.Remove(
+		GLOBL.global_hud.blurry, GLOBL.global_hud.druggy, GLOBL.global_hud.vimpaired,
+		GLOBL.global_hud.darkMask, GLOBL.global_hud.nvg, GLOBL.global_hud.science,
+		GLOBL.global_hud.thermal, GLOBL.global_hud.meson
 	)
 
 	update_action_buttons()

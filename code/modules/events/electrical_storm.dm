@@ -30,12 +30,12 @@
 			continue
 		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew_quarters))
 			if(H.client)
-				H.client.screen.Remove(GLOBL.global_hud.electricalstorm)
+				H.client.screen.Remove(GLOBL.global_hud.electrical_storm)
 			continue
 
 		if(ishuman(H))
 			if(H.client)
-				H.client.screen |= GLOBL.global_hud.electricalstorm
+				H.client.screen |= GLOBL.global_hud.electrical_storm
 
 /datum/event/electrical_storm/tick()
 	/*var/list/epicentreList = list()
@@ -88,12 +88,12 @@
 			continue
 		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew_quarters))
 			if(H.client)
-				H.client.screen.Remove(GLOBL.global_hud.electricalstorm)
+				H.client.screen.Remove(GLOBL.global_hud.electrical_storm)
 			continue
 
 		if(ishuman(H))
 			if(H.client)
-				H.client.screen |= GLOBL.global_hud.electricalstorm
+				H.client.screen |= GLOBL.global_hud.electrical_storm
 
 /datum/event/electrical_storm/end()
 	command_alert("The station has passed the electrical storm.", "Electrical Storm Alert")
@@ -103,4 +103,4 @@
 			continue
 
 		if(H.client)
-			H.client.screen.Remove(GLOBL.global_hud.electricalstorm)
+			H.client.screen.Remove(GLOBL.global_hud.electrical_storm)

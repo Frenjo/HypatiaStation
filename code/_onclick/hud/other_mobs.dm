@@ -16,17 +16,17 @@
 	return
 
 /datum/hud/proc/blob_hud(ui_style = 'icons/mob/screen/screen1_Midnight.dmi')
-	blobpwrdisplay = new /obj/screen()
-	blobpwrdisplay.name = "blob power"
-	blobpwrdisplay.icon_state = "block"
-	blobpwrdisplay.screen_loc = UI_HEALTH
-	blobpwrdisplay.layer = 20
+	blob_health_display = new /obj/screen()
+	blob_health_display.name = "blob health"
+	blob_health_display.icon_state = "block"
+	blob_health_display.screen_loc = UI_INTERNAL
+	blob_health_display.layer = 20
 
-	blobhealthdisplay = new /obj/screen()
-	blobhealthdisplay.name = "blob health"
-	blobhealthdisplay.icon_state = "block"
-	blobhealthdisplay.screen_loc = UI_INTERNAL
-	blobhealthdisplay.layer = 20
+	blob_power_display = new /obj/screen()
+	blob_power_display.name = "blob power"
+	blob_power_display.icon_state = "block"
+	blob_power_display.screen_loc = UI_HEALTH
+	blob_power_display.layer = 20
 
 	mymob.client.screen.Cut()
-	mymob.client.screen.Add(list(blobpwrdisplay, blobhealthdisplay))
+	mymob.client.screen.Add(list(blob_health_display, blob_power_display))

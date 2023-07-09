@@ -28,7 +28,7 @@
 			continue
 
 		if(ishuman(H))
-			H.client.screen |= GLOBL.global_hud.ionstorm
+			H.client.screen |= GLOBL.global_hud.ion_storm
 
 	var/random_player = "The Captain"
 	if(length(players))
@@ -82,12 +82,12 @@
 			continue
 		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew_quarters))
 			if(H.client)
-				H.client.screen.Remove(GLOBL.global_hud.ionstorm)
+				H.client.screen.Remove(GLOBL.global_hud.ion_storm)
 			continue
 
 		if(ishuman(H))
 			if(H.client)
-				H.client.screen |= GLOBL.global_hud.ionstorm
+				H.client.screen |= GLOBL.global_hud.ion_storm
 
 	if(botEmagChance)
 		for(var/obj/machinery/bot/bot in world)
@@ -100,4 +100,4 @@
 	command_alert("The station has passed the ion storm. Monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
-		H.client.screen.Remove(GLOBL.global_hud.ionstorm)
+		H.client.screen.Remove(GLOBL.global_hud.ion_storm)

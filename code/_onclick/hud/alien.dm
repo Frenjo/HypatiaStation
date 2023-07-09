@@ -18,7 +18,7 @@
 //intent small hud objects
 	var/icon/ico
 
-	ico = new('icons/mob/screen/screen1_alien.dmi', "black")
+	ico = new /icon('icons/mob/screen/screen1_alien.dmi', "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255, 255, 255, 1), 1, ico.Height() / 2, ico.Width() / 2, ico.Height())
 	using = new /obj/screen(src)
@@ -27,9 +27,9 @@
 	using.screen_loc = UI_ACTI
 	using.layer = 21
 	adding.Add(using)
-	help_intent = using
+	intent_buttons["help"] = using
 
-	ico = new('icons/mob/screen/screen1_alien.dmi', "black")
+	ico = new /icon('icons/mob/screen/screen1_alien.dmi', "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255, 255, 255, 1),ico.Width() / 2, ico.Height() / 2, ico.Width(), ico.Height())
 	using = new /obj/screen(src)
@@ -38,9 +38,9 @@
 	using.screen_loc = UI_ACTI
 	using.layer = 21
 	adding.Add(using)
-	disarm_intent = using
+	intent_buttons["disarm"] = using
 
-	ico = new('icons/mob/screen/screen1_alien.dmi', "black")
+	ico = new /icon('icons/mob/screen/screen1_alien.dmi', "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255, 255, 255, 1), ico.Width() / 2, 1, ico.Width(), ico.Height() / 2)
 	using = new /obj/screen(src)
@@ -49,9 +49,9 @@
 	using.screen_loc = UI_ACTI
 	using.layer = 21
 	adding.Add(using)
-	grab_intent = using
+	intent_buttons["grab"] = using
 
-	ico = new('icons/mob/screen/screen1_alien.dmi', "black")
+	ico = new /icon('icons/mob/screen/screen1_alien.dmi', "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255, 255, 255, 1), 1, 1, ico.Width() / 2, ico.Height() / 2)
 	using = new /obj/screen(src)
@@ -60,7 +60,7 @@
 	using.screen_loc = UI_ACTI
 	using.layer = 21
 	adding.Add(using)
-	hurt_intent = using
+	intent_buttons["harm"] = using
 
 //end intent small hud objects
 

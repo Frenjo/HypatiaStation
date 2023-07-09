@@ -24,12 +24,12 @@
 			continue
 		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew_quarters))
 			if(H.client)
-				H.client.screen.Remove(GLOBL.global_hud.radstorm)
+				H.client.screen.Remove(GLOBL.global_hud.rad_storm)
 			continue
 
 		if(ishuman(H))
 			if(H.client)
-				H.client.screen |= GLOBL.global_hud.radstorm
+				H.client.screen |= GLOBL.global_hud.rad_storm
 			H.apply_effect(rand(15, 35), IRRADIATE, 0)
 			if(prob(5))
 				H.apply_effect(rand(40, 70), IRRADIATE, 0)
@@ -54,7 +54,7 @@
 	command_alert("The station has passed the radiation belt. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
 
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
-		H.client.screen.Remove(GLOBL.global_hud.radstorm)
+		H.client.screen.Remove(GLOBL.global_hud.rad_storm)
 
 	spawn(150)
 	revoke_maint_all_access()

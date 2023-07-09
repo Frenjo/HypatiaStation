@@ -1,7 +1,7 @@
 /datum/hud/proc/human_hud(ui_style = 'icons/mob/screen/screen1_White.dmi', ui_color = "#ffffff", ui_alpha = 255, mob/living/carbon/human/target)
 	var/datum/hud_data/hud_data
 	if(!istype(target))
-		hud_data = new()
+		hud_data = new /datum/hud_data()
 	else
 		hud_data = target.species.hud
 
@@ -57,7 +57,7 @@
 		using.name = "act_intent"
 		using.set_dir(SOUTHWEST)
 		using.icon = ui_style
-		using.icon_state = "intent_"+mymob.a_intent
+		using.icon_state = "intent_" + mymob.a_intent
 		using.screen_loc = UI_ACTI
 		using.color = ui_color
 		using.alpha = ui_alpha
@@ -70,7 +70,7 @@
 		//intent small hud objects
 		var/icon/ico
 
-		ico = new(ui_style, "black")
+		ico = new /icon(ui_style, "black")
 		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255, 255, 255, 1), 1, ico.Height() / 2, ico.Width() / 2, ico.Height())
 		using = new /obj/screen(src)
@@ -80,9 +80,9 @@
 		using.alpha = ui_alpha
 		using.layer = 21
 		adding.Add(using)
-		help_intent = using
+		intent_buttons["help"] = using
 
-		ico = new(ui_style, "black")
+		ico = new /icon(ui_style, "black")
 		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255, 255, 255, 1), ico.Width() / 2, ico.Height() / 2, ico.Width(), ico.Height())
 		using = new /obj/screen(src)
@@ -92,9 +92,9 @@
 		using.alpha = ui_alpha
 		using.layer = 21
 		adding.Add(using)
-		disarm_intent = using
+		intent_buttons["disarm"] = using
 
-		ico = new(ui_style, "black")
+		ico = new /icon(ui_style, "black")
 		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255, 255, 255, 1), ico.Width() / 2, 1, ico.Width(), ico.Height() / 2)
 		using = new /obj/screen(src)
@@ -104,9 +104,9 @@
 		using.alpha = ui_alpha
 		using.layer = 21
 		adding.Add(using)
-		grab_intent = using
+		intent_buttons["grab"] = using
 
-		ico = new(ui_style, "black")
+		ico = new /icon(ui_style, "black")
 		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255, 255, 255, 1), 1, 1, ico.Width() / 2, ico.Height() / 2)
 		using = new /obj/screen(src)
@@ -116,7 +116,7 @@
 		using.alpha = ui_alpha
 		using.layer = 21
 		adding.Add(using)
-		hurt_intent = using
+		intent_buttons["harm"] = using
 		//end intent small hud objects
 
 	if(hud_data.has_m_intent)
@@ -159,7 +159,7 @@
 		inv_box.set_dir(WEST)
 		inv_box.icon = ui_style
 		inv_box.icon_state = "hand_inactive"
-		if(mymob && !mymob.hand)	//This being 0 or null means the right hand is in use
+		if(isnotnull(mymob) && !mymob.hand)	//This being 0 or null means the right hand is in use
 			inv_box.icon_state = "hand_active"
 		inv_box.screen_loc = UI_RHAND
 		inv_box.slot_id = SLOT_ID_R_HAND
@@ -175,7 +175,7 @@
 		inv_box.set_dir(EAST)
 		inv_box.icon = ui_style
 		inv_box.icon_state = "hand_inactive"
-		if(mymob && mymob.hand)	//This being 1 means the left hand is in use
+		if(isnotnull(mymob) && mymob.hand)	//This being 1 means the left hand is in use
 			inv_box.icon_state = "hand_active"
 		inv_box.screen_loc = UI_LHAND
 		inv_box.slot_id = SLOT_ID_L_HAND
@@ -384,7 +384,7 @@
 
 	hud_used.item_action_list = list()
 	for(var/obj/item/I in src)
-		if(I.icon_action_button)
+		if(isnotnull(I.icon_action_button))
 			var/obj/screen/item_action/A = new /obj/screen/item_action(I)
 			//A.icon = 'icons/mob/screen/screen1_action.dmi'
 			//A.icon_state = I.icon_action_button
@@ -395,7 +395,7 @@
 			img.pixel_y = 0
 			A.overlays.Add(img)
 
-			if(I.action_button_name)
+			if(isnotnull(I.action_button_name))
 				A.name = I.action_button_name
 			else
 				A.name = "Use [I.name]"
