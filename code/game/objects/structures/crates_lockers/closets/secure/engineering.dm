@@ -109,7 +109,7 @@
 
 	starts_with = list(
 		/obj/item/weapon/storage/toolbox/mechanical,
-		/obj/item/device/radio/headset/headset_eng,
+		/obj/item/device/radio/headset/engi,
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/glasses/meson,
@@ -145,7 +145,7 @@
 		/obj/item/clothing/suit/fire/firefighter,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/extinguisher,
-		/obj/item/device/radio/headset/headset_eng,
+		/obj/item/device/radio/headset/engi,
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/mask/gas,
 		/obj/item/weapon/cartridge/atmos,

@@ -40,7 +40,7 @@
 	uniform = /obj/item/clothing/under/rank/medical
 	suit = /obj/item/clothing/suit/storage/labcoat
 
-	l_ear = /obj/item/device/radio/headset/headset_med
+	l_ear = /obj/item/device/radio/headset/med
 
 	l_hand = /obj/item/weapon/storage/firstaid/adv
 
@@ -84,7 +84,7 @@
 	uniform = /obj/item/clothing/under/rank/chemist
 	suit = /obj/item/clothing/suit/storage/labcoat/chemist
 
-	l_ear = /obj/item/device/radio/headset/headset_med
+	l_ear = /obj/item/device/radio/headset/med
 
 	suit_store = null
 
@@ -103,7 +103,7 @@
 
 	mask = /obj/item/clothing/mask/surgical
 
-	l_ear = /obj/item/device/radio/headset/headset_med
+	l_ear = /obj/item/device/radio/headset/med
 
 	pda_type = /obj/item/device/pda/viro
 
@@ -118,4 +118,4 @@
 	uniform = /obj/item/clothing/under/rank/medical
 	suit = /obj/item/clothing/suit/storage/labcoat
 
-	l_ear = /obj/item/device/radio/headset/headset_med
+	l_ear = /obj/item/device/radio/headset/med

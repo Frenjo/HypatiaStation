@@ -78,7 +78,7 @@
 		/obj/item/clothing/suit/storage/labcoat,
 		/obj/item/clothing/shoes/white,
 		/obj/item/clothing/glasses/science,
-		/obj/item/device/radio/headset/headset_xenoarch,
+		/obj/item/device/radio/headset/xenoarch,
 		/obj/item/weapon/storage/belt/archaeology,
 		/obj/item/weapon/storage/box/excavation
 	)

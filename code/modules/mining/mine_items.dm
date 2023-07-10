@@ -22,7 +22,7 @@
 	icon_off = "miningsecoff"
 
 	starts_with = list(
-		/obj/item/device/radio/headset/headset_cargo,
+		/obj/item/device/radio/headset/mining,
 		/obj/item/clothing/under/rank/miner,
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/shoes/black,
@@ -184,7 +184,7 @@
 
 /*
  * Mining Car
- * 
+ *
  * (Crate-like thing, not the rail car.)
  */
 /obj/structure/closet/crate/miningcar

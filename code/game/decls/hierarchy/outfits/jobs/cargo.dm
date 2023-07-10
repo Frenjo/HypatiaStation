@@ -18,7 +18,7 @@
 	gloves = /obj/item/clothing/gloves/black
 	shoes = /obj/item/clothing/shoes/brown
 
-	l_ear = /obj/item/device/radio/headset/headset_qm
+	l_ear = /obj/item/device/radio/headset/qm
 
 	l_hand = /obj/item/weapon/clipboard
 
@@ -34,7 +34,7 @@
 
 	//gloves = /obj/item/clothing/gloves/black
 
-	l_ear = /obj/item/device/radio/headset/headset_cargo
+	l_ear = /obj/item/device/radio/headset/cargo
 
 	pda_type = /obj/item/device/pda/cargo
 
@@ -49,7 +49,7 @@
 	head = /obj/item/clothing/head/mailman
 	gloves = /obj/item/clothing/gloves/blue
 
-	l_ear = /obj/item/device/radio/headset/headset_cargo
+	l_ear = /obj/item/device/radio/headset/cargo
 
 	pda_type = /obj/item/device/pda/cargo/mailman
 
@@ -79,7 +79,7 @@
 
 	gloves = /obj/item/clothing/gloves/black
 
-	l_ear = /obj/item/device/radio/headset/headset_mineforeman
+	l_ear = /obj/item/device/radio/headset/mining_foreman
 
 /*
  * Shaft Miner
@@ -91,4 +91,4 @@
 
 	//gloves = /obj/item/clothing/gloves/black
 
-	l_ear = /obj/item/device/radio/headset/headset_mine
+	l_ear = /obj/item/device/radio/headset/mining

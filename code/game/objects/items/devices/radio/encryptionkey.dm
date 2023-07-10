@@ -26,63 +26,63 @@
 	origin_tech = list(RESEARCH_TECH_SYNDICATE = 3)
 
 // Security
-/obj/item/device/encryptionkey/headset_sec
+/obj/item/device/encryptionkey/sec
 	name = "Security Radio Encryption Key"
 	desc = "An encyption key for a radio headset. Contains cypherkeys."
 	icon_state = "sec_cypherkey"
 	channels = list(CHANNEL_SECURITY = 1)
 
 // Security Paramedic (MedSec)
-/obj/item/device/encryptionkey/headset_secpara
+/obj/item/device/encryptionkey/sec_para
 	name = "Security Paramedic Radio Encryption Key"
 	desc = "An encyption key for a radio headset. Contains cypherkeys."
 	icon_state = "sec_cypherkey"
 	channels = list(CHANNEL_MEDICAL = 1, CHANNEL_SECURITY = 1)
 
 // Engineering
-/obj/item/device/encryptionkey/headset_eng
+/obj/item/device/encryptionkey/engi
 	name = "Engineering Radio Encryption Key"
 	desc = "An encyption key for a radio headset. Contains cypherkeys."
 	icon_state = "eng_cypherkey"
 	channels = list(CHANNEL_ENGINEERING = 1)
 
 // Roboticist (EngSci)
-/obj/item/device/encryptionkey/headset_rob
+/obj/item/device/encryptionkey/robo
 	name = "Robotics Radio Encryption Key"
 	desc = "An encyption key for a radio headset. Contains cypherkeys."
 	icon_state = "rob_cypherkey"
 	channels = list(CHANNEL_SCIENCE = 1, CHANNEL_ENGINEERING = 1)
 
 // Medical
-/obj/item/device/encryptionkey/headset_med
+/obj/item/device/encryptionkey/med
 	name = "Medical Radio Encryption Key"
 	desc = "An encyption key for a radio headset. Contains cypherkeys."
 	icon_state = "med_cypherkey"
 	channels = list(CHANNEL_MEDICAL = 1)
 
 // MedSci
-/obj/item/device/encryptionkey/headset_medsci
+/obj/item/device/encryptionkey/medsci
 	name = "Medical Research Radio Encryption Key"
 	desc = "An encyption key for a radio headset. Contains cypherkeys."
 	icon_state = "medsci_cypherkey"
 	channels = list(CHANNEL_SCIENCE = 1, CHANNEL_MEDICAL = 1)
 
 // Science
-/obj/item/device/encryptionkey/headset_sci
+/obj/item/device/encryptionkey/sci
 	name = "Science Radio Encryption Key"
 	desc = "An encyption key for a radio headset. Contains cypherkeys."
 	icon_state = "sci_cypherkey"
 	channels = list(CHANNEL_SCIENCE = 1)
 
 // Xenoarch (MinSci)
-/obj/item/device/encryptionkey/headset_xenoarch
+/obj/item/device/encryptionkey/xenoarch
 	name = "Xenoarchaeology Radio Encryption Key"
 	desc = "An encyption key for a radio headset. Contains cypherkeys."
 	icon_state = "sci_cypherkey"
 	channels = list(CHANNEL_SCIENCE = 1, CHANNEL_MINING = 1)
 
 // Command
-/obj/item/device/encryptionkey/headset_com
+/obj/item/device/encryptionkey/com
 	name = "Command Radio Encryption Key"
 	desc = "An encyption key for a radio headset. Contains cypherkeys."
 	icon_state = "com_cypherkey"
@@ -129,33 +129,33 @@
 	channels = list(CHANNEL_COMMAND = 1, CHANNEL_SERVICE = 1, CHANNEL_SUPPLY = 0, CHANNEL_MINING = 0)
 
 // Mining
-/obj/item/device/encryptionkey/headset_mineforeman
+/obj/item/device/encryptionkey/mining_foreman
 	name = "Mining Foreman's Radio Encryption Key"
 	desc = "An encyption key for a radio headset. Contains cypherkeys."
 	icon_state = "mine_cypherkey"
 	channels = list(CHANNEL_SUPPLY = 1, CHANNEL_MINING = 1)
 
-/obj/item/device/encryptionkey/headset_mine
+/obj/item/device/encryptionkey/mining
 	name = "Mining Radio Encryption Key"
 	desc = "An encyption key for a radio headset. Contains cypherkeys."
 	icon_state = "mine_cypherkey"
 	channels = list(CHANNEL_MINING = 1)
 
 // Cargo
-/obj/item/device/encryptionkey/headset_qm
+/obj/item/device/encryptionkey/qm
 	name = "Quartermaster's Encryption Key"
 	desc = "An encyption key for a radio headset. Contains cypherkeys."
 	icon_state = "qm_cypherkey"
 	channels = list(CHANNEL_SUPPLY = 1, CHANNEL_MINING = 1)
 
-/obj/item/device/encryptionkey/headset_cargo
+/obj/item/device/encryptionkey/cargo
 	name = "Supply Radio Encryption Key"
 	desc = "An encyption key for a radio headset. Contains cypherkeys."
 	icon_state = "cargo_cypherkey"
 	channels = list(CHANNEL_SUPPLY = 1)
 
 // Service
-/obj/item/device/encryptionkey/headset_service
+/obj/item/device/encryptionkey/service
 	name = "Service Radio Encryption Key"
 	desc = "An encyption key for a radio headset. Contains cypherkeys."
 	icon_state = "cypherkey"

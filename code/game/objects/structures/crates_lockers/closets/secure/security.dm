@@ -151,7 +151,7 @@
 		/obj/item/clothing/suit/armor/vest/warden,
 		/obj/item/clothing/head/helmet/warden,
 	//	/obj/item/weapon/cartridge/security,
-		/obj/item/device/radio/headset/headset_sec,
+		/obj/item/device/radio/headset/sec,
 		/obj/item/clothing/glasses/sunglasses/sechud,
 		/obj/item/taperoll/police,
 		/obj/item/weapon/storage/box/flashbangs,
@@ -186,7 +186,7 @@
 		/obj/item/clothing/suit/armor/vest/security,
 		/obj/item/clothing/head/helmet,
 	//	/obj/item/weapon/cartridge/security,
-		/obj/item/device/radio/headset/headset_sec,
+		/obj/item/device/radio/headset/sec,
 		/obj/item/weapon/storage/belt/security,
 		/obj/item/device/flash,
 		/obj/item/weapon/reagent_containers/spray/pepper,
@@ -210,22 +210,22 @@
 
 /obj/structure/closet/secure_closet/security/cargo/New()
 	starts_with.Add(/obj/item/clothing/tie/armband/cargo)
-	starts_with.Add(/obj/item/device/encryptionkey/headset_cargo)
+	starts_with.Add(/obj/item/device/encryptionkey/cargo)
 	. = ..()
 
 /obj/structure/closet/secure_closet/security/engine/New()
 	starts_with.Add(/obj/item/clothing/tie/armband/engine)
-	starts_with.Add(/obj/item/device/encryptionkey/headset_eng)
+	starts_with.Add(/obj/item/device/encryptionkey/engi)
 	. = ..()
 
 /obj/structure/closet/secure_closet/security/science/New()
 	starts_with.Add(/obj/item/clothing/tie/armband/science)
-	starts_with.Add(/obj/item/device/encryptionkey/headset_sci)
+	starts_with.Add(/obj/item/device/encryptionkey/sci)
 	. = ..()
 
 /obj/structure/closet/secure_closet/security/med/New()
 	starts_with.Add(/obj/item/clothing/tie/armband/medgreen)
-	starts_with.Add(/obj/item/device/encryptionkey/headset_med)
+	starts_with.Add(/obj/item/device/encryptionkey/med)
 	. = ..()
 
 /*
@@ -254,7 +254,7 @@
 		/obj/item/clothing/head/det_hat/black,
 		/obj/item/clothing/shoes/brown,
 		/obj/item/weapon/storage/box/evidence,
-		/obj/item/device/radio/headset/headset_sec,
+		/obj/item/device/radio/headset/sec,
 		/obj/item/device/detective_scanner,
 		/obj/item/clothing/suit/armor/det_suit,
 		/obj/item/ammo_magazine/c45r,

@@ -6,7 +6,7 @@
 
 	pda_slot = SLOT_ID_L_STORE
 
-	l_ear = /obj/item/device/radio/headset/headset_eng
+	l_ear = /obj/item/device/radio/headset/engi
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 

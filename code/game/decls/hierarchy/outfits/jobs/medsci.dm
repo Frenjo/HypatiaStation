@@ -4,7 +4,7 @@
 /decl/hierarchy/outfit/job/medsci
 	shoes = /obj/item/clothing/shoes/white
 
-	l_ear = /obj/item/device/radio/headset/headset_medsci
+	l_ear = /obj/item/device/radio/headset/medsci
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 

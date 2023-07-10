@@ -4,7 +4,7 @@
 /decl/hierarchy/outfit/job/security
 	shoes = /obj/item/clothing/shoes/jackboots
 
-	l_ear = /obj/item/device/radio/headset/headset_sec
+	l_ear = /obj/item/device/radio/headset/sec
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 
@@ -112,7 +112,7 @@
 	uniform = /obj/item/clothing/under/rank/security2
 	suit = /obj/item/clothing/suit/storage/labcoat
 
-	l_ear = /obj/item/device/radio/headset/headset_secpara
+	l_ear = /obj/item/device/radio/headset/sec_para
 
 	l_hand = /obj/item/weapon/storage/firstaid/regular
 

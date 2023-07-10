@@ -47,7 +47,7 @@
 		/obj/item/clothing/suit/storage/labcoat,
 		/obj/item/clothing/shoes/white,
 	//	/obj/item/weapon/cartridge/signal/toxins,
-		/obj/item/device/radio/headset/headset_sci,
+		/obj/item/device/radio/headset/sci,
 		/obj/item/weapon/tank/air,
 		/obj/item/clothing/mask/gas
 	)

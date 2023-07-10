@@ -71,7 +71,7 @@
 		/obj/item/clothing/suit/storage/fr_jacket,
 		/obj/item/clothing/shoes/white,
 	//	/obj/item/weapon/cartridge/medical,
-		/obj/item/device/radio/headset/headset_med,
+		/obj/item/device/radio/headset/med,
 		/obj/item/weapon/storage/belt/medical
 	)
 

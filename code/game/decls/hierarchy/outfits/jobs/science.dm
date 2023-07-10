@@ -35,7 +35,7 @@
 
 	shoes = /obj/item/clothing/shoes/white
 
-	l_ear = /obj/item/device/radio/headset/headset_sci
+	l_ear = /obj/item/device/radio/headset/sci
 
 	pda_type = /obj/item/device/pda/toxins
 
@@ -50,7 +50,7 @@
 
 	shoes = /obj/item/clothing/shoes/white
 
-	l_ear = /obj/item/device/radio/headset/headset_sci
+	l_ear = /obj/item/device/radio/headset/sci
 
 	pda_type = /obj/item/device/pda/toxins
 
@@ -66,7 +66,7 @@
 	gloves = /obj/item/clothing/gloves/black
 	shoes = /obj/item/clothing/shoes/black
 
-	l_ear = /obj/item/device/radio/headset/headset_rob
+	l_ear = /obj/item/device/radio/headset/robo
 
 	l_hand = /obj/item/weapon/storage/toolbox/mechanical
 

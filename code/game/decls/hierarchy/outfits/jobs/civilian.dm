@@ -18,7 +18,7 @@
 	glasses = /obj/item/clothing/glasses/sunglasses/big
 	shoes = /obj/item/clothing/shoes/brown
 
-	l_ear = /obj/item/device/radio/headset/headset_sec
+	l_ear = /obj/item/device/radio/headset/sec
 
 	l_hand = /obj/item/weapon/storage/briefcase
 
@@ -28,7 +28,7 @@
  * Service
  */
 /decl/hierarchy/outfit/job/service
-	l_ear = /obj/item/device/radio/headset/headset_service
+	l_ear = /obj/item/device/radio/headset/service
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 
