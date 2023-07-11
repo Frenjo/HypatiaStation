@@ -62,53 +62,64 @@ TICKCOMP 0
 
 ### LOGGING ###
 
-## log OOC channel
+## Log OOC channel?
 LOG_OOC
 
-## log client access (logon/logoff)
+## Log client access (logon/logoff)?
 LOG_ACCESS
 
-## log client Say 
+## Log client say?
 LOG_SAY
 
-## log admin actions
+## Log admin actions?
 LOG_ADMIN
 
-## log debug output
+## Log debug output?
 LOG_DEBUG
 
-## log game actions (start of round, results, etc.)
+## Log game actions (start of round, results, etc.)?
 LOG_GAME
 
-## log player votes
+## Log player votes?
 LOG_VOTE
 
-## log client Whisper
+## Log client whisper?
 LOG_WHISPER
 
-## log emotes
+## Log emotes?
 LOG_EMOTE
 
-## log attack messages
+## Log attack messages?
 LOG_ATTACK
 
-## log admin chat
+## Log admin chat?
 #LOG_ADMINCHAT
 
-## log admin warning messages
-#LOG_ADMINWARN  ## Also duplicates a bunch of other messages.
+## Log admin warning messages?
+#LOG_ADMINWARN ## Also duplicates a bunch of other messages.
 
-## log pda messages
+## Log pda messages?
 LOG_PDA
 
-## log all Topic() calls (for use by coders in tracking down Topic issues)
+## Log all Topic() calls (for use by coders in tracking down Topic issues)?
 #LOG_HREFS
 
-## log world.log and runtime errors to a file
+## Log world.log and runtime errors to a file?
 #LOG_RUNTIME
 
-## log world.log messages
+## Log world.log messages?
 #LOG_WORLD_OUTPUT
+
+### CHAT ###
+
+## Whether non-admins can use OOC chat.
+OOC_ALLOWED 1
+
+## Whether dead, non-admin players can use OOC chat.
+DEAD_OOC_ALLOWED 1
+
+## Whether non-admins can use deadchat.
+DSAY_ALLOWED 1
 
 ### ADMIN ###
 
@@ -133,7 +144,7 @@ ALLOW_ADMIN_REV
 ##Remove the # mark infront of this to forbid admins from posssessing the singularity.
 #FORBID_SINGULO_POSSESSION
 
-## Remove the # to show a popup 'reply to' window to every non-admin that recieves an adminPM. 
+## Remove the # to show a popup 'reply to' window to every non-admin that recieves an adminPM.
 ## The intention is to make adminPMs more visible. (although I fnd popups annoying so this defaults to off)
 #POPUP_ADMIN_PM
 
@@ -152,7 +163,7 @@ ALLOW_ADMIN_REV
 ### GAMEMODE ###
 
 ## probablities for game modes chosen in "secret" and "random" modes
-## 
+##
 ## default probablity is 1, increase to make that mode more likely to be picked
 ## set to 0 to disable that mode
 PROBABILITY EXTENDED 1
@@ -193,6 +204,9 @@ ALLOW_RANDOM_EVENTS
 
 ## Remove the # to allow special 'Easter-egg' events on special holidays such as seasonal holidays and stuff like 'Talk Like a Pirate Day' :3 YAARRR
 ALLOW_HOLIDAYS
+
+## Whether aliens are allowed.
+ALIENS_ALLOWED 0
 
 ### VOTING ###
 

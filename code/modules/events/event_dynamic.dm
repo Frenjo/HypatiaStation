@@ -83,7 +83,7 @@ GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 	if(active_with_role["Security"] > 0)
 		if(!GLOBL.sent_spiders_to_station)
 			possibleEvents[/datum/event/spider_infestation] = max(active_with_role["Security"], 5) + 5
-		if(GLOBL.aliens_allowed && !GLOBL.sent_aliens_to_station)
+		if(CONFIG_GET(aliens_allowed) && !GLOBL.sent_aliens_to_station)
 			possibleEvents[/datum/event/alien_infestation] = max(active_with_role["Security"], 5) + 2.5
 		if(!GLOBL.sent_ninja_to_station && GLOBL.toggle_space_ninja)
 			possibleEvents[/datum/event/space_ninja] = max(active_with_role["Security"], 5)
@@ -204,7 +204,7 @@ GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 
 		if(M.mind.assigned_role in GLOBL.security_positions)
 			active_with_role["Security"]++
-		
+
 		// Engineering, Medical and Security cyborgs.
 		if(isrobot(M))
 			var/mob/living/silicon/robot/robot = M

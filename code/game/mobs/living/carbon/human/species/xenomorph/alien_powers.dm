@@ -80,7 +80,7 @@
 	set desc = "Lay an egg to produce huggers to impregnate prey with."
 	set category = "Abilities"
 
-	if(!GLOBL.aliens_allowed)
+	if(!CONFIG_GET(aliens_allowed))
 		to_chat(src, "You begin to lay an egg, but hesitate. You suspect it isn't allowed.")
 		verbs.Remove(/mob/living/carbon/human/proc/lay_egg)
 		return

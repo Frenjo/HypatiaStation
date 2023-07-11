@@ -10,12 +10,7 @@ GLOBAL_GLOBL_INIT(changelog_hash, "")
 GLOBAL_GLOBL_INIT(game_year, (text2num(time2text(world.realtime, "YYYY")) + 544))
 
 GLOBAL_GLOBL_INIT(host, null)
-GLOBAL_GLOBL_INIT(aliens_allowed, FALSE)
-GLOBAL_GLOBL_INIT(ooc_allowed, TRUE)
-GLOBAL_GLOBL_INIT(dsay_allowed, TRUE)
-GLOBAL_GLOBL_INIT(dooc_allowed, TRUE)
 GLOBAL_GLOBL_INIT(enter_allowed, TRUE)
-GLOBAL_GLOBL_INIT(welding_helmet_tint, TRUE)
 
 GLOBAL_GLOBL_INIT(debug2, FALSE)
 

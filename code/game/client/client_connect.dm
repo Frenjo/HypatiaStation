@@ -18,7 +18,7 @@
 		return
 
 	// Change the way they should download resources.
-	if(CONFIG_GET(resource_urls))
+	if(isnotnull(CONFIG_GET(resource_urls)))
 		src.preload_rsc = pick(CONFIG_GET(resource_urls))
 	else src.preload_rsc = 1 // If CONFIG_GET(resource_urls) is not set, preload like normal.
 

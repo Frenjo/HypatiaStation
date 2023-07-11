@@ -3,7 +3,7 @@
 	set name = "wiki"
 	set desc = "Visit the wiki."
 	set hidden = TRUE
-	if(CONFIG_GET(wikiurl))
+	if(isnotnull(CONFIG_GET(wikiurl)))
 		if(alert("This will open the wiki in your browser. Are you sure?", , "Yes", "No") == "No")
 			return
 		to_chat(src, link(CONFIG_GET(wikiurl)))
@@ -15,7 +15,7 @@
 	set name = "forum"
 	set desc = "Visit the forum."
 	set hidden = TRUE
-	if(CONFIG_GET(forumurl))
+	if(isnotnull(CONFIG_GET(forumurl)))
 		if(alert("This will open the forum in your browser. Are you sure?", , "Yes", "No") == "No")
 			return
 		to_chat(src, link(CONFIG_GET(forumurl)))
@@ -48,7 +48,7 @@
 	set name = "donate"
 	set desc = "Donate to the server."
 	set hidden = TRUE
-	if(CONFIG_GET(donateurl))
+	if(isnotnull(CONFIG_GET(donateurl)))
 		if(alert("This will open the donation URL in your browser. Are you sure?", , "Yes", "No") == "No")
 			return
 		to_chat(src, link(CONFIG_GET(donateurl)))

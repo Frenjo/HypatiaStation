@@ -9,202 +9,220 @@
 */
 /var/global/configuration/config // Set in /datum/global_init/New()
 
-#define CONFIG_GET(X) global.config.X
-#define CONFIG_SET(X, V) global.config.X = V
+#define CONFIG_GET(VAR) global.config.VAR
+#define CONFIG_SET(VAR, VALUE) global.config.VAR = VALUE
 
+/*
+ * For the love of god use this macro when creating new configuration variables.
+ * It exists to:
+ *	Prevent manually typing out var/static everywhere.
+ *	Force a default value to be assigned to each variable.
+ */
+#define CONVAR(VAR, VALUE) var/static/##VAR = VALUE
 /configuration
 	// ----- CONFIG.TXT STUFF -----
 	// Server information.
-	var/static/server_name = null	// server name (for world name / status)
-	var/static/server_suffix = 0	// generate numeric suffix based on server port
-	var/static/hostedby = null
+	CONVAR(server_name, null)	// Server name (for world name / status).
+	CONVAR(server_suffix, 0)	// Generate numeric suffix based on server port?
+	CONVAR(hostedby, null)
 
 	// Tick.
-	var/static/ticklag = 0.9
-	var/static/tickcomp = FALSE
+	CONVAR(ticklag, 0.9)
+	CONVAR(tickcomp, FALSE)
 
 	// URLs.
-	var/static/server
-	var/static/wikiurl
-	var/static/forumurl
-	var/static/donateurl	// Why is this even missing damnit Techy/Akai/Numbers! -- Marajin
-	var/static/banappeals
-	var/static/list/resource_urls = null
+	CONVAR(server, null)
+	CONVAR(wikiurl, null)
+	CONVAR(forumurl, null)
+	CONVAR(donateurl, null)	// Why is this even missing damnit Techy/Akai/Numbers! -- Marajin
+	CONVAR(banappeals, null)
+	CONVAR(list/resource_urls, null)
 
 	// Python.
-	var/static/python_path = null				// Path to the python executable. Defaults to "python" on windows and "/usr/bin/env python2" on unix
-	var/static/use_lib_nudge = FALSE			// Use the C library nudge instead of the python nudge.
-	var/static/nudge_script_path = "nudge.py"	// where the nudge.py script is located
+	CONVAR(python_path, null)				// Path to the python executable. Defaults to "python" on windows and "/usr/bin/env python2" on unix.
+	CONVAR(use_lib_nudge, FALSE)			// Use the C library nudge instead of the python nudge?
+	CONVAR(nudge_script_path, "nudge.py")	// Where the nudge.py script is located.
 
 	// IRC.
-	var/static/use_irc_bot = FALSE
-	var/static/irc_bot_host = ""
-	var/static/main_irc = ""
-	var/static/admin_irc = ""
+	CONVAR(use_irc_bot, FALSE)
+	CONVAR(irc_bot_host, null)
+	CONVAR(main_irc, null)
+	CONVAR(admin_irc, null)
 
 	// Logging.
-	var/static/log_ooc = FALSE			// log OOC channel
-	var/static/log_access = FALSE		// log login/logout
-	var/static/log_say = FALSE			// log client say
-	var/static/log_admin = FALSE		// log admin actions
-	var/static/log_debug = TRUE			// log debug output
-	var/static/log_game = FALSE			// log game events
-	var/static/log_vote = FALSE			// log voting
-	var/static/log_whisper = FALSE		// log client whisper
-	var/static/log_emote = FALSE		// log emotes
-	var/static/log_attack = FALSE		// log attack messages
-	var/static/log_adminchat = FALSE	// log admin chat messages
-	var/static/log_adminwarn = FALSE	// log warnings admins get about bomb construction and such
-	var/static/log_pda = FALSE			// log pda messages
-	var/static/log_hrefs = FALSE		// logs all links clicked in-game. Could be used for debugging and tracking down exploits
-	var/static/log_runtime = FALSE		// logs world.log to a file
-	var/static/log_world_output = FALSE	// log world.log << messages
+	CONVAR(log_ooc, FALSE)			// Log OOC channel?
+	CONVAR(log_access, FALSE)		// Log login/logout?
+	CONVAR(log_say, FALSE)			// Log client say?
+	CONVAR(log_admin, FALSE)		// Log admin actions?
+	CONVAR(log_debug, TRUE)			// Log debug output?
+	CONVAR(log_game, FALSE)			// Log game events?
+	CONVAR(log_vote, FALSE)			// Log voting?
+	CONVAR(log_whisper, FALSE)		// Log client whisper?
+	CONVAR(log_emote, FALSE)		// Log emotes?
+	CONVAR(log_attack, FALSE)		// Log attack messages?
+	CONVAR(log_adminchat, FALSE)	// Log admin chat messages?
+	CONVAR(log_adminwarn, FALSE)	// Log warnings admins get about bomb construction and such?
+	CONVAR(log_pda, FALSE)			// Log pda messages?
+	CONVAR(log_hrefs, FALSE)		// Log all links clicked in-game? Could be used for debugging and tracking down exploits.
+	CONVAR(log_runtime, FALSE)		// Log world.log to a file?
+	CONVAR(log_world_output, FALSE)	// Log world.log << messages?
+
+	// Chat.
+	CONVAR(ooc_allowed, TRUE)		// Whether non-admins can use OOC chat.
+	CONVAR(dead_ooc_allowed, TRUE)	// Whether dead, non-admin players can use OOC chat.
+	CONVAR(dsay_allowed, TRUE)		// Whether non-admins can use deadchat.
 
 	// Admin.
-	var/static/admin_legacy_system = FALSE	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system.
-	var/static/ban_legacy_system = FALSE	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system.
-	var/static/allow_admin_ooccolor = FALSE	// Allows admins with relevant permissions to have their own ooc colour
-	var/static/allow_admin_jump = TRUE		// allows admin jumping
-	var/static/allow_admin_spawning = TRUE	// allows admin item spawning
-	var/static/allow_admin_rev = TRUE		// allows admin revives
-	var/static/forbid_singulo_possession = FALSE
-	var/static/popup_admin_pm = FALSE		//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
-	var/static/simultaneous_pm_warning_timeout = 100
-	var/static/ert_admin_call_only = FALSE
-	var/static/kick_inactive = FALSE		//force disconnect for inactive players
-	var/static/ToRban = FALSE
-	var/static/automute_on = FALSE			//enables automuting/spam prevention
+	CONVAR(admin_legacy_system, FALSE)				// Defines whether the server uses the legacy admin system with admins.txt or the SQL system.
+	CONVAR(ban_legacy_system, FALSE)				// Defines whether the server uses the legacy banning system with the files in /data or the SQL system.
+	CONVAR(allow_admin_ooccolor, FALSE)				// Allow admins with relevant permissions to have their own ooc colour?
+	CONVAR(allow_admin_jump, TRUE)					// Allow admin jumping?
+	CONVAR(allow_admin_spawning, TRUE)				// Allow admin item spawning?
+	CONVAR(allow_admin_rev, TRUE)					// Allow admin revives?
+	CONVAR(forbid_singulo_possession, FALSE)
+	CONVAR(popup_admin_pm, FALSE)					// If TRUE, adminPMs to non-admins show in a pop-up 'reply' window.
+	CONVAR(simultaneous_pm_warning_timeout, 100)
+	CONVAR(ert_admin_call_only, FALSE)
+	CONVAR(kick_inactive, FALSE)					// Force disconnect for inactive players?
+	CONVAR(ToRban, FALSE)
+	CONVAR(automute_on, FALSE)						// Enable automuting/spam prevention?
 
 	// Gamemode.
-	var/static/list/mode_names = list()
-	var/static/list/modes = list()						// allowed modes
-	var/static/list/votable_modes = list()				// votable modes
-	var/static/list/probabilities = list()				// relative probability of each mode
-	var/static/cult_ghostwriter = TRUE					//Allows ghosts to write in blood in cult rounds...
-	var/static/cult_ghostwriter_req_cultists = 10		//...so long as this many cultists are active.
-	var/static/continous_rounds = TRUE					// Gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
-	var/static/protect_roles_from_antagonist = FALSE	// If security and such can be traitor/cult/other
-	var/static/traitor_scaling = FALSE					//if amount of traitors scales based on amount of players
-	var/static/objectives_disabled = FALSE				//if objectives are disabled or not
-	var/static/antag_hud_allowed = FALSE				// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
-	var/static/antag_hud_restricted = FALSE				// Ghosts that turn on Antagovision cannot rejoin the round.
-	var/static/allow_random_events = FALSE				// enables random events mid-round when set to 1
-	var/static/allow_holidays = FALSE					// Whether or not the holiday system is enabled.
-	var/static/holiday_name = null						// If the holiday system is active, the name of the current holiday.
+	CONVAR(list/mode_names, list())
+	CONVAR(list/modes, list())						// Allowed modes.
+	CONVAR(list/votable_modes, list())				// Votable modes.
+	CONVAR(list/probabilities, list())				// Relative probability of each mode
+	CONVAR(cult_ghostwriter, TRUE)					// Allows ghosts to write in blood in cult rounds...
+	CONVAR(cult_ghostwriter_req_cultists, 10)		// ... so long as this many cultists are active.
+	CONVAR(continous_rounds, TRUE)					// Gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
+	CONVAR(protect_roles_from_antagonist, FALSE)	// If security and such can be traitor/cult/other.
+	CONVAR(traitor_scaling, FALSE)					// If amount of traitors scales based on amount of players.
+	CONVAR(objectives_disabled, FALSE)				// If objectives are disabled or not.
+	CONVAR(antag_hud_allowed, FALSE)				// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
+	CONVAR(antag_hud_restricted, FALSE)				// Ghosts that turn on Antagovision cannot rejoin the round.
+	CONVAR(allow_random_events, FALSE)				// Enables random events mid-round when set to TRUE
+	CONVAR(allow_holidays, FALSE)					// Whether the holiday system is enabled.
+	CONVAR(holiday_name, null)						// If the holiday system is active, the name of the current holiday.
+	CONVAR(aliens_allowed, FALSE)					// Whether aliens are allowed.
 
 	// Voting.
-	var/static/allow_vote_restart = FALSE			// allow votes to restart
-	var/static/allow_vote_mode = FALSE				// allow votes to change mode
-	var/static/vote_no_default = FALSE				// vote does not default to nochange/norestart (tbi)
-	var/static/vote_no_dead = FALSE					// dead people can't vote (tbi)
-	var/static/vote_delay = 6000					// minimum time between voting sessions (deciseconds, 10 minute default)
-	var/static/vote_period = 600					// length of voting period (deciseconds, default 1 minute)
-	var/static/vote_autotransfer_initial = 108000	// Length of time before the first autotransfer vote is called
-	var/static/vote_autotransfer_interval = 36000	// length of time before next sequential autotransfer vote
-	var/static/vote_autogamemode_timeleft = 100		//Length of time before round start when autogamemode vote is called (in seconds, default 100).
+	CONVAR(allow_vote_restart, FALSE)			// Allow votes to restart?
+	CONVAR(allow_vote_mode, FALSE)				// Allow votes to change mode?
+	CONVAR(vote_no_default, FALSE)				// Vote does not default to nochange/norestart? (tbi)
+	CONVAR(vote_no_dead, FALSE)					// Dead people can't vote? (tbi)
+	CONVAR(vote_delay, 6000)					// Minimum time between voting sessions (deciseconds, 10 minute default).
+	CONVAR(vote_period, 600)					// Length of voting period (deciseconds, default 1 minute).
+	CONVAR(vote_autotransfer_initial, 108000)	// Length of time before the first autotransfer vote is called.
+	CONVAR(vote_autotransfer_interval, 36000)	// Length of time before next sequential autotransfer vote.
+	CONVAR(vote_autogamemode_timeleft, 100)		// Length of time before round start when autogamemode vote is called (in seconds, default 100).
 
 	// Whitelists.
-	var/static/guests_allowed = TRUE
-	var/static/guest_jobban = TRUE
-	var/static/usewhitelist = FALSE
-	var/static/usealienwhitelist = FALSE
-	var/static/limitalienplayers = FALSE
-	var/static/alien_to_human_ratio = 0.5
-	var/static/use_age_restriction_for_jobs = FALSE	//Do jobs use account age restrictions? --requires database
-	var/static/disable_player_mice = FALSE
-	var/static/uneducated_mice = FALSE				//Set to 1 to prevent newly-spawned mice from understanding human speech
+	CONVAR(guests_allowed, TRUE)
+	CONVAR(guest_jobban, TRUE)
+	CONVAR(usewhitelist, FALSE)
+	CONVAR(usealienwhitelist, FALSE)
+	CONVAR(limitalienplayers, FALSE)
+	CONVAR(alien_to_human_ratio, 0.5)
+	CONVAR(use_age_restriction_for_jobs, FALSE)	// Do jobs use account age restrictions? --requires database
+	CONVAR(disable_player_mice, FALSE)
+	CONVAR(uneducated_mice, FALSE)				// Set to TRUE to prevent newly-spawned mice from understanding human speech.
 
 	// Alert level descriptions.
-	var/static/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
-	var/static/alert_desc_yellow_upto = "There is a security alert in progress. Security staff may have weapons visible, however privacy laws remain fully enforced."
-	var/static/alert_desc_yellow_downto = "The possible threat has passed. Security staff may continue to have their weapons visible, however they may no longer conduct random searches."
-	var/static/alert_desc_blue_upto = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
-	var/static/alert_desc_blue_downto = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
-	var/static/alert_desc_red_upto = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
-	var/static/alert_desc_red_downto = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
-	var/static/alert_desc_delta = "The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
+	CONVAR(alert_desc_green, "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced.")
+	CONVAR(alert_desc_yellow_upto, "There is a security alert in progress. Security staff may have weapons visible, however privacy laws remain fully enforced.")
+	CONVAR(alert_desc_yellow_downto, "The possible threat has passed. Security staff may continue to have their weapons visible, however they may no longer conduct random searches.")
+	CONVAR(alert_desc_blue_upto, "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted.")
+	CONVAR(alert_desc_blue_downto, "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed.")
+	CONVAR(alert_desc_red_upto, "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised.")
+	CONVAR(alert_desc_red_downto, "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised.")
+	CONVAR(alert_desc_delta, "The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill.")
 
 	// Mobs.
-	var/static/del_new_on_log = TRUE			// del's new players if they log before they spawn in
-	var/static/ghost_interaction = FALSE
-	var/static/respawn = TRUE
-	var/static/allow_ai = TRUE					// allow ai job
-	var/static/allow_drone_spawn = TRUE			//Assuming the admin allow them to,
-	var/static/max_maint_drones = 5				//this many drones can spawn.
-	var/static/drone_build_time = 1200			//A drone will become available every X ticks since last drone spawn. Default is 2 minutes.
-	var/static/humans_need_surnames = FALSE
-	var/static/jobs_have_minimal_access = FALSE	//determines whether jobs use minimal access or expanded access.
-	var/static/assistant_maint = FALSE			//Do assistants get maint access?
+	CONVAR(del_new_on_log, TRUE)			// del()'s new players if they log before they spawn in
+	CONVAR(ghost_interaction, FALSE)
+	CONVAR(respawn, TRUE)
+	CONVAR(allow_ai, TRUE)					// Allow ai job?
+	CONVAR(allow_drone_spawn, TRUE)			// Allows maintenance drones to spawn...
+	CONVAR(max_maint_drones, 5)				// ... up to a maximum of this many.
+	CONVAR(drone_build_time, 1200)			// A drone will become available every X ticks since last drone spawn. Default is 2 minutes.
+	CONVAR(humans_need_surnames, FALSE)
+	CONVAR(jobs_have_minimal_access, FALSE)	// Determines whether jobs use minimal or expanded access.
+	CONVAR(assistant_maint, FALSE)			// Do assistants get maint access?
 
 	// Miscellaneous.
-	var/static/sql_enabled = TRUE					// for sql switching
-	var/static/use_recursive_explosions = FALSE		//Defines whether the server uses recursive or circular explosions.
-	var/static/allow_Metadata = FALSE				// Metadata is supported.
-	var/static/feature_object_spell_system = FALSE	//spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
-	var/static/load_jobs_from_txt = FALSE
-	var/static/socket_talk = FALSE					// use socket_talk to communicate with other processes
-	var/static/comms_password = ""
-	var/static/gateway_delay = 18000				//How long the gateway takes before it activates. Default is half an hour.
-	var/static/starlight = 0
-	//var/static/enable_authentication = FALSE		// goon authentication
+	CONVAR(sql_enabled, TRUE)					// For sql switching.
+	CONVAR(use_recursive_explosions, FALSE)		// Defines whether the server uses recursive or circular explosions.
+	CONVAR(allow_Metadata, FALSE)				// Metadata is supported.
+	CONVAR(feature_object_spell_system, FALSE)	// Spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard.
+	CONVAR(load_jobs_from_txt, FALSE)
+	CONVAR(socket_talk, FALSE)					// Use socket_talk to communicate with other processes?
+	CONVAR(comms_password, "")
+	CONVAR(gateway_delay, 18000)				// How long the gateway takes before it activates. Default is half an hour.
+	CONVAR(starlight, 0)
+	//CONVAR(enable_authentication, FALSE)		// goon authentication
 
 	// ----- GAME_OPTIONS.TXT STUFF -----
 	// Health thresholds.
-	var/static/health_threshold_softcrit = 0
-	var/static/health_threshold_crit = 0
-	var/static/health_threshold_dead = -100
+	CONVAR(health_threshold_softcrit, 0)
+	CONVAR(health_threshold_crit, 0)
+	CONVAR(health_threshold_dead, -100)
 
 	// Bone/limb breakage.
-	var/static/bones_can_break = FALSE
-	var/static/limbs_can_break = FALSE
+	CONVAR(bones_can_break, FALSE)
+	CONVAR(limbs_can_break, FALSE)
 
 	// Organ multipliers.
-	var/static/organ_health_multiplier = 1
-	var/static/organ_regeneration_multiplier = 1
+	CONVAR(organ_health_multiplier, 1)
+	CONVAR(organ_regeneration_multiplier, 1)
 
 	// Revival.
-	var/static/revival_pod_plants = TRUE
-	var/static/revival_cloning = TRUE
-	var/static/revival_brain_life = -1
+	CONVAR(revival_pod_plants, TRUE)
+	CONVAR(revival_cloning, TRUE)
+	CONVAR(revival_brain_life, -1)
 
-	//Used for modifying movement speed for mobs.
-	//Unversal modifiers
-	var/static/run_speed = 0
-	var/static/walk_speed = 0
+	// Used for modifying movement speed for mobs.
+	// Unversal modifiers.
+	CONVAR(run_speed, 0)
+	CONVAR(walk_speed, 0)
 
-	//Mob specific modifiers. NOTE: These will affect different mob types in different ways
-	var/static/human_delay = 0
-	var/static/robot_delay = 0
-	var/static/monkey_delay = 0
-	var/static/alien_delay = 0
-	var/static/slime_delay = 0
-	var/static/animal_delay = 0
+	// Mob specific modifiers.
+	// NOTE: These will affect different mob types in different ways!
+	CONVAR(human_delay, 0)
+	CONVAR(robot_delay, 0)
+	CONVAR(monkey_delay, 0)
+	CONVAR(alien_delay, 0)
+	CONVAR(slime_delay, 0)
+	CONVAR(animal_delay, 0)
+
+	// Miscellaneous.
+	CONVAR(welding_protection_tint, TRUE)	// Whether headwear and eyewear that provides welding protection also reduces view range.
 
 	// ----- MYSQL CONFIGURATION STUFF -----
 	// Basic configuration.
-	var/static/sqladdress = "localhost"
-	var/static/sqlport = "3306"
-	var/static/sqldb = "tgstation"
-	var/static/sqllogin = "root"
-	var/static/sqlpass = ""
+	CONVAR(sqladdress, "localhost")
+	CONVAR(sqlport, "3306")
+	CONVAR(sqldb, "tgstation")
+	CONVAR(sqllogin, "root")
+	CONVAR(sqlpass, "")
 
 	// Feedback configuration.
-	var/static/sqlfdbkdb = "test"
-	var/static/sqlfdbklogin = "root"
-	var/static/sqlfdbkpass = ""
-	var/static/sqllogging = FALSE // Should we log deaths, population stats, etc?
+	CONVAR(sqlfdbkdb, "test")
+	CONVAR(sqlfdbklogin, "root")
+	CONVAR(sqlfdbkpass, "")
+	CONVAR(sqllogging, FALSE) // Should we log deaths, population stats, etc?
 
 	// ----- FORUM MYSQL CONFIGURATION -----
 	// (for use with forum account/key authentication)
 	// These are all default values that will load should the forumdbconfig.txt
 	// file fail to read for whatever reason.
-	var/static/forumsqladdress = "localhost"
-	var/static/forumsqlport = "3306"
-	var/static/forumsqldb = "tgstation"
-	var/static/forumsqllogin = "root"
-	var/static/forumsqlpass = ""
-	var/static/forum_activated_group = "2"
-	var/static/forum_authenticated_group = "10"
+	CONVAR(forumsqladdress, "localhost")
+	CONVAR(forumsqlport, "3306")
+	CONVAR(forumsqldb, "tgstation")
+	CONVAR(forumsqllogin, "root")
+	CONVAR(forumsqlpass, "")
+	CONVAR(forum_activated_group, "2")
+	CONVAR(forum_authenticated_group, "10")
+#undef CONVAR
 
 /configuration/New()
 	load_gamemodes()
@@ -319,6 +337,14 @@
 			if("log_world_output")
 				log_world_output = TRUE
 
+			// Chat.
+			if("ooc_allowed")
+				ooc_allowed = value
+			if("dead_ooc_allowed")
+				dead_ooc_allowed = value
+			if("dsay_allowed")
+				dsay_allowed = value
+
 			// Admin.
 			if("admin_legacy_system")
 				admin_legacy_system = TRUE
@@ -379,6 +405,8 @@
 				allow_random_events = TRUE
 			if("allow_holidays")
 				allow_holidays = TRUE
+			if("aliens_allowed")
+				aliens_allowed = text2num(value)
 
 			// Voting.
 			if("allow_vote_restart")
@@ -521,14 +549,15 @@
 			if("revival_brain_life")
 				revival_brain_life = value
 
-			//Used for modifying movement speed for mobs.
-			//Unversal modifiers
+			// Used for modifying movement speed for mobs.
+			// Unversal modifiers.
 			if("run_speed")
 				run_speed = value
 			if("walk_speed")
 				walk_speed = value
 
-			//Mob specific modifiers. NOTE: These will affect different mob types in different ways
+			// Mob specific modifiers.
+			// NOTE: These will affect different mob types in different ways
 			if("human_delay")
 				human_delay = value
 			if("robot_delay")
@@ -541,6 +570,10 @@
 				slime_delay = value
 			if("animal_delay")
 				animal_delay = value
+
+			// Miscellaneous.
+			if("welding_protection_tint")
+				welding_protection_tint = value
 			else
 				log_misc("Unknown setting in config/game_options.txt: '[option]'")
 

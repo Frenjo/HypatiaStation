@@ -893,7 +893,7 @@
 				feedback_inc("ban_tmp",1)
 				DB_ban_record(BANTYPE_TEMP, M, mins, reason)
 				feedback_inc("ban_tmp_mins",mins)
-				if(CONFIG_GET(banappeals))
+				if(isnotnull(CONFIG_GET(banappeals)))
 					M << "\red To try to resolve this matter head to [CONFIG_GET(banappeals)]"
 				else
 					M << "\red No ban appeals URL has been set."
@@ -915,7 +915,7 @@
 						AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
 				M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
 				M << "\red This is a permanent ban."
-				if(CONFIG_GET(banappeals))
+				if(isnotnull(CONFIG_GET(banappeals)))
 					M << "\red To try to resolve this matter head to [CONFIG_GET(banappeals)]"
 				else
 					M << "\red No ban appeals URL has been set."
@@ -2120,7 +2120,7 @@
 			if("aliens")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","AL")
-				if(GLOBL.aliens_allowed)
+				if(CONFIG_GET(aliens_allowed))
 					new /datum/event/alien_infestation
 					message_admins("[key_name_admin(usr)] has spawned aliens", 1)
 			if("spiders")

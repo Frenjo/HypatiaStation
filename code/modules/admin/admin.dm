@@ -715,42 +715,38 @@ var/global/floorIsLava = 0
 		log_admin("Announce: [key_name(usr)] : [message]")
 	feedback_add_details("admin_verb","A") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggleooc()
+/datum/admins/proc/toggle_ooc()
 	set category = "Server"
-	set desc="Toggle dis bitch"
-	set name="Toggle OOC"
-	GLOBL.ooc_allowed = !GLOBL.ooc_allowed
-	if(GLOBL.ooc_allowed)
-		world << "<B>The OOC channel has been globally enabled!</B>"
-	else
-		world << "<B>The OOC channel has been globally disabled!</B>"
-	log_admin("[key_name(usr)] toggled OOC.")
-	message_admins("[key_name_admin(usr)] toggled OOC.", 1)
-	feedback_add_details("admin_verb","TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	set name = "Toggle OOC"
+	set desc = "Toggle whether non-admins can use OOC chat."
 
+	CONFIG_SET(ooc_allowed, !CONFIG_GET(ooc_allowed))
+	to_world("<B>The OOC channel has been globally [CONFIG_GET(ooc_allowed) ? "enabled" : "disabled"]!</B>")
+	log_admin("[key_name(usr)] toggled OOC [CONFIG_GET(ooc_allowed) ? "on" : "off"].")
+	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled OOC [CONFIG_GET(ooc_allowed) ? "on" : "off"]."), 1)
+	feedback_add_details("admin_verb", "TOOC") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggledsay()
+/datum/admins/proc/toggle_dead_ooc()
 	set category = "Server"
-	set desc="Globally Toggles DSAY"
-	set name="Toggle DSAY"
-	GLOBL.dsay_allowed = !GLOBL.dsay_allowed
-	if(GLOBL.dsay_allowed)
-		world << "<B>Deadchat has been globally enabled!</B>"
-	else
-		world << "<B>Deadchat has been globally disabled!</B>"
-	log_admin("[key_name(usr)] toggled deadchat.")
-	message_admins("[key_name_admin(usr)] toggled deadchat.", 1)
-	feedback_add_details("admin_verb","TDSAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
+	set name = "Toggle Dead OOC"
+	set desc = "Toggle whether dead, non-admin players can use OOC chat."
 
-/datum/admins/proc/toggleoocdead()
+	CONFIG_SET(dead_ooc_allowed, !CONFIG_GET(dead_ooc_allowed))
+	to_world("<B>Dead players may [CONFIG_GET(dead_ooc_allowed) ? "now" : "no longer"] use OOC chat.")
+	log_admin("[key_name(usr)] toggled dead OOC [CONFIG_GET(dead_ooc_allowed) ? "on" : "off"].")
+	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled dead OOC [CONFIG_GET(dead_ooc_allowed) ? "on" : "off"]."), 1)
+	feedback_add_details("admin_verb", "TDOOC") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/datum/admins/proc/toggle_dsay()
 	set category = "Server"
-	set desc="Toggle dis bitch"
-	set name="Toggle Dead OOC"
-	GLOBL.dooc_allowed = !GLOBL.dooc_allowed
+	set name = "Toggle Deadchat"
+	set desc = "Toggle whether non-admins can use deadchat."
 
-	log_admin("[key_name(usr)] toggled OOC.")
-	message_admins("[key_name_admin(usr)] toggled Dead OOC.", 1)
-	feedback_add_details("admin_verb","TDOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	CONFIG_SET(dsay_allowed, !CONFIG_GET(dsay_allowed))
+	to_world("<B>Deadchat has been globally [CONFIG_GET(dsay_allowed) ? "enabled" : "disabled"]!</B>")
+	log_admin("[key_name(usr)] toggled deadchat [CONFIG_GET(dsay_allowed) ? "on" : "off"].")
+	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled deadchat [CONFIG_GET(dsay_allowed) ? "on" : "off"]."), 1)
+	feedback_add_details("admin_verb", "TDSAY") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
 
 /datum/admins/proc/toggletraitorscaling()
 	set category = "Server"
@@ -805,28 +801,30 @@ var/global/floorIsLava = 0
 	world.update_status()
 	feedback_add_details("admin_verb","TAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggleaban()
+/datum/admins/proc/toggle_respawn()
 	set category = "Server"
-	set desc="Respawn basically"
-	set name="Toggle Respawn"
+	set name = "Toggle Respawn"
+	set desc = "Toggle whether dead players can respawn."
+
 	CONFIG_SET(respawn, !CONFIG_GET(respawn))
 	if(CONFIG_GET(respawn))
-		world << "<B>You may now respawn.</B>"
+		to_world("<B>You may now respawn.</B>")
 	else
-		world << "<B>You may no longer respawn :(</B>"
-	message_admins("\blue [key_name_admin(usr)] toggled respawn to [CONFIG_GET(respawn) ? "On" : "Off"].", 1)
-	log_admin("[key_name(usr)] toggled respawn to [CONFIG_GET(respawn) ? "On" : "Off"].")
+		to_world("<B>You may no longer respawn. :(</B>")
 	world.update_status()
+	log_admin("[key_name(usr)] toggled respawn [CONFIG_GET(respawn) ? "on" : "off"].")
+	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled respawn [CONFIG_GET(respawn) ? "on" : "off"]."), 1)
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_aliens()
 	set category = "Server"
-	set desc="Toggle alien mobs"
-	set name="Toggle Aliens"
-	GLOBL.aliens_allowed = !GLOBL.aliens_allowed
-	log_admin("[key_name(usr)] toggled Aliens to [GLOBL.aliens_allowed].")
-	message_admins("[key_name_admin(usr)] toggled Aliens [GLOBL.aliens_allowed ? "on" : "off"].", 1)
-	feedback_add_details("admin_verb","TA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	set name = "Toggle Aliens"
+	set desc = "Toggle whether aliens are allowed."
+
+	CONFIG_SET(aliens_allowed, !CONFIG_GET(aliens_allowed))
+	log_admin("[key_name(usr)] toggled aliens [CONFIG_GET(aliens_allowed) ? "on" : "off"].")
+	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled aliens [CONFIG_GET(aliens_allowed) ? "on" : "off"]."), 1)
+	feedback_add_details("admin_verb", "TA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_space_ninja()
 	set category = "Server"
@@ -1030,18 +1028,16 @@ var/global/floorIsLava = 0
 	feedback_add_details("admin_verb", "STP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/datum/admins/proc/toggle_welding_helmet_tint()
+/datum/admins/proc/toggle_welding_protection_tint()
 	set category = "Debug"
-	set name = "Toggle Welding Helmet Tint"
-	set desc = "Reduces view range when wearing welding helmets."
-	GLOBL.welding_helmet_tint = !GLOBL.welding_helmet_tint
-	if(GLOBL.welding_helmet_tint)
-		to_world("<B>Welding helmet tint has been enabled!</B>")
-	else
-		to_world("<B>Welding helmet tint has been disabled!</B>")
-	log_admin("[key_name(usr)] toggled welding helmet tint.")
-	message_admins("[key_name_admin(usr)] toggled welding helmet tint.", 1)
-	feedback_add_details("admin_verb", "TWHT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	set name = "Toggle Welding Protection Tint"
+	set desc = "Toggles whether welding protection reduces view range."
+
+	CONFIG_SET(welding_protection_tint, !CONFIG_GET(welding_protection_tint))
+	to_world("<B>Welding protection tint has been [CONFIG_GET(welding_protection_tint) ? "enabled" : "disabled"]!</B>")
+	log_admin("[key_name(usr)] toggled welding protection tint [CONFIG_GET(welding_protection_tint) ? "on" : "off"].")
+	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled welding protection tint [CONFIG_GET(welding_protection_tint) ? "on" : "off"]."), 1)
+	feedback_add_details("admin_verb", "TWPT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleguests()
 	set category = "Server"
