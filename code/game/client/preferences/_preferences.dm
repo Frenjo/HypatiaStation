@@ -170,7 +170,7 @@
 	//display limbs below
 	var/ind = 0
 	for(var/name in organ_data)
-		//world << "[ind] \ [length(organ_data)]"
+		//to_world("[ind] \ [length(organ_data)]")
 		var/status = organ_data[name]
 		var/organ_name = null
 		switch(name)

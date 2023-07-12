@@ -56,7 +56,7 @@
 		if(keyphrase != "")
 			break
 
-	//world << "keyphrase: " + keyphrase + " " + num2text(keypos)
+	//to_world("keyphrase: " + keyphrase + " " + num2text(keypos))
 
 	var/conjugated = ""
 	// was it not recognized? then make it nokeyfound
@@ -85,7 +85,7 @@
 					var/cx = conjugs[x]
 					var/cxa = conjugs[x + 1]
 					if(i + lentext(cx) <= lentext(conjugated) + 1 && cmptext(cx, copytext(conjugated, i, i + lentext(cx))))
-						// world << cx
+						//to_world(cx)
 
 						conjugated = copytext(conjugated, 1, i) + cxa + copytext(conjugated, i + lentext(cx))
 						i = i + lentext(cx)
@@ -94,7 +94,7 @@
 							i--
 						break
 					else if(i + lentext(cxa) <= lentext(conjugated) + 1 && cmptext(cxa, copytext(conjugated, i, i + lentext(cxa))))
-						// world << cxa
+						//to_world(cxa)
 
 						conjugated = copytext(conjugated, 1, i) + cx + copytext(conjugated, i + lentext(cxa))
 						i = i + lentext(cxa)
@@ -105,7 +105,7 @@
 
 		conjugated = copytext(conjugated, 1, lentext(conjugated))
 
-	//world << "Conj: " + conjugated
+	//to_world("Conj: " + conjugated)
 
 	// now actually get a reply
 	var/reply = keyword.process(conjugated)

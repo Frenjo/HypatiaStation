@@ -4,9 +4,9 @@
 	config_tag = "ctf"
 
 /datum/game_mode/ctf/announce()
-	world << "<B>The current game mode is - Capture the Flag!</B>"
-	world << "<B>Capture the other teams flag and bring it back to your base!</B>"
-	world << "Respawn is on"
+	to_world("<B>The current game mode is - Capture the Flag!</B>")
+	to_world("<B>Capture the other teams flag and bring it back to your base!</B>")
+	to_world("Respawn is on")
 
 /datum/game_mode/ctf/pre_setup()
 
@@ -64,7 +64,7 @@
 					if(R)
 						M.loc = R.loc
 					else
-						world << "No red team spawn point detected"
+						to_world("No red team spawn point detected")
 					M.client.team = "Red"
 		else
 			spawn()
@@ -104,7 +104,7 @@
 					if(G)
 						M.loc = G.loc
 					else
-						world << "No green team spawn point detected"
+						to_world("No green team spawn point detected")
 					M.client.team = "Green"
 
 
@@ -117,25 +117,25 @@
 		if (L)
 			new /obj/item/weapon/ctf_flag/red(L.loc)
 		else
-			world << "No red flag spawn point detected"
+			to_world("No red flag spawn point detected")
 
 		L = locate("landmark*Green-Flag")
 		if (L)
 			new /obj/item/weapon/ctf_flag/green(L.loc)
 		else
-			world << "No green flag spawn point detected"
+			to_world("No green flag spawn point detected")
 
 		L = locate("landmark*The-Red-Team")
 		if (L)
 			new /obj/machinery/red_injector(L.loc)
 		else
-			world << "No red team spawn injector point detected"
+			to_world("No red team spawn injector point detected")
 
 		L = locate("landmark*The-Green-Team")
 		if (L)
 			new /obj/machinery/green_injector(L.loc)
 		else
-			world << "No green team injector spawn point detected"
+			to_world("No green team injector spawn point detected")
 	..()
 
 */

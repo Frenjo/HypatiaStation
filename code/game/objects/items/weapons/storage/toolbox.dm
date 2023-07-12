@@ -16,7 +16,7 @@
 /obj/item/weapon/storage/toolbox/New()
 	..()
 	if(src.type == /obj/item/weapon/storage/toolbox)
-		world << "BAD: [src] ([src.type]) spawned at [src.x] [src.y] [src.z]"
+		to_world("BAD: [src] ([src.type]) spawned at [src.x] [src.y] [src.z]")
 		qdel(src)
 
 

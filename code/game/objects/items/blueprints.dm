@@ -99,7 +99,7 @@ move an amendment</a> to the drawing.</p>
 	return AREA_STATION
 
 /obj/item/blueprints/proc/create_area()
-	//world << "DEBUG: create_area"
+	//to_world("DEBUG: create_area")
 	var/res = detect_room(get_turf(usr))
 	if(!islist(res))
 		switch(res)
@@ -124,7 +124,7 @@ move an amendment</a> to the drawing.</p>
 	A.tag = "[A.type]_[md5(str)]" // without this dynamic light system ruin everithing
 	//var/ma
 	//ma = A.master ? "[A.master]" : "(null)"
-	//world << "DEBUG: create_area: <br>A.name=[A.name]<br>A.tag=[A.tag]<br>A.master=[ma]"
+	//to_world("DEBUG: create_area: <br>A.name=[A.name]<br>A.tag=[A.tag]<br>A.master=[ma]")
 	A.power_equip = FALSE
 	A.power_light = FALSE
 	A.power_environ = FALSE
@@ -137,7 +137,7 @@ move an amendment</a> to the drawing.</p>
 
 	spawn(5)
 		//ma = A.master ? "[A.master]" : "(null)"
-		//world << "DEBUG: create_area(5): <br>A.name=[A.name]<br>A.tag=[A.tag]<br>A.master=[ma]"
+		//to_world("DEBUG: create_area(5): <br>A.name=[A.name]<br>A.tag=[A.tag]<br>A.master=[ma]")
 		interact()
 	return
 
@@ -148,7 +148,7 @@ move an amendment</a> to the drawing.</p>
 
 /obj/item/blueprints/proc/edit_area()
 	var/area/A = get_area()
-	//world << "DEBUG: edit_area"
+	//to_world("DEBUG: edit_area")
 	var/prevname = "[A.name]"
 	var/str = trim(stripped_input(usr, "New area name:", "Blueprint Editing", prevname, MAX_NAME_LEN))
 	if(!str || !length(str) || str == prevname) //cancel

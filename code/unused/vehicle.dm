@@ -79,7 +79,7 @@
 	del(src)
 
 /obj/machinery/vehicle/Bump(var/atom/A)
-	//world << "[src] bumped into [A]"
+	//to_world("[src] bumped into [A]")
 	spawn (0)
 		..()
 		src.speed = 0
@@ -239,7 +239,7 @@
 			src.health -= value
 			if(src.health>0)
 				src.spark_system.start()
-//				world << "[src] health is [health]"
+				//to_world("[src] health is [health]")
 			else
 				src.ex_act(1)
 		return

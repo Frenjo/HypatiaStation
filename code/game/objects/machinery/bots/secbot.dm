@@ -474,9 +474,9 @@ Auto Patrol: []"},
 		return
 
 	/*
-	world << "rec signal: [signal.source]"
+	to_world("rec signal: [signal.source]")
 	for(var/x in signal.data)
-		world << "* [x] = [signal.data[x]]"
+		to_world("* [x] = [signal.data[x]]")
 	*/
 
 	var/recv = signal.data["command"]
@@ -559,7 +559,7 @@ Auto Patrol: []"},
 	//for(var/key in keyval)
 	//	signal.data[key] = keyval[key]
 	signal.data = keyval
-		//world << "sent [key],[keyval[key]] on [freq]"
+		//to_world("sent [key],[keyval[key]] on [freq]")
 	if(signal.data["findbeacon"])
 		frequency.post_signal(src, signal, filter = RADIO_NAVBEACONS)
 	else if(signal.data["type"] == "secbot")

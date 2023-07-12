@@ -60,7 +60,7 @@
 	if(probability <= 0)
 		return
 
-	//world << "\blue Spread([probability])"
+	//to_world("\blue Spread([probability])")
 	for(var/turf/unsimulated/jungle/J in orange(1, src))
 		if(!J.bushes_spawn)
 			continue
@@ -78,7 +78,7 @@
 	bushes_spawn = 0
 	icon_state = "grass_impenetrable"
 	icon_spawn_state = "grass1"
-	
+
 /turf/unsimulated/jungle/impenetrable/New()
 	..()
 	var/obj/structure/bush/B = new(src)

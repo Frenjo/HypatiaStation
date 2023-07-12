@@ -72,7 +72,7 @@ CONTROLLER_DEF(vote)
 	if(auto_muted && !ooc_allowed)
 		auto_muted = 0
 		ooc_allowed = !( ooc_allowed )
-		world << "<b>The OOC channel has been automatically enabled due to vote end.</b>"
+		to_world("<b>The OOC channel has been automatically enabled due to vote end.</b>")
 		log_admin("OOC was toggled automatically due to vote end.")
 		message_admins("OOC has been toggled on automatically.")
 */
@@ -261,19 +261,19 @@ CONTROLLER_DEF(vote)
 		if(mode == "crew_transfer" && ooc_allowed)
 			auto_muted = 1
 			ooc_allowed = !( ooc_allowed )
-			world << "<b>The OOC channel has been automatically disabled due to a crew transfer vote.</b>"
+			to_world("<b>The OOC channel has been automatically disabled due to a crew transfer vote.</b>")
 			log_admin("OOC was toggled automatically due to crew_transfer vote.")
 			message_admins("OOC has been toggled off automatically.")
 		if(mode == "gamemode" && ooc_allowed)
 			auto_muted = 1
 			ooc_allowed = !( ooc_allowed )
-			world << "<b>The OOC channel has been automatically disabled due to the gamemode vote.</b>"
+			to_world("<b>The OOC channel has been automatically disabled due to the gamemode vote.</b>")
 			log_admin("OOC was toggled automatically due to gamemode vote.")
 			message_admins("OOC has been toggled off automatically.")
 		if(mode == "custom" && ooc_allowed)
 			auto_muted = 1
 			ooc_allowed = !( ooc_allowed )
-			world << "<b>The OOC channel has been automatically disabled due to a custom vote.</b>"
+			to_world("<b>The OOC channel has been automatically disabled due to a custom vote.</b>")
 			log_admin("OOC was toggled automatically due to custom vote.")
 			message_admins("OOC has been toggled off automatically.")
 	*/

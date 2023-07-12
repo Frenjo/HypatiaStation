@@ -53,9 +53,9 @@ Class Procs:
 	var/turf/simulated/B
 	var/zone/zoneA
 	var/zone/zoneB
-	
+
 	var/connection_edge/edge
-	
+
 	var/state = 0
 
 /connection/New(turf/simulated/A, turf/simulated/B)
@@ -77,11 +77,11 @@ Class Procs:
 
 /connection/proc/mark_direct()
 	state |= CONNECTION_DIRECT
-	//world << "Marked direct."
+	//to_world("Marked direct.")
 
 /connection/proc/mark_indirect()
 	state &= ~CONNECTION_DIRECT
-	//world << "Marked indirect."
+	//to_world("Marked indirect.")
 
 /connection/proc/mark_space()
 	state |= CONNECTION_SPACE
@@ -95,18 +95,18 @@ Class Procs:
 /connection/proc/erase()
 	edge.remove_connection(src)
 	state |= CONNECTION_INVALID
-	//world << "Connection Erased: [state]"
+	//to_world("Connection Erased: [state]")
 
 /connection/proc/update()
-	//world << "Updated, \..."
+	//to_world("Updated, \...")
 	if(!istype(A, /turf/simulated))
-		//world << "Invalid A."
+		//to_world("Invalid A.")
 		erase()
 		return
 
 	var/block_status = global.CTair_system.air_blocked(A,B)
 	if(block_status & AIR_BLOCKED)
-		//world << "Blocked connection."
+		//to_world("Blocked connection.")
 		erase()
 		return
 	else if(block_status & ZONE_BLOCKED)
@@ -119,14 +119,14 @@ Class Procs:
 
 	if(state & CONNECTION_SPACE)
 		if(!b_is_space)
-			//world << "Invalid B."
+			//to_world("Invalid B.")
 			erase()
 			return
 		if(A.zone != zoneA)
-			//world << "Zone changed, \..."
+			//to_world("Zone changed, \...")
 			if(!A.zone)
 				erase()
-				//world << "erased."
+				//to_world("erased.")
 				return
 			else
 				edge.remove_connection(src)
@@ -134,21 +134,21 @@ Class Procs:
 				edge.add_connection(src)
 				zoneA = A.zone
 
-		//world << "valid."
+		//to_world("valid.")
 		return
 
 	else if(b_is_space)
-		//world << "Invalid B."
+		//to_world("Invalid B.")
 		erase()
 		return
 
 	if(A.zone == B.zone)
-		//world << "A == B"
+		//to_world("A == B")
 		erase()
 		return
 
 	if(A.zone != zoneA || (zoneB && (B.zone != zoneB)))
-		//world << "Zones changed, \..."
+		//to_world("Zones changed, \...")
 		if(A.zone && B.zone)
 			edge.remove_connection(src)
 			edge = global.CTair_system.get_edge(A.zone, B.zone)
@@ -156,8 +156,8 @@ Class Procs:
 			zoneA = A.zone
 			zoneB = B.zone
 		else
-			//world << "erased."
+			//to_world("erased.")
 			erase()
 			return
 
-	//world << "valid."
+	//to_world("valid.")

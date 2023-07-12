@@ -12,7 +12,7 @@
 	if(src.holder.rank == "Game Admin")
 		Debug = !Debug
 
-		world << "Debugging [Debug ? "On" : "Off"]"
+		to_world("Debugging [Debug ? "On" : "Off"]")
 	else
 		alert("Coders only baby")
 		return
@@ -155,14 +155,14 @@ Doing this because FindTurfs() isn't even used
 
 	for(var/turf/T in range(6))
 
-		//world << "Turf [T] at ([T.x],[T.y])"
+		//to_world("Turf [T] at ([T.x],[T.y])")
 
 		for(var/obj/machinery/M in T)
 			//world <<" Mach [M] with pdir=[M.p_dir]"
 
 			if(M && M.p_dir)
 
-				//world << "Accepted"
+				//to_world("Accepted")
 				var/obj/effect/mark/O = locate(/obj/effect/mark/, T)
 
 				if(!O)
@@ -192,7 +192,7 @@ Doing this because FindTurfs() isn't even used
 	if(Debug)
 		for(var/turf/T in range(6))
 
-			//world << "Turf [T] at ([T.x],[T.y])"
+			//to_world("Turf [T] at ([T.x],[T.y])")
 
 			var/obj/effect/mark/O = locate(/obj/effect/mark/, T)
 
@@ -210,7 +210,7 @@ Doing this because FindTurfs() isn't even used
 
 
 					var/obj/structure/cable/C = M
-					//world << "Accepted"
+					//to_world("Accepted")
 
 					O.overlays += numbericon("[C.netnum]  " ,  marked)
 
@@ -235,7 +235,7 @@ Doing this because FindTurfs() isn't even used
 
 		for(var/turf/T in range(6))
 
-			//world << "Turf [T] at ([T.x],[T.y])"
+			//to_world("Turf [T] at ([T.x],[T.y])")
 
 			var/obj/effect/mark/O = locate(/obj/effect/mark/, T)
 
@@ -323,7 +323,7 @@ Doing this because FindTurfs() isn't even used
 		power_equip = !power_equip
 		power_environ = !power_environ
 
-		world << "Power ([src]) = [power_equip]"
+		to_world("Power ([src]) = [power_equip]")
 
 		power_change()
 	else
@@ -346,7 +346,7 @@ Doing this because FindTurfs() isn't even used
 /mob/verb/Blobcount()
 	set category = "Debug"
 	if(Debug)
-		world << "Blob count: [blobs.len]"
+		to_world("Blob count: [blobs.len]")
 	else
 		alert("Debugging off")
 		return
@@ -356,7 +356,7 @@ Doing this because FindTurfs() isn't even used
 	set category = "Debug"
 	if(Debug)
 		blobs = list()
-		world << "Blob killed."
+		to_world("Blob killed.")
 	else
 		alert("Debugging off")
 		return
@@ -364,8 +364,8 @@ Doing this because FindTurfs() isn't even used
 /mob/verb/Blobmode()
 	set category = "Debug"
 	if(Debug)
-		world << "Event=[ticker.event]"
-		world << "Time =[(ticker.event_time - world.realtime)/10]s"
+		to_world("Event=[ticker.event]")
+		to_world("Time =[(ticker.event_time - world.realtime)/10]s")
 	else
 		alert("Debugging off")
 		return
@@ -392,7 +392,7 @@ Doing this because FindTurfs() isn't even used
 	set category = "Debug"
 	if(Debug)
 		for(var/obj/machinery/power/apc/APC in world)
-			world << APC.report()
+			to_world(APC.report())
 	else
 		alert("Debugging off")
 		return
@@ -405,13 +405,13 @@ Doing this because FindTurfs() isn't even used
 		debugobj.debuglist = list( powernets, plines, vote, config, admins, ticker, SS13_airtunnel, sun )
 
 
-		world << "<A href='?src=\ref[debugobj];Vars=1'>Debug</A>"
+		to_world("<A href='?src=\ref[debugobj];Vars=1'>Debug</A>")
 	else
 		alert("Debugging off")
 		return
 	/*for(var/obj/O in plines)
 
-		world << "<A href='?src=\ref[O];Vars=1'>[O.name]</A>"
+		to_world("<A href='?src=\ref[O];Vars=1'>[O.name]</A>")
 	*/
 
 
@@ -424,9 +424,9 @@ Doing this because FindTurfs() isn't even used
 		for(var/obj/machinery/M in world)
 			n++
 			if(! (M in machines) )
-				world << "[M] [M.type]: not in list"
+				to_world("[M] [M.type]: not in list")
 
-		world << "in world: [n]; in list:[machines.len]"
+		to_world("in world: [n]; in list:[machines.len]")
 	else
 		alert("Debugging off")
 		return
@@ -542,7 +542,7 @@ Doing this because FindTurfs() isn't even used
 						P.oldoxy = 755985
 						P.tmpoxy = 755985
 	usr << "\blue Blowing up station ..."
-	world << "[usr.key] has used boom boom boom shake the room"
+	to_world("[usr.key] has used boom boom boom shake the room")
 */
 
 /mob/verb/removeplasma()
@@ -578,7 +578,7 @@ Doing this because FindTurfs() isn't even used
 	if(!src.holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
-	world << "[usr.key] created fire"
+	to_world("[usr.key] created fire")
 	spawn(0)
 		T.poison += 30000000
 		T.firelevel = T.poison
@@ -589,7 +589,7 @@ Doing this because FindTurfs() isn't even used
 	if(!src.holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
-	world << "[usr.key] created CO2"
+	to_world("[usr.key] created CO2")
 	spawn(0)
 		T.co2 += 300000000
 
@@ -599,7 +599,7 @@ Doing this because FindTurfs() isn't even used
 	if(!src.holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
-	world << "[usr.key] created N2O"
+	to_world("[usr.key] created N2O")
 	spawn(0)
 		T.sl_gas += 30000000
 
@@ -609,7 +609,7 @@ Doing this because FindTurfs() isn't even used
 	if(!src.holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
-	world << "[usr.key] created an explosion"
+	to_world("[usr.key] created an explosion")
 	var/obj/item/weapon/tank/plasmatank/pt = new /obj/item/weapon/tank/plasmatank( T )
 	playsound(pt.loc, "explosion", 100, 1,3)
 	playsound(pt.loc, 'sound/effects/explosionfar.ogg', 100, 1,10)

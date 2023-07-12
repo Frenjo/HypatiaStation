@@ -13,7 +13,7 @@
 	global.CTemergency.shuttle_arrived()
 
 /datum/shuttle/ferry/emergency/long_jump(area/departing, area/destination, area/interim, travel_time, direction)
-	//world << "shuttle/ferry/emergency/long_jump: departing=[departing], destination=[destination], interim=[interim], travel_time=[travel_time]"
+	//to_world("shuttle/ferry/emergency/long_jump: departing=[departing], destination=[destination], interim=[interim], travel_time=[travel_time]")
 	if(!location)
 		travel_time = SHUTTLE_TRANSIT_DURATION_RETURN
 	else

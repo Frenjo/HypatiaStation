@@ -233,7 +233,7 @@ GLOBAL_GLOBL_INIT(chicken_count, 0)
 			user.drop_item()
 			qdel(O)
 			eggsleft += rand(1, 4)
-			//world << eggsleft
+			//to_world(eggsleft)
 		else
 			user << "\blue [name] doesn't seem hungry!"
 	else

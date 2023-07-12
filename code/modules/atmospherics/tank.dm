@@ -43,7 +43,7 @@
 /*			if(!node1)
 		parent.mingle_with_turf(loc, 200)
 		if(!nodealert)
-			//world << "Missing node from [src] at [src.x],[src.y],[src.z]"
+			//to_world("Missing node from [src] at [src.x],[src.y],[src.z]")
 			nodealert = 1
 	else if (nodealert)
 		nodealert = 0

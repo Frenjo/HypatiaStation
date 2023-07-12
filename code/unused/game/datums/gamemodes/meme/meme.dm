@@ -37,8 +37,8 @@
 	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 
 /datum/game_mode/meme/announce()
-	world << "<B>The current game mode is - Meme!</B>"
-	world << "<B>An unknown creature has infested the mind of a crew member. Find and destroy it by any means necessary.</B>"
+	to_world("<B>The current game mode is - Meme!</B>")
+	to_world("<B>An unknown creature has infested the mind of a crew member. Find and destroy it by any means necessary.</B>")
 
 /datum/game_mode/meme/can_start()
 	if(!..())
@@ -154,17 +154,17 @@
 		var/memewin = 1
 		var/attuned = 0
 		if((meme.current) && istype(meme.current,/mob/living/parasite/meme))
-			world << "<B>The meme was [meme.current.key].</B>"
-			world << "<B>The last host was [meme.current:host.key].</B>"
-			world << "<B>Hosts attuned: [attuned]</B>"
+			to_world("<B>The meme was [meme.current.key].</B>")
+			to_world("<B>The last host was [meme.current:host.key].</B>")
+			to_world("<B>Hosts attuned: [attuned]</B>")
 
 			var/count = 1
 			for(var/datum/objective/objective in meme.objectives)
 				if(objective.check_completion())
-					world << "<B>Objective #[count]</B>: [objective.explanation_text] \green <B>Success</B>"
+					to_world("<B>Objective #[count]</B>: [objective.explanation_text] \green <B>Success</B>")
 					feedback_add_details("meme_objective","[objective.type]|SUCCESS")
 				else
-					world << "<B>Objective #[count]</B>: [objective.explanation_text] \red Failed"
+					to_world("<B>Objective #[count]</B>: [objective.explanation_text] \red Failed")
 					feedback_add_details("meme_objective","[objective.type]|FAIL")
 					memewin = 0
 				count++
@@ -173,9 +173,9 @@
 			memewin = 0
 
 		if(memewin)
-			world << "<B>The meme was successful!<B>"
+			to_world("<B>The meme was successful!<B>")
 			feedback_add_details("meme_success","SUCCESS")
 		else
-			world << "<B>The meme has failed!<B>"
+			to_world("<B>The meme has failed!<B>")
 			feedback_add_details("meme_success","FAIL")
 	return 1

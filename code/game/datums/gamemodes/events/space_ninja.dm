@@ -935,7 +935,7 @@ mob/verb/remove_object_panel()
 	set name = "Get Direction to Target"
 	set category = "Ninja Debug"
 
-	world << "DIR: [get_dir_to(src.loc,M.loc)]"
+	to_world("DIR: [get_dir_to(src.loc,M.loc)]")
 	return
 //
 /mob/verb/kill_self_debug()

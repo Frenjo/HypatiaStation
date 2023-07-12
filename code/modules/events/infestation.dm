@@ -58,13 +58,13 @@
 			spawn_area_type = /area/assembly/assembly_line
 			locstring = "the unused assembly line"
 
-	//world << "looking for [spawn_area_type]"
+	//to_world("looking for [spawn_area_type]")
 	for(var/areapath in typesof(spawn_area_type))
-		//world << "	checking [areapath]"
+		//to_world("	checking [areapath]")
 		var/area/A = locate(areapath)
-		//world << "	A: [A], contents.len: [length(A.contents)]"
+		//to_world("	A: [A], contents.len: [length(A.contents)]")
 		//for(var/area/B in A.related)
-			//world << "	B: [B], contents.len: [length(B.contents)]"
+			//to_world("	B: [B], contents.len: [length(B.contents)]")
 		//	for(var/turf/simulated/floor/F in B.contents)
 		//		if(!length(F.contents))
 		//			turfs += F

@@ -66,7 +66,7 @@
 	deflate(1)
 
 /obj/structure/inflatable/meteorhit()
-	//world << "glass at [x],[y],[z] Mhit"
+	//to_world("glass at [x],[y],[z] Mhit")
 	deflate(1)
 
 /obj/structure/inflatable/attack_paw(mob/user as mob)

@@ -229,7 +229,7 @@
 		if(!istype(src.loc,/obj/item/device/transfer_valve))
 			message_admins("Explosive tank rupture! last key to touch the tank was [src.last_fingerprints].")
 			log_game("Explosive tank rupture! last key to touch the tank was [src.last_fingerprints].")
-		//world << "\blue[x],[y] tank is exploding: [pressure] kPa"
+		//to_world("\blue[x],[y] tank is exploding: [pressure] kPa")
 		//Give the gas a chance to build up more pressure through reacting
 		air_contents.react()
 		air_contents.react()
@@ -239,13 +239,13 @@
 		range = min(range, GLOBL.max_explosion_range)		// was 8 - - - Changed to a configurable define -- TLE
 		var/turf/epicenter = get_turf(loc)
 
-		//world << "\blue Exploding Pressure: [pressure] kPa, intensity: [range]"
+		//to_world("\blue Exploding Pressure: [pressure] kPa, intensity: [range]")
 
 		explosion(epicenter, round(range*0.25), round(range*0.5), round(range), round(range*1.5))
 		qdel(src)
 
 	else if(pressure > TANK_RUPTURE_PRESSURE)
-		//world << "\blue[x],[y] tank is rupturing: [pressure] kPa, integrity [integrity]"
+		//to_world("\blue[x],[y] tank is rupturing: [pressure] kPa, integrity [integrity]")
 		if(integrity <= 0)
 			var/turf/simulated/T = get_turf(src)
 			if(!T)
@@ -257,7 +257,7 @@
 			integrity--
 
 	else if(pressure > TANK_LEAK_PRESSURE)
-		//world << "\blue[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]"
+		//to_world("\blue[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]")
 		if(integrity <= 0)
 			var/turf/simulated/T = get_turf(src)
 			if(!T)

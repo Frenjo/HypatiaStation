@@ -199,7 +199,7 @@ Holographic project of everything else.
 		flat_icon.AddAlphaMask(alpha_mask)//Finally, let's mix in a distortion effect.
 		hologram.icon = flat_icon
 
-		world << "Your icon should appear now."
+		to_world("Your icon should appear now.")
 	return
 */
 

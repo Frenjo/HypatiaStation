@@ -40,7 +40,7 @@
 			if(..())
 				return
 
-			//world << "[command_list["command"]]"
+			//to_world("[command_list["command"]]")
 			return
 
 		return_text()

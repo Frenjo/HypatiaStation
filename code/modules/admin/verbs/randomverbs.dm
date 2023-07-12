@@ -77,7 +77,7 @@
 
 	if (!msg)
 		return
-	world << "[msg]"
+	to_world("[msg]")
 	log_admin("GlobalNarrate: [key_name(usr)] : [msg]")
 	message_admins("\blue \bold GlobalNarrate: [key_name_admin(usr)] : [msg]<BR>", 1)
 	feedback_add_details("admin_verb","GLN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -561,7 +561,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if("Yes")
 			command_alert(input, customname);
 		if("No")
-			world << "\red New NanoTrasen Update available at all communication consoles."
+			to_world("\red New NanoTrasen Update available at all communication consoles.")
 
 	world << sound('sound/AI/commandreport.ogg')
 	log_admin("[key_name(src)] has created a command report: [input]")
@@ -890,7 +890,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins("Admin [key_name_admin(usr)] has forced the players to have random appearances.", 1)
 
 	if(notifyplayers == "Yes")
-		world << "\blue <b>Admin [usr.key] has forced the players to have completely random identities!"
+		to_world("\blue <b>Admin [usr.key] has forced the players to have completely random identities!")
 
 	usr << "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>."
 

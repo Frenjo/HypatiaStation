@@ -212,10 +212,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(client.statpanel == "Status")
 		stat(null, "Station Time: [worldtime2text()]")
 		if(isnotnull(global.CTgame_ticker?.mode))
-			//world << "DEBUG: ticker not null"
+			//to_world("DEBUG: ticker not null")
 			if(IS_GAME_MODE(/datum/game_mode/malfunction))
 				var/datum/game_mode/malfunction/malf = global.CTgame_ticker.mode
-				//world << "DEBUG: malf mode ticker test"
+				//to_world("DEBUG: malf mode ticker test")
 				if(malf.malf_mode_declared)
 					stat(null, "Time left: [max(malf.AI_win_timeleft / (malf.apcs / 3), 0)]")
 		if(isnotnull(global.CTemergency))

@@ -12,22 +12,22 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 
 // This proc has some procs that should be extracted from it. I believe we can develop some helper procs from it - Rockdtben
 /mob/proc/contract_disease(datum/disease/virus, skip_this = 0, force_species_check = 1, spread_type = -5)
-	//world << "Contract_disease called by [src] with virus [virus]"
+	//to_world("Contract_disease called by [src] with virus [virus]")
 	if(stat >= DEAD)
-		//world << "He's dead jim."
+		//to_world("He's dead jim.")
 		return
 	if(istype(virus, /datum/disease/advance))
-		//world << "It's an advance virus."
+		//to_world("It's an advance virus.")
 		var/datum/disease/advance/A = virus
 		if(A.GetDiseaseID() in resistances)
-			//world << "It resisted us!"
+			//to_world("It resisted us!")
 			return
 		if(count_by_type(viruses, /datum/disease/advance) >= 3)
 			return
 
 	else
 		if(src.resistances.Find(virus.type))
-			//world << "Normal virus and resisted"
+			//to_world("Normal virus and resisted")
 			return
 
 
@@ -46,7 +46,7 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 			return
 
 	if(skip_this == 1)
-		//world << "infectin"
+		//to_world("infectin")
 		//if(src.virus)				< -- this used to replace the current disease. Not anymore!
 			//src.virus.cure(0)
 		var/datum/disease/v = new virus.type(1, virus, 0)
@@ -57,7 +57,7 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 		if(v.can_carry && prob(5))
 			v.carrier = 1
 		return
-	//world << "Not skipping."
+	//to_world("Not skipping.")
 	//if(src.virus) //
 		//return //
 
@@ -77,7 +77,7 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 */
 	if(prob(15/virus.permeability_mod))
 		return //the power of immunity compels this disease! but then you forgot resistances
-	//world << "past prob()"
+	//to_world("past prob()")
 	var/obj/item/clothing/Cl = null
 	var/passed = 1
 
@@ -152,7 +152,7 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 					Cl = H.shoes
 					passed = prob(Cl.permeability_coefficient*100)
 					//
-					world << "Shoes pass [passed]"
+					to_world("Shoes pass [passed]")
 			*/		//
 	else if(ismonkey(src))
 		var/mob/living/carbon/monkey/M = src
@@ -161,13 +161,13 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 				if(M.wear_mask && isobj(M.wear_mask))
 					Cl = M.wear_mask
 					passed = prob((Cl.permeability_coefficient * 100) - 1)
-					//world << "Mask pass [passed]"
+					//to_world("Mask pass [passed]")
 
 	if(!passed && spread_type == AIRBORNE && !internals)
 		passed = (prob((50 * virus.permeability_mod) - 1))
 
 	if(passed)
-		//world << "Infection in the mob [src]. YAY"
+		//to_world("Infection in the mob [src]. YAY")
 
 
 /*

@@ -509,7 +509,7 @@
 						qdel(src)
 						M = H.monkeyize()
 						src = M.mind
-						//world << "DEBUG: \"healthy\": M=[M], M.mind=[M.mind], src=[src]!"
+						//to_world("DEBUG: \"healthy\": M=[M], M.mind=[M.mind], src=[src]!")
 					else if(istype(M) && length(M.viruses))
 						for(var/datum/disease/D in M.viruses)
 							D.cure(0)

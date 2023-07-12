@@ -42,7 +42,7 @@
 		var/perspective = input("Select a perspective type.",
                       "Client perspective",
                       occupant.client.perspective) in list(MOB_PERSPECTIVE,EYE_PERSPECTIVE)
-		world << "[perspective]"
+		to_world("[perspective]")
 		occupant.client.perspective = perspective
 		return
 
@@ -54,7 +54,7 @@
 			occupant.client.eye = src
 		else
 			occupant.client.eye = occupant
-		world << "[occupant.client.eye]"
+		to_world("[occupant.client.eye]")
 		return
 */
 

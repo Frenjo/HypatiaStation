@@ -74,24 +74,24 @@ var/const/max_assembly_amount = 300
 			usr << "\red \icon[src] there are no more compressed matter units in [src]."
 
 	if( href_list["activate"] )
-		//world << "\blue New fuel rod assembly"
+		//to_world("\blue New fuel rod assembly")
 		var/obj/item/weapon/fuel_assembly/F = new(src)
 		var/fail = 0
 		var/old_matter = compressed_matter
 		for(var/reagent in new_assembly_quantities)
 			var/req_matter = round(new_assembly_quantities[reagent] / 30)
-			//world << "[reagent] matter: [req_matter]/[compressed_matter]"
+			//to_world("[reagent] matter: [req_matter]/[compressed_matter]")
 			if(req_matter <= compressed_matter)
 				F.rod_quantities[reagent] = new_assembly_quantities[reagent]
 				compressed_matter -= req_matter
 				if(compressed_matter < 1)
 					compressed_matter = 0
 			else
-				/*world << "bad reagent: [reagent], [req_matter > compressed_matter ? "req_matter > compressed_matter"\
-				 : (req_matter < compressed_matter ? "req_matter < compressed_matter" : "req_matter == compressed_matter")]"*/
+				/*to_world("bad reagent: [reagent], [req_matter > compressed_matter ? "req_matter > compressed_matter"\
+				 : (req_matter < compressed_matter ? "req_matter < compressed_matter" : "req_matter == compressed_matter")]")*/
 				fail = 1
 				break
-			//world << "\blue	[reagent]: new_assembly_quantities[reagent]<br>"
+			//to_world("\blue	[reagent]: new_assembly_quantities[reagent]<br>")
 		if(fail)
 			qdel(F)
 			compressed_matter = old_matter

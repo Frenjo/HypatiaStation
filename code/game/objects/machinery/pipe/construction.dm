@@ -444,11 +444,11 @@ Buildable meters
 			V.atmos_initialise()
 			V.build_network()
 			if(V.node1)
-//				world << "[V.node1.name] is connected to valve, forcing it to update its nodes."
+				//to_world("[V.node1.name] is connected to valve, forcing it to update its nodes.")
 				V.node1.atmos_initialise()
 				V.node1.build_network()
 			if(V.node2)
-//				world << "[V.node2.name] is connected to valve, forcing it to update its nodes."
+				//to_world("[V.node2.name] is connected to valve, forcing it to update its nodes.")
 				V.node2.atmos_initialise()
 				V.node2.build_network()
 

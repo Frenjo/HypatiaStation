@@ -629,12 +629,12 @@
 //*****RM
 /obj/item/assembly/m_i_ptank/Bump(atom/O)
 	spawn(0)
-		//world << "miptank bumped into [O]"
+		//to_world("miptank bumped into [O]")
 		if(src.part1.secured)
-			//world << "sending signal"
+			//to_world("sending signal")
 			receive_signal()
 		else
-			//world << "not active"
+			//to_world("not active")
 	..()
 
 /obj/item/assembly/m_i_ptank/proc/prox_check()
@@ -642,7 +642,7 @@
 		return
 	for(var/atom/A in view(1, src.loc))
 		if(A != src && !isspace(A) && !isarea(A))
-			//world << "[A]:[A.type] was sensed"
+			//to_world("[A]:[A.type] was sensed")
 			src.part1.sense()
 			break
 
@@ -720,13 +720,13 @@
 	return
 
 /obj/item/assembly/m_i_ptank/receive_signal()
-	//world << "miptank [src] got signal"
+	//to_world("miptank [src] got signal")
 	for(var/mob/O in hearers(1, null))
 		O.show_message(text("\icon[] *beep* *beep*", src), 3, "*beep* *beep*", 2)
 		//Foreach goto(19)
 
 	if ((src.status && prob(90)))
-		//world << "sent ignite() to [src.part3]"
+		//to_world("sent ignite() to [src.part3]")
 		src.part3.ignite()
 	else
 		if(!src.status)
@@ -810,12 +810,12 @@
 	return
 
 /obj/item/assembly/t_i_ptank/receive_signal()
-	//world << "tiptank [src] got signal"
+	//to_world("tiptank [src] got signal")
 	for(var/mob/O in hearers(1, null))
 		O.show_message(text("\icon[] *beep* *beep*", src), 3, "*beep* *beep*", 2)
 		//Foreach goto(19)
 	if ((src.status && prob(90)))
-		//world << "sent ignite() to [src.part3]"
+		//to_world("sent ignite() to [src.part3]")
 		src.part3.ignite()
 	else
 		if(!src.status)
@@ -935,12 +935,12 @@
 	return
 
 /obj/item/assembly/r_i_ptank/receive_signal()
-	//world << "riptank [src] got signal"
+	//to_world("riptank [src] got signal")
 	for(var/mob/O in hearers(1, null))
 		O.show_message(text("\icon[] *beep* *beep*", src), 3, "*beep* *beep*", 2)
 		//Foreach goto(19)
 	if ((src.status && prob(90)))
-		//world << "sent ignite() to [src.part3]"
+		//to_world("sent ignite() to [src.part3]")
 		src.part3.ignite()
 	else
 		if(!src.status)

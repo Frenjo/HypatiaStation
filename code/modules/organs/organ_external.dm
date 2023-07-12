@@ -387,7 +387,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 			//having an infection raises your body temperature
 			var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 1)* min(germ_level / INFECTION_LEVEL_THREE, 1) + owner.species.body_temperature
 			if(owner.bodytemperature < fever_temperature)
-				//world << "fever: [owner.bodytemperature] < [fever_temperature], raising temperature."
+				//to_world("fever: [owner.bodytemperature] < [fever_temperature], raising temperature.")
 				owner.bodytemperature++
 
 			if(prob(round(germ_level / 10)))

@@ -15,7 +15,7 @@
 		hostpda = loc.loc
 
 /obj/item/radio/integrated/proc/post_signal(freq, key, value, key2, value2, key3, value3, s_filter)
-	//world << "Post: [freq]: [key]=[value], [key2]=[value2]"
+	//to_world("Post: [freq]: [key]=[value], [key2]=[value2]")
 	var/datum/radio_frequency/frequency = global.CTradio.return_frequency(freq)
 
 	if(!frequency)
@@ -60,9 +60,9 @@
 //	var/obj/item/device/pda/P = src.loc
 
 	/*
-	world << "recvd:[P] : [signal.source]"
+	to_world("recvd:[P] : [signal.source]")
 	for(var/d in signal.data)
-		world << "- [d] = [signal.data[d]]"
+		to_world("- [d] = [signal.data[d]]")
 	*/
 	if(signal.data["type"] == "secbot")
 		if(!botlist)
@@ -127,9 +127,9 @@
 //	var/obj/item/device/pda/P = src.loc
 
 	/*
-	world << "recvd:[P] : [signal.source]"
+	to_world("recvd:[P] : [signal.source]")
 	for(var/d in signal.data)
-		world << "- [d] = [signal.data[d]]"
+		to_world("- [d] = [signal.data[d]]")
 	*/
 	if(signal.data["type"] == "mulebot")
 		if(!botlist)

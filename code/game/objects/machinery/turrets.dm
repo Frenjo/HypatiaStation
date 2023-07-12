@@ -202,7 +202,7 @@
 		cur_target = get_new_target() //get new target
 
 	if(cur_target) //if it's found, proceed
-//		world << "[cur_target]"
+		//to_world("[cur_target]")
 		if(!isPopping())
 			if(isDown())
 				popUp()

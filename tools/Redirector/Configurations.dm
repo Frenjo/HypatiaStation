@@ -37,7 +37,7 @@ proc/gen_configs()
 
 				else if(admin_gen)
 					adminfiles.Add(line)
-					world << line
+					to_world(line)
 
 
 	// Generate the list of admins now
@@ -49,5 +49,3 @@ proc/gen_configs()
 
 			var/akey = copytext(line, 1, findtext(line, " "))
 			adminkeys.Add(akey)
-
-

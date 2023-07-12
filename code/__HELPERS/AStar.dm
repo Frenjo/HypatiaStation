@@ -122,7 +122,7 @@ length to avoid portals or something i guess?? Not that they're counted right no
 	return a.f - b.f
 
 /proc/AStar(start, end, adjacent, dist, maxnodes, maxnodedepth = 30, mintargetdist, minnodedist, id = null, turf/exclude = null)
-//	world << "A*: [start] [end] [adjacent] [dist] [maxnodes] [maxnodedepth] [mintargetdist], [minnodedist] [id]"
+	//to_world("A*: [start] [end] [adjacent] [dist] [maxnodes] [maxnodedepth] [mintargetdist], [minnodedist] [id]")
 	var/PriorityQueue/open = new /PriorityQueue(/proc/PathWeightCompare)
 	var/list/closed = list()
 	var/list/path = null

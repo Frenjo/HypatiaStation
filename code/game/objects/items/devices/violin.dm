@@ -14,7 +14,7 @@
 	var/repeat = 0
 
 /obj/item/device/violin/proc/playnote(note as text)
-	//world << "Note: [note]"
+	//to_world("Note: [note]")
 	var/soundfile
 	/*BYOND loads resource files at compile time if they are ''. This means you can't really manipulate them dynamically.
 	Tried doing it dynamically at first but its more trouble than its worth. Would have saved many lines tho.*/
@@ -201,18 +201,18 @@
 			cur_acc[i] = "n"
 
 		for(var/line in song.lines)
-			//world << line
+			//to_world(line)
 			for(var/beat in splittext(lowertext(line), ","))
-				//world << "beat: [beat]"
+				//to_world("beat: [beat]")
 				var/list/notes = splittext(beat, "/")
 				for(var/note in splittext(notes[1], "-"))
-					//world << "note: [note]"
+					//to_world("note: [note]")
 					if(!playing || !isliving(loc))//If the violin is playing, or isn't held by a person
 						playing = 0
 						return
 					if(length(note) == 0)
 						continue
-					//world << "Parse: [copytext(note,1,2)]"
+					//to_world("Parse: [copytext(note,1,2)]")
 					var/cur_note = text2ascii(note) - 96
 					if(cur_note < 1 || cur_note > 7)
 						continue

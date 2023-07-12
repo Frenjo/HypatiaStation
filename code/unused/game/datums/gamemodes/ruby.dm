@@ -51,15 +51,15 @@
 /datum/game_mode/ruby/declare_completion()
 	if(abominationwins)
 		feedback_set_details("round_end_result","win - abomination win")
-		world << "<B>The Abomination has murdered the station and sacrificed himself to Cjopaze!</B> (played by [winnerkey])"
+		to_world("<B>The Abomination has murdered the station and sacrificed himself to Cjopaze!</B> (played by [winnerkey])")
 	else
 		feedback_set_details("round_end_result","loss - abomination killed")
-		world << "<B>The Abomination has been stopped and Cjopaze's influence resisted! The station lives another day,</B>"
+		to_world("<B>The Abomination has been stopped and Cjopaze's influence resisted! The station lives another day,</B>")
 		if(killed.len > 0)
-			world << "Those who were sacrificed shall be remembered: "
+			to_world("Those who were sacrificed shall be remembered: ")
 			for(var/mob/M in killed)
 				if(M)
-					world << "[M.real_name]"
+					to_world("[M.real_name]")
 	/*
 	for(var/datum/mind/traitor in traitors)
 		var/traitorwin = 1
@@ -70,20 +70,20 @@
 		else
 			traitor_name = "[traitor.key] (character destroyed)"
 
-		world << "<B>The syndicate traitor was [traitor_name]</B>"
+		to_world("<B>The syndicate traitor was [traitor_name]</B>")
 		var/count = 1
 		for(var/datum/objective/objective in traitor.objectives)
 			if(objective.check_completion())
-				world << "<B>Objective #[count]</B>: [objective.explanation_text] \green <B>Success</B>"
+				to_world("<B>Objective #[count]</B>: [objective.explanation_text] \green <B>Success</B>")
 			else
-				world << "<B>Objective #[count]</B>: [objective.explanation_text] \red Failed"
+				to_world("<B>Objective #[count]</B>: [objective.explanation_text] \red Failed")
 				traitorwin = 0
 			count++
 
 		if(traitorwin)
-			world << "<B>The traitor was successful!<B>"
+			to_world("<B>The traitor was successful!<B>")
 		else
-			world << "<B>The traitor has failed!<B>"
+			to_world("<B>The traitor has failed!<B>")
 	*/
 	..()
 	return 1

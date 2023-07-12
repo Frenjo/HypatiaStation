@@ -30,10 +30,10 @@
 	else if(istype(Proj, /obj/item/projectile/energy/florayield))
 		if(planted && myseed.yield == 0)//Oh god don't divide by zero you'll doom us all.
 			myseed.yield += 1
-			//world << "Yield increased by 1, from 0, to a total of [myseed.yield]"
+			//to_world("Yield increased by 1, from 0, to a total of [myseed.yield]")
 		else if(planted && prob(1 / (myseed.yield * myseed.yield) * 100))//This formula gives you diminishing returns based on yield. 100% with 1 yield, decreasing to 25%, 11%, 6, 4, 2...
 			myseed.yield += 1
-			//world << "Yield increased by 1, to a total of [myseed.yield]"
+			//to_world("Yield increased by 1, to a total of [myseed.yield]")
 	else
 		..()
 		return
