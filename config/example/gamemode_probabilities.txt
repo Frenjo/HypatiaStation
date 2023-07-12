@@ -1,0 +1,31 @@
+### GAMEMODE PROBABILITIES ###
+
+## The probability that "extended" will be chosen in the "secret" and "random" rotations.
+## The default probability is 1. Increase to make that mode more likely to be picked or set to 0 to disable.
+PROBABILITY_EXTENDED 1
+
+## The probability that "malfunction" will be chosen in the "secret" and "random" rotations.
+## The default probability is 1. Increase to make that mode more likely to be picked or set to 0 to disable.
+PROBABILITY_MALFUNCTION 1
+
+## The probability that "nuclear" will be chosen in the "secret" and "random" rotations.
+## The default probability is 1. Increase to make that mode more likely to be picked or set to 0 to disable.
+PROBABILITY_NUCLEAR 1
+
+## The probability that "wizard" will be chosen in the "secret" and "random" rotations.
+## The default probability is 1. Increase to make that mode more likely to be picked or set to 0 to disable.
+PROBABILITY_WIZARD 1
+
+## The probability that "changeling" will be chosen in the "secret" and "random" rotations.
+## The default probability is 1. Increase to make that mode more likely to be picked or set to 0 to disable.
+PROBABILITY_CHANGELING 1
+
+## The probability that "cult" will be chosen in the "secret" and "random" rotations.
+## The default probability is 1. Increase to make that mode more likely to be picked or set to 0 to disable.
+PROBABILITY_CULT 1
+
+## The probability that "extend-a-traitormongous" will be chosen in the "secret" and "random" rotations.
+## The default probability is 1. Increase to make that mode more likely to be picked or set to 0 to disable.
+PROBABILITY_AUTOTRAITOR 6
+
+

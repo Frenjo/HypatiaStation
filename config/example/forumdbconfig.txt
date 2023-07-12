@@ -1,19 +1,26 @@
-# This configuration file is for the forum database, if you need to set up
-# population, death, etc. tracking see 'dbconfig.txt'
-# The login credentials for this will likely differ from those in dbconfig.txt!
+### FORUM MYSQL DATABASE CONFIGURATION ###
 
-# Server the MySQL database can be found at
-# Examples: localhost, 200.135.5.43, www.mysqldb.com, etc.
-ADDRESS localhost
+## Server the MySQL database can be found at.
+## Examples: localhost, 200.135.5.43, www.mysqldb.com, etc.
+FORUM_SQL_ADDRESS localhost
 
-# MySQL server port (default is 3306)
-PORT 3306
+## MySQL server port.
+## Default is 3306.
+FORUM_SQL_PORT 3306
 
-# Database the forum data may be found in
-DATABASE tgstation13
+## Database the forum data may be found in.
+FORUM_SQL_DB tgstation
 
-# Username/Login used to access the database
-LOGIN mylogin
+## Username/Login used to access the database.
+FORUM_SQL_LOGIN mylogin
 
-# Password used to access the database
-PASSWORD mypassword
+## Password used to access the database.
+FORUM_SQL_PASS mypassword
+
+##
+FORUM_ACTIVATED_GROUP 2
+
+##
+FORUM_AUTHENTICATED_GROUP 10
+
+

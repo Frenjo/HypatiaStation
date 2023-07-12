@@ -87,7 +87,7 @@ CONTROLLER_DEF(game_ticker)
 		hide_mode = TRUE
 	var/list/datum/game_mode/runnable_modes
 	if(master_mode == "random" || master_mode == "secret")
-		runnable_modes = CONFIG_GET(get_runnable_modes())
+		runnable_modes = CONFIG_GET_OLD(get_runnable_modes())
 		if(!length(runnable_modes))
 			current_state = GAME_STATE_PREGAME
 			to_world("<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby.")

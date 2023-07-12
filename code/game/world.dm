@@ -25,7 +25,8 @@
 
 	if(isnotnull(CONFIG_GET(server_name)) && CONFIG_GET(server_suffix) && world.port > 0)
 		// dumb and hardcoded but I don't care~
-		CONFIG_GET(server_name) += " #[(world.port % 1000) / 100]"
+		var/list/new_name = list(CONFIG_GET(server_name), " #[(world.port % 1000) / 100]")
+		CONFIG_SET(server_name, jointext(new_name, ""))
 
 	if(CONFIG_GET(log_runtime))
 		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")

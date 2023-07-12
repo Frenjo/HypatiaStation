@@ -1,26 +1,32 @@
-# MySQL Connection Configuration
+### MYSQL CONNECTION CONFIGURATION ###
 
-# Server the MySQL database can be found at
-# Examples: localhost, 200.135.5.43, www.mysqldb.com, etc.
-ADDRESS localhost
+## Server the MySQL database can be found at.
+## Examples: localhost, 200.135.5.43, www.mysqldb.com, etc.
+SQL_ADDRESS localhost
 
-# MySQL server port (default is 3306)
-PORT 3306
+## MySQL server port.
+## Default is 3306.
+SQL_PORT 3306
 
-# Database the population, death, karma, etc. tables may be found in
-DATABASE tgstation
+## Database the population, death, karma, etc. tables may be found in.
+SQL_DB tgstation
 
-# Username/Login used to access the database
-LOGIN mylogin
+## Username/Login used to access the database.
+SQL_LOGIN mylogin
 
-# Password used to access the database
-PASSWORD mypassword
+## Password used to access the database.
+SQL_PASS mypassword
 
-# The following information is for feedback tracking via the blackbox server
-FEEDBACK_DATABASE test
-FEEDBACK_LOGIN mylogin
-FEEDBACK_PASSWORD mypassword
+### MYSQL FEEDBACK CONFIGURATION ###
 
-# Track population and death statistics
-# Comment this out to disable
-#ENABLE_STAT_TRACKING
+SQL_FDBK_DB test
+
+SQL_FDBK_LOGIN mylogin
+
+## Password used to access the feedback database.
+SQL_FDBK_PASS mypassword
+
+## Should we log deaths, population stats, etc?
+SQL_LOGGING 0
+
+

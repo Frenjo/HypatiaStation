@@ -114,10 +114,10 @@
 				else
 					attack = u_attack
 					break
-			
+
 			if(isnull(attack))
 				return 0
-			
+
 			var/attack_verb = pick(attack.attack_verb)
 
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>[attack_verb]ed [src.name] ([src.ckey])</font>")

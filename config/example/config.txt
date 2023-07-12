@@ -1,114 +1,125 @@
 ### SERVER INFORMATION ###
 
-## Server name: This appears at the top of the screen in-game. In this case it will read "tgstation: station_name" where station_name is the randomly generated name of the station for the round. Remove the # infront of SERVERNAME and replace 'tgstation' with the name of your choice
-#SERVERNAME spacestation13
+## Server name, used for world name / status.
+## This appears at the top of the screen in-game.
+## By default, it will read "Space Station 13 - Hypatia: current_map.station_name" where station_name is the name specified by the currently active map datum.
+## If not left blank, any value set here will override the default with the name of your choice.
+SERVER_NAME
 
-## Uncomment to generate a numeric suffix for the server based on the port number.
-#SERVERSUFFIX
+## If set, generates a numeric suffix for the server's name based on the server's port.
+SERVER_SUFFIX 0
 
-## Set a hosted by name for unix platforms
-HOSTEDBY yournamehere
+## Sets a hosted by name for unix platforms.
+HOSTEDBY
 
 ### TICK ###
-## Defines the ticklag for the world.  0.9 is the normal one, 0.5 is smoother.
+
+## Defines the ticklag for the world. 0.9 is the normal one, 0.5 is smoother.
 TICKLAG 0.9
 
-## Defines if Tick Compensation is used.  It results in a minor slowdown of movement of all mobs, but attempts to result in a level movement speed across all ticks.  Recommended if tickrate is lowered.
+## Defines if Tick Compensation is used.
+## It results in a minor slowdown of movement of all mobs, but attempts to result in a level movement speed across all ticks.
+## Recommended if the tickrate is lowered.
 TICKCOMP 0
 
-### URLs ###
+### URLS ###
 
-## Set a server location for world reboot. Don't include the byond://, just give the address and port.
-#SERVER server.net:port
+## Sets a server location for world reboot. Don't include the byond://, just give the address and port.
+SERVER
 
-## Wiki address
-#WIKIURL http://example.com
+## Wiki address.
+WIKIURL
 
-## Forum address
-#FORUMURL http://example.com
+## Forum address.
+FORUMURL
 
-## Donation address
-#DONATEURL http://example.com
+## Donation address.
+DONATEURL
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-#BANAPPEALS http://example.com
+BANAPPEALS
 
-## Uncomment this if you want to use custom resource URLs instead of preloading the rsc.
-#RESOURCE_URLS http://example.com http://example2.com
+## If you want to use custom resource URLs instead of preloading the rsc, add them here.
+RESOURCE_URLS
 
 ### PYTHON ###
 
-## Path to the python2 executable on the system.  Leave blank for default.
-## Default is "python" on Windows, "/usr/bin/env python2" on UNIX.
-#PYTHON_PATH
+## Path to the python executable. Leave blank for default.
+## Defaults to "python" on windows and "/usr/bin/env python2" on unix.
+PYTHON_PATH
 
-## Uncomment to use the C library nudge instead of the python script.
+## If set, use the C library nudge instead of the python script.
 ## This helps security and stability on Linux, but you need to compile the library first.
-#USE_LIB_NUDGE
+USE_LIB_NUDGE 0
+
+## Where the nudge.py script is located.
+NUDGE_SCRIPT_PATH nudge.py
+
+## Set to enable sending data to the IRC bot.
+USE_IRC_BOT 0
+
+## Host where the IRC bot is hosted.
+## Port 45678 needs to be open.
+IRC_BOT_HOST localhost
+
+## IRC channel to send information to. Leave blank to disable.
+MAIN_IRC #main
+
+## IRC channel to send adminhelps to. Leave blank to disable adminhelps-to-irc.
+ADMIN_IRC #admin
 
 ### IRC ###
-
-## Uncomment to enable sending data to the IRC bot.
-#USE_IRC_BOT
-
-## Host where the IRC bot is hosted.  Port 45678 needs to be open.
-#IRC_BOT_HOST localhost
-
-## IRC channel to send information to.  Leave blank to disable.
-#MAIN_IRC #main
-
-## IRC channel to send adminhelps to.  Leave blank to disable adminhelps-to-irc.
-#ADMIN_IRC #admin
 
 ### LOGGING ###
 
 ## Log OOC channel?
-LOG_OOC
+LOG_OOC 1
 
 ## Log client access (logon/logoff)?
-LOG_ACCESS
+LOG_ACCESS 1
 
 ## Log client say?
-LOG_SAY
+LOG_SAY 1
 
 ## Log admin actions?
-LOG_ADMIN
+LOG_ADMIN 1
 
 ## Log debug output?
-LOG_DEBUG
+LOG_DEBUG 1
 
-## Log game actions (start of round, results, etc.)?
-LOG_GAME
+## Log game actions (start of round, results, etc)?
+LOG_GAME 1
 
 ## Log player votes?
-LOG_VOTE
+LOG_VOTE 1
 
 ## Log client whisper?
-LOG_WHISPER
+LOG_WHISPER 1
 
 ## Log emotes?
-LOG_EMOTE
+LOG_EMOTE 1
 
 ## Log attack messages?
-LOG_ATTACK
+LOG_ATTACK 1
 
-## Log admin chat?
-#LOG_ADMINCHAT
+## Log admin chat messages?
+LOG_ADMINCHAT 0
 
 ## Log admin warning messages?
-#LOG_ADMINWARN ## Also duplicates a bunch of other messages.
+## Also duplicates a bunch of other messages.
+LOG_ADMINWARN 0
 
-## Log pda messages?
-LOG_PDA
+## Log PDA messages?
+LOG_PDA 1
 
 ## Log all Topic() calls (for use by coders in tracking down Topic issues)?
-#LOG_HREFS
+LOG_HREFS 0
 
 ## Log world.log and runtime errors to a file?
-#LOG_RUNTIME
+LOG_RUNTIME 0
 
 ## Log world.log messages?
-#LOG_WORLD_OUTPUT
+LOG_WORLD_OUTPUT 0
 
 ### CHAT ###
 
@@ -123,230 +134,252 @@ DSAY_ALLOWED 1
 
 ### ADMIN ###
 
-## Add a # infront of this if you want to use the SQL based admin system, the legacy system uses admins.txt. You need to set up your database to use the SQL based system.
-ADMIN_LEGACY_SYSTEM
+## Defines whether the server uses the legacy admin system with admins.txt or the SQL system.
+## You need to set up your database to use the SQL based system.
+ADMIN_LEGACY_SYSTEM 1
 
-## Add a # infront of this if you want to use the SQL based banning system. The legacy systems use the files in the data folder. You need to set up your database to use the SQL based system.
-BAN_LEGACY_SYSTEM
+## Defines whether the server uses the legacy banning system with the files in /data or the SQL system.
+## You need to set up your database to use the SQL based system.
+BAN_LEGACY_SYSTEM 1
 
-## Comment this out to stop admins being able to choose their personal ooccolor
-ALLOW_ADMIN_OOCCOLOR
+## Allow admins with relevant permissions to have their own personal OOC colour?
+ALLOW_ADMIN_OOCCOLOR 0
 
-## Comment this out to stop admins being able to jump teleport.
-ALLOW_ADMIN_JUMP
+## Allow admins to jump teleport?
+ALLOW_ADMIN_JUMP 1
 
-## Comment this out to stop admins being able to spawn items.
-ALLOW_ADMIN_SPAWNING
+## Allow admins to spawn items?
+ALLOW_ADMIN_SPAWNING 1
 
-## Comment this out to stop admins being able to revive mobs.
-ALLOW_ADMIN_REV
+## Allow admins to revive mobs?
+ALLOW_ADMIN_REV 1
 
-##Remove the # mark infront of this to forbid admins from posssessing the singularity.
-#FORBID_SINGULO_POSSESSION
+## Set this to forbid admins from posessing the singularity.
+FORBID_SINGULO_POSSESSION 0
 
-## Remove the # to show a popup 'reply to' window to every non-admin that recieves an adminPM.
-## The intention is to make adminPMs more visible. (although I fnd popups annoying so this defaults to off)
-#POPUP_ADMIN_PM
+## If set, adminPMs to non-admins show in a pop-up 'reply' window.
+## The intention is to make adminPMs more visible, although I find popups annoying so this defaults to off.
+POPUP_ADMIN_PM 0
 
-## make ERT's be only called by admins
-#ERT_ADMIN_ONLY
+##
+SIMULTANEOUS_PM_WARNING_TIMEOUT 100
 
-## disconnect players who did nothing during 10 minutes
-#KICK_INACTIVE
+## If set, ERTs can only be called by admins.
+ERT_ADMIN_CALL_ONLY 0
 
-## Uncomment this to ban use of ToR
-#TOR_BAN
+## Force disconnect for inactive players?
+KICK_INACTIVE 0
 
-## Comment this out to disable automuting
-#AUTOMUTE_ON
+## If set, bans the use of ToR.
+TORBAN 0
+
+## If set, enables automuting/spam prevention.
+AUTOMUTE_ON 0
 
 ### GAMEMODE ###
 
-## probablities for game modes chosen in "secret" and "random" modes
-##
-## default probablity is 1, increase to make that mode more likely to be picked
-## set to 0 to disable that mode
-PROBABILITY EXTENDED 1
-PROBABILITY MALFUNCTION 1
-PROBABILITY NUCLEAR 1
-PROBABILITY WIZARD 1
-PROBABILITY CHANGELING 1
-PROBABILITY CULT 1
-PROBABILITY EXTEND-A-TRAITORMONGOUS 6
-
-## Uncomment to allow ghosts to write in blood during Cult rounds.
-ALLOW_CULT_GHOSTWRITER
+## If set, allows ghosts to write in blood during Cult rounds.
+CULT_GHOSTWRITER 1
 
 ## Sets the minimum number of cultists needed for ghosts to write in blood.
-REQ_CULT_GHOSTWRITER 6
+CULT_GHOSTWRITER_REQ_CULTISTS 6
 
-## Remove the # to make rounds which end instantly (Rev, Wizard, Malf) to continue until the shuttle is called or the station is nuked.
+## If set, gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
 ## Malf and Rev will let the shuttle be called when the antags/protags are dead.
-#CONTINUOUS_ROUNDS
+CONTINOUS_ROUNDS 1
 
-## If security is prohibited from being most antagonists
-#PROTECT_ROLES_FROM_ANTAGONIST
+## Set this to make it prohibited for security to be most antagonists.
+PROTECT_ROLES_FROM_ANTAGONIST 0
 
-## if amount of traitors scales or not
-TRAITOR_SCALING
+## If amount of traitors scales based on amount of players.
+TRAITOR_SCALING 1
 
-## if objectives are disabled
-#OBJECTIVES_DISABLED
+## If antagonist objectives are disabled or not.
+OBJECTIVES_DISABLED 0
 
-## Allow ghosts to see antagonist through AntagHUD
-ALLOW_ANTAG_HUD
+## Ghosts can turn on Antag-O-Vision to see a HUD of who is the bad guys this round.
+ANTAG_HUD_ALLOWED 1
 
-## If ghosts use antagHUD they are no longer allowed to join the round.
-ANTAG_HUD_RESTRICTED
+## Ghosts that turn on Antag-O-Vision cannot rejoin the round.
+ANTAG_HUD_RESTRICTED 1
 
-## Hash out to disable random events during the round.
-ALLOW_RANDOM_EVENTS
+## Enables random events mid-round when set.
+ALLOW_RANDOM_EVENTS 1
 
-## Remove the # to allow special 'Easter-egg' events on special holidays such as seasonal holidays and stuff like 'Talk Like a Pirate Day' :3 YAARRR
-ALLOW_HOLIDAYS
+## Whether the holiday system is enabled.
+## Allows special 'Easter-egg' events on special holidays such as seasonal holidays and stuff like 'Talk Like a Pirate Day' :3 YAARRR
+ALLOW_HOLIDAYS 1
+
+## If the holiday system is active, the name of the current holiday.
+HOLIDAY_NAME
 
 ## Whether aliens are allowed.
 ALIENS_ALLOWED 0
 
 ### VOTING ###
 
-## allow players to initiate a restart vote
-ALLOW_VOTE_RESTART
+## Allow players to initiate a restart vote?
+ALLOW_VOTE_RESTART 1
 
-## allow players to initate a mode-change start
-ALLOW_VOTE_MODE
+## Allow players to initiate a mode-change vote?
+ALLOW_VOTE_MODE 1
 
-## prevents dead players from voting or starting votes
-#NO_DEAD_VOTE
+## If set, players' votes default to "No vote". (tbi)
+## Otherwise, default to "No change".
+VOTE_NO_DEFAULT 1
 
-## players' votes default to "No vote" (otherwise,  default to "No change")
-DEFAULT_NO_VOTE
+## If set, prevents dead players from voting or starting votes. (tbi)
+VOTE_NO_DEAD 0
 
-## min delay (deciseconds) between voting sessions (default 10 minutes)
+## Minimum time between voting sessions in deciseconds.
+## Default is 10 minutes.
 VOTE_DELAY 6000
 
-## time period (deciseconds) which voting session will last (default 1 minute)
+## Length of voting periods in deciseconds.
+## Default is 1 minute.
 VOTE_PERIOD 600
 
-## autovote initial delay (deciseconds) before first automatic transfer vote call (default 180 minutes)
+## Length of time, in deciseconds, before the first automatic transfer vote is called.
+## Default is 180 minutes.
 VOTE_AUTOTRANSFER_INITIAL 108000
 
-##autovote delay (deciseconds) before sequential automatic transfer votes are called (default 60 minutes)
+## Length of time, in deciseconds, before sequential automatic transfer votes are called.
+## Default is 60 minutes.
 VOTE_AUTOTRANSFER_INTERVAL 36000
 
-## Time left (seconds) before round start when automatic gamemote vote is called (default 100).
-VOTE_AUTOGAMEMODE_TIMELEFT 100
+## Length of time, in seconds, before round start when the gamemode vote is called.
+## Default is 120, or 2 minutes.
+VOTE_AUTOGAMEMODE_TIMELEFT 120
 
 ### WHITELISTS ###
 
-## Uncomment this to stop people connecting to your server without a registered ckey. (i.e. guest-* are all blocked from connecting)
-GUEST_BAN
+## If set, prevents those without a registered ckey from connecting.
+## IE, guest-* are all blocked from connecting.
+GUESTS_ALLOWED 0
 
-## Set to jobban "Guest-" accounts from Captain, HoS, HoP, CE, RD, CMO, Warden, Security, Detective, and AI positions.
-## Set to 1 to jobban them from those positions, set to 0 to allow them.
+## If set, jobbans "guest-" accounts from Captain, HoS, HoP, CE, RD, CMO, Warden, Security, Detective, and AI positions.
+## Set to 1 to ban, 0 to allow.
 GUEST_JOBBAN 1
 
 ## Set to jobban everyone who's key is not listed in data/whitelist.txt from Captain, HoS, HoP, CE, RD, CMO, Warden, Security, Detective, and AI positions.
-## Uncomment to 1 to jobban, leave commented out to allow these positions for everyone (but see GUEST_JOBBAN above and regular jobbans)
-#USEWHITELIST
+## See GUEST_JOBBAN and regular jobbans for more options.
+USEWHITELIST 0
 
-## Uncomment to restrict non-admins from using humanoid alien races
-USEALIENWHITELIST
+## If set, restricts non-admins from playing humanoid alien races.
+USEALIENWHITELIST 1
 
-## Comment this to unrestrict the number of alien players allowed in the round. The number represents the number of alien players for every human player.
-#ALIEN_PLAYER_RATIO 0.2
+## If set, restricts the number of alien players allowed in the round.
+## Uses the ratio set by ALIEN_TO_HUMAN_RATIO.
+LIMITALIENPLAYERS 0
 
-## Unhash this entry to have certain jobs require your account to be at least a certain number of days old to select. You can configure the exact age requirement for different jobs by editing
-## the minimal_player_age variable in the files in folder /code/game/jobs/job/.. for the job you want to edit. Set minimal_player_age to 0 to disable age requirement for that job.
+## If enabled, this number represents the number of alien players allowed for every human player.
+ALIEN_TO_HUMAN_RATIO 0.2
+
+## If set, certain jobs require your account to be at least a certain number of days old to select.
+## You can configure the exact age requirements for different jobs by editing the minimum_player_age variable on specific job datums.
+## Set minimal_player_age to 0 to disable age requirement for that job.
 ## REQUIRES the database set up to work. Keep it hashed if you don't have a database set up.
-## NOTE: If you have just set-up the database keep this DISABLED, as player age is determined from the first time they connect to the server with the database up. If you just set it up, it means
-## you have noone older than 0 days, since noone has been logged yet. Only turn this on once you have had the database up for 30 days.
-#USE_AGE_RESTRICTION_FOR_JOBS
+## NOTE: If you have just set-up the database keep this DISABLED, as player age is determined from the first time they connect to the server with the database up.
+## If you just set it up, it means you have noone older than 0 days, since noone has been logged yet. Only turn this on once you have had the database up for 30 days.
+USE_AGE_RESTRICTION_FOR_JOBS 0
 
-## Unhash this entry to disable players spawning as mice.
-#DISABLE_PLAYER_MICE
+## If set, disables players spawning as mice.
+DISABLE_PLAYER_MICE 0
 
-## Comment this to allow mice to understand human speech.
-UNEDUCATED_MICE
+## Set this to prevent newly-spawned mice from understanding human speech.
+UNEDUCATED_MICE 1
 
 ### ALERT LEVEL DESCRIPTIONS ###
 
 ## Green
-ALERT_GREEN All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced.
+ALERT_DESC_GREEN All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced.
 
-## Yellow
-ALERT_YELLOW_UPTO There is a security alert in progress. Security staff may have weapons visible, however privacy laws remain fully enforced.
-ALERT_YELLOW_DOWNTO The possible threat has passed. Security staff may continue to have their weapons visible, however they may no longer conduct random searches.
+## Yellow (Raising To)
+ALERT_DESC_YELLOW_UPTO There is a security alert in progress. Security staff may have weapons visible, however privacy laws remain fully enforced.
 
-## Blue
-ALERT_BLUE_UPTO The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted.
-ALERT_BLUE_DOWNTO The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed.
+## Yellow (Lowering To)
+ALERT_DESC_YELLOW_DOWNTO The possible threat has passed. Security staff may continue to have their weapons visible, however they may no longer conduct random searches.
 
-## Red
-ALERT_RED_UPTO There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised.
-ALERT_RED_DOWNTO The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised.
+## Blue (Raising To)
+ALERT_DESC_BLUE_UPTO The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted.
+
+## Blue (Lowering To)
+ALERT_DESC_BLUE_DOWNTO The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed.
+
+## Red (Raising To)
+ALERT_DESC_RED_UPTO There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised.
+
+## Red (Lowering To)
+ALERT_DESC_RED_DOWNTO The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised.
 
 ## Delta
-ALERT_DELTA The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill.
+ALERT_DESC_DELTA The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill.
 
 ### MOBS ###
 
-## disables calling del(src) on newmobs if they logout before spawnin in
-#DONT_DEL_NEWMOB
+## If set, calls del() on new players if they log out before they spawn in.
+DEL_NEW_ON_LOG 1
 
-##Remove the # to let ghosts spin chairs
-#GHOST_INTERACTION
+## If enabled, allows ghosts to spin chairs.
+GHOST_INTERACTION 0
 
-## disable abandon mob
-#NORESPAWN
+## If true, allows respawning.
+RESPAWN 1
 
-## allow AI job
-ALLOW_AI
+## Allow ai job?
+ALLOW_AI 1
 
-## Set to 1 to allow the spawning of maintenance drones, 0 to disallow.
+## If enabled, allows the spawning of maintenance drones.
 ALLOW_DRONE_SPAWN 1
 
 ## The maximum number of maintenance drones that can spawn, assuming they're allowed to.
 MAX_MAINT_DRONES 5
 
 ## The time in ticks between new maintenance drones becoming available.
+## Default is 2 minutes.
 DRONE_BUILD_TIME 1200
 
-## Comment this out to enable mononymous humans.
-HUMANS_NEED_SURNAMES
+## If true, forces all humans to have a second name.
+HUMANS_NEED_SURNAMES 1
 
-## Add a # here if you wish to use the setup where jobs have more access. This is intended for servers with low populations - where there are not enough players to fill all roles, so players need to do more than just one job. Also for servers where they don't want people to hide in their own departments.
-JOBS_HAVE_MINIMAL_ACCESS
+## Determines whether jobs use minimal or expanded access.
+## This is intended for servers with low populations - where there are not enough players to fill all roles, so players need to do more than just one job.
+## Also for servers where they don't want people to hide in their own departments.
+JOBS_HAVE_MINIMAL_ACCESS 1
 
-## Remove the # to give assistants maint access.
-#ASSISTANT_MAINT
+## If true, assistants get maintenance access?
+ASSISTANT_MAINT 0
 
-### MISCELLANEOUS ###
+### MISCELLANEOUS (CONFIG.TXT) ###
 
-## sql switching
-#SQL_ENABLED
+## For sql switching.
+SQL_ENABLED 0
 
-## Unhash this to use recursive explosions, keep it hashed to use circle explosions. Recursive explosions react to walls, airlocks and blast doors, making them look a lot cooler than the boring old circular explosions. They require more CPU and are (as of january 2013) experimental
-#USE_RECURSIVE_EXPLOSIONS
+## Set this to use recursive explosions.
+## Recursive explosions react to walls, airlocks and blast doors, making them look a lot cooler than the boring old circular explosions.
+## They require more CPU and are (as of January 2013) experimental.
+USE_RECURSIVE_EXPLOSIONS 0
 
-## If metadata is supported
-#ALLOW_METADATA
+## If set, metadata is supported.
+ALLOW_METADATA 0
 
-## In-game features
-## spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
-#FEATURE_OBJECT_SPELL_SYSTEM
+## Spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard.
+FEATURE_OBJECT_SPELL_SYSTEM 0
 
-##Toggle for having jobs load up from the .txt
-#LOAD_JOBS_FROM_TXT
+## If set, jobs will load up from the .txt.
+LOAD_JOBS_FROM_TXT 0
 
-## Whether the server will talk to other processes through socket_talk
+## Whether the server will talk to other processes through socket_talk.
 SOCKET_TALK 0
 
 ## Password used for authorizing ircbot and other external tools.
-#COMMS_PASSWORD
+COMMS_PASSWORD
 
-## How long the delay is before the Away Mission gate opens. Default is half an hour.
+## How long the delay is before the Away Mission gate opens.
+## Default is 30 minutes.
 GATEWAY_DELAY 18000
 
 ## Configures the brightness of ambient starlight on space tiles.
 STARLIGHT 2
+
+

@@ -81,4 +81,4 @@ GLOBAL_BYOND_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "") // P
 		GLOBL.diary << "\[[time_stamp()]]DD_OUTPUT: [text][global.log_end]"
 
 /proc/log_misc(text)
-	GLOBL.diary << "\[[time_stamp()]]MISC: [text][global.log_end]" 
+	GLOBL.diary << "\[[time_stamp()]]MISC: [text][global.log_end]"
