@@ -107,7 +107,7 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/telecoms/monitor/attackby(obj/item/weapon/D as obj, mob/user as mob)
+/obj/machinery/computer/telecoms/monitor/attackby(obj/item/D as obj, mob/user as mob)
 	if(istype(D, /obj/item/screwdriver))
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))

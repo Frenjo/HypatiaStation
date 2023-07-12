@@ -22,7 +22,7 @@
 		master.growth_queue -= src
 	return ..()
 
-/obj/effect/spacevine/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/effect/spacevine/attackby(obj/item/W as obj, mob/user as mob)
 	if(!W || !user || !W.type)
 		return
 

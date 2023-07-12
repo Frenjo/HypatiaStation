@@ -334,7 +334,7 @@
 	var/obj/item/light/L = light_type
 	return initial(L.name)
 
-/obj/machinery/light/proc/update_from_bulb(obj/item/weapon/light/L)
+/obj/machinery/light/proc/update_from_bulb(obj/item/light/L)
 	status = L.status
 	switchcount = L.switchcount
 	rigged = L.rigged
@@ -343,7 +343,7 @@
 	brightness_color = L.brightness_color
 	lighting_modes = L.lighting_modes.Copy()
 
-/obj/machinery/light/proc/insert_bulb(obj/item/weapon/light/L)
+/obj/machinery/light/proc/insert_bulb(obj/item/light/L)
 	update_from_bulb(L)
 	qdel(L)
 

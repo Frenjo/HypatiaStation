@@ -474,7 +474,7 @@
 		/obj/item/match
 	)
 
-/obj/item/storage/box/matches/attackby(obj/item/weapon/match/W as obj, mob/user as mob)
+/obj/item/storage/box/matches/attackby(obj/item/match/W as obj, mob/user as mob)
 	if(istype(W) && !W.lit && !W.burnt)
 		W.lit = TRUE
 		W.damtype = "burn"

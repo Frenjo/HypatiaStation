@@ -18,7 +18,7 @@
 	if(!anchored && isturf(loc)) // You can't pick it up
 		..()
 
-/obj/item/solar_assembly/attackby(obj/item/weapon/W, mob/user)
+/obj/item/solar_assembly/attackby(obj/item/W, mob/user)
 	if(!anchored && isturf(loc))
 		if(iswrench(W))
 			anchored = TRUE

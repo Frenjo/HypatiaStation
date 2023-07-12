@@ -163,7 +163,7 @@
 	update_icon()
 
 
-/obj/item/paper/proc/parsepencode(t, obj/item/weapon/pen/P, mob/user as mob, iscrayon = 0)
+/obj/item/paper/proc/parsepencode(t, obj/item/pen/P, mob/user as mob, iscrayon = 0)
 //	t = copytext(sanitize(t),1,MAX_MESSAGE_LEN)
 
 	t = replacetext(t, "\[center\]", "<center>")
@@ -234,7 +234,7 @@
 		\[hr\] : Adds a horizontal rule.
 	</BODY></HTML>"}, "window=paper_help")
 
-/obj/item/paper/proc/burnpaper(obj/item/weapon/lighter/P, mob/user)
+/obj/item/paper/proc/burnpaper(obj/item/lighter/P, mob/user)
 	var/class = "<span class='warning'>"
 
 	if(P.lit && !user.restrained())
@@ -303,7 +303,7 @@
 		update_icon()
 
 
-/obj/item/paper/attackby(obj/item/weapon/P as obj, mob/user as mob)
+/obj/item/paper/attackby(obj/item/P as obj, mob/user as mob)
 	..()
 	var/clown = 0
 	if(user.mind && (user.mind.assigned_role == "Clown"))

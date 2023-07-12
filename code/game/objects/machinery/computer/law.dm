@@ -22,7 +22,7 @@
 		usr << "\blue The access panel is now closed."
 	return
 
-/obj/machinery/computer/aiupload/attackby(obj/item/weapon/O as obj, mob/user as mob)
+/obj/machinery/computer/aiupload/attackby(obj/item/O as obj, mob/user as mob)
 	if (user.z > 6)
 		user << "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!"
 		return
@@ -56,7 +56,7 @@
 	circuit = /obj/item/circuitboard/borgupload
 	var/mob/living/silicon/robot/current = null
 
-/obj/machinery/computer/borgupload/attackby(obj/item/weapon/aiModule/module as obj, mob/user as mob)
+/obj/machinery/computer/borgupload/attackby(obj/item/aiModule/module as obj, mob/user as mob)
 	if(istype(module, /obj/item/aiModule))
 		module.install(src)
 	else

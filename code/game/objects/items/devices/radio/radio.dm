@@ -652,7 +652,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			usr.show_message(SPAN_INFO("\the [src] can not be modified or attached!"))
 	return
 
-/obj/item/device/radio/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/device/radio/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	user.set_machine(src)
 	if(!(istype(W, /obj/item/screwdriver)))
@@ -684,7 +684,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 /obj/item/device/radio/borg
 	var/obj/item/device/encryptionkey/keyslot = null//Borg radios can handle a single encryption key
 
-/obj/item/device/radio/borg/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/device/radio/borg/attackby(obj/item/W as obj, mob/user as mob)
 //	..()
 	user.set_machine(src)
 	if(!(istype(W, /obj/item/screwdriver) || (istype(W, /obj/item/device/encryptionkey/))))

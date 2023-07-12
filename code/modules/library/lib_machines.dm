@@ -236,7 +236,7 @@
 	user << browse(dat, "window=library")
 	onclose(user, "library")
 
-/obj/machinery/librarycomp/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/librarycomp/attackby(obj/item/W as obj, mob/user as mob)
 	if(src.density && istype(W, /obj/item/card/emag))
 		src.emagged = 1
 	if(istype(W, /obj/item/barcodescanner))

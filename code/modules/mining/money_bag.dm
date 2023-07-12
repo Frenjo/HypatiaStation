@@ -62,7 +62,7 @@
 		dat += text("Mythril coins: [amt_mythril] <A href='?src=\ref[src];remove=[MATERIAL_MYTHRIL]'>Remove one</A><br>")
 	user << browse("[dat]", "window=moneybag")
 
-/obj/item/moneybag/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/moneybag/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/coin))
 		var/obj/item/coin/C = W

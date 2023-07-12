@@ -20,7 +20,7 @@
 	pixel_y = rand(-10.0, 10)
 	dir = pick(GLOBL.cardinal)
 
-/obj/item/ammo_casing/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/ammo_casing/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/screwdriver))
 		if(BB)
 			if(initial(BB.name) == "bullet")

@@ -280,7 +280,7 @@
 	reagents.add_reagent("nutriment", 1 + round((potency / 6), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-/obj/item/reagent_containers/food/snacks/grown/pumpkin/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/grown/pumpkin/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/circular_saw) || istype(W, /obj/item/hatchet) \
 	|| istype(W, /obj/item/twohanded/fireaxe) || istype(W, /obj/item/kitchen/utensil/knife) \

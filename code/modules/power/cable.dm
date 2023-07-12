@@ -556,7 +556,7 @@ By design, d1 is the smallest direction and d2 is the highest
 // Items usable on a cable coil:
 //	- Wirecutters: cut them duh!
 //	- Cable coil: merge cables
-/obj/item/stack/cable_coil/attackby(obj/item/weapon/W, mob/user)
+/obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/wirecutters) && src.amount > 1)
 		src.amount--
 		new/obj/item/stack/cable_coil(user.loc, 1, item_color)

@@ -43,7 +43,7 @@ RCD
 	spark_system = null
 	return ..()
 
-/obj/item/rcd/attackby(obj/item/weapon/W, mob/user)
+/obj/item/rcd/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/rcd_ammo))
 		if((matter + 10) > 30)

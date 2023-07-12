@@ -25,7 +25,7 @@ RSF
 	desc = "An RSF. It currently holds [matter]/30 fabrication-units."
 	return
 
-/obj/item/rsf/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/rsf/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/rcd_ammo))
 		if((matter + 10) > 30)

@@ -21,7 +21,7 @@
 		master.growth_queue -= src
 	return ..()
 
-/obj/effect/biomass/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/effect/biomass/attackby(obj/item/W as obj, mob/user as mob)
 	if(!W || !user || !W.type)
 		return
 

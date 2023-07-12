@@ -11,7 +11,7 @@
 	var/power_rating = 15000	//15 kW
 	var/obj/item/charging = null
 
-/obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
+/obj/machinery/recharger/attackby(obj/item/G as obj, mob/user as mob)
 	if(issilicon(user))
 		return
 

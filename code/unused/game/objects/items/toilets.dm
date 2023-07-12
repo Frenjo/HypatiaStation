@@ -14,7 +14,7 @@ TOILET
 	icon_state = "toilet"
 	item_state = "syringe_kit"
 
-/obj/item/storage/toilet/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/storage/toilet/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if (src.contents.len >= 7)
 		user << "The toilet is clogged!"

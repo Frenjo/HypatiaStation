@@ -56,7 +56,7 @@
 	if(!bcell)
 		to_chat(usr, SPAN_WARNING("The baton does not have a power source installed."))
 
-/obj/item/melee/baton/attackby(obj/item/weapon/W, mob/user)
+/obj/item/melee/baton/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/cell))
 		if(!bcell)
 			user.drop_item()

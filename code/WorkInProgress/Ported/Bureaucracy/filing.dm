@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 
-/obj/structure/filingcabinet/attackby(obj/item/weapon/paper/P, mob/M)
+/obj/structure/filingcabinet/attackby(obj/item/paper/P, mob/M)
 	if(istype(P))
 		to_chat(M, "You put \the [P] in the [src].")
 		M.drop_item()

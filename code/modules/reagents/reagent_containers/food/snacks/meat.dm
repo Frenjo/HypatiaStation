@@ -10,7 +10,7 @@
 	reagents.add_reagent("nutriment", 3)
 	src.bitesize = 3
 
-/obj/item/reagent_containers/food/snacks/meat/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/meat/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/kitchenknife))
 		new /obj/item/reagent_containers/food/snacks/rawcutlet(src)
 		new /obj/item/reagent_containers/food/snacks/rawcutlet(src)

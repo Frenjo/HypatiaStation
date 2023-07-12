@@ -265,7 +265,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 
 	return
 
-/obj/machinery/cryopod/attackby(obj/item/weapon/G as obj, mob/user as mob)
+/obj/machinery/cryopod/attackby(obj/item/G as obj, mob/user as mob)
 	if(istype(G, /obj/item/grab))
 		if(occupant)
 			to_chat(user, SPAN_INFO("The cryo pod is in use."))

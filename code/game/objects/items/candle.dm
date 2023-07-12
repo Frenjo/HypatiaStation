@@ -20,7 +20,7 @@
 	else i = 3
 	icon_state = "candle[i][lit ? "_lit" : ""]"
 
-/obj/item/candle/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/candle/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W

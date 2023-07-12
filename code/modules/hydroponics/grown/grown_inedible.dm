@@ -58,7 +58,7 @@
 	seed = /obj/item/seeds/towermycelium
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
-/obj/item/grown/log/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/grown/log/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/circular_saw) || istype(W, /obj/item/hatchet) \
 	|| (istype(W, /obj/item/twohanded/fireaxe) && W:wielded) \
 	|| istype(W, /obj/item/melee/energy))

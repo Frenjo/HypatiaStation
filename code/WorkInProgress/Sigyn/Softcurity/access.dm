@@ -137,7 +137,7 @@
 /obj/item/proc/GetID()
 	return null
 
-/obj/proc/check_access(obj/item/weapon/card/id/I)
+/obj/proc/check_access(obj/item/card/id/I)
 
 	if (istype(I, /obj/item/device/pda))
 		var/obj/item/device/pda/pda = I

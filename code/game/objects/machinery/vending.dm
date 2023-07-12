@@ -127,7 +127,7 @@
 //		world << "Added: [R.product_name]] - [R.amount] - [R.product_path]"
 	return
 
-/obj/machinery/vending/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/vending/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/card/emag))
 		src.emagged = 1
 		to_chat(user, "You short out the product lock on [src]")
@@ -166,7 +166,7 @@
 	else
 		..()
 
-/obj/machinery/vending/proc/scan_card(obj/item/weapon/card/I)
+/obj/machinery/vending/proc/scan_card(obj/item/card/I)
 	if(!currently_vending)
 		return
 	if(istype(I, /obj/item/card/id))

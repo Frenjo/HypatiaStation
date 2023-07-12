@@ -104,7 +104,7 @@
 	return ndelta
 	*/ //TODO: FIX
 
-/obj/machinery/pipefilter/attackby(obj/item/weapon/W, mob/user as mob)
+/obj/machinery/pipefilter/attackby(obj/item/W, mob/user as mob)
 	if(istype(W, /obj/item/detective_scanner))
 		return ..()
 	if(istype(W, /obj/item/screwdriver))

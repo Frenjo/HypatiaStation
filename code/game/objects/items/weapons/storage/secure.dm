@@ -36,7 +36,7 @@
 /obj/item/storage/secure/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/item/storage/secure/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/storage/secure/attackby(obj/item/W as obj, mob/user as mob)
 	if(locked)
 		if((istype(W, /obj/item/card/emag)||istype(W, /obj/item/melee/energy/blade)) && (!src.emagged))
 			emagged = 1

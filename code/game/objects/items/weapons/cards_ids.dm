@@ -104,7 +104,7 @@
 		)
 
 
-/obj/item/card/emag/afterattack(obj/item/weapon/O as obj, mob/user as mob)
+/obj/item/card/emag/afterattack(obj/item/O as obj, mob/user as mob)
 	for(var/type in devices)
 		if(istype(O, type))
 			uses--
@@ -157,7 +157,7 @@
 /obj/item/card/id/get_id()
 	return src
 
-/obj/item/card/id/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/card/id/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/id_wallet))
 		user << "You slip [src] into [W]."
@@ -239,7 +239,7 @@
 	. = ..() // This one's the same as the normal agent card except it has all station access by default.
 	access |= get_all_station_access()
 
-/obj/item/card/id/syndicate/afterattack(obj/item/weapon/O as obj, mob/user as mob, proximity)
+/obj/item/card/id/syndicate/afterattack(obj/item/O as obj, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	if(istype(O, /obj/item/card/id))

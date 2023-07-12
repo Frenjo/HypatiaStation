@@ -147,7 +147,7 @@
 		to_world(SPAN_INFO_B("Alert: [req_authorisations - length(authorized)] authorisation\s needed to override the shuttle autopilot."))
 	return 1
 
-/obj/machinery/computer/shuttle_control/emergency/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/computer/shuttle_control/emergency/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/card/emag) && !emagged)
 		to_chat(user, SPAN_INFO("You short out the [src]'s authorisation protocols."))
 		emagged = 1

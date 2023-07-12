@@ -166,7 +166,7 @@
 		cell = null
 		to_chat(user, SPAN_INFO("You remove the power cell"))
 
-/obj/machinery/suspension_gen/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/suspension_gen/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/screwdriver))
 		if(!open)
 			if(screwed)
@@ -223,7 +223,7 @@
 		else
 			to_chat(user, SPAN_WARNING("Remove [auth_card] first."))
 
-/obj/machinery/suspension_gen/proc/attempt_unlock(obj/item/weapon/card/C)
+/obj/machinery/suspension_gen/proc/attempt_unlock(obj/item/card/C)
 	if(!open)
 		if(istype(C, /obj/item/card/emag) && cell.charge > 0)
 			//put sparks here

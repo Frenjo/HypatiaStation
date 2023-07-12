@@ -272,7 +272,7 @@
 			return C
 	return null
 
-/obj/machinery/camera/proc/weld(obj/item/weapon/weldingtool/WT, mob/user)
+/obj/machinery/camera/proc/weld(obj/item/weldingtool/WT, mob/user)
 	if(busy)
 		return 0
 	if(!WT.isOn())

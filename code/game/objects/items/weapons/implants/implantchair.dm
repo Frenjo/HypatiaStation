@@ -64,7 +64,7 @@
 		src.add_fingerprint(usr)
 		return
 
-/obj/machinery/implantchair/attackby(obj/item/weapon/G as obj, mob/user as mob)
+/obj/machinery/implantchair/attackby(obj/item/G as obj, mob/user as mob)
 	if(istype(G, /obj/item/grab))
 		if(!ismob(G:affecting))
 			return

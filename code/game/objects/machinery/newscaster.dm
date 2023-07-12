@@ -767,7 +767,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	var/scribble = ""
 	var/scribble_page = null
 
-/*obj/item/weapon/newspaper/attack_hand(mob/user as mob)
+/*/obj/item/newspaper/attack_hand(mob/user as mob)
 	..()
 	world << "derp"*/
 
@@ -880,7 +880,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 		if(istype(src.loc, /mob))
 			src.attack_self(src.loc)
 
-/obj/item/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/newspaper/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/pen))
 		if(src.scribble_page == src.curr_page)
 			to_chat(user, SPAN_INFO("There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?"))

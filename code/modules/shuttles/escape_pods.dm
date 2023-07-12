@@ -86,7 +86,7 @@
 		ui.open()
 		ui.set_auto_update()
 
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/card/emag) && !emagged)
 		to_chat(user, SPAN_INFO("You emag the [src], arming the escape pod!"))
 		emagged = 1

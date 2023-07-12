@@ -28,7 +28,7 @@
 		overlays += "folder_paper"
 	return
 
-/obj/item/folder/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/folder/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/paper) || istype(W, /obj/item/photo))
 		user.drop_item()
 		W.loc = src

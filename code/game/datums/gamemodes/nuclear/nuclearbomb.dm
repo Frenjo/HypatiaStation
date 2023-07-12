@@ -64,7 +64,7 @@ var/bomb_set
 				src.attack_hand(M)
 	return
 
-/obj/machinery/nuclearbomb/attackby(obj/item/weapon/O as obj, mob/user as mob)
+/obj/machinery/nuclearbomb/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/screwdriver))
 		src.add_fingerprint(user)
 		if(src.auth)

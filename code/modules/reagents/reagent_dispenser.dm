@@ -10,7 +10,7 @@
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10, 25, 50, 100)
 
-/obj/structure/reagent_dispensers/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/reagent_dispensers/attackby(obj/item/W as obj, mob/user as mob)
 	return
 
 /obj/structure/reagent_dispensers/New()
@@ -116,7 +116,7 @@
 			rig = null
 			overlays = list()
 
-/obj/structure/reagent_dispensers/fueltank/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/reagent_dispensers/fueltank/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/wrench))
 		user.visible_message(
 			"[user] wrenches [src]'s faucet [modded ? "closed" : "open"].",

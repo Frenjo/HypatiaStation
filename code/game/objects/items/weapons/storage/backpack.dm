@@ -13,7 +13,7 @@
 	max_w_class = 3
 	max_combined_w_class = 21
 
-/obj/item/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/storage/backpack/attackby(obj/item/W as obj, mob/user as mob)
 	if(src.use_sound)
 		playsound(src.loc, src.use_sound, 50, 1, -5)
 	..()
@@ -45,7 +45,7 @@
 	..()
 	return
 
-/obj/item/storage/backpack/holding/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/storage/backpack/holding/attackby(obj/item/W as obj, mob/user as mob)
 	if(crit_fail)
 		user << "\red The Bluespace generator isn't working."
 		return

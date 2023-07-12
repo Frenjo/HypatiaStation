@@ -128,7 +128,7 @@
 
 	take_victim(usr, usr)
 
-/obj/machinery/optable/attackby(obj/item/weapon/W as obj, mob/living/carbon/user as mob)
+/obj/machinery/optable/attackby(obj/item/W as obj, mob/living/carbon/user as mob)
 	if(istype(W, /obj/item/grab))
 		if(iscarbon(W:affecting))
 			take_victim(W:affecting, usr)

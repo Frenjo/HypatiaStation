@@ -145,7 +145,7 @@
 	del(src)
 	return
 
-/obj/item/assembly/time_ignite/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/assembly/time_ignite/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if ((istype(W, /obj/item/wrench) && !( src.status )))
 		var/turf/T = src.loc
@@ -177,7 +177,7 @@
 
 //***********
 
-/obj/item/assembly/anal_ignite/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/assembly/anal_ignite/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if ((istype(W, /obj/item/wrench) && !( src.status )))
 		var/turf/T = src.loc
@@ -272,7 +272,7 @@
 /obj/item/assembly/proc/c_state(n, O as obj)
 	return
 
-/obj/item/assembly/a_i_a/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/assembly/a_i_a/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if ((istype(W, /obj/item/wrench) && !( src.status )))
 		var/turf/T = src.loc
@@ -319,7 +319,7 @@
 	..()
 	return
 
-/obj/item/assembly/rad_time/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/assembly/rad_time/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
 	if ((istype(W, /obj/item/wrench) && !( src.status )))
@@ -376,7 +376,7 @@
 		src.part2.sense()
 	return
 
-/obj/item/assembly/rad_prox/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/assembly/rad_prox/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if ((istype(W, /obj/item/wrench) && !( src.status )))
 		var/turf/T = src.loc
@@ -437,7 +437,7 @@
 	..()
 	return
 
-/obj/item/assembly/rad_infra/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/assembly/rad_infra/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if ((istype(W, /obj/item/wrench) && !( src.status )))
 		var/turf/T = src.loc
@@ -526,7 +526,7 @@
 	src.icon_state = text("prox-igniter[]", n)
 	return
 
-/obj/item/assembly/prox_ignite/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/assembly/prox_ignite/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if ((istype(W, /obj/item/wrench) && !( src.status )))
 		var/turf/T = src.loc
@@ -573,7 +573,7 @@
 
 
 
-/obj/item/assembly/rad_ignite/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/assembly/rad_ignite/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if ((istype(W, /obj/item/wrench) && !( src.status )))
 		var/turf/T = src.loc
@@ -675,7 +675,7 @@
 	..()
 	return
 
-/obj/item/assembly/m_i_ptank/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/assembly/m_i_ptank/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if (istype(W, /obj/item/device/analyzer))
 		src.part3.attackby(W, user)
@@ -763,7 +763,7 @@
 	..()
 	return
 
-/obj/item/assembly/t_i_ptank/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/assembly/t_i_ptank/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
 	if (istype(W, /obj/item/device/analyzer))
@@ -842,7 +842,7 @@
 	..()
 	return
 
-/obj/item/assembly/r_i_ptank/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/assembly/r_i_ptank/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
 	if (istype(W, /obj/item/device/analyzer))
@@ -887,7 +887,7 @@
 	..()
 
 
-/obj/item/clothing/suit/armor/a_i_a_ptank/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/clothing/suit/armor/a_i_a_ptank/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if (istype(W, /obj/item/device/analyzer))
 		src.part4.attackby(W, user)

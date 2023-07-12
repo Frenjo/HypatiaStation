@@ -60,7 +60,7 @@
 	return
 
 
-/obj/item/paper_bin/attackby(obj/item/weapon/paper/i as obj, mob/user as mob)
+/obj/item/paper_bin/attackby(obj/item/paper/i as obj, mob/user as mob)
 	if(!istype(i))
 		return
 

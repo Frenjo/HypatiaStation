@@ -152,7 +152,7 @@
 		src.updateSelfDialog()
 		return
 
-/obj/item/device/pda2/attackby(obj/item/weapon/C as obj, mob/user as mob)
+/obj/item/device/pda2/attackby(obj/item/C as obj, mob/user as mob)
 	if (istype(C, /obj/item/disk/data/cartridge) && isnull(src.cartridge))
 		user.drop_item()
 		C.loc = src

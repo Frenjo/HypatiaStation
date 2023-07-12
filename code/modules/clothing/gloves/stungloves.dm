@@ -1,4 +1,4 @@
-/obj/item/clothing/gloves/attackby(obj/item/weapon/W, mob/user)
+/obj/item/clothing/gloves/attackby(obj/item/W, mob/user)
 	if(istype(src, /obj/item/clothing/gloves/boxing))	//quick fix for stunglove overlay not working nicely with boxing gloves.
 		to_chat(user, SPAN_NOTICE("That won't work."))	//i'm not putting my lips on that!
 		..()

@@ -11,7 +11,7 @@
 	var/obj/item/template // the paper OR photo being scanned
 	var/max_copies = 10		// MAP EDITOR: can set the number of max copies, possibly to 5 or something for public, more for QM, robutist, etc.
 
-/obj/machinery/copier/attackby(obj/item/weapon/O as obj, mob/user as mob)
+/obj/machinery/copier/attackby(obj/item/O as obj, mob/user as mob)
 	if(template)
 		return
 

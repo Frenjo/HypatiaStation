@@ -338,7 +338,7 @@
 	onclose(user, "server_control")
 	return
 
-/obj/machinery/computer/rdservercontrol/attackby(obj/item/weapon/D as obj, mob/user as mob)
+/obj/machinery/computer/rdservercontrol/attackby(obj/item/D as obj, mob/user as mob)
 	if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1

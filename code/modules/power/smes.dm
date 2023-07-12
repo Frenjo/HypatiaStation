@@ -227,7 +227,7 @@
 	add_fingerprint(user)
 	ui_interact(user)
 
-/obj/machinery/power/smes/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/power/smes/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/screwdriver))
 		if(!open_hatch)
 			open_hatch = 1

@@ -140,7 +140,7 @@
 			src.reagents.clear_reagents()
 		return
 
-/obj/item/reagent_containers/glass/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/reagent_containers/glass/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/pen) || istype(W, /obj/item/device/flashlight/pen))
 		var/tmp_label = sanitize(input(user, "Enter a label for [src.name]", "Label", src.label_text))
 		if(length(tmp_label) > 10)

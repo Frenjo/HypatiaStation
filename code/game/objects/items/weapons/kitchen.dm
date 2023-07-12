@@ -404,7 +404,7 @@
 
 /obj/item/tray/var/cooldown = 0	//shield bash cooldown. based on world.time
 
-/obj/item/tray/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/tray/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/kitchen/rollingpin))
 		if(cooldown < world.time - 25)
 			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
@@ -480,7 +480,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 //Enough with the violent stuff, here's what happens if you try putting food on it
 /////////////////////////////////////////////////////////////////////////////////////////////
-/*/obj/item/tray/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/*/obj/item/tray/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/kitchen/utensil/fork))
 		if (W.icon_state == "forkloaded")
 			user << "\red You already have omelette on your fork."

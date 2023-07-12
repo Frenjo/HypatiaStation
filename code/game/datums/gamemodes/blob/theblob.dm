@@ -151,7 +151,7 @@
 	update_icon()
 	return 0
 
-/obj/effect/blob/attackby(obj/item/weapon/W, mob/user)
+/obj/effect/blob/attackby(obj/item/W, mob/user)
 	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 	visible_message(SPAN_DANGER("The [name] has been attacked with \the [W][(user ? " by [user]" : "")]."))
 	var/damage = 0

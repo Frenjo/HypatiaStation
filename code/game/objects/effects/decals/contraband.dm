@@ -48,7 +48,7 @@
 	icon_state = design.icon_state // poster[serial_number]
 	..()
 
-/obj/structure/sign/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/wirecutters))
 		playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		if(ruined)
@@ -85,7 +85,7 @@
 
 
 //separated to reduce code duplication. Moved here for ease of reference and to unclutter r_wall/attackby()
-/turf/simulated/wall/proc/place_poster(obj/item/weapon/contraband/poster/P, mob/user)
+/turf/simulated/wall/proc/place_poster(obj/item/contraband/poster/P, mob/user)
 	if(!istype(src, /turf/simulated/wall))
 		to_chat(user, SPAN_WARNING("You can't place this here!"))
 		return

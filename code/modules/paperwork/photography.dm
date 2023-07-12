@@ -32,7 +32,7 @@
 /obj/item/photo/attack_self(mob/user as mob)
 	examine()
 
-/obj/item/photo/attackby(obj/item/weapon/P as obj, mob/user as mob)
+/obj/item/photo/attackby(obj/item/P as obj, mob/user as mob)
 	if(istype(P, /obj/item/pen) || istype(P, /obj/item/toy/crayon))
 		var/txt = sanitize(input(user, "What would you like to write on the back?", "Photo Writing", null) as text)
 		txt = copytext(txt, 1, 128)

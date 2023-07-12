@@ -43,7 +43,7 @@
 
 		return
 
-/obj/item/device/taperecorder/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/device/taperecorder/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/card/emag))
 		if(emagged == 0)

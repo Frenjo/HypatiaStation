@@ -173,7 +173,7 @@ update_flag
 	health = 0
 	healthcheck()
 
-/obj/machinery/portable_atmospherics/canister/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/portable_atmospherics/canister/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/wrench) && !istype(W, /obj/item/tank) && !istype(W, /obj/item/device/analyzer) && !istype(W, /obj/item/device/pda))
 		visible_message(SPAN_WARNING("[user] hits the [src] with a [W]!"))
 		health -= W.force

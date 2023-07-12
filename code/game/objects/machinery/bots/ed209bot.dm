@@ -173,7 +173,7 @@ Auto Patrol: []"},
 			mode = SECBOT_IDLE
 			updateUsrDialog()
 
-/obj/machinery/bot/ed209/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/bot/ed209/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
 		if (src.allowed(user) && !open && !emagged)
 			src.locked = !src.locked
@@ -873,7 +873,7 @@ Auto Patrol: []"},
 
 
 
-/obj/item/ed209_assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/ed209_assembly/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
 	if(istype(W, /obj/item/pen))

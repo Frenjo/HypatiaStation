@@ -21,7 +21,7 @@
 	active_power_usage = 500
 	var/stage = 0
 
-/obj/machinery/telepad_cargo/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/telepad_cargo/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/wrench))
 		anchored = FALSE
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)

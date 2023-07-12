@@ -491,7 +491,7 @@ var/list/robot_verbs_default = list(
 //		if (viewalerts) robot_alerts()
 	return has_alarm
 
-/mob/living/silicon/robot/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/mob/living/silicon/robot/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/handcuffs)) // fuck i don't even know why isrobot() in handcuff code isn't working so this will have to do
 		return
 
@@ -822,7 +822,7 @@ var/list/robot_verbs_default = list(
 			return 1
 	return 0
 
-/mob/living/silicon/robot/proc/check_access(obj/item/weapon/card/id/I)
+/mob/living/silicon/robot/proc/check_access(obj/item/card/id/I)
 	if(!islist(req_access)) //something's very wrong
 		return 1
 

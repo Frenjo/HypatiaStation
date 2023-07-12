@@ -37,7 +37,7 @@
 			M.loc = get_turf(src)
 		qdel(src)
 
-/obj/item/holder/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/holder/attackby(obj/item/W as obj, mob/user as mob)
 	for(var/mob/M in src.contents)
 		M.attackby(W, user)
 

@@ -54,7 +54,7 @@
 
 	return parent.return_network(reference)
 
-/obj/machinery/atmospherics/pipe/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/atmospherics/pipe/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(src, /obj/machinery/atmospherics/pipe/tank))
 		return ..()
 	if(istype(src, /obj/machinery/atmospherics/pipe/vent))

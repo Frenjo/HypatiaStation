@@ -87,7 +87,7 @@
 	else if(href_list["cancel"])
 		shuttle.cancel_launch(src)
 
-/obj/machinery/computer/shuttle_control/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/computer/shuttle_control/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/card/emag))
 		req_access = list()
 		req_one_access = list()

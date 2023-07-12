@@ -154,7 +154,7 @@
 		user << "\red You need to screw the beacon to the floor first!"
 		return
 
-/obj/machinery/singularity_beacon/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/singularity_beacon/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/screwdriver))
 		if(active)
 			user << "\red You need to deactivate the beacon first!"

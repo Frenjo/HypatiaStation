@@ -152,7 +152,7 @@ proc/move_research_shuttle()
 		else
 			usr << "\blue Shuttle is already moving."
 
-/obj/machinery/computer/research_shuttle/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/computer/research_shuttle/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/card/emag))
 		var/obj/item/card/emag/E = W
 		if(E.uses)

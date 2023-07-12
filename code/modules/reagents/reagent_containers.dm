@@ -40,7 +40,7 @@
 /obj/item/reagent_containers/afterattack(obj/target, mob/user , flag)
 	return
 
-/obj/item/reagent_containers/proc/reagentlist(obj/item/weapon/reagent_containers/snack) //Attack logs for regents in pills
+/obj/item/reagent_containers/proc/reagentlist(obj/item/reagent_containers/snack) //Attack logs for regents in pills
 	var/data
 	if(length(snack.reagents.reagent_list)) //find a reagent list if there is and check if it has entries
 		for(var/datum/reagent/R in snack.reagents.reagent_list) //no reagents will be left behind

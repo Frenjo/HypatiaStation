@@ -169,7 +169,7 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/computer/holodeck_control/attackby(obj/item/weapon/D as obj, mob/user as mob)
+/obj/machinery/computer/holodeck_control/attackby(obj/item/D as obj, mob/user as mob)
 //Warning, uncommenting this can have concequences. For example, deconstructing the computer may cause holographic eswords to never derez
 
 /*		if(istype(D, /obj/item/screwdriver))

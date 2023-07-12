@@ -224,7 +224,7 @@
 			else
 				open()
 
-/obj/machinery/atmospherics/binary/valve/digital/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/atmospherics/binary/valve/digital/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/wrench))
 		return ..()
 	if(istype(src, /obj/machinery/atmospherics/binary/valve/digital))

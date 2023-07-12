@@ -263,7 +263,7 @@
 	src.add_fingerprint(usr)
 	return
 
-/obj/machinery/dna_scanner/attackby(obj/item/weapon/grab/G as obj, user as mob)
+/obj/machinery/dna_scanner/attackby(obj/item/grab/G as obj, user as mob)
 	if ((!( istype(G, /obj/item/grab) ) || !( ismob(G.affecting) )))
 		return
 	if (src.occupant)
@@ -890,7 +890,7 @@
 	src.go_out()
 	return
 
-/obj/machinery/restruct/attackby(obj/item/weapon/grab/G as obj, user as mob)
+/obj/machinery/restruct/attackby(obj/item/grab/G as obj, user as mob)
 	if(..())
 		return
 	if ((!( istype(G, /obj/item/grab) ) || !( ismob(G.affecting) )))

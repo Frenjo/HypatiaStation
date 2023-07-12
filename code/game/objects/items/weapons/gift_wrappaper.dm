@@ -43,7 +43,7 @@
 		return
 	to_chat(user, SPAN_INFO("You can't move."))
 
-/obj/effect/spresent/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/effect/spresent/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(!istype(W, /obj/item/wirecutters))
 		to_chat(user, SPAN_INFO("I need wirecutters for that."))
@@ -128,7 +128,7 @@
 	icon_state = "wrap_paper"
 	var/amount = 20.0
 
-/obj/item/wrapping_paper/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/wrapping_paper/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(!locate(/obj/structure/table, src.loc))
 		to_chat(user, SPAN_INFO("You MUST put the paper on a table!"))

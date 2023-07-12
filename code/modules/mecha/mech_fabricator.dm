@@ -195,7 +195,7 @@
 	to_chat(M, "<font color='red'>You don't have required permissions to use [src].</font>")
 	return 0
 
-/obj/machinery/mecha_part_fabricator/check_access(obj/item/weapon/card/id/I)
+/obj/machinery/mecha_part_fabricator/check_access(obj/item/card/id/I)
 	if(istype(I, /obj/item/device/pda))
 		var/obj/item/device/pda/pda = I
 		I = pda.id

@@ -14,7 +14,7 @@
 	possible_transfer_amounts = list(1, 5, 10)
 	volume = 50
 
-/obj/item/reagent_containers/food/condiment/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/condiment/attackby(obj/item/W as obj, mob/user as mob)
 	return
 
 /obj/item/reagent_containers/food/condiment/attack_self(mob/user as mob)

@@ -45,7 +45,7 @@
 			var/mob/living/carbon/C = user
 			C.throw_mode_on()
 
-/obj/item/grenade/chem_grenade/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/grenade/chem_grenade/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/assembly_holder) && (!stage || stage == 1) && path != 2)
 		var/obj/item/device/assembly_holder/det = W
 		if(istype(det.a_left,det.a_right.type) || (!isigniter(det.a_left) && !isigniter(det.a_right)))

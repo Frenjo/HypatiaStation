@@ -181,7 +181,7 @@
 	return
 
 
-/mob/living/silicon/hivebot/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/mob/living/silicon/hivebot/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weldingtool) && W:welding)
 		if (W:remove_fuel(0))
 			src.adjustBruteLoss(-30)
@@ -262,7 +262,7 @@
 		return 1
 	return 0
 
-/mob/living/silicon/hivebot/proc/check_access(obj/item/weapon/card/id/I)
+/mob/living/silicon/hivebot/proc/check_access(obj/item/card/id/I)
 	if(!istype(src.req_access, /list)) //something's very wrong
 		return 1
 

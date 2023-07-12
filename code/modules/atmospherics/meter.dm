@@ -86,7 +86,7 @@
 	to_chat(usr, t)
 	return 1
 
-/obj/machinery/meter/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/meter/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W, /obj/item/wrench))
 		return ..()
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
@@ -119,5 +119,5 @@
 	if(isnull(target))
 		target = loc
 
-/obj/machinery/meter/turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/meter/turf/attackby(obj/item/W as obj, mob/user as mob)
 	return

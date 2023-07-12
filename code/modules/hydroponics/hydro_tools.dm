@@ -266,7 +266,7 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/corncob/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/corncob/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/circular_saw) || istype(W, /obj/item/hatchet) \
 	|| istype(W, /obj/item/kitchen/utensil/knife) || istype(W, /obj/item/kitchenknife) \

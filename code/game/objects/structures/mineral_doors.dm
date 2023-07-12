@@ -105,7 +105,7 @@
 	else
 		icon_state = mineralType
 
-/obj/structure/mineral_door/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/mineral_door/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/pickaxe))
 		var/obj/item/pickaxe/digTool = W
 		to_chat(user, "You start digging the [name].")
@@ -197,7 +197,7 @@
 /obj/structure/mineral_door/transparent/plasma
 	mineralType = MATERIAL_PLASMA
 
-/obj/structure/mineral_door/transparent/plasma/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/mineral_door/transparent/plasma/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))

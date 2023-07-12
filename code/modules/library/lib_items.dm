@@ -153,7 +153,7 @@
 	else
 		to_chat(user, "This book is completely blank!")
 
-/obj/item/book/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/book/attackby(obj/item/W as obj, mob/user as mob)
 	if(carved)
 		if(!store)
 			if(W.w_class < 3)

@@ -11,7 +11,7 @@
 	flags = CONDUCT | NOBLUDGEON
 	slot_flags = SLOT_BELT
 
-/obj/item/device/detective_scanner/attackby(obj/item/weapon/f_card/W as obj, mob/user as mob)
+/obj/item/device/detective_scanner/attackby(obj/item/f_card/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/f_card))
 		if(W.fingerprints)

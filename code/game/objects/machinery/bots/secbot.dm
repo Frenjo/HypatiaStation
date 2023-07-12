@@ -163,7 +163,7 @@ Auto Patrol: []"},
 			mode = SECBOT_IDLE
 			updateUsrDialog()
 
-/obj/machinery/bot/secbot/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/bot/secbot/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
 		if(src.allowed(user) && !open && !emagged)
 			src.locked = !src.locked
@@ -751,7 +751,7 @@ Auto Patrol: []"},
 	else
 		return
 
-/obj/item/secbot_assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/secbot_assembly/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if((istype(W, /obj/item/weldingtool)) && (!src.build_step))
 		var/obj/item/weldingtool/WT = W

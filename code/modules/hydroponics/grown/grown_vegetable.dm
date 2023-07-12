@@ -30,7 +30,7 @@
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = reagents.total_volume
 
-/obj/item/reagent_containers/food/snacks/grown/potato/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/grown/potato/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/stack/cable_coil))
 		if(W:amount >= 5)

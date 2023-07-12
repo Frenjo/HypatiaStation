@@ -27,7 +27,7 @@
 	unset_control() //remove from control computer
 	return ..()
 
-/obj/machinery/power/solar/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/power/solar/attackby(obj/item/W, mob/user)
 	if(iscrowbar(W))
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
 		user.visible_message(SPAN_NOTICE("[user] begins to take the glass off the solar panel."))

@@ -18,7 +18,7 @@
 /obj/structure/kitchenspike/attack_paw(mob/user as mob)
 	return src.attack_hand(usr)
 
-/obj/structure/kitchenspike/attackby(obj/item/weapon/grab/G as obj, mob/user as mob)
+/obj/structure/kitchenspike/attackby(obj/item/grab/G as obj, mob/user as mob)
 	if(!istype(G, /obj/item/grab))
 		return
 	if(ismonkey(G.affecting))

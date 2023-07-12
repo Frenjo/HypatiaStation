@@ -272,7 +272,7 @@ Buildable meters
 /obj/item/pipe/attack_self(mob/user as mob)
 	return rotate()
 
-/obj/item/pipe/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/pipe/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	//*
 	if(!istype(W, /obj/item/wrench))

@@ -157,7 +157,7 @@
 			else
 				del(signal)
 
-		transfer_holder(obj/item/weapon/disk/data/newholder,datum/computer/folder/newfolder)
+		transfer_holder(obj/item/disk/data/newholder,datum/computer/folder/newfolder)
 
 			if((newholder.file_used + src.size) > newholder.file_amount)
 				return 0
@@ -205,7 +205,7 @@
 					return 1
 			return 0
 
-		check_access(obj/item/weapon/card/id/I)
+		check_access(obj/item/card/id/I)
 			if(!src.req_access) //no requirements
 				return 1
 			if(!istype(src.req_access, /list)) //something's very wrong

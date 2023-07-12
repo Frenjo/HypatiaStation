@@ -21,7 +21,7 @@
 				qdel(src)
 	return
 
-/obj/effect/spider/attackby(obj/item/weapon/W, mob/user)
+/obj/effect/spider/attackby(obj/item/W, mob/user)
 	if(length(W.attack_verb))
 		visible_message(SPAN_DANGER("\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]" : "")]."))
 	else

@@ -61,7 +61,7 @@
 		src.icon_state = "labcage[src.occupied]"
 	return
 
-/obj/structure/lamarr/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/lamarr/attackby(obj/item/W as obj, mob/user as mob)
 	src.health -= W.force
 	src.healthcheck()
 	..()

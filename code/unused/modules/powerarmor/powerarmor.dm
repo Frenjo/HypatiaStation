@@ -165,7 +165,7 @@
 
 
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
+	attackby(obj/item/W as obj, mob/user as mob)
 		if(power && istype(power,/obj/item/powerarmor/power/plasma))
 			switch(W.type)
 				if(/obj/item/stack/sheet/mineral/plasma)

@@ -18,7 +18,7 @@
 	var/amt_strange = 0
 	var/last_update = 0
 
-/obj/structure/ore_box/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/ore_box/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/ore))
 		src.contents += W;
 	if(istype(W, /obj/item/storage))

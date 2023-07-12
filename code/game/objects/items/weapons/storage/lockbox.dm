@@ -17,7 +17,7 @@
 	var/icon_closed = "lockbox"
 	var/icon_broken = "lockbox+b"
 
-/obj/item/storage/lockbox/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/storage/lockbox/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/card/id))
 		if(src.broken)
 			user << "\red It appears to be broken."

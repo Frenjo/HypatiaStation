@@ -77,7 +77,7 @@
 
 	return 1
 
-/obj/machinery/portable_atmospherics/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/portable_atmospherics/attackby(obj/item/W as obj, mob/user as mob)
 	var/obj/icon = src
 	if(istype(W, /obj/item/tank) && !destroyed)
 		if(isnotnull(holding))

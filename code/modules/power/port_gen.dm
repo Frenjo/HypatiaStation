@@ -26,7 +26,7 @@
 /obj/machinery/power/port_gen/process()
 ideally we're looking to generate 5000
 
-/obj/machinery/power/port_gen/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/power/port_gen/attackby(obj/item/W, mob/user)
 tank [un]loading stuff
 
 /obj/machinery/power/port_gen/attack_hand(mob/user)

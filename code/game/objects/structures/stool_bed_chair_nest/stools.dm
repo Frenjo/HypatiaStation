@@ -26,7 +26,7 @@
 		new /obj/item/stack/sheet/metal(src.loc)
 		qdel(src)
 
-/obj/structure/stool/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/stool/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/wrench))
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		new /obj/item/stack/sheet/metal(src.loc)

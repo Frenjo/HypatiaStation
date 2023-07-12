@@ -8,7 +8,7 @@
 	w_class = 4
 	flags = CONDUCT
 
-/obj/item/rust_fuel_assembly_port_frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/rust_fuel_assembly_port_frame/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/wrench))
 		new /obj/item/stack/sheet/plasteel( get_turf(src.loc), 12 )
 		qdel(src)

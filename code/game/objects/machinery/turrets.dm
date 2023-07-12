@@ -303,7 +303,7 @@
 		src.die()
 	return
 
-/obj/machinery/turret/attackby(obj/item/weapon/W, mob/user)	//I can't believe no one added this before/N
+/obj/machinery/turret/attackby(obj/item/W, mob/user)	//I can't believe no one added this before/N
 	..()
 	playsound(src, 'sound/weapons/smash.ogg', 60, 1)
 	src.spark_system.start()
@@ -366,7 +366,7 @@
 	//don't have to check if control_area is path, since get_area_all_atoms can take path.
 	return
 
-/obj/machinery/turretid/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/turretid/attackby(obj/item/W, mob/user)
 	if(stat & BROKEN)
 		return
 	if(issilicon(user))

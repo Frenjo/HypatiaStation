@@ -15,7 +15,7 @@
 /obj/machinery/filter_control/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/filter_control/attackby(obj/item/weapon/W, mob/user as mob)
+/obj/machinery/filter_control/attackby(obj/item/W, mob/user as mob)
 	if(istype(W, /obj/item/detective_scanner))
 		return ..()
 	if(istype(W, /obj/item/screwdriver))

@@ -1063,7 +1063,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 		H.mind.transfer_to(brainmob)
 	brainmob.container = src
 
-/obj/item/organ/head/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/organ/head/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/scalpel))
 		switch(brain_op_stage)
 			if(0)

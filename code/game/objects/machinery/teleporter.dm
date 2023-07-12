@@ -280,7 +280,7 @@
 	idle_power_usage = 10
 	active_power_usage = 2000
 
-/obj/machinery/teleport/station/attackby(obj/item/weapon/W)
+/obj/machinery/teleport/station/attackby(obj/item/W)
 	src.attack_hand()
 
 /obj/machinery/teleport/station/attack_paw()

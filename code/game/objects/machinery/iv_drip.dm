@@ -50,7 +50,7 @@
 		src.update_icon()
 
 
-/obj/machinery/iv_drip/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/iv_drip/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/reagent_containers))
 		if(isnotnull(src.beaker))
 			user << "There is already a reagent container loaded!"

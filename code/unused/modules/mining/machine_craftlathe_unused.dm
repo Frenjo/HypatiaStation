@@ -140,7 +140,7 @@ proc/check_craftlathe_recipe(var/list/param_recipe)
 
 
 
-/obj/machinery/autolathe2/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/autolathe2/attackby(obj/item/W as obj, mob/user as mob)
 	usr.machine = src
 	src.add_fingerprint(usr)
 	for (var/datum/craftlathe_item/CI in CRAFT_ITEMS)

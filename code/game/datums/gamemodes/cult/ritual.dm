@@ -476,7 +476,7 @@ var/engwords = list(
 		to_chat(user, "The book seems full of illegible scribbles. Is this a joke?")
 		return
 
-/obj/item/tome/attackby(obj/item/weapon/tome/T as obj, mob/living/user as mob)
+/obj/item/tome/attackby(obj/item/tome/T as obj, mob/living/user as mob)
 	if(istype(T, /obj/item/tome)) // sanity check to prevent a runtime error
 		switch(alert("Copy the runes from your tome?", , "Copy", "Cancel"))
 			if("cancel")

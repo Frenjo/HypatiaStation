@@ -17,7 +17,7 @@
 	var/progress = 0
 	var/error = 0
 
-/obj/machinery/fermenter/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/fermenter/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/reagent_containers/food))
 		user.u_equip(W)
 		W.loc = src

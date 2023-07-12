@@ -278,7 +278,7 @@
 		else
 	return
 
-/obj/item/shard/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/shard/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W

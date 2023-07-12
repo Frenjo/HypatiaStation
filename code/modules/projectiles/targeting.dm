@@ -167,7 +167,7 @@
 	last_target_click = -5
 	target_locked = null
 
-/mob/living/proc/Targeted(obj/item/weapon/gun/I) //Self explanitory.
+/mob/living/proc/Targeted(obj/item/gun/I) //Self explanitory.
 	if(!I.target)
 		I.target = list(src)
 	else if(I.automatic && length(I.target) < 5) //Automatic weapon, they can hold down a room.
@@ -234,7 +234,7 @@
 				I.last_moved_mob = src
 			sleep(1)
 
-/mob/living/proc/NotTargeted(obj/item/weapon/gun/I)
+/mob/living/proc/NotTargeted(obj/item/gun/I)
 	if(!I.silenced)
 		for(var/mob/living/M in viewers(src))
 			M << 'sound/weapons/TargetOff.ogg'
