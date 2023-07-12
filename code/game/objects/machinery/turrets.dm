@@ -372,7 +372,7 @@
 	if(issilicon(user))
 		return src.attack_hand(user)
 
-	if(istype(W, /obj/item/weapon/card/emag) && !emagged)
+	if(istype(W, /obj/item/card/emag) && !emagged)
 		to_chat(user, SPAN_WARNING("You short out the turret controls' access analysis module."))
 		emagged = 1
 		locked = 0

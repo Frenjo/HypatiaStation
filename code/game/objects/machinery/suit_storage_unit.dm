@@ -526,14 +526,14 @@
 /obj/machinery/suit_storage_unit/attackby(obj/item/I as obj, mob/user as mob)
 	if(!src.ispowered)
 		return
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(istype(I, /obj/item/screwdriver))
 		src.panelopen = !src.panelopen
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		to_chat(user, SPAN_INFO("You [(src.panelopen ? "open up" : "close")] the unit's maintenance panel."))
 		src.updateUsrDialog()
 		return
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
 		if(!ismob(G.affecting))
 			return
 		if(!src.isopen)

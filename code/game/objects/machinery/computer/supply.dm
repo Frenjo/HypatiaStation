@@ -6,7 +6,7 @@
 	name = "Supply shuttle console"
 	icon_state = "supply"
 	req_access = list(ACCESS_CARGO)
-	circuit = /obj/item/weapon/circuitboard/supplycomp
+	circuit = /obj/item/circuitboard/supplycomp
 
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
@@ -27,7 +27,7 @@
 /obj/machinery/computer/ordercomp
 	name = "Supply ordering console"
 	icon_state = "request"
-	circuit = /obj/item/weapon/circuitboard/ordercomp
+	circuit = /obj/item/circuitboard/ordercomp
 
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
@@ -138,7 +138,7 @@
 			idname = usr.real_name
 
 		global.CTsupply.ordernum++ // Edited this to reflect 'shuttles' port. -Frenjo
-		var/obj/item/weapon/paper/reqform = new /obj/item/weapon/paper(loc)
+		var/obj/item/paper/reqform = new /obj/item/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
 		reqform.info += "<h3>[GLOBL.current_map.station_name] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[global.CTsupply.ordernum]<br>" // Edited this to reflect 'shuttles' port. -Frenjo
@@ -216,7 +216,7 @@
 	return
 
 /obj/machinery/computer/supplycomp/attackby(I as obj, user as mob)
-	if(istype(I,/obj/item/weapon/card/emag) && !hacked)
+	if(istype(I,/obj/item/card/emag) && !hacked)
 		to_chat(user, SPAN_INFO("Special supplies unlocked."))
 		hacked = 1
 		return
@@ -309,7 +309,7 @@
 			idname = usr.real_name
 
 		global.CTsupply.ordernum++ // Edited this to reflect 'shuttles' port. -Frenjo
-		var/obj/item/weapon/paper/reqform = new /obj/item/weapon/paper(loc)
+		var/obj/item/paper/reqform = new /obj/item/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
 		reqform.info += "<h3>[GLOBL.current_map.station_name] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[global.CTsupply.ordernum]<br>" // Edited this to reflect 'shuttles' port. -Frenjo

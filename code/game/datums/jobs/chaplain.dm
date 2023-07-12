@@ -23,7 +23,7 @@
 /datum/job/chaplain/equip(mob/living/carbon/human/H)
 	. = ..()
 
-	var/obj/item/weapon/storage/bible/B = locate(/obj/item/weapon/storage/bible) in H
+	var/obj/item/storage/bible/B = locate(/obj/item/storage/bible) in H
 	if(isnull(B))
 		return
 

@@ -133,7 +133,7 @@
 	density = TRUE
 	anchored = TRUE
 	icon_state = "recharge_comp"
-	circuit = /obj/item/weapon/circuitboard/mech_bay_power_console
+	circuit = /obj/item/circuitboard/mech_bay_power_console
 
 	var/autostart = 1
 	var/voltage = 45

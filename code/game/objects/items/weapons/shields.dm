@@ -1,7 +1,7 @@
-/obj/item/weapon/shield
+/obj/item/shield
 	name = "shield"
 
-/obj/item/weapon/shield/riot
+/obj/item/shield/riot
 	name = "riot shield"
 	desc = "A shield adept at blocking blunt objects from connecting with the torso of the shield wielder."
 	icon_state = "riot"
@@ -18,11 +18,11 @@
 
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
-/obj/item/weapon/shield/riot/IsShield()
+/obj/item/shield/riot/IsShield()
 	return 1
 
-/obj/item/weapon/shield/riot/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/melee/baton))
+/obj/item/shield/riot/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/melee/baton))
 		if(cooldown < world.time - 25)
 			user.visible_message(SPAN_WARNING("[user] bashes [src] with [W]!"))
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
@@ -30,7 +30,7 @@
 	else
 		..()
 
-/obj/item/weapon/shield/energy
+/obj/item/shield/energy
 	name = "energy combat shield"
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
 	icon_state = "eshield0" // eshield1 for expanded
@@ -46,7 +46,7 @@
 	var/active = 0
 
 
-/obj/item/weapon/cloaking_device
+/obj/item/cloaking_device
 	name = "cloaking device"
 	desc = "Use this to become invisible to the human eyesocket."
 	icon = 'icons/obj/devices/device.dmi'
@@ -61,7 +61,7 @@
 
 	var/active = 0
 
-/obj/item/weapon/cloaking_device/attack_self(mob/user as mob)
+/obj/item/cloaking_device/attack_self(mob/user as mob)
 	active = !active
 	if(active)
 		to_chat(user, SPAN_INFO("The cloaking device is now active."))
@@ -72,7 +72,7 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/weapon/cloaking_device/emp_act(severity)
+/obj/item/cloaking_device/emp_act(severity)
 	active = 0
 	icon_state = "shield0"
 	if(ismob(loc))

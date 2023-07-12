@@ -15,7 +15,7 @@
 		return 0
 	if(ishuman(mind.current) && (mind.assigned_role in list("Captain", "Chaplain")))
 		return 0
-	for(var/obj/item/weapon/implant/loyalty/L in mind.current)
+	for(var/obj/item/implant/loyalty/L in mind.current)
 		if(L && (L.imp_in == mind.current))	//Checks to see if the person contains an implant, then checks that the implant is actually inside of them
 			return 0
 	return 1
@@ -135,7 +135,7 @@
 			to_chat(mob, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 			mob.mutations.Remove(CLUMSY)
 
-	var/obj/item/weapon/paper/talisman/supply/T = new(mob)
+	var/obj/item/paper/talisman/supply/T = new(mob)
 	var/list/slots = list(
 		"backpack" = SLOT_ID_IN_BACKPACK,
 		"left pocket" = SLOT_ID_L_STORE,

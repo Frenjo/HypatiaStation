@@ -7,16 +7,16 @@
 
 /obj/structure/closet/secure_closet/personal/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(src.opened)
-		if(istype(W, /obj/item/weapon/grab))
+		if(istype(W, /obj/item/grab))
 			src.MouseDrop_T(W:affecting, user)      //act like they were dragged onto the closet
 		user.drop_item()
 		if(W)
 			W.loc = src.loc
-	else if(istype(W, /obj/item/weapon/card/id))
+	else if(istype(W, /obj/item/card/id))
 		if(src.broken)
 			to_chat(user, SPAN_WARNING("It appears to be broken."))
 			return
-		var/obj/item/weapon/card/id/I = W
+		var/obj/item/card/id/I = W
 		if(!I || !I.registered_name)
 			return
 		if(src.allowed(user) || !src.registered_name || (istype(I) && (src.registered_name == I.registered_name)))
@@ -32,12 +32,12 @@
 				src.desc = "Owned by [I.registered_name]."
 		else
 			FEEDBACK_ACCESS_DENIED(user)
-	else if((istype(W, /obj/item/weapon/card/emag) || istype(W, /obj/item/weapon/melee/energy/blade)) && !src.broken)
+	else if((istype(W, /obj/item/card/emag) || istype(W, /obj/item/melee/energy/blade)) && !src.broken)
 		broken = 1
 		locked = 0
 		desc = "It appears to be broken."
 		icon_state = src.icon_broken
-		if(istype(W, /obj/item/weapon/melee/energy/blade))
+		if(istype(W, /obj/item/melee/energy/blade))
 			var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
 			spark_system.set_up(5, 0, src.loc)
 			spark_system.start()
@@ -56,9 +56,9 @@
 
 /obj/structure/closet/secure_closet/personal/standard/New()
 	if(prob(50))
-		starts_with.Add(/obj/item/weapon/storage/backpack)
+		starts_with.Add(/obj/item/storage/backpack)
 	else
-		starts_with.Add(/obj/item/weapon/storage/satchel/norm)
+		starts_with.Add(/obj/item/storage/satchel/norm)
 	. = ..()
 
 /obj/structure/closet/secure_closet/personal/patient
@@ -78,7 +78,7 @@
 	icon_off = "cabinetdetective_broken"
 
 	starts_with = list(
-		/obj/item/weapon/storage/satchel/withwallet,
+		/obj/item/storage/satchel/withwallet,
 		/obj/item/device/radio/headset
 	)
 

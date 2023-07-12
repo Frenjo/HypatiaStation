@@ -1,6 +1,6 @@
 //BASKETBALL OBJECTS
 // Basketball
-/obj/item/weapon/beach_ball/holoball
+/obj/item/beach_ball/holoball
 	icon = 'icons/obj/basketball.dmi'
 	icon_state = "basketball"
 	name = "basketball"
@@ -19,8 +19,8 @@
 	throwpass = 1
 
 /obj/structure/holohoop/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/grab) && get_dist(src, user) < 2)
-		var/obj/item/weapon/grab/G = W
+	if(istype(W, /obj/item/grab) && get_dist(src, user) < 2)
+		var/obj/item/grab/G = W
 		if(G.state < 2)
 			to_chat(user, SPAN_WARNING("You need a better grip to do that!"))
 			return

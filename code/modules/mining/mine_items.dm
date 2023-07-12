@@ -27,18 +27,18 @@
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/shoes/black,
 		/obj/item/device/analyzer,
-		/obj/item/weapon/storage/bag/ore,
+		/obj/item/storage/bag/ore,
 		/obj/item/device/flashlight/lantern,
-		/obj/item/weapon/shovel,
-		/obj/item/weapon/pickaxe,
+		/obj/item/shovel,
+		/obj/item/pickaxe,
 		/obj/item/clothing/glasses/meson
 	)
 
 /obj/structure/closet/secure_closet/miner/New()
 	if(prob(50))
-		starts_with.Add(/obj/item/weapon/storage/backpack/industrial)
+		starts_with.Add(/obj/item/storage/backpack/industrial)
 	else
-		starts_with.Add(/obj/item/weapon/storage/satchel/eng)
+		starts_with.Add(/obj/item/storage/satchel/eng)
 	. = ..()
 
 /*
@@ -58,7 +58,7 @@
 /*
  * Pickaxe
  */
-/obj/item/weapon/pickaxe
+/obj/item/pickaxe
 	name = "pickaxe"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "pickaxe"
@@ -80,12 +80,12 @@
 	var/drill_sound = 'sound/weapons/Genhit.ogg'
 	var/drill_verb = "picking"
 
-/obj/item/weapon/pickaxe/hammer
+/obj/item/pickaxe/hammer
 	name = "sledgehammer"
 	//icon_state = "sledgehammer" Waiting on sprite
 	desc = "A mining hammer made of reinforced metal. You feel like smashing your boss in the face with this."
 
-/obj/item/weapon/pickaxe/silver
+/obj/item/pickaxe/silver
 	name = "silver pickaxe"
 	icon_state = "spickaxe"
 	item_state = "spickaxe"
@@ -93,7 +93,7 @@
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 3)
 	desc = "This makes no metallurgic sense."
 
-/obj/item/weapon/pickaxe/drill
+/obj/item/pickaxe/drill
 	name = "mining drill" // Can dig sand as well!
 	icon_state = "handdrill"
 	item_state = "jackhammer"
@@ -102,7 +102,7 @@
 	desc = "Yours is the drill that will pierce through the rock walls."
 	drill_verb = "drilling"
 
-/obj/item/weapon/pickaxe/jackhammer
+/obj/item/pickaxe/jackhammer
 	name = "sonic jackhammer"
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
@@ -111,7 +111,7 @@
 	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
 	drill_verb = "hammering"
 
-/obj/item/weapon/pickaxe/gold
+/obj/item/pickaxe/gold
 	name = "golden pickaxe"
 	icon_state = "gpickaxe"
 	item_state = "gpickaxe"
@@ -119,7 +119,7 @@
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 4)
 	desc = "This makes no metallurgic sense."
 
-/obj/item/weapon/pickaxe/plasmacutter
+/obj/item/pickaxe/plasmacutter
 	name = "plasma cutter"
 	icon_state = "plasmacutter"
 	item_state = "gun"
@@ -130,7 +130,7 @@
 	desc = "A rock cutter that uses bursts of hot plasma. You could use it to cut limbs off of xenos! Or, you know, mine stuff."
 	drill_verb = "cutting"
 
-/obj/item/weapon/pickaxe/diamond
+/obj/item/pickaxe/diamond
 	name = "diamond pickaxe"
 	icon_state = "dpickaxe"
 	item_state = "dpickaxe"
@@ -138,7 +138,7 @@
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 6, RESEARCH_TECH_ENGINEERING = 4)
 	desc = "A pickaxe with a diamond pick head, this is just like minecraft."
 
-/obj/item/weapon/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
+/obj/item/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
 	name = "diamond mining drill"
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
@@ -147,7 +147,7 @@
 	desc = "Yours is the drill that will pierce the heavens!"
 	drill_verb = "drilling"
 
-/obj/item/weapon/pickaxe/borgdrill
+/obj/item/pickaxe/borgdrill
 	name = "cyborg mining drill"
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
@@ -158,7 +158,7 @@
 /*
  * Shovel
  */
-/obj/item/weapon/shovel
+/obj/item/shovel
 	name = "shovel"
 	desc = "A large tool for digging and moving dirt."
 	icon = 'icons/obj/items.dmi'
@@ -173,7 +173,7 @@
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_ENGINEERING = 1)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 
-/obj/item/weapon/shovel/spade
+/obj/item/shovel/spade
 	name = "spade"
 	desc = "A small tool for digging and moving dirt."
 	icon_state = "spade"

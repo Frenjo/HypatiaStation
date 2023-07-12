@@ -4,7 +4,7 @@
 
 /decl/hierarchy/supply_pack/hydroponics/monkey
 	name = "Monkey crate"
-	contains = list(/obj/item/weapon/storage/box/monkeycubes)
+	contains = list(/obj/item/storage/box/monkeycubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Monkey crate"
@@ -12,7 +12,7 @@
 
 /decl/hierarchy/supply_pack/hydroponics/farwa
 	name = "Farwa crate"
-	contains = list(/obj/item/weapon/storage/box/monkeycubes/farwacubes)
+	contains = list(/obj/item/storage/box/monkeycubes/farwacubes)
 	cost = 30
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Farwa crate"
@@ -20,7 +20,7 @@
 
 /decl/hierarchy/supply_pack/hydroponics/skrell
 	name = "Neaera crate"
-	contains = list(/obj/item/weapon/storage/box/monkeycubes/neaeracubes)
+	contains = list(/obj/item/storage/box/monkeycubes/neaeracubes)
 	cost = 30
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Neaera crate"
@@ -28,7 +28,7 @@
 
 /decl/hierarchy/supply_pack/hydroponics/stok
 	name = "Stok crate"
-	contains = list(/obj/item/weapon/storage/box/monkeycubes/stokcubes)
+	contains = list(/obj/item/storage/box/monkeycubes/stokcubes)
 	cost = 30
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Stok crate"
@@ -45,12 +45,12 @@
 /decl/hierarchy/supply_pack/hydroponics/hydroponics // -- Skie
 	name = "Hydroponics Supply Crate"
 	contains = list(
-		/obj/item/weapon/reagent_containers/spray/plantbgone,
-		/obj/item/weapon/reagent_containers/spray/plantbgone,
-		/obj/item/weapon/reagent_containers/glass/bottle/ammonia,
-		/obj/item/weapon/reagent_containers/glass/bottle/ammonia,
-		/obj/item/weapon/hatchet,
-		/obj/item/weapon/minihoe,
+		/obj/item/reagent_containers/spray/plantbgone,
+		/obj/item/reagent_containers/spray/plantbgone,
+		/obj/item/reagent_containers/glass/bottle/ammonia,
+		/obj/item/reagent_containers/glass/bottle/ammonia,
+		/obj/item/hatchet,
+		/obj/item/minihoe,
 		/obj/item/device/analyzer/plant_analyzer,
 		/obj/item/clothing/gloves/botanic_leather,
 		/obj/item/clothing/suit/apron
@@ -116,10 +116,10 @@
 /decl/hierarchy/supply_pack/hydroponics/weedcontrol
 	name = "Weed control crate"
 	contains = list(
-		/obj/item/weapon/scythe,
+		/obj/item/scythe,
 		/obj/item/clothing/mask/gas,
-		/obj/item/weapon/grenade/chem_grenade/antiweed,
-		/obj/item/weapon/grenade/chem_grenade/antiweed
+		/obj/item/grenade/chem_grenade/antiweed,
+		/obj/item/grenade/chem_grenade/antiweed
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/hydrosec
@@ -164,7 +164,7 @@
 	contains = list(
 		/obj/item/beezeez,
 		/obj/item/beezeez,
-		/obj/item/weapon/bee_net,
+		/obj/item/bee_net,
 		/obj/item/apiary,
 		/obj/item/queen_bee,
 		/obj/item/queen_bee,

@@ -9,10 +9,10 @@
 	var/beaker = null
 
 /obj/machinery/disease2/isolator/attackby(var/W as obj, var/mob/user)
-	if(!istype(W,/obj/item/weapon/reagent_containers/syringe))
+	if(!istype(W,/obj/item/reagent_containers/syringe))
 		return
 
-	var/obj/item/weapon/reagent_containers/syringe/B = W
+	var/obj/item/reagent_containers/syringe/B = W
 
 	if(src.beaker)
 		user << "A syringe is already loaded into the machine."
@@ -21,7 +21,7 @@
 	src.beaker =  B
 	user.drop_item()
 	B.loc = src
-	if(istype(B,/obj/item/weapon/reagent_containers/syringe))
+	if(istype(B,/obj/item/reagent_containers/syringe))
 		user << "You add the syringe to the machine!"
 		src.updateUsrDialog()
 		icon_state = "isolator_in"
@@ -91,7 +91,7 @@
 	if(isolating > 0)
 		isolating -= 1
 		if(isolating == 0)
-			var/obj/item/weapon/virusdish/d = new /obj/item/weapon/virusdish(src.loc)
+			var/obj/item/virusdish/d = new /obj/item/virusdish(src.loc)
 			d.virus2 = virus2.getcopy()
 			virus2 = null
 			icon_state = "isolator_in"

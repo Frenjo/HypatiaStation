@@ -134,8 +134,8 @@
 			to_chat(user, SPAN_NOTICE("You try to move your [temp.display_name], but cannot!"))
 			return
 
-	if(istype(loc, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = loc
+	if(istype(loc, /obj/item/storage))
+		var/obj/item/storage/S = loc
 		S.remove_from_storage(src)
 
 	throwing = THROW_NONE
@@ -154,7 +154,7 @@
 	user.put_in_active_hand(src)
 
 /obj/item/attack_paw(mob/user as mob)
-	if(istype(src.loc, /obj/item/weapon/storage))
+	if(istype(src.loc, /obj/item/storage))
 		for(var/mob/M in range(1, src.loc))
 			if(M.s_active == src.loc)
 				if(M.client)
@@ -178,8 +178,8 @@
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
 /obj/item/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = W
+	if(istype(W,/obj/item/storage))
+		var/obj/item/storage/S = W
 		if(S.use_to_pickup)
 			if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
 				if(isturf(src.loc))
@@ -386,24 +386,24 @@
 					if(!disable_warning)
 						to_chat(usr, "You somehow have a suit with no defined allowed items for suit storage, stop that.")
 					return 0
-				if(istype(src, /obj/item/device/pda) || istype(src, /obj/item/weapon/pen) || is_type_in_list(src, H.wear_suit.allowed))
+				if(istype(src, /obj/item/device/pda) || istype(src, /obj/item/pen) || is_type_in_list(src, H.wear_suit.allowed))
 					return 1
 				return 0
 			if(SLOT_ID_HANDCUFFED)
 				if(H.handcuffed)
 					return 0
-				if(!istype(src, /obj/item/weapon/handcuffs))
+				if(!istype(src, /obj/item/handcuffs))
 					return 0
 				return 1
 			if(SLOT_ID_LEGCUFFED)
 				if(H.legcuffed)
 					return 0
-				if(!istype(src, /obj/item/weapon/legcuffs))
+				if(!istype(src, /obj/item/legcuffs))
 					return 0
 				return 1
 			if(SLOT_ID_IN_BACKPACK)
-				if(H.back && (istype(H.back, /obj/item/weapon/storage/backpack) || istype(H.back, /obj/item/weapon/storage/satchel)))
-					var/obj/item/weapon/storage/store = H.back
+				if(H.back && (istype(H.back, /obj/item/storage/backpack) || istype(H.back, /obj/item/storage/satchel)))
+					var/obj/item/storage/store = H.back
 					if(length(store.contents) < store.storage_slots && w_class <= store.max_w_class)
 						return 1
 				return 0
@@ -563,7 +563,7 @@
 	if(!..())
 		return 0
 
-	if(istype(src, /obj/item/weapon/melee/energy))
+	if(istype(src, /obj/item/melee/energy))
 		return
 
 	//if we haven't made our blood_overlay already

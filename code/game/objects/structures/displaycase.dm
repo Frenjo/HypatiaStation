@@ -13,9 +13,9 @@
 /obj/structure/displaycase/ex_act(severity)
 	switch(severity)
 		if (1)
-			new /obj/item/weapon/shard( src.loc )
+			new /obj/item/shard( src.loc )
 			if (occupied)
-				new /obj/item/weapon/gun/energy/laser/captain( src.loc )
+				new /obj/item/gun/energy/laser/captain( src.loc )
 				occupied = 0
 			qdel(src)
 		if (2)
@@ -37,16 +37,16 @@
 
 /obj/structure/displaycase/blob_act()
 	if (prob(75))
-		new /obj/item/weapon/shard( src.loc )
+		new /obj/item/shard( src.loc )
 		if (occupied)
-			new /obj/item/weapon/gun/energy/laser/captain( src.loc )
+			new /obj/item/gun/energy/laser/captain( src.loc )
 			occupied = 0
 		qdel(src)
 
 
 /obj/structure/displaycase/meteorhit(obj/O as obj)
-		new /obj/item/weapon/shard( src.loc )
-		new /obj/item/weapon/gun/energy/laser/captain( src.loc )
+		new /obj/item/shard( src.loc )
+		new /obj/item/gun/energy/laser/captain( src.loc )
 		qdel(src)
 
 
@@ -55,7 +55,7 @@
 		if (!( src.destroyed ))
 			src.density = FALSE
 			src.destroyed = 1
-			new /obj/item/weapon/shard( src.loc )
+			new /obj/item/shard( src.loc )
 			playsound(src, "shatter", 70, 1)
 			update_icon()
 	else
@@ -81,7 +81,7 @@
 
 /obj/structure/displaycase/attack_hand(mob/user as mob)
 	if (src.destroyed && src.occupied)
-		new /obj/item/weapon/gun/energy/laser/captain( src.loc )
+		new /obj/item/gun/energy/laser/captain( src.loc )
 		user << "\b You deactivate the hover field built into the case."
 		src.occupied = 0
 		src.add_fingerprint(user)

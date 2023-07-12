@@ -158,14 +158,14 @@
 		BITSET(H.hud_updateflag, IMPLOYAL_HUD)	// Updates that players HUD images so secHUD's pick up they are implanted or not.
 		switch(href_list["implant"])
 			if("remove")
-				for(var/obj/item/weapon/implant/loyalty/I in H.contents)
+				for(var/obj/item/implant/loyalty/I in H.contents)
 					for(var/datum/organ/external/organs in H.organs)
 						if(I in organs.implants)
 							qdel(I)
 							break
 				to_chat(H, SPAN_INFO_B("<font size=3>Your loyalty implant has been deactivated.</font>"))
 			if("add")
-				var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(H)
+				var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(H)
 				L.imp_in = H
 				L.implanted = 1
 				var/datum/organ/external/affected = H.organs_by_name["head"]
@@ -321,7 +321,7 @@
 			if("tome")
 				var/mob/living/carbon/human/H = current
 				if(istype(H))
-					var/obj/item/weapon/tome/T = new(H)
+					var/obj/item/tome/T = new(H)
 
 					var/list/slots = list (
 						"backpack" = SLOT_ID_IN_BACKPACK,
@@ -536,8 +536,8 @@
 							sleep(0) //because deleting of virus is doing throught spawn(0)
 					log_admin("[key_name(usr)] attempting to humanize [key_name(current)].")
 					message_admins(SPAN_INFO("[key_name_admin(usr)] attempting to humanize [key_name_admin(current)]."))
-					var/obj/item/weapon/dnainjector/m2h/m2h = new
-					var/obj/item/weapon/implant/mobfinder = new(M) //hack because humanizing deletes mind --rastaf0
+					var/obj/item/dnainjector/m2h/m2h = new
+					var/obj/item/implant/mobfinder = new(M) //hack because humanizing deletes mind --rastaf0
 					qdel(src)
 					m2h.inject(M)
 					src = mobfinder.loc:mind

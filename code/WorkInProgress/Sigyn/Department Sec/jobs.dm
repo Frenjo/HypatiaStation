@@ -49,8 +49,8 @@ proc/assign_sec_to_department(var/mob/living/carbon/human/H)
 							else
 								break
 					H << "<b>You have been assigned to [department]!</b>"
-					if(locate(/obj/item/weapon/card/id, H))
-						var/obj/item/weapon/card/id/I = locate(/obj/item/weapon/card/id, H)
+					if(locate(/obj/item/card/id, H))
+						var/obj/item/card/id/I = locate(/obj/item/card/id, H)
 						if(I)
 							I.access |= access
 
@@ -68,22 +68,22 @@ proc/assign_sec_to_department(var/mob/living/carbon/human/H)
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		if(H.backbag == 2) H.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(H), SLOT_ID_BACK)
-		if(H.backbag == 3) H.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel_sec(H), SLOT_ID_BACK)
+		if(H.backbag == 2) H.equip_to_slot_or_del(new /obj/item/storage/backpack/security(H), SLOT_ID_BACK)
+		if(H.backbag == 3) H.equip_to_slot_or_del(new /obj/item/storage/satchel_sec(H), SLOT_ID_BACK)
 		assign_sec_to_department(H)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), SLOT_ID_SHOES)
 		H.equip_to_slot_or_del(new /obj/item/device/pda/security(H), SLOT_ID_BELT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest(H), SLOT_ID_WEAR_SUIT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet(H), SLOT_ID_HEAD)
-		H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), SLOT_ID_S_STORE)
+		H.equip_to_slot_or_del(new /obj/item/handcuffs(H), SLOT_ID_S_STORE)
 		H.equip_to_slot_or_del(new /obj/item/device/flash(H), SLOT_ID_L_STORE)
 		if(H.backbag == 1)
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H), SLOT_ID_R_HAND)
-			H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), SLOT_ID_L_HAND)
+			H.equip_to_slot_or_del(new /obj/item/storage/box/survival(H), SLOT_ID_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/handcuffs(H), SLOT_ID_L_HAND)
 		else
-			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/weapon/handcuffs(H), SLOT_ID_IN_BACKPACK)
-		var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(H)
+			H.equip_to_slot_or_del(new /obj/item/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/handcuffs(H), SLOT_ID_IN_BACKPACK)
+		var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(H)
 		L.imp_in = H
 		L.implanted = 1
 		return 1

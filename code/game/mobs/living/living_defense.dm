@@ -35,7 +35,7 @@
 	return 0
 
 /mob/living/bullet_act(obj/item/projectile/P, def_zone)
-	var/obj/item/weapon/cloaking_device/C = locate(/obj/item/weapon/cloaking_device) in src
+	var/obj/item/cloaking_device/C = locate(/obj/item/cloaking_device) in src
 	if(C && C.active)
 		C.attack_self(src) //Should shut it off
 		update_icons()
@@ -64,8 +64,8 @@
 		var/obj/O = AM
 		var/zone = ran_zone("chest", 75) //Hits a random part of the body, geared towards the chest
 		var/dtype = BRUTE
-		if(istype(O, /obj/item/weapon))
-			var/obj/item/weapon/W = O
+		if(istype(O, /obj/item))
+			var/obj/item/W = O
 			dtype = W.damtype
 		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))
 		var/armor = run_armor_check(zone, "melee", "Your armor has protected your [zone].", "Your armor has softened hit to your [zone].")
@@ -87,7 +87,7 @@
 // Begin BS12 momentum-transfer code.
 
 			if(speed >= 20)
-				var/obj/item/weapon/W = O
+				var/obj/item/W = O
 				var/momentum = speed/2
 				var/dir = get_dir(M, src)
 

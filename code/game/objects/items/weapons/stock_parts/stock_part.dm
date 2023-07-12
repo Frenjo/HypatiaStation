@@ -1,6 +1,6 @@
 ///////////////////////////////// Stock Parts /////////////////////////////////
 // Sprited/added unique icons for upgraded capacitors and scanning modules, along with rating 4 parts. -Frenjo
-/obj/item/weapon/stock_part
+/obj/item/stock_part
 	name = "stock part"
 	desc = "What?"
 	gender = PLURAL
@@ -9,12 +9,12 @@
 
 	var/rating = 1
 
-/obj/item/weapon/stock_part/New()
+/obj/item/stock_part/New()
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
 	..()
 
-/obj/item/weapon/stock_part/console_screen
+/obj/item/stock_part/console_screen
 	name = "console screen"
 	desc = "Used in the construction of computers and other devices with a interactive console."
 	icon_state = "screen"

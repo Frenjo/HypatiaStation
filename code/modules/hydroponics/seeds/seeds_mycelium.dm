@@ -8,7 +8,7 @@
 	mypath = /obj/item/seeds/reishimycelium
 	species = "reishi"
 	plantname = "Reishi"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/reishi
+	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/reishi
 	lifespan = 35
 	endurance = 35
 	maturation = 10
@@ -29,7 +29,7 @@
 	mypath = /obj/item/seeds/amanitamycelium
 	species = "amanita"
 	plantname = "Fly Amanitas"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/amanita
+	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/amanita
 	lifespan = 50
 	endurance = 35
 	maturation = 10
@@ -50,7 +50,7 @@
 	mypath = /obj/item/seeds/angelmycelium
 	species = "angel"
 	plantname = "Destroying Angels"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/angel
+	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/angel
 	lifespan = 50
 	endurance = 35
 	maturation = 12
@@ -71,7 +71,7 @@
 	mypath = /obj/item/seeds/libertymycelium
 	species = "liberty"
 	plantname = "Liberty-Caps"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/libertycap
+	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap
 	lifespan = 25
 	endurance = 15
 	maturation = 7
@@ -92,7 +92,7 @@
 	mypath = /obj/item/seeds/chantermycelium
 	species = "chanter"
 	plantname = "Chanterelle Mushrooms"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/chanterelle
+	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle
 	lifespan = 35
 	endurance = 20
 	maturation = 7
@@ -113,7 +113,7 @@
 	mypath = /obj/item/seeds/glowshroom
 	species = "glowshroom"
 	plantname = "Glowshrooms"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/glowshroom
+	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/glowshroom
 	lifespan = 120 //ten times that is the delay
 	endurance = 30
 	maturation = 15
@@ -134,7 +134,7 @@
 	mypath = /obj/item/seeds/plumpmycelium
 	species = "plump"
 	plantname = "Plump-Helmet Mushrooms"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/plumphelmet
+	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet
 	lifespan = 25
 	endurance = 15
 	maturation = 8
@@ -155,7 +155,7 @@
 	mypath = /obj/item/seeds/walkingmushroommycelium
 	species = "walkingmushroom"
 	plantname = "Walking Mushrooms"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/mushroom/walkingmushroom
+	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/walkingmushroom
 	lifespan = 30
 	endurance = 30
 	maturation = 5

@@ -188,7 +188,7 @@
 		secondary_effect.DoEffectTouch(user)
 
 /obj/machinery/artifact/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
-	if(istype(W, /obj/item/weapon/reagent_containers))
+	if(istype(W, /obj/item/reagent_containers))
 		if(W.reagents.has_reagent("hydrogen", 1) || W.reagents.has_reagent("water", 1))
 			if(my_effect.trigger == TRIGGER_WATER)
 				my_effect.ToggleActivate()
@@ -209,19 +209,19 @@
 				my_effect.ToggleActivate()
 			if(secondary_effect && secondary_effect.trigger == TRIGGER_TOXIN && prob(25))
 				secondary_effect.ToggleActivate(0)
-	else if(istype(W,/obj/item/weapon/melee/baton) && W:status ||\
-			istype(W,/obj/item/weapon/melee/energy) ||\
-			istype(W,/obj/item/weapon/melee/cultblade) ||\
-			istype(W,/obj/item/weapon/card/emag) ||\
+	else if(istype(W,/obj/item/melee/baton) && W:status ||\
+			istype(W,/obj/item/melee/energy) ||\
+			istype(W,/obj/item/melee/cultblade) ||\
+			istype(W,/obj/item/card/emag) ||\
 			istype(W,/obj/item/device/multitool))
 		if(my_effect.trigger == TRIGGER_ENERGY)
 			my_effect.ToggleActivate()
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_ENERGY && prob(25))
 			secondary_effect.ToggleActivate(0)
 
-	else if(istype(W,/obj/item/weapon/match) && W:lit ||\
-			istype(W,/obj/item/weapon/weldingtool) && W:welding ||\
-			istype(W,/obj/item/weapon/lighter) && W:lit)
+	else if(istype(W,/obj/item/match) && W:lit ||\
+			istype(W,/obj/item/weldingtool) && W:welding ||\
+			istype(W,/obj/item/lighter) && W:lit)
 		if(my_effect.trigger == TRIGGER_HEAT)
 			my_effect.ToggleActivate()
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_HEAT && prob(25))

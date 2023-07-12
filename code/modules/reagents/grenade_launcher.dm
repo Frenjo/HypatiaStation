@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/grenadelauncher
+/obj/item/gun/grenadelauncher
 	name = "grenade launcher"
 	icon_state = "riotgun"
 	item_state = "riotgun"
@@ -10,7 +10,7 @@
 	var/list/grenades = list()
 	var/max_grenades = 3
 
-/obj/item/weapon/gun/grenadelauncher/examine()
+/obj/item/gun/grenadelauncher/examine()
 	set src in view()
 	..()
 	if(!(usr in view(2)) && usr != src.loc)
@@ -18,8 +18,8 @@
 	to_chat(usr, "[src] Grenade launcher:")
 	to_chat(usr, SPAN_INFO("[grenades] / [max_grenades] Grenades."))
 
-/obj/item/weapon/gun/grenadelauncher/attackby(obj/item/I as obj, mob/user as mob)
-	if((istype(I, /obj/item/weapon/grenade)))
+/obj/item/gun/grenadelauncher/attackby(obj/item/I as obj, mob/user as mob)
+	if((istype(I, /obj/item/grenade)))
 		if(length(grenades) < max_grenades)
 			user.drop_item()
 			I.loc = src
@@ -29,8 +29,8 @@
 		else
 			to_chat(usr, SPAN_WARNING("The grenade launcher cannot hold more grenades."))
 
-/obj/item/weapon/gun/grenadelauncher/afterattack(obj/target, mob/user , flag)
-	if(istype(target, /obj/item/weapon/storage/backpack))
+/obj/item/gun/grenadelauncher/afterattack(obj/target, mob/user , flag)
+	if(istype(target, /obj/item/storage/backpack))
 		return
 
 	else if(locate(/obj/structure/table, src.loc))
@@ -45,11 +45,11 @@
 	else
 		to_chat(usr, SPAN_WARNING("The grenade launcher is empty."))
 
-/obj/item/weapon/gun/grenadelauncher/proc/fire_grenade(atom/target, mob/user)
+/obj/item/gun/grenadelauncher/proc/fire_grenade(atom/target, mob/user)
 	for(var/mob/O in viewers(world.view, user))
 		O.show_message(SPAN_WARNING("[user] fired a grenade!"), 1)
 	to_chat(user, SPAN_WARNING("You fire the grenade launcher!"))
-	var/obj/item/weapon/grenade/chem_grenade/F = grenades[1] //Now with less copypasta!
+	var/obj/item/grenade/chem_grenade/F = grenades[1] //Now with less copypasta!
 	grenades -= F
 	F.loc = user.loc
 	F.throw_at(target, 30, 2)

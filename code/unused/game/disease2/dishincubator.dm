@@ -4,8 +4,8 @@
 	anchored = TRUE
 	icon = 'icons/obj/machines/virology.dmi'
 	icon_state = "incubator"
-	var/obj/item/weapon/virusdish/dish
-	var/obj/item/weapon/reagent_containers/glass/beaker = null
+	var/obj/item/virusdish/dish
+	var/obj/item/reagent_containers/glass/beaker = null
 	var/radiation = 0
 
 	var/on = 0
@@ -33,10 +33,10 @@
 		return
 
 	attackby(var/obj/B as obj, var/mob/user as mob)
-		if(istype(B, /obj/item/weapon/reagent_containers/glass) || istype(B,/obj/item/weapon/reagent_containers/syringe))
+		if(istype(B, /obj/item/reagent_containers/glass) || istype(B,/obj/item/reagent_containers/syringe))
 
 			if(src.beaker)
-				if(istype(beaker,/obj/item/weapon/reagent_containers/syringe))
+				if(istype(beaker,/obj/item/reagent_containers/syringe))
 					user << "A syringe is already loaded into the machine."
 				else
 					user << "A beaker is already loaded into the machine."
@@ -45,14 +45,14 @@
 			src.beaker =  B
 			user.drop_item()
 			B.loc = src
-			if(istype(B,/obj/item/weapon/reagent_containers/syringe))
+			if(istype(B,/obj/item/reagent_containers/syringe))
 				user << "You add the syringe to the machine!"
 				src.updateUsrDialog()
 			else
 				user << "You add the beaker to the machine!"
 				src.updateUsrDialog()
 		else
-			if(istype(B,/obj/item/weapon/virusdish))
+			if(istype(B,/obj/item/virusdish))
 				if(src.dish)
 					user << "A dish is already loaded into the machine."
 					return
@@ -60,7 +60,7 @@
 				src.dish =  B
 				user.drop_item()
 				B.loc = src
-				if(istype(B,/obj/item/weapon/virusdish))
+				if(istype(B,/obj/item/virusdish))
 					user << "You add the dish to the machine!"
 					src.updateUsrDialog()
 

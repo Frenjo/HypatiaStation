@@ -74,13 +74,13 @@
 			return
 
 	//Hacking init.
-	if(istype(I, /obj/item/device/multitool) || istype(I, /obj/item/weapon/wirecutters))
+	if(istype(I, /obj/item/device/multitool) || istype(I, /obj/item/wirecutters))
 		if(panel_open)
 			attack_hand(user)
 		return
 	//Other interface stuff.
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
 
 		if(!ismob(G.affecting))
 			return
@@ -111,18 +111,18 @@
 			src.updateUsrDialog()
 
 			return
-	else if(istype(I, /obj/item/weapon/screwdriver))
+	else if(istype(I, /obj/item/screwdriver))
 		panel_open = !panel_open
 		to_chat(user, "You [panel_open ?  "open" : "close"] the maintenance panel.")
 		src.updateUsrDialog()
 		return
 
-	else if(istype(I, /obj/item/weapon/card/emag))
+	else if(istype(I, /obj/item/card/emag))
 		if(emagged)
 			to_chat(user, SPAN_WARNING("The cycler has already been subverted."))
 			return
 
-		var/obj/item/weapon/card/emag/E = I
+		var/obj/item/card/emag/E = I
 		src.updateUsrDialog()
 		E.uses--
 
@@ -319,7 +319,7 @@
 
 	else if((href_list["cutwire"]) && (src.panel_open))
 		var/twire = text2num(href_list["cutwire"])
-		if(!istype(usr.get_active_hand(), /obj/item/weapon/wirecutters))
+		if(!istype(usr.get_active_hand(), /obj/item/wirecutters))
 			to_chat(usr, "You need wirecutters!")
 			return
 		if(src.isWireColorCut(twire))

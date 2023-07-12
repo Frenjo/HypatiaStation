@@ -73,7 +73,7 @@ emp_act
 		to_chat(src, SPAN_WARNING("You have been shot!"))
 		qdel(P)
 
-		var/obj/item/weapon/cloaking_device/C = locate(/obj/item/weapon/cloaking_device) in src
+		var/obj/item/cloaking_device/C = locate(/obj/item/cloaking_device) in src
 		if(C && C.active)
 			C.attack_self(src)//Should shut it off
 			update_icons()
@@ -92,7 +92,7 @@ emp_act
 	var/datum/organ/external/organ = get_organ(check_zone(def_zone))
 	var/armor = checkarmor(organ, "bullet")
 	if((P.embed && prob(20 + max(P.damage - armor, -10))) && P.damage_type == BRUTE)
-		var/obj/item/weapon/shard/shrapnel/SP = new()
+		var/obj/item/shard/shrapnel/SP = new()
 		(SP.name) = "[P.name] shrapnel"
 		(SP.desc) = "[SP.desc] It looks like it was fired from [P.shot_from]."
 		(SP.loc) = organ
@@ -149,13 +149,13 @@ emp_act
 	return 0
 
 /mob/living/carbon/human/proc/check_shields(damage = 0, attack_text = "the attack")
-	if(l_hand && istype(l_hand, /obj/item/weapon))//Current base is the prob(50-d/3)
-		var/obj/item/weapon/I = l_hand
+	if(l_hand && istype(l_hand, /obj/item))//Current base is the prob(50-d/3)
+		var/obj/item/I = l_hand
 		if(I.IsShield() && (prob(50 - round(damage / 3))))
 			visible_message(SPAN_DANGER("[src] blocks [attack_text] with the [l_hand.name]!"))
 			return 1
-	if(r_hand && istype(r_hand, /obj/item/weapon))
-		var/obj/item/weapon/I = r_hand
+	if(r_hand && istype(r_hand, /obj/item))
+		var/obj/item/I = r_hand
 		if(I.IsShield() && (prob(50 - round(damage / 3))))
 			visible_message(SPAN_DANGER("[src] blocks [attack_text] with the [r_hand.name]!"))
 			return 1
@@ -220,7 +220,7 @@ emp_act
 	if((user != src) && check_shields(I.force, "the [I.name]"))
 		return 0
 
-	if(istype(I,/obj/item/weapon/card/emag))
+	if(istype(I,/obj/item/card/emag))
 		if(!(affecting.status & ORGAN_ROBOT))
 			to_chat(user, SPAN_WARNING("That limb isn't robotic."))
 			return
@@ -228,7 +228,7 @@ emp_act
 			to_chat(user, SPAN_WARNING("[src]'s [affecting.display_name] is already sabotaged!"))
 		else
 			to_chat(user, SPAN_WARNING("You sneakily slide [I] into the dataport on [src]'s [affecting.display_name] and short out the safeties."))
-			var/obj/item/weapon/card/emag/emag = I
+			var/obj/item/card/emag/emag = I
 			emag.uses--
 			affecting.sabotaged = 1
 		return 1

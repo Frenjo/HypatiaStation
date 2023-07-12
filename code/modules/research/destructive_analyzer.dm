@@ -11,21 +11,21 @@ Note: Must be placed within 3 tiles of the R&D Console
 	name = "Destructive Analyzer"
 	icon_state = "d_analyzer"
 
-	var/obj/item/weapon/loaded_item = null
+	var/obj/item/loaded_item = null
 	var/decon_mod = 1
 
 /obj/machinery/r_n_d/destructive_analyzer/New()
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/destructive_analyzer(src)
-	component_parts += new /obj/item/weapon/stock_part/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_part/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_part/micro_laser(src)
+	component_parts += new /obj/item/circuitboard/destructive_analyzer(src)
+	component_parts += new /obj/item/stock_part/scanning_module(src)
+	component_parts += new /obj/item/stock_part/manipulator(src)
+	component_parts += new /obj/item/stock_part/micro_laser(src)
 	RefreshParts()
 
 /obj/machinery/r_n_d/destructive_analyzer/RefreshParts()
 	var/T = 0
-	for(var/obj/item/weapon/stock_part/S in src)
+	for(var/obj/item/stock_part/S in src)
 		T += S.rating * 0.1
 	T = between (0, T, 1)
 	decon_mod = T
@@ -38,7 +38,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	if(..())
 		return 1
 
-	if(istype(O, /obj/item/weapon/screwdriver))
+	if(istype(O, /obj/item/screwdriver))
 		if(!opened)
 			opened = TRUE
 			if(linked_console)
@@ -52,7 +52,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 			to_chat(user, "You close the maintenance hatch of the [src.name].")
 		return 1
 	if(opened)
-		if(istype(O, /obj/item/weapon/crowbar))
+		if(istype(O, /obj/item/crowbar))
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			M.state = 2
@@ -97,7 +97,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	return 1
 
 //For testing purposes only.
-/*/obj/item/weapon/deconstruction_test
+/*/obj/item/deconstruction_test
 	name = "Test Item"
 	desc = "WTF?"
 	icon = 'icons/obj/weapons/weapons.dmi'

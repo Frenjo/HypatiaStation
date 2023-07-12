@@ -9,8 +9,8 @@
 	idle_power_usage = 10
 	active_power_usage = 500
 
-	var/list/obj/item/weapon/reagent_containers/food/input = list()
-	var/obj/item/weapon/reagent_containers/food/squeezed_item
+	var/list/obj/item/reagent_containers/food/input = list()
+	var/obj/item/reagent_containers/food/squeezed_item
 	var/water_level = 0
 	var/busy = 0
 	var/progress = 0

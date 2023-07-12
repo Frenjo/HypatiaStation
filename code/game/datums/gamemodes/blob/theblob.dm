@@ -158,7 +158,7 @@
 	switch(W.damtype)
 		if("fire")
 			damage = (W.force / max(fire_resist, 1))
-			if(istype(W, /obj/item/weapon/weldingtool))
+			if(istype(W, /obj/item/weldingtool))
 				playsound(src, 'sound/items/Welder.ogg', 100, 1)
 		if("brute")
 			damage = (W.force / max(brute_resist, 1))

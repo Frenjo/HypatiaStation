@@ -6,7 +6,7 @@
 	icon_state = "seed-kudzu"
 	w_class = 1
 
-/obj/item/weapon/bee_net
+/obj/item/bee_net
 	name = "bee net"
 	desc = "For catching rogue bees."
 	icon = 'icons/obj/apiary_bees_etc.dmi'
@@ -15,7 +15,7 @@
 	w_class = 3
 	var/caught_bees = 0
 
-/obj/item/weapon/bee_net/attack_self(mob/user as mob)
+/obj/item/bee_net/attack_self(mob/user as mob)
 	var/turf/T = get_step(get_turf(user), user.dir)
 	for(var/mob/living/simple_animal/bee/B in T)
 		if(B.feral < 0)
@@ -27,7 +27,7 @@
 			B.feral = 5
 			B.target_mob = user
 
-/obj/item/weapon/bee_net/verb/empty_bees()
+/obj/item/bee_net/verb/empty_bees()
 	set src in usr
 	set name = "Empty bee net"
 	set category = "Object"
@@ -70,12 +70,12 @@
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
 
-/obj/item/weapon/reagent_containers/food/snacks/honeycomb
+/obj/item/reagent_containers/food/snacks/honeycomb
 	name = "honeycomb"
 	icon_state = "honeycomb"
 	desc = "Dripping with sugary sweetness."
 
-/obj/item/weapon/reagent_containers/food/snacks/honeycomb/New()
+/obj/item/reagent_containers/food/snacks/honeycomb/New()
 	..()
 	reagents.add_reagent("honey",10)
 	reagents.add_reagent("nutriment", 0.5)
@@ -88,7 +88,7 @@
 	description = "A golden yellow syrup, loaded with sugary sweetness."
 	color = "#FFFF00"
 
-/obj/item/weapon/book/manual/hydroponics_beekeeping
+/obj/item/book/manual/hydroponics_beekeeping
 	name = "The Ins and Outs of Apiculture - A Precise Art"
 	icon_state ="bookHydroponicsBees"
 	author = "Beekeeper Dave"

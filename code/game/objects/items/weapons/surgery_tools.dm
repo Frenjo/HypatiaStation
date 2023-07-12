@@ -14,7 +14,7 @@
 /*
  * Retractor
  */
-/obj/item/weapon/retractor
+/obj/item/retractor
 	name = "retractor"
 	desc = "Retracts stuff."
 	icon = 'icons/obj/surgery.dmi'
@@ -27,7 +27,7 @@
 /*
  * Hemostat
  */
-/obj/item/weapon/hemostat
+/obj/item/hemostat
 	name = "hemostat"
 	desc = "You think you have seen this before."
 	icon = 'icons/obj/surgery.dmi'
@@ -41,7 +41,7 @@
 /*
  * Cautery
  */
-/obj/item/weapon/cautery
+/obj/item/cautery
 	name = "cautery"
 	desc = "This stops bleeding."
 	icon = 'icons/obj/surgery.dmi'
@@ -55,7 +55,7 @@
 /*
  * Surgical Drill
  */
-/obj/item/weapon/surgicaldrill
+/obj/item/surgicaldrill
 	name = "surgical drill"
 	desc = "You can drill using this item. You dig?"
 	icon = 'icons/obj/surgery.dmi'
@@ -68,7 +68,7 @@
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
 	attack_verb = list("drilled")
 
-/obj/item/weapon/surgicaldrill/suicide_act(mob/user)
+/obj/item/surgicaldrill/suicide_act(mob/user)
 	user.visible_message(pick( \
 		SPAN_DANGER("[user] is pressing the [src.name] to \his temple and activating it! It looks like \he's trying to commit suicide."), \
 		SPAN_DANGER("[user] is pressing [src.name] to \his chest and activating it! It looks like \he's trying to commit suicide.") \
@@ -79,7 +79,7 @@
 /*
  * Scalpel
  */
-/obj/item/weapon/scalpel
+/obj/item/scalpel
 	name = "scalpel"
 	desc = "Cut, cut, and once more cut."
 	icon = 'icons/obj/surgery.dmi'
@@ -96,7 +96,7 @@
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/weapon/scalpel/suicide_act(mob/user)
+/obj/item/scalpel/suicide_act(mob/user)
 	user.visible_message(pick( \
 		SPAN_DANGER("[user] is slitting \his wrists with the [src.name]! It looks like \he's trying to commit suicide.</b>"), \
 		SPAN_DANGER("[user] is slitting \his throat with the [src.name]! It looks like \he's trying to commit suicide.</b>"), \
@@ -108,27 +108,27 @@
 /*
  * Researchable Scalpels
  */
-/obj/item/weapon/scalpel/laser1
+/obj/item/scalpel/laser1
 	name = "laser scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks basic and could be improved."
 	icon_state = "scalpel_laser1_on"
 	damtype = "fire"
 
-/obj/item/weapon/scalpel/laser2
+/obj/item/scalpel/laser2
 	name = "laser scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks somewhat advanced."
 	icon_state = "scalpel_laser2_on"
 	damtype = "fire"
 	force = 12.0
 
-/obj/item/weapon/scalpel/laser3
+/obj/item/scalpel/laser3
 	name = "laser scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks to be the pinnacle of precision energy cutlery!"
 	icon_state = "scalpel_laser3_on"
 	damtype = "fire"
 	force = 15.0
 
-/obj/item/weapon/scalpel/manager
+/obj/item/scalpel/manager
 	name = "incision management system"
 	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
 	icon_state = "scalpel_manager_on"
@@ -137,7 +137,7 @@
 /*
  * Circular Saw
  */
-/obj/item/weapon/circular_saw
+/obj/item/circular_saw
 	name = "circular saw"
 	desc = "For heavy duty cutting."
 	icon = 'icons/obj/surgery.dmi'
@@ -160,7 +160,7 @@
 /*
  * Bone Gel
  */
-/obj/item/weapon/bonegel
+/obj/item/bonegel
 	name = "bone gel"
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "bone-gel"
@@ -171,7 +171,7 @@
 /*
  * FixOVein
  */
-/obj/item/weapon/FixOVein
+/obj/item/FixOVein
 	name = "FixOVein"
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "fixovein"
@@ -185,7 +185,7 @@
 /*
  * Bone Setter
  */
-/obj/item/weapon/bonesetter
+/obj/item/bonesetter
 	name = "bone setter"
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "bone setter"

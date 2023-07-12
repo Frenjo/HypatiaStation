@@ -165,8 +165,8 @@
 		T.assume_air(lowertemp)
 		qdel(hotspot)
 
-	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/monkeycube))
-		var/obj/item/weapon/reagent_containers/food/snacks/monkeycube/cube = O
+	if(istype(O, /obj/item/reagent_containers/food/snacks/monkeycube))
+		var/obj/item/reagent_containers/food/snacks/monkeycube/cube = O
 		if(!cube.wrapped)
 			cube.Expand()
 
@@ -271,7 +271,7 @@
 		M.overlays.Cut()
 		M.invisibility = INVISIBILITY_MAXIMUM
 		for(var/obj/item/W in M)
-			if(istype(W, /obj/item/weapon/implant))	//TODO: Carn. give implants a dropped() or something
+			if(istype(W, /obj/item/implant))	//TODO: Carn. give implants a dropped() or something
 				qdel(W)
 				continue
 			W.reset_plane_and_layer()

@@ -20,7 +20,7 @@
 
 	l_ear = /obj/item/device/radio/headset/sec
 
-	l_hand = /obj/item/weapon/storage/briefcase
+	l_hand = /obj/item/storage/briefcase
 
 	pda_type = /obj/item/device/pda/lawyer
 
@@ -70,7 +70,7 @@
 
 	pda_type = /obj/item/device/pda/botanist
 
-	satchel_one = /obj/item/weapon/storage/satchel/hyd
+	satchel_one = /obj/item/storage/satchel/hyd
 
 /*
  * Clown
@@ -79,17 +79,17 @@
 	name = "Clown"
 
 	uniform = /obj/item/clothing/under/rank/clown
-	back = /obj/item/weapon/storage/backpack/clown
+	back = /obj/item/storage/backpack/clown
 
 	mask = /obj/item/clothing/mask/gas/clown_hat
 	shoes = /obj/item/clothing/shoes/clown_shoes
 
 	backpack_contents = list(
-		/obj/item/weapon/reagent_containers/food/snacks/grown/banana = 1,
-		/obj/item/weapon/bikehorn = 1,
-		/obj/item/weapon/stamp/clown = 1,
+		/obj/item/reagent_containers/food/snacks/grown/banana = 1,
+		/obj/item/bikehorn = 1,
+		/obj/item/stamp/clown = 1,
 		/obj/item/toy/crayon/rainbow = 1,
-		/obj/item/weapon/storage/fancy/crayons = 1,
+		/obj/item/storage/fancy/crayons = 1,
 		/obj/item/toy/waterflower = 1
 	)
 
@@ -110,7 +110,7 @@
 
 	backpack_contents = list(
 		/obj/item/toy/crayon/mime = 1,
-		/obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing = 1
+		/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing = 1
 	)
 
 	pda_type = /obj/item/device/pda/mime
@@ -133,7 +133,7 @@
 
 	uniform = /obj/item/clothing/under/suit_jacket/red
 
-	l_hand = /obj/item/weapon/barcodescanner
+	l_hand = /obj/item/barcodescanner
 
 	pda_type = /obj/item/device/pda/librarian
 
@@ -145,6 +145,6 @@
 
 	uniform = /obj/item/clothing/under/rank/chaplain
 
-	l_hand = /obj/item/weapon/storage/bible
+	l_hand = /obj/item/storage/bible
 
 	pda_type = /obj/item/device/pda/chaplain

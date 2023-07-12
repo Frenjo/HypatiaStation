@@ -9,13 +9,13 @@
 	icon_off = "hydrosecureoff"
 
 	starts_with = list(
-		/obj/item/weapon/storage/bag/plants,
+		/obj/item/storage/bag/plants,
 		/obj/item/clothing/under/rank/hydroponics,
 		/obj/item/device/analyzer/plant_analyzer,
 		/obj/item/clothing/head/greenbandana,
-		/obj/item/weapon/minihoe,
-		/obj/item/weapon/hatchet,
-		/obj/item/weapon/bee_net
+		/obj/item/minihoe,
+		/obj/item/hatchet,
+		/obj/item/bee_net
 	)
 
 /obj/structure/closet/secure_closet/hydroponics/New()

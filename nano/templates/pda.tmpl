@@ -203,8 +203,8 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
 					{{if cartridge.charges}} 
 		<div class="item">
 					<b>{{:cartridge.charges}}
-					{{if cartridge.type == "/obj/item/weapon/cartridge/syndicate"}} detonation charges left. {{/if}}
-					{{if cartridge.type == "/obj/item/weapon/cartridge/clown" || cartridge.type == "/obj/item/weapon/cartridge/mime"}} viral files left. {{/if}}
+					{{if cartridge.type == "/obj/item/cartridge/syndicate"}} detonation charges left. {{/if}}
+					{{if cartridge.type == "/obj/item/cartridge/clown" || cartridge.type == "/obj/item/cartridge/mime"}} viral files left. {{/if}}
 				</b><br><br>
 		</div>
 					{{/if}}
@@ -217,9 +217,9 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
 	<div class="item">
 		                        {{:~link(Name, 'circle-arrow-s', {'choice' : "Select Conversation", 'convo' : Reference } , null, fixedLeftWider)}}
 					{{if ~root.cartridge}}
-						{{if ~root.cartridge.type == "/obj/item/weapon/cartridge/syndicate" && Detonate == 1}} {{:~link('*Detonate*', 'radiation', {'choice' : "Detonate", 'target' : Reference}, null, 'fixedLeft')}}  {{/if}} 
-						{{if ~root.cartridge.type == "/obj/item/weapon/cartridge/clown"}} {{:~link('*Send Virus*', 'star', {'choice' : "Send Honk", 'target' : Reference}, null, 'fixedLeft')}}  {{/if}}
-						{{if ~root.cartridge.type == "/obj/item/weapon/cartridge/mime"}}  {{:~link('*Send Virus*', 'circle-arrow-s', {'choice' : "Send Silence", 'target' : Reference}, null, 'fixedLeft')}}  {{/if}} 
+						{{if ~root.cartridge.type == "/obj/item/cartridge/syndicate" && Detonate == 1}} {{:~link('*Detonate*', 'radiation', {'choice' : "Detonate", 'target' : Reference}, null, 'fixedLeft')}}  {{/if}} 
+						{{if ~root.cartridge.type == "/obj/item/cartridge/clown"}} {{:~link('*Send Virus*', 'star', {'choice' : "Send Honk", 'target' : Reference}, null, 'fixedLeft')}}  {{/if}}
+						{{if ~root.cartridge.type == "/obj/item/cartridge/mime"}}  {{:~link('*Send Virus*', 'circle-arrow-s', {'choice' : "Send Silence", 'target' : Reference}, null, 'fixedLeft')}}  {{/if}} 
 					{{/if}}
 	</div>
 		                {{/for}}
@@ -228,9 +228,9 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
         <div class="item">
 	                                {{:~link(Name, 'circle-arrow-s', {'choice' : "Message", 'target' : Reference}, null, fixedLeftWider)}}
 	                                {{if ~root.cartridge}}
-		                                {{if ~root.cartridge.type == "/obj/item/weapon/cartridge/syndicate" && Detonate == 1}} {{:~link('*Detonate*', 'radiation', {'choice' : "Detonate", 'target' : Reference}, null, 'fixedLeft')}}  {{/if}}
-		                                {{if ~root.cartridge.type == "/obj/item/weapon/cartridge/clown"}} {{:~link('*Send Virus*', 'star', {'choice' : "Send Honk", 'target' : Reference}, null, 'fixedLeft')}}  {{/if}}
-		                                {{if ~root.cartridge.type == "/obj/item/weapon/cartridge/mime"}}  {{:~link('*Send Virus*', 'circle-arrow-s', {'choice' : "Send Silence", 'target' : Reference}, null, 'fixedLeft')}}  {{/if}}
+		                                {{if ~root.cartridge.type == "/obj/item/cartridge/syndicate" && Detonate == 1}} {{:~link('*Detonate*', 'radiation', {'choice' : "Detonate", 'target' : Reference}, null, 'fixedLeft')}}  {{/if}}
+		                                {{if ~root.cartridge.type == "/obj/item/cartridge/clown"}} {{:~link('*Send Virus*', 'star', {'choice' : "Send Honk", 'target' : Reference}, null, 'fixedLeft')}}  {{/if}}
+		                                {{if ~root.cartridge.type == "/obj/item/cartridge/mime"}}  {{:~link('*Send Virus*', 'circle-arrow-s', {'choice' : "Send Silence", 'target' : Reference}, null, 'fixedLeft')}}  {{/if}}
 	                                {{/if}}
 	</div>
 				{{/for}}

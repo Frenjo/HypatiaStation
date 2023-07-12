@@ -14,13 +14,13 @@
 	starts_with = list(
 		/obj/item/clothing/head/helmet/space/ert/commander,
 		/obj/item/clothing/suit/space/ert/commander,
-		/obj/item/weapon/plastique,
-		/obj/item/weapon/storage/belt/security/full,
-		/obj/item/weapon/gun/energy/ionrifle,
-		/obj/item/weapon/gun/energy/gun/nuclear,
+		/obj/item/plastique,
+		/obj/item/storage/belt/security/full,
+		/obj/item/gun/energy/ionrifle,
+		/obj/item/gun/energy/gun/nuclear,
 		/obj/item/clothing/glasses/thermal,
-		/obj/item/weapon/lighter/zippo,
-		/obj/item/weapon/pinpointer
+		/obj/item/lighter/zippo,
+		/obj/item/pinpointer
 	)
 
 /*
@@ -39,10 +39,10 @@
 	starts_with = list(
 		/obj/item/clothing/head/helmet/space/ert/security,
 		/obj/item/clothing/suit/space/ert/security,
-		/obj/item/weapon/plastique,
-		/obj/item/weapon/storage/belt/security/full,
-		/obj/item/weapon/gun/energy/ionrifle,
-		/obj/item/weapon/gun/energy/gun/nuclear,
+		/obj/item/plastique,
+		/obj/item/storage/belt/security/full,
+		/obj/item/gun/energy/ionrifle,
+		/obj/item/gun/energy/gun/nuclear,
 		/obj/item/clothing/glasses/thermal
 	)
 
@@ -62,9 +62,9 @@
 	starts_with = list(
 		/obj/item/clothing/head/helmet/space/ert/engineer,
 		/obj/item/clothing/suit/space/ert/engineer,
-		/obj/item/weapon/gun/energy/taser,
-		/obj/item/weapon/storage/belt/utility/full,
-		/obj/item/weapon/storage/backpack/industrial/full,
+		/obj/item/gun/energy/taser,
+		/obj/item/storage/belt/utility/full,
+		/obj/item/storage/backpack/industrial/full,
 		/obj/item/device/t_scanner,
 		/obj/item/clothing/glasses/meson
 	)
@@ -85,8 +85,8 @@
 	starts_with = list(
 		/obj/item/clothing/head/helmet/space/ert/medical,
 		/obj/item/clothing/suit/space/ert/medical,
-		/obj/item/weapon/gun/energy/taser,
-		/obj/item/weapon/storage/backpack/medic/full,
-		/obj/item/weapon/storage/belt/medical,
+		/obj/item/gun/energy/taser,
+		/obj/item/storage/backpack/medic/full,
+		/obj/item/storage/belt/medical,
 		/obj/item/clothing/glasses/hud/health
 	)

@@ -16,10 +16,10 @@
 			break
 		callshuttle++
 
-	for(var/obj/item/weapon/circuitboard/communications/commboard in world)
+	for(var/obj/item/circuitboard/communications/commboard in world)
 		if(commboard.z == 2)
 			continue
-		if(isturf(commboard.loc) || istype(commboard.loc, /obj/item/weapon/storage))
+		if(isturf(commboard.loc) || istype(commboard.loc, /obj/item/storage))
 			break
 		callshuttle++
 

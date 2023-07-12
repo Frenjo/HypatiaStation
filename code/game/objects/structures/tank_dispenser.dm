@@ -42,7 +42,7 @@
 	return
 
 /obj/structure/dispenser/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/weapon/tank/oxygen) || istype(I, /obj/item/weapon/tank/air) || istype(I, /obj/item/weapon/tank/anesthetic))
+	if(istype(I, /obj/item/tank/oxygen) || istype(I, /obj/item/tank/air) || istype(I, /obj/item/tank/anesthetic))
 		if(oxygentanks < 10)
 			user.drop_item()
 			I.loc = src
@@ -53,7 +53,7 @@
 			to_chat(user, SPAN_NOTICE("[src] is full."))
 		updateUsrDialog()
 		return
-	if(istype(I, /obj/item/weapon/tank/plasma))
+	if(istype(I, /obj/item/tank/plasma))
 		if(plasmatanks < 10)
 			user.drop_item()
 			I.loc = src
@@ -64,7 +64,7 @@
 			to_chat(user, SPAN_NOTICE("[src] is full."))
 		updateUsrDialog()
 		return
-	if(istype(I, /obj/item/weapon/wrench))
+	if(istype(I, /obj/item/wrench))
 		if(anchored)
 			to_chat(user, SPAN_NOTICE("You lean down and unwrench [src]."))
 			anchored = FALSE
@@ -80,24 +80,24 @@
 		usr.set_machine(src)
 		if(href_list["oxygen"])
 			if(oxygentanks > 0)
-				var/obj/item/weapon/tank/oxygen/O
+				var/obj/item/tank/oxygen/O
 				if(length(oxytanks) == oxygentanks)
 					O = oxytanks[1]
 					oxytanks.Remove(O)
 				else
-					O = new /obj/item/weapon/tank/oxygen(loc)
+					O = new /obj/item/tank/oxygen(loc)
 				O.loc = loc
 				to_chat(usr, SPAN_NOTICE("You take [O] out of [src]."))
 				oxygentanks--
 				update_icon()
 		if(href_list["plasma"])
 			if(plasmatanks > 0)
-				var/obj/item/weapon/tank/plasma/P
+				var/obj/item/tank/plasma/P
 				if(length(platanks) == plasmatanks)
 					P = platanks[1]
 					platanks.Remove(P)
 				else
-					P = new /obj/item/weapon/tank/plasma(loc)
+					P = new /obj/item/tank/plasma(loc)
 				P.loc = loc
 				to_chat(usr, SPAN_NOTICE("You take [P] out of [src]."))
 				plasmatanks--

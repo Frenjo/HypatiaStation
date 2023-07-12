@@ -179,8 +179,8 @@
 			return
 		if(isnotnull(mob.client))
 			if(mob.client.view != world.view)
-				if(locate(/obj/item/weapon/gun/energy/sniperrifle, mob.contents)) // If mob moves while zoomed in with sniper rifle, unzoom them.
-					var/obj/item/weapon/gun/energy/sniperrifle/s = locate() in mob
+				if(locate(/obj/item/gun/energy/sniperrifle, mob.contents)) // If mob moves while zoomed in with sniper rifle, unzoom them.
+					var/obj/item/gun/energy/sniperrifle/s = locate() in mob
 					if(s.zoom)
 						s.zoom()
 
@@ -239,7 +239,7 @@
 		// We are now going to move.
 		moving = TRUE
 		// Something with pulling things.
-		if(locate(/obj/item/weapon/grab, mob))
+		if(locate(/obj/item/grab, mob))
 			move_delay = max(move_delay, world.time + 7)
 			var/list/L = mob.ret_grab()
 			if(islist(L))
@@ -286,7 +286,7 @@
  * Checks to see if you are grabbing anything and if moving will affect your grab.
  */
 /client/proc/Process_Grab()
-	for(var/obj/item/weapon/grab/G in list(mob.l_hand, mob.r_hand))
+	for(var/obj/item/grab/G in list(mob.l_hand, mob.r_hand))
 		if(G.state == GRAB_KILL) //no wandering across the station/asteroid while choking someone
 			mob.visible_message(SPAN_WARNING("[mob] lost \his tight grip on [G.affecting]'s neck!"))
 			G.hud.icon_state = "disarm/kill"

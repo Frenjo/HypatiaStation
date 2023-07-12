@@ -9,7 +9,7 @@
 		camera.status = 0
 
 	if(module)
-		var/obj/item/weapon/gripper/G = locate(/obj/item/weapon/gripper) in module
+		var/obj/item/gripper/G = locate(/obj/item/gripper) in module
 		if(G)
 			G.drop_item()
 

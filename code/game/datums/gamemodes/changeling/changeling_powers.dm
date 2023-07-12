@@ -77,7 +77,7 @@
 	if(!changeling)
 		return
 
-	var/obj/item/weapon/grab/G = src.get_active_hand()
+	var/obj/item/grab/G = src.get_active_hand()
 	if(!istype(G))
 		to_chat(src, SPAN_WARNING("We must be grabbing a creature in our active hand to absorb them."))
 		return
@@ -228,7 +228,7 @@
 
 	//TODO replace with monkeyize proc
 	var/list/implants = list() //Try to preserve implants.
-	for(var/obj/item/weapon/implant/W in C)
+	for(var/obj/item/implant/W in C)
 		implants += W
 
 	C.monkeyizing = 1
@@ -262,7 +262,7 @@
 	O.adjustFireLoss(C.getFireLoss())
 	O.stat = C.stat
 	O.a_intent = "hurt"
-	for(var/obj/item/weapon/implant/I in implants)
+	for(var/obj/item/implant/I in implants)
 		I.loc = O
 		I.implanted = O
 
@@ -304,7 +304,7 @@
 	C.dna = chosen_dna.Clone()
 
 	var/list/implants = list()
-	for(var/obj/item/weapon/implant/I in C) //Still preserving implants
+	for(var/obj/item/implant/I in C) //Still preserving implants
 		implants += I
 
 	C.monkeyizing = 1
@@ -350,7 +350,7 @@
 	O.setOxyLoss(C.getOxyLoss())
 	O.adjustFireLoss(C.getFireLoss())
 	O.stat = C.stat
-	for(var/obj/item/weapon/implant/I in implants)
+	for(var/obj/item/implant/I in implants)
 		I.loc = O
 		I.implanted = O
 

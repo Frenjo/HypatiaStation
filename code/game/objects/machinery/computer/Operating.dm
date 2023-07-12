@@ -5,7 +5,7 @@
 	density = TRUE
 	anchored = TRUE
 	icon_state = "operating"
-	circuit = /obj/item/weapon/circuitboard/operating
+	circuit = /obj/item/circuitboard/operating
 	var/mob/living/carbon/human/victim = null
 	var/obj/machinery/optable/table = null
 

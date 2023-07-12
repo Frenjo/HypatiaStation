@@ -96,13 +96,13 @@
 	if(chained)
 		chained = null
 		slowdown = SHOES_SLOWDOWN
-		new /obj/item/weapon/handcuffs(user.loc)
+		new /obj/item/handcuffs(user.loc)
 		icon_state = "orange"
 	return
 
 /obj/item/clothing/shoes/orange/attackby(H as obj, loc)
 	..()
-	if(istype(H, /obj/item/weapon/handcuffs) && !chained)
+	if(istype(H, /obj/item/handcuffs) && !chained)
 		//H = null
 		if(icon_state != "orange")
 			return

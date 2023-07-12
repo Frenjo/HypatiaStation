@@ -170,7 +170,7 @@ Power regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?src=\
 		icon_state = "scrubber:0"
 
 /obj/machinery/portable_atmospherics/scrubber/huge/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/wrench))
 		if(on)
 			to_chat(user, SPAN_INFO("Turn it off first!"))
 			return
@@ -187,7 +187,7 @@ Power regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?src=\
 	name = "Stationary Air Scrubber"
 
 /obj/machinery/portable_atmospherics/scrubber/huge/stationary/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/wrench))
 		to_chat(user, SPAN_INFO("The bolts are too tight for you to unscrew!"))
 		return
 	..()

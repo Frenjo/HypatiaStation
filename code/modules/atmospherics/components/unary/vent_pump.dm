@@ -245,8 +245,8 @@
 		on = FALSE
 
 /obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			to_chat(user, SPAN_INFO("You begin to weld the vent."))
 			if(do_after(user, 20))
@@ -289,7 +289,7 @@
 	update_icon()
 
 /obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(!istype(W, /obj/item/weapon/wrench))
+	if(!istype(W, /obj/item/wrench))
 		return ..()
 	if(!(stat & NOPOWER) && on)
 		to_chat(user, SPAN_WARNING("You cannot unwrench this [src], turn it off first."))

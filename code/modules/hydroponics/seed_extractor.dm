@@ -7,8 +7,8 @@
 	anchored = TRUE
 
 /obj/machinery/seed_extractor/attackby(obj/item/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/grown))
-		var/obj/item/weapon/reagent_containers/food/snacks/grown/F = O
+	if(istype(O, /obj/item/reagent_containers/food/snacks/grown))
+		var/obj/item/reagent_containers/food/snacks/grown/F = O
 		user.drop_item()
 		to_chat(user, SPAN_NOTICE("You extract some seeds from the [F.name]."))
 		var/seed = F.seed
@@ -26,8 +26,8 @@
 			t_amount++
 		qdel(O)
 
-	else if(istype(O, /obj/item/weapon/grown))
-		var/obj/item/weapon/grown/F = O
+	else if(istype(O, /obj/item/grown))
+		var/obj/item/grown/F = O
 		user.drop_item()
 		to_chat(user, SPAN_NOTICE("You extract some seeds from the [F.name]."))
 		var/seed = F.seed

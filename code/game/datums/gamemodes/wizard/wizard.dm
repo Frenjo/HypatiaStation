@@ -166,15 +166,15 @@
 	wizard_mob.equip_to_slot_or_del(new /obj/item/clothing/suit/wizrobe(wizard_mob), SLOT_ID_WEAR_SUIT)
 	wizard_mob.equip_to_slot_or_del(new /obj/item/clothing/head/wizard(wizard_mob), SLOT_ID_HEAD)
 	if(wizard_mob.backbag == 2)
-		wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(wizard_mob), SLOT_ID_BACK)
+		wizard_mob.equip_to_slot_or_del(new /obj/item/storage/backpack(wizard_mob), SLOT_ID_BACK)
 	if(wizard_mob.backbag == 3)
-		wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/norm(wizard_mob), SLOT_ID_BACK)
+		wizard_mob.equip_to_slot_or_del(new /obj/item/storage/satchel/norm(wizard_mob), SLOT_ID_BACK)
 	if(wizard_mob.backbag == 4)
-		wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(wizard_mob), SLOT_ID_BACK)
-	wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/box(wizard_mob), SLOT_ID_IN_BACKPACK)
-//	wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/scrying_gem(wizard_mob), SLOT_ID_L_STORE) For scrying gem.
-	wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/teleportation_scroll(wizard_mob), SLOT_ID_R_STORE)
-	wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/spellbook(wizard_mob), SLOT_ID_R_HAND)
+		wizard_mob.equip_to_slot_or_del(new /obj/item/storage/satchel(wizard_mob), SLOT_ID_BACK)
+	wizard_mob.equip_to_slot_or_del(new /obj/item/storage/box(wizard_mob), SLOT_ID_IN_BACKPACK)
+//	wizard_mob.equip_to_slot_or_del(new /obj/item/scrying_gem(wizard_mob), SLOT_ID_L_STORE) For scrying gem.
+	wizard_mob.equip_to_slot_or_del(new /obj/item/teleportation_scroll(wizard_mob), SLOT_ID_R_STORE)
+	wizard_mob.equip_to_slot_or_del(new /obj/item/spellbook(wizard_mob), SLOT_ID_R_HAND)
 
 	to_chat(wizard_mob, "You will find a list of available spells in your spell book. Choose your magic arsenal carefully.")
 	to_chat(wizard_mob, "In your pockets you will find a teleport scroll. Use it as needed.")

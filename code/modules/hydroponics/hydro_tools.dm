@@ -12,7 +12,7 @@
 /*
  * Mini Hoe
  */
-/obj/item/weapon/minihoe // -- Numbers
+/obj/item/minihoe // -- Numbers
 	name = "mini hoe"
 	desc = "It's used for removing weeds or scratching your back."
 	icon_state = "hoe"
@@ -27,7 +27,7 @@
 /*
  * Hatchet
  */
-/obj/item/weapon/hatchet
+/obj/item/hatchet
 	name = "hatchet"
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
 	icon_state = "hatchet"
@@ -43,14 +43,14 @@
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_COMBAT = 1)
 	attack_verb = list("chopped", "torn", "cut")
 
-/obj/item/weapon/hatchet/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/hatchet/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
 	return ..()
 
 /*
  * Scythe
  */
-/obj/item/weapon/scythe
+/obj/item/scythe
 	icon_state = "scythe0"
 	name = "scythe"
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
@@ -66,7 +66,7 @@
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_COMBAT = 2)
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 
-/obj/item/weapon/scythe/afterattack(atom/A, mob/user as mob, proximity)
+/obj/item/scythe/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	if(istype(A, /obj/effect/spacevine))
@@ -78,7 +78,7 @@
 /*
  * Weed Spray
  */
-/obj/item/weapon/weedspray // -- Skie
+/obj/item/weedspray // -- Skie
 	desc = "It's a toxic mixture, in spray form, to kill small weeds."
 	icon = 'icons/obj/flora/hydroponics.dmi'
 	name = "weed-spray"
@@ -94,14 +94,14 @@
 	var/toxicity = 4
 	var/strength = 2
 
-/obj/item/weapon/weedspray/suicide_act(mob/user)
+/obj/item/weedspray/suicide_act(mob/user)
 	viewers(user) << "\red <b>[user] is huffing the [src.name]! It looks like \he's trying to commit suicide.</b>"
 	return (TOXLOSS)
 
 /*
  * Pest Spray
  */
-/obj/item/weapon/pestspray // -- Skie
+/obj/item/pestspray // -- Skie
 	desc = "It's some pest eliminator spray! <I>Do not inhale!</I>"
 	icon = 'icons/obj/flora/hydroponics.dmi'
 	name = "pest-spray"
@@ -117,7 +117,7 @@
 	var/toxicity = 4
 	var/strength = 2
 
-/obj/item/weapon/pestspray/suicide_act(mob/user)
+/obj/item/pestspray/suicide_act(mob/user)
 	viewers(user) << "\red <b>[user] is huffing the [src.name]! It looks like \he's trying to commit suicide.</b>"
 	return (TOXLOSS)
 
@@ -241,7 +241,7 @@
 /*
  * Banana Peel
  */
-/obj/item/weapon/bananapeel
+/obj/item/bananapeel
 	name = "banana peel"
 	desc = "A peel from a banana."
 	icon = 'icons/obj/items.dmi'
@@ -255,7 +255,7 @@
 /*
  * Corn Cob
  */
-/obj/item/weapon/corncob
+/obj/item/corncob
 	name = "corn cob"
 	desc = "A reminder of meals gone by."
 	icon = 'icons/obj/flora/harvest.dmi'
@@ -266,11 +266,11 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/weapon/corncob/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/corncob/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/weapon/circular_saw) || istype(W, /obj/item/weapon/hatchet) \
-	|| istype(W, /obj/item/weapon/kitchen/utensil/knife) || istype(W, /obj/item/weapon/kitchenknife) \
-	|| istype(W, /obj/item/weapon/kitchenknife/ritual))
+	if(istype(W, /obj/item/circular_saw) || istype(W, /obj/item/hatchet) \
+	|| istype(W, /obj/item/kitchen/utensil/knife) || istype(W, /obj/item/kitchenknife) \
+	|| istype(W, /obj/item/kitchenknife/ritual))
 		to_chat(user, SPAN_NOTICE("You use [W] to fashion a pipe out of the corn cob!"))
 		new /obj/item/clothing/mask/cigarette/pipe/cobpipe(user.loc)
 		qdel(src)
@@ -281,7 +281,7 @@
  */
 //uncomment when this is updated to match storage update
 /*
-/obj/item/weapon/seedbag
+/obj/item/seedbag
 	icon = 'icons/obj/flora/hydroponics.dmi'
 	icon_state = "seedbag"
 	name = "Seed Bag"
@@ -293,11 +293,11 @@
 	w_class = 1
 	var/list/item_quants = list()
 
-/obj/item/weapon/seedbag/attack_self(mob/user as mob)
+/obj/item/seedbag/attack_self(mob/user as mob)
 	user.machine = src
 	interact(user)
 
-/obj/item/weapon/seedbag/verb/toggle_mode()
+/obj/item/seedbag/verb/toggle_mode()
 	set name = "Switch Bagging Method"
 	set category = "Object"
 
@@ -310,8 +310,8 @@
 
 /obj/item/seeds/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	..()
-	if (istype(O, /obj/item/weapon/seedbag))
-		var/obj/item/weapon/seedbag/S = O
+	if (istype(O, /obj/item/seedbag))
+		var/obj/item/seedbag/S = O
 		if (S.mode == 1)
 			for (var/obj/item/seeds/G in locate(src.x,src.y,src.z))
 				if(length(S.contents) < S.capacity)
@@ -337,7 +337,7 @@
 		S.updateUsrDialog()
 	return
 
-/obj/item/weapon/seedbag/interact(mob/user as mob)
+/obj/item/seedbag/interact(mob/user as mob)
 
 	var/dat = "<TT><b>Select an item:</b><br>"
 
@@ -358,7 +358,7 @@
 	onclose(user, "seedbag")
 	return
 
-/obj/item/weapon/seedbag/Topic(href, href_list)
+/obj/item/seedbag/Topic(href, href_list)
 	if(..())
 		return
 
@@ -384,7 +384,7 @@
 	src.updateUsrDialog()
 	return
 
-/obj/item/weapon/seedbag/updateUsrDialog()
+/obj/item/seedbag/updateUsrDialog()
 	var/list/nearby = range(1, src)
 	for(var/mob/M in nearby)
 		if ((M.client && M.machine == src))

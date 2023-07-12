@@ -274,8 +274,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		var/search_pda = TRUE
 
 		for(var/A in searching)
-			if(search_id && istype(A, /obj/item/weapon/card/id))
-				var/obj/item/weapon/card/id/ID = A
+			if(search_id && istype(A, /obj/item/card/id))
+				var/obj/item/card/id/ID = A
 				if(ID.registered_name == oldname)
 					ID.registered_name = newname
 					ID.name = "[newname]'s ID Card ([ID.assignment])"
@@ -1053,12 +1053,12 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //Quick type checks for some tools
 GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 	/obj/item/stack/cable_coil,
-	/obj/item/weapon/wrench,
-	/obj/item/weapon/weldingtool,
-	/obj/item/weapon/screwdriver,
-	/obj/item/weapon/wirecutters,
+	/obj/item/wrench,
+	/obj/item/weldingtool,
+	/obj/item/screwdriver,
+	/obj/item/wirecutters,
 	/obj/item/device/multitool,
-	/obj/item/weapon/crowbar
+	/obj/item/crowbar
 ))
 
 /proc/istool(O)
@@ -1067,12 +1067,12 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 	return FALSE
 
 /proc/iswrench(O)
-	if(istype(O, /obj/item/weapon/wrench))
+	if(istype(O, /obj/item/wrench))
 		return TRUE
 	return FALSE
 
 /proc/iswelder(O)
-	if(istype(O, /obj/item/weapon/weldingtool))
+	if(istype(O, /obj/item/weldingtool))
 		return TRUE
 	return FALSE
 
@@ -1082,12 +1082,12 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 	return FALSE
 
 /proc/iswirecutter(O)
-	if(istype(O, /obj/item/weapon/wirecutters))
+	if(istype(O, /obj/item/wirecutters))
 		return TRUE
 	return FALSE
 
 /proc/isscrewdriver(O)
-	if(istype(O, /obj/item/weapon/screwdriver))
+	if(istype(O, /obj/item/screwdriver))
 		return TRUE
 	return FALSE
 
@@ -1097,7 +1097,7 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 	return FALSE
 
 /proc/iscrowbar(O)
-	if(istype(O, /obj/item/weapon/crowbar))
+	if(istype(O, /obj/item/crowbar))
 		return TRUE
 	return FALSE
 
@@ -1108,18 +1108,18 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 
 /proc/is_hot(obj/item/W as obj)
 	switch(W.type)
-		if(/obj/item/weapon/weldingtool)
-			var/obj/item/weapon/weldingtool/WT = W
+		if(/obj/item/weldingtool)
+			var/obj/item/weldingtool/WT = W
 			if(WT.isOn())
 				return 3800
 			else
 				return 0
-		if(/obj/item/weapon/lighter)
+		if(/obj/item/lighter)
 			if(W:lit)
 				return 1500
 			else
 				return 0
-		if(/obj/item/weapon/match)
+		if(/obj/item/match)
 			if(W:lit)
 				return 1000
 			else
@@ -1129,9 +1129,9 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 				return 1000
 			else
 				return 0
-		if(/obj/item/weapon/pickaxe/plasmacutter)
+		if(/obj/item/pickaxe/plasmacutter)
 			return 3800
-		if(/obj/item/weapon/melee/energy)
+		if(/obj/item/melee/energy)
 			return 3500
 		else
 			return 0
@@ -1162,22 +1162,22 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 		return TRUE
 	return( \
 		W.sharp											|| \
-		istype(W, /obj/item/weapon/screwdriver)			|| \
-		istype(W, /obj/item/weapon/pen)					|| \
-		istype(W, /obj/item/weapon/weldingtool)			|| \
-		istype(W, /obj/item/weapon/lighter/zippo)		|| \
-		istype(W, /obj/item/weapon/match)				|| \
+		istype(W, /obj/item/screwdriver)			|| \
+		istype(W, /obj/item/pen)					|| \
+		istype(W, /obj/item/weldingtool)			|| \
+		istype(W, /obj/item/lighter/zippo)		|| \
+		istype(W, /obj/item/match)				|| \
 		istype(W, /obj/item/clothing/mask/cigarette)
 	)
 
 /proc/is_surgery_tool(obj/item/W as obj)
 	return(	\
-		istype(W, /obj/item/weapon/scalpel)		||	\
-		istype(W, /obj/item/weapon/hemostat)	||	\
-		istype(W, /obj/item/weapon/retractor)	||	\
-		istype(W, /obj/item/weapon/cautery)		||	\
-		istype(W, /obj/item/weapon/bonegel)		||	\
-		istype(W, /obj/item/weapon/bonesetter)
+		istype(W, /obj/item/scalpel)		||	\
+		istype(W, /obj/item/hemostat)	||	\
+		istype(W, /obj/item/retractor)	||	\
+		istype(W, /obj/item/cautery)		||	\
+		istype(W, /obj/item/bonegel)		||	\
+		istype(W, /obj/item/bonesetter)
 	)
 
 //check if mob is lying down on something we can operate him on.
@@ -1216,7 +1216,7 @@ GLOBAL_GLOBL_LIST_INIT(wall_items, list(
 	/obj/machinery/status_display, /obj/machinery/requests_console, /obj/machinery/light_switch, /obj/effect/sign,
 	/obj/machinery/newscaster, /obj/machinery/firealarm, /obj/structure/noticeboard, /obj/machinery/door_control,
 	/obj/machinery/computer/security/telescreen, /*/obj/machinery/embedded_controller/radio/simple_vent_controller,*/
-	/obj/item/weapon/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
+	/obj/item/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
 	/obj/structure/mirror, /obj/structure/closet/fireaxecabinet, /obj/machinery/computer/security/telescreen/entertainment
 ))
 

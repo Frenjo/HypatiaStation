@@ -53,7 +53,7 @@
 	var/turf/nearest_beacon_loc	// the nearest beacon's location
 
 
-/obj/item/weapon/ed209_assembly
+/obj/item/ed209_assembly
 	name = "ED-209 assembly"
 	desc = "Some sort of bizarre assembly."
 	icon = 'icons/obj/aibots.dmi'
@@ -70,7 +70,7 @@
 	if(created_lasercolor)	lasercolor = created_lasercolor
 	src.icon_state = "[lasercolor]ed209[src.on]"
 	spawn(3)
-		src.botcard = new /obj/item/weapon/card/id(src)
+		src.botcard = new /obj/item/card/id(src)
 		var/datum/job/detective/J = new/datum/job/detective
 		src.botcard.access = J.get_access()
 
@@ -174,7 +174,7 @@ Auto Patrol: []"},
 			updateUsrDialog()
 
 /obj/machinery/bot/ed209/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+	if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
 		if (src.allowed(user) && !open && !emagged)
 			src.locked = !src.locked
 			user << "<span class='notice'>Controls are now [src.locked ? "locked" : "unlocked"].</span>"
@@ -187,7 +187,7 @@ Auto Patrol: []"},
 				FEEDBACK_ACCESS_DENIED(user)
 	else
 		..()
-		if (!istype(W, /obj/item/weapon/screwdriver) && (!src.target))
+		if (!istype(W, /obj/item/screwdriver) && (!src.target))
 			if(hasvar(W,"force") && W.force)//If force is defined and non-zero
 				src.target = user
 				if(lasercolor)//To make up for the fact that lasertag bots don't hunt
@@ -323,7 +323,7 @@ Auto Patrol: []"},
 								return
 
 							if(istype(src.target,/mob/living/carbon))
-								src.target.handcuffed = new /obj/item/weapon/handcuffs(src.target)
+								src.target.handcuffed = new /obj/item/handcuffs(src.target)
 								target.update_inv_handcuffed()	//update handcuff overlays
 
 							mode = SECBOT_IDLE
@@ -657,24 +657,24 @@ Auto Patrol: []"},
 
 	if(src.emagged == 2) return 10 //Everyone is a criminal!
 
-	if((src.idcheck) || (isnull(perp.wear_id)) || (istype(perp.wear_id.get_id(), /obj/item/weapon/card/id/syndicate)))
+	if((src.idcheck) || (isnull(perp.wear_id)) || (istype(perp.wear_id.get_id(), /obj/item/card/id/syndicate)))
 
-		if((istype(perp.l_hand, /obj/item/weapon/gun) && !istype(perp.l_hand, /obj/item/weapon/gun/projectile/shotgun)) || istype(perp.l_hand, /obj/item/weapon/melee/baton))
-			if(!istype(perp.l_hand, /obj/item/weapon/gun/energy/laser/bluetag) \
-			&& !istype(perp.l_hand, /obj/item/weapon/gun/energy/laser/redtag) \
-			&& !istype(perp.l_hand, /obj/item/weapon/gun/energy/laser/practice))
+		if((istype(perp.l_hand, /obj/item/gun) && !istype(perp.l_hand, /obj/item/gun/projectile/shotgun)) || istype(perp.l_hand, /obj/item/melee/baton))
+			if(!istype(perp.l_hand, /obj/item/gun/energy/laser/bluetag) \
+			&& !istype(perp.l_hand, /obj/item/gun/energy/laser/redtag) \
+			&& !istype(perp.l_hand, /obj/item/gun/energy/laser/practice))
 				threatcount += 4
 
-		if(istype(perp.r_hand, /obj/item/weapon/gun) || istype(perp.r_hand, /obj/item/weapon/melee))
-			if(!istype(perp.r_hand, /obj/item/weapon/gun/energy/laser/bluetag) \
-			&& !istype(perp.r_hand, /obj/item/weapon/gun/energy/laser/redtag) \
-			&& !istype(perp.r_hand, /obj/item/weapon/gun/energy/laser/practice))
+		if(istype(perp.r_hand, /obj/item/gun) || istype(perp.r_hand, /obj/item/melee))
+			if(!istype(perp.r_hand, /obj/item/gun/energy/laser/bluetag) \
+			&& !istype(perp.r_hand, /obj/item/gun/energy/laser/redtag) \
+			&& !istype(perp.r_hand, /obj/item/gun/energy/laser/practice))
 				threatcount += 4
 
-		if(istype(perp:belt, /obj/item/weapon/gun) || istype(perp:belt, /obj/item/weapon/melee))
-			if(!istype(perp:belt, /obj/item/weapon/gun/energy/laser/bluetag) \
-			&& !istype(perp:belt, /obj/item/weapon/gun/energy/laser/redtag) \
-			&& !istype(perp:belt, /obj/item/weapon/gun/energy/laser/practice))
+		if(istype(perp:belt, /obj/item/gun) || istype(perp:belt, /obj/item/melee))
+			if(!istype(perp:belt, /obj/item/gun/energy/laser/bluetag) \
+			&& !istype(perp:belt, /obj/item/gun/energy/laser/redtag) \
+			&& !istype(perp:belt, /obj/item/gun/energy/laser/practice))
 				threatcount += 2
 
 		if(istype(perp:wear_suit, /obj/item/clothing/suit/wizrobe))
@@ -684,32 +684,32 @@ Auto Patrol: []"},
 			threatcount += 2
 
 //Agent cards lower threatlevel when normal idchecking is off.
-		if(istype(perp.wear_id?.get_id(), /obj/item/weapon/card/id/syndicate) && idcheck)
+		if(istype(perp.wear_id?.get_id(), /obj/item/card/id/syndicate) && idcheck)
 			threatcount -= 2
 
 	if(src.lasercolor == "b")//Lasertag turrets target the opposing team, how great is that? -Sieve
 		threatcount = 0//They will not, however shoot at people who have guns, because it gets really fucking annoying
 		if(istype(perp.wear_suit, /obj/item/clothing/suit/redtag))
 			threatcount += 4
-		if((istype(perp:r_hand,/obj/item/weapon/gun/energy/laser/redtag)) || (istype(perp:l_hand,/obj/item/weapon/gun/energy/laser/redtag)))
+		if((istype(perp:r_hand,/obj/item/gun/energy/laser/redtag)) || (istype(perp:l_hand,/obj/item/gun/energy/laser/redtag)))
 			threatcount += 4
-		if(istype(perp:belt, /obj/item/weapon/gun/energy/laser/redtag))
+		if(istype(perp:belt, /obj/item/gun/energy/laser/redtag))
 			threatcount += 2
 
 	if(src.lasercolor == "r")
 		threatcount = 0
 		if(istype(perp.wear_suit, /obj/item/clothing/suit/bluetag))
 			threatcount += 4
-		if((istype(perp:r_hand,/obj/item/weapon/gun/energy/laser/bluetag)) || (istype(perp:l_hand,/obj/item/weapon/gun/energy/laser/bluetag)))
+		if((istype(perp:r_hand,/obj/item/gun/energy/laser/bluetag)) || (istype(perp:l_hand,/obj/item/gun/energy/laser/bluetag)))
 			threatcount += 4
-		if(istype(perp:belt, /obj/item/weapon/gun/energy/laser/bluetag))
+		if(istype(perp:belt, /obj/item/gun/energy/laser/bluetag))
 			threatcount += 2
 
 	if(src.check_records)
 		for(var/datum/data/record/E in GLOBL.data_core.general)
 			var/perpname = perp.name
 			if(isnotnull(perp.wear_id))
-				var/obj/item/weapon/card/id/id = perp.wear_id.get_id()
+				var/obj/item/card/id/id = perp.wear_id.get_id()
 				if(isnotnull(id))
 					perpname = id.registered_name
 
@@ -753,20 +753,20 @@ Auto Patrol: []"},
 	src.visible_message("\red <B>[src] blows apart!</B>", 1)
 	var/turf/Tsec = get_turf(src)
 
-	var/obj/item/weapon/ed209_assembly/Sa = new /obj/item/weapon/ed209_assembly(Tsec)
+	var/obj/item/ed209_assembly/Sa = new /obj/item/ed209_assembly(Tsec)
 	Sa.build_step = 1
 	Sa.overlays += image('icons/obj/aibots.dmi', "hs_hole")
 	Sa.created_name = src.name
 	new /obj/item/device/assembly/prox_sensor(Tsec)
 
 	if(!lasercolor)
-		var/obj/item/weapon/gun/energy/taser/G = new /obj/item/weapon/gun/energy/taser(Tsec)
+		var/obj/item/gun/energy/taser/G = new /obj/item/gun/energy/taser(Tsec)
 		G.power_supply.charge = 0
 	else if(lasercolor == "b")
-		var/obj/item/weapon/gun/energy/laser/bluetag/G = new /obj/item/weapon/gun/energy/laser/bluetag(Tsec)
+		var/obj/item/gun/energy/laser/bluetag/G = new /obj/item/gun/energy/laser/bluetag(Tsec)
 		G.power_supply.charge = 0
 	else if(lasercolor == "r")
-		var/obj/item/weapon/gun/energy/laser/redtag/G = new /obj/item/weapon/gun/energy/laser/redtag(Tsec)
+		var/obj/item/gun/energy/laser/redtag/G = new /obj/item/gun/energy/laser/redtag(Tsec)
 		G.power_supply.charge = 0
 
 	if (prob(50))
@@ -873,10 +873,10 @@ Auto Patrol: []"},
 
 
 
-/obj/item/weapon/ed209_assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/ed209_assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 
-	if(istype(W, /obj/item/weapon/pen))
+	if(istype(W, /obj/item/pen))
 		var/t = copytext(stripped_input(user, "Enter new robot name", src.name, src.created_name), 1, MAX_NAME_LEN)
 		if(!t)
 			return
@@ -915,8 +915,8 @@ Auto Patrol: []"},
 				icon_state = "[lasercolor]ed209_shell"
 
 		if(3)
-			if(istype(W, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = W
+			if(istype(W, /obj/item/weldingtool))
+				var/obj/item/weldingtool/WT = W
 				if(WT.remove_fuel(0,user))
 					build_step++
 					name = "shielded frame assembly"
@@ -956,15 +956,15 @@ Auto Patrol: []"},
 		if(7)
 			switch(lasercolor)
 				if("b")
-					if(!istype(W, /obj/item/weapon/gun/energy/laser/bluetag))
+					if(!istype(W, /obj/item/gun/energy/laser/bluetag))
 						return
 					name = "bluetag ED-209 assembly"
 				if("r")
-					if(!istype(W, /obj/item/weapon/gun/energy/laser/redtag))
+					if(!istype(W, /obj/item/gun/energy/laser/redtag))
 						return
 					name = "redtag ED-209 assembly"
 				if("")
-					if(!istype(W, /obj/item/weapon/gun/energy/taser))
+					if(!istype(W, /obj/item/gun/energy/taser))
 						return
 					name = "taser ED-209 assembly"
 				else
@@ -977,7 +977,7 @@ Auto Patrol: []"},
 			qdel(W)
 
 		if(8)
-			if(istype(W, /obj/item/weapon/screwdriver))
+			if(istype(W, /obj/item/screwdriver))
 				playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 				var/turf/T = get_turf(user)
 				user << "<span class='notice'>Now attaching the gun to the frame...</span>"
@@ -988,7 +988,7 @@ Auto Patrol: []"},
 					user << "<span class='notice'>Taser gun attached.</span>"
 
 		if(9)
-			if(istype(W, /obj/item/weapon/cell))
+			if(istype(W, /obj/item/cell))
 				build_step++
 				user << "<span class='notice'>You complete the ED-209.</span>"
 				var/turf/T = get_turf(src)

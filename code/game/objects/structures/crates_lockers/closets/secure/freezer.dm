@@ -18,16 +18,16 @@
 	req_access = list(ACCESS_KITCHEN)
 
 	starts_with = list(
-		/obj/item/weapon/reagent_containers/food/condiment/sugar,
-		/obj/item/weapon/reagent_containers/food/snacks/flour,
-		/obj/item/weapon/reagent_containers/food/snacks/flour,
-		/obj/item/weapon/reagent_containers/food/snacks/flour,
-		/obj/item/weapon/reagent_containers/food/snacks/flour,
-		/obj/item/weapon/reagent_containers/food/snacks/flour,
-		/obj/item/weapon/reagent_containers/food/snacks/flour,
-		/obj/item/weapon/reagent_containers/food/snacks/meat/monkey,
-		/obj/item/weapon/reagent_containers/food/snacks/meat/monkey,
-		/obj/item/weapon/reagent_containers/food/snacks/meat/monkey
+		/obj/item/reagent_containers/food/condiment/sugar,
+		/obj/item/reagent_containers/food/snacks/flour,
+		/obj/item/reagent_containers/food/snacks/flour,
+		/obj/item/reagent_containers/food/snacks/flour,
+		/obj/item/reagent_containers/food/snacks/flour,
+		/obj/item/reagent_containers/food/snacks/flour,
+		/obj/item/reagent_containers/food/snacks/flour,
+		/obj/item/reagent_containers/food/snacks/meat/monkey,
+		/obj/item/reagent_containers/food/snacks/meat/monkey,
+		/obj/item/reagent_containers/food/snacks/meat/monkey
 	)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/mining
@@ -46,10 +46,10 @@
 	icon_off = "fridge1"
 
 	starts_with = list(
-		/obj/item/weapon/reagent_containers/food/snacks/meat/monkey,
-		/obj/item/weapon/reagent_containers/food/snacks/meat/monkey,
-		/obj/item/weapon/reagent_containers/food/snacks/meat/monkey,
-		/obj/item/weapon/reagent_containers/food/snacks/meat/monkey
+		/obj/item/reagent_containers/food/snacks/meat/monkey,
+		/obj/item/reagent_containers/food/snacks/meat/monkey,
+		/obj/item/reagent_containers/food/snacks/meat/monkey,
+		/obj/item/reagent_containers/food/snacks/meat/monkey
 	)
 
 /*
@@ -65,16 +65,16 @@
 	icon_off = "fridge1"
 
 	starts_with = list(
-		/obj/item/weapon/reagent_containers/food/drinks/milk,
-		/obj/item/weapon/reagent_containers/food/drinks/milk,
-		/obj/item/weapon/reagent_containers/food/drinks/milk,
-		/obj/item/weapon/reagent_containers/food/drinks/milk,
-		/obj/item/weapon/reagent_containers/food/drinks/milk,
-		/obj/item/weapon/reagent_containers/food/drinks/soymilk,
-		/obj/item/weapon/reagent_containers/food/drinks/soymilk,
-		/obj/item/weapon/reagent_containers/food/drinks/soymilk,
-		/obj/item/weapon/storage/fancy/egg_box,
-		/obj/item/weapon/storage/fancy/egg_box
+		/obj/item/reagent_containers/food/drinks/milk,
+		/obj/item/reagent_containers/food/drinks/milk,
+		/obj/item/reagent_containers/food/drinks/milk,
+		/obj/item/reagent_containers/food/drinks/milk,
+		/obj/item/reagent_containers/food/drinks/milk,
+		/obj/item/reagent_containers/food/drinks/soymilk,
+		/obj/item/reagent_containers/food/drinks/soymilk,
+		/obj/item/reagent_containers/food/drinks/soymilk,
+		/obj/item/storage/fancy/egg_box,
+		/obj/item/storage/fancy/egg_box
 	)
 
 /*
@@ -91,18 +91,18 @@
 	req_access = list(ACCESS_HEADS_VAULT)
 
 	starts_with = list(
-		/obj/item/weapon/spacecash/c1000,
-		/obj/item/weapon/spacecash/c1000,
-		/obj/item/weapon/spacecash/c1000,
-		/obj/item/weapon/spacecash/c500,
-		/obj/item/weapon/spacecash/c500,
-		/obj/item/weapon/spacecash/c500,
-		/obj/item/weapon/spacecash/c500,
-		/obj/item/weapon/spacecash/c500,
-		/obj/item/weapon/spacecash/c200,
-		/obj/item/weapon/spacecash/c200,
-		/obj/item/weapon/spacecash/c200,
-		/obj/item/weapon/spacecash/c200,
-		/obj/item/weapon/spacecash/c200,
-		/obj/item/weapon/spacecash/c200
+		/obj/item/spacecash/c1000,
+		/obj/item/spacecash/c1000,
+		/obj/item/spacecash/c1000,
+		/obj/item/spacecash/c500,
+		/obj/item/spacecash/c500,
+		/obj/item/spacecash/c500,
+		/obj/item/spacecash/c500,
+		/obj/item/spacecash/c500,
+		/obj/item/spacecash/c200,
+		/obj/item/spacecash/c200,
+		/obj/item/spacecash/c200,
+		/obj/item/spacecash/c200,
+		/obj/item/spacecash/c200,
+		/obj/item/spacecash/c200
 	)

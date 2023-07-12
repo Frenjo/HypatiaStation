@@ -61,7 +61,7 @@
 	if(issilicon(user) && get_dist(src, user) > 1)
 		return src.attack_hand(user)
 	src.add_fingerprint(user)
-	if(istype(W, /obj/item/weapon/crowbar) && opened)
+	if(istype(W, /obj/item/crowbar) && opened)
 		if(has_electronics == 1)
 			if(terminal)
 				to_chat(user, SPAN_WARNING("Disconnect wires first."))
@@ -83,18 +83,18 @@
 							SPAN_WARNING("[user.name] has removed the power control board from [src.name]!"),
 							SPAN_NOTICE("You remove the power control board.")
 						)
-						new /obj/item/weapon/module/power_control(loc)
+						new /obj/item/module/power_control(loc)
 		else if(opened != 2) //cover isn't removed
 			opened = 0
 			update_icon()
-	else if(istype(W, /obj/item/weapon/crowbar) && !((stat & BROKEN) || malfhack))
+	else if(istype(W, /obj/item/crowbar) && !((stat & BROKEN) || malfhack))
 		if(coverlocked && !(stat & MAINT))
 			to_chat(user, SPAN_WARNING("The cover is locked and cannot be opened."))
 			return
 		else
 			opened = 1
 			update_icon()
-	else if(istype(W, /obj/item/weapon/cell) && opened)	// trying to put a cell inside
+	else if(istype(W, /obj/item/cell) && opened)	// trying to put a cell inside
 		if(cell)
 			to_chat(user, "There is a power cell already installed.")
 			return
@@ -111,7 +111,7 @@
 			)
 			chargecount = 0
 			update_icon()
-	else if(istype(W, /obj/item/weapon/screwdriver))	// haxing
+	else if(istype(W, /obj/item/screwdriver))	// haxing
 		if(opened)
 			if(cell)
 				to_chat(user, SPAN_WARNING("Close the APC first."))	//Less hints more mystery!
@@ -138,7 +138,7 @@
 			to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"].")
 			update_icon()
 
-	else if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
+	else if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
 		if(emagged)
 			to_chat(user, "The interface is broken.")
 		else if(opened)
@@ -154,7 +154,7 @@
 				update_icon()
 			else
 				FEEDBACK_ACCESS_DENIED(user)
-	else if(istype(W, /obj/item/weapon/card/emag) && !(emagged || malfhack))		// trying to unlock with an emag card
+	else if(istype(W, /obj/item/card/emag) && !(emagged || malfhack))		// trying to unlock with an emag card
 		if(opened)
 			to_chat(user, "You must close the cover to swipe an ID card.")
 		else if(wiresexposed)
@@ -197,7 +197,7 @@
 			)
 			make_terminal()
 			terminal.connect_to_network()
-	else if(istype(W, /obj/item/weapon/wirecutters) && terminal && opened && has_electronics != 2)
+	else if(istype(W, /obj/item/wirecutters) && terminal && opened && has_electronics != 2)
 		if(src.loc:intact)
 			to_chat(user, SPAN_WARNING("You must remove the floor plating in front of the APC first."))
 			return
@@ -213,7 +213,7 @@
 				new /obj/item/stack/cable_coil(loc, 10)
 				to_chat(user, SPAN_NOTICE("You cut the cables and dismantle the power terminal."))
 				qdel(terminal)
-	else if(istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics == 0 && !((stat & BROKEN) || malfhack))
+	else if(istype(W, /obj/item/module/power_control) && opened && has_electronics == 0 && !((stat & BROKEN) || malfhack))
 		user.visible_message(
 			SPAN_WARNING("[user.name] inserts the power control board into [src]."),
 			"You start to insert the power control board into the frame..."
@@ -224,11 +224,11 @@
 				has_electronics = 1
 				to_chat(user, SPAN_NOTICE("You place the power control board inside the frame."))
 				qdel(W)
-	else if(istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics == 0 && ((stat & BROKEN) || malfhack))
+	else if(istype(W, /obj/item/module/power_control) && opened && has_electronics == 0 && ((stat & BROKEN) || malfhack))
 		to_chat(user, SPAN_WARNING("You cannot put the board inside, the frame is damaged."))
 		return
-	else if(istype(W, /obj/item/weapon/weldingtool) && opened && has_electronics == 0 && !terminal)
-		var/obj/item/weapon/weldingtool/WT = W
+	else if(istype(W, /obj/item/weldingtool) && opened && has_electronics == 0 && !terminal)
+		var/obj/item/weldingtool/WT = W
 		if(WT.get_fuel() < 3)
 			to_chat(user, SPAN_INFO("You need more welding fuel to complete this task."))
 			return
@@ -305,7 +305,7 @@
 				return src.attack_hand(user)
 			if(!opened && wiresexposed && \
 				(istype(W, /obj/item/device/multitool) || \
-				istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/device/assembly/signaler)))
+				istype(W, /obj/item/wirecutters) || istype(W, /obj/item/device/assembly/signaler)))
 				return src.attack_hand(user)
 			user.visible_message(
 				SPAN_WARNING("The [src.name] has been hit with the [W.name] by [user.name]!"),

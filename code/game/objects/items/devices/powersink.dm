@@ -26,7 +26,7 @@
 	return ..()
 
 /obj/item/device/powersink/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(istype(I, /obj/item/screwdriver))
 		if(mode == 0)
 			var/turf/T = loc
 			if(isturf(T) && !T.intact)

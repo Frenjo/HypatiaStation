@@ -9,7 +9,7 @@
 	use_power = 0
 	flags = ON_BORDER
 	opacity = FALSE
-	var/obj/item/weapon/airlock_electronics/electronics = null
+	var/obj/item/airlock_electronics/electronics = null
 	explosion_resistance = 5
 	air_properties_vary_with_direction = 1
 
@@ -122,12 +122,12 @@
 /obj/machinery/door/window/proc/take_damage(damage)
 	src.health = max(0, src.health - damage)
 	if(src.health <= 0)
-		new /obj/item/weapon/shard(src.loc)
+		new /obj/item/shard(src.loc)
 		var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src.loc)
 		CC.amount = 2
-		var/obj/item/weapon/airlock_electronics/ae
+		var/obj/item/airlock_electronics/ae
 		if(!electronics)
-			ae = new/obj/item/weapon/airlock_electronics(src.loc)
+			ae = new/obj/item/airlock_electronics(src.loc)
 			if(!src.req_access)
 				src.check_access()
 			if(length(req_access))
@@ -186,9 +186,9 @@
 		return
 
 	//Emags and ninja swords? You may pass.
-	if(src.density && (istype(I, /obj/item/weapon/card/emag) || istype(I, /obj/item/weapon/melee/energy/blade)))
+	if(src.density && (istype(I, /obj/item/card/emag) || istype(I, /obj/item/melee/energy/blade)))
 		src.operating = -1
-		if(istype(I, /obj/item/weapon/melee/energy/blade))
+		if(istype(I, /obj/item/melee/energy/blade))
 			var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
 			spark_system.set_up(5, 0, src.loc)
 			spark_system.start()
@@ -201,7 +201,7 @@
 		return 1
 
 	//If it's emagged, crowbar can pry electronics out.
-	if(src.operating == -1 && istype(I, /obj/item/weapon/crowbar))
+	if(src.operating == -1 && istype(I, /obj/item/crowbar))
 		playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 		user.visible_message("[user] removes the electronics from the windoor.", "You start to remove electronics from the windoor.")
 		if(do_after(user, 40))
@@ -219,9 +219,9 @@
 			wa.state = "02"
 			wa.update_icon()
 
-			var/obj/item/weapon/airlock_electronics/ae
+			var/obj/item/airlock_electronics/ae
 			if(!electronics)
-				ae = new/obj/item/weapon/airlock_electronics(src.loc)
+				ae = new/obj/item/airlock_electronics(src.loc)
 				if(!src.req_access)
 					src.check_access()
 				if(length(req_access))
@@ -240,7 +240,7 @@
 			return
 
 	//If it's a weapon, smash windoor. Unless it's an id card, agent card, ect.. then ignore it (Cards really shouldnt damage a door anyway)
-	if(src.density && istype(I, /obj/item/weapon) && !istype(I, /obj/item/weapon/card))
+	if(src.density && istype(I, /obj/item) && !istype(I, /obj/item/card))
 		var/aforce = I.force
 		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		visible_message(SPAN_DANGER("[src] was hit by [I]."))

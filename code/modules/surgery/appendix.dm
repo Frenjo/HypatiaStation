@@ -21,9 +21,9 @@
 
 /datum/surgery_step/appendectomy/cut_appendix
 	allowed_tools = list(
-		/obj/item/weapon/scalpel = 100,
-		/obj/item/weapon/kitchenknife = 75,
-		/obj/item/weapon/shard = 50,
+		/obj/item/scalpel = 100,
+		/obj/item/kitchenknife = 75,
+		/obj/item/shard = 50,
 	)
 
 	min_duration = 70
@@ -58,9 +58,9 @@
 
 /datum/surgery_step/appendectomy/remove_appendix
 	allowed_tools = list(
-		/obj/item/weapon/hemostat = 100,
-		/obj/item/weapon/wirecutters = 75,
-		/obj/item/weapon/kitchen/utensil/fork = 20
+		/obj/item/hemostat = 100,
+		/obj/item/wirecutters = 75,
+		/obj/item/kitchen/utensil/fork = 20
 	)
 
 	min_duration = 60
@@ -88,9 +88,9 @@
 		appendicitis.cure()
 		target.resistances += appendicitis
 	if(app)
-		new /obj/item/weapon/reagent_containers/food/snacks/appendix/inflamed(get_turf(target))
+		new /obj/item/reagent_containers/food/snacks/appendix/inflamed(get_turf(target))
 	else
-		new /obj/item/weapon/reagent_containers/food/snacks/appendix(get_turf(target))
+		new /obj/item/reagent_containers/food/snacks/appendix(get_turf(target))
 	target.op_stage.appendix = 2
 
 /datum/surgery_step/appendectomy/remove_appendix/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

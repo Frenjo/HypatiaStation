@@ -13,16 +13,16 @@
 	icon_off = "medicaloff"
 
 	starts_with = list(
-		/obj/item/weapon/storage/box/autoinjectors,
-		/obj/item/weapon/storage/box/syringes,
-		/obj/item/weapon/reagent_containers/dropper,
-		/obj/item/weapon/reagent_containers/dropper,
-		/obj/item/weapon/reagent_containers/glass/beaker,
-		/obj/item/weapon/reagent_containers/glass/beaker,
-		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
-		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
-		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
-		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin
+		/obj/item/storage/box/autoinjectors,
+		/obj/item/storage/box/syringes,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/glass/beaker,
+		/obj/item/reagent_containers/glass/beaker,
+		/obj/item/reagent_containers/glass/bottle/inaprovaline,
+		/obj/item/reagent_containers/glass/bottle/inaprovaline,
+		/obj/item/reagent_containers/glass/bottle/antitoxin,
+		/obj/item/reagent_containers/glass/bottle/antitoxin
 	)
 
 /*
@@ -40,9 +40,9 @@
 	icon_off = "medicaloff"
 
 	starts_with = list(
-		/obj/item/weapon/tank/anesthetic,
-		/obj/item/weapon/tank/anesthetic,
-		/obj/item/weapon/tank/anesthetic,
+		/obj/item/tank/anesthetic,
+		/obj/item/tank/anesthetic,
+		/obj/item/tank/anesthetic,
 		/obj/item/clothing/mask/breath/medical,
 		/obj/item/clothing/mask/breath/medical,
 		/obj/item/clothing/mask/breath/medical
@@ -70,16 +70,16 @@
 		/obj/item/clothing/suit/storage/labcoat,
 		/obj/item/clothing/suit/storage/fr_jacket,
 		/obj/item/clothing/shoes/white,
-	//	/obj/item/weapon/cartridge/medical,
+	//	/obj/item/cartridge/medical,
 		/obj/item/device/radio/headset/med,
-		/obj/item/weapon/storage/belt/medical
+		/obj/item/storage/belt/medical
 	)
 
 /obj/structure/closet/secure_closet/medical3/New()
 	if(prob(50))
-		starts_with.Add(/obj/item/weapon/storage/backpack/medic)
+		starts_with.Add(/obj/item/storage/backpack/medic)
 	else
-		starts_with.Add(/obj/item/weapon/storage/satchel/med)
+		starts_with.Add(/obj/item/storage/satchel/med)
 
 	switch(pick("blue", "green", "purple"))
 		if("blue")
@@ -123,20 +123,20 @@
 		/obj/item/clothing/shoes/white,
 		/obj/item/clothing/under/rank/chief_medical_officer,
 		/obj/item/clothing/suit/storage/labcoat/cmo,
-		/obj/item/weapon/cartridge/cmo,
+		/obj/item/cartridge/cmo,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/clothing/shoes/brown,
 		/obj/item/device/radio/headset/heads/cmo,
-		/obj/item/weapon/storage/belt/medical,
+		/obj/item/storage/belt/medical,
 		/obj/item/device/flash,
-		/obj/item/weapon/reagent_containers/hypospray
+		/obj/item/reagent_containers/hypospray
 	)
 
 /obj/structure/closet/secure_closet/cmo/New()
 	if(prob(50))
-		starts_with.Add(/obj/item/weapon/storage/backpack/medic)
+		starts_with.Add(/obj/item/storage/backpack/medic)
 	else
-		starts_with.Add(/obj/item/weapon/storage/satchel/med)
+		starts_with.Add(/obj/item/storage/satchel/med)
 
 	switch(pick("blue", "green", "purple"))
 		if("blue")
@@ -179,8 +179,8 @@
 	icon_off = "medicaloff"
 
 	starts_with = list(
-		/obj/item/weapon/storage/box/pillbottles,
-		/obj/item/weapon/storage/box/pillbottles
+		/obj/item/storage/box/pillbottles,
+		/obj/item/storage/box/pillbottles
 	)
 
 /*

@@ -163,11 +163,11 @@
 				qdel(A)
 				return
 
-			if(istype(A, /obj/item/weapon/disk/nuclear)) // Don't let nuke disks travel Z levels  ... And moving this shit down here so it only fires when they're actually trying to change z-level.
+			if(istype(A, /obj/item/disk/nuclear)) // Don't let nuke disks travel Z levels  ... And moving this shit down here so it only fires when they're actually trying to change z-level.
 				qdel(A) //The disk's Del() proc ensures a new one is created
 				return
 
-			var/list/disk_search = A.search_contents_for(/obj/item/weapon/disk/nuclear)
+			var/list/disk_search = A.search_contents_for(/obj/item/disk/nuclear)
 			if(!isemptylist(disk_search))
 				if(isliving(A))
 					var/mob/living/living = A
@@ -182,10 +182,10 @@
 						else if(living.y >= world.maxy -TRANSITIONEDGE)
 							living.inertia_dir = 2
 					else
-						for(var/obj/item/weapon/disk/nuclear/N in disk_search)
+						for(var/obj/item/disk/nuclear/N in disk_search)
 							qdel(N)//Make the disk respawn it is on a clientless mob or corpse
 				else
-					for(var/obj/item/weapon/disk/nuclear/N in disk_search)
+					for(var/obj/item/disk/nuclear/N in disk_search)
 						qdel(N)//Make the disk respawn if it is floating on its own
 				return
 

@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/automatic //Hopefully someone will find a way to make these fire in bursts or something. --Superxpdude
+/obj/item/gun/projectile/automatic //Hopefully someone will find a way to make these fire in bursts or something. --Superxpdude
 	name = "submachine gun"
 	desc = "A lightweight, fast firing gun. Uses 9mm rounds."
 	icon_state = "saber"	//ugly
@@ -10,10 +10,10 @@
 	automatic = 1
 	fire_delay = 0
 
-/obj/item/weapon/gun/projectile/automatic/isHandgun()
+/obj/item/gun/projectile/automatic/isHandgun()
 	return FALSE
 
-/obj/item/weapon/gun/projectile/automatic/mini_uzi
+/obj/item/gun/projectile/automatic/mini_uzi
 	name = "Uzi"
 	desc = "A lightweight, fast firing gun, for when you want someone dead. Uses .45 rounds."
 	icon_state = "mini-uzi"
@@ -23,10 +23,10 @@
 	origin_tech = list(RESEARCH_TECH_COMBAT = 5, RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_SYNDICATE = 8)
 	ammo_type = /obj/item/ammo_casing/c45
 
-/obj/item/weapon/gun/projectile/automatic/mini_uzi/isHandgun()
+/obj/item/gun/projectile/automatic/mini_uzi/isHandgun()
 	return TRUE
 
-/obj/item/weapon/gun/projectile/automatic/c20r
+/obj/item/gun/projectile/automatic/c20r
 	name = "\improper C-20r SMG"
 	desc = "A lightweight, fast firing gun, for when you REALLY need someone dead. Uses 12mm rounds. Has a 'Scarborough Arms - Per falcis, per pravitas' buttstamp"
 	icon_state = "c20r"
@@ -39,12 +39,12 @@
 	fire_sound = 'sound/weapons/Gunshot_smg.ogg'
 	load_method = 2
 
-/obj/item/weapon/gun/projectile/automatic/c20r/New()
+/obj/item/gun/projectile/automatic/c20r/New()
 	. = ..()
 	empty_mag = new /obj/item/ammo_magazine/a12mm/empty(src)
 	update_icon()
 
-/obj/item/weapon/gun/projectile/automatic/c20r/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+/obj/item/gun/projectile/automatic/c20r/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()
 	if(!length(loaded) && empty_mag)
 		empty_mag.loc = get_turf(src.loc)
@@ -53,7 +53,7 @@
 		update_icon()
 	return
 
-/obj/item/weapon/gun/projectile/automatic/c20r/update_icon()
+/obj/item/gun/projectile/automatic/c20r/update_icon()
 	..()
 	if(empty_mag)
 		icon_state = "c20r-[round(length(loaded), 4)]"
@@ -61,7 +61,7 @@
 		icon_state = "c20r"
 	return
 
-/obj/item/weapon/gun/projectile/automatic/l6_saw
+/obj/item/gun/projectile/automatic/l6_saw
 	name = "\improper L6 SAW"
 	desc = "A rather traditionally made light machine gun with a pleasantly lacquered wooden pistol grip. Has 'Aussec Armoury- 2531' engraved on the reciever"
 	icon_state = "l6closed100"
@@ -78,22 +78,22 @@
 	var/cover_open = 0
 	var/mag_inserted = 1
 
-/obj/item/weapon/gun/projectile/automatic/l6_saw/attack_self(mob/user as mob)
+/obj/item/gun/projectile/automatic/l6_saw/attack_self(mob/user as mob)
 	cover_open = !cover_open
 	to_chat(user, SPAN_NOTICE("You [cover_open ? "open" : "close"] [src]'s cover."))
 	update_icon()
 
-/obj/item/weapon/gun/projectile/automatic/l6_saw/update_icon()
+/obj/item/gun/projectile/automatic/l6_saw/update_icon()
 	icon_state = "l6[cover_open ? "open" : "closed"][mag_inserted ? round(length(loaded), 25) : "-empty"]"
 
-/obj/item/weapon/gun/projectile/automatic/l6_saw/afterattack(atom/target as mob|obj|turf, mob/living/user as mob|obj, flag, params) //what I tried to do here is just add a check to see if the cover is open or not and add an icon_state change because I can't figure out how c-20rs do it with overlays
+/obj/item/gun/projectile/automatic/l6_saw/afterattack(atom/target as mob|obj|turf, mob/living/user as mob|obj, flag, params) //what I tried to do here is just add a check to see if the cover is open or not and add an icon_state change because I can't figure out how c-20rs do it with overlays
 	if(cover_open)
 		to_chat(user, SPAN_NOTICE("[src]'s cover is open! Close it before firing!"))
 	else
 		..()
 		update_icon()
 
-/obj/item/weapon/gun/projectile/automatic/l6_saw/attack_hand(mob/user as mob)
+/obj/item/gun/projectile/automatic/l6_saw/attack_hand(mob/user as mob)
 	if(loc != user)
 		..()
 		return	//let them pick it up
@@ -113,7 +113,7 @@
 		update_icon()
 		to_chat(user, SPAN_NOTICE("You remove the magazine from [src]."))
 
-/obj/item/weapon/gun/projectile/automatic/l6_saw/attackby(obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/automatic/l6_saw/attackby(obj/item/A as obj, mob/user as mob)
 	if(!cover_open)
 		to_chat(user, SPAN_NOTICE("[src]'s cover is closed! You can't insert a new mag!"))
 		return

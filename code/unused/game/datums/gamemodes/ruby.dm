@@ -36,7 +36,7 @@
 
 	for (var/obj/effect/landmark/A in world)
 		if (A.name == "Teleport-Scroll")
-			new /obj/item/weapon/teleportation_scroll(A.loc)
+			new /obj/item/teleportation_scroll(A.loc)
 			del(A)
 			continue
 	*/
@@ -155,8 +155,8 @@
 	set name = "Summon Weapon"
 	set category = "Abomination"
 
-	for(var/obj/item/weapon/rubyweapon/w in world)
-		if(istype(w, /obj/item/weapon/rubyweapon))
+	for(var/obj/item/rubyweapon/w in world)
+		if(istype(w, /obj/item/rubyweapon))
 			if(istype(w.loc, /mob))
 				var/mob/M = w.loc
 				M.drop_item()
@@ -256,7 +256,7 @@
 	src.verbs -= /client/proc/howl
 	spawn(rand(300,1800)) src.verbs += /client/proc/howl
 
-/obj/item/weapon/rubyweapon
+/obj/item/rubyweapon
 	desc = ""
 	name = "wepon"
 	icon_state = "wepon"

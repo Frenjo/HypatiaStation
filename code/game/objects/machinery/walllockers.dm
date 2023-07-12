@@ -21,7 +21,7 @@
 
 /obj/structure/walllocker/emerglocker
 	name = "Emergency Locker"
-	spawnitems = list(/obj/item/weapon/tank/emergency_oxygen, /obj/item/clothing/mask/breath, /obj/item/weapon/crowbar)
+	spawnitems = list(/obj/item/tank/emergency_oxygen, /obj/item/clothing/mask/breath, /obj/item/crowbar)
 
 /obj/structure/walllocker/emerglocker/north
 	pixel_y = 32

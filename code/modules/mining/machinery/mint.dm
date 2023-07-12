@@ -154,15 +154,15 @@
 		if(output)
 			processing = TRUE
 			icon_state = "coinpress1"
-			var/obj/item/weapon/moneybag/M
+			var/obj/item/moneybag/M
 			switch(chosen)
 				if(MATERIAL_METAL)
 					while(amt_iron > 0 && coinsToProduce > 0)
-						if(locate(/obj/item/weapon/moneybag, output.loc))
-							M = locate(/obj/item/weapon/moneybag, output.loc)
+						if(locate(/obj/item/moneybag, output.loc))
+							M = locate(/obj/item/moneybag, output.loc)
 						else
-							M = new /obj/item/weapon/moneybag(output.loc)
-						new/obj/item/weapon/coin/iron(M)
+							M = new /obj/item/moneybag(output.loc)
+						new/obj/item/coin/iron(M)
 						amt_iron -= 20
 						coinsToProduce--
 						newCoins++
@@ -170,11 +170,11 @@
 						sleep(5)
 				if(MATERIAL_GOLD)
 					while(amt_gold > 0 && coinsToProduce > 0)
-						if(locate(/obj/item/weapon/moneybag, output.loc))
-							M = locate(/obj/item/weapon/moneybag, output.loc)
+						if(locate(/obj/item/moneybag, output.loc))
+							M = locate(/obj/item/moneybag, output.loc)
 						else
-							M = new /obj/item/weapon/moneybag(output.loc)
-						new /obj/item/weapon/coin/gold(M)
+							M = new /obj/item/moneybag(output.loc)
+						new /obj/item/coin/gold(M)
 						amt_gold -= 20
 						coinsToProduce--
 						newCoins++
@@ -182,11 +182,11 @@
 						sleep(5)
 				if(MATERIAL_SILVER)
 					while(amt_silver > 0 && coinsToProduce > 0)
-						if(locate(/obj/item/weapon/moneybag, output.loc))
-							M = locate(/obj/item/weapon/moneybag, output.loc)
+						if(locate(/obj/item/moneybag, output.loc))
+							M = locate(/obj/item/moneybag, output.loc)
 						else
-							M = new /obj/item/weapon/moneybag(output.loc)
-						new /obj/item/weapon/coin/silver(M)
+							M = new /obj/item/moneybag(output.loc)
+						new /obj/item/coin/silver(M)
 						amt_silver -= 20
 						coinsToProduce--
 						newCoins++
@@ -194,11 +194,11 @@
 						sleep(5)
 				if(MATERIAL_DIAMOND)
 					while(amt_diamond > 0 && coinsToProduce > 0)
-						if(locate(/obj/item/weapon/moneybag, output.loc))
-							M = locate(/obj/item/weapon/moneybag, output.loc)
+						if(locate(/obj/item/moneybag, output.loc))
+							M = locate(/obj/item/moneybag, output.loc)
 						else
-							M = new /obj/item/weapon/moneybag(output.loc)
-						new /obj/item/weapon/coin/diamond(M)
+							M = new /obj/item/moneybag(output.loc)
+						new /obj/item/coin/diamond(M)
 						amt_diamond -= 20
 						coinsToProduce--
 						newCoins++
@@ -206,11 +206,11 @@
 						sleep(5)
 				if(MATERIAL_PLASMA)
 					while(amt_plasma > 0 && coinsToProduce > 0)
-						if(locate(/obj/item/weapon/moneybag, output.loc))
-							M = locate(/obj/item/weapon/moneybag, output.loc)
+						if(locate(/obj/item/moneybag, output.loc))
+							M = locate(/obj/item/moneybag, output.loc)
 						else
-							M = new /obj/item/weapon/moneybag(output.loc)
-						new /obj/item/weapon/coin/plasma(M)
+							M = new /obj/item/moneybag(output.loc)
+						new /obj/item/coin/plasma(M)
 						amt_plasma -= 20
 						coinsToProduce--
 						newCoins++
@@ -218,11 +218,11 @@
 						sleep(5)
 				if(MATERIAL_URANIUM)
 					while(amt_uranium > 0 && coinsToProduce > 0)
-						if(locate(/obj/item/weapon/moneybag, output.loc))
-							M = locate(/obj/item/weapon/moneybag, output.loc)
+						if(locate(/obj/item/moneybag, output.loc))
+							M = locate(/obj/item/moneybag, output.loc)
 						else
-							M = new /obj/item/weapon/moneybag(output.loc)
-						new /obj/item/weapon/coin/uranium(M)
+							M = new /obj/item/moneybag(output.loc)
+						new /obj/item/coin/uranium(M)
 						amt_uranium -= 20
 						coinsToProduce--
 						newCoins++
@@ -230,11 +230,11 @@
 						sleep(5)
 				if(MATERIAL_BANANIUM)
 					while(amt_bananium > 0 && coinsToProduce > 0)
-						if(locate(/obj/item/weapon/moneybag, output.loc))
-							M = locate(/obj/item/weapon/moneybag, output.loc)
+						if(locate(/obj/item/moneybag, output.loc))
+							M = locate(/obj/item/moneybag, output.loc)
 						else
-							M = new /obj/item/weapon/moneybag(output.loc)
-						new /obj/item/weapon/coin/bananium(M)
+							M = new /obj/item/moneybag(output.loc)
+						new /obj/item/coin/bananium(M)
 						amt_bananium -= 20
 						coinsToProduce--
 						newCoins++
@@ -242,11 +242,11 @@
 						sleep(5)
 				if(MATERIAL_ADAMANTINE)
 					while(amt_adamantine > 0 && coinsToProduce > 0)
-						if(locate(/obj/item/weapon/moneybag, output.loc))
-							M = locate(/obj/item/weapon/moneybag, output.loc)
+						if(locate(/obj/item/moneybag, output.loc))
+							M = locate(/obj/item/moneybag, output.loc)
 						else
-							M = new /obj/item/weapon/moneybag(output.loc)
-						new /obj/item/weapon/coin/adamantine(M)
+							M = new /obj/item/moneybag(output.loc)
+						new /obj/item/coin/adamantine(M)
 						amt_adamantine -= 20
 						coinsToProduce--
 						newCoins++
@@ -254,11 +254,11 @@
 						sleep(5)
 				if(MATERIAL_MYTHRIL)
 					while(amt_adamantine > 0 && coinsToProduce > 0)
-						if(locate(/obj/item/weapon/moneybag, output.loc))
-							M = locate(/obj/item/weapon/moneybag, output.loc)
+						if(locate(/obj/item/moneybag, output.loc))
+							M = locate(/obj/item/moneybag, output.loc)
 						else
-							M = new /obj/item/weapon/moneybag(output.loc)
-						new /obj/item/weapon/coin/mythril(M)
+							M = new /obj/item/moneybag(output.loc)
+						new /obj/item/coin/mythril(M)
 						amt_mythril -= 20
 						coinsToProduce--
 						newCoins++

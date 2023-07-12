@@ -7,7 +7,7 @@ RCD
 #define MODE_FLOOR_AND_WALLS 1
 #define MODE_AIRLOCK 2
 #define MODE_DECONSTRUCT 3
-/obj/item/weapon/rcd
+/obj/item/rcd
 	name = "rapid-construction-device (RCD)"
 	desc = "A device used to rapidly build walls/floor."
 	icon = 'icons/obj/items.dmi'
@@ -31,21 +31,21 @@ RCD
 	var/canRwall = 0
 	var/disabled = 0
 
-/obj/item/weapon/rcd/New()
+/obj/item/rcd/New()
 	desc = "An RCD. It currently holds [matter]/30 matter-units."
 	src.spark_system = new /datum/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	return
 
-/obj/item/weapon/rcd/Destroy()
+/obj/item/rcd/Destroy()
 	qdel(spark_system)
 	spark_system = null
 	return ..()
 
-/obj/item/weapon/rcd/attackby(obj/item/weapon/W, mob/user)
+/obj/item/rcd/attackby(obj/item/weapon/W, mob/user)
 	..()
-	if(istype(W, /obj/item/weapon/rcd_ammo))
+	if(istype(W, /obj/item/rcd_ammo))
 		if((matter + 10) > 30)
 			to_chat(user, SPAN_NOTICE("The RCD cant hold any more matter-units."))
 			return
@@ -57,7 +57,7 @@ RCD
 		desc = "An RCD. It currently holds [matter]/30 matter-units."
 		return
 
-/obj/item/weapon/rcd/attack_self(mob/user)
+/obj/item/rcd/attack_self(mob/user)
 	//Change the mode
 	playsound(src, 'sound/effects/pop.ogg', 50, 0)
 	switch(mode)
@@ -80,10 +80,10 @@ RCD
 				src.spark_system.start()
 			return
 
-/obj/item/weapon/rcd/proc/activate()
+/obj/item/rcd/proc/activate()
 	playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 
-/obj/item/weapon/rcd/afterattack(atom/A, mob/user, proximity)
+/obj/item/rcd/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	if(disabled && !isrobot(user))
@@ -176,33 +176,33 @@ RCD
 #undef MODE_AIRLOCK
 #undef MODE_DECONSTRUCT
 
-/obj/item/weapon/rcd/proc/useResource(amount, mob/user)
+/obj/item/rcd/proc/useResource(amount, mob/user)
 	if(matter < amount)
 		return 0
 	matter -= amount
 	desc = "An RCD. It currently holds [matter]/30 matter-units."
 	return 1
 
-/obj/item/weapon/rcd/proc/checkResource(amount, mob/user)
+/obj/item/rcd/proc/checkResource(amount, mob/user)
 	return matter >= amount
 
-/obj/item/weapon/rcd/borg/useResource(amount, mob/user)
+/obj/item/rcd/borg/useResource(amount, mob/user)
 	if(!isrobot(user))
 		return 0
 	return user:cell:use(amount * 30)
 
-/obj/item/weapon/rcd/borg/checkResource(amount, mob/user)
+/obj/item/rcd/borg/checkResource(amount, mob/user)
 	if(!isrobot(user))
 		return 0
 	return user:cell:charge >= (amount * 30)
 
-/obj/item/weapon/rcd/borg/New()
+/obj/item/rcd/borg/New()
 	..()
 	desc = "A device used to rapidly build walls/floor."
 	canRwall = 1
 
 
-/obj/item/weapon/rcd_ammo
+/obj/item/rcd_ammo
 	name = "compressed matter cartridge"
 	desc = "Highly compressed matter for the RCD."
 	icon = 'icons/obj/weapons/ammo.dmi'

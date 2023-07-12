@@ -1,4 +1,4 @@
-/obj/item/weapon/handcuffs
+/obj/item/handcuffs
 	name = "handcuffs"
 	desc = "Use this to keep prisoners in line."
 	gender = PLURAL
@@ -16,8 +16,8 @@
 	var/dispenser = 0
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
 
-/obj/item/weapon/handcuffs/attack(mob/living/carbon/C as mob, mob/user as mob)
-	if(istype(src, /obj/item/weapon/handcuffs/cyborg) && isrobot(user))
+/obj/item/handcuffs/attack(mob/living/carbon/C as mob, mob/user as mob)
+	if(istype(src, /obj/item/handcuffs/cyborg) && isrobot(user))
 		if(!C.handcuffed)
 			var/turf/p_loc = user.loc
 			var/turf/p_loc_m = C.loc
@@ -27,7 +27,7 @@
 				if(!C)
 					return
 				if(p_loc == user.loc && p_loc_m == C.loc)
-					C.handcuffed = new /obj/item/weapon/handcuffs(C)
+					C.handcuffed = new /obj/item/handcuffs(C)
 					C.update_inv_handcuffed()
 	else
 		if((CLUMSY in usr.mutations) && prob(50))
@@ -64,7 +64,7 @@
 				O.place = "handcuff"
 				C.requests += O
 				spawn(0)
-					if(istype(src, /obj/item/weapon/handcuffs/cable))
+					if(istype(src, /obj/item/handcuffs/cable))
 						feedback_add_details("handcuffs", "C")
 						playsound(src, 'sound/weapons/cablecuff.ogg', 30, 1, -2)
 					else
@@ -83,7 +83,7 @@
 				O.place = "handcuff"
 				C.requests += O
 				spawn(0)
-					if(istype(src, /obj/item/weapon/handcuffs/cable))
+					if(istype(src, /obj/item/handcuffs/cable))
 						playsound(src, 'sound/weapons/cablecuff.ogg', 30, 1, -2)
 					else
 						playsound(src, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
@@ -125,35 +125,35 @@ var/last_chew = 0
 	last_chew = world.time
 
 
-/obj/item/weapon/handcuffs/cable
+/obj/item/handcuffs/cable
 	name = "cable restraints"
 	desc = "Looks like some cables tied together. Could be used to tie something up."
 	icon_state = "cuff_white"
 	breakouttime = 300 //Deciseconds = 30s
 
-/obj/item/weapon/handcuffs/cable/red
+/obj/item/handcuffs/cable/red
 	color = "#DD0000"
 
-/obj/item/weapon/handcuffs/cable/yellow
+/obj/item/handcuffs/cable/yellow
 	color = "#DDDD00"
 
-/obj/item/weapon/handcuffs/cable/blue
+/obj/item/handcuffs/cable/blue
 	color = "#0000DD"
 
-/obj/item/weapon/handcuffs/cable/green
+/obj/item/handcuffs/cable/green
 	color = "#00DD00"
 
-/obj/item/weapon/handcuffs/cable/pink
+/obj/item/handcuffs/cable/pink
 	color = "#DD00DD"
 
-/obj/item/weapon/handcuffs/cable/orange
+/obj/item/handcuffs/cable/orange
 	color = "#DD8800"
 
-/obj/item/weapon/handcuffs/cable/cyan
+/obj/item/handcuffs/cable/cyan
 	color = "#00DDDD"
 
-/obj/item/weapon/handcuffs/cable/white
+/obj/item/handcuffs/cable/white
 	color = "#FFFFFF"
 
-/obj/item/weapon/handcuffs/cyborg
+/obj/item/handcuffs/cyborg
 	dispenser = 1

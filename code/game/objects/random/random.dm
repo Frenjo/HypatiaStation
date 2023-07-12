@@ -33,11 +33,11 @@
 
 /obj/random/tool/item_to_spawn()
 	return pick( \
-		/obj/item/weapon/screwdriver, \
-		/obj/item/weapon/wirecutters, \
-		/obj/item/weapon/weldingtool, \
-		/obj/item/weapon/crowbar, \
-		/obj/item/weapon/wrench, \
+		/obj/item/screwdriver, \
+		/obj/item/wirecutters, \
+		/obj/item/weldingtool, \
+		/obj/item/crowbar, \
+		/obj/item/wrench, \
 		/obj/item/device/flashlight \
 	)
 
@@ -64,11 +64,11 @@
 
 /obj/random/powercell/item_to_spawn()
 	return pick( \
-		prob(10); /obj/item/weapon/cell/crap, \
-		prob(40); /obj/item/weapon/cell, \
-		prob(40); /obj/item/weapon/cell/high, \
-		prob(9); /obj/item/weapon/cell/super, \
-		prob(1); /obj/item/weapon/cell/hyper \
+		prob(10); /obj/item/cell/crap, \
+		prob(40); /obj/item/cell, \
+		prob(40); /obj/item/cell/high, \
+		prob(9); /obj/item/cell/super, \
+		prob(1); /obj/item/cell/hyper \
 	)
 
 
@@ -95,9 +95,9 @@
 
 /obj/random/toolbox/item_to_spawn()
 	return pick( \
-		prob(3); /obj/item/weapon/storage/toolbox/mechanical, \
-		prob(2); /obj/item/weapon/storage/toolbox/electrical, \
-		prob(1); /obj/item/weapon/storage/toolbox/emergency \
+		prob(3); /obj/item/storage/toolbox/mechanical, \
+		prob(2); /obj/item/storage/toolbox/electrical, \
+		prob(1); /obj/item/storage/toolbox/emergency \
 	)
 
 
@@ -112,12 +112,12 @@
 	return pick( \
 		prob(3); /obj/random/powercell, \
 		prob(2); /obj/random/technology_scanner, \
-		prob(1); /obj/item/weapon/package_wrap, \
+		prob(1); /obj/item/package_wrap, \
 		prob(2); /obj/random/bomb_supply, \
-		prob(1); /obj/item/weapon/extinguisher, \
+		prob(1); /obj/item/extinguisher, \
 		prob(1); /obj/item/clothing/gloves/fyellow, \
 		prob(3); /obj/item/stack/cable_coil, \
 		prob(2); /obj/random/toolbox, \
-		prob(2); /obj/item/weapon/storage/belt/utility, \
+		prob(2); /obj/item/storage/belt/utility, \
 		prob(5); /obj/random/tool \
 	)

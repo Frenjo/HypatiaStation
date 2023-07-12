@@ -8,7 +8,7 @@
 	mypath = /obj/item/seeds/poppyseed
 	species = "poppy"
 	plantname = "Poppy Plants"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/poppy
+	productname = /obj/item/reagent_containers/food/snacks/grown/poppy
 	lifespan = 25
 	endurance = 10
 	potency = 20
@@ -29,7 +29,7 @@
 	mypath = /obj/item/seeds/harebell
 	species = "harebell"
 	plantname = "Harebells"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/harebell
+	productname = /obj/item/reagent_containers/food/snacks/grown/harebell
 	lifespan = 100
 	endurance = 20
 	maturation = 7
@@ -50,7 +50,7 @@
 	mypath = /obj/item/seeds/sunflowerseed
 	species = "sunflower"
 	plantname = "Sunflowers"
-	productname = /obj/item/weapon/grown/sunflower
+	productname = /obj/item/grown/sunflower
 	lifespan = 25
 	endurance = 20
 	maturation = 6

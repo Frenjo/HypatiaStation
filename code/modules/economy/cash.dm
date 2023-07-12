@@ -1,4 +1,4 @@
-/obj/item/weapon/spacecash
+/obj/item/spacecash
 	name = "0 credit chip"
 	desc = "It's worth 0 credits."
 	gender = PLURAL
@@ -16,49 +16,49 @@
 	access = ACCESS_CRATE_CASH
 	var/worth = 0
 
-/obj/item/weapon/spacecash/c1
+/obj/item/spacecash/c1
 	name = "1 credit chip"
 	icon_state = "spacecash"
 	desc = "It's worth 1 credit."
 	worth = 1
 
-/obj/item/weapon/spacecash/c10
+/obj/item/spacecash/c10
 	name = "10 credit chip"
 	icon_state = "spacecash10"
 	desc = "It's worth 10 credits."
 	worth = 10
 
-/obj/item/weapon/spacecash/c20
+/obj/item/spacecash/c20
 	name = "20 credit chip"
 	icon_state = "spacecash20"
 	desc = "It's worth 20 credits."
 	worth = 20
 
-/obj/item/weapon/spacecash/c50
+/obj/item/spacecash/c50
 	name = "50 credit chip"
 	icon_state = "spacecash50"
 	desc = "It's worth 50 credits."
 	worth = 50
 
-/obj/item/weapon/spacecash/c100
+/obj/item/spacecash/c100
 	name = "100 credit chip"
 	icon_state = "spacecash100"
 	desc = "It's worth 100 credits."
 	worth = 100
 
-/obj/item/weapon/spacecash/c200
+/obj/item/spacecash/c200
 	name = "200 credit chip"
 	icon_state = "spacecash200"
 	desc = "It's worth 200 credits."
 	worth = 200
 
-/obj/item/weapon/spacecash/c500
+/obj/item/spacecash/c500
 	name = "500 credit chip"
 	icon_state = "spacecash500"
 	desc = "It's worth 500 credits."
 	worth = 500
 
-/obj/item/weapon/spacecash/c1000
+/obj/item/spacecash/c1000
 	name = "1000 credit chip"
 	icon_state = "spacecash1000"
 	desc = "It's worth 1000 credits."
@@ -67,19 +67,19 @@
 /proc/spawn_money(sum, spawnloc)
 	var/cash_type
 	for(var/i in list(1000, 500, 200, 100, 50, 20, 10, 1))
-		cash_type = text2path("/obj/item/weapon/spacecash/c[i]")
+		cash_type = text2path("/obj/item/spacecash/c[i]")
 		while(sum >= i)
 			sum -= i
 			new cash_type(spawnloc)
 	return
 
-/obj/item/weapon/spacecash/ewallet
+/obj/item/spacecash/ewallet
 	name = "Charge card"
 	icon_state = "efundcard"
 	desc = "A card that holds an amount of money."
 	var/owner_name = "" //So the ATM can set it so the EFTPOS can put a valid name on transactions.
 
-/obj/item/weapon/spacecash/ewallet/examine()
+/obj/item/spacecash/ewallet/examine()
 	set src in view()
 	..()
 	if(!(usr in view(2)) && usr != src.loc)

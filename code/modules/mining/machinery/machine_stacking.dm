@@ -240,7 +240,7 @@
 			O = locate(/obj/item/stack, input.loc)
 			if(isnull(O))
 				var/obj/item/I = locate(/obj/item, input.loc)
-				if(istype(I, /obj/item/weapon/ore/slag))
+				if(istype(I, /obj/item/ore/slag))
 					I.loc = null
 				else
 					I.loc = output.loc

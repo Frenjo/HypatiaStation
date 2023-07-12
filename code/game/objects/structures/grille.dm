@@ -157,7 +157,7 @@
 		return
 //window placing end
 
-	else if(istype(W, /obj/item/weapon/shard))
+	else if(istype(W, /obj/item/shard))
 		health -= W.force * 0.1
 	else if(!shock(user, 70))
 		playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)

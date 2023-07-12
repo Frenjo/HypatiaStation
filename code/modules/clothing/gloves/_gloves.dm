@@ -14,7 +14,7 @@
 	species_restricted = list("exclude", SPECIES_SOGHUN, SPECIES_TAJARAN)
 
 	var/wired = FALSE
-	var/obj/item/weapon/cell/cell = 0
+	var/obj/item/cell/cell = 0
 	var/clipped = FALSE
 
 /obj/item/clothing/gloves/examine()

@@ -31,7 +31,7 @@
 
 	outfit = /decl/hierarchy/outfit/job/engineering/chief
 
-	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
+	special_survival_kit = /obj/item/storage/box/survival/engineer
 
 /*
  * Station Engineer
@@ -60,7 +60,7 @@
 	outfit = /decl/hierarchy/outfit/job/engineering/engineer
 	alt_titles = list("Maintenance Technician", "Engine Technician", "Electrician")
 
-	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
+	special_survival_kit = /obj/item/storage/box/survival/engineer
 
 /*
  * Atmospheric Technician
@@ -89,4 +89,4 @@
 
 	outfit = /decl/hierarchy/outfit/job/engineering/atmospherics
 
-	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
+	special_survival_kit = /obj/item/storage/box/survival/engineer

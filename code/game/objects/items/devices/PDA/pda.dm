@@ -11,7 +11,7 @@
 	//Main variables
 	var/owner = null
 	var/default_cartridge = 0 // Access level defined by cartridge
-	var/obj/item/weapon/cartridge/cartridge = null //current cartridge
+	var/obj/item/cartridge/cartridge = null //current cartridge
 	var/mode = 0 //Controls what menu the PDA will display. 0 is hub; the rest are either built in or based on cartridge.
 
 	var/lastmode = 0
@@ -43,7 +43,7 @@
 	var/list/no_auto_update = list(1, 40, 43, 44, 441, 45, 451)						// These modes we turn off autoupdate
 	var/list/update_every_five = list(3, 41, 433, 46, 47, 48, 49)					// These we update every 5 ticks
 
-	var/obj/item/weapon/card/id/id = null	//Making it possible to slot an ID card into the PDA so it can function as both.
+	var/obj/item/card/id/id = null	//Making it possible to slot an ID card into the PDA so it can function as both.
 	var/ownjob = null						//related to above
 
 	var/obj/item/device/paicard/pai = null	// A slot for a personal AI device
@@ -57,7 +57,7 @@
 	GLOBL.pda_list = sortAtom(GLOBL.pda_list)
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)
-	new /obj/item/weapon/pen(src)
+	new /obj/item/pen(src)
 
 /obj/item/device/pda/pickup(mob/user)
 	if(fon)
@@ -429,7 +429,7 @@
 					mode = 21
 
 		if("Send Honk")//Honk virus
-			if(istype(cartridge, /obj/item/weapon/cartridge/clown))//Cartridge checks are kind of unnecessary since everything is done through switch.
+			if(istype(cartridge, /obj/item/cartridge/clown))//Cartridge checks are kind of unnecessary since everything is done through switch.
 				var/obj/item/device/pda/P = locate(href_list["target"])//Leaving it alone in case it may do something useful, I guess.
 				if(isnotnull(P))
 					if(!P.toff && cartridge.charges > 0)
@@ -443,7 +443,7 @@
 				return 0
 
 		if("Send Silence")//Silent virus
-			if(istype(cartridge, /obj/item/weapon/cartridge/mime))
+			if(istype(cartridge, /obj/item/cartridge/mime))
 				var/obj/item/device/pda/P = locate(href_list["target"])
 				if(isnotnull(P))
 					if(!P.toff && cartridge.charges > 0)
@@ -489,7 +489,7 @@
 					if(pos.z in signal.data["level"])
 						useTC = 2
 
-			if(istype(cartridge, /obj/item/weapon/cartridge/syndicate))
+			if(istype(cartridge, /obj/item/cartridge/syndicate))
 				if(!(useMS && useTC))
 					U.show_message(SPAN_WARNING("An error flashes on your [src]: Connection unavailable."), 1)
 					return
@@ -752,7 +752,7 @@
 		return
 
 	if(can_use(usr))
-		var/obj/item/weapon/pen/O = locate() in src
+		var/obj/item/pen/O = locate() in src
 		if(O)
 			if(ismob(loc))
 				var/mob/M = loc
@@ -772,13 +772,13 @@
 			remove_id()
 		else
 			var/obj/item/I = user.get_active_hand()
-			if(istype(I, /obj/item/weapon/card/id))
+			if(istype(I, /obj/item/card/id))
 				user.drop_item()
 				I.loc = src
 				id = I
 	else
-		var/obj/item/weapon/card/I = user.get_active_hand()
-		if(istype(I, /obj/item/weapon/card/id) && I:registered_name)
+		var/obj/item/card/I = user.get_active_hand()
+		if(istype(I, /obj/item/card/id) && I:registered_name)
 			var/obj/old_id = id
 			user.drop_item()
 			I.loc = src
@@ -789,7 +789,7 @@
 // access to status display signals
 /obj/item/device/pda/attackby(obj/item/C as obj, mob/user as mob)
 	..()
-	if(istype(C, /obj/item/weapon/cartridge) && !cartridge)
+	if(istype(C, /obj/item/cartridge) && !cartridge)
 		cartridge = C
 		user.drop_item()
 		cartridge.loc = src
@@ -798,8 +798,8 @@
 		if(cartridge.radio)
 			cartridge.radio.hostpda = src
 
-	else if(istype(C, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/idcard = C
+	else if(istype(C, /obj/item/card/id))
+		var/obj/item/card/id/idcard = C
 		if(!idcard.registered_name)
 			to_chat(user, SPAN_NOTICE("\The [src] rejects the ID."))
 			return
@@ -820,8 +820,8 @@
 		pai = C
 		to_chat(user, SPAN_NOTICE("You slot \the [C] into [src]."))
 		nanomanager.update_uis(src) // update all UIs attached to src
-	else if(istype(C, /obj/item/weapon/pen))
-		var/obj/item/weapon/pen/O = locate() in src
+	else if(istype(C, /obj/item/pen))
+		var/obj/item/pen/O = locate() in src
 		if(O)
 			to_chat(user, SPAN_NOTICE("There is already a pen in \the [src]."))
 		else
@@ -907,13 +907,13 @@
 				to_chat(user, SPAN_INFO("No significant chemical agents found in [A]."))
 
 		if(5)
-			if(istype(A, /obj/item/weapon/tank) || istype(A, /obj/machinery/portable_atmospherics) || istype(A, /obj/machinery/atmospherics/pipe/tank))
+			if(istype(A, /obj/item/tank) || istype(A, /obj/machinery/portable_atmospherics) || istype(A, /obj/machinery/atmospherics/pipe/tank))
 				var/obj/icon = A
 				user.visible_message(SPAN_WARNING("[user] has used [src] on \icon[icon] [A]."))
 				to_chat(user, SPAN_INFO("Results of analysis of \icon[icon]:"))
 
-			if(istype(A, /obj/item/weapon/tank))
-				var/obj/item/weapon/tank/T = A
+			if(istype(A, /obj/item/tank))
+				var/obj/item/tank/T = A
 				var/pressure = T.air_contents.return_pressure()
 				var/total_moles = T.air_contents.total_moles
 
@@ -952,8 +952,8 @@
 					to_chat(user, SPAN_INFO("Tank is empty!"))
 
 	if(!scanmode && owner)
-		if(istype(A, /obj/item/weapon/paper))
-			var/obj/item/weapon/paper/P = A
+		if(istype(A, /obj/item/paper))
+			var/obj/item/paper/P = A
 			note = P.info
 			to_chat(user, SPAN_INFO("Paper scanned.")) //concept of scanning paper copyright brainoblivion 2009
 
@@ -1033,7 +1033,7 @@
 // End owner and job helpers.
 
 //Some spare PDAs in a box
-/obj/item/weapon/storage/box/PDAs
+/obj/item/storage/box/PDAs
 	name = "spare PDAs"
 	desc = "A box of spare PDA microcomputers."
 	icon = 'icons/obj/devices/pda.dmi'
@@ -1044,16 +1044,16 @@
 		/obj/item/device/pda,
 		/obj/item/device/pda,
 		/obj/item/device/pda,
-		/obj/item/weapon/cartridge/head
+		/obj/item/cartridge/head
 	)
 
-/obj/item/weapon/storage/box/PDAs/New()
+/obj/item/storage/box/PDAs/New()
 	var/list/cartridges = list(
-		/obj/item/weapon/cartridge/engineering,
-		/obj/item/weapon/cartridge/security,
-		/obj/item/weapon/cartridge/medical,
-		/obj/item/weapon/cartridge/signal/toxins,
-		/obj/item/weapon/cartridge/quartermaster
+		/obj/item/cartridge/engineering,
+		/obj/item/cartridge/security,
+		/obj/item/cartridge/medical,
+		/obj/item/cartridge/signal/toxins,
+		/obj/item/cartridge/quartermaster
 	)
 	starts_with.Add(pick(cartridges))
 	return ..()

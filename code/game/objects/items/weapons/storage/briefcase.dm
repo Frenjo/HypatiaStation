@@ -1,4 +1,4 @@
-/obj/item/weapon/storage/briefcase
+/obj/item/storage/briefcase
 	name = "briefcase"
 	desc = "It's made of AUTHENTIC faux-leather and has a price-tag still attached. Its owner must be a real professional."
 	icon = 'icons/obj/storage/briefcase.dmi'
@@ -12,10 +12,10 @@
 	max_w_class = 3
 	max_combined_w_class = 16
 
-/obj/item/weapon/storage/briefcase/New()
+/obj/item/storage/briefcase/New()
 	..()
 
-/obj/item/weapon/storage/briefcase/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/storage/briefcase/attack(mob/living/M as mob, mob/living/user as mob)
 	//..()
 	if((CLUMSY in user.mutations) && prob(50))
 		user << "\red The [src] slips out of your hand and hits your head."

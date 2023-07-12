@@ -118,42 +118,42 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	//Sorry for all the ifs, but it makes it 1000 times easier for other people/servers to add or remove items from this list
 	//Add only items the player can afford:
 	if(uses > 19)
-		randomItems.Add("/obj/item/weapon/circuitboard/teleporter") //Teleporter Circuit Board (costs 20, for nuke ops)
+		randomItems.Add("/obj/item/circuitboard/teleporter") //Teleporter Circuit Board (costs 20, for nuke ops)
 
 	if(uses > 9)
 		randomItems.Add("/obj/item/toy/syndicateballoon")//Syndicate Balloon
-		randomItems.Add("/obj/item/weapon/storage/box/syndie_kit/imp_uplink") //Uplink Implanter
-		randomItems.Add("/obj/item/weapon/storage/box/syndicate") //Syndicate bundle
+		randomItems.Add("/obj/item/storage/box/syndie_kit/imp_uplink") //Uplink Implanter
+		randomItems.Add("/obj/item/storage/box/syndicate") //Syndicate bundle
 
 	//if(uses > 8)	//Nothing... yet.
 	//if(uses > 7)	//Nothing... yet.
 
 	if(uses > 6)
-		randomItems.Add("/obj/item/weapon/aiModule/syndicate") //Hacked AI Upload Module
+		randomItems.Add("/obj/item/aiModule/syndicate") //Hacked AI Upload Module
 		randomItems.Add("/obj/item/device/radio/beacon/syndicate") //Singularity Beacon
 
 	if(uses > 5)
-		randomItems.Add("/obj/item/weapon/gun/projectile") //Revolver
+		randomItems.Add("/obj/item/gun/projectile") //Revolver
 
 	if(uses > 4)
-		randomItems.Add("/obj/item/weapon/gun/energy/crossbow") //Energy Crossbow
+		randomItems.Add("/obj/item/gun/energy/crossbow") //Energy Crossbow
 		randomItems.Add("/obj/item/device/powersink") //Powersink
 
 	if(uses > 3)
-		randomItems.Add("/obj/item/weapon/melee/energy/sword") //Energy Sword
+		randomItems.Add("/obj/item/melee/energy/sword") //Energy Sword
 		randomItems.Add("/obj/item/clothing/mask/gas/voice") //Voice Changer
 		randomItems.Add("/obj/item/device/chameleon") //Chameleon Projector
 
 	if(uses > 2)
-		randomItems.Add("/obj/item/weapon/storage/box/emps") //EMP Grenades
-		randomItems.Add("/obj/item/weapon/pen/paralysis") //Paralysis Pen
-		randomItems.Add("/obj/item/weapon/cartridge/syndicate") //Detomatix Cartridge
+		randomItems.Add("/obj/item/storage/box/emps") //EMP Grenades
+		randomItems.Add("/obj/item/pen/paralysis") //Paralysis Pen
+		randomItems.Add("/obj/item/cartridge/syndicate") //Detomatix Cartridge
 		randomItems.Add("/obj/item/clothing/under/chameleon") //Chameleon Jumpsuit
-		randomItems.Add("/obj/item/weapon/card/id/syndicate") //Agent ID Card
-		randomItems.Add("/obj/item/weapon/card/emag") //Cryptographic Sequencer
-		randomItems.Add("/obj/item/weapon/storage/box/syndie_kit/space") //Syndicate Space Suit
+		randomItems.Add("/obj/item/card/id/syndicate") //Agent ID Card
+		randomItems.Add("/obj/item/card/emag") //Cryptographic Sequencer
+		randomItems.Add("/obj/item/storage/box/syndie_kit/space") //Syndicate Space Suit
 		randomItems.Add("/obj/item/device/encryptionkey/binary") //Binary Translator Key
-		randomItems.Add("/obj/item/weapon/storage/box/syndie_kit/imp_freedom") //Freedom Implant
+		randomItems.Add("/obj/item/storage/box/syndie_kit/imp_freedom") //Freedom Implant
 		randomItems.Add("/obj/item/clothing/glasses/thermal/syndi") //Thermal Imaging Goggles
 
 	if(uses > 1)
@@ -161,18 +161,18 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		var/list/usrItems = usr.get_contents() //Checks to see if the user has a revolver before giving ammo
 		var/hasRevolver = 0
 		for(var/obj/I in usrItems) //Only add revolver ammo if the user has a gun that can shoot it
-			if(istype(I,/obj/item/weapon/gun/projectile))
+			if(istype(I,/obj/item/gun/projectile))
 				hasRevolver = 1
 
 		if(hasRevolver) randomItems.Add("/obj/item/ammo_magazine/a357") //Revolver ammo
 */
 		randomItems.Add("/obj/item/ammo_magazine/a357") //Revolver ammo
 		randomItems.Add("/obj/item/clothing/shoes/syndigaloshes") //No-Slip Syndicate Shoes
-		randomItems.Add("/obj/item/weapon/plastique") //C4
+		randomItems.Add("/obj/item/plastique") //C4
 
 	if(uses > 0)
-		randomItems.Add("/obj/item/weapon/soap/syndie") //Syndicate Soap
-		randomItems.Add("/obj/item/weapon/storage/toolbox/syndicate") //Syndicate Toolbox
+		randomItems.Add("/obj/item/soap/syndie") //Syndicate Soap
+		randomItems.Add("/obj/item/storage/toolbox/syndicate") //Syndicate Toolbox
 
 	if(!length(randomItems))
 		qdel(randomItems)
@@ -181,25 +181,25 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		var/buyItem = pick(randomItems)
 
 		switch(buyItem) //Ok, this gets a little messy, sorry.
-			if("/obj/item/weapon/circuitboard/teleporter")
+			if("/obj/item/circuitboard/teleporter")
 				uses -= 20
-			if("/obj/item/toy/syndicateballoon", "/obj/item/weapon/storage/box/syndie_kit/imp_uplink", "/obj/item/weapon/storage/box/syndicate")
+			if("/obj/item/toy/syndicateballoon", "/obj/item/storage/box/syndie_kit/imp_uplink", "/obj/item/storage/box/syndicate")
 				uses -= 10
-			if("/obj/item/weapon/aiModule/syndicate", "/obj/item/device/radio/beacon/syndicate")
+			if("/obj/item/aiModule/syndicate", "/obj/item/device/radio/beacon/syndicate")
 				uses -= 7
-			if("/obj/item/weapon/gun/projectile")
+			if("/obj/item/gun/projectile")
 				uses -= 6
-			if("/obj/item/weapon/gun/energy/crossbow", "/obj/item/device/powersink")
+			if("/obj/item/gun/energy/crossbow", "/obj/item/device/powersink")
 				uses -= 5
-			if("/obj/item/weapon/melee/energy/sword", "/obj/item/clothing/mask/gas/voice", "/obj/item/device/chameleon")
+			if("/obj/item/melee/energy/sword", "/obj/item/clothing/mask/gas/voice", "/obj/item/device/chameleon")
 				uses -= 4
-			if("/obj/item/weapon/storage/box/emps", "/obj/item/weapon/pen/paralysis", "/obj/item/weapon/cartridge/syndicate", "/obj/item/clothing/under/chameleon", \
-			"/obj/item/weapon/card/emag", "/obj/item/weapon/storage/box/syndie_kit/space", "/obj/item/device/encryptionkey/binary", \
-			"/obj/item/weapon/storage/box/syndie_kit/imp_freedom", "/obj/item/clothing/glasses/thermal/syndi")
+			if("/obj/item/storage/box/emps", "/obj/item/pen/paralysis", "/obj/item/cartridge/syndicate", "/obj/item/clothing/under/chameleon", \
+			"/obj/item/card/emag", "/obj/item/storage/box/syndie_kit/space", "/obj/item/device/encryptionkey/binary", \
+			"/obj/item/storage/box/syndie_kit/imp_freedom", "/obj/item/clothing/glasses/thermal/syndi")
 				uses -= 3
-			if("/obj/item/ammo_magazine/a357", "/obj/item/clothing/shoes/syndigaloshes", "/obj/item/weapon/plastique", "/obj/item/weapon/card/id/syndicate")
+			if("/obj/item/ammo_magazine/a357", "/obj/item/clothing/shoes/syndigaloshes", "/obj/item/plastique", "/obj/item/card/id/syndicate")
 				uses -= 2
-			if("/obj/item/weapon/soap/syndie", "/obj/item/weapon/storage/toolbox/syndicate")
+			if("/obj/item/soap/syndie", "/obj/item/storage/toolbox/syndicate")
 				uses -= 1
 		qdel(randomItems)
 		return buyItem
@@ -210,47 +210,47 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		return
 
 	switch(boughtItem)
-		if("/obj/item/weapon/circuitboard/teleporter")
+		if("/obj/item/circuitboard/teleporter")
 			feedback_add_details("traitor_uplink_items_bought", "TP")
 		if("/obj/item/toy/syndicateballoon")
 			feedback_add_details("traitor_uplink_items_bought", "BS")
-		if("/obj/item/weapon/storage/box/syndie_kit/imp_uplink")
+		if("/obj/item/storage/box/syndie_kit/imp_uplink")
 			feedback_add_details("traitor_uplink_items_bought", "UI")
-		if("/obj/item/weapon/storage/box/syndicate")
+		if("/obj/item/storage/box/syndicate")
 			feedback_add_details("traitor_uplink_items_bought", "BU")
-		if("/obj/item/weapon/aiModule/syndicate")
+		if("/obj/item/aiModule/syndicate")
 			feedback_add_details("traitor_uplink_items_bought", "AI")
 		if("/obj/item/device/radio/beacon/syndicate")
 			feedback_add_details("traitor_uplink_items_bought", "SB")
-		if("/obj/item/weapon/gun/projectile")
+		if("/obj/item/gun/projectile")
 			feedback_add_details("traitor_uplink_items_bought", "RE")
-		if("/obj/item/weapon/gun/energy/crossbow")
+		if("/obj/item/gun/energy/crossbow")
 			feedback_add_details("traitor_uplink_items_bought", "XB")
 		if("/obj/item/device/powersink")
 			feedback_add_details("traitor_uplink_items_bought", "PS")
-		if("/obj/item/weapon/melee/energy/sword")
+		if("/obj/item/melee/energy/sword")
 			feedback_add_details("traitor_uplink_items_bought", "ES")
 		if("/obj/item/clothing/mask/gas/voice")
 			feedback_add_details("traitor_uplink_items_bought", "VC")
 		if("/obj/item/device/chameleon")
 			feedback_add_details("traitor_uplink_items_bought", "CP")
-		if("/obj/item/weapon/storage/box/emps")
+		if("/obj/item/storage/box/emps")
 			feedback_add_details("traitor_uplink_items_bought", "EM")
-		if("/obj/item/weapon/pen/paralysis")
+		if("/obj/item/pen/paralysis")
 			feedback_add_details("traitor_uplink_items_bought", "PP")
-		if("/obj/item/weapon/cartridge/syndicate")
+		if("/obj/item/cartridge/syndicate")
 			feedback_add_details("traitor_uplink_items_bought", "DC")
 		if("/obj/item/clothing/under/chameleon")
 			feedback_add_details("traitor_uplink_items_bought", "CJ")
-		if("/obj/item/weapon/card/id/syndicate")
+		if("/obj/item/card/id/syndicate")
 			feedback_add_details("traitor_uplink_items_bought", "AC")
-		if("/obj/item/weapon/card/emag")
+		if("/obj/item/card/emag")
 			feedback_add_details("traitor_uplink_items_bought", "EC")
-		if("/obj/item/weapon/storage/box/syndie_kit/space")
+		if("/obj/item/storage/box/syndie_kit/space")
 			feedback_add_details("traitor_uplink_items_bought", "SS")
 		if("/obj/item/device/encryptionkey/binary")
 			feedback_add_details("traitor_uplink_items_bought", "BT")
-		if("/obj/item/weapon/storage/box/syndie_kit/imp_freedom")
+		if("/obj/item/storage/box/syndie_kit/imp_freedom")
 			feedback_add_details("traitor_uplink_items_bought", "FI")
 		if("/obj/item/clothing/glasses/thermal/syndi")
 			feedback_add_details("traitor_uplink_items_bought", "TM")
@@ -258,11 +258,11 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			feedback_add_details("traitor_uplink_items_bought", "RA")
 		if("/obj/item/clothing/shoes/syndigaloshes")
 			feedback_add_details("traitor_uplink_items_bought", "SH")
-		if("/obj/item/weapon/plastique")
+		if("/obj/item/plastique")
 			feedback_add_details("traitor_uplink_items_bought", "C4")
-		if("/obj/item/weapon/soap/syndie")
+		if("/obj/item/soap/syndie")
 			feedback_add_details("traitor_uplink_items_bought", "SP")
-		if("/obj/item/weapon/storage/toolbox/syndicate")
+		if("/obj/item/storage/toolbox/syndicate")
 			feedback_add_details("traitor_uplink_items_bought", "ST")
 
 /obj/item/device/uplink/Topic(href, href_list)

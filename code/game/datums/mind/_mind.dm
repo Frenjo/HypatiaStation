@@ -98,7 +98,7 @@
 				if (t:traitorradio) del(t:traitorradio)
 				t:traitorradio = null
 				t:traitor_frequency = 0.0
-			else if (istype(t, /obj/item/weapon/SWF_uplink) || istype(t, /obj/item/weapon/syndicate_uplink))
+			else if (istype(t, /obj/item/SWF_uplink) || istype(t, /obj/item/syndicate_uplink))
 				if (t:origradio)
 					var/obj/item/device/radio/R = t:origradio
 					R.loc = current.loc

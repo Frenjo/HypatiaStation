@@ -70,8 +70,8 @@
 			to_chat(user, SPAN_INFO("\icon[P] [src] has been excavated to a depth of [2 * src.excavation_level]cm."))
 		return
 
-	if(istype(W, /obj/item/weapon/pickaxe))
-		var/obj/item/weapon/pickaxe/P = W
+	if(istype(W, /obj/item/pickaxe))
+		var/obj/item/pickaxe/P = W
 
 		if(last_act + P.digspeed > world.time)//prevents message spam
 			return
@@ -115,14 +115,14 @@
 	. = ..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		if((istype(H.l_hand, /obj/item/weapon/pickaxe)) && (!H.hand))
+		if((istype(H.l_hand, /obj/item/pickaxe)) && (!H.hand))
 			attackby(H.l_hand, H)
-		else if((istype(H.r_hand, /obj/item/weapon/pickaxe)) && H.hand)
+		else if((istype(H.r_hand, /obj/item/pickaxe)) && H.hand)
 			attackby(H.r_hand, H)
 
 	else if(isrobot(AM))
 		var/mob/living/silicon/robot/R = AM
-		if(istype(R.module_active, /obj/item/weapon/pickaxe))
+		if(istype(R.module_active, /obj/item/pickaxe))
 			attackby(R.module_active, R)
 
 	else if(ismecha(AM))

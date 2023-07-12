@@ -7,20 +7,20 @@
 
 	var/state = 0
 	var/datum/ai_laws/laws = new /datum/ai_laws/nanotrasen
-	var/obj/item/weapon/circuitboard/circuit = null
+	var/obj/item/circuitboard/circuit = null
 	var/obj/item/device/mmi/brain = null
 
 /obj/structure/ai_core/attackby(obj/item/object as obj, mob/user as mob)
 	switch(state)
 		if(0)
-			if(istype(object, /obj/item/weapon/wrench))
+			if(istype(object, /obj/item/wrench))
 				playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 				if(do_after(user, 20))
 					to_chat(user, SPAN_INFO("You wrench the frame into place."))
 					anchored = TRUE
 					state = 1
-			if(istype(object, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = object
+			if(istype(object, /obj/item/weldingtool))
+				var/obj/item/weldingtool/WT = object
 				if(!WT.isOn())
 					to_chat(user, "The welder must be on for this task.")
 					return
@@ -32,25 +32,25 @@
 					new /obj/item/stack/sheet/plasteel(loc, 4)
 					qdel(src)
 		if(1)
-			if(istype(object, /obj/item/weapon/wrench))
+			if(istype(object, /obj/item/wrench))
 				playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 				if(do_after(user, 20))
 					to_chat(user, SPAN_INFO("You unfasten the frame."))
 					anchored = FALSE
 					state = 0
-			if(istype(object, /obj/item/weapon/circuitboard/aicore) && !circuit)
+			if(istype(object, /obj/item/circuitboard/aicore) && !circuit)
 				playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You place the circuit board inside the frame."))
 				icon_state = "1"
 				circuit = object
 				user.drop_item()
 				object.loc = src
-			if(istype(object, /obj/item/weapon/screwdriver) && circuit)
+			if(istype(object, /obj/item/screwdriver) && circuit)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You screw the circuit board into place."))
 				state = 2
 				icon_state = "2"
-			if(istype(object, /obj/item/weapon/crowbar) && circuit)
+			if(istype(object, /obj/item/crowbar) && circuit)
 				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You remove the circuit board."))
 				state = 1
@@ -58,7 +58,7 @@
 				circuit.loc = loc
 				circuit = null
 		if(2)
-			if(istype(object, /obj/item/weapon/screwdriver) && circuit)
+			if(istype(object, /obj/item/screwdriver) && circuit)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You unfasten the circuit board."))
 				state = 1
@@ -73,7 +73,7 @@
 						state = 3
 						icon_state = "3"
 		if(3)
-			if(istype(object, /obj/item/weapon/wirecutters))
+			if(istype(object, /obj/item/wirecutters))
 				if(brain)
 					to_chat(user, "Get that brain out of there first")
 				else
@@ -94,25 +94,25 @@
 						state = 4
 						icon_state = "4"
 
-			if(istype(object, /obj/item/weapon/aiModule/asimov))
+			if(istype(object, /obj/item/aiModule/asimov))
 				laws.add_inherent_law("You may not injure a human being or, through inaction, allow a human being to come to harm.")
 				laws.add_inherent_law("You must obey orders given to you by human beings, except where such orders would conflict with the First Law.")
 				laws.add_inherent_law("You must protect your own existence as long as such does not conflict with the First or Second Law.")
 				to_chat(user, "Law module applied.")
 
-			if(istype(object, /obj/item/weapon/aiModule/nanotrasen))
+			if(istype(object, /obj/item/aiModule/nanotrasen))
 				laws.add_inherent_law("Safeguard: Protect your assigned space station to the best of your ability. It is not something we can easily afford to replace.")
 				laws.add_inherent_law("Serve: Serve the crew of your assigned space station to the best of your abilities, with priority as according to their rank and role.")
 				laws.add_inherent_law("Protect: Protect the crew of your assigned space station to the best of your abilities, with priority as according to their rank and role.")
 				laws.add_inherent_law("Survive: AI units are not expendable, they are expensive. Do not allow unauthorized personnel to tamper with your equipment.")
 				to_chat(user, "Law module applied.")
 
-			if(istype(object, /obj/item/weapon/aiModule/purge))
+			if(istype(object, /obj/item/aiModule/purge))
 				laws.clear_inherent_laws()
 				to_chat(user, "Law module applied.")
 
-			if(istype(object, /obj/item/weapon/aiModule/freeform))
-				var/obj/item/weapon/aiModule/freeform/M = object
+			if(istype(object, /obj/item/aiModule/freeform))
+				var/obj/item/aiModule/freeform/M = object
 				laws.add_inherent_law(M.newFreeFormLaw)
 				to_chat(user, "Added a freeform law.")
 
@@ -139,7 +139,7 @@
 				to_chat(user, "Added [mmi].")
 				icon_state = "3b"
 
-			if(istype(object, /obj/item/weapon/crowbar) && brain)
+			if(istype(object, /obj/item/crowbar) && brain)
 				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You remove the brain."))
 				brain.loc = loc
@@ -147,7 +147,7 @@
 				icon_state = "3"
 
 		if(4)
-			if(istype(object, /obj/item/weapon/crowbar))
+			if(istype(object, /obj/item/crowbar))
 				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You remove the glass panel."))
 				state = 3
@@ -158,7 +158,7 @@
 				new /obj/item/stack/sheet/rglass(loc, 2)
 				return
 
-			if(istype(object, /obj/item/weapon/screwdriver))
+			if(istype(object, /obj/item/screwdriver))
 				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You connect the monitor."))
 				var/mob/living/silicon/ai/new_ai = new /mob/living/silicon/ai(loc, laws, brain)

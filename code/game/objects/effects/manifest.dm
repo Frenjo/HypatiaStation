@@ -12,7 +12,7 @@
 	var/dat = "<B>Crew Manifest</B>:<BR>"
 	for(var/mob/living/carbon/human/M in GLOBL.mob_list)
 		dat += "    <B>[M.name]</B> -  [M.get_assignment()]<BR>"
-	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(src.loc)
+	var/obj/item/paper/P = new /obj/item/paper(src.loc)
 	P.info = dat
 	P.name = "paper - 'Crew Manifest'"
 	qdel(src)

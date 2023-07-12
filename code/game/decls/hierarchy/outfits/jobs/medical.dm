@@ -10,8 +10,8 @@
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 
-	backpack = /obj/item/weapon/storage/backpack/medic
-	satchel_one = /obj/item/weapon/storage/satchel/med
+	backpack = /obj/item/storage/backpack/medic
+	satchel_one = /obj/item/storage/satchel/med
 
 /*
  * Chief Medical Officer
@@ -26,9 +26,9 @@
 
 	l_ear = /obj/item/device/radio/headset/heads/cmo
 
-	l_hand = /obj/item/weapon/storage/firstaid/adv
+	l_hand = /obj/item/storage/firstaid/adv
 
-	id_type = /obj/item/weapon/card/id/silver
+	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/device/pda/heads/cmo
 
 /*
@@ -42,7 +42,7 @@
 
 	l_ear = /obj/item/device/radio/headset/med
 
-	l_hand = /obj/item/weapon/storage/firstaid/adv
+	l_hand = /obj/item/storage/firstaid/adv
 
 // Emergency Physician
 /decl/hierarchy/outfit/job/medical/doctor/physician
@@ -90,7 +90,7 @@
 
 	pda_type = /obj/item/device/pda/chemist
 
-	satchel_one = /obj/item/weapon/storage/satchel/chem
+	satchel_one = /obj/item/storage/satchel/chem
 
 /*
  * Virologist
@@ -107,7 +107,7 @@
 
 	pda_type = /obj/item/device/pda/viro
 
-	satchel_one = /obj/item/weapon/storage/satchel/vir
+	satchel_one = /obj/item/storage/satchel/vir
 
 /*
  * Psychiatrist

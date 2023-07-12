@@ -1,6 +1,6 @@
 /datum/computer
 	var/size = 4.0
-	var/obj/item/weapon/disk/data/holder = null
+	var/obj/item/disk/data/holder = null
 	var/datum/computer/folder/holding_folder = null
 	folder
 		name = "Folder"
@@ -72,7 +72,7 @@
 	name = "blank program"
 	extension = "PROG"
 	//var/size = 4.0
-	//var/obj/item/weapon/disk/data/holder = null
+	//var/obj/item/disk/data/holder = null
 	var/obj/machinery/computer2/master = null
 	var/active_icon = null
 	var/id_tag = null
@@ -201,7 +201,7 @@
 			else if(istype(M, /mob/living/carbon/monkey))
 				var/mob/living/carbon/monkey/george = M
 				//they can only hold things :(
-				if(george.equipped() && istype(george.equipped(), /obj/item/weapon/card/id) && src.check_access(george.equipped()))
+				if(george.equipped() && istype(george.equipped(), /obj/item/card/id) && src.check_access(george.equipped()))
 					return 1
 			return 0
 
@@ -214,7 +214,7 @@
 			var/list/L = src.req_access
 			if(!L.len) //no requirements
 				return 1
-			if(!I || !istype(I, /obj/item/weapon/card/id) || !I.access) //not ID or no access
+			if(!I || !istype(I, /obj/item/card/id) || !I.access) //not ID or no access
 				return 0
 			for(var/req in src.req_access)
 				if(!(req in I.access)) //doesn't have this access

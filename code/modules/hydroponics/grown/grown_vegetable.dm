@@ -1,7 +1,7 @@
 /*
  * Cabbage
  */
-/obj/item/weapon/reagent_containers/food/snacks/grown/cabbage
+/obj/item/reagent_containers/food/snacks/grown/cabbage
 	seed = /obj/item/seeds/cabbageseed
 	name = "cabbage"
 	desc = "Ewwwwwwwwww. Cabbage."
@@ -9,7 +9,7 @@
 	potency = 25
 	filling_color = "#A2B5A1"
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/cabbage/initialize()
+/obj/item/reagent_containers/food/snacks/grown/cabbage/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = reagents.total_volume
@@ -17,7 +17,7 @@
 /*
  * Potato
  */
-/obj/item/weapon/reagent_containers/food/snacks/grown/potato
+/obj/item/reagent_containers/food/snacks/grown/potato
 	seed = /obj/item/seeds/potatoseed
 	name = "potato"
 	desc = "Boil 'em! Mash 'em! Stick 'em in a stew!"
@@ -25,12 +25,12 @@
 	potency = 25
 	filling_color = "#E6E8DA"
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/potato/initialize()
+/obj/item/reagent_containers/food/snacks/grown/potato/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = reagents.total_volume
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/potato/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/grown/potato/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/stack/cable_coil))
 		if(W:amount >= 5)
@@ -38,7 +38,7 @@
 			if(!W:amount)
 				qdel(W)
 			to_chat(user, SPAN_NOTICE("You add some cable to the potato and slide it inside the battery casing."))
-			var/obj/item/weapon/cell/potato/pocell = new /obj/item/weapon/cell/potato(user.loc)
+			var/obj/item/cell/potato/pocell = new /obj/item/cell/potato(user.loc)
 			pocell.maxcharge = src.potency * 10
 			pocell.charge = pocell.maxcharge
 			qdel(src)
@@ -47,7 +47,7 @@
 /*
  * Soybean
  */
-/obj/item/weapon/reagent_containers/food/snacks/grown/soybeans
+/obj/item/reagent_containers/food/snacks/grown/soybeans
 	seed = /obj/item/seeds/soyaseed
 	name = "soybeans"
 	desc = "It's pretty bland, but oh the possibilities..."
@@ -55,7 +55,7 @@
 	filling_color = "#E6E8B7"
 	icon_state = "soybeans"
 	
-/obj/item/weapon/reagent_containers/food/snacks/grown/soybeans/initialize()
+/obj/item/reagent_containers/food/snacks/grown/soybeans/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -63,7 +63,7 @@
 /*
  * Carrot
  */
-/obj/item/weapon/reagent_containers/food/snacks/grown/carrot
+/obj/item/reagent_containers/food/snacks/grown/carrot
 	seed = /obj/item/seeds/carrotseed
 	name = "carrot"
 	desc = "It's good for the eyes!"
@@ -71,7 +71,7 @@
 	potency = 10
 	filling_color = "#FFC400"
 	
-/obj/item/weapon/reagent_containers/food/snacks/grown/carrot/initialize()
+/obj/item/reagent_containers/food/snacks/grown/carrot/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
 	reagents.add_reagent("imidazoline", 3 + round(potency / 5, 1))
@@ -80,7 +80,7 @@
 /*
  * White Beet
  */
-/obj/item/weapon/reagent_containers/food/snacks/grown/whitebeet
+/obj/item/reagent_containers/food/snacks/grown/whitebeet
 	seed = /obj/item/seeds/whitebeetseed
 	name = "white-beet"
 	desc = "You can't beat white-beet."
@@ -88,7 +88,7 @@
 	potency = 15
 	filling_color = "#FFFCCC"
 	
-/obj/item/weapon/reagent_containers/food/snacks/grown/whitebeet/initialize()
+/obj/item/reagent_containers/food/snacks/grown/whitebeet/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", round((potency / 20), 1))
 	reagents.add_reagent("sugar", 1 + round((potency / 5), 1))

@@ -22,16 +22,16 @@
 
 /obj/item/candle/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 		if(WT.isOn()) //Badasses dont get blinded by lighting their candle with a welding tool
 			light(SPAN_WARNING("[user] casually lights the [name] with [W]."))
-	else if(istype(W, /obj/item/weapon/lighter))
-		var/obj/item/weapon/lighter/L = W
+	else if(istype(W, /obj/item/lighter))
+		var/obj/item/lighter/L = W
 		if(L.lit)
 			light()
-	else if(istype(W, /obj/item/weapon/match))
-		var/obj/item/weapon/match/M = W
+	else if(istype(W, /obj/item/match))
+		var/obj/item/match/M = W
 		if(M.lit)
 			light()
 	else if(istype(W, /obj/item/candle))

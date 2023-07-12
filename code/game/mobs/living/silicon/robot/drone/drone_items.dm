@@ -1,6 +1,6 @@
 //Simple borg hand.
 //Limited use.
-/obj/item/weapon/gripper
+/obj/item/gripper
 	name = "magnetic gripper"
 	desc = "A simple grasping tool for synthetic assets."
 	icon = 'icons/obj/devices/device.dmi'
@@ -8,29 +8,29 @@
 
 	//Has a list of items that it can hold.
 	var/list/can_hold = list(
-		/obj/item/weapon/cell,
-		/obj/item/weapon/firealarm_electronics,
-		/obj/item/weapon/airalarm_electronics,
-		/obj/item/weapon/airlock_electronics,
-		/obj/item/weapon/module/power_control,
-		/obj/item/weapon/stock_part,
+		/obj/item/cell,
+		/obj/item/firealarm_electronics,
+		/obj/item/airalarm_electronics,
+		/obj/item/airlock_electronics,
+		/obj/item/module/power_control,
+		/obj/item/stock_part,
 		/obj/item/frame/light_fixture,
 		/obj/item/apc_frame,
 		/obj/item/frame/alarm,
 		/obj/item/frame/firealarm,
-		/obj/item/weapon/table_parts,
-		/obj/item/weapon/rack_parts,
-		/obj/item/weapon/camera_assembly,
+		/obj/item/table_parts,
+		/obj/item/rack_parts,
+		/obj/item/camera_assembly,
 	)
 
 	//Item currently being held.
 	var/obj/item/wrapped = null
 
-/obj/item/weapon/gripper/attack_self(mob/user as mob)
+/obj/item/gripper/attack_self(mob/user as mob)
 	if(wrapped)
 		wrapped.attack_self(user)
 
-/obj/item/weapon/gripper/verb/drop_item()
+/obj/item/gripper/verb/drop_item()
 	set name = "Drop Item"
 	set desc = "Release an item from your magnetic gripper."
 	set category = "Drone"
@@ -50,7 +50,7 @@
 	wrapped = null
 	//update_icon()
 
-/obj/item/weapon/gripper/afterattack(atom/target, mob/user as mob)
+/obj/item/gripper/afterattack(atom/target, mob/user as mob)
 	if(!target) //Target is invalid.
 		return
 
@@ -101,7 +101,7 @@
 			user << "\red Your gripper cannot hold \the [target]."
 
 //TODO: Matter decompiler.
-/obj/item/weapon/matter_decompiler
+/obj/item/matter_decompiler
 	name = "matter decompiler"
 	desc = "Eating trash, bits of glass, or other debris will replenish your stores."
 	icon = 'icons/obj/devices/device.dmi'
@@ -115,7 +115,7 @@
 		MATERIAL_PLASTIC	= 0
 	)
 
-/obj/item/weapon/matter_decompiler/afterattack(atom/target, mob/user as mob)
+/obj/item/matter_decompiler/afterattack(atom/target, mob/user as mob)
 	//We only want to deal with using this on turfs. Specific items aren't important.
 	var/turf/T = get_turf(target)
 	if(!istype(T))
@@ -144,8 +144,8 @@
 			stored_comms[MATERIAL_WOOD]++
 			stored_comms[MATERIAL_PLASTIC]++
 			stored_comms[MATERIAL_PLASTIC]++
-		else if(istype(W, /obj/item/weapon/light))
-			var/obj/item/weapon/light/L = W
+		else if(istype(W, /obj/item/light))
+			var/obj/item/light/L = W
 			if(L.status >= 2) //In before someone changes the inexplicably local defines. ~ Z
 				stored_comms[MATERIAL_METAL]++
 				stored_comms[MATERIAL_GLASS]++
@@ -169,15 +169,15 @@
 			stored_comms[MATERIAL_GLASS]++
 		else if(istype(W, /obj/item/ammo_casing))
 			stored_comms[MATERIAL_METAL]++
-		else if(istype(W, /obj/item/weapon/shard/shrapnel))
+		else if(istype(W, /obj/item/shard/shrapnel))
 			stored_comms[MATERIAL_METAL]++
 			stored_comms[MATERIAL_METAL]++
 			stored_comms[MATERIAL_METAL]++
-		else if(istype(W, /obj/item/weapon/shard))
+		else if(istype(W, /obj/item/shard))
 			stored_comms[MATERIAL_GLASS]++
 			stored_comms[MATERIAL_GLASS]++
 			stored_comms[MATERIAL_GLASS]++
-		else if(istype(W, /obj/item/weapon/reagent_containers/food/snacks/grown))
+		else if(istype(W, /obj/item/reagent_containers/food/snacks/grown))
 			stored_comms[MATERIAL_WOOD]++
 			stored_comms[MATERIAL_WOOD]++
 			stored_comms[MATERIAL_WOOD]++
@@ -201,7 +201,7 @@
 		return
 
 	if(!module)
-		module = new /obj/item/weapon/robot_module/drone(src)
+		module = new /obj/item/robot_module/drone(src)
 
 	var/dat = "<HEAD><TITLE>Drone modules</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
 	dat += {"<A HREF='?src=\ref[src];mach_close=robotmod'>Close</A>
@@ -229,7 +229,7 @@
 		else
 			module_string += text("[O]: <A HREF=?src=\ref[src];act=\ref[O]>Activate</A><BR>")
 
-		if((istype(O,/obj/item/weapon) || istype(O,/obj/item/device)) && !(istype(O,/obj/item/stack/cable_coil)))
+		if((istype(O,/obj/item) || istype(O,/obj/item/device)) && !(istype(O,/obj/item/stack/cable_coil)))
 			tools += module_string
 		else
 			resources += module_string

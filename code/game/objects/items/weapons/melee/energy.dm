@@ -1,14 +1,14 @@
-/obj/item/weapon/melee/energy
+/obj/item/melee/energy
 	var/active = 0
 	flags = NOBLOODY
 
-/obj/item/weapon/melee/energy/suicide_act(mob/user)
+/obj/item/melee/energy/suicide_act(mob/user)
 	viewers(user) << pick(SPAN_DANGER("[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku."), \
 						SPAN_DANGER("[user] is falling on the [src.name]! It looks like \he's trying to commit suicide."))
 	return (BRUTELOSS|FIRELOSS)
 
 
-/obj/item/weapon/melee/energy/axe
+/obj/item/melee/energy/axe
 	name = "energy axe"
 	desc = "An energised battle axe."
 	icon_state = "axe0"
@@ -23,12 +23,12 @@
 	sharp = 1
 	edge = 1
 
-/obj/item/weapon/melee/energy/axe/suicide_act(mob/user)
+/obj/item/melee/energy/axe/suicide_act(mob/user)
 	viewers(user) << SPAN_DANGER("[user] swings the [src.name] towards /his head! It looks like \he's trying to commit suicide.")
 	return (BRUTELOSS|FIRELOSS)
 
 
-/obj/item/weapon/melee/energy/sword
+/obj/item/melee/energy/sword
 	color
 	name = "energy sword"
 	desc = "May the force be within you."
@@ -44,12 +44,12 @@
 	sharp = 1
 	edge = 1
 
-/obj/item/weapon/melee/energy/sword/pirate
+/obj/item/melee/energy/sword/pirate
 	name = "energy cutlass"
 	desc = "Arrrr matey."
 	icon_state = "cutlass0"
 
-/obj/item/weapon/melee/energy/blade
+/obj/item/melee/energy/blade
 	name = "energy blade"
 	desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
 	icon_state = "blade"

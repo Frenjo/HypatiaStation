@@ -1,7 +1,7 @@
 //NEVER USE THIS IT SUX	-PETETHEGOAT
 GLOBAL_GLOBL_LIST_NEW(cached_icons)
 
-/obj/item/weapon/reagent_containers/glass/paint
+/obj/item/reagent_containers/glass/paint
 	desc = "It's a paint bucket."
 	name = "paint bucket"
 	icon = 'icons/obj/items.dmi'
@@ -16,7 +16,7 @@ GLOBAL_GLOBL_LIST_NEW(cached_icons)
 
 	var/paint_type = ""
 
-/obj/item/weapon/reagent_containers/glass/paint/afterattack(turf/simulated/target, mob/user, proximity)
+/obj/item/reagent_containers/glass/paint/afterattack(turf/simulated/target, mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(target) && reagents.total_volume > 5)
@@ -27,7 +27,7 @@ GLOBAL_GLOBL_LIST_NEW(cached_icons)
 	else
 		return ..()
 
-/obj/item/weapon/reagent_containers/glass/paint/New()
+/obj/item/reagent_containers/glass/paint/New()
 	if(paint_type == "remover")
 		name = "paint remover bucket"
 	else if(paint_type && length(paint_type) > 0)
@@ -35,44 +35,44 @@ GLOBAL_GLOBL_LIST_NEW(cached_icons)
 	..()
 	reagents.add_reagent("paint_[paint_type]", volume)
 
-/obj/item/weapon/reagent_containers/glass/paint/on_reagent_change() //Until we have a generic "paint", this will give new colours to all paints in the can
+/obj/item/reagent_containers/glass/paint/on_reagent_change() //Until we have a generic "paint", this will give new colours to all paints in the can
 	var/mixedcolor = mix_colour_from_reagents(reagents.reagent_list)
 	for(var/datum/reagent/paint/P in reagents.reagent_list)
 		P.color = mixedcolor
 
-/obj/item/weapon/reagent_containers/glass/paint/red
+/obj/item/reagent_containers/glass/paint/red
 	icon_state = "paint_red"
 	paint_type = "red"
 
-/obj/item/weapon/reagent_containers/glass/paint/green
+/obj/item/reagent_containers/glass/paint/green
 	icon_state = "paint_green"
 	paint_type = "green"
 
-/obj/item/weapon/reagent_containers/glass/paint/blue
+/obj/item/reagent_containers/glass/paint/blue
 	icon_state = "paint_blue"
 	paint_type = "blue"
 
-/obj/item/weapon/reagent_containers/glass/paint/yellow
+/obj/item/reagent_containers/glass/paint/yellow
 	icon_state = "paint_yellow"
 	paint_type = "yellow"
 
-/obj/item/weapon/reagent_containers/glass/paint/violet
+/obj/item/reagent_containers/glass/paint/violet
 	icon_state = "paint_violet"
 	paint_type = "violet"
 
-/obj/item/weapon/reagent_containers/glass/paint/black
+/obj/item/reagent_containers/glass/paint/black
 	icon_state = "paint_black"
 	paint_type = "black"
 
-/obj/item/weapon/reagent_containers/glass/paint/white
+/obj/item/reagent_containers/glass/paint/white
 	icon_state = "paint_white"
 	paint_type = "white"
 
-/obj/item/weapon/reagent_containers/glass/paint/remover
+/obj/item/reagent_containers/glass/paint/remover
 	paint_type = "remover"
 
 /*
-/obj/item/weapon/paint
+/obj/item/paint
 	gender= PLURAL
 	name = "paint"
 	desc = "Used to recolor floors and walls. Can not be removed by the janitor."
@@ -82,43 +82,43 @@ GLOBAL_GLOBL_LIST_NEW(cached_icons)
 	item_state = "paintcan"
 	w_class = 3.0
 
-/obj/item/weapon/paint/red
+/obj/item/paint/red
 	name = "red paint"
 	color = "FF0000"
 	icon_state = "paint_red"
 
-/obj/item/weapon/paint/green
+/obj/item/paint/green
 	name = "green paint"
 	color = "00FF00"
 	icon_state = "paint_green"
 
-/obj/item/weapon/paint/blue
+/obj/item/paint/blue
 	name = "blue paint"
 	color = "0000FF"
 	icon_state = "paint_blue"
 
-/obj/item/weapon/paint/yellow
+/obj/item/paint/yellow
 	name = "yellow paint"
 	color = "FFFF00"
 	icon_state = "paint_yellow"
 
-/obj/item/weapon/paint/violet
+/obj/item/paint/violet
 	name = "violet paint"
 	color = "FF00FF"
 	icon_state = "paint_violet"
 
-/obj/item/weapon/paint/black
+/obj/item/paint/black
 	name = "black paint"
 	color = "333333"
 	icon_state = "paint_black"
 
-/obj/item/weapon/paint/white
+/obj/item/paint/white
 	name = "white paint"
 	color = "FFFFFF"
 	icon_state = "paint_white"
 
 
-/obj/item/weapon/paint/anycolor
+/obj/item/paint/anycolor
 	gender= PLURAL
 	name = "any color"
 	icon_state = "paint_neutral"
@@ -147,7 +147,7 @@ GLOBAL_GLOBL_LIST_NEW(cached_icons)
 		return
 
 
-/obj/item/weapon/paint/afterattack(turf/target, mob/user as mob, proximity)
+/obj/item/paint/afterattack(turf/target, mob/user as mob, proximity)
 	if(!proximity) return
 	if(!istype(target) || isspace(target))
 		return
@@ -162,7 +162,7 @@ GLOBAL_GLOBL_LIST_NEW(cached_icons)
 		target.icon = cached_icons[ind]
 	return
 
-/obj/item/weapon/paint/paint_remover
+/obj/item/paint/paint_remover
 	gender =  PLURAL
 	name = "paint remover"
 	icon_state = "paint_neutral"

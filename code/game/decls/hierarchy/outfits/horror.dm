@@ -17,13 +17,13 @@
 
 	l_ear = /obj/item/device/radio/headset
 
-	r_pocket = /obj/item/weapon/bikehorn
-	l_pocket = /obj/item/weapon/reagent_containers/food/snacks/grown/banana
+	r_pocket = /obj/item/bikehorn
+	l_pocket = /obj/item/reagent_containers/food/snacks/grown/banana
 
-	r_hand = /obj/item/weapon/twohanded/fireaxe
+	r_hand = /obj/item/twohanded/fireaxe
 
 	id_slot = SLOT_ID_WEAR_ID
-	id_type = /obj/item/weapon/card/id/centcom/station
+	id_type = /obj/item/card/id/centcom/station
 	id_pda_assignment = "Tunnel Clown!"
 
 /*
@@ -43,15 +43,15 @@
 
 	l_ear = /obj/item/device/radio/headset
 
-	r_pocket = /obj/item/weapon/scalpel
-	l_pocket = /obj/item/weapon/kitchenknife
+	r_pocket = /obj/item/scalpel
+	l_pocket = /obj/item/kitchenknife
 
-	r_hand = /obj/item/weapon/twohanded/fireaxe
+	r_hand = /obj/item/twohanded/fireaxe
 
 /decl/hierarchy/outfit/masked_killer/post_equip(mob/living/carbon/human/user)
 	. = ..()
 	for(var/obj/item/carried_item in user.contents)
-		if(!istype(carried_item, /obj/item/weapon/implant)) // If it's not an implant.
+		if(!istype(carried_item, /obj/item/implant)) // If it's not an implant.
 			carried_item.add_blood(user) // Oh yes, there will be blood...
 
 /*
@@ -69,26 +69,26 @@
 
 	l_ear = /obj/item/device/radio/headset
 
-	r_pocket = /obj/item/weapon/cloaking_device
-	l_pocket = /obj/item/weapon/melee/energy/sword
+	r_pocket = /obj/item/cloaking_device
+	l_pocket = /obj/item/melee/energy/sword
 
-	l_hand = /obj/item/weapon/storage/secure/briefcase
+	l_hand = /obj/item/storage/secure/briefcase
 
 	id_slot = SLOT_ID_WEAR_ID
-	id_type = /obj/item/weapon/card/id/syndicate/station_access
+	id_type = /obj/item/card/id/syndicate/station_access
 	pda_slot = SLOT_ID_BELT
 	pda_type = /obj/item/device/pda/heads
 	id_pda_assignment = "Reaper"
 
 /decl/hierarchy/outfit/assassin/post_equip(mob/living/carbon/human/user)
 	. = ..()
-	var/obj/item/weapon/storage/secure/briefcase/case = locate(/obj/item/weapon/storage/secure/briefcase) in user
+	var/obj/item/storage/secure/briefcase/case = locate(/obj/item/storage/secure/briefcase) in user
 	if(isnotnull(case))
 		for(var/obj/item/item in case)
 			qdel(item)
 		for(var/i = 0; i < 3; i++)
-			new /obj/item/weapon/spacecash/c1000(case)
-		new /obj/item/weapon/gun/energy/crossbow(case)
-		new /obj/item/weapon/gun/projectile/mateba(case)
+			new /obj/item/spacecash/c1000(case)
+		new /obj/item/gun/energy/crossbow(case)
+		new /obj/item/gun/projectile/mateba(case)
 		new /obj/item/ammo_magazine/a357(case)
-		new /obj/item/weapon/plastique(case)
+		new /obj/item/plastique(case)

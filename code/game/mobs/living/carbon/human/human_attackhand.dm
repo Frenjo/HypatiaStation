@@ -90,7 +90,7 @@
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
 
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
+			var/obj/item/grab/G = new /obj/item/grab(M, src)
 			if(buckled)
 				to_chat(M, SPAN_NOTICE("You cannot grab [src], \he is buckled in!"))
 			if(!G)	//the grab will delete itself in New if affecting is anchored
@@ -157,15 +157,15 @@
 				w_uniform.add_fingerprint(M)
 			var/datum/organ/external/affecting = get_organ(ran_zone(M.zone_sel.selecting))
 
-			if(istype(r_hand, /obj/item/weapon/gun) || istype(l_hand, /obj/item/weapon/gun))
-				var/obj/item/weapon/gun/W = null
+			if(istype(r_hand, /obj/item/gun) || istype(l_hand, /obj/item/gun))
+				var/obj/item/gun/W = null
 				var/chance = 0
 
-				if(istype(l_hand, /obj/item/weapon/gun))
+				if(istype(l_hand, /obj/item/gun))
 					W = l_hand
 					chance = hand ? 40 : 20
 
-				if(istype(r_hand,/obj/item/weapon/gun))
+				if(istype(r_hand,/obj/item/gun))
 					W = r_hand
 					chance = !hand ? 40 : 20
 
@@ -198,15 +198,15 @@
 					stop_pulling()
 
 				//BubbleWrap: Disarming also breaks a grab - this will also stop someone being choked, won't it?
-				if(istype(l_hand, /obj/item/weapon/grab))
-					var/obj/item/weapon/grab/lgrab = l_hand
+				if(istype(l_hand, /obj/item/grab))
+					var/obj/item/grab/lgrab = l_hand
 					if(lgrab.affecting)
 						visible_message(SPAN_DANGER("[M] has broken [src]'s grip on [lgrab.affecting]!"))
 						talked = 1
 					spawn(1)
 						qdel(lgrab)
-				if(istype(r_hand, /obj/item/weapon/grab))
-					var/obj/item/weapon/grab/rgrab = r_hand
+				if(istype(r_hand, /obj/item/grab))
+					var/obj/item/grab/rgrab = r_hand
 					if(rgrab.affecting)
 						visible_message(SPAN_DANGER("[M] has broken [src]'s grip on [rgrab.affecting]!"))
 						talked = 1

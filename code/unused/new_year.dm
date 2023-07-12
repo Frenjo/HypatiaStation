@@ -12,7 +12,7 @@
 	//pixel_y = -64
 
 /obj/effect/new_year_tree/attackby(obj/item/W, mob/user)
-	if (istype(W, /obj/item/weapon/grab))
+	if (istype(W, /obj/item/grab))
 		return
 	W.loc = src
 	if (user.client)
@@ -44,7 +44,7 @@
 	I.pixel_y = y
 	overlays += I
 /*
-/obj/item/weapon/firbang
+/obj/item/firbang
 	desc = "It is set to detonate in 10 seconds."
 	name = "firbang"
 	icon = 'icons/obj/weapons/grenade.dmi'
@@ -58,7 +58,7 @@
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BELT
 
-/obj/item/weapon/firbang/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
+/obj/item/firbang/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
 	if (user.get_active_hand() == src)
 		if ((CLUMSY in usr.mutations) && prob(50))
 			user << "\red Huh? How does this thing work?!"
@@ -83,15 +83,15 @@
 		src.add_fingerprint(user)
 	return
 
-/obj/item/weapon/firbang/attack_paw(mob/user as mob)
+/obj/item/firbang/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/item/weapon/firbang/attack_hand()
+/obj/item/firbang/attack_hand()
 	walk(src, null, null)
 	..()
 	return
 
-/obj/item/weapon/firbang/proc/prime()
+/obj/item/firbang/proc/prime()
 	playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
 	var/turf/T = get_turf(src)
 	if(T)
@@ -106,7 +106,7 @@
 	del(src)
 	return
 
-/obj/item/weapon/firbang/attack_self(mob/user as mob)
+/obj/item/firbang/attack_self(mob/user as mob)
 	if (!src.state)
 		if (CLUMSY in user.mutations)
 			user << "\red Huh? How does this thing work?!"
@@ -126,12 +126,12 @@
 /*
 /datum/supply_packs/new_year
 	name = "New Year Celebration Equipment"
-	contains = list("/obj/item/weapon/firbang",
-					"/obj/item/weapon/firbang",
-					"/obj/item/weapon/firbang",
-					"/obj/item/weapon/wrapping_paper",
-					"/obj/item/weapon/wrapping_paper",
-					"/obj/item/weapon/wrapping_paper")
+	contains = list("/obj/item/firbang",
+					"/obj/item/firbang",
+					"/obj/item/firbang",
+					"/obj/item/wrapping_paper",
+					"/obj/item/wrapping_paper",
+					"/obj/item/wrapping_paper")
 	cost = 20
 	containertype = "/obj/structure/closet/crate"
 	containername = "New Year Celebration crate"

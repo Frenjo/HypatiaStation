@@ -381,7 +381,7 @@
 		if("grab")
 			if(M == src)
 				return
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
+			var/obj/item/grab/G = new /obj/item/grab(M, src)
 
 			M.put_in_active_hand(G)
 
@@ -572,13 +572,13 @@
 
 
 ////Pet Slime Creation///
-/obj/item/weapon/slimepotion
+/obj/item/slimepotion
 	name = "docility potion"
 	desc = "A potent chemical mix that will nullify a slime's powers, causing it to become docile and tame."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle19"
 
-/obj/item/weapon/slimepotion/attack(mob/living/carbon/slime/M as mob, mob/user as mob)
+/obj/item/slimepotion/attack(mob/living/carbon/slime/M as mob, mob/user as mob)
 	if(!isslime(M))//If target is not a slime.
 		to_chat(user, SPAN_WARNING("The potion only works on baby slimes!"))
 		return ..()
@@ -604,13 +604,13 @@
 	qdel(src)
 
 
-/obj/item/weapon/slimepotion2
+/obj/item/slimepotion2
 	name = "advanced docility potion"
 	desc = "A potent chemical mix that will nullify a slime's powers, causing it to become docile and tame. This one is meant for adult slimes"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle19"
 
-/obj/item/weapon/slimepotion2/attack(mob/living/carbon/slime/adult/M as mob, mob/user as mob)
+/obj/item/slimepotion2/attack(mob/living/carbon/slime/adult/M as mob, mob/user as mob)
 	if(!isslimeadult(M))	//If target is not a slime.
 		to_chat(user, SPAN_WARNING("The potion only works on adult slimes!"))
 		return ..()
@@ -633,13 +633,13 @@
 	qdel(src)
 
 
-/obj/item/weapon/slimesteroid
+/obj/item/slimesteroid
 	name = "slime steroid"
 	desc = "A potent chemical mix that will cause a slime to generate more extract."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 
-/obj/item/weapon/slimesteroid/attack(mob/living/carbon/slime/M as mob, mob/user as mob)
+/obj/item/slimesteroid/attack(mob/living/carbon/slime/M as mob, mob/user as mob)
 	if(!isslime(M))	//If target is not a slime.
 		to_chat(user, SPAN_WARNING("The steroid only works on baby slimes!"))
 		return ..()
@@ -836,7 +836,7 @@
 
 
 
-/obj/item/weapon/reagent_containers/food/snacks/egg/slime
+/obj/item/reagent_containers/food/snacks/egg/slime
 	name = "slime egg"
 	desc = "A small, gelatinous egg."
 	icon = 'icons/mob/mob.dmi'
@@ -845,20 +845,20 @@
 	origin_tech = list(RESEARCH_TECH_BIOTECH = 4)
 	var/grown = 0
 
-/obj/item/weapon/reagent_containers/food/snacks/egg/slime/New()
+/obj/item/reagent_containers/food/snacks/egg/slime/New()
 	..()
 	reagents.add_reagent("nutriment", 4)
 	reagents.add_reagent("slimejelly", 1)
 	spawn(rand(1200,1500))//the egg takes a while to "ripen"
 		Grow()
 
-/obj/item/weapon/reagent_containers/food/snacks/egg/slime/proc/Grow()
+/obj/item/reagent_containers/food/snacks/egg/slime/proc/Grow()
 	grown = 1
 	icon_state = "slime egg-grown"
 	processing_objects.Add(src)
 	return
 
-/obj/item/weapon/reagent_containers/food/snacks/egg/slime/proc/Hatch()
+/obj/item/reagent_containers/food/snacks/egg/slime/proc/Hatch()
 	processing_objects.Remove(src)
 	var/turf/T = get_turf(src)
 	src.visible_message("\blue The [name] pulsates and quivers!")
@@ -868,13 +868,13 @@
 		del(src)
 
 
-/obj/item/weapon/reagent_containers/food/snacks/egg/slime/process()
+/obj/item/reagent_containers/food/snacks/egg/slime/process()
 	var/turf/location = get_turf(src)
 	var/datum/gas_mixture/environment = location.return_air()
 	if (environment.toxins > MOLES_PLASMA_VISIBLE)//plasma exposure causes the egg to hatch
 		src.Hatch()
 
-/obj/item/weapon/reagent_containers/food/snacks/egg/slime/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/egg/slime/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype( W, /obj/item/toy/crayon ))
 		return
 	else

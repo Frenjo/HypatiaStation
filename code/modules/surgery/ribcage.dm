@@ -13,8 +13,8 @@
 
 /datum/surgery_step/ribcage/saw_ribcage
 	allowed_tools = list(
-		/obj/item/weapon/circular_saw = 100,
-		/obj/item/weapon/hatchet = 75
+		/obj/item/circular_saw = 100,
+		/obj/item/hatchet = 75
 	)
 
 	min_duration = 50
@@ -53,9 +53,9 @@
 
 /datum/surgery_step/ribcage/retract_ribcage
 	allowed_tools = list(
-		/obj/item/weapon/retractor = 100,
-		/obj/item/weapon/crowbar = 75,
-		/obj/item/weapon/kitchen/utensil/fork = 20
+		/obj/item/retractor = 100,
+		/obj/item/crowbar = 75,
+		/obj/item/kitchen/utensil/fork = 20
 	)
 
 	min_duration = 30
@@ -93,9 +93,9 @@
 
 /datum/surgery_step/ribcage/close_ribcage
 	allowed_tools = list(
-		/obj/item/weapon/retractor = 100,
-		/obj/item/weapon/crowbar = 75,
-		/obj/item/weapon/kitchen/utensil/fork = 20
+		/obj/item/retractor = 100,
+		/obj/item/crowbar = 75,
+		/obj/item/kitchen/utensil/fork = 20
 	)
 
 	min_duration = 20
@@ -132,8 +132,8 @@
 
 /datum/surgery_step/ribcage/mend_ribcage
 	allowed_tools = list(
-		/obj/item/weapon/bonegel = 100,
-		/obj/item/weapon/screwdriver = 75
+		/obj/item/bonegel = 100,
+		/obj/item/screwdriver = 75
 	)
 
 	min_duration = 20
@@ -161,9 +161,9 @@
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/ribcage/remove_embryo
 	allowed_tools = list(
-		/obj/item/weapon/hemostat = 100,
-		/obj/item/weapon/wirecutters = 75,
-		/obj/item/weapon/kitchen/utensil/fork = 20
+		/obj/item/hemostat = 100,
+		/obj/item/wirecutters = 75,
+		/obj/item/kitchen/utensil/fork = 20
 	)
 	blood_level = 2
 
@@ -292,8 +292,8 @@
 /datum/surgery_step/ribcage/fix_chest_internal_robot //For artificial organs
 	allowed_tools = list(
 		/obj/item/stack/nanopaste = 100,
-		/obj/item/weapon/bonegel = 30,
-		/obj/item/weapon/screwdriver = 70,
+		/obj/item/bonegel = 30,
+		/obj/item/screwdriver = 70,
 	)
 
 	min_duration = 70
@@ -345,9 +345,9 @@
 // To be finished after some tests.
 // /datum/surgery_step/ribcage/heart/cut
 //	allowed_tools = list(
-//	/obj/item/weapon/scalpel = 100,		\
-//	/obj/item/weapon/kitchenknife = 75,	\
-//	/obj/item/weapon/shard = 50, 		\
+//	/obj/item/scalpel = 100,		\
+//	/obj/item/kitchenknife = 75,	\
+//	/obj/item/shard = 50, 		\
 //	)
 
 //	min_duration = 30

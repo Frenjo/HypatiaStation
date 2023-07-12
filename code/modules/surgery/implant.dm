@@ -34,8 +34,8 @@
 
 /datum/surgery_step/cavity/make_space
 	allowed_tools = list(
-		/obj/item/weapon/surgicaldrill = 100,
-		/obj/item/weapon/pen = 75,
+		/obj/item/surgicaldrill = 100,
+		/obj/item/pen = 75,
 		/obj/item/stack/rods = 50
 	)
 
@@ -75,10 +75,10 @@
 /datum/surgery_step/cavity/close_space
 	priority = 2
 	allowed_tools = list(
-		/obj/item/weapon/cautery = 100,
+		/obj/item/cautery = 100,
 		/obj/item/clothing/mask/cigarette = 75,
-		/obj/item/weapon/lighter = 50,
-		/obj/item/weapon/weldingtool = 25
+		/obj/item/lighter = 50,
+		/obj/item/weldingtool = 25
 	)
 
 	min_duration = 60
@@ -166,9 +166,9 @@
 
 /datum/surgery_step/cavity/implant_removal
 	allowed_tools = list(
-		/obj/item/weapon/hemostat = 100,
-		/obj/item/weapon/wirecutters = 75,
-		/obj/item/weapon/kitchen/utensil/fork = 20
+		/obj/item/hemostat = 100,
+		/obj/item/wirecutters = 75,
+		/obj/item/kitchen/utensil/fork = 20
 	)
 
 	min_duration = 80
@@ -189,8 +189,8 @@
 	var/find_prob = 0
 	if(length(affected.implants))
 		var/obj/item/obj = affected.implants[1]
-		if(istype(obj, /obj/item/weapon/implant))
-			var/obj/item/weapon/implant/imp = obj
+		if(istype(obj, /obj/item/implant))
+			var/obj/item/implant/imp = obj
 			if(imp.islegal())
 				find_prob += 60
 			else
@@ -215,8 +215,8 @@
 				worm.detatch()
 
 			obj.loc = get_turf(target)
-			if(istype(obj, /obj/item/weapon/implant))
-				var/obj/item/weapon/implant/imp = obj
+			if(istype(obj, /obj/item/implant))
+				var/obj/item/implant/imp = obj
 				imp.imp_in = null
 				imp.implanted = 0
 		else
@@ -253,7 +253,7 @@
 		var/fail_prob = 10
 		fail_prob += 100 - tool_quality(tool)
 		if(prob(fail_prob))
-			var/obj/item/weapon/implant/imp = affected.implants[1]
+			var/obj/item/implant/imp = affected.implants[1]
 			user.visible_message(SPAN_WARNING("Something beeps inside [target]'s [affected.display_name]!"))
 			playsound(imp.loc, 'sound/items/countdown.ogg', 75, 1, -3)
 			spawn(25)

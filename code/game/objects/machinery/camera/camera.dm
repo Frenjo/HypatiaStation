@@ -16,7 +16,7 @@
 	var/panel_open = 0 // 0 = Closed / 1 = Open
 	var/invuln = null
 	var/bugged = 0
-	var/obj/item/weapon/camera_assembly/assembly = null
+	var/obj/item/camera_assembly/assembly = null
 
 	// WIRES
 	var/datum/wires/camera/wires = null // Wires datum
@@ -137,14 +137,14 @@
 			qdel(src)
 
 	// OTHER
-	else if((istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/device/pda)) && isliving(user))
+	else if((istype(W, /obj/item/paper) || istype(W, /obj/item/device/pda)) && isliving(user))
 		var/mob/living/U = user
-		var/obj/item/weapon/paper/X = null
+		var/obj/item/paper/X = null
 		var/obj/item/device/pda/P = null
 
 		var/itemname = ""
 		var/info = ""
-		if(istype(W, /obj/item/weapon/paper))
+		if(istype(W, /obj/item/paper))
 			X = W
 			itemname = X.name
 			info = X.info
@@ -167,7 +167,7 @@
 				if(S.current == src)
 					to_chat(O, "[U] holds \a [itemname] up to one of the cameras...")
 					O << browse("<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>", "window=[itemname]")
-	else if(istype(W, /obj/item/weapon/camera_bug))
+	else if(istype(W, /obj/item/camera_bug))
 		if(!src.can_use())
 			to_chat(user, SPAN_INFO("Camera non-functional."))
 			return
@@ -177,7 +177,7 @@
 		else
 			to_chat(user, SPAN_INFO("Camera bugged."))
 			src.bugged = 1
-	else if(istype(W, /obj/item/weapon/melee/energy/blade))//Putting it here last since it's a special case. I wonder if there is a better way to do these than type casting.
+	else if(istype(W, /obj/item/melee/energy/blade))//Putting it here last since it's a special case. I wonder if there is a better way to do these than type casting.
 		deactivate(user, 2)//Here so that you can disconnect anyone viewing the camera, regardless if it's on or off.
 		var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
 		spark_system.set_up(5, 0, loc)

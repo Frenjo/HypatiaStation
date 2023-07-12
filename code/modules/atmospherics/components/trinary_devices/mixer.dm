@@ -88,7 +88,7 @@
 	return 1
 
 /obj/machinery/atmospherics/trinary/mixer/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(!istype(W, /obj/item/weapon/wrench))
+	if(!istype(W, /obj/item/wrench))
 		return ..()
 	var/turf/T = loc
 	if(level == 1 && isturf(T) && T.intact)

@@ -7,10 +7,10 @@
 	head = /obj/item/clothing/head/helmet/thunderdome
 	shoes = /obj/item/clothing/shoes/black
 
-	r_pocket = /obj/item/weapon/grenade/smokebomb
+	r_pocket = /obj/item/grenade/smokebomb
 
-	r_hand = /obj/item/weapon/gun/energy/pulse_rifle/destroyer
-	l_hand = /obj/item/weapon/kitchenknife
+	r_hand = /obj/item/gun/energy/pulse_rifle/destroyer
+	l_hand = /obj/item/kitchenknife
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 
@@ -43,10 +43,10 @@
 	head = /obj/item/clothing/head/det_hat
 	glasses = /obj/item/clothing/glasses/thermal/monocle
 
-	r_pocket = /obj/item/weapon/cloaking_device
+	r_pocket = /obj/item/cloaking_device
 	l_pocket = /obj/item/ammo_magazine/a357
 
-	r_hand = /obj/item/weapon/gun/projectile
+	r_hand = /obj/item/gun/projectile
 	l_hand = null
 
 /*
@@ -62,11 +62,11 @@
 
 	head = /obj/item/clothing/head/chefhat
 
-	r_pocket = /obj/item/weapon/kitchenknife
-	l_pocket = /obj/item/weapon/kitchenknife
+	r_pocket = /obj/item/kitchenknife
+	l_pocket = /obj/item/kitchenknife
 
-	r_hand = /obj/item/weapon/kitchen/rollingpin
-	l_hand = /obj/item/weapon/kitchenknife
+	r_hand = /obj/item/kitchen/rollingpin
+	l_hand = /obj/item/kitchenknife
 
 /*
  * Janitor
@@ -76,20 +76,20 @@
 
 	uniform = /obj/item/clothing/under/rank/janitor
 	suit = null
-	back = /obj/item/weapon/storage/backpack
+	back = /obj/item/storage/backpack
 
 	head = null
 
-	r_pocket = /obj/item/weapon/grenade/chem_grenade/cleaner
-	l_pocket = /obj/item/weapon/grenade/chem_grenade/cleaner
+	r_pocket = /obj/item/grenade/chem_grenade/cleaner
+	l_pocket = /obj/item/grenade/chem_grenade/cleaner
 
-	r_hand = /obj/item/weapon/mop
-	l_hand = /obj/item/weapon/reagent_containers/glass/bucket
+	r_hand = /obj/item/mop
+	l_hand = /obj/item/reagent_containers/glass/bucket
 
 	backpack_contents = list(/obj/item/stack/tile/plasteel = 7)
 
 /decl/hierarchy/outfit/tournament/janitor/post_equip(mob/living/carbon/human/user)
 	. = ..()
-	var/obj/item/weapon/reagent_containers/glass/bucket/water_bucket = locate(/obj/item/weapon/reagent_containers/glass/bucket) in user
+	var/obj/item/reagent_containers/glass/bucket/water_bucket = locate(/obj/item/reagent_containers/glass/bucket) in user
 	if(isnotnull(water_bucket))
 		water_bucket.reagents.add_reagent("water", 70)

@@ -399,14 +399,14 @@ CONTROLLER_DEF(occupations)
 
 	if(isnotnull(H.mind))
 		H.mind.assigned_role = rank
-		var/obj/item/weapon/card/id/identification = locate(/obj/item/weapon/card/id) in H
+		var/obj/item/card/id/identification = locate(/obj/item/card/id) in H
 		if(isnotnull(identification))
 			identification.access = job.get_access()
 			if(isnotnull(H.mind.initial_account))
 				// Puts the player's account number onto their ID.
 				identification.associated_account_number = H.mind.initial_account.account_number
 
-	if(ispath(job.special_survival_kit) && H.species.survival_kit == /obj/item/weapon/storage/box/survival)
+	if(ispath(job.special_survival_kit) && H.species.survival_kit == /obj/item/storage/box/survival)
 		if(isnotnull(H.back))
 			H.equip_to_slot_or_del(new job.special_survival_kit(H.back), SLOT_ID_IN_BACKPACK)
 		else

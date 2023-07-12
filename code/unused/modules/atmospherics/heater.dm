@@ -172,15 +172,15 @@
 
 /obj/machinery/atmoalter/heater/attackby(var/obj/W as obj, var/mob/user as mob)
 
-	if (istype(W, /obj/item/weapon/tank))
+	if (istype(W, /obj/item/tank))
 		if (src.holding)
 			return
-		var/obj/item/weapon/tank/T = W
+		var/obj/item/tank/T = W
 		user.drop_item()
 		T.loc = src
 		src.holding = T
 	else
-		if (istype(W, /obj/item/weapon/wrench))
+		if (istype(W, /obj/item/wrench))
 			var/obj/machinery/connector/con = locate(/obj/machinery/connector, src.loc)
 
 			if (src.c_status)

@@ -1,11 +1,11 @@
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass
+/obj/item/reagent_containers/food/drinks/drinkingglass
 	name = "glass"
 	desc = "Your standard drinking glass."
 	icon_state = "glass_empty"
 	amount_per_transfer_from_this = 10
 	volume = 50
 
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/on_reagent_change()
+/obj/item/reagent_containers/food/drinks/drinkingglass/on_reagent_change()
 	/*if(length(reagents.reagent_list) > 1)
 		icon_state = "glass_brown"
 		name = "Glass of Hooch"
@@ -491,17 +491,17 @@
 		return
 
 // for /obj/machinery/vending/sovietsoda
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/soda
+/obj/item/reagent_containers/food/drinks/drinkingglass/soda
 	
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/soda/New()
+/obj/item/reagent_containers/food/drinks/drinkingglass/soda/New()
 	..()
 	reagents.add_reagent("sodawater", 50)
 	on_reagent_change()
 
 
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/cola
+/obj/item/reagent_containers/food/drinks/drinkingglass/cola
 	
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/cola/New()
+/obj/item/reagent_containers/food/drinks/drinkingglass/cola/New()
 	..()
 	reagents.add_reagent("cola", 50)
 	on_reagent_change()

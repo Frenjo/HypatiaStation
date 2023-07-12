@@ -11,7 +11,7 @@
 	origin_tech = list(RESEARCH_TECH_SYNDICATE = 4, RESEARCH_TECH_MAGNETS = 4)
 	var/can_use = 1
 	var/obj/effect/dummy/chameleon/active_dummy = null
-	var/saved_item = /obj/item/weapon/cigbutt
+	var/saved_item = /obj/item/cigbutt
 	var/saved_icon = 'icons/obj/clothing/masks.dmi'
 	var/saved_icon_state = "cigbutt"
 	var/saved_overlays
@@ -29,7 +29,7 @@
 	if(!proximity)
 		return
 	if(!active_dummy)
-		if(isitem(target) && !istype(target, /obj/item/weapon/disk/nuclear))
+		if(isitem(target) && !istype(target, /obj/item/disk/nuclear))
 			playsound(get_turf(src), 'sound/weapons/flash.ogg', 100, 1, -6)
 			user << "\blue Scanned [target]."
 			saved_item = target.type

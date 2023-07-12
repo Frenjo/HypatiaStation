@@ -98,7 +98,7 @@
 					spawn(100)
 						shocked = !shocked
 	if(href_list["cut"])
-		if(!istype(usr.get_active_hand(), /obj/item/weapon/wirecutters))
+		if(!istype(usr.get_active_hand(), /obj/item/wirecutters))
 			to_chat(usr, "You need wirecutters!")
 		else
 			var/temp_wire = href_list["wire"]

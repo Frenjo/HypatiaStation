@@ -2,7 +2,7 @@
 /obj/structure/closet/fireaxecabinet
 	name = "Fire Axe Cabinet"
 	desc = "There is small label that reads \"For Emergency use only\" along with details for safe use of the axe. As if."
-	var/obj/item/weapon/twohanded/fireaxe/fireaxe
+	var/obj/item/twohanded/fireaxe/fireaxe
 	icon_state = "fireaxe1000"
 	icon_closed = "fireaxe1000"
 	icon_opened = "fireaxe1100"
@@ -16,7 +16,7 @@
 
 /obj/structure/closet/fireaxecabinet/New()
 	..()
-	fireaxe = new /obj/item/weapon/twohanded/fireaxe(src)
+	fireaxe = new /obj/item/twohanded/fireaxe(src)
 
 /obj/structure/closet/fireaxecabinet/attackby(obj/item/O as obj, mob/user as mob)  //Marker -Agouri
 	//..() //That's very useful, Erro
@@ -33,8 +33,8 @@
 			to_chat(user, SPAN_INFO("You disable the locking modules."))
 			update_icon()
 			return
-		else if(istype(O, /obj/item/weapon))
-			var/obj/item/weapon/W = O
+		else if(istype(O, /obj/item))
+			var/obj/item/W = O
 			if(src.smashed || src.localopened)
 				if(localopened)
 					localopened = 0
@@ -55,7 +55,7 @@
 					src.localopened = 1
 			update_icon()
 		return
-	if(istype(O, /obj/item/weapon/twohanded/fireaxe) && src.localopened)
+	if(istype(O, /obj/item/twohanded/fireaxe) && src.localopened)
 		if(!fireaxe)
 			if(O:wielded)
 				to_chat(user, SPAN_WARNING("Unwield the axe first."))

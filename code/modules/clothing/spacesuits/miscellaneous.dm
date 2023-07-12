@@ -20,9 +20,9 @@
 	flags = STOPSPRESSUREDAMAGE
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS
 	allowed = list(
-		/obj/item/weapon/tank/emergency_oxygen, /obj/item/device/flashlight, /obj/item/weapon/gun/energy,
-		/obj/item/weapon/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing,
-		/obj/item/weapon/melee/baton, /obj/item/weapon/handcuffs
+		/obj/item/tank/emergency_oxygen, /obj/item/device/flashlight, /obj/item/gun/energy,
+		/obj/item/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing,
+		/obj/item/melee/baton, /obj/item/handcuffs
 	)
 	slowdown = 1.5
 	armor = list(melee = 65, bullet = 50, laser = 50, energy = 25, bomb = 50, bio = 100, rad = 50)
@@ -82,8 +82,8 @@
 	item_state = "pirate"
 	w_class = 3
 	allowed = list(
-		/obj/item/weapon/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing,
-		/obj/item/weapon/melee/baton, /obj/item/weapon/handcuffs, /obj/item/weapon/tank/emergency_oxygen
+		/obj/item/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing,
+		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/tank/emergency_oxygen
 	)
 	slowdown = 0
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
@@ -96,7 +96,7 @@
 	desc = "A pressure resistant spacesuit in the colours of the clown. HONK!"
 	icon_state = "clownspace_suit"
 	item_state = "clownspace_suit"
-	allowed = list(/obj/item/device/flashlight, /obj/item/weapon/tank)
+	allowed = list(/obj/item/device/flashlight, /obj/item/tank)
 
 /obj/item/clothing/head/helmet/space/clown
 	name = "Clown's EVA Helmet"
@@ -110,7 +110,7 @@
 	desc = "A pressure resistant spacesuit in the colours of the mime. ..."
 	icon_state = "mimespace_suit"
 	item_state = "mimespace_suit"
-	allowed = list(/obj/item/device/flashlight, /obj/item/weapon/tank)
+	allowed = list(/obj/item/device/flashlight, /obj/item/tank)
 
 /obj/item/clothing/head/helmet/space/mime
 	name = "Mime's EVA Helmet"

@@ -311,7 +311,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		else
 			if(alert("Spawn that person a tome?",,"Yes","No")=="Yes")
 				M << "\red You catch a glimpse of the Realm of Nar-Sie, The Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of Nar-Sie. A tome, a message from your new master, appears on the ground."
-				new /obj/item/weapon/tome(M.loc)
+				new /obj/item/tome(M.loc)
 			else
 				M << "\red You catch a glimpse of the Realm of Nar-Sie, The Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of Nar-Sie."
 			var/glimpse=pick("1","2","3","4","5","6","7","8")
@@ -373,14 +373,14 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.wear_id)
-			var/obj/item/weapon/card/id/id = H.wear_id
+			var/obj/item/card/id/id = H.wear_id
 			if(istype(H.wear_id, /obj/item/device/pda))
 				var/obj/item/device/pda/pda = H.wear_id
 				id = pda.id
 			id.icon_state = "gold"
 			id:access = get_all_access()
 		else
-			var/obj/item/weapon/card/id/id = new/obj/item/weapon/card/id(M);
+			var/obj/item/card/id/id = new/obj/item/card/id(M);
 			id.icon_state = "gold"
 			id:access = get_all_access()
 			id.registered_name = H.real_name
@@ -530,7 +530,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		return
 
 	for(var/obj/item/I in target)
-		if(istype(I, /obj/item/weapon/implant))
+		if(istype(I, /obj/item/implant))
 			continue
 		qdel(I)
 
@@ -578,7 +578,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	for(var/obj/machinery/power/rad_collector/Rad in world)
 		if(Rad.anchored)
 			if(!Rad.P)
-				var/obj/item/weapon/tank/plasma/Plasma = new/obj/item/weapon/tank/plasma(Rad)
+				var/obj/item/tank/plasma/Plasma = new/obj/item/tank/plasma(Rad)
 				Plasma.air_contents.gas[/decl/xgm_gas/plasma] = 70
 				Rad.drainratio = 0
 				Rad.P = Plasma

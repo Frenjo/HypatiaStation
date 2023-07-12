@@ -1,4 +1,4 @@
-/obj/item/weapon/pinpointer
+/obj/item/pinpointer
 	name = "pinpointer"
 	icon = 'icons/obj/devices/device.dmi'
 	icon_state = "pinoff"
@@ -10,10 +10,10 @@
 	throw_range = 20
 	matter_amounts = list(MATERIAL_METAL = 500)
 
-	var/obj/item/weapon/disk/nuclear/the_disk = null
+	var/obj/item/disk/nuclear/the_disk = null
 	var/active = 0
 
-/obj/item/weapon/pinpointer/attack_self()
+/obj/item/pinpointer/attack_self()
 	if(!active)
 		active = 1
 		workdisk()
@@ -23,7 +23,7 @@
 		icon_state = "pinoff"
 		usr << "\blue You deactivate the pinpointer"
 
-/obj/item/weapon/pinpointer/proc/workdisk()
+/obj/item/pinpointer/proc/workdisk()
 	if(!active) return
 	if(!the_disk)
 		the_disk = locate()
@@ -42,17 +42,17 @@
 			icon_state = "pinonfar"
 	spawn(5) .()
 
-/obj/item/weapon/pinpointer/examine()
+/obj/item/pinpointer/examine()
 	..()
 	for(var/obj/machinery/nuclearbomb/bomb in world)
 		if(bomb.timing)
 			usr << "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]"
 
-/obj/item/weapon/pinpointer/Destroy()
+/obj/item/pinpointer/Destroy()
 	active = 0
 	return ..()
 
-/obj/item/weapon/pinpointer/advpinpointer
+/obj/item/pinpointer/advpinpointer
 	name = "Advanced Pinpointer"
 	desc = "A larger version of the normal pinpointer, this unit features a helpful quantum entanglement detection system to locate various objects that do not broadcast a locator signal."
 
@@ -60,7 +60,7 @@
 	var/turf/location = null
 	var/obj/target = null
 
-/obj/item/weapon/pinpointer/advpinpointer/attack_self()
+/obj/item/pinpointer/advpinpointer/attack_self()
 	if(!active)
 		active = 1
 		if(mode == 0)
@@ -75,7 +75,7 @@
 		icon_state = "pinoff"
 		usr << "\blue You deactivate the pinpointer"
 
-/obj/item/weapon/pinpointer/advpinpointer/proc/worklocation()
+/obj/item/pinpointer/advpinpointer/proc/worklocation()
 	if(!active)
 		return
 	if(!location)
@@ -93,7 +93,7 @@
 			icon_state = "pinonfar"
 	spawn(5) .()
 
-/obj/item/weapon/pinpointer/advpinpointer/proc/workobj()
+/obj/item/pinpointer/advpinpointer/proc/workobj()
 	if(!active)
 		return
 	if(!target)
@@ -111,7 +111,7 @@
 			icon_state = "pinonfar"
 	spawn(5) .()
 
-/obj/item/weapon/pinpointer/advpinpointer/verb/toggle_mode()
+/obj/item/pinpointer/advpinpointer/verb/toggle_mode()
 	set category = "Object"
 	set name = "Toggle Pinpointer Mode"
 	set src in view(1)
@@ -175,11 +175,11 @@
 ///////////////////////
 //nuke op pinpointers//
 ///////////////////////
-/obj/item/weapon/pinpointer/nukeop
+/obj/item/pinpointer/nukeop
 	var/mode = 0	//Mode 0 locates disk, mode 1 locates the shuttle
 	var/obj/machinery/computer/shuttle_control/multi/syndicate/home = null
 
-/obj/item/weapon/pinpointer/nukeop/attack_self(mob/user as mob)
+/obj/item/pinpointer/nukeop/attack_self(mob/user as mob)
 	if(!active)
 		active = 1
 		if(!mode)
@@ -193,7 +193,7 @@
 		icon_state = "pinoff"
 		user << "<span class='notice'>You deactivate the pinpointer.</span>"
 
-/obj/item/weapon/pinpointer/nukeop/workdisk()
+/obj/item/pinpointer/nukeop/workdisk()
 	if(!active) return
 	if(mode)		//Check in case the mode changes while operating
 		worklocation()
@@ -225,7 +225,7 @@
 
 	spawn(5) .()
 
-/obj/item/weapon/pinpointer/nukeop/proc/worklocation()
+/obj/item/pinpointer/nukeop/proc/worklocation()
 	if(!active)	return
 	if(!mode)
 		workdisk()

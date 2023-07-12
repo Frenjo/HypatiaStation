@@ -22,9 +22,9 @@
 
 /datum/surgery_step/limb/cut
 	allowed_tools = list(
-		/obj/item/weapon/scalpel = 100,
-		/obj/item/weapon/kitchenknife = 75,
-		/obj/item/weapon/shard = 50,
+		/obj/item/scalpel = 100,
+		/obj/item/kitchenknife = 75,
+		/obj/item/shard = 50,
 	)
 
 	min_duration = 80
@@ -63,9 +63,9 @@
 
 /datum/surgery_step/limb/mend
 	allowed_tools = list(
-		/obj/item/weapon/retractor = 100,
-		/obj/item/weapon/crowbar = 75,
-		/obj/item/weapon/kitchen/utensil/fork = 50
+		/obj/item/retractor = 100,
+		/obj/item/crowbar = 75,
+		/obj/item/kitchen/utensil/fork = 50
 	)
 
 	min_duration = 80
@@ -104,10 +104,10 @@
 
 /datum/surgery_step/limb/prepare
 	allowed_tools = list(
-		/obj/item/weapon/cautery = 100,
+		/obj/item/cautery = 100,
 		/obj/item/clothing/mask/cigarette = 75,
-		/obj/item/weapon/lighter = 50,
-		/obj/item/weapon/weldingtool = 25
+		/obj/item/lighter = 50,
+		/obj/item/weldingtool = 25
 	)
 
 	min_duration = 60

@@ -9,7 +9,7 @@
 	flags = CONDUCT
 
 /obj/item/rust_fuel_assembly_port_frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/wrench))
+	if (istype(W, /obj/item/wrench))
 		new /obj/item/stack/sheet/plasteel( get_turf(src.loc), 12 )
 		qdel(src)
 		return
@@ -53,7 +53,7 @@
 
 	if (issilicon(user) && get_dist(src,user)>1)
 		return src.attack_hand(user)
-	if (istype(W, /obj/item/weapon/crowbar))
+	if (istype(W, /obj/item/crowbar))
 		if(opened)
 			if(has_electronics & 1)
 				playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
@@ -63,7 +63,7 @@
 						"\red [user.name] has removed the circuitboard from [src.name]!",\
 						"\blue You remove the circuitboard.")
 					has_electronics = 0
-					new /obj/item/weapon/module/rust_fuel_port(loc)
+					new /obj/item/module/rust_fuel_port(loc)
 					has_electronics &= ~1
 			else
 				opened = 0
@@ -93,7 +93,7 @@
 			has_electronics &= 2
 		return
 
-	else if (istype(W, /obj/item/weapon/wirecutters) && opened && (has_electronics & 2))
+	else if (istype(W, /obj/item/wirecutters) && opened && (has_electronics & 2))
 		user << "You begin to cut the cables..."
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		if(do_after(user, 50))
@@ -104,7 +104,7 @@
 			has_electronics &= ~2
 		return
 
-	else if (istype(W, /obj/item/weapon/module/rust_fuel_port) && opened && !(has_electronics & 1))
+	else if (istype(W, /obj/item/module/rust_fuel_port) && opened && !(has_electronics & 1))
 		user << "You trying to insert the port control board into the frame..."
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		if(do_after(user, 10))
@@ -113,8 +113,8 @@
 			qdel(W)
 		return
 
-	else if (istype(W, /obj/item/weapon/weldingtool) && opened && !has_electronics)
-		var/obj/item/weapon/weldingtool/WT = W
+	else if (istype(W, /obj/item/weldingtool) && opened && !has_electronics)
+		var/obj/item/weldingtool/WT = W
 		if (WT.get_fuel() < 3)
 			user << "\blue You need more welding fuel to complete this task."
 			return

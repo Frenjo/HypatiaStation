@@ -1,5 +1,5 @@
 /mob/living/carbon/amorph
-	var/obj/item/weapon/card/id/wear_id = null // Fix for station bounced radios -- Skie
+	var/obj/item/card/id/wear_id = null // Fix for station bounced radios -- Skie
 
 	var/oxygen_alert = 0
 	var/toxins_alert = 0
@@ -57,7 +57,7 @@
 	clamp_values()
 
 	// Grabbing
-	for(var/obj/item/weapon/grab/G in src)
+	for(var/obj/item/grab/G in src)
 		G.process()
 
 /mob/living/carbon/amorph/handle_environment(datum/gas_mixture/environment)

@@ -9,9 +9,9 @@
 
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
-	var/obj/item/weapon/storage/bag/trash/mybag	= null
-	var/obj/item/weapon/mop/mymop = null
-	var/obj/item/weapon/reagent_containers/spray/myspray = null
+	var/obj/item/storage/bag/trash/mybag	= null
+	var/obj/item/mop/mymop = null
+	var/obj/item/reagent_containers/spray/myspray = null
 	var/obj/item/device/lightreplacer/myreplacer = null
 	var/signs = 0	//maximum capacity hardcoded below
 
@@ -25,7 +25,7 @@
 	//everything else is visible, so doesn't need to be mentioned
 
 /obj/structure/janitorialcart/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/storage/bag/trash) && isnull(mybag))
+	if(istype(I, /obj/item/storage/bag/trash) && isnull(mybag))
 		user.drop_item()
 		mybag = I
 		I.loc = src
@@ -33,7 +33,7 @@
 		updateUsrDialog()
 		to_chat(user, SPAN_NOTICE("You put [I] into [src]."))
 
-	else if(istype(I, /obj/item/weapon/mop))
+	else if(istype(I, /obj/item/mop))
 		if(I.reagents.total_volume < I.reagents.maximum_volume)	//if it's not completely soaked we assume they want to wet it, otherwise store it
 			if(reagents.total_volume < 1)
 				to_chat(user, SPAN_WARNING("[src] is out of water!"))
@@ -50,7 +50,7 @@
 			updateUsrDialog()
 			to_chat(user, SPAN_NOTICE("You put [I] into [src]."))
 
-	else if(istype(I, /obj/item/weapon/reagent_containers/spray) && isnull(myspray))
+	else if(istype(I, /obj/item/reagent_containers/spray) && isnull(myspray))
 		user.drop_item()
 		myspray = I
 		I.loc = src
@@ -66,7 +66,7 @@
 		updateUsrDialog()
 		to_chat(user, SPAN_NOTICE("You put [I] into [src]."))
 
-	else if(istype(I, /obj/item/weapon/caution))
+	else if(istype(I, /obj/item/caution))
 		if(signs < 4)
 			user.drop_item()
 			I.loc = src
@@ -131,7 +131,7 @@
 			myreplacer = null
 	if(href_list["sign"])
 		if(signs)
-			var/obj/item/weapon/caution/sign = locate() in src
+			var/obj/item/caution/sign = locate() in src
 			if(isnotnull(sign))
 				user.put_in_hands(sign)
 				to_chat(user, SPAN_NOTICE("You take \a [sign] from [src]."))
@@ -168,7 +168,7 @@
 
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
-	var/obj/item/weapon/storage/bag/trash/mybag	= null
+	var/obj/item/storage/bag/trash/mybag	= null
 	var/callme = "pimpin' ride"	//how do people refer to it?
 
 /obj/structure/stool/bed/chair/janicart/New()
@@ -182,7 +182,7 @@
 		to_chat(usr, "\A [mybag] is hanging on the [callme].")
 
 /obj/structure/stool/bed/chair/janicart/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/mop))
+	if(istype(I, /obj/item/mop))
 		if(reagents.total_volume > 1)
 			reagents.trans_to(I, 2)
 			to_chat(user, SPAN_NOTICE("You wet [I] in the [callme]."))
@@ -191,7 +191,7 @@
 			to_chat(user, SPAN_NOTICE("This [callme] is out of water!"))
 	else if(istype(I, /obj/item/key))
 		to_chat(user, "Hold [I] in one of your hands while you drive this [callme].")
-	else if(istype(I, /obj/item/weapon/storage/bag/trash))
+	else if(istype(I, /obj/item/storage/bag/trash))
 		to_chat(user, SPAN_NOTICE("You hook the trashbag onto the [callme]."))
 		user.drop_item()
 		I.loc = src

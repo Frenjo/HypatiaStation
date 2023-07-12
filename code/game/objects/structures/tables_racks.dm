@@ -22,7 +22,7 @@
 	climbable = 1
 	breakable = 1
 
-	parts = /obj/item/weapon/table_parts
+	parts = /obj/item/table_parts
 
 	var/flipped = 0
 	var/health = 100
@@ -293,7 +293,7 @@
 	return 1
 
 /obj/structure/table/MouseDrop_T(obj/O as obj, mob/user as mob)
-	if(!istype(O, /obj/item/weapon) || user.get_active_hand() != O)
+	if(!istype(O, /obj/item) || user.get_active_hand() != O)
 		return
 	if(isrobot(user))
 		return
@@ -305,8 +305,8 @@
 /obj/structure/table/attackby(obj/item/W as obj, mob/user as mob)
 	if(!W)
 		return
-	if(istype(W, /obj/item/weapon/grab) && get_dist(src, user) < 2)
-		var/obj/item/weapon/grab/G = W
+	if(istype(W, /obj/item/grab) && get_dist(src, user) < 2)
+		var/obj/item/grab/G = W
 		if(istype(G.affecting, /mob/living))
 			var/mob/living/M = G.affecting
 			if(G.state < 2)
@@ -326,7 +326,7 @@
 			qdel(W)
 			return
 
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/wrench))
 		to_chat(user, SPAN_INFO("Now disassembling table."))
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		if(do_after(user,50))
@@ -336,7 +336,7 @@
 	if(isrobot(user))
 		return
 
-	if(istype(W, /obj/item/weapon/melee/energy/blade))
+	if(istype(W, /obj/item/melee/energy/blade))
 		var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
 		spark_system.set_up(5, 0, src.loc)
 		spark_system.start()
@@ -468,7 +468,7 @@
 	name = "wooden table"
 	desc = "Do not apply fire to this. Rumour says it burns easily."
 	icon_state = "wood_table"
-	parts = /obj/item/weapon/table_parts/wood
+	parts = /obj/item/table_parts/wood
 	health = 50
 
 /*
@@ -480,7 +480,7 @@
 	icon_state = "reinf_table"
 	health = 200
 	var/status = 2
-	parts = /obj/item/weapon/table_parts/reinforced
+	parts = /obj/item/table_parts/reinforced
 
 /obj/structure/table/reinforced/flip(direction)
 	if(status == 2)
@@ -489,8 +489,8 @@
 		return ..()
 
 /obj/structure/table/reinforced/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			if(src.status == 2)
 				to_chat(user, SPAN_INFO("Now weakening the reinforced table."))
@@ -511,7 +511,7 @@
 			return
 		return
 
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/wrench))
 		if(src.status == 2)
 			return
 	..()
@@ -528,7 +528,7 @@
 	anchored = TRUE
 	throwpass = 1	//You can throw objects over this, despite it's density.
 	breakable = 1
-	parts = /obj/item/weapon/rack_parts
+	parts = /obj/item/rack_parts
 
 /obj/structure/rack/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || height == 0)
@@ -541,7 +541,7 @@
 		return 0
 
 /obj/structure/rack/MouseDrop_T(obj/O as obj, mob/user as mob)
-	if(!istype(O, /obj/item/weapon) || user.get_active_hand() != O)
+	if(!istype(O, /obj/item) || user.get_active_hand() != O)
 		return
 	if(isrobot(user))
 		return
@@ -551,8 +551,8 @@
 	return
 
 /obj/structure/rack/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
-		new /obj/item/weapon/rack_parts(src.loc)
+	if(istype(W, /obj/item/wrench))
+		new /obj/item/rack_parts(src.loc)
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		qdel(src)
 		return

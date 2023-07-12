@@ -87,11 +87,11 @@
 		if(1.0)
 			qdel(src)
 			if(prob(15))
-				new /obj/item/weapon/shard(src.loc)
+				new /obj/item/shard(src.loc)
 			return
 		if(2.0)
 			if(prob(25))
-				new /obj/item/weapon/shard(src.loc)
+				new /obj/item/shard(src.loc)
 				qdel(src)
 				return
 			if(prob(50))
@@ -134,8 +134,8 @@
 		if(!(stat & BROKEN))
 			broken()
 		else
-			new /obj/item/weapon/shard(src.loc)
-			new /obj/item/weapon/shard(src.loc)
+			new /obj/item/shard(src.loc)
+			new /obj/item/shard(src.loc)
 			qdel(src)
 			return
 	return

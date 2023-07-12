@@ -14,7 +14,7 @@
 	response_help  = "touches the"
 	response_disarm = "pushes the"
 	response_harm   = "hits the"
-	var/obj/item/weapon/grab/G
+	var/obj/item/grab/G
 	var/observed = 0
 	var/allow_escape = 0	//set this to 1 for src to drop it's target next Life() call and try to escape
 	var/hibernate = 0
@@ -22,7 +22,7 @@
 
 /mob/living/simple_animal/sculpture/proc/GrabMob(var/mob/living/target)
 	if(target && target != src && ishuman(target))
-		G = new /obj/item/weapon/grab(target)
+		G = new /obj/item/grab(target)
 		G.assailant = src
 		G.layer = 20
 		G.affecting = target

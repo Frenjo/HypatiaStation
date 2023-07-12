@@ -75,7 +75,7 @@
 	outfit = /decl/hierarchy/outfit/job/cargo/mining/foreman
 	alt_titles = list("Head Miner")
 
-	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
+	special_survival_kit = /obj/item/storage/box/survival/engineer
 
 /*
  * Shaft Miner
@@ -101,7 +101,7 @@
 	outfit = /decl/hierarchy/outfit/job/cargo/mining/miner
 	alt_titles = list("Prospector")
 
-	special_survival_kit = /obj/item/weapon/storage/box/survival/engineer
+	special_survival_kit = /obj/item/storage/box/survival/engineer
 
 /*
  * Mailman

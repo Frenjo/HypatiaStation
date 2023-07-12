@@ -8,7 +8,7 @@
 	mypath = /obj/item/seeds/cabbageseed
 	species = "cabbage"
 	plantname = "Cabbages"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/cabbage
+	productname = /obj/item/reagent_containers/food/snacks/grown/cabbage
 	lifespan = 50
 	endurance = 25
 	maturation = 3
@@ -28,7 +28,7 @@
 	mypath = /obj/item/seeds/potatoseed
 	species = "potato"
 	plantname = "Potato-Plants"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/potato
+	productname = /obj/item/reagent_containers/food/snacks/grown/potato
 	lifespan = 30
 	endurance = 15
 	maturation = 10
@@ -49,7 +49,7 @@
 	mypath = /obj/item/seeds/soyaseed
 	species = "soybean"
 	plantname = "Soybean Plants"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/soybeans
+	productname = /obj/item/reagent_containers/food/snacks/grown/soybeans
 	lifespan = 25
 	endurance = 15
 	maturation = 4
@@ -69,7 +69,7 @@
 	mypath = /obj/item/seeds/carrotseed
 	species = "carrot"
 	plantname = "Carrots"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/carrot
+	productname = /obj/item/reagent_containers/food/snacks/grown/carrot
 	lifespan = 25
 	endurance = 15
 	maturation = 10
@@ -90,7 +90,7 @@
 	mypath = /obj/item/seeds/whitebeetseed
 	species = "whitebeet"
 	plantname = "White-Beet Plants"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/whitebeet
+	productname = /obj/item/reagent_containers/food/snacks/grown/whitebeet
 	lifespan = 60
 	endurance = 50
 	maturation = 6

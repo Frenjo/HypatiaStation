@@ -145,7 +145,7 @@
 				go_to_side()
 
 /obj/machinery/atmospherics/trinary/tvalve/digital/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(!istype(W, /obj/item/weapon/wrench))
+	if(!istype(W, /obj/item/wrench))
 		return ..()
 	if(istype(src, /obj/machinery/atmospherics/trinary/tvalve/digital))
 		to_chat(user, SPAN_WARNING("You cannot unwrench this [src], it's too complicated."))

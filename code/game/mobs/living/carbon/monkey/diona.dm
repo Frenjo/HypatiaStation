@@ -3,11 +3,11 @@
 */
 
 //Helper object for picking dionaea (and other creatures) up.
-/obj/item/weapon/holder
+/obj/item/holder
 	name = "holder"
 	desc = "You shouldn't ever see this."
 
-/obj/item/weapon/holder/diona
+/obj/item/holder/diona
 	name = "diona nymph"
 	desc = "It's a tiny plant critter."
 	icon = 'icons/obj/objects.dmi'
@@ -15,11 +15,11 @@
 	slot_flags = SLOT_HEAD
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_BIOTECH = 5)
 
-/obj/item/weapon/holder/New()
+/obj/item/holder/New()
 	..()
 	GLOBL.processing_objects.Add(src)
 
-/obj/item/weapon/holder/Destroy()
+/obj/item/holder/Destroy()
 	//Hopefully this will stop the icon from remaining on human mobs.
 	if(istype(loc,/mob/living))
 		var/mob/living/A = src.loc
@@ -28,7 +28,7 @@
 	GLOBL.processing_objects.Remove(src)
 	return ..()
 
-/obj/item/weapon/holder/process()
+/obj/item/holder/process()
 	if(!loc)
 		qdel(src)
 
@@ -37,7 +37,7 @@
 			M.loc = get_turf(src)
 		qdel(src)
 
-/obj/item/weapon/holder/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/holder/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	for(var/mob/M in src.contents)
 		M.attackby(W, user)
 
@@ -60,7 +60,7 @@
 			src.verbs -= /mob/living/carbon/monkey/diona/proc/merge
 			src.loc = M
 		else
-			var/obj/item/weapon/holder/diona/D = new(loc)
+			var/obj/item/holder/diona/D = new(loc)
 			src.loc = D
 			D.name = loc.name
 			D.attack_hand(M)
@@ -151,8 +151,8 @@
 	var/mob/living/carbon/human/adult = new(get_turf(src.loc))
 	adult.set_species(SPECIES_DIONA)
 
-	if(istype(loc, /obj/item/weapon/holder/diona))
-		var/obj/item/weapon/holder/diona/L = loc
+	if(istype(loc, /obj/item/holder/diona))
+		var/obj/item/holder/diona/L = loc
 		src.loc = L.loc
 		qdel(L)
 

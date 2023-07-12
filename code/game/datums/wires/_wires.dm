@@ -111,7 +111,7 @@ GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "oran
 		var/obj/item/I = L.get_active_hand()
 		holder.add_hiddenprint(L)
 		if(href_list["cut"]) // Toggles the cut/mend status
-			if(istype(I, /obj/item/weapon/wirecutters))
+			if(istype(I, /obj/item/wirecutters))
 				var/colour = href_list["cut"]
 				CutWireColour(colour)
 			else

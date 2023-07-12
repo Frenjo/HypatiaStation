@@ -43,30 +43,30 @@
 	if(href_list["purify"])
 		if (src.output)
 			processing = 1;
-			var/obj/item/weapon/ore/O
+			var/obj/item/ore/O
 			processed = 0;
-			while(locate(/obj/item/weapon/ore, input.loc))
-				O = locate(/obj/item/weapon/ore, input.loc)
-				if (istype(O,/obj/item/weapon/ore/iron))
+			while(locate(/obj/item/ore, input.loc))
+				O = locate(/obj/item/ore, input.loc)
+				if (istype(O,/obj/item/ore/iron))
 					new /obj/item/stack/sheet/metal(output.loc)
 					del(O)
-				if (istype(O,/obj/item/weapon/ore/diamond))
+				if (istype(O,/obj/item/ore/diamond))
 					new /obj/item/stack/sheet/mineral/diamond(output.loc)
 					del(O)
-				if (istype(O,/obj/item/weapon/ore/plasma))
+				if (istype(O,/obj/item/ore/plasma))
 					new /obj/item/stack/sheet/mineral/plasma(output.loc)
 					del(O)
-				if (istype(O,/obj/item/weapon/ore/gold))
+				if (istype(O,/obj/item/ore/gold))
 					new /obj/item/stack/sheet/mineral/gold(output.loc)
 					del(O)
-				if (istype(O,/obj/item/weapon/ore/silver))
+				if (istype(O,/obj/item/ore/silver))
 					new /obj/item/stack/sheet/mineral/silver(output.loc)
 					del(O)
-				if (istype(O,/obj/item/weapon/ore/uranium))
-					new /obj/item/weapon/ore/mineral/uranium(output.loc)
+				if (istype(O,/obj/item/ore/uranium))
+					new /obj/item/ore/mineral/uranium(output.loc)
 					del(O)
-				/*if (istype(O,/obj/item/weapon/ore/adamantine))
-					new /obj/item/weapon/ore/adamantine(output.loc)
+				/*if (istype(O,/obj/item/ore/adamantine))
+					new /obj/item/ore/adamantine(output.loc)
 					del(O)*/ //Dunno what this area does so I'll keep it commented out for now -Durandan
 				processed++
 				sleep(5);

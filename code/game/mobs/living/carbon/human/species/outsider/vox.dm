@@ -79,11 +79,11 @@
 	var/datum/organ/external/affected = H.get_organ("head")
 
 	// To avoid duplicates.
-	for(var/obj/item/weapon/implant/cortical/imp in H.contents)
+	for(var/obj/item/implant/cortical/imp in H.contents)
 		affected.implants.Remove(imp)
 		qdel(imp)
 
-	var/obj/item/weapon/implant/cortical/I = new /obj/item/weapon/implant/cortical(H)
+	var/obj/item/implant/cortical/I = new /obj/item/implant/cortical(H)
 	I.imp_in = H
 	I.implanted = 1
 	affected.implants.Add(I)
@@ -100,10 +100,10 @@
 	// Equips a set of nitrogen internals and activates them.
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/vox(src), SLOT_ID_WEAR_MASK)
 	if(isnull(H.r_hand))
-		H.equip_to_slot_or_del(new /obj/item/weapon/tank/nitrogen(src), SLOT_ID_R_HAND)
+		H.equip_to_slot_or_del(new /obj/item/tank/nitrogen(src), SLOT_ID_R_HAND)
 		H.internal = H.r_hand
 	else if(isnull(H.l_hand))
-		H.equip_to_slot_or_del(new /obj/item/weapon/tank/nitrogen(src), SLOT_ID_L_HAND)
+		H.equip_to_slot_or_del(new /obj/item/tank/nitrogen(src), SLOT_ID_L_HAND)
 		H.internal = H.l_hand
 	spawn(20) // I hate the fact that this is necessary but I don't have the will to track down where HUD initialisation happens.
 		H.internals.icon_state = "internal1"

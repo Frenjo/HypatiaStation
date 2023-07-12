@@ -9,7 +9,7 @@
 	flags = CONDUCT
 
 /obj/item/rust_fuel_compressor_frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/wrench))
 		new /obj/item/stack/sheet/plasteel(get_turf(src.loc), 12)
 		qdel(src)
 		return
@@ -53,7 +53,7 @@
 /obj/machinery/rust_fuel_compressor/attackby(obj/item/W, mob/user)
 	if(issilicon(user) && get_dist(src, user) > 1)
 		return src.attack_hand(user)
-	if(istype(W, /obj/item/weapon/crowbar))
+	if(istype(W, /obj/item/crowbar))
 		if(opened)
 			if(has_electronics & 1)
 				playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
@@ -64,7 +64,7 @@
 						SPAN_INFO("You remove the circuitboard board.")
 					)
 					has_electronics = 0
-					new /obj/item/weapon/module/rust_fuel_compressor(loc)
+					new /obj/item/module/rust_fuel_compressor(loc)
 					has_electronics &= ~1
 			else
 				opened = 0
@@ -79,7 +79,7 @@
 				icon_state = "fuel_compressor1"
 		return
 
-	else if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
+	else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
 		if(opened)
 			to_chat(user, "You must close the cover to swipe an ID card.")
 		else
@@ -91,7 +91,7 @@
 				FEEDBACK_ACCESS_DENIED(user)
 		return
 
-	else if(istype(W, /obj/item/weapon/card/emag) && !emagged)		// trying to unlock with an emag card
+	else if(istype(W, /obj/item/card/emag) && !emagged)		// trying to unlock with an emag card
 		if(opened)
 			to_chat(user, "You must close the cover to swipe an ID card.")
 		else
@@ -121,7 +121,7 @@
 			has_electronics &= 2
 		return
 
-	else if(istype(W, /obj/item/weapon/wirecutters) && opened && (has_electronics & 2))
+	else if(istype(W, /obj/item/wirecutters) && opened && (has_electronics & 2))
 		to_chat(user, "You begin to cut the cables...")
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		if(do_after(user, 50))
@@ -133,7 +133,7 @@
 			has_electronics &= ~2
 		return
 
-	else if(istype(W, /obj/item/weapon/module/rust_fuel_compressor) && opened && !(has_electronics & 1))
+	else if(istype(W, /obj/item/module/rust_fuel_compressor) && opened && !(has_electronics & 1))
 		to_chat(user, "You trying to insert the circuitboard into the frame...")
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		if(do_after(user, 10))
@@ -142,8 +142,8 @@
 			qdel(W)
 		return
 
-	else if(istype(W, /obj/item/weapon/weldingtool) && opened && !has_electronics)
-		var/obj/item/weapon/weldingtool/WT = W
+	else if(istype(W, /obj/item/weldingtool) && opened && !has_electronics)
+		var/obj/item/weldingtool/WT = W
 		if(WT.get_fuel() < 3)
 			to_chat(user, SPAN_INFO("You need more welding fuel to complete this task."))
 			return

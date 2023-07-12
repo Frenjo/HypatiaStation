@@ -5,7 +5,7 @@
 //	to mixed-drinks code. If you want an object that starts pre-loaded, you need to make it in addition to the other code.
 
 //Food items that aren't eaten normally and leave an empty container behind.
-/obj/item/weapon/reagent_containers/food/condiment
+/obj/item/reagent_containers/food/condiment
 	name = "Condiment Container"
 	desc = "Just your average condiment container."
 	icon = 'icons/obj/food.dmi'
@@ -14,13 +14,13 @@
 	possible_transfer_amounts = list(1, 5, 10)
 	volume = 50
 
-/obj/item/weapon/reagent_containers/food/condiment/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/condiment/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	return
 
-/obj/item/weapon/reagent_containers/food/condiment/attack_self(mob/user as mob)
+/obj/item/reagent_containers/food/condiment/attack_self(mob/user as mob)
 	return
 
-/obj/item/weapon/reagent_containers/food/condiment/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/food/condiment/attack(mob/M as mob, mob/user as mob, def_zone)
 	var/datum/reagents/R = src.reagents
 
 	if(!R || !R.total_volume)
@@ -54,10 +54,10 @@
 		return 1
 	return 0
 
-/obj/item/weapon/reagent_containers/food/condiment/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/reagent_containers/food/condiment/attackby(obj/item/I as obj, mob/user as mob)
 		return
 
-/obj/item/weapon/reagent_containers/food/condiment/afterattack(obj/target, mob/user, flag)
+/obj/item/reagent_containers/food/condiment/afterattack(obj/target, mob/user, flag)
 	if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
 		if(!target.reagents.total_volume)
 			to_chat(user, SPAN_WARNING("[target] is empty."))
@@ -71,7 +71,7 @@
 		to_chat(user, SPAN_INFO("You fill [src] with [trans] units of the contents of [target]."))
 
 	//Something like a glass or a food item. Player probably wants to transfer TO it.
-	else if(target.is_open_container() || istype(target, /obj/item/weapon/reagent_containers/food/snacks))
+	else if(target.is_open_container() || istype(target, /obj/item/reagent_containers/food/snacks))
 		if(!reagents.total_volume)
 			to_chat(user, SPAN_WARNING("[src] is empty."))
 			return
@@ -81,7 +81,7 @@
 		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
 		to_chat(user, SPAN_INFO("You transfer [trans] units of the condiment to [target]."))
 
-/obj/item/weapon/reagent_containers/food/condiment/on_reagent_change()
+/obj/item/reagent_containers/food/condiment/on_reagent_change()
 	if(icon_state == "saltshakersmall" || icon_state == "peppermillsmall")
 		return
 	if(length(reagents.reagent_list))
@@ -135,24 +135,24 @@
 		return
 
 
-/obj/item/weapon/reagent_containers/food/condiment/enzyme
+/obj/item/reagent_containers/food/condiment/enzyme
 	name = "Universal Enzyme"
 	desc = "Used in cooking various dishes."
 	icon_state = "enzyme"
 
-/obj/item/weapon/reagent_containers/food/condiment/enzyme/New()
+/obj/item/reagent_containers/food/condiment/enzyme/New()
 	..()
 	reagents.add_reagent("enzyme", 50)
 
 
-/obj/item/weapon/reagent_containers/food/condiment/sugar
+/obj/item/reagent_containers/food/condiment/sugar
 
-/obj/item/weapon/reagent_containers/food/condiment/sugar/New()
+/obj/item/reagent_containers/food/condiment/sugar/New()
 	..()
 	reagents.add_reagent("sugar", 50)
 
 
-/obj/item/weapon/reagent_containers/food/condiment/saltshaker		//Seperate from above since it's a small shaker rather then
+/obj/item/reagent_containers/food/condiment/saltshaker		//Seperate from above since it's a small shaker rather then
 	name = "Salt Shaker"											//	a large one.
 	desc = "Salt. From space oceans, presumably."
 	icon_state = "saltshakersmall"
@@ -160,12 +160,12 @@
 	amount_per_transfer_from_this = 1
 	volume = 20
 
-/obj/item/weapon/reagent_containers/food/condiment/saltshaker/New()
+/obj/item/reagent_containers/food/condiment/saltshaker/New()
 	..()
 	reagents.add_reagent("sodiumchloride", 20)
 
 
-/obj/item/weapon/reagent_containers/food/condiment/peppermill
+/obj/item/reagent_containers/food/condiment/peppermill
 	name = "Pepper Mill"
 	desc = "Often used to flavor food or make people sneeze."
 	icon_state = "peppermillsmall"
@@ -173,6 +173,6 @@
 	amount_per_transfer_from_this = 1
 	volume = 20
 
-/obj/item/weapon/reagent_containers/food/condiment/peppermill/New()
+/obj/item/reagent_containers/food/condiment/peppermill/New()
 	..()
 	reagents.add_reagent("blackpepper", 20)

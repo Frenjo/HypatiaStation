@@ -21,4 +21,4 @@
 
 	pda_type = /obj/item/device/pda/geneticist
 
-	satchel_one = /obj/item/weapon/storage/satchel/gen
+	satchel_one = /obj/item/storage/satchel/gen

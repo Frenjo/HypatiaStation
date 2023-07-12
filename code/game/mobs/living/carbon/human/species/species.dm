@@ -85,7 +85,7 @@
 	)
 
 	// For species with custom survival kits, defaults to the standard kit.
-	var/survival_kit = /obj/item/weapon/storage/box/survival
+	var/survival_kit = /obj/item/storage/box/survival
 
 	// Bump vars
 	var/bump_flag = HUMAN		// What are we considered to be when bumped?

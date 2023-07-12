@@ -33,7 +33,7 @@ CONTROLLER_DEF(supply)
 /datum/controller/supply/proc/forbidden_atoms_check(atom/A)
 	if(isliving(A))
 		return 1
-	if(istype(A, /obj/item/weapon/disk/nuclear))
+	if(istype(A, /obj/item/disk/nuclear))
 		return 1
 	if(istype(A, /obj/machinery/nuclearbomb))
 		return 1
@@ -67,8 +67,8 @@ CONTROLLER_DEF(supply)
 			for(var/atom in MA)
 				// Sell manifests
 				var/atom/A = atom
-				if(find_slip && istype(A, /obj/item/weapon/paper/manifest))
-					var/obj/item/weapon/paper/slip = A
+				if(find_slip && istype(A, /obj/item/paper/manifest))
+					var/obj/item/paper/slip = A
 					if(length(slip.stamped)) //yes, the clown stamp will work. clown is the highest authority on the station, it makes sense
 						points += points_per_slip
 						find_slip = 0
@@ -124,7 +124,7 @@ CONTROLLER_DEF(supply)
 
 		//supply manifest generation begin
 
-		var/obj/item/weapon/paper/manifest/slip = new /obj/item/weapon/paper/manifest(O)
+		var/obj/item/paper/manifest/slip = new /obj/item/paper/manifest(O)
 		slip.info = "<h3>[command_name()] Shipping Manifest</h3><hr><br>"
 		slip.info +="Order #[SO.ordernum]<br>"
 		slip.info +="Destination: [GLOBL.current_map.station_name]<br>"
@@ -147,5 +147,5 @@ CONTROLLER_DEF(supply)
 	shoppinglist.Cut()
 
 // Supply manifest
-/obj/item/weapon/paper/manifest
+/obj/item/paper/manifest
 	name = "Supply Manifest"

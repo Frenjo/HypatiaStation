@@ -65,10 +65,10 @@
 	icon_closed = "crate"
 
 	starts_with = list(
-		/obj/item/weapon/rcd_ammo,
-		/obj/item/weapon/rcd_ammo,
-		/obj/item/weapon/rcd_ammo,
-		/obj/item/weapon/rcd
+		/obj/item/rcd_ammo,
+		/obj/item/rcd_ammo,
+		/obj/item/rcd_ammo,
+		/obj/item/rcd
 	)
 
 /*
@@ -99,9 +99,9 @@
 		/obj/item/solar_assembly,
 		/obj/item/solar_assembly,
 		/obj/item/solar_assembly,
-		/obj/item/weapon/circuitboard/solar_control,
-		/obj/item/weapon/tracker_electronics,
-		/obj/item/weapon/paper/solar
+		/obj/item/circuitboard/solar_control,
+		/obj/item/tracker_electronics,
+		/obj/item/paper/solar
 	)
 
 /*
@@ -141,8 +141,8 @@
 	name = "Emergency Rations"
 
 	starts_with = list(
-		/obj/item/weapon/storage/box/donkpockets,
-		/obj/item/weapon/storage/box/donkpockets
+		/obj/item/storage/box/donkpockets,
+		/obj/item/storage/box/donkpockets
 	)
 
 /*
@@ -217,12 +217,12 @@
 /obj/structure/closet/crate/hydroponics/prespawned
 	//This exists so the prespawned hydro crates spawn with their contents.
 	starts_with = list(
-		/obj/item/weapon/reagent_containers/spray/plantbgone,
-		/obj/item/weapon/reagent_containers/spray/plantbgone,
-		/obj/item/weapon/minihoe,
-	//	/obj/item/weapon/weedspray,
-	//	/obj/item/weapon/weedspray,
-	//	/obj/item/weapon/pestspray,
-	//	/obj/item/weapon/pestspray,
-	//	/obj/item/weapon/pestspray
+		/obj/item/reagent_containers/spray/plantbgone,
+		/obj/item/reagent_containers/spray/plantbgone,
+		/obj/item/minihoe,
+	//	/obj/item/weedspray,
+	//	/obj/item/weedspray,
+	//	/obj/item/pestspray,
+	//	/obj/item/pestspray,
+	//	/obj/item/pestspray
 	)

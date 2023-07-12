@@ -58,8 +58,8 @@
 		return FALSE
 
 	//Do we have a working jetpack
-	if(istype(back, /obj/item/weapon/tank/jetpack))
-		var/obj/item/weapon/tank/jetpack/J = back
+	if(istype(back, /obj/item/tank/jetpack))
+		var/obj/item/tank/jetpack/J = back
 		if(((!check_drift) || (check_drift && J.stabilization_on)) && !lying && J.allow_thrust(0.01, src))
 			inertia_dir = 0
 			return TRUE

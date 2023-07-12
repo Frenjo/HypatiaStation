@@ -29,10 +29,10 @@
 	item_state = "suit-command"
 	w_class = 3
 	allowed = list(
-		/obj/item/device/flashlight, /obj/item/weapon/tank, /obj/item/device/t_scanner, /obj/item/weapon/rcd, /obj/item/weapon/crowbar,
-		/obj/item/weapon/screwdriver, /obj/item/weapon/weldingtool, /obj/item/weapon/wirecutters, /obj/item/weapon/wrench, /obj/item/device/multitool,
-		/obj/item/device/radio, /obj/item/device/analyzer, /obj/item/weapon/gun/energy/laser, /obj/item/weapon/gun/energy/pulse_rifle,
-		/obj/item/weapon/gun/energy/taser, /obj/item/weapon/melee/baton, /obj/item/weapon/gun/energy/gun
+		/obj/item/device/flashlight, /obj/item/tank, /obj/item/device/t_scanner, /obj/item/rcd, /obj/item/crowbar,
+		/obj/item/screwdriver, /obj/item/weldingtool, /obj/item/wirecutters, /obj/item/wrench, /obj/item/device/multitool,
+		/obj/item/device/radio, /obj/item/device/analyzer, /obj/item/gun/energy/laser, /obj/item/gun/energy/pulse_rifle,
+		/obj/item/gun/energy/taser, /obj/item/melee/baton, /obj/item/gun/energy/gun
 	)
 	slowdown = 1
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 100, rad = 60)

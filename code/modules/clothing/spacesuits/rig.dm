@@ -55,8 +55,8 @@
 	slowdown = 1
 	armor = list(melee = 40, bullet = 5, laser = 20, energy = 5, bomb = 35, bio = 100, rad = 80)
 	allowed = list(
-		/obj/item/device/flashlight, /obj/item/weapon/tank, /obj/item/weapon/storage/bag/ore,
-		/obj/item/device/t_scanner, /obj/item/weapon/pickaxe, /obj/item/weapon/rcd,
+		/obj/item/device/flashlight, /obj/item/tank, /obj/item/storage/bag/ore,
+		/obj/item/device/t_scanner, /obj/item/pickaxe, /obj/item/rcd,
 		/obj/item/device/suit_cooling_unit
 	)
 	heat_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
@@ -71,7 +71,7 @@
 	can_breach = 1
 
 	//Component/device holders.
-	var/obj/item/weapon/stock_part/gloves = null		// Basic capacitor allows insulation, upgrades allow shock gloves etc.
+	var/obj/item/stock_part/gloves = null		// Basic capacitor allows insulation, upgrades allow shock gloves etc.
 
 	var/attached_boots = 1								// Can't wear boots if some are attached
 	var/obj/item/clothing/shoes/magboots/boots = null	// Deployable boots, if any.
@@ -215,7 +215,7 @@
 				to_chat(user, "\The [src] does not have a helmet mount.")
 				return
 
-			if(istype(W, /obj/item/weapon/screwdriver))
+			if(istype(W, /obj/item/screwdriver))
 				if(!helmet)
 					to_chat(user, "\The [src] does not have a helmet installed.")
 				else
@@ -241,7 +241,7 @@
 				to_chat(user, "\The [src] does not have boot mounts.")
 				return
 
-			if(istype(W, /obj/item/weapon/screwdriver))
+			if(istype(W, /obj/item/screwdriver))
 				if(!boots)
 					to_chat(user, "\The [src] does not have any boots installed.")
 				else
@@ -343,9 +343,9 @@
 	w_class = 3
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 60)
 	allowed = list(
-		/obj/item/device/flashlight, /obj/item/weapon/tank, /obj/item/weapon/gun,
-		/obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/melee/baton,
-		/obj/item/weapon/melee/energy/sword, /obj/item/weapon/handcuffs, /obj/item/device/suit_cooling_unit
+		/obj/item/device/flashlight, /obj/item/tank, /obj/item/gun,
+		/obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/melee/baton,
+		/obj/item/melee/energy/sword, /obj/item/handcuffs, /obj/item/device/suit_cooling_unit
 	)
 	siemens_coefficient = 0.6
 	species_restricted = list("exclude", SPECIES_VOX)
@@ -388,7 +388,7 @@
 	desc = "A special suit that protects against hazardous, low pressure environments. Has minor radiation shielding."
 	item_state = "medical_hardsuit"
 	allowed = list(
-		/obj/item/device/flashlight, /obj/item/weapon/tank, /obj/item/weapon/storage/firstaid,
+		/obj/item/device/flashlight, /obj/item/tank, /obj/item/storage/firstaid,
 		/obj/item/device/healthanalyzer, /obj/item/stack/medical, /obj/item/device/suit_cooling_unit
 	)
 	sprite_sheets = list(
@@ -413,8 +413,8 @@
 	item_state = "sec_hardsuit"
 	armor = list(melee = 60, bullet = 10, laser = 30, energy = 5, bomb = 45, bio = 100, rad = 10)
 	allowed = list(
-		/obj/item/weapon/gun, /obj/item/device/flashlight, /obj/item/weapon/tank,
-		/obj/item/weapon/melee/baton, /obj/item/device/suit_cooling_unit
+		/obj/item/gun, /obj/item/device/flashlight, /obj/item/tank,
+		/obj/item/melee/baton, /obj/item/device/suit_cooling_unit
 	)
 	siemens_coefficient = 0.7
 	sprite_sheets = list(

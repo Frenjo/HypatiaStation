@@ -8,10 +8,10 @@
 	var/scanning = 0
 	var/pause = 0
 
-	var/obj/item/weapon/virusdish/dish = null
+	var/obj/item/virusdish/dish = null
 
 /obj/machinery/disease2/diseaseanalyser/attackby(var/obj/I as obj, var/mob/user as mob)
-	if(istype(I,/obj/item/weapon/virusdish))
+	if(istype(I,/obj/item/virusdish))
 		var/mob/living/carbon/c = user
 		if(!dish)
 			dish = I
@@ -36,7 +36,7 @@
 		if(scanning == 0)
 			var/r = dish.virus2.get_info()
 
-			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(src.loc)
+			var/obj/item/paper/P = new /obj/item/paper(src.loc)
 			P.info = r
 			dish.info = r
 			dish.analysed = 1

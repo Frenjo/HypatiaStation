@@ -28,7 +28,7 @@
 
 /datum/chemical_reaction/slimemonkey/on_reaction(datum/reagents/holder)
 	for(var/i = 1, i <= 3, i++)
-		var /obj/item/weapon/reagent_containers/food/snacks/monkeycube/M = new /obj/item/weapon/reagent_containers/food/snacks/monkeycube
+		var /obj/item/reagent_containers/food/snacks/monkeycube/M = new /obj/item/reagent_containers/food/snacks/monkeycube
 		M.loc = get_turf(holder.my_atom)
 
 
@@ -121,7 +121,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimebork/on_reaction(datum/reagents/holder)
-	var/list/borks = SUBTYPESOF(/obj/item/weapon/reagent_containers/food/snacks)
+	var/list/borks = SUBTYPESOF(/obj/item/reagent_containers/food/snacks)
 	// BORK BORK BORK
 
 	playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
@@ -226,7 +226,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimecell/on_reaction(datum/reagents/holder, created_volume)
-	var/obj/item/weapon/cell/slime/P = new /obj/item/weapon/cell/slime
+	var/obj/item/cell/slime/P = new /obj/item/cell/slime
 	P.loc = get_turf(holder.my_atom)
 
 
@@ -257,7 +257,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimepsteroid/on_reaction(datum/reagents/holder)
-	var/obj/item/weapon/slimesteroid/P = new /obj/item/weapon/slimesteroid
+	var/obj/item/slimesteroid/P = new /obj/item/slimesteroid
 	P.loc = get_turf(holder.my_atom)
 
 
@@ -326,7 +326,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimeppotion/on_reaction(datum/reagents/holder)
-	var/obj/item/weapon/slimepotion/P = new /obj/item/weapon/slimepotion
+	var/obj/item/slimepotion/P = new /obj/item/slimepotion
 	P.loc = get_turf(holder.my_atom)
 
 
@@ -369,7 +369,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimepotion2/on_reaction(datum/reagents/holder)
-	var/obj/item/weapon/slimepotion2/P = new /obj/item/weapon/slimepotion2
+	var/obj/item/slimepotion2/P = new /obj/item/slimepotion2
 	P.loc = get_turf(holder.my_atom)
 
 
@@ -461,7 +461,7 @@
 
 /datum/chemical_reaction/slimesynthi/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
-	new /obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh(location)
+	new /obj/item/reagent_containers/food/snacks/meat/syntiflesh(location)
 	return
 
 
@@ -623,7 +623,7 @@
 	required_other = 4
 	
 /datum/chemical_reaction/slimebork/on_reaction(var/datum/reagents/holder, var/created_volume)
-	var/list/borks = typesof(/obj/item/weapon/reagent_containers/food/snacks) - /obj/item/weapon/reagent_containers/food/snacks
+	var/list/borks = typesof(/obj/item/reagent_containers/food/snacks) - /obj/item/reagent_containers/food/snacks
 	// BORK BORK BORK
 	playsound(get_turf_loc(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 

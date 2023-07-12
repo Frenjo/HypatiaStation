@@ -2,7 +2,7 @@
 #define FROM_BOX 1
 #define MAGAZINE 2
 
-/obj/item/weapon/gun/projectile
+/obj/item/gun/projectile
 	desc = "A classic revolver. Uses 357 ammo"
 	name = "revolver"
 	icon_state = "revolver"
@@ -18,13 +18,13 @@
 	var/load_method = SPEEDLOADER //0 = Single shells or quick loader, 1 = box, 2 = magazine
 	var/obj/item/ammo_magazine/empty_mag = null
 
-/obj/item/weapon/gun/projectile/New()
+/obj/item/gun/projectile/New()
 	. = ..()
 	for(var/i = 1, i <= max_shells, i++)
 		loaded += new ammo_type(src)
 	update_icon()
 
-/obj/item/weapon/gun/projectile/load_into_chamber()
+/obj/item/gun/projectile/load_into_chamber()
 	if(in_chamber)
 		return 1 //{R}
 
@@ -44,7 +44,7 @@
 		return 1
 	return 0
 
-/obj/item/weapon/gun/projectile/attackby(obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/attackby(obj/item/A as obj, mob/user as mob)
 	var/num_loaded = 0
 	if(istype(A, /obj/item/ammo_magazine))
 		if(load_method == MAGAZINE && length(loaded))
@@ -78,7 +78,7 @@
 	update_icon()
 	return
 
-/obj/item/weapon/gun/projectile/attack_self(mob/user as mob)
+/obj/item/gun/projectile/attack_self(mob/user as mob)
 	if(target)
 		return ..()
 	if(length(loaded))
@@ -100,7 +100,7 @@
 	else
 		to_chat(user, SPAN_WARNING("There is nothing loaded in \the [src]!"))
 
-/obj/item/weapon/gun/projectile/examine()
+/obj/item/gun/projectile/examine()
 	..()
 	to_chat(usr, "Has [getAmmo()] round\s remaining.")
 //		if(in_chamber && !length(loaded))
@@ -109,7 +109,7 @@
 //			usr << "It also has a chambered round." {R}
 	return
 
-/obj/item/weapon/gun/projectile/proc/getAmmo()
+/obj/item/gun/projectile/proc/getAmmo()
 	var/bullets = 0
 	for(var/obj/item/ammo_casing/AC in loaded)
 		if(istype(AC))

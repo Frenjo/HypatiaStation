@@ -2,7 +2,7 @@
  * Engineering
  */
 /decl/hierarchy/outfit/job/engineering
-	belt = /obj/item/weapon/storage/belt/utility/full
+	belt = /obj/item/storage/belt/utility/full
 
 	pda_slot = SLOT_ID_L_STORE
 
@@ -10,8 +10,8 @@
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 
-	backpack = /obj/item/weapon/storage/backpack/industrial
-	satchel_one = /obj/item/weapon/storage/satchel/eng
+	backpack = /obj/item/storage/backpack/industrial
+	satchel_one = /obj/item/storage/satchel/eng
 
 /*
  * Chief Engineer
@@ -27,7 +27,7 @@
 
 	l_ear = /obj/item/device/radio/headset/heads/ce
 
-	id_type = /obj/item/weapon/card/id/silver
+	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/device/pda/heads/ce
 
 /*
@@ -52,11 +52,11 @@
 	name = "Atmospheric Technician"
 
 	uniform = /obj/item/clothing/under/rank/atmospheric_technician
-	belt = /obj/item/weapon/storage/belt/utility/atmostech
+	belt = /obj/item/storage/belt/utility/atmostech
 
 	shoes = /obj/item/clothing/shoes/black
 
 	pda_type = /obj/item/device/pda/atmos
 
-	backpack = /obj/item/weapon/storage/backpack
-	satchel_one = /obj/item/weapon/storage/satchel/norm
+	backpack = /obj/item/storage/backpack
+	satchel_one = /obj/item/storage/satchel/norm

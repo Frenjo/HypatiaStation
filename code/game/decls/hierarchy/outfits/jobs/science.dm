@@ -4,7 +4,7 @@
 /decl/hierarchy/outfit/job/science
 	flags = OUTFIT_HIDE_IF_CATEGORY
 
-	satchel_one = /obj/item/weapon/storage/satchel/tox
+	satchel_one = /obj/item/storage/satchel/tox
 
 /*
  * Research Director
@@ -19,9 +19,9 @@
 
 	l_ear = /obj/item/device/radio/headset/heads/rd
 
-	l_hand = /obj/item/weapon/clipboard
+	l_hand = /obj/item/clipboard
 
-	id_type = /obj/item/weapon/card/id/silver
+	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/device/pda/heads/rd
 
 /*
@@ -68,9 +68,9 @@
 
 	l_ear = /obj/item/device/radio/headset/robo
 
-	l_hand = /obj/item/weapon/storage/toolbox/mechanical
+	l_hand = /obj/item/storage/toolbox/mechanical
 
 	pda_type = /obj/item/device/pda/roboticist
 
-	backpack = /obj/item/weapon/storage/backpack
-	satchel_one = /obj/item/weapon/storage/satchel/norm
+	backpack = /obj/item/storage/backpack
+	satchel_one = /obj/item/storage/satchel/norm

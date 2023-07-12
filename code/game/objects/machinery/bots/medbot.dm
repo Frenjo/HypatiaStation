@@ -17,7 +17,7 @@
 	var/stunned = 0 //It can be stunned by tasers. Delicate circuits.
 //var/emagged = 0
 	var/list/botcard_access = list(ACCESS_MEDICAL)
-	var/obj/item/weapon/reagent_containers/glass/reagent_glass = null //Can be set to draw from this for reagents.
+	var/obj/item/reagent_containers/glass/reagent_glass = null //Can be set to draw from this for reagents.
 	var/skin = null //Set to "tox", "ointment" or "o2" for the other two firstaid kits.
 	var/frustration = 0
 	var/list/path = list()
@@ -49,7 +49,7 @@
 	treatment_tox = "anti_toxin"
 
 
-/obj/item/weapon/firstaid_arm_assembly
+/obj/item/firstaid_arm_assembly
 	name = "first aid/robot arm assembly"
 	desc = "A first aid kit with a robot arm permanently grafted to it."
 	icon = 'icons/obj/aibots.dmi'
@@ -59,7 +59,7 @@
 	var/skin = null //Same as medbot, set to tox or ointment for the respective kits.
 	w_class = 3.0
 
-/obj/item/weapon/firstaid_arm_assembly/New()
+/obj/item/firstaid_arm_assembly/New()
 	..()
 	spawn(5)
 		if(src.skin)
@@ -74,7 +74,7 @@
 		if(src.skin)
 			src.overlays += image('icons/obj/aibots.dmi', "medskin_[src.skin]")
 
-		src.botcard = new /obj/item/weapon/card/id(src)
+		src.botcard = new /obj/item/card/id(src)
 		if(!length(src.botcard_access))
 			var/datum/job/doctor/J = new/datum/job/doctor
 			src.botcard.access = J.get_access()
@@ -182,7 +182,7 @@
 	return
 
 /obj/machinery/bot/medbot/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
 		if(src.allowed(user) && !open && !emagged)
 			src.locked = !src.locked
 			to_chat(user, SPAN_NOTICE("Controls are now [src.locked ? "locked" : "unlocked"]."))
@@ -195,7 +195,7 @@
 			else
 				FEEDBACK_ACCESS_DENIED(user)
 
-	else if(istype(W, /obj/item/weapon/reagent_containers/glass))
+	else if(istype(W, /obj/item/reagent_containers/glass))
 		if(src.locked)
 			to_chat(user, SPAN_NOTICE("You cannot insert a beaker because the panel is locked."))
 			return
@@ -212,7 +212,7 @@
 
 	else
 		..()
-		if(health < maxhealth && !istype(W, /obj/item/weapon/screwdriver) && W.force)
+		if(health < maxhealth && !istype(W, /obj/item/screwdriver) && W.force)
 			step_to(src, (get_step_away(src, user)))
 
 /obj/machinery/bot/medbot/Emag(mob/user as mob)
@@ -459,7 +459,7 @@
 	visible_message(SPAN_DANGER("[src] blows apart!"), 1)
 	var/turf/Tsec = get_turf(src)
 
-	new /obj/item/weapon/storage/firstaid(Tsec)
+	new /obj/item/storage/firstaid(Tsec)
 
 	new /obj/item/device/assembly/prox_sensor(Tsec)
 
@@ -530,7 +530,7 @@
 /*
  *	Medbot Assembly -- Can be made out of all three medkits.
  */
-/obj/item/weapon/storage/firstaid/attackby(obj/item/robot_parts/S, mob/user as mob)
+/obj/item/storage/firstaid/attackby(obj/item/robot_parts/S, mob/user as mob)
 	if((!istype(S, /obj/item/robot_parts/l_arm)) && (!istype(S, /obj/item/robot_parts/r_arm)))
 		..()
 		return
@@ -540,12 +540,12 @@
 		to_chat(user, SPAN_NOTICE("You need to empty [src] out first."))
 		return
 
-	var/obj/item/weapon/firstaid_arm_assembly/A = new /obj/item/weapon/firstaid_arm_assembly
-	if(istype(src, /obj/item/weapon/storage/firstaid/fire))
+	var/obj/item/firstaid_arm_assembly/A = new /obj/item/firstaid_arm_assembly
+	if(istype(src, /obj/item/storage/firstaid/fire))
 		A.skin = "ointment"
-	else if(istype(src, /obj/item/weapon/storage/firstaid/toxin))
+	else if(istype(src, /obj/item/storage/firstaid/toxin))
 		A.skin = "tox"
-	else if(istype(src, /obj/item/weapon/storage/firstaid/o2))
+	else if(istype(src, /obj/item/storage/firstaid/o2))
 		A.skin = "o2"
 
 	qdel(S)
@@ -554,9 +554,9 @@
 	user.drop_from_inventory(src)
 	qdel(src)
 
-/obj/item/weapon/firstaid_arm_assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/firstaid_arm_assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/weapon/pen))
+	if(istype(W, /obj/item/pen))
 		var/t = copytext(stripped_input(user, "Enter new robot name", src.name, src.created_name), 1, MAX_NAME_LEN)
 		if(!t)
 			return

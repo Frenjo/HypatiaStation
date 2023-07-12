@@ -191,12 +191,12 @@
 
 /obj/structure/closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(src.opened)
-		if(istype(W, /obj/item/weapon/grab))
+		if(istype(W, /obj/item/grab))
 			src.MouseDrop_T(W:affecting, user)		//act like they were dragged onto the closet
 		if(istype(W, /obj/item/tk_grab))
 			return 0
-		if(istype(W, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = W
+		if(istype(W, /obj/item/weldingtool))
+			var/obj/item/weldingtool/WT = W
 			if(!WT.remove_fuel(0, user))
 				to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
 				return
@@ -213,10 +213,10 @@
 		usr.drop_item()
 		if(W)
 			W.loc = src.loc
-	else if(istype(W, /obj/item/weapon/package_wrap))
+	else if(istype(W, /obj/item/package_wrap))
 		return
-	else if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	else if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 		if(!WT.remove_fuel(0,user))
 			to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
 			return

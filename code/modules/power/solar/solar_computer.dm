@@ -106,14 +106,14 @@
 	popup.open()
 
 /obj/machinery/power/solar_control/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(istype(I, /obj/item/screwdriver))
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			if(src.stat & BROKEN)
 				FEEDBACK_BROKEN_GLASS_FALLS(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-				new /obj/item/weapon/shard(src.loc)
-				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control(A)
+				new /obj/item/shard(src.loc)
+				var/obj/item/circuitboard/solar_control/M = new /obj/item/circuitboard/solar_control(A)
 				for(var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
@@ -124,7 +124,7 @@
 			else
 				FEEDBACK_DISCONNECT_MONITOR(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control(A)
+				var/obj/item/circuitboard/solar_control/M = new /obj/item/circuitboard/solar_control(A)
 				for(var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M

@@ -43,7 +43,7 @@
 
 /obj/machinery/light_construct/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	add_fingerprint(user)
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/wrench))
 		if(stage == LIGHT_STAGE_ONE)
 			playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 			to_chat(usr, "You begin deconstructing [src].")
@@ -65,7 +65,7 @@
 			to_chat(usr, "You have to unscrew the case first.")
 			return
 
-	if(istype(W, /obj/item/weapon/wirecutters))
+	if(istype(W, /obj/item/wirecutters))
 		if(stage != LIGHT_STAGE_TWO)
 			return
 		stage = LIGHT_STAGE_ONE
@@ -92,7 +92,7 @@
 		)
 		return
 
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/screwdriver))
 		if(stage == LIGHT_STAGE_TWO)
 			update_icon()
 			stage = LIGHT_STAGE_THREE

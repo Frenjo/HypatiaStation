@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/energy/temperature
+/obj/item/gun/energy/temperature
 	name = "temperature gun"
 	icon_state = "freezegun"
 	fire_sound = 'sound/weapons/pulse3.ogg'
@@ -12,20 +12,20 @@
 	has_firemodes = 0
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/temp)
-	cell_type = /obj/item/weapon/cell/crap
+	cell_type = /obj/item/cell/crap
 
 	var/temperature = T20C
 	var/current_temperature = T20C
 
-/obj/item/weapon/gun/energy/temperature/New()
+/obj/item/gun/energy/temperature/New()
 	. = ..()
 	GLOBL.processing_objects.Add(src)
 
-/obj/item/weapon/gun/energy/temperature/Destroy()
+/obj/item/gun/energy/temperature/Destroy()
 	GLOBL.processing_objects.Remove(src)
 	return ..()
 
-/obj/item/weapon/gun/energy/temperature/attack_self(mob/living/user as mob)
+/obj/item/gun/energy/temperature/attack_self(mob/living/user as mob)
 	user.set_machine(src)
 	var/temp_text = ""
 	if(temperature > (T0C - 50))
@@ -41,7 +41,7 @@
 	user << browse(dat, "window=freezegun;size=450x300;can_resize=1;can_close=1;can_minimize=1")
 	onclose(user, "window=freezegun", src)
 
-/obj/item/weapon/gun/energy/temperature/Topic(href, href_list)
+/obj/item/gun/energy/temperature/Topic(href, href_list)
 	if(..())
 		return
 	usr.set_machine(src)
@@ -58,7 +58,7 @@
 	src.add_fingerprint(usr)
 	return
 
-/obj/item/weapon/gun/energy/temperature/process()
+/obj/item/gun/energy/temperature/process()
 	switch(temperature)
 		if(0 to 100)
 			charge_cost = 1000

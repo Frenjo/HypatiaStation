@@ -1414,10 +1414,10 @@
 			usr << "This can only be used on instances of type /mob/living/carbon/human"
 			return
 
-		H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), SLOT_ID_L_HAND)
-		if(!(istype(H.l_hand, /obj/item/weapon/reagent_containers/food/snacks/cookie)))
-			H.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), SLOT_ID_R_HAND)
-			if(!(istype(H.r_hand, /obj/item/weapon/reagent_containers/food/snacks/cookie)))
+		H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/cookie(H), SLOT_ID_L_HAND)
+		if(!(istype(H.l_hand, /obj/item/reagent_containers/food/snacks/cookie)))
+			H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/cookie(H), SLOT_ID_R_HAND)
+			if(!(istype(H.r_hand, /obj/item/reagent_containers/food/snacks/cookie)))
 				log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				return
@@ -1528,7 +1528,7 @@
 
 				// give the sprite some time to flick
 				spawn(20)
-					var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( F.loc )
+					var/obj/item/paper/P = new /obj/item/paper( F.loc )
 					P.name = "[command_name()]- [customname]"
 					P.info = input
 					P.update_icon()
@@ -1540,7 +1540,7 @@
 					stampoverlay.icon_state = "paper_stamp-cent"
 					if(!P.stamped)
 						P.stamped = new
-					P.stamped += /obj/item/weapon/stamp
+					P.stamped += /obj/item/stamp
 					P.overlays += stampoverlay
 					P.stamps += "<HR><i>This paper has been stamped by the Central Command Quantum Relay.</i>"
 
@@ -1635,11 +1635,11 @@
 			else if(!ispath(path, /obj) && !ispath(path, /turf) && !ispath(path, /mob))
 				removed_paths += dirty_path
 				continue
-			else if(ispath(path, /obj/item/weapon/gun/energy/pulse_rifle))
+			else if(ispath(path, /obj/item/gun/energy/pulse_rifle))
 				if(!check_rights(R_FUN,0))
 					removed_paths += dirty_path
 					continue
-			else if(ispath(path, /obj/item/weapon/melee/energy/blade))//Not an item one should be able to spawn./N
+			else if(ispath(path, /obj/item/melee/energy/blade))//Not an item one should be able to spawn./N
 				if(!check_rights(R_FUN,0))
 					removed_paths += dirty_path
 					continue
@@ -1896,13 +1896,13 @@
 						continue
 					H.Paralyse(5)
 					if(H.wear_id)
-						var/obj/item/weapon/card/id/id = H.get_idcard()
+						var/obj/item/card/id/id = H.get_idcard()
 						for(var/A in id.access)
 							if(A == access_security)
 								security++
 					if(!security)
 						//strip their stuff before they teleport into a cell :downs:
-						for(var/obj/item/weapon/W in H)
+						for(var/obj/item/W in H)
 							if(istype(W, /datum/organ/external))
 								continue
 								//don't strip organs
@@ -2265,7 +2265,7 @@
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","FG")
 				for(var/obj/item/W in world)
-					if(istype(W, /obj/item/clothing) || istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/weapon/disk) || istype(W, /obj/item/weapon/tank))
+					if(istype(W, /obj/item/clothing) || istype(W, /obj/item/card/id) || istype(W, /obj/item/disk) || istype(W, /obj/item/tank))
 						continue
 					W.icon = 'icons/obj/weapons/gun.dmi'
 					W.icon_state = "revolver"

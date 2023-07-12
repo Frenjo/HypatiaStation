@@ -52,7 +52,7 @@ default behaviour is:
 		if(isliving(AM))
 			var/mob/living/tmob = AM
 			for(var/mob/living/M in range(tmob, 1))
-				if(length(tmob.pinned) || ((M.pulling == tmob && (tmob.restrained() && !M.restrained() && M.stat == CONSCIOUS)) || locate(/obj/item/weapon/grab, length(tmob.grabbed_by))))
+				if(length(tmob.pinned) || ((M.pulling == tmob && (tmob.restrained() && !M.restrained() && M.stat == CONSCIOUS)) || locate(/obj/item/grab, length(tmob.grabbed_by))))
 					if(!(world.time % 5))
 						to_chat(src, SPAN_WARNING("[tmob] is restrained, you cannot push past."))
 					now_pushing = 0
@@ -103,11 +103,11 @@ default behaviour is:
 					to_chat(src, SPAN_DANGER("You fail to push [tmob]'s fat ass out of the way."))
 					now_pushing = 0
 					return
-			if(tmob.r_hand && istype(tmob.r_hand, /obj/item/weapon/shield/riot))
+			if(tmob.r_hand && istype(tmob.r_hand, /obj/item/shield/riot))
 				if(prob(99))
 					now_pushing = 0
 					return
-			if(tmob.l_hand && istype(tmob.l_hand, /obj/item/weapon/shield/riot))
+			if(tmob.l_hand && istype(tmob.l_hand, /obj/item/shield/riot))
 				if(prob(99))
 					now_pushing = 0
 					return
@@ -309,34 +309,34 @@ default behaviour is:
 		L += Storage.return_inv()
 
 		//Leave this commented out, it will cause storage items to exponentially add duplicate to the list
-		//for(var/obj/item/weapon/storage/S in Storage.return_inv()) //Check for storage items
+		//for(var/obj/item/storage/S in Storage.return_inv()) //Check for storage items
 		//	L += get_contents(S)
 
-		for(var/obj/item/weapon/gift/G in Storage.return_inv()) //Check for gift-wrapped items
+		for(var/obj/item/gift/G in Storage.return_inv()) //Check for gift-wrapped items
 			L += G.gift
-			if(istype(G.gift, /obj/item/weapon/storage))
+			if(istype(G.gift, /obj/item/storage))
 				L += get_contents(G.gift)
 
 		for(var/obj/item/small_delivery/D in Storage.return_inv()) //Check for package wrapped items
 			L += D.wrapped
-			if(istype(D.wrapped, /obj/item/weapon/storage)) //this should never happen
+			if(istype(D.wrapped, /obj/item/storage)) //this should never happen
 				L += get_contents(D.wrapped)
 		return L
 
 	else
 
 		L += src.contents
-		for(var/obj/item/weapon/storage/S in src.contents)	//Check for storage items
+		for(var/obj/item/storage/S in src.contents)	//Check for storage items
 			L += get_contents(S)
 
-		for(var/obj/item/weapon/gift/G in src.contents) //Check for gift-wrapped items
+		for(var/obj/item/gift/G in src.contents) //Check for gift-wrapped items
 			L += G.gift
-			if(istype(G.gift, /obj/item/weapon/storage))
+			if(istype(G.gift, /obj/item/storage))
 				L += get_contents(G.gift)
 
 		for(var/obj/item/small_delivery/D in src.contents) //Check for package wrapped items
 			L += D.wrapped
-			if(istype(D.wrapped, /obj/item/weapon/storage)) //this should never happen
+			if(istype(D.wrapped, /obj/item/storage)) //this should never happen
 				L += get_contents(D.wrapped)
 		return L
 
@@ -522,17 +522,17 @@ default behaviour is:
 				if(isliving(pulling))
 					var/mob/living/M = pulling
 					var/ok = 1
-					if(locate(/obj/item/weapon/grab, M.grabbed_by))
+					if(locate(/obj/item/grab, M.grabbed_by))
 						if(prob(75))
-							var/obj/item/weapon/grab/G = pick(M.grabbed_by)
-							if(istype(G, /obj/item/weapon/grab))
+							var/obj/item/grab/G = pick(M.grabbed_by)
+							if(istype(G, /obj/item/grab))
 								for(var/mob/O in viewers(M, null))
 									O.show_message(SPAN_WARNING("[G.affecting] has been pulled from [G.assailant]'s grip by [src]"), 1)
 								//G = null
 								qdel(G)
 						else
 							ok = 0
-						if(locate(/obj/item/weapon/grab, length(M.grabbed_by)))
+						if(locate(/obj/item/grab, length(M.grabbed_by)))
 							ok = 0
 					if(ok)
 						var/atom/movable/t = M.pulling
@@ -592,8 +592,8 @@ default behaviour is:
 	var/mob/living/L = usr
 
 	//Getting out of someone's inventory.
-	if(istype(src.loc, /obj/item/weapon/holder))
-		var/obj/item/weapon/holder/H = src.loc	//Get our item holder.
+	if(istype(src.loc, /obj/item/holder))
+		var/obj/item/holder/H = src.loc	//Get our item holder.
 		var/mob/M = H.loc						//Get our mob holder (if any).
 		if(istype(M))
 			M.drop_from_inventory(H)
@@ -642,7 +642,7 @@ default behaviour is:
 			L.requests.Remove(O)
 			qdel(O)
 			resisting++
-		for(var/obj/item/weapon/grab/G in usr.grabbed_by)
+		for(var/obj/item/grab/G in usr.grabbed_by)
 			resisting++
 			switch(G.state)
 				if(GRAB_PASSIVE)
@@ -781,7 +781,7 @@ default behaviour is:
 						CM.handcuffed = null
 						CM.update_inv_handcuffed()
 			else
-				var/obj/item/weapon/handcuffs/HC = CM.handcuffed
+				var/obj/item/handcuffs/HC = CM.handcuffed
 				var/breakouttime = 1200 //A default in case you are somehow handcuffed with something that isn't an obj/item/weapon/handcuffs type
 				var/displaytime = 2 //Minutes to display in the "this will take X minutes."
 				if(istype(HC)) //If you are handcuffed with actual handcuffs... Well what do I know, maybe someone will want to handcuff you with toilet paper in the future...
@@ -818,7 +818,7 @@ default behaviour is:
 						CM.legcuffed = null
 						CM.update_inv_legcuffed()
 			else
-				var/obj/item/weapon/legcuffs/HC = CM.legcuffed
+				var/obj/item/legcuffs/HC = CM.legcuffed
 				var/breakouttime = 1200 //A default in case you are somehow legcuffed with something that isn't an obj/item/weapon/legcuffs type
 				var/displaytime = 2 //Minutes to display in the "this will take X minutes."
 				if(istype(HC)) //If you are legcuffed with actual legcuffs... Well what do I know, maybe someone will want to legcuff you with toilet paper in the future...
@@ -908,7 +908,7 @@ default behaviour is:
 
 	if(!ignore_items)
 		for(var/obj/item/carried_item in contents)//If the monkey got on objects.
-			if(!istype(carried_item, /obj/item/weapon/implant) && !istype(carried_item, /obj/item/clothing/mask/facehugger)) //If it's not an implant or a facehugger
+			if(!istype(carried_item, /obj/item/implant) && !istype(carried_item, /obj/item/clothing/mask/facehugger)) //If it's not an implant or a facehugger
 				to_chat(src, SPAN_WARNING("You can't be carrying items or have items equipped when vent crawling!"))
 				return
 

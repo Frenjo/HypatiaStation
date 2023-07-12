@@ -91,11 +91,11 @@ var/engwords = list(
 	return
 
 /obj/effect/rune/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/weapon/tome) && iscultist(user))
+	if(istype(I, /obj/item/tome) && iscultist(user))
 		to_chat(user, "You retrace your steps, carefully undoing the lines of the rune.")
 		qdel(src)
 		return
-	else if(istype(I, /obj/item/weapon/nullrod))
+	else if(istype(I, /obj/item/nullrod))
 		to_chat(user, SPAN_INFO("You disrupt the vile magic with the deadening field of the null rod!"))
 		qdel(src)
 		return
@@ -187,7 +187,7 @@ var/engwords = list(
 	icon = get_uristrune_cult(word1, word2, word3)
 
 
-/obj/item/weapon/tome
+/obj/item/tome
 	name = "arcane tome"
 	icon_state ="tome"
 	throw_speed = 1
@@ -304,7 +304,7 @@ var/engwords = list(
 				</html>
 				"}
 
-/obj/item/weapon/tome/Topic(href, list/href_list)
+/obj/item/tome/Topic(href, list/href_list)
 	if(src.loc == usr)
 		var/number = text2num(href_list["number"])
 		if(usr.stat|| usr.restrained())
@@ -331,7 +331,7 @@ var/engwords = list(
 					[words[10]] is <a href='byond://?src=\ref[src];number=10;action=change'>[words[words[10]]]</A> <A href='byond://?src=\ref[src];number=10;action=clear'>Clear</A><BR>
 					"}
 		usr << browse("[notedat]", "window=notes")
-//		call(/obj/item/weapon/tome/proc/edit_notes)()
+//		call(/obj/item/tome/proc/edit_notes)()
 	else
 		usr << browse(null, "window=notes")
 		return
@@ -355,7 +355,7 @@ var/engwords = list(
 //		usr << "whatev"
 //		usr << browse(null, "window=tank")
 
-/obj/item/weapon/tome/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/tome/attack(mob/living/M as mob, mob/living/user as mob)
 	M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had the [name] used on him by [user.name] ([user.ckey])</font>"
 	user.attack_log += "\[[time_stamp()]\] <font color='red'>Used [name] on [M.name] ([M.ckey])</font>"
 	msg_admin_attack("[user.name] ([user.ckey]) used [name] on [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
@@ -378,7 +378,7 @@ var/engwords = list(
 		O.show_message(SPAN_DANGER("[user] beats [M] with the arcane tome!"), 1)
 	to_chat(user, SPAN_WARNING("You feel searing heat inside!"))
 
-/obj/item/weapon/tome/attack_self(mob/living/user as mob)
+/obj/item/tome/attack_self(mob/living/user as mob)
 	usr = user
 	if(!usr.canmove || usr.stat || usr.restrained())
 		return
@@ -421,7 +421,7 @@ var/engwords = list(
 				[words[9]] is <a href='byond://?src=\ref[src];number=9;action=change'>[words[words[9]]]</A> <A href='byond://?src=\ref[src];number=9;action=clear'>Clear</A><BR>
 				[words[10]] is <a href='byond://?src=\ref[src];number=10;action=change'>[words[words[10]]]</A> <A href='byond://?src=\ref[src];number=10;action=clear'>Clear</A><BR>
 				"}
-//						call(/obj/item/weapon/tome/proc/edit_notes)()
+//						call(/obj/item/tome/proc/edit_notes)()
 					user << browse("[notedat]", "window=notes")
 					return
 		if(usr.get_active_hand() != src)
@@ -476,8 +476,8 @@ var/engwords = list(
 		to_chat(user, "The book seems full of illegible scribbles. Is this a joke?")
 		return
 
-/obj/item/weapon/tome/attackby(obj/item/weapon/tome/T as obj, mob/living/user as mob)
-	if(istype(T, /obj/item/weapon/tome)) // sanity check to prevent a runtime error
+/obj/item/tome/attackby(obj/item/weapon/tome/T as obj, mob/living/user as mob)
+	if(istype(T, /obj/item/tome)) // sanity check to prevent a runtime error
 		switch(alert("Copy the runes from your tome?", , "Copy", "Cancel"))
 			if("cancel")
 				return
@@ -490,7 +490,7 @@ var/engwords = list(
 			words[w] = T.words[w]
 		to_chat(user, "You copy the translation notes from your tome.")
 
-/obj/item/weapon/tome/examine()
+/obj/item/tome/examine()
 	set src in usr
 	if(!iscultist(usr))
 		to_chat(usr, "An old, dusty tome with frayed edges and a sinister looking cover.")
@@ -498,11 +498,11 @@ var/engwords = list(
 		to_chat(usr, "The scriptures of Nar-Sie, The One Who Sees, The Geometer of Blood. Contains the details of every ritual his followers could think of. Most of these are useless, though.")
 
 
-/obj/item/weapon/tome/imbued //admin tome, spawns working runes without waiting
+/obj/item/tome/imbued //admin tome, spawns working runes without waiting
 	w_class = 2.0
 	var/cultistsonly = 1
 
-/obj/item/weapon/tome/imbued/attack_self(mob/user as mob)
+/obj/item/tome/imbued/attack_self(mob/user as mob)
 	if(src.cultistsonly && !iscultist(usr))
 		return
 	if(!cultwords["travel"])

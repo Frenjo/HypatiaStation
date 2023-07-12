@@ -3,7 +3,7 @@
 	name = "ninja hood"
 	icon_state = "s-ninja"
 	item_state = "s-ninja_mask"
-	allowed = list(/obj/item/weapon/cell)
+	allowed = list(/obj/item/cell)
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 25)
 	siemens_coefficient = 0.2
 	species_restricted = null
@@ -14,9 +14,9 @@
 	icon_state = "s-ninja"
 	item_state = "s-ninja_suit"
 	allowed = list(
-		/obj/item/weapon/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing,
-		/obj/item/weapon/melee/baton, /obj/item/weapon/handcuffs, /obj/item/weapon/tank,
-		/obj/item/weapon/cell, /obj/item/device/suit_cooling_unit
+		/obj/item/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing,
+		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/tank,
+		/obj/item/cell, /obj/item/device/suit_cooling_unit
 	)
 	slowdown = 0
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
@@ -25,7 +25,7 @@
 
 		//Important parts of the suit.
 	var/mob/living/carbon/affecting = null 				//The wearer.
-	var/obj/item/weapon/cell/cell						//Starts out with a high-capacity cell using New().
+	var/obj/item/cell/cell						//Starts out with a high-capacity cell using New().
 	var/datum/effect/system/spark_spread/spark_system	//To create sparks.
 	var/list/reagent_list = list(							//The reagents ids which are added to the suit at New().
 		"tricordrazine", "dexalinp", "spaceacillin", 
@@ -33,7 +33,7 @@
 	)
 
 	var/list/stored_research = list()			// For stealing station research.
-	var/obj/item/weapon/disk/tech_disk/t_disk 	//To copy design onto disk.
+	var/obj/item/disk/tech_disk/t_disk 	//To copy design onto disk.
 
 		//Other articles of ninja gear worn together, used to easily reference them after initializing.
 	var/obj/item/clothing/head/helmet/space/space_ninja/n_hood

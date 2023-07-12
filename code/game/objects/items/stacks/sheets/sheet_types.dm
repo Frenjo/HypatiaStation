@@ -27,8 +27,8 @@ var/global/list/datum/stack_recipe/metal_recipes = list(
 		new/datum/stack_recipe("teal comfy chair", /obj/structure/stool/bed/chair/comfy/teal, 2, one_per_turf = 1, on_floor = 1),
 	), 2),
 	null,
-	new/datum/stack_recipe("table parts", /obj/item/weapon/table_parts, 2),
-	new/datum/stack_recipe("rack parts", /obj/item/weapon/rack_parts),
+	new/datum/stack_recipe("table parts", /obj/item/table_parts, 2),
+	new/datum/stack_recipe("rack parts", /obj/item/rack_parts),
 	new/datum/stack_recipe("closet", /obj/structure/closet, 2, time = 15, one_per_turf = 1, on_floor = 1),
 	null,
 	new/datum/stack_recipe("canister", /obj/machinery/portable_atmospherics/canister, 10, time = 15, one_per_turf = 1, on_floor = 1),
@@ -60,7 +60,7 @@ var/global/list/datum/stack_recipe/metal_recipes = list(
 		new/datum/stack_recipe("multi-tile airlock assembly", /obj/structure/door_assembly/multi_tile, 4, time = 50, one_per_turf = 1, on_floor = 1),
 	), 4),
 	null,
-	new/datum/stack_recipe("grenade casing", /obj/item/weapon/grenade/chem_grenade),
+	new/datum/stack_recipe("grenade casing", /obj/item/grenade/chem_grenade),
 	new/datum/stack_recipe("light fixture frame", /obj/item/frame/light_fixture, 2),
 	new/datum/stack_recipe("small light fixture frame", /obj/item/frame/light_fixture/small, 1),
 	null,
@@ -125,7 +125,7 @@ var/global/list/datum/stack_recipe/plasteel_recipes = list(
 var/global/list/datum/stack_recipe/wood_recipes = list(
 	new/datum/stack_recipe("wooden sandals", /obj/item/clothing/shoes/sandal, 1),
 	new/datum/stack_recipe("wood floor tile", /obj/item/stack/tile/wood, 1, 4, 20),
-	new/datum/stack_recipe("table parts", /obj/item/weapon/table_parts/wood, 2),
+	new/datum/stack_recipe("table parts", /obj/item/table_parts/wood, 2),
 	new/datum/stack_recipe("wooden chair", /obj/structure/stool/bed/chair/wood/normal, 3, time = 10, one_per_turf = 1, on_floor = 1),
 	new/datum/stack_recipe("wooden barricade", /obj/structure/barricade/wooden, 5, time = 50, one_per_turf = 1, on_floor = 1),
 	new/datum/stack_recipe("wooden door", /obj/structure/mineral_door/wood, 10, time = 20, one_per_turf = 1, on_floor = 1),
@@ -164,20 +164,20 @@ var/global/list/datum/stack_recipe/wood_recipes = list(
  * Cardboard
  */
 var/global/list/datum/stack_recipe/cardboard_recipes = list(
-	new/datum/stack_recipe("box", /obj/item/weapon/storage/box),
-	new/datum/stack_recipe("light tubes", /obj/item/weapon/storage/box/lights/tubes),
-	new/datum/stack_recipe("light bulbs", /obj/item/weapon/storage/box/lights/bulbs),
-	new/datum/stack_recipe("mouse traps", /obj/item/weapon/storage/box/mousetraps),
+	new/datum/stack_recipe("box", /obj/item/storage/box),
+	new/datum/stack_recipe("light tubes", /obj/item/storage/box/lights/tubes),
+	new/datum/stack_recipe("light bulbs", /obj/item/storage/box/lights/bulbs),
+	new/datum/stack_recipe("mouse traps", /obj/item/storage/box/mousetraps),
 	new/datum/stack_recipe("cardborg suit", /obj/item/clothing/suit/cardborg, 3),
 	new/datum/stack_recipe("cardborg helmet", /obj/item/clothing/head/cardborg),
 	new/datum/stack_recipe("pizza box", /obj/item/pizzabox),
 	null,
 	new/datum/stack_recipe_list("folders", list(
-		new/datum/stack_recipe("blue folder", /obj/item/weapon/folder/blue),
-		new/datum/stack_recipe("grey folder", /obj/item/weapon/folder),
-		new/datum/stack_recipe("red folder", /obj/item/weapon/folder/red),
-		new/datum/stack_recipe("white folder", /obj/item/weapon/folder/white),
-		new/datum/stack_recipe("yellow folder", /obj/item/weapon/folder/yellow),
+		new/datum/stack_recipe("blue folder", /obj/item/folder/blue),
+		new/datum/stack_recipe("grey folder", /obj/item/folder),
+		new/datum/stack_recipe("red folder", /obj/item/folder/red),
+		new/datum/stack_recipe("white folder", /obj/item/folder/white),
+		new/datum/stack_recipe("yellow folder", /obj/item/folder/yellow),
 	))
 )
 

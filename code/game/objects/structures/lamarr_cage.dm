@@ -13,7 +13,7 @@
 /obj/structure/lamarr/ex_act(severity)
 	switch(severity)
 		if(1)
-			new /obj/item/weapon/shard(src.loc)
+			new /obj/item/shard(src.loc)
 			Break()
 			qdel(src)
 		if(2)
@@ -33,12 +33,12 @@
 
 /obj/structure/lamarr/blob_act()
 	if(prob(75))
-		new /obj/item/weapon/shard(src.loc)
+		new /obj/item/shard(src.loc)
 		Break()
 		qdel(src)
 
 /obj/structure/lamarr/meteorhit(obj/O as obj)
-		new /obj/item/weapon/shard(src.loc)
+		new /obj/item/shard(src.loc)
 		Break()
 		qdel(src)
 
@@ -47,7 +47,7 @@
 		if(!src.destroyed)
 			src.density = FALSE
 			src.destroyed = 1
-			new /obj/item/weapon/shard(src.loc)
+			new /obj/item/shard(src.loc)
 			playsound(src, "shatter", 70, 1)
 			Break()
 	else

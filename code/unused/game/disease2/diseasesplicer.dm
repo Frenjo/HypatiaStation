@@ -9,7 +9,7 @@
 
 	var/datum/disease2/effectholder/memorybank = null
 	var/analysed = 0
-	var/obj/item/weapon/virusdish/dish = null
+	var/obj/item/virusdish/dish = null
 	var/burning = 0
 
 	var/splicing = 0
@@ -17,14 +17,14 @@
 
 /obj/machinery/computer/diseasesplicer/attackby(var/obj/I as obj, var/mob/user as mob)
 /*
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(istype(I, /obj/item/screwdriver))
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			if (src.stat & BROKEN)
 				FEEDBACK_BROKEN_GLASS_FALLS(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				new /obj/item/weapon/shard( src.loc )
-				var/obj/item/weapon/circuitboard/diseasesplicer/M = new /obj/item/weapon/circuitboard/diseasesplicer( A )
+				new /obj/item/shard( src.loc )
+				var/obj/item/circuitboard/diseasesplicer/M = new /obj/item/circuitboard/diseasesplicer( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
@@ -35,7 +35,7 @@
 			else
 				FEEDBACK_DISCONNECT_MONITOR(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/diseasesplicer/M = new /obj/item/weapon/circuitboard/diseasesplicer( A )
+				var/obj/item/circuitboard/diseasesplicer/M = new /obj/item/circuitboard/diseasesplicer( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
@@ -43,14 +43,14 @@
 				A.icon_state = "4"
 				A.anchored = TRUE
 				del(src)*/
-	if(istype(I,/obj/item/weapon/virusdish))
+	if(istype(I,/obj/item/virusdish))
 		var/mob/living/carbon/c = user
 		if(!dish)
 
 			dish = I
 			c.drop_item()
 			I.loc = src
-	if(istype(I,/obj/item/weapon/diseasedisk))
+	if(istype(I,/obj/item/diseasedisk))
 		user << "You upload the contents of the disk into the buffer"
 		memorybank = I:effect
 
@@ -137,7 +137,7 @@
 	if(burning)
 		burning -= 1
 		if(!burning)
-			var/obj/item/weapon/diseasedisk/d = new /obj/item/weapon/diseasedisk(src.loc)
+			var/obj/item/diseasedisk/d = new /obj/item/diseasedisk(src.loc)
 			if(analysed)
 				d.name = "[memorybank.effect.name] GNA disk (Stage: [5-memorybank.effect.stage])"
 			else
@@ -188,14 +188,14 @@
 		O.show_message("\icon[src] \blue [msg]", 2)
 
 
-/obj/item/weapon/diseasedisk
+/obj/item/diseasedisk
 	name = "Blank GNA disk"
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk2"
 	var/datum/disease2/effectholder/effect = null
 	var/stage = 1
 
-/obj/item/weapon/diseasedisk/premade/New()
+/obj/item/diseasedisk/premade/New()
 	name = "Blank GNA disk (stage: [5-stage])"
 	effect = new /datum/disease2/effectholder
 	effect.effect = new /datum/disease2/effect/invisible

@@ -674,7 +674,7 @@ var/list/ai_verbs_default = list(
 	toggle_sensor_mode()
 
 /mob/living/silicon/ai/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/wrench))
 		if(anchored)
 			user.visible_message("\blue \The [user] starts to unbolt \the [src] from the plating...")
 			if(!do_after(user,40))

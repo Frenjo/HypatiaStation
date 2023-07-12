@@ -8,8 +8,8 @@
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 
-	backpack = /obj/item/weapon/storage/backpack/security
-	satchel_one = /obj/item/weapon/storage/satchel/sec
+	backpack = /obj/item/storage/backpack/security
+	satchel_one = /obj/item/storage/satchel/sec
 
 /*
  * Head of Security
@@ -24,13 +24,13 @@
 
 	l_ear = /obj/item/device/radio/headset/heads/hos
 
-	suit_store = /obj/item/weapon/gun/energy/gun
+	suit_store = /obj/item/gun/energy/gun
 
 	backpack_contents = list(
-		/obj/item/weapon/handcuffs = 1
+		/obj/item/handcuffs = 1
 	)
 
-	id_type = /obj/item/weapon/card/id/silver
+	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/device/pda/heads/hos
 
 /*
@@ -47,7 +47,7 @@
 	l_pocket = /obj/item/device/flash
 
 	backpack_contents = list(
-		/obj/item/weapon/handcuffs = 1
+		/obj/item/handcuffs = 1
 	)
 
 	pda_type = /obj/item/device/pda/warden
@@ -66,17 +66,17 @@
 	gloves = /obj/item/clothing/gloves/black
 	shoes = /obj/item/clothing/shoes/brown
 
-	l_pocket = /obj/item/weapon/lighter/zippo
+	l_pocket = /obj/item/lighter/zippo
 
 	backpack_contents = list(
-		/obj/item/weapon/storage/box/evidence = 1,
+		/obj/item/storage/box/evidence = 1,
 		/obj/item/device/detective_scanner = 1
 	)
 
 	pda_type = /obj/item/device/pda/detective
 
-	backpack = /obj/item/weapon/storage/backpack
-	satchel_one = /obj/item/weapon/storage/satchel/norm
+	backpack = /obj/item/storage/backpack
+	satchel_one = /obj/item/storage/satchel/norm
 
 // Forensic Technician
 /decl/hierarchy/outfit/job/security/detective/forensics
@@ -95,10 +95,10 @@
 	uniform = /obj/item/clothing/under/rank/security
 
 	l_pocket = /obj/item/device/flash
-	r_pocket = /obj/item/weapon/handcuffs
+	r_pocket = /obj/item/handcuffs
 
 	backpack_contents = list(
-		/obj/item/weapon/handcuffs = 1
+		/obj/item/handcuffs = 1
 	)
 
 	pda_type = /obj/item/device/pda/security
@@ -114,9 +114,9 @@
 
 	l_ear = /obj/item/device/radio/headset/sec_para
 
-	l_hand = /obj/item/weapon/storage/firstaid/regular
+	l_hand = /obj/item/storage/firstaid/regular
 
 	pda_type = /obj/item/device/pda/medical
 
-	backpack = /obj/item/weapon/storage/backpack/medic
-	satchel_one = /obj/item/weapon/storage/satchel/med
+	backpack = /obj/item/storage/backpack/medic
+	satchel_one = /obj/item/storage/satchel/med

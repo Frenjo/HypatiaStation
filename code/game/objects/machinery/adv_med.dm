@@ -72,7 +72,7 @@
 	return
 
 /obj/machinery/bodyscanner/attackby(obj/item/weapon/grab/G as obj, user as mob)
-	if(!istype(G, /obj/item/weapon/grab) || !ismob(G.affecting))
+	if(!istype(G, /obj/item/grab) || !ismob(G.affecting))
 		return
 	if(src.occupant)
 		to_chat(usr, SPAN_INFO_B("The scanner is already occupied!"))
@@ -158,7 +158,7 @@
 
 /obj/machinery/body_scanconsole
 	var/obj/machinery/bodyscanner/connected
-	var/known_implants = list(/obj/item/weapon/implant/chem, /obj/item/weapon/implant/death_alarm, /obj/item/weapon/implant/loyalty, /obj/item/weapon/implant/tracking)
+	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking)
 	var/delete
 	var/temphtml
 	name = "Body Scanner Console"

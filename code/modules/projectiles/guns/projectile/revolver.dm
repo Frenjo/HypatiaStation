@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/detective
+/obj/item/gun/projectile/detective
 	desc = "A cheap Martian knock-off of a Smith & Wesson Model 10. Uses .38-Special rounds."
 	name = "revolver"
 	icon_state = "detective"
@@ -7,7 +7,7 @@
 	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MATERIALS = 2)
 	ammo_type = /obj/item/ammo_casing/c38
 
-/obj/item/weapon/gun/projectile/detective/special_check(mob/living/carbon/human/M)
+/obj/item/gun/projectile/detective/special_check(mob/living/carbon/human/M)
 	if(caliber == initial(caliber))
 		return 1
 	if(prob(70 - (length(loaded) * 10)))	//minimum probability of 10, maximum of 60
@@ -18,7 +18,7 @@
 		return 0
 	return 1
 
-/obj/item/weapon/gun/projectile/detective/verb/rename_gun()
+/obj/item/gun/projectile/detective/verb/rename_gun()
 	set name = "Name Gun"
 	set category = "Object"
 	set desc = "Click to rename your gun. If you're the detective."
@@ -37,9 +37,9 @@
 		to_chat(M, "You name the gun [input]. Say hello to your new friend.")
 		return 1
 
-/obj/item/weapon/gun/projectile/detective/attackby(obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/detective/attackby(obj/item/A as obj, mob/user as mob)
 	..()
-	if(istype(A, /obj/item/weapon/screwdriver))
+	if(istype(A, /obj/item/screwdriver))
 		if(caliber == "38")
 			to_chat(user, SPAN_NOTICE("You begin to reinforce the barrel of [src]."))
 			if(length(loaded))
@@ -70,7 +70,7 @@
 				desc = initial(desc)
 				to_chat(user, SPAN_WARNING("You remove the modifications on [src]! Now it will fire .38 rounds."))
 
-/obj/item/weapon/gun/projectile/detective/semiauto
+/obj/item/gun/projectile/detective/semiauto
 	desc = "A cheap Martian knock-off of a Colt M1911. Uses less-than-lethal .45 rounds."
 	name = "\improper Colt M1911"
 	icon_state = "colt"
@@ -79,11 +79,11 @@
 	ammo_type = /obj/item/ammo_casing/c45r
 	load_method = 2
 
-/obj/item/weapon/gun/projectile/detective/semiauto/New()
+/obj/item/gun/projectile/detective/semiauto/New()
 	. = ..()
 	empty_mag = new /obj/item/ammo_magazine/c45r/empty(src)
 
-/obj/item/weapon/gun/projectile/detective/semiauto/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+/obj/item/gun/projectile/detective/semiauto/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()
 	if(!length(loaded) && empty_mag)
 		empty_mag.loc = get_turf(src.loc)
@@ -91,7 +91,7 @@
 		to_chat(user, SPAN_NOTICE("The magazine falls out and clatters on the floor!"))
 	return
 
-/obj/item/weapon/gun/projectile/mateba
+/obj/item/gun/projectile/mateba
 	name = "mateba"
 	desc = "When you absolutely, positively need a 10mm hole in the other guy. Uses .357 ammo."	//>10mm hole >.357
 	icon_state = "mateba"
@@ -99,17 +99,17 @@
 
 // A gun to play Russian Roulette!
 // You can spin the chamber to randomize the position of the bullet.
-/obj/item/weapon/gun/projectile/russian
+/obj/item/gun/projectile/russian
 	name = "Russian Revolver"
 	desc = "A Russian made revolver. Uses .357 ammo. It has a single slot in it's chamber for a bullet."
 	max_shells = 6
 	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MATERIALS = 2)
 
-/obj/item/weapon/gun/projectile/russian/New()
+/obj/item/gun/projectile/russian/New()
 	Spin()
 	update_icon()
 
-/obj/item/weapon/gun/projectile/russian/proc/Spin()
+/obj/item/gun/projectile/russian/proc/Spin()
 	for(var/obj/item/ammo_casing/AC in loaded)
 		qdel(AC)
 	loaded = list()
@@ -121,7 +121,7 @@
 			loaded += new ammo_type(src)
 
 
-/obj/item/weapon/gun/projectile/russian/attackby(obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/russian/attackby(obj/item/A as obj, mob/user as mob)
 	if(!A)
 		return
 
@@ -150,12 +150,12 @@
 	update_icon()
 	return
 
-/obj/item/weapon/gun/projectile/russian/attack_self(mob/user as mob)
+/obj/item/gun/projectile/russian/attack_self(mob/user as mob)
 	user.visible_message(SPAN_WARNING("[user] spins the chamber of the revolver."), SPAN_WARNING("You spin the revolver's chamber."))
 	if(getAmmo() > 0)
 		Spin()
 
-/obj/item/weapon/gun/projectile/russian/attack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj)
+/obj/item/gun/projectile/russian/attack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj)
 	if(!length(loaded))
 		user.visible_message(SPAN_WARNING("*click*"), SPAN_WARNING("*click*"))
 		playsound(user, 'sound/weapons/empty.ogg', 100, 1)

@@ -259,7 +259,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang
 	name = "SGL-6 Grenade Launcher"
 	icon_state = "mecha_grenadelnchr"
-	projectile = /obj/item/weapon/grenade/flashbang
+	projectile = /obj/item/grenade/flashbang
 	fire_sound = 'sound/effects/bang.ogg'
 	projectiles = 6
 	missile_speed = 1.5
@@ -269,13 +269,13 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	..()
-	var/obj/item/weapon/grenade/flashbang/F = AM
+	var/obj/item/grenade/flashbang/F = AM
 	spawn(det_time)
 		F.prime()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/clusterbang//Because I am a heartless bastard -Sieve
 	name = "SOP-6 Grenade Launcher"
-	projectile = /obj/item/weapon/grenade/flashbang/clusterbang
+	projectile = /obj/item/grenade/flashbang/clusterbang
 	construction_cost = list(MATERIAL_METAL = 20000, MATERIAL_GOLD = 6000, MATERIAL_URANIUM = 6000)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited/get_equip_info()//Limited version of the clusterbang launcher that can't reload
@@ -287,7 +287,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar
 	name = "Banana Mortar"
 	icon_state = "mecha_bananamrtr"
-	projectile = /obj/item/weapon/bananapeel
+	projectile = /obj/item/bananapeel
 	fire_sound = 'sound/items/bikehorn.ogg'
 	projectiles = 15
 	missile_speed = 1.5

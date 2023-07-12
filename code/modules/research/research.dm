@@ -249,7 +249,7 @@ research holder datum.
 	req_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_PROGRAMMING = 3)
 */
 
-/obj/item/weapon/disk/tech_disk
+/obj/item/disk/tech_disk
 	name = "Technology Disk"
 	desc = "A disk for storing technology data for further research."
 	icon = 'icons/obj/cloning.dmi'
@@ -260,6 +260,6 @@ research holder datum.
 
 	var/datum/tech/stored
 
-/obj/item/weapon/disk/tech_disk/New()
+/obj/item/disk/tech_disk/New()
 	pixel_x = rand(-5.0, 5)
 	pixel_y = rand(-5.0, 5)

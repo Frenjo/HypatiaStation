@@ -40,7 +40,7 @@
 			src.sortTag = O.currTag
 			playsound(src, 'sound/machines/twobeep.ogg', 100, 1)
 
-	else if(istype(W, /obj/item/weapon/pen))
+	else if(istype(W, /obj/item/pen))
 		var/str = copytext(sanitize(input(usr, "Label text?", "Set label", "")), 1, MAX_NAME_LEN)
 		if(!str || !length(str))
 			to_chat(usr, SPAN_WARNING("Invalid text."))
@@ -81,7 +81,7 @@
 			src.sortTag = O.currTag
 			playsound(src, 'sound/machines/twobeep.ogg', 100, 1)
 
-	else if(istype(W, /obj/item/weapon/pen))
+	else if(istype(W, /obj/item/pen))
 		var/str = copytext(sanitize(input(usr, "Label text?", "Set label", "")), 1, MAX_NAME_LEN)
 		if(!str || !length(str))
 			to_chat(usr, SPAN_WARNING("Invalid text."))
@@ -92,7 +92,7 @@
 	return
 
 
-/obj/item/weapon/package_wrap
+/obj/item/package_wrap
 	name = "package wrapper"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "deliveryPaper"
@@ -100,13 +100,13 @@
 
 	var/amount = 25.0
 
-/obj/item/weapon/package_wrap/afterattack(obj/target as obj, mob/user as mob, proximity)
+/obj/item/package_wrap/afterattack(obj/target as obj, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	if(!istype(target))	//this really shouldn't be necessary (but it is).	-Pete
 		return
 	if(istype(target, /obj/item/small_delivery) || istype(target, /obj/structure/big_delivery) \
-	|| istype(target, /obj/item/weapon/gift) || istype(target, /obj/item/weapon/evidencebag))
+	|| istype(target, /obj/item/gift) || istype(target, /obj/item/evidencebag))
 		return
 	if(target.anchored)
 		return
@@ -115,7 +115,7 @@
 
 	user.attack_log += text("\[[time_stamp()]\] <font color='blue'>Has used [src.name] on \ref[target]</font>")
 
-	if(isitem(target) && !(istype(target, /obj/item/weapon/storage) && !istype(target, /obj/item/weapon/storage/box)))
+	if(isitem(target) && !(istype(target, /obj/item/storage) && !istype(target, /obj/item/storage/box)))
 		var/obj/item/O = target
 		if(src.amount > 1)
 			var/obj/item/small_delivery/P = new /obj/item/small_delivery(get_turf(O.loc))	//Aaannd wrap it up!
@@ -154,12 +154,12 @@
 	else
 		to_chat(user, SPAN_INFO("The object you are trying to wrap is unsuitable for the sorting machinery!"))
 	if(src.amount <= 0)
-		new /obj/item/weapon/c_tube(src.loc)
+		new /obj/item/c_tube(src.loc)
 		qdel(src)
 		return
 	return
 
-/obj/item/weapon/package_wrap/examine()
+/obj/item/package_wrap/examine()
 	if(src in usr)
 		to_chat(usr, SPAN_INFO("There are [amount] units of package wrap left!"))
 	..()
@@ -293,7 +293,7 @@
 	if(!I || !user)
 		return
 
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(istype(I, /obj/item/screwdriver))
 		if(c_mode == 0)
 			c_mode = 1
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
@@ -304,8 +304,8 @@
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			to_chat(user, "You attach the screws around the power connection.")
 			return
-	else if(istype(I, /obj/item/weapon/weldingtool) && c_mode == 1)
-		var/obj/item/weapon/weldingtool/W = I
+	else if(istype(I, /obj/item/weldingtool) && c_mode == 1)
+		var/obj/item/weldingtool/W = I
 		if(W.remove_fuel(0, user))
 			playsound(src, 'sound/items/Welder2.ogg', 100, 1)
 			to_chat(user, "You start slicing the floorweld off the delivery chute.")

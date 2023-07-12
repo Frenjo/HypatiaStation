@@ -3,18 +3,18 @@
  */
 /decl/hierarchy/outfit/wizard
 	uniform = /obj/item/clothing/under/lightpurple
-	back = /obj/item/weapon/storage/backpack
+	back = /obj/item/storage/backpack
 
 	shoes = /obj/item/clothing/shoes/sandal
 
 	l_ear = /obj/item/device/radio/headset
 
-	r_pocket = /obj/item/weapon/teleportation_scroll
+	r_pocket = /obj/item/teleportation_scroll
 
-	r_hand = /obj/item/weapon/spellbook
-	l_hand = /obj/item/weapon/staff
+	r_hand = /obj/item/spellbook
+	l_hand = /obj/item/staff
 
-	backpack_contents = list(/obj/item/weapon/storage/box = 1)
+	backpack_contents = list(/obj/item/storage/box = 1)
 
 /*
  * Blue

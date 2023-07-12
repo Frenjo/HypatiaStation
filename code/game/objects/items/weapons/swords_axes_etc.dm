@@ -11,7 +11,7 @@
 /*
  * Banhammer
  */
-/obj/item/weapon/banhammer/attack(mob/M as mob, mob/user as mob)
+/obj/item/banhammer/attack(mob/M as mob, mob/user as mob)
 	to_chat(M, SPAN_DANGER("You have been banned FOR NO REISIN by [user]!"))
 	to_chat(user, SPAN_WARNING("You have <b>BANNED</b> [M]!"))
 
@@ -19,22 +19,22 @@
 /*
  * Sword
  */
-/obj/item/weapon/melee/energy/sword/IsShield()
+/obj/item/melee/energy/sword/IsShield()
 	if(active)
 		return 1
 	return 0
 
-/obj/item/weapon/melee/energy/sword/New()
+/obj/item/melee/energy/sword/New()
 	item_color = pick("red", "blue", "green", "purple")
 
-/obj/item/weapon/melee/energy/sword/attack_self(mob/living/user as mob)
+/obj/item/melee/energy/sword/attack_self(mob/living/user as mob)
 	if((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("You accidentally cut yourself with [src]."))
 		user.take_organ_damage(5, 5)
 	active = !active
 	if(active)
 		force = 30
-		if(istype(src, /obj/item/weapon/melee/energy/sword/pirate))
+		if(istype(src, /obj/item/melee/energy/sword/pirate))
 			icon_state = "cutlass1"
 		else
 			icon_state = "sword[item_color]"
@@ -44,7 +44,7 @@
 
 	else
 		force = 3
-		if(istype(src, /obj/item/weapon/melee/energy/sword/pirate))
+		if(istype(src, /obj/item/melee/energy/sword/pirate))
 			icon_state = "cutlass0"
 		else
 			icon_state = "sword0"
@@ -64,7 +64,7 @@
 /*
  * Classic Baton
  */
-/obj/item/weapon/melee/classic_baton
+/obj/item/melee/classic_baton
 	name = "police baton"
 	desc = "A wooden truncheon for beating criminal scum."
 	icon_state = "baton"
@@ -72,7 +72,7 @@
 	slot_flags = SLOT_BELT
 	force = 10
 
-/obj/item/weapon/melee/classic_baton/attack(mob/M as mob, mob/living/user as mob)
+/obj/item/melee/classic_baton/attack(mob/M as mob, mob/living/user as mob)
 	if((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("You club yourself over the head."))
 		user.Weaken(3 * force)
@@ -118,7 +118,7 @@
 
 
 //Telescopic baton
-/obj/item/weapon/melee/telebaton
+/obj/item/melee/telebaton
 	name = "telescopic baton"
 	desc = "A compact yet rebalanced personal defense weapon. Can be concealed when folded."
 	icon_state = "telebaton_0"
@@ -128,7 +128,7 @@
 	force = 3
 	var/on = 0
 
-/obj/item/weapon/melee/telebaton/attack_self(mob/user as mob)
+/obj/item/melee/telebaton/attack_self(mob/user as mob)
 	on = !on
 	if(on)
 		user.visible_message(
@@ -173,7 +173,7 @@
 
 	return
 
-/obj/item/weapon/melee/telebaton/attack(mob/target as mob, mob/living/user as mob)
+/obj/item/melee/telebaton/attack(mob/target as mob, mob/living/user as mob)
 	if(on)
 		if((CLUMSY in user.mutations) && prob(50))
 			to_chat(user, SPAN_WARNING("You club yourself over the head."))
@@ -195,23 +195,23 @@
  *Energy Blade
  */
 //Most of the other special functions are handled in their own files.
-/obj/item/weapon/melee/energy/sword/green/New()
+/obj/item/melee/energy/sword/green/New()
 	item_color = "green"
 
-/obj/item/weapon/melee/energy/sword/red/New()
+/obj/item/melee/energy/sword/red/New()
 	item_color = "red"
 
-/obj/item/weapon/melee/energy/blade/New()
+/obj/item/melee/energy/blade/New()
 	spark_system = new /datum/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	return
 
-/obj/item/weapon/melee/energy/blade/dropped()
+/obj/item/melee/energy/blade/dropped()
 	qdel(src)
 	return
 
-/obj/item/weapon/melee/energy/blade/proc/thrown()
+/obj/item/melee/energy/blade/proc/thrown()
 	qdel(src)
 	return
 
@@ -219,7 +219,7 @@
 /*
  * Energy Axe
  */
-/obj/item/weapon/melee/energy/axe/attack_self(mob/user as mob)
+/obj/item/melee/energy/axe/attack_self(mob/user as mob)
 	src.active = !src.active
 	if(src.active)
 		to_chat(user, SPAN_INFO("The axe is now energised."))
@@ -238,13 +238,13 @@
 /*
  * Energy Shield
  */
-/obj/item/weapon/shield/energy/IsShield()
+/obj/item/shield/energy/IsShield()
 	if(active)
 		return 1
 	else
 		return 0
 
-/obj/item/weapon/shield/energy/attack_self(mob/living/user as mob)
+/obj/item/shield/energy/attack_self(mob/living/user as mob)
 	if((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("You beat yourself in the head with [src]."))
 		user.take_organ_damage(5)

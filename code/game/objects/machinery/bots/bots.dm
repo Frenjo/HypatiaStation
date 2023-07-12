@@ -14,7 +14,7 @@
 	layer = MOB_LAYER
 	light_range = 3
 	use_power = 0
-	var/obj/item/weapon/card/id/botcard			// the ID card that the bot "holds"
+	var/obj/item/card/id/botcard			// the ID card that the bot "holds"
 	var/on = 1
 	var/health = 0 //do not forget to set health for your bot!
 	var/maxhealth = 0
@@ -71,11 +71,11 @@
 	healthcheck()
 
 /obj/machinery/bot/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/screwdriver))
 		if(!locked)
 			open = !open
 			to_chat(user, SPAN_NOTICE("Maintenance panel is now [src.open ? "opened" : "closed"]."))
-	else if(istype(W, /obj/item/weapon/weldingtool))
+	else if(istype(W, /obj/item/weldingtool))
 		if(health < maxhealth)
 			if(open)
 				health = min(maxhealth, health + 10)
@@ -84,7 +84,7 @@
 				to_chat(user, SPAN_NOTICE("Unable to repair with the maintenance panel closed."))
 		else
 			to_chat(user, SPAN_NOTICE("[src] does not need a repair."))
-	else if(istype(W, /obj/item/weapon/card/emag) && emagged < 2)
+	else if(istype(W, /obj/item/card/emag) && emagged < 2)
 		Emag(user)
 	else
 		if(hasvar(W, "force") && hasvar(W, "damtype"))

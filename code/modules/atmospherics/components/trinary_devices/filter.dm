@@ -140,7 +140,7 @@ Filter types:
 	return 1
 
 /obj/machinery/atmospherics/trinary/filter/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(!istype(W, /obj/item/weapon/wrench))
+	if(!istype(W, /obj/item/wrench))
 		return ..()
 	var/turf/T = src.loc
 	if(level == 1 && isturf(T) && T.intact)

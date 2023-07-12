@@ -21,8 +21,8 @@
 /obj/machinery/r_n_d/server/New()
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/rdserver(src)
-	component_parts += new /obj/item/weapon/stock_part/scanning_module(src)
+	component_parts += new /obj/item/circuitboard/rdserver(src)
+	component_parts += new /obj/item/stock_part/scanning_module(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
 	RefreshParts()
@@ -33,7 +33,7 @@
 
 /obj/machinery/r_n_d/server/RefreshParts()
 	var/tot_rating = 0
-	for(var/obj/item/weapon/stock_part/SP in src)
+	for(var/obj/item/stock_part/SP in src)
 		tot_rating += SP.rating
 	//heat_gen /= max(1, tot_rating)
 	operating_temperature /= max(1, tot_rating)
@@ -128,7 +128,7 @@
 	if(..())
 		return 1
 
-	if(istype(O, /obj/item/weapon/screwdriver))
+	if(istype(O, /obj/item/screwdriver))
 		if(!opened)
 			opened = TRUE
 			icon_state = "server_o"
@@ -139,7 +139,7 @@
 			to_chat(user, "You close the maintenance hatch of the [src.name].")
 		return 1
 	if(opened)
-		if(istype(O, /obj/item/weapon/crowbar))
+		if(istype(O, /obj/item/crowbar))
 			griefProtection()
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
@@ -198,7 +198,7 @@
 /obj/machinery/computer/rdservercontrol
 	name = "R&D Server Controller"
 	icon_state = "rdcomp"
-	circuit = /obj/item/weapon/circuitboard/rdservercontrol
+	circuit = /obj/item/circuitboard/rdservercontrol
 
 	var/screen = RDSCONTROL_SCREEN_MAIN_MENU
 	var/obj/machinery/r_n_d/server/temp_server
@@ -339,7 +339,7 @@
 	return
 
 /obj/machinery/computer/rdservercontrol/attackby(obj/item/weapon/D as obj, mob/user as mob)
-	if(istype(D, /obj/item/weapon/card/emag) && !emagged)
+	if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
 		to_chat(user, SPAN_INFO("You you disable the security protocols."))

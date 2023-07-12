@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/energy/taser
+/obj/item/gun/energy/taser
 	name = "taser gun"
 	desc = "A small, low capacity gun used for non-lethal takedowns."
 	icon_state = "taser"
@@ -10,24 +10,24 @@
 	pulse_projectile_types = list(
 		GUN_SETTING_STUN = /obj/item/projectile/energy/electrode
 	)
-	cell_type = /obj/item/weapon/cell/crap
+	cell_type = /obj/item/cell/crap
 
-/obj/item/weapon/gun/energy/taser/cyborg
+/obj/item/gun/energy/taser/cyborg
 	charge_cost = 100
-	cell_type = /obj/item/weapon/cell/secborg
+	cell_type = /obj/item/cell/secborg
 
 	var/charge_tick = 0
 	var/recharge_time = 10 //Time it takes for shots to recharge (in ticks)
 
-/obj/item/weapon/gun/energy/taser/cyborg/New()
+/obj/item/gun/energy/taser/cyborg/New()
 	. = ..()
 	GLOBL.processing_objects.Add(src)
 
-/obj/item/weapon/gun/energy/taser/cyborg/Destroy()
+/obj/item/gun/energy/taser/cyborg/Destroy()
 	GLOBL.processing_objects.Remove(src)
 	return ..()
 
-/obj/item/weapon/gun/energy/taser/cyborg/process() //Every [recharge_time] ticks, recharge a shot for the cyborg
+/obj/item/gun/energy/taser/cyborg/process() //Every [recharge_time] ticks, recharge a shot for the cyborg
 	charge_tick++
 	if(charge_tick < recharge_time)
 		return 0
@@ -47,7 +47,7 @@
 	update_icon()
 	return 1
 
-/obj/item/weapon/gun/energy/stunrevolver
+/obj/item/gun/energy/stunrevolver
 	name = "stun revolver"
 	desc = "A high-tech revolver that fires stun cartridges. The stun cartridges can be recharged using a conventional energy weapon recharger."
 	icon_state = "stunrevolver"
@@ -59,9 +59,9 @@
 	pulse_projectile_types = list(
 		GUN_SETTING_STUN = /obj/item/projectile/energy/electrode
 	)
-	cell_type = /obj/item/weapon/cell
+	cell_type = /obj/item/cell
 
-/obj/item/weapon/gun/energy/disabler
+/obj/item/gun/energy/disabler
 	name = "disabler"
 	desc = "A non-lethal self-defense weapon that exhausts organic targets, weakening them until they collapse."
 	icon_state = "disabler"
@@ -75,9 +75,9 @@
 	beam_projectile_types = list(
 		GUN_SETTING_DISABLE = /obj/item/projectile/energy/beam/disabler
 	)
-	cell_type = /obj/item/weapon/cell
+	cell_type = /obj/item/cell
 
-/obj/item/weapon/gun/energy/crossbow
+/obj/item/gun/energy/crossbow
 	name = "mini energy-crossbow"
 	desc = "A weapon favored by many of the syndicates stealth specialists."
 	icon_state = "crossbow"
@@ -91,19 +91,19 @@
 	pulse_projectile_types = list(
 		GUN_SETTING_SPECIAL = /obj/item/projectile/energy/bolt
 	)
-	cell_type = /obj/item/weapon/cell/crap
+	cell_type = /obj/item/cell/crap
 
 	var/charge_tick = 0
 
-/obj/item/weapon/gun/energy/crossbow/New()
+/obj/item/gun/energy/crossbow/New()
 	. = ..()
 	GLOBL.processing_objects.Add(src)
 
-/obj/item/weapon/gun/energy/crossbow/Destroy()
+/obj/item/gun/energy/crossbow/Destroy()
 	GLOBL.processing_objects.Remove(src)
 	return ..()
 
-/obj/item/weapon/gun/energy/crossbow/process()
+/obj/item/gun/energy/crossbow/process()
 	charge_tick++
 	if(charge_tick < 4)
 		return 0
@@ -113,10 +113,10 @@
 	power_supply.give(100)
 	return 1
 
-/obj/item/weapon/gun/energy/crossbow/update_icon()
+/obj/item/gun/energy/crossbow/update_icon()
 	return
 
-/obj/item/weapon/gun/energy/crossbow/largecrossbow
+/obj/item/gun/energy/crossbow/largecrossbow
 	name = "Energy Crossbow"
 	desc = "A weapon favored by syndicate infiltration teams."
 	w_class = 4.0

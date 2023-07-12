@@ -45,7 +45,7 @@
 		src.occupant.parent.cancel_camera()
 		qdel(src.occupant)
 		if(IS_SEC_LEVEL(/decl/security_level/delta))
-			for(var/obj/item/weapon/pinpointer/point in world)
+			for(var/obj/item/pinpointer/point in world)
 				for(var/datum/mind/AI_mind in global.CTgame_ticker.mode.malf_ai)
 					var/mob/living/silicon/ai/A = AI_mind.current // the current mob the mind owns
 					if(A.stat != DEAD)
@@ -56,5 +56,5 @@
 			src.occupant.loc = src.loc
 			src.occupant.death()
 			src.occupant.gib()
-			for(var/obj/item/weapon/pinpointer/point in world)
+			for(var/obj/item/pinpointer/point in world)
 				point.the_disk = null //the pinpointer will go back to pointing at the nuke disc.

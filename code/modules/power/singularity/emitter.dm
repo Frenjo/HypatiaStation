@@ -166,7 +166,7 @@
 		A.process()	//TODO: Carn: check this out
 
 /obj/machinery/power/emitter/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/wrench))
 		if(active)
 			to_chat(user, "Turn off the [src] first.")
 			return
@@ -193,8 +193,8 @@
 				to_chat(user, SPAN_WARNING("The [src.name] needs to be unwelded from the floor."))
 		return
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 		if(active)
 			to_chat(user, "Turn off the [src] first.")
 			return
@@ -235,7 +235,7 @@
 					to_chat(user, SPAN_WARNING("You need more welding fuel to complete this task."))
 		return
 
-	if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))
+	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))
 		if(emagged)
 			to_chat(user, SPAN_WARNING("The lock seems to be broken."))
 			return
@@ -250,7 +250,7 @@
 			FEEDBACK_ACCESS_DENIED(user)
 		return
 
-	if(istype(W, /obj/item/weapon/card/emag) && !emagged)
+	if(istype(W, /obj/item/card/emag) && !emagged)
 		locked = 0
 		emagged = 1
 		user.visible_message(

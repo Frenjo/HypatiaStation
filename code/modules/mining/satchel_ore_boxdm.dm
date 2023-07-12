@@ -19,12 +19,12 @@
 	var/last_update = 0
 
 /obj/structure/ore_box/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/ore))
+	if(istype(W, /obj/item/ore))
 		src.contents += W;
-	if(istype(W, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = W
+	if(istype(W, /obj/item/storage))
+		var/obj/item/storage/S = W
 		S.hide_from(usr)
-		for(var/obj/item/weapon/ore/O in S.contents)
+		for(var/obj/item/ore/O in S.contents)
 			S.remove_from_storage(O, src) //This will move the item to this item's contents
 		to_chat(user, SPAN_INFO("You empty the satchel into the box."))
 	return
@@ -40,24 +40,24 @@
 	var/amt_clown = 0
 	var/amt_strange = 0
 
-	for(var/obj/item/weapon/ore/C in contents)
-		if(istype(C, /obj/item/weapon/ore/diamond))
+	for(var/obj/item/ore/C in contents)
+		if(istype(C, /obj/item/ore/diamond))
 			amt_diamond++;
-		if(istype(C, /obj/item/weapon/ore/glass))
+		if(istype(C, /obj/item/ore/glass))
 			amt_glass++;
-		if(istype(C, /obj/item/weapon/ore/plasma))
+		if(istype(C, /obj/item/ore/plasma))
 			amt_plasma++;
-		if(istype(C, /obj/item/weapon/ore/iron))
+		if(istype(C, /obj/item/ore/iron))
 			amt_iron++;
-		if(istype(C, /obj/item/weapon/ore/silver))
+		if(istype(C, /obj/item/ore/silver))
 			amt_silver++;
-		if(istype(C, /obj/item/weapon/ore/gold))
+		if(istype(C, /obj/item/ore/gold))
 			amt_gold++;
-		if(istype(C, /obj/item/weapon/ore/uranium))
+		if(istype(C, /obj/item/ore/uranium))
 			amt_uranium++;
-		if(istype(C, /obj/item/weapon/ore/bananium))
+		if(istype(C, /obj/item/ore/bananium))
 			amt_bananium++;
-		if(istype(C, /obj/item/weapon/ore/strangerock))
+		if(istype(C, /obj/item/ore/strangerock))
 			amt_strange++;
 
 	var/dat = text("<b>The contents of the ore box reveal...</b><br>")
@@ -90,7 +90,7 @@
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
 	if(href_list["removeall"])
-		for(var/obj/item/weapon/ore/O in contents)
+		for(var/obj/item/ore/O in contents)
 			contents -= O
 			O.loc = src.loc
 		to_chat(usr, SPAN_INFO("You empty the box."))

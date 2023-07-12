@@ -49,7 +49,7 @@
 			return 1
 
 	if(!tracker)
-		if(istype(W, /obj/item/weapon/tracker_electronics))
+		if(istype(W, /obj/item/tracker_electronics))
 			tracker = TRUE
 			user.drop_item()
 			qdel(W)
@@ -57,7 +57,7 @@
 			return 1
 	else
 		if(iscrowbar(W))
-			new /obj/item/weapon/tracker_electronics(src.loc)
+			new /obj/item/tracker_electronics(src.loc)
 			tracker = FALSE
 			user.visible_message(SPAN_NOTICE("[user] takes out the electronics from the solar assembly."))
 			return 1

@@ -9,15 +9,15 @@
 	idle_power_usage = 10
 	active_power_usage = 1000
 
-	var/list/obj/item/weapon/reagent_containers/food/input = list()
-	var/list/obj/item/weapon/reagent_containers/food/output = list()
-	var/obj/item/weapon/reagent_containers/food/milled_item
+	var/list/obj/item/reagent_containers/food/input = list()
+	var/list/obj/item/reagent_containers/food/output = list()
+	var/obj/item/reagent_containers/food/milled_item
 	var/busy = 0
 	var/progress = 0
 	var/error = 0
 
 /obj/machinery/mill/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/reagent_containers/food))
+	if(istype(W, /obj/item/reagent_containers/food))
 		user.u_equip(W)
 		W.loc = src
 		input += W
@@ -25,7 +25,7 @@
 		..()
 
 /obj/machinery/mill/attack_hand(mob/user as mob)
-	for(var/obj/item/weapon/reagent_containers/food/F in output)
+	for(var/obj/item/reagent_containers/food/F in output)
 		F.loc = src.loc
 		output -= F
 
@@ -48,11 +48,11 @@
 		return	//Not done yet.
 
 	switch(milled_item.type)
-		if(/obj/item/weapon/reagent_containers/food/snacks/grown/wheat)	//Wheat becomes flour
-			var/obj/item/weapon/reagent_containers/food/snacks/flour/F = new(src)
+		if(/obj/item/reagent_containers/food/snacks/grown/wheat)	//Wheat becomes flour
+			var/obj/item/reagent_containers/food/snacks/flour/F = new(src)
 			output += F
-		if(/obj/item/weapon/reagent_containers/food/snacks/flour)	//Flour is still flour
-			var/obj/item/weapon/reagent_containers/food/snacks/flour/F = new(src)
+		if(/obj/item/reagent_containers/food/snacks/flour)	//Flour is still flour
+			var/obj/item/reagent_containers/food/snacks/flour/F = new(src)
 			output += F
 		else
 			error = 1

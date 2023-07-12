@@ -1,4 +1,4 @@
-/obj/item/weapon/melee/baton
+/obj/item/melee/baton
 	name = "stun baton"
 	desc = "A stun baton for incapacitating people with."
 	icon_state = "stunbaton"
@@ -18,13 +18,13 @@
 		viewers(user) << "\red <b>[user] is putting the live [src.name] in \his mouth! It looks like \he's trying to commit suicide.</b>"
 		return (FIRELOSS)
 
-/obj/item/weapon/melee/baton/update_icon()
+/obj/item/melee/baton/update_icon()
 	if(status)
 		icon_state = "stunbaton_active"
 	else
 		icon_state = "stunbaton"
 
-/obj/item/weapon/melee/baton/attack_self(mob/user as mob)
+/obj/item/melee/baton/attack_self(mob/user as mob)
 	if(status && (CLUMSY in user.mutations) && prob(50))
 		user << "\red You grab the [src] on the wrong side."
 		user.Weaken(30)
@@ -43,7 +43,7 @@
 		user << "<span class='warning'>\The [src] is out of charge.</span>"
 	add_fingerprint(user)
 
-/obj/item/weapon/melee/baton/attack(mob/M as mob, mob/user as mob)
+/obj/item/melee/baton/attack(mob/M as mob, mob/user as mob)
 	if(status && (CLUMSY in user.mutations) && prob(50))
 		user << "<span class='danger'>You accidentally hit yourself with the [src]!</span>"
 		user.Weaken(30)
@@ -97,7 +97,7 @@
 
 	add_fingerprint(user)
 
-/obj/item/weapon/melee/baton/throw_impact(atom/hit_atom)
+/obj/item/melee/baton/throw_impact(atom/hit_atom)
 	. = ..()
 	if (prob(50))
 		if(istype(hit_atom, /mob/living))
@@ -117,7 +117,7 @@
 				H.attack_log += "\[[time_stamp()]\]<font color='orange'> Stunned by thrown [src.name] last touched by ([src.fingerprintslast])</font>"
 				msg_admin_attack("Flying [src.name], last touched by ([src.fingerprintslast]) stunned [key_name(H)]" )
 
-/obj/item/weapon/melee/baton/emp_act(severity)
+/obj/item/melee/baton/emp_act(severity)
 	switch(severity)
 		if(1)
 			charges = 0

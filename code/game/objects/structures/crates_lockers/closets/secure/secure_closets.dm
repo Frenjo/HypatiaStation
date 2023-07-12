@@ -50,7 +50,7 @@
 
 /obj/structure/closet/secure_closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(src.opened)
-		if(istype(W, /obj/item/weapon/grab))
+		if(istype(W, /obj/item/grab))
 			if(src.large)
 				src.MouseDrop_T(W:affecting, user)	//act like they were dragged onto the closet
 			else
@@ -60,13 +60,13 @@
 		user.drop_item()
 		if(W)
 			W.loc = src.loc
-	else if((istype(W, /obj/item/weapon/card/emag)||istype(W, /obj/item/weapon/melee/energy/blade)) && !src.broken)
+	else if((istype(W, /obj/item/card/emag)||istype(W, /obj/item/melee/energy/blade)) && !src.broken)
 		broken = 1
 		locked = 0
 		desc = "It appears to be broken."
 		icon_state = icon_off
 		flick(icon_broken, src)
-		if(istype(W, /obj/item/weapon/melee/energy/blade))
+		if(istype(W, /obj/item/melee/energy/blade))
 			var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
 			spark_system.set_up(5, 0, src.loc)
 			spark_system.start()
@@ -77,7 +77,7 @@
 		else
 			for(var/mob/O in viewers(user, 3))
 				O.show_message(SPAN_WARNING("The locker has been broken by [user] with an electromagnetic card!"), 1, "You hear a faint electrical spark.", 2)
-	else if(istype(W, /obj/item/weapon/package_wrap) || istype(W, /obj/item/weapon/weldingtool))
+	else if(istype(W, /obj/item/package_wrap) || istype(W, /obj/item/weldingtool))
 		return ..(W, user)
 	else
 		togglelock(user)

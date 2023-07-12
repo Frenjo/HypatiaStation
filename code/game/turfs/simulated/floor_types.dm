@@ -70,7 +70,7 @@
 		return
 	if(isnull(user))
 		return
-	if(istype(C, /obj/item/weapon/wrench))
+	if(istype(C, /obj/item/wrench))
 		to_chat(user, SPAN_INFO("Removing rods..."))
 		playsound(src, 'sound/items/Ratchet.ogg', 80, 1)
 		if(do_after(user, 30))

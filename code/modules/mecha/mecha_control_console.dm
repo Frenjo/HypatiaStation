@@ -2,7 +2,7 @@
 	name = "Exosuit Control"
 	icon_state = "mecha"
 	req_access = list(ACCESS_ROBOTICS)
-	circuit = /obj/item/weapon/circuitboard/mecha_control
+	circuit = /obj/item/circuitboard/mecha_control
 
 	var/list/located = list()
 	var/screen = 0
@@ -119,7 +119,7 @@
 	return M.get_log_html()
 
 
-/obj/item/weapon/storage/box/mechabeacons
+/obj/item/storage/box/mechabeacons
 	name = "Exosuit Tracking Beacons"
 
 	starts_with = list(

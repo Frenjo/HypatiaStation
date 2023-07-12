@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/energy/gun
+/obj/item/gun/energy/gun
 	name = "energy gun"
 	desc = "A basic energy-based gun with two settings: Stun and kill."
 	icon_state = "energystun100"
@@ -18,7 +18,7 @@
 	origin_tech = list(RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MAGNETS = 2)
 	modifystate = "energystun"
 
-/obj/item/weapon/gun/energy/gun/attack_self(mob/living/user as mob)
+/obj/item/gun/energy/gun/attack_self(mob/living/user as mob)
 	switch(gun_setting)
 		if(GUN_SETTING_STUN)
 			gun_setting = GUN_SETTING_KILL
@@ -34,7 +34,7 @@
 			modifystate = "energystun"
 	update_icon()
 
-/obj/item/weapon/gun/energy/gun/nuclear
+/obj/item/gun/energy/gun/nuclear
 	name = "Advanced Energy Gun"
 	desc = "An energy gun with an experimental miniaturized reactor."
 	icon_state = "nucgun"
@@ -43,15 +43,15 @@
 	var/lightfail = 0
 	var/charge_tick = 0
 
-/obj/item/weapon/gun/energy/gun/nuclear/New()
+/obj/item/gun/energy/gun/nuclear/New()
 	. = ..()
 	GLOBL.processing_objects.Add(src)
 
-/obj/item/weapon/gun/energy/gun/nuclear/Destroy()
+/obj/item/gun/energy/gun/nuclear/Destroy()
 	GLOBL.processing_objects.Remove(src)
 	return ..()
 
-/obj/item/weapon/gun/energy/gun/nuclear/process()
+/obj/item/gun/energy/gun/nuclear/process()
 	charge_tick++
 	if(charge_tick < 4)
 		return 0
@@ -65,7 +65,7 @@
 		update_icon()
 	return 1
 
-/obj/item/weapon/gun/energy/gun/nuclear/proc/failcheck()
+/obj/item/gun/energy/gun/nuclear/proc/failcheck()
 	lightfail = 0
 	if(prob(src.reliability))
 		return 1 //No failure
@@ -89,7 +89,7 @@
 		update_icon()
 	return 0
 
-/obj/item/weapon/gun/energy/gun/nuclear/proc/update_charge()
+/obj/item/gun/energy/gun/nuclear/proc/update_charge()
 	if(crit_fail)
 		overlays += "nucgun-whee"
 		return
@@ -97,7 +97,7 @@
 	ratio = round(ratio, 0.25) * 100
 	overlays += "nucgun-[ratio]"
 
-/obj/item/weapon/gun/energy/gun/nuclear/proc/update_reactor()
+/obj/item/gun/energy/gun/nuclear/proc/update_reactor()
 	if(crit_fail)
 		overlays += "nucgun-crit"
 		return
@@ -108,17 +108,17 @@
 	else
 		overlays += "nucgun-clean"
 
-/obj/item/weapon/gun/energy/gun/nuclear/proc/update_mode()
+/obj/item/gun/energy/gun/nuclear/proc/update_mode()
 	if(gun_setting == GUN_SETTING_STUN)
 		overlays += "nucgun-stun"
 	else if(gun_setting == GUN_SETTING_KILL)
 		overlays += "nucgun-kill"
 
-/obj/item/weapon/gun/energy/gun/nuclear/emp_act(severity)
+/obj/item/gun/energy/gun/nuclear/emp_act(severity)
 	..()
 	reliability -= round(15 / severity)
 
-/obj/item/weapon/gun/energy/gun/nuclear/update_icon()
+/obj/item/gun/energy/gun/nuclear/update_icon()
 	overlays.Cut()
 	update_charge()
 	update_reactor()

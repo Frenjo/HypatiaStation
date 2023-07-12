@@ -26,8 +26,8 @@
 		del(src)
 		return
 
-	attackby(var/obj/item/weapon/reagent_containers/glass/B as obj, var/mob/user as mob)
-		if(!istype(B,/obj/item/weapon/reagent_containers/syringe))
+	attackby(var/obj/item/reagent_containers/glass/B as obj, var/mob/user as mob)
+		if(!istype(B,/obj/item/reagent_containers/syringe))
 			return
 
 		if(src.beaker)
@@ -37,7 +37,7 @@
 		src.beaker =  B
 		user.drop_item()
 		B.loc = src
-		if(istype(B,/obj/item/weapon/reagent_containers/syringe))
+		if(istype(B,/obj/item/reagent_containers/syringe))
 			user << "You add the syringe to the machine!"
 			src.updateUsrDialog()
 			icon_state = "isolator_in"
@@ -105,7 +105,7 @@
 		if(isolating > 0)
 			isolating -= 1
 			if(isolating == 0)
-				var/obj/item/weapon/virusdish/d = new /obj/item/weapon/virusdish(src.loc)
+				var/obj/item/virusdish/d = new /obj/item/virusdish(src.loc)
 				d.virus2 = virus2.getcopy()
 				virus2 = null
 				icon_state = "isolator_in"
@@ -113,7 +113,7 @@
 
 
 
-/obj/item/weapon/virusdish
+/obj/item/virusdish
 	name = "Virus containment/growth dish"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantcase-b"
@@ -122,8 +122,8 @@
 	var/info = 0
 	var/analysed = 0
 
-/obj/item/weapon/virusdish/attackby(var/obj/item/weapon/W as obj,var/mob/living/carbon/user as mob)
-	if(istype(W,/obj/item/weapon/hand_labeler))
+/obj/item/virusdish/attackby(var/obj/item/W as obj,var/mob/living/carbon/user as mob)
+	if(istype(W,/obj/item/hand_labeler))
 		return
 	..()
 	if(prob(50))
@@ -132,7 +132,7 @@
 			infect_virus2(user,virus2)
 		del src
 
-/obj/item/weapon/virusdish/examine()
+/obj/item/virusdish/examine()
 	usr << "This is a virus containment dish"
 	if(src.info)
 		usr << "It has the following information about its contents"

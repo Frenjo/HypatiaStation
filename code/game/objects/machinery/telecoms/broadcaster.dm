@@ -23,7 +23,7 @@
 	//heatgen = 0
 	operating_temperature = null
 	delay = 7
-	circuitboard = /obj/item/weapon/circuitboard/telecoms/broadcaster
+	circuitboard = /obj/item/circuitboard/telecoms/broadcaster
 
 /obj/machinery/telecoms/broadcaster/receive_information(datum/signal/signal, obj/machinery/telecoms/machine_from)
 	// Don't broadcast rejected signals

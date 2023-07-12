@@ -1,7 +1,7 @@
 
 //the researchable camera circuit that can connect to any camera network
 
-/obj/item/weapon/circuitboard/camera
+/obj/item/circuitboard/camera
 	//name = "circuit board (Camera)"
 	var/secured = 1
 	var/authorised = 0
@@ -37,9 +37,9 @@
 
 	attackby(var/obj/item/I, var/mob/user)//if(health > 50)
 		..()
-		if(istype(I,/obj/item/weapon/card/emag))
+		if(istype(I,/obj/item/card/emag))
 			if(network)
-				var/obj/item/weapon/card/emag/E = I
+				var/obj/item/card/emag/E = I
 				if(E.uses)
 					E.uses--
 				else
@@ -49,7 +49,7 @@
 				updateDialog()
 			else
 				user << "\blue You must select a camera network circuit!"
-		else if(istype(I,/obj/item/weapon/screwdriver))
+		else if(istype(I,/obj/item/screwdriver))
 			secured = !secured
 			user.visible_message("\blue The [src] can [secured ? "no longer" : "now"] be modified.")
 			updateBuildPath()
@@ -97,7 +97,7 @@
 			authorised = 0
 		else if( href_list["auth"] )
 			var/mob/M = usr
-			var/obj/item/weapon/card/id/I = M.equipped()
+			var/obj/item/card/id/I = M.equipped()
 			if (istype(I, /obj/item/device/pda))
 				var/obj/item/device/pda/pda = I
 				I = pda.id
@@ -106,9 +106,9 @@
 					authorised = 1
 				else if (possibleNets[network] in I.access)
 					authorised = 1
-			if(istype(I,/obj/item/weapon/card/emag))
+			if(istype(I,/obj/item/card/emag))
 				if(network)
-					var/obj/item/weapon/card/emag/E = I
+					var/obj/item/card/emag/E = I
 					if(E.uses)
 						E.uses--
 					else

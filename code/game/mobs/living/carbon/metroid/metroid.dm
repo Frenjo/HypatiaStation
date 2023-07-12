@@ -305,17 +305,17 @@
 				if (ismob(pulling))
 					var/mob/M = pulling
 					var/ok = 1
-					if (locate(/obj/item/weapon/grab, M.grabbed_by))
+					if (locate(/obj/item/grab, M.grabbed_by))
 						if (prob(75))
-							var/obj/item/weapon/grab/G = pick(M.grabbed_by)
-							if (istype(G, /obj/item/weapon/grab))
+							var/obj/item/grab/G = pick(M.grabbed_by)
+							if (istype(G, /obj/item/grab))
 								for(var/mob/O in viewers(M, null))
 									O.show_message(text("\red [] has been pulled from []'s grip by []", G.affecting, G.assailant, src), 1)
 								//G = null
 								del(G)
 						else
 							ok = 0
-						if (locate(/obj/item/weapon/grab, M.grabbed_by.len))
+						if (locate(/obj/item/grab, M.grabbed_by.len))
 							ok = 0
 					if (ok)
 						var/atom/movable/t = M.pulling
@@ -503,7 +503,7 @@
 		if ("grab")
 			if (M == src)
 				return
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab( M, M, src )
+			var/obj/item/grab/G = new /obj/item/grab( M, M, src )
 
 			M.put_in_active_hand(G)
 
@@ -594,7 +594,7 @@
 		if ("grab")
 			if (M == src)
 				return
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab( M, M, src )
+			var/obj/item/grab/G = new /obj/item/grab( M, M, src )
 
 			M.put_in_active_hand(G)
 
@@ -684,7 +684,7 @@ mob/living/carbon/metroid/var/temperature_resistance = T0C+75
 
 /*/mob/living/carbon/metroid/proc/get_obstacle_ok(atom/A)
 	var/direct = get_dir(src, A)
-	//var/obj/item/weapon/dummy/D = new /obj/item/weapon/dummy( src.loc )
+	//var/obj/item/dummy/D = new /obj/item/dummy( src.loc )
 	var/obj/D = new(src)
 	var/ok = 0
 	if ( (direct - 1) & direct)

@@ -115,7 +115,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(T.intact)
 		return
 
-	if(istype(W, /obj/item/weapon/wirecutters))
+	if(istype(W, /obj/item/wirecutters))
 ///// Z-Level Stuff
 		if(src.d1 == 12 || src.d2 == 12)
 			to_chat(user, SPAN_WARNING("You must cut this cable from above."))
@@ -546,7 +546,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		if(src.amount <= 14)
 			to_chat(usr, SPAN_WARNING("You need at least 15 lengths to make restraints!"))
 			return
-		var/obj/item/weapon/handcuffs/cable/B = new /obj/item/weapon/handcuffs/cable(usr.loc)
+		var/obj/item/handcuffs/cable/B = new /obj/item/handcuffs/cable(usr.loc)
 		B.icon_state = "cuff_[item_color]"
 		to_chat(usr, SPAN_INFO("You wind some cable together to make some restraints."))
 		src.use(15)
@@ -557,7 +557,7 @@ By design, d1 is the smallest direction and d2 is the highest
 //	- Wirecutters: cut them duh!
 //	- Cable coil: merge cables
 /obj/item/stack/cable_coil/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/wirecutters) && src.amount > 1)
+	if(istype(W, /obj/item/wirecutters) && src.amount > 1)
 		src.amount--
 		new/obj/item/stack/cable_coil(user.loc, 1, item_color)
 		to_chat(user, SPAN_NOTICE("You cut a piece off the cable coil."))

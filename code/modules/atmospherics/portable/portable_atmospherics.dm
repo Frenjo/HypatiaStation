@@ -5,7 +5,7 @@
 	var/datum/gas_mixture/air_contents
 
 	var/obj/machinery/atmospherics/unary/portables_connector/connected_port
-	var/obj/item/weapon/tank/holding
+	var/obj/item/tank/holding
 
 	var/volume = 0
 	var/destroyed = FALSE
@@ -79,17 +79,17 @@
 
 /obj/machinery/portable_atmospherics/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	var/obj/icon = src
-	if(istype(W, /obj/item/weapon/tank) && !destroyed)
+	if(istype(W, /obj/item/tank) && !destroyed)
 		if(isnotnull(holding))
 			return
-		var/obj/item/weapon/tank/T = W
+		var/obj/item/tank/T = W
 		user.drop_item()
 		T.loc = src
 		holding = T
 		update_icon()
 		return
 
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/wrench))
 		if(isnotnull(connected_port))
 			disconnect()
 			to_chat(user, SPAN_INFO("You disconnect [name] from the port."))

@@ -17,22 +17,22 @@
 		/obj/item/clothing/head/helmet/cap,
 		/obj/item/clothing/under/rank/captain,
 		/obj/item/clothing/suit/armor/vest,
-		/obj/item/weapon/cartridge/captain,
+		/obj/item/cartridge/captain,
 		/obj/item/clothing/head/helmet/swat,
 		/obj/item/clothing/shoes/brown,
 		/obj/item/device/radio/headset/heads/captain,
 		/obj/item/clothing/gloves/captain,
-		/obj/item/weapon/gun/energy/gun,
+		/obj/item/gun/energy/gun,
 		/obj/item/clothing/suit/armor/captain,
-		/obj/item/weapon/melee/telebaton,
+		/obj/item/melee/telebaton,
 		/obj/item/clothing/under/dress/dress_cap
 	)
 
 /obj/structure/closet/secure_closet/captains/New()
 	if(prob(50))
-		starts_with.Add(/obj/item/weapon/storage/backpack/captain)
+		starts_with.Add(/obj/item/storage/backpack/captain)
 	else
-		starts_with.Add(/obj/item/weapon/storage/satchel/cap)
+		starts_with.Add(/obj/item/storage/satchel/cap)
 	. = ..()
 
 /*
@@ -52,11 +52,11 @@
 		/obj/item/clothing/glasses/sunglasses,
 		/obj/item/clothing/suit/armor/vest,
 		/obj/item/clothing/head/helmet,
-		/obj/item/weapon/cartridge/hop,
+		/obj/item/cartridge/hop,
 		/obj/item/device/radio/headset/heads/hop,
-		/obj/item/weapon/storage/box/ids,
-		/obj/item/weapon/storage/box/ids,
-		/obj/item/weapon/gun/energy/gun,
+		/obj/item/storage/box/ids,
+		/obj/item/storage/box/ids,
+		/obj/item/gun/energy/gun,
 		/obj/item/device/flash
 	)
 
@@ -109,26 +109,26 @@
 		/obj/item/clothing/suit/armor/hos/jensen,
 		/obj/item/clothing/suit/armor/hos,
 		/obj/item/clothing/head/helmet/HoS/dermal,
-		/obj/item/weapon/cartridge/hos,
+		/obj/item/cartridge/hos,
 		/obj/item/device/radio/headset/heads/hos,
 		/obj/item/clothing/glasses/sunglasses/sechud,
 		/obj/item/taperoll/police,
-		/obj/item/weapon/shield/riot,
-		/obj/item/weapon/storage/lockbox/loyalty,
-		/obj/item/weapon/storage/box/flashbangs,
-		/obj/item/weapon/storage/belt/security,
+		/obj/item/shield/riot,
+		/obj/item/storage/lockbox/loyalty,
+		/obj/item/storage/box/flashbangs,
+		/obj/item/storage/belt/security,
 		/obj/item/device/flash,
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/gun/energy/gun,
+		/obj/item/melee/baton,
+		/obj/item/gun/energy/gun,
 		/obj/item/clothing/tie/holster/waist,
-		/obj/item/weapon/melee/telebaton
+		/obj/item/melee/telebaton
 	)
 
 /obj/structure/closet/secure_closet/hos/New()
 	if(prob(50))
-		starts_with.Add(/obj/item/weapon/storage/backpack/security)
+		starts_with.Add(/obj/item/storage/backpack/security)
 	else
-		starts_with.Add(/obj/item/weapon/storage/satchel/sec)
+		starts_with.Add(/obj/item/storage/satchel/sec)
 	. = ..()
 
 /*
@@ -150,23 +150,23 @@
 		/obj/item/clothing/under/rank/warden/corp,
 		/obj/item/clothing/suit/armor/vest/warden,
 		/obj/item/clothing/head/helmet/warden,
-	//	/obj/item/weapon/cartridge/security,
+	//	/obj/item/cartridge/security,
 		/obj/item/device/radio/headset/sec,
 		/obj/item/clothing/glasses/sunglasses/sechud,
 		/obj/item/taperoll/police,
-		/obj/item/weapon/storage/box/flashbangs,
-		/obj/item/weapon/storage/belt/security,
-		/obj/item/weapon/reagent_containers/spray/pepper,
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/gun/energy/taser,
-		/obj/item/weapon/storage/box/holobadge
+		/obj/item/storage/box/flashbangs,
+		/obj/item/storage/belt/security,
+		/obj/item/reagent_containers/spray/pepper,
+		/obj/item/melee/baton,
+		/obj/item/gun/energy/taser,
+		/obj/item/storage/box/holobadge
 	)
 
 /obj/structure/closet/secure_closet/warden/New()
 	if(prob(50))
-		starts_with.Add(/obj/item/weapon/storage/backpack/security)
+		starts_with.Add(/obj/item/storage/backpack/security)
 	else
-		starts_with.Add(/obj/item/weapon/storage/satchel/sec)
+		starts_with.Add(/obj/item/storage/satchel/sec)
 	. = ..()
 
 /*
@@ -185,14 +185,14 @@
 	starts_with = list(
 		/obj/item/clothing/suit/armor/vest/security,
 		/obj/item/clothing/head/helmet,
-	//	/obj/item/weapon/cartridge/security,
+	//	/obj/item/cartridge/security,
 		/obj/item/device/radio/headset/sec,
-		/obj/item/weapon/storage/belt/security,
+		/obj/item/storage/belt/security,
 		/obj/item/device/flash,
-		/obj/item/weapon/reagent_containers/spray/pepper,
-		/obj/item/weapon/grenade/flashbang,
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/gun/energy/taser,
+		/obj/item/reagent_containers/spray/pepper,
+		/obj/item/grenade/flashbang,
+		/obj/item/melee/baton,
+		/obj/item/gun/energy/taser,
 		/obj/item/clothing/glasses/sunglasses/sechud,
 		/obj/item/taperoll/police,
 		/obj/item/device/hailer,
@@ -203,9 +203,9 @@
 
 /obj/structure/closet/secure_closet/security/New()
 	if(prob(50))
-		starts_with.Add(/obj/item/weapon/storage/backpack/security)
+		starts_with.Add(/obj/item/storage/backpack/security)
 	else
-		starts_with.Add(/obj/item/weapon/storage/satchel/sec)
+		starts_with.Add(/obj/item/storage/satchel/sec)
 	. = ..()
 
 /obj/structure/closet/secure_closet/security/cargo/New()
@@ -253,14 +253,14 @@
 		/obj/item/clothing/head/det_hat,
 		/obj/item/clothing/head/det_hat/black,
 		/obj/item/clothing/shoes/brown,
-		/obj/item/weapon/storage/box/evidence,
+		/obj/item/storage/box/evidence,
 		/obj/item/device/radio/headset/sec,
 		/obj/item/device/detective_scanner,
 		/obj/item/clothing/suit/armor/det_suit,
 		/obj/item/ammo_magazine/c45r,
 		/obj/item/ammo_magazine/c45r,
 		/obj/item/taperoll/police,
-		/obj/item/weapon/gun/projectile/detective/semiauto,
+		/obj/item/gun/projectile/detective/semiauto,
 		/obj/item/clothing/tie/holster/armpit
 	)
 
@@ -284,8 +284,8 @@
 	req_access = list(ACCESS_CAPTAIN)
 
 	starts_with = list(
-		/obj/item/weapon/reagent_containers/ld50_syringe/choral,
-		/obj/item/weapon/reagent_containers/ld50_syringe/choral
+		/obj/item/reagent_containers/ld50_syringe/choral,
+		/obj/item/reagent_containers/ld50_syringe/choral
 	)
 
 /*
@@ -312,13 +312,13 @@
 
 	starts_with = list(
 		/obj/item/clothing/shoes/brown,
-		/obj/item/weapon/paper/Court,
-		/obj/item/weapon/paper/Court,
-		/obj/item/weapon/paper/Court,
-		/obj/item/weapon/pen,
+		/obj/item/paper/Court,
+		/obj/item/paper/Court,
+		/obj/item/paper/Court,
+		/obj/item/pen,
 		/obj/item/clothing/suit/judgerobe,
 		/obj/item/clothing/head/powdered_wig,
-		/obj/item/weapon/storage/briefcase
+		/obj/item/storage/briefcase
 	)
 
 /*

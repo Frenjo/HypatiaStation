@@ -83,14 +83,14 @@
 		return 1
 
 /obj/machinery/computer/security/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(istype(I, /obj/item/screwdriver))
 		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			if(stat & BROKEN)
 				FEEDBACK_BROKEN_GLASS_FALLS(user)
 				var/obj/structure/computerframe/CF = new /obj/structure/computerframe(loc)
-				new /obj/item/weapon/shard(loc)
-				var/obj/item/weapon/circuitboard/security/CB = new /obj/item/weapon/circuitboard/security(CF)
+				new /obj/item/shard(loc)
+				var/obj/item/circuitboard/security/CB = new /obj/item/circuitboard/security(CF)
 				CB.network = network
 				for (var/obj/C in src)
 					C.loc = loc
@@ -102,7 +102,7 @@
 			else
 				FEEDBACK_DISCONNECT_MONITOR(user)
 				var/obj/structure/computerframe/CF = new /obj/structure/computerframe( loc )
-				var/obj/item/weapon/circuitboard/security/CB = new /obj/item/weapon/circuitboard/security(CF)
+				var/obj/item/circuitboard/security/CB = new /obj/item/circuitboard/security(CF)
 				CB.network = network
 				for (var/obj/C in src)
 					C.loc = loc

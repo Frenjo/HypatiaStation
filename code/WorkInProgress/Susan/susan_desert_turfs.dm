@@ -76,8 +76,8 @@
 	name = "Laborer"
 	corpseuniform = /obj/item/clothing/under/overalls
 	corpseradio = /obj/item/device/radio/headset/headset_eng
-	corpseback = /obj/item/weapon/storage/backpack/industrial
-	corpsebelt = /obj/item/weapon/storage/belt/utility/full
+	corpseback = /obj/item/storage/backpack/industrial
+	corpsebelt = /obj/item/storage/belt/utility/full
 	corpsehelmet = /obj/item/clothing/head/hardhat
 	corpseid = 1
 	corpseidjob = "Laborer"
@@ -204,7 +204,7 @@ Alien plants should do something if theres a lot of poison
 				del(src)
 	return
 
-/obj/effect/alien/flesh/weeds/attackby(var/obj/item/weapon/W, var/mob/user)
+/obj/effect/alien/flesh/weeds/attackby(var/obj/item/W, var/mob/user)
 	if(W.attack_verb.len)
 		visible_message("\red <B>\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]")
 	else
@@ -212,8 +212,8 @@ Alien plants should do something if theres a lot of poison
 
 	var/damage = W.force / 4.0
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 
 		if(WT.remove_fuel(0, user))
 			damage = 15

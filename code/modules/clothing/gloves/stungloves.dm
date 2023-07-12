@@ -27,7 +27,7 @@
 		return
 
 	//add cell
-	else if(istype(W, /obj/item/weapon/cell))
+	else if(istype(W, /obj/item/cell))
 		if(!wired)
 			to_chat(user, SPAN_NOTICE("The [src] need to be wired first."))
 		else if(!cell)
@@ -39,7 +39,7 @@
 		else
 			to_chat(user, SPAN_NOTICE("A [cell] is already attached to the [src]."))
 
-	else if(istype(W, /obj/item/weapon/wirecutters) || istype(W, /obj/item/weapon/scalpel))
+	else if(istype(W, /obj/item/wirecutters) || istype(W, /obj/item/scalpel))
 		//stunglove stuff
 		if(cell)
 			cell.updateicon()

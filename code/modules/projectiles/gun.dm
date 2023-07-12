@@ -1,4 +1,4 @@
-/obj/item/weapon/gun
+/obj/item/gun
 	name = "gun"
 	desc = "Its a gun. It's pretty terrible, though."
 	icon = 'icons/obj/weapons/gun.dmi'
@@ -33,27 +33,27 @@
 	var/fire_delay = 6
 	var/last_fired = 0
 
-/obj/item/weapon/gun/proc/ready_to_fire()
+/obj/item/gun/proc/ready_to_fire()
 	if(world.time >= last_fired + fire_delay)
 		last_fired = world.time
 		return 1
 	else
 		return 0
 
-/obj/item/weapon/gun/proc/load_into_chamber()
+/obj/item/gun/proc/load_into_chamber()
 	return 0
 
-/obj/item/weapon/gun/proc/special_check(mob/M) //Placeholder for any special checks, like detective's revolver.
+/obj/item/gun/proc/special_check(mob/M) //Placeholder for any special checks, like detective's revolver.
 	return 1
 
-/obj/item/weapon/gun/emp_act(severity)
+/obj/item/gun/emp_act(severity)
 	for(var/obj/O in contents)
 		O.emp_act(severity)
 
-/obj/item/weapon/gun/afterattack(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
+/obj/item/gun/afterattack(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
 	if(flag)
 		return //It's adjacent, is the user, or is on the user's person
-	if(istype(target, /obj/machinery/recharger) && istype(src, /obj/item/weapon/gun/energy))
+	if(istype(target, /obj/machinery/recharger) && istype(src, /obj/item/gun/energy))
 		return//Shouldnt flag take care of this?
 
 	//decide whether to aim or shoot normally
@@ -73,10 +73,10 @@
 		else
 			Fire(A, user, params) //Otherwise, fire normally.
 
-/obj/item/weapon/gun/proc/isHandgun()
+/obj/item/gun/proc/isHandgun()
 	return TRUE
 
-/obj/item/weapon/gun/proc/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)//TODO: go over this
+/obj/item/gun/proc/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)//TODO: go over this
 	//Exclude lasertag guns from the CLUMSY check.
 	if(clumsy_check)
 		if(isliving(user))
@@ -182,13 +182,13 @@
 	else
 		user.update_inv_r_hand()
 
-/obj/item/weapon/gun/proc/can_fire()
+/obj/item/gun/proc/can_fire()
 	return load_into_chamber()
 
-/obj/item/weapon/gun/proc/can_hit(mob/living/target as mob, mob/living/user as mob)
+/obj/item/gun/proc/can_hit(mob/living/target as mob, mob/living/user as mob)
 	return in_chamber.check_fire(target, user)
 
-/obj/item/weapon/gun/proc/click_empty(mob/user = null)
+/obj/item/gun/proc/click_empty(mob/user = null)
 	if(user)
 		user.visible_message("*click click*", SPAN_DANGER("*click*"))
 		playsound(user, 'sound/weapons/empty.ogg', 100, 1)
@@ -196,7 +196,7 @@
 		src.visible_message("*click click*")
 		playsound(src, 'sound/weapons/empty.ogg', 100, 1)
 
-/obj/item/weapon/gun/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
+/obj/item/gun/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
 	//Suicide handling.
 	if(M == user && user.zone_sel.selecting == "mouth" && !mouthshoot)
 		mouthshoot = TRUE

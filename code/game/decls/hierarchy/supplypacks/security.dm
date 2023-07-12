@@ -5,12 +5,12 @@
 /decl/hierarchy/supply_pack/security/specialops
 	name = "Special Ops supplies"
 	contains = list(
-		/obj/item/weapon/storage/box/emps,
-		/obj/item/weapon/grenade/smokebomb,
-		/obj/item/weapon/grenade/smokebomb,
-		/obj/item/weapon/grenade/smokebomb,
-		/obj/item/weapon/pen/paralysis,
-		/obj/item/weapon/grenade/chem_grenade/incendiary
+		/obj/item/storage/box/emps,
+		/obj/item/grenade/smokebomb,
+		/obj/item/grenade/smokebomb,
+		/obj/item/grenade/smokebomb,
+		/obj/item/pen/paralysis,
+		/obj/item/grenade/chem_grenade/incendiary
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate
@@ -40,14 +40,14 @@
 /decl/hierarchy/supply_pack/security/weapons
 	name = "Weapons crate"
 	contains = list(
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/gun/energy/laser,
-		/obj/item/weapon/gun/energy/laser,
-		/obj/item/weapon/gun/energy/taser,
-		/obj/item/weapon/gun/energy/taser,
-		/obj/item/weapon/storage/box/flashbangs,
-		/obj/item/weapon/storage/box/flashbangs
+		/obj/item/melee/baton,
+		/obj/item/melee/baton,
+		/obj/item/gun/energy/laser,
+		/obj/item/gun/energy/laser,
+		/obj/item/gun/energy/taser,
+		/obj/item/gun/energy/taser,
+		/obj/item/storage/box/flashbangs,
+		/obj/item/storage/box/flashbangs
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure/weapon
@@ -58,13 +58,13 @@
 /decl/hierarchy/supply_pack/security/eweapons
 	name = "Experimental weapons crate"
 	contains = list(
-		/obj/item/weapon/flamethrower/full,
-		/obj/item/weapon/tank/plasma,
-		/obj/item/weapon/tank/plasma,
-		/obj/item/weapon/tank/plasma,
-		/obj/item/weapon/grenade/chem_grenade/incendiary,
-		/obj/item/weapon/grenade/chem_grenade/incendiary,
-		/obj/item/weapon/grenade/chem_grenade/incendiary
+		/obj/item/flamethrower/full,
+		/obj/item/tank/plasma,
+		/obj/item/tank/plasma,
+		/obj/item/tank/plasma,
+		/obj/item/grenade/chem_grenade/incendiary,
+		/obj/item/grenade/chem_grenade/incendiary,
+		/obj/item/grenade/chem_grenade/incendiary
 	)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/weapon
@@ -89,18 +89,18 @@
 /decl/hierarchy/supply_pack/security/riot
 	name = "Riot gear crate"
 	contains = list(
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/shield/riot,
-		/obj/item/weapon/shield/riot,
-		/obj/item/weapon/shield/riot,
-		/obj/item/weapon/storage/box/flashbangs,
-		/obj/item/weapon/storage/box/flashbangs,
-		/obj/item/weapon/storage/box/flashbangs,
-		/obj/item/weapon/handcuffs,
-		/obj/item/weapon/handcuffs,
-		/obj/item/weapon/handcuffs,
+		/obj/item/melee/baton,
+		/obj/item/melee/baton,
+		/obj/item/melee/baton,
+		/obj/item/shield/riot,
+		/obj/item/shield/riot,
+		/obj/item/shield/riot,
+		/obj/item/storage/box/flashbangs,
+		/obj/item/storage/box/flashbangs,
+		/obj/item/storage/box/flashbangs,
+		/obj/item/handcuffs,
+		/obj/item/handcuffs,
+		/obj/item/handcuffs,
 		/obj/item/clothing/head/helmet/riot,
 		/obj/item/clothing/suit/armor/riot,
 		/obj/item/clothing/head/helmet/riot,
@@ -116,7 +116,7 @@
 
 /decl/hierarchy/supply_pack/security/loyalty
 	name = "Loyalty implant crate"
-	contains = list (/obj/item/weapon/storage/lockbox/loyalty)
+	contains = list (/obj/item/storage/lockbox/loyalty)
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Loyalty implant crate"
@@ -128,8 +128,8 @@
 	contains = list(
 		/obj/item/clothing/suit/armor/bulletproof,
 		/obj/item/clothing/suit/armor/bulletproof,
-		/obj/item/weapon/gun/projectile/shotgun/pump/combat,
-		/obj/item/weapon/gun/projectile/shotgun/pump/combat
+		/obj/item/gun/projectile/shotgun/pump/combat,
+		/obj/item/gun/projectile/shotgun/pump/combat
 	)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
@@ -142,8 +142,8 @@
 	contains = list(
 		/obj/item/clothing/suit/armor/laserproof,
 		/obj/item/clothing/suit/armor/laserproof,
-		/obj/item/weapon/gun/energy/sniperrifle,
-		/obj/item/weapon/gun/energy/sniperrifle
+		/obj/item/gun/energy/sniperrifle,
+		/obj/item/gun/energy/sniperrifle
 	)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
@@ -176,8 +176,8 @@
 	contains = list(
 		/obj/item/clothing/suit/armor/laserproof,
 		/obj/item/clothing/suit/armor/laserproof,
-		/obj/item/weapon/gun/energy/gun,
-		/obj/item/weapon/gun/energy/gun
+		/obj/item/gun/energy/gun,
+		/obj/item/gun/energy/gun
 	)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
@@ -229,9 +229,9 @@
 /decl/hierarchy/supply_pack/security/disablers
 	name = "Disabler supply crate"
 	contains = list(
-		/obj/item/weapon/gun/energy/disabler,
-		/obj/item/weapon/gun/energy/disabler,
-		/obj/item/weapon/gun/energy/disabler
+		/obj/item/gun/energy/disabler,
+		/obj/item/gun/energy/disabler,
+		/obj/item/gun/energy/disabler
 	)
 	cost = 20 // This cost seems to be roughly similar to the taser crate except slightly less since they're only disablers.
 	containertype = /obj/structure/closet/crate/secure

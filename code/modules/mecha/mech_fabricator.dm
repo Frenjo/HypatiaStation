@@ -133,12 +133,12 @@
 /obj/machinery/mecha_part_fabricator/New()
 	..()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/mechfab(src)
-	component_parts += new /obj/item/weapon/stock_part/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_part/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_part/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_part/micro_laser(src)
-	component_parts += new /obj/item/weapon/stock_part/console_screen(src)
+	component_parts += new /obj/item/circuitboard/mechfab(src)
+	component_parts += new /obj/item/stock_part/matter_bin(src)
+	component_parts += new /obj/item/stock_part/matter_bin(src)
+	component_parts += new /obj/item/stock_part/manipulator(src)
+	component_parts += new /obj/item/stock_part/micro_laser(src)
+	component_parts += new /obj/item/stock_part/console_screen(src)
 	RefreshParts()
 
 	//	part_sets["Cyborg Upgrade Modules"] = typesof(/obj/item/borg/upgrade/) - /obj/item/borg/upgrade/  // Eh.  This does it dymaically, but to support having the items referenced otherwhere in the code but not being constructable, going to do it manaully.
@@ -156,11 +156,11 @@
 
 /obj/machinery/mecha_part_fabricator/RefreshParts()
 	var/T = 0
-	for(var/obj/item/weapon/stock_part/matter_bin/M in component_parts)
+	for(var/obj/item/stock_part/matter_bin/M in component_parts)
 		T += M.rating
 	res_max_amount = (187500 + (T * 37500))
 	T = 0
-	for(var/obj/item/weapon/stock_part/micro_laser/Ma in component_parts)
+	for(var/obj/item/stock_part/micro_laser/Ma in component_parts)
 		T += Ma.rating
 	if(T >= 1)
 		T -= 1
@@ -169,7 +169,7 @@
 	if(resource_coeff!=diff)
 		resource_coeff = diff
 	T = 0
-	for(var/obj/item/weapon/stock_part/manipulator/Ml in component_parts)
+	for(var/obj/item/stock_part/manipulator/Ml in component_parts)
 		T += Ml.rating
 	if(T >= 1)
 		T -= 1
@@ -467,7 +467,7 @@
 			switch(T.id) //bad, bad formulas
 				if("materials")
 					var/pmat = 0//Calculations to make up for the fact that these parts and tech modify the same thing
-					for(var/obj/item/weapon/stock_part/micro_laser/Ml in component_parts)
+					for(var/obj/item/stock_part/micro_laser/Ml in component_parts)
 						pmat += Ml.rating
 					if(pmat >= 1)
 						pmat -= 1//So the equations don't have to be reworked, upgrading a single part from T1 to T2 is == to 1 tech level
@@ -477,7 +477,7 @@
 						output += "Production efficiency increased.<br>"
 				if("programming")
 					var/ptime = 0
-					for(var/obj/item/weapon/stock_part/manipulator/Ma in component_parts)
+					for(var/obj/item/stock_part/manipulator/Ma in component_parts)
 						ptime += Ma.rating
 					if(ptime >= 2)
 						ptime -= 2
@@ -701,7 +701,7 @@
 	return result
 
 /obj/machinery/mecha_part_fabricator/attackby(obj/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/screwdriver))
 		if(!opened)
 			opened = 1
 			icon_state = "fab-o"
@@ -712,7 +712,7 @@
 			to_chat(user, "You close the maintenance hatch of [src].")
 		return
 	if(opened)
-		if(istype(W, /obj/item/weapon/crowbar))
+		if(istype(W, /obj/item/crowbar))
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			M.state = 2
@@ -751,7 +751,7 @@
 			to_chat(user, SPAN_WARNING("You can't load the [src.name] while it's opened."))
 			return 1
 
-	if(istype(W, /obj/item/weapon/card/emag))
+	if(istype(W, /obj/item/card/emag))
 		emag()
 		return
 	var/material

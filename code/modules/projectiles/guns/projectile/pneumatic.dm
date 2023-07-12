@@ -1,4 +1,4 @@
-/obj/item/weapon/storage/pneumatic
+/obj/item/storage/pneumatic
 	name = "pneumatic cannon"
 	desc = "A large gas-powered cannon."
 	icon = 'icons/obj/weapons/gun.dmi'
@@ -10,8 +10,8 @@
 	max_w_class = 3
 	max_combined_w_class = 20
 
-	var/obj/item/weapon/tank/tank = null				// Tank of gas for use in firing the cannon.
-	var/obj/item/weapon/storage/tank_container			// Something to hold the tank item so we don't accidentally fire it.
+	var/obj/item/tank/tank = null				// Tank of gas for use in firing the cannon.
+	var/obj/item/storage/tank_container			// Something to hold the tank item so we don't accidentally fire it.
 	var/pressure_setting = 10							// Percentage of the gas in the tank used to fire the projectile.
 	var/possible_pressure_amounts = list(5, 10, 20, 25, 50)	// Possible pressure settings.
 	var/minimum_tank_pressure = 10						// Minimum pressure to fire the gun.
@@ -21,11 +21,11 @@
 														// For reference, a fully pressurized oxy tank at 50% gas release firing a health
 														// analyzer with a force_divisor of 10 hit with a damage multiplier of 3000+.
 
-/obj/item/weapon/storage/pneumatic/New()
+/obj/item/storage/pneumatic/New()
 	. = ..()
 	tank_container = new(src)
 
-/obj/item/weapon/storage/pneumatic/verb/set_pressure() //set amount of tank pressure.
+/obj/item/storage/pneumatic/verb/set_pressure() //set amount of tank pressure.
 	set name = "Set valve pressure"
 	set category = "Object"
 	set src in range(0)
@@ -34,7 +34,7 @@
 		pressure_setting = N
 		to_chat(usr, "You dial the pressure valve to [pressure_setting]%.")
 
-/obj/item/weapon/storage/pneumatic/verb/eject_tank() //Remove the tank.
+/obj/item/storage/pneumatic/verb/eject_tank() //Remove the tank.
 	set name = "Eject tank"
 	set category = "Object"
 	set src in range(0)
@@ -48,8 +48,8 @@
 	else
 		to_chat(usr, "There's no tank in [src].")
 
-/obj/item/weapon/storage/pneumatic/attackby(obj/item/W as obj, mob/user as mob)
-	if(!tank && istype(W, /obj/item/weapon/tank))
+/obj/item/storage/pneumatic/attackby(obj/item/W as obj, mob/user as mob)
+	if(!tank && istype(W, /obj/item/tank))
 		user.drop_item()
 		tank = W
 		tank.loc = src.tank_container
@@ -60,7 +60,7 @@
 	else
 		..()
 
-/obj/item/weapon/storage/pneumatic/examine()
+/obj/item/storage/pneumatic/examine()
 	set src in view()
 	..()
 	if(!(usr in view(2)) && usr != src.loc)
@@ -71,8 +71,8 @@
 	else
 		to_chat(usr, "Nothing is attached to the tank valve!")
 
-/obj/item/weapon/storage/pneumatic/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
-	if(istype(target, /obj/item/weapon/storage/backpack))
+/obj/item/storage/pneumatic/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
+	if(istype(target, /obj/item/storage/backpack))
 		return
 
 	else if(target.loc == user.loc)
@@ -91,7 +91,7 @@
 		spawn(0)
 			Fire(target, user, params)
 
-/obj/item/weapon/storage/pneumatic/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
+/obj/item/storage/pneumatic/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
 	if(length(contents) > 0)
 		if(user.a_intent == "hurt")
 			user.visible_message(SPAN_DANGER("\The [user] fires \the [src] point blank at [M]!"))
@@ -101,7 +101,7 @@
 			Fire(M, user)
 			return
 
-/obj/item/weapon/storage/pneumatic/proc/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
+/obj/item/storage/pneumatic/proc/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
 	if(!tank)
 		to_chat(user, "There is no gas tank in [src]!")
 		return 0

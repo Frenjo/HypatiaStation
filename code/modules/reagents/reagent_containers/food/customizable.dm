@@ -1,29 +1,29 @@
-/obj/item/weapon/reagent_containers/food/snacks/breadslice/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/shard) || istype(W, /obj/item/weapon/reagent_containers/food/snacks))
-		var/obj/item/weapon/reagent_containers/food/snacks/customizable/S = new(get_turf(user))
+/obj/item/reagent_containers/food/snacks/breadslice/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/shard) || istype(W, /obj/item/reagent_containers/food/snacks))
+		var/obj/item/reagent_containers/food/snacks/customizable/S = new(get_turf(user))
 		S.attackby(W, user)
 		qdel(src)
 
 
-/obj/item/weapon/reagent_containers/food/snacks/bun/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/shard) || istype(W, /obj/item/weapon/reagent_containers/food/snacks))
-		var/obj/item/weapon/reagent_containers/food/snacks/customizable/burger/S = new(get_turf(user))
-		S.attackby(W, user)
-		qdel(src)
-	..()
-
-
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/shard) || istype(W, /obj/item/weapon/reagent_containers/food/snacks))
-		var/obj/item/weapon/reagent_containers/food/snacks/customizable/pizza/S = new(get_turf(user))
+/obj/item/reagent_containers/food/snacks/bun/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/shard) || istype(W, /obj/item/reagent_containers/food/snacks))
+		var/obj/item/reagent_containers/food/snacks/customizable/burger/S = new(get_turf(user))
 		S.attackby(W, user)
 		qdel(src)
 	..()
 
 
-/obj/item/weapon/reagent_containers/food/snacks/boiledspagetti/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/shard) || istype(W, /obj/item/weapon/reagent_containers/food/snacks))
-		var/obj/item/weapon/reagent_containers/food/snacks/customizable/pasta/S = new(get_turf(user))
+/obj/item/reagent_containers/food/snacks/sliceable/flatdough/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/shard) || istype(W, /obj/item/reagent_containers/food/snacks))
+		var/obj/item/reagent_containers/food/snacks/customizable/pizza/S = new(get_turf(user))
+		S.attackby(W, user)
+		qdel(src)
+	..()
+
+
+/obj/item/reagent_containers/food/snacks/boiledspagetti/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/shard) || istype(W, /obj/item/reagent_containers/food/snacks))
+		var/obj/item/reagent_containers/food/snacks/customizable/pasta/S = new(get_turf(user))
 		S.attackby(W, user)
 		qdel(src)
 
@@ -35,14 +35,14 @@
 	icon_state = "soup"
 
 /obj/item/trash/bowl/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/shard) || istype(W, /obj/item/weapon/reagent_containers/food/snacks))
-		var/obj/item/weapon/reagent_containers/food/snacks/customizable/soup/S = new(get_turf(user))
+	if(istype(W, /obj/item/shard) || istype(W, /obj/item/reagent_containers/food/snacks))
+		var/obj/item/reagent_containers/food/snacks/customizable/soup/S = new(get_turf(user))
 		S.attackby(W, user)
 		qdel(src)
 	..()
 
 
-/obj/item/weapon/reagent_containers/food/snacks/customizable
+/obj/item/reagent_containers/food/snacks/customizable
 	name = "sandwich"
 	desc = "A sandwich! A timeless classic."
 	icon_state = "breadslice"
@@ -57,24 +57,24 @@
 
 	var/list/ingredients = list()
 
-/obj/item/weapon/reagent_containers/food/snacks/customizable/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/customizable/attackby(obj/item/W as obj, mob/user as mob)
 	var/sandwich_limit = 4
 	for(var/obj/item/O in ingredients)
-		if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/breadslice))
+		if(istype(O, /obj/item/reagent_containers/food/snacks/breadslice))
 			sandwich_limit += 4
 
 	if(length(contents) > sandwich_limit)
 		to_chat(user, SPAN_WARNING("If you put anything else on [src] it's going to collapse. Try adding some more bread slices."))
 		return
-	else if(istype(W, /obj/item/weapon/shard))
+	else if(istype(W, /obj/item/shard))
 		to_chat(user, SPAN_NOTICE("You hide [W] in [src]."))
 		user.drop_item()
 		W.loc = src
 		update()
 		return
-	else if(istype(W, /obj/item/weapon/reagent_containers/food/snacks))
+	else if(istype(W, /obj/item/reagent_containers/food/snacks))
 		to_chat(user, SPAN_NOTICE("You add [W] to [src]."))
-		var/obj/item/weapon/reagent_containers/F = W
+		var/obj/item/reagent_containers/F = W
 		F.reagents.trans_to(src, F.reagents.total_volume)
 		user.drop_item()
 		W.loc = src
@@ -83,13 +83,13 @@
 		return
 	..()
 
-/obj/item/weapon/reagent_containers/food/snacks/customizable/proc/update()
+/obj/item/reagent_containers/food/snacks/customizable/proc/update()
 	var/fullname = "" //We need to build this from the contents of the var.
 	var/i = 0
 
 	overlays.Cut()
 
-	for(var/obj/item/weapon/reagent_containers/food/snacks/O in ingredients)
+	for(var/obj/item/reagent_containers/food/snacks/O in ingredients)
 		i++
 		if(i == 1)
 			fullname += "[O.name]"
@@ -116,20 +116,20 @@
 		name = "[pick(list("absurd", "colossal", "enormous", "ridiculous", "massive", "oversized", "cardiac-arresting", "pipe-clogging", "edible but sickening", "sickening", "gargantuan", "mega", "belly-burster", "chest-burster"))] [basename]"
 	w_class = n_ceil(clamp((length(ingredients) / 2), 1, 3))
 
-/obj/item/weapon/reagent_containers/food/snacks/customizable/Destroy()
+/obj/item/reagent_containers/food/snacks/customizable/Destroy()
 	for(var/obj/item/O in ingredients)
 		qdel(O)
 	return ..()
 
-/obj/item/weapon/reagent_containers/food/snacks/customizable/examine()
+/obj/item/reagent_containers/food/snacks/customizable/examine()
 	..()
 	var/whatsinside = pick(ingredients)
 	to_chat(usr, SPAN_NOTICE("You think you can see [whatsinside] in there."))
 
-/obj/item/weapon/reagent_containers/food/snacks/customizable/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/food/snacks/customizable/attack(mob/M as mob, mob/user as mob, def_zone)
 	var/obj/item/shard
 	for(var/obj/item/O in contents)
-		if(istype(O, /obj/item/weapon/shard))
+		if(istype(O, /obj/item/shard))
 			shard = O
 			break
 
@@ -143,7 +143,7 @@
 	..()
 
 
-/obj/item/weapon/reagent_containers/food/snacks/customizable/pizza
+/obj/item/reagent_containers/food/snacks/customizable/pizza
 	name = "personal pizza"
 	desc = "A personalized pan pizza meant for only one person."
 	icon_state = "personal_pizza"
@@ -153,7 +153,7 @@
 	top = 0
 
 
-/obj/item/weapon/reagent_containers/food/snacks/customizable/pasta
+/obj/item/reagent_containers/food/snacks/customizable/pasta
 	name = "spagetti"
 	desc = "Noodles. With stuff. Delicious."
 	icon_state = "pasta_bot"
@@ -163,7 +163,7 @@
 	top = 0
 
 
-/obj/item/weapon/reagent_containers/food/snacks/customizable/soup
+/obj/item/reagent_containers/food/snacks/customizable/soup
 	name = "soup"
 	desc = "A bowl with liquid and... stuff in it."
 	icon_state = "soup"
@@ -174,7 +174,7 @@
 	top = 0
 
 
-/obj/item/weapon/reagent_containers/food/snacks/customizable/burger
+/obj/item/reagent_containers/food/snacks/customizable/burger
 	name = "burger bun"
 	desc = "A bun for a burger. Delicious."
 	icon_state = "burger"

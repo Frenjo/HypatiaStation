@@ -4,23 +4,23 @@
 
 	var/datum/disease2/effectholder/memorybank = null
 	var/analysed = 0
-	var/obj/item/weapon/virusdish/dish = null
+	var/obj/item/virusdish/dish = null
 	var/burning = 0
 
 	var/splicing = 0
 	var/scanning = 0
 
 /obj/machinery/computer/diseasesplicer/attackby(var/obj/I as obj, var/mob/user as mob)
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(istype(I, /obj/item/screwdriver))
 		return ..(I,user)
-	if(istype(I,/obj/item/weapon/virusdish))
+	if(istype(I,/obj/item/virusdish))
 		var/mob/living/carbon/c = user
 		if(!dish)
 
 			dish = I
 			c.drop_item()
 			I.loc = src
-	if(istype(I,/obj/item/weapon/diseasedisk))
+	if(istype(I,/obj/item/diseasedisk))
 		user << "You upload the contents of the disk into the buffer"
 		memorybank = I:effect
 
@@ -100,7 +100,7 @@
 	if(burning)
 		burning -= 1
 		if(!burning)
-			var/obj/item/weapon/diseasedisk/d = new /obj/item/weapon/diseasedisk(src.loc)
+			var/obj/item/diseasedisk/d = new /obj/item/diseasedisk(src.loc)
 			if(analysed)
 				d.name = "[memorybank.effect.name] GNA disk (Stage: [5-memorybank.effect.stage])"
 			else

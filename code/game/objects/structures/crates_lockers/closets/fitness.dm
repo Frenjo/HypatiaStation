@@ -61,8 +61,8 @@
 	icon_closed = "red"
 
 	starts_with = list(
-		/obj/item/weapon/gun/energy/laser/redtag,
-		/obj/item/weapon/gun/energy/laser/redtag,
+		/obj/item/gun/energy/laser/redtag,
+		/obj/item/gun/energy/laser/redtag,
 		/obj/item/clothing/suit/redtag,
 		/obj/item/clothing/suit/redtag
 	)
@@ -77,8 +77,8 @@
 	icon_closed = "blue"
 
 	starts_with = list(
-		/obj/item/weapon/gun/energy/laser/bluetag,
-		/obj/item/weapon/gun/energy/laser/bluetag,
+		/obj/item/gun/energy/laser/bluetag,
+		/obj/item/gun/energy/laser/bluetag,
 		/obj/item/clothing/suit/bluetag,
 		/obj/item/clothing/suit/bluetag
 	)

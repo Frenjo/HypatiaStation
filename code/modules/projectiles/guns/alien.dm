@@ -1,7 +1,7 @@
 //Vox pinning weapon.
 
 //Ammo.
-/obj/item/weapon/spike
+/obj/item/spike
 	name = "alloy spike"
 	desc = "It's about a foot of weird silver metal with a wicked point."
 	sharp = 1
@@ -11,7 +11,7 @@
 	item_state = "bolt"
 
 //Launcher.
-/obj/item/weapon/spikethrower
+/obj/item/spikethrower
 	name = "Vox spike thrower"
 	desc = "A vicious alien projectile weapon. Parts of it quiver gelatinously, as though the thing is insectile and alive."
 
@@ -19,7 +19,7 @@
 	var/spike_gen_time = 100
 	var/max_spikes = 3
 	var/spikes = 3
-	var/obj/item/weapon/spike/spike
+	var/obj/item/spike/spike
 	var/fire_force = 30
 
 	//Going to make an effort to get this compatible with the threat targetting system.
@@ -30,29 +30,29 @@
 	icon_state = "spikethrower3"
 	item_state = "spikethrower"
 
-/obj/item/weapon/spikethrower/New()
+/obj/item/spikethrower/New()
 	. = ..()
 	GLOBL.processing_objects.Add(src)
 	last_regen = world.time
 
-/obj/item/weapon/spikethrower/Destroy()
+/obj/item/spikethrower/Destroy()
 	GLOBL.processing_objects.Remove(src)
 	return ..()
 
-/obj/item/weapon/spikethrower/process()
+/obj/item/spikethrower/process()
 	if(spikes < max_spikes && world.time > last_regen + spike_gen_time)
 		spikes++
 		last_regen = world.time
 		update_icon()
 
-/obj/item/weapon/spikethrower/examine()
+/obj/item/spikethrower/examine()
 	..()
 	to_chat(usr, "It has [spikes] [spikes == 1 ? "spike" : "spikes"] remaining.")
 
-/obj/item/weapon/spikethrower/update_icon()
+/obj/item/spikethrower/update_icon()
 	icon_state = "spikethrower[spikes]"
 
-/obj/item/weapon/spikethrower/afterattack(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
+/obj/item/spikethrower/afterattack(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
 	if(flag)
 		return
 	if(user && user.client && user.client.gun_mode && !(A in target))
@@ -61,7 +61,7 @@
 	else
 		Fire(A, user, params)
 
-/obj/item/weapon/spikethrower/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
+/obj/item/spikethrower/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
 	if(M == user && user.zone_sel.selecting == "mouth")
 		M.visible_message(SPAN_WARNING("[user] attempts without success to fit [src] into their mouth."))
 		return
@@ -77,7 +77,7 @@
 	else
 		return ..()
 
-/obj/item/weapon/spikethrower/proc/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
+/obj/item/spikethrower/proc/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
 	add_fingerprint(user)
 
 	var/turf/curloc = get_turf(user)
@@ -110,7 +110,7 @@
 	update_icon()
 
 //This gun only functions for armalis. The on-sprite is too huge to render properly on other sprites.
-/obj/item/weapon/gun/energy/noisecannon
+/obj/item/gun/energy/noisecannon
 	name = "alien heavy cannon"
 	desc = "It's some kind of enormous alien weapon, as long as a man is tall."
 
@@ -126,13 +126,13 @@
 	pulse_projectile_types = list(
 		GUN_SETTING_SPECIAL = /obj/item/projectile/energy/sonic
 	)
-	cell_type = /obj/item/weapon/cell/super
+	cell_type = /obj/item/cell/super
 	fire_delay = 40
 	fire_sound = 'sound/effects/basscannon.ogg'
 
 	var/mode = 1
 
-/obj/item/weapon/gun/energy/noisecannon/attack_hand(mob/user as mob)
+/obj/item/gun/energy/noisecannon/attack_hand(mob/user as mob)
 	if(loc != user)
 		var/mob/living/carbon/human/H = user
 		if(istype(H))
@@ -142,11 +142,11 @@
 		to_chat(user, SPAN_WARNING("\The [src] is far too large for you to pick up."))
 		return
 
-/obj/item/weapon/gun/energy/noisecannon/load_into_chamber() //Does not have ammo.
+/obj/item/gun/energy/noisecannon/load_into_chamber() //Does not have ammo.
 	in_chamber = new projectile_type(src)
 	return 1
 
-/obj/item/weapon/gun/energy/noisecannon/update_icon()
+/obj/item/gun/energy/noisecannon/update_icon()
 	return
 
 //Projectile.

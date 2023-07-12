@@ -218,25 +218,25 @@ var/global/admin_emergency_team = 0 // Used for admin-spawned response teams
 	equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(src), SLOT_ID_W_UNIFORM)
 	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), SLOT_ID_SHOES)
 	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), SLOT_ID_GLOVES)
-	equip_to_slot_or_del(new /obj/item/weapon/gun/energy/gun(src), SLOT_ID_BELT)
+	equip_to_slot_or_del(new /obj/item/gun/energy/gun(src), SLOT_ID_BELT)
 
 	// Glasses
 	equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(src), SLOT_ID_GLASSES)
 
 	// Backpack
-	equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(src), SLOT_ID_BACK)
+	equip_to_slot_or_del(new /obj/item/storage/backpack/security(src), SLOT_ID_BACK)
 
 	// Put stuff into their backpacks
-	equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(src), SLOT_ID_IN_BACKPACK)
-	// equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(src), SLOT_ID_IN_BACKPACK) // Regular medkit
+	equip_to_slot_or_del(new /obj/item/storage/box/engineer(src), SLOT_ID_IN_BACKPACK)
+	// equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(src), SLOT_ID_IN_BACKPACK) // Regular medkit
 
 	// Loyalty implants
-	var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(src)
+	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(src)
 	L.imp_in = src
 	L.implanted = 1
 
 	// ID cards
-	var/obj/item/weapon/card/id/E = new(src)
+	var/obj/item/card/id/E = new(src)
 	E.name = "[real_name]'s ID Card (Emergency Response Team)"
 	E.icon_state = "centcom"
 	E.access = get_all_station_access() // ERTs can go everywhere on the station

@@ -2,7 +2,7 @@
 	name = "Gas turbine control computer"
 	desc = "A computer to remotely control a gas turbine"
 	icon_state = "airtunnel0e"
-	circuit = /obj/item/weapon/circuitboard/turbine_control
+	circuit = /obj/item/circuitboard/turbine_control
 	anchored = TRUE
 	density = TRUE
 
@@ -23,14 +23,14 @@
 
 /*
 /obj/machinery/computer/turbine_control/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(istype(I, /obj/item/screwdriver))
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			if (src.stat & BROKEN)
 				FEEDBACK_BROKEN_GLASS_FALLS(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				new /obj/item/weapon/shard( src.loc )
-				var/obj/item/weapon/circuitboard/turbine_control/M = new /obj/item/weapon/circuitboard/turbine_control( A )
+				new /obj/item/shard( src.loc )
+				var/obj/item/circuitboard/turbine_control/M = new /obj/item/circuitboard/turbine_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				M.id = src.id
@@ -42,7 +42,7 @@
 			else
 				FEEDBACK_DISCONNECT_MONITOR(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/turbine_control/M = new /obj/item/weapon/circuitboard/turbine_control( A )
+				var/obj/item/circuitboard/turbine_control/M = new /obj/item/circuitboard/turbine_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				M.id = src.id

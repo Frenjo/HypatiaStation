@@ -20,14 +20,14 @@
 	l_ear = /obj/item/device/radio/headset/heads/captain
 
 	backpack_contents = list(
-		/obj/item/weapon/storage/box/ids = 1
+		/obj/item/storage/box/ids = 1
 	)
 
-	id_type = /obj/item/weapon/card/id/gold
+	id_type = /obj/item/card/id/gold
 	pda_type = /obj/item/device/pda/captain
 
-	backpack = /obj/item/weapon/storage/backpack/captain
-	satchel_one = /obj/item/weapon/storage/satchel/cap
+	backpack = /obj/item/storage/backpack/captain
+	satchel_one = /obj/item/storage/satchel/cap
 
 /decl/hierarchy/outfit/job/command/captain/post_equip(mob/living/carbon/human/user)
 	. = ..()
@@ -47,8 +47,8 @@
 	l_ear = /obj/item/device/radio/headset/heads/hop
 
 	backpack_contents = list(
-		/obj/item/weapon/storage/box/ids = 1
+		/obj/item/storage/box/ids = 1
 	)
 
-	id_type = /obj/item/weapon/card/id/silver
+	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/device/pda/heads/hop

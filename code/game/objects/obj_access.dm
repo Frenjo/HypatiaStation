@@ -61,7 +61,7 @@
 		return FALSE
 	return TRUE
 
-// These are overridden on /obj/item/device/pda and /obj/item/weapon/card/id.
+// These are overridden on /obj/item/device/pda and /obj/item/card/id.
 //gets the actual job rank (ignoring alt titles)
 //this is used solely for sechuds
 /obj/proc/get_job_real_name()

@@ -200,7 +200,7 @@
 	desc = "A handgun holster."
 	icon_state = "holster"
 	item_color = "holster"
-	var/obj/item/weapon/gun/holstered = null
+	var/obj/item/gun/holstered = null
 
 //subtypes can override this to specify what can be holstered
 /obj/item/clothing/tie/holster/proc/can_holster(obj/item/weapon/gun/W)
@@ -210,10 +210,10 @@
 	if(holstered)
 		to_chat(user, SPAN_WARNING("There is already a [holstered] holstered here!"))
 
-	if(!istype(I, /obj/item/weapon/gun))
+	if(!istype(I, /obj/item/gun))
 		to_chat(user, SPAN_WARNING("Only guns can be holstered!"))
 
-	var/obj/item/weapon/gun/W = I
+	var/obj/item/gun/W = I
 	if(!can_holster(W))
 		to_chat(user, SPAN_WARNING("This [W] won't fit in the [src]!"))
 		return
@@ -300,10 +300,10 @@
 		to_chat(usr, SPAN_WARNING("Something is very wrong."))
 
 	if(!H.holstered)
-		if(!istype(usr.get_active_hand(), /obj/item/weapon/gun))
+		if(!istype(usr.get_active_hand(), /obj/item/gun))
 			to_chat(usr, SPAN_INFO("You need your gun equiped to holster it."))
 			return
-		var/obj/item/weapon/gun/W = usr.get_active_hand()
+		var/obj/item/gun/W = usr.get_active_hand()
 		H.holster(W, usr)
 	else
 		H.unholster(usr)
@@ -326,11 +326,11 @@
 	icon_state = "webbing"
 	item_color = "webbing"
 	var/slots = 3
-	var/obj/item/weapon/storage/internal/hold
+	var/obj/item/storage/internal/hold
 
 /obj/item/clothing/tie/storage/New()
 	..()
-	hold = new/obj/item/weapon/storage/internal(src)
+	hold = new/obj/item/storage/internal(src)
 	hold.storage_slots = slots
 
 /obj/item/clothing/tie/storage/attack_hand(mob/user as mob)
@@ -418,7 +418,7 @@
 		)
 
 /obj/item/clothing/tie/holobadge/attackby(obj/item/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/weapon/card/emag))
+	if(istype(O, /obj/item/card/emag))
 		if(emagged)
 			to_chat(user, SPAN_WARNING("[src] is already cracked."))
 			return
@@ -427,10 +427,10 @@
 			to_chat(user, SPAN_WARNING("You swipe [O] and crack the holobadge security checks."))
 			return
 
-	else if(istype(O, /obj/item/weapon/card/id) || istype(O, /obj/item/device/pda))
-		var/obj/item/weapon/card/id/id_card = null
+	else if(istype(O, /obj/item/card/id) || istype(O, /obj/item/device/pda))
+		var/obj/item/card/id/id_card = null
 
-		if(istype(O, /obj/item/weapon/card/id))
+		if(istype(O, /obj/item/card/id))
 			id_card = O
 		else
 			var/obj/item/device/pda/pda = O
@@ -453,7 +453,7 @@
 			SPAN_WARNING("You invade [M]'s personal space, thrusting [src] into their face insistently. You are the law.")
 		)
 
-/obj/item/weapon/storage/box/holobadge
+/obj/item/storage/box/holobadge
 	name = "holobadge box"
 	desc = "A box claiming to contain holobadges."
 
@@ -477,12 +477,12 @@
 	..()
 	hold.max_combined_w_class = 4
 	hold.can_hold = list(
-		/obj/item/weapon/hatchet/soghunknife,
-		/obj/item/weapon/kitchen/utensil/knife,
-		/obj/item/weapon/kitchen/utensil/pknife,
-		/obj/item/weapon/kitchenknife,
-		/obj/item/weapon/kitchenknife/ritual
+		/obj/item/hatchet/soghunknife,
+		/obj/item/kitchen/utensil/knife,
+		/obj/item/kitchen/utensil/pknife,
+		/obj/item/kitchenknife,
+		/obj/item/kitchenknife/ritual
 	)
 
-	new /obj/item/weapon/hatchet/soghunknife(hold)
-	new /obj/item/weapon/hatchet/soghunknife(hold)
+	new /obj/item/hatchet/soghunknife(hold)
+	new /obj/item/hatchet/soghunknife(hold)

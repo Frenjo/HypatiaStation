@@ -9,7 +9,7 @@
 
 	var/receipt_num
 	var/machine_id = ""
-	var/obj/item/weapon/card/id/held_card
+	var/obj/item/card/id/held_card
 	var/access_level = 0
 	var/datum/money_account/detailed_account_view
 	var/creating_new_account = 0
@@ -85,8 +85,8 @@
 		user << browse(null, "window=account_db")
 
 /obj/machinery/account_database/attackby(O as obj, user as mob)//TODO:SANITY
-	if(istype(O, /obj/item/weapon/card))
-		var/obj/item/weapon/card/id/idcard = O
+	if(istype(O, /obj/item/card))
+		var/obj/item/card/id/idcard = O
 		if(!held_card)
 			usr.drop_item()
 			idcard.loc = src
@@ -148,8 +148,8 @@
 
 				else
 					var/obj/item/I = usr.get_active_hand()
-					if(istype(I, /obj/item/weapon/card/id))
-						var/obj/item/weapon/card/id/C = I
+					if(istype(I, /obj/item/card/id))
+						var/obj/item/card/id/C = I
 						usr.drop_item()
 						C.loc = src
 						held_card = C

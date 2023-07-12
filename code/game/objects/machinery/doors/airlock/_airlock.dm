@@ -51,7 +51,7 @@
 	var/justzap = FALSE
 	var/safe = TRUE
 
-	var/obj/item/weapon/airlock_electronics/electronics = null
+	var/obj/item/airlock_electronics/electronics = null
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 
 /obj/machinery/door/airlock/New()
@@ -176,8 +176,8 @@
 		return
 
 	add_fingerprint(user)
-	if((istype(C, /obj/item/weapon/weldingtool) && !(operating > 0) && density))
-		var/obj/item/weapon/weldingtool/W = C
+	if((istype(C, /obj/item/weldingtool) && !(operating > 0) && density))
+		var/obj/item/weldingtool/W = C
 		if(W.remove_fuel(0, user))
 			if(!welded)
 				welded = TRUE
@@ -187,21 +187,21 @@
 			return
 		else
 			return
-	else if(istype(C, /obj/item/weapon/screwdriver))
+	else if(istype(C, /obj/item/screwdriver))
 		p_open = !p_open
 		update_icon()
-	else if(istype(C, /obj/item/weapon/wirecutters))
+	else if(istype(C, /obj/item/wirecutters))
 		return attack_hand(user)
 	else if(istype(C, /obj/item/device/multitool))
 		return attack_hand(user)
 	else if(istype(C, /obj/item/device/assembly/signaler))
 		return attack_hand(user)
-	else if(istype(C, /obj/item/weapon/pai_cable))	// -- TLE
-		var/obj/item/weapon/pai_cable/cable = C
+	else if(istype(C, /obj/item/pai_cable))	// -- TLE
+		var/obj/item/pai_cable/cable = C
 		cable.plugin(src, user)
-	else if(istype(C, /obj/item/weapon/crowbar) || istype(C, /obj/item/weapon/twohanded/fireaxe))
+	else if(istype(C, /obj/item/crowbar) || istype(C, /obj/item/twohanded/fireaxe))
 		var/beingcrowbarred = FALSE
-		if(istype(C, /obj/item/weapon/crowbar))
+		if(istype(C, /obj/item/crowbar))
 			beingcrowbarred = TRUE //derp, Agouri
 		else
 			beingcrowbarred = FALSE
@@ -225,9 +225,9 @@
 				da.created_name = name
 				da.update_state()
 
-				var/obj/item/weapon/airlock_electronics/ae
+				var/obj/item/airlock_electronics/ae
 				if(isnull(electronics))
-					ae = new /obj/item/weapon/airlock_electronics(loc)
+					ae = new /obj/item/airlock_electronics(loc)
 					if(isnull(req_access))
 						check_access()
 					if(length(req_access))
@@ -252,7 +252,7 @@
 		else if(!welded && !operating)
 			if(density)
 				if(!beingcrowbarred) //being fireaxe'd
-					var/obj/item/weapon/twohanded/fireaxe/F = C
+					var/obj/item/twohanded/fireaxe/F = C
 					if(F.wielded)
 						spawn(0)
 							open(TRUE)
@@ -263,7 +263,7 @@
 						open(TRUE)
 			else
 				if(!beingcrowbarred)
-					var/obj/item/weapon/twohanded/fireaxe/F = C
+					var/obj/item/twohanded/fireaxe/F = C
 					if(F.wielded)
 						spawn(0)
 							close(TRUE)

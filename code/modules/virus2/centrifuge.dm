@@ -6,14 +6,14 @@
 	var/curing
 	var/isolating
 
-	var/obj/item/weapon/reagent_containers/glass/beaker/vial/sample = null
+	var/obj/item/reagent_containers/glass/beaker/vial/sample = null
 	var/datum/disease2/disease/virus2 = null
 
 /obj/machinery/computer/centrifuge/attackby(var/obj/I as obj, var/mob/user as mob)
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(istype(I, /obj/item/screwdriver))
 		return ..(I,user)
 
-	if(istype(I,/obj/item/weapon/reagent_containers/glass/beaker/vial))
+	if(istype(I,/obj/item/reagent_containers/glass/beaker/vial))
 		var/mob/living/carbon/C = user
 		if(!sample)
 			sample = I
@@ -148,7 +148,7 @@
 	state("\The [src.name] pings", "blue")
 
 /obj/machinery/computer/centrifuge/proc/isolate()
-	var/obj/item/weapon/virusdish/dish = new/obj/item/weapon/virusdish(src.loc)
+	var/obj/item/virusdish/dish = new/obj/item/virusdish(src.loc)
 	dish.virus2 = virus2
 
 	state("\The [src.name] pings", "blue")

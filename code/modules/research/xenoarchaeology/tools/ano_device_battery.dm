@@ -1,4 +1,4 @@
-/obj/item/weapon/anobattery
+/obj/item/anobattery
 	name = "Anomaly power battery"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "anobattery0"
@@ -8,16 +8,16 @@
 	var/stored_charge = 0
 	var/effect_id = ""
 
-/obj/item/weapon/anobattery/New()
+/obj/item/anobattery/New()
 	battery_effect = new()
 
-/obj/item/weapon/anobattery/proc/UpdateSprite()
+/obj/item/anobattery/proc/UpdateSprite()
 	var/p = (stored_charge/capacity) * 100
 	p = min(p, 100)
 	icon_state = "anobattery[round(p, 25)]"
 
 
-/obj/item/weapon/anodevice
+/obj/item/anodevice
 	name = "Anomaly power utilizer"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "anodev"
@@ -27,15 +27,15 @@
 	var/timing = 0
 	var/time = 50
 	var/archived_time = 50
-	var/obj/item/weapon/anobattery/inserted_battery
+	var/obj/item/anobattery/inserted_battery
 	var/turf/archived_loc
 
-/obj/item/weapon/anodevice/New()
+/obj/item/anodevice/New()
 	..()
 	GLOBL.processing_objects.Add(src)
 
-/obj/item/weapon/anodevice/attackby(obj/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/weapon/anobattery))
+/obj/item/anodevice/attackby(obj/I as obj, mob/user as mob)
+	if(istype(I, /obj/item/anobattery))
 		if(!inserted_battery)
 			to_chat(user, SPAN_INFO("You insert the battery."))
 			user.drop_item()
@@ -45,10 +45,10 @@
 	else
 		return ..()
 
-/obj/item/weapon/anodevice/attack_self(mob/user as mob)
+/obj/item/anodevice/attack_self(mob/user as mob)
 	return src.interact(user)
 
-/obj/item/weapon/anodevice/interact(mob/user)
+/obj/item/anodevice/interact(mob/user)
 	user.set_machine(src)
 	var/dat = "<b>Anomalous Materials Energy Utiliser</b><br>"
 	if(inserted_battery)
@@ -90,7 +90,7 @@
 	user << browse(dat, "window=anodevice;size=400x500")
 	onclose(user, "anodevice")
 
-/obj/item/weapon/anodevice/process()
+/obj/item/anodevice/process()
 	if(cooldown > 0)
 		cooldown -= 1
 		if(cooldown <= 0)
@@ -130,7 +130,7 @@
 		else
 			shutdown()
 
-/obj/item/weapon/anodevice/proc/shutdown_emission()
+/obj/item/anodevice/proc/shutdown_emission()
 	if(activated)
 		activated = 0
 		timing = 0
@@ -144,7 +144,7 @@
 		if(inserted_battery.battery_effect.activated)
 			inserted_battery.battery_effect.ToggleActivate(1)
 
-/obj/item/weapon/anodevice/Topic(href, href_list)
+/obj/item/anodevice/Topic(href, href_list)
 	if(href_list["neg_changetime_max"])
 		time += -100
 		if(time > inserted_battery.capacity)
@@ -190,7 +190,7 @@
 	..()
 	updateDialog()
 
-/obj/item/weapon/anodevice/proc/UpdateSprite()
+/obj/item/anodevice/proc/UpdateSprite()
 	if(!inserted_battery)
 		icon_state = "anodev"
 		return
@@ -198,6 +198,6 @@
 	p = min(p, 100)
 	icon_state = "anodev[round(p, 25)]"
 
-/obj/item/weapon/anodevice/Destroy()
+/obj/item/anodevice/Destroy()
 	GLOBL.processing_objects.Remove(src)
 	return ..()

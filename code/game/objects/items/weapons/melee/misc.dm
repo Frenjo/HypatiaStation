@@ -1,4 +1,4 @@
-/obj/item/weapon/melee/chainofcommand
+/obj/item/melee/chainofcommand
 	name = "chain of command"
 	desc = "A tool used by great men to placate the frothing masses."
 	icon_state = "chain"
@@ -11,6 +11,6 @@
 	origin_tech = list(RESEARCH_TECH_COMBAT = 4)
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 
-/obj/item/weapon/melee/chainofcommand/suicide_act(mob/user)
+/obj/item/melee/chainofcommand/suicide_act(mob/user)
 	viewers(user) << SPAN_DANGER("[user] is strangling \himself with the [src.name]! It looks like \he's trying to commit suicide.")
 	return (OXYLOSS)
