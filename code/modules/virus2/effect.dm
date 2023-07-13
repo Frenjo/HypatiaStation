@@ -138,7 +138,7 @@
 		var/datum/organ/external/E = H.organs_by_name[organ]
 		if(!(E.status & ORGAN_DEAD))
 			E.status |= ORGAN_DEAD
-			H << "<span class='notice'>You can't feel your [E.display_name] anymore...</span>"
+			to_chat(H, SPAN_NOTICE("You can't feel your [E.display_name] anymore..."))
 			for(var/datum/organ/external/C in E.children)
 				C.status |= ORGAN_DEAD
 		H.update_body(1)
@@ -170,7 +170,7 @@
 /datum/disease2/effect/immortal/deactivate(var/mob/living/carbon/mob, var/multiplier)
 	if(ishuman(mob))
 		var/mob/living/carbon/human/H = mob
-		H << "<span class='notice'>You suddenly feel hurt and old...</span>"
+		to_chat(H, SPAN_NOTICE("You suddenly feel hurt and old..."))
 		H.age += 8
 	var/backlash_amt = 5 * multiplier
 	mob.apply_damages(backlash_amt, backlash_amt, backlash_amt, backlash_amt)
@@ -265,7 +265,7 @@
 	stage = 3
 
 /datum/disease2/effect/confusion/activate(var/mob/living/carbon/mob, var/multiplier)
-	mob << "<span class='notice'>You have trouble telling right and left apart all of a sudden.</span>"
+	to_chat(mob, SPAN_NOTICE("You have trouble telling right and left apart all of a sudden."))
 	mob.confused += 10
 
 
@@ -352,7 +352,7 @@
 	if(ishuman(mob))
 		var/mob/living/carbon/human/H = mob
 		if(H.species.name == SPECIES_HUMAN && !(H.h_style == "Bald") && !(H.h_style == "Balding Hair"))
-			H << "<span class='danger'>Your hair starts to fall out in clumps...</span>"
+			to_chat(H, SPAN_DANGER("Your hair starts to fall out in clumps..."))
 			spawn(50)
 				H.h_style = "Balding Hair"
 				H.update_hair()
@@ -363,7 +363,7 @@
 	stage = 2
 
 /datum/disease2/effect/stimulant/activate(var/mob/living/carbon/mob, var/multiplier)
-	mob << "<span class='notice'>You feel a rush of energy inside you!</span>"
+	to_chat(mob, SPAN_NOTICE("You feel a rush of energy inside you!"))
 	if(mob.reagents.get_reagent_amount("hyperzine") < 10)
 		mob.reagents.add_reagent("hyperzine", 4)
 	if(prob(30))
@@ -377,7 +377,7 @@
 
 /datum/disease2/effect/sneeze/activate(var/mob/living/carbon/mob, var/multiplier)
 	if(prob(30))
-		mob << "<span class='warning'>You feel like you are about to sneeze!</span>"
+		to_chat(mob, SPAN_WARNING("You feel like you are about to sneeze!"))
 	sleep(5)
 	mob.say("*sneeze")
 	for(var/mob/living/carbon/M in get_step(mob,mob.dir))
@@ -416,4 +416,4 @@
 	stage = 1
 
 /datum/disease2/effect/headache/activate(var/mob/living/carbon/mob, var/multiplier)
-	mob << "<span class = 'notice'> Your head hurts a bit</span>"
+	to_chat(mob, SPAN_NOTICE("Your head hurts a bit"))

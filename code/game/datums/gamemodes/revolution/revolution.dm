@@ -120,14 +120,14 @@
 /datum/game_mode/proc/greet_revolutionary(datum/mind/rev_mind, you_are = 1)
 	var/obj_count = 1
 	if(you_are)
-		rev_mind.current << "\blue You are a member of the revolutionaries' leadership!"
+		to_chat(rev_mind.current, SPAN_INFO("You are a member of the revolutionaries' leadership!"))
 	if(!CONFIG_GET(objectives_disabled))
 		for(var/datum/objective/objective in rev_mind.objectives)
-			rev_mind.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
+			to_chat(rev_mind.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			rev_mind.special_role = "Head Revolutionary"
 			obj_count++
 	else
-		rev_mind.current << "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>"
+		FEEDBACK_ANTAGONIST_GREETING_GUIDE(rev_mind.current)
 
 /////////////////////////////////////////////////////////////////////////////////
 //This are equips the rev heads with their gear, and makes the clown not clumsy//
@@ -138,7 +138,7 @@
 
 	if(mob.mind)
 		if(mob.mind.assigned_role == "Clown")
-			mob << "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself."
+			to_chat(mob, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 			mob.mutations.Remove(CLUMSY)
 
 	var/obj/item/device/flash/T = new(mob)
@@ -152,9 +152,9 @@
 	)
 	var/where = mob.equip_in_one_of_slots(T, slots)
 	if(!where)
-		mob << "The Syndicate were unfortunately unable to get you a flash."
+		to_chat(mob, "The Syndicate were unfortunately unable to get you a flash.")
 	else
-		mob << "The flash in your [where] will help you to persuade the crew to join your cause."
+		to_chat(mob, "The flash in your [where] will help you to persuade the crew to join your cause.")
 		mob.update_icons()
 		return 1
 
@@ -195,10 +195,10 @@
 	if((rev_mind in revolutionaries) || (rev_mind in head_revolutionaries))
 		return 0
 	revolutionaries += rev_mind
-	rev_mind.current << "\red <FONT size = 3> You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill the heads to win the revolution!</FONT>"
+	to_chat(rev_mind.current, SPAN_WARNING("<FONT size = 3> You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill the heads to win the revolution!</FONT>"))
 	rev_mind.special_role = "Revolutionary"
 	if(CONFIG_GET(objectives_disabled))
-		rev_mind.current << "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>"
+		FEEDBACK_ANTAGONIST_GREETING_GUIDE(rev_mind.current)
 	update_rev_icons_added(rev_mind)
 	return 1
 //////////////////////////////////////////////////////////////////////////////
@@ -211,18 +211,18 @@
 		BITSET(rev_mind.current.hud_updateflag, SPECIALROLE_HUD)
 
 		if(beingborged)
-			rev_mind.current << "\red <FONT size = 3><B>The frame's firmware detects and deletes your neural reprogramming!  You remember nothing from the moment you were flashed until now.</B></FONT>"
+			to_chat(rev_mind.current, SPAN_DANGER("<FONT size = 3>The frame's firmware detects and deletes your neural reprogramming!  You remember nothing from the moment you were flashed until now.</FONT>"))
 
 		else
-			rev_mind.current << "\red <FONT size = 3><B>You have been brainwashed! You are no longer a revolutionary! Your memory is hazy from the time you were a rebel...the only thing you remember is the name of the one who brainwashed you...</B></FONT>"
+			to_chat(rev_mind.current, SPAN_DANGER("<FONT size = 3>You have been brainwashed! You are no longer a revolutionary! Your memory is hazy from the time you were a rebel...the only thing you remember is the name of the one who brainwashed you...</FONT>"))
 
 		update_rev_icons_removed(rev_mind)
 		for(var/mob/living/M in view(rev_mind.current))
 			if(beingborged)
-				M << "The frame beeps contentedly, purging the hostile memory engram from the MMI before initalizing it."
+				to_chat(M, "The frame beeps contentedly, purging the hostile memory engram from the MMI before initalizing it.")
 
 			else
-				M << "[rev_mind.current] looks like they just remembered their real allegiance!"
+				to_chat(M, "[rev_mind.current] looks like they just remembered their real allegiance!")
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////

@@ -101,7 +101,7 @@
 		if(!CONFIG_GET(objectives_disabled))
 			memoize_cult_objectives(cult_mind)
 		else
-			to_chat(cult_mind.current, "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>")
+			FEEDBACK_ANTAGONIST_GREETING_GUIDE(cult_mind.current)
 		cult_mind.special_role = "Cultist"
 
 	spawn(rand(waittime_l, waittime_h))

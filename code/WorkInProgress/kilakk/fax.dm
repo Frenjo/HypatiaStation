@@ -110,11 +110,11 @@ var/list/alldepartments = list("Central Command")
 	if(href_list["remove"])
 		if(tofax)
 			if(!ishuman(usr))
-				usr << "<span class='warning'>You can't do it.</span>"
+				to_chat(usr, SPAN_WARNING("You can't do it."))
 			else
 				tofax.loc = usr.loc
 				usr.put_in_hands(tofax)
-				usr << "<span class='notice'>You take the paper out of \the [src].</span>"
+				to_chat(usr, SPAN_NOTICE("You take the paper out of \the [src]."))
 				tofax = null
 
 	if(href_list["scan"])
@@ -155,11 +155,11 @@ var/list/alldepartments = list("Central Command")
 			user.drop_item()
 			tofax = O
 			O.loc = src
-			user << "<span class='notice'>You insert the paper into \the [src].</span>"
+			to_chat(user, SPAN_NOTICE("You insert the paper into \the [src]."))
 			flick("faxsend", src)
 			updateUsrDialog()
 		else
-			user << "<span class='notice'>There is already something in \the [src].</span>"
+			to_chat(user, SPAN_NOTICE("There is already something in \the [src]."))
 
 	else if(istype(O, /obj/item/weapon/card/id))
 
@@ -172,7 +172,7 @@ var/list/alldepartments = list("Central Command")
 	else if(istype(O, /obj/item/weapon/wrench))
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		anchored = !anchored
-		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
+		to_chat(user, SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 	return
 
 /proc/centcom_fax(var/sent, var/sentname, var/mob/Sender)

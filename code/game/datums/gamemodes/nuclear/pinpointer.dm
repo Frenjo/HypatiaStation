@@ -17,11 +17,11 @@
 	if(!active)
 		active = 1
 		workdisk()
-		usr << "\blue You activate the pinpointer"
+		to_chat(usr, SPAN_INFO("You activate the pinpointer"))
 	else
 		active = 0
 		icon_state = "pinoff"
-		usr << "\blue You deactivate the pinpointer"
+		to_chat(usr, SPAN_INFO("You deactivate the pinpointer"))
 
 /obj/item/weapon/pinpointer/proc/workdisk()
 	if(!active) return
@@ -46,7 +46,7 @@
 	..()
 	for(var/obj/machinery/nuclearbomb/bomb in world)
 		if(bomb.timing)
-			usr << "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]"
+			to_chat(usr, "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]")
 
 /obj/item/weapon/pinpointer/Destroy()
 	active = 0
@@ -69,11 +69,11 @@
 			worklocation()
 		if(mode == 2)
 			workobj()
-		usr << "\blue You activate the pinpointer"
+		to_chat(usr, SPAN_INFO("You activate the pinpointer"))
 	else
 		active = 0
 		icon_state = "pinoff"
-		usr << "\blue You deactivate the pinpointer"
+		to_chat(usr, SPAN_INFO("You deactivate the pinpointer"))
 
 /obj/item/weapon/pinpointer/advpinpointer/proc/worklocation()
 	if(!active)
@@ -136,7 +136,7 @@
 
 			location = locate(locationx,locationy,Z.z)
 
-			usr << "You set the pinpointer to locate [locationx],[locationy]"
+			to_chat(usr, "You set the pinpointer to locate [locationx],[locationy]")
 
 
 			return attack_self()
@@ -156,9 +156,9 @@
 						return
 					target=locate(itemlist.possible_items[targetitem])
 					if(!target)
-						usr << "Failed to locate [targetitem]!"
+						to_chat(usr, "Failed to locate [targetitem]!")
 						return
-					usr << "You set the pinpointer to locate [targetitem]"
+					to_chat(usr, "You set the pinpointer to locate [targetitem]")
 				if("DNA")
 					var/DNAstring = input("Input DNA string to search for." , "Please Enter String." , "")
 					if(!DNAstring)
@@ -184,14 +184,14 @@
 		active = 1
 		if(!mode)
 			workdisk()
-			user << "<span class='notice'>Authentication Disk Locator active.</span>"
+			to_chat(user, SPAN_NOTICE("Authentication Disk Locator active."))
 		else
 			worklocation()
-			user << "<span class='notice'>Shuttle Locator active.</span>"
+			to_chat(user, SPAN_NOTICE("Shuttle Locator active."))
 	else
 		active = 0
 		icon_state = "pinoff"
-		user << "<span class='notice'>You deactivate the pinpointer.</span>"
+		to_chat(user, SPAN_NOTICE("You deactivate the pinpointer."))
 
 /obj/item/weapon/pinpointer/nukeop/workdisk()
 	if(!active) return
