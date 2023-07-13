@@ -1,6 +1,7 @@
 /obj/item/melee/chainofcommand
 	name = "chain of command"
 	desc = "A tool used by great men to placate the frothing masses."
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "chain"
 	item_state = "chain"
 	flags = CONDUCT

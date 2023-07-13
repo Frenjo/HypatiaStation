@@ -15,6 +15,7 @@
 /obj/item/minihoe // -- Numbers
 	name = "mini hoe"
 	desc = "It's used for removing weeds or scratching your back."
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "hoe"
 	item_state = "hoe"
 	flags = CONDUCT | NOBLUDGEON
@@ -30,6 +31,7 @@
 /obj/item/hatchet
 	name = "hatchet"
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "hatchet"
 	flags = CONDUCT
 	force = 12.0
@@ -51,9 +53,10 @@
  * Scythe
  */
 /obj/item/scythe
-	icon_state = "scythe0"
 	name = "scythe"
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
+	icon = 'icons/obj/weapons/weapons.dmi'
+	icon_state = "scythe0"
 	force = 13.0
 	throwforce = 5.0
 	sharp = 1

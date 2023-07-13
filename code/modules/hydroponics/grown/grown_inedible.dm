@@ -97,6 +97,7 @@
 /obj/item/grown/nettle // -- Skie
 	desc = "It's probably <B>not</B> wise to touch it with bare hands..."
 	name = "nettle"
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "nettle"
 	damtype = "fire"
 	force = 15
@@ -146,6 +147,7 @@
 /obj/item/grown/deathnettle // -- Skie
 	desc = "The \red glowing \black nettle incites \red<B>rage</B>\black in you just from looking at it!"
 	name = "deathnettle"
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "deathnettle"
 	damtype = "fire"
 	force = 30

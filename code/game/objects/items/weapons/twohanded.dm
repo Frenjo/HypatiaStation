@@ -92,6 +92,7 @@
 ///////////OFFHAND///////////////
 /obj/item/twohanded/offhand
 	w_class = 5.0
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "offhand"
 	name = "offhand"
 
@@ -106,9 +107,10 @@
  * Fireaxe
  */
 /obj/item/twohanded/fireaxe  // DEM AXES MAN, marker -Agouri
-	icon_state = "fireaxe0"
 	name = "fire axe"
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
+	icon = 'icons/obj/weapons/weapons.dmi'
+	icon_state = "fireaxe0"
 	force = 5
 	sharp = 1
 	edge = 1
@@ -145,9 +147,10 @@
  * Double-Bladed Energy Swords - Cheridan
  */
 /obj/item/twohanded/dualsaber
-	icon_state = "dualsaber0"
 	name = "double-bladed energy sword"
 	desc = "Handle with care."
+	icon = 'icons/obj/weapons/weapons.dmi'
+	icon_state = "dualsaber0"
 	force = 3
 	throwforce = 5.0
 	throw_speed = 1

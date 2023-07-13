@@ -11,6 +11,7 @@
 /obj/item/melee/energy/axe
 	name = "energy axe"
 	desc = "An energised battle axe."
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "axe0"
 	force = 40.0
 	throwforce = 25.0
@@ -29,9 +30,9 @@
 
 
 /obj/item/melee/energy/sword
-	color
 	name = "energy sword"
 	desc = "May the force be within you."
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "sword0"
 	force = 3.0
 	throwforce = 5.0
@@ -52,6 +53,7 @@
 /obj/item/melee/energy/blade
 	name = "energy blade"
 	desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "blade"
 	force = 70.0//Normal attacks deal very high damage.
 	sharp = 1

@@ -81,8 +81,8 @@
 	name = "mini energy-crossbow"
 	desc = "A weapon favored by many of the syndicates stealth specialists."
 	icon_state = "crossbow"
-	w_class = 2.0
 	item_state = "crossbow"
+	w_class = 2.0
 	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_SYNDICATE = 5)
 	silenced = 1
 	fire_sound = 'sound/weapons/Genhit.ogg'

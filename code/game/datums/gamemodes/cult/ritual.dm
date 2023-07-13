@@ -189,6 +189,7 @@ var/engwords = list(
 
 /obj/item/tome
 	name = "arcane tome"
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state ="tome"
 	throw_speed = 1
 	throw_range = 5

@@ -4,11 +4,12 @@
 /obj/item/spike
 	name = "alloy spike"
 	desc = "It's about a foot of weird silver metal with a wicked point."
+	icon = 'icons/obj/weapons/weapons.dmi'
+	icon_state = "metal-rod"
+	item_state = "bolt"
 	sharp = 1
 	throwforce = 5
 	w_class = 2
-	icon_state = "metal-rod"
-	item_state = "bolt"
 
 //Launcher.
 /obj/item/spikethrower

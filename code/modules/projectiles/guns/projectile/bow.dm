@@ -1,6 +1,7 @@
 /obj/item/arrow
 	name = "bolt"
 	desc = "It's got a tip for you - get the point?"
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "bolt"
 	item_state = "bolt"
 	throwforce = 8
@@ -33,6 +34,7 @@
 /obj/item/crossbow
 	name = "powered crossbow"
 	desc = "A 2557AD twist on an old classic. Pick up that can."
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "crossbow"
 	item_state = "crossbow-solid"
 	w_class = 5.0

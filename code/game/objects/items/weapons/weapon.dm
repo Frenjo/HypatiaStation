@@ -84,6 +84,7 @@
 /obj/item/cane
 	name = "cane"
 	desc = "A cane used by a true gentlemen. Or a clown."
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "cane"
 	item_state = "stick"
 	flags = CONDUCT
@@ -379,6 +380,7 @@
 /obj/item/hatchet/soghunknife
 	name = "duelling knife"
 	desc = "A length of leather-bound wood studded with razor-sharp teeth. How crude."
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "soghunknife"
 	attack_verb = list("ripped", "torn", "cut")
 
@@ -440,6 +442,7 @@
 /obj/item/nullrod
 	name = "null rod"
 	desc = "A rod of pure obsidian, its very presence disrupts and dampens the powers of paranormal phenomenae."
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "nullrod"
 	item_state = "nullrod"
 	slot_flags = SLOT_BELT
@@ -490,6 +493,7 @@
 /obj/item/sord
 	name = "\improper SORD"
 	desc = "This thing is so unspeakably shitty you are having a hard time even holding it."
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "sord"
 	item_state = "sord"
 	slot_flags = SLOT_BELT
@@ -511,6 +515,7 @@
 /obj/item/claymore
 	name = "claymore"
 	desc = "What are you standing around staring at this for? Get to killing!"
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "claymore"
 	item_state = "claymore"
 	flags = CONDUCT
@@ -560,11 +565,12 @@
 
 /obj/item/harpoon
 	name = "harpoon"
-	sharp = 1
-	edge = 0
 	desc = "Tharr she blows!"
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "harpoon"
 	item_state = "harpoon"
+	sharp = 1
+	edge = 0
 	force = 20
 	throwforce = 15
 	w_class = 3
