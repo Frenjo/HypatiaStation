@@ -777,13 +777,13 @@ spideros = text2num(return_to)//Maximum length here is 6. Use (return_to, X) to 
 		if(isturf(T) && T.is_plating())
 			attached = locate() in T
 			if(!attached)
-				U << "\red Warning: no exposed cable available."
+				to_chat(U, SPAN_WARNING("Warning: no exposed cable available."))
 			else
-				U << "\blue Connecting to wire, stand still..."
+				to_chat(U, SPAN_INFO("Connecting to wire, stand still..."))
 				if(do_after(U,50)&&isnotnull(attached))
 					drain("WIRE",attached,U:wear_suit,src)
 				else
-					U << "\red Procedure interrupted. Protocol terminated."
+					to_chat(U, SPAN_WARNING("Procedure interrupted. Protocol terminated."))
 	return
 
 I've tried a lot of stuff but adding verbs to the AI while inside an object, inside another object, did not want to work properly.
@@ -844,7 +844,7 @@ BYOND fixed the verb bugs so this is no longer necessary. I prefer verb panels.
 	opacity = FALSE
 
 /obj/effect/proc_holder/ai_instruction/Click()
-	loc << "The menu you are seeing will contain other commands if they become available.\nRight click a nearby turf to display an AI Hologram. It will only be visible to you and your host. You can move it freely using normal movement keys--it will disappear if placed too far away."
+	to_chat(loc, "The menu you are seeing will contain other commands if they become available.\nRight click a nearby turf to display an AI Hologram. It will only be visible to you and your host. You can move it freely using normal movement keys--it will disappear if placed too far away.")
 
 /obj/effect/proc_holder/ai_hack_ninja//Generic proc holder to make sure the two verbs below work propely.
 	name = "Hack SpiderOS"
@@ -869,8 +869,8 @@ BYOND fixed the verb bugs so this is no longer necessary. I prefer verb panels.
 	var/mob/living/silicon/ai/A = loc
 	var/obj/item/clothing/suit/space/space_ninja/S = A.loc
 	A << browse(null, "window=hack spideros")//Close window
-	A << "You have seized your hacking attempt. [S.affecting] has regained control."
-	S.affecting << "<b>UPDATE</b>: [A.real_name] has ceased hacking attempt. All systems clear."
+	to_chat(A, "You have seized your hacking attempt. [S.affecting] has regained control.")
+	to_chat(S.affecting, "<b>UPDATE</b>: [A.real_name] has ceased hacking attempt. All systems clear.")
 	S.remove_AI_verbs()
 	return
 */
@@ -882,7 +882,7 @@ BYOND fixed the verb bugs so this is no longer necessary. I prefer verb panels.
 //Does nothing at the moment. I am trying to see if it's possible to mess around with verbs as variables.
 	//for(var/P in verbs)
 //		if(P.set.name)
-//			usr << "[P.set.name], path: [P]"
+//			to_chat(usr, "[P.set.name], path: [P]")
 	return
 
 

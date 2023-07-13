@@ -166,7 +166,7 @@
 /datum/game_mode/proc/prepare_syndicate_leader(datum/mind/synd_mind, nuke_code)
 	if(nuke_code)
 		synd_mind.store_memory("<B>Syndicate Nuclear Bomb Code</B>: [nuke_code]", 0, 0)
-		synd_mind.current << "The nuclear authorisation code is: <B>[nuke_code]</B>"
+		to_chat(synd_mind.current, "The nuclear authorisation code is: <B>[nuke_code]</B>")
 		var/obj/item/weapon/paper/P = new
 		P.info = "The nuclear authorisation code is: <b>[nuke_code]</b>"
 		P.name = "nuclear bomb code"
@@ -191,14 +191,14 @@
 
 /datum/game_mode/proc/greet_syndicate(datum/mind/syndicate, you_are = 1)
 	if(you_are)
-		syndicate.current << "\blue You are a [syndicate_name()] agent!"
+		to_chat(syndicate.current, SPAN_INFO("You are a [syndicate_name()] agent!"))
 	var/obj_count = 1
 	if(!CONFIG_GET(objectives_disabled))
 		for(var/datum/objective/objective in syndicate.objectives)
-			syndicate.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
+			to_chat(syndicate.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			obj_count++
 	else
-		syndicate.current << "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>"
+		to_chat(syndicate.current, "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>")
 	return
 
 
@@ -364,7 +364,7 @@
 
 	else
 		if (newname == "Unknown" || newname == "floor" || newname == "wall" || newname == "rwall" || newname == "_")
-			M << "That name is reserved."
+			to_chat(M, "That name is reserved.")
 			return nukelastname(M)
 
 	return newname

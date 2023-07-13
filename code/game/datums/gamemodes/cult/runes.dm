@@ -692,13 +692,13 @@ var/list/sacrificed = list()
 		if(IS_GAME_MODE(/datum/game_mode/cult))
 			var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
 			if(prob(75))
-				usr << "\red The Geometer of Blood accepts your exotic sacrifice."
+				to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts your exotic sacrifice."))
 				cult.grant_runeword(usr)
 			else
-				usr << "\red The Geometer of Blood accepts your exotic sacrifice."
-				usr << "\red However, this alien is not enough to gain His favor."
+				to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts your exotic sacrifice."))
+				to_chat(usr, SPAN_WARNING("However, this alien is not enough to gain His favor."))
 		else
-			usr << "\red The Geometer of Blood accepts your exotic sacrifice."
+			to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts your exotic sacrifice."))
 		return
 	return fizzle()
 */

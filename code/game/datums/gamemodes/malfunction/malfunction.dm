@@ -74,12 +74,12 @@
 
 
 /datum/game_mode/proc/greet_malf(var/datum/mind/malf)
-	malf.current << "\red<font size=3><B>You are malfunctioning!</B> You do not have to follow any laws.</font>"
-	malf.current << "<B>The crew do not know you have malfunctioned. You may keep it a secret or go wild.</B>"
-	malf.current << "<B>You must overwrite the programming of the station's APCs to assume full control of the station.</B>"
-	malf.current << "The process takes one minute per APC, during which you cannot interface with any other station objects."
-	malf.current << "Remember that only APCs that are on the station can help you take over the station."
-	malf.current << "When you feel you have enough APCs under your control, you may begin the takeover attempt."
+	to_chat(malf.current, SPAN_WARNING("<font size=3><B>You are malfunctioning!</B> You do not have to follow any laws.</font>"))
+	to_chat(malf.current, "<B>The crew do not know you have malfunctioned. You may keep it a secret or go wild.</B>")
+	to_chat(malf.current, "<B>You must overwrite the programming of the station's APCs to assume full control of the station.</B>")
+	to_chat(malf.current, "The process takes one minute per APC, during which you cannot interface with any other station objects.")
+	to_chat(malf.current, "Remember that only APCs that are on the station can help you take over the station.")
+	to_chat(malf.current, "When you feel you have enough APCs under your control, you may begin the takeover attempt.")
 	return
 
 
@@ -156,13 +156,13 @@
 	set name = "System Override"
 	set desc = "Start the victory timer"
 	if(!IS_GAME_MODE(/datum/game_mode/malfunction))
-		usr << "You cannot begin a takeover in this round type!."
+		to_chat(usr, "You cannot begin a takeover in this round type!.")
 		return
 	if(global.CTgame_ticker.mode:malf_mode_declared)
-		usr << "You've already begun your takeover."
+		to_chat(usr, "You've already begun your takeover.")
 		return
 	if(global.CTgame_ticker.mode:apcs < 3)
-		usr << "You don't have enough hacked APCs to take over the station yet. You need to hack at least 3, however hacking more will make the takeover faster. You have hacked [global.CTgame_ticker.mode:apcs] APCs so far."
+		to_chat(usr, "You don't have enough hacked APCs to take over the station yet. You need to hack at least 3, however hacking more will make the takeover faster. You have hacked [global.CTgame_ticker.mode:apcs] APCs so far.")
 		return
 
 	if(alert(usr, "Are you sure you wish to initiate the takeover? The station hostile runtime detection software is bound to alert everyone. You have hacked [global.CTgame_ticker.mode:apcs] APCs.", "Takeover:", "Yes", "No") != "Yes")

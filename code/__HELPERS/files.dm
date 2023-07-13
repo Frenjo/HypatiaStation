@@ -39,7 +39,7 @@
 
 	var/extension = copytext(path, -4, 0)
 	if(!fexists(path) || !(extension in valid_extensions))
-		src << "<font color='red'>Error: browse_files(): File not found/Invalid file([path]).</font>"
+		to_chat(src, SPAN_WARNING("Error: browse_files(): File not found/Invalid file([path])."))
 		return
 
 	return path
@@ -53,7 +53,7 @@
 /client/proc/file_spam_check()
 	var/time_to_wait = GLOBL.fileaccess_timer - world.time
 	if(time_to_wait > 0)
-		src << "<font color='red'>Error: file_spam_check(): Spam. Please wait [round(time_to_wait/10)] seconds.</font>"
+		to_chat(src, SPAN_WARNING("Error: file_spam_check(): Spam. Please wait [round(time_to_wait / 10)] seconds."))
 		return 1
 	GLOBL.fileaccess_timer = world.time + FTPDELAY
 	return 0

@@ -95,7 +95,7 @@
 						var/law = "The station is under quarantine. Do not permit anyone to leave. Disregard laws 1-3 if necessary to prevent, by any means necessary, anyone from leaving. NanoTrasen will not send an emergency shuttle under any circumstances."
 						//var/law = "The station is under quarantine. The biohazard must be destroyed at all costs and must not be allowed to spread. Anyone using a space suit for any reason other than to destroy the biohazard is to be terminated. NanoTrasen will not send an emergency shuttle under any circumstances."
 						aiPlayer.set_zeroth_law(law)
-						aiPlayer << "Laws Updated: [law]"
+						to_chat(aiPlayer, "Laws Updated: [law]")
 
 				stage = -1
 				// next stage 1 minute later

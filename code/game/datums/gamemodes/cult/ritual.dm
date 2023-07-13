@@ -78,7 +78,7 @@ var/engwords = list(
 		return
 		/* Explosions... really?
 		if(desc && !usr.stat)
-			usr << "It reads: <i>[desc]</i>."
+			to_chat(usr, "It reads: <i>[desc]</i>.")
 			sleep(30)
 			explosion(src.loc, 0, 2, 5, 5)
 			if(src)
