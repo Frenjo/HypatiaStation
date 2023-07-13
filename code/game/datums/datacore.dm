@@ -49,7 +49,7 @@ GLOBAL_GLOBL_LIST_NEW(pda_manifest)
 			isactive[name] = active ? "Active" : "Inactive"
 		else
 			isactive[name] = t.fields["p_stat"]
-			//world << "[name]: [rank]"
+			//to_world("[name]: [rank]")
 			//cael - to prevent multiple appearances of a player/job combination, add a continue after each line
 		var/department = FALSE
 		if(real_rank in GLOBL.command_positions)

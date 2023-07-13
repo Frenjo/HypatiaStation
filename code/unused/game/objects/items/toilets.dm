@@ -78,7 +78,7 @@ TOILET
 				for(var/mob/O in viewers(user, null))
 					if ((O.client && !( O.blinded )))
 						O << text("\blue [] zips up.", M)
-//			world << "[M] is no longer buckled to [src]"
+			//to_world("[M] is no longer buckled to [src]")
 			M.anchored = FALSE
 			M.buckled = null
 			src.add_fingerprint(user)

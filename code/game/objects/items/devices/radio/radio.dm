@@ -180,7 +180,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	var/datum/radio_frequency/connection = null
 	if(channel && length(channels))
 		if(channel == "department")
-			//world << "DEBUG: channel=\"[channel]\" switching to \"[channels[1]]\""
+			//to_world("DEBUG: channel=\"[channel]\" switching to \"[channels[1]]\"")
 			channel = channels[1]
 		connection = secure_radio_connections[channel]
 	else
@@ -236,7 +236,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		if(channel) // If a channel is specified, look for it.
 			if(length(channels))
 				if(channel == "department")
-					//world << "DEBUG: channel=\"[channel]\" switching to \"[channels[1]]\""
+					//to_world("DEBUG: channel=\"[channel]\" switching to \"[channels[1]]\"")
 					channel = channels[1]
 				connection = secure_radio_connections[channel]
 				if(!channels[channel]) // if the channel is turned off, don't broadcast
@@ -419,7 +419,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		var/datum/radio_frequency/connection = null
 		if(channel && length(channels))
 			if(channel == "department")
-				//world << "DEBUG: channel=\"[channel]\" switching to \"[channels[1]]\""
+				//to_world("DEBUG: channel=\"[channel]\" switching to \"[channels[1]]\"")
 				channel = channels[1]
 			connection = secure_radio_connections[channel]
 		else
@@ -429,7 +429,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			return
 		var/display_freq = connection.frequency
 
-		//world << "DEBUG: used channel=\"[channel]\" frequency= \"[display_freq]\" connection.devices.len = [length(connection.devices)]"
+		//to_world("DEBUG: used channel=\"[channel]\" frequency= \"[display_freq]\" connection.devices.len = [length(connection.devices)]")
 
 		var/eqjobname
 
@@ -456,7 +456,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			//if(R.accept_rad(src, message))
 			receive |= R.send_hear(display_freq, 0)
 
-		//world << "DEBUG: receive.len=[length(receive)]"
+		//to_world("DEBUG: receive.len=[length(receive)]")
 		var/list/heard_masked = list() // masked name or no real name
 		var/list/heard_normal = list() // normal message
 		var/list/heard_voice = list() // voice message

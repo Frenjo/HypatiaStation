@@ -370,7 +370,7 @@
 		return 0
 
 	if(!(program.holder in src))
-//		world << "Not in src"
+		//to_world("Not in src")
 		program = new program.type
 		program.transfer_holder(src.hd)
 
@@ -396,9 +396,9 @@
 	return 0
 
 /obj/machinery/computer2/proc/delete_file(datum/computer/file/file)
-	//world << "Deleting [file]..."
+	//to_world("Deleting [file]...")
 	if((!file) || (!file.holder) || (file.holder.read_only))
-		//world << "Cannot delete :("
+		//to_world("Cannot delete :(")
 		return 0
 
 	if(file in src.processing_programs)
@@ -409,6 +409,6 @@
 
 //	file.holder.root.remove_file(file)
 
-	//world << "Now calling del on [file]..."
+	//to_world("Now calling del on [file]...")
 	del(file)
 	return 1

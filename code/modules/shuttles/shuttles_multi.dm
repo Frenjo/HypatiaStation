@@ -88,7 +88,7 @@
 	if(!istype(shuttle))
 		return
 
-	//world << "multi_shuttle: last_departed=[shuttle.last_departed], origin=[shuttle.origin], interim=[shuttle.interim], travel_time=[shuttle.move_time]"
+	//to_world("multi_shuttle: last_departed=[shuttle.last_departed], origin=[shuttle.origin], interim=[shuttle.interim], travel_time=[shuttle.move_time]")
 
 	if(shuttle.moving_status != SHUTTLE_IDLE)
 		to_chat(usr, SPAN_INFO("[shuttle_tag] vessel is moving."))

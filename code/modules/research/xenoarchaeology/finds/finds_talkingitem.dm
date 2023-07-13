@@ -41,7 +41,7 @@
 			var/list/w = heard_words["[lowertext(seperate[Xa])]"]
 			if(w)
 				w.Add("[lowertext(seperate[next])]")
-			//world << "Adding [lowertext(seperate[next])] to [lowertext(seperate[Xa])]"
+			//to_world("Adding [lowertext(seperate[next])] to [lowertext(seperate[Xa])]")
 
 		if(!rand(0, 5))
 			spawn(2)
@@ -53,10 +53,10 @@
 /*/obj/item/talkingcrystal/proc/debug()
 	//set src in view()
 	for(var/v in heard_words)
-		world << "[uppertext(v)]"
+		to_world("[uppertext(v)]")
 		var/list/d = heard_words["[v]"]
 		for(var/X in d)
-			world << "[X]"*/
+			to_world("[X]")*/
 
 /obj/item/proc/SaySomething(word = null)
 	var/msg

@@ -63,7 +63,7 @@ var/engwords = list(
 
 // self other technology - Communication rune  //was other hear blood
 // join hide technology - stun rune. Rune color: bright pink.
-	
+
 /obj/effect/rune/New()
 	..()
 	var/image/blood = image(loc = src)
@@ -78,7 +78,7 @@ var/engwords = list(
 		return
 		/* Explosions... really?
 		if(desc && !usr.stat)
-			usr << "It reads: <i>[desc]</i>."
+			to_chat(usr, "It reads: <i>[desc]</i>.")
 			sleep(30)
 			explosion(src.loc, 0, 2, 5, 5)
 			if(src)
@@ -339,7 +339,7 @@ var/engwords = list(
 
 
 //	proc/edit_notes()     FUCK IT. Cant get it to work properly. - K0000
-//		world << "its been called! [usr]"
+//		to_world("its been called! [usr]")
 //		notedat = {"
 //		<br><b>Word translation notes</b> <br>
 //			[words[1]] is <a href='byond://?src=\ref[src];number=1;action=change'>[words[words[1]]]</A> <A href='byond://?src=\ref[src];number=1;action=clear'>Clear</A><BR>

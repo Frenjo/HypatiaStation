@@ -144,7 +144,7 @@ Data storage vars:
 		arg_list = arguments
 		return 1
 	else
-//		world << "\red Invalid arguments supplied for [src.type], ref = \ref[src]"
+		//to_world("\red Invalid arguments supplied for [src.type], ref = \ref[src]")
 		return 0
 
 /datum/global_iterator/proc/toggle_null_checks()

@@ -769,7 +769,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 
 /*/obj/item/newspaper/attack_hand(mob/user as mob)
 	..()
-	world << "derp"*/
+	to_world("derp")*/
 
 /obj/item/newspaper/attack_self(mob/user as mob)
 	if(ishuman(user))

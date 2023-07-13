@@ -101,7 +101,7 @@
 					aiRestorePowerRoutine = 1
 
 					to_chat(src, "You've lost power!")
-//							world << "DEBUG CODE TIME! [loc] is the area the AI is sucking power from"
+					//to_world("DEBUG CODE TIME! [loc] is the area the AI is sucking power from")
 					if(!is_special_character(src))
 						set_zeroth_law("")
 					//clear_supplied_laws() // Don't reset our laws.

@@ -73,7 +73,7 @@ proc/makejson()
 		if(findtext(A,path,1,0))
 			lineloc = lines.Find(A,1,0)
 			lines[lineloc] = xpath
-			world << "FOUND"*/
+			to_world("FOUND")*/
 	fdel(dmepath)
 	var/file = file(dmepath)
 	file << text
@@ -89,12 +89,12 @@ obj/mapinfo
 proc/GetMapInfo()
 //	var/obj/mapinfo/M = locate()
 //	Just removing these to try and fix the occasional JSON -> WORLD issue.
-//	world << M.name
-//	world << M.mapname
+	//to_world(M.name)
+	//to_world(M.mapname)
 client/proc/ChangeMap(var/X as text)
 	set name = "Change Map"
 	set category  = "Admin"
 	switchmap(X,X)
 proc/send2adminirc(channel,msg)
-	world << channel << " "<< msg
+	to_world(channel << " "<< msg)
 	shell("python nudge.py '[channel]' [msg]")

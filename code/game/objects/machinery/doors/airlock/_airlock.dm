@@ -167,7 +167,7 @@
 	return ..()
 
 /obj/machinery/door/airlock/attackby(C as obj, mob/user as mob)
-	//world << text("airlock attackby src [] obj [] mob []", src, C, user)
+	//to_world("airlock attackby src [src] obj [C] mob [user]")
 	if(!issilicon(usr))
 		if(isElectrified())
 			if(shock(user, 75))

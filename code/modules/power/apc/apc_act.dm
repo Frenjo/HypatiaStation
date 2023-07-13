@@ -43,7 +43,7 @@
 		if(prob(3))
 			src.locked = 1
 			if(src.cell.charge > 0)
-//				world << "\red blew APC in [src.loc.loc]"
+				//to_world("\red blew APC in [src.loc.loc]")
 				src.cell.charge = 0
 				cell.corrupt()
 				src.malfhack = 1

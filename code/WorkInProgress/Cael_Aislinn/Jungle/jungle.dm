@@ -66,7 +66,7 @@
 	//loop over the walls in the temple and make them a random pre-chosen mineral (null is a stand in for plasma, which the walls already are)
 	//treat plasma slightly differently because it's the default wall type
 	var/mineral = pick(MATERIAL_URANIUM, MATERIAL_SANDSTONE, MATERIAL_GOLD, MATERIAL_METAL, MATERIAL_SILVER, MATERIAL_DIAMOND, MATERIAL_BANANIUM, MATERIAL_PLASMA)
-	//world << "init [mineral]"
+	//to_world("init [mineral]")
 	var/area/my_area = get_area(src)
 	var/list/temple_turfs = get_area_turfs(my_area.type)
 
@@ -92,13 +92,13 @@
 			T.icon_state = replacetext(T.icon_state, MATERIAL_PLASMA, mineral)
 
 		/*for(var/obj/effect/landmark/falsewall_spawner/F in T.contents)
-			//world << "falsewall_spawner found in wall"
+			//to_world("falsewall_spawner found in wall")
 			var/obj/structure/temple_falsewall/fwall = new(F.loc)
 			fwall.mineral = mineral
 			del(F)
 
 		for(var/obj/effect/landmark/door_spawner/D in T.contents)
-			//world << "door_spawner found in wall"
+			//to_world("door_spawner found in wall")
 			T = new /turf/unsimulated/floor(T.loc)
 			T.icon_state = "dark"
 			var/spawn_type = text2path("/obj/machinery/door/airlock/[door_mineral]")

@@ -27,9 +27,11 @@
 	ninja.special_role = "Ninja"
 	ninja.original = ninja.current
 
-	/*if(!length(global.ninjastart))
-		ninja.current << "<B>\red A proper starting location for you could not be found, please report this bug!</B>"
-		ninja.current << "<B>\red Attempting to place at a carpspawn.</B>"*/
+	/*
+	if(!length(global.ninjastart))
+		to_chat(ninja.current, SPAN_DANGER("A proper starting location for you could not be found, please report this bug!"))
+		to_chat(ninja.current, SPAN_DANGER("Attempting to place at a carpspawn."))
+	*/
 
 	//Until such a time as people want to place ninja spawn points, carpspawn will do fine.
 	for(var/obj/effect/landmark/L in GLOBL.landmarks_list)
@@ -58,7 +60,7 @@
 		if(!CONFIG_GET(objectives_disabled))
 			forge_ninja_objectives(ninja)
 		else
-			ninja.current << "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>"
+			FEEDBACK_ANTAGONIST_GREETING_GUIDE(ninja.current)
 		var/mob/living/carbon/human/N = ninja.current
 		N.internal = N.s_store
 		N.internals.icon_state = "internal1"
@@ -134,13 +136,13 @@
 	ninja.current.mind = ninja
 
 	var/directive = generate_ninja_directive("heel")//Only hired by antags, not NT
-	ninja.current << "You are an elite mercenary assassin of the Spider Clan, [ninja.current.real_name]. You have a variety of abilities at your disposal, thanks to your nano-enhanced cyber armor.\nYour current directive is: \red <B>[directive]</B>\n \blue Try your best to adhere to this."
+	to_chat(ninja.current, "You are an elite mercenary assassin of the Spider Clan, [ninja.current.real_name]. You have a variety of abilities at your disposal, thanks to your nano-enhanced cyber armor.\nYour current directive is: \red <B>[directive]</B>\n \blue Try your best to adhere to this.")
 	ninja.store_memory("<B>Directive:</B> \red [directive]<br>")
 
 	var/obj_count = 1
-	ninja.current << "\blue Your current objectives:"
+	to_chat(ninja.current, SPAN_INFO("Your current objectives:"))
 	for(var/datum/objective/objective in ninja.objectives)
-		ninja.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
+		to_chat(ninja.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 		obj_count++
 
 /datum/game_mode/proc/auto_declare_completion_ninja()

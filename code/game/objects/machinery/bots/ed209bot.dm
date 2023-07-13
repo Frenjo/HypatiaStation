@@ -498,9 +498,9 @@ Auto Patrol: []"},
 		return
 
 	/*
-	world << "rec signal: [signal.source]"
+	to_world("rec signal: [signal.source]")
 	for(var/x in signal.data)
-		world << "* [x] = [signal.data[x]]"
+		to_world("* [x] = [signal.data[x]]")
 	*/
 
 	var/recv = signal.data["command"]
@@ -582,7 +582,7 @@ Auto Patrol: []"},
 	signal.transmission_method = TRANSMISSION_RADIO
 	//for(var/key in keyval)
 	//	signal.data[key] = keyval[key]
-		//world << "sent [key],[keyval[key]] on [freq]"
+		//to_world("sent [key],[keyval[key]] on [freq]")
 	signal.data = keyval
 	if (signal.data["findbeacon"])
 		frequency.post_signal(src, signal, filter = RADIO_NAVBEACONS)

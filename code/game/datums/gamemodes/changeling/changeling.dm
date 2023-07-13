@@ -128,7 +128,7 @@ var/list/possible_changeling_IDs = list(
 	to_chat(changeling.current, SPAN_DANGER("Use say \":g message\" to communicate with your fellow changelings. Remember: you get all of their absorbed DNA if you absorb them."))
 
 	if(CONFIG_GET(objectives_disabled))
-		to_chat(changeling.current, "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>")
+		FEEDBACK_ANTAGONIST_GREETING_GUIDE(changeling.current)
 
 	if(!CONFIG_GET(objectives_disabled))
 		to_chat(changeling.current, "<B>You must complete the following tasks:</B>")

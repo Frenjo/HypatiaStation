@@ -295,12 +295,12 @@ obj/machinery/atmospherics
 				set src in world
 				set category = "Minor"
 
-				world << "Debugging: [x],[y]"
+				to_world("Debugging: [x],[y]")
 
 				if(node1)
-					world << "Input node: [node1.x],[node1.y] [network1]"
+					to_world("Input node: [node1.x],[node1.y] [network1]")
 				if(node2)
-					world << "Output node: [node2.x],[node2.y] [network2]"
+					to_world("Output node: [node2.x],[node2.y] [network2]")
 
 			toggle()
 				set src in world
@@ -329,13 +329,13 @@ obj/machinery/atmospherics
 				set src in world
 				set category = "Minor"
 
-				world << "\blue [x],[y]"
-				world << "network 1: [network_node1.normal_members.len], [network_node1.line_members.len]"
+				to_world("\blue [x],[y]")
+				to_world("network 1: [network_node1.normal_members.len], [network_node1.line_members.len]")
 				for(var/obj/O in network_node1.normal_members)
-					world << "member: [O.x], [O.y]"
-				world << "network 2: [network_node2.normal_members.len], [network_node2.line_members.len]"
+					to_world("member: [O.x], [O.y]")
+				to_world("network 2: [network_node2.normal_members.len], [network_node2.line_members.len]")
 				for(var/obj/O in network_node2.normal_members)
-					world << "member: [O.x], [O.y]"
+					to_world("member: [O.x], [O.y]")
 	pipe
 		verb
 			destroy()
@@ -374,7 +374,7 @@ mob
 				if(master)
 					P.overlays += icon('icons/Testing/atmos_testing.dmi',"marker[master.marker]")
 				else
-					world << "error"
+					to_world("error")
 					P.overlays += icon('icons/Testing/atmos_testing.dmi',"marker0")
 
 			for(var/obj/machinery/atmospherics/binary/valve/V in world)
@@ -539,7 +539,7 @@ mob
 			for(var/i=1; i<=amount; i++)
 				master_controller.process()
 
-			world << "Ended [amount] cycles in [(world.timeofday-start_time)/10] seconds. [(world.timeofday-start_time)/10-amount] calculation lag"
+			to_world("Ended [amount] cycles in [(world.timeofday-start_time)/10] seconds. [(world.timeofday-start_time)/10-amount] calculation lag")
 
 			update_indicators()
 

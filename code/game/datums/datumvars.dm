@@ -799,10 +799,10 @@ body
 		//H.species.remove_inherent_verbs(H)
 
 		if(H.set_species(new_species))
-			usr << "Set species of [H] to [H.species]."
+			to_chat(usr, "Set species of [H] to [H.species].")
 			H.regenerate_icons()
 		else
-			usr << "Failed! Something went wrong."
+			to_chat(usr, "Failed! Something went wrong.")
 
 	else if(href_list["addlanguage"])
 		if(!check_rights(R_SPAWN))
@@ -823,9 +823,9 @@ body
 			return
 
 		if(H.add_language(new_language))
-			usr << "Added [new_language] to [H]."
+			to_chat(usr, "Added [new_language] to [H].")
 		else
-			usr << "Mob already knows that language."
+			to_chat(usr, "Mob already knows that language.")
 
 	else if(href_list["remlanguage"])
 		if(!check_rights(R_SPAWN))
@@ -837,7 +837,7 @@ body
 			return
 
 		if(!length(H.languages))
-			usr << "This mob knows no languages."
+			to_chat(usr, "This mob knows no languages.")
 			return
 
 		var/datum/language/rem_language = input("Please choose a language to remove.", "Language", null) as null|anything in H.languages
@@ -850,9 +850,9 @@ body
 			return
 
 		if(H.remove_language(rem_language.name))
-			usr << "Removed [rem_language] from [H]."
+			to_chat(usr, "Removed [rem_language] from [H].")
 		else
-			usr << "Mob doesn't know that language."
+			to_chat(usr, "Mob doesn't know that language.")
 
 	else if(href_list["addverb"])
 		if(!check_rights(R_DEBUG))

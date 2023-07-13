@@ -991,7 +991,7 @@
 		global.CTgame_ticker.master_mode = href_list["c_mode2"]
 		log_admin("[key_name(usr)] set the mode as [global.CTgame_ticker.master_mode].")
 		message_admins("\blue [key_name_admin(usr)] set the mode as [global.CTgame_ticker.master_mode].", 1)
-		world << "\blue <b>The mode is now: [global.CTgame_ticker.master_mode]</b>"
+		to_world("\blue <b>The mode is now: [global.CTgame_ticker.master_mode]</b>")
 		Game() // updates the main game menu
 		world.save_mode(global.CTgame_ticker.master_mode)
 		.(href, list("c_mode"=1))
@@ -1856,8 +1856,8 @@
 			if("activateprison")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","AP")
-				world << "\blue <B>Transit signature detected.</B>"
-				world << "\blue <B>Incoming shuttle.</B>"
+				to_world("\blue <B>Transit signature detected.</B>")
+				to_world("\blue <B>Incoming shuttle.</B>")
 				/*
 				var/A = locate(/area/shuttle_prison)
 				for(var/atom/movable/AM as mob|obj in A)
@@ -2050,11 +2050,11 @@
 						M.show_message(text("\blue The chilling wind suddenly stops..."), 1)
 /*				if("shockwave")
 				ok = 1
-				world << "\red <B><big>ALERT: STATION STRESS CRITICAL</big></B>"
+				to_world("\red <B><big>ALERT: STATION STRESS CRITICAL</big></B>")
 				sleep(60)
-				world << "\red <B><big>ALERT: STATION STRESS CRITICAL. TOLERABLE LEVELS EXCEEDED!</big></B>"
+				to_world("\red <B><big>ALERT: STATION STRESS CRITICAL. TOLERABLE LEVELS EXCEEDED!</big></B>")
 				sleep(80)
-				world << "\red <B><big>ALERT: STATION STRUCTURAL STRESS CRITICAL. SAFETY MECHANISMS FAILED!</big></B>"
+				to_world("\red <B><big>ALERT: STATION STRUCTURAL STRESS CRITICAL. SAFETY MECHANISMS FAILED!</big></B>")
 				sleep(40)
 				for(var/mob/M in world)
 					shake_camera(M, 400, 1)
@@ -2324,7 +2324,7 @@
 		if(usr)
 			log_admin("[key_name(usr)] used secret [href_list["secretsfun"]]")
 			if (ok)
-				world << text("<B>A secret has been activated by []!</B>", usr.key)
+				to_world("<B>A secret has been activated by [usr.key]!</B>")
 
 	else if(href_list["secretsadmin"])
 		if(!check_rights(R_ADMIN))	return
@@ -2421,7 +2421,7 @@
 		if (usr)
 			log_admin("[key_name(usr)] used secret [href_list["secretsadmin"]]")
 			if (ok)
-				world << text("<B>A secret has been activated by []!</B>", usr.key)
+				to_world("<B>A secret has been activated by [usr.key]!</B>")
 
 	else if(href_list["secretscoder"])
 		if(!check_rights(R_DEBUG))	return

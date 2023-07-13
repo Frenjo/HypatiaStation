@@ -234,7 +234,7 @@ GLOBAL_GLOBL_INIT(syndicate_code_response, null)	// Code response for traitors.
 	set name = "Generate Code Phrase"
 	set category = "Debug"
 
-	world << "\red Code Phrase is: \black [generate_code_phrase()]"
+	to_world("\red Code Phrase is: \black [generate_code_phrase()]")
 	return
 
 

@@ -52,7 +52,7 @@
 /*
 	if(!node1)
 		if(!nodealert)
-			//world << "Missing node from [src] at [src.x],[src.y],[src.z]"
+			//to_world("Missing node from [src] at [src.x],[src.y],[src.z]")
 			nodealert = 1
 	else if (nodealert)
 		nodealert = 0

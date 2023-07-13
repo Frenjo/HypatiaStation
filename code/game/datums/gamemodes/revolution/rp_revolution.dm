@@ -78,14 +78,14 @@
 /datum/game_mode/revolution/rp_revolution/greet_revolutionary(datum/mind/rev_mind, you_are = 1)
 	var/obj_count = 1
 	if(you_are)
-		rev_mind.current << "\blue You are a member of the revolutionaries' leadership!"
+		to_chat(rev_mind.current, SPAN_INFO("You are a member of the revolutionaries' leadership!"))
 	if(!CONFIG_GET(objectives_disabled))
 		for(var/datum/objective/objective in rev_mind.objectives)
-			rev_mind.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
+			to_chat(rev_mind.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			rev_mind.special_role = "Head Revolutionary"
 			obj_count++
 	else
-		rev_mind.current << "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>"
+		FEEDBACK_ANTAGONIST_GREETING_GUIDE(rev_mind.current)
 
 	// Show each head revolutionary up to 3 candidates
 	var/list/already_considered = list()
@@ -112,7 +112,7 @@
 	rev_mind.current << "\red <FONT size = 3> You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill, capture or convert the heads to win the revolution!</FONT>"
 	rev_mind.special_role = "Revolutionary"
 	if(CONFIG_GET(objectives_disabled))
-		rev_mind.current << "<font color=blue>Within the rules,</font> try to act as an opposing force to the crew. Further RP and try to make sure other players have </i>fun<i>! If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to antagonists.</i></b>"
+		FEEDBACK_ANTAGONIST_GREETING_GUIDE(rev_mind.current)
 	update_rev_icons_added(rev_mind)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
 	return 1

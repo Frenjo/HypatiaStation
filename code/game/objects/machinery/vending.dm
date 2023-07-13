@@ -124,7 +124,7 @@
 			coin_records += R
 		else
 			product_records += R
-//		world << "Added: [R.product_name]] - [R.amount] - [R.product_path]"
+		//to_world("Added: [R.product_name]] - [R.amount] - [R.product_path]")
 	return
 
 /obj/machinery/vending/attackby(obj/item/W as obj, mob/user as mob)

@@ -908,7 +908,7 @@
 		//W.icon = 'icons/obj/kitchen.dmi'
 		W.icon_state = "forkloaded"
 		/*if (herp)
-			world << "[user] takes a piece of omelette with his fork!"*/
+			to_world("[user] takes a piece of omelette with his fork!")*/
 			//Why this unecessary check? Oh I know, because I'm bad >:C
 			// Yes, you are. You griefing my badmin toys. --rastaf0
 		user.visible_message(

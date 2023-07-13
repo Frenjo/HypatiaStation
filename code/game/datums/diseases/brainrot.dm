@@ -39,7 +39,8 @@
 				affected_mob.adjustToxLoss(3)
 				affected_mob.updatehealth()
 				if(prob(2))
-					affected_mob << "\red Your head hurts." */
+					to_chat(affected_mob, SPAN_WARNING("Your head hurts."))
+*/
 		if(4)
 			if(prob(2))
 				affected_mob.emote("stare")
@@ -49,7 +50,8 @@
 				affected_mob.adjustToxLoss(4)
 				affected_mob.updatehealth()
 				if(prob(2))
-					affected_mob << "\red Your head hurts." */
+					to_chat(affected_mob, SPAN_WARNING("Your head hurts."))
+*/
 			if(prob(15) && affected_mob.getBrainLoss() <= 98) //shouldn't retard you to death now
 				affected_mob.adjustBrainLoss(3)
 				affected_mob.updatehealth()

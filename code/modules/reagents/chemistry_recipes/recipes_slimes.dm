@@ -621,7 +621,7 @@
 	result_amount = 2
 	required_container = /obj/item/slime_core
 	required_other = 4
-	
+
 /datum/chemical_reaction/slimebork/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/list/borks = typesof(/obj/item/reagent_containers/food/snacks) - /obj/item/reagent_containers/food/snacks
 	// BORK BORK BORK
@@ -685,9 +685,9 @@
 	for(var/mob/M in viewers(5, location))
 		M << "\red The solution spews out foam!"
 
-	//world << "Holder volume is [holder.total_volume]"
+	//to_world("Holder volume is [holder.total_volume]")
 	//for(var/datum/reagent/R in holder.reagent_list)
-	//	world << "[R.name] = [R.volume]"
+		//to_world("[R.name] = [R.volume]")
 
 	var/datum/effect/effect/system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 0)

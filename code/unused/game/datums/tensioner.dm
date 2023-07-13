@@ -620,7 +620,7 @@ var/global/datum/tension/tension_master
 	/*
 		if (emergency_shuttle.direction == 1 && emergency_shuttle.online == 1)
 			emergency_shuttle.recall()
-			world << "\blue <B>Alert: The shuttle is going back!</B>"
+			to_world("\blue <B>Alert: The shuttle is going back!</B>")
 
 		var/syndicate_commando_number = syndicate_commandos_possible //for selecting a leader
 

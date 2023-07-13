@@ -236,15 +236,15 @@
 	if(cur_assembly)
 		var/amount_left = 0
 		for(var/reagent in cur_assembly.rod_quantities)
-			//world << "checking [reagent]"
+			//to_world("checking [reagent]")
 			if(cur_assembly.rod_quantities[reagent] > 0)
-				//world << "	rods left: [cur_assembly.rod_quantities[reagent]]"
+				//to_world("	rods left: [cur_assembly.rod_quantities[reagent]]")
 				var/amount = cur_assembly.rod_quantities[reagent] * fuel_usage
 				var/numparticles = round(amount * 1000)
 				if(numparticles < 1)
 					numparticles = 1
-				//world << "	amount: [amount]"
-				//world << "	numparticles: [numparticles]"
+				//to_world("	amount: [amount]")
+				//to_world("	numparticles: [numparticles]")
 				//
 
 				var/obj/effect/accelerated_particle/A = new/obj/effect/accelerated_particle(get_turf(src), dir)

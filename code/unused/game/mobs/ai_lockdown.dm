@@ -8,7 +8,7 @@
 
 	src << "<b>Initiating lockdowns has been disabled due to system stress.</b>"
 //	Commented this out to disable Lockdowns -- TLE
-/*	world << "\red Lockdown initiated by [usr.name]!"
+/*	to_world("\red Lockdown initiated by [usr.name]!")
 
 	for(var/obj/machinery/firealarm/FA in world) //activate firealarms
 		spawn( 0 )
@@ -40,7 +40,7 @@
 		usr <<"You cannot disable lockdown because you are dead!"
 		return
 
-	world << "\red Lockdown cancelled by [usr.name]!"
+	to_world("\red Lockdown cancelled by [usr.name]!")
 
 	for(var/obj/machinery/firealarm/FA in world) //deactivate firealarms
 		spawn( 0 )

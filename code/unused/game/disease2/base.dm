@@ -149,13 +149,13 @@
 
 
 	proc/getcopy()
-//		world << "getting copy"
+		//to_world("getting copy")
 		var/datum/disease2/disease/disease = new /datum/disease2/disease
 		disease.infectionchance = infectionchance
 		disease.spreadtype = spreadtype
 		disease.stageprob = stageprob
 		for(var/datum/disease2/effectholder/holder in effects)
-	//		world << "adding effects"
+			//to_world("adding effects")
 			var/datum/disease2/effectholder/newholder = new /datum/disease2/effectholder
 			newholder.effect = new holder.effect.type
 			newholder.chance = holder.chance
@@ -164,8 +164,8 @@
 			newholder.happensonce = holder.happensonce
 			newholder.stage = holder.stage
 			disease.effects += newholder
-	//		world << "[newholder.effect.name]"
-	//	world << "[disease]"
+			//to_world("[newholder.effect.name]")
+		//to_world("[disease]")
 		return disease
 
 /datum/disease2/effect
@@ -311,7 +311,7 @@
 	proc/getrandomeffect()
 		var/list/datum/disease2/effect/list = list()
 		for(var/e in (typesof(/datum/disease2/effect) - /datum/disease2/effect))
-		//	world << "Making [e]"
+		//	to_world("Making [e]")
 			var/datum/disease2/effect/f = new e
 			if(f.stage == src.stage)
 				list += f

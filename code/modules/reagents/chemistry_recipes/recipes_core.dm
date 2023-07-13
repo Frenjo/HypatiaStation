@@ -157,9 +157,9 @@
 	for(var/mob/M in viewers(5, location))
 		to_chat(M, SPAN_WARNING("The solution spews out foam!"))
 
-	//world << "Holder volume is [holder.total_volume]"
+	//to_world("Holder volume is [holder.total_volume]")
 	//for(var/datum/reagent/R in holder.reagent_list)
-	//	world << "[R.name] = [R.volume]"
+		//to_world("[R.name] = [R.volume]")
 
 	var/datum/effect/system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 0)

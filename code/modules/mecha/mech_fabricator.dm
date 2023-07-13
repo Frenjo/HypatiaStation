@@ -279,13 +279,13 @@
 			var/index = resources.Find(p)
 			index = resources.Find(p, ++index)
 			if(index) //duplicate resource
-				world << "Duplicate resource definition for [src](\ref[src])"
+				to_world("Duplicate resource definition for [src](\ref[src])")
 				return 0
 		for(var/set_name in part_sets)
 			var/index = part_sets.Find(set_name)
 			index = part_sets.Find(set_name, ++index)
 			if(index) //duplicate part set
-				world << "Duplicate part set definition for [src](\ref[src])"
+				to_world("Duplicate part set definition for [src](\ref[src])")
 				return 0
 		return 1
 */

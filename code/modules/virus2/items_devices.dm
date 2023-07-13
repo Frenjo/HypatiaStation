@@ -1,6 +1,6 @@
 /obj/machinery/proc/state(var/msg)
 	for(var/mob/O in hearers(src, null))
-		O.show_message("\icon[src] <span class = 'notice'>[msg]</span>", 2)
+		O.show_message(SPAN_NOTICE("\icon[src] [msg]"), 2)
 
 ///////////////ANTIBODY SCANNER///////////////
 
@@ -15,14 +15,14 @@
 
 /obj/item/device/antibody_scanner/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(!istype(M))
-		user << "<span class='notice'>Incompatible object, scan aborted.</span>"
+		to_chat(user, SPAN_NOTICE("Incompatible object, scan aborted."))
 		return
 	var/mob/living/carbon/C = M
 	if(!C.antibodies)
-		user << "<span class='notice'>Unable to detect antibodies.</span>"
+		to_chat(user, SPAN_NOTICE("Unable to detect antibodies."))
 		return
 	var/code = antigens2string(M.antibodies)
-	user << "<span class='notice'>[src] The antibody scanner displays a cryptic set of data: [code]</span>"
+	to_chat(user, SPAN_NOTICE("[src] The antibody scanner displays a cryptic set of data: [code]"))
 
 ///////////////VIRUS DISH///////////////
 
