@@ -84,7 +84,7 @@
 	name = "sledgehammer"
 	desc = "A mining hammer made of reinforced metal. You feel like smashing your boss in the face with this."
 	icon = 'icons/obj/weapons/weapons.dmi'
-	icon_state = "sledgehammer" Waiting on sprite
+	icon_state = "sledgehammer"
 
 /obj/item/pickaxe/silver
 	name = "silver pickaxe"
